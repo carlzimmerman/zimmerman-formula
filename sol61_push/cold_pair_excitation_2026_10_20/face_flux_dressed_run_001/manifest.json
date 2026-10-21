@@ -1,0 +1,955 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-QUASISTATIC-CHI-SEED-SIGNED-FACE-FLUX-CONTROL-2026-10-20",
+  "repository": {
+    "commit": "cad364953f1f655df89f269f9caa46f7ed816a33",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_pair_excitation_2026_10_20/face_flux_dressed.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/face_flux_dressed_cases.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/face_flux_dressed_run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "On all100 immutable snapshots of four completed dressed seed evolutions, verify exact semidiscrete local E/Q face continuity, compare aperture changes to10-unit sampled signed currents, and report baseline K0 control differences over declared early/late windows. No field advancement or radiation-rate acceptance.",
+    "coefficient_domain": "Binary64 real fields, same weighted FV action and strict voxel spherical masks.",
+    "conventions": "The complete read/evaluate/ck kernel functions are AST-identical to frozen face_flux.py. Only scope/cadence, configured windows and an explicitly labelled control subtraction are added. Each surface sums oriented interior faces with positive half-link local energy.",
+    "inputs": [
+      "Four completed field evolutions K0/K1/K50/K500 with actual differing E/Q",
+      "Same pinned action and signed-current kernel",
+      "t0:10:240 full fields,1-unit logs and positive-energy logs"
+    ],
+    "bounds": {
+      "cases": [
+        0,
+        1,
+        50,
+        500
+      ],
+      "snapshots_per_case": 25,
+      "radii": [
+        20,
+        30,
+        40
+      ],
+      "time_windows": [
+        [
+          0,
+          40
+        ],
+        [
+          40,
+          120
+        ],
+        [
+          120,
+          180
+        ],
+        [
+          180,
+          240
+        ],
+        [
+          0,
+          180
+        ],
+        [
+          0,
+          240
+        ],
+        [
+          120,
+          240
+        ]
+      ],
+      "instant_continuity_relative_max": 1e-08,
+      "E_Q_log_relative_max": 1e-10,
+      "snapshot_quadrature": "measured discrepancy; no acceptance bound",
+      "maximum_measured_RSS_bytes": 1000000000
+    },
+    "non_claims": [
+      "No field evolution or new physical force",
+      "K0 subtraction is a difference of finite Cauchy evolutions, not automatically modal/radiative power",
+      "No gamma K^2 law accepted from nominal coordinates or small signals",
+      "No continuum/grid or time convergence bound for these new seeds",
+      "No asymptotic escape, carrier spectrum, orbital J or four-dwarf closure"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-20T21:26:41.922033+00:00",
+    "runtime_seconds": 1.800068,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 60,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_pair_excitation_2026_10_20/face_flux_dressed.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/face_flux.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/face_flux_dressed_cases.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_axisym_v2.c",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_axisym_seed.c",
+    "sol61_push/cold_pair_excitation_2026_10_20/build_receipt_seed.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/chi_dressed_initial_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/chi_dressed_initial_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_case.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_contract.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000000000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000010000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000020000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000030000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000040000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000050000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000060000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000070000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000090000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000110000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000130000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000150000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000170000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000190000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000210000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000230000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_case.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_contract.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000000000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000010000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000020000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000030000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000040000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000050000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000060000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000070000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000090000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000110000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000130000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000150000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000170000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000190000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000210000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000230000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_case.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_contract.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000000000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000010000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000020000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000030000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000040000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000050000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000060000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000070000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000090000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000110000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000130000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000150000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000170000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000190000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000210000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000230000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_case.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_contract.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000000000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000010000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000020000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000030000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000040000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000050000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000060000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000070000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000090000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000110000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000130000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000150000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000170000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000190000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000210000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000230000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000240000.bin"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/face_flux_dressed.py",
+      "sha256": "3eab5a366370a29f45f49f3a087f2ded2dfe6df5d89debeafcdc6169e540b9d1",
+      "sha256_after": "3eab5a366370a29f45f49f3a087f2ded2dfe6df5d89debeafcdc6169e540b9d1"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/face_flux.py",
+      "sha256": "60d8edb725b7d41addcdbabf47caf6d601c8e5096664f67faab6975eecbf5a6a",
+      "sha256_after": "60d8edb725b7d41addcdbabf47caf6d601c8e5096664f67faab6975eecbf5a6a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/face_flux_dressed_cases.json",
+      "sha256": "bd3a216adcc19f385733865be8e232723020cbf98e3d7ff27c6eee872d4a0c79",
+      "sha256_after": "bd3a216adcc19f385733865be8e232723020cbf98e3d7ff27c6eee872d4a0c79"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_axisym_v2.c",
+      "sha256": "f4e8f96ad1f97a6bc506b4301e441ac696b46bd53d6c5a811d006cfee3360058",
+      "sha256_after": "f4e8f96ad1f97a6bc506b4301e441ac696b46bd53d6c5a811d006cfee3360058"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_axisym_seed.c",
+      "sha256": "2218d3239bf1190d4a9182491bc1a67aba8d89f57c3e0be5c1b8a773569cefc9",
+      "sha256_after": "2218d3239bf1190d4a9182491bc1a67aba8d89f57c3e0be5c1b8a773569cefc9"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/build_receipt_seed.json",
+      "sha256": "7af08cbf2a89442f7edb6d526c1f13e79230ac613d7f982526f8ca59617b81de",
+      "sha256_after": "7af08cbf2a89442f7edb6d526c1f13e79230ac613d7f982526f8ca59617b81de"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/chi_dressed_initial_run_001/results.json",
+      "sha256": "f4f6564fe435e00c36b1034264271fbb91b9defac79a08027698053fec6b4cd5",
+      "sha256_after": "f4f6564fe435e00c36b1034264271fbb91b9defac79a08027698053fec6b4cd5"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/chi_dressed_initial_run_001/manifest.json",
+      "sha256": "8cad64280ec8aa4a82b9aa3da1dec4ab454a15c73b23bd01d90ed521b06571fb",
+      "sha256_after": "8cad64280ec8aa4a82b9aa3da1dec4ab454a15c73b23bd01d90ed521b06571fb"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_case.json",
+      "sha256": "223459a7d7bcbb24a1b111a84577fbbf05176df34d9f398c7d4e4271d83dbfc0",
+      "sha256_after": "223459a7d7bcbb24a1b111a84577fbbf05176df34d9f398c7d4e4271d83dbfc0"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_contract.json",
+      "sha256": "60d0adbe9fe8293dd2f822ceccf47578bec906e18c40352b7c375ddd814c9dcc",
+      "sha256_after": "60d0adbe9fe8293dd2f822ceccf47578bec906e18c40352b7c375ddd814c9dcc"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/manifest.json",
+      "sha256": "6750b1eb7bda7720aa40c74c4e7851f51c8a1283576992eba52987ff0b7f6373",
+      "sha256_after": "6750b1eb7bda7720aa40c74c4e7851f51c8a1283576992eba52987ff0b7f6373"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/results.json",
+      "sha256": "1f98bfbd262514f6ae746b5b21165e5429297de7082771bbea931d1807205a26",
+      "sha256_after": "1f98bfbd262514f6ae746b5b21165e5429297de7082771bbea931d1807205a26"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/log.jsonl",
+      "sha256": "13476242a2a1cbd592ed1ab73c85e2f3b5c7588425c70a5761d135222e3ceaad",
+      "sha256_after": "13476242a2a1cbd592ed1ab73c85e2f3b5c7588425c70a5761d135222e3ceaad"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "38fd598334a6dfd40e17b3a92f2fe886a07470eb67f544628e44133902d63538",
+      "sha256_after": "38fd598334a6dfd40e17b3a92f2fe886a07470eb67f544628e44133902d63538"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000000000.bin",
+      "sha256": "024c3b339293b6d473ebfe8273131c8c022388897650543ed03361c3ce36c43f",
+      "sha256_after": "024c3b339293b6d473ebfe8273131c8c022388897650543ed03361c3ce36c43f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000010000.bin",
+      "sha256": "6e4a77d3a6966659120438a7b855bb192a162dd717e7cfd2c9bbaa99c08c9f68",
+      "sha256_after": "6e4a77d3a6966659120438a7b855bb192a162dd717e7cfd2c9bbaa99c08c9f68"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000020000.bin",
+      "sha256": "421d9b2e60a5a666ac544e6468c0e2a916a8dc4be01f204d3d7ec4225e313ee9",
+      "sha256_after": "421d9b2e60a5a666ac544e6468c0e2a916a8dc4be01f204d3d7ec4225e313ee9"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000030000.bin",
+      "sha256": "ec7d847b0a9c046feaeaa8d937a797b98a92fa6b82bc09c1af54b642ff2e023d",
+      "sha256_after": "ec7d847b0a9c046feaeaa8d937a797b98a92fa6b82bc09c1af54b642ff2e023d"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000040000.bin",
+      "sha256": "e29421e82de6223b8f65cc502574bb7573edf5869dcce77862cdbc7b8bdf4eeb",
+      "sha256_after": "e29421e82de6223b8f65cc502574bb7573edf5869dcce77862cdbc7b8bdf4eeb"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000050000.bin",
+      "sha256": "e42f67df9fccea563cfca383567f315017f0f5008edf2f7294b13ef757ca3d29",
+      "sha256_after": "e42f67df9fccea563cfca383567f315017f0f5008edf2f7294b13ef757ca3d29"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000060000.bin",
+      "sha256": "a45bb19e6cdcbf7b084862d4b0bd356a84fb069102f8128d8104c82fb3cd2383",
+      "sha256_after": "a45bb19e6cdcbf7b084862d4b0bd356a84fb069102f8128d8104c82fb3cd2383"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000070000.bin",
+      "sha256": "2b7356781f1a210726f9d858a8ddf0adedcc8fa92c0d0e56e851c9ebad5d59df",
+      "sha256_after": "2b7356781f1a210726f9d858a8ddf0adedcc8fa92c0d0e56e851c9ebad5d59df"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000080000.bin",
+      "sha256": "60ce7d01a8db75313021e5af88384d63102dcc0a379b78a020112bc1779f59df",
+      "sha256_after": "60ce7d01a8db75313021e5af88384d63102dcc0a379b78a020112bc1779f59df"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000090000.bin",
+      "sha256": "117477b9c3168bd0eea761c9b240315d5b5d11a4890c0ba8507d10dac4b62e14",
+      "sha256_after": "117477b9c3168bd0eea761c9b240315d5b5d11a4890c0ba8507d10dac4b62e14"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000100000.bin",
+      "sha256": "88fb2238c0c23da61c29b0f8b8d78c21762cec675848f04592ef719eb8f718c9",
+      "sha256_after": "88fb2238c0c23da61c29b0f8b8d78c21762cec675848f04592ef719eb8f718c9"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000110000.bin",
+      "sha256": "7cf04c47cd94ca4bfcab4df4883be36e8f336f4c607670c56ff44d7485ba370b",
+      "sha256_after": "7cf04c47cd94ca4bfcab4df4883be36e8f336f4c607670c56ff44d7485ba370b"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000120000.bin",
+      "sha256": "f80d1972358d147b5a8f60833db4704767629cbcfa0788f023a838d679ea3575",
+      "sha256_after": "f80d1972358d147b5a8f60833db4704767629cbcfa0788f023a838d679ea3575"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000130000.bin",
+      "sha256": "201dab2b870ef1f81f70554cf0fc42cec0b347a9240070967b65f7d39f8fb6ae",
+      "sha256_after": "201dab2b870ef1f81f70554cf0fc42cec0b347a9240070967b65f7d39f8fb6ae"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000140000.bin",
+      "sha256": "8d036d1170e0e07c5b3f4f73b9ac764adfda8f8148f980e0aab4ec9b8e6ad41a",
+      "sha256_after": "8d036d1170e0e07c5b3f4f73b9ac764adfda8f8148f980e0aab4ec9b8e6ad41a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000150000.bin",
+      "sha256": "5ff2b1e9cc48469dea935d27d7145915c3beebd228db8d6c476bcd715948002f",
+      "sha256_after": "5ff2b1e9cc48469dea935d27d7145915c3beebd228db8d6c476bcd715948002f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000160000.bin",
+      "sha256": "d9ed03890412d7fe454b4177bc9aa18e699161dfc2587a9ab1fb9d048a17272b",
+      "sha256_after": "d9ed03890412d7fe454b4177bc9aa18e699161dfc2587a9ab1fb9d048a17272b"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000170000.bin",
+      "sha256": "e93dd16919e1086b4e0d09d84ec8bda93e8aa22175d2b705b599d60b359ad4bb",
+      "sha256_after": "e93dd16919e1086b4e0d09d84ec8bda93e8aa22175d2b705b599d60b359ad4bb"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000180000.bin",
+      "sha256": "1504c6791ec02db3d1fd1e778ee4b47c4668da253666a25d4339b2e4d86405b9",
+      "sha256_after": "1504c6791ec02db3d1fd1e778ee4b47c4668da253666a25d4339b2e4d86405b9"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000190000.bin",
+      "sha256": "164ba59495c62ed04ff9448fb1e7f72923b347b41077a8da316f6c64abe725e4",
+      "sha256_after": "164ba59495c62ed04ff9448fb1e7f72923b347b41077a8da316f6c64abe725e4"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000200000.bin",
+      "sha256": "f7ce79d1c6f2ac850f9d52912c17992d2ed08a98784a654ee784340328bfd468",
+      "sha256_after": "f7ce79d1c6f2ac850f9d52912c17992d2ed08a98784a654ee784340328bfd468"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000210000.bin",
+      "sha256": "d5deef03003b6ff15b34f59784300e02924624096ab2db438ce5f73475ee5ca3",
+      "sha256_after": "d5deef03003b6ff15b34f59784300e02924624096ab2db438ce5f73475ee5ca3"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000220000.bin",
+      "sha256": "a7a5cc3a92da9be845504605f4d40bb9066649e33ef1091c8fc1ddb51a93fa28",
+      "sha256_after": "a7a5cc3a92da9be845504605f4d40bb9066649e33ef1091c8fc1ddb51a93fa28"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000230000.bin",
+      "sha256": "7719507b4b6cffccf36cbffa654201361bc7f263b6faa66ba9784a28cfe448ec",
+      "sha256_after": "7719507b4b6cffccf36cbffa654201361bc7f263b6faa66ba9784a28cfe448ec"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K0_run_001/evolution/snap_t000240000.bin",
+      "sha256": "42ebdd3c6c8849bc2a332088d39425376e8845db4bd1145ec03bced7274c2a34",
+      "sha256_after": "42ebdd3c6c8849bc2a332088d39425376e8845db4bd1145ec03bced7274c2a34"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_case.json",
+      "sha256": "1da8c8ea24b7740426eda636f832302353553c7eea9c105c9cbd34b2e39627fe",
+      "sha256_after": "1da8c8ea24b7740426eda636f832302353553c7eea9c105c9cbd34b2e39627fe"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_contract.json",
+      "sha256": "55c6237b7eab42bcaaf4bfc45a4ba72ca6a12c17ad327c768517cdb900769b7c",
+      "sha256_after": "55c6237b7eab42bcaaf4bfc45a4ba72ca6a12c17ad327c768517cdb900769b7c"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/manifest.json",
+      "sha256": "69466be2a6b726855bc2dcedc98fc554fad8fa64be217563cadc4c9a55b40c4e",
+      "sha256_after": "69466be2a6b726855bc2dcedc98fc554fad8fa64be217563cadc4c9a55b40c4e"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/results.json",
+      "sha256": "da3d8e7e6d0984fd115ce9793aa4c211bb13ed66bc28a0d60ab3a9295535f375",
+      "sha256_after": "da3d8e7e6d0984fd115ce9793aa4c211bb13ed66bc28a0d60ab3a9295535f375"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/log.jsonl",
+      "sha256": "ec4212ac9588801e31b0abf91a506d152839ebcc5e04dc600e12f96cbffd858a",
+      "sha256_after": "ec4212ac9588801e31b0abf91a506d152839ebcc5e04dc600e12f96cbffd858a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "be6e9d5521bf20942b8486bf5e9415500e2ea6a3b73e7a519876741ceeca112d",
+      "sha256_after": "be6e9d5521bf20942b8486bf5e9415500e2ea6a3b73e7a519876741ceeca112d"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000000000.bin",
+      "sha256": "8b48801aaf306bba83f4018e6907f6698fd7df2a47422287a0c28357bc484d7a",
+      "sha256_after": "8b48801aaf306bba83f4018e6907f6698fd7df2a47422287a0c28357bc484d7a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000010000.bin",
+      "sha256": "a2e0211ec5bd9ef18eb8f666a3be612ed6f1ece5476f89c8cbe0ed228eaf3822",
+      "sha256_after": "a2e0211ec5bd9ef18eb8f666a3be612ed6f1ece5476f89c8cbe0ed228eaf3822"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000020000.bin",
+      "sha256": "c5a31626cc4061988b93a07e9ee3ebdc04b35510dfeaa29156e73799023dee07",
+      "sha256_after": "c5a31626cc4061988b93a07e9ee3ebdc04b35510dfeaa29156e73799023dee07"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000030000.bin",
+      "sha256": "2422a5032df0257ab61677684e51439577d76b611a3829356c58b99f3741c547",
+      "sha256_after": "2422a5032df0257ab61677684e51439577d76b611a3829356c58b99f3741c547"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000040000.bin",
+      "sha256": "1ba449272fa337a9c5e54e56c3995bff94d6ce9beb89c453b97d0b3964da7901",
+      "sha256_after": "1ba449272fa337a9c5e54e56c3995bff94d6ce9beb89c453b97d0b3964da7901"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000050000.bin",
+      "sha256": "77891d3e8c9a9d0de0d337676e8551f7d3839b106f3099b08e99d5ebe59225fb",
+      "sha256_after": "77891d3e8c9a9d0de0d337676e8551f7d3839b106f3099b08e99d5ebe59225fb"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000060000.bin",
+      "sha256": "f881f684a44146f9bcfe8cf9bf33fa03e7c8e6012d466def7c730dc4d4742622",
+      "sha256_after": "f881f684a44146f9bcfe8cf9bf33fa03e7c8e6012d466def7c730dc4d4742622"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000070000.bin",
+      "sha256": "522247ad70df503e25646c977aac39cf73eb0edec3dd6c1caa6f71fc2b56a841",
+      "sha256_after": "522247ad70df503e25646c977aac39cf73eb0edec3dd6c1caa6f71fc2b56a841"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000080000.bin",
+      "sha256": "6191a3433783b49a63353d663b7efc29af56fbba66ff319dc83005d119de9505",
+      "sha256_after": "6191a3433783b49a63353d663b7efc29af56fbba66ff319dc83005d119de9505"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000090000.bin",
+      "sha256": "28a88f480cf0c24325f7a716376af8e108da30f7bb65ce74ab1973e59c27589c",
+      "sha256_after": "28a88f480cf0c24325f7a716376af8e108da30f7bb65ce74ab1973e59c27589c"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000100000.bin",
+      "sha256": "ca03e65931b5502b0c2b0cdf332b0660fd9dc7313e7fea95a995980f5e63b12a",
+      "sha256_after": "ca03e65931b5502b0c2b0cdf332b0660fd9dc7313e7fea95a995980f5e63b12a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000110000.bin",
+      "sha256": "2b5dbddc62827c789414ed7987ea29f872424a20af21acd03f70705c4a8d5583",
+      "sha256_after": "2b5dbddc62827c789414ed7987ea29f872424a20af21acd03f70705c4a8d5583"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000120000.bin",
+      "sha256": "261162b71ce0c24e4aba1facfe6acb3daa53937776883fb50f83c430483d8633",
+      "sha256_after": "261162b71ce0c24e4aba1facfe6acb3daa53937776883fb50f83c430483d8633"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000130000.bin",
+      "sha256": "7891fa9675ed1d275ec964046e1c9c989be803b5df1d7eab9ed341805df44964",
+      "sha256_after": "7891fa9675ed1d275ec964046e1c9c989be803b5df1d7eab9ed341805df44964"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000140000.bin",
+      "sha256": "0d8887c8b991d4f7da95e3c29e8c89e95d25554eecf9005f28e62a2df6615609",
+      "sha256_after": "0d8887c8b991d4f7da95e3c29e8c89e95d25554eecf9005f28e62a2df6615609"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000150000.bin",
+      "sha256": "42c9b898f5c5f16e6ac2929b6a9d0ab4e2d2def5efd73f65e6b6e8991ea93bc3",
+      "sha256_after": "42c9b898f5c5f16e6ac2929b6a9d0ab4e2d2def5efd73f65e6b6e8991ea93bc3"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000160000.bin",
+      "sha256": "759df838f96307d5785d8965486087bcefeb629870083e3588ae647724afc36d",
+      "sha256_after": "759df838f96307d5785d8965486087bcefeb629870083e3588ae647724afc36d"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000170000.bin",
+      "sha256": "523ed16072798f284838ad90ff5cbf151634cfe0cf32ee43bcdf23b6878204ec",
+      "sha256_after": "523ed16072798f284838ad90ff5cbf151634cfe0cf32ee43bcdf23b6878204ec"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000180000.bin",
+      "sha256": "747ad379b6a3b32ae5d0168135fa994c8e1ae43ead2a94848e93c8343163d36f",
+      "sha256_after": "747ad379b6a3b32ae5d0168135fa994c8e1ae43ead2a94848e93c8343163d36f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000190000.bin",
+      "sha256": "377e7f11a57c7786359d4bc1271b5e699e2e17abefedd9eafc079b75b5d63ebf",
+      "sha256_after": "377e7f11a57c7786359d4bc1271b5e699e2e17abefedd9eafc079b75b5d63ebf"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000200000.bin",
+      "sha256": "ef445227ed46e9d1bb041b43024976d9d05cc0c9bb4c96d908563c6183e01b64",
+      "sha256_after": "ef445227ed46e9d1bb041b43024976d9d05cc0c9bb4c96d908563c6183e01b64"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000210000.bin",
+      "sha256": "6124096993067079cb470f2ef6164f195ba582e11c52f9bf50335b19986c96a6",
+      "sha256_after": "6124096993067079cb470f2ef6164f195ba582e11c52f9bf50335b19986c96a6"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000220000.bin",
+      "sha256": "92ffa5391d31eb811f2a99b1301d368546b72ab75ca41ac8833b15d221af2c06",
+      "sha256_after": "92ffa5391d31eb811f2a99b1301d368546b72ab75ca41ac8833b15d221af2c06"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000230000.bin",
+      "sha256": "4f2f7c346999c1c2c608f427655bc6989d01aa5e4db9827f275f0c05203a31a4",
+      "sha256_after": "4f2f7c346999c1c2c608f427655bc6989d01aa5e4db9827f275f0c05203a31a4"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K1_run_001/evolution/snap_t000240000.bin",
+      "sha256": "d3b17326f9accfd67cf18e6badba28f3d6c1546d76800a6aff945b50ff955a01",
+      "sha256_after": "d3b17326f9accfd67cf18e6badba28f3d6c1546d76800a6aff945b50ff955a01"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_case.json",
+      "sha256": "9590bcfedc83e2fe8922920cde8dada441afd2026f8f24d7ecdb2026b7cddd80",
+      "sha256_after": "9590bcfedc83e2fe8922920cde8dada441afd2026f8f24d7ecdb2026b7cddd80"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_contract.json",
+      "sha256": "259e4ef60452120a63dae9bae1275305b624a4309476bde8e6efd05def1fd6b9",
+      "sha256_after": "259e4ef60452120a63dae9bae1275305b624a4309476bde8e6efd05def1fd6b9"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/manifest.json",
+      "sha256": "2e9d92fd181529a4beb10686c9424e750bd9aa060be100b4819365eb22fa827b",
+      "sha256_after": "2e9d92fd181529a4beb10686c9424e750bd9aa060be100b4819365eb22fa827b"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/results.json",
+      "sha256": "0ce40d2cc75eff4ca393d1a617a9ea26aabc9c5963e5112b39cf459b0b447817",
+      "sha256_after": "0ce40d2cc75eff4ca393d1a617a9ea26aabc9c5963e5112b39cf459b0b447817"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/log.jsonl",
+      "sha256": "664f5ab4ffdbbcd8478ddd74eebb7c5f768300b303c45adc3036815ec046a1b3",
+      "sha256_after": "664f5ab4ffdbbcd8478ddd74eebb7c5f768300b303c45adc3036815ec046a1b3"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "867542637876224488169951c9818d183c96a03f608c653053966bce9284ed21",
+      "sha256_after": "867542637876224488169951c9818d183c96a03f608c653053966bce9284ed21"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000000000.bin",
+      "sha256": "a8bf1fbc3668b4d20d7ed160eb0650cbfbaa608778250faa1179d27962613318",
+      "sha256_after": "a8bf1fbc3668b4d20d7ed160eb0650cbfbaa608778250faa1179d27962613318"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000010000.bin",
+      "sha256": "f6837980ff1c0563cae37ffad8f69c42ffaa143780f59422d5506da04ebc6d35",
+      "sha256_after": "f6837980ff1c0563cae37ffad8f69c42ffaa143780f59422d5506da04ebc6d35"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000020000.bin",
+      "sha256": "6a2adfab0f3c0e8efeccd08a9c2c81f81a404719f961ae4c205a50f8355b6820",
+      "sha256_after": "6a2adfab0f3c0e8efeccd08a9c2c81f81a404719f961ae4c205a50f8355b6820"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000030000.bin",
+      "sha256": "0fb91ed3ad01553bc71081670eb2cf225bccef5b26ea5069d557e5f55b58f504",
+      "sha256_after": "0fb91ed3ad01553bc71081670eb2cf225bccef5b26ea5069d557e5f55b58f504"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000040000.bin",
+      "sha256": "3b776e6c48541ad02ede5c5eb74651d3a9d10c68ab3a9a6832f5dc71dd4a89e7",
+      "sha256_after": "3b776e6c48541ad02ede5c5eb74651d3a9d10c68ab3a9a6832f5dc71dd4a89e7"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000050000.bin",
+      "sha256": "16c1c867a493733e83971094833637e5388c4ec8aa125258fcbb2d8f6ed3a6a4",
+      "sha256_after": "16c1c867a493733e83971094833637e5388c4ec8aa125258fcbb2d8f6ed3a6a4"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000060000.bin",
+      "sha256": "4c48090d892fbc6a8e48e3332bbe2727c86d6888586202a19a1bf75e7e32aae1",
+      "sha256_after": "4c48090d892fbc6a8e48e3332bbe2727c86d6888586202a19a1bf75e7e32aae1"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000070000.bin",
+      "sha256": "8e961f9e4ff7d200b13ebe2f32740e8ca71ed88d061823dfa755e2b40fc40206",
+      "sha256_after": "8e961f9e4ff7d200b13ebe2f32740e8ca71ed88d061823dfa755e2b40fc40206"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000080000.bin",
+      "sha256": "c8d32b0ddb280fefbc7d340647cbcc917b45f9a0255c88488a59ee5a62836da3",
+      "sha256_after": "c8d32b0ddb280fefbc7d340647cbcc917b45f9a0255c88488a59ee5a62836da3"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000090000.bin",
+      "sha256": "9a6065596aea87a1af1933b0745408a00f358c71b3e607f6b691b787b559d81f",
+      "sha256_after": "9a6065596aea87a1af1933b0745408a00f358c71b3e607f6b691b787b559d81f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000100000.bin",
+      "sha256": "57d03c36669c925a9f9d9ea20dca74fe45027af09ed0af55ee2449fae5bf3e8c",
+      "sha256_after": "57d03c36669c925a9f9d9ea20dca74fe45027af09ed0af55ee2449fae5bf3e8c"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000110000.bin",
+      "sha256": "06f0c3342ff11f61a5ba71bb775e7894f29de44f3a9378cb475fcdc9e9ac1567",
+      "sha256_after": "06f0c3342ff11f61a5ba71bb775e7894f29de44f3a9378cb475fcdc9e9ac1567"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000120000.bin",
+      "sha256": "6549d5eae4c06b5fc96c0f4af476ec590eae8e31e6c33d1c68a96090f4c69953",
+      "sha256_after": "6549d5eae4c06b5fc96c0f4af476ec590eae8e31e6c33d1c68a96090f4c69953"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000130000.bin",
+      "sha256": "749a1f31d411a50915ba61e867a393d31eba1794c22b26cfaf8f743da2115eaf",
+      "sha256_after": "749a1f31d411a50915ba61e867a393d31eba1794c22b26cfaf8f743da2115eaf"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000140000.bin",
+      "sha256": "ce6bd018b76fd9f558de7337c6ed9daaa4720ffd4c66a428c7b184ab3d3284e8",
+      "sha256_after": "ce6bd018b76fd9f558de7337c6ed9daaa4720ffd4c66a428c7b184ab3d3284e8"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000150000.bin",
+      "sha256": "64f7b3b355cc412457e79376d62ec5370b4d89e83e16bea48a0f47bec3e05063",
+      "sha256_after": "64f7b3b355cc412457e79376d62ec5370b4d89e83e16bea48a0f47bec3e05063"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000160000.bin",
+      "sha256": "f7c4d673a483da206d0ebd1445785e50b3e22ec0596fcdc9611b2db9cbca3802",
+      "sha256_after": "f7c4d673a483da206d0ebd1445785e50b3e22ec0596fcdc9611b2db9cbca3802"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000170000.bin",
+      "sha256": "07dcd51d58c4f411c67447160b4046cecbec065af6e3a329128fc166edcf979e",
+      "sha256_after": "07dcd51d58c4f411c67447160b4046cecbec065af6e3a329128fc166edcf979e"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000180000.bin",
+      "sha256": "e071eec57ee014e7bb8e468b6ae06d72caa5e95bc243983fc5524b315564c758",
+      "sha256_after": "e071eec57ee014e7bb8e468b6ae06d72caa5e95bc243983fc5524b315564c758"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000190000.bin",
+      "sha256": "d83e9c96abff4be84570f3aabbc9512c2e61204022db5aa7f6848a8c11ae2351",
+      "sha256_after": "d83e9c96abff4be84570f3aabbc9512c2e61204022db5aa7f6848a8c11ae2351"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000200000.bin",
+      "sha256": "3bd2436d5d4ce32bdd917fb260f4a082625018c2d32f85c662d4a37268060507",
+      "sha256_after": "3bd2436d5d4ce32bdd917fb260f4a082625018c2d32f85c662d4a37268060507"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000210000.bin",
+      "sha256": "2abb55fcc00a962c12350c2b399591aadab884900035bc9a8c9e3bf871a19693",
+      "sha256_after": "2abb55fcc00a962c12350c2b399591aadab884900035bc9a8c9e3bf871a19693"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000220000.bin",
+      "sha256": "577b51cda5f76f49ad82966fae2b28fb717b7a785115931dd972b715c5edab66",
+      "sha256_after": "577b51cda5f76f49ad82966fae2b28fb717b7a785115931dd972b715c5edab66"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000230000.bin",
+      "sha256": "218db971de015b10152a5456fc0fd1ac14033252c4d512b0e815b7f00f385231",
+      "sha256_after": "218db971de015b10152a5456fc0fd1ac14033252c4d512b0e815b7f00f385231"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K50_run_001/evolution/snap_t000240000.bin",
+      "sha256": "badf91287ca6bd3e88dd61ad8355d69ea0b4a17d0ea6f7dddc48a833fbe176e5",
+      "sha256_after": "badf91287ca6bd3e88dd61ad8355d69ea0b4a17d0ea6f7dddc48a833fbe176e5"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_case.json",
+      "sha256": "6a97c67ba5cd13f264869156c375143056f78b820b60e2bb5fedde0e8ac7e623",
+      "sha256_after": "6a97c67ba5cd13f264869156c375143056f78b820b60e2bb5fedde0e8ac7e623"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_contract.json",
+      "sha256": "a30edeae181246fa3a03eb8f6126248ffca26927f0d133f2506b76c92c530f20",
+      "sha256_after": "a30edeae181246fa3a03eb8f6126248ffca26927f0d133f2506b76c92c530f20"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/manifest.json",
+      "sha256": "c7c726a9f028dafa4f42ba91576bbb50ef9a1159294461fa145490f582b0004a",
+      "sha256_after": "c7c726a9f028dafa4f42ba91576bbb50ef9a1159294461fa145490f582b0004a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/results.json",
+      "sha256": "ef75fa97ffeffe613808eb2fa5112b4cd795d0518180a3db8a2031b4e58c8330",
+      "sha256_after": "ef75fa97ffeffe613808eb2fa5112b4cd795d0518180a3db8a2031b4e58c8330"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/log.jsonl",
+      "sha256": "9187d9f9a277635b550db13cfdc70fdb2b3f56b288de2e004025cc2c40862a5c",
+      "sha256_after": "9187d9f9a277635b550db13cfdc70fdb2b3f56b288de2e004025cc2c40862a5c"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "8095539077faad3fa59f98c3d79e35eb18630ce408661bdac6dfd3f972950556",
+      "sha256_after": "8095539077faad3fa59f98c3d79e35eb18630ce408661bdac6dfd3f972950556"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000000000.bin",
+      "sha256": "37f5d17ff3c8971e1246c75de7c58afaad9eed78ae1d5203855d0fae65fabe2c",
+      "sha256_after": "37f5d17ff3c8971e1246c75de7c58afaad9eed78ae1d5203855d0fae65fabe2c"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000010000.bin",
+      "sha256": "296009e572f642d8d0e81d84344ecd474f1d884c7be6afe19d4351b45b49b570",
+      "sha256_after": "296009e572f642d8d0e81d84344ecd474f1d884c7be6afe19d4351b45b49b570"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000020000.bin",
+      "sha256": "c7996a57b96748dd8bfc4ee215676f30b44d9965d5e9313b4b13ab4a58cf78ab",
+      "sha256_after": "c7996a57b96748dd8bfc4ee215676f30b44d9965d5e9313b4b13ab4a58cf78ab"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000030000.bin",
+      "sha256": "55bb7eca91470f99265e66ac823cf3eb410a398fa741cc013ad4ac98d3cf2948",
+      "sha256_after": "55bb7eca91470f99265e66ac823cf3eb410a398fa741cc013ad4ac98d3cf2948"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000040000.bin",
+      "sha256": "f8fa446be0ecebf31b1f311e7b887114f5b1552f622ffe04785a69046aa81f72",
+      "sha256_after": "f8fa446be0ecebf31b1f311e7b887114f5b1552f622ffe04785a69046aa81f72"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000050000.bin",
+      "sha256": "97b2a3c28893327936843597429bcc72277e2a378c798478acca98ab867dd9e4",
+      "sha256_after": "97b2a3c28893327936843597429bcc72277e2a378c798478acca98ab867dd9e4"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000060000.bin",
+      "sha256": "d64615651566f47b0ad48df7a5f4d9db5376c905738fb73400e0c5e570efa57d",
+      "sha256_after": "d64615651566f47b0ad48df7a5f4d9db5376c905738fb73400e0c5e570efa57d"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000070000.bin",
+      "sha256": "dfe03b73dd1ed6b2347a551d0e8be2c9d92eb6fd2c1626ffd7a91974df6a9929",
+      "sha256_after": "dfe03b73dd1ed6b2347a551d0e8be2c9d92eb6fd2c1626ffd7a91974df6a9929"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000080000.bin",
+      "sha256": "41193e1157cfd155837dacf8337540f01f6ee99b2325659b0abadc6e0ff476a9",
+      "sha256_after": "41193e1157cfd155837dacf8337540f01f6ee99b2325659b0abadc6e0ff476a9"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000090000.bin",
+      "sha256": "3a2ec5b07eefde8dfd7b74b430b067c9e06b24047105b894b9780898b97a1f4d",
+      "sha256_after": "3a2ec5b07eefde8dfd7b74b430b067c9e06b24047105b894b9780898b97a1f4d"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000100000.bin",
+      "sha256": "87f547d7e68da57af639f4962ba1d4e38df0b8c5c45b62ed28a35d96ea1bb57e",
+      "sha256_after": "87f547d7e68da57af639f4962ba1d4e38df0b8c5c45b62ed28a35d96ea1bb57e"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000110000.bin",
+      "sha256": "abb3c2814be2cebc6fc7d9ef9ebcec51cf308750b8f37df4db227517b494bcbe",
+      "sha256_after": "abb3c2814be2cebc6fc7d9ef9ebcec51cf308750b8f37df4db227517b494bcbe"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000120000.bin",
+      "sha256": "7d177b0debba6c138fdb058e3f48ac959794805c2f517d6f5fb69f4c0c0f12f6",
+      "sha256_after": "7d177b0debba6c138fdb058e3f48ac959794805c2f517d6f5fb69f4c0c0f12f6"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000130000.bin",
+      "sha256": "008368f362867179978ec857531199a0c2b64ad1d2438977ac95ab48e7b9bd80",
+      "sha256_after": "008368f362867179978ec857531199a0c2b64ad1d2438977ac95ab48e7b9bd80"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000140000.bin",
+      "sha256": "4dc8146c0dad72a6e572d5aae90a7929670aa70e3073dbdba838e8e4097555ef",
+      "sha256_after": "4dc8146c0dad72a6e572d5aae90a7929670aa70e3073dbdba838e8e4097555ef"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000150000.bin",
+      "sha256": "f7511779dc00529b9389f6fc677ece52d9cba975093d585a130a954b56b84e23",
+      "sha256_after": "f7511779dc00529b9389f6fc677ece52d9cba975093d585a130a954b56b84e23"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000160000.bin",
+      "sha256": "e07232e25ac3b678c997421955201cdb8b89f6455d38bb563e67f7c27df7debc",
+      "sha256_after": "e07232e25ac3b678c997421955201cdb8b89f6455d38bb563e67f7c27df7debc"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000170000.bin",
+      "sha256": "3242b96c8d3f9c3149e443aaa8f784de708129fe4f091850276c3c9d66ca46cb",
+      "sha256_after": "3242b96c8d3f9c3149e443aaa8f784de708129fe4f091850276c3c9d66ca46cb"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000180000.bin",
+      "sha256": "9f59697705b6c526b88b781c97798a82409fdf117a0b5d7a96ca22ae630435d2",
+      "sha256_after": "9f59697705b6c526b88b781c97798a82409fdf117a0b5d7a96ca22ae630435d2"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000190000.bin",
+      "sha256": "250b3a5ecf2c06e6ecf2a649832e452525b9a4d83b55d265ac11039499cbd951",
+      "sha256_after": "250b3a5ecf2c06e6ecf2a649832e452525b9a4d83b55d265ac11039499cbd951"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000200000.bin",
+      "sha256": "e8acf155ff9cc1deecd63dfa733e91e413008601929c25f59c002f8fa67f3acf",
+      "sha256_after": "e8acf155ff9cc1deecd63dfa733e91e413008601929c25f59c002f8fa67f3acf"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000210000.bin",
+      "sha256": "44e4e97c68c357ccb8eb28eadfdc9a801c885f630aabb364a1239b745c4a32ba",
+      "sha256_after": "44e4e97c68c357ccb8eb28eadfdc9a801c885f630aabb364a1239b745c4a32ba"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000220000.bin",
+      "sha256": "a9580e3f86a63b8efffaffe56f7908be5af397c859bc8e1907edcf5d5467cccc",
+      "sha256_after": "a9580e3f86a63b8efffaffe56f7908be5af397c859bc8e1907edcf5d5467cccc"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000230000.bin",
+      "sha256": "fc7611869e74d8a69b3e51c08971164007ca8d5cf8f30cb64370680fa427aa89",
+      "sha256_after": "fc7611869e74d8a69b3e51c08971164007ca8d5cf8f30cb64370680fa427aa89"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/dressed_K500_run_001/evolution/snap_t000240000.bin",
+      "sha256": "a76ae5869bb1e67c54ce655f6d6672439c969f5f79026cdd648eed21e5c47cc9",
+      "sha256_after": "a76ae5869bb1e67c54ce655f6d6672439c969f5f79026cdd648eed21e5c47cc9"
+    }
+  ],
+  "output_directory": "sol61_push/cold_pair_excitation_2026_10_20/face_flux_dressed_run_001",
+  "declared_results": [
+    "sol61_push/cold_pair_excitation_2026_10_20/face_flux_dressed_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/face_flux_dressed_run_001/stdout.txt",
+      "sha256": "70be8ba91ae1da3d8b91466834211282eb1b6a6eabce8b276cf7903d5a12d986",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/face_flux_dressed_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/face_flux_dressed_run_001/results.json",
+      "sha256": "1c1f80eeb8c3a0367d4d17fa99906ecb22ff0e3db52c7b611e15a83fcd491a5e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

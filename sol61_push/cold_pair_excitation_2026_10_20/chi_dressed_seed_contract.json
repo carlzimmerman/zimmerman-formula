@@ -1,0 +1,68 @@
+{
+  "claim_id": "CE-DISTINCT-QUASISTATIC-CHI-Y20-INITIAL-PREPARATION-2026-10-20",
+  "mathematics": {
+    "assertion_tested": "Prepare distinct lower-configuration-energy Cauchy data by solving unique convex neutral chi minimization at fixed charged Psi/X fields and momenta; solve instantaneous tangent; audit actual full-action energy, charge and conditional mode coordinates. This is not evolution, radiative cooling or a nonlinear periodic mode.",
+    "coefficient_domain": "Binary64 FV fields, complex128 reference mode",
+    "conventions": "Same Nr188 Nz480 dx0.75 cylindrical finite-volume axis and zero-Dirichlet boundary stencils as pinned C_v2. Charged arrays remain byte-identical. K1 raw seed interpolated from K0/K50; K0,K50,K500 exact immutable raw inputs. Chi static equation -Lap h + Uprime(h)=-a|Psi|^2; tangent (-Lap+U2)hdot=-a*2Re(Psi*Psidot). Mode normalization and carrier unchanged.",
+    "inputs": [
+      "Immutable undressed Cauchy seeds and diagnostics",
+      "Q136k fine discrete reference mode/profile",
+      "Original fixed common-action parameters"
+    ],
+    "bounds": {
+      "nominal_linear_K": [
+        0,
+        1,
+        50,
+        500
+      ],
+      "max_fixed_point_updates": 32,
+      "residual_max_abs": 1e-08,
+      "residual_max_scaled": 1e-11,
+      "energy_face_identity_relative_max": 1e-10,
+      "directional_gradient_relative_max": 1e-05,
+      "Pz_over_E_max": 1e-10,
+      "max_measured_RSS_bytes": 1000000000,
+      "max_output_bytes": 1000000000
+    },
+    "non_claims": [
+      "Energy decrease compares different preparations; no actual cooling history or emitted energy",
+      "No fixed Q136000 adjustment",
+      "No adjustment of Psi/X, full DC response, corrected nonlinear Omega or stationary monopole",
+      "No dynamics, physical capture, four-dwarf formation or weak-gamma extrapolation"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_pair_excitation_2026_10_20/chi_dressed_seeds.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_projection.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/clean_mode_seeds.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/clean_mode_initial_run_001/clean_Y20_K0.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/clean_mode_initial_run_001/clean_Y20_K50.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/clean_mode_initial_run_001/clean_Y20_K500.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/clean_mode_initial_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/clean_mode_initial_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/Q136000_L60_N1199.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/profile_Q136000_L60_N1199.npz",
+    "sol61_push/cold_completion_2026_10_20/run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_axisym_v2.c"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

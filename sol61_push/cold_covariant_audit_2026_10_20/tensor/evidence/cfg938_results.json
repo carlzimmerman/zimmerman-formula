@@ -1,0 +1,566 @@
+{
+ "lane": "CFG938",
+ "criteria": "7a0d41e8b",
+ "mutate": false,
+ "stage": "MAIN",
+ "checks": {
+  "K2_FRW_dust_w0": {
+   "pass": true,
+   "detail": "rho = m/a(t)**3, p = 0, w = 0 exactly; fluid stress diagonal and isotropic"
+  },
+  "K3_newtonian_limit": {
+   "pass": true,
+   "detail": "sqrt(-g)(-m c^2 n) = detA*m*(-Phi*epsilon - 1)/epsilon  (Psi drops out exactly for a static medium)"
+  },
+  "K1_SPARC_NGC3198_reduction": {
+   "pass": true,
+   "detail": "EL = +/-(R(u) - g_N) symbolically: True; max rel dev canonical 2.22e-16, alt 2.22e-16 (line < 1e-6)"
+  },
+  "S1a_FRW_homogeneous_isotropic_fluid_and_solid": {
+   "pass": true,
+   "detail": "T^mu_nu diagonal with T^1_1 = T^2_2 = T^3_3 for F(n) and for generic solid F(tr B, tr B^2, tr B^3)"
+  },
+  "S1a2_Bianchi_I_contrast": {
+   "pass": true,
+   "detail": "anisotropic expansion: fluid stress stays isotropic (always); solid stress anisotropic only if a1 != a2"
+  },
+  "S1b_rest_frame_is_cosmic_frame": {
+   "pass": true,
+   "detail": "u^mu = [1, 0, 0, 0] (comoving); g_mu nu u^mu u^nu = -1"
+  },
+  "S1c_w0": {
+   "pass": true,
+   "detail": "F = -m c^2 n -> w = 0 (K2)"
+  },
+  "S1d_tether_sector_vanishes_on_FRW": {
+   "pass": true,
+   "detail": "h^{mu nu} d chi d chi = 0; traceless tidal tensor = 0; D^2 chibar = -3*Derivative(a(t), t)*Derivative(chibar(t), t)/a(t) -> chibar' = -K rho/(3H) (homogeneous solution exists); P = 0"
+  },
+  "S2a_P_is_electric_part_of_current_2form": {
+   "pass": true,
+   "detail": "J^mu = d_nu Q^{mu nu}, Q = (1/6) eps eps phi dphi dphi; J^0 = det(d_i phi^I); P^i = m(Q^{0i} - nbar x^i/3): div P = rho - rhobar EXACT (nonlinear), d_t P + j divergence-free (d_t P_L = -j_L exact)"
+  },
+  "S2a2_linear_P_minus_rhobar_xi": {
+   "pass": true,
+   "detail": "P = -rhobar xi + (divergence-free) at linear order, xi = x - phi (sign: div P = +delta rho)"
+  },
+  "S2b_tether_is_minimal_gravitational_coupling": {
+   "pass": true,
+   "detail": "-delta rho_c Phi = P.grad Phi - div(P Phi) with div P = delta rho_c; -|grad Phi - KP|^2/2K - W_rem = -|grad Phi|^2/2K + P.grad Phi - W_full; the medium's rest-mass coupling gives -rho Phi (K3): FORCED"
+  },
+  "S2b2_W_identities": {
+   "pass": true,
+   "detail": "K W_full' = u/(1 - u/a0), K W_rem' = u^2/(a0 - u), D_full = u + R"
+  },
+  "S2c_W_not_a_strain_or_local_function": {
+   "pass": true,
+   "detail": "uniform compression phi = x/lambda: B = delta/lambda^2 everywhere but |P|^2 = (lambda**3 - 1)**2*(x**2 + y**2 + z**2)/(9*lambda**6) grows with position; two profiles identical near R with different interiors: u differs by pi*Delta*G*R/6 -> u is an enclosed-mass (nonlocal) quantity; a local covariant W(K|P|) needs an extra structure"
+  },
+  "S2c2_chi_constraint_gives_u": {
+   "pass": true,
+   "detail": "D^2 chi = K rho_c (medium frame) -> chi' = G M_c(<r)/r^2 = u = K|P_L| (Gauss)"
+  },
+  "S2d_stiffness_is_density_squared": {
+   "pass": true,
+   "detail": "|d_i d_j chi|^2 = (lap chi)^2 + divergence (3-D, exact); with K P_L = grad chi: (gamma/2)|grad P_L|^2 = (gamma/2) delta rho_c^2 + divergence; traceless form (3 gamma/4K^2) tau^2 gives the same (2/3 factor absorbed)"
+  },
+  "S2d2_static_equation_with_stiffness": {
+   "pass": true,
+   "detail": "EL: D_full(u) = g + gamma d rho_c/dr, i.e. R(u) = g_N + gamma rho_c' (stiffness = pressure p = (gamma/2) rho_c^2 = pi G L*^2 rho_c^2; rho_c' < 0 pushes u below the law: screening)"
+  },
+  "S2d3_local_stiffness_EoS_early_universe": {
+   "pass": true,
+   "detail": "computed (a result, not a pass line): the LOCAL covariant stiffness is a stiff EoS; EXCLUDED at BBN for the whole L* window if the medium exists then (ratio >> 0.1); the chi-tidal (traceless) form vanishes on FRW (S1d) and has no background"
+  },
+  "S3a_tether_sector_stress_by_metric_variation": {
+   "pass": true,
+   "detail": "T_ij = (W'/u) d_i chi d_j chi - delta_ij W + 2 d_(i lambda d_j) chi - delta_ij grad lambda.grad chi"
+  },
+  "S3b_momentum_balance_identity": {
+   "pass": true,
+   "detail": "d_j T_ij = d_i chi [div(W' grad chi/|grad chi|) + lap lambda] + d_i lambda lap chi  ->  on shell = rho_c d_i(K lambda) = -(tether force density on the medium): medium + tether + gravity conserve momentum"
+  },
+  "S3c_static_stress_equals_CFG660_Pi": {
+   "pass": true,
+   "detail": "p_r = -W_full(u), p_t = p_r + D(u) u/K; on the law: dP_par/dg = (g/K)(dg_N/dg - 1), P_perp - P_par = g(g - g_N)/K, deep P_par = -g**2/(8*pi*G) + g**3/(6*pi*G*a_0); radial balance p_r' + 2(p_r - p_t)/r = -rho_c g. CFG660's stress is the derived stress of this action"
+  },
+  "S3d_drift_is_linearised_tether_force": {
+   "pass": true,
+   "detail": "f = D(u) - g = R(u) - g_N ~ R'(u_L)(u - u_L) = R'(u_L)(g - g_law): same direction as CFG638/CFG544 v_s = alpha tau (g - g_law); an overdamped limit needs a drag (mobility tau_d: alpha tau = tau_d R'(u_L)), which the ideal action does not contain"
+  },
+  "S3e_settling_energy_books_close_with_tether_energy": {
+   "pass": true,
+   "detail": "pushing a central surplus out raises the gravitational energy (CFG932's injection) but releases more tether energy W; total potential energy falls, the difference is dissipated (heat). BY CONSTRUCTION for a gradient flow; the content is that CFG932's books omit E_W"
+  },
+  "S4_slip_within_CFG847_bound": {
+   "pass": true,
+   "detail": "anisotropic stress is present (p_r - p_t = -g u/K, the field-aligned stress) but s <= 1.5e-05"
+  },
+  "S5a_dispersion_relation": {
+   "pass": true,
+   "detail": "omega^2 = c_s^2 k^2 + K rho0 [R'(u0) cos^2 theta + (R(u0)/u0) sin^2 theta], c_s^2 = gamma rho0; self-gravity (-K rho0) cancelled and over-cancelled by the tether; transverse (vortical) roots omega^2 = 0"
+  },
+  "S5b_no_gradient_instability_bounded_growth": {
+   "pass": true,
+   "detail": "omega^2 >= 0 for every k and angle (gamma > 0, 0 <= u0 < a0): no growth at all, versus CFG660's growth proportional to sqrt(k)"
+  },
+  "S5c_positive_inertia_condition": {
+   "pass": true,
+   "detail": "kinetic matrix positive iff rho_c c^2 > D(u) u/K (the tether stress); margin ~ c^2/v^2 on the law; screened regions (u ~ K rho_c r/3) need only r < 3c/sqrt(K rho_c). CONDITION, not automatic"
+  },
+  "S5d_chi_lambda_non_propagating": {
+   "pass": true,
+   "detail": "in the medium rest frame the chi/lambda sector has no time derivatives: constraints (elliptic, instantaneous in that frame); propagating dof = medium (1 longitudinal at c_s, 2 vortical at 0) + graviton (2)"
+  },
+  "S6_growth_flag_computed": {
+   "pass": true,
+   "detail": "a result, not a pass line: the covariant parent of S2 + ID suppresses linear growth of the tethered medium; the record's growth pass (T2x, class A) does NOT transfer to this parent. Before recombination the medium would follow photon-locked baryons only"
+  },
+  "S8a_no_gravity_between_tethered_components": {
+   "pass": true,
+   "detail": "d2<L>/dC1 dC2 = 0 (Newtonian 2*pi*G/k**2); baryon-medium term kept (2*pi*G/k**2). Astra's C^2 cancellation (audit sec. 4) extends to cross terms: tethered medium feels baryons (+ residual R) but NOT the gravity of any tethered medium; baryons and light feel all of it"
+  },
+  "S8b_differential_free_fall_flag": {
+   "pass": true,
+   "detail": "a result, not a pass line: CL-AR's premise (universal coupling) holds for fields of baryons but not for fields of tethered medium; a satellite's stars and its tethered medium fall differently by ~ the host-medium field (0.03-0.17 a0 for a 6e10 Msun host at 50-250 kpc, both footings). Not scored against a CFG678 gate; tension with CFG925 R3 (no satellite EFE) is UNTESTED and needs its own lane"
+  }
+ },
+ "K1": {
+  "canonical": {
+   "max_rel_vs_law": 2.220446049250313e-16,
+   "max_rel_vs_newton": 4.781451350820557,
+   "n": 43,
+   "nan": 0
+  },
+  "alt": {
+   "max_rel_vs_law": 2.220446049250313e-16,
+   "max_rel_vs_newton": 5.301524838849128,
+   "n": 43,
+   "nan": 0
+  }
+ },
+ "K_all": true,
+ "S1": {
+  "solid_BI_anisotropy": "2*Subs(Derivative(Fs(_xi_1, a3(t)**(-4) + a2(t)**(-4) + a1(t)**(-4), a3(t)**(-6) + a2(t)**(-6) + a1(t)**(-6)), _xi_1), _xi_1, a3(t)**(-2) + a2(t)**(-2) + a1(t)**(-2))/a2(t)**2 + 4*Subs(Derivative(Fs(a3(t)**(-2) + a2(t)**(-2) + a1(t)**(-2), _xi_2, a3(t)**(-6) + a2(t)**(-6) + a1(t)**(-6)), _xi_2), _xi"
+ },
+ "S2": {
+  "early_universe_local_EoS": {
+   "24pc": {
+    "ratio_at_zBBN": 1326.4301466061363,
+    "w_at_recombination": 3.853273038734643e-09,
+    "z_where_10pct_of_radiation": 3473103.098543341,
+    "w_today": 2.887139887673643e-18
+   },
+   "1000pc": {
+    "ratio_at_zBBN": 2302830.1156356526,
+    "w_at_recombination": 6.689710136692088e-06,
+    "z_where_10pct_of_radiation": 83353.4983650402,
+    "w_today": 5.0123956383222955e-15
+   }
+  }
+ },
+ "S3": {
+  "flow": {
+   "cfg": {
+    "N": 300,
+    "dM": 0.02,
+    "rs": 0.5,
+    "r_edge": 10.0,
+    "nstep": 40000
+   },
+   "dE_grav": 0.005304806240072679,
+   "dE_W": -0.006566057336489628,
+   "heat": 0.0012612510964169488,
+   "monotone": true
+  }
+ },
+ "S4": {
+  "rows": {
+   "canonical|dwarf": {
+    "W": {
+     "s_grad": 1.3876869954249917e-09,
+     "s_847": 3.6339624275944715e-09
+    },
+    "stiff24": {
+     "s_grad": 1.3827633187064432e-09,
+     "s_847": 3.643809781031569e-09
+    },
+    "stiff1k": {
+     "s_grad": 7.160362863166423e-09,
+     "s_847": 2.07300621447773e-08
+    },
+    "vc_kms": 20.770811977869826,
+    "rho_c": 4.8061421114998994e-21,
+    "inv_eps_inertia": 249845818.5167876
+   },
+   "canonical|MW disc": {
+    "W": {
+     "s_grad": 6.771665203051858e-08,
+     "s_847": 2.4943519065317676e-07
+    },
+    "stiff24": {
+     "s_grad": 6.771642553433439e-08,
+     "s_847": 2.494356436455451e-07
+    },
+    "stiff1k": {
+     "s_grad": 6.732342948849753e-08,
+     "s_847": 2.502216357372188e-07
+    },
+    "vc_kms": 207.6249079286127,
+    "rho_c": 3.091217200210391e-22,
+    "inv_eps_inertia": 2975851.3850500607
+   },
+   "canonical|MW outer": {
+    "W": {
+     "s_grad": 1.4033082757995567e-07,
+     "s_847": 2.98912962284005e-07
+    },
+    "stiff24": {
+     "s_grad": 1.4033082341638155e-07,
+     "s_847": 2.9891297061115317e-07
+    },
+    "stiff1k": {
+     "s_grad": 1.4032359915268283e-07,
+     "s_847": 2.9892741913855066e-07
+    },
+    "vc_kms": 169.19244049323763,
+    "rho_c": 3.41533829684258e-24,
+    "inv_eps_inertia": 3287876.115719648
+   },
+   "canonical|group": {
+    "W": {
+     "s_grad": 5.566312833531911e-07,
+     "s_847": 1.2128899102609182e-06
+    },
+    "stiff24": {
+     "s_grad": 5.566312814999639e-07,
+     "s_847": 1.2128899139673726e-06
+    },
+    "stiff1k": {
+     "s_grad": 5.566280659448851e-07,
+     "s_847": 1.2128963450775305e-06
+    },
+    "vc_kms": 344.7790898395329,
+    "rho_c": 1.5477600000067632e-24,
+    "inv_eps_inertia": 804598.2725811482
+   },
+   "canonical|cluster": {
+    "W": {
+     "s_grad": 5.077968753641915e-06,
+     "s_847": 1.3881666341717838e-05
+    },
+    "stiff24": {
+     "s_grad": 5.07796875200279e-06,
+     "s_847": 1.388166634499609e-05
+    },
+    "stiff1k": {
+     "s_grad": 5.077965907936162e-06,
+     "s_847": 1.3881672033129347e-05
+    },
+    "vc_kms": 1313.590657719723,
+    "rho_c": 1.66374173998746e-24,
+    "inv_eps_inertia": 64066.001715703576
+   },
+   "alt|dwarf": {
+    "W": {
+     "s_grad": 1.574537364433808e-09,
+     "s_847": 4.025114145669858e-09
+    },
+    "stiff24": {
+     "s_grad": 1.5689880848539282e-09,
+     "s_847": 4.036212704829618e-09
+    },
+    "stiff1k": {
+     "s_grad": 8.059628572857702e-09,
+     "s_847": 2.329344602025288e-08
+    },
+    "vc_kms": 21.58233966728768,
+    "rho_c": 5.301700556592962e-21,
+    "inv_eps_inertia": 228055649.88125607
+   },
+   "alt|MW disc": {
+    "W": {
+     "s_grad": 8.004211213989713e-08,
+     "s_847": 2.798033328383203e-07
+    },
+    "stiff24": {
+     "s_grad": 8.004184484265302e-08,
+     "s_847": 2.798038674328085e-07
+    },
+    "stiff1k": {
+     "s_grad": 7.957805442444572e-08,
+     "s_847": 2.807314482692231e-07
+    },
+    "vc_kms": 213.49598533837212,
+    "rho_c": 3.4530794969608205e-22,
+    "inv_eps_inertia": 2750669.7924874355
+   },
+   "alt|MW outer": {
+    "W": {
+     "s_grad": 1.5538291619954015e-07,
+     "s_847": 3.2909728676639393e-07
+    },
+    "stiff24": {
+     "s_grad": 1.5538291160109413e-07,
+     "s_847": 3.2909729596328603e-07
+    },
+    "stiff1k": {
+     "s_grad": 1.5537493278628967e-07,
+     "s_847": 3.291132535928949e-07
+    },
+    "vc_kms": 177.01782982819682,
+    "rho_c": 3.755278774921745e-24,
+    "inv_eps_inertia": 2991397.06967009
+   },
+   "alt|group": {
+    "W": {
+     "s_grad": 6.179596461207082e-07,
+     "s_847": 1.3361476125959162e-06
+    },
+    "stiff24": {
+     "s_grad": 6.179596440701051e-07,
+     "s_847": 1.3361476166971225e-06
+    },
+    "stiff1k": {
+     "s_grad": 6.179560860459339e-07,
+     "s_847": 1.3361547327454647e-06
+    },
+    "vc_kms": 360.4489756807354,
+    "rho_c": 1.70209174744184e-24,
+    "inv_eps_inertia": 732164.3979640808
+   },
+   "alt|cluster": {
+    "W": {
+     "s_grad": 5.791624731785173e-06,
+     "s_847": 1.539799259067406e-05
+    },
+    "stiff24": {
+     "s_grad": 5.791624729928372e-06,
+     "s_847": 1.5397992594387663e-05
+    },
+    "stiff1k": {
+     "s_grad": 5.791621508172148e-06,
+     "s_847": 1.539799903790011e-05
+    },
+    "vc_kms": 1363.0117094555744,
+    "rho_c": 1.8373923463462208e-24,
+    "inv_eps_inertia": 58545.534540869055
+   }
+  },
+  "worst_grad": 5.791624731785173e-06,
+  "worst_847": 1.539799903790011e-05
+ },
+ "S5": {
+  "w2": "-rho_0*(-4*pi*G*a_0*c**2*rho_0 + 4*pi*G*c**2*rho_0*u_0 + a_0*u_0**2*sin(theta)**2)*(4*pi*G*a_0*u_0*sin(theta)**2 - 8*pi*G*a_0*u_0 + 4*pi*G*u_0**2 - a_0**2*gamma*k**2 + 2*a_0*gamma*k**2*u_0 - gamma*k**2*u_0**2)/((a_0 - u_0)**2*(-4*pi*G*a_0*c**2*rho_0 + 4*pi*G*c**2*rho_0*u_0 + a_0*u_0**2))",
+  "grid": {
+   "u0/a0=0.0909": {
+    "min_w2": 0.10003900010999889,
+    "max_Im": 0.0
+   },
+   "u0/a0=0.5": {
+    "min_w2": 1.00005,
+    "max_Im": 0.0
+   },
+   "u0/a0=0.9": {
+    "min_w2": 9.00005,
+    "max_Im": 0.0
+   },
+   "u0/a0=0.99": {
+    "min_w2": 99.00005000000002,
+    "max_Im": 0.0
+   }
+  }
+ },
+ "S6": {
+  "mu_parent": 0.4508780808711232,
+  "exp_a_parent": 0.6095447174560983,
+  "mu_classA": 1.0,
+  "exp_a_classA": 1.0
+ },
+ "S8": {
+  "L_ID": "pi*B*G*(B + 2*C_1 + 2*C_2)/k**2",
+  "L_Newton": "pi*G*(B + C_1 + C_2)**2/k**2",
+  "host_medium_field": {
+   "canonical|50kpc": {
+    "g_total": 1.9449710439053878e-11,
+    "g_host_medium": 1.6103568590589964e-11,
+    "ratio_to_a0": 0.17204070255694184,
+    "residual_R": 3.346141848463915e-12
+   },
+   "canonical|100kpc": {
+    "g_total": 9.277013941749931e-12,
+    "g_host_medium": 8.440478479633953e-12,
+    "ratio_to_a0": 0.09017292281423286,
+    "residual_R": 8.365354621159786e-13
+   },
+   "canonical|250kpc": {
+    "g_total": 3.607102000656439e-12,
+    "g_host_medium": 3.4732563267178825e-12,
+    "ratio_to_a0": 0.03710615167361462,
+    "residual_R": 1.3384567393855656e-13
+   },
+   "alt|50kpc": {
+    "g_total": 2.1200383008393537e-11,
+    "g_host_medium": 1.7854241159929624e-11,
+    "ratio_to_a0": 0.1578340281465259,
+    "residual_R": 3.346141848463915e-12
+   },
+   "alt|100kpc": {
+    "g_total": 1.0155009261135058e-11,
+    "g_host_medium": 9.31847379901908e-12,
+    "ratio_to_a0": 0.08237663212357095,
+    "residual_R": 8.365354621159788e-13
+   },
+   "alt|250kpc": {
+    "g_total": 3.958599686695795e-12,
+    "g_host_medium": 3.824754012757239e-12,
+    "ratio_to_a0": 0.033811368800030446,
+    "residual_R": 1.338456739385565e-13
+   }
+  }
+ },
+ "scorecard": [
+  {
+   "gate": "A1",
+   "name": "no ghost; 2nd-order eqs",
+   "status": "CONDITIONAL",
+   "source": "positive inertia iff rho_c c^2 > D(u)u/K (S5c; margin ~c^2/v^2); medium eqs 2nd order; chi/lambda auxiliary; chi-tidal stiffness makes the chi constraint 4th order in space (no higher time derivatives)"
+  },
+  {
+   "gate": "A2",
+   "name": "strongly hyperbolic",
+   "status": "CONDITIONAL",
+   "source": "Euler + c_s^2 = gamma rho > 0 symmetric hyperbolic; tether/gravity are order-0 (elliptic) terms; omega^2 >= 0 (S5b). Needs gamma > 0 and the A1 inequality; CFG292's khronon line does not apply"
+  },
+  {
+   "gate": "A3",
+   "name": "nonlinear local WP",
+   "status": "UNTESTED",
+   "source": "not proved; single-stream EFT ends at shell crossing (CFG939's domain)"
+  },
+  {
+   "gate": "A4",
+   "name": "strong coupling",
+   "status": "UNTESTED",
+   "source": "not computed (classical lane); dust-like c_s << c lowers the phonon EFT cutoff"
+  },
+  {
+   "gate": "A5",
+   "name": "GW at c",
+   "status": "PASS",
+   "source": "Einstein-Hilbert unmodified; medium and chi sector couple through g and u^mu only, no curvature couplings: c_T = c (structural)"
+  },
+  {
+   "gate": "A6",
+   "name": "BH exteriors",
+   "status": "UNTESTED",
+   "source": "no BH computation"
+  },
+  {
+   "gate": "A7",
+   "name": "radiative stability",
+   "status": "DECLARED",
+   "source": "CFG320"
+  },
+  {
+   "gate": "B1",
+   "name": "switch from variation",
+   "status": "UNTESTED",
+   "source": "no switch term; law acts on every tethered element; S4 untethering not derived"
+  },
+  {
+   "gate": "B2",
+   "name": "a0-Lambda tie",
+   "status": "UNTESTED",
+   "source": "a0 is a constant inside W; kappa = 1/2 FITTED"
+  },
+  {
+   "gate": "B3",
+   "name": "well-posed cold sector, lenses like mass",
+   "status": "CONDITIONAL",
+   "source": "linear well-posed (S5) under gamma > 0 + inertia inequality; T_00 = rho_c c^2 (lenses like mass, slip <= 1.9e-5, S4); one metric; static stress = CFG660 Pi (S3c) now derived from an action. Conditions: extra non-propagating chi/lambda; spherical/longitudinal matching only; single stream"
+  },
+  {
+   "gate": "C1",
+   "name": "Cassini",
+   "status": "CONDITIONAL",
+   "source": "static spherical sector = S2 (inherits CFG770); the quadrupole (non-spherical) sector is not identical to S2 (fluid has no transverse P). Uniform fields of BARYONS free-fall out (CL-AR holds); fields of TETHERED MEDIUM do not act on tethered medium (S8a): differential free fall, a flag beyond CFG678's gates"
+  },
+  {
+   "gate": "C2",
+   "name": "SPARC RAR",
+   "status": "PASS",
+   "source": "the static spherical limit IS the law (K1: 2.2e-16 on NGC 3198); CFG4 rms 0.1003/0.0991 <= 0.110"
+  },
+  {
+   "gate": "C3",
+   "name": "early types 50-100 kpc",
+   "status": "FAIL",
+   "source": "inherits the law's CFG529 failure (same static predictions)"
+  },
+  {
+   "gate": "C4",
+   "name": "cluster lensing 8-40'",
+   "status": "NOT DECIDED",
+   "source": "CFG680 amplitude not frozen for the law (as CFG678)"
+  },
+  {
+   "gate": "D1",
+   "name": "zero-field nonlinear dependence",
+   "status": "UNTESTED",
+   "source": "not run; tether sector vanishes identically on FRW (S1d)"
+  },
+  {
+   "gate": "D2",
+   "name": "growth vs raw KiDS/DES",
+   "status": "UNTESTED",
+   "source": "frozen CFG596 line not run; FLAG: tethered medium has no linear self-gravity, delta ~ a^0.61 vs the class-A engine a^1 (S6); T2x pass used class A and does not transfer"
+  },
+  {
+   "gate": "D3",
+   "name": "flat a0(z)",
+   "status": "PENDING",
+   "source": "constant a0 in W gives flat a0; sealed tests 2026-11-06 / 2026-11-28"
+  },
+  {
+   "gate": "E1",
+   "name": "kappa from the action",
+   "status": "DECLARED",
+   "source": "kappa = 1/2 FITTED"
+  },
+  {
+   "gate": "E2",
+   "name": "quantum completion",
+   "status": "DECLARED",
+   "source": "-"
+  },
+  {
+   "gate": "E3",
+   "name": "SM structure",
+   "status": "DECLARED",
+   "source": "-"
+  }
+ ],
+ "class": "CONDITIONAL",
+ "conditions": [
+  "extra non-propagating fields chi (the medium's own potential, medium-frame constraint D^2 chi = K rho_c) and lambda (multiplier); u = K|P| is |D chi|, not a strain function (S2c)",
+  "gamma > 0 (stiffness sign; M2) and the inertia inequality rho_c c^2 > D(u) u/K (S5c)",
+  "stiffness built on chi's traceless tidal tensor (background-free); the local EoS form p = pi G L*^2 rho^2 is excluded at BBN if the medium exists then (S2d3)",
+  "S2 reproduced in the longitudinal (curl-free P) sector: exact in spherical symmetry; non-spherical sectors differ from S2 with an independent P",
+  "single-stream continuum: valid until shell crossing; the medium-frame constraint needs the medium present everywhere (rho_c > 0)"
+ ],
+ "flags": [
+  "D2: the tethered medium has no linear self-gravity (S6): delta ~ a^0.61 vs a^1 for the class-A engine; T2x's pass does not transfer",
+  "S8: no gravity between tethered components (any source); a satellite's stars and tethered medium fall differently in a host-medium field (0.03-0.17 a0 at 50-250 kpc for a 6e10 Msun host): UNTESTED against satellites (CFG925 R3)",
+  "C3 FAIL inherited (same static law)"
+ ],
+ "P": {
+  "P1": true,
+  "P2": true,
+  "P3": true,
+  "P4": true,
+  "P5": true
+ },
+ "runtime_s": 7.21,
+ "peak_rss_GB": 0.144
+}

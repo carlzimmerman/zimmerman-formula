@@ -1,0 +1,164 @@
+CFG941  self-gravity repair of CFG938's covariant parent   stage=MAIN
+  criteria 0b41bd0cf; A1 7c395c866 (pre-result); kappa = 1/2 FITTED; footings never pooled; not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2;  NGC 3198: 43 radii, M_b(<44.1 kpc) = 4.720e+10 Msun
+
+  deriving growth determinants (sympy) ...
+
+==================== K CONTROLS ====================
+  K1 reduced EL (CFG938 W_full, m = 1): -(-a_0*g_N + g_N*u + u**2)/(-a_0 + u)
+  [PASS] K1_NGC3198_law_CFG938_reduction: max |g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (CFG938: 2.2e-16; line 1e-6)
+  [PASS] K2_FRW_dust_w0: rho = m/a(t)**3, p = 0, w = 0 exactly; T^mu_nu diagonal and isotropic
+  [PASS] K3_CFG938_S6_exponent: mu = 0.4509, n = 0.60954 (CFG938 json 0.60954; line 0.6096 +/- 1e-3)
+  [PASS] K4_Lagrangian_growth_route: homogeneous in t: True; (c2 = 1, no chi-bar gradient) n = 0.60954472 vs K3 0.60954472; (c2 = 0) n = 1.000000000000
+  [PASS] K5_CFG938_slip_reproduced: worst s_847 = 1.5398e-05 (CFG938 1.5398e-5), worst s_grad = 5.792e-06 (CFG938 5.79e-6)
+  [PASS] K6_R1_equals_CFG938_M3: R1 law dev canonical 1.6445 (CFG938 M3 1.6445), alt 1.8844 (1.8844)
+  K controls: ALL PASS
+
+==================== D1/D2 DIAGNOSIS: where the medium's self-gravity goes ====================
+  [PASS] D1_Poisson_counts_medium_once: CFG938: Phi'' = 4*pi*G*(rho_b(x) + rho_c(x)); S2 square + ID: Phi'' = 4*pi*G*(rho_b(x) + rho_c(x)); adding dust -rho_c Phi on top (M2a) gives 4*pi*G*(rho_b(x) + 2*rho_c(x)): NO source double count in S2 or CFG938 (the medium's rest mass is P.grad Phi, counted once)
+  [PASS] D2a_mode_average_general_c2: <L> = (K/4k^2)[(B+C)^2 - c2 C^2]; d2<L>/dC1dC2 = -2*pi*G*(c_2 - 1)/k**2; self C1^2 coefficient = -pi*G*(c_2 - 1)/k**2; baryon-medium = 2*pi*G/k**2. c2 = 1 (W_full's quadratic) removes BOTH the medium's self-gravity and the mutual gravity of tethered components; the baryon term survives
+  [PASS] D2b_force_identity: medium force -(Phi_b + chi)' + D_full(chi') = -Phi_b' + R(chi'): the tether's linear part +chi' is exactly the medium's own Newtonian pull (chi = the medium's potential): a FORCE cancellation, not a source cancellation; baryons still feel the medium
+
+==================== D-T: the law forces c2 = 1 for any always-on tether ====================
+  [PASS] DT1_law_forces_F_equals_D_full: static cold equilibrium F(u) = g = g_N + u with the law -> F(u) = a_0*uu/(a_0 - uu) = D_full(u)
+  [PASS] DT2_c2_equals_1: F(u) = uu + uu**2/a_0 + uu**3/a_0**2 + O(u^4): linear coefficient 1 -> W = u^2/2K + ... (c2 = 1)
+  [PASS] DT3_any_deep_limit_law_forces_c2_1: generic law g_N = (g^2/a0)(1 + h1 g/a0 + h2 (g/a0)^2 + ...): F(u) = u + (1/a_0) u^2 + ...; the linear coefficient is 1 independent of h1, h2, h3 (it is the deep limit, not the simple interpolation, that forces it)
+  [PASS] DT4_only_c2_1_gives_BTFR: lim V^4/(G M a0): c2 = 1 (law) -> 1; c2 = 1/2 -> oo (acceleration floor); c2 = 2 -> 0 (rescaled Newton). With D2a/D6 (linear self-gravity coefficient (1 - c2) K rho_c): (a) => c2 = 1 => the settling medium has NO linear self-gravity
+
+==================== D5: CFG938's FRW chi background enters u at O(c^0) ====================
+  [PASS] D5a_medium_frame_gradient_has_boost_term: u^2 = h^{mu nu} d chi d chi = eps^2 |grad_phys dchi + (chibar'/c^2) V|^2 + O(eps^3) exactly (V = peculiar velocity of the medium)
+  [PASS] D5b_constraint_background_and_linear: D^2 chibar = -3 H chibar'/c^2 (= K rhobar => chibar'/c^2 = -K rhobar/(3H), c-independent); first-order constraint = lap dchi/a^2 - 3H dchi'/c^2 with NO velocity term (so dchi = dPhi_c sub-horizon)
+  boost coefficient: chibar'/c^2 = -K rhobar_c/(3H); in EdS beta^2/(K rhobar_c) = Omega_c/6 = 0.1405 (inertia reduction); today |chibar'|/c = Omega_c H0 c/2 = 8.658e-11 m/s^2 = 0.925 a0 (canonical)
+
+==================== D6: linear growth of the tethered medium (EdS, baryons free) ====================
+  CFG938 S6 approximation (medium feels baryons only): n = 0.60954   [K3/K4]
+  full quadratic action incl. the chi-bar boost (D5): n = 0.69433   (inertia x (1 - Omega_c/6); force (K rhobar_c/3) q psi, q = 1/2)
+  dust (c2 = 0): n = 1.000000
+  [PASS] D6_growth_exponents_computed: unrepaired parent: S6-approx 0.6095, full action 0.6943 (a correction to CFG938 S6: the chi-bar gradient raises the exponent but it stays far below 1); F1 confirmed for the parent
+     c2 =       0: n (no boost) = 1.000000, n (boost) = 1.000000
+     c2 =  0.0001: n (no boost) = 0.999957, n (boost) = 0.999972
+     c2 =   0.001: n (no boost) = 0.999574, n (boost) = 0.999716
+     c2 =   0.003: n (no boost) = 0.998721, n (boost) = 0.999147
+     c2 =    0.01: n (no boost) = 0.995736, n (boost) = 0.997154
+     c2 =    0.03: n (no boost) = 0.987199, n (boost) = 0.991438
+     c2 =     0.1: n (no boost) = 0.957242, n (boost) = 0.971181
+     c2 =     0.3: n (no boost) = 0.871602, n (boost) = 0.911300
+     c2 =     0.5: n (no boost) = 0.787878, n (boost) = 0.849093
+     c2 =     0.8: n (no boost) = 0.673438, n (boost) = 0.754673
+     c2 =       1: n (no boost) = 0.609545, n (boost) = 0.694330
+  largest tether coefficient with |n - 1| < 1e-3 (no boost): c2_max = 2.3458e-03
+
+  F2 machinery (P0 static sector): satellite at the centre of its own medium in a 6e10 Msun host's settled field
+  case                   g_host/a0  u_h/a0 Da/g_host g_bs(a)/Da t_sep Myr w_resp/w_cross  EFE dex max|w|/a0
+  canonical|H1|50           0.2078  0.1720    1.0277      0.027      9.64       3.87e-04   -0.644     0.249
+  canonical|H1|100          0.0991  0.0902    1.0437      0.057     13.86       1.34e-04   -0.421     0.167
+  canonical|H1|250          0.0385  0.0371    1.0500      0.145     22.15       3.33e-05   -0.197     0.114
+  canonical|H2|50           0.2078  0.1720    1.0190      0.019     25.01       2.58e-03   -0.722     0.235
+  canonical|H2|100          0.0991  0.0902    1.0304      0.039     36.01       8.90e-04   -0.489     0.154
+  canonical|H2|250          0.0385  0.0371    1.0421      0.098     57.42       2.22e-04   -0.237     0.101
+  canonical|H3|50           0.2078  0.1720    1.0936      0.095     45.16       9.03e-03   -0.407     0.314
+  canonical|H3|100          0.0991  0.0902    1.1067      0.196     64.99       3.12e-03   -0.238     0.232
+  canonical|H3|250          0.0385  0.0371    1.0800      0.516    105.51       7.77e-04   -0.102     0.179
+  alt|H1|50                 0.1874  0.1578    1.0244      0.025      9.25       3.67e-04   -0.650     0.228
+  alt|H1|100                0.0898  0.0824    1.0393      0.052     13.27       1.27e-04   -0.424     0.152
+  alt|H1|250                0.0350  0.0338    1.0453      0.132     21.19       3.17e-05   -0.198     0.104
+  alt|H2|50                 0.1874  0.1578    1.0167      0.017     23.98       2.45e-03   -0.728     0.216
+  alt|H2|100                0.0898  0.0824    1.0273      0.035     34.47       8.47e-04   -0.492     0.140
+  alt|H2|250                0.0350  0.0338    1.0381      0.090     54.91       2.12e-04   -0.238     0.092
+  alt|H3|50                 0.1874  0.1578    1.0828      0.088     43.47       8.57e-03   -0.412     0.288
+  alt|H3|100                0.0898  0.0824    1.0959      0.181     62.43       2.97e-03   -0.240     0.212
+  alt|H3|250                0.0350  0.0338    1.0724      0.474    101.08       7.41e-04   -0.103     0.164
+
+==================== R1: dust gravity kept, tether only redistributes (W_full -> W_rem) ====================
+   (a) FAIL: law dev canonical 1.645, alt 1.884 (line 1e-6); static states need u >= a0/2 (min u/a0 = 0.517); g -> a0/2 floor: lim V^4/(GMa0) = oo, value at y = 1e-14 2.500e+13. Identical to CFG938's M3 tooth (K6)
+   (b) PASS: W_rem(0) = 0, W_rem'(u)/u -> 0: tether stress vanishes on FRW; dust w = 0 (K2)
+   (c) PASS: c2 = 0 -> n = 1.000000 at super-L* (W_rem has no quadratic term, so no chi-bar boost either); sub-L*: stiffness Jeans omega^2 = gamma rho k^2 - K rho > 0 for k_phys L* > sqrt(2): oscillation, no growth faster than a^1
+   (d) PASS: about R1 static states (u0/a0 = 0.5/0.9/0.99; 0.0909 has none): min omega^2/(K rho0) = 0.000, 8.000, 98.000 (bounded; Jeans-type only); FRW: -1 + (kL*)^2/2 bounded; inertia margin 6.17e+04 > 1
+   (e) FAIL: on R1's own static states: worst s_grad 5.73e-06, s_847 3.28e-05 (line 1.9e-5)
+   (f) FAIL: mutual cross term Newtonian (c2 = 0, D2a) BUT hover lemma in R1's own settled host (R(u_h) = g_bh + u_h): a medium element at rest feels zero net force, Delta a/g_host = 1.0000 ... 1.0000 (leading order); CFG925 R3 not respected
+   (g) FAIL: g1 no (medium feels R(u) tether in settled regions); g2 no (equilibrium reads the total medium field); g3 yes (dust + stiffness)
+
+==================== R2: two separately conserved media (free dust + tethered), no conversion ====================
+     f_t =      0: joint growing-mode n (no boost) = 1.000000, (boost) = 1.000000
+     f_t =  0.001: joint growing-mode n (no boost) = 1.000000, (boost) = 1.000000
+     f_t =  0.003: joint growing-mode n (no boost) = 0.999996, (boost) = 0.999997
+     f_t =   0.01: joint growing-mode n (no boost) = 0.999958, (boost) = 0.999972
+     f_t =   0.03: joint growing-mode n (no boost) = 0.999626, (boost) = 0.999748
+     f_t =    0.1: joint growing-mode n (no boost) = 0.996038, (boost) = 0.997292
+     f_t =    0.3: joint growing-mode n (no boost) = 0.967599, (boost) = 0.976984
+     f_t =      1: joint growing-mode n (no boost) = 0.609544, (boost) = 0.694330
+  R2 tethered equilibrium with free mass M_f = q M_t (varied first, substituted after): EL = -(-a_0*g_N - a_0*q*u + g_N*u + q*u**2 + u**2)/(-a_0 + u)
+  f_t,max (|n - 1| < 1e-3, boost on) = 6.0244e-02 -> q = 1.560e+01
+   (a) FAIL: tethered-only galaxy = P0 (K1, 2e-16) BUT jointly (criteria sec. 4): f_t = 1 fails (c); at f_t <= 6.02e-02 galaxies carry free mass q = 1.56e+01 x tethered, which enters the law's source (R(u_t) = g_b + g_f): law dev 73.77 / 81.87; tethered supply / NGC 3198 phantom = 6.76e-01 / 6.10e-01
+   (b) PASS: two label-field dusts: w = 0 each (K2); tether sector zero on FRW
+   (c) FAIL: graded on the composition that passes (a) (f_t = 1, criteria sec. 4): n = 0.6943 (full action) / 0.6095 (S6 approx); the tethered medium keeps c2 = 1 (D-T); n -> 1 only as f_t -> 0, where it is a passenger of the free medium's gravity
+   (d) PASS: two-component WKB (free + tethered, units K = rho_t = L* = 1): min omega^2 >= -(rho_f + rho_t) on every case (min -10.916): bounded Jeans growth; tethered sector as CFG938 (min omega^2 >= 0: 0.100)
+   (e) PASS: tethered static states = P0: worst s_grad 5.79e-06, s_847 1.54e-05
+   (f) FAIL: tethered satellite in a tethered host: Delta a/g_host = 1.017 ... 1.107 (hover); only satellites whose cold energy is FREE fall universally
+   (g) FAIL: g1 no (tethered medium feels -grad Phi_b - grad Phi_f + R(u_t)); g2 no (equilibrium reads g_b + g_f and the total tethered field); g3 only for the free medium
+
+==================== R3n: density gate s(rho_c) on the tether sector ====================
+  [PASS] R3n_k2_coefficient: potential's delta rho^2 coefficient = (s'' W + s gamma)/2 -> omega^2 -> rho0 (s'' W + s gamma) k^2 at large k (s'' = d2s/drho2)
+  [canonical] rho_* = 1.528e-23 kg/m^3 = 6771 rhobar_c0 (non-positive rho_ph radii: 0); gate fully ON for the cosmic mean at z > 17.9, off below z = 12.6; tether ends at r_* = 73 kpc; min c_eff^2/(s gamma rho) in the transition: {'24pc': -34307098.817633055, '1000pc': -19759.88949495665}; CFG847 systems gated: {'dwarf': 'on', 'MW disc': 'on', 'MW outer': 'OFF', 'group': 'OFF', 'cluster': 'OFF'}
+  [alt] rho_* = 1.680e-23 kg/m^3 = 7447 rhobar_c0 (non-positive rho_ph radii: 0); gate fully ON for the cosmic mean at z > 18.5, off below z = 13.0; tether ends at r_* = 73 kpc; min c_eff^2/(s gamma rho) in the transition: {'24pc': -34443545.49661354, '1000pc': -19838.482782049407}; CFG847 systems gated: {'dwarf': 'on', 'MW disc': 'on', 'MW outer': 'OFF', 'group': 'OFF', 'cluster': 'OFF'}
+   (a) FAIL: 43 radii with s = 1 are P0's (non-positive rho_ph radii: 0 / 0) BUT the deep BTFR needs the tether at arbitrarily low density (rho_ph ~ r^-2 -> 0): beyond r_* = 73 / 73 kpc the gate is off and lim V^4/(GMa0) = 0; CFG847 gates (canonical): {'dwarf': 'on', 'MW disc': 'on', 'MW outer': 'OFF', 'group': 'OFF', 'cluster': 'OFF'}
+   (b) PASS: W(0) = 0: the gated sector vanishes on FRW for any s
+   (c) FAIL: cosmic-mean medium has rho > rho_* at z > 17.9 / 18.5 (s = 1): n = 0.6943 there (S6-approx 0.6095); |n - 1| < 1e-3 fails over z in [18, 1100]
+   (d) FAIL: transition shell: c_eff^2 = rho0 (s'' W + s gamma); min c_eff^2/(s gamma rho0) = -3.444e+07 < 0 -> gradient instability, Im omega ~ k (L* = 24 pc and 1 kpc, both footings); static s = 1 states as CFG938
+   (e) PASS: where s = 1 the static states are P0's (worst 1.54e-05); gated-off systems carry no tether stress
+   (f) FAIL: settled host region (s = 1): hover, Delta a/g_host = 1.017 ... 1.107
+   (g) FAIL: g1/g2 no in s = 1 regions; g3 no (gate on for the cosmic mean at high z)
+
+==================== R3theta: turnaround gate s(theta), theta = medium expansion ====================
+  [PASS] R3theta_kinetic_term: -s(theta) W contributes -(1/2) s''(theta) W (div v)^2: longitudinal kinetic coefficient rho0 - s'' W k^2
+  s'' max on the upper half of the transition = 5.7735/theta_s^2 (theta_s = H0); ghost band k > k_g:
+     z_ta=0|R=0.1Mpc        k_g R = 2.185   (u0/a0 = 6.85e-05)
+     z_ta=0|R=1Mpc          k_g R = 2.185   (u0/a0 = 6.85e-04)
+     z_ta=0|R=10Mpc         k_g R = 2.180   (u0/a0 = 6.85e-03)
+     z_ta=1|R=0.1Mpc        k_g R = 0.772   (u0/a0 = 5.48e-04)
+     z_ta=1|R=1Mpc          k_g R = 0.771   (u0/a0 = 5.48e-03)
+     z_ta=1|R=10Mpc         k_g R = 0.758   (u0/a0 = 5.48e-02)
+     z_ta=3|R=0.1Mpc        k_g R = 0.273   (u0/a0 = 4.38e-03)
+     z_ta=3|R=1Mpc          k_g R = 0.269   (u0/a0 = 4.38e-02)
+     z_ta=3|R=10Mpc         k_g R = 0.227   (u0/a0 = 4.38e-01)
+   (a) PASS: static states have theta = 0, s(0) = 1, s'(0) = s''(0) = 0 (quintic gate): identical to P0 (K1 2.2e-16; BTFR limit 1, at y = 1e-14: +1.00e-07 / +1.00e-07)
+   (b) PASS: gate x W(0) = 0 on FRW
+   (c) PASS: cosmic-mean linear medium has theta = 3H(z)(1 + O(delta)) >= 3 H0 > theta_s = H0: s = s' = s'' = 0, pure dust (stiffness gated too): n = 1.000000 at every k, sub- and super-L*
+   (d) FAIL: static states fine (s'' = 0 at theta = 0) BUT in the transition (theta in (theta_s/2, theta_s)) s'' > 0: kinetic coefficient rho0 - s''W k^2 < 0 for k > k_g (k_g R = 0.23-2.19): a GHOST band and a degenerate kinetic surface
+   (e) PASS: static states = P0 (worst 1.54e-05)
+   (f) FAIL: settled host (theta = 0, s = 1): hover, Delta a/g_host = 1.017 ... 1.107
+   (g) FAIL: g1/g2 no in settled regions (g3 yes): the settled sector is CFG938's, not class A's
+
+==================== R3ell: finite range of the medium's own potential, D^2 chi - chi/ell^2 = K m n ====================
+  [PASS] R3ell_cancellation_fraction: linear tether force / medium self-gravity = k^2 l^2/(1 + k^2 l^2) (Yukawa vs Newton); point-source Yukawa factor (1 + r/l) e^{-r/l} -> 0: no asymptotic BTFR for any finite l
+  [canonical] (c) needs l <= 13.1 pc (k = 5 h/Mpc at z = 1100; 6.53e+03 pc at k = 0.01 h/Mpc): there the tether field at NGC 3198's radii deviates by 1.015; (a) at 1e-6 needs l >= 63.1 Mpc (finite-radius law only; the BTFR limit fails for every finite l)
+  [alt] (c) needs l <= 13.1 pc (k = 5 h/Mpc at z = 1100; 6.53e+03 pc at k = 0.01 h/Mpc): there the tether field at NGC 3198's radii deviates by 1.015; (a) at 1e-6 needs l >= 63.1 Mpc (finite-radius law only; the BTFR limit fails for every finite l)
+   (a) FAIL: finite-radius law needs l >= 63.1 / 63.1 Mpc and the deep BTFR fails for every finite l (Yukawa factor -> 0, R3ell_cancellation_fraction)
+   (b) PASS: lambda-bar = 0, u = 0, tau = 0 on FRW: no stress; dust w = 0
+   (c) FAIL: needs l <= 13.1 pc (strictest k) or 6.53e+03 pc (k = 0.01 h/Mpc), disjoint from (a)'s Mpc range; at any l allowed by (a) every relevant mode is tethered at z = 1100 (n = parent's)
+   (d) PASS: massive chi: tether linear force reduced by k^2l^2/(1 + k^2l^2); omega^2 >= -K rho0 + c_s^2 k^2: bounded
+   (e) PASS: for l >= l_min(a) the static states are P0's to < 1e-6 (worst 1.54e-05)
+   (f) FAIL: within l: hover, Delta a/g_host = 1.017 ... 1.107
+   (g) FAIL: g1/g2 no within l; g3 no at the scales allowed by (a)
+
+==================== P0 (CFG938, unrepaired) reference row ====================
+   (a) PASS: K1: 2.2e-16 / 2.2e-16; BTFR limit 1, y = 1e-14: +1.00e-07 / +1.00e-07
+   (b) PASS: CFG938 S1 (K2)
+   (c) FAIL: n = 0.6095 (S6 approx) / 0.6943 (full action, D6)
+   (d) PASS: CFG938 S5 grid min omega^2/(K rho0) = 0.100, 1.000, 9.000, 99.000; inertia margin 5.85e+04
+   (e) PASS: worst s_847 1.54e-05, s_grad 5.79e-06
+   (f) FAIL: Delta a/g_host = 1.017 ... 1.107; EFE -0.728 ... -0.102 dex
+   (g) FAIL: g1 no, g2 no, g3 no
+
+==================== CLASSES (frozen rules, criteria sec. 6) ====================
+  R1       NOT REPAIRABLE  fails: a,e,f,g   D-T: an always-on tether passes (a) only with c2 = 1, which cancels the linear self-gravity; R1's c2 = 0 fails (a) (= CFG938 M3)
+  R2       NOT REPAIRABLE  fails: a,c,f,g   f_t = 1: the tethered medium has c2 = 1 (D-T); f_t < 1: free self-gravitating mass in every galaxy enters the law's source (no segregation or conversion in the action)
+  R3n      NOT REPAIRABLE  fails: a,c,d,f,g   the deep BTFR needs s = 1 at all densities (rho_ph -> 0), i.e. s = 1 on the cosmic mean -> D-T
+  R3theta  PARTIAL         fails: d,f,g   
+  R3ell    NOT REPAIRABLE  fails: a,c,f,g   the deep BTFR fails for every finite range; l -> infinity is the parent (D-T); finite-radius windows disjoint by > 4 decades
+
+  OVERALL: STRUCTURAL OBSTRUCTION
+  (g) fails for every repair: class A (the T1x/T2x/NC1x shear-pass engine) is NOT the non-relativistic limit of any tested parent; the shear results do not transfer.
+  CFG925 R3 (no satellite EFE) respected by the tethered sector: False
+
+  all checks pass: True; runtime 3.5 s; peak RSS 0.248 GB

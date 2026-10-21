@@ -1,0 +1,24 @@
+CFG941  self-gravity repair of CFG938's covariant parent   [MUTATE]   stage=MAIN
+  criteria 0b41bd0cf; A1 7c395c866 (pre-result); kappa = 1/2 FITTED; footings never pooled; not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2;  NGC 3198: 43 radii, M_b(<44.1 kpc) = 4.720e+10 Msun
+
+  deriving growth determinants (sympy) ...
+
+==================== K CONTROLS ====================
+  K1 reduced EL (CFG938 W_full, m = 1): -(-a_0*g_N + g_N*u + u**2)/(-a_0 + u)
+  [PASS] K1_NGC3198_law_CFG938_reduction: max |g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (CFG938: 2.2e-16; line 1e-6)
+  [PASS] K2_FRW_dust_w0: rho = m/a(t)**3, p = 0, w = 0 exactly; T^mu_nu diagonal and isotropic
+  [PASS] K3_CFG938_S6_exponent: mu = 0.4509, n = 0.60954 (CFG938 json 0.60954; line 0.6096 +/- 1e-3)
+  [PASS] K4_Lagrangian_growth_route: homogeneous in t: True; (c2 = 1, no chi-bar gradient) n = 0.60954472 vs K3 0.60954472; (c2 = 0) n = 1.000000000000
+  [PASS] K5_CFG938_slip_reproduced: worst s_847 = 1.5398e-05 (CFG938 1.5398e-5), worst s_grad = 5.792e-06 (CFG938 5.79e-6)
+  [PASS] K6_R1_equals_CFG938_M3: R1 law dev canonical 1.6445 (CFG938 M3 1.6445), alt 1.8844 (1.8844)
+  K controls: ALL PASS
+
+==================== MUTATE (each tooth must bite) ====================
+  [PASS] M1_remove_repair_returns_0p61: R1_c2_to_1 n = 0.60954, R2_ft_to_1 n = 0.60954, R3theta_s_to_1 n = 0.60954, R3ell_ell_to_inf n = 0.60954 (K3 0.60954)
+  M2a reduced EL (dust -rho_c Phi AND S2's P.grad Phi): -(-2*a_0*g_N - 3*a_0*u + 2*g_N*u + 4*u**2)/(-a_0 + u)
+  [PASS] M2_double_counting_breaks_law: canonical: M2a 6.401, M2b 1.743; alt: M2a 7.163, M2b 1.856
+  [PASS] M3_boost_tooth: full action (chi-bar gradient on) n = 0.69433; dropped n = 0.60954; |diff| = 0.0848 (> 1e-3)
+  [PASS] M4_tether_off_universal_free_fall: max |Delta a|/g_host with the tether off = 3.5e-16
+
+  MUTATE: ALL TEETH BITE (exit 1 by design)

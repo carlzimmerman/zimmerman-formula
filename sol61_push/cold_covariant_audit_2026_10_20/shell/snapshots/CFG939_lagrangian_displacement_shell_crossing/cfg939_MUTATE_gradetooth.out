@@ -1,0 +1,64 @@
+CFG939 main numerics: P as the exact Lagrangian displacement; shell crossing vs S4.
+Criteria: FROZEN_CRITERIA.md (3524438b2) + AMENDMENT_A1_pre_result.md (7dace0a16). Symbolic checks: cfg939_sym.py.
+Stages: K1c multi-stream identity; K3 Zel'dovich; N1 1-D tether crossing (exact single stream vs sheets); N2 1-D stiffness
+(Lagrangian fluid); K4 NGC 3198 law; K5/K6/K7 + N3 spherical cold infall (C1, C2, energy) + Newtonian control; N4 sudden loss;
+N5 per-class consequences (both footings, L* 24/100/300/1000 pc) and the alignment grade; S4 class.
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg939.py                       -> cfg939.out, cfg939_results.json (exit 0 iff all K pass)
+      CFG939_MUTATE=<gamma0|tetheroff|a0zero|losstooth|gradetooth> ...     -> cfg939_MUTATE_<name>.out/.json (exit 1 iff the tooth bites;
+                                                                              a0zero is report-only and exits 1 by convention)
+Units: 1-D runs K = rhobar = a0 = 1 (length a0/(K rhobar), time (K rhobar)^-1/2); spherical runs G = a0 = M_b = 1 (r_M = 1).
+kappa = 1/2 FITTED; footings never pooled; cold energy mass required; no particle species; not theory closed.
+mode: gradetooth
+
+
+=== N5  consequences per class (record representative systems: CFG932 rows, Lelli+15 TDGs, CFG933 DF2/DF4); both footings
+    declared nominal ages (Gyr): UFDs 13.0, classical dSphs 12.0, SPARC rotators 10.0, MW-like 10.0, cluster cores 6.0, DF2/DF4 9.0; TDGs: tmerg/t_orb x t_orb from the table.  The crossing test needs only age >= T_c, so T_c is printed.
+
+  [canonical] a0 = 2888.3 (km/s)^2/kpc
+  system          r_half   g_N/a0    T_c[Gyr]  N_osc   v_in   Mach@24pc  Mach@1kpc  r_sub@24pc  r_sub@1kpc  f_crit(r_half)
+  UFD-c             0.039  2.43e-03 2.561e-01    50.8    0.9      0.74     0.018     0.0391     0.0391  0.673
+  UFD-e             0.313  2.28e-04 2.392e+00     5.4    0.8      3.25     0.078     0.0118     0.3132  0.669
+  Draco-like        0.287  4.52e-03 5.056e-01    23.7    3.4      6.34     0.152     0.0008     0.2871  0.676
+  Fornax-like       0.927  3.47e-02 3.149e-01    38.1   17.2     34.81     0.835     0.0000     0.9265  0.691
+  SPARC-dwarf       5.000  1.71e-02 1.142e+00     8.8   25.0    149.27     3.583     0.0000     0.4207  0.684
+  MW-like           8.000  8.10e-01 1.566e-01    63.9  221.7    723.70    17.369     0.0000     0.0127  0.774
+  cluster-core    500.000  2.03e-01 2.656e+00     2.3 1408.9  43131.05  1035.145     0.0000     0.0000  0.724
+  NGC5291N          4.800  1.01e-01 4.762e-01     0.7   52.9    194.17     4.660     0.0000     0.1353  0.708
+  NGC5291S          7.200  4.57e-02 9.122e-01     0.5   43.6    234.76     5.634     0.0000     0.1437  0.695
+  NGC5291SW         4.800  4.59e-02 7.429e-01     0.5   35.7    156.71     3.761     0.0000     0.2144  0.695
+  NGC7252E          4.500  2.87e-02 9.304e-01     0.8   27.3    129.64     3.111     0.0000     0.3008  0.689
+  NGC7252NW         7.700  2.06e-02 1.455e+00     0.4   30.3    203.31     4.879     0.0000     0.2049  0.686
+  VCC2062           2.600  3.08e-02 6.799e-01     1.1   21.5     76.35     1.832     0.0000     0.5495  0.690
+  NGC1052-DF2       2.610  2.19e-02 6.746e-01    13.3   22.9     86.77     2.082     0.0000     0.4916  0.686
+  NGC1052-DF4       2.088  2.56e-02 5.551e-01    16.2   22.1     72.38     1.737     0.0000     0.6603  0.688
+
+  [alt] a0 = 3490.5 (km/s)^2/kpc
+  system          r_half   g_N/a0    T_c[Gyr]  N_osc   v_in   Mach@24pc  Mach@1kpc  r_sub@24pc  r_sub@1kpc  f_crit(r_half)
+  UFD-c             0.039  2.01e-03 2.565e-01    50.7    0.9      0.70     0.017     0.0391     0.0391  0.673
+  UFD-e             0.313  1.88e-04 2.393e+00     5.4    0.8      3.10     0.074     0.0140     0.3132  0.668
+  Draco-like        0.287  3.74e-03 5.066e-01    23.7    3.4      6.04     0.145     0.0009     0.2871  0.675
+  Fornax-like       0.927  2.87e-02 3.167e-01    37.9   17.2     33.10     0.794     0.0000     0.9265  0.689
+  SPARC-dwarf       5.000  1.41e-02 1.147e+00     8.7   25.0    142.16     3.412     0.0000     0.4720  0.682
+  MW-like           8.000  6.71e-01 1.620e-01    61.7  221.7    682.77    16.386     0.0000     0.0151  0.766
+  cluster-core    500.000  1.68e-01 2.692e+00     2.2 1408.9  40790.85   978.980     0.0000     0.0000  0.719
+  NGC5291N          4.800  8.34e-02 4.830e-01     0.7   52.9    184.29     4.423     0.0000     0.1518  0.704
+  NGC5291S          7.200  3.78e-02 9.210e-01     0.5   43.6    223.17     5.356     0.0000     0.1612  0.692
+  NGC5291SW         4.800  3.80e-02 7.501e-01     0.5   35.7    148.97     3.575     0.0000     0.2406  0.692
+  NGC7252E          4.500  2.37e-02 9.376e-01     0.8   27.3    123.32     2.960     0.0000     0.3375  0.687
+  NGC7252NW         7.700  1.70e-02 1.464e+00     0.4   30.3    193.48     4.644     0.0000     0.2299  0.684
+  VCC2062           2.600  2.55e-02 6.853e-01     1.1   21.5     72.63     1.743     0.0000     0.6166  0.688
+  NGC1052-DF2       2.610  1.81e-02 6.776e-01    13.3   22.9     82.56     1.981     0.0000     0.5843  0.684
+  NGC1052-DF4       2.088  2.12e-02 5.578e-01    16.1   22.1     68.85     1.652     0.0000     0.7409  0.686
+
+  alignment [tooth] overall: ALIGNS
+    canonical|L24pc|vrel100      ALIGNS     7/7   UFDs: EXCESS; classical dSphs: EXCESS; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    canonical|L100pc|vrel100     ALIGNS     7/7   UFDs: EXCESS; classical dSphs: EXCESS; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    canonical|L300pc|vrel100     ALIGNS     7/7   UFDs: EXCESS; classical dSphs: EXCESS; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    canonical|L1000pc|vrel100    ALIGNS     7/7   UFDs: EXCESS; classical dSphs: EXCESS; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    alt|L24pc|vrel100            ALIGNS     7/7   UFDs: EXCESS; classical dSphs: EXCESS; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    alt|L100pc|vrel100           ALIGNS     7/7   UFDs: EXCESS; classical dSphs: EXCESS; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    alt|L300pc|vrel100           ALIGNS     7/7   UFDs: EXCESS; classical dSphs: EXCESS; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    alt|L1000pc|vrel100          ALIGNS     7/7   UFDs: EXCESS; classical dSphs: EXCESS; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+M5 grading tooth: hand-made criterion -> ALIGNS -> BITES (grader can return a non-MISALIGNS class)
+
+done [0 s, peak RSS 69 MB], exit 1.  kappa = 1/2 FITTED; footings never pooled; not theory closed.

@@ -1,0 +1,174 @@
+{
+  "claim_id": "CE-ACTUAL-PAIR-CONDITIONAL-MODE-ANALYSIS-2026-10-20",
+  "mathematics": {
+    "assertion_tested": "Summarize eight completed actual field evolutions; project finite snapshots onto pinned Q136k/Q140k modes, compare frame/grid/time controls, and recompute weak Y20 radiation coefficients on those reference backgrounds.",
+    "coefficient_domain": "Binary64 quadrature, cubic field interpolation, sparse outgoing solves, finite least-squares frequency scan",
+    "conventions": "Canonical reduced order(u,s,chi,v,t), unit no-half K=1. m=0,Y20 angular norm1. Gyro operator always uses reference omega; two explicit velocity-frame choices are compared. Aperture Q/E are inventories, not automatically bound mass/escape. No implicit mode-energy acceptance.",
+    "inputs": [
+      "Eight completed collision/control runs",
+      "Accepted discrete Q136k/Q140k references",
+      "True-origin Q80k isolated-control profile and mode",
+      "Prior fixed same-action equations and outgoing solver"
+    ],
+    "bounds": {
+      "mode_references": [
+        136000,
+        140000
+      ],
+      "projection_times": [
+        80,
+        100,
+        120,
+        140,
+        160,
+        180,
+        200,
+        220,
+        240
+      ],
+      "fit_radius": 12,
+      "angular_nodes": 48,
+      "interpolation_order": 3,
+      "frame_choices": [
+        "reference_omega",
+        "fitted_omega"
+      ],
+      "exploratory_frequency_search": [
+        0.04,
+        0.075,
+        5e-05
+      ],
+      "fit_window": [
+        120,
+        240
+      ],
+      "fit_basis": "constant+exp(i Omega t)+exp(2i Omega t)",
+      "max_measured_RSS_bytes": 1000000000,
+      "source_work_relative_max": 1e-06,
+      "linear_residual_max": 1e-08,
+      "reference_omega_match_max": 1e-11
+    },
+    "non_claims": [
+      "No persistent linear mode-energy fraction without remnant/reference/amplitude acceptance",
+      "No asymptotic escape, orbital angular momentum transfer, physical mass scale or dwarf capture/population kernel",
+      "No four-dwarf normalization/profile/stock/heating closure",
+      "Exploratory finite-frequency fit is not independent confirmation or a spectral theorem"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_pair_excitation_2026_10_20/analyze_pairs.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_projection.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/prepare_analysis.py",
+    "sol61_push/cold_fragment_modes_2026_10_20/radial_tools.py",
+    "sol61_push/cold_fragment_modes_2026_10_20/outgoing_library.py",
+    "sol61_push/cold_completion_2026_10_20/run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/results.json",
+    "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q80000_L60_N1199.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/profile_origin/run_001/Q80000.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/Q136000_L60_N1199.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/profile_Q136000_L60_N1199.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/Q140000_L60_N1199.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/profile_Q140000_L60_N1199.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000000000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000060000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000000000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_moving_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_moving_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_moving_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_moving_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_faster_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_faster_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_faster_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_faster_run_001/evolution/enclosed_energy.jsonl"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "Matplotlib",
+      "version": "3.9.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

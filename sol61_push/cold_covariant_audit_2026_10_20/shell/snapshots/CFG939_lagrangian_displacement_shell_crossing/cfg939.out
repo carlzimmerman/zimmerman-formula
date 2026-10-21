@@ -1,0 +1,152 @@
+CFG939 main numerics: P as the exact Lagrangian displacement; shell crossing vs S4.
+Criteria: FROZEN_CRITERIA.md (3524438b2) + AMENDMENT_A1_pre_result.md (7dace0a16). Symbolic checks: cfg939_sym.py.
+Stages: K1c multi-stream identity; K3 Zel'dovich; N1 1-D tether crossing (exact single stream vs sheets); N2 1-D stiffness
+(Lagrangian fluid); K4 NGC 3198 law; K5/K6/K7 + N3 spherical cold infall (C1, C2, energy) + Newtonian control; N4 sudden loss;
+N5 per-class consequences (both footings, L* 24/100/300/1000 pc) and the alignment grade; S4 class.
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg939.py                       -> cfg939.out, cfg939_results.json (exit 0 iff all K pass)
+      CFG939_MUTATE=<gamma0|tetheroff|a0zero|losstooth|gradetooth> ...     -> cfg939_MUTATE_<name>.out/.json (exit 1 iff the tooth bites;
+                                                                              a0zero is report-only and exits 1 by convention)
+Units: 1-D runs K = rhobar = a0 = 1 (length a0/(K rhobar), time (K rhobar)^-1/2); spherical runs G = a0 = M_b = 1 (r_M = 1).
+kappa = 1/2 FITTED; footings never pooled; cold energy mass required; no particle species; not theory closed.
+mode: normal
+
+=== K1c  multi-stream 1-D identity: folded map x(q) = q - 2 sin q on q in [-pi, pi] (rhobar = 1)
+  K1c P_E = -rhobar sum_s sign(J_s) Psi_s and d_x P_E = rho - rhobar through the fold: PASS  max |dP| 8.9e-16, max rel div err 1.5e-09, 13 three-stream points
+
+=== K3  Zel'dovich 1-D (Newtonian control: tether off, gamma 0, static background), eps 0.3, from rest
+  K3 sheet first crossing = arccosh(1/eps)/sqrt(K rhobar) within 0.5%: PASS  1.87390 vs 1.87382
+
+=== N1  1-D canonical tether (S2+S3, gamma 0, no baryons): exact single stream (independent oscillators) vs sheets
+  exact single stream: first crossing t = 17.690 (1.64 oscillation periods at amplitude 0.3, T = 10.779); sheets: 17.690; agreement WITHIN 2%
+  (Newtonian collapse of the same start: t = 1.874; the canonical tether crosses only by anharmonic dephasing.)
+
+=== N2  1-D stiffness (Lagrangian fluid, L* = 1, gamma = L*^2/2; predicted lambda_J = sqrt(2) pi L* = 4.443 for the Newtonian control)
+  lambda   2.0  newton gamma 0.5: BROKE        t 1.7939697886167383  J_min 0.700  (reached t 1.794)
+  lambda   2.0  tether gamma 0.5: BROKE        t 1.8650041546943725  J_min 0.699  (reached t 1.865)
+  lambda   4.0  newton gamma 0.5: BROKE        t 5.252063320388103  J_min 0.700  (reached t 5.252)
+  lambda   4.0  tether gamma 0.5: BROKE        t 3.938131785384315  J_min 0.695  (reached t 3.938)
+  lambda   8.0  newton gamma 0.5: BROKE        t 2.961748121722282  J_min 0.198  (reached t 2.962)
+  lambda   8.0  tether gamma 0.5: BROKE        t 23.704251926689466  J_min 0.382  (reached t 23.704)
+  lambda  16.0  newton gamma 0.5: BROKE        t 2.2660348155405274  J_min 0.107  (reached t 2.266)
+  lambda  16.0  tether gamma 0.5: BROKE        t 3.9219999999997897  J_min 0.432  (reached t 3.922)
+  lambda   2.0  tether gamma 0  : BROKE        t 36.16799999999824  J_min 0.024
+  lambda   8.0  tether gamma 0  : CROSSING     t 14.537844213757614  J_min 0.000
+  resolution check (lambda 2, Newtonian+stiffness): gradient catastrophe at t 1.7940 (N 512) vs 1.7729 (N 2048)
+
+=== K4  record galaxy NGC 3198 (SPARC rotmod; V_bar^2 = Vg|Vg| + 0.5 Vd|Vd| + 0.7 Vb|Vb|; spherical M_b(<R) = V_bar^2 R/G)
+  K4 [canonical] static single-stream shells reproduce g = nu_s g_N: PASS  max rel 2.2e-16; force 8.1e-16; INFO V_pred/V_obs at 44.1 kpc 159.0/149.0 km/s, rms pull 2.17
+  K4 [alt] static single-stream shells reproduce g = nu_s g_N: PASS  max rel 3.3e-16; force 7.3e-16; INFO V_pred/V_obs at 44.1 kpc 166.0/149.0 km/s, rms pull 3.14
+
+=== K7  deep-kernel force vs CFG747's (m_out^3 - m_in^3)/(3 dm r^4) (formula re-implemented from cfg747.py, read only)
+  K7 deep-kernel discrete force == CFG747 formula: PASS  max rel 1.1e-13; full kernel / deep at these radii: 1.0000-1.0002
+
+=== K5  law control at rest (discrete equilibrium, point baryon mass, r_min 1, R0 50, N 2000)
+  K5a law control: |force| <= 1e-10 g_N and |dE/E| <= 1e-10 over t = 100: PASS  force 4.7e-13, dE/E 1.3e-15, crossings 0
+  A1 report: frozen E_tf of the law state at rest spans [-0.03730, -0.01339] vs mu_edge -0.01339 (deep -(2/3)/R0 = -0.01333); co-moving E_q / (-(2/3) M_b/r) at r > 20: 1.0057
+
+=== N3  spherical cold infall (S2+S3 exact Lagrangian dynamics; full kernel; uniform sphere at rest from r_min 1 to R0 50; N 2000; dt {DT_SPH}; t_end 2000; time average over [1000, 2000])
+  [tether] m/m_law at r = 2/5/10/20: 0.999 / 0.949 / 0.812 / 0.585; crossed 1.000 (inside 5: 1.000, mass inside 5 3.84); first crossing t 8.49; dE/E 1.3e-04; escaped 0.013; outbound unbound 0.438
+    C2 (crossing => positive binding) / (positive binding => crossed first): E_tf: 0.445 / 1.000 (n 1163); E_q: 0.444 / 1.000 (n 890); ESC: 0.013 / 1.000 (n 27)
+    force identity (independent implementation): max |da| 7.8e-13 a0 (relative to g_N 1.6e-07)
+    energy: E0 -1.2610 -> -1.2612; outbound unbound mass 21.411 of 48.884, carrying KE 0.5417 (sum E_q 0.4602); KE of the rest 0.1993
+  [newton_control] m/m_law at r = 2/5/10/20: 3.560 / 3.927 / 2.908 / 1.722; crossed 1.000 (inside 5: 1.000, mass inside 5 16.67); first crossing t 6.47; dE/E 1.8e-04; escaped 0.229; outbound unbound 0.000
+  K5b energy conservation with crossings (tether run) |dE/E| <= 1e-3: PASS  1.3e-04
+  K5c energy conservation with crossings (Newtonian control) |dE/E| <= 1e-3: PASS  1.8e-04
+  A1 force identity (independent implementation) <= 1e-12 a0: PASS  7.8e-13 (relative to g_N 1.6e-07)
+  C1: UNTETHERED  (crossed inside 5 r_M 1.000; m/m_law 2: 0.999, 5: 0.949; Newtonian control 3.560 / 3.927)
+
+=== K6 + N4  sudden baryon loss from the law at rest (point mass; M_b -> 1 - f at t = 0)
+  K6 single-stream per-shell E_q conserved to <= 1e-6 before the first crossing (f = 0.5): PASS  max rel 9.0e-09 over 7 checks up to t 7.61
+  f 0.5: unbound at t=0+ E_q 0.000 (f_crit closed form predicts 0.000, agree 1.000), E_tf 0.741; escaped 0.000 (of t0-unbound None, of t0-bound 0.0); crossed 1.000; C2b E_q/E_tf/ESC 1.0/0.0/None; dE/E 2.7e-05; [report] outbound unbound at end 0.058, E_q <= 0 at end 0.936
+  f 0.6: unbound at t=0+ E_q 0.000 (f_crit closed form predicts 0.000, agree 1.000), E_tf 0.894; escaped 0.000 (of t0-unbound None, of t0-bound 0.0); crossed 1.000; C2b E_q/E_tf/ESC 1.0/0.0/None; dE/E 6.0e-05; [report] outbound unbound at end 0.051, E_q <= 0 at end 0.941
+  f 0.7: unbound at t=0+ E_q 0.942 (f_crit closed form predicts 0.942, agree 1.000), E_tf 1.000; escaped 0.000 (of t0-unbound 0.0, of t0-bound 0.0); crossed 1.000; C2b E_q/E_tf/ESC 0.0141287284144427/0.0/None; dE/E 1.8e-05; [report] outbound unbound at end 0.292, E_q <= 0 at end 0.707
+  f 0.8: unbound at t=0+ E_q 1.000 (f_crit closed form predicts 1.000, agree 1.000), E_tf 1.000; escaped 0.044 (of t0-unbound 0.0445, of t0-bound None); crossed 1.000; C2b E_q/E_tf/ESC 0.0/0.0/1.0; dE/E 3.1e-08; [report] outbound unbound at end 1.000, E_q <= 0 at end 0.000
+  f 0.9: unbound at t=0+ E_q 1.000 (f_crit closed form predicts 1.000, agree 1.000), E_tf 1.000; escaped 0.069 (of t0-unbound 0.069, of t0-bound None); crossed 1.000; C2b E_q/E_tf/ESC 0.0/0.0/1.0; dE/E 2.6e-09; [report] outbound unbound at end 1.000, E_q <= 0 at end 0.000
+  K5d energy conservation with crossings (N4 sudden-loss runs) max |dE/E| <= 1e-3: PASS  6.0e-05
+
+=== N5  consequences per class (record representative systems: CFG932 rows, Lelli+15 TDGs, CFG933 DF2/DF4); both footings
+    declared nominal ages (Gyr): UFDs 13.0, classical dSphs 12.0, SPARC rotators 10.0, MW-like 10.0, cluster cores 6.0, DF2/DF4 9.0; TDGs: tmerg/t_orb x t_orb from the table.  The crossing test needs only age >= T_c, so T_c is printed.
+
+  [canonical] a0 = 2888.3 (km/s)^2/kpc
+  system          r_half   g_N/a0    T_c[Gyr]  N_osc   v_in   Mach@24pc  Mach@1kpc  r_sub@24pc  r_sub@1kpc  f_crit(r_half)
+  UFD-c             0.039  2.43e-03 2.561e-01    50.8    0.9      0.74     0.018     0.0391     0.0391  0.673
+  UFD-e             0.313  2.28e-04 2.392e+00     5.4    0.8      3.25     0.078     0.0118     0.3132  0.669
+  Draco-like        0.287  4.52e-03 5.056e-01    23.7    3.4      6.34     0.152     0.0008     0.2871  0.676
+  Fornax-like       0.927  3.47e-02 3.149e-01    38.1   17.2     34.81     0.835     0.0000     0.9265  0.691
+  SPARC-dwarf       5.000  1.71e-02 1.142e+00     8.8   25.0    149.27     3.583     0.0000     0.4207  0.684
+  MW-like           8.000  8.10e-01 1.566e-01    63.9  221.7    723.70    17.369     0.0000     0.0127  0.774
+  cluster-core    500.000  2.03e-01 2.656e+00     2.3 1408.9  43131.05  1035.145     0.0000     0.0000  0.724
+  NGC5291N          4.800  1.01e-01 4.762e-01     0.7   52.9    194.17     4.660     0.0000     0.1353  0.708
+  NGC5291S          7.200  4.57e-02 9.122e-01     0.5   43.6    234.76     5.634     0.0000     0.1437  0.695
+  NGC5291SW         4.800  4.59e-02 7.429e-01     0.5   35.7    156.71     3.761     0.0000     0.2144  0.695
+  NGC7252E          4.500  2.87e-02 9.304e-01     0.8   27.3    129.64     3.111     0.0000     0.3008  0.689
+  NGC7252NW         7.700  2.06e-02 1.455e+00     0.4   30.3    203.31     4.879     0.0000     0.2049  0.686
+  VCC2062           2.600  3.08e-02 6.799e-01     1.1   21.5     76.35     1.832     0.0000     0.5495  0.690
+  NGC1052-DF2       2.610  2.19e-02 6.746e-01    13.3   22.9     86.77     2.082     0.0000     0.4916  0.686
+  NGC1052-DF4       2.088  2.56e-02 5.551e-01    16.2   22.1     72.38     1.737     0.0000     0.6603  0.688
+
+  [alt] a0 = 3490.5 (km/s)^2/kpc
+  system          r_half   g_N/a0    T_c[Gyr]  N_osc   v_in   Mach@24pc  Mach@1kpc  r_sub@24pc  r_sub@1kpc  f_crit(r_half)
+  UFD-c             0.039  2.01e-03 2.565e-01    50.7    0.9      0.70     0.017     0.0391     0.0391  0.673
+  UFD-e             0.313  1.88e-04 2.393e+00     5.4    0.8      3.10     0.074     0.0140     0.3132  0.668
+  Draco-like        0.287  3.74e-03 5.066e-01    23.7    3.4      6.04     0.145     0.0009     0.2871  0.675
+  Fornax-like       0.927  2.87e-02 3.167e-01    37.9   17.2     33.10     0.794     0.0000     0.9265  0.689
+  SPARC-dwarf       5.000  1.41e-02 1.147e+00     8.7   25.0    142.16     3.412     0.0000     0.4720  0.682
+  MW-like           8.000  6.71e-01 1.620e-01    61.7  221.7    682.77    16.386     0.0000     0.0151  0.766
+  cluster-core    500.000  1.68e-01 2.692e+00     2.2 1408.9  40790.85   978.980     0.0000     0.0000  0.719
+  NGC5291N          4.800  8.34e-02 4.830e-01     0.7   52.9    184.29     4.423     0.0000     0.1518  0.704
+  NGC5291S          7.200  3.78e-02 9.210e-01     0.5   43.6    223.17     5.356     0.0000     0.1612  0.692
+  NGC5291SW         4.800  3.80e-02 7.501e-01     0.5   35.7    148.97     3.575     0.0000     0.2406  0.692
+  NGC7252E          4.500  2.37e-02 9.376e-01     0.8   27.3    123.32     2.960     0.0000     0.3375  0.687
+  NGC7252NW         7.700  1.70e-02 1.464e+00     0.4   30.3    193.48     4.644     0.0000     0.2299  0.684
+  VCC2062           2.600  2.55e-02 6.853e-01     1.1   21.5     72.63     1.743     0.0000     0.6166  0.688
+  NGC1052-DF2       2.610  1.81e-02 6.776e-01    13.3   22.9     82.56     1.981     0.0000     0.5843  0.684
+  NGC1052-DF4       2.088  2.12e-02 5.578e-01    16.1   22.1     68.85     1.652     0.0000     0.7409  0.686
+
+  alignment [HSC] overall: MISALIGNS
+    canonical|L24pc|vrel100      MISALIGNS  4/7   UFDs: MIXED; classical dSphs: EXCESS; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    canonical|L24pc|vrel50       MISALIGNS  3/7   UFDs: MIXED; classical dSphs: EXCESS; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    canonical|L100pc|vrel100     MISALIGNS  4/7   UFDs: ON LAW; classical dSphs: EXCESS; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    canonical|L100pc|vrel50      MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: EXCESS; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    canonical|L300pc|vrel100     MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: MIXED; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    canonical|L300pc|vrel50      MISALIGNS  2/7   UFDs: ON LAW; classical dSphs: MIXED; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    canonical|L1000pc|vrel100    MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    canonical|L1000pc|vrel50     MISALIGNS  2/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    alt|L24pc|vrel100            MISALIGNS  4/7   UFDs: MIXED; classical dSphs: EXCESS; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    alt|L24pc|vrel50             MISALIGNS  3/7   UFDs: MIXED; classical dSphs: EXCESS; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    alt|L100pc|vrel100           MISALIGNS  4/7   UFDs: ON LAW; classical dSphs: EXCESS; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    alt|L100pc|vrel50            MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: EXCESS; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    alt|L300pc|vrel100           MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: MIXED; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    alt|L300pc|vrel50            MISALIGNS  2/7   UFDs: ON LAW; classical dSphs: MIXED; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    alt|L1000pc|vrel100          MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    alt|L1000pc|vrel50           MISALIGNS  2/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: EXCESS; MW-like: EXCESS; cluster cores: EXCESS; tidal dwarfs: MIXED; DF2/DF4: BELOW
+
+  alignment [derived] overall: MISALIGNS
+    canonical|L24pc|vrel100      MISALIGNS  4/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    canonical|L24pc|vrel50       MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    canonical|L100pc|vrel100     MISALIGNS  4/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    canonical|L100pc|vrel50      MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    canonical|L300pc|vrel100     MISALIGNS  4/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    canonical|L300pc|vrel50      MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    canonical|L1000pc|vrel100    MISALIGNS  4/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    canonical|L1000pc|vrel50     MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    alt|L24pc|vrel100            MISALIGNS  4/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    alt|L24pc|vrel50             MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    alt|L100pc|vrel100           MISALIGNS  4/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    alt|L100pc|vrel50            MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    alt|L300pc|vrel100           MISALIGNS  4/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    alt|L300pc|vrel50            MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: MIXED; DF2/DF4: BELOW
+    alt|L1000pc|vrel100          MISALIGNS  4/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: BELOW; DF2/DF4: BELOW
+    alt|L1000pc|vrel50           MISALIGNS  3/7   UFDs: ON LAW; classical dSphs: ON LAW; SPARC rotators: ON LAW; MW-like: ON LAW; cluster cores: ON LAW; tidal dwarfs: MIXED; DF2/DF4: BELOW
+
+=== S4 class
+  C3 (analytic, DERIVATION.md section 3): with S3 as written (d_t P = -j, j the TOTAL current), P is a functional of the total density in 1-D and spherical symmetry, so every element feels -g_Nb + R(K|P|) P_hat - gamma grad rho_c whatever its stream: no stream-dependent coupling.
+  C1 = UNTETHERED; C2(a) crossing => E_tf > 0: 0.445 (E_q 0.444, ESC 0.013); frozen threshold 0.9 -> fails
+  frozen NOT-DERIVABLE clause (fraction of ever-E_tf>0 mass still in the box ~ 0.9767841788478074) -> ILL-POSED (A1): moving elements of a tethered medium have E_tf > 0 by the flat-potential identity
+  A1 replacement: no >= 10% subset evolves under the tether-off force law (C3 analytic; force identity 7.8e-13 a0)
+  -> UNDETERMINED (UNTETHERED)
+  alignment: H-SC MISALIGNS; derived reading MISALIGNS
+
+K: 11/11 PASS
+
+done [739 s, peak RSS 86 MB], exit 0.  kappa = 1/2 FITTED; footings never pooled; not theory closed.

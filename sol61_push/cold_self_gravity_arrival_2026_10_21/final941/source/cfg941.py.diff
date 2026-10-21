@@ -1,0 +1,21 @@
+--- prior_live/cfg941.py
++++ final_commit/cfg941.py
+@@ -842,6 +842,9 @@
+     P(f"  [{foot}] (c) needs l <= {ell_c / PC:.3g} pc (k = 5 h/Mpc at z = 1100; {ell_c_loose / PC:.3g} pc at k = 0.01 h/Mpc): there the tether field at "
+       f"NGC 3198's radii deviates by {dev_c:.3f}; (a) at 1e-6 needs l >= {ell_a / (1e3 * KPC):.3g} Mpc (finite-radius law only; the BTFR limit fails for every finite l)")
+     rss_guard("R3ell")
++DEC_L = math.log10(r3l["canonical"]["ell_min_a_Mpc"] * 1e6 / r3l["canonical"]["ell_max_c_loose_pc"])
++DEC_S = math.log10(r3l["canonical"]["ell_min_a_Mpc"] * 1e6 / r3l["canonical"]["ell_max_c_pc"])
++P(f"  windows disjoint by {DEC_L:.2f} decades (k = 0.01 h/Mpc) to {DEC_S:.2f} decades (k = 5 h/Mpc); l_min(a) resolved to the scan step x1.26")
+ put("R3ell", "a", not R3lsym, f"finite-radius law needs l >= {r3l['canonical']['ell_min_a_Mpc']:.3g} / {r3l['alt']['ell_min_a_Mpc']:.3g} Mpc and the deep BTFR "
+     "fails for every finite l (Yukawa factor -> 0, R3ell_cancellation_fraction)")
+ put("R3ell", "b", True, "lambda-bar = 0, u = 0, tau = 0 on FRW: no stress; dust w = 0")
+@@ -879,7 +882,7 @@
+     "R1": "D-T: an always-on tether passes (a) only with c2 = 1, which cancels the linear self-gravity; R1's c2 = 0 fails (a) (= CFG938 M3)",
+     "R2": "f_t = 1: the tethered medium has c2 = 1 (D-T); f_t < 1: free self-gravitating mass in every galaxy enters the law's source (no segregation or conversion in the action)",
+     "R3n": "the deep BTFR needs s = 1 at all densities (rho_ph -> 0), i.e. s = 1 on the cosmic mean -> D-T",
+-    "R3ell": "the deep BTFR fails for every finite range; l -> infinity is the parent (D-T); finite-radius windows disjoint by > 4 decades",
++    "R3ell": f"the deep BTFR fails for every finite range; l -> infinity is the parent (D-T); finite-radius windows disjoint by {DEC_L:.1f}-{DEC_S:.1f} decades",
+     "R3theta": "",
+ }
+ CLASSES = {}
