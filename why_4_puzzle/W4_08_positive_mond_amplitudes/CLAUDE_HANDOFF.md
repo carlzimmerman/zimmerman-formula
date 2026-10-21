@@ -149,5 +149,6 @@ state is unknown. Do not interrupt it. No downloads or broad builds.
 The existing read-only Lean environment is pinned; runner limits remain
 -j1,-M1024,30sCPU,45swall. Do not broaden imports simply to finish the
 pi adapter while the temporary resource constraint remains unresolved.
-No autonomous research should resume from this handoff without a new
-owner instruction; the current request was to wrap up and push.
+Codex is stopping at this handoff. Claude can continue under the owner's
+instructions and the resource limits above; no automatic continuation
+was scheduled by this chat.
