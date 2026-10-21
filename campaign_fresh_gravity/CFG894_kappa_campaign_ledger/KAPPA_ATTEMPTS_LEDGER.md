@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (751 rows)
+## Totals (753 rows)
 
-- **532 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **533 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **129 produced a number.** 60 produced one determinate value; 69 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -145,7 +145,7 @@ fact.
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 56 | 13 | 14 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 42 | 9 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 64 | 4 | 10 | 50 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 145 | 9 | 7 | 124 | 5 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 146 | 9 | 7 | 125 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 58 | 9 | 12 | 36 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 49 | 2 | 4 | 39 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 110 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 111 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -486,6 +486,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K731 | W4-18/B3 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Hardy/BF inverse-square 1/4 and the dS4 complementary-series / critical-damping edge m = 3H/2 as a0/c | 4.342 | odd | MISS: no Hardy slot (deep-MOND perturbation exponents +-sqrt(l(l+1)/2), no tunable coupling); edge kappa = sqrt(6pi) pi-odd | 918a2439d |
 | K742 | W4-19/L5 | `why_4_puzzle/W4_19_literature_addendum` | Navarro & Van Acoleyen 2006 (gr-qc/0512109): a0 = c mu from f(R,P,Q) curvature invariants | - | free | FREE: mu set by the chosen f (read from a summary only) | 726716bac |
 | K750 | W4-22/M | `why_4_puzzle/W4_22_gauss_times_loop_model` | Gauss-normalized Newtonian stiffness c^4/(8piG) x 3D one-loop MOND cubic (zero mode, N dof, mass lambda/grad Phi/) x tree vacuum | - | free | TRADE: R = (32pi N^2/9) Y, kappa = 1/(N sqrt Y) pi-free, N = 2 prefactor exactly 128pi/9 = (8pi)^3/(6pi)^2; the 4 relocates to N^2 Y = 4 (Y = 1, N = 2 is H061); Newton-leading at low field, and the MOND-shape cancellation re-glues the pi (xi = pi^3 N T^4/27 eps); signs barred by concavity | f216b048f |
+| K752 | W4-23/M | `why_4_puzzle/W4_23_gauss_law_flux_rescue` | minimal fixed-flux (Gauss-law) medium: inf_x[a x^-n + b t x^(n-2)], t = gN^2, separate vacuum | - | free | TRADE: dimension-fixed deep-MOND exponents (n = 3: g = gN + sqrt(a0 gN)); stable only for the electrostatic sign; for gravity's attractive sign the branch is a maximum (W4-08 tachyon); R = eps/(54 a b^3 K^3), xi = 192 pi a b^3 K^3/eps | 439c6ba1d |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -950,6 +951,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K748 | W4-08/critical-endpoint | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/critical_endpoint` | alpha_eff = 2 same-state sourced response of the single-function khronometric action (clock flow kept: K = (r^2v)'/r^2, a = Phi' + vv'; khronon alpha_I K = 2K0) | - | audit | UNDETERMINED: regular F quartic (no MOND); cusp at I0 gives leading-order deep MOND above h_c = 18(/c2///c1/)H^2/a_M, but convective runaway beyond r_w = 0.82(GM a_M)^(1/4)/H and khronon back-reaction ~(/c1///c2/)Phi_N; full system diverges on the frozen grid; c_s^2 = 0 strong coupling | e786a6b06 |
 | K749 | W4-08/critical-endpoint-amplitude | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/critical_endpoint` | operational C2, C3, eps at the cusp endpoint and principles P1 kink self-tuning, P2 deep scale invariance, P3 opposite-branch deformation | - | audit | NOT SELECTED: R_amp = (4/3)(H/a_M)^2 = (4/27)(/c1///c2/)(/I0//x_a) free; tunings T1 criticality + T2 vacuum-at-cusp; deformation not excluded (alters only G_cos); target needs (/c1///c2/)(/I0//x_a) = 96pi | e786a6b06 |
 | K751 | W4-22/K0 | `why_4_puzzle/W4_22_gauss_times_loop_model` | CORRECTION of K747: W4-21's three weight shapes | - | audit | CORRECTION: (1,0,0), (-1,1,0), (0,-1,-1) are one class modulo common-factor (1,1,1) and field-rescaling (0,3,2) shifts, which span the kernel of (1,2,-3); only wt R = 1 is invariant | f216b048f |
+| K753 | W4-23/L | `why_4_puzzle/W4_23_gauss_law_flux_rescue` | duality and sign lemma for the Gauss-law route (W4-08 R3) | - | audit | AUDIT: every MOND law is convex in s = g^2 and concave in t = gN^2, so stable s-affine media cannot give ANY MOND interpolation; flux-affine = field-affine at fixed x, so a Gauss-law rewrite of the same attractive mediator does not escape; the escape is an opposite-sign flux sector = QUMOND's indefinite structure (X15, Cassini p58) | 439c6ba1d |
 
 ## LN: Logic / Lean formalisations
 
