@@ -42,6 +42,7 @@ FROZEN = [
     ("GS4 clarification addendum A 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md", "748dd8095"),
     ("GS4 clarification addendum B 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_B.md", "d7a1afae1"),
     ("U4 clarification addendum A 10-21 (CFG806 dir)", "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md", "d7a1afae1"),
+    ("GS4 clarification addendum C 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_C.md", "785fcae44"),
 ]
 SEAL_HASH_EXPECT = "be27457db6bad870a734c52d2bad92c6669cde53ca7a81553e79154dbedc3714"
 CLAR_COMMIT = "35ea5e1be"
@@ -52,6 +53,8 @@ GS4_ADD = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_20
 ADD_B_COMMIT = "d7a1afae1"
 GS4_ADD_B = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_B.md"
 U4_ADD_A = "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md"
+ADD_C_COMMIT = "785fcae44"
+GS4_ADD_C = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_C.md"
 MUTATE_EXCL = 600.0      # addendum A s2: MUTATE's shifted-window continuum excludes channels within +-600 km/s of the true line
 
 
