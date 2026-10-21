@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (714 rows)
+## Totals (718 rows)
 
-- **519 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **520 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **123 produced a number.** 56 produced one determinate value; 67 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -145,7 +145,7 @@ fact.
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 64 | 4 | 10 | 50 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 141 | 8 | 7 | 121 | 5 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 142 | 8 | 7 | 122 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 48 | 2 | 4 | 38 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 52 | 0 | 0 | 0 | 0 | 42 |
-| AU Audits, controls, meta-analyses | 95 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 98 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -480,6 +480,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K704 | W4-08/R17force | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/gravity_constraints` | universal conformal physical metric and actual tensor-plus-scalar MOND amplitude | - | free | TRADE: Guv=Gt+Gs and aIR=f a_s give xiV0=f^3(125pi/128); scalar charge remains free; Friedmann-inferred density introduces Guv/Gcos; rigid scalar-only ratio is not physical prediction | 590d17d77 |
 | K708 | W4-08/5Ddielectric | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/protected_normalization` | radial relaxation of critical dielectric with added N1 cubic potential and FI uplift | - | free | PARTIAL/CLOSURE: positive electric cubic and fixed-D minimum are real; critical photon kinetic and vacuum energy vanish; added potential coefficient unprotected; FI restores quadratic IR; like-charge force repulsive; reversed-regime L and H ratios not operational MOND amplitudes | eeb8b9492 |
 | K710 | W4-08/disformal | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/protected_normalization` | universal changed physical matter metric and source-lensing amplitude dictionary | - | free | TRADE: TeVeS-shaped gamma1 family has free canonical scalar charge at fixed response; actual-V xi keeps f-cube while inferred footing gains B0^2 for general reference; saturated-neighborhood cone rule is added assumption; inherited matter-free clock instability unchanged; no healthy selector | eeb8b9492 |
+| K715 | W4-08/geometric-metric | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/geometric_source` | higher-gradient superfluid gravitational order parameter with universal attractive metric source and exact broken-branch interpolation | - | free | PARTIAL/TRADE: C2=Mpl^2 and C3=2Mpl^2/(3a0) give actual metric MOND in a local algebraic EFT window; a0 input; finite-Z gradients nonuniform; finite-density fluid not vacuum; no microscopic selector | be8fc76cb |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -913,6 +914,9 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K706 | W4-08/Lean-gravity | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/gravity_constraints` | one kernel-checked gravitational-constraint and physical-amplitude algebra module | - | lean | PARTIAL: fourteen standard-axiom critical prints; true controls and three genuine False mutants; actual pi and covariant PDE source density quantum bridges remain analytic or unproved; original goal open | 590d17d77 |
 | K707 | W4-08/5Dprotected | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/protected_normalization` | exact five-dimensional supersymmetric prepotential and gravitational CS normalization operator map | - | audit | SCOPED CLOSURE: protected cubic multiplies kinetic and CS operators; pure-electric FwedgeF zero; Coulomb vacuum zero; minimal ungauged SUGRA fixes relative coefficients but still gives Maxwell response and Ricci-flat vacuum; no all-gaugings exclusion | eeb8b9492 |
 | K709 | W4-08/S4quantum | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/protected_normalization` | actual sphere determinant and retained interacting zero mode with bounded smooth scalar source profile | - | audit | SCOPED CLOSURE: gapped free relative determinant analytic and free zero mode logarithmic; finite-cutoff bounded quartic response analytic with negative variance; no positive leading local cubic in tested class; epsilon=W-HWH/4 and finite gravitational matching remain; Lorentzian continuum response unproved | eeb8b9492 |
+| K716 | W4-08/geometric-deformation | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/geometric_source` | bounded same-field potential deformation and retained normal-fluid Euler equation in the covariant gravitational phase | - | audit | SCOPED NONSELECTION: positive U_A preserves chi0 vacuum UV and quadratic data while changing formal C3; full curved halo unproved; regular mass restores quadratic IR; displayed normal-fluid vacuum quadratic dynamics absent and static-rest ansatz fails subleading Euler condition; no all-superfluid exclusion | be8fc76cb |
+| K717 | W4-08/integrable-Weyl | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/geometric_source` | integrable Weyl scalar invariant variables and off-shell matter unit-vector source normalization audit | - | audit | SCOPED CLOSURE/TRADE: consistent normalized-vector closure plus literal Einstein-metric matter has zero direct scalar charge; published external prescription needs separate bridge; even granted map xi=32pi/(lambda beta^2) leaves invariant free; finite-gradient positivity not regular vacuum quantum health | be8fc76cb |
+| K718 | W4-08/curved-c1-clock | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/geometric_source` | actual de Sitter lapse shift reduction and controlled homogeneous near-vacuum Bianchi tilt of fixed c1 rational completion | - | audit | PARTIAL HEALTH REPAIR: constrained transverse and longitudinal clock-metric vacuum coefficients positive and fixed-k solutions future bounded; homogeneous tilt decays in explicit small-gradient basin; qualifies prior flat-window inference; finite-k finite-gradient scalar auxiliary quantum halo and selector gaps remain | be8fc76cb |
 
 ## LN: Logic / Lean formalisations
 

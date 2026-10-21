@@ -226,3 +226,8 @@ No new Lean module duplicates the existing minimum/coefficient proofs.
 All five inherited validators freshly pass, with nine partial modules
 and61 standard-axiom critical prints. The actual-pi adapter, full physical
 bridges, healthy microscopic selector and second prediction remain missing.
+
+Geometric-source reviewed evidence: be8fc76cb; campaign rows K715-K718.
+The regenerated campaign checks pass4/4. The56 determinate trials,
+67 menus and all campaign P_LEE values are unchanged. This is progress,
+with the original healthy microscopic normalization/Lean goal still active.
