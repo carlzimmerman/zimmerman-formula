@@ -34,3 +34,21 @@
   own output and JSON. MUTATE fails B1–B3 as designed. Then `PAPER49_zenodo_publish.py --newversion 23501949`.
 - **Audit-code fix before deposit (disclosed):** the first V2 check compared the column values as text strings, and the sort
   order inverted −1.9 and −2.1. It now compares numbers. No gate or paper text changed.
+
+## v1.2 (2026-10-21, owner's explicit go): wording fix of the saddle prediction
+- Published as a NEW VERSION of record 23524075: **DOI 10.5281/zenodo.23533323** (https://zenodo.org/record/23533323), version 1.2,
+  concept record 23501948 (shared with v1.0 and v1.1). Live file: 72645 bytes, md5 62591cc44838b4298e64f7b165b9bb32, identical to
+  the committed PDF. v1.1 (23524075) is unchanged. Zenodo returned 500 on the upload and on publish; the script and an independent
+  API read confirmed the record is live and clean.
+- **Change:**
+  - v1.1 said "no negative lensing trough through the saddle". That was imprecise. AG6C's own output gives the law's mid-plane
+    column through the saddle as negative part −0.206 but net +0.016, so neither picture predicts negative convergence there.
+  - The prediction now reads "no saddle dip". Under the law the column through the saddle drops almost to zero in a band ~0.1d
+    wide; a positive medium cannot dig the part below zero density. The missing depth is 1.9 to 2.1 M☉/pc² (MW–M31-like pair)
+    and 4.6 to 5.1 M☉/pc² (cluster pair). The numbers are unchanged.
+  - Added: one sentence from AG7 (published stacked LRG-pair lensing gives S/N below 1; ~12× as many pairs needed for 3σ), and
+    reference [5] Epps & Hudson, arXiv:1702.08485 (authors checked against the paper's title block). A short dated v1.2 note.
+- **Gate:** build, then `PAPER49_audit.py` ALL PASS (69 checks), then `PAPER49_zenodo_publish.py --newversion 23524075`.
+  - New V5 reads the net and negative columns from AG6C's output. New V6 reads AG7's results JSON.
+  - V2 now checks the depths as positive numbers.
+  - MUTATE still fails only B1–B3.

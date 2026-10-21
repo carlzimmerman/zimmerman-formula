@@ -81,7 +81,7 @@ s695 = J("CFG695_saturating_vacuum/cfg695_results.json")["numbers"]["S2"]
 check("F1 SPARC rms ~0.100 both footings", all(abs(s695[f]["rms"] - 0.100) < 0.0015 for f in ("canonical", "alt")),
       f"{s695['canonical']['rms']:.4f} / {s695['alt']['rms']:.4f}"); has("F1 text", "0.100 dex")
 
-# V. v1.1 correction (lane AG6C): every number read from AG6C's own output and JSON
+# V. v1.1 correction, wording fixed in v1.2 (lanes AG6C, AG7): every number read from the lanes' own outputs and JSON
 AG6 = os.path.join(HERE, "..", "..", "argon_push", "AG6C_relativistic_completion")
 so = open(os.path.join(AG6, "ag6c_s0_saddle.out")).read(); sj = json.load(open(os.path.join(AG6, "ag6c_s0_saddle_results.json")))["numbers"]["fiducials"]
 C02 = float(re.search(r"mid-plane C\(R = 0\.2\) : (-?[0-9.]+) \(h\) vs (-?[0-9.]+) \(h/2\)", so).group(2))
@@ -92,11 +92,20 @@ has("V1 text -89", "-89"); has("V1 text -33", "-33")
 col = lambda ks: [f"{v:.1f}" for v in sorted((sj[k]["Sigma_unsuppliable_Msun_pc2"] for k in ks), reverse=True)]   # numeric: least negative first
 c1 = col(("F1_MW-M31_canonical", "F1_MW-M31_alt")); c2 = col(("F2_cluster_pair_canonical", "F2_cluster_pair_alt"))
 check("V2 unsuppliable columns from AG6C JSON", c1 == ["-1.9", "-2.1"] and c2 == ["-4.6", "-5.1"], f"F1 {c1}, F2 {c2}")
-has("V2 text F1 column", f"{c1[0]} to {c1[1]}"); has("V2 text F2 column", f"{c2[0]} to {c2[1]}")
+has("V2 text F1 dip depth", f"{c1[0][1:]} to {c1[1][1:]}"); has("V2 text F2 dip depth", f"{c2[0][1:]} to {c2[1][1:]}")   # v1.2 quotes depths (positive)
 m = re.search(r"negative region: R in \[([0-9.]+), ([0-9.]+)\], z in \[([0-9.]+), ([0-9.]+)\]", so)
 check("V3 pancake extent from AG6C (R <= 0.43 d, |z| <= 0.05 d)", f"{float(m.group(2)):.2f}" == "0.43" and f"{float(m.group(4)):.2f}" == "0.05", m.group(0))
-for t in ("Correction (v1.1, 2026-10-20)", "no negative lensing trough", "v1.1"):
+for t in ("Correction (v1.1, 2026-10-20; wording fixed in v1.2, 2026-10-21)", "Prediction: no saddle dip", "v1.2 note", "Working note, v1.2"):
     has(f"V4 text '{t}'", t)
+mc = re.search(r"negative part ([-+0-9.]+), net ([-+0-9.]+)", so)
+cn, cnet = float(mc.group(1)), float(mc.group(2))
+check("V5 AG6C net column through the saddle is positive (negative part, net)", cnet > 0 and f"{cn:.3f}" == "-0.206" and f"{cnet:+.3f}" == "+0.016", mc.group(0))
+has("V5 text negative part", "-0.206"); has("V5 text net", "+0.016")
+AG7 = os.path.join(HERE, "..", "..", "argon_push", "AG7_saddle_trough_preflight"); r7 = json.load(open(os.path.join(AG7, "ag7_results.json")))
+pr = [r["SN_strip"] for r in r7["rows"] if r["Mb"] == 10 ** 11.3 and r["d_hMpc"] == 8.23]
+check("V6 AG7 primary strip S/N below 1 on both footings; ~12x pairs for 3 sigma", len(pr) == 2 and max(pr) < 1 and round(r7["N3"] / 23000) == 12 and not r7["mutate"],
+      f"S/N {[round(x, 2) for x in pr]}, N3/N {r7['N3'] / 23000:.1f}, reading {r7['reading']}")
+has("V6 text S/N", "S/N below 1"); has("V6 text pairs", "about twelve times as many pairs"); has("V6 text ref", "arXiv:1702.08485")
 
 # G-H. Honesty and forbidden phrases; stale statements must be gone.
 for p in ("fitted", "not closed", "not peer reviewed", "conditional", "is excluded by KiDS-1000"): has(f"G honesty '{p}'", p)
