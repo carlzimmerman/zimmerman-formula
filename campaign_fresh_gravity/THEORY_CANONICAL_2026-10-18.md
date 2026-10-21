@@ -209,3 +209,8 @@ advantage amplitude-driven, and the class-A engine that produces the pass has no
   - where the literal fails on noise, the selection-aware G1 null and beam-corrected V_c and size errors are used;
   - no taper branch is added;
   - GS4 ROBUST is decided per model. Stated before data: this disc can neither support nor disfavour the framework.
+- **Correction (2026-10-21, later the same day).** The note above says that GS4 "can neither support nor disfavour the framework".
+  That is WRONG on most branches. It holds only on the canonical, M★ 10.89, R_g = R_d branch, the one branch the 10-20 scan
+  covered. On the six non-FLOOR branches, the framework's verdict reads ROBUST at 15–17 of 20 CI21 values (CFG942 full scan,
+  826ebb739). Corrected in `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md`, which also adds the MUTATE
+  continuum reading. The rule itself (ROBUST decided per model) is unchanged.
