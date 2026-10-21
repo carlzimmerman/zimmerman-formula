@@ -74,6 +74,7 @@ independent second prediction to reach 3σ.
 | [W4-13](W4_13_gap_vs_law_shape/README.md) | Is the within-galaxy gas/star gap (p64) a law-shape effect? Four declared law forms (softer to AG4's n = 2) plus RAR. | **GAP NOT LAW-SHAPE.** The gap is −0.38 to −0.41 dex under every law. A planted law-shape mismatch makes only −0.02 dex, twenty times smaller. It is about the baryons, not the transition shape. |
 | [W4-14](W4_14_gas_star_matched_acceleration/README.md) | Gas vs star points at the same g_bar: is the within-galaxy gap about baryon type or about acceleration/radius? | **ACCELERATION.** At matched g_bar the classes agree (Δ −0.10 ± 0.11), while the within-galaxy gap is −0.44 ± 0.06. Inferred a₀ falls outward inside galaxies (an EFE or outskirts signature), so it is not 'cold energy tracks stars'. The frozen M2 control failed by design; a post-hoc noisy control passes. |
 | [W4-15](W4_15_outward_decline_vs_external_field/README.md) | Does W4-14's outward a₀ decline follow the external field (Chae+2021 environmental e_N)? | **INTERMEDIATE, opposite sign to EFE.** ρ = −0.25 (p 0.03; an EFE predicts ρ > 0). A post-hoc power check puts an EFE-strength ρ ≈ +0.3 about 4.7σ above the observed value. The decline is not an environmental EFE; its cause stays open. |
+| [W4-16](W4_16_what_drives_the_decline/README.md) | What drives the outward a₀ decline (pressure support, radial M/L, beam smearing, warps, quality, universal slope)? | **UNRESOLVED.** No signature is met at p < 0.01. The full-point decline vanishes near Υ_d ≈ 0.7 (median slope +0.29 / +0.12 / −0.07 at Υ_d 0.3 / 0.5 / 0.8), and gas-only points don't decline. Two flaws in my own criteria are disclosed: the D1 sign was wrong and the M1 control failed. |
 
 ## What would change the answer
 
@@ -92,6 +93,6 @@ Follow `KAPPA_CAMPAIGN_RULES.md`:
 3. Run a light single-core script (nothing beside a live 1024³ job beyond that).
 4. Append one register row per attempt to CFG894's CSV, then rerun `kappa_campaign_lee.py`.
 
-Name lanes W4-16, W4-17, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
+Name lanes W4-17, W4-18, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
 
 κ = ½ FITTED. Not theory closed.
