@@ -1,0 +1,18 @@
+CFG939 main numerics: P as the exact Lagrangian displacement; shell crossing vs S4.
+Criteria: FROZEN_CRITERIA.md (3524438b2) + AMENDMENT_A1_pre_result.md (7dace0a16). Symbolic checks: cfg939_sym.py.
+Stages: K1c multi-stream identity; K3 Zel'dovich; N1 1-D tether crossing (exact single stream vs sheets); N2 1-D stiffness
+(Lagrangian fluid); K4 NGC 3198 law; K5/K6/K7 + N3 spherical cold infall (C1, C2, energy) + Newtonian control; N4 sudden loss;
+N5 per-class consequences (both footings, L* 24/100/300/1000 pc) and the alignment grade; S4 class.
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg939.py                       -> cfg939.out, cfg939_results.json (exit 0 iff all K pass)
+      CFG939_MUTATE=<gamma0|tetheroff|a0zero|losstooth|gradetooth> ...     -> cfg939_MUTATE_<name>.out/.json (exit 1 iff the tooth bites;
+                                                                              a0zero is report-only and exits 1 by convention)
+Units: 1-D runs K = rhobar = a0 = 1 (length a0/(K rhobar), time (K rhobar)^-1/2); spherical runs G = a0 = M_b = 1 (r_M = 1).
+kappa = 1/2 FITTED; footings never pooled; cold energy mass required; no particle species; not theory closed.
+mode: losstooth
+
+M4 sudden-loss tooth: f = 2/3 -+ 0.05 must flip deep shells (r >= 10 r_M) bound <-> unbound (co-moving E_q at t = 0+, and escape)
+  f = 0.6167: deep shells unbound at t=0+ 0.000; escaped beyond 10 R0 by t=1500 0.000; crossed 1.000
+  f = 0.7167: deep shells unbound at t=0+ 1.000; escaped beyond 10 R0 by t=1500 0.000; crossed 1.000
+  -> BITES
+
+done [123 s, peak RSS 75 MB], exit 1.  kappa = 1/2 FITTED; footings never pooled; not theory closed.

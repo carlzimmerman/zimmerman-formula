@@ -136,3 +136,14 @@ a script result that disagrees with a hand value replaces it, with the disagreem
     re-declared as `hits == [2, 3, 4]`; under M2 the hits become [1, 2] and the check must FAIL.
   - The C2 null rises to about 0.71.
   - Nothing else in the classification rules changes.
+
+## Amendment 3 (appended 2026-10-20, before any run): run condition only
+
+- **What changes.** The frozen text says the runs "start only when no 1024³ job is live". The owner instructed a parallel
+  session to swing every remaining κ lane ("keep swinging all of them"). Since this criteria file was written, the record's
+  own rule for lanes beside a live 1024³ job is CFG894 `KAPPA_CAMPAIGN_RULES.md` §11 (2026-10-20): light single-core scripts
+  only (`nice -n 10`, `OMP_NUM_THREADS=1`, under ~1 GB, seconds). p63 is sympy and arithmetic of that size. It is run under
+  §11 beside the live NC2x (CFG654, chain7b).
+- **What does not change.** No candidate, check, window, classification rule, MUTATE or verdict rule is altered. The script
+  (`p63_a0_field_coupling.py`, written 2026-10-19 by the session that froze this lane) is run unmodified.
+- **Who ran it.** A parallel session (why_4_puzzle lanes), on the owner's instruction; recorded so the provenance is clear.

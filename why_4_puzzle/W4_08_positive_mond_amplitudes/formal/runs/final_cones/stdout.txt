@@ -1,0 +1,124 @@
+GaugeCones.lean:32:0: warning: automatically included section variable(s) unused in theorem `Why4.GaugeCones.discriminant_identity`:
+  [LinearOrder K]
+  [IsStrictOrderedRing K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LinearOrder K] [IsStrictOrderedRing K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+GaugeCones.lean:123:0: warning: automatically included section variable(s) unused in theorem `Why4.GaugeCones.refined_budget_identity`:
+  [LinearOrder K]
+  [IsStrictOrderedRing K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LinearOrder K] [IsStrictOrderedRing K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+GaugeCones.lean:124:5: warning: Variable name `hF` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hF
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+GaugeCones.lean:130:22: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+GaugeCones.lean:161:0: warning: automatically included section variable(s) unused in theorem `Why4.GaugeCones.coneBeta_eq`:
+  [LinearOrder K]
+  [IsStrictOrderedRing K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LinearOrder K] [IsStrictOrderedRing K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+GaugeCones.lean:166:0: warning: automatically included section variable(s) unused in theorem `Why4.GaugeCones.scaled_budget_identity`:
+  [LinearOrder K]
+  [IsStrictOrderedRing K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LinearOrder K] [IsStrictOrderedRing K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+GaugeCones.lean:169:26: warning: Unused tactic linter: `ring1` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+GaugeCones.lean:169:26: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+@discriminant_nonneg : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  {alpha beta delta : K}, 0 ≤ alpha → 0 ≤ beta → 0 ≤ delta → 0 ≤ discriminant alpha beta delta
+@principal_root_bounds : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  {alpha beta delta z : K},
+  0 < alpha →
+    0 < beta →
+      alpha ≤ 1 →
+        beta ≤ 1 → 0 ≤ delta → delta ≤ (1 - alpha) * (1 - beta) → principal alpha beta delta z = 0 → 0 < z ∧ z ≤ 1
+@quadratic_formula_roots : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  {alpha beta delta r : K},
+  r ^ 2 = discriminant alpha beta delta →
+    principal alpha beta delta ((alpha + beta + delta - r) / 2) = 0 ∧
+      principal alpha beta delta ((alpha + beta + delta + r) / 2) = 0
+@quadratic_formula_root_bounds : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  {alpha beta delta r : K},
+  0 < alpha →
+    0 < beta →
+      alpha ≤ 1 →
+        beta ≤ 1 →
+          0 ≤ delta →
+            delta ≤ (1 - alpha) * (1 - beta) →
+              r ^ 2 = discriminant alpha beta delta →
+                (0 < (alpha + beta + delta - r) / 2 ∧ (alpha + beta + delta - r) / 2 ≤ 1) ∧
+                  0 < (alpha + beta + delta + r) / 2 ∧ (alpha + beta + delta + r) / 2 ≤ 1
+@refined_budget_identity : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (F b gamma y Hsq k T : K),
+  F ≠ 0 →
+    y + b ≠ 0 →
+      (1 - y / (y + b)) * (gamma * y + F * b * Hsq / (y + b) ^ 3 - k * gamma * y) -
+          (F * b / (y + b) ^ 2) ^ 2 * Hsq * T / F =
+        b * gamma * y * (1 - k) / (y + b) + F * b ^ 2 * Hsq * (1 - T) / (y + b) ^ 4
+@refined_budget_nonnegative : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  {F b gamma y Hsq k T : K},
+  0 < F →
+    0 < b →
+      0 < gamma →
+        0 < y →
+          0 ≤ Hsq →
+            k ≤ 1 →
+              T ≤ 1 →
+                0 ≤
+                  (1 - y / (y + b)) * (gamma * y + F * b * Hsq / (y + b) ^ 3 - k * gamma * y) -
+                    (F * b / (y + b) ^ 2) ^ 2 * Hsq * T / F
+@substituted_cone_conditions : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  {F b gamma y Hsq k T : K},
+  0 < F →
+    0 < b →
+      0 < gamma →
+        0 < y →
+          0 ≤ Hsq →
+            0 < k →
+              k ≤ 1 →
+                0 ≤ T →
+                  T ≤ 1 →
+                    0 < coneAlpha F b gamma y Hsq k ∧
+                      coneAlpha F b gamma y Hsq k ≤ 1 ∧
+                        0 < coneBeta F b y ∧
+                          coneBeta F b y < 1 ∧
+                            0 ≤ coneDelta F b gamma y Hsq T ∧
+                              coneDelta F b gamma y Hsq T ≤ (1 - coneAlpha F b gamma y Hsq k) * (1 - coneBeta F b y)
+@substituted_principal_root_bounds : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  {F b gamma y Hsq k T z : K},
+  0 < F →
+    0 < b →
+      0 < gamma →
+        0 < y →
+          0 ≤ Hsq →
+            0 < k →
+              k ≤ 1 →
+                0 ≤ T →
+                  T ≤ 1 →
+                    principal (coneAlpha F b gamma y Hsq k) (coneBeta F b y) (coneDelta F b gamma y Hsq T) z = 0 →
+                      0 < z ∧ z ≤ 1
+'Why4.GaugeCones.discriminant_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GaugeCones.principal_root_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GaugeCones.quadratic_formula_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GaugeCones.quadratic_formula_root_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GaugeCones.refined_budget_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GaugeCones.refined_budget_nonnegative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GaugeCones.substituted_cone_conditions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GaugeCones.substituted_principal_root_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]

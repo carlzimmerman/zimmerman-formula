@@ -1,0 +1,108 @@
+{
+  "claim_id": "CE-PAIR-FIXED-CARRIER-SENSITIVITY-2026-10-20",
+  "mathematics": {
+    "assertion_tested": "Re-extract existing collision snapshots in one consistent frozen carrier phase frame anchored at t120, compare snapshot-fitted phase coordinates and identical exploratory finite-frequency fits, and measure core-only field mismatch. No evolution/eigen/outgoing experiment. Also record exact reference and explicitly hypothetical coordinate-fit Psi+ kinematic threshold, group speed and charge/kinetic fractions; no fitted frequency is accepted as physical.",
+    "coefficient_domain": "Binary64/complex128 fixed frame, cubic interpolation and finite least-squares frequency search",
+    "conventions": "theta(t)=theta120+omega_reference*(t-120), same omega_reference subtracted from charged velocities; reference-specific theta120 taken from existing reference_omega analysis. Canonical field/order/no-half unitK inherited from audited pair_projection. Core mismatch is a positive field L2 norm, not energy. Sideband nu=omega+2Omega; cutoffOmega=(1-omega)/2; groupv=sqrt(1-nu^-2); Qout/K=1/(2Omega), free kinetic/K=(nu-1)/(2Omega), unbinding/K=(1-omega)/(2Omega), only if nu>1.",
+    "inputs": [
+      "Existing inphase,halfdt,fine snapshots and old conditional coordinates",
+      "Accepted Q136000/Q140000 matched references"
+    ],
+    "bounds": {
+      "cases": [
+        "pair_inphase",
+        "pair_dt_half",
+        "pair_dx_fine"
+      ],
+      "Qrefs": [
+        136000,
+        140000
+      ],
+      "times": [
+        120,
+        140,
+        160,
+        180,
+        200,
+        220,
+        240
+      ],
+      "phase_anchor_time": 120,
+      "fit_basis": "constant+exp(iOmega*t)+exp(2iOmega*t)",
+      "frequency_grid": [
+        0.04,
+        0.075,
+        5e-05
+      ],
+      "core_radii": [
+        12,
+        15
+      ],
+      "angular_nodes": 48,
+      "interpolation_order": 3,
+      "core_fit_radius": 12,
+      "anchor_complex_coordinate_relative_error_max": 1e-10,
+      "measured_RSS_max_bytes": 1000000000,
+      "retained_output_max_bytes": 1000000000,
+      "CPU_limit_seconds": 60,
+      "wall_seconds": 90,
+      "numerical_threads": 1
+    },
+    "non_claims": [
+      "No normal-mode energy or nonlinear eigenfrequency accepted automatically",
+      "No fresh field/eigen/BVP/outgoing solve",
+      "No mode damping/merger efficiency/orbitalJ or dwarf budget closure",
+      "A frequency-grid minimum is not a frequency uncertainty"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_pair_excitation_2026_10_20/fixed_carrier_sensitivity.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_projection.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/Q136000_L60_N1199.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/profile_Q136000_L60_N1199.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/Q140000_L60_N1199.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/profile_Q140000_L60_N1199.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000240000.bin"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

@@ -97,3 +97,33 @@ Cross-match the (B) sample to ALFALFA α.100 by position (≤ 60″ and |Δcz| �
 ## Files to be produced (after the 1024³ chain)
 
 `p64_raw_sparc_minimal.py`, `.out`, `_results.json`, `_MUTATE.out`, `README.md`.
+
+## Amendment 1 (appended 2026-10-20, before any p64 script exists): run condition and two implementation readings
+
+- **Run condition.** The frozen text says p64 runs "only when no 1024³ job is live". The owner instructed a parallel session
+  to swing every remaining κ lane. The record's rule for lanes beside a live 1024³ job is CFG894 `KAPPA_CAMPAIGN_RULES.md` §11
+  (2026-10-20): light single-core only. p64 is numpy over 175 small files plus a 2000-resample bootstrap, which is light. It runs
+  under §11 beside the live NC2x (chain7b).
+- **Implementation reading 1, (A) point classes.** Gas-dominated and star-dominated points are classified once, at the
+  fiducial Υ_d = 0.5 and f_gas = 1.00. The same point sets are held fixed across the Υ_d × f_gas grid, so only a₀,ᵢ changes
+  with the grid. This matches (B), which also classifies at Υ_d = 0.5. A galaxy needs at least 3 valid (g_obs > g_bar) points
+  of each class at the fiducial.
+- **Implementation reading 2, (B) E1.** The point-weighted pooled fit uses CFG449's weights (1/(e_V/V_obs)²) and minimiser,
+  with the simple-μ kernel stated in "Kernel" above. K1 alone uses ν_mono, as frozen.
+- **(C) data note, declared before the script.** The SPARC master table on disk has no coordinates, and the rules forbid
+  downloads, so the positional cross-match cannot be made. (C) is reported UNTESTED, as the frozen pre-freeze expectation
+  already anticipated.
+- **The κ input.** CFG886's BAO+BBN ω_Λ is read from its committed output (cfg886.out line "(a) PRIMARY BAO+BBN": h, Ω_m;
+  ω_Λ = (1 − Ω_m)h², flat, w = −1).
+- Nothing else changes: no cut, grid, seed, estimator, verdict rule or MUTATE.
+
+## Amendment 2 (appended 2026-10-20, before any p64 script exists): the frozen M2 window looks mis-set
+
+- Under D → 1.10 D with SPARC's scaling (R ∝ D, V_bar² ∝ D), g_bar does not change and g_obs ∝ 1/D. The simple-μ inversion
+  a₀ = g_obs(g_obs − g_bar)/g_bar has the lever d ln a₀/d ln g_obs = 1 + g_obs/(g_obs − g_bar). That is 2 in the deep regime and
+  about 3 near y ≈ 1. The expected E2 shift is therefore −(2 to 3) × log₁₀(1.10) = **−0.083 to −0.124 dex**, not the frozen
+  −0.15 to −0.30.
+- **M2 is run exactly as frozen,** and its PASS or FAIL against −0.15 to −0.30 is reported unchanged. The measured shift and the
+  lever arithmetic above are reported beside it. A FAIL that lands in −0.08 to −0.13 is read as a mis-set window, not a dead
+  control. The direction and the lever are the real test.
+- Nothing else changes.

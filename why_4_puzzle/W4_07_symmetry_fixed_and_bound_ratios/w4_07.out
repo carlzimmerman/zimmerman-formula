@@ -1,0 +1,30 @@
+W4-07  symmetry-fixed and bound-saturating ratios vs the 4
+kappa^2 = a0^2/(c^2 G rho_DE); kappa = 1/2 FITTED (CFG493 0.417 +- 0.095). Not theory closed.
+
+[PASS] I1 forbidden inputs: tokens in the compute block: none
+readings (d = 4)
+  B1              k2 = 16*pi/3                                hbar^0     free -  kappa 4.0933  -> MISS
+  B2              k2 = 16*pi/3                                hbar^0     free -  kappa 4.0933  -> MISS
+  B1_general_d    k2 = 16*pi/(d - 1)                          hbar^0     free ['d']  kappa -  -> d-dependent (S3)
+  B2_general_d    k2 = 4*pi*d/(d - 1)                         hbar^0     free ['d']  kappa -  -> d-dependent (S3)
+  B3              k2 = c**5*g**4*q**4/(2*pi*G**2*hbar*rho)    hbar^-1    free ['G', 'c', 'g', 'hbar', 'q', 'rho']  kappa -  -> HBAR / TRADE
+  B6              k2 = c**5/(8*pi*G**2*N**2*hbar*rho)         hbar^-1    free ['G', 'N', 'c', 'hbar', 'rho']  kappa -  -> HBAR / TRADE
+  B7_reduced      k2 = 8*pi*alpha**6                          hbar^0     free ['alpha']  kappa -  -> TRADE
+  B7_nonreduced   k2 = alpha**6                               hbar^0     free ['alpha']  kappa -  -> TRADE
+  B4 dS swampland |V'|/V >= c_S/M_P : an inequality on the quintessence slope, no a0 -> BOUND (hbar via M_P)
+  B5 trans-Planckian censorship      : inequalities on Lambda and on inflation, no a0 -> BOUND
+  B8 flat-space positivity           : n-point vertices of L = (dphi)^2/2 - lam phi^4 - eps independent of eps: True -> CLOSURE (eps enters only through curvature, i.e. H-type)
+[PASS] K1 B1 vs B2: d = 4: 16*pi/3 vs 16*pi/3; d = 5: 4*pi vs 5*pi
+[PASS] K2 B7 hbar cancels: hbar power of kappa^2 (reduced, non-reduced): [0, 0]
+[PASS] K3 hand values (normal-run): B1 16pi/3, B2 16pi/3, B7 8pi alpha^6 / alpha^6; mismatches none
+[PASS] I3 dimensions (SI items): failures none
+[PASS] I7 hbar: hbar-bearing: {'B3': '-1', 'B6': '-1'} (declared B3, B6; B7 cancels)
+[PASS] I8 pi x algebraic: B1 True, B2 True; neither 1/4
+
+  general d: B1 kappa^2 = 16*pi/(d - 1), B2 kappa^2 = 4*pi*d/(d - 1)
+  B7: kappa = 1/2 needs alpha = 2^(-1/3) = 0.794 (non-reduced M_Pl) or (32 pi)^(-1/6) = 0.457 (reduced)
+
+LANE VERDICT: RIGID BUT PI-ODD
+  The partially massless point and the conformal scalar fix a mass to Lambda by a symmetry, with no free coupling, and give kappa^2 = 16pi/3 (kappa 4.09): pi x algebraic, about ten times the measured value. The consistency bounds are inequalities or carry hbar; the microscopic seesaw cancels hbar but leaves its coupling alpha free and its pi set by the Planck-mass convention.
+
+checks: 7/7 pass

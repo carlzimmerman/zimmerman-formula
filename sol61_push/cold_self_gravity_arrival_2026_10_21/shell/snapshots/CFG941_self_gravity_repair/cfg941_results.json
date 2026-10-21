@@ -1,0 +1,1063 @@
+{
+ "lane": "CFG941",
+ "criteria": "0b41bd0cf",
+ "amendments": [
+  "A1 7c395c866 pre-result (BTFR point y = 1e-14)"
+ ],
+ "mutate": false,
+ "stage": "MAIN",
+ "checks": {
+  "K1_NGC3198_law_CFG938_reduction": {
+   "pass": true,
+   "detail": "max |g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (CFG938: 2.2e-16; line 1e-6)"
+  },
+  "K2_FRW_dust_w0": {
+   "pass": true,
+   "detail": "rho = m/a(t)**3, p = 0, w = 0 exactly; T^mu_nu diagonal and isotropic"
+  },
+  "K3_CFG938_S6_exponent": {
+   "pass": true,
+   "detail": "mu = 0.4509, n = 0.60954 (CFG938 json 0.60954; line 0.6096 +/- 1e-3)"
+  },
+  "K4_Lagrangian_growth_route": {
+   "pass": true,
+   "detail": "homogeneous in t: True; (c2 = 1, no chi-bar gradient) n = 0.60954472 vs K3 0.60954472; (c2 = 0) n = 1.000000000000"
+  },
+  "K5_CFG938_slip_reproduced": {
+   "pass": true,
+   "detail": "worst s_847 = 1.5398e-05 (CFG938 1.5398e-5), worst s_grad = 5.792e-06 (CFG938 5.79e-6)"
+  },
+  "K6_R1_equals_CFG938_M3": {
+   "pass": true,
+   "detail": "R1 law dev canonical 1.6445 (CFG938 M3 1.6445), alt 1.8844 (1.8844)"
+  },
+  "D1_Poisson_counts_medium_once": {
+   "pass": true,
+   "detail": "CFG938: Phi'' = 4*pi*G*(rho_b(x) + rho_c(x)); S2 square + ID: Phi'' = 4*pi*G*(rho_b(x) + rho_c(x)); adding dust -rho_c Phi on top (M2a) gives 4*pi*G*(rho_b(x) + 2*rho_c(x)): NO source double count in S2 or CFG938 (the medium's rest mass is P.grad Phi, counted once)"
+  },
+  "D2a_mode_average_general_c2": {
+   "pass": true,
+   "detail": "<L> = (K/4k^2)[(B+C)^2 - c2 C^2]; d2<L>/dC1dC2 = -2*pi*G*(c_2 - 1)/k**2; self C1^2 coefficient = -pi*G*(c_2 - 1)/k**2; baryon-medium = 2*pi*G/k**2. c2 = 1 (W_full's quadratic) removes BOTH the medium's self-gravity and the mutual gravity of tethered components; the baryon term survives"
+  },
+  "D2b_force_identity": {
+   "pass": true,
+   "detail": "medium force -(Phi_b + chi)' + D_full(chi') = -Phi_b' + R(chi'): the tether's linear part +chi' is exactly the medium's own Newtonian pull (chi = the medium's potential): a FORCE cancellation, not a source cancellation; baryons still feel the medium"
+  },
+  "DT1_law_forces_F_equals_D_full": {
+   "pass": true,
+   "detail": "static cold equilibrium F(u) = g = g_N + u with the law -> F(u) = a_0*uu/(a_0 - uu) = D_full(u)"
+  },
+  "DT2_c2_equals_1": {
+   "pass": true,
+   "detail": "F(u) = uu + uu**2/a_0 + uu**3/a_0**2 + O(u^4): linear coefficient 1 -> W = u^2/2K + ... (c2 = 1)"
+  },
+  "DT3_any_deep_limit_law_forces_c2_1": {
+   "pass": true,
+   "detail": "generic law g_N = (g^2/a0)(1 + h1 g/a0 + h2 (g/a0)^2 + ...): F(u) = u + (1/a_0) u^2 + ...; the linear coefficient is 1 independent of h1, h2, h3 (it is the deep limit, not the simple interpolation, that forces it)"
+  },
+  "DT4_only_c2_1_gives_BTFR": {
+   "pass": true,
+   "detail": "lim V^4/(G M a0): c2 = 1 (law) -> 1; c2 = 1/2 -> oo (acceleration floor); c2 = 2 -> 0 (rescaled Newton). With D2a/D6 (linear self-gravity coefficient (1 - c2) K rho_c): (a) => c2 = 1 => the settling medium has NO linear self-gravity"
+  },
+  "D5a_medium_frame_gradient_has_boost_term": {
+   "pass": true,
+   "detail": "u^2 = h^{mu nu} d chi d chi = eps^2 |grad_phys dchi + (chibar'/c^2) V|^2 + O(eps^3) exactly (V = peculiar velocity of the medium)"
+  },
+  "D5b_constraint_background_and_linear": {
+   "pass": true,
+   "detail": "D^2 chibar = -3 H chibar'/c^2 (= K rhobar => chibar'/c^2 = -K rhobar/(3H), c-independent); first-order constraint = lap dchi/a^2 - 3H dchi'/c^2 with NO velocity term (so dchi = dPhi_c sub-horizon)"
+  },
+  "D6_growth_exponents_computed": {
+   "pass": true,
+   "detail": "unrepaired parent: S6-approx 0.6095, full action 0.6943 (a correction to CFG938 S6: the chi-bar gradient raises the exponent but it stays far below 1); F1 confirmed for the parent"
+  },
+  "R3n_k2_coefficient": {
+   "pass": true,
+   "detail": "potential's delta rho^2 coefficient = (s'' W + s gamma)/2 -> omega^2 -> rho0 (s'' W + s gamma) k^2 at large k (s'' = d2s/drho2)"
+  },
+  "R3theta_kinetic_term": {
+   "pass": true,
+   "detail": "-s(theta) W contributes -(1/2) s''(theta) W (div v)^2: longitudinal kinetic coefficient rho0 - s'' W k^2"
+  },
+  "R3ell_cancellation_fraction": {
+   "pass": true,
+   "detail": "linear tether force / medium self-gravity = k^2 l^2/(1 + k^2 l^2) (Yukawa vs Newton); point-source Yukawa factor (1 + r/l) e^{-r/l} -> 0: no asymptotic BTFR for any finite l"
+  }
+ },
+ "tests": {
+  "R1": {
+   "a": {
+    "pass_": false,
+    "detail": "law dev canonical 1.645, alt 1.884 (line 1e-6); static states need u >= a0/2 (min u/a0 = 0.517); g -> a0/2 floor: lim V^4/(GMa0) = oo, value at y = 1e-14 2.500e+13. Identical to CFG938's M3 tooth (K6)"
+   },
+   "b": {
+    "pass_": true,
+    "detail": "W_rem(0) = 0, W_rem'(u)/u -> 0: tether stress vanishes on FRW; dust w = 0 (K2)"
+   },
+   "c": {
+    "pass_": true,
+    "detail": "c2 = 0 -> n = 1.000000 at super-L* (W_rem has no quadratic term, so no chi-bar boost either); sub-L*: stiffness Jeans omega^2 = gamma rho k^2 - K rho > 0 for k_phys L* > sqrt(2): oscillation, no growth faster than a^1"
+   },
+   "d": {
+    "pass_": true,
+    "detail": "about R1 static states (u0/a0 = 0.5/0.9/0.99; 0.0909 has none): min omega^2/(K rho0) = 0.000, 8.000, 98.000 (bounded; Jeans-type only); FRW: -1 + (kL*)^2/2 bounded; inertia margin 6.17e+04 > 1"
+   },
+   "e": {
+    "pass_": false,
+    "detail": "on R1's own static states: worst s_grad 5.73e-06, s_847 3.28e-05 (line 1.9e-5)"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "mutual cross term Newtonian (c2 = 0, D2a) BUT hover lemma in R1's own settled host (R(u_h) = g_bh + u_h): a medium element at rest feels zero net force, Delta a/g_host = 1.0000 ... 1.0000 (leading order); CFG925 R3 not respected"
+   },
+   "g": {
+    "pass_": false,
+    "detail": "g1 no (medium feels R(u) tether in settled regions); g2 no (equilibrium reads the total medium field); g3 yes (dust + stiffness)"
+   }
+  },
+  "R2": {
+   "a": {
+    "pass_": false,
+    "detail": "tethered-only galaxy = P0 (K1, 2e-16) BUT jointly (criteria sec. 4): f_t = 1 fails (c); at f_t <= 6.02e-02 galaxies carry free mass q = 1.56e+01 x tethered, which enters the law's source (R(u_t) = g_b + g_f): law dev 73.77 / 81.87; tethered supply / NGC 3198 phantom = 6.76e-01 / 6.10e-01"
+   },
+   "b": {
+    "pass_": true,
+    "detail": "two label-field dusts: w = 0 each (K2); tether sector zero on FRW"
+   },
+   "c": {
+    "pass_": false,
+    "detail": "graded on the composition that passes (a) (f_t = 1, criteria sec. 4): n = 0.6943 (full action) / 0.6095 (S6 approx); the tethered medium keeps c2 = 1 (D-T); n -> 1 only as f_t -> 0, where it is a passenger of the free medium's gravity"
+   },
+   "d": {
+    "pass_": true,
+    "detail": "two-component WKB (free + tethered, units K = rho_t = L* = 1): min omega^2 >= -(rho_f + rho_t) on every case (min -10.916): bounded Jeans growth; tethered sector as CFG938 (min omega^2 >= 0: 0.100)"
+   },
+   "e": {
+    "pass_": true,
+    "detail": "tethered static states = P0: worst s_grad 5.79e-06, s_847 1.54e-05"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "tethered satellite in a tethered host: Delta a/g_host = 1.017 ... 1.107 (hover); only satellites whose cold energy is FREE fall universally"
+   },
+   "g": {
+    "pass_": false,
+    "detail": "g1 no (tethered medium feels -grad Phi_b - grad Phi_f + R(u_t)); g2 no (equilibrium reads g_b + g_f and the total tethered field); g3 only for the free medium"
+   }
+  },
+  "R3n": {
+   "a": {
+    "pass_": false,
+    "detail": "43 radii with s = 1 are P0's (non-positive rho_ph radii: 0 / 0) BUT the deep BTFR needs the tether at arbitrarily low density (rho_ph ~ r^-2 -> 0): beyond r_* = 73 / 73 kpc the gate is off and lim V^4/(GMa0) = 0; CFG847 gates (canonical): {'dwarf': 'on', 'MW disc': 'on', 'MW outer': 'OFF', 'group': 'OFF', 'cluster': 'OFF'}"
+   },
+   "b": {
+    "pass_": true,
+    "detail": "W(0) = 0: the gated sector vanishes on FRW for any s"
+   },
+   "c": {
+    "pass_": false,
+    "detail": "cosmic-mean medium has rho > rho_* at z > 17.9 / 18.5 (s = 1): n = 0.6943 there (S6-approx 0.6095); |n - 1| < 1e-3 fails over z in [18, 1100]"
+   },
+   "d": {
+    "pass_": false,
+    "detail": "transition shell: c_eff^2 = rho0 (s'' W + s gamma); min c_eff^2/(s gamma rho0) = -3.444e+07 < 0 -> gradient instability, Im omega ~ k (L* = 24 pc and 1 kpc, both footings); static s = 1 states as CFG938"
+   },
+   "e": {
+    "pass_": true,
+    "detail": "where s = 1 the static states are P0's (worst 1.54e-05); gated-off systems carry no tether stress"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "settled host region (s = 1): hover, Delta a/g_host = 1.017 ... 1.107"
+   },
+   "g": {
+    "pass_": false,
+    "detail": "g1/g2 no in s = 1 regions; g3 no (gate on for the cosmic mean at high z)"
+   }
+  },
+  "R3theta": {
+   "a": {
+    "pass_": true,
+    "detail": "static states have theta = 0, s(0) = 1, s'(0) = s''(0) = 0 (quintic gate): identical to P0 (K1 2.2e-16; BTFR limit 1, at y = 1e-14: +1.00e-07 / +1.00e-07)"
+   },
+   "b": {
+    "pass_": true,
+    "detail": "gate x W(0) = 0 on FRW"
+   },
+   "c": {
+    "pass_": true,
+    "detail": "cosmic-mean linear medium has theta = 3H(z)(1 + O(delta)) >= 3 H0 > theta_s = H0: s = s' = s'' = 0, pure dust (stiffness gated too): n = 1.000000 at every k, sub- and super-L*"
+   },
+   "d": {
+    "pass_": false,
+    "detail": "static states fine (s'' = 0 at theta = 0) BUT in the transition (theta in (theta_s/2, theta_s)) s'' > 0: kinetic coefficient rho0 - s''W k^2 < 0 for k > k_g (k_g R = 0.23-2.19): a GHOST band and a degenerate kinetic surface"
+   },
+   "e": {
+    "pass_": true,
+    "detail": "static states = P0 (worst 1.54e-05)"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "settled host (theta = 0, s = 1): hover, Delta a/g_host = 1.017 ... 1.107"
+   },
+   "g": {
+    "pass_": false,
+    "detail": "g1/g2 no in settled regions (g3 yes): the settled sector is CFG938's, not class A's"
+   }
+  },
+  "R3ell": {
+   "a": {
+    "pass_": false,
+    "detail": "finite-radius law needs l >= 63.1 / 63.1 Mpc and the deep BTFR fails for every finite l (Yukawa factor -> 0, R3ell_cancellation_fraction)"
+   },
+   "b": {
+    "pass_": true,
+    "detail": "lambda-bar = 0, u = 0, tau = 0 on FRW: no stress; dust w = 0"
+   },
+   "c": {
+    "pass_": false,
+    "detail": "needs l <= 13.1 pc (strictest k) or 6.53e+03 pc (k = 0.01 h/Mpc), disjoint from (a)'s Mpc range; at any l allowed by (a) every relevant mode is tethered at z = 1100 (n = parent's)"
+   },
+   "d": {
+    "pass_": true,
+    "detail": "massive chi: tether linear force reduced by k^2l^2/(1 + k^2l^2); omega^2 >= -K rho0 + c_s^2 k^2: bounded"
+   },
+   "e": {
+    "pass_": true,
+    "detail": "for l >= l_min(a) the static states are P0's to < 1e-6 (worst 1.54e-05)"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "within l: hover, Delta a/g_host = 1.017 ... 1.107"
+   },
+   "g": {
+    "pass_": false,
+    "detail": "g1/g2 no within l; g3 no at the scales allowed by (a)"
+   }
+  },
+  "P0": {
+   "a": {
+    "pass_": true,
+    "detail": "K1: 2.2e-16 / 2.2e-16; BTFR limit 1, y = 1e-14: +1.00e-07 / +1.00e-07"
+   },
+   "b": {
+    "pass_": true,
+    "detail": "CFG938 S1 (K2)"
+   },
+   "c": {
+    "pass_": false,
+    "detail": "n = 0.6095 (S6 approx) / 0.6943 (full action, D6)"
+   },
+   "d": {
+    "pass_": true,
+    "detail": "CFG938 S5 grid min omega^2/(K rho0) = 0.100, 1.000, 9.000, 99.000; inertia margin 5.85e+04"
+   },
+   "e": {
+    "pass_": true,
+    "detail": "worst s_847 1.54e-05, s_grad 5.79e-06"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "Delta a/g_host = 1.017 ... 1.107; EFE -0.728 ... -0.102 dex"
+   },
+   "g": {
+    "pass_": false,
+    "detail": "g1 no, g2 no, g3 no"
+   }
+  }
+ },
+ "K1": {
+  "canonical": {
+   "max_rel_vs_law": 2.220446049250313e-16,
+   "unsolved": 0
+  },
+  "alt": {
+   "max_rel_vs_law": 2.220446049250313e-16,
+   "unsolved": 0
+  }
+ },
+ "K6": {
+  "canonical": {
+   "max_rel_vs_law": 1.6445195768435843,
+   "unsolved": 0,
+   "cfg938_M3": 1.6445195768435839
+  },
+  "alt": {
+   "max_rel_vs_law": 1.8844347042715879,
+   "unsolved": 0,
+   "cfg938_M3": 1.8844347042715879
+  }
+ },
+ "K_all": true,
+ "DT": {
+  "F": "a_0*uu/(a_0 - uu)",
+  "series": "uu + uu**2/a_0 + uu**3/a_0**2",
+  "generic_b2": "1/a_0",
+  "btfr_limits": [
+   "1",
+   "oo",
+   "0"
+  ]
+ },
+ "D6": {
+  "n_S6": 0.6095447174560983,
+  "n_full": 0.6943301383991246,
+  "n_dust": 1.0000000000000004,
+  "c2_max": 0.002345810543392887,
+  "curve": {
+   "0.0": [
+    1.0000000000000004,
+    1.0000000000000004
+   ],
+   "0.0001": [
+    0.9999573744398299,
+    0.9999715826594575
+   ],
+   "0.001": [
+    0.9995737298247144,
+    0.999715789828673
+   ],
+   "0.003": [
+    0.9987210927900423,
+    0.9991471244730743
+   ],
+   "0.01": [
+    0.995735865258043,
+    0.9971542265158915
+   ],
+   "0.03": [
+    0.9871985304192912,
+    0.9914382999125158
+   ],
+   "0.1": [
+    0.9572418380345942,
+    0.9711807493568483
+   ],
+   "0.3": [
+    0.8716016935479601,
+    0.9113004783491663
+   ],
+   "0.5": [
+    0.7878782684713359,
+    0.8490930902992426
+   ],
+   "0.8": [
+    0.6734382289143981,
+    0.7546732326526295
+   ],
+   "1.0": [
+    0.6095447174560981,
+    0.6943301383991249
+   ]
+  }
+ },
+ "hover": {
+  "canonical|H1|50": {
+   "g_host": 1.9449710439053878e-11,
+   "u_h": 1.6103568590589964e-11,
+   "g_bh": 3.3461418484639147e-12,
+   "delta_a": 1.9987901483603436e-11,
+   "ratio": 1.0276709026715845,
+   "r_t_pc": 30.0,
+   "max_w_over_a0": 0.24869588385723285,
+   "g_bs_at_a": 5.477115677660713e-13,
+   "efe_factor": 0.22684103009714907,
+   "efe_dex": -0.6442783892272843,
+   "t_sep_Myr": 9.643402705733223,
+   "omega_resp_over_cross": 0.0003867890787214866,
+   "rho_host_phantom": 1.3615898627306348e-23
+  },
+  "canonical|H1|100": {
+   "g_host": 9.277013941749931e-12,
+   "u_h": 8.440478479633953e-12,
+   "g_bh": 8.365354621159787e-13,
+   "delta_a": 9.68254484639485e-12,
+   "ratio": 1.0437135167836584,
+   "r_t_pc": 30.0,
+   "max_w_over_a0": 0.16683616694479714,
+   "g_bs_at_a": 5.477115677660713e-13,
+   "efe_factor": 0.37893908182233293,
+   "efe_dex": -0.4214306015223228,
+   "t_sep_Myr": 13.855402439547554,
+   "omega_resp_over_cross": 0.0001335647150299841,
+   "rho_host_phantom": 3.415338296860856e-24
+  },
+  "canonical|H1|250": {
+   "g_host": 3.607102000656439e-12,
+   "u_h": 3.4732563267178825e-12,
+   "g_bh": 1.3384567393855656e-13,
+   "delta_a": 3.787412571372669e-12,
+   "ratio": 1.0499876550991394,
+   "r_t_pc": 95.04594932960798,
+   "max_w_over_a0": 0.11378079947601194,
+   "g_bs_at_a": 5.477115677660713e-13,
+   "efe_factor": 0.6355740424508348,
+   "efe_dex": -0.19683384817102756,
+   "t_sep_Myr": 22.153512524619543,
+   "omega_resp_over_cross": 3.331400451430534e-05,
+   "rho_host_phantom": 5.469664903885951e-25
+  },
+  "canonical|H2|50": {
+   "g_host": 1.9449710439053878e-11,
+   "u_h": 1.6103568590589964e-11,
+   "g_bh": 3.3461418484639147e-12,
+   "delta_a": 1.981860736557908e-11,
+   "ratio": 1.0189667053235136,
+   "r_t_pc": 200.00000000000003,
+   "max_w_over_a0": 0.2354673570034768,
+   "g_bs_at_a": 3.697053082420982e-13,
+   "efe_factor": 0.18949921690998145,
+   "efe_dex": -0.722392580378635,
+   "t_sep_Myr": 25.005279128982394,
+   "omega_resp_over_cross": 0.002578593858143244,
+   "rho_host_phantom": 1.3615898627306348e-23
+  },
+  "canonical|H2|100": {
+   "g_host": 9.277013941749931e-12,
+   "u_h": 8.440478479633953e-12,
+   "g_bh": 8.365354621159787e-13,
+   "delta_a": 9.558942422892969e-12,
+   "ratio": 1.0303900029592774,
+   "r_t_pc": 200.00000000000003,
+   "max_w_over_a0": 0.15360590992997647,
+   "g_bs_at_a": 3.697053082420982e-13,
+   "efe_factor": 0.32436512369360865,
+   "efe_dex": -0.4889658480542218,
+   "t_sep_Myr": 36.00504440644622,
+   "omega_resp_over_cross": 0.0008904314335332276,
+   "rho_host_phantom": 3.415338296860856e-24
+  },
+  "canonical|H2|250": {
+   "g_host": 3.607102000656439e-12,
+   "u_h": 3.4732563267178825e-12,
+   "g_bh": 1.3384567393855656e-13,
+   "delta_a": 3.759023041383768e-12,
+   "ratio": 1.042117201204646,
+   "r_t_pc": 500.16647344295126,
+   "max_w_over_a0": 0.10054872634783005,
+   "g_bs_at_a": 3.697053082420982e-13,
+   "efe_factor": 0.5789904840018455,
+   "efe_dex": -0.23732857406090574,
+   "t_sep_Myr": 57.41571531292046,
+   "omega_resp_over_cross": 0.00022209336342870228,
+   "rho_host_phantom": 5.469664903885951e-25
+  },
+  "canonical|H3|50": {
+   "g_host": 1.9449710439053878e-11,
+   "u_h": 1.6103568590589964e-11,
+   "g_bh": 3.3461418484639147e-12,
+   "delta_a": 2.1269785898579638e-11,
+   "ratio": 1.0935785375946345,
+   "r_t_pc": 700.0,
+   "max_w_over_a0": 0.3137062769904627,
+   "g_bs_at_a": 2.0120016775080173e-12,
+   "efe_factor": 0.3917145048416222,
+   "efe_dex": -0.4070303466138756,
+   "t_sep_Myr": 45.15654820232187,
+   "omega_resp_over_cross": 0.009025078503501356,
+   "rho_host_phantom": 1.3615898627306348e-23
+  },
+  "canonical|H3|100": {
+   "g_host": 9.277013941749931e-12,
+   "u_h": 8.440478479633953e-12,
+   "g_bh": 8.365354621159787e-13,
+   "delta_a": 1.0267325606393849e-11,
+   "ratio": 1.1067489680259244,
+   "r_t_pc": 1601.3478811841385,
+   "max_w_over_a0": 0.2318541672284544,
+   "g_bs_at_a": 2.0120016775080173e-12,
+   "efe_factor": 0.5782229992870239,
+   "efe_dex": -0.23790463790785496,
+   "t_sep_Myr": 64.99405422851369,
+   "omega_resp_over_cross": 0.003116510017366296,
+   "rho_host_phantom": 3.415338296860856e-24
+  },
+  "canonical|H3|250": {
+   "g_host": 3.607102000656439e-12,
+   "u_h": 3.4732563267178825e-12,
+   "g_bh": 1.3384567393855656e-13,
+   "delta_a": 3.895768981109708e-12,
+   "ratio": 1.0800273960649673,
+   "r_t_pc": 4482.652487847504,
+   "max_w_over_a0": 0.17880529283066415,
+   "g_bs_at_a": 2.0120016775080173e-12,
+   "efe_factor": 0.7909182803366778,
+   "efe_dex": -0.10186838658103302,
+   "t_sep_Myr": 105.51293366196538,
+   "omega_resp_over_cross": 0.000777326772000458,
+   "rho_host_phantom": 5.469664903885951e-25
+  },
+  "alt|H1|50": {
+   "g_host": 2.1200383008393537e-11,
+   "u_h": 1.7854241159929624e-11,
+   "g_bh": 3.3461418484639147e-12,
+   "delta_a": 2.1718524317368077e-11,
+   "ratio": 1.0244401862348147,
+   "r_t_pc": 30.0,
+   "max_w_over_a0": 0.2278151663131572,
+   "g_bs_at_a": 5.477115677660713e-13,
+   "efe_factor": 0.22382181479190144,
+   "efe_dex": -0.6500975872355604,
+   "t_sep_Myr": 9.251214411862927,
+   "omega_resp_over_cross": 0.00036733690996422795,
+   "rho_host_phantom": 1.497970786690523e-23
+  },
+  "alt|H1|100": {
+   "g_host": 1.0155009261135058e-11,
+   "u_h": 9.31847379901908e-12,
+   "g_bh": 8.365354621159787e-13,
+   "delta_a": 1.0553809791222209e-11,
+   "ratio": 1.0392713113136616,
+   "r_t_pc": 30.0,
+   "max_w_over_a0": 0.1523651739480343,
+   "g_bs_at_a": 5.477115677660713e-13,
+   "efe_factor": 0.37665342678518776,
+   "efe_dex": -0.4240580770110917,
+   "t_sep_Myr": 13.271171818251197,
+   "omega_resp_over_cross": 0.00012711677938825517,
+   "rho_host_phantom": 3.755278774921745e-24
+  },
+  "alt|H1|250": {
+   "g_host": 3.958599686695795e-12,
+   "u_h": 3.824754012757239e-12,
+   "g_bh": 1.3384567393855656e-13,
+   "delta_a": 4.13776461201889e-12,
+   "ratio": 1.0452596724860153,
+   "r_t_pc": 95.04594932960798,
+   "max_w_over_a0": 0.10381034963799636,
+   "g_bs_at_a": 5.477115677660713e-13,
+   "efe_factor": 0.6342808795431799,
+   "efe_dex": -0.1977183802532508,
+   "t_sep_Myr": 21.194882474962917,
+   "omega_resp_over_cross": 3.17463283286077e-05,
+   "rho_host_phantom": 6.0131083178513275e-25
+  },
+  "alt|H2|50": {
+   "g_host": 2.1200383008393537e-11,
+   "u_h": 1.7854241159929624e-11,
+   "g_bh": 3.3461418484639147e-12,
+   "delta_a": 2.1555283313425017e-11,
+   "ratio": 1.0167402779888914,
+   "r_t_pc": 200.00000000000003,
+   "max_w_over_a0": 0.21570122015904136,
+   "g_bs_at_a": 3.697053082420982e-13,
+   "efe_factor": 0.18689770459854782,
+   "efe_dex": -0.7283960324162779,
+   "t_sep_Myr": 23.976810233690667,
+   "omega_resp_over_cross": 0.0024489127330948528,
+   "rho_host_phantom": 1.497970786690523e-23
+  },
+  "alt|H2|100": {
+   "g_host": 1.0155009261135058e-11,
+   "u_h": 9.31847379901908e-12,
+   "g_bh": 8.365354621159787e-13,
+   "delta_a": 1.0432123738366507e-11,
+   "ratio": 1.0272884514534135,
+   "r_t_pc": 200.00000000000003,
+   "max_w_over_a0": 0.14024963287323072,
+   "g_bs_at_a": 3.697053082420982e-13,
+   "efe_factor": 0.32232216772940514,
+   "efe_dex": -0.4917098248274437,
+   "t_sep_Myr": 34.465287759713284,
+   "omega_resp_over_cross": 0.000847445195921701,
+   "rho_host_phantom": 3.755278774921745e-24
+  },
+  "alt|H2|250": {
+   "g_host": 3.958599686695795e-12,
+   "u_h": 3.824754012757239e-12,
+   "g_bh": 1.3384567393855656e-13,
+   "delta_a": 4.109578244885969e-12,
+   "ratio": 1.0381393851713747,
+   "r_t_pc": 500.1664734429512,
+   "max_w_over_a0": 0.09169314114541156,
+   "g_bs_at_a": 3.697053082420982e-13,
+   "efe_factor": 0.5777633252149766,
+   "efe_dex": -0.23825002940471782,
+   "t_sep_Myr": 54.912301567873506,
+   "omega_resp_over_cross": 0.00021164218885738465,
+   "rho_host_phantom": 6.0131083178513275e-25
+  },
+  "alt|H3|50": {
+   "g_host": 2.1200383008393537e-11,
+   "u_h": 1.7854241159929624e-11,
+   "g_bh": 3.3461418484639147e-12,
+   "delta_a": 2.295627372057478e-11,
+   "ratio": 1.0828235372675135,
+   "r_t_pc": 700.0,
+   "max_w_over_a0": 0.28759153048420977,
+   "g_bs_at_a": 2.0120016775080173e-12,
+   "efe_factor": 0.3871687560977062,
+   "efe_dex": -0.4120996968229548,
+   "t_sep_Myr": 43.46619246470148,
+   "omega_resp_over_cross": 0.008571194565831984,
+   "rho_host_phantom": 1.497970786690523e-23
+  },
+  "alt|H3|100": {
+   "g_host": 1.0155009261135058e-11,
+   "u_h": 9.31847379901908e-12,
+   "g_bh": 8.365354621159787e-13,
+   "delta_a": 1.1129059624860924e-11,
+   "ratio": 1.0959182152057432,
+   "r_t_pc": 1601.3478811841387,
+   "max_w_over_a0": 0.21214857936785678,
+   "g_bs_at_a": 2.0120016775080173e-12,
+   "efe_factor": 0.5752478591272913,
+   "efe_dex": -0.24014498894951283,
+   "t_sep_Myr": 62.42708572840548,
+   "omega_resp_over_cross": 0.002966058185725954,
+   "rho_host_phantom": 3.755278774921745e-24
+  },
+  "alt|H3|250": {
+   "g_host": 3.958599686695795e-12,
+   "u_h": 3.824754012757239e-12,
+   "g_bh": 1.3384567393855656e-13,
+   "delta_a": 4.245069848685368e-12,
+   "ratio": 1.0723665398530577,
+   "r_t_pc": 4482.652487847504,
+   "max_w_over_a0": 0.16359972916971124,
+   "g_bs_at_a": 2.0120016775080173e-12,
+   "efe_factor": 0.7894959633927058,
+   "efe_dex": -0.10265008615062696,
+   "t_sep_Myr": 101.07875304894931,
+   "omega_resp_over_cross": 0.0007407476610008462,
+   "rho_host_phantom": 6.0131083178513275e-25
+  }
+ },
+ "R1": {
+  "a": {
+   "canonical": {
+    "dev": 1.6445195768435843,
+    "unsolved": 0,
+    "min_u_over_a0": 0.5169042716669291,
+    "btfr_y1e14": 25000000000001.5
+   },
+   "alt": {
+    "dev": 1.8844347042715879,
+    "unsolved": 0,
+    "min_u_over_a0": 0.5141432017798272,
+    "btfr_y1e14": 25000000000001.504
+   }
+  },
+  "disp": {
+   "0.5": 5e-05,
+   "0.9": 8.000050000000002,
+   "0.99": 98.00004999999992
+  },
+  "slip": [
+   5.7311304707067624e-06,
+   3.2796640034710156e-05
+  ],
+  "inertia_min": 61731.04337596344,
+  "hover": {
+   "canonical|50": 1.0000000000000002,
+   "canonical|100": 1.0,
+   "canonical|250": 0.9999999999999998,
+   "alt|50": 1.0,
+   "alt|100": 0.9999999999999998,
+   "alt|250": 0.9999999999999999
+  }
+ },
+ "R2": {
+  "n_ft": {
+   "0.0": [
+    0.9999999999999984,
+    0.9999999999999994
+   ],
+   "0.001": [
+    0.9999995741046181,
+    0.9999997159900678
+   ],
+   "0.003": [
+    0.9999961733599416,
+    0.9999974467640008
+   ],
+   "0.01": [
+    0.9999577272060545,
+    0.9999717398796603
+   ],
+   "0.03": [
+    0.9996255486652297,
+    0.9997483323818228
+   ],
+   "0.1": [
+    0.9960384832797228,
+    0.997292140705789
+   ],
+   "0.3": [
+    0.9675992615101391,
+    0.9769838440142318
+   ],
+   "1.0": [
+    0.6095439830396154,
+    0.6943295059958442
+   ]
+  },
+  "ft_max": 0.0602443106764089,
+  "q": 15.59907780124357,
+  "a": {
+   "canonical": {
+    "dev_with_free": 73.77025956258406,
+    "unsolved": 0,
+    "phantom_over_Mb": 4.781451350820557,
+    "tethered_supply_over_need": 0.6758418286799063
+   },
+   "alt": {
+    "dev_with_free": 81.86774259723225,
+    "unsolved": 0,
+    "phantom_over_Mb": 5.301524838849126,
+    "tethered_supply_over_need": 0.6095425227478666
+   }
+  },
+  "disp2": {
+   "rf/rt=0.1|u0=0": -0.37013511716795705,
+   "rf/rt=0.1|u0=0.0909": -0.33164885898947133,
+   "rf/rt=0.1|u0=0.5": -0.18442555018102083,
+   "rf/rt=0.1|u0=0.9": -0.11097571263149442,
+   "rf/rt=1|u0=0": -1.6180201693133869,
+   "rf/rt=1|u0=0.0909": -1.5912611185663594,
+   "rf/rt=1|u0=0.5": -1.4142062401531086,
+   "rf/rt=1|u0=0.9": -1.0990190281120342,
+   "rf/rt=10|u0=0": -10.916075911971078,
+   "rf/rt=10|u0=0.0909": -10.908394462648141,
+   "rf/rt=10|u0=0.5": -10.844285443273169,
+   "rf/rt=10|u0=0.9": -10.512490917621555
+  }
+ },
+ "R3n": {
+  "canonical": {
+   "rho_star": 1.5277930987221503e-23,
+   "nonpositive_radii": 0,
+   "z_on": 17.918128039663273,
+   "z_off": 12.555431077862675,
+   "r_star_kpc": 73.39143312718662,
+   "ceff_ratio_min": {
+    "24pc": -34307098.817633055,
+    "1000pc": -19759.88949495665
+   },
+   "gate_on_CFG847": {
+    "dwarf": "on",
+    "MW disc": "on",
+    "MW outer": "OFF",
+    "group": "OFF",
+    "cluster": "OFF"
+   }
+  },
+  "alt": {
+   "rho_star": 1.680388383127584e-23,
+   "nonpositive_radii": 0,
+   "z_on": 18.528094558713008,
+   "z_off": 12.992491187163514,
+   "r_star_kpc": 73.38311269428053,
+   "ceff_ratio_min": {
+    "24pc": -34443545.49661354,
+    "1000pc": -19838.482782049407
+   },
+   "gate_on_CFG847": {
+    "dwarf": "on",
+    "MW disc": "on",
+    "MW outer": "OFF",
+    "group": "OFF",
+    "cluster": "OFF"
+   }
+  }
+ },
+ "R3theta": {
+  "ghost": {
+   "z_ta=0|R=0.1Mpc": {
+    "k_ghost_R": 2.185022853183577,
+    "u0_over_a0": 6.846812105773587e-05
+   },
+   "z_ta=0|R=1Mpc": {
+    "k_ghost_R": 2.184573945174728,
+    "u0_over_a0": 0.0006846812105773587
+   },
+   "z_ta=0|R=10Mpc": {
+    "k_ghost_R": 2.180077229711471,
+    "u0_over_a0": 0.006846812105773588
+   },
+   "z_ta=1|R=0.1Mpc": {
+    "k_ghost_R": 0.7723987990903659,
+    "u0_over_a0": 0.0005477449684618869
+   },
+   "z_ta=1|R=1Mpc": {
+    "k_ghost_R": 0.7711274169964798,
+    "u0_over_a0": 0.00547744968461887
+   },
+   "z_ta=1|R=10Mpc": {
+    "k_ghost_R": 0.7582359537803042,
+    "u0_over_a0": 0.0547744968461887
+   },
+   "z_ta=3|R=0.1Mpc": {
+    "k_ghost_R": 0.2727346981854309,
+    "u0_over_a0": 0.0043819597476950954
+   },
+   "z_ta=3|R=1Mpc": {
+    "k_ghost_R": 0.2690998362501435,
+    "u0_over_a0": 0.04381959747695096
+   },
+   "z_ta=3|R=10Mpc": {
+    "k_ghost_R": 0.2274843285853896,
+    "u0_over_a0": 0.4381959747695096
+   }
+  },
+  "spp_max": 5.773502691894386
+ },
+ "R3ell": {
+  "canonical": {
+   "ell_max_c_pc": 13.068905926332944,
+   "ell_max_c_loose_pc": 6534.452963166471,
+   "tether_dev_at_ell_c": 1.015197059586209,
+   "ell_min_a_Mpc": 63.09573444801933
+  },
+  "alt": {
+   "ell_max_c_pc": 13.068905926332944,
+   "ell_max_c_loose_pc": 6534.452963166471,
+   "tether_dev_at_ell_c": 1.0149888159016092,
+   "ell_min_a_Mpc": 63.09573444801933
+  }
+ },
+ "classes": {
+  "R1": {
+   "cls": "NOT REPAIRABLE",
+   "fails": [
+    "a",
+    "e",
+    "f",
+    "g"
+   ],
+   "why": "D-T: an always-on tether passes (a) only with c2 = 1, which cancels the linear self-gravity; R1's c2 = 0 fails (a) (= CFG938 M3)"
+  },
+  "R2": {
+   "cls": "NOT REPAIRABLE",
+   "fails": [
+    "a",
+    "c",
+    "f",
+    "g"
+   ],
+   "why": "f_t = 1: the tethered medium has c2 = 1 (D-T); f_t < 1: free self-gravitating mass in every galaxy enters the law's source (no segregation or conversion in the action)"
+  },
+  "R3n": {
+   "cls": "NOT REPAIRABLE",
+   "fails": [
+    "a",
+    "c",
+    "d",
+    "f",
+    "g"
+   ],
+   "why": "the deep BTFR needs s = 1 at all densities (rho_ph -> 0), i.e. s = 1 on the cosmic mean -> D-T"
+  },
+  "R3theta": {
+   "cls": "PARTIAL",
+   "fails": [
+    "d",
+    "f",
+    "g"
+   ],
+   "why": ""
+  },
+  "R3ell": {
+   "cls": "NOT REPAIRABLE",
+   "fails": [
+    "a",
+    "c",
+    "f",
+    "g"
+   ],
+   "why": "the deep BTFR fails for every finite range; l -> infinity is the parent (D-T); finite-radius windows disjoint by > 4 decades"
+  }
+ },
+ "overall": "STRUCTURAL OBSTRUCTION",
+ "CFG925_R3_respected": false,
+ "slip_P0": {
+  "canonical|dwarf": {
+   "W": {
+    "s_grad": 1.3876869954249909e-09,
+    "s_847": 3.6339624275944723e-09
+   },
+   "stiff24": {
+    "s_grad": 1.3827633187064423e-09,
+    "s_847": 3.64380978103157e-09
+   },
+   "stiff1k": {
+    "s_grad": 7.160362863166425e-09,
+    "s_847": 2.07300621447773e-08
+   },
+   "vc_kms": 20.770811977869826,
+   "rho_c": 4.8061421114998994e-21,
+   "u_over_a0": 0.33239815360890945,
+   "inv_eps_inertia": 249845818.51678762
+  },
+  "canonical|MW disc": {
+   "W": {
+    "s_grad": 6.771665203051859e-08,
+    "s_847": 2.4943519065317687e-07
+   },
+   "stiff24": {
+    "s_grad": 6.771642553433439e-08,
+    "s_847": 2.4943564364554526e-07
+   },
+   "stiff1k": {
+    "s_grad": 6.732342948849754e-08,
+    "s_847": 2.5022163573721897e-07
+   },
+   "vc_kms": 207.6249079286127,
+   "rho_c": 3.091217200210391e-22,
+   "u_over_a0": 0.5987963589667221,
+   "inv_eps_inertia": 2975851.3850500598
+  },
+  "canonical|MW outer": {
+   "W": {
+    "s_grad": 1.4033082757995557e-07,
+    "s_847": 2.989129622840052e-07
+   },
+   "stiff24": {
+    "s_grad": 1.4033082341638147e-07,
+    "s_847": 2.989129706111534e-07
+   },
+   "stiff1k": {
+    "s_grad": 1.4032359915268275e-07,
+    "s_847": 2.989274191385508e-07
+   },
+   "vc_kms": 169.19244049323763,
+   "rho_c": 3.41533829684258e-24,
+   "u_over_a0": 0.09017292281423286,
+   "inv_eps_inertia": 3287876.115719648
+  },
+  "canonical|group": {
+   "W": {
+    "s_grad": 5.566312833531898e-07,
+    "s_847": 1.2128899102609201e-06
+   },
+   "stiff24": {
+    "s_grad": 5.566312814999627e-07,
+    "s_847": 1.2128899139673745e-06
+   },
+   "stiff1k": {
+    "s_grad": 5.566280659448839e-07,
+    "s_847": 1.2128963450775321e-06
+   },
+   "vc_kms": 344.7790898395329,
+   "rho_c": 1.5477600000067632e-24,
+   "u_over_a0": 0.12063788477877707,
+   "inv_eps_inertia": 804598.2725811483
+  },
+  "canonical|cluster": {
+   "W": {
+    "s_grad": 5.077968753641915e-06,
+    "s_847": 1.3881666341717838e-05
+   },
+   "stiff24": {
+    "s_grad": 5.07796875200279e-06,
+    "s_847": 1.388166634499609e-05
+   },
+   "stiff1k": {
+    "s_grad": 5.077965907936162e-06,
+    "s_847": 1.3881672033129347e-05
+   },
+   "vc_kms": 1313.590657719723,
+   "rho_c": 1.66374173998746e-24,
+   "u_over_a0": 0.37398825470904623,
+   "inv_eps_inertia": 64066.001715703576
+  },
+  "alt|dwarf": {
+   "W": {
+    "s_grad": 1.574537364433808e-09,
+    "s_847": 4.025114145669858e-09
+   },
+   "stiff24": {
+    "s_grad": 1.5689880848539282e-09,
+    "s_847": 4.036212704829618e-09
+   },
+   "stiff1k": {
+    "s_grad": 8.059628572857702e-09,
+    "s_847": 2.329344602025288e-08
+   },
+   "vc_kms": 21.58233966728768,
+   "rho_c": 5.301700556592962e-21,
+   "u_over_a0": 0.30787080340639483,
+   "inv_eps_inertia": 228055649.88125607
+  },
+  "alt|MW disc": {
+   "W": {
+    "s_grad": 8.004211213989718e-08,
+    "s_847": 2.798033328383202e-07
+   },
+   "stiff24": {
+    "s_grad": 8.004184484265309e-08,
+    "s_847": 2.7980386743280843e-07
+   },
+   "stiff1k": {
+    "s_grad": 7.957805442444577e-08,
+    "s_847": 2.8073144826922303e-07
+   },
+   "vc_kms": 213.49598533837212,
+   "rho_c": 3.4530794969608205e-22,
+   "u_over_a0": 0.5663157382115682,
+   "inv_eps_inertia": 2750669.7924874346
+  },
+  "alt|MW outer": {
+   "W": {
+    "s_grad": 1.5538291619954073e-07,
+    "s_847": 3.290972867663928e-07
+   },
+   "stiff24": {
+    "s_grad": 1.553829116010947e-07,
+    "s_847": 3.2909729596328487e-07
+   },
+   "stiff1k": {
+    "s_grad": 1.5537493278629022e-07,
+    "s_847": 3.291132535928938e-07
+   },
+   "vc_kms": 177.01782982819682,
+   "rho_c": 3.755278774921745e-24,
+   "u_over_a0": 0.08237663212357095,
+   "inv_eps_inertia": 2991397.06967009
+  },
+  "alt|group": {
+   "W": {
+    "s_grad": 6.179596461207099e-07,
+    "s_847": 1.336147612595913e-06
+   },
+   "stiff24": {
+    "s_grad": 6.179596440701068e-07,
+    "s_847": 1.3361476166971193e-06
+   },
+   "stiff1k": {
+    "s_grad": 6.179560860459355e-07,
+    "s_847": 1.3361547327454615e-06
+   },
+   "vc_kms": 360.4489756807354,
+   "rho_c": 1.70209174744184e-24,
+   "u_over_a0": 0.11037684095797115,
+   "inv_eps_inertia": 732164.3979640808
+  },
+  "alt|cluster": {
+   "W": {
+    "s_grad": 5.791624731785176e-06,
+    "s_847": 1.539799259067406e-05
+   },
+   "stiff24": {
+    "s_grad": 5.7916247299283735e-06,
+    "s_847": 1.5397992594387663e-05
+   },
+   "stiff1k": {
+    "s_grad": 5.7916215081721495e-06,
+    "s_847": 1.539799903790011e-05
+   },
+   "vc_kms": 1363.0117094555744,
+   "rho_c": 1.8373923463462208e-24,
+   "u_over_a0": 0.3473592686258142,
+   "inv_eps_inertia": 58545.53454086905
+  }
+ },
+ "disp_P0": {
+  "0.0909": 0.100039000109999,
+  "0.5": 1.00005,
+  "0.9": 9.000050000000002,
+  "0.99": 99.00004999999992
+ },
+ "runtime_s": 3.54,
+ "peak_rss_GB": 0.248
+}

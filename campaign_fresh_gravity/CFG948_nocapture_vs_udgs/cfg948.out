@@ -1,0 +1,91 @@
+CFG948  the derived no-capture criterion (CFG939) vs the Coma UDGs (CFG933) and the NGC 1052 / tidal dwarfs
+  criteria e5cc927ce; kappa = 1/2 FITTED; footings never pooled; isolated EFE-free law as the most generous ceiling
+
+=== CFG933's sealed estimator, exec'd read-only through its K-stage
+  [PASS] K0 cfg933.py exec'd read-only through its K-stage: its own K-checks pass: 6/6 CFG933 checks pass
+
+=== K1  CFG933 reproduced (G-Coma <E_obs>, se_obs, z vs its P2 prediction; DF2/DF4 E_obs and z; H)
+  [PASS] K1 CFG933's G-Coma <E_obs>, se_obs, z; DF2/DF4 E_obs, z; H (diff, se, z) == cfg933_results.json (abs <= 1e-12), both footings: max |diff| 0.0e+00; canonical: Coma <E_obs> +0.7604 (se 0.2618, z vs P2 +2.62), DF2/DF4 E_obs -1.709/-2.170, H +2.666 +- 0.547 (z +4.87); alt: Coma <E_obs> +0.6695 (se 0.2618, z vs P2 +2.35), DF2/DF4 E_obs -1.797/-2.258, H +2.672 +- 0.547 (z +4.88)
+
+=== K2  CFG939's V_esc,b-based classification reproduced from its own N5 code (exec'd from its text)
+  [PASS] K2 (A1) CFG939 N5 rows (v_in = V_esc,b, T_c, f_crit, g_N/a0) for 6 TDGs + DF2/DF4 == cfg939_results.json (rel <= 1e-9); derived sides == JSON in all 16 cells; TDGs and DF2/DF4 BELOW at v_rel 100; DF2/DF4 BELOW at 50: max rel diff 0.0e+00; cells passing 16/16; TDGs at v_rel 50: ['MIXED'] (reported, A1); V_esc,b (canonical) NGC5291N 52.9, NGC5291S 43.6, NGC5291SW 35.7, NGC7252E 27.3, NGC7252NW 30.3, VCC2062 21.5, NGC1052-DF2 22.9, NGC1052-DF4 22.1 km/s
+
+=== K3  engine: point-mass identity with CFG939, N4 t=0+ unbound fractions, Plummer law IC
+  [PASS] K3a point-mass mode == CFG939's law_ic / sph_accel / sph_energy / shell_energies (rel <= 1e-12): max rel 2.2e-16
+  [PASS] K3b point-mass t=0+ unbound fractions (co-moving E_q > 0) == CFG939 N4 for f 0.5-0.9: f 0.5: 0.000 (CFG939 0.000); f 0.6: 0.000 (CFG939 0.000); f 0.7: 0.942 (CFG939 0.942); f 0.8: 1.000 (CFG939 1.000); f 0.9: 1.000 (CFG939 1.000)
+  [PASS] K3c Plummer law IC: |force| <= 1e-10 g_N (each A of the grid; M_b 1 and 2): max 4.9e-13
+  [PASS] K4a A-grid covers every admitted Coma UDG's A = R_e/r_M on both footings (extended mechanically if not): A range 5.15-9.13; grid [5.0, 7.0, 9.5]; per footing canonical 5.15-8.31; alt 5.66-9.13
+  [PASS] K4b L23's Coma beta-model constants == the lane's; E_N,i = -ln nu_e(g_bar/a0) == 2 ln(sigma_N/sigma_law) (<= 1e-12): constants equal; max |dE_N| 8.9e-16; g_host(1 Mpc) = 8.806e-11 m/s^2 (0.941 a0 canonical)
+
+  derived ceiling (engine): C_dyn +0.0176 at A9.5|f0.3 -> E_ceil = +0.0176
+  MUTATE status: onlaw False, plus04 False
+
+=== [canonical] a0 = 9.3603e-11 m/s^2; ceiling E_ceil = +0.0176
+  PRIMARY G-Coma                 NOT DIAGNOSTIC | N 9: <E_obs> +0.760 (+0.330 dex) vs ceiling +0.018; se 0.262, sigma_sys 0.372 -> z_up +1.63 (stat-only +2.84); floor <E_N> -2.513, z_low -5.45
+      reason: power fails: 3 sqrt(se^2 + sigma_sys^2) = 1.364 >= 0.921 (a +0.4 dex excess would not be contradicted)
+      sigma_sys (upper) parts: s_M 0.240, s_A 0.280, s_D 0.050, s_T 0.000; se_obs 0.262 (scatter 0.181, measurement 0.262)
+      H_b (all born in the cluster) and H_a,sup (field-born, f > f_crit): Newton; <E_obs - E_N> +3.273, sigma_sys 0.541, z_N +5.45 -> EXCLUDED
+      P-c NGC1052-DF2: E_obs -1.709 vs Newton E_N -2.004 (+- 0.729): z +0.40
+      P-c NGC1052-DF4: E_obs -2.170 vs Newton E_N -1.931 (+- 0.794): z -0.30
+      P-c pair: <E_obs - E_N> +0.028 +- 0.539 ln (CFG936 reported +0.021 +- 0.539 with its own estimator)
+      environment difference Coma - group: D_obs +2.700 +- 0.525; framework interval [-0.545, +1.985]; outside by +0.715 -> z_D +1.36 stat (with Coma sigma_sys +1.11) -> WITHIN 3 sigma
+      Q2 sign: group below the law PREDICTED (Newton <E_N> -1.968, observed -1.940); Coma above the law ALLOWED up to the ceiling by the derived dynamics (observed +0.760) -> PREDICTED
+  R1 statistics-only             CONSISTENT [2-3 sigma tension] | N 9: <E_obs> +0.760 (+0.330 dex) vs ceiling +0.018; se 0.262, sigma_sys 0.372 -> z_up +2.84 (stat-only +2.84); floor <E_N> -2.513, z_low -12.50  FRAGILE (flipped by ['S-M-', 'S-D-', 'S-A+'])
+      R1 per variant (stat-only z_up): S-M+ +1.92 (CONSISTENT); S-M- +3.75 (CONTRADICTED); S-D- +3.03 (CONTRADICTED); S-D+ +2.65 (CONSISTENT); S-A- +1.77 (CONSISTENT); S-A+ +3.90 (CONTRADICTED); S-T_dmean +2.84 (CONSISTENT); S-T_dproj +2.84 (CONSISTENT)
+  R2 L23 weighting (sE^-2): <E_obs> +1.084 +- 0.174 -> z +6.13 stat, +2.60 with sigma_sys
+  R3 all 11 Coma                 NOT DIAGNOSTIC | N 11: <E_obs> +0.780 (+0.339 dex) vs ceiling +0.018; se 0.221, sigma_sys 0.372 -> z_up +1.76 (stat-only +3.45); floor <E_N> -2.484, z_low -5.58
+  R4 H-EX reading (NOT DERIVABLE, CFG939): frozen free cold share of lost baryons at r12: <E_HEX> +0.485 at f = 2/3, +0.739 at the HUD median f_gas 0.81; f* for <E_HEX> = <E_obs> (+0.760): 0.823  [max |ln(nu_simple/nu_e)| over G-Coma 4.2e-04]
+  per galaxy (R7; R5 strict D-T hover ratio; R8 stiffness 'ram' bound at L* = 1 kpc):
+  galaxy                   E_obs    sE     E_N z_ceil    z_N  Vesc   T_c fcrit rJ/r12 m rJ/r12 p  Tr m  Tr p u_h/gNmx m       p  a_gam/g
+  DF44                    +0.699 0.182  -2.496  +3.75 +17.57  20.8  1.78 0.678     7.33     5.72 1.307 1.308       29.6    34.9  9.1e-07  (R3 only)
+  DFX1                    +0.735 0.467  -2.460  +1.54  +6.84  18.9  1.49 0.678     7.33     5.43 1.307 1.308       30.4    36.7  1.4e-06
+  J125848.94+281037.1     +0.507 1.444  -2.385  +0.34  +2.00  13.2  0.89 0.679     6.96     3.87 1.307 1.311       35.9    47.1  7.6e-06
+  J125904.06+281422.4     +1.035 0.560  -2.207  +1.82  +5.79  15.4  0.71 0.682     7.98     4.47 1.306 1.310       24.5    32.2  6.1e-06  (R3 only)
+  J125904.20+281507.7     +0.261 1.176  -2.324  +0.21  +2.20  14.6  0.86 0.680     7.09     4.00 1.307 1.311       31.2    40.9  6.6e-06
+  J125929.89+274303.0     +0.320 0.667  -2.535  +0.45  +4.28  15.7  1.45 0.678     4.45     2.40 1.310 1.319       50.0    65.9  1.0e-05
+  J125937.23+274815.2     +0.840 0.727  -2.489  +1.13  +4.58  13.0  1.09 0.678     5.21     2.75 1.309 1.317       48.1    62.8  1.4e-05
+  J130005.40+275333.0     +1.864 0.324  -2.474  +5.69 +13.38  13.2  1.07 0.678     4.82     2.96 1.309 1.315       48.6    59.5  1.9e-05
+  J130026.26+272735.2     +0.143 0.526  -2.783  +0.24  +5.56  13.7  2.14 0.675     4.65     3.03 1.310 1.315       70.7    89.2  4.8e-06
+  J130028.34+274820.5     +0.953 0.609  -2.654  +1.54  +5.92  11.8  1.40 0.676     4.67     2.46 1.309 1.319       65.8    86.7  1.4e-05
+  J130038.63+272835.3     +1.222 0.370  -2.513  +3.25 +10.08  13.0  1.15 0.678     7.49     4.90 1.307 1.309       40.4    51.0  3.6e-06
+  R9 CFG939 grader: P-a (collapsed) -> ON LAW for all; P-b (debris) at v_rel 100/50 -> ['BELOW']/['BELOW']; observed side EXCESS (9/9 above the law)
+  R5 strict D-T: u_host/g_N,max range 30-71 (dmean), 37-89 (dproj); R8 max a_gamma/g_law 1.9e-05; V_esc,b 11.8-18.9 km/s; T_c 0.86-2.14 Gyr
+  CLASS [canonical]: NOT DIAGNOSTIC  labels ['CONTROL-LIMITED']   |   Q2: PREDICTED
+
+=== [alt] a0 = 1.1312e-10 m/s^2; ceiling E_ceil = +0.0176
+  PRIMARY G-Coma                 NOT DIAGNOSTIC | N 9: <E_obs> +0.669 (+0.291 dex) vs ceiling +0.018; se 0.262, sigma_sys 0.371 -> z_up +1.43 (stat-only +2.49); floor <E_N> -2.604, z_low -5.45
+      reason: power fails: 3 sqrt(se^2 + sigma_sys^2) = 1.363 >= 0.921 (a +0.4 dex excess would not be contradicted)
+      sigma_sys (upper) parts: s_M 0.239, s_A 0.280, s_D 0.050, s_T 0.000; se_obs 0.262 (scatter 0.181, measurement 0.262)
+      H_b (all born in the cluster) and H_a,sup (field-born, f > f_crit): Newton; <E_obs - E_N> +3.273, sigma_sys 0.541, z_N +5.45 -> EXCLUDED
+      P-c NGC1052-DF2: E_obs -1.797 vs Newton E_N -2.093 (+- 0.729): z +0.40
+      P-c NGC1052-DF4: E_obs -2.258 vs Newton E_N -2.019 (+- 0.794): z -0.30
+      P-c pair: <E_obs - E_N> +0.028 +- 0.539 ln (CFG936 reported +0.021 +- 0.539 with its own estimator)
+      environment difference Coma - group: D_obs +2.697 +- 0.525; framework interval [-0.548, +2.073]; outside by +0.624 -> z_D +1.19 stat (with Coma sigma_sys +0.97) -> WITHIN 3 sigma
+      Q2 sign: group below the law PREDICTED (Newton <E_N> -2.056, observed -2.028); Coma above the law ALLOWED up to the ceiling by the derived dynamics (observed +0.669) -> PREDICTED
+  R1 statistics-only             CONSISTENT [2-3 sigma tension] | N 9: <E_obs> +0.669 (+0.291 dex) vs ceiling +0.018; se 0.262, sigma_sys 0.371 -> z_up +2.49 (stat-only +2.49); floor <E_N> -2.604, z_low -12.50  FRAGILE (flipped by ['S-M-', 'S-A+'])
+      R1 per variant (stat-only z_up): S-M+ +1.57 (CONSISTENT); S-M- +3.40 (CONTRADICTED); S-D- +2.69 (CONSISTENT); S-D+ +2.30 (CONSISTENT); S-A- +1.42 (CONSISTENT); S-A+ +3.56 (CONTRADICTED); S-T_dmean +2.49 (CONSISTENT); S-T_dproj +2.49 (CONSISTENT)
+  R2 L23 weighting (sE^-2): <E_obs> +0.993 +- 0.174 -> z +5.61 stat, +2.38 with sigma_sys
+  R3 all 11 Coma                 NOT DIAGNOSTIC | N 11: <E_obs> +0.689 (+0.299 dex) vs ceiling +0.018; se 0.221, sigma_sys 0.371 -> z_up +1.55 (stat-only +3.04); floor <E_N> -2.574, z_low -5.58
+  R4 H-EX reading (NOT DERIVABLE, CFG939): frozen free cold share of lost baryons at r12: <E_HEX> +0.490 at f = 2/3, +0.747 at the HUD median f_gas 0.81; f* for <E_HEX> = <E_obs> (+0.669): 0.777  [max |ln(nu_simple/nu_e)| over G-Coma 3.5e-04]
+  per galaxy (R7; R5 strict D-T hover ratio; R8 stiffness 'ram' bound at L* = 1 kpc):
+  galaxy                   E_obs    sE     E_N z_ceil    z_N  Vesc   T_c fcrit rJ/r12 m rJ/r12 p  Tr m  Tr p u_h/gNmx m       p  a_gam/g
+  DF44                    +0.608 0.182  -2.587  +3.25 +17.57  20.8  1.78 0.677     7.69     6.00 1.307 1.308       31.2    37.2  8.3e-07  (R3 only)
+  DFX1                    +0.644 0.467  -2.550  +1.34  +6.84  18.9  1.50 0.677     7.69     5.70 1.307 1.308       32.3    39.5  1.3e-06
+  J125848.94+281037.1     +0.416 1.444  -2.475  +0.28  +2.00  13.2  0.89 0.678     7.29     4.06 1.307 1.311       38.9    52.6  6.9e-06
+  J125904.06+281422.4     +0.945 0.560  -2.296  +1.66  +5.79  15.4  0.71 0.681     8.36     4.68 1.306 1.309       26.6    35.9  5.5e-06  (R3 only)
+  J125904.20+281507.7     +0.171 1.176  -2.414  +0.13  +2.20  14.6  0.86 0.679     7.44     4.19 1.307 1.311       33.9    45.6  6.0e-06
+  J125929.89+274303.0     +0.229 0.667  -2.626  +0.32  +4.28  15.7  1.46 0.677     4.67     2.52 1.309 1.318       54.4    73.7  9.1e-06
+  J125937.23+274815.2     +0.749 0.727  -2.580  +1.01  +4.58  13.0  1.09 0.677     5.46     2.89 1.308 1.316       52.6    70.7  1.3e-05
+  J130005.40+275333.0     +1.773 0.324  -2.565  +5.41 +13.38  13.2  1.08 0.677     5.06     3.11 1.309 1.314       53.3    66.8  1.7e-05
+  J130026.26+272735.2     +0.051 0.526  -2.875  +0.06  +5.56  13.7  2.14 0.674     4.88     3.18 1.309 1.314       75.9    97.6  4.4e-06
+  J130028.34+274820.5     +0.861 0.609  -2.745  +1.39  +5.92  11.8  1.41 0.675     4.89     2.58 1.309 1.318       71.7    97.3  1.3e-05
+  J130038.63+272835.3     +1.131 0.370  -2.604  +3.01 +10.08  13.0  1.15 0.677     7.85     5.14 1.307 1.309       43.4    55.9  3.3e-06
+  R9 CFG939 grader: P-a (collapsed) -> ON LAW for all; P-b (debris) at v_rel 100/50 -> ['BELOW']/['BELOW']; observed side EXCESS (9/9 above the law)
+  R5 strict D-T: u_host/g_N,max range 32-76 (dmean), 39-98 (dproj); R8 max a_gamma/g_law 1.7e-05; V_esc,b 11.8-18.9 km/s; T_c 0.86-2.14 Gyr
+  CLASS [alt]: NOT DIAGNOSTIC  labels ['CONTROL-LIMITED']   |   Q2: PREDICTED
+
+  R6 HUD gas fractions (Leisman+17): Ups0.5|all: N 115, median 0.90, > 2/3 1.00; Ups0.5|R: N 30, median 0.89, > 2/3 1.00; Ups1.0|all: N 115, median 0.81, > 2/3 0.94; Ups1.0|R: N 30, median 0.80, > 2/3 0.97; Ups2.0|all: N 115, median 0.69, > 2/3 0.56; Ups2.0|R: N 30, median 0.67, > 2/3 0.50
+
+  CLASSES: canonical NOT DIAGNOSTIC; alt NOT DIAGNOSTIC   Q2: canonical PREDICTED; alt PREDICTED   (MUTATE onlaw False, plus04 False)
+
+done [4 s, peak RSS 455 MB], exit 0.  kappa = 1/2 FITTED; footings never pooled; not theory closed.

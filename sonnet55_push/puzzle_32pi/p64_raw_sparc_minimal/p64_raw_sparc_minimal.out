@@ -1,0 +1,43 @@
+p64  raw SPARC, fewest assumptions
+kernel: simple mu, a0_i = g_obs (g_obs - g_bar)/g_bar (g_obs > g_bar); kappa = 1/2 FITTED; not theory closed
+
+(A) within-galaxy gas-vs-star contrast: 11 galaxies (Q <= 2, i >= 30 deg, >= 3 valid points of each class at the fiducial)
+    median Delta_g = median log a0(gas) - median log a0(stars) [dex], galaxy bootstrap 2000 (seed 64); rows Upsilon_d, cols f_gas
+     Ud   f_gas 0.70           f_gas 0.85           f_gas 1.00           f_gas 1.15         
+    0.3  -0.454+-0.074 (n 11)  -0.530+-0.080 (n 11)  -0.595+-0.085 (n 11)  -0.659+-0.091 (n 11)
+    0.4  -0.349+-0.071 (n 11)  -0.425+-0.077 (n 11)  -0.493+-0.082 (n 11)  -0.546+-0.086 (n 11)
+    0.5  -0.271+-0.072 (n 11)  -0.344+-0.079 (n 11)  -0.408+-0.085 (n 11)  -0.458+-0.090 (n 11)
+    0.6  -0.193+-0.063 (n 11)  -0.277+-0.073 (n 11)  -0.337+-0.082 (n 11)  -0.384+-0.090 (n 11)
+    0.7  -0.133+-0.066 (n 11)  -0.207+-0.073 (n 11)  -0.275+-0.082 (n 11)  -0.320+-0.091 (n 11)
+    0.8  -0.085+-0.075 (n 11)  -0.152+-0.081 (n 11)  -0.217+-0.079 (n 11)  -0.262+-0.087 (n 11)
+    verdict (A): UNDETERMINED
+    reading rule: CONTRAST is consistent with (1) cold energy tracking stars more than cold gas, or (2) a gas-mass-scale error / uncorrected pressure in gas-rich outskirts; never a cold-energy detection
+    RAR-kernel cross-check (frozen; fiducial cell): median Delta_g -0.406 +- 0.083 dex (simple mu -0.408): the contrast is kernel-robust
+    D and i by +-1 sigma move Delta_g by a median 0.017 / 0.011 dex (the levers differ; report)
+
+(B) kappa from the TRGB/Cepheid/SN gas-dominated galaxies (CFG449 S0 rule: f_D in {2,3,5}, Q <= 2, >= 3 gas points)
+    S0: 10 galaxies: D631-7, DDO154, DDO168, ESO444-G084, NGC2915, NGC3109, NGC3741, UGC04483, UGCA442, UGCA444
+[PASS] K1 CFG442 per-galaxy nu_mono single fits reproduced (code identity): 10 matched, max |dev| 0.0000 dex
+    per galaxy (simple mu, Upsilon_d 0.5): log a0 = median over gas points; sigma = e_D (+) e_i (+) e_V
+      D631-7       n  11  log a0 -9.976 +- 0.072  (D 0.022, i 0.060, V 0.034)
+      DDO154       n   9  log a0 -10.047 +- 0.068  (D 0.047, i 0.049, V 0.008)
+      DDO168       n  10  log a0 -10.185 +- 0.127  (D 0.051, i 0.111, V 0.034)
+      ESO444-G084  n   5  log a0 -9.536 +- 0.342  (D 0.095, i 0.324, V 0.057)
+      NGC2915      n   4  log a0 -9.498 +- 0.122  (D 0.045, i 0.085, V 0.075)
+      NGC3109      n  12  log a0 -9.706 +- 0.082  (D 0.048, i 0.059, V 0.031)
+      NGC3741      n  14  log a0 -9.814 +- 0.074  (D 0.048, i 0.046, V 0.032)
+      UGC04483     n   4  log a0 -10.413 +- 0.161  (D 0.099, i 0.070, V 0.106)
+      UGCA442      n   7  log a0 -9.987 +- 0.134  (D 0.049, i 0.117, V 0.042)
+      UGCA444      n  32  log a0 -10.233 +- 0.086  (D 0.051, i 0.030, V 0.062)
+    E4 intrinsic scatter tau = 0.226 dex, Delta(-2lnL) = 1 interval [0.168, 0.307] -> tau NOT consistent with 0
+    omega_Lambda: Planck 0.685 x 0.674^2 = 0.3112, CFG886 BAO+BBN (1-Om) h^2 = 0.3302  (rho_L = omega 3 (100 km/s/Mpc)^2/(8 pi G); no H0)
+    E1 pooled weighted fit         log a0 -9.9546 +- 0.0699  [Planck] kappa 0.593 (inside 2 sigma)  [CFG886] kappa 0.576 (inside 1 sigma)
+    E2 median over galaxies        log a0 -9.9816 +- 0.1230  [Planck] kappa 0.557 (inside 1 sigma)  [CFG886] kappa 0.541 (inside 1 sigma)
+    E3 mean over galaxies          log a0 -9.9395 +- 0.0910  [Planck] kappa 0.614 (inside 1 sigma)  [CFG886] kappa 0.596 (inside 1 sigma)
+    E4 ML with intrinsic scatter   log a0 -9.9575 +- 0.0835  [Planck] kappa 0.589 (inside 1 sigma)  [CFG886] kappa 0.572 (inside 1 sigma)
+    RAR-kernel cross-check (frozen): E2 log a0 -9.9802 -> [Planck] kappa 0.559, [CFG886] kappa 0.543
+    systematics: estimator spread 0.042 dex; ladder zero point 0.01 / 0.017 dex in distance moves E2 by -0.0222 / -0.0378 dex
+
+(C) one flux scale for the TRGB dwarfs: UNTESTED (Amendment 1: the SPARC table on disk has no coordinates and downloads are forbidden; the frozen pre-freeze expectation was already at most 2 of 10 in alpha.100's sky)
+
+checks: 1/1 pass

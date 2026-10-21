@@ -1,0 +1,154 @@
+{
+ "lane": "CFG949",
+ "criteria": "7330f9e99",
+ "mode": "MUTATE",
+ "selftest_686": [
+  "ACCEPT clusters in KiDS boxes, z>=0.05, with profiles: 20",
+  "SELF-TEST SIS DeltaSigma ratio got/exact: [0.996, 0.996, 1.0, 1.0, 0.999, 0.999, 0.999, 0.999]"
+ ],
+ "s_obs": [
+  0.8958077850439714,
+  0.20930889609694792
+ ],
+ "settings": {
+  "kappa": 0.5,
+  "footings": {
+   "canonical": 9.360324825027975e-11,
+   "alt": 1.1312035414413022e-10
+  },
+  "f_b": 0.15713387806411064,
+  "cold_per_b": 5.364,
+  "rss_limit_gb": 0.95
+ },
+ "MUTATE": {
+  "MT": {
+   "A_can": {
+    "INNER": [
+     2.5091163375404517,
+     0.32358485097599154
+    ],
+    "MID": [
+     1.9101939065317468,
+     0.11863654657934529
+    ],
+    "OUTER": [
+     1.0118014350474742,
+     0.08687236421838741
+    ]
+   },
+   "A_alt": {
+    "INNER": [
+     2.309827797424521,
+     0.2977886251032988
+    ],
+    "MID": [
+     1.753552306732969,
+     0.10890467372025199
+    ],
+    "OUTER": [
+     0.9265178678408924,
+     0.07956888737738815
+    ]
+   },
+   "maxdiff_vs_stored": 4.440892098500626e-16,
+   "A_mock_law": {
+    "INNER": [
+     1.0,
+     0.0
+    ],
+    "MID": [
+     1.0,
+     0.0
+    ],
+    "OUTER": [
+     1.0,
+     0.0
+    ]
+   },
+   "maxdev_one": 0.0,
+   "moved_from_B0": true,
+   "pass_": true
+  },
+  "M0": {
+   "A_record": {
+    "INNER": [
+     10.435217933506584,
+     1.3868948204055838
+    ],
+    "MID": [
+     10.17370436198612,
+     0.652871562985701
+    ],
+    "OUTER": [
+     7.261952913749854,
+     0.6170589574250366
+    ]
+   },
+   "A_truncation_aware": {
+    "INNER": [
+     10.435119619557835,
+     1.3868805931527968
+    ],
+    "MID": [
+     10.173480620089531,
+     0.6528569167578604
+    ],
+    "OUTER": [
+     7.261571544831865,
+     0.6170199864662715
+    ]
+   },
+   "diff_stored": 0.0,
+   "pass_": true
+  },
+  "MI": {
+   "lam_noiseless": 1.5000000000000004,
+   "lam_noisy": 1.6408428276788873,
+   "A_of_mock_vs_unscaled_model": {
+    "INNER": [
+     1.4691641961796347,
+     0.00041033717356140156
+    ],
+    "MID": [
+     1.450317980422644,
+     0.00047420411509856565
+    ],
+    "OUTER": [
+     1.4279163813338038,
+     0.0005982653318633799
+    ]
+   },
+   "pass_": true
+  },
+  "MS": {
+   "s_B0": 0.6614631547094977,
+   "s_shuffled": 0.1358238346382671,
+   "pass_": true
+  }
+ },
+ "checks": [
+  {
+   "name": "MT tethered limit = the law",
+   "ok": true,
+   "detail": "can INNER 2.509\u00b10.324  MID 1.910\u00b10.119  OUTER 1.012\u00b10.087 | alt INNER 2.310\u00b10.298  MID 1.754\u00b10.109  OUTER 0.927\u00b10.080 | stored diff 4.4e-16 | mock-law A-1 0.0e+00 | moved from B0 True"
+  },
+  {
+   "name": "M0 cold x 0 (baryons-only Newton)",
+   "ok": true,
+   "detail": "record INNER 10.435\u00b11.387  MID 10.174\u00b10.653  OUTER 7.262\u00b10.617 (stored OUTER 7.262) | truncation-aware INNER 10.435\u00b11.387  MID 10.173\u00b10.653  OUTER 7.262\u00b10.617"
+  },
+  {
+   "name": "MI injection x1.5",
+   "ok": true,
+   "detail": "lambda_OUT noiseless 1.50000, noisy 1.641; mock A vs unscaled model INNER 1.469\u00b10.000  MID 1.450\u00b10.000  OUTER 1.428\u00b10.001"
+  },
+  {
+   "name": "MS shuffle of cold masses moves s",
+   "ok": true,
+   "detail": "s B0 0.661 -> shuffled 0.136"
+  }
+ ],
+ "all_checks_pass": true,
+ "peak_rss_gb": 0.269697024,
+ "runtime_s": 1.3841290473937988
+}

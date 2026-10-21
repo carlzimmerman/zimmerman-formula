@@ -1,0 +1,23 @@
+@complete_square_identity : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (a j H v u : K),
+  a + j ≠ 0 →
+    tiltLagrangian a j H v u = (a + j) / 2 * (u - j * H * v / (a + j)) ^ 2 + H ^ 2 * j * a * v ^ 2 / (2 * (a + j))
+@tilt_frequency_negative : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (a j M H : K), 0 < a → 0 < j → 0 < M → H ≠ 0 → tiltOmegaSquared a j M H < 0
+@static_stiffness_factorization : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (t : K), staticStiffness t = (t + 1) * (3 - 2 * t) / 3
+@static_stiffness_positive : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K] (t : K),
+  -1 < t → t < 1 / 4 → 0 < staticStiffness t
+@conditional_rigid_static_ratio : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (g tau : K), g ≠ 0 → tau ≠ 0 → g ^ 2 / (12 * tau) * (500 * g * tau / 81) / (25 * g / 48) ^ 3 = 4096 / 1125
+@conditional_source_bridge : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K] (P : K),
+  32 * P / 9 / (4096 / 1125) = 125 * P / 128
+@conditional_source_bridge_gt_quarter : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K]
+  [IsStrictOrderedRing K] (P : K), 3 ≤ P → 1 / 4 < 32 * P / 9 / (4096 / 1125)
+'Why4.ClockTilt.complete_square_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.ClockTilt.tilt_frequency_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.ClockTilt.static_stiffness_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.ClockTilt.static_stiffness_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.ClockTilt.conditional_rigid_static_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.ClockTilt.conditional_source_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.ClockTilt.conditional_source_bridge_gt_quarter' depends on axioms: [propext, Classical.choice, Quot.sound]

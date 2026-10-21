@@ -1,0 +1,38 @@
+AmplitudeBridge.lean:39:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+AmplitudeBridge.lean:60:0: warning: automatically included section variable(s) unused in theorem `Why4.Amplitude.common_factor_cancels`:
+  [LinearOrder K]
+  [IsStrictOrderedRing K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LinearOrder K] [IsStrictOrderedRing K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+AmplitudeBridge.lean:65:6: warning: Unused tactic linter: `ring1` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+AmplitudeBridge.lean:65:6: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+AmplitudeBridge.lean:74:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+@source_coefficient_bridge : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (epsilon q omega C2 C3 : K),
+  0 < epsilon → 0 < q → 0 < omega → 0 < C2 → 0 < C3 → xi epsilon q omega C2 C3 = 8 * omega / (9 * ratio epsilon C2 C3)
+@area_quarter_iff : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (P epsilon q C2 C3 : K),
+  0 < P →
+    0 < epsilon → 0 < q → 0 < C2 → 0 < C3 → (xi epsilon q (4 * P) C2 C3 = 1 / 4 ↔ ratio epsilon C2 C3 = 128 * P / 9)
+@common_factor_cancels : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (epsilon C2 C3 Z : K), Z ≠ 0 → C2 ≠ 0 → ratio (Z * epsilon) (Z * C2) (Z * C3) = ratio epsilon C2 C3
+@paired_coefficients : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (A L y b f : K),
+  A ≠ 0 → L ≠ 0 → y ≠ 0 → b ≠ 0 → ratio (A * L ^ 3 * f) (3 / 2 * A * L * y ^ 2 * b) (A * y ^ 3) = 8 * f / (27 * b ^ 3)
+@matching_fixes_free_u : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K] (P u : K),
+  0 < P → u < 1 → (reducedRatio u = 128 * P / 9 ↔ u = (96 * P - 1) / (96 * P + 2))
+'Why4.Amplitude.source_coefficient_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.Amplitude.area_quarter_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.Amplitude.common_factor_cancels' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.Amplitude.paired_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.Amplitude.matching_fixes_free_u' depends on axioms: [propext, Classical.choice, Quot.sound]

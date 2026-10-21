@@ -1,0 +1,192 @@
+=== 2026-10-20 17:33:05 part K0 ===
+K0  CFG932 drift test (verbatim copy): dW/|W0| 0.5926642444000018 (record 0.5926642444000018), identity 1.8633353184e-03 (record 1.8633353184e-03): PASS
+K0b exact discrete-gradient bookkeeping: |dW - int P_mid dt|/|W0| = 4.99e-16 (explicit accounting 1.10e-03), clipped steps 0: PASS
+=== 2026-10-20 17:33:05 part K0 rc 0 ===
+=== 2026-10-20 17:33:05 part K2 ===
+[K2] pure N-type Vlasov on IC-I, t_end 200
+  t    50.00 steps   106646 dE/Eref +1.602e-05 fesc 0.198 m3 [4.042, 6.567, 6.999] wall     54s
+  t   100.00 steps   255095 dE/Eref +3.910e-05 fesc 0.211 m3 [4.007, 6.497, 6.959] wall    150s
+  t   150.00 steps   407313 dE/Eref +7.842e-05 fesc 0.209 m3 [4.032, 6.405, 6.92] wall    246s
+  t   200.00 steps   561347 dE/Eref +1.495e-04 fesc 0.210 m3 [4.058, 6.367, 6.905] wall    345s
+K2 eps_E = 1.495e-04 (<= 1e-3: PASS), steps 561347, wall 345s
+=== 2026-10-20 17:38:50 part K2 rc 0 ===
+=== 2026-10-20 17:38:50 part ETH ===
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py", line 812, in <module>
+    save_part("ETH", part_ETH())
+                     ~~~~~~~~^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py", line 616, in part_ETH
+    sim = Sim(rep, ic, lam=lam)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py", line 218, in __init__
+    self.r, self.v, self.L = ic_state(ic, self.grav, self.rng)
+                             ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py", line 157, in ic_state
+    r = s2_static_positions()
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py", line 193, in s2_static_positions
+    out[i] = brentq(h, lo, hi, xtol=1e-15, rtol=4e-16, maxiter=500)
+             ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/optimize/_zeros_py.py", line 804, in brentq
+    raise ValueError(f"rtol too small ({rtol:g} < {_rtol:g})")
+ValueError: rtol too small (4e-16 < 8.88178e-16)
+=== 2026-10-20 17:38:51 part ETH rc 0 ===
+=== 2026-10-20 17:38:51 part PHYS ===
+PHYS can: UFD-c E_x 1.63e+49 erg, E_x/(M_cat|Phi*|) 0.396, E_x/(M_cat c^2) 3.4e-11; UFD-e E_x 1.60e+50 erg, E_x/(M_cat|Phi*|) 0.311, E_x/(M_cat c^2) 5.6e-11; Draco-like E_x 1.57e+52 erg, E_x/(M_cat|Phi*|) 0.376, E_x/(M_cat c^2) 3.3e-10; Fornax-like E_x 1.06e+55 erg, E_x/(M_cat|Phi*|) 0.351, E_x/(M_cat c^2) 2.8e-09; SPARC-dwarf E_x 2.82e+56 erg, E_x/(M_cat|Phi*|) 0.302, E_x/(M_cat c^2) 7.5e-09; MW-like E_x 2.38e+59 erg, E_x/(M_cat|Phi*|) 0.136, E_x/(M_cat c^2) 4.1e-08; cluster-core E_x 7.34e+63 erg, E_x/(M_cat|Phi*|) 0.145, E_x/(M_cat c^2) 3.0e-06
+PHYS can: CFG630 drho_DE/rho_DE since z=1 [8.01758317607676e-07, 1.0987101834762243e-06], R-c Omega_rad,new <= [5.501721885633295e-07, 7.539426445161263e-07] ([0.010094357311575895, 0.013833062819939661] of Omega_gamma)
+PHYS alt: UFD-c E_x 1.78e+49 erg, E_x/(M_cat|Phi*|) 0.393, E_x/(M_cat c^2) 3.7e-11; UFD-e E_x 1.71e+50 erg, E_x/(M_cat|Phi*|) 0.310, E_x/(M_cat c^2) 5.9e-11; Draco-like E_x 1.73e+52 erg, E_x/(M_cat|Phi*|) 0.378, E_x/(M_cat c^2) 3.6e-10; Fornax-like E_x 1.20e+55 erg, E_x/(M_cat|Phi*|) 0.361, E_x/(M_cat c^2) 3.1e-09; SPARC-dwarf E_x 3.24e+56 erg, E_x/(M_cat|Phi*|) 0.317, E_x/(M_cat c^2) 8.6e-09; MW-like E_x 3.26e+59 erg, E_x/(M_cat|Phi*|) 0.169, E_x/(M_cat c^2) 5.7e-08; cluster-core E_x 9.15e+63 erg, E_x/(M_cat|Phi*|) 0.164, E_x/(M_cat c^2) 3.7e-06
+PHYS alt: CFG630 drho_DE/rho_DE since z=1 [9.235812941393327e-07, 1.2451066652129787e-06], R-c Omega_rad,new <= [6.337679706634876e-07, 8.544009384760947e-07] ([0.01162814202807198, 0.015676234712708865] of Omega_gamma)
+=== 2026-10-20 17:38:51 part PHYS rc 0 ===
+=== 2026-10-20 17:38:51 MUTATE ===
+CFG935 MUTATE (criteria 38f4b6f18): bookkeeping switched off; each must show |dE|/E_ref >= 1e-3
+[Rd_I] rep Rd lam 0.0 ic I grav N t_end 100.0 mut nobook
+  t    50.00 steps    76707 dE/Eref +7.011e-01 fesc 0.000 m3 [2.102, 4.989, 7.454] wall    165s
+  t   100.00 steps   110353 dE/Eref +9.283e-01 fesc 0.001 m3 [0.88, 3.685, 6.445] wall    238s
+M1 Rd_I (nobook): |dE|/E_ref max 9.283e-01 -> BITES; unbooked +4.1821e+00
+[Rb_I] rep Rb lam 0.0 ic I grav N t_end 100.0 mut nobook
+  t    50.00 steps   165739 dE/Eref -3.014e+00 fesc 0.000 m3 [5.067, 7.492, 8.099] wall    287s
+  t   100.00 steps   481080 dE/Eref -4.081e+00 fesc 0.000 m3 [5.6, 9.024, 9.445] wall    914s
+M2 Rb_I (nobook): |dE|/E_ref max 4.081e+00 -> BITES; unbooked -1.8390e+01
+[Ra2_I] rep Ra2 lam 0.0 ic I grav S2 t_end 100.0 mut notether
+/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py:316: RuntimeWarning: invalid value encountered in multiply
+  self.v += 0.5 * dt * self.a
+/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py:249: RuntimeWarning: invalid value encountered in subtract
+  push = (r * r / G) * (wfun(uhi) - wfun(ulo)) / MU
+  t    50.00 steps     2518 dE/Eref +nan fesc 0.000 m3 [0.688, 2.4, 5.155] wall      2s
+/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py:249: RuntimeWarning: invalid value encountered in multiply
+  push = (r * r / G) * (wfun(uhi) - wfun(ulo)) / MU
+/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py:45: RuntimeWarning: invalid value encountered in divide
+  r = np.asarray(r, float); return G * MB * r / (r * r + AB * AB) ** 1.5
+  t   100.00 steps     5018 dE/Eref +nan fesc 0.002 m3 [0.171, 0.967, 3.043] wall      5s
+M3 Ra2_I (notether): |dE|/E_ref max nan -> DOES NOT BITE; unbooked +0.0000e+00
+MUTATE: NOT all bite -> exit 0
+=== 2026-10-20 17:58:08 MUTATE rc 0 (1 = all teeth bite) ===
+=== 2026-10-20 17:58:08 part Ra2_L ===
+[Ra2_L] rep Ra2 lam 0.0 ic L grav S2 t_end 1000.0 mut None
+  t    50.00 steps     2500 dE/Eref -2.644e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall      1s
+  t   100.00 steps     5000 dE/Eref -1.035e-14 fesc 0.000 m3 [1.371, 4.406, 7.434] wall      2s
+  t   150.00 steps     7500 dE/Eref -1.190e-14 fesc 0.000 m3 [1.371, 4.406, 7.434] wall      3s
+  t   200.00 steps    10000 dE/Eref -8.005e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall      5s
+  t   250.00 steps    12500 dE/Eref -6.756e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall      6s
+  t   300.00 steps    15000 dE/Eref -5.581e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall      7s
+  t   350.00 steps    17500 dE/Eref -4.480e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall      8s
+  t   400.00 steps    20000 dE/Eref -7.344e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall      9s
+  t   450.00 steps    22500 dE/Eref -8.078e-16 fesc 0.000 m3 [1.371, 4.406, 7.434] wall     10s
+  t   500.00 steps    25000 dE/Eref -7.417e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall     12s
+  t   550.00 steps    27500 dE/Eref -1.344e-14 fesc 0.000 m3 [1.371, 4.406, 7.434] wall     13s
+  t   600.00 steps    30000 dE/Eref -1.909e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall     14s
+  t   650.00 steps    32500 dE/Eref -7.197e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall     15s
+  t   700.00 steps    35000 dE/Eref -1.601e-14 fesc 0.000 m3 [1.371, 4.406, 7.434] wall     16s
+  t   750.00 steps    37500 dE/Eref -6.609e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall     17s
+  t   800.00 steps    40000 dE/Eref -9.253e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall     19s
+  t   850.00 steps    42500 dE/Eref -2.277e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall     20s
+  t   900.00 steps    45000 dE/Eref -1.909e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall     21s
+  t   950.00 steps    47500 dE/Eref -1.337e-14 fesc 0.000 m3 [1.371, 4.406, 7.434] wall     22s
+  t  1000.00 steps    50000 dE/Eref -8.813e-15 fesc 0.000 m3 [1.371, 4.406, 7.434] wall     23s
+=== 2026-10-20 17:58:40 part Ra2_L rc 0 ===
+=== 2026-10-20 17:58:40 part Ra2_I ===
+[Ra2_I] rep Ra2 lam 0.0 ic I grav S2 t_end 2000.0 mut None
+/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py:316: RuntimeWarning: invalid value encountered in multiply
+  self.v += 0.5 * dt * self.a
+/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py:249: RuntimeWarning: invalid value encountered in subtract
+  push = (r * r / G) * (wfun(uhi) - wfun(ulo)) / MU
+  t    50.00 steps     2518 dE/Eref +nan fesc 0.000 m3 [0.688, 2.4, 5.155] wall      2s
+/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py:249: RuntimeWarning: invalid value encountered in multiply
+  push = (r * r / G) * (wfun(uhi) - wfun(ulo)) / MU
+/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py:45: RuntimeWarning: invalid value encountered in divide
+  r = np.asarray(r, float); return G * MB * r / (r * r + AB * AB) ** 1.5
+  t   100.00 steps     5018 dE/Eref +nan fesc 0.002 m3 [0.171, 0.967, 3.043] wall      5s
+  t   150.00 steps     7518 dE/Eref +nan fesc 0.066 m3 [0.54, 2.423, 4.073] wall      8s
+  t   200.00 steps    10018 dE/Eref +nan fesc 0.137 m3 [0.718, 2.678, 4.032] wall     11s
+  t   250.00 steps    12518 dE/Eref +nan fesc 0.176 m3 [0.758, 2.563, 3.806] wall     15s
+  t   300.00 steps    15018 dE/Eref +nan fesc 0.192 m3 [0.741, 2.589, 3.924] wall     18s
+  t   350.00 steps    17518 dE/Eref +nan fesc 0.206 m3 [0.727, 2.577, 3.966] wall     22s
+  t   400.00 steps    20018 dE/Eref +nan fesc 0.218 m3 [0.719, 2.516, 3.803] wall     26s
+  t   450.00 steps    22518 dE/Eref +nan fesc 0.232 m3 [0.749, 2.552, 3.813] wall     30s
+  t   500.00 steps    25018 dE/Eref +nan fesc 0.244 m3 [0.796, 2.529, 3.844] wall     34s
+  t   550.00 steps    27518 dE/Eref +nan fesc 0.251 m3 [0.79, 2.506, 3.821] wall     38s
+  t   600.00 steps    30018 dE/Eref +nan fesc 0.254 m3 [0.828, 2.533, 3.758] wall     41s
+  t   650.00 steps    32518 dE/Eref +nan fesc 0.258 m3 [0.786, 2.515, 3.788] wall     45s
+  t   700.00 steps    35018 dE/Eref +nan fesc 0.266 m3 [0.783, 2.501, 3.748] wall     48s
+  t   750.00 steps    37518 dE/Eref +nan fesc 0.273 m3 [0.809, 2.483, 3.769] wall     52s
+  t   800.00 steps    40018 dE/Eref +nan fesc 0.279 m3 [0.804, 2.491, 3.703] wall     55s
+  t   850.00 steps    42518 dE/Eref +nan fesc 0.284 m3 [0.859, 2.512, 3.737] wall     59s
+  t   900.00 steps    45018 dE/Eref +nan fesc 0.292 m3 [0.87, 2.563, 3.687] wall     62s
+  t   950.00 steps    47518 dE/Eref +nan fesc 0.297 m3 [0.842, 2.487, 3.694] wall     67s
+  t  1000.00 steps    50018 dE/Eref +nan fesc 0.301 m3 [0.845, 2.511, 3.634] wall     72s
+  t  1050.00 steps    52518 dE/Eref +nan fesc 0.309 m3 [0.843, 2.475, 3.607] wall     76s
+  t  1100.00 steps    55018 dE/Eref +nan fesc 0.313 m3 [0.888, 2.477, 3.591] wall     79s
+  t  1150.00 steps    57518 dE/Eref +nan fesc 0.318 m3 [0.868, 2.445, 3.597] wall     83s
+  t  1200.00 steps    60018 dE/Eref +nan fesc 0.323 m3 [0.863, 2.472, 3.589] wall     86s
+  t  1250.00 steps    62518 dE/Eref +nan fesc 0.327 m3 [0.903, 2.492, 3.569] wall     90s
+  t  1300.00 steps    65018 dE/Eref +nan fesc 0.331 m3 [0.893, 2.432, 3.558] wall     93s
+  t  1350.00 steps    67518 dE/Eref +nan fesc 0.334 m3 [0.909, 2.502, 3.552] wall     97s
+  t  1400.00 steps    70019 dE/Eref +nan fesc 0.339 m3 [0.92, 2.45, 3.503] wall    100s
+  t  1450.00 steps    72519 dE/Eref +nan fesc 0.344 m3 [0.926, 2.447, 3.486] wall    104s
+  t  1500.00 steps    75019 dE/Eref +nan fesc 0.348 m3 [0.916, 2.463, 3.476] wall    108s
+  t  1550.00 steps    77519 dE/Eref +nan fesc 0.354 m3 [0.933, 2.438, 3.465] wall    111s
+  t  1600.00 steps    80019 dE/Eref +nan fesc 0.359 m3 [0.935, 2.472, 3.459] wall    115s
+  t  1650.00 steps    82519 dE/Eref +nan fesc 0.364 m3 [0.978, 2.491, 3.5] wall    118s
+  t  1700.00 steps    85019 dE/Eref +nan fesc 0.370 m3 [0.95, 2.409, 3.429] wall    122s
+  t  1750.00 steps    87519 dE/Eref +nan fesc 0.373 m3 [0.928, 2.447, 3.425] wall    125s
+  t  1800.00 steps    90019 dE/Eref +nan fesc 0.374 m3 [0.949, 2.444, 3.414] wall    129s
+  t  1850.00 steps    92519 dE/Eref +nan fesc 0.376 m3 [0.964, 2.434, 3.379] wall    133s
+  t  1900.00 steps    95019 dE/Eref +nan fesc 0.376 m3 [0.958, 2.438, 3.414] wall    136s
+  t  1950.00 steps    97519 dE/Eref +nan fesc 0.380 m3 [0.993, 2.44, 3.371] wall    140s
+  t  2000.00 steps   100019 dE/Eref +nan fesc 0.384 m3 [0.973, 2.425, 3.383] wall    143s
+=== 2026-10-20 18:01:04 part Ra2_I rc 0 ===
+=== 2026-10-20 18:01:04 part Ra2_S ===
+[Ra2_S] rep Ra2 lam 0.0 ic S grav S2 t_end 2000.0 mut None
+/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py:249: RuntimeWarning: invalid value encountered in multiply
+  push = (r * r / G) * (wfun(uhi) - wfun(ulo)) / MU
+/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py:45: RuntimeWarning: invalid value encountered in divide
+  r = np.asarray(r, float); return G * MB * r / (r * r + AB * AB) ** 1.5
+/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG935_energy_conserving_settling/cfg935.py:249: RuntimeWarning: invalid value encountered in subtract
+  push = (r * r / G) * (wfun(uhi) - wfun(ulo)) / MU
+  t    50.00 steps     4713 dE/Eref +nan fesc 0.000 m3 [1.167, 2.528, 3.427] wall      4s
+  t   100.00 steps    10500 dE/Eref +nan fesc 0.006 m3 [1.202, 2.728, 3.878] wall     11s
+  t   150.00 steps    18001 dE/Eref +nan fesc 0.013 m3 [1.237, 2.933, 4.303] wall     19s
+  t   200.00 steps    24110 dE/Eref +nan fesc 0.016 m3 [1.251, 2.975, 4.35] wall     27s
+  t   250.00 steps    29204 dE/Eref +nan fesc 0.032 m3 [1.242, 3.073, 4.47] wall     33s
+  t   300.00 steps    34069 dE/Eref +nan fesc 0.044 m3 [1.266, 3.114, 4.466] wall     40s
+  t   350.00 steps    38659 dE/Eref +nan fesc 0.070 m3 [1.257, 2.904, 4.093] wall     46s
+  t   400.00 steps    42950 dE/Eref +nan fesc 0.096 m3 [1.253, 3.033, 4.315] wall     52s
+  t   450.00 steps    46898 dE/Eref +nan fesc 0.107 m3 [1.267, 3.064, 4.346] wall     58s
+  t   500.00 steps    51754 dE/Eref +nan fesc 0.110 m3 [1.263, 3.067, 4.356] wall     65s
+  t   550.00 steps    55503 dE/Eref +nan fesc 0.111 m3 [1.269, 3.08, 4.35] wall     71s
+  t   600.00 steps    59548 dE/Eref +nan fesc 0.117 m3 [1.259, 3.088, 4.354] wall     77s
+  t   650.00 steps    63270 dE/Eref +nan fesc 0.124 m3 [1.249, 3.08, 4.41] wall     83s
+  t   700.00 steps    66966 dE/Eref +nan fesc 0.134 m3 [1.269, 3.06, 4.364] wall     88s
+  t   750.00 steps    71713 dE/Eref +nan fesc 0.142 m3 [1.234, 3.124, 4.422] wall     95s
+  t   800.00 steps    75639 dE/Eref +nan fesc 0.149 m3 [1.253, 3.148, 4.386] wall    101s
+  t   850.00 steps    79357 dE/Eref +nan fesc 0.156 m3 [1.256, 3.126, 4.384] wall    106s
+  t   900.00 steps    82712 dE/Eref +nan fesc 0.163 m3 [1.275, 3.164, 4.402] wall    111s
+  t   950.00 steps    86950 dE/Eref +nan fesc 0.172 m3 [1.264, 3.156, 4.423] wall    117s
+  t  1000.00 steps    90521 dE/Eref +nan fesc 0.176 m3 [1.247, 3.147, 4.347] wall    122s
+  t  1050.00 steps    94052 dE/Eref +nan fesc 0.178 m3 [1.266, 3.158, 4.428] wall    127s
+  t  1100.00 steps    97678 dE/Eref +nan fesc 0.178 m3 [1.288, 3.176, 4.419] wall    132s
+  t  1150.00 steps   100873 dE/Eref +nan fesc 0.182 m3 [1.276, 3.142, 4.428] wall    137s
+  t  1200.00 steps   104110 dE/Eref +nan fesc 0.190 m3 [1.283, 3.178, 4.466] wall    142s
+  t  1250.00 steps   107233 dE/Eref +nan fesc 0.194 m3 [1.273, 3.198, 4.433] wall    147s
+  t  1300.00 steps   110812 dE/Eref +nan fesc 0.204 m3 [1.259, 3.172, 4.399] wall    152s
+  t  1350.00 steps   114235 dE/Eref +nan fesc 0.207 m3 [1.28, 3.217, 4.45] wall    157s
+  t  1400.00 steps   117452 dE/Eref +nan fesc 0.212 m3 [1.274, 3.18, 4.43] wall    162s
+  t  1450.00 steps   120723 dE/Eref +nan fesc 0.212 m3 [1.29, 3.201, 4.461] wall    167s
+  t  1500.00 steps   124110 dE/Eref +nan fesc 0.213 m3 [1.284, 3.227, 4.443] wall    172s
+  t  1550.00 steps   127362 dE/Eref +nan fesc 0.215 m3 [1.274, 3.225, 4.404] wall    176s
+  t  1600.00 steps   130869 dE/Eref +nan fesc 0.221 m3 [1.277, 3.199, 4.44] wall    181s
+  t  1650.00 steps   134238 dE/Eref +nan fesc 0.224 m3 [1.287, 3.268, 4.45] wall    186s
+  t  1700.00 steps   137829 dE/Eref +nan fesc 0.226 m3 [1.286, 3.229, 4.433] wall    191s
+  t  1750.00 steps   141789 dE/Eref +nan fesc 0.227 m3 [1.282, 3.253, 4.444] wall    197s
+  t  1800.00 steps   145254 dE/Eref +nan fesc 0.230 m3 [1.282, 3.274, 4.443] wall    202s
+  t  1850.00 steps   148701 dE/Eref +nan fesc 0.235 m3 [1.27, 3.229, 4.461] wall    208s
+  t  1900.00 steps   152048 dE/Eref +nan fesc 0.237 m3 [1.297, 3.251, 4.438] wall    213s
+  t  1950.00 steps   155593 dE/Eref +nan fesc 0.238 m3 [1.301, 3.251, 4.463] wall    218s
+  t  2000.00 steps   159091 dE/Eref +nan fesc 0.239 m3 [1.277, 3.225, 4.428] wall    223s
+=== 2026-10-20 18:04:47 part Ra2_S rc 0 ===
+=== 2026-10-20 18:04:47 part Rd_L ===
+[Rd_L] rep Rd lam 0.0 ic L grav N t_end 350.0 mut None
+  t    50.00 steps   112818 dE/Eref +3.399e-04 fesc 0.002 m3 [1.098, 4.048, 7.236] wall    265s
+  t   100.00 steps   124472 dE/Eref +3.385e-04 fesc 0.002 m3 [1.025, 3.788, 6.11] wall    292s
+  t   150.00 steps   133504 dE/Eref +3.394e-04 fesc 0.002 m3 [0.892, 3.11, 5.845] wall    314s
+  t   200.00 steps   141555 dE/Eref +3.424e-04 fesc 0.002 m3 [0.803, 3.148, 5.343] wall    333s
+  t   250.00 steps   149596 dE/Eref +3.528e-04 fesc 0.002 m3 [0.775, 2.916, 5.207] wall    352s
+  t   300.00 steps   157806 dE/Eref +3.623e-04 fesc 0.002 m3 [0.596, 2.979, 5.228] wall    371s

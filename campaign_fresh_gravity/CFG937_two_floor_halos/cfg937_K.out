@@ -1,0 +1,33 @@
+CFG937 -- two-floor primordial halos (H-CF2): the atomic-cooling floor (CFG934) for systems quenched at reionization and a
+post-reionization filtering floor for systems that kept forming stars.
+Criteria: FROZEN_CRITERIA.md (73144fddb, committed alone before this script existed).
+
+H-CF2: a quenched system (Weisz+14 tau90 at the 12.59-Gyr first node) sits in at least M_cool(z_f), the halo with T_vir = 1e4 K
+(CFG934); a late former (tau90 below the node; SPARC; every CFG934 group default) sits in at least max(M_cool, M_filt), where
+M_filt is the halo whose virial velocity reaches V_th = sqrt(2) c_s(T_IGM), mu 0.59 (CFG782's retention condition T_vir >= T_IGM),
+T_IGM in {1, 1.5, 2} x 1e4 K.  Everything else is CFG934's, reused by exec'ing cfg934.py read-only up to its K section.
+Corners mu x tau x C x T_IGM = 36 per footing and reading; readings (S) sum [primary] and (M) max [alternative].
+
+  MODE K; CFG934 definitions exec'd read-only (cfg934.py sha256 746aa6c9274caf77...); 1.6 s, 168 MB
+
+======================================================================================================================
+K TESTS (criteria section 5)
+======================================================================================================================
+  [PASS] K0 CFG934's committed K passed; cfg934.py sha256 printed
+         cfg934_results_K.json K_all True; cfg934.py sha256 746aa6c9274caf77eceecbccb6608455cac880d6470a0ff1fdd7daeb5d1597e1
+  [PASS] K1 CFG42 H1/H2/H4 reproduced through the inherited estimator with CFG42's own inputs (1e-9)
+         60 UF/CL numbers, max |d| 0.0e+00; H4 n 110 nfex 0 frac 1.000 max 0.000 (|d| 0.0e+00) [8 s]
+  [PASS] K1b CFG45 (M) reading reproduced (UF km/z, CL med/z, SPARC dwarf|M frac/max) (1e-6)
+         16 UF/CL numbers max |d| 1.8e-15; SPARC M frac 0.9182 max 0.0596 (|d| 0.0e+00)
+  [PASS] K2 CFG934 reproduced with the second floor switched off: corners (S, M) + bare law to 1e-12, labels, verdicts, six variants
+         3540 numbers, max |d| 0.0e+00, 0 mismatches; verdicts S 'PARTIAL' / M 'PARTIAL (corner-selectable)' (CFG934 'PARTIAL' / 'PARTIAL (corner-selectable)'); variants max |d| 0.0e+00, 0 mismatches [3 s]
+  [PASS] K3 V_th = sqrt(2) c_s(T_IGM) vs CFG782 (formula 1e-5 rel; printed 0.005 km/s); M_filt(1e4) == M_cool(mu 0.59); V_vir(M_filt) = V_th (1e-10)
+         V_th 16.7275 / 20.4870 / 23.6563 km/s; vs CFG782 formula max rel 6.6e-06; vs printed max 0.0037; M_filt-M_cool max |d| 0.0e+00; V_vir identity 1.6e-15
+  [PASS] K4 selector tau90 = CFG824's (1e-12); 'tau90 at node' <=> f(12.59 Gyr) >= 0.9 for every Weisz object; lookback(z 6, 8) > 12.589 Gyr
+         36/36 CFG824 objects, max |d tau90| 0.0e+00; 40 Weisz objects, mismatches []; lookback z6 12.844, z8 13.136 Gyr vs node 12.589 (z_reion inert)
+  [PASS] K5 the seal's synthetic estimator equals the L class estimator (boost, f_ex) for the real 83 (1e-12), both readings and footings
+         max |d| 0.0e+00
+
+  K-stage ALL PASS
+
+  runtime 12 s, peak RSS 174 MB, exit 0

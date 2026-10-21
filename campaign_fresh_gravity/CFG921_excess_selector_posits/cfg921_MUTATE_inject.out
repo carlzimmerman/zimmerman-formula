@@ -1,0 +1,33 @@
+CFG921  excess-selector constraint intersection: five candidate new posits, one constant each, calibrated on the 83 LVD dwarfs   [MUTATE inject]
+  kappa = 1/2 FITTED; footings never pooled; criteria 0abd82098
+
+=== K-stage
+  [PASS] K1 CFG919 input/cell code exec'd read-only: all its K-checks pass (incl. CFG914's 9): 7/7 CFG919 checks pass
+  [PASS] K2 CFG919 V0 cells reproduced (cls, w, n exact; E, lg, f, se_stat), both footings: 37 cells x 2; max |diff| 0.0e+00
+  [PASS] K3 CFG919 V0 class means (7 classes) and F1 (A, sA, chi2) by this lane's GLS, both footings: max |diff| 1.1e-16; canonical DW +0.856
+  [PASS] K4 quoted source numbers (CFG687, 829, 850, 845, 820, 876, 860, 920) match the source files: 33/33 match
+  [PASS] K6 per-dwarf inputs: w == CFG919 f_sph exactly; sigma_law^2 == r12 g_L/3: max |dw| 0.0e+00; max rel d sigma_law 8.9e-16; HI-bearing 8/83
+
+=== P5 geometry: QUMOND thin exponential disc (Hankel quadrature, cell-exact kernels; units R_d = G = 1, 2 pi G Sigma0 = 1)
+  [PASS] K7 P5 numerics: (a) thin-disc g_R vs Freeman; (b) Plummer volume field vs GM(<r)/r^2; (c) QUMOND Plummer vs algebraic; (d, added) Kuzmin disc vs exact QUMOND: (a) 1.3e-04 (<=1e-3)  (b) 2.9e-03 (<=1e-2)  (c) 2.7e-03 (<=2e-2)  (d) 1.3e-03 (<=3e-3)
+  y0 =  0.1: delta(R) nu_e  R=0.5 -0.4254  R=1 -0.2340  R=2 -0.0782  R=4 +0.0126  R=6 +0.0211  R=8 +0.0156;  mean over [1,6] -0.0301 (nu_s -0.0300)
+  y0 =  1.0: delta(R) nu_e  R=0.5 -0.3334  R=1 -0.1880  R=2 -0.0663  R=4 +0.0116  R=6 +0.0199  R=8 +0.0149;  mean over [1,6] -0.0240 (nu_s -0.0235)
+  y0 = 10.0: delta(R) nu_e  R=0.5 -0.1401  R=1 -0.0860  R=2 -0.0369  R=4 +0.0087  R=6 +0.0163  R=8 +0.0129;  mean over [1,6] -0.0102 (nu_s -0.0092)
+  <delta_disc> = -0.0214 (nu_e, ln units = -0.0093 dex); diagnostic nu_s -0.0209.  P5 predicts E = -<delta> = +0.0214 for spheres / point-mass lensing, 0 for SPARC discs.  [2 s, 454 MB]
+  [PASS] K5 solvers: zero surplus -> E = 0 everywhere; P1 closed form = bisection; self-consistent roots satisfy their equations: zero-surplus max |E| 3.3e-16; P1 closed vs bisect 1.1e-16; root residual 2.0e-14; cluster nu identity 9.9e-07
+  K-stage ALL PASS (K8 checked below)  [2 s, 454 MB]
+  [PASS] K8 interpolated calibration (INJECT only) vs exact brentq: every predicted class mean: 6 posit-footings calibrated; max |d class mean| 5.6e-16
+  K-stage K1-K8 ALL PASS  [4 s, 466 MB]
+
+=== MUTATE inject: 200 realizations per posit and footing from the posit's own nominal predictions; full grading
+  [canonical] P1: not injectable (calibration impossible on the real data; AMENDMENT_A1)
+  [canonical] P2: FAILS 3.0%  SURVIVES 61.5%  UNDERDETERMINED 35.5%  -> OK  [12 s]
+  [canonical] P3: FAILS 4.5%  SURVIVES 62.0%  UNDERDETERMINED 33.5%  -> OK  [23 s]
+  [canonical] P4: FAILS 3.0%  SURVIVES 61.0%  UNDERDETERMINED 36.0%  -> OK  [31 s]
+  [canonical] P5: FAILS 6.0%  SURVIVES 55.0%  UNDERDETERMINED 39.0%  -> OK  [31 s]
+  [alt] P1: not injectable (calibration impossible on the real data; AMENDMENT_A1)
+  [alt] P2: FAILS 3.0%  SURVIVES 61.5%  UNDERDETERMINED 35.5%  -> OK  [39 s]
+  [alt] P3: FAILS 4.5%  SURVIVES 61.5%  UNDERDETERMINED 34.0%  -> OK  [50 s]
+  [alt] P4: FAILS 3.0%  SURVIVES 61.0%  UNDERDETERMINED 36.0%  -> OK  [58 s]
+  [alt] P5: FAILS 6.0%  SURVIVES 55.0%  UNDERDETERMINED 39.0%  -> OK  [59 s]
+  MUTATE inject RECOVERED (all posits, both footings)  [59 s, 469 MB]

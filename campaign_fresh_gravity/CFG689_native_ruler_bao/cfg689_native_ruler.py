@@ -1,9 +1,9 @@
-"""CFG689 (criteria 1c237145d + addendum A1): BAO with the framework's own ruler and no LCDM assumption in the chain.
+"""CFG689 (criteria 1c237145d + addenda A1 0db6da294, A2 bb21587be): BAO with the framework's own ruler and no LCDM assumption in the chain.
 CFG654's principle (pre-switch universe = framework physics; A1 pair omega_b 0.02236 / omega_c 0.1202) fixes r_d with CAMB, and
 CFG253 (<= 3% of the cold mass made after recombination) fixes rho_m(z) = omega_m (1+z)^3. DESI DR2 D_H/r_d is then an absolute
 H(z); the physical dark-energy density w(z) = rho_DE/rho_crit,100 is free per node (6 nodes, w(0) free) and, after A1, the
-curvature omega_k is free too (no flatness assumption). No CMB distances, no CPL, no LCDM late-time fit.
-Modes (env CFG689_MODE): primary F M1 M2 M3 M1k M2k B1 B2 B3m B3p B4m B4p B5a B5b B5c B6 B7 B8 B9 B10 B12 P5.
+curvature omega_k is free too (no flatness assumption). No CMB distance except theta* (A2 modes only), no CPL, no LCDM late-time fit.
+Modes (env CFG689_MODE): primary F M1 M2 M3 M1k M2k B1 B2 B3m B3p B4m B4p B5a B5b B5c B6 B7 B8 B9 B10 B12 T TF TD5F TU3F D5 U3 M4 P5 (A2: theta*, SN swaps, P6).
 Outputs cfg689[_MODE].out/.json. Exit 75 = a PM / 1024^3 / chain process appeared: no verdict is written, the waiter re-gates and
 reruns the mode. Implementation notes (not in the criteria, no verdict weight): B5/B9 free omega_c over 0.05-0.25, where a +-2 sigma
 power law in omega_c cannot be trusted, so they interpolate a CAMB table in omega_c (21 points, cubic in log-log; K2b checks it at
@@ -23,7 +23,19 @@ def P(*a):
 import re   # guard reads `ps` (no pattern in any argv, so other chains' pgrep gates never match this process); shell wrappers ignored
 BUSY = re.compile(r"cfg[0-9]{3}_pm\.py|cfg59[6]_pm|run_6[0-9]{2}\.py|^\s*bash \S*chain[0-9]*\.sh|argon11_run\.py|cfg[0-9]{3}_native\.py|cfg9[0-9]{2}_rescore\.py")
 WRAP = re.compile(r"^\s*(\S*/)?(ba|z)?sh -c ")
+PARALLEL = os.environ.get("CFG689_PARALLEL", "") == "1"   # owner 2026-10-20: small runs may go beside a 1024^3 job, under a memory watchdog
+SWAP0 = [None]
+def mem_state():          # (free+inactive GB, swap used MB) from vm_stat / sysctl
+    vs = subprocess.run(["vm_stat"], capture_output=True, text=True).stdout; pg = int(re.search(r"page size of (\d+)", vs).group(1))
+    fi = sum(int(re.search(k + r":\s+(\d+)", vs).group(1)) for k in ("Pages free", "Pages inactive"))*pg/1e9
+    used = float(re.search(r"used = ([0-9.]+)M", subprocess.run(["sysctl", "-n", "vm.swapusage"], capture_output=True, text=True).stdout).group(1))
+    return fi, used
 def guard():
+    if PARALLEL:          # exit long before a 1024^3 job's own swap guard (+5 GB) could trip: swap +1 GB over its minimum, or < 8 GB free
+        fi, used = mem_state(); SWAP0[0] = used if SWAP0[0] is None else min(SWAP0[0], used)
+        if used > SWAP0[0] + 1000 or fi < 8:
+            P(f"GUARD (parallel): swap {used:.0f} MB (min {SWAP0[0]:.0f}) or free+inactive {fi:.1f} GB -> exit 75 (no verdict; mode {MODE} reruns later)"); sys.exit(75)
+        return
     cmds = subprocess.run(["ps", "-axo", "command="], capture_output=True, text=True).stdout.splitlines()
     if any(BUSY.search(c) and not WRAP.match(c) for c in cmds):
         P(f"GUARD: a PM / 1024^3 / chain process is alive -> exit 75 (no verdict; mode {MODE} reruns later)"); sys.exit(75)
@@ -38,6 +50,8 @@ SNL = 0.01                                                  # declared conservat
 DR1PRE = [("BGS", 0.295, 0.9646, 0.0258), ("LRG1", 0.510, 0.9760, 0.0171), ("LRG2", 0.706, 0.9505, 0.0191),   # 2404.03000 Table 15
           ("LRG3+ELG1", 0.930, 1.0027, 0.0114), ("ELG2", 1.317, 0.9882, 0.0176), ("QSO", 1.491, 0.9967, 0.0229)]  # z_eff: 2404.03002 Table 1
 DR1SYS = 0.00245                                            # DR1 Table 13, xi(r) total systematic on alpha_iso
+DR1POST = [("BGS", 0.295, 0.9829, 0.0185), ("LRG1", 0.510, 0.9792, 0.0113), ("LRG2", 0.706, 0.9661, 0.0117),   # 2404.03000 Table 15 POST-recon:
+           ("LRG3+ELG1", 0.930, 0.9983, 0.0081), ("ELG2", 1.317, 0.9876, 0.0147), ("QSO", 1.491, 1.0015, 0.0256)]  # POST-HOC control B12c (not frozen)
 
 # ---- P5: framework-native bound from committed same-seed PM pairs (addendum A1.4); reads JSONs only ----
 if MODE == "P5":
@@ -79,7 +93,7 @@ ANISO = [("LRG1", 0.510, 13.588, 0.167, 21.863, 0.425, -0.459), ("LRG2", 0.706, 
          ("QSO", 1.484, 30.512, 0.760, 12.817, 0.516, -0.500), ("Lya", 2.330, 38.988, 0.531, 8.632, 0.101, -0.431)]
 ISO = [(0.295, 7.942, 0.075)]                                # (z, D_V/r_d, sigma): DR2 BGS
 if MODE == "B10": ANISO = [t for t in ANISO if t[0] != "Lya"]
-if MODE == "B12": ANISO = [t for t in ANISO if t[0] == "Lya"]    # DR1 pre-recon D_V replaces the DR2 galaxy/QSO points (below)
+if MODE in ("B12", "B12c"): ANISO = [t for t in ANISO if t[0] == "Lya"]    # DR1 pre-recon D_V replaces the DR2 galaxy/QSO points (below)
 zg = np.linspace(0, 2.5, 5001); ZS = (1.0, 1.2, 1.5, 2.33)
 def cumchi(Hg): return np.r_[0, np.cumsum(0.5*(1/Hg[1:] + 1/Hg[:-1])*np.diff(zg))]*C       # line-of-sight comoving distance, Mpc
 CFG683_W = {1.0: 0.853, 1.5: 1.596, 2.33: 2.183}                     # CFG683 CMB-free BAO+SN tracking band widths
@@ -88,7 +102,7 @@ P3S = {"KURVS-CDFS z~1.5 (gas unmeasured)": (1.5, 0.30), "z~1.2 multi-tracer (de
 
 # ---- mode configuration (base sections 3, 7, 9; addendum A1.1, A1.2) ----
 cfg = dict(wb=0.02236, sb=0.00015, wc=0.1202, sc=0.0014, rho=0.0, mnu=0.0, f=0.0, hp=None, wcfree=False,
-           nodes=np.array([0, 0.4, 0.7, 1.0, 1.5, 2.33]), rds=1.0, freek=True, wmin=-2.0, snz="zHD", snzmin=0.01)
+           nodes=np.array([0, 0.4, 0.7, 1.0, 1.5, 2.33]), rds=1.0, freek=True, wmin=-2.0, snz="zHD", snzmin=0.01, theta=False, sn="PP")
 if MODE in ("F", "M1", "M2", "M3"): cfg.update(freek=False)
 elif MODE == "B1": cfg.update(wb=0.02193, sb=0.00022)
 elif MODE == "B2": cfg.update(mnu=0.06)
@@ -101,11 +115,19 @@ elif MODE == "B6": cfg.update(nodes=np.array([0, 0.7, 1.5, 2.33]))
 elif MODE == "B7": cfg.update(snz="zCMB", snzmin=0.03)
 elif MODE == "B8": cfg.update(sb=0.00030, sc=0.0028)
 elif MODE == "B9": cfg.update(wb=0.02193, sb=0.00022, wcfree=True, hp=None, freek=False, wmin=0.0)
-elif MODE not in ("primary", "M1k", "M2k", "B10", "B12"): sys.exit(f"unknown CFG689_MODE {MODE}")
+elif MODE == "T": cfg.update(theta=True)                                          # addendum A2.3
+elif MODE == "TF": cfg.update(theta=True, freek=False)
+elif MODE == "TD5F": cfg.update(theta=True, freek=False, sn="DES5")
+elif MODE == "TU3F": cfg.update(theta=True, freek=False, sn="U3")
+elif MODE == "D5": cfg.update(sn="DES5")
+elif MODE == "U3": cfg.update(sn="U3")
+elif MODE == "M4": cfg.update(theta=True, freek=False)
+elif MODE not in ("primary", "M1k", "M2k", "B10", "B12", "B12c"): sys.exit(f"unknown CFG689_MODE {MODE}")
 if MODE == "M3": cfg.update(rds=1.02)
 NODES = cfg["nodes"]; NN = len(NODES); wb0, sb, wc0, sc = cfg["wb"], cfg["sb"], cfg["wc"], cfg["sc"]
 OMNU = cfg["mnu"]/93.14; NREL = 3.044 if cfg["mnu"] == 0 else 3.044*2/3; OMR = OMG*(1 + 0.2271*NREL)
-FREEK = cfg["freek"]; WMIN = cfg["wmin"]; TRUTH = MODE[:2] if MODE in ("M1", "M2", "M1k", "M2k") else None
+FREEK = cfg["freek"]; WMIN = cfg["wmin"]; TRUTH = "M1" if MODE == "M4" else (MODE[:2] if MODE in ("M1", "M2", "M1k", "M2k") else None)
+TH_OBS, TH_SIG = 1.04109, 0.00030; TH_DATA = TH_OBS                 # 100 theta_*, Planck 2018 TT,TE,EE+lowE (cfg654_ics.py PROVENANCE)
 
 # ---- the ruler: CAMB in the pre-switch era (cfg654_ics.camb_results settings) ----
 def camb_rdrag(wb, wc, mnu=0.0, h=0.6777):
@@ -119,12 +141,12 @@ def fid_bg():              # DESI's fiducial (flat LCDM, one massive neutrino co
     omf = FID["wb"] + FID["wc"] + FID["mnu"]/93.14; omrf = OMG*(1 + 0.2271*3.044*2/3)
     Hf = 100*np.sqrt(omf*(1 + zg)**3 + omrf*(1 + zg)**4 + (FID["h"]**2 - omf - omrf)); return Hf, cumchi(Hf), camb_rdrag(FID["wb"], FID["wc"], FID["mnu"], FID["h"])
 res = {"mode": MODE, "nstep": NSTEP, "cfg": {k: (v.tolist() if isinstance(v, np.ndarray) else v) for k, v in cfg.items()}}
-if MODE in ("primary", "B12"):
+if MODE in ("primary", "B12", "B12c"):
     HF, DMF, RDF = fid_bg()
     def dvf(z): dm, dh = np.interp(z, zg, DMF), C/np.interp(z, zg, HF); return (z*dm**2*dh)**(1/3)/RDF
-if MODE == "B12":
-    ISO = [(z, a*dvf(z), np.hypot(s, DR1SYS)*dvf(z)) for (_, z, a, s) in DR1PRE]
-    res["B12_data"] = [dict(name=n, z=z, alpha_iso=a, sig=s, DV_rd=d[1], sig_DV=d[2]) for (n, z, a, s), d in zip(DR1PRE, ISO)]
+if MODE in ("B12", "B12c"):   # B12c (POST HOC): same conversion with DR1 POST-recon alpha_iso, to separate reconstruction from DR1-vs-DR2 data
+    ISO = [(z, a*dvf(z), np.hypot(s, DR1SYS)*dvf(z)) for (_, z, a, s) in (DR1PRE if MODE == "B12" else DR1POST)]
+    res["B12_data"] = [dict(name=n, z=z, alpha_iso=a, sig=s, DV_rd=d[1], sig_DV=d[2]) for (n, z, a, s), d in zip(DR1PRE if MODE == "B12" else DR1POST, ISO)]
 CINV = [np.linalg.inv(np.array([[s1**2, r*s1*s2], [r*s1*s2, s2**2]])) for (_, _, _, s1, _, s2, r) in ANISO]
 R0 = camb_rdrag(wb0, wc0, cfg["mnu"])
 BEXP = -np.log(camb_rdrag(wb0 + 2*sb, wc0, cfg["mnu"])/camb_rdrag(wb0 - 2*sb, wc0, cfg["mnu"]))/np.log((wb0 + 2*sb)/(wb0 - 2*sb))
@@ -151,15 +173,52 @@ if cfg["wcfree"]:
     checks["K2b"] = dict(dev=dev, ok=bool(max(dev) <= 2e-4))
 for k, v in checks.items(): P(f"{k}: {'PASS' if v['ok'] else 'FAIL'}  {v}")
 
-# ---- Pantheon+ (as CFG681; B7 uses zCMB > 0.03, no peculiar-velocity model) ----
-raw = np.genfromtxt(os.path.join(EXT, "PantheonPlusSH0ES.dat"), names=True, dtype=None, encoding=None)
-covfull = np.loadtxt(os.path.join(EXT, "PantheonPlusSH0ES_STAT+SYS.cov"), skiprows=1); NSN = int(round(np.sqrt(covfull.size))); covfull = covfull.reshape(NSN, NSN)
-sel = (raw["IS_CALIBRATOR"] == 0) & (raw[cfg["snz"]] > cfg["snzmin"])
-zsn, zhel, MB = raw[cfg["snz"]][sel], raw["zHEL"][sel], raw["m_b_corr"][sel].astype(float); Cisn = np.linalg.inv(covfull[np.ix_(sel, sel)])
-del covfull
-one = np.ones(len(MB)); A11 = one@Cisn@one
+# ---- supernovae: Pantheon+ (as CFG681; B7 uses zCMB > 0.03, no peculiar-velocity model), or DES-SN5YR / Union3 (A2, CFG684 loaders) ----
+EXT684 = os.path.join(EXTD, "cfg684_inputs")
+if cfg["sn"] == "PP":
+    raw = np.genfromtxt(os.path.join(EXT, "PantheonPlusSH0ES.dat"), names=True, dtype=None, encoding=None)
+    covfull = np.loadtxt(os.path.join(EXT, "PantheonPlusSH0ES_STAT+SYS.cov"), skiprows=1); NSN = int(round(np.sqrt(covfull.size))); covfull = covfull.reshape(NSN, NSN)
+    sel = (raw["IS_CALIBRATOR"] == 0) & (raw[cfg["snz"]] > cfg["snzmin"])
+    zsn, zhel, MB = raw[cfg["snz"]][sel], raw["zHEL"][sel], raw["m_b_corr"][sel].astype(float); Wsn = np.linalg.inv(covfull[np.ix_(sel, sel)])
+    del covfull; SNLAB = f"Pantheon+ non-calibrators, {cfg['snz']} > {cfg['snzmin']}"
+elif cfg["sn"] == "DES5":     # SNANA format: SN: CID IDSURVEY zHD zHEL MU ...; STAT+SYS.npz = upper triangle of the inverse covariance
+    rows = [l.split() for l in open(os.path.join(EXT684, "des5", "DES-Dovekie_HD.csv")) if l.startswith("SN:")]
+    dz = np.array([float(r[3]) for r in rows]); dzh = np.array([float(r[4]) for r in rows]); dmu = np.array([float(r[5]) for r in rows])
+    npz = np.load(os.path.join(EXT684, "des5", "STAT+SYS.npz")); n_ = int(npz[npz.files[0]][0]); Wd = np.zeros((n_, n_)); Wd[np.triu_indices(n_)] = npz[npz.files[1]]
+    Wd = Wd + np.triu(Wd, 1).T; ww = dz > 0; Cd = np.linalg.inv(Wd)[np.ix_(ww, ww)]
+    zsn, zhel, MB, Wsn = dz[ww], dzh[ww], dmu[ww], np.linalg.inv(Cd); SNLAB = "DES-SN5YR Dovekie (CFG684 loader)"
+else:                         # Union3: spline-node mu with weight matrix
+    from astropy.io import fits
+    M_ = fits.open(os.path.join(EXT684, "union3", "mu_mat_union3_cosmo=2_mu.fits"))[0].data
+    zsn, MB, Wsn = M_[0, 1:], M_[1:, 0], M_[1:, 1:]; zhel = zsn; SNLAB = "Union3 nodes (CFG684 loader)"
+one = np.ones(len(MB)); A11 = one@Wsn@one
 DATA_A, DATA_I = list(ANISO), list(ISO)
-P(f"SN: {len(MB)} Pantheon+ non-calibrators, {cfg['snz']} > {cfg['snzmin']}; BAO anisotropic {[t[0] for t in ANISO]} + isotropic D_V at z {[round(t[0], 3) for t in ISO]}")
+P(f"SN: {len(MB)} {SNLAB}; BAO anisotropic {[t[0] for t in ANISO]} + isotropic D_V at z {[round(t[0], 3) for t in ISO]}; theta*: {cfg['theta']}")
+
+# ---- theta* (A2.1): r_s(z*) from CAMB (power-law emulator, as r_d), z* fixed at the mode's centres, chi integrated to z* ----
+def camb_star(wb, wc):
+    import camb
+    p = camb.CAMBparams()
+    p.set_cosmology(H0=67.77, ombh2=wb, omch2=wc, omk=0.0, mnu=0.0, num_massive_neutrinos=0, nnu=3.044, TCMB=2.7255, tau=0.0544)
+    p.set_dark_energy(w=-1.0, wa=0.0); p.set_accuracy(AccuracyBoost=1.5, lAccuracyBoost=1.0); p.WantCls = False
+    d = camb.get_background(p).get_derived_params(); return float(d["rstar"]), float(d["zstar"])
+if cfg["theta"]:
+    RS0, ZSTAR = camb_star(wb0, wc0)
+    BS = -np.log(camb_star(wb0 + 2*sb, wc0)[0]/camb_star(wb0 - 2*sb, wc0)[0])/np.log((wb0 + 2*sb)/(wb0 - 2*sb))
+    CS = -np.log(camb_star(wb0, wc0 + 2*sc)[0]/camb_star(wb0, wc0 - 2*sc)[0])/np.log((wc0 + 2*sc)/(wc0 - 2*sc))
+    def rstar(wb, wc): return RS0*(wb/wb0)**(-BS)*(wc/wc0)**(-CS)
+    UG = np.linspace(np.log(3.5), np.log(1 + ZSTAR), 4001); ZH = np.exp(UG) - 1; HU = UG[1] - UG[0]
+    res["theta_ruler"] = dict(r_s_star=RS0, z_star=ZSTAR, b=BS, c=CS)
+    P(f"theta*: r_s(z*) {RS0:.4f} Mpc at z* {ZSTAR:.3f}; exponents {BS:.5f} {CS:.5f}")
+    if MODE == "T":
+        cor = [(camb_star(wb0 + i*2*sb, wc0 + j*2*sc), rstar(wb0 + i*2*sb, wc0 + j*2*sc)) for i in (-1, 1) for j in (-1, 1)]
+        dv9 = [abs(e/c_[0] - 1) for c_, e in cor]; zs9 = [c_[1] for c_, _ in cor]
+        checks["K9"] = dict(dev=dv9, z_star=zs9, ok=bool(max(dv9) <= 2e-4 and max(zs9) - min(zs9) < 1)); P(f"K9: {'PASS' if checks['K9']['ok'] else 'FAIL'}  {checks['K9']}")
+def theta_model(om, wk, w_last, chi25, wb, wc):
+    E2 = om*(1 + ZH)**3 + OMR*(1 + ZH)**4 + wk*(1 + ZH)**2 + w_last
+    if np.any(E2 <= 0): return None
+    f = C*(1 + ZH)/(100*np.sqrt(E2)); chi_hi = HU/3*(f[0] + f[-1] + 4*f[1:-1:2].sum() + 2*f[2:-1:2].sum())
+    return float(100*rstar(wb, wc)/dm_from_chi(np.array([chi25 + chi_hi]), wk)[0])
 
 # ---- model (A1.1: curvature) ----
 def dm_from_chi(chi, wk):
@@ -170,7 +229,7 @@ def bg(wn, wb, wc, wk=0.0):
     om = wb + wc*(1 + cfg["f"]) + OMNU
     E2 = om*(1 + zg)**3 + OMR*(1 + zg)**4 + wk*(1 + zg)**2 + np.interp(zg, NODES, wn)
     if np.any(E2 <= 1e-8): return None
-    Hg = 100*np.sqrt(E2); return om, Hg, dm_from_chi(cumchi(Hg), wk)
+    Hg = 100*np.sqrt(E2); chi = cumchi(Hg); return om, Hg, dm_from_chi(chi, wk), chi
 def bao_pred(Hg, DM):
     ms = [np.array([np.interp(t[1], zg, DM), C/np.interp(t[1], zg, Hg)]) for t in ANISO]
     mv = [(t[0]*np.interp(t[0], zg, DM)**2*C/np.interp(t[0], zg, Hg))**(1/3) for t in ISO]
@@ -183,7 +242,7 @@ def bao_chi2(Hg, DM, rd):      # rd None: the scale is profiled analytically lik
     else: s = 1/rd
     return sum((d - s*m)@Ci@(d - s*m) for m, d, Ci in zip(ms, ds, CINV)) + sum(((t[1] - s*v)/t[2])**2 for v, t in zip(mv, DATA_I))
 def sn_chi2(DM):
-    r = MB - 5*np.log10((1 + zhel)*np.interp(zsn, zg, DM)); v = Cisn@r; b = one@v
+    r = MB - 5*np.log10((1 + zhel)*np.interp(zsn, zg, DM)); v = Wsn@r; b = one@v
     return r@v - b*b/A11
 def prior(wb, wc, om, w0, wk):
     c = ((wb - wb0)/sb)**2
@@ -204,8 +263,12 @@ def chi2_total(p, use_sn=True, const=False):
     if np.any(wn < WMIN) or np.any(wn > 3) or abs(wk) > 0.25 or not (0 < wb < 0.05) or not (0.05 <= wc <= 0.25): return 1e9
     b = bg(wn, wb, wc, wk)
     if b is None: return 1e9
-    om, Hg, DM = b
+    om, Hg, DM, chi = b
     c = bao_chi2(Hg, DM, rdrag(wb, wc)*cfg["rds"]) + prior(wb, wc, om, wn[0], wk)
+    if cfg["theta"]:
+        th = theta_model(om, wk, wn[-1], chi[-1], wb, wc)
+        if th is None: return 1e9
+        c += ((th - TH_DATA)/TH_SIG)**2
     return c + sn_chi2(DM) if use_sn else c
 
 # ---- fitting in standardised coordinates ----
@@ -268,8 +331,27 @@ def derived(S):            # S (..., npar) physical samples -> dict of arrays
         wz = wn@wvec(z); X = np.where(w0 > 0, wz/np.where(w0 > 0, w0, 1.0), -1.0)
         d[f"sqrtX_{z}"] = np.sqrt(np.clip(X, 0, None)); d[f"E_{z}"] = np.sqrt((om*(1 + z)**3 + OMR*(1 + z)**4 + wk*(1 + z)**2 + wz)/h2); d[f"w_{z}"] = wz
     for i, z in enumerate(NODES): d[f"a0_node_{z}"] = 0.5*CMS*np.sqrt(G*RHO100*np.clip(wn[..., i], 0, None))
+    for z in Z6:          # A2.4: z > 2.33 assumes w = w(2.33) beyond the last BAO node (extrapolation, flagged)
+        wz = wn@wvec(z); d[f"sqrtX6_{z}"] = np.sqrt(np.clip(np.where(w0 > 0, wz/np.where(w0 > 0, w0, 1.0), -1.0), 0, None))
     return d
 Q = [2.5, 16, 50, 84, 97.5]
+Z6 = (2.0, 2.5, 3.25)     # A2.4: LCDM's own emergent-scale ratios from the record (prep_2026/a0z_crossscale, 9d40e9c15c) - the alternative, not a yardstick
+LAWS = {"DM14": {2.0: 1.756, 2.5: 2.126, 3.25: 2.823}, "D08": {2.0: 2.284, 2.5: 2.802, 3.25: 3.667}, "MAG": {2.0: 2.748, 2.5: 3.166, 3.25: 3.785}}
+def p6_block(D):
+    out, k20 = {}, np.sqrt(2*np.log(20))
+    for z in Z6:
+        q = np.percentile(D[f"sqrtX6_{z}"], Q); l84, l50 = np.log10(max(q[3], 0.01)), np.log10(max(q[2], 0.01)); sF = l84 - l50
+        row = dict(sqrtX_q=q.tolist(), extrapolated=bool(z > 2.33))
+        for law, vals in LAWS.items():
+            L = np.log10(vals[z]); dc, dm = L - l84, L - l50
+            row[law] = dict(ratio=vals[z], d_close=float(dc), d_med=float(dm), e20_close=float(dc/k20) if dc > 0 else None, e20_med=float(dm/k20) if dm > 0 else None)
+        if z == 3.25:
+            x, sx, LD = 0.06, 0.22, np.log10(LAWS["DM14"][3.25])
+            row["BigWheel_log10B_tracking_over_DM14"] = float(((x - LD)**2 - (x - l50)**2)/(2*np.log(10)*(sx**2 + sF**2)))
+        out[str(z)] = row
+    e = out["2.5"]["DM14"]["e20_close"]
+    out["P6_class"] = "NO SEPARATION" if e is None else ("TARGET HOLDS" if e >= 0.13 else ("TARGET TIGHTER" if e >= 0.10 else "TARGET HARDER"))
+    return out
 def sep(sq, E):
     qs, qe = np.percentile(sq, Q), np.percentile(E, Q)
     lx84, lx50 = np.log10(max(qs[3], 0.01)), np.log10(max(qs[2], 0.01))
@@ -312,7 +394,14 @@ def analyse(use_sn, label):
     P(f"  P3: native H0 68% [{p3['H0_q'][1]:.2f}, {p3['H0_q'][3]:.2f}] median {p3['H0_q'][2]:.2f}; omega_m 95% [{p3['omega_m_q'][0]:.4f}, {p3['omega_m_q'][4]:.4f}];"
       " a0(kappa=1/2) medians by node " + ", ".join(f"z{z}: {p3['a0_node_q'][str(z)][2]:.3e}" for z in NODES) + "  (kappa fitted; not a footing change)")
     P(f"  K4: {'PASS' if k4 else 'FAIL'}  acceptance {np.round(accs, 3).tolist()}  max R-hat {max(rh.values()):.4f}  hessian_ok {hok}")
-    return dict(P2=p2, P1=p1, P1_class=cls, P1_n_narrow=int(nb), grades=grades, P0=p0, P3=p3, posterior=post, K4=dict(ok=k4, accept=accs, rhat=rh, hessian_ok=hok))
+    p6 = p6_block(D)
+    for z in Z6:
+        r6 = p6[str(z)]
+        P(f"  P6 z={z}{' (EXTRAPOLATED beyond the last BAO node)' if r6['extrapolated'] else ''}: tracking sqrtX 68% [{r6['sqrtX_q'][1]:.3f}, {r6['sqrtX_q'][3]:.3f}]; "
+          + "; ".join(f"{law} x{r6[law]['ratio']}: gap {r6[law]['d_close']:+.3f} dex (median {r6[law]['d_med']:+.3f}), e_20 {r6[law]['e20_close']}" for law in LAWS)
+          + (f"; Big Wheel log10 B (tracking/DM14) {r6['BigWheel_log10B_tracking_over_DM14']:+.2f} [reported only]" if z == 3.25 else ""))
+    P(f"  P6: {p6['P6_class']} (z 2.5, DM14, closest edges) - names the decisive measurement; not a result")
+    return dict(P2=p2, P1=p1, P1_class=cls, P1_n_narrow=int(nb), grades=grades, P0=p0, P3=p3, P6=p6, posterior=post, K4=dict(ok=k4, accept=accs, rhat=rh, hessian_ok=hok))
 
 # ---- K3 (ruler-free reproduction of CFG681; Omega_r exactly CFG681's) and K5 (curvature distance check): primary only ----
 if MODE == "primary":
@@ -329,7 +418,7 @@ if MODE == "primary":
     from scipy.integrate import quad
     k5 = []
     for wk_ in (0.05, -0.05):
-        om_, Hg_, DM_ = bg(np.full(NN, 0.31), 0.02236, 0.1202, wk_)
+        om_, Hg_, DM_, _ = bg(np.full(NN, 0.31), 0.02236, 0.1202, wk_)
         for z in (0.5, 2.33):
             chq = C*quad(lambda x: 1/(100*np.sqrt(om_*(1 + x)**3 + OMR*(1 + x)**4 + wk_*(1 + x)**2 + 0.31)), 0, z, epsabs=0, epsrel=1e-12)[0]
             k5.append(abs(np.interp(z, zg, DM_)/dm_from_chi(np.array([chq]), wk_)[0] - 1))
@@ -339,10 +428,16 @@ if MODE == "primary":
 if TRUTH:
     fk_ = FREEK; FREEK = False; wc_ = fit(True, True, starts(True))[0][0]; FREEK = fk_     # the flat primary's constant fit (real data)
     wtrue = wc_*np.ones(NN) if TRUTH == "M1" else wc_*np.array([1, 1, 1, 0.5, 0, 0])
-    om_, Hg_, DM_ = bg(wtrue, wb0, wc0, 0.0); ms_, mv_ = bao_pred(Hg_, DM_)
+    om_, Hg_, DM_, CHI_ = bg(wtrue, wb0, wc0, 0.0); ms_, mv_ = bao_pred(Hg_, DM_)
     DATA_A = [(t[0], t[1], m[0]/R0, t[3], m[1]/R0, t[5], t[6]) for t, m in zip(ANISO, ms_)]; DATA_I = [(t[0], v/R0, t[2]) for t, v in zip(ISO, mv_)]
     MB = 5*np.log10((1 + zhel)*np.interp(zsn, zg, DM_))
-    res["truth"] = dict(w_const_real=float(wc_), w_nodes=wtrue.tolist(), omega_k=0.0); P(f"{MODE} truth: w nodes {np.round(wtrue, 4).tolist()}, flat, A1 centres")
+    if cfg["theta"]: TH_DATA = theta_model(om_, 0.0, wtrue[-1], CHI_[-1], wb0, wc0)          # M4: theta* datum from the same truth
+    res["truth"] = dict(w_const_real=float(wc_), w_nodes=wtrue.tolist(), omega_k=0.0, theta_100=(TH_DATA if cfg["theta"] else None))
+    P(f"{MODE} truth: w nodes {np.round(wtrue, 4).tolist()}, flat, A1 centres" + (f", 100 theta* {TH_DATA:.6f}" if cfg["theta"] else ""))
+if MODE == "T":   # K8 (A2.1): the long integral reproduces CFG654 A1's theta*-solved h = 0.67770 at the A1 pair
+    wk8 = 0.6777**2 - (0.02236 + 0.1202) - OMR; om8, _, _, chi8 = bg(np.full(NN, wk8), 0.02236, 0.1202, 0.0)
+    th8 = theta_model(om8, 0.0, wk8, chi8[-1], 0.02236, 0.1202)
+    checks["K8"] = dict(theta_100=th8, target=1.04109, ok=bool(abs(th8 - 1.04109) <= 5e-5)); P(f"K8: {'PASS' if checks['K8']['ok'] else 'FAIL'}  100 theta* {th8:.6f} vs 1.04109")
 
 # ---- run ----
 def load(name):
@@ -359,7 +454,11 @@ else:
     res["BAO+SN"] = analyse(True, f"{MODE} BAO + Pantheon+ shape")
     if MODE in ("primary", "F"): res["BAO"] = analyse(False, f"{MODE} BAO only")
     a = res["BAO+SN"]
-    if TRUTH == "M1":
+    if MODE == "M4":       # A2.5: P2 dchi2 <= 0.1 and 100 theta* recovered to <= 1e-5 at the best fit
+        wn4, wk4, wb4, wc4 = split(np.array(a["P2"]["pbest"])); om4, _, _, chi4 = bg(wn4, wb4, wc4, wk4); th4 = theta_model(om4, wk4, wn4[-1], chi4[-1], wb4, wc4)
+        ok = a["P2"]["dchi2"] <= 0.1 and abs(th4 - TH_DATA) <= 1e-5
+        res["M4"] = dict(pass_=bool(ok), theta_best=th4, theta_truth=TH_DATA); P(f"M4: {'PASS' if ok else 'FAIL'} (dchi2 {a['P2']['dchi2']:.3f} <= 0.1; 100 theta* {th4:.6f} vs truth {TH_DATA:.6f})")
+    elif TRUTH == "M1":
         ok = a["P2"]["dchi2"] <= 0.1 and all(a["P1"][str(z)]["sqrtX_q"][1] <= 1 <= a["P1"][str(z)]["sqrtX_q"][3] for z in ZS)
         res[MODE] = dict(pass_=bool(ok), frozen_rule=(MODE == "M1")); P(f"{MODE}: {'PASS' if ok else 'FAIL'} (dchi2 {a['P2']['dchi2']:.3f} <= 0.1; 68% tracking bands contain 1)" + ("" if MODE == "M1" else "  [reported only]"))
     if TRUTH == "M2":
@@ -372,8 +471,15 @@ else:
         b = prim["BAO+SN"]; res["flips"] = dict(P1=a["P1_class"] != b["P1_class"], P2=a["P2"]["P2_class"] != b["P2"]["P2_class"])
         P(f"{MODE} vs primary: P1 {a['P1_class']} vs {b['P1_class']}; P2 {a['P2']['P2_class']} vs {b['P2']['P2_class']} -> flips {res['flips']}"
           + ("  (F: FLATNESS-SENSITIVE if any flip)" if MODE == "F" else ""))
+    if MODE == "TU3F":     # A2.3 P2-with-theta* rule: all three SN sets (flat + theta*) must reach >= 3 sigma
+        tri = {m_: (load(f"cfg689_{m_}.json") or {}).get("BAO+SN", {}).get("P2", {}).get("sigma_equiv") for m_ in ("TF", "TD5F")}; tri["TU3F"] = a["P2"]["sigma_equiv"]
+        if all(v is not None for v in tri.values()):
+            n3 = sum(v >= 3 for v in tri.values()); weakest = min(tri.values())
+            cls3 = "EVOLVING DE REQUIRED with theta*" if n3 == 3 else ("SN-DEPENDENT" if n3 >= 1 else ("HINT" if weakest >= 2 else "CONSISTENT WITH CONSTANT"))
+            res["P2_theta_rule"] = dict(sigma=tri, P2_theta_class=cls3); P(f"P2 with theta* across SN sets {tri} -> {cls3} (5-dof node test; DESI's w0-wa test has 2 dof)")
+        else: P(f"P2 with theta*: needs cfg689_TF.json and cfg689_TD5F.json first ({tri})")
 if MODE == "primary":   # P4 (A1.3): native best fit vs DESI's fiducial, at each tracer z
-    wn, wk, wb, wc = split(np.array(res["BAO+SN"]["P2"]["pbest"])); _, Hn, DMn = bg(wn, wb, wc, wk); rdn = rdrag(wb, wc)
+    wn, wk, wb, wc = split(np.array(res["BAO+SN"]["P2"]["pbest"])); _, Hn, DMn, _ = bg(wn, wb, wc, wk); rdn = rdrag(wb, wc)
     al = {}
     for t in ANISO:
         ap = (np.interp(t[1], zg, DMn)/rdn)/(np.interp(t[1], zg, DMF)/RDF); apar = (np.interp(t[1], zg, HF)*RDF)/(np.interp(t[1], zg, Hn)*rdn)

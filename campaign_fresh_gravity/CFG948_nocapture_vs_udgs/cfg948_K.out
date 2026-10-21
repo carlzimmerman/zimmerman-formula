@@ -1,0 +1,25 @@
+CFG948  the derived no-capture criterion (CFG939) vs the Coma UDGs (CFG933) and the NGC 1052 / tidal dwarfs   [K only]
+  criteria e5cc927ce; kappa = 1/2 FITTED; footings never pooled; isolated EFE-free law as the most generous ceiling
+
+=== CFG933's sealed estimator, exec'd read-only through its K-stage
+  [PASS] K0 cfg933.py exec'd read-only through its K-stage: its own K-checks pass: 6/6 CFG933 checks pass
+
+=== K1  CFG933 reproduced (G-Coma <E_obs>, se_obs, z vs its P2 prediction; DF2/DF4 E_obs and z; H)
+  [PASS] K1 CFG933's G-Coma <E_obs>, se_obs, z; DF2/DF4 E_obs, z; H (diff, se, z) == cfg933_results.json (abs <= 1e-12), both footings: max |diff| 0.0e+00; canonical: Coma <E_obs> +0.7604 (se 0.2618, z vs P2 +2.62), DF2/DF4 E_obs -1.709/-2.170, H +2.666 +- 0.547 (z +4.87); alt: Coma <E_obs> +0.6695 (se 0.2618, z vs P2 +2.35), DF2/DF4 E_obs -1.797/-2.258, H +2.672 +- 0.547 (z +4.88)
+
+=== K2  CFG939's V_esc,b-based classification reproduced from its own N5 code (exec'd from its text)
+  [PASS] K2 (A1) CFG939 N5 rows (v_in = V_esc,b, T_c, f_crit, g_N/a0) for 6 TDGs + DF2/DF4 == cfg939_results.json (rel <= 1e-9); derived sides == JSON in all 16 cells; TDGs and DF2/DF4 BELOW at v_rel 100; DF2/DF4 BELOW at 50: max rel diff 0.0e+00; cells passing 16/16; TDGs at v_rel 50: ['MIXED'] (reported, A1); V_esc,b (canonical) NGC5291N 52.9, NGC5291S 43.6, NGC5291SW 35.7, NGC7252E 27.3, NGC7252NW 30.3, VCC2062 21.5, NGC1052-DF2 22.9, NGC1052-DF4 22.1 km/s
+
+=== K3  engine: point-mass identity with CFG939, N4 t=0+ unbound fractions, Plummer law IC
+  [PASS] K3a point-mass mode == CFG939's law_ic / sph_accel / sph_energy / shell_energies (rel <= 1e-12): max rel 2.2e-16
+  [PASS] K3b point-mass t=0+ unbound fractions (co-moving E_q > 0) == CFG939 N4 for f 0.5-0.9: f 0.5: 0.000 (CFG939 0.000); f 0.6: 0.000 (CFG939 0.000); f 0.7: 0.942 (CFG939 0.942); f 0.8: 1.000 (CFG939 1.000); f 0.9: 1.000 (CFG939 1.000)
+  [PASS] K3c Plummer law IC: |force| <= 1e-10 g_N (each A of the grid; M_b 1 and 2): max 4.9e-13
+  [PASS] K4a A-grid covers every admitted Coma UDG's A = R_e/r_M on both footings (extended mechanically if not): A range 5.15-9.13; grid [5.0, 7.0, 9.5]; per footing canonical 5.15-8.31; alt 5.66-9.13
+  [PASS] K4b L23's Coma beta-model constants == the lane's; E_N,i = -ln nu_e(g_bar/a0) == 2 ln(sigma_N/sigma_law) (<= 1e-12): constants equal; max |dE_N| 8.9e-16; g_host(1 Mpc) = 8.806e-11 m/s^2 (0.941 a0 canonical)
+
+=== K3e  f = 0 control (A = 5, t = 200): static law state
+  [PASS] K3e f = 0 control keeps |E(t)| <= 0.01 and |dE/E| <= 1e-6 (short K-mode run): E(0) +0.0003, E range after T_q [+0.0003, +0.0003], dE/E 2.7e-14
+
+  K-stage ALL PASS
+
+done [4 s, peak RSS 463 MB], exit 0.  kappa = 1/2 FITTED; footings never pooled; not theory closed.

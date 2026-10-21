@@ -1,0 +1,102 @@
+{
+ "lane": "CFG941",
+ "criteria": "0b41bd0cf",
+ "amendments": [
+  "A1 7c395c866 pre-result (BTFR point y = 1e-14)"
+ ],
+ "mutate": true,
+ "stage": "MAIN",
+ "checks": {
+  "K1_NGC3198_law_CFG938_reduction": {
+   "pass": true,
+   "detail": "max |g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (CFG938: 2.2e-16; line 1e-6)"
+  },
+  "K2_FRW_dust_w0": {
+   "pass": true,
+   "detail": "rho = m/a(t)**3, p = 0, w = 0 exactly; T^mu_nu diagonal and isotropic"
+  },
+  "K3_CFG938_S6_exponent": {
+   "pass": true,
+   "detail": "mu = 0.4509, n = 0.60954 (CFG938 json 0.60954; line 0.6096 +/- 1e-3)"
+  },
+  "K4_Lagrangian_growth_route": {
+   "pass": true,
+   "detail": "homogeneous in t: True; (c2 = 1, no chi-bar gradient) n = 0.60954472 vs K3 0.60954472; (c2 = 0) n = 1.000000000000"
+  },
+  "K5_CFG938_slip_reproduced": {
+   "pass": true,
+   "detail": "worst s_847 = 1.5398e-05 (CFG938 1.5398e-5), worst s_grad = 5.792e-06 (CFG938 5.79e-6)"
+  },
+  "K6_R1_equals_CFG938_M3": {
+   "pass": true,
+   "detail": "R1 law dev canonical 1.6445 (CFG938 M3 1.6445), alt 1.8844 (1.8844)"
+  },
+  "M1_remove_repair_returns_0p61": {
+   "pass": true,
+   "detail": "R1_c2_to_1 n = 0.60954, R2_ft_to_1 n = 0.60954, R3theta_s_to_1 n = 0.60954, R3ell_ell_to_inf n = 0.60954 (K3 0.60954)"
+  },
+  "M2_double_counting_breaks_law": {
+   "pass": true,
+   "detail": "canonical: M2a 6.401, M2b 1.743; alt: M2a 7.163, M2b 1.856"
+  },
+  "M3_boost_tooth": {
+   "pass": true,
+   "detail": "full action (chi-bar gradient on) n = 0.69433; dropped n = 0.60954; |diff| = 0.0848 (> 1e-3)"
+  },
+  "M4_tether_off_universal_free_fall": {
+   "pass": true,
+   "detail": "max |Delta a|/g_host with the tether off = 3.5e-16"
+  }
+ },
+ "tests": {},
+ "K1": {
+  "canonical": {
+   "max_rel_vs_law": 2.220446049250313e-16,
+   "unsolved": 0
+  },
+  "alt": {
+   "max_rel_vs_law": 2.220446049250313e-16,
+   "unsolved": 0
+  }
+ },
+ "K6": {
+  "canonical": {
+   "max_rel_vs_law": 1.6445195768435843,
+   "unsolved": 0,
+   "cfg938_M3": 1.6445195768435839
+  },
+  "alt": {
+   "max_rel_vs_law": 1.8844347042715879,
+   "unsolved": 0,
+   "cfg938_M3": 1.8844347042715879
+  }
+ },
+ "K_all": true,
+ "MUTATE": {
+  "M1": {
+   "R1_c2_to_1": 0.6095447174560981,
+   "R2_ft_to_1": 0.6095439830396154,
+   "R3theta_s_to_1": 0.6095447174560981,
+   "R3ell_ell_to_inf": 0.6095447174560981
+  },
+  "M2": {
+   "canonical": {
+    "M2a_dev": 6.401016908569919,
+    "M2a_unsolved": 0,
+    "M2b_dev": 1.7430896885368976
+   },
+   "alt": {
+    "M2a_dev": 7.162513881697828,
+    "M2a_unsolved": 0,
+    "M2b_dev": 1.8561674046741938
+   }
+  },
+  "M3": {
+   "n_boost": 0.6943301383991246,
+   "n_noboost": 0.6095447174560981
+  },
+  "M4_max": 3.4829895568484674e-16
+ },
+ "runtime_s": 1.12,
+ "peak_rss_GB": 0.213
+}

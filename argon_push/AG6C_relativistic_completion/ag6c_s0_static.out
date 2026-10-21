@@ -1,0 +1,26 @@
+AG6C S0  static weak-field match of C1 (dielectric cold dust) to PAPER49
+
+S0.1  L_dark(E) = (a0^2/K)[e - ln(1+e)] is the Legendre dual of W_full
+  K dW_full/du - a0 u/(a0-u) = 0
+  D(E) = K dL/dE = E*a0/(E + a0);   D - a0E/(a0+E) = 0
+  (E.D - L) - W_full(D) = 0
+  L49 tether |grad Phi| = u + R(u) at u = D(E), minus E = 0
+  [PASS] S0.1 Legendre identity: D = a0E/(a0+E), E.D - L = W_full(D), and L49's u + R(u) inverts D(E) exactly
+
+S0.2  field equations for an ARBITRARY non-spherical potential (gamma = 0)
+  max |L49 P-eq residual| / |grad Phi| on C1's field at 5 generic points (40-digit, exact rational inputs): 1.205e-172
+  max |rho_b(L49) - rho_b(C1)| at the same points: 0.000e+00
+  [PASS] S0.2 EL map at gamma = 0 (any geometry): P-eq residual 1.2e-172, divergence-eq difference 0.0e+00 (40-digit arithmetic, rational inputs)
+
+S0.3  stiffness: EL of (gamma/2)(div P)^2 [C1: n=1 polytrope]  vs  EL of (gamma/2)|grad P|^2 [L49]
+  radial P = q(r) r_hat:  lap P - grad div P = [0, 0, 0]
+  non-radial test P = (y e^-r^2, 0, 0): (lap - grad div)P at (0.3,0.4,0.1) = ['-2.2576', '0.3146', '-0.0370'] (= -curl curl P)
+  [PASS] S0.3 radial stiffness identity: identical for radial P; non-radial P differs by gamma curl curl P (C1 does not carry L49's curl stiffness)
+
+S0.5  charge-ratio tolerance: q^2 = 1 + delta  =>  g_N = q Efun(q w) - w,  w = cold field, g = g_N + w
+  y = 1e-04: nu_law 100.5012, nu(delta=0) 100.5012; 1% tolerance: delta <= +1.95e-04, delta >= -1.95e-04
+  y = 6e-04: nu_law 41.3279, nu(delta=0) 41.3279; 1% tolerance: delta <= +4.81e-04, delta >= -4.81e-04
+  [PASS] S0.5 BPS (delta = 0) reproduces the law: nu(delta=0) = nu_law to 1e-10 at y = 1e-4 and 6e-4
+  sign rule: delta < 0 gives R_delta(w) = q^2 w/(1 - q w) - w < 0 for small w (net self-attraction): Jeans-class, see ag6c_gate_iv H4 MUTATE (c)
+
+FAILS: none

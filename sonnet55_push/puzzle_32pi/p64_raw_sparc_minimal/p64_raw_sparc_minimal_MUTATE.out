@@ -1,0 +1,46 @@
+p64  raw SPARC, fewest assumptions  [MUTATE: M1 gas x0.7 (A); M2 D x1.10 (B); M3 omega labels swapped (B)]
+kernel: simple mu, a0_i = g_obs (g_obs - g_bar)/g_bar (g_obs > g_bar); kappa = 1/2 FITTED; not theory closed
+
+(A) within-galaxy gas-vs-star contrast: 11 galaxies (Q <= 2, i >= 30 deg, >= 3 valid points of each class at the fiducial)
+    median Delta_g = median log a0(gas) - median log a0(stars) [dex], galaxy bootstrap 2000 (seed 64); rows Upsilon_d, cols f_gas
+     Ud   f_gas 0.70           f_gas 0.85           f_gas 1.00           f_gas 1.15         
+    0.3  -0.308+-0.063 (n 11)  -0.390+-0.069 (n 11)  -0.454+-0.074 (n 11)  -0.509+-0.079 (n 11)
+    0.4  -0.205+-0.059 (n 11)  -0.283+-0.066 (n 11)  -0.349+-0.071 (n 11)  -0.403+-0.076 (n 11)
+    0.5  -0.135+-0.061 (n 11)  -0.202+-0.065 (n 11)  -0.271+-0.072 (n 11)  -0.324+-0.077 (n 11)
+    0.6  -0.071+-0.055 (n 11)  -0.135+-0.058 (n 11)  -0.193+-0.063 (n 11)  -0.250+-0.070 (n 11)
+    0.7  -0.011+-0.059 (n 11)  -0.080+-0.062 (n 11)  -0.133+-0.066 (n 11)  -0.185+-0.071 (n 11)
+    0.8  +0.034+-0.068 (n 11)  -0.025+-0.070 (n 11)  -0.085+-0.075 (n 11)  -0.131+-0.079 (n 11)
+    verdict (A): ABSORBED
+    reading rule: CONTRAST is consistent with (1) cold energy tracking stars more than cold gas, or (2) a gas-mass-scale error / uncorrected pressure in gas-rich outskirts; never a cold-energy detection
+    RAR-kernel cross-check (frozen; fiducial cell): median Delta_g -0.406 +- 0.083 dex (simple mu -0.271): the contrast is kernel-robust
+    D and i by +-1 sigma move Delta_g by a median 0.017 / 0.011 dex (the levers differ; report)
+
+(B) kappa from the TRGB/Cepheid/SN gas-dominated galaxies (CFG449 S0 rule: f_D in {2,3,5}, Q <= 2, >= 3 gas points)
+    S0: 10 galaxies: D631-7, DDO154, DDO168, ESO444-G084, NGC2915, NGC3109, NGC3741, UGC04483, UGCA442, UGCA444
+[PASS] K1 CFG442 per-galaxy nu_mono single fits reproduced (code identity): 10 matched, max |dev| 0.0000 dex
+    per galaxy (simple mu, Upsilon_d 0.5): log a0 = median over gas points; sigma = e_D (+) e_i (+) e_V
+      D631-7       n  11  log a0 -10.067 +- 0.073  (D 0.022, i 0.060, V 0.035)
+      DDO154       n   9  log a0 -10.138 +- 0.069  (D 0.048, i 0.049, V 0.009)
+      DDO168       n  10  log a0 -10.285 +- 0.130  (D 0.053, i 0.114, V 0.034)
+      ESO444-G084  n   5  log a0 -9.627 +- 0.346  (D 0.096, i 0.327, V 0.057)
+      NGC2915      n   4  log a0 -9.584 +- 0.122  (D 0.045, i 0.086, V 0.075)
+      NGC3109      n  12  log a0 -9.794 +- 0.083  (D 0.049, i 0.059, V 0.031)
+      NGC3741      n  14  log a0 -9.902 +- 0.075  (D 0.049, i 0.047, V 0.032)
+      UGC04483     n   4  log a0 -10.515 +- 0.166  (D 0.102, i 0.072, V 0.110)
+      UGCA442      n   7  log a0 -10.081 +- 0.136  (D 0.050, i 0.119, V 0.043)
+      UGCA444      n  32  log a0 -10.329 +- 0.087  (D 0.052, i 0.030, V 0.063)
+    E4 intrinsic scatter tau = 0.231 dex, Delta(-2lnL) = 1 interval [0.172, 0.313] -> tau NOT consistent with 0
+    omega_Lambda: Planck 0.685 x 0.674^2 = 0.3302, CFG886 BAO+BBN (1-Om) h^2 = 0.3112  (rho_L = omega 3 (100 km/s/Mpc)^2/(8 pi G); no H0)
+    E1 pooled weighted fit         log a0 -10.0455 +- 0.0707  [Planck] kappa 0.467 (inside 1 sigma)  [CFG886] kappa 0.481 (inside 1 sigma)
+    E2 median over galaxies        log a0 -10.0740 +- 0.1255  [Planck] kappa 0.437 (inside 1 sigma)  [CFG886] kappa 0.450 (inside 1 sigma)
+    E3 mean over galaxies          log a0 -10.0323 +- 0.0924  [Planck] kappa 0.481 (inside 1 sigma)  [CFG886] kappa 0.496 (inside 1 sigma)
+    E4 ML with intrinsic scatter   log a0 -10.0492 +- 0.0850  [Planck] kappa 0.463 (inside 1 sigma)  [CFG886] kappa 0.477 (inside 1 sigma)
+    RAR-kernel cross-check (frozen): E2 log a0 -10.0722 -> [Planck] kappa 0.439, [CFG886] kappa 0.452
+    systematics: estimator spread 0.042 dex; ladder zero point 0.01 / 0.017 dex in distance moves E2 by -0.0225 / -0.0383 dex
+
+(C) one flux scale for the TRGB dwarfs: UNTESTED (Amendment 1: the SPARC table on disk has no coordinates and downloads are forbidden; the frozen pre-freeze expectation was already at most 2 of 10 in alpha.100's sky)
+[PASS] M1 gas x0.7 moves the fiducial median Delta_g by > 0.05 dex: +0.137 dex
+[FAIL] M2 D x1.10 moves E2 log a0 into [-0.30, -0.15] dex (as frozen): -0.092 dex (Amendment 2 lever arithmetic: -0.083 to -0.124)
+[PASS] M3 omega labels swapped: the two kappa columns exchange (after removing M2's shift): True
+
+checks: 3/4 pass

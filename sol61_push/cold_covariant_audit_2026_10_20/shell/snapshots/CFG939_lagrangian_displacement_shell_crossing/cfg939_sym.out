@@ -1,0 +1,49 @@
+CFG939 symbolic checks (sympy): K1, K1b, K2, K8 and the linear dispersion relations.
+Criteria: FROZEN_CRITERIA.md (3524438b2) + AMENDMENT_A1_pre_result.md (7dace0a16).
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg939_sym.py   -> cfg939_sym.out, cfg939_sym_results.json (exit 0 iff all PASS)
+kappa = 1/2 FITTED; footings never pooled (nothing here depends on the footing); not theory closed.
+
+K1  3-D linear limit: x = q + eps*psi(q,t); rho = rhobar/det(I + eps dpsi/dq); P = -rhobar*eps*psi
+  K1a delta = -div_q Psi + O(eps^2): PASS  
+  K1b div_x P - (rho - rhobar) = O(eps^2): PASS  
+  K1c d_t P + j = O(eps^2)   (sign: P = -rhobar*Psi): PASS  
+  K1d tooth: P = +rhobar*Psi violates div P = rho - rhobar: PASS  residual 2*epsilon*rhobar*(Derivative(psi1(q1, q2, q3, t), q1) + Derivative(psi2(q1, q2, q3, t), q2) + Derivative(psi3(q1, q2, q3, t), q3))
+
+K1b exact single-stream forms (inverse map Q(x,t); continuity d_t Q|_x = -v d_x Q)
+  K1b-1D P = rhobar (q - x): d_x P = rho - rhobar EXACT: PASS  
+  K1b-1D d_t P = -rho v EXACT: PASS  
+  K1b-sph P_r = rhobar (q^3 - r^3)/(3 r^2): Gauss EXACT: PASS  
+  K1b-sph continuity EXACT: PASS  
+  K1b-sph series in Psi = r - q: PASS  P_r = -Psi**3*rhobar/(3*r**2) + Psi**2*rhobar/r - Psi*rhobar
+
+K2  1-D reduced Lagrangian per unit q (Phi eliminated; cold self-gravity cancelled by the critical quadratic, CFG888):
+    L = rhobar*Psidot^2/2 - rhobar*Phi_b(q+Psi) - J*W(K*rhobar*Psi) - (gamma*rhobar^2/2)*(J-1)^2/J,  J = 1 + Psi'   (Psi > 0 branch)
+  K2a EL acceleration = -Phi_b' - R(K|P|) sgn(Psi) + gamma*rhobar*J^-3*J': PASS  
+  K2b stiffness: gamma*rhobar*J^-3*J' == -gamma d_x rho (per unit mass): PASS  
+  K2c tether off (W -> -u^2/2K): +K*rhobar*Psi = planar Newtonian self-gravity: PASS  
+  K2d kinetic term: (1/2) rhobar Psidot^2 == Pdot^2/(2 rhobar) at P = -rhobar Psi (inertia I = 1/rhobar FORCED): PASS  
+  K2e stiffness energy: (gamma rhobar^2/2)(1-J)^2/J dq == (gamma/2)(rho-rhobar)^2 dx: PASS  
+
+Linear dispersion (1-D, static background, plane wave Psi ~ exp(i(kq - wt))):
+  D1 Newtonian+stiffness: omega^2 = gamma rhobar k^2 - K rhobar -> k_J = sqrt(2)/L*, lambda_J = sqrt(2) pi L*: PASS  k_J = sqrt(2)/L_star
+  D2 canonical tether (ID): R(u) = u^2/(a0-u) is O(u^2) -> no linear restoring term; no cold self-gravity -> omega^2 = gamma rhobar k^2 (stiffness sound speed c^2 = 2 pi G L*^2 rhobar; locally 2 pi G L*^2 rho_c)
+
+K8  closed forms (units G = 1):
+  K8a dPi/dr = -R(m/r^2) (closed form of the tether potential): PASS  
+  K8b Pi quadrature m=0.3 r=2.0 a0=1.0: PASS  rel 2.0e-31
+  K8b Pi quadrature m=5.0 r=3.0 a0=1.0: PASS  rel 9.5e-17
+  K8b Pi quadrature m=0.01 r=0.2 a0=1.3: PASS  rel 1.6e-16
+  K8c f_crit(x) = 1 - (1-x)(artanh sqrt x - sqrt x)/x^(3/2): PASS  
+  K8d deep limit f_crit -> 2/3: PASS  limit 2/3
+  K8e f_crit closed form vs quadrature root at x=0.0001: PASS  f_crit 0.666680
+  K8e f_crit closed form vs quadrature root at x=0.1: PASS  f_crit 0.680605
+  K8e f_crit closed form vs quadrature root at x=0.5: PASS  f_crit 0.753550
+  K8e f_crit closed form vs quadrature root at x=0.9: PASS  f_crit 0.898132
+  f_crit(x): x=1e-06: 0.6667, x=0.001: 0.6668, x=0.01: 0.6680, x=0.05: 0.6735, x=0.1: 0.6806, x=0.2: 0.6959, x=0.3: 0.7129, x=0.5: 0.7535, x=0.7: 0.8088, x=0.9: 0.8981, x=0.99: 0.9797
+  K8f dG/ds = s^(-5/2) What(s): PASS  
+  K8g G(s) series starts (2/9) s^(3/2) + (1/10) s^(5/2): PASS  2*s**(7/2)/35 + s**(5/2)/10 + 2*s**(3/2)/9
+  K8h (A1) flat frozen potential of the deep law with edge Re: mu = -(2/3) M_b/R_e: PASS  mu = -2*M_b/(3*R_e)
+  K8i co-moving deep binding -M_b/r + Pi_q = -(2/3) M_b/r: PASS  
+  K8j deep-limit oscillation omega^2 = 2 G M_b / r^3 (point mass, single stream): PASS  2
+
+SYM: 30/30 PASS; peak RSS 75 MB.  kappa = 1/2 FITTED; not theory closed.

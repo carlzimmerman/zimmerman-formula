@@ -1,0 +1,33 @@
+CFG940  faint gas-rich rotators (McQuinn+2022): ABOVE / ON / BELOW the law at g_bar < 1e-12   [mode shuffle]
+  estimator A = total M_bary at R_max (primary, upper bound on spherical g_bar); B = exponential-disc enclosed fractions (bracket); kappa = 1/2 FITTED
+
+=== K-stage
+  [PASS] K0 sha256 = PROVENANCE; 25 rows each, same names/order; 7 AGC (SHIELD) rows first; all needed fields parse: t1 476bc7c70f87.. t2 46dc6a2df7b4..; rows 25/25; order match True
+  [PASS] K1 log M_dyn = log10(V_cor^2 R_max / G) reproduces Table 2 to rounding (all 25): V_cor: 25/25 within tol (max |diff| 0.121); V_rot instead: 17/25
+  [PASS] K2 helium: some f_He in {1.00,1.33,1.36,1.40} reproduces logMbary for all 25 to <= 0.015 dex: f 1.00: max 0.120 rms 0.0886; f 1.33: max 0.018 rms 0.0049; f 1.36: max 0.013 rms 0.0076; f 1.40: max 0.023 rms 0.0159  -> best passing f_He = 1.36
+  [PASS] K3 V_rot = V_PV/(2 sin i) to <= 1.0 km/s and recomputed R_max = (D_PV/2) x Dist to <= 0.051 kpc + 0.5 arcsec x Dist (A1) (all 25): max |dV| 0.92 km/s; max |dR| 0.053 kpc; max |dR|/tol_R 0.84
+  [DECISION] K4 inclination error inside e_Vrot/e_Vcor: rms residual with i-term 0.33 km/s vs without 2.88 -> INCLUDED (not added again)
+  [PASS] K5 CFG828 reproduced through this code path (N_in, mean D, se D, SPARC median, out-of-range mean; canonical+alt nu_e): max |diff| 0.0e+00; canonical: N_in 8, D +0.051+-0.073 dex, dSph out-of-range mean +0.438 (alt +0.398), SPARC median +0.031
+  [PASS] K6 CFG919 DW class mean reproduced via CFG880 input slice exec'd read-only (E, se; both footings): max |diff| 0.0e+00; 83 dwarfs; canonical +0.372 dex, alt +0.332 dex
+  [PASS] K7 SPARC loader 2696 points / 147 galaxies: 2696 points, 147 galaxies
+  K-stage ALL PASS  [0 s, 91 MB]
+
+  stellar size relation (SPARC Table 1, M* < 1e9, N 66): log10 R_d = -2.945 + 0.360 log10 M*  (rms 0.242 dex)
+
+=== MUTATE shuffle (rotator/dSph labels permuted within each eligible cell; 1000 draws, rng 9401)
+  [A|canonical|W1] not run: data gate (N < 5)
+  [A|canonical|WS] S1 real: D +0.438 +- 0.122; shuffled median D +0.012 (bar 0.031), |z|>=3 1.4% (bar 5%), |z|>=2 5.0% -> PASS
+           S2 on P0: D(P0) +0.134 +- 0.122; shuffled median -0.002 -> not required (D(P0) < 2 sD)
+  [A|alt|W1] not run: data gate (N < 5)
+  [A|alt|WS] S1 real: D +0.438 +- 0.122; shuffled median D +0.012 (bar 0.031), |z|>=3 1.4% (bar 5%), |z|>=2 5.0% -> PASS
+           S2 on P0: D(P0) +0.098 +- 0.122; shuffled median -0.001 -> not required (D(P0) < 2 sD)
+  [B|canonical|W1] not run: data gate (N < 5)
+  [B|canonical|WS] S1 real: D +0.318 +- 0.108; shuffled median D +0.008 (bar 0.027), |z|>=3 0.0% (bar 5%), |z|>=2 2.6% -> PASS
+           S2 on P0: D(P0) +0.234 +- 0.108; shuffled median +0.003 -> required <= 0.117: PASS
+  [B|alt|W1] not run: data gate (N < 5)
+  [B|alt|WS] S1 real: D +0.318 +- 0.108; shuffled median D +0.008 (bar 0.027), |z|>=3 0.0% (bar 5%), |z|>=2 2.6% -> PASS
+           S2 on P0: D(P0) +0.196 +- 0.108; shuffled median +0.004 -> not required (D(P0) < 2 sD)
+
+  MUTATE shuffle: all required controls met
+
+  done [1 s, peak RSS 92 MB], exit 0.  kappa = 1/2 FITTED; footings never pooled; not theory closed.

@@ -1,0 +1,255 @@
+# CFG942: ALMA scoring readiness for U4_27928 (public 2026-11-06) and GS4_24110 (public 2026-11-28)
+
+The criteria were committed alone, first (556c36582).
+- **Kind:** readiness only. No new physics, no data download, no archive query.
+- **Settings:** κ = ½ FITTED; the two footings are never pooled; not theory closed. Nothing here says the data favour the framework.
+- **Disclosure:** not blind. The plans, the AG5 scorer, CFG570/572/573 and the canonical files were read first.
+
+## Verdict
+- **U4_27928: READY.** Its harness runs the frozen plan in `CFG806_u4_27928_scoring/`:
+  - R1 hashes, R2 reproduction, R3 transcription: all pass;
+  - every required MOCK class is returned, C1 passes and MUTATE bites.
+- **GS4_24110: READY**, for the frozen plan in `CFG809_gs4_24110_ci21_scoring/`, on the same terms.
+- **The U4 criteria ARE committed and frozen.** Commit 1bf70683b (2026-10-15 20:28) holds that one file alone, made before any download, and its bytes equal the hash quoted in its ID notes (bc56aa71…). Two loose ends:
+  - its header still reads "DRAFT, not yet committed" (stale; A-X5);
+  - the lane has **no assigned ID**, so cite it by its directory name (A-X4).
+- **READY covers the harness only. Three things outside it can still decide release day:**
+  1. **Two frozen plans per target.** CFG806/CFG809 (10-15) and AG5's `FROZEN_SCORING.md` (7ea94d2ae, 10-20) disagree on the statistic, the detection threshold, the V_c method, the [CI] coefficient and the kill line (A-X1, A-X2). The owner must say which one governs.
+  2. **Sensitivity.** CFG570's archive sensitivities predict a total-flux S/N well below 5 at native resolution for an extended disc carrying the required gas. Neither plan has a taper branch (A-U12, A-G14), so the likeliest outcome on both dates is "G1 FAIL, upper limit", unless the archive products are tapered or the data beat the metadata.
+  3. **Power under the plans as frozen:**
+     - GS4: the RIVAL SIDE cannot be reached for any gas mass;
+     - GS4: the framework's verdict is NOT ROBUST for every CI21 value, because CFG572's public CO43 and dust routes already disagree;
+     - U4: the plan separates the models only for V_c ≈ 220–260 km/s.
+
+## Hash verification (K1 in every run; all PASS)
+| file | sha256 (prefix) | equals freezing commit |
+|---|---|---|
+| CFG571 `cfg571_prereg_results.json` | be27457d… = `PREDICTIONS_HASH.txt` | 259f7825c |
+| CFG571 `FROZEN_CRITERIA.md` / `cfg571_prereg.py` / `README.md` / `PREDICTIONS_HASH.txt` | 0f7646c8… / d721770d… / 3fc38b1e… / 639431d5… | 5f68a68c3 / 259f7825c ×3 |
+| `CFG44_fluid_target/Bcommon.py` (ν_mono) | 7cfd9c69… | 259f7825c (last changed 513ee4b28, before the seal) |
+| U4 plan `CFG806_u4_27928_scoring/FROZEN_CRITERIA.md` | bc56aa71… = value in both ID notes | 1bf70683b |
+| U4 ID notes 10-15 / 10-15b | 5eb91102… / 3027f752… | 79321a577 / 38c7bc24d |
+| GS4 plan `CFG809_gs4_24110_ci21_scoring/FROZEN_CRITERIA.md` | 8b439f19… | 966d50a87 |
+| CFG572 `cfg572_gas_results.json` (public routes re-quoted) | b46276fb… | 12779c1e5 |
+| CFG775 `SEALED_BH_BRANCH.json` / CFG778 `SEALED_EVENT_HORIZON.json` | 3d236378… / b9f3e827… (= their READMEs) | 8a7634027 / aac6ddd23 |
+| THEORY_CANONICAL_2026-10-14.md | 30aa143e… (= its .sha256) | b7356ac57 |
+| AG5 `FROZEN_SCORING.md` / `score_alma.py` (recorded only, not used) | b7f489bf… / ca6e0a2e… | 7ea94d2ae / c4bfd82fd |
+
+**Seal reproduction and transcription:**
+- CFG571's own functions reproduce all 56 U4 and 16 GS4 sealed entries to 0.0 dex, with the FLOOR flags identical. The functions are executed from the text above the script's `# ---- controls ----` line; a plain `import` would rewrite the seal file and exit (A-X6).
+- The plan tables match the seal: CFG806 §2 to 0.0048 dex across 9 rows, CFG809 §2 to 0.0044 dex across 4 rows.
+- K5: no frozen file changed in any run.
+
+## Inventory
+### U4_27928
+**Prediction.** CFG571, 259f7825c, be27457d…. It is conditional on the CO V_c at 2R_e = 8.271 kpc:
+- below 200 km/s every model is FLOOR;
+- at 225 km/s the framework needs log M_gas 9.19–9.95 and both rivals are FLOOR (CFG806 §2 table; the table governs over the README's "9.2–9.8").
+
+**Rule.** CFG806-dir criteria (1bf70683b):
+- G1: S/N ≥ 5 in a ≥ 2σ moment-0 mask, centroid within 0.5″, z within 0.002 of 1.4193;
+- 3.1: thin-disc arctan fit; inclination primary from the CO moment-0 q (q0 0.2), branch from KMOS3D q 0.556; pressure P-B / P0;
+- G2: emission must reach 6 kpc;
+- 3.3: α_CO 4.36 / 1.0 with r21 0.77;
+- §4: Δ_m on gas mass, σ_tot, TESTS NOTHING / PARTIAL / FLOOR;
+- controls C1–C4 and MUTATE.
+
+**Products expected.** ALMA 2024.1.00100.L (CONDOR), CO(2-1) in Band 3 at 95.290 GHz, 0.066″, 22680 s, 0.4393 mJy/beam at 10 km/s (CFG570 metadata, not re-verified):
+- the archive's imaged cube, a pipeline `*.cube.I.pbcor.fits` of the spw covering 95.29 GHz;
+- if no cube is provided, CASA tclean (a departure).
+
+The record holds no MOUS UID; CFG570 kept none.
+
+**Code.**
+- `cfg942_u4.py` (this lane): FITS cube → G1/G2 → V_c branches → gas → CFG806 §4 classes. It also scores a measured-quantities JSON.
+- AG5 `score_alma.py` scores AG5's own plan, not CFG806's.
+
+**Missing.** The data, the MOUS UID, and the owner's choice between the plans.
+
+### GS4_24110
+**Prediction.** CFG571, required log M_gas inside R_e at V_c 206:
+
+| | M★ 10.89, R_g = R_d / 1.5 R_d | M★ 10.76 |
+|---|---|---|
+| F-DESI, canon | 9.82 / 10.09 | 10.43 / 10.69 |
+| F-flat, canon | 9.46 / 9.73 | 10.36 / 10.63 |
+| F-DESI, alt | 9.11 / 9.38 | 10.33 / 10.60 |
+| F-flat, alt | FLOOR | 10.24 / 10.51 |
+
+R-H and L-fb are FLOOR in every branch.
+
+**Rule.** CFG809 criteria (966d50a87):
+- G1: [CI](2-1) S/N ≥ 5, ±300 km/s window, ring noise;
+- 3.1: continuum; 3.2: gas size and G3;
+- 3.3: CI21 mass (4.566e-4, T_ex 25 K, X_CI 1.9e-5 / 3.0e-5), with CFG572's CO43, CI10 and dust routes re-quoted;
+- 3.4: G4 and a [CI] V_c branch;
+- §4: Δ_v, the FLOOR rule, ROBUST / NOT ROBUST;
+- controls C1–C5 and MUTATE.
+
+**Products expected.** ALMA 2025.1.01377.L (HIDING in the HUDF), [CI](2-1) in Band 6 at 270.006 GHz, 0.089″, 13941 s, 0.5183 mJy/beam at 10 km/s:
+- the archive's imaged cube of the spw covering 270.0 GHz (`*.cube.I.pbcor.fits`);
+- the continuum image (pipeline `*.cont.I.tt0.pbcor.fits` or `*.mfs.I.pbcor.fits`);
+- if missing, tclean (a departure).
+
+No MOUS UID is in the record. The plan is a large-programme mosaic, so the noise may vary across the field.
+
+**Code.** `cfg942_gs4.py` (this lane). AG5 scores AG5's plan.
+
+**Missing.** The data, the MOUS UID, and the plan choice.
+
+The frozen predictions are CFG571's four models as sealed. The CFG689 native a0(z) band folded into THEORY_CANONICAL_2026-10-18 does not change them, and no score uses it: at z 1.42 and 2.0 that band brackets both F-flat (1.0) and F-DESI (0.94 / 0.87), and the rival a0 ∝ H(z) lies outside it.
+
+## Mock dry-runs
+All inputs are MOCK. The harness generates them (seeded), they are read back from FITS like real data, and they are never committed. Their noise is chosen for clean detections and is NOT the archive sensitivity.
+
+| run | truth | class returned | required |
+|---|---|---|---|
+| U4-a | V_c(P-B) 250, gas = F-DESI's need (10.42) | G1 and G2 PASS; V_c 250.2 recovered; canonical primary FRAMEWORK SIDE (alt footing FRAMEWORK SIDE) | PASS |
+| U4-b | V_c 250, gas = R-H's need (9.50) | canonical primary RIVAL SIDE (alt footing NO SIDE, as expected: R-H is FLOOR there) | PASS |
+| U4-c | V_c(P-B) 165 | TESTS NOTHING in all four (inclination × pressure) branches | PASS |
+| U4-d | zero line flux | G1 FAIL, upper limit, no kinematic test (the literal translated-mask S/N is 9.5 = a false pass; see A-U13) | PASS |
+| U4 MUTATE | U4-a, +2000 km/s | G1 FAIL, exit 1 | PASS |
+| U4 C1 | injections at 200 and 250 km/s | V_c 200.2 / 250.3, flux 0.97–0.98 | PASS |
+| U4 MOCK-JSON | PARTIAL (200 ± 10); G2 fail (4.2 kpc); FLOOR at 212 km/s | PARTIAL; RADIUS NOT REACHED; IN TENSION (FLOOR) | PASS |
+| GS4-a | gas = F-DESI's need (9.82) | G1 PASS; F-DESI and F-flat consistent; R-H and L-fb in tension (FLOOR) → FRAMEWORK SIDE; G3 PASS; G4 PASS; [CI] V_c 205.8 | PASS |
+| GS4-b | zero gas | G1 FAIL (literal ring S/N 10.6 = a false pass); every model "consistent (one-sided)" → NO SIDE | PASS |
+| GS4-e | gas 10^11.6 | F-DESI in tension (+0.90 ± 0.18) | PASS |
+| GS4 MUTATE | GS4-a, +2000 km/s | −25.9σ in the true mask, exit 1 | PASS |
+| GS4 C1 | 9.82 at FWHM 0.8″, 10″ away | flux 0.997, size 1.000 | PASS |
+| GS4 ROBUST scan | CI21 8.0–11.8 | both ROBUST and NOT ROBUST returned | PASS |
+
+**Failed controls, kept:**
+- **U4-b C2:** the rms is 1.23× the analytic noise with 33 independent apertures, a ~2σ statistical excursion (A-U17).
+- **GS4-e C2:** the 10^11.6 mask is about 4″ across, so the translated apertures hit the source and the box edge.
+
+Both runs are NOT DIAGNOSTIC as frozen; their required classes still returned. Memory: peak resident size stayed under 1 GB in every run. It counts freed pages that macOS keeps resident; the true unique size peaked at 176 MB.
+
+## Information outputs
+**Power, U4** (`cfg942_u4_selftest.out` R6; σ_rms 0.05 dex, V_c ± 5 km/s; canonical, P-B, R_g = R_d):
+- gas equal to F-DESI's need reads FRAMEWORK SIDE at 220–250 km/s and NO SIDE from 260 km/s up;
+- gas equal to R-H's need reads RIVAL SIDE only at 250–260 km/s.
+
+The KMOS3D integrated Hα σ of 224.5 km/s hints that V_c may lie above CFG571's 300 km/s grid. The harness computes any V_c with the frozen functions.
+
+**Power, GS4** (R6):
+- detected gas reads FRAMEWORK SIDE for log M_gas ≤ 10.8 (R-H in tension through the FLOOR rule), and NO SIDE at ≥ 11.2;
+- upper limits read NO SIDE;
+- the RIVAL SIDE is never reached;
+- even a perfect zero-gas limit leaves F-DESI consistent, because the 0.2 dex stellar systematic dominates σ_Δv.
+
+**Sensitivity** (R7; extended exponential disc, aperture noise from the archive line sensitivity):
+
+| case | U4 log M_gas (CO, 1″ aperture) | S/N | GS4 log M_gas ([CI], R_e aperture) | S/N |
+|---|---|---|---|---|
+| F-DESI need | 10.42–10.86 | 0.2–0.5 | 9.82 / 10.43 | 0.04 / 0.15 |
+| all flux in one beam | (same) | 5–14 | (same) | 1.2 / 4.9 |
+| CO43 route, compact 0.3″ | — | — | 10.95 | 2.9 |
+
+## Release-day checklist
+Run everything from `campaign_fresh_gravity/CFG942_alma_scoring_readiness/`.
+
+**Environment:** `OMP_NUM_THREADS=1 nice -n 10`, one process at a time.
+
+**U4_27928 (2026-11-06):**
+1. `python3 -B cfg942_u4.py --selftest`: all K1 checks must PASS. A mismatch stops the run (exit 2).
+2. **Owner's yes:** the archive query and the download need the owner's go, with file names and sizes stated (CFG806 §1).
+   - Query project 2024.1.00100.L near RA 34.423191, Dec −5.182924, for the spw covering 95.29 GHz.
+   - Take its pipeline `member.uid___A001_…_sci.spw<N>.cube.I.pbcor.fits` (+ `.pb`).
+   - Record the sha256.
+3. `python3 -B cfg942_u4.py --cube <cube.pbcor.fits>` writes `cfg942_u4_RELEASE.out/json`. It runs G1, G2, the fits, C1, C2, C3 and the score; a failed control prints NOT DIAGNOSTIC.
+4. `python3 -B cfg942_u4.py --cube <cube.pbcor.fits> --mutate` must exit 1.
+5. Commit the outputs (never the cube, never a home path), delete the cube, and add departures to a dated README note. The orchestrator writes the ledger row.
+
+**GS4_24110 (2026-11-28):** the same steps, with:
+- `python3 -B cfg942_gs4.py --cube <CI21 cube> --cont <continuum image>`, then `--mutate`. It exits 1, or 2 if +2000 km/s leaves the spw (A-G11).
+- The spw must cover 270.006 GHz. The harness reads FREQ cubes, 3D or 4D, with BMAJ keywords or a per-plane BEAMS table.
+
+## Ambiguities that could cause a release-day dispute
+Each one is flagged in the outputs. None is resolved by editing a frozen file; the harness's default is stated in each line.
+
+**Cross-plan**
+- **A-X1 Two frozen plans per target.** CFG806/809 differ from AG5 (7ea94d2ae) in:
+  - the statistic: gas Δ_m with a double floor (U4), and Δ_v with 0.2 + 0.2 dex systematics (GS4), against AG5's total-baryon Δ with a 0.15 floor;
+  - the detection threshold: 5σ in a ≥ 2σ mask, against 3σ by curve of growth;
+  - the U4 V_c: a thin-disc fit against a PV cut;
+  - the [CI] coefficient: 4.566e-4 against 4.556e-4;
+  - the T_ex branches, and the robustness rule against AG5's TRACER-LIMITED rule;
+  - the kill line: none against the canonical §2 kill line.
+- **A-X2 Kill line.** THEORY_CANONICAL_2026-10-14 §2 lists a kill condition for both ALMA dates. CFG571, 806 and 809, and the 10-21 DRAFT canonical, say one disc = demonstration, no exclusion.
+- **A-X3 Three single-disc statistics:** CFG571's criteria use Δ_m on M_bar, CFG806 Δ_m on M_gas, CFG809 Δ_v.
+- **A-X4 IDs.**
+  - The U4 lane has no ID.
+  - "CFG809" names two directories and two LEDGER rows.
+  - CFG809's text calls the U4 lane "CFG808", which is now CFG808_expelled_gas_free.
+- **A-X5 Stale headers.** Both plans' headers say "DRAFT, not yet committed", but both were committed alone before any download.
+- **A-X6 "Imports cfg571_prereg.py read-only".** A plain import runs the script, rewrites the seal JSON (the same bytes only if the numerical stack reproduces) and calls sys.exit. The harness executes only the head.
+- **A-X7 Script location.** The plans name `cfg806_u4.py` / `cfg809_gs4.py` in their own directories. Those scripts do not exist; the harness lives here.
+- **A-X8 Unverified metadata.** The dates and sensitivities come from CFG570 metadata only, not re-verified, and the record has no MOUS UIDs.
+
+**U4_27928**
+- **A-U1 Unnamed gap.** "Inside the required range" against "more than 2σ_tot outside" leaves a gap with no name. With a well-measured V_c the range collapses, so the literal CONSISTENT is almost unreachable: U4-a reads "within 2σ_tot (unnamed)". The harness counts the gap as not in tension.
+- **A-U2 Double floor.** §3.3's flux error already includes 0.15 dex, and §4 adds another 0.15, giving 0.21 (literal; alt1 = a single floor).
+- **A-U3 Window.** No moment-0 window or continuum is stated. Default: ±500 km/s; continuum = median of |v| > 600.
+- **A-U4 / A-U17 C2.** 100 random apertures overlap in any finite box. Default: an 8″ box and translated mask copies, with the mean tested against 3 rms/√N_independent. With 15–35 independent apertures the 20% rms tolerance fails on pure noise about 10% of the time (U4-b).
+- **A-U5 Upper-limit aperture.** Not stated. Default: a circle of radius 2R_e = 0.98″.
+- **A-U6 Non-detection.** A one-sided Δ_m is promised, but G1 failure leaves no V_c, so nothing is scored.
+- **A-U7 Radius.** V_c is read at 8.3 kpc (CFG806); the requirement uses the sealed 2R_e = 8.271 kpc.
+- **A-U9 RESTFRQ.** Pipeline conventions differ. The harness checks frequency coverage and reports RESTFRQ.
+- **A-U10 C2 "quoted noise".** Undefined. Default: the analytic mask-sum noise (beam-shaped correlation, plus a continuum-median term).
+- **A-U11 Inclination clamp** when q < q0.
+- **A-U12 / A-G14 No taper branch.** See Sensitivity.
+- **A-U12b G2 radius.** Default: the deprojected radius of the farthest mask pixel.
+- **A-U13 / A-G13 Noise-selected masks.** A ≥ 2σ mask selects positive noise. The literal translated-aperture S/N passes on pure noise (U4-d 9.5, GS4-b 10.6). Default: a selection-aware null, the same mask grown at 200 random off-source seeds. The literal reading is printed too.
+- **A-U14 "2″ aperture".** Radius or diameter is not said; both are printed.
+- **A-U15 Stellar systematic.** The 0.2 dex M★ systematic is "carried as an interval". If it also widens the required range (alt3), R-H's tension in U4-a and the framework's tension in U4-b both disappear, so U4 then separates nothing.
+- **A-U16 V_c error.** From the fit covariance. It is underestimated by about √(pixels per beam) for correlated noise; the beam-corrected error is printed as alt4.
+
+**GS4_24110**
+- **A-G1 Stellar term.** σ_Δv uses ±0.2 dex for M★ (CFG809), whereas CFG572's published GS4 verdicts used ±0.1.
+- **A-G2 FLOOR rule against Δ_v.** The FLOOR rule outranks |Δ_v| ≤ 2σ. On CI21 at M★ 10.89, canonical footing, R-H's "in tension" rests on the FLOOR rule alone, because Δ_v alone reads consistent.
+- **A-G3 Upper-limit reading** is undefined. Default: Δ_v ∈ [f(0), f(UL)] against ±2σ.
+- **A-G4 ROBUST.** Two questions:
+  - which CO43 and dust branches enter (default: r41 0.37 and α_CO 4.36);
+  - whether "no model is described" is meant per model or globally.
+
+  With CFG572's routes fixed, the framework is NOT ROBUST for every CI21 value, while R-H/L-fb's FLOOR tension is ROBUST.
+- **A-G5 Upper-limit aperture.** Default: the R_e circle.
+- **A-G6 Continuum S/N.** Read as the peak S/N inside the [CI] mask.
+- **A-G8 Ring radius** of 6.5″; no noise-map option.
+- **A-G9 G3 error and bias.**
+  - The G3 error comes from the covariance, which is underestimated for correlated noise.
+  - A Gaussian fitted to an exponential disc biases R_g low: the MOCK gives 0.69 of the truth, and the dust size shows the same bias.
+- **A-G10 C4 rounding.** "< 1e-6" holds only for the coefficient derived from the A values (4.56583e-4), not for the rounded 4.566e-4 (3.7e-5 off).
+- **A-G11 MUTATE coverage.** +2000 km/s can leave a 1.875 GHz spw at 270 GHz. In that case the run reports NOT RUNNABLE (exit 2), as CFG572 did.
+- **A-G12 G4.** Implemented as ≥ 3 beam-spaced, monotonic, S/N ≥ 5 samples.
+- **A-G16 Continuum after a G1 failure.** "Stop at 3.3" leaves 3.1 undefined without a mask; the continuum is reported in the R_e circle.
+
+**Both targets**
+- **A-M1 Mask extent.** Default: the ≥ 2σ components that touch a 0.5″ circle at the catalogue position.
+- **A-M2 Per-plane beams.** If the cube carries a BEAMS table, the median beam is used.
+
+## NOTE for the owner (proposed 2026-10-20; NOT adopted; nothing frozen is changed)
+If the owner agrees, a dated file `CLARIFICATION_2026-10-2x.md` could be committed into each plan's lane **before 2026-11-06**, saying:
+1. **Which plan governs** (A-X1): "On release day the governing score is [CFG806/CFG809 | AG5]; the other is reported as a cross-check." Also whether THEORY_CANONICAL §2's kill line applies to one disc (A-X2).
+2. **U4 §4 reading** (A-U1, A-U2, A-U15): "consistent = |Δ_m| ≤ 2σ_tot; σ_tot = √(σ_rms² + σ_V² + 0.15²) (one floor); the M★ 0.2 dex systematic enters only the FLOOR-reduced statement."
+3. **G1 significance** (A-U13, A-G13): "the S/N is computed against the same mask procedure run at random off-source seeds."
+4. **Upper limits** (A-U5, A-U6, A-G3, A-G5): "the limit aperture is a circle of radius 2R_e (U4) / R_e (GS4); a U4 non-detection is reported only."
+5. **Taper** (A-U12, A-G14): "if the native cube fails G1, a declared uv-taper to [X″] is a pre-registered branch, never pooled." Or: "no taper; an upper limit is the result."
+6. **GS4 rules** (A-G2, A-G4, A-G11): whether the FLOOR rule outranks Δ_v; whether NOT ROBUST is per model; the MUTATE fallback (+1000 km/s, as CFG572).
+7. **Housekeeping** (A-X4, A-X5, A-X7): the IDs, the stale "DRAFT" headers, and that the CFG942 harness stands in for the named scripts.
+
+## Departures and disclosures in this lane
+All were made before any real data, on MOCK runs only:
+- **G1 default.** After the first U4-d run, the S/N changed from the translated-mask rms to a selection-aware null, because the literal reading passed on pure noise. The literal reading is still printed.
+- **C1 flux.** The C1 injection flux was fixed at F-DESI's sealed 10.42 (U4) and 9.82 (GS4), instead of the measured flux.
+- **Quoted noise.** The C2 "quoted noise" formula was corrected after U4-a's first C2 showed a ratio of 1.82, which came from crowded apertures and a missing correlation term.
+- **Mock noise.** It was regenerated so that its autocorrelation is the beam, like interferometric noise.
+- **Boxes.** The boxes were enlarged (U4 4.4″ → 8″, GS4 9.5″ → 10.5″) when the apertures did not fit.
+- **Memory.** The memory-saving rewrites (streamed moment-0, low-memory LM fit, chunked hashing) change no rule.
+
+## Files
+- **Scripts:** `cfg942_common.py`, `cfg942_u4.py`, `cfg942_gs4.py`.
+- **Outputs:** `*_selftest`, `*_MOCK_<x>`, `*_MOCK_a_MUTATE`, each as `.out` + `_results.json`.
+- **Not committed:** the mock FITS (scratch). Their sha256: U4 a/b/c/d = e51d76b7…, 60c0fe97…, 5abb0548…, 4d2dd9e9…; GS4 a/b/e cubes = adfbd807…, 2f2c3295…, da129b4c….
+
+κ = ½ FITTED; footings never pooled; cold-energy mass required; not theory closed.

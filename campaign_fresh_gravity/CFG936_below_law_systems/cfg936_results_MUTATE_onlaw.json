@@ -1,0 +1,232 @@
+{
+ "lane": "CFG936",
+ "criteria": "71d010099",
+ "seal_scored": "CFG930 S1 (cbb3b9888, sha256 57b1141e...)",
+ "mode": "MUTATE_onlaw",
+ "checks": {
+  "K0 CFG930 seal intact (sha256 == committed file, prefix 57b1141e) and S1 text present; CFG657 / CFG804 slices exec'd read-only without error": {
+   "ok": true,
+   "measured": "sha256 57b1141ebf61ef30...; S1 kill clause found; cfg657 ok; cfg804 ok"
+  },
+  "K1 CFG931's TDG INFO reproduced (per object lgbar, Delta, sDelta from the tdg/ CSV, and through this lane's class-T path from the tidal_dwarfs/ CSV); the two CSVs agree on V, eV, M_bar, eM_bar, R_out, eR_out, D_p": {
+   "ok": true,
+   "measured": "max |diff| 1.1e-16; means canonical -0.6904 (CFG931 -0.6904), alt -0.7276 (CFG931 -0.7276); CSV identity 42/42"
+  },
+  "K2 CFG933's DF2/DF4 reproduced through this lane's class-U path (sigma_law, log g_bar, E_obs, sE, sigma_pred, z vs P2); GAL == CFG933 membership": {
+   "ok": true,
+   "measured": "max |diff| 7.1e-15; DF2|canonical: E_obs -1.709, z vs P2 -3.22 (CFG933 -3.22), z vs bare law -3.16; DF4|canonical: E_obs -2.170, z vs P2 -2.79 (CFG933 -2.79), z vs bare law -2.73; DF2|alt: E_obs -1.797, z vs P2 -3.37 (CFG933 -3.37), z vs bare law -3.32; DF4|alt: E_obs -2.258, z vs P2 -2.88 (CFG933 -2.88), z vs bare law -2.84"
+  },
+  "K3 CFG763's clock bracket reproduced (1-D EFE at nominal host, nu_mono, CFG4_common.A0, CFG763 error recipe and grid): tau_min,95 and chi2_min at -1 sigma and nominal ages; CFG763 K1 chi2; upper bound -8/ln 0.1 -> 3.47": {
+   "ok": true,
+   "measured": "max |diff| 0.0e+00; canonical tau_min 0.7244 / 1.2023 Gyr, alt 0.8318 / 1.3804; chi2 tau->0 34.018 / 40.290, tau->inf 1.105; upper 3.4744 Gyr; [A1] CFG4_common.A0 - rounded footing: canonical +2.48e-16 (rel +2.7e-06), alt +3.54e-16 (rel +3.1e-06)"
+  },
+  "K4 CFG768 reproduced via CFG657's capture()/zf exec'd read-only: f_cap(alpha 0) primary/min/max over the 16 one-at-a-time ends; Part B universal f and Z_at_f (DF2, DF4, both footings)": {
+   "ok": true,
+   "measured": "max |diff| 0.0e+00; f_cap primary canonical DF2 5.89e-04, DF4 1.62e-03"
+  },
+  "K5 CFG7 C2 (Lelli+15 Table 9 from its eq. 4 at a0 1.25e-10, n = 1, 2) reproduced by this lane's EFE formula": {
+   "ok": true,
+   "measured": "max |dV_ISO| 1.0292483629 (CFG7 1.0292483629); max |dV_EFE| 1.4160699135 (CFG7 1.4160699135)"
+  },
+  "K6 CFG804 census (verbatim slice): N_of(10.5) = 10": {
+   "ok": true,
+   "measured": "N = 10.000000"
+  },
+  "K7 limits: f = 1 -> Delta_pred 0; f = 0 -> -log10 nu; EFE with M_host = 0 -> bare law (T and U)": {
+   "ok": true,
+   "measured": "max 1.1e-16"
+  }
+ },
+ "seal_sha256": "57b1141ebf61ef30e6e4be851ef4962278496796e640923761da8776398dc789",
+ "K1": {
+  "means": {
+   "canonical": [
+    -0.6903781917632702,
+    -0.6903781917632702
+   ],
+   "alt": [
+    -0.7276095405858052,
+    -0.7276095405858052
+   ]
+  },
+  "max_diff": 1.1102230246251565e-16
+ },
+ "K2": {
+  "DF2|canonical": {
+   "z_vs_P2": -3.220174389581183,
+   "z_CFG933": -3.220174389581183,
+   "E_obs": -1.7090797992538782,
+   "sE_law": 0.5411764705882353,
+   "z_vs_bare_law": -3.1580822377517315,
+   "sigma_law": 19.97748847012363
+  },
+  "DF4|canonical": {
+   "z_vs_P2": -2.7852892382647285,
+   "z_CFG933": -2.785289238264728,
+   "E_obs": -2.1700940800879236,
+   "sE_law": 0.7936507936507937,
+   "z_vs_bare_law": -2.7343185409107833,
+   "sigma_law": 18.64534791541585
+  },
+  "DF2|alt": {
+   "z_vs_P2": -3.366349042425098,
+   "z_CFG933": -3.366349042425098,
+   "E_obs": -1.7973858933111546,
+   "sE_law": 0.5411764705882353,
+   "z_vs_bare_law": -3.3212565419880034,
+   "sigma_law": 20.87931821936023
+  },
+  "DF4|alt": {
+   "z_vs_P2": -2.882132029278649,
+   "z_CFG933": -2.882132029278648,
+   "E_obs": -2.2578864586814924,
+   "sE_law": 0.7936507936507937,
+   "z_vs_bare_law": -2.84493693793868,
+   "sigma_law": 19.48203702342282
+  }
+ },
+ "K3": {
+  "mine": {
+   "canonical": {
+    "tau_lo": 0.72443596007499,
+    "tau_nom": 1.202264434617413,
+    "chi2_tau0": 34.01766758414784,
+    "chi2_tauinf": 1.1048047840753066
+   },
+   "alt": {
+    "tau_lo": 0.831763771102671,
+    "tau_nom": 1.3803842646028848,
+    "chi2_tau0": 40.28983896031286,
+    "chi2_tauinf": 1.1048047840753066
+   }
+  },
+  "tau_upper": 3.474355855226015,
+  "tau_min_cfg763": {
+   "canonical": 0.72443596007499,
+   "alt": 0.831763771102671
+  },
+  "A1_CFG4_common_A0_minus_rounded": {
+   "canonical": 2.4825027974166224e-16,
+   "alt": 3.5414413020930996e-16
+  }
+ },
+ "K_all": true,
+ "S1_planted": {
+  "canonical": {
+   "mean": -1.6072124442554792e-17,
+   "sd_over_sqrtn": 2.6893808125133705e-17,
+   "ups_floor": 0.02323426799735183,
+   "se": 0.02323426799735183,
+   "cls": "S1 HOLDS",
+   "alt_meas": {
+    "se": 0.052073061041591706,
+    "cls": "S1 HOLDS"
+   },
+   "alt_median": {
+    "median": -2.410818666383218e-17,
+    "se": 0.02323426799735183,
+    "cls": "S1 HOLDS"
+   },
+   "per_object": [
+    {
+     "name": "NGC5291N",
+     "Delta": 0.0,
+     "sigma": 0.11352463353160286,
+     "lgbar": -11.02504429197234
+    },
+    {
+     "name": "NGC5291S",
+     "Delta": -4.821637332766436e-17,
+     "sigma": 0.08091692027839031,
+     "lgbar": -11.368954284117713
+    },
+    {
+     "name": "NGC5291SW",
+     "Delta": -4.821637332766436e-17,
+     "sigma": 0.11380165468227799,
+     "lgbar": -11.366910541607727
+    },
+    {
+     "name": "NGC7252E",
+     "Delta": 0.0,
+     "sigma": 0.09489051991935764,
+     "lgbar": -11.571046836099816
+    },
+    {
+     "name": "NGC7252NW",
+     "Delta": 9.64327466553287e-17,
+     "sigma": 0.09214442136843921,
+     "lgbar": -11.714854013536874
+    },
+    {
+     "name": "VCC2062",
+     "Delta": -9.643274665532872e-17,
+     "sigma": 0.1682343514063921,
+     "lgbar": -11.539505075839026
+    }
+   ],
+   "mean_ups2": -0.029440061921888055,
+   "mean_ups_half": 0.0170284740728156
+  },
+  "alt": {
+   "mean": 8.036062221277382e-18,
+   "sd_over_sqrtn": 3.6117607613042204e-17,
+   "ups_floor": 0.023063299763916002,
+   "se": 0.023063299763916002,
+   "cls": "S1 HOLDS",
+   "alt_meas": {
+    "se": 0.050367113196423736,
+    "cls": "S1 HOLDS"
+   },
+   "alt_median": {
+    "median": 0.0,
+    "se": 0.023063299763916002,
+    "cls": "S1 HOLDS"
+   },
+   "per_object": [
+    {
+     "name": "NGC5291N",
+     "Delta": 0.0,
+     "sigma": 0.1090982000765983,
+     "lgbar": -11.02504429197234
+    },
+    {
+     "name": "NGC5291S",
+     "Delta": 9.64327466553287e-17,
+     "sigma": 0.07792382670906013,
+     "lgbar": -11.368954284117713
+    },
+    {
+     "name": "NGC5291SW",
+     "Delta": 9.64327466553287e-17,
+     "sigma": 0.10948619511710368,
+     "lgbar": -11.366910541607727
+    },
+    {
+     "name": "NGC7252E",
+     "Delta": -1.446491199829931e-16,
+     "sigma": 0.09108299289733858,
+     "lgbar": -11.571046836099816
+    },
+    {
+     "name": "NGC7252NW",
+     "Delta": 0.0,
+     "sigma": 0.08834632137230881,
+     "lgbar": -11.714854013536874
+    },
+    {
+     "name": "VCC2062",
+     "Delta": 0.0,
+     "sigma": 0.1615999368854041,
+     "lgbar": -11.539505075839026
+    }
+   ],
+   "mean_ups2": -0.029218063308924885,
+   "mean_ups_half": 0.016908536218907123
+  }
+ },
+ "mutate_ok": true,
+ "runtime_s": 0.03,
+ "peak_rss_mb": 117.9,
+ "exit_code": 0
+}

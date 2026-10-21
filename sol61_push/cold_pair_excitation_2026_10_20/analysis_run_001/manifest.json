@@ -1,0 +1,755 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-ACTUAL-PAIR-CONDITIONAL-MODE-ANALYSIS-2026-10-20",
+  "repository": {
+    "commit": "6d88f570f3e4f3bbf8a166892d8830078d4a2440",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_pair_excitation_2026_10_20/analyze_pairs.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004",
+    "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "Matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Summarize eight completed actual field evolutions; project finite snapshots onto pinned Q136k/Q140k modes, compare frame/grid/time controls, and recompute weak Y20 radiation coefficients on those reference backgrounds.",
+    "coefficient_domain": "Binary64 quadrature, cubic field interpolation, sparse outgoing solves, finite least-squares frequency scan",
+    "conventions": "Canonical reduced order(u,s,chi,v,t), unit no-half K=1. m=0,Y20 angular norm1. Gyro operator always uses reference omega; two explicit velocity-frame choices are compared. Aperture Q/E are inventories, not automatically bound mass/escape. No implicit mode-energy acceptance.",
+    "inputs": [
+      "Eight completed collision/control runs",
+      "Accepted discrete Q136k/Q140k references",
+      "True-origin Q80k isolated-control profile and mode",
+      "Prior fixed same-action equations and outgoing solver"
+    ],
+    "bounds": {
+      "mode_references": [
+        136000,
+        140000
+      ],
+      "projection_times": [
+        80,
+        100,
+        120,
+        140,
+        160,
+        180,
+        200,
+        220,
+        240
+      ],
+      "fit_radius": 12,
+      "angular_nodes": 48,
+      "interpolation_order": 3,
+      "frame_choices": [
+        "reference_omega",
+        "fitted_omega"
+      ],
+      "exploratory_frequency_search": [
+        0.04,
+        0.075,
+        5e-05
+      ],
+      "fit_window": [
+        120,
+        240
+      ],
+      "fit_basis": "constant+exp(i Omega t)+exp(2i Omega t)",
+      "max_measured_RSS_bytes": 1000000000,
+      "source_work_relative_max": 1e-06,
+      "linear_residual_max": 1e-08,
+      "reference_omega_match_max": 1e-11
+    },
+    "non_claims": [
+      "No persistent linear mode-energy fraction without remnant/reference/amplitude acceptance",
+      "No asymptotic escape, orbital angular momentum transfer, physical mass scale or dwarf capture/population kernel",
+      "No four-dwarf normalization/profile/stock/heating closure",
+      "Exploratory finite-frequency fit is not independent confirmation or a spectral theorem"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-20T21:12:40.480598+00:00",
+    "runtime_seconds": 26.740269,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 120,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_pair_excitation_2026_10_20/analyze_pairs.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_projection.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/prepare_analysis.py",
+    "sol61_push/cold_fragment_modes_2026_10_20/radial_tools.py",
+    "sol61_push/cold_fragment_modes_2026_10_20/outgoing_library.py",
+    "sol61_push/cold_completion_2026_10_20/run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/results.json",
+    "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q80000_L60_N1199.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/profile_origin/run_001/Q80000.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/Q136000_L60_N1199.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/profile_Q136000_L60_N1199.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/Q140000_L60_N1199.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/profile_Q140000_L60_N1199.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000000000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000060000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000000000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_moving_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_moving_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_moving_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/isolated_moving_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_faster_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_faster_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_faster_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_faster_run_001/evolution/enclosed_energy.jsonl"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/analyze_pairs.py",
+      "sha256": "1919f140bad28a607064c13122bad9cc05f42d1537998a4ad38b0aa02c9682f1",
+      "sha256_after": "1919f140bad28a607064c13122bad9cc05f42d1537998a4ad38b0aa02c9682f1"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_projection.py",
+      "sha256": "28184e545e2525cc2de02c6f82ef4bf629586c31d0895d034a794283c255e792",
+      "sha256_after": "28184e545e2525cc2de02c6f82ef4bf629586c31d0895d034a794283c255e792"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/prepare_analysis.py",
+      "sha256": "43bc71ff8e7425af8c6de9702e72964ba5f405e6c913908b2cb42e6f9d288a03",
+      "sha256_after": "43bc71ff8e7425af8c6de9702e72964ba5f405e6c913908b2cb42e6f9d288a03"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/radial_tools.py",
+      "sha256": "4ecd52a9c849e095b68a4127299fc68584ae7ba1b8fbae0a8f093d81be491f20",
+      "sha256_after": "4ecd52a9c849e095b68a4127299fc68584ae7ba1b8fbae0a8f093d81be491f20"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/outgoing_library.py",
+      "sha256": "bdf1a9e4418d794facfa923817b73e19d5a819962cb994d4a841994b41ba2869",
+      "sha256_after": "bdf1a9e4418d794facfa923817b73e19d5a819962cb994d4a841994b41ba2869"
+    },
+    {
+      "path": "sol61_push/cold_completion_2026_10_20/run_001/results.json",
+      "sha256": "0f8fcb2cf8d3bfb057c213ff87abc1728257cca3e119c5d2c0905036ee2c9eac",
+      "sha256_after": "0f8fcb2cf8d3bfb057c213ff87abc1728257cca3e119c5d2c0905036ee2c9eac"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/manifest.json",
+      "sha256": "26ed20725e836f3da8e15fc6f715b4562d7c23def79ad5dda65565c881ff593b",
+      "sha256_after": "26ed20725e836f3da8e15fc6f715b4562d7c23def79ad5dda65565c881ff593b"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/results.json",
+      "sha256": "97874318c0e7fb8ca41f89d90b73263e81e4214c468eafeda85cbb639783de59",
+      "sha256_after": "97874318c0e7fb8ca41f89d90b73263e81e4214c468eafeda85cbb639783de59"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q80000_L60_N1199.npz",
+      "sha256": "9e383eca200f212fc6cb8d53ba37337960748169646b461fef0e38f57dcd34f3",
+      "sha256_after": "9e383eca200f212fc6cb8d53ba37337960748169646b461fef0e38f57dcd34f3"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/profile_origin/run_001/Q80000.npz",
+      "sha256": "121ef8d5beb7a92163ab3743fafbf7852ca5e5aecf0f5814051500d5d8eabf68",
+      "sha256_after": "121ef8d5beb7a92163ab3743fafbf7852ca5e5aecf0f5814051500d5d8eabf68"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/Q136000_L60_N1199.npz",
+      "sha256": "bba562ea95370fb8a8003c7ad86ef1a4d6775cdeaaab07ac963d6a6ce1df12bd",
+      "sha256_after": "bba562ea95370fb8a8003c7ad86ef1a4d6775cdeaaab07ac963d6a6ce1df12bd"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/profile_Q136000_L60_N1199.npz",
+      "sha256": "c9858fb45dec468b695fb9d7fafa94d6cc58381fc83602495131f208ffd7ca29",
+      "sha256_after": "c9858fb45dec468b695fb9d7fafa94d6cc58381fc83602495131f208ffd7ca29"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/Q140000_L60_N1199.npz",
+      "sha256": "1d0985d19b0ac9cf118fd77876d59ce31415c53f95ee0c83368957485cf6e44c",
+      "sha256_after": "1d0985d19b0ac9cf118fd77876d59ce31415c53f95ee0c83368957485cf6e44c"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/matched_refs_run_004/profile_Q140000_L60_N1199.npz",
+      "sha256": "29f427ff97f01f731c6355a8091f3763c6c6f1b1b63419715643e80862e24c75",
+      "sha256_after": "29f427ff97f01f731c6355a8091f3763c6c6f1b1b63419715643e80862e24c75"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/manifest.json",
+      "sha256": "3733602fca05035d47bf887564d4ec40411c7a62dbaa1152a807fa14b72dc32b",
+      "sha256_after": "3733602fca05035d47bf887564d4ec40411c7a62dbaa1152a807fa14b72dc32b"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/results.json",
+      "sha256": "b197e55157141d27e8f730a0264f71e7f527dccd50c9331a7e0c314ffa66b704",
+      "sha256_after": "b197e55157141d27e8f730a0264f71e7f527dccd50c9331a7e0c314ffa66b704"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/log.jsonl",
+      "sha256": "56421bb06338896794e656e288631d0479dcb966cbc1e02db320b7956e0fdcae",
+      "sha256_after": "56421bb06338896794e656e288631d0479dcb966cbc1e02db320b7956e0fdcae"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "460a934680605d6f4feb180a5c2dbeb6cea66010c28f72aa3efda37404dfcede",
+      "sha256_after": "460a934680605d6f4feb180a5c2dbeb6cea66010c28f72aa3efda37404dfcede"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000000000.bin",
+      "sha256": "4b1b1084d483b7b1f380d8f7d0c7cca1fe4aa7f3103d6c3748036b9305cf699d",
+      "sha256_after": "4b1b1084d483b7b1f380d8f7d0c7cca1fe4aa7f3103d6c3748036b9305cf699d"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000060000.bin",
+      "sha256": "b94a944e4c0c0ae99c97b27331647726928d22996df1fdbe2f6d565298c16a1f",
+      "sha256_after": "b94a944e4c0c0ae99c97b27331647726928d22996df1fdbe2f6d565298c16a1f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000080000.bin",
+      "sha256": "c606766969a001cf89636cc89a21507ebd2b7ed56edd660b4cf0d7dfa30b4f5d",
+      "sha256_after": "c606766969a001cf89636cc89a21507ebd2b7ed56edd660b4cf0d7dfa30b4f5d"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000100000.bin",
+      "sha256": "fb41ed3ee6386373809a98bafb6ea823e4966d8424f3e4650ba48a4d4f40a030",
+      "sha256_after": "fb41ed3ee6386373809a98bafb6ea823e4966d8424f3e4650ba48a4d4f40a030"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000120000.bin",
+      "sha256": "70b0094d26331fb5b218895716ba96a0563f4516f68db335acef006464a6d40b",
+      "sha256_after": "70b0094d26331fb5b218895716ba96a0563f4516f68db335acef006464a6d40b"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000140000.bin",
+      "sha256": "ed731087cd04ea04ff90bd51ea27161a8864b273de21e773d7f1db38f59a844f",
+      "sha256_after": "ed731087cd04ea04ff90bd51ea27161a8864b273de21e773d7f1db38f59a844f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000160000.bin",
+      "sha256": "ac2b4d63c7fff527b6ac895c5fe6ad0c78611163acff7f1935ea3ffe73c587ac",
+      "sha256_after": "ac2b4d63c7fff527b6ac895c5fe6ad0c78611163acff7f1935ea3ffe73c587ac"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000180000.bin",
+      "sha256": "a02319ff25ddcd954680fbd328b3fa35fe8ef604efe2652097377eedaad635b2",
+      "sha256_after": "a02319ff25ddcd954680fbd328b3fa35fe8ef604efe2652097377eedaad635b2"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000200000.bin",
+      "sha256": "c8e44ecb385541b6889f5463a10d92c983f93291c405ea2a3d57ad17c943f04a",
+      "sha256_after": "c8e44ecb385541b6889f5463a10d92c983f93291c405ea2a3d57ad17c943f04a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000220000.bin",
+      "sha256": "2b7e419dd721eddd5756c40e518da21c7f1a17500acdeeec4cdca4bde73858de",
+      "sha256_after": "2b7e419dd721eddd5756c40e518da21c7f1a17500acdeeec4cdca4bde73858de"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000240000.bin",
+      "sha256": "194bee464b21b54ed1a1d7320a616a4c9aa57349ac211ffc4e66c332112c89cc",
+      "sha256_after": "194bee464b21b54ed1a1d7320a616a4c9aa57349ac211ffc4e66c332112c89cc"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/manifest.json",
+      "sha256": "c483b43537eff3b6e968de93ca0272cd164803ae62e85d35a15c92da6f04e465",
+      "sha256_after": "c483b43537eff3b6e968de93ca0272cd164803ae62e85d35a15c92da6f04e465"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/results.json",
+      "sha256": "b4c465da48c38b1e34b4bbb368eb72b54b88c3858205e4c07a970ed182e2c8e7",
+      "sha256_after": "b4c465da48c38b1e34b4bbb368eb72b54b88c3858205e4c07a970ed182e2c8e7"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/log.jsonl",
+      "sha256": "1cd2edf4d755bf5a4b684133adad410e3deff7566dcd2b274c41e3b81b224c1b",
+      "sha256_after": "1cd2edf4d755bf5a4b684133adad410e3deff7566dcd2b274c41e3b81b224c1b"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "4a81a2429c233dc8294ce7732c69231b13c1cbb41a26928377ef4e357600508b",
+      "sha256_after": "4a81a2429c233dc8294ce7732c69231b13c1cbb41a26928377ef4e357600508b"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000080000.bin",
+      "sha256": "f21a52d4b12184f3c85301350b92c8d25b5bf965ac118a4b4fe58a0e6dd974ad",
+      "sha256_after": "f21a52d4b12184f3c85301350b92c8d25b5bf965ac118a4b4fe58a0e6dd974ad"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000100000.bin",
+      "sha256": "528147a2b84455d5562e68325b1e764ae8bfc76fa7f2b421b3c2a195fe429499",
+      "sha256_after": "528147a2b84455d5562e68325b1e764ae8bfc76fa7f2b421b3c2a195fe429499"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000120000.bin",
+      "sha256": "e72c56517e71e0ef47f370b4291a1250c0ed38e4bc50b9a4510325e19833fa4e",
+      "sha256_after": "e72c56517e71e0ef47f370b4291a1250c0ed38e4bc50b9a4510325e19833fa4e"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000140000.bin",
+      "sha256": "27abdb11792846991ae1e2f293d9bf6de103c3109617184d2b15090baa7489fe",
+      "sha256_after": "27abdb11792846991ae1e2f293d9bf6de103c3109617184d2b15090baa7489fe"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000160000.bin",
+      "sha256": "0c2762244c9e7d31e336be1d6ae2e18fd0e61622279046fe1efac840824431d9",
+      "sha256_after": "0c2762244c9e7d31e336be1d6ae2e18fd0e61622279046fe1efac840824431d9"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000180000.bin",
+      "sha256": "a87adc7bd2d1296802a5547ca65b22c774b75542028cc8ce95b83967be9e38c0",
+      "sha256_after": "a87adc7bd2d1296802a5547ca65b22c774b75542028cc8ce95b83967be9e38c0"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000200000.bin",
+      "sha256": "dbdb5d6d4567efadbb0572898082d5ce82d7d70ac9afb3582c7c30a49c095928",
+      "sha256_after": "dbdb5d6d4567efadbb0572898082d5ce82d7d70ac9afb3582c7c30a49c095928"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000220000.bin",
+      "sha256": "61afcfe752514347e6ab3ba4f7b5f93dc3a1fb41fa4804bf07aef8e6c6d09f4f",
+      "sha256_after": "61afcfe752514347e6ab3ba4f7b5f93dc3a1fb41fa4804bf07aef8e6c6d09f4f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000240000.bin",
+      "sha256": "3cf08bb0c1b45656d26756cc80893f45b1a91f49be2ae5f3b002321b548edac3",
+      "sha256_after": "3cf08bb0c1b45656d26756cc80893f45b1a91f49be2ae5f3b002321b548edac3"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/manifest.json",
+      "sha256": "ce406e0b4069699ca1a15a02ae73ecd3afbc4ecf7801ee176437197e39c6cc8a",
+      "sha256_after": "ce406e0b4069699ca1a15a02ae73ecd3afbc4ecf7801ee176437197e39c6cc8a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/results.json",
+      "sha256": "95aa84d2a6003b3b2b730d1253fecdaeaa451629fbec783c48b51fd4c86fd811",
+      "sha256_after": "95aa84d2a6003b3b2b730d1253fecdaeaa451629fbec783c48b51fd4c86fd811"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/log.jsonl",
+      "sha256": "14d8d0dffe0e7cf2a8e86a61eed5b93dcea5fc8970fe70153b146035fee27c26",
+      "sha256_after": "14d8d0dffe0e7cf2a8e86a61eed5b93dcea5fc8970fe70153b146035fee27c26"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "fc448cfb67e95b1ee98b57d3f2316a068f94fcee05709010ca293aa6f2e4d627",
+      "sha256_after": "fc448cfb67e95b1ee98b57d3f2316a068f94fcee05709010ca293aa6f2e4d627"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000080000.bin",
+      "sha256": "6c0d3f6cd4e06bfca51707d36b756a431d5fa2bf90ceffcc2f7f9eb07c9d6d56",
+      "sha256_after": "6c0d3f6cd4e06bfca51707d36b756a431d5fa2bf90ceffcc2f7f9eb07c9d6d56"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000100000.bin",
+      "sha256": "788644290ce7bf1dad2d1420c642d0c205d3846bb95f4f49cbb6244507ce0675",
+      "sha256_after": "788644290ce7bf1dad2d1420c642d0c205d3846bb95f4f49cbb6244507ce0675"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000120000.bin",
+      "sha256": "c78e23de1edc6b9476d649a775323a4d8b2b47deb9e2ece114577de7c5a76417",
+      "sha256_after": "c78e23de1edc6b9476d649a775323a4d8b2b47deb9e2ece114577de7c5a76417"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000140000.bin",
+      "sha256": "d84b977b7a99148f830fe016bb5726a40a0d60731efd0b2f0cf24e7e73a15c7e",
+      "sha256_after": "d84b977b7a99148f830fe016bb5726a40a0d60731efd0b2f0cf24e7e73a15c7e"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000160000.bin",
+      "sha256": "0c34cedb8568d9ed42de942edfc5c3481b2094c684cc00c2d7c0cf8ff4f9fc12",
+      "sha256_after": "0c34cedb8568d9ed42de942edfc5c3481b2094c684cc00c2d7c0cf8ff4f9fc12"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000180000.bin",
+      "sha256": "c765c00436ff0041855152dbfa49728c61ae0d8dab21258759b04ad81402a1ef",
+      "sha256_after": "c765c00436ff0041855152dbfa49728c61ae0d8dab21258759b04ad81402a1ef"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000200000.bin",
+      "sha256": "29b0d8fa921fca59cf18db8447181d03b064ce6884b8ecb754073988bd63c297",
+      "sha256_after": "29b0d8fa921fca59cf18db8447181d03b064ce6884b8ecb754073988bd63c297"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000220000.bin",
+      "sha256": "acc0583909f1ac12ce7ce49024974c7176313c2d2202f51e54dd165fed9f2d11",
+      "sha256_after": "acc0583909f1ac12ce7ce49024974c7176313c2d2202f51e54dd165fed9f2d11"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000240000.bin",
+      "sha256": "11d86735e0188b5a0c592cab9f94086cf081f0ecb592c523967e7c7a16efd123",
+      "sha256_after": "11d86735e0188b5a0c592cab9f94086cf081f0ecb592c523967e7c7a16efd123"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/manifest.json",
+      "sha256": "b6601284aeb26721a0468789a343233180360b8e2ac02a927e15163e5436bb1f",
+      "sha256_after": "b6601284aeb26721a0468789a343233180360b8e2ac02a927e15163e5436bb1f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/results.json",
+      "sha256": "edeeacbeb68e20042102734971b4debc4063bee32fbc41f6309d262de749a7b7",
+      "sha256_after": "edeeacbeb68e20042102734971b4debc4063bee32fbc41f6309d262de749a7b7"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/log.jsonl",
+      "sha256": "71d2b85d985c9ca7e8070bc7484a37e0813decb5b8c152cecb47970cf348b235",
+      "sha256_after": "71d2b85d985c9ca7e8070bc7484a37e0813decb5b8c152cecb47970cf348b235"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "471c2cb3c2e4ccc2dfeb29e9cf02ccfb50a8668b5c2aba0b332d6dd36da1747a",
+      "sha256_after": "471c2cb3c2e4ccc2dfeb29e9cf02ccfb50a8668b5c2aba0b332d6dd36da1747a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000240000.bin",
+      "sha256": "20994bdb7b03cb758aca019b01bc72aae477123c2b9c29b215092037d57949f2",
+      "sha256_after": "20994bdb7b03cb758aca019b01bc72aae477123c2b9c29b215092037d57949f2"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/manifest.json",
+      "sha256": "52009b6d0339f3b7d269ea155dbd0214165045d15bfc476a47afd4217d1294b5",
+      "sha256_after": "52009b6d0339f3b7d269ea155dbd0214165045d15bfc476a47afd4217d1294b5"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/results.json",
+      "sha256": "80b157bd017f5edef776c750f22c3afca17e7516878fd54ad3f448b3ee7161a0",
+      "sha256_after": "80b157bd017f5edef776c750f22c3afca17e7516878fd54ad3f448b3ee7161a0"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/log.jsonl",
+      "sha256": "f6326b867b22bd26c7a07d5296f60ac7dd7321651718757e885912910f07b36c",
+      "sha256_after": "f6326b867b22bd26c7a07d5296f60ac7dd7321651718757e885912910f07b36c"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "b9ef8c271242ee244527968903c11ba712ab12708984cc3a220910f54c5cebb6",
+      "sha256_after": "b9ef8c271242ee244527968903c11ba712ab12708984cc3a220910f54c5cebb6"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000000000.bin",
+      "sha256": "02253017e49bf729c45924529420205b094b5803baa092d2f8f4e6f652cc2db1",
+      "sha256_after": "02253017e49bf729c45924529420205b094b5803baa092d2f8f4e6f652cc2db1"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000080000.bin",
+      "sha256": "e253f9132a751d793675fdb6b31a21134868a4f11504213ed832ef475c486c3a",
+      "sha256_after": "e253f9132a751d793675fdb6b31a21134868a4f11504213ed832ef475c486c3a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000120000.bin",
+      "sha256": "707718e3265cc9c59b70766f9cf7aa6e1480c45cfa150351587422fb6bde00d5",
+      "sha256_after": "707718e3265cc9c59b70766f9cf7aa6e1480c45cfa150351587422fb6bde00d5"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000160000.bin",
+      "sha256": "4109bde88580e2582bb779894472d6d89466ef6e0c1a5b2fff0f4199f405afee",
+      "sha256_after": "4109bde88580e2582bb779894472d6d89466ef6e0c1a5b2fff0f4199f405afee"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000200000.bin",
+      "sha256": "fd730bc611694e152ab2f1207c2ec616a0097fb2810c0536602b7ef2368dc0ad",
+      "sha256_after": "fd730bc611694e152ab2f1207c2ec616a0097fb2810c0536602b7ef2368dc0ad"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_static_run_001/evolution/snap_t000240000.bin",
+      "sha256": "39fb9a326f0cb2e4f391a236e265e7b0ba3587dd62f74ba8c41338bd3db2f211",
+      "sha256_after": "39fb9a326f0cb2e4f391a236e265e7b0ba3587dd62f74ba8c41338bd3db2f211"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_moving_run_001/manifest.json",
+      "sha256": "d45884b82c60eac3df46fde0385a21bb0cc8cf37cfb6feea5539a9e932c12496",
+      "sha256_after": "d45884b82c60eac3df46fde0385a21bb0cc8cf37cfb6feea5539a9e932c12496"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_moving_run_001/results.json",
+      "sha256": "d976407203a77475b4ddd8f80ecc9217b2d024e3b5f94f6ad653b89714e8c5bb",
+      "sha256_after": "d976407203a77475b4ddd8f80ecc9217b2d024e3b5f94f6ad653b89714e8c5bb"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_moving_run_001/evolution/log.jsonl",
+      "sha256": "c38bb631d78a85aec8385f79f7f158cc318fd9af47fe9dacfdff1827369819d0",
+      "sha256_after": "c38bb631d78a85aec8385f79f7f158cc318fd9af47fe9dacfdff1827369819d0"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/isolated_moving_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "e300a6a4c8211b6904f96ad68781a1857284ec5c8ffd071e63c581970cd5a287",
+      "sha256_after": "e300a6a4c8211b6904f96ad68781a1857284ec5c8ffd071e63c581970cd5a287"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/manifest.json",
+      "sha256": "699c22a90f920e76b0a470708e91c752f49c1f66eb0a7cd06e25a174b46f3692",
+      "sha256_after": "699c22a90f920e76b0a470708e91c752f49c1f66eb0a7cd06e25a174b46f3692"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/results.json",
+      "sha256": "649aa6c90586edc2bef8f0a5f3c3b3b36579e80cbe886bd501e5935634a5e47c",
+      "sha256_after": "649aa6c90586edc2bef8f0a5f3c3b3b36579e80cbe886bd501e5935634a5e47c"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/log.jsonl",
+      "sha256": "0279a297dd3f8164d592797ec7c5ffa9f3d958151681e9af40e999574fbb9951",
+      "sha256_after": "0279a297dd3f8164d592797ec7c5ffa9f3d958151681e9af40e999574fbb9951"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "06762e0e1c57db08a6bf94dddcadea458edd7036dad6e893ef3986ac785e5f7a",
+      "sha256_after": "06762e0e1c57db08a6bf94dddcadea458edd7036dad6e893ef3986ac785e5f7a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000080000.bin",
+      "sha256": "df444fa661c23cc6291cb3b50946b5625bfac77d69565b8e11e9d9ba5070873f",
+      "sha256_after": "df444fa661c23cc6291cb3b50946b5625bfac77d69565b8e11e9d9ba5070873f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000100000.bin",
+      "sha256": "d258de06cd6401aee0ff3fb25917524781fbeb68c9644074db33fa56e6d0b83a",
+      "sha256_after": "d258de06cd6401aee0ff3fb25917524781fbeb68c9644074db33fa56e6d0b83a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000120000.bin",
+      "sha256": "71afaa271f1d2089bb5956187b262104802e32870f2c639e47617cda2528dd62",
+      "sha256_after": "71afaa271f1d2089bb5956187b262104802e32870f2c639e47617cda2528dd62"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000140000.bin",
+      "sha256": "3b6235409691e20f11bc5b7e4e288c547588c7dde2c0eaab5e916aa88b51da1c",
+      "sha256_after": "3b6235409691e20f11bc5b7e4e288c547588c7dde2c0eaab5e916aa88b51da1c"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000160000.bin",
+      "sha256": "7245d2e4f4fbb71f86aaa1c3961633d17d748fbe973773c256aec420642b0c30",
+      "sha256_after": "7245d2e4f4fbb71f86aaa1c3961633d17d748fbe973773c256aec420642b0c30"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000180000.bin",
+      "sha256": "84d577ec142afc2ddd8a9653c47082556d4d5c724f0b0f2c004e58e2e896fcf6",
+      "sha256_after": "84d577ec142afc2ddd8a9653c47082556d4d5c724f0b0f2c004e58e2e896fcf6"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000200000.bin",
+      "sha256": "903281439d20ee2c6a92f995c40a8192f80c7e368c0a3f463a1e8881bfaabcd5",
+      "sha256_after": "903281439d20ee2c6a92f995c40a8192f80c7e368c0a3f463a1e8881bfaabcd5"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000220000.bin",
+      "sha256": "1408ae9268f051fb9a83cc3a39a5ddc66121de94e8c6d15ab5e81f8398239d09",
+      "sha256_after": "1408ae9268f051fb9a83cc3a39a5ddc66121de94e8c6d15ab5e81f8398239d09"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_separation_run_001/evolution/snap_t000240000.bin",
+      "sha256": "873a0f8e3ac05df0ab5e76618c2c71808a3ce531c16c1c0ac2346069e139f044",
+      "sha256_after": "873a0f8e3ac05df0ab5e76618c2c71808a3ce531c16c1c0ac2346069e139f044"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_faster_run_001/manifest.json",
+      "sha256": "4df62e57fb79c42b1b8b9f399bfc276d9c72afa97f3bde0062a2ee33b7d14eed",
+      "sha256_after": "4df62e57fb79c42b1b8b9f399bfc276d9c72afa97f3bde0062a2ee33b7d14eed"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_faster_run_001/results.json",
+      "sha256": "00c3e761598755a4e5fa1f4b03f9139a7436b9d5db49efaabd87e6ff1a73c0b4",
+      "sha256_after": "00c3e761598755a4e5fa1f4b03f9139a7436b9d5db49efaabd87e6ff1a73c0b4"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_faster_run_001/evolution/log.jsonl",
+      "sha256": "af65af12e98befc201e96391d9b5fd29d5a82110c5384b52247bb31ecd358f3b",
+      "sha256_after": "af65af12e98befc201e96391d9b5fd29d5a82110c5384b52247bb31ecd358f3b"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_faster_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "9d0e88d6ba4940707c0cfdbbfeb744038af5484052da25469db831db22bd8c66",
+      "sha256_after": "9d0e88d6ba4940707c0cfdbbfeb744038af5484052da25469db831db22bd8c66"
+    }
+  ],
+  "output_directory": "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001",
+  "declared_results": [
+    "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/pair_density.png",
+    "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/pair_diagnostics.png",
+    "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/outgoing_Q136000_ell0.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/outgoing_Q136000_ell2.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/outgoing_Q136000_ell4.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/outgoing_Q140000_ell0.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/outgoing_Q140000_ell2.npz",
+    "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/outgoing_Q140000_ell4.npz"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/stderr.txt",
+      "sha256": "22c16bdaa0012f9eac5b2fa86896b37a954f042fb61f9d60df03954808c77b28",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/results.json",
+      "sha256": "8d6dce6eaa3238a84c043d393a454eb24a791d5822971e35123311dd7bca4863",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/pair_density.png",
+      "sha256": "80484eda00dbc22da21c471512cff43dff9a7b54e68c1c315534121fa9035e0a",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/pair_diagnostics.png",
+      "sha256": "aed57f25d419477e88cf09ac2eabc99f942b28a50f2390e370f0d87bed65d672",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/outgoing_Q136000_ell0.npz",
+      "sha256": "9598997060f57fece2024b56038e087ec802a9300f894589a924c8ab40313c66",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/outgoing_Q136000_ell2.npz",
+      "sha256": "5d1c867a11211275d37d70855b81621e75f384ac64000013a618125042571270",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/outgoing_Q136000_ell4.npz",
+      "sha256": "ee405e70478e0533c65399d1a6e152f5542950d757665652641b19916c17b86c",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/outgoing_Q140000_ell0.npz",
+      "sha256": "d2598fa77eb67bfd15da3f8d8dc8a15d4c3c5053b0c53cbbc20ab562acbd1a97",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/outgoing_Q140000_ell2.npz",
+      "sha256": "96b63ad13e31c100d27c4b62b4e615f1d0ad721fbcc0a47b9d9e8c8685d8054b",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/analysis_run_001/outgoing_Q140000_ell4.npz",
+      "sha256": "4535b99b3f49e1d3f576c868d556612ebf5ee7ab0b7f1ee44f7c10604e26ce8f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

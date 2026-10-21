@@ -1,0 +1,50 @@
+GaugeCones.lean was drafted without invoking Lean while root held the
+exclusive compile slot. Root then explicitly returned the slot and
+authorized the shared runner and runs/cones_01 output path.
+
+The first compile PASSED, exit 0:
+  python3 verify.py GaugeCones.lean runs/cones_01
+The runner used installed Lean/mathlib 4.34.0-rc2, -j1 -M1024,
+RLIMIT_CPU soft/hard 30/31 seconds, wall timeout 45 seconds.
+Measured runtime: 4.447024334 seconds.
+Measured RUSAGE_CHILDREN max RSS: 857407488 bytes.
+No RLIMIT_AS or virtual-address cap was used.
+
+All eight printed critical theorems have exactly the standard axioms
+[propext, Classical.choice, Quot.sound]. Admission scan passed and all
+pinned inputs remained unchanged. No Lean source edit followed this pass.
+The exclusive Lean compile slot was then released to root.
+
+Source SHA256:
+c1ed3219f46b050dac75531477c3267fde2af23c30bb5ec1ee83715d8fd9454f
+Object SHA256:
+7c08d5713cd8bf64dd5f539034756d6aa47f14e1160a8792ef0ae3d1e0110315
+Exact theorem types and axioms: runs/cones_01/stdout.txt
+Exact command, dependency/source hashes and resources:
+runs/cones_01/manifest.json
+Compiled object: build/GaugeCones.olean
+Input snapshot: dev_cones/attempt01.lean
+
+Verified exact public results:
+1. Every root of z^2-(alpha+beta+delta)z+alpha*beta lies in (0,1]
+   given alpha,beta>0, alpha,beta<=1, delta>=0, and
+   delta<=(1-alpha)(1-beta).
+2. The discriminant is nonnegative under alpha,beta,delta>=0.
+3. Given a field element whose square is that discriminant, the two
+   quadratic-formula candidates are roots and satisfy the same bounds.
+   Root existence is not asserted in an arbitrary ordered field.
+4. The expanded refined cone-budget identity and its nonnegative sign
+   follow under the recorded positive coefficients, Hsq>=0,k<=1,T<=1.
+5. For 0<k<=1 and 0<=T<=1, the substituted alpha,beta,delta satisfy
+   all principal-root hypotheses; consequently each substituted root
+   lies in (0,1].
+
+Source assumptions and interpretation are those explicitly displayed in
+MICROSCOPIC_CONTINUATION.md section B. The module makes no quantum,
+PDE, gauge-invariance, background-existence or amplitude-selection claim.
+The original microscopic why-4 objective remains open.
+
+The module uses module/public/meta imports and an exposed public section
+for reuse from clients. Linter-only warnings about redundant assumptions
+or terminal tactic style do not affect kernel acceptance. No warning was
+suppressed and no additional rerun was made for cosmetic changes.

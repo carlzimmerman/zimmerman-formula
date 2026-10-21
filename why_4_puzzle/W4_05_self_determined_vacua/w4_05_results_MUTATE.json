@@ -1,0 +1,183 @@
+{
+ "mutate": true,
+ "einst": "4*pi",
+ "readings": [
+  {
+   "id": "V1a",
+   "family": "V1",
+   "desc": "EiBI, lambda = 0, kappa_E < 0: Lambda_eff = ell**(-2); a = 1/ell",
+   "k2": "4*pi",
+   "kappa": 3.544907701811032,
+   "kappa_crit_report": 2.933933174228076,
+   "pi_weight": 1,
+   "free": [],
+   "self_determined": true,
+   "k2_over_pi_algebraic": true,
+   "class": "MISS"
+  },
+  {
+   "id": "V1b",
+   "family": "V1",
+   "desc": "EiBI, lambda free: Lambda_eff free; a = 1/ell",
+   "k2": "4*pi/(Lambda*ell**2)",
+   "kappa": null,
+   "kappa_crit_report": null,
+   "pi_weight": 1,
+   "free": [
+    "Lambda",
+    "ell"
+   ],
+   "self_determined": false,
+   "k2_over_pi_algebraic": null,
+   "class": "TRADE"
+  },
+  {
+   "id": "V2",
+   "family": "V2",
+   "desc": "f(R) = R - mu^4/R^1: vacuum R = sqrt(3)*mu**2; a = mu",
+   "k2": "16*sqrt(3)*pi/3",
+   "kappa": 5.387094748354394,
+   "kappa_crit_report": 4.458614250191087,
+   "pi_weight": 1,
+   "free": [],
+   "self_determined": true,
+   "k2_over_pi_algebraic": true,
+   "class": "MISS"
+  },
+  {
+   "id": "V3",
+   "family": "V3",
+   "desc": "Brans-Dicke / scalar-tensor: Lambda free; a free",
+   "k2": "4*pi*a**2/Lambda",
+   "kappa": null,
+   "kappa_crit_report": null,
+   "pi_weight": 1,
+   "free": [
+    "Lambda",
+    "a"
+   ],
+   "self_determined": false,
+   "k2_over_pi_algebraic": null,
+   "class": "TRADE"
+  },
+  {
+   "id": "V5",
+   "family": "V5",
+   "desc": "Deser-Woodard nonlocal MOND: a0 a parameter; Lambda free",
+   "k2": "4*pi*a**2/Lambda",
+   "kappa": null,
+   "kappa_crit_report": null,
+   "pi_weight": 1,
+   "free": [
+    "Lambda",
+    "a"
+   ],
+   "self_determined": false,
+   "k2_over_pi_algebraic": null,
+   "class": "TRADE"
+  },
+  {
+   "id": "V6",
+   "family": "V6",
+   "desc": "running vacuum rho0 + 3 nu H^2/(8 pi G); a = cH",
+   "k2": "4*pi*H**2/(4*pi*G*rho_0 + 3*H**2*nu)",
+   "kappa": null,
+   "kappa_crit_report": null,
+   "pi_weight": 0,
+   "free": [
+    "G",
+    "H",
+    "nu",
+    "rho_0"
+   ],
+   "self_determined": false,
+   "k2_over_pi_algebraic": null,
+   "class": "TRADE"
+  },
+  {
+   "id": "V7",
+   "family": "V7",
+   "desc": "TeVeS a0 = sqrt(3k) c^2/(4 pi ell); Lambda free",
+   "k2": "3*k_T/(4*pi*Lambda*ell_T**2)",
+   "kappa": null,
+   "kappa_crit_report": null,
+   "pi_weight": -1,
+   "free": [
+    "Lambda",
+    "ell_T",
+    "k_T"
+   ],
+   "self_determined": false,
+   "k2_over_pi_algebraic": null,
+   "class": "TRADE"
+  }
+ ],
+ "lane_verdict": "DICHOTOMY HOLDS",
+ "checks": [
+  {
+   "name": "I1 forbidden inputs",
+   "detail": "tokens in the compute block: none",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "K1 EiBI vacuum",
+   "detail": "sqrt det(1 + kE M) = 1 + kE tr M/2 + O(kE^2): True; Lambda_eff = (lambda_s - 1)/kappa_E; at lambda = 1: 0",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "K2 f(R) vacuum",
+   "detail": "R f' - 2f = 0 for f = R - mu^4/R gives R = [sqrt(3)*mu**2]; control f = R - 2 Lambda0 gives R = [4*Lambda_0]",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "K3 hand values under M1",
+   "detail": "normal-run values must FAIL for ['V1a', 'V2']: mismatches ['V1a', 'V2']",
+   "pass": false,
+   "kind": "K"
+  },
+  {
+   "name": "K3 hand values under M2",
+   "detail": "normal-run values must FAIL for ['V2']: mismatches ['V2']",
+   "pass": false,
+   "kind": "K"
+  },
+  {
+   "name": "K3 hand values under M3",
+   "detail": "normal-run values must FAIL for ['V1a']: mismatches ['V1a']",
+   "pass": false,
+   "kind": "K"
+  },
+  {
+   "name": "I8 pi x algebraic",
+   "detail": "self-determined kappa^2/pi algebraic and kappa^2 != 1/4: V1a True, V2 True",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "I3 dimensions",
+   "detail": "kappa^2 invariant under (L, M) rescaling (c = 1); failures: none",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "I4 rename",
+   "detail": "no kappa^2 contains a kappa symbol (the law's kappa is never read): offenders none",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "K4 dichotomy",
+   "detail": "every self-determined reading is pi x algebraic (none 1/4): True; every other family TRADE/CONDITION: True",
+   "pass": true,
+   "kind": "B"
+  }
+ ],
+ "W4_01_retabulated": {
+  "DGP crossover (W4-01 F1-S-A1)": "8*pi/3",
+  "dRGT Compton (W4-01 F3-C1, algebraic X)": "8 pi/X",
+  "f(T) scale (W4-01 F6-F1, rational n)": "16 pi (2n-1)^(1/(n-1))"
+ }
+}

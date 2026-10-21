@@ -1,0 +1,559 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-ACTUAL-PAIR-SIGNED-FV-FACE-TRANSPORT-2026-10-20",
+  "repository": {
+    "commit": "9b3b82aa706ced6a25bd4917bf5c3985afb84178",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_pair_excitation_2026_10_20/face_flux.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/face_flux_cases.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/face_flux_run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Saved in-phase,dt-half,dx-fine and antiphase field snapshots obey exact semidiscrete signed E/Q face continuity with the same positive half-link energy; measure outward/negative fluxes and whether20-unit snapshot quadrature reconstructs aperture changes.",
+    "coefficient_domain": "Double real cell-centred axisymmetric finite volume arrays; immutable CEPAIR1 snapshots; read-only arithmetic.",
+    "conventions": "Cij=2pi Rface for radial faces and2pi Ri for axial faces when dr=dz. Eout=sum fac C(qi-qj)(vi+vj),Qout=-2C Im(Psii*Psij)-4C Im(Xi*Xj). Voxel sphere mask rcell<R; positive half-link energy. No field stepping.",
+    "inputs": [
+      "Four completed actual-pair cases,13 snapshots each at t0:20:240",
+      "Their original1-unit logs and positive half-link energy logs",
+      "Exact frozen C v2 action/energy implementation"
+    ],
+    "bounds": {
+      "cases": [
+        "pair_inphase",
+        "pair_dt_half",
+        "pair_dx_fine",
+        "pair_antiphase"
+      ],
+      "radii": [
+        20,
+        30,
+        40
+      ],
+      "snapshots_per_case": 13,
+      "instant_continuity_relative_max": 1e-08,
+      "log_energy_charge_relative_max": 1e-10,
+      "snapshot_integration": "diagnostic only; no assumed quadrature-error pass threshold",
+      "maximum_RSS_bytes": 1000000000
+    },
+    "non_claims": [
+      "No field evolution",
+      "No particle/quanta spectrum or asymptotic escape classification",
+      "No actualbound mass inventory or mode-energy projection",
+      "No galactic angular momentum; all initial cases head-on and axisymmetric",
+      "No physical unit scale or four-dwarf closure"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-20T21:10:02.992939+00:00",
+    "runtime_seconds": 2.196101,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 90,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_pair_excitation_2026_10_20/face_flux.py",
+    "sol61_push/cold_pair_excitation_2026_10_20/face_flux_cases.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_axisym_v2.c",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000000000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000020000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000040000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000060000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000000000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000020000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000040000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000060000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000000000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000020000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000040000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000060000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000240000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/manifest.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/results.json",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/log.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/enclosed_energy.jsonl",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000000000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000020000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000040000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000060000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000080000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000100000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000120000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000140000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000160000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000180000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000200000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000220000.bin",
+    "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000240000.bin"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/face_flux.py",
+      "sha256": "60d8edb725b7d41addcdbabf47caf6d601c8e5096664f67faab6975eecbf5a6a",
+      "sha256_after": "60d8edb725b7d41addcdbabf47caf6d601c8e5096664f67faab6975eecbf5a6a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/face_flux_cases.json",
+      "sha256": "f04deee1bfefdc049918c5fe9635ba52675770bcc9c0bdcab5e6a85da2f1bd77",
+      "sha256_after": "f04deee1bfefdc049918c5fe9635ba52675770bcc9c0bdcab5e6a85da2f1bd77"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_axisym_v2.c",
+      "sha256": "f4e8f96ad1f97a6bc506b4301e441ac696b46bd53d6c5a811d006cfee3360058",
+      "sha256_after": "f4e8f96ad1f97a6bc506b4301e441ac696b46bd53d6c5a811d006cfee3360058"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/manifest.json",
+      "sha256": "3733602fca05035d47bf887564d4ec40411c7a62dbaa1152a807fa14b72dc32b",
+      "sha256_after": "3733602fca05035d47bf887564d4ec40411c7a62dbaa1152a807fa14b72dc32b"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/results.json",
+      "sha256": "b197e55157141d27e8f730a0264f71e7f527dccd50c9331a7e0c314ffa66b704",
+      "sha256_after": "b197e55157141d27e8f730a0264f71e7f527dccd50c9331a7e0c314ffa66b704"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/log.jsonl",
+      "sha256": "56421bb06338896794e656e288631d0479dcb966cbc1e02db320b7956e0fdcae",
+      "sha256_after": "56421bb06338896794e656e288631d0479dcb966cbc1e02db320b7956e0fdcae"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "460a934680605d6f4feb180a5c2dbeb6cea66010c28f72aa3efda37404dfcede",
+      "sha256_after": "460a934680605d6f4feb180a5c2dbeb6cea66010c28f72aa3efda37404dfcede"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000000000.bin",
+      "sha256": "4b1b1084d483b7b1f380d8f7d0c7cca1fe4aa7f3103d6c3748036b9305cf699d",
+      "sha256_after": "4b1b1084d483b7b1f380d8f7d0c7cca1fe4aa7f3103d6c3748036b9305cf699d"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000020000.bin",
+      "sha256": "de65cbb95ebd73356080bccc916362a2a15e092f7277c879f538eeb1c384e0c5",
+      "sha256_after": "de65cbb95ebd73356080bccc916362a2a15e092f7277c879f538eeb1c384e0c5"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000040000.bin",
+      "sha256": "59c1734f285cdfd773ebc5ad9f7a137917b8065b6712f27116b6f724e966071e",
+      "sha256_after": "59c1734f285cdfd773ebc5ad9f7a137917b8065b6712f27116b6f724e966071e"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000060000.bin",
+      "sha256": "b94a944e4c0c0ae99c97b27331647726928d22996df1fdbe2f6d565298c16a1f",
+      "sha256_after": "b94a944e4c0c0ae99c97b27331647726928d22996df1fdbe2f6d565298c16a1f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000080000.bin",
+      "sha256": "c606766969a001cf89636cc89a21507ebd2b7ed56edd660b4cf0d7dfa30b4f5d",
+      "sha256_after": "c606766969a001cf89636cc89a21507ebd2b7ed56edd660b4cf0d7dfa30b4f5d"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000100000.bin",
+      "sha256": "fb41ed3ee6386373809a98bafb6ea823e4966d8424f3e4650ba48a4d4f40a030",
+      "sha256_after": "fb41ed3ee6386373809a98bafb6ea823e4966d8424f3e4650ba48a4d4f40a030"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000120000.bin",
+      "sha256": "70b0094d26331fb5b218895716ba96a0563f4516f68db335acef006464a6d40b",
+      "sha256_after": "70b0094d26331fb5b218895716ba96a0563f4516f68db335acef006464a6d40b"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000140000.bin",
+      "sha256": "ed731087cd04ea04ff90bd51ea27161a8864b273de21e773d7f1db38f59a844f",
+      "sha256_after": "ed731087cd04ea04ff90bd51ea27161a8864b273de21e773d7f1db38f59a844f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000160000.bin",
+      "sha256": "ac2b4d63c7fff527b6ac895c5fe6ad0c78611163acff7f1935ea3ffe73c587ac",
+      "sha256_after": "ac2b4d63c7fff527b6ac895c5fe6ad0c78611163acff7f1935ea3ffe73c587ac"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000180000.bin",
+      "sha256": "a02319ff25ddcd954680fbd328b3fa35fe8ef604efe2652097377eedaad635b2",
+      "sha256_after": "a02319ff25ddcd954680fbd328b3fa35fe8ef604efe2652097377eedaad635b2"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000200000.bin",
+      "sha256": "c8e44ecb385541b6889f5463a10d92c983f93291c405ea2a3d57ad17c943f04a",
+      "sha256_after": "c8e44ecb385541b6889f5463a10d92c983f93291c405ea2a3d57ad17c943f04a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000220000.bin",
+      "sha256": "2b7e419dd721eddd5756c40e518da21c7f1a17500acdeeec4cdca4bde73858de",
+      "sha256_after": "2b7e419dd721eddd5756c40e518da21c7f1a17500acdeeec4cdca4bde73858de"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_inphase_run_001/evolution/snap_t000240000.bin",
+      "sha256": "194bee464b21b54ed1a1d7320a616a4c9aa57349ac211ffc4e66c332112c89cc",
+      "sha256_after": "194bee464b21b54ed1a1d7320a616a4c9aa57349ac211ffc4e66c332112c89cc"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/manifest.json",
+      "sha256": "c483b43537eff3b6e968de93ca0272cd164803ae62e85d35a15c92da6f04e465",
+      "sha256_after": "c483b43537eff3b6e968de93ca0272cd164803ae62e85d35a15c92da6f04e465"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/results.json",
+      "sha256": "b4c465da48c38b1e34b4bbb368eb72b54b88c3858205e4c07a970ed182e2c8e7",
+      "sha256_after": "b4c465da48c38b1e34b4bbb368eb72b54b88c3858205e4c07a970ed182e2c8e7"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/log.jsonl",
+      "sha256": "1cd2edf4d755bf5a4b684133adad410e3deff7566dcd2b274c41e3b81b224c1b",
+      "sha256_after": "1cd2edf4d755bf5a4b684133adad410e3deff7566dcd2b274c41e3b81b224c1b"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "4a81a2429c233dc8294ce7732c69231b13c1cbb41a26928377ef4e357600508b",
+      "sha256_after": "4a81a2429c233dc8294ce7732c69231b13c1cbb41a26928377ef4e357600508b"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000000000.bin",
+      "sha256": "4b1b1084d483b7b1f380d8f7d0c7cca1fe4aa7f3103d6c3748036b9305cf699d",
+      "sha256_after": "4b1b1084d483b7b1f380d8f7d0c7cca1fe4aa7f3103d6c3748036b9305cf699d"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000020000.bin",
+      "sha256": "5bd5c98cbdda6494fa6b2cdc1a14b48bb46d171207d91c137cfdf0395fd04282",
+      "sha256_after": "5bd5c98cbdda6494fa6b2cdc1a14b48bb46d171207d91c137cfdf0395fd04282"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000040000.bin",
+      "sha256": "66b2770ca4b246cfe487fc0ef87351dbbced106fda74a3be09191f7b1ef5a58a",
+      "sha256_after": "66b2770ca4b246cfe487fc0ef87351dbbced106fda74a3be09191f7b1ef5a58a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000060000.bin",
+      "sha256": "069019e75df9fc856d4fa2e785842976dadb46409570528f059bdfdd5ed67661",
+      "sha256_after": "069019e75df9fc856d4fa2e785842976dadb46409570528f059bdfdd5ed67661"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000080000.bin",
+      "sha256": "f21a52d4b12184f3c85301350b92c8d25b5bf965ac118a4b4fe58a0e6dd974ad",
+      "sha256_after": "f21a52d4b12184f3c85301350b92c8d25b5bf965ac118a4b4fe58a0e6dd974ad"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000100000.bin",
+      "sha256": "528147a2b84455d5562e68325b1e764ae8bfc76fa7f2b421b3c2a195fe429499",
+      "sha256_after": "528147a2b84455d5562e68325b1e764ae8bfc76fa7f2b421b3c2a195fe429499"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000120000.bin",
+      "sha256": "e72c56517e71e0ef47f370b4291a1250c0ed38e4bc50b9a4510325e19833fa4e",
+      "sha256_after": "e72c56517e71e0ef47f370b4291a1250c0ed38e4bc50b9a4510325e19833fa4e"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000140000.bin",
+      "sha256": "27abdb11792846991ae1e2f293d9bf6de103c3109617184d2b15090baa7489fe",
+      "sha256_after": "27abdb11792846991ae1e2f293d9bf6de103c3109617184d2b15090baa7489fe"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000160000.bin",
+      "sha256": "0c2762244c9e7d31e336be1d6ae2e18fd0e61622279046fe1efac840824431d9",
+      "sha256_after": "0c2762244c9e7d31e336be1d6ae2e18fd0e61622279046fe1efac840824431d9"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000180000.bin",
+      "sha256": "a87adc7bd2d1296802a5547ca65b22c774b75542028cc8ce95b83967be9e38c0",
+      "sha256_after": "a87adc7bd2d1296802a5547ca65b22c774b75542028cc8ce95b83967be9e38c0"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000200000.bin",
+      "sha256": "dbdb5d6d4567efadbb0572898082d5ce82d7d70ac9afb3582c7c30a49c095928",
+      "sha256_after": "dbdb5d6d4567efadbb0572898082d5ce82d7d70ac9afb3582c7c30a49c095928"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000220000.bin",
+      "sha256": "61afcfe752514347e6ab3ba4f7b5f93dc3a1fb41fa4804bf07aef8e6c6d09f4f",
+      "sha256_after": "61afcfe752514347e6ab3ba4f7b5f93dc3a1fb41fa4804bf07aef8e6c6d09f4f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dt_half_run_001/evolution/snap_t000240000.bin",
+      "sha256": "3cf08bb0c1b45656d26756cc80893f45b1a91f49be2ae5f3b002321b548edac3",
+      "sha256_after": "3cf08bb0c1b45656d26756cc80893f45b1a91f49be2ae5f3b002321b548edac3"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/manifest.json",
+      "sha256": "ce406e0b4069699ca1a15a02ae73ecd3afbc4ecf7801ee176437197e39c6cc8a",
+      "sha256_after": "ce406e0b4069699ca1a15a02ae73ecd3afbc4ecf7801ee176437197e39c6cc8a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/results.json",
+      "sha256": "95aa84d2a6003b3b2b730d1253fecdaeaa451629fbec783c48b51fd4c86fd811",
+      "sha256_after": "95aa84d2a6003b3b2b730d1253fecdaeaa451629fbec783c48b51fd4c86fd811"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/log.jsonl",
+      "sha256": "14d8d0dffe0e7cf2a8e86a61eed5b93dcea5fc8970fe70153b146035fee27c26",
+      "sha256_after": "14d8d0dffe0e7cf2a8e86a61eed5b93dcea5fc8970fe70153b146035fee27c26"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "fc448cfb67e95b1ee98b57d3f2316a068f94fcee05709010ca293aa6f2e4d627",
+      "sha256_after": "fc448cfb67e95b1ee98b57d3f2316a068f94fcee05709010ca293aa6f2e4d627"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000000000.bin",
+      "sha256": "dca5bb0a23247d56ca2e736c26039e958f3cf8a90f39a0ea3263d2575dd03ba6",
+      "sha256_after": "dca5bb0a23247d56ca2e736c26039e958f3cf8a90f39a0ea3263d2575dd03ba6"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000020000.bin",
+      "sha256": "0d0a678be95db7b91df20bb452eec9aec1a06d0f6a509cd62d09f828d88971f6",
+      "sha256_after": "0d0a678be95db7b91df20bb452eec9aec1a06d0f6a509cd62d09f828d88971f6"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000040000.bin",
+      "sha256": "07b0312f555f25bc98dc3813ff6cdfda8d2344521910bebee6010dcac9f8bdcd",
+      "sha256_after": "07b0312f555f25bc98dc3813ff6cdfda8d2344521910bebee6010dcac9f8bdcd"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000060000.bin",
+      "sha256": "dd5fb3461edad3232b67aec25a02864734aca5143d4625f06413ecb7b8290bf6",
+      "sha256_after": "dd5fb3461edad3232b67aec25a02864734aca5143d4625f06413ecb7b8290bf6"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000080000.bin",
+      "sha256": "6c0d3f6cd4e06bfca51707d36b756a431d5fa2bf90ceffcc2f7f9eb07c9d6d56",
+      "sha256_after": "6c0d3f6cd4e06bfca51707d36b756a431d5fa2bf90ceffcc2f7f9eb07c9d6d56"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000100000.bin",
+      "sha256": "788644290ce7bf1dad2d1420c642d0c205d3846bb95f4f49cbb6244507ce0675",
+      "sha256_after": "788644290ce7bf1dad2d1420c642d0c205d3846bb95f4f49cbb6244507ce0675"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000120000.bin",
+      "sha256": "c78e23de1edc6b9476d649a775323a4d8b2b47deb9e2ece114577de7c5a76417",
+      "sha256_after": "c78e23de1edc6b9476d649a775323a4d8b2b47deb9e2ece114577de7c5a76417"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000140000.bin",
+      "sha256": "d84b977b7a99148f830fe016bb5726a40a0d60731efd0b2f0cf24e7e73a15c7e",
+      "sha256_after": "d84b977b7a99148f830fe016bb5726a40a0d60731efd0b2f0cf24e7e73a15c7e"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000160000.bin",
+      "sha256": "0c34cedb8568d9ed42de942edfc5c3481b2094c684cc00c2d7c0cf8ff4f9fc12",
+      "sha256_after": "0c34cedb8568d9ed42de942edfc5c3481b2094c684cc00c2d7c0cf8ff4f9fc12"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000180000.bin",
+      "sha256": "c765c00436ff0041855152dbfa49728c61ae0d8dab21258759b04ad81402a1ef",
+      "sha256_after": "c765c00436ff0041855152dbfa49728c61ae0d8dab21258759b04ad81402a1ef"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000200000.bin",
+      "sha256": "29b0d8fa921fca59cf18db8447181d03b064ce6884b8ecb754073988bd63c297",
+      "sha256_after": "29b0d8fa921fca59cf18db8447181d03b064ce6884b8ecb754073988bd63c297"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000220000.bin",
+      "sha256": "acc0583909f1ac12ce7ce49024974c7176313c2d2202f51e54dd165fed9f2d11",
+      "sha256_after": "acc0583909f1ac12ce7ce49024974c7176313c2d2202f51e54dd165fed9f2d11"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_dx_fine_run_001/evolution/snap_t000240000.bin",
+      "sha256": "11d86735e0188b5a0c592cab9f94086cf081f0ecb592c523967e7c7a16efd123",
+      "sha256_after": "11d86735e0188b5a0c592cab9f94086cf081f0ecb592c523967e7c7a16efd123"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/manifest.json",
+      "sha256": "b6601284aeb26721a0468789a343233180360b8e2ac02a927e15163e5436bb1f",
+      "sha256_after": "b6601284aeb26721a0468789a343233180360b8e2ac02a927e15163e5436bb1f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/results.json",
+      "sha256": "edeeacbeb68e20042102734971b4debc4063bee32fbc41f6309d262de749a7b7",
+      "sha256_after": "edeeacbeb68e20042102734971b4debc4063bee32fbc41f6309d262de749a7b7"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/log.jsonl",
+      "sha256": "71d2b85d985c9ca7e8070bc7484a37e0813decb5b8c152cecb47970cf348b235",
+      "sha256_after": "71d2b85d985c9ca7e8070bc7484a37e0813decb5b8c152cecb47970cf348b235"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/enclosed_energy.jsonl",
+      "sha256": "471c2cb3c2e4ccc2dfeb29e9cf02ccfb50a8668b5c2aba0b332d6dd36da1747a",
+      "sha256_after": "471c2cb3c2e4ccc2dfeb29e9cf02ccfb50a8668b5c2aba0b332d6dd36da1747a"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000000000.bin",
+      "sha256": "298fbc6198146722c582dbbc1ee5e507eada5c66a7e1c65f6ae758d74b1f2ede",
+      "sha256_after": "298fbc6198146722c582dbbc1ee5e507eada5c66a7e1c65f6ae758d74b1f2ede"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000020000.bin",
+      "sha256": "a064894f83f1784f69766710f7891a1deaeb02b1e2d11b8b093d4d029bc094a4",
+      "sha256_after": "a064894f83f1784f69766710f7891a1deaeb02b1e2d11b8b093d4d029bc094a4"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000040000.bin",
+      "sha256": "75686aee028cea2af1cc965a1b2909e8be53a1e8e1c896275f8797f8bc2d51dc",
+      "sha256_after": "75686aee028cea2af1cc965a1b2909e8be53a1e8e1c896275f8797f8bc2d51dc"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000060000.bin",
+      "sha256": "3a47458bf6345444bbd1ab2a8a16ea060238da51ff51ce44a9ffd0b3567cf679",
+      "sha256_after": "3a47458bf6345444bbd1ab2a8a16ea060238da51ff51ce44a9ffd0b3567cf679"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000080000.bin",
+      "sha256": "81771fb35f747843b7455f5781d15d9168483170049d0f195b4230355ca9ecc3",
+      "sha256_after": "81771fb35f747843b7455f5781d15d9168483170049d0f195b4230355ca9ecc3"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000100000.bin",
+      "sha256": "d5f999511f93734a4ae3c479a4e398d320cc7742bb70a167ae2eece03505843c",
+      "sha256_after": "d5f999511f93734a4ae3c479a4e398d320cc7742bb70a167ae2eece03505843c"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000120000.bin",
+      "sha256": "a96aa706d7d1cd705337e8169f698d9110e4b7f60918ee8c79b7c15ba2eaafaa",
+      "sha256_after": "a96aa706d7d1cd705337e8169f698d9110e4b7f60918ee8c79b7c15ba2eaafaa"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000140000.bin",
+      "sha256": "c7c557982571b18f26dce8e1f17d3d8bbff8d7a1312e98499cad857a1846567f",
+      "sha256_after": "c7c557982571b18f26dce8e1f17d3d8bbff8d7a1312e98499cad857a1846567f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000160000.bin",
+      "sha256": "af55c992e233f1a79e4fc73bb8d137354e0826c881bc934cbc9c05737642be40",
+      "sha256_after": "af55c992e233f1a79e4fc73bb8d137354e0826c881bc934cbc9c05737642be40"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000180000.bin",
+      "sha256": "a7d9c8d259bbd9dce64797633a06ce55e00f4c8af614b94a3256761a1eae2214",
+      "sha256_after": "a7d9c8d259bbd9dce64797633a06ce55e00f4c8af614b94a3256761a1eae2214"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000200000.bin",
+      "sha256": "95346214155d24d16119c7aefba5743fad6c9f21da070401ef28761557b8f48e",
+      "sha256_after": "95346214155d24d16119c7aefba5743fad6c9f21da070401ef28761557b8f48e"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000220000.bin",
+      "sha256": "d625f1b0fc634f8542c1a685a27d70a29451683919c5a1240bccbeade6d25d7f",
+      "sha256_after": "d625f1b0fc634f8542c1a685a27d70a29451683919c5a1240bccbeade6d25d7f"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/pair_antiphase_run_001/evolution/snap_t000240000.bin",
+      "sha256": "20994bdb7b03cb758aca019b01bc72aae477123c2b9c29b215092037d57949f2",
+      "sha256_after": "20994bdb7b03cb758aca019b01bc72aae477123c2b9c29b215092037d57949f2"
+    }
+  ],
+  "output_directory": "sol61_push/cold_pair_excitation_2026_10_20/face_flux_run_001",
+  "declared_results": [
+    "sol61_push/cold_pair_excitation_2026_10_20/face_flux_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/face_flux_run_001/stdout.txt",
+      "sha256": "41d75027eb03156d754b52c52818b206575822f9795d8c462561b727bace6710",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/face_flux_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_pair_excitation_2026_10_20/face_flux_run_001/results.json",
+      "sha256": "3d24c920d7fe46a8665099eaa747926cc6e35fba7252b973f031bf13ddcf7534",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

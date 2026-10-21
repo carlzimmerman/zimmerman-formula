@@ -1,0 +1,55 @@
+--- prior_live/DERIVATION.md
++++ final_commit/DERIVATION.md
+@@ -79,8 +79,8 @@
+ | dust (c₂ = 0) | 1.000000 |
+ 
+ The correction raises the exponent but leaves F1 in place. CFG938's files are not edited. One consequence, flagged and not
+-pursued: in this parent the χ̄ gradient is a preferred frame for moving medium. Its effect in galaxies is of order ρ̄_c/ρ_galaxy,
+-which is negligible. Today |χ̄̇|/c = Ω_cH₀c/2 = 0.925 a₀ (canonical). The script prints this number; no claim is made about it.
++pursued: in this parent the χ̄ gradient is a preferred frame for moving medium. Its effect in galaxies is estimated, not
++computed here, to be suppressed by about ρ̄_c/ρ_galaxy. Today |χ̄̇|/c = Ω_cH₀c/2 = 0.925 a₀ (canonical). The script prints this number; no claim is made about it.
+ 
+ How fast growth comes back as the tether coefficient is lowered (EdS):
+ 
+@@ -184,8 +184,9 @@
+ - The linear tether removes the fraction k²ℓ²/(1 + k²ℓ²) of the self-gravity [R3ell_cancellation_fraction].
+ - **(c) FAIL.** It needs ℓ ≤ 13.1 pc (k = 5 h/Mpc at z = 1100), or ≤ 6.5 kpc for the largest scale k = 0.01 h/Mpc. At such ℓ the
+   tether's reading of NGC 3198's medium is off by more than 100%.
+-- **(a) FAIL.** The finite-radius law at 1e-6 needs ℓ ≥ 63 Mpc (NGC 3198 medium out to 1 Mpc). The deep BTFR fails for every
+-  finite ℓ, since the Yukawa factor goes to 0. The two windows are disjoint by more than 4 decades.
++- **(a) FAIL.** The finite-radius law at 1e-6 needs ℓ ≥ 63 Mpc (NGC 3198 medium out to 1 Mpc; scan step ×1.26, so the true
++  minimum lies in 50–63 Mpc). The deep BTFR fails for every finite ℓ, since the Yukawa factor goes to 0. The two windows are
++  disjoint by 4.0 decades (k = 0.01 h/Mpc) to 6.7 decades (k = 5 h/Mpc).
+ - **(b), (d), (e) PASS.** **(f), (g) FAIL.**
+ 
+ ## 4. (g): class A is not the non-relativistic limit of any parent tested
+@@ -229,8 +230,8 @@
+ Not "theory closed".
+ 
+ ## 6. Controls and disclosures
+-- **K.** K1 2.2e-16 (both footings); K2 w = 0; K3 0.60954; K4 the Lagrangian route equals K3 to 1e-8, and dust gives n = 1 to
+-  1e-12; K5 s_847 1.5398e-5; K6 R1 = CFG938 M3 (1.6445 / 1.8844). All pass.
++- **K.** K1 2.2e-16 (both footings); K2 w = 0; K3 0.60954; K4 the Lagrangian route equals K3 (line 1e-6; equal to the 8 printed
++  decimals), and dust gives n = 1 to 1e-12; K5 s_847 1.5398e-5; K6 R1 = CFG938 M3 (1.6445 / 1.8844). All pass.
+ - **MUTATE.** All bite (exit 1):
+   - M1: every repair removed gives 0.60954;
+   - M2: double counting breaks the law (M2a 6.4 / 7.2, M2b 1.74 / 1.86);
+@@ -243,13 +244,16 @@
+   were code fixes, made before any number existed.
+ - **First MUTATE attempt.** It crashed at M4: the satellite truncation bracket had no sign change when the satellite's phantom
+   never reaches u_h. M1–M3 had already printed the values reported above. The fix (next item) touches only `satellite_hover`.
+-  K, MUTATE and main were then rerun in that order from one script (sha256 6a0d7f62…).
++  K, MUTATE and main were then rerun in that order from one script. One more wording-only edit followed: a printed
++  "> 4 decades" became the computed 4.0–6.7, and the ℓ-scan resolution is now printed. All three stages were rerun again from
++  the final script (sha256 cf4edd42…); no number changed.
+ - **Implementation choices (not frozen; disclosed).**
+   - The satellite medium is truncated at the outermost radius in [a/100, 100a] where u_s ≥ u_h, or at r_t = a if u_s < u_h
+     everywhere.
+   - The EFE factor is on the far-side axis, at the Plummer scale radius.
+   - R2's joint free-mass model uses the tethered phantom's shape.
+-  - R3θ's transition example uses the total turnaround density for u₀. Using the excess instead would raise k_g by about 10%.
++  - R3θ's transition example uses the total turnaround density for u₀. Using the excess (4.55/5.55 of it) instead would raise
++    k_g by about 22%. The ghost band remains.
+   - Δ = 1 and θ_s = H₀, as declared. The Yukawa medium runs out to 1 Mpc.
+   - The response rate uses CFG938's kL* ≪ 1 dispersion.
+   - λ̄ = 0 is the background choice for χ's multiplier (as CFG938 implicitly).

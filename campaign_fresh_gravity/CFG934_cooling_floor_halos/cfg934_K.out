@@ -1,0 +1,33 @@
+CFG934 -- cooling-floor primordial halos (H-CF): a parameter-free supply for faint dwarfs.
+Criteria: FROZEN_CRITERIA.md (9782c3df7, committed alone before this script existed).
+
+H-CF: every star-forming dwarf sits in a primordial cold-matter halo of at least M_cool(z_f), the halo whose virial temperature
+T_vir = mu m_p V_c^2 / (2 k_B) reaches 1e4 K at its formation epoch z_f (Weisz+14 tau50 / tau90).  Native background and
+Delta_vir from CFG654 (A1 CMB set, N0 turnaround table); NFW with rho_s = C rho_m(z_f), C in {1500, 3000, 6000}; CFG42/CFG45
+readings (S) sum [primary] and (M) max [alternative]; classes U, C, M, I, S, L (criteria section 3).
+
+  MODE K
+  inputs loaded (0.1 s, 120 MB)
+  native background: h 0.67770, Omega_m 0.31040, Omega_r 9.106e-05, f_b 0.15685; age t0 13.7723 Gyr; onset 13.3 Gyr -> z 9.980
+
+======================================================================================================================
+K TESTS (criteria section 5)
+======================================================================================================================
+  [PASS] K1 CFG42 H1/H2/H4 reproduced through this lane's generic estimator with CFG42's inputs (Moster, Dutton-Maccio, FB, floors, hunt_lib a0)
+         60 UF/CL numbers, max |d| 0.0e+00; H4 n 110 nfex 0 frac 1.000 max 0.000 (|d| 0.0e+00) [3 s]
+  [PASS] K1b CFG45 (M) reading reproduced (UF km/z, CL med/z, SPARC dwarf|M frac/max)
+         16 UF/CL numbers max |d| 1.8e-15; SPARC M frac 0.9182 max 0.0596 (|d| 0.0e+00)
+  [PASS] K2 M_cool vs BL01 eq. 26 (z 9, Delta 18 pi^2, mu 0.6, T 1.98e4 K) within 2%; V_c identity 1e-10; NFW vs quadrature 1e-6; c solve 1e-10
+         M_cool 2.6266e+08 vs BL01 2.6485e+08 (rel 8.25e-03); V_c max rel 1.6e-15; NFW quad max rel 1.2e-14; c residual 2.0e-15
+  [PASS] K3 CFG827 E_SFH rows + OOS weighted flat mean reproduced (1e-9); this lane's tau50/tau90 = CFG824's (1e-12)
+         36 rows max |dE| 0.0e+00; flat +0.324643 (|d| 0.0e+00); OOS N 28 unweighted mean E +0.3747 (25/28 above the law); taus 36/36 max |d| 0.0e+00
+  [PASS] K4 CFG874 primary isolated E and se_E reproduced by this lane's replay (1e-12), both footings
+         N_I 11, N_S 54; canonical: E +0.1944 +- 0.0767; alt: E +0.1553 +- 0.0765; max |d| 0.0e+00
+  [PASS] K5 CFG880 sample N 83 with the declared host counts (and this lane's sigma_law equals CFG880's law2, extra)
+         N 83; hosts {'mw': 37, 'lmc': 6, 'm_031': 31, 'field': 7, 'm_033': 1, 'ngc_3109': 1}; sigma_law^2 max rel 4.4e-16
+  [PASS] K6 Delta_ta table nodes exact; Delta_vir(z = 30) within 3% of 18 pi^2 (extra: t0 vs quadrature)
+         node max |d| 0.0e+00; Delta_vir(30)/18pi^2 - 1 = -0.0055; t0 table 13.772285 vs quad 13.772285 Gyr
+
+  K-stage ALL PASS
+
+  runtime 3 s, peak RSS 138 MB, exit 0
