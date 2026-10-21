@@ -195,3 +195,22 @@ its control: KiDS Δχ² −9.39 (CONSISTENT), DES −2.15 (CONSISTENT, diagnost
 low power. With NC1x (canonical HOLDS), the inherited-IC condition is lifted on both footings. Caveats stand: absolute fits mediocre,
 advantage amplitude-driven, and the class-A engine that produces the pass has no established physical parent (CFG941–CFG952).
 
+
+---
+**Dated note, 2026-10-21 (owner decisions, before any data; nothing frozen edited).**
+- **Gaia DR4 kill line restated** (`OWNER_DECISION_2026-10-21_DR4_KILL_LINE.md`, 35ea5e1be). DR4 kills CFG740 iff
+  R − 1 ≥ max(0.01, 3σ_R), with σ_R from the pairs that enter R. Otherwise UNDECIDED; CONSISTENT is unreachable.
+  - At the plan's N (~2,100 pairs in R, σ_R 0.075) a kill needs R ≳ 1.22. A full MOND-size boost is caught only ~half the time, and a
+    1.15 boost almost never. Reliable discrimination needs ~7,000 pairs in R (MOCK, CFG943).
+  - This replaces the 10-14 table's "an MOND-size wide-binary boost" and corrections item C8's "much stricter than the prose".
+- **ALMA wording clarifications** (`CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md`,
+  `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md`, 35ea5e1be). CFG942's ambiguity list is resolved:
+  - the literal text is kept where it runs;
+  - where the literal fails on noise, the selection-aware G1 null and beam-corrected V_c and size errors are used;
+  - no taper branch is added;
+  - GS4 ROBUST is decided per model. Stated before data: this disc can neither support nor disfavour the framework.
+- **Correction (2026-10-21, later the same day).** The note above says that GS4 "can neither support nor disfavour the framework".
+  That is WRONG on most branches. It holds only on the canonical, M★ 10.89, R_g = R_d branch, the one branch the 10-20 scan
+  covered. On the six non-FLOOR branches, the framework's verdict reads ROBUST at 15–17 of 20 CI21 values (CFG942 full scan,
+  826ebb739). Corrected in `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md`, which also adds the MUTATE
+  continuum reading. The rule itself (ROBUST decided per model) is unchanged.

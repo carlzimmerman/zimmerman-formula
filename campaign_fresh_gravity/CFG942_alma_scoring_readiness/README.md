@@ -21,6 +21,236 @@ The criteria were committed alone, first (556c36582).
      - GS4: the framework's verdict is NOT ROBUST for every CI21 value, because CFG572's public CO43 and dust routes already disagree;
      - U4: the plan separates the models only for V_c ≈ 220–260 km/s.
 
+## 2026-10-21: clarifications implemented
+The owner settled the ambiguities below before any data, in two files committed in 35ea5e1be:
+- `CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md`;
+- `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md`.
+
+The harness now implements the eight items listed here. Every other default is unchanged. Everything is still MOCK: no byte of either programme has been read.
+
+**What changed**
+| item | 10-20 harness | now |
+|---|---|---|
+| U4 A-U16 | V_c 1σ from the independent-pixel fit covariance; beam-corrected printed as "alt4" | the beam-corrected interval (covariance × √(pixels per beam)) is primary for TESTS NOTHING, PARTIAL, every Δ_m and every verdict; the independent-pixel interval is an information line (with the status it would give, if different) |
+| U4 A-U1 | gap labelled "WITHIN 2sig_tot (unnamed by CFG806 s4)" | "not in tension (within 2σ_tot)"; never "consistent" |
+| U4 A-U14 | radius-1″ and radius-2″ ratios printed, neither primary | the 20% flag uses the diameter-2″ (radius-1″) aperture and fires only after G1 passes; the radius-2″ ratio is printed as information |
+| GS4 A-G9 | G3 used the covariance FWHM error | G3 uses that error × √(pixels per beam); the independent-pixel error is printed; the Gaussian-to-exponential size bias is printed as information (noiseless exponential disc at the measured R_g, axis ratio and beam); R_g is not corrected |
+| GS4 A-G11 | +2000 km/s outside the spw → exit 2 | rerun at +1000, labelled "MUTATE fallback +1000 (CLARIFICATION A-G11)"; the exit code follows the fallback; exit 2 only if +1000 also leaves the window |
+| GS4 A-G3 | an upper limit not in tension read "consistent with (one-sided)" | "not constrained"; in tension only if Δ_v = 0 lies more than 2σ_Δv outside the whole [f(0), f(UL)] (the test is unchanged); UL cells print the interval |
+| GS4 A-G4 | ROBUST already decided per model (verified; unchanged) | the owner's sentence is printed once; a per-run check and a self-test scan of every branch are printed as information (see finding 1) |
+| both | — | the clarification file and commit 35ea5e1be are printed; K1 gains two rows (both clarification files == 35ea5e1be); the harness sha256 is printed and recorded in every results JSON; release-day copy into the plan's dir (`cfg806_u4[_MUTATE].out/_results.json`, `cfg809_gs4[_MUTATE].out/_results.json`), made only with `--cube` and only if the cube's OBJECT is not MOCK |
+
+New self-test checks:
+- U4: A-U16 (V_c 205, ±3 independent / ±8 beam-corrected → PARTIAL), the A-U1 label, the copy step on temporary files.
+- GS4: the A-G3 label, the copy step, the A-G4 scan, and A-G11 on two tiny temporary MOCK cubes:
+  - coverage −1000..+1400 km/s: the fallback runs and bites (−3.7σ, exit 1);
+  - coverage −1000..+1100 km/s: exit 2.
+
+**Re-runs.** MOCK only, one process at a time, one thread, `nice -n 10`.
+- The seven cubes were regenerated from their seeds into scratch. Each sha256 equals the 10-20 value listed under Files. Each cube was deleted after its run.
+- Every output here was overwritten; the MUTATE outputs stay separate.
+- K1 is 22/22 PASS and K5 PASS in every run. The self-tests all PASS.
+- MUTATE:
+  - U4 exits 1: G1 fails at +2000.
+  - GS4 exits 1 at −25.9σ. +2000 lies inside this mock's coverage, so the line reads "MUTATE +2000 (as frozen)".
+- The failed controls are kept and unchanged: U4-b C2 (rms 1.23×) and GS4-e C2.
+- Peak RSS was at most 997 MB (U4-a). The true unique set size stayed at or below 145 MB.
+
+**Which mock verdict lines moved: none.**
+
+| run | 10-20 | 10-21 |
+|---|---|---|
+| U4-a primary | FRAMEWORK SIDE; F-DESI/F-flat "WITHIN 2sig_tot (unnamed)", R-H/L-fb IN TENSION | FRAMEWORK SIDE; F-DESI/F-flat "not in tension (within 2σ_tot)", R-H/L-fb IN TENSION |
+| U4-b primary | RIVAL SIDE (alt footing NO SIDE) | the same |
+| U4-c | TESTS NOTHING ×4 | the same |
+| U4-d | G1 FAIL, log M_gas < 7.75, no kinematic test | the same |
+| GS4-a primary | FRAMEWORK SIDE; G3 PASS | the same |
+| GS4-b primary | NO SIDE; every model "consistent with (one-sided)" | NO SIDE; every model "not constrained" |
+| GS4-e primary | F-DESI in tension, +0.90 ± 0.18 | the same |
+
+**Numbers that changed, and why**
+- **U4 V_c 1σ.** The printed interval is now the beam-corrected one:
+  - U4-a: ±0.02–0.03 km/s (independent-pixel ±0.01);
+  - U4-b: ±0.20–0.21 (±0.06–0.07);
+  - U4-c: ±0.02 (±0.01).
+- **U4 required ranges** widen with the V_c interval:
+  - U4-a: by at most 0.01 dex.
+  - U4-b: by up to 0.16 dex where R-H and L-fb are steep near 246 km/s (KMOS3D inclination, P-B):
+    - R-H [8.53, 8.63] → [8.40, 8.71], eΔ 0.16 → 0.22;
+    - L-fb [8.49, 8.59] → [8.33, 8.68], eΔ 0.16 → 0.23;
+    - both stay IN TENSION (high gas), because the measured value is 9.44.
+- **U4 power** (self-test R6): only the label changed (w2s → nit).
+- **GS4 G3:** the FWHM error reads ±0.0006″ in GS4-a (was printed as ±0.000), and G3 still passes. Size-bias information: 0.696 (GS4-a) and 0.697 (GS4-e), against the MOCK truth of 0.694.
+- **GS4 power:** upper-limit cells changed from C to nc.
+- **Unchanged:** every measured flux, S/N, V_c, Δ_m, Δ_v, σ_Δv and FLOOR flag. Peak-memory figures vary from run to run.
+
+**Findings for the owner (reported, not decided)**
+
+Findings 1, 2 and 4 were acted on later the same day by addendum A; see "Addendum A implemented" below. Finding 3 stands.
+
+1. **The A-G4 sentence holds on only one of the eight branches**: canonical, M★ 10.89, R_g = R_d. That is the only branch the 10-20 scan covered.
+   - The self-test scan covers all eight M★ × shape × footing branches at V_c 206, with CI21 from 8.0 to 11.8.
+   - On 6 branches that are not FLOOR (all of M★ 10.76, and M★ 10.89 with R_g = 1.5 R_d), F-DESI and/or F-flat read ROBUST at 15–17 of the 20 CI21 values: CI21, CO43 and dust give the same wording.
+   - On the alternate footing at M★ 10.89 (both shapes), F-flat's FLOOR tension is ROBUST at every CI21 value.
+   - GS4-a: 44 of 72 framework CI21 rows are ROBUST, 23 of them not FLOOR. GS4-e: 21 rows, all FLOOR. On the primary cut, only F-flat (alt, M★ 10.89, FLOOR) is ROBUST.
+   - So two sentences are not borne out on every branch: "this disc can neither support nor disfavour the framework", and "only the rivals' FLOOR tension can come out ROBUST".
+   - The harness prints the sentence as instructed, with the check beside it. The per-model ROBUST rule is unchanged.
+2. **Clarification items outside these eight changes.** The harness does not yet do them:
+   - A-X3: CFG571's Δ_m on M_bar is not printed.
+   - A-U4/A-U17: a failed C2 does not print the ~10% MOCK false-failure rate beside it.
+   - A-G1: σ_Δv with CFG572's ±0.1 dex M★ term is not printed.
+   - A-G16: after a G1 failure, the continuum is measured in the noise-selected ≥ 2σ [CI] mask whenever that mask is not empty (GS4-b: 23 px, peak S/N 6.9), not in the R_e circle. The A-G6 flag text says "R_e circle if no [CI] detection".
+   - A-G4 "the other CFG572 branches are printed": their masses are on the routes line and their rows are in the JSON. The score table shows only r41 0.37 and α_CO 4.36.
+3. **A-G11 on a centred spw.** A 1.875 GHz spw centred on 270.0 GHz covers about ±1040 km/s.
+   - The +1000 window (true-frame +700..+1300 km/s) is then not fully covered either, so the fallback also exits 2 there.
+   - The fallback helps only if the spw is offset to higher velocity, or wider. The record holds no spw edges.
+   - "Leaves the window" is implemented as "the shifted ±300 km/s window is not fully covered", the same test as for +2000.
+4. **MUTATE continuum (an observation, not from the clarifications).** For the shifted window, the continuum is the median of channels with |v| > 600 in the shifted frame, and these include the true line.
+   - Part of GS4-a's −25.9σ, and of the tiny cube's −3.7σ, is this over-subtraction.
+   - The control still bites as frozen.
+
+### Addendum A implemented (748dd8095, later on 10-21)
+The owner's `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md` withdraws the A-G4 sentence (§1), adds a MUTATE continuum reading (§2), and lists items the harness still had to print (§3). It is implemented here, MOCK only, with the same rules. All seven cubes were regenerated bit-identical, then deleted, and every self-test, mock and MUTATE run was repeated one at a time.
+
+**Before → after** (826ebb739 → this commit)
+| item | before | after |
+|---|---|---|
+| A-G4 header (§1) | the withdrawn sentence | addendum §1's per-branch statement, with the scan behind it: 7 of 8 M★ × shape × footing branches CAN return a ROBUST framework verdict; only canonical, M★ 10.89, R_g = R_d CANNOT. This agrees with the addendum (new self-test check, PASS). On the 6 non-FLOOR branches the ROBUST wording is "consistent with" (15–17 of 20 CI21 values); on alt M★ 10.89 it is F-flat's FLOOR tension (20 of 20). |
+| GS4 MUTATE (§2) | −25.89σ: 120 continuum channels, true line included | +2.90σ: 60 channels, true line (±600 km/s of z 1.9975) excluded. Still below 3σ, so it bites (exit 1). The old reading is printed as information. |
+| GS4 tiny-cube fallback | −3.7σ, exit 1; second cube exit 2 | −0.1σ, exit 1; exit 2 now says "this run has NO MUTATE control" |
+| U4 MUTATE | true line in the continuum | checked first, then excluded: the 2 R_e circle at the target in the +2000 window reads −16.0σ with the true-line channels in the continuum and −1.8σ without them. Selection-aware G1 S/N −2.6 → −0.3 (fails, so the control bites, exit 1). The check is printed in every U4 MUTATE run. |
+| A-G1 (§3) | not printed | an information line under each CI21 row. With CFG572's ±0.1 dex, the Δ_v-alone wording of FLOOR models becomes "in tension" in 43 of 144 CI21 rows (GS4-a) and 6 of 32 (GS4-b). Verdicts keep the plan's 0.2 dex. |
+| A-G16 (§3) | GS4-b continuum in the 23-px noise mask: peak S/N 6.9, 7.4 µJy | R_e circle: peak S/N 22.9, 473.9 µJy (the mock continuum is 478 µJy) |
+| A-G4 rows (§3) | primary and the two ROBUST routes only | every other branch (CO43 r41 0.25 / 0.55, CI10 limits, dust Scoville, CI21 X_CI 3.0e-5) as "(information)" rows; they never enter ROBUST or the side |
+| A-X3 (§3, U4) | not printed | CFG571's Δ_m on M_bar per footing on the primary cut: log of the spherical-equivalent V_bar²R/G, measured − required, at CFG571's 2R_e. U4-a, canonical: F-DESI −0.00 ± 0.05, F-flat +0.00, R-H +0.14, L-fb +0.10 |
+| A-U17 (§3, U4) | not printed | beside U4-b's C2 failure: "about 10% (MOCK); Gaussian estimate at N_independent 33: 11%"; §5 unchanged |
+| K1 | 22 rows | 23 rows: the addendum == 748dd8095; 23/23 PASS in every run |
+| memory | peak RSS 997 MiB (U4-a) | at most 457 MB in every run; cube generation about 190–230 MB |
+
+**Memory fix.**
+- **Cause:** the macOS malloc medium zone keeps freed 32 KB–8 MB blocks resident. The thin-disc fit allocates such temporaries hundreds of times, so resident size grew about 2.6 MB per model evaluation while Python's traced peak stayed at about 100 MB.
+- **Fix:** each harness re-executes itself once at start with `MallocMediumZone=0` (same process id). With it, the first fit stays at about 290 MB; without it, about 760 MB.
+- **What it does not change:** the mock cubes stay bit-identical and the fit numbers are identical (e.g. U4-a V_f 257.4, nfev 90, χ²/N 1.203).
+
+**Verdict lines moved: none.** The primary-route and ROBUST-route lines of all seven mocks are identical to 826ebb739 after whitespace normalisation, and so are the U4 class lines and sides.
+
+**New findings for the owner (reported, not decided)**
+1. **The GS4 MUTATE under addendum §2 bites only narrowly: +2.90σ against the 3σ line.** The residual is not line emission:
+   - The run's selection check splits the shifted flux in the true-run mask into the raw shifted window (+0.57σ) and the continuum term (+2.32σ). In the 8 ring copies, which are not selected on the data, the continuum term is −0.13 ± 0.65σ.
+   - Cause: the true-run mask is chosen where (true window − its continuum) ≥ 2σ, which favours pixels whose continuum noise is low. The shifted continuum reuses 60 of those continuum channels, so subtracting it biases the masked sum upward.
+   - On real data the control could therefore fail to bite (exit 0) with no line in the shifted window.
+   - The bite rule is unchanged here. Possible rulings are a continuum disjoint from the true-run continuum's channels, or a selection-aware null as in G1.
+2. **U4's MUTATE bite now rests on A-U13.** With the over-subtraction removed, the literal translated-mask S/N in the shifted window reads 8.6, a false pass on noise like U4-d's 9.5. The selection-aware S/N (−0.3) decides, as A-U13 says.
+3. **The U4 exclusion follows CFG809 addendum A §2's reasoning, applied by instruction after the check above.** CFG806's own text (and its clarification's A-U3: "the median of channels with |v| > 600 km/s") does not state it, so the owner may wish to confirm it for CFG806.
+
+### Addendum B implemented (CFG809 addendum B and CFG806 addendum A, d7a1afae1)
+The owner ruled on new finding 1 above:
+- `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_B.md`: the GS4 MUTATE is scored against a selection-aware null. At 200 off-source seeds, masks are grown by the true run's procedure and their flux is taken in the shifted window with the addendum-A continuum. The control bites if (flux − null mean)/null sd < 3.
+- `CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md`: U4's MUTATE continuum excludes ±600 km/s of the true line, and G1's selection-aware S/N decides.
+
+Implemented here, MOCK only, with the same rules. The self-tests, all seven mocks (regenerated bit-identical, then deleted) and both MUTATE runs were repeated one at a time.
+
+**Before → after** (90bdb0153 → this commit)
+| item | before | after |
+|---|---|---|
+| GS4 MUTATE statistic | flux / ring rms of translated copies of the true-run mask = +2.90σ, bites (exit 1) | (flux − null mean)/null sd = **+151.67**, does **NOT** bite (exit 0). The null comes from 200 seeds on the true-window map (the same seeds as G1's null), measured in the shifted window: mean 0.000001, sd 0.000001 Jy km/s. The old statistic, the split and the 10-21 reading are printed as information. |
+| GS4 tiny-cube fallback (self-test) | −0.1σ, exit 1 | statistic −0.90, bites, exit 1 (mask 35 px). The check now tests the A-G11 logic: the fallback runs, is labelled, and the exit code follows it. |
+| U4 MUTATE | G1 selection-aware S/N −0.3, bites | the same, −0.30, bites (exit 1). A continuum-selection check is printed (see below). The MUTATE continuum is now owned by CFG806 addendum A, no longer "by instruction". |
+| K1 | 23 rows | 25 rows: CFG809 addendum B and CFG806 addendum A == d7a1afae1; 25/25 PASS in every run |
+| memory | at most 457 MB | at most 449 MB |
+
+**Verdict lines moved: none.** The scoring of every mock is unchanged; only the GS4 MUTATE outcome changed.
+
+**U4: does the same null show the continuum-selection bias?**
+- **Yes, and the null carries it.** In the shifted window, the continuum term of the 31-px target mask is +0.000031 Jy km/s. That is +7.9 sd above 8 unselected ring copies (−0.000000 ± 0.000004): the ≥ 2σ selection prefers low-continuum pixels, which is the addendum-B bias.
+- The G1-procedure null masks show the same term (+0.000035 ± 0.000011); the target sits at −0.31 null sd.
+- U4's MUTATE grows its mask and its null on the same shifted map. So G1's selection-aware S/N is itself addendum B's null-calibrated statistic: the two coincide (−0.30), and it decides.
+
+**Finding for the owner (reported, not decided): under addendum B the GS4 MUTATE does not bite on MOCK GS4-a.**
+- The statistic is +151.67, yet no line is in the shifted window: the raw shifted window is +0.57σ in ring units.
+- **Scale mismatch:**
+  - The true-run mask of this bright mock (S/N 1087) has 18,083 px.
+  - The null masks, grown from noise at off-source seeds, have a median of 20 px (max 48).
+  - The null's sd (0.000001) is therefore about 40× smaller than the noise of the true-run mask's flux (ring rms 0.00004), and the small selection bias left in the big mask is measured against it.
+- The mismatch shrinks as the source's mask approaches noise size; on the tiny cube (35 px) the control bites at −0.90.
+- On real data a well-detected [CI] line would give a large mask, and the control could fail exactly as here.
+- The harness implements the ruling literally and prints the mask sizes beside the statistic. Possible rulings are not decided here; for example, a null whose masks match the true-run mask in size.
+
+### Addendum C implemented (CFG809 addendum C, 785fcae44)
+Addendum C withdraws addendum B's noise-grown null and rules an injection null that matches the mask's size and selection:
+1. at 200 off-source positions, inject a copy of the true run's beam-convolved moment-0 model (same line profile, same flux);
+2. regrow the mask by the true run's procedure;
+3. measure its shifted-window flux with the addendum-A continuum.
+
+The control bites if (true-run shifted flux − null mean)/null sd < 3. Implemented here, MOCK only. The GS4 self-test, GS4-a/b/e and the GS4 MUTATE were rerun one at a time. U4 was rerun too, because the shared K1 list gained a row; its logic is unchanged.
+
+**Implementation.**
+- **Model:** the injected model is the run's beam-convolved Gaussian fitted to the true-window moment-0 (plan §3.2), with its fitted flux.
+- **Moment-0 injection:** the injection is done on moment-0 maps. This is exact when the line profile lies in channels excluded from both continua and outside the shifted window, so that the injected line changes only the true-window moment-0. The run measures the true-run profile's fractions and prints them: GS4-a 0.003 beyond 600 km/s and 0.002 in the shifted window, i.e. zero within noise.
+- **Copies:**
+  - Copies sit on a 26″ crop (clipped at the cube edge), at least 2 r_mask + 0.5″ from the target and r_mask + 0.3″ from the edge, with the true source blanked.
+  - σ is recomputed per copy.
+  - The 200 positions are seeded and the same for every model.
+
+**Before → after** (9dcfc3ce4 → this commit)
+| item | before (addendum B) | after (addendum C) |
+|---|---|---|
+| GS4 MUTATE statistic | +151.67, does not bite (exit 0); null masks median 20 px | **+3.36, does not bite (exit 0)**. Null mean 0.000009, sd 0.000031 Jy km/s. Injected-copy masks median 8,828 px (16–84%: 8,768–8,883) against the true run's 18,083. |
+| information lines | addendum-A +2.90σ; split | addendum B's +151.67 (withdrawn), addendum-A +2.90σ, the 10-21 reading −25.89σ, and the split are kept. New: the same injection null with the §3.4 thin-disc model gives **+2.35 (would bite)**, with masks median 18,073 px. |
+| GS4 tiny-cube fallback | B statistic −0.90, bites | C statistic −0.01, bites (true mask 35 px, copies median 30 px) |
+| K1 | 25 rows | 26 rows: addendum C == 785fcae44; 26/26 PASS in every run |
+| U4 | G1 selection-aware S/N −0.30, bites | unchanged, −0.30, bites |
+
+**Verdict lines moved: none.** All seven mocks' scoring lines and sides are identical to 9dcfc3ce4.
+
+**Findings for the owner (reported, not decided)**
+1. **The injection null depends on which model is injected, and with the run's moment-0 model it does not match the mask.**
+   - The true run's beam-convolved moment-0 model is the §3.2 Gaussian.
+   - Fitted to the exponential [CI] disc, it has weaker wings and less flux (0.0395 against 0.0489 Jy km/s). Its copies grow masks half the true size (8,828 against 18,083 px) and recover 0.0391 against 0.0471 Jy km/s. This is the A-G9 Gaussian-to-exponential bias.
+   - So it matches neither the size nor the near-threshold selection: the copies' mean is 0.000009, while the true mask's continuum term is +0.00009. The statistic is +3.36 (no bite).
+   - The run's other beam-convolved model is the §3.4 thin-disc cube model: an exponential disc with the line profile, fitted only when G4 passes. It matches (18,073 px; 0.04716 Jy km/s) and gives +2.35 (would bite).
+   - Addendum C does not say which model is meant, and the thin-disc model does not exist when G4 fails.
+2. **The null values are correlated.** The off-source area of this cube holds about 15 non-overlapping copies of an 18,083-px mask, so the 200 positions overlap. The null mean and sd rest on about 15 independent samples; the sd alone is uncertain by roughly ±20%, i.e. about ±0.5 on the statistic.
+3. **Even with the size-matched model, GS4-a sits at +2.35**, about 0.65 below the bite line. A real cube's control may land on either side of 3 by chance.
+4. **Stale cross-reference.** CFG806 addendum A (U4) still points to "CFG809 addendum B", which addendum C withdrew for GS4. U4's decision is unaffected (G1's selection-aware S/N, masks grown on the shifted map; −0.30), but the reference is now stale.
+
+### Addendum D implemented (CFG809 addendum D, c2dfb62b5): MUTATE re-runs G1 in the shifted window
+Addendum D drops every reused-mask statistic. Addenda B and C scored the true run's mask, which was selected on the true window; B's null had the wrong scale and C's depended on the injected model.
+
+The GS4 MUTATE now re-runs G1 in the shifted window, exactly as CFG806-U4 does:
+- a fresh ≥ 2σ mask grown at the shifted window;
+- the addendum-A continuum (true-line channels excluded);
+- the S/N against A-G13's selection-aware null (200 off-source seeds).
+
+The control bites if that S/N is below 3. The A, B and C statistics and the mask sizes are printed as information.
+
+The U4 output wording now cites addendum D instead of the superseded addendum-B sentence. U4's logic is unchanged.
+
+The GS4 self-test, GS4-a/b/e and the GS4 MUTATE were rerun one at a time, together with the full U4 set (the shared K1 list changed).
+
+**Before → after** (88db01f47 → this commit)
+| item | before (addendum C) | after (addendum D) |
+|---|---|---|
+| GS4 MUTATE | injection-null statistic +3.36 on the reused 18,083-px mask, does not bite (exit 0) | G1 re-run in the shifted window: fresh mask 23 px, selection-aware S/N **+0.29**, null mean 0.0000057, sd 0.0000024 Jy km/s; **bites (exit 1)**. The literal ring S/N reads 11.0, a false pass on noise like G1's (A-G13), and never decides. |
+| information lines | B +151.67, A +2.90σ, thin-disc C +2.35 | the same, plus C with the Gaussian (+3.36) and the mask sizes: fresh 23 px; true-run 18,083; C copies 8,828 (Gaussian) and 18,073 (thin disc); B null masks 20 |
+| GS4 tiny-cube fallback | C statistic −0.01, bites | addendum-D S/N −0.09, bites, exit 1 (fresh mask 1 px); the exit-2 case is unchanged |
+| U4 MUTATE | G1 selection-aware S/N −0.30, bites | unchanged (−0.30, bites); the wording now cites addendum D |
+| K1 | 26 rows | 27 rows: addendum D == c2dfb62b5; 27/27 PASS in every run |
+| memory | at most 362 MB | at most 417 MB |
+
+**Verdict lines moved: none.** All seven mocks' scoring lines and sides are identical to 88db01f47.
+
+**What remains open (reported, not decided)**
+- **Both MUTATE bites now rest on A-G13 / A-U13.** In the shifted window, the literal S/N passes on pure noise (GS4 11.0, U4 8.6), and only the selection-aware S/N bites. This is consistent with both clarifications, but on release day the literal reading must not be quoted as the control.
+- **No GS4 MUTATE control is possible on a centred spw (finding 3 of 10-21 stands).** If the 1.875 GHz spw is centred on 270 GHz, even the +1000 fallback leaves the window, and the run then has no MUTATE control (addendum A §2). The record holds no spw edges to check this.
+
+**Nothing frozen was edited.** These files are unchanged:
+- both plans' FROZEN_CRITERIA.md, both CLARIFICATION files, CFG809 addenda A–D, and CFG806 addendum A;
+- `cfg571_prereg.py` and its seal JSON;
+- LEDGER.md, the THEORY_CANONICAL files and CFG572.
+
+K1 (27/27) and K5 checked this in every run, and git status is clean for those paths. No file was written into the plan directories: the copy step runs only for a real cube.
+
 ## Hash verification (K1 in every run; all PASS)
 | file | sha256 (prefix) | equals freezing commit |
 |---|---|---|
@@ -34,6 +264,11 @@ The criteria were committed alone, first (556c36582).
 | CFG775 `SEALED_BH_BRANCH.json` / CFG778 `SEALED_EVENT_HORIZON.json` | 3d236378… / b9f3e827… (= their READMEs) | 8a7634027 / aac6ddd23 |
 | THEORY_CANONICAL_2026-10-14.md | 30aa143e… (= its .sha256) | b7356ac57 |
 | AG5 `FROZEN_SCORING.md` / `score_alma.py` (recorded only, not used) | b7f489bf… / ca6e0a2e… | 7ea94d2ae / c4bfd82fd |
+| `CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md` / `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md` (K1 rows added 10-21) | 5d2fbcea… / ba573d73… | 35ea5e1be |
+| `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md` (K1 row added 10-21) | 50e3e5be… | 748dd8095 |
+| `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_B.md` / `CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md` (K1 rows added 10-21) | 6ba6bd2f… / feacc7c9… | d7a1afae1 |
+| `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_C.md` (K1 row added 10-21) | 44a439ff… | 785fcae44 |
+| `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_D.md` (K1 row added 10-21) | 4bd73cf5… | c2dfb62b5 |
 
 **Seal reproduction and transcription:**
 - CFG571's own functions reproduce all 56 U4 and 16 GS4 sealed entries to 0.0 dex, with the FLOOR flags identical. The functions are executed from the text above the script's `# ---- controls ----` line; a plain `import` would rewrite the seal file and exit (A-X6).
@@ -102,6 +337,8 @@ The frozen predictions are CFG571's four models as sealed. The CFG689 native a0(
 ## Mock dry-runs
 All inputs are MOCK. The harness generates them (seeded), they are read back from FITS like real data, and they are never committed. Their noise is chosen for clean detections and is NOT the archive sensitivity.
 
+The table records the 10-20 runs. On 10-21 every run was repeated under the clarifications, and every class held; only the wording changed (see "2026-10-21: clarifications implemented").
+
 | run | truth | class returned | required |
 |---|---|---|---|
 | U4-a | V_c(P-B) 250, gas = F-DESI's need (10.42) | G1 and G2 PASS; V_c 250.2 recovered; canonical primary FRAMEWORK SIDE (alt footing FRAMEWORK SIDE) | PASS |
@@ -148,7 +385,7 @@ The KMOS3D integrated Hα σ of 224.5 km/s hints that V_c may lie above CFG571's
 ## Release-day checklist
 Run everything from `campaign_fresh_gravity/CFG942_alma_scoring_readiness/`.
 
-**Environment:** `OMP_NUM_THREADS=1 nice -n 10`, one process at a time.
+**Environment:** `OMP_NUM_THREADS=1 nice -n 10`, one process at a time. On macOS each harness re-executes itself once with `MallocMediumZone=0`, which keeps the peak RSS under 0.5 GB on the mocks; the header prints "memory guard".
 
 **U4_27928 (2026-11-06):**
 1. `python3 -B cfg942_u4.py --selftest`: all K1 checks must PASS. A mismatch stops the run (exit 2).
@@ -157,15 +394,25 @@ Run everything from `campaign_fresh_gravity/CFG942_alma_scoring_readiness/`.
    - Take its pipeline `member.uid___A001_…_sci.spw<N>.cube.I.pbcor.fits` (+ `.pb`).
    - Record the sha256.
 3. `python3 -B cfg942_u4.py --cube <cube.pbcor.fits>` writes `cfg942_u4_RELEASE.out/json`. It runs G1, G2, the fits, C1, C2, C3 and the score; a failed control prints NOT DIAGNOSTIC.
-4. `python3 -B cfg942_u4.py --cube <cube.pbcor.fits> --mutate` must exit 1.
-5. Commit the outputs (never the cube, never a home path), delete the cube, and add departures to a dated README note. The orchestrator writes the ledger row.
+   - For a real cube (OBJECT not MOCK) the same two files are also written, byte-identical, into the plan's dir as `CFG806_u4_27928_scoring/cfg806_u4.out` / `cfg806_u4_results.json` (CLARIFICATION A-X7).
+   - The results JSON records the harness sha256.
+4. `python3 -B cfg942_u4.py --cube <cube.pbcor.fits> --mutate` must exit 1. Its copies are `cfg806_u4_MUTATE.out` / `cfg806_u4_MUTATE_results.json`.
+5. Commit the outputs, including the plan-dir copies. Never commit the cube or a home path. Delete the cube, and add departures to a dated README note. The orchestrator writes the ledger row.
 
 **GS4_24110 (2026-11-28):** the same steps, with:
-- `python3 -B cfg942_gs4.py --cube <CI21 cube> --cont <continuum image>`, then `--mutate`. It exits 1, or 2 if +2000 km/s leaves the spw (A-G11).
+- `python3 -B cfg942_gs4.py --cube <CI21 cube> --cont <continuum image>`, then `--mutate`.
+  - The copies are `CFG809_gs4_24110_ci21_scoring/cfg809_gs4[_MUTATE].out` / `_results.json`.
+  - MUTATE exits 1 when the control bites.
+  - If +2000 km/s leaves the spw, MUTATE reruns at +1000, labelled "MUTATE fallback +1000 (CLARIFICATION A-G11)", and exits by that run. It exits 2 only if +1000 also leaves the spw; that run then has no MUTATE control (addendum A §2).
+  - The shifted window's continuum excludes channels within ±600 km/s of the true line (addendum A §2).
+  - MUTATE re-runs G1 in the shifted window (addendum D): a fresh ≥ 2σ mask, the addendum-A continuum, and the selection-aware S/N, which bites below 3. MOCK GS4-a reads +0.29 and bites. The A, B and C statistics are information only. See "Addendum D implemented".
+  - U4's MUTATE uses the same continuum exclusion (CFG806 addendum A), and G1's selection-aware S/N decides.
 - The spw must cover 270.006 GHz. The harness reads FREQ cubes, 3D or 4D, with BMAJ keywords or a per-plane BEAMS table.
 
 ## Ambiguities that could cause a release-day dispute
 Each one is flagged in the outputs. None is resolved by editing a frozen file; the harness's default is stated in each line.
+
+The list is kept as written on 10-20. The owner resolved it on 10-21 (35ea5e1be). The items that changed the harness are listed under "2026-10-21: clarifications implemented"; the stale lines are A-U1, A-U14, A-U16, A-G3, A-G9 and A-G11.
 
 **Cross-plan**
 - **A-X1 Two frozen plans per target.** CFG806/809 differ from AG5 (7ea94d2ae) in:
@@ -228,7 +475,9 @@ Each one is flagged in the outputs. None is resolved by editing a frozen file; t
 - **A-M1 Mask extent.** Default: the ≥ 2σ components that touch a 0.5″ circle at the catalogue position.
 - **A-M2 Per-plane beams.** If the cube carries a BEAMS table, the median beam is used.
 
-## NOTE for the owner (proposed 2026-10-20; NOT adopted; nothing frozen is changed)
+## NOTE for the owner (proposed 2026-10-20; nothing frozen is changed)
+Superseded on 10-21 by the owner's CLARIFICATION_2026-10-21 files (35ea5e1be) and the owner decision of 10-20 on the governing plans.
+
 If the owner agrees, a dated file `CLARIFICATION_2026-10-2x.md` could be committed into each plan's lane **before 2026-11-06**, saying:
 1. **Which plan governs** (A-X1): "On release day the governing score is [CFG806/CFG809 | AG5]; the other is reported as a cross-check." Also whether THEORY_CANONICAL §2's kill line applies to one disc (A-X2).
 2. **U4 §4 reading** (A-U1, A-U2, A-U15): "consistent = |Δ_m| ≤ 2σ_tot; σ_tot = √(σ_rms² + σ_V² + 0.15²) (one floor); the M★ 0.2 dex systematic enters only the FLOOR-reduced statement."

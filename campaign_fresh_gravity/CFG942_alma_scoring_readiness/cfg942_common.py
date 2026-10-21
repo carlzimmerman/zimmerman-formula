@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """CFG942 shared machinery (FROZEN_CRITERIA.md, 556c36582): seal and plan hashes, CFG571's functions executed read-only,
 frozen-table transcription, cube I/O, moment maps and masks, translated-mask apertures, beam-convolved 2D Gaussian fit,
-thin-disc cube model and fit, MOCK cube generation.  Nothing here writes into another lane.
+thin-disc cube model and fit, MOCK cube generation.  Nothing here writes into another lane, except the release-day copy of a
+real-cube run into the plan's directory that the owner's CLARIFICATION_2026-10-21 (A-X7, commit 35ea5e1be) asks for.
 kappa = 1/2 FITTED; footings never pooled; not theory closed."""
 import os, sys, json, math, hashlib, subprocess, re, resource
 sys.dont_write_bytecode = True
@@ -35,8 +36,29 @@ FROZEN = [
     ("CFG778 seal", "campaign_fresh_gravity/CFG778_sealed_event_horizon_branch/SEALED_EVENT_HORIZON.json", "aac6ddd23"),
     ("THEORY_CANONICAL 10-14", "campaign_fresh_gravity/THEORY_CANONICAL_2026-10-14.md", "b7356ac57"),
     ("KMOS3D catalogue (U4 position, axis ratio)", "data_assembly/kmos3d_phibss/kmos3d_catalog.csv", None),
+    # owner clarifications of 2026-10-21 (written before any data); appended so the indices above are unchanged
+    ("U4 clarification 10-21 (CFG806 dir)", "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md", "35ea5e1be"),
+    ("GS4 clarification 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md", "35ea5e1be"),
+    ("GS4 clarification addendum A 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md", "748dd8095"),
+    ("GS4 clarification addendum B 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_B.md", "d7a1afae1"),
+    ("U4 clarification addendum A 10-21 (CFG806 dir)", "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md", "d7a1afae1"),
+    ("GS4 clarification addendum C 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_C.md", "785fcae44"),
+    ("GS4 clarification addendum D 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_D.md", "c2dfb62b5"),
 ]
 SEAL_HASH_EXPECT = "be27457db6bad870a734c52d2bad92c6669cde53ca7a81553e79154dbedc3714"
+CLAR_COMMIT = "35ea5e1be"
+U4_CLAR = "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md"
+GS4_CLAR = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md"
+ADD_COMMIT = "748dd8095"
+GS4_ADD = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md"
+ADD_B_COMMIT = "d7a1afae1"
+GS4_ADD_B = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_B.md"
+U4_ADD_A = "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md"
+ADD_C_COMMIT = "785fcae44"
+GS4_ADD_C = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_C.md"
+ADD_D_COMMIT = "c2dfb62b5"
+GS4_ADD_D = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_D.md"
+MUTATE_EXCL = 600.0      # addendum A s2: MUTATE's shifted-window continuum excludes channels within +-600 km/s of the true line
 
 
 # ------------------------------------------------------------------------------------------------ run bookkeeping
@@ -146,6 +168,57 @@ def verify_frozen(run):
     run.check("K1 THEORY_CANONICAL_2026-10-14.md sha256 == its .sha256 file", tc == tq, tc[:16] + "…")
     res["sealed_json_sha256"] = seal
     return res
+
+
+# ------------------------------------------------------------------------------------------------ clarification 2026-10-21 bookkeeping
+def harness_sha256(script):
+    """sha256 of the harness files that produced a run (recorded in every results JSON; CLARIFICATION A-X6 / A-X7)"""
+    return {os.path.basename(p): sha256_file(p) for p in (os.path.abspath(script), os.path.join(HERE, "cfg942_common.py"))}
+
+
+def announce_clarification(run, rel, script, addenda=()):
+    """print the clarification in force (file and commit), any addenda (file, commit) and the harness sha256; returns the entries
+    for the results JSON"""
+    h = harness_sha256(script)
+    run.P(f"Clarification in force: {rel} (owner decision before any data; commit {CLAR_COMMIT}). The frozen plan is not edited.")
+    for a, c in addenda:
+        run.P(f"Addendum in force: {a} (owner, before any data; commit {c}).")
+    run.P("harness sha256: " + "; ".join(f"{k} {v}" for k, v in h.items()))
+    return dict(clarification=dict(file=rel, commit=CLAR_COMMIT, sha256=sha256_file(os.path.join(REPO, rel))),
+                addenda=[dict(file=a, commit=c, sha256=sha256_file(os.path.join(REPO, a))) for a, c in addenda], harness_sha256=h)
+
+
+def cube_object(path):
+    """the OBJECT keyword of a cube; the harness's MOCK cubes carry 'MOCK'"""
+    hl, h = _hdu(path); o = str(h.header.get("OBJECT", "")); hl.close()
+    return o
+
+
+def release_copy(src_dir, slug, dest_dir, base):
+    """release day only (a real cube): copy <slug>.out and <slug>_results.json byte for byte to <dest_dir>/<base>.out and
+    <base>_results.json (CLARIFICATION A-X7). Returns {destination name: sha256}."""
+    import shutil
+    out = {}
+    for a, b in ((slug + ".out", base + ".out"), (slug + "_results.json", base + "_results.json")):
+        s, d = os.path.join(src_dir, a), os.path.join(dest_dir, b)
+        shutil.copyfile(s, d)
+        if sha256_file(s) != sha256_file(d): raise RuntimeError("release copy differs from its source: " + b)
+        out[b] = sha256_file(d)
+    return out
+
+
+def release_copy_selftest(base):
+    """the copy step on two temporary files (nothing is written into a plan directory)"""
+    import tempfile, shutil
+    d = tempfile.mkdtemp(prefix="cfg942_copy_"); dest = os.path.join(d, "plan"); os.makedirs(dest)
+    try:
+        for ext, txt in ((".out", "MOCK out\n"), ("_results.json", '{"MOCK": true}\n')):
+            open(os.path.join(d, "slug" + ext), "w").write(txt)
+        cp = release_copy(d, "slug", dest, base)
+        ok = sorted(cp) == sorted([base + ".out", base + "_results.json"]) and sorted(os.listdir(dest)) == sorted(cp)
+    finally:
+        shutil.rmtree(d, ignore_errors=True)
+    return ok, sorted(cp)
 
 
 # ------------------------------------------------------------------------------------------------ CFG571 functions, read-only
@@ -318,8 +391,13 @@ def _vaxis(info, nu_line, vshift):
     return CKMS * (nu_line - info["nu"]) / nu_line - vshift
 
 
-def _cont_channels(v_all, vcont, vmaxcont):
-    return np.where((np.abs(v_all) > vcont) & (np.abs(v_all) <= vmaxcont))[0]
+def _cont_channels(v_all, vcont, vmaxcont, vshift=0.0, excl_true=0.0):
+    """line-free channels |v| > vcont (|v| <= vmaxcont) in the (possibly shifted) frame; with excl_true > 0 the channels within
+    +-excl_true km/s of the TRUE line (true-frame velocity v + vshift) are excluded too (addendum A s2, MUTATE only)"""
+    kc = np.where((np.abs(v_all) > vcont) & (np.abs(v_all) <= vmaxcont))[0]
+    if excl_true > 0:
+        kc = kc[np.abs(v_all[kc] + vshift) > excl_true]
+    return kc
 
 
 def _cont_median(h, kc, y0, y1, x0, x1, block_bytes=8 * 2 ** 20):
@@ -334,13 +412,14 @@ def _cont_median(h, kc, y0, y1, x0, x1, block_bytes=8 * 2 ** 20):
     return cont
 
 
-def stream_mom0(path, ra, dec, nu_line, half, vwin, vcont=600.0, vshift=0.0, vmaxcont=np.inf):
+def stream_mom0(path, ra, dec, nu_line, half, vwin, vcont=600.0, vshift=0.0, vmaxcont=np.inf, excl_true=0.0):
     """continuum-subtracted moment-0 over |v| <= vwin in a box (half-size arcsec), read channel by channel (bounded memory).
     v = c (nu_line - nu)/nu_line - vshift (radio convention about the catalogue line; MUTATE shifts the axis).
-    Continuum per pixel = median of all line-free channels vcont < |v| <= vmaxcont."""
+    Continuum per pixel = median of all line-free channels vcont < |v| <= vmaxcont (and, if excl_true > 0, more than excl_true km/s
+    from the true line)."""
     hl, h = _hdu(path); hdr = h.header; info = header_info(hdr, hl); D = h
     v_all = _vaxis(info, nu_line, vshift); x0, x1, y0, y1, xc, yc = _cut(hdr, info, ra, dec, half)
-    kw = np.where(np.abs(v_all) <= vwin)[0]; kc = _cont_channels(v_all, vcont, vmaxcont)
+    kw = np.where(np.abs(v_all) <= vwin)[0]; kc = _cont_channels(v_all, vcont, vmaxcont, vshift, excl_true)
     dv = float(abs(np.median(np.diff(v_all)))) if len(v_all) > 1 else float("nan")
     shp = (y1 - y0, x1 - x0)
     cont = _cont_median(D, kc, y0, y1, x0, x1)
@@ -358,11 +437,11 @@ def stream_mom0(path, ra, dec, nu_line, half, vwin, vcont=600.0, vshift=0.0, vma
                 file=os.path.basename(path), sha256=sha256_file(path))
 
 
-def load_box(path, ra, dec, nu_line, half, vkeep=650.0, vcont=600.0, vshift=0.0, vmaxcont=np.inf):
+def load_box(path, ra, dec, nu_line, half, vkeep=650.0, vcont=600.0, vshift=0.0, vmaxcont=np.inf, excl_true=0.0):
     """continuum-subtracted sub-cube: channels |v| <= vkeep in a box (half-size arcsec) about (ra, dec)."""
     hl, h = _hdu(path); hdr = h.header; info = header_info(hdr, hl); D = h
     v_all = _vaxis(info, nu_line, vshift); x0, x1, y0, y1, xc, yc = _cut(hdr, info, ra, dec, half)
-    kk = np.where(np.abs(v_all) <= vkeep)[0]; kc = _cont_channels(v_all, vcont, vmaxcont)
+    kk = np.where(np.abs(v_all) <= vkeep)[0]; kc = _cont_channels(v_all, vcont, vmaxcont, vshift, excl_true)
     shp = (y1 - y0, x1 - x0)
     cont = _cont_median(D, kc, y0, y1, x0, x1)
     data = np.empty((len(kk),) + shp, np.float32)
@@ -427,12 +506,13 @@ def make_mask(m0, sig, xc, yc, pix, seed_r=0.5, thr=2.0):
     return np.isin(lab, list(keep)) if keep else np.zeros_like(m)
 
 
-def seeded_null(m0, sig, src_mask, xc, yc, pix, bpix, rmin, n, rng, seed_r=0.5, thr=2.0):
+def seeded_null(m0, sig, src_mask, xc, yc, pix, bpix, rmin, n, rng, seed_r=0.5, thr=2.0, m_meas=None):
     """selection-aware null for G1: grow the same >= thr*sigma mask from a seed circle (radius seed_r) at n random off-source
-    positions (>= rmin arcsec from the target, the source mask excluded) and return the masked fluxes."""
+    positions (>= rmin arcsec from the target, the source mask excluded) and return the masked fluxes. With m_meas the masks are grown
+    on m0 but their flux is measured in m_meas (same grid): the MUTATE null of CFG809 addendum B (true-window masks, shifted-window flux)."""
     m = np.isfinite(m0) & (m0 >= thr * sig) & ~src_mask
     lab, _ = ndimage.label(m, structure=np.ones((3, 3)))
-    sums = ndimage.sum(np.nan_to_num(m0), lab, index=np.arange(lab.max() + 1)) / bpix
+    sums = ndimage.sum(np.nan_to_num(m0 if m_meas is None else m_meas), lab, index=np.arange(lab.max() + 1)) / bpix
     ny, nx = m0.shape; rs = seed_r / pix; out = []
     yy, xx = np.indices((int(2 * rs) + 3, int(2 * rs) + 3)); disk = np.hypot(xx - (rs + 1), yy - (rs + 1)) <= rs
     tries = 0

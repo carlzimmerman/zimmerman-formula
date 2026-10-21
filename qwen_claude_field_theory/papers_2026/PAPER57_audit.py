@@ -703,7 +703,23 @@ rd("M citation eRASS1 (CFG687 criteria)", "CFG687_erass1_shear_stack/FROZEN_CRIT
 lei = norm(open(os.path.join(HERE, "..", "..", "real_research", "data", "alfalfa_huds_leisman2017.tsv"), encoding="utf-8").read(3000))
 check("M citation Leisman et al. ApJ 842, 133 (VizieR header of the record's table)", "J/ApJ/842/133" in lei and "Leisman+, 2017" in lei
       and "L. Leisman et al., ApJ 842, 133 (2017)" in flat)
-rd("M citation Coma UDG table (CFG948)", R48, "the Coma table (Freundlich+2022", "the Coma ultra-diffuse galaxy table of J. Freundlich et al. (2022)")
+rd("M citation Coma UDG table (CFG948)", R48, "the Coma table (Freundlich+2022", "J. Freundlich et al., A&A 658, A26 (2022) (Coma UDGs)")
+# ---- deposit-prep citation pass (2026-10-21). Journal references verified against the publisher DOI records (Crossref):
+#   Freundlich+22 10.1051/0004-6361/202142060; Giblin+21 10.1051/0004-6361/202038850; Lelli+15 10.1051/0004-6361/201526613;
+#   van Dokkum+18 10.1038/nature25767; van Dokkum+19 10.3847/2041-8213/ab0d92; SPARC 10.3847/0004-6256/152/6/157;
+#   Milgrom 83 10.1086/161130; Bekenstein & Milgrom 84 10.1086/162570; Milgrom 10 10.1111/j.1365-2966.2009.16184.x;
+#   Famaey & Binney 05 10.1111/j.1365-2966.2005.09474.x; Bulbul+24 10.1051/0004-6361/202348264; Leisman+17 10.3847/1538-4357/aa7575;
+#   McQuinn+22 10.3847/1538-4357/ac9285. PAPER55 = 10.5281/zenodo.23482936 (public Zenodo record).
+for s in ("B. Giblin et al., A&A 645, A105 (2021) (KiDS-1000 shear", "F. Lelli et al., A&A 584, A113 (2015) (tidal dwarfs)",
+          "P. van Dokkum et al., Nature 555, 629 (2018) and ApJL 874, L5 (2019) (DF2, DF4", "F. Lelli, S. McGaugh, J. Schombert, AJ 152, 157 (2016)",
+          "M. Milgrom, ApJ 270, 365 (1983)", "J. Bekenstein, M. Milgrom, ApJ 286, 7 (1984)", "M. Milgrom, MNRAS 403, 886 (2010)",
+          "B. Famaey, J. Binney, MNRAS 363, 603 (2005)", "K. B. W. McQuinn et al., ApJ 940, 8 (2022)", "PAPER55 (doi:10.5281/zenodo.23482936)"):
+    has(f"M citation '{s[:48]}'", s)
+tdg = norm(open(os.path.join(HERE, "..", "..", "real_research", "data", "tidal_dwarfs", "PROVENANCE.md"), encoding="utf-8").read())
+check("M citation Lelli et al. 2015 matches the record's TDG table provenance", "Lelli et al. 2015, A&A 584, A113" in tdg)
+check("M CFG655 holds the DF2/DF4 dispersions cited", "Danieli+2019" in src("CFG655_ngc1052_trail_supply/README.md") and "Shen+2023" in src("CFG655_ngc1052_trail_supply/README.md"))
+check("M CFG948 used the Lelli+15 TDGs and CFG655's DF2/DF4 table", "the Lelli+15 TDG table" in src(R48) and "CFG655's DF2/DF4 table" in src(R48))
+check("M CFG686 shear is KiDS-1000 SOM-gold", "KiDS-1000 SOM-gold" in src("CFG686_cluster_shear_vs_law/FROZEN_CRITERIA.md"))
 for s in ("fitted", "the theory is not closed", "not peer reviewed", "never pooled", "post hoc", "Post-hoc", "not established", "AI-assisted",
           "Anthropic's Claude", "not a particle", "computational result"):
     has(f"M honesty '{s}'", s)

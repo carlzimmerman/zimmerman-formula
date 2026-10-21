@@ -1,0 +1,45 @@
+CFG953  the minimal source-changing non-local theory (SCT): construction and tests   stage=MAIN
+  criteria 049a0f867; kappa = 1/2 FITTED; footings never pooled; cold energy (no particle species); not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2;  native Delta_ta(0) = 11.830836;  engine f_b = 0.157126
+  NGC 3198: 43 radii to 44.08 kpc, M_b(< last) = 4.7201e+10 M_sun (Upsilon 0.61)
+
+==================== K CONTROLS ====================
+  [PASS] K1_CFG938_NGC3198_law: max |g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (CFG938 2.2e-16; line 1e-6)
+  [PASS] K2_CFG947_nohover_bound_CFG941_hover: retardation bound 1.2114e-06 (CFG947 1.2114e-6); tethered Delta a/g_host [1.0167, 1.1067] (1.017-1.107); EFE [-0.728, -0.102] dex (-0.73..-0.10)
+  deriving growth determinant (sympy, CFG941 route) ...
+  [PASS] K3_CFG941_growth_exponents: n(c2=1, no chi-bar) = 0.609545 (0.60954), n(c2=1, chi-bar) = 0.694330 (0.69433), n(c2=0, dust) = 1.000000000000
+  [PASS] K4_CFG947_slip: worst 1.6324e-05 (CFG947 1.6324e-5, P-I dust pressure); S P-S stress 1.2955e-05 (1.2955e-5)
+  K5 SPARC (CFG4 statistic, nu_mono):
+     local law canonical                         : rms 0.10033 dex @ Upsilon 0.61; points beyond their edge: 0 of 3389
+     local law alt                               : rms 0.09910 dex @ Upsilon 0.57; points beyond their edge: 0 of 3389
+  [PASS] K5_CFG4_SPARC_local: local 0.10033 @ 0.61 / 0.09910 @ 0.57
+  [PASS] K6_CFG947_TM_E8: E8 two-blob R = -epsilon*(X(t)*Derivative(M_e(t), (t, 2)) + 2*Derivative(M_e(t), t)*Derivative(X(t), t)); max|R|/(M_dom g_ref) = pi**2*epsilon/4 -> 0.024674, 0.246740, 0.740220 (0.024674 / 0.246740 / 0.740220)
+  [PASS] K7_CFG936_routes_reproduced: route (i) T rbar +0.054634, chi2 1.1680 (+0.054634, 1.1680); route (iii) T rbar -0.381410, chi2 14.8547 (-0.381410, 14.8547)
+  [PASS] K8_CFG947_TE_TR: min M_law(<r_ON)/M_ta = 1.8466 (1.847); RMIN threshold M_b = 4.8154e+10 M_sun (4.815e10)
+  K controls: ALL PASS
+
+==================== STRUCTURAL STATEMENTS ====================
+  [PASS] S-P_momentum_event_algebra: conversion event: Delta D_s = [0, 0, 0], Delta dD_s/dt = [0, 0, 0], Delta P_tot = [0, 0, 0], Delta L_tot = [0, 0, 0]; S self-force on 40 signed weights 1.8e-14
+  [PASS] S-TM_relocation_term_zero: two-blob toy under R4: R = D_s'' - int rho_s g = 0 (any m_p, m_m, X, F); with CFG947's draw proportions 0; E8 (prescribed draw): -epsilon*(X(t)*Derivative(M_e(t), (t, 2)) + 2*Derivative(M_e(t), t)*Derivative(X(t), t)). Price: body centroid at the converted dust's centroid, offset X_0*epsilon from the core (static blobs)
+  [PASS] S-L_no_torque_on_spherical_body: torque on a spherical body about its centre from a point mass = -x_p x F_point = [0, 0, 0]; spin S absorbs the converted element's angular momentum (Delta L_tot = 0 above)
+  [PASS] S-Z_zero_sum_per_domain: |M_body(r_e)/M_c - 1| <= 2.0e-15 (NGC 3198, both footings and kernels): int rho_s = M_c - M_c,lab = 0
+  [PASS] S-+_body_positive: simple kernel: dg/dy = (sqrt(y)*sqrt(y + 4) + y + 2)/(2*sqrt(y)*sqrt(y + 4)), (y+2)^2 - (y^2+4y) = 4 > 0 => dg/dy > 1; dnu/dy = -1/(y**(3/2)*sqrt(y + 4)) < 0; nu_mono: slope of y nu >= 1 and nu decreasing on 1e-12..1e6: True. NGC 3198: m_N increasing False; M_ph increasing at the data radii {'canonical|simple': True, 'canonical|mono': True, 'alt|simple': True, 'alt|mono': True}
+  [PASS] S-E_edge_inside_turnaround: r_e/r_ON in [0.019, 0.514] for M_b 1e3-1e15, both footings and kernels
+  [PASS] S-C_retarded_support: response to a source switched on at t0 vanishes at t0 + r/(2c) < t0 + r/c; propagation speed of S updates c (R8)
+  [PASS] S-En_formation_energy: E_rel/|W_f| (canonical) 0.988, 0.961, 0.878, 0.834, 0.701 at M_b 1e3,1e6,1e9,1e12,1e15; E_rel/(M_c c^2) 4.10e-11..4.25e-05; released (> 0) for every M_b: True
+
+==================== TESTS (a)-(h) ====================
+  (a) static law, one domain (NGC 3198, spherical-equivalent convention; edge = the kernel's own supply root)
+   canonical simple: max dev P-S/P-I/P-X 2.22e-16/2.22e-16/2.22e-16; r_e 453.9 kpc (N 53.64); deep y=1e-2/1e-3 dev 0.0e+00/0.0e+00, V^4/GMa0 1.1051/1.0321; y_e 3.41e-04 (V^4/GMa0 there 1.0186); law asymptote at y=1e-14 1.00000010; beyond the edge at 2 r_e: g/g_law 0.502
+   canonical mono  : max dev P-S/P-I/P-X 2.22e-16/2.22e-16/2.22e-16; r_e 453.9 kpc (N 53.64); deep y=1e-2/1e-3 dev 0.0e+00/0.0e+00, V^4/GMa0 1.1043/1.0320; y_e 3.41e-04 (V^4/GMa0 there 1.0186); law asymptote at y=1e-14 1.00000010; beyond the edge at 2 r_e: g/g_law 0.502
+   alt       simple: max dev P-S/P-I/P-X 2.22e-16/2.22e-16/2.22e-16; r_e 412.9 kpc (N 53.64); deep y=1e-2/1e-3 dev 0.0e+00/2.2e-16, V^4/GMa0 1.1051/1.0321; y_e 3.41e-04 (V^4/GMa0 there 1.0186); law asymptote at y=1e-14 1.00000010; beyond the edge at 2 r_e: g/g_law 0.502
+   alt       mono  : max dev P-S/P-I/P-X 2.22e-16/2.22e-16/2.22e-16; r_e 412.9 kpc (N 53.64); deep y=1e-2/1e-3 dev 2.2e-16/1.1e-16, V^4/GMa0 1.1043/1.0320; y_e 3.41e-04 (V^4/GMa0 there 1.0186); law asymptote at y=1e-14 1.00000010; beyond the edge at 2 r_e: g/g_law 0.502
+Traceback (most recent call last):
+  File "cfg953.py", line 1073, in <module>
+    a3d = {f"y(Rd)={yl:g}": disc_report(yl) for yl in (10.0, 1.0, 0.1)}
+                            ~~~~~~~~~~~^^^^
+  File "cfg953.py", line 1067, in disc_report
+    V2 = 4 * math.pi * S0 * yy * yy * (i0(yy) * k0(yy) - i1(yy) * k1(yy))
+                                                                  ~~^^^^
+TypeError: 'dict' object is not callable
+exit 1
