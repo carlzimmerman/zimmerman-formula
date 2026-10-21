@@ -1,0 +1,189 @@
+{
+  "scope": "Independent outgoing-channel derivation and bounded exact symbolic/algebra checks; not a runner-v2 field experiment, spectrum or measured radiation-rate result. No original source imported or executed.",
+  "requested_base": "e63b8b234",
+  "inputs": [
+    {
+      "path": "sol61_push/cold_completion_2026_10_20/common_action.py",
+      "sha256": "a700b211d45f339400feebab83db878dfa243cb99c26e22a2a249a2220e1e208",
+      "sha256_after_checks": "a700b211d45f339400feebab83db878dfa243cb99c26e22a2a249a2220e1e208"
+    },
+    {
+      "path": "sol61_push/cold_completion_2026_10_20/run_001/results.json",
+      "sha256": "0f8fcb2cf8d3bfb057c213ff87abc1728257cca3e119c5d2c0905036ee2c9eac",
+      "sha256_after_checks": "0f8fcb2cf8d3bfb057c213ff87abc1728257cca3e119c5d2c0905036ee2c9eac"
+    },
+    {
+      "path": "sol61_push/cold_completion_2026_10_20/BULK_MODES.md",
+      "sha256": "9e440c4785a972e8ae3e95388f9732622ab75da275da3ee278955835f3e83fe9",
+      "sha256_after_checks": "9e440c4785a972e8ae3e95388f9732622ab75da275da3ee278955835f3e83fe9"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/profile_source.py",
+      "sha256": "02854daab3bf7a41e70c6704fea888ec929971152936cfbcda33f2205867b3b4",
+      "sha256_after_checks": "02854daab3bf7a41e70c6704fea888ec929971152936cfbcda33f2205867b3b4"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/finite_modes.py",
+      "sha256": "3bbf26c8938fe7300c5c7ced7503dee3da2acc47ba1b19a78d7bcef8c0fb91c5",
+      "sha256_after_checks": "3bbf26c8938fe7300c5c7ced7503dee3da2acc47ba1b19a78d7bcef8c0fb91c5"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/TARGET.md",
+      "sha256": "3cde775073b7d386a27782af44afd14ddf09002ec9279d4bf5dc67555323c779",
+      "sha256_after_checks": "3cde775073b7d386a27782af44afd14ddf09002ec9279d4bf5dc67555323c779"
+    }
+  ],
+  "output": {
+    "path": "sol61_push/cold_fragment_modes_2026_10_20/OUTGOING_CHANNELS.md",
+    "sha256": "fa5477015a6ab99f9173db1710ca503ca9f6fdbbd02ef9d1bdffce5ecd2eaaa0"
+  },
+  "conventions": {
+    "time": "+iOmega t; phasor plus conjugate, no 1/2",
+    "harmonic": "d_phi Y_lm=-imY_lm; angular norm1",
+    "circular": "c_plus=(y1+i y2)/sqrt2,c_minus=(y1-i y2)/sqrt2; physical minus amplitude conjugated",
+    "rotating_flux": "Kdot=Edot-omegaQdot=2Omega p |A|^2 for each open circular channel under bound-vacuum assumptions",
+    "bound_vacuum_assumptions": "0<omega<1 and2omega<MX"
+  },
+  "symbolic_contract": {
+    "assertions": [
+      "unitary circular transform and sideband squared wave numbers",
+      "exact ell0,1,2 outgoing and decaying radial functions",
+      "outgoing normalized Wronskian sign",
+      "signed charged E/Q/J imply common rotating flux and J/K"
+    ],
+    "domain": "Sympy exact expressions; realpositive z,w,Omega,mu,p, real m; open minus branch chosen explicitly",
+    "bounds": "ell0,1,2; q1,2; sigma\u00b11; no field evolution",
+    "non_claims": [
+      "No emitted flux or intrinsic mode spectrum computed",
+      "No forcing amplitude or merger excitation measured",
+      "No full stability or dwarf-budget closure"
+    ],
+    "resources": "One short inline Python process, no source imports; RSS below200MB"
+  },
+  "checks": [
+    {
+      "name": "circular transform unitary",
+      "pass": true
+    },
+    {
+      "name": "sideband diagonalization by simplified difference",
+      "pass": true
+    },
+    {
+      "name": "ell=0 outgoing radial equation",
+      "pass": true,
+      "residual": "0"
+    },
+    {
+      "name": "ell=0 decaying radial equation",
+      "pass": true,
+      "residual": "0"
+    },
+    {
+      "name": "ell=0 outgoing Wronskian +1 residual",
+      "pass": true,
+      "residual": "0"
+    },
+    {
+      "name": "ell=1 outgoing radial equation",
+      "pass": true,
+      "residual": "0"
+    },
+    {
+      "name": "ell=1 decaying radial equation",
+      "pass": true,
+      "residual": "0"
+    },
+    {
+      "name": "ell=1 outgoing Wronskian +1 residual",
+      "pass": true,
+      "residual": "0"
+    },
+    {
+      "name": "ell=2 outgoing radial equation",
+      "pass": true,
+      "residual": "0"
+    },
+    {
+      "name": "ell=2 decaying radial equation",
+      "pass": true,
+      "residual": "0"
+    },
+    {
+      "name": "ell=2 outgoing Wronskian +1 residual",
+      "pass": true,
+      "residual": "0"
+    },
+    {
+      "name": "q=1 sigma=1 rotating flux residual",
+      "pass": true
+    },
+    {
+      "name": "q=1 sigma=1 angular flux residual",
+      "pass": true
+    },
+    {
+      "name": "q=1 sigma=-1 rotating flux residual",
+      "pass": true
+    },
+    {
+      "name": "q=1 sigma=-1 angular flux residual",
+      "pass": true
+    },
+    {
+      "name": "q=2 sigma=1 rotating flux residual",
+      "pass": true
+    },
+    {
+      "name": "q=2 sigma=1 angular flux residual",
+      "pass": true
+    },
+    {
+      "name": "q=2 sigma=-1 rotating flux residual",
+      "pass": true
+    },
+    {
+      "name": "q=2 sigma=-1 angular flux residual",
+      "pass": true
+    }
+  ],
+  "n_checks": 19,
+  "all_checks_pass": true,
+  "threshold_arithmetic_from_pinned_prior_profiles": [
+    {
+      "Q": 80000.0,
+      "omega": 0.9217883882751382,
+      "Psi_positive": 0.0782116117248618,
+      "X_positive": 0.1568231834577214,
+      "Psi_negative": 1.921788388275138,
+      "X_negative": 3.8439767365582744,
+      "chi": 100
+    },
+    {
+      "Q": 160000.0,
+      "omega": 0.9095170226958724,
+      "Psi_positive": 0.09048297730412758,
+      "X_positive": 0.18136591461625295,
+      "Psi_negative": 1.9095170226958724,
+      "X_negative": 3.8194340053997426,
+      "chi": 100
+    }
+  ],
+  "preserved_check_diagnostic": {
+    "initial_structural_matrix_equality_returned": false,
+    "cause": "Sympy structural equality compared expanded and unexpanded diagonal expressions; this was an equality-test representation issue, not a nonzero mathematical residual.",
+    "displayed_transform": "diag(-Omega^2-2Omega omega+mu^2-omega^2,-Omega^2+2Omega omega+mu^2-omega^2)",
+    "corrected_difference_residual": "2x2 zero matrix; no formulas or signs changed"
+  },
+  "software": {
+    "python": "3.9.6",
+    "sympy": "1.14.0"
+  },
+  "peak_rss_bytes_macos": 54460416,
+  "self_proofreading": {
+    "scope": "OUTGOING_CHANNELS.md equations, notation, signs and source convention",
+    "delimiter_balance_pass": true,
+    "mathematical_token_corrections": "None after derivation; amplitude t_X is distinct from time from first draft.",
+    "unresolved_items": "Actual outgoing solve, pole/source excitation, nonlinear daughter escape and galaxy coupling remain uncomputed."
+  }
+}
