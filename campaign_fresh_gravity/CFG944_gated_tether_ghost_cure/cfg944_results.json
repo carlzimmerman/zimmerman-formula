@@ -1,0 +1,675 @@
+{
+ "lane": "CFG944",
+ "criteria": "2587be5c7",
+ "amendments": [],
+ "mutate": false,
+ "stage": "MAIN",
+ "checks": {
+  "K1_NGC3198_law_P0": {
+   "pass": true,
+   "detail": "max |g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (CFG938: 2.2e-16; line 1e-6)"
+  },
+  "K2_deep_BTFR": {
+   "pass": true,
+   "detail": "lim V^4/(G M a0) = 1; at y = 1e-14: canonical +1.00e-07, alt +1.00e-07 (line 1e-6)"
+  },
+  "K3_growth_CFG941_route": {
+   "pass": true,
+   "detail": "n(c2=1, no boost) = 0.609545 (0.60954), n(c2=1, boost) = 0.694330 (0.69433), n(c2=0) = 1.000000000000 (R3theta's linear regime: gate off = dust); c2_max = 2.3458e-03 (CFG941 2.3458e-03)"
+  },
+  "K4_CFG941_ghost_grid": {
+   "pass": true,
+   "detail": "nine k_g R values reproduced, max rel dev 0.0e+00; s''_max theta_s^2 = 5.77350 (5.7735); k_g R range 0.227-2.185"
+  },
+  "K5_CFG938_slip": {
+   "pass": true,
+   "detail": "worst s_847 = 1.5398e-05 (CFG938 1.5398e-5), s_grad = 5.792e-06"
+  },
+  "K6_G1_reproduces_CFG941_kinetic_term": {
+   "pass": true,
+   "detail": "second variation of J F(Jdot/J) = (F''(theta0)/2J0)(dJdot - theta0 dJ)^2 exactly (G1); at theta0 = 0 with F = -s W and dJdot = J0 div v it is -(1/2) s''(0) W (div v)^2 per unit volume = CFG941's R3theta_kinetic_term"
+  },
+  "G1_rank_one_second_variation": {
+   "pass": true,
+   "detail": "J F(Jdot/J) is degree-1 homogeneous in (J, Jdot): its Hessian is (F''/J)(-theta, 1)(-theta, 1)^T, so the second variation is (F''(theta0)/2J0)(dJdot - theta0 dJ)^2 for ANY F(theta) (u held fixed)"
+  },
+  "G2_single_mode_J2_vanishes": {
+   "pass": true,
+   "detail": "second-order part of J = det(I + grad xi) is (1/2)[(div xi)^2 - d_i xi_j d_j xi_i] = (1/2) div(xi div xi - xi.grad xi) in general, and identically 0 for a single plane wave of any polarization -> the longitudinal kinetic coefficient is exactly rho0 + F_thth k^2 (transverse: rho0); for R3theta F_thth = -s''(theta) W(u): ghost iff s'' W k^2 > rho0"
+  },
+  "G3_degenerate_kinetic_surface": {
+   "pass": true,
+   "detail": "R3theta at NGC 3198 r = 7.1 kpc, theta0 = 0.8 theta_s: k_g r = 2.647e-03; omega^2/(K rho0) at k = k_g(1 -/+ 1e-1): -3.88e+00 / 3.51e+00; at k_g(1 -/+ 1e-8): -3.68e+07 / 3.68e+07 (omega^2 ~ C/(k - k_g): -> -infinity as k -> k_g from below, where the inertia rho0 + F k^2 vanishes against the gated-off self-gravity, and negative-energy oscillation above): omega^2 is NOT bounded below independently of k (the gyroscopic F_thu terms are O(k) and cannot cancel the pole)"
+  },
+  "G5_galaxy_interior_ghost": {
+   "pass": true,
+   "detail": "every NGC 3198 radius, perturbed into the convex half of the gate (theta in (theta_s/2, theta_s), i.e. |div v| ~ 1e-18 1/s, far below galactic rates), carries a ghost band starting at k_g << 1/r"
+  },
+  "AMP_native_table_sane": {
+   "pass": true,
+   "detail": "U(0) = 8.566e-13 m/s^2 = 0.0092 a0 (canonical); U rises monotonically above z = 20 (~(1+z)); table h = 0.6777, Omega_m = 0.3104, f_c = 0.8432, D(z_i)/D(1) = 0.02571"
+  },
+  "C1_G_cosmo": {
+   "pass": true,
+   "detail": "sqrt(-g) R = -6 a adot^2/(N c) + total derivative; theta_FRW = 3 adot/(N a); Friedmann: H^2 = (8 pi G rho/3) * c**2/(-12*pi*G*c_theta + c**2) -> G_cosmo/G_N = 1/(1 - 12 pi G c_theta/c^2) (= Einstein-aether 1/(1 + 3 c2/2) with c2 = -8 pi G c_theta/c^2); the a-equation is solved by the same dust history (a pure G renormalisation, eps_theta = (9/2) c_theta H^2 tracks H^2); static states have theta = 0, so G_N = G"
+  },
+  "C2i_density_gate_structure": {
+   "pass": true,
+   "detail": "s(rho) multiplies W: the gate's curvature enters the POTENTIAL, (s'' W + s gamma) drho^2/2 with drho ~ k xi, so c_eff^2 = rho0 (s'' W + s gamma): the theta-ghost becomes a gradient instability wherever s is concave in rho and W > s gamma/|s''| (W unbounded); same convexity obstruction in a different variable (a bounded increasing gate saturating at 1 is concave near the top)"
+  },
+  "C2ii_chi_gate": {
+   "pass": true,
+   "detail": "s(chi) adds -W(Derivative(chi(x), x))*Derivative(s(chi(x)), chi(x)) to chi's Euler-Lagrange equation (breaks the static law unless s' = 0 on every static chi; chi's shift symmetry is broken); the linear potential (1.4e-05 c^2) exceeds the galaxy's whole well (8.1e-07 c^2) and chibar drifts by 0.13 c^2 per Hubble time: a chi threshold cannot separate collapsed from linear regions (it is a cosmic-epoch switch)"
+  },
+  "C2iii_latch_and_clock_density": {
+   "pass": true,
+   "detail": "latch lambda(u.d sigma - F(theta, sigma)): theta^2 coefficient -lambar F_thth (the ghost returns with a multiplier-set sign) and the (dsigma, dlambda) Hamiltonian Hessian has det = -F_s^2 < 0 (linear in the multiplier momentum: unbounded); F linear in theta makes int dsigma/alpha + ln n conserved along the flow, i.e. a density/label gate (R3n/R2). Clock-density Y = K rho T^2 = 2/3 on the EdS mean (a good turnaround label) but it is a density gate: deep-BTFR (a) fails as R3n, and drho ~ k makes s_YY W K^2 T^4 rho0 k^2 a gradient term; stability needs a transition width dY >= 5.5e+06 (L* 24 pc) / 1.3e+05 (1 kpc) vs the available 1.2e+03 (NGC 3198's lowest Y minus 2/3)"
+  },
+  "C3_concavity_theorem": {
+   "pass": true,
+   "detail": "(i) kinetic coefficient rho0 - s''W k^2 > 0 for all k iff s'' <= 0 wherever W > 0 (G2); (ii) a concave s with s(0) = 1 and |s| <= c2_max at theta2 = 3H(1100) >= 6.139e+04 H0 has s(3H0) >= 1 - lambda(1 + c2_max) = 0.999951 > c2_max = 2.35e-03: impossible; (iii) any C^1 gate from 1 to 0 on [0, theta_s] with s'(theta_s) = 0 has max s'' >= 2/theta_s^2 (s' >= -B(theta_s - theta) => 1 <= B theta_s^2/2), attained by (1 - x)^2; max s'' theta_s^2 by family: S3 cubic 6.000, S5 quintic (CFG941) 5.774, S7 septic 7.514, (1-x)^2 optimal 2.000, logistic (s(0) = 1 - 1e-6, s(3H0) = c2_max) 4.222 (logistic in units (3H0)^2/9 = H0^2): every family is convex somewhere -> ghost"
+  },
+  "C4_construction": {
+   "pass": true,
+   "detail": "F_thth theta_s^2 = 60 x(1-x)[W_g - (2x-1)(1-h(u))W(u)] > 0 on 0 < x < 1 for every u once W_g >= max (1-h)W (|2x-1| < 1); = 0 outside the transition with no theta-dependence there; bag B0 = L0(0) = int_0^theta_s theta L0'' = 5 W_g; s(0, u) = 1 for all u (static states P0's); on FRW theta = 3H > theta_s and u = 0: s = h(0) = 0, L0 = 0 (no stress)"
+  },
+  "C4_d_bounded_dispersion": {
+   "pass": true,
+   "detail": "with F_thth >= 0, omega^2 >= -max(K rho0, theta0^2) at every k (a weighted mean of -K rho0 and -theta0^2 plus non-negative terms); sampled NGC 3198 states x 5 gate points x 2 angles x k r in [1e-4, 1e8]: min omega^2/max(K rho0, theta0^2) = -0.9965 (>= -1)"
+  },
+  "TheoremG": {
+   "pass": true,
+   "detail": "for each u: f_u(theta) = L(theta, u) is convex (d); f_u(0) = -W(u) + L(0,0) (a); f_u = L(., 0) near some cosmic theta_T on the linear locus (c-amp; U_max >= u_N,max); the tangent line at theta_T gives L(0,0) - T(0) >= W(u). (d/dx)(x f' - f) = x f'' makes int_0^1 x s'' = 1 for any gate 1 -> 0 with s'(1) = 0, so the bag is >= W for EVERY profile. B >= W(u*) exceeds the slip-allowed bag on both footings: no local L(theta, u) passes (a), (c-amp), (d) and (e) together (the Solar System, u -> a0, would make the bound infinite)"
+  }
+ },
+ "tests": {
+  "C1": {
+   "a": {
+    "pass_": true,
+    "detail": "static states have theta = 0: (c_theta/2) theta^2 and its first variation vanish -> P0's static law (K1 2.2e-16, BTFR K2)"
+   },
+   "b": {
+    "pass_": true,
+    "detail": "T^mu_nu isotropic, medium dust w = 0; the cure adds eps_theta = (9/2) c_theta H^2 (a G_cosmo renormalisation, C1_G_cosmo): the cost"
+   },
+   "c": {
+    "pass_": false,
+    "detail": "(c) needs c_theta <= 8.87e+14 kg/m (inertia c_theta k_phys^2 vs rho_c, worst at k = 5 h/Mpc, z = 0); every ghost bound on T1-T3 exceeds it by x1.8e+09 - x1.7e+10: at c_theta,g(T1) n_min(k=5) = 0.000"
+   },
+   "c-amp": {
+    "pass_": null,
+    "detail": "theta-only cure: (c-amp) = (c)"
+   },
+   "d": {
+    "pass_": false,
+    "detail": "ghost-free iff c_theta >= s''(theta) W(u) on every transition state; W_full -> infinity as u -> a0, so no finite c_theta is global; exact region u <= W^-1(c_theta/s''_max); at the growth maximum it covers u <= 1.2e-05 a0, no T1-T3 state"
+   },
+   "e": {
+    "pass_": true,
+    "detail": "theta = 0 on static states: slip = P0's (worst s_847 1.54e-05)"
+   },
+   "g": {
+    "pass_": false,
+    "detail": "settled sector unchanged (P0 + an inert theta^2): g1, g2 fail; see section g"
+   }
+  },
+  "C2i": {
+   "class-reason": {
+    "pass_": false,
+    "detail": "density gate = R3n: (a) FAIL (BTFR, r_* = 73 kpc), (c) FAIL (on at z > 18), (d) FAIL (gradient instability)"
+   }
+  },
+  "C2ii": {
+   "class-reason": {
+    "pass_": false,
+    "detail": "chi gate: breaks chi's shift symmetry; static law changed unless s' = 0 on all static chi; cannot separate collapsed from linear"
+   }
+  },
+  "C2iii": {
+   "class-reason": {
+    "pass_": false,
+    "detail": "latch: lambar F_thth ghost or a density/label gate; clock-density Y: (a) FAIL (BTFR, as R3n) and (d) FAIL (width x1e+02 too small)"
+   }
+  },
+  "C3": {
+   "class-reason": {
+    "pass_": false,
+    "detail": "concavity theorem: ghost-free at all k needs s concave where W > 0, incompatible with s(0) = 1 and s ~ 0 on the cosmic range; bounded s'' only moves k_g (x5.1 at best), it never removes the ghost band"
+   }
+  },
+  "C4": {
+   "a": {
+    "pass_": true,
+    "detail": "s(0, u) = 1 for every u and L0 is linear for theta <= 0 (a total derivative + the constant B0): P0's static law (K1, K2)"
+   },
+   "b": {
+    "pass_": true,
+    "detail": "theta = 3H >= 3H0 > theta_s and u = 0 on FRW: s = h(0) = 0, L0 = 0 -> no added stress; dust w = 0"
+   },
+   "c": {
+    "pass_": true,
+    "detail": "literal (quadratic action at u = 0): h = 0 below u_c/2, L0'' = 0 for theta >= theta_s -> pure dust, n = 1 (K3, c2 = 0); the always-on stiffness adds only sub-L* Jeans oscillation (reported, not graded)"
+   },
+   "c-amp": {
+    "pass_": false,
+    "detail": "typical (1-sigma) linear medium fields reach U_max = 15.6 a0 at z = 1100 (U >= a0 for z >= 84): the saturation switches the tether ON (effective c2 = h(U/u_c) -> 1) and puts its argument beyond W_full's wall for every u_c < a0 (needed for a finite bag); (c-amp) needs u_c >= 24.3 a0"
+   },
+   "d": {
+    "pass_": true,
+    "detail": "kinetic matrix positive definite everywhere (min F_thth 4.0e-10 >= 0; C4_construction); omega^2 bounded below independently of k (C4_d_bounded_dispersion): GLOBAL"
+   },
+   "e": {
+    "pass_": true,
+    "detail": "for u_c <= 0.22 / 0.16 a0 (bag 5 W_g within the slip line)"
+   },
+   "g": {
+    "pass_": false,
+    "detail": "settled sector (theta <= 0 or u >= u_c) is P0 plus a constant: g1, g2 fail (section g)"
+   }
+  }
+ },
+ "K1": {
+  "canonical": 2.220446049250313e-16,
+  "alt": 2.220446049250313e-16
+ },
+ "K2": {
+  "canonical": 1.0000001000000052,
+  "alt": 1.000000100000005
+ },
+ "K_all": true,
+ "G3": {
+  "canonical|L*=24pc": {
+   "k_g_r": 0.0026472560097446046,
+   "w2_near": [
+    1.2405471126736965e-30,
+    -1.3711374477048665e-30,
+    1.296096883195467e-29,
+    -1.3091235962941362e-29,
+    1.3019266805983457e-28,
+    -1.3032293196683569e-28,
+    1.3025125458080306e-27,
+    -1.3026428096822702e-27,
+    1.30257116133458e-26,
+    -1.302584187724658e-26,
+    1.3025770232530097e-25,
+    -1.3025783257054538e-25,
+    1.3025776088154693e-24,
+    -1.3025777402149429e-24,
+    1.3025776727000719e-23,
+    -1.3025776654413808e-23
+   ],
+   "w2_far": -3.0509009636658326e-36,
+   "Krho": 3.538139036899228e-31
+  },
+  "canonical|L*=1000pc": {
+   "k_g_r": 0.0026472560097446046,
+   "w2_near": [
+    1.2405471043776386e-30,
+    -1.3711374415667217e-30,
+    1.2960968758882432e-29,
+    -1.3091235892028824e-29,
+    1.3019266733884864e-28,
+    -1.303229312480095e-28,
+    1.302512538607892e-27,
+    -1.3026428024842914e-27,
+    1.3025711541354133e-26,
+    -1.302584180525707e-26,
+    1.3025770160539402e-25,
+    -1.302578318506406e-25,
+    1.3025776016164095e-24,
+    -1.302577733015885e-24,
+    1.3025776655010131e-23,
+    -1.302577658242322e-23
+   ],
+   "w2_far": -3.0523407754213525e-36,
+   "Krho": 3.538139036899228e-31
+  },
+  "alt|L*=24pc": {
+   "k_g_r": 0.0025153247909524084,
+   "w2_near": [
+    1.4523143411472158e-30,
+    -1.6051959633861426e-30,
+    1.5173462263767716e-29,
+    -1.5325965509646912e-29,
+    1.5241711482615506e-28,
+    -1.525696142977408e-28,
+    1.5248570184827143e-27,
+    -1.5250095179151483e-27,
+    1.524925639454256e-26,
+    -1.5249408894057994e-26,
+    1.5249325018795489e-25,
+    -1.524934026814066e-25,
+    1.5249331874099562e-24,
+    -1.5249333420408688e-24,
+    1.5249332783684685e-23,
+    -1.5249332783690792e-23
+   ],
+   "w2_far": -3.050456262649748e-36,
+   "Krho": 3.967052697309972e-31
+  },
+  "alt|L*=1000pc": {
+   "k_g_r": 0.0025153247909524084,
+   "w2_near": [
+    1.4523143327495008e-30,
+    -1.6051959571727835e-30,
+    1.517346218980008e-29,
+    -1.532596543786544e-29,
+    1.5241711409633449e-28,
+    -1.525696135701064e-28,
+    1.5248570111943483e-27,
+    -1.5250095106289683e-27,
+    1.524925632166873e-26,
+    -1.5249408821186352e-26,
+    1.524932494592265e-25,
+    -1.5249340195268038e-25,
+    1.5249331801226821e-24,
+    -1.5249333347535967e-24,
+    1.5249332710811952e-23,
+    -1.5249332710818062e-23
+   ],
+   "w2_far": -3.051913717286019e-36,
+   "Krho": 3.967052697309972e-31
+  }
+ },
+ "G5": {
+  "canonical": {
+   "kg_r_min": 0.0005053701192396702,
+   "kg_r_max": 0.012423660278173796,
+   "u_over_a0_max": 0.7735719932375273
+  },
+  "alt": {
+   "kg_r_min": 0.0004798769260870093,
+   "kg_r_max": 0.011844065637736354,
+   "u_over_a0_max": 0.7457137749260998
+  }
+ },
+ "amplitude": {
+  "U_max_over_a0": {
+   "canonical": 15.590814524002354,
+   "alt": 12.900869108444041
+  },
+  "crossings": {
+   "canonical": {
+    "z_U_eq_uNmax": 64.72070725787178,
+    "z_U_eq_a0": 83.6436382194607,
+    "U0_over_a0": 0.009151716687626734,
+    "U1100_over_a0": 15.590814524002354
+   },
+   "alt": {
+    "z_U_eq_uNmax": 75.31204101648473,
+    "z_U_eq_a0": 100.79606479020208,
+    "U0_over_a0": 0.007572734504850412,
+    "U1100_over_a0": 12.900869108444041
+   }
+  },
+  "U_z": [
+   [
+    0.0,
+    8.566304090281531e-13
+   ],
+   [
+    2.5,
+    3.784777283046235e-12
+   ],
+   [
+    5.0,
+    6.539326750640059e-12
+   ],
+   [
+    7.5,
+    9.279716230245388e-12
+   ],
+   [
+    10.0,
+    1.2019135274886379e-11
+   ],
+   [
+    13.890097435643757,
+    1.6284925413580814e-11
+   ],
+   [
+    18.590216679414027,
+    2.144642474819224e-11
+   ],
+   [
+    24.880758237211488,
+    2.836858487558997e-11
+   ],
+   [
+    33.29988784606679,
+    3.7659104705020036e-11
+   ],
+   [
+    44.567875303019896,
+    5.01404449948878e-11
+   ],
+   [
+    59.64871468058537,
+    6.692984507848408e-11
+   ],
+   [
+    79.8325955378177,
+    8.955218235902055e-11
+   ],
+   [
+    106.84628066896428,
+    1.2010136299228623e-10
+   ],
+   [
+    143.00083337993337,
+    1.6147487328139906e-10
+   ],
+   [
+    191.38933259373033,
+    2.1772090503409462e-10
+   ],
+   [
+    256.1514906235059,
+    2.945624734575846e-10
+   ],
+   [
+    342.827812080439,
+    4.002054681014536e-10
+   ],
+   [
+    458.8335927687766,
+    5.466110865199442e-10
+   ],
+   [
+    614.0933099199854,
+    7.515408703973963e-10
+   ],
+   [
+    821.8896768496271,
+    1.0419066387254736e-09
+   ],
+   [
+    1100.0,
+    1.4593508823142594e-09
+   ]
+  ]
+ },
+ "C1": {
+  "c_theta_growth_max": 887011733548670.8,
+  "sets": {
+   "canonical|T1": {
+    "c_theta_g": 1.7496152076191207e+24,
+    "eps": 0.04898216551237695,
+    "n_min_k5": 1.9351698693206147e-05,
+    "n_min_k001": 0.1622429254168609,
+    "ratio_to_growth_max": 1972482596.8416781
+   },
+   "canonical|T2": {
+    "c_theta_g": 1.5349498658372964e+25,
+    "eps": 0.42972402191196857,
+    "n_min_k5": 1.3252660512326745e-05,
+    "n_min_k001": 0.013206304058624588,
+    "ratio_to_growth_max": 17304730115.535423
+   },
+   "canonical|T3": {
+    "c_theta_g": 8.997424418159518e+24,
+    "eps": 0.2518915759969387,
+    "n_min_k5": 1.5031986526632524e-05,
+    "n_min_k001": 0.034014101694898054,
+    "ratio_to_growth_max": 10143523561.028322
+   },
+   "alt|T1": {
+    "c_theta_g": 1.6201340753324592e+24,
+    "eps": 0.0453572163093886,
+    "n_min_k5": 1.9671977167063237e-05,
+    "n_min_k001": 0.17152708897630173,
+    "ratio_to_growth_max": 1826508054.0150056
+   },
+   "alt|T2": {
+    "c_theta_g": 1.0458375662239909e+25,
+    "eps": 0.29279231538890954,
+    "n_min_k5": 1.4623682303318315e-05,
+    "n_min_k001": 0.02729037932667242,
+    "ratio_to_growth_max": 11790571947.001255
+   },
+   "alt|T3": {
+    "c_theta_g": 1.1512760481205713e+25,
+    "eps": 0.3223108355134578,
+    "n_min_k5": 1.43337391498069e-05,
+    "n_min_k001": 0.02335083041190679,
+    "ratio_to_growth_max": 12979265150.356665
+   }
+  },
+  "u_cover_over_a0": {
+   "canonical": 1.1846348481448513e-05,
+   "alt": 9.802457267400682e-06
+  },
+  "u_flip_over_a0": {
+   "canonical": 0.9777040293995463,
+   "alt": 0.9437809893329132
+  }
+ },
+ "C2": {
+  "sigma_phi_over_c2": 1.3669255505324517e-05,
+  "well_over_c2": 8.055969415260754e-07,
+  "dY_need": {
+   "24pc": 5489655.533937847,
+   "1kpc": 131751.73281450837
+  },
+  "dY_avail": 1192.9885787776818,
+  "R3n_from_CFG941": {
+   "canonical": {
+    "r_star_kpc": 73.39143312718662,
+    "z_on": 17.918128039663273
+   },
+   "alt": {
+    "r_star_kpc": 73.38311269428053,
+    "z_on": 18.528094558713008
+   }
+  }
+ },
+ "C3": {
+  "theta2_over_H0": 61389.03100343045,
+  "s_lower": 0.9999510166982198,
+  "families": {
+   "S3 cubic": 5.999820214585931,
+   "S5 quintic (CFG941)": 5.7736450765805785,
+   "S7 septic": 7.513606872234959,
+   "(1-x)^2 optimal": 2.0000308706075884,
+   "logistic (s(0) = 1 - 1e-6, s(3H0) = c2_max)": 4.221522421472419
+  },
+  "kg_ratio_optimal": 5.0971327345405415,
+  "T1_optimal": {
+   "z_ta=0|R=0.1Mpc": 11.137351510681183,
+   "z_ta=0|R=1Mpc": 11.135063366974482,
+   "z_ta=0|R=10Mpc": 11.112143011388799,
+   "z_ta=1|R=0.1Mpc": 3.937019202963307,
+   "z_ta=1|R=1Mpc": 3.9305387996744514,
+   "z_ta=1|R=10Mpc": 3.8648293005191574,
+   "z_ta=3|R=0.1Mpc": 1.3901649579659947,
+   "z_ta=3|R=1Mpc": 1.3716375842101058,
+   "z_ta=3|R=10Mpc": 1.159517817827566
+  }
+ },
+ "C4": {
+  "canonical": {
+   "B_e": 0.04757407818607719,
+   "u_e": {
+    "5.0": 0.22,
+    "1.4375": 0.38,
+    "1.0": 0.46
+   },
+   "u_amp": 29.31385793725662,
+   "x_eps": 0.06371631856666105,
+   "minF_over_grid": 3.989402904126632e-10,
+   "rows": [
+    [
+     0.02,
+     7.134333857594556e-05,
+     1.9183228017195585e-09
+    ],
+    [
+     0.13999999999999999,
+     0.0036909841638869743,
+     5.733567649427659e-09
+    ],
+    [
+     0.26,
+     0.013498133312005977,
+     1.6792857583972705e-08
+    ],
+    [
+     0.38,
+     0.030728552707215057,
+     3.6911783087144206e-08
+    ],
+    [
+     0.5,
+     0.0570498943176645,
+     6.85531286995967e-08
+    ],
+    [
+     0.62,
+     0.09480116486320678,
+     1.1495117969063678e-07
+    ],
+    [
+     0.74,
+     0.14743524764723745,
+     1.7850729791329614e-07
+    ],
+    [
+     0.86,
+     0.2204309129971064,
+     2.654147999525793e-07
+    ],
+    [
+     0.98,
+     0.3235054836277653,
+     3.922185399310514e-07
+    ]
+   ]
+  },
+  "alt": {
+   "B_e": 0.024681155889971884,
+   "u_e": {
+    "5.0": 0.16,
+    "1.4375": 0.28,
+    "1.0": 0.34
+   },
+   "u_amp": 24.2562211056943,
+   "x_eps": 0.06371631856666105,
+   "minF_over_grid": 3.989402904131414e-10,
+   "rows": [
+    [
+     0.02,
+     7.134333857594556e-05,
+     1.918322801719616e-09
+    ],
+    [
+     0.13999999999999999,
+     0.003690984163886975,
+     5.733567649424834e-09
+    ],
+    [
+     0.26,
+     0.013498133312005974,
+     1.6792857584039588e-08
+    ],
+    [
+     0.38,
+     0.03072855270721509,
+     3.691178308716543e-08
+    ],
+    [
+     0.5,
+     0.057049894317664544,
+     6.855312869982166e-08
+    ],
+    [
+     0.62,
+     0.09480116486320679,
+     1.1495117969109439e-07
+    ],
+    [
+     0.74,
+     0.1474352476472374,
+     1.7850729791309621e-07
+    ],
+    [
+     0.86,
+     0.22043091299710627,
+     2.6541479995133535e-07
+    ],
+    [
+     0.98,
+     0.3235054836277651,
+     3.9221853993110107e-07
+    ]
+   ]
+  }
+ },
+ "TheoremG": {
+  "canonical": {
+   "u_star_over_a0": 0.7735719932375273,
+   "B_min": 0.7117562422851478,
+   "B_e": 0.04757407818607719,
+   "ratio": 14.961009638510392
+  },
+  "alt": {
+   "u_star_over_a0": 0.7457137749260998,
+   "B_min": 0.6235810011096521,
+   "B_e": 0.024681155889971884,
+   "ratio": 25.265469894909465
+  }
+ },
+ "g": [
+  {
+   "item": "g1 universal coupling",
+   "class_A": "every PM particle (cold + baryon tracers) is kicked by -grad phi, del^2 phi ~ (1 + delta) + src (forces())",
+   "gated": "settled medium (s = 1) feels -grad Phi_b + R(|grad chi|) chi_hat (CFG941 D2b)",
+   "match": false
+  },
+  {
+   "item": "g2 phantom input",
+   "class_A": "s_ph = -div[(nu(|g_b|) - 1) g_b], g_b = f_b x the field of the retained (or condensed) fraction of the PM particle density over the whole box (QUMOND phantom; neighbours enter g_b through their particles; the extra source src never feeds back)",
+   "gated": "equilibrium R(u) = g_N with u the TOTAL tethered field (host and neighbour media enter: hover lemma)",
+   "match": false
+  },
+  {
+   "item": "g3 linear regime",
+   "class_A": "no catchments before turnaround: pure Newtonian cold matter",
+   "gated": "theta = 3H > theta_s: s = 0, pure dust (n = 1)",
+   "match": true
+  },
+  {
+   "item": "g4 switch",
+   "class_A": "union of balls (radius x r_ON) around resolved peaks with enclosed mean >= Delta_ta(z), x tidal f_sw, x edge mask: NON-LOCAL",
+   "gated": "local theta <= 0 (R3theta) [C4 also u >= u_c]: a pointwise flow criterion; no ball, no peak, no cosmic mean",
+   "match": false
+  },
+  {
+   "item": "g5 source",
+   "class_A": "src = e - q s_c (1 + delta): demand e = f_sw max(s_ph - s_c(1+delta), 0) filled by an INSTANTANEOUS shell draw, zero-sum per catchment/host; particles are not moved",
+   "gated": "no extra source: del^2 Phi = K(rho_b + rho_c); the medium itself must move (mass conserved by continuity; settling needs dissipation, CFG938 sec. 4)",
+   "match": false
+  }
+ ],
+ "classes": {
+  "C1": {
+   "cls": "NOT CURABLE",
+   "why": "(c) needs c_theta <= 8.9e+14 kg/m; (d) on T1-T3 needs c_theta >= 1.6e+24 (x2e+09); (d) global impossible (W unbounded); for u >= 0.944 a0 the bound also removes the scale factor's kinetic term (12 pi G c_theta/c^2 >= 1)"
+  },
+  "C2": {
+   "cls": "NOT CURABLE",
+   "why": "rho: R3n (a, c, d fail); chi: shift symmetry, static law, cannot separate collapsed/linear; latch: lambar F_thth ghost or a density/label gate; clock-density Y: (a) and (d) fail"
+  },
+  "C3": {
+   "cls": "NOT CURABLE",
+   "why": "concavity theorem (C3_concavity_theorem); bounded s'' moves k_g by <= x5.1"
+  },
+  "C4": {
+   "cls": "NOT CURABLE",
+   "why": "(c-amp) needs u_c >= 24.3 a0 but a finite bag needs u_c < a0 and (e) needs u_c <= 0.16 a0"
+  }
+ },
+ "overall": "NO CURE",
+ "g_pass": false,
+ "runtime_s": 1.46,
+ "peak_rss_GB": 0.309
+}
