@@ -1,5 +1,15 @@
 # AG5: November ALMA scoring, ready before release. ⚠️ Under its own frozen rules, neither release can trigger the theory's kill line
 
+> **STATUS NOTE (dated 2026-10-20, after commit; FROZEN_SCORING.md unchanged): SECONDARY READING, NO VERDICT WEIGHT.**
+> - The owner decided in the orchestrator chat: "keep the original CFG806/809 plans". The governing ALMA scoring plans are
+>   `campaign_fresh_gravity/CFG806_u4_27928_scoring` (1bf70683b) and `CFG809_gs4_24110_ci21_scoring` (966d50a87), scored with
+>   the CFG942 harness. This is recorded in `campaign_fresh_gravity/OWNER_DECISION_2026-10-20_ALMA_GOVERNING_PLANS.md` and the
+>   LEDGER row OWNER-DECISION-ALMA.
+> - AG5 duplicated those earlier plans: its inventory grep was case-sensitive and missed the lowercase lane folders.
+> - AG5 may be reported alongside them as a labelled secondary reading. Its power finding (the kill line cannot fire on one
+>   disc under its 0.15 dex floor) agrees with the governing plans' rule that one disc excludes no model.
+
+
 - **Rules:** `FROZEN_SCORING.md`, committed alone first (7ea94d2ae).
 - **Scorer:** `score_alma.py`.
   - Self-tests: `python3 score_alma.py --selftest` → `score_alma_selftest.out`; `AG5_MUTATE=1 python3 score_alma.py --selftest`
