@@ -1,0 +1,42 @@
+CFG952  LDT PM-engine prototype (separate 64^3 toy; no CFG650/654 import)   stage=MAIN
+  criteria 844ce293d; A1 7a3ade021 (pre-result); kappa = 1/2 FITTED; footings never pooled; not theory closed
+  toy: G = a0 = 1, L = 40.0, M = 64, dx = 0.625, rho_ta = 0.001, R_min = 1.25, x_h = 0.6, dt = 0.04, sigma_sm = 1.25
+
+==================== (a) satellite: labels, persistence, own-domain phantom ====================
+  (a) t = 0 labels: 2 resolved peaks, labels born [1, 2]; host label 1, satellite label 2; r_ON/r_e host 9.560/3.422, satellite 6.068/1.617
+    [(a) DIPSLAVE] 391 steps, t_end 15.64, wall 37.1 s, peak RSS 0.233 GB, footprint 0.120 GB
+   snapshot d12: step 0 t 0.00 d 11.998; purity s 1.00000 H 1.00000; a1 max|dsph|/max 0.00e+00, dlogM 0.00e+00; E4 EFE -0.0091 dex; MASK -0.0030 dex; own vs E4-iso -0.0466 dex; |g_ext| 0.0062
+   snapshot d8: step 310 t 12.40 d 7.971; purity s 1.00000 H 1.00000; a1 max|dsph|/max 0.00e+00, dlogM 0.00e+00; E4 EFE -0.0253 dex; MASK -0.0014 dex; own vs E4-iso -0.0252 dex; |g_ext| 0.0149
+   snapshot d5: step 390 t 15.60 d 5.011; purity s 1.00000 H 1.00000; a1 max|dsph|/max 0.00e+00, dlogM 0.00e+00; E4 EFE -0.1142 dex; MASK -0.0139 dex; own vs E4-iso -0.0304 dex; |g_ext| 0.0383
+  [PASS] a0 labels: satellite/host purity >= 0.99 at t = 0 and every computed snapshot (41): min s 1.00000, min H 1.00000
+  [PASS] a1 no EFE (own-domain): max dlogM 0.00e+00 dex, max|dsph|/max 0.00e+00
+  [PASS] a2 dynamic persistence at the end (t = 15.64, d = 4.964): purity s 1.00000, H 1.00000; a1 0.00e+00
+   reported: hover |a_b - a_c|/|a_sat| median 0.0680, max 0.1888; book B/I 2.85e-09; clipped True; labels alive max 2
+
+==================== (b) momentum books (asymmetric host, switch-on) ====================
+    [(b) DIPSLAVE] 500 steps, t_end 20.00, wall 61.3 s, peak RSS 0.233 GB, footprint 0.110 GB
+   DIPSLAVE : max B/I 8.092e+01; |dP_m|/I 1.749e-02; I 1.0151e+00; clip steps 145; max dipole miss / scale 8.28e-01; max headroom q f 1.000; labels t0 1 (fallback False)
+    [(b) DIPFREE] 500 steps, t_end 20.00, wall 32.6 s, peak RSS 0.233 GB, footprint 0.110 GB
+   DIPFREE  : max B/I 7.914e-01; |dP_m|/I 6.767e-01; I 7.4727e-01; clip steps 12; max dipole miss / scale 1.60e-10; max headroom q f 1.000; labels t0 1 (fallback False)
+Traceback (most recent call last):
+  File "cfg952_ldt_proto.py", line 917, in <module>
+    Bv = run_b(dr); res["b"][dr] = Bv
+  File "cfg952_ldt_proto.py", line 681, in run_b
+    ser = run(st, draw, "NONE", 20.0, s_of=s_ramp, tag=f"(b) {draw}")
+  File "cfg952_ldt_proto.py", line 556, in run
+    acc, recs, S, g = forces(st, t, draw, s_of(t))
+                      ~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "cfg952_ldt_proto.py", line 460, in forces
+    if with_source: S, recs = build_source(st, t, draw, s_amp)
+                              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "cfg952_ldt_proto.py", line 447, in build_source
+    info = solve_draw(comps, ws, target, s_amp, draw)
+  File "cfg952_ldt_proto.py", line 374, in solve_draw
+    W = sum(w * F["q"] * np.einsum("i...,j...->ij", F["d"] * F["wsh"], F["d"]) * DV for F, w in free)
+  File "cfg952_ldt_proto.py", line 374, in <genexpr>
+    W = sum(w * F["q"] * np.einsum("i...,j...->ij", F["d"] * F["wsh"], F["d"]) * DV for F, w in free)
+                         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<site-packages>/numpy/core/einsumfunc.py", line 1371, in einsum
+    return c_einsum(*operands, **kwargs)
+ValueError: output has more dimensions than subscripts given in einstein sum, but no '...' ellipsis provided to broadcast the extra dimensions.
+exit 1

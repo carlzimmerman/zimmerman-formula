@@ -1,0 +1,60 @@
+CFG952  LDT PM-engine prototype (separate 64^3 toy; no CFG650/654 import)   stage=MAIN
+  criteria 844ce293d; A1 7a3ade021 (pre-result); kappa = 1/2 FITTED; footings never pooled; not theory closed
+  toy: G = a0 = 1, L = 40.0, M = 64, dx = 0.625, rho_ta = 0.001, R_min = 1.25, x_h = 0.6, dt = 0.04, sigma_sm = 1.25
+
+==================== (a) satellite: labels, persistence, own-domain phantom ====================
+  (a) t = 0 labels: 2 resolved peaks, labels born [1, 2]; host label 1, satellite label 2; r_ON/r_e host 9.560/3.422, satellite 6.068/1.617
+    [(a) DIPSLAVE] 391 steps, t_end 15.64, wall 36.1 s, peak RSS 0.233 GB, footprint 0.120 GB
+   snapshot d12: step 0 t 0.00 d 11.998; purity s 1.00000 H 1.00000; a1 max|dsph|/max 0.00e+00, dlogM 0.00e+00; E4 EFE -0.0091 dex; MASK -0.0030 dex; own vs E4-iso -0.0466 dex; |g_ext| 0.0062
+   snapshot d8: step 310 t 12.40 d 7.971; purity s 1.00000 H 1.00000; a1 max|dsph|/max 0.00e+00, dlogM 0.00e+00; E4 EFE -0.0253 dex; MASK -0.0014 dex; own vs E4-iso -0.0252 dex; |g_ext| 0.0149
+   snapshot d5: step 390 t 15.60 d 5.011; purity s 1.00000 H 1.00000; a1 max|dsph|/max 0.00e+00, dlogM 0.00e+00; E4 EFE -0.1142 dex; MASK -0.0139 dex; own vs E4-iso -0.0304 dex; |g_ext| 0.0383
+  [PASS] a0 labels: satellite/host purity >= 0.99 at t = 0 and every computed snapshot (41): min s 1.00000, min H 1.00000
+  [PASS] a1 no EFE (own-domain): max dlogM 0.00e+00 dex, max|dsph|/max 0.00e+00
+  [PASS] a2 dynamic persistence at the end (t = 15.64, d = 4.964): purity s 1.00000, H 1.00000; a1 0.00e+00
+   reported: hover |a_b - a_c|/|a_sat| median 0.0680, max 0.1888; book B/I 2.85e-09; clipped True; labels alive max 2
+
+==================== (b) momentum books (asymmetric host, switch-on) ====================
+    [(b) DIPSLAVE] 500 steps, t_end 20.00, wall 59.2 s, peak RSS 0.233 GB, footprint 0.111 GB
+   DIPSLAVE : max B/I 8.092e+01; |dP_m|/I 1.749e-02; I 1.0151e+00; clip steps 145; max dipole miss / scale 8.28e-01; max headroom q f 1.000; labels t0 1 (fallback False)
+              first infeasible (clipped) step t 2.56; first dipole miss > 1e-9 at t 14.120000000000001
+    [(b) DIPFREE] 500 steps, t_end 20.00, wall 33.6 s, peak RSS 0.233 GB, footprint 0.111 GB
+   DIPFREE  : max B/I 7.914e-01; |dP_m|/I 6.767e-01; I 7.4727e-01; clip steps 12; max dipole miss / scale 1.60e-10; max headroom q f 1.000; labels t0 1 (fallback False)
+              first infeasible (clipped) step t 3.52; first dipole miss > 1e-9 at t None
+    [(b) LIN] 500 steps, t_end 20.00, wall 23.1 s, peak RSS 0.233 GB, footprint 0.111 GB
+   LIN      : max B/I 7.929e-01; |dP_m|/I 5.687e-01; I 8.2168e-01; clip steps 335; max dipole miss / scale 5.67e-01; max headroom q f 0.896; labels t0 1 (fallback False)
+              first infeasible (clipped) step t 0.04; first dipole miss > 1e-9 at t 0.04
+  [FAIL] b1 DIPSLAVE book: max B/I 8.092e+01 (<= 1e-6), clipping True, dipole miss 8.28e-01 (<= 1e-9)
+
+==================== (c) merger: phantom continuity (RAMP) ====================
+    [(c) RAMP DIPSLAVE] 750 steps, t_end 30.00, wall 60.0 s, peak RSS 0.251 GB, footprint 0.137 GB
+   labels A 1 B 2 (purity {'A': 1.0, 'B': 1.0, 'distinct': True}); r_ON/r_e A 7.616/2.476
+   trigger at t 9.64 (step 241), d 1.215; tau_m 3.507; r_e,C 3.507; MR1 bound fractions A 0.998 B 0.999; J at trigger 0.0248
+   diagnostics: max J at t 28.60; clipped (Newton infeasible) steps 44 over t [0.12, 28.6]; max J before the first clip 0.0110; object separation min 0.03 at t 27.84, end 1.30
+  [FAIL] c1 RAMP max J_Phi 0.9435 (<= 0.03); median 0.0096; max per-step |dM_ph,eff|/M 0.0082
+  [FAIL] c2 zero-sum max 4.87e-01 (<= 1e-12); book max B/I 7.118e+01 (<= 1e-6); clipping True
+
+==================== EST (design numbers; reported) ====================
+   r_ON grid 1024^3: effective RMIN node 1.0471 Mpc/h (x2.408 in M_ta); 256^3: 0.7841
+   CFG947_inputs_R0.78125 (control: 4.815e10): R 0.7812  M_ta 2.0656e+12 Msun/h  f_ret 0.1000  M_b,ret 4.8154e+10 Msun  (all baryons 4.8154e+11)
+   CFG947_inputs_effective_node_1024: R 1.0471  M_ta 4.9732e+12 Msun/h  f_ret 0.1885  M_b,ret 2.1853e+11 Msun  (all baryons 1.1594e+12)
+   native_cmb_R0.78125: R 0.7812  M_ta 2.0470e+12 Msun/h  f_ret 0.1000  M_b,ret 4.7375e+10 Msun  (all baryons 4.7375e+11)
+   native_cmb_effective_node_1024: R 1.0471  M_ta 4.9283e+12 Msun/h  f_ret 0.1867  M_b,ret 2.1297e+11 Msun  (all baryons 1.1406e+12)
+   native_cmb_effective_node_256: R 0.7841  M_ta 2.0695e+12 Msun/h  f_ret 0.1000  M_b,ret 4.7896e+10 Msun  (all baryons 4.7896e+11)
+   NC1x baseline (read from the NC1x run JSON): wall 16.27 h compute, peak RSS 44.33 GB; hosts z0/0.5/1 32399/56162/63140
+   N_L   1000 exact3d : ragged 0.16 GB (1 batch); d_step +32/+27/+16 s; wall/run 17.59/17.38/16.95 h; peak RSS (labels on disk) 42.84-47.14 GB; labels in RAM worst 51.43 GB
+   N_L   1000 hybrid  : ragged 0.16 GB (1 batch); d_step +31/+25/+14 s; wall/run 17.55/17.32/16.86 h; peak RSS (labels on disk) 42.84-47.14 GB; labels in RAM worst 51.43 GB
+   N_L   1000 mask    : ragged 0.16 GB (1 batch); d_step +47/+47/+47 s; wall/run 18.24/18.24/18.24 h; peak RSS (labels on disk) 47.14-47.14 GB; labels in RAM worst 51.43 GB
+   N_L   5000 exact3d : ragged 0.79 GB (1 batch); d_step +36/+32/+24 s; wall/run 17.76/17.6/17.28 h; peak RSS (labels on disk) 42.84-47.14 GB; labels in RAM worst 51.43 GB
+   N_L   5000 hybrid  : ragged 0.79 GB (1 batch); d_step +31/+26/+15 s; wall/run 17.56/17.33/16.88 h; peak RSS (labels on disk) 42.84-47.14 GB; labels in RAM worst 51.43 GB
+   N_L   5000 mask    : ragged 0.79 GB (1 batch); d_step +47/+47/+47 s; wall/run 18.24/18.24/18.24 h; peak RSS (labels on disk) 47.14-47.14 GB; labels in RAM worst 51.43 GB
+   N_L  20000 exact3d : ragged 3.15 GB (3 batch); d_step +261/+262/+265 s; wall/run 27.15/27.2/27.3 h; peak RSS (labels on disk) 42.84-47.14 GB; labels in RAM worst 51.43 GB
+   N_L  20000 hybrid  : ragged 3.15 GB (3 batch); d_step +242/+237/+226 s; wall/run 26.35/26.13/25.7 h; peak RSS (labels on disk) 42.84-47.14 GB; labels in RAM worst 51.43 GB
+   N_L  20000 mask    : ragged 3.15 GB (3 batch); d_step +47/+47/+47 s; wall/run 18.24/18.24/18.24 h; peak RSS (labels on disk) 47.14-47.14 GB; labels in RAM worst 51.43 GB
+   N_L  63140 exact3d : ragged 9.94 GB (7 batch); d_step +725/+741/+772 s; wall/run 46.48/47.14/48.45 h; peak RSS (labels on disk) 42.84-47.14 GB; labels in RAM worst 51.43 GB
+   N_L  63140 hybrid  : ragged 9.94 GB (7 batch); d_step +664/+660/+651 s; wall/run 43.95/43.76/43.39 h; peak RSS (labels on disk) 42.84-47.14 GB; labels in RAM worst 51.43 GB
+   N_L  63140 mask    : ragged 9.94 GB (7 batch); d_step +47/+47/+47 s; wall/run 18.24/18.24/18.24 h; peak RSS (labels on disk) 47.14-47.14 GB; labels in RAM worst 51.43 GB
+
+  GRADES: a0 PASS, a1 PASS, a2 PASS, b1 FAIL, c1 FAIL, c2 FAIL
+  LANE CLASS: SMOKE PARTIAL  (design needs revision: b1, c1, c2)
+  (wall 212.5 s, peak RSS 0.251 GB)
+exit 0
