@@ -91,6 +91,12 @@ target is irrational.
   **κ = 4√(π/3) = 4.093307**, missing ½ by the exact factor `8√(π/3) = 8.186614` (A1).
   A class theorem kills the family: every member has `κ² ∈ ℚ·π^odd`, hence κ irrational,
   hence κ ≠ ½.
+- **"One quantum per cell" is the Friedmann equation.** `N·T_dS = M_h c²` identically
+  reduces to `ρ = 3H²/8πG` — it carries no κ information at all (A1). Any argument of that
+  shape is a restatement of the background, not a derivation.
+- **The numerology control.** `a₀/(cH₀) = 1/7` to `5.6e-4` — **sixty times tighter** than
+  the "1/12" hit. Near-integer ratios at this precision are not derivations, and the record
+  now has one at 1/7 that is better than the one at 1/12 (A1).
 - **The Euler charge is a₀-blind.** `∫E` is a total derivative in 4D (its
   Euler–Lagrange derivative vanishes identically), so it cannot supply a stationarity
   condition. `∂(AΛ)/∂a₀ = 0` while `∂R/∂a₀ ≠ 0`: the balance fixes the geometric length
@@ -160,6 +166,26 @@ A lattice of independent bistable gates, at most one occupant per site, adsorpti
 capacity identified as the affinity, `a₀`, the stationary condition **is** the law, with no
 new fitted constant. **n = 1 is forced by one gate per site.**
 
+Three exact forms make the mechanism concrete (A2):
+
+$$
+\theta=\frac{g}{g+a_0},\qquad A\equiv g-g_N=a_0\theta,\qquad \frac{1}{A}=\frac{1}{g}+\frac{1}{a_0}.
+$$
+
+`A` is the response (the phantom acceleration) and it is the **harmonic mean** of the drive
+and the capacity — the cleanest statement of "saturating at `a₀`". The mass-action and
+grand-canonical derivations both give it with `k_d/k_a = a₀`. One structural caveat, and it
+is a real one: **there is no equilibrium Gibbs state with linear coupling** — the Fermi
+occupancy stays finite at `g = −a₀`, where the Langmuir isotherm has its only pole. The
+medium must therefore be a *driven steady state*, not a thermal equilibrium. That is a
+physical commitment of the model, not a detail.
+
+The lattice also predicts something that is not the law: **occupancy noise**.
+`σ(log g)` at fixed `g_N` scales as `g^{−3/2}` with a `(g+a₀)/(g+2a₀)` modulation, giving
+`σ(0.3a₀)/σ(3a₀) = 22.34` for n=1 vs 34.49 for n=2, and the **skewness of δg flips sign
+exactly at `g = a₀`** (A2). A sign flip is a much cheaper measurement than a 15 % amplitude
+difference, and no other interpolation predicts it at the same place.
+
 `n = 2` (the a₀-line, `g² − g_N² = a₀g_N`, i.e. the quadrature law) is a **NO-GO in the
 thermal-lattice class**: it is not the stationary point of any single-scale two-state
 lattice. Its natural home is elsewhere (a Poisson second-moment identity, `⟨n²⟩ = λ²+λ`,
@@ -203,7 +229,7 @@ exactly (residual 0, A12).
 |---|---|---|---|
 | **Lensing = dynamics** | **DERIVED at first order; NOT an identity** | `(Φ−Ψ)/Ψ = O(Ψ) = 2.63e-7`; 9.13e-8 at 10 kpc | A12, A3 |
 | **GW speed = c** | **DERIVED (exact)** | `c_T² = 1` exactly, not to leading order | A3 15/15; coordinator 6/6 |
-| **Solar System Newtonian** | **CONDITIONAL (turn-off)** | anomaly `a₀ = 2557.38 × B_E` uncured; `y_t = 100.40` closes Λ | A4 |
+| **Solar System Newtonian** | **CONDITIONAL (turn-off)** | anomaly `a₀ = 2557.38 × B_E` uncured; `y_t = 66.30` closes Λ, planets pass with 9.14× margin | A4 |
 | **Stable at every acceleration** | **DERIVED (linear), CONDITIONAL (scalar)** | `dg/dg_N ∈ [1, ∞)`; scalar front speed `c_s = √(γ/η) ≤ c ⟺ γ ≤ η` | A4, A3 |
 
 **The GW gate is exact, and for the same structural reason as the lensing gate.** No operator in
@@ -232,12 +258,21 @@ bearing premise, and it is the one to attack.
 a₀**, not a₀/2 (exact: `ν_can−1 = ½(√(1+4/y)−1) ~ 1/y` with coefficient 1; quadrature has
 ½). Against `B_E = 3.66e-14 m/s²` that is **2557.38×**, twice the quadrature's published
 1279×. The vacuum integral `Λc⁴/a₀² = ∫y(ν−1)dy` diverges **linearly** for both, canonical
-twice as fast (π/2 vs π/4 per unit `y_t`). With the turn-off
-`ν_fix = 1 + (ν−1)/(1+(y/y_t)²)` the canonical law closes Λ at **y_t = 100.40**, inside
-the record's quadrature band 94–129 — so **one** `y_t` does both jobs: it makes the vacuum
-term finite and equal to the observed Λ, and it suppresses the planetary anomaly to
-negligible. That is a conditional pass, with the premise named: the turn-off exists and
-its scale is tied to Λ, not fitted.
+twice as fast (π/2 vs π/4 per unit `y_t`). The exact closure is
+
+$$
+\frac{\Lambda c^4}{a_0^2}=\frac{\pi}{2}\,y_t-\ln\!\frac{y_t}{4}+C_{\rm can},\qquad C_{\rm can}=-0.8862944=8\,C_{\rm quad},
+$$
+
+and with the observed `Λc⁴/a₀² = 100.4058` the turn-off solves to **y_t = 66.2999**, i.e.
+`6.21e-9 m/s²`. **One** `y_t` does both jobs — it makes the vacuum term finite and equal to
+the observed Λ, and every planet then passes with a **9.14× margin** in `y_t`
+(the worst case, Neptune, sits at 1.2 % of its bound). But the turn-off is **law-dependent**:
+the quadrature law needs `y_t = 128.7559`. Feeding the quadrature's value to the canonical
+law over-predicts Λ by **1.9707×**. So `y_t` is not a shared parameter — it is a
+**discriminator**: a measurement of the turn-off scale separates n = 1 from n = 2 by a
+factor 1.94, on top of the 15.47 % shape difference. That is a conditional pass with the
+premise named: the turn-off exists and its scale is tied to Λ, not fitted.
 
 ---
 
@@ -304,16 +339,27 @@ that is a prediction (three numbers from one), not a fit.
 2. **"Cold = the law's phantom" is excluded at 7.7σ.** On the 318-cluster eRASS1×KiDS stack,
    measured `A_MID = 1.9102 ± 0.1186`; the phantom reading predicts **1.000**, the cosmic-
    share reading predicts **1.852**. The data sit 0.49σ from cosmic and 7.67σ from phantom.
-3. **The saddle no-go.** The exact two-body solution requires **negative** cold-energy
-   density in a thin pancake through the null point: −89.3× the mean cold density at
-   R = 0.2d for an MW–M31-like pair (reproduced, A6). A positive-mass medium cannot do
-   this, so the framework predicts **no saddle dip**, with a missing depth of
-   **2.16–2.37 M⊙/pc²** (MW pair) and **5.16–5.68 M⊙/pc²** (cluster pair). Two corrections
-   to the published note: the −33 cluster figure is at d = 11.78 Mpc, not 3 Mpc, and for
-   the MW configuration the **net** column is negative (−2.42 M⊙/pc²), so the published
-   "total column still positive" claim does not survive as stated (A6). A naive
-   superposition gives the **wrong sign** (+0.64), so the pancake is strictly nonlinear
-   (A13).
+3. **The saddle no-go, sharpened.** The exact two-body solution requires **negative**
+   cold-energy density in a thin pancake through the null point: **−89.32×** the mean cold
+   density at R = 0.2d for `M_b = 1.4e11 M⊙` each at `d = 780 kpc` (reproduced; the
+   published note never states `M_b` or `d`, and the plausible band is −75.5 to −110.9).
+   The pancake is 30.5° wide and covers 26.3 % of the solid angle at R = 0.2d; the density
+   cusps as `|ρ| ∝ r^{−1/2}` at the null (verified to 0.6 %). A positive-mass medium cannot
+   do this, so the framework predicts **no saddle dip**.
+   Three corrections to the published note, all from A6:
+   - the **−33 "cluster" figure is not a cluster-pair number.** At `d = 3 Mpc` a cluster pair
+     gives −485; reaching −33 needs `d = 11.78 Mpc`, and then the column is −19.73. The two
+     cluster numbers are jointly reproduced only by a **group-mass** pair (4.2e12 M⊙ each,
+     3 Mpc): ratio −33.07, column −5.025.
+   - the **net column is negative**: −2.424 M⊙/pc² (negative part −3.529, positive +1.105).
+     The published "total column still positive (+0.016)" appears only within ~1° of
+     φ = 77.44°; at the physical φ = 90° it is −2.42. **That claim does not survive.**
+   - the missing depth for the MW configuration is **3.529 M⊙/pc²** (A6, explicit masses),
+     not 2.16–2.37 (A13, which rescales the paper's own units rather than recomputing). The
+     two differ by 1.5× and A6's is the one with stated inputs.
+   A naive superposition gives the **wrong sign** (+0.64), so the pancake is strictly
+   nonlinear (A13). The 11.8× pair requirement (≈ 8282 pairs for 3σ, reproducing the
+   published "about twelve times") is confirmed.
 4. **The sourcing fraction is radial, and it is not ½.** `u = 0.4716 ± 0.0362` (MID) →
    `0.9865 ± 0.0984` (OUT). MID is 0.78σ from ½ but OUT is **4.9σ** from it, and the two
    bands differ by ≥ 3.8σ for any band correlation (A21). The "≈ ½ at both anchors" is a
@@ -337,7 +383,10 @@ that is a prediction (three numbers from one), not a fit.
 
 | # | prediction | number | recipe | falsifier |
 |---|---|---|---|---|
-| P1 | No saddle dip between lens pairs | depth difference 2.16–2.37 (MW) / 5.16–5.68 (cluster) M⊙/pc² | stack LRG pairs at ~0.77 Mpc, matched-filter the saddle | a dip of the predicted depth ⇒ law exact, medium must carry negative energy |
+| P1 | No saddle dip between lens pairs | depth difference **3.529** (MW, M_b=1.4e11, d=780 kpc) / 5.025 (group, 4.2e12, 3 Mpc) M⊙/pc² | stack ~8282 pairs (11.8× arXiv:1702.08485) at ~0.77 Mpc | a dip of the predicted depth ⇒ law exact, medium must carry negative energy |
+| P1b | The saddle pancake's shape | 30.5° wide, 26.3 % of solid angle, `|ρ| ∝ r^{−1/2}` | same stack, azimuthal profile | a smooth (non-cusped) trough |
+| P7b | Turn-off scale separates n=1 from n=2 | y_t = 66.30 (n=1) vs 128.76 (n=2), ratio 1.94 | kinematic a₀ at high acceleration, or Λ/a₀² systematics | a y_t outside [60, 140] |
+| P9 | Occupancy-noise skewness flips at a₀ | sign change of skew(δg) exactly at g = a₀ | RAR residuals at fixed g_N, 3 bins either side | no flip, or a flip away from a₀ |
 | P2 | Cluster SCT band ratio | MID/OUTER = **0.966 ± 0.102** (native) vs 1.888 ± 0.203 (phantom) | eRASS1×KiDS, 0.46–1.42 Mpc vs outer | ratio > 1.3 (> 3.3σ) kills the native-cold reading |
 | P3 | Sourcing fraction rises outward | u(MID) = 0.4716 ± 0.0362, u(OUT) = 0.9865 ± 0.0984 | same stack, two bands | constant u at ≥ 3.8σ; σ(A_MID) ≤ 0.0312 reaches 3σ |
 | P3b | Group-scale u diagnostic | at M_v = 1e13, A_MID = 1.8122 (u=½) vs 1.4051 (cosmic share) | few hundred M_500 ~ 2e13 stacks, eRASS1×DESI Y3 | σ(A) ≤ 0.136 needed; 33 % difference |
@@ -377,7 +426,15 @@ that is a prediction (three numbers from one), not a fit.
 10. **A19's task statement (mine) was internally inconsistent**: `ℓ₀ = √(8π/Λ)` gives
    `Λℓ₀² = 8π`, not 32π. The two lengths are distinct — the cell `ℓ₁ = √(8π/Λ)` and the
    MOND length `L = c²/a₀ = 2ℓ₁`. The master identity is `R = ΛL²/(8π)`.
-11. **κ has four numbers circulating** (0.42 ± 0.10, 0.551 ± 0.043, 0.45/0.58/0.43, and the
+11. **The "smallest strong-field anomaly" justification for p = 1 is empty.** In the family
+    `μ = x/(1+x^p)^{1/p}` (both limits exact for every p) the constant-anomaly coefficient is
+    1 at p = 1 and **0** for p > 1: the canonical law has the *largest* constant anomaly, not
+    the smallest (A6). What actually fixes p = 1 is exact Newton **plus** single-scale
+    saturation — and the residue is `a₀`, i.e. the open strong-field problem, not a virtue.
+12. **The turn-off is law-dependent**, so the record's "94–129" band is the quadrature's, not
+    the canonical law's: 66.30 vs 128.76, ratio 1.94 (A4). Transplanting one to the other
+    mis-predicts Λ by 1.97×.
+13. **κ has four numbers circulating** (0.42 ± 0.10, 0.551 ± 0.043, 0.45/0.58/0.43, and the
    March–May κ = 1). There is no single reconciled κ, and A9 shows why: κ ∝ Υ^−1.23, so an
    IMF change moves it 1.98×. The Υ-free channel gives **κ = 0.354 ± 0.106** from 12
    galaxies and 73 points — consistent with ½ at 1.4σ, but not a measurement (A14). The
@@ -396,8 +453,9 @@ that is a prediction (three numbers from one), not a fit.
 - `r_switch = L*` against the cold sector's own gravity (`L*√f_c` against the total), and
   `R_core = 53.31 pc`. A16, A20 corrected.
 - `M_ph/M_b = ½(√(1+4/y)−1)`; the 1.7584e14 M⊙ crossing is concentration-independent. A18.
-- Lean, no `sorry`, standard axioms only: κ–Z identity, `1/(2Z) ≠ 1/12`, both roots and
-  their ordering, monotonicity, capacity limits. A8 (23 theorems).
+- Lean, no `sorry`, standard axioms only: κ–Z identity, `1/12 < 1/(2Z) < 1/11`, both roots
+  and their **strict** ordering (`g_q < g_c`, no hypothesis needed), monotonicity, capacity
+  limits. A8 — **40 theorems**, axiom footprint `{propext, Classical.choice, Quot.sound}`.
 - `M_c = 5.3643 M_b` is `Ω_c/Ω_b`, not a cold-sector parameter. A9, A11.
 
 **Closed by no-go**

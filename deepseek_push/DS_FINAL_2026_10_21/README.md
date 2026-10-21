@@ -10,13 +10,13 @@ coordinator after the lane finished; a lane's own summary is not the evidence.
 
 | lane | question | status | checks | load-bearing number |
 |---|---|---|---|---|
-| [A1](A1_horizon/report.md) | can κ = ½ be derived; the "1/12" | **NO-GO** + exact arithmetic | 13/13 | κ = √(8π/3)/𝒩, requires 𝒩 = 2Z = 11.5776 (irrational); "1/12" ⇒ κ = 0.4824 |
-| [A2](A2_medium/report.md) | medium; n = 1 vs n = 2 | **DERIVED n=1** / NO-GO n=2 lattice | 16/16 | μ = x/(1+x) exactly Langmuir; max split 2/√3−1 = 15.47 % |
-| [A4](A4_ppn/report.md) | Solar System + stability | **CONDITIONAL**(turn-off) | 13/13 | anomaly a₀ = 2557×B_E; y_t = 100.40 closes Λ |
+| [A1](A1_horizon/report.md) | can κ = ½ be derived; the "1/12" | **NO-GO** + exact arithmetic | 13/13 | κ = √(8π/3)/𝒩 needs 𝒩 = 2Z (irrational); "1/12" ⇒ κ = 0.4824; control a₀/cH₀ = 1/7 to 5.6e-4 (60× tighter) |
+| [A2](A2_medium/report.md) | medium; n = 1 vs n = 2 | **DERIVED n=1** / NO-GO n=2 lattice | 16/16 | μ = x/(1+x) exactly Langmuir; 1/A = 1/g + 1/a₀; max split 2/√3−1 = 15.47 %; skew(δg) flips at a₀ |
+| [A4](A4_ppn/report.md) | Solar System + stability | **CONDITIONAL**(turn-off) | 13/13 | anomaly a₀ = 2557×B_E; y_t = 66.30 closes Λ (quadrature 128.76), planets pass 9.14× |
 | [A5](A5_zenodo/report.md) | Zenodo clue mining | **NUMERICAL** | 10/10 | 178 records, 625 verbatim quotes, 14 un-integrated clues, 3 tensions |
-| [A6](A6_assets/report.md) | unique assets | **NO-GO**(positive medium) | 21/21 | saddle −89.3× reproduced; net MW column −2.42 M⊙/pc² |
+| [A6](A6_assets/report.md) | unique assets | **NO-GO**(positive medium) | 21/21 | saddle −89.32× reproduced; net MW column −2.424 (negative); −33 needs a group pair |
 | [A7](A7_discriminator/report.md) | n = 1 vs n = 2 on SPARC | **NUMERICAL** (undecidable) | 8/8 | Δχ² +219 / −345 opposite; z = 0.75; need 1330–1980 galaxies |
-| [A8](A8_lean/report.md) | Lean certificates | **CERTIFIED** | 5 files, 23 theorems | standard axioms only; `inv_twoZ_ne_twelfth` |
+| [A8](A8_lean/report.md) | Lean certificates | **CERTIFIED** | 5 files, **40 theorems** | standard axioms only; `1/12 < 1/(2Z) < 1/11`; strict `g_q < g_c` |
 | [A9](A9_lcdm_audit/report.md) | ΛCDM assumptions in the data | **NUMERICAL** | 10/10 | κ ∝ Υ^−1.23 (IMF moves it 1.98×); 3 of 4 headlines immovable |
 | [A10](A10_first_principles/report.md) | one principle for both postulates | **NO-GO** | 18/18 | P2 derives from a saturating current; P1's coefficient does not |
 | [A11](A11_cold_normalization/report.md) | cold-sector normalization | DERIVED + **NO-GO** | 34/34 | M_ph/M_b = ½(√(1+4/y)−1); 25.04 vs 2.62; 5.364 = Ω_c/Ω_b |
