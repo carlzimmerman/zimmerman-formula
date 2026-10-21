@@ -180,3 +180,13 @@ and no gravity between tethered components (satellites would show an EFE-like ho
 shear pass is not the non-relativistic limit of any tested local parent. So the canonical S2 + S3 identification and the class-A
 cosmology are mutually inconsistent as one local theory; this is now the central structural problem, alongside the excess family.
 
+**Note (2026-10-21 early, CFG944/946/947) all three structural options tested.** Option 1 (collapse-gated tether): NO CURE —
+theorem G: any local L(θ,u) that is ghost-free, gives the law and is off in the linear universe needs a static vacuum offset 15–25× the
+slip bound. Option 2 (cold energy ≠ phantom): NO-GO — theorem T-O2 / lemma L-G: a local field that supplies the deep law must carry an
+EFE, so with no satellite EFE the law's extra mass must be the cold energy itself, whose holding then cancels its self-gravity (D-T).
+Option 3 (non-local parent of the class-A engine): NO-GO for exact parenthood — the engine's source relocation is not conservable, its
+RMIN cut switches the law off for 128/175 SPARC galaxies, and its phantom is the GLOBAL QUMOND field, which carries the satellite EFE.
+Positive: a parent that changes the SOURCE of gravity (non-local 𝒮) has no hover, a¹ growth and forced zero-sum; an approximate
+non-local parent (labelled domains + merge rule) is untested and would need its own engine. **Status: no local theory gives the law,
+a¹ growth and no EFE together; the class-A shear engine has no established physical parent.**
+
