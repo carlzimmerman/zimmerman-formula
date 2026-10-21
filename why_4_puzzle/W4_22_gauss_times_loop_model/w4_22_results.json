@@ -1,0 +1,54 @@
+{
+ "normal": {
+  "R_over_Y": "128*pi/9",
+  "xi": "c**12/(4*G**3*epsilon*kT**2*lambda**6)",
+  "wt": 1
+ },
+ "K4": {
+  "xi_tree": "pi**3*N*T**4/(27*e0)",
+  "xi_loop": "10*pi/3"
+ },
+ "checks": [
+  {
+   "name": "K0 one class",
+   "detail": "common-factor and field-rescaling shifts span the kernel lattice: True; W4-21 shapes differ by kernel vectors: True",
+   "pass": true
+  },
+  {
+   "name": "K1 pi matched",
+   "detail": "R = (32 pi N^2/9) Y and xi = 1/(N^2 Y) for every N: True; N = 2 prefactor 128*pi/9 = (8pi)^3/(6pi)^2: True; wt 1",
+   "pass": true
+  },
+  {
+   "name": "K2 Y dimensionless",
+   "detail": "(kg, m, s) exponents of eps (kT)^2 G^3 / c^12 = (0, 0, 0)",
+   "pass": true
+  },
+  {
+   "name": "K3 TRADE",
+   "detail": "kappa depends on every scale True; N = 2, Y = 1 gives kappa = 1/2 -> the excluded H061 class (kappa = 1/channel count)",
+   "pass": true
+  },
+  {
+   "name": "K4 shape no-go",
+   "detail": "tree + loop is Newton-leading at low h; with the cancellation a MOND shape needs, xi = pi**3*N*T**4/(27*e0) (wt 3) or 10*pi/3 (wt 1): pi-odd, never 1/4",
+   "pass": true
+  },
+  {
+   "name": "K5 sign wall",
+   "detail": "F'' = 3*b/(4*sqrt(X)); thermal cubic -N*gamma**(3/2)*theta/(12*pi) is negative",
+   "pass": true
+  },
+  {
+   "name": "I1 forbidden constants",
+   "detail": "hits []",
+   "pass": true
+  },
+  {
+   "name": "I3 scaling",
+   "detail": "kappa ratio under G -> A G, eps -> B eps at fixed kT lam^3: 1/(A**(3/2)*sqrt(B)) (moves: TRADE, as expected)",
+   "pass": true
+  }
+ ],
+ "verdict": "pi MATCHED, 1/2 NOT REACHED (TRADE N^2 Y = 4; shape no-go; sign wall)"
+}

@@ -77,3 +77,13 @@ This correction was frozen in the criteria before any script ran.
 - `w4_21.py`: sympy plus mpmath, single core, 0.6 s, 63 MB.
 - `w4_21.out` / `w4_21_results.json`: the normal run.
 - `w4_21_MUTATE.out` / `w4_21_results_MUTATE.json`: the control run.
+
+## Appendix (2026-10-20, from W4-22 K0): the three shapes are one class
+
+The three solutions listed above are **one condition, not three kinds of model**. Two conventions leave R unchanged:
+- multiplying ε, C₂ and C₃ by a common factor shifts the weights by (1, 1, 1);
+- rescaling the field φ → π^g φ shifts them by (0, 3g, 2g).
+
+These shifts span every solution of wt ε + 2 wt C₃ − 3 wt C₂ = 0 (checked in W4-22 K0). So the screen's only invariant
+content is **wt R = 1**. The arithmetic above stands; the reading "three shapes" is withdrawn. W4-22 builds a model in this
+class.

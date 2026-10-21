@@ -1,0 +1,24 @@
+W4-22 Gauss stiffness x 3D one-loop cubic
+Model-building lane; footing rho_DE. kappa = 1/2 FITTED; not theory closed.
+
+kernel basis in {(1,1,1),(0,3,2)}: {(-2, 1, 0): {a: -2, b: 1}, (3, 0, 1): {a: 3, b: -1}}
+[PASS] K0 one class: common-factor and field-rescaling shifts span the kernel lattice: True; W4-21 shapes differ by kernel vectors: True
+[normal] C2 = c**4/(8*pi*G), |C3| = kT*lambda**3/(6*pi)
+[normal] R = 128*pi*G**3*epsilon*kT**2*lambda**6/(9*c**12) = (128*pi/9) * Y;  xi = c**12/(4*G**3*epsilon*kT**2*lambda**6);  wt(R/Y) = 1
+[PASS] K1 pi matched: R = (32 pi N^2/9) Y and xi = 1/(N^2 Y) for every N: True; N = 2 prefactor 128*pi/9 = (8pi)^3/(6pi)^2: True; wt 1
+[PASS] K2 Y dimensionless: (kg, m, s) exponents of eps (kT)^2 G^3 / c^12 = (0, 0, 0)
+
+kappa = 1/(N sqrt(Y)) = c**6/(G**(3/2)*N*sqrt(epsilon)*kT*lambda**3);  depends on {'epsilon': True, 'kT': True, 'lambda': True, 'G': True, 'c': True}
+[PASS] K3 TRADE: kappa depends on every scale True; N = 2, Y = 1 gives kappa = 1/2 -> the excluded H061 class (kappa = 1/channel count)
+
+low-h ratio C3 h^3/(C2 h^2) -> 0 (Newton-leading at low h)
+cancellation C2 = N lam^2 T^2/24: tree vacuum R = 96*e0/(pi**2*N*T**4), xi = pi**3*N*T**4/(27*e0) (wt 3); loop vacuum R = 16/15, xi = 10*pi/3 (wt 1)
+[PASS] K4 shape no-go: tree + loop is Newton-leading at low h; with the cancellation a MOND shape needs, xi = pi**3*N*T**4/(27*e0) (wt 3) or 10*pi/3 (wt 1): pi-odd, never 1/4
+
+F''(X) = 3*b/(4*sqrt(X)): concave on X > 0 iff b <= 0.  Thermal cubic coefficient -N*gamma**(3/2)*theta/(12*pi) (< 0).  (-1)^F flip gives N*gamma**(3/2)*theta/(12*pi) and quadratic -N*gamma*theta**2/24: the signs the cancellation needs; not a state.
+[PASS] K5 sign wall: F'' = 3*b/(4*sqrt(X)); thermal cubic -N*gamma**(3/2)*theta/(12*pi) is negative
+[PASS] I1 forbidden constants: hits []
+[PASS] I3 scaling: kappa ratio under G -> A G, eps -> B eps at fixed kT lam^3: 1/(A**(3/2)*sqrt(B)) (moves: TRADE, as expected)
+I2 dependence printed in K3.  I4 no law kappa read.  I5 no Friedmann.  I6 rho_DE only.  I7 hbar-free (zero-mode term classical in T).  I8 weights printed.
+
+VERDICT: pi MATCHED, 1/2 NOT REACHED (TRADE N^2 Y = 4; shape no-go; sign wall). kappa = 1/2 FITTED; not theory closed.
