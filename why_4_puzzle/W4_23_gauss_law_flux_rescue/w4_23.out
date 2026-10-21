@@ -1,0 +1,30 @@
+W4-23 Gauss-law (fixed-flux) rescue of the sign wall
+kappa = 1/2 FITTED; not theory closed.
+
+  simple: law ok True; nu decreasing True -> U concave in t; mu increasing True -> E convex in s
+  standard n=2: law ok True; nu decreasing True -> U concave in t; mu increasing True -> E convex in s
+  additive: law ok True; nu decreasing True -> U concave in t; mu increasing True -> E convex in s
+[PASS] K1 duality: dE/ds = mu/2 (increasing), dU/dt = nu/2 (decreasing) for all three laws: every MOND law is convex in s and concave in t, so I-a forbids every MOND interpolation for stable s-affine media
+  n = 3: inf_x[a x^-3 + b t x^1] ~ t^3/4 (deep MOND needs t^3/4)
+  n = 4: inf_x[a x^-4 + b t x^2] ~ t^2/3 (deep MOND needs t^2/3)
+  n = 5: inf_x[a x^-5 + b t x^3] ~ t^5/8 (deep MOND needs t^5/8)
+  n = 3: g = dU/dD = 2*3**(1/4)*sqrt(D)*a**(1/4)*b**(3/4) + D/K;  = gN + sqrt(a0 gN) with a0 = 4*sqrt(3)*K*sqrt(a)*b**(3/2): True
+[PASS] K2 exponent and law: exponents {3: '3/4', 4: '2/3', 5: '5/8'} = n/(2(n-1)); n = 3 gives g = gN + sqrt(a0 gN): True
+
+branch x* = 3**(1/4)*a**(1/4)/(sqrt(D0)*b**(1/4)): W_x(x*) = 0 (same branch);  U_xx = 4*3**(3/4)*D0**(5/2)*b**(5/4)/(3*a**(1/4));  W_xx = (-2*D0**(5/2)*a**(1/4)*b**2 - 4*3**(3/4)*D0**3*b**(5/4)*f0/3)/(sqrt(D0)*a**(1/4)*f0 + 3**(1/4)*sqrt(a)*b**(3/4))
+electrostatic-sign x-stiffness: k||D0 4*3**(3/4)*D0**(5/2)*b**(5/4)/(3*a**(1/4));  k_|_D0 (2*D0**(5/2)*a**(1/4)*b**2 + 4*3**(3/4)*D0**3*b**(5/4)*f0/3)/(sqrt(D0)*a**(1/4)*f0 + 3**(1/4)*sqrt(a)*b**(3/4)) (= -W_xx: True)
+[PASS] K3 Gauss-law sign stable: x-stiffness positive at both ends (U_xx and -W_xx) and linear in sin^2 theta: stable for every direction
+[PASS] K4 gravity sign unstable: on the MOND branch W_xx = (-2*D0**(5/2)*a**(1/4)*b**2 - 4*3**(3/4)*D0**3*b**(5/4)*f0/3)/(sqrt(D0)*a**(1/4)*f0 + 3**(1/4)*sqrt(a)*b**(3/4)) < 0 (a maximum; Phi relaxation only lowers it); W -> -oo as x -> 0: no stable ground state
+
+Legendre at fixed x: sup_D[hD - V - F D^2] = -V_x + h_v**2/(4*F_x) (affine in s = h^2)
+QUMOND cross term eigenvalues {-1: 1, 1: 1}; Phi_N equation gives grad Phi = q1 + 3*q2/(4*sqrt(dPhiN)) grad Phi_N, i.e. nu = Q'(t)
+[PASS] K5 sign structure: flux-affine is field-affine at fixed x; QUMOND's cross term is indefinite (+1, -1) and nu = Q'
+
+same-amplitude vacuum (B > 0): U'(0+) = 3**(1/4)*a**(1/4)*b/B**(1/4) (finite: Newtonian IR);  separate vacuum (B = 0): U'(0+) = oo
+C3 = sqrt(3)/(36*sqrt(a)*b**(3/2)), C2 = K/2, R = epsilon/(54*K**3*a*b**3), xi = 192*pi*K**3*a*b**3/epsilon
+[PASS] K6 vacuum and the 4: same-amplitude vacuum is analytic at t = 0; separate eps gives R = eps/(54 a b^3 K^3), xi = 192 pi a b^3 K^3/eps: TRADE, weight 1 with pi-free inputs
+[PASS] I1 forbidden constants: hits []
+[PASS] I3 invariance: R unchanged under the common energy rescaling (eps, a, b, K) -> (Z eps, Z a, Z b, K/Z)
+I2 symbolic.  I4 no law kappa read.  I5 no Friedmann.  I6 rho_DE footing.  I7 classical, hbar-free.  I8 xi weight 1.
+
+VERDICT: GAUSS-LAW REWRITE DOES NOT ESCAPE FOR GRAVITY'S SIGN; THE ESCAPE IS THE OPPOSITE-SIGN FLUX SECTOR (X15); 1/2 NOT REACHED. kappa = 1/2 FITTED; not theory closed.

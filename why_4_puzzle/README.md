@@ -93,6 +93,7 @@ independent second prediction to reach 3σ.
 | [W4-08 endpoint](W4_08_positive_mond_amplitudes/formal/critical_endpoint/RESULT.md) | Claude continuation of W4-08: the α_eff = 2 same-state sourced response of the single-function khronometric action | **UNDETERMINED; target NOT SELECTED.** Regular F gives a quartic law, not MOND. A cusp at I0 gives a leading-order deep-MOND regime above h_c = 18(|c2|/|c1|)H²/a_M. Two new obstructions: the khronon's convective term runs away beyond r_w ≈ 0.82 v_f/H, and the khronon back-reaction is ~(|c1|/|c2|)Φ_N near sources. R_amp = (4/3)(H/a_M)² is free, with two tunings. |
 | [W4-21](W4_21_pi_bookkeeping/README.md) | π bookkeeping for W4-04's target R = εC₃²/C₂³ = 128π/9: which media can never reach it? (screen lane) | **FILTER HOLDS.** A medium whose π's all ride with a scale (thermal πθ, H-type 8πG/3) gives an algebraic R (1 + 2 − 3 = 0 cancels scale and π), so ξ = 8Ω_n/(9R) is never ¼ in any n. The thermal 16/5, 16/15 and the H-type R = 4/9, √3/9, 4/3, 2/3 are one failure. Necessary condition wt ε + 2 wt C₃ − 3 wt C₂ = 1: shapes (1,0,0), (−1,1,0), (0,−1,−1), which are one class up to conventions (W4-22 K0). Selects nothing. |
 | [W4-22](W4_22_gauss_times_loop_model/README.md) | Build a model in W4-21's class: Gauss-normalized Newtonian stiffness × 3D one-loop cubic (zero mode of N light dof, mass λ\|∇Φ\|) × tree vacuum | **π MATCHED, ½ NOT REACHED.** R = (32πN²/9)Y, so κ = 1/(N√Y) is π-free and N = 2 gives exactly 128π/9 = (8π)³/(6π)². But the 4 moves to N²Y = 4 (TRADE; Y = 1, N = 2 is H061). The family is Newton-leading at low field, and the cancellation a MOND shape needs re-glues the π (ξ = π³NT⁴/27ε); its signs are barred by concavity. Also shows W4-21's three shapes are one class. |
+| [W4-23](W4_23_gauss_law_flux_rescue/README.md) | The Gauss-law (fixed-flux) rescue of the sign wall: does rewriting in the flux variable evade concavity? (W4-08 route R3) | **DOES NOT ESCAPE FOR GRAVITY'S SIGN.** Every MOND law is convex in s = g² and concave in t = g_N² (dE/ds = μ/2, dU/dt = ν/2), so the wall forbids every interpolation for stable s-affine media. A minimal flux medium (a x⁻ⁿ + b t x^{n−2}) gives g = g_N + √(a₀g_N) with dimension-fixed exponents and is stable for the electrostatic sign, but flux-affine = field-affine at fixed x, and for gravity's attractive sign the branch is W4-08's maximum. The escape is QUMOND's opposite-sign sector (X15). ε separate: TRADE. |
 
 ## What would change the answer
 
@@ -111,6 +112,6 @@ Follow `KAPPA_CAMPAIGN_RULES.md`:
 3. Run a light single-core script (nothing beside a live 1024³ job beyond that).
 4. Append one register row per attempt to CFG894's CSV, then rerun `kappa_campaign_lee.py`.
 
-Name lanes W4-23, W4-24, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
+Name lanes W4-24, W4-25, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
 
 κ = ½ FITTED. Not theory closed.
