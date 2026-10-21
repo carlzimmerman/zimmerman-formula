@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PAPER56 audit: the built PDF must be newer than the TeX and 4-6 pages long; every quoted number must match the committed lane
+"""PAPER56 audit: the built PDF must be newer than the TeX and 4-7 pages long (the deposit version adds NC2x and CFG929); every quoted number must match the committed lane
 outputs (JSON first; LEDGER row or lane README text where the number lives only there); the honesty phrases and post-hoc
 disclosures must be present; the in-progress statements must still be true; no forbidden claim or local path may appear.
 Run: python3 PAPER56_audit.py (exit 0 only if all pass).  Read-only: it opens committed files and the PDF, nothing else."""
@@ -45,7 +45,7 @@ def readme(path):
 # ---------------------------------------------------------------- A. build
 check("A1 PDF newer than TeX", os.path.getmtime(PDF) >= os.path.getmtime(TEX))
 pages = int(re.search(r"Pages:\s+(\d+)", subprocess.run(["pdfinfo", PDF], capture_output=True, text=True, check=True).stdout).group(1))
-check("A2 page count 4-6", 4 <= pages <= 6, f"{pages} pages")
+check("A2 page count 4-7", 4 <= pages <= 7, f"{pages} pages")
 # two extractions of the same PDF: layout mode (running text) and reading-order mode (keeps table cells contiguous)
 flat = " ||| ".join(norm(subprocess.run(["pdftotext"] + m + [PDF, "-"], capture_output=True, text=True, check=True).stdout) for m in (["-layout"], []))
 tex = open(TEX, encoding="utf-8").read()
@@ -87,8 +87,37 @@ if m:
     has("B p framework", f"p = {m.group(4)}"); has("B p control", f"(p = {m.group(2)})")
 led("B inherited T1x absolute chi2", "CFG654-A2", "136.6")
 led("B A2 reading HOLDS", "CFG654-A2", "HOLDS")
-check("B NC2x still running (no NC2x result file)", not os.path.exists(os.path.join(CFG, "CFG654_independent_inputs/cfg654_native_results_NC2x.json"))
-      and "is running" in flat)
+# ---- NC2x (CFG654 A3, alt footing, native inputs) landed 2026-10-21: every number from its JSON, the K1 p-value from CFG909
+n2 = J("CFG654_independent_inputs/cfg654_native_results_NC2x.json")
+k2, d2 = n2["surveys"]["KiDS"], n2["surveys"]["DES"]
+check("B NC2x is the alt footing on native inputs vs NCS0", n2["foot"] == "alt" and n2["inputs"] == "native_cmb" and n2["jobs"] == ["NC2x", "NCS0"])
+for tag, s in (("KiDS", k2), ("DES", d2)):
+    has(f"B NC2x {tag} chi2 framework", f2(s["chi2_F"])); has(f"B NC2x {tag} dchi2", f2(s["dchi2"]))
+    check(f"B NC2x {tag} shares the control chi2 of NC1x", abs(s["chi2_S0"] - n1["surveys"][tag]["chi2_S0"]) < 1e-9)
+    rv = list(s["robust"].values()); has(f"B NC2x {tag} robustness range", f"{max(rv):.2f} to {min(rv):.2f}")
+check("B NC2x KiDS and DES both CONSISTENT", k2["class"] == d2["class"] == "CONSISTENT")
+has("B abstract quotes both KiDS dchi2", f"{f2(k['dchi2'])} canonical, {f2(k2['dchi2'])} alternative")
+has("B abstract quotes NC2x DES", f"also CONSISTENT ({f2(d2['dchi2'])})")
+check("B NC2x verdict PASS (shear side, alt)", n2["verdict"].startswith("PASS"))
+mu1 = J("CFG654_independent_inputs/cfg654_native_results_NC1x_MUTATE.json")["surveys"]
+mu2 = J("CFG654_independent_inputs/cfg654_native_results_NC2x_MUTATE.json")["surveys"]
+check("B mutation control bites for both runs (NZ1)", all(m_[s_]["NZ1"] for m_ in (mu1, mu2) for s_ in ("KiDS", "DES")))
+check("B DES T-OWN: diagnostic for NC2x only", mu2["DES"]["T_OWN"] and not mu1["DES"]["T_OWN"])
+has("B DES T-OWN NC2x", f"reaches {mu2['DES']['T_OWN_chi2']:.2f} there"); has("B DES T-OWN NC1x", f"against {mu1['DES']['T_OWN_chi2']:.2f} on the canonical")
+b2 = n2["benchmark"]["z0"]["at"]; has("B NC2x power ratios z=0", f"{b2['0.3']:.3f}, {b2['0.5']:.3f} and {b2['1.0']:.3f} for NC2x")
+m2 = re.search(r"AS_SCORED\s*\] alt\s+KiDS: N 108; chi2 S0 ([\d.]+) \(p ([\d.]+)\), F ([\d.]+) \(p ([\d.]+)\)",
+               open(os.path.join(CFG, "CFG909_shear_score_lcdm_input_sensitivity/cfg909_NC2x.out"), encoding="utf-8").read())
+check("B NC2x p-value parsed from CFG909's K1 reproduction (alt)", bool(m2) and abs(float(m2.group(3)) - k2["chi2_F"]) < 0.006)
+if m2:
+    has("B NC2x p framework", f"145.38 (p = {m2.group(4)})")
+led("B A3 reading HOLDS", "CFG654-A3", "HOLDS"); led("B A3 KiDS dchi2", "CFG654-A3", "-9.39")
+led("B A3 DES CONSISTENT", "CFG654-A3", "DES Y3 Δχ² -2.15 → CONSISTENT", "CONSISTENT ($-2.15$)".replace("$", ""))
+led("B A3 both footings", "CFG654-A3", "passes on BOTH footings with native inputs", "now holds on both footings")
+rd("B A3 inherited-IC condition lifted on both", "CFG654_independent_inputs/README.md", "the inherited-IC condition is lifted on both", "inherited-input condition is lifted on both")
+led("B A3 engine has no established physical parent", "CFG654-A3", "no established physical parent", "no established physical parent")
+has("B PAPER57 pointer", "PAPER57"); has("B pass is a computational result", "computational result of that engine")
+check("B no stale 'running' statement about NC2x", "is running" not in flat and "still running" not in flat)
+rd("B run-plan deviation disclosed", "CFG654_independent_inputs/README.md", "2 GB below the frozen", "below the frozen start rule")
 
 # ---------------------------------------------------------------- C. CFG909 amplitude caveat
 c9 = J("CFG909_shear_score_lcdm_input_sensitivity/cfg909_results_NC1x.json")
@@ -98,16 +127,41 @@ has("C dchi2 at Om 0.2806", f2(dk("OM_0.2806"))); has("C dchi2 at Om 0.3308", f2
 has("C own covariance", f2(dk("CV1_OWN")))
 check("C class ROBUST", c9["lane_class"] == "ROBUST" and "ROBUST" in flat)
 led("C power deficit 3-6%", "CFG909", "3-6% power deficit")
+# CFG909's NC2x rescore (2026-10-21; output complete: LANE CLASS line, K1-K4 pass, MUTATE bites)
+o9 = open(os.path.join(CFG, "CFG909_shear_score_lcdm_input_sensitivity/cfg909_NC2x.out"), encoding="utf-8").read()
+check("C NC2x rescore complete (LANE CLASS ROBUST, K1-K4 pass)", "LANE CLASS (KiDS, class-weighted variants): ROBUST; flips: none" in o9
+      and "controls: K1_pass True, K2_pass True, K3_pass True, K4_pass True" in o9)
+m9 = open(os.path.join(CFG, "CFG909_shear_score_lcdm_input_sensitivity/cfg909_NC2x_MUTATE.out"), encoding="utf-8").read()
+check("C NC2x rescore MUTATE bites", "all bite = True" in m9)
+c92 = J("CFG909_shear_score_lcdm_input_sensitivity/cfg909_results_NC2x.json")
+check("C NC2x same Om grid and class ROBUST", c92["grid"] == c9["grid"] and c92["lane_class"] == "ROBUST" and c92["flips"] == [])
+dk2 = lambda v: c92["variants"][v]["results"]["alt"]["KiDS"]["cfg"]["main"]["dchi2"]
+om2 = [dk2(v) for v in ("OM_0.2806", "OM_0.2976", "OM_0.3085", "OM_0.3138", "OM_0.3308")]
+check("C NC2x KiDS CONSISTENT in every Om variant", all(c92["variants"][v]["results"]["alt"]["KiDS"]["class"] == "CONSISTENT"
+      for v in ("OM_0.2806", "OM_0.2976", "OM_0.3085", "OM_0.3138", "OM_0.3308")))
+has("C NC2x dchi2 range over Om", f"from {f2(max(om2))} to {f2(min(om2))}"); has("C NC2x own covariance", f"{f2(dk2('CV1_OWN'))} with the framework's own covariance")
+led("C NC2x LEDGER class ROBUST", "CFG909-NC2x", "LANE CLASS ROBUST, no flips", "the class is also ROBUST")
+led("C NC2x LEDGER Om range", "CFG909-NC2x", "-2.93 to -14.69", "from -2.93 to -14.69")
+led("C NC2x LEDGER own covariance", "CFG909-NC2x", "framework's own covariance -2.81", "-2.81 with the framework's own covariance")
+led("C NC2x LEDGER MUTATE bites", "CFG909-NC2x", "MUTATE bites", "its mutation control bites")
+tt = open(os.path.join(CFG, "CFG909_shear_score_lcdm_input_sensitivity/cfg909_T.out"), encoding="utf-8").read()
+mt = {f: re.search(rf"AS_SCORED\s*\] {f}\s+KiDS: N (\d+); chi2 S0 [\d.]+ \(p [\d.]+\), F ([\d.]+) \(p ([\d.]+)\)", tt) for f in ("canonical", "alt")}
+check("C inherited T1x/T2x absolute chi2 parsed", all(mt.values()))
+if all(mt.values()):
+    has("C inherited T1x/T2x chi2", f"{float(mt['canonical'].group(2)):.1f} for T1x and {float(mt['alt'].group(2)):.1f} for T2x on {mt['alt'].group(1)} points")
+    has("C inherited p-values", f"p = {mt['canonical'].group(3)} and {mt['alt'].group(3)}")
 
 # ---------------------------------------------------------------- D. CFG917 CMB lensing
 a1 = J("CFG917_cmb_lensing_gate/cfg917_A1_classes.json")["pairs"]
-for p in ("NC1x", "T1x", "T2x"):
+for p in ("NC1x", "T1x", "T2x", "NC2x"):
     q = a1[p]
     has(f"D {p} part A dA", f"{q['partA_dA']:.4f}"); check(f"D {p} part A SAFE", q["partA_label"] == "SAFE")
     has(f"D {p} dchi2", f"{q['dchi2']:.3f}"); has(f"D {p} chi2 F", f"{q['chi2_F']:.3f}"); has(f"D {p} chi2 S0", f"{q['chi2_S0']:.3f}")
     check(f"D {p} frozen NOT DIAGNOSTIC / A1 CONSISTENT / gate PASS",
           q["class_frozen"] == "NOT DIAGNOSTIC" and q["class_A1"] == "CONSISTENT" and q["gate_A1"] == "PASS")
-mr = max(abs(v) for p in ("NC1x", "T1x", "T2x") for v in a1[p]["robust"].values())
+mr = max(abs(v) for p in ("NC1x", "T1x", "T2x", "NC2x") for v in a1[p]["robust"].values())
+check("D NC2x scored blind: CFG917 criteria frozen before any NC2x output", "before any NC2x output" in row("CFG917") and "NC2x was scored blind" in flat)
+check("D all four SAFE / CONSISTENT stated", "All four are SAFE" in flat and "all four pairs are CONSISTENT" in flat)
 check("D every robustness member |dchi2| < 1.6", mr < 1.6 and "below 1.6" in flat, f"max {mr:.3f}")
 p1 = J("CFG917_cmb_lensing_gate/cfg917_T1x_MUTATE.json")["M3_context"]["primary"]["dchi2"]; has("D KiDS-excluded candidate", f"+{p1:.2f}")
 rd("D Part A 2sigma", "CFG917_cmb_lensing_gate/README.md", "2σ = 0.056")
@@ -255,14 +309,42 @@ has("L CFG928 cluster supply", f"x{sn['P2|canonical']['clusters']['supply_g_fact
 led("L CFG928 best of 20", "CFG928", "best of 20", "best of 20 posit-framings")
 led("L CFG928 needs +0.123 correction", "CFG928", "+0.123", "+0.123")
 led("L CFG928 sealed UDG prediction", "CFG928", "Sealed prediction (P2)", "is sealed")
-check("L CFG929 still in progress (criteria only, no LEDGER result row)", row("CFG929") == ""
-      and sorted(os.listdir(os.path.join(CFG, "CFG929_cluster_core_reframings"))) == ["FROZEN_CRITERIA.md"] and "no ledger results yet" in flat)
+# CFG929 landed after the first draft: its result is reported, checked against its JSON and LEDGER row
+r29 = J("CFG929_cluster_core_reframings/cfg929_results.json")
+s29 = r29["summary"]
+check("L CFG929 classes: a/b/c NO EFFECT, d BREAKS SOMETHING", s29["a"].startswith("NO EFFECT") and s29["b"] == s29["c"] == "NO EFFECT"
+      and s29["d"] == "BREAKS SOMETHING" and "BREAKS SOMETHING" in flat and "(CFG929)" in flat)
+fr = [r29["results"]["a"]["rows"][f"nu_beta_best|{f}"]["cls"]["f_rem"] for f in ("canonical", "alt")]
+has("L CFG929 best removal", f"{100 * fr[0]:.1f}% / {100 * fr[1]:.1f}%")
+led("L CFG929 none resolves", "CFG929", "none resolves it", "None resolves it")
+led("L CFG929 real mass the law does not supply", "CFG929", "real mass the law does not supply", "real mass that the law does not supply")
+led("L CFG929 MUTATE leg disclosed", "CFG929", "post-hoc Md-b holds", "a post-hoc replacement leg holds")
+check("L no stale CFG929 in-progress statement", "no ledger results yet" not in flat and "In progress" not in flat)
 for lane in ("CFG917 A1", "CFG919 A1", "CFG921 A1", "CFG925 A1", "CFG926 A1", "CFG914 A1", "CFG918 A1", "CFG922 A1"):
     has(f"L disclosure {lane}", lane)
 for lane, s in (("CFG917", "A1 187f895aa POST HOC"), ("CFG919", "POST HOC"), ("CFG921", "POST HOC"), ("CFG925", "POST HOC"), ("CFG926", "POST HOC")):
     check(f"L LEDGER marks {lane} amendment post hoc", s in row(lane))
 rd("L footings", "CFG919_pressure_support_selector/README.md", "9.3603e-11 / 1.1312e-10", "9.36")
 has("L footing alt in PDF", "1.13")
+
+# ---------------------------------------------------------------- N. citations (deposit-prep pass, 2026-10-21)
+# Journal references verified against the publisher DOI records (Crossref; Wolf+10 volume/page from its arXiv journal-ref):
+#   Asgari+21 10.1051/0004-6361/202039070; Giblin+21 10.1051/0004-6361/202038850; Amon+22 10.1103/PhysRevD.105.023514;
+#   Secco+22 10.1103/PhysRevD.105.023515; Carron+22 10.1088/1475-7516/2022/09/039; Planck 2018 VI 10.1051/0004-6361/201833910;
+#   Planck 2018 VIII 10.1051/0004-6361/201833886; Brouwer+21 10.1051/0004-6361/202040108; SPARC 10.3847/0004-6256/152/6/157;
+#   Weisz+14 10.1088/0004-637X/789/2/147; Pace 2025 (LVD) 10.33232/001c.144859; Bulbul+24 10.1051/0004-6361/202348264;
+#   Cavagnolo+09 10.1088/0067-0049/182/1/12; Ettori+19 10.1051/0004-6361/201833323; Cappellari+13 10.1093/mnras/stt562, stt644;
+#   Auger+09 10.1088/0004-637X/705/2/1099; Wolf+10 10.1111/j.1365-2966.2010.16753.x; Chabrier 03 10.1086/376392; CAMB 10.1086/309179.
+#   PAPER55 = 10.5281/zenodo.23482936 (public Zenodo record).
+for s in ("M. Asgari et al., A&A 645, A104 (2021)", "B. Giblin et al., A&A 645, A105 (2021)", "A. Amon et al., PRD 105, 023514 (2022)",
+          "L. F. Secco et al., PRD 105, 023515 (2022)", "JCAP 09 (2022) 039", "A&A 641, A6 and A8 (2020)", "M. M. Brouwer et al., A&A 650, A113 (2021)",
+          "AJ 152, 157 (2016)", "D. R. Weisz et al., ApJ 789, 147 (2014)", "A. B. Pace, Open J. Astrophys. 8 (2025)", "E. Bulbul et al., A&A 685, A106 (2024)",
+          "K. W. Cavagnolo et al., ApJS 182, 12 (2009)", "S. Ettori et al., A&A 621, A39 (2019)", "MNRAS 432, 1709 and 1862 (2013)",
+          "M. W. Auger et al., ApJ 705, 1099 (2009)", "J. Wolf et al., MNRAS 406, 1220 (2010)", "G. Chabrier, PASP 115, 763 (2003)",
+          "ApJ 538, 473 (2000) (CAMB)", "PAPER55, doi:10.5281/zenodo.23482936"):
+    has(f"N citation '{s[:44]}'", s)
+check("N KiDS-1000 SOM-gold shear is what the cluster stacks use (CFG686/687)", "KiDS-1000 SOM-gold" in readme("CFG686_cluster_shear_vs_law/FROZEN_CRITERIA.md")
+      and "KiDS-1000 SOM-gold" in readme("CFG687_erass1_shear_stack/FROZEN_CRITERIA.md"))
 
 # ---------------------------------------------------------------- M. honesty phrases, forbidden claims, paths
 for s in ("fitted", "the theory is not closed", "not peer reviewed", "conditional", "never pooled", "post-hoc", "not a preference",
