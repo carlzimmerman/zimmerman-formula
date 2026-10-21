@@ -3,7 +3,9 @@
 **Status: DRAFT for the owner's review.** This is a synthesis. It adds no computation, no constant and no prediction, and it
 supersedes nothing until the owner adopts it. The frozen 2026-10-14 file, v2 (2026-10-16), v3 (2026-10-18, with all its appended
 notes) and the 2026-10-16 corrections note are untouched. Their sealed predictions stand with their dates and hashes. CFG689
-(native-ruler BAO) landed while this draft was written and is folded in (§3.8); NC2x, CFG928 and CFG929 remain PENDING (§8).
+(native-ruler BAO) landed while this draft was written and is folded in (§3.8). NC2x (CFG654-A3), CFG928 and CFG929 landed on
+2026-10-21 and are filled (§8); CFG924 remains PENDING. Dated 2026-10-21 edit: the DR4 kill line is restated to the registered
+test's detectable size (§6; `OWNER_DECISION_2026-10-21_DR4_KILL_LINE.md`).
 
 **How it was built.**
 - Every number is copied from a committed LEDGER row, lane README or results JSON. Each carries its lane ID, and the LEDGER's
@@ -20,7 +22,7 @@ notes) and the 2026-10-16 corrections note are untouched. Their sealed predictio
 |---|---|---|---|
 | 1 | v2: the framework's two-halo term narrows the outer KiDS deficit "from +149 to +11" (CFG805) | CFG805 profiled a free bias. With no free amplitude, the catalogue two-halo term closes 57–59% of the all-radii shortfall (+100.10 → +40.72 canonical, +123.12 → +52.80 alt): PARTIAL, not robust. The baseline itself moved after a unit fix (+148.7 → +100.1). | CFG903, CFG902 |
 | 2 | v2/v3: early-type (red-lens) lensing excess open | A literature IMF α–σ relation removes it on both footings (+0.127 → +0.048 dex canonical, +0.088 → +0.009 alt), CONDITIONAL on discs staying near Chabrier. It may be a stellar-population effect, not cold energy. The condition is untested, so the item stays open. | CFG926 |
-| 3 | 10-14 file: "Use native initial conditions" not done | Done on the canonical footing: NC1x HOLDS against its own control. The alt native rerun NC2x is running. | CFG654-A2; CFG654-A3 PENDING |
+| 3 | 10-14 file: "Use native initial conditions" not done | Done on both footings: NC1x (canonical) and NC2x (alt) HOLD against their own control. | CFG654-A2; CFG654-A3 |
 | 4 | PAPER55 (2026-10-19) quotes the shear pass by its Δχ² | Quote it as a class. The size of the advantage is amplitude-driven, for the inherited runs and for NC1x. | CFG909, CFG654-A2 |
 | 5 | v3 addenda (CFG871/877/878): clump mass M_cl = 81σ⁴/(4Ga0) | CONDITIONAL on a coupling the record does not write; not derived. The record's equations neither bind nor retain a dwarf clump. | CFG888, CFG889 |
 | 6 | 10-14 S1: "κ = ½ (measured, not derived)" | κ = ½ is FITTED: an adopted round value inside the combined interval. | CFG835 |
@@ -99,22 +101,23 @@ universal (CFG880).
 | T1x | canonical / inherited | CONSISTENT | pass, conditional on inherited ICs | CFG650 |
 | T2x | alt / inherited | CONSISTENT | pass, conditional on inherited ICs | CFG650 |
 | NC1x | canonical / native | CONSISTENT | A2 reading HOLDS; lifts the inherited-IC condition on the canonical footing only | CFG654-A2 (crit. fce7b081a) |
-| NC2x | alt / native | PENDING | running; see §8 | CFG654-A3 (crit. d2f59b90f) |
+| NC2x | alt / native | CONSISTENT | A3 reading HOLDS (KiDS Δχ² −9.39, robust −5.69 to −12.85); lifts the inherited-IC condition on the alt footing | CFG654-A3 (crit. d2f59b90f; result 8e1f1763c) |
 
-- DES Y3 is NOT DIAGNOSTIC in every run (T-OWN fails).
+- DES Y3 is NOT DIAGNOSTIC in every run (T-OWN fails) except NC2x, where it is diagnostic and CONSISTENT (Δχ² −2.15).
 - **The size of the advantage is amplitude-driven** (CFG909, 6e7ac5154). Over projection Ω_m 0.2806 to 0.3308 the inherited
   canonical Δχ² runs −0.94 to −11.93; NC1x runs −3.11 to −15.80; with the framework's own covariance NC1x gives −2.94. The class
   is ROBUST; the size is not. The framework run's lead comes mainly from lower lensing amplitude, not a shape preference.
 - **Absolute fit:** NC1x χ²_min 144.68 / 108 (data-χ² p 0.024) against its control 154.76 (p 0.008). Both are worse than the
   inherited-input runs (T1x 136.6). The framework beats its control by suppressing small-scale power (P_grav/P_S0 0.949 at
-  k = 1 h/Mpc, z = 0); it is not a good absolute fit (CFG654-A2).
+  k = 1 h/Mpc, z = 0); it is not a good absolute fit (CFG654-A2). NC2x: χ²_min 145.38 / 108 (data-χ² p 0.010) against the
+  same control; also not a good absolute fit (CFG654-A3).
 
 ### 3.4 CMB lensing (CFG917, eeb09d2a8)
 - Part A (checklist item 2): SAFE ×3 (ΔA −0.0018 NC1x, −0.0017 T1x, −0.0016 T2x).
 - Part B (raw Planck PR4 lensing, L 8–400): Δχ² −0.276 (NC1x), −0.088 (T1x), −0.085 (T2x). As frozen: NOT DIAGNOSTIC. Under
   post-hoc addendum A1 (187f895aa): CONSISTENT ×3.
 - LOW POWER at box scales: the KiDS-excluded earlier model P1 reaches only +1.88. The gate neither threatens nor supports the shear
-  pass. NC2x will be scored blind.
+  pass. NC2x, scored blind after A1: SAFE / CONSISTENT under A1 (Δχ² −0.265, low power) (CFG654-A3).
 
 ### 3.5 Sealed CMB-lensing forecast (CFG927, seal d3bb2e4c6)
 - theory-v2 against its control: ACT-like BLIND to L 3000 (≤ 2.2); SO-like DISCRIMINATING only to L ≈ 2000 (rule-dependent);
@@ -133,7 +136,7 @@ universal (CFG880).
 - **Cluster outskirts:** the law matches 1.2–3 Mpc (A_OUTER 1.01 ± 0.09 / 0.93 ± 0.08), but ΔΣ_OUTER scales as M_gas^0.90 ± 0.21
   against the law's 0.47: T2 FOLLOWS NEWTON, against the law (CFG687).
 - **Wide binaries (2026 literature):** Cookson+26 CONSISTENT; Chae & Yoon 26's boost 1.15–1.20 is INCOMPATIBLE and kills the
-  sealed construction if confirmed (CFG800).
+  sealed construction if confirmed (CFG800); DR4 at the plan's N would most likely read such a boost UNDECIDED (CFG943).
 - **a0(z):** see §0 item 7, §3.8 and obligation 10.
 
 ### 3.8 a0(z) from the framework's own BAO ruler (CFG689, results 6c064b83a)
@@ -269,8 +272,8 @@ Every system with an excess is pressure-supported, and no rotator carries one. B
 | CFG925 | reframings A: Jeans estimator, self-sourcing, EFE | NO EFFECT; WORSENS; WORSENS | 45e1c487a |
 | CFG926 | reframings B: fossil a0, IMF α–σ, ESD estimator | R4 NO EFFECT / WORSENS (rival PARTIAL); R5 RESOLVES the red-lens excess (conditional); R6 NO EFFECT | a15a87fb7 |
 | CFG927 | sealed high-L CMB-lensing forecast | SEALED FORECAST | 4f7b35baf |
-| CFG928 | re-grade of CFG921's posits with IMF-corrected red lenses, clusters as a separate class | PENDING (no LEDGER row) | — |
-| CFG929 | small reframings for the cluster-core excess | PENDING (no LEDGER row) | — |
+| CFG928 | re-grade of CFG921's posits with IMF-corrected red lenses, clusters as a separate class | P2 velocity-space capture SURVIVES the galaxy-scale facts on both footings (post-hoc-motivated, IMF-conditional, fragile) but FAILS clusters; P1, P3, P5 FAIL; P4 UNDERDETERMINED | 82a69be8f |
+| CFG929 | small reframings for the cluster-core excess | none resolves it (four reframings: no effect, bracket-dependent, or breaks something) | 1f1b87ce8 |
 
 ## 5. What any completion must still supply
 
@@ -285,13 +288,14 @@ Every system with an excess is pressure-supported, and no rotator carries one. B
    lenses on the law (now PARTIAL, CFG926), backed by an independent IMF measurement for the two lens populations.
 4. **The cluster-core excess and the cluster outer slope.** Extra concentrated mass of about twice the core hot gas (CFG922), the
    outer ΔΣ ∝ M_gas^0.90 (CFG687) and the middle-mass tercile (CFG815). *Decisive test:* the 318-cluster eRASS1 stack on both
-   footings. CFG929 is PENDING.
+   footings. CFG929 (1f1b87ce8): none of four small reframings resolves it; the excess is real mass the law does not supply.
 5. **A derivation of κ = ½.** It must bring in c (CFG893) and carry no π (CFG891). *Decisive test:* a second, independent
    prediction from the same derivation, confirmed (CFG894's look-elsewhere rule).
 6. **Derivations of 5.364 and f_ret.** *Decisive test:* a framework-native f_ret(M) that reproduces the census and closes the
    all-radii KiDS shortfall (CFG902, CFG903); a 5.364 that does not rest on a constant-ρ_DE background (CFG886).
-7. **The alt-footing native shear (NC2x).** *Decisive test:* CFG654-A3's pre-declared reading, HOLDS = NC2x CONSISTENT and
-   Δχ²(NC2x − NCS0) ≤ 0; then the blind CMB-lensing score (CFG917).
+7. **The alt-footing native shear (NC2x): MET (2026-10-21).** CFG654-A3 HOLDS (KiDS Δχ² −9.39, CONSISTENT); blind CMB lensing
+   CONSISTENT under A1. The native shear pass now holds on both footings, with the same caveats (absolute fit, amplitude-driven
+   size, the engine's missing physical parent).
 8. **The remaining inherited inputs** (Planck ΛCDM-chain column, H0 from θ*, massless ν, M2 cooling inputs; CFG654-A2).
    CFG689 now gives a native-ruler background and H0 (67.70), but its band rests on the CMB-anchored ω_c (B5c). *Decisive test:*
    none frozen yet for the Planck column, ν mass or cooling inputs inside the shear runs.
@@ -310,7 +314,7 @@ Every system with an excess is pressure-supported, and no rotator carries one. B
 |---|---|---|---|---|
 | 2026-11-06 | ALMA U4_27928 (z 1.42) | required gas per model and a0 branch, both footings | conditional on CO V_c at 8.3 kpc; < 200 km/s tests nothing | CFG571 (259f7825c) |
 | 2026-11-28 | ALMA GS4_24110 (z 2.0, [CI](2-1) + dust) | framework needs log M_gas ~9.1–10.7; both rivals FLOOR in every branch | single-disc demonstration, no exclusion; routes never averaged | CFG571 (259f7825c); scoring plan CFG809 (966d50a87); horizon branch CFG778 |
-| 2026-12 (12-02 in the 10-14 file) | Gaia DR4 wide binaries | Newtonian; any boost obeys γ_v − 1 = ½ (s/L*)², envelope 8.9e-4 at 50 kAU at L* 5.754 pc (≥ 17× smaller at L* ≥ 24 pc, CFG820) | R − 1 ≥ 0.01 at 3σ KILLS; \|R − 1\| < 0.01 at 2σ CONSISTENT | CFG740 (crit. c4f88c6ee), CFG800 |
+| 2026-12 (12-02 in the 10-14 file) | Gaia DR4 wide binaries | Newtonian; any boost obeys γ_v − 1 = ½ (s/L*)², envelope 8.9e-4 at 50 kAU at L* 5.754 pc (≥ 17× smaller at L* ≥ 24 pc, CFG820) | KILLED iff R − 1 ≥ max(0.01, 3σ_R), σ_R from the pairs in R; else UNDECIDED (CONSISTENT unreachable, σ_R ≥ 0.02). At the plan's N (~2,100 pairs in R, σ_R 0.075) a kill needs R ≳ 1.22: a full MOND-size boost is caught ~half the time, a 1.15 boost almost never; reliable at ~7,000 pairs (MOCK, CFG943; owner decision 2026-10-21) | CFG740 (crit. c4f88c6ee), CFG800 |
 | no date set | JWST GO 12088 (J0946 perturber) | Q = M_lens/M_b ≤ 1.08/1.09 inside 0.3 kpc | EXCLUDED if Q_obs > 3 Q_max | CFG672 (sealed 52f4363bf) |
 | data released (used by CFG674) | JWST GO 8281 (B1938 A) | stars F277W 26.4–29.6/29.8 AB | EXCLUDED if the 2σ limit is fainter than 30.8/31.0; own photometry NOT DIAGNOSTIC (can confirm, never exclude) | CFG673 (crit. a0b9c9bf7), CFG674 |
 | no date set | a kinematic a0 point at z ≈ 2.5 | the native band of §3.8 | needs an error of 0.100 dex for 20:1 against ΛCDM's own DM14 law; no public sample yet | CFG689 (6c064b83a) |
@@ -340,12 +344,15 @@ Every system with an excess is pressure-supported, and no rotator carries one. B
 ## 8. Placeholders: PENDING (fill when committed)
 Do not use any number for these until the lane's README result and LEDGER row are committed. None is invented here.
 
-- **P1. NC2x, CFG654-A3 (criteria d2f59b90f). PENDING (fill when committed).** Fill: the KiDS class and Δχ² against NCS0, the A3
-  reading (HOLDS / WEAKENED / FAILS), the absolute χ² and p, CFG909's re-score, and CFG917's blind CMB-lensing score. If NC2x does
-  not HOLD, the two-footing native pass is not established, and §3.3 must say so.
-- **P2. CFG928. PENDING (fill when committed).** Re-grade of CFG921's five posits with the IMF-corrected red-lens fact (CFG926 R5)
-  and clusters as a separate class. No LEDGER row yet; it is named only in the 920–929 reservation row.
-- **P3. CFG929. PENDING (fill when committed).** Small reframings for the cluster-core excess. No LEDGER row yet.
+- **P1. NC2x, CFG654-A3: FILLED (2026-10-21; result 8e1f1763c).** KiDS CONSISTENT, Δχ² −9.39 against NCS0 (robust −5.69 to
+  −12.85); A3 reading HOLDS; χ²_min 145.38 / 108 (p 0.010) vs 154.76; DES −2.15 CONSISTENT (diagnostic); CFG917 blind CMB
+  lensing SAFE / CONSISTENT under A1 (Δχ² −0.265, low power). CFG909's NC2x re-score (reported sensitivity, no verdict weight)
+  goes in CFG909's README when it lands.
+- **P2. CFG928: FILLED (82a69be8f).** Re-grade of CFG921's five posits with the IMF-corrected red-lens fact (CFG926 R5) and
+  clusters as a separate class: P2 velocity-space capture survives the galaxy-scale facts on both footings, but it is
+  post-hoc-motivated, conditional on old spheroids being bottom-heavy and discs not, and fragile; clusters still need a second
+  ingredient. P1, P3, P5 FAIL; P4 UNDERDETERMINED. Best of 20 tried, not evidence for P2.
+- **P3. CFG929: FILLED (1f1b87ce8).** Four small reframings of the cluster-core excess with zero new constants: none resolves it.
 - **P4. CFG689 BAO fold-in: FILLED (no longer pending).** It landed in 6c064b83a (LEDGER row, README, `cfg689_summary.md`) and is
   folded in as §3.8, following its handoff (07259c4c6) and the dated note in v3 (f39b66063). Primary rows only. The θ* rows are
   held back because K9 failed as frozen; the handoff's rule is to report a failed check as a failure, so §3.8 does.
