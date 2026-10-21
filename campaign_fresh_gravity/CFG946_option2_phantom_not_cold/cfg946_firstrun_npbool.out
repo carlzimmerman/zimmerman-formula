@@ -1,0 +1,171 @@
+CFG946  option 2: cold energy is NOT literally the law's phantom   stage=MAIN
+  criteria 08f3b30a6; kappa = 1/2 FITTED; footings never pooled; no particle species added; not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2;  NGC 3198: 43 radii, M_b(<44.1 kpc) = 4.720e+10 Msun; fair-catchment turnaround radius r_ta = 688.7 kpc
+
+  deriving the growth determinant (sympy, CFG941 route) ...
+
+==================== K CONTROLS ====================
+  K1 reduced EL (CFG938 W_full, m = 1): -(-a_0*g_N + g_N*u + u**2)/(-a_0 + u)
+  [PASS] K1_NGC3198_law_CFG938_reduction: max |g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (CFG938/941: 2.2e-16; line 1e-6)
+  (K1 done 0.3 s)
+  [PASS] K2_CFG941_full_action_exponent: full action (c2 = 1, chi-bar gradient on) n = 0.694330 (CFG941 0.69433, line 1e-4); dust (c2 = 0) n = 1.000000000000
+  (K3 start 0.3 s)
+  (K3 end 4.3 s)
+  [PASS] K3_CLAR_theorem1_reproduced: three bodies, arbitrary pair potentials V_ab(|x_a - x_b|), uniform E(t): internal accelerations independent of E (minimal coupling), COM acceleration = E; with passive charges the internal acceleration changes by (gamma_a/m_a - sum gamma/M) E (CL-AR A3/A4)
+  [PASS] K4_CLAR_transport_budget: l_min (1e10 Msun, r = 10 kpc) = 494.7 / 513.9 kpc (CL-AR 495 / 514); f_gen(l/r = 0.01, 0.1, 0.3) = 2.94%, 24.87%, 54.48% (CL-AR 2.9 / 25 / 55)
+  [PASS] K5_CFG925_K7_exact_linear_QUMOND: Gauss-flux boost at y_e = 0.05 (nu_e, g_i = 1e-6 g_e) = 4.24850; analytic nu_e(1 + L_e/3) = 4.24850; CFG925 K7 exact linear QUMOND 4.249
+  [PASS] K6_O2c_c2_0_equals_CFG938_M3: O2c(c2 = 0) law dev canonical 1.6445 (CFG938 M3 1.6445), alt 1.8844 (1.8844)
+  K controls: ALL PASS
+
+==================== THEOREMS ====================
+  [PASS] L-AR_felt_by_equals_sourced_by: from L = -W(phi') - (sigma_b rho_b + sigma_d rho_d) phi: the field equation's rho_d source coefficient and the dust force coefficient are both sigma_d: a sector felt by dust is sourced by dust. O2a-1/O2b rule (felt by all, sourced by one species): baryon + dust pair (NGC 3198 M_b, dust 5.364 M_b at 50 kpc) self-accelerates at a_cm = 1.217e-11 m/s^2 = 0.130 a0 (canonical)
+  [PASS] L-G_galilean_dilation_no_deep_law: Hessian of mu^2 phi(x/mu) at x = Hessian of phi at x/mu (generic phi): True; amplitude A -> mu^2 A (sympy A*mu**2), deep law needs mu^(3/2) A; mu^2 = mu^(3/2) only at mu = [1]; X share of the deep amplitude ~ sqrt(mu) -> 0 as mu -> 0. Not Galilean: deep AQUAL div(|grad phi| grad phi) on A ln r = 0.0e+00, with + b z: 1.542e-01; QUMOND div(nu~ grad psi) on -A/r = 6.9e-01, with + b z: 4.966e-01 (EFE). Cubic Galileon r^2 x(r): limits r->0, r->inf = (0, 0) (no flat regime)
+  [PASS] D-T'_generalized: holding force F(u) = g_N(m u) + m' u: F'(0) = m' for any multiplicity m and any deep-limit law (h1, h2, h3 free); simple law F = uu*(m**2*uu + mprime*(a_0 - m*uu))/(a_0 - m*uu). The dust's linear self-gravity coefficient (m' - F'(0)) K rho vanishes wherever F acts
+  [PASS] N-L_no_linear_regime: deep-law field g_X(y) = a0 (sqrt(y^2 + 4y) - y)/2: dg_X/dg_N -> oo as g_N -> 0 (no Lipschitz linear response); xi'' = C sqrt(xi), xi(0) = xi'(0) = 0 has xi = 0 and xi = C^2 t^4/144 (non-unique Cauchy problem)
+
+==================== (a) THE LAW IN ROTATORS WITHOUT DOUBLE COUNTING ====================
+  symbolic deep limits: X baryon-sourced + finite dust -> 1; X baryon-sourced + class-A dust -> 4; X universal + finite dust -> (M_d + M_s)/M_s
+  [canonical] NGC 3198 deviation from the law, max over 43 radii (rel / dex):
+     dust DA: X baryon-sourced (O2a-1/2/G) 8.270e-01 / 0.2617 dex;  X universal (O2a-3/G) 1.743e+00 / 0.4382 dex
+     dust DF: X baryon-sourced (O2a-1/2/G) 5.008e-01 / 0.1763 dex;  X universal (O2a-3/G) 5.198e-01 / 0.1818 dex
+     dust DU: X baryon-sourced (O2a-1/2/G) 2.433e-04 / 0.0001 dex;  X universal (O2a-3/G) 7.696e-04 / 0.0003 dex
+     BTFR V^4/(G M_b a0) at r_ta = 689 kpc: bare law 1.012248; baryon-sourced + D-F/D-U dust 1.1479; + D-A 4.0001; universal + D-F/D-U 6.5625
+  [alt] NGC 3198 deviation from the law, max over 43 radii (rel / dex):
+     dust DA: X baryon-sourced (O2a-1/2/G) 8.413e-01 / 0.2651 dex;  X universal (O2a-3/G) 1.856e+00 / 0.4558 dex
+     dust DF: X baryon-sourced (O2a-1/2/G) 4.827e-01 / 0.1711 dex;  X universal (O2a-3/G) 5.065e-01 / 0.1780 dex
+     dust DU: X baryon-sourced (O2a-1/2/G) 2.232e-04 / 0.0001 dex;  X universal (O2a-3/G) 7.636e-04 / 0.0003 dex
+     BTFR V^4/(G M_b a0) at r_ta = 689 kpc: bare law 1.011135; baryon-sourced + D-F/D-U dust 1.1341; + D-A 4.0001; universal + D-F/D-U 6.5443
+   [O2a-1] (a) FAIL: dust feels the galaxy and no rule keeps it out (dust equilibrium not selected): law dev for D-U (most diffuse) 2.23e-04 ... D-A 0.841 (line 1e-6); BTFR at r_ta 1.1479 / 1.1341; symbolic limit 1 for finite dust, 4 for class-A dust
+   [O2a-2] (a) FAIL: dust feels the galaxy and no rule keeps it out (dust equilibrium not selected): law dev for D-U (most diffuse) 2.23e-04 ... D-A 0.841 (line 1e-6); BTFR at r_ta 1.1479 / 1.1341; symbolic limit 1 for finite dust, 4 for class-A dust
+   [O2a-3] (a) FAIL: dust feels the galaxy and no rule keeps it out (dust equilibrium not selected): law dev for D-U (most diffuse) 7.64e-04 ... D-A 1.856 (line 1e-6); BTFR at r_ta 6.5625 / 6.5443; symbolic limit 6.364 (universal: all catchment dust enters nu)
+   [O2a-G] (a) FAIL: dust feels the galaxy and no rule keeps it out (dust equilibrium not selected): law dev for D-U (most diffuse) 2.23e-04 ... D-A 0.841 (line 1e-6); BTFR at r_ta 1.1479 / 1.1341; symbolic limit 1 for finite dust, 4 for class-A dust
+  [canonical] O2b: slaved settled dust M_ex/M_ph at the last radius = 0.1475 (slaving identity 2.2e-16); a second equilibrium (dust x 0.5) dev 0.256; D-F dust dev 0.481
+  [alt] O2b: slaved settled dust M_ex/M_ph at the last radius = 0.1370 (slaving identity 2.2e-16); a second equilibrium (dust x 0.5) dev 0.259; D-F dust dev 0.459
+   [O2b] (a) FAIL: the law needs the settled dust slaved to the baryons (g_ex = u^2/(u + a0): M_ex/M_ph = 0.147 at NGC 3198's last radius); nothing in O2b selects it: a second admissible equilibrium (dust x 0.5) deviates by 0.256 / 0.259; fair-catchment dust by 0.481 / 0.459
+  O2c: growth needs c2 <= 3.5173e-03 (full action; 2.3458e-03 without the chi-bar term; CFG941 2.3458e-3); static law becomes g_N = R(u) - (1 - c2) u, floor u_f = [a_0*(c2 - 1)/(c2 - 2)]; deep BTFR limits {'0': oo, '1/2': oo, '1': 1, '2': 0}
+   [O2c] (a) FAIL: at c2 = 3.517e-03 (the largest growth allows): law dev 1.641 / 1.880, acceleration floor 0.4991 a0, V^4/(GMa0) at y = 1e-14: 2.491e+13; only c2 = 1 gives the BTFR (limits {'0': oo, '1/2': oo, '1': 1, '2': 0}) and c2 = 1 is CFG941's cancellation
+   [O2d1] (a) FAIL: L-G: a Galilean-symmetric sector's deep amplitude scales as mu^2, the law's as mu^(3/2): no member gives the deep BTFR (cubic Galileon: r^2 x -> 0 at both ends; BTFR limit 0). Best two-parameter cubic-Galileon fit to NGC 3198: max dev 0.154 / 0.169 (0.072 dex)
+   [O2d2] (a) FAIL: dust = phantom gives the law exactly, but dust + gravity do not select it: a second Jeans equilibrium (dust x 0.5) deviates by 0.414 / 0.421; assembling NGC 3198's phantom (4.78 M_b inside 44.1 kpc) from cosmic-mean dust needs l_min = 1129 kpc = 25.6 R (CL-AR budget: a local response generates <= 3l/r); isothermal identity sigma^2 = V_f^2/2: True
+
+==================== (b) a^1 GROWTH ====================
+  [canonical] eps_max (|n - 1| = 1e-3) = 1.6673e-03; largest linear-regime field at z = 0 (delta = 1, R = 1/k, k = 0.01 h/Mpc): y_max = 0.0366
+     O2a1: at y_max eps = 1.9947, n = 1.8842; requires y >= 5.935e+02
+     O2a2: at y_max lambda = 2.2463, n = 1.6025; requires y >= 8.912e+01
+     O2a3: at y_max eps = 4.7504, n = 2.6976; requires y >= 5.988e+02
+     O2b: at y_max eps = 4.3954, n = 2.6058; requires y >= 5.986e+02
+  [alt] eps_max (|n - 1| = 1e-3) = 1.6673e-03; largest linear-regime field at z = 0 (delta = 1, R = 1/k, k = 0.01 h/Mpc): y_max = 0.0303
+     O2a1: at y_max eps = 2.2004, n = 1.9552; requires y >= 5.935e+02
+     O2a2: at y_max lambda = 2.4404, n = 1.6795; requires y >= 8.912e+01
+     O2a3: at y_max eps = 5.2674, n = 2.8263; requires y >= 5.988e+02
+     O2b: at y_max eps = 4.8704, n = 2.7279; requires y >= 5.986e+02
+   [O2a-1] (b) FAIL: X acts on linear modes: n = 1.884 / 1.955 at the largest linear field (y_max = 0.037); a^1 needs y >= 5.93e+02, i.e. never in the linear regime
+   [O2a-2] (b) FAIL: X acts on linear modes: n = 1.603 / 1.680 at the largest linear field (y_max = 0.037); a^1 needs y >= 8.91e+01, i.e. never in the linear regime
+   [O2a-3] (b) FAIL: X acts on linear modes: n = 2.698 / 2.826 at the largest linear field (y_max = 0.037); a^1 needs y >= 5.99e+02, i.e. never in the linear regime
+   [O2b] (b) FAIL: X acts on linear modes: n = 2.606 / 2.728 at the largest linear field (y_max = 0.037); a^1 needs y >= 5.99e+02, i.e. never in the linear regime
+   [O2a-G] (b) PASS: gate off for the cosmic mean (theta = 3H >= 3H0 > theta_s = H0): pure dust, n = 1.000000000000
+   [O2c] (b) PASS: n(c2) from the full action: |n - 1| < 1e-3 iff c2 <= 3.5173e-03 (n = 0.999000 there), where (a) fails; c2 = 1 (the only BTFR value) gives n = 0.6943. No c2 passes (a) and (b) together
+   [O2d1] (b) PASS: linear fifth force of fixed strength 1/c1 (Galileon): a^1 within 1e-3 iff c1 >= 600 (free); best (a) fit used c1 = 0.205
+   [O2d2] (b) PASS: dust, no tether, no sector acting on linear modes: n = 1.000000000000
+
+==================== (c) SATELLITES (CFG882 H1-H3 in a 6e10 Msun host) AND CL-AR ====================
+  case                     g_s/a0  g_bh/a0 g_dh/g_bh O2a-1/2 dex  O2a-3 dex   O2b dex
+  canonical|H1|50          0.0059   0.0357     0.359     -0.4399    -0.4984   -0.3569
+  canonical|H1|100         0.0059   0.0089     0.719     -0.1678    -0.2746   -0.1477
+  canonical|H1|250         0.0059   0.0014     1.797     -0.0052    -0.0413   -0.0056
+  canonical|H2|50          0.0039   0.0357     0.359     -0.5222    -0.5807   -0.4298
+  canonical|H2|100         0.0039   0.0089     0.719     -0.2476    -0.3562   -0.2177
+  canonical|H2|250         0.0039   0.0014     1.797     -0.0115    -0.0915   -0.0119
+  canonical|H3|50          0.0215   0.0357     0.359     -0.1760    -0.2328   -0.1381
+  canonical|H3|100         0.0215   0.0089     0.719     -0.0146    -0.0434   -0.0153
+  canonical|H3|250         0.0215   0.0014     1.797     -0.0004    -0.0029   -0.0005
+  alt|H1|50                0.0048   0.0296     0.359     -0.4429    -0.5021   -0.3653
+  alt|H1|100               0.0048   0.0074     0.719     -0.1686    -0.2760   -0.1500
+  alt|H1|250               0.0048   0.0012     1.797     -0.0052    -0.0414   -0.0056
+  alt|H2|50                0.0033   0.0296     0.359     -0.5254    -0.5846   -0.4392
+  alt|H2|100               0.0033   0.0074     0.719     -0.2486    -0.3579   -0.2210
+  alt|H2|250               0.0033   0.0012     1.797     -0.0116    -0.0918   -0.0119
+  alt|H3|50                0.0178   0.0296     0.359     -0.1776    -0.2351   -0.1421
+  alt|H3|100               0.0178   0.0074     0.719     -0.0147    -0.0437   -0.0153
+  alt|H3|250               0.0178   0.0012     1.797     -0.0004    -0.0029   -0.0005
+  [canonical] record satellites (CFG925 R3, read only): EFE-free excess +0.489 dex; mean EFE shift E1 +0.480 / E2 +0.710 dex; CFG874 c (isolated - satellites) E0 -0.100 +/- 0.091 (z -1.10), E1 -0.284 +/- 0.105 (z -2.71), E2 -0.370 +/- 0.101 (z -3.65)
+  [alt] record satellites (CFG925 R3, read only): EFE-free excess +0.449 dex; mean EFE shift E1 +0.482 / E2 +0.714 dex; CFG874 c (isolated - satellites) E0 -0.100 +/- 0.091 (z -1.10), E1 -0.285 +/- 0.105 (z -2.72), E2 -0.372 +/- 0.102 (z -3.66)
+   [O2a-1] (c) FAIL: (c-i) no superposition (L-G); (c-ii) H1-H3 factors -0.525 ... -0.000 dex (host baryonic field); record: E1/E2 lower the satellites by +0.48/+0.71 dex; satellites would need 0.28-0.37 dex more bound cold mass than isolated dwarfs (z 2.7-3.6, against tidal stripping)
+   [O2a-2] (c) FAIL: (c-i) no superposition (L-G); (c-ii) H1-H3 factors -0.525 ... -0.000 dex (host baryonic field); record: E1/E2 lower the satellites by +0.48/+0.71 dex; satellites would need 0.28-0.37 dex more bound cold mass than isolated dwarfs (z 2.7-3.6, against tidal stripping)
+   [O2a-G] (c) FAIL: (c-i) no superposition (L-G); (c-ii) H1-H3 factors -0.525 ... -0.000 dex (host baryonic field); record: E1/E2 lower the satellites by +0.48/+0.71 dex; satellites would need 0.28-0.37 dex more bound cold mass than isolated dwarfs (z 2.7-3.6, against tidal stripping)
+   [O2a-3] (c) FAIL: (c-i) no superposition; host baryons + host dust enter nu: -0.585 ... -0.003 dex (larger than O2a-1/2); record: E1/E2 lower the satellites by +0.48/+0.71 dex; satellites would need 0.28-0.37 dex more bound cold mass than isolated dwarfs (z 2.7-3.6, against tidal stripping)
+   [O2b] (c) FAIL: (c-i) no superposition; host settled-dust field enters nu: -0.439 ... -0.000 dex
+   [O2c] (c) FAIL: (c-i) the tether reads the total dust field (no superposition); hover lemma: a dust element at rest in the host's settled field feels F(u_h) - g_bh - u_h = 0 (equilibrium) for any c2, while stars feel g_host: Delta a/g_host = 1 (CFG941 R1 1.0000)
+   [O2d1] (c) PASS: (c-i) Galilean symmetry: a uniform external gradient drops out exactly (factor 1); passes by construction
+   [O2d2] (c) PASS: (c-i) dust is real, universally coupled mass: CL-AR Theorem 1 (K3) gives no internal response at uniform order (factor 1; tides only)
+
+==================== (d) WELL-POSEDNESS ====================
+  O2a-G gate kinetic term -(1/2) s''(theta) W_X (div v)^2, W_X = W_rem(u0): ghost band k > k_g, k_g R = 0.0882 ... 3.12, k_g L*(24 pc) = 8.44e-07 ... 0.000234
+   [O2a-1] (d) FAIL: (d0) FAIL: felt by all, sourced by baryons: no action (L-AR), pair self-acceleration 0.130 a0; (d1) FAIL: deep-law response at zero field is not Lipschitz (N-L); (d2) static QUMOND = two Poisson solves (pass)
+   [O2a-2] (d) FAIL: (d0) pass (baryons source and feel X); (d1) FAIL: baryon perturbations respond as sqrt(a0 g_N) about FRW (N-L); (d2) pass
+   [O2a-3] (d) FAIL: (d0) pass; (d1) FAIL (N-L, total-matter source); (d2) pass
+   [O2a-G] (d) FAIL: (d0) as O2a-1/3; (d1) the gate removes X at linear order but its kinetic term is a ghost band for k > k_g, k_g R = 0.088 ... 3.1 (CFG941 R3theta mechanism with W_X = W_rem)
+   [O2b] (d) FAIL: (d0) FAIL: sourced by dust, felt by baryons (L-AR); (d1) FAIL: N-L in the dust's field unless gated; (d2) pass
+   [O2c] (d) PASS: (d0) pass (CFG938 action); (d1) min omega^2/(K rho0) about O2c static states (u0/a0 = 0.5/0.9/0.99) = 0.004, 8.004, 98.004: bounded Jeans-type (as CFG941 R1); (d2) pass
+   [O2d1] (d) PASS: (d0) pass (action); (d1) second-order Galilean equations, free scalar about FRW (not tested beyond linear order); (d2) pass
+   [O2d2] (d) PASS: (d0) pass (dust + gravity); (d1) Vlasov/Euler-Poisson: bounded Jeans growth; (d2) pass
+
+==================== (e) SLIP ON CFG847's FIVE SYSTEMS ====================
+  system             light-blind X best X s_847  O2c s_847 O2d2 s_grad O2d2 s_847
+  canonical|dwarf           0.6676    1.495e-09  8.028e-09   1.817e-09  3.634e-09
+  canonical|MW disc         0.4012    1.722e-07  3.449e-07   1.247e-07  2.494e-07
+  canonical|MW outer        0.9098    3.526e-08  2.354e-06   1.495e-07  2.989e-07
+  canonical|group           0.8794    1.901e-07  7.119e-06   6.064e-07  1.213e-06
+  canonical|cluster         0.6260    6.358e-06  2.769e-05   6.941e-06  1.388e-05
+  alt|dwarf                 0.6921    1.542e-09  9.521e-09   2.013e-09  4.025e-09
+  alt|MW disc               0.4337    1.844e-07  4.026e-07   1.399e-07  2.798e-07
+  alt|MW outer              0.9176    3.552e-08  2.840e-06   1.645e-07  3.291e-07
+  alt|group                 0.8896    1.921e-07  8.577e-06   6.681e-07  1.336e-06
+  alt|cluster               0.6526    6.593e-06  3.273e-05   7.699e-06  1.540e-05
+   [O2a-1] (e) FAIL: minimal (conformal) light coupling: light misses X, s = u/g up to 0.918 (line 1.9e-5); best case (X in both potentials, needs an extra disformal/vector sector): worst s_847 6.59e-06, s_grad 3.30e-06
+   [O2a-2] (e) FAIL: minimal (conformal) light coupling: light misses X, s = u/g up to 0.918 (line 1.9e-5); best case (X in both potentials, needs an extra disformal/vector sector): worst s_847 6.59e-06, s_grad 3.30e-06
+   [O2a-3] (e) FAIL: minimal (conformal) light coupling: light misses X, s = u/g up to 0.918 (line 1.9e-5); best case (X in both potentials, needs an extra disformal/vector sector): worst s_847 6.59e-06, s_grad 3.30e-06
+   [O2a-G] (e) FAIL: minimal (conformal) light coupling: light misses X, s = u/g up to 0.918 (line 1.9e-5); best case (X in both potentials, needs an extra disformal/vector sector): worst s_847 6.59e-06, s_grad 3.30e-06
+   [O2b] (e) FAIL: minimal (conformal) light coupling: light misses X, s = u/g up to 0.918 (line 1.9e-5); best case (X in both potentials, needs an extra disformal/vector sector): worst s_847 6.59e-06, s_grad 3.30e-06
+   [O2d1] (e) FAIL: minimal (conformal) light coupling: light misses X, s = u/g up to 0.918 (line 1.9e-5); best case (X in both potentials, needs an extra disformal/vector sector): worst s_847 6.59e-06, s_grad 3.30e-06
+   [O2c] (e) FAIL: on O2c's own static states (c2 = 3.52e-03): worst s_847 3.27e-05, s_grad 5.74e-06 (line 1.9e-5; CFG941 R1 3.28e-5)
+   [O2d2] (e) PASS: dispersion pressure of the phantom-shaped dust: worst s_847 1.54e-05, s_grad 7.70e-06 (line 1.9e-5)
+
+==================== (f) CLASS-A LIMIT (COSMIC SHEAR TRANSFER) ====================
+  field-supplied phantom inside NGC 3198's r_ta / catchment total mass (6.364 M_b) = 12.83 / 14.11 (class A: zero-sum, 0)
+   [O2a-1] (f) FAIL: g1 no (dust feels X, not only Newton); g2 no (the X phantom is a net source: 12.8 x the catchment mass inside r_ta; it reads the total field: EFE); g3 no (X on linear modes) [O2a-G: g3 yes]
+   [O2a-3] (f) FAIL: g1 no (dust feels X, not only Newton); g2 no (the X phantom is a net source: 12.8 x the catchment mass inside r_ta; it reads the total field: EFE); g3 no (X on linear modes) [O2a-G: g3 yes]
+   [O2a-G] (f) FAIL: g1 no (dust feels X, not only Newton); g2 no (the X phantom is a net source: 12.8 x the catchment mass inside r_ta; it reads the total field: EFE); g3 no (X on linear modes) [O2a-G: g3 yes]
+   [O2b] (f) FAIL: g1 no (dust feels X, not only Newton); g2 no (the X phantom is a net source: 12.8 x the catchment mass inside r_ta; it reads the total field: EFE); g3 no (X on linear modes) [O2a-G: g3 yes]
+   [O2a-2] (f) FAIL: g1 yes (dust feels Newton only); g2 no (lensing sees baryons + dust, the phantom is a baryon-only fifth force; net source 12.8 x); g3 no (baryons feel X)
+   [O2c] (f) FAIL: g1 no (the tether R(u) acts in settled regions); g2 no (equilibrium reads the total dust field); g3 yes only for c2 -> 0 (CFG941 R1)
+   [O2d1] (f) FAIL: g1 no (Galileon fifth force on dust); g2 no; g3 only for weak coupling
+   [O2d2] (f) FAIL: g1 yes, g3 yes; g2 only with a selection rule that the local construction lacks: with the catchment rule added it IS class A (option 3, CFG947), not a local option-2 construction
+
+==================== (g) EXCESS FAMILY AND BELOW-LAW SYSTEMS ====================
+  [canonical] dust fraction each fact needs (Newtonian addition, f = 10^D - 1): F0 +0.372 dex -> 1.354 [1.126, 1.607], F1 +0.127 dex -> 0.341 [0.254, 0.434], F5 +0.243 dex -> 0.750 [0.621, 0.890], F2 +0.003 dex -> 0.008 [-0.080, 0.104], F3 +0.059 dex -> 0.146 [0.054, 0.247], F4 +0.001 dex -> 0.002 [-0.047, 0.053]
+  [alt] dust fraction each fact needs (Newtonian addition, f = 10^D - 1): F0 +0.332 dex -> 1.149 [0.941, 1.379], F1 +0.088 dex -> 0.225 [0.146, 0.310], F5 +0.207 dex -> 0.610 [0.490, 0.738], F2 -0.036 dex -> -0.080 [-0.160, 0.008], F3 +0.025 dex -> 0.059 [-0.027, 0.151], F4 -0.023 dex -> -0.051 [-0.098, -0.003]
+  [canonical] CFG936 (read only): bare law T -0.690 +/- 0.102; field law + EFE (route iii) T -0.381 +/- 0.110 (z -3.48, FAILS), U PARTIAL; zero supply (route i) T +0.055 +/- 0.114 (EXPLAINS)
+  [alt] CFG936 (read only): bare law T -0.728 +/- 0.102; field law + EFE (route iii) T -0.414 +/- 0.109 (z -3.79, FAILS), U FAILS; zero supply (route i) T +0.055 +/- 0.114 (EXPLAINS)
+   [O2a-1] (g) FAILS: RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: the field acts on every baryonic system, TDGs at route (iii) -0.381 +/- 0.110 (z -3.48) / alt z -3.79; DF4 below Newton is unreachable
+   [O2a-2] (g) FAILS: RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: the field acts on every baryonic system, TDGs at route (iii) -0.381 +/- 0.110 (z -3.48) / alt z -3.79; DF4 below Newton is unreachable
+   [O2a-G] (g) FAILS: RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: the field acts on every baryonic system, TDGs at route (iii) -0.381 +/- 0.110 (z -3.48) / alt z -3.79; DF4 below Newton is unreachable
+   [O2a-3] (g) FAILS: RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: as O2a-1/2, host dust raises g_e only x1.36-2.80 at 50-250 kpc (TDGs need x29-36)
+   [O2b] (g) RE-DESCRIBES: RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: zero dust -> Newton, route (i) EXPLAINS (label not derived, as CFG936)
+   [O2c] (g) RE-DESCRIBES: RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: zero dust -> Newton, route (i) EXPLAINS (label not derived, as CFG936)
+   [O2d2] (g) RE-DESCRIBES: RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: zero dust -> Newton, route (i) EXPLAINS (label not derived, as CFG936)
+   [O2d1] (g) NOT COMPUTED: fails (a) structurally; no zero-supply escape for a baryon-sourced field
+
+==================== CLASSES (frozen rules, criteria sec. 5) ====================
+  O2a-1  NOT VIABLE        fails: a,b,c,d,e,f;  (g) FAILS
+  O2a-2  NOT VIABLE        fails: a,b,c,d,e,f;  (g) FAILS
+  O2a-3  NOT VIABLE        fails: a,b,c,d,e,f;  (g) FAILS
+  O2a-G  NOT VIABLE        fails: a,b,c,d,e,f;  (g) FAILS
+  O2b    NOT VIABLE        fails: a,b,c,d,e,f;  (g) RE-DESCRIBES
+  O2c    NOT VIABLE        fails: a,b,c,e,f;  (g) RE-DESCRIBES
+  O2d1   NOT VIABLE        fails: a,e,f;  (g) NOT COMPUTED
+  O2d2   NOT VIABLE        fails: a,f;  (g) RE-DESCRIBES
+
+  OVERALL: NO-GO (theorem T-O2)
+  T-O2: L-AR, L-G, D-T', N-L all pass: under A1-A4 the deep extra force must be dust mass (L-G), i.e. cold energy IS the phantom in the deep regime, contradicting option 2; static selection then needs supported dust, whose holding force cancels its self-gravity (D-T').
+
+  all checks pass: True; runtime 8.6 s; peak RSS 0.161 GB
