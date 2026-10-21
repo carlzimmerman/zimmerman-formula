@@ -17,11 +17,11 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (737 rows)
+## Totals (743 rows)
 
-- **524 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **530 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
-- **126 produced a number.** 58 produced one determinate value; 68 are menus of several values from
+- **129 produced a number.** 60 produced one determinate value; 69 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
   - a condition equal to the target,
   - a free ratio, or a trade for a new constant,
@@ -29,7 +29,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
   - a closure.
 - 44 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
 
-**17 of the 58 determinate values land inside today's 2σ data window [0.227, 0.607].** That window is CFG493's
+**17 of the 60 determinate values land inside today's 2σ data window [0.227, 0.607].** That window is CFG493's
 κ_Λ = 0.417 ± 0.095.
 - Every landing is an O(1) number that the window cannot separate from ½.
 - They are mostly the same few values, recurring: 0.461 (Z = 2π), 0.482 (Z = 6, Verlinde), 0.55–0.557 (particle horizon,
@@ -142,17 +142,17 @@ fact.
 
 | family | rows | determinate | menu | no number | pending | observational |
 |---|---|---|---|---|---|---|
-| HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
-| HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
+| HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 56 | 13 | 14 | 29 | 0 | 0 |
+| HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 42 | 9 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 64 | 4 | 10 | 50 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 143 | 9 | 7 | 122 | 5 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 144 | 9 | 7 | 123 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 57 | 9 | 12 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
 | QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 28 | 6 | 1 | 21 | 0 | 0 |
-| KS Kinetic / settling / collective / cold-energy dynamics | 34 | 1 | 2 | 31 | 0 | 0 |
-| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 48 | 2 | 4 | 38 | 0 | 0 |
-| NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
+| KS Kinetic / settling / collective / cold-energy dynamics | 35 | 2 | 2 | 31 | 0 | 0 |
+| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 49 | 2 | 4 | 39 | 0 | 0 |
+| NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
 | AU Audits, controls, meta-analyses | 106 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
@@ -219,6 +219,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K528 | AS066 | `deepseek_push/astra_spawn_ideas/results/AS066` | horizon coefficient sqrt(8pi/3)/(2pi) | 0.4607 | odd | DATA-LEVEL landing; conditional theorem, no selection | 511efeb1d |
 | K553 | T008 | `qwen_38_experiment/KAPPA_LEDGER.md` | two-temperature interpolation | - | free | UNGRADED (script red) | b062ad4a2 |
 | K582 | K004 | `grok_push/K004_VERDICT.md` | horizon ball (4pi/3)(3/8pi)=1/2 moved onto s | - | free | VOID: EMPTY, c and H cancel | db1cdf41a |
+| K740 | W4-19/L3 | `why_4_puzzle/W4_19_literature_addendum` | van Putten 2017 (1707.01619): a0 = sqrt(1-q) H/2pi with Lambda = omega0^2 | {0.798, 0.688} | menu | MISS: (a) sqrt(2/pi), (b) LCDM q0 0.688; both pi-odd, out of window | 726716bac |
 
 ## HE: Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson)
 
@@ -265,6 +266,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K498 | CFG264-OD | `campaign_fresh_gravity/CFG264_rational_four` | owner's route: entropy quarter over the bulk 8pi | - | free | SCOPED NO-GO (hbar) | 236771412 |
 | K559 | route3 | `qwen_claude_field_theory/closure_2026/route3_entropic_gravity_2026.py` | Verlinde entropic on H_Lambda | 0.482 | odd | DATA-LEVEL landing; not a derivation | e18afc17f |
 | K561 | route4 | `qwen_claude_field_theory/closure_2026/route4_kappa_derivability_2026.py` | Verlinde 1/6 in framework variables | {0.482, 0.583} | menu | MENU: within 3.3% on alt only | 16015fc0d |
+| K738 | W4-19/L1 | `why_4_puzzle/W4_19_literature_addendum` | Zhao 2008 (0802.1775): DE/DM switch where rho c^2 ~ a0^2/8piG (Newtonian field energy at a0), read as equality | 5.013 | any | MISS: kappa^2 = 8pi; misses 4a0^2/G by exactly 32pi | 726716bac |
 
 ## VM: Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND)
 
@@ -482,6 +484,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K710 | W4-08/disformal | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/protected_normalization` | universal changed physical matter metric and source-lensing amplitude dictionary | - | free | TRADE: TeVeS-shaped gamma1 family has free canonical scalar charge at fixed response; actual-V xi keeps f-cube while inferred footing gains B0^2 for general reference; saturated-neighborhood cone rule is added assumption; inherited matter-free clock instability unchanged; no healthy selector | eeb8b9492 |
 | K715 | W4-08/geometric-metric | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/geometric_source` | higher-gradient superfluid gravitational order parameter with universal attractive metric source and exact broken-branch interpolation | - | free | PARTIAL/TRADE: C2=Mpl^2 and C3=2Mpl^2/(3a0) give actual metric MOND in a local algebraic EFT window; a0 input; finite-Z gradients nonuniform; finite-density fluid not vacuum; no microscopic selector | be8fc76cb |
 | K731 | W4-18/B3 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Hardy/BF inverse-square 1/4 and the dS4 complementary-series / critical-damping edge m = 3H/2 as a0/c | 4.342 | odd | MISS: no Hardy slot (deep-MOND perturbation exponents +-sqrt(l(l+1)/2), no tunable coupling); edge kappa = sqrt(6pi) pi-odd | 918a2439d |
+| K742 | W4-19/L5 | `why_4_puzzle/W4_19_literature_addendum` | Navarro & Van Acoleyen 2006 (gr-qc/0512109): a0 = c mu from f(R,P,Q) curvature invariants | - | free | FREE: mu set by the chosen f (read from a summary only) | 726716bac |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -670,6 +673,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K732 | W4-18/B4 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Thomson/Eddington pi cancellation (sigma_T 8pi/3 vs flux 4pi): a0 as a gravity vs vacuum-momentum-transfer balance | - | nk | VOID: transfer ~ rho(1+w) = 0 at w = -1 (Lorentz-invariant vacuum) | 918a2439d |
 | K734 | W4-18/B6 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | mean-field amplitude ratio 2, GL self-dual 1/sqrt2, critical damping gamma = 2 omega0 | - | nk | NO SLOT: no order parameter shared by a0 and rho_Lambda; damping reading = B3 edge | 918a2439d |
 | K737 | W4-18/B9 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Maxwellian sqrt(pi) parity flip (effusion 1/4 n v_bar) | - | nk | VOID: the w = -1 source has no velocity distribution | 918a2439d |
+| K741 | W4-19/L4 | `why_4_puzzle/W4_19_literature_addendum` | Luo 2026 (2602.14515): a0 = 2 beta^2 sqrt(Lambda/12) c^2 with virial beta^2 ~ 1/3 | 0.965 | odd | MISS: kappa = sqrt(8pi/27), pi-odd, out of window | 726716bac |
 
 ## CC: Cosmological consistency (horizons, epochs, H0, unimodular, sequestering)
 
@@ -728,6 +732,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K653 | W4-09/E9 | `why_4_puzzle/W4_09_dark_energy_models` | interacting dark energy Q = xi H rho_DE | - | free | TRADE: xi free, no scale | 01db38324 |
 | K661 | W4-11/Q1 | `why_4_puzzle/W4_11_last_gravity_classes` | f(Q) = Q + alpha Q^n symmetric teleparallel (background = f(T)) | - | free | TRADE: kappa^2 = 16pi(2n-1)^(1/(n-1)), as f(T) | 1cbcd12ee |
 | K662 | W4-11/Q2 | `why_4_puzzle/W4_11_last_gravity_classes` | f(R,T) = R + 2 lambda T | - | free | TRADE: GR in vacuum, Lambda free | 1cbcd12ee |
+| K739 | W4-19/L2 | `why_4_puzzle/W4_19_literature_addendum` | Maeder 2023 (2302.06206) scale-invariant vacuum: a0 = ((1-Om)^2/4) n c H0, n ~ 1 | - | free | FREE: kappa = n Omega_L^(3/2) sqrt(pi/6) = 0.410 today, Omega-dependent (a0 evolves), pi-odd | 726716bac |
 
 ## NU: Numerology and grammar searches (flagged)
 
@@ -762,6 +767,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K564 | atomos | `project_atomos/kappa_rerun` | kappa as a forced germ in SM search | - | audit | relabel | e58515025 |
 | K579 | G019 | `glm53_push/G019_Z_derivation.py` | 'Z theorem' Z = sqrt(8pi Omega_L/3) | - | audit | identity | fb16b7db3 |
 | K590 | R10 | `RETRACTIONS.md` | SM bridge / number field | - | audit | obstruction | 508a12052 |
+| K743 | W4-19/L6 | `why_4_puzzle/W4_19_literature_addendum` | Funkhouser 2006 (physics/0502049): large-number scaling a0 ~ c Lambda^(1/2), factor b free | - | free | FREE: order statement; a0 = c H_Lambda reading gives sqrt(8pi/3) 2.894 pi-odd | 726716bac |
 
 ## OB: Observational determinations of kappa (NOT derivations)
 
