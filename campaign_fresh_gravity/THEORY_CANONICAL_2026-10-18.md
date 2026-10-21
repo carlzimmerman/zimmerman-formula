@@ -170,3 +170,13 @@ Source: CFG689 (criteria 1c237145d + A1 0db6da294 + A2 bb21587be; results 6c064b
 - BAO cannot separate the framework from ΛCDM (same background ingredients). Nothing here favours the framework. κ fitted; cold energy
   mass required; not theory closed.
 
+**Note (2026-10-20 night, CFG938/939/941) the P-medium structure.** CFG938 built a covariant parent of S2 (fluid EFT; FRW isotropic,
+rest frame = cosmic frame, ∇·P = ρ − ρ̄ exact, CFG660 stress derived, well-posed, slip ≤ 1.5e-5), CONDITIONAL. CFG939: ∇·P = ρ − ρ̄ is
+exact through shell crossing, so S4 is NOT derivable from the single medium; the conservative dynamics conserves energy (CFG932's leak is
+the class-A drift law's); derived: no capture iff v_rel > V_esc,b (tidal dwarfs, DF2/DF4 Newtonian) and a 2/3 sudden-loss unbinding
+threshold. **CFG941: STRUCTURAL OBSTRUCTION (theorem D-T)** — with cold energy as the medium whose excess IS the phantom (S2 + S3), the law's
+deep limit forces the tether's quadratic coefficient to cancel the medium's own gravity: no linear self-gravity (growth a^0.694, not a¹)
+and no gravity between tethered components (satellites would show an EFE-like hover, against CFG925 R3). The class-A engine behind the
+shear pass is not the non-relativistic limit of any tested local parent. So the canonical S2 + S3 identification and the class-A
+cosmology are mutually inconsistent as one local theory; this is now the central structural problem, alongside the excess family.
+
