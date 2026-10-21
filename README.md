@@ -2,7 +2,7 @@
 
 **One claim: the galactic acceleration scale is set by the dark-energy density.**
 
-**Next steps (15 October 2026):** [Open items and research instructions](sol61_push/THEORY_NEXT_STEPS_2026-10-15.md), with priorities, dependencies, required evidence and stop conditions. The theory remains incomplete.
+**Next steps (21 October 2026):** the current state is the [status board](explainers/crispy_fried_chicken_status_board.md) and the [summary figure](campaign_fresh_gravity/FIGURE_SUMMARY_2026-10-21/summary_figure.png), resting on the adopted [canonical statement](campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md) with its dated notes. What any completion must still supply is §5 of the audited [v4 draft](campaign_fresh_gravity/THEORY_CANONICAL_2026-10-21_DRAFT.md), which the owner has not yet adopted. The theory remains incomplete: the excess in pressure-supported systems is unexplained, and the engine behind the cosmic-shear pass has no known physical parent.
 
 $$a_0 \;=\; \kappa\,c\sqrt{G\rho_\Lambda}\;=\;c^2\sqrt{\frac{\Lambda}{32\pi}}\;=\;9.3619\times10^{-11}\ \mathrm{m\,s^{-2}}$$
 
@@ -210,11 +210,15 @@ Sorted by robustness, not by ambition. Everything below is either a published th
 
 ![Status board: every test of the theory as a coloured tile](explainers/img/status_board.png)
 
-**The Crispy Fried Chicken Status Board, explained: [explainers/crispy_fried_chicken_status_board.md](explainers/crispy_fried_chicken_status_board.md).** Green tiles pass, yellow are conditional, blue cannot be decided with today's data, red fail, and grey are open. Every tile restates a verdict recorded in STANDING, and the lane IDs on each tile point to the scripts behind it.
+**The Crispy Fried Chicken Status Board (21 October 2026), explained in [explainers/crispy_fried_chicken_status_board.md](explainers/crispy_fried_chicken_status_board.md):** green tiles pass, yellow are conditional, blue cannot be decided with today's data, red fail and grey are open, and every tile restates a verdict in the campaign [LEDGER](campaign_fresh_gravity/LEDGER.md) or the canonical statement, with its lane IDs. The galaxy law fits raw SPARC rotation curves at 0.101 / 0.099 dex on the two a₀ footings, which are never pooled (CFG695), with κ = ½ fitted, not derived (measured 0.417 ± 0.095, CFG493). Run from the framework's own early-universe inputs, its structure-formation engine is CONSISTENT with raw KiDS-1000 cosmic shear on both footings (CFG654-A2/A3; the class is robust but the size of the lead is amplitude-driven, CFG909), yet that engine has no known physical parent: no local theory gives the law, a¹ growth and no external-field effect together (CFG941–CFG947), the labelled-domain and source-changing theories fail clusters (CFG951, CFG954), and the relaxing-dust kinetic parent does not exist (CFG955). Pressure-supported systems carry an excess that nothing in the record explains — dwarf spheroidals, cluster cores (real mass, CFG922/CFG929), Coma's ultra-diffuse galaxies (2.4–2.6σ, CFG933) and red lenses unless their stellar IMF explains them (CFG926) — while rotators sit on the law and tidal dwarfs and NGC 1052-DF2/DF4 sit at Newton (CFG919, CFG936). a₀(z) cannot yet be told apart from the rival a₀ ∝ H(z) (CFG689); the next dated tests are ALMA U4 (6 November) and GS4 (28 November), scored by the original frozen plans with no exclusion from one disc (CFG942), then Gaia DR4 wide binaries in December, where the prediction is Newtonian and a full MOND-size boost would be caught only about half the time at the planned sample (CFG943). The theory remains incomplete.
+
+![Summary figure: SPARC radial acceleration relation, offsets from the law by class, raw KiDS-1000 shear runs, and implied a0(z)](campaign_fresh_gravity/FIGURE_SUMMARY_2026-10-21/summary_figure.png)
+
+**Summary figure (working note, 21 October 2026):** (a) SPARC's radial acceleration relation against the law, (b) each class's offset from the law, (c) the four raw KiDS-1000 shear runs minus their matched controls, all CONSISTENT, and (d) implied a₀(z) against a flat a₀, a₀ ∝ H(z) and the framework's own BAO band, with every plotted number read from a committed result ([provenance](campaign_fresh_gravity/FIGURE_SUMMARY_2026-10-21/PROVENANCE.md)).
 
 ![a0 against redshift: flat line versus the a0 proportional to H(z) rival](explainers/img/a0z_chart.png)
 
-**a₀ against redshift.** The theory predicts a flat line; the rival grows with H(z). At high redshift the uncertainty in galaxies' gas mass is still larger than the gap between the two lines, so the test cannot be decided yet.
+**a₀ against redshift (chart of 1 October).** The flat line is the no-evolution limit; the framework's own BAO ruler now puts a₀(z)/a₀(0) at 0.91–0.94 out to z 2.33 (CFG689), on or just below it, while the rival grows with H(z). At high redshift the uncertainty in galaxies' gas mass is still larger than the gap between the two lines, so the test cannot be decided yet.
 
 ---
 
@@ -222,7 +226,8 @@ Sorted by robustness, not by ambition. Everything below is either a published th
 
 | document | what it is |
 |---|---|
-| **[explainers/crispy_fried_chicken_status_board.md](explainers/crispy_fried_chicken_status_board.md)** | **The Crispy Fried Chicken Status Board (2026-10-05):** every test as a tile, in plain language, with the a₀(z) chart. |
+| **[explainers/crispy_fried_chicken_status_board.md](explainers/crispy_fried_chicken_status_board.md)** | **The Crispy Fried Chicken Status Board (2026-10-21):** every test as a tile, in plain language, with lane IDs, the a₀(z) chart and what changed since 9 October. |
+| **[campaign_fresh_gravity/FIGURE_SUMMARY_2026-10-21/summary_figure.png](campaign_fresh_gravity/FIGURE_SUMMARY_2026-10-21/summary_figure.png)** | **Summary figure (2026-10-21, working note):** SPARC's acceleration relation, offsets from the law by class, the raw KiDS-1000 shear runs and implied a₀(z), with a [provenance table](campaign_fresh_gravity/FIGURE_SUMMARY_2026-10-21/PROVENANCE.md) for every plotted number. |
 | **[campaign_fresh_gravity/STANDING_2026-09-28.md](campaign_fresh_gravity/STANDING_2026-09-28.md)** | **The bottom line (2026-09-28):** what is established, what failed, and the two measurements that decide the rest. |
 | [FAILURES_EXECUTIVE_SUMMARY_2026-09-28.md](FAILURES_EXECUTIVE_SUMMARY_2026-09-28.md) | The framework's largest-sigma failures, ranked and sorted by what they hit. |
 | [STANDING.md](STANDING.md) | The running log of checkpoints, newest first. Claim · earned · postulated · live fronts · closed doors · open liabilities · retractions in force. |
@@ -428,6 +433,11 @@ Plain text on purpose, so that titles and DOIs are searchable. Versions of one r
 
 | date | DOI | title | version |
 |---|---|---|---|
+| 2026-10-21 | [10.5281/zenodo.23533323](https://doi.org/10.5281/zenodo.23533323) (concept 23501948) | Why Cold Energy Settles: A Tethered Medium Whose Displacement Is the Gravitational Polarization (Working Note) | v1.2 (PAPER49; new version of 23524075: the saddle prediction reworded to "no saddle dip", depth numbers unchanged; audit 69 checks) |
+| 2026-10-21 | [10.5281/zenodo.23532885](https://doi.org/10.5281/zenodo.23532885) | What a Dark-Energy-Tied Galaxy Law Demands of Its Cold Sector: No-Go Theorems, a Covariant Parent, and the Labelled-Domain Construction (Working Note) | v1.0 (PAPER57) |
+| 2026-10-21 | [10.5281/zenodo.23532875](https://doi.org/10.5281/zenodo.23532875) | The Pressure-Supported Excess: What a Dark-Energy-Tied Galaxy Law Cannot Yet Explain, and Native-Input Shear Reruns on Both Footings (Working Note) | v1.0 (PAPER56) |
+| 2026-10-20 | [10.5281/zenodo.23524075](https://doi.org/10.5281/zenodo.23524075) (concept 23501948) | Why Cold Energy Settles: A Tethered Medium Whose Displacement Is the Gravitational Polarization (Working Note) | v1.1 (PAPER49; new version of 23501949: dated correction on field null points, where the exact static solution needs negative cold density through two-body saddles; audit 62 checks) |
+| 2026-10-20 | [10.5281/zenodo.23501949](https://doi.org/10.5281/zenodo.23501949) (concept 23501948) | Why Cold Energy Settles: A Tethered Medium Whose Displacement Is the Gravitational Polarization (Working Note) | v1.0 (PAPER49) |
 | 2026-10-14 | [10.5281/zenodo.23364891](https://doi.org/10.5281/zenodo.23364891) (concept 23364890) | Prediction Before Publication: Dated Zimmerman Forecasts Compared with MUSE-DARK III, MIGHTEE-HI/LADUMA, and JUNO | v1.2; verified March public forecast deposits, unchanged MUSE central-curve comparison within 4.8%, JUNO numerical agreements and conflicting versions; statistical confirmation and uniqueness unverified |
 | 2026-10-11 | [10.5281/zenodo.23303805](https://doi.org/10.5281/zenodo.23303805) (concept 23303804) | A Dated, Graded Ledger of the Testable Predictions of a Vacuum-Tied MOND Framework, with Its Confronted Record and Retracted Claims (Working Note) | v1.0 (PAPER46; 98 future tests graded K1–K4, 51 confronted results, 15 deposits, claims not to cite; built from the Kepler Grade Prediction Chart by `PAPER46_build.py`, `PAPER46_audit.py` 10/10; kappa fitted, not theory closed) |
 | 2026-10-11 | [10.5281/zenodo.23240863](https://doi.org/10.5281/zenodo.23240863) (concept 23219294) | The Supply Edge: A Mass-Conserving Rule Without Tuned Radii Under a Vacuum-Tied MOND Law Keeps Particle Clustering Within 10%, but Not the Gravitating Matter Spectrum at 512^3 (Working Note) | 2.2 |

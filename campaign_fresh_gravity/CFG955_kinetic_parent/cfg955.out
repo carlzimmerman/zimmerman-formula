@@ -1,0 +1,170 @@
+CFG955  kinetic parent of the class-A engine (relaxing cold dust)   stage=MAIN
+  criteria 903cd8f1d; kappa = 1/2 FITTED; footings never pooled; cold energy (no particle species); not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2; native Delta_ta(0) = 11.830836; engine f_b = 0.157126
+  NGC 3198: 43 radii to 44.08 kpc, M_b(< last) = 4.7201e+10 M_sun (Upsilon 0.61)
+
+==================== K CONTROLS ====================
+  [PASS] K1_CFG947_T-M: identity residual 0; E8 two-blob R = -epsilon*(X(t)*Derivative(M_e(t), (t, 2)) + 2*Derivative(M_e(t), t)*Derivative(X(t), t)); max|R|/(M_dom g_ref) = pi**2*epsilon/4 = 0.0247, 0.2467, 0.7402 at eps 0.01/0.1/0.3 (0.025/0.247/0.740)
+  [PASS] K2_CFG947_T-R: M_b,thr = 4.8154e+10 (4.815e10); NGC 3198 r_ON = 0.7761 Mpc/h -> NOT resolved; SPARC 128 of 175 below (128 of 175)
+  [PASS] K3_CFG947_T-X: 36 E4 EFE factors -0.7298 .. -0.1019 dex (-0.730 .. -0.102)
+  [PASS] K4_CFG938_NGC3198_law: canonical 2.22e-16, alt 2.22e-16 (2.2e-16)
+  [PASS] K5_CFG952_effective_RMIN: node 1.0471 Mpc/h (1.0471); M_b,ret >= 2.185e+11 M_sun (2.19e11)
+  deriving growth determinant (sympy, CFG941 route) ...
+  [PASS] K6_CFG941_growth: n = 0.609545 / 0.694330 / 1.000000000000 (0.60954 / 0.69433 / 1)
+  [PASS] K7_CFG935_table_and_TJ: PHYS E_x read (UFD-c 1.633e+49, cluster core 7.337e+63 erg); max |T_J/sigma_J^2(CFG935) - 1| on r = 0.1-9: 2.77e-04 (line 1e-3)
+  K8 SPARC (CFG4 statistic, nu_mono):
+     local law canonical                         : rms 0.10033 dex @ Upsilon 0.61; points beyond their edge: 0 of 3389
+     Newton canonical                            : rms 0.27548 dex @ Upsilon 1.20; points beyond their edge: 0 of 3389
+     local law alt                               : rms 0.09910 dex @ Upsilon 0.57; points beyond their edge: 0 of 3389
+     Newton alt                                  : rms 0.27548 dex @ Upsilon 1.20; points beyond their edge: 0 of 3389
+  [PASS] K8_CFG947_SPARC: local 0.10033 @ 0.61 / 0.09910 @ 0.57; Newton 0.2755 / 0.2755
+  K controls: ALL PASS
+
+==================== STRUCTURAL STATEMENTS ====================
+  [PASS] H0_collision_moments: K-T: mass 0, momentum 0, energy (3 comps) 3*rho_p*(T_Jp - T_p)/(2*tau_p); K-rho mass moment (rho_eq - rho_p)/tau_p != 0 -> continuity has a source (O(c^2) part of div T^{mu 0} = 0 fails)
+  L1 (sympy): stress of f_eq = T_Jp*rho_p (p = rho T_J), heat flux 0; first order (BGK): eta = p tau, q ~ -(5/2) p tau grad T
+  L4 (sympy): Vlasov operator in the frame falling with g_e: residual vs the field-free operator = 0; Maxwellian shift covariance M[rho,u,T](v) - M[rho,u-V,T](v-V) = 0
+  [PASS] L4_uniform_field_drops_out: falling-frame Vlasov residual 0; local-Maxwellian shift covariance 0: Delta a/g_host = 0, EFE 0 dex at monopole order
+  [PASS] L6_multistream: d(u1-u2)/dt + (u1-u2)/tau = 0; total momentum change 0; relative KE decays at 2/tau (residual 0); stream with no own dust (rho_1 -> 0): du2/dt = 0 (no capture)
+  [PASS] L7_second_law: dS_d/dt - Q/T_J - (3/2)(rho/tau)(T_J - T)^2/(T T_J) = 0 (>= 0); cooling branch T > T_J: dS_d/dt = 3*rho_p*(T_Jp - T_p)/(2*T_p*tau_p) < 0, so R must absorb entropy -Q/T_J > 0
+  f1: the kinetic operator d_t + v.grad_x - grad Phi.grad_v has characteristics dx/dt = v, dv/dt = -grad Phi (speed |v| << c); collision term local in x, finite tau. d: M[rho,u,T -> 0] second moment -> rho_p*u**2 (= cold stream): C[cold stream] = 0 when T_J = 0: True
+
+==================== (a) THE LAW FOR ISOLATED RELAXED HOSTS ====================
+  a1/a2 [canonical, simple]: max |g/g_law - 1| at 43 radii = 1.64e-06; deep y=1e-2 3.12e-07 (V^4/GMa0 1.105), y=1e-3 4.45e-08 (1.032); r_e = 453.9 kpc (E7 454.0); phantom density negative anywhere: False (min rho_ph / mean 3.364e-01)
+     L5 NGC 3198 canonical simple : F(C=1) = -1.20e-06; roots ['0.467197555', '1.000254145']; F range -0.001 .. +0.169; monotone False -> NOT UNIQUE
+  a1/a2 [canonical, mono]: max |g/g_law - 1| at 43 radii = 2.87e-07; deep y=1e-2 2.71e-07 (V^4/GMa0 1.104), y=1e-3 2.10e-07 (1.032); r_e = 453.9 kpc (E7 454.0); phantom density negative anywhere: False (min rho_ph / mean 3.364e-01)
+     L5 NGC 3198 canonical mono   : F(C=1) = -1.07e-06; roots ['0.533771778', '1.000252531']; F range -0.001 .. +0.170; monotone False -> NOT UNIQUE
+  a1/a2 [alt, simple]: max |g/g_law - 1| at 43 radii = 2.80e-06; deep y=1e-2 1.57e-07 (V^4/GMa0 1.105), y=1e-3 4.50e-07 (1.032); r_e = 412.9 kpc (E7 413.0); phantom density negative anywhere: False (min rho_ph / mean 3.364e-01)
+     L5 NGC 3198 alt simple       : F(C=1) = -1.19e-06; roots ['0.457008787', '1.000260010']; F range -0.001 .. +0.169; monotone False -> NOT UNIQUE
+  a1/a2 [alt, mono]: max |g/g_law - 1| at 43 radii = 4.84e-07; deep y=1e-2 2.63e-07 (V^4/GMa0 1.104), y=1e-3 1.91e-07 (1.032); r_e = 412.9 kpc (E7 413.0); phantom density negative anywhere: False (min rho_ph / mean 3.364e-01)
+     L5 NGC 3198 alt mono         : F(C=1) = -1.04e-06; roots ['0.514448104', '1.000249415']; F range -0.001 .. +0.169; monotone False -> NOT UNIQUE
+     L5 toy (Plummer, r_* = 10)   : F(C=1) = -1.20e-06; roots ['0.087006897', '0.999976817']; F range -0.407 .. +0.051; monotone False -> NOT UNIQUE
+  L5: NOT UNIQUE somewhere (NGC 3198 both footings and kernels, and the toy)
+  a3 / L1: spherical shell toy (K-T at T1 = tau_ff/(2 alpha), alpha = 1; fast probe x0.1)
+  toy KT_L      : (capped at t = 27.49; windows relative to it) frac(r<0.5) 0.6903 (law 0.0118); ON THE LAW False D(W2) -0.585 dD -0.304 X_m 0.656 f_esc 0.013 eps_E 3.1e-01 L1 end 1.479 first L1<0.1 at t = 0.0 (t_e = 61.48); E_R +1041.358 (cool 1042.30 / heat 0.95); steps 2187796; 1800 s
+  toy KT_I      : (capped at t = 36.23; windows relative to it) frac(r<0.5) 0.8129 (law 0.0118); ON THE LAW False D(W2) -0.725 dD -0.697 X_m 0.729 f_esc 0.013 eps_E 1.6e+00 L1 end 1.695 first L1<0.1 at t = None (t_e = 61.48); E_R +1451.827 (cool 1454.46 / heat 2.64); steps 2183321; 1800 s
+  toy KT_S      : (capped at t = 14.85; windows relative to it) frac(r<0.5) 0.9090 (law 0.0118); ON THE LAW False D(W2) -1.032 dD -0.336 X_m 0.797 f_esc 0.000 eps_E 5.1e-01 L1 end 1.823 first L1<0.1 at t = None (t_e = 61.48); E_R +1820.187 (cool 1823.85 / heat 3.67); steps 2191008; 1800 s
+  toy KTx0.1_I  : (capped at t = 34.66; windows relative to it) frac(r<0.5) 0.7772 (law 0.0118); ON THE LAW False D(W2) -0.554 dD -0.407 X_m 0.657 f_esc 0.002 eps_E 1.1e+00 L1 end 1.554 first L1<0.1 at t = None (t_e = 61.48); E_R +1324.996 (cool 1328.55 / heat 3.55); steps 2188803; 1800 s
+  (a): a1 False, a2 True, a3 False (IC-L False, IC-I False, IC-S False reported), L5 False -> FAIL
+  L1: fast probe first L1 < 0.1 at t = None vs 0.1 t_e = 6.15 -> NOT a tau -> 0 limit; T1 run first L1 < 0.1 at None, < 0.2 at None
+
+==================== (e) CONSERVATION AND (b1) HOVER: PLANAR TOY ====================
+  ER: N 12000 sheets (mass exact by count); K-T |dP|/(M v_ref) 8.44e-12; booked |dE|/|E| 1.04e-04 vs integrator (relax off) 1.10e-04; E_R +32.713; CM slip 1.48e-09; M1 switches 0, max T_J jump 0.000 T0; J (mass moved per unit time / M) 0.246 (off 0.349) -> PASS
+  ES: N 13200 sheets (mass exact by count); K-T |dP|/(M v_ref) 1.11e-12; booked |dE|/|E| 1.34e-04 vs integrator (relax off) 1.06e-04; E_R +476.412; CM slip 1.56e-10; M1 switches 5270, max T_J jump 0.950 T0; J (mass moved per unit time / M) 0.951 (off 1.189) -> PASS
+  EM: N 24000 sheets (mass exact by count); K-T |dP|/(M v_ref) 1.04e-10; booked |dE|/|E| 3.33e-04 vs integrator (relax off) 3.69e-04; E_R +7471.916; CM slip 1.75e-08; M1 switches 41846, max T_J jump 0.759 T0; J (mass moved per unit time / M) 1.804 (off 1.998) -> FAIL
+  [PASS] L2_momentum: K-T |dP|/(M v_ref) 8.44e-12 (R = 0: mass moves only with the flow); K-rho CM slip 7.506e-03 x_e (keep velocity), |dP|/(M v_ref) 8.20e-03 (local velocity)
+  (e): FAIL
+  b1: satellite in a uniform field g = 1, t = 50: fitted eps = 3.94e-04 (line 1e-2); |dP + M g t|/(M v_ref) 1.85e-12 -> PASS
+
+==================== (b) SATELLITES: EFE, DRAG, BULLET ====================
+  b3 [canonical, T1            ]: worst eps_drag(a) = 2.107e-01 (line 0.344); worst |delta| = 0.000 dex (line 0.082); H3@50 eps(a) 2.107e-01, eps(2a) 3.813e-01, r_s/a 2.43 -> PASS
+  b3 [canonical, T2(k=0.46)    ]: worst eps_drag(a) = 2.757e-02 (line 0.344); worst |delta| = 0.000 dex (line 0.082); H3@50 eps(a) 2.757e-02, eps(2a) 5.760e-02, r_s/a 7.54 -> PASS
+  b3 [canonical, T2(k=1.20)    ]: worst eps_drag(a) = 1.057e-02 (line 0.344); worst |delta| = 0.000 dex (line 0.082); H3@50 eps(a) 1.057e-02, eps(2a) 2.208e-02, r_s/a 58.81 -> PASS
+  b3 [canonical, T3(0.72 Gyr)  ]: worst eps_drag(a) = 4.241e-03 (line 0.344); worst |delta| = 0.000 dex (line 0.082); H3@50 eps(a) 4.241e-03, eps(2a) 1.502e-02, r_s/a 7.89 -> PASS
+  b3 [canonical, T3(3.47 Gyr)  ]: worst eps_drag(a) = 8.799e-04 (line 0.344); worst |delta| = 0.000 dex (line 0.082); H3@50 eps(a) 8.799e-04, eps(2a) 3.116e-03, r_s/a 18.98 -> PASS
+  b3 [alt, T1            ]: worst eps_drag(a) = 2.100e-01 (line 0.317); worst |delta| = 0.000 dex (line 0.082); H3@50 eps(a) 2.100e-01, eps(2a) 3.820e-01, r_s/a 2.43 -> PASS
+  b3 [alt, T2(k=0.52)    ]: worst eps_drag(a) = 2.429e-02 (line 0.317); worst |delta| = 0.000 dex (line 0.082); H3@50 eps(a) 2.429e-02, eps(2a) 5.098e-02, r_s/a 8.46 -> PASS
+  b3 [alt, T2(k=1.20)    ]: worst eps_drag(a) = 1.053e-02 (line 0.317); worst |delta| = 0.000 dex (line 0.082); H3@50 eps(a) 1.053e-02, eps(2a) 2.209e-02, r_s/a 63.02 -> PASS
+  b3 [alt, T3(0.83 Gyr)  ]: worst eps_drag(a) = 3.507e-03 (line 0.317); worst |delta| = 0.000 dex (line 0.082); H3@50 eps(a) 3.507e-03, eps(2a) 1.246e-02, r_s/a 8.66 -> PASS
+  b3 [alt, T3(3.47 Gyr)  ]: worst eps_drag(a) = 8.387e-04 (line 0.317); worst |delta| = 0.000 dex (line 0.082); H3@50 eps(a) 8.387e-04, eps(2a) 2.980e-03, r_s/a 19.42 -> PASS
+  b2: own-domain monopole T_J -> EFE 0 dex at monopole order (L4). M1 own-domain radius s_M1 vs a and r_e,sat (canonical, T1 rows):
+     H1|50   : s_M1 0.275 kpc, a 0.030 kpc, r_e,sat 0.209 kpc; rho_h/rho_s(a) 8.72e-04
+     H1|100  : s_M1 0.550 kpc, a 0.030 kpc, r_e,sat 0.209 kpc; rho_h/rho_s(a) 2.19e-04
+     H1|250  : s_M1 1.376 kpc, a 0.030 kpc, r_e,sat 0.209 kpc; rho_h/rho_s(a) 3.50e-05
+     H2|50   : s_M1 0.855 kpc, a 0.200 kpc, r_e,sat 1.144 kpc; rho_h/rho_s(a) 7.03e-03
+     H2|100  : s_M1 1.710 kpc, a 0.200 kpc, r_e,sat 1.144 kpc; rho_h/rho_s(a) 1.76e-03
+     H2|250  : s_M1 4.275 kpc, a 0.200 kpc, r_e,sat 1.144 kpc; rho_h/rho_s(a) 2.83e-04
+     H3|50   : s_M1 3.467 kpc, a 0.700 kpc, r_e,sat 9.345 kpc; rho_h/rho_s(a) 1.09e-02
+     H3|100  : s_M1 6.934 kpc, a 0.700 kpc, r_e,sat 9.345 kpc; rho_h/rho_s(a) 2.74e-03
+     H3|250  : s_M1 17.334 kpc, a 0.700 kpc, r_e,sat 9.345 kpc; rho_h/rho_s(a) 4.39e-04
+  b4 Bullet [canonical] (reported): fraction of the sub's dust relative momentum removed per core crossing: T1 0.430, T2(k=0.46) 0.063, T2(k=1.20) 0.025, T3(0.72 Gyr) 0.035, T3(3.47 Gyr) 0.007
+  b4 Bullet [alt] (reported): fraction of the sub's dust relative momentum removed per core crossing: T1 0.450, T2(k=0.52) 0.056, T2(k=1.20) 0.025, T3(0.83 Gyr) 0.030, T3(3.47 Gyr) 0.007
+
+==================== (c) SLIP, (d) GROWTH ====================
+  (c) slip with p = rho_ph T_J (exact T_J, own edges): worst s_grad 6.774e-06, worst s_847 1.355e-05 (line 1.9e-5) -> PASS; T_J/v_c^2 at the systems' radii: canonical|dwarf 0.472, canonical|MW disc 0.454, canonical|MW outer 0.474, canonical|group 0.368, canonical|cluster 0.423
+  (d): dust n = 1.000000000000; C[cold stream] = 0 with T_J = 0: True; top-hat turnaround 9pi^2/16 = 5.5517 at delta_lin = 1.0624: no domain before turnaround -> PASS
+
+==================== L3: RMIN IS RESOLUTION ====================
+     K-T relaxed, own domains (canonical)        : rms 0.10033 dex @ Upsilon 0.61; points beyond their edge: 0 of 3389
+  [canonical] PM resolution floor (r_e >= 2 dx): M_b,res = 1.923e+10 M_sun (engine effective 2.19e11, x11.4); SPARC galaxies between the two: 51; SPARC galaxies with a decreasing discrete M_ph somewhere: 0 of 175
+     K-T relaxed, own domains (alt)              : rms 0.09910 dex @ Upsilon 0.57; points beyond their edge: 0 of 3389
+  [alt] PM resolution floor (r_e >= 2 dx): M_b,res = 2.324e+10 M_sun (engine effective 2.19e11, x9.4); SPARC galaxies between the two: 48; SPARC galaxies with a decreasing discrete M_ph somewhere: 0 of 175
+
+==================== WHAT SETS TAU (§3) ====================
+  [canonical] class rows (r_half kpc, age Gyr, tau_ff Gyr, t_orb Gyr, two-body Gyr, T5 fraction below V_esc,b):
+     UFD-c           r    0.039 age 13.00 t_ff 1.289e-02 t_orb 1.006e-01 t_2b 2.36e+03 T5 0.041
+     UFD-e           r    0.313 age 13.00 t_ff 6.629e-02 t_orb 5.188e-01 t_2b 7.52e+05 T5 0.008
+     Draco-like      r    0.287 age 12.00 t_ff 2.980e-02 t_orb 2.323e-01 t_2b 2.98e+05 T5 0.062
+     Fornax-like     r    0.927 age 12.00 t_ff 3.148e-02 t_orb 2.434e-01 t_2b 3.66e+06 T5 0.218
+     SPARC-dwarf     r      5.0 age 10.00 t_ff 9.611e-02 t_orb 6.843e-01 t_2b 4.80e+08 T5 0.108
+     MW-like         r      8.0 age 10.00 t_ff 4.533e-02 t_orb 2.740e-01 t_2b 1.42e+09 T5 0.617
+     cluster-core    r    500.0 age  6.00 t_ff 4.212e-01 t_orb 3.405e+00 t_2b 4.85e+15 T5 0.819
+     NGC5291N        r      4.8 age  0.35 t_ff 6.094e-02 t_orb 4.107e-01 t_2b inf T5 0.219
+     NGC5291S        r      7.2 age  0.44 t_ff 8.938e-02 t_orb 6.291e-01 t_2b inf T5 0.143
+     NGC5291SW       r      4.8 age  0.39 t_ff 7.290e-02 t_orb 5.130e-01 t_2b inf T5 0.143
+     NGC7252E        r      4.5 age  0.75 t_ff 7.879e-02 t_orb 5.649e-01 t_2b inf T5 0.109
+     NGC7252NW       r      7.7 age  0.60 t_ff 1.115e-01 t_orb 8.079e-01 t_2b inf T5 0.089
+     VCC2062         r      2.6 age  0.72 t_ff 5.887e-02 t_orb 4.210e-01 t_2b inf T5 0.114
+     NGC1052-DF2     r     2.61 age  9.00 t_ff 5.971e-02 t_orb 4.629e-01 t_2b 5.32e+07 T5 0.168
+     NGC1052-DF4     r    2.088 age  9.00 t_ff 5.122e-02 t_orb 3.967e-01 t_2b 2.95e+07 T5 0.184
+     SPARC-slowest   r     None age  8.00 t_ff 4.631e-01 t_orb 2.910e+00 t_2b inf T5 None
+     T1            : SPARC-dwarf ON LAW(1.000), MW-like ON LAW(1.000), SPARC-slowest ON LAW(1.000), cluster-core ON LAW(1.000), Draco-like ON LAW(1.000), UFD-c ON LAW(1.000) -> tau-P True, tau-F False
+     T2(k=0.46)    : SPARC-dwarf ON LAW(1.000), MW-like ON LAW(1.000), SPARC-slowest ON LAW(0.997), cluster-core ON LAW(0.978), Draco-like ON LAW(1.000), UFD-c ON LAW(1.000) -> tau-P True, tau-F False
+     T2(k=1.20)    : SPARC-dwarf ON LAW(1.000), MW-like ON LAW(1.000), SPARC-slowest MIXED(0.899), cluster-core MIXED(0.770), Draco-like ON LAW(1.000), UFD-c ON LAW(1.000) -> tau-P False, tau-F False
+     T3(0.72 Gyr)  : SPARC-dwarf ON LAW(1.000), MW-like ON LAW(1.000), SPARC-slowest ON LAW(1.000), cluster-core ON LAW(1.000), Draco-like ON LAW(1.000), UFD-c ON LAW(1.000) -> tau-P True, tau-F False
+     T3(3.47 Gyr)  : SPARC-dwarf ON LAW(0.944), MW-like ON LAW(0.944), SPARC-slowest ON LAW(0.900), cluster-core MIXED(0.823), Draco-like ON LAW(0.969), UFD-c ON LAW(0.976) -> tau-P False, tau-F False
+     T4            : SPARC-dwarf NATIVE(0.000), MW-like NATIVE(0.000), SPARC-slowest NATIVE(0.000), cluster-core NATIVE(0.000), Draco-like NATIVE(0.000), UFD-c NATIVE(0.005) -> tau-P False, tau-F False
+     T5            : fraction of the relaxed law-state Maxwellian below V_esc,b: UFD-c 0.041, UFD-e 0.008, Draco-like 0.062, Fornax-like 0.218, SPARC-dwarf 0.108, MW-like 0.617, cluster-core 0.819, NGC5291N 0.219, NGC5291S 0.143, NGC5291SW 0.143, NGC7252E 0.109, NGC7252NW 0.089, VCC2062 0.114, NGC1052-DF2 0.168, NGC1052-DF4 0.184 -> tau-P False, tau-F False
+  [alt] class rows (r_half kpc, age Gyr, tau_ff Gyr, t_orb Gyr, two-body Gyr, T5 fraction below V_esc,b):
+     UFD-c           r    0.039 age 13.00 t_ff 1.230e-02 t_orb 9.609e-02 t_2b 2.71e+03 T5 0.036
+     UFD-e           r    0.313 age 13.00 t_ff 6.324e-02 t_orb 4.950e-01 t_2b 8.65e+05 T5 0.007
+     Draco-like      r    0.287 age 12.00 t_ff 2.845e-02 t_orb 2.219e-01 t_2b 3.42e+05 T5 0.055
+     Fornax-like     r    0.927 age 12.00 t_ff 3.012e-02 t_orb 2.331e-01 t_2b 4.17e+06 T5 0.196
+     SPARC-dwarf     r      5.0 age 10.00 t_ff 9.179e-02 t_orb 6.546e-01 t_2b 5.48e+08 T5 0.096
+     MW-like         r      8.0 age 10.00 t_ff 4.349e-02 t_orb 2.663e-01 t_2b 1.55e+09 T5 0.59
+     cluster-core    r    500.0 age  6.00 t_ff 4.051e-01 t_orb 3.280e+00 t_2b 5.42e+15 T5 0.79
+     NGC5291N        r      4.8 age  0.35 t_ff 5.784e-02 t_orb 3.945e-01 t_2b inf T5 0.199
+     NGC5291S        r      7.2 age  0.44 t_ff 8.497e-02 t_orb 6.029e-01 t_2b inf T5 0.128
+     NGC5291SW       r      4.8 age  0.39 t_ff 6.930e-02 t_orb 4.916e-01 t_2b inf T5 0.128
+     NGC7252E        r      4.5 age  0.75 t_ff 7.495e-02 t_orb 5.408e-01 t_2b inf T5 0.097
+     NGC7252NW       r      7.7 age  0.60 t_ff 1.061e-01 t_orb 7.730e-01 t_2b inf T5 0.079
+     VCC2062         r      2.6 age  0.72 t_ff 5.600e-02 t_orb 4.031e-01 t_2b inf T5 0.101
+     NGC1052-DF2     r     2.61 age  9.00 t_ff 5.708e-02 t_orb 4.429e-01 t_2b 6.07e+07 T5 0.15
+     NGC1052-DF4     r    2.088 age  9.00 t_ff 4.898e-02 t_orb 3.797e-01 t_2b 3.37e+07 T5 0.165
+     SPARC-slowest   r     None age  8.00 t_ff 4.631e-01 t_orb 2.910e+00 t_2b inf T5 None
+     T1            : SPARC-dwarf ON LAW(1.000), MW-like ON LAW(1.000), SPARC-slowest ON LAW(1.000), cluster-core ON LAW(1.000), Draco-like ON LAW(1.000), UFD-c ON LAW(1.000) -> tau-P True, tau-F False
+     T2(k=0.52)    : SPARC-dwarf ON LAW(1.000), MW-like ON LAW(1.000), SPARC-slowest ON LAW(0.995), cluster-core ON LAW(0.970), Draco-like ON LAW(1.000), UFD-c ON LAW(1.000) -> tau-P True, tau-F False
+     T2(k=1.20)    : SPARC-dwarf ON LAW(1.000), MW-like ON LAW(1.000), SPARC-slowest MIXED(0.899), cluster-core MIXED(0.782), Draco-like ON LAW(1.000), UFD-c ON LAW(1.000) -> tau-P False, tau-F False
+     T3(0.83 Gyr)  : SPARC-dwarf ON LAW(1.000), MW-like ON LAW(1.000), SPARC-slowest ON LAW(1.000), cluster-core ON LAW(0.999), Draco-like ON LAW(1.000), UFD-c ON LAW(1.000) -> tau-P True, tau-F False
+     T3(3.47 Gyr)  : SPARC-dwarf ON LAW(0.944), MW-like ON LAW(0.944), SPARC-slowest ON LAW(0.900), cluster-core MIXED(0.823), Draco-like ON LAW(0.969), UFD-c ON LAW(0.976) -> tau-P False, tau-F False
+     T4            : SPARC-dwarf NATIVE(0.000), MW-like NATIVE(0.000), SPARC-slowest NATIVE(0.000), cluster-core NATIVE(0.000), Draco-like NATIVE(0.000), UFD-c NATIVE(0.005) -> tau-P False, tau-F False
+     T5            : fraction of the relaxed law-state Maxwellian below V_esc,b: UFD-c 0.036, UFD-e 0.007, Draco-like 0.055, Fornax-like 0.196, SPARC-dwarf 0.096, MW-like 0.590, cluster-core 0.790, NGC5291N 0.199, NGC5291S 0.128, NGC5291SW 0.128, NGC7252E 0.097, NGC7252NW 0.079, VCC2062 0.101, NGC1052-DF2 0.150, NGC1052-DF4 0.165 -> tau-P False, tau-F False
+  ordering [canonical, t_ff]: min_rotators(age/t) / cluster(age/t) = 1.213 (needs >= 21.85) -> NO proportionality constant gives tau-F
+  ordering [canonical, t_orb]: min_rotators(age/t) / cluster(age/t) = 1.560 (needs >= 21.85) -> NO proportionality constant gives tau-F
+  ordering [alt, t_ff]: min_rotators(age/t) / cluster(age/t) = 1.166 (needs >= 21.85) -> NO proportionality constant gives tau-F
+  ordering [alt, t_orb]: min_rotators(age/t) / cluster(age/t) = 1.503 (needs >= 21.85) -> NO proportionality constant gives tau-F
+  tau verdict: tau-F passed by NO candidate; tau-P passed by canonical ['T1', 'T2(k=0.46)', 'T3(0.72 Gyr)'], alt ['T1', 'T2(k=0.52)', 'T3(0.83 Gyr)']
+  NO RECORD-DERIVED TAU WORKS: no candidate makes cluster cores native while keeping rotators on the law
+  [PASS] T-EX_excess_unreachable: CFG930 D4 median Q_ap: canonical: U 0.153, C 0.320, Mc 0.284, Ml 0.297, I 0.261; alt: U 0.139, C 0.290, Mc 0.257, Ml 0.270, I 0.237 -> every relaxed/unrelaxed mixture sits at or below the law at the aperture: no tau gives the dSph or UDG excess
+  cluster bands (reported, harmonic mixture of CFG687 law and CFG949 B0) [canonical]: T1 R 1.00: MID 1.91 (Z +7.7), OUTER 1.01 (Z +0.1); T2(k=0.46) R 0.98: MID 1.87 (Z +7.5), OUTER 1.01 (Z +0.1); T2(k=1.20) R 0.77: MID 1.59 (Z +5.9), OUTER 1.02 (Z +0.2); T3(0.72 Gyr) R 1.00: MID 1.91 (Z +7.7), OUTER 1.01 (Z +0.1); T3(3.47 Gyr) R 0.82: MID 1.65 (Z +6.3), OUTER 1.02 (Z +0.2)
+  cluster bands (reported, harmonic mixture of CFG687 law and CFG949 B0) [alt]: T1 R 1.00: MID 1.75 (Z +6.9), OUTER 0.93 (Z -0.9); T2(k=0.52) R 0.97: MID 1.72 (Z +6.7), OUTER 0.93 (Z -0.9); T2(k=1.20) R 0.78: MID 1.51 (Z +5.4), OUTER 0.95 (Z -0.6); T3(0.83 Gyr) R 1.00: MID 1.75 (Z +6.9), OUTER 0.93 (Z -0.9); T3(3.47 Gyr) R 0.82: MID 1.55 (Z +5.7), OUTER 0.95 (Z -0.7)
+  (b): b1 True, b2 True; b3 passes with tau-P candidates: canonical ['T1', 'T2(k=0.46)', 'T3(0.72 Gyr)'], alt ['T1', 'T2(k=0.52)', 'T3(0.83 Gyr)'] -> PASS
+
+==================== ENERGY (§4) ====================
+  E1 [canonical] net exchange per host (dust -> R; = CFG935's E_x, same end state): UFD-c 1.63e+49 erg (3.4e-11 M_cat c^2), UFD-e 1.60e+50 erg (5.6e-11 M_cat c^2), Draco-like 1.57e+52 erg (3.3e-10 M_cat c^2), Fornax-like 1.06e+55 erg (2.8e-09 M_cat c^2), SPARC-dwarf 2.82e+56 erg (7.5e-09 M_cat c^2), MW-like 2.38e+59 erg (4.1e-08 M_cat c^2), cluster-core 7.34e+63 erg (3.0e-06 M_cat c^2)
+     power E_x/tau [MW-like]: T1 3.33e+44 erg/s (8.7e+10 L_sun), T2(k=0.46) 5.99e+43 erg/s (1.6e+10 L_sun), T2(k=1.20) 2.30e+43 erg/s (6.0e+09 L_sun), T3(0.72 Gyr) 1.05e+43 erg/s (2.7e+09 L_sun), T3(3.47 Gyr) 2.18e+42 erg/s (5.7e+08 L_sun)
+     power E_x/tau [cluster-core]: T1 1.10e+48 erg/s (2.9e+14 L_sun), T2(k=0.46) 1.48e+47 erg/s (3.9e+13 L_sun), T2(k=1.20) 5.69e+46 erg/s (1.5e+13 L_sun), T3(0.72 Gyr) 3.23e+47 erg/s (8.4e+13 L_sun), T3(3.47 Gyr) 6.70e+46 erg/s (1.8e+13 L_sun)
+  E1 [alt] net exchange per host (dust -> R; = CFG935's E_x, same end state): UFD-c 1.78e+49 erg (3.7e-11 M_cat c^2), UFD-e 1.71e+50 erg (5.9e-11 M_cat c^2), Draco-like 1.73e+52 erg (3.6e-10 M_cat c^2), Fornax-like 1.20e+55 erg (3.1e-09 M_cat c^2), SPARC-dwarf 3.24e+56 erg (8.6e-09 M_cat c^2), MW-like 3.26e+59 erg (5.7e-08 M_cat c^2), cluster-core 9.15e+63 erg (3.7e-06 M_cat c^2)
+     power E_x/tau [MW-like]: T1 4.75e+44 erg/s (1.2e+11 L_sun), T2(k=0.52) 7.47e+43 erg/s (2.0e+10 L_sun), T2(k=1.20) 3.24e+43 erg/s (8.5e+09 L_sun), T3(0.83 Gyr) 1.25e+43 erg/s (3.3e+09 L_sun), T3(3.47 Gyr) 2.98e+42 erg/s (7.8e+08 L_sun)
+     power E_x/tau [cluster-core]: T1 1.43e+48 erg/s (3.7e+14 L_sun), T2(k=0.52) 1.70e+47 erg/s (4.4e+13 L_sun), T2(k=1.20) 7.37e+46 erg/s (1.9e+13 L_sun), T3(0.83 Gyr) 3.49e+47 erg/s (9.1e+13 L_sun), T3(3.47 Gyr) 8.36e+46 erg/s (2.2e+13 L_sun)
+  E1 toy (booked E_R; + = energy held by R): IC-I +1451.827, IC-S +1820.187, IC-L +1041.358; start-minus-law energies: IC-I +0.900, IC-S -8.604
+  E2 gross flows (cool = dust -> R / heat = R -> dust): IC-L 1042.30 / 0.95; IC-I 1454.46 / 2.64; IC-S 1823.85 / 3.67. Under L7 the cooling flow needs R to absorb entropy: a coherent zero-entropy partner (CFG542 Pb) cannot be R
+  E3: CFG930's SN-energy ordering is NOT APPLICABLE (R is not baryonic feedback; its capacity is not tied to E_SN) -> DOES NOT KILL; T-EX holds: the excess family is unreachable at any tau
+  cosmic (CFG935, cited): drho_DE/rho_DE since z = 1 [8.01758317607676e-07, 1.0987101834762243e-06] (can); new-radiation route Omega_rad <= [5.501721885633295e-07, 7.539426445161263e-07]
+
+==================== CLASSES ====================
+  K-rho: mass moment (rho_eq - rho_p)/tau_p; CM slip 7.51e-03 x_e; |dP|/(M v_ref) (local-velocity form) 8.20e-03 -> NOT CONSERVATIVE
+  K-T: conservative True; grades (a) FAIL, (b) PASS, (c) PASS, (d) PASS, (e) FAIL, (f) CONDITIONAL; engine relation NONE
+  A1.2: FAILed tests ['a', 'e']; generic statement per FAIL: (a) L5 (a3 fails, NOT UNIQUE), (e) none
+  OVERALL: NOT CLASSIFIED BY THE FROZEN RULE (FAIL in ['a', 'e'] without a listed generic structural statement)
+  transfer of the T1x / T2x / NC1x shear passes: NOT established; needs the 1024^3 KT run
