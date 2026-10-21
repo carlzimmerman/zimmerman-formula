@@ -1,0 +1,194 @@
+AG6B media: which microscopic medium saturates the vacuum polarization at u -> a0/n, and which n does it give?
+
+Criteria: FROZEN_CRITERIA.md (committed alone, dbcaeba9e, before any computation).
+Classes A-F; admissibility A1-A4 here (A5 = raw SPARC in ag6b_sparc.py); theorems T-A, T-F1, T-F2; second predictions S-a..S-f.
+kappa = 1/2 FITTED; both footings, never pooled; no particle species; not theory closed.
+
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 ag6b_media.py        (AG6B_MUTATE=1: Mu1-Mu4, Mu6, Mu7; exit 1 iff all bite)
+
+Mapping used throughout (PAPER49 rest state, gamma -> 0):  g_N = R(u),  g = g_N + u,  u = U(g) (polarization vs total field),
+R(u) = U^{-1}(u) - u.  dR/du = 1/U'(g) - 1.  Capacity family: R_n = u^2/(a0 - n u).
+
+==============================================================================================================
+CLASS A: analytic equilibrium media (criticality A1 imposed by solving for the medium's amplitude)
+  A-1    [A] Langevin classical dipoles u = u_s L(g/g_T)
+         U(g) = 3*g_T*(g/tanh(g/g_T) - g_T)/g
+         A1 U'(0)=1 ok | deep g_N ~ 1/(15*g_T**2) g^3 -> A2 FAIL (point-mass V ~ r^1/6) | u_max=3*g_T (A3 ok) n_cap=a_0/(3*g_T) n1=None | A4 ok | in-family=False | chi analytic in g^2: True ['0', '1', '2']
+         free choices: g_T (one scale); natural: True 
+  A-2J1/2 [A] Brillouin spin-J=1/2 (J=1/2: thermal two-level tanh)
+         U(g) = -g_T*(coth(g/g_T) - 2*coth(2*g/g_T))
+         A1 U'(0)=1 ok | deep g_N ~ 1/(3*g_T**2) g^3 -> A2 FAIL (point-mass V ~ r^1/6) | u_max=g_T (A3 ok) n_cap=a_0/g_T n1=None | A4 ok | in-family=False | chi analytic in g^2: True ['0', '1', '2']
+         free choices: g_T; natural: True 
+  A-2J1  [A] Brillouin spin-J=1 (J=1/2: thermal two-level tanh)
+         U(g) = -3*g_T*(coth(g/(2*g_T)) - 3*coth(3*g/(2*g_T)))/4
+         A1 U'(0)=1 ok | deep g_N ~ 1/(6*g_T**2) g^3 -> A2 FAIL (point-mass V ~ r^1/6) | u_max=3*g_T/2 (A3 ok) n_cap=2*a_0/(3*g_T) n1=None | A4 ok | in-family=False | chi analytic in g^2: True ['0', '1', '2']
+         free choices: g_T; natural: True 
+  A-2J3/2 [A] Brillouin spin-J=3/2 (J=1/2: thermal two-level tanh)
+         U(g) = -3*g_T*(coth(g/(3*g_T)) - 4*coth(4*g/(3*g_T)))/5
+         A1 U'(0)=1 ok | deep g_N ~ 17/(135*g_T**2) g^3 -> A2 FAIL (point-mass V ~ r^1/6) | u_max=9*g_T/5 (A3 ok) n_cap=5*a_0/(9*g_T) n1=None | A4 ok | in-family=False | chi analytic in g^2: True ['0', '1', '2']
+         free choices: g_T; natural: True 
+  A-3    [A] Landau para/ferroelectric at criticality (R = b u^3 + c u^5)
+         R(u) = b*u**3 + c_5*u**5;  leading b u^3 -> A1 ok, A2 FAIL (deep g_N ~ g^3, V ~ r^1/6), A3 FAIL (no capacity), sign + (A4 ok)  
+         free choices: b, c; natural: True
+  A-4i   [A] Born-Infeld, D(E) with g<->E, u = D (critical, field-limited)
+         U(g) = b*g/sqrt(b**2 - g**2)
+         A1 U'(0)=1 ok | deep g_N ~ -1/(2*b**2) g^3 -> A2 FAIL (point-mass V ~ r^1/6) | u_max=-I*b (A3 FAIL) n_cap=oo n1=None | A4 FAIL | in-family=False | chi analytic in g^2: True ['0', '1', '2']
+         free choices: b; natural: True 
+  A-4ii  [A] Born-Infeld field-limited branch u = E(D), D<->g (saturates at b)
+         U(g) = b*g/sqrt(b**2 + g**2)
+         A1 U'(0)=1 ok | deep g_N ~ 1/(2*b**2) g^3 -> A2 FAIL (point-mass V ~ r^1/6) | u_max=b (A3 ok) n_cap=a_0/b n1=None | A4 ok | in-family=False | chi analytic in g^2: True ['0', '1', '2']
+         free choices: b; natural: True 
+  A-4iii [A] Born-Infeld literal polarization u = D - E: U'(0) = 0 -> A1 FAIL (zero linear susceptibility)
+  A-5    [A] Euler-Heisenberg weak field (massive loops) as the remainder energy: R = 4 zeta u^3
+         R(u) = 4*u**3*zeta;  leading 4*zeta u^3 -> A1 ok, A2 FAIL (deep g_N ~ g^3, V ~ r^1/6), A3 FAIL (no capacity), sign + (A4 ok)  (literal EH polarization 4 zeta E^3 has U'(0)=0: not critical)
+         free choices: zeta; natural: True
+  A-6    [A] Ginzburg-Landau depairing j = rho_s v(1 - v^2/v_c^2), critical rho_s
+         U(g) = -g**3/v_c**2 + g
+         A1 U'(0)=1 ok | deep g_N ~ v_c**(-2) g^3 -> A2 FAIL (point-mass V ~ r^1/6) | u_max=-oo (A3 FAIL) n_cap=oo n1=None | A4 FAIL | in-family=False | chi analytic in g^2: True ['0', '1']
+         free choices: v_c; natural: True (turns over at v_c/sqrt3: A4 fails there)
+  A-7    [A] freely-jointed polymer chain: extension = L(f b/kT) (same as A-1)
+         U(g) = 3*g_T*(g/tanh(g/g_T) - g_T)/g
+         A1 U'(0)=1 ok | deep g_N ~ 1/(15*g_T**2) g^3 -> A2 FAIL (point-mass V ~ r^1/6) | u_max=3*g_T (A3 ok) n_cap=a_0/(3*g_T) n1=None | A4 ok | in-family=False | chi analytic in g^2: True ['0', '1', '2']
+         free choices: kT/b; natural: True 
+
+T-A theorem (sympy): U = chi(g^2) g with chi analytic, A1 imposed (chi(0) = 1)  =>  g - U has odd powers only, >= 3
+  [PASS] T-A analytic media never give the deep law (odd powers only, no g^2 term); all class-A candidates fail A2: powers ['3', '5', '7']
+
+==============================================================================================================
+CLASS B: scale-free non-analytic power media W ~ |u|^q  (R ~ u^(q-1)); CFG690: deep law <=> q = 3
+  B-1d1  [B] degenerate Fermi carriers in d=1: E ~ n^(1+2/d), q = 3
+         R(u) = k*u**2;  leading k u^2 -> A1 ok, A2 ok, A3 FAIL (no capacity), sign + (A4 ok)  (continuum: no capacity)
+         free choices: k; natural: True
+  B-1d2  [B] degenerate Fermi carriers in d=2: E ~ n^(1+2/d), q = 2
+         R(u) = k*u;  leading k u^1 -> A1 FAIL, A2 FAIL, A3 FAIL (no capacity), sign + (A4 ok)  (continuum: no capacity)
+         free choices: k; natural: True
+  B-1d3  [B] degenerate Fermi carriers in d=3: E ~ n^(1+2/d), q = 5/3
+         R(u) = k*u**(2/3);  leading k u^2/3 -> A1 FAIL, A2 FAIL, A3 FAIL (no capacity), sign + (A4 ok)  (continuum: no capacity)
+         free choices: k; natural: True
+         B-1d1 continuum law: R = u^2/a0 everywhere => nu = 1 + y^-1/2 = CFG690's SI law (CFG690: FAIL, Upsilon band); the cubic arises from 1D Pauli exclusion
+  B-2D4  [B] massless Euler-Heisenberg, D=4: L ~ E^2 ln E
+         R(u) = k*u*log(u);  leading k*u*log(u) u^0 -> A1 FAIL, A2 FAIL, A3 FAIL (no capacity), sign -/0 (A4 FAIL)  (dimensional analysis; log)
+         free choices: k; natural: True
+  B-2D5  [B] massless Euler-Heisenberg, D=5: L ~ |eE|^(D/2)
+         R(u) = k*u**(3/2);  leading k u^3/2 -> A1 ok, A2 FAIL (deep g_N ~ g^3/2, V ~ r^-1/6), A3 FAIL (no capacity), sign + (A4 ok)  (no capacity; D=6 is not our spacetime)
+         free choices: k; natural: True
+  B-2D6  [B] massless Euler-Heisenberg, D=6: L ~ |eE|^(D/2)
+         R(u) = k*u**2;  leading k u^2 -> A1 ok, A2 ok, A3 FAIL (no capacity), sign + (A4 ok)  (no capacity; D=6 is not our spacetime)
+         free choices: k; natural: True
+  B-3    [B] thermal bosonic zero-mode cubic -(T/12pi)(lambda P^2)^(3/2) (textbook high-T expansion)
+         R(u) = -T_lam*u**2/(64*pi**3*G**2);  leading -T_lam/(64*pi**3*G**2) u^2 -> A1 ok, A2 FAIL (negative coefficient: anti-restoring), A3 FAIL (no capacity), sign -/0 (A4 FAIL)  (sign is the point)
+         free choices: T lambda^3/2; natural: True
+
+==============================================================================================================
+CLASS C: kinetic driven single-occupancy cells  theta' = alpha g^p (1-theta) - beta theta, u = u_m theta_ss
+  C-1 pump exponent p = 1: U'(0) = alpha*u_m/beta
+      (report) p = 1/2: U'(0) = oo  -> A1 needs p = 1
+      (report) p = 2: U'(0) = 0  -> A1 needs p = 1
+  C-1    [C] Langmuir / Michaelis-Menten / incoherently pumped two-level saturation, pump ~ |g|^1
+         U(g) = a_0*g/(a_0 + g)
+         A1 U'(0)=1 ok | deep g_N ~ 1/a_0 g^2 -> A2 ok | u_max=a_0 (A3 ok) n_cap=1 n1=1 | A4 ok | in-family=True | chi analytic in g^2: False ['0', '1/2', '1', '3/2', '2', '5/2']
+         free choices: pump exponent (A1 forces 1), single occupancy; natural: True (one scale u_m = beta/alpha, fixed = a0 by A2)
+         kinetic relaxation Gamma(g)/Gamma(0) = (a_0 + g)/a_0
+  C-2h1/2 Hill h = 1/2: U'(0) = oo -> A1 FAIL for any amplitude
+  C-2h2 Hill h = 2: U'(0) = 0 -> A1 FAIL for any amplitude
+  C-3b1/2 [C] Caughey-Thomas velocity saturation, beta = 1/2
+         U(g) = a_0*g/(sqrt(a_0) + sqrt(g))**2
+         A1 U'(0)=1 ok | deep g_N ~ 2/sqrt(a_0) g^3/2 -> A2 FAIL (point-mass V ~ r^-1/6) | u_max=a_0 (A3 ok) n_cap=1 n1=None | A4 ok | in-family=False | chi analytic in g^2: False ['0', '1/4', '1/2', '3/4', '1', '5/4', '3/2', '7/4', '2', '9/4', '5/2', '11/4']
+         free choices: beta (A2 forces 1); natural: True 
+  C-3b1  [C] Caughey-Thomas velocity saturation, beta = 1
+         U(g) = a_0*g/(a_0 + g)
+         A1 U'(0)=1 ok | deep g_N ~ 1/a_0 g^2 -> A2 ok | u_max=a_0 (A3 ok) n_cap=1 n1=1 | A4 ok | in-family=True | chi analytic in g^2: False ['0', '1/2', '1', '3/2', '2', '5/2']
+         free choices: beta (A2 forces 1); natural: True 
+  C-3b2  [C] Caughey-Thomas velocity saturation, beta = 2
+         U(g) = a_0*g/sqrt(a_0**2 + g**2)
+         A1 U'(0)=1 ok | deep g_N ~ 1/(2*a_0**2) g^3 -> A2 FAIL (point-mass V ~ r^1/6) | u_max=a_0 (A3 ok) n_cap=1 n1=None | A4 ok | in-family=False | chi analytic in g^2: True ['0', '1', '2']
+         free choices: beta (A2 forces 1); natural: True 
+      (general beta) (g - U)/g^(1+beta) -> 1/(3*u_m**3) at beta=3, i.e. 1/(beta u_m^beta): deep power 1 + beta; A2 <=> beta = 1
+  C-4    [C] coherent (Rabi) pump s ~ g^2: u = u_m s/(1+s)
+         U(g) = g**2*u_m/(g**2 + g_s**2)
+         A1 U'(0)=0 FAIL | deep g_N ~ 1 g^1 -> A2 FAIL (point-mass V ~ r^-1/2) | u_max=u_m (A3 ok) n_cap=a_0/u_m n1=None | A4 ok | in-family=False | chi analytic in g^2: False ['1/2', '3/2', '5/2']
+         free choices: g_s; natural: True 
+  C-5    [C] Unruh-Langmuir scale tie: a0_eff = a_H = Z a0 = 5.7888 a0 (canonical 5.4185e-10, alt 6.5483e-10); A5 scored at that a0 in ag6b_sparc.py
+  C-6    [C] thermal Fermi cell theta = 1/(1+exp(eps0 - d g/T)), U = u_m[theta(g) - theta(0)]:
+         A1 => u_m = -1/(d_T*theta_0*(theta_0 - 1));  A2 => a0 = 2/(d_T*(2*theta_0 - 1));  u_max = 1/(d_T*theta_0);  n_cap = 2*theta_0/(2*theta_0 - 1)  (needs theta_0 > 1/2)
+         theta_0 = 0.75: n_cap = 3.000; family residual max 1.00e+00 -> in-family False; two scales -> NOT natural
+
+==============================================================================================================
+CLASS D: 1D lattice Pauli capacity (spinless fermions in tight-binding channels along the field)
+  D-1    E(n) = -2*t*sin(pi*n)/pi;  R(u) = 2*t*(1 - cos(pi*u/u_m));  leading pi**2*t/u_m**2 u^2 -> A1 ok (no linear term), A2 fixes a0 = u_m**2/(pi**2*t)
+         capacity u_m reached at FINITE g_N = R(u_m) = 4*t (band full, R'(u_m) = 0); n_cap = a0/u_m = u_m/(pi**2*t): two scales (t, u_m) -> n free
+
+==============================================================================================================
+CLASS E: relativistic / Deser-Levin quadrature  g_N = sqrt(g^2 + m^2) - m (Milgrom 1999 Delta-T ansatz)
+  E-1    [E] Deser-Levin/relativistic dispersion (g_N = kinetic energy of mass m = a_0/2 at momentum g)
+         U(g) = a_0/2 + g - sqrt(a_0**2 + 4*g**2)/2
+         A1 U'(0)=1 ok | deep g_N ~ 1/a_0 g^2 -> A2 ok | u_max=a_0/2 (A3 ok) n_cap=2 n1=2 | A4 ok | in-family=True | chi analytic in g^2: False ['0', '1/2', '3/2', '5/2']
+         free choices: Milgrom's inertia ~ Delta T ansatz (choice); one scale m; natural: True 
+         mass-action identity w(w + 2g) = m^2 with w = m - u: True; recombination relaxation Gamma/Gamma0 = sqrt(a_0**2 + 4*g**2)/a_0
+  E-2    [E] dS scale tie m = a_H: a0_eff = 2Z a0 = 11.578 a0 (equation book: known exclusion; A5 control)
+
+==============================================================================================================
+CLASS F: reversible critical clipping cells u_c(g) = min(g, c) with capacity spectrum p(c)
+  T-F1 n=1: p(c) = 2*a_0**2/(a_0 + c)**3; int p = 1; p(0) = 2/a_0; <c> = a_0; n_cap = 2/(p(0)<c>) = 1; U rebuilt: True
+  T-F1 n=2: p(c) = 2*a_0**2/(a_0**2 + 4*c**2)**(3/2); int p = 1; p(0) = 2/a_0; <c> = a_0/2; n_cap = 2/(p(0)<c>) = 2; U rebuilt: True
+  [PASS] T-F1 representation: p = -U'' rebuilds U; A1 <=> int p = 1; A2 <=> p(0) = 2/a0; n_cap = 2/(p(0)<c>): 
+
+  T-F2 (proof): hazard h = p/S non-decreasing (IFR; every log-concave p) => h(c) >= h(0) = p(0) => S(c) <= exp(-p(0) c)
+        => <c> = int S <= 1/p(0) => p(0)<c> <= 1 => n_cap = 2/(p(0)<c>) >= 2, equality iff h constant (exponential).
+        equality case exponential: p(0)<c> = 1
+        exponential       : IFR True, p(0)<c> = 1.00000, n_cap = 2.0000
+        half-normal       : IFR True, p(0)<c> = 0.63662, n_cap = 3.1416
+        uniform[0,1]      : IFR True, p(0)<c> = 0.50000, n_cap = 4.0000
+        half-logistic     : IFR True, p(0)<c> = 0.69315, n_cap = 2.8854
+        Beta(1,3)         : IFR True, p(0)<c> = 0.75000, n_cap = 2.6667
+        half-exp-power(4) : IFR True, p(0)<c> = 0.53935, n_cap = 3.7081
+        Lomax(2) [n=1 spectrum] : IFR False, p(0)<c> = 2.00000, n_cap = 1.0000  (decreasing hazard)
+        half-t2  [n=2 spectrum] : IFR False, p(0)<c> = 1.00000, n_cap = 2.0000
+  [PASS] T-F2 bound holds on all 6 IFR spectra (and all 6 are IFR): 
+
+  Natural spectra (scale fixed by A2: p(0) = 2/a0):
+  F-1    [F] exponential spectrum (MaxEnt at fixed <c>)
+         U(g) = a_0/2 - a_0*exp(-2*g/a_0)/2
+         A1 U'(0)=1 ok | deep g_N ~ 1/a_0 g^2 -> A2 ok | u_max=a_0/2 (A3 ok) n_cap=2 n1=4/3 | A4 ok | in-family=False | chi analytic in g^2: False ['0', '1/2', '1', '3/2', '2', '5/2']
+         free choices: MaxEnt constraint <c>; natural: True 
+  F-2    [F] half-normal spectrum (MaxEnt at fixed <c^2>)
+         U(g) = a_0/pi - a_0*exp(-pi*g**2/a_0**2)/pi + g*erfc(sqrt(pi)*g/a_0)
+         A1 U'(0)=1 ok | deep g_N ~ 1/a_0 g^2 -> A2 ok | u_max=a_0/pi (A3 ok) n_cap=pi n1=2 | A4 ok | in-family=False | chi analytic in g^2: False ['0', '1/2', '3/2', '5/2']
+         free choices: MaxEnt constraint <c^2>; natural: True 
+         F-2 closed form matches -U'' = p and p(0) = 2/a0: True
+  F-3    [F] uniform spectrum: U = g - g^2/a0 up to g = a0/2, then a0/4: A1 ok, A2 ok, u_max = a0/4 (n_cap = 4), n1 = 2; finite-field saturation; not in family
+  F-4    [F] identical cells U = min(g, c0): g_N = 0 for g < c0 -> A2 FAIL (p(0) = 0; no deep law at all)
+  F-5    [F] superstatistics (by construction): Lomax(2) = Exp(c; r) with r ~ Gamma(2, rate a0): True;  half-t2 = half-normal with precision ~ Exp(rate a0^2/8): True
+
+==============================================================================================================
+SECOND PREDICTIONS (a0 = 1 units; S-a also in Msun/pc^2) for the fixed-number A1-A4 passers
+  C-1 (n=1)        u_max 1.0000 a0 (Sigma_max 214/258 Msun/pc^2) | tail x=3 2.500e-01 x=10 9.091e-02 slope -0.9328858041414633 | gap R' x=0.1/1/10 = 0.21/3/120 | g_N(99%) 98 | wall simple pole
+  E-1 (n=2)        u_max 0.5000 a0 (Sigma_max 107/129 Msun/pc^2) | tail x=3 4.138e-02 x=10 1.249e-02 slope -0.9993245280418303 | gap R' x=0.1/1/10 = 0.244/8.472/800.5 | g_N(99%) 24.5 | wall simple pole
+  F-1 exp          u_max 0.5000 a0 (Sigma_max 107/129 Msun/pc^2) | tail x=3 1.239e-03 x=10 1.031e-09 slope -28.85390081777927 | gap R' x=0.1/1/10 = 0.2214/6.389/4.852e+08 | g_N(99%) 1.81 | wall log
+  F-2 half-normal  u_max 0.3183 a0 (Sigma_max 68/82 Msun/pc^2) | tail x=3 2.814e-15 x=10 1.841e-140 slope zero (saturated) | gap R' x=0.1/1/10 = 0.2468/81.04/8.619e+137 | g_N(99%) 0.591 | wall sub-log (Gaussian tail)
+  F-3 uniform      u_max 0.2500 a0 (Sigma_max 53/65 Msun/pc^2) | tail x=3 0.000e+00 x=10 0.000e+00 slope zero (saturated) | gap R' x=0.1/1/10 = 0.25/inf/inf | g_N(99%) 0.203 | wall finite-field saturation
+  S-d kinetic Gamma(x)/Gamma(0) x=0.1/1/10: Langmuir (n=1) [1.1, 2, 11]; mass action (n=2) [1.0198, 2.2361, 20.025]
+  S-f scale: Unruh-Langmuir a0_eff/a0 = Z = 5.7888; Deser-Levin literal a0_eff/a0 = 2Z = 11.5776 (both footings)
+  static |dlog g| C-1 (n=1)        vs E-1 (n=2)       : raw 0.0625 dex; after a0 rescale x10^+0.1027: 0.0313 dex
+  static |dlog g| C-1 (n=1)        vs F-1 exp         : raw 0.0409 dex; after a0 rescale x10^+0.0672: 0.0255 dex
+  static |dlog g| C-1 (n=1)        vs F-2 half-normal : raw 0.0920 dex; after a0 rescale x10^+0.1445: 0.0513 dex
+  static |dlog g| C-1 (n=1)        vs F-3 uniform     : raw 0.1249 dex; after a0 rescale x10^+0.1817: 0.0691 dex
+  static |dlog g| E-1 (n=2)        vs F-1 exp         : raw 0.0302 dex; after a0 rescale x10^-0.0486: 0.0109 dex
+  static |dlog g| E-1 (n=2)        vs F-2 half-normal : raw 0.0309 dex; after a0 rescale x10^+0.0426: 0.0202 dex
+  static |dlog g| E-1 (n=2)        vs F-3 uniform     : raw 0.0625 dex; after a0 rescale x10^+0.0797: 0.0377 dex
+  static |dlog g| F-1 exp          vs F-2 half-normal : raw 0.0545 dex; after a0 rescale x10^+0.0825: 0.0275 dex
+  static |dlog g| F-1 exp          vs F-3 uniform     : raw 0.0897 dex; after a0 rescale x10^+0.1233: 0.0469 dex
+  static |dlog g| F-2 half-normal  vs F-3 uniform     : raw 0.0359 dex; after a0 rescale x10^+0.0423: 0.0200 dex
+
+REPORTED (no verdict weight)
+  criticality A-*   : tuned (amplitude solved for U'(0) = 1)
+  criticality C-1   : tuned (u_m = beta/alpha)
+  criticality C-3b1 : tuned (mobility normalised to 1)
+  criticality C-6   : tuned (u_m solved)
+  criticality D-1   : automatic (band bottom: R'(0) = 0)
+  criticality E-1   : automatic (kinetic energy has no linear term: d/dg[sqrt(g^2+m^2) - m] at 0 = 0)
+  criticality F-*   : normalisation (every cell critical: int p = 1)
+  T-Q  R_n(u) == (u_max^2/a0) rho^2/(1-rho), rho = u/u_max (M/M/1 mean queue length), for every n: True
+
+A1-A4 passers: ['C-1', 'C-3b1', 'C-5', 'C-6', 'D-1', 'E-1', 'E-2', 'F-1', 'F-2', 'F-3', 'F-5']
+A5 (raw SPARC) and the verdict: ag6b_sparc.py
