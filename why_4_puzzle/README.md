@@ -72,6 +72,7 @@ independent second prediction to reach 3σ.
 | [W4-11](W4_11_last_gravity_classes/README.md) | The last gravity classes with no register row: f(Q), f(R,T), bumblebee, Weyl conformal geometry. | **NO CLASS FIXES THE 4.** f(Q) = f(T)'s trade in n; f(R,T) is GR in vacuum; bumblebee trade; Weyl geometry ħ-bearing with free couplings. Every standard modified-gravity and dark-energy class now has a row. |
 | [W4-12](W4_12_one_correction/README.md) | Can one universal stellar-mass or gas-mass correction reconcile the four κ facts (gas rotation curves 0.56, blue lenses 0.52, within-galaxy gas/star gap −0.41 dex, red/blue lens split)? | **NO SINGLE CORRECTION.** The red/blue split cannot close under any universal factor (C3 fails in all 289 cells). The gap and the RC-lens agreement meet only off the plausible range (Υ_d 0.71 with 29% less gas, or Υ_d ≥ 1). The pattern points to baryon-type-dependent physics. |
 | [W4-13](W4_13_gap_vs_law_shape/README.md) | Is the within-galaxy gas/star gap (p64) a law-shape effect? Four declared law forms (softer to AG4's n = 2) plus RAR. | **GAP NOT LAW-SHAPE.** The gap is −0.38 to −0.41 dex under every law. A planted law-shape mismatch makes only −0.02 dex, twenty times smaller. It is about the baryons, not the transition shape. |
+| [W4-14](W4_14_gas_star_matched_acceleration/README.md) | Gas vs star points at the same g_bar: is the within-galaxy gap about baryon type or about acceleration/radius? | **ACCELERATION.** At matched g_bar the classes agree (Δ −0.10 ± 0.11), while the within-galaxy gap is −0.44 ± 0.06. Inferred a₀ falls outward inside galaxies (an EFE or outskirts signature), so it is not 'cold energy tracks stars'. The frozen M2 control failed by design; a post-hoc noisy control passes. |
 
 ## What would change the answer
 
@@ -90,6 +91,6 @@ Follow `KAPPA_CAMPAIGN_RULES.md`:
 3. Run a light single-core script (nothing beside a live 1024³ job beyond that).
 4. Append one register row per attempt to CFG894's CSV, then rerun `kappa_campaign_lee.py`.
 
-Name lanes W4-14, W4-15, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
+Name lanes W4-15, W4-16, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
 
 κ = ½ FITTED. Not theory closed.
