@@ -1,0 +1,114 @@
+CFG953  the minimal source-changing non-local theory (SCT): construction and tests   stage=MAIN
+  criteria 049a0f867; kappa = 1/2 FITTED; footings never pooled; cold energy (no particle species); not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2;  native Delta_ta(0) = 11.830836;  engine f_b = 0.157126
+  NGC 3198: 43 radii to 44.08 kpc, M_b(< last) = 4.7201e+10 M_sun (Upsilon 0.61)
+
+==================== K CONTROLS ====================
+  [PASS] K1_CFG938_NGC3198_law: max |g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (CFG938 2.2e-16; line 1e-6)
+  [PASS] K2_CFG947_nohover_bound_CFG941_hover: retardation bound 1.2114e-06 (CFG947 1.2114e-6); tethered Delta a/g_host [1.0167, 1.1067] (1.017-1.107); EFE [-0.728, -0.102] dex (-0.73..-0.10)
+  deriving growth determinant (sympy, CFG941 route) ...
+  [PASS] K3_CFG941_growth_exponents: n(c2=1, no chi-bar) = 0.609545 (0.60954), n(c2=1, chi-bar) = 0.694330 (0.69433), n(c2=0, dust) = 1.000000000000
+  [PASS] K4_CFG947_slip: worst 1.6324e-05 (CFG947 1.6324e-5, P-I dust pressure); S P-S stress 1.2955e-05 (1.2955e-5)
+  K5 SPARC (CFG4 statistic, nu_mono):
+     local law canonical                         : rms 0.10033 dex @ Upsilon 0.61; points beyond their edge: 0 of 3389
+     local law alt                               : rms 0.09910 dex @ Upsilon 0.57; points beyond their edge: 0 of 3389
+  [PASS] K5_CFG4_SPARC_local: local 0.10033 @ 0.61 / 0.09910 @ 0.57
+  [PASS] K6_CFG947_TM_E8: E8 two-blob R = -epsilon*(X(t)*Derivative(M_e(t), (t, 2)) + 2*Derivative(M_e(t), t)*Derivative(X(t), t)); max|R|/(M_dom g_ref) = pi**2*epsilon/4 -> 0.024674, 0.246740, 0.740220 (0.024674 / 0.246740 / 0.740220)
+  [PASS] K7_CFG936_routes_reproduced: route (i) T rbar +0.054634, chi2 1.1680 (+0.054634, 1.1680); route (iii) T rbar -0.381410, chi2 14.8547 (-0.381410, 14.8547)
+  [PASS] K8_CFG947_TE_TR: min M_law(<r_ON)/M_ta = 1.8466 (1.847); RMIN threshold M_b = 4.8154e+10 M_sun (4.815e10)
+  K controls: ALL PASS
+
+==================== STRUCTURAL STATEMENTS ====================
+  [PASS] S-P_momentum_event_algebra: conversion event: Delta D_s = [0, 0, 0], Delta dD_s/dt = [0, 0, 0], Delta P_tot = [0, 0, 0], Delta L_tot = [0, 0, 0]; S self-force on 40 signed weights 1.8e-14
+  [PASS] S-TM_relocation_term_zero: two-blob toy under R4: R = D_s'' - int rho_s g = 0 (any m_p, m_m, X, F); with CFG947's draw proportions 0; E8 (prescribed draw): -epsilon*(X(t)*Derivative(M_e(t), (t, 2)) + 2*Derivative(M_e(t), t)*Derivative(X(t), t)). Price: body centroid at the converted dust's centroid, offset X_0*epsilon from the core (static blobs)
+  [PASS] S-L_no_torque_on_spherical_body: torque on a spherical body about its centre from a point mass = -x_p x F_point = [0, 0, 0]; spin S absorbs the converted element's angular momentum (Delta L_tot = 0 above)
+  [PASS] S-Z_zero_sum_per_domain: |M_body(r_e)/M_c - 1| <= 2.0e-15 (NGC 3198, both footings and kernels): int rho_s = M_c - M_c,lab = 0
+  [PASS] S-+_body_positive: simple kernel: dg/dy = (sqrt(y)*sqrt(y + 4) + y + 2)/(2*sqrt(y)*sqrt(y + 4)), (y+2)^2 - (y^2+4y) = 4 > 0 => dg/dy > 1; dnu/dy = -1/(y**(3/2)*sqrt(y + 4)) < 0; nu_mono: slope of y nu >= 1 and nu decreasing on 1e-12..1e6: True. NGC 3198: m_N increasing False; M_ph increasing at the data radii {'canonical|simple': True, 'canonical|mono': True, 'alt|simple': True, 'alt|mono': True}
+  [PASS] S-E_edge_inside_turnaround: r_e/r_ON in [0.019, 0.514] for M_b 1e3-1e15, both footings and kernels
+  [PASS] S-C_retarded_support: response to a source switched on at t0 vanishes at t0 + r/(2c) < t0 + r/c; propagation speed of S updates c (R8)
+  [PASS] S-En_formation_energy: E_rel/|W_f| (canonical) 0.988, 0.961, 0.878, 0.834, 0.701 at M_b 1e3,1e6,1e9,1e12,1e15; E_rel/(M_c c^2) 4.10e-11..4.25e-05; released (> 0) for every M_b: True
+
+==================== TESTS (a)-(h) ====================
+  (a) static law, one domain (NGC 3198, spherical-equivalent convention; edge = the kernel's own supply root)
+   canonical simple: max dev P-S/P-I/P-X 2.22e-16/2.22e-16/2.22e-16; r_e 453.9 kpc (N 53.64); deep y=1e-2/1e-3 dev 0.0e+00/0.0e+00, V^4/GMa0 1.1051/1.0321; y_e 3.41e-04 (V^4/GMa0 there 1.0186); law asymptote at y=1e-14 1.00000010; beyond the edge at 2 r_e: g/g_law 0.502
+   canonical mono  : max dev P-S/P-I/P-X 2.22e-16/2.22e-16/2.22e-16; r_e 453.9 kpc (N 53.64); deep y=1e-2/1e-3 dev 0.0e+00/0.0e+00, V^4/GMa0 1.1043/1.0320; y_e 3.41e-04 (V^4/GMa0 there 1.0186); law asymptote at y=1e-14 1.00000010; beyond the edge at 2 r_e: g/g_law 0.502
+   alt       simple: max dev P-S/P-I/P-X 2.22e-16/2.22e-16/2.22e-16; r_e 412.9 kpc (N 53.64); deep y=1e-2/1e-3 dev 0.0e+00/2.2e-16, V^4/GMa0 1.1051/1.0321; y_e 3.41e-04 (V^4/GMa0 there 1.0186); law asymptote at y=1e-14 1.00000010; beyond the edge at 2 r_e: g/g_law 0.502
+   alt       mono  : max dev P-S/P-I/P-X 2.22e-16/2.22e-16/2.22e-16; r_e 412.9 kpc (N 53.64); deep y=1e-2/1e-3 dev 2.2e-16/1.1e-16, V^4/GMa0 1.1043/1.0320; y_e 3.41e-04 (V^4/GMa0 there 1.0186); law asymptote at y=1e-14 1.00000010; beyond the edge at 2 r_e: g/g_law 0.502
+   a3 (reported) thin exponential disc: max |SCT-M monopole - pointwise law| = y(Rd)=10: 0.0165 dex, y(Rd)=1: 0.0388 dex, y(Rd)=0.1: 0.0544 dex
+   a3 (reported) supply N = M_c/M_b at M_b 1e7..1e13: 53.6, 53.6, 53.6, 53.6, 44.1, 14.9, 8.3 (CFG803 N_min 3 / 4 primary; 16 / 24 all radii)
+   (a): a1 PASS, a2 PASS (asymptote ok) -> PASS [by construction inside the edge for one domain: the test checks the edge, the kernel root and the dust's inertness]
+  [PASS] b_FRW_growth: dust rho = m/a(t)**3, p = 0, isotropic; S = 0 on FRW (Delta_ta(z) >= 5.569 > 1: no domain); linear dust n = 1.000000000000; top-hat density monotone to 5.5517 = 9 pi^2/16 (no domain before turnaround); body gas linear exponent roots [-1, 2/3] -> n = 1.000000000000
+   canonical|H1|50       : Delta a/g_host 1.53e-07 (+ retardation 1.2e-07); delta_eq/a 7.34e-07; EFE 2.95e-07 dex; host tidal term 0.001 dex (reported); body edge 0.21 kpc vs Jacobi 0.40 kpc
+   canonical|H1|100      : Delta a/g_host 3.79e-08 (+ retardation 2.4e-07); delta_eq/a 8.67e-08; EFE 3.49e-08 dex; host tidal term 0.000 dex (reported); body edge 0.21 kpc vs Jacobi 0.65 kpc
+   canonical|H1|250      : Delta a/g_host 6.13e-09 (+ retardation 5.9e-07); delta_eq/a 5.46e-09; EFE 2.20e-09 dex; host tidal term 0.000 dex (reported); body edge 0.21 kpc vs Jacobi 1.21 kpc
+   canonical|H2|50       : Delta a/g_host 3.20e-05 (+ retardation 9.8e-08); delta_eq/a 1.86e-04; EFE 7.58e-05 dex; host tidal term 0.006 dex (reported); body edge 1.17 kpc vs Jacobi 1.25 kpc
+   canonical|H2|100      : Delta a/g_host 9.72e-06 (+ retardation 2.0e-07); delta_eq/a 2.69e-05; EFE 1.10e-05 dex; host tidal term 0.001 dex (reported); body edge 1.17 kpc vs Jacobi 2.02 kpc
+   canonical|H2|250      : Delta a/g_host 1.44e-06 (+ retardation 4.9e-07); delta_eq/a 1.55e-06; EFE 6.32e-07 dex; host tidal term 0.000 dex (reported); body edge 1.17 kpc vs Jacobi 3.75 kpc
+   canonical|H3|50       : Delta a/g_host 2.72e-03 (+ retardation 2.2e-07); delta_eq/a 7.03e-03; EFE 2.63e-03 dex; host tidal term 0.009 dex (reported); body edge 9.38 kpc vs Jacobi 5.07 kpc
+   canonical|H3|100      : Delta a/g_host 6.87e-04 (+ retardation 4.4e-07); delta_eq/a 8.48e-04; EFE 3.18e-04 dex; host tidal term 0.002 dex (reported); body edge 9.38 kpc vs Jacobi 8.18 kpc
+   canonical|H3|250      : Delta a/g_host 1.08e-04 (+ retardation 1.1e-06); delta_eq/a 5.17e-05; EFE 1.94e-05 dex; host tidal term 0.000 dex (reported); body edge 9.38 kpc vs Jacobi 15.21 kpc
+  [PASS] c_no_hover_no_EFE: max Delta a/g_host 2.72e-03 (eps_B 0.344 / 0.317); max |EFE| 2.63e-03 dex (delta_c 0.082); max delta_eq/a 7.03e-03; host tidal term up to 0.009 dex (reported, not an EFE)
+  [PASS] d_slip: worst slip 1.3548e-05 (line 1.9e-5); alt|dwarf 4.02e-09, alt|MW disc 2.80e-07, alt|MW outer 3.14e-07, alt|group 9.32e-07, alt|cluster 1.35e-05, alt|NGC3198 3.44e-07
+  (e) conservation: N-body toys (criteria section 4) ...
+     run E, dt 2e-3: dP/P_scale 6.57e-16, dL/L_scale 7.91e-16, |dE_tot|/|E0| 1.47e-04, |dE_mech|/|E0| 2.49e-01 (E0 -29.588); E_int/|E0|: conversion -0.2268, reshape -0.0000, merge +0.0000; conversions 260, merges 0, non-monotone M_ph 0, max body-mass deficit 0.0e+00; baryon-body offset max 4.799, 0.060, final 0.701, 0.022
+     run E, dt 1e-3: dP/P_scale 2.33e-15, dL/L_scale 1.33e-15, |dE_tot|/|E0| 6.97e-05, |dE_mech|/|E0| 2.39e-01 (E0 -29.588); E_int/|E0|: conversion -0.2264, reshape -0.0004, merge +0.0000; conversions 260, merges 0, non-monotone M_ph 0, max body-mass deficit 0.0e+00; baryon-body offset max 9.139, 0.078, final 0.692, 0.023
+     run M (merger), dt 2e-3: dP/P_scale 1.61e-15, dL/L_scale 2.33e-15, |dE_tot|/|E0| 2.46e-05, |dE_mech|/|E0| 2.17e-01 (E0 -75.932); E_int/|E0|: conversion +0.0000, reshape -0.0092, merge -0.2069; conversions 0, merges 1, non-monotone M_ph 0, max body-mass deficit 0.0e+00; baryon-body offset max 1.140, 1.218, final 0.081, nan
+     merge: baryon separation 1.304; Delta E_int -15.713 (K loss +4.980, Delta W +20.693) = -0.2069 |E0|; T-L field jump at r = 5: g before 0.4203, after 0.3149 (ratio 0.749)
+  [PASS] e_conservation: momentum/angular momentum: max dP 2.3e-15, dL 2.3e-15 (line 1e-10); third law between overlapping bodies 1.4e-11 (line 1e-6); energy with E_int: 1.47e-04 (dt 2e-3) -> 6.97e-05 (dt 1e-3), merger 2.46e-05 (line 1e-3); E_int needed: conversion -0.227, reshape -0.000, merge +0.000 |E0| (run E); merger -0.207 |E0| -> (e) CONDITIONAL
+   canonical|simple|UFD-c        : edge moves sigma^2_ap(<R_e) by -0.0004 dex; r_e/a 4.9; sigma >= 0 True
+   canonical|simple|UFD-e        : edge moves sigma^2_ap(<R_e) by -0.0190 dex; r_e/a 1.5; sigma >= 0 True
+   canonical|simple|Draco-like   : edge moves sigma^2_ap(<R_e) by -0.0001 dex; r_e/a 6.7; sigma >= 0 True
+   canonical|simple|Fornax-like  : edge moves sigma^2_ap(<R_e) by -0.0000 dex; r_e/a 18.6; sigma >= 0 True
+   canonical|simple|H1           : edge moves sigma^2_ap(<R_e) by -0.0001 dex; r_e/a 7.0; sigma >= 0 True
+   canonical|simple|H2           : edge moves sigma^2_ap(<R_e) by -0.0002 dex; r_e/a 5.7; sigma >= 0 True
+   canonical|simple|H3           : edge moves sigma^2_ap(<R_e) by -0.0000 dex; r_e/a 13.3; sigma >= 0 True
+   alt|simple|UFD-c              : edge moves sigma^2_ap(<R_e) by -0.0006 dex; r_e/a 4.5; sigma >= 0 True
+   alt|simple|UFD-e              : edge moves sigma^2_ap(<R_e) by -0.0242 dex; r_e/a 1.4; sigma >= 0 True
+   alt|simple|Draco-like         : edge moves sigma^2_ap(<R_e) by -0.0002 dex; r_e/a 6.1; sigma >= 0 True
+   alt|simple|Fornax-like        : edge moves sigma^2_ap(<R_e) by -0.0000 dex; r_e/a 16.9; sigma >= 0 True
+   alt|simple|H1                 : edge moves sigma^2_ap(<R_e) by -0.0002 dex; r_e/a 6.3; sigma >= 0 True
+   alt|simple|H2                 : edge moves sigma^2_ap(<R_e) by -0.0003 dex; r_e/a 5.2; sigma >= 0 True
+   alt|simple|H3                 : edge moves sigma^2_ap(<R_e) by -0.0000 dex; r_e/a 12.1; sigma >= 0 True
+  [PASS] f_dwarfs_no_RMIN: max |edge effect| 0.0242 dex (line 0.082); SPARC dwarf r_e 41.4 / 37.6 kpc > r_obs 5 kpc; domain for every M_b 1e3-1e15: True. Excess family: SCT predicts the EFE-free law of own baryons for every dwarf (0 dex excess); no computation here gives an excess -> NO HANDLE
+   canonical M_T: rbar +0.055 +- 0.114 (z +0.48); chi2 1.17/6 (p 0.978) -> EXPLAINS
+   canonical M_U: rbar +0.028 +- 0.539 (z +0.05); chi2 0.25/2 (p 0.88) -> EXPLAINS
+   canonical Q_T: rbar -0.381 +- 0.110 (z -3.48); chi2 14.85/6 (p 0.0214) -> FAILS
+   canonical Q_U: rbar -1.153 +- 0.480 (z -2.40); chi2 5.88/2 (p 0.0529) -> FAILS
+   alt       M_T: rbar +0.055 +- 0.114 (z +0.48); chi2 1.17/6 (p 0.978) -> EXPLAINS
+   alt       M_U: rbar +0.028 +- 0.539 (z +0.05); chi2 0.25/2 (p 0.88) -> EXPLAINS
+   alt       Q_T: rbar -0.414 +- 0.109 (z -3.79); chi2 17.64/6 (p 0.0072) -> FAILS
+   alt       Q_U: rbar -1.232 +- 0.480 (z -2.57); chi2 6.75/2 (p 0.0342) -> FAILS
+  [PASS] g_below_law_SCT-M: SCT-M (Newton for in-situ systems): T ['EXPLAINS', 'EXPLAINS'], U ['EXPLAINS', 'EXPLAINS'] -> CONDITIONAL (U conditional on DF2/DF4 being in-situ debris)
+   SCT-Q (host EFE for in-situ systems, CFG936 route iii): T ['FAILS', 'FAILS'], U ['FAILS', 'FAILS'] -> FAIL
+   CFG936's own route classes with its declared corners (reported): route (i) T ['EXPLAINS', 'EXPLAINS'], U ['EXPLAINS', 'EXPLAINS']; route (iii) T ['FAILS', 'FAILS'], U ['PARTIAL', 'FAILS'] (the grade above uses the primary basic class)
+   CFG939: inside a collapsed parent no unlabelled dust exists, so capture is impossible whatever v_rel (stronger than v_rel > V_esc,b); CFG948 Coma UDGs: Newton excluded at 5.45 sigma, so under SCT they must be turnaround-born (own body): law ceiling +0.018 ln vs +0.76 observed (z +1.63 / +1.43 with systematics; NOT DIAGNOSTIC, as CFG948)
+   A1 (reported) canonical: host-body term T shifts NGC5291N +0.018, NGC5291S +0.065, NGC5291SW +0.029, NGC7252E +0.099, NGC7252NW +0.093, VCC2062 +0.099 dex -> rbar -0.013 +- 0.114 (EXPLAINS); U shifts DF2 +0.074, DF4 +0.165 ln -> rbar -0.092 +- 0.539 (EXPLAINS)
+   A1 (reported) alt: host-body term T shifts NGC5291N +0.020, NGC5291S +0.071, NGC5291SW +0.032, NGC7252E +0.108, NGC7252NW +0.101, VCC2062 +0.108 dex -> rbar -0.019 +- 0.114 (EXPLAINS); U shifts DF2 +0.081, DF4 +0.180 ln -> rbar -0.103 +- 0.539 (EXPLAINS)
+  (h) CFG678 scorecard (reported; SCT has no action: gates set by S cannot PASS)
+     SCT-M SPARC canonical                       : rms 0.10033 dex @ Upsilon 0.61; points beyond their edge: 0 of 3389
+     SCT-M SPARC alt                             : rms 0.09910 dex @ Upsilon 0.57; points beyond their edge: 0 of 3389
+   A1 ghost / 2nd order     SCT-M CONDITIONAL  SCT-Q CONDITIONAL  metric + matter variational and 2nd order; S non-dynamical, 0 field initial data; body centroids are positive-inertia ODEs (fixed at birth); premise: action-less S admitted
+   A2 hyperbolicity         SCT-M CONDITIONAL  SCT-Q CONDITIONAL  GR + dust hyperbolic; S retarded at c (R8); premise C-c (finite-c_u body)
+   A3 nonlinear WP          SCT-M UNTESTED     SCT-Q UNTESTED     not proved; event-driven
+   A4 strong coupling       SCT-M UNTESTED     SCT-Q UNTESTED     not computed
+   A5 GW at c               SCT-M PASS         SCT-Q PASS         Einstein-Hilbert unmodified; S has no curvature coupling (structural)
+   A6 BH exteriors          SCT-M CONDITIONAL  SCT-Q CONDITIONAL  in-situ black holes are not domains; a host body is smooth near them
+   A7 radiative             SCT-M DECLARED     SCT-Q DECLARED     CFG320
+   B1 switch from variation SCT-M UNTESTED     SCT-Q UNTESTED     the switch (conversion at turnaround) is the action-less label sector; prescribed
+   B2 a0-Lambda tie         SCT-M UNTESTED     SCT-Q UNTESTED     a0 constant; kappa = 1/2 FITTED
+   B3 cold sector           SCT-M CONDITIONAL  SCT-Q CONDITIONAL  dust well-posed and lenses like mass; bodies in T_mu nu, slip <= 1.9e-5; energy through E_int (C-E)
+   C1 Cassini               SCT-M CONDITIONAL  SCT-Q NOT DECIDED  SCT-M: the Sun is in situ (no own body), the MW body is smooth: tidal gradient 4 pi G rho/3 = 1.29e-31 s^-2 (ordinary galactic tide, no EFE quadrupole); SCT-Q: the Sun is MW-own baryons inside the pointwise phantom -> QUMOND EFE quadrupole (G01/G02: strict AQUAL fails 3.8-5.5x; not recomputed)
+   C2 SPARC                 SCT-M CONDITIONAL  SCT-Q CONDITIONAL  SCT-M rms 0.1003 / 0.0991 (= local); 0 points beyond an edge; law from the prescribed S
+   C3 early types           SCT-M FAIL         SCT-Q FAIL         inherits CFG529 (the law inside r_e)
+   C4 cluster lensing       SCT-M NOT DECIDED  SCT-Q NOT DECIDED  CFG954
+   D1 zero field            SCT-M UNTESTED     SCT-Q UNTESTED     not run
+   D2 growth                SCT-M UNTESTED     SCT-Q UNTESTED     linear n = 1 by construction; the CFG596 line needs an SCT PM engine and a 1024^3 run; class-A passes do not transfer
+   D3 flat a0(z)            SCT-M PENDING      SCT-Q PENDING      sealed tests 2026-11-06 / 2026-11-28
+   E1-E3                    SCT-M DECLARED     SCT-Q DECLARED     kappa = 1/2 FITTED
+   wide binaries: SCT-M Newtonian (in situ, smooth host body): z -1.36 / -1.51 vs DR3 builder (PASS, |z| <= 2; agrees with the sealed DR4 'exactly Newtonian'); SCT-Q: QUMOND EFE, CFG653's 1.179 (+1.3) / 1.244 (+2.3) (PASS / TENSION)
+  clusters (first order, no class weight; CFG954 decides): members keep their whole bodies until R7 and the host's body is the law of the host's own baryons, so the cluster lies between CFG951's plain-law row (all merged: eRASS1 A_MID 1.91 / 1.75, Z +7.7 / +6.9) and its X-OD row (members kept, there L2-truncated: A_OUTER 0.81 / 0.75, Z -2.7 / -4.0). SCT-M's members are not truncated, so if they persist the memory is at least X-OD's.
+
+==================== CLASSES ====================
+  SCT-M: a:PASS b:PASS c:PASS d:PASS e:CONDITIONAL f:PASS g:CONDITIONAL  -> SCT CONDITIONAL  (conditions C-E, C-DF; open for real systems: C-MR, C-c)
+  SCT-Q: a:PASS b:PASS c:PASS d:PASS e:CONDITIONAL f:PASS g:FAIL  -> SCT INCONSISTENT
+  OVERALL (SCT-M, primary): SCT CONDITIONAL

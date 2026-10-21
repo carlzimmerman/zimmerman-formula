@@ -1,0 +1,32 @@
+CFG953  the minimal source-changing non-local theory (SCT): construction and tests   [MUTATE]   stage=MAIN
+  criteria 049a0f867; kappa = 1/2 FITTED; footings never pooled; cold energy (no particle species); not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2;  native Delta_ta(0) = 11.830836;  engine f_b = 0.157126
+  NGC 3198: 43 radii to 44.08 kpc, M_b(< last) = 4.7201e+10 M_sun (Upsilon 0.61)
+
+==================== K CONTROLS ====================
+  [PASS] K1_CFG938_NGC3198_law: max |g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (CFG938 2.2e-16; line 1e-6)
+  [PASS] K2_CFG947_nohover_bound_CFG941_hover: retardation bound 1.2114e-06 (CFG947 1.2114e-6); tethered Delta a/g_host [1.0167, 1.1067] (1.017-1.107); EFE [-0.728, -0.102] dex (-0.73..-0.10)
+  deriving growth determinant (sympy, CFG941 route) ...
+  [PASS] K3_CFG941_growth_exponents: n(c2=1, no chi-bar) = 0.609545 (0.60954), n(c2=1, chi-bar) = 0.694330 (0.69433), n(c2=0, dust) = 1.000000000000
+  [PASS] K4_CFG947_slip: worst 1.6324e-05 (CFG947 1.6324e-5, P-I dust pressure); S P-S stress 1.2955e-05 (1.2955e-5)
+  K5 SPARC (CFG4 statistic, nu_mono):
+     local law canonical                         : rms 0.10033 dex @ Upsilon 0.61; points beyond their edge: 0 of 3389
+     local law alt                               : rms 0.09910 dex @ Upsilon 0.57; points beyond their edge: 0 of 3389
+  [PASS] K5_CFG4_SPARC_local: local 0.10033 @ 0.61 / 0.09910 @ 0.57
+  [PASS] K6_CFG947_TM_E8: E8 two-blob R = -epsilon*(X(t)*Derivative(M_e(t), (t, 2)) + 2*Derivative(M_e(t), t)*Derivative(X(t), t)); max|R|/(M_dom g_ref) = pi**2*epsilon/4 -> 0.024674, 0.246740, 0.740220 (0.024674 / 0.246740 / 0.740220)
+  [PASS] K7_CFG936_routes_reproduced: route (i) T rbar +0.054634, chi2 1.1680 (+0.054634, 1.1680); route (iii) T rbar -0.381410, chi2 14.8547 (-0.381410, 14.8547)
+  [PASS] K8_CFG947_TE_TR: min M_law(<r_ON)/M_ta = 1.8466 (1.847); RMIN threshold M_b = 4.8154e+10 M_sun (4.815e10)
+  K controls: ALL PASS
+
+==================== MUTATE (each tooth must bite) ====================
+  [PASS] Mu1_global_source_EFE_returns: body from the global baryon field: EFE -0.730..-0.102 dex (CFG947 T-X)
+  [PASS] Mu2_tether_brings_back_DT: tether: Delta a/g_host 1.0167..1.1067, n = 0.69433, linear C1C2 coefficient 0 (source: K/(2*k**2))
+  running the toy (run E, dt 2e-3) and its glued-body mutation ...
+     run E (SCT): dP/P_scale 6.57e-16, dL/L_scale 7.91e-16, |dE_tot|/|E0| 1.47e-04, |dE_mech|/|E0| 2.49e-01 (E0 -29.588); E_int/|E0|: conversion -0.2268, reshape -0.0000, merge +0.0000; conversions 260, merges 0, non-monotone M_ph 0, max body-mass deficit 0.0e+00; baryon-body offset max 4.799, 0.060
+     run E (Mu3 glued body): dP/P_scale 5.26e-01, dL/L_scale 4.88e-01, |dE_tot|/|E0| 2.48e-01, |dE_mech|/|E0| 2.48e-01 (E0 -29.588); E_int/|E0|: conversion +0.0000, reshape +0.0000, merge +0.0000; conversions 257, merges 0, non-monotone M_ph 0, max body-mass deficit 0.0e+00; baryon-body offset max 0.000, 0.000
+  [PASS] Mu3_glued_body_breaks_momentum: glued body: toy dP/P_scale 5.257e-01 (SCT 6.6e-16); two-blob prescribed draw R/(M g) 0.2467 at eps 0.1 (CFG947 E8)
+  [PASS] Mu4_no_cancellation_breaks_law: labelled dust (P-I) gravitating on top of the body: NGC 3198 max dev canonical|simple 0.827, canonical|mono 0.827, alt|simple 0.841, alt|mono 0.841
+  [PASS] Mu5_no_Eint_breaks_energy: E_int not booked: |dE_mech|/|E0| 2.493e-01 vs integrator error 1.47e-04
+  [PASS] Mu6_time_symmetric_kernel_acausal: before switch-on: retarded 0, time-symmetric 1/2 of the static value
+  [PASS] Mu7_no_edge_creates_S_mass: untruncated phantom: S mass created inside r_ON = 83.20 / 96.84 M_b (continuity has no solution)
+  MUTATE: ALL TEETH BITE
