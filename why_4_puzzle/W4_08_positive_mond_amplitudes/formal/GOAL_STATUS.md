@@ -16,8 +16,8 @@ record these partial results without adding a determinate trial.
 |---|---|---|
 | Regular healthy microscopic action and zero-field quantum state | Latest c1 clock/metric vacuum modes have positive constrained coefficients and controlled near-vacuum homogeneous decay. The rational scalar/auxiliary vacuum, finite-gradient finite-k modes and microscopic quantum state remain unresolved. | Incomplete |
 | Actual MOND force and force-calibrated G | Latest higher-gradient order parameter gives universal attractive metric MOND in its local static EFT window. Retained gradients, normal-fluid equations and a complete curved halo remain necessary. | Partial |
-| Same-state positive gravitating vacuum stress | Paired-band stress has a kernel-checked order-one defect under its prescription. Temporal parent carries an independent epsilon0 and unspecified gravitating clock. | Missing |
-| Independent principle forcing xi=1/4 | The amplitude-changing potential has an explicit local N1 completion. Tested Goldstone, extended-N2 and interacting-CFT protections give different operators/forces, unstable source proposals or an unfixed vacuum bridge. No Ward, gap or constraint equation selects the physical ratio. | Missing |
+| Same-state positive gravitating vacuum stress | Positive stable flux and linear one-function dS vacua exist in the tested EFTs, but their actual same-state force is Yukawa/linear rather than MOND. No model here has all required force and vacuum limits on one healthy microscopic state. | Missing |
+| Independent principle forcing xi=1/4 | Common matrix, interacting-induction, flux and single-function actions were tested. An exact compactification scale identity, linear mass scaling, current Ward/source tests and an allowed branch deformation prevent the proposed bridges. No microscopic equation selects the operational invariant. | Missing |
 | End-to-end Lean proof with all leaves established | Nine partial modules compile using only standard axioms. Physical dictionaries and field/PDE bridges remain explicit analytic inputs. Pi adapter is unverified under the current memory cap. | Incomplete |
 | Independent second physical prediction | No determinate normalization candidate exists. | Missing |
 
@@ -280,3 +280,53 @@ All five inherited evidence validators freshly pass, with nine partial
 modules and61 critical standard-axiom prints. Campaign regeneration
 passes4/4;56 determinate trials,67 menus and all P_LEE values are unchanged.
 The original goal remains active and no target selection is claimed.
+
+## Common microscopic invariant attack
+
+Criteria-only89bf113b0 continues431f22bd6. The user's latest request
+was executed as four distinct common-action tests, with raw derivations
+and independent cross-reviews in unified_invariant/RESULT.md. The original
+healthy microscopic128pi/9 and end-to-end Lean target remains open.
+
+The6D flux sphere has a stable positive bosonic linear vacuum and a
+geometric radion source charge. Its exact m_rad^2+9H^2=R_sphere^-2
+identity excludes a parametrically broad4D subcurvature unscreened
+scalar window. The actual weak force is Yukawa/tensor dominated; its
+massless fold is not a stable vacuum or a local auxiliary cubic branch.
+
+The common IKKT quantum action supplies Einstein and vacuum terms on
+an assumed fuzzy background. Its displayed linear halo scales as M,
+not sqrt(M). Its isolated vacuum action/variation has a sign discrepancy
+with its printed subsequent Einstein equation under the source's own
+convention, confirmed by independent action-level checks. Full constrained
+vacuum, nonlinear dilaton/higher-spin source and quantum health remain
+open; the discrepancy is not a global negative-vacuum theorem.
+
+Interacting induced gravity retains trace contact terms and the actual
+metric source. A covariant conserved-current acceleration portal is
+pure gauge on its specified static rest branch. The non-pure-gauge
+replacement changes actual Newton normalization and total reservoir
+stress, and its minimal flat phase/frame has an unstable mode. Curved
+critical/nonlocal completions are not excluded by that restricted test.
+
+One explicit generalized-aether F(I) has a positive dS vacuum with healthy
+linear tensor/scalar coefficients and a formal flat-static MOND branch.
+The actual regular same-state weak-source response is linear. A smooth
+negative-I deformation moves the cosmological root while preserving every
+positive-I static operator and UV offset. It is not a healthy same-state
+MOND counterfamily; the critical endpoint/nonlinear/microscopic bridge
+is a separate deferred obligation, not a division by zero or a fitted
+branch relation.
+
+No new Lean module restates an elementary ratio or minimum. All five
+inherited evidence validators freshly pass, covering nine partial modules
+and61 critical standard-axiom prints with true/genuine-False controls.
+The actual-pi adapter and full physical/quantum selection proof are still
+unverified. No determinate normalization trial or claimed target hit is
+added. Exact source versions, scope, source discrepancies and nonlinear
+resumption conditions are retained in the new packet.
+
+Common-invariant reviewed evidence:d51647e98; campaign auditsK725-K728.
+Campaign regeneration passes4/4. The56 determinate trials,67 menus
+and all P_LEE values are unchanged. No exact candidate or new
+microscopic/formal success is registered.

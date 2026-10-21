@@ -9,7 +9,18 @@ The reviewed formal/physical checkpoint is f77a0cd8d; registry rows
 K673-K678 record its separate stress, scale, vector, pressure, BMB and
 formal scopes. None is a determinate normalization candidate.
 
-The latest [microscopic-protection checkpoint](symmetry_protection/RESULT.md),
+The latest [common-invariant checkpoint](unified_invariant/RESULT.md),
+criteria89bf113b0, tests genuine common quantum, flux and one-function
+gravity actions. A positive flux vacuum forces an exact radion/Hubble/KK
+identity and Yukawa force. The matrix halo has linear source-mass scaling;
+its isolated vacuum sign is audited rather than assumed. Interacting
+induction/current portals give explicit source/stress obstructions. A
+single-function model has a healthy linear positive dS state but different
+same-state weak response, with a permitted branch deformation. These
+analytic results do not select the MOND invariant. All five inherited
+validators freshly pass; no new Lean module or actual-pi proof is claimed.
+
+The earlier [microscopic-protection checkpoint](symmetry_protection/RESULT.md),
 criteria1d58a0851, realizes the actual eta potential in local N1 models
 and executes exact Goldstone, extended-N2 and interacting-critical tests.
 The tested exact protections permit the deformation, protect different

@@ -2,15 +2,31 @@
 
 2026-10-20. **Target not achieved.** No healthy microscopic model found
 here forces `epsilon C3^2/C2^3 = 128pi/9`, or equivalently `xi=1/4`
-in the single-mediator force convention. The latest attack constructs an
-explicit local supersymmetric realization of the amplitude deformation
-and tests genuine Goldstone, extended-SUSY and interacting-CFT protection.
+in the single-mediator force convention. The latest attack tests actual
+common-action matrix, interacting-induction, flux and single-function
+gravity models through their source, vacuum and retained-mode equations.
 Earlier metric-source, band, current and auxiliary results retain their
 original scopes.
 
 Standing empirical status: **kappa=1/2 FITTED**. CFG493 gives
 kappa_Lambda=0.417+/-0.095 and kappa_crit=0.345+/-0.078 on separate
 footings. Neither is used as an input to any calculation here.
+
+The [common-invariant continuation](formal/unified_invariant/RESULT.md)
+derives an exact radion/Hubble/KK identity in a positive stable flux
+vacuum, excluding a broad unscreened four-dimensional scalar window.
+The matrix model's displayed halo is linear in source mass; its isolated
+vacuum variation also has a preserved source-sign discrepancy. Interacting
+induction/current portals fail their actual cubic/source/stress tests.
+An explicit single gravity function gives a healthy linear positive
+de Sitter vacuum, but its actual weak-source response is linear and a
+permitted opposite-branch deformation moves the vacuum without changing
+the entire flat-static law. None supplies the required same-state MOND
+invariant. These are analytic audits, with no new determinate trial or
+Lean module; full nonlinear/microscopic continuations remain open.
+Reviewed common-invariant checkpoint:d51647e98; campaign auditsK725-K728.
+All five inherited validators and campaign checks4/4 pass. The56
+determinate trials,67 menus and all campaign P_LEE values are unchanged.
 
 The [microscopic-protection continuation](formal/symmetry_protection/RESULT.md)
 finds that local N1 symmetry permits the exact eta potential at fixed
