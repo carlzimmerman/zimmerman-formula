@@ -1,0 +1,44 @@
+W4-21 pi bookkeeping for R = eps C3^2/C2^3
+Screen lane; no kappa output. kappa = 1/2 FITTED; not theory closed.
+
+G_n = q**2/(2*C2*Omega);  a0 = 2*C2*q/(3*C3);  xi = 8*C2**3*Omega/(9*C3**2*epsilon)
+n = 3: Omega_n = 4*pi;  xi = 32*pi/(9*R);  target R* = 128*pi/9  (wt 1)
+[PASS] K1 dictionary: G_n, a0, xi re-derived; deep g^2 = g_N a0: True; xi = 8 Omega C2^3/(9 eps C3^2): True
+[PASS] K1 target weight: R* = 128*pi/9, wt 1 (frozen: 128pi/9, wt 1 at n = 3)
+
+thermal: |F(0)| = pi**2*N*theta**4/90, C2 = N*gamma*theta**2/24, C3 = -N*gamma**(3/2)*theta/(12*pi)
+R_th(eps_rad) = 16/5 (wt 0);  R_th(|F0|) = 16/15 (wt 0)
+[PASS] K2 thermal ratios: R = 16/5 and 16/15; frozen 16/5 and 16/15, wt 0 (L1 on the thermal medium)
+  eps(|F0|) = [N/90] * pi^-2 * (pi theta)^4
+  C2 = [N*gamma/24] * pi^-2 * (pi theta)^2
+  C3 = [N*gamma**(3/2)/12] * pi^-2 * (pi theta)^1
+[PASS] K2b glued form: every r_i is pi-free and theta-free
+  y = 0.02: J = -2.1643216032407753503, quad err 2.0e-32, residual/cubic = 0.0158
+  y = 0.01: J = -2.1645647397495975228, quad err 2.0e-32, residual/cubic = 0.0087
+[PASS] K2c high-T coefficients: residual/cubic 0.0087 at y 0.01 (< 0.05), falling from 0.0158
+
+glued one-scale R = r_3**2*r_e/r_2**3
+two glued scales R = r_3**2*r_e/r_2**3;  two-scale control R = r_3**2*r_e*theta_x**6/(M_x**6*r_2**3)
+[PASS] K3 L1 symbolic: glued R = r_3**2*r_e/r_2**3 (free of Q, s, pi); two glued scales r_3**2*r_e/r_2**3; control keeps theta/M: True
+
+  W4-05 EiBI: kappa^2 = 8*pi -> R = 4/9 (wt 0; hand 4/9)
+  W4-05 f(R): kappa^2 = 32*sqrt(3)*pi/3 -> R = sqrt(3)/9 (wt 0; hand sqrt(3)/9)
+  W4-01/05 DGP: kappa^2 = 8*pi/3 -> R = 4/3 (wt 0; hand 4/3)
+  W4-07 B1/B2: kappa^2 = 16*pi/3 -> R = 2/3 (wt 0; hand 2/3)
+  W4-19 L1 Zhao: kappa^2 = 8*pi -> R = 4/9 (wt 0; hand 4/9)
+[PASS] K4 H-type routes: every record H-type kappa^2 maps to an algebraic R (wt 0): the thermal failure
+
+  n = 2: Omega_n = 2*pi, wt 1; xi = 8 Omega_n/(9R) has wt 1 for algebraic R, so xi != 1/4
+  n = 3: Omega_n = 4*pi, wt 1; xi = 8 Omega_n/(9R) has wt 1 for algebraic R, so xi != 1/4
+  n = 4: Omega_n = 2*pi**2, wt 2; xi = 8 Omega_n/(9R) has wt 2 for algebraic R, so xi != 1/4
+  n = 5: Omega_n = 8*pi**2/3, wt 2; xi = 8 Omega_n/(9R) has wt 2 for algebraic R, so xi != 1/4
+[PASS] K5 every dimension: wt(Omega_n) = [1, 1, 2, 2] (frozen 1, 1, 2, 2)
+
+L3 (wt eps, wt C3, wt C2) with wt eps + 2 wt C3 - 3 wt C2 = 1, all |w| <= 1: [(-1, 1, 0), (0, -1, -1), (1, 0, 0)]
+[PASS] K6 L3 solutions: [(-1, 1, 0), (0, -1, -1), (1, 0, 0)] (frozen [(1, 0, 0), (-1, 1, 0), (0, -1, -1)])
+[PASS] I1 forbidden constants: hits []
+[PASS] I3 invariances: R under common Z and phi -> s phi; G_n and a0 under phi -> s phi
+I2 symbolic: all R and xi above are sympy expressions.  I4 n/a (no kappa read or output).  I5 no Friedmann matching.
+I6 footing rho_DE (eps = rho_DE c^2).  I7 hbar only in the common Q; no Bekenstein-Hawking 1/4.  I8 weights printed.
+
+VERDICT: FILTER HOLDS (screen only; it selects nothing). kappa = 1/2 FITTED; not theory closed.

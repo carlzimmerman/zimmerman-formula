@@ -110,3 +110,12 @@ thermal ratios 16/5 and 16/15, and the H-type κ² of W4-05, W4-07 and W4-19.
 - **FILTER FAILS** if any of K1–K6 fails. Report it; no screen row.
 
 **Hand expectation:** FILTER HOLDS. A screen is not a selection: it fixes nothing, and passing it is not evidence for ½.
+
+## Appendix (appended 2026-10-20 after the run, before any result commit): renumbered W4-20 → W4-21
+
+Two sessions took W4-20 within 34 s of each other. This file was committed at 21:17:29 (a67f9ed9c); the lattice lane's
+criteria followed at 21:18:03 (5d7db2b16) and that lane finished and was registered first (K744–K746). This lane therefore
+moves to **W4-21** (folder `W4_21_pi_bookkeeping`, script `w4_21.py`, outputs `w4_21*.out/json`, mutation switch
+`W4_21_MUTATE=1`). Every criterion above is unchanged; read "W4-20" and `w4_20` above as W4-21 and `w4_21`. The first run
+(under the W4-20 names) gave FILTER HOLDS and CONTROLS BITE; it is rerun under the new names with no code change other than
+the names.

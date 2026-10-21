@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (743 rows)
+## Totals (747 rows)
 
-- **530 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **531 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **129 produced a number.** 60 produced one determinate value; 69 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -146,7 +146,7 @@ fact.
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 42 | 9 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 64 | 4 | 10 | 50 | 0 | 0 |
 | FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 144 | 9 | 7 | 123 | 5 | 0 |
-| PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 57 | 9 | 12 | 35 | 0 | 0 |
+| PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 58 | 9 | 12 | 36 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
 | QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 28 | 6 | 1 | 21 | 0 | 0 |
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 49 | 2 | 4 | 39 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 106 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 107 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -549,6 +549,9 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K733 | W4-18/B5 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Newton-Hooke (Bohlin-Arnold-Kasner) duality (a+3)(A+3) = 4; deep MOND is the self-dual point | - | nk | EXPONENT-ONLY: dual coupling k = 4h/s^2 carries a free time-reparametrisation scale | 918a2439d |
 | K735 | W4-18/B7 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | lattice of touching horizons (brief X5 light part): single-neighbour pull a_nn^2 = G rho c^2 (V_s/d^3)(G m/(d c^2)), d = 2 r_s | {0.5, 0.4387, 0.4204} | menu | MENU: sc gives exactly 1/2 (pi-free) but densest packing fcc/hcp 0.420 and bcc 0.439, all in W_data; dust lattice (w = 0) not the vacuum; MU3 shows 1/2 is definitional | 918a2439d |
 | K736 | W4-18/B8 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Lambda thresholds x MOND (brief X4 static part): zero-force radius and OSCO for Newton, deep MOND, simple, standard, RAR | - | nk | NO-GO: Newton 2 and 8 rho_Lambda exact; threshold accelerations scale as M^(1/4) or M^(1/3), none M-independent; no c, so none can fix kappa | 918a2439d |
+| K744 | W4-20/V1 | `why_4_puzzle/W4_20_can_the_lattice_be_the_vacuum` | von Laue theorem applied to W4-18's touching-horizon lattice: static self-bound elements (vacuum ball + Laplace-balanced shell) | - | nk | CLOSURE: compressive shell, trace 0, positive active mass; any static self-bound lattice has w_eff = 0 (dust), so the lattice 1/2 cannot be rho_DE | b2da37a28 |
+| K745 | W4-20/V2 | `why_4_puzzle/W4_20_can_the_lattice_be_the_vacuum` | touching-horizon lattice with an assigned element w (active mass m(1+3w)) | - | free | CLOSURE: kappa^2(w) = (1+3w)/4, horizon needs w > -1/3; at w = -1 active mass -2m, no horizon, touching undefined | b2da37a28 |
+| K746 | W4-20/V3 | `why_4_puzzle/W4_20_can_the_lattice_be_the_vacuum` | frozen p-brane networks (solid dark energy, w = -p/3) as the lattice elements | - | nk | CLOSURE: Nambu-Goto string active density 0 (deficit 8piG mu/c^2), wall active -sigma with pull 2piG sigma (pi); no w<0 element keeps a pi-free pull | b2da37a28 |
 
 ## GB: Graviton bath / mode counting
 
@@ -942,6 +945,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K726 | W4-08/unified-induced | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/unified_invariant` | interacting seagull-corrected induced gravity and actual conserved-current covariant frame portals | - | audit | SCOPED CLOSURE: gapped metric functional has no local acceleration cubic; static acceleration connection is pure gauge; chemical-frame workaround alters actual Newton coefficient and total reservoir stress with minimal flat phase-frame instability; curved critical nonlocal microscopic completion remains open | d51647e98 |
 | K727 | W4-08/unified-flux | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/unified_invariant` | six-dimensional Einstein-Maxwell flux sphere with canonical radion positive vacuum full bosonic linear spectrum and physical matter source | - | audit | SCOPED CLOSURE: stable positive vacuum and geometric scalar charge give Yukawa force; exact m_rad^2+9H^2=R_sphere^-2 removes broad 4D subcurvature unscreened window; critical fold is inflection; no operational MOND cubic or quantum UV completion claimed | d51647e98 |
 | K728 | W4-08/unified-function | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/unified_invariant` | single generalized aether function actual dS scalar constraints same-state weak source and opposite-branch deformation | - | audit | SCOPED NONSELECTION: explicit positive dS toy has healthy linear tensor scalar coefficients but linear actual weak force; smooth negative-argument deformation preserves entire positive-argument flat-static MOND law and UV offset while moving vacuum; critical endpoint nonlinear same-state halo and microscopic branch relation remain open | d51647e98 |
+| K747 | W4-21/screen | `why_4_puzzle/W4_21_pi_bookkeeping` | pi bookkeeping for the single-mediator ratio R = eps C3^2/C2^3 (W4-04 target 128pi/9); glued one-scale media | - | audit | SCREEN: if every pi rides with a scale (thermal pi theta, H-type 8piG/3) or a common factor, R is algebraic (1+2-3 = 0), so xi = 8 Omega_n/(9R) carries wt(Omega_n) >= 1 and is never 1/4 in any n; thermal 16/5 and the H-type routes are one failure; necessary condition wt eps + 2 wt C3 - 3 wt C2 = 1, shapes (1,0,0) (-1,1,0) (0,-1,-1); selects nothing | 4682ebfb1 |
 
 ## LN: Logic / Lean formalisations
 
