@@ -1,0 +1,69 @@
+{
+ "mutate": false,
+ "results": {
+  "V1": {
+   "gamma": "-R*c**2*rho/2",
+   "trace": "0",
+   "M_act": "4*pi*R**2*(R*c**2*rho + 3*sigma_s)/(3*c**2)",
+   "w_eff": "0",
+   "dust": true
+  },
+  "V2": {
+   "kappa2_w": "(3*w + 1)/4",
+   "w": -1,
+   "defined": false,
+   "kappa": null
+  },
+  "V3": {
+   "elements": {
+    "p=0 point": {
+     "active": "m",
+     "field": "G*m/r**2",
+     "w_network": "0",
+     "pi_free_nonzero": true
+    },
+    "p=1 string": {
+     "active": "0",
+     "field": "0",
+     "w_network": "-1/3",
+     "pi_free_nonzero": false
+    },
+    "p=2 wall": {
+     "active": "-Sigma",
+     "field": "-2*pi*G*Sigma",
+     "w_network": "-2/3",
+     "pi_free_nonzero": false
+    }
+   },
+   "negative_w_pifree": []
+  }
+ },
+ "lane_verdict": "THE LATTICE 1/2 CANNOT BE THE VACUUM",
+ "checks": [
+  {
+   "name": "K1 von Laue trace = 0 at the static-balance gamma",
+   "detail": "0",
+   "pass": true
+  },
+  {
+   "name": "K2 bare vacuum ball Komar active mass = -2 rho V",
+   "detail": "-8*pi*R**3*rho/3",
+   "pass": true
+  },
+  {
+   "name": "K3 Gauss fields point/line/sheet = G q/r^2, 2 G q/r, 2 pi G q",
+   "detail": "[G*q/r**2, 2*G*q/r, 2*pi*G*q]",
+   "pass": true
+  },
+  {
+   "name": "K4 V2 at w = 0 reproduces W4-18's simple-cubic kappa",
+   "detail": "1/2 vs 1/2",
+   "pass": true
+  },
+  {
+   "name": "I1 forbidden-token scan of the compute block",
+   "detail": "clean",
+   "pass": true
+  }
+ ]
+}

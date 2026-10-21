@@ -7,19 +7,30 @@ The framework's acceleration scale is a₀ = κ c √(G ρ_DE). With κ = ½ the
 Explaining the 4, the 32π, the ¼, Z or κ is one problem. This folder is the puzzle's home: the standing answer, where the
 record sits, and the lanes run here.
 
-## Standing answer (2026-10-20)
+## Standing answer (2026-10-21)
 
 **The 4 is FITTED, not derived.**
 - **The data.** CFG493 measures κ_Λ = 0.417 ± 0.095 and κ_crit = 0.345 ± 0.078 (M/L-insensitive gas routes, shared
   systematics included). So ½ sits at 0.8σ, and 1/κ² = 4 is not pinned: today's 2σ window allows 1/κ² from about 2.7 to 19.
+  Two independent routes since then agree with ½:
+  - KiDS isolated blue lenses give 0.520 ± 0.091 ± 0.235 (W4-06).
+  - H₀-free TRGB gas dwarfs give 0.557 (p64 B).
+  Early-type lenses need a heavier IMF to match (W4-10).
 - **Why the data cannot decide yet.** To tell ½ from the recurring 0.461 (Z = 2π) needs a₀ to ≤ 2.8%, against a 9.3%
   shared-systematics floor.
-- **The theory.** About 440 derivation attempts are on record (`campaign_fresh_gravity/CFG894_kappa_campaign_ledger/`).
+- **The theory.** Over 500 derivation and selection attempts are on record (`campaign_fresh_gravity/CFG894_kappa_campaign_ledger/`).
   None gives ½ without putting it in.
   - The census of every place c meets a₀ in the record (CFG891) finds no equation that yields exact ½ unless ½ or its
     premise is written in.
   - The constructive lane (CFG911) reduces what is missing to one statement. A bare-G portal a₀² = ξ G ε_DE is π-free, but ξ
     is free. **The 4 still has to come from somewhere named.**
+  - This folder's lanes (W4-01 to W4-20) add every remaining gravity, dark-energy and symmetry class, nine exact numbers
+    borrowed from outside gravity, and the published literature beyond lane E. None selects ½.
+  - **The only π-free ½ ever produced** is a simple-cubic lattice of touching horizons (W4-18). It is a lattice-choice menu
+    (densest packing gives 0.420), and it **cannot be the vacuum** (W4-20):
+    - static self-bound elements gravitate as dust (von Laue);
+    - a w = −1 element has no horizon to touch;
+    - no w < 0 brane network keeps a π-free pull.
 
 ## The walls any answer must clear (KAPPA_DOORS.md)
 
@@ -52,8 +63,8 @@ independent second prediction to reach 3σ.
   - S10, coset / nonlinear realisation (κ = √2, refuted at 21σ);
   - S8, horizon thermodynamics.
 - **The 32π campaign.** `sonnet55_push/puzzle_32pi/README.md`, §1–70.
-- **Still registered and unrun: p63 (a₀ as a field).** It belongs to the "32pi squared puzzle" chat, which also holds the
-  KAPPA_LOGIC Lean file and the measured-κ provenance audit. Do not duplicate it.
+- **p63 (a₀ as a field), the 32π chat's lane, was run on 2026-10-20 on the owner's order (5df0e1cd8): NARROWED.** That chat
+  also holds the KAPPA_LOGIC Lean file (its compile waits for NC2x) and the measured-κ provenance audit.
 
 ## Lanes in this folder
 
@@ -78,6 +89,8 @@ independent second prediction to reach 3σ.
 | [W4-17](W4_17_single_normalization_test/README.md) | Is the within-galaxy a₀ residual one M/L normalisation error? Do the gap, slope and radial split vanish at one Υ*? | **Population: yes**, s and Δ_r vanish at Υ* 0.48 / 0.59, at population-synthesis M/L. **p64's 11 mixed galaxies: no**, the gap survives any Υ ≤ 1.4 (gradient-like). This corrects W4-14–16's population-wide 'outward decline'. Signature directions were calibrated on planted worlds before freezing. |
 | [W4-18](W4_18_borrowed_exact_numbers/README.md) | Exact numbers borrowed from outside gravity (Mathieu ¼, Fisher–KPP 2, Hardy/BF ¼, Eddington π cancellation, Newton–Hooke duality, mean-field ratios, lattices of touching horizons, Λ thresholds × MOND, Maxwellian √π) | **MENU ONLY.** The record's only π-free ½ is a simple-cubic lattice of touching horizons, but densest packing gives 0.420 and bcc 0.439 (all in window; a dust lattice, not the vacuum). B1–B3 are π-odd at 1.4–5.8; B4/B9 void at w = −1; B5 exponent-only; B8 has no c and no M-independent threshold. |
 | [W4-19](W4_19_literature_addendum/README.md) | Published a₀–Λ relations missing from the register (outside lane E's table) | **NOTHING NEW.** Six works without a row (Zhao 2008, Maeder 2023, van Putten 2017, Luo 2026, Navarro–Van Acoleyen 2006, Funkhouser 2006): all π-odd, Ω-dependent or free. Zhao's ρ_Λc² = a₀²/8πG misses the framework's 4a₀²/G by exactly 32π; Maeder's 0.410 is in window but evolves with Ω_Λ. |
+| [W4-20](W4_20_pi_bookkeeping/README.md) | π bookkeeping for W4-04's target R = εC₃²/C₂³ = 128π/9: which media can never reach it? (screen lane) | **FILTER HOLDS.** A medium whose π's all ride with a scale (thermal πθ, H-type 8πG/3) gives an algebraic R (1 + 2 − 3 = 0 cancels scale and π), so ξ = 8Ω_n/(9R) is never ¼ in any n. The thermal 16/5, 16/15 and the H-type R = 4/9, √3/9, 4/3, 2/3 are one failure. Necessary condition wt ε + 2 wt C₃ − 3 wt C₂ = 1: shapes (1,0,0), (−1,1,0), (0,−1,−1). Selects nothing. |
+| [W4-20](W4_20_can_the_lattice_be_the_vacuum/README.md) | Can the touching-horizon lattice (the only π-free ½) be the vacuum? (von Laue, assigned w, brane networks) | **THE LATTICE ½ CANNOT BE THE VACUUM.** Static self-bound elements gravitate as dust (von Laue; a vacuum ball needs a compressive shell). At w = −1 there is no horizon to touch, since κ²(w) = (1+3w)/4. Strings have zero active density and walls push with 2πGσ (π), so no w < 0 element keeps a π-free pull. |
 
 ## What would change the answer
 
@@ -96,6 +109,6 @@ Follow `KAPPA_CAMPAIGN_RULES.md`:
 3. Run a light single-core script (nothing beside a live 1024³ job beyond that).
 4. Append one register row per attempt to CFG894's CSV, then rerun `kappa_campaign_lee.py`.
 
-Name lanes W4-20, W4-21, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
+Name lanes W4-21, W4-22, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
 
 κ = ½ FITTED. Not theory closed.
