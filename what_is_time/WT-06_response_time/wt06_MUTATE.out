@@ -1,0 +1,209 @@
+WT-06: response time of the extra pull after a sudden baryon change
+  criteria f11ca13c3; kappa = 1/2 FITTED; footings never pooled; Z = 5.7888; not theory closed; MUTATE=True; SMOKE=False
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2
+
+(a) DERIVATION (sympy)
+  S0 D_full = u + R(u), R = u^2/(a0-u)                         : True
+  S1 chi' = G M_c(<r)/r^2 solves D^2 chi = K rho_c; no M_b in it : True / True  (Phi: True)
+  S2 parent force on a medium marker = R(u) - g_N              : True
+  S3 omega^2 = 2 u R'(u)/r + dg_N/dr; R' = u(2a0-u)/(a0-u)^2     : True / True
+  S3 deep point mass: omega^2 = 2 g_N/r, (omega t_dyn)^2 = 2 g_N/g: True / True
+  S4 drift rate Gamma = alpha tau 4 pi G rho_ph                 : True
+  S5 parent + drift: s^2 + Gamma s + omega^2 = 0                 : True
+  S7 gradual loss over T: peak residual x (1 - e^-GT)/(G T)      : True
+  Reading: the extra pull on baryons and light is u = chi' = G M_c(<r)/r^2, the medium's own Newtonian pull. chi has no
+  baryon source, so at t = 0+ the extra pull is EXACTLY unchanged; only the medium's motion can change it. The field part
+  (Phi, chi) is a constraint: Phi re-forms at c (time r/c), chi instantly in the medium frame. The mass part moves under
+  R(u) - g_N: self-gravity cancelled, restoring force from the baryons only.
+
+PROFILES (spherical-equivalent SPARC baryons, Upsilon 0.61, PCHIP; r^3 inside, constant outside)
+  NGC3198  canonical cells 2Rd/5Rd/RHI = 6.28, 15.70, 35.66 kpc; t_dyn = 41.2, 97.6, 219.1 Myr; gas share of M_b = 0.008, 0.150, 0.417; g_N/a0 = 0.674, 0.192, 0.049
+  NGC3198  alt       cells 2Rd/5Rd/RHI = 6.28, 15.70, 35.66 kpc; t_dyn = 40.0, 94.0, 210.0 Myr; gas share of M_b = 0.008, 0.150, 0.417; g_N/a0 = 0.557, 0.159, 0.040
+  NGC3198: law phantom mass monotone (positive rho_ph) from 0.01 R_d: True
+  DDO154   canonical cells 2Rd/5Rd/RHI = 0.74, 1.85, 4.96 kpc; t_dyn = 27.9, 50.4, 101.4 Myr; gas share of M_b = 0.198, 0.657, 0.908; g_N/a0 = 0.076, 0.047, 0.022
+  DDO154   alt       cells 2Rd/5Rd/RHI = 0.74, 1.85, 4.96 kpc; t_dyn = 26.7, 48.3, 97.1 Myr; gas share of M_b = 0.198, 0.657, 0.908; g_N/a0 = 0.063, 0.039, 0.018
+  DDO154: law phantom mass monotone (positive rho_ph) from 0.01 R_d: True
+
+K1a static limit of the parent (identity: R is built from the law; this checks the code)
+  [FAIL] K1a_static_limit_is_law: max |g/g_law - 1| over SPARC radii of both systems, both footings = 2.50e-01 (line 1e-12)
+
+K3 clocks: single marker, linear displacement 1e-5 r, NGC 3198 canonical, f = 0 field (MU3 flips the drift sign)
+    2Rd M-I          pred s t_dyn = +0.0000+1.8439i, +0.0000-1.8439i  rel err 4.6e-01 (line 0.005) FAIL
+    2Rd M-D(0.5)     pred s t_dyn = -0.3199+0.0000i  rel err inf (line 0.005) FAIL
+    2Rd M-D(1.186)   pred s t_dyn = -0.7588+0.0000i  rel err inf (line 0.005) FAIL
+    2Rd M-ID(0.5)    pred s t_dyn = -0.1600+1.8370i, -0.1600-1.8370i  rel err inf (line 0.01) FAIL
+    2Rd M-ID(1.186)  pred s t_dyn = -0.3794+1.8045i, -0.3794-1.8045i  rel err inf (line 0.01) FAIL
+    5Rd M-I          pred s t_dyn = +0.0000+1.0441i, +0.0000-1.0441i  rel err 3.1e-01 (line 0.005) FAIL
+    5Rd M-D(0.5)     pred s t_dyn = -0.4432+0.0000i  rel err inf (line 0.005) FAIL
+    5Rd M-D(1.186)   pred s t_dyn = -1.0514+0.0000i  rel err inf (line 0.005) FAIL
+    5Rd M-ID(0.5)    pred s t_dyn = -0.2216+1.0203i, -0.2216-1.0203i  rel err inf (line 0.01) FAIL
+    5Rd M-ID(1.186)  pred s t_dyn = -0.5257+0.9021i, -0.5257-0.9021i  rel err inf (line 0.01) FAIL
+  [FAIL] K3_clocks_match_sympy: M-I period, M-D rate, M-ID roots vs the derived formulas (lines 0.5% / 0.5% / 1%)
+  linear clocks at NGC 3198 (canonical): omega t_dyn = 1.844 (2Rd), 1.044 (5Rd); deep-point-mass sqrt(2gN/g) = 1.049, 0.840; Gamma t_dyn / alpha = 0.640, 0.886
+
+(b) B-F SHELL RUNS (baryons frozen after the blowout; N_c = 2000 medium markers; T_max = 60 t_dyn(5Rd))  [MU1: all readings replaced by MOND-I]
+  DDO154: 30 rows, N = 2003, dt = 0.1615 Myr, T_max = 3022 Myr, 18711 steps, wall 0 s; max u/a0 0.000; rows with shell crossing at end 0/30
+  NGC3198: 30 rows, N = 2003, dt = 0.0873 Myr, T_max = 5859 Myr, 67113 steps, wall 0 s; max u/a0 0.000; rows with shell crossing at end 0/30
+
+CELL RESULTS (B-F). D in dex of g; D_V = D/2 in dex of V_c; times in Myr and in t_dyn(r); '>' = censored at T_max
+  DDO154  M-I         canonical f=0.2 2Rd r=  0.74 t_dyn=  27.9  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-I         canonical f=0.2 5Rd r=  1.85 t_dyn=  50.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-I         canonical f=0.2 RHI r=  4.96 t_dyn= 101.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-I         canonical f=0.5 2Rd r=  0.74 t_dyn=  27.9  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-I         canonical f=0.5 5Rd r=  1.85 t_dyn=  50.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-I         canonical f=0.5 RHI r=  4.96 t_dyn= 101.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-I         alt       f=0.2 2Rd r=  0.74 t_dyn=  26.7  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-I         alt       f=0.2 5Rd r=  1.85 t_dyn=  48.3  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-I         alt       f=0.2 RHI r=  4.96 t_dyn=  97.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-I         alt       f=0.5 2Rd r=  0.74 t_dyn=  26.7  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-I         alt       f=0.5 5Rd r=  1.85 t_dyn=  48.3  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-I         alt       f=0.5 RHI r=  4.96 t_dyn=  97.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(0.5)    canonical f=0.2 2Rd r=  0.74 t_dyn=  27.9  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(0.5)    canonical f=0.2 5Rd r=  1.85 t_dyn=  50.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(0.5)    canonical f=0.2 RHI r=  4.96 t_dyn= 101.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(0.5)    canonical f=0.5 2Rd r=  0.74 t_dyn=  27.9  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(0.5)    canonical f=0.5 5Rd r=  1.85 t_dyn=  50.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(0.5)    canonical f=0.5 RHI r=  4.96 t_dyn= 101.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(0.5)    alt       f=0.2 2Rd r=  0.74 t_dyn=  26.7  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(0.5)    alt       f=0.2 5Rd r=  1.85 t_dyn=  48.3  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(0.5)    alt       f=0.2 RHI r=  4.96 t_dyn=  97.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(0.5)    alt       f=0.5 2Rd r=  0.74 t_dyn=  26.7  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(0.5)    alt       f=0.5 5Rd r=  1.85 t_dyn=  48.3  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(0.5)    alt       f=0.5 RHI r=  4.96 t_dyn=  97.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(1.186)  canonical f=0.2 2Rd r=  0.74 t_dyn=  27.9  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(1.186)  canonical f=0.2 5Rd r=  1.85 t_dyn=  50.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(1.186)  canonical f=0.2 RHI r=  4.96 t_dyn= 101.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(1.186)  canonical f=0.5 2Rd r=  0.74 t_dyn=  27.9  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(1.186)  canonical f=0.5 5Rd r=  1.85 t_dyn=  50.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(1.186)  canonical f=0.5 RHI r=  4.96 t_dyn= 101.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(1.186)  alt       f=0.2 2Rd r=  0.74 t_dyn=  26.7  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(1.186)  alt       f=0.2 5Rd r=  1.85 t_dyn=  48.3  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(1.186)  alt       f=0.2 RHI r=  4.96 t_dyn=  97.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(1.186)  alt       f=0.5 2Rd r=  0.74 t_dyn=  26.7  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(1.186)  alt       f=0.5 5Rd r=  1.85 t_dyn=  48.3  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-D(1.186)  alt       f=0.5 RHI r=  4.96 t_dyn=  97.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(0.5)   canonical f=0.2 2Rd r=  0.74 t_dyn=  27.9  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(0.5)   canonical f=0.2 5Rd r=  1.85 t_dyn=  50.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(0.5)   canonical f=0.2 RHI r=  4.96 t_dyn= 101.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(0.5)   canonical f=0.5 2Rd r=  0.74 t_dyn=  27.9  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(0.5)   canonical f=0.5 5Rd r=  1.85 t_dyn=  50.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(0.5)   canonical f=0.5 RHI r=  4.96 t_dyn= 101.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(0.5)   alt       f=0.2 2Rd r=  0.74 t_dyn=  26.7  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(0.5)   alt       f=0.2 5Rd r=  1.85 t_dyn=  48.3  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(0.5)   alt       f=0.2 RHI r=  4.96 t_dyn=  97.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(0.5)   alt       f=0.5 2Rd r=  0.74 t_dyn=  26.7  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(0.5)   alt       f=0.5 5Rd r=  1.85 t_dyn=  48.3  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(0.5)   alt       f=0.5 RHI r=  4.96 t_dyn=  97.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(1.186) canonical f=0.2 2Rd r=  0.74 t_dyn=  27.9  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(1.186) canonical f=0.2 5Rd r=  1.85 t_dyn=  50.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(1.186) canonical f=0.2 RHI r=  4.96 t_dyn= 101.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(1.186) canonical f=0.5 2Rd r=  0.74 t_dyn=  27.9  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(1.186) canonical f=0.5 5Rd r=  1.85 t_dyn=  50.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(1.186) canonical f=0.5 RHI r=  4.96 t_dyn= 101.4  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(1.186) alt       f=0.2 2Rd r=  0.74 t_dyn=  26.7  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(1.186) alt       f=0.2 5Rd r=  1.85 t_dyn=  48.3  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(1.186) alt       f=0.2 RHI r=  4.96 t_dyn=  97.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(1.186) alt       f=0.5 2Rd r=  0.74 t_dyn=  26.7  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(1.186) alt       f=0.5 5Rd r=  1.85 t_dyn=  48.3  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  DDO154  M-ID(1.186) alt       f=0.5 RHI r=  4.96 t_dyn=  97.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-I         canonical f=0.2 2Rd r=  6.28 t_dyn=  41.2  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-I         canonical f=0.2 5Rd r= 15.70 t_dyn=  97.6  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-I         canonical f=0.2 RHI r= 35.66 t_dyn= 219.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-I         canonical f=0.5 2Rd r=  6.28 t_dyn=  41.2  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-I         canonical f=0.5 5Rd r= 15.70 t_dyn=  97.6  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-I         canonical f=0.5 RHI r= 35.66 t_dyn= 219.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-I         alt       f=0.2 2Rd r=  6.28 t_dyn=  40.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-I         alt       f=0.2 5Rd r= 15.70 t_dyn=  94.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-I         alt       f=0.2 RHI r= 35.66 t_dyn= 210.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-I         alt       f=0.5 2Rd r=  6.28 t_dyn=  40.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-I         alt       f=0.5 5Rd r= 15.70 t_dyn=  94.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-I         alt       f=0.5 RHI r= 35.66 t_dyn= 210.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(0.5)    canonical f=0.2 2Rd r=  6.28 t_dyn=  41.2  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(0.5)    canonical f=0.2 5Rd r= 15.70 t_dyn=  97.6  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(0.5)    canonical f=0.2 RHI r= 35.66 t_dyn= 219.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(0.5)    canonical f=0.5 2Rd r=  6.28 t_dyn=  41.2  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(0.5)    canonical f=0.5 5Rd r= 15.70 t_dyn=  97.6  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(0.5)    canonical f=0.5 RHI r= 35.66 t_dyn= 219.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(0.5)    alt       f=0.2 2Rd r=  6.28 t_dyn=  40.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(0.5)    alt       f=0.2 5Rd r= 15.70 t_dyn=  94.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(0.5)    alt       f=0.2 RHI r= 35.66 t_dyn= 210.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(0.5)    alt       f=0.5 2Rd r=  6.28 t_dyn=  40.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(0.5)    alt       f=0.5 5Rd r= 15.70 t_dyn=  94.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(0.5)    alt       f=0.5 RHI r= 35.66 t_dyn= 210.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(1.186)  canonical f=0.2 2Rd r=  6.28 t_dyn=  41.2  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(1.186)  canonical f=0.2 5Rd r= 15.70 t_dyn=  97.6  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(1.186)  canonical f=0.2 RHI r= 35.66 t_dyn= 219.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(1.186)  canonical f=0.5 2Rd r=  6.28 t_dyn=  41.2  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(1.186)  canonical f=0.5 5Rd r= 15.70 t_dyn=  97.6  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(1.186)  canonical f=0.5 RHI r= 35.66 t_dyn= 219.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(1.186)  alt       f=0.2 2Rd r=  6.28 t_dyn=  40.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(1.186)  alt       f=0.2 5Rd r= 15.70 t_dyn=  94.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(1.186)  alt       f=0.2 RHI r= 35.66 t_dyn= 210.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(1.186)  alt       f=0.5 2Rd r=  6.28 t_dyn=  40.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(1.186)  alt       f=0.5 5Rd r= 15.70 t_dyn=  94.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-D(1.186)  alt       f=0.5 RHI r= 35.66 t_dyn= 210.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(0.5)   canonical f=0.2 2Rd r=  6.28 t_dyn=  41.2  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(0.5)   canonical f=0.2 5Rd r= 15.70 t_dyn=  97.6  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(0.5)   canonical f=0.2 RHI r= 35.66 t_dyn= 219.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(0.5)   canonical f=0.5 2Rd r=  6.28 t_dyn=  41.2  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(0.5)   canonical f=0.5 5Rd r= 15.70 t_dyn=  97.6  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(0.5)   canonical f=0.5 RHI r= 35.66 t_dyn= 219.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(0.5)   alt       f=0.2 2Rd r=  6.28 t_dyn=  40.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(0.5)   alt       f=0.2 5Rd r= 15.70 t_dyn=  94.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(0.5)   alt       f=0.2 RHI r= 35.66 t_dyn= 210.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(0.5)   alt       f=0.5 2Rd r=  6.28 t_dyn=  40.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(0.5)   alt       f=0.5 5Rd r= 15.70 t_dyn=  94.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(0.5)   alt       f=0.5 RHI r= 35.66 t_dyn= 210.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(1.186) canonical f=0.2 2Rd r=  6.28 t_dyn=  41.2  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(1.186) canonical f=0.2 5Rd r= 15.70 t_dyn=  97.6  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(1.186) canonical f=0.2 RHI r= 35.66 t_dyn= 219.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(1.186) canonical f=0.5 2Rd r=  6.28 t_dyn=  41.2  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(1.186) canonical f=0.5 5Rd r= 15.70 t_dyn=  97.6  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(1.186) canonical f=0.5 RHI r= 35.66 t_dyn= 219.1  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(1.186) alt       f=0.2 2Rd r=  6.28 t_dyn=  40.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(1.186) alt       f=0.2 5Rd r= 15.70 t_dyn=  94.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(1.186) alt       f=0.2 RHI r= 35.66 t_dyn= 210.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(1.186) alt       f=0.5 2Rd r=  6.28 t_dyn=  40.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(1.186) alt       f=0.5 5Rd r= 15.70 t_dyn=  94.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+  NGC3198 M-ID(1.186) alt       f=0.5 RHI r= 35.66 t_dyn= 210.0  D_V(0+)=+0.0000  t50=    0.0 Myr (0.00 t_dyn)  t90=    0.0 Myr (0.00 t_dyn)  peak|D_V|=0.0000 min D_V=+0.0000 longest>=0.05: 0 Myr (from >Tmax); late |D_V| 0.0000; crossing near cell from >Tmax Myr
+
+V1 LAG CLASS (cells: 2 systems x 2 footings x {2Rd, 5Rd} x f {0.2, 0.5}; L = t90 in t_dyn)
+  M-I        : INSTANT          L in [0.00, 0.00] t_dyn; t50 in [0.00, 0.00] t_dyn  (n = 16)
+  M-D(0.5)   : INSTANT          L in [0.00, 0.00] t_dyn; t50 in [0.00, 0.00] t_dyn  (n = 16)
+  M-D(1.186) : INSTANT          L in [0.00, 0.00] t_dyn; t50 in [0.00, 0.00] t_dyn  (n = 16)
+  M-ID(0.5)  : INSTANT          L in [0.00, 0.00] t_dyn; t50 in [0.00, 0.00] t_dyn  (n = 16)
+  M-ID(1.186): INSTANT          L in [0.00, 0.00] t_dyn; t50 in [0.00, 0.00] t_dyn  (n = 16)
+  OVERALL (mass part): INSTANT
+  FIELD PART (Phi re-forms at c; chi has no baryon source): max (r/c)/t_dyn = 5.45e-04 -> INSTANT
+  M-I        : cells whose t90 lies after shell crossing near the cell (single-stream EFT ended; report only): 0/16
+  M-D(0.5)   : cells whose t90 lies after shell crossing near the cell (single-stream EFT ended; report only): 0/16
+  M-D(1.186) : cells whose t90 lies after shell crossing near the cell (single-stream EFT ended; report only): 0/16
+  M-ID(0.5)  : cells whose t90 lies after shell crossing near the cell (single-stream EFT ended; report only): 0/16
+  M-ID(1.186): cells whose t90 lies after shell crossing near the cell (single-stream EFT ended; report only): 0/16
+  [FAIL] LAG_DETECTED_in_every_reading: t_50 > 0 in every reading cell (result check; MU1's tooth)
+
+V2 RELATION TO CFG763 / CFG764 (tau_resp = t50/ln 2)
+  M-I        : CFG764 INCONSISTENT-FASTER    (DIFFERENT PHYSICS); tau/t_orb in [0.000, 0.000] vs [0.457/0.525, 1.196]
+               CFG763 INCONSISTENT-FASTER    (DIFFERENT PHYSICS); tau in [0.0000, 0.0000] Gyr vs [0.724/0.832, 3.474]
+  M-D(0.5)   : CFG764 INCONSISTENT-FASTER    (DIFFERENT PHYSICS); tau/t_orb in [0.000, 0.000] vs [0.457/0.525, 1.196]
+               CFG763 INCONSISTENT-FASTER    (DIFFERENT PHYSICS); tau in [0.0000, 0.0000] Gyr vs [0.724/0.832, 3.474]
+  M-D(1.186) : CFG764 INCONSISTENT-FASTER    (DIFFERENT PHYSICS); tau/t_orb in [0.000, 0.000] vs [0.457/0.525, 1.196]
+               CFG763 INCONSISTENT-FASTER    (DIFFERENT PHYSICS); tau in [0.0000, 0.0000] Gyr vs [0.724/0.832, 3.474]
+  M-ID(0.5)  : CFG764 INCONSISTENT-FASTER    (DIFFERENT PHYSICS); tau/t_orb in [0.000, 0.000] vs [0.457/0.525, 1.196]
+               CFG763 INCONSISTENT-FASTER    (DIFFERENT PHYSICS); tau in [0.0000, 0.0000] Gyr vs [0.724/0.832, 3.474]
+  M-ID(1.186): CFG764 INCONSISTENT-FASTER    (DIFFERENT PHYSICS); tau/t_orb in [0.000, 0.000] vs [0.457/0.525, 1.196]
+               CFG763 INCONSISTENT-FASTER    (DIFFERENT PHYSICS); tau in [0.0000, 0.0000] Gyr vs [0.724/0.832, 3.474]
+
+V3 OBSERVABILITY (|D_V| >= 0.05 dex continuously >= 100 Myr; cells incl. R_HI)
+  M-I        : NOT OBSERVABLE  largest peak |D_V| 0.0000 dex (DDO154 canonical f=0.2 2Rd); longest >= 0.05: 0 Myr; >= 0.02: 0 Myr
+  M-D(0.5)   : NOT OBSERVABLE  largest peak |D_V| 0.0000 dex (DDO154 canonical f=0.2 2Rd); longest >= 0.05: 0 Myr; >= 0.02: 0 Myr
+  M-D(1.186) : NOT OBSERVABLE  largest peak |D_V| 0.0000 dex (DDO154 canonical f=0.2 2Rd); longest >= 0.05: 0 Myr; >= 0.02: 0 Myr
+  M-ID(0.5)  : NOT OBSERVABLE  largest peak |D_V| 0.0000 dex (DDO154 canonical f=0.2 2Rd); longest >= 0.05: 0 Myr; >= 0.02: 0 Myr
+  M-ID(1.186): NOT OBSERVABLE  largest peak |D_V| 0.0000 dex (DDO154 canonical f=0.2 2Rd); longest >= 0.05: 0 Myr; >= 0.02: 0 Myr
+  OVERALL: NOT OBSERVABLE
+
+MUTATE TEETH
+  MU1 (medium removed -> MOND-I): lag check FAILS and every class INSTANT: True
+  MU2 (deep tether R = u^2/a0): K1a FAILS: True
+  MU3 (drift sign flipped): K3 M-D clock FAILS: True
+  ALL TEETH BITE

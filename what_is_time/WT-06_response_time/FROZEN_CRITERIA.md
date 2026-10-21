@@ -190,3 +190,73 @@ Before freezing I estimated by hand only scalings (no code run, no cell number c
   OBSERVABLE. The 0.05 dex / 100 Myr threshold follows the lane brief's example and was not tuned to that estimate.
 
 No WT-01 to WT-05 output was read.
+
+## Amendment A1 (2026-10-21, post hoc; report only, no class weight; no rule, cell, reading or threshold changed)
+
+A code-test smoke run, before the official run, was written to the scratchpad and not kept. It used T_max = 6 t_dyn(5 R_d) with
+the same dt and N_c. It showed the M-I reading at DDO 154 R_HI, f = 0.5, holding |D_V| ≥ 0.05 dex for 89 Myr (canonical) and
+95 Myr (alt), against V3's 100 Myr line.
+
+A near-line FAIL must be checked as hard as a pass. The script therefore adds a fragility probe:
+- those two rows are rerun with N_c × 2 and with dt / 2, and the longest stretch is printed;
+- V3's class is still set by the frozen rule on the primary run;
+- if any probe reaches 100 Myr, the README labels V3 FRAGILE.
+
+The smoke run also showed the other classes. The official run applies the frozen rules unchanged.
+
+## Amendment A2 (2026-10-21, post hoc, after the first full run; script and reporting only, no rule changed)
+
+The first full run was stopped during the report-only B-L variant, after V1–V3, K4 and A1 had printed. Its outputs are kept as
+`wt06_firstrun_A1trunc.out` and `wt06_results_firstrun_A1trunc.json`.
+
+1. **A1 probe bug (mine).** It ran at T_max = 10 t_dyn(5 R_d) instead of the primary's 60. On the full primary run, V3's hit is a
+   *later* stretch: M-I at DDO 154 R_HI, f = 0.5, |D_V| ≥ 0.05 dex for 290 / 311 Myr. The truncated probe could not see that
+   stretch, and its 89 / 95 Myr are the first stretch only, so the first run's "FRAGILE" label is void.
+   - The probe now runs at the full T_max.
+   - It adds outer edge × 2 and inner edge / 2 to N_c × 2 and dt / 2, because R_HI is the cell nearest the outer edge.
+   - Rule restated for the case the primary now presents: V3 is FRAGILE if any probe lands on the other side of the 100 Myr line
+     from the primary.
+2. **K4's frozen consequence was not coded.** §6 says a reading whose K4 rerun differs is reported as UNRESOLVED. The script now
+   applies this after K4 and prints V1 both before and after it. K4 itself is unchanged and still fails as frozen if a rerun
+   differs.
+3. **Reporting only.** Each cell also prints the start time of its longest ≥ 0.05 dex stretch and the largest |D_V| in the last 10%
+   of the run, to show ringing against settling.
+
+## Amendment A3 (2026-10-21, after WT-02 landed; citation and scope only; no rule, cell, reading or number changed)
+
+WT-02 (`what_is_time/WT-02_preferred_time/README.md`; criteria b85749d1c, README 9b3d77382) is cited, not re-derived. Three of
+its findings bear on this lane.
+
+1. **Static medium.** CFG938's χ and λ equations are elliptic, so χ responds instantly on the medium's slices. The medium sound
+   speed is c_s ≤ 104 km/s (2.3 km/s at L* = 24 pc). This agrees independently with this lane's S1 (χ has no baryon source;
+   field part instant; mass part flow-limited). This lane's toy is the static weak-field limit of a bound system; the stiffness
+   term is off (L* → 0, §3).
+2. **Expanding or contracting medium.** The S1d term −3Hχ̇ makes χ forward-parabolic and λ backward-parabolic, which is
+   Hadamard ill-posed. If λ is posed with final data, the response smears or anticipates over τ_k = 3Hr²/c²: 0.22 yr at 10 kpc.
+   - At this lane's cells (0.74–35.7 kpc), τ_k is below ~3 yr, against lags of tens to thousands of Myr.
+   - It is stated here as a scope condition: this lane does not use the parent off a static background.
+   - The ill-posedness itself is WT-02's flag for the parent, not something this lane resolves.
+3. **Moving medium.** A medium moving at v relative to the cosmic frame sees an extra uniform field u_v = (Ω_c H₀/2) v
+   = 2.888e-19 s⁻¹ × v. This is about 1.1e-3 a0 at 370 km/s.
+   - The settling flow itself creates such a field. Relative to the residual Δu it rides on, it is ≈ (Ω_c H₀/2)/ω for M-I and
+     ≈ (Ω_c H₀/2)ατ for the drift readings.
+   - Both are an H₀-scale rate over a galaxy-scale rate, ≲ 3e-3 at every cell (ω, 1/τ ≳ 1e-16 s⁻¹).
+   - This is a one-line estimate, not computed by wt06.py, and it is reported as a caveat only.
+   - The galaxy's own bulk motion through the cosmic frame (~1e-3 a0, uniform) is not modelled.
+
+## Amendment A4 (2026-10-21, post hoc, after run 2; diagnostics and reporting only, no rule changed)
+
+Run 2 (`wt06_run2.out`, `wt06_results_run2.json`) gave the classes and numbers shown there. Two things it did not record:
+- run_BF's diagnostics were not stored in the JSON;
+- it did not say when shell crossing starts.
+
+In the M-I reading 4 of 30 rows per system end with crossed shells. CFG938's parent is a single-stream EFT (its condition 5), so a
+number taken after crossing near a cell is outside the parent's stated domain.
+
+The script now records the following, report only:
+- the first output time at which any medium marker leaves its initial radial order;
+- the radius range of the markers involved;
+- per cell, the first time a crossed marker lies within a factor 1.25 of the cell radius.
+
+V1 and V3 print, report only, whether each t_90 or V3 stretch lies before or after that onset. The final outputs (`wt06.out`,
+`wt06_results.json`, MUTATE) all come from this final script.
