@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """CFG942 shared machinery (FROZEN_CRITERIA.md, 556c36582): seal and plan hashes, CFG571's functions executed read-only,
 frozen-table transcription, cube I/O, moment maps and masks, translated-mask apertures, beam-convolved 2D Gaussian fit,
-thin-disc cube model and fit, MOCK cube generation.  Nothing here writes into another lane.
+thin-disc cube model and fit, MOCK cube generation.  Nothing here writes into another lane, except the release-day copy of a
+real-cube run into the plan's directory that the owner's CLARIFICATION_2026-10-21 (A-X7, commit 35ea5e1be) asks for.
 kappa = 1/2 FITTED; footings never pooled; not theory closed."""
 import os, sys, json, math, hashlib, subprocess, re, resource
 sys.dont_write_bytecode = True
@@ -35,8 +36,14 @@ FROZEN = [
     ("CFG778 seal", "campaign_fresh_gravity/CFG778_sealed_event_horizon_branch/SEALED_EVENT_HORIZON.json", "aac6ddd23"),
     ("THEORY_CANONICAL 10-14", "campaign_fresh_gravity/THEORY_CANONICAL_2026-10-14.md", "b7356ac57"),
     ("KMOS3D catalogue (U4 position, axis ratio)", "data_assembly/kmos3d_phibss/kmos3d_catalog.csv", None),
+    # owner clarifications of 2026-10-21 (written before any data); appended so the indices above are unchanged
+    ("U4 clarification 10-21 (CFG806 dir)", "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md", "35ea5e1be"),
+    ("GS4 clarification 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md", "35ea5e1be"),
 ]
 SEAL_HASH_EXPECT = "be27457db6bad870a734c52d2bad92c6669cde53ca7a81553e79154dbedc3714"
+CLAR_COMMIT = "35ea5e1be"
+U4_CLAR = "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md"
+GS4_CLAR = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md"
 
 
 # ------------------------------------------------------------------------------------------------ run bookkeeping
@@ -146,6 +153,53 @@ def verify_frozen(run):
     run.check("K1 THEORY_CANONICAL_2026-10-14.md sha256 == its .sha256 file", tc == tq, tc[:16] + "…")
     res["sealed_json_sha256"] = seal
     return res
+
+
+# ------------------------------------------------------------------------------------------------ clarification 2026-10-21 bookkeeping
+def harness_sha256(script):
+    """sha256 of the harness files that produced a run (recorded in every results JSON; CLARIFICATION A-X6 / A-X7)"""
+    return {os.path.basename(p): sha256_file(p) for p in (os.path.abspath(script), os.path.join(HERE, "cfg942_common.py"))}
+
+
+def announce_clarification(run, rel, script):
+    """print the clarification in force (file and commit) and the harness sha256; returns the entries for the results JSON"""
+    h = harness_sha256(script)
+    run.P(f"Clarification in force: {rel} (owner decision before any data; commit {CLAR_COMMIT}). The frozen plan is not edited.")
+    run.P("harness sha256: " + "; ".join(f"{k} {v}" for k, v in h.items()))
+    return dict(clarification=dict(file=rel, commit=CLAR_COMMIT, sha256=sha256_file(os.path.join(REPO, rel))), harness_sha256=h)
+
+
+def cube_object(path):
+    """the OBJECT keyword of a cube; the harness's MOCK cubes carry 'MOCK'"""
+    hl, h = _hdu(path); o = str(h.header.get("OBJECT", "")); hl.close()
+    return o
+
+
+def release_copy(src_dir, slug, dest_dir, base):
+    """release day only (a real cube): copy <slug>.out and <slug>_results.json byte for byte to <dest_dir>/<base>.out and
+    <base>_results.json (CLARIFICATION A-X7). Returns {destination name: sha256}."""
+    import shutil
+    out = {}
+    for a, b in ((slug + ".out", base + ".out"), (slug + "_results.json", base + "_results.json")):
+        s, d = os.path.join(src_dir, a), os.path.join(dest_dir, b)
+        shutil.copyfile(s, d)
+        if sha256_file(s) != sha256_file(d): raise RuntimeError("release copy differs from its source: " + b)
+        out[b] = sha256_file(d)
+    return out
+
+
+def release_copy_selftest(base):
+    """the copy step on two temporary files (nothing is written into a plan directory)"""
+    import tempfile, shutil
+    d = tempfile.mkdtemp(prefix="cfg942_copy_"); dest = os.path.join(d, "plan"); os.makedirs(dest)
+    try:
+        for ext, txt in ((".out", "MOCK out\n"), ("_results.json", '{"MOCK": true}\n')):
+            open(os.path.join(d, "slug" + ext), "w").write(txt)
+        cp = release_copy(d, "slug", dest, base)
+        ok = sorted(cp) == sorted([base + ".out", base + "_results.json"]) and sorted(os.listdir(dest)) == sorted(cp)
+    finally:
+        shutil.rmtree(d, ignore_errors=True)
+    return ok, sorted(cp)
 
 
 # ------------------------------------------------------------------------------------------------ CFG571 functions, read-only

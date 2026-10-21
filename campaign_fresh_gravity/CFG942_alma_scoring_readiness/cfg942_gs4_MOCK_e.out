@@ -2,6 +2,9 @@ CFG942 GS4_24110 harness (cfg942_gs4_MOCK_e); plan campaign_fresh_gravity/CFG809
 Frozen predictions = CFG571's four models as sealed. The CFG689 native a0(z) band folded into THEORY_CANONICAL_2026-10-18 does NOT change them and is not scored here.
 kappa = 1/2 FITTED; footings never pooled; routes never averaged; single disc = demonstration, no exclusion; not theory closed.
 target: GS4_24110 RA 53.166889 Dec -27.798733; [CI](2-1) observed at 270.0057 GHz (z 1.9975); R_e 7.39 kpc = 0.883"
+Clarification in force: campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md (owner decision before any data; commit 35ea5e1be). The frozen plan is not edited.
+harness sha256: cfg942_gs4.py 5faf93b6b30284d63cea3c14d54e1984ce00b06f4f2af47c447a388a0bb86aba; cfg942_common.py b8950b3867dcfdff78952bf7765c5485e67b240a611ca6ac0c5c29c48e55e45f
+A-G4 (owner, stated before data): framework NOT ROBUST for every CI21 value under CFG572's fixed routes: this disc can neither support nor disfavour the framework
 K1 hashes (working tree vs freezing commit; recorded hashes)
   [PASS] K1 CFG571 criteria == 5f68a68c3: 0f7646c843e1f873…
   [PASS] K1 CFG571 sealed results == 259f7825c: be27457db6bad870…
@@ -18,6 +21,8 @@ K1 hashes (working tree vs freezing commit; recorded hashes)
   [PASS] K1 CFG778 seal == aac6ddd23: b9f3e827f79256c0…
   [PASS] K1 THEORY_CANONICAL 10-14 == b7356ac57: 30aa143ee1d8d217…
   [PASS] K1 KMOS3D catalogue (U4 position, axis ratio) == HEAD: 18e76b3df142cf0c…
+  [PASS] K1 U4 clarification 10-21 (CFG806 dir) == 35ea5e1be: 5d2fbcea94430fc0…
+  [PASS] K1 GS4 clarification 10-21 (CFG809 dir) == 35ea5e1be: ba573d73892b95c9…
   [PASS] K1 sealed JSON sha256 == PREDICTIONS_HASH.txt == be27457d…: be27457db6bad870a734c52d2bad92c6669cde53ca7a81553e79154dbedc3714
   [PASS] K1 U4 plan sha256 == value quoted in its ID notes (bc56aa71…): bc56aa71f5db49c6f6ac64d0b8bfc46462144281b0a55346d1cc834e0ea30428
   [PASS] K1 CFG775 seal sha256 == value in its README: 3d2363782783e9ca…
@@ -38,9 +43,10 @@ MOCK cube cfg942_gs4_MOCK_e.fits sha256 da129b4cec4571a0…; continuum cfg942_gs
   MOCK truth: log M_gas 11.6; S dv 2.92035 Jy km/s; recovered/true flux 0.999
   3.1 continuum (cfg942_gs4_MOCK_e_cont.fits): peak S/N 22.2 in the [CI] mask; flux in it 480.6 uJy; beam-convolved Gaussian FWHM 0.491x0.369" (circ 0.426 +- 0.002; R_e 1.78 kpc)
   {flag A-G6} 3.1 'peak S/N ... If S/N >= 5' is read as the peak S/N of the continuum image inside the [CI] mask (R_e circle if no [CI] detection)
-  3.2 [CI] size: beam-convolved Gaussian FWHM 1.442x1.041" (circ 1.225 +- 0.000; x3.2 if pixel correlation is counted) -> R_e,CI 5.13 kpc, R_g 3.06 kpc; G3 PASS
+  3.2 [CI] size: beam-convolved Gaussian FWHM 1.442x1.041" (circ 1.225 +- 0.0000 beam-corrected = x3.2 the covariance error, primary for G3 per CLARIFICATION A-G9; independent-pixel +- 0.0000: information) -> R_e,CI 5.13 kpc, R_g 3.06 kpc; G3 PASS
+  3.2 information (CLARIFICATION A-G9; NOT a correction): a beam-convolved Gaussian fitted to a noiseless exponential disc (major-axis scale length = this R_g, axis ratio 0.72, same beam) returns R_g = 0.697 x the true scale length; the plan's R_g = R_e,CI/1.678 is kept uncorrected
   MOCK truth: R_g 4.40 kpc (exponential); recovered/true 0.694  (a Gaussian fit to an exponential disc is biased)
-  {flag A-G9} G3 uses the fit covariance (independent pixels); with beam-correlated noise the FWHM error is underestimated by about sqrt(pixels per beam)
+  {flag A-G9} G3 uses the FWHM error from the fit covariance x sqrt(pixels per beam) (beam-corrected; CLARIFICATION A-G9); the independent-pixel error and the Gaussian-to-exponential size bias are printed as information; R_g is not corrected
   3.4 G4 (moment-1 monotonic over >= 2 beams at S/N >= 5): PASS; samples [(-4, -113.3), (-3, -104.1), (-2, -84.3), (-1, -61.3), (0, -0.0), (1, 61.3), (2, 84.3), (3, 104.1), (4, 113.2)]
   {flag A-G12} G4 is implemented as >= 3 consecutive beam-spaced samples along the kinematic axis, each at moment-0 S/N >= 5, with strictly monotonic moment-1
   3.4 [CI] thin-disc fit (i 44.9 from the [CI] axis ratio): V_c(R_e) P-B 206.2 +- 0.00, P0 184.7 +- 0.00 (sigma0 50.0); a BRANCH, never pooled with 206
@@ -106,6 +112,8 @@ MOCK cube cfg942_gs4_MOCK_e.fits sha256 da129b4cec4571a0…; continuum cfg942_gs
       CO43 r41 0.37  : F-DESI +0.52+-0.15 in tension with; F-flat +0.54+-0.15 in tension with (FLOOR) [not FLOOR at M*-0.2: tension REDUCED]; R-H +0.82+-0.15 in tension with (FLOOR) [FLOOR persists at M*-0.2]; L-fb(RAR-eq) +0.80+-0.15 in tension with (FLOOR) [FLOOR persists at M*-0.2]  => NO SIDE
       D alphaCO 4.36 : F-DESI +0.26+-0.14 consistent with; F-flat +0.28+-0.14 in tension with (FLOOR) [Delta_v alone: consistent] [not FLOOR at M*-0.2: tension REDUCED]; R-H +0.56+-0.14 in tension with (FLOOR) [FLOOR persists at M*-0.2]; L-fb(RAR-eq) +0.54+-0.14 in tension with (FLOOR) [FLOOR persists at M*-0.2]  => FRAMEWORK SIDE
     CI21 primary-route sides over M* x shape x footing: {'NO SIDE': 12}
+
+  A-G4 check on this run (per model; CI21 primary route): framework rows (F-DESI, F-flat) reading ROBUST: 21 of 72 (21 FLOOR-rule tensions, 0 not FLOOR; every row is in the results JSON) -> the A-G4 sentence printed above is not borne out on every branch of this run (reported, not decided); on the primary cut (V_c 206, shape measured): 10.89|measured|alt 1.13e-10|F-flat (FLOOR)
   {flag A-G2} a FLOOR model with detected gas reads 'in tension' by CFG809's FLOOR rule although its |Delta_v| <= 2 sigma (the two rules disagree; the harness prints both)
 
 === REQUIRED MOCK CLASS (CFG942 criteria section 2) ===
@@ -115,4 +123,4 @@ MOCK cube cfg942_gs4_MOCK_e.fits sha256 da129b4cec4571a0…; continuum cfg942_gs
 
 flags raised in this run (harness defaults; see README ambiguity list): A-X6, A-G6, A-G9, A-G12, A-G2
 
-(peak RSS 650 MB, incl. freed pages macOS keeps resident; peak unique set size 157 MB)
+(peak RSS 667 MB, incl. freed pages macOS keeps resident; peak unique set size 155 MB)

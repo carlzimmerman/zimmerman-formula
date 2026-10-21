@@ -21,6 +21,98 @@ The criteria were committed alone, first (556c36582).
      - GS4: the framework's verdict is NOT ROBUST for every CI21 value, because CFG572's public CO43 and dust routes already disagree;
      - U4: the plan separates the models only for V_c ≈ 220–260 km/s.
 
+## 2026-10-21: clarifications implemented
+The owner settled the ambiguities below before any data, in two files committed in 35ea5e1be:
+- `CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md`;
+- `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md`.
+
+The harness now implements the eight items listed here. Every other default is unchanged. Everything is still MOCK: no byte of either programme has been read.
+
+**What changed**
+| item | 10-20 harness | now |
+|---|---|---|
+| U4 A-U16 | V_c 1σ from the independent-pixel fit covariance; beam-corrected printed as "alt4" | the beam-corrected interval (covariance × √(pixels per beam)) is primary for TESTS NOTHING, PARTIAL, every Δ_m and every verdict; the independent-pixel interval is an information line (with the status it would give, if different) |
+| U4 A-U1 | gap labelled "WITHIN 2sig_tot (unnamed by CFG806 s4)" | "not in tension (within 2σ_tot)"; never "consistent" |
+| U4 A-U14 | radius-1″ and radius-2″ ratios printed, neither primary | the 20% flag uses the diameter-2″ (radius-1″) aperture and fires only after G1 passes; the radius-2″ ratio is printed as information |
+| GS4 A-G9 | G3 used the covariance FWHM error | G3 uses that error × √(pixels per beam); the independent-pixel error is printed; the Gaussian-to-exponential size bias is printed as information (noiseless exponential disc at the measured R_g, axis ratio and beam); R_g is not corrected |
+| GS4 A-G11 | +2000 km/s outside the spw → exit 2 | rerun at +1000, labelled "MUTATE fallback +1000 (CLARIFICATION A-G11)"; the exit code follows the fallback; exit 2 only if +1000 also leaves the window |
+| GS4 A-G3 | an upper limit not in tension read "consistent with (one-sided)" | "not constrained"; in tension only if Δ_v = 0 lies more than 2σ_Δv outside the whole [f(0), f(UL)] (the test is unchanged); UL cells print the interval |
+| GS4 A-G4 | ROBUST already decided per model (verified; unchanged) | the owner's sentence is printed once; a per-run check and a self-test scan of every branch are printed as information (see finding 1) |
+| both | — | the clarification file and commit 35ea5e1be are printed; K1 gains two rows (both clarification files == 35ea5e1be); the harness sha256 is printed and recorded in every results JSON; release-day copy into the plan's dir (`cfg806_u4[_MUTATE].out/_results.json`, `cfg809_gs4[_MUTATE].out/_results.json`), made only with `--cube` and only if the cube's OBJECT is not MOCK |
+
+New self-test checks:
+- U4: A-U16 (V_c 205, ±3 independent / ±8 beam-corrected → PARTIAL), the A-U1 label, the copy step on temporary files.
+- GS4: the A-G3 label, the copy step, the A-G4 scan, and A-G11 on two tiny temporary MOCK cubes:
+  - coverage −1000..+1400 km/s: the fallback runs and bites (−3.7σ, exit 1);
+  - coverage −1000..+1100 km/s: exit 2.
+
+**Re-runs.** MOCK only, one process at a time, one thread, `nice -n 10`.
+- The seven cubes were regenerated from their seeds into scratch. Each sha256 equals the 10-20 value listed under Files. Each cube was deleted after its run.
+- Every output here was overwritten; the MUTATE outputs stay separate.
+- K1 is 22/22 PASS and K5 PASS in every run. The self-tests all PASS.
+- MUTATE:
+  - U4 exits 1: G1 fails at +2000.
+  - GS4 exits 1 at −25.9σ. +2000 lies inside this mock's coverage, so the line reads "MUTATE +2000 (as frozen)".
+- The failed controls are kept and unchanged: U4-b C2 (rms 1.23×) and GS4-e C2.
+- Peak RSS was at most 997 MB (U4-a). The true unique set size stayed at or below 145 MB.
+
+**Which mock verdict lines moved: none.**
+
+| run | 10-20 | 10-21 |
+|---|---|---|
+| U4-a primary | FRAMEWORK SIDE; F-DESI/F-flat "WITHIN 2sig_tot (unnamed)", R-H/L-fb IN TENSION | FRAMEWORK SIDE; F-DESI/F-flat "not in tension (within 2σ_tot)", R-H/L-fb IN TENSION |
+| U4-b primary | RIVAL SIDE (alt footing NO SIDE) | the same |
+| U4-c | TESTS NOTHING ×4 | the same |
+| U4-d | G1 FAIL, log M_gas < 7.75, no kinematic test | the same |
+| GS4-a primary | FRAMEWORK SIDE; G3 PASS | the same |
+| GS4-b primary | NO SIDE; every model "consistent with (one-sided)" | NO SIDE; every model "not constrained" |
+| GS4-e primary | F-DESI in tension, +0.90 ± 0.18 | the same |
+
+**Numbers that changed, and why**
+- **U4 V_c 1σ.** The printed interval is now the beam-corrected one:
+  - U4-a: ±0.02–0.03 km/s (independent-pixel ±0.01);
+  - U4-b: ±0.20–0.21 (±0.06–0.07);
+  - U4-c: ±0.02 (±0.01).
+- **U4 required ranges** widen with the V_c interval:
+  - U4-a: by at most 0.01 dex.
+  - U4-b: by up to 0.16 dex where R-H and L-fb are steep near 246 km/s (KMOS3D inclination, P-B):
+    - R-H [8.53, 8.63] → [8.40, 8.71], eΔ 0.16 → 0.22;
+    - L-fb [8.49, 8.59] → [8.33, 8.68], eΔ 0.16 → 0.23;
+    - both stay IN TENSION (high gas), because the measured value is 9.44.
+- **U4 power** (self-test R6): only the label changed (w2s → nit).
+- **GS4 G3:** the FWHM error reads ±0.0006″ in GS4-a (was printed as ±0.000), and G3 still passes. Size-bias information: 0.696 (GS4-a) and 0.697 (GS4-e), against the MOCK truth of 0.694.
+- **GS4 power:** upper-limit cells changed from C to nc.
+- **Unchanged:** every measured flux, S/N, V_c, Δ_m, Δ_v, σ_Δv and FLOOR flag. Peak-memory figures vary from run to run.
+
+**Findings for the owner (reported, not decided)**
+1. **The A-G4 sentence holds on only one of the eight branches**: canonical, M★ 10.89, R_g = R_d. That is the only branch the 10-20 scan covered.
+   - The self-test scan covers all eight M★ × shape × footing branches at V_c 206, with CI21 from 8.0 to 11.8.
+   - On 6 branches that are not FLOOR (all of M★ 10.76, and M★ 10.89 with R_g = 1.5 R_d), F-DESI and/or F-flat read ROBUST at 15–17 of the 20 CI21 values: CI21, CO43 and dust give the same wording.
+   - On the alternate footing at M★ 10.89 (both shapes), F-flat's FLOOR tension is ROBUST at every CI21 value.
+   - GS4-a: 44 of 72 framework CI21 rows are ROBUST, 23 of them not FLOOR. GS4-e: 21 rows, all FLOOR. On the primary cut, only F-flat (alt, M★ 10.89, FLOOR) is ROBUST.
+   - So two sentences are not borne out on every branch: "this disc can neither support nor disfavour the framework", and "only the rivals' FLOOR tension can come out ROBUST".
+   - The harness prints the sentence as instructed, with the check beside it. The per-model ROBUST rule is unchanged.
+2. **Clarification items outside these eight changes.** The harness does not yet do them:
+   - A-X3: CFG571's Δ_m on M_bar is not printed.
+   - A-U4/A-U17: a failed C2 does not print the ~10% MOCK false-failure rate beside it.
+   - A-G1: σ_Δv with CFG572's ±0.1 dex M★ term is not printed.
+   - A-G16: after a G1 failure, the continuum is measured in the noise-selected ≥ 2σ [CI] mask whenever that mask is not empty (GS4-b: 23 px, peak S/N 6.9), not in the R_e circle. The A-G6 flag text says "R_e circle if no [CI] detection".
+   - A-G4 "the other CFG572 branches are printed": their masses are on the routes line and their rows are in the JSON. The score table shows only r41 0.37 and α_CO 4.36.
+3. **A-G11 on a centred spw.** A 1.875 GHz spw centred on 270.0 GHz covers about ±1040 km/s.
+   - The +1000 window (true-frame +700..+1300 km/s) is then not fully covered either, so the fallback also exits 2 there.
+   - The fallback helps only if the spw is offset to higher velocity, or wider. The record holds no spw edges.
+   - "Leaves the window" is implemented as "the shifted ±300 km/s window is not fully covered", the same test as for +2000.
+4. **MUTATE continuum (an observation, not from the clarifications).** For the shifted window, the continuum is the median of channels with |v| > 600 in the shifted frame, and these include the true line.
+   - Part of GS4-a's −25.9σ, and of the tiny cube's −3.7σ, is this over-subtraction.
+   - The control still bites as frozen.
+
+**Nothing frozen was edited.** These files are unchanged:
+- both plans' FROZEN_CRITERIA.md and both CLARIFICATION files;
+- `cfg571_prereg.py` and its seal JSON;
+- LEDGER.md, the THEORY_CANONICAL files and CFG572.
+
+K1 (22/22) and K5 checked this in every run, and git status is clean for those paths. No file was written into the plan directories: the copy step runs only for a real cube.
+
 ## Hash verification (K1 in every run; all PASS)
 | file | sha256 (prefix) | equals freezing commit |
 |---|---|---|
@@ -34,6 +126,7 @@ The criteria were committed alone, first (556c36582).
 | CFG775 `SEALED_BH_BRANCH.json` / CFG778 `SEALED_EVENT_HORIZON.json` | 3d236378… / b9f3e827… (= their READMEs) | 8a7634027 / aac6ddd23 |
 | THEORY_CANONICAL_2026-10-14.md | 30aa143e… (= its .sha256) | b7356ac57 |
 | AG5 `FROZEN_SCORING.md` / `score_alma.py` (recorded only, not used) | b7f489bf… / ca6e0a2e… | 7ea94d2ae / c4bfd82fd |
+| `CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md` / `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md` (K1 rows added 10-21) | 5d2fbcea… / ba573d73… | 35ea5e1be |
 
 **Seal reproduction and transcription:**
 - CFG571's own functions reproduce all 56 U4 and 16 GS4 sealed entries to 0.0 dex, with the FLOOR flags identical. The functions are executed from the text above the script's `# ---- controls ----` line; a plain `import` would rewrite the seal file and exit (A-X6).
@@ -102,6 +195,8 @@ The frozen predictions are CFG571's four models as sealed. The CFG689 native a0(
 ## Mock dry-runs
 All inputs are MOCK. The harness generates them (seeded), they are read back from FITS like real data, and they are never committed. Their noise is chosen for clean detections and is NOT the archive sensitivity.
 
+The table records the 10-20 runs. On 10-21 every run was repeated under the clarifications, and every class held; only the wording changed (see "2026-10-21: clarifications implemented").
+
 | run | truth | class returned | required |
 |---|---|---|---|
 | U4-a | V_c(P-B) 250, gas = F-DESI's need (10.42) | G1 and G2 PASS; V_c 250.2 recovered; canonical primary FRAMEWORK SIDE (alt footing FRAMEWORK SIDE) | PASS |
@@ -157,15 +252,22 @@ Run everything from `campaign_fresh_gravity/CFG942_alma_scoring_readiness/`.
    - Take its pipeline `member.uid___A001_…_sci.spw<N>.cube.I.pbcor.fits` (+ `.pb`).
    - Record the sha256.
 3. `python3 -B cfg942_u4.py --cube <cube.pbcor.fits>` writes `cfg942_u4_RELEASE.out/json`. It runs G1, G2, the fits, C1, C2, C3 and the score; a failed control prints NOT DIAGNOSTIC.
-4. `python3 -B cfg942_u4.py --cube <cube.pbcor.fits> --mutate` must exit 1.
-5. Commit the outputs (never the cube, never a home path), delete the cube, and add departures to a dated README note. The orchestrator writes the ledger row.
+   - For a real cube (OBJECT not MOCK) the same two files are also written, byte-identical, into the plan's dir as `CFG806_u4_27928_scoring/cfg806_u4.out` / `cfg806_u4_results.json` (CLARIFICATION A-X7).
+   - The results JSON records the harness sha256.
+4. `python3 -B cfg942_u4.py --cube <cube.pbcor.fits> --mutate` must exit 1. Its copies are `cfg806_u4_MUTATE.out` / `cfg806_u4_MUTATE_results.json`.
+5. Commit the outputs, including the plan-dir copies. Never commit the cube or a home path. Delete the cube, and add departures to a dated README note. The orchestrator writes the ledger row.
 
 **GS4_24110 (2026-11-28):** the same steps, with:
-- `python3 -B cfg942_gs4.py --cube <CI21 cube> --cont <continuum image>`, then `--mutate`. It exits 1, or 2 if +2000 km/s leaves the spw (A-G11).
+- `python3 -B cfg942_gs4.py --cube <CI21 cube> --cont <continuum image>`, then `--mutate`.
+  - The copies are `CFG809_gs4_24110_ci21_scoring/cfg809_gs4[_MUTATE].out` / `_results.json`.
+  - MUTATE exits 1 when the control bites.
+  - If +2000 km/s leaves the spw, MUTATE reruns at +1000, labelled "MUTATE fallback +1000 (CLARIFICATION A-G11)", and exits by that run. It exits 2 only if +1000 also leaves the spw.
 - The spw must cover 270.006 GHz. The harness reads FREQ cubes, 3D or 4D, with BMAJ keywords or a per-plane BEAMS table.
 
 ## Ambiguities that could cause a release-day dispute
 Each one is flagged in the outputs. None is resolved by editing a frozen file; the harness's default is stated in each line.
+
+The list is kept as written on 10-20. The owner resolved it on 10-21 (35ea5e1be). The items that changed the harness are listed under "2026-10-21: clarifications implemented"; the stale lines are A-U1, A-U14, A-U16, A-G3, A-G9 and A-G11.
 
 **Cross-plan**
 - **A-X1 Two frozen plans per target.** CFG806/809 differ from AG5 (7ea94d2ae) in:
@@ -228,7 +330,9 @@ Each one is flagged in the outputs. None is resolved by editing a frozen file; t
 - **A-M1 Mask extent.** Default: the ≥ 2σ components that touch a 0.5″ circle at the catalogue position.
 - **A-M2 Per-plane beams.** If the cube carries a BEAMS table, the median beam is used.
 
-## NOTE for the owner (proposed 2026-10-20; NOT adopted; nothing frozen is changed)
+## NOTE for the owner (proposed 2026-10-20; nothing frozen is changed)
+Superseded on 10-21 by the owner's CLARIFICATION_2026-10-21 files (35ea5e1be) and the owner decision of 10-20 on the governing plans.
+
 If the owner agrees, a dated file `CLARIFICATION_2026-10-2x.md` could be committed into each plan's lane **before 2026-11-06**, saying:
 1. **Which plan governs** (A-X1): "On release day the governing score is [CFG806/CFG809 | AG5]; the other is reported as a cross-check." Also whether THEORY_CANONICAL §2's kill line applies to one disc (A-X2).
 2. **U4 §4 reading** (A-U1, A-U2, A-U15): "consistent = |Δ_m| ≤ 2σ_tot; σ_tot = √(σ_rms² + σ_V² + 0.15²) (one floor); the M★ 0.2 dex systematic enters only the FLOOR-reduced statement."

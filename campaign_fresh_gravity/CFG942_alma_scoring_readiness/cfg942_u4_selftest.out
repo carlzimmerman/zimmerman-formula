@@ -2,6 +2,8 @@ CFG942 U4_27928 harness (cfg942_u4_selftest); plan campaign_fresh_gravity/CFG806
 Frozen predictions = CFG571's four models as sealed. The CFG689 native a0(z) band folded into THEORY_CANONICAL_2026-10-18 does NOT change them and is not scored here.
 kappa = 1/2 FITTED; footings never pooled; single disc = demonstration, no exclusion; not theory closed.
 target: KMOS3D U4_27928 RA 34.423191 Dec -5.182924 z 1.41933; CO(2-1) observed at 95.2900 GHz; KMOS3D q 0.556
+Clarification in force: campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md (owner decision before any data; commit 35ea5e1be). The frozen plan is not edited.
+harness sha256: cfg942_u4.py 5855808b20f415b9ad2b48eb5b7df4163465370db52dc7205d628f52d4d5a3d9; cfg942_common.py b8950b3867dcfdff78952bf7765c5485e67b240a611ca6ac0c5c29c48e55e45f
 K1 hashes (working tree vs freezing commit; recorded hashes)
   [PASS] K1 CFG571 criteria == 5f68a68c3: 0f7646c843e1f873…
   [PASS] K1 CFG571 sealed results == 259f7825c: be27457db6bad870…
@@ -18,6 +20,8 @@ K1 hashes (working tree vs freezing commit; recorded hashes)
   [PASS] K1 CFG778 seal == aac6ddd23: b9f3e827f79256c0…
   [PASS] K1 THEORY_CANONICAL 10-14 == b7356ac57: 30aa143ee1d8d217…
   [PASS] K1 KMOS3D catalogue (U4 position, axis ratio) == HEAD: 18e76b3df142cf0c…
+  [PASS] K1 U4 clarification 10-21 (CFG806 dir) == 35ea5e1be: 5d2fbcea94430fc0…
+  [PASS] K1 GS4 clarification 10-21 (CFG809 dir) == 35ea5e1be: ba573d73892b95c9…
   [PASS] K1 sealed JSON sha256 == PREDICTIONS_HASH.txt == be27457d…: be27457db6bad870a734c52d2bad92c6669cde53ca7a81553e79154dbedc3714
   [PASS] K1 U4 plan sha256 == value quoted in its ID notes (bc56aa71…): bc56aa71f5db49c6f6ac64d0b8bfc46462144281b0a55346d1cc834e0ea30428
   [PASS] K1 CFG775 seal sha256 == value in its README: 3d2363782783e9ca…
@@ -38,14 +42,17 @@ K1 hashes (working tree vs freezing commit; recorded hashes)
   [PASS] I/O: per-plane BEAMS table (no BMAJ keyword) read as the median beam: (0.07349999994039536, 0.06350000202655792, 30.0) from BEAMS table median
 
 === MOCK-JSON classes through the scoring path (MOCK inputs, no cube) ===
-  [PASS] MOCK-JSON PARTIAL: V_c 200 +- 10 -> PARTIAL
-  [PASS] MOCK-JSON TESTS NOTHING: V_c 180 +- 5
+  [PASS] MOCK-JSON PARTIAL: V_c 200 +- 20 (beam-corrected) -> PARTIAL
+  [PASS] MOCK-JSON TESTS NOTHING: V_c 180 +- 10 (beam-corrected)
+  [PASS] MOCK-JSON A-U16: V_c 205, independent-pixel +-3, beam-corrected +-8 -> PARTIAL (the beam-corrected interval decides): PARTIAL (independent-pixel, information: SCORED)
+  [PASS] MOCK-JSON A-U1: gas 0.2 dex above F-DESI's need at V_c 250 +- 1 -> 'not in tension (within 2σ_tot)', never CONSISTENT: not in tension (within 2σ_tot)
+  [PASS] A-X7 release-day copy step (temporary files only): byte-identical copies named cfg806_u4.out / cfg806_u4_results.json
   [PASS] MOCK-JSON G2 FAIL: emission to 4.2 kpc -> RADIUS NOT REACHED
   [PASS] MOCK-JSON NON-DETECTION -> no kinematic test
   [PASS] MOCK-JSON FLOOR: at V_c 212 the rivals are FLOOR and gas is detected -> IN TENSION (FLOOR): F-DESI IN TENSION (FLOOR); F-flat IN TENSION (FLOOR); R-H IN TENSION (FLOOR); L-fb(RAR-eq) IN TENSION (FLOOR)
 
-=== R6 POWER (information; frozen functions and CFG806 readings; sigma_rms 0.05 dex, V_c error 5 km/s; primary branch Rg=Rd, alpha_CO 4.36) ===
-  gas set equal to one model's requirement; classes of F-DESI / F-flat / R-H and the side (default reading H-U1)
+=== R6 POWER (information; frozen functions and CFG806 readings; sigma_rms 0.05 dex, V_c error 5 km/s taken as the beam-corrected primary (A-U16); primary branch Rg=Rd, alpha_CO 4.36) ===
+  gas set equal to one model's requirement; classes of F-DESI / F-flat / R-H and the side (C = consistent, nit = not in tension (within 2σ_tot) (A-U1), T = in tension)
   footing canon 9.36e-11:
     V_c 200: gas=req(F-DESI): F-DESI FLOOR || gas=req(R-H): R-H FLOOR
     V_c 210: gas=req(F-DESI): F-DESI FLOOR || gas=req(R-H): R-H FLOOR
@@ -54,13 +61,13 @@ K1 hashes (working tree vs freezing commit; recorded hashes)
     V_c 230: gas=req(F-DESI) 10.02: F-DESI C, F-flat C, R-H T (FLOOR) -> FRAMEWORK SIDE || gas=req(R-H): R-H FLOOR
     V_c 240: gas=req(F-DESI) 10.26: F-DESI C, F-flat C, R-H T (FLOOR) -> FRAMEWORK SIDE || gas=req(R-H): R-H FLOOR
     V_c 250: gas=req(F-DESI) 10.42: F-DESI C, F-flat C, R-H T (high gas) -> FRAMEWORK SIDE || gas=req(R-H) 9.50: F-DESI T (low gas), F-flat T (low gas), R-H C -> RIVAL SIDE
-    V_c 260: gas=req(F-DESI) 10.54: F-DESI C, F-flat C, R-H w2s -> NO SIDE || gas=req(R-H) 10.01: F-DESI T (low gas), F-flat T (low gas), R-H C -> RIVAL SIDE
-    V_c 275: gas=req(F-DESI) 10.69: F-DESI C, F-flat C, R-H w2s -> NO SIDE || gas=req(R-H) 10.34: F-DESI w2s, F-flat w2s, R-H C -> NO SIDE
-    V_c 300: gas=req(F-DESI) 10.86: F-DESI C, F-flat C, R-H w2s -> NO SIDE || gas=req(R-H) 10.64: F-DESI w2s, F-flat w2s, R-H C -> NO SIDE
-    V_c 325: gas=req(F-DESI) 11.00: F-DESI C, F-flat C, R-H w2s -> NO SIDE || gas=req(R-H) 10.83: F-DESI w2s, F-flat w2s, R-H C -> NO SIDE
-    V_c 350: gas=req(F-DESI) 11.11: F-DESI C, F-flat C, R-H w2s -> NO SIDE || gas=req(R-H) 10.98: F-DESI w2s, F-flat w2s, R-H C -> NO SIDE
-    V_c 375: gas=req(F-DESI) 11.20: F-DESI C, F-flat C, R-H w2s -> NO SIDE || gas=req(R-H) 11.10: F-DESI w2s, F-flat w2s, R-H C -> NO SIDE
-    V_c 400: gas=req(F-DESI) 11.28: F-DESI C, F-flat C, R-H w2s -> NO SIDE || gas=req(R-H) 11.20: F-DESI w2s, F-flat w2s, R-H C -> NO SIDE
+    V_c 260: gas=req(F-DESI) 10.54: F-DESI C, F-flat C, R-H nit -> NO SIDE || gas=req(R-H) 10.01: F-DESI T (low gas), F-flat T (low gas), R-H C -> RIVAL SIDE
+    V_c 275: gas=req(F-DESI) 10.69: F-DESI C, F-flat C, R-H nit -> NO SIDE || gas=req(R-H) 10.34: F-DESI nit, F-flat nit, R-H C -> NO SIDE
+    V_c 300: gas=req(F-DESI) 10.86: F-DESI C, F-flat C, R-H nit -> NO SIDE || gas=req(R-H) 10.64: F-DESI nit, F-flat nit, R-H C -> NO SIDE
+    V_c 325: gas=req(F-DESI) 11.00: F-DESI C, F-flat C, R-H nit -> NO SIDE || gas=req(R-H) 10.83: F-DESI nit, F-flat nit, R-H C -> NO SIDE
+    V_c 350: gas=req(F-DESI) 11.11: F-DESI C, F-flat C, R-H nit -> NO SIDE || gas=req(R-H) 10.98: F-DESI nit, F-flat nit, R-H C -> NO SIDE
+    V_c 375: gas=req(F-DESI) 11.20: F-DESI C, F-flat C, R-H nit -> NO SIDE || gas=req(R-H) 11.10: F-DESI nit, F-flat nit, R-H C -> NO SIDE
+    V_c 400: gas=req(F-DESI) 11.28: F-DESI C, F-flat C, R-H nit -> NO SIDE || gas=req(R-H) 11.20: F-DESI nit, F-flat nit, R-H C -> NO SIDE
   footing alt 1.13e-10:
     V_c 200: gas=req(F-DESI): F-DESI FLOOR || gas=req(R-H): R-H FLOOR
     V_c 210: gas=req(F-DESI): F-DESI FLOOR || gas=req(R-H): R-H FLOOR
@@ -70,12 +77,12 @@ K1 hashes (working tree vs freezing commit; recorded hashes)
     V_c 240: gas=req(F-DESI) 10.15: F-DESI C, F-flat C, R-H T (FLOOR) -> FRAMEWORK SIDE || gas=req(R-H): R-H FLOOR
     V_c 250: gas=req(F-DESI) 10.34: F-DESI C, F-flat C, R-H T (FLOOR) -> FRAMEWORK SIDE || gas=req(R-H): R-H FLOOR
     V_c 260: gas=req(F-DESI) 10.48: F-DESI C, F-flat C, R-H T (high gas) -> FRAMEWORK SIDE || gas=req(R-H) 9.66: F-DESI T (low gas), F-flat T (low gas), R-H C -> RIVAL SIDE
-    V_c 275: gas=req(F-DESI) 10.64: F-DESI C, F-flat C, R-H w2s -> NO SIDE || gas=req(R-H) 10.19: F-DESI w2s, F-flat w2s, R-H C -> NO SIDE
-    V_c 300: gas=req(F-DESI) 10.83: F-DESI C, F-flat C, R-H w2s -> NO SIDE || gas=req(R-H) 10.55: F-DESI w2s, F-flat w2s, R-H C -> NO SIDE
-    V_c 325: gas=req(F-DESI) 10.97: F-DESI C, F-flat C, R-H w2s -> NO SIDE || gas=req(R-H) 10.77: F-DESI w2s, F-flat w2s, R-H C -> NO SIDE
-    V_c 350: gas=req(F-DESI) 11.09: F-DESI C, F-flat C, R-H w2s -> NO SIDE || gas=req(R-H) 10.93: F-DESI w2s, F-flat w2s, R-H C -> NO SIDE
-    V_c 375: gas=req(F-DESI) 11.19: F-DESI C, F-flat C, R-H w2s -> NO SIDE || gas=req(R-H) 11.06: F-DESI w2s, F-flat w2s, R-H C -> NO SIDE
-    V_c 400: gas=req(F-DESI) 11.27: F-DESI C, F-flat C, R-H w2s -> NO SIDE || gas=req(R-H) 11.16: F-DESI w2s, F-flat w2s, R-H C -> NO SIDE
+    V_c 275: gas=req(F-DESI) 10.64: F-DESI C, F-flat C, R-H nit -> NO SIDE || gas=req(R-H) 10.19: F-DESI nit, F-flat nit, R-H C -> NO SIDE
+    V_c 300: gas=req(F-DESI) 10.83: F-DESI C, F-flat C, R-H nit -> NO SIDE || gas=req(R-H) 10.55: F-DESI nit, F-flat nit, R-H C -> NO SIDE
+    V_c 325: gas=req(F-DESI) 10.97: F-DESI C, F-flat C, R-H nit -> NO SIDE || gas=req(R-H) 10.77: F-DESI nit, F-flat nit, R-H C -> NO SIDE
+    V_c 350: gas=req(F-DESI) 11.09: F-DESI C, F-flat C, R-H nit -> NO SIDE || gas=req(R-H) 10.93: F-DESI nit, F-flat nit, R-H C -> NO SIDE
+    V_c 375: gas=req(F-DESI) 11.19: F-DESI C, F-flat C, R-H nit -> NO SIDE || gas=req(R-H) 11.06: F-DESI nit, F-flat nit, R-H C -> NO SIDE
+    V_c 400: gas=req(F-DESI) 11.27: F-DESI C, F-flat C, R-H nit -> NO SIDE || gas=req(R-H) 11.16: F-DESI nit, F-flat nit, R-H C -> NO SIDE
 
 === R7 SENSITIVITY FORECAST (information; CFG570 archive metadata: 0.4393 mJy/beam at 10 km/s, beam 0.066"; not re-verified) ===
   CO(2-1) flux for the required gas (alpha_CO 4.36, r21 0.77); noise in a circular aperture over the velocity window; exponential gas disc with R_d = R_half/1.678
@@ -90,4 +97,4 @@ K1 hashes (working tree vs freezing commit; recorded hashes)
 
 flags raised in this run (harness defaults; see README ambiguity list): A-X6, A-U7
 
-(peak RSS 122 MB, incl. freed pages macOS keeps resident; peak unique set size 55 MB)
+(peak RSS 125 MB, incl. freed pages macOS keeps resident; peak unique set size 67 MB)

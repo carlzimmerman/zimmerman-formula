@@ -2,6 +2,8 @@ CFG942 U4_27928 harness (cfg942_u4_MOCK_b); plan campaign_fresh_gravity/CFG806_u
 Frozen predictions = CFG571's four models as sealed. The CFG689 native a0(z) band folded into THEORY_CANONICAL_2026-10-18 does NOT change them and is not scored here.
 kappa = 1/2 FITTED; footings never pooled; single disc = demonstration, no exclusion; not theory closed.
 target: KMOS3D U4_27928 RA 34.423191 Dec -5.182924 z 1.41933; CO(2-1) observed at 95.2900 GHz; KMOS3D q 0.556
+Clarification in force: campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md (owner decision before any data; commit 35ea5e1be). The frozen plan is not edited.
+harness sha256: cfg942_u4.py 5855808b20f415b9ad2b48eb5b7df4163465370db52dc7205d628f52d4d5a3d9; cfg942_common.py b8950b3867dcfdff78952bf7765c5485e67b240a611ca6ac0c5c29c48e55e45f
 K1 hashes (working tree vs freezing commit; recorded hashes)
   [PASS] K1 CFG571 criteria == 5f68a68c3: 0f7646c843e1f873…
   [PASS] K1 CFG571 sealed results == 259f7825c: be27457db6bad870…
@@ -18,6 +20,8 @@ K1 hashes (working tree vs freezing commit; recorded hashes)
   [PASS] K1 CFG778 seal == aac6ddd23: b9f3e827f79256c0…
   [PASS] K1 THEORY_CANONICAL 10-14 == b7356ac57: 30aa143ee1d8d217…
   [PASS] K1 KMOS3D catalogue (U4 position, axis ratio) == HEAD: 18e76b3df142cf0c…
+  [PASS] K1 U4 clarification 10-21 (CFG806 dir) == 35ea5e1be: 5d2fbcea94430fc0…
+  [PASS] K1 GS4 clarification 10-21 (CFG809 dir) == 35ea5e1be: ba573d73892b95c9…
   [PASS] K1 sealed JSON sha256 == PREDICTIONS_HASH.txt == be27457d…: be27457db6bad870a734c52d2bad92c6669cde53ca7a81553e79154dbedc3714
   [PASS] K1 U4 plan sha256 == value quoted in its ID notes (bc56aa71…): bc56aa71f5db49c6f6ac64d0b8bfc46462144281b0a55346d1cc834e0ea30428
   [PASS] K1 CFG775 seal sha256 == value in its README: 3d2363782783e9ca…
@@ -34,79 +38,79 @@ MOCK cube: cfg942_u4_MOCK_b.fits sha256 60c0fe97d91c55f9… (scratch; not commit
   [PASS] C3 frequency axis covers CO(2-1) at z_cat and beam keywords exist: nu_obs 95.2900 GHz; channel 20.0 km/s
   C3 RESTFRQ = 230.538000 GHz (= 230.538)
   G1: S dv 0.01852 Jy km/s in the >= 2 sigma moment-0 mask (3390 px); translated-mask rms 0.00014 (100 apertures) -> S/N 134.0; selection-aware null (same mask grown at 200 off-source seeds): mean 0.00005, sd 0.00002 -> S/N 1000.1; centroid offset 0.003"; z_line 1.41933 -> PASS (literal translated-mask S/N reading: PASS)
-  2" aperture check: mask/aperture(r 1") = 0.941, mask/aperture(r 2") = 0.860 (within 20%: True / True)
+  3.3 flux-agreement check (CLARIFICATION A-U14: circular aperture of diameter 2" = radius 1"): mask/aperture = 0.941 -> within 20%, no flag; information: radius-2" aperture, mask/aperture = 0.860
   gas: log M_gas 9.440 (alpha_CO 4.36) / 8.800 (1.0); random-aperture error 0.003 dex (+ 0.15 dex floor)
   moment-0 beam-convolved Gaussian: q 0.596 -> i 55.0 deg (primary, q0 0.2); KMOS3D q 0.556 -> i 58.0 deg (branch)
-  thin-disc fit [incl-primary, i 55.0]: V_f 257.2, R_t 1.00 kpc, sigma0 29.9; V_rot(8.3 kpc) 237.6 +- 0.07; V_c P-B 249.9 +- 0.06 (beam-corrected +- 0.21); chi2/N 1.039, nfev 79
-  thin-disc fit [incl-KMOS3D, i 58.0]: V_f 253.1, R_t 1.02 kpc, sigma0 29.9; V_rot(8.3 kpc) 233.3 +- 0.06; V_c P-B 245.9 +- 0.06 (beam-corrected +- 0.20); chi2/N 1.071, nfev 89
+  thin-disc fit [incl-primary, i 55.0]: V_f 257.2, R_t 1.00 kpc, sigma0 29.9; V_rot(8.3 kpc) 237.6 +- 0.21; V_c P-B 249.9 +- 0.21 (errors beam-corrected = primary, A-U16; independent-pixel +- 0.07 / +- 0.06, information); chi2/N 1.039, nfev 79
+  thin-disc fit [incl-KMOS3D, i 58.0]: V_f 253.1, R_t 1.02 kpc, sigma0 29.9; V_rot(8.3 kpc) 233.3 +- 0.20; V_c P-B 245.9 +- 0.20 (errors beam-corrected = primary, A-U16; independent-pixel +- 0.06 / +- 0.06, information); chi2/N 1.071, nfev 89
   G2: farthest mask pixel at 12.34 kpc deprojected (10.05 projected) -> PASS (>= 6 kpc)
   {flag A-U12b} G2 'detected emission reaches 6 kpc': the harness uses the deprojected radius of the farthest >= 2 sigma moment-0 mask pixel (projected also printed)
   [FAIL] C2 off-source apertures: mean consistent with zero (3 rms/sqrt(N_independent)) and rms within 20% of the quoted noise: mean -0.00000, rms 0.00014, quoted 0.00011 (ratio 1.23; N 100, independent 33)
   {flag A-U10} C2 'quoted noise' is undefined in CFG806; the harness uses the analytic noise of the mask sum (beam-shaped noise autocorrelation, per-channel rms, window channels, continuum-median term)
   MOCK truth: S dv 0.0214 Jy km/s; recovered/true = 0.867
   C1: injection 2.98" east of the target (known log M_gas 10.42, S dv 0.1779 Jy km/s, i = measured primary); the real source is blanked within 1.49" of the target
-    C1 inner: G1: S dv 0.17364 Jy km/s in the >= 2 sigma moment-0 mask (8897 px); translated-mask rms 0.00017 (81 apertures) -> S/N 1012.1; selection-aware null (same mask grown at 200 off-source seeds): mean 0.00005, sd 0.00002 -> S/N 10169.6; centroid offset 0.001"; z_line 1.41933 -> PASS (literal translated-mask S/N reading: PASS) | thin-disc fit [incl-primary, i 54.9]: V_f 199.7, R_t 1.00 kpc, sigma0 30.0; V_rot(8.3 kpc) 184.4 +- 0.01; V_c P-B 200.2 +- 0.01 (beam-corrected +- 0.02); chi2/N 1.194, nfev 79
+    C1 inner: G1: S dv 0.17364 Jy km/s in the >= 2 sigma moment-0 mask (8897 px); translated-mask rms 0.00017 (81 apertures) -> S/N 1012.1; selection-aware null (same mask grown at 200 off-source seeds): mean 0.00005, sd 0.00002 -> S/N 10169.6; centroid offset 0.001"; z_line 1.41933 -> PASS (literal translated-mask S/N reading: PASS) | thin-disc fit [incl-primary, i 54.9]: V_f 199.7, R_t 1.00 kpc, sigma0 30.0; V_rot(8.3 kpc) 184.4 +- 0.02; V_c P-B 200.2 +- 0.02 (errors beam-corrected = primary, A-U16; independent-pixel +- 0.01 / +- 0.01, information); chi2/N 1.194, nfev 79
   [PASS] C1 injection V_c 200 km/s: V_c within 15% and flux within 20%: V_c(P-B) recovered 200.2, flux ratio 0.976
-    C1 inner: G1: S dv 0.17364 Jy km/s in the >= 2 sigma moment-0 mask (8897 px); translated-mask rms 0.00017 (81 apertures) -> S/N 1012.1; selection-aware null (same mask grown at 200 off-source seeds): mean 0.00005, sd 0.00002 -> S/N 10169.6; centroid offset 0.001"; z_line 1.41933 -> PASS (literal translated-mask S/N reading: PASS) | thin-disc fit [incl-primary, i 54.9]: V_f 257.5, R_t 1.00 kpc, sigma0 30.0; V_rot(8.3 kpc) 237.8 +- 0.01; V_c P-B 250.3 +- 0.01 (beam-corrected +- 0.02); chi2/N 1.194, nfev 90
+    C1 inner: G1: S dv 0.17364 Jy km/s in the >= 2 sigma moment-0 mask (8897 px); translated-mask rms 0.00017 (81 apertures) -> S/N 1012.1; selection-aware null (same mask grown at 200 off-source seeds): mean 0.00005, sd 0.00002 -> S/N 10169.6; centroid offset 0.001"; z_line 1.41933 -> PASS (literal translated-mask S/N reading: PASS) | thin-disc fit [incl-primary, i 54.9]: V_f 257.5, R_t 1.00 kpc, sigma0 30.0; V_rot(8.3 kpc) 237.8 +- 0.03; V_c P-B 250.3 +- 0.02 (errors beam-corrected = primary, A-U16; independent-pixel +- 0.01 / +- 0.01, information); chi2/N 1.194, nfev 90
   [PASS] C1 injection V_c 250 km/s: V_c within 15% and flux within 20%: V_c(P-B) recovered 250.3, flux ratio 0.976
 
 === SCORE (CFG806 section 4; single disc = demonstration; no model is excluded) ===
 
-  [incl-primary|P-B] V_c 249.9 +- 0.1 km/s (beam-corrected +- 0.2)
+  [incl-primary|P-B] V_c 249.9 +- 0.21 km/s (1 sigma, beam-corrected: primary, CLARIFICATION A-U16; independent-pixel covariance +- 0.06: information)
     canon 9.36e-11 | alpha_CO 4.36 | Rg=Rd:
       F-DESI        req 10.42 range [10.42, 10.42]; meas 9.44; Delta -0.98 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
-      F-flat        req 10.40 range [10.40, 10.40]; meas 9.44; Delta -0.96 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
-      R-H           req 9.49 range [9.49, 9.50]; meas 9.44; Delta -0.05 +- 0.15; sig_tot 0.21 -> WITHIN 2sig_tot (unnamed by CFG806 s4)   (alternative readings differ: {'alt2 |Delta| <= 2sig (sig incl. V_c)': 'CONSISTENT', 'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      F-flat        req 10.40 range [10.39, 10.40]; meas 9.44; Delta -0.96 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      R-H           req 9.49 range [9.47, 9.51]; meas 9.44; Delta -0.05 +- 0.15; sig_tot 0.21 -> not in tension (within 2σ_tot)   (alternative readings differ: {'alt2 |Delta| <= 2sig (sig incl. V_c)': 'CONSISTENT', 'alt3 range incl. M* +-0.2': 'CONSISTENT'})
       L-fb(RAR-eq)  req 9.92 range [9.92, 9.93]; meas 9.44; Delta -0.48 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
       side: RIVAL SIDE
     alt 1.13e-10 | alpha_CO 4.36 | Rg=Rd:
       F-DESI        req 10.34 range [10.34, 10.34]; meas 9.44; Delta -0.90 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
-      F-flat        req 10.31 range [10.31, 10.31]; meas 9.44; Delta -0.87 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      F-flat        req 10.31 range [10.30, 10.31]; meas 9.44; Delta -0.87 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
       R-H           FLOOR at V_c 249.9 -> IN TENSION (FLOOR); not FLOOR at M*-0.2 (needs log M_gas 10.26): tension REDUCED
-      L-fb(RAR-eq)  req 9.49 range [9.48, 9.49]; meas 9.44; Delta -0.05 +- 0.15; sig_tot 0.21 -> WITHIN 2sig_tot (unnamed by CFG806 s4)   (alternative readings differ: {'alt2 |Delta| <= 2sig (sig incl. V_c)': 'CONSISTENT', 'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      L-fb(RAR-eq)  req 9.49 range [9.47, 9.51]; meas 9.44; Delta -0.05 +- 0.15; sig_tot 0.21 -> not in tension (within 2σ_tot)   (alternative readings differ: {'alt2 |Delta| <= 2sig (sig incl. V_c)': 'CONSISTENT', 'alt3 range incl. M* +-0.2': 'CONSISTENT'})
       side: NO SIDE
     all branches (end|alpha_CO|shape|footing): RIVAL SIDE: 2; NO SIDE: 6
 
-  [incl-primary|P0] V_c 237.6 +- 0.1 km/s (beam-corrected +- 0.2)
+  [incl-primary|P0] V_c 237.6 +- 0.21 km/s (1 sigma, beam-corrected: primary, CLARIFICATION A-U16; independent-pixel covariance +- 0.07: information)
     canon 9.36e-11 | alpha_CO 4.36 | Rg=Rd:
       F-DESI        req 10.21 range [10.21, 10.22]; meas 9.44; Delta -0.77 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
-      F-flat        req 10.18 range [10.18, 10.18]; meas 9.44; Delta -0.74 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      F-flat        req 10.18 range [10.17, 10.18]; meas 9.44; Delta -0.74 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
       R-H           FLOOR at V_c 237.6 -> IN TENSION (FLOOR); not FLOOR at M*-0.2 (needs log M_gas 10.18): tension REDUCED
       L-fb(RAR-eq)  FLOOR at V_c 237.6 -> IN TENSION (FLOOR); not FLOOR at M*-0.2 (needs log M_gas 10.30): tension REDUCED
       side: NO SIDE
     alt 1.13e-10 | alpha_CO 4.36 | Rg=Rd:
-      F-DESI        req 10.08 range [10.08, 10.08]; meas 9.44; Delta -0.64 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
-      F-flat        req 10.03 range [10.03, 10.03]; meas 9.44; Delta -0.59 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      F-DESI        req 10.08 range [10.08, 10.09]; meas 9.44; Delta -0.64 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      F-flat        req 10.03 range [10.02, 10.03]; meas 9.44; Delta -0.59 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
       R-H           FLOOR at V_c 237.6 -> IN TENSION (FLOOR); not FLOOR at M*-0.2 (needs log M_gas 10.02): tension REDUCED
       L-fb(RAR-eq)  FLOOR at V_c 237.6 -> IN TENSION (FLOOR); not FLOOR at M*-0.2 (needs log M_gas 10.18): tension REDUCED
       side: NO SIDE
     all branches (end|alpha_CO|shape|footing): NO SIDE: 8
 
-  [incl-KMOS3D|P-B] V_c 245.9 +- 0.1 km/s (beam-corrected +- 0.2)
+  [incl-KMOS3D|P-B] V_c 245.9 +- 0.20 km/s (1 sigma, beam-corrected: primary, CLARIFICATION A-U16; independent-pixel covariance +- 0.06: information)
     canon 9.36e-11 | alpha_CO 4.36 | Rg=Rd:
-      F-DESI        req 10.36 range [10.36, 10.36]; meas 9.44; Delta -0.92 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      F-DESI        req 10.36 range [10.36, 10.37]; meas 9.44; Delta -0.92 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
       F-flat        req 10.34 range [10.33, 10.34]; meas 9.44; Delta -0.90 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
-      R-H           req 8.58 range [8.53, 8.63]; meas 9.44; Delta +0.86 +- 0.16; sig_tot 0.21 -> IN TENSION (high gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
-      L-fb(RAR-eq)  req 9.74 range [9.74, 9.75]; meas 9.44; Delta -0.30 +- 0.15; sig_tot 0.21 -> WITHIN 2sig_tot (unnamed by CFG806 s4)   (alternative readings differ: {'alt2 |Delta| <= 2sig (sig incl. V_c)': 'CONSISTENT', 'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      R-H           req 8.58 range [8.40, 8.71]; meas 9.44; Delta +0.86 +- 0.22; sig_tot 0.21 -> IN TENSION (high gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      L-fb(RAR-eq)  req 9.74 range [9.73, 9.75]; meas 9.44; Delta -0.30 +- 0.15; sig_tot 0.21 -> not in tension (within 2σ_tot)   (alternative readings differ: {'alt2 |Delta| <= 2sig (sig incl. V_c)': 'CONSISTENT', 'alt3 range incl. M* +-0.2': 'CONSISTENT'})
       side: NO SIDE
     alt 1.13e-10 | alpha_CO 4.36 | Rg=Rd:
       F-DESI        req 10.27 range [10.27, 10.27]; meas 9.44; Delta -0.83 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
-      F-flat        req 10.23 range [10.23, 10.23]; meas 9.44; Delta -0.79 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      F-flat        req 10.23 range [10.23, 10.24]; meas 9.44; Delta -0.79 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
       R-H           FLOOR at V_c 245.9 -> IN TENSION (FLOOR); not FLOOR at M*-0.2 (needs log M_gas 10.19): tension REDUCED
-      L-fb(RAR-eq)  req 8.54 range [8.49, 8.59]; meas 9.44; Delta +0.90 +- 0.16; sig_tot 0.21 -> IN TENSION (high gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      L-fb(RAR-eq)  req 8.54 range [8.33, 8.68]; meas 9.44; Delta +0.90 +- 0.23; sig_tot 0.21 -> IN TENSION (high gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
       side: NO SIDE
     all branches (end|alpha_CO|shape|footing): NO SIDE: 6; RIVAL SIDE: 2
 
-  [incl-KMOS3D|P0] V_c 233.3 +- 0.1 km/s (beam-corrected +- 0.2)
+  [incl-KMOS3D|P0] V_c 233.3 +- 0.20 km/s (1 sigma, beam-corrected: primary, CLARIFICATION A-U16; independent-pixel covariance +- 0.06: information)
     canon 9.36e-11 | alpha_CO 4.36 | Rg=Rd:
-      F-DESI        req 10.12 range [10.12, 10.12]; meas 9.44; Delta -0.68 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
-      F-flat        req 10.07 range [10.07, 10.07]; meas 9.44; Delta -0.63 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      F-DESI        req 10.12 range [10.11, 10.12]; meas 9.44; Delta -0.68 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      F-flat        req 10.07 range [10.07, 10.08]; meas 9.44; Delta -0.63 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
       R-H           FLOOR at V_c 233.3 -> IN TENSION (FLOOR); not FLOOR at M*-0.2 (needs log M_gas 10.10): tension REDUCED
       L-fb(RAR-eq)  FLOOR at V_c 233.3 -> IN TENSION (FLOOR); not FLOOR at M*-0.2 (needs log M_gas 10.24): tension REDUCED
       side: NO SIDE
     alt 1.13e-10 | alpha_CO 4.36 | Rg=Rd:
-      F-DESI        req 9.95 range [9.95, 9.95]; meas 9.44; Delta -0.51 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
-      F-flat        req 9.88 range [9.87, 9.88]; meas 9.44; Delta -0.44 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      F-DESI        req 9.95 range [9.94, 9.96]; meas 9.44; Delta -0.51 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
+      F-flat        req 9.88 range [9.87, 9.89]; meas 9.44; Delta -0.44 +- 0.15; sig_tot 0.21 -> IN TENSION (low gas)   (alternative readings differ: {'alt3 range incl. M* +-0.2': 'CONSISTENT'})
       R-H           FLOOR at V_c 233.3 -> IN TENSION (FLOOR); not FLOOR at M*-0.2 (needs log M_gas 9.90): tension REDUCED
       L-fb(RAR-eq)  FLOOR at V_c 233.3 -> IN TENSION (FLOOR); not FLOOR at M*-0.2 (needs log M_gas 10.10): tension REDUCED
       side: NO SIDE
@@ -120,4 +124,4 @@ MOCK cube: cfg942_u4_MOCK_b.fits sha256 60c0fe97d91c55f9… (scratch; not commit
 
 flags raised in this run (harness defaults; see README ambiguity list): A-X6, A-U3, A-U12b, A-U10
 
-(peak RSS 985 MB, incl. freed pages macOS keeps resident; peak unique set size 144 MB)
+(peak RSS 981 MB, incl. freed pages macOS keeps resident; peak unique set size 124 MB)
