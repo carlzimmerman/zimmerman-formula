@@ -17,11 +17,11 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (728 rows)
+## Totals (737 rows)
 
-- **520 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **524 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
-- **123 produced a number.** 56 produced one determinate value; 67 are menus of several values from
+- **126 produced a number.** 58 produced one determinate value; 68 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
   - a condition equal to the target,
   - a free ratio, or a trade for a new constant,
@@ -29,7 +29,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
   - a closure.
 - 44 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
 
-**17 of the 56 determinate values land inside today's 2σ data window [0.227, 0.607].** That window is CFG493's
+**17 of the 58 determinate values land inside today's 2σ data window [0.227, 0.607].** That window is CFG493's
 κ_Λ = 0.417 ± 0.095.
 - Every landing is an O(1) number that the window cannot separate from ½.
 - They are mostly the same few values, recurring: 0.461 (Z = 2π), 0.482 (Z = 6, Verlinde), 0.55–0.557 (particle horizon,
@@ -37,7 +37,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
 - The rate (about 33%) is what a random draw from the record-natural number set gives (27–28%; see
   `kappa_campaign_lee.out`). So the landings are no evidence that any route knows κ.
 
-**67 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
+**68 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
 The ½ got in by one of these routes:
 - inserted or written in (CFG43, CFG187, G031);
 - posited (the free-fall surface gravity c²/2R*, i.e. J = Gρr²/c² = 1);
@@ -145,12 +145,12 @@ fact.
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 64 | 4 | 10 | 50 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 142 | 8 | 7 | 122 | 5 | 0 |
-| PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 143 | 9 | 7 | 122 | 5 | 0 |
+| PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 57 | 9 | 12 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
 | QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 28 | 6 | 1 | 21 | 0 | 0 |
-| KS Kinetic / settling / collective / cold-energy dynamics | 32 | 0 | 2 | 30 | 0 | 0 |
+| KS Kinetic / settling / collective / cold-energy dynamics | 34 | 1 | 2 | 31 | 0 | 0 |
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 48 | 2 | 4 | 38 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
@@ -481,6 +481,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K708 | W4-08/5Ddielectric | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/protected_normalization` | radial relaxation of critical dielectric with added N1 cubic potential and FI uplift | - | free | PARTIAL/CLOSURE: positive electric cubic and fixed-D minimum are real; critical photon kinetic and vacuum energy vanish; added potential coefficient unprotected; FI restores quadratic IR; like-charge force repulsive; reversed-regime L and H ratios not operational MOND amplitudes | eeb8b9492 |
 | K710 | W4-08/disformal | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/protected_normalization` | universal changed physical matter metric and source-lensing amplitude dictionary | - | free | TRADE: TeVeS-shaped gamma1 family has free canonical scalar charge at fixed response; actual-V xi keeps f-cube while inferred footing gains B0^2 for general reference; saturated-neighborhood cone rule is added assumption; inherited matter-free clock instability unchanged; no healthy selector | eeb8b9492 |
 | K715 | W4-08/geometric-metric | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/geometric_source` | higher-gradient superfluid gravitational order parameter with universal attractive metric source and exact broken-branch interpolation | - | free | PARTIAL/TRADE: C2=Mpl^2 and C3=2Mpl^2/(3a0) give actual metric MOND in a local algebraic EFT window; a0 input; finite-Z gradients nonuniform; finite-density fluid not vacuum; no microscopic selector | be8fc76cb |
+| K731 | W4-18/B3 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Hardy/BF inverse-square 1/4 and the dS4 complementary-series / critical-damping edge m = 3H/2 as a0/c | 4.342 | odd | MISS: no Hardy slot (deep-MOND perturbation exponents +-sqrt(l(l+1)/2), no tunable coupling); edge kappa = sqrt(6pi) pi-odd | 918a2439d |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -542,6 +543,9 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K574 | gemini-solve | `gemini_pi_puzzle/SOLVING_THE_PUZZLE.md` | Schwarzschild surface gravity c^2/2r at R* | - | free | VOID: postulate (J=1) | 47c437e8c |
 | K576 | gemini-rh2 | `gemini_pi_puzzle/WHY_RH2_LAMBDA_8PI.md` | why r_H^2 Lambda = 8pi | - | free | bookkeeping | ab32041fc |
 | K586 | R06 | `RETRACTIONS.md` | category / uniqueness search | - | free | form unique; xi free | 508a12052 |
+| K733 | W4-18/B5 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Newton-Hooke (Bohlin-Arnold-Kasner) duality (a+3)(A+3) = 4; deep MOND is the self-dual point | - | nk | EXPONENT-ONLY: dual coupling k = 4h/s^2 carries a free time-reparametrisation scale | 918a2439d |
+| K735 | W4-18/B7 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | lattice of touching horizons (brief X5 light part): single-neighbour pull a_nn^2 = G rho c^2 (V_s/d^3)(G m/(d c^2)), d = 2 r_s | {0.5, 0.4387, 0.4204} | menu | MENU: sc gives exactly 1/2 (pi-free) but densest packing fcc/hcp 0.420 and bcc 0.439, all in W_data; dust lattice (w = 0) not the vacuum; MU3 shows 1/2 is definitional | 918a2439d |
+| K736 | W4-18/B8 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Lambda thresholds x MOND (brief X4 static part): zero-force radius and OSCO for Newton, deep MOND, simple, standard, RAR | - | nk | NO-GO: Newton 2 and 8 rho_Lambda exact; threshold accelerations scale as M^(1/4) or M^(1/3), none M-independent; no c, so none can fix kappa | 918a2439d |
 
 ## GB: Graviton bath / mode counting
 
@@ -661,6 +665,11 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K583 | deepseek_moa | `deepseek_moa/HARVEST.md` | kappa = sigma^2/v^2 = c_s^2 = 1/2 | - | free | VOID (naming): SIS class | d78d7525a |
 | K596 | CFG898 | `campaign_fresh_gravity/CFG898_kappa_D2_causality_saturation` | saturate CFG893 drift-causality ceiling (v_s = c) at rho_DE-defined loci x kernels x alpha* (causal bound / FP / BGK) | - | menu | NOT A SELECTION: menu 2.894-10.948 all miss; real field at loci gives kappa_sat 3.3e11-1.2e17 ~ M_b^-1 (mass-dependent, excluded); H-type a0 = N c H_L/(alpha c_nu) (horizon family, pi-parity forbids 1/2); alpha not fixed by IS closure | d663eb027 |
 | K615 | W4-03/AS119 | `why_4_puzzle/W4_03_unrun_as_proposals` | max-ent {1, E[ln(1+u)] = c} -> Lomax (l-1)(1+u)^-l, n = 1/c; kappa = 1/n only if the kernel scale is s = c sqrt(G rho) (premise A) | - | free | REPARAMETRISATION (S5): exact max-ent, but its 1/2 is the committed MU2 kernel's n = 2 read back through premise A; from data c = 0.417+-0.095 -> n = 2.40+-0.55 | 3c96c6ce3 |
+| K729 | W4-18/B1 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Mathieu parametric resonance: first tongue delta = 1/4 (mode at half the pump; Floquet-confirmed); pump = the vacuum's only rate H_Lambda | 1.447 | odd | MISS: kappa = sqrt(2pi/3), pi-odd, out of W_data | 918a2439d |
+| K730 | W4-18/B2 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Fisher-KPP pulled front v* = 2 sqrt(D r) as an a0 front | - | free | FREE: the vacuum has no transport coefficient D; secondary reading (front at c, r = H) gives 2cH, kappa = Z = 5.789 pi-odd | 918a2439d |
+| K732 | W4-18/B4 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Thomson/Eddington pi cancellation (sigma_T 8pi/3 vs flux 4pi): a0 as a gravity vs vacuum-momentum-transfer balance | - | nk | VOID: transfer ~ rho(1+w) = 0 at w = -1 (Lorentz-invariant vacuum) | 918a2439d |
+| K734 | W4-18/B6 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | mean-field amplitude ratio 2, GL self-dual 1/sqrt2, critical damping gamma = 2 omega0 | - | nk | NO SLOT: no order parameter shared by a0 and rho_Lambda; damping reading = B3 edge | 918a2439d |
+| K737 | W4-18/B9 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Maxwellian sqrt(pi) parity flip (effusion 1/4 n v_bar) | - | nk | VOID: the w = -1 source has no velocity distribution | 918a2439d |
 
 ## CC: Cosmological consistency (horizons, epochs, H0, unimodular, sequestering)
 
