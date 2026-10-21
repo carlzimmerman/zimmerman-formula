@@ -5,6 +5,18 @@ that forces R=128pi/9. **Unachieved.** This phase closes with explicit
 partial constructions and identified missing physics, not with a global
 impossibility claim. No scheduled work or delayed jobs were created.
 
+Latest continuation: `formal/geometric_source/RESULT.md`, criteria-only
+1a46afd06. Universal attractive metric MOND is derived in a local static
+EFT window, but a permitted bounded potential changes its formal cubic
+at fixed vacuum/UV/quadratic data. Retained gradients, normal-fluid Euler
+equations and curved backgrounds remain load-bearing. The distinct Weyl
+source audit leaves an invariant ratio free. Exact c1-clock vacuum
+constraints and a near-vacuum homogeneous Bianchi basin improve health,
+qualifying the earlier flat-window instability extrapolation. No complete
+microscopic model, independent selector or new Lean module is obtained.
+Five inherited evidence validators freshly pass; nine partial modules and
+the unverified actual-pi adapter retain their prior scopes.
+
 Read README.md, PROOF.md and REVIEW.md together. The single-mediator
 dictionary is xi=8Omega/(9R), with R=epsilon C3^2/C2^3; n=3 gives the
 target. For tensor-plus-phonon gravity derive its force dictionary anew.

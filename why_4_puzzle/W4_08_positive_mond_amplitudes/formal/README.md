@@ -9,6 +9,16 @@ The reviewed formal/physical checkpoint is f77a0cd8d; registry rows
 K673-K678 record its separate stress, scale, vector, pressure, BMB and
 formal scopes. None is a determinate normalization candidate.
 
+Latest [geometric-source checkpoint](geometric_source/RESULT.md), criteria
+1a46afd06, adds analytic universal metric attraction, an explicit cubic
+deformation, a Weyl action/source audit and exact curved c1-clock constraint
+reductions. The finite-k vacuum clock/metric coefficients are positive;
+homogeneous finite-gradient tilt decays in a controlled near-vacuum basin.
+Those results qualify the flat-window instability claim without proving a
+healthy full halo or selecting xi. No new Lean module is added; all five
+inherited evidence validators freshly pass. The nine modules below retain
+their exact previous scopes, and the actual-pi adapter is still unverified.
+
 ## What Lean now verifies
 
 | Module | Exact scope |

@@ -2,15 +2,26 @@
 
 2026-10-20. **Target not achieved.** No healthy microscopic model found
 here forces `epsilon C3^2/C2^3 = 128pi/9`, or equivalently `xi=1/4`
-in the single-mediator force convention. The advance is an explicit
-positive-energy band family with the entire positive MOND constitutive
-response, followed by dynamical, stress and normalization tests. Its
-remaining physical mass ratio is exposed exactly; it is not a field
-normalization or a common loop factor.
+in the single-mediator force convention. The latest advance is a universal
+attractive metric MOND mechanism, an explicit allowed amplitude deformation,
+and a curved-background clock health improvement. Earlier band, current
+and auxiliary calculations remain below with their original scopes.
 
 Standing empirical status: **kappa=1/2 FITTED**. CFG493 gives
 kappa_Lambda=0.417+/-0.095 and kappa_crit=0.345+/-0.078 on separate
 footings. Neither is used as an input to any calculation here.
+
+The [geometric-source continuation](formal/geometric_source/RESULT.md)
+derives the actual metric source and interpolation in a higher-gradient
+superfluid EFT, without a separate phonon charge. A bounded potential
+deformation changes its formal cubic while preserving vacuum/UV/quadratic
+data; the full curved halo and microscopic completion remain unproved.
+A separate integrable-Weyl audit exposes a variational source obligation
+and an unfixed invariant vacuum/cubic ratio. The actual c1-only de Sitter
+clock/metric modes have positive reduced coefficients, and its homogeneous
+tilt decays in a controlled near-vacuum basin. This qualifies the earlier
+flat-tilt inference; it does not settle finite-gradient finite-k health or
+select the amplitude. No new Lean module or determinate trial was added.
 
 **Formal continuation:** [nine partial Lean modules](formal/README.md) verify
 the quantitative band-stress obstruction, coefficient bridge, scale/gap

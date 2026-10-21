@@ -14,10 +14,10 @@ record these partial results without adding a determinate trial.
 
 | Required end state | Current authoritative evidence | Status |
 |---|---|---|
-| Regular healthy microscopic action and zero-field quantum state | Preferred-clock vector action is classically controlled on positive Y; its zero-field longitudinal limit degenerates. Tested regular pressure/current and protected chiral parents fail specified completion tests. | Incomplete |
-| Actual MOND force and force-calibrated G | Independently audited positive radial source branch and asymptotic force for the specified classical vector action; operational Newtonian regime remains source-dependent. | Partial |
+| Regular healthy microscopic action and zero-field quantum state | Latest c1 clock/metric vacuum modes have positive constrained coefficients and controlled near-vacuum homogeneous decay. The rational scalar/auxiliary vacuum, finite-gradient finite-k modes and microscopic quantum state remain unresolved. | Incomplete |
+| Actual MOND force and force-calibrated G | Latest higher-gradient order parameter gives universal attractive metric MOND in its local static EFT window. Retained gradients, normal-fluid equations and a complete curved halo remain necessary. | Partial |
 | Same-state positive gravitating vacuum stress | Paired-band stress has a kernel-checked order-one defect under its prescription. Temporal parent carries an independent epsilon0 and unspecified gravitating clock. | Missing |
-| Independent principle forcing xi=1/4 | All surviving response parameters and epsilon0/(gamma b^3) remain free. No Ward, gap or constraint equation selects it. | Missing |
+| Independent principle forcing xi=1/4 | A permitted bounded potential changes the new formal cubic at fixed vacuum/UV/quadratic data. Weyl geometry leaves an invariant vacuum/cubic combination free. No Ward, gap or constraint equation selects it. | Missing |
 | End-to-end Lean proof with all leaves established | Nine partial modules compile using only standard axioms. Physical dictionaries and field/PDE bridges remain explicit analytic inputs. Pi adapter is unverified under the current memory cap. | Incomplete |
 | Independent second physical prediction | No determinate normalization candidate exists. | Missing |
 
@@ -186,3 +186,43 @@ excluded or declared solved. No determinate normalization is registered.
 Protected-normalization evidence: eeb8b9492; campaign entriesK707-K710.
 The regenerated campaign checks pass4/4. Determinate-trial count and
 campaign significance are unchanged; no healthy selector is claimed.
+
+## Geometric source and actual curved clock
+
+Criteria-only1a46afd06 continues f4d7d0e7a. This continuation is progress,
+with new analytic action/source and constrained-mode evidence. Details:
+geometric_source/RESULT.md. The full original goal remains active.
+
+The higher-gradient superfluid gravitational order parameter produces a
+universal attractive metric source, both force limits and an exact
+interpolation with its quartic correction retained. Its scale is an input;
+the finite-density fluid is not vacuum stress. A regular positive mass
+potential restores quadratic IR response; a bounded positive tail changes
+the formal cubic at fixed vacuum/UV/quadratic data. Retained chi gradients,
+the normal-fluid Euler equation, missing normal-fluid quadratic dynamics
+in the displayed vacuum truncation and positive-background curvature
+prevent a microscopic/all-radius claim. The flat-static response is not
+silently transferred to a same-state curved halo.
+
+The distinct integrable-Weyl scalar survives gauge fixing, but literal
+Einstein-metric matter has zero direct scalar charge. The consistently
+normalized auxiliary-vector closure and the published external-vector
+recipe cannot share their stress formulas without a new off-shell bridge.
+Even granting the quoted MOND map, xi=32pi/(lambda beta^2), with the
+invariant combination lambda beta^2 free. This is a restricted source/
+normalization audit, not a global Weyl no-go.
+
+The actual c1-only rational completion has positive reduced transverse and
+longitudinal vacuum clock/metric coefficients at 0<M<M_Pl^2. Redshift and
+temporal boundaries are retained. Its exact homogeneous Bianchi tilt
+decays sufficiently near the positive vacuum at fixed finite coupling.
+This improves the health result and qualifies the earlier flat-metric
+extrapolation; it does not remove the old growing packet in its stated
+weak-gravity/WKB window. Finite-k finite-gradient coupled constraints,
+rational auxiliary/quantum regularity and the global sourced halo remain
+open. The independent matter charge and amplitude deformations survive.
+
+No new Lean module duplicates the existing minimum/coefficient proofs.
+All five inherited validators freshly pass, with nine partial modules
+and61 standard-axiom critical prints. The actual-pi adapter, full physical
+bridges, healthy microscopic selector and second prediction remain missing.
