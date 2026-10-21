@@ -173,3 +173,28 @@ shrinks |Δχ²| for runs that differ from the control mainly in amplitude, whic
   (cfg909_NC1x*.err), as in the T1x run; cfg909_slogdet_check covers the determinant path.
 - Reading: with native inputs the class survives every ΛCDM-input variant; the size of the advantage is set by the projection
   Ω_m (amplitude), as for T1x. Quote CONSISTENT, not a −10 preference. κ = ½ FITTED; not theory closed.
+
+## NC2x re-score (2026-10-21, after the chain scored NC2x; reported sensitivity, no verdict weight, as CFG654 A3 allows)
+
+`OMP_NUM_THREADS=1 nice -n 10 python3 cfg909_rescore.py --score NC2x NCS0 --mutate`, then without `--mutate`. Outputs
+`cfg909_NC2x[_MUTATE].out` and `cfg909_results_NC2x[_MUTATE].json`. Alt footing only. NCS0 is the footing-independent control.
+
+| check / variant | KiDS Δχ² (F − S0) | class |
+|---|---|---|
+| K1 as scored (reproduces cfg654_native_results_NC2x.json, max diff 0) | −9.39 | CONSISTENT |
+| projection Ω_m 0.2806 / 0.2976 / 0.3085 / 0.3138 / 0.3308 | −2.93 / −6.40 / −8.93 / −10.22 / −14.69 | CONSISTENT in all |
+| CV1_COMMON / CVh_COMMON | −10.22 / −9.78 | CONSISTENT |
+| CV1_OWN / CVh_OWN (framework's own covariance; Δχ² only) | −2.81 / −6.63 | CONSISTENT |
+| COMB Ω_m 0.2976 + CV1_COMMON | −6.99 | CONSISTENT |
+| DIAG (reported only) | −18.07 | CONSISTENT |
+
+- LANE CLASS: **ROBUST**, no flips. The worst class-driving statistic is at Ω_m 0.2806: −2.93, a margin of 6.93 to the TENSION line.
+  K1–K4 PASS.
+- MUTATE bites. M1 (Ω_m 0.25 on the framework arm) shifts KiDS by −23.08. M2 (framework covariance × 0.5) shifts it by +135.15.
+- DES (alt): diagnostic and CONSISTENT as scored (−2.15). It is NOT DIAGNOSTIC at Ω_m 0.2806 / 0.2976 and in COMB, where T-OWN fails,
+  and CONSISTENT elsewhere.
+- The stderr log (cfg909_NC2x.err) carries numpy slogdet divide/overflow/invalid warnings, as in the NC1x and T1x runs.
+  cfg909_slogdet_check covers the determinant path. The Δχ² classes do not use it.
+- Reading, as for NC1x: with native inputs on the alt footing the class survives every ΛCDM-input variant. The size of the
+  advantage is set by the projection Ω_m, i.e. by amplitude. Quote CONSISTENT, not a −9 preference. κ = ½ FITTED; footings never
+  pooled; not theory closed.
