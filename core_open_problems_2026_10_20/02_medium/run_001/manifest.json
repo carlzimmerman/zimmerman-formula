@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "MEDIUM-2026-10-20-A",
+  "repository": {
+    "commit": "431f22bd6fe998759b843d13113762d73356aec6",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "core_open_problems_2026_10_20/02_medium/check_medium.py",
+    "core_open_problems_2026_10_20/02_medium/run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact symbolic constitutive identities and limits; specified finite partition integrals, 2x2 ground states, force integrals, and kinetic trajectories agree with separately derived formulas; conditional n=1/2 discriminator is evaluated.",
+    "coefficient_domain": "Symbolic rational/algebraic expressions over positive reals; IEEE double numerical quadrature and ODE controls.",
+    "conventions": "u=K|P|, K=4piG. n is capacity coefficient, b=a0/n. All candidate microscopic full free energies are deliberately normalized to K W_full second derivative at zero=1; this normalization is not derived.",
+    "inputs": [
+      "Capacity action and constants specified in check_medium.py",
+      "n in {1,2}; fractional capacity m in {0.001,0.01,0.1,0.5,0.9,0.99}",
+      "Dipole biases h in {0.01,0.1,1,3,10}; kinetic y in {0.01,0.5,10}, initial capacity fractions {0,0.2,0.9}, 41 output times; two zero-source controls",
+      "Two separate a0 footings; illustrative 1e10 solar mass spherical baryon source"
+    ],
+    "bounds": {
+      "partition_biases": 5,
+      "force_samples": 6,
+      "target_energy_integrals": 10,
+      "kinetic_trajectories": 18,
+      "kinetic_samples_per_trajectory": 41,
+      "zero_source_trajectories": 2
+    },
+    "non_claims": [
+      "No microscopic origin or selection of n established",
+      "No astrophysical data fit or relativistic lensing completion",
+      "No finite-stiffness boundary value solve or global error bound",
+      "No exclusion of gapless, critical, non-equilibrium or nonanalytic media"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-21T00:37:53.075001+00:00",
+    "runtime_seconds": 1.157644,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "core_open_problems_2026_10_20/02_medium/run_001/results.json",
+      "core_open_problems_2026_10_20/02_medium/run_001/forces.csv",
+      "core_open_problems_2026_10_20/02_medium/run_001/footings.csv",
+      "core_open_problems_2026_10_20/02_medium/run_001/discriminator.csv"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "core_open_problems_2026_10_20/02_medium/check_medium.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "core_open_problems_2026_10_20/02_medium/check_medium.py",
+      "sha256": "3208f0cc5ec43827f9f3267ff31b409d8fe6a6de3c82cd847baed37874f05057",
+      "sha256_after": "3208f0cc5ec43827f9f3267ff31b409d8fe6a6de3c82cd847baed37874f05057"
+    }
+  ],
+  "output_directory": "core_open_problems_2026_10_20/02_medium/run_001",
+  "declared_results": [
+    "core_open_problems_2026_10_20/02_medium/run_001/results.json",
+    "core_open_problems_2026_10_20/02_medium/run_001/forces.csv",
+    "core_open_problems_2026_10_20/02_medium/run_001/footings.csv",
+    "core_open_problems_2026_10_20/02_medium/run_001/discriminator.csv"
+  ],
+  "outputs": [
+    {
+      "path": "core_open_problems_2026_10_20/02_medium/run_001/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "core_open_problems_2026_10_20/02_medium/run_001/stderr.txt",
+      "sha256": "bb5bed24a5da967048279fcabe033805a10abd34d78e4a382bff9019bc20f60c",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: core_open_problems_2026_10_20/02_medium/run_001/results.json, core_open_problems_2026_10_20/02_medium/run_001/forces.csv, core_open_problems_2026_10_20/02_medium/run_001/footings.csv, core_open_problems_2026_10_20/02_medium/run_001/discriminator.csv"
+  ]
+}

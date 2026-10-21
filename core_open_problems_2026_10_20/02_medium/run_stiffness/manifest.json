@@ -1,0 +1,122 @@
+{
+  "schema_version": 2,
+  "claim_id": "MEDIUM-2026-10-20-A-STIFFNESS",
+  "repository": {
+    "commit": "c821a8bccc8a20e107b4c6771d31e02d05aa8b10",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "core_open_problems_2026_10_20/02_medium/stiffness_addendum.py",
+    "core_open_problems_2026_10_20/02_medium/run_stiffness"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "12 evaluations of the analytic trial-profile omitted-force residual at x=sqrt(2), and 8 independent length-squared ratio checks",
+    "coefficient_domain": "IEEE double; coefficients 17/27 and 5/(6sqrt(3)) proved from radial differentiation",
+    "conventions": "Same 1e10 solar mass spherical source and constants as primary check; epsilon is residual, not solution error",
+    "inputs": [
+      "n in {1,2}",
+      "two separate a0 footings",
+      "Lstar in {5.75,24,1000} pc"
+    ],
+    "bounds": {
+      "rows": 12,
+      "scaling_checks": 8
+    },
+    "non_claims": [
+      "No boundary-value solution",
+      "No velocity error bound",
+      "No new empirical stiffness constraint"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-21T00:44:08.946423+00:00",
+    "runtime_seconds": 0.039589,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": null
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "core_open_problems_2026_10_20/02_medium/stiffness_addendum.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "core_open_problems_2026_10_20/02_medium/stiffness_addendum.py",
+      "sha256": "b53d21f0211d91472f6fc32a7bebb827ca6c60c781f24e36abb753cf3969cd8a",
+      "sha256_after": "b53d21f0211d91472f6fc32a7bebb827ca6c60c781f24e36abb753cf3969cd8a"
+    }
+  ],
+  "output_directory": "core_open_problems_2026_10_20/02_medium/run_stiffness",
+  "declared_results": [
+    "core_open_problems_2026_10_20/02_medium/run_stiffness/results.json",
+    "core_open_problems_2026_10_20/02_medium/run_stiffness/residuals.csv"
+  ],
+  "outputs": [
+    {
+      "path": "core_open_problems_2026_10_20/02_medium/run_stiffness/stdout.txt",
+      "sha256": "9d5d5cde66f434d8bb723842b6d5759c7e8eb816744917d68837adcdd9061c58",
+      "kind": "log"
+    },
+    {
+      "path": "core_open_problems_2026_10_20/02_medium/run_stiffness/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "core_open_problems_2026_10_20/02_medium/run_stiffness/results.json",
+      "sha256": "9d5d5cde66f434d8bb723842b6d5759c7e8eb816744917d68837adcdd9061c58",
+      "kind": "result"
+    },
+    {
+      "path": "core_open_problems_2026_10_20/02_medium/run_stiffness/residuals.csv",
+      "sha256": "8c8bc2d94afdd033abe87ee350bc471c723bab1de406c2d47f50bf1a7fe89ba2",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions."
+  ]
+}

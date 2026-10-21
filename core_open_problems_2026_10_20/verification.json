@@ -1,0 +1,125 @@
+{
+  "started_at_utc": "2026-10-21T00:53:41.756711+00:00",
+  "python": "3.9.6",
+  "packages": {
+    "sympy": "1.14.0",
+    "mpmath": "1.3.0",
+    "numpy": "1.26.2",
+    "scipy": "1.11.4"
+  },
+  "scope": "portable replay and comparison of new mathematical outputs",
+  "comparison": "same assertions; mathematical floats relative 1e-10, no absolute zero tolerance; original software metadata and residual diagnostics excluded",
+  "runs": [
+    {
+      "name": "horizon",
+      "script": "01_horizon/check_horizon.py",
+      "script_sha256": "9bd400aea26a4bc30cd951a8910c897f2534527bfd51e1f5143b43879ff28312",
+      "arguments": [
+        "{tmp}/horizon.json"
+      ],
+      "exit_status": 0,
+      "runtime_seconds": 1.333081,
+      "reference_result": "01_horizon/run_002/results.json",
+      "reference_result_sha256": "441aa559fe3fe4840aa7a597548ef183f80f73a750aad41b22c36dab42417844",
+      "mathematical_outputs_match": true,
+      "original_software": null
+    },
+    {
+      "name": "medium",
+      "script": "02_medium/check_medium.py",
+      "script_sha256": "57d256f82d219d75d44e5ad611a00011ec7a0717df714dd90afb48140856cf79",
+      "arguments": [
+        "{tmp}/medium"
+      ],
+      "exit_status": 0,
+      "runtime_seconds": 1.360053,
+      "reference_result": "02_medium/run_002/results.json",
+      "reference_result_sha256": "ee6cad14d0e410c5069401afb476803edb287252153daf133f50fdbf98d7a6e6",
+      "mathematical_outputs_match": true,
+      "original_software": {
+        "python": "3.9.6",
+        "numpy": "1.26.2",
+        "scipy": "1.11.4",
+        "sympy": "1.14.0"
+      }
+    },
+    {
+      "name": "medium_stiffness",
+      "script": "02_medium/stiffness_addendum.py",
+      "script_sha256": "b53d21f0211d91472f6fc32a7bebb827ca6c60c781f24e36abb753cf3969cd8a",
+      "arguments": [
+        "{tmp}/medium_stiffness"
+      ],
+      "exit_status": 0,
+      "runtime_seconds": 0.026993,
+      "reference_result": "02_medium/run_stiffness/results.json",
+      "reference_result_sha256": "9d5d5cde66f434d8bb723842b6d5759c7e8eb816744917d68837adcdd9061c58",
+      "mathematical_outputs_match": true,
+      "original_software": null
+    },
+    {
+      "name": "relativity",
+      "script": "03_relativity/checks.py",
+      "script_sha256": "3f6289f3880fada1bbbb99585e6239d8cc2bf04655ff61ed8d9c1719fe5fe2b0",
+      "arguments": [
+        "--output",
+        "{tmp}/relativity.json"
+      ],
+      "exit_status": 0,
+      "runtime_seconds": 0.652055,
+      "reference_result": "03_relativity/run_001/results.json",
+      "reference_result_sha256": "d612d65ade15129e8b124ba44fbd98c760fea30ec4ae6bf0de8bd9edb9aebd84",
+      "mathematical_outputs_match": true,
+      "original_software": {
+        "python": "3.13.9",
+        "sympy": "1.13.1"
+      }
+    },
+    {
+      "name": "stiffness",
+      "script": "04_stiffness/scripts/run_checks.py",
+      "script_sha256": "620f6d086be896f0c43f0074241a022c2cd3b51d92d23f12a98be42306d784ab",
+      "arguments": [
+        "--output-dir",
+        "{tmp}/stiffness"
+      ],
+      "exit_status": 0,
+      "runtime_seconds": 1.33748,
+      "reference_result": "04_stiffness/results/checks.json",
+      "reference_result_sha256": "7290e1e95622a927c4fe6a781ec515679807593a6baf8570757fb62d1079bb82",
+      "mathematical_outputs_match": true,
+      "original_software": null
+    },
+    {
+      "name": "independent_review",
+      "script": "05_independent_review/check_independent.py",
+      "script_sha256": "31b00bf0b1f9f04840ca212545127a51cb19e44ea4f12f9b35a4845843134eed",
+      "arguments": [
+        "{tmp}/independent.json"
+      ],
+      "exit_status": 0,
+      "runtime_seconds": 0.463727,
+      "reference_result": "05_independent_review/results.json",
+      "reference_result_sha256": "8c01fd1ba890a128a481b9058dae4d3bec34e5bab811ef2313f16e7245f81ce2",
+      "mathematical_outputs_match": true,
+      "original_software": "1.14.0"
+    },
+    {
+      "name": "coordinator",
+      "script": "review_checks.py",
+      "script_sha256": "770cb6ae1e074b7911b1790fa94ded62939febbedb335d3c2b34736f2b9728b9",
+      "arguments": [
+        "--output",
+        "{tmp}/coordinator.json"
+      ],
+      "exit_status": 0,
+      "runtime_seconds": 0.059107,
+      "reference_result": "review_results.json",
+      "reference_result_sha256": "b4f58dc768d5634ea5a4ce330cd8a0f90edfb9565dbcc75744dac0bccfccb271",
+      "mathematical_outputs_match": true,
+      "original_software": null
+    }
+  ],
+  "status": "completed",
+  "physical_origin_goals": "remain open; see reports and REVIEW.md"
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "claim_id": "P3_HODGE_CLOCK_SCOPED_IDENTITIES",
+  "repository": {
+    "commit": "c821a8bccc8a20e107b4c6771d31e02d05aa8b10",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "checks.py",
+    "--output",
+    "run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.13.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact potential split, static law and weak metric variations, Hodge/tensor symbols, P=0 reduced scalar action, aligned high-frequency shift reduction, rank loss and sign counterexample, dimensional screening arithmetic.",
+    "coefficient_domain": "Exact symbolic rational expressions with positive K,a0,gamma,eta,beta,k; IEEE double arithmetic for illustrative SI screening only.",
+    "conventions": "c=1, signature (-+++), K=4piG, P is a spatial covector, k>0, beta>0; principal aligned block only for nonzero P.",
+    "inputs": [
+      "Symbolic action and frozen-principal perturbation definitions in checks.py",
+      "Solar GM=1.32712440018e20 m^3/s^2, AU=149597870700m, pc=3.085677581491367e16m; illustrative L=24pc and 1000pc"
+    ],
+    "bounds": {
+      "zero_field": "all positive symbolic coefficients and k>0; k=0 not reduced",
+      "polarized": "aligned high-frequency principal block; not a global background solution",
+      "tensor": "wavevector rotated to z, both TT polarizations and arbitrary P components",
+      "numerical_solar_Lstar_pc": [
+        24,
+        1000
+      ]
+    },
+    "non_claims": [
+      "No complete covariant completion",
+      "No S3 mass/current embedding",
+      "No general-background or nonlinear stability",
+      "No all-angle physical-mode positivity",
+      "No PPN/ephemeris data pass",
+      "No endpoint strong-coupling certificate"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-21T00:44:56.579097+00:00",
+    "runtime_seconds": 0.558625,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "checks.py",
+      "sha256": "3f6289f3880fada1bbbb99585e6239d8cc2bf04655ff61ed8d9c1719fe5fe2b0",
+      "sha256_after": "3f6289f3880fada1bbbb99585e6239d8cc2bf04655ff61ed8d9c1719fe5fe2b0"
+    }
+  ],
+  "output_directory": "run_001",
+  "declared_results": [
+    "run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "run_001/stdout.txt",
+      "sha256": "5f3298e66834509ea1b1bf241d13fa5e531cae52c59ca61fc87a352aec91b6b8",
+      "kind": "log"
+    },
+    {
+      "path": "run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "run_001/results.json",
+      "sha256": "d612d65ade15129e8b124ba44fbd98c760fea30ec4ae6bf0de8bd9edb9aebd84",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
