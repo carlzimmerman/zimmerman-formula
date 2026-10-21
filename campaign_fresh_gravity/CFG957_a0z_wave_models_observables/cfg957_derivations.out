@@ -1,0 +1,78 @@
+CFG957 derivations (criteria 8e884c9a2b). The owner's idea (2026-10-21): an oscillating a0(z).
+kappa = 1/2 FITTED; footings never pooled; not theory closed.
+
+D1  de Sitter (H const): phi'' + 3 H phi' + m^2 phi = 0
+    roots: [-3*H/2 - sqrt(9*H**2 - 4*m**2)/2, -3*H/2 + sqrt(9*H**2 - 4*m**2)/2]
+  [PASS] D1 roots = -3H/2 +- sqrt(9H^2/4 - m^2)  
+  [PASS] D1 underdamped (complex roots) iff m > 3H/2  disc = 9*H**2 - 4*m**2
+    In a universe with Lambda, H(t) -> H_Lambda from above, so the field is asymptotically underdamped iff m > (3/2) H_Lambda.
+    background: h = 0.67683, Omega_Lambda = W0/h^2 = 0.68022; threshold (3/2) H_Lambda = 1.2371 H0
+    record rate H_Lambda               = 0.8248 H0  -> overdamped (asymptotically)
+    record rate a0/c (canonical)       = 0.1423 H0  -> overdamped (asymptotically)
+    record rate sqrt(G rho) (canonical) = 0.2847 H0  -> overdamped (asymptotically)
+    record rate a0/c (alt)             = 0.1720 H0  -> overdamped (asymptotically)
+    record rate sqrt(G rho) (alt)      = 0.3440 H0  -> overdamped (asymptotically)
+  [PASS] D1 every record rate lies below (3/2) H_Lambda  max 0.8248 < 1.2371
+
+D2  matter era (EdS, H = 2/(3t)): phi'' + (2/t) phi' + m^2 phi = 0
+  [PASS] D2 sin(mt)/(mt) solves the EdS equation (zeros at m t = k pi)  residual 0
+  [PASS] D2 u = a^(3/2) phi obeys u'' + (m^2 - 9H^2/4 - 3H'/2) u = 0  
+  [PASS] D2 in EdS the effective frequency^2 is exactly m^2 (oscillation for any m once m t > pi)  m**2
+    So in the matter era the field turns over once m t ~ pi; in the Lambda era the frequency^2 m^2 - 9H_L^2/4 < 0 for m < 1.5 H_L.
+
+D3  WKB (two timescales): phi = A(t) cos(mt) + B(t) sin(mt), A, B slow
+  [PASS] D3 A' = -(3/2) H A and B' = -(3/2) H B  =>  amplitude ∝ a^(-3/2), rho_osc ∝ a^(-3)  A' = -3*H*A(t)/2, B' = -3*H*B(t)/2
+    In a0 (small r = rho_osc/V0): relative wave amplitude ∝ rho_osc ∝ (1+z)^3 in the -p and V readings: beta = 3.
+
+D4  readings for a real field phi = A cos(theta), theta' = m (WKB), V = V0 + m^2 phi^2 / 2
+  [PASS] D4 eps = V0 + rho_osc (no oscillation at WKB order)  
+  [PASS] D4 -p = V0 + rho_osc cos 2theta  
+  [PASS] D4 V = V0 + rho_osc (1 + cos 2theta)/2  
+  [PASS] D4 trace/4 = V0 + rho_osc (1 + 3 cos 2theta)/4  
+  [PASS] D4 active/2 = V0 - rho_osc (1 - 3 cos 2theta)/2  
+  [PASS] D4 complex field on a circular orbit (CFG288 form): p_osc = |Phi'|^2 - m^2 |Phi|^2 = 0 exactly  no wave in any reading
+    So the frequency of the a0 wave in -p and V is 2m (period pi/m in cosmic time).
+
+D5  canonical scalar: eps + p = phi'^2 >= 0 (NEC) and d eps/dt = -3 H phi'^2 <= 0
+  [PASS] D5 d eps/dt = -3H(eps + p) = -3H phi'^2  
+    THEOREM: in the eps reading a canonical dark-energy scalar can never give a0 a local peak in time (d eps/dt <= 0);
+    a peak needs eps + p < 0 (phantom) or an energy inflow from another sector.
+
+D6  eps ripple: d eps/dt = -3H rho_osc (1 - cos 2 m t)  =>  delta eps = (3H/2m) rho_osc sin 2mt (first order in H/m)
+  [PASS] D6 oscillating part of eps = (3H/(2m)) rho_osc sin(2mt)  3*H*rho_osc*sin(2*m*t)/(2*m)
+  [PASS] D6 the same from the WKB solution (phi'^2 average)  
+    => eps-reading ripple in a0 = (3H/4m) r, against r/2 in -p: ratio (3H/2m).
+
+D7  the record's partner: phi'' + 3H phi' + V'(phi) = Q/phi', Q >= 0 (CFG542/630)
+  [PASS] D7 u = phi'^2/2 obeys du/dt = -6H u - V' phi' + Q  -3*H*s**2 + Q - Vp*s
+  [PASS] D7 at u = 0: du/dt = Q > 0, so phi' cannot change sign (no turning point, no oscillation)  
+    Energy: d(phi'^2/2 + V)/dt = -3H phi'^2 + Q.  The rise of eps is bounded by the integral of Q (CFG630: <= 3.8e-6 rho_DE).
+    => any a0 rise from the partner <= 0.5 * log10(1 + 3.8e-6) = 8.25e-07 dex
+
+D8  exchange between cold energy (dust) and a w = -1 vacuum
+    vacuum continuity: rho_L' + 3H(1+w) rho_L = -Q with w = -1  =>  rho_L' = -Q (no Hubble term)
+  [PASS] D8 linear Q = q_c rho_c + q_d rho_L: det = 3 H q_d  trace -3*H + q_c - q_d, det 3*H*q_d, disc 9*H**2 - 6*H*q_c - 6*H*q_d + q_c**2 - 2*q_c*q_d + q_d**2
+  [PASS] D8 relaxation Q = Gamma(rho_c - R rho_L): det = -3 H Gamma R < 0  => saddle, no oscillation  det = -3*Gamma*H*R
+  [PASS] D8 the only fixed point (H const) has rho_c = 0 (any linear Q)  [{x: 0, y: 0}]
+    Complex eigenvalues (q_d > 0 and disc < 0) would make rho_c oscillate about 0, i.e. go negative: unphysical.
+    A wave in rho_L needs Q to change sign periodically; every record Q is one-signed (CFG630, CFG253, CFG360-DE C1, CFG131).
+
+D9  the record's footing lever for the shear engine
+    ln(1.1312/0.93603) = 0.18939;  native (NC2x - NC1x) 3.643, inherited (T2x - T1x) 2.746 per unit ln a0
+  [PASS] D9 lever arithmetic  
+
+D10 -p >= 0 for all theta  <=>  rho_osc <= V0 (real field)
+  [PASS] D10 min over theta of (V0 + rho cos 2theta)/V0 = 1 - r  => need r <= 1  
+
+D11 (ADDED after the criteria, dated 2026-10-21, report only): effective w of CFG689's own best-fit node curve
+    z 0.40 -> 0.00: rho ratio 0.960, w_eff = -0.960
+    z 0.70 -> 0.40: rho ratio 0.826, w_eff = -0.672
+    z 1.00 -> 0.70: rho ratio 1.499, w_eff = -1.830  (phantom: NEC violated)
+    z 1.50 -> 1.00: rho ratio 0.936, w_eff = -0.902
+    z 2.33 -> 1.50: rho ratio 1.065, w_eff = -1.073  (phantom: NEC violated)
+    a0 ratio at the z = 0.7 node: sqrt(0.39289/0.31161) = 1.123 (a 'recent peak' in the best-fit shape)
+    node posterior (marginal) w(0.7) 0.391 +- 0.063, w(1.0) 0.258 +- 0.089; constant rho_DE is not rejected (P2 1.97 sigma)
+    Under the eps reading this shape needs w_eff < -1 between z 1.0 and 0.7: impossible for any canonical scalar (D5).
+
+checks: 23/23 PASS
+kappa = 1/2 FITTED; footings never pooled; not theory closed; the owner's idea (2026-10-21).
