@@ -214,3 +214,5 @@ advantage amplitude-driven, and the class-A engine that produces the pass has no
   covered. On the six non-FLOOR branches, the framework's verdict reads ROBUST at 15–17 of 20 CI21 values (CFG942 full scan,
   826ebb739). Corrected in `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md`, which also adds the MUTATE
   continuum reading. The rule itself (ROBUST decided per model) is unchanged.
+- **Deposited 2026-10-21:** PAPER56 (DOI 10.5281/zenodo.23532875) and PAPER57 (DOI 10.5281/zenodo.23532885; the duplicate
+  23532894 is accidental and is not cited).
