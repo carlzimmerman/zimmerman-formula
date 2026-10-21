@@ -1,0 +1,44 @@
+CFG955  kinetic parent of the class-A engine (relaxing cold dust)   stage=MAIN
+  criteria 903cd8f1d; kappa = 1/2 FITTED; footings never pooled; cold energy (no particle species); not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2; native Delta_ta(0) = 11.830836; engine f_b = 0.157126
+  NGC 3198: 43 radii to 44.08 kpc, M_b(< last) = 4.7201e+10 M_sun (Upsilon 0.61)
+
+==================== K CONTROLS ====================
+  [PASS] K1_CFG947_T-M: identity residual 0; E8 two-blob R = -epsilon*(X(t)*Derivative(M_e(t), (t, 2)) + 2*Derivative(M_e(t), t)*Derivative(X(t), t)); max|R|/(M_dom g_ref) = pi**2*epsilon/4 = 0.0247, 0.2467, 0.7402 at eps 0.01/0.1/0.3 (0.025/0.247/0.740)
+  [PASS] K2_CFG947_T-R: M_b,thr = 4.8154e+10 (4.815e10); NGC 3198 r_ON = 0.7761 Mpc/h -> NOT resolved; SPARC 128 of 175 below (128 of 175)
+  [PASS] K3_CFG947_T-X: 36 E4 EFE factors -0.7298 .. -0.1019 dex (-0.730 .. -0.102)
+  [PASS] K4_CFG938_NGC3198_law: canonical 2.22e-16, alt 2.22e-16 (2.2e-16)
+  [PASS] K5_CFG952_effective_RMIN: node 1.0471 Mpc/h (1.0471); M_b,ret >= 2.185e+11 M_sun (2.19e11)
+  deriving growth determinant (sympy, CFG941 route) ...
+  [PASS] K6_CFG941_growth: n = 0.609545 / 0.694330 / 1.000000000000 (0.60954 / 0.69433 / 1)
+  [PASS] K7_CFG935_table_and_TJ: PHYS E_x read (UFD-c 1.633e+49, cluster core 7.337e+63 erg); max |T_J/sigma_J^2(CFG935) - 1| on r = 0.1-9: 2.77e-04 (line 1e-3)
+  K8 SPARC (CFG4 statistic, nu_mono):
+     local law canonical                         : rms 0.10033 dex @ Upsilon 0.61; points beyond their edge: 0 of 3389
+     Newton canonical                            : rms 0.27548 dex @ Upsilon 1.20; points beyond their edge: 0 of 3389
+     local law alt                               : rms 0.09910 dex @ Upsilon 0.57; points beyond their edge: 0 of 3389
+     Newton alt                                  : rms 0.27548 dex @ Upsilon 1.20; points beyond their edge: 0 of 3389
+  [PASS] K8_CFG947_SPARC: local 0.10033 @ 0.61 / 0.09910 @ 0.57; Newton 0.2755 / 0.2755
+  K controls: ALL PASS
+
+==================== STRUCTURAL STATEMENTS ====================
+  [PASS] H0_collision_moments: K-T: mass 0, momentum 0, energy (3 comps) 3*rho_p*(T_Jp - T_p)/(2*tau_p); K-rho mass moment (rho_eq - rho_p)/tau_p != 0 -> continuity has a source (O(c^2) part of div T^{mu 0} = 0 fails)
+  L1 (sympy): stress of f_eq = T_Jp*rho_p (p = rho T_J), heat flux 0; first order (BGK): eta = p tau, q ~ -(5/2) p tau grad T
+  L4 (sympy): Vlasov operator in the frame falling with g_e: residual vs the field-free operator = 0; Maxwellian shift covariance M[rho,u,T](v) - M[rho,u-V,T](v-V) = 0
+  [PASS] L4_uniform_field_drops_out: falling-frame Vlasov residual 0; local-Maxwellian shift covariance 0: Delta a/g_host = 0, EFE 0 dex at monopole order
+  [PASS] L6_multistream: d(u1-u2)/dt + (u1-u2)/tau = 0; total momentum change 0; relative KE decays at 2/tau (residual 0); stream with no own dust (rho_1 -> 0): du2/dt = 0 (no capture)
+  [PASS] L7_second_law: dS_d/dt - Q/T_J - (3/2)(rho/tau)(T_J - T)^2/(T T_J) = 0 (>= 0); cooling branch T > T_J: dS_d/dt = 3*rho_p*(T_Jp - T_p)/(2*T_p*tau_p) < 0, so R must absorb entropy -Q/T_J > 0
+  f1: the kinetic operator d_t + v.grad_x - grad Phi.grad_v has characteristics dx/dt = v, dv/dt = -grad Phi (speed |v| << c); collision term local in x, finite tau. d: M[rho,u,T -> 0] second moment -> rho_p*u**2 (= cold stream): C[cold stream] = 0 when T_J = 0: True
+
+==================== (a) THE LAW FOR ISOLATED RELAXED HOSTS ====================
+  a1/a2 [canonical, simple]: max |g/g_law - 1| at 43 radii = 1.64e-06; deep y=1e-2 3.12e-07 (V^4/GMa0 1.105), y=1e-3 4.45e-08 (1.032); r_e = 453.9 kpc (E7 454.0); phantom density negative anywhere: False (min rho_ph / mean 3.364e-01)
+     L5 NGC 3198 canonical simple : F(C=1) = -1.20e-06; roots ['0.467197555', '1.000254145']; F range -0.001 .. +0.169; monotone False -> NOT UNIQUE
+  a1/a2 [canonical, mono]: max |g/g_law - 1| at 43 radii = 2.87e-07; deep y=1e-2 2.71e-07 (V^4/GMa0 1.104), y=1e-3 2.10e-07 (1.032); r_e = 453.9 kpc (E7 454.0); phantom density negative anywhere: False (min rho_ph / mean 3.364e-01)
+     L5 NGC 3198 canonical mono   : F(C=1) = -1.07e-06; roots ['0.533771778', '1.000252531']; F range -0.001 .. +0.170; monotone False -> NOT UNIQUE
+  a1/a2 [alt, simple]: max |g/g_law - 1| at 43 radii = 2.80e-06; deep y=1e-2 1.57e-07 (V^4/GMa0 1.105), y=1e-3 4.50e-07 (1.032); r_e = 412.9 kpc (E7 413.0); phantom density negative anywhere: False (min rho_ph / mean 3.364e-01)
+     L5 NGC 3198 alt simple       : F(C=1) = -1.19e-06; roots ['0.457008787', '1.000260010']; F range -0.001 .. +0.169; monotone False -> NOT UNIQUE
+  a1/a2 [alt, mono]: max |g/g_law - 1| at 43 radii = 4.84e-07; deep y=1e-2 2.63e-07 (V^4/GMa0 1.104), y=1e-3 1.91e-07 (1.032); r_e = 412.9 kpc (E7 413.0); phantom density negative anywhere: False (min rho_ph / mean 3.364e-01)
+     L5 NGC 3198 alt mono         : F(C=1) = -1.04e-06; roots ['0.514448104', '1.000249415']; F range -0.001 .. +0.169; monotone False -> NOT UNIQUE
+     L5 toy (Plummer, r_* = 10)   : F(C=1) = -1.20e-06; roots ['0.087006897', '0.999976817']; F range -0.407 .. +0.051; monotone False -> NOT UNIQUE
+  L5: NOT UNIQUE somewhere (NGC 3198 both footings and kernels, and the toy)
+  a3 / L1: spherical shell toy (K-T at T1 = tau_ff/(2 alpha), alpha = 1; fast probe x0.1)
+exit 143

@@ -1,0 +1,34 @@
+CFG955  kinetic parent of the class-A engine (relaxing cold dust)   [MUTATE]   stage=MAIN
+  criteria 903cd8f1d; kappa = 1/2 FITTED; footings never pooled; cold energy (no particle species); not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2; native Delta_ta(0) = 11.830836; engine f_b = 0.157126
+  NGC 3198: 43 radii to 44.08 kpc, M_b(< last) = 4.7201e+10 M_sun (Upsilon 0.61)
+
+==================== K CONTROLS ====================
+  [PASS] K1_CFG947_T-M: identity residual 0; E8 two-blob R = -epsilon*(X(t)*Derivative(M_e(t), (t, 2)) + 2*Derivative(M_e(t), t)*Derivative(X(t), t)); max|R|/(M_dom g_ref) = pi**2*epsilon/4 = 0.0247, 0.2467, 0.7402 at eps 0.01/0.1/0.3 (0.025/0.247/0.740)
+  [PASS] K2_CFG947_T-R: M_b,thr = 4.8154e+10 (4.815e10); NGC 3198 r_ON = 0.7761 Mpc/h -> NOT resolved; SPARC 128 of 175 below (128 of 175)
+  [PASS] K3_CFG947_T-X: 36 E4 EFE factors -0.7298 .. -0.1019 dex (-0.730 .. -0.102)
+  [PASS] K4_CFG938_NGC3198_law: canonical 2.22e-16, alt 2.22e-16 (2.2e-16)
+  [PASS] K5_CFG952_effective_RMIN: node 1.0471 Mpc/h (1.0471); M_b,ret >= 2.185e+11 M_sun (2.19e11)
+  deriving growth determinant (sympy, CFG941 route) ...
+  [PASS] K6_CFG941_growth: n = 0.609545 / 0.694330 / 1.000000000000 (0.60954 / 0.69433 / 1)
+  [PASS] K7_CFG935_table_and_TJ: PHYS E_x read (UFD-c 1.633e+49, cluster core 7.337e+63 erg); max |T_J/sigma_J^2(CFG935) - 1| on r = 0.1-9: 2.77e-04 (line 1e-3)
+  K8 SPARC (CFG4 statistic, nu_mono):
+     local law canonical                         : rms 0.10033 dex @ Upsilon 0.61; points beyond their edge: 0 of 3389
+     Newton canonical                            : rms 0.27548 dex @ Upsilon 1.20; points beyond their edge: 0 of 3389
+     local law alt                               : rms 0.09910 dex @ Upsilon 0.57; points beyond their edge: 0 of 3389
+     Newton alt                                  : rms 0.27548 dex @ Upsilon 1.20; points beyond their edge: 0 of 3389
+  [PASS] K8_CFG947_SPARC: local 0.10033 @ 0.61 / 0.09910 @ 0.57; Newton 0.2755 / 0.2755
+  K controls: ALL PASS
+
+==================== MUTATE (each tooth must bite) ====================
+  [PASS] Mu1_tether_gives_DT: tether (c2 = 1, chi-bar gradient) n = 0.694330 (0.69433); relaxation-only dust n = 1.000000000000
+  [PASS] Mu2_global_phantom_EFE: global phantom EFE -0.7298 .. -0.1019 dex; own-domain monopole 0
+  Mu3: K-rho relocation, planar toy E-R (asymmetric host) ...
+  [PASS] Mu3_Krho_breaks_CM_or_momentum: K-rho keep-velocity: CM slip 7.506e-03 x_e, |dP|/(M v_ref) 8.54e-12; K-rho local-velocity: CM slip 5.320e-01 x_e, |dP|/(M v_ref) 8.20e-03
+  Mu4: CFG554 self-consistent target, spherical toy IC-I ...
+  toy self_I    : frac(r<0.5) 0.0278 (law 0.0118); ON THE LAW False D(W2) -1.121 dD -0.228 X_m 0.866 f_esc 0.800 eps_E 1.1e-04 L1 end 0.928 first L1<0.1 at t = None (t_e = 61.48); E_R -6.252 (cool 67.10 / heat 73.36); steps 984078; 778 s
+  [PASS] Mu4_selfconsistent_target_not_on_law: D(W2) -1.121, dD -0.228, X_m 0.866
+  Mu5: relaxation off, spherical toy IC-I ...
+  toy off_I     : frac(r<0.5) 0.1247 (law 0.0118); ON THE LAW False D(W2) -0.117 dD -0.037 X_m 0.462 f_esc 0.219 eps_E 1.9e-04 L1 end 0.827 first L1<0.1 at t = None (t_e = 61.48); E_R +0.000 (cool 0.00 / heat 0.00); steps 1952519; 1339 s
+  [PASS] Mu5_relaxation_off_not_on_law: D(W2) -0.117, dD -0.037, X_m 0.462
+  MUTATE: ALL TEETH BITE
