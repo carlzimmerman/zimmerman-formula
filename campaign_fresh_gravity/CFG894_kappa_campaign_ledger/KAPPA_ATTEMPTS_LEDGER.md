@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (747 rows)
+## Totals (749 rows)
 
 - **531 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 49 | 2 | 4 | 39 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 107 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 109 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -946,6 +946,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K727 | W4-08/unified-flux | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/unified_invariant` | six-dimensional Einstein-Maxwell flux sphere with canonical radion positive vacuum full bosonic linear spectrum and physical matter source | - | audit | SCOPED CLOSURE: stable positive vacuum and geometric scalar charge give Yukawa force; exact m_rad^2+9H^2=R_sphere^-2 removes broad 4D subcurvature unscreened window; critical fold is inflection; no operational MOND cubic or quantum UV completion claimed | d51647e98 |
 | K728 | W4-08/unified-function | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/unified_invariant` | single generalized aether function actual dS scalar constraints same-state weak source and opposite-branch deformation | - | audit | SCOPED NONSELECTION: explicit positive dS toy has healthy linear tensor scalar coefficients but linear actual weak force; smooth negative-argument deformation preserves entire positive-argument flat-static MOND law and UV offset while moving vacuum; critical endpoint nonlinear same-state halo and microscopic branch relation remain open | d51647e98 |
 | K747 | W4-21/screen | `why_4_puzzle/W4_21_pi_bookkeeping` | pi bookkeeping for the single-mediator ratio R = eps C3^2/C2^3 (W4-04 target 128pi/9); glued one-scale media | - | audit | SCREEN: if every pi rides with a scale (thermal pi theta, H-type 8piG/3) or a common factor, R is algebraic (1+2-3 = 0), so xi = 8 Omega_n/(9R) carries wt(Omega_n) >= 1 and is never 1/4 in any n; thermal 16/5 and the H-type routes are one failure; necessary condition wt eps + 2 wt C3 - 3 wt C2 = 1, shapes (1,0,0) (-1,1,0) (0,-1,-1); selects nothing | 4682ebfb1 |
+| K748 | W4-08/critical-endpoint | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/critical_endpoint` | alpha_eff = 2 same-state sourced response of the single-function khronometric action (clock flow kept: K = (r^2v)'/r^2, a = Phi' + vv'; khronon alpha_I K = 2K0) | - | audit | UNDETERMINED: regular F quartic (no MOND); cusp at I0 gives leading-order deep MOND above h_c = 18(/c2///c1/)H^2/a_M, but convective runaway beyond r_w = 0.82(GM a_M)^(1/4)/H and khronon back-reaction ~(/c1///c2/)Phi_N; full system diverges on the frozen grid; c_s^2 = 0 strong coupling | e786a6b06 |
+| K749 | W4-08/critical-endpoint-amplitude | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/critical_endpoint` | operational C2, C3, eps at the cusp endpoint and principles P1 kink self-tuning, P2 deep scale invariance, P3 opposite-branch deformation | - | audit | NOT SELECTED: R_amp = (4/3)(H/a_M)^2 = (4/27)(/c1///c2/)(/I0//x_a) free; tunings T1 criticality + T2 vacuum-at-cusp; deformation not excluded (alters only G_cos); target needs (/c1///c2/)(/I0//x_a) = 96pi | e786a6b06 |
 
 ## LN: Logic / Lean formalisations
 
