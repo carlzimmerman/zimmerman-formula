@@ -242,6 +242,20 @@ The scalar sector is the one place the theory can exceed c: `c_s = √(γ/η)`, 
 required, with the joint polarized bound `γ/η + 4γa₀²/K ≤ 1` (the second term is 1.19e-18 at
 L\* = 24 pc, so numerically the condition is just `γ ≤ η`).
 
+**The law HAS an external-field effect, and that corrects a published claim.** `g_N = g²/(g+a₀)`
+is *exactly* AQUAL with `μ(x) = x/(1+x)`, and AQUAL has an EFE. "ν depends on `g_bar` only"
+does **not** imply "no EFE", because `g_bar` at a wide binary contains the Galaxy and removing
+it is a non-local operation with no covariant completion. Measured (A24): imposing the
+Galactic field moves `γ_v` by **0.350** (12.7σ) while the QUMOND-vs-AQUAL solver fork is
+≤ **0.019** (0.7σ) — the EFE is **18×** larger than the solver ambiguity. So the theory has an
+EFE, and the October record's title claim ("No External-Field Effect", Zenodo 23251278) is the
+document in error, not the September registration. The consequence for the wide-binary arm:
+the framework predicts **γ_v = 1.18** at 20 kAU (bracket 1.1771–1.1933 across kernels and
+`x_ext`), which sits inside Arm A's 1.1614–1.1814 — the registered prediction was right.
+The 1.51 figure comes from dropping the EFE *and* using the total rather than exact two-body
+composition: 1.5315 (mass) → 1.4037 (composition) → 1.1933 (EFE). And note 1.51 > 1.23, the
+framework's own no-verdict zone, so a 1.51 detection could never have scored as confirmation.
+
 **No cosmic aether (partial close of the preferred-frame gate).** The P field has no
 cosmological background value, and this is now a theorem rather than a choice. On FRW every
 derivative operator in the action vanishes for homogeneous P, the clock term `P^iD_i ln N`
@@ -361,7 +375,10 @@ that is a prediction (three numbers from one), not a fit.
    published note never states `M_b` or `d`, and the plausible band is −75.5 to −110.9).
    The pancake is 30.5° wide and covers 26.3 % of the solid angle at R = 0.2d; the density
    cusps as `|ρ| ∝ r^{−1/2}` at the null (verified to 0.6 %). A positive-mass medium cannot
-   do this, so the framework predicts **no saddle dip**.
+   do this, so the framework predicts **no saddle dip**. Since A24 established that the law
+   *does* carry an EFE, A13's AQUAL suppression curve **does** transfer after all: in a
+   filamentary environment the dip is suppressed by the external field anyway, so the clean
+   test is confined to **void pairs** (e ≈ 0.7). A23 is computing the corrected budget.
    Three corrections to the published note, all from A6:
    - the **−33 "cluster" figure is not a cluster-pair number.** At `d = 3 Mpc` a cluster pair
      gives −485; reaching −33 needs `d = 11.78 Mpc`, and then the column is −19.73. The two
@@ -407,7 +424,8 @@ that is a prediction (three numbers from one), not a fit.
 | P3 | Sourcing fraction rises outward | u(MID) = 0.4716 ± 0.0362, u(OUT) = 0.9865 ± 0.0984 | same stack, two bands | constant u at ≥ 3.8σ; σ(A_MID) ≤ 0.0312 reaches 3σ |
 | P3b | Group-scale u diagnostic | at M_v = 1e13, A_MID = 1.8122 (u=½) vs 1.4051 (cosmic share) | few hundred M_500 ~ 2e13 stacks, eRASS1×DESI Y3 | σ(A) ≤ 0.136 needed; 33 % difference |
 | P4 | Pressure core of size L\* | R_core = 53.31 pc at L\*=24 pc; 21.0 % dip at 30 pc, 11.2 % at 40 pc | ngVLA 0.15″, ~30 dwarfs V_f<40 km/s within 8 Mpc, 3 km/s channels | a core size that scales with galaxy mass at fixed L\* |
-| P5 | Wide-binary boost (EFE-blind sector) | γ_v = 1.20 at 10 kAU, 1.51 at 20 kAU | Gaia DR4, 4.2σ forecast already on record | γ_v ≤ 1.05 (Arm B) |
+| P5 | Wide-binary boost (EFE **present**) | γ_v = **1.18** at 20 kAU (bracket 1.1771–1.1933), 1.16 at 10 kAU; **not** 1.51 | Gaia DR4, 18–22 kAU bin, 2223 pairs, 4.5σ separation | γ_v ≤ 1.05 (Arm B); 1.51 would be a *no-verdict* zone value |
+| P5b | Kernel decision on the RAR knee | Δχ²(Q−L) = **+157.96** canonical / +75.25 alt, no free parameters; +17.05 profiled | SPARC binned transition shape, fixed-Υ diagonal bins | pre-registered: < −25 refutes, > +25 confirms |
 | P6 | Laboratory null | \|δG/G\| < 1e-6 (framework) vs 340 ppm (source-boost) | two-configuration Cavendish, source-density swap, 30–50 ppm | +340 ppm kills the screened framework |
 | P7 | n = 1 vs n = 2 | 15.47 % max in g at g_N = a₀/2 | 1330–1980 SPARC-quality galaxies, free Υ per galaxy | a stacked Δχ² that survives the bootstrap |
 | P8 | Jeans mass rises with density | d ln M_J/d ln ρ = +1 | clump mass function in dense vs diffuse regions | the standard −½ scaling |
@@ -450,7 +468,21 @@ that is a prediction (three numbers from one), not a fit.
 12. **The turn-off is law-dependent**, so the record's "94–129" band is the quadrature's, not
     the canonical law's: 66.30 vs 128.76, ratio 1.94 (A4). Transplanting one to the other
     mis-predicts Λ by 1.97×.
-13. **κ has four numbers circulating** (0.42 ± 0.10, 0.551 ± 0.043, 0.45/0.58/0.43, and the
+13. **"No external-field effect" is wrong.** The law is exactly AQUAL with `μ = x/(1+x)`, and
+    AQUAL has an EFE. The EFE moves the wide-binary boost by 0.350 (12.7σ) versus a
+    0.019 (0.7σ) solver fork, so it is 18× the ambiguity and cannot be argued away. Zenodo
+    23251278's title claim must be corrected; the wide-binary prediction is **1.18, not
+    1.51** (A24), and 1.51 lies in the theory's own no-verdict zone (> 1.23).
+14. **The kernel conflict dissolves.** `12.99 = 2π⁴/15` exactly (0.016 %), and the RAR kernel
+    is the *only* one of the four that **cannot close Λ at all** — it converges, and the
+    turn-off can only lower it. The 5.6× "tension" therefore compares a kernel the theory
+    does not use. The canonical kernel is Langmuir/simple, forced by the action (A2, A12) and
+    not disfavoured by SPARC (Δχ²(R−L) = +10.1/−0.8). The "94–129" band is the quadrature at
+    two a₀ normalisations (94.05 at 73.19, 128.92 at 32π); the action's kernel gives
+    48.79/66.38 — matching A4's 66.30.
+15. **73.19 vs 32π is a convention, not physics**: `73.19 = 32π Ω_Λ` with `Ω_Λ = 0.728034`.
+    The framework's own `a₀ = c²√(Λ/32π)` makes the target exactly 32π.
+16. **κ has four numbers circulating** (0.42 ± 0.10, 0.551 ± 0.043, 0.45/0.58/0.43, and the
    March–May κ = 1). There is no single reconciled κ, and A9 shows why: κ ∝ Υ^−1.23, so an
    IMF change moves it 1.98×. The Υ-free channel gives **κ = 0.354 ± 0.106** from 12
    galaxies and 73 points — consistent with ½ at 1.4σ, but not a measurement (A14). The
@@ -466,6 +498,8 @@ that is a prediction (three numbers from one), not a fit.
 - **GW speed = c: `c_T² = 1` exactly**, from the absence of any two-derivative TT operator and
   the TT-blindness of the constraints. A3 15/15, coordinator 6/6.
 - m = 1 is the unique thermal-lattice law; the canonical law is Langmuir. A2.
+- **The kernel is decided**: Langmuir/simple, the action's own — forced by three independent
+  constraints, and the only one of the four that both closes Λ and is derived. A25.
 - `r_switch = L*` against the cold sector's own gravity (`L*√f_c` against the total), and
   `R_core = 53.31 pc`. A16, A20 corrected.
 - `M_ph/M_b = ½(√(1+4/y)−1)`; the 1.7584e14 M⊙ crossing is concentration-independent. A18.

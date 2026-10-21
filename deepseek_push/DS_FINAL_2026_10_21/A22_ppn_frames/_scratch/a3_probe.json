@@ -1,0 +1,140 @@
+{
+ "lane": "A3_lensing_gw",
+ "mutation": "none",
+ "checks": [
+  {
+   "id": "K0_lapse_eq_is_hamiltonian_constraint",
+   "pass": true,
+   "value": "0.0",
+   "threshold": "0",
+   "note": "R3 = 4K(rho + div P + W + gamma d^2/2)"
+  },
+  {
+   "id": "K0b_R3_formula_verified",
+   "pass": true,
+   "value": "0.0",
+   "threshold": "0",
+   "note": "independent 3D Christoffel/Riemann build"
+  },
+  {
+   "id": "K1_Schwarzschild_solves_constraint",
+   "pass": true,
+   "value": "0.0",
+   "threshold": "0",
+   "note": "exact isotropic chart, no weak-field expansion"
+  },
+  {
+   "id": "K2_P_zero_is_not_a_solution",
+   "pass": true,
+   "value": "0.1469387755102041",
+   "threshold": "!= 0",
+   "note": "EP(P=0) = sqrt(f) Nprime: P is sourced by grad N"
+  },
+  {
+   "id": "K3_W_anisotropic_stress_exact",
+   "pass": true,
+   "value": "0.0",
+   "threshold": "0",
+   "note": "p_r-p_t = W_u u = u^2/[K(1-u/a0)] > 0 for every u>0"
+  },
+  {
+   "id": "K4_traceless_stress_is_O_eps_squared",
+   "pass": true,
+   "value": "eps**2*q**2/K",
+   "threshold": "eps^2 q^2/K",
+   "note": "Pi = O(P^2) => no O(eps) anisotropic stress => Phi_1 = Psi_1"
+  },
+  {
+   "id": "K5_TT_gradient_term_is_exactly_curvature",
+   "pass": true,
+   "value": "-kz**2/(4*a**2)",
+   "threshold": "-k^2/(4a^2)",
+   "note": "R3^(2) = -(1/4) p^2 h^2 for one TT mode, p = k/a"
+  },
+  {
+   "id": "K6_TT_kinetic_has_no_beta_and_no_P",
+   "pass": true,
+   "value": "hdot**2/4",
+   "threshold": "hdot^2/4",
+   "note": "theta = 3H for TT, so beta drops out; W,E,F are TT-blind at 2nd order"
+  },
+  {
+   "id": "K7_cT2_equals_one_exactly",
+   "pass": true,
+   "value": "1",
+   "threshold": "1",
+   "note": "naive |DP|^2 stiffness would give 1+2K|P|^2; Hodge F^2 gives nothing"
+  },
+  {
+   "id": "K8_scalar_front_speed_is_sqrt_gamma_over_eta",
+   "pass": true,
+   "value": "gamma/eta",
+   "threshold": "gamma/eta",
+   "note": "c_s^2 -> gamma/eta as p -> infinity"
+  },
+  {
+   "id": "K9_scalar_causality_inequality",
+   "pass": true,
+   "value": "-(-6*H**2*K*beta - 4*H**2*K + 3*K*beta*p**2 + 2*K*p**2 + beta*eta*p**4 - beta*gamma*p**4)/beta",
+   "threshold": "(gamma-eta)p^4-Bp^2+2BH^2",
+   "note": "c_s <= 1 for all p  <=>  gamma <= eta"
+  },
+  {
+   "id": "K10_superluminal_phase_speed_is_IR_only",
+   "pass": true,
+   "value": "p^2 < x_plus",
+   "threshold": "root of the quadratic",
+   "note": "only below the de Sitter gap scale, where omega -> sqrt(2)H is finite"
+  },
+  {
+   "id": "K11_static_branch_luminality",
+   "pass": true,
+   "value": "gamma/eta + 4 gamma a0^2/K",
+   "threshold": "<= 1",
+   "note": "joint causality bound including the polarized static sector"
+  },
+  {
+   "id": "K12_a0_correction_to_static_bound_is_negligible",
+   "pass": true,
+   "value": "1.19e-18",
+   "threshold": "< 1e-15",
+   "note": "4 gamma a0^2/K = 2 (L* a0/c^2)^2 with L* = 24 pc"
+  },
+  {
+   "id": "K13_slip_is_second_order_in_the_potential",
+   "pass": true,
+   "value": "O(Psi^2)/Psi = O(Psi)",
+   "threshold": "O(1e-7)",
+   "note": "cross-check: A12 gives |1-Phi/Psi| <= 2.63e-7 for a galaxy"
+  }
+ ],
+ "numbers": {
+  "gamma_over_eta_at_luminality": 1.0,
+  "static_branch_a0_term": 1.1896588926981672e-18,
+  "c_T_squared": 1.0,
+  "slip_relative_10kpc_A12": -9.13221636672755e-08,
+  "slip_relative_max_A12": 2.630068181052086e-07,
+  "slip_relative_100kpc_A12": -1.315034090526043e-07
+ },
+ "external": {
+  "source": "A12_slip_theorem/a12_results.json (lane A12)",
+  "slip_10kpc": -9.13221636672755e-08,
+  "slip_100kpc": -1.315034090526043e-07,
+  "slip_max_abs": 2.630068181052086e-07,
+  "slip_saturn": 1.0303480071472266e-09
+ },
+ "constants_used": [
+  "c=2.99792458e8 m/s",
+  "G=6.67430e-11 m^3 kg^-1 s^-2",
+  "pc=3.0856775814913673e16 m",
+  "kpc=3.0856775814913673e19 m",
+  "a0=9.36e-11 m/s^2",
+  "K=4*pi*G (normalisation of the printed action)",
+  "L*=24 pc (CFG820 lower bound, used only for K12)"
+ ],
+ "software": {
+  "python": "3.13.9",
+  "sympy": "1.13.1",
+  "numpy": "1.26.4"
+ }
+}

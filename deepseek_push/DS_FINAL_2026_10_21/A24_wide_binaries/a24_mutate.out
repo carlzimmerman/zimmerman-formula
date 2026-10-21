@@ -1,0 +1,69 @@
+================================================================================================
+A24 -- the wide-binary contradiction: 1.51 (October) or 1.18 (September registration)?
+================================================================================================
+
+[K1] the frozen law is the canonical one and its closure inverts exactly
+K1 PASS 2.22e-16/1.11e-16 <1e-12/<1e-15   [g_N=g^2/(g+a0) <=> g=(g_N/2)(1+sqrt(1+4a0/g_N)) <=> AQUAL mu(x)=x/(1+x)]
+
+[K2] the October numbers 1.20/1.51 are REPRODUCED, and the recipe identified
+K2 PASS 0.0031 <0.005 (half-unit of the paper's 2 d.p.)   [repro 2/5/10/20 kAU = 1.0104, 1.0601, 1.1969, 1.5107 vs paper 1.01/1.06/1.20/1.51]
+      y(20 kAU, 1.5 Msun) = 0.23764, nu_quad = 2.2821
+
+[K3] the quadrature is controlled (q->0 must return nu(y)-1)
+K3 PASS 0.0343 <0.05   [single-mass limit of the phantom quadrature vs nu_RAR(y)-1]
+
+[K4] (task 1) NO external field: the isolated boost of the frozen law
+      canonical s=  10 kAU  y=1.26744  total-mass 1.2326  exact 1.1605 (f2=0.668)  deep-limit-form 1.1856
+      canonical s=  20 kAU  y=0.31686  total-mass 1.5315  exact 1.4037 (f2=0.721)  deep-limit-form 1.4321
+      alt       s=  10 kAU  y=1.04984  total-mass 1.2636  exact 1.1848 (f2=0.677)  deep-limit-form 1.2108
+      alt       s=  20 kAU  y=0.26246  total-mass 1.5859  exact 1.4493 (f2=0.726)  deep-limit-form 1.4776
+K4 PASS 1.5315/1.4037 1.50-1.55 / 1.38-1.44   [canonical 1+1 Msun, 20 kAU: total-mass / exact two-body]
+
+[K5] (task 2) WITH the Galactic field: the EFE, imposed in the same law
+      std1.8    s=  10 kAU  x_ext=1.8000 -> y_ext=1.1571  gamma_exact(theta=0) 1.0999   sqrt(B_par) 1.2472  sqrt(<B>) 1.2005
+      std1.8    s=  20 kAU  x_ext=1.8000 -> y_ext=1.1571  gamma_exact(theta=0) 1.1811   sqrt(B_par) 1.2472  sqrt(<B>) 1.2005
+      repo1.9   s=  10 kAU  x_ext=1.8996 -> y_ext=1.2445  gamma_exact(theta=0) 1.0973   sqrt(B_par) 1.2355  sqrt(<B>) 1.1902
+      repo1.9   s=  20 kAU  x_ext=1.8996 -> y_ext=1.2445  gamma_exact(theta=0) 1.1732   sqrt(B_par) 1.2355  sqrt(<B>) 1.1902
+      alt_repo  s=  10 kAU  x_ext=1.5764 -> y_ext=0.9645  gamma_exact(theta=0) 1.1199   sqrt(B_par) 1.2784  sqrt(<B>) 1.2280
+      alt_repo  s=  20 kAU  x_ext=1.5764 -> y_ext=0.9645  gamma_exact(theta=0) 1.2094   sqrt(B_par) 1.2784  sqrt(<B>) 1.2280
+      variant    s=  20 kAU  y_ext=1.8000 (Newtonian reading)  gamma 1.1359 / canonical 1.1515
+      variant    s=  20 kAU  y_ext(RAR closure)=1.1974  gamma 1.1771 / canonical 1.1896
+K5 PASS 1.1811/1.1933/1.1732 |g-1.1814|<0.005 (RAR) / <0.015 (canonical)   [EFE-present boost at 20 kAU vs Arm A top 1.1814]
+
+[recipe] from the October number to the registered one, one choice at a time, 20 kAU:
+          paper_quad_1p5_tm_noEFE          1.5107
+          canonical_1p5_tm_noEFE           1.6160
+          canonical_2p0_tm_noEFE           1.5315
+          canonical_2p0_exact_noEFE        1.4037
+          canonical_2p0_exact_EFE          1.1933
+          step_kernel_1p5                  +0.1053
+          step_mass_2p0                    -0.0845
+          step_composition                 -0.1278
+          step_EFE                         -0.2104
+
+[K6] (task 2, the decision) EFE effect vs solver fork
+K6 PASS 18.1x >10x   [EFE Delta gamma 0.350 (12.7 sig_tot) vs solver 0.019 (0.7 sig_tot)]
+
+[K7] (task 3) where 1.51 sits in the framework's own scoring
+K7 PASS 1.51>1.23, bench 1.33>1.23 both above the guard edge   [the October number and the registered no-EFE benchmark are both UNSCOREABLE]
+
+[K8] (task 4) the decisive measurement
+K8 PASS N1893<Nbin2223, z20=11.9, zbin=4.5, z10inf=2.7 Nneed<Nbin, z20>10, zbin>4, z10inf<4.2   [20 kAU bin decides at 4.5 sigma; 10 kAU cannot at any N]
+
+[K9] kernel sensitivity of the registered arm (declared systematic)
+K9 PASS 0.0216 <0.025   [canonical sqrt(nu(y_ext)) 1.2355 vs RAR 1.2138 (1.1 sig_fit)]
+
+[K10] (task 1, the stated assumption) what 'internal acceleration' can and cannot do
+      g_self = 274.3 m/s^2 = 2.930e+12 a0 -> gamma_v - 1 = 1.71e-13
+      mutual-field composition factor f2(20 kAU) = 0.721
+K10 PASS 1.7e-13/0.721 <1e-9 / 0.65-0.80   [surface-self-field reading kills ALL MOND (excluded); the live suppression is f2]
+
+[MUTATE] drop the external field from the EFE check (y_ext -> 0)
+K5m FAIL 1.3980 |g-1.1814|<0.005   [MUTATED: EFE removed; K5 must fail]
+
+MUTATION BIT: K5 FAILED as required.
+
+================================================================================================
+A24 COMPLETE: 10/11 checks PASS.
+================================================================================================
+wrote a24_results.json

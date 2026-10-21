@@ -1,0 +1,412 @@
+{
+ "lane": "A25_kernel_conflict",
+ "status": "CLOSED-DERIVED (kernel) + NUMERICAL (closure roots) + DECIDABLE (falsifier)",
+ "mutate": false,
+ "checks": [
+  {
+   "id": "K1",
+   "pass": true,
+   "value": "max symbolic residual = 0.00e+00 over 4 kernel identities",
+   "threshold": "max residual < 1e-25 (sympy exact)"
+  },
+  {
+   "id": "K2",
+   "pass": true,
+   "value": "c = (1, 0.5, 0.0, ln-div): 0.999999994, 0.499999997, 3.72e-40, 0.03238051 ; beta = (0.5, 0, 0.5, 0.5): 0.50001, 5.0e-05, 0.50001, 0.50001",
+   "threshold": "c to 1e-6 / 1e-4; beta(L,Q,R) to 1e-3"
+  },
+  {
+   "id": "K3",
+   "pass": true,
+   "value": "closed forms certified: max rel 3.2e-26 (quad), 8.4e-12 (compact); dI/dY = 0.999999953 (L), 0.499999994 (Q); I_R(inf) = 12.987878804534",
+   "threshold": "rel<1e-9 vs quadrature, <1e-10 compact; slopes 1 and 1/2 to 1e-6; I_R = 2pi^4/15 exactly"
+  },
+  {
+   "id": "K4",
+   "pass": true,
+   "value": "rational forms exact (max rel 6.9e-13); asymptotics at y_t=100: L 1.9e-04, Q 1.2e-05",
+   "threshold": "rel < 1e-9 exact; < 2e-3 asymptotic"
+  },
+  {
+   "id": "K5",
+   "pass": true,
+   "value": "y_t(73.19): L 48.7877, Q 94.0539, M 63.6856, R none (sup 12.987879); canonical(L) 48.7877",
+   "threshold": "L 48.7877+-0.005, Q 94.054+-0.05, M 63.686+-0.05, R no root, canonical == 48.7877"
+  },
+  {
+   "id": "K6",
+   "pass": true,
+   "value": "band reproduced: Q(73.19)=94.0539 vs 94 (0.06%); Q(32pi)=128.9154 vs 128.9 (0.01%); L over-predicts by 1.963x",
+   "threshold": "<0.5% on both ends of 94-129; over-prediction 1.9-2.0x"
+  },
+  {
+   "id": "K7",
+   "pass": true,
+   "value": "I_R = 12.98787880 (2pi^4/15), 12.99 to 0.016%; 5.6x = 5.6353",
+   "threshold": "<0.1% and <1% (5.6 is 5.635 rounded to two figures)"
+  },
+  {
+   "id": "K8",
+   "pass": true,
+   "value": "32pi=3Z^2 exact; 73.19/32pi=0.72803; BRIEF Omega_L=0.6838 -> 68.74 (=68.89); a0(73.19)=1.0963e-10",
+   "threshold": "identity exact; Omega to 1e-4; N_Lambda to 0.5% (a0_alt is cH0/Z to 0.12%); a0 to 0.5%"
+  },
+  {
+   "id": "K9",
+   "pass": true,
+   "value": "fixed footing: dchi2(Q-canon) = 158.0, 75.3 ; dchi2(R-canon) = 10.1, -0.8",
+   "threshold": "Q excluded at >50 on both footings; |R-canon| < 15"
+  },
+  {
+   "id": "K10",
+   "pass": true,
+   "value": "profiled: dchi2(Q-canon) = +17.05 ; dchi2(R-canon) = -0.18 ; a0(Q) = 1.200e-10 vs a0(canon) = 1.089e-10",
+   "threshold": "Q worse by >10 with equal parameters; |R-canon| < 5"
+  },
+  {
+   "id": "K11",
+   "pass": true,
+   "value": "turn-off signature: max 0.00428 dex (L), 0.00115 dex (Q); SPARC dchi2 <= 0.11",
+   "threshold": "max < 0.01 dex (RAR scatter 0.06 dex) and |dchi2| < 1"
+  },
+  {
+   "id": "K12",
+   "pass": true,
+   "value": "c*a0/B_E = 2557.4 (L), 1278.7 (Q), 0 (R); one y_t inside the planetary cap for L (margin 12.4x)",
+   "threshold": "2557.38 and 1278.69 to 0.1%; margin > 1"
+  },
+  {
+   "id": "K13",
+   "pass": true,
+   "value": "KiDS RAR: dchi2(Q-L) = -10.90 (no separation); chi2/dof(L) = 3.65",
+   "threshold": "|dchi2| < 20 -> a null, reported as such"
+  },
+  {
+   "id": "K14",
+   "pass": true,
+   "value": "canonical = L, expected L (the action's kernel)",
+   "threshold": "canonical == 'L'"
+  }
+ ],
+ "numbers": {
+  "K1_max_symbolic_residual": 0.0,
+  "kernel_table": {
+   "0.01": {
+    "L": 10.512492197250394,
+    "Q": 10.04987562112089,
+    "R": 10.50833194477505,
+    "M": 10.50833194477505
+   },
+   "0.1": {
+    "L": 3.7015621187164243,
+    "Q": 3.3166247903554,
+    "R": 3.688586157791959,
+    "M": 3.688586157791958
+   },
+   "1.0": {
+    "L": 1.618033988749895,
+    "Q": 1.4142135623730951,
+    "R": 1.5819767068693265,
+    "M": 1.5819767068693262
+   },
+   "10.0": {
+    "L": 1.0916079783099617,
+    "Q": 1.0488088481701516,
+    "R": 1.0442001786945516,
+    "M": 1.0677539035895034
+   },
+   "100.0": {
+    "L": 1.0099019513592786,
+    "Q": 1.004987562112089,
+    "R": 1.0000454019910097,
+    "M": 1.0074558197834214
+   },
+   "10000.0": {
+    "L": 1.0000999900019996,
+    "Q": 1.0000499987500624,
+    "R": 1.0,
+    "M": 1.0000893895889718
+   }
+  },
+  "kernel_separation": {
+   "L_Q": {
+    "max_dex": 0.06246936829988961,
+    "at_y": 0.5000115080658726
+   },
+   "L_R": {
+    "max_dex": 0.019878616185559445,
+    "at_y": 6.963378464074571
+   },
+   "Q_R": {
+    "max_dex": 0.05706704908023923,
+    "at_y": 0.38691894952094147
+   },
+   "M_R": {
+    "max_dex": 0.010370149558882366,
+    "at_y": 14.350267608118108
+   },
+   "M_L": {
+    "max_dex": 0.01636813728654619,
+    "at_y": 3.055202494806039
+   }
+  },
+  "tail_c": {
+   "L": 0.999999993922529,
+   "Q": 0.4999999969612645,
+   "R": 3.720075976020836e-40,
+   "M_log_increment": 0.03238050594225684,
+   "delta_hp": 0.03238051189459575
+  },
+  "deep_beta": {
+   "L": 0.5000125000005937,
+   "Q": 5.000000055588316e-05,
+   "R": 0.5000083333325165,
+   "M": 0.5000083333325165
+  },
+  "I_bare": {
+   "I_L_exact_at_1e8": 99999982.07931924,
+   "I_Q_exact_at_1e8": 49999997.58662811,
+   "dIdY_L": 0.9999999534831494,
+   "dIdY_Q": 0.4999999941853918,
+   "I_R_inf": 12.987878804533658,
+   "two_pi4_over_15": 12.987878804533658,
+   "rel_err_closed_form": 3.169022822642125e-26,
+   "rel_err_compact": 8.430589559793589e-12,
+   "C_L_asymptotic": 0.5,
+   "C_Q_asymptotic": -0.1107867951
+  },
+  "I_turn_values": {
+   "F_L(50)": 75.07097547201153,
+   "F_L(100)": 152.9448779954528,
+   "F_Q(50)": 38.6682227551101,
+   "F_Q(100)": 77.85242112861555,
+   "F_R(100)": 12.285829248704648,
+   "F_R(1e6)": 12.987878794412559,
+   "F_M(50)": 56.85899834907352,
+   "F_M(100)": 117.17137988862538,
+   "asymptotic_rel_L": 0.00019343242112141365,
+   "asymptotic_rel_Q": 1.2358546681324725e-05,
+   "rational_vs_quad_max_rel": 6.946741690726403e-13,
+   "RAR_correction_coefficient": 10121.09975047528
+  },
+  "y_t_at_73_19": {
+   "L": 48.787740381775826,
+   "Q": 94.0539406808734,
+   "R": null,
+   "M": 63.68560899172486
+  },
+  "y_t_at_32pi": {
+   "L": 66.38033070989128,
+   "Q": 128.9153707042938,
+   "M": 86.33754869172715
+  },
+  "y_t_at_100_405845": {
+   "L": 66.2999370425647,
+   "Q": 128.75586720658143,
+   "M": 86.23449938779261
+  },
+  "band": {
+   "F_over_73.19_at_record_y_t": {
+    "L": 1.9628959025127641,
+    "Q": 0.9999999999999977,
+    "R": 0.16692102667803727,
+    "M": 1.5018033663823787
+   },
+   "Q_at_73.19": 94.0539406808734,
+   "Q_at_32pi": 128.9153707042938,
+   "Q_at_100.405845": 128.75586720658143,
+   "record_94": 94.0,
+   "record_128.9": 128.9,
+   "L_over_prediction_at_Q_y_t": 1.9628959025127641
+  },
+  "record_reproduction": {
+   "I_R_inf": 12.987878804533658,
+   "record_12.99": 12.99,
+   "rel_err_12.99": 0.00016329449317498135,
+   "ratio_73.19_over_I_R": 5.635254309152598,
+   "rel_err_5.6": 0.006295412348678253
+  },
+  "targets": {
+   "32pi": 100.53096491487338,
+   "73.19_over_32pi": 0.7280343928059887,
+   "Z": 5.788810036466141,
+   "Omega_Lambda_BRIEF": 0.683800364978897,
+   "N_Lambda_BRIEF_alt": 68.88962243343293,
+   "N_Lambda_BRIEF_canonical": 100.40584466228644,
+   "a0_that_gives_73.19": 1.0963001465271518e-10
+  },
+  "SPARC_fixed": {
+   "canonical": {
+    "chi2": {
+     "L": 28.716245582415354,
+     "Q": 186.67528891588623,
+     "R": 38.79049867545929,
+     "M": 37.95436324695
+    },
+    "worst_transition_pull": {
+     "L": 3.186813600664565,
+     "Q": 7.387432263553235,
+     "R": 3.589597650113117,
+     "M": 3.589597650113117
+    },
+    "dof": 18,
+    "dchi2_Q_minus_L": 157.95904333347087,
+    "dchi2_R_minus_L": 10.074253093043936,
+    "dchi2_M_minus_L": 9.238117664534649
+   },
+   "alt": {
+    "chi2": {
+     "L": 19.507566029801307,
+     "Q": 94.76198103361776,
+     "R": 18.73981012551862,
+     "M": 19.269721227872992
+    },
+    "worst_transition_pull": {
+     "L": 2.117255529350962,
+     "Q": 5.053962526093439,
+     "R": 1.5775657518638768,
+     "M": 1.5272372538158994
+    },
+    "dof": 18,
+    "dchi2_Q_minus_L": 75.25441500381645,
+    "dchi2_R_minus_L": -0.7677559042826871,
+    "dchi2_M_minus_L": -0.2378448019283148
+   }
+  },
+  "SPARC_profiled": {
+   "L": {
+    "chi2": 12.180384416881333,
+    "A": 1.0000000000000007,
+    "a0": 1.0885450486148877e-10
+   },
+   "Q": {
+    "chi2": 29.23161002361299,
+    "A": 1.076952301502041,
+    "a0": 1.200395438556796e-10
+   },
+   "R": {
+    "chi2": 11.99901966605224,
+    "A": 1.0574911865523615,
+    "a0": 9.639847000421241e-11
+   },
+   "M": {
+    "chi2": 13.18457662914679,
+    "A": 1.0373528926605893,
+    "a0": 1.0136952364313931e-10
+   },
+   "dof": 16
+  },
+  "turnoff_visibility": {
+   "signature": {
+    "L": {
+     "max_dg_over_g": 0.009855806624308735,
+     "max_dex": 0.004280322431642799,
+     "at_y": 50.58246620031137,
+     "y_t": 48.787740381775826
+    },
+    "Q": {
+     "max_dg_over_g": 0.002637120827459404,
+     "max_dex": 0.0011452870234777565,
+     "at_y": 94.84184633008978,
+     "y_t": 94.0539406808734
+    },
+    "M": {
+     "max_dg_over_g": 0.005685302943771089,
+     "max_dex": 0.002469095696428097,
+     "at_y": 67.14288529259522,
+     "y_t": 63.68560899172486
+    }
+   },
+   "SPARC_dchi2": {
+    "L": 0.059755806580756854,
+    "Q": 0.07495684335404462,
+    "M": 0.1123657312722699
+   }
+  },
+  "solar_system": {
+   "c_a0_over_BE": {
+    "L": 2557.377049180328,
+    "Q": 1278.688524590164
+   },
+   "B_E": 3.66e-14,
+   "y_t_cap": 605.96,
+   "margin": {
+    "L": 12.420333371831058,
+    "Q": 6.442685926962194,
+    "M": 9.514865439674713
+   }
+  },
+  "KiDS_lensing": {
+   "N": 15,
+   "chi2": {
+    "L": 51.06633603911349,
+    "Q": 40.16148870905934,
+    "R": 50.82813361971472,
+    "M": 50.82813361971475
+   },
+   "dchi2_Q_minus_L": -10.904847330054146,
+   "eigen_ratio": 0.0005121731499891878,
+   "gbar_range": [
+    1.3822e-15,
+    3.9169e-12
+   ],
+   "y_range": [
+    1.4767094017094018e-05,
+    0.04184722222222222
+   ]
+  },
+  "canonical": "L",
+  "secondary": {
+   "y_t_ratio_Q_over_L_at_73.19": 1.9278191599954957,
+   "a0_if_RAR_and_Lambda": 2.60247299718912e-10,
+   "a0_if_RAR_and_Lambda_over_a0_can": 2.780419868791795,
+   "F_R_deficit_at_1e6": 1.0121099670622036e-08,
+   "32pi_Omega_L_BRIEF": 68.7431105004711,
+   "chi2_per_dof_L_profiled": 0.7612740260550833,
+   "nominal_sigma_dchi2_17p05": 4.1293129703053095,
+   "nominal_sigma_dchi2_Q_fixed": {
+    "canonical": 12.568175815665171,
+    "alt": 8.674930259305631
+   },
+   "nu_at_y_half": {
+    "L": 2.0,
+    "Q": 1.7320508075688772,
+    "R": 1.9726538547250616,
+    "M": 1.9726538547250614
+   }
+  },
+  "external_inputs": {
+   "12.99": "Zenodo 23251231 (RAR-kernel vacuum value)",
+   "5.6": "Zenodo 23251231 (ratio to 73.19)",
+   "73.19": "Zenodo 23251231 (observed Lambda c^4/a0^2)",
+   "94": "Zenodo 23171085 (y_t at measured a0 = 1.097e-10)",
+   "128.9": "Zenodo 23171085 (y_t on the kappa = 1/2 footing)",
+   "100.405845": "A4 a4_results.json (Lambda c^4/a0_can^2 from BRIEF constants)",
+   "128.7559": "A4 a4_results.json (quadrature y_t at 100.405845)",
+   "0.0103700578": "L340 A1 stored max |dlog10(nu_mono/nu_RAR)| at y = 14.35",
+   "2.5396382826": "L340 A1 y_p",
+   "0.6476102379": "L340 A1 h_p",
+   "0.05": "L340 A1 delta",
+   "3.66e-14": "A4 B_E, Earth 2 sigma bound (m/s^2)",
+   "605.96": "A4 tightest planetary y_t cap (Neptune, over-tight stand-in)",
+   "6.11e5": "A4 Earth y_t cap",
+   "0.06": "RAR intrinsic scatter in dex (repo convention, f21/f23)"
+  }
+ },
+ "constants_used": [
+  "c = 2.99792458e8 m/s [BRIEF]",
+  "Lambda = 1.0890e-52 m^-2 [BRIEF]",
+  "a0_can = 9.36e-11 m/s^2 [BRIEF]",
+  "a0_alt = 1.13e-10 m/s^2 [BRIEF]",
+  "G = 6.67430e-11 [BRIEF]",
+  "H0 = 67.4 km/s/Mpc [BRIEF]",
+  "Z = 2 sqrt(8 pi/3) = 5.78881 [BRIEF]",
+  "target 73.19 [Zenodo 23251231, external]",
+  "94 and 128.9 [Zenodo 23171085, external]",
+  "100.405845 and 128.7559 [A4 a4_results.json]",
+  "B_E = 3.66e-14 m/s^2 and y_t cap 605.96 [A4]",
+  "y_p = 2.5396382826, h_p = 0.6476102379, delta = 0.05, y* = 2.3374124053 [L340 A1 / XC4 S2]",
+  "SPARC rotmods, 147 galaxies / 3140 points, Upsilon_d = 0.5, Upsilon_b = 0.7 [hunt_2026/hunt_lib.py]",
+  "KiDS-1000 Brouwer+2021 Fig.4-5 C1 isolated RAR, 15 bins + covariance [real_research/data]"
+ ]
+}

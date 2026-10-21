@@ -30,8 +30,10 @@ coordinator after the lane finished; a lane's own summary is not the evidence.
 | [A20](A20_Lstar_cores/report.md) | L\* from inner cores | **NUMERICAL** | 18/18 | R_core = 53.31 pc; LITTLE THINGS bounds L\* ≤ 90 pc (window 24–90 pc); ngVLA 21 % dip at 30 pc |
 | [A21](A21_u_half/report.md) | is u = ½? | **NO-GO** + NUMERICAL | 25/25 | u(MID) = 0.4716 ± 0.0362 (0.78σ), u(OUT) = 0.9865 ± 0.0984 (4.9σ); u = 1+3⟨w⟩ ⇒ ½ needs w = −1/6 |
 | [A3](A3_lensing_gw/report.md) | lensing + GW speed | **DERIVED** (both gates) | 15/15 | c_T² = 1 exactly; slip 2.63e-7; scalar c_s = √(γ/η) ⇒ γ ≤ η |
+| [A24](A24_wide_binaries/report.md) | wide binaries vs the EFE | **DERIVED** (corrects the record) | 10/10 | law IS AQUAL ⇒ EFE present; γ_v = 1.18 not 1.51; EFE 18× the solver fork |
+| [A25](A25_kernel_conflict/report.md) | which kernel | **CLOSED-DERIVED** | 14/14 | Langmuir is canonical; 12.99 = 2π⁴/15 and RAR cannot close Λ at all |
 | A22 | PPN α₁, α₂, β | in flight | — | — |
-| A23 | no-EFE saddle redo | in flight | — | — |
+| A23 | saddle with EFE | in flight | — | — |
 
 ## What this folder does not contain
 

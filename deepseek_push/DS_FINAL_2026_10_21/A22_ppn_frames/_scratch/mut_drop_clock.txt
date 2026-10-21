@@ -1,0 +1,76 @@
+
+A22 -- PREFERRED-FRAME PPN for the round-2 action: alpha_1, alpha_2, and the
+nonlinear beta.  Plus the "no cosmic aether" theorem on FRW.
+
+Action (exactly as printed in core_open_problems_round2_2026_10_20/03_relativity/report.md sec. 2,
+c = 1, signature (-+++), K = 4 pi G):
+
+  L/(N sqrt h) = [R3 + K_ij K^ij - (1+beta) theta^2 - 2 Lambda]/(4K)
+                 + P^i D_i log N - W_full(u) + (eta/2) E_i E^i
+                 - (gamma/2)(D_i P^i)^2 - (gamma/4) F_ij F^ij ,
+  W_full = (a0^2/K)[-u/a0 - log(1-u/a0)],  u = K sqrt(h^ij P_i P_j),
+  E_i = (Pdot_i - Lie_N P_i)/N,  F_ij = d_i P_j - d_j P_i.
+
+NOTATION: "beta" in the action is the ADM coefficient of theta^2, NOT the PPN
+parameter.  Below beta_ADM is that coefficient, beta_PPN the PPN one.
+
+Two structural facts drive everything; both are proved symbolically here.
+
+  (F1) theta == 0 identically on ANY static configuration written in the preferred
+       (unitary, T = t) frame: theta = (1/(N sqrt h)) d_i(N sqrt h n^i), n^i = 0.
+       So [R3 + K_ijK^ij - (1+beta_ADM)theta^2] = R + total derivative on the whole
+       static branch: the gravitational sector is EXACTLY Einstein-Hilbert for every
+       beta_ADM, and the theta^2 operator's linearised stress about a constant
+       background vanishes identically (theta starts at O(h), so F_theta starts at
+       O(h^2)).  It can therefore generate neither alpha_1 nor alpha_2 -- nor gamma-1
+       nor beta_PPN-1.  In Einstein-aether variables the gravitational sector is
+       c1 = c3 = c4 = 0, c2 = -beta_ADM, and the published aether formulas
+       alpha_1 = -8(c3^2+c1c4)/(2c1-c1^2+c3^2), alpha_2 = c14(c14+2c2c14-c2)/[c2(2-c14)]
+       both vanish there (Oost-Mukohyama-Wang 2018, as tabulated in
+       data_assembly/DOOR11_LITERATURE_2026-09-29.md).
+
+  (F2) The P sector's ONLY O(rho) stress component is the charge -D.P.  The clock term
+       P^i D_i log N has no shift N^i in it (D_i of a scalar is a partial derivative) and
+       its variation w.r.t. h_ij is O(rho^2); every other P operator is quadratic in P,
+       so its variation w.r.t. N^i is quadratic in P.  Hence at O(rho):
+       T^t_t = charge, T^t_i = 0, T^i_j = 0.  No momentum density => g_0i = 0 at O(rho);
+       no anisotropic stress => Phi = Psi at O(rho) (lane A12's dust lemma, re-derived
+       here without assuming a frame).
+
+On FRW the uniqueness of P = 0 is the COORDINATOR's theorem (_parent/a22_no_cosmic_aether.py, 4/4:
+dW/du has its only zero at u = 0).  K9 here corroborates it independently and adds the three legs that
+make it a statement about VEVs rather than about algebra: m^2 = K/eta > 0, m/H_0 = 2.6e8 (so the mode
+decays as a^-3/2 instead of freezing), and the CMB anisotropic-stress bound on a pre-existing mode.
+
+Conventions for alpha_1, alpha_2 (Foster-Jacobson matching; the same one validated in
+nbody_2026/stage72_alpha2_first_principles_2026.py, whose C1 gate reproduces the
+literature alpha_1 = -4K_B for the Maxwell-form aether): writing the O(w^2 U) part of
+g_00 for a static source seen from a frame moving at w w.r.t. the preferred foliation as
+
+    g_00  superset  [ P_iso w^2 + S (w.nhat)^2 ] U ,     alpha_1 = P_iso + S/2,
+                                                          alpha_2 = -S/2 .
+
+Runtime < 100 s.  Deterministic.  No network.  sympy only (numpy imported but unused
+for the algebra).  Exit 0 iff every declared check passes.
+
+    python3 a22_checks.py [--mutate NAME] [--json-out FILE]
+
+============================================================================================================
+CONSTANTS   L* = 24.000 pc   lambda = 16.971 pc   a0 = 9.360e-11 m/s^2   H0 = 2.1843e-18 1/s
+            mu_sun = 1477.0039 m   K = 9.3320e-27 m/kg   gamma = 2.5590e+09 m^3/kg
+============================================================================================================
+K1   PASS value=R3(S^3)-6=0  R3(isoSCH)=0                  thr=0 / 0      3-Ricci formula validated on two exact cases
+K2   PASS value=lapse=0 trace=0                            thr=0 / 0      P=0 branch is EXACTLY isotropic Schwarzschild: gravity sector = Einstein-Hilbert
+K3   FAIL value=eq residuals=[Derivative(p(r), r) + 2*p(r)/r, 0, -Derivative(Phi(r), r)]  id(lap^2 psi + K rho/gamma)=0 thr=all 0      lapse/trace/P equations exact; charge obeys the EXACT identity lap^2 psi = -K rho/gamma
+K4   PASS value=a_P=2.4205e-16 m/s^2  a_P/B_E=0.0066       thr=< 1        exact: Phi=Psi=-GM/r+(GM/L*^2)r  =>  a CONSTANT sunward anomaly GM/L*^2
+K5   PASS value=theta_static=0 d(theta^2)/dh|0=0 alpha1_lit=0 thr=0/0/0      (1+beta_ADM)theta^2: theta==0 static, no linearised stress -> no alpha_1/alpha_2
+K6   PASS value=w2-coef=w**2*(Phi + Psi)  iso=2*Phi*w**2  S=0 thr=w^2(Phi+Psi) lnN = Phi(1+2w^2), no (w.n)^2 term -> S=0 -> alpha_2 = 0 exactly
+K7   PASS value=|a1|(30AU)=7.345e-11 |a1|(1AU)=8.161e-14   thr=< 3e-04    alpha_1=0 at PPN order: the w^2 response rescales a LINEAR potential, not U
+K8   PASS value=beta-1=0; src r-powers={'W=Kp^2/2': '0', 'gamma psi^2/2': '-2.00000000000000', 'p Phi_prime': '-2.00000000000000'}; residual=4.41e-10 thr=< 1e-04    no r^-4 source at O(rho^2) -> no 1/r^2 in Phi -> beta_PPN = 1
+K9   PASS value=eom-res=0 source=0 m/H0=2.621e+08          thr=0 / 0 / >1 FRW: a_mu = D ln N = 0 -> no source; P=0 unique; m/H0 >> 1 -> decays, NO VEV
+K10  FAIL value=a_P(mut=drop_clock)=0.000e+00  u_CMB/a0=0.0271 thr=0<a_P<B_E  charge is load-bearing; a homogeneous P is CMB-bounded to u<2.5e-12 m/s^2
+K11  PASS value=gamma=K L*^2/2 exact; lambda=5.237e+17 m   thr=<1e30      the framework identity gamma = K L*^2/2 = 2 pi G L*^2 holds; gamma>0 required
+K12  PASS value=cross(zeta,p)=0  d2(E^2)/dzeta dp=0        thr=0 / 0      no O(rho) momentum density: clock has no shift, E^2 is quadratic in P
+K13  PASS value=psi err=2.33e-06  slope err=2.28e-06  c^2 Phi_p=2.42047e-16 thr=< 5e-3     numerical quadrature confirms psi = mu/(gamma r) and the constant slope GM/L*^2
+
+A22 COMPLETE: 11/13 checks PASS.

@@ -1,0 +1,98 @@
+A23  the saddle dip in the framework's own law (no EFE), and the A13 adjudication
+rho_bar_cold = 2.2569e-27 kg/m^3  (Omega_c/Omega_b = 5.364, Omega_b h^2 = 0.0224)
+
+S1  symbolic form: the law, its field equation, and why nonlinearity forces an EFE
+    g(g_N) = g_N/2 + sqrt(4*a_0*g_N + g_N**2)/2
+    nu(y)  = g/g_N = (sqrt(y)*sqrt(y + 4) + y)/(2*y)   (equals 1/2 + sqrt(1/4 + 1/y))
+    inversion check  g^2/(g+a0) - g_N = 0;  g*mu(g/a0) - g_N = 0
+    AQUAL operator on the saddle field (x^2-z^2)/2, at (X,Z)=(1,1.5): -0.088266
+    with Phi -> Phi + e z, e=1:                                  0.149534
+    difference: 0.237800  (nonzero; it vanishes only if mu is constant)
+    => no environmental TERM in the equation, but an EFE through mu(|grad Phi|) and the BC.
+K1 PASS inversion exact; e-shift residual=+0.2378 exact inversion AND |e-shift residual| > 1e-3
+
+S2  solver controls: one Plummer sphere, deep-MOND exact solution |grad Phi| r = 1
+    AQUAL: |grad|r vs 1 max err 9.81e-04; rho_ph r^2 vs 1/(4pi) 5.74e-03; it=25
+    QUMOND (full nu): rho_ph vs exact 1/(2 pi r sqrt(1+4r^2)) max err 2.26e-02
+K2 PASS aqual grad_err=9.81e-04, rho_err=5.74e-03 both < 2e-2 / 3e-2
+K3 FAIL qumond grad_err=2.26e-02 < 2e-2
+
+S3  two equal lenses, separation d, e=0: four resolutions and Richardson in h
+    O3 (framework law): lap(phi) = div[nu(|grad phi_N|) grad phi_N], nu = 1/2+sqrt(1/4+1/y)
+    h=0.0040  N= 20736  QUMOND S=-0.21325 C(0.2)=-0.1445   AQUAL S=-0.19695 C(0.2)=-0.2391  it_A=28
+    h=0.0020  N= 32761  QUMOND S=-0.23383 C(0.2)=-0.1448   AQUAL S=-0.21027 C(0.2)=-0.2401  it_A=28
+    h=0.0010  N= 48400  QUMOND S=-0.24836 C(0.2)=-0.1449   AQUAL S=-0.21824 C(0.2)=-0.2403  it_A=28
+    h=0.0005  N= 67600  QUMOND S=-0.25838 C(0.2)=-0.1449   AQUAL S=-0.22296 C(0.2)=-0.2403  it_A=28
+    QUMOND increments ['-0.02058', '-0.01454', '-0.01002']; ratios ['0.706', '0.689']; p=0.54; S_inf=-0.28059
+    AQUAL  increments ['-0.01332', '-0.00797', '-0.00472']; ratios ['0.598', '0.592']; p=0.76; S_inf=-0.22981   (A13: -0.22931)
+K4 PASS AQUAL S_inf=-0.22981, C02=-0.24035 A13 -0.22931 / -0.24036, within 2%
+K5 PASS QUMOND S_inf=-0.28059, increment ratio=0.689 ratio in (0.6,0.8), S_inf in (-0.30,-0.26)
+K6 PASS S_Q/S_A=1.221, C02_Q/C02_A=0.603 S ratio > 1.10 and C(0.2d) ratio < 0.70 (the two laws differ)
+
+S4  missing depth: the column a rho >= 0 medium cannot supply
+    Sigma_miss = -S_clip sqrt(G M a0)/(G d),  S_clip = 2 int min(C + Cbar,0) dR
+    F1_MW-M31   canonical qumond: C(0.2d)=-0.1449 =   -53.7 rho_bar ;  Sigma_miss = 2.642 Msun/pc^2
+    F1_MW-M31   canonical aqual : C(0.2d)=-0.2403 =   -89.1 rho_bar ;  Sigma_miss = 2.164 Msun/pc^2
+    F1_MW-M31   alt       qumond: C(0.2d)=-0.1449 =   -59.0 rho_bar ;  Sigma_miss = 2.905 Msun/pc^2
+    F1_MW-M31   alt       aqual : C(0.2d)=-0.2403 =   -97.9 rho_bar ;  Sigma_miss = 2.380 Msun/pc^2
+    F2_cluster  canonical qumond: C(0.2d)=-0.1449 =   -20.1 rho_bar ;  Sigma_miss = 6.315 Msun/pc^2
+    F2_cluster  canonical aqual : C(0.2d)=-0.2403 =   -33.4 rho_bar ;  Sigma_miss = 5.174 Msun/pc^2
+    F2_cluster  alt       qumond: C(0.2d)=-0.1449 =   -22.1 rho_bar ;  Sigma_miss = 6.957 Msun/pc^2
+    F2_cluster  alt       aqual : C(0.2d)=-0.2403 =   -36.7 rho_bar ;  Sigma_miss = 5.700 Msun/pc^2
+    framework law : MW-M31 2.64-2.91;  cluster 6.32-6.96 Msun/pc^2
+    A13 / AQUAL   : MW-M31 2.16-2.38;  cluster 5.17-5.70 Msun/pc^2   (A13: 2.16-2.37, 5.16-5.68)
+K7 PASS aqual MW 2.164/2.380, cluster 5.174/5.700 A13 2.159/2.374, 5.159/5.684 within 3%
+K8 PASS qumond MW 2.64-2.91, cluster 6.32-6.96 MW in (2.5,3.1), cluster in (6.0,7.4)
+
+S5  lensing: convergence deficit, matched filter, S/N per pair
+    framework law: Delta_Sigma=0.2763 Msun/pc^2, A_eff=0.00969 d^2 = 12.16 arcmin^2, S/N_1=0.00749, eps=0.201
+    A13 / AQUAL  : Delta_Sigma=0.2263 Msun/pc^2, A_eff=0.00835 d^2 = 10.47 arcmin^2, S/N_1=0.00569, eps=0.144  (A13: 0.2258, 0.00860, 0.00577, 0.146)
+K9 PASS A_eff=0.00835, S1=0.00569 A13 0.008598 / 0.005767, within 5%
+K10 PASS N5/N3=2.7778, eps_Q=0.201 exact 25/9, eps in (0.10,0.30)
+
+S6  external field: does a uniform field along the pair axis change the solution?
+    O3 with the external field IN the source (total baryonic field): full domain, z in [-6,6]
+    e=0.00  S=-0.198133  C(0.2d)=-0.1434  S(e)/S(0)=1.0000
+    e=0.10  S=-0.179285  C(0.2d)=-0.1427  S(e)/S(0)=0.9049
+    e=0.30  S=-0.126916  C(0.2d)=-0.1358  S(e)/S(0)=0.6406
+    e=1.00  S=-0.039845  C(0.2d)=-0.0695  S(e)/S(0)=0.2011
+    e=3.00  S=-0.016996  C(0.2d)=+0.1230  S(e)/S(0)=0.0858
+    suppression at e=0.3/1/3: 0.641 / 0.201 / 0.086   (A13/AQUAL half-domain: 0.751 / 0.337 / 0.021)
+K11 PASS ratios=0.641/0.201/0.086 monotone and S(1)/S(0) < 0.30 (the field DOES change the solution)
+    own-source rule (A5): max|C(e=3)-C(0)| = 0.000e+00;  S(e=3)/S(0) = 1.000000
+K12 PASS max|dC|=0.0e+00, S ratio=1.000000 exactly 0 and 1.000000 (no EFE by construction)
+
+S7  A13's external-field solve used z in [0,6] with no-flux at z=0; a field along z breaks that mirror
+    A13 configuration (half domain) e=0.3: S/S0=0.746   (A13: 0.751)
+    A13 configuration (half domain) e=1.0: S/S0=0.332   (A13: 0.337)
+    full domain, box 6.0: S(e=0.3)/S(0)=0.0443  (S0=-0.17926, S=-0.00794)
+    full domain, box 8.0: S(e=0.3)/S(0)=0.0795  (S0=-0.18194, S=-0.01446)
+K13 PASS half=0.746, full=0.044-0.079 half > 0.60 AND full < 0.20 (the half-domain curve is a symmetry artefact)
+
+S8  environment: what the two readings predict at the same pairs
+    r_M(LRG)=17.2 kpc, d/r_M=682;  e_dim = (g_ext/a0) d/r_M
+    environment                 g_ext/a0   e_dim   sup(total-source)  sup(own-source)  N3 penalty
+    void, very underdense       1.0e-03    0.68       0.2906          1.000000      x11.84
+    field galaxy (Local Sheet)  5.0e-03    3.41       0.0777          1.000000      x165.8
+    filament at z~0.4           1.5e-02   10.23       0.0331          1.000000      x911.3
+    group interior              5.0e-02   34.10       0.0130          1.000000      x5898
+K14 PASS filament sup: total-source=0.0331, own-source=1.000000 total < 0.05 and own == 1.0
+
+S9  pairs and square degrees (framework law, own-source: no suppression anywhere)
+    survey                        n_g   S/N_1     N3         deg2(3s)   N3 scanned  deg2 scanned
+    CFHTLenS (published sample)    11  0.00749  1.603e+05      1073   7.985e+05       5346
+    DES Y6                         10  0.00714  1.763e+05      1181   8.783e+05       5881
+    LSST Y10                       27  0.01174  6.531e+04       437   3.253e+05       2178
+    Euclid Wide                    30  0.01237  5.878e+04       394   2.928e+05       1960
+    Roman HLIS                     45  0.01459  4.226e+04       283   2.105e+05       1409
+    5 sigma = 2.778x these;  pair surface density 149.4 deg^-2; eps_orient=0.201
+K15 PASS LSST N3=6.531e+04, deg2=437; Euclid=394; Roman=283 LSST N3<1e5, deg2<600; Euclid<600; Roman<450
+
+S10  DECISION
+    same kernel, two sources:  S(e=1)/S(0) = 0.2011 (total field in g_bar)  vs  1.000000 (own field)
+    at the filament field (e_dim=10.2): suppression 0.0331 vs 1.000000
+    pair-budget ratio between the two readings: x911
+    A13's curve (0.751/0.337/0.021) is O2;  the framework's own law is O3 and gives exactly 1.
+
+A23 COMPLETE: 14/15 checks PASS.
+run time 26.6 s

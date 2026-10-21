@@ -1,0 +1,188 @@
+========================================================================================================
+A25 -- THE KERNEL CONFLICT
+========================================================================================================
+  external inputs: Lambda = 1.0890e-52 m^-2, a0_can = 9.360e-11, a0_alt = 1.130e-10, c = 2.99792458e+08
+  target (Zenodo 23251231): Lambda c^4/a0^2 = 73.19   [external, not recomputed]
+
+========================================================================================================
+K1  THE FOUR KERNELS AND THEIR EXACT IDENTITIES
+========================================================================================================
+    symbolic residuals: Langmuir<->mu (0.0e+00), Langmuir action branch (0.0e+00), RAR parametric pair (0.0e+00),
+                         quadrature<-q_P2 (0.0e+00)
+  K1   PASS max symbolic residual = 0.00e+00 over 4 kernel identities
+        threshold: max residual < 1e-25 (sympy exact)
+
+    nu(y) on the range that matters (y = g_N/a0):
+           y         nu_L         nu_Q         nu_R         nu_M
+        0.01    10.512492    10.049876    10.508332    10.508332
+        0.10     3.701562     3.316625     3.688586     3.688586
+        1.00     1.618034     1.414214     1.581977     1.581977
+       10.00     1.091608     1.048809     1.044200     1.067754
+      100.00     1.009902     1.004988     1.000045     1.007456
+    10000.00     1.000100     1.000050     1.000000     1.000089
+
+    pairwise |dlog10 nu| over y in [1e-3, 1e3]:
+      L vs Q: 0.06247 dex at y = 0.500   (nu ratio 1.1547)
+      L vs R: 0.01988 dex at y = 6.963   (nu ratio 1.0468)
+      Q vs R: 0.05707 dex at y = 0.387   (nu ratio 0.8769)
+      M vs R: 0.01037 dex at y = 14.350   (nu ratio 1.0242)
+      M vs L: 0.01637 dex at y = 3.055   (nu ratio 0.9630)
+    validation of nu_mono: max |log10(nu_M/nu_R)| = 0.01037015 at y = 14.3503   (L340 A1 stores 0.0103700578 at 14.35)
+
+========================================================================================================
+K2  THE TAIL COEFFICIENT c = lim_{y->inf} y(nu-1)  --  THIS DECIDES CONVERGENCE
+========================================================================================================
+    c_L = 0.999999993923 (exact 1)      c_Q = 0.499999996961 (exact 1/2)
+    c_R = h(1e4) = 3.720e-40  (exponential decay: e^{-sqrt y})
+    c_M: [h(1e12)-h(1e6)]/ln(1e6) = 0.03238051   (delta*h_p = 0.03238051)  -> h_M diverges as ln y
+    deep coefficient beta = lim (nu - y^-1/2) at y = 1e-8:  L 0.500013 | Q 5.00e-05 | R 0.500008 | M 0.500008  (exact 1/2, 0, 1/2, 1/2)
+  K2   PASS c = (1, 0.5, 0.0, ln-div): 0.999999994, 0.499999997, 3.72e-40, 0.03238051 ; beta = (0.5, 0, 0.5, 0.5): 0.50001, 5.0e-05, 0.50001, 0.50001
+        threshold: c to 1e-6 / 1e-4; beta(L,Q,R) to 1e-3
+
+========================================================================================================
+K3  THE BARE INTEGRAL  I_bare(Y) = Int_0^Y y(nu-1) dy  (the integral the record writes as (1/2)Int(nu-1)d(y^2))
+========================================================================================================
+    exact antiderivative, Langmuir :  I_L(Y) = Y**(3/2)*sqrt(Y + 4)/4 + sqrt(Y)*sqrt(Y + 4)/2 - Y**2/4 - 2*acosh(sqrt(Y + 4)/2)
+    exact antiderivative, quadrature:  I_Q(Y) = Y**(3/2)*sqrt(Y + 1)/2 + sqrt(Y)*sqrt(Y + 1)/4 - Y**2/2 - acosh(sqrt(Y + 1))/4
+    compact form,  Langmuir :  I_L(Y) = [(Y+2)sqrt(Y^2+4Y) - Y^2]/4 - ln[(Y+2+sqrt(Y^2+4Y))/2]
+    compact form, quadrature:  I_Q(Y) = [(2Y+1)sqrt(Y^2+Y) - 2Y^2]/4 - ln[sqrt(Y+1)+sqrt(Y)]/4
+    compact vs sympy antiderivative at Y = 1e5: max rel 8.4e-12  (double-precision evaluation; the identity is acosh z = ln(z+sqrt(z^2-1)))
+    exact, RAR    :  I_R(inf) = 2*Gamma(4)*zeta(4) = 2*pi**4/15 = 2*pi^4/15 = 12.987878804533658
+                     (substituting y = u^2 turns Int y/(e^sqrt y - 1) dy into 2 Int u^3/(e^u - 1) du)
+    exact, nu_mono:  diverges (h_M -> delta*h_p*ln y, so Int h_M dy ~ delta*h_p*Y ln Y)
+    closed form vs adaptive quadrature at Y = 1e3, 1e6: max rel 3.17e-26
+    incremental slope dI/dY: L 0.999999953 (->1), Q 0.499999994 (->1/2)
+    I_L(1e8) - 1e8 + ln(1e8) = 0.499999980   (constant 1/2)
+    I_Q(1e8) - 5e7 + ln(1e8)/8 = -0.110786796 (constant -0.1107868)
+  K3   PASS closed forms certified: max rel 3.2e-26 (quad), 8.4e-12 (compact); dI/dY = 0.999999953 (L), 0.499999994 (Q); I_R(inf) = 12.987878804534
+        threshold: rel<1e-9 vs quadrature, <1e-10 compact; slopes 1 and 1/2 to 1e-6; I_R = 2pi^4/15 exactly
+
+========================================================================================================
+K4  THE TURN-OFF INTEGRAL  I_turn(y_t) = Int_0^inf y(nu-1)/(1+(y/y_t)^2) dy
+========================================================================================================
+    exact rational form vs direct quadrature (y_t = 20, 50, 100): max rel 6.95e-13
+    asymptotic L: (pi/2)Y - lnY + 1/2 = 152.974462  vs exact 152.944878  (rel 1.9e-04)
+    asymptotic Q: (pi/4)Y - lnY/8 + C_Q = 77.853383  vs exact 77.852421  (rel 1.2e-05)
+    RAR: F_R(1e6) = 12.987878794   -> 2pi^4/15 - F_R = 1.01e-08  (= 2*Gamma(8)zeta(8)/y_t^2 = 10121.1/y_t^2)
+  K4   PASS rational forms exact (max rel 6.9e-13); asymptotics at y_t=100: L 1.9e-04, Q 1.2e-05
+        threshold: rel < 1e-9 exact; < 2e-3 asymptotic
+
+========================================================================================================
+K5  THE TURN-OFF THAT MAKES EACH KERNEL EQUAL 73.19
+========================================================================================================
+    L: y_t = 48.787740   (F = 73.190000000, target 73.19)
+    Q: y_t = 94.053941   (F = 73.190000000, target 73.19)
+    R: NO ROOT.  sup I_turn = 12.987878794 < 73.19
+    M: y_t = 63.685609   (F = 73.190000000, target 73.19)
+    reference targets: 32pi = 100.530965 -> y_t: L 66.3803, Q 128.9154, M 86.3375
+    100.405845 (A4, BRIEF constants) -> y_t: L 66.2999, Q 128.7559, M 86.2345
+  K5   PASS y_t(73.19): L 48.7877, Q 94.0539, M 63.6856, R none (sup 12.987879); canonical(L) 48.7877
+        threshold: L 48.7877+-0.005, Q 94.054+-0.05, M 63.686+-0.05, R no root, canonical == 48.7877
+
+========================================================================================================
+K6  THE RECORD'S 94-129 BAND IS THE QUADRATURE KERNEL AT ITS TWO a0 NORMALISATIONS
+========================================================================================================
+    quadrature at 73.19      -> y_t = 94.0539   (record 23171085: 94)
+    quadrature at 32pi       -> y_t = 128.9154   (record: 128.9 on the kappa=1/2 footing)
+    quadrature at 100.405845 -> y_t = 128.7559   (A4: 128.7559)
+    the theory's kernel (L)  -> y_t = 48.7877 at 73.19, 66.3803 at 32pi   [factor 1.928 below the band]
+    feeding the record's y_t = 94.05 to the action kernel over-predicts Lambda by 1.9629 x
+  K6   PASS band reproduced: Q(73.19)=94.0539 vs 94 (0.06%); Q(32pi)=128.9154 vs 128.9 (0.01%); L over-predicts by 1.963x
+        threshold: <0.5% on both ends of 94-129; over-prediction 1.9-2.0x
+
+========================================================================================================
+K7  12.99 = 2 pi^4/15 EXACTLY, AND 5.6x = 73.19/(2 pi^4/15)
+========================================================================================================
+    I_R(inf) = 2 pi^4/15 = 12.9878788045 ; record says 12.99  (0.016%)
+    73.19 / 12.9878788 = 5.635254 ; record says 5.6  (0.63%)
+  K7   PASS I_R = 12.98787880 (2pi^4/15), 12.99 to 0.016%; 5.6x = 5.6353
+        threshold: <0.1% and <1% (5.6 is 5.635 rounded to two figures)
+
+========================================================================================================
+K8  WHAT 73.19 IS: 32 pi = 3 Z^2 AND 73.19/32 pi = Omega_Lambda
+========================================================================================================
+    3Z^2 - 32pi = 0   (Z = 2 sqrt(8pi/3) = 5.788810)
+    73.19/32pi = 0.728034  -> Omega_Lambda implied by the record's target
+    BRIEF (Lambda, H0=67.4): Omega_Lambda = 0.683800 -> 32 pi Omega_L = 68.7431  (= A4's alt-footing N_Lambda 68.8896)
+    BRIEF canonical a0: Lambda c^4/a0^2 = 100.405845  (A4 stored 100.405845)
+    a0 that makes Lambda c^4/a0^2 = 73.19: 1.09630e-10 m/s^2  (record: 1.097e-10, 0.06%)
+  K8   PASS 32pi=3Z^2 exact; 73.19/32pi=0.72803; BRIEF Omega_L=0.6838 -> 68.74 (=68.89); a0(73.19)=1.0963e-10
+        threshold: identity exact; Omega to 1e-4; N_Lambda to 0.5% (a0_alt is cH0/Z to 0.12%); a0 to 0.5%
+
+========================================================================================================
+K9-K10  SPARC ON DISK: WHICH KERNEL DOES THE TRANSITION FOLLOW?
+========================================================================================================
+    SPARC: 147 galaxies, 3140 points (hunt_lib.load_sparc, Q<=2, inc>=30, >=6 pts)
+    canonical (18 bins) chi2: L 28.7 | Q 186.7 | R 38.8 | M 38.0    worst transition pull: L 3.19 | Q 7.39 | R 3.59
+               dchi2(Q-L) =  +157.96    dchi2(R-L) = +10.07    dchi2(M-L) =  +9.24
+    alt       (18 bins) chi2: L 19.5 | Q 94.8 | R 18.7 | M 19.3    worst transition pull: L 2.12 | Q 5.05 | R 1.58
+               dchi2(Q-L) =   +75.25    dchi2(R-L) =  -0.77    dchi2(M-L) =  -0.24
+    canonical kernel = L ;  dchi2(Q - canon) = 158.0 / 75.3 ; dchi2(R - canon) = 10.1 / -0.8
+  K9   PASS fixed footing: dchi2(Q-canon) = 158.0, 75.3 ; dchi2(R-canon) = 10.1, -0.8
+        threshold: Q excluded at >50 on both footings; |R-canon| < 15
+    profiled (A, a0): L  chi2 =   12.18 on 16 dof   A = 1.0000   a0 = 1.0885e-10
+    profiled (A, a0): Q  chi2 =   29.23 on 16 dof   A = 1.0770   a0 = 1.2004e-10
+    profiled (A, a0): R  chi2 =   12.00 on 16 dof   A = 1.0575   a0 = 9.6398e-11
+    profiled (A, a0): M  chi2 =   13.18 on 16 dof   A = 1.0374   a0 = 1.0137e-10
+  K10  PASS profiled: dchi2(Q-canon) = +17.05 ; dchi2(R-canon) = -0.18 ; a0(Q) = 1.200e-10 vs a0(canon) = 1.089e-10
+        threshold: Q worse by >10 with equal parameters; |R-canon| < 5
+
+========================================================================================================
+K11  IS THE Lambda-REQUIRED TURN-OFF VISIBLE IN THE RAR?
+========================================================================================================
+    L (y_t = 48.79): max |dg/g| = 0.00986 = 0.00428 dex at y = 50.6
+    Q (y_t = 94.05): max |dg/g| = 0.00264 = 0.00115 dex at y = 94.8
+    M (y_t = 63.69): max |dg/g| = 0.00569 = 0.00247 dex at y = 67.1
+    L: SPARC dchi2 from imposing the Lambda-required turn-off = +0.060
+    Q: SPARC dchi2 from imposing the Lambda-required turn-off = +0.075
+    M: SPARC dchi2 from imposing the Lambda-required turn-off = +0.112
+  K11  PASS turn-off signature: max 0.00428 dex (L), 0.00115 dex (Q); SPARC dchi2 <= 0.11
+        threshold: max < 0.01 dex (RAR scatter 0.06 dex) and |dchi2| < 1
+
+========================================================================================================
+K12  THE STRONG-FIELD COEFFICIENT: A NUMBER THAT DOES DISTINGUISH THE KERNELS
+========================================================================================================
+    L: c*a0 = 9.360e-11 m/s^2 = 2557.4 x the Earth bound (B_E = 3.66e-14)
+    Q: c*a0 = 4.680e-11 m/s^2 = 1278.7 x the Earth bound (B_E = 3.66e-14)
+    R: c*a0 = 0.000e+00 m/s^2 = 0.0 x the Earth bound (B_E = 3.66e-14)
+    planetary cap (A4, Neptune, over-tight stand-in): y_t <= 605.96
+    required: L 48.79 (margin 12.42x), Q 94.05 (margin 6.44x), M 63.69 (margin 9.51x)
+  K12  PASS c*a0/B_E = 2557.4 (L), 1278.7 (Q), 0 (R); one y_t inside the planetary cap for L (margin 12.4x)
+        threshold: 2557.38 and 1278.69 to 0.1%; margin > 1
+
+========================================================================================================
+K13  THE KiDS-1000 LENSING RAR (ON DISK): A NULL FOR KERNEL SEPARATION
+========================================================================================================
+    15 bins, g_bar = 1.38e-15 .. 3.92e-12 m/s^2 (y = 1.5e-05 .. 4.2e-02), median error 8.9%
+    smallest covariance eigenvalue / largest = 5.12e-04 (a near-singular common mode)
+    correlation common mode: min/max covariance eigenvalue = 5.12e-04
+    L: profiled amplitude A = 1.4027, chi2 = 51.07 (15 bins, 1 param)
+    Q: profiled amplitude A = 1.4478, chi2 = 40.16 (15 bins, 1 param)
+    R: profiled amplitude A = 1.4032, chi2 = 50.83 (15 bins, 1 param)
+    M: profiled amplitude A = 1.4032, chi2 = 50.83 (15 bins, 1 param)
+    dchi2(Q-L) = -10.90 -> the deep lensing RAR does NOT separate the kernels
+  K13  PASS KiDS RAR: dchi2(Q-L) = -10.90 (no separation); chi2/dof(L) = 3.65
+        threshold: |dchi2| < 20 -> a null, reported as such
+
+========================================================================================================
+K14  THE CANONICAL KERNEL IS THE ACTION'S KERNEL
+========================================================================================================
+    canonical kernel in this run: L (Langmuir/simple (the action's))
+    action -> W_full -> nu: A12 sec.5 (K10, residual 0); lattice: A2 sec.1-2
+  K14  PASS canonical = L, expected L (the action's kernel)
+        threshold: canonical == 'L'
+
+========================================================================================================
+SUMMARY
+========================================================================================================
+  L  Langmuir/simple (the action's)   c = 1            y_t(73.19) = 48.7877
+  Q  quadrature (P2)                  c = 1/2          y_t(73.19) = 94.0539
+  R  RAR/exponential                  c = 0            y_t(73.19) = none
+  M  nu_mono (L340 splice)            c = inf (ln y)   y_t(73.19) = 63.6856
+  the 5.6x 'tension' is 73.19/12.9878788 = 5.6353 and belongs to the RAR kernel only.
+  the record's 94-129 band is the quadrature kernel at two a0 normalisations; the action's kernel gives 48.79-66.38.
+  SPARC: dchi2(Q - L) = 158.0 (canonical footing), 75.3 (alt); dchi2(R - L) = 10.1, -0.8.
+
+  wrote a25_results.json
+
+A25 COMPLETE: 14/14 checks PASS.

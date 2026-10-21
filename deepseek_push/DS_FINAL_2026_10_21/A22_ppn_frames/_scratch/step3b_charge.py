@@ -32,7 +32,7 @@ W = (a0**2/K)*(-u/a0 - sp.log(1 - u/a0))
 clock = p*sp.diff(N, r)/(f*N)
 L = r**2*sqh*N*(R3(f)/(4*K) + clock - W - (gam/2)*DP**2)
 
-Wser = sp.series(W, eps, 0, 3).removeo()
+Wser = sp.series(W, eps, 0, 3).removeO()
 Llin = sp.expand(r**2*sqh*N*(clock - Wser - (gam/2)*DP**2))
 ep = euler(Llin, pf)
 ep = sp.simplify(ep.coeff(eps, 1))
