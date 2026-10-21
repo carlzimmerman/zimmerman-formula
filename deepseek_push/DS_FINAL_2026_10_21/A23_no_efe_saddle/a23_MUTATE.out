@@ -1,0 +1,108 @@
+A23  the saddle dip in the framework's own law, WITH the external-field effect   *** MUTATE ***
+Premise: g_N=g^2/(g+a0) is exactly AQUAL mu=x/(1+x) (A24).  AQUAL HAS an EFE.
+The no-EFE premise of the original tasking is refuted by A24 and is NOT used here.
+rho_bar_cold = 2.2569e-27 kg/m^3  (Omega_c/Omega_b = 5.364, Omega_b h^2 = 0.0224)
+
+S1  symbolic form: the law, the field equation, and the EFE
+    g(g_N) = g_N/2 + sqrt(4*a_0*g_N + g_N**2)/2
+    nu(y)  = g/g_N = (sqrt(y)*sqrt(y + 4) + y)/(2*y)   (equals 1/2 + sqrt(1/4 + 1/y))
+    inversion check  g^2/(g+a0) - g_N = 0;  g*mu(g/a0) - g_N = 0
+    AQUAL operator on the saddle field (X^2-Z^2)/2 at (1,1.5): -0.088266
+    with Phi -> Phi + e z, e=1:                              +0.149534
+    difference: +0.237800  -> the law is NOT shift-invariant: it has an EFE.
+    The equation has no environmental term; the EFE enters through mu(|grad Phi|) and the BC.
+K1 PASS inversion exact; e-shift residual=+0.2378 exact inversion AND |e-shift residual| > 1e-3
+
+S2  solver controls: one Plummer sphere
+    AQUAL deep: |grad|r vs 1 max err 9.81e-04; rho_ph r^2 vs 1/(4pi) 5.74e-03; it=25
+    QUMOND fork (full nu): rho_ph vs 1/(2 pi r sqrt(1+4r^2)) max err 2.26e-02
+K2 PASS aqual grad_err=9.81e-04, rho_err=5.74e-03 both < 2e-2 / 3e-2
+K3 PASS qumond rho_err=2.26e-02 < 3e-2
+
+S3  two equal lenses, separation d, e=0: four resolutions + Richardson (the A13 ladder)
+    h=0.0040  N= 20736  AQUAL S=-0.19695 C(0.2)=-0.2391   QUMOND S=-0.21325 C(0.2)=-0.1445  it=28
+    h=0.0020  N= 32761  AQUAL S=-0.21027 C(0.2)=-0.2401   QUMOND S=-0.23383 C(0.2)=-0.1448  it=28
+    h=0.0010  N= 48400  AQUAL S=-0.21824 C(0.2)=-0.2403   QUMOND S=-0.24836 C(0.2)=-0.1449  it=28
+    h=0.0005  N= 67600  AQUAL S=-0.22296 C(0.2)=-0.2403   QUMOND S=-0.25838 C(0.2)=-0.1449  it=28
+    AQUAL  increments ['-0.01332', '-0.00797', '-0.00472']; ratios ['0.598', '0.592']; p=0.76; S_inf=-0.22981   (A13: -0.22931)
+    QUMOND increments ['-0.02058', '-0.01454', '-0.01002']; ratios ['0.706', '0.689']; p=0.54; S_inf=-0.28059
+K4 PASS AQUAL S_inf=-0.22981, C02=-0.24035 A13 -0.22931 / -0.24036, within 2%
+K5 PASS QUMOND S_inf=-0.28059, ratio=0.689, S_Q/S_A=1.221 fork converges (ratio 0.6-0.8) and differs from AQUAL by >15%
+
+S4  missing depth (the part a rho >= 0 medium cannot supply)
+    Sigma_miss = -S_clip sqrt(G M a0)/(G d),  S_clip = 2 int min(C + Cbar,0) dR
+    F1_MW-M31   canonical aqual : C(0.2d)=-0.2403 =   -89.1 rho_bar ;  Sigma_miss = 2.164 Msun/pc^2
+    F1_MW-M31   canonical qumond: C(0.2d)=-0.1449 =   -53.7 rho_bar ;  Sigma_miss = 2.642 Msun/pc^2
+    F1_MW-M31   alt       aqual : C(0.2d)=-0.2403 =   -97.9 rho_bar ;  Sigma_miss = 2.380 Msun/pc^2
+    F1_MW-M31   alt       qumond: C(0.2d)=-0.1449 =   -59.0 rho_bar ;  Sigma_miss = 2.905 Msun/pc^2
+    F2_cluster  canonical aqual : C(0.2d)=-0.2403 =   -33.4 rho_bar ;  Sigma_miss = 5.174 Msun/pc^2
+    F2_cluster  canonical qumond: C(0.2d)=-0.1449 =   -20.1 rho_bar ;  Sigma_miss = 6.315 Msun/pc^2
+    F2_cluster  alt       aqual : C(0.2d)=-0.2403 =   -36.7 rho_bar ;  Sigma_miss = 5.700 Msun/pc^2
+    F2_cluster  alt       qumond: C(0.2d)=-0.1449 =   -22.1 rho_bar ;  Sigma_miss = 6.957 Msun/pc^2
+    framework law (AQUAL): MW-M31 2.16-2.38;  cluster 5.17-5.70
+    QUMOND fork          : MW-M31 2.64-2.91;  cluster 6.32-6.96
+K6 PASS MW 2.164/2.380, cluster 5.174/5.700 A13 2.159/2.374 and 5.159/5.684 within 3%
+
+S5  lensing: deficit map, matched filter, S/N per pair
+    AQUAL (framework): Delta_Sigma=0.2263, A_eff=0.00835 d^2 = 10.47 arcmin^2, S/N_1=0.00569, eps=0.144
+    QUMOND fork      : Delta_Sigma=0.2763, A_eff=0.00969 d^2 = 12.16 arcmin^2, S/N_1=0.00749, eps=0.201
+    A13              : Delta_Sigma=0.2258, A_eff=0.00860, S/N_1=0.00577, eps=0.146
+K7 PASS A_eff=0.00835, S1=0.00569 A13 0.008598 / 0.005767 within 5%
+
+S6  the external field: full domain z in [-6,6], anisotropic far field
+    S_0.6 = 2 int_0^0.6 min(C,0) dR is the column through the saddle inside the aperture;
+    S_tot integrates the whole midplane (it picks up a large-R wake at e>=3).
+    e=0.00  S_0.6=-0.179259  S_tot=-0.179259  C(0.2d)=-0.2362  it=17
+    e=0.30  S_0.6=-0.175200  S_tot=-0.175200  C(0.2d)=-0.2489  it=90
+    e=1.00  S_0.6=-0.228447  S_tot=-0.442725  C(0.2d)=-0.3805  it=250
+    retained column S_0.6(e)/S_0.6(0): 0:1.000  0.3:0.977  1:1.274
+    A13/AQUAL half-domain curve      : 0.3:0.751  1:0.337  3:0.021
+K8 FAIL S(0.3)/S0=0.977, S(0.3)/S0=0.977 monotone, S(low)>0.5, S(0.3)<0.10
+K9 FAIL S_0.6(1)=-2.3e-01, C(0.2d,1)=-0.380, S_0.6(0.68)=-2.3e-01 no negative midplane column and positive 0.2d density for e>=0.68
+    missing depth vs e: e=0:2.16/5.17  e=0.3:2.11/5.06  e=1:2.76/6.59  Msun/pc^2 (MW/cluster)
+    half-suppression field e_1/2 = none (curve never reaches 0.5)
+
+S6b  why A13 got 0.75/0.34: the half domain z in [0,6] forces no-flux at z=0
+    half domain e=0.3: S/S0=0.746   (A13: 0.751)
+    half domain e=1.0: S/S0=0.332   (A13: 0.337)
+    full domain e=0.3: S/S0=0.977   ->  A13's curve is a symmetry artefact
+K10 FAIL half=0.746, full=0.977 half > 0.60 AND full < 0.10
+
+S6c  robustness at e=0.3: box 6 vs 8, h=0.006 vs 0.004
+    box6_h006: S0=-0.17926 S(0.3)=-0.00897 ratio=0.0500 C(0.2d)=-0.0314
+K11 PASS ratios 0.0500-0.0500, spread 1.00 spread < 1.6 and all < 0.10
+
+S7  the corrected pair budget: no environment reaches e < 0.2
+    r_M(LRG)=17.2 kpc, d/r_M=682,  e_dim = (g_ext/a0) d/r_M
+    void, very underdense      g_ext=1.0e-03 a0  e=  0.68  retained=  1.1713  N3_eff=2.02e+05  penalty=x0.729  depth=2.534/6.060 Msun/pc^2
+    field galaxy (Local Sheet) g_ext=5.0e-03 a0  e=  3.41  retained=  1.2744  N3_eff=1.71e+05  penalty=x0.616  depth=2.758/6.593 Msun/pc^2
+    filament at z~0.4          g_ext=1.5e-02 a0  e= 10.23  retained=  1.2744  N3_eff=1.71e+05  penalty=x0.616  depth=2.758/6.593 Msun/pc^2
+    group interior             g_ext=5.0e-02 a0  e= 34.10  retained=  1.2744  N3_eff=1.71e+05  penalty=x0.616  depth=2.758/6.593 Msun/pc^2
+    even the void (e=0.68) retains nothing: S_0.6(0.68)=0
+
+    the same, per survey, at the isolated amplitude (3 sigma, edge-on pairs):
+    CFHTLenS (published sample)  n_g= 11  S/N_1=0.00569  N3=2.78e+05  deg2=  1859  scanned N3=1.92e+06  deg2=  12880
+    DES Y6                       n_g= 10  S/N_1=0.00543  N3=3.05e+05  deg2=  2044  scanned N3=2.12e+06  deg2=  14168
+    LSST Y10                     n_g= 27  S/N_1=0.00892  N3=1.13e+05  deg2=   757  scanned N3=7.84e+05  deg2=   5247
+    Euclid Wide                  n_g= 30  S/N_1=0.00940  N3=1.02e+05  deg2=   681  scanned N3=7.05e+05  deg2=   4723
+    Roman HLIS                   n_g= 45  S/N_1=0.01109  N3=7.32e+04  deg2=   490  scanned N3=5.07e+05  deg2=   3395
+    (eps_orient=0.144, pair density 149.4 deg^-2; 5 sigma = 2.778x)
+
+    required retained fraction for the pairs actually available in each survey:
+    CFHTLenS (published sample)  pairs=2.30e+04  f_req=3.474  -> e_req=None
+    DES Y6                       pairs=7.47e+05  f_req=0.639  -> e_req=None
+    LSST Y10                     pairs=2.69e+06  f_req=0.205  -> e_req=None
+    Euclid Wide                  pairs=2.09e+06  f_req=0.221  -> e_req=None
+    Roman HLIS                   pairs=2.69e+06  f_req=0.165  -> e_req=None
+K12 FAIL e_req=LSST:none, Euclid:none, Roman:none; f_req=0.21, 0.22, 0.16 all e_req < 0.30 and f_req > 0.15
+
+S8  VERDICT
+    e=0: S_inf=-0.22981 (A13 -0.22931), depth 2.16-2.38 / 5.17-5.70 Msun/pc^2
+    retained saddle column: e=0:1.000, e=0.3:0.977, e=1:1.274
+    e_1/2=none; every environment has e>=0.68
+    => the saddle dip is switched off in every accessible pair environment: NO-GO.
+    A13's 0.75/0.34/0.02 came from forcing mirror symmetry at z=0; the full-domain
+    solve gives 0.05 at e=0.3.  A13's qualitative conclusion survives, its numbers do not.
+
+A23 COMPLETE: 8/12 checks PASS.
+run time 52.7 s

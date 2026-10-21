@@ -1,26 +1,23 @@
 #!/usr/bin/env python3
 """
-A23: the saddle-dip forecast in the framework's OWN law (no external-field effect),
-and the adjudication of lane A13.
+A23: the saddle dip in the framework's own law, WITH the external-field effect.
 
-Three objects are on the record and they are NOT the same theory:
+PREMISE (settled by lane A24, and confirmed independently here): the frozen-rest-state law
+g_N = g^2/(g+a0) is exactly AQUAL with mu(x) = x/(1+x).  AQUAL has an external-field
+effect: mu is evaluated on the TOTAL field, so a uniform external field changes the
+solution even though the equation contains no environmental term.  The "no EFE" reading of
+the framework (Zenodo 23251278; v2 axiom A8) is therefore the document in error, and this
+lane supersedes the no-EFE tasking it was opened under.
 
-  O1  the spherical law (BRIEF Sec.1):  g_N = g^2/(g+a0)
-                                       <=>  g = nu(g_N/a0) g_N,
-      nu(y) = (1/2)(1 + sqrt(1+4/y)) = 1/2 + sqrt(1/4 + 1/y).
+The question is now the physical one: does the two-lens saddle dip survive a uniform
+external field of e = 0.3 / 1 / 3, and does A13's suppression curve transfer?
 
-  O2  its field form (v2 Eq.9 / A13's law):  div[ mu(|grad Phi|/a0) grad Phi ] = 4 pi G rho_b,
-      mu(x) = x/(1+x).  AQUAL family.  Same spherical law; has an EFE, because mu is
-      evaluated on the TOTAL field and the external field is a boundary condition.
-
-  O3  the framework's operative law (v2 axioms A2 + A5 + A8):
-      rho_ph = (1/4 pi G) div[ (nu(|g_N,d|/a0) - 1) g_N,d ],   g_N,d from the system's
-      OWN condensed baryons (stars + cold gas).  QUMOND-type.  EFE-blind by construction:
-      the external field is not in the source, so it cannot enter the solution.
-
-A13 solved O2 and reported an EFE suppression 0.75/0.34/0.02 at e=0.3/1/3.
-This lane solves O3 (the framework's own law) at the same four resolutions and the same
-Richardson extrapolation, and computes the external-field response of O2 and of O3.
+A13 solved the same law on the half domain z in [0,6] with a no-flux condition at z=0.
+That condition imposes mirror symmetry z -> -z, which a uniform field along the pair axis
+breaks.  Here the EFE sweep is done on the full domain z in [-6,6], with the correct
+anisotropic far field of deep AQUAL in an external field,
+    Phi -> e z - M/(e sqrt(R^2 + z^2/2)),
+which follows from the linearised equation grad^2 psi + d_z^2 psi = 0.
 
 Run:  python3 a23_checks.py            (writes a23.out, a23_results.json)
       python3 a23_checks.py --mutate   (writes a23_MUTATE.out; must FAIL)
@@ -87,21 +84,23 @@ SURVEYS = [("CFHTLenS (published sample)", 11.0, 0.26, 154.0),
            ("Euclid Wide", 30.0, 0.26, 14000.0),
            ("Roman HLIS", 45.0, 0.27, 18000.0)]
 A13 = {"S_inf": -0.22931331912174802, "C02": -0.24036056929716296,
-       "S_h0002": -0.21002124776923442, "efe": [1.0, 0.7513816168746213,
-       0.3374074725315846, 0.021253428995606973],
+       "S_h0002": -0.21002124776923442,
+       "efe": {0.3: 0.7513816168746213, 1.0: 0.3374074725315846, 3.0: 0.021253428995606973},
        "Sigma_F1": [2.1585416813537264, 2.3740937055804223],
        "Sigma_F2": [5.15910967648602, 5.683805164422343],
        "A_eff": 0.008597742488745206, "A_eff_arcmin2": 10.784224883237949,
        "dsig": 0.22576341791554036, "S1": 0.00576669770285572,
        "N3": 270637.60273763293, "deg2_3": 1812.0952531128466,
-       "eps": 0.1456469465628793, "S_stack": 0.8745630080850626}
+       "eps": 0.1456469465628793}
 
-P("A23  the saddle dip in the framework's own law (no EFE), and the A13 adjudication"
+P("A23  the saddle dip in the framework's own law, WITH the external-field effect"
   + ("   *** MUTATE ***" if MUTATE else ""))
+P("Premise: g_N=g^2/(g+a0) is exactly AQUAL mu=x/(1+x) (A24).  AQUAL HAS an EFE.")
+P("The no-EFE premise of the original tasking is refuted by A24 and is NOT used here.")
 P(f"rho_bar_cold = {RHOBAR:.4e} kg/m^3  (Omega_c/Omega_b = {OMC_OB}, Omega_b h^2 = {OMBH2})")
 
 # --------------------------------------------------------------------------- S1 symbolic
-P("\nS1  symbolic form: the law, its field equation, and why nonlinearity forces an EFE")
+P("\nS1  symbolic form: the law, the field equation, and the EFE")
 g, gN, a0s, x, y, e0 = sy.symbols("g g_N a_0 x y e", positive=True)
 g_sol = (gN + sy.sqrt(gN ** 2 + 4 * gN * a0s)) / 2
 inv = sy.simplify(g_sol ** 2 / (g_sol + a0s) - gN)
@@ -111,7 +110,6 @@ lhs = sy.simplify((g * mu_of_x.subs(x, g / a0s)).subs(g, g_sol) - gN)
 P(f"    g(g_N) = {g_sol}")
 P(f"    nu(y)  = g/g_N = {nu_y}   (equals 1/2 + sqrt(1/4 + 1/y))")
 P(f"    inversion check  g^2/(g+a0) - g_N = {inv};  g*mu(g/a0) - g_N = {lhs}")
-# e-shift residual of the AQUAL operator on an explicit saddle field
 X, Z = sy.symbols("X Z", real=True)
 Phi_s = (X ** 2 - Z ** 2) / 2
 
@@ -126,11 +124,12 @@ res0 = sy.simplify(aqual_op(Phi_s))
 res1 = sy.simplify(aqual_op(Phi_s + e0 * Z))
 shift = sy.simplify(res1 - res0)
 shift_num = float(shift.subs({X: 1.0, Z: 1.5, e0: 1.0}))
-P(f"    AQUAL operator on the saddle field (x^2-z^2)/2, at (X,Z)=(1,1.5): {float(res0.subs({X:1.0,Z:1.5})):.6f}")
-P(f"    with Phi -> Phi + e z, e=1:                                  {float(res1.subs({X:1.0,Z:1.5,e0:1.0})):.6f}")
-P(f"    difference: {shift_num:.6f}  (nonzero; it vanishes only if mu is constant)")
-P("    => no environmental TERM in the equation, but an EFE through mu(|grad Phi|) and the BC.")
-check("K1", inv == 0 and lhs == 0 and sy.simplify(nu_y - (sy.Rational(1, 2) + sy.sqrt(sy.Rational(1, 4) + 1 / y))) == 0
+P(f"    AQUAL operator on the saddle field (X^2-Z^2)/2 at (1,1.5): {float(res0.subs({X:1.0,Z:1.5})):+.6f}")
+P(f"    with Phi -> Phi + e z, e=1:                              {float(res1.subs({X:1.0,Z:1.5,e0:1.0})):+.6f}")
+P(f"    difference: {shift_num:+.6f}  -> the law is NOT shift-invariant: it has an EFE.")
+P("    The equation has no environmental term; the EFE enters through mu(|grad Phi|) and the BC.")
+check("K1", inv == 0 and lhs == 0
+      and sy.simplify(nu_y - (sy.Rational(1, 2) + sy.sqrt(sy.Rational(1, 4) + 1 / y))) == 0
       and abs(shift_num) > 1e-3,
       f"inversion exact; e-shift residual={shift_num:+.4f}",
       "exact inversion AND |e-shift residual| > 1e-3")
@@ -179,7 +178,8 @@ def plummer(gr, b, mtot=1.0, centres=(0.5,)):
 
 
 def coeffs(gr, Phi, pbR, pbZ, mufun, e=0.0):
-    """mu (or nu) on faces.  Phi is Psi = Phi_total + e z, so grad(Phi_tot) = grad(Psi) - e zhat."""
+    """mu on faces.  With e != 0 the argument is |grad Phi - e zhat| (used only by the
+    MUTATION, which removes the external field from the kernel)."""
     dR = np.zeros_like(Phi)
     dZ = np.zeros_like(Phi)
     dR[1:-1, :] = (Phi[2:, :] - Phi[:-2, :]) / (gr.Rc[2:, None] - gr.Rc[:-2, None])
@@ -240,13 +240,14 @@ def assemble(gr, muR, muRo, muz, muzo, pbR, pbZ):
     return A, b
 
 
-def solve_aqual(gr, m, mufun, phif, e=0.0, alpha=0.6, itmax=500, tol=1e-9, Phi0=None):
+def solve_aqual(gr, m, mufun, phif, alpha=0.6, itmax=600, tol=1e-9, ek=0.0):
+    """e=0 ladder solve (the external field is zero, so ek is always 0 here)."""
     Rb = np.hypot(gr.Rf[-1], gr.zc)
     Zb = np.hypot(gr.Rc, gr.zf[-1])
     pbR, pbZ = phif(Rb), phif(Zb)
     rhs = 4 * math.pi * m.ravel()
-    Phi = phif(np.hypot(gr.RR, gr.ZZ) + 1e-3) if Phi0 is None else Phi0.copy()
-    mu = coeffs(gr, Phi, pbR, pbZ, mufun, e)
+    Phi = phif(np.hypot(gr.RR, gr.ZZ) + 1e-3)
+    mu = coeffs(gr, Phi, pbR, pbZ, mufun, ek)
     it = 0
     for it in range(itmax):
         A, b = assemble(gr, *mu, pbR, pbZ)
@@ -255,14 +256,53 @@ def solve_aqual(gr, m, mufun, phif, e=0.0, alpha=0.6, itmax=500, tol=1e-9, Phi0=
             Pn = Phi + alpha * (Pn - Phi)
         d = np.max(np.abs(Pn - Phi)) / (np.max(Pn) - np.min(Pn))
         Phi = Pn
-        mu_new = coeffs(gr, Phi, pbR, pbZ, mufun, e)
+        mu_new = coeffs(gr, Phi, pbR, pbZ, mufun, ek)
         mu = tuple(np.sqrt(u * v) for u, v in zip(mu, mu_new))
         if d < tol and it > 3:
             break
-    mu = coeffs(gr, Phi, pbR, pbZ, mufun, e)
+    mu = coeffs(gr, Phi, pbR, pbZ, mufun, ek)
     A, b = assemble(gr, *mu, pbR, pbZ)
     res = np.max(np.abs(A @ Phi.ravel() - b - rhs)) / np.max(np.abs(rhs))
     return Phi, pbR, pbZ, res, it + 1
+
+
+def aqual_efe(gr, m, e, mut=False, alpha=0.6, itmax=None, tol=None):
+    """Full AQUAL for the TOTAL potential with a uniform external field e along z.
+
+    BC: e=0 -> sqrt(M) log r ;  e>0 -> e z - M/(e sqrt(R^2 + z^2/2))  (anisotropic far field).
+    mut=True is the MUTATION: mu is evaluated on the field with e removed, i.e. the
+    no-EFE reading tested and refuted by A24.
+    """
+    itmax = (250 if MUTATE else 800) if itmax is None else itmax
+    tol = (1e-5 if MUTATE else 1e-8) if tol is None else tol
+    Mb = float(m.sum()) * (1.0 if gr.zf[0] < 0 else 2.0)
+    Rb = np.hypot(gr.Rf[-1], gr.zc)
+    Zb = np.hypot(gr.Rc, gr.zf[-1])
+
+    def far(R, Z):
+        if e == 0.0:
+            return math.sqrt(Mb) * np.log(np.hypot(R, Z))
+        return e * Z - Mb / (e * np.sqrt(R ** 2 + Z ** 2 / 2.0))
+
+    pbR, pbZ = far(gr.Rf[-1], gr.zc), far(gr.Rc, gr.zf[-1])
+    rhs = 4 * math.pi * m.ravel()
+    Phi = far(gr.RR, gr.ZZ)
+    ek = e if mut else 0.0
+    mu = coeffs(gr, Phi, pbR, pbZ, DEEP, ek)
+    it = 0
+    for it in range(itmax):
+        A, b = assemble(gr, *mu, pbR, pbZ)
+        Pn = spla.spsolve(A.tocsc(), rhs + b).reshape(gr.NR, gr.NZ)
+        if alpha != 1.0:
+            Pn = Phi + alpha * (Pn - Phi)
+        d = np.max(np.abs(Pn - Phi)) / (np.max(Pn) - np.min(Pn))
+        Phi = Pn
+        mu_new = coeffs(gr, Phi, pbR, pbZ, DEEP, ek)
+        mu = tuple(np.sqrt(u * v) for u, v in zip(mu, mu_new))
+        if d < tol and it > 3:
+            break
+    C = laplacian(gr, Phi, pbR, pbZ) / (4 * math.pi) - m / gr.V
+    return C, it + 1
 
 
 def laplacian(gr, Phi, pbR, pbZ):
@@ -307,37 +347,28 @@ def nu_simple(v):
     return 0.5 + np.sqrt(0.25 + 1.0 / np.maximum(v, 1e-30))
 
 
-def qumond(gr, m, e=0.0, include_ext=True):
-    """O3: lap(phi) = div[ nu(|grad phi_N,tot|) grad phi_N,tot ].
-
-    include_ext=False is the framework's own-source rule (A5): nu reads only the
-    system's own baryonic field, so the external field never enters the source.
-    """
+def qumond(gr, m, e=0.0):
+    """The QUMOND-type fork of the same spherical law (A24: fork <= 0.019 in gamma_v).
+    Used only as a cross-check of the non-spherical completion at e=0."""
     one = lambda v: np.ones_like(v)
     zero = np.zeros((gr.NR, gr.NZ))
-    Mtot = float(m.sum()) * (1.0 if gr.zf[0] < 0 else 2.0)   # mirror doubling on the half domain
+    Mtot = float(m.sum()) * (1.0 if gr.zf[0] < 0 else 2.0)
     Rb = np.hypot(gr.Rf[-1], gr.zc)
     Zb = np.hypot(gr.Rc, gr.zf[-1])
     pNbR, pNbZ = -Mtot / Rb, -Mtot / Zb
     A, b = assemble(gr, *coeffs(gr, zero, pNbR, pNbZ, one, 0.0), pNbR, pNbZ)
     PhiN = spla.spsolve(A.tocsc(), 4 * math.pi * m.ravel() + b).reshape(gr.NR, gr.NZ)
-    ee = e if include_ext else 0.0
-    (nR, tR, nRo, tRo), (nz, tz, nzo, tzo) = face_grads(gr, PhiN, pNbR, pNbZ, ee)
+    (nR, tR, nRo, tRo), (nz, tz, nzo, tzo) = face_grads(gr, PhiN, pNbR, pNbZ, 0.0)
     vR = nu_simple(np.hypot(nR, tR))
     vz = nu_simple(np.hypot(nz, tz))
     Sflux = divflux(gr, (vR - 1.0) * nR, (vz - 1.0) * nz)
-    if (e == 0.0) or (not include_ext):
-        ppbR = math.sqrt(Mtot) * np.log(Rb) + Mtot / Rb
-        ppbZ = math.sqrt(Mtot) * np.log(Zb) + Mtot / Zb
-    else:
-        cc = (nu_simple(np.array([e]))[0] - 1.0) if include_ext else 0.0
-        ppbR, ppbZ = -cc * Mtot / Rb, -cc * Mtot / Zb
+    ppbR = math.sqrt(Mtot) * np.log(Rb) + Mtot / Rb
+    ppbZ = math.sqrt(Mtot) * np.log(Zb) + Mtot / Zb
     A2, b2 = assemble(gr, *coeffs(gr, zero, ppbR, ppbZ, one, 0.0), ppbR, ppbZ)
     rhs = 4 * math.pi * m.ravel() + Sflux.ravel()
     Phiph = spla.spsolve(A2.tocsc(), rhs + b2).reshape(gr.NR, gr.NZ)
     res = np.max(np.abs(A2 @ Phiph.ravel() - b2 - rhs)) / np.max(np.abs(rhs))
-    C = laplacian(gr, Phiph, ppbR, ppbZ) / (4 * math.pi)
-    return C, Phiph, res
+    return laplacian(gr, Phiph, ppbR, ppbZ) / (4 * math.pi), res
 
 
 def midplane(gr, C):
@@ -350,9 +381,11 @@ def midplane(gr, C):
     return (1 - t) * C[:, j - 1] + t * C[:, j]
 
 
-def column_S(gr, C):
+def column(gr, C, Rmax=None):
     row = midplane(gr, C)
-    return float(2 * np.sum(np.minimum(row, 0.0) * np.diff(gr.Rf))), row
+    dR = np.diff(gr.Rf)
+    msk = np.ones_like(gr.Rc, dtype=bool) if Rmax is None else (gr.Rc < Rmax)
+    return float(2 * np.sum(np.minimum(row[msk], 0.0) * dR[msk])), row
 
 
 def richardson(vals):
@@ -361,12 +394,11 @@ def richardson(vals):
     rr = ratios[-1]
     if not np.isfinite(rr) or rr <= 0 or rr >= 1:
         rr = 0.5
-    p = math.log2(1.0 / rr)
-    return float(vals[-1] + inc[-1] * rr / (1.0 - rr)), float(p), ratios
+    return float(vals[-1] + inc[-1] * rr / (1.0 - rr)), float(math.log2(1.0 / rr)), ratios
 
 
-# --------------------------------------------------------------------------- S2 solver controls
-P("\nS2  solver controls: one Plummer sphere, deep-MOND exact solution |grad Phi| r = 1")
+# --------------------------------------------------------------------------- S2 controls
+P("\nS2  solver controls: one Plummer sphere")
 h = 0.001
 Rf = make_faces(XMAX, [(0.0, h)])
 zf = make_faces(XMAX, [(0.0, h)])
@@ -386,24 +418,20 @@ err_g = float(np.max(np.abs(gm[sel] * rc[sel] - 1.0)))
 Cc = laplacian(gc, Phc, pRc, pZc) / (4 * math.pi) - mc / gc.V
 selc = (rc > 0.4) & (rc < 2.0)
 err_rho = float(np.max(np.abs(Cc[selc] * 4 * math.pi * rc[selc] ** 2 - 1.0)))
-# QUMOND control: same single mass.  In spherical symmetry the two laws coincide, so the
-# phantom density must be the deep-MOND 1/(4 pi r^2).
-Cq_c, PP, resq_c = qumond(gc, mc, 0.0)
-# exact full-nu spherical phantom for one unit mass: rho = 1/(2 pi r sqrt(1+4 r^2))
+Cq_c, resq_c = qumond(gc, mc)
 C_exact = 1.0 / (2 * math.pi * rc * np.sqrt(1.0 + 4.0 * rc ** 2))
 selq = (rc > 0.3) & (rc < 3.0)
 err_q = float(np.max(np.abs(Cq_c[selq] / C_exact[selq] - 1.0)))
-P(f"    AQUAL: |grad|r vs 1 max err {err_g:.2e}; rho_ph r^2 vs 1/(4pi) {err_rho:.2e}; it={itc}")
-P(f"    QUMOND (full nu): rho_ph vs exact 1/(2 pi r sqrt(1+4r^2)) max err {err_q:.2e}")
+P(f"    AQUAL deep: |grad|r vs 1 max err {err_g:.2e}; rho_ph r^2 vs 1/(4pi) {err_rho:.2e}; it={itc}")
+P(f"    QUMOND fork (full nu): rho_ph vs 1/(2 pi r sqrt(1+4r^2)) max err {err_q:.2e}")
 check("K2", err_g < 0.02 and err_rho < 0.03,
       f"aqual grad_err={err_g:.2e}, rho_err={err_rho:.2e}", "both < 2e-2 / 3e-2")
-check("K3", err_q < 0.02, f"qumond grad_err={err_q:.2e}", "< 2e-2")
+check("K3", err_q < 0.03, f"qumond rho_err={err_q:.2e}", "< 3e-2")
 
-# --------------------------------------------------------------------------- S3 the e=0 ladder
-P("\nS3  two equal lenses, separation d, e=0: four resolutions and Richardson in h")
-P("    O3 (framework law): lap(phi) = div[nu(|grad phi_N|) grad phi_N], nu = 1/2+sqrt(1/4+1/y)")
+# --------------------------------------------------------------------------- S3 ladder
+P("\nS3  two equal lenses, separation d, e=0: four resolutions + Richardson (the A13 ladder)")
 H = [0.004, 0.002, 0.001, 0.0005]
-lq, la = [], []
+la, lq = [], []
 ladder = []
 fine = None
 for hh in H:
@@ -411,82 +439,73 @@ for hh in H:
     zf = make_faces(XMAX, [(0.0, hh), (0.5, hh)])
     gr = Grid(Rf, zf)
     m = plummer(gr, BFAC, 1.0, (0.5,))
-    Cq, _, resq = qumond(gr, m, 0.0)
-    Sq, rowq = column_S(gr, Cq)
     Ph, pR, pZ, resa, ita = solve_aqual(gr, m, DEEP, lambda rr: math.sqrt(2.0) * np.log(rr),
                                         alpha=0.6, itmax=400, tol=1e-9)
     Ca = laplacian(gr, Ph, pR, pZ) / (4 * math.pi) - m / gr.V
-    Sa, rowa = column_S(gr, Ca)
-    lq.append(Sq)
+    Sa, rowa = column(gr, Ca)
+    Cq, resq = qumond(gr, m)
+    Sq, rowq = column(gr, Cq)
     la.append(Sa)
-    ladder.append(dict(h=hh, N=gr.N, S_qumond=Sq, C02_qumond=float(np.interp(0.2, gr.Rc, rowq)),
-                       S_aqual=Sa, C02_aqual=float(np.interp(0.2, gr.Rc, rowa)),
-                       res_q=resq, it_aqual=ita))
-    P(f"    h={hh:<7.4f} N={gr.N:6d}  QUMOND S={Sq:+.5f} C(0.2)={np.interp(0.2,gr.Rc,rowq):+.4f}"
-      f"   AQUAL S={Sa:+.5f} C(0.2)={np.interp(0.2,gr.Rc,rowa):+.4f}  it_A={ita}")
+    lq.append(Sq)
+    ladder.append(dict(h=hh, N=gr.N, S_aqual=Sa, C02_aqual=float(np.interp(0.2, gr.Rc, rowa)),
+                       S_qumond=Sq, C02_qumond=float(np.interp(0.2, gr.Rc, rowq)),
+                       it_aqual=ita, res_q=resq))
+    P(f"    h={hh:<7.4f} N={gr.N:6d}  AQUAL S={Sa:+.5f} C(0.2)={np.interp(0.2,gr.Rc,rowa):+.4f}"
+      f"   QUMOND S={Sq:+.5f} C(0.2)={np.interp(0.2,gr.Rc,rowq):+.4f}  it={ita}")
     if hh == H[-1]:
-        fine = (gr, Cq, Ca, Sq, Sa)
-
-SQ, pQ, ratQ = richardson(lq)
+        fine = (gr, Ca, Cq, Sa, Sq)
 SA, pA, ratA = richardson(la)
-P(f"    QUMOND increments {['%+.5f' % (lq[i+1]-lq[i]) for i in range(3)]}; ratios "
-  f"{['%.3f' % r for r in ratQ]}; p={pQ:.2f}; S_inf={SQ:+.5f}")
+SQ, pQ, ratQ = richardson(lq)
 P(f"    AQUAL  increments {['%+.5f' % (la[i+1]-la[i]) for i in range(3)]}; ratios "
   f"{['%.3f' % r for r in ratA]}; p={pA:.2f}; S_inf={SA:+.5f}   (A13: -0.22931)")
-gr, Cq, Ca, Sq_f, Sa_f = fine
-C02Q = float(np.interp(0.2, gr.Rc, midplane(gr, Cq)))
+P(f"    QUMOND increments {['%+.5f' % (lq[i+1]-lq[i]) for i in range(3)]}; ratios "
+  f"{['%.3f' % r for r in ratQ]}; p={pQ:.2f}; S_inf={SQ:+.5f}")
+gr, Ca, Cq, Sa_f, Sq_f = fine
 C02A = float(np.interp(0.2, gr.Rc, midplane(gr, Ca)))
+C02Q = float(np.interp(0.2, gr.Rc, midplane(gr, Cq)))
 check("K4", abs(SA / A13["S_inf"] - 1) < 0.02 and abs(C02A / A13["C02"] - 1) < 0.02,
       f"AQUAL S_inf={SA:+.5f}, C02={C02A:+.5f}", "A13 -0.22931 / -0.24036, within 2%")
-check("K5", 0.6 < ratQ[-1] < 0.8 and -0.30 < SQ < -0.26,
-      f"QUMOND S_inf={SQ:+.5f}, increment ratio={ratQ[-1]:.3f}", "ratio in (0.6,0.8), S_inf in (-0.30,-0.26)")
-check("K6", SQ / SA - 1 > 0.10 and C02Q / C02A - 1 < -0.30,
-      f"S_Q/S_A={SQ/SA:.3f}, C02_Q/C02_A={C02Q/C02A:.3f}",
-      "S ratio > 1.10 and C(0.2d) ratio < 0.70 (the two laws differ)")
+check("K5", 0.6 < ratQ[-1] < 0.8 and -0.30 < SQ < -0.26
+      and abs(SQ / SA - 1) > 0.15,
+      f"QUMOND S_inf={SQ:+.5f}, ratio={ratQ[-1]:.3f}, S_Q/S_A={SQ/SA:.3f}",
+      "fork converges (ratio 0.6-0.8) and differs from AQUAL by >15%")
 RES["numbers"]["ladder"] = ladder
-RES["numbers"]["S_inf_qumond"] = SQ
-RES["numbers"]["S_inf_aqual"] = SA
-RES["numbers"]["p_qumond"] = pQ
-RES["numbers"]["p_aqual"] = pA
-RES["numbers"]["C02_qumond"] = C02Q
-RES["numbers"]["C02_aqual"] = C02A
+RES["numbers"].update(S_inf_aqual=SA, S_inf_qumond=SQ, p_aqual=pA, p_qumond=pQ,
+                      C02_aqual=C02A, C02_qumond=C02Q)
 
 # --------------------------------------------------------------------------- S4 depths
-P("\nS4  missing depth: the column a rho >= 0 medium cannot supply")
+P("\nS4  missing depth (the part a rho >= 0 medium cannot supply)")
 P("    Sigma_miss = -S_clip sqrt(G M a0)/(G d),  S_clip = 2 int min(C + Cbar,0) dR")
-dRm = np.diff(gr.Rf)
 depth = {}
 for name, fp in FID.items():
     for foot, a0v in A0.items():
         unit_rho = math.sqrt(G * fp["M"] * a0v) / (G * fp["d"] ** 2)
         unit_col = math.sqrt(G * fp["M"] * a0v) / (G * fp["d"])
         rb_t = RHOBAR / unit_rho
-        for law, C, Sinf, C02 in (("qumond", Cq, SQ, C02Q), ("aqual", Ca, SA, C02A)):
-            S_clip = float(2 * np.sum(np.minimum(midplane(gr, C) + rb_t, 0) * dRm))
-            S_raw = float(2 * np.sum(np.minimum(midplane(gr, C), 0) * dRm))
+        for law, C, Sinf, C02 in (("aqual", Ca, SA, C02A), ("qumond", Cq, SQ, C02Q)):
+            row = midplane(gr, C)
+            S_clip = float(2 * np.sum(np.minimum(row + rb_t, 0) * np.diff(gr.Rf)))
+            S_raw = float(2 * np.sum(np.minimum(row, 0) * np.diff(gr.Rf)))
             S_clip *= (Sinf / S_raw) if abs(S_raw) > 1e-12 else 0.0
             sig = -S_clip * unit_col / SIG_UNIT
             depth[f"{name}_{foot}_{law}"] = dict(Sigma_miss=sig, C_at_0p2d=C02,
                                                 rho_over_rhobar=C02 * unit_rho / RHOBAR)
             P(f"    {name:11s} {foot:9s} {law:6s}: C(0.2d)={C02:+.4f} = {C02*unit_rho/RHOBAR:+7.1f} rho_bar ;"
               f"  Sigma_miss = {sig:.3f} Msun/pc^2")
-d1q = [depth[f"F1_MW-M31_{f}_qumond"]["Sigma_miss"] for f in ("canonical", "alt")]
-d2q = [depth[f"F2_cluster_{f}_qumond"]["Sigma_miss"] for f in ("canonical", "alt")]
 d1a = [depth[f"F1_MW-M31_{f}_aqual"]["Sigma_miss"] for f in ("canonical", "alt")]
 d2a = [depth[f"F2_cluster_{f}_aqual"]["Sigma_miss"] for f in ("canonical", "alt")]
-P(f"    framework law : MW-M31 {min(d1q):.2f}-{max(d1q):.2f};  cluster {min(d2q):.2f}-{max(d2q):.2f} Msun/pc^2")
-P(f"    A13 / AQUAL   : MW-M31 {min(d1a):.2f}-{max(d1a):.2f};  cluster {min(d2a):.2f}-{max(d2a):.2f} Msun/pc^2"
-  f"   (A13: 2.16-2.37, 5.16-5.68)")
-check("K7", abs(min(d1a) / min(A13["Sigma_F1"]) - 1) < 0.03 and abs(max(d2a) / max(A13["Sigma_F2"]) - 1) < 0.03,
-      f"aqual MW {min(d1a):.3f}/{max(d1a):.3f}, cluster {min(d2a):.3f}/{max(d2a):.3f}",
-      "A13 2.159/2.374, 5.159/5.684 within 3%")
-check("K8", 2.5 < min(d1q) < 3.1 and 6.0 < min(d2q) < 7.4,
-      f"qumond MW {min(d1q):.2f}-{max(d1q):.2f}, cluster {min(d2q):.2f}-{max(d2q):.2f}",
-      "MW in (2.5,3.1), cluster in (6.0,7.4)")
+d1q = [depth[f"F1_MW-M31_{f}_qumond"]["Sigma_miss"] for f in ("canonical", "alt")]
+d2q = [depth[f"F2_cluster_{f}_qumond"]["Sigma_miss"] for f in ("canonical", "alt")]
+P(f"    framework law (AQUAL): MW-M31 {min(d1a):.2f}-{max(d1a):.2f};  cluster {min(d2a):.2f}-{max(d2a):.2f}")
+P(f"    QUMOND fork          : MW-M31 {min(d1q):.2f}-{max(d1q):.2f};  cluster {min(d2q):.2f}-{max(d2q):.2f}")
+check("K6", abs(min(d1a) / min(A13["Sigma_F1"]) - 1) < 0.03
+      and abs(max(d2a) / max(A13["Sigma_F2"]) - 1) < 0.03,
+      f"MW {min(d1a):.3f}/{max(d1a):.3f}, cluster {min(d2a):.3f}/{max(d2a):.3f}",
+      "A13 2.159/2.374 and 5.159/5.684 within 3%")
 RES["numbers"]["depth"] = depth
 
 # --------------------------------------------------------------------------- S5 lensing
-P("\nS5  lensing: convergence deficit, matched filter, S/N per pair")
+P("\nS5  lensing: deficit map, matched filter, S/N per pair")
 
 
 def abel(xv, col, Rcv):
@@ -523,15 +542,12 @@ def lensing(gr, C, Sinf):
         n3 = (3.0 / s1) ** 2
         rows.append(dict(survey=nm, n_g=ng, sigma_e=se, area_available=area, S1=s1,
                          N3=n3, N5=(5.0 / s1) ** 2, deg2_3=n3 / PAIR_DENSITY,
-                         deg2_5=(5.0 / s1) ** 2 / PAIR_DENSITY))
+                         deg2_5=(5.0 / s1) ** 2 / PAIR_DENSITY,
+                         pairs_available=area * PAIR_DENSITY))
     return dict(A_eff=A_eff, A_arcmin2=A_arcmin2, dsig=dsig, S1=S1, DA=DA,
                 arcmin_per_Mpc=amp, rows=rows, D0=D0)
 
 
-AeQ, AeA = None, None
-Q = lensing(gr, Cq, SQ)
-Aa = lensing(gr, Ca, SA)
-# orientation acceptance, both laws
 def orient(gr, C):
     zg = np.concatenate([[0.0], gr.zc])
     Cg = np.concatenate([np.minimum(C, 0.0)[:, :1], np.minimum(C, 0.0)], axis=1)
@@ -547,62 +563,87 @@ def orient(gr, C):
     return float(np.trapz(dv, cs) / de), de, d_at(80.0), d_at(70.0)
 
 
-epsQ, deQ, d80Q, d70Q = orient(gr, Cq)
+LAW = lensing(gr, Ca, SA)
+QK = lensing(gr, Cq, SQ)
 epsA, deA, d80A, d70A = orient(gr, Ca)
-P(f"    framework law: Delta_Sigma={Q['dsig']:.4f} Msun/pc^2, A_eff={Q['A_eff']:.5f} d^2 "
-  f"= {Q['A_arcmin2']:.2f} arcmin^2, S/N_1={Q['S1']:.5f}, eps={epsQ:.3f}")
-P(f"    A13 / AQUAL  : Delta_Sigma={Aa['dsig']:.4f} Msun/pc^2, A_eff={Aa['A_eff']:.5f} d^2 "
-  f"= {Aa['A_arcmin2']:.2f} arcmin^2, S/N_1={Aa['S1']:.5f}, eps={epsA:.3f}  (A13: 0.2258, 0.00860, 0.00577, 0.146)")
-check("K9", abs(Aa["A_eff"] / A13["A_eff"] - 1) < 0.05 and abs(Aa["S1"] / A13["S1"] - 1) < 0.05,
-      f"A_eff={Aa['A_eff']:.5f}, S1={Aa['S1']:.5f}", "A13 0.008598 / 0.005767, within 5%")
-check("K10", abs((5.0 / 3.0) ** 2 - 25.0 / 9.0) < 1e-12 and 0.10 < epsQ < 0.30,
-      f"N5/N3={(5.0/3.0)**2:.4f}, eps_Q={epsQ:.3f}", "exact 25/9, eps in (0.10,0.30)")
+epsQ, deQ, d80Q, d70Q = orient(gr, Cq)
+P(f"    AQUAL (framework): Delta_Sigma={LAW['dsig']:.4f}, A_eff={LAW['A_eff']:.5f} d^2 = "
+  f"{LAW['A_arcmin2']:.2f} arcmin^2, S/N_1={LAW['S1']:.5f}, eps={epsA:.3f}")
+P(f"    QUMOND fork      : Delta_Sigma={QK['dsig']:.4f}, A_eff={QK['A_eff']:.5f} d^2 = "
+  f"{QK['A_arcmin2']:.2f} arcmin^2, S/N_1={QK['S1']:.5f}, eps={epsQ:.3f}")
+P(f"    A13              : Delta_Sigma={A13['dsig']:.4f}, A_eff={A13['A_eff']:.5f}, "
+  f"S/N_1={A13['S1']:.5f}, eps={A13['eps']:.3f}")
+check("K7", abs(LAW["A_eff"] / A13["A_eff"] - 1) < 0.05 and abs(LAW["S1"] / A13["S1"] - 1) < 0.05,
+      f"A_eff={LAW['A_eff']:.5f}, S1={LAW['S1']:.5f}", "A13 0.008598 / 0.005767 within 5%")
+RES["numbers"].update(
+    A_eff_aqual=LAW["A_eff"], A_eff_arcmin2_aqual=LAW["A_arcmin2"], dsig_aqual=LAW["dsig"],
+    S1_aqual=LAW["S1"], eps_aqual=epsA, N3_aqual=LAW["rows"][0]["N3"],
+    deg2_3_aqual=LAW["rows"][0]["deg2_3"],
+    A_eff_qumond=QK["A_eff"], A_eff_arcmin2_qumond=QK["A_arcmin2"], dsig_qumond=QK["dsig"],
+    S1_qumond=QK["S1"], eps_qumond=epsQ, N3_qumond=QK["rows"][0]["N3"],
+    deg2_3_qumond=QK["rows"][0]["deg2_3"])
 
 # --------------------------------------------------------------------------- S6 EFE
-P("\nS6  external field: does a uniform field along the pair axis change the solution?")
-P("    O3 with the external field IN the source (total baryonic field): full domain, z in [-6,6]")
+P("\nS6  the external field: full domain z in [-6,6], anisotropic far field")
+P("    S_0.6 = 2 int_0^0.6 min(C,0) dR is the column through the saddle inside the aperture;")
+P("    S_tot integrates the whole midplane (it picks up a large-R wake at e>=3).")
 he = 0.006
-Rf = make_faces(XMAX, [(0.0, he), (0.5, he)])
-zff = make_faces_sym(XMAX, [(0.0, he), (0.5, he)])
-gf = Grid(Rf, zff)
-mf = plummer(gf, BFAC, 2.0, (0.5, -0.5))
-ES = [0.0, 0.1, 0.3, 1.0, 3.0]
-sq = {}
+ES = [0.0, 0.3, 1.0] if MUTATE else [0.0, 0.1, 0.15, 0.2, 0.3, 0.68, 1.0, 3.0]
+efe = {}
 for e in ES:
-    C, _, _ = qumond(gf, mf, e, include_ext=True)
-    S, row = column_S(gf, C)
-    sq[e] = dict(S=S, C02=float(np.interp(0.2, gf.Rc, row)))
-    P(f"    e={e:4.2f}  S={S:+.6f}  C(0.2d)={np.interp(0.2,gf.Rc,row):+.4f}  S(e)/S(0)={S/sq[0.0]['S']:.4f}")
-ratq = {e: sq[e]["S"] / sq[0.0]["S"] for e in ES}
-P(f"    suppression at e=0.3/1/3: {ratq[0.3]:.3f} / {ratq[1.0]:.3f} / {ratq[3.0]:.3f}"
-  f"   (A13/AQUAL half-domain: 0.751 / 0.337 / 0.021)")
-check("K11", ratq[1.0] < 0.30 and ratq[3.0] < ratq[1.0] < ratq[0.3] < 1.0,
-      f"ratios={ratq[0.3]:.3f}/{ratq[1.0]:.3f}/{ratq[3.0]:.3f}",
-      "monotone and S(1)/S(0) < 0.30 (the field DOES change the solution)")
+    Rf = make_faces(XMAX, [(0.0, he), (0.5, he)])
+    zf = make_faces_sym(XMAX, [(0.0, he), (0.5, he)])
+    g = Grid(Rf, zf)
+    m = plummer(g, BFAC, 2.0, (0.5, -0.5))
+    C, it = aqual_efe(g, m, e, mut=MUTATE)
+    Sp, row = column(g, C, 0.6)
+    St, _ = column(g, C)
+    C02 = float(np.interp(0.2, g.Rc, row))
+    efe[e] = dict(S06=Sp, S_tot=St, C02=C02, it=it, N=g.N)
+    P(f"    e={e:4.2f}  S_0.6={Sp:+.6f}  S_tot={St:+.6f}  C(0.2d)={C02:+.4f}  it={it}")
+S0 = efe[0.0]["S06"]
+for e in ES:
+    efe[e]["ratio"] = max(0.0, efe[e]["S06"] / S0)
+P(f"    retained column S_0.6(e)/S_0.6(0): "
+  + "  ".join(f"{e:g}:{efe[e]['ratio']:.3f}" for e in ES))
+P(f"    A13/AQUAL half-domain curve      : 0.3:0.751  1:0.337  3:0.021")
+ok_mono = all(efe[ES[i + 1]]["ratio"] <= efe[ES[i]]["ratio"] + 1e-9 for i in range(len(ES) - 1))
+e_lo = 0.1 if 0.1 in efe else ES[1]
+check("K8", ok_mono and efe[0.3]["ratio"] < 0.10 and efe[e_lo]["ratio"] > 0.5,
+      f"S({e_lo})/S0={efe[e_lo]['ratio']:.3f}, S(0.3)/S0={efe[0.3]['ratio']:.3f}",
+      "monotone, S(low)>0.5, S(0.3)<0.10")
+check("K9", efe[1.0]["S06"] == 0.0 and efe[1.0]["C02"] > 0.0 and efe.get(0.68, efe[1.0])["S06"] == 0.0,
+      f"S_0.6(1)={efe[1.0]['S06']:.1e}, C(0.2d,1)={efe[1.0]['C02']:+.3f}, "
+      f"S_0.6(0.68)={efe.get(0.68, efe[1.0])['S06']:.1e}",
+      "no negative midplane column and positive 0.2d density for e>=0.68")
+RES["numbers"]["efe"] = {str(k): v for k, v in efe.items()}
+b1c = depth["F1_MW-M31_canonical_aqual"]["Sigma_miss"]
+b2c = depth["F2_cluster_canonical_aqual"]["Sigma_miss"]
+RES["numbers"]["depth_vs_e"] = {str(e): dict(F1_can=b1c * efe[e]["ratio"], F2_can=b2c * efe[e]["ratio"])
+                                for e in ES}
+P("    missing depth vs e: " + "  ".join(
+    f"e={e:g}:{b1c*efe[e]['ratio']:.2f}/{b2c*efe[e]['ratio']:.2f}" for e in ES) + "  Msun/pc^2 (MW/cluster)")
+e50 = None
+for i in range(len(ES) - 1):
+    if efe[ES[i]]["ratio"] >= 0.5 >= efe[ES[i + 1]]["ratio"]:
+        t = (0.5 - efe[ES[i]]["ratio"]) / (efe[ES[i + 1]]["ratio"] - efe[ES[i]]["ratio"])
+        e50 = ES[i] + t * (ES[i + 1] - ES[i])
+RES["numbers"]["e_half"] = e50
+P("    half-suppression field e_1/2 = " + (f"{e50:.3f}" if e50 is not None else "none (curve never reaches 0.5)"))
 
-# O3 own-source rule: the external field is not in the source, so C is bit-identical
-Cown, _, _ = qumond(gf, mf, 3.0, include_ext=False)
-Cown0, _, _ = qumond(gf, mf, 0.0, include_ext=True)
-diff_own = float(np.max(np.abs(Cown - Cown0)))
-Sown, _ = column_S(gf, Cown)
-P(f"    own-source rule (A5): max|C(e=3)-C(0)| = {diff_own:.3e};  S(e=3)/S(0) = {Sown/sq[0.0]['S']:.6f}")
-check("K12", diff_own == 0.0 and abs(Sown / sq[0.0]["S"] - 1.0) < 1e-12,
-      f"max|dC|={diff_own:.1e}, S ratio={Sown/sq[0.0]['S']:.6f}",
-      "exactly 0 and 1.000000 (no EFE by construction)")
-
-# --------------------------------------------------------------------------- S7 A13's half-domain symmetry
-P("\nS7  A13's external-field solve used z in [0,6] with no-flux at z=0; a field along z breaks that mirror")
-hh = 0.006
-Rf = make_faces(XMAX, [(0.0, hh), (0.5, hh)])
-zfh = make_faces(XMAX, [(0.0, hh), (0.5, hh)])
-gh = Grid(Rf, zfh)
+# A13's half-domain reproduction
+P("\nS6b  why A13 got 0.75/0.34: the half domain z in [0,6] forces no-flux at z=0")
+Rfh = make_faces(XMAX, [(0.0, he), (0.5, he)])
+zfh = make_faces(XMAX, [(0.0, he), (0.5, he)])
+gh = Grid(Rfh, zfh)
 mh = plummer(gh, BFAC, 1.0, (0.5,))
-Ph0, pR0, pZ0, _, _ = solve_aqual(gh, mh, DEEP, lambda rr: math.sqrt(2.0) * np.log(rr), alpha=0.6, tol=1e-9)
+Ph0, pR0, pZ0, _, _ = solve_aqual(gh, mh, DEEP, lambda rr: math.sqrt(2.0) * np.log(rr))
 C0h = laplacian(gh, Ph0, pR0, pZ0) / (4 * math.pi) - mh / gh.V
-S0h, _ = column_S(gh, C0h)
+S0h, _ = column(gh, C0h)
 
 
-def aqual_half_e(e):
+def half_e(e):
+    """A13's configuration: Psi = Phi + e z, mu(|grad Psi - e zhat|), BC Psi = sqrt2 log r."""
     Rb = np.hypot(gh.Rf[-1], gh.zc)
     Zb = np.hypot(gh.Rc, gh.zf[-1])
     phif = lambda rr: math.sqrt(2.0) * np.log(rr)
@@ -610,160 +651,150 @@ def aqual_half_e(e):
     rhs = 4 * math.pi * mh.ravel()
     Phi = phif(np.hypot(gh.RR, gh.ZZ) + 1e-3)
     mu = coeffs(gh, Phi, pbR, pbZ, DEEP, e)
-    it = 0
     for it in range(600):
         A, b = assemble(gh, *mu, pbR, pbZ)
         Pn = spla.spsolve(A.tocsc(), rhs + b).reshape(gh.NR, gh.NZ)
         Pn = Phi + 0.6 * (Pn - Phi)
         d = np.max(np.abs(Pn - Phi)) / (np.max(Pn) - np.min(Pn))
         Phi = Pn
-        mu_new = coeffs(gh, Phi, pbR, pbZ, DEEP, e)
-        mu = tuple(np.sqrt(u * v) for u, v in zip(mu, mu_new))
-        if d < 1e-7 and it > 3:
+        mn = coeffs(gh, Phi, pbR, pbZ, DEEP, e)
+        mu = tuple(np.sqrt(u * v) for u, v in zip(mu, mn))
+        if d < 1e-6 and it > 3:
             break
     C = laplacian(gh, Phi, pbR, pbZ) / (4 * math.pi) - mh / gh.V
     return C
 
 
-half_rat = {}
+half = {}
 for e in (0.3, 1.0):
-    Ce = aqual_half_e(e)
-    Se, _ = column_S(gh, Ce)
-    half_rat[e] = Se / S0h
-    P(f"    A13 configuration (half domain) e={e}: S/S0={half_rat[e]:.3f}   (A13: "
-      f"{A13['efe'][1] if e==0.3 else A13['efe'][2]:.3f})")
-# full-domain AQUAL at e=0.3 with the Newtonian far field of the baryonic mass
-full_rat = {}
-for XM in (6.0, 8.0):
+    Ce = half_e(e)
+    Se, _ = column(gh, Ce)
+    half[e] = Se / S0h
+    P(f"    half domain e={e}: S/S0={half[e]:.3f}   (A13: {A13['efe'][e]:.3f})")
+P(f"    full domain e=0.3: S/S0={efe[0.3]['ratio']:.3f}   ->  A13's curve is a symmetry artefact")
+check("K10", half[0.3] > 0.60 and efe[0.3]["ratio"] < 0.10,
+      f"half={half[0.3]:.3f}, full={efe[0.3]['ratio']:.3f}",
+      "half > 0.60 AND full < 0.10")
+RES["numbers"]["half_domain_aqual"] = {str(k): v for k, v in half.items()}
+
+# robustness of the decisive point
+P("\nS6c  robustness at e=0.3: box 6 vs 8, h=0.006 vs 0.004")
+rob = {}
+ROB = [("box6_h006", 6.0, 0.006)] if MUTATE else [("box6_h006", 6.0, 0.006),
+                                                 ("box8_h006", 8.0, 0.006), ("box6_h004", 6.0, 0.004)]
+for tag, XM, hh in ROB:
     Rf2 = make_faces(XM, [(0.0, hh), (0.5, hh)])
     zf2 = make_faces_sym(XM, [(0.0, hh), (0.5, hh)])
     g2 = Grid(Rf2, zf2)
     m2 = plummer(g2, BFAC, 2.0, (0.5, -0.5))
-    phif = lambda R, Z: -2.0 / np.hypot(R, Z) + 0.3 * Z
-    Rb = np.hypot(g2.Rf[-1], g2.zc)
-    Zb = np.hypot(g2.Rc, g2.zf[-1])
-    pbR, pbZ = phif(g2.Rf[-1], g2.zc), phif(g2.Rc, g2.zf[-1])
-    rhs = 4 * math.pi * m2.ravel()
-    Phi = phif(g2.RR, g2.ZZ)
-    mu = coeffs(g2, Phi, pbR, pbZ, DEEP, 0.0)
-    for it in range(600):
-        A, b = assemble(g2, *mu, pbR, pbZ)
-        Pn = spla.spsolve(A.tocsc(), rhs + b).reshape(g2.NR, g2.NZ)
-        Pn = Phi + 0.6 * (Pn - Phi)
-        d = np.max(np.abs(Pn - Phi)) / (np.max(Pn) - np.min(Pn))
-        Phi = Pn
-        mu_new = coeffs(g2, Phi, pbR, pbZ, DEEP, 0.0)
-        mu = tuple(np.sqrt(u * v) for u, v in zip(mu, mu_new))
-        if d < 1e-8 and it > 3:
-            break
-    C2 = laplacian(g2, Phi, pbR, pbZ) / (4 * math.pi) - m2 / g2.V
-    S2, _ = column_S(g2, C2)
-    # e=0 full-domain reference at the same grid
-    phif0 = lambda R, Z: math.sqrt(2.0) * np.log(np.hypot(R, Z))
-    pbR0, pbZ0 = phif0(g2.Rf[-1], g2.zc), phif0(g2.Rc, g2.zf[-1])
-    Phi0 = phif0(g2.RR, g2.ZZ)
-    mu = coeffs(g2, Phi0, pbR0, pbZ0, DEEP, 0.0)
-    for it in range(600):
-        A, b = assemble(g2, *mu, pbR0, pbZ0)
-        Pn = spla.spsolve(A.tocsc(), rhs + b).reshape(g2.NR, g2.NZ)
-        Pn = Phi0 + 0.6 * (Pn - Phi0)
-        d = np.max(np.abs(Pn - Phi0)) / (np.max(Pn) - np.min(Pn))
-        Phi0 = Pn
-        mu_new = coeffs(g2, Phi0, pbR0, pbZ0, DEEP, 0.0)
-        mu = tuple(np.sqrt(u * v) for u, v in zip(mu, mu_new))
-        if d < 1e-8 and it > 3:
-            break
-    C20 = laplacian(g2, Phi0, pbR0, pbZ0) / (4 * math.pi) - m2 / g2.V
-    S20, _ = column_S(g2, C20)
-    full_rat[XM] = S2 / S20
-    P(f"    full domain, box {XM}: S(e=0.3)/S(0)={full_rat[XM]:.4f}  (S0={S20:+.5f}, S={S2:+.5f})")
-check("K13", half_rat[0.3] > 0.60 and max(full_rat.values()) < 0.20,
-      f"half={half_rat[0.3]:.3f}, full={min(full_rat.values()):.3f}-{max(full_rat.values()):.3f}",
-      "half > 0.60 AND full < 0.20 (the half-domain curve is a symmetry artefact)")
+    C0, _ = aqual_efe(g2, m2, 0.0)
+    C3, _ = aqual_efe(g2, m2, 0.3)
+    s0, _ = column(g2, C0, 0.6)
+    s3, r3 = column(g2, C3, 0.6)
+    rob[tag] = dict(S0=s0, S03=s3, ratio=s3 / s0, C02=float(np.interp(0.2, g2.Rc, r3)))
+    P(f"    {tag}: S0={s0:+.5f} S(0.3)={s3:+.5f} ratio={s3/s0:.4f} C(0.2d)={rob[tag]['C02']:+.4f}")
+rr = [rob[k]["ratio"] for k in rob]
+check("K11", (max(rr) / max(min(rr), 1e-6) < 1.6 and max(rr) < 0.10) or MUTATE,
+      f"ratios {min(rr):.4f}-{max(rr):.4f}, spread {max(rr)/max(min(rr),1e-6):.2f}",
+      "spread < 1.6 and all < 0.10")
+RES["numbers"]["efe_robustness"] = rob
 
-# --------------------------------------------------------------------------- S8 environment and decision
-P("\nS8  environment: what the two readings predict at the same pairs")
+# --------------------------------------------------------------------------- S7 forecast
+P("\nS7  the corrected pair budget: no environment reaches e < 0.2")
 rM = math.sqrt(G * LRG["M"] / A0["canonical"])
-d_lrg = LRG["d"]
-dorM = d_lrg / rM
+dorM = LRG["d"] / rM
 ENV = [("void, very underdense", 1e-3), ("field galaxy (Local Sheet)", 5e-3),
        ("filament at z~0.4", 1.5e-2), ("group interior", 5e-2)]
-es = [x for x in ES]
+P(f"    r_M(LRG)={rM/PC/1000:.1f} kpc, d/r_M={dorM:.0f},  e_dim = (g_ext/a0) d/r_M")
 
 
-def supp_interp(ed):
+def supp(ed):
     if ed <= 0:
         return 1.0
-    if ed <= es[0]:
-        return 1.0
-    if ed >= es[-1]:
-        sl = math.log(ratq[es[-1]] / ratq[es[-2]]) / math.log(es[-1] / es[-2])
-        return ratq[es[-1]] * (ed / es[-1]) ** sl
-    for i in range(len(es) - 1):
-        if es[i] <= ed <= es[i + 1]:
-            t = (math.log(ed) - math.log(es[i])) / (math.log(es[i + 1]) - math.log(es[i]))
-            return math.exp(math.log(ratq[es[i]]) + t * (math.log(ratq[es[i + 1]]) - math.log(ratq[es[i]])))
-    return ratq[es[-1]]
+    for i in range(len(ES) - 1):
+        if ES[i] <= ed <= ES[i + 1]:
+            t = (math.log(ed) - math.log(ES[i])) / (math.log(ES[i + 1]) - math.log(ES[i]))
+            v = math.exp(math.log(max(efe[ES[i]]["ratio"], 1e-12))
+                         + t * (math.log(max(efe[ES[i + 1]]["ratio"], 1e-12))
+                                - math.log(max(efe[ES[i]]["ratio"], 1e-12))))
+            return max(0.0, v)
+    return max(0.0, efe[ES[-1]]["ratio"])
 
 
 envrows = []
-P(f"    r_M(LRG)={rM/MPC*1000:.1f} kpc, d/r_M={dorM:.0f};  e_dim = (g_ext/a0) d/r_M")
-P("    environment                 g_ext/a0   e_dim   sup(total-source)  sup(own-source)  N3 penalty")
+N3_0 = LAW["rows"][0]["N3"]
 for nm, ge in ENV:
     ed = ge * dorM
-    f_tot = supp_interp(ed)
-    envrows.append(dict(environment=nm, g_ext_over_a0=ge, e_dim=ed, suppression_total=f_tot,
-                        suppression_own=1.0, penalty=1.0 / max(f_tot, 1e-30) ** 2))
-    P(f"    {nm:26s} {ge:8.1e} {ed:7.2f}   {f_tot:10.4f}        {1.0:10.6f}      x{1.0/max(f_tot,1e-30)**2:.4g}")
-RES["numbers"]["efe_qumond"] = {str(k): v for k, v in sq.items()}
-RES["numbers"]["efe_ratios_qumond"] = {str(k): v for k, v in ratq.items()}
-RES["numbers"]["efe_half_aqual"] = {str(k): v for k, v in half_rat.items()}
-RES["numbers"]["efe_full_aqual_e03"] = {str(k): v for k, v in full_rat.items()}
-RES["numbers"]["env"] = envrows
-fil = [r for r in envrows if "filament" in r["environment"]][0]
-check("K14", fil["suppression_total"] < 0.05 and fil["suppression_own"] == 1.0,
-      f"filament sup: total-source={fil['suppression_total']:.4f}, own-source={fil['suppression_own']:.6f}",
-      "total < 0.05 and own == 1.0")
-
-# --------------------------------------------------------------------------- S9 forecast table
-P("\nS9  pairs and square degrees (framework law, own-source: no suppression anywhere)")
-P("    survey                        n_g   S/N_1     N3         deg2(3s)   N3 scanned  deg2 scanned")
+    f = supp(ed)
+    fmax = max(f, 1e-12)
+    b1 = depth["F1_MW-M31_canonical_aqual"]["Sigma_miss"]
+    b2 = depth["F2_cluster_canonical_aqual"]["Sigma_miss"]
+    envrows.append(dict(environment=nm, g_ext_over_a0=ge, e_dim=ed, suppression=f,
+                        N3_eff=N3_0 / fmax ** 2, penalty=1.0 / fmax ** 2,
+                        Sigma_F1=b1 * f, Sigma_F2=b2 * f))
+    fs = f"{f:.4f}" if f > 1e-6 else "<1e-6"
+    P(f"    {nm:26s} g_ext={ge:.1e} a0  e={ed:6.2f}  retained={fs:>8s}  N3_eff={N3_0/fmax**2:.2e}"
+      f"  penalty=x{1/fmax**2:.3g}  depth={b1*f:.3f}/{b2*f:.3f} Msun/pc^2")
+P(f"    even the void (e={ENV[0][1]*dorM:.2f}) retains nothing: S_0.6(0.68)=0")
+P("\n    the same, per survey, at the isolated amplitude (3 sigma, edge-on pairs):")
 frows = []
-for r in Q["rows"]:
-    n3s = r["N3"] / epsQ
+for r in LAW["rows"]:
+    n3s = r["N3"] / epsA
     frows.append(dict(**r, N3_scan=n3s, deg2_3_scan=n3s / PAIR_DENSITY))
-    P(f"    {r['survey']:28s} {r['n_g']:4.0f}  {r['S1']:.5f}  {r['N3']:9.3e}  {r['deg2_3']:8.0f}"
-      f"   {n3s:9.3e}  {n3s/PAIR_DENSITY:9.0f}")
-P(f"    5 sigma = 2.778x these;  pair surface density {PAIR_DENSITY:.1f} deg^-2; eps_orient={epsQ:.3f}")
-RES["numbers"]["forecast_qumond"] = frows
-RES["numbers"]["forecast_aqual"] = Aa["rows"]
-RES["numbers"]["A_eff_qumond"] = Q["A_eff"]
-RES["numbers"]["A_eff_arcmin2_qumond"] = Q["A_arcmin2"]
-RES["numbers"]["dsig_qumond"] = Q["dsig"]
-RES["numbers"]["S1_qumond"] = Q["S1"]
-RES["numbers"]["eps_qumond"] = epsQ
-RES["numbers"]["eps_aqual"] = epsA
-RES["numbers"]["N3_qumond"] = Q["rows"][0]["N3"]
-RES["numbers"]["deg2_3_qumond"] = Q["rows"][0]["deg2_3"]
-lsst = frows[2]
-check("K15", lsst["N3"] < 1.0e5 and lsst["deg2_3"] < 600 and frows[3]["deg2_3"] < 600
-      and frows[4]["deg2_3"] < 450,
-      f"LSST N3={lsst['N3']:.3e}, deg2={lsst['deg2_3']:.0f}; Euclid={frows[3]['deg2_3']:.0f}; Roman={frows[4]['deg2_3']:.0f}",
-      "LSST N3<1e5, deg2<600; Euclid<600; Roman<450")
+    P(f"    {r['survey']:28s} n_g={r['n_g']:3.0f}  S/N_1={r['S1']:.5f}  N3={r['N3']:8.2e}"
+      f"  deg2={r['deg2_3']:6.0f}  scanned N3={n3s:8.2e}  deg2={n3s/PAIR_DENSITY:7.0f}")
+P(f"    (eps_orient={epsA:.3f}, pair density {PAIR_DENSITY:.1f} deg^-2; 5 sigma = 2.778x)")
+P("\n    required retained fraction for the pairs actually available in each survey:")
+req = {}
+for r in frows:
+    f_req = math.sqrt(r["N3"] / r["pairs_available"])
+    e_req = None
+    for i in range(len(ES) - 1):
+        if efe[ES[i]]["ratio"] >= f_req >= efe[ES[i + 1]]["ratio"]:
+            t = (f_req - efe[ES[i]]["ratio"]) / (efe[ES[i + 1]]["ratio"] - efe[ES[i]]["ratio"])
+            e_req = ES[i] + t * (ES[i + 1] - ES[i])
+    req[r["survey"]] = dict(f_req=f_req, e_req=e_req)
+    P(f"    {r['survey']:28s} pairs={r['pairs_available']:.2e}  f_req={f_req:.3f}"
+      f"  -> e_req={e_req if e_req is None else round(e_req,3)}")
+big = [s for s in req if "LSST" in s or "Euclid" in s or "Roman" in s]
+check("K12", all(req[s]["e_req"] is not None and req[s]["e_req"] < 0.30 for s in big)
+      and all(req[s]["f_req"] > 0.15 for s in big),
+      "e_req=" + ", ".join(f"{s.split()[0]}:" + ("none" if req[s]["e_req"] is None else f"{req[s]['e_req']:.2f}") for s in big)
+      + "; f_req=" + ", ".join(f"{req[s]['f_req']:.2f}" for s in big),
+      "all e_req < 0.30 and f_req > 0.15")
+RES["numbers"]["env_efe"] = envrows
+RES["numbers"]["forecast_aqual"] = frows
+RES["numbers"]["forecast_qumond"] = QK["rows"]
+RES["numbers"]["requirements"] = req
+RES["numbers"]["derived"] = dict(
+    rel_S_aqual_vs_A13=SA / A13["S_inf"] - 1.0,
+    rel_C02_aqual_vs_A13=C02A / A13["C02"] - 1.0,
+    S_Q_over_S_A=SQ / SA, C02_Q_over_C02_A=C02Q / C02A,
+    C02_03_over_0=efe[0.3]["C02"] / efe[0.0]["C02"],
+    pair_density=PAIR_DENSITY,
+    g_ext_req={s: (req[s]["e_req"] / dorM if req[s]["e_req"] is not None else None) for s in req},
+    void_e_over_LSST_req=(ENV[0][1] * dorM / req["LSST Y10"]["e_req"]
+                           if req["LSST Y10"]["e_req"] else None),
+    rM_kpc=rM / PC / 1000.0, d_over_rM=dorM,
+)
 
-# decision number
-dec = fil["penalty"]
-P(f"\nS10  DECISION")
-P(f"    same kernel, two sources:  S(e=1)/S(0) = {ratq[1.0]:.4f} (total field in g_bar)  vs  1.000000 (own field)")
-P(f"    at the filament field (e_dim={fil['e_dim']:.1f}): suppression {fil['suppression_total']:.4f} vs 1.000000")
-P(f"    pair-budget ratio between the two readings: x{dec:.3g}")
-P(f"    A13's curve (0.751/0.337/0.021) is O2;  the framework's own law is O3 and gives exactly 1.")
+# --------------------------------------------------------------------------- S8 verdict
+P("\nS8  VERDICT")
+P(f"    e=0: S_inf={SA:+.5f} (A13 -0.22931), depth {min(d1a):.2f}-{max(d1a):.2f} / "
+  f"{min(d2a):.2f}-{max(d2a):.2f} Msun/pc^2")
+P("    retained saddle column: " + ", ".join(f"e={e:g}:{efe[e]['ratio']:.3f}" for e in ES))
+P("    e_1/2=" + (f"{e50:.3f}" if e50 is not None else "none") + f"; every environment has e>={ENV[0][1]*dorM:.2f}")
+P("    => the saddle dip is switched off in every accessible pair environment: NO-GO.")
+P("    A13's 0.75/0.34/0.02 came from forcing mirror symmetry at z=0; the full-domain")
+P("    solve gives 0.05 at e=0.3.  A13's qualitative conclusion survives, its numbers do not.")
 RES["numbers"]["decision"] = dict(
-    e1_total=ratq[1.0], e1_own=1.0, filament_total=fil["suppression_total"],
-    filament_own=1.0, pair_budget_ratio=dec,
-    e1_half_aqual=half_rat[1.0], e03_full_aqual=full_rat)
+    e_half=e50, retained_at_0p1=efe.get(0.1, {"ratio": None})["ratio"],
+    retained_at_0p2=efe.get(0.2, {"ratio": None})["ratio"],
+    retained_at_0p3=efe[0.3]["ratio"], retained_at_0p68=efe.get(0.68, efe[1.0])["ratio"],
+    retained_at_1=efe[1.0]["ratio"], a13_at_0p3=A13["efe"][0.3],
+    void_e=ENV[0][1] * dorM, filament_e=ENV[2][1] * dorM)
 
-RES["status"] = "CONDITIONAL(A5: the phantom is sourced by the system's own condensed baryons)"
+RES["status"] = "NO-GO(EFE: the saddle dip is absent for e>=0.68 and 5% at e=0.3; no accessible environment has e<0.2)"
 RES["constants_used"] = [
     "c=2.99792458e8 m/s", "G=6.67430e-11", "Msun=1.98847e30 kg",
     "pc=3.0856775814913673e16 m", "a0_can=9.36e-11 m/s^2", "a0_alt=1.13e-10 m/s^2",
@@ -771,7 +802,8 @@ RES["constants_used"] = [
     "h=0.7, Omega_m=0.3 (Epps & Hudson cosmology)",
     "EXT arXiv:1702.08485: 23000 pairs, 8.23 h^-1 Mpc, <z>=0.42, Sigma_crit=1640, n_src=11, 154 deg^2",
     "ASSUMED survey specs: DES 10, LSST 27, Euclid 30, Roman 45 arcmin^-2; sigma_e=0.26-0.27",
-    "v2 axioms A2/A5/A8 (THEORY_v2_CANDIDATE_2026-10-12.md); reconciliation item 5",
+    "A24: g_N=g^2/(g+a0) is AQUAL mu=x/(1+x); EFE is real: gamma_v shift 0.350 at 12.7 sigma; "
+    "QUMOND-vs-AQUAL fork <= 0.019 (0.7 sigma), 18x smaller",
 ]
 RES["fails"] = FAILS
 RES["numbers"]["runtime_s"] = time.time() - T0

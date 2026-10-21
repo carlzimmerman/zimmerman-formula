@@ -229,8 +229,28 @@ exactly (residual 0, A12).
 |---|---|---|---|
 | **Lensing = dynamics** | **DERIVED at first order; NOT an identity** | `(Φ−Ψ)/Ψ = O(Ψ) = 2.63e-7`; 9.13e-8 at 10 kpc | A12, A3 |
 | **GW speed = c** | **DERIVED (exact)** | `c_T² = 1` exactly, not to leading order | A3 15/15; coordinator 6/6 |
-| **Solar System Newtonian** | **CONDITIONAL (turn-off)** | anomaly `a₀ = 2557.38 × B_E` uncured; `y_t = 66.30` closes Λ, planets pass with 9.14× margin | A4 |
+| **Solar System Newtonian** | **CONDITIONAL (turn-off)** | kernel anomaly `a₀ = 2557.38 B_E` uncured; `y_t = 66.30` closes Λ, planets pass 9.14×; **P sector adds `a_P = GM/L*² = 6.61e-3 B_E`** | A4, A22 |
 | **Stable at every acceleration** | **DERIVED (linear), CONDITIONAL (scalar)** | `dg/dg_N ∈ [1, ∞)`; scalar front speed `c_s = √(γ/η) ≤ c ⟺ γ ≤ η` | A4, A3 |
+| **Preferred frame** | **DERIVED (zero)** | **α₁ = α₂ = 0 exactly, β = 1**; residual 4.4e-10 at 30 AU | A22 13/13 |
+
+**Why the preferred-frame parameters vanish — and it is structural, not tuned.** Two facts do it
+(A22). (F1) On any static preferred-frame configuration `θ ≡ 0` identically, so the gravity
+sector is *exactly* Einstein–Hilbert for every `β_ADM`; in aether variables
+`c₁ = c₃ = c₄ = 0, c₂ = −β_ADM`, for which the published α₁ and α₂ both vanish, and `θ²` is
+O(h²) so it has no linearised stress either. (F2) P's only O(ρ) stress is the charge `−D·P`
+— the clock term has no shift and every other P term is quadratic in P — so there is no
+momentum density (`g_0i = 0`) and no anisotropic stress. The residual frame dependence is a
+pure isotropic rescaling of the P source, which rescales a *linear* potential `(GM/L*²)r`
+rather than `U = GM/r`, hence α₁ = 0. That same linear potential is a **new, independent
+observable**: a constant sunward anomaly
+
+$$
+a_P=\frac{GM}{L_*^2}=2.4205\times10^{-16}\ {\rm m/s^2}=6.61\times10^{-3}\,B_E,
+$$
+
+151× inside the ephemeris bound, but a second anomaly that adds to the kernel's `a₀` in the
+budget. Two anomalies, one kernel and one geometric, both proportional to `GM` and both with
+distinct distance dependence.
 
 **The GW gate is exact, and for the same structural reason as the lensing gate.** No operator in
 the action carries two derivatives of `h^TT`; the constraint sectors are TT-blind; `θ` is
@@ -376,9 +396,15 @@ that is a prediction (three numbers from one), not a fit.
    The pancake is 30.5° wide and covers 26.3 % of the solid angle at R = 0.2d; the density
    cusps as `|ρ| ∝ r^{−1/2}` at the null (verified to 0.6 %). A positive-mass medium cannot
    do this, so the framework predicts **no saddle dip**. Since A24 established that the law
-   *does* carry an EFE, A13's AQUAL suppression curve **does** transfer after all: in a
-   filamentary environment the dip is suppressed by the external field anyway, so the clean
-   test is confined to **void pairs** (e ≈ 0.7). A23 is computing the corrected budget.
+   *does* carry an EFE, A13's suppression curve transfers — and A23's full-domain solve then
+   **kills the test as a practical one**: the dip needs `e ≤ 0.22` (i.e. `g_ext ≤ 3.2e-4 a₀`),
+   while a deep void is already at `e = 0.68`, a filament at 10.2 and a group at 34.1. The
+   retained column is 1.00 / 0.64 / 0.40 / 0.24 / 0.05 / 0.00 at `e` = 0 / 0.1 / 0.15 / 0.2 /
+   0.3 / 0.68. **No accessible environment retains the dip**, so the pair budget diverges.
+   A13's "voids are viable" is withdrawn: its EFE curve came from imposing mirror symmetry at
+   `z = 0`, which a uniform axial field breaks — reproduced on the half domain (0.746/0.332 at
+   e = 0.3/1.0) but 0.050 at e = 0.3 on the full domain. **P1 is therefore a theoretical
+   statement about the medium, not a test anyone can run.**
    Three corrections to the published note, all from A6:
    - the **−33 "cluster" figure is not a cluster-pair number.** At `d = 3 Mpc` a cluster pair
      gives −485; reaching −33 needs `d = 11.78 Mpc`, and then the column is −19.73. The two
@@ -412,12 +438,41 @@ that is a prediction (three numbers from one), not a fit.
 
 ---
 
+## 5b. The fork this push exposes: law-first or medium-first
+
+This is the sharpest open question the 24 lanes produced, and it is an *internal* tension,
+not a data problem.
+
+- **A22:** inside `λ = 17 pc` the γ-gradient term in the P equation beats the mass term, so P
+  is a hedgehog of constant magnitude `GM/(2γ)` with `u = 2.59e-6 a₀` — **the Solar System is
+  not in the P sector's MOND regime at all**. The crossover defines a mass threshold
+  `M_crit = a₀L*²/G = 3.87e5 M⊙` below which the medium never reaches the MOND branch.
+  A12's theorem survives (it only needs `P = O(ρ)`) and its galactic application is safe
+  (`r ≫ L*`), but sub-threshold systems are a different regime.
+- **A24:** applies the *law* at 20 kAU — which is 0.1 pc, i.e. **inside** λ — and gets
+  `γ_v = 1.18`.
+
+So the theory has two readings and they disagree exactly where a measurement exists:
+
+| reading | what is fundamental | wide-binary γ_v at 20 kAU | sub-threshold systems (M < 3.87e5 M⊙) |
+|---|---|---|---|
+| **law-first** | `g_N = g²/(g+a₀)` holds at every scale | **1.18** | MOND |
+| **medium-first** | the P-sector crossover is physical | **1.0** | Newtonian |
+
+Both are falsifiable with the same Gaia DR4 bin, and they also split the dwarf programme:
+medium-first predicts **no MOND** in ultra-faints (10⁵–10⁶ M⊙), which is the opposite of the
+record's +0.44 dex dwarf excess. That makes the dwarf excess, already a 4σ problem, a
+*decider* rather than a nuisance. Nothing in this push chooses between the two readings;
+naming the fork is the result.
+
+---
+
 ## 6. Predictions, with a number, a recipe and a falsifier
 
 | # | prediction | number | recipe | falsifier |
 |---|---|---|---|---|
-| P1 | No saddle dip between lens pairs | depth difference **3.529** (MW, M_b=1.4e11, d=780 kpc) / 5.025 (group, 4.2e12, 3 Mpc) M⊙/pc² | stack ~8282 pairs (11.8× arXiv:1702.08485) at ~0.77 Mpc | a dip of the predicted depth ⇒ law exact, medium must carry negative energy |
-| P1b | The saddle pancake's shape | 30.5° wide, 26.3 % of solid angle, `|ρ| ∝ r^{−1/2}` | same stack, azimuthal profile | a smooth (non-cusped) trough |
+| P1 | No saddle dip between lens pairs — **theoretical only** | depth **3.529** (MW) / 5.025 (group) M⊙/pc² | needs `e ≤ 0.22`; no accessible environment has it (void 0.68) — **not runnable** | a dip at any accessible `e` would still mean the medium carries negative energy |
+| P1b | The saddle pancake's shape | 30.5° wide, 26.3 % of solid angle, `|ρ| ∝ r^{−1/2}` | moot until P1 is accessible | a smooth (non-cusped) trough |
 | P7b | Turn-off scale separates n=1 from n=2 | y_t = 66.30 (n=1) vs 128.76 (n=2), ratio 1.94 | kinematic a₀ at high acceleration, or Λ/a₀² systematics | a y_t outside [60, 140] |
 | P9 | Occupancy-noise skewness flips at a₀ | sign change of skew(δg) exactly at g = a₀ | RAR residuals at fixed g_N, 3 bins either side | no flip, or a flip away from a₀ |
 | P2 | Cluster SCT band ratio | MID/OUTER = **0.966 ± 0.102** (native) vs 1.888 ± 0.203 (phantom) | eRASS1×KiDS, 0.46–1.42 Mpc vs outer | ratio > 1.3 (> 3.3σ) kills the native-cold reading |
@@ -497,6 +552,9 @@ that is a prediction (three numbers from one), not a fit.
 - Lensing = dynamics: slip is second order, `2.63e-7`, structurally (charge sector). A12, A3.
 - **GW speed = c: `c_T² = 1` exactly**, from the absence of any two-derivative TT operator and
   the TT-blindness of the constraints. A3 15/15, coordinator 6/6.
+- **Preferred frame: α₁ = α₂ = 0 exactly, β = 1.** θ ≡ 0 on static configurations, so the
+  gravity sector is exactly Einstein–Hilbert; P carries no momentum density and no
+  anisotropic stress. A22 13/13.
 - m = 1 is the unique thermal-lattice law; the canonical law is Langmuir. A2.
 - **The kernel is decided**: Langmuir/simple, the action's own — forced by three independent
   constraints, and the only one of the four that both closes Λ and is derived. A25.
@@ -525,11 +583,13 @@ that is a prediction (three numbers from one), not a fit.
 
 **Open, with the missing premise named**
 
+0. **Law-first or medium-first** — the fork in §5b. The law at 20 kAU gives `γ_v = 1.18`; the
+   P sector's crossover at `λ = 17 pc` says sub-`3.87e5 M⊙` systems never reach the MOND
+   branch, giving 1.0. Both are testable with one Gaia DR4 bin and they split the dwarf
+   programme. **This is the most important open question in the theory right now.**
 1. **The scale-setting functional** returning exactly 4 in `ρ_DEc²/(a₀²/G)`. This is the
    only hole in Q1. The data have already narrowed the cap to three options and picked one;
    what is missing is the principle that makes the cap the fourth power of the cell scale.
-2. **The preferred-frame PPN parameters** α₁, α₂ and the nonlinear β (A22, in flight) — the
-   only gate not yet computed. GW speed and lensing are closed; the scalar sector needs `γ ≤ η`.
 3. **`u(r)`**: why the inner halo is half-sourced and the outer fully sourced. The
    measurement exists (P3) and the scaling is known (`u ∝ y_v^{−1/2}`, slope +1/6); the
    mechanism does not.

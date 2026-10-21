@@ -32,8 +32,8 @@ coordinator after the lane finished; a lane's own summary is not the evidence.
 | [A3](A3_lensing_gw/report.md) | lensing + GW speed | **DERIVED** (both gates) | 15/15 | c_T² = 1 exactly; slip 2.63e-7; scalar c_s = √(γ/η) ⇒ γ ≤ η |
 | [A24](A24_wide_binaries/report.md) | wide binaries vs the EFE | **DERIVED** (corrects the record) | 10/10 | law IS AQUAL ⇒ EFE present; γ_v = 1.18 not 1.51; EFE 18× the solver fork |
 | [A25](A25_kernel_conflict/report.md) | which kernel | **CLOSED-DERIVED** | 14/14 | Langmuir is canonical; 12.99 = 2π⁴/15 and RAR cannot close Λ at all |
-| A22 | PPN α₁, α₂, β | in flight | — | — |
-| A23 | saddle with EFE | in flight | — | — |
+| [A22](A22_ppn_frames/report.md) | PPN α₁, α₂, β | **CLOSED-DERIVED** | 13/13 | α₁ = α₂ = 0 exactly, β = 1; new anomaly a_P = GM/L*² = 6.61e-3 B_E; M_crit = 3.87e5 M⊙ |
+| [A23](A23_no_efe_saddle/report.md) | saddle with EFE | **NO-GO** (test inaccessible) | 12/12 | dip needs e ≤ 0.22; void is 0.68; A13's EFE curve was a half-domain artefact |
 
 ## What this folder does not contain
 
