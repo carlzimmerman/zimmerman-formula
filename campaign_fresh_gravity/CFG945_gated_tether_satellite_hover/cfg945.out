@@ -1,0 +1,141 @@
+CFG945  the satellite hover (F2) in the collapse-gated tether (CFG941 R3theta)   stage=MAIN
+  criteria 618b2fc8b; kappa = 1/2 FITTED; footings never pooled; cold energy; not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10;  NGC 3198: 43 radii;  memory at start: free+inactive 25.8 GB, swap 3.85 GB
+
+==================== K CONTROLS ====================   [t = 0.1 s]
+  [PASS] K1_NGC3198_law_CFG938_reduction: reduced EL -(-a_0*g_N + g_N*u + u**2)/(-a_0 + u); max |g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (CFG938 2.2e-16; line 1e-6)
+  [PASS] K2_CFG941_hover_ratios: 18 ratios Delta a/g_host reproduced, max rel diff 0.0e+00; range 1.0167 ... 1.1067
+  [PASS] K3_tether_off_universal_free_fall: max |Delta a|/g_host with the tether off = 3.5e-16 (CFG941 M4 3.5e-16)
+  [PASS] K4_CFG874_primary_reproduced: canonical: c = -0.10027 +- 0.09096 (|diff| 0e+00, 0e+00; N_I 11, N_S 54); alt: c = -0.10034 +- 0.09097 (|diff| 0e+00, 0e+00; N_I 11, N_S 54)
+  [PASS] K5_gate_and_uniform_translation: s(0+) = 1, s'(0+) = 0, s''(0+) = 0; uniformly translating medium in a static weak field: theta = 0 at O(c^0), theta = (-3) v dPhi/dx / c^2 + O(c^-4) (Minkowski: exactly 0)
+  [PASS] K6_CFG941_EFE_factors: 18 EFE factors reproduced, max rel diff 0.0e+00; dex range -0.728 ... -0.102
+  K controls: ALL PASS
+  [PASS] B0_vectorised_bootstrap_equals_literal: canonical: c -0.100267 se 0.090955; alt: c -0.100335 se 0.090970
+
+==================== Q1: the hover lemma in the gated theory (satellite nested in the host's collapsed region) ====================   [t = 1.0 s]
+  [PASS] Q1a_settled_gate_gives_hover: theta = 0 (static or uniformly translating, K5) -> s = 1: host part of the force on satellite medium = -g_bh + R(u_h) = 0 on the host's law; stars feel -(g_bh + u_h); leading Delta a = u_h + R(u_h) = g_host. The nested satellite gate cannot differ from the host's (both theta = 0)
+  K2 reproduced: Delta a/g_host = 1.0167 ... 1.1067 (identical to CFG941: R3theta's settled sector is CFG938's)
+  weak-field theta of a translating satellite medium <= |coef| v g/c^2 = 1.3e-22 s^-1 vs theta_s = H0 = 2.18e-18 s^-1 (ratio 5.9e-05)
+
+==================== Q2: Theorem S (same point) ====================   [t = 1.1 s]
+  [PASS] Q2_theorem_S: force on any element = -grad Phi + F(x, v; own-flow gate scalars); host equilibrium F(x, 0) = grad Phi_h  =>  Delta a = g_host + F1 v/c* + delta_cross; the satellite's own linear self-term has zero CoM integral (example: int rho alpha chi' dx = 0). At leading order in (satellite field)/(host field) the hover is exact for every label-free F; the nonlinear cross terms delta_cross are F-specific and are computed per candidate (P0 raises eps above 1, QUMOND-type anchoring lowers it). Escapes: (E1) membership label, (E2) stream-specific (non-cold) support, (E3) O(1) velocity dependence, (E4) non-stationary satellite medium
+
+==================== Q3: gate crossing time and the separation correction (estimates) ====================   [t = 1.1 s]
+  case                 Da/g t_gate Myr  regime P_max/Da bound    f_m eta=f_m*eps t_sep Myr (dyn)
+  canonical|H1|50     1.028       1.48    free    0.108 False  0.816       0.839            10.0
+  canonical|H1|100    1.044       1.88    free    0.223 False  0.816       0.852            14.5
+  canonical|H1|250    1.050       2.57    free    0.905 False  0.957       1.005            54.0
+  canonical|H2|50     1.019       5.99    free    0.087 False  0.845       0.861            25.5
+  canonical|H2|100    1.030       7.63    free    0.181 False  0.845       0.871            37.0
+  canonical|H2|250    1.042       10.4    free    0.733 False  0.954       0.994           110.0
+  canonical|H3|50     1.094       7.66    free    0.222 False  0.691       0.756            46.8
+  canonical|H3|100    1.107       9.77    free    0.640 False  0.886       0.980           114.2
+  canonical|H3|250    1.080       13.5    free    1.667  True  0.962       1.039   never (1 Gyr)
+  alt|H1|50           1.024       1.44    free    0.108 False  0.831       0.851             9.5
+  alt|H1|100          1.039       1.83    free    0.222 False  0.831       0.863            13.8
+  alt|H1|250          1.045        2.5    free    0.909 False  0.961       1.005            51.8
+  alt|H2|50           1.017       5.82    free    0.087 False  0.857       0.872            24.2
+  alt|H2|100          1.027       7.42    free    0.180 False  0.857       0.881            35.5
+  alt|H2|250          1.038       10.1    free    0.736 False  0.958       0.995           105.2
+  alt|H3|50           1.083       7.47    free    0.221 False  0.713       0.772            45.0
+  alt|H3|100          1.096       9.51    free    0.645 False  0.895       0.981           110.0
+  alt|H3|250          1.072       13.1    free    1.684  True  0.965       1.035   never (1 Gyr)
+  stars stay bound to their medium (medium's pull included) in 2/18 cases; the composite falls at a_cm/g_host = 1 - f_m*eps (momentum), eta = 0.756 ... 1.039; gate crossing in 1.4 ... 13 Myr (inside R3theta's ghost band)
+
+==================== the bound on |Delta a|/g_host from CFG874 (stripping model) and delta_c ====================   [t = 8.9 s]
+  [canonical] satellites' g_int/g_host: min 0.099, median 1.85 (N_S 54); eps_B (kappa_r 1) = 0.3443, (kappa_r 2) = 0.6885; graded line for (b) = 0.3443
+     under the hover (eps 1.019 / 1.107, kappa_r 1): 19 / 19 dwarfs stripped (19 / 19 matched satellites); CFG874 c would read -0.355 +- 0.114 / -0.355 +- 0.114 (-3.1 se); kappa_r 2: -0.230 +- 0.112
+     delta_c = c + 2 se_c = +0.0816 dex (largest satellite-specific deficit CFG874 allows at 2 sigma)
+  [alt] satellites' g_int/g_host: min 0.092, median 1.70 (N_S 54); eps_B (kappa_r 1) = 0.317, (kappa_r 2) = 0.6341; graded line for (b) = 0.317
+     under the hover (eps 1.017 / 1.096, kappa_r 1): 19 / 19 dwarfs stripped (19 / 19 matched satellites); CFG874 c would read -0.364 +- 0.116 / -0.364 +- 0.116 (-3.1 se); kappa_r 2: -0.234 +- 0.113
+     delta_c = c + 2 se_c = +0.0816 dex (largest satellite-specific deficit CFG874 allows at 2 sigma)
+     cross-check (reported): CFG873 D + 2 se (canonical) = +0.043
+     cross-check (reported): CFG873 D + 2 se (alt) = +0.043
+     cross-check (reported): CFG860 c0 + 2 se (canonical, README -0.150 +- 0.122) = +0.094
+     cross-check (reported): CFG860 cG + 2 se (canonical, README -0.064 +- 0.093) = +0.122
+     cross-check (reported): CFG860 c0 + 2 se (alt, JSON) = +0.093
+     cross-check (reported): CFG860 cG + 2 se (alt, JSON) = +0.121
+     cross-check (reported): CFG875 k + 2 se (canonical, dex per dex toward the host) = +0.109
+     cross-check (reported): CFG875 k + 2 se (alt) = +0.109
+  deep BTFR (single-label / P0): sympy limit 1; numeric y = 1e-14: +1.00e-07 / +1.00e-07
+
+==================== P0 = R3theta settled sector (unresolved reference) ====================   [t = 9.0 s]
+   (a) PASS: K1 2.2e-16 / 2.2e-16
+   (b) FAIL: canonical: eps 1.019-1.107 vs line 0.344; alt: eps 1.017-1.096 vs line 0.317
+   (c) FAIL: canonical: |EFE| 0.102-0.722 dex vs delta_c 0.082; alt: |EFE| 0.103-0.728 dex vs delta_c 0.082
+   (d) PASS: CFG938 conditions (gamma > 0, rho c^2 > D u/K; settled min omega^2 >= 0); R3theta's transition-band ghost inherited (CFG944)
+
+==================== H1: domain-local (per-label) tether ====================   [t = 9.0 s]
+  [PASS] H1_nesting_superposition: D^2 chi = K m n is linear: chi_total = sum_q chi_q (nesting compatible); P0 and H1 differ only in W: W(|a+b|) - W(|a|) - W(|b|) = a.b x 1/(4*pi*G) + O(3) (= the cancelled mutual gravity between label a and label b)
+  [PASS] H1_force_uniform_field: label-s medium: host part -(g_bh + u_h) = the stars' host part exactly (no host chi in its tether); the remaining terms are the satellite's own (isolated) equilibrium -> Delta a = 0 in a uniform host field; EFE = 0 in the falling frame
+  [PASS] H1_mode_average_labels: <L> = (K/4k^2)[(B + C1 + C2)^2 - c2 (C1^2 + C2^2)]; d2<L>/dC1dC2 = 2*pi*G/k**2 = 2 pi G/k^2 for every c2: different labels gravitate Newtonianly; each label keeps D-T's c2 = 1 cancellation of its own self-gravity
+  [PASS] H1_two_label_equilibrium: two labels in one galaxy: EL_1 = -(a_0*g_N + a_0*u_2 - g_N*u_1 - u_1**2 - u_1*u_2)/(a_0 - u_1) -> R(u_1) = g_N + u_2; equal split R(v) = g_N + v, g = g_N + 2v
+  two equal labels: deep limit g -> 1 a0 (an acceleration floor; BTFR limit infinite)
+  canonical: single label 2.2e-16, two equal labels 4.116, free debris q = 1e-06: 2.62e-06, 0.001: 2.62e-03, 0.1: 2.91e-01, 1: 4.12e+00; alt: single label 2.2e-16, two equal labels 4.610, free debris q = 1e-06: 2.88e-06, 0.001: 2.88e-03, 0.1: 3.24e-01, 1: 4.61e+00
+   (a) PASS: single-label galaxy = P0: 2.2e-16 / 2.2e-16 (BTFR as P0). Cost: two equal labels miss the law by 4.12 / 4.61 (floor g -> a0); re-latch-failed debris at q = 1e-6 already gives 2.6e-06 (line 1e-6): every settled galaxy must be single-label
+  case               eps (tides)  r_dom pc  rule  r_dom/R L1 relatch?
+  canonical|H1|50       4.62e-05      1083  root   0.0217        True
+  canonical|H1|100      4.60e-05      2092  root   0.0209        True
+  canonical|H1|250      1.57e-05      3000  100a   0.0120       False
+  canonical|H2|50       2.32e-04      2519  root   0.0504        True
+  canonical|H2|100      2.44e-04      4886  root   0.0489        True
+  canonical|H2|250      2.49e-04     11981  root   0.0479       False
+  canonical|H3|50       1.81e-03      7139  root   0.1428        True
+  canonical|H3|100      1.97e-03     13910  root   0.1391       False
+  canonical|H3|250      2.03e-03     34188  root   0.1368       False
+  alt|H1|50             4.61e-05      1076  root   0.0215        True
+  alt|H1|100            4.60e-05      2085  root   0.0209        True
+  alt|H1|250            1.57e-05      3000  100a   0.0120       False
+  alt|H2|50             2.31e-04      2504  root   0.0501        True
+  alt|H2|100            2.44e-04      4871  root   0.0487        True
+  alt|H2|250            2.48e-04     11966  root   0.0479       False
+  alt|H3|50             1.81e-03      7098  root   0.1420        True
+  alt|H3|100            1.96e-03     13871  root   0.1387       False
+  alt|H3|250            2.02e-03     34150  root   0.1366       False
+   (b) PASS: canonical: eps 1.6e-05-2.0e-03 (tidal residual only; uniform part exactly 0) vs line 0.344; CFG941 0.01 line met; alt: eps 1.6e-05-2.0e-03 (tidal residual only; uniform part exactly 0) vs line 0.317; CFG941 0.01 line met. Rule L1 (field dominance) would re-latch the whole satellite to the host in 10/18 cases (hover restored there): L2 required
+   (c) PASS: uniform-field EFE = 0.0e+00 dex (exact 0) vs delta_c 0.082 / 0.082; tidal term at the scale radius (reported, present in any metric theory): -0.0572 ... -0.0002 dex
+   (d) PASS: per label: CFG938's conditions (gamma > 0; rho c^2 > D u/K, margins 5.9e4-2.5e8). Two co-located labels with relative speed U (two-stream, mutual gravity uncancelled): max Im omega / sqrt(K(rho1 + rho2)) = 0.707 <= 1, k-independent (bounded Jeans-type; stiffness stabilises large k). Energy-momentum: diffeomorphism-invariant action for fixed labels; conserved only between label changes (cost). R3theta ghost inherited
+   (e) N/A : different labels gravitate Newtonianly (H1_mode_average_labels): tethered-tethered gravity between distinct collapsed objects is RESTORED; within one label D-T still forces c2 = 1 (no self-gravity of a settled domain's medium); linear regime: gate off, dust, n = 1 (R3theta)
+
+==================== H2: tether anchored to baryons ====================   [t = 9.9 s]
+  [PASS] H2_anchor_reaction_lemma: U_int = int M_c(r) nu(g_N) g_N dr (spherical, from -int rho_c psi d^3x); moving baryon mass outward changes U by -dm M_c G/r^2 d(nu g_N)/dg_N -> extra OUTWARD acceleration on baryons a_R = (dg/dg_N) g_c; deep limit a_R -> a_0/2
+  [PASS] H2_reaction_finite_difference: toy (NGC 3198 mass, test shell at 20 kpc): finite difference 5.6403e-11 vs analytic 5.6402e-11 m/s^2 (outward)
+   (a) FAIL: H2v (variational): baryons feel g - a_R: NGC 3198 law dev 2.62 / 2.88 (15 / 16 of 43 radii pushed OUTWARD); re-tuning the medium so baryons obey the law leaves lensing (rho_c) off the dynamics by a_R/g up to 2.62 (slip line 1.9e-5). H2n passes (a) only by having no reaction
+   (b) FAIL: H2g (global anchoring, Theorem S): canonical: eps 0.483-0.998 vs line 0.344; alt: eps 0.482-0.998 vs line 0.317 (local approximation, as CFG941). H2o (own baryons) gives eps = 0 only with H1's labels
+   (c) FAIL: H2g: QUMOND-type EFE canonical: 0.102-0.722 dex vs delta_c 0.082; alt: 0.103-0.728 dex vs delta_c 0.082; H2o: 0 (with labels)
+   (d) FAIL: H2v: action, conserves energy-momentum; settled state Jeans-unstable (bounded) since the anchor ignores medium perturbations. H2n: the medium is pushed with no reaction -> no action, partial_mu T^{mu nu} != 0: FAIL. H2o inherits the H2v/H2n dichotomy
+   (e) N/A : no chi tether: the settled medium has full Newtonian self-gravity (F1 and tethered-tethered gravity restored) but its law state is Jeans unstable for k < sqrt(2)/L*, e-fold 1/sqrt(K rho_c) = 280 / 267 Myr at NGC 3198's last radius; gated linear regime: n = 1
+
+==================== H3: equivalence-principle restoration? ====================   [t = 10.0 s]
+  [PASS] H3_no_gradient_shift_symmetry: dW(|grad chi + b|)/db at b = 0 = W'(u) = D_full(u)/K, with linear coefficient 1 (D-T): W is not invariant under chi -> chi + b.x; a uniform external chi gradient is physical (the Einstein elevator removes only the metric's)
+  [PASS] H3_passive_mass_zero: passive gravitational mass of medium in a settled host's field / inertial mass = 0 at leading order
+  dynamic corrections to the hover: |beta V|/g_host = 2.5e-03 ... 1.3e-02 (V circular; 300 km/s: up to 2.4e-02); v^2/c^2 <= 3.6e-07; inertia correction (Omega_c/6)(rhobar_c/rho_c) <= 8.0e-08
+  rigid two-component dynamics (Q3): stars bound in 2/18 cases; either way the composite falls at 1 - f_m*eps of g_host (eta 0.756-1.039)
+   (a) PASS: no change to the action: P0's static law and BTFR
+   (b) FAIL: the hover is real, not a static artefact: canonical: eps 1.019-1.107; alt: eps 1.017-1.096; dynamic corrections <= 2.4e-02
+   (c) FAIL: canonical: |EFE| 0.102-0.722 dex vs delta_c 0.082; alt: |EFE| 0.103-0.728 dex vs delta_c 0.082
+   (d) PASS: P0's (CFG938 conditions)
+   (e) N/A : nothing restored (P0's F1 and F2)
+
+==================== H4: dispersion-supported settled medium (tether share f_T) ====================   [t = 10.0 s]
+  [PASS] H4_support_split: host element: -g + f_T g + F_p = 0 -> F_p = g*(1 - f_T); satellite stream: Delta a = f_T*g; cold limit F_p -> 0 forces f_T = 1 (the hover)
+   (a) PASS: the cold, static limit (frozen (a)) exists only with f_T = 1, where it is P0's law
+   (b) FAIL: at f_T = 1 eps = the hover; (b) needs f_T <= 0.311 / 0.289 (line / hover ratio), (a)'s cold limit needs f_T = 1: incompatible
+   (c) FAIL: at f_T = 1 the satellite's tether reads the total chi: P0's EFE canonical: 0.102-0.722 dex; alt: 0.103-0.728 dex
+   (d) N/A : multistream support is outside CFG938's single-stream EFT (not graded)
+   (e) N/A : if the warm option were taken (f_T small), the medium would gravitate as collisionless matter (F1 and F2 restored): a different theory, the direction of CFG941's open item 2 and of class A's dispersion-supported particles
+
+==================== corollaries of Theorem S (reported) ====================   [t = 10.1 s]
+  velocity-gated tether: a satellite at rest relative to the host medium (apocentre, slow satellites) has F(x, 0) = host value -> hover exactly; a moving satellite's own support still needs a reading of its own chi alone -> a label (E1)
+  filtered tether (chi_f from (1 - l^2 D^2) chi_f = chi, one constant l): the host medium at the satellite's point is in equilibrium under the same filtered force, so the satellite medium hovers for every l (Theorem S); the host's own law needs l -> infinity (CFG941 R3ell)
+
+==================== CLASSES (frozen rules, criteria sec. 4) ====================   [t = 10.1 s]
+  H1  RESOLVED-WITH-COST   fails: -   labels are the escape E1 of Theorem S; costs: non-variational label sector (L2 tidal re-latch; seeding at collapse open), a continuum of auxiliary chi_q, lambda_q, per-label single-stream, energy-momentum conserved only between label changes; open condition: every settled galaxy single-label
+  H2  NOT RESOLVABLE       fails: a,b,c,d   variational -> reaction a_R on the baryons breaks (a) (deep limit a0/2); non-variational -> no conservation (d); global anchoring -> hover (Theorem S); own anchoring needs H1's labels and meets the same dichotomy
+  H3  NOT RESOLVABLE       fails: b,c   no gradient-shift symmetry is compatible with W'(u) != 0 (forced by the law); passive gravitational mass 0; the hover is dynamic, not a static artefact
+  H4  NOT RESOLVABLE       fails: b,c   (a)'s cold limit forces f_T = 1, which is the hover and P0's EFE
+
+  OVERALL: CONDITIONAL
+  Label-free tethers: the hover is exact at leading order (Theorem S), and every tested label-free candidate (P0/R3theta, H2g, H3, H4) keeps eps above eps_B with the full cross terms. With labels (H1): resolved at the cost of a membership sector equivalent to class A's per-catchment tether.
+
+  all checks pass: True; runtime 10.1 s; peak RSS 0.285 GB
