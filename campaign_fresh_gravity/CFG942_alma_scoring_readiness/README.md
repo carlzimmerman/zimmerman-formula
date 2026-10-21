@@ -214,12 +214,42 @@ The control bites if (true-run shifted flux − null mean)/null sd < 3. Implemen
 3. **Even with the size-matched model, GS4-a sits at +2.35**, about 0.65 below the bite line. A real cube's control may land on either side of 3 by chance.
 4. **Stale cross-reference.** CFG806 addendum A (U4) still points to "CFG809 addendum B", which addendum C withdrew for GS4. U4's decision is unaffected (G1's selection-aware S/N, masks grown on the shifted map; −0.30), but the reference is now stale.
 
+### Addendum D implemented (CFG809 addendum D, c2dfb62b5): MUTATE re-runs G1 in the shifted window
+Addendum D drops every reused-mask statistic. Addenda B and C scored the true run's mask, which was selected on the true window; B's null had the wrong scale and C's depended on the injected model.
+
+The GS4 MUTATE now re-runs G1 in the shifted window, exactly as CFG806-U4 does:
+- a fresh ≥ 2σ mask grown at the shifted window;
+- the addendum-A continuum (true-line channels excluded);
+- the S/N against A-G13's selection-aware null (200 off-source seeds).
+
+The control bites if that S/N is below 3. The A, B and C statistics and the mask sizes are printed as information.
+
+The U4 output wording now cites addendum D instead of the superseded addendum-B sentence. U4's logic is unchanged.
+
+The GS4 self-test, GS4-a/b/e and the GS4 MUTATE were rerun one at a time, together with the full U4 set (the shared K1 list changed).
+
+**Before → after** (88db01f47 → this commit)
+| item | before (addendum C) | after (addendum D) |
+|---|---|---|
+| GS4 MUTATE | injection-null statistic +3.36 on the reused 18,083-px mask, does not bite (exit 0) | G1 re-run in the shifted window: fresh mask 23 px, selection-aware S/N **+0.29**, null mean 0.0000057, sd 0.0000024 Jy km/s; **bites (exit 1)**. The literal ring S/N reads 11.0, a false pass on noise like G1's (A-G13), and never decides. |
+| information lines | B +151.67, A +2.90σ, thin-disc C +2.35 | the same, plus C with the Gaussian (+3.36) and the mask sizes: fresh 23 px; true-run 18,083; C copies 8,828 (Gaussian) and 18,073 (thin disc); B null masks 20 |
+| GS4 tiny-cube fallback | C statistic −0.01, bites | addendum-D S/N −0.09, bites, exit 1 (fresh mask 1 px); the exit-2 case is unchanged |
+| U4 MUTATE | G1 selection-aware S/N −0.30, bites | unchanged (−0.30, bites); the wording now cites addendum D |
+| K1 | 26 rows | 27 rows: addendum D == c2dfb62b5; 27/27 PASS in every run |
+| memory | at most 362 MB | at most 417 MB |
+
+**Verdict lines moved: none.** All seven mocks' scoring lines and sides are identical to 88db01f47.
+
+**What remains open (reported, not decided)**
+- **Both MUTATE bites now rest on A-G13 / A-U13.** In the shifted window, the literal S/N passes on pure noise (GS4 11.0, U4 8.6), and only the selection-aware S/N bites. This is consistent with both clarifications, but on release day the literal reading must not be quoted as the control.
+- **No GS4 MUTATE control is possible on a centred spw (finding 3 of 10-21 stands).** If the 1.875 GHz spw is centred on 270 GHz, even the +1000 fallback leaves the window, and the run then has no MUTATE control (addendum A §2). The record holds no spw edges to check this.
+
 **Nothing frozen was edited.** These files are unchanged:
-- both plans' FROZEN_CRITERIA.md, both CLARIFICATION files, CFG809 addenda A, B and C, and CFG806 addendum A;
+- both plans' FROZEN_CRITERIA.md, both CLARIFICATION files, CFG809 addenda A–D, and CFG806 addendum A;
 - `cfg571_prereg.py` and its seal JSON;
 - LEDGER.md, the THEORY_CANONICAL files and CFG572.
 
-K1 (26/26) and K5 checked this in every run, and git status is clean for those paths. No file was written into the plan directories: the copy step runs only for a real cube.
+K1 (27/27) and K5 checked this in every run, and git status is clean for those paths. No file was written into the plan directories: the copy step runs only for a real cube.
 
 ## Hash verification (K1 in every run; all PASS)
 | file | sha256 (prefix) | equals freezing commit |
@@ -238,6 +268,7 @@ K1 (26/26) and K5 checked this in every run, and git status is clean for those p
 | `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md` (K1 row added 10-21) | 50e3e5be… | 748dd8095 |
 | `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_B.md` / `CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md` (K1 rows added 10-21) | 6ba6bd2f… / feacc7c9… | d7a1afae1 |
 | `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_C.md` (K1 row added 10-21) | 44a439ff… | 785fcae44 |
+| `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_D.md` (K1 row added 10-21) | 4bd73cf5… | c2dfb62b5 |
 
 **Seal reproduction and transcription:**
 - CFG571's own functions reproduce all 56 U4 and 16 GS4 sealed entries to 0.0 dex, with the FLOOR flags identical. The functions are executed from the text above the script's `# ---- controls ----` line; a plain `import` would rewrite the seal file and exit (A-X6).
@@ -374,7 +405,7 @@ Run everything from `campaign_fresh_gravity/CFG942_alma_scoring_readiness/`.
   - MUTATE exits 1 when the control bites.
   - If +2000 km/s leaves the spw, MUTATE reruns at +1000, labelled "MUTATE fallback +1000 (CLARIFICATION A-G11)", and exits by that run. It exits 2 only if +1000 also leaves the spw; that run then has no MUTATE control (addendum A §2).
   - The shifted window's continuum excludes channels within ±600 km/s of the true line (addendum A §2).
-  - The bite statistic is addendum C's injection null: (flux − null mean)/null sd < 3. It replaces addendum B's. On MOCK GS4-a it does not bite with the §3.2 Gaussian model (+3.36); it would bite with the §3.4 thin-disc model (+2.35, information). See "Addendum C implemented".
+  - MUTATE re-runs G1 in the shifted window (addendum D): a fresh ≥ 2σ mask, the addendum-A continuum, and the selection-aware S/N, which bites below 3. MOCK GS4-a reads +0.29 and bites. The A, B and C statistics are information only. See "Addendum D implemented".
   - U4's MUTATE uses the same continuum exclusion (CFG806 addendum A), and G1's selection-aware S/N decides.
 - The spw must cover 270.006 GHz. The harness reads FREQ cubes, 3D or 4D, with BMAJ keywords or a per-plane BEAMS table.
 

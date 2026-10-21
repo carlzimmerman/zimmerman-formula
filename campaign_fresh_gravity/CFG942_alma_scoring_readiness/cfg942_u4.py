@@ -328,8 +328,8 @@ def mutate_selection_check(path, run, m0d, m, mask):
           + ("the >= 2 sigma selection prefers low-continuum pixels, the addendum-B bias" if biased else "no continuum-selection bias") + f"); "
           f"in the {len(nc)} selection-aware null masks {mn:+.6f} +- {sn:.6f} (target at {zn:+.2f} null sd"
           + (": the null carries the same bias" if biased and abs(zn) < 3 else "") + "). "
-          "G1's selection-aware S/N is (flux - null mean)/null sd over masks grown and measured on the same shifted map, i.e. addendum B's null-calibrated "
-          "statistic: the two coincide, and it decides.")
+          "G1's selection-aware S/N is (flux - null mean)/null sd over masks grown and measured on the same shifted map, so the null calibrates the bias; "
+          "it decides (CFG809 addendum D supersedes CFG806 addendum A's addendum-B sentence and rules the same procedure for GS4).")
     return dict(target_continuum_term=Cm, ring_copies=dict(mean=mr, sd=sr, n=len(rc), z=zr), null=dict(mean=mn, sd=sn, n=len(nc), z=zn), bias_vs_unselected=bool(biased))
 
 
@@ -600,7 +600,7 @@ def main():
         if mutate:
             det = meas["detected"]
             run.P(f"\nMUTATE (velocity axis +2000 km/s): G1 {'PASSED (NOT detected by the control)' if det else 'FAILED -> the control bites (exit 1)'}; "
-                  f"decided by G1's selection-aware S/N {meas['SN_selection']:+.2f} (CFG806 addendum A; the null-calibrated statistic of CFG809 addendum B)")
+                  f"decided by G1's selection-aware S/N {meas['SN_selection']:+.2f} (CFG806 addendum A; CFG809 addendum D rules the same for GS4)")
             res["mutate"] = dict(G1=det); code = 0 if det else 1
         else:
             sc = score(meas, run); res["score"] = sc

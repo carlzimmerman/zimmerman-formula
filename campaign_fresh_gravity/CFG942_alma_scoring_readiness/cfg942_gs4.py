@@ -14,7 +14,9 @@ Gaussian-to-exponential size bias is reported, not corrected (A-G9); MUTATE fall
 ROBUST is per model (A-G4). Addendum A (748dd8095): the per-branch A-G4 statement replaces the withdrawn sentence (s1); MUTATE's
 continuum excludes channels within +-600 km/s of the true line (s2); the A-G1 information line, the A-G16 continuum region and the
 other CFG572 branches as information rows (s3). Addendum C (785fcae44; withdraws addendum B's noise-grown null): MUTATE bites if (shifted flux - null mean)/null sd < 3,
-the null from 200 injected copies of the true run's moment-0 model (matching the mask's size and selection).
+the null from 200 injected copies of the true run's moment-0 model. Addendum D (c2dfb62b5; withdraws B and C for the verdict):
+MUTATE re-runs G1 in the shifted window (fresh >= 2 sigma mask, addendum-A continuum, A-G13 selection-aware S/N) and bites if that
+S/N < 3, as CFG806-U4 does; the A, B and C statistics are printed as information.
 kappa = 1/2 FITTED; footings never pooled; routes never averaged; one disc = a demonstration, no exclusion; not theory closed."""
 import os, sys, json, math
 sys.dont_write_bytecode = True
@@ -481,12 +483,13 @@ def thin_disc_maker(path, m0d, d0, mask):
 
 
 def mutate(path, run):
-    """MUTATE (CFG809 s5): the velocity window shifted by +2000 km/s; the flux in the true-run mask must drop below 3 sigma.
+    """MUTATE (CFG809 s5): the velocity window shifted by +2000 km/s; the shifted flux must drop below 3 sigma, read per addendum D as G1
+    re-run in the shifted window (fresh mask, addendum-A continuum, selection-aware S/N < 3 bites); the reused-mask A, B, C statistics are information.
     CLARIFICATION A-G11: if +2000 leaves the spectral window, MUTATE runs at +1000 km/s (CFG572's disclosed --mutate1000), labelled, and
     the exit code follows that fallback; exit 2 only if +1000 also leaves the window. Returns (exit code, info dict)."""
     run.P("\n=== MUTATE (velocity window +2000 km/s; fallback +1000 km/s if +2000 leaves the spectral window, CLARIFICATION A-G11) ===")
     run.P(f"  continuum of the shifted window (addendum A s2, 748dd8095): the median of the channels line-free relative to BOTH the shifted window "
-          f"(|v| > 600) and the true line (more than {C.MUTATE_EXCL:.0f} km/s from z {Z_LINE}); bite statistic: addendum C's injection null (785fcae44; addendum B withdrawn)")
+          f"(|v| > 600) and the true line (more than {C.MUTATE_EXCL:.0f} km/s from z {Z_LINE}); bite statistic: addendum D (c2dfb62b5): G1 re-run in the shifted window, selection-aware S/N < 3 bites; B and C withdrawn")
     m0d = C.stream_mom0(path, RA, DEC, NU_OBS, BOX, VWIN, VCONT, 0.0)
     d0, mask, r, _ = detect(m0d, run, tag="true z: ")
     covered = lambda s: bool(s["win_covered"] and s["nwin"] > 0)
@@ -508,20 +511,22 @@ def mutate(path, run):
         run.P(f"  {info['label']}: only {sh['ncont']} continuum channels remain after the exclusion: the shifted window is not continuum-subtracted")
     bp = C.beam_pix(sh["beam"], sh["pix"]); Ssh = float(np.nansum(sh["m0"][mask]) / bp)
     ring = C.translated_apertures(sh["m0"], mask, bp, C.ring_offsets(RING / sh["pix"], 8)); rs = float(np.std(ring, ddof=1))
-    # CLARIFICATION addendum C (785fcae44; replaces addendum B): the bite statistic is (true-run shifted flux - null mean) / null sd with an
-    # INJECTION null that matches the mask's size and selection; bites if < 3
+    # CLARIFICATION addendum D (c2dfb62b5; replaces B and C): MUTATE re-runs G1 in the shifted window, as CFG806-U4 does: a fresh >= 2 sigma
+    # mask grown at the shifted window (addendum-A continuum), its S/N against the selection-aware null of A-G13; bites if that S/N < 3
+    d1, mask1, _, _ = detect(sh, run, tag=f"{info['label']}, G1 re-run in the shifted window: ")
+    stat = d1["SN_selection"]; bites = bool(np.isfinite(stat) and stat < 3)
+    run.P(f"  {info['label']}: G1 re-run in the shifted window: fresh >= 2 sigma mask {int(mask1.sum())} px, {sh['ncont']} continuum channels (true line excluded), "
+          f"selection-aware S/N {stat:+.2f} -> {'below 3: the control BITES (exit 1)' if bites else 'NOT below 3: the control does NOT bite (exit 0)'}  [CLARIFICATION addendum D]")
+    # information only (withdrawn for the verdict by addendum D): the reused true-run-mask statistics A, B and C
     tdm, tdnote = thin_disc_maker(path, m0d, d0, mask)
     inj = injection_null(path, run, m0d, d0, mask, info["shift_kms"], Ssh, bp,
                          extra_models=[("thin-disc model (3.4)", tdm)] if tdm else ())
-    stat, bites = inj["statistic"], inj["bites"]
-    run.P(f"  {info['label']}: {sh['ncont']} continuum channels; shifted flux in the true-run mask {Ssh:.5f} Jy km/s; injection null ({inj['n']} off-source copies of the "
-          f"true run's beam-convolved moment-0 model, masks regrown by the true run's procedure, flux in the shifted window): mean {inj['mean']:.6f}, sd {inj['sd']:.6f} "
-          f"-> bite statistic (flux - null mean)/null sd = {stat:+.2f} -> {'below 3: the control BITES (exit 1)' if bites else 'NOT below 3: the control does NOT bite (exit 0)'}"
-          f"  [CLARIFICATION addendum C]")
-    run.P(f"  information: mask sizes: true-run mask {int(mask.sum())} px; injected-copy masks median {inj['mask_px_median']} px (16-84%: {inj['mask_px_p16']}-{inj['mask_px_p84']}); "
-          f"injected copies' recovered window flux median {inj['recovered_median']:.5f} Jy km/s against the true run's {d0['S']:.5f}")
+    run.P(f"  information: addendum C's statistic (withdrawn; true-run mask {int(mask.sum())} px, shifted flux {Ssh:.5f} Jy km/s, injection null of {inj['n']} copies of the "
+          f"3.2 Gaussian model): mean {inj['mean']:.6f}, sd {inj['sd']:.6f} -> {inj['statistic']:+.2f}")
+    run.P(f"  information: mask sizes: fresh shifted-window mask {int(mask1.sum())} px; true-run mask {int(mask.sum())} px; injected-copy masks median {inj['mask_px_median']} px "
+          f"(16-84%: {inj['mask_px_p16']}-{inj['mask_px_p84']}); injected copies' recovered window flux median {inj['recovered_median']:.5f} Jy km/s against the true run's {d0['S']:.5f}")
     for lab, e in inj["extra_models"].items():
-        run.P(f"  information (not the verdict; which model addendum C means is the owner's call): the same injection null with the {lab}, an exponential disc "
+        run.P(f"  information: addendum C's statistic (withdrawn) with the {lab}, an exponential disc "
               f"with the line profile ({tdnote}; flux {e['model_flux']:.5f} Jy km/s): masks median {e['mask_px_median']} px (16-84%: {e['mask_px_p16']}-{e['mask_px_p84']}), "
               f"recovered window flux median {e['recovered_median']:.5f}; mean {e['mean']:.6f}, sd {e['sd']:.6f} -> statistic {e['statistic']:+.2f} "
               f"({'would bite' if e['bites'] else 'would NOT bite'})")
@@ -553,7 +558,9 @@ def mutate(path, run):
     ring_c = [c for c, _ in cterm[1:]]
     run.P(f"  information (selection check): in the true-run mask the shifted flux = raw shifted window {cterm[0][1]:+.2f} sigma + continuum term {cterm[0][0]:+.2f} sigma; "
           f"in the {len(ring_c)} ring copies (not selected on the data) the continuum term is {np.mean(ring_c):+.2f} +- {np.std(ring_c, ddof=1):.2f} sigma")
-    return (1 if bites else 0), dict(info, runnable=True, diagnostic=True, S_shifted=Ssh, statistic=stat, bites=bites, mask_px=int(mask.sum()), ncont=sh["ncont"],
+    return (1 if bites else 0), dict(info, runnable=True, diagnostic=True, statistic=stat, bites=bites, ncont=sh["ncont"], fresh_mask_px=int(mask1.sum()),
+                                     shifted_G1={k: d1[k] for k in ("S", "ring_rms", "SN", "SN_selection", "null_mean", "null_sd", "mask_pix", "detected", "detected_literal")},
+                                     S_shifted_true_mask=Ssh, mask_px=int(mask.sum()),
                                      injection_null={k: v for k, v in inj.items() if k != "values"}, injection_null_values=inj["values"],
                                      info_addendumB=dict(null_mean=muB, null_sd=sdB, n=len(nul), statistic=statB, mask_px_median=int(np.median(npx)), mask_px_max=int(npx.max())),
                                      info_addendumA=dict(ring_rms=rs, sigma=Ssh / rs),
@@ -708,7 +715,7 @@ def mutate_fallback_selftest(run):
             ok = info["label"] == "MUTATE fallback +1000 (CLARIFICATION A-G11)" and (code == 2 if want == 2 else (info.get("runnable") and code == (1 if info.get("bites") else 0)))
             run.check(f"A-G11 tiny MOCK cube, v -1000..+{vhi:.0f} km/s: " + ("+2000 leaves, '{}' runs and the exit code follows it".format("MUTATE fallback +1000 (CLARIFICATION A-G11)") if want == 1
                       else "+2000 and +1000 both leave the window, exit 2"), ok, f"exit {code}; {info['label']}"
-                      + (f"; addendum-C statistic {info['statistic']:+.2f} -> {'bites' if info['bites'] else 'does NOT bite'} (mask {info['mask_px']} px, injected-copy masks median {info['injection_null']['mask_px_median']} px)"
+                      + (f"; addendum-D S/N {info['statistic']:+.2f} -> {'bites' if info['bites'] else 'does NOT bite'} (fresh shifted-window mask {info['fresh_mask_px']} px)"
                          if "statistic" in info else ""))
     finally:
         shutil.rmtree(d, ignore_errors=True)
@@ -773,7 +780,7 @@ def main():
     run.P("Frozen predictions = CFG571's four models as sealed. The CFG689 native a0(z) band folded into THEORY_CANONICAL_2026-10-18 does NOT change them and is not scored here.")
     run.P("kappa = 1/2 FITTED; footings never pooled; routes never averaged; single disc = demonstration, no exclusion; not theory closed.")
     run.P(f"target: GS4_24110 RA {RA} Dec {DEC}; [CI](2-1) observed at {NU_OBS:.4f} GHz (z {Z_LINE}); R_e {RE} kpc = {RE / KPA:.3f}\"")
-    clar = C.announce_clarification(run, C.GS4_CLAR, __file__, addenda=[(C.GS4_ADD, C.ADD_COMMIT), (C.GS4_ADD_B, C.ADD_B_COMMIT), (C.GS4_ADD_C, C.ADD_C_COMMIT)])
+    clar = C.announce_clarification(run, C.GS4_CLAR, __file__, addenda=[(C.GS4_ADD, C.ADD_COMMIT), (C.GS4_ADD_B, C.ADD_B_COMMIT), (C.GS4_ADD_C, C.ADD_C_COMMIT), (C.GS4_ADD_D, C.ADD_D_COMMIT)])
     run.P(f"memory guard: MallocMediumZone={os.environ.get('MallocMediumZone', 'unset')} (macOS; see the top of this script)")
     snap0 = C.snapshot(); res = dict(K1=C.verify_frozen(run), memory_guard=dict(MallocMediumZone=os.environ.get("MallocMediumZone")), **clar)
     if run.failed():
