@@ -2,14 +2,26 @@
 
 2026-10-20. **Target not achieved.** No healthy microscopic model found
 here forces `epsilon C3^2/C2^3 = 128pi/9`, or equivalently `xi=1/4`
-in the single-mediator force convention. The latest advance is a universal
-attractive metric MOND mechanism, an explicit allowed amplitude deformation,
-and a curved-background clock health improvement. Earlier band, current
-and auxiliary calculations remain below with their original scopes.
+in the single-mediator force convention. The latest attack constructs an
+explicit local supersymmetric realization of the amplitude deformation
+and tests genuine Goldstone, extended-SUSY and interacting-CFT protection.
+Earlier metric-source, band, current and auxiliary results retain their
+original scopes.
 
 Standing empirical status: **kappa=1/2 FITTED**. CFG493 gives
 kappa_Lambda=0.417+/-0.095 and kappa_crit=0.345+/-0.078 on separate
 footings. Neither is used as an input to any calculation here.
+
+The [microscopic-protection continuation](formal/symmetry_protection/RESULT.md)
+finds that local N1 symmetry permits the exact eta potential at fixed
+vacuum/quadratic data, including an ordinary finite-mass scalar parent.
+Genuine DBI/Galileon symmetries protect different derivative structures
+and forces. Extended N2 FI/metric protection leaves a source/operator and
+vacuum-normalization gap. A concrete interacting dimension4/3 CFT matches
+the desired hyperscaling exponent but its bottom-source proposal runs
+away; the stable affine-source class has the wrong leading sign. Protected
+anomaly and duality data do not supply the missing amplitude. These are
+restricted analytic tests, with no new Lean module or microscopic selector.
 
 The [geometric-source continuation](formal/geometric_source/RESULT.md)
 derives the actual metric source and interpolation in a higher-gradient

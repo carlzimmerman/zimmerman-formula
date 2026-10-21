@@ -17,7 +17,7 @@ record these partial results without adding a determinate trial.
 | Regular healthy microscopic action and zero-field quantum state | Latest c1 clock/metric vacuum modes have positive constrained coefficients and controlled near-vacuum homogeneous decay. The rational scalar/auxiliary vacuum, finite-gradient finite-k modes and microscopic quantum state remain unresolved. | Incomplete |
 | Actual MOND force and force-calibrated G | Latest higher-gradient order parameter gives universal attractive metric MOND in its local static EFT window. Retained gradients, normal-fluid equations and a complete curved halo remain necessary. | Partial |
 | Same-state positive gravitating vacuum stress | Paired-band stress has a kernel-checked order-one defect under its prescription. Temporal parent carries an independent epsilon0 and unspecified gravitating clock. | Missing |
-| Independent principle forcing xi=1/4 | A permitted bounded potential changes the new formal cubic at fixed vacuum/UV/quadratic data. Weyl geometry leaves an invariant vacuum/cubic combination free. No Ward, gap or constraint equation selects it. | Missing |
+| Independent principle forcing xi=1/4 | The amplitude-changing potential has an explicit local N1 completion. Tested Goldstone, extended-N2 and interacting-CFT protections give different operators/forces, unstable source proposals or an unfixed vacuum bridge. No Ward, gap or constraint equation selects the physical ratio. | Missing |
 | End-to-end Lean proof with all leaves established | Nine partial modules compile using only standard axioms. Physical dictionaries and field/PDE bridges remain explicit analytic inputs. Pi adapter is unverified under the current memory cap. | Incomplete |
 | Independent second physical prediction | No determinate normalization candidate exists. | Missing |
 
@@ -231,3 +231,52 @@ Geometric-source reviewed evidence: be8fc76cb; campaign rows K715-K718.
 The regenerated campaign checks pass4/4. The56 determinate trials,
 67 menus and all campaign P_LEE values are unchanged. This is progress,
 with the original healthy microscopic normalization/Lean goal still active.
+
+## Direct microscopic protection attack
+
+Criteria-only1d58a0851 continues b37b50b1c. This turn made progress by
+executing new exact symmetry/action/source discriminators; the unchanged
+original goal remains active. Details: symmetry_protection/RESULT.md.
+
+The exact chi^6/(1+chi^2)^6 potential has a real constrained-superfield
+local N1 completion with fixed vacuum, breaking scale, gravitino mass
+and quadratic data. An ordinary finite-mass S,T sigma model supplies
+the same real-slice potential and positive local transverse bosonic
+masses. Neither is claimed as a renormalizable UV model or a supersymmetric
+completion of the full MOND/fluid action. Local N1 symmetry alone does
+not forbid the specific operator.
+
+The inherited canonical action has only its reflecting internal point
+symmetry. A genuine shift removes both the potential and the required
+chi-dependent coefficients. Exact DBI/Galileon protections admit explicit
+source calculations but different derivative structures/force exponents.
+The AdS geometric-charge example is attractive with quadratic IR; its
+probe potential and additive-constant convention do not select a positive
+gravitating vacuum.
+
+The distinct N2 electric/magnetic FI action retains an independent2mp
+constant and a regular gapped scalar. An allowed prepotential changes a
+sextic jet at fixed vacuum quadratic data. The protected Higgs metric is
+a rigid unbroken two-derivative result, with zero-energy quotient vacuum;
+its transfer to the MOND gravitational NLO operator is missing.
+
+The interacting H1 dimension4/3 operator matches the simple cubic
+hyperscaling exponent, but its bottom-source proposal runs away on the
+full Coulomb branch. Stable affine-source ground energy has the inherited
+concavity sign, including for Hermitian interacting fermionic theories
+under the stated common-domain assumptions. Supersymmetric descendant
+sources have different dimensions. Protected anomaly and large-charge
+duality calculations give different observables/stress; ordinary static
+duality leaves every cubic coefficient admissible.
+
+No new Lean module duplicates a minimum, coefficient identity or the
+inherited general concavity principle. The new raw packets have independent
+analytic reviews. No healthy microscopic MOND state, invariant selector,
+second prediction or end-to-end physical proof is claimed. Actual pi and
+all missing physical/quantum bridges remain open.
+
+Microscopic-protection reviewed evidence:99963e8f1; campaign K721-K724.
+All five inherited evidence validators freshly pass, with nine partial
+modules and61 critical standard-axiom prints. Campaign regeneration
+passes4/4;56 determinate trials,67 menus and all P_LEE values are unchanged.
+The original goal remains active and no target selection is claimed.

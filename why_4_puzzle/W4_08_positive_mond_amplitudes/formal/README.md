@@ -9,6 +9,15 @@ The reviewed formal/physical checkpoint is f77a0cd8d; registry rows
 K673-K678 record its separate stress, scale, vector, pressure, BMB and
 formal scopes. None is a determinate normalization candidate.
 
+The latest [microscopic-protection checkpoint](symmetry_protection/RESULT.md),
+criteria1d58a0851, realizes the actual eta potential in local N1 models
+and executes exact Goldstone, extended-N2 and interacting-critical tests.
+The tested exact protections permit the deformation, protect different
+operators/forces or lack a positive same-state vacuum/source bridge.
+No microscopic ratio selector or new Lean module is obtained. These new
+action-level results are analytic and independently cross-reviewed;
+the nine partial modules below retain their scopes.
+
 Latest [geometric-source checkpoint](geometric_source/RESULT.md), criteria
 1a46afd06, adds analytic universal metric attraction, an explicit cubic
 deformation, a Weyl action/source audit and exact curved c1-clock constraint
