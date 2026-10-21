@@ -18,3 +18,19 @@
 - Audit note: check C2 reads the TeX source, because pdftotext puts the "−16" superscript on another line; A1 ties the PDF to
   the TeX.
 - The Zenodo metadata file is kept out of git (it carries the author's name), as for PAPER50–54.
+
+## v1.1 (2026-10-20, owner's explicit go): correction on field null points
+- Published as a NEW VERSION of record 23501949: **DOI 10.5281/zenodo.23524075** (https://zenodo.org/record/23524075), version 1.1,
+  concept record 23501948 (shared with v1.0). Live file: 70379 bytes, md5 de78b1bb06e35c298ab32ae4532ce556, identical to the committed PDF.
+  v1.0 (23501949) is unchanged.
+- **Change:** one dated correction paragraph after §3, and a pointer in §3's last sentence.
+  - The exact static solution needs negative cold density in a thin pancake through a two-body saddle (|z| ≲ 0.05d, R ≲ 0.43d):
+    −89 ρ̄ for a MW–M31-like pair and −33 ρ̄ for a cluster pair at R = 0.2d, canonical footing. A positive-mass medium cannot supply
+    this.
+  - Prediction: no negative lensing trough through the saddle. The unsuppliable column is −1.9 to −2.1 M☉/pc² (MW–M31-like) and
+    −4.6 to −5.1 M☉/pc² (cluster pair), edge-on.
+  - Source: lane AG6C (argon_push/AG6C_relativistic_completion; reviewed, outputs reproduced).
+- **Gate:** build, then `PAPER49_audit.py` ALL PASS. It now has 62 checks: section V reads every correction number from AG6C's
+  own output and JSON. MUTATE fails B1–B3 as designed. Then `PAPER49_zenodo_publish.py --newversion 23501949`.
+- **Audit-code fix before deposit (disclosed):** the first V2 check compared the column values as text strings, and the sort
+  order inverted −1.9 and −2.1. It now compares numbers. No gate or paper text changed.
