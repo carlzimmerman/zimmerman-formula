@@ -1,0 +1,128 @@
+================================================================================================================
+WT-04  clocks where the extra gravity acts   (criteria 0493b61a5, A1 c29715ec0)   [MUTATE]
+kappa = 1/2 FITTED; footings never pooled; Z = 5.7888; cold energy is real gravitating mass; not theory closed
+footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2
+================================================================================================================
+
+==================== (a) CLOCK POTENTIAL vs LENSING POTENTIAL (sympy) ====================
+  G^t_t = -8 pi G rho/c^2 with e^(-2 beta) = 1 - 2Gm/(r c^2), m' = 4 pi r^2 rho: residual 0
+  G^r_r = 8 pi G p_r/c^4  =>  alpha' = G*(c**2*m(r) + 4*pi*r**3*p_r(r))/(c**2*r*(-2*G*m(r) + c**2*r))   (sympy solve agrees: True)
+  Phi' = c^2 alpha' = 2*G**2*epsilon*m(r)**2/r**3 + 4*pi*G*epsilon*r*p_r(r) + G*m(r)/r**2   [eps = 1/c^2; the G^2 m^2 term is nonlinear GR, common to both theories]
+  isotropic transform (linear): Psi' = G*m(rtilde)/rtilde**2   (= G m/r^2: True)
+  framework minus G0 at the same T00 (same m, same Psi): delta Phi' = 4*pi*G*r*p_r(r) / c^2
+  => Phi_clock - Phi_L = (Phi - Psi)/2 with (Phi - Psi)' = 4 pi G r p_r / c^2. With the tether p_r = -W_full(u) < 0:
+     the clock potential is SHALLOWER than lensing's by a stress term; at p_r = 0 it is an identity (Phi = Psi).
+  [PASS] A_sympy_derivation: alpha' from G^r_r; Psi' = Gm/r^2; delta Phi' = 4 pi G r p_r/c^2 (exact at fixed T00)
+  [PASS] K2c_exterior_Phi_eq_Psi: p = 0 exterior: Phi' = Psi' = GM/r^2 (Phi = Psi = -GM/r, gamma_PPN = 1)
+  IDENTITY FLAGS (no verdict weight): (i) the clock rate g_00 IS the potential that moves slow baryons (minimal coupling,
+  both theories), so clock data = dynamics data exactly; (ii) clock vs lensing differ only by (Phi - Psi)/2, set by p_r.
+
+==================== K1a: CFG938 S4 cluster slip reproduced ====================
+  [canonical] s_grad(W) = 5.077969e-06  vs committed 5.077969e-06  (rel 0.0e+00)
+  [alt] s_grad(W) = 5.791625e-06  vs committed 5.791625e-06  (rel 4.4e-16)
+  [PASS] K1a_CFG938_cluster_slip: reproduces 5.0780e-6 / 5.7916e-6 to < 1e-6
+
+==================== K1b: CFG804 census N and edge ====================
+  log M_b 10.5 -> N = 10.000000, log M_ta = 12.3037; edge(N=10) = 54.138 r_M (CFG804 bin 1: 54 r_M)
+  [PASS] K1b_CFG804_census_edge: N 10.000000, log M_ta 12.304, edge 54.14 r_M
+
+==================== K2/K3/K4: integrator and kinematics controls ====================
+  [PASS] K2a_sun_surface_redshift: integrator 0.63633 km/s; analytic GM/(Rc) 0.63633 km/s (textbook 0.636)
+  [PASS] K2b_plummer_centre: Phi(0) numeric/analytic = 1.0000000
+  [PASS] K3_NFW_potential: max |numeric - analytic|/max = 1.32e-09
+  [PASS] K4_kinematic_terms: light cone: MC +3.228 +- 0.160 km/s vs <v_z^2>/c +3.335; TD: MC 5.0064 vs (3/2) sigma^2/c 5.0035 km/s
+  report-only light-cone run at sigma = 0.05c: shift 0.00254 c +- 0.00003 vs <v_z^2>/c^2 = 0.00250  (z = +1.30)
+
+==================== (b) TIME-DILATION DEPTH OF ISOLATED GALAXIES ====================
+
+  NGC3198: M_b = 4.720e+10 Msun (Upsilon 0.61), R_last = 44.08 kpc, V_obs(last) 149.0 km/s, census N = 10.000 (log M_ta 12.48), supply M_c = 2.532e+12 Msun
+  [canonical] edge R_e = 453.9 kpc = 54.14 r_M | D(law+edge) = 1.7481e-06 (FINITE: True; D_L 10R_e vs 1000R_e rel 4.3e-10) | D(Newton) = 4.1014e-07 | law/Newton = 4.26
+         no edge: D_L(1, 10, 100 Mpc) = 1.9609e-06, 2.5813e-06, 3.2016e-06  (grows ~ v^2 ln L)
+         variants: nu_mono 1.7379e-06 | edge at 3 Mpc 2.2569e-06 | supply x2 1.9336e-06 (dD/dlnR_e = 2.694e-07, v(R_e)^2/c^2 = 2.719e-07) | E1 EFE 0.01/0.03 a0 with edge 1.2085e-06 / 1.0580e-06; no edge (100 Mpc, 10 Gpc) 1.2085e-06, 1.2085e-06 / 1.0580e-06, 1.0580e-06
+         Phi/c^2 (law): centre -1.7480e-06, 10 kpc -1.3344e-06, 30 kpc -1.0336e-06, R_e -2.7193e-07 | Newton: centre -4.1014e-07, 30 kpc -7.2742e-08
+         tether stress: delta Phi/c^2 at centre +1.748e-07 (F_b = 1.00e-01); max |delta Phi/Phi| = 1.00e-01
+         a clock at the centre loses 24123 yr per 13.8 Gyr against one at infinity (Newton-baryons: 5660 yr)
+  [alt] edge R_e = 412.9 kpc = 54.14 r_M | D(law+edge) = 1.8673e-06 (FINITE: True; D_L 10R_e vs 1000R_e rel 4.4e-10) | D(Newton) = 4.1014e-07 | law/Newton = 4.55
+         no edge: D_L(1, 10, 100 Mpc) = 2.1293e-06, 2.8113e-06, 3.4933e-06  (grows ~ v^2 ln L)
+         variants: nu_mono 1.8579e-06 | edge at 3 Mpc 2.4547e-06 | supply x2 2.0712e-06 (dD/dlnR_e = 2.962e-07, v(R_e)^2/c^2 = 2.989e-07) | E1 EFE 0.01/0.03 a0 with edge 1.2736e-06 / 1.1077e-06; no edge (100 Mpc, 10 Gpc) 1.2736e-06, 1.2736e-06 / 1.1077e-06, 1.1077e-06
+         Phi/c^2 (law): centre -1.8673e-06, 10 kpc -1.4291e-06, 30 kpc -1.1044e-06, R_e -2.9894e-07 | Newton: centre -4.1014e-07, 30 kpc -7.2742e-08
+         tether stress: delta Phi/c^2 at centre +1.867e-07 (F_b = 1.00e-01); max |delta Phi/Phi| = 1.00e-01
+         a clock at the centre loses 25768 yr per 13.8 Gyr against one at infinity (Newton-baryons: 5660 yr)
+
+  DDO154: M_b = 3.696e+08 Msun (Upsilon 0.61), R_last = 5.92 kpc, V_obs(last) 45.5 km/s, census N = 10.000 (log M_ta 10.37), supply M_c = 1.982e+10 Msun
+  [canonical] edge R_e = 40.2 kpc = 54.14 r_M | D(law+edge) = 1.1106e-07 (FINITE: True; D_L 10R_e vs 1000R_e rel 5.9e-10) | D(Newton) = 1.0243e-08 | law/Newton = 10.84
+         no edge: D_L(1, 10, 100 Mpc) = 1.8771e-07, 2.4260e-07, 2.9750e-07  (grows ~ v^2 ln L)
+         variants: nu_mono 1.1099e-07 | edge at 3 Mpc 2.1390e-07 | supply x2 1.2748e-07 (dD/dlnR_e = 2.384e-08, v(R_e)^2/c^2 = 2.406e-08) | E1 EFE 0.01/0.03 a0 with edge 6.2446e-08 / 4.8408e-08; no edge (100 Mpc, 10 Gpc) 6.2446e-08, 6.2446e-08 / 4.8408e-08, 4.8408e-08
+         Phi/c^2 (law): centre -1.1106e-07, 10 kpc -5.7881e-08, 30 kpc -3.1093e-08, R_e -2.4062e-08 | Newton: centre -1.0243e-08, 30 kpc -5.8956e-10
+         tether stress: delta Phi/c^2 at centre +1.111e-08 (F_b = 1.00e-01); max |delta Phi/Phi| = 1.00e-01
+         a clock at the centre loses 1533 yr per 13.8 Gyr against one at infinity (Newton-baryons: 141 yr)
+  [alt] edge R_e = 36.5 kpc = 54.14 r_M | D(law+edge) = 1.1906e-07 (FINITE: True; D_L 10R_e vs 1000R_e rel 6.1e-10) | D(Newton) = 1.0243e-08 | law/Newton = 11.62
+         no edge: D_L(1, 10, 100 Mpc) = 2.0580e-07, 2.6615e-07, 3.2650e-07  (grows ~ v^2 ln L)
+         variants: nu_mono 1.1900e-07 | edge at 3 Mpc 2.3459e-07 | supply x2 1.3711e-07 (dD/dlnR_e = 2.621e-08, v(R_e)^2/c^2 = 2.645e-08) | E1 EFE 0.01/0.03 a0 with edge 6.5443e-08 / 5.0008e-08; no edge (100 Mpc, 10 Gpc) 6.5443e-08, 6.5443e-08 / 5.0008e-08, 5.0008e-08
+         Phi/c^2 (law): centre -1.1906e-07, 10 kpc -6.1059e-08, 30 kpc -3.1669e-08, R_e -2.6452e-08 | Newton: centre -1.0243e-08, 30 kpc -5.8956e-10
+         tether stress: delta Phi/c^2 at centre +1.191e-08 (F_b = 1.00e-01); max |delta Phi/Phi| = 1.00e-01
+         a clock at the centre loses 1643 yr per 13.8 Gyr against one at infinity (Newton-baryons: 141 yr)
+
+==================== (c) CLUSTER GRAVITATIONAL REDSHIFT ====================
+  [PASS] K1c_CFG949_gas_extrapolation: median M_gas(<3 Mpc)/M_gas500 = 4.5688 (16-84%: 3.60-5.77; CFG949: 4.57 (3.60-5.78))
+  cluster 16%: M_gas500 = 3.471e+12 Msun, R500 = 0.609 Mpc (median of 15 within 0.1 dex)
+  cluster 50%: M_gas500 = 1.161e+13 Msun, R500 = 0.789 Mpc (median of 61 within 0.1 dex)
+  cluster 84%: M_gas500 = 2.942e+13 Msun, R500 = 0.964 Mpc (median of 42 within 0.1 dex)
+
+  [canonical] R-LAW primary (median cluster, nu_mono, edge, rho_tot tracer, no BCG, R_ap 6 Mpc, delta_SB 2):
+         census N = 1.116, M_b(<3 Mpc) = 6.326e+13, supply M_c = 3.788e+14 Msun, edge R_e = 2.266 Mpc
+         Delta_grav = -3.053 km/s, kinematic (TD + LC - SB) = +0.334 km/s (sigma_LOS ~ 447 km/s), total P = -2.719 km/s
+         profile Delta_grav at R = 0.6/1.6/3.3/5.2 Mpc: -2.38, -3.78, +nan, +nan km/s; kinematic: +0.45, +0.25, +0.00, +0.00
+         band over the declared grid (288 members): [-13.04, -0.77] km/s; Delta_grav alone [-10.65, -1.68]
+         tether stress in Delta_grav: max F_c = 1.00e-01 (framework minus G0 at the same T00)
+         [report only, added after run 1] band ends: lo -13.04 (q84 S2 edge=False bcg=True tracer=tot Rap=6.0 dSB=4.0); hi -0.77 (q16 mono edge=True bcg=False tracer=tot Rap=3.0 dSB=0.0)
+         [report only] cluster 16%: P band [-7.31, -0.77], Delta_grav [-6.27, -1.68] km/s
+         [report only] cluster 50%: P band [-9.91, -1.38], Delta_grav [-8.26, -3.05] km/s
+         [report only] cluster 84%: P band [-13.04, -2.04], Delta_grav [-10.65, -4.63] km/s
+
+  [alt] R-LAW primary (median cluster, nu_mono, edge, rho_tot tracer, no BCG, R_ap 6 Mpc, delta_SB 2):
+         census N = 1.116, M_b(<3 Mpc) = 6.326e+13, supply M_c = 3.788e+14 Msun, edge R_e = 2.126 Mpc
+         Delta_grav = -3.193 km/s, kinematic (TD + LC - SB) = +0.353 km/s (sigma_LOS ~ 460 km/s), total P = -2.839 km/s
+         profile Delta_grav at R = 0.6/1.6/3.3/5.2 Mpc: -2.54, -4.07, +nan, +nan km/s; kinematic: +0.47, +0.23, +0.00, +0.00
+         band over the declared grid (288 members): [-14.09, -0.80] km/s; Delta_grav alone [-11.48, -1.76]
+         tether stress in Delta_grav: max F_c = 1.00e-01 (framework minus G0 at the same T00)
+         [report only, added after run 1] band ends: lo -14.09 (q84 S2 edge=False bcg=True tracer=tot Rap=6.0 dSB=4.0); hi -0.80 (q16 mono edge=True bcg=False tracer=tot Rap=6.0 dSB=0.0)
+         [report only] cluster 16%: P band [-7.86, -0.80], Delta_grav [-6.72, -1.76] km/s
+         [report only] cluster 50%: P band [-10.70, -1.43], Delta_grav [-8.89, -3.19] km/s
+         [report only] cluster 84%: P band [-14.09, -2.21], Delta_grav [-11.48, -5.03] km/s
+
+  R-HUT (CFG949 primary-corner medians c 23.21, r_s 232.7 kpc, r_b 5.40 Mpc, M_cold 3.815e+14 Msun; footing independent):
+         Delta_grav = -7.889, kinematic +0.333, total P = -7.556 km/s; profile -7.12, -9.25, -10.45, -10.95 km/s
+         band [-11.04, -5.67] km/s.  Newtonian baryons only (median, rho tracer, 6 Mpc): Delta_grav -0.505 km/s
+  FRAMEWORK-INTERNAL: Delta_grav(R-LAW)/Delta_grav(R-HUT) = canonical 0.387, alt 0.405  (the law's core deficit seen by clocks)
+
+  DATA CLASS (c), frozen rule:
+    R-LAW|canonical   : NOT DIAGNOSTIC (PROVISIONAL)     W11 z_mid +1.66, z_near 0.00; S15 z_mid +1.18, z_near 0.00; R23 z_mid +2.63, z_near 0.00
+    R-LAW|alt         : NOT DIAGNOSTIC (PROVISIONAL)     W11 z_mid +1.62, z_near 0.00; S15 z_mid +1.17, z_near 0.00; R23 z_mid +2.59, z_near 0.00
+    R-HUT             : CONSISTENT (PROVISIONAL)         W11 z_mid +0.05, z_near 0.00; S15 z_mid +0.49, z_near 0.00; R23 z_mid +1.16, z_near 0.11
+    J15 (~ -10 km/s, no uncertainty): reported, not graded.
+  G1 (report only): a dispersion-supported cold halo (p_r = rho sigma^2 > 0) shifts Delta_grav by 3.46e-06 (opposite sign to the tether)
+
+==================== (d) STRONG-LENS FERMAT POTENTIAL ====================
+  [canonical] lens M_b 2e11 Msun, census N 4.57, edge 434 kpc: Fermat-potential difference (2 -> 8 kpc) framework vs G0 at the same T00: fractional 5.00e-02; at fixed Sigma_lens: 0 (identity)
+  [alt] lens M_b 2e11 Msun, census N 4.57, edge 395 kpc: Fermat-potential difference (2 -> 8 kpc) framework vs G0 at the same T00: fractional 5.00e-02; at fixed Sigma_lens: 0 (identity)
+
+==================== (e) THEORY VERDICT (frozen rule: SAME iff every F < 1e-3 on both footings) ====================
+  [canonical] F_a 1.00e-01  F_b 1.00e-01  F_c 1.00e-01  F_d 5.00e-02  -> max 1.00e-01
+  [alt] F_a 1.00e-01  F_b 1.00e-01  F_c 1.00e-01  F_d 5.00e-02  -> max 1.00e-01
+  THEORY CLASS: DISTINCT SIGNATURE (largest: F_a on alt = 1.00e-01)
+
+==================== MUTATE TEETH ====================
+  [PASS] T1_slip_injection_flips_class: theory class with s = 0.1 injected: DISTINCT SIGNATURE (largest: F_a on alt = 1.00e-01)
+  [FAIL] T2_a0_zero_gives_Newton: D(a0=0) / D(Newton) = 1.000000005; cluster Delta_grav(a0=0) / baryons-only = 1.000425357
+  [PASS] T3_no_supply_edge_not_finite: N = inf: D_L(10 R_e) 2.3684e-06 vs D_L(1000 R_e) 3.6092e-06 (rel 5.24e-01); FINITE fails
+
+==================== SUMMARY ====================
+  theory (e): DISTINCT SIGNATURE (largest: F_a on alt = 1.00e-01)
+  [canonical] NGC 3198 depth 1.748e-06 (Newton 4.101e-07, x4.26, edge 454 kpc); DDO 154 1.111e-07 (Newton 1.024e-08, x10.84, edge 40 kpc)
+         cluster R-LAW P = -2.72 km/s (grav -3.05); class NOT DIAGNOSTIC (PROVISIONAL)
+  [alt] NGC 3198 depth 1.867e-06 (Newton 4.101e-07, x4.55, edge 413 kpc); DDO 154 1.191e-07 (Newton 1.024e-08, x11.62, edge 37 kpc)
+         cluster R-LAW P = -2.84 km/s (grav -3.19); class NOT DIAGNOSTIC (PROVISIONAL)
+  R-HUT P = -7.56 km/s (grav -7.89); class CONSISTENT (PROVISIONAL)
+  checks: 11/12 pass; peak RSS 0.204 GB; 5.6 s
+kappa = 1/2 FITTED; footings never pooled; cold energy mass required; not theory closed.

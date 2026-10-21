@@ -1,0 +1,110 @@
+CFG958  one energy channel: cold energy <-> dark energy (interacting vacuum)   stage=MAIN
+  criteria 8d7764d74; A1 11e0bdd4b; A2 84c9ebd9c; kappa = 1/2 FITTED; footings never pooled; cold energy (no particle species); not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10;  native Delta_ta(0) = 11.830836;  engine f_b = 0.157126
+  CFG689 (transcribed): omega_DE(0) = 0.31161, omega_c = 0.120195; rho_DE0 = 5.8530e-27 kg/m^3; Vbar = 5.2604e-10 J/m^3; H0 = 67.696 km/s/Mpc
+  NGC 3198: 43 radii to 44.08 kpc, M_b(< last) = 4.7201e+10 M_sun (Upsilon 0.61)
+
+==================== SYMPY STRUCTURE ====================
+  [PASS] T1a_vacuum_exchange_identity: Minkowski: div(-V g) + grad V = 0 in all 4 components: True; flat FRW: div(-V g) + grad V = 0 in all 4 components: True (Q^nu = -grad^nu V; matter receives +grad V)
+  [PASS] T1b_event_algebra: capture/merge K-loss = mu|dv|^2/2 >= 0: True; momentum adds: True; Delta(K + W + E_V) = 0 at an event: True; reshape (E_V -= dW_shape): True
+  [PASS] T1c_momentum_and_S-TM: T_V^(0i) = 0 in every boosted frame and T_V boost-invariant: True; net force and torque of the reaction +grad(dV) for a non-spherical off-centre deposit: [0, 0, 0] / [0, 0, 0]; P-U edge shell term 0 => the body's centroid law R4 and CFG953's relocation term R = 0 are unchanged (per-owner holding)
+  [PASS] T1d_composite_is_dust: -dV g + dV (g + u u) = dV u u: True; d_mu(L(x - vt) u^mu u^nu) = [0, 0]: the composite has no stress (no slip) and gravitates as dust of energy dV, exactly as CFG953's E_int would
+  [PASS] T-S_SCT_events_need_no_entropy: S1 conversion: total dust H unchanged by relabelling: True; labelled sector's book energy is identically 0 (T_lab = 0): a zero-temperature entropy store; S2 merger draw D: zero-entropy DE dS = 0, heat bath dS = -D/T_R < 0: True; S3 reshape is reversible work: True
+  [PASS] K6_CFG955_L7_Clausius: dS_d/dt - Q/T_J - (3/2)(rho/tau)(T_J - T)^2/(T T_J) = 0; cooling branch T = T_J(1 + x): dS_d/dt = -3*rho*x/(2*tau*(x + 1)) < 0, so a zero-entropy receiver gives dS_tot < 0 (S4: K-T and the CFG935 bath cannot use a coherent dark energy)
+  V2 (one channel for SCT + CFG935 + CFG955): ONLY WHERE NO ENTROPY IS EXCHANGED  [SCT events and the class-A drift (CFG542 Pb, coherent partner) admissible; CFG955 K-T and CFG935's bath need a heat bath]
+  T4 structure: IV stress has no derivative of V: True; homogeneous dV evolution Eq(dV(x0), C1) (no propagating mode); R-phi perturbation friction = 3*H + Q/Derivative(phi0(t), t)**2 (sympy, = 3H + Q/phidot^2: True); R-F dv/dt = (-Q*v*w - Q*v + Q*v_c - grad_dp)/(rho_0*(w + 1)), d/dv_c = Q/(rho_0*(w + 1)) -> oo as w -> -1+
+
+==================== K CONTROLS ====================
+  [PASS] K1_CFG953_S-En_reproduced: max relative difference over 13 masses x 2 footings x 5 columns = 0.00e+00; E_rel/(M_c c^2) canonical 4.104e-11, 3.920e-09, 3.230e-07, 3.721e-05 (M_b 1e3, 1e7, 1e11, 1e15)
+  [PASS] K3_CFG689_band_nodes: transcribed sqrtX 16/50/84 at z 1.0/1.2/1.5/2.33 vs README/THEORY_CANONICAL: max |diff| 4.9e-04; vs CFG956's independent K4 re-implementation (MC): 0.0e+00 (reported)
+  [PASS] K4_CFG953_NGC3198_law_no_channel: canonical/simple dev 2.2e-16, r_e 453.9 kpc; canonical/mono dev 2.2e-16, r_e 453.9 kpc; alt/simple dev 2.2e-16, r_e 412.9 kpc; alt/mono dev 2.2e-16, r_e 412.9 kpc
+  [PASS] K5_sol61_local_reaction_numbers: eta F at t = tau 0.63212; deposited/rest 2.81332e-07 (200 km/s), 7.03329e-06 (1000 km/s)
+  K overall (K1, K3-K6; K2 in the main stage): PASS
+
+==================== MAIN ====================
+  T1e / K2: CFG953 toys with the vacuum ledger E_V (= CFG953's E_int increments)
+     run E, dt 2e-3 (ledger +1): dP/P_scale 6.57e-16, dL/L_scale 7.91e-16, |dE_booked|/|E0| 1.474e-04, |dE_mech|/|E0| 2.493e-01, wrong-sign ledger 4.988e-01 (E0 -29.588); E_int/|E0|: conversion -0.22681, reshape -0.00005, merge +0.00000; conversions 260, merges 0
+     run M, dt 2e-3 (ledger +1): dP/P_scale 1.61e-15, dL/L_scale 2.33e-15, |dE_booked|/|E0| 2.461e-05, |dE_mech|/|E0| 2.174e-01, wrong-sign ledger 4.347e-01 (E0 -75.932); E_int/|E0|: conversion +0.00000, reshape -0.00924, merge -0.20693; conversions 0, merges 1
+  [PASS] K2_CFG953_toy_E_int_reproduced: max |difference| in units of |E0| = 0.00e+00 (conversion -0.22681, merge -0.20693)
+  [PASS] T1e_toy_total_energy_with_vacuum_ledger: |d(K + W + E_V)|/|E0| E 1.474e-04, M 2.461e-05 (line 1e-3; equal to CFG953's E_int-booked residual); dP, dL <= 2.3e-15; without the ledger |dE_mech|/|E0| 0.249 / 0.217
+  T1 exchange: PASS.  Locality: Q^nu = -grad^nu V is a pointwise identity; WHERE V changes is a non-local, retarded functional of each body (CH-L) or of the whole cosmic volume (CH-G): the channel is non-local, as SCT's source is
+
+  T2a cosmic size (hard ceiling; CFG689 primary band)
+    canonical z 1.0 : ceiling drho/rho 1.37e-04; |d ln a0(z) - d ln a0(0)| <= 6.83e-05 vs 0.1 x half-width 0.013 (ratio to half-width 5.2e-04) -> PASS
+    canonical z 1.2 : ceiling drho/rho 1.77e-04; |d ln a0(z) - d ln a0(0)| <= 8.84e-05 vs 0.1 x half-width 0.014 (ratio to half-width 6.2e-04) -> PASS
+    canonical z 1.5 : ceiling drho/rho 2.50e-04; |d ln a0(z) - d ln a0(0)| <= 1.25e-04 vs 0.1 x half-width 0.020 (ratio to half-width 6.1e-04) -> PASS
+    canonical z 2.33: ceiling drho/rho 6.28e-04; |d ln a0(z) - d ln a0(0)| <= 3.14e-04 vs 0.1 x half-width 0.044 (ratio to half-width 7.1e-04) -> PASS
+    canonical native PM-anchored (CFG424 switch-on fraction x S-En eps at M_b 1.21e+10 .. 1e14): drho/rho at z 0 / 0.5 / 1 = [7.4e-09, 8.4e-07]; [2.1e-08, 2.4e-06]; [6.0e-08, 6.8e-06]
+    alt       z 1.0 : ceiling drho/rho 1.56e-04; |d ln a0(z) - d ln a0(0)| <= 7.79e-05 vs 0.1 x half-width 0.013 (ratio to half-width 5.9e-04) -> PASS
+    alt       z 1.2 : ceiling drho/rho 2.02e-04; |d ln a0(z) - d ln a0(0)| <= 1.01e-04 vs 0.1 x half-width 0.014 (ratio to half-width 7.1e-04) -> PASS
+    alt       z 1.5 : ceiling drho/rho 2.85e-04; |d ln a0(z) - d ln a0(0)| <= 1.43e-04 vs 0.1 x half-width 0.020 (ratio to half-width 7.0e-04) -> PASS
+    alt       z 2.33: ceiling drho/rho 7.17e-04; |d ln a0(z) - d ln a0(0)| <= 3.59e-04 vs 0.1 x half-width 0.044 (ratio to half-width 8.1e-04) -> PASS
+    alt       native PM-anchored (CFG424 switch-on fraction x S-En eps at M_b 1.21e+10 .. 1e14): drho/rho at z 0 / 0.5 / 1 = [6.7e-09, 7.6e-07]; [2.2e-08, 2.6e-06]; [6.4e-08, 7.2e-06]
+    canonical CFG630 native-anchored ledger x SCT/c_W (1.045, 1.093): drho/rho0 since z = 1 in [4.23e-07, 4.90e-07]; a0(z)/a0(0) - 1 at z 1/2/3: [-2.4e-07, -2.1e-07], [-6.3e-07, -5.1e-07], [-8.5e-07, -6.7e-07]
+    alt       CFG630 native-anchored ledger x SCT/c_W (1.046, 1.089): drho/rho0 since z = 1 in [4.06e-07, 4.59e-07]; a0(z)/a0(0) - 1 at z 1/2/3: [-2.3e-07, -2.0e-07], [-6.6e-07, -5.5e-07], [-9.0e-07, -7.2e-07]
+    CFG956 wave bound (read from its cfg956.json as found at run time): 95% amplitude bound eps95 in branch S [0.0348 (P 0.6), 0.3531]; branch C [0.0318 (P 0.5), 0.4213]; the channel's monotone shift is <= 3.6e-04
+  [PASS] T2a_cosmic_within_CFG689_band: hard ceiling below 0.1 x the CFG689 68% half-width at every node, both footings
+
+  T2b local size: NGC 3198 (43 radii), slip, EFE, Cassini, headroom; CH-L P-sigma / P-U, CH-G; a0-cos / a0-loc
+    canonical|simple|CH-L P-sigma     : eps 2.193e-07, dV/Vbar [5.73e-04, 8.83e-01], max |g/g_law - 1|: a0-cos 1.81e-07, a0-loc 6.53e-02; headroom min (Vbar - draw)/Vbar 0.7622
+    canonical|simple|CH-L P-U         : eps 2.193e-07, dV/Vbar [1.64e-05, 1.64e-05], max |g/g_law - 1|: a0-cos 1.86e-09, a0-loc 3.71e-06; headroom min (Vbar - draw)/Vbar 1.0000
+    canonical|simple|CH-G tP=1        : transit slip 4.0e-09, max |g/g_law - 1|: a0-cos 4.93e-09, a0-loc 4.93e-09; headroom min (Vbar - draw)/Vbar 1.0000
+    canonical|simple|CH-G tP=10       : transit slip 4.0e-10, max |g/g_law - 1|: a0-cos 4.93e-10, a0-loc 4.93e-10; headroom min (Vbar - draw)/Vbar 1.0000
+    canonical|mono|CH-L P-sigma       : eps 2.193e-07, dV/Vbar [5.74e-04, 8.04e-01], max |g/g_law - 1|: a0-cos 1.81e-07, a0-loc 6.47e-02; headroom min (Vbar - draw)/Vbar 0.7835
+    canonical|mono|CH-L P-U           : eps 2.193e-07, dV/Vbar [1.64e-05, 1.64e-05], max |g/g_law - 1|: a0-cos 1.87e-09, a0-loc 3.72e-06; headroom min (Vbar - draw)/Vbar 1.0000
+    canonical|mono|CH-G tP=1          : transit slip 4.4e-09, max |g/g_law - 1|: a0-cos 5.12e-09, a0-loc 5.12e-09; headroom min (Vbar - draw)/Vbar 1.0000
+    canonical|mono|CH-G tP=10         : transit slip 4.4e-10, max |g/g_law - 1|: a0-cos 5.12e-10, a0-loc 5.12e-10; headroom min (Vbar - draw)/Vbar 1.0000
+    alt|simple|CH-L P-sigma           : eps 2.477e-07, dV/Vbar [7.11e-04, 1.15e+00], max |g/g_law - 1|: a0-cos 2.08e-07, a0-loc 8.84e-02; headroom min (Vbar - draw)/Vbar 0.6983
+    alt|simple|CH-L P-U               : eps 2.477e-07, dV/Vbar [2.46e-05, 2.46e-05], max |g/g_law - 1|: a0-cos 2.57e-09, a0-loc 5.62e-06; headroom min (Vbar - draw)/Vbar 1.0000
+    alt|simple|CH-G tP=1              : transit slip 4.0e-09, max |g/g_law - 1|: a0-cos 5.37e-09, a0-loc 5.37e-09; headroom min (Vbar - draw)/Vbar 1.0000
+    alt|simple|CH-G tP=10             : transit slip 4.0e-10, max |g/g_law - 1|: a0-cos 5.37e-10, a0-loc 5.37e-10; headroom min (Vbar - draw)/Vbar 1.0000
+    alt|mono|CH-L P-sigma             : eps 2.477e-07, dV/Vbar [7.12e-04, 1.07e+00], max |g/g_law - 1|: a0-cos 2.08e-07, a0-loc 8.95e-02; headroom min (Vbar - draw)/Vbar 0.7201
+    alt|mono|CH-L P-U                 : eps 2.477e-07, dV/Vbar [2.46e-05, 2.46e-05], max |g/g_law - 1|: a0-cos 2.57e-09, a0-loc 5.63e-06; headroom min (Vbar - draw)/Vbar 1.0000
+    alt|mono|CH-G tP=1                : transit slip 4.3e-09, max |g/g_law - 1|: a0-cos 5.56e-09, a0-loc 5.56e-09; headroom min (Vbar - draw)/Vbar 1.0000
+    alt|mono|CH-G tP=10               : transit slip 4.3e-10, max |g/g_law - 1|: a0-cos 5.56e-10, a0-loc 5.56e-10; headroom min (Vbar - draw)/Vbar 1.0000
+    canonical P-sigma: EFE (a0-loc) max |dlog g| 5.97e-05 dex (line 0.082); Cassini lump tidal 6.21e-38 s^-2 (1.2e-11 of ceiling); a0-loc at the Sun da0/a0 9.55e-03 -> CFG770 |Q2|/ceiling 3.60e-06
+    canonical P-U    : EFE (a0-loc) max |dlog g| 1.70e-06 dex (line 0.082); Cassini lump tidal 2.04e-56 s^-2 (3.9e-30 of ceiling); a0-loc at the Sun da0/a0 8.10e-06 -> CFG770 |Q2|/ceiling 3.50e-06
+    alt       P-sigma: EFE (a0-loc) max |dlog g| 7.45e-05 dex (line 0.082); Cassini lump tidal 8.28e-38 s^-2 (1.6e-11 of ceiling); a0-loc at the Sun da0/a0 1.21e-02 -> CFG770 |Q2|/ceiling 3.63e-06
+    alt       P-U    : EFE (a0-loc) max |dlog g| 2.57e-06 dex (line 0.082); Cassini lump tidal 0.00e+00 s^-2 (0.0e+00 of ceiling); a0-loc at the Sun da0/a0 1.22e-05 -> CFG770 |Q2|/ceiling 3.50e-06
+    T2b CH-L P-sigma  a0-cos: PASS
+    T2b CH-L P-sigma  a0-loc: FAIL  (canonical|simple|CH-L P-sigma NGC 3198 6.5e-02; alt|simple|CH-L P-sigma NGC 3198 8.8e-02)
+    T2b CH-L P-U      a0-cos: PASS
+    T2b CH-L P-U      a0-loc: FAIL  (canonical|simple|CH-L P-U NGC 3198 3.7e-06; alt|simple|CH-L P-U NGC 3198 5.6e-06)
+    T2b CH-G          a0-cos: PASS
+    T2b CH-G          a0-loc: PASS
+
+  T3 sign and ordering: capacity C = Vbar (4pi/3) r_e^3 / E_rel per class (the analogue of CFG930's E_SN/dE)
+    canonical UFD-c        M_b 5e+03: eps 9.14e-11, r_e 0.1 kpc, <rho_body>/rho_DE 229641.9; C_U 4.76e+04; at r_half 0.039 kpc: dV/Vbar P-sigma 1.01e-04 (C 9.9e+03), P-U 2.10e-05; merger draw/Vbar P-sigma 2.13e-05
+    canonical UFD-e        M_b 3e+04: eps 2.23e-10, r_e 0.4 kpc, <rho_body>/rho_DE 93750.9; C_U 4.79e+04; at r_half 0.31 kpc: dV/Vbar P-sigma 9.57e-06 (C 1.0e+05), P-U 2.09e-05; merger draw/Vbar P-sigma 2.02e-06
+    canonical Draco-like   M_b 5e+05: eps 8.97e-10, r_e 1.5 kpc, <rho_body>/rho_DE 22964.2; C_U 4.85e+04; at r_half 0.29 kpc: dV/Vbar P-sigma 1.80e-04 (C 5.6e+03), P-U 2.06e-05; merger draw/Vbar P-sigma 3.85e-05
+    canonical Fornax-like  M_b 4e+07: eps 7.72e-09, r_e 13.2 kpc, <rho_body>/rho_DE 2567.5; C_U 5.05e+04; at r_half 0.93 kpc: dV/Vbar P-sigma 1.33e-03 (C 7.5e+02), P-U 1.98e-05; merger draw/Vbar P-sigma 2.97e-04
+    canonical SPARC dwarf  M_b 1e+09: eps 3.65e-08, r_e 66.1 kpc, <rho_body>/rho_DE 513.5; C_U 5.34e+04; at r_half 5.0 kpc: dV/Vbar P-sigma 1.09e-03 (C 9.2e+02), P-U 1.87e-05; merger draw/Vbar P-sigma 2.57e-04
+    canonical MW-like      M_b 6e+10: eps 2.44e-07, r_e 511.8 kpc, <rho_body>/rho_DE 66.3; C_U 6.18e+04; at r_half 8.0 kpc: dV/Vbar P-sigma 1.92e-02 (C 5.2e+01), P-U 1.62e-05; merger draw/Vbar P-sigma 5.23e-03
+    canonical group        M_b 1e+12: eps 1.21e-06, r_e 594.8 kpc, <rho_body>/rho_DE 195.8; C_U 4.22e+03; at r_half 100.0 kpc: dV/Vbar P-sigma 2.84e-03 (C 3.5e+02), P-U 2.37e-04; merger draw/Vbar P-sigma 7.04e-04
+    canonical cluster      M_b 1e+14: eps 1.34e-05, r_e 2485.5 kpc, <rho_body>/rho_DE 107.2; C_U 6.98e+02; at r_half 500.0 kpc: dV/Vbar P-sigma 1.19e-02 (C 8.4e+01), P-U 1.43e-03; merger draw/Vbar P-sigma 3.09e-03
+    canonical: min C_U 6.98e+02 -> AVOIDS (never energy-limited, no mass ordering)
+    alt       UFD-c        M_b 5e+03: eps 1.01e-10, r_e 0.1 kpc, <rho_body>/rho_DE 305088.5; C_U 3.26e+04; at r_half 0.039 kpc: dV/Vbar P-sigma 1.23e-04 (C 8.2e+03), P-U 3.07e-05; merger draw/Vbar P-sigma 2.57e-05
+    alt       UFD-e        M_b 3e+04: eps 2.45e-10, r_e 0.3 kpc, <rho_body>/rho_DE 124551.9; C_U 3.27e+04; at r_half 0.31 kpc: dV/Vbar P-sigma 1.16e-05 (C 8.6e+04), P-U 3.05e-05; merger draw/Vbar P-sigma 2.45e-06
+    alt       Draco-like   M_b 5e+05: eps 9.89e-10, r_e 1.3 kpc, <rho_body>/rho_DE 30508.9; C_U 3.31e+04; at r_half 0.29 kpc: dV/Vbar P-sigma 2.18e-04 (C 4.6e+03), P-U 3.02e-05; merger draw/Vbar P-sigma 4.65e-05
+    alt       Fornax-like  M_b 4e+07: eps 8.54e-09, r_e 12.0 kpc, <rho_body>/rho_DE 3411.0; C_U 3.43e+04; at r_half 0.93 kpc: dV/Vbar P-sigma 1.63e-03 (C 6.2e+02), P-U 2.91e-05; merger draw/Vbar P-sigma 3.60e-04
+    alt       SPARC dwarf  M_b 1e+09: eps 4.06e-08, r_e 60.1 kpc, <rho_body>/rho_DE 682.2; C_U 3.61e+04; at r_half 5.0 kpc: dV/Vbar P-sigma 1.34e-03 (C 7.5e+02), P-U 2.77e-05; merger draw/Vbar P-sigma 3.11e-04
+    alt       MW-like      M_b 6e+10: eps 2.76e-07, r_e 465.5 kpc, <rho_body>/rho_DE 88.1; C_U 4.11e+04; at r_half 8.0 kpc: dV/Vbar P-sigma 2.44e-02 (C 4.1e+01), P-U 2.43e-05; merger draw/Vbar P-sigma 6.47e-03
+    alt       group        M_b 1e+12: eps 1.36e-06, r_e 541.0 kpc, <rho_body>/rho_DE 260.1; C_U 2.84e+03; at r_half 100.0 kpc: dV/Vbar P-sigma 3.50e-03 (C 2.9e+02), P-U 3.53e-04; merger draw/Vbar P-sigma 8.53e-04
+    alt       cluster      M_b 1e+14: eps 1.50e-05, r_e 2261.0 kpc, <rho_body>/rho_DE 142.4; C_U 4.67e+02; at r_half 500.0 kpc: dV/Vbar P-sigma 1.49e-02 (C 6.7e+01), P-U 2.14e-03; merger draw/Vbar P-sigma 3.78e-03
+    alt: min C_U 4.67e+02 -> AVOIDS (never energy-limited, no mass ordering)
+  [PASS] T3_sign_and_ordering: the channel is never energy-limited (min C_U >= 10, both footings), so it cannot reproduce CFG930/932's backward ordering; it also selects nothing (no handle on the excess family). Sign: formation cold -> DE, mergers DE -> cold, net = -Delta(K + W) >= 0 (S-En)
+
+  T4 stability (primary IV)
+    IV structure: no derivative of V in T_V: True; no propagating mode: True; composite = dust (T1d): True; energy density +V, bounded below while Vbar + dV > 0 (headroom)
+    canonical ceiling |1 + w_eff| at z 0/1/1.2/1.5/2.33: 4.78e-06, 4.55e-05, 5.90e-05, 8.32e-05, 2.09e-04  (frozen line 1e-4; A2 record-based line 2.51e-03)
+    alt       ceiling |1 + w_eff| at z 0/1/1.2/1.5/2.33: 5.46e-06, 5.20e-05, 6.73e-05, 9.50e-05, 2.39e-04  (frozen line 1e-4; A2 record-based line 2.51e-03)
+    CFG630 native 1 + w(0): -2.2e-7 .. -2.6e-7 (README); R-phi friction 3H + Q/phidot^2 (anti-damped on draws, singular at w = -1); R-F response Q/((1+w) rho) -> infinity at w = -1; CFG689 best-fit rho_DE nodes change direction 3 times (w crosses -1)
+  [FAIL] T4_stability_frozen_rule: IV structure True; w_eff ceiling <= 1e-4 at every node: False
+  [PASS] T4_stability_A2_reading: IV structure True; w_eff ceiling <= 2.51e-03 (A2): True
+
+  T5 verdict on C-E and the class
+    FROZEN RULE: T5 = NOT CLOSED; class = FAILS (at T4 (w_eff ceiling vs 1e-4)); passing (variant|reading): ['CH-L P-sigma|a0-cos', 'CH-L P-U|a0-cos', 'CH-G|a0-cos', 'CH-G|a0-loc']
+    A2 READING (set after a disclosed hand check): T5 = CONVERTED; class = CONDITIONAL; conditions: ['C-A0: a0 reads the cosmic-mean vacuum, not the local one (CH-L fails NGC 3198 under a0-loc)', 'C-G: a new cosmic relocation current carries the deposit to the cosmic mean (CH-G)']; passing: ['CH-L P-sigma|a0-cos', 'CH-L P-U|a0-cos', 'CH-G|a0-cos', 'CH-G|a0-loc']
+    V2 (one channel for all three): ONLY WHERE NO ENTROPY IS EXCHANGED
+
+  K overall incl. K2: PASS

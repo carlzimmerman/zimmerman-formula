@@ -1,0 +1,586 @@
+CFG959 [MAIN]  H-UNR: excess family as unrelaxed native cold energy; criteria 3b52ca39f
+  kappa = 1/2 FITTED; footings 9.3603e-11 / 1.1312e-10 never pooled; raw data, framework-native inputs; not theory closed
+    cfg949> CFG949 [MAIN]  criteria 7330f9e99  n_eRASS1 318  s_obs 0.8958 ± 0.2093  native h 0.6777 Om 0.3104 Delta_ta(0) 11.8977
+
+=== K-stage
+  [PASS] K1 CFG919 class means DW, LS, LD (E, se; both footings) from this lane's rebuilt cells: max |diff| 0.0e+00; canonical DW +0.8562+-0.1019, LS +0.2934, LD +0.0078; diffs canonical|DW +0.0e+00/+0.0e+00, canonical|LS +0.0e+00/+0.0e+00, canonical|LD +0.0e+00/+0.0e+00, alt|DW +0.0e+00/+0.0e+00, alt|LS +0.0e+00/+0.0e+00, alt|LD +0.0e+00/+0.0e+00
+  [PASS] K2 CFG687 A_MID, A_OUTER (value + jackknife, both footings) through CFG949's machinery: max rel 1.6e-15; canonical MID 1.9102+-0.1186, OUTER 1.0118; alt MID 1.7536, OUTER 0.9265
+  [PASS] K3 CFG949 B0 primary corner (A_MID, A_OUTER, s; stored JSON) = H-UNR R-C at u = 1; build_cold_x == build_cold: max rel 0.0e+00; MID 1.0109+-0.0632 OUTER 1.0469+-0.0888 s 0.6615 (EXPLAINS); cold arrays max |diff| 0.0e+00
+  [PASS] K4 CFG930 SPARC native halo facts (147 galaxies; median z_c, c, r_s, r_b, M_ta/M_b) through this lane's galaxy halo code: N 147; max rel 1.1e-16; z_c 2.0038 c 38.068 r_s 15.684 kpc r_b 597.07 kpc M_ta/M_b 63.64
+  [PASS] K5 CFG695 S2 rms and Upsilon (law, nu_simple, both footings) through this lane's SPARC engine: max |diff| 6.9e-17; canonical 0.10091@0.60, alt 0.09943@0.55
+  [PASS] K6 CFG933 Coma UDGs mean E_obs and se_obs (9 admitted; both footings): max |diff| 0.0e+00; canonical +0.76036+-0.26180 ln, alt +0.66946
+  [PASS] K7 CFG936 route (i) T/U statistics from its rows; Newton-exact DF2/DF4 == its 'S4 strict f=0' corner; TDG Newton == route (i): max |diff| 1.4e-17; canonical TDG +0.0546+-0.1144 dex, DF +0.0281+-0.5390 ln
+  [PASS] K8 CFG940 WS means and se (A, B; both footings) from its stored table; its per-galaxy E from its stored logs with this lane's law; Table 2 V_rot/V_cor parse (25; V_cor == CFG940): max |diff| 2.0e-15; canonical A -0.3041+-0.0675, B -0.0833+-0.0637 dex; V_rot 10-57 km/s
+  [PASS] K9 CFG880 sample N = 83 and its committed per-dwarf sigma_law (both footings): N 83; max rel 0.0e+00
+  K-stage ALL PASS  [1 s, 0.228 GB]
+
+=== MAIN: primary form P-LIN (u = f_P), reading R-C, primary corner (C 3000, r_ta, census supply)
+  [canonical]
+    (a)  SPARC rms 0.1013 @ U 0.59 (d +0.0004) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.159+-0.091 ln (z -1.7) CONSISTENT; u 0.20, <E_pred> +0.167
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.302 median -1.203 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.955; d(-2lnL) const-HUNR -45.89; slope -1.816+-0.273; sd(E_pred) 0.423 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.424, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.089+-0.067 ln (z +1.3) CONSISTENT; IMF +0.006+-0.066 (z +0.1) CONSISTENT -> CONSISTENT; <E_pred> +0.203
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.150+-0.066 dex (z -2.3) TENSION; A -0.345+-0.069; E_pred B +0.067; g2 matched cell D_obs +0.253 D_pred -0.495 +-0.100 (z +7.5; N 10/18)
+    OVERALL PARTIAL  explained ['d', 'e'] not ['b', 'c'] 
+  [alt]
+    (a)  SPARC rms 0.1002 @ U 0.55 (d +0.0008) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.236+-0.091 ln (z -2.6) TENSION; u 0.20, <E_pred> +0.154
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.393 median -1.296 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.950; d(-2lnL) const-HUNR -46.28; slope -1.790+-0.269; sd(E_pred) 0.427 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.515, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.073+-0.067 ln (z +1.1) CONSISTENT; IMF -0.009+-0.066 (z -0.1) CONSISTENT -> CONSISTENT; <E_pred> +0.129
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.183+-0.066 dex (z -2.8) TENSION; A -0.378+-0.069; E_pred B +0.062; g2 matched cell D_obs +0.253 D_pred -0.529 +-0.100 (z +7.8; N 10/18)
+    OVERALL PARTIAL  explained ['d', 'e'] not ['b', 'c'] 
+
+  PRIMARY CLASS: canonical PARTIAL, alt PARTIAL -> headline PARTIAL
+
+=== diagnostics (no weight): DF2/DF4 if they had kept native debris (u = 1, R-C); per-dwarf extremes
+  [canonical] NGC1052-DF2: E_obs -1.709, E_pred(u=1 debris) -0.398 (z -2.4), Newton -2.004 ln
+  [canonical] NGC1052-DF4: E_obs -2.170, E_pred(u=1 debris) -0.460 (z -2.2), Newton -1.931 ln
+  [canonical] native debris / settled phantom at the aperture: dSphs median 0.239 (range 0.093-0.555, >1: 0/83); Coma UDGs median 0.595 (0.551-0.746)
+  [alt] NGC1052-DF2: E_obs -1.797, E_pred(u=1 debris) -0.486 (z -2.4), Newton -2.093 ln
+  [alt] NGC1052-DF4: E_obs -2.258, E_pred(u=1 debris) -0.548 (z -2.2), Newton -2.019 ln
+  [alt] native debris / settled phantom at the aperture: dSphs median 0.217 (range 0.084-0.503, >1: 0/83); Coma UDGs median 0.539 (0.499-0.676)
+  [canonical] lens log M 10.450 (Mc/M 53.6, c 35.1, r_s 27.6 kpc): g_bar 1e-11 R    20 kpc  M_ph/M   2.59  M_deb/M   2.53  E(R-C, u 0.2) +0.132  E(R-C, u 1) -0.016 ln
+  [canonical] lens log M 10.450 (Mc/M 53.6, c 35.1, r_s 27.6 kpc): g_bar 1e-12 R    63 kpc  M_ph/M   9.18  M_deb/M  10.07  E(R-C, u 0.2) +0.181  E(R-C, u 1) +0.084 ln
+  [canonical] lens log M 10.450 (Mc/M 53.6, c 35.1, r_s 27.6 kpc): g_bar 1e-13 R   198 kpc  M_ph/M  30.10  M_deb/M  25.12  E(R-C, u 0.2) +0.150  E(R-C, u 1) -0.174 ln
+  [canonical] lens log M 10.933 (Mc/M 38.2, c 33.6, r_s 37.4 kpc): g_bar 1e-11 R    35 kpc  M_ph/M   2.59  M_deb/M   2.59  E(R-C, u 0.8) +0.456  E(R-C, u 1) +0.002 ln
+  [canonical] lens log M 10.933 (Mc/M 38.2, c 33.6, r_s 37.4 kpc): g_bar 1e-12 R   109 kpc  M_ph/M   9.18  M_deb/M   9.25  E(R-C, u 0.8) +0.455  E(R-C, u 1) +0.006 ln
+  [canonical] lens log M 10.933 (Mc/M 38.2, c 33.6, r_s 37.4 kpc): g_bar 1e-13 R   346 kpc  M_ph/M  30.10  M_deb/M  21.18  E(R-C, u 0.8) -0.195  E(R-C, u 1) -0.338 ln
+  rotators (sigma 10 km/s): u = f_P min 0.085 median 0.429 max 0.750; u(V_rot 10) 0.750, u(V_rot 20) 0.429
+
+=== forms and readings at the primary corner (reported; they do not change the governing class)
+  --- form PLIN, reading RA
+  [canonical]
+    (a)  SPARC rms 0.1013 @ U 0.59 (d +0.0004) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.159+-0.091 ln (z -1.7) CONSISTENT; u 0.20, <E_pred> +0.167
+    (b)  dSphs resid +0.648+-0.105 ln (+0.282 dex, z +6.2) CONTRADICTED; E_pred mean +0.199 median +0.192 ln
+    (b2) scatter s_HUNR 1.000 [95% 0.839-1.202] vs s_const 0.955; d(-2lnL) const-HUNR -6.27; slope -8.160+-1.630; sd(E_pred) 0.070 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred +0.454, resid +0.307+-0.262 ln (z +1.17) CONSISTENT
+    (d)  clusters MID 0.707+-0.044 (Z -6.66) OUTER 0.554+-0.047 (Z -9.45) s 0.541 (-1.70 s_err) -> FAILS
+    (e)  red lenses resid -0.201+-0.067 ln (z -3.0) CONTRADICTED; IMF -0.343+-0.066 (z -5.2) CONTRADICTED -> CONTRADICTED; <E_pred> +0.496
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.150+-0.066 dex (z -2.3) TENSION; A -0.345+-0.069; E_pred B +0.067; g2 matched cell D_obs +0.253 D_pred +0.031 +-0.100 (z +2.2; N 10/18)
+    OVERALL PARTIAL  explained ['c'] not ['b', 'd', 'e'] 
+  [alt]
+    (a)  SPARC rms 0.1002 @ U 0.55 (d +0.0008) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.236+-0.091 ln (z -2.6) TENSION; u 0.20, <E_pred> +0.154
+    (b)  dSphs resid +0.573+-0.105 ln (+0.249 dex, z +5.5) CONTRADICTED; E_pred mean +0.183 median +0.176 ln
+    (b2) scatter s_HUNR 0.995 [95% 0.834-1.196] vs s_const 0.950; d(-2lnL) const-HUNR -5.90; slope -8.886+-1.749; sd(E_pred) 0.065 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred +0.422, resid +0.248+-0.262 ln (z +0.95) CONSISTENT
+    (d)  clusters MID 0.684+-0.043 (Z -7.41) OUTER 0.527+-0.045 (Z -10.51) s 0.536 (-1.72 s_err) -> FAILS
+    (e)  red lenses resid -0.257+-0.067 ln (z -3.8) CONTRADICTED; IMF -0.401+-0.066 (z -6.1) CONTRADICTED -> CONTRADICTED; <E_pred> +0.462
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.183+-0.066 dex (z -2.8) TENSION; A -0.378+-0.069; E_pred B +0.062; g2 matched cell D_obs +0.253 D_pred +0.029 +-0.100 (z +2.2; N 10/18)
+    OVERALL PARTIAL  explained ['c'] not ['b', 'd', 'e'] 
+  --- form VEQ, reading RC
+  [canonical]
+    (a)  SPARC rms 0.1009 @ U 0.60 (d +0.0000) -> PASS; u median 0.000 max 0.000
+    (a2) n<2 lenses resid +0.008+-0.091 ln (z +0.1) CONSISTENT; u 0.00, <E_pred> +0.000
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.302 median -1.203 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.955; d(-2lnL) const-HUNR -45.89; slope -1.816+-0.273; sd(E_pred) 0.423 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.424, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.419+-0.067 ln (z +6.3) CONTRADICTED; IMF +0.324+-0.066 (z +4.9) CONTRADICTED -> CONTRADICTED; <E_pred> -0.124
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.008+-0.061 dex (z -0.1) CONSISTENT; A -0.215+-0.061; E_pred B -0.075; g2 matched cell D_obs +0.253 D_pred -0.352 +-0.100 (z +6.0; N 10/18)
+    OVERALL PARTIAL  explained ['d'] not ['b', 'c', 'e'] 
+  [alt]
+    (a)  SPARC rms 0.0994 @ U 0.55 (d +0.0000) -> PASS; u median 0.000 max 0.000
+    (a2) n<2 lenses resid -0.083+-0.091 ln (z -0.9) CONSISTENT; u 0.00, <E_pred> -0.000
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.393 median -1.296 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.950; d(-2lnL) const-HUNR -46.28; slope -1.790+-0.269; sd(E_pred) 0.427 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.515, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.419+-0.067 ln (z +6.3) CONTRADICTED; IMF +0.324+-0.066 (z +4.9) CONTRADICTED -> CONTRADICTED; <E_pred> -0.214
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.035+-0.061 dex (z -0.6) CONSISTENT; A -0.242+-0.061; E_pred B -0.086; g2 matched cell D_obs +0.253 D_pred -0.380 +-0.100 (z +6.3; N 10/18)
+    OVERALL PARTIAL  explained ['d'] not ['b', 'c', 'e'] 
+  --- form VEQ, reading RA
+  [canonical]
+    (a)  SPARC rms 0.1009 @ U 0.60 (d +0.0000) -> PASS; u median 0.000 max 0.000
+    (a2) n<2 lenses resid +0.008+-0.091 ln (z +0.1) CONSISTENT; u 0.00, <E_pred> +0.000
+    (b)  dSphs resid +0.648+-0.105 ln (+0.282 dex, z +6.2) CONTRADICTED; E_pred mean +0.199 median +0.192 ln
+    (b2) scatter s_HUNR 1.000 [95% 0.839-1.202] vs s_const 0.955; d(-2lnL) const-HUNR -6.27; slope -8.160+-1.630; sd(E_pred) 0.070 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred +0.454, resid +0.307+-0.262 ln (z +1.17) CONSISTENT
+    (d)  clusters MID 0.707+-0.044 (Z -6.66) OUTER 0.554+-0.047 (Z -9.45) s 0.541 (-1.70 s_err) -> FAILS
+    (e)  red lenses resid -0.294+-0.067 ln (z -4.4) CONTRADICTED; IMF -0.430+-0.066 (z -6.5) CONTRADICTED -> CONTRADICTED; <E_pred> +0.589
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.122+-0.070 dex (z -1.8) CONSISTENT; A -0.326+-0.072; E_pred B +0.039; g2 matched cell D_obs +0.253 D_pred +0.059 +-0.100 (z +1.9; N 10/18)
+    OVERALL PARTIAL  explained ['c'] not ['b', 'd', 'e'] 
+  [alt]
+    (a)  SPARC rms 0.0994 @ U 0.55 (d +0.0000) -> PASS; u median 0.000 max 0.000
+    (a2) n<2 lenses resid -0.083+-0.091 ln (z -0.9) CONSISTENT; u 0.00, <E_pred> +0.000
+    (b)  dSphs resid +0.573+-0.105 ln (+0.249 dex, z +5.5) CONTRADICTED; E_pred mean +0.183 median +0.176 ln
+    (b2) scatter s_HUNR 0.995 [95% 0.834-1.196] vs s_const 0.950; d(-2lnL) const-HUNR -5.90; slope -8.886+-1.749; sd(E_pred) 0.065 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred +0.422, resid +0.248+-0.262 ln (z +0.95) CONSISTENT
+    (d)  clusters MID 0.684+-0.043 (Z -7.41) OUTER 0.527+-0.045 (Z -10.51) s 0.536 (-1.72 s_err) -> FAILS
+    (e)  red lenses resid -0.345+-0.067 ln (z -5.2) CONTRADICTED; IMF -0.484+-0.066 (z -7.3) CONTRADICTED -> CONTRADICTED; <E_pred> +0.550
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.157+-0.069 dex (z -2.3) TENSION; A -0.361+-0.071; E_pred B +0.036; g2 matched cell D_obs +0.253 D_pred +0.054 +-0.100 (z +2.0; N 10/18)
+    OVERALL PARTIAL  explained ['c'] not ['b', 'd', 'e'] 
+  --- form VOP, reading RC
+  [canonical]
+    (a)  SPARC rms 0.1009 @ U 0.60 (d +0.0000) -> PASS; u median 0.000 max 0.000
+    (a2) n<2 lenses resid +0.008+-0.091 ln (z +0.1) CONSISTENT; u 0.00, <E_pred> +0.000
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.302 median -1.203 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.955; d(-2lnL) const-HUNR -45.89; slope -1.816+-0.273; sd(E_pred) 0.423 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.424, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.419+-0.067 ln (z +6.3) CONTRADICTED; IMF +0.324+-0.066 (z +4.9) CONTRADICTED -> CONTRADICTED; <E_pred> -0.124
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.073+-0.062 dex (z -1.2) CONSISTENT; A -0.293+-0.065; E_pred B -0.011; g2 matched cell D_obs +0.253 D_pred -0.430 +-0.100 (z +6.8; N 10/18)
+    OVERALL PARTIAL  explained ['d'] not ['b', 'c', 'e'] 
+  [alt]
+    (a)  SPARC rms 0.0994 @ U 0.55 (d +0.0000) -> PASS; u median 0.000 max 0.000
+    (a2) n<2 lenses resid -0.083+-0.091 ln (z -0.9) CONSISTENT; u 0.00, <E_pred> -0.000
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.393 median -1.296 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.950; d(-2lnL) const-HUNR -46.28; slope -1.790+-0.269; sd(E_pred) 0.427 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.515, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.419+-0.067 ln (z +6.3) CONTRADICTED; IMF +0.324+-0.066 (z +4.9) CONTRADICTED -> CONTRADICTED; <E_pred> -0.214
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.109+-0.062 dex (z -1.8) CONSISTENT; A -0.327+-0.065; E_pred B -0.012; g2 matched cell D_obs +0.253 D_pred -0.468 +-0.100 (z +7.2; N 10/18)
+    OVERALL PARTIAL  explained ['d'] not ['b', 'c', 'e'] 
+  --- form VOP, reading RA
+  [canonical]
+    (a)  SPARC rms 0.1009 @ U 0.60 (d +0.0000) -> PASS; u median 0.000 max 0.000
+    (a2) n<2 lenses resid +0.008+-0.091 ln (z +0.1) CONSISTENT; u 0.00, <E_pred> +0.000
+    (b)  dSphs resid +0.648+-0.105 ln (+0.282 dex, z +6.2) CONTRADICTED; E_pred mean +0.199 median +0.192 ln
+    (b2) scatter s_HUNR 1.000 [95% 0.839-1.202] vs s_const 0.955; d(-2lnL) const-HUNR -6.27; slope -8.160+-1.630; sd(E_pred) 0.070 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred +0.454, resid +0.307+-0.262 ln (z +1.17) CONSISTENT
+    (d)  clusters MID 0.707+-0.044 (Z -6.66) OUTER 0.554+-0.047 (Z -9.45) s 0.541 (-1.70 s_err) -> FAILS
+    (e)  red lenses resid -0.294+-0.067 ln (z -4.4) CONTRADICTED; IMF -0.430+-0.066 (z -6.5) CONTRADICTED -> CONTRADICTED; <E_pred> +0.589
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.088+-0.065 dex (z -1.4) CONSISTENT; A -0.307+-0.068; E_pred B +0.005; g2 matched cell D_obs +0.253 D_pred +0.097 +-0.100 (z +1.6; N 10/18)
+    OVERALL PARTIAL  explained ['c'] not ['b', 'd', 'e'] 
+  [alt]
+    (a)  SPARC rms 0.0994 @ U 0.55 (d +0.0000) -> PASS; u median 0.000 max 0.000
+    (a2) n<2 lenses resid -0.083+-0.091 ln (z -0.9) CONSISTENT; u 0.00, <E_pred> +0.000
+    (b)  dSphs resid +0.573+-0.105 ln (+0.249 dex, z +5.5) CONTRADICTED; E_pred mean +0.183 median +0.176 ln
+    (b2) scatter s_HUNR 0.995 [95% 0.834-1.196] vs s_const 0.950; d(-2lnL) const-HUNR -5.90; slope -8.886+-1.749; sd(E_pred) 0.065 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred +0.422, resid +0.248+-0.262 ln (z +0.95) CONSISTENT
+    (d)  clusters MID 0.684+-0.043 (Z -7.41) OUTER 0.527+-0.045 (Z -10.51) s 0.536 (-1.72 s_err) -> FAILS
+    (e)  red lenses resid -0.345+-0.067 ln (z -5.2) CONTRADICTED; IMF -0.484+-0.066 (z -7.3) CONTRADICTED -> CONTRADICTED; <E_pred> +0.550
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.126+-0.065 dex (z -1.9) CONSISTENT; A -0.342+-0.068; E_pred B +0.005; g2 matched cell D_obs +0.253 D_pred +0.089 +-0.100 (z +1.6; N 10/18)
+    OVERALL PARTIAL  explained ['c'] not ['b', 'd', 'e'] 
+
+=== brackets (P-LIN, R-C, primary corner; reported)
+  --- dSph f_P V3a (HI v/s 1, others 0.5)
+  [canonical]
+    (a)  SPARC rms 0.1013 @ U 0.59 (d +0.0004) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.159+-0.091 ln (z -1.7) CONSISTENT; u 0.20, <E_pred> +0.167
+    (b)  dSphs resid +1.062+-0.108 ln (+0.461 dex, z +9.8) CONTRADICTED; E_pred mean -0.470 median -0.502 ln
+    (b2) scatter s_HUNR 1.315 [95% 1.120-1.568] vs s_const 0.955; d(-2lnL) const-HUNR -45.04; slope -1.269+-0.240; sd(E_pred) 0.483 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.424, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.089+-0.067 ln (z +1.3) CONSISTENT; IMF +0.006+-0.066 (z +0.1) CONSISTENT -> CONSISTENT; <E_pred> +0.203
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.150+-0.066 dex (z -2.3) TENSION; A -0.345+-0.069; E_pred B +0.067; g2 matched cell D_obs +0.253 D_pred +0.016 +-0.100 (z +2.4; N 10/18)
+    OVERALL PARTIAL  explained ['d', 'e'] not ['b', 'c'] 
+  [alt]
+    (a)  SPARC rms 0.1002 @ U 0.55 (d +0.0008) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.236+-0.091 ln (z -2.6) TENSION; u 0.20, <E_pred> +0.154
+    (b)  dSphs resid +1.035+-0.108 ln (+0.450 dex, z +9.6) CONTRADICTED; E_pred mean -0.549 median -0.595 ln
+    (b2) scatter s_HUNR 1.330 [95% 1.133-1.586] vs s_const 0.950; d(-2lnL) const-HUNR -47.09; slope -1.215+-0.229; sd(E_pred) 0.503 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.515, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.073+-0.067 ln (z +1.1) CONSISTENT; IMF -0.009+-0.066 (z -0.1) CONSISTENT -> CONSISTENT; <E_pred> +0.129
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.183+-0.066 dex (z -2.8) TENSION; A -0.378+-0.069; E_pred B +0.062; g2 matched cell D_obs +0.253 D_pred +0.010 +-0.100 (z +2.4; N 10/18)
+    OVERALL PARTIAL  explained ['d', 'e'] not ['b', 'c'] 
+  --- sigma 6 km/s (SPARC, rotators)
+  [canonical]
+    (a)  SPARC rms 0.1011 @ U 0.60 (d +0.0002) -> PASS; u median 0.011 max 0.254
+    (a2) n<2 lenses resid -0.159+-0.091 ln (z -1.7) CONSISTENT; u 0.20, <E_pred> +0.167
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.302 median -1.203 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.955; d(-2lnL) const-HUNR -45.89; slope -1.816+-0.273; sd(E_pred) 0.423 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.424, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.089+-0.067 ln (z +1.3) CONSISTENT; IMF +0.006+-0.066 (z +0.1) CONSISTENT -> CONSISTENT; <E_pred> +0.203
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.120+-0.066 dex (z -1.8) CONSISTENT; A -0.326+-0.069; E_pred B +0.037; g2 matched cell D_obs +0.253 D_pred -0.466 +-0.100 (z +7.2; N 10/18)
+    OVERALL PARTIAL  explained ['d', 'e'] not ['b', 'c'] 
+  [alt]
+    (a)  SPARC rms 0.0997 @ U 0.55 (d +0.0003) -> PASS; u median 0.011 max 0.254
+    (a2) n<2 lenses resid -0.236+-0.091 ln (z -2.6) TENSION; u 0.20, <E_pred> +0.154
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.393 median -1.296 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.950; d(-2lnL) const-HUNR -46.28; slope -1.790+-0.269; sd(E_pred) 0.427 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.515, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.073+-0.067 ln (z +1.1) CONSISTENT; IMF -0.009+-0.066 (z -0.1) CONSISTENT -> CONSISTENT; <E_pred> +0.129
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.155+-0.066 dex (z -2.4) TENSION; A -0.361+-0.069; E_pred B +0.034; g2 matched cell D_obs +0.253 D_pred -0.502 +-0.100 (z +7.5; N 10/18)
+    OVERALL PARTIAL  explained ['d', 'e'] not ['b', 'c'] 
+  --- sigma 20 km/s (SPARC, rotators)
+  [canonical]
+    (a)  SPARC rms 0.1026 @ U 0.59 (d +0.0017) -> PASS; u median 0.107 max 0.791
+    (a2) n<2 lenses resid -0.159+-0.091 ln (z -1.7) CONSISTENT; u 0.20, <E_pred> +0.167
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.302 median -1.203 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.955; d(-2lnL) const-HUNR -45.89; slope -1.816+-0.273; sd(E_pred) 0.423 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.424, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.089+-0.067 ln (z +1.3) CONSISTENT; IMF +0.006+-0.066 (z +0.1) CONSISTENT -> CONSISTENT; <E_pred> +0.203
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.195+-0.066 dex (z -3.0) TENSION; A -0.375+-0.068; E_pred B +0.112; g2 matched cell D_obs +0.253 D_pred -0.540 +-0.100 (z +7.9; N 10/18)
+    OVERALL PARTIAL  explained ['d', 'e'] not ['b', 'c'] 
+  [alt]
+    (a)  SPARC rms 0.1022 @ U 0.54 (d +0.0028) -> PASS; u median 0.107 max 0.791
+    (a2) n<2 lenses resid -0.236+-0.091 ln (z -2.6) TENSION; u 0.20, <E_pred> +0.154
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.393 median -1.296 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.950; d(-2lnL) const-HUNR -46.28; slope -1.790+-0.269; sd(E_pred) 0.427 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.515, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.073+-0.067 ln (z +1.1) CONSISTENT; IMF -0.009+-0.066 (z -0.1) CONSISTENT -> CONSISTENT; <E_pred> +0.129
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.225+-0.066 dex (z -3.4) CONTRADICTED; A -0.406+-0.068; E_pred B +0.103; g2 matched cell D_obs +0.253 D_pred -0.570 +-0.100 (z +8.2; N 10/18)
+    OVERALL FAILS  explained ['d', 'e'] not ['b', 'c'] ; (g) rotators CONTRADICTED
+  --- lens f_P (0.43, 0.57)
+  [canonical]
+    (a)  SPARC rms 0.1013 @ U 0.59 (d +0.0004) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.308+-0.091 ln (z -3.4) CONTRADICTED; u 0.43, <E_pred> +0.317
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.302 median -1.203 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.955; d(-2lnL) const-HUNR -45.89; slope -1.816+-0.273; sd(E_pred) 0.423 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.424, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.047+-0.067 ln (z +0.7) CONSISTENT; IMF -0.058+-0.066 (z -0.9) CONSISTENT -> CONSISTENT; <E_pred> +0.245
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.150+-0.066 dex (z -2.3) TENSION; A -0.345+-0.069; E_pred B +0.067; g2 matched cell D_obs +0.253 D_pred -0.495 +-0.100 (z +7.5; N 10/18)
+    OVERALL FAILS  explained ['d', 'e'] not ['b', 'c'] ; (a2) n<2 lenses CONTRADICTED
+  [alt]
+    (a)  SPARC rms 0.1002 @ U 0.55 (d +0.0008) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.365+-0.091 ln (z -4.0) CONTRADICTED; u 0.43, <E_pred> +0.284
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.393 median -1.296 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.950; d(-2lnL) const-HUNR -46.28; slope -1.790+-0.269; sd(E_pred) 0.427 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.515, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.014+-0.067 ln (z +0.2) CONSISTENT; IMF -0.087+-0.066 (z -1.3) CONSISTENT -> CONSISTENT; <E_pred> +0.188
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.183+-0.066 dex (z -2.8) TENSION; A -0.378+-0.069; E_pred B +0.062; g2 matched cell D_obs +0.253 D_pred -0.529 +-0.100 (z +7.8; N 10/18)
+    OVERALL FAILS  explained ['d', 'e'] not ['b', 'c'] ; (a2) n<2 lenses CONTRADICTED
+  --- lens f_P (0.10, 0.97)
+  [canonical]
+    (a)  SPARC rms 0.1013 @ U 0.59 (d +0.0004) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.079+-0.091 ln (z -0.9) CONSISTENT; u 0.10, <E_pred> +0.087
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.302 median -1.203 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.955; d(-2lnL) const-HUNR -45.89; slope -1.816+-0.273; sd(E_pred) 0.423 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.424, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.340+-0.067 ln (z +5.1) CONTRADICTED; IMF +0.251+-0.066 (z +3.8) CONTRADICTED -> CONTRADICTED; <E_pred> -0.047
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.150+-0.066 dex (z -2.3) TENSION; A -0.345+-0.069; E_pred B +0.067; g2 matched cell D_obs +0.253 D_pred -0.495 +-0.100 (z +7.5; N 10/18)
+    OVERALL PARTIAL  explained ['d'] not ['b', 'c', 'e'] 
+  [alt]
+    (a)  SPARC rms 0.1002 @ U 0.55 (d +0.0008) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.162+-0.091 ln (z -1.8) CONSISTENT; u 0.10, <E_pred> +0.080
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.393 median -1.296 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.950; d(-2lnL) const-HUNR -46.28; slope -1.790+-0.269; sd(E_pred) 0.427 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.515, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.011+-0.063 (Z +0.17) OUTER 1.047+-0.089 (Z +0.53) s 0.661 (-1.12 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.340+-0.067 ln (z +5.1) CONTRADICTED; IMF +0.251+-0.066 (z +3.8) CONTRADICTED -> CONTRADICTED; <E_pred> -0.138
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.183+-0.066 dex (z -2.8) TENSION; A -0.378+-0.069; E_pred B +0.062; g2 matched cell D_obs +0.253 D_pred -0.529 +-0.100 (z +7.8; N 10/18)
+    OVERALL PARTIAL  explained ['d'] not ['b', 'c', 'e'] 
+  --- clusters z_i = 0
+  [canonical]
+    (a)  SPARC rms 0.1013 @ U 0.59 (d +0.0004) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.159+-0.091 ln (z -1.7) CONSISTENT; u 0.20, <E_pred> +0.167
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.302 median -1.203 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.955; d(-2lnL) const-HUNR -45.89; slope -1.816+-0.273; sd(E_pred) 0.423 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.424, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.091+-0.068 (Z +1.35) OUTER 1.107+-0.095 (Z +1.14) s 0.645 (-1.20 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.089+-0.067 ln (z +1.3) CONSISTENT; IMF +0.006+-0.066 (z +0.1) CONSISTENT -> CONSISTENT; <E_pred> +0.203
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.150+-0.066 dex (z -2.3) TENSION; A -0.345+-0.069; E_pred B +0.067; g2 matched cell D_obs +0.253 D_pred -0.495 +-0.100 (z +7.5; N 10/18)
+    OVERALL PARTIAL  explained ['d', 'e'] not ['b', 'c'] 
+  [alt]
+    (a)  SPARC rms 0.1002 @ U 0.55 (d +0.0008) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.236+-0.091 ln (z -2.6) TENSION; u 0.20, <E_pred> +0.154
+    (b)  dSphs resid +2.073+-0.120 ln (+0.900 dex, z +17.3) CONTRADICTED; E_pred mean -1.393 median -1.296 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.124-1.575] vs s_const 0.950; d(-2lnL) const-HUNR -46.28; slope -1.790+-0.269; sd(E_pred) 0.427 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.515, resid +1.184+-0.262 ln (z +4.52) CONTRADICTED
+    (d)  clusters MID 1.091+-0.068 (Z +1.35) OUTER 1.107+-0.095 (Z +1.14) s 0.645 (-1.20 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.073+-0.067 ln (z +1.1) CONSISTENT; IMF -0.009+-0.066 (z -0.1) CONSISTENT -> CONSISTENT; <E_pred> +0.129
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.183+-0.066 dex (z -2.8) TENSION; A -0.378+-0.069; E_pred B +0.062; g2 matched cell D_obs +0.253 D_pred -0.529 +-0.100 (z +7.8; N 10/18)
+    OVERALL PARTIAL  explained ['d', 'e'] not ['b', 'c'] 
+
+=== robustness: 12 corners (C 1500/3000/6000 x r_ta/r_vir x supply census/x2), P-LIN, R-C
+  corner C3000|rta|x1: canonical PARTIAL ['d', 'e'], alt PARTIAL ['d', 'e']
+  --- corner C3000|rvir|x1
+  [canonical]
+    (a)  SPARC rms 0.1015 @ U 0.59 (d +0.0006) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.231+-0.091 ln (z -2.5) TENSION; u 0.20, <E_pred> +0.239
+    (b)  dSphs resid +1.879+-0.121 ln (+0.816 dex, z +15.5) CONTRADICTED; E_pred mean -1.100 median -1.032 ln
+    (b2) scatter s_HUNR 1.315 [95% 1.116-1.565] vs s_const 0.955; d(-2lnL) const-HUNR -45.10; slope -1.849+-0.278; sd(E_pred) 0.416 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.172, resid +0.932+-0.262 ln (z +3.56) CONTRADICTED
+    (d)  clusters MID 0.647+-0.040 (Z -8.72) OUTER 0.649+-0.056 (Z -6.31) s 0.712 (-0.88 s_err) -> FAILS
+    (e)  red lenses resid -0.153+-0.067 ln (z -2.3) TENSION; IMF -0.240+-0.066 (z -3.6) CONTRADICTED -> IMF-DEPENDENT; <E_pred> +0.446
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.166+-0.067 dex (z -2.5) TENSION; A -0.356+-0.069; E_pred B +0.083; g2 matched cell D_obs +0.253 D_pred -0.445 +-0.100 (z +7.0; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; no excess class explained
+  [alt]
+    (a)  SPARC rms 0.1005 @ U 0.55 (d +0.0011) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.303+-0.091 ln (z -3.3) CONTRADICTED; u 0.20, <E_pred> +0.220
+    (b)  dSphs resid +1.879+-0.121 ln (+0.816 dex, z +15.5) CONTRADICTED; E_pred mean -1.191 median -1.125 ln
+    (b2) scatter s_HUNR 1.315 [95% 1.116-1.565] vs s_const 0.950; d(-2lnL) const-HUNR -45.49; slope -1.828+-0.275; sd(E_pred) 0.419 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.263, resid +0.932+-0.262 ln (z +3.56) CONTRADICTED
+    (d)  clusters MID 0.647+-0.040 (Z -8.72) OUTER 0.649+-0.056 (Z -6.31) s 0.712 (-0.88 s_err) -> FAILS
+    (e)  red lenses resid -0.167+-0.067 ln (z -2.5) TENSION; IMF -0.253+-0.066 (z -3.8) CONTRADICTED -> IMF-DEPENDENT; <E_pred> +0.370
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.198+-0.067 dex (z -3.0) TENSION; A -0.388+-0.069; E_pred B +0.077; g2 matched cell D_obs +0.253 D_pred -0.478 +-0.100 (z +7.3; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; (a2) n<2 lenses CONTRADICTED; no excess class explained
+  corner C3000|rvir|x1: canonical FAILS [], alt FAILS []
+  --- corner C1500|rta|x1
+  [canonical]
+    (a)  SPARC rms 0.1012 @ U 0.59 (d +0.0003) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.138+-0.091 ln (z -1.5) CONSISTENT; u 0.20, <E_pred> +0.146
+    (b)  dSphs resid +2.283+-0.120 ln (+0.991 dex, z +19.1) CONTRADICTED; E_pred mean -1.511 median -1.423 ln
+    (b2) scatter s_HUNR 1.340 [95% 1.138-1.593] vs s_const 0.955; d(-2lnL) const-HUNR -47.66; slope -1.751+-0.262; sd(E_pred) 0.439 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.648, resid +1.408+-0.262 ln (z +5.38) CONTRADICTED
+    (d)  clusters MID 1.148+-0.072 (Z +2.07) OUTER 1.109+-0.094 (Z +1.16) s 0.648 (-1.18 s_err) -> PARTIAL
+    (e)  red lenses resid +0.148+-0.067 ln (z +2.2) TENSION; IMF +0.062+-0.066 (z +0.9) CONSISTENT -> IMF-DEPENDENT; <E_pred> +0.145
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.132+-0.066 dex (z -2.0) TENSION; A -0.334+-0.069; E_pred B +0.049; g2 matched cell D_obs +0.253 D_pred -0.569 +-0.100 (z +8.2; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; no excess class explained
+  [alt]
+    (a)  SPARC rms 0.1000 @ U 0.55 (d +0.0006) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.217+-0.091 ln (z -2.4) TENSION; u 0.20, <E_pred> +0.134
+    (b)  dSphs resid +2.283+-0.120 ln (+0.991 dex, z +19.1) CONTRADICTED; E_pred mean -1.602 median -1.515 ln
+    (b2) scatter s_HUNR 1.340 [95% 1.138-1.593] vs s_const 0.950; d(-2lnL) const-HUNR -48.04; slope -1.723+-0.258; sd(E_pred) 0.443 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.738, resid +1.408+-0.262 ln (z +5.38) CONTRADICTED
+    (d)  clusters MID 1.148+-0.072 (Z +2.07) OUTER 1.109+-0.094 (Z +1.16) s 0.648 (-1.18 s_err) -> PARTIAL
+    (e)  red lenses resid +0.131+-0.067 ln (z +1.9) CONSISTENT; IMF +0.046+-0.066 (z +0.7) CONSISTENT -> CONSISTENT; <E_pred> +0.072
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.167+-0.066 dex (z -2.5) TENSION; A -0.368+-0.068; E_pred B +0.045; g2 matched cell D_obs +0.253 D_pred -0.604 +-0.100 (z +8.5; N 10/18)
+    OVERALL PARTIAL  explained ['e'] not ['b', 'c', 'd'] 
+  corner C1500|rta|x1: canonical FAILS [], alt PARTIAL ['e']
+  --- corner C1500|rvir|x1
+  [canonical]
+    (a)  SPARC rms 0.1013 @ U 0.59 (d +0.0004) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.208+-0.091 ln (z -2.3) TENSION; u 0.20, <E_pred> +0.215
+    (b)  dSphs resid +2.093+-0.121 ln (+0.909 dex, z +17.2) CONTRADICTED; E_pred mean -1.310 median -1.252 ln
+    (b2) scatter s_HUNR 1.330 [95% 1.130-1.584] vs s_const 0.955; d(-2lnL) const-HUNR -46.88; slope -1.780+-0.267; sd(E_pred) 0.433 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.393, resid +1.153+-0.262 ln (z +4.40) CONTRADICTED
+    (d)  clusters MID 0.711+-0.044 (Z -6.49) OUTER 0.656+-0.056 (Z -6.09) s 0.702 (-0.92 s_err) -> FAILS
+    (e)  red lenses resid -0.102+-0.067 ln (z -1.5) CONSISTENT; IMF -0.194+-0.066 (z -2.9) TENSION -> IMF-DEPENDENT; <E_pred> +0.396
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.145+-0.066 dex (z -2.2) TENSION; A -0.343+-0.069; E_pred B +0.062; g2 matched cell D_obs +0.253 D_pred -0.520 +-0.100 (z +7.7; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; no excess class explained
+  [alt]
+    (a)  SPARC rms 0.1002 @ U 0.55 (d +0.0008) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.282+-0.091 ln (z -3.1) CONTRADICTED; u 0.20, <E_pred> +0.198
+    (b)  dSphs resid +2.093+-0.121 ln (+0.909 dex, z +17.2) CONTRADICTED; E_pred mean -1.401 median -1.343 ln
+    (b2) scatter s_HUNR 1.330 [95% 1.130-1.584] vs s_const 0.950; d(-2lnL) const-HUNR -47.26; slope -1.758+-0.264; sd(E_pred) 0.436 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.484, resid +1.153+-0.262 ln (z +4.40) CONTRADICTED
+    (d)  clusters MID 0.711+-0.044 (Z -6.49) OUTER 0.656+-0.056 (Z -6.09) s 0.702 (-0.92 s_err) -> FAILS
+    (e)  red lenses resid -0.117+-0.067 ln (z -1.8) CONSISTENT; IMF -0.208+-0.066 (z -3.2) CONTRADICTED -> IMF-DEPENDENT; <E_pred> +0.321
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.179+-0.066 dex (z -2.7) TENSION; A -0.376+-0.069; E_pred B +0.057; g2 matched cell D_obs +0.253 D_pred -0.554 +-0.100 (z +8.0; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; (a2) n<2 lenses CONTRADICTED; no excess class explained
+  corner C1500|rvir|x1: canonical FAILS [], alt FAILS []
+  --- corner C6000|rta|x1
+  [canonical]
+    (a)  SPARC rms 0.1015 @ U 0.59 (d +0.0006) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.180+-0.091 ln (z -2.0) CONSISTENT; u 0.20, <E_pred> +0.189
+    (b)  dSphs resid +1.862+-0.120 ln (+0.809 dex, z +15.5) CONTRADICTED; E_pred mean -1.096 median -0.985 ln
+    (b2) scatter s_HUNR 1.310 [95% 1.113-1.561] vs s_const 0.955; d(-2lnL) const-HUNR -44.62; slope -1.848+-0.280; sd(E_pred) 0.413 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.211, resid +0.972+-0.262 ln (z +3.71) CONTRADICTED
+    (d)  clusters MID 0.902+-0.056 (Z -1.74) OUTER 0.995+-0.084 (Z -0.06) s 0.674 (-1.06 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.033+-0.067 ln (z +0.5) CONSISTENT; IMF -0.047+-0.066 (z -0.7) CONSISTENT -> CONSISTENT; <E_pred> +0.259
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.172+-0.067 dex (z -2.6) TENSION; A -0.359+-0.070; E_pred B +0.089; g2 matched cell D_obs +0.253 D_pred -0.420 +-0.100 (z +6.7; N 10/18)
+    OVERALL PARTIAL  explained ['d', 'e'] not ['b', 'c'] 
+  [alt]
+    (a)  SPARC rms 0.1005 @ U 0.55 (d +0.0011) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.256+-0.091 ln (z -2.8) TENSION; u 0.20, <E_pred> +0.174
+    (b)  dSphs resid +1.862+-0.120 ln (+0.809 dex, z +15.5) CONTRADICTED; E_pred mean -1.187 median -1.079 ln
+    (b2) scatter s_HUNR 1.310 [95% 1.113-1.561] vs s_const 0.950; d(-2lnL) const-HUNR -45.00; slope -1.823+-0.276; sd(E_pred) 0.417 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.302, resid +0.972+-0.262 ln (z +3.71) CONTRADICTED
+    (d)  clusters MID 0.902+-0.056 (Z -1.74) OUTER 0.995+-0.084 (Z -0.06) s 0.674 (-1.06 s_err) -> EXPLAINS
+    (e)  red lenses resid +0.018+-0.067 ln (z +0.3) CONSISTENT; IMF -0.061+-0.066 (z -0.9) CONSISTENT -> CONSISTENT; <E_pred> +0.184
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.203+-0.067 dex (z -3.0) CONTRADICTED; A -0.391+-0.069; E_pred B +0.082; g2 matched cell D_obs +0.253 D_pred -0.452 +-0.100 (z +7.0; N 10/18)
+    OVERALL FAILS  explained ['d', 'e'] not ['b', 'c'] ; (g) rotators CONTRADICTED
+  corner C6000|rta|x1: canonical PARTIAL ['d', 'e'], alt FAILS ['d', 'e']
+  --- corner C6000|rvir|x1
+  [canonical]
+    (a)  SPARC rms 0.1017 @ U 0.59 (d +0.0008) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.254+-0.091 ln (z -2.8) TENSION; u 0.20, <E_pred> +0.263
+    (b)  dSphs resid +1.666+-0.121 ln (+0.724 dex, z +13.8) CONTRADICTED; E_pred mean -0.892 median -0.811 ln
+    (b2) scatter s_HUNR 1.300 [95% 1.106-1.552] vs s_const 0.955; d(-2lnL) const-HUNR -43.82; slope -1.892+-0.286; sd(E_pred) 0.406 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred +0.036, resid +0.724+-0.262 ln (z +2.77) TENSION
+    (d)  clusters MID 0.594+-0.037 (Z -10.90) OUTER 0.642+-0.055 (Z -6.50) s 0.720 (-0.84 s_err) -> FAILS
+    (e)  red lenses resid -0.201+-0.067 ln (z -3.0) TENSION; IMF -0.283+-0.066 (z -4.3) CONTRADICTED -> IMF-DEPENDENT; <E_pred> +0.493
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.192+-0.068 dex (z -2.8) TENSION; A -0.372+-0.070; E_pred B +0.108; g2 matched cell D_obs +0.253 D_pred -0.370 +-0.100 (z +6.2; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; no excess class explained
+  [alt]
+    (a)  SPARC rms 0.1009 @ U 0.55 (d +0.0014) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.324+-0.091 ln (z -3.6) CONTRADICTED; u 0.20, <E_pred> +0.242
+    (b)  dSphs resid +1.666+-0.121 ln (+0.724 dex, z +13.8) CONTRADICTED; E_pred mean -0.983 median -0.904 ln
+    (b2) scatter s_HUNR 1.300 [95% 1.106-1.552] vs s_const 0.950; d(-2lnL) const-HUNR -44.21; slope -1.871+-0.282; sd(E_pred) 0.409 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.055, resid +0.724+-0.262 ln (z +2.77) TENSION
+    (d)  clusters MID 0.594+-0.037 (Z -10.90) OUTER 0.642+-0.055 (Z -6.50) s 0.720 (-0.84 s_err) -> FAILS
+    (e)  red lenses resid -0.214+-0.067 ln (z -3.2) CONTRADICTED; IMF -0.295+-0.066 (z -4.5) CONTRADICTED -> CONTRADICTED; <E_pred> +0.416
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.222+-0.068 dex (z -3.3) CONTRADICTED; A -0.403+-0.070; E_pred B +0.100; g2 matched cell D_obs +0.253 D_pred -0.400 +-0.100 (z +6.5; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; (a2) n<2 lenses CONTRADICTED; (g) rotators CONTRADICTED; no excess class explained
+  corner C6000|rvir|x1: canonical FAILS [], alt FAILS []
+  --- corner C3000|rta|x2
+  [canonical]
+    (a)  SPARC rms 0.1015 @ U 0.59 (d +0.0006) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.244+-0.091 ln (z -2.7) TENSION; u 0.20, <E_pred> +0.251
+    (b)  dSphs resid +1.809+-0.121 ln (+0.785 dex, z +14.9) CONTRADICTED; E_pred mean -1.021 median -0.961 ln
+    (b2) scatter s_HUNR 1.300 [95% 1.104-1.550] vs s_const 0.955; d(-2lnL) const-HUNR -43.75; slope -1.884+-0.286; sd(E_pred) 0.406 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.110, resid +0.870+-0.262 ln (z +3.32) CONTRADICTED
+    (d)  clusters MID 0.672+-0.042 (Z -7.81) OUTER 0.660+-0.056 (Z -6.06) s 0.633 (-1.25 s_err) -> FAILS
+    (e)  red lenses resid -0.312+-0.067 ln (z -4.7) CONTRADICTED; IMF -0.410+-0.066 (z -6.2) CONTRADICTED -> CONTRADICTED; <E_pred> +0.606
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.170+-0.067 dex (z -2.5) TENSION; A -0.358+-0.069; E_pred B +0.086; g2 matched cell D_obs +0.253 D_pred -0.431 +-0.100 (z +6.8; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; no excess class explained
+  [alt]
+    (a)  SPARC rms 0.1005 @ U 0.55 (d +0.0011) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.315+-0.091 ln (z -3.5) CONTRADICTED; u 0.20, <E_pred> +0.232
+    (b)  dSphs resid +1.809+-0.121 ln (+0.785 dex, z +14.9) CONTRADICTED; E_pred mean -1.112 median -1.052 ln
+    (b2) scatter s_HUNR 1.300 [95% 1.104-1.550] vs s_const 0.950; d(-2lnL) const-HUNR -44.14; slope -1.865+-0.283; sd(E_pred) 0.408 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.200, resid +0.870+-0.262 ln (z +3.32) CONTRADICTED
+    (d)  clusters MID 0.672+-0.042 (Z -7.81) OUTER 0.660+-0.056 (Z -6.06) s 0.633 (-1.25 s_err) -> FAILS
+    (e)  red lenses resid -0.336+-0.067 ln (z -5.0) CONTRADICTED; IMF -0.432+-0.066 (z -6.6) CONTRADICTED -> CONTRADICTED; <E_pred> +0.540
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.201+-0.067 dex (z -3.0) CONTRADICTED; A -0.390+-0.069; E_pred B +0.080; g2 matched cell D_obs +0.253 D_pred -0.463 +-0.100 (z +7.1; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; (a2) n<2 lenses CONTRADICTED; (g) rotators CONTRADICTED; no excess class explained
+  corner C3000|rta|x2: canonical FAILS [], alt FAILS []
+  --- corner C3000|rvir|x2
+  [canonical]
+    (a)  SPARC rms 0.1017 @ U 0.59 (d +0.0008) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.345+-0.091 ln (z -3.8) CONTRADICTED; u 0.20, <E_pred> +0.351
+    (b)  dSphs resid +1.615+-0.123 ln (+0.701 dex, z +13.1) CONTRADICTED; E_pred mean -0.818 median -0.765 ln
+    (b2) scatter s_HUNR 1.295 [95% 1.100-1.546] vs s_const 0.955; d(-2lnL) const-HUNR -43.44; slope -1.814+-0.284; sd(E_pred) 0.410 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred +0.138, resid +0.622+-0.262 ln (z +2.38) TENSION
+    (d)  clusters MID 0.431+-0.027 (Z -21.11) OUTER 0.390+-0.033 (Z -18.46) s 0.651 (-1.17 s_err) -> FAILS
+    (e)  red lenses resid -0.563+-0.067 ln (z -8.4) CONTRADICTED; IMF -0.662+-0.066 (z -10.1) CONTRADICTED -> CONTRADICTED; <E_pred> +0.858
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.189+-0.068 dex (z -2.8) TENSION; A -0.371+-0.070; E_pred B +0.106; g2 matched cell D_obs +0.253 D_pred -0.381 +-0.100 (z +6.3; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; (a2) n<2 lenses CONTRADICTED; no excess class explained
+  [alt]
+    (a)  SPARC rms 0.1009 @ U 0.55 (d +0.0015) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.409+-0.091 ln (z -4.5) CONTRADICTED; u 0.20, <E_pred> +0.325
+    (b)  dSphs resid +1.615+-0.123 ln (+0.701 dex, z +13.1) CONTRADICTED; E_pred mean -0.909 median -0.855 ln
+    (b2) scatter s_HUNR 1.295 [95% 1.100-1.546] vs s_const 0.950; d(-2lnL) const-HUNR -43.83; slope -1.803+-0.281; sd(E_pred) 0.413 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred +0.047, resid +0.622+-0.262 ln (z +2.38) TENSION
+    (d)  clusters MID 0.431+-0.027 (Z -21.11) OUTER 0.390+-0.033 (Z -18.46) s 0.651 (-1.17 s_err) -> FAILS
+    (e)  red lenses resid -0.582+-0.067 ln (z -8.7) CONTRADICTED; IMF -0.680+-0.066 (z -10.3) CONTRADICTED -> CONTRADICTED; <E_pred> +0.787
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.219+-0.068 dex (z -3.2) CONTRADICTED; A -0.402+-0.069; E_pred B +0.098; g2 matched cell D_obs +0.253 D_pred -0.412 +-0.100 (z +6.6; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; (a2) n<2 lenses CONTRADICTED; (g) rotators CONTRADICTED; no excess class explained
+  corner C3000|rvir|x2: canonical FAILS [], alt FAILS []
+  --- corner C1500|rta|x2
+  [canonical]
+    (a)  SPARC rms 0.1013 @ U 0.59 (d +0.0004) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.210+-0.091 ln (z -2.3) TENSION; u 0.20, <E_pred> +0.216
+    (b)  dSphs resid +2.051+-0.121 ln (+0.891 dex, z +16.9) CONTRADICTED; E_pred mean -1.261 median -1.211 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.120-1.571] vs s_const 0.955; d(-2lnL) const-HUNR -45.72; slope -1.808+-0.273; sd(E_pred) 0.423 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.365, resid +1.125+-0.262 ln (z +4.30) CONTRADICTED
+    (d)  clusters MID 0.786+-0.049 (Z -4.37) OUTER 0.715+-0.061 (Z -4.70) s 0.616 (-1.33 s_err) -> FAILS
+    (e)  red lenses resid -0.235+-0.067 ln (z -3.5) CONTRADICTED; IMF -0.338+-0.066 (z -5.1) CONTRADICTED -> CONTRADICTED; <E_pred> +0.530
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.146+-0.066 dex (z -2.2) TENSION; A -0.343+-0.069; E_pred B +0.063; g2 matched cell D_obs +0.253 D_pred -0.512 +-0.100 (z +7.6; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; no excess class explained
+  [alt]
+    (a)  SPARC rms 0.1002 @ U 0.55 (d +0.0008) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.283+-0.091 ln (z -3.1) CONTRADICTED; u 0.20, <E_pred> +0.199
+    (b)  dSphs resid +2.051+-0.121 ln (+0.891 dex, z +16.9) CONTRADICTED; E_pred mean -1.352 median -1.304 ln
+    (b2) scatter s_HUNR 1.320 [95% 1.120-1.571] vs s_const 0.950; d(-2lnL) const-HUNR -46.10; slope -1.787+-0.270; sd(E_pred) 0.426 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.455, resid +1.125+-0.262 ln (z +4.30) CONTRADICTED
+    (d)  clusters MID 0.786+-0.049 (Z -4.37) OUTER 0.715+-0.061 (Z -4.70) s 0.616 (-1.33 s_err) -> FAILS
+    (e)  red lenses resid -0.261+-0.067 ln (z -3.9) CONTRADICTED; IMF -0.362+-0.066 (z -5.5) CONTRADICTED -> CONTRADICTED; <E_pred> +0.466
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.179+-0.066 dex (z -2.7) TENSION; A -0.376+-0.069; E_pred B +0.058; g2 matched cell D_obs +0.253 D_pred -0.546 +-0.100 (z +8.0; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; (a2) n<2 lenses CONTRADICTED; no excess class explained
+  corner C1500|rta|x2: canonical FAILS [], alt FAILS []
+  --- corner C1500|rvir|x2
+  [canonical]
+    (a)  SPARC rms 0.1015 @ U 0.59 (d +0.0006) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.306+-0.091 ln (z -3.4) CONTRADICTED; u 0.20, <E_pred> +0.311
+    (b)  dSphs resid +1.859+-0.123 ln (+0.807 dex, z +15.1) CONTRADICTED; E_pred mean -1.058 median -1.020 ln
+    (b2) scatter s_HUNR 1.315 [95% 1.116-1.567] vs s_const 0.955; d(-2lnL) const-HUNR -45.42; slope -1.738+-0.271; sd(E_pred) 0.429 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred -0.112, resid +0.872+-0.262 ln (z +3.33) CONTRADICTED
+    (d)  clusters MID 0.489+-0.031 (Z -16.75) OUTER 0.401+-0.034 (Z -17.61) s 0.634 (-1.25 s_err) -> FAILS
+    (e)  red lenses resid -0.492+-0.067 ln (z -7.3) CONTRADICTED; IMF -0.597+-0.066 (z -9.1) CONTRADICTED -> CONTRADICTED; <E_pred> +0.788
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.162+-0.067 dex (z -2.4) TENSION; A -0.353+-0.069; E_pred B +0.079; g2 matched cell D_obs +0.253 D_pred -0.463 +-0.100 (z +7.1; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; (a2) n<2 lenses CONTRADICTED; no excess class explained
+  [alt]
+    (a)  SPARC rms 0.1005 @ U 0.55 (d +0.0011) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.373+-0.091 ln (z -4.1) CONTRADICTED; u 0.20, <E_pred> +0.288
+    (b)  dSphs resid +1.859+-0.123 ln (+0.807 dex, z +15.1) CONTRADICTED; E_pred mean -1.149 median -1.110 ln
+    (b2) scatter s_HUNR 1.315 [95% 1.116-1.567] vs s_const 0.950; d(-2lnL) const-HUNR -45.81; slope -1.724+-0.268; sd(E_pred) 0.432 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred -0.202, resid +0.872+-0.262 ln (z +3.33) CONTRADICTED
+    (d)  clusters MID 0.489+-0.031 (Z -16.75) OUTER 0.401+-0.034 (Z -17.61) s 0.634 (-1.25 s_err) -> FAILS
+    (e)  red lenses resid -0.513+-0.067 ln (z -7.7) CONTRADICTED; IMF -0.617+-0.066 (z -9.4) CONTRADICTED -> CONTRADICTED; <E_pred> +0.719
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.194+-0.067 dex (z -2.9) TENSION; A -0.386+-0.069; E_pred B +0.073; g2 matched cell D_obs +0.253 D_pred -0.495 +-0.100 (z +7.5; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; (a2) n<2 lenses CONTRADICTED; no excess class explained
+  corner C1500|rvir|x2: canonical FAILS [], alt FAILS []
+  --- corner C6000|rta|x2
+  [canonical]
+    (a)  SPARC rms 0.1018 @ U 0.59 (d +0.0009) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.279+-0.091 ln (z -3.1) CONTRADICTED; u 0.20, <E_pred> +0.288
+    (b)  dSphs resid +1.566+-0.121 ln (+0.680 dex, z +12.9) CONTRADICTED; E_pred mean -0.785 median -0.698 ln
+    (b2) scatter s_HUNR 1.285 [95% 1.093-1.535] vs s_const 0.955; d(-2lnL) const-HUNR -42.27; slope -1.941+-0.296; sd(E_pred) 0.393 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred +0.133, resid +0.627+-0.262 ln (z +2.39) TENSION
+    (d)  clusters MID 0.584+-0.036 (Z -11.40) OUTER 0.616+-0.052 (Z -7.35) s 0.649 (-1.18 s_err) -> FAILS
+    (e)  red lenses resid -0.386+-0.067 ln (z -5.8) CONTRADICTED; IMF -0.480+-0.066 (z -7.3) CONTRADICTED -> CONTRADICTED; <E_pred> +0.680
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.199+-0.068 dex (z -2.9) TENSION; A -0.377+-0.070; E_pred B +0.116; g2 matched cell D_obs +0.253 D_pred -0.348 +-0.100 (z +6.0; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; (a2) n<2 lenses CONTRADICTED; no excess class explained
+  [alt]
+    (a)  SPARC rms 0.1010 @ U 0.55 (d +0.0015) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.348+-0.091 ln (z -3.8) CONTRADICTED; u 0.20, <E_pred> +0.266
+    (b)  dSphs resid +1.566+-0.121 ln (+0.680 dex, z +12.9) CONTRADICTED; E_pred mean -0.876 median -0.790 ln
+    (b2) scatter s_HUNR 1.285 [95% 1.093-1.535] vs s_const 0.950; d(-2lnL) const-HUNR -42.66; slope -1.923+-0.293; sd(E_pred) 0.395 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred +0.043, resid +0.627+-0.262 ln (z +2.39) TENSION
+    (d)  clusters MID 0.584+-0.036 (Z -11.40) OUTER 0.616+-0.052 (Z -7.35) s 0.649 (-1.18 s_err) -> FAILS
+    (e)  red lenses resid -0.408+-0.067 ln (z -6.1) CONTRADICTED; IMF -0.500+-0.066 (z -7.6) CONTRADICTED -> CONTRADICTED; <E_pred> +0.612
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.229+-0.068 dex (z -3.4) CONTRADICTED; A -0.408+-0.070; E_pred B +0.107; g2 matched cell D_obs +0.253 D_pred -0.378 +-0.100 (z +6.3; N 10/18)
+    OVERALL FAILS  explained [] not ['b', 'c', 'd', 'e'] ; (a2) n<2 lenses CONTRADICTED; (g) rotators CONTRADICTED; no excess class explained
+  corner C6000|rta|x2: canonical FAILS [], alt FAILS []
+  --- corner C6000|rvir|x2
+  [canonical]
+    (a)  SPARC rms 0.1021 @ U 0.59 (d +0.0012) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.383+-0.091 ln (z -4.2) CONTRADICTED; u 0.20, <E_pred> +0.391
+    (b)  dSphs resid +1.371+-0.123 ln (+0.595 dex, z +11.2) CONTRADICTED; E_pred mean -0.582 median -0.517 ln
+    (b2) scatter s_HUNR 1.285 [95% 1.089-1.531] vs s_const 0.955; d(-2lnL) const-HUNR -41.93; slope -1.884+-0.294; sd(E_pred) 0.396 -> FAIL
+    (c)  Coma UDGs E_obs +0.760, E_pred +0.376, resid +0.384+-0.262 ln (z +1.47) CONSISTENT
+    (d)  clusters MID 0.385+-0.024 (Z -25.51) OUTER 0.380+-0.032 (Z -19.23) s 0.666 (-1.10 s_err) -> FAILS
+    (e)  red lenses resid -0.630+-0.067 ln (z -9.4) CONTRADICTED; IMF -0.724+-0.066 (z -11.0) CONTRADICTED -> CONTRADICTED; <E_pred> +0.925
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.223+-0.069 dex (z -3.2) CONTRADICTED; A -0.393+-0.071; E_pred B +0.139; g2 matched cell D_obs +0.253 D_pred -0.301 +-0.100 (z +5.5; N 10/18)
+    OVERALL FAILS  explained ['c'] not ['b', 'd', 'e'] ; (a2) n<2 lenses CONTRADICTED; (g) rotators CONTRADICTED
+  [alt]
+    (a)  SPARC rms 0.1015 @ U 0.54 (d +0.0020) -> PASS; u median 0.029 max 0.486
+    (a2) n<2 lenses resid -0.445+-0.091 ln (z -4.9) CONTRADICTED; u 0.20, <E_pred> +0.362
+    (b)  dSphs resid +1.371+-0.123 ln (+0.595 dex, z +11.2) CONTRADICTED; E_pred mean -0.673 median -0.608 ln
+    (b2) scatter s_HUNR 1.285 [95% 1.089-1.531] vs s_const 0.950; d(-2lnL) const-HUNR -42.32; slope -1.874+-0.291; sd(E_pred) 0.398 -> FAIL
+    (c)  Coma UDGs E_obs +0.669, E_pred +0.286, resid +0.384+-0.262 ln (z +1.47) CONSISTENT
+    (d)  clusters MID 0.385+-0.024 (Z -25.51) OUTER 0.380+-0.032 (Z -19.23) s 0.666 (-1.10 s_err) -> FAILS
+    (e)  red lenses resid -0.648+-0.067 ln (z -9.7) CONTRADICTED; IMF -0.740+-0.066 (z -11.2) CONTRADICTED -> CONTRADICTED; <E_pred> +0.853
+    (f)  TDG +0.055+-0.114 dex, DF2/DF4 +0.028+-0.539 ln -> CONSISTENT (inherited)
+    (g)  rotators B resid -0.251+-0.069 dex (z -3.6) CONTRADICTED; A -0.423+-0.070; E_pred B +0.130; g2 matched cell D_obs +0.253 D_pred -0.329 +-0.100 (z +5.8; N 10/18)
+    OVERALL FAILS  explained ['c'] not ['b', 'd', 'e'] ; (a2) n<2 lenses CONTRADICTED; (g) rotators CONTRADICTED
+  corner C6000|rvir|x2: canonical FAILS ['c'], alt FAILS ['c']
+
+  corner counts: canonical {'PARTIAL': 2, 'FAILS': 10}, alt {'PARTIAL': 2, 'FAILS': 10} -> {'canonical': 'FRAGILE', 'alt': 'FRAGILE'}
+
+  CLASS (governing: P-LIN, R-C, primary corner): canonical PARTIAL (FRAGILE), alt PARTIAL (FRAGILE); headline PARTIAL
+
+  done [16 s, peak RSS 0.349 GB], exit 0.  kappa = 1/2 FITTED; footings never pooled; not theory closed.

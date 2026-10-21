@@ -1,0 +1,36 @@
+CFG959 [MUTATE]  H-UNR: excess family as unrelaxed native cold energy; criteria 3b52ca39f
+  kappa = 1/2 FITTED; footings 9.3603e-11 / 1.1312e-10 never pooled; raw data, framework-native inputs; not theory closed
+    cfg949> CFG949 [MAIN]  criteria 7330f9e99  n_eRASS1 318  s_obs 0.8958 ± 0.2093  native h 0.6777 Om 0.3104 Delta_ta(0) 11.8977
+
+=== K-stage
+  [PASS] K1 CFG919 class means DW, LS, LD (E, se; both footings) from this lane's rebuilt cells: max |diff| 0.0e+00; canonical DW +0.8562+-0.1019, LS +0.2934, LD +0.0078; diffs canonical|DW +0.0e+00/+0.0e+00, canonical|LS +0.0e+00/+0.0e+00, canonical|LD +0.0e+00/+0.0e+00, alt|DW +0.0e+00/+0.0e+00, alt|LS +0.0e+00/+0.0e+00, alt|LD +0.0e+00/+0.0e+00
+  [PASS] K2 CFG687 A_MID, A_OUTER (value + jackknife, both footings) through CFG949's machinery: max rel 1.6e-15; canonical MID 1.9102+-0.1186, OUTER 1.0118; alt MID 1.7536, OUTER 0.9265
+  [PASS] K3 CFG949 B0 primary corner (A_MID, A_OUTER, s; stored JSON) = H-UNR R-C at u = 1; build_cold_x == build_cold: max rel 0.0e+00; MID 1.0109+-0.0632 OUTER 1.0469+-0.0888 s 0.6615 (EXPLAINS); cold arrays max |diff| 0.0e+00
+  [PASS] K4 CFG930 SPARC native halo facts (147 galaxies; median z_c, c, r_s, r_b, M_ta/M_b) through this lane's galaxy halo code: N 147; max rel 1.1e-16; z_c 2.0038 c 38.068 r_s 15.684 kpc r_b 597.07 kpc M_ta/M_b 63.64
+  [PASS] K5 CFG695 S2 rms and Upsilon (law, nu_simple, both footings) through this lane's SPARC engine: max |diff| 6.9e-17; canonical 0.10091@0.60, alt 0.09943@0.55
+  [PASS] K6 CFG933 Coma UDGs mean E_obs and se_obs (9 admitted; both footings): max |diff| 0.0e+00; canonical +0.76036+-0.26180 ln, alt +0.66946
+  [PASS] K7 CFG936 route (i) T/U statistics from its rows; Newton-exact DF2/DF4 == its 'S4 strict f=0' corner; TDG Newton == route (i): max |diff| 1.4e-17; canonical TDG +0.0546+-0.1144 dex, DF +0.0281+-0.5390 ln
+  [PASS] K8 CFG940 WS means and se (A, B; both footings) from its stored table; its per-galaxy E from its stored logs with this lane's law; Table 2 V_rot/V_cor parse (25; V_cor == CFG940): max |diff| 2.0e-15; canonical A -0.3041+-0.0675, B -0.0833+-0.0637 dex; V_rot 10-57 km/s
+  [PASS] K9 CFG880 sample N = 83 and its committed per-dwarf sigma_law (both footings): N 83; max rel 0.0e+00
+  K-stage ALL PASS  [1 s, 0.265 GB]
+
+=== M-DISC: u = 1 for every system (discs, n<2 lenses, rotators included); must break SPARC (a)
+  [canonical] SPARC rms 0.1109 @ U 0.67 -> FAIL;  (info) n<2 lenses at u = 1 +0.023+-0.091 ln (z +0.3); rotators B at u = 1 +0.138+-0.064 dex (z +2.2)
+  [alt] SPARC rms 0.1109 @ U 0.67 -> FAIL;  (info) n<2 lenses at u = 1 +0.023+-0.091 ln (z +0.3); rotators B at u = 1 +0.138+-0.064 dex (z +2.2)
+  M-DISC BITES
+
+=== M-ZERO: u = 0 everywhere, uncapped law (no retained debris); the record's offsets must come back exactly
+  [canonical] (info) R-C at u = 0 with the supply cap: dSph +0.8564 (cap effect +2.5e-04); SPARC 0.10091@0.60, capped points 0
+  [canonical] dSph resid +0.8562+-0.1019 ln (z +8.4); Coma +0.7604; red lenses +0.2934; clusters MID 1.9102 OUTER 1.0118; SPARC 0.10091@0.60
+  [alt] (info) R-C at u = 0 with the supply cap: dSph +0.7665 (cap effect +1.6e-03); SPARC 0.09943@0.55, capped points 0
+  [alt] dSph resid +0.7649+-0.1018 ln (z +7.5); Coma +0.6695; red lenses +0.2030; clusters MID 1.7536 OUTER 0.9265; SPARC 0.09943@0.55
+  M-ZERO max diff vs record 2.2e-16 -> BITES (excesses return as deficits)
+
+=== M-PLANT: observed := H-UNR primary prediction (+ noise, seed 959); planted items must come out CONSISTENT
+  [canonical] dSph +0.040+-0.084 CONSISTENT; Coma +0.171+-0.262 CONSISTENT; rotators +0.022+-0.057 CONSISTENT; LS -2.50e-17 CONSISTENT; LD +2.73e-17 CONSISTENT; clusters MID 1.0373 OUTER 0.9621 EXPLAINS
+  [alt] dSph +0.040+-0.084 CONSISTENT; Coma +0.171+-0.262 CONSISTENT; rotators +0.022+-0.057 CONSISTENT; LS -2.47e-17 CONSISTENT; LD -1.88e-17 CONSISTENT; clusters MID 1.0373 OUTER 0.9621 EXPLAINS
+  M-PLANT BITES (planted H-UNR recovered as CONSISTENT)
+
+  MUTATE: 3/3 arms bite
+
+  done [2 s, peak RSS 0.265 GB], exit 0.  kappa = 1/2 FITTED; footings never pooled; not theory closed.

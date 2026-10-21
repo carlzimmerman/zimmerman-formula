@@ -1,0 +1,176 @@
+WT-03 vacuum clock  mode=main  criteria c9ea722b6
+kappa = 1/2 FITTED; Z = sqrt(32 pi/3) = 5.7888; footings 9.3603e-11 / 1.1312e-10 (never pooled)
+
+=== S. Theory (sympy) ===
+S1 eps: d ln a0/dt = -3*H*(w + 1)/2  ; minus [-(3/2)H(1+w)] simplifies to 0
+    CFG911 K17 form d ln a0/d ln a = -(3/2)(1+w): residual 0
+    z-form: p = (1+z) rho'/3 - rho satisfies continuity (residual 0); -1/2 (1+z) H rho'/rho = -(3/2)H(1+w) (residual 0)
+S2 -p: -p = -z*Derivative(rho(z), z)/3 + rho(z) - Derivative(rho(z), z)/3 ; d(-p)/dz = -z*Derivative(rho(z), (z, 2))/3 + 2*Derivative(rho(z), z)/3 - Derivative(rho(z), (z, 2))/3 ; residual vs (2/3)rho' - (1+z)rho''/3: 0
+    fluid: d ln(-p)/dt = p_dot/p = 3H c_a^2 (1+w)/(-w): residual 0 => for -p > 0, rising <=> c_a^2 (1+w) > 0; with NEC (1+w>0) rising <=> c_a^2 > 0, falling <=> c_a^2 < 0
+    rising -p in time <=> d(-p)/dz < 0 <=> (1+z) rho'' - 2 rho' > 0 : z*Derivative(rho(z), (z, 2)) - 2*Derivative(rho(z), z) + Derivative(rho(z), (z, 2)) > 0
+    canonical scalar: d(-p)/dt = 2 V' phi_dot + 3 H phi_dot^2: residual 0
+      slow-roll attractor (V' = -3H phi_dot): -3*H*pd**2  (< 0: -p falls);  flat potential V' = 0: 3*H*pd**2 (> 0: -p rises, NEC holds)
+      scalar rho_dot = -3*H*Derivative(phi(t), t)**2 (= -3H phi_dot^2 <= 0 always: a canonical scalar's density never grows)
+S3 V: V_dot = Derivative(V(phi(t)), phi(t))*Derivative(phi(t), t) ; d(phi_dot^2)/dt = -2*(3*H*Derivative(phi(t), t) + Derivative(V(phi(t)), phi(t)))*Derivative(phi(t), t) => V rises only while the field climbs (V' phi_dot > 0), and then phi_dot^2 must fall: transient, decelerating
+    z-form: K = (1+z) rho'/6 (res 0), V = rho - (1+z) rho'/6 (res 0), V' = (5/6) rho' - (1+z) rho''/6 (res 0)
+    no ghost <=> K >= 0 <=> rho' >= 0 ; rising V in time <=> (1+z) rho'' - 5 rho' > 0
+S4 (TRUE BY CONSTRUCTION) inside a CFG689 segment rho = a + m z: d/dz of (eps, -p, V) = [m, 2*m/3, 5*m/6] -> all sign(m)
+S5 IDENTITY (no verdict weight): S_dS/k_B = pi c^5/(G hbar H_L^2), H_L = Z a0/c, Z^2 = 32 pi/3 -> 3 c^7/(32 G hbar a0^2): residual 0 ; d ln S/dt = -2 d ln a0/dt
+  [PASS] K4 sympy S1-S5 + CFG911 K17: all residuals zero
+
+=== A. CFG689 primary band (cfg689.json @ 6c064b83a, keys BAO+SN.*) ===
+cfg.nodes = [0.0, 0.4, 0.7, 1.0, 1.5, 2.33] ; percentiles Q = [2.5, 16, 50, 84, 97.5]
+  P1[1.0].sqrtX_q = [0.5524, 0.7624, 0.9132, 1.0272, 1.1167]   E_q[2] = 1.76051   P3.P_w_le0 = 0.0019
+  P1[1.2].sqrtX_q = [0.5265, 0.7621, 0.9248, 1.0478, 1.1423]   E_q[2] = 1.98713   P3.P_w_le0 = 0.0033
+  P1[1.5].sqrtX_q = [0.2696, 0.7065, 0.942, 1.1155, 1.2498]   E_q[2] = 2.35287   P3.P_w_le0 = 0.0178
+  P1[2.33].sqrtX_q = [0.0, 0.3247, 0.9094, 1.2116, 1.422]   E_q[2] = 3.49015   P3.P_w_le0 = 0.1285
+  P3.a0_node_q[0.0] = [8.63, 8.997, 9.352, 9.695, 10.015] e-11   posterior node 0.0: mean 0.3105 std 0.0233
+  P3.a0_node_q[0.4] = [8.293, 8.927, 9.523, 10.088, 10.606] e-11   posterior node 0.4: mean 0.3221 std 0.0395
+  P3.a0_node_q[0.7] = [8.678, 9.613, 10.498, 11.299, 12.023] e-11   posterior node 0.7: mean 0.3908 std 0.0627
+  P3.a0_node_q[1.0] = [4.836, 6.917, 8.534, 9.887, 11.018] e-11   posterior node 1.0: mean 0.2584 std 0.0891
+  P3.a0_node_q[1.5] = [2.383, 6.427, 8.804, 10.695, 12.229] e-11   posterior node 1.5: mean 0.2761 std 0.1307
+  P3.a0_node_q[2.33] = [0.0, 2.955, 8.502, 11.67, 14.024] e-11   posterior node 2.33: mean 0.2563 std 0.2273
+  posterior omega_b [0.022361464615212937, 0.00015130446868176587], omega_c [0.12023380513148157, 0.001414931104866508], omega_k [0.00522518115876408, 0.022118201954666156]; P3.H0_q = [66.514, 67.086, 67.696, 68.314, 68.918]
+  P2 (context): dchi2 11.114/5, 1.967 sigma, CONSISTENT WITH CONSTANT
+
+=== K1 / K5. Reproduction and integrator ===
+  [PASS] K1(a) H0 from posterior means: 67.7014 vs P3.H0_q[2] 67.6955 (tol 0.05)
+  [PASS] K1(b) a0(z=0) at kappa=1/2: 9.35225e-11 vs P3.a0_node_q[0.0][2] 9.35234e-11 (tol 0.5%)
+  [PASS] K1(c) E(z) mean background: z 1.0: 1.76058 vs 1.76051; z 1.2: 1.98725 vs 1.98713; z 1.5: 2.35335 vs 2.35287; z 2.33: 3.49066 vs 3.49015
+  [PASS] K5 flat matter+Lambda age: numeric 13.46698395 Gyr vs closed form 13.46698395 Gyr
+  native mean background: H0 = 67.701 km/s/Mpc = 0.06924 /Gyr; age 13.680 Gyr; lookback to nodes z 0: 0.000, z 0.4: 4.387, z 0.7: 6.400, z 1: 7.826, z 1.5: 9.418, z 2.33: 10.875 Gyr
+  draws rho_adj = -0.5: done
+  draws rho_adj = +0.0: done
+  draws rho_adj = +0.5: done
+
+=== K1b. APPROX-G (rho_adj = 0) vs stored joint quantities (diagnostic; flags only) ===
+  z 1.0: approx sqrtX 16/50/84 [0.7377, 0.9122, 1.0631] vs stored [0.7624, 0.9132, 1.0272] (max dev 0.0359); P_w_le0 0.0018 vs 0.0019  -> APPROXIMATION OFF at z 1.0
+  z 1.2: approx sqrtX 16/50/84 [0.7819, 0.9246, 1.0529] vs stored [0.7621, 0.9248, 1.0478] (max dev 0.0198); P_w_le0 0.0002 vs 0.0033  -> OK
+  z 1.5: approx sqrtX 16/50/84 [0.6844, 0.9433, 1.1479] vs stored [0.7065, 0.942, 1.1155] (max dev 0.0324); P_w_le0 0.0172 vs 0.0178  -> APPROXIMATION OFF at z 1.5
+  z 2.33: approx sqrtX 16/50/84 [0.309, 0.9088, 1.2499] vs stored [0.3247, 0.9094, 1.2116] (max dev 0.0382); P_w_le0 0.1305 vs 0.1285  -> APPROXIMATION OFF at z 2.33
+
+=== K2. constant dark energy => flat (TRUE BY CONSTRUCTION) ===
+  [PASS] K2 constant DE -> every reading flat, rate 0: all segments flat in every draw; |r| <= 1e-12 H0 (literal and spline)
+
+=== K3. noiseless plants (w = -1.2 phantom, w = -0.8 quintessence) ===
+  w = -1.2: flags95 ['RISE', 'RISE', 'RISE', 'RISE', 'RISE'] cls68/95 PHANTOM-REQUIRED/PHANTOM-REQUIRED; rate +1.582196e-02/Gyr vs secant +1.582196e-02 (rel 4.4e-16); secant/instantaneous = 0.7617 (reported, not graded)
+  w = -0.8: flags95 ['FALL', 'FALL', 'FALL', 'FALL', 'FALL'] cls68/95 FALLING/FALLING; rate -1.936141e-02/Gyr vs secant -1.936141e-02 (rel 0.0e+00); secant/instantaneous = 0.9321 (reported, not graded)
+  [PASS] K3 plants recovered: phantom -> RISE_95 x5 + PHANTOM-REQUIRED; quintessence -> FALL_95 x5 + FALLING; secant rate to 1e-10
+
+=== B/C. Per-segment drift of a0 in cosmic time (literal = CFG689's own linear w(z); PRIMARY) ===
+segment z: 0-0.4  0.4-0.7  0.7-1  1-1.5  1.5-2.33   (lookback Gyr at nodes: 0.00, 4.39, 6.40, 7.83, 9.42, 10.88)
+
+-- rho_adj = -0.5 --
+  f_NEC (P(dw<0): band needs NEC violation somewhere in the segment; reading-independent; under V = ghost needed): 0.416  0.221  0.842  0.464  0.526
+  literal eps p_rise 0.416 0.221 0.841 0.455 0.464 | p_fall 0.584 0.779 0.159 0.545 0.536 | undef max 0.147 | 68% ['FLAT', 'FLAT', 'RISE', 'FLAT', 'FLAT'] -> PHANTOM-REQUIRED | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  literal -p  p_rise 0.416 0.246 0.857 0.610 0.695 | p_fall 0.584 0.754 0.143 0.390 0.305 | undef max 0.244 | 68% ['FLAT', 'FLAT', 'RISE', 'FLAT', 'FLAT'] -> PHANTOM-REQUIRED | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  literal V   p_rise 0.416 0.222 0.844 0.525 0.616 | p_fall 0.584 0.778 0.156 0.475 0.384 | undef max 0.147 | 68% ['FLAT', 'FLAT', 'RISE', 'FLAT', 'FLAT'] -> PHANTOM-REQUIRED | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  spline  eps p_rise 0.416 0.221 0.841 0.455 0.464 | p_fall 0.584 0.779 0.159 0.545 0.536 | undef max 0.147 | 68% ['FLAT', 'FLAT', 'RISE', 'FLAT', 'FLAT'] -> PHANTOM-REQUIRED | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  spline  -p  p_rise 0.734 0.229 0.404 0.648 0.155 | p_fall 0.266 0.771 0.596 0.352 0.845 | undef max 0.749 | 68% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FALL'] -> FALLING | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  spline  V   p_rise 0.745 0.175 0.653 0.819 0.142 | p_fall 0.255 0.825 0.347 0.181 0.858 | undef max 0.445 | 68% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FALL'] -> FALLING | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  w_eff (secant, median [16, 84]) per segment: -0.963 [-1.140, -0.796]; -0.669 [-1.101, -0.265]; -1.837 [-2.776, -1.006]; -0.903 [-2.090, +0.095]; -1.083 [-2.931, +0.112]
+  literal eps segment-average d ln a0/dt per Gyr, median [16, 84]: -0.0042 [-0.0234, +0.0160]; -0.0479 [-0.1076, +0.0145]; +0.1445 [+0.0008, +0.3228]; -0.0245 [-0.2415, +0.2207]; -0.0308 [-0.3636, +0.3567]
+  a0(z_k)/a0(0) (eps) at nodes, median [16, 84]: z 0.4: 1.019 [0.932, 1.108]; z 0.7: 1.122 [1.022, 1.220]; z 1: 0.913 [0.739, 1.063]; z 1.5: 0.948 [0.702, 1.151]; z 2.33: 0.972 [0.610, 1.277]
+  P(a0 maximum at node): z 0: 0.007, z 0.4: 0.069, z 0.7: 0.430, z 1: 0.077, z 1.5: 0.166, z 2.33: 0.250; P(monotone rising in t) 0.0003; P(monotone falling in t) 0.0000
+
+-- rho_adj = +0.0 --
+  f_NEC (P(dw<0): band needs NEC violation somewhere in the segment; reading-independent; under V = ghost needed): 0.400  0.177  0.888  0.456  0.530
+  literal eps p_rise 0.400 0.177 0.888 0.447 0.469 | p_fall 0.600 0.823 0.112 0.553 0.531 | undef max 0.145 | 68% ['FLAT', 'FLAT', 'RISE', 'FLAT', 'FLAT'] -> PHANTOM-REQUIRED | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  literal -p  p_rise 0.400 0.189 0.892 0.565 0.660 | p_fall 0.600 0.811 0.108 0.435 0.340 | undef max 0.198 | 68% ['FLAT', 'FLAT', 'RISE', 'FLAT', 'FLAT'] -> PHANTOM-REQUIRED | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  literal V   p_rise 0.400 0.177 0.888 0.494 0.588 | p_fall 0.600 0.823 0.112 0.506 0.412 | undef max 0.110 | 68% ['FLAT', 'FLAT', 'RISE', 'FLAT', 'FLAT'] -> PHANTOM-REQUIRED | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  spline  eps p_rise 0.400 0.177 0.888 0.447 0.469 | p_fall 0.600 0.823 0.112 0.553 0.531 | undef max 0.145 | 68% ['FLAT', 'FLAT', 'RISE', 'FLAT', 'FLAT'] -> PHANTOM-REQUIRED | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  spline  -p  p_rise 0.801 0.136 0.392 0.756 0.148 | p_fall 0.199 0.864 0.608 0.244 0.852 | undef max 0.682 | 68% ['FLAT', 'FALL', 'FLAT', 'FLAT', 'FALL'] -> FALLING | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  spline  V   p_rise 0.813 0.109 0.678 0.875 0.138 | p_fall 0.187 0.891 0.322 0.125 0.862 | undef max 0.350 | 68% ['FLAT', 'FALL', 'FLAT', 'RISE', 'FALL'] -> HEALTHY | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  w_eff (secant, median [16, 84]) per segment: -0.963 [-1.111, -0.825]; -0.669 [-1.025, -0.335]; -1.839 [-2.663, -1.142]; -0.902 [-1.914, -0.076]; -1.061 [-2.697, -0.080]
+  literal eps segment-average d ln a0/dt per Gyr, median [16, 84]: -0.0042 [-0.0200, +0.0127]; -0.0479 [-0.0970, +0.0036]; +0.1449 [+0.0241, +0.2998]; -0.0241 [-0.2011, +0.1821]; -0.0221 [-0.2929, +0.3139]
+  a0(z_k)/a0(0) (eps) at nodes, median [16, 84]: z 0.4: 1.018 [0.946, 1.092]; z 0.7: 1.122 [1.021, 1.220]; z 1: 0.913 [0.739, 1.063]; z 1.5: 0.948 [0.702, 1.150]; z 2.33: 0.973 [0.612, 1.276]
+  P(a0 maximum at node): z 0: 0.020, z 0.4: 0.066, z 0.7: 0.469, z 1: 0.052, z 1.5: 0.146, z 2.33: 0.247; P(monotone rising in t) 0.0015; P(monotone falling in t) 0.0008
+
+-- rho_adj = +0.5 --
+  f_NEC (P(dw<0): band needs NEC violation somewhere in the segment; reading-independent; under V = ghost needed): 0.367  0.105  0.952  0.439  0.539
+  literal eps p_rise 0.367 0.105 0.952 0.430 0.476 | p_fall 0.633 0.895 0.048 0.570 0.524 | undef max 0.139 | 68% ['FLAT', 'FALL', 'RISE', 'FLAT', 'FLAT'] -> PHANTOM-REQUIRED | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  literal -p  p_rise 0.367 0.107 0.952 0.494 0.607 | p_fall 0.633 0.893 0.048 0.506 0.393 | undef max 0.117 | 68% ['FLAT', 'FALL', 'RISE', 'FLAT', 'FLAT'] -> PHANTOM-REQUIRED | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  literal V   p_rise 0.367 0.105 0.952 0.451 0.553 | p_fall 0.633 0.895 0.048 0.549 0.447 | undef max 0.068 | 68% ['FLAT', 'FALL', 'RISE', 'FLAT', 'FLAT'] -> PHANTOM-REQUIRED | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  spline  eps p_rise 0.367 0.105 0.952 0.430 0.476 | p_fall 0.633 0.895 0.048 0.570 0.524 | undef max 0.139 | 68% ['FLAT', 'FALL', 'RISE', 'FLAT', 'FLAT'] -> PHANTOM-REQUIRED | 95% ['FLAT', 'FLAT', 'FLAT', 'FLAT', 'FLAT'] -> NOT DIAGNOSTIC
+  spline  -p  p_rise 0.973 0.018 0.374 0.928 0.093 | p_fall 0.027 0.982 0.626 0.072 0.907 | undef max 0.500 | 68% ['RISE', 'FALL', 'FLAT', 'RISE', 'FALL'] -> HEALTHY | 95% ['FLAT', 'FALL', 'FLAT', 'FLAT', 'FLAT'] -> FALLING
+  spline  V   p_rise 0.970 0.016 0.717 0.943 0.086 | p_fall 0.030 0.984 0.283 0.057 0.914 | undef max 0.171 | 68% ['RISE', 'FALL', 'FLAT', 'RISE', 'FALL'] -> HEALTHY | 95% ['FLAT', 'FALL', 'FLAT', 'FLAT', 'FLAT'] -> FALLING
+  w_eff (secant, median [16, 84]) per segment: -0.963 [-1.075, -0.861]; -0.668 [-0.927, -0.430]; -1.841 [-2.517, -1.312]; -0.899 [-1.670, -0.313]; -1.044 [-2.353, -0.354]
+  literal eps segment-average d ln a0/dt per Gyr, median [16, 84]: -0.0042 [-0.0158, +0.0085]; -0.0480 [-0.0830, -0.0105]; +0.1453 [+0.0532, +0.2706]; -0.0235 [-0.1473, +0.1318]; -0.0125 [-0.2019, +0.2598]
+  a0(z_k)/a0(0) (eps) at nodes, median [16, 84]: z 0.4: 1.018 [0.963, 1.072]; z 0.7: 1.122 [1.021, 1.220]; z 1: 0.913 [0.739, 1.063]; z 1.5: 0.948 [0.703, 1.151]; z 2.33: 0.973 [0.613, 1.276]
+  P(a0 maximum at node): z 0: 0.041, z 0.4: 0.034, z 0.7: 0.551, z 1: 0.016, z 1.5: 0.114, z 2.33: 0.245; P(monotone rising in t) 0.0042; P(monotone falling in t) 0.0009
+
+net intervals [0, z] (eps, stored sqrtX_q; interpolation-free): z 1.0: 68% FLAT, 95% FLAT; z 1.2: 68% FLAT, 95% FLAT; z 1.5: 68% FLAT, 95% FLAT; z 2.33: 68% FLAT, 95% FLAT
+  z 1.0: P(net rise from z to now) ~ 0.775 (interpolated from the stored quantiles; descriptive)
+  z 1.2: P(net rise from z to now) ~ 0.728 (interpolated from the stored quantiles; descriptive)
+  z 1.5: P(net rise from z to now) ~ 0.630 (interpolated from the stored quantiles; descriptive)
+  z 2.33: P(net rise from z to now) ~ 0.617 (interpolated from the stored quantiles; descriptive)
+
+=== VERDICT per reading (literal reconstruction; class at rho_adj = 0, suffix if the bracket changes it) ===
+  eps: 68% PHANTOM-REQUIRED
+       95% NOT DIAGNOSTIC
+  -p : 68% PHANTOM-REQUIRED
+       95% NOT DIAGNOSTIC
+  V  : 68% PHANTOM-REQUIRED
+       95% NOT DIAGNOSTIC
+  spline (sensitivity, no verdict weight): eps 68% PHANTOM-REQUIRED/95% NOT DIAGNOSTIC; -p 68% FALLING/95% NOT DIAGNOSTIC; V 68% HEALTHY/95% NOT DIAGNOSTIC
+  THEOREM-LEVEL (can a rising a0 come from healthy minimal DE at all?): eps: NO: a rising a0 IS NEC violation (S1). | -p: YES in principle: with NEC, if rho'' > 2 rho'/(1+z) (c_a^2 > 0; e.g. a scalar faster than slow roll on a shallow potential). | V: YES in principle, transient: the scalar must climb (V' phi_dot > 0), needs rho' >= 0 and rho'' > 5 rho'/(1+z).
+  Does the CFG689 band measure the rho'' that -p and V need? NO: nodes 0.3-0.83 apart, rho'' = 0 inside segments (S4); the spline rows show what a smooth choice does.
+
+=== D. Arrow / turnaround (literal, eps; -p and V identical inside segments by S4) ===
+  68% rho_adj -0.5: RISING-ONLY -> DIRECTION SEEN, MONOTONICITY NOT ESTABLISHED
+  68% rho_adj +0.0: RISING-ONLY -> DIRECTION SEEN, MONOTONICITY NOT ESTABLISHED
+  68% rho_adj +0.5: TURNAROUND PEAK (a0 rose, then fell) at z [0.7] (lookback [6.4] Gyr) -> NO GLOBAL VACUUM ARROW (a0 not monotone; its direction flips where w crosses -1 under eps)
+  95% rho_adj -0.5: FLAT -> NO VACUUM CLOCK MEASURED at this level
+  95% rho_adj +0.0: FLAT -> NO VACUUM CLOCK MEASURED at this level
+  95% rho_adj +0.5: FLAT -> NO VACUUM CLOCK MEASURED at this level
+  by construction: a0 depends on t only through rho_DE(a(t)); any direction it has is the expansion's, read through dark energy.
+
+=== E. Rate today d ln a0/dt at z = 0 (H0 = 67.701 km/s/Mpc = 0.06924 /Gyr, mean background) ===
+  literal:eps  median -3.228e-03/Gyr = -3.228e-12/yr (-0.047 H0); 68% [-1.663e-02, +9.118e-03]/Gyr; 95% [-3.081e-02, +2.035e-02]/Gyr; undefined 0.0000
+  spline:eps   median +8.051e-02/Gyr = +8.051e-11/yr (+1.163 H0); 68% [-3.949e-03, +1.643e-01]/Gyr; 95% [-8.857e-02, +2.459e-01]/Gyr; undefined 0.0000
+  literal:-p   median -2.221e-03/Gyr = -2.221e-12/yr (-0.032 H0); 68% [-1.320e-02, +5.588e-03]/Gyr; 95% [-2.920e-02, +1.134e-02]/Gyr; undefined 0.0000
+  spline:-p    median +1.485e-01/Gyr = +1.485e-10/yr (+2.144 H0); 68% [+3.079e-02, +1.974e-01]/Gyr; 95% [-4.838e-01, +2.250e-01]/Gyr; undefined 0.0165
+  literal:V    median -2.733e-03/Gyr = -2.733e-12/yr (-0.039 H0); 68% [-1.507e-02, +7.279e-03]/Gyr; 95% [-3.014e-02, +1.544e-02]/Gyr; undefined 0.0000
+  spline:V     median +1.232e-01/Gyr = +1.232e-10/yr (+1.779 H0); 68% [+7.655e-03, +1.870e-01]/Gyr; 95% [-2.666e-01, +2.273e-01]/Gyr; undefined 0.0005
+  rival:H      median -3.530e-02/Gyr = -3.530e-11/yr (-0.510 H0); 68% [-4.392e-02, -2.672e-02]/Gyr; 95% [-5.220e-02, -1.839e-02]/Gyr; undefined 0.0000
+  bracket rho_adj -0.5: literal eps 68% [-1.969e-02, +1.133e-02]/Gyr; rival median -3.532e-02/Gyr
+  bracket rho_adj +0.5: literal eps 68% [-1.290e-02, +6.225e-03]/Gyr; rival median -3.530e-02/Gyr
+
+  reachability: delta_rec = (q84 - q16)/(2 q50) of P3.a0_node_q[0.0] = 0.0373; baseline 100 yr; stress delta 1e-6 (hypothetical)
+  literal:eps  |r|_68 = 1.663e-11/yr -> 100-yr drift 1.66e-09; T_req 2.24e+09 yr (stress 1e-6: 6.01e+04 yr) -> NOT REACHABLE
+  spline:eps   |r|_68 = 1.643e-10/yr -> 100-yr drift 1.64e-08; T_req 2.27e+08 yr (stress 1e-6: 6.08e+03 yr) -> NOT REACHABLE
+  literal:-p   |r|_68 = 1.320e-11/yr -> 100-yr drift 1.32e-09; T_req 2.83e+09 yr (stress 1e-6: 7.57e+04 yr) -> NOT REACHABLE
+  spline:-p    |r|_68 = 1.974e-10/yr -> 100-yr drift 1.97e-08; T_req 1.89e+08 yr (stress 1e-6: 5.07e+03 yr) -> NOT REACHABLE
+  literal:V    |r|_68 = 1.507e-11/yr -> 100-yr drift 1.51e-09; T_req 2.48e+09 yr (stress 1e-6: 6.64e+04 yr) -> NOT REACHABLE
+  spline:V     |r|_68 = 1.870e-10/yr -> 100-yr drift 1.87e-08; T_req 2.00e+08 yr (stress 1e-6: 5.35e+03 yr) -> NOT REACHABLE
+  rival:H      |r|_68 = 4.392e-11/yr -> 100-yr drift 4.39e-09; T_req 8.49e+08 yr (stress 1e-6: 2.28e+04 yr) -> NOT REACHABLE
+
+  observables (deep-MOND flat curve, M_b = 6e10 Msun, outer orbit at r = 3 r_M); per footing; 100-yr changes
+  [canonical] a0 9.3603e-11: v_flat 165.23 km/s, r_M 9.45 kpc, P(3 r_M) 1054.4 Myr
+    literal:eps  median rate -3.23e-12/yr: a0_dot -3.02e-22 m/s^2/yr; dv -1.33e-05 m/s; dr_M +3.15e-01 AU; dP +2.69e+06 s (fixed r) / +5.37e+06 s (adiabatic); e-fold 310 Gyr
+    literal:eps  |68|   rate +1.66e-11/yr: a0_dot +1.56e-21 m/s^2/yr; dv +6.87e-05 m/s; dr_M -1.62e+00 AU; dP -1.38e+07 s (fixed r) / -2.77e+07 s (adiabatic); e-fold 60.1 Gyr
+    literal:-p   median rate -2.22e-12/yr: a0_dot -2.08e-22 m/s^2/yr; dv -9.18e-06 m/s; dr_M +2.17e-01 AU; dP +1.85e+06 s (fixed r) / +3.70e+06 s (adiabatic); e-fold 450 Gyr
+    literal:-p   |68|   rate +1.32e-11/yr: a0_dot +1.24e-21 m/s^2/yr; dv +5.45e-05 m/s; dr_M -1.29e+00 AU; dP -1.10e+07 s (fixed r) / -2.20e+07 s (adiabatic); e-fold 75.7 Gyr
+    literal:V    median rate -2.73e-12/yr: a0_dot -2.56e-22 m/s^2/yr; dv -1.13e-05 m/s; dr_M +2.66e-01 AU; dP +2.27e+06 s (fixed r) / +4.55e+06 s (adiabatic); e-fold 366 Gyr
+    literal:V    |68|   rate +1.51e-11/yr: a0_dot +1.41e-21 m/s^2/yr; dv +6.22e-05 m/s; dr_M -1.47e+00 AU; dP -1.25e+07 s (fixed r) / -2.51e+07 s (adiabatic); e-fold 66.4 Gyr
+    spline:eps   median rate +8.05e-11/yr: a0_dot +7.54e-21 m/s^2/yr; dv +3.33e-04 m/s; dr_M -7.85e+00 AU; dP -6.70e+07 s (fixed r) / -1.34e+08 s (adiabatic); e-fold 12.4 Gyr
+    spline:eps   |68|   rate +1.64e-10/yr: a0_dot +1.54e-20 m/s^2/yr; dv +6.79e-04 m/s; dr_M -1.60e+01 AU; dP -1.37e+08 s (fixed r) / -2.73e+08 s (adiabatic); e-fold 6.08 Gyr
+    rival:H      median rate -3.53e-11/yr: a0_dot -3.30e-21 m/s^2/yr; dv -1.46e-04 m/s; dr_M +3.44e+00 AU; dP +2.94e+07 s (fixed r) / +5.87e+07 s (adiabatic); e-fold 28.3 Gyr
+    rival:H      |68|   rate +4.39e-11/yr: a0_dot +4.11e-21 m/s^2/yr; dv +1.81e-04 m/s; dr_M -4.28e+00 AU; dP -3.65e+07 s (fixed r) / -7.31e+07 s (adiabatic); e-fold 22.8 Gyr
+  [alt] a0 1.1312e-10: v_flat 173.24 km/s, r_M 8.60 kpc, P(3 r_M) 914.8 Myr
+    literal:eps  median rate -3.23e-12/yr: a0_dot -3.65e-22 m/s^2/yr; dv -1.40e-05 m/s; dr_M +2.86e-01 AU; dP +2.33e+06 s (fixed r) / +4.66e+06 s (adiabatic); e-fold 310 Gyr
+    literal:eps  |68|   rate +1.66e-11/yr: a0_dot +1.88e-21 m/s^2/yr; dv +7.20e-05 m/s; dr_M -1.48e+00 AU; dP -1.20e+07 s (fixed r) / -2.40e+07 s (adiabatic); e-fold 60.1 Gyr
+    literal:-p   median rate -2.22e-12/yr: a0_dot -2.51e-22 m/s^2/yr; dv -9.62e-06 m/s; dr_M +1.97e-01 AU; dP +1.60e+06 s (fixed r) / +3.21e+06 s (adiabatic); e-fold 450 Gyr
+    literal:-p   |68|   rate +1.32e-11/yr: a0_dot +1.49e-21 m/s^2/yr; dv +5.72e-05 m/s; dr_M -1.17e+00 AU; dP -9.53e+06 s (fixed r) / -1.91e+07 s (adiabatic); e-fold 75.7 Gyr
+    literal:V    median rate -2.73e-12/yr: a0_dot -3.09e-22 m/s^2/yr; dv -1.18e-05 m/s; dr_M +2.42e-01 AU; dP +1.97e+06 s (fixed r) / +3.94e+06 s (adiabatic); e-fold 366 Gyr
+    literal:V    |68|   rate +1.51e-11/yr: a0_dot +1.70e-21 m/s^2/yr; dv +6.53e-05 m/s; dr_M -1.34e+00 AU; dP -1.09e+07 s (fixed r) / -2.18e+07 s (adiabatic); e-fold 66.4 Gyr
+    spline:eps   median rate +8.05e-11/yr: a0_dot +9.11e-21 m/s^2/yr; dv +3.49e-04 m/s; dr_M -7.14e+00 AU; dP -5.81e+07 s (fixed r) / -1.16e+08 s (adiabatic); e-fold 12.4 Gyr
+    spline:eps   |68|   rate +1.64e-10/yr: a0_dot +1.86e-20 m/s^2/yr; dv +7.12e-04 m/s; dr_M -1.46e+01 AU; dP -1.19e+08 s (fixed r) / -2.37e+08 s (adiabatic); e-fold 6.08 Gyr
+    rival:H      median rate -3.53e-11/yr: a0_dot -3.99e-21 m/s^2/yr; dv -1.53e-04 m/s; dr_M +3.13e+00 AU; dP +2.55e+07 s (fixed r) / +5.09e+07 s (adiabatic); e-fold 28.3 Gyr
+    rival:H      |68|   rate +4.39e-11/yr: a0_dot +4.97e-21 m/s^2/yr; dv +1.90e-04 m/s; dr_M -3.89e+00 AU; dP -3.17e+07 s (fixed r) / -6.34e+07 s (adiabatic); e-fold 22.8 Gyr
+
+=== F. IDENTITY (no verdict weight): de Sitter horizon entropy through a0 ===
+  [canonical] S/k_B = 3c^7/(32 G hbar a0^2) = 3.3087e+122 (= pi c^5/(G hbar H^2) with H = Z a0/c = 1.8074e-18/s; rel 2.2e-16); d ln S/dt = -2 d ln a0/dt -> today (literal eps median) +6.46e-12/yr
+  [alt] S/k_B = 3c^7/(32 G hbar a0^2) = 2.2655e+122 (= pi c^5/(G hbar H^2) with H = Z a0/c = 2.1843e-18/s; rel 2.2e-16); d ln S/dt = -2 d ln a0/dt -> today (literal eps median) +6.46e-12/yr
+
+Checks: 7/7 pass
