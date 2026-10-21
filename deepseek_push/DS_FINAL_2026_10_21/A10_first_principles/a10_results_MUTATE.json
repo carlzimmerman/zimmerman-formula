@@ -1,0 +1,273 @@
+{
+ "lane": "A10_first_principles",
+ "status": "NO-GO(obstruction)",
+ "claim": "No single first-principles statement yields both P1 and P2. The saturating-current principle gives P2 exactly as the b=1 member of gN=u^2/(a0-b u); P1's coefficient cannot come from any rational cell count on the de Sitter horizon because kappa/sqrt(8pi/3) is irrational.",
+ "checks": [
+  {
+   "id": "K1",
+   "pass": false,
+   "value": 1.0,
+   "measured": "|b=2 kernel - g^2/(g+a0)| = (-g**2 + (-a_0 + sqrt(a_0**2 + 4*g**2))*(a_0 + g)/2)/(a_0 + g)",
+   "threshold": "identically 0 (sympy simplify)",
+   "note": "b=1 is exactly P2; b=2 is not"
+  },
+  {
+   "id": "K2",
+   "pass": true,
+   "value": 0.0,
+   "measured": "|b=2 kernel - (sqrt(a0^2+4g^2)-a0)/2| = 0",
+   "threshold": "identically 0 (sympy simplify)",
+   "note": "b=2 is exactly the quadrature a0-line"
+  },
+  {
+   "id": "K3",
+   "pass": true,
+   "value": 0.0,
+   "measured": "g(b=1)=(gN/2)(1+sqrt(1+4a0/gN)); g(b=2)=sqrt(gN^2+a0 gN)",
+   "threshold": "both identities exact",
+   "note": "the kernels differ only by the cross term u^2+b*u*s=s"
+  },
+  {
+   "id": "K4",
+   "pass": true,
+   "value": 0.5,
+   "measured": "deep coeff A(b)=(1-b/2): {1: '1/2', 2: '0', 3: '-1/2'}",
+   "threshold": "A(1)=1/2, A(2)=0, A(3)=-1/2",
+   "note": "g/sqrt(a0 gN) = 1 + (1-b/2)sqrt(gN/a0) + O(gN/a0)"
+  },
+  {
+   "id": "K5",
+   "pass": true,
+   "value": 1.0,
+   "measured": "lim (g-gN)^2/(a0 gN) = {1: '1', 2: '1', 3: '1'} for b=1,2,3",
+   "threshold": "all equal 1",
+   "note": "deep limit common to the whole family -> cannot select b"
+  },
+  {
+   "id": "K6",
+   "pass": true,
+   "value": 1.0,
+   "measured": "sup_u (g-gN)/a0 = {1: '1', 2: '1/2', 3: '1/3'}",
+   "threshold": "= 1/b exactly",
+   "note": "capacity a0/b: b=1 -> a0 (P2), b=2 -> a0/2 (quadrature)"
+  },
+  {
+   "id": "K7",
+   "pass": true,
+   "value": 1.0,
+   "measured": "lim_{y->inf} y(nu-1) = 1 (b=1), 1/2 (b=2)",
+   "threshold": "= 1/b exactly",
+   "note": "constant anomaly a0/b, not a decaying one"
+  },
+  {
+   "id": "K8",
+   "pass": true,
+   "value": 2557.377049180328,
+   "measured": "a0/2 / EARTH_LIMIT = 1278.69 (registered 1279); a0 / EARTH_LIMIT = 2557.38",
+   "threshold": "|ratio_q-1279|/1279<1e-2 and ratio_s/ratio_q=2",
+   "note": "reproduces the registered quadrature number; CANONICAL law is 2x worse (2557)"
+  },
+  {
+   "id": "K9",
+   "pass": true,
+   "value": 0.07868226807643874,
+   "measured": "min_N |kappa(N)-1/2|/(1/2) = 0.0787 at kappa(2pi)=0.460659 ; N(1/2)=5.7888",
+   "threshold": "> 0.01 (no admissible count gives 1/2)",
+   "note": "nearest count is 7.9% away; the required count 2sqrt(8pi/3) is not a count"
+  },
+  {
+   "id": "K10",
+   "pass": true,
+   "value": 0.17274707473566775,
+   "measured": "sqrt(8pi/3).is_rational=False ; r=kappa/sqrt(8pi/3)=0.172747 is_rational=False",
+   "threshold": "both irrational (sympy assumption; proof via Lindemann)",
+   "note": "no RATIONAL cell count turns cH into (1/2)c sqrt(G rho): kappa=1/2 is a convention"
+  },
+  {
+   "id": "K11",
+   "pass": true,
+   "value": 5.788810036466141,
+   "measured": "Z=2sqrt(8pi/3)=5.788810 ; 2Z=11.577620 ; Z.is_rational=False",
+   "threshold": "|Z-5.788810|<1e-6 and Z irrational",
+   "note": "'1/12 of the horizon' is 2Z=11.5776, not 12 -> the twelfth is not a count"
+  },
+  {
+   "id": "K12",
+   "pass": true,
+   "value": 1.0,
+   "measured": "AG6B in_family: C-1=True E-1=True F-1(MaxEnt <c>)=False n_cap=2 n1=4/3 F-2(MaxEnt <c^2>)=False n_cap=pi",
+   "threshold": "both MaxEnt rows out of family (False)",
+   "note": "neither fixed-mean nor fixed-variance MaxEnt gives Langmuir or the quadrature -> (ii) dead"
+  },
+  {
+   "id": "K13",
+   "pass": true,
+   "value": 0.0,
+   "measured": "<n^2>_Poisson = lam*(lam + 1)  vs  quadrature x^2 = s(s+1)",
+   "threshold": "<n^2> = lam^2+lam exactly",
+   "note": "quadrature = SECOND moment of a Poisson cell (moment identity, not MaxEnt)"
+  },
+  {
+   "id": "K14",
+   "pass": true,
+   "value": 0.0,
+   "measured": "A(b) - (1 - 1/(2T(b))) = 0  with A=1-b/2, T=1/b",
+   "threshold": "identically 0",
+   "note": "the family ties deep shape to the Solar-System anomaly: one number b"
+  },
+  {
+   "id": "K15",
+   "pass": true,
+   "value": 0.5494936411693424,
+   "measured": "A_hat(Ups=0.5)=0.892+-0.044  A_hat(Ups=0.7)=0.343+-0.043  swing=0.549 (b=1->0.5, b=2->0.0)",
+   "threshold": "swing > 0.5 (the whole b1-b2 separation)",
+   "note": "the Upsilon systematic alone exceeds the b=1 vs b=2 separation"
+  },
+  {
+   "id": "K16",
+   "pass": true,
+   "value": 0.060661909139473925,
+   "measured": "dA/dUps=-2.75 ; dUps needed for 3sigma on the b-split = 0.061 ; SPARC band 0.50-0.80",
+   "threshold": "dUps_req < 0.10 (existing band insufficient)",
+   "note": "short by a factor 1.6: the deep-limit shape cannot decide b on SPARC"
+  },
+  {
+   "id": "K17",
+   "pass": true,
+   "value": 0.018075101006298257,
+   "measured": "s in (3,10)a0: median d(Ups=0.5)=+0.74, (Ups=0.7)=-0.65 -> lever 6.95 a0/Ups ; b-split 0.38 a0 ; dUps_req(3sig)=0.018",
+   "threshold": "dUps_req < 0.10 (existing Upsilon band insufficient)",
+   "note": "sup(g-gN)=a0/b is exact but needs Upsilon to +-0.02 to be seen"
+  },
+  {
+   "id": "K18",
+   "pass": true,
+   "value": 9.354173485820239e-11,
+   "measured": "kappa*c*sqrt(G rho_DE)=9.3512e-11 ; c^2 sqrt(Lam/32pi)=9.3542e-11 ; target 9.3600e-11",
+   "threshold": "both within 0.3% of 9.36e-11",
+   "note": "P1 is one algebraic statement with two normalisations; the 1/2 IS the content"
+  },
+  {
+   "id": "M1",
+   "pass": false,
+   "value": 0.5,
+   "measured": "mutated tail coeff b=1 -> 1/2",
+   "threshold": "must equal 1",
+   "note": "MUTATION: flipping the tail coefficient"
+  },
+  {
+   "id": "M2",
+   "pass": false,
+   "value": 0.46065886596178063,
+   "measured": "mutated claim kappa(2pi)=0.460659 == 1/2",
+   "threshold": "must equal 0.5 to 1e-6",
+   "note": "MUTATION: asserting the count lands on 1/2"
+  },
+  {
+   "id": "M3",
+   "pass": false,
+   "value": 0.5,
+   "measured": "mutated claim capacity(b=2)=1/2 a0",
+   "threshold": "must equal 1 a0",
+   "note": "MUTATION: asserting the quadrature capacity is a0"
+  }
+ ],
+ "numbers": {
+  "kappa_counts": {
+   "4 pi (full horizon sphere)": 0.23032943298089031,
+   "2 pi (modular / one-sided)": 0.46065886596178063,
+   "pi (hemisphere)": 0.9213177319235613,
+   "1 (surface gravity / Unruh)": 2.8944050182330705
+  },
+  "kappa_required_count": 5.788810036466141,
+  "kappa_nearest_rel": 0.07868226807643874,
+  "kappa_2pi_dev_rel": 0.07868226807643874,
+  "kappa_at_integer_counts": {
+   "1": 2.8944050182330705,
+   "2": 1.4472025091165353,
+   "3": 0.9648016727443569,
+   "4": 0.7236012545582676,
+   "5": 0.5788810036466141,
+   "6": 0.48240083637217845
+  },
+  "kappa_spread_factor": 12.566370614359172,
+  "Z": 5.788810036466141,
+  "two_Z": 11.577620072932282,
+  "kappa_ratio_irrational": 0.17274707473566775,
+  "deep_coeff": {
+   "1": "1/2",
+   "2": "0",
+   "3": "-1/2"
+  },
+  "capacity": {
+   "1": "1",
+   "2": "1/2",
+   "3": "1/3"
+  },
+  "tail": {
+   "1": "1/2",
+   "2": "1/2"
+  },
+  "earth_limit": 3.66e-14,
+  "a0_half": 4.68e-11,
+  "ratio_a0_2_over_limit": 1278.688524590164,
+  "ratio_a0_over_limit": 2557.377049180328,
+  "anomaly_canonical_over_quad": 2.0,
+  "A": {
+   "0.5": 0.8921975597776756,
+   "0.7": 0.34270391860833316
+  },
+  "A_err": {
+   "0.5": 0.043849061669175016,
+   "0.7": 0.04270227069199901
+  },
+  "A_swing": 0.5494936411693424,
+  "dA_dUps": -2.7474682058467117,
+  "dUps_required": 0.060661909139473925,
+  "sparc_galaxies": 175,
+  "sparc_points": 3391,
+  "max_d_obs": 184.00335524708697,
+  "sep_bin": 0.37675691840054604,
+  "ups_lever": 6.947991019418837,
+  "dUps_required_capacity": 0.018075101006298257,
+  "med_d": {
+   "0.5": 0.7392583442364076,
+   "0.7": -0.65033985964736
+  },
+  "cH_Lambda": 5.414953335756166e-10,
+  "a0_over_cHL_can": 0.17285467518609615,
+  "a0_over_cHL_alt": 0.20868139205159045,
+  "a0_from_kappa": 9.351151427918242e-11,
+  "a0_from_lambda": 9.354173485820239e-11
+ },
+ "mutate": true,
+ "constants_used": [
+  "c=2.99792458e8 m/s (BRIEF S4)",
+  "G=6.67430e-11 (BRIEF S4)",
+  "H0=2.1843e-18 s^-1 (BRIEF S4)",
+  "Lambda=1.0890e-52 m^-2 (BRIEF S4)",
+  "rho_DE=5.831e-27 kg/m^3 (BRIEF S4)",
+  "a0_can=9.36e-11 m/s^2 (BRIEF S4, INPUT)",
+  "a0_alt=1.13e-10 m/s^2 (BRIEF S4, INPUT)",
+  "kappa_can=0.5 (BRIEF S4, FITTED)",
+  "kpc=3.0856775814913673e19 m (BRIEF S4)",
+  "EARTH_LIMIT read at runtime from real_research/reviews/mi_disformal_tail_freedom_2026.py",
+  "AG6B in_family/n_cap/n1 read at runtime from argon_push/AG6B_.../ag6b_media_results.json",
+  "SPARC rotmod curves read from real_research/data/sparc_data/*_rotmod.dat (175 files)"
+ ],
+ "external_inputs": {
+  "ag6b_rms_n1_can": 0.100908,
+  "ag6b_rms_n2_can": 0.108272,
+  "ag6b_source": "argon_push/AG6B_saturating_vacuum_microphysics/ag6b_sparc.out (global Upsilon 0.60)",
+  "brief_paired_rms_n1": 0.22,
+  "brief_paired_rms_n2": 0.178,
+  "brief_source": "FRAMEWORK_EQUATIONS_2026-10-15.md Sec.1 'Open law-form split (AG3)'",
+  "brief_y_t_range": [
+   94,
+   129
+  ],
+  "ups_gas": 1.33,
+  "ups_bul_factor": 1.4,
+  "sparc_convention": "SPARC rotmod: g_bar=(Vgas^2+Ups*Vdisk^2+1.4*Ups*Vbul^2)/r, g_obs=Vobs^2/r"
+ }
+}

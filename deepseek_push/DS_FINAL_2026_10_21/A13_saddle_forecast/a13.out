@@ -1,0 +1,110 @@
+A13  the saddle no-go as a forecast: how many lens pairs, how many square degrees
+Law: g^2 = g_N (g + a0), AQUAL mu(x) = x/(1+x).  Units G = M = a0 = d = 1 below.
+rho_bar_cold = 2.2569e-27 kg/m^3  (Omega_c/Omega_b = 5.364, Omega_b h^2 = 0.0224)
+kappa = 1/2 is fitted; the theory is not closed.  This script prices a prediction, it does not prove the law.
+
+S1  solver control: one unit point mass
+    single-mass |grad Phi| r vs 1: max err 9.810e-04;  C*4pi R^2 vs 1: max err 5.744e-03
+    (exact deep-MOND point mass: |grad Phi| = 1/r, rho_ph = 1/(4 pi r^2) in these units)
+K1 PASS grad_err=9.81e-04, rho_err=5.74e-03 both < 1e-2 / 2e-2
+
+S2  two equal point masses: convergence of the mid-plane column through the saddle
+    rho_ph = C(R/d, z/d) sqrt(G M a0)/(G d^2);  column S = 2 int min(C,0) d(R/d)
+    h=0.0040  N= 20736  C(0.2)=-0.23919  S_neg=-0.19678  it= 26 res=3.2e-10
+    h=0.0020  N= 32761  C(0.2)=-0.24012  S_neg=-0.21002  it= 26 res=1.0e-09
+    h=0.0010  N= 48400  C(0.2)=-0.24036  S_neg=-0.21793  it= 26 res=1.5e-09
+    h=0.0005  N= 67600  C(0.2)=-0.24039  S_neg=-0.22260  it= 26 res=1.5e-09
+    successive increments ['-0.01325', '-0.00791', '-0.00467']; ratios ['0.597', '0.590']
+    fitted h-exponent p = 0.76;  Richardson limit S_inf = -0.22931
+K2 PASS C(0.2)=-0.24036 AG6C published -0.2401, within 3%
+K3 PASS S(h=0.002)=-0.21002 AG6C published -0.2064 (h=0.0025), within 6%
+K4 PASS S_inf=-0.22931, increment ratio=0.590 S_inf in (-0.240,-0.218), ratio in (0.45,0.75)
+
+S3  why this is not a spherical estimate: linear superposition of single-mass phantoms
+    two single-mass phantoms added at the saddle: C = 2*(1/(4 pi (1/2)^2)) = 2/pi = +0.6366
+    the nonlinear solve gives C(0.02) = -0.6450; sign and size both differ
+K5 PASS C_super=+0.6366 > 0.5 (the superposition has the WRONG SIGN)
+
+S4  missing depth: the part of the column a rho >= 0 medium cannot supply
+    Sigma_miss = 2 int min(rho_ph + rho_bar, 0) dR, per fiducial and footing
+    F1_MW-M31   canonical: C(0.2d)=-0.2404 = -89.1 rho_bar ;  Sigma_miss = 2.159 Msun/pc^2
+    F1_MW-M31   alt      : C(0.2d)=-0.2404 = -97.9 rho_bar ;  Sigma_miss = 2.374 Msun/pc^2
+    F2_cluster  canonical: C(0.2d)=-0.2404 = -33.4 rho_bar ;  Sigma_miss = 5.159 Msun/pc^2
+    F2_cluster  alt      : C(0.2d)=-0.2404 = -36.7 rho_bar ;  Sigma_miss = 5.684 Msun/pc^2
+
+    MW-M31-like pair : 2.16 to 2.37 Msun/pc^2   (PAPER49 v1.2 quotes 1.9 to 2.1)
+    cluster pair     : 5.16 to 5.68 Msun/pc^2   (PAPER49 v1.2 quotes 4.6 to 5.1)
+K6 PASS mean MW-M31 depth=2.266 paper midpoint 2.0, ratio in [1.00,1.20]
+K7 PASS -89 check=-89.1, -33 check=-33.4 -89 +-5%, -33 +-8%
+
+S5  the lensing signal: deficit map, matched filter, S/N per pair
+    Delta(x,z) = -int min(rho_ph+rho_bar,0) dl  along the line of sight (Abel transform of the axisymmetric solution)
+    Delta0 (peak deficit, dimensionless column) = 0.2140; scaled to S_inf: 0.2205
+    effective matched-filter area A_eff = 0.0086 d^2
+    profile Delta(x,0)/Delta0 : 0.00:1.00  0.05:0.94  0.10:0.80  0.20:0.49  0.30:0.21  0.50:0.00
+    profile Delta(0,z)/Delta0 : 0.005:0.77  0.020:0.34  0.050:0.01  0.100:-0.00
+    LRG pair (M_b=10^11.3 Msun, d=11.76 Mpc): Delta_Sigma(saddle) = 0.2258 Msun/pc^2
+    D_A(z=0.42) = 1141 Mpc -> 1 Mpc = 3.01 arcmin
+    A_eff = 1.19 Mpc^2 = 10.8 arcmin^2
+    orientation: deficit(90deg)=-0.2180, deficit(80deg)=-0.0754, deficit(70deg)=-0.0010; acceptance eps=0.146
+    -> only pairs within ~9 deg of edge-on carry the dip; 1/eps = 6.9 pairs must be scanned per edge-on pair
+    peak convergence deficit kappa = 1.38e-04
+    S/N per pair (CFHTLenS depth, n_g=11, sigma_e=0.26) = 0.00577
+    stacked S/N for the published 23000 pairs = 0.875   (AG7 independent estimate: 0.87)
+    azimuthally averaged kappa(theta): peak |kappa| = 9.86e-05; peak |gamma_t| = 6.29e-05
+    AG7 cross-check: box 329 arcmin^2, strip 38.1 arcmin^2;
+      published error 0.0828 vs pure shape noise 0.0468 Msun/pc^2 -> f_noise=1.77
+      strip S/N with our amplitude and the published error calibration = 0.928  (AG7: 0.87)
+K8 PASS S_strip=0.928 AG7 published 0.87, within 12%
+
+S6  pairs and square degrees for 3 sigma and 5 sigma
+    scaling: S/N(N) = S1 sqrt(N) exactly, so N_sigma = (sigma/S1)^2
+    N(3 sigma) = 2.706e+05 pairs (11.8x the published sample);  N(5 sigma) = 7.518e+05 (32.7x)
+    CFHTLenS (published sample)    n_g=  11  S1=0.00577  N3=2.706e+05  deg2(3s)=  1812  scanned N3=1.858e+06  deg2=   12442
+    DES Y6                         n_g=  10  S1=0.00550  N3=2.977e+05  deg2(3s)=  1993  scanned N3=2.044e+06  deg2=   13686
+    LSST Y10                       n_g=  27  S1=0.00903  N3=1.103e+05  deg2(3s)=   738  scanned N3=7.570e+05  deg2=    5069
+    Euclid Wide                    n_g=  30  S1=0.00952  N3=9.923e+04  deg2(3s)=   664  scanned N3=6.813e+05  deg2=    4562
+    Roman HLIS                     n_g=  45  S1=0.01123  N3=7.134e+04  deg2(3s)=   478  scanned N3=4.898e+05  deg2=    3280
+    pair surface density assumed: 149.4 deg^-2  (23000 pairs / 154 deg^2, measured)
+    'scanned' columns include the edge-on acceptance eps = 0.146
+K9 PASS N5/N3=2.7778, eps_orient=0.146 exact 25/9 and eps in (0.10,0.20)
+
+S7  external field: the null point is filled by the environment
+    uniform field e along the pair axis, in units of a0 in the same dimensionless system
+    e_dim = (g_ext/a0) * d / r_M with r_M = sqrt(G M/a0)
+    e= 0.00  S_neg=-0.18996  ratio=1.000  it= 38 res=1.7e-06
+    e= 0.30  S_neg=-0.14273  ratio=0.751  it=181 res=7.2e-05
+    e= 1.00  S_neg=-0.06409  ratio=0.337  it=344 res=2.2e-04
+    e= 3.00  S_neg=-0.00404  ratio=0.021  it=339 res=9.7e-05
+    suppression S(e)/S(0) = ['1.000', '0.751', '0.337', '0.021']
+K10 PASS ratios=['1.00', '0.75', '0.34', '0.02'] monotone, S(1)/S(0) < 0.5
+    r_M(LRG) = 17.2 kpc, d/r_M = 682
+
+    environment             g_ext/a0   e_dim   suppression   S1_eff      N3_eff
+    void, very underdense     1.0e-03    0.68     0.4352    0.00251   5.82e+05
+    field galaxy (Local Sheet)  5.0e-03    3.41     0.0164    0.00009   4.08e+08
+    filament at z~0.4         1.5e-02   10.23     0.0018    0.00001   3.30e+10
+    group interior            5.0e-02   34.10     0.0002    0.00000   4.08e+12
+
+    same curve applied to the paper's own fiducials (r_M/d given):
+      F1_MW-M31   g_ext=1e-03 a0: d/r_M=  70.5  e_dim=  0.07  suppression=0.9415
+      F1_MW-M31   g_ext=1e-02 a0: d/r_M=  70.5  e_dim=  0.71  suppression=0.4255
+      F1_MW-M31   g_ext=3e-02 a0: d/r_M=  70.5  e_dim=  2.12  suppression=0.0511
+      F2_cluster  g_ext=1e-03 a0: d/r_M=  29.0  e_dim=  0.03  suppression=0.9760
+      F2_cluster  g_ext=1e-02 a0: d/r_M=  29.0  e_dim=  0.29  suppression=0.7599
+      F2_cluster  g_ext=3e-02 a0: d/r_M=  29.0  e_dim=  0.87  suppression=0.3704
+K11 PASS void=0.435, filament=0.002 void > 0.4 and filament < 0.05
+
+S8  the falsifier, both ways
+    design sensitivity: N3 = 1.10e+05 pairs at LSST source density gives 3 sigma on the unsuppressed dip
+    a null at that sensitivity is a falsifier ONLY in a low-external-field subsample:
+      void, very underdense      depth=0.0982 Msun/pc^2  N3_eff=5.82e+05  deg2_eff=3.898e+03
+      field galaxy (Local Sheet) depth=0.0037 Msun/pc^2  N3_eff=4.08e+08  deg2_eff=2.729e+06
+      filament at z~0.4          depth=0.0004 Msun/pc^2  N3_eff=3.30e+10  deg2_eff=2.211e+08
+      group interior             depth=0.0000 Msun/pc^2  N3_eff=4.08e+12  deg2_eff=2.729e+10
+    penalty on the pair budget: void x5.3, filament x3.0e+05
+    -> a null in a filament subsample is UNINFORMATIVE (it is also what the law predicts there)
+K12 PASS void penalty=5.3, filament penalty=3.0e+05 void < 20, filament > 1e4
+
+A13 COMPLETE: 12/12 checks PASS.
+run time 31.0 s

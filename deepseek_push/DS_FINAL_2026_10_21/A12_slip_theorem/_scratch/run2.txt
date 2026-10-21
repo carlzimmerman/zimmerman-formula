@@ -1,0 +1,31 @@
+================================================================================================
+A12 -- SLIP THEOREM for a covector extra sector (round-2 ADM action)
+================================================================================================
+sympy 1.13.1  numpy 1.26.4  MUTATE=False
+K = 4 pi G = 8.387173e-10 m/kg   a0_can = 9.360e-11 m/s^2
+K1 PASS max_residual=0.000e+00 <1e-30   # G^i_j-(1/3)delta G^k_k = (d^i d_j-(1/3)delta lap)(Phi-Psi) on (11,22,12)
+K2 PASS |G^t_t+2lapPhi|=0.000e+00 <1e-30   # G^t_t = -2 lap(Phi)  =>  lap(Phi) = 4 pi G rho
+K3 PASS n_profiles_zero=5/5 all ==0   # (2/3)(f''-f'/r)=2K Pi  <=>  (Phi-Psi)'=2Kr int Pi/r' on 5 power laws
+K4 PASS n_Pi_nonzero=6/9 ==6   # every nontrivial <=2-derivative operator carries Pi!=0; F^2 and E^2 are identically zero on a static radial background and total derivatives are inert
+  operator                        Pi^eps  sigma^eps
+    W(|P|)  potential              2      2     
+    P^i D_i lnN  clock             2      1     
+    (D.P)^2                        2      2     
+    F_ij F^ij                      None   None  
+    (P.DlnN)^2                     4      4     
+    (D_i u)(D^i u)                 2      None  
+    shear^2  (D_(iP_j))_TF         2      2     
+    E_i E^i  kinetic               None   None  
+    d_i(P^i D.P)  tot.div.         None   None  
+K5 PASS n_charge_ops=1 max_Pi_pow=4 n_charge==1, Pi pow>=2   # charge op = 'P^i D_i lnN  clock'; every Pi is O(eps^2)
+K6 PASS |Pi/sigma|=g*r == r g   # exact identity: net traceless stress / clock charge = local potential Psi
+  r=  10.0 kpc  g_N=4.123e-11  g=8.606e-11 m/s^2  Psi=g r/c^2=2.955e-07  g_lens/g_dyn-1=+3.609e+12
+  r= 100.0 kpc  g_N=6.570e-13  g=8.177e-12 m/s^2  Psi=g r/c^2=2.807e-07  g_lens/g_dyn-1=+3.806e+14
+K7 FAIL max|1-Phi/Psi|=7.613e+14 <1e-5   # post-Newtonian slip from an integrated Hernquist+MOND profile
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/DS_FINAL_2026_10_21/A12_slip_theorem/a12_checks.py", line 329, in <module>
+    ratio_ce_val = abs(float(sp.simplify(ratio_ce)))
+                       ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/sympy/core/expr.py", line 340, in __float__
+    raise TypeError("Cannot convert expression to float")
+TypeError: Cannot convert expression to float

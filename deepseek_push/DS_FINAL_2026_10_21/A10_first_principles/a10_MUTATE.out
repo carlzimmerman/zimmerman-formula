@@ -1,0 +1,61 @@
+A10 -- one principle for two postulates: exact test of candidates (i)/(ii)/(iii)
+a0_can = 9.3600e-11 m/s^2 (INPUT, BRIEF Sec.4);  kappa = 0.50 FITTED;  footings never pooled
+mutate = True
+
+S1  THE FAMILY: eliminate u between the saturation law and g = g_N + u
+  [FAIL] K1   |b=2 kernel - g^2/(g+a0)| = (-g**2 + (-a_0 + sqrt(a_0**2 + 4*g**2))*(a_0 + g)/2)/(a_0 + g)  |  THRESHOLD: identically 0 (sympy simplify)  |  b=1 is exactly P2; b=2 is not
+  [PASS] K2   |b=2 kernel - (sqrt(a0^2+4g^2)-a0)/2| = 0  |  THRESHOLD: identically 0 (sympy simplify)  |  b=2 is exactly the quadrature a0-line
+  [PASS] K3   g(b=1)=(gN/2)(1+sqrt(1+4a0/gN)); g(b=2)=sqrt(gN^2+a0 gN)  |  THRESHOLD: both identities exact  |  the kernels differ only by the cross term u^2+b*u*s=s
+      family:  uhat^2 + b*s*uhat - s = 0 ,  uhat=(g-gN)/a0 ,  s=gN/a0
+
+S2  DEEP LIMIT and CAPACITY are b-INDEPENDENT: what saturation alone cannot fix
+  [PASS] K4   deep coeff A(b)=(1-b/2): {1: '1/2', 2: '0', 3: '-1/2'}  |  THRESHOLD: A(1)=1/2, A(2)=0, A(3)=-1/2  |  g/sqrt(a0 gN) = 1 + (1-b/2)sqrt(gN/a0) + O(gN/a0)
+  [PASS] K5   lim (g-gN)^2/(a0 gN) = {1: '1', 2: '1', 3: '1'} for b=1,2,3  |  THRESHOLD: all equal 1  |  deep limit common to the whole family -> cannot select b
+  [PASS] K6   sup_u (g-gN)/a0 = {1: '1', 2: '1/2', 3: '1/3'}  |  THRESHOLD: = 1/b exactly  |  capacity a0/b: b=1 -> a0 (P2), b=2 -> a0/2 (quadrature)
+      monotone rise to the capacity verified on 4001 points, b=1,2
+
+S3  STRONG-FIELD TAIL: constant anomalous acceleration = a0/b  (a NEW number)
+  [PASS] K7   lim_{y->inf} y(nu-1) = 1 (b=1), 1/2 (b=2)  |  THRESHOLD: = 1/b exactly  |  constant anomaly a0/b, not a decaying one
+  [PASS] K8   a0/2 / EARTH_LIMIT = 1278.69 (registered 1279); a0 / EARTH_LIMIT = 2557.38  |  THRESHOLD: |ratio_q-1279|/1279<1e-2 and ratio_s/ratio_q=2  |  reproduces the registered quadrature number; CANONICAL law is 2x worse (2557)
+
+S4  (i) FINITE CAPACITY: what a cell count can and cannot give for kappa
+      kappa(N)=sqrt(8 pi/3)/N ;  kappa=1/2 needs N = 2 sqrt(8 pi/3) = 5.788810
+        N = 4 pi (full horizon sphere)       kappa = 0.230329
+        N = 2 pi (modular / one-sided)       kappa = 0.460659
+        N = pi (hemisphere)                  kappa = 0.921318
+        N = 1 (surface gravity / Unruh)      kappa = 2.894405
+  [PASS] K9   min_N |kappa(N)-1/2|/(1/2) = 0.0787 at kappa(2pi)=0.460659 ; N(1/2)=5.7888  |  THRESHOLD: > 0.01 (no admissible count gives 1/2)  |  nearest count is 7.9% away; the required count 2sqrt(8pi/3) is not a count
+  [PASS] K10  sqrt(8pi/3).is_rational=False ; r=kappa/sqrt(8pi/3)=0.172747 is_rational=False  |  THRESHOLD: both irrational (sympy assumption; proof via Lindemann)  |  no RATIONAL cell count turns cH into (1/2)c sqrt(G rho): kappa=1/2 is a convention
+        control (not a proof): best p/q with q<=2000 is 161/932, residual 2.9e-07
+  [PASS] K11  Z=2sqrt(8pi/3)=5.788810 ; 2Z=11.577620 ; Z.is_rational=False  |  THRESHOLD: |Z-5.788810|<1e-6 and Z irrational  |  '1/12 of the horizon' is 2Z=11.5776, not 12 -> the twelfth is not a count
+
+S5  (ii) MAXIMUM ENTROPY AT A FIXED MOMENT: does it land on either kernel?
+  [PASS] K12  AG6B in_family: C-1=True E-1=True F-1(MaxEnt <c>)=False n_cap=2 n1=4/3 F-2(MaxEnt <c^2>)=False n_cap=pi  |  THRESHOLD: both MaxEnt rows out of family (False)  |  neither fixed-mean nor fixed-variance MaxEnt gives Langmuir or the quadrature -> (ii) dead
+  [PASS] K13  <n^2>_Poisson = lam*(lam + 1)  vs  quadrature x^2 = s(s+1)  |  THRESHOLD: <n^2> = lam^2+lam exactly  |  quadrature = SECOND moment of a Poisson cell (moment identity, not MaxEnt)
+
+S6  NEW CONSEQUENCE: cross-regime relation A = 1 - 1/(2T) and its SPARC reach
+  [PASS] K14  A(b) - (1 - 1/(2T(b))) = 0  with A=1-b/2, T=1/b  |  THRESHOLD: identically 0  |  the family ties deep shape to the Solar-System anomaly: one number b
+  [PASS] K15  A_hat(Ups=0.5)=0.892+-0.044  A_hat(Ups=0.7)=0.343+-0.043  swing=0.549 (b=1->0.5, b=2->0.0)  |  THRESHOLD: swing > 0.5 (the whole b1-b2 separation)  |  the Upsilon systematic alone exceeds the b=1 vs b=2 separation
+  [PASS] K16  dA/dUps=-2.75 ; dUps needed for 3sigma on the b-split = 0.061 ; SPARC band 0.50-0.80  |  THRESHOLD: dUps_req < 0.10 (existing band insufficient)  |  short by a factor 1.6: the deep-limit shape cannot decide b on SPARC
+  [PASS] K17  s in (3,10)a0: median d(Ups=0.5)=+0.74, (Ups=0.7)=-0.65 -> lever 6.95 a0/Ups ; b-split 0.38 a0 ; dUps_req(3sig)=0.018  |  THRESHOLD: dUps_req < 0.10 (existing Upsilon band insufficient)  |  sup(g-gN)=a0/b is exact but needs Upsilon to +-0.02 to be seen
+      SPARC: 175 galaxies, 3391 points (Ups=0.6); max observed (g_obs-g_bar)/a0 = 184.0
+
+S7  P1 ROUND TRIP, both footings, and the horizon ratio
+  [PASS] K18  kappa*c*sqrt(G rho_DE)=9.3512e-11 ; c^2 sqrt(Lam/32pi)=9.3542e-11 ; target 9.3600e-11  |  THRESHOLD: both within 0.3% of 9.36e-11  |  P1 is one algebraic statement with two normalisations; the 1/2 IS the content
+      cH_Lambda = 5.41495e-10 m/s^2 ; a0/(cH_Lambda) canonical = 0.172855 (BRIEF 0.172747; the 6e-4 difference is a0_can=9.36e-11 vs the Lambda-derived 9.3542e-11), alt = 0.208681
+      canonical: a0=9.3600e-11  a0/(cH_L)=0.1729  cH_L/a0=5.7852  a0/EARTH_LIMIT=2557.4
+      alt      : a0=1.1300e-10  a0/(cH_L)=0.2087  cH_L/a0=4.7920  a0/EARTH_LIMIT=3087.4
+
+S8  STATUS OF EACH CANDIDATE
+      (i)  PARTIAL: a0 ~ c sqrt(G rho) forced by dimensions; coefficient kappa NOT (K9-K11).
+      (ii) DEAD: neither fixed-moment MaxEnt family is in the kernel family (K12);
+                the quadrature is a Poisson second-moment identity, not MaxEnt (K13).
+      (iii) STRONGEST: gives the whole family + deep limit, but b is free (K4-K6);
+                b=1 (=P2) needs the extra single-quantum clause.
+      VERDICT: NO-GO(obstruction). P2 is DERIVED as the b=1 member; P1's coefficient
+      cannot come from any cell count, because kappa/sqrt(8pi/3) is irrational (K10).
+  [FAIL] M1   mutated tail coeff b=1 -> 1/2  |  THRESHOLD: must equal 1  |  MUTATION: flipping the tail coefficient
+  [FAIL] M2   mutated claim kappa(2pi)=0.460659 == 1/2  |  THRESHOLD: must equal 0.5 to 1e-6  |  MUTATION: asserting the count lands on 1/2
+  [FAIL] M3   mutated claim capacity(b=2)=1/2 a0  |  THRESHOLD: must equal 1 a0  |  MUTATION: asserting the quadrature capacity is a0
+
+A10 COMPLETE: 17/21 checks PASS.

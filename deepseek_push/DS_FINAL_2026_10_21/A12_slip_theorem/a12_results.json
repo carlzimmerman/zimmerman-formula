@@ -1,0 +1,153 @@
+{
+ "lane": "A12_slip_theorem",
+ "status": "DERIVED",
+ "checks": [
+  {
+   "id": "K1",
+   "pass": true,
+   "value": "max_residual=0.000e+00",
+   "threshold": "<1e-30",
+   "note": "G^i_j-(1/3)delta G^k_k = (d^i d_j-(1/3)delta lap)(Phi-Psi) on (11,22,12)"
+  },
+  {
+   "id": "K2",
+   "pass": true,
+   "value": "|G^t_t+2lapPhi|=0.000e+00",
+   "threshold": "<1e-30",
+   "note": "G^t_t = -2 lap(Phi)  =>  lap(Phi) = 4 pi G rho"
+  },
+  {
+   "id": "K3",
+   "pass": true,
+   "value": "n_profiles_zero=5/5",
+   "threshold": "all ==0",
+   "note": "(2/3)(f''-f'/r)=2K Pi  <=>  (Phi-Psi)'=2Kr int Pi/r' on 5 power laws"
+  },
+  {
+   "id": "K4",
+   "pass": true,
+   "value": "n_Pi_nonzero=6/9",
+   "threshold": "==6",
+   "note": "every nontrivial <=2-derivative operator carries Pi!=0; F^2 and E^2 are identically zero on a static radial background and total derivatives are inert"
+  },
+  {
+   "id": "K5",
+   "pass": true,
+   "value": "n_charge_ops=1 max_Pi_pow=4",
+   "threshold": "n_charge==1, Pi pow>=2",
+   "note": "charge op = 'P^i D_i lnN  clock'; every Pi is O(eps^2)"
+  },
+  {
+   "id": "K6",
+   "pass": true,
+   "value": "|Pi/sigma|=g*r",
+   "threshold": "== r g",
+   "note": "exact identity: net traceless stress / clock charge = local potential Psi"
+  },
+  {
+   "id": "K7",
+   "pass": true,
+   "value": "max|1-Phi/Psi|=2.630e-07",
+   "threshold": "<1e-5",
+   "note": "post-Newtonian slip from an integrated Hernquist+MOND profile, asymptotically flat boundary condition"
+  },
+  {
+   "id": "K8",
+   "pass": true,
+   "value": "|Pi/sigma|_kessence=2.000",
+   "threshold": ">=1",
+   "note": "without the clock operator the sector density IS its stress -> O(1) slip"
+  },
+  {
+   "id": "K9",
+   "pass": true,
+   "value": "dchi2(1%slip)=1.4e-14 pred=2.63e-07 cassini=2.3e-05",
+   "threshold": "dchi2<1e-9 and pred<Cassini/50",
+   "note": "the on-disk KiDS/SPARC comparison is EXACTLY degenerate in a constant slip (A free) so it cannot see 1%; the record's real slip bound is the Solar-System PPN one, and the prediction is ~1e-7"
+  },
+  {
+   "id": "K10",
+   "pass": true,
+   "value": "|KW'-a0u/(a0-u)|=0  |g^2-g_N(g+a0)|=0",
+   "threshold": "both ==0",
+   "note": "the round-2 action's gradient branch IS the canonical law g_N = g^2/(g+a0)"
+  },
+  {
+   "id": "K11",
+   "pass": true,
+   "value": "unmutated",
+   "threshold": "n/a",
+   "note": "mutation harness armed (--mutate)"
+  }
+ ],
+ "numbers": {
+  "slip_10kpc": -9.13221636672755e-08,
+  "slip_100kpc": -1.315034090526043e-07,
+  "slip_max_abs_1mPhiOverPsi": 2.630068181052086e-07,
+  "g_N_10kpc": 4.122605248152665e-11,
+  "g_10kpc": 8.606266614102017e-11,
+  "Psi_10kpc": 2.954771730917464e-07,
+  "kessence_Pi_over_sigma": 2.0,
+  "kids_n_bins": 15,
+  "kids_chi2_s0_Aprof": 51.06596060062503,
+  "kids_A_fit": 2.202258039490926,
+  "kids_dchi2_1pct_slip": 1.4210854715202004e-14,
+  "kids_bound_record_ppn": 0.00049,
+  "psi_saturn": 1.0303480071472266e-09,
+  "gamma_llr_record": 0.00017,
+  "gamma_cassini_external": 2.3e-05,
+  "n_slip_producing_operators": 6,
+  "n_charge_operators": 1,
+  "canonical_law_residual": "0",
+  "margin_vs_cassini": 87.45020439279824,
+  "margin_vs_llr_record": 1863.069571846571,
+  "cassini_exclusion_of_1pct_slip": 434.7826086956522
+ },
+ "constants_used": [
+  {
+   "name": "c",
+   "value": 299792458.0,
+   "source": "BRIEF sec.4"
+  },
+  {
+   "name": "G",
+   "value": 6.6743e-11,
+   "source": "BRIEF sec.4"
+  },
+  {
+   "name": "a0_can",
+   "value": 9.36e-11,
+   "source": "BRIEF sec.4"
+  },
+  {
+   "name": "a0_alt",
+   "value": 1.13e-10,
+   "source": "BRIEF sec.4 (reported separately)"
+  },
+  {
+   "name": "Msun",
+   "value": 1.98892e+30,
+   "source": "IAU nominal"
+  },
+  {
+   "name": "pc",
+   "value": 3.085677581491367e+16,
+   "source": "IAU"
+  },
+  {
+   "name": "K",
+   "value": 8.387172739141742e-10,
+   "source": "K = 4 pi G, round-2 action normalization"
+  },
+  {
+   "name": "M_bar_galaxy",
+   "value": 9.9446e+40,
+   "source": "5e10 Msun, declared model galaxy"
+  },
+  {
+   "name": "a_Hernquist",
+   "value": 9.257032744474101e+19,
+   "source": "3 kpc, declared model galaxy"
+  }
+ ]
+}

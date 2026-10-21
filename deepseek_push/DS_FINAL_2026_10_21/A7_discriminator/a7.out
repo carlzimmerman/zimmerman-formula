@@ -1,0 +1,92 @@
+A7: pre-registered n=1 vs n=2 discriminator on SPARC
+Frozen criteria: FROZEN_CRITERIA.md (2026-10-21T21:28:48Z). Constants: a0_can 9.36e-11, a0_alt 1.13e-10 m/s^2;
+KPC=3.0856775814913673e19 m; U in [0.05,2.50] one per galaxy (disk=bulge); sigma^2=errV^2+(0.05 Vobs)^2.
+K1 PASS nfiles=175 nrows=3391 ngal>=5=171 (dropped 4) npts=3375 | threshold 175 files, 3391 rows, >=165 galaxies
+K2 PASS roundtrip_n1=0.000e+00 roundtrip_n2=0.000e+00 deep|g1/g2-1|@y=1e-8=5.00e-05 anomaly_ratio@y=1e4=1.999850 | thresholds 1e-12,1e-12,1e-3,|r-2|<1e-3
+K3 PASS interior best fits locally minimal (violations=0) | threshold 0
+K4 PASS sum(dchi2_g)=dchi2_tot and wins sum to ngal | threshold 1e-8
+
+=== PRIMARY: total chi^2 (a single Upsilon per galaxy, both laws, each footing separately) ===
+  [canonical] a0=9.360e-11  chi2_n1=7259.38  chi2_n2=7478.83  dchi2(n2-n1)=+219.453  |  n1 wins 84  n2 wins 87  ties 0 of 171
+        per-galaxy dchi2: median -0.015  mean +1.283  sd 22.721  [p5 -16.964, p95 +27.306, min -122.243, max +143.130]
+        sign test p=0.879 ; bootstrap sd of total 294.44 -> z=+0.75
+        histogram (dchi2_g): <-50 3 | -50..-20 5 | -20..-9 11 | -9..-3 27 | -3..-1 20 | -1..0 21 | 0..1 26 | 1..3 20 | 3..9 10 | 9..20 13 | 20..50 11 | >50 4
+        Upsilon: n1 median 0.497 [p16 0.107, p84 0.927] range [0.050,2.500], in [0.1,1]: 69%, at edge 14.6%
+                  n2 median 0.633 [p16 0.155, p84 1.178] range [0.050,2.500], in [0.1,1]: 65%, at edge 17.0%
+        edge split: n1 12.9% low / 1.8% high ; n2 11.7% low / 5.3% high ; |U2/U1-1|>20% in 61% of galaxies
+        galaxies stuck at the LOW Upsilon edge contribute 29% of sum|dchi2_g| (their Upsilon is unconstrained: gas-dominated)
+  [alt] a0=1.130e-10  chi2_n1=7908.09  chi2_n2=7563.43  dchi2(n2-n1)=-344.663  |  n1 wins 73  n2 wins 98  ties 0 of 171
+        per-galaxy dchi2: median -0.745  mean -2.016  sd 22.011  [p5 -24.639, p95 +18.500, min -152.829, max +120.668]
+        sign test p=0.0661 ; bootstrap sd of total 284.98 -> z=-1.21
+        histogram (dchi2_g): <-50 3 | -50..-20 10 | -20..-9 17 | -9..-3 24 | -3..-1 28 | -1..0 16 | 0..1 28 | 1..3 13 | 3..9 12 | 9..20 11 | 20..50 5 | >50 4
+        Upsilon: n1 median 0.416 [p16 0.069, p84 0.833] range [0.050,2.500], in [0.1,1]: 68%, at edge 17.0%
+                  n2 median 0.540 [p16 0.102, p84 1.036] range [0.050,2.500], in [0.1,1]: 68%, at edge 18.1%
+        edge split: n1 15.8% low / 1.2% high ; n2 14.6% low / 3.5% high ; |U2/U1-1|>20% in 62% of galaxies
+        galaxies stuck at the LOW Upsilon edge contribute 40% of sum|dchi2_g| (their Upsilon is unconstrained: gas-dominated)
+        fit quality: chi2/dof = 2.27 (n1) / 2.33 (n2), dof=3204; Upsilon(n2)/Upsilon(n1) median = 1.236
+        5 largest |dchi2_g| carry 30% of the total: UGC06787 +143.1, DDO161 -122.2, UGC02953 +99.2, UGC04305 -90.5, NGC2903 +71.9 ; dchi2 dropping them = +117.9
+        31 galaxies touch a Upsilon bound; dchi2 excluding all of them = +673.7
+        |dchi2_g|<1 in 47/171 galaxies, <3 in 87/171
+        fit quality: chi2/dof = 2.47 (n1) / 2.36 (n2), dof=3204; Upsilon(n2)/Upsilon(n1) median = 1.238
+        5 largest |dchi2_g| carry 29% of the total: DDO161 -152.8, UGC06787 +120.7, UGC04305 -99.6, UGC07125 -65.8, UGC02953 +64.7 ; dchi2 dropping them = -211.8
+        33 galaxies touch a Upsilon bound; dchi2 excluding all of them = +305.6
+        |dchi2_g|<1 in 44/171 galaxies, <3 in 85/171
+        footing preference (alt minus canonical chi^2): n1 +648.7, n2 +84.6  (positive = canonical a0 preferred)
+        regime split: 76 galaxies with median y<0.1 (mean dchi2: can -6.29, alt -9.33); 20 with median y>1 (mean: can +17.16, alt +10.22)
+        Spearman(median y, dchi2): can +0.321 (p=1.8e-05), alt +0.323 (p=1.6e-05)
+K7 PASS all chi^2 finite, >=0, one fit per galaxy per law per footing | threshold all
+K8 PASS max|V2-V1|/V1 at fixed baryonic source = 6.9395% at gN/a0=0.500 | thresholds [3%,15%], y in [0.1,3]
+     prior lane's 7.46%: reproduced as |V1-V2|/V2 = 7.4570% at the SAME y=0.500 (denominator n=2);
+     normalised by V1 the same point is 6.9395%. 7.46% and 6.94% are one number, two denominators.
+
+=== STACKED RESIDUALS (median fractional residual (Vobs-Vmodel)/Vobs, by gN/a0) ===
+    bin gN/a0        npts   med d_n1   med d_n2   wmean d_n1  wmean d_n2  <dV_theory> (V2-V1)/V1
+  [canonical]
+      0.010-0.032     250  -0.0226    -0.0042     -0.2305     -0.2135     -0.0301
+      0.032-0.100     823  -0.0120    +0.0021     -0.1004     -0.0758     -0.0444
+      0.100-0.316     766  +0.0153    +0.0251     -0.0536     -0.0450     -0.0608
+      0.316-1.000     618  +0.0161    +0.0250     -0.0281     -0.0250     -0.0684
+      1.000-3.160     476  +0.0027    +0.0040     -0.0700     -0.0787     -0.0593
+      3.160-10.000    279  -0.0221    -0.0267     -0.1310     -0.1539     -0.0332
+     10.000-31.600    103  -0.0052    -0.0277     -0.1361     -0.1705     -0.0141
+     31.600-100.000    24  -0.0543    -0.1078     +0.0260     -0.0203     -0.0058
+  [alt]
+      0.010-0.032     347  -0.0456    -0.0325     -0.2539     -0.2283     -0.0298
+      0.032-0.100     914  -0.0141    -0.0055     -0.1090     -0.0866     -0.0432
+      0.100-0.316     727  +0.0095    +0.0190     -0.0612     -0.0553     -0.0608
+      0.316-1.000     615  +0.0143    +0.0181     -0.0388     -0.0388     -0.0681
+      1.000-3.160     388  +0.0013    +0.0044     -0.1046     -0.1148     -0.0575
+      3.160-10.000    236  -0.0137    -0.0253     -0.0264     -0.0474     -0.0331
+     10.000-31.600     82  +0.0196    -0.0118     -0.0941     -0.1322     -0.0138
+     31.600-100.000    12  -0.0565    -0.1104     +0.0060     -0.0546     -0.0062
+
+=== FORECAST: expected dchi^2 (non-centrality) under each truth ===
+  truth=n1 [canonical]: lambda_tot=301.429  mean/gxy=1.7627  median/gxy=0.4682  N(3sigma)=5 gxy (have 171)  errors x 5.787
+  truth=n1 [alt]: lambda_tot=254.050  mean/gxy=1.4857  median/gxy=0.3665  N(3sigma)=6 gxy (have 171)  errors x 5.313
+  truth=n2 [canonical]: lambda_tot=319.967  mean/gxy=1.8712  median/gxy=0.4774  N(3sigma)=5 gxy (have 171)  errors x 5.963
+  truth=n2 [alt]: lambda_tot=290.683  mean/gxy=1.6999  median/gxy=0.4043  N(3sigma)=5 gxy (have 171)  errors x 5.683
+
+=== FORECAST F2 (scatter-calibrated; POST-UNBLINDING addition, FROZEN_CRITERIA AMENDMENT 1) ===
+    signal per galaxy = F1 lambda_g ; noise per galaxy = measured sd of dchi2_g over SPARC
+  truth=n1 [canonical]: lambda/gxy=1.7627, sd(dchi2_g)=22.72 -> per-galaxy SNR 0.078, N(3sigma)=1495 galaxies
+  truth=n1 [alt]: lambda/gxy=1.4857, sd(dchi2_g)=22.01 -> per-galaxy SNR 0.067, N(3sigma)=1976 galaxies
+  truth=n2 [canonical]: lambda/gxy=1.8712, sd(dchi2_g)=22.72 -> per-galaxy SNR 0.082, N(3sigma)=1327 galaxies
+  truth=n2 [alt]: lambda/gxy=1.6999, sd(dchi2_g)=22.01 -> per-galaxy SNR 0.077, N(3sigma)=1509 galaxies
+
+=== VARIANTS (reported, not decisive) ===
+  V1 U_bul=1.4 U_disk              dchi2[canonical]=+529.37  dchi2[alt]=-51.94
+  V2 no 5% floor                   dchi2[canonical]=+10535.03  dchi2[alt]=+3946.47
+  V5 transition 0.1<=y<=3 (refit)  dchi2[canonical]=+195.06  dchi2[alt]=+124.24
+  V4 fixed U=0.5                   dchi2[canonical]=+3064.32  dchi2[alt]=+681.47
+
+K6 PASS dchi2(400-pt grid) vs dchi2(800-pt grid): max |diff| = 0.0000 | threshold 0.5
+     dchi2 400: canonical +219.453 alt -344.663
+     dchi2 800: canonical +219.453 alt -344.663
+K5 PASS mutation=False ; label-based dchi2 canonical +219.453 alt -344.663 ; law-based (independent recompute) dchi2 canonical +219.453 alt -344.663 ; residual=0.00e+00 | threshold 1e-9 (exact sign flip)
+
+=== VERDICT (frozen rule: |dchi2|>=9 kills; both footings must agree) ===
+  [canonical] dchi2 = +219.453  ->  n=2 KILLED (3sigma, canonical preferred)   [literal rule; bootstrap says 0.75 sigma from zero]
+  [alt] dchi2 = -344.663  ->  n=1 KILLED (3sigma, n=2 preferred)   [literal rule; bootstrap says 1.21 sigma from zero]
+  combined: NO KILL: the two laws are not separated at 3sigma on both footings
+
+A7 COMPLETE: 8/8 checks PASS.

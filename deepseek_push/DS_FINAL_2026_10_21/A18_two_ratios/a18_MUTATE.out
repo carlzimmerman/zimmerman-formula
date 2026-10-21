@@ -1,0 +1,110 @@
+
+================================================================================================
+K1-K4  the two identities, exactly (sympy)
+================================================================================================
+K1 PASS 0.0e+00 <1e-30 :: g=(g_N/2)(1+sqrt(1+4a0/g_N)) is an exact root of g_N=g^2/(g+a0)
+K2 PASS 0.0e+00 <1e-25 :: M_ph/M_b = g/g_N-1 = (1/2)(sqrt(1+4/y)-1) exactly
+K3 PASS 0.0e+00 <1e-12 :: F(y*)=R_cosmic exactly at y*=0.029290868; closed-form inverse verified
+K4 PASS 5.842973027 5.842973027+-1e-9 :: 5.364327 is the law's ratio at r = 5.84297 r_M (A11 K4b)
+
+================================================================================================
+K5-K6  reproduce the two published ratios (A11 K5 table)
+================================================================================================
+K5 PASS 7.90e-04 <2e-3 :: MW r_v=0.2455 Mpc R_tot=25.04 ; cluster r_v=1.6863 Mpc R_tot=2.62 (A11 K5)
+K6 PASS 9.5659 >2 :: the law's ratio is not universal: MW/cluster = 9.57 (A11: 9.566)
+
+  MW       Mb=6.0000e+10 Msun  a=4.0 kpc  r_v=0.24549 Mpc  M_v=1.5626e+12 Msun  c=61.37  y_v=0.001435
+           mu=0.96819  F(y_v)=25.8985  R_tot=mu(1+F)-1=25.0429
+  cluster  Mb=1.4000e+14 Msun  a=250.0 kpc  r_v=1.68635 Mpc  M_v=5.0651e+14 Msun  c=6.75  y_v=0.055604
+           mu=0.75845  F(y_v)=3.7702  R_tot=mu(1+F)-1=2.6179
+
+================================================================================================
+K7-K9  the (M_v, c) grid: where the law's ratio equals 5.364, and which side is which
+================================================================================================
+K7 PASS 1.758408e+14 spread<1e-9 :: R_enc = 5.364 exactly at M_v = 1.7584e14 Msun, INDEPENDENT of concentration
+K8 PASS 3.793e+13 -> 1.638e+14 both < 1.758e+14 :: R_tot = 5.364 needs LESS mass at low c (mu<1): crossing runs 3.8e13 (c=4) to 1.6e14 (c=100)
+K9 PASS 6.475e+02 -> 3.005 monotone, sign + at 1e8, - at 1e15 :: F_enc falls monotonically: OVER-supplies below 1.758e14, UNDER-supplies above
+
+  grid of R_enc = M_ph(<r_v)/M_b(<r_v) and R_tot = M_ph(<r_v)/M_b,total   [R_cosmic = 5.364327]
+   log10 M_v |              c=4     |              c=7     |              c=10    |              c=20    |              c=40    |              c=100  
+         8.0 |      647.473/414.023 |      647.473/495.487 |      647.473/534.928 |      647.473/587.184 |      647.473/616.226 |      647.473/634.696
+         9.0 |      300.530/191.979 |      300.530/229.859 |      300.530/248.199 |      300.530/272.497 |      300.530/286.001 |      300.530/294.589
+        10.0 |      139.494/ 88.916 |      139.494/106.566 |      139.494/115.111 |      139.494/126.432 |      139.494/132.724 |      139.494/136.726
+        11.0 |       64.747/ 41.078 |       64.747/ 49.338 |       64.747/ 53.337 |       64.747/ 58.635 |       64.747/ 61.579 |       64.747/ 63.452
+        12.0 |       30.053/ 18.874 |       30.053/ 22.775 |       30.053/ 24.664 |       30.053/ 27.166 |       30.053/ 28.557 |       30.053/ 29.441
+        13.0 |       13.949/  8.568 |       13.949/ 10.446 |       13.949/ 11.355 |       13.949/ 12.560 |       13.949/ 13.229 |       13.949/ 13.655
+        14.0 |        6.475/  3.784 |        6.475/  4.723 |        6.475/  5.177 |        6.475/  5.780 |        6.475/  6.115 |        6.475/  6.327
+        15.0 |        3.005/  1.563 |        3.005/  2.067 |        3.005/  2.310 |        3.005/  2.633 |        3.005/  2.812 |        3.005/  2.926
+
+  crossing masses (Msun):
+    R_enc = 5.364 : c=4: 1.7584e+14, c=7: 1.7584e+14, c=10: 1.7584e+14, c=20: 1.7584e+14, c=40: 1.7584e+14, c=100: 1.7584e+14
+    R_tot = 5.364 : c=4: 3.7934e+13, c=7: 6.9415e+13, c=10: 9.0215e+13, c=20: 1.2462e+14, c=40: 1.4761e+14, c=100: 1.6384e+14
+
+================================================================================================
+K10-K12  the sourcing fraction u = R_tot / N
+================================================================================================
+K10 FAIL MW 4.6684 / cl 0.4880 0.467 / 0.440 +-0.01 :: u = R_tot/N: MW 0.467, cluster 0.440 -- the law's phantom is ~45% of the supply, not 100%
+K11 FAIL u in [0.543,6.114] [0.35,0.75], max/min<2.0 :: over M_b=1e10..1e14 (c=7): u stays in 0.39-0.72 -- the law carries ~half the supply, never all of it
+K12 FAIL M_b=nan 1e9..3e9 :: u=1 at M_b=nan (M_v=nan): below it the law demands more cold energy than the whole catchment holds
+
+  u = R_tot/N at the two anchors: MW 4.6684, cluster 0.4880   (u<1: supply covers the phantom)
+  c=7 scan, M_b = 1e10..1e14: u in [0.543,6.114]
+  u = 1 (law's phantom exhausts the entire catchment) at M_b = nan Msun, M_v = nan Msun
+
+  log10 M_b log10 M_v     R_tot  f_ret        N       u
+       8.00     10.02   104.633  0.100    5.364 19.5053
+       8.50     10.40    78.357  0.100    5.364 14.6071
+       9.00     10.78    58.654  0.100    5.364 10.9340
+       9.50     11.15    43.878  0.100    5.364  8.1796
+      10.00     11.53    32.798  0.100    5.364  6.1141
+      10.50     11.91    24.490  0.100    5.364  4.5653
+      11.00     12.28    18.259  0.122    5.364  3.4038
+      11.50     12.66    13.588  0.226    5.364  2.5330
+      12.00     13.04    10.085  0.360    5.364  1.8800
+      12.50     13.43     7.459  0.515    5.364  1.3905
+      13.00     13.81     5.491  0.647    5.364  1.0236
+      13.50     14.20     4.016  0.773    5.364  0.7487
+      14.00     14.59     2.912  0.900    5.364  0.5428
+      14.50     14.99     2.085  0.900    5.364  0.3888
+      15.00     15.39     1.468  0.900    5.364  0.2737
+
+================================================================================================
+K13-K16  the cluster: shortfall in dex, and the record's own amplitude algebra
+================================================================================================
+K13 PASS 0.3116 0.3113+-1e-3 :: cosmic share / law at cluster = 2.047x = 0.311 dex short
+K14 PASS lambda/A=1.1102 1.05<.<1.20 :: lambda_req = A(A_n-1)/(A_n-A) = 2.120, NOT A itself: the amplitude is on the TOTAL signal
+K15 PASS 5.552+-0.427 <1 sigma from 5.364, >3 sigma from 2.62 :: required M_ph/M_b = 5.552: 0.44 sigma from 5.364, 6.9 sigma from 2.62
+K16 PASS 0.8122 0.8122+-0.01 :: phantom's share of the law's total Delta-Sigma in MID, from A_law/A_newton (no model)
+
+  f_band = 1 - A_law/A_newton = 0.8122 +- 0.0167   (law total/baryons = 5.324)
+  lambda_req = 2.1207 +- 0.1630   vs lambda_cosmic = 2.0491   vs lambda_law = 1
+  R_req = 5.5518 +- 0.4266   (law 2.620, cosmic 5.364)
+  measured shortfall log10(lambda_req) = 0.3265 dex ; cosmic shortfall = 0.3116 dex ; difference 0.0149 dex
+
+================================================================================================
+K17-K18  the discriminator
+================================================================================================
+K17 PASS A_pred 1.000 vs 1.852 sep 7.18 sigma :: measured A_MID=1.9102+-0.1186: law 7.67 sigma, cosmic 0.49 sigma out
+K18 PASS 0.966+-0.102 vs 1.888+-0.203 measured<1<law :: shape discriminator: MID/OUTER = 0.97 (native) vs 1.89 (law's phantom); 1 is the fence
+
+  A_MID predictions: cold=phantom 1.000 ; cold=cosmic share 1.852 ; measured 1.9102+-0.1186
+  separation 7.18 sigma ; Delta chi^2 (law - cosmic) = 58.7
+
+================================================================================================
+K19-K20  the missing rule and its falsifier
+================================================================================================
+K19 PASS MW 0.2142 vs table 0.10 ; cluster 2.0491 cluster >1 :: u=1 would need f_ret=0.214 (MW, 2.1x the table) and f_ret=2.05 (cluster) -> impossible
+K20 PASS 5.436+-0.417 .. 6.751 |d|<0.5 sigma, hi<1.30x :: record's post-5.364 residual A_MID 1.011-1.21 maps to 5.44+-0.42 .. 6.75: no further cold energy needed
+
+================================================================================================
+SUMMARY
+================================================================================================
+  R_cosmic = (1-f_b)/f_b = 5.364327   y* = 0.029290868   r*/r_M = 5.842973
+  law at r_v: MW R_tot=25.043  cluster R_tot=2.618  (spread 9.566x)
+  crossing (enclosed-baryon denominator): M_v = 1.7584e+14 Msun, c-independent to 0.0e+00
+  u = R_tot/N: MW 4.668, cluster 0.488; window 1e10-1e14 [0.543,6.114]; u=1 at M_b=nan
+  cluster shortfall: cosmic/law = 2.049x = 0.312 dex
+  record inversion: lambda_req = 2.121+-0.163 -> R_req = 5.552+-0.427
+  discriminator: A_MID 1.000 vs 1.852 (measured 1.910+-0.119), 7.2 sigma
+
+A18 COMPLETE: 17/20 checks PASS.

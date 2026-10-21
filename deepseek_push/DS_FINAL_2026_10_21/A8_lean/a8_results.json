@@ -1,0 +1,696 @@
+{
+  "lane": "A8",
+  "title": "Lean 4 + Mathlib certificates for the algebraic core of the DS_FINAL_2026_10_21 push",
+  "status": "DERIVED",
+  "status_note": "Each theorem is an implication from explicitly listed premises (the two defining equations, the two law definitions, positivity). The algebra is derived; the physical premises themselves are inputs.",
+  "premises": [
+    "a0 = kappa * c * sqrt(G * rho) with kappa > 0 (definition; kappa = 1/2 is FITTED per BRIEF)",
+    "H^2 = 8*pi*G*rho/3 (flat, Lambda-only Friedmann equation)",
+    "canonical law: gN = g^2/(g + a0)  <=>  g = (gN/2)(1 + sqrt(1 + 4 a0/gN))",
+    "n = 2 law: g^2 - gN^2 = a0 gN  <=>  g = sqrt(gN^2 + a0 gN)",
+    "positivity: c > 0, G > 0, rho > 0, H > 0, gN > 0, a0 > 0 where stated"
+  ],
+  "toolchain": {
+    "lean": "leanprover/lean4:v4.34.0-rc2",
+    "mathlib": "leanprover-community/mathlib rev v4.34.0-rc2",
+    "project": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+    "command": "cd <project> && lake env lean <this lane>/<file>.lean",
+    "note": "no existing .lean file in the project was modified; the certificates live in the lane directory"
+  },
+  "theorems": [
+    {
+      "name": "A8.a0_sq",
+      "file": "A8_C1_C2_kappa_Z.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "squares the vacuum-tied scale: a0^2 = kappa^2 c^2 G rho"
+    },
+    {
+      "name": "A8.kappa_Z_identity",
+      "file": "A8_C1_C2_kappa_Z.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "(a0/(cH))^2 = kappa^2*3/(8 pi) from a0=kappa c sqrt(G rho) and H^2=8 pi G rho/3"
+    },
+    {
+      "name": "A8.kappa_half_sq",
+      "file": "A8_C1_C2_kappa_Z.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "kappa=1/2 specialization: (a0/(cH))^2 = 3/(32 pi)"
+    },
+    {
+      "name": "A8.inv_two_sqrt_sq",
+      "file": "A8_C1_C2_kappa_Z.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "the target closed form 1/(2 sqrt(8 pi/3)) squares to 3/(32 pi)"
+    },
+    {
+      "name": "A8.a0_over_cH_eq_inv_two_sqrt",
+      "file": "A8_C1_C2_kappa_Z.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "positive branch: a0/(cH) = 1/(2 sqrt(8 pi/3)) = 1/Z"
+    },
+    {
+      "name": "A8.two_sqrt_32pi_3",
+      "file": "A8_C1_C2_kappa_Z.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "2 sqrt(32 pi/3) = 2(2 sqrt(8 pi/3)) = 2Z, exact identity in pi"
+    },
+    {
+      "name": "A8.inv_two_sqrt_eq_sqrt_ratio",
+      "file": "A8_C1_C2_kappa_Z.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "1/(2 sqrt(8 pi/3)) = sqrt(3/(32 pi)): the two closed forms are the same number"
+    },
+    {
+      "name": "A8.inv_twoZ_bracket",
+      "file": "A8_C1_C2_kappa_Z.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "1/12 < 1/(2Z) < 1/11: 'one twelfth' is not an identity"
+    },
+    {
+      "name": "A8.inv_twoZ_ne_twelfth",
+      "file": "A8_C1_C2_kappa_Z.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "1/(2Z) != 1/12"
+    },
+    {
+      "name": "A8.gCanon_form",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "g_c = gN/2 + sqrt(gN^2/4 + a0 gN): division-free form of the canonical root"
+    },
+    {
+      "name": "A8.gCanon_gt_gN",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "canonical law exceeds Newton: gN < g_c"
+    },
+    {
+      "name": "A8.gQuad_gt_gN",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "n=2 law exceeds Newton: gN < g_q"
+    },
+    {
+      "name": "A8.gCanon_root",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "g_c^2 = gN(g_c + a0): the closed form satisfies the canonical law"
+    },
+    {
+      "name": "A8.gQuad_root",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "g_q^2 = gN^2 + a0 gN: the closed form satisfies the n=2 law"
+    },
+    {
+      "name": "A8.gCanon_root_unique",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "g_c is THE positive root of the canonical equation (uniqueness)"
+    },
+    {
+      "name": "A8.gCanon_sq_sub_gQuad_sq",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "g_c^2 - g_q^2 = gN(g_c - gN): exact difference of squares"
+    },
+    {
+      "name": "A8.gQuad_lt_gCanon",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "strict ordering g_q < g_c for ALL gN,a0>0; no extra hypothesis"
+    },
+    {
+      "name": "A8.gCanon_sub_gQuad_eq",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "exact gap g_c - g_q = a0 gN^2/(g_c(g_c+g_q))"
+    },
+    {
+      "name": "A8.gCanon_sub_gQuad_le_gN",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "gap bound g_c - g_q <= gN"
+    },
+    {
+      "name": "A8.gCanon_sub_gQuad_le_a0",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "gap bound g_c - g_q <= a0"
+    },
+    {
+      "name": "A8.gQuad_normalised_tendsto",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "deep limit: g_q/sqrt(a0 gN) -> 1 as gN/a0 -> 0+"
+    },
+    {
+      "name": "A8.gCanon_normalised_tendsto",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "deep limit: g_c/sqrt(a0 gN) -> 1 as gN/a0 -> 0+"
+    },
+    {
+      "name": "A8.gap_tendsto_a0_zero",
+      "file": "A8_C3_law_ordering.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "Newtonian limit: gap -> 0 as a0 -> 0+ at fixed gN"
+    },
+    {
+      "name": "A8.gCanon_form",
+      "file": "A8_C4_monotonicity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "g_c = gN/2 + sqrt(gN^2/4 + a0 gN): division-free form of the canonical root"
+    },
+    {
+      "name": "A8.deriv_gQuad",
+      "file": "A8_C4_monotonicity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "d/dgN sqrt(gN^2+a0 gN) = (2 gN+a0)/(2 sqrt(gN^2+a0 gN))"
+    },
+    {
+      "name": "A8.deriv_gCanon",
+      "file": "A8_C4_monotonicity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "d/dgN g_c = 1/2 + (gN/2+a0)/(2 sqrt(gN^2/4+a0 gN))"
+    },
+    {
+      "name": "A8.deriv_gQuad_pos",
+      "file": "A8_C4_monotonicity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "dg_q/dgN > 0 at every gN > 0"
+    },
+    {
+      "name": "A8.deriv_gCanon_pos",
+      "file": "A8_C4_monotonicity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "dg_c/dgN > 0 at every gN > 0"
+    },
+    {
+      "name": "A8.gQuad_strictMonoOn",
+      "file": "A8_C4_monotonicity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "n=2 closed form is strictly increasing on gN > 0"
+    },
+    {
+      "name": "A8.gCanon_strictMonoOn",
+      "file": "A8_C4_monotonicity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "canonical closed form is strictly increasing on gN > 0"
+    },
+    {
+      "name": "A8.gQuad_slope_pos",
+      "file": "A8_C4_monotonicity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "every difference quotient of the n=2 law is > 0"
+    },
+    {
+      "name": "A8.gCanon_slope_pos",
+      "file": "A8_C4_monotonicity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "every difference quotient of the canonical law is > 0"
+    },
+    {
+      "name": "A8.gQuad_strictMonoOn_a0",
+      "file": "A8_C4_monotonicity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "n=2 law is strictly increasing in a0"
+    },
+    {
+      "name": "A8.gCanon_strictMonoOn_a0",
+      "file": "A8_C4_monotonicity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "canonical law is strictly increasing in a0"
+    },
+    {
+      "name": "A8.mu_eq_of_canonical",
+      "file": "A8_C5_capacity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "on the canonical law, gN/g = mu(g/a0) = x/(1+x)"
+    },
+    {
+      "name": "A8.boost_eq_one_add",
+      "file": "A8_C5_capacity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "on the canonical law, g/gN = 1 + a0/g"
+    },
+    {
+      "name": "A8.mu_pos",
+      "file": "A8_C5_capacity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "0 < mu x for x > 0"
+    },
+    {
+      "name": "A8.mu_lt_one",
+      "file": "A8_C5_capacity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "mu x < 1 for x > 0"
+    },
+    {
+      "name": "A8.mu_tendsto_zero",
+      "file": "A8_C5_capacity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "mu -> 0 as x -> 0"
+    },
+    {
+      "name": "A8.mu_tendsto_one",
+      "file": "A8_C5_capacity.lean",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_ok": true,
+      "certifies": "mu -> 1 as x -> atTop"
+    }
+  ],
+  "theorem_count": 40,
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "checks": [
+    {
+      "id": "K1",
+      "pass": true,
+      "value": "4/4 clean build logs",
+      "threshold": "4/4",
+      "note": ""
+    },
+    {
+      "id": "K2",
+      "pass": true,
+      "value": "40/40 theorems with exactly the allowed axioms",
+      "threshold": "40/40",
+      "note": ""
+    },
+    {
+      "id": "K3",
+      "pass": true,
+      "value": "4/4 sources free of 'sorry'",
+      "threshold": "4/4",
+      "note": ""
+    },
+    {
+      "id": "K4",
+      "pass": true,
+      "value": "mutant rejected",
+      "threshold": "error + EXIT=1",
+      "note": "A8_C3_MUTATE.lean"
+    },
+    {
+      "id": "K5",
+      "pass": true,
+      "value": "2Z=11.577620 1/(2Z)=0.086373537 gap_vs_1/12=3.648%",
+      "threshold": "11<2Z<12 and gap>1%",
+      "note": "1/12 is NOT an identity"
+    },
+    {
+      "id": "K6",
+      "pass": true,
+      "value": "a0/(cH_Lam)=0.172747074736 vs 1/Z=0.172747074736 rel=0.00e+00; a0 formula=9.3542e-11 vs quoted rel=6.23e-04",
+      "threshold": "rel<1e-9 and a0 rel<2e-3",
+      "note": "H_Lam=c*sqrt(Lam/3)=1.806234e-18"
+    },
+    {
+      "id": "K7",
+      "pass": true,
+      "value": "gq=1.414213562 < gc=1.618033989, gap=0.203820426",
+      "threshold": "0<gap<=min(gN,a0)=1",
+      "note": "witness gN=a0=1"
+    },
+    {
+      "id": "K8",
+      "pass": true,
+      "value": "max|gc/sqrt(a0gN)-1|=5.00e-05 max|gq/sqrt(a0gN)-1|=5.00e-09",
+      "threshold": "1e-4",
+      "note": "delta=gN/a0 in {1e-8,1e-10}"
+    }
+  ],
+  "checks_passed": 8,
+  "checks_total": 8,
+  "numbers": {
+    "Z": {
+      "value": 5.788810036466141,
+      "formula": "2*sqrt(8*pi/3)",
+      "source": "python float, exact formula"
+    },
+    "inv_Z": {
+      "value": 0.17274707473566775,
+      "formula": "1/Z = a0/(c H_Lambda)",
+      "source": "python float"
+    },
+    "two_Z": {
+      "value": 11.577620072932282,
+      "formula": "2Z",
+      "source": "python float"
+    },
+    "inv_two_Z": {
+      "value": 0.08637353736783387,
+      "formula": "1/(2Z)",
+      "source": "python float"
+    },
+    "three_over_32pi": {
+      "value": 0.029841551829730376,
+      "formula": "3/(32*pi)",
+      "source": "python float"
+    },
+    "inv_twelfth": {
+      "value": 0.08333333333333333,
+      "formula": "1/12",
+      "source": "exact rational"
+    },
+    "rel_gap_inv_two_Z_vs_twelfth": {
+      "value": 0.036482448414006496,
+      "formula": "(1/(2Z))/(1/12) - 1",
+      "source": "python float"
+    },
+    "ratio_inv_Z_to_twelfth": {
+      "value": 2.072964896828013,
+      "formula": "(1/Z)/(1/12)",
+      "source": "python float"
+    },
+    "rho_Lambda_from_brief": {
+      "value": 5.834769475277012e-27,
+      "unit": "kg/m^3",
+      "formula": "Lambda c^2/(8 pi G)",
+      "source": "BRIEF constants"
+    },
+    "a0_from_formula": {
+      "value": 9.354173485820239e-11,
+      "unit": "m/s^2",
+      "formula": "kappa c sqrt(G rho_Lambda), kappa=1/2",
+      "source": "BRIEF constants"
+    },
+    "a0_quoted": {
+      "value": 9.36e-11,
+      "unit": "m/s^2",
+      "source": "BRIEF section 4 (quoted footing)"
+    },
+    "H_Lambda": {
+      "value": 1.806234009981721e-18,
+      "unit": "1/s",
+      "formula": "c sqrt(Lambda/3)",
+      "source": "BRIEF constants"
+    },
+    "a0_over_cH_Lambda": {
+      "value": 0.17274707473566775,
+      "formula": "a0/(c H_Lambda)",
+      "source": "python float; equals 1/Z to machine precision"
+    },
+    "a0_over_cH0": {
+      "value": 0.14284743007481446,
+      "formula": "a0/(c H0), H0=67.4 km/s/Mpc",
+      "source": "python float; NOT equal to 1/Z (H0 != H_Lambda)"
+    },
+    "ordering_witness_gN_1_a0_1": {
+      "g_quad": 1.4142135623730951,
+      "g_canon": 1.618033988749895,
+      "gap": 0.20382042637679976,
+      "source": "python float"
+    },
+    "deep_limit_rate_canon": {
+      "value": 5.0001249999986896e-05,
+      "note": "g_c/sqrt(a0gN) - 1 at gN/a0 = 1e-8, consistent with sqrt(delta)/2",
+      "source": "python float (rate NOT certified in Lean)"
+    },
+    "deep_limit_rate_quad": {
+      "value": 4.999999969612645e-09,
+      "note": "g_q/sqrt(a0gN) - 1 at gN/a0 = 1e-8, consistent with delta/2",
+      "source": "python float (rate NOT certified in Lean)"
+    }
+  },
+  "constants_used": [
+    {
+      "name": "c",
+      "value": 299792458.0,
+      "unit": "m/s",
+      "source": "BRIEF section 4"
+    },
+    {
+      "name": "G",
+      "value": 6.6743e-11,
+      "unit": "m^3 kg^-1 s^-2",
+      "source": "BRIEF section 4"
+    },
+    {
+      "name": "Lambda",
+      "value": 1.089e-52,
+      "unit": "m^-2",
+      "source": "BRIEF section 4"
+    },
+    {
+      "name": "a0_can",
+      "value": 9.36e-11,
+      "unit": "m/s^2",
+      "source": "BRIEF section 4 (quoted, 3 s.f.)"
+    },
+    {
+      "name": "kappa_can",
+      "value": 0.5,
+      "unit": "-",
+      "source": "BRIEF section 4; FITTED, not derived"
+    },
+    {
+      "name": "H0",
+      "value": 2.1843e-18,
+      "unit": "1/s",
+      "source": "BRIEF section 4 (67.4 km/s/Mpc)"
+    }
+  ],
+  "mutation": {
+    "file": "A8_C3_MUTATE.lean",
+    "log": "A8_C3_MUTATE.out",
+    "mutants": [
+      "gCanon_le_gQuad_MUTANT: reversed ordering g_c <= g_q (FALSE)",
+      "gCanon_eq_gQuad_MUTANT: the two laws identified g_c = g_q (FALSE)"
+    ],
+    "result": "compilation fails (exit 1) at both mutants; see MUTATE.md",
+    "check_teeth": "a8_lean_checks.py --mutate asserts the false 1/12 identity and K5 FAILs"
+  },
+  "does_not_certify": [
+    "any numerical value of G, H, rho or a0 (the certificates are symbolic identities in pi and in the constants)",
+    "any physics premise beyond the stated equations: a0 = kappa c sqrt(G rho), H^2 = 8 pi G rho/3, and the two law definitions",
+    "that kappa = 1/2 is derived (it is FITTED; the certificates only propagate it)",
+    "that the 'one twelfth of the horizon' is an identity (the strict bracket 1/12 < 1/(2Z) < 1/11 is certified instead)",
+    "that a0/(cH0) = 1/Z (that holds with H_Lambda = c sqrt(Lambda/3), not with the measured H0)",
+    "that either galactic law is realised by data, or any fit / rotation-curve claim",
+    "dynamical (perturbation) stability: C4 is monotonicity of the algebraic map gN -> g",
+    "the 'capacity a0 vs a0/2' integral reading (only mu = gN/g and its limits are certified)"
+  ],
+  "files": [
+    "A8_C1_C2_kappa_Z.lean",
+    "A8_C1_C2_kappa_Z.out",
+    "A8_C3_MUTATE.lean",
+    "A8_C3_MUTATE.out",
+    "A8_C3_law_ordering.lean",
+    "A8_C3_law_ordering.out",
+    "A8_C4_monotonicity.lean",
+    "A8_C4_monotonicity.out",
+    "A8_C5_capacity.lean",
+    "A8_C5_capacity.out",
+    "MUTATE.md",
+    "a8_lean_checks.out",
+    "a8_lean_checks.py",
+    "a8_lean_checks_MUTATE.out",
+    "a8_results.json",
+    "make_results.py",
+    "report.md"
+  ]
+}

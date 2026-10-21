@@ -1,0 +1,103 @@
+A4_ppn :: canonical law g_N = g^2/(g+a0) :: Solar-System + stability gates
+constants: c=2.99792458e8  Lambda=1.0890e-52  a0=9.36e-11 (canonical)  a0_alt=1.13e-10  GM_sun=1.32712440018e20  AU=1.495978707e11
+           B_E = 3.66e-14 m/s^2 (Sereno & Jetzer 2006, 2 sigma)   N_Lambda = Lambda c^4/a0^2 = 100.405845
+*** MUTATION ACTIVE: canonical law assigned the quadrature's a0/2 tail and (pi/4) closure ***
+
+== K1  exact large-g_N expansion: the constant term
+   g_can  = u + a_0 - a_0**2/u + 2*a_0**3/u**2 + O(u**(-3), (u, oo))
+   g_quad = u + a_0/2 - a_0**2/(8*u) + a_0**3/(16*u**2) + O(u**(-3), (u, oo))
+K1   PASS 1                        1 exactly (sympy)        g-g_N -> 1*a0 ; quadrature -> 1/2*a0
+
+== K2  ephemeris factor of the constant anomaly (Earth 2-sigma bound)
+K2   FAIL 1278.68852               2558 (=2x1279) +-0.2%    a0/B_E=1278.69  a0_alt/B_E=1543.72  ratio/(2*1279)=0.499878
+
+== K3  exact nu(y)-1 and its tail coefficient (both laws)
+   nu_can-1  = -1/2 + sqrt(y + 4)/(2*sqrt(y))
+   nu_quad-1 = -1 + sqrt(y + 1)/sqrt(y)
+   series nu_can  : -1/y**2 + 1/y + 1 + O(y**(-3), (y, oo))
+   series nu_quad : -1/(8*y**2) + 1/(2*y) + 1 + O(y**(-3), (y, oo))
+K3   FAIL 1                        1 exactly (sympy)        lim y(nu_can-1)=1 lim y(nu_quad-1)=1/2 lim sqrt(y)(nu_can-1)=0 -> both tails 1/y, NOT 1/sqrt(y)
+
+== K4  numerical tail exponent of the canonical law
+K4   PASS -0.999999785             -1 +-1e-6                d ln(nu-1)/d ln y over 1e6..1e8
+
+== K5  vacuum integral: exact integrand, and the DIVERGENCE EXPONENT
+   I_can(50)  exact-rational = 75.0709754720115   adaptive = 75.0709754720115
+   I_quad(50) exact-rational = 38.6682227551101   adaptive = 38.6682227551101
+   I_can(Y)/Y -> 1.57079476 ;  I_quad(Y)/Y -> 0.785397951
+K5   PASS 1.00000021               1 +-1e-3                 linear divergence (exponent 1), NOT 3/2;  slope_quad=1.00000006
+
+== K6  closure asymptotics and the exact 8x identity
+   I_can - (pi/2)Y + ln(Y/4) at Y=1e8 : -0.886294392535808   (Richardson C_can = -0.886294361119891)
+   I_can(Y) / I_quad(Y/4) = 8   (exact identity: 8)
+   asymptotic closure accuracy at y_t=66.3 : 1.04
+K6   FAIL -0.886294393             -0.8862943611 +-1e-6     identity ratio=8 ; asym closure rel.err=1.04
+
+== K7  the turn-off y_t that closes the observed Lambda (canonical law)
+   closure model (CLOSURE=0.785398, C=-0.110787) inverts to y_t = 132.437858255
+   exact integral root y_t^can = 66.2999368256   F_can(y_t)/N_Lambda = 1
+   rel. difference model vs exact = 0.9976
+   y_t^quad = 128.755866776   y_t^quad/y_t^can = 1.94202096
+   turn-off acceleration y_t*a0 = 6.20567e-09 m/s^2
+K7   FAIL 132.437858               66.2999 (exact root)     closure (pi/2)y_t - ln(y_t/4) + C_can = Lambda c^4/a0^2 reproduces the exact root
+
+== K8  normalization cross-check vs the published quadrature closure; transplant test
+   quadrature, y_t=129 (top of the published 94-129 band): F_quad/N_Lambda = 1.00191
+   canonical fed the quadrature's y_t=128.756 : F_can/N_Lambda = 1.97068
+K8   PASS 1.97068312               in [1.90,2.05]           published closure reproduced to 0.00191 ; transplant over-predicts Lambda
+
+== K9  every planet inside its ephemeris bound (anomaly at y_t from K7)
+   planet      r/AU         g_N         y        anom      bound    anom/B   y_t_max
+   Mercury    0.387     0.03957  4.23e+08     2.3e-24    4.6e-14     5e-11  9.38e+06
+   Venus      0.723     0.01133  1.21e+08    2.81e-23      8e-14  3.51e-10  3.54e+06
+   Earth      1.000     0.00593  6.34e+07    1.03e-22    8.7e-15  1.18e-08  6.11e+05
+   Mars       1.524    0.002554  2.73e+07    5.52e-22    1.4e-15  3.95e-07  1.06e+05
+   Jupiter    5.204   0.0002189  2.34e+06    7.52e-20    5.6e-13  1.34e-07  1.81e+05
+   Saturn     9.583   6.458e-05   6.9e+05    8.64e-19      7e-15  0.000123  5.97e+03
+   Uranus    19.191    1.61e-05  1.72e+05    1.39e-17      7e-15   0.00199  1.49e+03 *
+   Neptune   30.070   6.558e-06  7.01e+04    8.38e-17      7e-15     0.012       606 *
+K9   PASS 0.0119718493             < 1 (ratio anom/bound)   worst = Neptune ; Uranus/Neptune(*) use the Saturn bound as an over-tight stand-in
+
+== K10 does ONE y_t do both jobs?  required vs allowed
+   required y_t (Lambda)          = 66.2999
+   allowed  y_t (all 8 planets)   = 605.962  (binding: Neptune)
+   allowed  y_t (published only)  = 5966.86  (binding: Saturn)
+   margin = 9.13971  (y_t may grow by this factor before the tightest planet fails)
+K10  PASS 9.13970811               > 2 (factor margin)      compatible: one y_t does both jobs
+
+== K11 linear response dg/dg_N across u in (0,a0] -- positivity
+   u/a0            dg/du can     dg/du quad
+   1e-6           500.500187      500.00075
+   1e-4            50.501875     50.0074997
+   1e-3            16.317317     15.8350955
+   0.01            5.5187305     5.07468967
+   0.1             2.1398245     1.80906807
+   0.5            1.33333333     1.15470054
+   0.9            1.19047619     1.07060676
+   1.0            1.17082039     1.06066017
+   structural: dg_can/du = (1+s)^2/(4s), s=sqrt(1+4/y)  -> positive for s>1 (sympy)
+   deep limit y*(dg/du)^2 : can=0.2500005 quad=0.250000000001  (-> 1/4 both)
+K11  PASS 1.06066017               > 0 everywhere           min over u in (0,a0]; divergence only at u=0, positive and integrable
+
+== K12 the patched (turn-off) law is itself monotone -- critical y_t
+   min_y dg/dy at y_t = y_t^can : 0.990856905393
+   critical y_t below which the patched law is non-monotone: 0.0625316352916
+   y_t^can / y_t^crit = 1060.26 ; turn-off acceleration there = 5.853e-12 m/s^2
+K12  PASS 1060.26232               > 10                     the cure is gradient-stable; instability only for y_t < 0.06253
+
+== K13 the general gate: constant anomaly = c*a0 with c = lim x(1-mu(x))
+   mu_can  = x/(1+x)      -> c = 1   (check: g*mu(g/a0) - g^2/(g+a0) = 0)
+   mu_quad = (sqrt(1+4x^2)-1)/(2x) -> c = 1/2
+   bound requires c <= B_E/a0 = 0.000391026 ; canonical c = 1 (2557.4 x over)
+K13  PASS 2557.37705               > 1 (excluded)           any interpolation with a 1/x term in mu has a constant anomaly c*a0; c must be < 0.000391
+
+== numbers carried to the report
+   N_Lambda = Lambda c^4/a0^2 = 100.405845
+   a0/B_E = 2557.38 ; a0_alt/B_E = 3087.43 ; (a0/2)/B_E = 1278.69
+   C_can = -0.88629436112 ; C_quad = -0.11078679514 ; C_can/C_quad = 8
+   y_t^can = 66.2999368 ; y_t^quad = 128.755867 ; ratio = 1.94202096
+   alt footing (a0=1.13e-10): N_Lambda = 68.8896224 ; y_t^can = 46.0148393 ; y_t^quad = 88.569046
+   galactic-side cost of the turn-off: anomaly suppression 1/(1+(y/y_t)^2) at y=10 :
+     canonical 0.9778   quadrature 0.994
+
+A4 COMPLETE: 9/13 checks PASS.

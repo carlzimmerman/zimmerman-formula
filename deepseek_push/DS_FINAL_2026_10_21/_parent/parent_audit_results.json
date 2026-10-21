@@ -1,0 +1,254 @@
+{
+ "constants": {
+  "c": 299792458.0,
+  "G": 6.6743e-11,
+  "H0": 2.1842852410855023e-18,
+  "Lambda": 1.090910502838093e-52,
+  "rho_Lambda": 5.845005787161433e-27,
+  "a0_can": 9.36e-11,
+  "a0_alt": 1.13e-10
+ },
+ "Q1": {
+  "Z": 5.788810036466141,
+  "two_Z": 11.577620072932282,
+  "a0_over_cH": 0.17274707473566775,
+  "a0_over_cH_from_kappa": 0.17274707473566775,
+  "eleventh_point_six": 11.577620072932282,
+  "menu": {
+   "cH (horizon surface gravity, no 8pi)": 1.0,
+   "cH/sqrt(8pi/3) (H^2=8piGrho/3): kappa=1": 0.3454941494713355,
+   "half of that: kappa=1/2 (canonical)": 0.3454941494713355,
+   "cH/(2pi) (Unruh T=H/2pi)": 0.10997420339538637,
+   "cH/sqrt(32pi) (Lambda/a0^2=32pi)": 0.09973557010035818,
+   "cH/4pi": 0.054987101697693185
+  },
+  "record_menu": {
+   "0.230": 0.2298,
+   "0.461": 0.4607,
+   "0.921": 0.9214,
+   "2.894": 2.8944050182330705,
+   "5.789": 5.788810036466141
+  },
+  "dimensionless_combination": 2.849764018217169e-122
+ },
+ "Q2": {
+  "canonical_identity_residual": "0",
+  "quadrature_identity_residual": "0",
+  "nu_can": "1/2 + sqrt(4*a_0 + g_N)/(2*sqrt(g_N))",
+  "nu_quad": "sqrt(a_0 + g_N)/sqrt(g_N)",
+  "strong_field_can": "-a_0**2*eps + a_0 + 1/eps",
+  "strong_field_quad": "-a_0**2*eps/8 + a_0/2 + 1/eps",
+  "const_anomaly_can_over_a0": "1",
+  "const_anomaly_quad_over_a0": "1/2",
+  "nu_can_y": "1/2 + sqrt(ys + 4)/(2*sqrt(ys))",
+  "nu_quad_y": "sqrt(ys + 1)/sqrt(ys)",
+  "tail_can_ys_times_num1": "1",
+  "tail_quad_ys_times_num1": "1/2",
+  "max_frac_separation_g": 0.15470053836792416,
+  "separation_at_gN_over_a0": 0.500011508065872,
+  "max_frac_separation_v": 0.07735026918396208,
+  "vac_integral_can": "oo",
+  "vac_integral_quad": "oo"
+ },
+ "Q3": {
+  "slope_can": "a_0/(sqrt(g_N)*sqrt(4*a_0 + g_N)) + sqrt(g_N)/(2*sqrt(4*a_0 + g_N)) + 1/2",
+  "slope_quad": "(a_0/2 + g_N)/(sqrt(g_N)*sqrt(a_0 + g_N))",
+  "slope_min_can": 1.0000000099960016,
+  "slope_min_quad": 1.000000001249875,
+  "deep_limit_coeff": [
+   "1",
+   "1"
+  ]
+ },
+ "Q4": {
+  "window_pc": [
+   24.0,
+   1000.0
+  ],
+  "window_m": [
+   7.405626195579282e+17,
+   3.085677581491367e+19
+  ],
+  "c_over_H0_pc": 4447959317.507418,
+  "c_over_H0_Mpc": 4447.959317507418,
+  "window_in_cH_units": [
+   5.395732803925309e-09,
+   2.248222001635545e-07
+  ],
+  "required_density_kg_m3": [
+   1.4142773684223187e-12,
+   2.4553426535109693e-09
+  ],
+  "required_density_over_rhoL": [
+   241963382060079.72,
+   4.2007531607652717e+17
+  ]
+ },
+ "checks": [
+  {
+   "id": "Q1.1",
+   "pass": true,
+   "value": 5.788810036466141,
+   "threshold": "5.788812 +- 1e-5",
+   "note": "Z = 2 sqrt(8pi/3)"
+  },
+  {
+   "id": "Q1.2",
+   "pass": true,
+   "value": 11.577620072932282,
+   "threshold": "11.57762 +- 1e-4",
+   "note": "2Z = 2 sqrt(32pi/3) = the '1/12'"
+  },
+  {
+   "id": "Q1.3",
+   "pass": true,
+   "value": 0.17274707473566775,
+   "threshold": "kappa sqrt(3/8pi)",
+   "note": "a0/(cH) is kappa restated; no independent content"
+  },
+  {
+   "id": "Q1.4",
+   "pass": true,
+   "value": {
+    "Z": 5.788810036466141,
+    "sqrt8pi3": 2.8944050182330705
+   },
+   "threshold": "record menu {0.230,0.461,0.921,2.894,5.789}",
+   "note": "menu entries are the same number with/without 2, pi, 4pi (a factor 12.5 spread)"
+  },
+  {
+   "id": "Q1.5",
+   "pass": true,
+   "value": 2.849764018217169e-122,
+   "threshold": "2.8e-122 +- 0.3e-122",
+   "note": "hbar G Lambda / c^3 is the only dimensionless combination -> F free -> kappa not fixed by dimensional analysis"
+  },
+  {
+   "id": "Q2.1",
+   "pass": true,
+   "value": "0",
+   "threshold": "0",
+   "note": "canonical closed form solves g_N=g^2/(g+a0)"
+  },
+  {
+   "id": "Q2.2",
+   "pass": true,
+   "value": "0",
+   "threshold": "0",
+   "note": "n=2 closed form solves the a0-line"
+  },
+  {
+   "id": "Q2.3",
+   "pass": true,
+   "value": "0",
+   "threshold": "0",
+   "note": "canonical law IS the Langmuir isotherm mu=x/(1+x) with x=g/a0"
+  },
+  {
+   "id": "Q2.4",
+   "pass": true,
+   "value": "1",
+   "threshold": "1",
+   "note": "canonical law's strong-field anomaly is a CONSTANT a0 (not a0/2)"
+  },
+  {
+   "id": "Q2.5",
+   "pass": true,
+   "value": "1/2",
+   "threshold": "1/2",
+   "note": "quadrature law's strong-field anomaly is a0/2"
+  },
+  {
+   "id": "Q2.6",
+   "pass": true,
+   "value": "1",
+   "threshold": "1",
+   "note": "canonical: nu-1 ~ 1/y, so y(nu-1) -> 1 and the constant anomaly is a0"
+  },
+  {
+   "id": "Q2.7",
+   "pass": true,
+   "value": "1/2",
+   "threshold": "1/2",
+   "note": "quadrature: nu-1 ~ 1/(2y), so y(nu-1) -> 1/2 and the anomaly is a0/2"
+  },
+  {
+   "id": "Q2.8",
+   "pass": true,
+   "value": {
+    "max_frac_g": 0.15470053836792416,
+    "max_frac_v": 0.07735026918396208,
+    "at_gN_over_a0": 0.500011508065872
+   },
+   "threshold": "0.14-0.17",
+   "note": "max fractional g difference at fixed g_N = 2x the record's 7.46% circular-speed figure"
+  },
+  {
+   "id": "Q2.9",
+   "pass": true,
+   "value": "oo",
+   "threshold": "divergent",
+   "note": "canonical vacuum integral diverges"
+  },
+  {
+   "id": "Q2.10",
+   "pass": true,
+   "value": "oo",
+   "threshold": "divergent",
+   "note": "quadrature vacuum integral also diverges (needs turn-off)"
+  },
+  {
+   "id": "Q3.1",
+   "pass": true,
+   "value": 1.0000000099960016,
+   "threshold": "(0, 1.05)",
+   "note": "canonical response slope positive and bounded over 8 decades"
+  },
+  {
+   "id": "Q3.2",
+   "pass": true,
+   "value": 1.000000001249875,
+   "threshold": "(0, 1.05)",
+   "note": "quadrature response slope positive and bounded"
+  },
+  {
+   "id": "Q3.3",
+   "pass": true,
+   "value": [
+    "1",
+    "1"
+   ],
+   "threshold": "(1,1)",
+   "note": "both laws have the identical deep-MOND coefficient 1"
+  },
+  {
+   "id": "Q4.1",
+   "pass": true,
+   "value": 4447.959317507418,
+   "threshold": "4200-4700 Mpc",
+   "note": "the Hubble radius is 4.45 Gpc: the 24 pc-1 kpc window is 7-8 decades below it"
+  },
+  {
+   "id": "Q4.2",
+   "pass": true,
+   "value": [
+    5.395732803925309e-09,
+    2.248222001635545e-07
+   ],
+   "threshold": "L*H0/c in [5e-9, 2e-7]",
+   "note": "window in horizon units"
+  },
+  {
+   "id": "Q4.3",
+   "pass": true,
+   "value": [
+    241963382060079.72,
+    4.2007531607652717e+17
+   ],
+   "threshold": "1e11 - 1e14 rho_Lambda",
+   "note": "a c/sqrt(G rho) reading of L* needs a density 11-14 orders above rho_Lambda: a medium density, not the vacuum"
+  }
+ ],
+ "n_pass": 21,
+ "n_total": 21
+}

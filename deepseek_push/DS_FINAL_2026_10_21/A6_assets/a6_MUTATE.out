@@ -1,0 +1,74 @@
+============================================================================================================
+1. THE SADDLE NO-GO -- exact static law for two equal point masses
+============================================================================================================
+K1    FAIL max rel err 2.00e+00                           < 1e-4
+      analytic div[(nu-1)g_N] vs central-difference divergence of u at 6 points; the exact form is algebraic, so this is a validation of the algebra, not a convergence
+K2    FAIL rho_panc/rho_axis = -0.1769                    < 0
+      at R=0.2d: rho_panc = +2.0132e-25 kg/m3 (gN/a0=8.78e-04), rho_axis = -1.1383e-24 kg/m3; the negative region is the pancake through the saddle
+K3    FAIL 89.3                                           -89 +-15%
+      MW-M31-like (M_b=1.4e11 each, d=780 kpc), rho_bar_c = 2.254e-27 kg/m3 = Omega_c rho_crit
+K4    FAIL d(-33)=11.8 Mpc, rho(3Mpc)=485                 d(-33) > 8 Mpc
+      a 1e15 Msun pair needs 11.8 Mpc (unbound, supercluster scale) to give -33; the bound 3 Mpc pair gives 485
+K4b   FAIL ratio 33.1, col_neg -1.57 Msun/pc2             -33 +-10% and 4.63 - 5.5
+      (M_b = 4.2e12 each, i.e. a 1e14 halo at f_b=0.04, d = 3 Mpc) reproduces BOTH quoted cluster numbers at once; a 1e15 cluster pair cannot (it needs 11.8 Mpc for the density ratio and then its column is far deeper)
+K5    FAIL -1.10 Msun/pc2                                 1.4 - 4.2 (claim 1.9-2.1)
+      negative part of the column through the saddle, line of sight in the pancake plane, |L|<d; the exact 3D value is 0.6x the quoted 1.9-2.1
+K6    FAIL 2.42 Msun/pc2 (net/|neg| = 2.19)               net < 0 (note says +0.016, ratio 0.078)
+      the exact solution's saddle column is net negative: the law itself predicts a shallow negative convergence, it is not 'neither picture predicts one'
+      line-of-sight dependence of the saddle column (MW pair, |L|<d), phi from the pair axis
+      (phi=0 is the axis through the point masses: that column is source-dominated, not cold energy):
+         phi    net [Msun/pc2]   neg part   net/|neg|
+          0      -30075.36    -30075.36     -1.000
+         60          -6.54        -6.54     -1.000
+         70          -2.75        -2.75     -1.000
+         75          -0.86        -1.76     -0.487
+         80          +0.81        -1.35     +0.600
+         85          +1.99        -1.16     +1.717
+         90          +2.42        -1.10     +2.194
+        the net column passes through zero at phi = 80.00 deg (net=+0.812, neg part=-1.352 Msun/pc2),
+        so the quoted -0.206/+0.016 (ratio -0.078) is a line-of-sight artefact within a degree of that zero,
+        not a property of the solution: at the physical phi = 90 deg the net is 2.42 Msun/pc2.
+K7    PASS spread 0.597%                                  < 2%
+      |rho| sqrt(r) constant along the pancake: the density diverges as r^-1/2 at the null point, so no smooth positive medium can match it
+K8    FAIL solid-angle fraction 0.737                     0.05 - 0.40
+      negative band at R=0.2d spans 30.5 deg about the perpendicular plane (=15.3 deg half-width): a thin pancake
+K9    FAIL N(3sig)=8.45e+04 pairs, 120.7x a 700-pair stack multiple in 8 - 18 (claim ~12)
+      sigma(DeltaSigma) per pair = 107 Msun/pc2 in a 1.5 arcmin aperture, against a depth of 1.1 Msun/pc2
+
+============================================================================================================
+2. THE EXACT LAW IDENTITY
+============================================================================================================
+K10   PASS residual 0 / 0                                 == 0
+      g_N = g^2/(g+a0)  <=>  nu = 1/2 + sqrt(4a0+g_N)/(2 sqrt g_N)  <=>  u^2 = g_N(a0-u), u = g-g_N
+K11   PASS y/x -> {1/2:oo, 1:1, 3/2:0, 2:0}               only p=1 gives 1
+      exact Newtonian limit selects p=1; p<1 gives g>>g_N, p>1 gives g<<g_N, so the family has exactly one admissible member
+K12   PASS y/x^2 -> {'1/2': 1, '1': 1, '3/2': 1, '2': 1}  all 1
+      the deep-MOND geometric mean holds for every p: it is not the selector, so (i)+(ii) leave p free and only (i) pins it
+K13   PASS c_canon=1 c_n2=1/2                             1 and 1/2
+      (nu-1)g_N -> a0 (canonical) and a0/2 (n=2): the strong-field anomaly is a CONSTANT acceleration, not a decaying one
+K14   PASS c(p=1)=1, c(p=2)=0                             c(1) > c(2)
+      REFUTATION: in the wider family mu = x/(1+x^p)^(1/p), which keeps both limits for every p, the constant anomaly is a0 at p=1 and ZERO for p>1 -- the canonical law has the LARGEST constant anomaly, not the smallest
+
+============================================================================================================
+3. THE TWO-FOOTING STRUCTURE
+============================================================================================================
+K15   PASS 1.207265                                       1.207 +-0.001
+      a0_alt/a0_can from the two stated footings; the two differ by 20.7%
+K16   PASS 1/sqrt(Omega_L) = 1.20931                      within 0.005 of 1.207
+      the ratio IS sqrt(rho_crit/rho_Lambda) = 1/sqrt(Omega_Lambda) = 1.2093; the 0.14% gap is the rounding of the two quoted a0 values
+K17   PASS 9.3542e-11 / 1.1312e-10                        within 1% of 9.36e-11 / 1.13e-10
+      both footings are a0 = (c/2)sqrt(G rho) with rho = rho_Lambda or rho_crit: one equation, two roots; no internal relation contains both densities in a way that picks one
+
+============================================================================================================
+4. THE CAPACITY STATEMENT
+============================================================================================================
+K18   PASS a0=a, a0/2=a/2                                 a0 and a0/2
+      lim (g-g_N) is the saturation value of u = K|P|: the canonical medium saturates at a0, the n=2 law at a0/2 -- an exact statement about the saturation scale
+K19   PASS max dV/V = 0.074570 at gN/a0=1/2               0.0745699 (=sqrt(2/sqrt3)-1)
+      at fixed (M_b, r): V^2 ~ g, so dV/V = sqrt(g1/g2)-1, maximal at g_N = a0/2 with g1/g2 = 2/sqrt3 exactly
+K20   PASS grid max 0.074570 at y=0.500                   0.074569 +-1e-4 at y~0.5
+      the maximum is a pure number: it contains no a0, so both footings give 7.457%. It is the exact size of the 20%-band's observational signature
+
+*** MUTATION ACTIVE (sign): rho_cold sign flipped ***
+
+A6 COMPLETE: 12/21 checks PASS.

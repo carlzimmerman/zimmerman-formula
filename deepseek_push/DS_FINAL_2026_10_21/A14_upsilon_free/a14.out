@@ -1,0 +1,152 @@
+============================================================================================
+A14 -- KAPPA FROM DATA WITH NO STELLAR MASS-TO-LIGHT PRIOR
+============================================================================================
+
+K0  data on disk, and what the Vdisk column means
+        175 rotmod curves, 175 Table-1 rows, 0 cross-check mismatches
+        M(Vdisk)/L36 over 154 galaxies: median 1.094 (p16-84 0.94-1.25)
+  K0   PASS 175 curves, 0 mismatches, M(Vdisk)/L36 = 1.094
+        threshold: 175 and 0 and 0.85 < ratio < 1.30  (=> Vdisk is the M/L=1 template)
+
+K1  the Upsilon-free sample
+        f_gas > 0.80 at every fitted point, R > 2 Rd, errV/V < 0.10, Q <= 2,
+        >= 3 points, min g_bar < a0_can
+        N_gal = 12 of 175 curves (6.9%), N_points = 73
+        at a Salpeter M/L (Upsilon_d = 0.87) the same cuts leave 4 galaxies, 31 points
+  K1   PASS N_gal = 12, N_points = 73
+        threshold: N_gal >= 8 and N_points >= 50
+
+K2  depth actually reached
+        per-galaxy min g_bar/a0: median 0.0235, worst 0.0702, best 0.0092
+        median over all 73 fitted points: g_bar/a0 = 0.0345
+        deepest single point: g_bar/a0 = 0.0092
+  K2   PASS median per-galaxy min g_bar/a0 = 0.0235, max over galaxies = 0.0702
+        threshold: < 0.10 and < 1.0  (every curve reaches the deep branch)
+        galaxy       n fD  eD/D min gb/a0     Vflat          T
+        NGC3741     11  2  0.05   0.0092      50.1         10
+        DDO154       8  2  0.05   0.0155      47.0         10
+        D631-7       6  2  0.02   0.0160      57.7         10
+        UGCA442      5  2  0.05   0.0184      56.4          9
+        DDO170       4  1  0.30   0.0206      60.0         10
+        DDO161      15  1  0.30   0.0224      66.3         10
+        UGC05716     5  1  0.25   0.0247      73.1          9
+        UGC11820     3  1  0.30   0.0305       0.0          9
+        UGC00731     6  1  0.30   0.0355      73.3         10
+        UGC05764     4  1  0.30   0.0428       0.0         10
+        UGC12732     3  1  0.30   0.0458       0.0          9
+        UGC05829     3  1  0.30   0.0702       0.0         10
+
+K3  the Upsilon lever: what the free channel actually buys
+        mean f_gas over the 73 fitted points = 0.874 -> predicted slope -0.126
+        dln a0/dln Upsilon:  free sample -0.167   full sample -1.082
+        Chabrier->Salpeter (+0.24 dex, x1.74) moves a0 by x1.097 (free) vs x1.819 (full)
+        gas-only g_bar (Upsilon_* = 0): a0 = 7.8447e-11 (x1.19 of the standard-M/L value)
+        free channel as an effective M/L for the full sample: Upsilon_d = 0.708
+        (0.50 = Chabrier, 0.87 = Salpeter; the channel sits between them)
+  K3   PASS |slope| = 0.167 free vs 1.082 full; IMF move x1.10 vs x1.82
+        threshold: |slope_free| <= 0.40, |slope_full| >= 1.0, free move < full move
+
+K4  the distance scaling: a0 -> a0/f^2, by refitting rescaled data
+        canon a0(f=1) = 6.61977e-11   a0(f=1.10) = 5.35884e-11   a0*f^2/a0 = 0.9795
+        quad  a0(f=1) = 7.93973e-11   a0(f=1.10) = 6.51690e-11   a0*f^2/a0 = 0.9932
+        residual from exact f^2 is O(sqrt(g_bar/a0)) = the interpolation correction,
+        not a failure of the scaling: the deep limit is exact, the transition is not.
+  K4   PASS |a0 f^2/a0 - 1| = 0.0205 at f = 1.10 (canonical law)
+        threshold: < 0.05
+
+K5  the same exponent from the data's own scatter (no rescaling experiment)
+        per-galaxy a0 spans 3.67e-11 .. 1.55e-10 (0.207 dex)
+        published e_D/D: rms 0.242  (f_D=1: 0.29, f_D=2: 0.04)
+        predicted scatter: p=2 -> 0.210 dex,  p=1 -> 0.105 dex,  measured 0.207 dex
+        => the measured scatter is what p=2 predicts with ZERO intrinsic a0 scatter;
+           p=1 would need 0.178 dex of intrinsic scatter on top.
+  K5   PASS measured 0.207 dex; adopted p=2 predicts 0.210, p=1 predicts 0.105
+        threshold: closer to the adopted exponent and measured/pred < 1.35
+
+K6  a0, one parameter, both laws, 5% error floor
+        canon a0 = 6.61977e-11   chi2 = 296.3 / 72 (chi2r 4.12)   dchi2=1 err 1.99e-12 (3.00%)
+        quad  a0 = 7.93973e-11   chi2 = 283.5 / 72 (chi2r 3.94)   dchi2=1 err 2.19e-12 (2.76%)
+        canon block bootstrap (400 draws, galaxies): 16-84 = (5.6234e-11, 8.5271e-11), 21.2%
+        quad  block bootstrap (400 draws, galaxies): 16-84 = (6.8391e-11, 1.0000e-10), 19.4%
+        law ratio quad/canon = 1.1994  ->  law systematic +-10.0%
+  K6   PASS quad/canon = 1.1994, chi2r(canon) = 4.12
+        threshold: 0.9 < ratio < 1.6 and chi2r < 12  (both laws give a finite, similar a0)
+
+K7  both footings
+        canon chi2(a0_can=9.360e-11) =    427.3   chi2(a0_alt=1.131e-10) =    628.2   d = -201.0
+        quad  chi2(a0_can=9.360e-11) =    316.6   chi2(a0_alt=1.131e-10) =    444.8   d = -128.2
+        distance-quality split (canonical law):
+          f_D=2 (2-5%, 4 gal, 30 pts): a0 = 1.1318e-10, chi2(a0_can) = 38.5, chi2(a0_alt) = 25.2
+          f_D=1 (25-30%, 8 gal, 43 pts): a0 = 5.1380e-11
+        law preference dchi2(canon-quad): pooled +12.9, f_D=2 +3.1, f_D=1 -2.7
+        => the footing preference (canonical over alt, dchi2 = -201 pooled) REVERSES
+           on the 4 galaxies with 2-5% distances, where a0 = 1.132e-10 ~ a0_alt.
+  K7   PASS pooled dchi2(can-alt) = -201; a0(fD=2)/a0(fD=1) = 2.20
+        threshold: |dchi2| > 25 and distance-quality ratio > 1.5  (the footing verdict is not robust)
+
+K8  kappa on the 2 x 2 grid, and on the fits
+        rho_DE(CMB)  = 5.8355e-27 kg/m^3   (Omega_L h^2 = 0.3107)
+        rho_DE(local)= 6.8566e-27 kg/m^3   (H0 = 73.0, Omega_L = 0.685)
+        sqrt(rho_loc/rho_CMB) = 1.0840
+        footing canonical a0 = 9.3603e-11  ->  kappa_CMB = 0.5003   kappa_local = 0.4615
+        footing alt       a0 = 1.1312e-10  ->  kappa_CMB = 0.6046   kappa_local = 0.5578
+        fit canonical     a0 = 6.6198e-11  ->  kappa_CMB = 0.3538   kappa_local = 0.3264
+        fit quadratic     a0 = 7.9397e-11  ->  kappa_CMB = 0.4244   kappa_local = 0.3915
+        fit fD=2 only     a0 = 1.1318e-10  ->  kappa_CMB = 0.6049   kappa_local = 0.5580
+        total spread over the five a0 choices x two densities: 0.326 -> 0.605 (x1.85)
+        footing x density alone: 0.4615 .. 0.6046 (x1.31) with NO data at all
+        the record's kappa = 0.465 +- 0.076 is a0 = 8.6999e-11 at rho_DE(CMB);
+        the free channel gives 6.6198e-11 = 0.76 of it
+  K8   PASS data x density spread x1.85; convention-only spread x1.31
+        threshold: > x1.5 and > x1.25  (no internally consistent kappa at 5%)
+
+K9  the error budget
+        statistical (dchi2=1, x sqrt(chi2r))         6.09%
+        sample scatter (block bootstrap)            20.13%
+        distance zero point (H0 73 vs 67.4, x2)     16.08%
+        residual stellar M/L (IMF bracket)           9.66%
+        interpolation law (half the L1-L2 gap)       9.97%
+        helium 1.33 -> 1.36                          2.23%
+        quadrature total                            29.97%
+        linear (all-coherent) total                 64.15%
+        kappa = 0.3538 +- 0.1060 (quadrature);  |kappa - 1/2| = 1.38 sigma
+  K9   PASS total = 30.0% (quadrature), 64.2% (linear)
+        threshold: > 5%  (the channel cannot deliver 5% kappa)
+
+K10 the sample size forecast for a 5% kappa
+        statistical: sigma(N) = 0.201 sqrt(12/N) -> N = 195 for 5%
+        if only the published per-galaxy distance errors mattered: N = 94
+        coherent floors that NO N removes:
+          distance zero point 16.1%   residual M/L 9.7%   law choice 10.0%
+        SPARC supplies 4 galaxies with both f_gas > 0.80 and 2-5% distances.
+  K10  PASS N(5%) = 195 galaxies; coherent distance floor 16.1%
+        threshold: N > 100 and distance floor > 5%
+
+K11 pipeline validation against the record's own full-sample a0
+        full sample (no gas cut, Q <= 3): 154 gal, 1710 pts
+        a0(canon) = 9.6433e-11  vs A9's free-SPARC 1.1033e-10 (same data, log-space mean-square)
+  K11  PASS a0(full)/1.1033e-10 = 0.874
+        threshold: 0.80 < ratio < 1.20  (the pipeline reproduces the known full-sample answer)
+
+K12 robustness: radial split, floor, threshold, gas-only
+        radial split : inner 6.745e-11  outer 6.542e-11  (ratio 0.970)
+        floor scan   : 0.03:6.448e-11  0.05:6.620e-11  0.10:6.909e-11  0.20:7.010e-11
+        threshold scan (N_gal): 0.70:24  0.75:19  0.80:12  0.85:7  0.90:3
+        threshold scan (a0)    : 0.70:6.839e-11  0.75:6.766e-11  0.85:6.900e-11  0.90:9.685e-11
+        f_gas > 0.93 AND 2-5% distances: 0 galaxy(ies)
+        a0=9.685e-11 at th=0.90 -> kappa_CMB = 0.518
+        gas-only g_bar: 7.845e-11 (x1.19)
+  K12  PASS outer/inner = 0.970; floor scan spread x1.09
+        threshold: < 0.25 and < x1.30  (the a0 value is not a artefact of the radial range or the floor)
+
+============================================================================================
+SUMMARY
+============================================================================================
+  Upsilon-free sample          : 12 of 175 galaxies, 73 points, median g_bar/a0 = 0.0235
+  a0 (canonical law, 5% floor) : 6.6198e-11  (bootstrap 20%)
+  a0 (quadratic law)           : 7.9397e-11
+  kappa_fit (CMB density)      : 0.3538 +- 0.1060
+  kappa_fit (local density)    : 0.3264
+  record's kappa               : 0.465 +- 0.076  -> this channel does not confirm it
+
+A14 COMPLETE: 13/13 checks PASS.

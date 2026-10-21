@@ -1,0 +1,34 @@
+================================================================================================
+A12 -- SLIP THEOREM for a covector extra sector (round-2 ADM action)
+================================================================================================
+sympy 1.13.1  numpy 1.26.4  MUTATE=False
+K = 4 pi G = 8.387173e-10 m/kg   a0_can = 9.360e-11 m/s^2
+K1 PASS max_residual=0.000e+00 <1e-30   # G^i_j-(1/3)delta G^k_k = (d^i d_j-(1/3)delta lap)(Phi-Psi) on (11,22,12)
+K2 PASS |G^t_t+2lapPhi|=0.000e+00 <1e-30   # G^t_t = -2 lap(Phi)  =>  lap(Phi) = 4 pi G rho
+K3 PASS n_profiles_zero=5/5 all ==0   # (2/3)(f''-f'/r)=2K Pi  <=>  (Phi-Psi)'=2Kr int Pi/r' on 5 power laws
+K4 PASS n_Pi_nonzero=6/9 ==6   # every nontrivial <=2-derivative operator carries Pi!=0; F^2 and E^2 are identically zero on a static radial background and total derivatives are inert
+  operator                        Pi^eps  sigma^eps
+    W(|P|)  potential              2      2     
+    P^i D_i lnN  clock             2      1     
+    (D.P)^2                        2      2     
+    F_ij F^ij                      None   None  
+    (P.DlnN)^2                     4      4     
+    (D_i u)(D^i u)                 2      None  
+    shear^2  (D_(iP_j))_TF         2      2     
+    E_i E^i  kinetic               None   None  
+    d_i(P^i D.P)  tot.div.         None   None  
+K5 PASS n_charge_ops=1 max_Pi_pow=4 n_charge==1, Pi pow>=2   # charge op = 'P^i D_i lnN  clock'; every Pi is O(eps^2)
+K6 PASS |Pi/sigma|=g*r == r g   # exact identity: net traceless stress / clock charge = local potential Psi
+  r=  10.0 kpc  g_N=4.123e-11  g=8.606e-11 m/s^2  Psi=g r/c^2=2.955e-07  g_lens/g_dyn-1=-9.132e-08
+  r= 100.0 kpc  g_N=6.570e-13  g=8.177e-12 m/s^2  Psi=g r/c^2=2.807e-07  g_lens/g_dyn-1=-1.315e-07
+K7 PASS max|1-Phi/Psi|=2.630e-07 <1e-5   # post-Newtonian slip from an integrated Hernquist+MOND profile, asymptotically flat boundary condition
+K8 PASS |Pi/sigma|_kessence=2.000 >=1   # without the clock operator the sector density IS its stress -> O(1) slip
+  KiDS-1000 Fig4-5 C1: N=15 bins, chi2(s=0,A prof)=51.066, A_fit=2.202
+  Delta chi2 for a 1% slip, amplitude profiled: 1.421e-14  (exactly degenerate with the baryonic normalisation)
+  Delta chi2 for a 1% slip, A fixed at 1: 4.315e+00
+  solar-system prediction: Psi(Saturn)=1.030e-09 -> |1-Phi/Psi|~1.03e-09; record bound 4.90e-04, Cassini 2.3e-05
+K9 PASS dchi2(1%slip)=1.4e-14 pred=2.63e-07 cassini=2.3e-05 dchi2<1e-9 and pred<Cassini/50   # the on-disk KiDS/SPARC comparison is EXACTLY degenerate in a constant slip (A free) so it cannot see 1%; the record's real slip bound is the Solar-System PPN one, and the prediction is ~1e-7
+K10 PASS |KW'-a0u/(a0-u)|=0  |g^2-g_N(g+a0)|=0 both ==0   # the round-2 action's gradient branch IS the canonical law g_N = g^2/(g+a0)
+K11 PASS unmutated n/a   # mutation harness armed (--mutate)
+
+A12 COMPLETE: 11/11 checks PASS.

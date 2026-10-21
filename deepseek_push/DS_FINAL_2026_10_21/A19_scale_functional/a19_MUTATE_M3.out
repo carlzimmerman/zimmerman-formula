@@ -1,0 +1,91 @@
+==============================================================================
+A19 -- the scale-setting functional for kappa
+mutation mode: M3
+==============================================================================
+
+-- K1 master identity R = Lambda c^4/(8 pi a0^2) = Lambda L^2/(8 pi) -
+K1   PASS max|residual| = 0.0e+00                        == 0 (exact)  [sympy; all four spellings equivalent]
+
+-- K2 numbers on the canonical footing -------------------------------
+K2   PASS R = 3.99502, kappa = 0.500311, n = 1.99876     |R-4| < 0.01  [L/ell_E = 1.99876]
+     rho_DE = 5.834769e-27 kg/m^3   u = 5.244029e-10 J/m^3   s_DE = 1.870835e-10 m/s^2
+     cH_Lambda = 5.414953e-10   Z = 2sqrt(8pi/3) = 5.788810   1/Z = 0.172747
+     L = c^2/a0 = 9.602085e+26 m   r_H = 1.659765e+26 m   ell_E = 4.804033e+26 m
+     a0(32pi form) = 9.354173e-11 m/s^2   rel.diff vs footing = 6.22e-04
+     alt footing a0 = 1.130e-10 : R = 2.74103, kappa = 0.60401
+     kappa with A15's rounded rho_Lambda = 5.831e-27 : 0.500473
+
+-- K3 Euler charge: S^4 -> 64 pi^2 (chi=2); unit charge 32 pi^2 (chi=1) 
+     R2_abcd = 24, R2_ab = 36, R^2 = 144, GB = 24
+     charge(S^4) = 64*pi**2 ; charge(unit, chi=1) = 32*pi**2
+K3   PASS charge(S^4) = 64 pi^2, GB = 24/r^4             GB charge = 32 pi^2 * chi, exact
+
+-- K4 GB density is a total derivative -> stationarity is vacuous ----
+K4   PASS EL[GB] = 0 ; GB*sqrt(g) - d/dt(8 adot^3) = 0   both identically 0 (exact)  [no bulk eom => no stationarity condition]
+
+-- K5 d(A Lambda)/d a0 = 0 while dR/d a0 != 0 ------------------------
+K5   PASS d(A L)/da0 = 0 ; dR/da0 = -Lambda*c**4/(4*pi*a_0**3) 0 and nonzero (exact)  [R = 4*chi is a0-free: balance renames ell]
+
+-- K6 R = beta^2 chi ; R = 4 is one equation in two unknowns ---------
+     natural grid: 8 (beta,chi) -> 7 distinct R values [1, 2, 3, 4, 8, 12, 16]
+     distinct kappa from the same class: [0.25, 0.288675, 0.353553, 0.5, 0.57735, 0.707107, 1.0]
+K6   PASS 8/8 exact (beta,chi) give 4 ; 2 natural ones [(1, 4), (2, 1)] all exact, >=2 natural solutions  [non-unique: (2,1)=diam/4-ball, (1,4)=radius/S2xS2]
+
+-- K7 covector channel count: no honest count is 4 -------------------
+K7   FAIL massless 2, massive 3, off-shell 4 (honest max 3) no honest count == 4  [off-shell 4 = 3 physical + 1 constraint]
+     D-2 = 4 only at D = [6] ; a covector in D=4 has 2 physical
+
+-- K8 boost mixes scalar into vector: the count is basis-dependent ---
+K8   PASS scalar fraction 0.0000 -> 0.6940 ; invariant count still 2 changes by > 0.5 while invariant stays 2  [count per channel is slicing-dependent]
+
+-- K9 P_max * A = 4 pi c^4/G, independent of a0 ----------------------
+K9   PASS P_max*A = 4*pi*c**4/G ; d/da0 = 0 ; repaired R = 4 pi exact, derivative 0, gap = L^2 (area)  [the repair gives R = 4 pi = 12.566, not 4]
+     4 pi c^4/G = 1.5209e+45 N ; c^4/(4G) = 3.0256e+43 N ; ratio = 50.265482
+
+-- K10 cap family R in {1,2,4}; tensions against measured kappa ------
+     R=1 -> kappa=1.000000, A*Lambda=8.0000 pi^2, tension=6.14 sigma
+     R=2 -> kappa=0.707107, A*Lambda=16.0000 pi^2, tension=3.05 sigma
+     R=4 -> kappa=0.500000, A*Lambda=32.0000 pi^2, tension=0.87 sigma
+     forecast: 1% on kappa (sigma=0.0050) separates chi=1 from chi=2 at 29.3 sigma
+K10  PASS tensions 6.14 / 3.05 / 0.87 sigma              R=1 > 5 sigma, R=2 > 2.5 sigma, R=4 < 1.5 sigma  [only the quarter survives the measurement]
+
+-- K11 structural formulas equal to 4 at D=4; none at D=5 ------------
+K11  PASS 9 formulas = 4 at D=4, 0 at D=5                >= 8 at D=4 and 0 at D=5  [the match to 4 is a D=4 degeneracy]
+       D                = 4.000000   (D=5: 5.000000)
+       (D-2)^2          = 4.000000   (D=5: 9.000000)
+       2(D-2)           = 4.000000   (D=5: 6.000000)
+       D(D-1)/3         = 4.000000   (D=5: 6.666667)
+       C(D,3)           = 4.000000   (D=5: 10.000000)
+       C(D,2)-2         = 4.000000   (D=5: 8.000000)
+       D(D+1)/2-6       = 4.000000   (D=5: 9.000000)
+       2^D/D            = 4.000000   (D=5: 6.400000)
+       (D-1)(D-2)/2+1   = 4.000000   (D=5: 7.000000)
+
+-- K12 Unruh-de Sitter matching: R = 3/(8 pi), kappa = sqrt(8 pi/3) --
+K12  PASS kappa_U = 2*sqrt(6)*sqrt(pi)/3 = 2.894405 ; R_U = 3/(8*pi) = 0.119366 exact; R_U = 3/(8 pi) != 4  [off by 32 pi/3 = 33.510]
+
+-- K13 free-parameter audit of the six candidates --------------------
+     (i)   Euler balance    dof=1  R=4.000000
+     (ii)  channel count    dof=1  R=free
+     (iii) quantum/cell     dof=1  R=free
+     (iv)  saturation cap   dof=1  R=4.000000
+     (v)   Unruh-dS         dof=0  R=0.119366
+     (vi)  dS geodesic ball dof=0  R=0.119366
+K13  PASS dof=0 candidates returning 4: 0 ; dof>=1 returning 4: 2 0 and 2  [no parameter-free candidate returns 4]
+
+-- K14 ell_E / r_H = sqrt(8 pi/3) > 1 : fewer than one cell in H^-1 --
+K14  PASS ell_E/r_H = 2.894405 ; cells in Hubble volume = 0.04124 ratio > 1 and N < 1  [the Euler cell is not a cell]
+
+-- K15 A*Lambda = 8 pi^2 n^2 and 32 pi^2 = pi * 8 pi * 4 -------------
+K15  PASS A*Lambda - 8 pi^2 R = 0 ; 32 pi^2 - pi*8pi*4 = 0 all 0 (exact)  [32 pi^2 = pi * 8pi * 4: no topology in it]
+
+-- K16 kappa = ell_Lambda/L exactly; 1/kappa = beta = L/ell ----------
+K16  PASS kappa = ell/L exact ; 1/kappa = 2 (cells), 4*sqrt(6)*sqrt(pi)/3 (horizons) 0 ; 2 ; Z (exact)  [the integer n = 1/kappa IS the length ratio]
+
+-- K17 local Euler density is constant; cold stress is not -----------
+K17  PASS eps_GB = 3.1625e-104 m^-4 (const) ; cold stress varies 1.0e+04 over 1.5 dex ratio > 1e3 (a local balance forces uniformity)  [local Euler balance excluded by the sector's own profile]
+
+==============================================================================
+A19 COMPLETE: 16/17 checks PASS.
+==============================================================================
+wrote a19_results_M3.json

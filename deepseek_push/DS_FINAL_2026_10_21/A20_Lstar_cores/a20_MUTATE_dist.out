@@ -1,0 +1,36 @@
+# A20 -- stiffness length L* from the inner structure of galaxies
+# mutation: dist
+#
+# SECTION 1 -- exact algebra
+K1   PASS residual n=1,2 = ['0', '0']        exactly 0              (1/rho)dp/dr/g = (L*/r)^2, density-free
+K2   PASS LE resid 0 ; ratio 1 (signed -1)   0 ; exactly 1          pressure alone balances self-gravity identically
+K3   PASS 53.3146 pc                         53.3146 +- 1e-6        matches A16 R_TF
+#
+# SECTION 2 -- the prediction (transition region)
+K4   PASS r(50%)=1.154701 r(10%)=2.294157 r(1%)=7.088812 1.154701 / 2.294157 / 7.088812 in units of r_switch
+K5   PASS MW max 0.0148 ; dwarf min 0.3582   0.0148+-0.001 ; 0.3582+-0.005 depth is set by f_c at the switch, not by L*
+K6   PASS ratio = 46.06 / 48.12 (drift 15.5%) 41.67 +- 20%           r_switch quasi-linear in L* (f_c drift only)
+#
+# SECTION 3 -- SPARC resolution
+K7   PASS 175 galaxies / 3391 points         175 / 3391             r_first 80-9930 pc, median 630 pc
+K8   FAIL f(r_rel<24)=0.0000 <100=0.0000 <300=0.0000 <1k=0.0000 0 / 0 / 0.0114 / 0.2229 conservative 30" beam floor
+K9   PASS floor 80 pc = 3.33 x 24 pc         > 3 x 24 pc            SPARC cannot resolve a 24 pc core
+#
+# SECTION 4a -- other HI data on disk
+K10  PASS MIGHTEE 75.6" -> 79 kpc at z=0.047 = 3302x 24 pc > 100x 24 pc => unusable 7 cubes, 21 ALFALFA global profiles: no core bound
+#
+# SECTION 4b -- LITTLE THINGS core bound
+K11  PASS 26 galaxies, beam 20-530 pc (med 157) 26 galaxies, 20 pc best r_first 10-470 pc
+K12  PASS L* <= 90.0 pc (min R0.3)           < 100 pc               IC_10 R0.3=200 pc; 10th pct 185 pc; median 788 pc
+K13  PASS 300 pc excluded by 3.33x ; 1 kpc by 11.1x > 2x                   window -> [24, 90] pc
+#
+# SECTION 5 -- no-juggling guard: the two candidate formulas
+K14  PASS cand1 spread 0.000 dex ; cand2 2.637 dex (9.8-4231.9 pc) 0.000 ; 2.637+-0.01    one number for all galaxies -> cand2 FAILS C1
+K15  PASS cand2 outside window: 30.29%       30.29% +- 0.5%         below 24 pc: 2.86%, above 1 kpc: 27.43%
+K16  PASS cand1 24pc 1.012 / 1kpc 6.530 ; cand2 6.691 1.012 / 6.530 / 6.691  ratio to 8.23 km/s cold medium
+K17  PASS cand1 R_core=53 pc ; cand2 max R_core=9401 pc cand1 < 200 pc, cand2 > 200 pc vs min measured R0.3 = 200 pc
+#
+# SECTION 6 -- the decisive measurement
+K18  PASS dip(30pc)=21.0% dip(40pc)=11.2% ; beam 0.62" at 8 Mpc 21.03% / 11.21% ; < 1" ngVLA 0.15" reaches 24 pc out to 33 Mpc
+#
+A20 COMPLETE: 17/18 checks PASS.

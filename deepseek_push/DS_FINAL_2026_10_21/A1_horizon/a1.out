@@ -1,0 +1,27 @@
+# A1_horizon -- kappa = 1/2 derivability audit; exact status of '1/12'
+# Z = 2 sqrt(8 pi/3) = 5.788810036   2Z = 11.577620073   1/Z = 0.172747075
+# rho_L = 5.834769e-27 kg/m^3   H_Lambda = 1.806234e-18 s^-1   cH_L = 5.414953e-10 m/s^2
+# menu  kappa = (Z/2)/g :
+#     g=0.5      kappa=5.788810  Z         a0=2cH: GH temperature with R -> c/(2H), i.e. T = H/pi
+#     g=1        kappa=2.894405  Z/2       a0=cH: horizon surface gravity; Unruh T = de Sitter T
+#     g=2        kappa=1.447203  Z/4       a0=cH/2: diameter used as radius, R = 2c/H
+#     g=3.1416   kappa=0.921318  Z/(2pi)   a0=cH/pi = 2c T_dS: twice the dS temperature as an acceleration
+#     g=6.2832   kappa=0.460659  Z/(4pi)   a0=cH/(2pi) = c T_dS: Milgrom's cH/2pi
+#     g=12.566   kappa=0.230329  Z/(8pi)   a0=cH/(4pi): Milgrom with the diameter
+#     g=Z=5.78881  kappa=0.5  (canonical; NOT a member)
+
+K1 PASS 11.577620073 2Z=11.577620073+-1e-9   # 2sqrt(32pi/3)-2Z is identically 0 (sympy); 32pi/3 = 4*(8pi/3)
+K2 PASS 0.172747074736 1/Z=0.172747074736+-1e-12   # the two Einstein substitutions Lambda->rho and rho->H are both exact
+K3 PASS kappa(twelfth)=0.482400836 Z/12=0.482400836, 3.52pct below 1/2   # 1/12 <=> kappa=Z/12; kappa=1/2 <=> 2cH/a0=2Z=11.577620; 12/2Z=1.036482
+K4 PASS max|kappa-target|=4.05e-04 <5e-4 (3 dp targets)   # 0.230=Z/8pi 0.461=Z/4pi 0.921=Z/2pi 2.894=Z/2 5.789=Z
+K5 PASS min|kappa-1/2|=0.039341 >0.03 and gap>0.4   # nearest menu entry g=2pi -> 0.460659; kappa=1/2 needs g=Z=5.78881, 0.494 from the nearest menu g
+K6 PASS dim=2/1 x=2.845e-122 2/1, x<1e-120   # unique pure-Lambda invariant is c^-3 G hbar Lambda = 2.8448e-122; with H free there is a second one, c^2 Lambda/H^2
+K7 PASS min|F-1/2|=0.496 >0.4   # x=2.84e-122, so |kappa - F(0)| <= x max|F'| < 1e-120 for analytic F with O(1) derivative: the whole content of kappa is the pure number F(0)
+K8 PASS kappa=4.093306832 4sqrt(pi/3)=4.093306832+-1e-9   # a0 = sqrt2 cH = 7.6579e-10 m/s2; mismatch to 1/2 = 8sqrt(pi/3) = 8.186614
+K9 PASS min|kappa-1/2|=0.1382 >1e-6, closed forms to 1e-8   # numeric ['4.0933', '2.8944', '5.7888', '0.3618'] vs exact ['4.0933', '2.8944', '5.7888', '0.3618'] ; P1c (cell-length strain) kappa=1.76e+41, kappa^2/pi in Q for all four
+K10 PASS N*T/(Mc^2)=1.000000000000 ==1   # one quantum per cell reproduces rho=3H^2/8piG identically: it is the Friedmann equation, so it constrains nothing about kappa
+K11 PASS min|kappa-1/2|=0.02458 >1e-2 over 169 (a,b)   # best g=2^-4 pi^4=6.0881 -> kappa=0.4754; kappa^2/pi = 8/(3*2^2a*pi^2b), rational iff b=0, and then kappa = 2sqrt(2pi/3)/2^a is irrational
+K12 PASS a0=9.354173e-11 9.36e-11 +-1pct   # rho_L=5.834769e-27 (BRIEF quotes 5.831e-27, a 0.065 pct rounding); a0/(cH)=0.172747075
+K13 PASS 1/7 rel=5.62e-04 <1e-3 (and 12 vs 2Z: 0.0352)   # a0/(cH0)=0.142937; the 1/7 hit is 60x tighter than the 1/12 hit, so neither can be a derivation
+
+A1 COMPLETE: 13/13 checks PASS.

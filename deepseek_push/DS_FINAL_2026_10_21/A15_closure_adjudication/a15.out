@@ -1,0 +1,178 @@
+================================================================================================================
+A15_closure_adjudication -- is kappa = 1/2 DERIVED, an IDENTITY, or a DIFFERENT QUANTITY?
+mutate=False mutate_gamma=False  gamma_test=2  kappa(law)=0.5 FITTED  s_DE := 1.0 c sqrt(G rho_DE)
+================================================================================================================
+
+K1  THE GF2 CHAIN REBUILT  --  where sigma^2 = C/2 comes from
+      P1  Phi = C ln r  (the committed static branch)
+      P2  Lap Phi = 4 pi G rho   ->   rho = C/(4 pi G) r^-gamma
+          with gamma = 2: gamma = 2 FORCED;  chain gamma used here = 2
+          Poisson residual at gamma = 2: 0
+      P3  dp/dr = -rho d Phi/dr  with  p = rho sigma^2,  sigma^2 = const
+          d ln rho/d ln r = -2 (Poisson+P1);   d ln|Phi'|/d ln r = -1 (P1)
+          sigma^2 (gamma-2)/r = -C r^(-1)  ->  sigma^2 = C/2
+          v_c^2 = r Phi' = C;   kappa_dyn := sigma^2/v_c^2 = 1/2
+      ANSWER (i)  it is the RADIAL JEANS EQUATION in the static, isotropic,
+                  constant-dispersion limit -- no boundary condition on rho is used;
+                  the r-independence of sigma^2 is premise P3, not an output;
+                  v_flat^2 = C follows from P1 itself (v_c^2 = r Phi'), so the last
+                  step kappa := sigma^2/v_flat^2 is a DEFINITION evaluated on the SIS.
+  [PASS] K1   Poisson residual 0; sigma^2=C/2; v_c^2=C; kappa_dyn=1/2  |  THRESHOLD: Poisson residual 0 and sigma^2 = C/2, kappa_dyn = 1/2 exactly
+         chain reproduces at gamma=2; sigma^2 = C/gamma, so the '2' IS gamma and kappa_dyn = 1/gamma
+
+K2  WHERE sigma^2 = C/2 COMES FROM: isothermality is the premise, not a boundary condition
+      general solution of the hydrostatic equation with sigma^2(r) free:
+        Eq(sigma2(r), C/2 + C1*r**2)
+      -> sigma^2 = C/2 + K r^2 : ONE free constant K (a radial temperature gradient).
+         C/2 is the member with K = 0, i.e. the ISOTHERMAL member.  No boundary condition
+         at r = 0 or r = infinity is used (K r^2 is regular at 0 and diverges only at inf).
+      SIS family: Phi = 2s ln r -> rho = s/(2*pi*G*r**2), v_c^2 = 2*s, sigma^2 = s  for EVERY s>0
+  [PASS] K2   general sigma^2 = C/2 + C1*r**2; SIS family rho = s/(2*pi*G*r**2) for every s  |  THRESHOLD: general solution carries a free K; the SIS is a one-parameter ray
+         C/2 needs K = 0 (isothermal).  The ray's LABEL s is free: the chain fixes the ratio, not the scale
+
+K3  WHAT ELSE IT PRESUPPOSES: exact closure forces the EoS to be isothermal
+      p = K rho^gamma_eos, rho ~ r^-2:  LHS r-power = 1 - 2*gamma_eos, RHS r-power = -1
+      power balance -> gamma_eos = [1]  (only the isothermal index closes)
+      coefficient balance at gamma_eos=1: K = sigma^2 = C/2 with A = C/(4 pi G) -> sigma^2 = C/2
+  [PASS] K3   gamma_eos = [1]; sigma^2 = C/2  |  THRESHOLD: unique polytropic index gamma_eos = 1 and unique sigma^2 = C/2
+         so the chain is a CLOSURE argument: log branch + Poisson admit exactly one polytropic EoS
+
+K4  UNIQUENESS LEMMA BY BRUTE FORCE:  Phi = C r^p/p over a dense p grid
+      Phi_p = C r^p/p  (p=0 -> C ln r);  rho_p = C(p+1)/(4 pi G) r^(p-2)
+      required dispersion  sigma^2_req(r) = -Phi'/ (d ln rho/d ln r) = C r^p/(2-p)
+      isothermality defect = max_r |sigma^2_req(r)/sigma^2_req(1) - 1| ; 0 iff sigma^2 const
+      grid: 2001 values of p on [-2.5, 2.5]
+      p with sigma^2 r-independent: [0.]  (count 1)
+      min defect over |p| > 0.01: 2.811e-02   (p = 2 is excluded: no SIS solution)
+      analytic power match p-2 = p-1: 0 solutions
+      continuum condition: d/dr[C r^p/(2-p)] = -C*p*r**(p - 1)/(p - 2)  -> roots in p: [0]
+      degenerate member p = -1: rho_p = 0 (point-mass potential -C/r): no bulk source
+      closure defect at sigma^2=C/2: R(p,r) = C*(p + 2*r**p - 2)/(2*r);  at r=1: C*p/2 (= C p/2)
+      R(0,r) = 0 identically -> p = 0 is the only zero of the defect
+  [PASS] K4   unique p = 0.0; min defect over |p|>0.01: 2.811e-02; continuum roots [0]  |  THRESHOLD: exactly one p has constant sigma^2 (p = 0); off p=0 the defect exceeds 1e-2
+         lemma CONFIRMED as stated in GF2 ('among power laws'): the log is the unique member
+
+K5  THE UNQUALIFIED LEMMA IS FALSE: the cored isothermal sphere is another self-sourced
+      equilibrium with the same sigma^2 and no power law
+      Poisson+hydrostatic with rho = rho0 e^-psi, r = r0 x, r0^2 = sigma^2/(4 pi G rho0):
+        Derivative(psi(x), (x, 2)) - exp(-psi(x)) + 2*Derivative(psi(x), x)/x = 0   <=>   psi'' + 2 psi'/x = e^-psi   (isothermal Lane-Emden)
+      numerical solution: centre slope dlnrho/dlnx(0.01) = -0.00003   outer slope (400) = -1.99217
+      integral-form residual max|x^2 psi' - int x^2 e^-psi| / |x^2 psi'| = 4.06e-06
+      => an exact self-sourced hydrostatic equilibrium with constant sigma^2 whose
+         density is NOWHERE a power law: 'unique self-sourced equilibrium' is FALSE;
+         'unique among power laws with constant sigma^2' is TRUE (K4).
+  [PASS] K5   Lane-Emden identity True; slope -0.000 -> -1.992; resid 4.1e-06  |  THRESHOLD: exact identity plus a regular solution with slope 0 -> -2
+         a whole 1-parameter family of counterexamples; GF2's README qualification is load-bearing
+
+K6  THE 1/2 ALSO PRESUPPOSES ISOTROPY: anisotropic SIS gives kappa_dyn = 1/(2(1-beta))
+      Jeans (constant beta), rho ~ r^-2, Phi = C ln r:  sigma_r^2 = -C/(2*beta - 2)
+      kappa_dyn(beta) = sigma_r^2/v_c^2 = -1/(2*beta - 2)
+      beta grid -> kappa_dyn: -0.5:0.3333, -0.2:0.4167, +0.0:0.5000, +0.2:0.6250, +0.4:0.8333, +0.5:1.0000
+      real halos have beta ~ 0.2-0.4 -> the halo-internal number is 0.6-0.8, never 1/2
+  [PASS] K6   kappa_dyn(beta) = -1/(2*beta - 2); range [0.333,1.000]  |  THRESHOLD: 1/2 iff beta = 0; the number moves with the anisotropy
+         so even as a halo-internal statement the 1/2 is the ISOTROPIC SIS's number, not a constant
+
+K7  RENAMING TEST (CFG908 T1b): move the law's kappa; the chain's 1/2 does not move
+      law's kappa 1/2 -> 2/5:  chain output = 1/2 (main) / 1/2 (mutate)
+      |chain output - renamed law kappa| = 1/10 in the main run:
+      the chain never lands on the renamed target -- it does not track it at all
+  [PASS] K7   chain output 1/2 vs law kappa 2/5: difference 1/10  |  THRESHOLD: main: output = 1/2 and != the renamed law kappa; mutate: must FAIL
+         CFG908's T1b reproduced: renaming the target leaves the chain exactly where it was
+
+K8  a0-AUDIT: the chain never touches a0 = kappa c sqrt(G rho_DE)
+      chain free symbols: ['C', 'C1', 'G', 'beta', 'r']
+      intersection with {a0, c, rho_DE, kappa_L, Lambda, rho_Lambda} = []
+      GF2 record lines that mention rho_DE/rho_Lambda: 0
+      the tie appears only as GF2's border-3 sentence ('the vacuum coupling ... OUT of scope')
+  [PASS] K8   symbol intersection = []; fetchable rho_DE mentions in GF2's README/STATE = 0  |  THRESHOLD: empty intersection; the vacuum tie appears only as an 'OUT of scope' border sentence
+         a coefficient that never appears cannot be derived: this is CFG908's point 1
+
+K9  SCALING SYMMETRY (the proof): kappa_dyn is mu-invariant, kappa_law scales as mu
+      chain equations after the substitution: sigma^2-C/2 -> 0 (x sqrt(mu)); v^2-C -> 0
+      kappa_dyn before/after: 1/2 / 1/2   (invariant)
+      kappa_law before/after: 1 / mu x kappa_law  (weight 1 in mu)
+      => on the chain's solution set there is a one-parameter family mu on which kappa_dyn
+         is constant and kappa_law is not.  No function of kappa_dyn can equal kappa_law.
+  [PASS] K9   symmetry residuals 0,0; kappa_dyn invariant = True; kappa_law weight = mu  |  THRESHOLD: exact invariance of the chain and unit weight of kappa_law
+         THIS is the decisive argument: the two numbers live in different representations of mu
+
+K10 LAMBDA OBSTRUCTION: the exact isothermal log branch requires Lambda = 0
+      Phi = C ln r - Lambda r^2/6  ->  Lap Phi = C/r**2 - Lambda = 4 pi G rho_m - Lambda
+      => rho_m = C/(4*pi*G*r**2): the SIS DENSITY survives Lambda exactly (Poisson is fine)
+      but the FORCE is no longer C/r:  -Phi' = -C/r + Lambda*r/3
+      hydrostatic residual (sigma^2 const) = -(-3*C + Lambda*r**2 + 6*sigma2)/(3*r)
+      at sigma^2 = C/2: -Lambda*r/3  = the tidal term -Lambda r/3
+      at Lambda = 0 the same residual is 0 (K1)
+      fractional force error at 10 kpc (C=(168.6 km/s)^2): (Lambda r/3)/(C/r) = 1.22e-22
+      => numerically negligible, LOGICALLY fatal: the hydrostatic balance is exact only
+         in the limit rho_Lambda -> 0, i.e. exactly where the law's kappa is undefined.
+  [PASS] K10  rho_m = C/(4*pi*G*r**2); residual at sigma^2=C/2 = -Lambda*r/3; 10 kpc err 1.2e-22  |  THRESHOLD: density exact; hydrostatic residual = -Lambda r/3, zero only at Lambda = 0
+         the information about rho_DE sits entirely in the term the isothermal balance cannot absorb
+
+K11 NUMERIC FOOTINGS: kappa_law from the BRIEF constants; the a0 that gives exactly 1/2
+      s_DE = c sqrt(G rho_DE) = 1.870230e-10 m/s^2
+      c H_Lambda = 5.414953e-10 m/s^2;   Z = 2 sqrt(8 pi/3) = 5.788810;   1/Z = 0.172747
+      kappa_law(a0_can=9.36e-11) = 0.500473   (0.5 by CONSTRUCTION of the footing)
+      a0 that gives exactly 1/2: 9.351151e-11;  a0 = c^2 sqrt(Lambda/32pi) = 9.354173e-11
+      relative spread of the three: 0.095% ; 0.062%
+  [PASS] K11  kappa_law = 0.500473; a0(kappa=1/2) = 9.3512e-11; a0(32pi) = 9.3542e-11  |  THRESHOLD: all three agree within 0.2%
+         the 0.06% agreement is a consistency of the FOOTING, not a derivation: a0 was defined by kappa=1/2
+
+K12 THE DILEMMA: tie a0 = k_tie c sqrt(G rho_DE) and there are only two horns
+      horn A (chain does not use the tie):  d kappa_dyn / d k_tie = 0
+      horn B (tie substituted):             kappa_law = k_tie  (returns the input)
+      there is no third horn: the output is either silent on k_tie or identical to it
+  [PASS] K12  d kappa_dyn/d k_tie = 0; kappa_law(tie) = k_tie  |  THRESHOLD: 0 and k_tie respectively -- no informative horn
+         so 'derive kappa' has no non-circular reading inside this chain
+
+K13 THE MISSING STEP, EXACT: the equation that would have to hold
+      kappa = a0/(c sqrt(G rho_DE));  rho_DE = Lambda c^2/(8 pi G)
+      => kappa^2 = 8 pi a0^2/(Lambda c^4)   (residual 0)
+      => Lambda = 8*pi*a0**2/(c**4*kappa**2);  at kappa = 1/2: Lambda = 32*pi*a0**2/c**4
+      with ell_0 = c^2/a0:  Lambda ell_0^2 = 32*pi
+      and rho_DE c^2 - 4 a0^2/G = 0   (the convention-free content: 1/kappa^2 = 4)
+  [PASS] K13  Lambda(kappa) = 8*pi*a0**2/(c**4*kappa**2); Lambda l0^2(kappa=1/2) = 32*pi; rho c^2-4a0^2/G = 0  |  THRESHOLD: all four forms exact and equivalent
+         this is the equation a derivation must produce: a0^2 = G rho_DE c^2/4, with the 4 computed
+
+K14 Q010's THREE ROUTES: three equations for one ray, none containing the vacuum
+      Q001: c_s^2 - sigma^2 = 0   (constitutive: c_s^2 := P/rho)  -- a DEFINITION
+      Q007: v_c^2 - 2 sigma^2 = 0 (the SIS amplitude identity)      -- what K1 derives
+      def : kappa v_c^2 - sigma^2 = 0                              -- the definition of kappa
+      Jacobian rank w.r.t. (sigma^2, v^2, c_s^2, kappa) = 3 of 4 -> a 1-dimensional solution set
+      homogeneity residuals under (sigma^2,v^2,c_s^2) -> lam(.) : [0, 0, 0]
+      solution: {c_s2: v2/2, kappa: 1/2, sigma2: v2/2}   (v^2 free: the ray; kappa = 1/2 on it)
+      none of the three contains a0, c or rho_DE -> the 'x3' is one ray, three writings
+  [PASS] K14  rank 3/4; solution {c_s2: v2/2, kappa: 1/2, sigma2: v2/2}  |  THRESHOLD: rank 3 of 4 unknowns and kappa = 1/2 with v^2 free
+         Q010's three 'independent' routes are one identity in three writings; none sees the vacuum
+
+K15 GF2's OWN L1a CHECK HAS NO TEETH: it passes with a ZERO source
+      GF2 L1a: d/dr[(Lap Phi - 4 pi G A r^-gamma) r^2] = 4*pi*A*G*r**(1 - gamma)*(gamma - 2)
+      at gamma = 2 this is 0 for EVERY A -- including A = 0 (empty space)
+      -> the test cannot tell 'the log sources the SIS' from 'the log sources nothing'
+      the real closure is a COEFFICIENT condition: A = C/(4*pi*G), i.e. a definition of rho
+  [PASS] K15  GF2's defect-derivative at gamma=2 = 0 for all A (incl. A=0); A_true = C/(4*pi*G)  |  THRESHOLD: GF2's criterion holds at A = 0: vacuous; the true closure is A = C/(4 pi G)
+         GF2's C1 carries the content, and C1 defines rho := Lap Phi/(4 pi G): a tautology
+
+================================================================================================================
+A15 COMPLETE: 15/15 checks PASS.
+================================================================================================================
+VERDICT: DIFFERENT-QUANTITY
+
+  GF2's algebra is correct and its 1/2 is real -- but it is the SIS ratio
+      mu := sigma^2/v_c^2 = 1/2,
+  a mass-free identity of the singular isothermal sphere (K1, K2, K6).  The law's kappa is
+      kappa := a0/(c sqrt(G rho_DE)).
+  The chain contains no a0, no c and no rho_DE in any physical role (K8), is invariant under
+  renaming the law's kappa (K7), and -- decisively -- the chain's solution set carries a
+  one-parameter scaling symmetry under which mu is invariant and kappa_law has weight 1 (K9).
+  No function of mu can equal kappa_law.  CFG908 is right; the 1/2 is a DIFFERENT QUANTITY.
+
+  What GF2 does establish, and it is worth keeping: the log branch + Poisson + a polytropic
+  closure force gamma = 2 (K4, unique among power laws) and gamma_eos = 1 with sigma^2 = C/2
+  (K3).  That is a derivation of the SIS state, not of the law's coefficient.
+
+  MISSING STEP (one equation, K13):  a0^2 = G rho_DE c^2/4  (<=> Lambda l_0^2 = 32 pi).
+  Nothing in the chain, and nothing in the present action class (k01), supplies it.
+  Q010 already names it: rung 5, POSTULATED-CARRIED.
+
+wrote a15_results.json (15/15)

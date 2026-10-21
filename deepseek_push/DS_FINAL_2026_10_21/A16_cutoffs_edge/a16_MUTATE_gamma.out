@@ -1,0 +1,101 @@
+==============================================================================
+A16  cutoff chain + edge prediction
+==============================================================================
+
+[1] the cold medium's equation of state and its Jeans wavenumber (sympy)
+  e = (gamma/2)(rho-rhobar)^2, gamma = 2 pi G L*^2  ->  p = pi*G*L**2*(rho - rhobar)*(rho + rhobar)
+  MUTANT Gamma=5/3: c_s^2 = 10*A*rho**(2/3)/9
+K1   PASS residual 0   [threshold exactly 0]  MUTANT: species differ
+  dispersion: omega^2/(4 pi G rho) = 5*A*k**2/(18*pi*G*rho**(1/3)) - 1
+  MUTANT Gamma=5/3: d ln k_J / d ln rho = 1/6
+K2   FAIL dlnkJ/dlnrho = 0.166667   [threshold 0 for Gamma=2 (1/6 for Gamma=5/3)]  MUTANT: Gamma=5/3 breaks it
+  lambda_J = 2 pi/k_J = sqrt(2) pi L* = 106.6292 pc at 24 pc, 4442.8829 pc at 1 kpc
+K3   PASS 106.6292 pc / 4442.8829 pc   [threshold 106.62919 / 4442.8829]
+
+[2] free-streaming and half-mode lengths
+  sigma_c = sqrt(a0 L*) = 8.3257 km/s (24 pc), 53.7419 km/s (1 kpc)
+K4   PASS 8.3257 / 53.7419 km/s   [threshold 8.3257 / 53.740]
+  lambda_FS = 2 sigma/(3 H0) = 82.3502 kpc (24 pc), 531.5683 kpc (1 kpc)
+K5   PASS 82.3502 / 531.5683 kpc   [threshold 82.3502 / 531.568]
+  half mode from the growth ODE (z=49, 49-point k grid):
+    L* =     24 pc: k_1/2 = 0.9799 /Mpc -> 1/k_1/2 = 1.0205 Mpc
+    L* =     50 pc: k_1/2 = 0.6158 /Mpc -> 1/k_1/2 = 1.6238 Mpc
+    L* =    100 pc: k_1/2 = 0.4031 /Mpc -> 1/k_1/2 = 2.4810 Mpc
+    L* =    300 pc: k_1/2 = 0.2041 /Mpc -> 1/k_1/2 = 4.9004 Mpc
+    L* =   1000 pc: k_1/2 = 0.1001 /Mpc -> 1/k_1/2 = 9.9891 Mpc
+K6   PASS k_1/2(24pc) = 0.9799 /Mpc   [threshold 0.980 to 1% (AG6D ag6d_cutoff.out)]  reproduced in-lane, not quoted
+  fit: k_1/2 = 0.9695 (L*/24 pc)^-0.6118 /Mpc  (residual max 5.64e-03 dex)
+  spread at L*=24 pc: 3.9809 dex (106.6 pc -> 82.3502 kpc -> 1.0205 Mpc)
+K7   PASS 3.9809 dex   [threshold 3.98 +- 0.02]  the motive's 3.98 dex reproduced
+
+[3] is the Gamma=2 pressure superluminal?  (checking the lane's premise)
+  c_s^2(24 pc, Omega_c rho_crit) = 0.519081 m^2/s^2  ->  c_s = 0.720473 m/s = 2.4032e-09 c
+  A11's number 0.5191 is c_s^2 in m^2/s^2, not in units of c^2.
+  c_s = 1 m/s at L* = 33.3115 pc;  c_s = c at L* = 9.9865e+09 pc = 9.987 Gpc
+  c_s = c requires rho = 3.90780e-10 kg/m^3 = 5.7738e+09 Msun/pc^3 (white-dwarf core density)
+  at a galactic 0.01 Msun/pc^3, L*=24 pc: c_s = 394.5375 m/s = 1.316e-06 c
+K8   PASS c_s/c = 2.4032e-09   [threshold < 1e-6]  NO superluminality: A11 section 14 has a c^2 unit slip
+
+[4] the (L*, rho_c, sigma) system
+  lam_J   = sqrt(2) pi L*                      depends on L* only
+  lam_FS  = 2 sigma/(3 H0)                     depends on sigma only
+  lam_1/2 = 1/k_1/2(L*)                        depends on L* only
+  c_s^2/(4 pi G rho_m) = f_c (L* k/a)^2/2 : rho_c enters only through the
+  cosmic ratio f_c = Omega_c/Omega_m, never as a local density.
+K9   PASS rank = 2   [threshold 2 of 3]  rho_c is a null direction; the system is over-determined by one
+  lam_J = lam_FS  <=>  L* = 2 a0/(9 pi^2 H0^2) = 14.3149 Mpc
+  lam_J = lam_1/2 <=>  L* = 4.4442e+11 pc (power-law extrapolation, 8 decades out)
+  lam_FS/lam_1/2 = 0.0798 at 24 pc, 0.0526 at 1 kpc (never 1: no crossing)
+K10  PASS crossings 14.3 Mpc, 4.44e+11 pc; FS/half max 0.080   [threshold crossings > 1 Mpc; FS/half < 0.1]  the ordering lam_J < lam_FS < lam_1/2 is rigid inside [24 pc, 1 kpc]
+  minimum spread of the three lengths over the window: 3.3568 dex at L* = 1000.0 pc
+  => no L* makes the three cutoffs coincide; best case is still a factor 2274
+K11  PASS min spread = 3.3568 dex   [threshold > 3.0 dex]  single-cutoff reading has NO solution
+
+[5] the edge r_e = r_M sqrt(N(N+1)) on 175 SPARC curves
+  175 curves, 3391 points; M_b(<r_max) = 5.031e+07 .. 3.638e+11 Msun
+K13  PASS 175 curves / 3391 points   [threshold 175 / 3391]  matches A10's SPARC read
+  census inversion reproduces A11's five points to 2.11e-15 relative
+K12  PASS max rel. err = 2.11e-15 over 5 masses   [threshold < 1e-3]  f_ret(M_ta) table + M_b = f_ret f_b M_ta/h inverted
+  census N over the sample: 22.30 .. 53.64  ->  r_e/r_M = 22.79 .. 54.14
+K14  PASS fraction reaching r_e = 0.000; closest approach = 0.2074 (UGC09133)   [threshold 0.000 / < 0.5]  no violation -> no constraint on the census reading
+  five closest approaches (r_max/r_e): UGC09133 0.207, D564-8 0.196, NGC3741 0.192, UGC00128 0.175, UGC02487 0.153
+K15  PASS max N_min = 10.118 (D564-8)   [threshold 5 < N_min < 20]  the sample requires N > 10.12
+K16  PASS 3/175 curves reach r_e(N=8.296); worst 1.208 x   [threshold 3/175]  the fitted N=8.3 reading is excluded
+K17  PASS M_b inflation needed = 1.33 x   [threshold 1.3 < f < 1.7]  the N=8.3 exclusion is 1-dex fragile; the census result is not
+  N-scan (fraction of curves extending beyond r_e):
+    N =   1.000  r_e/r_M =   1.414  166/175 (94.9%)
+    N =   2.000  r_e/r_M =   2.449  147/175 (84.0%)
+    N =   3.000  r_e/r_M =   3.464  117/175 (66.9%)
+    N =   5.000  r_e/r_M =   5.477   38/175 (21.7%)
+    N =   8.296  r_e/r_M =   8.782    3/175 (1.7%)
+    N =  10.120  r_e/r_M =  10.608    0/175 (0.0%)
+    N =  20.000  r_e/r_M =  20.494    0/175 (0.0%)
+    N =  53.643  r_e/r_M =  54.141    0/175 (0.0%)
+  Upsilon_d = 0.7 instead of 0.5: max N_min = 9.829 (-2.9% change)
+  r_e/r_M vs mass: 1e8.0:54.14, 1e10.0:54.14, 1e11.0:44.62, 1e12.0:15.41, 1e12.5:10.91, 1e13.0:8.78, 1e14.0:6.44
+
+[6] where the pressure switches off in an MW-like halo
+  condition (gradient, not density): the pressure force competes when
+    2 pi G L*^2 |grad rho| ~ g.  For rho ~ r^-n and M ~ 4 pi rho r^3/(3-n):
+      R_press = n(3-n)/2 * (L*/r)^2   ->  R = (L*/r)^2 for n = 1 and n = 2.
+  So r_switch = L* sqrt(n(3-n)/2) ~ L* : the switch is at ~L*, density-free.
+  MW-like NFW (M200 = 1e12 Msun, c = 10): r200 = 211.6 kpc, r_s = 21.16 kpc
+  R_press = 1 at r = 24.0181 pc  (L* = 24 pc)  ->  r_switch/L* - 1 = 7.55e-04
+K18  PASS r_switch = 24.018 pc   [threshold 24 pc to 1%]  exactly L*: the switch is a length, not a density
+  density at the switch: 4.96 Msun/pc^3
+  RAR region: the innermost SPARC point is r = 0.080 kpc = 3.3 L*
+  R_press at that radius <= (L*/r)^2 = 0.0900 ; at 1 kpc 5.76e-04
+K19  PASS r_min = 0.080 kpc (3.3 L*), R = 0.0900   [threshold > 3 L* and R < 0.10]  no conflict with the RAR fit region
+
+[7] the Jeans mass at the switch
+  R_TF = lambda_J/2 = pi L*/sqrt(2) = 53.3146 pc (mass-independent)
+  M_J = (4 pi/3) rho R_TF^3 ; at the NFW switch density 4.96 Msun/pc^3: 3.149e+06 Msun
+  deep-MOND isothermal reading: rho = V_f^2/(4 pi G r^2) is the law's own flat-curve
+  profile, so M_J(r_sw) = 3.6540 V_f^2 L*/G = 2.04e+04 (V_f/km/s)^2 Msun = 5.565e+08 at 165.2
+K20  PASS M_J = 5.565e+08 Msun (2.04e+04 per (km/s)^2), R_TF = 53.31 pc, r_eff = 32.3 pc   [threshold 1e8..1e9 Msun; 2.04e4 (km/s)^-2; R_TF 53.31]  class: ultra-compact dwarf / massive nuclear star cluster
+K21  PASS dlnM_J/dlnrho = 1.000000   [threshold 1 exactly (standard Jeans: -1/2)]  Gamma=2 inverts the hierarchy: denser regions make bigger clumps
+
+numbers: lam_J(24pc)=106.63 pc, lam_FS(24pc)=82.35 kpc, 1/k_1/2=1.0205 Mpc, spread=3.98 dex
+edge: r_e/r_M=22.79..54.14, 0/175 reach it, closest 20.7%, N>10.12 required
+switch: r=24.0 pc (L*), rho=5.0 Msun/pc^3, M_J=5.56e+08 Msun in 53.3 pc
+A16 COMPLETE: 20/21 checks PASS.

@@ -1,0 +1,139 @@
+
+================================================================================================
+K1-K3  the law and its ratios, exactly (sympy)
+================================================================================================
+K1 PASS 0.0e+00 <1e-30 :: g=(g_N/2)(1+sqrt(1+4a0/g_N)) is an exact root of g_N=g^2/(g+a0)
+K2 PASS 0.0e+00 <1e-25 :: M_ph/M_b = g/g_N-1 = (1/2)(sqrt(1+4/y)-1) exactly
+K3 PASS mu(1)=1.618034 F(1/2)=1.000000 mu(1)=1.618034, F(1/2)=1 +-1e-12 :: at x=1 the canonical response is phi, not 1/2; the law's 1/2 sits at x=1/2 (F=1)
+    r*/r_M = 5.842973  (5.364327 is the law's ratio at 5.84297 r_M; A11 K4b)
+
+================================================================================================
+K4-K9  TASK 1 -- u with proper errors, and the distance of u=1/2 from the data
+================================================================================================
+K4 PASS u_data=0.47157+-0.03625 0.47157+-0.001, two routes agree <1e-12 :: u = 1/lambda_req = (A_n-A_l)/(A_l(A_n-1)): the law's phantom share of the observed excess, no model, no f_ret, no a0
+K5 PASS 0.784 0<Z<1.5 and u=1 at >3 sigma :: u=1/2 sits 0.78 sigma from the cluster measurement; u=1 sits 14.6 sigma away
+K5b PASS u_OUT=0.9865+-0.0984 0.9865+-0.002, Z<-4, band gap>3.4 sigma (any rho) :: the same inversion in OUTER gives u=0.986+-0.098: 1/2 is 4.9 sigma away there, and the two bands differ by 0.515 (4.9 sigma in quadrature, 3.8 sigma for ANY band correlation) -- u is not one number
+K6 PASS u_MW=0.46684+-0.0977 0.46684+-0.002, 0<Z<1.5 :: MW anchor: 0.34 sigma from 1/2 (theory band: dlnu/dlnMb=-0.246, dlnu/dlna=-0.025, f_ret +-20%) -- a prediction, not a measurement
+K7 PASS u_joint=0.47099+-0.03398 Z<1, chi2_2dof p>0.1, internal<2 sigma :: joint: 0.85 sigma from 1/2 (chi2=0.73, p=0.69); the two anchors agree with each other at 0.05 sigma
+K8 PASS R 9.566 x f_ret 0.111 -> u ratio 1.063 1.063+-0.005, u_sys ratio>5 :: the two ~1/2s are a cancellation: the law spans 9.57x, f_ret spans 9.0x, and 9.566/9.0 = 1.063; with f_ret=1 the anchors span 9.57x (u_sys = 4.668 MW, 0.488 cluster)
+K9 PASS u<=0.48803, f_ret(u=1/2)=1.02454 u<=0.4880 at the cluster, f_ret>1 :: f_ret<=1 caps the cluster at u=0.4880: u=1/2 needs f_ret=1.0245 > 1 (MW needs 0.1071, admissible)
+
+  MW       M_b=6.0000e+10 a=4.0 kpc  r_v=0.24549 Mpc  M_v=1.5626e+12  c=61.37  y_v=0.001435
+           mu=0.96819 F(y_v)=25.8985 R_tot=25.0429 N=53.643 (f_ret=0.100) u_catch=0.4668 u_sys=4.6684
+  cluster  M_b=1.4000e+14 a=250.0 kpc  r_v=1.68635 Mpc  M_v=5.0651e+14  c=6.75  y_v=0.055604
+           mu=0.75845 F(y_v)=3.7702 R_tot=2.6179 N=5.960 (f_ret=0.900) u_catch=0.4392 u_sys=0.4880
+
+  amplitudes: A_law=1.9102+-0.1186  A_newton=10.1737+-0.6500  f_band=0.8122
+  lambda_req=2.1206+-0.1630  ->  u_data=1/lambda=0.4716+-0.0362 (direct 0.0361)
+  Z(1/2): cluster 0.78 sigma ; MW 0.34 sigma ; joint 0.85 sigma
+  OUTER band, same inversion: u=0.9865+-0.0984 -> 4.9 sigma from 1/2 ; MID-OUTER gap 0.515 (4.9 sigma quadrature, 3.8 sigma worst case)
+
+================================================================================================
+K10-K13  ROUTE (i) -- virial split: the phantom is the pressure part of the cold stress
+================================================================================================
+K10 PASS 0.0e+00 <1e-25 :: T_00 - (1/2)g_00 T = (rho+3p)/2 exactly ==> laplacian(Phi) = 4 pi G (rho+3p): the active density is rho+3p
+K11 PASS 0.0e+00 / 0.0e+00 <1e-25 both :: u = 1+3<w> exactly, <w> volume-weighted: for w(r)=w0 (r/R)^n it is w0/(n+1) -- profile dependent unless w is constant
+K12 PASS w=-0.166667, c_s^2=-0.166667 w=-1/6 exact, c_s^2<0 :: u=1/2 <=> w=-1/6 exactly (u=1+3w); a barotropic fluid then has c_s^2=-1/6 < 0 (unstable)
+K13 PASS same source, u=0.500 vs 1.000 identical rho+3p, u differs by 2x :: the law fixes only rho+3p: two media with the same field have u=1/2 and u=1 -- u is underdetermined, not derived
+
+  route (i) in one line: u = 1 + 3<w>; the law supplies the sum rho+3p, u needs the ratio p/rho.
+  u=1/2 <=> <w>=-1/6 (tension of one sixth the energy density) -- a NEW PREMISE, not a derivation.
+
+================================================================================================
+K14-K15  ROUTE (ii) -- two-fluid: dust (w=0) + stiff (w=1)
+================================================================================================
+K14 PASS f_s=0.166667 (press) / -0.166667 (grav) 1/6 and -1/6 :: u=3f_s (pressure part) needs f_s=1/6; u=1+3f_s (whole gravity) needs f_s=-1/6 (unphysical); EQUAL densities (f_s=1/2) give u=1.50 or 2.50, never 1/2
+K15 PASS closest to 1/6: f_b at 0.0095 >0.008 (no framework number is 1/6) :: 3f_b=0.47138 matches u_data to -0.01 sigma -- the one numerical coincidence; 2 of 12 simple candidates land within 1 sigma
+
+  f_b=0.15713  1/6=0.16667  |1/6-f_b|=0.00954  3f_b=0.47138  u_data=0.47157
+  3f_b would be f_s = f_b (stiff fraction = cosmic baryon fraction): no mechanism, and it freezes u at 0.4714 at all masses, contradicting the theory's own u(M) running.
+
+================================================================================================
+K16-K17  ROUTE (iii) -- saturation: is u = mu(x=1), or 1-mu, or neither?
+================================================================================================
+K16 FAIL mu(1)=1.6180, 1-mu=-0.6180 both >0.5 from 1/2 and from u_data; F(1/2)=1 :: neither: mu(x=1)=phi=1.6180, 1-mu=-0.6180. The law's exact 1/2 is M_ph/M_tot=1/2 at x=1/2 (y=1/2); at the anchors that fraction is 0.963 (MW) and 0.790 (cluster), not 1/2
+K17 PASS lim(y->oo)=2.000000, lim(y->0)=1.000000, y_v: 1.0191/1.1230 2 and 1, anchors <1.15 :: the n=2 'half capacity' is a HIGH-acceleration statement (F1/F2 -> 2 as y->oo); in the deep limit the two laws coincide (->1) and at the anchors' y_v the ratio is 1.019 (MW) and 1.123 (cluster) -- the half capacity cannot supply u=1/2 where u lives
+
+  response at x=1: mu=1.618034=phi, i.e. g(x=1)=1.5145e-10 m/s^2 = phi a0.
+  The only exact 1/2 in the law is the local mass fraction M_ph/(M_b+M_ph)=1/2, at y=1/2 (r=sqrt(2) r_M).
+  At r_v: MW y=0.001435 -> 0.9628; cluster y=0.055604 -> 0.7904.
+
+================================================================================================
+K18-K20  TASK 3 -- the scaling u(M,c,y_v), and what u=1/2 would predict
+================================================================================================
+K18 PASS u in [0.370,0.716], 3 crossings [<0.40,>0.70], ratio>1.8, >=3 :: u(M,c) is a function, not a constant: 0.37-0.72 over 1e10-1e14 at c=7, crossing 1/2 three times (2.21e+10, 1.81e+11, 8.81e+13 Msun)
+K19 PASS f_ret(u=1/2): 0.1071 / 0.2568 / 1.0245 0.107/0.257/>1, ceiling 4-6e14 :: u=1/2 is a RETENTION law f_ret=R_cos/(2R_tot): 0.107 (MW), 0.257 (1e13), 1.0245 (cluster) -- above M_v=4.91e+14 Msun it needs f_ret>1, i.e. more baryons than the cosmic share
+K20 PASS R_c 20.89 vs 15.65 (1.334x); A_MID 1.812 vs 1.405 1.335+-0.01, |dA|>0.35 :: at 1e13 u=1/2 predicts 33% MORE cold mass than the cosmic share (A_MID 1.81 vs 1.41); at the cluster the same two differ by only 2.4% (A_MID 1.81 vs 1.85) -- the cluster cannot decide it
+
+  log10 M_b log10 M_v     R_tot  f_ret        N       u  f_ret(u=1/2)
+       9.00     10.78    58.654  0.100   53.643  1.0934         0.046
+       9.24     10.96    51.030  0.100   53.643  0.9513         0.053
+       9.48     11.14    44.391  0.100   53.643  0.8275         0.060
+       9.72     11.32    38.608  0.100   53.643  0.7197         0.069
+       9.96     11.50    33.572  0.100   53.643  0.6258         0.080
+      10.20     11.68    29.185  0.100   53.643  0.5441         0.092
+      10.44     11.86    25.365  0.100   53.643  0.4728         0.106
+      10.68     12.04    22.038  0.100   53.643  0.4108         0.122
+      10.92     12.22    19.140  0.108   49.555  0.3862         0.140
+      11.16     12.41    16.616  0.151   35.505  0.4680         0.161
+      11.40     12.59    14.418  0.202   26.534  0.5434         0.186
+      11.64     12.77    12.503  0.261   20.587  0.6074         0.215
+      11.88     12.95    10.836  0.325   16.493  0.6570         0.248
+      12.12     13.14     9.384  0.395   13.574  0.6913         0.286
+      12.36     13.32     8.120  0.470   11.426  0.7107         0.330
+      12.60     13.50     7.019  0.547    9.798  0.7163         0.382
+      12.84     13.69     6.060  0.607    8.839  0.6856         0.443
+      13.08     13.87     5.225  0.667    8.047  0.6494         0.513
+      13.32     14.06     4.499  0.727    7.376  0.6100         0.596
+      13.56     14.25     3.866  0.789    6.801  0.5685         0.694
+      13.80     14.44     3.316  0.851    6.305  0.5259         0.809
+      14.04     14.62     2.836  0.900    5.960  0.4759         0.946
+      14.28     14.81     2.420  0.900    5.960  0.4060         1.108
+      14.52     15.01     2.057  0.900    5.960  0.3451         1.304
+      14.76     15.20     1.742  0.900    5.960  0.2923         1.540
+      15.00     15.39     1.468  0.900    5.960  0.2463         1.827
+
+  ceiling masses for u=1/2 (f_ret=1): c=4: 2.527e+14, c=6.7454: 4.739e+14, c=7: 4.910e+14, c=20: 9.477e+14, c=100: 1.296e+15
+
+================================================================================================
+K21  TASK 4 -- the falsifier: what measurement excludes u=1/2 at 3 sigma
+================================================================================================
+K21 FAIL sigma_u<=0.37268; sigma_A<=0.3574; N>=35 0.00948/0.0312/4600 :: 3 sigma needs sigma(u)<=0.3727 (0.10x better) i.e. sigma(A_MID)<=0.3574 (now 0.1186) from >=35 clusters at 318-cluster noise
+K21b PASS sigma_A(group) <= 0.136 0.10-0.20 :: at 1e13 the two hypotheses are 0.407 apart in A_MID: sigma(A)<= 0.136 separates them at 3 sigma with a few hundred group-mass stacks
+
+================================================================================================
+K22-K23  is u the same number as kappa?
+================================================================================================
+K22 PASS u_MW/u_cl - 1 = 0.0629 >0.01 :: if u were kappa identically, u would be the same number at every anchor and every mass; the theory's own u differs by 6.3% between the two anchors and spans 1.94x over 1e10-1e14 -- kappa is constant, u is not
+
+  candidate expressions vs u_data (in sigma):
+               3 f_b =  0.47138    -31.64 sigma
+                 1/2 =  0.50000    -30.85 sigma
+               f_c/2 =  0.42144    -33.01 sigma
+                 1/3 =  0.33333    -35.44 sigma
+               1/phi =  0.61803    -27.59 sigma
+               2 f_b =  0.31425    -35.97 sigma
+         f_b/(1-f_b) =  0.18642    -39.50 sigma
+                 1/6 =  0.16667    -40.04 sigma
+                 f_b =  0.15713    -40.31 sigma
+               1-f_b =  0.84287    -21.39 sigma
+     R_cos/(1+R_cos) =  0.84287    -21.39 sigma
+              1/(2Z) =  0.08637    -42.26 sigma
+K23 PASS 2 within 1 sigma reported, not asserted :: the 1/2 is one of several simple expressions within 1 sigma; a match of this kind is not evidence without a mechanism
+
+================================================================================================
+SUMMARY
+================================================================================================
+  R_cosmic = 5.364327   kappa = 0.5   f_b = 0.15713
+  u from the record's amplitudes (no model): 1.6180 +- 0.0362  ->  0.78 sigma from 1/2
+  u at the MW anchor (theory band):         0.4668 +- 0.0977  ->  0.34 sigma from 1/2
+  u in the OUTER band (same inversion):     0.9865 +- 0.0984  ->  4.94 sigma from 1/2   [MID-OUTER gap 3.8 sigma worst case]
+  joint:                                    0.4710 +- 0.0340  ->  0.85 sigma
+  the two anchors: law spans 9.57x, f_ret spans 9.0x -> u spans 1.06x; with f_ret=1 they span 9.57x
+  cluster ceiling from f_ret<=1: u <= 0.4880  (u=1/2 needs f_ret = 1.0245)
+  route (i):   u = 1+3<w>;  u=1/2 <=> w=-1/6 (c_s^2<0)      -- NOT derivable
+  route (ii):  u = 3f_s;    u=1/2 <=> f_s=1/6              -- NOT derivable (3f_b is numerology)
+  route (iii): mu(x=1)=1.6180, 1-mu=-0.6180         -- NEITHER
+  falsifier: sigma(u) <= 0.3727 (sigma(A)<=0.3574) i.e. >= 35 clusters, or a group stack at 1e13 with sigma(A) <= 0.136
+
+A21 COMPLETE: 23/25 checks PASS.
