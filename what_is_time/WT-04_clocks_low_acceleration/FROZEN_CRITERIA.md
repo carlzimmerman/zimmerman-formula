@@ -180,3 +180,15 @@ Clarifications of how the frozen text is implemented, plus the data adopted. No 
    - One standard web search (2024–2026) found no newer stacked measurement, only a 2025 theory paper (arXiv:2503.11585).
    - Kaiser 2013 (arXiv:1303.3663 abstract): TD +⟨β²⟩/2, light cone +⟨β_x²⟩ (more galaxies seen receding), flux weighting
      opposite in sign to TD. These match the signs in §3.
+
+## Amendment A2 (2026-10-21; added AFTER run 1's numbers; script fixes in a control and a tooth only; no rule, threshold, input or class number changes)
+
+1. **Run 1 (kept: `wt04_run1_K3nan.out`, `wt04_results_run1_K3nan.json`).** K3 failed: the NFW test function evaluated 0/0 at
+   r = 0 (nan), so §5 withheld every class. Fix: evaluate the test function at max(r, 1e-6 r_s). Control code only; every
+   number that enters a class is the same in run 1 and the final run (the one report-only change is item 2's).
+2. **MUTATE run 1 (kept: `wt04_MUTATE_run1_T2grid.out`, `wt04_results_MUTATE_run1_T2grid.json`).** T2's cluster leg read
+   1.000425 instead of 1 ± 1e-6. The baryons-only reading cut its tracer at exactly 3.0 Mpc, while the a0 = 0 law reading cut
+   it where the density ends (A1 item 3), one grid cell further out; the z-sampling differed. Fix: the baryons-only reading also
+   ends where its density ends. Main-mode effect: the report-only Newtonian Δ_grav goes from −0.505 to −0.506 km/s.
+3. **Report-only lines added after run 1:** band ends with their settings, per-cluster bands, and "nan" for profile bins with
+   no tracer (beyond the reading's last member radius). None enters a class.
