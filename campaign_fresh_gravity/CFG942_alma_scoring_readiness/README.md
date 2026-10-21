@@ -85,6 +85,9 @@ New self-test checks:
 - **Unchanged:** every measured flux, S/N, V_c, Δ_m, Δ_v, σ_Δv and FLOOR flag. Peak-memory figures vary from run to run.
 
 **Findings for the owner (reported, not decided)**
+
+Findings 1, 2 and 4 were acted on later the same day by addendum A; see "Addendum A implemented" below. Finding 3 stands.
+
 1. **The A-G4 sentence holds on only one of the eight branches**: canonical, M★ 10.89, R_g = R_d. That is the only branch the 10-20 scan covered.
    - The self-test scan covers all eight M★ × shape × footing branches at V_c 206, with CI21 from 8.0 to 11.8.
    - On 6 branches that are not FLOOR (all of M★ 10.76, and M★ 10.89 with R_g = 1.5 R_d), F-DESI and/or F-flat read ROBUST at 15–17 of the 20 CI21 values: CI21, CO43 and dust give the same wording.
@@ -106,12 +109,46 @@ New self-test checks:
    - Part of GS4-a's −25.9σ, and of the tiny cube's −3.7σ, is this over-subtraction.
    - The control still bites as frozen.
 
+### Addendum A implemented (748dd8095, later on 10-21)
+The owner's `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md` withdraws the A-G4 sentence (§1), adds a MUTATE continuum reading (§2), and lists items the harness still had to print (§3). It is implemented here, MOCK only, with the same rules. All seven cubes were regenerated bit-identical, then deleted, and every self-test, mock and MUTATE run was repeated one at a time.
+
+**Before → after** (826ebb739 → this commit)
+| item | before | after |
+|---|---|---|
+| A-G4 header (§1) | the withdrawn sentence | addendum §1's per-branch statement, with the scan behind it: 7 of 8 M★ × shape × footing branches CAN return a ROBUST framework verdict; only canonical, M★ 10.89, R_g = R_d CANNOT. This agrees with the addendum (new self-test check, PASS). On the 6 non-FLOOR branches the ROBUST wording is "consistent with" (15–17 of 20 CI21 values); on alt M★ 10.89 it is F-flat's FLOOR tension (20 of 20). |
+| GS4 MUTATE (§2) | −25.89σ: 120 continuum channels, true line included | +2.90σ: 60 channels, true line (±600 km/s of z 1.9975) excluded. Still below 3σ, so it bites (exit 1). The old reading is printed as information. |
+| GS4 tiny-cube fallback | −3.7σ, exit 1; second cube exit 2 | −0.1σ, exit 1; exit 2 now says "this run has NO MUTATE control" |
+| U4 MUTATE | true line in the continuum | checked first, then excluded: the 2 R_e circle at the target in the +2000 window reads −16.0σ with the true-line channels in the continuum and −1.8σ without them. Selection-aware G1 S/N −2.6 → −0.3 (fails, so the control bites, exit 1). The check is printed in every U4 MUTATE run. |
+| A-G1 (§3) | not printed | an information line under each CI21 row. With CFG572's ±0.1 dex, the Δ_v-alone wording of FLOOR models becomes "in tension" in 43 of 144 CI21 rows (GS4-a) and 6 of 32 (GS4-b). Verdicts keep the plan's 0.2 dex. |
+| A-G16 (§3) | GS4-b continuum in the 23-px noise mask: peak S/N 6.9, 7.4 µJy | R_e circle: peak S/N 22.9, 473.9 µJy (the mock continuum is 478 µJy) |
+| A-G4 rows (§3) | primary and the two ROBUST routes only | every other branch (CO43 r41 0.25 / 0.55, CI10 limits, dust Scoville, CI21 X_CI 3.0e-5) as "(information)" rows; they never enter ROBUST or the side |
+| A-X3 (§3, U4) | not printed | CFG571's Δ_m on M_bar per footing on the primary cut: log of the spherical-equivalent V_bar²R/G, measured − required, at CFG571's 2R_e. U4-a, canonical: F-DESI −0.00 ± 0.05, F-flat +0.00, R-H +0.14, L-fb +0.10 |
+| A-U17 (§3, U4) | not printed | beside U4-b's C2 failure: "about 10% (MOCK); Gaussian estimate at N_independent 33: 11%"; §5 unchanged |
+| K1 | 22 rows | 23 rows: the addendum == 748dd8095; 23/23 PASS in every run |
+| memory | peak RSS 997 MiB (U4-a) | at most 457 MB in every run; cube generation about 190–230 MB |
+
+**Memory fix.**
+- **Cause:** the macOS malloc medium zone keeps freed 32 KB–8 MB blocks resident. The thin-disc fit allocates such temporaries hundreds of times, so resident size grew about 2.6 MB per model evaluation while Python's traced peak stayed at about 100 MB.
+- **Fix:** each harness re-executes itself once at start with `MallocMediumZone=0` (same process id). With it, the first fit stays at about 290 MB; without it, about 760 MB.
+- **What it does not change:** the mock cubes stay bit-identical and the fit numbers are identical (e.g. U4-a V_f 257.4, nfev 90, χ²/N 1.203).
+
+**Verdict lines moved: none.** The primary-route and ROBUST-route lines of all seven mocks are identical to 826ebb739 after whitespace normalisation, and so are the U4 class lines and sides.
+
+**New findings for the owner (reported, not decided)**
+1. **The GS4 MUTATE under addendum §2 bites only narrowly: +2.90σ against the 3σ line.** The residual is not line emission:
+   - The run's selection check splits the shifted flux in the true-run mask into the raw shifted window (+0.57σ) and the continuum term (+2.32σ). In the 8 ring copies, which are not selected on the data, the continuum term is −0.13 ± 0.65σ.
+   - Cause: the true-run mask is chosen where (true window − its continuum) ≥ 2σ, which favours pixels whose continuum noise is low. The shifted continuum reuses 60 of those continuum channels, so subtracting it biases the masked sum upward.
+   - On real data the control could therefore fail to bite (exit 0) with no line in the shifted window.
+   - The bite rule is unchanged here. Possible rulings are a continuum disjoint from the true-run continuum's channels, or a selection-aware null as in G1.
+2. **U4's MUTATE bite now rests on A-U13.** With the over-subtraction removed, the literal translated-mask S/N in the shifted window reads 8.6, a false pass on noise like U4-d's 9.5. The selection-aware S/N (−0.3) decides, as A-U13 says.
+3. **The U4 exclusion follows CFG809 addendum A §2's reasoning, applied by instruction after the check above.** CFG806's own text (and its clarification's A-U3: "the median of channels with |v| > 600 km/s") does not state it, so the owner may wish to confirm it for CFG806.
+
 **Nothing frozen was edited.** These files are unchanged:
-- both plans' FROZEN_CRITERIA.md and both CLARIFICATION files;
+- both plans' FROZEN_CRITERIA.md, both CLARIFICATION files and addendum A;
 - `cfg571_prereg.py` and its seal JSON;
 - LEDGER.md, the THEORY_CANONICAL files and CFG572.
 
-K1 (22/22) and K5 checked this in every run, and git status is clean for those paths. No file was written into the plan directories: the copy step runs only for a real cube.
+K1 (23/23) and K5 checked this in every run, and git status is clean for those paths. No file was written into the plan directories: the copy step runs only for a real cube.
 
 ## Hash verification (K1 in every run; all PASS)
 | file | sha256 (prefix) | equals freezing commit |
@@ -127,6 +164,7 @@ K1 (22/22) and K5 checked this in every run, and git status is clean for those p
 | THEORY_CANONICAL_2026-10-14.md | 30aa143e… (= its .sha256) | b7356ac57 |
 | AG5 `FROZEN_SCORING.md` / `score_alma.py` (recorded only, not used) | b7f489bf… / ca6e0a2e… | 7ea94d2ae / c4bfd82fd |
 | `CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md` / `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md` (K1 rows added 10-21) | 5d2fbcea… / ba573d73… | 35ea5e1be |
+| `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md` (K1 row added 10-21) | 50e3e5be… | 748dd8095 |
 
 **Seal reproduction and transcription:**
 - CFG571's own functions reproduce all 56 U4 and 16 GS4 sealed entries to 0.0 dex, with the FLOOR flags identical. The functions are executed from the text above the script's `# ---- controls ----` line; a plain `import` would rewrite the seal file and exit (A-X6).
@@ -243,7 +281,7 @@ The KMOS3D integrated Hα σ of 224.5 km/s hints that V_c may lie above CFG571's
 ## Release-day checklist
 Run everything from `campaign_fresh_gravity/CFG942_alma_scoring_readiness/`.
 
-**Environment:** `OMP_NUM_THREADS=1 nice -n 10`, one process at a time.
+**Environment:** `OMP_NUM_THREADS=1 nice -n 10`, one process at a time. On macOS each harness re-executes itself once with `MallocMediumZone=0`, which keeps the peak RSS under 0.5 GB on the mocks; the header prints "memory guard".
 
 **U4_27928 (2026-11-06):**
 1. `python3 -B cfg942_u4.py --selftest`: all K1 checks must PASS. A mismatch stops the run (exit 2).
@@ -261,7 +299,8 @@ Run everything from `campaign_fresh_gravity/CFG942_alma_scoring_readiness/`.
 - `python3 -B cfg942_gs4.py --cube <CI21 cube> --cont <continuum image>`, then `--mutate`.
   - The copies are `CFG809_gs4_24110_ci21_scoring/cfg809_gs4[_MUTATE].out` / `_results.json`.
   - MUTATE exits 1 when the control bites.
-  - If +2000 km/s leaves the spw, MUTATE reruns at +1000, labelled "MUTATE fallback +1000 (CLARIFICATION A-G11)", and exits by that run. It exits 2 only if +1000 also leaves the spw.
+  - If +2000 km/s leaves the spw, MUTATE reruns at +1000, labelled "MUTATE fallback +1000 (CLARIFICATION A-G11)", and exits by that run. It exits 2 only if +1000 also leaves the spw; that run then has no MUTATE control (addendum A §2).
+  - The shifted window's continuum excludes channels within ±600 km/s of the true line (addendum A §2). See new finding 1 under "Addendum A implemented" on how narrowly the mock control bites.
 - The spw must cover 270.006 GHz. The harness reads FREQ cubes, 3D or 4D, with BMAJ keywords or a per-plane BEAMS table.
 
 ## Ambiguities that could cause a release-day dispute

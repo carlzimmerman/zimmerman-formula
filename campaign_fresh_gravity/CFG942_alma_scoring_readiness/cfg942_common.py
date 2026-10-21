@@ -39,11 +39,15 @@ FROZEN = [
     # owner clarifications of 2026-10-21 (written before any data); appended so the indices above are unchanged
     ("U4 clarification 10-21 (CFG806 dir)", "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md", "35ea5e1be"),
     ("GS4 clarification 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md", "35ea5e1be"),
+    ("GS4 clarification addendum A 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md", "748dd8095"),
 ]
 SEAL_HASH_EXPECT = "be27457db6bad870a734c52d2bad92c6669cde53ca7a81553e79154dbedc3714"
 CLAR_COMMIT = "35ea5e1be"
 U4_CLAR = "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md"
 GS4_CLAR = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md"
+ADD_COMMIT = "748dd8095"
+GS4_ADD = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md"
+MUTATE_EXCL = 600.0      # addendum A s2: MUTATE's shifted-window continuum excludes channels within +-600 km/s of the true line
 
 
 # ------------------------------------------------------------------------------------------------ run bookkeeping
@@ -161,12 +165,16 @@ def harness_sha256(script):
     return {os.path.basename(p): sha256_file(p) for p in (os.path.abspath(script), os.path.join(HERE, "cfg942_common.py"))}
 
 
-def announce_clarification(run, rel, script):
-    """print the clarification in force (file and commit) and the harness sha256; returns the entries for the results JSON"""
+def announce_clarification(run, rel, script, addenda=()):
+    """print the clarification in force (file and commit), any addenda (file, commit) and the harness sha256; returns the entries
+    for the results JSON"""
     h = harness_sha256(script)
     run.P(f"Clarification in force: {rel} (owner decision before any data; commit {CLAR_COMMIT}). The frozen plan is not edited.")
+    for a, c in addenda:
+        run.P(f"Addendum in force: {a} (owner, before any data; commit {c}).")
     run.P("harness sha256: " + "; ".join(f"{k} {v}" for k, v in h.items()))
-    return dict(clarification=dict(file=rel, commit=CLAR_COMMIT, sha256=sha256_file(os.path.join(REPO, rel))), harness_sha256=h)
+    return dict(clarification=dict(file=rel, commit=CLAR_COMMIT, sha256=sha256_file(os.path.join(REPO, rel))),
+                addenda=[dict(file=a, commit=c, sha256=sha256_file(os.path.join(REPO, a))) for a, c in addenda], harness_sha256=h)
 
 
 def cube_object(path):
@@ -372,8 +380,13 @@ def _vaxis(info, nu_line, vshift):
     return CKMS * (nu_line - info["nu"]) / nu_line - vshift
 
 
-def _cont_channels(v_all, vcont, vmaxcont):
-    return np.where((np.abs(v_all) > vcont) & (np.abs(v_all) <= vmaxcont))[0]
+def _cont_channels(v_all, vcont, vmaxcont, vshift=0.0, excl_true=0.0):
+    """line-free channels |v| > vcont (|v| <= vmaxcont) in the (possibly shifted) frame; with excl_true > 0 the channels within
+    +-excl_true km/s of the TRUE line (true-frame velocity v + vshift) are excluded too (addendum A s2, MUTATE only)"""
+    kc = np.where((np.abs(v_all) > vcont) & (np.abs(v_all) <= vmaxcont))[0]
+    if excl_true > 0:
+        kc = kc[np.abs(v_all[kc] + vshift) > excl_true]
+    return kc
 
 
 def _cont_median(h, kc, y0, y1, x0, x1, block_bytes=8 * 2 ** 20):
@@ -388,13 +401,14 @@ def _cont_median(h, kc, y0, y1, x0, x1, block_bytes=8 * 2 ** 20):
     return cont
 
 
-def stream_mom0(path, ra, dec, nu_line, half, vwin, vcont=600.0, vshift=0.0, vmaxcont=np.inf):
+def stream_mom0(path, ra, dec, nu_line, half, vwin, vcont=600.0, vshift=0.0, vmaxcont=np.inf, excl_true=0.0):
     """continuum-subtracted moment-0 over |v| <= vwin in a box (half-size arcsec), read channel by channel (bounded memory).
     v = c (nu_line - nu)/nu_line - vshift (radio convention about the catalogue line; MUTATE shifts the axis).
-    Continuum per pixel = median of all line-free channels vcont < |v| <= vmaxcont."""
+    Continuum per pixel = median of all line-free channels vcont < |v| <= vmaxcont (and, if excl_true > 0, more than excl_true km/s
+    from the true line)."""
     hl, h = _hdu(path); hdr = h.header; info = header_info(hdr, hl); D = h
     v_all = _vaxis(info, nu_line, vshift); x0, x1, y0, y1, xc, yc = _cut(hdr, info, ra, dec, half)
-    kw = np.where(np.abs(v_all) <= vwin)[0]; kc = _cont_channels(v_all, vcont, vmaxcont)
+    kw = np.where(np.abs(v_all) <= vwin)[0]; kc = _cont_channels(v_all, vcont, vmaxcont, vshift, excl_true)
     dv = float(abs(np.median(np.diff(v_all)))) if len(v_all) > 1 else float("nan")
     shp = (y1 - y0, x1 - x0)
     cont = _cont_median(D, kc, y0, y1, x0, x1)
@@ -412,11 +426,11 @@ def stream_mom0(path, ra, dec, nu_line, half, vwin, vcont=600.0, vshift=0.0, vma
                 file=os.path.basename(path), sha256=sha256_file(path))
 
 
-def load_box(path, ra, dec, nu_line, half, vkeep=650.0, vcont=600.0, vshift=0.0, vmaxcont=np.inf):
+def load_box(path, ra, dec, nu_line, half, vkeep=650.0, vcont=600.0, vshift=0.0, vmaxcont=np.inf, excl_true=0.0):
     """continuum-subtracted sub-cube: channels |v| <= vkeep in a box (half-size arcsec) about (ra, dec)."""
     hl, h = _hdu(path); hdr = h.header; info = header_info(hdr, hl); D = h
     v_all = _vaxis(info, nu_line, vshift); x0, x1, y0, y1, xc, yc = _cut(hdr, info, ra, dec, half)
-    kk = np.where(np.abs(v_all) <= vkeep)[0]; kc = _cont_channels(v_all, vcont, vmaxcont)
+    kk = np.where(np.abs(v_all) <= vkeep)[0]; kc = _cont_channels(v_all, vcont, vmaxcont, vshift, excl_true)
     shp = (y1 - y0, x1 - x0)
     cont = _cont_median(D, kc, y0, y1, x0, x1)
     data = np.empty((len(kk),) + shp, np.float32)

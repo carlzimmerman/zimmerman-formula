@@ -9,10 +9,17 @@ Reads the frozen plan campaign_fresh_gravity/CFG806_u4_27928_scoring/FROZEN_CRIT
                                                                outputs are also copied to the plan's dir as cfg806_u4[_MUTATE].out/_results.json
   python3 -B cfg942_u4.py --measured MEAS.json                 score measured quantities only
 Implements the owner's CLARIFICATION_2026-10-21.md in the CFG806 dir (commit 35ea5e1be): the beam-corrected V_c interval is primary
-(A-U16), the gap reads "not in tension (within 2σ_tot)" (A-U1), the 20% flux flag uses the 2" diameter aperture (A-U14).
+(A-U16), the gap reads "not in tension (within 2σ_tot)" (A-U1), the 20% flux flag uses the 2" diameter aperture (A-U14); CFG571's
+Delta_m on M_bar is printed as information (A-X3); a C2 failure carries the false-failure note (A-U17). MUTATE's continuum excludes
+channels within +-600 km/s of the true line (CFG809 addendum A s2's reading, applied here by instruction after a check on MOCK U4-a).
 kappa = 1/2 FITTED; footings never pooled; one disc = a demonstration, no exclusion; not theory closed."""
 import os, sys, json, math, csv
 sys.dont_write_bytecode = True
+# memory guard (10-21): macOS keeps freed 32 KB-8 MB blocks resident in malloc's medium zone; the thin-disc fits pushed U4-a to 997 MiB
+# resident against a 123 MB unique set. The zone is switched off at process start by re-executing once with MallocMediumZone=0
+# (same process id; numerics unchanged).
+if __name__ == "__main__" and sys.platform == "darwin" and os.environ.get("MallocMediumZone") != "0":
+    os.environ["MallocMediumZone"] = "0"; os.execv(sys.executable, [sys.executable, "-B"] + sys.argv)
 import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 import cfg942_common as C
@@ -45,6 +52,18 @@ def req(V, lm=GEO["lmstar"]):
 
 def gas_req(V, key, shape, lm=GEO["lmstar"]):
     d = req(V, lm)[key]; return None if d["floor"] else d["logMgas_" + shape]
+
+
+def dm_bar(g, sg, V, eV, key, shape):
+    """CFG571's own single-disc statistic, printed as information only (CLARIFICATION A-X3; the verdict is CFG806's Delta_m on M_gas):
+    Delta_m = log M_bar,meas - log M_bar,req, with M_bar the spherical-equivalent V_bar^2 R/G that CFG571's predict() returns
+    (logVbar2R_G) at its sealed radius 2 R_e; M_bar,meas from M* 10.74 and the measured M_gas in the declared shapes (Freeman discs).
+    Interval: the gas error (sg) and the primary V_c interval (eV) propagated through the same functions."""
+    R, Rd = GEO["R"], GEO["Rd"]; Rg = Rd * (1.0 if shape == "Rg=Rd" else 1.5)
+    vs2 = float(NS["v2_exp"](10 ** GEO["lmstar"], Rd, R))
+    f = lambda gg, VV: math.log10((vs2 + float(NS["v2_exp"](10 ** gg, Rg, R))) * R / NS["G"]) - req(VV)[key]["logVbar2R_G"]
+    D = f(g, V)
+    return D, math.hypot(0.5 * (f(g + sg, V) - f(g - sg, V)), 0.5 * (f(g, V + eV) - f(g, V - eV)) if eV else 0.0)
 
 
 # ------------------------------------------------------------------------------------------------ scoring (CFG806 section 4)
@@ -140,7 +159,9 @@ def score(meas, run):
                     for f in C.FOOTS:
                         rows = [read_model(g, meas["sig_rms_dex"], Vx, eVx, f"{f}|{m}", shape, True, None if partial else eVi) for m in C.MODELS]
                         sd = side(rows)
-                        for r in rows: r.update(aco=aco, end=tag)
+                        for r in rows:
+                            r.update(aco=aco, end=tag,
+                                     Delta_Mbar_info=dm_bar(g, math.hypot(meas["sig_rms_dex"], SIG_FLOOR), Vx, eVx, f"{f}|{r['model']}", shape))
                         b["rows"] += rows; b.setdefault("sides", {})[f"{tag}|{aco}|{shape}|{f}"] = sd
         res["branches"][bname] = b
         overall.append(b["status"])
@@ -159,6 +180,8 @@ def score(meas, run):
                         run.P(f"      {r['model']:13s} req {r['req']:.2f} range {rng}; meas {meas['logMgas']['4.36']:.2f}; Delta {r['Delta']:+.2f} +- {r['eDelta']:.2f}; sig_tot {r['sigma_tot']:.2f} -> {r['cls']}"
                               + (f"   (alternative readings differ: {r['alts']})" if r.get("alts") else ""))
                 run.P(f"      side: {b['sides'][f'{tag}|4.36|Rg=Rd|{f}']}")
+                run.P("      information (CFG571's own Delta_m on M_bar, CLARIFICATION A-X3; never the verdict): "
+                      + "; ".join(f"{r['model']} {r['Delta_Mbar_info'][0]:+.2f} +- {r['Delta_Mbar_info'][1]:.2f}" for r in sel))
         allsides = {}
         for k, v in b["sides"].items(): allsides.setdefault(v, []).append(k)
         run.P("    all branches (end|alpha_CO|shape|footing): " + "; ".join(f"{v}: {len(k)}" for v, k in allsides.items()))
@@ -272,10 +295,32 @@ def core(m0d, cube, run, tag="", fit=True, inc_branches=True):
 CUBE_HALF = 2.2
 
 
+def mutate_continuum_check(path, run, m0d_excl):
+    """MUTATE only: the flux in the 2 R_e circle at the target in the shifted window, with the true-line channels in the continuum
+    (the 10-21 harness) and with them excluded (primary); translated-circle rms of each map. Information."""
+    out = {}
+    m0d_incl = C.stream_mom0(path, RA, DEC, NU_OBS, BOX, VWIN, VCONT, 2000.0)
+    for lab, d in (("true-line channels in the continuum (10-21 harness)", m0d_incl), ("true-line channels excluded (primary)", m0d_excl)):
+        bp = C.beam_pix(d["beam"], d["pix"]); r = C.radius_map(d["m0"].shape, d["xc"], d["yc"]) * d["pix"]; circ = r <= 2 * GEO["Re"] / KPA
+        S = float(np.nansum(d["m0"][circ]) / bp); rng = np.random.default_rng(942)
+        off = C.random_offsets(rng, circ, d["m0"].shape, d["xc"], d["yc"], (2 * GEO["Re"] / KPA + 0.3) / d["pix"], 100)
+        ap = C.translated_apertures(d["m0"], circ, bp, off); s = float(np.std(ap, ddof=1))
+        out[lab] = dict(ncont=d["ncont"], S=S, rms=s, sigma=S / s)
+        run.P(f"  MUTATE continuum check, {lab}: {d['ncont']} continuum channels; 2 R_e circle at the target {S:+.5f} Jy km/s = {S / s:+.1f} sigma")
+    return out
+
+
 def measure(path, run, vshift=0.0, c1=True, true_flux=None):
     run.P(f"\n=== MEASUREMENT (CFG806 section 3) of {os.path.basename(path)}{'  [MUTATE: velocity axis +2000 km/s]' if vshift else ''} ===")
-    m0d = C.stream_mom0(path, RA, DEC, NU_OBS, BOX, VWIN, VCONT, vshift)
-    cube = C.load_box(path, RA, DEC, NU_OBS, CUBE_HALF, 650.0, VCONT, vshift)
+    ex = C.MUTATE_EXCL if vshift else 0.0
+    m0d = C.stream_mom0(path, RA, DEC, NU_OBS, BOX, VWIN, VCONT, vshift, excl_true=ex)
+    cube = C.load_box(path, RA, DEC, NU_OBS, CUBE_HALF, 650.0, VCONT, vshift, excl_true=ex)
+    mcheck = None
+    if vshift:
+        run.P(f"  MUTATE continuum: the median of the {m0d['ncont']} channels that are line-free relative to BOTH the shifted window (|v| > 600) "
+              f"and the true line (more than {C.MUTATE_EXCL:.0f} km/s from z {Z_CAT}). This is CFG809 addendum A s2's reading (748dd8095), applied to U4 "
+              f"by instruction because the check below shows the same over-subtraction; CFG806's own text does not state it.")
+        mcheck = mutate_continuum_check(path, run, m0d)
     if m0d["beam"] is None: raise SystemExit("C3: no beam (no BMAJ keyword and no BEAMS table): cannot proceed")
     if m0d["beam_source"] != "header": run.flag("A-M2", "per-plane beams (BEAMS table): the harness uses their median")
     run.P(f"  file sha256 {m0d['sha256'][:16]}…; OBJECT '{m0d['object']}'; pixel {m0d['pix']:.4f}\"; beam {m0d['beam'][0]:.3f}x{m0d['beam'][1]:.3f}\" PA {m0d['beam'][2]:.0f} ({m0d['beam_source']}); "
@@ -289,11 +334,17 @@ def measure(path, run, vshift=0.0, c1=True, true_flux=None):
     if not rfok: run.flag("A-U9", "C3 'rest frequency 230.538 GHz': pipeline cubes may carry another RESTFRQ; the harness checks frequency coverage and reports RESTFRQ")
     if not m0d["win_covered"]: run.P("  NOTE: the window |v| <= 500 km/s is not fully covered by the cube after the shift")
     m, mask = core(m0d, cube, run)
+    if mcheck: m["mutate_continuum_check"] = mcheck
     if m["n_random_apertures"] > 2:
         ni = max(m["n_indep"], 1)
         ok_mean = abs(m["ap_mean"]) < 3 * m["ap_rms"] / math.sqrt(ni); ok_rms = abs(m["ap_rms"] / m["quoted_noise"] - 1) <= 0.2
-        run.check("C2 off-source apertures: mean consistent with zero (3 rms/sqrt(N_independent)) and rms within 20% of the quoted noise", ok_mean and ok_rms,
-                  f"mean {m['ap_mean']:+.5f}, rms {m['ap_rms']:.5f}, quoted {m['quoted_noise']:.5f} (ratio {m['ap_rms'] / m['quoted_noise']:.2f}; N {m['n_random_apertures']}, independent {m['n_indep']})")
+        okc2 = run.check("C2 off-source apertures: mean consistent with zero (3 rms/sqrt(N_independent)) and rms within 20% of the quoted noise", ok_mean and ok_rms,
+                         f"mean {m['ap_mean']:+.5f}, rms {m['ap_rms']:.5f}, quoted {m['quoted_noise']:.5f} (ratio {m['ap_rms'] / m['quoted_noise']:.2f}; N {m['n_random_apertures']}, independent {m['n_indep']})")
+        if not okc2:                             # CLARIFICATION A-U4 / A-U17: the false-failure rate is stated beside a C2 failure; s5 is not changed
+            pf = math.erfc(0.2 * math.sqrt(max(ni - 1, 1)))
+            m["C2_false_failure_note"] = dict(mock_rate="about 10%", gaussian_estimate=pf, n_independent=ni)
+            run.P(f"    note beside the C2 failure (CLARIFICATION A-U4/A-U17): on pure noise the 20% rms test fails about 10% of the time (MOCK); "
+                  f"Gaussian estimate at N_independent {ni}: {pf:.0%}. CFG806 s5 is not changed: the failed control stands and the run is NOT DIAGNOSTIC.")
     run.flag("A-U10", "C2 'quoted noise' is undefined in CFG806; the harness uses the analytic noise of the mask sum (beam-shaped noise autocorrelation, per-channel rms, window channels, continuum-median term)")
     if true_flux:
         run.P(f"  MOCK truth: S dv {true_flux:.4f} Jy km/s; recovered/true = {m['S'] / true_flux:.3f}")
@@ -499,8 +550,9 @@ def main():
     run.P("kappa = 1/2 FITTED; footings never pooled; single disc = demonstration, no exclusion; not theory closed.")
     run.P(f"target: KMOS3D U4_27928 RA {RA:.6f} Dec {DEC:.6f} z {Z_CAT}; CO(2-1) observed at {NU_OBS:.4f} GHz; KMOS3D q {Q_KMOS}")
     clar = C.announce_clarification(run, C.U4_CLAR, __file__)
+    run.P(f"memory guard: MallocMediumZone={os.environ.get('MallocMediumZone', 'unset')} (macOS; see the top of this script)")
     snap0 = C.snapshot()
-    res = dict(K1=C.verify_frozen(run), **clar)
+    res = dict(K1=C.verify_frozen(run), memory_guard=dict(MallocMediumZone=os.environ.get("MallocMediumZone")), **clar)
     if run.failed():
         run.P("a frozen file or seal does not match: STOP (nothing scored)"); run.save(res); sys.exit(2)
     run.flag("A-X6", "CFG806 says it 'imports cfg571_prereg.py read-only'; a plain import runs the whole script (rewrites its results JSON, sys.exit). The harness executes only the text above '# ---- controls ----'")

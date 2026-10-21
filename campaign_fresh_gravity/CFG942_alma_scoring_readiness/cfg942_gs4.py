@@ -11,10 +11,16 @@ Reads the frozen plan campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/FROZE
 Implements the owner's CLARIFICATION_2026-10-21.md in the CFG809 dir (commit 35ea5e1be): G3 uses the beam-corrected FWHM error and the
 Gaussian-to-exponential size bias is reported, not corrected (A-G9); MUTATE falls back to +1000 km/s if +2000 leaves the spectral window
 (A-G11); an upper limit reads "in tension" only beyond 2 sigma of the whole [f(0), f(UL)] interval, else "not constrained" (A-G3);
-ROBUST is per model (A-G4).
+ROBUST is per model (A-G4). Addendum A (748dd8095): the per-branch A-G4 statement replaces the withdrawn sentence (s1); MUTATE's
+continuum excludes channels within +-600 km/s of the true line (s2); the A-G1 information line, the A-G16 continuum region and the
+other CFG572 branches as information rows (s3).
 kappa = 1/2 FITTED; footings never pooled; routes never averaged; one disc = a demonstration, no exclusion; not theory closed."""
 import os, sys, json, math
 sys.dont_write_bytecode = True
+# memory guard (10-21): macOS keeps freed 32 KB-8 MB blocks resident in malloc's medium zone (see cfg942_u4.py); switched off at process
+# start by re-executing once with MallocMediumZone=0 (same process id; numerics unchanged).
+if __name__ == "__main__" and sys.platform == "darwin" and os.environ.get("MallocMediumZone") != "0":
+    os.environ["MallocMediumZone"] = "0"; os.execv(sys.executable, [sys.executable, "-B"] + sys.argv)
 import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 import cfg942_common as C
@@ -61,10 +67,12 @@ def delta_v(route, key, lm, Rg, Vc=None):
     f = lambda dg, dm: math.log10((v2s(lm + dm) + v2g(g + dg if g is not None else None, Rg)) / vr)
     fl = floor_at(key, lm, Vc)
     out = dict(model=key.split("|")[1], foot=key.split("|")[0], Mstar=lm, floor=fl)
+    # CLARIFICATION A-G1: sigma_Dv uses the plan's 0.2 dex M* systematic; CFG572's +-0.1 dex is printed as information only
+    s01 = 0.5 * math.hypot(f(sg, 0) - f(-sg, 0), f(0, 0.1) - f(0, -0.1))
     if route["detected"]:
         D = f(0, 0); s = 0.5 * math.hypot(f(sg, 0) - f(-sg, 0), f(0, 0.2) - f(0, -0.2))
         w = "consistent with" if abs(D) <= 2 * s else "in tension with"
-        out.update(Delta=D, sigma=s, wording_dv=w)
+        out.update(Delta=D, sigma=s, wording_dv=w, sigma_Mstar01_info=s01, wording_dv_Mstar01_info="consistent with" if abs(D) <= 2 * s01 else "in tension with")
         if fl:
             red = not floor_at(key, lm, Vc, -0.2)
             out.update(wording="in tension with (FLOOR)", reduced=("not FLOOR at M*-0.2: tension REDUCED" if red else "FLOOR persists at M*-0.2"),
@@ -78,7 +86,8 @@ def delta_v(route, key, lm, Rg, Vc=None):
         # CLARIFICATION A-G3: in tension only if the required value (Delta_v = 0) lies more than 2 sigma outside the WHOLE interval
         # [f(0), f(UL)]; otherwise the limit does not constrain the model
         w = "in tension with (too few baryons even at the limit)" if Dmax < -2 * s else ("in tension with (stars alone exceed)" if Dmin > 2 * s else UL_NC)
-        out.update(Delta=Dmax, Delta_min=Dmin, sigma=s, wording=w, wording_dv=w, upper_limit=True)
+        w01 = "in tension with (too few baryons even at the limit)" if Dmax < -2 * s01 else ("in tension with (stars alone exceed)" if Dmin > 2 * s01 else UL_NC)
+        out.update(Delta=Dmax, Delta_min=Dmin, sigma=s, wording=w, wording_dv=w, upper_limit=True, sigma_Mstar01_info=s01, wording_dv_Mstar01_info=w01)
     return out
 
 
@@ -152,7 +161,10 @@ def score(meas, run):
         for lm in C.GS4["lmstars"]:
             for f in C.FOOTS:
                 run.P(f"    M* {lm} | {f} | shape {prim_shape}:")
-                for rn in [PRIMARY_ROUTE] + list(ROBUST_ROUTES):
+                # the primary route and the two ROBUST routes, then every other branch as an information row (CLARIFICATION A-G4: "the other
+                # CFG572 branches are printed"; the plan's X_CI 3.0e-5 branch likewise); information rows never enter ROBUST or the side
+                for rn in [PRIMARY_ROUTE] + list(ROBUST_ROUTES) + [k for k in R if k != PRIMARY_ROUTE and k not in ROBUST_ROUTES]:
+                    info = rn != PRIMARY_ROUTE and rn not in ROBUST_ROUTES
                     sel = [r for r in res["rows"] if r["vc"] == vb and r["route"] == rn and r["Mstar"] == lm and r["shape"] == prim_shape and r["foot"] == f]
                     cells = []
                     for r in sel:
@@ -162,25 +174,26 @@ def score(meas, run):
                         if r["floor"] and "reduced" in r: c += f" [{r['reduced']}]"
                         if rn == PRIMARY_ROUTE: c += f" <{res['robust'][f'{vb}|{lm}|{prim_shape}|{f}|{r['model']}']}>"
                         cells.append(c)
-                    run.P(f"      {rn:15s}: " + "; ".join(cells) + f"  => {res['sides'][f'{vb}|{rn}|{lm}|{prim_shape}|{f}']}")
+                    run.P(f"      {rn + (' (information)' if info else ''):38s}: " + "; ".join(cells) + f"  => {res['sides'][f'{vb}|{rn}|{lm}|{prim_shape}|{f}']}")
+                    if rn == PRIMARY_ROUTE:
+                        run.P("        information (CLARIFICATION A-G1: sigma_Dv with CFG572's +-0.1 dex M* term instead of the plan's 0.2; the FLOOR rule is unchanged): "
+                              + "; ".join(f"{r['model']} sigma {r['sigma_Mstar01_info']:.2f} -> Delta_v alone {r['wording_dv_Mstar01_info']}" for r in sel))
         tally = {}
         for k, v in res["sides"].items():
             if k.startswith(vb + "|" + PRIMARY_ROUTE + "|"): tally[v] = tally.get(v, 0) + 1
         run.P(f"    CI21 primary-route sides over M* x shape x footing: {tally}")
-    # CLARIFICATION A-G4: ROBUST / NOT ROBUST is decided per model (res["robust"] is keyed per model); check the stated
-    # "framework NOT ROBUST" on this run: which framework rows on CI21 read ROBUST, and is each one a FLOOR-rule tension?
+    # CLARIFICATION A-G4 (per model) and addendum A s1: which framework rows on CI21 read ROBUST on this run, with which wording
     if R[PRIMARY_ROUTE]["detected"]:
         fw = [(k, v) for k, v in res["robust"].items() if k.split("|")[-1] in C.FRAMEWORK]
         fr = [k for k, v in fw if v == "ROBUST"]
-        isfloor = lambda k: next(r for r in res["rows"] if f"{r['vc']}|{r['Mstar']}|{r['shape']}|{r['foot']}|{r['model']}" == k and r["route"] == PRIMARY_ROUTE)["floor"]
-        res["A_G4_framework_robust"] = [dict(branch=k, floor=bool(isfloor(k))) for k in fr]
-        nfl = sum(1 for k in fr if not isfloor(k))
+        prow = lambda k: next(r for r in res["rows"] if f"{r['vc']}|{r['Mstar']}|{r['shape']}|{r['foot']}|{r['model']}" == k and r["route"] == PRIMARY_ROUTE)
+        res["A_G4_framework_robust"] = [dict(branch=k, floor=bool(prow(k)["floor"]), wording=prow(k)["wording"]) for k in fr]
+        ncons = sum(1 for k in fr if not tense(prow(k)["wording"])); nfl = sum(1 for k in fr if prow(k)["floor"])
         prim = [k for k in fr if k.split("|")[0].startswith("V_c 206") and k.split("|")[2] == prim_shape]
-        run.P(f"\n  A-G4 check on this run (per model; CI21 primary route): framework rows (F-DESI, F-flat) reading ROBUST: {len(fr)} of {len(fw)} "
-              f"({len(fr) - nfl} FLOOR-rule tensions, {nfl} not FLOOR; every row is in the results JSON)"
-              + (" -> the A-G4 sentence printed above is not borne out on every branch of this run (reported, not decided)" if fr else "")
-              + f"; on the primary cut (V_c 206, shape {prim_shape}): "
-              + ("; ".join("|".join(k.split("|")[1:]) + (" (FLOOR)" if isfloor(k) else " (not FLOOR)") for k in prim) or "none"))
+        run.P(f"\n  A-G4 check on this run (per model; CI21 primary route; addendum A s1): framework rows (F-DESI, F-flat) reading ROBUST: {len(fr)} of {len(fw)} "
+              f"({ncons} 'consistent with', {len(fr) - ncons} 'in tension with', of which {nfl} FLOOR-rule tensions; every row is in the results JSON). "
+              f"A ROBUST verdict is a single-disc demonstration, never an exclusion. On the primary cut (V_c 206, shape {prim_shape}): "
+              + ("; ".join("|".join(k.split("|")[1:]) + f" ROBUST {prow(k)['wording']}" for k in prim) or "no framework row ROBUST"))
     if any(r.get("floor_overrides") for r in res["rows"]):
         run.flag("A-G2", "a FLOOR model with detected gas reads 'in tension' by CFG809's FLOOR rule although its |Delta_v| <= 2 sigma (the two rules disagree; the harness prints both)")
     res["primary_side"] = res["sides"][f"V_c 206 (RC100, sealed)|{PRIMARY_ROUTE}|10.89|{prim_shape}|canon 9.36e-11"]
@@ -257,10 +270,12 @@ def measure(path, cont_path, run, vshift=0.0, c1=True, truth=None):
     if cont_path:
         im = C.load_image(cont_path, RA, DEC, BOX)
         rr = C.radius_map(im["img"].shape, im["xc"], im["yc"]) * im["pix"]; sc = C.robust_std(im["img"][rr > 2.5])
-        cm = remap(mask if mask.sum() else (r <= RE / KPA), m0d, im)
+        # CLARIFICATION A-G16: after a G1 failure the continuum is measured in the R_e circle, never in the (noise-selected) >= 2 sigma mask
+        cm = remap(mask if m["detected"] else (r <= RE / KPA), m0d, im)
         pk = float(np.nanmax(im["img"][cm])) / sc if cm.sum() else float("nan"); tot = float(np.nansum(im["img"][cm]) / C.beam_pix(im["beam"], im["pix"]))
-        m["cont"] = dict(peak_SN=pk, flux_in_mask=tot, rms=sc, file=im["file"], sha256=im["sha256"])
-        line = f"  3.1 continuum ({im['file']}): peak S/N {pk:.1f} in the {'[CI] mask' if mask.sum() else 'R_e circle'}; flux in it {tot * 1e6:.1f} uJy"
+        m["cont"] = dict(peak_SN=pk, flux_in_mask=tot, rms=sc, file=im["file"], sha256=im["sha256"], region="[CI] mask" if m["detected"] else "R_e circle (A-G16)")
+        line = (f"  3.1 continuum ({im['file']}): peak S/N {pk:.1f} in the {'[CI] mask' if m['detected'] else 'R_e circle (G1 failed; CLARIFICATION A-G16)'}; "
+                f"flux in it {tot * 1e6:.1f} uJy")
         if pk >= 5:
             gc = C.fit_gauss2d(im["img"], sc, im["pix"], im["beam"], im["xc"], im["yc"], half=2.0)
             m["cont"].update(fwhm_maj=gc["fwhm_maj"], fwhm_min=gc["fwhm_min"], fwhm_circ=gc["fwhm_circ"], efwhm_circ=gc["efwhm_circ"], R_e_kpc=gc["fwhm_circ"] / 2 * KPA)
@@ -377,29 +392,51 @@ def mutate(path, run):
     CLARIFICATION A-G11: if +2000 leaves the spectral window, MUTATE runs at +1000 km/s (CFG572's disclosed --mutate1000), labelled, and
     the exit code follows that fallback; exit 2 only if +1000 also leaves the window. Returns (exit code, info dict)."""
     run.P("\n=== MUTATE (velocity window +2000 km/s; fallback +1000 km/s if +2000 leaves the spectral window, CLARIFICATION A-G11) ===")
+    run.P(f"  continuum of the shifted window (addendum A s2, 748dd8095): the median of the channels line-free relative to BOTH the shifted window "
+          f"(|v| > 600) and the true line (more than {C.MUTATE_EXCL:.0f} km/s from z {Z_LINE}); the bite criterion is unchanged")
     m0d = C.stream_mom0(path, RA, DEC, NU_OBS, BOX, VWIN, VCONT, 0.0)
     d0, mask, r, _ = detect(m0d, run, tag="true z: ")
     covered = lambda s: bool(s["win_covered"] and s["nwin"] > 0)
     info = dict(shift_kms=2000.0, label="MUTATE +2000 (as frozen)")
-    sh = C.stream_mom0(path, RA, DEC, NU_OBS, BOX, VWIN, VCONT, 2000.0)
+    sh = C.stream_mom0(path, RA, DEC, NU_OBS, BOX, VWIN, VCONT, 2000.0, excl_true=C.MUTATE_EXCL)
     if not covered(sh):
         run.P(f"  +2000 km/s: the shifted window lies outside the cube's coverage ({sh['v_cover'][0]:.0f}..{sh['v_cover'][1]:.0f} km/s after the shift) "
               f"-> MUTATE fallback +1000 (CLARIFICATION A-G11)")
         run.flag("A-G11", "MUTATE +2000 km/s left the spectral window; the clarified fallback +1000 km/s (CFG572's disclosed --mutate1000; still more than 3x the +-300 km/s window) is used and labelled")
         info = dict(shift_kms=1000.0, label="MUTATE fallback +1000 (CLARIFICATION A-G11)")
-        sh = C.stream_mom0(path, RA, DEC, NU_OBS, BOX, VWIN, VCONT, 1000.0)
+        sh = C.stream_mom0(path, RA, DEC, NU_OBS, BOX, VWIN, VCONT, 1000.0, excl_true=C.MUTATE_EXCL)
         if not covered(sh):
             run.P(f"  +1000 km/s: the shifted window also lies outside the coverage ({sh['v_cover'][0]:.0f}..{sh['v_cover'][1]:.0f} km/s after the shift): "
-                  f"MUTATE NOT RUNNABLE, +2000 and +1000 both leave the spectral window (exit 2)")
+                  f"MUTATE NOT RUNNABLE, +2000 and +1000 both leave the spectral window (exit 2). This run has NO MUTATE control (addendum A s2).")
             return 2, dict(info, runnable=False)
     if not d0["detected"]:
         run.P(f"  {info['label']}: line not detected at the true redshift: MUTATE is NON-DIAGNOSTIC (as frozen)"); return 0, dict(info, runnable=True, diagnostic=False)
+    if sh["ncont"] < 3:
+        run.P(f"  {info['label']}: only {sh['ncont']} continuum channels remain after the exclusion: the shifted window is not continuum-subtracted")
     bp = C.beam_pix(sh["beam"], sh["pix"]); Ssh = float(np.nansum(sh["m0"][mask]) / bp)
     ring = C.translated_apertures(sh["m0"], mask, bp, C.ring_offsets(RING / sh["pix"], 8)); rs = float(np.std(ring, ddof=1))
     bites = Ssh < 3 * rs
-    run.P(f"  {info['label']}: shifted flux in the true-run mask {Ssh:.5f} Jy km/s, ring rms {rs:.5f} -> {Ssh / rs:.2f} sigma -> "
+    run.P(f"  {info['label']}: {sh['ncont']} continuum channels; shifted flux in the true-run mask {Ssh:.5f} Jy km/s, ring rms {rs:.5f} -> {Ssh / rs:.2f} sigma -> "
           f"{'below 3 sigma: the control BITES (exit 1)' if bites else 'NOT below 3 sigma'}")
-    return (1 if bites else 0), dict(info, runnable=True, diagnostic=True, S_shifted=Ssh, ring_rms=rs, bites=bool(bites))
+    # information: the 10-21 reading, with the true-line channels left in the shifted window's continuum
+    si = C.stream_mom0(path, RA, DEC, NU_OBS, BOX, VWIN, VCONT, info["shift_kms"])
+    Si = float(np.nansum(si["m0"][mask]) / bp); ri = float(np.std(C.translated_apertures(si["m0"], mask, bp, C.ring_offsets(RING / si["pix"], 8)), ddof=1))
+    run.P(f"  information: with the true-line channels left in the continuum (the 10-21 reading; {si['ncont']} channels) the same flux reads {Si:.5f} Jy km/s = {Si / ri:.2f} sigma")
+    # information (selection check): the true-run mask is chosen where (true window - its continuum) >= 2 sigma, and the shifted continuum
+    # shares channels with that continuum; split the shifted flux into the raw shifted-window sum and the continuum term, here and in the
+    # 8 ring copies of the mask (not selected on the data)
+    raw = C.stream_mom0(path, RA, DEC, NU_OBS, BOX, VWIN, 1e9, info["shift_kms"])          # no continuum channels -> not subtracted
+    ys, xs = np.nonzero(mask); cterm = []
+    for dx, dy in [(0, 0)] + [(int(round(a)), int(round(b))) for a, b in C.ring_offsets(RING / sh["pix"], 8)]:
+        yy, xx = ys + dy, xs + dx
+        if yy.min() < 0 or xx.min() < 0 or yy.max() >= sh["m0"].shape[0] or xx.max() >= sh["m0"].shape[1]: continue
+        cterm.append(((sh["m0"][yy, xx].sum() - raw["m0"][yy, xx].sum()) / bp / rs, raw["m0"][yy, xx].sum() / bp / rs))
+    ring_c = [c for c, _ in cterm[1:]]
+    run.P(f"  information (selection check): in the true-run mask the shifted flux = raw shifted window {cterm[0][1]:+.2f} sigma + continuum term {cterm[0][0]:+.2f} sigma; "
+          f"in the {len(ring_c)} ring copies (not selected on the data) the continuum term is {np.mean(ring_c):+.2f} +- {np.std(ring_c, ddof=1):.2f} sigma")
+    return (1 if bites else 0), dict(info, runnable=True, diagnostic=True, S_shifted=Ssh, ring_rms=rs, sigma=Ssh / rs, ncont=sh["ncont"], bites=bool(bites),
+                                     info_incl_true_line=dict(S=Si, ring_rms=ri, sigma=Si / ri, ncont=si["ncont"]),
+                                     info_selection_check=dict(mask_raw_sigma=cterm[0][1], mask_continuum_term_sigma=cterm[0][0], ring_continuum_terms_sigma=ring_c))
 
 
 # ------------------------------------------------------------------------------------------------ MOCKs
@@ -480,33 +517,57 @@ def selftest(run):
     run.check(f"MOCK-JSON non-detection -> no FLOOR tension; each model '{UL_NC}' unless beyond 2 sigma of the whole [f(0), f(UL)] interval (A-G3); ROBUST flag undefined",
               not any("FLOOR" in r["wording"] for r in p3) and all(r["wording"] == UL_NC or tense(r["wording"]) for r in p3) and all(v.startswith("NO CI21") for v in s3["robust"].values()),
               "; ".join(f"{w}: {sum(r['wording'] == w for r in p3)}" for w in sorted({r['wording'] for r in p3})))
-    rob, fwr = {}, {}
-    for lg in np.arange(8.0, 11.81, 0.2):
-        s = score(base(float(lg), True), q)
-        for k, v in s["robust"].items():
-            if k.startswith("V_c 206") and "|10.89|Rg=Rd|canon" in k: rob.setdefault(v, []).append((round(float(lg), 1), k.split("|")[-1]))
-            if k.startswith("V_c 206") and k.split("|")[-1] in C.FRAMEWORK and v == "ROBUST":
-                fl = next(r for r in s["rows"] if r["vc"].startswith("V_c 206") and r["route"] == PRIMARY_ROUTE and f"{r['Mstar']}|{r['shape']}|{r['foot']}|{r['model']}" == "|".join(k.split("|")[1:]))["floor"]
-                fwr.setdefault("|".join(k.split("|")[1:]) + (" (FLOOR)" if fl else " (not FLOOR)"), []).append(round(float(lg), 1))
+    sc = a_g4_scan(); rob = sc["canonical_primary"]
     run.check("MOCK-JSON ROBUST and NOT ROBUST are both returnable (CI21 scan with CFG572's CO43 and dust routes fixed)", "ROBUST" in rob and "NOT ROBUST" in rob,
               "; ".join(f"{k}: {len(v)} cases" for k, v in rob.items()))
-    nr = sorted({x for x in rob.get("NOT ROBUST", [])})
+    nr = sorted({tuple(x) for x in rob.get("NOT ROBUST", [])})
     run.P("  NOT ROBUST cases (log M_gas CI21, model), canonical M* 10.89 R_g=R_d: " + ", ".join(f"{a}:{b}" for a, b in nr[:40]))
-    run.P("  A-G4 scan (information; V_c 206, every M* x shape x footing, CI21 8.0-11.8): framework rows reading ROBUST: "
-          + ("none" if not fwr else "; ".join(f"{k} at {len(v)} of 20 CI21 values" for k, v in sorted(fwr.items())))
-          + ("" if not fwr else (" -> every one is a FLOOR branch of that framework model (a FLOOR-rule tension, ROBUST because CO43 and dust also detect gas)"
-                                 if all(k.endswith("(FLOOR)") for k in fwr) else " -> NOT all FLOOR branches")))
-    allb = [f"{lm}|{sh}|{f}" for lm in C.GS4["lmstars"] for sh in ("Rg=Rd", "Rg=1.5Rd") for f in C.FOOTS]
-    holds = [b for b in allb if not any(k.startswith(b + "|") for k in fwr)]
-    run.P("  A-G4 statement 'framework NOT ROBUST for every CI21 value' holds (no framework row ROBUST at any scanned CI21 value) on "
-          f"{len(holds)} of {len(allb)} branches (M*|shape|footing): " + ("; ".join(holds) if holds else "none")
-          + " (CFG942's 10-20 scan covered only 10.89|Rg=Rd|canon 9.36e-11)")
+    run.check("A-G4 scan agrees with addendum A s1: the framework is NOT ROBUST at every CI21 value only on canonical, M* 10.89, R_g = R_d",
+              sc["cannot"] == ["10.89|Rg=Rd|canon 9.36e-11"], "cannot: " + "; ".join(sc["cannot"]))
     run.P("\n=== A-G11 MUTATE fallback on two tiny MOCK cubes (temporary files, removed after the check) ===")
     g11 = mutate_fallback_selftest(run)
     okc, names = C.release_copy_selftest("cfg809_gs4")
     run.check("A-X7 release-day copy step (temporary files only): byte-identical copies named " + " / ".join(names), okc)
-    return dict(reproduction=dict(max_d=w, n=n), transcription=dict(rows=rows, worst=worst), robust_scan={k: len(v) for k, v in rob.items()},
-                A_G4_framework_robust_scan={k: v for k, v in fwr.items()}, A_G4_statement_holds_on=holds, A_G11_fallback=g11)
+    return dict(reproduction=dict(max_d=w, n=n), transcription=dict(rows=rows, worst=worst), robust_scan={k: len(v) for k, v in rob.items()}, A_G11_fallback=g11)
+
+
+_SCAN = {}
+def a_g4_scan():
+    """A-G4 / addendum A s1 scan (information): CI21 detected at log M_gas 8.0-11.8 (0.2 dex steps, flux error 0.05 dex, X_CI 3.0e-5 at
+    -0.2 dex), V_c 206, CFG571 gas shapes, CFG572's CO43 r41 0.37 and dust alpha_CO 4.36 routes fixed. Per M*|shape|footing branch:
+    which framework model can read ROBUST, with which wording, at how many CI21 values."""
+    if _SCAN: return _SCAN
+    q = C.Quiet(); grid = [round(float(x), 1) for x in np.arange(8.0, 11.81, 0.2)]
+    allb = [f"{lm}|{sh}|{f}" for lm in C.GS4["lmstars"] for sh in ("Rg=Rd", "Rg=1.5Rd") for f in C.FOOTS]
+    fwr = {b: {} for b in allb}; canon = {}
+    for lg in grid:
+        s = score(dict(CI21=dict(logMgas={"1.9e-5": lg, "3.0e-5": lg - 0.2}, sig_flux_dex=0.05, detected=True), G3=False), q)
+        for k, v in s["robust"].items():
+            if not k.startswith("V_c 206"): continue
+            parts = k.split("|"); b, m = "|".join(parts[1:4]), parts[4]
+            if b == "10.89|Rg=Rd|canon 9.36e-11": canon.setdefault(v, []).append((lg, m))
+            if m in C.FRAMEWORK and v == "ROBUST":
+                r = next(r for r in s["rows"] if r["vc"].startswith("V_c 206") and r["route"] == PRIMARY_ROUTE and f"{r['Mstar']}|{r['shape']}|{r['foot']}" == b and r["model"] == m)
+                fwr[b].setdefault(f"{m} ROBUST {r['wording']}", []).append(lg)
+    _SCAN.update(grid=grid, branches=fwr, can=[b for b in allb if fwr[b]], cannot=[b for b in allb if not fwr[b]], canonical_primary=canon)
+    return _SCAN
+
+
+def print_a_g4(run):
+    """the per-branch A-G4 statement of addendum A s1, in place of the withdrawn 10-21 sentence, with the scan behind it"""
+    sc = a_g4_scan(); n = len(sc["grid"])
+    run.P("A-G4 (CLARIFICATION_2026-10-21_ADDENDUM_A s1, 748dd8095; replaces the withdrawn 10-21 sentence): the per-model ROBUST rule stands. On most branches "
+          "the framework's verdict CAN come out ROBUST, with either wording ('consistent with' or 'in tension with', including a robust FLOOR tension for F-flat "
+          "on the alt footing at M* 10.89); either way a single-disc demonstration, never an exclusion. Only on the canonical, M* 10.89, R_g = R_d branch is the "
+          "framework NOT ROBUST at every CI21 value.")
+    run.P(f"  A-G4 scan behind it (V_c 206; CI21 detected at log M_gas {sc['grid'][0]}-{sc['grid'][-1]}, {n} values; CFG572's CO43 r41 0.37 and dust alpha_CO 4.36 "
+          f"fixed; CFG571 gas shapes; a G3 measured-size shape is not scanned):")
+    run.P(f"    branches (M*|shape|footing) that CAN return a ROBUST framework verdict ({len(sc['can'])} of {len(sc['can']) + len(sc['cannot'])}):")
+    for b in sc["can"]:
+        run.P(f"      {b}: " + "; ".join(f"{k} at {len(v)}/{n}" for k, v in sorted(sc["branches"][b].items())))
+    run.P(f"    branches that CANNOT (no framework row ROBUST at any scanned CI21 value) ({len(sc['cannot'])}): " + ("; ".join(sc["cannot"]) or "none")
+          + f" -> {'agrees' if sc['cannot'] == ['10.89|Rg=Rd|canon 9.36e-11'] else 'DOES NOT agree'} with addendum A s1")
+    return dict(can={b: sc["branches"][b] for b in sc["can"]}, cannot=sc["cannot"], grid=sc["grid"])
 
 
 def mutate_fallback_selftest(run):
@@ -588,11 +649,12 @@ def main():
     run.P("Frozen predictions = CFG571's four models as sealed. The CFG689 native a0(z) band folded into THEORY_CANONICAL_2026-10-18 does NOT change them and is not scored here.")
     run.P("kappa = 1/2 FITTED; footings never pooled; routes never averaged; single disc = demonstration, no exclusion; not theory closed.")
     run.P(f"target: GS4_24110 RA {RA} Dec {DEC}; [CI](2-1) observed at {NU_OBS:.4f} GHz (z {Z_LINE}); R_e {RE} kpc = {RE / KPA:.3f}\"")
-    clar = C.announce_clarification(run, C.GS4_CLAR, __file__)
-    run.P("A-G4 (owner, stated before data): framework NOT ROBUST for every CI21 value under CFG572's fixed routes: this disc can neither support nor disfavour the framework")
-    snap0 = C.snapshot(); res = dict(K1=C.verify_frozen(run), **clar)
+    clar = C.announce_clarification(run, C.GS4_CLAR, __file__, addenda=[(C.GS4_ADD, C.ADD_COMMIT)])
+    run.P(f"memory guard: MallocMediumZone={os.environ.get('MallocMediumZone', 'unset')} (macOS; see the top of this script)")
+    snap0 = C.snapshot(); res = dict(K1=C.verify_frozen(run), memory_guard=dict(MallocMediumZone=os.environ.get("MallocMediumZone")), **clar)
     if run.failed():
         run.P("a frozen file or seal does not match: STOP (nothing scored)"); run.save(res); sys.exit(2)
+    run.P(""); res["A_G4"] = print_a_g4(run)
     run.flag("A-X6", "CFG809 says it 'imports cfg571_prereg.py read-only'; a plain import runs the whole script (rewrites its results JSON, sys.exit). The harness executes only the text above '# ---- controls ----'")
     code = 0; release = None
     if "--selftest" in ARGS:
