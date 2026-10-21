@@ -1,0 +1,24 @@
+CFG952  LDT PM-engine prototype (separate 64^3 toy; no CFG650/654 import)   stage=POSTHOC
+  criteria 844ce293d; A1 7a3ade021 (pre-result); kappa = 1/2 FITTED; footings never pooled; not theory closed
+  toy: G = a0 = 1, L = 40.0, M = 64, dx = 0.625, rho_ta = 0.001, R_min = 1.25, x_h = 0.6, dt = 0.04, sigma_sm = 1.25
+
+==================== POST-HOC STAGE (A2 4141650f1; reported, no class weight) ====================
+cfg952_ldt_proto.py:427: RuntimeWarning: invalid value encountered in multiply
+  bb = lamsc * bl; lams = []; Dfree = np.zeros(3)
+    [(b) DIPSLAVE] 500 steps, t_end 20.00, wall 77.1 s, peak RSS 0.207 GB, footprint 0.107 GB
+   PH-b DIPSLAVE+FB-ZS: max B/I 5.473e+01; |dP_m|/I 2.440e-02; infeasible steps 144 (first t 2.56); max dipole miss/scale 5.733e-01; zero-sum max 1.72e+00
+    [(c) RAMP DIPSLAVE FB-ZS] 750 steps, t_end 30.00, wall 71.4 s, peak RSS 0.237 GB, footprint 0.133 GB
+   PH_c_RAMP: max J 0.0534 (median 0.0096); J at trigger 0.0248 (t 9.64); J max pre-trigger 0.022718488585678227, ramp window 0.0533644760331681, post 0.018344214933787722; converged-steps max J 0.0533644760331681, infeasible-steps max J 0.04068407549417425
+        zero-sum max 9.99e-13; infeasible steps 32; max dipole miss/scale 8.091e-03; book B/I 2.445e+00; |dP_m|/I 3.731e-02; separation min 0.03 (t 27.84), end 1.30
+    [(c) INSTANT DIPSLAVE FB-ZS] 750 steps, t_end 30.00, wall 58.4 s, peak RSS 0.237 GB, footprint 0.133 GB
+   PH_c_INSTANT: max J 2.7742 (median 0.0093); J at trigger 2.7742 (t 9.64); J max pre-trigger 0.022718488585678227, ramp window 2.774219870273216, post 0.018189646979103136; converged-steps max J 2.774219870273216, infeasible-steps max J 0.03079158484228288
+        zero-sum max 9.99e-13; infeasible steps 25; max dipole miss/scale 1.857e-02; book B/I 4.808e+00; |dP_m|/I 3.273e-02; separation min 0.05 (t 29.32), end 0.62
+    [(c) NONE DIPSLAVE FB-ZS] 750 steps, t_end 30.00, wall 103.4 s, peak RSS 0.237 GB, footprint 0.121 GB
+   PH_c_NONE: max J 0.7557 (median 0.0135); J at trigger nan (t nan); J max pre-trigger None, ramp window None, post None; converged-steps max J 0.5284836362044477, infeasible-steps max J 0.7556655066005123
+        zero-sum max 4.76e-01; infeasible steps 184; max dipole miss/scale 2.222e-01; book B/I 2.643e+01; |dP_m|/I 1.527e-02; separation min 0.19 (t 10.12), end 16.93
+    [(c) RAMP DIPFREE FB-ZS] 750 steps, t_end 30.00, wall 62.2 s, peak RSS 0.237 GB, footprint 0.133 GB
+   PH_c_RAMP_DIPFREE: max J 0.0526 (median 0.0095); J at trigger 0.0137 (t 9.64); J max pre-trigger 0.02248651834688638, ramp window 0.052603452209982283, post 0.018376431497061793; converged-steps max J 0.052603452209982283, infeasible-steps max J 0.04875322587948928
+        zero-sum max 9.55e-13; infeasible steps 30; max dipole miss/scale 7.927e-03; book B/I 2.340e+00; |dP_m|/I 5.109e-02; separation min 0.03 (t 27.84), end 1.31
+  A2 reading rule: RAMP max J 0.0534 (<= 0.03?) and INSTANT J at trigger 2.7742 (>= 0.05?) -> c1's frozen failure NOT explained by the fallback artefact
+  (wall 373.1 s, peak RSS 0.237 GB)
+exit 0
