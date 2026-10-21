@@ -1,0 +1,26 @@
+AG6C gate (iv): health of C1  [MUTATE c]
+
+H1/H2  sympy: l_X and l_X + 2 X l_XX on both branches (s = sqrt(2|X|))
+  electric X>0: l_X = 1/(s + 1),  l_X + 2X l_XX = (s + 1)**(-2)
+  magnetic X<0: l_X = 1/(s + 1),  l_X + 2X l_XX = (s + 1)**(-2)
+  [PASS] H1 kinetic positivity (dark sector): l_X = 1/(1+s) > 0 on both branches; dust kinetic rho|v|^2/2 > 0 for rho > 0; graviton = GR
+  [PASS] H2 hyperbolicity coefficient: l_X + 2X l_XX = 1/(1+s)^2 > 0 on both branches
+  Forced structure: on a pure electric background l(E^2/2) must equal the Legendre dual of W_full, whose cubic term is
+  (2X)^(3/2)/3; the only Lorentz invariants are X and Y = E.B, and both vanish on every NULL field, so any Lorentz-
+  invariant l(X, Y) carrying the simple-mu tether is non-analytic on the whole null cone X = Y = 0 (l_XX ~ |X|^-1/2).
+
+H3  NLED plane waves on 2000 random (E, B) backgrounds, |E|, |B| log-uniform in [1e-4, 1e4] a0, random directions
+  max |Im omega|/max|omega| over 2000 backgrounds: 1.00e+00 (194 backgrounds above 1e-8)
+  counts above 1e-8 / 1e-6 / 1e-3 / 1e-1: 185 / 133 / 133 / 127  (the machinery's noise floor is ~1e-8, see K-H3)
+  pure electric: modes = {1 (ordinary), sqrt(cos^2 + (1+e) sin^2) (extraordinary)}: max deviation 4.4e-14
+  [FAIL] H3 NLED dispersion real (random backgrounds): max |Im w|/|w| 1.0e+00; extraordinary v^2 = 1 + e sin^2 to 4e-14
+
+H4  dust + NLED + Newtonian gravity about static electric backgrounds (units c = K = rho0 = a0 = 1)
+  grid: e 81 x angle 13 x k 37 x c_s 2; max Re(lambda)/max(|lambda|, w_p) = 9.95e-02
+  min coefficient of the linear energy (dust KE, pressure, dark E and B energies, Gauss-tied longitudinal) = -9.901e+03
+  deepest background e = 0.0001: growth at k = 1e5 / 1e6: 2.910e-11 / 1.455e-10
+  MUTATE c: max growth rate 9.950e-02 w_p; at k = 1e6: 7.451e-09; class: Jeans-class (bounded, small k)
+  tooth bites (flagged True, class wanted Jeans)
+
+run time 5.5 s
+FAILS: ['H3 NLED dispersion real (random backgrounds)', 'MUTATE c: flagged=True, class=Jeans-class (bounded, small k) (designed exit 1)']

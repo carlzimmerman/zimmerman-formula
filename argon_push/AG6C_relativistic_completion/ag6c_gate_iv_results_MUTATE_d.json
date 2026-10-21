@@ -1,0 +1,39 @@
+{
+ "lane": "AG6C",
+ "script": "ag6c_gate_iv",
+ "mutate": "d",
+ "checks": {
+  "H1 kinetic positivity (dark sector)": {
+   "ok": true,
+   "detail": "l_X = 1/(1+s) > 0 on both branches; dust kinetic rho|v|^2/2 > 0 for rho > 0; graviton = GR"
+  },
+  "H2 hyperbolicity coefficient": {
+   "ok": true,
+   "detail": "l_X + 2X l_XX = 1/(1+s)^2 > 0 on both branches"
+  },
+  "H3 NLED dispersion real (random backgrounds)": {
+   "ok": false,
+   "detail": "max |Im w|/|w| 1.0e+00; extraordinary v^2 = 1 + e sin^2 to 4e-14"
+  }
+ },
+ "numbers": {
+  "H3_counts": {
+   "1e-08": 185,
+   "1e-06": 133,
+   "0.001": 133,
+   "0.1": 127
+  },
+  "H3": {
+   "max_imag_ratio": 0.9997373082459041,
+   "n_bad": 194,
+   "extraordinary_dev": 4.440892098500626e-14
+  },
+  "H4_max_growth_ratio": 1.0,
+  "H4_energy_min": -1.0,
+  "mutate_class": "gradient-class (growth rises with k)"
+ },
+ "fails": [
+  "H3 NLED dispersion real (random backgrounds)",
+  "MUTATE d: flagged=True, class=gradient-class (growth rises with k) (designed exit 1)"
+ ]
+}

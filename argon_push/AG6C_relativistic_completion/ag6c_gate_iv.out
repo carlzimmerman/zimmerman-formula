@@ -1,0 +1,67 @@
+AG6C gate (iv): health of C1
+
+H1/H2  sympy: l_X and l_X + 2 X l_XX on both branches (s = sqrt(2|X|))
+  electric X>0: l_X = 1/(s + 1),  l_X + 2X l_XX = (s + 1)**(-2)
+  magnetic X<0: l_X = 1/(s + 1),  l_X + 2X l_XX = (s + 1)**(-2)
+  [PASS] H1 kinetic positivity (dark sector): l_X = 1/(1+s) > 0 on both branches; dust kinetic rho|v|^2/2 > 0 for rho > 0; graviton = GR
+  [PASS] H2 hyperbolicity coefficient: l_X + 2X l_XX = 1/(1+s)^2 > 0 on both branches
+  Forced structure: on a pure electric background l(E^2/2) must equal the Legendre dual of W_full, whose cubic term is
+  (2X)^(3/2)/3; the only Lorentz invariants are X and Y = E.B, and both vanish on every NULL field, so any Lorentz-
+  invariant l(X, Y) carrying the simple-mu tether is non-analytic on the whole null cone X = Y = 0 (l_XX ~ |X|^-1/2).
+
+H3  NLED plane waves on 2000 random (E, B) backgrounds, |E|, |B| log-uniform in [1e-4, 1e4] a0, random directions
+  max |Im omega|/max|omega| over 2000 backgrounds: 1.00e+00 (194 backgrounds above 1e-8)
+  counts above 1e-8 / 1e-6 / 1e-3 / 1e-1: 185 / 133 / 133 / 127  (the machinery's noise floor is ~1e-8, see K-H3)
+  pure electric: modes = {1 (ordinary), sqrt(cos^2 + (1+e) sin^2) (extraordinary)}: max deviation 4.4e-14
+  [FAIL] H3 NLED dispersion real (random backgrounds): max |Im w|/|w| 1.0e+00; extraordinary v^2 = 1 + e sin^2 to 4e-14
+
+H3 controls (disclosed addition): the same eigen-machinery on Maxwell and on a causal L = X + 0.1 X^2
+  Maxwell: max |Im w|/|w| = 6.4e-09;  L = X + 0.1 X^2 (|E|, |B| <= 1, l_XX > 0): 1.5e-08
+  [PASS] K-H3 machinery control: real frequencies (to the 1e-8 noise floor) for Maxwell and for a causal L(X)
+
+H3c (disclosed addition): diagnose every failing H3 background in the field's own rest frame (E' || B')
+  genuinely failing backgrounds (|Im w|/|w| > 1e-6): 133; with X > 0 (electric-dominated): 106; real in their own rest frame (lab-time tipping only, criterion-B type): 31; complex in every frame: 102
+  drift speed x rest-frame superluminal speed, beta*sqrt(1 + e'): min 0.196, median 3.078  (the superluminal cone tips over the lab-time slices when this exceeds ~1)
+  rest-frame Hessian of l in (E', B') has the wrong signature in 102 of 133; it matches rest-frame complex roots in 133/133; analytic line (subdominant parallel field)^2 >= sqrt(2|X|) predicts 133/133
+  reading: the wrong-signature backgrounds are ill-posed in EVERY frame (the dispersion is scale-free, so Im omega ~ |k|:
+  a gradient instability); they need a strong dark field plus a comparable PARALLEL field of the other kind
+  ((subdominant)^2 >= sqrt(2|X|) in a0 units). The rest are well posed in their own frame and fail only when the forced
+  superluminal cone is boosted past the lab-time slices. A pure electric background (every static galaxy) meets neither.
+
+H3b (disclosed addition, not in the frozen list): near-null backgrounds |B| = |E|(1 - eta), E at angle psi to B
+  |E| = 0.0001 a0 -> max|Im w|/|w| (psi = 0/45/90 deg): eta 0.1: 1e-08/1e-08/1e-08  eta 0.01: 1e-08/1e-08/1e-08  eta 0.0001: 1e-08/1e-08/1e-08  eta 1e-06: 2e-08/1e-08/1e-08
+  |E| = 0.01 a0 -> max|Im w|/|w| (psi = 0/45/90 deg): eta 0.1: 1e-08/1e-08/1e-08  eta 0.01: 1e-08/1e-08/1e-08  eta 0.0001: 1e-08/8e-09/1e-08  eta 1e-06: 1e+00/1e+00/4e-01
+  |E| = 1 a0 -> max|Im w|/|w| (psi = 0/45/90 deg): eta 0.1: 1e+00/1e+00/1e+00  eta 0.01: 1e+00/1e+00/4e-01  eta 0.0001: 1e+00/9e-01/1e-01  eta 1e-06: 1e+00/8e-01/4e-02
+  |E| = 100 a0 -> max|Im w|/|w| (psi = 0/45/90 deg): eta 0.1: 1e+00/1e+00/5e-01  eta 0.01: 1e+00/9e-01/1e-01  eta 0.0001: 1e+00/8e-01/2e-02  eta 1e-06: 1e+00/8e-01/5e-03
+  near-null cells with complex lab-frame frequencies (> 1e-6): 27 of 48 (REPORTED; not a frozen check)
+
+H4  dust + NLED + Newtonian gravity about static electric backgrounds (units c = K = rho0 = a0 = 1)
+  grid: e 81 x angle 13 x k 37 x c_s 2; max Re(lambda)/max(|lambda|, w_p) = 2.60e-12
+  min coefficient of the linear energy (dust KE, pressure, dark E and B energies, Gauss-tied longitudinal) = 1.010e-14
+  [PASS] H4 coupled linear health (static electric backgrounds, 1e-4..1e4 a0): no growing mode anywhere on the grid (2.6e-12); linear energy positive-definite (min coefficient 1.01e-14)
+    e = 0.0001: longitudinal restoring along E: K rho (1/E_k - 1) = 2.000e-04 (>= 0; -> 0 as e -> 0, neutral, not unstable)
+    e = 0.01: longitudinal restoring along E: K rho (1/E_k - 1) = 2.010e-02 (>= 0; -> 0 as e -> 0, neutral, not unstable)
+    e = 1: longitudinal restoring along E: K rho (1/E_k - 1) = 3.000e+00 (>= 0; -> 0 as e -> 0, neutral, not unstable)
+
+H5  C2: NR reduction of sqrt(-g) J_mu Dxi^mu/dtau = -Pi_mu a^mu (+ total derivative) -> per element
+    L = sigma v^2/2 + dPi/dt . v - sigma Phi - Pi.grad Phi - W(Pi)   (one Cartesian component shown)
+  kinetic Hessian in (v, dPi/dt): [[sigma, 1], [1, 0]], eigenvalues [sigma/2 - sqrt(sigma**2 + 4)/2, sigma/2 + sqrt(sigma**2 + 4)/2]
+  Hamiltonian H = V - p_Pi**2*sigma/2 + p_Pi*p_x  (linear in p_x: True)
+  [FAIL for C2] H5: Hamiltonian linear in p_x => unbounded below (Ostrogradsky-type ghost); conditional on the recalled BLT form (PROVISIONAL). C1's dust kinetic term sigma v^2/2 alone: positive.
+
+H6  L49 with inertia rho_c = rhobar + div P (a real medium): L = |dP/dt|^2/(2 rho_c) - V[P]
+  omega^2 = rho_c*(gamma*k**2 + lambda_V)  (lambda_V >= 0: the convex L49 potential's Hessian; gamma k^2 the stiffness)
+  F1 mid-plane at R = 0.2 d: rho_c = rhobar + rho_ph = -1.989e-25 kg/m^3 < 0 => omega^2 < 0, growth ~ k (gradient instability); rate at k = 2 pi/L* = 5.74e-17 s^-1 (e-fold 0.55 Gyr), x(k L*/2pi) above
+
+Causality (reported): static backgrounds, max mode speed v_max = sqrt(1 + e) c (extraordinary, k perpendicular to E)
+  criterion A (inside the light cone): FAILS for every e > 0 (forced: concave D(E) <=> convex W_rem)
+  e =       1: sqrt(1+e) v_bulk/c for v_bulk = 300/1000/3000 km/s: 0.001 / 0.005 / 0.014  (criterion B needs < 1)
+  e =      10: sqrt(1+e) v_bulk/c for v_bulk = 300/1000/3000 km/s: 0.003 / 0.011 / 0.033  (criterion B needs < 1)
+  e =     100: sqrt(1+e) v_bulk/c for v_bulk = 300/1000/3000 km/s: 0.010 / 0.034 / 0.101  (criterion B needs < 1)
+  e =    1000: sqrt(1+e) v_bulk/c for v_bulk = 300/1000/3000 km/s: 0.032 / 0.106 / 0.317  (criterion B needs < 1)
+  e =   10000: sqrt(1+e) v_bulk/c for v_bulk = 300/1000/3000 km/s: 0.100 / 0.334 / 1.001  (criterion B needs < 1)
+  all-frame ill-posedness line (H3c) for dark fields of non-relativistic cold currents, B' ~ (v/c) E':
+  (v/c)^2 e^2 >= e sqrt(1 - (v/c)^2)  <=>  e >= sqrt(1 - b^2)/b^2 ~ (c/v)^2; for v = 300/1000/3000 km/s: e >= 1.0e+06 / 9.0e+04 / 1.0e+04 a0 (static galaxies scanned to e = 1e4)
+
+run time 4.0 s
+FAILS: ['H3 NLED dispersion real (random backgrounds)']

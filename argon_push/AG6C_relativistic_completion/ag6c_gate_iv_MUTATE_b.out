@@ -1,0 +1,25 @@
+AG6C gate (iv): health of C1  [MUTATE b]
+
+H1/H2  sympy: l_X and l_X + 2 X l_XX on both branches (s = sqrt(2|X|))
+  electric X>0: l_X = 1/(s + 1),  l_X + 2X l_XX = (s + 1)**(-2)
+  magnetic X<0: l_X = 1/(s + 1),  l_X + 2X l_XX = (s + 1)**(-2)
+  [PASS] H1 kinetic positivity (dark sector): l_X = 1/(1+s) > 0 on both branches; dust kinetic rho|v|^2/2 > 0 for rho > 0; graviton = GR
+  [PASS] H2 hyperbolicity coefficient: l_X + 2X l_XX = 1/(1+s)^2 > 0 on both branches
+  Forced structure: on a pure electric background l(E^2/2) must equal the Legendre dual of W_full, whose cubic term is
+  (2X)^(3/2)/3; the only Lorentz invariants are X and Y = E.B, and both vanish on every NULL field, so any Lorentz-
+  invariant l(X, Y) carrying the simple-mu tether is non-analytic on the whole null cone X = Y = 0 (l_XX ~ |X|^-1/2).
+
+H3  NLED plane waves on 2000 random (E, B) backgrounds, |E|, |B| log-uniform in [1e-4, 1e4] a0, random directions
+  max |Im omega|/max|omega| over 2000 backgrounds: 1.00e+00 (85 backgrounds above 1e-8)
+  counts above 1e-8 / 1e-6 / 1e-3 / 1e-1: 84 / 43 / 43 / 42  (the machinery's noise floor is ~1e-8, see K-H3)
+  pure electric: modes = {1 (ordinary), sqrt(cos^2 + (1+e) sin^2) (extraordinary)}: max deviation 0.0e+00
+
+H4  dust + NLED + Newtonian gravity about static electric backgrounds (units c = K = rho0 = a0 = 1)
+  grid: e 1 x angle 13 x k 37 x c_s 2; max Re(lambda)/max(|lambda|, w_p) = 1.00e+00
+  min coefficient of the linear energy (dust KE, pressure, dark E and B energies, Gauss-tied longitudinal) = -1.036e+07
+  deepest background e = 0.7: growth at k = 1e5 / 1e6: 1.042e+05 / 1.042e+06
+  MUTATE b: max growth rate 1.042e+06 w_p; at k = 1e6: 1.042e+06; class: gradient-class (growth rises with k)
+  tooth bites (flagged True, class wanted gradient)
+
+run time 0.4 s
+FAILS: ['MUTATE b: flagged=True, class=gradient-class (growth rises with k) (designed exit 1)']
