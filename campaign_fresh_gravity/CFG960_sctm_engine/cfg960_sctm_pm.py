@@ -267,10 +267,13 @@ def ang_set(na):
         h = na // 2; i = np.arange(h); z = (i + 0.5) / h; rr = np.sqrt(1 - z * z); ph = i * GOLD
         v = np.stack([rr * np.cos(ph), rr * np.sin(ph), z], 1); _ANG[na] = np.concatenate([v, -v])
     return _ANG[na]
-def body_points(prof, Mc, X, law, edges, dx, mut=1.0):
-    """prof (nb_bodies, NB) own-retained-baryon mass per bin about X; Mc (nb,); returns pos (n, 3), w (n,), owner (n,), diag."""
-    nb = len(Mc); dg = dict(n_bodies=int(nb), n_point=0, n_fallback=0, n_nobaryon=0, n_cap=0, re_dx=[])
-    if nb == 0: return np.zeros((0, 3)), np.zeros(0), np.zeros(0, np.int64), dg, np.zeros(0)
+R_IN = 4.0                                               # A3/A4: CIC points inside 4 dx (all of the body if r_e <= 5 dx); mesh nodes beyond
+def body_points(prof, Mc, X, law, edges, dx, M, mut=1.0):
+    """S6/S7 (+ A3). prof (nb, NB) own-retained-baryon mass per bin about X; Mc (nb,).  Returns a dict with the inner CIC points
+    (pos (n, 3), w, own) and the outer mesh nodes (cidx flat node index (i*M + j)*M + k, cw, cown), the diagnostics and r_e (nb,)."""
+    nb = len(Mc); dg = dict(n_bodies=int(nb), n_point=0, n_fallback=0, n_nobaryon=0, n_cap=0, n_outer=0, re_dx=[])
+    out = dict(pos=np.zeros((0, 3)), w=np.zeros(0), own=np.zeros(0, np.int64), cidx=np.zeros(0, np.int64), cw=np.zeros(0), cown=np.zeros(0, np.int64))
+    if nb == 0: return out, dg, np.zeros(0)
     cum = np.concatenate([np.zeros((nb, 1)), np.cumsum(prof, 1)[:, :-1]], 1)
     Mtot = prof.sum(1)
     re = np.full(nb, np.nan)
@@ -278,10 +281,12 @@ def body_points(prof, Mc, X, law, edges, dx, mut=1.0):
     m_half = law.mph(s_half, mb_at(s_half, cum, prof, edges))
     point = (m_half >= Mc) | (Mtot <= 0)
     dg["n_nobaryon"] = int((Mtot <= 0).sum())
-    pos_l, w_l, own_l = [X[point]], Mc[point] * mut, [np.nonzero(point)[0]]
-    w_l = [w_l]; dg["n_point"] = int(point.sum())
+    pos_l, w_l, own_l = [X[point]], [Mc[point] * mut], [np.nonzero(point)[0]]
+    ci_l, cw_l, co_l = [], [], []
+    dg["n_point"] = int(point.sum())
     re[point & (Mtot > 0)] = 0.5 * dx                                 # upper bound for point bodies (reported as <= dx/2)
     rest = np.nonzero(~point)[0]
+    rcap = min(E.L / 4.0, 128.0 * dx)
     if len(rest):
         fe = edges[1:]                                                # finite edges dx/16 ... L/2
         me = law.mph(np.broadcast_to(fe, (len(rest), len(fe))), mb_at(np.broadcast_to(fe, (len(rest), len(fe))), cum[rest], prof[rest], edges))
@@ -298,13 +303,17 @@ def body_points(prof, Mc, X, law, edges, dx, mut=1.0):
         rr = np.where(has, hi, E.L / 2.0); re[rest] = rr
         dg["n_fallback"] = int((~has).sum())
         for t, q in enumerate(rest):
-            nr = int(math.ceil(2.0 * rr[t] / dx))
-            if nr > NR_CAP: nr = NR_CAP; dg["n_cap"] += 1
-            s = rr[t] * np.arange(nr + 1) / nr
-            ms = law.mph(s[1:], mb_at(s[None, 1:], cum[q:q + 1], prof[q:q + 1], edges)[0])
-            ms = np.minimum(np.maximum.accumulate(ms), Mc[q]); ms[-1] = Mc[q]
+            rp = min(rr[t], rcap)
+            if rr[t] > rcap: dg["n_cap"] += 1
+            rin = rp if rp <= (R_IN + 1.0) * dx else R_IN * dx       # A4: outer nodes only when the outer region is >= 1 dx thick
+            def msig(sv):
+                return np.minimum(np.maximum.accumulate(law.mph(sv, mb_at(sv[None, :], cum[q:q + 1], prof[q:q + 1], edges)[0])), Mc[q])
+            # inner part: S7 as frozen on [0, r_in]
+            nr = int(math.ceil(2.0 * rin / dx)); sgrid = rin * np.arange(nr + 1) / nr
+            ms = msig(sgrid[1:])
+            if rp <= rin: ms[-1] = Mc[q]
             dM = np.diff(np.concatenate([[0.0], ms]))
-            rb = 0.5 * (s[1:] + s[:-1])
+            rb = 0.5 * (sgrid[1:] + sgrid[:-1])
             for k in range(nr):
                 if dM[k] <= 0: continue
                 na = max(6, 2 * int(math.ceil(8.0 * math.pi * rb[k] ** 2 / dx ** 2)))
@@ -312,8 +321,35 @@ def body_points(prof, Mc, X, law, edges, dx, mut=1.0):
                 v = ang_set(na); th = k * GOLD; ct, st = math.cos(th), math.sin(th)
                 vr = np.stack([v[:, 0] * ct - v[:, 1] * st, v[:, 0] * st + v[:, 1] * ct, v[:, 2]], 1)
                 pos_l.append(X[q][None, :] + rb[k] * vr); w_l.append(np.full(na, dM[k] / na) * mut); own_l.append(np.full(na, q))
+            if rp <= rin: continue
+            # outer part (A3): radial shells of width <= dx/2 on (r_in, r_p], each shell's mass shared equally by its mesh nodes
+            dg["n_outer"] += 1
+            no = int(math.ceil(2.0 * (rp - rin) / dx)); so = rin + (rp - rin) * np.arange(no + 1) / no
+            mo = msig(so); mo[0] = ms[-1]; mo[-1] = Mc[q]; mo = np.maximum.accumulate(mo); dMo = np.diff(mo)
+            lo3 = np.floor((X[q] - rp) / dx).astype(np.int64); hi3 = np.ceil((X[q] + rp) / dx).astype(np.int64)
+            gx, gy, gz = [np.arange(lo3[c], hi3[c] + 1) for c in range(3)]
+            ddx, ddy, ddz = gx * dx - X[q][0], gy * dx - X[q][1], gz * dx - X[q][2]
+            r3 = np.sqrt(ddx[:, None, None] ** 2 + ddy[None, :, None] ** 2 + ddz[None, None, :] ** 2)
+            sel = (r3 > rin) & (r3 <= rp)
+            ii, jj, kk = np.nonzero(sel); rs = r3[ii, jj, kk]
+            ks = np.clip(((rs - rin) / (rp - rin) * no).astype(np.int64), 0, no - 1)
+            cnt = np.bincount(ks, minlength=no)
+            if cnt.sum() == 0:                                         # A4 fallback: no node at all -> one CIC point shell at the mid radius
+                rm = 0.5 * (rin + rp); na = max(6, 2 * int(math.ceil(8.0 * math.pi * rm ** 2 / dx ** 2)))
+                pos_l.append(X[q][None, :] + rm * ang_set(na)); w_l.append(np.full(na, dMo.sum() / na) * mut); own_l.append(np.full(na, q))
+                dg["n_node_fallback"] = dg.get("n_node_fallback", 0) + 1
+                continue
+            if (cnt[dMo > 0] == 0).any():                              # an empty shell: its mass goes to the nearest filled shell
+                fill = np.nonzero(cnt > 0)[0]
+                for k in np.nonzero((cnt == 0) & (dMo > 0))[0]:
+                    j_ = fill[np.argmin(np.abs(fill - k))]; dMo[j_] += dMo[k]; dMo[k] = 0.0
+            wn = dMo[ks] / np.maximum(cnt[ks], 1)
+            ci_l.append((((gx[ii] % M) * M + (gy[jj] % M)) * M + (gz[kk] % M)).astype(np.int64)); cw_l.append(wn * mut); co_l.append(np.full(len(ii), q))
     dg["re_dx"] = (re[np.isfinite(re)] / dx)
-    return (np.concatenate(pos_l) % E.L, np.concatenate(w_l), np.concatenate(own_l).astype(np.int64), dg, re)
+    out["pos"] = np.concatenate(pos_l) % E.L; out["w"] = np.concatenate(w_l); out["own"] = np.concatenate(own_l).astype(np.int64)
+    if ci_l:
+        out["cidx"] = np.concatenate(ci_l); out["cw"] = np.concatenate(cw_l); out["cown"] = np.concatenate(co_l).astype(np.int64)
+    return out, dg, re
 
 def deposit_points(rho, mesh, pos, w):
     """CIC of weighted points into rho (M, M*M) float64 (the particles' CIC, mesh.cic_idx)."""
@@ -695,12 +731,13 @@ def run_sct(foot, npg):
                 bid, prof, book = pass_profiles(P, PL, dom, edges)
             tm("merge", t_)
         t_ = time.time()
-        bpos_, bw, bown, bdg, re = body_points(prof, dom.Mc[bid], dom.X[bid], law, edges, mesh.dx, MUT_FAC)
+        BB, bdg, re = body_points(prof, dom.Mc[bid], dom.X[bid], law, edges, mesh.dx, mesh.M, MUT_FAC)
+        bpos_, bw, bown = BB["pos"], BB["w"], BB["own"]
         tm("bodies", t_)
         info["bodies"] = {k: v for k, v in bdg.items() if k != "re_dx"}
         if len(bdg["re_dx"]):
-            info["bodies"].update(re_dx_median=float(np.median(bdg["re_dx"])), re_dx_max=float(np.max(bdg["re_dx"])), n_points=int(len(bw)))
-        painted = float(bw.sum()); Mcs = float(dom.Mc[bid].sum()) if len(bid) else 0.0
+            info["bodies"].update(re_dx_median=float(np.median(bdg["re_dx"])), re_dx_max=float(np.max(bdg["re_dx"])), n_points=int(len(bw)), n_nodes=int(len(BB["cw"])))
+        painted = float(bw.sum() + BB["cw"].sum()); Mcs = float(dom.Mc[bid].sum()) if len(bid) else 0.0
         bk = dict(step=step_index, a=a, mass_err=(book["M"] + book["Mc"] - P.N) / P.N, painted_err=(painted - Mcs) / P.N,
                   P=book["P"].tolist(), Pabs=book["Pabs"], ev_dP=max(ev), n_dom=int((dom.roots() == np.arange(dom.n)).sum()) if dom.n else 0,
                   n_bodies=int(len(bid)), conv_frac=(1 - E.FB) * book["n_conv"] / P.N, pend_frac=book["n_pend"] / P.N, lab_frac=book["n_lab"] / P.N)
@@ -710,6 +747,7 @@ def run_sct(foot, npg):
             rho = np.zeros((mesh.M, mesh.M * mesh.M))
             if book["n_conv"]: deposit_converted(rho, mesh, P, PL, -(1.0 - E.FB))
             deposit_points(rho, mesh, bpos_, bw)
+            if len(BB["cw"]): np.add.at(rho.reshape(-1), BB["cidx"], BB["cw"])     # A3 outer body nodes
             Dx = E.DField("x960", mesh.M, np.float32); r3 = rho.reshape(mesh.M, mesh.M, mesh.M)
             for s in mesh.slabs: Dx.write(s, (r3[s] / mtot).astype(np.float32))
             del rho, r3
@@ -728,7 +766,7 @@ def run_sct(foot, npg):
         for s in mesh.slabs: dk[s] = ((-1.5 * E.Om / a) * dk[s]) * mesh.ik2_s(s)
         tm("poisson", t_)
         info["finite"] = bool(np.all(np.isfinite(dk))); res["book"].append(bk)
-        return dk, (bpos_, bw, bown, bid), info, meas
+        return dk, (BB, bid), info, meas
 
     def snapshot(name, a, phik, info, meas, restore=False):
         t_ = time.time(); kb, pb, s8, sig, bm_p = meas
@@ -743,7 +781,9 @@ def run_sct(foot, npg):
         tm("snap", t_); log(f"snapshot {name} a={a:.4f} sigma8={s8:.4f} grav {s8g:.4f}")
 
     def accel_pass(phik, a, kicks, bodies):
-        bpos_, bw, bown, bid = bodies
+        BB, bid = bodies; bpos_, bw, bown = BB["pos"], BB["w"], BB["own"]
+        cidx = BB["cidx"]; Mm = mesh.M
+        cpad = ((cidx // (Mm * Mm)) * Mm + (cidx // Mm) % Mm) * (Mm + 2) + cidx % Mm if len(cidx) else cidx
         b = mesh.cbuf()
         Fq = np.zeros((len(bid), 3))
         for c in range(3):
@@ -761,6 +801,9 @@ def run_sct(foot, npg):
             if len(bw):
                 gp = E.interp1(mesh, gpad, bpos_).astype(np.float64)
                 Fq[:, c] = np.bincount(bown, weights=bw * gp, minlength=len(bid))   # bown = index into bid
+            if len(cidx):                                            # A3 outer nodes: the node's own mesh acceleration
+                gn = gpad.reshape(-1)[cpad].astype(np.float64)
+                Fq[:, c] += np.bincount(BB["cown"], weights=BB["cw"] * gn, minlength=len(bid))
         del b
         if len(bid):
             Mi = dom.Mc[bid] * MUT_FAC                               # inertial = painted mass (MUTATE: the body still falls as a test body)

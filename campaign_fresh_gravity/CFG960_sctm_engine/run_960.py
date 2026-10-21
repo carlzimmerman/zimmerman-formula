@@ -13,7 +13,7 @@ import os, sys, subprocess, time, json, re, shutil, ctypes
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENGINE = os.path.join(HERE, "cfg960_sctm_pm.py")
 WORK = os.path.abspath(os.path.join(HERE, "..", "..", "..", "_external_data", "cfg960_work"))
-RSS_MAX_GB = 52.0; SWAP_GROW_MB = 4096.0; DISK_START_GB = 40.0
+RSS_MAX_GB = 52.0; SWAP_GROW_MB = 4096.0; DISK_START_GB = 45.0
 _P = dict(MODE="lean", L="100", NSEED="1024", RMIN="0.78125", THREADS="14", SPILL="1", INPUTS="native_cmb", M3="1", CONVERT="1", MUTATE="none", N=1024)
 JOBS = {"SC1x": dict(_P, foot="canonical"), "SC2x": dict(_P, foot="alt")}
 

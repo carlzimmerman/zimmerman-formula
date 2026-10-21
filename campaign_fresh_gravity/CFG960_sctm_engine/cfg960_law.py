@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """CFG960 V-LAW (FROZEN_CRITERIA.md section 2): static isolated host on a 128^3 mesh with the engine's own functions
-(radial_edges / bin_of profile, Law, body_points, deposit_points (the particles' CIC), Mesh FFT Poisson, spectral gradient, interp1).
+(radial_edges / bin_of profile, Law, body_points with A3 hybrid painting, deposit_points (the particles' CIC) + outer mesh nodes,
+Mesh FFT Poisson, spectral gradient, interp1).
   box A: L 6.4 Mpc/h, M_b 1e12 h^-1 Msun (Plummer a 0.04 Mpc/h), M_c = 20 M_b (deep regime)
   box B: L 0.64 Mpc/h, M_b 1e12 (Plummer a 0.004), M_c = 2 M_b (y ~ 0.1-3)
   both footings, a = 1 (graded); box A at a = 0.5 reported only (unit check of the a-dependence).
@@ -41,13 +42,16 @@ def case(L, Mb_sun, Nc, apl, foot, a, seed=960):
     rb = np.sqrt(((xb - X) ** 2).sum(1))
     prof = np.bincount(S.bin_of(rb, edges), weights=wb, minlength=len(edges))[None, :]
     law = S.Law(a, foot, NREF)
-    bpos, bw, bown, dg, re = S.body_points(prof, np.array([Mc]), X[None, :], law, edges, dx)
+    BB, dg, re = S.body_points(prof, np.array([Mc]), X[None, :], law, edges, dx, M)          # A3: inner CIC points + outer mesh nodes
+    bpos, bw = BB["pos"], BB["w"]
     r_e = float(re[0])
     res = {}
     for body in (True, False):
         rho = np.zeros((M, M * M))
         S.deposit_points(rho, mesh, xb % L, wb)
-        if body: S.deposit_points(rho, mesh, bpos, bw)
+        if body:
+            S.deposit_points(rho, mesh, bpos, bw)
+            if len(BB["cw"]): np.add.at(rho.reshape(-1), BB["cidx"], BB["cw"])
         delta = (rho.reshape(M, M, M) / (NREF / M ** 3) - 1.0).astype(np.float32)
         dk = mesh.fwd(delta)
         for s in mesh.slabs: dk[s] = ((-1.5 * E.Om / a) * dk[s]) * mesh.ik2_s(s)
@@ -66,7 +70,7 @@ def case(L, Mb_sun, Nc, apl, foot, a, seed=960):
         dev = gr / gexp - 1
         inner = (radii >= 4 * dx) & (radii <= 0.85 * r_e); outer = (radii >= 1.3 * r_e) & (radii <= min(2.5 * r_e, 0.4 * L))
         y_in = law.Cy * Mbr[inner] / radii[inner] ** 2
-        r_ = dict(r_e=r_e, r_e_dx=r_e / dx, n_points=int(len(bw)), painted_over_Mc=float(bw.sum() / Mc),
+        r_ = dict(r_e=r_e, r_e_dx=r_e / dx, n_points=int(len(bw)), n_nodes=int(len(BB["cw"])), painted_over_Mc=float((bw.sum() + BB["cw"].sum()) / Mc),
                   inner_n=int(inner.sum()), inner_median=float(np.median(np.abs(dev[inner]))), inner_max=float(np.max(np.abs(dev[inner]))),
                   outer_n=int(outer.sum()), outer_median=float(np.median(np.abs(dev[outer]))) if outer.any() else None,
                   y_inner_range=[float(y_in.min()), float(y_in.max())] if len(y_in) else None,
@@ -87,7 +91,7 @@ def main():
             R["cases"][f"{name}_{foot}"] = dict(graded=graded, L=L, Nc=Nc, a=a, **r)
             for k in ("body", "K_nobody"):
                 v = r[k]
-                P(f"  {name:6s} {foot:9s} {k:8s}: r_e {v['r_e']:.4f} Mpc/h ({v['r_e_dx']:.1f} dx), points {v['n_points']}, painted/M_c {v['painted_over_Mc']:.15f}; "
+                P(f"  {name:6s} {foot:9s} {k:8s}: r_e {v['r_e']:.4f} Mpc/h ({v['r_e_dx']:.1f} dx), points {v['n_points']} + nodes {v['n_nodes']}, painted/M_c {v['painted_over_Mc']:.15f}; "
                   f"4dx-0.85r_e (n {v['inner_n']}, y {v['y_inner_range'][0]:.3g}-{v['y_inner_range'][1]:.3g}): median {v['inner_median']:.4f} max {v['inner_max']:.4f}; "
                   f"1.3-2.5 r_e (n {v['outer_n']}): median {v['outer_median']:.4f} -> {'PASS' if v['PASS'] else 'FAIL'}" + ("" if graded else " [reported only]"))
                 if graded: allpass &= v["PASS"]

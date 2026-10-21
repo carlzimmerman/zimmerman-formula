@@ -2,7 +2,7 @@
 # CFG960 overnight chain (modelled on chain7b): the pre-registered 1024^3 SCT-M shear test (FROZEN_CRITERIA_1024.md).
 #   SC1x (canonical) -> score MUTATE first -> score;  SC2x (alt) -> score MUTATE first -> score.  Control NCS0 (CFG654, existing).
 # Heavy-job-only gate: waits while any heavy job runs (1024^3 engines: CFG6xx engines, CFG650/654 launchers, CFG596, CFG960's own
-#   engine and launcher; an Ollama llama-server) and until free + inactive memory >= 46 GB and free disk >= 40 GB. Light single-core
+#   engine and launcher; an Ollama llama-server) and until free + inactive memory >= 46 GB and free disk >= 45 GB. Light single-core
 #   lanes do not block the start (as chain7b). The frozen abort rule (RSS > 52 GB or swap growth > 4 GB) is enforced by run_960.py.
 # Checkpoint / resume rule: the engine writes a rolling checkpoint (<tag>_ckpt in the job folder) after every step whose next force
 #   call refreshes the census. If a job exits non-zero (abort rule, crash, reboot) and a checkpoint exists, the chain waits at the gate
@@ -17,7 +17,7 @@ W=$EXT/cfg960_work; ST=$W/chain960_state; LOG=$W/chain960.log; mkdir -p "$ST"
 freegb () { vm_stat | awk '/page size of/{ps=$8}/Pages free/{f=$3}/Pages inactive/{i=$3}END{gsub("\\.","",f);gsub("\\.","",i);printf "%.0f",(f+i)*ps/1e9}'; }
 diskgb () { df -g "$W" | awk 'NR==2{print $4}'; }
 heavy () { pgrep -f "cfg6[0-9][0-9]_pm\.py|run_65[04]\.py|cfg596_pm|cfg960_sctm_pm\.py|run_960\.py|llama-server" >/dev/null; }
-gate () { while heavy || [ "$(freegb)" -lt 46 ] || [ "$(diskgb)" -lt 40 ]; do sleep 60; done; }
+gate () { while heavy || [ "$(freegb)" -lt 46 ] || [ "$(diskgb)" -lt 45 ]; do sleep 60; done; }
 step () {  # step NAME NEEDGATE RESTARTS JOBDIR CMD...
   local n=$1 g=$2 rmax=$3 jd=$4; shift 4
   [ -f "$ST/$n.ok" ] && { echo "$(date) chain960 $n already done (skip)" >> "$LOG"; return 0; }
