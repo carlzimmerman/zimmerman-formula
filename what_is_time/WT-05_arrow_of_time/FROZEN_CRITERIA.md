@@ -212,3 +212,20 @@ edited.
   drift steps) are not exact in this sense, so their B-TJ lines are genuine numerical tests.
 
 κ = ½ FITTED; footings never pooled; cold energy is gravitating mass, no particle species; not theory closed.
+
+---
+
+## AMENDMENT A2 (2026-10-21; POST-SMOKE-TEST, PRE-GRADED-RESULT)
+
+A 1 τ_ff0 smoke test of the R3 step (scratch, outside the lane folder; no functional, drop, rise or class computed or read) stalled:
+the drift's substep count reached 5471 because cells near the drift-region edge empty under the inward drift, so
+τ_ff = (4πGρ_m)^(−1/2) → ∞ there and |v_s| diverges. This is the record's known case (CFG544 README: the empty-cell guard, and the
+frozen CFG544 limiter "|v_s dt| ≤ 0.5 bin width").
+
+- **A2.1** The R3 drift uses CFG544's limiter: |v_s| ≤ 0.5 dx/dt per cell (sign kept), applied in all R3 and Mu3 runs. The mass fraction
+  of the drift region in limited cells is reported (mass-weighted mean and maximum over steps). The substep rule (CFL 0.25) is unchanged.
+- **A2.2** Implementation fixes made in the same smoke test, no rule changed: T_J's tail integral uses a reverse cumulative sum (the first
+  version cancelled to T_J ≈ 0 near the box edge); W is evaluated with floating-point flags silenced in the BLAS product (macOS raises
+  spurious divide flags) and is checked finite.
+
+κ = ½ FITTED; footings never pooled; not theory closed.
