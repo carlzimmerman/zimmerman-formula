@@ -1,0 +1,62 @@
+====================================================================================================
+E2_field_equation -- the action's own field equation at L* -> 0, and D7b / D2 / D7c recomputed with it   [MUTATE: AQUAL replaced by QUMOND]
+====================================================================================================
+
+[Part 1] Euler-Lagrange equations of the action (gamma = 0, static, O(eps))
+  K dW_full/du - a0 u/(a0-u) = 0;  R = K dW_rem/du = u**2/(a0 - u)  (R - u^2/(a0-u) = 0)
+  Phi-eq == div(grad Phi - K P) - K rho : True;  P-eq == (grad Phi - K P) - R(u) P_hat : True
+  balance g - u - R(u) at u = a0 g/(a0+g): 0;  mu = 1 - u/g - x/(1+x): 0
+  general 3-D field: |div(grad Phi - K P) - div(mu grad Phi)| = 6.3e-15; P-eq residual 2.2e-15
+K1a PASS symbolic 0/0/0/0, 3-D residual 6.3e-15/2.2e-15 exact / <1e-10   PAPER49 action -> div[mu(|grad Phi|/a0) grad Phi] = K rho, mu = x/(1+x): AQUAL
+  L_PAPER49 - L_A33(static weak field) = 0;  D7d (P) at L*=0 minus A33 P-eq: 0
+K1b PASS 0/0 0/0   A33/DSF-21 form and D7d's (L),(P) at L*=0 give the same AQUAL equations
+
+[Part 2, Route A] axisymmetric solver checks
+K2 PASS max|A_QUMOND/D7b-1|=0.0069 <=0.02 same sign   Route A in QUMOND mode vs D7b Route M, 4 E x 2 footings
+K3 FAIL AQUAL/BN11=0.7415 QUMOND/BN11=0.7415 |.-1|<=0.10, 0.737+-0.02   BN11 mu1 AQUAL 3.8e-26 at a0=1.2e-10, g_e=1.9e-10; ours 2.818e-26 (1 it)
+K4 PASS max rel err 1.11e-04, l>=1 content 2.3e-10 <=1e-3, <1e-6   isolated AQUAL = algebraic law at r = 0.1, 1, 10 r_M
+K5 PASS grid 0.0028 iter 0.0e+00 <0.02, <1e-6   Ntheta x2 2.7952e-26, Nr x1.5 2.7991e-26, r_in/10 2.8031e-26 vs 2.8031e-26
+K1c PASS |mu F - F_N|/|F - F_N| at r_M = 0.2185 >=0.01   the action leaves h's divergence-free part nonzero; QUMOND sets it to 0
+
+[R1] Cassini Q2 of the canonical law with the action's equation (AQUAL), Route A; QUMOND on the same grid; 'anch' = (AQUAL/QUMOND) x D7b Route M
+  R canonical y_t=None     Q2_AQUAL=1.535e-26 2.391e-26 2.803e-26 3.330e-26  x[1.71,3.70]  AQUAL/QUMOND=1.000,1.000,1.000,1.000  anch x[1.69,3.68]  Hees:FAIL/FAIL  Park:FAIL
+  R canonical y_t=60.0     Q2_AQUAL=1.539e-26 2.402e-26 2.818e-26 3.353e-26  x[1.71,3.73]  AQUAL/QUMOND=1.000,1.000,1.000,1.000  anch x[1.70,3.70]  Hees:FAIL/FAIL  Park:FAIL
+  R canonical y_t=66.3803  Q2_AQUAL=1.538e-26 2.400e-26 2.816e-26 3.350e-26  x[1.71,3.72]  AQUAL/QUMOND=1.000,1.000,1.000,1.000  anch x[1.70,3.70]  Hees:FAIL/FAIL  Park:FAIL
+  R canonical y_t=77.876   Q2_AQUAL=1.538e-26 2.398e-26 2.814e-26 3.346e-26  x[1.71,3.72]  AQUAL/QUMOND=1.000,1.000,1.000,1.000  anch x[1.70,3.69]  Hees:FAIL/FAIL  Park:FAIL
+  R canonical y_t=140.0    Q2_AQUAL=1.536e-26 2.394e-26 2.808e-26 3.337e-26  x[1.71,3.71]  AQUAL/QUMOND=1.000,1.000,1.000,1.000  anch x[1.70,3.68]  Hees:FAIL/FAIL  Park:FAIL
+  R alt       y_t=None     Q2_AQUAL=1.726e-26 2.557e-26 3.027e-26 3.635e-26  x[1.92,4.04]  AQUAL/QUMOND=1.000,1.000,1.000,1.000  anch x[1.90,4.01]  Hees:FAIL/FAIL  Park:FAIL
+  R alt       y_t=60.0     Q2_AQUAL=1.729e-26 2.565e-26 3.040e-26 3.654e-26  x[1.92,4.06]  AQUAL/QUMOND=1.000,1.000,1.000,1.000  anch x[1.91,4.03]  Hees:FAIL/FAIL  Park:FAIL
+  R alt       y_t=66.3803  Q2_AQUAL=1.729e-26 2.564e-26 3.038e-26 3.652e-26  x[1.92,4.06]  AQUAL/QUMOND=1.000,1.000,1.000,1.000  anch x[1.91,4.03]  Hees:FAIL/FAIL  Park:FAIL
+  R alt       y_t=77.876   Q2_AQUAL=1.728e-26 2.563e-26 3.036e-26 3.648e-26  x[1.92,4.05]  AQUAL/QUMOND=1.000,1.000,1.000,1.000  anch x[1.91,4.03]  Hees:FAIL/FAIL  Park:FAIL
+  R alt       y_t=140.0    Q2_AQUAL=1.727e-26 2.559e-26 3.031e-26 3.641e-26  x[1.92,4.05]  AQUAL/QUMOND=1.000,1.000,1.000,1.000  anch x[1.91,4.02]  Hees:FAIL/FAIL  Park:FAIL
+R1  AQUAL Q2 / Hees 2sigma: canonical 1.71-3.73x, alt 1.92-4.06x; AQUAL/QUMOND 1.000-1.000 -> D7b's FAIL SURVIVES
+
+[R3] D7c family under AQUAL (SPARC verdicts from D7c, unchanged: algebraic RAR fits)
+  n=2       SPARC(D7c) PASS | AQUAL Q2/Hees canonical 1.31,2.11,2.38,2.70 alt 1.51,2.38,2.70,3.10 | AQUAL/QUMOND 1.000-1.000 | Q2 both: QUMOND False -> AQUAL False | BOTH False
+  n=8       SPARC(D7c) fail | AQUAL Q2/Hees canonical 0.45,0.71,0.77,0.84 alt 0.54,0.84,0.92,1.00 | AQUAL/QUMOND 1.000-1.000 | Q2 both: QUMOND True -> AQUAL False | BOTH False
+  S         SPARC(D7c) PASS | AQUAL Q2/Hees canonical 1.19,1.60,1.63,1.63 alt 1.42,2.02,2.10,2.16 | AQUAL/QUMOND 1.000-1.000 | Q2 both: QUMOND False -> AQUAL False | BOTH False
+  beta=1.25 SPARC(D7c) PASS | AQUAL Q2/Hees canonical 1.18,1.79,1.94,2.10 alt 1.39,2.11,2.31,2.54 | AQUAL/QUMOND 1.000-1.000 | Q2 both: QUMOND False -> AQUAL False | BOTH False
+  beta=2    SPARC(D7c) PASS | AQUAL Q2/Hees canonical 1.00,1.07,1.03,0.99 alt 1.24,1.45,1.42,1.38 | AQUAL/QUMOND 1.000-1.000 | Q2 both: QUMOND False -> AQUAL False | BOTH False
+  beta=2.5  SPARC(D7c) PASS | AQUAL Q2/Hees canonical 0.95,0.77,0.70,0.61 alt 1.21,1.14,1.05,0.94 | AQUAL/QUMOND 1.000-1.000 | Q2 both: QUMOND False -> AQUAL False | BOTH False
+  beta=3    SPARC(D7c) PASS | AQUAL Q2/Hees canonical 0.93,0.57,0.48,0.39 alt 1.20,0.92,0.79,0.66 | AQUAL/QUMOND 1.000-1.000 | Q2 both: QUMOND False -> AQUAL False | BOTH False
+  beta=4    SPARC(D7c) PASS | AQUAL Q2/Hees canonical 0.90,0.34,0.25,0.18 alt 1.20,0.63,0.48,0.35 | AQUAL/QUMOND 1.000-1.000 | Q2 both: QUMOND False -> AQUAL False | BOTH False
+  beta=5    SPARC(D7c) PASS | AQUAL Q2/Hees canonical 0.89,0.22,0.15,0.10 alt 1.20,0.46,0.32,0.21 | AQUAL/QUMOND 1.000-1.000 | Q2 both: QUMOND False -> AQUAL False | BOTH False
+  beta=6    SPARC(D7c) PASS | AQUAL Q2/Hees canonical 0.89,0.16,0.10,0.06 alt 1.21,0.36,0.23,0.14 | AQUAL/QUMOND 1.000-1.000 | Q2 both: QUMOND False -> AQUAL False | BOTH False
+R3  No-go SURVIVES; least-tense SPARC passer under AQUAL: beta=4 worst cell 1.20x Hees 2sigma
+
+[Part 2, Route B] 3-D FFT solver checks
+K6 PASS 0.0026 <=0.02   FFT linear AQUAL EFE: B_par=1.5515 (ana 1.5556), B_perp=1.3355 (ana 1.3353)
+K7 PASS 0.0150 <=0.03   single mass, |dF_B - dF_A|/|dF_A| at r_M (axis both sides, equator); Route B 1 it
+K8 PASS QUMOND 1.1887 vs D2 1.1897; AQUAL 192/8 1.1887 vs 256/11 1.1897; iter 0.0e+00 <=0.002, <=0.005, <1e-5   theta = 0, 20 kAU, PREREG primary, canonical
+
+[R2] wide binaries, 1+1 Msun, 20 kAU, orientation-averaged (3-pt GL in cos theta), Route B on N=256, m=11
+  canonical PREREG_primary  x_e=1.8996  gamma_v AQUAL 1.1748  QUMOND(same grid) 1.1748  Delta +0.0000  D2 1.1751 -> 1.1751  (per-orientation a_rel A/Q: 1.3577/1.3577,1.3771/1.3771,1.4071/1.4071)
+  canonical PREREG_alt      x_e=2.2201  gamma_v AQUAL 1.1510  QUMOND(same grid) 1.1510  Delta +0.0000  D2 1.1514 -> 1.1514  (per-orientation a_rel A/Q: 1.3004/1.3004,1.3205/1.3205,1.3562/1.3562)
+  alt       PREREG_primary  x_e=1.5735  gamma_v AQUAL 1.2091  QUMOND(same grid) 1.2091  Delta +0.0000  D2 1.2095 -> 1.2095  (per-orientation a_rel A/Q: 1.4380/1.4380,1.4593/1.4593,1.4899/1.4899)
+  alt       PREREG_alt      x_e=1.8389  gamma_v AQUAL 1.1813  QUMOND(same grid) 1.1813  Delta +0.0000  D2 1.1817 -> 1.1817  (per-orientation a_rel A/Q: 1.3685/1.3685,1.3909/1.3909,1.4297/1.4297)
+R2  max |gamma_AQUAL - gamma_QUMOND| = 0.0000 (threshold 0.005; A24's claim <= 0.019) -> gamma_v = 1.175/1.210 STANDS
+
+R4  D7d's (L),(P) at L*=0 reduce to the same AQUAL equation (K1b True); BN11 target reproduced by AQUAL (0.742) -> D7d INCONSISTENT.  L*->0 reference for D7d Route N (canonical / alt, E0..E3): canonical: 1.535e-26,2.391e-26,2.803e-26,3.330e-26; alt: 1.726e-26,2.557e-26,3.027e-26,3.635e-26
+
+runtime 64 s, peak RSS parent 1048 MB, 3-D child 1087 MB (sequential, one child at a time)
+E2_FIELD_EQUATION COMPLETE: 9/10 checks PASS.
