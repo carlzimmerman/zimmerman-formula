@@ -1,0 +1,89 @@
+D6_U_MECHANISM  (kappa = 1/2 FITTED; footings never pooled; not theory closed)  [MUTATE]
+
+=== Q1  CFG959's retained fraction f_P = 3 s^2/(v^2+3 s^2) against P4's u
+  cluster f_P used by CFG959 = 1.0 (record)  ->  u_P4 = 1 - f_P = 0.000: 13.0 sigma below 0.4716  [identity mapping u = f_P = 1: +14.6 sigma]
+  v/sigma needed for u_P4 = 0.4716: 1.636 (primary) / 1.833 (identity)
+  T1 NO MATCH
+  d ln u_catch / d ln M_v at fixed f_ret, y_v -> 0: symbolic -1/6 ; numeric (y_v=1e-6) -0.16680
+  A21 eq.(12) states +1/6 ; f_P (dispersion-supported) slope = 0  ->  T1s RECORD ERROR
+K1 PASS 4.20e-04 <1e-3 :: this lane's law model reproduces CFG687's per-cluster P_l and P_N
+K2 FAIL 0.58057 0.47157+-0.001 :: A21/A29 MID inversion reproduced from the npz
+  data u per bin (canonical): 0.392+-0.167 0.494+-0.143 0.435+-0.066 0.533+-0.083 0.513+-0.054 0.644+-0.066 1.284+-0.246 1.082+-0.121 | MID 0.5806+-0.0400
+  data u per bin (alt): 0.426+-0.182 0.536+-0.155 0.473+-0.072 0.579+-0.090 0.558+-0.059 0.702+-0.072 1.401+-0.268 1.182+-0.133 | MID 0.6324+-0.0436
+  K_SP = r_sp/r200c = 1.3674 (A41: 1.3674); per-cluster r_sp median 1.403 Mpc
+
+=== Q2  stream counting in the self-similar collisionless infall solution (EdS, radial orbits)
+  self-similar tables loaded from doors_push_2026_10_22/D6_u_mechanism/d6_selfsim_tables.npz (key 25054dc845bc); --resolve recomputes
+  eps=1.0000: iterations 11 (last max|dlnM| 0.0098), pericentre passages 902, lambda_sp = r_sp/r_ta = 0.3612, d lnM/d ln lambda (0.01-0.03) = 0.625
+  eps=0.5000: iterations 8 (last max|dlnM| 0.0096), pericentre passages 277, lambda_sp = r_sp/r_ta = 0.2685, d lnM/d ln lambda (0.01-0.03) = 0.901
+  eps=0.3333: iterations 10 (last max|dlnM| 0.0072), pericentre passages 234, lambda_sp = r_sp/r_ta = 0.2036, d lnM/d ln lambda (0.01-0.03) = 0.988
+K3 FAIL 0.625 0.75+-0.05 :: Bertschinger eps=1: interior M ~ lambda^(3/4) reproduced by the iteration
+K3b PASS 0.3612 0.364+-0.01 :: [AMENDMENT A1, post-prototype] Bertschinger eps=1 outermost caustic r_sp/r_ta = 0.364 reproduced
+K4 PASS 1.000006 1+-1e-4 (tolerance loosened from 1e-6 post-run: interpolation offset 6e-6) :: M(lambda=1) = M_ta normalisation
+  H-1S eps=1.0000: u_3D at x = 0.1/0.3/0.5/0.8/0.95 -> 0.034 0.077 0.128 0.248 0.117
+  H-VR eps=1.0000: u_3D at x = 0.1/0.3/0.5/0.8/0.95 -> 0.500 0.502 0.515 0.601 0.351
+  H-1S eps=0.5000: u_3D at x = 0.1/0.3/0.5/0.8/0.95 -> 0.073 0.115 0.181 0.266 0.129
+  H-VR eps=0.5000: u_3D at x = 0.1/0.3/0.5/0.8/0.95 -> 0.502 0.501 0.516 0.594 0.357
+  H-1S eps=0.3333: u_3D at x = 0.1/0.3/0.5/0.8/0.95 -> 0.102 0.161 0.209 0.278 0.136
+  H-VR eps=0.3333: u_3D at x = 0.1/0.3/0.5/0.8/0.95 -> 0.502 0.523 0.548 0.590 0.361
+  data u_MID by gas-mass tercile: canonical: 0.788+-0.163 0.486+-0.041 0.570+-0.060 ; alt: 0.861+-0.178 0.530+-0.045 0.619+-0.065
+  H-1S eps=1.0000 canonical: u_MID 0.062 (z -11.3), chi2 16013.8/8 p 0.00e+00 -> FAIL; bins 0.02 0.03 0.03 0.04 0.06 0.08 0.10 0.16 ; terciles 0.082 0.064 0.050 P2m FAIL
+  H-1S eps=1.0000 alt      : u_MID 0.062 (z -11.3), chi2 20305.3/8 p 0.00e+00 -> FAIL; bins 0.02 0.03 0.03 0.04 0.06 0.08 0.10 0.16 ; terciles 0.082 0.064 0.050 P2m FAIL
+  H-1S eps=0.5000 canonical: u_MID 0.106 (z -10.1), chi2 3698.3/8 p 0.00e+00 -> FAIL; bins 0.05 0.06 0.07 0.08 0.10 0.12 0.15 0.22 ; terciles 0.126 0.110 0.090 P2m FAIL
+  H-1S eps=0.5000 alt      : u_MID 0.106 (z -10.1), chi2 4809.8/8 p 0.00e+00 -> FAIL; bins 0.05 0.06 0.07 0.08 0.10 0.12 0.15 0.22 ; terciles 0.126 0.110 0.090 P2m FAIL
+  H-1S eps=0.3333 canonical: u_MID 0.137 (z -9.2), chi2 1822.8/8 p 0.00e+00 -> FAIL; bins 0.09 0.09 0.10 0.11 0.13 0.15 0.18 0.25 ; terciles 0.154 0.143 0.120 P2m FAIL
+  H-1S eps=0.3333 alt      : u_MID 0.137 (z -9.2), chi2 2417.7/8 p 0.00e+00 -> FAIL; bins 0.09 0.09 0.10 0.11 0.13 0.15 0.18 0.25 ; terciles 0.154 0.143 0.120 P2m FAIL
+  H-VR eps=1.0000 canonical: u_MID 0.489 (z +0.5), chi2 39.0/8 p 4.92e-06 -> FAIL; bins 0.50 0.50 0.50 0.49 0.49 0.49 0.49 0.59 ; terciles 0.473 0.497 0.495 P2m PASS
+  H-VR eps=1.0000 alt      : u_MID 0.489 (z +0.5), chi2 48.0/8 p 9.84e-08 -> FAIL; bins 0.50 0.50 0.50 0.49 0.49 0.49 0.49 0.59 ; terciles 0.473 0.497 0.495 P2m FAIL
+  H-VR eps=0.5000 canonical: u_MID 0.492 (z +0.6), chi2 37.3/8 p 1.01e-05 -> FAIL; bins 0.50 0.50 0.50 0.50 0.49 0.49 0.50 0.59 ; terciles 0.479 0.505 0.490 P2m PASS
+  H-VR eps=0.5000 alt      : u_MID 0.492 (z +0.6), chi2 45.5/8 p 2.92e-07 -> FAIL; bins 0.50 0.50 0.50 0.50 0.49 0.49 0.50 0.59 ; terciles 0.480 0.505 0.490 P2m FAIL
+  H-VR eps=0.3333 canonical: u_MID 0.495 (z +0.7), chi2 36.7/8 p 1.29e-05 -> FAIL; bins 0.50 0.50 0.50 0.50 0.50 0.49 0.51 0.60 ; terciles 0.483 0.510 0.493 P2m PASS
+  H-VR eps=0.3333 alt      : u_MID 0.496 (z +0.7), chi2 44.5/8 p 4.59e-07 -> FAIL; bins 0.50 0.50 0.50 0.50 0.50 0.49 0.51 0.60 ; terciles 0.483 0.510 0.493 P2m FAIL
+  CLASS H-1S: canonical FAILS, alt FAILS
+  CLASS H-VR: canonical FAILS, alt FAILS
+
+=== Q3a  KiDS-1000 isolated-galaxy lensing (Brouwer+21 Fig. 3): u inside the galaxy splashback
+K5 PASS v_circ(bin1,R0) 123.7 km/s; sqrt(C00)/err 1.000 ~1 :: B21 data + covariance load as CFG801
+  canonical: u_gal (M_b = M*, minimum) = 0.660 +- 0.028  ->  +6.8 sigma above 0.4716: T3a EXCLUDED
+     per bin 0.653+-0.068 0.686+-0.071 0.734+-0.064 0.604+-0.035; r_sp,gal 0.174 0.209 0.241 0.269 Mpc
+     u_gal reaches 0.4716 only if every M_b is -0.251 dex from the zero-knob M*
+     radial u (bin 2, inner->outer): 1.05 0.86 0.74 0.64 0.64 0.65
+  alt      : u_gal (M_b = M*, minimum) = 0.729 +- 0.031  ->  +8.4 sigma above 0.4716: T3a EXCLUDED
+     per bin 0.721+-0.075 0.757+-0.078 0.810+-0.070 0.668+-0.039; r_sp,gal 0.182 0.219 0.252 0.281 Mpc
+     u_gal reaches 0.4716 only if every M_b is -0.333 dex from the zero-knob M*
+     radial u (bin 2, inner->outer): 1.17 0.95 0.82 0.71 0.70 0.71
+  P2g H-1S eps=1.0000 canonical: predicted u_gal 0.041 vs measured 0.660 -> FAIL
+  P2g H-1S eps=1.0000 alt      : predicted u_gal 0.039 vs measured 0.729 -> FAIL
+  P2g H-1S eps=0.5000 canonical: predicted u_gal 0.086 vs measured 0.660 -> FAIL
+  P2g H-1S eps=0.5000 alt      : predicted u_gal 0.084 vs measured 0.729 -> FAIL
+  P2g H-1S eps=0.3333 canonical: predicted u_gal 0.120 vs measured 0.660 -> FAIL
+  P2g H-1S eps=0.3333 alt      : predicted u_gal 0.118 vs measured 0.729 -> FAIL
+  P2g H-VR eps=1.0000 canonical: predicted u_gal 0.503 vs measured 0.660 -> FAIL
+  P2g H-VR eps=1.0000 alt      : predicted u_gal 0.503 vs measured 0.729 -> FAIL
+  P2g H-VR eps=0.5000 canonical: predicted u_gal 0.504 vs measured 0.660 -> FAIL
+  P2g H-VR eps=0.5000 alt      : predicted u_gal 0.505 vs measured 0.729 -> FAIL
+  P2g H-VR eps=0.3333 canonical: predicted u_gal 0.506 vs measured 0.660 -> FAIL
+  P2g H-VR eps=0.3333 alt      : predicted u_gal 0.507 vs measured 0.729 -> FAIL
+
+=== Q3b  X-COP hydrostatic masses (12 clusters): a shear-free cluster u
+  canonical b=0.0: u_X(0.3-1.0 R500) = 0.344 +- 0.016; vs 0.4716: z -3.2 -> INCONSISTENT
+  canonical b=0.3: u_X(0.3-1.0 R500) = 0.230 +- 0.010; vs 0.4716: z -6.4 -> INCONSISTENT
+  alt       b=0.0: u_X(0.3-1.0 R500) = 0.385 +- 0.017; vs 0.4716: z -2.2 -> INCONSISTENT
+  alt       b=0.3: u_X(0.3-1.0 R500) = 0.257 +- 0.011; vs 0.4716: z -5.6 -> INCONSISTENT
+  de-circularisation (canonical): b=0 vs b=0.3 differ by 6.1 sigma -> NOT to the frozen standard (b systematic dominates)
+  de-circularisation (alt): b=0 vs b=0.3 differ by 6.2 sigma -> NOT to the frozen standard (b systematic dominates)
+  [post hoc, reported only] X-COP in the shear bands' x = r/r_sp (r_sp = K_SP r200c), INNER 0.106-0.326, MID 0.326-1.0:
+    canonical b=0.0: INNER-x 0.287+-0.013  MID-x 0.548+-0.021
+    canonical b=0.3: INNER-x 0.193+-0.009  MID-x 0.364+-0.014
+    alt       b=0.0: INNER-x 0.321+-0.014  MID-x 0.611+-0.023
+    alt       b=0.3: INNER-x 0.216+-0.009  MID-x 0.405+-0.015
+    median X-COP coverage reaches x = 0.77 of r_sp (MID-x values use the covered part only)
+
+=== VERDICT LINES
+  Q2 H-1S: {'canonical': 'FAILS', 'alt': 'FAILS'}
+  Q2 H-VR: {'canonical': 'FAILS', 'alt': 'FAILS'}
+  crisp: A21 eq.(12) slope sign: -1/6 at fixed f_ret, record says +1/6 | CFG959 f_P gives u_P4 = 0.00, 13 sigma from 0.47 | galaxy u_gal,min 0.660 (canonical) excludes 0.47 at 6.8 sigma (stat) | galaxy u_gal,min 0.729 (alt) excludes 0.47 at 8.4 sigma (stat)
+  VERDICT: CRISP FINDING
+K6 PASS -0.16667 vs -0.16680 |diff|<1e-3 :: deep-limit slope: symbolic and numeric agree
+
+D6_U_MECHANISM COMPLETE: 5/7 checks PASS.
