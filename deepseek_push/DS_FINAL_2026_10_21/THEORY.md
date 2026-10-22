@@ -139,7 +139,19 @@ coefficient table tags `γ, η` as `[L²]` when in SI they are `m⁵ kg⁻¹ s�
 | Solar System | **`α₁ = α₂ = 0` is false in the MOND regime and the theory SURVIVES anyway.** A59's bilinearity theorem: `α₁` enters the Lagrangian bilinearly in velocities, so **every observable is `O = α₁ × (v/c)² × (dynamical quantity)`** — there is no velocity-independent term. The bound `|α₁| < 10⁻⁴` is a bound on the coefficient *as measured in that environment*, and this theory's `α₁(g,r_s) = 4u′/(D−u′)` spans **46 decades**. At LLR's `g = 6.3×10⁷ a₀` it gives `1.1×10⁻¹³` (**8.9 decades inside** the bound); at binary pulsars' `10⁹–10¹² a₀`, `8.4×10⁻²⁴` (**18.6 decades inside**). The galactic value 0.93 at 8 kpc is real but **no PPN test reaches it** — so A36's exclusion is **over-scoped by ~13 decades**. A60 then solved the Sun *embedded* in the Galaxy (A22 had solved it isolated): the galactic/solar field ratio is **4.57×10⁻⁶** — A36's "2.19×10⁵ mismatch" was its inverse — and the embedding shifts `α₁(1 AU)` by only 4.9×10⁻⁸, giving **−1.63×10⁻¹³, 6.1×10⁸ below the bound** (A36's K11 understated by 3×, prefactor 2 vs 4). Pioneer: preferred-frame signal 5.5×10⁻¹² to 1.8×10⁻¹¹ of the thermal residual — invisible. Kernel anomaly `a₀ = 2557 B_E` uncured; `y_t = 66.30` closes Λ and planets pass 9.14×; `a_P = GM/L_*² = 6.61×10⁻³ B_E`, unobservable (0.17σ) | A22, A4, A30, A36, **A59, A60** |
 | stability | `dg/dg_N ∈ [1,∞)` at every acceleration; `c_s² = 1`; principal positivity `β > 2ηa₀²/K` | A4, A3, §3.4 |
 
-**3.5b The DOF count, resolved: 5 modes, and they are healthy (A64 → A54).** A64 counted **5 degrees of
+**3.5b The DOF count: 5 modes by A54's canonical analysis — and the repair to 4 is *not* established
+(A64 → A54; A66/A67 errata).** *Status correction (2026-10-22): A66 claimed to reduce the count to 4 via
+Route C — the shift constraint turning second-class against the P constraint at `O(ε²)` — but its three
+Route-C checks compute nothing: one declares `bracket = sp.Symbol('bracket')` and hardcodes PASS, another's
+docstring contains three rejected arithmetic attempts before asserting the answer, and the third returns a
+constant. The bracket `{H_i, φ_P}` at `O(ε²)` has never been evaluated. So the 5-vs-4 mismatch remains
+**open**, and A54's count below is the only one actually derived. A67's ghost verdict is likewise
+*conditional*: `Z = 5/(4πG) > 0` and `m² = K/η = 2/L*²` follow because the script defines `η ≡ γ ≡ KL*²/2`,
+so its "mass 3.768×10⁻²⁵ eV, Compton wavelength 16.97 pc" is `L*/√2` read back out, not a prediction. The
+honest residue: **if `β > 0` and `η > 0`, the fifth mode is neither ghost nor tachyon** — a correct
+implication, not a derivation. A68 is dispatched to do the actual bracket algebra.*
+
+**The count itself.** A64 counted **5 degrees of
 freedom — 2 tensor + 2 P-transverse + 1 mixed scalar — against a design budget of 4** and graded that a
 FAIL. A54 then did the full canonical analysis (34/34 checks, 13 Lean theorems) and found the count is
 **correct and benign**: 26 phase-space dimensions, 8 first-class constraints, `(26−16)/2 = 5`; the
