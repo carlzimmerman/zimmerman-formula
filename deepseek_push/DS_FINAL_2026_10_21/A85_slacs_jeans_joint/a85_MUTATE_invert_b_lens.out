@@ -1,0 +1,249 @@
+======================================================================================================================
+A85 -- JOINT SLACS JEANS + LENSING SOLVER      (mutation: invert_b_lens)
+======================================================================================================================
+
+  data: /Users/carlzimmerman/new_physics/zimmerman-formula/real_research/data/slacs_auger2009_lenses.tsv
+  sha256 d78d7627d6bbcc07   rows 85 -> 70 usable (dropped: geometry 15, sigma/e_sigma 0, Re(V) 0)
+  kappa convention: a0 = kappa * 1.87252e-10 ; kappa_DE = 0.460659 -> a0 = 8.625932e-11 ; kappa=1/2 -> a0 = 9.362600e-11
+  aperture: R_ap = 1.5 arcsec, Gaussian PSF FWHM 1.4 arcsec (sigma = 0.5946 arcsec)
+  date 2026-10-22 ; deprojection grid: 1600 log-spaced radii, 300-node Gauss-Legendre per radius
+
+  reference values quoted in report.md (external, read from A70/A71/Treu; not recomputed here):
+     A70: B = 1.1738, dlnR/dlnB = 0.7775, dlnR/dlnk = 0.1205, Delta chi2 = 0.26, scatter 0.0927 dex, budget 0.0446 dex,
+          R_E/R_e shape residual +0.172 +- 0.060 (2.9 sigma)
+     A71: kappa = 0.37765 +- 0.12069, B = 1.1916 +- 0.0364, joint tension T = 5.69, Delta chi2(kappa) = 6.35
+     Treu+2010: 1.000 +- 0.0361 dex ; A70 lensing error 0.0143 dex ; A71 statistical kappa error 0.0258
+     task anchors: a0(kappa_DE) = 8.6257e-11, a0(kappa=1/2) = 9.355e-11, kappa_DE = 0.460659
+     A80_slacs_sersic: absent at the start of this lane -> n = 4 baseline, n-curve generated here
+
+----------------------------------------------------------------------------------------------------------------------
+TASK 1a -- NUMERICAL 3D DEPROJECTION OF THE SERSIC PROFILE
+----------------------------------------------------------------------------------------------------------------------
+
+  n=4: Int_0^inf 4 pi rho r^2 dr = 0.99999992 ; 2D total = gammainc(2n,inf) = 0.99999998 ; diff 6.28e-08
+  [K1] PASS  3D mass integral equals the 2D mass (n=4): 0.99999992 vs 0.99999998 (|diff| 6.28e-08)
+  deprojection round trip max |2 Int rho r dr/sqrt(r^2-R^2) / Sigma(R) - 1| = 5.14e-10
+  [K2] PASS  Abel deprojection round trip recovers Sigma(R) at 6 radii: max rel err 5.14e-10
+  exact vs Prugniel-Simien M3D/Mtot: max |diff| 5.424% at R/Re = 0.02 ; at R=Re 0.054% (P&S nu = 8.596)
+  M3D/Mtot at R/Re: 0.02:0.0045 0.05:0.0176 0.10:0.0441 0.30:0.1525 0.50:0.2449 1.00:0.4154 2.00:0.6143 3.00:0.7254 5.00:0.8421 10.00:0.9431
+  deviation by radius: 0.02:5.424% 0.05:3.369% 0.10:2.155% 0.30:0.807% 0.50:0.404% 1.00:0.054% 2.00:0.106% 3.00:0.134% 5.00:0.123% 10.00:0.072%
+  the P&S fit is excellent at R ~ Re (0.05%) and degrades inwards (5.4% at 0.02 Re); the aperture and
+  the lens equation weight R >= 0.2 Re, so the impact on this lane's numbers is quoted in K12b.
+  [K3] PASS  at R = Re -- where the lensing mass is defined -- the exact and P&S deprojections agree to <0.2%: 0.054% at R=Re
+
+  Sersic-index table:
+      n     b_n      M3D(inf)   M3D(<Re)   nu_PS
+     2.5   4.6709   1.0000000   0.394318     5.588
+     3.0   5.6702   1.0000000   0.402971     6.591
+     4.0   7.6692   0.9999999   0.415359     8.596
+     5.0   9.6687   0.9999945   0.423960    10.599
+     6.0  11.6684   0.9999413   0.430380    12.601
+  [K4] PASS  3D mass integral = 1 for every Sersic index tested: max |M3D-1| = 5.87e-05
+
+----------------------------------------------------------------------------------------------------------------------
+TASK 1b -- LENSING SOLVER: B_i(R_E, kappa) AND THE A70 CROSS-CHECK
+----------------------------------------------------------------------------------------------------------------------
+
+  at A70's footing a0 = 1.1320e-10 (P&S-equivalent table): median B_i(R_E) = 0.8508   [A70: 1.1738]
+  [K5] FAIL  reproduces A70's root-found boost B_req at a0 = 1.132e-10: 0.8508 vs 1.1738 (-27.52%)
+  dlnR_E/dlnB   = -0.7846 +- 0.0440 (median +- 16-84 half-width)   [A70: 0.7775]
+  dlnR_E/dlnk   = 0.1239                                        [A70: 0.1205]
+  [K6] FAIL  reproduces A70's lensing response exponents dlnR/dlnB and dlnR/dlnk: -0.7846 / 0.1239 vs 0.7775 / 0.1205
+
+  thermal a0 = 8.625700e-11: median B_i(R_E) = 0.8191, 16-84 = 0.686-1.068, range 0.39-1.51
+  lens-equation residual |M2D(R_E)/M_E - 1| max = 2.89e-08 over 70 lenses
+  [K7] PASS  every solved B_i satisfies the lens equation to 1e-6: max residual 2.89e-08
+  lensing residual at B = 1: mean ln(R_pred/R_obs) = -0.1597 +- 0.0261 (-0.0694 dex), scatter 0.0947 dex
+  response route to the shared boost: exp(-mean/0.7865) = 1.2251 ; median per-lens B_i = 0.8191
+  scatter of the per-lens B_i: 16-84 = 0.686-1.068 (a factor 1.56) -- the per-galaxy photometric error
+  that B_i absorbs; sigma(log B) of the MEAN from the SEM = 0.0144 dex
+  Newtonian limit (a0=0): M2D_from_g vs M_* 2D fraction, max rel diff 5.91e-06 (12 lenses)
+  [K8] PASS  M2D_from_g reduces to the analytic projected stellar mass when a0 -> 0: max 5.91e-06
+  line-of-sight truncation: M2D(rmax=1e6 kpc)/M2D(1e7 kpc) - 1 = -2.38e-06
+  [K9] PASS  lensing integral converged in rmax: -2.38e-06
+  law limits: g/g_N at g_N=1e-6 m/s^2, a0=8.6e-11: 1.000000 ; deep-MOND g/sqrt(g_N a0) at g_N=1e-20: 1.000005
+  [K10] PASS  Langmuir law has the right Newtonian and deep-MOND limits: 1.000000 / 1.000005
+
+----------------------------------------------------------------------------------------------------------------------
+TASK 1c -- JEANS SOLVER: VALIDATION
+----------------------------------------------------------------------------------------------------------------------
+
+  median-parameter lens: z_l 0.1925 z_s 0.6055 R_E 4.070 kpc R_e 7.535 kpc R_E/R_e 0.540 f_* 0.690
+  median-lens B_i(R_E) at the thermal a0 = 0.7702 ; aperture R_ap = 4.8028 kpc, PSF sigma = 1.9036 kpc
+
+  Jeans ODE residual max |d(nu sr^2)/dr + 2 beta nu sr^2/r + nu g| / (nu g): beta=0 4.96e-04, beta=0.25 5.12e-04
+  [K11] PASS  the numerical Jeans solution satisfies the ODE it was built from: 4.96e-04 / 5.12e-04
+  virial identity  sigma_ap(R_ap->inf) vs sqrt((1/3) Int rho r g d3r / M_*):
+     beta=+0.00 : 203.6557 vs 203.5555 km/s   ratio-1 = +4.922e-04
+     beta=+0.25 : 203.6461 vs 203.5555 km/s   ratio-1 = +4.450e-04
+     beta=-0.15 : 203.6596 vs 203.5555 km/s   ratio-1 = +5.113e-04
+  [K12] PASS  virial identity: infinite-aperture luminosity-weighted sigma_los^2 = (1/3)Int rho r g d3r/M_*: max |ratio-1| 5.11e-04 over beta = 0, +0.25, -0.15
+
+  exact vs P&S deprojection at the median lens: B_i 0.7702 vs 0.7715 ; sigma_ap 240.21 vs 240.86 km/s (0.27%)
+  [K12b] PASS  switching A70's P&S deprojection for the exact one changes sigma_ap by <1%: 0.27%
+
+  PSF aperture kernel W: Marcum-Q vs direct 2D quadrature, max rel diff 1.62e-14 (Q=R_ap/sigma=2.5230)
+  the kernel actually used by the solver differs from the declared Gaussian by 0.00e+00
+  [K13] PASS  PSF aperture weight equals a direct 2D integration of the Gaussian over the fibre: max 1.62e-14 ; solver kernel 0.00e+00
+  aperture radius in arcsec: min 1.500000 max 1.500000 (RAP_FACTOR=1.0)
+  fibre flux fraction median 0.3819 ; analytic gammainc(2n, b (1.5"/Re)^(1/n)) median 0.3819
+  [K14] PASS  the solver's aperture is 1.5 arcsec and its fibre flux matches the analytic Sersic fraction: R_ap 1.500000-1.500000 arcsec ; fraction 0.3819 vs 0.3819
+
+  per-lens prediction, independent brute-force reimplementation (l=sqrt(r^2-R^2) LOS quadrature,
+  direct 2D Gaussian convolution, own deprojection grid): 244.23 vs 243.80 km/s, ratio-1 = -1.78e-03
+  [K15] PASS  the fast per-lens sigma_ap agrees with an independent brute-force reimplementation: 243.80 vs 244.23 km/s (-1.78e-03)
+
+  grid convergence (NR 1100->1700, nR 171->257): beta=0 3.43e-05, beta=0.25 2.65e-05 relative
+  [K16] PASS  sigma_ap is converged in the radial and image-plane grids: 3.43e-05 / 2.65e-05
+  beta=-0.15 -> sigma_ap = 237.26 km/s
+  beta=+0.00 -> sigma_ap = 240.21 km/s
+  beta=+0.15 -> sigma_ap = 243.70 km/s
+  beta=+0.25 -> sigma_ap = 246.42 km/s
+  [K17] PASS  sigma_ap is monotone increasing in beta (projection term has the right sign): beta -0.15..+0.25 gives 237.3..246.4 km/s
+
+----------------------------------------------------------------------------------------------------------------------
+TASK 2 -- FISHER MATRIX AND THE B-kappa DEGENERACY
+----------------------------------------------------------------------------------------------------------------------
+
+  median-parameter lens (B_i = 0.7702, beta=0):
+     dln sigma_ap/dlnB    = -0.4706
+     dln sigma_ap/dlnkappa = 0.0345
+     ratio (sigma channel) = -0.0732 ; lensing ratio 0.1205/0.7775 = 0.1550
+  per-lens lensing Jacobian at the thermal point: dlnR/dlnB = -0.7865 (16-84 -0.837--0.749), dlnR/dlnk = 0.1003 (16-84 0.086-0.124)
+  per-lens medians over 70 lenses: dln sigma/dlnB = -0.4721 (16-84 -0.477--0.461), dln sigma/dlnkappa = 0.0330 (16-84 0.028-0.044)
+  ratio dln sigma/dlnk / dln sigma/dlnB: median -0.0699, 16-84 -0.095--0.058
+
+  2x2 Fisher in (lnB, ln kappa) from (R_E, sigma_ap), A70 per-lens R_E error 0.0446 dex + e_sigma:
+     F = [[10235.3, -949.2], [-949.2, 102.0]]   det = 1.4280e+05
+     eigenvalues 10323.4 / 13.8329 -> condition number 746.3
+     B-kappa correlation coefficient -0.9291
+     sigma(kappa) from R_E alone  = 0.6292   (B marginalised)
+     sigma(kappa) from sigma_ap alone = 0.7318
+     sigma(B) from R_E alone = 0.0359 dex, from R_E+sigma = 0.0116 dex
+     sigma(kappa) from R_E+sigma  = 0.2677 ; improvement factor 2.350
+  with the OBSERVED R_E scatter 0.0927 dex instead of the formal budget:
+     det = 3.9726e+04 ; condition number 1235.5 ; sigma(kappa) R_E alone 1.3077 -> joint 0.4187 (factor 3.123)
+
+  constraint directions in the (lnB, ln kappa) plane:
+     lensing  (dlnR/dlnB, dlnR/dlnk) = (-0.7865, 0.1003) -> 172.73 deg from the lnB axis
+     sigma    (dlnsig/dlnB, dlnsig/dlnk) = (-0.4706, 0.0345) -> 175.81 deg
+     angle between the two constraints = 3.079 deg ; sin = 0.0537
+  [K18] PASS  Fisher matrix is non-singular and the two channels are not exactly parallel: det 1.4280e+05, cond 746.3, angle 3.079 deg
+  [K19] PASS  sigma(kappa) improves when sigma_ap is added to R_E (the degeneracy is formally broken): 0.6292 -> 0.2677 (factor 2.35)
+
+----------------------------------------------------------------------------------------------------------------------
+TASK 3a -- ROUTE 1 (no free normalisation) AND ROUTE 2 (shared B) AT TWO KAPPA
+----------------------------------------------------------------------------------------------------------------------
+
+  a0 = 8.625700e-11 (kappa = 0.4606)
+    Route 1, beta = 0     : mean dlog10(sigma_pred/sigma_obs) = -0.0103 +- 0.0065 dex, scatter 0.0542 dex, chi2/N = 3.89, median ratio 0.9733
+    Route 1, beta profiled: beta_hat = +0.2096 ; mean -0.0007 dex, scatter 0.0545 dex, chi2/N = 3.65
+
+  a0 = 9.362600e-11 (kappa = 0.5000)
+    Route 1, beta = 0     : mean dlog10(sigma_pred/sigma_obs) = -0.0112 +- 0.0065 dex, scatter 0.0540 dex, chi2/N = 3.93, median ratio 0.9708
+    Route 1, beta profiled: beta_hat = +0.2202 ; mean -0.0010 dex, scatter 0.0544 dex, chi2/N = 3.65
+  [K20] PASS  Route 1 (zero free normalisation) reproduces the observed dispersions to better than 20% per lens: mean -0.0103 dex, scatter 0.0542 dex at the thermal point
+  [K21] PASS  profiling beta never increases the Route-1 chi2 and returns a beta inside the prior range: chi2 272.60 -> 255.34 at beta = +0.2096
+
+  a0 = 8.625700e-11 (kappa = 0.4606)
+    Route 2, beta = 0    : B = 0.8151 (+0.0043/-0.0043 dex), chi2 = 838.3 (R_E 277.2 + sigma 561.1), chi2/dof = 6.03
+       log10 B = -0.0888 +- 0.0043 dex ; Treu tension -2.27 sigma (denominator 0.0391 dex) ; scale-corrected -0.93 sigma
+    Route 2, beta profiled: B = 0.8437 (+0.0043/-0.0043 dex), chi2 = 821.3 (R_E 285.3 + sigma 536.0), chi2/dof = 5.95
+       log10 B = -0.0738 +- 0.0043 dex ; Treu tension -1.89 sigma (denominator 0.0391 dex) ; scale-corrected -0.77 sigma
+       profiled beta_hat = +0.250
+
+  a0 = 9.362600e-11 (kappa = 0.5000)
+    Route 2, beta = 0    : B = 0.8214 (+0.0044/-0.0043 dex), chi2 = 834.8 (R_E 276.9 + sigma 557.9), chi2/dof = 6.01
+       log10 B = -0.0854 +- 0.0044 dex ; Treu tension -2.19 sigma (denominator 0.0391 dex) ; scale-corrected -0.89 sigma
+    Route 2, beta profiled: B = 0.8505 (+0.0043/-0.0043 dex), chi2 = 816.4 (R_E 284.1 + sigma 532.3), chi2/dof = 5.92
+       log10 B = -0.0703 +- 0.0043 dex ; Treu tension -1.80 sigma (denominator 0.0391 dex) ; scale-corrected -0.74 sigma
+       profiled beta_hat = +0.250
+  [K22] PASS  Route 2 has an interior chi2 minimum with a Delta-chi2=1 interval on both sides: B = 0.8151 (+0.0043/-0.0043 dex)
+
+  log-parabola interpolation of sigma_ap(B): max |interp/direct - 1| = 7.86e-06 over 16 evaluations
+  [K23] PASS  the sigma_ap(B) interpolation used by the joint fit reproduces direct evaluations: max 7.86e-06
+  chi2 at B_hat = 838.3 ; at B_hat(1 +- 5 sigma_B) = 863.0 / 863.6
+  [K24] PASS  the Route-2 chi2 is a genuine minimum (rises by >20 at +-5 sigma_B): 838.3 -> 863.6 / 863.0
+
+----------------------------------------------------------------------------------------------------------------------
+TASK 3b -- DOES ROUTE 1 REPRODUCE THE DISPERSIONS?  WHAT ABSORBS THE OFFSET: n OR beta?
+----------------------------------------------------------------------------------------------------------------------
+
+  Sersic-index sweep at the thermal a0, beta = 0 (A80 absent -> n = 4 baseline, curve generated here):
+      n    median B_i(R_E)   mean dlog10(sig_pred/sig_obs)   scatter   chi2/N   sigma_ap(median lens)
+     2.5        0.8218              -0.0176                    0.0539     4.69      233.55 km/s
+     3.0        0.8207              -0.0180                    0.0535     4.52      234.42 km/s
+     4.0        0.8191              -0.0103                    0.0542     3.89      240.21 km/s
+     5.0        0.8178              +0.0035                    0.0555     3.50      249.10 km/s
+     6.0        0.8169              +0.0205                    0.0568     4.09      259.90 km/s
+
+  dln sigma_ap / dln n at n = 4, B_i held at its own R_E solution: 0.1301
+  the Sersic index that zeroes the Route-1 mean offset: n_0 = 4.74
+
+  anisotropy sweep at n = 4, thermal a0:
+     beta = -0.15 : mean -0.0159 dex, scatter 0.0541 dex, chi2/N = 4.26
+     beta = -0.10 : mean -0.0141 dex, scatter 0.0541 dex, chi2/N = 4.13
+     beta = +0.00 : mean -0.0103 dex, scatter 0.0542 dex, chi2/N = 3.89
+     beta = +0.10 : mean -0.0060 dex, scatter 0.0543 dex, chi2/N = 3.72
+     beta = +0.20 : mean -0.0012 dex, scatter 0.0545 dex, chi2/N = 3.65
+     beta = +0.25 : mean +0.0014 dex, scatter 0.0546 dex, chi2/N = 3.66
+  the constant anisotropy that zeroes the Route-1 mean offset: beta_0 = +0.223  (prior range -0.15..+0.25)
+  ratio: |offset| at beta=0 is 0.0103 dex; the n range 2.5..6 spans -0.0176..0.0205 dex; the beta range spans -0.0159..0.0014 dex
+  [K25] PASS  sigma_ap(median lens) increases monotonically with the Sersic index: n=2.5..6: 233.55, 234.42, 240.21, 249.10, 259.90 km/s
+  [K26] PASS  the beta that zeroes the Route-1 offset lies inside the declared anisotropy prior: beta_0 = +0.223
+
+----------------------------------------------------------------------------------------------------------------------
+TASK 3c -- KAPPA SWEEP WITH THE SHARED B PROFILED (no Treu prior), beta = 0, n = 4
+----------------------------------------------------------------------------------------------------------------------
+
+  the sigma channel's chi2/dof at the fiducial Route-2 fit is 8.13 -> an empirical error inflation of 2.852
+
+     kappa     a0 [m/s^2]   kappa_P3   B_RE   B_sigma   B_joint   chi2_min   dchi2   dchi2(scaled)
+   0.2000   3.745040e-11   0.1655   0.7455   0.7904    0.7719      871.03    61.13       7.54
+   0.2800   5.243056e-11   0.2317   0.7647   0.8001    0.7854      858.86    48.96       5.79
+   0.3600   6.741072e-11   0.2979   0.7834   0.8096    0.7987      848.72    38.82       4.37
+   0.4400   8.239088e-11   0.3641   0.8017   0.8190    0.8117      840.23    30.34       3.22
+   0.4607   8.625932e-11   0.3812   0.8064   0.8214    0.8151      838.28    28.38       2.96
+   0.5000   9.362600e-11   0.4138   0.8153   0.8259    0.8214      834.80    24.90       2.50
+   0.5800   1.086062e-10   0.4800   0.8332   0.8350    0.8342      828.63    18.73       1.72
+   0.6600   1.235863e-10   0.5462   0.8509   0.8439    0.8469      823.54    13.64       1.11
+   0.7400   1.385665e-10   0.6124   0.8685   0.8528    0.8595      819.40     9.50       0.65
+   0.8000   1.498016e-10   0.6620   0.8816   0.8594    0.8690      816.85     6.95       0.39
+   0.9500   1.778894e-10   0.7862   0.9141   0.8756    0.8924      812.28     2.38       0.02
+   1.1000   2.059772e-10   0.9103   0.9464   0.8916    0.9157      809.90     0.00       0.00
+
+  best-fit kappa = 1.1000 (a0 = 2.059772e-10, kappa_P3 = 0.9103) ; Delta chi2 = 1 crossings: [1.037, beyond scan]
+  Delta chi2 over the whole scan (kappa 0.20 -> 1.10) = 61.13  [A70: 0.26 ; A71: 6.35]
+  at the thermal kappa the sigma channel alone wants B_sigma = 0.8214 vs B_RE = 0.8064 (a 1.9% mismatch)
+  best-fit B slides 0.7719 -> 0.9157 across the scan (the B-kappa degeneracy direction)
+  with the errors inflated to chi2/dof = 1 (R_E 0.0927 dex, sigma x 2.85): best kappa = 1.1000, Delta chi2(0.20 -> best) = 2.96, Delta chi2 over the scan = 7.54
+  [K27] PASS  the joint (R_E, sigma_ap) chi2 profile yields a finite Delta-chi2=1 bound on kappa: best 1.100, crossings 1.037 / edge
+  [K28] FAIL  the best-fit B decreases monotonically along the kappa scan (a real degeneracy direction): B(0.20) = 0.7719, B(1.10) = 0.9157
+  [K29] PASS  the joint B always lies between the R_E-only and sigma-only best fits: max |B_joint - mid| / width = 0.089
+  [K30] PASS  the kappa preference is BELOW 3 sigma once the sigma channel's excess scatter is included (pre-registered: Delta chi2 < 9): Delta chi2(thermal -> best) scaled = 2.96
+  [K31] PASS  the inflated error model gives chi2/dof = 1 at the fiducial kappa (the scaling is applied correctly): chi2/dof = 0.96
+
+----------------------------------------------------------------------------------------------------------------------
+DERIVED NUMBERS QUOTED IN report.md (so that every figure in the report appears literally here)
+----------------------------------------------------------------------------------------------------------------------
+  Route 1 mean offset = -2.33 per cent ; scatter = 13.29 per cent ; median ratio 0.9733
+  median fractional e_sigma = 0.0628 ; the Route-1 scatter is 2.12 x the median error
+  B_i(thermal) / B_i(A70 footing) = 0.8191 / 0.8508 = 0.9627 (+-3.73 per cent)
+  a0(thermal) / a0(A70) = 8.625700e-11 / 1.1320e-10 = 0.7620
+  lensing deficit at B = 1, thermal a0 = -0.0694 dex = -14.76 per cent in R_E
+  Route 2 (beta=0): B = 0.8151 +- 0.0043 (formal) +- 0.0107 (scaled by sqrt(chi2/dof))
+  sigma channel RMS residual = 2.83 x e_sigma = 17.8 per cent per lens
+  Route-1 chi2/N = 3.89 means the mean offset is 1.58 sigma (SEM)
+  Fisher: angle 3.079 deg, sin = 0.0537, condition number 746.3, det = 1.4280e+05
+  sigma(kappa): R_E alone 0.6292 -> joint 0.2677 (factor 2.35) ; A71: 0.0258 stat + 0.1179 syst = 0.1207
+  moving kappa 0.4607 -> 0.80: the linearised Fisher predicts Delta chi2 = 1.6, the exact profile gives -21.4
+  Route-1 mean offset change from kappa_DE to kappa = 1/2: -0.0009 dex
+  a0 ratio (best-fit kappa 1.1000) / (thermal) = 2.059772e-10 / 8.625700e-11 = 2.3879
+  moving kappa 0.4607 -> 1.10: the exact profile gives Delta chi2 = -28.4
+
+----------------------------------------------------------------------------------------------------------------------
+SUMMARY
+----------------------------------------------------------------------------------------------------------------------
+
+  29/32 checks PASS ; runtime 64.3 s ; mutation invert_b_lens
+  FAILED: K5, K6, K28

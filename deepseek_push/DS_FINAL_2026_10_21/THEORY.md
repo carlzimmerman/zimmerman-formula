@@ -334,8 +334,8 @@ At the thermal point `R = 3π/2` simply leaves a set that never had a principle;
 nothing was there. (ii) `L_MOND/ℓ₁ = 2` becomes **`4π/Z = 2π√(3/(8π)) = 2.170803764` exactly** — the
 "twice the cell" reading is replaced by an equally exact closed form. Nothing else fails: the falsifier band
 `κ ∈ [0.3415, 0.5265]` contains both (κ_P3 = 0.381 at the thermal point), the `L★` window and the `y_t` band
-pass on both, and the IMF tension is unchanged at 1.97σ because A71 already fit at `8.544e-11` — essentially
-the thermal point. **`3π/2` and `12π²` are no less clean than `4` and `32π`; they are simply different.**
+pass on both, and the IMF tension is 1.97σ in the `R_E`-only fit because A71 already fit at `8.544e-11` —
+essentially the thermal point (it rises to **2.27σ** when the `σ_ap` channel is added; A85). **`3π/2` and `12π²` are no less clean than `4` and `32π`; they are simply different.**
 The data do not force the choice (0.27σ apart), so the branch is a declared choice, not a derivation.
 
 **3.6c β is measured — and it settles the footing war (A78, 30/30).** β is not a field-redefinition
@@ -787,6 +787,23 @@ A70's *verdict* stands at `κ = 0.5`; its *number* does not transfer.
 **The IMF tension gets slightly worse, not better.** At the joint `κ = 0.3777`, SLACS demands
 `B = 1.2248`, while the posterior compromise is `1.1916` — **outside Treu's 95 % bound `1.1767`**
 (1.97σ, up from A70's 1.80σ). Relieving it needs `κ = 0.4928`, a +4.5σ shift.
+
+**The `σ_ap` channel does not rescue it (A85, 32/32, 8 mutations).** Adding the on-disk SDSS aperture
+dispersions — the test that should break the `B`–`κ` degeneracy — does not:
+
+- **Route 1 (zero free normalisation).** With each lens's `B_i` fixed by `R_E` alone, the spherical Jeans
+  solver predicts `σ_ap` **2.33 % low** (`−0.0103 ± 0.0065` dex, **1.58σ**) with **13.3 %** per-lens scatter.
+  Lensing mass = dynamical mass at the few-% level with no dark particle — but the 2.3 % is fully absorbed
+  by `n₀ = 4.74` **or** `β_ani = +0.223`, neither measured, so it is not evidence either way. **The 13 %
+  scatter is.**
+- **Route 2 (shared `B`).** `B = 1.2269 ± 0.0043 (formal) ± 0.0106 (scaled)`, **2.27σ** above Treu —
+  *worse* than the 1.97σ of the `R_E`-only fit, because dynamics pushes `B` up while lensing alone does not.
+- **The degeneracy is not broken.** `dlnσ/dlnκ = 0.0345` vs `dlnσ/dlnB = 0.4706`, ratio **0.0732** —
+  *smaller* than the lensing ratio 0.1550, so the two constraints are nearly **parallel** (3.08° apart,
+  Fisher condition number **746**). `σ(κ)` improves `0.629 → 0.268`, still **10× A71's statistical error**.
+  The exact profile prefers `κ = 1.10` at `Δχ² = −28.4`, but that channel sits at `χ²/dof = 8.13`; rescaled
+  to 1 it is `Δχ² = 2.96`, under 3σ. **It neither confirms nor kills A71's 6.35** — SLACS stays κ-blind
+  without per-lens Sérsic `n` and better `σ` errors.
 
 **What would settle it:** a wide-binary `γ_v` measurement at 18–22 kAU — A24's 4.5σ EFE test — cuts the
 joint κ error from **0.1207 to 0.0605**, 3.7× the reduction of SPARC at `N = 1000` (which buys only 2 %).
