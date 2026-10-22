@@ -313,15 +313,16 @@ the κ = ½ branch and remain true; only their labelling as "the theory's value"
 | `a₀/(cH₀)` | 1/7 | **1/5.20** | — |
 | `L_MOND/ℓ₁` | 2 exactly | **2.171** | — |
 
-**Two interpretive stories die with κ = ½, and they are the real cost.** (i) A19's saturation cap
-enumerates `R ∈ {1,2,4} ⇒ κ ∈ {1, 0.7071, ½}`, and `3π/2` is **not** in that set — the cap family no longer
-contains the thermal point. (ii) `L_MOND = 2ℓ₁` becomes `2.171 ℓ₁`, so the exact "twice the cell" reading is
-lost. Nothing else fails: the falsifier band `κ ∈ [0.3415, 0.5265]` contains both (0.381 P3 at the thermal
-point), the `L★` window and the `y_t` band pass on both, and the IMF tension is unchanged at 1.97σ because
-A71 already fit at `8.544e-11` — essentially the thermal point. **`3π/2` and `12π²` are no less clean than
-`4` and `32π`; they are simply different.** The data do not force the choice (0.27σ apart), so the branch is
-a declared choice, not a derivation — and κ = ½ remains available as a fit if one prefers `R = 4` and
-`L = 2ℓ₁`.
+**Neither apparent casualty is one, on inspection.** (i) A19's saturation cap was already principle-free by
+its own words — *"Nothing in the class picks one; the data pick the quarter, but the data measure κ itself"* —
+and `R = 1/κ²` is a tautology at every κ, so `{1,2,4}` were three hand-chosen integers, not a derivation.
+At the thermal point `R = 3π/2` simply leaves a set that never had a principle; nothing is lost because
+nothing was there. (ii) `L_MOND/ℓ₁ = 2` becomes **`4π/Z = 2π√(3/(8π)) = 2.170803764` exactly** — the
+"twice the cell" reading is replaced by an equally exact closed form. Nothing else fails: the falsifier band
+`κ ∈ [0.3415, 0.5265]` contains both (κ_P3 = 0.381 at the thermal point), the `L★` window and the `y_t` band
+pass on both, and the IMF tension is unchanged at 1.97σ because A71 already fit at `8.544e-11` — essentially
+the thermal point. **`3π/2` and `12π²` are no less clean than `4` and `32π`; they are simply different.**
+The data do not force the choice (0.27σ apart), so the branch is a declared choice, not a derivation.
 
 The closure relation itself is unchanged and holds for every κ:
 
