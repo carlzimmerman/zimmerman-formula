@@ -52,3 +52,44 @@ At N = 30,000 (the frozen error model) and σ_sys = 0.020, Arm A's floor is sepa
 N needed for 3σ (canonical) is 4,300–7,500 at σ_sys 0.02 and 8,400–14,500 at σ_sys 0.04. The record's demonstrated
 inter-group disagreement is 0.174 in γ_v, which is 3.2× the canonical ceiling. DR4's NSS/RV screening of triples,
 not N, therefore decides whether the fork can be scored.
+
+---
+
+## AMENDMENT A1 (2026-10-22, pre-data, append-only)
+
+Requested by the coordinator after lane E2. Everything above is kept unchanged. `PREREGISTRATION_DR4.md` and the hash
+files are untouched.
+
+**Why.** Lane E2 (`doors_push_2026_10_22/E2_field_equation/`, commits 021ee82abb and 474050bcd8) derives the action's
+own field equation at L★ → 0. It is **AQUAL** with μ = x/(1+x), not QUMOND. The §4 numbers above came from QUMOND.
+
+**AQUAL predictions** (E2 `e2_field_equation_results.json` → `R2.*.gamma_AQUAL_anch`; verified there). Same setup as
+§4: 1+1 M☉, circular, 20 kAU, orientation-averaged.
+
+| g_ext (frozen) | canonical | alt |
+|---|---|---|
+| primary 1.778e-10 m/s² | **1.167** (QUMOND 1.175) | **1.199** (QUMOND 1.210) |
+| alternative 2.078e-10 m/s² | **1.145** (QUMOND 1.151) | **1.173** (QUMOND 1.182) |
+
+Two further readings:
+- **Screened reading.** At L★ = 24 pc it gives γ_v − 1 = 8.1e-6 (lane D7d, `D7d_screened_q2/README.md`). That is
+  medium-first-like: indistinguishable from 1.000.
+- **Medium-first** stays at 1.000.
+
+**Separations recomputed, using the AQUAL value itself as the law-first expectation.** N = 30,000 and σ_sys = 0.020.
+"3σ ceiling" is the σ_sys above which 3σ is unreachable at any N.
+
+| footing / g_ext | z (σ_fit 0.019 mock) | z (DR3-calibrated 0.025) | N for 3σ (mock / DR3-cal) | 3σ ceiling on σ_sys |
+|---|---|---|---|---|
+| canonical / primary | 6.04 | 5.20 | 4,031 / 6,991 | 0.0556 |
+| alt / primary | 7.20 | 6.20 | 2,720 / 4,718 | 0.0662 |
+| canonical / alternative | 5.25 | 4.52 | 5,614 / 9,738 | **0.0483** |
+| alt / alternative | 6.27 | 5.40 | 3,701 / 6,420 | **0.0577** |
+
+**Effect on §3.**
+- **The scoring rule is unchanged**: whole-catalogue γ̂, raw γ̂ and both distances printed, UNDECIDED if the condition
+  fails. The decision rows still use the registered Arm A floor.
+- **The recompute gives a tighter ceiling.** With the AQUAL value at the alternative g_ext, the condition for the fork
+  to be scoreable on every frozen g_ext becomes **σ_sys < 0.048 (canonical) / < 0.058 (alt)**, not 0.054 / 0.064.
+  This pre-data amendment adopts the tighter values. They can only move outcomes to UNDECIDED, never to a verdict.
+- No frozen statistic, estimator, cut or verdict line of the pre-registration is changed.
