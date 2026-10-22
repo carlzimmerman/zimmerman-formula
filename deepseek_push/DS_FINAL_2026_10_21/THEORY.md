@@ -272,6 +272,30 @@ nonlinear.
 > so it does **not** derive MOND's shape — the law still comes from the Langmuir gate (§3.5). One premise
 > for the scale, one for the shape.
 
+**3.6a Confidence ledger on the κ derivation — what is certain, what is premise, what is marginal.**
+
+- **CERTAIN (algebra, reproducible in one line).** `a₀ = cH_Λ/(2π)` ⟹ `κ_DE = a₀/(c√(Gρ_DE)) =
+  √(2/(3π)) = Z/(4π) = 0.460659` identically; `2cH_Λ/a₀ = 4π`; and `a₀ = cH₀/7 ⟺ a₀ = cH_Λ/Z ⟺ κ = ½`,
+  so "1/7" and "1/Z" are the same statement in two frames. These are checked numerically and do not depend
+  on any lane's code.
+- **COMPUTED (22/22 and 26/26, mutation-tested).** In a 260,129-expression census the thermal coefficient
+  `1/(2π)` is the only one with a derivation (`0/540` of the `1/7` hits are derivable); the cancellation is
+  mass-independent to 10⁻¹²; and `Ω_Λ = 32π/147` has 65 rivals inside 0.11σ with `√3 − π/3` 5.32× closer.
+- **PREMISE — not a theorem.** That the acceleration scale is the one at which a carrier's Compton
+  wavelength equals its thermal wavelength at `T_dS`. **Nothing in the action forces this.** It derives the
+  *scale* and not MOND's shape (the response is analytic, slope 1). If the premise is wrong, `a₀` is not
+  predicted and κ returns to being a fit. One more honest wrinkle: the P mass is ~10⁸ × `T_dS`, so this is
+  a statement about the *horizon's* thermal wavelength, not about a thermal population of P particles —
+  the mass-independence is what makes that distinction possible, and it is also the weakest link.
+- **MARGINAL (data).** `0.030σ` vs `0.299σ` is a **2.6 : 1 preference, not a detection**. The measurement's
+  total error is 32 %, so a 1 % agreement of central values is suggestive, not decisive; and choosing
+  between two candidate coefficients adds a factor-2 look-elsewhere. **κ = ½ is not excluded** — it sits
+  0.27σ from the derived value and both are inside the joint 95 % region.
+- **DEAD (computed).** `1/7` as a derivation, `Ω_Λ = 32π/147` as a prediction: both killed by A73.
+- **THE HONEST ONE-LINER.** *κ = Z/4π is the only value with a derivation; the data prefer it 2.6 : 1 over
+  ½; a 2.9 % `a₀` measurement decides, and until then "derived" means "derived from one stated premise",
+  not "proved".*
+
 The closure relation itself is unchanged and holds for every κ:
 
 $$
