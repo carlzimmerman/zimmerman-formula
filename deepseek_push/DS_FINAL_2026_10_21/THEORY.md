@@ -426,7 +426,8 @@ numbers are consistent, and no correction to its coefficient is required — but
 `k = 1/r` explicitly, because with the P-mass `k = 2π/λ_P` the same expression would give ≈0.10
 and the distinction matters for the observable, not for the verdict.
 
-**6.2 The referee's audit — four grades, four conflicts, and one falsifier that fires.** A58 audited the
+**6.2 The referee's audit — four grades, five conflicts, and one falsifier that fires only on an excluded
+footing.** A58 audited the
 four answers before they reached this document. The four answers compute cleanly — **34 of 50 ledger
 claims are BACKED**, and every re-derivable number agrees with its lane — but they **fail as closure**:
 three are status upgrades of a result their own lane did not establish. The document-wide upgrade rate is
@@ -452,31 +453,47 @@ all, and the joint fit misses by 6.84 dex.
 
 | conflict | magnitude | consequence |
 |---|---|---|
-| A51's `κ = 0.371` fed into A54's gates | **30.6 %** (`y_t` 66.30 → 46.01) | `y_t = 46.01` is **outside the theory's own pre-registered [60, 140] band** — **the falsifier fires** |
+| A51's measured `κ = 0.371` fed into A54's gates | **not a conflict** — `y_t = 118.97`, **INSIDE** [60,140] | the band [60,140] on `y_t` is exactly `κ ∈ [0.3415, 0.5265]`; measured κ sits inside, near the upper edge |
+| the `Ω_Λ = 1` footing (`a₀ = 1.132×10⁻¹⁰`) → `κ = 0.605` | **30.6 %** (`y_t` 66.35 → 45.82) | **the falsifier fires only here** — and A51's measurement disfavours this footing at 1.97σ |
 | A51's `κ` fed into A56's `L_*` | **17.2 %** (24.03 → 19.90 pc) | still inside A20's 24–90 pc window, but the edge is closer than quoted |
 | A50's horizon derivation vs A51's measurement | **circular + blind** | A50's route assumes what A51 measures; no independent check |
 | A53's medium vs A56's `σ_c` | **6.84 dex** | the medium supplies no velocity scale; `σ_c` is imported, not produced |
 
-The first row is the one that matters. **A51's measurement, taken at face value, drives the theory's own
-turn-off falsifier to fire.** The resolution is not to repair the number but to state it: κ = ½ is
-*measured* at `0.371 ± 0.119`, the alternatives 0.4824 and 0.4979 are **undecidable even at N = 1000**, and
-the one place where a measured κ changes a *falsifiable* prediction is A54's `y_t`, which moves from 66.30
-(inside [60,140]) to 46.01 (outside). **That is a real tension, not a presentation defect**, and it is why
-§6.1's Q1 verdict is an obstruction rather than a derivation.
+**Correction to the first row, and it matters in the theory's favour.** The "`y_t` 66.30 → 46.01" figure is
+**not** what A51's `κ = 0.371` produces. Solving `I(y_t) = 8π/κ²` at each κ gives: κ = 0.5 → `y_t = 66.35`;
+κ = 0.371 → **`y_t = 118.97`**; κ = 0.605 → `y_t = 45.82`. So `46.01` belongs to **κ = 0.604**, which is A4's
+*alternative* footing, and A58's conflict row conflated "A51's measured κ" with "the Ω_Λ = 1 footing's κ".
+The falsifier band [60,140] on `y_t` maps exactly to **`κ ∈ [0.3415, 0.5265]`**. A51's measurement sits
+**inside** it: the central value 0.371 gives `y_t = 118.97` (near the 140 edge but inside), and κ = ½ gives
+66.35 dead centre. **The falsifier does not fire on the measurement.** It fires only on the `Ω_Λ = 1`
+footing, where κ = 0.605 → `y_t = 45.82`. That footing is the one A51's own fit disfavours — 1.97σ high —
+so the firing is a property of a footing the data already pushes against, not a verdict on the measured
+value. The residual tension is narrower and honest: A51's **lower 1σ edge**, κ = 0.252, gives `y_t = 255`
+and does fall outside the band above 140. So the measurement's tail straddles the upper edge while its
+centre is inside. §6.1's Q1 verdict remains an obstruction — but as a derivation question about κ, not
+because the theory's own prediction is excluded.
 
-**The fifth conflict — and it is prior to the other four: three footings for `a₀`, and κ scales linearly
-with it.** A51's own scripts carry `A0_QUOTED = 1.132e-10` (P3, three-digit) and `A0_THEORY = 0.5 ×
+**The fifth conflict — three footings for `a₀`, and κ scales linearly with it. The measurement breaks the
+tie.** A51's own scripts carry `A0_QUOTED = 1.132e-10` (P3, three-digit) and `A0_THEORY = 0.5 ×
 cH₀√(8π/3) = 1.131204e-10`; A54 uses `A0 = 9.36e-11`; A62's "canonical" exact value is `c²√(Λ/32π) =
-9.354173e-11`; and A51's SPARC best fit lands at **`8.0815e-11`** — 28.6 % below P3's footing and 14 %
-below A62's canonical. The reason is the Λ that enters: `Λ_bare = 3H₀²/c²` gives `1.132e-10`, while
-`Λ_obs = 3Ω_ΛH₀²/c²` gives `9.354e-11`, and the two differ by `√Ω_Λ = 0.8275`. Since
-`κ = a₀/(c√(Gρ_bare))`, a 28.6 % shift in `a₀` is a 28.6 % shift in `κ`: the same SPARC data that gives
-κ = 0.371 on P3's footing gives **κ ≈ 0.307** on A62's canonical footing and **κ ≈ 0.266** at the fit's
-own minimum. **Every κ-dependent number in this document — including A54's `y_t`, and therefore the
-falsifier's firing — inherits this ambiguity.** The honest statement: the theory predicts `a₀` only once
-you choose between `Λ_bare` and `Λ_obs`, and that choice is exactly Q1's unresolved content. The three
-values span a factor 1.40, which is larger than A51's 21 % total error bar, so **the footing choice is
-currently the dominant systematic in κ**, above the coherent floor A51 identified.
+9.354173e-11`; and A51's SPARC best fit lands at **`8.0815e-11`** — 28.6 % below P3's footing. The reason
+is the Λ that enters: `Λ_bare = 3H₀²/c²` gives `a₀ = 1.132×10⁻¹⁰`, while `Λ_obs = 3Ω_ΛH₀²/c²` gives
+`9.354×10⁻¹¹`, and the two differ by `√Ω_Λ = 0.8275`. Computing κ on each footing through
+`κ = Z a₀/(2cH_Λ)`: the `Ω_Λ = 1` footing gives **κ = 0.6051**, the canonical/`Λ_obs` footing gives
+**κ = 0.5000** exactly (by construction — the canonical `a₀` *is* the κ = ½ point), and the SPARC fit's own
+minimum gives **κ = 0.4320** (matching A51's `κ_DE = 0.4317`, its `κ_P3 = 0.3572` being the same fit in
+the other convention).
+
+**This is not an undetermined ambiguity — the data picks an end.** A51's measured band is
+`κ = 0.371 ± 0.119`, i.e. `[0.252, 0.490]`. That band **contains** the canonical κ = 0.500 (marginally, at
+the upper edge) and the fit's own κ = 0.432, but it **excludes** the `Ω_Λ = 1` footing's κ = 0.605 at
+**1.97σ**. So the measurement already discriminates: the footing that fires the falsifier is the footing the
+data disfavours. What remains genuinely ambiguous is only the 0.432–0.500 range, and that span
+(`y_t` 88.3 → 66.4) is comfortably inside [60,140] throughout. The spread of all three footings, factor
+1.40, is *comparable to but contained within* A51's own 32 % relative error bar — so it is not an
+additional independent systematic above A51's, it is a component of the same uncertainty. The honest
+statement: the theory's `a₀` is only defined once you choose `Λ_bare` vs `Λ_obs`, and A51's κ measurement
+prefers `Λ_obs` at 2σ — which is exactly the choice under which the falsifier does not fire.
 
 ---
 
