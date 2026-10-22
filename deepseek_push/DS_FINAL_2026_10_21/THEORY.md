@@ -24,9 +24,24 @@ deforms the law: at coefficient 2 the law is off by `0.55 a₀` at `g = a₀/3`)
 terms `(η/2)E_iE^i` and `−(γ/2)(D_iP^i)² − (γ/4)F_ijF^ij`, and by nothing else — in particular
 **no P–curvature coupling**.
 
-**P3 — The vacuum.** `a₀ = κ c √(G ρ_bare)` with `κ = ½`, and `Λ_bare ≥ 3H₀²/c²` (forced by
-`β > 0`, §4.4). Since `ρ_bare = ρ_DE/Ω_Λ`, this gives **`a₀ = 1.132×10⁻¹⁰ m/s²`** — the theory's
-own value, not fitted to galaxies.
+**P3 — The vacuum.** `a₀ = κ c √(G ρ_bare)` with `κ = ½`, and `Λ_bare = 3H₀²/c²` with
+`β = (2/3)Ω_m`. That pair is **not chosen**: it is the unique closure satisfying both
+`ρ_bare = ρ_crit` (so `a₀ = 1.1312×10⁻¹⁰ m/s²`) and the clock's own stress identity
+`ρ_β = −9βH²/(4K) = −Ω_m ρ_crit` (A42, residual 1.8×10⁻¹⁵). It follows that
+`Λ_bare/Λ_obs = 1/(1−Ω_m) = 1.4624` **exactly** — the "footing ratio" 1.4626 is the matter
+fraction, not a fine-tuning. **`a₀ = 1.132×10⁻¹⁰ m/s²`** at `H₀ = 67.40` is the theory's own value, not fitted to galaxies —
+and **A46 has now run the honest background fit, with a two-sided answer.** (i) The model is an
+*exact reparametrisation* of flat ΛCDM in the distance ratios,
+`E_model(z;Ω_m,h) = E_ΛCDM(z;Ω_m/(1+Ω_m), h√(1−Ω_m))`, so `D_M/r_d`, `D_H/r_d`, `R`, `ℓ_A` and the
+whole SNe diagram are invariant; on BAO+SNe+CMB (13+1580+3 points) **Δχ² = −0.58, ΔAIC = −0.58**.
+**The cosmology is not excluded**, and A42's "10.3σ" compared an expansion coefficient to a
+density — withdrawn. (ii) The degeneracy forces `H₀ = 56.8 km/s/Mpc` and hence `a₀ = 9.53×10⁻¹¹`;
+fixing `H₀ = 67.40` to keep `a₀ = 1.132×10⁻¹⁰` costs **Δχ² = +58.8 (7.7σ)** without the baryon
+prior and +749 (27.4σ) with it, and the failure is the **ruler** (`r_d = 169.8` vs 147.09 Mpc,
++15.5 %), not `H(z)`. So the footing question is now **data-separated**: the observed-vacuum
+footing fits the background and the bare one costs 7.7σ. Which is the theory's own depends on
+whether `H₀` is predicted or measured — and A62 resolves that, because `a₀/(cH₀) = 2κ/Z` ties the
+two, so `κ = ½` fixes the ratio and `H₀` fixes the scale.
 
 **P4 — The cold sector.** A collisionless medium, not a particle, carrying the cosmic share of
 each system's catchment, `M_c = (Ω_c/Ω_b) M_b = 5.3643 M_b`, of which a fraction `u(r)` sources
@@ -109,7 +124,7 @@ a bounded `β`. Do **not** read `γ = KL_*²/2` as a derivation of `L_*`: it is 
 |---|---|---|
 | lensing = dynamics | `Φ = Ψ` at O(ε); `(Φ−Ψ)/Ψ = O(Ψ) = 2.63×10⁻⁷`; first slip is second order. The sector is a **charge** sector: exactly one O(ε) lapse source, so the stress is dust at leading order | A12, A3, A32 (clean room) |
 | GW speed | `c_T² = 1` **exactly** for the speed. Off the `P̄=0` background the mode also acquires a **mass** — a mass, not a speed | A3, A31 (check 28) |
-| Solar System | α₁ = α₂ = 0, β = 1 **for `r ≪ λ = 17 pc`**; the galactic-regime α₁ is **not computed** (A36). Kernel anomaly `a₀ = 2557 B_E` uncured; `y_t = 66.30` closes Λ and lets all planets pass with 9.14× margin; P adds `a_P = GM/L_*² = 6.61×10⁻³ B_E`, unobservable (0.17σ) | A22, A4, A30 |
+| Solar System | α₁ = α₂ = 0, β = 1 **for `r ≪ λ = 17 pc`** — and A36 now computes the MOND regime: **α₁ = 4u′/(D−u′) = 0.046–5.19** for `r = 1–30 kpc`, with `u′ = a₀²/(g+a₀)²`, `D = 1+(kL_*)²u′/2`, and `k` the **perturbation** wavenumber `1/r` (so `D ≈ 1` and `α₁ ≈ 4u′/(1−u′)`; K13's gradient term is ≤ 5.2×10⁻⁶). The structural claim "α₁ = α₂ = 0" is therefore **false in the MOND regime**, and the bound is met where it is measured for one reason only: **`u′ → 0` at high acceleration**. Earth–Moon at `2.4×10⁷ a₀` gives `α₁ ≈ 1.4×10⁻¹⁴`; binary pulsars at `≳10⁹ a₀` give `≲10⁻¹⁸`; `1 AU` sits at `5.2×10⁷ a₀`, so `α₁(1 AU) ≈ 1.3×10⁻¹⁴` (A36's K11: 5.4×10⁻¹⁴). The O(0.1–5) value needs `g ~ a₀`, reached only at kpc radii in galaxies and at `7.2×10³ AU` around the Sun — where no precision PPN test exists and the effect is `α₁ v²/c² ≈ 10⁻⁶`. The bound `|α₁| < 10⁻⁴` is satisfied where it is measured; A59 computes the margin in each environment. Kernel anomaly `a₀ = 2557 B_E` uncured; `y_t = 66.30` closes Λ and lets all planets pass with 9.14× margin; P adds `a_P = GM/L_*² = 6.61×10⁻³ B_E`, unobservable (0.17σ) | A22, A4, A30, A36 |
 | stability | `dg/dg_N ∈ [1,∞)` at every acceleration; `c_s² = 1`; principal positivity `β > 2ηa₀²/K` | A4, A3, §3.4 |
 
 **3.6 The vacuum closure, and κ.**
@@ -178,6 +193,30 @@ So the theory's claim on SPARC is not "we predict the curves". It is: **one M/L 
 χ²/dof of 2.4 that matches the rival law's, and discrimination in the transition-region shape.**
 That is a weaker claim than my first draft made, and it is the true one.
 
+**4.1 The background, honestly fitted.** A46's result is in P3's caveat: an exact ΛCDM
+reparametrisation, `Δχ² = −0.58`, **not excluded** — but the same degeneracy moves `H₀` to 56.8
+and `a₀` to `9.53×10⁻¹¹`. The theory's background is therefore **viable and degenerate with
+ΛCDM**. That is the honest status: it predicts nothing the background can distinguish except
+through `a₀`'s footing. Fixing `H₀ = 67.40` costs 7.7σ in the ruler; the observed-vacuum footing
+is the one the data allow.
+
+**4.2 Growth — and why the theory is inert at linear order.** A45 went back to the P equation and
+found why A40's two branches both failed: `u = K|P|` makes the law *quadratic* in the P field
+with a square-root inverse, so **there is no linear term to perturb.** At linear order
+`δP_i = K⁻¹∇δΦ/(1+(kλ_P)²)` with `(kλ_P)² = 1.3×10⁻¹²` at `0.1 h/Mpc`; eliminating the charge
+gives `G_eff/G = 1 + 1/(kλ_P)² = 7.6×10¹¹` — a `k⁻⁴` runaway with **no finite linear solution**.
+The modification is **inert on linear scales**; its first nonzero effect is `O(g_N/a₀) = 0.21 %`
+at `8 h⁻¹Mpc`, i.e. second order in `δ`. *Why* it is inert, in one number: the smoothing radius at
+which the local acceleration reaches `a₀` is `R(a₀) = 2σ²/a₀ = 1.4–52 kpc`, i.e. `k(a₀) = 29–1037
+h/Mpc` — **two to four decades above every linear scale**, so on linear scales the law's argument
+never reaches `a₀` and the modification cannot switch on. Stated plainly: `σ₈ = 0.7602` (6.3 % below
+Planck's 0.832, *toward* the lensing surveys — KiDS-1000 gives 0.759 ± 0.021) and
+`χ²(fσ₈) = 14.78/8` vs ΛCDM's 7.34/8, so growth is **~2σ disfavoured** and *not* a distinctive
+prediction. The distinctive signature is the **background rate**: `f(0) = 0.452` vs ΛCDM's 0.528,
+a 14 % difference, which an `fσ₈` survey at `z ≲ 0.5` should see. Branch (b)
+(`G_eff(0.05)/G_eff(0.2) = 0.630`, blue) and the inert reading (exactly scale-free) are separated
+by **scale dependence** — that is the discriminator A45 names.
+
 ---
 
 ## 5. Predictions, each with a number and a falsifier
@@ -195,6 +234,7 @@ That is a weaker claim than my first draft made, and it is the true one.
 | occupancy-noise skew | flips sign at `g = a₀` (n=1) vs `3a₀/8` (n=2), **opposite signs** on (0.375,1)a₀ | no flip, or a flip elsewhere |
 | Jeans mass | `d ln M_J/d ln ρ = +1` (denser → bigger clumps) | the standard −½ |
 | laboratory | `|δG/G| < 10⁻⁶` vs 340 ppm source-boost | +340 ppm |
+| environment-dependent α₁ | 0.046–5.19 at `g ~ a₀` on kpc scales; `< 10⁻¹³` at every acceleration where a PPN test exists. Crosses `10⁻⁴` at `g = 199 a₀ = 2.25×10⁻⁸ m/s²`, i.e. `r = 513 AU` from the Sun | a preferred-frame anisotropy in the outer Oort cloud at `α₁ v²/c²`; or any measured α₁ above `10⁻⁴` in a system at `g ≫ a₀` |
 
 ---
 
@@ -214,9 +254,41 @@ nulls; "cold = the law's phantom" (7.7σ).
 
 **Closed by data**: medium-first (21σ, A26 — the law holds below `M_crit`).
 
-**Open, precisely**: (1) the one equation for κ; (2) the galactic-regime α₁; (3) the inner
-`u = 0.47`; (4) `L_*`'s microscopic value (24–90 pc under `f_c→1`, up to 180 pc at `f_c=0.25`);
+**Corrected by A47 and A48** — two headline claims that do not survive their own audit:
+
+1. **The `f_ret` collision dissolves.** CFG416's `f_ret = 0.10` is a retained **baryon** fraction,
+   `M_b/(f_b M_ta)`, i.e. 10 % of the catchment's baryons. `N = R_cosmic/f_ret = 53.64` is *derived*
+   from it, not a second `f_ret`. A43's "`f_ret = 2.195`" is a different object, `f_s =` cold mass
+   over the *system's* cosmic share, and its ceiling of 1 is a denominator, not a physical cap (A47).
+   The budget is **available**: 44.1 `M_b` at `10¹¹ M⊙` (82 % of the requirement),
+   `N_avail/N_req = 2.38`, so the no-edge tension does not return on the primary range.
+
+2. **A33 §5's first integral is an identity, not a constraint.** It defines `g_N = g − u`; it does
+   **not** force `M_src = M_b + M_c`. A33's own partition gives `M_src = M_b + (1−ς)M_c` and §7.3
+   forces `ς = 1`, so **`M_src = M_b`** — which is what every SPARC fit assumed. The data select
+   baryons-only by **Δχ² = 7.5×10⁴** at the theory's `a₀`. A40's "2.523× defect" claim falls
+   (its ratio is really 6.3643, the total-to-baryon mass ratio), and so does A33 §5's sentence.
+
+**Open, precisely**: (1) the one equation for κ; (2) the galactic-regime α₁ — *computed and
+positive*: A36 gives 0.046–5.19 at 1–30 kpc, so the claim is now "α₁ ≠ 0 in the MOND regime, and
+its observable effect is v²/c²-suppressed where it is large"; A59 settles whether any precision
+test reaches that regime, A60 settles whether the Sun's own P field is the isolated hedgehog or
+the embedded galactic one (A36's K12 finds a 2.19×10⁵ mismatch); (3) the inner `u = 0.47`;
+(4) `L_*`'s microscopic value (24–90 pc under `f_c→1`, up to 180 pc at `f_c=0.25`) — A61 settles
+whether the length is 24.02 pc (`K = 8πG`) or 16.99 pc (`K = 4πG`), which moves `R_core` by √2;
 (5) a UV completion.
+
+**What A36's `k` is — and what the hedgehog zero actually covers.** A36 evaluates the gradient
+term with the **perturbation's** wavenumber `k = 1/r`, so `(kL_*)²u′/2 ≤ 5.2×10⁻⁶` and `D ≈ 1`
+at every galactic radius; its route-(a) numbers *are* the full formula, not a limit of it. The
+`α₁ → 8/(kL_*)²` hedgehog zero A22 found is the **other** limit, `kL_* → ∞` at sub-AU scales — a
+formal statement about the hedgehog, not a statement about the Solar System's acceleration. The
+suppression that actually protects the PPN bound is therefore **one** mechanism, not two:
+`u′ = a₀²/(g+a₀)² → 0` when `g ≫ a₀`, which is exactly where every precision test sits. The
+O(0.1–5) value needs `g ~ a₀`, and only there does it appear. So A36's headline formula and its
+numbers are consistent, and no correction to its coefficient is required — but the paper must say
+`k = 1/r` explicitly, because with the P-mass `k = 2π/λ_P` the same expression would give ≈0.10
+and the distinction matters for the observable, not for the verdict.
 
 ---
 

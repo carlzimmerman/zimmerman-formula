@@ -57,14 +57,30 @@ and **40 Lean theorems**, no `sorry`, axioms `{propext, Classical.choice, Quot.s
 | [A33](A33_master_action/MASTER_ACTION.md) | **master action** | DELIVERED | 28 | `Λ_bare ≥ 1.462Λ_obs`; footing closed |
 | [A34](A34_dimension_route/report.md) | dimension route | **NUMEROLOGY** | 13 | codim of a point is 3, not 2 |
 | [A35](A35_series_parallel/report.md) | least dissipation | **DERIVES n=1** | 22 | `Ψ(A)` minimum = the law; n=2 not a state |
-| A36–A44 | α₁, three lengths, saddle resolution, tensor mass, growth, cluster profile, minimal vacuum, cold EoS, no-edge | in flight | — | — |
+| [A36](A36_galactic_alpha1/report.md) | galactic-regime α₁ | computed, positive | 13/13 | α₁ = 0.046–5.19 at 1–30 kpc; effect `α₁v²/c² ≈ 10⁻⁶` |
+| [A37](A37_three_lengths/report.md) | the three lengths | **DELIVERED** | 10/10 | `L_MOND = 31.12 Gpc`, `ℓ₁ = 15.57 Gpc`, `L_* = 24.03 pc`; `L_*/L_MOND = σ_c²/c²` |
+| [A38](A38_saddle_resolution/report.md) | saddle discrepancy | **RESOLVED** | 18/18 | consensus `Σ_AQUAL = −0.2307 ± 0.0038` (configs differed, not physics) |
+| [A39](A39_tensor_mass/report.md) | tensor mass | harmless | 21/21 | `m_T ≈ 2.1×10⁻³³ eV`; `c_T² = 1` survives as a speed statement |
+| [A40](A40_growth/report.md) | linear growth | COMPLETE | 17/17 | `σ₈ = 0.7619`, `f(0) = 0.4546`; ~2σ disfavoured; 3 forks stated |
+| [A41](A41_cluster_profile/report.md) | full cluster profile | COMPLETE | 22/22 | `u_in = 0.4371 ± 0.0288`, `χ²/dof = 1.42`; constant-u out at 8.5σ on shape |
+| [A42](A42_minimal_vacuum/report.md) | minimal vacuum | DERIVED chain, NO-GO as cosmology | 27/27 | `β = 0 ⇒ Λ_bare = 3H₀²/c²`, `a₀ = 1.1312×10⁻¹⁰`; `H(z=1)` −8.65 % |
+| [A43](A43_cold_eos/report.md) | cold-sector EOS | **CLOSED-NO-GO** | 23/23 | `u = 1+3⟨w⟩` needs `ε_T/ρc² = −0.264`; no positive-mass medium supplies it |
+| [A44](A44_no_edge/report.md) | no-edge tension | **RESOLVED** | 22/22 | `f_ret = 0.10` gives Δχ² +1.1 vs +197.0 for the truncated share |
+| [A45](A45_reference_field/report.md) | growth's reference field | COMPLETE | 25/25 | **inert at linear order**; `σ₈ = 0.7602`; `f(0) = 0.4522` |
+| [A46](A46_cosmology_fit/report.md) | is the cosmology falsified | COMPLETE | 17/17 | **exact ΛCDM reparametrisation**, Δχ² = −0.58; `H₀ = 56.8` |
+| [A47](A47_fret/report.md) | the `f_ret = 0.10` factor | **RESOLVED** | 18/18 | it is a **baryon** fraction; `N = 53.64`; `N_avail/N_req = 2.38` |
+| [A48](A48_first_integral/report.md) | A33 §5's first integral | **RESOLVED** | 25/25 | an **identity**, not a constraint; `M_src = M_b`; Δχ² = 7.5×10⁴ |
 
 ## Corrections (fix-forward; nothing deleted)
 
 Full list in `FINAL_THEORY.md` §7 (24 items). Largest: **GF2's ½ is not the law's κ**; **"no
 external-field effect" is wrong** (the law is simple-μ AQUAL); **the 5.6× kernel tension dissolves**;
 **the saddle's net column is negative**; **`y_t` is not independent**; **the footings are the bare
-and observed vacuum**, and the action lives at the bare one (`a₀ = 1.132×10⁻¹⁰`).
+and observed vacuum** — and **A46's background fit now selects the OBSERVED one**: the model is an
+exact ΛCDM reparametrisation (Δχ² = −0.58), but the same degeneracy forces `H₀ = 56.8` and hence
+`a₀ = 9.53×10⁻¹¹`; keeping the bare `a₀ = 1.132×10⁻¹⁰` costs Δχ² = +58.8 (7.7σ) through the ruler.
+So the earlier sentence "the action lives at the bare one" is **withdrawn** — the data put it at the
+observed footing, and `κ = ½` survives because `a₀/(cH₀) = 2κ/Z` fixes the *ratio*, not the scale.
 
 §7b records 32 defects in this document's own earlier draft — including a self-contradiction on
 α₁/α₂ and a cherry-picked rotation-curve subset — found by A31 and corrected in place.
