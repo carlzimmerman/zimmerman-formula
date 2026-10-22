@@ -90,3 +90,20 @@ Part 3 inventory (file names and column headers only):
 - Caveat stated before the result: tidal dwarfs are young (< 1 orbit), gas-dominated, and their σ_HI comes from
   kpc-scale beams, not the 30–100 pc maps A76 §9 asks for. A PRIMARY result from them is a first look, not the
   measurement A76 specifies.
+
+## AMENDMENT A2 — 2026-10-22, PRE-RUN on the new table (the owner OK'd one fetch; written before any L* was computed from it)
+
+- **Disclosure.** To find the right table I had to see the σ values printed in `table-measurements.tex`. No L*,
+  median or spread was computed before this amendment was committed.
+- **Dataset:** Stilp+2013 (provenance: `PROVENANCE.md`), 23 z ≈ 0 dwarfs at a common 200 pc beam.
+- **Column, fixed by the frozen text:** the rule names "HI second moment" and forbids any thermal/turbulent
+  decomposition. The **PRIMARY** column is therefore ⟨σ_m2⟩ (col. 2). σ_central (col. 3) is a fitted
+  narrow-component width, i.e. a decomposition, so it is reported as **SECONDARY** with no verdict weight.
+- **Sample:** all 23 rows as published. The rule has no galaxy-type cut, so NGC 7793 (Sd) is kept.
+- **Rule unchanged:** L*_pred = σ²/a0, coefficient 1. Report the median and the 16–84 % range. Classes:
+  CONSISTENT if the median lies in [CFG820 fine L*_95 (23.641 canonical / 24.476 alt), 90 pc]. The verdict
+  "not one constant" applies if 84/16 > 2. Footings are never pooled.
+- **Script:** `d8_stilp2013.py`, separate from `d8_lstar_value.py` so that the committed outputs stay unchanged.
+  - K1: the table sha256 matches and 23 rows parse.
+  - K2: control. Planting σ_i = √(a0 · 50 pc) for every galaxy returns a median of 50 pc to 1e-9.
+  - MUTATE (`D8S_MUTATE=1`): the expected sha is corrupted, so K1 fails.
