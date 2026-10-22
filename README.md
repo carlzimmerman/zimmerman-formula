@@ -245,6 +245,12 @@ Ordered by how much survives scrutiny. Each entry links the working directory an
 ### 1 · The coefficient reduction and the a₀ line
 $a_0=\kappa c\sqrt{G\rho_\Lambda}$ makes every $\pi$, the 32 and the 3 cancel, and
 $g_{\rm obs}^2-g_{\rm bar}^2=a_0g_{\rm bar}$ is an exact identity.
+*(Scope: exact as a **scaling relation** and in the deep-MOND limit. As an interpolation at the knee
+$g_{\rm bar}\approx a_0$ it is the `Q` kernel of `deepseek_push/DS_FINAL_2026_10_21/A25_kernel_conflict`
+— $\nu=\sqrt{1+a_0/g_{\rm bar}}$ — and SPARC excludes it at $\Delta\chi^2=158.0$ (canonical footing) /
+$75.3$ (alt) against the action's Langmuir kernel $\nu=(1+\sqrt{1+4a_0/g_{\rm bar}})/2$, which is tied
+with the empirical RAR kernel to 0.010 dex. The two interpolations differ by 14.4% in $g$ (30.9% in
+$g^2$) at $g_{\rm bar}=a_0$, and the data choose the Langmuir one.)*
 **RAR fit: 0.108 dex on SPARC** at Υ = 0.70 — the anchored a₀ costs *nothing* against a fitted one
 (anchoring is cost-free, not "better"; both are indistinguishable after Υ-refit). κ is **measured**:
 0.551 ± 0.043 distance-free, 0.465 ± 0.076 from the BTFR.
