@@ -1,0 +1,681 @@
+{
+ "lane": "C3_scale_map",
+ "mutate": true,
+ "checks": {
+  "K1": {
+   "ok": false,
+   "value": "residual=2*GM*mu**2*cos(mu*r)/r; r->0 norm=1; series=GM*mu**2/2 + GM/r**2",
+   "threshold": "all exact",
+   "label": "Newtonian regime: Phi = -GM cos(mu r)/r; pull = GM/r^2 + GM mu^2/2 + O(mu^4 r^2) -> constant hedgehog, L_eq = sqrt(2)/mu"
+  },
+  "K2": {
+   "ok": true,
+   "value": "r_C = GM**(1/6)/(a_0**(1/6)*mu**(2/3))",
+   "threshold": "(r_M mu^-2)^(1/3) exact",
+   "label": "deep-MOND: fractional term -(mu^2 r^3/r_M)(ln(r/r0)/3 - 1/9): grows OUTWARD; depends on Phi's zero point r0 (cosmological gauge)"
+  },
+  "K3": {
+   "ok": true,
+   "value": "Phi = rho*(lambda_s + 1)/(k**2*lambda_s - lambda_s*mu2 - mu2); alpha = 0; a_T = 0",
+   "threshold": "dPhi/dc123 = dPhi/dc1 = 0, alpha = 0",
+   "label": "DECOUPLING: the aether's longitudinal stiffness c123 = c1+c2+c3 (0 in AeST) and its curl stiffness c1 = K_B never reach Phi for a longitudinal source; phi's shift symmetry absorbs grad alpha"
+  },
+  "K4": {
+   "ok": false,
+   "value": "named-term EL = -beta*lap_vec_r: False; full gradient EL same: True; beta_L = L_star**2*(2 - K_B)/2",
+   "threshold": "exact",
+   "label": "the named term reproduces D7d's radial (P) operator, hence CFG691's ODE with l = L*^2/(2 r_M)"
+  },
+  "K5": {
+   "ok": false,
+   "value": "g=1 vs D7d: 0.0e+00; g=1e8 vs closed form: 5.6e-02",
+   "threshold": "<1e-12; <1e-6",
+   "label": "generalised Route F operator (kap^2/2)[khat khat + g(1 - khat khat)] + J - khat khat"
+  },
+  "K5b": {
+   "ok": true,
+   "value": "max|Q2(g_phys)/Q2(chi_inf)-1| = 2.60e-10",
+   "threshold": "<1e-3",
+   "label": "[A1 post-result] finite physical curl stiffness g = 2 mu^-2/L*^2 vs g -> inf"
+  },
+  "K6": {
+   "ok": true,
+   "value": "V1 Q2 in [1.99e-36, 2.35e-34]; D7d json reproduced to 0.0e+00",
+   "threshold": "inside Hees [-3e-27, 9e-27] and Park [-2e-27, 5.2e-27]",
+   "label": "V1 passes Cassini at L* = 24/50/90 pc, all E, both footings"
+  },
+  "K7": {
+   "ok": true,
+   "value": "max gamma_v-1 = 8.118e-06",
+   "threshold": "<1e-3",
+   "label": "V1 predicts no wide-binary boost visible to DR4 (D2 sigma_sys 0.020)"
+  },
+  "K8": {
+   "ok": true,
+   "value": "28.853/29.123",
+   "threshold": "E4 N1 28.853/29.123 +-0.01",
+   "label": "V1's isolated spherical sector = the screened theory's (K3+K4); EFE floor OPEN for both"
+  },
+  "K9": {
+   "ok": true,
+   "value": "D7d match 4.3e-09; Mars ratio 6.69e+04/8.07e+04",
+   "threshold": "<1e-6; >1",
+   "label": "V0 (pure AeST with the screened law) FAILS the planetary monopole: u -> a0 near the Sun"
+  },
+  "K10": {
+   "ok": false,
+   "value": "min ratio 3.639e+01 (r_C Sun (alt))",
+   "threshold": ">1e3",
+   "label": "no AeST length reaches the L* window"
+  }
+ },
+ "inputs": {
+  "GM": 1.32712440018e+20,
+  "a0": {
+   "canonical": 9.36e-11,
+   "alt": 1.13e-10
+  },
+  "mu_inv_Mpc": 1.0,
+  "Hees_2sigma": [
+   -3e-27,
+   9e-27
+  ],
+  "Park_2sigma": [
+   -2e-27,
+   5.2e-27
+  ],
+  "Lstar_pc": [
+   24.0,
+   50.0,
+   90.0
+  ],
+  "E_ge_total": {
+   "canonical": {
+    "E0": 1.2211674027396599e-10,
+    "E1": 1.7784e-10,
+    "E2": 2.0592000000000002e-10,
+    "E3": 2.4336e-10
+   },
+   "alt": {
+    "E0": 1.294672087466883e-10,
+    "E1": 1.7784e-10,
+    "E2": 2.0592000000000005e-10,
+    "E3": 2.4336e-10
+   }
+  },
+  "planet_bounds": {
+   "Earth": [
+    149597870700.0,
+    8.7e-15
+   ],
+   "Mars": [
+    227987154946.80002,
+    1.4e-15
+   ],
+   "Saturn": [
+    1433147601306.0,
+    7e-15
+   ]
+  },
+  "sources_status": "SZ21 / arXiv:2109.13287 equations: record transcriptions, not verified on disk"
+ },
+ "Q1": {
+  "newtonian_pull": "GM(cos mu r + mu r sin mu r)/r^2",
+  "hedgehog": "GM mu^2/2 (sunward, ADDED to MOND, does not replace it)",
+  "L_eq_pc": 1414213.5623730952,
+  "sun_hedgehog_m_s2": 6.969060542508687e-26
+ },
+ "Q2": {
+  "decoupling": true,
+  "Phi_AeST": "rho*(lambda_s + 1)/(k**2*lambda_s - lambda_s*mu2 - mu2)",
+  "Phi_named": "rho*(beta_L*k**2 + lambda_s + 1)/(beta_L*k**4 - beta_L*k**2*mu2 + k**2*lambda_s - lambda_s*mu2 - mu2)",
+  "nonlinear_argument": "phi enters only via V = grad phi + Q0 A; delta phi gives div(dL/dV) = 0, delta alpha then gives c123 lap^2 alpha = 0 -> alpha = 0 (decaying BCs), for ANY F(Y,Q); exact, not linearised",
+  "named_term": {
+   "action_term": "-beta_L [nabla_mu (q^{mu nu} nabla_nu phi)]^2 in the SZ21 bracket",
+   "beta_L": "L_star**2*(2 - K_B)/2",
+   "linear_FRW": "(div V)^2 -> k^4 chi^2/a^4: spatial derivatives only (no Ostrogradsky time derivatives at linear order); full well-posedness OPEN"
+  },
+  "curl_length": {
+   "LF2": "2*(-K_B*lambda_s - 2)/(c_s**2*mu**2*(K_B - 2))",
+   "bound": "L*_F >= sqrt(2)/(c_s mu) >= sqrt(2) mu^-1 if c_s <= c",
+   "cs_needed_for_LF_90pc": 15713.484026367723,
+   "cs_needed_for_LF_24pc": 58925.565098878964
+  }
+ },
+ "K6_cassini": {
+  "canonical|24|E0": {
+   "Q2_V1": 1.18406831949891e-34,
+   "Q2_V1_chi_inf": 1.1840683194986542e-34,
+   "Q2_D7d_recomputed": 1.1584332974193455e-34,
+   "Q2_D7d_json": 1.1584332974193455e-34,
+   "ratio_V1_D7d": 1.0221290445782867,
+   "over_Hees_upper": 1.3156314661098998e-08,
+   "over_Park_upper": 2.2770544605748266e-08,
+   "ok": 1.0
+  },
+  "canonical|24|E1": {
+   "Q2_V1": 1.7058769799981103e-34,
+   "Q2_V1_chi_inf": 1.7058769799837725e-34,
+   "Q2_D7d_recomputed": 1.6640178777144816e-34,
+   "Q2_D7d_json": 1.6640178777144816e-34,
+   "ratio_V1_D7d": 1.0251554402414966,
+   "over_Hees_upper": 1.895418866664567e-08,
+   "over_Park_upper": 3.2805326538425194e-08,
+   "ok": 1.0
+  },
+  "canonical|24|E2": {
+   "Q2_V1": 1.9770704634507914e-34,
+   "Q2_V1_chi_inf": 1.9770704634256653e-34,
+   "Q2_D7d_recomputed": 1.9265609665270976e-34,
+   "Q2_D7d_json": 1.9265609665270976e-34,
+   "ratio_V1_D7d": 1.0262174401959074,
+   "over_Hees_upper": 2.1967449593897682e-08,
+   "over_Park_upper": 3.802058583559214e-08,
+   "ok": 1.0
+  },
+  "canonical|24|E3": {
+   "Q2_V1": 2.3458767969592287e-34,
+   "Q2_V1_chi_inf": 2.345876796915774e-34,
+   "Q2_D7d_recomputed": 2.283532825912656e-34,
+   "Q2_D7d_json": 2.283532825912656e-34,
+   "ratio_V1_D7d": 1.0273015436165913,
+   "over_Hees_upper": 2.606529774399143e-08,
+   "over_Park_upper": 4.511301532613901e-08,
+   "ok": 1.0
+  },
+  "canonical|50|E0": {
+   "Q2_V1": 1.3094848359013208e-35,
+   "Q2_V1_chi_inf": 1.3094848358999516e-35,
+   "Q2_D7d_recomputed": 1.2811345522820027e-35,
+   "Q2_D7d_json": 1.2811345522820027e-35,
+   "ratio_V1_D7d": 1.0221290445791347,
+   "over_Hees_upper": 1.4549831510014676e-09,
+   "over_Park_upper": 2.5182400690410014e-09,
+   "ok": 1.0
+  },
+  "canonical|50|E1": {
+   "Q2_V1": 1.8865634697724596e-35,
+   "Q2_V1_chi_inf": 1.8865634697036539e-35,
+   "Q2_D7d_recomputed": 1.8402706513219997e-35,
+   "Q2_D7d_json": 1.8402706513219997e-35,
+   "ratio_V1_D7d": 1.0251554402702692,
+   "over_Hees_upper": 2.0961816330805105e-09,
+   "over_Park_upper": 3.628006672639345e-09,
+   "ok": 1.0
+  },
+  "canonical|50|E2": {
+   "Q2_V1": 2.1864817670322864e-35,
+   "Q2_V1_chi_inf": 2.186481766911712e-35,
+   "Q2_D7d_recomputed": 2.130622304101648e-35,
+   "Q2_D7d_json": 2.130622304101648e-35,
+   "ratio_V1_D7d": 1.0262174402394566,
+   "over_Hees_upper": 2.429424185591429e-09,
+   "over_Park_upper": 4.2047726289082424e-09,
+   "ok": 1.0
+  },
+  "canonical|50|E3": {
+   "Q2_V1": 2.5943520674537115e-35,
+   "Q2_V1_chi_inf": 2.594352067245093e-35,
+   "Q2_D7d_recomputed": 2.5254046228333245e-35,
+   "Q2_D7d_json": 2.5254046228333245e-35,
+   "ratio_V1_D7d": 1.0273015436801698,
+   "over_Hees_upper": 2.8826134082819015e-09,
+   "over_Park_upper": 4.989138591257137e-09,
+   "ok": 1.0
+  },
+  "canonical|90|E0": {
+   "Q2_V1": 2.2453443688346438e-36,
+   "Q2_V1_chi_inf": 2.245344368827078e-36,
+   "Q2_D7d_recomputed": 2.196732771402611e-36,
+   "Q2_D7d_json": 2.196732771402611e-36,
+   "ratio_V1_D7d": 1.02212904458151,
+   "over_Hees_upper": 2.4948270764829375e-10,
+   "over_Park_upper": 4.317969940066622e-10,
+   "ok": 1.0
+  },
+  "canonical|90|E1": {
+   "Q2_V1": 3.234848199462555e-36,
+   "Q2_V1_chi_inf": 3.2348481990803396e-36,
+   "Q2_D7d_recomputed": 3.155470938480795e-36,
+   "Q2_D7d_json": 3.155470938480795e-36,
+   "ratio_V1_D7d": 1.0251554403540082,
+   "over_Hees_upper": 3.5942757771806164e-10,
+   "over_Park_upper": 6.220861922043374e-10,
+   "ok": 1.0
+  },
+  "canonical|90|E2": {
+   "Q2_V1": 3.749111397980429e-36,
+   "Q2_V1_chi_inf": 3.7491113973108916e-36,
+   "Q2_D7d_recomputed": 3.653330425414349e-36,
+   "Q2_D7d_json": 3.653330425414349e-36,
+   "ratio_V1_D7d": 1.026217440366133,
+   "over_Hees_upper": 4.1656793310893654e-10,
+   "over_Park_upper": 7.209829611500825e-10,
+   "ok": 1.0
+  },
+  "canonical|90|E3": {
+   "Q2_V1": 4.448477482717441e-36,
+   "Q2_V1_chi_inf": 4.4484774815588015e-36,
+   "Q2_D7d_recomputed": 4.3302548402491854e-36,
+   "Q2_D7d_json": 4.3302548402491854e-36,
+   "ratio_V1_D7d": 1.0273015438651303,
+   "over_Hees_upper": 4.942752758574934e-10,
+   "over_Park_upper": 8.554764389841232e-10,
+   "ok": 1.0
+  },
+  "alt|24|E0": {
+   "Q2_V1": 1.0489540968674965e-34,
+   "Q2_V1_chi_inf": 1.0489540968693914e-34,
+   "Q2_D7d_recomputed": 1.0273482865516151e-34,
+   "Q2_D7d_json": 1.0273482865516151e-34,
+   "ratio_V1_D7d": 1.021030657858401,
+   "over_Hees_upper": 1.165504552074996e-08,
+   "over_Park_upper": 2.0172194170528778e-08,
+   "ok": 1.0
+  },
+  "alt|24|E1": {
+   "Q2_V1": 1.417047067431454e-34,
+   "Q2_V1_chi_inf": 1.4170470674259819e-34,
+   "Q2_D7d_recomputed": 1.3842684300410762e-34,
+   "Q2_D7d_json": 1.3842684300410762e-34,
+   "ratio_V1_D7d": 1.0236793938798454,
+   "over_Hees_upper": 1.5744967415905045e-08,
+   "over_Park_upper": 2.7250905142912573e-08,
+   "ok": 1.0
+  },
+  "alt|24|E2": {
+   "Q2_V1": 1.6364775937435946e-34,
+   "Q2_V1_chi_inf": 1.636477593731637e-34,
+   "Q2_D7d_recomputed": 1.5968164526602424e-34,
+   "Q2_D7d_json": 1.5968164526602424e-34,
+   "ratio_V1_D7d": 1.024837633039964,
+   "over_Hees_upper": 1.818308437492883e-08,
+   "over_Park_upper": 3.1470722956607586e-08,
+   "ok": 1.0
+  },
+  "alt|24|E3": {
+   "Q2_V1": 1.9348300985757417e-34,
+   "Q2_V1_chi_inf": 1.9348300985524347e-34,
+   "Q2_D7d_recomputed": 1.8856727013179659e-34,
+   "Q2_D7d_json": 1.8856727013179659e-34,
+   "ratio_V1_D7d": 1.026068891607445,
+   "over_Hees_upper": 2.1498112206397128e-08,
+   "over_Park_upper": 3.720827112645657e-08,
+   "ok": 1.0
+  },
+  "alt|50|E0": {
+   "Q2_V1": 1.1600593148006954e-35,
+   "Q2_V1_chi_inf": 1.1600593148097975e-35,
+   "Q2_D7d_recomputed": 1.1361650170631623e-35,
+   "Q2_D7d_json": 1.1361650170631623e-35,
+   "ratio_V1_D7d": 1.0210306578522341,
+   "over_Hees_upper": 1.2889547942229949e-09,
+   "over_Park_upper": 2.230883297693645e-09,
+   "ok": 1.0
+  },
+  "alt|50|E1": {
+   "Q2_V1": 1.567140692833946e-35,
+   "Q2_V1_chi_inf": 1.567140692807742e-35,
+   "Q2_D7d_recomputed": 1.530890142151027e-35,
+   "Q2_D7d_json": 1.530890142151027e-35,
+   "ratio_V1_D7d": 1.023679393893009,
+   "over_Hees_upper": 1.741267436482162e-09,
+   "over_Park_upper": 3.0137321016037423e-09,
+   "ok": 1.0
+  },
+  "alt|50|E2": {
+   "Q2_V1": 1.8098133005170508e-35,
+   "Q2_V1_chi_inf": 1.8098133004596922e-35,
+   "Q2_D7d_recomputed": 1.7659512513260152e-35,
+   "Q2_D7d_json": 1.7659512513260152e-35,
+   "ratio_V1_D7d": 1.024837633064956,
+   "over_Hees_upper": 2.0109036672411675e-09,
+   "over_Park_upper": 3.4804101933020204e-09,
+   "ok": 1.0
+  },
+  "alt|50|E3": {
+   "Q2_V1": 2.1397673027028606e-35,
+   "Q2_V1_chi_inf": 2.1397673025911088e-35,
+   "Q2_D7d_recomputed": 2.085403153841565e-35,
+   "Q2_D7d_json": 2.085403153841565e-35,
+   "ratio_V1_D7d": 1.0260688916486724,
+   "over_Hees_upper": 2.3775192252254006e-09,
+   "over_Park_upper": 4.114937120582424e-09,
+   "ok": 1.0
+  },
+  "alt|90|E0": {
+   "Q2_V1": 1.9891277688278293e-36,
+   "Q2_V1_chi_inf": 1.9891277688782537e-36,
+   "Q2_D7d_recomputed": 1.948156750794174e-36,
+   "Q2_D7d_json": 1.948156750794174e-36,
+   "ratio_V1_D7d": 1.0210306578343624,
+   "over_Hees_upper": 2.2101419653642548e-10,
+   "over_Park_upper": 3.825245709284287e-10,
+   "ok": 1.0
+  },
+  "alt|90|E1": {
+   "Q2_V1": 2.687141105782799e-36,
+   "Q2_V1_chi_inf": 2.6871411056374177e-36,
+   "Q2_D7d_recomputed": 2.624983096966782e-36,
+   "Q2_D7d_json": 2.624983096966782e-36,
+   "ratio_V1_D7d": 1.023679393931276,
+   "over_Hees_upper": 2.9857123397586655e-10,
+   "over_Park_upper": 5.167579049582305e-10,
+   "ok": 1.0
+  },
+  "alt|90|E2": {
+   "Q2_V1": 3.103246400283863e-36,
+   "Q2_V1_chi_inf": 3.103246399965179e-36,
+   "Q2_D7d_recomputed": 3.028037125044608e-36,
+   "Q2_D7d_json": 3.028037125044608e-36,
+   "ratio_V1_D7d": 1.0248376331377202,
+   "over_Hees_upper": 3.448051555870959e-10,
+   "over_Park_upper": 5.967781539007429e-10,
+   "ok": 1.0
+  },
+  "alt|90|E3": {
+   "Q2_V1": 3.6690111504683264e-36,
+   "Q2_V1_chi_inf": 3.669011149847581e-36,
+   "Q2_D7d_recomputed": 3.575794159536291e-36,
+   "Q2_D7d_json": 3.575794159536291e-36,
+   "ratio_V1_D7d": 1.0260688917686815,
+   "over_Hees_upper": 4.076679056075918e-10,
+   "over_Park_upper": 7.05579067397755e-10,
+   "ok": 1.0
+  }
+ },
+ "K7_wide_binary": {
+  "canonical|24": {
+   "gamma_minus_1": [
+    8.11489953167488e-06,
+    8.102662885089984e-06,
+    8.096830341086658e-06,
+    8.089286027690434e-06
+   ],
+   "CFG740_isolated": 8.161142016416764e-06,
+   "D7d": [
+    8.115886532156225e-06,
+    8.104375710082934e-06,
+    8.09895829601004e-06,
+    8.092012758531553e-06
+   ],
+   "mass_term_part": 2.3504089007280288e-15
+  },
+  "canonical|50": {
+   "gamma_minus_1": [
+    1.8752061510252105e-06,
+    1.873847425892805e-06,
+    1.8731993101095412e-06,
+    1.8723605079706829e-06
+   ],
+   "CFG740_isolated": 1.880327120582423e-06,
+   "D7d": [
+    1.8753153061545902e-06,
+    1.8740368559200249e-06,
+    1.8734346531878998e-06,
+    1.8726620765185942e-06
+   ],
+   "mass_term_part": 2.3504089007280288e-15
+  },
+  "canonical|90": {
+   "gamma_minus_1": [
+    5.794693100913406e-07,
+    5.792359483169918e-07,
+    5.791245998310046e-07,
+    5.789804573552715e-07
+   ],
+   "CFG740_isolated": 5.803478767229699e-07,
+   "D7d": [
+    5.794880248988221e-07,
+    5.792684276695326e-07,
+    5.791649519970576e-07,
+    5.790321653265096e-07
+   ],
+   "mass_term_part": 2.3504089007280288e-15
+  },
+  "alt|24": {
+   "gamma_minus_1": [
+    8.118385564470643e-06,
+    8.109233585518183e-06,
+    8.104203727654635e-06,
+    8.097720922028984e-06
+   ],
+   "CFG740_isolated": 8.161142016416764e-06,
+   "D7d": [
+    8.119203428247346e-06,
+    8.110531513061403e-06,
+    8.105814144121481e-06,
+    8.099782727422067e-06
+   ],
+   "mass_term_part": 2.3504089007280288e-15
+  },
+  "alt|50": {
+   "gamma_minus_1": [
+    1.8755929829250562e-06,
+    1.874577189031612e-06,
+    1.8740185925292252e-06,
+    1.8732982924873909e-06
+   ],
+   "CFG740_isolated": 1.880327120582423e-06,
+   "D7d": [
+    1.8756834321287386e-06,
+    1.874720731986912e-06,
+    1.8741966960611478e-06,
+    1.8735263194180618e-06
+   ],
+   "mass_term_part": 2.3504089007280288e-15
+  },
+  "alt|90": {
+   "gamma_minus_1": [
+    5.795357311821903e-07,
+    5.793612976034979e-07,
+    5.792653514635759e-07,
+    5.79141606671385e-07
+   ],
+   "CFG740_isolated": 5.803478767229699e-07,
+   "D7d": [
+    5.795512385553536e-07,
+    5.793859088054631e-07,
+    5.792958888140021e-07,
+    5.791807045074648e-07
+   ],
+   "mass_term_part": 2.3504089007280288e-15
+  }
+ },
+ "V1_planets": {
+  "canonical|24|Earth": {
+   "a": 2.4198119949343536e-16,
+   "bound": 8.7e-15,
+   "ratio": 0.027813930976256937,
+   "GM_over_L2": 2.4198126883710716e-16
+  },
+  "canonical|24|Mars": {
+   "a": 2.419811634930746e-16,
+   "bound": 1.4e-15,
+   "ratio": 0.17284368820933899,
+   "GM_over_L2": 2.4198126883710716e-16
+  },
+  "canonical|24|Saturn": {
+   "a": 2.4198060984238404e-16,
+   "bound": 7e-15,
+   "ratio": 0.03456865854891201,
+   "GM_over_L2": 2.4198126883710716e-16
+  },
+  "canonical|50|Earth": {
+   "a": 5.575247664518996e-17,
+   "bound": 8.7e-15,
+   "ratio": 0.006408330648872408,
+   "GM_over_L2": 5.57524843400695e-17
+  },
+  "canonical|50|Mars": {
+   "a": 5.575247266585209e-17,
+   "bound": 1.4e-15,
+   "ratio": 0.03982319476132292,
+   "GM_over_L2": 5.57524843400695e-17
+  },
+  "canonical|50|Saturn": {
+   "a": 5.575241144497523e-17,
+   "bound": 7e-15,
+   "ratio": 0.007964630206425034,
+   "GM_over_L2": 5.57524843400695e-17
+  },
+  "canonical|90|Earth": {
+   "a": 1.7207555609358955e-17,
+   "bound": 8.7e-15,
+   "ratio": 0.0019778799550987307,
+   "GM_over_L2": 1.7207556895083178e-17
+  },
+  "canonical|90|Mars": {
+   "a": 1.7207554927571666e-17,
+   "bound": 1.4e-15,
+   "ratio": 0.01229111066255119,
+   "GM_over_L2": 1.7207556895083178e-17
+  },
+  "canonical|90|Saturn": {
+   "a": 1.7207544432449025e-17,
+   "bound": 7e-15,
+   "ratio": 0.0024582206332070034,
+   "GM_over_L2": 1.7207556895083178e-17
+  },
+  "alt|24|Earth": {
+   "a": 2.4198120469521567e-16,
+   "bound": 8.7e-15,
+   "ratio": 0.02781393157416272,
+   "GM_over_L2": 2.4198126883710716e-16
+  },
+  "alt|24|Mars": {
+   "a": 2.4198117142058646e-16,
+   "bound": 1.4e-15,
+   "ratio": 0.17284369387184748,
+   "GM_over_L2": 2.4198126883710716e-16
+  },
+  "alt|24|Saturn": {
+   "a": 2.41980659675301e-16,
+   "bound": 7e-15,
+   "ratio": 0.03456866566790014,
+   "GM_over_L2": 2.4198126883710716e-16
+  },
+  "alt|50|Earth": {
+   "a": 5.575247722046534e-17,
+   "bound": 8.7e-15,
+   "ratio": 0.006408330714996017,
+   "GM_over_L2": 5.57524843400695e-17
+  },
+  "alt|50|Mars": {
+   "a": 5.575247354257172e-17,
+   "bound": 1.4e-15,
+   "ratio": 0.039823195387551226,
+   "GM_over_L2": 5.57524843400695e-17
+  },
+  "alt|50|Saturn": {
+   "a": 5.57524169561061e-17,
+   "bound": 7e-15,
+   "ratio": 0.007964630993729443,
+   "GM_over_L2": 5.57524843400695e-17
+  },
+  "alt|90|Earth": {
+   "a": 1.7207555708000148e-17,
+   "bound": 8.7e-15,
+   "ratio": 0.0019778799664367987,
+   "GM_over_L2": 1.7207556895083178e-17
+  },
+  "alt|90|Mars": {
+   "a": 1.7207555077900834e-17,
+   "bound": 1.4e-15,
+   "ratio": 0.012291110769929166,
+   "GM_over_L2": 1.7207556895083178e-17
+  },
+  "alt|90|Saturn": {
+   "a": 1.7207545377430936e-17,
+   "bound": 7e-15,
+   "ratio": 0.0024582207682044195,
+   "GM_over_L2": 1.7207556895083178e-17
+  }
+ },
+ "K8_globulars": {
+  "canonical": {
+   "L95_V1": 28.85296793918427,
+   "E4_N1": 28.85296793918427,
+   "dchi2_V0_unscreened": 25.403203703715572,
+   "mass_term_frac_at_rh": 6.785928e-10
+  },
+  "alt": {
+   "L95_V1": 29.122701653065455,
+   "E4_N1": 29.122701653065455,
+   "dchi2_V0_unscreened": 28.01219822605477,
+   "mass_term_frac_at_rh": 6.785928e-10
+  }
+ },
+ "K9_V0_planets": {
+  "canonical|Earth": {
+   "u": 9.359999884536736e-11,
+   "bound": 8.7e-15,
+   "ratio": 10758.620556938777,
+   "D7d": 9.359999844679054e-11
+  },
+  "canonical|Mars": {
+   "u": 9.359999646012258e-11,
+   "bound": 1.4e-15,
+   "ratio": 66857.14032865898,
+   "D7d": 9.359999644726612e-11
+  },
+  "canonical|Saturn": {
+   "u": 9.359986441107423e-11,
+   "bound": 7e-15,
+   "ratio": 13371.409201582033,
+   "D7d": 9.3599864411308e-11
+  },
+  "alt|Earth": {
+   "u": 1.1299999781375087e-10,
+   "bound": 8.7e-15,
+   "ratio": 12988.505495833433,
+   "D7d": 1.129999978252212e-10
+  },
+  "alt|Mars": {
+   "u": 1.1299999499482522e-10,
+   "bound": 1.4e-15,
+   "ratio": 80714.28213916087,
+   "D7d": 1.1299999493137715e-10
+  },
+  "alt|Saturn": {
+   "u": 1.1299980237953302e-10,
+   "bound": 7e-15,
+   "ratio": 16142.82891136186,
+   "D7d": 1.1299980238043665e-10
+  }
+ },
+ "K10_scales": {
+  "lengths_pc": {
+   "mu^-1": 1000000.0,
+   "L_eq = sqrt2/mu": 1414213.5623730952,
+   "L*_F floor sqrt2/mu (c_s<=c)": 1414213.5623730952,
+   "r_C Sun (canonical)": 3379.258363982456,
+   "r_C smallest globular (canonical)": 17379.128284801835,
+   "r_C 1e11 Msun galaxy (canonical)": 230226.19226790278,
+   "r_C Sun (alt)": 3274.82148959415,
+   "r_C smallest globular (alt)": 16842.021724083257,
+   "r_C 1e11 Msun galaxy (alt)": 223110.9908441073
+  },
+  "ratio_to_90pc": {
+   "mu^-1": 11111.111111111111,
+   "L_eq = sqrt2/mu": 15713.484026367723,
+   "L*_F floor sqrt2/mu (c_s<=c)": 15713.484026367723,
+   "r_C Sun (canonical)": 37.54731515536062,
+   "r_C smallest globular (canonical)": 193.10142538668705,
+   "r_C 1e11 Msun galaxy (canonical)": 2558.0688029766975,
+   "r_C Sun (alt)": 36.386905439935,
+   "r_C smallest globular (alt)": 187.1335747120362,
+   "r_C 1e11 Msun galaxy (alt)": 2479.01100937897
+  }
+ },
+ "lines": {
+  "Q1": "UNDECIDED",
+  "Q2": "L* is OUTSIDE AeST's class; the covariant screened theory is AeST + one named term (beta_L)",
+  "Q4": "L* = new constant of the covariant theory (beta_L = (2-K_B) L*^2/2), value FITTED (globular floor, calibration-dominated)"
+ },
+ "verdict": "SCOPED NO-GO",
+ "n_checks": 11,
+ "n_pass": 7,
+ "runtime_s": 3.4238669872283936,
+ "peak_rss_GB": 0.349667328
+}

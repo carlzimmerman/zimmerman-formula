@@ -1,0 +1,58 @@
+=== Q1  AeST's mass term (SZ21 Eq. 6: lap Psi + mu^2 Psi = 4 pi Ghat rho + lap varphi) on a point mass
+K1 PASS residual=0; r->0 norm=1; series=GM*mu**2/2 + GM/r**2 all exact  -- Newtonian regime: Phi = -GM cos(mu r)/r; pull = GM/r^2 + GM mu^2/2 + O(mu^4 r^2) -> constant hedgehog, L_eq = sqrt(2)/mu
+  hedgehog GM mu^2/2 at mu^-1 = 1 Mpc: Sun 6.969e-26 m/s^2; L_eq = sqrt(2)/mu = 1.414 Mpc (= 1.571e+04 x the window top 90 pc)
+K2 PASS r_C = GM**(1/6)/(a_0**(1/6)*mu**(2/3)) (r_M mu^-2)^(1/3) exact  -- deep-MOND: fractional term -(mu^2 r^3/r_M)(ln(r/r0)/3 - 1/9): grows OUTWARD; depends on Phi's zero point r0 (cosmological gauge)
+  => the mass term acts at LARGE r (r >~ r_C, mu^-1) and is oscillatory (Helmholtz sign), not a Newtonian switch-off;
+     the task's premise 'Newtonian-like beyond a length' is corrected by the record's SZ21 transcription (typeII F7).
+
+=== Q2  Static AeST-class action, Fourier space (k along z): fields Phi, phi, alpha (A_L = grad alpha), a_T (transverse A)
+K3 PASS Phi = rho*(lambda_s + 1)/(k**2*lambda_s - lambda_s*mu2 - mu2); alpha = 0; a_T = 0 dPhi/dc123 = dPhi/dc1 = 0, alpha = 0  -- DECOUPLING: the aether's longitudinal stiffness c123 = c1+c2+c3 (0 in AeST) and its curl stiffness c1 = K_B never reach Phi for a longitudinal source; phi's shift symmetry absorbs grad alpha
+  with the named term beta k^4 chi^2: Phi = rho*(beta_L*k**2 + lambda_s + 1)/(beta_L*k**4 - beta_L*k**2*mu2 + k**2*lambda_s - lambda_s*mu2 - mu2)   (depends on beta: True)
+K4 PASS named-term EL = -beta*lap_vec_r: True; full gradient EL same: True; beta_L = L_star**2*(2 - K_B)/2 exact  -- the named term reproduces D7d's radial (P) operator, hence CFG691's ODE with l = L*^2/(2 r_M)
+  AeST curl-stiffness length (screened units): L*_F^2 = 2*K_B/(Q_0**2*(2 - K_B)) = 4*K_2*K_B/(mu**2*(K_B - 2)**2) = 2*(-K_B*lambda_s - 2)/(c_s**2*mu**2*(K_B - 2))
+  L*_F^2 - 2/(c_s^2 mu^2) = -2*K_B*(lambda_s + 1)/(c_s**2*mu**2*(K_B - 2))  (> 0 for 0 < K_B < 2, lambda_s >= 0)  => L*_F >= sqrt(2)/(c_s mu)
+  for L*_F to sit in the window, c_s >= 1.571e+04 c (90 pc) / 5.893e+04 c (24 pc)
+
+=== Q3  local predictions.  V1 = AeST + named term (gamma_L = L*^2/2, gamma_F = L*_F^2/2 >= 1 Mpc^2 -> g = gamma_F/gamma_L -> inf)
+K5 FAIL g=1 vs D7d: 0.0e+00; g=1e8 vs closed form: 5.6e-02 <1e-12; <1e-6  -- generalised Route F operator (kap^2/2)[khat khat + g(1 - khat khat)] + J - khat khat
+K5b PASS max|Q2(g_phys)/Q2(chi_inf)-1| = 2.60e-10 <1e-3  -- [A1 post-result] finite physical curl stiffness g = 2 mu^-2/L*^2 vs g -> inf
+  Cassini Q2 (s^-2, Hees convention) at Saturn: V1 (g = g_phys, A1) vs D7d (g=1)
+   canonical L*= 24 pc: V1 1.184e-34 1.706e-34 1.977e-34 2.346e-34 | V1/D7d 1.022 1.025 1.026 1.027 | max/Hees 2.61e-08
+   canonical L*= 50 pc: V1 1.309e-35 1.887e-35 2.186e-35 2.594e-35 | V1/D7d 1.022 1.025 1.026 1.027 | max/Hees 2.88e-09
+   canonical L*= 90 pc: V1 2.245e-36 3.235e-36 3.749e-36 4.448e-36 | V1/D7d 1.022 1.025 1.026 1.027 | max/Hees 4.94e-10
+   alt       L*= 24 pc: V1 1.049e-34 1.417e-34 1.636e-34 1.935e-34 | V1/D7d 1.021 1.024 1.025 1.026 | max/Hees 2.15e-08
+   alt       L*= 50 pc: V1 1.160e-35 1.567e-35 1.810e-35 2.140e-35 | V1/D7d 1.021 1.024 1.025 1.026 | max/Hees 2.38e-09
+   alt       L*= 90 pc: V1 1.989e-36 2.687e-36 3.103e-36 3.669e-36 | V1/D7d 1.021 1.024 1.025 1.026 | max/Hees 4.08e-10
+K6 PASS V1 Q2 in [1.99e-36, 2.35e-34]; D7d json reproduced to 0.0e+00 inside Hees [-3e-27, 9e-27] and Park [-2e-27, 5.2e-27]  -- V1 passes Cassini at L* = 24/50/90 pc, all E, both footings
+  wide binary 1.5 Msun, 20 kAU: gamma_v - 1 (V1: monopole in the Galactic field + mass-term hedgehog)
+   canonical L*= 24 pc: 8.115e-06 8.103e-06 8.097e-06 8.089e-06  (isolated 8.161e-06; D7d 8.116e-06 8.104e-06 8.099e-06 8.092e-06)
+   canonical L*= 50 pc: 1.875e-06 1.874e-06 1.873e-06 1.872e-06  (isolated 1.880e-06; D7d 1.875e-06 1.874e-06 1.873e-06 1.873e-06)
+   canonical L*= 90 pc: 5.795e-07 5.792e-07 5.791e-07 5.790e-07  (isolated 5.803e-07; D7d 5.795e-07 5.793e-07 5.792e-07 5.790e-07)
+   alt       L*= 24 pc: 8.118e-06 8.109e-06 8.104e-06 8.098e-06  (isolated 8.161e-06; D7d 8.119e-06 8.111e-06 8.106e-06 8.100e-06)
+   alt       L*= 50 pc: 1.876e-06 1.875e-06 1.874e-06 1.873e-06  (isolated 1.880e-06; D7d 1.876e-06 1.875e-06 1.874e-06 1.874e-06)
+   alt       L*= 90 pc: 5.795e-07 5.794e-07 5.793e-07 5.791e-07  (isolated 5.803e-07; D7d 5.796e-07 5.794e-07 5.793e-07 5.792e-07)
+   mass-term part of gamma_v - 1 at 20 kAU: 2.35e-15
+K7 PASS max gamma_v-1 = 8.118e-06 <1e-3  -- V1 predicts no wide-binary boost visible to DR4 (D2 sigma_sys 0.020)
+  V1 planets (max over E): canonical|24|Earth: 0.028 of bound; canonical|24|Mars: 0.173 of bound; canonical|24|Saturn: 0.035 of bound
+  globulars [canonical]: V1 isolated floor L*_95 = 28.853 pc (E4 N1 28.853); V0 (L*->0) Delta chi2 = 25.40; mass-term fraction at r_h 6.8e-10
+  globulars [alt]: V1 isolated floor L*_95 = 29.123 pc (E4 N1 29.123); V0 (L*->0) Delta chi2 = 28.01; mass-term fraction at r_h 6.8e-10
+K8 PASS 28.853/29.123 E4 N1 28.853/29.123 +-0.01  -- V1's isolated spherical sector = the screened theory's (K3+K4); EFE floor OPEN for both
+K9 PASS D7d match 4.3e-09; Mars ratio 6.69e+04/8.07e+04 <1e-6; >1  -- V0 (pure AeST with the screened law) FAILS the planetary monopole: u -> a0 near the Sun
+  V0 planets: canonical|Earth 1.08e+04x bound; canonical|Mars 6.69e+04x bound; canonical|Saturn 1.34e+04x bound; alt|Earth 1.30e+04x bound; alt|Mars 8.07e+04x bound; alt|Saturn 1.61e+04x bound
+  mu^-1                              1.0000e+06 pc  = 1.111e+04 x 90 pc
+  L_eq = sqrt2/mu                    1.4142e+06 pc  = 1.571e+04 x 90 pc
+  L*_F floor sqrt2/mu (c_s<=c)       1.4142e+06 pc  = 1.571e+04 x 90 pc
+  r_C Sun (canonical)                3.3793e+03 pc  = 3.755e+01 x 90 pc
+  r_C smallest globular (canonical)  1.7379e+04 pc  = 1.931e+02 x 90 pc
+  r_C 1e11 Msun galaxy (canonical)   2.3023e+05 pc  = 2.558e+03 x 90 pc
+  r_C Sun (alt)                      3.2748e+03 pc  = 3.639e+01 x 90 pc
+  r_C smallest globular (alt)        1.6842e+04 pc  = 1.871e+02 x 90 pc
+  r_C 1e11 Msun galaxy (alt)         2.2311e+05 pc  = 2.479e+03 x 90 pc
+K10 FAIL min ratio 3.639e+01 (r_C Sun (alt)) >1e3  -- no AeST length reaches the L* window
+
+Q1: AeST's mass term is a LARGE-scale term (r >~ r_C, mu^-1), oscillatory, opposite in direction to L*'s small-scale screening
+Q2: L* is OUTSIDE AeST's class; the covariant screened theory is AeST + one named term (beta_L)
+Q4: L* = new constant of the covariant theory (beta_L = (2-K_B) L*^2/2), value FITTED (globular floor, calibration-dominated)
+verdict: SCOPED NO-GO   (kappa = 1/2 FITTED; not theory closed)
+runtime 3.4 s, peak RSS 0.34 GB
+C3_SCALE_MAP COMPLETE: 9/11 checks PASS.
