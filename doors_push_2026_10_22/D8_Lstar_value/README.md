@@ -109,3 +109,26 @@ There are three findings.
 - CFG820, CFG821, CFG575, CFG828, CFG940.
 - Register door 4 (`CANDIDATE_LAWS_REGISTER.md:711`).
 - A11's "c_s = 0.72c" unit slip was already caught by A16, A31 C108 and FINAL #2. It is not re-reported here.
+
+## 4. Addendum (2026-10-22, owner-OK'd fetch): Stilp+2013, 23 dwarfs at a common 200 pc beam
+
+The rule was frozen before the run; see AMENDMENT A2 (95a7ec3a41) and `PROVENANCE.md`. The script is
+`d8_stilp2013.py`. It passes 2/2 checks. Its MUTATE run (a corrupted sha) fails K1.
+
+The primary column is ⟨σ_m2⟩, the global HI second moment. Its median is 9.30 km/s and its range is 7.0–13.2 km/s.
+
+| footing | median L* | 16–84 % range | 84/16 | share inside [floor, 90] | class |
+|---|---|---|---|---|---|
+| canonical | **29.95 pc** | 22.2–44.2 pc | **1.995** | 78 % | CONSISTENT |
+| alt | **24.80 pc** | 18.4–36.6 pc | **1.995** | 52 % | CONSISTENT, only 1.3 % above the 24.48 pc floor |
+
+- **Is it one constant?** It passes the frozen 84/16 ≤ 2 line, but only by 0.005. That is a knife-edge pass.
+  The spread in σ itself is about ×1.41 (16–84 %).
+- **Secondary: σ_central, the narrow-peak width (no verdict weight).** Its median is 7.70 km/s, which gives
+  20.5 / 17.0 pc. That is below the CFG820 floor on both footings.
+- **Plain reading.**
+  - On the canonical footing the dwarfs' HI second moment puts L* near 30 pc, inside the window.
+  - On the alt footing it sits right at the globular floor.
+  - The narrow component would be excluded on both footings by the globulars.
+  - This is the first on-disk σ_c that is independent of L*. It makes L* = σ_c²/a0 a conditional prediction
+    of about 25–30 pc, *if* the tethered reading and the choice of the second moment as σ_c both hold.
