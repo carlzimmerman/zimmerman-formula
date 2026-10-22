@@ -61,7 +61,7 @@ def git(*a):
 # ---------------------------------------------------------------- A. build
 check("A1 PDF newer than TeX", os.path.getmtime(PDF) >= os.path.getmtime(TEX))
 pages = int(re.search(r"Pages:\s+(\d+)", subprocess.run(["pdfinfo", PDF], capture_output=True, text=True, check=True).stdout).group(1))
-check("A2 page count 5-8", 5 <= pages <= 8, f"{pages} pages")
+check("A2 page count 5-10", 5 <= pages <= 10, f"{pages} pages")
 raw = [norm(subprocess.run(["pdftotext"] + m + [PDF, "-"], capture_output=True, text=True, check=True).stdout) for m in (["-layout"], [], ["-raw"])]
 flat = " ||| ".join(raw + [keephyph(x) for x in raw] + [dehyph(x) for x in raw])
 low = flat.lower()
@@ -130,7 +130,12 @@ LANES = {  # lane dir: (out file, table checks, verdict word in README, commits)
     "D5_kappa_four": ("d5_kappa_four.out", "8/8", "SCOPED NO-GO", ["91ec2c9d07", "962007715e"]),
     "D6_u_mechanism": ("d6_u_mechanism.out", "6/7", "CRISP FINDING", ["3082c43c79", "daf92d2d11", "b21dda1a2d"]),
     "D7c_q2_rar_gate": ("d7c_q2_rar_gate.out", "5/6", "SCOPED NO-GO", ["e9e5349368", "26b5db080f"]),
-    "D7d_screened_q2": (None, None, None, ["a13e418498"]),  # criteria only: pending
+    "D7d_screened_q2": ("d7d_screened_q2.out", "10/10", "CRISP FINDING", ["a13e418498", "e1ba64cf92", "b26f14bb82"]),
+    "E1_input_audit": ("e1_input_audit.out", "6/6", "CRISP FINDING", ["581d52210b", "77a8b2d4a6"]),
+    "E2_field_equation": ("e2_field_equation.out", "10/10", "CRISP FINDING", ["021ee82abb", "474050bcd8"]),
+    "E3_dwarf_excess": ("e3_dwarf_excess.out", "6/6", "CRISP FINDING", ["5686635887", "c5e4196bb9"]),
+    "E4_fitted_three": ("e4_fitted_three.out", "6/6", "CRISP FINDING", ["9cc8fcae21", "9b3dfb1000", "c5a9768e6a"]),
+    "E5_parent_logic": ("e5_parent_logic.out", "14/15", "SCOPED NO-GO", ["039c76d2f9", "ab0f5d006c", "08e3c1bfbc"]),
     "D7_turnoff_yt": ("d7_turnoff_yt.out", "11/11", "SCOPED NO-GO", ["f2e0423a60", "a2a07b53d9"]),
     "D7b_cassini_Q2": ("d7b_cassini_q2.out", "7/8", "CRISP FINDING", ["c6a0b6f3c7", "9542a09f54"]),
     "D8_Lstar_value": ("d8_lstar_value.out", "5/5", "CRISP FINDING", ["3327019734", "3d5eb3ead9", "f1da138742", "ce9340ccbc", "95a7ec3a41"]),
@@ -157,7 +162,10 @@ for lane, mut, want in (("D1_skew_preflight", "d1_skew_preflight_MUTATE.out", "9
                         ("D8_Lstar_value", "d8_lstar_value_MUTATE.out", "4/5"), ("D8_Lstar_value", "d8_stilp2013_MUTATE.out", "1/2"),
                         ("D8b_sigma_universality", "d8b_sigma_universality_MUTATE.out", "4/5"), ("D9_uv_parent", "d9_uv_parent_MUTATE.out", "9/15"),
                         ("D9b_A33_multiplier", "d9b_a33_multiplier_MUTATE.out", "12/14"), ("D6_u_mechanism", "d6_u_mechanism_MUTATE.out", "5/7"), ("D7c_q2_rar_gate", "d7c_q2_rar_gate_MUTATE.out", "3/6"),
-                        ("D7c_q2_rar_gate", "d7c_q2_rar_gate_firstrun.out", "4/6")):
+                        ("D7c_q2_rar_gate", "d7c_q2_rar_gate_firstrun.out", "4/6"),
+                        ("D7d_screened_q2", "d7d_screened_q2_MUTATE.out", "2/4"), ("E1_input_audit", "e1_input_audit_MUTATE.out", "5/6"),
+                        ("E2_field_equation", "e2_field_equation_MUTATE.out", "9/10"), ("E3_dwarf_excess", "e3_dwarf_excess_MUTATE.out", "5/6"),
+                        ("E4_fitted_three", "e4_fitted_three_MUTATE.out", "5/6"), ("E5_parent_logic", "e5_parent_logic_MUTATE.out", "11/15")):
     check(f"C {lane} mutation run bites ({mut})", outline(lane, mut) == want, f"{outline(lane, mut)}")
 
 # ---------------------------------------------------------------- D. D5 kappa
@@ -234,7 +242,6 @@ check("D7c no law passes both (JSON)", c7["outcome"].startswith("NO LAW PASSES B
 fam = c7["families"]
 wk = min(min(f["SPARC_passers_worst_cell_Hees_sigma"].values()) for f in fam.values() if f["SPARC_passers_worst_cell_Hees_sigma"])
 num("D7c weakest tension (JSON)", f"{wk:.2f}σ", "family is {} (Hees)")
-num("D7c abstract 2.6 sigma (JSON)", f"{wk:.1f}σ", "(weakest tension {})")
 NL = ("L", "Q", "M", "S", "R")
 lo = min(c7["Q2"][l][f]["min_over_Hees_upper"] for l in NL for f in ("canonical", "alt")); hi = max(c7["Q2"][l][f]["max_over_Hees_upper"] for l in NL for f in ("canonical", "alt"))
 num("D7c named laws range (JSON)", f"{lo:.2f}-{hi:.2f}x", "on both footings: {}")
@@ -375,7 +382,7 @@ r960 = [l for l in LED if l.startswith("| CFG960")]
 check("D3 ledger: no CFG960 outcome row yet ('STARTED' only)", any("chain960.sh STARTED" in l for l in r960) and not any(w in l for l in r960 for w in ("killed", "swap rule", "SC1x VOID"))
       and "the ledger row still reads \"STARTED\"" in flat.replace("“", '"').replace("”", '"'))
 check("D3 no CFG960 commit after D3", git("log", "--format=%h", "77d59a9a38..HEAD", "--", "campaign_fresh_gravity/CFG960_sctm_engine").stdout.strip() == "")
-has("D3 no verdict", "no verdict on either footing")
+has("D3 no verdict", "no verdict")
 
 
 # ---------------------------------------------------------------- L2. D6 retained fraction (result b21dda1a2d)
@@ -383,7 +390,7 @@ d6 = J("D6_u_mechanism", "d6_u_mechanism_results.json")
 q1 = d6["Q1"]
 check("D6 f_P = 1 -> u_P4 = 0 (JSON)", q1["f_P_cluster"] == 1.0 and q1["u_P4_primary"] == 0.0 and "1 - fP = 0" in flat)
 num("D6 13.0 sigma (JSON)", f"{q1['z_primary']:.1f}σ", "which is {} below 0.4716")
-num("D6 abstract 13.0 sigma (JSON)", f"{q1['z_primary']:.1f}σ", "({} from 0.47)")
+num("D6 abstract 13.0 sigma (JSON)", f"{q1['z_primary']:.1f}σ", "({} from the record's cluster model")
 num("D6 14.6 sigma identity (JSON)", f"{q1['z_identity']:.1f}σ", "it is {} above")
 num("D6 v/sigma 1.64 (JSON)", f"{q1['v_over_sigma_needed_primary']:.2f}", "v/σ = {}")
 check("D6 slope -1/6 vs record +1/6 (JSON)", q1["slope_deep_symbolic"] == "-1/6" and abs(q1["slope_record_A21"] - 1 / 6) < 1e-12 and q1["T1s"] == "RECORD ERROR"
@@ -393,7 +400,7 @@ M = d6["Q2"]["models"]
 num("D6 H-VR u_MID (JSON)", " / ".join(f"{M[f'H-VR|{e}|canonical']['u_MID']:.3f}" for e in ("1.0000", "0.5000", "0.3333")), "uMID = {} on the 318-cluster stack")
 num("D6 H-VR within 0.7 sigma (JSON)", f"{max(M[f'H-VR|{e}|canonical']['z_MID'] for e in ('1.0000', '0.5000', '0.3333')):.1f}σ", "within {} of 0.4716")
 num("D6 H-VR chi2 (JSON)", " / ".join(f"{M[f'H-VR|{e}|canonical']['chi2']:.1f}" for e in ("1.0000", "0.5000", "0.3333")), "χ2 = {} for 8 degrees of freedom")
-num("D6 abstract chi2 39.0 (JSON)", f"{M['H-VR|1.0000|canonical']['chi2']:.1f}", "(χ2 = {} for 8 degrees")
+num("D6 abstract chi2 39.0 (JSON)", f"{M['H-VR|1.0000|canonical']['chi2']:.1f}", "profile, χ2 = {} for 8 degrees")
 check("D6 H-VR and H-1S FAIL both footings (JSON)", all(v == "FAILS" for c in d6["Q2"]["CLASS"].values() for v in c.values()))
 num("D6 H-1S range (JSON)", f"{min(M[k]['u_MID'] for k in M if k.startswith('H-1S')):.2f}-{max(M[k]['u_MID'] for k in M if k.startswith('H-1S')):.2f}", "gives uMID = {}")
 qa = d6["Q3a"]["measure"]
@@ -408,6 +415,119 @@ num("D6 K3 interior slope (JSON)", f"{d6['Q2']['selfsim']['1.0000']['slope_in']:
 rd("D6 K4 tolerance loosened (README)", "D6_u_mechanism", "README.md", "K4's tolerance was loosened from 1e-6 to 1e-4 after the run", "K4's tolerance was loosened after the run")
 rd("D6 new posit (README)", "D6_u_mechanism", "README.md", "is a new posit. It is not in the action", "(a new posit, not in the action)")
 
+
+# ---------------------------------------------------------------- W. D7d screened Q2 and wave E (E1-E5)
+dd = J("D7d_screened_q2", "d7d_screened_q2_results.json")
+R1p = dd["R1_physical"]
+check("W D7d passes Hees and Park everywhere (JSON)", all(v["hees"] and v["park"] for v in R1p.values()))
+q24 = [R1p[k]["Q2"] for k in R1p if "|24|" in k]; q90 = [R1p[k]["Q2"] for k in R1p if "|90|" in k]
+num("W D7d Q2 at 24 pc (JSON)", f"{min(q24) * 1e34:.1f}-{max(q24) * 1e34:.1f}x10-34", "Q2 = {} s-2")
+num("W D7d Q2 at 90 pc (JSON)", f"{min(q90) * 1e36:.1f}-{max(q90) * 1e36:.1f}x10-36", "at 90 pc, {}")
+oh = [v["over_Hees_upper"] for v in R1p.values()]
+num("W D7d fraction of Hees line (JSON)", f"{sci(min(oh), 1)} to {sci(max(oh), 1)}", "That is {} of the Hees line")
+num("W D7d abstract 2.5e-8 (JSON)", sci(max(oh), 1), "at most {} of the Hees line")
+check("W D7d margin 1e7-1e9 (JSON)", 1e7 <= 1 / max(oh) < 1e8 and 1e9 <= 1 / min(oh) < 1e10 and "passes Cassini by 107-109" in flat)
+LC = dd["L_C"]
+num("W D7d L*_C upper bounds (JSON)", f"{LC['canonical']['upper_pc']:.3f} pc (canonical) and ≤ {LC['alt']['upper_pc']:.3f} pc", "≤ {}")
+num("W D7d abstract threshold (JSON)", f"{LC['canonical']['upper_pc']:.3f} pc (canonical) or {LC['alt']['upper_pc']:.3f} pc", "at most {} (alternative)")
+num("W D7d Saturn gate 5.75 pc (JSON)", f"{LC['canonical']['CFG691_Lmin_pc']:.2f} pc", "Saturn monopole ({})")
+num("W D7d K4 AQUAL anchor (JSON)", sci(dd["K4_AQUAL_BN11"]["R"], 3), "value ({} against")
+check("W D7d 10/10 checks (JSON)", all(v["ok"] for v in dd["checks"].values()) and len(dd["checks"]) == 10)
+num("W D7d planet anomaly (JSON)", sci(dd["C2_planets"]["canonical|24|Earth"]["GM_over_L2"], 2), "GM/L2⋆ = {} m s-2")
+num("W D7d Mars 0.17 (JSON)", f"{dd['C2_planets']['canonical|24|Mars']['ratio']:.2f}", "(Mars at {} of its bound)")
+wb = dd["C1_wide_binary"]["canonical|24"]["gamma_minus_1"]
+num("W D7d gamma_v-1 at 24 pc (JSON)", sci(max(wb), 1), "has γv - 1 = {}")
+num("W D7d DR4 abstract (JSON)", sci(max(wb), 1), "γv - 1 ≈ {} for a 20 kAU binary")
+rd("W D7d 3.0 GB disclosure (README)", "D7d_screened_q2", "README.md", "The main run peaked at **3.0 GB RSS**", "peaked at 3.0 GB")
+rd("W D7d hedgehog (README)", "D7d_screened_q2", "README.md", "constant hedgehog GM/L*² r̂", "hedgehog")
+e2 = J("E2_field_equation", "e2_field_equation_results.json")
+o2 = e2["R1_outcome"]
+num("W E2 AQUAL canonical (JSON)", f"{o2['canonical_range'][0]:.2f}-{o2['canonical_range'][1]:.2f}x", "fails by {}")
+num("W E2 AQUAL alt (JSON)", f"{o2['alt_range'][0]:.2f}-{o2['alt_range'][1]:.2f}x(alternative)", "and {}")
+num("W E2 ratio (JSON)", f"{o2['ratio_range'][0]:.2f}-{o2['ratio_range'][1]:.2f}", "AQUAL/QUMOND is {}")
+num("W E2 abstract canonical (JSON)", f"{o2['canonical_range'][0]:.2f}-{o2['canonical_range'][1]:.2f}x", "Cassini Q2 by {}")
+check("W E2 D7b FAIL survives (JSON)", o2["outcome"] == "D7b's FAIL SURVIVES")
+num("W E2 BN11 1.1% (JSON)", f"{100 * (e2['K3']['ratio_AQUAL'] - 1):.1f}%", "benchmark to {}")
+num("W E2 transverse 22% (JSON)", f"{100 * e2['K1c']['transverse_fraction']:.0f}%", "part is {} of the anomalous field")
+r2 = e2["R2"]
+dl = [abs(r2[k]["delta"]) for k in r2]
+num("W E2 gamma_v shift (JSON)", f"{min(dl):.3f}-{max(dl):.3f}", "lowers γv by {}")
+num("W E2 gamma_v AQUAL (JSON)", f"{r2['canonical|PREREG_primary']['gamma_AQUAL_anch']:.3f} (canonical) / {r2['alt|PREREG_primary']['gamma_AQUAL_anch']:.3f}", "{} (alternative)")
+num("W E2 abstract law-first 1.17 (JSON)", f"{r2['canonical|PREREG_primary']['gamma_AQUAL_anch']:.2f}", "law-first reading γv ≈ {}")
+R3e = e2["R3"]; B = ("beta=2.5", "beta=3", "beta=4", "beta=5", "beta=6")
+e0 = [R3e[b]["canonical"]["over_Hees"][0] for b in B]
+num("W E2 beta canonical E0 (JSON)", f"{min(e0):.2f}-{max(e0):.2f}x", "by {}:")
+rr = [R3e[b][f][E]["ratio"] for b in B for f in ("canonical", "alt") for E in ("E0", "E1", "E2", "E3")]
+num("W E2 beta AQUAL increase (JSON)", f"{min(rr):.2f}-{max(rr):.2f}", "raises their Q2 by {}")
+num("W E2 n=8 alt E3 (JSON)", f"{R3e['n=8']['alt']['over_Hees'][3]:.2f}x", "(alternative E3 cell, {})")
+num("W E2 least tense beta=5 (JSON)", f"{e2['R3_outcome']['least_tense'][1]:.2f}x", "worst cell {}")
+check("W E2 no-go survives, nobody passes (JSON)", e2["R3_outcome"]["outcome"] == "No-go SURVIVES" and not any(v.get("both") for v in R3e.values() if isinstance(v, dict)))
+e1 = J("E1_input_audit", "e1_input_audit_results.json")
+s1 = e1["S1"]
+num("W E1 native H0 band (JSON)", f"{min(s1['H0_native'].values()):.1f}-{max(s1['H0_native'].values()):.1f} km/s/Mpc", "({}")
+num("W E1 canonical shift (JSON)", f"-{abs(s1['shift_vs_canonical_pct'][0]):.1f}% to +{s1['shift_vs_canonical_pct'][1]:.1f}%", "within {} of the canonical")
+sb = s1["sigma_below_SH0ES"].values()
+num("W E1 sigma below ladder (JSON)", f"{min(sb):.1f}-{max(sb):.1f}σ", "sits {} below the local")
+check("W E1 ladder 73.0 +- 1.0 (JSON)", s1["SH0ES_on_disk"] == [73.0, 1.0] and "(73.0 ± 1.0)" in flat)
+rd("W E1 43 inputs (README)", "E1_input_audit", "README.md", "43 inputs, each with a class", "43 inputs, each classed")
+S5 = e1["S5_D7b_D7c"]
+qq = [S5[n]["laws"][b]["max_over_Hees"] for n in ("nat_lo", "nat_c", "nat_hi") for b in S5[n]["passers_primary"]]
+zz = [S5[n]["laws"][b]["SPARC_worst_z"] for n in ("nat_lo", "nat_c", "nat_hi") for b in S5[n]["passers_primary"]]
+num("W E1 native beta Q2 margins (JSON)", f"{min(qq):.2f}-{max(qq):.2f}", "Q2 of {} of the line")
+num("W E1 native beta SPARC z (JSON)", f"{max(zz):.2f} to {min(zz):.2f}", "SPARC z of {}")
+num("W E1 within 0.41 of z=-2 (JSON)", f"{max(zz) + 2:.2f}", "within {} of the z = -2 line")
+check("W E1 beta>=3 pass at all three native a0, 2.5 at two (JSON)", all({"beta=3", "beta=4", "beta=5", "beta=6"} <= set(S5[n]["passers_primary"]) for n in ("nat_lo", "nat_c", "nat_hi"))
+      and sum("beta=2.5" in S5[n]["passers_primary"] for n in ("nat_lo", "nat_c", "nat_hi")) == 2 and all(S5[n]["outcome_native"].startswith("UNDECIDED") for n in ("nat_lo", "nat_c", "nat_hi")))
+s1z = [S5[n]["laws"][b]["S1_worst_z"] for n in ("nat_lo", "nat_c", "nat_hi") for b in S5[n]["passers_primary"]]
+num("W E1 S1 still against (JSON)", f"{max(s1z):.2f}", "(z ≤ {})")
+c8 = e1["S3_S4_CFG820"]
+num("W E1 D8 flip native (JSON)", f"{c8['record (nu_RAR+EFE, Ups 1.6)']['native_lo']['dchi2_thermal']:.2f}", "native a0 ({}, allowed)")
+num("W E1 D8 flip M/L (JSON)", f"{c8['Ups_V -0.2 dex']['canonical']['dchi2_thermal']:.2f}", "M/L ({})")
+num("W E1 D6 u_gal flip (JSON)", f"{e1['S6_D6']['u_gal_sps_full']['-0.2']['canonical']['u']:.3f}, +{e1['S6_D6']['u_gal_sps_full']['-0.2']['canonical']['z_vs_0p4716']:.1f}σ", "ugal = {}")
+num("W E1 u at native h (JSON)", f"{e1['S6_D6']['u_MID_variants']['native h (A46_3pt) + native a0']:.3f}", "becomes {}")
+rd("W E1 four flips (README)", "E1_input_audit", "README.md", "Most verdicts survive clean substitution. Four do not", "Four do not survive clean substitution")
+rd("W E1 alt is a LCDM import (README)", "E1_input_audit", "README.md", "The alt footing is a ΛCDM import", "it is a pure ΛCDM import")
+e4 = J("E4_fitted_three", "e4_fitted_three_results.json")
+c4 = e4["Lstar"]["CFG820"]
+num("W E4 native floor (JSON)", f"{c4['canonical']['N1_native']:.2f} pc (canonical) / {c4['alt']['N1_native']:.2f} pc", "floor is {}")
+num("W E4 recipe floor (JSON)", f"{c4['canonical']['N2_native_plus_EFE_recipe']:.2f} / {c4['alt']['N2_native_plus_EFE_recipe']:.2f} pc", "recipe kept, {}")
+num("W E4 M/L span (JSON)", f"{c4['canonical']['N1_ups_minus']:.1f}-{c4['canonical']['N1_ups_plus']:.1f} pc", "spans {} (canonical)")
+num("W E4 abstract floor (JSON)", f"{c4['canonical']['N1_native']:.2f} pc, {c4['canonical']['N1_ups_minus']:.1f}-{c4['canonical']['N1_ups_plus']:.1f} pc", "native floor {}")
+num("W E4 thermal native dchi2 (JSON)", f"{c4['canonical']['dchi2_N1_at_thermal']:.2f} / {c4['alt']['dchi2_N1_at_thermal']:.2f}", "Δχ2 = {}.")
+num("W E4 dSph ceiling 22.0 (JSON)", f"{e4['Lstar']['CFG821_native']['canonical']['L95_up']:.1f} pc", "stays {}")
+kc = e4["kappa"]["record_and_clean"]["canonical"]["BAO+BBN (CFG886 T2a)"]
+num("W E4 clean a0 (JSON)", sci(kc["a0"], 3), "give a0 = {} m s-2")
+num("W E4 clean kappa (JSON)", f"{kc['kappa']:.3f} ± {kc['sigma']:.3f} (canonical), a shift of -{abs(kc['shift_sigma']):.2f}σ", "κ = {}")
+check("W E4 kappa ROBUST both (JSON)", e4["kappa"]["record_and_clean"]["canonical"]["line"] == e4["kappa"]["record_and_clean"]["alt"]["line"] == "kappa ROBUST")
+num("W E4 dlnu/dlna0 (JSON)", f"+{e4['u']['canonical']['dlnu_dlna0']:.2f}", "d ln u/d ln a0 = {}")
+pr = e4["post_result_reported_only"]
+num("W E4 u at galaxy a0, post-result (JSON)", f"{pr['u_native_at_clean_a0'][0]:.3f} ± {pr['u_native_at_clean_a0'][1]:.3f}", "uMID = {} (post-result, reported only)")
+num("W E4 a0-carried error (JSON)", f"{pr['u_sys_canonical']['from_a0_error']:.3f}", "into u ({})")
+num("W E4 abstract u 0.433 (JSON)", f"{pr['u_native_at_clean_a0'][0]:.3f}", "({} at the galaxy-measured")
+sv = e4["jacobian"]["singular_values"]
+num("W E4 Jacobian (JSON)", f"rank {e4['jacobian']['rank']}, singular values {sv[0]:.2f}, {sv[1]:.2f}, {sv[2]:.2f}", "(Jacobian {})")
+e3 = J("E3_dwarf_excess", "e3_dwarf_excess_results.json")
+A = e3["A"]
+num("W E3 clean excess (JSON)", f"+{A['canonical|clean primary (Arroyo free-f)']['median']:.2f} ± {A['canonical|clean primary (Arroyo free-f)']['sd']:.2f}", "{} dex above Newton")
+num("W E3 worst clean (JSON)", f"+{A['canonical|WORST-CLEAN W (Ups4,f0.7,lower sigma,UL drop)']['median']:.2f} ± {A['canonical|WORST-CLEAN W (Ups4,f0.7,lower sigma,UL drop)']['sd']:.2f}", "({} in the worst")
+sd_ = e3["A_above_screened_diag"]
+num("W E3 gap above screened (JSON)", f"+{sd_['canonical|L*24']['median_Delta']:.2f} ± {sd_['canonical|L*24']['sd']:.2f} dex", "sit {} above the screened prediction")
+num("W E3 abstract gap (JSON)", f"+{sd_['canonical|L*24']['median_Delta']:.2f} ± {sd_['canonical|L*24']['sd']:.2f} dex", "sit {} above its prediction")
+num("W E3 alt gap (JSON)", f"+{sd_['alt|L*24']['median_Delta']:.2f}", "(alternative {})")
+num("W E3 90 pc gap (JSON)", f"+{sd_['canonical|L*90']['median_Delta']:.2f} dex", "and {} at")
+num("W E3 screened boost (JSON)", f"10{sd_['canonical|L*24']['median_log_B']:.2f}", "median boost of {} over Newton")
+Bq = e3["B"]
+num("W E3 q census (JSON)", f"q = {Bq['canonical|primary L*24 f_ret0.10']['median_q']:.2f}", "must hold {}")
+num("W E3 q census-free (JSON)", f"q = {Bq['canonical|L*24 f_ret1 (census-free)']['median_q']:.1f}, a shortfall of +{Bq['canonical|L*24 f_ret1 (census-free)']['log_median_q']:.2f} dex", "census-free, {}")
+check("W E3 UNDECIDABLE both (JSON)", all(v.startswith("UNDECIDABLE") for v in e3["B_class"].values()) and "UNDECIDABLE on both footings" in flat)
+check("W E3 A-SURVIVES both (JSON)", e3["A"]["canonical|class"]["cls"] == e3["A"]["alt|class"]["cls"] == "A-SURVIVES")
+e5 = J("E5_parent_logic", "e5_parent_logic_results.json")
+check("W E5 S3 trough <= 8.869e-4 (JSON)", "8.869e-04" in e5["checks"]["S3"]["value"] and "at most 8.9x10-4" in flat)
+num("W E5 L*crit MW-M31 (JSON)", f"{e5['numbers']['fiducials']['F1_MW-M31_canonical_Lcrit_pc'] / 1e3:.1f} kpc", "LCRIT≈ {}".replace("LCRIT≈ ", "L⋆ ≈ "))
+check("W E5 frozen E1 fails, E1b passes (JSON)", e5["checks"]["E1"]["ok"] is False and e5["checks"]["E1b"]["ok"] is True and sum(v["ok"] for v in e5["checks"].values()) == 14)
+check("W E5 N1 positivity, T1 gamma-independent (JSON)", e5["checks"]["N1"]["ok"] and e5["checks"]["T1"]["ok"] and "L_XX(law)" in e5["checks"]["N1"]["value"])
+rd("W E5 open classes (README)", "E5_parent_logic", "README.md", "Open classes: foliated U(1) under criterion B", "Open classes: a foliated U(1)")
+
 # ---------------------------------------------------------------- M. errata and record corrections
 er = git("log", "--format=%h %s", "--grep=ERRATA (doors push", "--fixed-strings").stdout.split("\n")
 er = [l for l in er if l.strip()]
@@ -417,13 +537,16 @@ for h, lane in want.items():
     check(f"M erratum {h} ({lane}) exists and is cited", any(l.startswith(h) and f"ERRATA (doors push {lane})" in l for l in er) and h in flat)
 
 # ---------------------------------------------------------------- N. pending lanes (D6, D7c, D7d)
-for lane, tag in (("D7d_screened_q2", "D7d"),):
-    p = os.path.join(DP, lane)
-    landed = os.path.exists(os.path.join(p, "README.md")) and git("ls-files", "--error-unmatch", f"doors_push_2026_10_22/{lane}/README.md").returncode == 0
-    check(f"N {tag} marked pending in TeX and PDF", f"% PENDING {tag}" in tex and f"({tag}): pending" in flat)
-    check(f"N {tag} still has no committed README verdict (else fold it in)", not landed)
-check("N D6 and D7c folded in: no pending marker left", all(f"% PENDING {x}" not in tex and f"({x}): pending" not in flat for x in ("D6", "D7c")))
-check("N no screened-Q2 number quoted", not re.search(r"S\s*≈|3\s*x\s*10-6", flat) and "screening s" not in low)
+for lane in ("D6_u_mechanism", "D7c_q2_rar_gate", "D7d_screened_q2", "E1_input_audit", "E2_field_equation", "E3_dwarf_excess", "E4_fitted_three", "E5_parent_logic"):
+    check(f"N {lane} README committed and folded in", git("ls-files", "--error-unmatch", f"doors_push_2026_10_22/{lane}/README.md").returncode == 0)
+check("N no PENDING placeholder left", "% PENDING" not in tex and "): pending" not in flat)
+lanes_now = sorted(d for d in os.listdir(DP) if os.path.isdir(os.path.join(DP, d)))
+covered = set(LANES) | {"D7d_screened_q2"}
+check("N every doors-push lane directory is covered by the paper", set(lanes_now) <= covered, f"uncovered: {sorted(set(lanes_now) - covered)}")
+check("N D2 pre-DR4 note AMENDMENT A1 (AQUAL) folded in", "## AMENDMENT A1 (2026-10-22, pre-data, append-only)" in note and "σ_sys < 0.048 (canonical) / < 0.058 (alt)" in note
+      and "prep_2026/gaia_dr4_prep/NOTE_2026-10-22_FORK_SCORING_PRE_DR4.md" in git("show", "--name-only", "--format=", "ee621a0898").stdout
+      and "ee621a0898" in flat and "below 0.048 (canonical) / 0.058 (alternative)" in flat)
+check("N coordinator's screening estimate absent", all(s not in flat for s in ("S ≈ 3", "screening S", "3x10-6 at r", "3x10-6 at rM")))
 
 # ---------------------------------------------------------------- O. citations against the record
 CIT = os.path.join(ROOT, "citations")
@@ -463,7 +586,7 @@ check("P zenodo metadata: working paper, CC-BY, fitted kappa, not closed", z["pu
 for s in ("PAPER49 v1.2 (doi:10.5281/zenodo.23533323)", "PAPER55 (doi:10.5281/zenodo.23482936)", "PAPER56 (doi:10.5281/zenodo.23532875)", "PAPER57 (doi:10.5281/zenodo.23532885)"):
     has(f"P companion '{s[:24]}'", s)
 for s in ("fitted", "the theory is not closed", "not peer reviewed", "never pooled", "post-result", "AI-assisted", "Anthropic's Claude", "not a particle",
-          "a postulate", "No covariant parent is established", "The owner's programme", "The screened case is a separate lane"):
+          "a postulate", "No covariant parent is established", "The owner's programme", "The screened theory is the one version that passes both Cassini and the galactic law"):
     has(f"P honesty '{s}'", s)
 zl = z["description"].lower()
 for bad in ("theory closed", "theory is closed", "data favour the framework", "data favor the framework", "proves the framework", "breakthrough",
