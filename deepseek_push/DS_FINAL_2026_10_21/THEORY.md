@@ -24,7 +24,22 @@ deforms the law: at coefficient 2 the law is off by `0.55 a₀` at `g = a₀/3`)
 terms `(η/2)E_iE^i` and `−(γ/2)(D_iP^i)² − (γ/4)F_ijF^ij`, and by nothing else — in particular
 **no P–curvature coupling**.
 
-**P3 — The vacuum.** `a₀ = κ c √(G ρ_bare)` with `κ = ½`, and `Λ_bare = 3H₀²/c²` with
+**P3 — The vacuum.** `a₀ = κ c √(G ρ_Λ)` on the observed-vacuum footing, with `β` small
+(`β < 0.027`, BBN, A78) so that `Λ_bare/Λ_obs ∈ (1, 1.061)`. **κ is an input, not a theorem.** It is
+fixed in one of two ways, and the theory does not choose between them:
+- **fitted:** `κ = ½`, the record's canonical value (`a₀ = 9.354×10⁻¹¹`);
+- **postulated (P-therm, §3.6):** `a₀ ≡ cH_Λ/2π`, which gives `κ = Z/4π = 0.460659` (`a₀ = 8.626×10⁻¹¹`).
+  A75 proves P-therm is independent of the action. The relation `2πa₀ ≈ c²(Λ/3)^{1/2}` is Milgrom's
+  (arXiv:1605.07458, eq. 5), and the de Sitter Unruh-temperature mechanism behind it is Milgrom 1999
+  (astro-ph/9805346).
+
+The data separate the two at 1.35σ (A81, bootstrap error model). See §3.6.
+
+> **Correction (2026-10-22).** Until this date P3 read as below. It needs `β = (2/3)Ω_m = 0.21`,
+> which A78's BBN bound `β < 0.027` excludes (≈8σ, §7). It is kept for the record of the footing
+> discussion only; it is **not** the theory's postulate.
+>
+> *Superseded P3:* `a₀ = κ c √(G ρ_bare)` with `κ = ½`, and `Λ_bare = 3H₀²/c²` with
 `β = (2/3)Ω_m`. That pair is **not chosen**: it is the unique closure satisfying both
 `ρ_bare = ρ_crit` (so `a₀ = 1.1312×10⁻¹⁰ m/s²`) and the clock's own stress identity
 `ρ_β = −9βH²/(4K) = −Ω_m ρ_crit` (A42, residual 1.8×10⁻¹⁵). It follows that
@@ -51,7 +66,8 @@ radius: `u = 1` outside it (single stream), `u ≈ 0.47` inside (measured; mecha
 **P5 — The strong-field turn-off.** `ν_fix = 1 + (ν−1)/(1+(y/y_t)²)` with `y_t` tied to the
 observed `Λc⁴/a₀²`. This is a **posit**: `y_t = 66.30` is fitted once `Λ` is taken from data.
 
-That is the whole theory. There is no other input.
+That is the whole theory. Its other inputs are measured, not derived: κ (fitted, or set by P-therm),
+`u ≈ 0.47`, `Ω_c/Ω_b`, and the background `Λ` and `H₀`. The full count is in §7.
 
 ---
 
@@ -261,24 +277,37 @@ constant force**, the `μr/L★²` term of A22's exact solution — not the law.
 `W(u)`/charge structure, not a propagating mode**, which is consistent with MOND being intrinsically
 nonlinear.
 
-**3.6 The vacuum closure, and κ — now DERIVED, at `Z/4π`, not ½.**
+**3.6 The vacuum closure, and κ — the thermal POSTULATE gives `Z/4π`; ½ remains the fitted value.**
 
-> **Update (2026-10-22, A72/A73): κ is no longer a free number.** The coefficient `a₀/(cH)` has exactly
+> **Correction (2026-10-22, after A75/A81).** This section was first titled "κ — now DERIVED". A75 proves
+> the thermal identification below is a **postulate** that the action does not supply. A81's ledger
+> classes `a₀` as "fixed by the P-therm postulate". So κ is not derived. It is either fitted (½) or set
+> by this postulate (`Z/4π`), and the data separate the two at **1.35σ** (A81, bootstrap errors). On the
+> raw SPARC χ² the gap would be 7.2σ, so the error model, not the data, sets the size of the preference.
+>
+> **Prior art.** `a₀ = cH_Λ/2π` is Milgrom's relation `2πa₀ ≈ cH₀ ≈ c²(Λ/3)^{1/2}` (Milgrom, Fortschr.
+> Phys. 2017, arXiv:1605.07458, eq. 5). His 1999 paper (astro-ph/9805346) gives the de Sitter mechanism:
+> an accelerated observer sees Unruh radiation at `T = (1/2π)(a² + Λ/3)^{1/2}`. The DSF-21 value is that
+> relation on the `H_Λ` footing; it is not new to this work. Argon's AG6A also lists `√(2/(3π)) = 0.461`
+> as one entry of a horizon-based menu (`κ² = rational × π^{±1}`), "in the data band but not ½".
+>
+> **Update (2026-10-22, A72/A73), as first written; read "derived" as "set by the P-therm postulate".**
+> The coefficient `a₀/(cH)` has exactly
 > one derivation in a 260,129-expression census: the thermal wavelength at the Gibbons–Hawking
 > temperature, `λ_T(T_dS) = 2πR_Λ`, so **`a₀ = c²/λ_T = cH_Λ/(2π) = 8.6257×10⁻¹¹ m/s²`**, mass-independent
 > to 10⁻¹². **Convention audit (2026-10-22, A79): the reduced thermal wavelength is the one the data
 > select.** `λ = ħc/(k_BT_dS)` gives `2πR_Λ` and `a₀ = cH_Λ/2π = 8.62×10⁻¹¹` (`0.03σ` from A71); the full
 > `hc/(k_BT_dS) = 2πħc/(k_BT_dS)` gives `4π²R_Λ` and `a₀ = cH_Λ/4π² = 1.3725×10⁻¹¹`, **2.63σ** from A71.
-> So the identification is fixed by the fit, not chosen by convention. That `a₀` gives
+> So the ħ-versus-h choice is made by the fit, which is one more bit of fitting, not a derivation. That `a₀` gives
 > **`κ_DE = a₀/(c√(Gρ_DE)) = √(2/(3π)) = Z/(4π) = 0.460659`**, `κ_P3 ≈ 0.381`, and
 > **`2cH_Λ/a₀ = 4π = 12.566`** — so the "twelfth" is really **`4π`, the solid angle**, not `2Z = 11.578`.
-> Against A71's joint fit (`κ_P3 = 0.3777 ± 0.1207`, `a₀ = 8.544×10⁻¹¹`), the derived point sits
+> Against A71's joint fit (`κ_P3 = 0.3777 ± 0.1207`, `a₀ = 8.544×10⁻¹¹`), the thermal point sits
 > **0.030σ** away in κ and **0.030σ** in `a₀`; `κ = ½` sits 0.299σ away. The data mildly prefer the
-> derived value (2.6 : 1 on statistical errors alone; LR 1.045), and **only a 2.9 % `a₀` measurement
-> decides** — wide binaries at 18–22 kAU with ≈4×10⁵ pairs. Downstream at the derived point:
+> thermal value (2.6 : 1 on statistical errors alone; LR 1.045), and **only a 2.9 % `a₀` measurement
+> decides** — wide binaries at 18–22 kAU with ≈4×10⁵ pairs. Downstream at the thermal point:
 > `y_t = 77.85` (inside [60,140]), `L★ = σ_c²/a₀ = 26.1 pc` (inside 24–90), `R_core = 57.9 pc`.
 >
-> **The competing route is dead.** `1/7` (⟺ `Ω_Λ = 32π/147`) is a *match*, not a derivation: `147 =
+> **The competing *derivation* of ½ is dead; ½ itself survives as the fitted value (1.35σ, A81).** `1/7` (⟺ `Ω_Λ = 32π/147`) is a *match*, not a derivation: `147 =
 > 3(cH₀/a₀)²` is defined by the measured ratio, the number is irrational so no cell count produces it,
 > and in a 260k-form pool **65 expressions land within 0.11σ of 0.6847** with `√3 − π/3` **5.32× closer**.
 > Worse, the repo's own DESI 3-pt fit gives `Ω_Λ = 0.69797 ± 0.00368` — **3.82σ** from 32π/147 (A73).
@@ -290,7 +319,7 @@ nonlinear.
 > so it does **not** derive MOND's shape — the law still comes from the Langmuir gate (§3.5). One premise
 > for the scale, one for the shape.
 
-**3.6a Confidence ledger on the κ derivation — what is certain, what is premise, what is marginal.**
+**3.6a Confidence ledger on the thermal postulate for κ — what is certain, what is premise, what is marginal.**
 
 - **CERTAIN (algebra, reproducible in one line).** `a₀ = cH_Λ/(2π)` ⟹ `κ_DE = a₀/(c√(Gρ_DE)) =
   √(2/(3π)) = Z/(4π) = 0.460659` identically; `2cH_Λ/a₀ = 4π`; and `a₀ = cH₀/7 ⟺ a₀ = cH_Λ/Z ⟺ κ = ½`,
@@ -308,11 +337,11 @@ nonlinear.
 - **MARGINAL (data).** `0.030σ` vs `0.299σ` is a **2.6 : 1 preference, not a detection**. The measurement's
   total error is 32 %, so a 1 % agreement of central values is suggestive, not decisive; and choosing
   between two candidate coefficients adds a factor-2 look-elsewhere. **κ = ½ is not excluded** — it sits
-  0.27σ from the derived value and both are inside the joint 95 % region.
+  0.27σ from the thermal value and both are inside the joint 95 % region.
 - **DEAD (computed).** `1/7` as a derivation, `Ω_Λ = 32π/147` as a prediction: both killed by A73.
-- **THE HONEST ONE-LINER.** *κ = Z/4π is the only value with a derivation; the data prefer it 2.6 : 1 over
-  ½; a 2.9 % `a₀` measurement decides, and until then "derived" means "derived from one stated premise",
-  not "proved".*
+- **THE HONEST ONE-LINER.** *κ = Z/4π follows from one postulate (Milgrom's `2πa₀ ≈ c²(Λ/3)^{1/2}` on the
+  `H_Λ` footing) that the action does not supply (A75); κ = ½ is the fitted value. The data separate them at
+  1.35σ on the declared error model (A81). A 2.9 % `a₀` measurement decides. Neither value is derived.*
 
 **3.6b What changes if you take the thermal point — the algebra does not break, two coincidences die.**
 The spine is untouched: the law `g_N = g²/(g+a₀)`, the closure identity (true for every κ), `c_T² = 1`,
@@ -425,7 +454,7 @@ I(y_t)\equiv\int_0^\infty \frac{y(\nu-1)}{1+(y/y_t)^2}\,dy=\frac{\Lambda c^4}{a_
 $$
 
 For the canonical kernel the left side is `(π/2)y_t − ln(y_t/4) + C_can`, `C_can = −0.8862944`;
-at the **derived** point `Λc⁴/a₀² = 118.6` and **`y_t = 77.85`**; at the old `κ = ½` footing
+at the **thermal (postulated)** point `Λc⁴/a₀² = 118.6` and **`y_t = 77.85`**; at the old `κ = ½` footing
 `Λc⁴/a₀² = 100.4058` and **`y_t = 66.2999`** (A4, A25, A28) — the numbers below are the κ = ½ ones. `I` is strictly
 increasing, hence invertible: **one de Sitter member per κ, and no internal relation selects
 one.** `y_t(κ) = 180.8, 102.7, 66.38, 34.6, 17.6` at `κ = 0.3, 0.4, 0.5, 0.7, 1.0`.
@@ -861,27 +890,31 @@ does not break the `B`–`κ` degeneracy — the two constraints are 3.08° apar
 to `B = 1.2269`, **2.27σ** above Treu. So "one parameter set" covers `R_E` + SPARC + clusters; the
 dynamics channel is a **2.3σ pull, not a confirmation**, and the 1.89σ global number does not include it.
 
-**Parameter content — the list has shrunk to two scales and one premise.** **κ is derived**,
-`Z/4π = √(2/(3π)) = 0.460659` (A72), from `a₀ = cH_Λ/(2π)`; `κ = ½` is superseded (its only route,
-`Ω_Λ = 32π/147`, is numerology and 3.82σ from the repo's DESI fit — A73). **β is measured**, not free:
-`G_cosmo/G_N = 2/(2+3β)` and BBN gives **β < 0.027** (A78), which also excludes the old P3 footing at ≈8σ.
-What remains: **`L★`** (derived in form `σ_c²/a₀`, computed from the 10⁴ K thermal width; 25.44 pc at the
-thermal `a₀`, inside the window, but no direct σ_c measurement exists — A76), **`η/γ`** (free; the
-equipartition closure is false and the missing principle is a Kubo/transport matching — A77), and the **one
-premise** that replaces κ — `a₀ ≡ cH_Λ/2π`, **proved independent of the action by A75** (four computed
-obstructions: classical action, `C_g = 0`, carrier fails by ×2×10⁹, mass cancels) and worth `Δχ² = 1.864`
-(**1.365σ**, LR 2.54 : 1) against `κ = ½` with everything refit (A74). So: **0 free dimensionless numbers,
-2 free scales, 1 measured fraction, 1 premise**, against ΛCDM's six parameters. The measured fractions are `σ_c = 8.33 km/s` and the
-cold-sector share. It predicts what ΛCDM cannot even address: the RAR shape, lensing = dynamics,
+**Parameter content (corrected 2026-10-22, following A81's ledger).** An earlier version of this
+paragraph said "κ is derived" and counted "0 free dimensionless numbers, 2 free scales, 1 measured
+fraction, 1 premise, against ΛCDM's six parameters". That overstated it. The honest count:
+
+| class | items | source |
+|---|---|---|
+| **one dimensionless coefficient, not derived** | κ: fitted (`½`), or set by the P-therm postulate `a₀ ≡ cH_Λ/2π` (`Z/4π = 0.460659`, Milgrom's relation — §3.6). A75 proves P-therm independent of the action; A81 separates the two values at 1.35σ (bootstrap errors) | A72, A75, A81 |
+| **two free parameters** | `η`, and one P-sector scale shared by `γ = KL★²/2`, `L★` and `σ_c` (one degree of freedom, A81 rank test). `L★` has the form `σ_c²/a₀` but no measured `σ_c` (A76); `η/γ` has no matching principle (A77) | A76, A77, A81 |
+| **bounded** | `β < 0.027` (BBN), hence `Λ_bare/Λ_obs < 1.061`. This also excludes the old P3 footing (`β = 0.21`) at ≈8σ | A78 |
+| **measured fractions** | `u ≈ 0.47` inside splashback (mechanism open), the cold share `Ω_c/Ω_b` | P4 |
+| **background inputs** | `Λ`, `H₀` and the rest of the cosmological background, taken from data | P3, A46 |
+| **posited forms** | the strong-field turn-off (P5). `y_t` then follows from κ and the observed `Λ` through the closure `I(y_t) = 8π/κ²` | P5, §3.6 |
+
+So the comparison with ΛCDM is not "a handful against six": this theory **uses** the ΛCDM background
+parameters and adds κ, two free scales and the measured fractions on top of them, in exchange for galaxy-scale
+predictions that ΛCDM does not make: the RAR shape, lensing = dynamics,
 `c_T = 1` (speed), `α₁ = α₂ = 0` near-source, `β = 1`, the core size, the saddle no-go.
 
 **It is not** a UV completion, and §3.6 proves the difference is not a gap in the search but a
 property of the system: `L★` and `η/γ` are **two independent UV inputs**, and A69 shows nothing in
-the action ties `η` to `γ`. The honest summary is now: **zero free dimensionless numbers (`κ = Z/4π`
-derived, A72), two free scales (`L★`, `η/γ`), one measured fraction (`σ_c`), and one premise** (the
-thermal-wavelength identification of `a₀`). κ = ½ is a 7.9 % approximation to the derived value and the
-two are separated by the data at only 0.27σ (0.030σ vs 0.299σ), so **a 2.9 % `a₀` measurement lands on
-`8.626×10⁻¹¹` (derived) or `9.355×10⁻¹¹` (κ = ½)** — that is the falsifier. What would: a wide-binary `γ_v` measurement at 18–22 kAU, which cuts the joint κ
+the action ties `η` to `γ`. The honest summary is: **one dimensionless coefficient (κ: fitted at ½, or
+`Z/4π` by a postulate), two free parameters (`η` and one P-sector scale), one bounded (`β`), measured
+fractions (`u`, `Ω_c/Ω_b`) and the ΛCDM background.** κ = ½ and the thermal `Z/4π` differ by 7.9 % and the
+data separate them at only 0.27σ in A71 (0.030σ vs 0.299σ) and 1.35σ in A81, so **a 2.9 % `a₀`
+measurement lands on `8.626×10⁻¹¹` (P-therm) or `9.355×10⁻¹¹` (κ = ½)** — that is the falsifier. What would: a wide-binary `γ_v` measurement at 18–22 kAU, which cuts the joint κ
 error from 0.1207 to 0.0605 (A71), and a homogeneous spectroscopic IMF for the 70 SLACS lenses at
 `R_E/2–R_E` to ≤ 0.03 dex.
 
