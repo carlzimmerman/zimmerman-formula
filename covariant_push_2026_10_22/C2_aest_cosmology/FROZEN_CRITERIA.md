@@ -93,3 +93,60 @@ The first run failed two frozen lines. Both failures stand in the record and are
 - A1 detail (same day, before any further scored use): the first K9b run also matched `*plik*` inside
   `grouplike`/`multiplikation` (147 Lean/mathlib and citation files). K9b's patterns are `plik_*` and `*.clik`
   (Planck's own file names), plus the other names listed in the frozen K9 line.
+
+## AMENDMENT A2 (PRE-RESULT, 2026-10-22; written before any new number, after the owner-approved fetches)
+
+The owner approved, via the coordinator, the fetch of four items: the two AeST papers, the Planck 2018 TE/EE spectra,
+and cobaya with plik-lite. Provenance is in `PROVENANCE.md`. A new script, `c2b_native_cmb.py`, adds the checks below.
+K1–K9 are unchanged.
+
+**The papers replace E-AeST.** They are now on disk:
+- arXiv:2007.00082 (`newRMONDLett.tex`);
+- arXiv:2304.05134 (`main.tex`, VSZ 2023).
+
+**How the likelihoods are evaluated.** A classifier denied importing the downloaded cobaya code into the analysis
+Python, so cobaya's code is not executed for any number here. The three likelihoods are reimplemented with numpy
+from the installed data files (read with `python3 -I`) and from cobaya's source, which was read as text:
+- plik-lite TTTEEE native;
+- low-ℓ TT (Gaussianised splines);
+- low-ℓ EE (probability table).
+The reimplementation is not validated against cobaya's own output. That is a stated limit.
+
+- **P1 VERIFY.** These snippets must be present in the paper sources:
+  - the action (Eq. 5) with its terms;
+  - J_μ = A^α∇_αA_μ;
+  - Q and Y;
+  - K(Q̄) = −½F(0, Q̄);
+  - the λ_s coefficient 2λ_s/(3(1+λ_s)a₀);
+  - G̃ = (1 − K_B/2)Ĝ;
+  - G_N = (1 + 1/λ_s)Ĝ (PRL);
+  - Ĝ = G_N/(1+β₀), with λ_s = 1/β₀ (VSZ);
+  - μ = √(2K₂/(2−K_B))·Q₀;
+  - the stability conditions 0 < K_B < 2, λ_s > −1, K₂ > 0, λ_s > 0.
+  PASS iff all are found. Discrepancies against the record and against C1 are listed and do not affect the pass.
+- **P2 DERIVED.** g ≡ G̃/G_N = (1 − K_B/2)·λ_s/(1+λ_s), from the two relations (sympy residual 0). The A78 line
+  g > 0.9611 then gives K_B < 0.0778 (at λ_s → ∞) and λ_s > 24.71 (at K_B → 0). PASS iff the residual is 0 and both bounds match to 1e-3.
+- **P3 SOURCE.** PASS iff the paper's linear δ is normalised with G̃ and its Einstein equations are stated in GR form.
+  Meaning: linear growth feels G_cosmo = G̃, not G_N. K7's "G_N variant" (+16 % σ₈) is then withdrawn as not AeST's linear behaviour.
+- **P4 COMPUTED (emulation; NOT the AeST prediction).** Vanilla CLASS emulation of G_cosmo = g·G_N at fixed physical densities:
+  - CLASS omega_b = ω_b, so baryon microphysics stays physical;
+  - omega_cdm = g·ω_c − (1−g)·ω_b;
+  - N_ur = g·(N_γ + 3.044) − N_γ, with N_γ = 1/0.22711;
+  - h = √g·h₁.
+  The background is exact. The perturbation sourcing of photons, baryons and neutrinos is approximate, O(1−g).
+  PASS iff |Δθ_s/θ_s| < 1e-3 at g = 0.9611 versus g = 1 (the acoustic scale is blind to g).
+- **P5 COMPUTED (emulation).** Likelihood setup:
+  - plik-lite TTTEEE plus low-ℓ TT and EE;
+  - A_planck with a prior of 1 ± 0.0025;
+  - the low-ℓ part enters the Gauss–Newton refit as a τ prior measured natively from a τ scan at fixed A_s e^{−2τ}.
+  Steps:
+  - refit ΛCDM (g = 1) by Gauss–Newton in 6 parameters plus A_planck;
+  - form the Fisher σ(g), marginalised;
+  - compute the profile Δχ² (refit, exact evaluation of all three likelihoods) at g = 0.9611 and g = 0.6845.
+  PASS iff the refit's plik-lite χ² lies in [500, 750] for 613 bins (sanity).
+  Outcome lines:
+  - g = 0.6845 is "disfavoured by plik-lite + low-ℓ in this emulation" if Δχ² > 25;
+  - the BBN band is "not distinguishable" if Δχ²(0.9611) < 4.
+  Neither is an AeST verdict.
+- **Mutation `C2B_MUTATE=1`.** It drops the λ_s factor in P2 and leaves N_ur unscaled in the emulation. P2 must fail.
+- **Budget.** About 60 CLASS runs at about 2 s each, single thread, < 1 GB.
