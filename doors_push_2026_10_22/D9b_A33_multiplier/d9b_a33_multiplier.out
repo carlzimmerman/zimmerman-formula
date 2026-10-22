@@ -1,0 +1,67 @@
+== C: Dirac count per scalar Fourier mode (H = 0, A68 action + medium + lambda) ==
+  A33_nomedium: {'dims': 8, 'constraints': 6, 'second_class': 6, 'first_class': 0, 'dof': 1.0, 'det_degree_half': 1.0}  (stable over 3 draws: True)
+  A33_medium: {'dims': 10, 'constraints': 6, 'second_class': 6, 'first_class': 0, 'dof': 2.0, 'det_degree_half': 2.0}  (stable over 3 draws: True)
+  M_lit: {'dims': 12, 'constraints': 10, 'second_class': 10, 'first_class': 0, 'dof': 1.0, 'det_degree_half': 1.0}  (stable over 3 draws: True)
+  Mstar_xi0: {'dims': 12, 'constraints': 10, 'second_class': 10, 'first_class': 0, 'dof': 1.0, 'det_degree_half': 1.0}  (stable over 3 draws: True)
+  Mstar_mc0: {'dims': 12, 'constraints': 10, 'second_class': 10, 'first_class': 0, 'dof': 1.0, 'det_degree_half': 1.0}  (stable over 3 draws: True)
+C1 PASS scalar_DOF=1.0 ==1 (A68 D4/D5)
+C2 PASS scalar_DOF=2.0 terminates; Dirac==deg(det)/2; stable
+C3 PASS scalar_DOF=1.0 addedSC=4 addeddims=2 identical over draws and members
+C4 PASS removed=1.0 (Dirac) 1.0 (det) equal integer >= 0
+  field theory: no lambda (26+6 dims, 8 FC, 0 SC) -> 8.0 DOF; with lambda (34 dims, 8 FC, 4 SC) -> 7.0 DOF
+  high-p w^2/p^2, A33+medium: [(eta*sc2 + gamma + sqrt(eta**2*sc2**2 - 2*eta*gamma*sc2 + gamma**2))/(2*eta), (eta*sc2 + gamma - sqrt(eta**2*sc2**2 - 2*eta*gamma*sc2 + gamma**2))/(2*eta)]
+  high-p w^2/p^2, M*        : [(gamma*rho + sc2)/(eta*rho + 1)]
+  surviving scalar == (sc2 + gamma rho)/(1 + eta rho): True
+== L: static cold branch, gamma -> 0 ==
+  derived P+medium balance: (xi+m_c) g = K W'(u) = a0 u/(a0-u); residual 0
+  derived Poisson (integrated): g = g_N + (xi+m_c) u ; residual 0
+  law at s=1 residual 0; M_lit (s=2): g_N - law at g=a0/3 = -11/20 a0 = -0.5500 a0; g_N=0 at g = [3*a0/2]
+  M_lit deviation at g=a0/3: canonical -5.1480e-11, alt -6.2150e-11 m/s^2; acceleration floor 1.5 a0 = 1.4040e-10 / 1.6950e-10
+L1 PASS s=1:law_res=0; s=2(M_lit):dev=-0.5500a0 law iff xi+m_c=1; M_lit dev=-0.55a0 (A33 K5)
+L2 PASS mu-x/(1+x) residual=0 ==0 (AQUAL L49)
+L3 PASS EL(difference)=[0, 0] all 0 (by construction)
+== T: D-T (linear self-gravity of the tethered medium), Newtonian decoupling ==
+  V_ss/(K rho^2 p^2) at p->0 (dust = -1 = full Jeans): {'dust': -1, 'Mstar': 0, 'M_lit': -3, 'Mstar_mc0': 0};  c2 = 1 + that: {'dust': 0, 'Mstar': 1, 'M_lit': -2, 'Mstar_mc0': 1}
+  M* medium dispersion: w^2 = p**2*(gamma*rho + sc2)/(eta*rho + 1)  (no -K rho term)
+T1 PASS c2(M*)=1 c2(dust)=0 c2(M_lit)=-2 c2(M*)=1 => D-T applies
+  medium-baryon cross term V_sb/(K rho rho_b p^2) = -1 (dust value -1)
+  T2 H1 cold static medium: MET (L1: cold equilibrium m_c Phi + lam = const derived)
+  T2 H2 always-on tether F(u): MET (L1: F(u) = K W'(u) = a0 u/(a0-u) for every u < a0, no gate)
+  T2 H3 phantom = own mass, g = g_N + u: MET (enforced D.P = rho_c - rhobar; L1 Poisson g = g_N + u at s = 1)
+  T2 H4 law with deep limit: MET (L1 law residual 0 at s = 1; L2 AQUAL mu = x/(1+x))
+T2 PASS 4/4 MET D-T hypotheses (CFG941 DERIVATION.md sec 1.3)
+  EdS growth exponent M*: n = 0.60953 (dust control 1.00000; CFG941 K3 0.60954)
+T3 PASS n=0.60953 |n-0.60954|<1e-4
+== N1: NG1 positivity ==
+  F1_MW-M31_canonical: rho_ph/rhobar = -211.26 -> rho_c/rhobar = -210.26
+  F1_MW-M31_alt: rho_ph/rhobar = -232.25 -> rho_c/rhobar = -231.25
+  F2_cluster_pair_canonical: rho_ph/rhobar = -79.22 -> rho_c/rhobar = -78.22
+  F2_cluster_pair_alt: rho_ph/rhobar = -87.09 -> rho_c/rhobar = -86.09
+N1 PASS min rho_c/rhobar=-231.25 <0 => NG1 bites
+== V1: principal cone (round-2 sec 4 L_pr + medium + constraint + W Hessian) ==
+  longitudinal (medium-slaved) v^2 = (gamma*rho + sc2)*(K*beta + 4*beta*eta*u**2*sin(theta)**2 - 2*eta*u**2*cos(theta)**2)/(K*beta*eta*rho + K*beta + 4*beta*eta*u**2*sin(theta)**2 - 2*eta*u**2*cos(theta)**2)
+  == (sigma_c^2 + gamma rho)/(1 + eta rho/Delta), Delta = 1 - 2 eta u^2 cos^2/(K beta) + 4 eta u^2 sin^2/K: residual 0
+  transverse v^2 = gamma/eta; a0 (W Hessian, a0/(a0-u)) appears at principal order: False
+  L*=24pc canonical: sigma_c=8.326 km/s, c_el=0.720 m/s, v_long^2/c^2=7.712e-10, A33 excess 1.190e-18 -> M* excess 0 (eta=gamma)
+  L*=24pc alt: sigma_c=9.148 km/s, c_el=0.720 m/s, v_long^2/c^2=9.311e-10, A33 excess 1.734e-18 -> M* excess 0 (eta=gamma)
+  L*=1kpc canonical: sigma_c=53.742 km/s, c_el=29.991 m/s, v_long^2/c^2=3.213e-08, A33 excess 2.065e-15 -> M* excess 0 (eta=gamma)
+  L*=1kpc alt: sigma_c=59.049 km/s, c_el=29.991 m/s, v_long^2/c^2=3.879e-08, A33 excess 3.010e-15 -> M* excess 0 (eta=gamma)
+V1 PASS v2_long=(sc2+gamma rho)/(1+eta rho/Delta), v2_T=gamma/eta, no a0/(a0-u) finite, u-cap-free
+== F: FRW well-posedness (comoving, frozen coefficients at t = 0, a = 1) ==
+  k=10: degree 2, max Re s = -0.075, / k^2 = -7.500e-04
+  k=100: degree 2, max Re s = -0.075, / k^2 = -7.500e-06
+  k=1000: degree 2, max Re s = -0.075, / k^2 = -7.500e-08
+  k=10000: degree 2, max Re s = -0.075, / k^2 = -7.500e-10
+F1 PASS maxRe/k^2(k=1e3,1e4)=-7.50e-08,-7.50e-10 <=1e-6 => well posed
+  lambda coefficient in d^2(constraint)/dt^2 at t=0: k**2*(eta*rho + 1)/eta
+F2 PASS coeff=k**2*(eta*rho + 1)/eta == k^2 (1/eta + rho) > 0 (elliptic on the leaf)
+== X1 (not frozen; reported only): medium pressure in M*'s force balance ==
+  1e10Msun L*=24pc canonical: deep-regime (g - K W'(u))/g = 2 L*/r_M = 0.0124
+  1e10Msun L*=24pc alt: deep-regime (g - K W'(u))/g = 2 L*/r_M = 0.0137
+  1e10Msun L*=1kpc canonical: deep-regime (g - K W'(u))/g = 2 L*/r_M = 0.5183
+  1e10Msun L*=1kpc alt: deep-regime (g - K W'(u))/g = 2 L*/r_M = 0.5695
+  1e8Msun L*=24pc canonical: deep-regime (g - K W'(u))/g = 2 L*/r_M = 0.1244
+  1e8Msun L*=24pc alt: deep-regime (g - K W'(u))/g = 2 L*/r_M = 0.1367
+  1e8Msun L*=1kpc canonical: deep-regime (g - K W'(u))/g = 2 L*/r_M = 5.1829
+  1e8Msun L*=1kpc alt: deep-regime (g - K W'(u))/g = 2 L*/r_M = 5.6947
+D9B_A33_MULTIPLIER COMPLETE: 14/14 checks PASS.

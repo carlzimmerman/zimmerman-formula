@@ -1,0 +1,294 @@
+{
+ "constants": {
+  "G": 6.674e-11,
+  "c": 299800000.0,
+  "pc": 3.0857e+16,
+  "a0": {
+   "canonical": 9.36e-11,
+   "alt": 1.13e-10
+  },
+  "H0_si": 2.1842693716174612e-18,
+  "rho_crit": 8.533114727833856e-27,
+  "Omega_c": 0.264,
+  "rhobar_c": 2.252742288148138e-27,
+  "Omega_c_over_Omega_b": 5.3643,
+  "Lstar_m": {
+   "24pc": 7.40568e+17,
+   "1kpc": 3.0857e+19
+  }
+ },
+ "dirac_per_mode": {
+  "A33_nomedium": {
+   "dims": 8,
+   "constraints": 6,
+   "second_class": 6,
+   "first_class": 0,
+   "dof": 1.0,
+   "det_degree_half": 1.0
+  },
+  "A33_medium": {
+   "dims": 10,
+   "constraints": 6,
+   "second_class": 6,
+   "first_class": 0,
+   "dof": 2.0,
+   "det_degree_half": 2.0
+  },
+  "M_lit": {
+   "dims": 12,
+   "constraints": 10,
+   "second_class": 10,
+   "first_class": 0,
+   "dof": 1.0,
+   "det_degree_half": 1.0
+  },
+  "Mstar_xi0": {
+   "dims": 12,
+   "constraints": 10,
+   "second_class": 10,
+   "first_class": 0,
+   "dof": 1.0,
+   "det_degree_half": 1.0
+  },
+  "Mstar_mc0": {
+   "dims": 12,
+   "constraints": 10,
+   "second_class": 10,
+   "first_class": 0,
+   "dof": 1.0,
+   "det_degree_half": 1.0
+  }
+ },
+ "field_theory_count": {
+  "no_lambda": {
+   "dims": 32,
+   "FC": 8,
+   "SC": 0,
+   "DOF": 8.0
+  },
+  "with_lambda": {
+   "dims": 34,
+   "FC": 8,
+   "SC": 4,
+   "DOF": 7.0
+  },
+  "split": "2 tensor + 2 transverse P + 2 vortical medium + scalar(s)"
+ },
+ "high_p_speeds": {
+  "A33_medium": [
+   "(eta*sc2 + gamma + sqrt(eta**2*sc2**2 - 2*eta*gamma*sc2 + gamma**2))/(2*eta)",
+   "(eta*sc2 + gamma - sqrt(eta**2*sc2**2 - 2*eta*gamma*sc2 + gamma**2))/(2*eta)"
+  ],
+  "Mstar": [
+   "(gamma*rho + sc2)/(eta*rho + 1)"
+  ]
+ },
+ "surviving_scalar": "dressed medium sound, w^2/p^2 = (sigma_c^2 + gamma rho_c)/(1 + eta rho_c); the 5th mode (gamma/eta) and bare sound (sigma_c^2) merge into it",
+ "L1": {
+  "force_residual": "0",
+  "poisson_residual": "0",
+  "law_residual_s1": "0",
+  "Mlit_s": 2,
+  "Mlit_dev_over_a0_at_g_a0_over_3": -0.55,
+  "Mlit_dev_ms2": {
+   "canonical": -5.1480000000000006e-11,
+   "alt": -6.215e-11
+  },
+  "Mlit_gN_zero_at_g": [
+   "3*a0/2"
+  ],
+  "Mlit_floor_ms2": {
+   "canonical": 1.404e-10,
+   "alt": 1.6949999999999998e-10
+  },
+  "A33_K5_reference": -0.55
+ },
+ "L2_L3": {
+  "L2": "0",
+  "L3": [
+   "0",
+   "0"
+  ]
+ },
+ "T1": {
+  "selfgravity_coeff": "{'dust': -1, 'Mstar': 0, 'M_lit': -3, 'Mstar_mc0': 0}",
+  "c2": {
+   "dust": "0",
+   "Mstar": "1",
+   "M_lit": "-2",
+   "Mstar_mc0": "1"
+  },
+  "Mstar_w2": "p**2*(gamma*rho + sc2)/(eta*rho + 1)"
+ },
+ "T2": {
+  "H1 cold static medium": "MET (L1: cold equilibrium m_c Phi + lam = const derived)",
+  "H2 always-on tether F(u)": "MET (L1: F(u) = K W'(u) = a0 u/(a0-u) for every u < a0, no gate)",
+  "H3 phantom = own mass, g = g_N + u": "MET (enforced D.P = rho_c - rhobar; L1 Poisson g = g_N + u at s = 1)",
+  "H4 law with deep limit": "MET (L1 law residual 0 at s = 1; L2 AQUAL mu = x/(1+x))"
+ },
+ "T3": {
+  "G_matrix_units_Krho_m": [
+   [
+    0.0,
+    0.15712647109658565
+   ],
+   [
+    0.8428735289034144,
+    0.15712647109658565
+   ]
+  ],
+  "n_Mstar": 0.6095348520176118,
+  "n_dust": 1.0,
+  "CFG941_K3": 0.60954
+ },
+ "N1": {
+  "source": "argon_push/AG6C_relativistic_completion/ag6c_s0_saddle_results.json numbers.fiducials",
+  "values": {
+   "F1_MW-M31_canonical": {
+    "rho_ph_min_over_rhobar": -211.26330271992174,
+    "rho_c_min_over_rhobar": -210.26330271992174
+   },
+   "F1_MW-M31_alt": {
+    "rho_ph_min_over_rhobar": -232.24634022500135,
+    "rho_c_min_over_rhobar": -231.24634022500135
+   },
+   "F2_cluster_pair_canonical": {
+    "rho_ph_min_over_rhobar": -79.22012273645326,
+    "rho_c_min_over_rhobar": -78.22012273645326
+   },
+   "F2_cluster_pair_alt": {
+    "rho_ph_min_over_rhobar": -87.08840267497027,
+    "rho_c_min_over_rhobar": -86.08840267497027
+   }
+  },
+  "note": "M* static cold branch == AQUAL L49 (L2), and rho_c = rhobar + rho_ph is enforced, so AG6C's solve applies verbatim"
+ },
+ "V1": {
+  "v2_long": "(gamma*rho + sc2)*(K*beta + 4*beta*eta*u**2*sin(theta)**2 - 2*eta*u**2*cos(theta)**2)/(K*beta*eta*rho + K*beta + 4*beta*eta*u**2*sin(theta)**2 - 2*eta*u**2*cos(theta)**2)",
+  "v2_T": "gamma/eta",
+  "residual_vs_formula": "0",
+  "a0_at_principal_order": false,
+  "numbers_at_rhobar_c": {
+   "24pc_canonical": {
+    "sigma_c_kms": 8.32569305223295,
+    "c_el_ms": 0.7197865603635567,
+    "eta_rho": 5.764268601571606e-18,
+    "v2_long_over_c2": 7.712186745588085e-10,
+    "v2_T_over_c2": 1.0,
+    "A33_sup_excess_over_c2": 1.1895564701944444e-18,
+    "Mstar_sup_excess_over_c2": 0.0
+   },
+   "24pc_alt": {
+    "sigma_c_kms": 9.14790598989736,
+    "c_el_ms": 0.7197865603635567,
+    "eta_rho": 5.764268601571606e-18,
+    "v2_long_over_c2": 9.31065278988446e-10,
+    "v2_T_over_c2": 1.0,
+    "A33_sup_excess_over_c2": 1.7337650860080243e-18,
+    "Mstar_sup_excess_over_c2": 0.0
+   },
+   "1kpc_canonical": {
+    "sigma_c_kms": 53.74211756155502,
+    "c_el_ms": 29.99110668181486,
+    "eta_rho": 1.000741076661737e-14,
+    "v2_long_over_c2": 3.213412120718294e-08,
+    "v2_T_over_c2": 1.0,
+    "A33_sup_excess_over_c2": 2.0652022051986885e-15,
+    "Mstar_sup_excess_over_c2": 0.0
+   },
+   "1kpc_alt": {
+    "sigma_c_kms": 59.04947925257259,
+    "c_el_ms": 29.99110668181486,
+    "eta_rho": 1.000741076661737e-14,
+    "v2_long_over_c2": 3.879439639175111e-08,
+    "v2_T_over_c2": 1.0,
+    "A33_sup_excess_over_c2": 3.010008829875043e-15,
+    "Mstar_sup_excess_over_c2": 0.0
+   }
+  },
+  "sup_v2": "max(gamma/eta, (sigma_c^2+gamma rho_c)/(1+eta rho_c/Delta)) <= max(gamma/eta, sigma_c^2+gamma rho_c) for Delta>0; u enters only via Delta (denominator)"
+ },
+ "F1": {
+  "params": "{K: 1, eta: 1, gamma: 1, rho: 1, sc2: 1/100, H: 1/10}",
+  "results": {
+   "10": {
+    "max_re": 471.1770631364216,
+    "max_re_over_k2": 4.7117706313642165,
+    "degree": 4
+   },
+   "100": {
+    "max_re": 47140.22352681436,
+    "max_re_over_k2": 4.714022352681436,
+    "degree": 4
+   },
+   "1000": {
+    "max_re": 4714044.97934709,
+    "max_re_over_k2": 4.71404497934709,
+    "degree": 4
+   },
+   "10000": {
+    "max_re": 471404520.5624682,
+    "max_re_over_k2": 4.714045205624681,
+    "degree": 4
+   }
+  },
+  "mutate": true
+ },
+ "F2": {
+  "lambda_coeff": "(-54*H**4 - 9*H**2*k**2 + eta*k**4*rho + k**4)/(eta*k**2)"
+ },
+ "X1": {
+  "note": "M*: sigma_c^2 dln rho_c/dr enters the tether balance; for rho_c ~ r^-2 (deep phantom) the static law is deformed by 2 sigma_c^2/(r g) = 2 L*/r_M. A33 without lambda has no such term (law exact).",
+  "values": {
+   "1e10Msun_24pc_canonical": {
+    "r_M_kpc": 3.8588775511085838,
+    "dg_over_g": 0.012438850252247701
+   },
+   "1e10Msun_24pc_alt": {
+    "r_M_kpc": 3.5120419965141014,
+    "dg_over_g": 0.013667262534913504
+   },
+   "1e10Msun_1kpc_canonical": {
+    "r_M_kpc": 3.8588775511085838,
+    "dg_over_g": 0.5182854271769876
+   },
+   "1e10Msun_1kpc_alt": {
+    "r_M_kpc": 3.5120419965141014,
+    "dg_over_g": 0.5694692722880627
+   },
+   "1e8Msun_24pc_canonical": {
+    "r_M_kpc": 0.3858877551108584,
+    "dg_over_g": 0.12438850252247702
+   },
+   "1e8Msun_24pc_alt": {
+    "r_M_kpc": 0.3512041996514101,
+    "dg_over_g": 0.13667262534913505
+   },
+   "1e8Msun_1kpc_canonical": {
+    "r_M_kpc": 0.3858877551108584,
+    "dg_over_g": 5.182854271769876
+   },
+   "1e8Msun_1kpc_alt": {
+    "r_M_kpc": 0.3512041996514101,
+    "dg_over_g": 5.694692722880627
+   }
+  }
+ },
+ "checks": {
+  "C1": true,
+  "C2": true,
+  "C3": true,
+  "C4": true,
+  "L1": true,
+  "L2": true,
+  "L3": true,
+  "T1": true,
+  "T2": true,
+  "T3": true,
+  "N1": true,
+  "V1": true,
+  "F1": false,
+  "F2": false
+ },
+ "mutate": true
+}
