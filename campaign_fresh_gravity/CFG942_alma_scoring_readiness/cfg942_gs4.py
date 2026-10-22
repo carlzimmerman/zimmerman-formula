@@ -617,9 +617,10 @@ def selftest(run):
     rows, worst, bad = C.transcription(PLAN, "GS4_24110")
     run.check("R3 every CFG809 s2 cell within 0.005 dex of the seal; FLOOR cells identical", rows == 4 and not bad, f"{rows} rows, worst {worst:.4f} dex, mismatches {bad}")
     tc = open(os.path.join(C.REPO, "campaign_fresh_gravity/THEORY_CANONICAL_2026-10-14.md")).read()
+    S571 = SEAL if C.KERNEL == "nu_mono" else json.load(open(os.path.join(C.REPO, C.A571, "cfg571_prereg_results.json")))["results"]["GS4_24110"]  # the quote is of the nu_mono seal
     run.P("  THEORY_CANONICAL_2026-10-14 s2 GS4 row quotes '9.46–10.36 (flat) / 9.82–10.43 (DE-tracking)': seal R_g=R_d values "
-          f"{SEAL['10.89']['canon 9.36e-11|F-flat']['logMgas_Rg=Rd']:.2f}/{SEAL['10.76']['canon 9.36e-11|F-flat']['logMgas_Rg=Rd']:.2f} and "
-          f"{SEAL['10.89']['canon 9.36e-11|F-DESI']['logMgas_Rg=Rd']:.2f}/{SEAL['10.76']['canon 9.36e-11|F-DESI']['logMgas_Rg=Rd']:.2f} (R_g = 1.5 R_d branch omitted there)")
+          f"{S571['10.89']['canon 9.36e-11|F-flat']['logMgas_Rg=Rd']:.2f}/{S571['10.76']['canon 9.36e-11|F-flat']['logMgas_Rg=Rd']:.2f} and "
+          f"{S571['10.89']['canon 9.36e-11|F-DESI']['logMgas_Rg=Rd']:.2f}/{S571['10.76']['canon 9.36e-11|F-DESI']['logMgas_Rg=Rd']:.2f} (R_g = 1.5 R_d branch omitted there)")
     run.P("\n=== K4 pre-data controls of the plan ===")
     A10, A21, n10, n21 = 7.93e-8, 2.68e-7, 492.161, 809.342
     c21 = 5.706e-4 * (n21 ** 2 / A21) / (n10 ** 2 / A10)
@@ -769,14 +770,15 @@ def main():
         cs, ct, _ = mock_spec(kind)
         a = C.write_mock_cube(os.path.join(sc, f"cfg942_gs4_MOCK_{kind}.fits"), cs); b = C.write_mock_image(os.path.join(sc, f"cfg942_gs4_MOCK_{kind}_cont.fits"), ct)
         print(f"MOCK cube cfg942_gs4_MOCK_{kind}.fits sha256 {a}; continuum sha256 {b}"); sys.exit(0)
-    if "--selftest" in ARGS: slug = "cfg942_gs4_selftest"
-    elif "--mock" in ARGS: slug = f"cfg942_gs4_MOCK_{opt('--mock')}" + ("_MUTATE" if mutate_ else "")
-    elif "--cube" in ARGS: slug = "cfg942_gs4_RELEASE" + ("_MUTATE" if mutate_ else "")
-    elif "--measured" in ARGS: slug = "cfg942_gs4_measured_" + os.path.splitext(os.path.basename(opt("--measured")))[0]
+    if "--selftest" in ARGS: slug = "cfg942_gs4_selftest" + C.kernel_tag()
+    elif "--mock" in ARGS: slug = f"cfg942_gs4_MOCK_{opt('--mock')}" + C.kernel_tag() + ("_MUTATE" if mutate_ else "")
+    elif "--cube" in ARGS: slug = "cfg942_gs4_RELEASE" + C.kernel_tag() + ("_MUTATE" if mutate_ else "")
+    elif "--measured" in ARGS: slug = "cfg942_gs4_measured_" + os.path.splitext(os.path.basename(opt("--measured")))[0] + C.kernel_tag()
     else:
         print(__doc__); sys.exit(0)
     run = C.Run(slug, sample_memory=True)
     run.P(f"CFG942 GS4_24110 harness ({slug}); plan {PLAN} (966d50a87); seal CFG571 259f7825c")
+    C.kernel_banner(run)
     run.P("Frozen predictions = CFG571's four models as sealed. The CFG689 native a0(z) band folded into THEORY_CANONICAL_2026-10-18 does NOT change them and is not scored here.")
     run.P("kappa = 1/2 FITTED; footings never pooled; routes never averaged; single disc = demonstration, no exclusion; not theory closed.")
     run.P(f"target: GS4_24110 RA {RA} Dec {DEC}; [CI](2-1) observed at {NU_OBS:.4f} GHz (z {Z_LINE}); R_e {RE} kpc = {RE / KPA:.3f}\"")
@@ -813,7 +815,7 @@ def main():
             if C.cube_object(path).strip().upper() == "MOCK":
                 run.P("\nrelease-day copy NOT made: the cube's OBJECT is 'MOCK' (the copy into the plan's dir is made only for a real cube; CLARIFICATION A-X7)")
             else:
-                release = ("campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring", "cfg809_gs4" + ("_MUTATE" if mutate_ else ""))
+                release = ("campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring", "cfg809_gs4" + C.kernel_tag() + ("_MUTATE" if mutate_ else ""))
                 res["release_copy"] = dict(dir=release[0], files=[release[1] + ".out", release[1] + "_results.json"])
                 run.P(f"\nrelease-day copy (CLARIFICATION A-X7): this output and its results JSON are also written, byte-identical, to {release[0]}/{release[1]}.out and {release[1]}_results.json")
     elif "--measured" in ARGS:

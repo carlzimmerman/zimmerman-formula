@@ -45,6 +45,33 @@ FROZEN = [
     ("GS4 clarification addendum C 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_C.md", "785fcae44"),
     ("GS4 clarification addendum D 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_D.md", "c2dfb62b5"),
 ]
+# addendum E (CFG806/CFG809 CLARIFICATION_2026-10-22_ADDENDUM_E.md, ffb14e40bc): labelled parallel kernel readings.
+# CFG942_KERNEL unset or "nu_mono" leaves every line of the frozen nu_mono path unchanged (verdict kernel, CFG571 seal).
+KERNEL = os.environ.get("CFG942_KERNEL", "nu_mono")
+assert KERNEL in ("nu_mono", "n1", "n2"), "CFG942_KERNEL must be nu_mono, n1 or n2"
+KSEAL = {"n1": ("argon_push/AG4e_n1_alma_seal/SEALED_N1.json", "b1bb9296db", "9802de0d170ccaea"),
+         "n2": ("argon_push/AG4d_n2_alma_seal/SEALED_N2.json", "502a070a27", "d64727b54b07b31c")}
+KNU = {"n1": lambda y: 0.5 * (1 + np.sqrt(1 + 4 / np.asarray(y, float))),       # g_N = g^2/(g + a0)
+       "n2": lambda y: np.sqrt(1 + 1 / np.asarray(y, float))}                    # g^2 - g_N^2 = a0 g_N
+if KERNEL != "nu_mono":
+    FROZEN = FROZEN + [
+        (f"{KERNEL} seal (addendum E)", KSEAL[KERNEL][0], KSEAL[KERNEL][1]),
+        ("U4 clarification addendum E 10-22 (CFG806 dir)", "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-22_ADDENDUM_E.md", "ffb14e40bc"),
+        ("GS4 clarification addendum E 10-22 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-22_ADDENDUM_E.md", "ffb14e40bc"),
+    ]
+
+
+def kernel_tag():
+    """'' on the frozen nu_mono path (slugs and file names unchanged); '_KERNEL_n1' / '_KERNEL_n2' for addendum-E readings"""
+    return "" if KERNEL == "nu_mono" else f"_KERNEL_{KERNEL}"
+
+
+def kernel_banner(run):
+    if KERNEL != "nu_mono":
+        run.P(f"*** ADDENDUM E PARALLEL READING: kernel {KERNEL} (seal {KSEAL[KERNEL][0]}, sha256 {KSEAL[KERNEL][2]}...). "
+              "NOT the verdict kernel (nu_mono); never pooled with it, with the other law form, footing or disc. ***")
+
+
 SEAL_HASH_EXPECT = "be27457db6bad870a734c52d2bad92c6669cde53ca7a81553e79154dbedc3714"
 CLAR_COMMIT = "35ea5e1be"
 U4_CLAR = "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md"
@@ -236,10 +263,14 @@ def load_cfg571():
     finally:
         sys.argv = argv
     assert ns["NU"] is ns["nu_mono"], "MUTATE flag leaked into the CFG571 head"
+    if KERNEL != "nu_mono":
+        ns["NU"] = KNU[KERNEL]          # addendum E: CFG571's head with its kernel swapped, as AG4e/AG4d sealed it
     return ns
 
 
 def sealed():
+    if KERNEL != "nu_mono":
+        return json.load(open(os.path.join(REPO, KSEAL[KERNEL][0])))
     return json.load(open(os.path.join(REPO, A571, "cfg571_prereg_results.json")))["results"]
 
 
@@ -278,6 +309,7 @@ def reproduce(ns, target):
         else:
             r = predict(ns, GS4["R"], GS4["Vc"], GS4["z"], float(key), GS4["Rd"])
         for k2, d in ent.items():
+            if KERNEL != "nu_mono" and k2 not in r: continue   # AG4e/AG4d also sealed CFG775/778 models CFG571's head lacks
             m = r[k2]; worst = max(worst, abs(m["logVbar2R_G"] - d["logVbar2R_G"])); n += 1
             if str(bool(m["floor"])) != str(d["floor"]): bad.append((key, k2, "floor"))
             for sh in ("logMgas_Rg=Rd", "logMgas_Rg=1.5Rd"):
@@ -292,7 +324,8 @@ def _cells(line):
 
 
 def transcription(plan_rel, target):
-    S = sealed()[target]; rows = 0; worst = 0.0; bad = []
+    # the plan's tables transcribe the nu_mono seal whatever kernel is being read (addendum E keeps nu_mono the verdict kernel)
+    S = json.load(open(os.path.join(REPO, A571, "cfg571_prereg_results.json")))["results"][target]; rows = 0; worst = 0.0; bad = []
     for line in open(os.path.join(REPO, plan_rel)):
         if not line.startswith("|"): continue
         c = _cells(line)

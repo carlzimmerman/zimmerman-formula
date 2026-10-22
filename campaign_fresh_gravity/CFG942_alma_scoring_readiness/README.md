@@ -502,3 +502,26 @@ All were made before any real data, on MOCK runs only:
 - **Not committed:** the mock FITS (scratch). Their sha256: U4 a/b/c/d = e51d76b7…, 60c0fe97…, 5abb0548…, 4d2dd9e9…; GS4 a/b/e cubes = adfbd807…, 2f2c3295…, da129b4c….
 
 κ = ½ FITTED; footings never pooled; cold-energy mass required; not theory closed.
+
+## Addendum E kernel switch (2026-10-22; PRE-DATA; MOCK only)
+
+Owner-approved addendum E (CFG806/CFG809 `CLARIFICATION_2026-10-22_ADDENDUM_E.md`, ffb14e40bc) adds n = 1 (AG4e seal
+9802de0d…) and n = 2 (AG4d seal d64727b5…) as labelled parallel readings beside the nu_mono verdict kernel.
+
+- **Switch.** `CFG942_KERNEL=n1|n2 python3 -B cfg942_u4.py …` (same for `cfg942_gs4.py`). Unset or `nu_mono` = the frozen path.
+  The kernel run swaps CFG571's NU exactly as AG4e/AG4d sealed it, scores against that law's own seal, adds the seal and
+  both addendum-E files to K1, prints a banner, and names every output `…_KERNEL_n1` / `…_KERNEL_n2` (the release-day copy
+  too: `cfg806_u4_KERNEL_n1.out` etc.), so a parallel reading can never overwrite or be pooled with the verdict file.
+  R3 (plan-table transcription) and the THEORY_CANONICAL quote keep comparing against the nu_mono seal, as the plan's tables do.
+- **nu_mono path unchanged.** Re-run with the new code: selftest (U4, GS4) and MOCK-a plain + MUTATE (U4, GS4) are identical to
+  the committed outputs line for line apart from the harness's own sha256 line; both MUTATE controls still exit 1.
+- **n1 / n2 MOCK results (committed `*_KERNEL_*` files).** R2 reproduces each law's seal exactly (max |d| 0.0 over 56 U4 and
+  16 GS4 entries). Both MUTATE controls bite under both kernels (U4 selection-aware S/N −0.30, GS4 +0.29, exit 1).
+  Two checks fail by design, and each is a finding, not a defect:
+  - GS4 selftest, both kernels: "A-G4 scan agrees with addendum A s1" fails. Addendum A's robustness sentence was written for
+    nu_mono; the n = 1 / n = 2 readings do not inherit it.
+  - U4 MOCK-a, n = 2 only: the primary branch reads NO SIDE instead of FRAMEWORK SIDE. MOCK-a is built at n = 2's own F-DESI
+    requirement at V_c 250, where n = 2's framework and R-H requirements overlap on the canonical footing, so U4 cannot
+    separate them under n = 2 there (the alternate footing reads FRAMEWORK SIDE).
+
+κ = ½ FITTED; footings never pooled; one disc excludes no model; not theory closed.

@@ -560,17 +560,18 @@ def main():
         sp, lg, Vc = mock_spec(kind); path = os.path.join(scratch, f"cfg942_u4_MOCK_{kind}.fits")
         print(f"MOCK cube {os.path.basename(path)} written, sha256 {C.write_mock_cube(path, sp)}"); sys.exit(0)
     if "--selftest" in ARGS:
-        slug = "cfg942_u4_selftest"
+        slug = "cfg942_u4_selftest" + C.kernel_tag()
     elif "--mock" in ARGS:
-        slug = f"cfg942_u4_MOCK_{opt('--mock')}" + ("_MUTATE" if mutate else "")
+        slug = f"cfg942_u4_MOCK_{opt('--mock')}" + C.kernel_tag() + ("_MUTATE" if mutate else "")
     elif "--cube" in ARGS:
-        slug = "cfg942_u4_RELEASE" + ("_MUTATE" if mutate else "")
+        slug = "cfg942_u4_RELEASE" + C.kernel_tag() + ("_MUTATE" if mutate else "")
     elif "--measured" in ARGS:
-        slug = "cfg942_u4_measured_" + os.path.splitext(os.path.basename(opt("--measured")))[0]
+        slug = "cfg942_u4_measured_" + os.path.splitext(os.path.basename(opt("--measured")))[0] + C.kernel_tag()
     else:
         print(__doc__); sys.exit(0)
     run = C.Run(slug, sample_memory=True)
     run.P(f"CFG942 U4_27928 harness ({slug}); plan {PLAN} (1bf70683b); seal CFG571 259f7825c")
+    C.kernel_banner(run)
     run.P("Frozen predictions = CFG571's four models as sealed. The CFG689 native a0(z) band folded into THEORY_CANONICAL_2026-10-18 does NOT change them and is not scored here.")
     run.P("kappa = 1/2 FITTED; footings never pooled; single disc = demonstration, no exclusion; not theory closed.")
     run.P(f"target: KMOS3D U4_27928 RA {RA:.6f} Dec {DEC:.6f} z {Z_CAT}; CO(2-1) observed at {NU_OBS:.4f} GHz; KMOS3D q {Q_KMOS}")
@@ -616,7 +617,7 @@ def main():
         if C.cube_object(opt("--cube")).strip().upper() == "MOCK":
             run.P("\nrelease-day copy NOT made: the cube's OBJECT is 'MOCK' (the copy into the plan's dir is made only for a real cube; CLARIFICATION A-X7)")
         else:
-            release = ("campaign_fresh_gravity/CFG806_u4_27928_scoring", "cfg806_u4" + ("_MUTATE" if mutate else ""))
+            release = ("campaign_fresh_gravity/CFG806_u4_27928_scoring", "cfg806_u4" + C.kernel_tag() + ("_MUTATE" if mutate else ""))
             res["release_copy"] = dict(dir=release[0], files=[release[1] + ".out", release[1] + "_results.json"])
             run.P(f"\nrelease-day copy (CLARIFICATION A-X7): this output and its results JSON are also written, byte-identical, to {release[0]}/{release[1]}.out and {release[1]}_results.json")
     elif "--measured" in ARGS:
