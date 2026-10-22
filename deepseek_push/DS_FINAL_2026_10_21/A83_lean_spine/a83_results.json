@@ -1,0 +1,914 @@
+{
+ "lane": "A83_lean_spine",
+ "checks": [
+  {
+   "id": "L1_lean_build",
+   "pass": true,
+   "detail": "`lake build A83` exit 0 in 12.6s; tail: Build completed successfully (8768 jobs)."
+  },
+  {
+   "id": "L2_axiom_audit_exit",
+   "pass": true,
+   "detail": "`lake env lean A83_Axioms.lean` exit 0, 47 footprints"
+  },
+  {
+   "id": "L5_axioms_subset",
+   "pass": true,
+   "detail": "union of axiom sets = ['Classical.choice', 'Quot.sound', 'propext']; offenders: none"
+  },
+  {
+   "id": "L3_no_banned_tokens",
+   "pass": true,
+   "detail": "sorry/admit/native_decide counts = {'sorry': 0, 'admit': 0, 'native_decide': 0} over 5 files"
+  },
+  {
+   "id": "L4_no_axiom_declarations",
+   "pass": true,
+   "detail": "source-level `axiom` declarations = none"
+  },
+  {
+   "id": "L8_archive_copies",
+   "pass": true,
+   "detail": "lane copies of the built modules are byte-identical: yes"
+  },
+  {
+   "id": "L6a_theorem_count",
+   "pass": true,
+   "detail": "47 named theorems in the new modules (>= 24)"
+  },
+  {
+   "id": "L6b_delta_over_40",
+   "pass": true,
+   "detail": "delta over the 40 certified A8 declarations (39 unique names): +47 (new names only; overlap = none)"
+  },
+  {
+   "id": "L7a_no_a8_theorem_disappeared",
+   "pass": true,
+   "detail": "A8 declared names still present: 42/42; missing: none"
+  },
+  {
+   "id": "L7b_a8_sources_unchanged",
+   "pass": true,
+   "detail": "A8 source hashes identical to the frozen baseline: yes"
+  },
+  {
+   "id": "N11_linear_vs_exact",
+   "pass": true,
+   "detail": "linearised bound 1.058895607 < exact (2+3beta) bound 1.061366934; difference 2.471e-03 = O(beta), the 3beta term in 2C beta/(2+3beta) = eps"
+  },
+  {
+   "id": "N_all",
+   "pass": true,
+   "detail": "22/22 numerical cross-checks pass"
+  },
+  {
+   "id": "M_all_killed",
+   "pass": true,
+   "detail": "5/5 mutations killed (recorded by `--mutate all`, a83_mutations.json)"
+  },
+  {
+   "id": "M_inplace_exit1",
+   "pass": true,
+   "detail": "5/5 mutants make the full verification exit 1 (files restored): vacuum_only_beta:L1_lean_build,L2_axiom_audit_exit; inject_sorry:L5_axioms_subset,L3_no_banned_tokens; break_alpha_gamma:L1_lean_build,L2_axiom_audit_exit; unreduced_wavelength:L1_lean_build,L2_axiom_audit_exit; drop_Omega_m:L1_lean_build,L2_axiom_audit_exit"
+  }
+ ],
+ "numerics": [
+  {
+   "id": "N1_kappa_Z2",
+   "quantity": "Z^2 vs 32*pi/3",
+   "computed": 33.51032163829113,
+   "reference": 33.51032163829113,
+   "source": "exact identity (A72 \u00a70)",
+   "residual": 0.0,
+   "relative": 0.0,
+   "mode": "rel",
+   "tol": 1e-15,
+   "pass": true,
+   "note": "Z^2 - 32*pi/3 = 8.553e-50"
+  },
+  {
+   "id": "N2_kappa_DE",
+   "quantity": "kappa_DE = Z/(4*pi)",
+   "computed": 0.46065886596178063,
+   "reference": 0.46065886596178063,
+   "source": "A72 a72_results.json /numbers/Z_over_4pi",
+   "residual": 0.0,
+   "relative": 0.0,
+   "mode": "rel",
+   "tol": 1e-12,
+   "pass": true,
+   "note": ""
+  },
+  {
+   "id": "N3_kappa_A75",
+   "quantity": "kappa_DE (A75 K20)",
+   "computed": 0.46065886596178063,
+   "reference": 0.4606588659617806,
+   "source": "A75 a75_results.json /numbers/K20_kappa",
+   "residual": 5.551115123125783e-17,
+   "relative": 1.2050381601873568e-16,
+   "mode": "rel",
+   "tol": 1e-12,
+   "pass": true,
+   "note": ""
+  },
+  {
+   "id": "N4_sqrt_form",
+   "quantity": "sqrt(2/(3*pi))",
+   "computed": 0.46065886596178063,
+   "reference": 0.46065886596178063,
+   "source": "closed form vs Z/(4*pi)",
+   "residual": 0.0,
+   "relative": 0.0,
+   "mode": "rel",
+   "tol": 1e-15,
+   "pass": true,
+   "note": ""
+  },
+  {
+   "id": "N5_12pi2",
+   "quantity": "8*pi/kappa^2",
+   "computed": 118.43525281307231,
+   "reference": 118.43525281307231,
+   "source": "exact 12*pi^2",
+   "residual": 0.0,
+   "relative": 0.0,
+   "mode": "rel",
+   "tol": 1e-15,
+   "pass": true,
+   "note": "task prints 118.435 (3 dp)"
+  },
+  {
+   "id": "N6_48pi4",
+   "quantity": "8*pi/kappa_full^2",
+   "computed": 4675.636369632117,
+   "reference": 4675.636369632117,
+   "source": "exact 48*pi^4",
+   "residual": 0.0,
+   "relative": 0.0,
+   "mode": "rel",
+   "tol": 1e-15,
+   "pass": true,
+   "note": "task prints 4674.6 \u2014 a 2.22e-4 arithmetic slip (48*pi^4 = 4675.6364)"
+  },
+  {
+   "id": "N7_12pi2_task_literal",
+   "quantity": "12*pi^2 vs task literal",
+   "computed": 118.43525281307231,
+   "reference": 118.435,
+   "source": "task text",
+   "residual": 0.0002528130723078448,
+   "relative": 2.134614533776711e-06,
+   "mode": "rel",
+   "tol": 0.001,
+   "pass": true,
+   "note": ""
+  },
+  {
+   "id": "N8_beta_at_r1061",
+   "quantity": "beta(r=1.061, Omega_L=0.6838)",
+   "computed": 0.027807866666666667,
+   "reference": 0.027807866666666667,
+   "source": "A78 relation beta=(2/3)Omega_L(r-1)",
+   "residual": 0.0,
+   "relative": 0.0,
+   "mode": "rel",
+   "tol": 1e-15,
+   "pass": true,
+   "note": ""
+  },
+  {
+   "id": "N9_beta_vs_A78_bound",
+   "quantity": "beta(r=1.061) vs A78 printed bound 0.0280",
+   "computed": 0.027807866666666667,
+   "reference": 0.028,
+   "source": "A78 report \u00a73 (beta < 0.0280 from |Delta N_eff| < 0.30)",
+   "residual": 0.00019213333333333374,
+   "relative": 0.0068619047619047765,
+   "mode": "rel",
+   "tol": 0.01,
+   "pass": true,
+   "note": "beta(r=1.061)=0.027808 < 0.0280: consistent with A78's bound"
+  },
+  {
+   "id": "N10_r_bound",
+   "quantity": "1 + 3*eps/(2*Omega_L*C), eps=0.30, C=11.1738, Omega_L=0.6847",
+   "computed": 1.0588181407474346,
+   "reference": 1.0588181407474346,
+   "source": "closed form (task's parameters)",
+   "residual": 0.0,
+   "relative": 0.0,
+   "mode": "rel",
+   "tol": 1e-15,
+   "pass": true,
+   "note": "task quotes 1.0588"
+  },
+  {
+   "id": "N12_beta_inversion",
+   "quantity": "Delta-N_eff coefficient L = eps(2+3beta)/(3beta) at A78's beta_max",
+   "computed": 7.449204662458442,
+   "reference": 7.4492,
+   "source": "A78 report \u00a73 (Delta N_eff = -7.4492 beta + ...)",
+   "residual": 4.6624584415511094e-06,
+   "relative": 6.259005586574544e-07,
+   "mode": "rel",
+   "tol": 1e-06,
+   "pass": true,
+   "note": "A78's beta_max solves its own equation with L = 7.4492047; the report prints 7.4492, hence the 6e-7 residual"
+  },
+  {
+   "id": "N12b_beta_from_L",
+   "quantity": "beta from L = 7.4492 exactly",
+   "computed": 0.027975158059643037,
+   "reference": 0.02797513981523432,
+   "source": "A78 /derived/beta_max_BBN",
+   "residual": 1.824440871642241e-08,
+   "relative": 6.521650592962227e-07,
+   "mode": "rel",
+   "tol": 1e-06,
+   "pass": true,
+   "note": "6.5e-7 relative, entirely the rounding of 7.4492 in the report"
+  },
+  {
+   "id": "N13_beta_max_to_r",
+   "quantity": "1 + 3*beta_max/(2*Omega_L)",
+   "computed": 1.061366934370944,
+   "reference": 1.0613669016163023,
+   "source": "A78 /derived/Lambda_bare_over_obs_betamax_present",
+   "residual": 3.2754641665633244e-08,
+   "relative": 3.0860809410725776e-08,
+   "mode": "rel",
+   "tol": 1e-07,
+   "pass": true,
+   "note": ""
+  },
+  {
+   "id": "N14_mass_cancel_spread",
+   "quantity": "spread of a_sat over 5 masses",
+   "computed": 1.5557538194652854e-61,
+   "reference": 0.0,
+   "source": "A75 K11 mass independence",
+   "residual": 1.5557538194652854e-61,
+   "relative": 1.5557538194652854e-61,
+   "mode": "abs",
+   "tol": 1e-40,
+   "pass": true,
+   "note": ""
+  },
+  {
+   "id": "N15_a_sat_canonical",
+   "quantity": "a_sat = k_B T c/hbar at T_dS",
+   "computed": 8.618166e-11,
+   "reference": 8.618166e-11,
+   "source": "A72 a0 = cH_Lambda/2pi = 8.618166e-11",
+   "residual": 0.0,
+   "relative": 0.0,
+   "mode": "rel",
+   "tol": 1e-09,
+   "pass": true,
+   "note": ""
+  },
+  {
+   "id": "N16_Z_beta1",
+   "quantity": "Z(beta=1, eta=0, p=0) = 5K",
+   "computed": 4.1935863695708715e-09,
+   "reference": 4.193586e-09,
+   "source": "A68 \u00a73.2 (5K = 4.193586e-09)",
+   "residual": 3.695708717201704e-16,
+   "relative": 8.812764820374983e-08,
+   "mode": "rel",
+   "tol": 1e-06,
+   "pass": true,
+   "note": ""
+  },
+  {
+   "id": "E1",
+   "quantity": "Z^2 - 32*pi/3",
+   "computed": 8.552847072295026e-50,
+   "reference": 0.0,
+   "source": "50-digit mpmath residual",
+   "residual": 8.552847072295026e-50,
+   "relative": 8.552847072295026e-50,
+   "mode": "abs",
+   "tol": 1e-12,
+   "pass": true,
+   "note": ""
+  },
+  {
+   "id": "E2",
+   "quantity": "Z/(4*pi) - sqrt(2/(3*pi))",
+   "computed": 0.0,
+   "reference": 0.0,
+   "source": "50-digit mpmath residual",
+   "residual": 0.0,
+   "relative": 0.0,
+   "mode": "abs",
+   "tol": 1e-12,
+   "pass": true,
+   "note": ""
+  },
+  {
+   "id": "E3",
+   "quantity": "8*pi/kappa^2 - 12*pi^2",
+   "computed": 0.0,
+   "reference": 0.0,
+   "source": "50-digit mpmath residual",
+   "residual": 0.0,
+   "relative": 0.0,
+   "mode": "abs",
+   "tol": 1e-12,
+   "pass": true,
+   "note": ""
+  },
+  {
+   "id": "E4",
+   "quantity": "8*pi/kappa_full^2 - 48*pi^4",
+   "computed": 2.1895288505075267e-47,
+   "reference": 0.0,
+   "source": "50-digit mpmath residual",
+   "residual": 2.1895288505075267e-47,
+   "relative": 2.1895288505075267e-47,
+   "mode": "abs",
+   "tol": 1e-12,
+   "pass": true,
+   "note": ""
+  },
+  {
+   "id": "E5",
+   "quantity": "2cH/a0 - 4*pi at a0 = cH/(2*pi)",
+   "computed": 0.0,
+   "reference": 0.0,
+   "source": "50-digit mpmath residual",
+   "residual": 0.0,
+   "relative": 0.0,
+   "mode": "abs",
+   "tol": 1e-12,
+   "pass": true,
+   "note": ""
+  }
+ ],
+ "mutations": [
+  {
+   "name": "vacuum_only_beta",
+   "file": "A83/BlockD.lean",
+   "description": "A33's vacuum-only relation 3\u03b2 = 2\u03a9_L r \u2212 2 in place of A78's matter-inclusive one",
+   "exit": 1,
+   "banned_tokens": {
+    "sorry": 0,
+    "admit": 0,
+    "native_decide": 0
+   },
+   "killed": true,
+   "seconds": 4.0,
+   "errors": [
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/DS_FINAL_2026_10_21/A83_lean_spine/_scratch/mut_vacuum_only_beta/BlockD.lean:31:2: error: linarith failed to find a contradiction"
+   ]
+  },
+  {
+   "name": "inject_sorry",
+   "file": "A83/BlockA.lean",
+   "description": "one proof replaced by sorry (Lean exits 0 with a warning; the token gate must reject)",
+   "exit": 0,
+   "banned_tokens": {
+    "sorry": 1,
+    "admit": 0,
+    "native_decide": 0
+   },
+   "killed": true,
+   "seconds": 4.1,
+   "errors": []
+  },
+  {
+   "name": "break_alpha_gamma",
+   "file": "A83/BlockA.lean",
+   "description": "second stiffness p^2 -> p^4, breaking the \u03b1 = \u03b3 single-stiffness theorem",
+   "exit": 1,
+   "banned_tokens": {
+    "sorry": 0,
+    "admit": 0,
+    "native_decide": 0
+   },
+   "killed": true,
+   "seconds": 4.4,
+   "errors": [
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/DS_FINAL_2026_10_21/A83_lean_spine/_scratch/mut_break_alpha_gamma/BlockA.lean:95:67: error: unsolved goals"
+   ]
+  },
+  {
+   "name": "unreduced_wavelength",
+   "file": "A83/BlockC.lean",
+   "description": "drop the 2\u03c0 from the unreduced-wavelength branch",
+   "exit": 1,
+   "banned_tokens": {
+    "sorry": 0,
+    "admit": 0,
+    "native_decide": 0
+   },
+   "killed": true,
+   "seconds": 4.4,
+   "errors": [
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/DS_FINAL_2026_10_21/A83_lean_spine/_scratch/mut_unreduced_wavelength/BlockC.lean:146:64: error: unsolved goals"
+   ]
+  },
+  {
+   "name": "drop_Omega_m",
+   "file": "A83/BlockD.lean",
+   "description": "A78's matter term \u03a9_m deleted from the Friedmann relation",
+   "exit": 1,
+   "banned_tokens": {
+    "sorry": 0,
+    "admit": 0,
+    "native_decide": 0
+   },
+   "killed": true,
+   "seconds": 4.3,
+   "errors": [
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/DS_FINAL_2026_10_21/A83_lean_spine/_scratch/mut_drop_Omega_m/BlockD.lean:31:2: error: linarith failed to find a contradiction"
+   ]
+  }
+ ],
+ "mutations_inplace": [
+  {
+   "name": "vacuum_only_beta",
+   "description": "A33's vacuum-only relation 3\u03b2 = 2\u03a9_L r \u2212 2 in place of A78's matter-inclusive one",
+   "verification_exit": 1,
+   "failed_checks": [
+    "L1_lean_build",
+    "L2_axiom_audit_exit"
+   ],
+   "seconds": 8.5,
+   "killed": true
+  },
+  {
+   "name": "inject_sorry",
+   "description": "one proof replaced by sorry (Lean exits 0 with a warning; the token gate must reject)",
+   "verification_exit": 1,
+   "failed_checks": [
+    "L5_axioms_subset",
+    "L3_no_banned_tokens"
+   ],
+   "seconds": 13.9,
+   "killed": true
+  },
+  {
+   "name": "break_alpha_gamma",
+   "description": "second stiffness p^2 -> p^4, breaking the \u03b1 = \u03b3 single-stiffness theorem",
+   "verification_exit": 1,
+   "failed_checks": [
+    "L1_lean_build",
+    "L2_axiom_audit_exit"
+   ],
+   "seconds": 8.2,
+   "killed": true
+  },
+  {
+   "name": "unreduced_wavelength",
+   "description": "drop the 2\u03c0 from the unreduced-wavelength branch",
+   "verification_exit": 1,
+   "failed_checks": [
+    "L1_lean_build",
+    "L2_axiom_audit_exit"
+   ],
+   "seconds": 9.3,
+   "killed": true
+  },
+  {
+   "name": "drop_Omega_m",
+   "description": "A78's matter term \u03a9_m deleted from the Friedmann relation",
+   "verification_exit": 1,
+   "failed_checks": [
+    "L1_lean_build",
+    "L2_axiom_audit_exit"
+   ],
+   "seconds": 9.5,
+   "killed": true
+  }
+ ],
+ "lean_build": {
+  "cmd": "lake build A83",
+  "exit": 0,
+  "seconds": 12.6,
+  "tail": "\u2714 [8763/8768] Built A83.BlockC (6.7s)\n\u2714 [8764/8768] Built A83.BlockA (6.7s)\n\u2714 [8765/8768] Built A83.BlockD (6.9s)\n\u2714 [8766/8768] Built A83.BlockB (7.1s)\n\u2714 [8767/8768] Built A83 (3.1s)\nBuild completed successfully (8768 jobs)."
+ },
+ "axiom_audit_raw_exit": 0,
+ "axioms": {
+  "exit": 0,
+  "seconds": 3.8,
+  "per_theorem": {
+   "A83.Kmat_det": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.Kmat_det_eq_zero_iff": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.Kmat_degenerate_iff_beta": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.Gmat_det": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.Gmat_det_ne_zero_iff": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.Gmat_single_stiffness_iff": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.Z_pos": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.Q0_eq_Z_div_K_sq": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.Q0_pos": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.omegaSq_pos": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.omegaSq_eq_p4_mul": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.omegaSq_zero": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.omegaSq_div_p4_tendsto": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.gN_lt_g": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.deriv_gN": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.deriv_gN_pos": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.gOfgN_eq": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.deriv_gOfgN": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.deriv_gOfgN_gt_one": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.theta_zero": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.theta_deriv": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.theta_deriv_zero": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.theta_second_deriv_zero": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.deriv_eq_zero_of_even": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.deriv_odd_is_even": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.odd_second_deriv_zero": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.mass_cancellation": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.theta_temperature_blind": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.thetaOf_eq_activity": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.Zcanon_sq": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.kappaDE_eq_sqrt": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.sqrt_Grho_eq": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.kappa_of_a0_from_friedmann": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.two_cH_over_a0": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.a0_eq_iff_kappa_eq": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.eight_pi_over_kappa_sq": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.a0_reduced": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.a0_full": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.kappa_full": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.eight_pi_over_kappa_full_sq": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.beta_of_r": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.beta_pos_iff_r_gt_one": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.beta_pos_imp_r_gt_one": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.r_le_bound": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.r_upper_bound": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.r_window": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "A83.bound_sharp": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  "count": 47,
+  "union": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ "source_scan": {
+  "files": {
+   "A83.lean": {
+    "sorry": 0,
+    "admit": 0,
+    "native_decide": 0
+   },
+   "A83/BlockA.lean": {
+    "sorry": 0,
+    "admit": 0,
+    "native_decide": 0
+   },
+   "A83/BlockB.lean": {
+    "sorry": 0,
+    "admit": 0,
+    "native_decide": 0
+   },
+   "A83/BlockC.lean": {
+    "sorry": 0,
+    "admit": 0,
+    "native_decide": 0
+   },
+   "A83/BlockD.lean": {
+    "sorry": 0,
+    "admit": 0,
+    "native_decide": 0
+   }
+  },
+  "banned_counts": {
+   "sorry": 0,
+   "admit": 0,
+   "native_decide": 0
+  },
+  "axiom_declarations": []
+ },
+ "archive": {
+  "files": [
+   "lean/A83.lean",
+   "lean/A83_Axioms.lean",
+   "lean/BlockA.lean",
+   "lean/BlockB.lean",
+   "lean/BlockC.lean",
+   "lean/BlockD.lean"
+  ],
+  "mismatch": []
+ },
+ "theorems": {
+  "new_count": 47,
+  "new": [
+   "A83.Kmat_det",
+   "A83.Kmat_det_eq_zero_iff",
+   "A83.Kmat_degenerate_iff_beta",
+   "A83.Gmat_det",
+   "A83.Gmat_det_ne_zero_iff",
+   "A83.Gmat_single_stiffness_iff",
+   "A83.Z_pos",
+   "A83.Q0_eq_Z_div_K_sq",
+   "A83.Q0_pos",
+   "A83.omegaSq_pos",
+   "A83.omegaSq_eq_p4_mul",
+   "A83.omegaSq_zero",
+   "A83.omegaSq_div_p4_tendsto",
+   "A83.gN_lt_g",
+   "A83.deriv_gN",
+   "A83.deriv_gN_pos",
+   "A83.gOfgN_eq",
+   "A83.deriv_gOfgN",
+   "A83.deriv_gOfgN_gt_one",
+   "A83.theta_zero",
+   "A83.theta_deriv",
+   "A83.theta_deriv_zero",
+   "A83.theta_second_deriv_zero",
+   "A83.deriv_eq_zero_of_even",
+   "A83.deriv_odd_is_even",
+   "A83.odd_second_deriv_zero",
+   "A83.mass_cancellation",
+   "A83.theta_temperature_blind",
+   "A83.thetaOf_eq_activity",
+   "A83.Zcanon_sq",
+   "A83.kappaDE_eq_sqrt",
+   "A83.sqrt_Grho_eq",
+   "A83.kappa_of_a0_from_friedmann",
+   "A83.two_cH_over_a0",
+   "A83.a0_eq_iff_kappa_eq",
+   "A83.eight_pi_over_kappa_sq",
+   "A83.a0_reduced",
+   "A83.a0_full",
+   "A83.kappa_full",
+   "A83.eight_pi_over_kappa_full_sq",
+   "A83.beta_of_r",
+   "A83.beta_pos_iff_r_gt_one",
+   "A83.beta_pos_imp_r_gt_one",
+   "A83.r_le_bound",
+   "A83.r_upper_bound",
+   "A83.r_window",
+   "A83.bound_sharp"
+  ],
+  "a8_certified_count": 40,
+  "a8_certified_unique": 39,
+  "a8_declared_count": 43,
+  "a8_declared_unique": 42,
+  "a8_certified_note": "40 declarations / 39 unique names (A8.gCanon_form is declared twice)",
+  "delta_count": 47,
+  "delta": [
+   "A83.Gmat_det",
+   "A83.Gmat_det_ne_zero_iff",
+   "A83.Gmat_single_stiffness_iff",
+   "A83.Kmat_degenerate_iff_beta",
+   "A83.Kmat_det",
+   "A83.Kmat_det_eq_zero_iff",
+   "A83.Q0_eq_Z_div_K_sq",
+   "A83.Q0_pos",
+   "A83.Z_pos",
+   "A83.Zcanon_sq",
+   "A83.a0_eq_iff_kappa_eq",
+   "A83.a0_full",
+   "A83.a0_reduced",
+   "A83.beta_of_r",
+   "A83.beta_pos_iff_r_gt_one",
+   "A83.beta_pos_imp_r_gt_one",
+   "A83.bound_sharp",
+   "A83.deriv_eq_zero_of_even",
+   "A83.deriv_gN",
+   "A83.deriv_gN_pos",
+   "A83.deriv_gOfgN",
+   "A83.deriv_gOfgN_gt_one",
+   "A83.deriv_odd_is_even",
+   "A83.eight_pi_over_kappa_full_sq",
+   "A83.eight_pi_over_kappa_sq",
+   "A83.gN_lt_g",
+   "A83.gOfgN_eq",
+   "A83.kappaDE_eq_sqrt",
+   "A83.kappa_full",
+   "A83.kappa_of_a0_from_friedmann",
+   "A83.mass_cancellation",
+   "A83.odd_second_deriv_zero",
+   "A83.omegaSq_div_p4_tendsto",
+   "A83.omegaSq_eq_p4_mul",
+   "A83.omegaSq_pos",
+   "A83.omegaSq_zero",
+   "A83.r_le_bound",
+   "A83.r_upper_bound",
+   "A83.r_window",
+   "A83.sqrt_Grho_eq",
+   "A83.thetaOf_eq_activity",
+   "A83.theta_deriv",
+   "A83.theta_deriv_zero",
+   "A83.theta_second_deriv_zero",
+   "A83.theta_temperature_blind",
+   "A83.theta_zero",
+   "A83.two_cH_over_a0"
+  ],
+  "delta_over_40": 47,
+  "overlap_with_a8": [],
+  "disappeared": [],
+  "a8_hash_changed": []
+ },
+ "exact_residuals_50dps": {
+  "E1": "8.5528e-50",
+  "E2": "0.0",
+  "E3": "0.0",
+  "E4": "2.1895e-47",
+  "E5": "0.0"
+ },
+ "modules_sha256": {
+  "A83.lean": "c876620b5b40ac00850040e61816b1fccaba2b0281d53a3d4fcb872686d9ec25",
+  "A83/BlockA.lean": "803a0cf3d335820fe2c3a56863d2bde4f5272e944bff347102ccc536b24843aa",
+  "A83/BlockB.lean": "1f891a66aded2efc9f9df59775e9aa7f297cae1d13f7c973eda540cf3057721d",
+  "A83/BlockC.lean": "40ef725088c4916b8715c16e710c5b8a6e40e3cf81b247913b0bddc0935d4ecf",
+  "A83/BlockD.lean": "947dc91c5276069b8bced228f70737b4e9beb3d33d302e50c48428256e7fdaf6"
+ },
+ "pass": true,
+ "verdict": "CERTIFIED"
+}

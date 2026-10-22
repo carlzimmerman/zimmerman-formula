@@ -1,0 +1,51 @@
+import A83
+
+/-! A83 axiom audit: one `#print axioms` line per theorem in the A83 library. -/
+
+#print axioms A83.Kmat_det
+#print axioms A83.Kmat_det_eq_zero_iff
+#print axioms A83.Kmat_degenerate_iff_beta
+#print axioms A83.Gmat_det
+#print axioms A83.Gmat_det_ne_zero_iff
+#print axioms A83.Gmat_single_stiffness_iff
+#print axioms A83.Z_pos
+#print axioms A83.Q0_eq_Z_div_K_sq
+#print axioms A83.Q0_pos
+#print axioms A83.omegaSq_pos
+#print axioms A83.omegaSq_eq_p4_mul
+#print axioms A83.omegaSq_zero
+#print axioms A83.omegaSq_div_p4_tendsto
+#print axioms A83.gN_lt_g
+#print axioms A83.deriv_gN
+#print axioms A83.deriv_gN_pos
+#print axioms A83.gOfgN_eq
+#print axioms A83.deriv_gOfgN
+#print axioms A83.deriv_gOfgN_gt_one
+#print axioms A83.theta_zero
+#print axioms A83.theta_deriv
+#print axioms A83.theta_deriv_zero
+#print axioms A83.theta_second_deriv_zero
+#print axioms A83.deriv_eq_zero_of_even
+#print axioms A83.deriv_odd_is_even
+#print axioms A83.odd_second_deriv_zero
+#print axioms A83.mass_cancellation
+#print axioms A83.theta_temperature_blind
+#print axioms A83.thetaOf_eq_activity
+#print axioms A83.Zcanon_sq
+#print axioms A83.kappaDE_eq_sqrt
+#print axioms A83.sqrt_Grho_eq
+#print axioms A83.kappa_of_a0_from_friedmann
+#print axioms A83.two_cH_over_a0
+#print axioms A83.a0_eq_iff_kappa_eq
+#print axioms A83.eight_pi_over_kappa_sq
+#print axioms A83.a0_reduced
+#print axioms A83.a0_full
+#print axioms A83.kappa_full
+#print axioms A83.eight_pi_over_kappa_full_sq
+#print axioms A83.beta_of_r
+#print axioms A83.beta_pos_iff_r_gt_one
+#print axioms A83.beta_pos_imp_r_gt_one
+#print axioms A83.r_le_bound
+#print axioms A83.r_upper_bound
+#print axioms A83.r_window
+#print axioms A83.bound_sharp

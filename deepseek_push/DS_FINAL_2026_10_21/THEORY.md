@@ -166,9 +166,10 @@ mass exactly cancelled by the conformal gradient, so **`m² = 0` and `c_s² = α
 mode**, healthy for `β > 0`, `η > 0`, `α = γ > 0` (36/36 grid points). It is the mixed conformal /
 P-longitudinal scalar. **A67's `m² = 2/L★²` is retracted**: it is `K/η` with `η = KL★²/2` substituted — an
 input echo — and it belongs to the two **transverse** P modes, whose Compton wavelength is `√(η/K)`, equal to
-16.9706 pc *only* under that assumption and 24 pc or 29.39 pc under others. **The action forces `α = γ`
-(ratio 2) but not `η = γ`** (Jacobian `1/η ≠ 0`); so exact luminality of the P sector is a choice, not a
-theorem. The graviton's `c_T² = 1` is a separate result (the TT action) and is unaffected — A68's `c_T²` is
+16.9706 pc *only* under that assumption and 24 pc or 29.39 pc under others. **The action forces `α = γ` — the single-stiffness condition — but not `η = γ`** (Jacobian `1/η ≠ 0`);
+so exact luminality of the P sector is a choice, not a theorem. (Precision from A83: `α = γ` is **not** a
+second-class condition — A68's Dirac matrix carries no `α` or `γ`. What is actually proved: single
+stiffness ⟺ `α = γ`; kinetic degeneracy ⟺ `β = −2/3`; stiffness block non-degenerate ⟺ `αγp ≠ 0`.) The graviton's `c_T² = 1` is a separate result (the TT action) and is unaffected — A68's `c_T²` is
 the transverse *P-mode* sound speed, an overloaded symbol worth watching.
 
 Two inherited gaps, stated: the full nonlinear `{H_⊥, H_⊥}` closure at `β ≠ 0` is A54's, not re-derived
@@ -311,7 +312,7 @@ nonlinear.
 
 **3.6b What changes if you take the thermal point — the algebra does not break, two coincidences die.**
 The spine is untouched: the law `g_N = g²/(g+a₀)`, the closure identity (true for every κ), `c_T² = 1`,
-the 5-mode count, the four gates, `α₁/α₂`, and all 40 Lean theorems — those are conditional algebra about
+the 5-mode count, the four gates, `α₁/α₂`, and all 87 Lean theorems (A8's 40 + A83's 47) — those are conditional algebra about
 the κ = ½ branch and remain true; only their labelling as "the theory's value" changes. What shifts:
 
 | quantity | κ = ½ | κ = Z/4π | band / verdict |
@@ -543,7 +544,9 @@ by **scale dependence** — that is the discriminator A45 names.
 **Closed by derivation**: lensing = dynamics; `c_T² = 1` (speed); `η = γ` ⇒ exact luminality;
 `n = 1` from least dissipation; capacity = affinity; `L_MOND = 2ℓ₁ ⇔ κ = ½`; `M_ph/M_b` closed
 form and the concentration-independent crossing; `r_switch ∝ L_*`; `u = 1` beyond splashback;
-κ–Z identities and the `1/12` bracket (Lean, 40 theorems, no `sorry`, standard axioms).
+κ–Z identities, the `1/12` bracket, the Langmuir slopes, the mass cancellation and the matter-inclusive
+β window (**Lean: 87 theorems — A8's 40 plus 47 new in A83 — zero `sorry`, every footprint exactly
+`{propext, Classical.choice, Quot.sound}`, A8 sources byte-identical, `lake build A83` green**).
 
 **Closed by no-go**: κ from counting (irrational `𝒩`); from dimensional analysis (free
 function); from strain saturation (8.19×); from the Euler charge (a₀-blind); from channel

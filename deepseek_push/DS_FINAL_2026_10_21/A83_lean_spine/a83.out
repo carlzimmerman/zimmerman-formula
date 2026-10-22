@@ -1,0 +1,43 @@
+A83_lean_spine verification
+  repo:  /Users/carlzimmerman/new_physics/zimmerman-formula
+  lean:  /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026
+  A8:    /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/DS_FINAL_2026_10_21/A8_lean
+
+[cold] removed A83 build artefacts
+[PASS] L1_lean_build: `lake build A83` exit 0 in 12.6s; tail: Build completed successfully (8768 jobs).
+[PASS] L2_axiom_audit_exit: `lake env lean A83_Axioms.lean` exit 0, 47 footprints
+[PASS] L5_axioms_subset: union of axiom sets = ['Classical.choice', 'Quot.sound', 'propext']; offenders: none
+[PASS] L3_no_banned_tokens: sorry/admit/native_decide counts = {'sorry': 0, 'admit': 0, 'native_decide': 0} over 5 files
+[PASS] L4_no_axiom_declarations: source-level `axiom` declarations = none
+[PASS] L8_archive_copies: lane copies of the built modules are byte-identical: yes
+[PASS] L6a_theorem_count: 47 named theorems in the new modules (>= 24)
+[PASS] L6b_delta_over_40: delta over the 40 certified A8 declarations (39 unique names): +47 (new names only; overlap = none)
+[PASS] L7a_no_a8_theorem_disappeared: A8 declared names still present: 42/42; missing: none
+[PASS] L7b_a8_sources_unchanged: A8 source hashes identical to the frozen baseline: yes
+[PASS] N1_kappa_Z2: Z^2 vs 32*pi/3 = 33.510321638291131  vs 33.510321638291131 (exact identity (A72 §0)); rel resid 0.000e+00 <= 1.0e-15
+[PASS] N2_kappa_DE: kappa_DE = Z/(4*pi) = 0.46065886596178063  vs 0.46065886596178063 (A72 a72_results.json /numbers/Z_over_4pi); rel resid 0.000e+00 <= 1.0e-12
+[PASS] N3_kappa_A75: kappa_DE (A75 K20) = 0.46065886596178063  vs 0.46065886596178057 (A75 a75_results.json /numbers/K20_kappa); rel resid 1.205e-16 <= 1.0e-12
+[PASS] N4_sqrt_form: sqrt(2/(3*pi)) = 0.46065886596178063  vs 0.46065886596178063 (closed form vs Z/(4*pi)); rel resid 0.000e+00 <= 1.0e-15
+[PASS] N5_12pi2: 8*pi/kappa^2 = 118.43525281307231  vs 118.43525281307231 (exact 12*pi^2); rel resid 0.000e+00 <= 1.0e-15
+[PASS] N6_48pi4: 8*pi/kappa_full^2 = 4675.6363696321168  vs 4675.6363696321168 (exact 48*pi^4); rel resid 0.000e+00 <= 1.0e-15
+[PASS] N7_12pi2_task_literal: 12*pi^2 vs task literal = 118.43525281307231  vs 118.435 (task text); rel resid 2.135e-06 <= 1.0e-03
+[PASS] N8_beta_at_r1061: beta(r=1.061, Omega_L=0.6838) = 0.027807866666666667  vs 0.027807866666666667 (A78 relation beta=(2/3)Omega_L(r-1)); rel resid 0.000e+00 <= 1.0e-15
+[PASS] N9_beta_vs_A78_bound: beta(r=1.061) vs A78 printed bound 0.0280 = 0.027807866666666667  vs 0.028000000000000001 (A78 report §3 (beta < 0.0280 from |Delta N_eff| < 0.30)); rel resid 6.862e-03 <= 1.0e-02
+[PASS] N10_r_bound: 1 + 3*eps/(2*Omega_L*C), eps=0.30, C=11.1738, Omega_L=0.6847 = 1.0588181407474346  vs 1.0588181407474346 (closed form (task's parameters)); rel resid 0.000e+00 <= 1.0e-15
+[PASS] N11_linear_vs_exact: linearised bound 1.058895607 < exact (2+3beta) bound 1.061366934; difference 2.471e-03 = O(beta), the 3beta term in 2C beta/(2+3beta) = eps
+[PASS] N12_beta_inversion: Delta-N_eff coefficient L = eps(2+3beta)/(3beta) at A78's beta_max = 7.4492046624584418  vs 7.4492000000000003 (A78 report §3 (Delta N_eff = -7.4492 beta + ...)); rel resid 6.259e-07 <= 1.0e-06
+[PASS] N12b_beta_from_L: beta from L = 7.4492 exactly = 0.027975158059643037  vs 0.027975139815234321 (A78 /derived/beta_max_BBN); rel resid 6.522e-07 <= 1.0e-06
+[PASS] N13_beta_max_to_r: 1 + 3*beta_max/(2*Omega_L) = 1.061366934370944  vs 1.0613669016163023 (A78 /derived/Lambda_bare_over_obs_betamax_present); rel resid 3.086e-08 <= 1.0e-07
+[PASS] N14_mass_cancel_spread: spread of a_sat over 5 masses = 1.5557538194652854e-61  vs 0 (A75 K11 mass independence); abs resid 1.556e-61 <= 1.0e-40
+[PASS] N15_a_sat_canonical: a_sat = k_B T c/hbar at T_dS = 8.6181659999999995e-11  vs 8.6181659999999995e-11 (A72 a0 = cH_Lambda/2pi = 8.618166e-11); rel resid 0.000e+00 <= 1.0e-09
+[PASS] N16_Z_beta1: Z(beta=1, eta=0, p=0) = 5K = 4.1935863695708715e-09  vs 4.1935859999999997e-09 (A68 §3.2 (5K = 4.193586e-09)); rel resid 8.813e-08 <= 1.0e-06
+[PASS] E1: Z^2 - 32*pi/3 = 8.5528470722950261e-50  vs 0 (50-digit mpmath residual); abs resid 8.553e-50 <= 1.0e-12
+[PASS] E2: Z/(4*pi) - sqrt(2/(3*pi)) = 0  vs 0 (50-digit mpmath residual); abs resid 0.000e+00 <= 1.0e-12
+[PASS] E3: 8*pi/kappa^2 - 12*pi^2 = 0  vs 0 (50-digit mpmath residual); abs resid 0.000e+00 <= 1.0e-12
+[PASS] E4: 8*pi/kappa_full^2 - 48*pi^4 = 2.1895288505075267e-47  vs 0 (50-digit mpmath residual); abs resid 2.190e-47 <= 1.0e-12
+[PASS] E5: 2cH/a0 - 4*pi at a0 = cH/(2*pi) = 0  vs 0 (50-digit mpmath residual); abs resid 0.000e+00 <= 1.0e-12
+[PASS] N_all: 22/22 numerical cross-checks pass
+[PASS] M_all_killed: 5/5 mutations killed (recorded by `--mutate all`, a83_mutations.json)
+[PASS] M_inplace_exit1: 5/5 mutants make the full verification exit 1 (files restored): vacuum_only_beta:L1_lean_build,L2_axiom_audit_exit; inject_sorry:L5_axioms_subset,L3_no_banned_tokens; break_alpha_gamma:L1_lean_build,L2_axiom_audit_exit; unreduced_wavelength:L1_lean_build,L2_axiom_audit_exit; drop_Omega_m:L1_lean_build,L2_axiom_audit_exit
+
+RESULT: ALL CHECKS PASS
