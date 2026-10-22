@@ -1,0 +1,104 @@
+====================================================================================================
+D2_wide_binary_fork  (mutation: drop longitudinal projection)
+====================================================================================================
+
+[C1] FFT projection vs analytic linear QUMOND EFE (B_par = nu_e, B_perp = nu_e(1+K/2))
+      theta=  0.0 deg  B_fft=1.14620  B_analytic=1.55556
+      theta= 90.0 deg  B_fft=1.55555  B_analytic=1.35088
+C1 FAIL 0.2632 <=0.02   max relative error in B at y_e=1.1571
+
+[C2/C3] convergence of gamma_v(20 kAU, theta=0, x_ext=1.8 canonical)
+C2 PASS 0.0014 <=0.005   resolution s/21 -> s/27 (box 12.2 -> 11.9 s): 1.0036 -> 1.0022
+C3 PASS 0.0029 <=0.005   box 15.1 s vs 10.2 s: 1.0054 vs 1.0025
+C4 PASS 0.0000 <=0.005   y_tot = 300 strong-field limit
+
+[Q1] gamma_v of the canonical law with the Galactic field (1+1 Msun, circular, QUMOND/FFT)
+      footing    g_ext            x_ext    y_ext    s/kAU |     th=0    th=90      avg
+      canonical  A24_x1.8         1.800   1.1571       10 |   1.0005   1.0005   1.0005
+      canonical  A24_x1.8         1.800   1.1571       20 |   1.0022   1.0022   1.0022
+      canonical  A24_x1.8         1.800   1.1571       30 |   1.0048   1.0048   1.0048
+      canonical  PREREG_primary   1.900   1.2445       10 |   1.0005   1.0005   1.0005
+      canonical  PREREG_primary   1.900   1.2445       20 |   1.0022   1.0022   1.0022
+      canonical  PREREG_primary   1.900   1.2445       30 |   1.0048   1.0048   1.0048
+      canonical  PREREG_alt       2.220   1.5306       10 |   1.0005   1.0005   1.0005
+      canonical  PREREG_alt       2.220   1.5306       20 |   1.0022   1.0022   1.0022
+      canonical  PREREG_alt       2.220   1.5306       30 |   1.0048   1.0048   1.0048
+      alt        A24_x1.8         1.491   0.8924       10 |   1.0007   1.0007   1.0007
+      alt        A24_x1.8         1.491   0.8924       20 |   1.0026   1.0026   1.0026
+      alt        A24_x1.8         1.491   0.8924       30 |   1.0058   1.0058   1.0058
+      alt        PREREG_primary   1.573   0.9620       10 |   1.0007   1.0007   1.0007
+      alt        PREREG_primary   1.573   0.9620       20 |   1.0026   1.0026   1.0026
+      alt        PREREG_primary   1.573   0.9620       30 |   1.0058   1.0058   1.0058
+      alt        PREREG_alt       1.839   1.1912       10 |   1.0007   1.0007   1.0007
+      alt        PREREG_alt       1.839   1.1912       20 |   1.0026   1.0026   1.0026
+      alt        PREREG_alt       1.839   1.1912       30 |   1.0058   1.0058   1.0058
+R1  gamma_v(20 kAU, theta=0, x=1.8, canonical) = 1.0022 vs A24 1.1933 (diff -0.1911) -> A24 DISAGREES
+R1b orientation-averaged gamma_v(20 kAU) at PREREG primary g_ext: canonical 1.0022 / alt 1.0026 -> CORRECTED
+      canonical 20 kAU spread over the 3 record g_ext values x 3 orientations: 1.0022 - 1.0022
+
+[R2] sensitivities at PREREG primary g_ext, orientation-averaged
+      canonical s=20 kAU  dgamma/dln a0 = +0.0021   dgamma/dln g_ext = +0.0000   dgamma/dkappa = +0.0052 (A71 conv, kappa_canon 0.4137) / +0.0043 (kappa=1/2 conv)
+      canonical s=30 kAU  dgamma/dln a0 = +0.0048   dgamma/dln g_ext = +0.0000   dgamma/dkappa = +0.0115 (A71 conv, kappa_canon 0.4137) / +0.0096 (kappa=1/2 conv)
+      alt       s=20 kAU  dgamma/dln a0 = +0.0026   dgamma/dln g_ext = -0.0000   dgamma/dkappa = +0.0062 (A71 conv, kappa_canon 0.4137) / +0.0052 (kappa=1/2 conv)
+      alt       s=30 kAU  dgamma/dln a0 = +0.0057   dgamma/dln g_ext = -0.0000   dgamma/dkappa = +0.0139 (A71 conv, kappa_canon 0.4137) / +0.0115 (kappa=1/2 conv)
+
+[C5/R3] the kappa leverage of a 30,000-pair DR4 catalogue
+C5 PASS 0.0402/0.0605 0.040+-0.001/0.0605+-0.001   A71's arithmetic: sigma_sys 0.020 divided by sqrt(7) and every bin at the 20 kAU slope
+      A71 reproduced: sigma(kappa) = 0.0402, joint 0.1207 -> 0.0605
+      corrected (shared sigma_sys, best slope 0.012 over 20/30 kAU, every pair there = optimistic):
+        sigma_tot(30k) 0.0276 -> sigma(kappa) 2.3895 ; infinite-N floor from sigma_sys alone 1.7324
+        g_ext-a0 degeneracy: sigma_ln g_ext 0.0780 x |dgamma/dln g|/|dgamma/dln a0| 0.000 -> sigma(kappa) 0.0000
+R3  sigma(kappa) = 2.3895 (not 0.040); joint 0.1207 -> 0.1206 (not 0.0605) -> A71 OVERSTATED
+
+[C7/R4] occupancy of the 18-22 kAU bin
+C7 PASS 6210 [2.00,29.59] 6210 in [2,30)   frozen-cut DR3 catalogue on disk
+      DR3 frozen cut: 43 of 6210 in 18-22 kAU = 0.0069 ; log-uniform (A24) 0.0741 ; pipeline a^-1.6 mock 0.0373
+      DR3: fraction s > 10 kAU 0.0857 ; fraction y_proj < 0.3 (canonical) 0.0135
+R4  A24's 2,223-pair bin is 10.7x the DR3 frozen-cut occupancy (2.0x the pipeline's own mock) -> A24 BIN FORECAST OVERSTATED
+
+[R5] separating power at N = 30,000
+      bin only: occupancy A24 log-uniform  N_bin   2223  sigma1 A24 (0.0699 at 2,223)    3.296  sigma_tot 0.0727  z(0.002) = 0.03
+      bin only: occupancy A24 log-uniform  N_bin   2223  sigma1 CFG825 DR3 bootstrap     0.941  sigma_tot 0.0283  z(0.002) = 0.08
+      bin only: occupancy A24 log-uniform  N_bin   2223  sigma1 CFG825 DR3 sigma_R       1.656  sigma_tot 0.0404  z(0.002) = 0.05
+      bin only: occupancy pipeline mock    N_bin   1119  sigma1 A24 (0.0699 at 2,223)    3.296  sigma_tot 0.1005  z(0.002) = 0.02
+      bin only: occupancy pipeline mock    N_bin   1119  sigma1 CFG825 DR3 bootstrap     0.941  sigma_tot 0.0345  z(0.002) = 0.06
+      bin only: occupancy pipeline mock    N_bin   1119  sigma1 CFG825 DR3 sigma_R       1.656  sigma_tot 0.0534  z(0.002) = 0.04
+      bin only: occupancy DR3 frozen cut   N_bin    208  sigma1 A24 (0.0699 at 2,223)    3.296  sigma_tot 0.2295  z(0.002) = 0.01
+      bin only: occupancy DR3 frozen cut   N_bin    208  sigma1 CFG825 DR3 bootstrap     0.941  sigma_tot 0.0683  z(0.002) = 0.03
+      bin only: occupancy DR3 frozen cut   N_bin    208  sigma1 CFG825 DR3 sigma_R       1.656  sigma_tot 0.1166  z(0.002) = 0.02
+      global gamma-hat: registered mock sigma_fit 0.019  canonical sigma_fit 0.0190 sigma_tot 0.0276  Arm A floor 1.1614 vs 1.000: z = 5.85
+      global gamma-hat: registered mock sigma_fit 0.019  alt       sigma_fit 0.0190 sigma_tot 0.0276  Arm A floor 1.1917 vs 1.000: z = 6.95
+      global gamma-hat: DR3-calibrated                   canonical sigma_fit 0.0250 sigma_tot 0.0320  Arm A floor 1.1614 vs 1.000: z = 5.04
+      global gamma-hat: DR3-calibrated                   alt       sigma_fit 0.0250 sigma_tot 0.0320  Arm A floor 1.1917 vs 1.000: z = 5.98
+
+[R6] current wide-binary data on record
+      Cookson+26 (CFG800): Newton p 0.78-0.92; MOND ~20% step p 0.007-0.011 (CFG800 README)
+      Chae & Yoon 26 (CFG800): boost 1.15-1.20  [WebFetch-level record, provisional]
+      record inter-group disagreement on one catalogue: 0.174 in gamma_v (real_research/reviews/mi_wb_gate_fork_2026.py:221)
+      CFG825 DR3 R = 0.9728 +- 0.1775 (N=348): -0.15 sigma from Newton, -1.06 from Arm A canonical -> UNDECIDED (frozen rule)
+      DR3 frozen-cut dry run gamma-hat 1.0750 +- 0.0550 (NON-SCORING by PREREG): 1.36 sigma above 1.000, 1.57 below Arm A floor
+R6  no scoring measurement on record excludes either reading at >= 3 sigma -> OPEN
+
+[C6/R7] A26's dwarfs with the host external field in the law
+C6 PASS 92/45/0.650 92/45/0.651+-0.01   A26 reproduced
+      systems with a host distance: 79 ; sub-threshold median shift of the law-first prediction by the EFE: +0.748 dex
+      sub-threshold median Delta: isolated law +0.650 ; EFE-present law +1.254 ; within 0.5 dex of EFE law 5/45
+      data above Newton (medium-first) by +2.147 dex (median)
+        variant host x0.5                median Delta_EFE +1.156
+        variant host x2                  median Delta_EFE +1.387
+        variant no K term (max boost)    median Delta_EFE +1.192
+        variant alt a0                   median Delta_EFE +1.217
+      isolated (field) sub-threshold systems with sigma on disk: 1
+R7  -> DWARFS EXCLUDE BOTH READINGS
+
+[R8] what DR4 needs for 3 sigma, law-first (Arm A floor) vs 1.000
+      canonical mock    sigma_sys ceiling 0.0538 ; N_total for 3 sigma at sigma_sys 0.01/0.02/0.03/0.04/0.05: 3876 / 4342 / 5430 / 8367 / 27457
+      canonical DR3-cal sigma_sys ceiling 0.0538 ; N_total for 3 sigma at sigma_sys 0.01/0.02/0.03/0.04/0.05: 6722 / 7531 / 9419 / 14512 / 47625
+      alt       mock    sigma_sys ceiling 0.0639 ; N_total for 3 sigma at sigma_sys 0.01/0.02/0.03/0.04/0.05: 2719 / 2940 / 3402 / 4361 / 6841
+      alt       DR3-cal sigma_sys ceiling 0.0639 ; N_total for 3 sigma at sigma_sys 0.01/0.02/0.03/0.04/0.05: 4716 / 5100 / 5901 / 7565 / 11865
+      18-22 kAU bin alone, sigma1 A24 (0.0699 at 2,223)   : N_bin -27189 -> N_total -3926620 (DR3 occupancy) / -729035 (mock)
+      18-22 kAU bin alone, sigma1 CFG825 DR3 bootstrap    : N_bin -2218 -> N_total -320267 (DR3 occupancy) / -59462 (mock)
+      18-22 kAU bin alone, sigma1 CFG825 DR3 sigma_R      : N_bin -6864 -> N_total -991347 (DR3 occupancy) / -184058 (mock)
+      record inter-group gamma_v disagreement 0.174 vs canonical sigma_sys ceiling 0.0538: ratio 3.2
+
+D2_WIDE_BINARY_FORK COMPLETE: 6/7 checks PASS.
