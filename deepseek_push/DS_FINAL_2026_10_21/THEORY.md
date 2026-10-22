@@ -251,7 +251,10 @@ nonlinear.
 > **Update (2026-10-22, A72/A73): κ is no longer a free number.** The coefficient `a₀/(cH)` has exactly
 > one derivation in a 260,129-expression census: the thermal wavelength at the Gibbons–Hawking
 > temperature, `λ_T(T_dS) = 2πR_Λ`, so **`a₀ = c²/λ_T = cH_Λ/(2π) = 8.6257×10⁻¹¹ m/s²`**, mass-independent
-> to 10⁻¹². That `a₀` gives
+> to 10⁻¹². **Convention audit (2026-10-22, A79): the reduced thermal wavelength is the one the data
+> select.** `λ = ħc/(k_BT_dS)` gives `2πR_Λ` and `a₀ = cH_Λ/2π = 8.62×10⁻¹¹` (`0.03σ` from A71); the full
+> `hc/(k_BT_dS) = 2πħc/(k_BT_dS)` gives `4π²R_Λ` and `a₀ = cH_Λ/4π² = 1.3725×10⁻¹¹`, **2.63σ** from A71.
+> So the identification is fixed by the fit, not chosen by convention. That `a₀` gives
 > **`κ_DE = a₀/(c√(Gρ_DE)) = √(2/(3π)) = Z/(4π) = 0.460659`**, `κ_P3 ≈ 0.381`, and
 > **`2cH_Λ/a₀ = 4π = 12.566`** — so the "twelfth" is really **`4π`, the solid angle**, not `2Z = 11.578`.
 > Against A71's joint fit (`κ_P3 = 0.3777 ± 0.1207`, `a₀ = 8.544×10⁻¹¹`), the derived point sits
