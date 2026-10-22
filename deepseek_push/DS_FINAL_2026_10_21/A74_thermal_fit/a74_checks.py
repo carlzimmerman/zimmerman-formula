@@ -353,7 +353,7 @@ P("  Delta-chi2 = 1 in a0 : %.5f%%   (chi2/dof = %.2f, so this is NOT the honest
   % (100 * SIG_DCHI2, CHI2_SP / DOF_SP))
 P("  %d-draw block bootstrap: median %.6e, sigma/median = %.9f  (A51: %.9f)"
   % (_nboot, np.median(_boot), BOOT_FRAC, A51["sparc"]["sigma_stat_boot"]))
-P("  ratio bootstrap/formal = %.2f" % (BOOT_FRAC / SIG_DCHI2))
+P("  ratio bootstrap/formal = %.2f ; sigma(kappa)_SPARC = %.6f" % (BOOT_FRAC / SIG_DCHI2, BOOT_FRAC * K_SP))
 ck("C7", abs(BOOT_FRAC / A51["sparc"]["sigma_stat_boot"] - 1) < 1e-4 and BOOT_FRAC / SIG_DCHI2 > 5.0,
    "bootstrap %.9f vs A51 %.9f ; ratio to Delta-chi2 %.2f"
    % (BOOT_FRAC, A51["sparc"]["sigma_stat_boot"], BOOT_FRAC / SIG_DCHI2),
@@ -596,8 +596,8 @@ R_REQ, SIG_R = 5.552, 0.427
 U0, SIG_U = 0.45, (1.0 if MUT == "u_prior" else 0.03)
 SIG_CL = math.sqrt((SIG_R / R_REQ) ** 2 + (SIG_U / U0) ** 2) / abs(DLNR)
 K_CL = kappa_of_a0(A0_CANON) * (U0 * R_REQ / R_CAN) ** (1.0 / DLNR)
-P("  dlnR_tot/dlna0 = %+.5f ; cluster-only kappa = %.5f +- %.5f (%.2f%%)  (A51: 0.3934+-0.0432)"
-  % (DLNR, K_CL, K_CL * SIG_CL, 100 * SIG_CL))
+P("  R_req = %.3f +- %.3f (A18) ; dlnR_tot/dlna0 = %+.5f ; cluster-only kappa = %.5f +- %.5f (%.2f%%)"
+  "  (A51: 0.3934+-0.0432)" % (R_REQ, SIG_R, DLNR, K_CL, K_CL * SIG_CL, 100 * SIG_CL))
 ck("C14", abs(K_CL - 0.3934) < 2e-3 and abs(SIG_CL - 0.1097) < 3e-3,
    "kappa %.5f +- %.5f (sigma/kappa %.5f)" % (K_CL, K_CL * SIG_CL, SIG_CL),
    "0.3934+-0.002 ; sigma/kappa 0.1097+-0.003",
@@ -684,8 +684,16 @@ ck("C16", abs(K_NM / K_JOINT - 1) < 1e-5 and abs(B_NM / B_JOINT - 1) < 1e-5
 _lo1 = brentq(lambda lk: chi2_prof(math.exp(lk)) - CHI2_JOINT - 1.0, math.log(0.20), math.log(K_JOINT), xtol=1e-15)
 _hi1 = brentq(lambda lk: chi2_prof(math.exp(lk)) - CHI2_JOINT - 1.0, math.log(K_JOINT), math.log(0.80), xtol=1e-15)
 SIG_K_JOINT = 0.5 * (math.exp(_hi1) - math.exp(_lo1))
-SYS_FRAC = math.sqrt(0.20838642838788285 ** 2 + 0.161 ** 2 + 0.125 ** 2 + 0.10 ** 2 + 0.05 ** 2)
+EST_HALF_SPAN = 0.20838642838788285                  # A51's 7-estimator half-span, as A71 uses it
+SYS_FRAC = math.sqrt(EST_HALF_SPAN ** 2 + 0.161 ** 2 + 0.125 ** 2 + 0.10 ** 2 + 0.05 ** 2)
 SIG_K_TOT = math.sqrt(SIG_K_JOINT ** 2 + (SYS_FRAC * K_JOINT) ** 2)
+P("  INPUTS QUOTED IN THE REPORT: IMF prior B = 1.00 +- %.3f dex (%d Treu lenses) ; u = %.2f +- %.2f (A18)"
+  % (SIG_B_PRIOR_DEX, len(ALPHA), U0, SIG_U))
+P("    Upsilon window [%.2f, %.1f] ; A71 systematic floor: estimator %.2f%%, distance %.1f%%, H0 %.1f%%,"
+  " law %.1f%%, Upsilon %.1f%% -> %.2f%%"
+  % (UG.min(), UG.max(), 100 * EST_HALF_SPAN, 16.1, 12.5, 10.0, 5.0, 100 * SYS_FRAC))
+P("    A71 stored for comparison: Delta-chi2(kappa=1/2, B profiled) = %.6f ; global tension T = %.6f (%.4f sigma)"
+  % (A71["joint"]["chi2_at_half"], A71["joint"]["tension"], A71["joint"]["tension_sigma"]))
 
 
 def chi2_kb(lk, lb):
@@ -772,6 +780,8 @@ P("      = SPARC %.4f + SLACS %.4f + clusters %.4f + IMF prior %.4f"
   % (FIT_HF["sp"], FIT_HF["sl"], FIT_HF["cl"], FIT_HF["pr"]))
 P("      Delta-chi2 vs (a) = %+.6f" % DCHI2_HF)
 P("  Delta-chi2 (b) - (c) = %+.6f" % DCHI2_TH_HF)
+P("  cost in sigma (1 dof): thermal sqrt(%.6f) = %.4f sigma ; kappa=1/2 sqrt(%.6f) = %.4f sigma"
+  % (DCHI2_TH, math.sqrt(DCHI2_TH), DCHI2_HF, math.sqrt(DCHI2_HF)))
 ck("C18", 0.0 < DCHI2_TH < 1.0 and FIT_TH["kappa"] > K_JOINT
    and abs(FIT_TH["chi2"] - (FIT_TH["sp"] + FIT_TH["sl"] + FIT_TH["cl"] + FIT_TH["pr"])) < 1e-9,
    "Delta-chi2(thermal vs free) = %+.6f ; kappa %.6f > free %.6f" % (DCHI2_TH, FIT_TH["kappa"], K_JOINT),
@@ -1039,8 +1049,9 @@ P("    (the reverse framing: the thermal value is %.4f%% below the rival) ; Delt
   % (100 * (1 - A0_TH / A0_HALF), A0_HALF - A0_TH))
 P("    A72's unrounded pair 9.354746e-11 / 8.618166e-11 gives %.4f%% (A72 quotes 8.54%%)"
   % (100 * (9.354746e-11 / 8.618166e-11 - 1)))
-P("  3-sigma separation needs sigma(a0)/a0 = %.4f%% (A72: 2.874%% unrounded) ; the present joint fit gives %.4f%%"
-  % (100 * (A0_HALF / A0_TH - 1) / 3.0, 100 * SIG_K_TOT / K_JOINT))
+P("  3-sigma separation needs sigma(a0)/a0 = %.4f%% (A72: 2.874%% unrounded) or sigma(kappa_P3) = %.6f ;"
+  " the present joint fit gives %.4f%%"
+  % (100 * (A0_HALF / A0_TH - 1) / 3.0, (K_HALF - K_TH) / 3.0, 100 * SIG_K_TOT / K_JOINT))
 P("  L* moves %.4f%% (%.3f -> %.3f pc) and y_t moves %.2f%% (%.3f -> %.3f) between the two points"
   % (100 * (LSTAR_HALF / LSTAR_TH - 1), LSTAR_TH, LSTAR_HALF, 100 * (YT_TH / YT_HALF - 1), YT_TH, YT_HALF))
 ck("C27", abs(D_SP_TH + D_SL_TH + D_CL_TH - DCHI2_TH) < 1e-9

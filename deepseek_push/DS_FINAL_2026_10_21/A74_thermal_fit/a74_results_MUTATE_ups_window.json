@@ -1,0 +1,448 @@
+{
+ "lane": "A74",
+ "generated": "2026-10-22T14:34:52Z",
+ "mutate": "ups_window",
+ "n_check": 29,
+ "n_pass": 16,
+ "checks": [
+  {
+   "id": "C1",
+   "pass_": true,
+   "measured": "175/171/3375, sha 469f4f556dc813b2",
+   "threshold": "175 files, 171 galaxies, 3375 points, sha256 == 469f4f556dc813b2",
+   "label": "the vector fitted here is byte-identical to the one A71 fitted",
+   "killed_by": "drop_gal"
+  },
+  {
+   "id": "C2",
+   "pass_": true,
+   "measured": "85 rows, 70 lenses, sha d78d7627d6bbcc07",
+   "threshold": "85 rows, 70 lenses, sha256[:16] == d78d7627d6bbcc07",
+   "label": "the lens sample is the one A70 audited, not a cut made here",
+   "killed_by": "drop_lens"
+  },
+  {
+   "id": "C3",
+   "pass_": false,
+   "measured": "6.8651 / 6.6312 / 4.2989",
+   "threshold": "6.8651+-0.02, 6.6312+-0.02, 2.4714+-0.05",
+   "label": "three zero-parameter chi2/dof reproduce A71's stored values: same likelihood, same Upsilon window",
+   "killed_by": "newton"
+  },
+  {
+   "id": "C4",
+   "pass_": true,
+   "measured": "kappa_P3(9.354e-11) = 0.413453, kappa_DE = 0.499662 (0.499991 in the 0.6838 convention), ratio 1.208509, round trip 0e+00",
+   "threshold": "0.413461+-2e-5 in P3 ; 0.500000+-2e-5 in A72's DE convention ; ratio == 1/sqrt(Omega_L) to 1e-6 ; round trip < 1e-12",
+   "label": "the rival is kappa = 1/2 in the rho_DE convention, which is kappa_P3 = 0.4135 -- the fit is done in P3 throughout, so this number, not 0.5, is the one that enters; the two Omega_L footings differ by 0.07% and both are printed rather than mixed",
+   "killed_by": "kappa_de"
+  },
+  {
+   "id": "C5",
+   "pass_": true,
+   "measured": "Lambda route 8.618166e-11, Omega route 8.623833e-11, declared 8.620000e-11, kappa_DE 0.460454",
+   "threshold": "both constant routes within 0.15% of the deployed value; Z/4pi = 0.460659+-2e-6",
+   "label": "the thermal point is not a fitted number: two independent constant routes land on it to 0.07%, and the declared 3-digit value sits between them",
+   "killed_by": "thermal_pi"
+  },
+  {
+   "id": "C6",
+   "pass_": false,
+   "measured": "a0 7.153750e-11 vs 8.081465e-11 ; kappa 0.316201 vs 0.357207 ; chi2/dof 3.5085 vs 2.2209",
+   "threshold": "a0 and kappa to 2e-4 relative, chi2/dof to 2e-4 absolute",
+   "label": "an independently written SPARC likelihood lands on A51's minimum: the channel is not re-tuned here",
+   "killed_by": "floor10"
+  },
+  {
+   "id": "C7",
+   "pass_": false,
+   "measured": "bootstrap 0.092650977 vs A51 0.093888688 ; ratio to Delta-chi2 9.33",
+   "threshold": "matches A51 to 1e-4 and is > 5x the formal error",
+   "label": "the per-galaxy scatter makes the formal error wrong by 8x; the bootstrap is sigma(SPARC) below",
+   "killed_by": "boot_draws"
+  },
+  {
+   "id": "C8",
+   "pass_": true,
+   "measured": "median 0.885232 ; <ln> -0.124539 ; max dev 0.0e+00",
+   "threshold": "median 0.885232+-1e-4 ; <ln> -0.124539+-2e-4 ; per-lens < 1e-9",
+   "label": "this IS A55's/A70's lens model, per lens, not a rival implementation",
+   "killed_by": "sersic35"
+  },
+  {
+   "id": "C9",
+   "pass_": true,
+   "measured": "B_req 1.17383 ; 1/median 1.12965 ; 1/median^2 1.27610",
+   "threshold": "B_req = 1.174+-0.002 ; 1/median^2 = 1.276+-0.002 ; B_req < 0.97 x 1/median^2",
+   "label": "the M/L that zeroes SLACS is 1.174xSalpeter: the response is 0.7775, not the 2 that A55 assumed",
+   "killed_by": "arcsec"
+  },
+  {
+   "id": "C10",
+   "pass_": true,
+   "measured": "dlnR/dlnB 0.77748 ; B_resp 1.17373 vs B_root 1.17383 ; dlnR/dlnk 0.12054 ; ratio 6.45",
+   "threshold": "0.7775+-0.005 ; two B routes within 3e-3 ; 0.1205+-5e-4 ; ratio in [6,7]",
+   "label": "lensing is 6.5x more sensitive to the IMF than to a0 -- it is a mass-normalisation measurement",
+   "killed_by": "resp_lin"
+  },
+  {
+   "id": "C11",
+   "pass_": true,
+   "measured": "0.014251 dex vs 0.015469 dex",
+   "threshold": "0.014251+-5e-5 ; two routes within 12%",
+   "label": "70 lenses measure one number -- the IMF normalisation -- to 3.3%",
+   "killed_by": "sersic35"
+  },
+  {
+   "id": "C12",
+   "pass_": true,
+   "measured": "N=56, mean -0.00054, 95% hi 1.17671",
+   "threshold": "56 lenses, |mean| < 0.02, 95% upper 1.1767+-2e-4",
+   "label": "the prior is B = 1.00 +- 0.036 dex and B = 1.174 sits on its 95% boundary",
+   "killed_by": "treu_shift"
+  },
+  {
+   "id": "C13",
+   "pass_": true,
+   "measured": "1.6863 Mpc / 3.7702 / 2.6179",
+   "threshold": "1.6863+-0.001 / 3.7702+-0.001 / 2.6179+-0.001",
+   "label": "A18's anchor is reproduced before it is used as a constraint",
+   "killed_by": "cluster_a"
+  },
+  {
+   "id": "C14",
+   "pass_": true,
+   "measured": "kappa 0.39339 +- 0.04316 (sigma/kappa 0.10971)",
+   "threshold": "0.3934+-0.002 ; sigma/kappa 0.1097+-0.003",
+   "label": "the cluster band is 11% wide and u comes from the same amplitudes: a consistency check, not a measurement",
+   "killed_by": "u_prior"
+  },
+  {
+   "id": "C15",
+   "pass_": false,
+   "measured": "kappa 0.3484575 vs 0.3776513 ; B 1.2026289 vs 1.1916305 ; u 0.4287256 vs 0.4426705 ; chi2 8.1396420 vs 5.6860907",
+   "threshold": "all four within 2e-5 relative of A71's stored joint fit",
+   "label": "fit (a) IS A71: the same data, priors, compression and minimiser reproduce the stored minimum",
+   "killed_by": "no_boot"
+  },
+  {
+   "id": "C16",
+   "pass_": true,
+   "measured": "profile 0.348458/1.202629/0.428726 vs NM 0.348458/1.202629/0.428726, chi2 8.139642 vs 8.139642",
+   "threshold": "two independent minimisers agree to 1e-5 in kappa and B",
+   "label": "the free-fit optimum is not an artefact of the profile/analytic elimination",
+   "killed_by": "b_marg"
+  },
+  {
+   "id": "C17",
+   "pass_": false,
+   "measured": "sigma(kappa) 0.023029 vs 0.025787 ; total 0.111200 vs 0.120691 ; sigma(lnB) 0.031377 vs 0.031552",
+   "threshold": "stat and total sigma(kappa) to 2e-4 ; marginal sigma(lnB) to 5e-3 of A71's K28 ; conditional sigma(B) within 2% of 0.0364",
+   "label": "the errors are A71's, so the cost of fixing a0 is measured on the same yardstick",
+   "killed_by": "no_boot"
+  },
+  {
+   "id": "C18",
+   "pass_": false,
+   "measured": "Delta-chi2(thermal vs free) = +1.953433 ; kappa 0.381010 > free 0.348458",
+   "threshold": "0 < Delta-chi2 < 1 and the total equals the sum of its four terms",
+   "label": "fixing a0 at the thermal value costs almost nothing: the free fit already sits 0.1 sigma away",
+   "killed_by": "thermal_pi"
+  },
+  {
+   "id": "C19",
+   "pass_": false,
+   "measured": "Delta-chi2(kappa=1/2 vs free) = +7.634345 ; chi2(b)-chi2(c) = -5.680911",
+   "threshold": "1 < Delta-chi2 < 3 and the two Delta-chi2 are consistent to 1e-9",
+   "label": "the kappa=1/2 point costs ~2 units of chi2 against the free fit -- a 1-sigma statement, not a rejection",
+   "killed_by": "imf_prior"
+  },
+  {
+   "id": "C20",
+   "pass_": true,
+   "measured": "spline 1.223343 vs direct 1.219356",
+   "threshold": "the two agree to < 5e-3 in ln B (5% of the lensing error)",
+   "label": "the B-spline compression used for the fits is checked against a direct 70-lens root at the thermal point",
+   "killed_by": "sersic35"
+  },
+  {
+   "id": "C28",
+   "pass_": false,
+   "measured": "SPARC raw 11344.0410 vs 7136.3469 (rel 5.9e-01) ; SLACS 0.915041 vs 0.908145",
+   "threshold": "both raw chi2/dof reproduce A71's stored values to 1e-5 (the 5e-6 on SPARC is A71's cubic-spline interpolation of chi2(kappa), not a disagreement)",
+   "label": "the per-channel chi2/dof quoted for all three fits are the same objects A71 reported, so the table is comparable across fits and back to A71",
+   "killed_by": "drop_gal"
+  },
+  {
+   "id": "C21",
+   "pass_": false,
+   "measured": "sigma 2.383466 ; LR 17.123567 ; sigma from the LR 2.383466 ; Delta 5.6809",
+   "threshold": "sqrt(Delta), exp(Delta/2) and the inverse transform agree; and 0.5 < Delta < 4 (0.7-2 sigma)",
+   "label": "Delta-chi2 -> sigma -> likelihood ratio is one consistent transformation, computed three ways",
+   "killed_by": "thermal_pi"
+  },
+  {
+   "id": "C22",
+   "pass_": false,
+   "measured": "full refit LR = 17.1236 : 1 ; A72 frozen-nuisance LR = 19.7634 : 1 ; Delta shrink 0.2868",
+   "threshold": "a 1.5-5 : 1 preference and A72's 2.60 : 1 reproduced; refitting nuisances shrinks Delta by < 0.3",
+   "label": "A72's 2.6 : 1 survives a full refit -- and it was never evidence (see the sigma above)",
+   "killed_by": "imf_prior"
+  },
+  {
+   "id": "C23",
+   "pass_": false,
+   "measured": "SPARC -2.212 ; SLACS(B) +0.832 ; clusters -0.192 ; worst worsening +1.111",
+   "threshold": "no channel worse by 1 sigma; SPARC -0.71+-0.02, SLACS(B) +0.83+-0.02, clusters -0.19+-0.02; SLACS improves",
+   "label": "the thermal point degrades no channel by 1 sigma: SPARC prefers a lower a0 by 0.7 sigma and that is all",
+   "killed_by": "no_boot"
+  },
+  {
+   "id": "C24",
+   "pass_": false,
+   "measured": "SLACS kappa pull +2.051 -> +1.955",
+   "threshold": "1.966+-0.05 at the free fit and smaller at the thermal point",
+   "label": "SLACS's pull toward high kappa is relieved, not worsened, by fixing a0 at the thermal value",
+   "killed_by": "imf_prior"
+  },
+  {
+   "id": "C25",
+   "pass_": true,
+   "measured": "y_t 77.943961 (two routes 7.0e-12 apart), band [60,140], kappa_DE 0.460454",
+   "threshold": "two quadrature forms agree to 1e-6 ; y_t inside [60,140] ; kappa_DE consistent with Lambda to 1e-3",
+   "label": "the closure root at the thermal point is inside its pre-registered band, computed twice",
+   "killed_by": "lambda_off"
+  },
+  {
+   "id": "C26",
+   "pass_": true,
+   "measured": "L* 26.0875 pc ; R_core 57.9518 pc ; m_P 4.36991e-61 / 6.17999e-61 kg (ratio sqrt2), 0.9209 x A56",
+   "threshold": "L* in [24,90] pc ; R_core = 2.22144 L* ; the two m_P formulas differ by exactly sqrt2 ; 0.90-0.94 x A56",
+   "label": "the length scale and the P mass both land where they were pre-registered, at the thermal a0",
+   "killed_by": "thermal_pi"
+  },
+  {
+   "id": "C27",
+   "pass_": true,
+   "measured": "three decompositions close to 1e-9 ; SPARC +6.126, SLACS -0.569, clusters +0.124 ; a0 ratio 0.921531",
+   "threshold": "the decomposition closes to 1e-9, SPARC drives the cost, SLACS+prior gives back, clusters cost, a0 ratio 0.92153+-2e-4",
+   "label": "the preference is SPARC's, the cancellation is SLACS's, and the two a0 differ by 8.52%",
+   "killed_by": "newton"
+  },
+  {
+   "id": "C29",
+   "pass_": false,
+   "measured": "raw 426.938 (11.03 sigma rescaled), compressed 6.126 (2.38 sigma), ratio 69.7",
+   "threshold": "the raw route is 15-35x the compressed one and gives 6.6-7.8 sigma after rescaling",
+   "label": "the lane's 'cannot tell' is a statement about the error model: with the per-point errors the same data would prefer the thermal point at ~7 sigma, and A51's bootstrap says those errors are 8x too small",
+   "killed_by": "a0_off20"
+  }
+ ],
+ "constants": {
+  "G": 6.6743e-11,
+  "c": 299792458.0,
+  "H0": 67.4,
+  "Omega_L": 0.6847,
+  "Lambda": 1.089e-52,
+  "a0_per_kappa": 2.2624070828826046e-10,
+  "Z": 5.788810036466141,
+  "a0_th_declared": 8.62e-11,
+  "a0_th_deployed": 8.62e-11,
+  "a0_half": 9.354e-11,
+  "kappa_th": 0.38101012259106726,
+  "kappa_half": 0.41345344393466854,
+  "kappa_de_th": 0.4604541060878321,
+  "kappa_de_half": 0.4996621471398587,
+  "kappa_de_algebra": 0.46065886596178063,
+  "a0_th_from_lambda": 8.618165899975416e-11,
+  "a0_th_from_omega": 8.623833237862579e-11
+ },
+ "data": {
+  "n_sparc_files": 175,
+  "n_galaxies": 171,
+  "n_points": 3375,
+  "sha_sparc": "469f4f556dc813b2",
+  "sha_slacs": "d78d7627d6bbcc0789bde334ca607f760b40b5b7f8a1d04720eae8206f2d7b6d",
+  "n_lenses": 70,
+  "n_treu": 56
+ },
+ "sparc": {
+  "a0": 7.153750319448052e-11,
+  "kappa": 0.3162008452666808,
+  "chi2": 11241.346792978937,
+  "dof": 3204,
+  "chi2_dof": 3.5085352038011663,
+  "sigma_boot": 0.09265097730769262,
+  "sigma_dchi2": 0.009930070590994591,
+  "sigma_kappa": 0.029296317339476467
+ },
+ "slacs": {
+  "B_req_05": 1.1738250649687387,
+  "median_ratio": 0.885232449268376,
+  "mean_ln": -0.12453879980374076,
+  "one_over_median": 1.1296467959646945,
+  "one_over_median_sq": 1.2761018836333002,
+  "dlnR_dlnB": 0.7774750479902267,
+  "dlnR_dlnk": 0.12053695412204274,
+  "sigma_logB_dex": 0.01425111567443858,
+  "sigma_logB_curv_dex": 0.015468992756935758,
+  "B_req_direct_thermal": 1.2193564970848247,
+  "kappa_sl_only": 1.041665657826295,
+  "sigma_kappa_sl": 0.337910371181295
+ },
+ "cluster": {
+  "dlnR_dlna0": 0.927708940137828,
+  "kappa": 0.39339390603778607,
+  "sigma_kappa": 0.04316032583734902,
+  "R_req": 5.552,
+  "sigma_R": 0.427,
+  "u": 0.45,
+  "sigma_u": 0.03
+ },
+ "fit_a": {
+  "kappa": 0.3484575118067594,
+  "a0": 7.883527427952613e-11,
+  "sigma_stat": 0.02302878077949938,
+  "sigma_tot": 0.11120026499266615,
+  "sys_frac": 0.31220330481315894,
+  "B": 1.2026289168732465,
+  "sigma_B": 0.03773442037702392,
+  "sigma_B_cond": 0.03669308446986701,
+  "u": 0.4287255565382498,
+  "sigma_u": 0.023527216114883353,
+  "chi2": 8.139642035494603,
+  "sparc": 1.2123078202427824,
+  "slacs": 0.7764183890117151,
+  "cluster": 1.1963787356591724,
+  "prior": 4.954537090580932,
+  "n_shared": 3,
+  "n_par": 174,
+  "dof_total": 3272
+ },
+ "fit_b": {
+  "kappa": 0.38101012259106726,
+  "a0": 8.62e-11,
+  "B": 1.1903850956814892,
+  "sigma_B": 0.03631951656465552,
+  "u": 0.44424007097469737,
+  "sigma_u": 0.022882004579243692,
+  "chi2": 10.09307515380227,
+  "dchi2_vs_free": 1.9534331183076663,
+  "sparc": 4.893823419203155,
+  "slacs": 0.6926850681072603,
+  "cluster": 0.08635468980560781,
+  "prior": 4.420211976686246,
+  "chi2_sparc_raw": 11627.206473691806,
+  "chi2_dof_sparc": 3.6289658157589906,
+  "chi2_slacs_raw": 61.70144220155432,
+  "chi2_dof_slacs": 0.9073741500228577,
+  "chi2_cluster_raw": 0.049491598276136826,
+  "n_shared": 2,
+  "n_par": 173,
+  "dof_total": 3273
+ },
+ "fit_c": {
+  "kappa": 0.41345344393466854,
+  "a0": 9.354e-11,
+  "B": 1.1785567151235727,
+  "sigma_B": 0.035958624055865876,
+  "u": 0.4590455723999293,
+  "sigma_u": 0.022358302901913013,
+  "chi2": 15.773986575105736,
+  "dchi2_vs_free": 7.634344539611133,
+  "sparc": 11.019867358562639,
+  "slacs": 0.6155758979211582,
+  "cluster": 0.21038594692416046,
+  "prior": 3.9281573716977776,
+  "chi2_sparc_raw": 12054.144268370545,
+  "chi2_dof_sparc": 3.762217312225513,
+  "chi2_slacs_raw": 61.21101824335343,
+  "chi2_dof_slacs": 0.9001620329904916,
+  "chi2_cluster_raw": 0.11947219132153494,
+  "n_shared": 2,
+  "n_par": 173,
+  "dof_total": 3273
+ },
+ "likelihood": {
+  "dchi2_half_minus_thermal": 5.680911421303467,
+  "dchi2_thermal_vs_free": 1.9534331183076663,
+  "dchi2_half_vs_free": 7.634344539611133,
+  "sigma": 2.3834662618345295,
+  "LR_thermal_over_half": 17.123567151318053,
+  "LR_half_over_thermal": 0.058399046831957964,
+  "dchi2_frozen": 5.967661812826611,
+  "LR_frozen": 19.763383480130692,
+  "shrink": 0.2867503915231442,
+  "sep_total_sigma": 0.29175579164079307
+ },
+ "pulls": {
+  "free": [
+   -1.101048509486654,
+   0.8811460656507042,
+   -0.7091481153916742
+  ],
+  "thermal": [
+   -2.2121987747946963,
+   0.8322770380752195,
+   -0.19199763417675486
+  ],
+  "half": [
+   -3.319618556184225,
+   0.7845864502533536,
+   0.3015190799976438
+  ],
+  "worsen": [
+   1.1111502653080423,
+   -0.048869027575484725,
+   -0.5171504812149194
+  ],
+  "imf_free": 2.0696150155091346,
+  "imf_thermal": 1.9548326006448544,
+  "imf_half": 1.842818077171159,
+  "slacs_B_dex_free": 0.012557314507664636,
+  "slacs_B_dex_thermal": 0.011860876342789074,
+  "slacs_kappa_free": 2.0514556673598423,
+  "slacs_kappa_thermal": 1.955120622446874
+ },
+ "falsifier": {
+  "kappa_de": 0.4604541060878321,
+  "N_lambda": 118.38485861570851,
+  "kappa_from_lambda": 0.460756902417239,
+  "y_t": 77.94396119198021,
+  "y_t_exact": 77.94396119198724,
+  "y_t_half": 66.46771196919741,
+  "y_t_joint": 92.80985506524884,
+  "y_t_band": [
+   60.0,
+   140.0
+  ],
+  "y_t_inside": true,
+  "Lstar_pc": 26.08748376303087,
+  "Lstar_half_pc": 24.04042228322922,
+  "Lstar_canon_pc": 24.025011756124584,
+  "Lstar_band": [
+   24.0,
+   90.0
+  ],
+  "Lstar_inside": true,
+  "Rcore_pc": 57.95181825512663,
+  "Rcore_canon_pc": 53.37015741017004,
+  "m_P_literal": 4.369912297106939e-61,
+  "m_P_record": 6.1799892369495984e-61,
+  "m_P_ev": 3.466719719522664e-25,
+  "a0_ratio": 0.9215308958734232,
+  "da0": 7.339999999999997e-12,
+  "sigma_req_3sig_frac": 0.026156368042192273
+ },
+ "cost": {
+  "sparc_th": 3.681515598960373,
+  "slacs_th": -0.6180584347991411,
+  "cluster_th": -1.1100240458535646,
+  "sparc_hf": 9.807559538319856,
+  "slacs_hf": -1.1872222099737115,
+  "cluster_hf": -0.985992788735012,
+  "sparc_ht": 6.126043939359483,
+  "slacs_ht": -0.5691637751745704,
+  "cluster_ht": 0.12403125711855267
+ }
+}

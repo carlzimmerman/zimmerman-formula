@@ -56,7 +56,7 @@ C6  SPARC ALONE -- and the error bar that is used everywhere below
          threshold: a0 and kappa to 2e-4 relative, chi2/dof to 2e-4 absolute   :: an independently written SPARC likelihood lands on A51's minimum: the channel is not re-tuned here
   Delta-chi2 = 1 in a0 : 1.12688%   (chi2/dof = 2.22, so this is NOT the honest error)
   200-draw block bootstrap: median 8.077430e-11, sigma/median = 0.093888688  (A51: 0.093888688)
-  ratio bootstrap/formal = 8.33
+  ratio bootstrap/formal = 8.33 ; sigma(kappa)_SPARC = 0.033538
   C7    PASS   bootstrap 0.093888688 vs A51 0.093888688 ; ratio to Delta-chi2 8.33
          threshold: matches A51 to 1e-4 and is > 5x the formal error   :: the per-galaxy scatter makes the formal error wrong by 8x; the bootstrap is sigma(SPARC) below
 
@@ -93,7 +93,7 @@ C13/C14  CLUSTERS: A18's anchor, and the channel alone
   r_v = 1.6863 Mpc ; F(y_v) = 3.7702 ; R_tot = 2.6179  (A18: 1.6863 / 3.7702 / 2.6179)
   C13   PASS   1.6863 Mpc / 3.7702 / 2.6179
          threshold: 1.6863+-0.001 / 3.7702+-0.001 / 2.6179+-0.001   :: A18's anchor is reproduced before it is used as a constraint
-  dlnR_tot/dlna0 = +0.92771 ; cluster-only kappa = 0.39339 +- 0.04316 (10.97%)  (A51: 0.3934+-0.0432)
+  R_req = 5.552 +- 0.427 (A18) ; dlnR_tot/dlna0 = +0.92771 ; cluster-only kappa = 0.39339 +- 0.04316 (10.97%)  (A51: 0.3934+-0.0432)
   C14   PASS   kappa 0.39339 +- 0.04316 (sigma/kappa 0.10971)
          threshold: 0.3934+-0.002 ; sigma/kappa 0.1097+-0.003   :: the cluster band is 11% wide and u comes from the same amplitudes: a consistency check, not a measurement
 
@@ -108,6 +108,9 @@ C15/C16  FIT (a): a0 FREE -- the A71 reproduction
   independent 3-parameter Nelder-Mead: kappa 0.3776513, B 1.1916305, u 0.4426705, chi2 5.6860907
   C16   PASS   profile 0.377651/1.191631/0.442670 vs NM 0.377651/1.191631/0.442670, chi2 5.686091 vs 5.686091
          threshold: two independent minimisers agree to 1e-5 in kappa and B   :: the free-fit optimum is not an artefact of the profile/analytic elimination
+  INPUTS QUOTED IN THE REPORT: IMF prior B = 1.00 +- 0.036 dex (56 Treu lenses) ; u = 0.45 +- 0.03 (A18)
+    Upsilon window [0.05, 2.5] ; A71 systematic floor: estimator 20.84%, distance 16.1%, H0 12.5%, law 10.0%, Upsilon 5.0% -> 31.22%
+    A71 stored for comparison: Delta-chi2(kappa=1/2, B profiled) = 20.915815 ; global tension T = 5.686091 (1.8938 sigma)
   sigma(kappa) stat = 0.025787 (A71 0.025787) ; with the 31.2% floor 0.120691 (A71 0.120691)
   sigma(lnB) marginal = 0.031552 (A71 K28 0.031552) -> sigma(B) = 0.037598 marginal, 0.036358 conditional
   sigma(u) = 0.02294 (prior alone: 0.0300)
@@ -124,6 +127,7 @@ C18/C19  FITS (b) and (c): a0 FIXED at the thermal value and at kappa = 1/2
       = SPARC 2.8128 + SLACS 0.6156 + clusters 0.2104 + IMF prior 3.9282
       Delta-chi2 vs (a) = +1.880786
   Delta-chi2 (b) - (c) = -1.863869
+  cost in sigma (1 dof): thermal sqrt(0.016917) = 0.1301 sigma ; kappa=1/2 sqrt(1.880786) = 1.3714 sigma
   C18   PASS   Delta-chi2(thermal vs free) = +0.016917 ; kappa 0.381010 > free 0.377651
          threshold: 0 < Delta-chi2 < 1 and the total equals the sum of its four terms   :: fixing a0 at the thermal value costs almost nothing: the free fit already sits 0.1 sigma away
   C19   PASS   Delta-chi2(kappa=1/2 vs free) = +1.880786 ; chi2(b)-chi2(c) = -1.863869
@@ -201,7 +205,7 @@ C27  WHERE THE COST COMES FROM, AND WHAT THE THERMAL POINT PREDICTS
   the discriminator: a0(1/2)/a0(thermal) = 1.085151, i.e. the rival sits 8.5151% ABOVE the thermal value
     (the reverse framing: the thermal value is 7.8469% below the rival) ; Delta a0 = 7.340000e-12 m/s^2
     A72's unrounded pair 9.354746e-11 / 8.618166e-11 gives 8.5468% (A72 quotes 8.54%)
-  3-sigma separation needs sigma(a0)/a0 = 2.8384% (A72: 2.874% unrounded) ; the present joint fit gives 31.9583%
+  3-sigma separation needs sigma(a0)/a0 = 2.8384% (A72: 2.874% unrounded) or sigma(kappa_P3) = 0.010814 ; the present joint fit gives 31.9583%
   L* moves -7.8469% (26.087 -> 24.040 pc) and y_t moves 17.27% (77.944 -> 66.468) between the two points
   C27   PASS   three decompositions close to 1e-9 ; SPARC +2.309, SLACS -0.569, clusters +0.124 ; a0 ratio 0.921531
          threshold: the decomposition closes to 1e-9, SPARC drives the cost, SLACS+prior gives back, clusters cost, a0 ratio 0.92153+-2e-4   :: the preference is SPARC's, the cancellation is SLACS's, and the two a0 differ by 8.52%
@@ -221,7 +225,7 @@ C29  THE ERROR-MODEL CAVEAT: WHAT THE RAW CHI2 WOULD SAY, AND WHY IT IS NOT USED
 ==============================================================================================================
 SUMMARY
 ==============================================================================================================
-  29/29 checks PASS   (26.7 s)
+  29/29 checks PASS   (26.0 s)
   fit (a) a0 free      : kappa_P3 = 0.377651 +- 0.025787 (stat) +- 0.117904 (syst), B = 1.191631 +- 0.036358 (cond), u = 0.442670, chi2 = 5.686091
   fit (b) thermal      : kappa_P3 = 0.381010, B = 1.190385 +- 0.036320, u = 0.444240 +- 0.022882, chi2 = 5.703008, Delta = +0.016917
   fit (c) kappa=1/2    : kappa_P3 = 0.413453, B = 1.178557 +- 0.035959, u = 0.459046 +- 0.022358, chi2 = 7.566877, Delta = +1.880786

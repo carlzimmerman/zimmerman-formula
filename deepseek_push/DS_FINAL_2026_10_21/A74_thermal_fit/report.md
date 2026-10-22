@@ -1,7 +1,7 @@
 # A74 — THE DECISIVE FIT: what fixing a0 at the thermal value costs
 
 **Lane:** A74_thermal_fit · **Date:** 2026-10-22 · **Base:** `deepseek_push/DS_FINAL_2026_10_21`
-**Script:** `a74_checks.py` — **29/29 PASS, exit 0, 26 s** · **Output:** `a74.out` · **Data:** `a74_results.json`
+**Script:** `a74_checks.py` — **29/29 PASS, exit 0, 27 s** · **Output:** `a74.out` · **Data:** `a74_results.json`
 **Mutations:** 20, each one input, each **exit 1**, **29/29 checks killed** (`MUTATE.md`, `a74_MUTATE_*.out`)
 **Read:** `A71_global_fit` (the likelihood: SPARC 171/3375, corrected SLACS 70 lenses, A18 clusters, shared
 κ/B/u, one Υ per galaxy), `A72_coefficient` (the thermal derivation), `A70_slacs_audit` (the SLACS model
@@ -21,11 +21,11 @@ Delta-chi2 (c) - (b) = +1.863869  ->  1.365 sigma (1 dof)  ->  LR thermal : kapp
 
 ## 0. Bottom line
 
-1. **Fixing a0 at the thermal value costs Δχ² = 0.0169 — nothing.** The free fit already sits **0.13σ**
+1. **Fixing a0 at the thermal value costs Δχ² = 0.016917 — nothing.** The free fit already sits **0.1301σ**
    from it. A theory that declares a0 = cH_Λ/2π and fits nothing else loses 0.017 units of χ² over three
    channels and 174 parameters.
-2. **Fixing it at κ = ½ costs Δχ² = 1.881 (1.37σ).** That is the whole price of the rival, and it is not
-   a rejection either. **Neither point is excluded by any channel.**
+2. **Fixing it at κ = ½ costs Δχ² = 1.880786 (1.3714σ).** That is the whole price of the rival, and it is
+   not a rejection either. **Neither point is excluded by any channel.**
 3. **The decisive number is Δχ² = 1.8639 → 1.365σ → LR 2.54 : 1 for the thermal point.** A72's 2.6 : 1
    estimate **survives a full refit** (it shrinks by 2.4%), and it was never evidence: 3σ needs
    Δχ² ≥ 9, i.e. σ(a0)/a0 = 2.84%, and the present fit gives 31.96%.
@@ -53,7 +53,7 @@ term as A18's R_req = 5.552 ± 0.427 with u profiled.
 
 | fit | a0 (m/s²) | κ_P3 | B | u | χ² (compressed) | Δχ² vs (a) | n_par |
 |---|---|---|---|---|---|---|---|
-| **(a) free** | 8.544010e-11 | **0.377651 ± 0.025787** (stat) ± 0.117904 (syst) | **1.191631 ± 0.036358** | **0.442670 ± 0.022940** | **5.686091** | — | 174 |
+| **(a) free** | 8.544010e-11 | **0.377651 ± 0.025787** (stat) ± 0.117904 (syst) | **1.191631 ± 0.036358** | **0.442670 ± 0.02294** | **5.686091** | — | 174 |
 | **(b) thermal** | 8.620000e-11 | **0.381010** (fixed) | **1.190385 ± 0.036320** | **0.444240 ± 0.022882** | **5.703008** | **+0.016917** | 173 |
 | **(c) κ = ½** | 9.354000e-11 | **0.413453** (fixed) | **1.178557 ± 0.035959** | **0.459046 ± 0.022358** | **7.566877** | **+1.880786** | 173 |
 
@@ -122,7 +122,7 @@ shrinks Δχ² by 0.046807 (2.4%), leaving 2.5394 : 1.** So A72's estimate survi
 intact — and, as A72 said, it was never evidence. The shrink is the signature of the channel structure:
 going to κ = ½ costs SPARC 2.309 but SLACS+prior gives back 0.569 and clusters cost only 0.124.
 
-**What it would take to decide it.** 3σ needs Δχ² ≥ 9 for 1 dof, i.e. σ(κ_P3) ≤ 0.0108 (A72's number) or
+**What it would take to decide it.** 3σ needs Δχ² ≥ 9 for 1 dof, i.e. σ(κ_P3) ≤ 0.010814 or
 σ(a0)/a0 = **2.8384%** — against the present 31.9583%. This lane confirms A72's forecast: nothing in the
 current data or the record's forecast set reaches it.
 
@@ -201,8 +201,8 @@ So: **if the per-point SPARC errors were correct, the thermal point would beat �
 not, because the 3375 points are not independent (≈ 20 correlated points per galaxy and one profiled Υ
 each), and the block bootstrap is the declared honest error. This lane inherits that choice to be
 comparable with A51/A71 — and states the consequence rather than burying it. Every "cannot tell" in this
-report is conditional on that error model being right; if the true error on a0 is nearer the rescaled
-formal 1.7% than the bootstrap 9.4%, the question is already decided in favour of the thermal point.
+report is conditional on that error model being right; if the true error on a0 is nearer the formal 1.1269%
+than the bootstrap 9.3889%, the question is already decided in favour of the thermal point.
 
 ---
 
@@ -241,7 +241,7 @@ formal 1.7% than the bootstrap 9.4%, the question is already decided in favour o
    carrier at the Gibbons–Hawking temperature; A62 K15 showed that mechanism's response is analytic
    (slope 1) and so does not derive MOND's shape. This lane fits the scale, not the mechanism.
 5. **B is one number for 70 lenses of one survey.** With A70's cross-method IMF width (0.103 dex instead of
-   0.036) the SLACS give-back shrinks and Δχ²(thermal vs ½) rises to ≈ 2.35 — still sub-2σ. That is the
+   0.036) the SLACS give-back shrinks and Δχ²(thermal vs ½) rises to 2.349408 (LR 3.2372 : 1 in that run) — still sub-2σ. That is the
    `imf_prior` mutation.
 6. **m_P depends on the convention.** The task's literal ħ/(cL\*) is √2 smaller than A56's ħ/(cλ_P) with
    λ_P = L\*/√2; both are printed and the ratio is exactly √2.

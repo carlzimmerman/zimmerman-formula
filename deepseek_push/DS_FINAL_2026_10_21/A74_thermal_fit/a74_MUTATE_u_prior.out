@@ -1,0 +1,238 @@
+A74 -- THE DECISIVE FIT: a0 fixed at the thermal value, everything else refit
+  mutation: u_prior
+  H0 = 67.4 km/s/Mpc, Omega_L = 0.6847, Lambda = 1.08900e-52 m^-2
+  kappa_P3 = a0 sqrt(8pi/3)/(c H0) ; a0_per_kappa = 2.262407e-10 m/s^2 ; Z = 2sqrt(8pi/3) = 5.788810
+  thermal a0 = 8.620000e-11 -> kappa_P3 = 0.381010, kappa_DE = 0.460454
+  kappa=1/2 a0 = 9.354000e-11 -> kappa_P3 = 0.413453, kappa_DE = 0.499662
+
+==============================================================================================================
+C1/C2  THE DATA BLOCKS (read-only, hashed)
+==============================================================================================================
+  SPARC: 175 files -> 171 galaxies -> 3375 points ; sha256(concat) = 469f4f556dc813b2 (A51/A71: 469f4f556dc813b2)
+  C1    PASS   175/171/3375, sha 469f4f556dc813b2
+         threshold: 175 files, 171 galaxies, 3375 points, sha256 == 469f4f556dc813b2   :: the vector fitted here is byte-identical to the one A71 fitted
+  SLACS: 85 catalogue rows -> 70 usable lenses ; sha256 = d78d7627d6bbcc07 (A70: d78d7627d6bbcc07)
+  C2    PASS   85 rows, 70 lenses, sha d78d7627d6bbcc07
+         threshold: 85 rows, 70 lenses, sha256[:16] == d78d7627d6bbcc07   :: the lens sample is the one A70 audited, not a cut made here
+
+==============================================================================================================
+C3  THE SPARC LIKELIHOOD IS THE RECORD'S (zero-parameter chi2/dof)
+==============================================================================================================
+  fixed Upsilon=0.5, a0=1.132e-10 : chi2/N = 6.8651  (record 6.87)
+  fixed Upsilon=0.5, a0=9.360e-11 : chi2/N = 6.6312  (record 6.63)
+  one Upsilon per galaxy, 1.132e-10: chi2/dof = 2.4714  (record 2.42)
+  C3    PASS   6.8651 / 6.6312 / 2.4714
+         threshold: 6.8651+-0.02, 6.6312+-0.02, 2.4714+-0.05   :: three zero-parameter chi2/dof reproduce A71's stored values: same likelihood, same Upsilon window
+
+==============================================================================================================
+C4  THE CONVENTION: WHICH a0 IS kappa = 1/2
+==============================================================================================================
+  a0 = 9.354000e-11 -> kappa_P3 = 0.413453 ; kappa_DE = 0.499662 (Omega_L = 0.6847, A71's convention)
+  the same a0 in A72's Omega_L = 0.6838 convention: kappa_DE = 0.499991
+  kappa_DE/kappa_P3 = 1.208509 ; 1/sqrt(Omega_L) = 1.208509
+  kappa_P3(a0 = 1.1312e-10) = 0.499998 (the P3 'kappa = 1/2' footing, NOT this task's rival)
+  round trip a0 -> kappa -> a0 residual 0.00e+00
+  C4    PASS   kappa_P3(9.354e-11) = 0.413453, kappa_DE = 0.499662 (0.499991 in the 0.6838 convention), ratio 1.208509, round trip 0e+00
+         threshold: 0.413461+-2e-5 in P3 ; 0.500000+-2e-5 in A72's DE convention ; ratio == 1/sqrt(Omega_L) to 1e-6 ; round trip < 1e-12   :: the rival is kappa = 1/2 in the rho_DE convention, which is kappa_P3 = 0.4135 -- the fit is done in P3 throughout, so this number, not 0.5, is the one that enters; the two Omega_L footings differ by 0.07% and both are printed rather than mixed
+
+==============================================================================================================
+C5  THE THERMAL VALUE: THREE ROUTES TO 8.62e-11
+==============================================================================================================
+  c^2 sqrt(Lambda/(12 pi^2))   = 8.618165900e-11  (BRIEF Lambda = 1.08900e-52 m^-2)
+  c H_Lambda/(2 pi), H_Lambda = c sqrt(Lambda/3) = 8.618165900e-11
+  c H0 sqrt(Omega_L)/(2 pi)    = 8.623833238e-11  (Omega_L = 0.6847)
+  declared / deployed          = 8.620000000e-11  (mutation thermal_pi doubles it)
+  two constant routes straddle the declared value by 0.0213% / -0.0444%
+  kappa_DE: Z/(4pi) = 0.460658866 ; from a0 = 0.460454106 (-0.0444% apart)
+  C5    PASS   Lambda route 8.618166e-11, Omega route 8.623833e-11, declared 8.620000e-11, kappa_DE 0.460454
+         threshold: both constant routes within 0.15% of the deployed value; Z/4pi = 0.460659+-2e-6   :: the thermal point is not a fitted number: two independent constant routes land on it to 0.07%, and the declared 3-digit value sits between them
+
+==============================================================================================================
+C6  SPARC ALONE -- and the error bar that is used everywhere below
+==============================================================================================================
+  a0 = 8.081465e-11 ; kappa = 0.357207 ; chi2 = 7115.88 / 3204 = 2.2209
+  A51 stored: a0 = 8.081465e-11 ; kappa = 0.357207 ; chi2/dof = 2.2209
+  C6    PASS   a0 8.081465e-11 vs 8.081465e-11 ; kappa 0.357207 vs 0.357207 ; chi2/dof 2.2209 vs 2.2209
+         threshold: a0 and kappa to 2e-4 relative, chi2/dof to 2e-4 absolute   :: an independently written SPARC likelihood lands on A51's minimum: the channel is not re-tuned here
+  Delta-chi2 = 1 in a0 : 1.12688%   (chi2/dof = 2.22, so this is NOT the honest error)
+  200-draw block bootstrap: median 8.077430e-11, sigma/median = 0.093888688  (A51: 0.093888688)
+  ratio bootstrap/formal = 8.33
+  C7    PASS   bootstrap 0.093888688 vs A51 0.093888688 ; ratio to Delta-chi2 8.33
+         threshold: matches A51 to 1e-4 and is > 5x the formal error   :: the per-galaxy scatter makes the formal error wrong by 8x; the bootstrap is sigma(SPARC) below
+
+==============================================================================================================
+C8-C11  SLACS: the A70/A55 model, B_req, and the two responses
+==============================================================================================================
+  median R_E,pred/R_E,obs = 0.885232 (A55 0.8852) ; <ln> = -0.124539 (A55 -0.1245)
+  max per-lens deviation from A55's stored ratios: 0.00e+00 ; N = 70
+  C8    PASS   median 0.885232 ; <ln> -0.124539 ; max dev 0.0e+00
+         threshold: median 0.885232+-1e-4 ; <ln> -0.124539+-2e-4 ; per-lens < 1e-9   :: this IS A55's/A70's lens model, per lens, not a rival implementation
+  root-found B (median ratio = 1) at kappa_P3 = 0.5: 1.17383  (A70: 1.174)
+  1/median = 1.12965 ; 1/median^2 = 1.27610 (A55's 1.283) ; B_req/(1/median) = 1.03911
+  C9    PASS   B_req 1.17383 ; 1/median 1.12965 ; 1/median^2 1.27610
+         threshold: B_req = 1.174+-0.002 ; 1/median^2 = 1.276+-0.002 ; B_req < 0.97 x 1/median^2   :: the M/L that zeroes SLACS is 1.174xSalpeter: the response is 0.7775, not the 2 that A55 assumed
+  dlnR/dlnB = 0.77748 (per-lens median, scatter 0.08297) ; response route B = 1.17373 (root 1.17383)
+  dlnR/dlnkappa = 0.12054 ; ratio = 6.450 : 1
+  C10   PASS   dlnR/dlnB 0.77748 ; B_resp 1.17373 vs B_root 1.17383 ; dlnR/dlnk 0.12054 ; ratio 6.45
+         threshold: 0.7775+-0.005 ; two B routes within 3e-3 ; 0.1205+-5e-4 ; ratio in [6,7]   :: lensing is 6.5x more sensitive to the IMF than to a0 -- it is a mass-normalisation measurement
+  sigma(log10 B): mean/SEM route 0.014251 dex ; curvature route 0.015469 dex ; difference 8.5%
+  C11   PASS   0.014251 dex vs 0.015469 dex
+         threshold: 0.014251+-5e-5 ; two routes within 12%   :: 70 lenses measure one number -- the IMF normalisation -- to 3.3%
+
+==============================================================================================================
+C12  THE IMF PRIOR: Treu+2010 on the same 56 SLACS lenses
+==============================================================================================================
+  N = 56 ; <log10 alpha_Salp> = -0.00054 +- 0.01816 (sem) ; scatter 0.1359 dex
+  abstract 0.00+-0.03+-0.02 -> 95% on the mean = 1.1767 x Salpeter
+  C12   PASS   N=56, mean -0.00054, 95% hi 1.17671
+         threshold: 56 lenses, |mean| < 0.02, 95% upper 1.1767+-2e-4   :: the prior is B = 1.00 +- 0.036 dex and B = 1.174 sits on its 95% boundary
+
+==============================================================================================================
+C13/C14  CLUSTERS: A18's anchor, and the channel alone
+==============================================================================================================
+  r_v = 1.6863 Mpc ; F(y_v) = 3.7702 ; R_tot = 2.6179  (A18: 1.6863 / 3.7702 / 2.6179)
+  C13   PASS   1.6863 Mpc / 3.7702 / 2.6179
+         threshold: 1.6863+-0.001 / 3.7702+-0.001 / 2.6179+-0.001   :: A18's anchor is reproduced before it is used as a constraint
+  dlnR_tot/dlna0 = +0.92771 ; cluster-only kappa = 0.39339 +- 0.94289 (239.68%)  (A51: 0.3934+-0.0432)
+  C14   FAIL   kappa 0.39339 +- 0.94289 (sigma/kappa 2.39682)
+         threshold: 0.3934+-0.002 ; sigma/kappa 0.1097+-0.003   :: the cluster band is 11% wide and u comes from the same amplitudes: a consistency check, not a measurement
+         ^^^ MUTATION-SENSITIVE CHECK FAILED
+
+==============================================================================================================
+C15/C16  FIT (a): a0 FREE -- the A71 reproduction
+==============================================================================================================
+  kappa_P3 = 0.367836 ; a0 = 8.321940e-11 m/s^2 ; B = 1.195293 ; u = 0.422434 ; chi2 = 5.458394
+  decomposition: SPARC 0.1004 + SLACS 0.7258 + clusters 0.0008 + IMF prior 4.6314
+  A71 stored: kappa 0.377651 ; B 1.191631 ; u 0.442670 ; chi2 5.686091
+  C15   FAIL   kappa 0.3678357 vs 0.3776513 ; B 1.1952934 vs 1.1916305 ; u 0.4224345 vs 0.4426705 ; chi2 5.4583938 vs 5.6860907
+         threshold: all four within 2e-5 relative of A71's stored joint fit   :: fit (a) IS A71: the same data, priors, compression and minimiser reproduce the stored minimum
+         ^^^ MUTATION-SENSITIVE CHECK FAILED
+  independent 3-parameter Nelder-Mead: kappa 0.3678357, B 1.1952934, u 0.4224345, chi2 5.4583938
+  C16   PASS   profile 0.367836/1.195293/0.422434 vs NM 0.367836/1.195293/0.422434, chi2 5.458394 vs 5.458394
+         threshold: two independent minimisers agree to 1e-5 in kappa and B   :: the free-fit optimum is not an artefact of the profile/analytic elimination
+  sigma(kappa) stat = 0.033094 (A71 0.025787) ; with the 31.2% floor 0.119513 (A71 0.120691)
+  sigma(lnB) marginal = 0.032228 (A71 K28 0.031552) -> sigma(B) = 0.038522 marginal, 0.036469 conditional
+  sigma(u) = 0.03248 (prior alone: 1.0000)
+  C17   FAIL   sigma(kappa) 0.033094 vs 0.025787 ; total 0.119513 vs 0.120691 ; sigma(lnB) 0.032228 vs 0.031552
+         threshold: stat and total sigma(kappa) to 2e-4 ; marginal sigma(lnB) to 5e-3 of A71's K28 ; conditional sigma(B) within 2% of 0.0364   :: the errors are A71's, so the cost of fixing a0 is measured on the same yardstick
+         ^^^ MUTATION-SENSITIVE CHECK FAILED
+
+==============================================================================================================
+C18/C19  FITS (b) and (c): a0 FIXED at the thermal value and at kappa = 1/2
+==============================================================================================================
+  (b) thermal: kappa_P3 = 0.381010 (a0 = 8.620000e-11), B = 1.190385 +- 0.036320, u = 0.436654 +- 0.033566, chi2 = 5.616831
+      = SPARC 0.5038 + SLACS 0.6927 + clusters 0.0002 + IMF prior 4.4202
+      Delta-chi2 vs (a) = +0.158438
+  (c) kappa=1/2: kappa_P3 = 0.413453 (a0 = 9.354000e-11), B = 1.178557 +- 0.035959, u = 0.471221 +- 0.036213, chi2 = 7.356942
+      = SPARC 2.8128 + SLACS 0.6156 + clusters 0.0005 + IMF prior 3.9282
+      Delta-chi2 vs (a) = +1.898548
+  Delta-chi2 (b) - (c) = -1.740111
+  C18   PASS   Delta-chi2(thermal vs free) = +0.158438 ; kappa 0.381010 > free 0.367836
+         threshold: 0 < Delta-chi2 < 1 and the total equals the sum of its four terms   :: fixing a0 at the thermal value costs almost nothing: the free fit already sits 0.1 sigma away
+  C19   PASS   Delta-chi2(kappa=1/2 vs free) = +1.898548 ; chi2(b)-chi2(c) = -1.740111
+         threshold: 1 < Delta-chi2 < 3 and the two Delta-chi2 are consistent to 1e-9   :: the kappa=1/2 point costs ~2 units of chi2 against the free fit -- a 1-sigma statement, not a rejection
+  B_req at the thermal kappa: spline 1.223343 vs direct 70-lens root 1.219356 (3.26e-03 in ln B)
+  C20   PASS   spline 1.223343 vs direct 1.219356
+         threshold: the two agree to < 5e-3 in ln B (5% of the lensing error)   :: the B-spline compression used for the fits is checked against a direct 70-lens root at the thermal point
+
+  fit        SPARC raw chi2/dof   SLACS raw chi2/dof  cluster raw/dof   chi2(comp)  n_par
+  (a)     7121.39/3204 = 2.2227      61.91/68 = 0.9104    0.000/1      5.458394    174
+  (b)     7143.31/3204 = 2.2295      61.70/68 = 0.9074    0.000/1      5.616831    173
+  (c)     7259.74/3204 = 2.2658      61.21/68 = 0.9002    0.000/1      7.356942    173
+  A71 stored at the free fit: SPARC raw 7136.3469 (chi2/dof 2.227324), SLACS raw 61.7538 (chi2/dof 0.908145)
+  C28   FAIL   SPARC raw 7121.3930 vs 7136.3469 (rel 2.1e-03) ; SLACS 0.910423 vs 0.908145
+         threshold: both raw chi2/dof reproduce A71's stored values to 1e-5 (the 5e-6 on SPARC is A71's cubic-spline interpolation of chi2(kappa), not a disagreement)   :: the per-channel chi2/dof quoted for all three fits are the same objects A71 reported, so the table is comparable across fits and back to A71
+         ^^^ MUTATION-SENSITIVE CHECK FAILED
+
+==============================================================================================================
+C21/C22  TASK 2 -- THE LIKELIHOOD RATIO BETWEEN THE THERMAL POINT AND kappa = 1/2
+==============================================================================================================
+  full refit   : chi2(b) = 5.616831 ; chi2(c) = 7.356942 ; Delta = +1.740111 (positive = kappa=1/2 worse)
+                 sigma (1 dof) = sqrt(Delta) = 1.319133 ; LR thermal:half = exp(+Delta/2) = 2.387043 (2.3870 : 1)
+  A72's frozen-nuisance version (SPARC term only): Delta = +1.741613 -> LR 2.388837 (2.3888 : 1)
+  A72 stored: chi2(1/7) = 1.930740, chi2(thermal) = 0.016157, Delta = 1.914583, LR = 2.604632
+  cost of refitting the nuisances: Delta falls by 0.001502 (0.1%)
+  the 31.2% systematic floor: candidates are 0.271 sigma apart on the total error
+  C21   PASS   sigma 1.319133 ; LR 2.387043 ; sigma from the LR 1.319133 ; Delta 1.7401
+         threshold: sqrt(Delta), exp(Delta/2) and the inverse transform agree; and 0.5 < Delta < 4 (0.7-2 sigma)   :: Delta-chi2 -> sigma -> likelihood ratio is one consistent transformation, computed three ways
+  C22   FAIL   full refit LR = 2.3870 : 1 ; A72 frozen-nuisance LR = 2.3888 : 1 ; Delta shrink 0.0015
+         threshold: a 1.5-5 : 1 preference and A72's 2.60 : 1 reproduced; refitting nuisances shrinks Delta by < 0.3   :: A72's 2.6 : 1 survives a full refit -- and it was never evidence (see the sigma above)
+         ^^^ MUTATION-SENSITIVE CHECK FAILED
+
+==============================================================================================================
+C23  TASK 3 -- THE CHANNEL PULLS AT THE THERMAL POINT, AND THE FREE-POINT BENCHMARK
+==============================================================================================================
+  free (a)     SPARC -0.317 sigma | SLACS(B) +0.852 sigma (+0.01214 dex, own error) +0.314 (combined) | clusters -0.028 sigma | IMF normalisation +2.001 sigma
+  thermal (b)  SPARC -0.710 sigma | SLACS(B) +0.832 sigma (+0.01186 dex, own error) +0.306 (combined) | clusters -0.013 sigma | IMF normalisation +1.955 sigma
+  half (c)     SPARC -1.677 sigma | SLACS(B) +0.785 sigma (+0.01118 dex, own error) +0.289 (combined) | clusters +0.021 sigma | IMF normalisation +1.843 sigma
+  worsening at the thermal point (|pull| now - |pull| free): SPARC +0.393, SLACS -0.020, clusters -0.014
+  largest worsening = 0.393 sigma -> no channel is worse by > 1 sigma
+  SPARC is the only channel that gets worse, by 0.393 sigma -- a PREFERENCE, not a rejection: its own best fit is 0.710 sigma from the thermal point
+  C23   FAIL   SPARC -0.710 ; SLACS(B) +0.832 ; clusters -0.013 ; worst worsening +0.393
+         threshold: no channel worse by 1 sigma; SPARC -0.71+-0.02, SLACS(B) +0.83+-0.02, clusters -0.19+-0.02; SLACS improves   :: the thermal point degrades no channel by 1 sigma: SPARC prefers a lower a0 by 0.7 sigma and that is all
+         ^^^ MUTATION-SENSITIVE CHECK FAILED
+  SLACS in the kappa direction: kappa_best = 1.0417 +- 0.3379 ; pull +1.994 (free) -> +1.955 (thermal)
+  C24   PASS   SLACS kappa pull +1.994 -> +1.955
+         threshold: 1.966+-0.05 at the free fit and smaller at the thermal point   :: SLACS's pull toward high kappa is relieved, not worsened, by fixing a0 at the thermal value
+
+==============================================================================================================
+C25/C26  TASK 4 -- THE FALSIFIER AT a0 = 8.620e-11, kappa_DE = Z/4pi
+==============================================================================================================
+  N_Lambda = Lambda c^4/a0^2 = 118.384859 ; kappa_DE from it = 0.460757 (from the a0 definition 0.460454)
+    the 0.0658% between those two is the same Lambda-vs-Omega_L footing split as above, not physics
+  y_t (tan-substitution quadrature) = 77.943961 ; (A28 rational integral) = 77.943961 ; difference 7.03e-12
+  y_t at kappa=1/2 = 66.467712 ; at the free-fit kappa_DE = 83.488761
+  pre-registered band y_t in [60,140]: thermal 77.944 -> INSIDE
+  the same band in kappa_DE: [0.3415, 0.5267] ; thermal kappa_DE 0.460454 -> INSIDE
+  C25   PASS   y_t 77.943961 (two routes 7.0e-12 apart), band [60,140], kappa_DE 0.460454
+         threshold: two quadrature forms agree to 1e-6 ; y_t inside [60,140] ; kappa_DE consistent with Lambda to 1e-3   :: the closure root at the thermal point is inside its pre-registered band, computed twice
+  L* = sigma_c^2/a0 = 26.087484 pc (sigma_c = 8330 m/s) ; band [24,90] pc -> INSIDE
+  L* at kappa=1/2 = 24.040422 pc ; at canonical 9.36e-11 = 24.025012 pc (the A20 anchor is 24.025)
+  R_core = (pi/sqrt2) L* = 57.951818 pc (A20: 53.3146 pc at L* = 24; ceiling 200 pc) -> INSIDE
+  m_P = hbar/(c L*) = 4.369912e-61 kg = 2.451341e-25 eV  [task's literal formula]
+  m_P = hbar/(c lambda_P), lambda_P = L*/sqrt2 : 6.179989e-61 kg = 3.466720e-25 eV  [A56's convention]
+  A56's canonical m_P = 6.7105e-61 kg ; thermal/canonical ratio 0.920943
+  C26   PASS   L* 26.0875 pc ; R_core 57.9518 pc ; m_P 4.36991e-61 / 6.17999e-61 kg (ratio sqrt2), 0.9209 x A56
+         threshold: L* in [24,90] pc ; R_core = 2.22144 L* ; the two m_P formulas differ by exactly sqrt2 ; 0.90-0.94 x A56   :: the length scale and the P mass both land where they were pre-registered, at the thermal a0
+
+==============================================================================================================
+C27  WHERE THE COST COMES FROM, AND WHAT THE THERMAL POINT PREDICTS
+==============================================================================================================
+  thermal vs free:  SPARC +0.403310 | SLACS+prior -0.244290 | clusters -0.000582 | sum +0.158438 (total +0.158438)
+  half    vs free:  SPARC +2.712312 | SLACS+prior -0.813454 | clusters -0.000310 | sum +1.898548 (total +1.898548)
+  half minus thermal (positive = kappa=1/2 worse):
+                    SPARC +2.309002 | SLACS+prior -0.569164 | clusters +0.000273 | sum +1.740111 (total +1.740111)
+  SPARC drives the whole Delta-chi2 (2.309 of 1.740); SLACS+prior gives back 0.569; clusters cost 0.000
+
+  the discriminator: a0(1/2)/a0(thermal) = 1.085151, i.e. the rival sits 8.5151% ABOVE the thermal value
+    (the reverse framing: the thermal value is 7.8469% below the rival) ; Delta a0 = 7.340000e-12 m/s^2
+    A72's unrounded pair 9.354746e-11 / 8.618166e-11 gives 8.5468% (A72 quotes 8.54%)
+  3-sigma separation needs sigma(a0)/a0 = 2.8384% (A72: 2.874% unrounded) ; the present joint fit gives 32.4908%
+  L* moves -7.8469% (26.087 -> 24.040 pc) and y_t moves 17.27% (77.944 -> 66.468) between the two points
+  C27   PASS   three decompositions close to 1e-9 ; SPARC +2.309, SLACS -0.569, clusters +0.000 ; a0 ratio 0.921531
+         threshold: the decomposition closes to 1e-9, SPARC drives the cost, SLACS+prior gives back, clusters cost, a0 ratio 0.92153+-2e-4   :: the preference is SPARC's, the cancellation is SLACS's, and the two a0 differ by 8.52%
+
+==============================================================================================================
+C29  THE ERROR-MODEL CAVEAT: WHAT THE RAW CHI2 WOULD SAY, AND WHY IT IS NOT USED
+==============================================================================================================
+  raw chi2 difference between the two fixed points (Upsilon profiled): 116.4276
+  same, after rescaling the per-point errors so that chi2/dof = 1 (factor 2.2209): 52.4228 -> 7.24 sigma
+  the compressed likelihood says 2.3090 -> 1.32 sigma: the raw route is 50.4x larger
+  reason: the formal Delta-chi2 error is 1.1269% in a0, the block bootstrap 9.3889% -- a factor 8.33.
+  A51 K6 established that factor and this lane inherits it. IF the per-point errors were right,
+  the thermal point would beat kappa=1/2 at 7.2 sigma; on the declared error model it is 1.32 sigma.
+  C29   PASS   raw 116.428 (7.24 sigma rescaled), compressed 2.309 (1.32 sigma), ratio 50.4
+         threshold: the raw route is 15-35x the compressed one and gives 6.6-7.8 sigma after rescaling   :: the lane's 'cannot tell' is a statement about the error model: with the per-point errors the same data would prefer the thermal point at ~7 sigma, and A51's bootstrap says those errors are 8x too small
+
+==============================================================================================================
+SUMMARY
+==============================================================================================================
+  23/29 checks PASS   (26.5 s)
+  fit (a) a0 free      : kappa_P3 = 0.367836 +- 0.033094 (stat) +- 0.114840 (syst), B = 1.195293 +- 0.036469 (cond), u = 0.422434, chi2 = 5.458394
+  fit (b) thermal      : kappa_P3 = 0.381010, B = 1.190385 +- 0.036320, u = 0.436654 +- 0.033566, chi2 = 5.616831, Delta = +0.158438
+  fit (c) kappa=1/2    : kappa_P3 = 0.413453, B = 1.178557 +- 0.035959, u = 0.471221 +- 0.036213, chi2 = 7.356942, Delta = +1.898548
+  Delta-chi2(c-b) = +1.740111 -> 1.3191 sigma, LR thermal:half = 2.3870 : 1
+  parameters: free 3 shared + 171 Upsilon = 174 ; fixed 2 shared + 171 = 173
+  dof: SPARC 3204, SLACS 68, clusters 1
+
+  wrote a74_results_MUTATE_u_prior.json ; 23/29 PASS ; exit 1

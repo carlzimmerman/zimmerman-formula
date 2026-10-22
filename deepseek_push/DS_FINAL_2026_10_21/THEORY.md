@@ -373,11 +373,20 @@ action forces the thermal identification and returned a clean **no-go**, with fo
    **`C_g = 0`**. A system with zero heat capacity cannot generate a thermal-wavelength condition. The one
    temperature-sensitive gate (linear/energetic coupling) has `A(0) = a₀/2 ≠ 0` and is excluded by A63 K16.
 3. **The action's own carrier fails the literal condition by ×1.99×10⁹** — `λ_C = L★/√2 = 16.99 pc` against
-   `λ_T = 2πc/H_Λ = 33.80 Gpc`; equality would need `L★ = 47.8 Gpc`.
+   `λ_T = 2πc/H_Λ = 33.80 Gpc`; equality would need `L★ = 47.8 Gpc`. (The identification `λ_C = L★/√2`
+   is itself conditional on `η = γ`, which A68 does not force: A68's transverse mass is `√(K/η)`, while
+   `√(γ/K)` is a *length*, not a mass.)
 4. **A72's formula never uses the carrier.** `a_sat = k_BT/(mλ_C) = k_BTc/ħ`: the mass cancels identically
    (spread 0 over four masses), so no `η, γ, K` enters. It is the Gibbons–Hawking temperature rewritten as
    an acceleration, `a_Unruh(T_dS) = cH_Λ = 5.414953×10⁻¹⁰`, divided by `2π` — which A72's own census labels
    **RESTATEMENT**.
+
+**What even the thermal story does not give for free.** The natural Unruh–DeWitt coupling gives
+`a₀ = cH_Λ` — **2π too large, excluded at 16.7σ** — so the `1/2π` needs the extra "one thermal
+wavelength per horizon circumference" assumption on top of quantization. And adopting the premise forces
+`R = 3π/2 = 4.712389 ∉ {1,2,4}` (A19's hand-picked set), which puts the `R = 4` closure **15.1 % away in
+Λ**: `Λ_pred/Λ = 8/(3π) = 0.848826` (A75). **The premise and the closure are rival normalisations of the
+same parameter, not independent confirmations** — you cannot have both `κ = Z/4π` and `R = 4`.
 
 So the premise is exactly what it looks like: one identification, `a₀ ≡ cH_Λ/2π`, which supplies
 `κ = Z/4π`. **Forced by the action:** the isotherm, the law `g_N = g²/(g+a₀)`, `λ_C = √(η/K)`,
