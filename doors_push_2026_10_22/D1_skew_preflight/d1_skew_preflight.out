@@ -1,0 +1,52 @@
+== T1 reproduce the record (N_s = 1)
+K1 PASS 0.707107 0.707107/-0.3483107 n2=-0.3483107 (a63_results.json value; report.md K18 row prints -0.348327)
+K2 PASS 13500 1.35e4 phi=0.4472 (A63 K30 as written)
+== T2 point (a): A2 normalisation 0.03 dex at g=a0 fixes N_s; the skew then carries N_s^-1/2
+K3 PASS 93.1416 93.1 (n=2 at same 0.03 dex: 11.8)
+  n=1 own_Ns N_s=   93.1 s_true=+0.0733 N3(phi=.447)=1.26e+06 (x93 K30) | self-consistent sigma_occ(a0/2)=0.0764 dex phi=0.786 s_obs lin +0.0356 log -0.2209 N3 lin 4.26e+04 log 1.11e+03
+  n=1 Ns93   N_s=   93.1 s_true=+0.0733 N3(phi=.447)=1.26e+06 (x93 K30) | self-consistent sigma_occ(a0/2)=0.0764 dex phi=0.786 s_obs lin +0.0356 log -0.2209 N3 lin 4.26e+04 log 1.11e+03
+  n=2 own_Ns N_s=   11.8 s_true=-0.1014 N3(phi=.447)=6.57e+05 (x49 K30) | self-consistent sigma_occ(a0/2)=0.0880 dex phi=0.826 s_obs lin -0.0572 log -0.4003 N3 lin 1.65e+04 log 337
+  n=2 Ns93   N_s=   93.1 s_true=-0.0361 N3(phi=.447)=5.18e+06 (x384 K30) | self-consistent sigma_occ(a0/2)=0.0313 dex phi=0.463 s_obs lin -0.0036 log -0.0251 N3 lin 4.2e+06 log 8.58e+04
+K4 PASS 93.1416 >=50 corrected N(3sigma)/K30 for n=1 at A2's N_s (mutate: N_s=1 -> ratio 1)
+  K30 s_true vs the N_s=93 skew it is paired with: relative error 8.65 -> error in record: True
+== T3 point (b): occupancy skew in g vs in log g, window g/a0 in (0.375,1)
+  g/a0=0.375  sqrt(N_s)*skew: n1 lin +1.0206 log -6.5427 | n2 lin +0.0000 log -3.3333
+  g/a0=0.500  sqrt(N_s)*skew: n1 lin +0.7071 log -4.3841 | n2 lin -0.3483 log -2.4382
+  g/a0=0.750  sqrt(N_s)*skew: n1 lin +0.2887 log -2.6506 | n2 lin -0.8585 log -1.9629
+  g/a0=1.000  sqrt(N_s)*skew: n1 lin +0.0000 log -2.0000 | n2 lin -1.2430 log -1.9552
+  linear: opposite signs on the whole window: True;  log: fraction of window with opposite signs 0.000
+  log-space flips: n1 at g/a0=[], n2 at []
+  exact N_s=93 n=1 g/a0=0.40: lin +0.0985 (LO +0.0984)  log -0.7950 (LO -0.6189)
+  exact N_s=93 n=1 g/a0=0.50: lin +0.0733 (LO +0.0733)  log -0.5012 (LO -0.4546)
+  exact N_s=93 n=1 g/a0=0.75: lin +0.0299 (LO +0.0299)  log -0.2811 (LO -0.2749)
+  exact N_s=93 n=1 g/a0=0.95: lin +0.0053 (LO +0.0053)  log -0.2186 (LO -0.2168)
+  exact N_s=93 n=2 g/a0=0.40: lin -0.0080 (LO -0.0080)  log -0.3290 (LO -0.3190)
+  exact N_s=93 n=2 g/a0=0.50: lin -0.0361 (LO -0.0361)  log -0.2559 (LO -0.2528)
+  exact N_s=93 n=2 g/a0=0.75: lin -0.0890 (LO -0.0890)  log -0.2038 (LO -0.2035)
+  exact N_s=93 n=2 g/a0=0.95: lin -0.1216 (LO -0.1216)  log -0.2013 (LO -0.2014)
+K5 PASS 0.0015943 <0.01 exact binomial vs leading order: linear skew rel. dev; log-skew signs agree at all 8 probes (log magnitudes differ up to 28% at g=0.4a0)
+K6 PASS 1 True record's linear-g statement (opposite signs on whole window) reproduces
+K7 PASS 0.424008 0.4191 linear-g skew of a log-symmetric 0.06 dex background (MC vs analytic)
+== SPARC (rotmod + SPARC_Lelli2016c.mrt, Q<=2, Ups 0.5/0.7): systematic floor and best-case signal
+K8 PASS 3269 >2500 points, 163 Q<=2 galaxies
+  canonical log: N_win=958 gal=118 | floor |skew_out|=1.201 (gal-demeaned out -1.675; per-bin out -4.06..+1.18) | SE_boot 0.835 vs SE_gauss 0.079 D=111.4 N_eff=9 | DIAGNOSTIC window skew -1.249 (gal-demeaned -1.382) [NOT a test of n]
+  canonical lin: N_win=958 gal=118 | floor |skew_out|=2.864 (gal-demeaned out +4.380; per-bin out -1.14..+3.23) | SE_boot 1.404 vs SE_gauss 0.079 D=314.8 N_eff=3 | DIAGNOSTIC window skew +3.157 (gal-demeaned +3.561) [NOT a test of n]
+  canonical best case: sigma_tot 0.167 meas 0.093 int 0.139 dex phi_max 0.832 | n1 N_s~19 s_obs lin +0.0620 log -0.4895 | n2 N_s~5 s_obs lin -0.1645 log -0.7150
+  canonical N(3sigma) to separate: lin 1.05e+03 (eff x D -> 3.31e+05); log 1.06e+03 (eff -> 1.18e+05); available N_eff lin 3, log 9
+  alt       log: N_win=906 gal=106 | floor |skew_out|=1.115 (gal-demeaned out -1.634; per-bin out -3.41..+0.67) | SE_boot 1.038 vs SE_gauss 0.081 D=162.8 N_eff=6 | DIAGNOSTIC window skew -1.388 (gal-demeaned -1.298) [NOT a test of n]
+  alt       lin: N_win=906 gal=106 | floor |skew_out|=3.181 (gal-demeaned out +5.203; per-bin out -1.21..+3.54) | SE_boot 1.546 vs SE_gauss 0.081 D=361.1 N_eff=3 | DIAGNOSTIC window skew +3.678 (gal-demeaned +3.787) [NOT a test of n]
+  alt       best case: sigma_tot 0.161 meas 0.087 int 0.135 dex phi_max 0.842 | n1 N_s~20 s_obs lin +0.0627 log -0.4964 | n2 N_s~5 s_obs lin -0.1704 log -0.7293
+  alt       N(3sigma) to separate: lin 993 (eff x D -> 3.59e+05); log 996 (eff -> 1.62e+05); available N_eff lin 3, log 6
+K9 PASS 111.436 >0 bootstrap design effects computed
+== other data on disk
+  LITTLE THINGS: 542 matched points; window canonical {'N_window': 40, 'galaxies_window': 3, 'median_err_dex': 0.18248630326339565}, alt {'N_window': 33, 'galaxies_window': 3, 'median_err_dex': 0.18540596095997672}
+  WALLABY DR2: 303 kinematic models, 2116 ring points, no per-point stellar baryons
+  Di Teodoro 2023: 216 points, 15 galaxies, no per-point baryons
+K10 PASS 542 >300 LITTLE THINGS matched points; WALLABY models counted
+== verdict (FROZEN_CRITERIA lines)
+  canonical lin: signs differ True; min|s_obs| 0.0620 vs floor 2.864, 3SE 4.212; N_eff need 3.31e+05 have 3
+  canonical log: signs differ False; min|s_obs| 0.4895 vs floor 1.201, 3SE 2.506; N_eff need 1.18e+05 have 9
+  alt       lin: signs differ True; min|s_obs| 0.0627 vs floor 3.181, 3SE 4.639; N_eff need 3.59e+05 have 3
+  alt       log: signs differ False; min|s_obs| 0.4964 vs floor 1.115, 3SE 3.115; N_eff need 1.62e+05 have 6
+  VERDICT: SCOPED NO-GO
+D1 COMPLETE: 10/10 checks PASS.

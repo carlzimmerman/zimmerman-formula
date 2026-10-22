@@ -70,3 +70,12 @@ without per-point baryonic g_N cannot host the test and is listed as such.
 writes `d1_skew_preflight.out` and `d1_skew_preflight_results.json`. `--mutate` replaces the corrected
 s_true by K30's N_s = 1 value; the check that the corrected N(3σ) exceeds K30's by ≥ 50× must fail.
 Outputs `*_MUTATE.out`, `*_results_MUTATE.json`. Single thread, no network.
+
+## AMENDMENT 1 (post-result, script internals only; no verdict line changed)
+
+- K1 compared n = 2 to −0.348327 (the value printed in A63 report.md's K18 row); the record's own
+  computed value (a63_results.json) is −0.3483107. K1 now checks against the computed value; the printed
+  digits are noted as a typo.
+- K5 first required exact-vs-leading-order agreement within 25 % in both variables; the log-space
+  magnitude differs by up to 28 % at g = 0.4 a₀ (N_s = 93, σ_rel ≈ 0.2 is not small). K5 now requires
+  < 1 % in linear g and the same sign in log g at all probes; the exact values are printed.
