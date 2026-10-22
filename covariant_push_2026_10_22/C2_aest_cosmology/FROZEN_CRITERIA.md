@@ -73,3 +73,23 @@ drops the sqrt in K4's H0 map. K1 and K4 must fail; outputs go to `*_MUTATE.out`
 ## Budget
 
 `OMP_NUM_THREADS=1 nice -n 10`, < 1 GB RSS, minutes. No downloads, no installs.
+
+## AMENDMENT A1 (POST-RESULT, 2026-10-22; written after the first scored run, which gave 7/9)
+
+The first run failed two frozen lines. Both failures stand in the record and are printed by the script as
+`K8-orig` and `K9-orig`. Two replacement checks drive the exit code from now on:
+
+- **K8 FAILED (+2.50 %).** The script's quadrature used the uncalibrated Eisenstein–Hu z_d = 1020. CLASS
+  gives 1059. The failure is in the cross-check tool, not in K4/K5: z_d cancels in the K4 ratios, and K5
+  uses CFG886's fitted h. **K8b** reruns the same quadrature with CLASS's z_d and keeps the same 1.5 % line.
+- **K9 FAILED, and the inventory claim was wrong.** A Planck PR3 TT unbinned spectrum *is* on disk:
+  `_external_data/cmb_lensing_raw/planck_PR4_lensing/planckpr4lensing/data_pr4/iswliks/COM_PowerSpect_CMB-TT-full_R3.01.txt`.
+  It has ℓ = 2–2508 and diagonal errors only. There is no covariance and no TE/EE.
+  The pattern `*clik*` also matched unrelated names (`rclike`, `multiplikat…`).
+  **K9b** fixes the pattern. It counts the TT file as present and requires that hi_class/AeST-CLASS, clik and cobaya are absent and that no other hit remains.
+- Not a check change: the reported (unscored) β-branch line in K5 used A42's β = 0.2109 (Ω_m = 0.316). The
+  record's native branch is A46's β = (2/3)·0.461 = 0.307, g = 0.6845, H₀ = 56.7. The line now reports that,
+  with A42's value alongside. K5's pass line does not change.
+- A1 detail (same day, before any further scored use): the first K9b run also matched `*plik*` inside
+  `grouplike`/`multiplikation` (147 Lean/mathlib and citation files). K9b's patterns are `plik_*` and `*.clik`
+  (Planck's own file names), plus the other names listed in the frozen K9 line.

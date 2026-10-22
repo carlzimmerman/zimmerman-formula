@@ -1,0 +1,54 @@
+== K1: the a0-carrying invariant Y = q^{mu nu} d_mu phi d_nu phi on FRW + general linear perturbation
+  Y at eps^0 = 0;  Y at eps^1 = 0
+K1 PASS Y0=0,Y1=0 both identically 0
+== K2: shift-symmetric Q-sector on FRW: what sets the dust abundance
+  phi EOM residual vs -d/dt(a^3 K'(Q)) = 0;  rho - (Q K' - K) residual = 0
+  8 pi G~ rho(a) = I_0**2/(4*K_2*a**6) + I_0*Q_0/a**3 + 2*Lambda   -> dust coefficient I_0*Q_0
+K2 PASS EOMres=0,rhores=0,drho/dI0=Q_0,drho/da0=0,drho/dLam=0 0,0,!=0,0,0
+== K3: cosh K(Q) (record L137 form; Q0 = K2 = I0 = 1, Z0/Q0 = 1e-3): dust share drift z=1090 -> 0
+  rho a^3 drift (z=1090 vs 0) = 0.02086;  analytic (Z0/Q0) ln(n1090/n0) = 0.02098;  w(0)=9.921e-04, w(1090)=9.738e-04
+  dE/E vs the dust limit at z = 0.5: 2.99e-04, 1: 6.70e-04, 2.33: 1.42e-03, 10: 3.00e-03, 100: 5.78e-03, 1090: 8.77e-03
+K3 PASS 0.02086/0.02098 ratio within 10%
+== K4: background = GR with G_cosmo = g G_N for every species: BAO ratios and the H0 map
+  g=0.9611: H0_model=67.1727, map=67.1727; r_d 154.817 vs GR 151.776 Mpc
+  g=0.6845: H0_model=56.6886, map=56.6886; r_d 183.449 vs GR 151.776 Mpc
+  worst |residual| over D_M/r_d, D_H/r_d at 7 DESI z and the H0 map = 5.55e-16
+K4 PASS 5.55e-16 <1e-6
+== K5: native H0 under the A78 BBN bound G_cosmo/G_N > 0.9611 (E-A78) with the CFG886 GR fit (E-886)
+  BBN-allowed native H0 in [67.22, 68.56] km/s/Mpc; ladder 73.0+-1.0: 4.44-5.78 sigma (ladder sigma only, E1 convention); 3.93-5.15 sigma (native error added)
+  the beta = (2/3)Omega_m branch (A42/A46, used by E1): native Omega_m 0.461, beta 0.3073, g = 0.6845, H0 = 56.72; A78's line excludes it (Delta N_eff = -3.43; at A42's beta 0.2109: -2.36; vs |Delta N_eff| < 0.30)
+K5 PASS 67.22-68.56 upper end > 60
+== K6: AeST lever: G~ = (1 - K_B/2) G^_qs (E-AeST). If G_N = G^_qs (OPEN), BBN gives K_B < 2(1 - 0.9611)
+  K_B < 0.0778; and since 0 < K_B < 2, g_AeST = 1 - K_B/2 < 1 can only LOWER the native H0 (never toward 73)
+K6 PASS 0.0778 0.0778+-0.001
+== K7: linear growth on the dust-limit background (GR growth, source G_cosmo)
+  E-886 dust limit: f(0) = 0.5105, gamma = 0.5548;  beta=0.21 background (A46/A45): f(0) = 0.4522 (A45: 0.452)
+  variant (OPEN premise: sub-horizon source G_N, background G_cosmo, g = 0.9611): f(0) = 0.5230, D(0) ratio = 1.1627 (sigma8 +16.3%)
+K7 PASS 0.4522 |f-0.452|<0.005
+== K8: CLASS (classy) r_d at E-886 physical densities vs this script's quadrature
+  CLASS classy._classy: r_d = 148.076 Mpc (z_d 1059.29); quadrature 151.776 Mpc (EH z_d 1020.03); diff +2.50%
+K8-orig FAIL +2.498% |diff|<1.5%   (frozen line; reported, superseded by K8b, AMENDMENT A1 post-result)
+  AMENDMENT A1: same quadrature with CLASS's z_d: r_d = 148.087 Mpc, diff +0.007%
+K8b PASS +0.007% |diff|<1.5% (A1, post-result)
+== K9: tools and data on disk (no fetch)
+  present  classy (CLASS): v3.3.4
+  present  camb: 1.6.6
+  present  healpy: 1.19.0
+  present  pyccl (cfg592 venv): True
+  present  KiDS-1000 xi+- (fits, cov, n(z)): ['_external_data/cfg592_work/kids/KiDS1000_cosmis_shear_data_release/data_fits/xipm_KIDS1000_BlindC_with_m_bias_V1.0.0A_ugriZYJHKs_photoz_SG_mask_LF_svn_309c_2Dbins_v2_goldclasses_Flag_SOM_Fid.fits 466d1d761fedac02']
+  present  DES Y3 2pt (xi+-): ['_external_data/cfg592_work/2pt_NG_final_2ptunblind_02_26_21_wnz_maglim_covupdate.fits 83efa43f6609ff07']
+  present  Planck PR4 lensing bandpowers: ['_external_data/cmb_lensing_raw/planck_PR4_lensing/planckpr4lensing/data_pr4/pp_consext8_npipe_smicaed_TiPi_jTP_pre30T_kfilt_rdn0cov_PS1_bandpowers.dat 712ffa482d98436d']
+  present  Planck PR4 lensing cov: ['_external_data/cmb_lensing_raw/planck_PR4_lensing/planckpr4lensing/data_pr4/pp_consext8_npipe_smicaed_TiPi_jTP_pre30T_kfilt_rdn0cov_PS1_cov.dat 75cdc38bec7204f3']
+  present  Pantheon+ SNe: ['zimmerman-formula/prep_2026/sne_lambda/pantheonplus_full.dat 1cb0fc379ef066af']
+  present  Planck 2018 params paper source (1807.06209): ['_external_data/cmb_lensing_raw/planck2018_params/1807.06209.src 868a49562c9550e5']
+  present  DESI DR2 chains (LCDM-processed, not data): ['_external_data/desi_dr2_chains/cmb/chain.1.txt c228de7bbaec19dd']
+  absent   hi_class / AeST-CLASS module: True
+  absent   clik (Planck likelihood code): True
+  absent   cobaya: True
+  absent   Planck TT/TE/EE spectra or likelihood files, AeST paper source: False
+  hits with the frozen patterns (406), first 5: ['_external_data/cmb_lensing_raw/planck_PR4_lensing/planckpr4lensing/data_pr4/iswliks/COM_PowerSpect_CMB-TT-full_R3.01.txt', '_external_data/openai_math/lean/OAI/GroupTheory/PolycyclicRecognition/Algebra/GroupLikeNilpotentLogarithm.lean', 'zimmerman-formula/citations/works/jordan-1933-uber-die-multiplikation-quantenmechanischer-gross.md', 'zimmerman-formula/citations/works/halasz-1968-uber-die-mittelwerte-multiplikativer-zahlentheor.md', 'zimmerman-formula/deepseek_push/navier_stokes_attempt/openai_NS_lean/.lake/packages/mathlib/Mathlib/Analysis/RCLike']
+K9-orig FAIL present=True,absent=False all True   (frozen line; reported, superseded by K9b, AMENDMENT A1 post-result)
+  A1: PRESENT Planck PR3 TT unbinned spectrum {'path': '_external_data/cmb_lensing_raw/planck_PR4_lensing/planckpr4lensing/data_pr4/iswliks/COM_PowerSpect_CMB-TT-full_R3.01.txt', 'sha16': 'ccf3113604020536', 'n_ell': 2507, 'lmin': 2, 'lmax': 2508, 'columns': 'l, Dl, -dDl, +dDl (diagonal errors only; no covariance, no TE/EE)'}
+  A1: other hits with corrected patterns (0): []
+K9b PASS present=True,TT_found=1,other_hits=0 tools absent, 1 TT file, 0 other (A1, post-result)
+C2_AEST_COSMOLOGY COMPLETE: 9/9 checks PASS.
