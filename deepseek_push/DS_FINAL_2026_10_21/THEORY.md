@@ -335,18 +335,23 @@ obstruction the four gates themselves reveal.
 
 **6.1 The four core questions, answered as far as the physics allows.**
 
-**(Q1) Why the vacuum switches at one-twelfth of the horizon scale.** It does not. `2√(32π/3) =
-11.57762` is `2Z = Z/κ`, so **"why 11.5776" is identically "why κ = ½"** — and A62 shows none of the
-three named mechanisms produces it: capacity saturation against the horizon **is** the Friedmann
-equation and returns `κ = Z/2 = 2.894` (5.79× too big, empirically dead); the field's own zero-point
-stress saturates at the **Planck** acceleration (4.458×10⁶¹ × cH); a conformal field gives **0**;
-holographic equipartition **is** Friedmann (coefficient 1); a volume law gives 6; Langevin/Brillouin
-give exactly `1/(2π) = 0.159155` = 1.8426 × 1/(2Z); Langmuir gives exactly `1/Z`, wrong shape *and*
-scale. The literal "one twelfth" is `Z/12 = 0.4824008`, 3.52 % below ½. **Look-elsewhere: 223 hits,
-and `√134` is simpler and closer than `2Z`.** So the factor is a *consequence*, not a cause, and the
-honest statement is an obstruction, not a derivation. One new falsifiable identity falls out: the
-`a₀/(cH₀) = 1/7` coincidence to 5.6×10⁻⁴ is **exactly `Ω_Λ = 32π/147`**, i.e. `0.683827` vs Planck's
-`0.6847 ± 0.0073` — a 0.13σ agreement that is a *prediction*, not a fit.
+**(Q1) Why the vacuum switches at one-twelfth of the horizon scale.** It does not — and the arithmetic
+must be stated exactly, because A62 found the loose version wrong. The exact chain is
+`a₀/(cH_L) = 2κ/Z` with `Z = 2√(8π/3) = 5.788810`, so **`κ = ½` ⟺ `a₀/(cH_L) = 1/Z = 0.1727473`** —
+a fifth of the horizon, not a twelfth. The "twelfth" is `1/(2Z) = 0.0863735 = a₀/(2cH_L)`, i.e. the
+ratio to **twice** the horizon scale. And `2Z = 12` **iff `π = 27/8`**, which it is not: the exact gap is
+`1/(2Z) − 1/12 = (6−Z)/(12Z) = 3.0402×10⁻³`, and the literal twelfth in κ is `Z/12 = 0.4824008`, 3.52 %
+below ½. So `2√(32π/3) = 2Z = Z/κ` is a **rewriting of κ = ½**, not a derivation of it, and A62 shows no
+named mechanism produces it: capacity saturation against the horizon **is** the Friedmann equation and
+returns `κ = Z/2 = 2.894405` (5.79× dead); the field's own zero-point stress saturates at the **Planck**
+acceleration (`4.458×10⁶¹ cH`); a conformal field gives **0** and the trace anomaly `1.672×10⁻⁶³`;
+holographic equipartition **is** Friedmann (deficit 0 in dS, `0.4743 cH₀` at `Ω_m = 0.3162`); the
+Verlinde volume law gives `κ = 0.583369`; Langevin/Brillouin give exactly `1/(2π) = 0.159155`; Langmuir
+exactly `1/Z`, wrong shape *and* scale. **Look-elsewhere, done properly this time: a 156,210-value pool
+contains 223 closed forms within 1 % of 2Z, the simplest being `√134` at `1.54×10⁻⁴` (`z = −1.06`) — so
+a match is not evidence.** The honest statement is an obstruction. One new falsifiable identity still
+falls out: `a₀/(cH₀) = √Ω_Λ/Z` **exactly**, so the `1/7` coincidence to 5.6×10⁻⁴ is **`Ω_Λ = 32π/147 =
+0.683827`** against Planck's `0.6847 ± 0.0073` — a 0.13σ agreement that is a *prediction*, not a fit.
 
 **(Q2) What medium produces the saturating term, and does nature pick n = 1 or n = 2.** A63's
 admissibility theorem: the medium must supply **rectification**, not saturation — the isotherm needs
