@@ -293,6 +293,8 @@ charge, and A19 showed the saturation cap admits only `R ∈ {1,2,4}` with the d
 dimensionful parameter and no free dimensionless constant, whose stationarity on de Sitter returns exactly 4.
 This is the single hole in Q1.
 
+> **ERRATUM (2026-10-22, doors push D5):** "the data select 4 among the natural caps" is wrong. A19's own natural grid (`a19_checks.py` K6: β ∈ {1, 2}, χ ∈ {1…4}) is R ∈ {1, 2, 3, 4, 8, 12, 16}, not {1, 2, 4}. The data **exclude R = 1** (6.14σ) and, **on CFG493 only**, R = 2 (3.05σ; on the A81 joint band R = 2 is only +1.71σ). On CFG493 (κ = 0.417 ± 0.095) R = 3 (+1.69σ), 4 (+0.87σ), 8 (−0.67σ), 12 (−1.35σ), 16 (−1.76σ) and A19's 4π (−1.42σ) all lie within 2σ, and **R = 8 is closer to the data than R = 4**. The data do not select 4; κ = ½ stays FITTED. See `doors_push_2026_10_22/D5_kappa_four/README.md`.
+
 **6.2 `ς(r)`, the sourcing-fraction profile.** Measured at two bands (0.4716, 0.9865 — a 4.9σ difference), with
 the scaling `ς ≈ (f_ret/R_cosmic)[y_v^{-1/2} − ½]` and `d\ln ς/d\ln M_v → +1/6`. The action does **not** contain
 a mechanism for it: §3.4's identity defines `ς` on a solution, it does not predict it. What would fix it is a

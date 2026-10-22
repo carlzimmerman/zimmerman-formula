@@ -156,6 +156,8 @@ only natural value the data admit. That is a selection, not a derivation — but
 question with a single answer left standing. For calibration, the Unruh/de Sitter control
 gives `R = 3/(8π) = 0.1194 → κ = 2.894`, excluded at 33.5×.
 
+> **ERRATUM (2026-10-22, doors push D5):** "the data select 4 among the natural caps" is wrong. A19's own natural grid (`a19_checks.py` K6: β ∈ {1, 2}, χ ∈ {1…4}) is R ∈ {1, 2, 3, 4, 8, 12, 16}, not {1, 2, 4}. The data **exclude R = 1** (6.14σ) and, **on CFG493 only**, R = 2 (3.05σ; on the A81 joint band R = 2 is only +1.71σ). On CFG493 (κ = 0.417 ± 0.095) R = 3 (+1.69σ), 4 (+0.87σ), 8 (−0.67σ), 12 (−1.35σ), 16 (−1.76σ) and A19's 4π (−1.42σ) all lie within 2σ, and **R = 8 is closer to the data than R = 4**. The data do not select 4; κ = ½ stays FITTED. See `doors_push_2026_10_22/D5_kappa_four/README.md`.
+
 ---
 
 ## 2. What medium produces the saturating term, and n = 1 or n = 2

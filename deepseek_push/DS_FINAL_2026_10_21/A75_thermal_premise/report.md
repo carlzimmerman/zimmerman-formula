@@ -161,6 +161,8 @@ A19's saturation cap admits only `R ∈ {1,2,4}` and the data exclude `R = 1` an
 `3π/2 = 4.712388980` is **not in that set**. Adopting P-therm is therefore not conservative: it *replaces*
 `R = 4` with `R = 3π/2`, moves `a0` down by 7.87%, and predicts a `Λ` 15.1% below `32πa0²/c⁴`.
 
+> **ERRATUM (2026-10-22, doors push D5):** "the data select 4 among the natural caps" is wrong. A19's own natural grid (`a19_checks.py` K6: β ∈ {1, 2}, χ ∈ {1…4}) is R ∈ {1, 2, 3, 4, 8, 12, 16}, not {1, 2, 4}. The data **exclude R = 1** (6.14σ) and, **on CFG493 only**, R = 2 (3.05σ; on the A81 joint band R = 2 is only +1.71σ). On CFG493 (κ = 0.417 ± 0.095) R = 3 (+1.69σ), 4 (+0.87σ), 8 (−0.67σ), 12 (−1.35σ), 16 (−1.76σ) and A19's 4π (−1.42σ) all lie within 2σ, and **R = 8 is closer to the data than R = 4**. The data do not select 4; κ = ½ stays FITTED. See `doors_push_2026_10_22/D5_kappa_four/README.md`.
+
 **What would have to be added to make it forced.** Nothing local. The natural local route to a thermal
 response — an Unruh–DeWitt detector coupling of the P sector to the horizon vacuum — gives saturation at
 `T_U(a) = T_dS`, i.e. `a0 = a_Unruh = cH_Λ = 5.414953e-10`, **2π larger** and excluded at 16.7σ (A72's
