@@ -194,6 +194,50 @@ absorbs it, so the theory passes lensing **only with a fitted mass-to-light rati
 unobservable (`2.8×10⁻⁶` arcsec, 8600× below the error) and A55 corrects A12's coefficient: the
 trace-free identity gives `3K`, not `2K`, so A12's tabulated slip values are order-of-magnitude only.
 
+**3.5c The P-sector sound speed: free, unconstrained, and harmless (A69).** A68 showed the action forces
+`α = γ` but not `η = γ`. A69 asked what does fix it, in four channels, each with a computed obstruction
+rather than an assertion (56/56 checks, 9 mutations each breaking a named check):
+
+- **Foliation-preserving diffeos do not.** The P action is invariant for *arbitrary* `(η, γ)` —
+  `|ΔS|/S ≤ 9.698×10⁻⁵` at `λ = 0.02`, with clean `λ²` scaling (ratio 3.996) and **no growth of the residual
+  when `η ≠ γ`** (1.109). The reason is structural: `E_i` is a covector and both gradient operators are
+  scalar densities, so the variation is `η·0 + γ·0`.
+- **There is no shift symmetry.** `W` gives `δS = −a₀|c| = −2.055×10⁻³⁴` per unit volume, i.e. a mass
+  `d²W/dP² = K`. `P → P + c` is not a symmetry.
+- **Weyl invariance is not a symmetry at all** — the three derivative operators carry weight `2w`, the clock
+  term `w+2`, `min_w max|exponent| = 2` — and could not fix a ratio anyway, since all three share one weight.
+- **Conservation does not tie them.** `∂_tT⁰⁰ + ∂_iT⁰ⁱ = Ṗ·EOM` is the Noether identity, satisfied to
+  `7.52×10⁻¹⁷` for every `(η, γ)`.
+
+So the only handle is `c_T² = γ/η = m_T²L★²/2`, **with `γ` pinned by the fitted `L★` and `η` free**: the
+sound speed is measured by the range of the P-mediated force and by nothing else.
+
+**Observationally UNCONSTRAINED, and the reason matters.** The P sector's `O(ε)` stress is *dust*
+(`w ∝ ε`, a factor 10 per decade), and its pressure is the **elastic** one, `√(γρ_c) = 0.7204 m/s`
+(A16/A20's 0.72, to 5.0×10⁻⁴) — **not** `√(γ/η)`, which would be `10⁸ m/s` at `η = γ` (ratio² 1.73×10¹⁷).
+Growth, clusters, CMB and GW therefore see nothing: there is no P–baryon coupling, and the graviton TT speed
+is exactly 1 (a P background contributes only a `3.249×10⁻³⁴ eV` mass; the loop correction to `δc_T²` is
+`6.7×10⁻¹⁴⁴`). **If** one nonetheless posits the medium's pressure to be `c_T²ρ`, linear growth gives
+`γ/η < 1.916×10⁻⁷` at 95 % CL (`3.066×10⁻⁸` at `k = 0.5 h Mpc⁻¹`), hence a P-mode Compton wavelength
+`> 38.77 kpc` instead of 16.971 pc. That is the one number that would decide it, and no existing dataset
+supplies it.
+
+**All four gates survive `γ/η ≠ 1`, and none of them fixes it:** (i) lensing = dynamics is exact at `O(ε)`,
+with `γ` entering only at `O(ε²)` through the measured `L★` (`Π_γ/Π_W = 0.5000` at `r = L★`) and `η` not at
+all; (ii) `c_T² = 1` is exact for every `γ/η`; (iii) `α₁ = 8.161×10⁻¹⁴` at 1 AU is `η`-independent, and
+`α₂ = 0` because `j_P(E=0) = 0`; (iv) the Hamiltonian is bounded for `β > 0, γ > 0, η > 0`, i.e. `γ/η > 0`,
+with the principal-positivity bound translating to the vacuous `γ/η > 5.948×10⁻¹⁹` (24/24 grid points
+healthy). A54 is refined, not contradicted: its G4 lists only the `W`-quadrupole, and the `γ`-sector one is
+the same order at `r ~ L★`.
+
+**The gapless `k⁴` mode is weakly coupled everywhere — and it is not the MOND mediator.** Its strong-coupling
+momentum is `p_sc = K²/(8.485π a₀ α^{3/2}) = 2.836×10⁻⁶⁹ eV` — `1.90×10⁻³⁶ H₀`, `1.38×10⁻³⁵ a₀`,
+`1.06×10⁻⁴⁴` of `1/L★` — with the largest loop factor over CMB/LSS/galactic scales `1.904×10⁻⁷⁰`. The EFT
+needs no cutoff below the horizon. But its static Green's function is `−r/(8πα)`: a **linear potential and a
+constant force**, the `μr/L★²` term of A22's exact solution — not the law. **MOND is the nonlinear
+`W(u)`/charge structure, not a propagating mode**, which is consistent with MOND being intrinsically
+nonlinear.
+
 **3.6 The vacuum closure, and κ.**
 
 $$

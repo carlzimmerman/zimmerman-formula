@@ -1,0 +1,768 @@
+{
+ "lane": "A69_psector_sound",
+ "mutation": null,
+ "n_checks": 56,
+ "n_pass": 56,
+ "checks": [
+  {
+   "name": "S1",
+   "got": 9.69800490812825e-05,
+   "want": 0.0,
+   "err": 9.69800490812825e-05,
+   "tol": 0.016,
+   "mode": "abs",
+   "ok": true,
+   "desc": "FDiff invariance of the P action, 4 (eta,gamma) pairs, |dS|/S",
+   "why": "if a symmetry related eta and gamma the pairs with eta != gamma would fail"
+  },
+  {
+   "name": "S1b",
+   "got": 1.1087789347992598,
+   "want": 1.0,
+   "err": 0.10877893479925982,
+   "tol": 6.0,
+   "mode": "rel",
+   "ok": true,
+   "desc": "the residual does not grow when eta != gamma (max_off/max_same)",
+   "why": "an O(lambda) term proportional to (eta-gamma) is what a forced relation looks like"
+  },
+  {
+   "name": "S2",
+   "got": 3.9961375992857104,
+   "want": 4.0,
+   "err": 0.00096560017857239,
+   "tol": 0.08,
+   "mode": "rel",
+   "ok": true,
+   "desc": "quadratic scaling of the FDiff residual (lam 2x)",
+   "why": "a first-order residual would mean it is not a symmetry at all"
+  },
+  {
+   "name": "S3",
+   "got": 4.0,
+   "want": 4.0,
+   "err": 0.0,
+   "tol": 0.0,
+   "mode": "abs",
+   "ok": true,
+   "desc": "the four (eta,gamma) pairs give four distinct c_T^2",
+   "why": "the map (eta,gamma)->(eta,gamma/eta) has Jacobian 1/eta != 0 (A68 D10)"
+  },
+  {
+   "name": "S4",
+   "got": -2.055042997515624e-34,
+   "want": -2.055042997515624e-34,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "shift variation per unit volume = -a0 |c|",
+   "why": "W(u) = u^2/(2K)+... is not shift invariant: the quadratic term is a mass K/2"
+  },
+  {
+   "name": "S5",
+   "got": 1.0,
+   "want": 1.0,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "the shift variation is nonzero (no shift symmetry)",
+   "why": "a shift symmetry would need W' = 0, i.e. u = 0 everywhere"
+  },
+  {
+   "name": "S6",
+   "got": 8.43056535575139e-56,
+   "want": 8.43056535451692e-56,
+   "err": 1.464279226972903e-10,
+   "tol": 1e-08,
+   "mode": "rel",
+   "ok": true,
+   "desc": "d^2W/dP^2 at P=0 equals K (the shift-breaking mass term)",
+   "why": "W = u^2/(2K)+... with u=K|P| gives (K/2)|P|^2, i.e. m^2 = K/eta"
+  },
+  {
+   "name": "S7",
+   "got": 8.881784197001252e-16,
+   "want": 0.0,
+   "err": 8.881784197001252e-16,
+   "tol": 1e-09,
+   "mode": "abs",
+   "ok": true,
+   "desc": "Weyl exponents of the four P operators (4D measure included)",
+   "why": "the three derivative operators share 2w; the clock term is w+2"
+  },
+  {
+   "name": "S8",
+   "got": 2.0,
+   "want": 2.0,
+   "err": 0.0,
+   "tol": 1e-06,
+   "mode": "rel",
+   "ok": true,
+   "desc": "min_w max|exponent| : no w makes the P action Weyl flat",
+   "why": "2w = 0 needs w = 0, w + 2 = 0 needs w = -2: inconsistent"
+  },
+  {
+   "name": "S9",
+   "got": 0.0,
+   "want": 0.0,
+   "err": 0.0,
+   "tol": 1e-09,
+   "mode": "abs",
+   "ok": true,
+   "desc": "gamma/eta is Weyl invariant (equal exponents)",
+   "why": "a common rescaling cannot fix a ratio"
+  },
+  {
+   "name": "S10",
+   "got": 7.520373230377434e-17,
+   "want": 0.0,
+   "err": 7.520373230377434e-17,
+   "tol": 1e-12,
+   "mode": "abs",
+   "ok": true,
+   "desc": "on-shell conservation residual, 4 (eta,gamma) pairs",
+   "why": "the residual is Pdot.EOM: an identity, not a relation between eta and gamma"
+  },
+  {
+   "name": "S11",
+   "got": 7.520373230377434e-17,
+   "want": 0.0,
+   "err": 7.520373230377434e-17,
+   "tol": 1e-10,
+   "mode": "abs",
+   "ok": true,
+   "desc": "d_tT00+d_iT0i = Pdot.EOM (Noether identity), independent computation",
+   "why": "shows the conservation law is an identity for every eta, gamma"
+  },
+  {
+   "name": "O1",
+   "got": 0.5937140647895692,
+   "want": 0.5937140647895692,
+   "err": 0.0,
+   "tol": 1e-13,
+   "mode": "rel",
+   "ok": true,
+   "desc": "gamma/eta = m_T^2 L*^2/2",
+   "why": "so measuring the P-mode range measures c_T^2"
+  },
+  {
+   "name": "O3",
+   "got": 10.0,
+   "want": 10.0,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "w = p/rho scales linearly in eps (dust at O(eps))",
+   "why": "c_s^2 = dp/drho -> 0 as eps -> 0; gamma/eta is NOT the medium's sound speed"
+  },
+  {
+   "name": "O4",
+   "got": 1.0005035863812988,
+   "want": 1.0,
+   "err": 0.0005035863812987706,
+   "tol": 0.1,
+   "mode": "rel",
+   "ok": true,
+   "desc": "elastic speed reproduces 0.72 m/s",
+   "why": "independent check of gamma and of the identification D.P <-> rho_c"
+  },
+  {
+   "name": "O5",
+   "got": 0.7879851843563634,
+   "want": 0.7879851836729622,
+   "err": 8.672767441056655e-10,
+   "tol": 1e-06,
+   "mode": "rel",
+   "ok": true,
+   "desc": "c_s=0 growth = exact LCDM growth function",
+   "why": "validates the ODE before it is used for the bound"
+  },
+  {
+   "name": "O6",
+   "got": 3.996887487931646,
+   "want": 4.0,
+   "err": 0.0007781280170885418,
+   "tol": 0.06,
+   "mode": "rel",
+   "ok": true,
+   "desc": "1-S ~ k^2 in the weak-pressure limit",
+   "why": "the pressure term is c_s^2 k^2/(a^2 H^2): a wrong coefficient breaks the slope"
+  },
+  {
+   "name": "O7",
+   "got": 0.9500000356447781,
+   "want": 0.95,
+   "err": 3.7520819083282146e-08,
+   "tol": 0.01,
+   "mode": "rel",
+   "ok": true,
+   "desc": "the quoted bound reproduces S=0.95 at k=0.2 h/Mpc",
+   "why": "the bound must be the computed one, not a declared number"
+  },
+  {
+   "name": "O7b",
+   "got": 0.9499998543043082,
+   "want": 0.95,
+   "err": 1.533638860351516e-07,
+   "tol": 0.01,
+   "mode": "rel",
+   "ok": true,
+   "desc": "bound at k=0.5 h/Mpc reproduces S=0.95",
+   "why": "quotes the second end of the LSS range, not an assumed number"
+  },
+  {
+   "name": "O8",
+   "got": 38.76830971788474,
+   "want": 38.76830971788474,
+   "err": 0.0,
+   "tol": 1e-10,
+   "mode": "rel",
+   "ok": true,
+   "desc": "lambda_C = L*/(sqrt(2 c_T^2)) identity",
+   "why": "independent route to the same range"
+  },
+  {
+   "name": "O9",
+   "got": 8.325662807439311,
+   "want": 8.33,
+   "err": 0.0005206713758329847,
+   "tol": 0.01,
+   "mode": "rel",
+   "ok": true,
+   "desc": "sigma_c = sqrt(a0 L*) in km/s",
+   "why": "the cold sector's dispersion is not a function of eta"
+  },
+  {
+   "name": "O10",
+   "got": 0.9999999999984637,
+   "want": 1.0,
+   "err": 1.5363266214762916e-12,
+   "tol": 1e-09,
+   "mode": "rel",
+   "ok": true,
+   "desc": "growth with the elastic speed is un-suppressed",
+   "why": "c_s,el^2 = 2.9e-18: the dark sector is dust, so gamma/eta does not enter growth"
+  },
+  {
+   "name": "O11",
+   "got": 31.62277660168379,
+   "want": 31.622776601683793,
+   "err": 1.1234667099445443e-16,
+   "tol": 1e-10,
+   "mode": "rel",
+   "ok": true,
+   "desc": "k_J ~ sqrt(rho): cluster/mean ratio",
+   "why": "checks the Jeans formula used for the cluster bound"
+  },
+  {
+   "name": "O12",
+   "got": 1334633301.0,
+   "want": 1334633301.0,
+   "err": 0.0,
+   "tol": 1e-10,
+   "mode": "rel",
+   "ok": true,
+   "desc": "dark-sector w at recombination scales as (1+z)^3",
+   "why": "a constant c_T^2 would not scale this way: the CMB sees no gamma/eta"
+  },
+  {
+   "name": "O13",
+   "got": 1.0,
+   "want": 1.0,
+   "err": 0.0,
+   "tol": 1e-15,
+   "mode": "rel",
+   "ok": true,
+   "desc": "d(omega^2)/dk^2 = 1 for the TT mode (c_T^2 = 1)",
+   "why": "gamma/eta cannot enter: helicity-2 has no P operator"
+  },
+  {
+   "name": "O14",
+   "got": 369309371802.8841,
+   "want": 372000000000.0,
+   "err": 0.007232871497623403,
+   "tol": 0.05,
+   "mode": "rel",
+   "ok": true,
+   "desc": "P-background graviton mass vs LIGO bound",
+   "why": "11 orders below the bound: invisible"
+  },
+  {
+   "name": "O15",
+   "got": 6.670239229941281e-144,
+   "want": 0.0,
+   "err": 6.670239229941281e-144,
+   "tol": 1e-100,
+   "mode": "abs",
+   "ok": true,
+   "desc": "loop correction to c_T^2",
+   "why": "no mixing at O(m_T^2): the P-TT vertex is cubic"
+  },
+  {
+   "name": "O16",
+   "got": 0.5932599318471549,
+   "want": 0.5934,
+   "err": 0.00023604339879537266,
+   "tol": 0.01,
+   "mode": "rel",
+   "ok": true,
+   "desc": "Delta N_eff for two thermalized bosonic modes",
+   "why": "Planck's Delta N_eff < 0.34 would exclude it: the modes must be unpopulated"
+  },
+  {
+   "name": "G1",
+   "got": 0.5000000000000001,
+   "want": 0.5,
+   "err": 2.220446049250313e-16,
+   "tol": 1e-10,
+   "mode": "rel",
+   "ok": true,
+   "desc": "Pi_gamma/Pi_W = (1-x)L*^2/r^2 = 1/2 at r = L*",
+   "why": "the gradient quadrupole is the same order as the potential one, and eta-free"
+  },
+  {
+   "name": "G2",
+   "got": 2.436883759768726e-11,
+   "want": 0.0,
+   "err": 2.436883759768726e-11,
+   "tol": 1e-09,
+   "mode": "abs",
+   "ok": true,
+   "desc": "gradient-sector quadrupole/trace vanishes for P ~ x",
+   "why": "Pi_ij = -gamma d (P'-P/r)(n_i n_j - delta_ij/3): a real O(eps^2) object"
+  },
+  {
+   "name": "G3",
+   "got": 2.6131531220712877e-11,
+   "want": 0.0,
+   "err": 2.6131531220712877e-11,
+   "tol": 1e-06,
+   "mode": "abs",
+   "ok": true,
+   "desc": "computed quadrupole = -gamma d (P'-P/r)(n_i n_j - delta/3)",
+   "why": "independent evaluation of the same tensor"
+  },
+  {
+   "name": "G4",
+   "got": 1.0,
+   "want": 1.0,
+   "err": 0.0,
+   "tol": 0.0,
+   "mode": "abs",
+   "ok": true,
+   "desc": "c_T^2(TT) at gamma/eta=0.001",
+   "why": "the P sector has no TT coupling"
+  },
+  {
+   "name": "G4b",
+   "got": 1.0,
+   "want": 1.0,
+   "err": 0.0,
+   "tol": 0.0,
+   "mode": "abs",
+   "ok": true,
+   "desc": "c_T^2(TT) at gamma/eta=100.0",
+   "why": "the P sector has no TT coupling"
+  },
+  {
+   "name": "G5",
+   "got": 8.161492933724322e-14,
+   "want": 8.161492933724322e-14,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "alpha_1 = 2r^2/L*^2 = r^2 K/gamma",
+   "why": "uses L*^2=2gamma/K"
+  },
+  {
+   "name": "G6",
+   "got": 1.0,
+   "want": 1.0,
+   "err": 0.0,
+   "tol": 0.0,
+   "mode": "abs",
+   "ok": true,
+   "desc": "alpha_1 is eta-independent (no time derivative in the static solution)",
+   "why": "alpha_1 is built from the charge, not from E_i"
+  },
+  {
+   "name": "G7",
+   "got": 4.0,
+   "want": 4.0,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "alpha_1 ~ 1/gamma (varying gamma by 4x)",
+   "why": "L* is measured, so this is a check of the gamma dependence, not of eta"
+  },
+  {
+   "name": "G8",
+   "got": 0.0,
+   "want": 0.0,
+   "err": 0.0,
+   "tol": 0.0,
+   "mode": "abs",
+   "ok": true,
+   "desc": "momentum density j_P = 0 for E = 0, three eta values",
+   "why": "alpha_2 = 0 structurally; the coefficient eta never gets a chance to act"
+  },
+  {
+   "name": "G9",
+   "got": 24.0,
+   "want": 24.0,
+   "err": 0.0,
+   "tol": 0.0,
+   "mode": "abs",
+   "ok": true,
+   "desc": "healthy (Z,omega^2,m_T^2 > 0) on 24 (beta, gamma/eta) points",
+   "why": "the conditions are beta>0, eta>0, gamma>0: no condition on gamma/eta"
+  },
+  {
+   "name": "G10",
+   "got": 1.0,
+   "want": 1.0,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "eta_max = beta K/(2 a0^2) inverted back",
+   "why": "the bound is on eta alone, not on the ratio"
+  },
+  {
+   "name": "G11",
+   "got": 3.0,
+   "want": 3.0,
+   "err": 0.0,
+   "tol": 0.0,
+   "mode": "abs",
+   "ok": true,
+   "desc": "three widely spaced gamma/eta survive all four gates",
+   "why": "no gate fixes the ratio: the surviving set is an open interval"
+  },
+  {
+   "name": "C1a",
+   "got": 0.3699999999998631,
+   "want": 0.37,
+   "err": 3.699743214494103e-13,
+   "tol": 1e-08,
+   "mode": "rel",
+   "ok": true,
+   "desc": "UV limit c_s^2 = alpha/eta = gamma/eta at gamma/eta=0.37",
+   "why": "at high p the conformal term B is negligible: the scalar joins the medium"
+  },
+  {
+   "name": "C1",
+   "got": 0.999999999999,
+   "want": 1.0,
+   "err": 9.999778782798785e-13,
+   "tol": 1e-08,
+   "mode": "rel",
+   "ok": true,
+   "desc": "UV limit c_s^2 = alpha/eta = gamma/eta at gamma/eta=1.0",
+   "why": "at high p the conformal term B is negligible: the scalar joins the medium"
+  },
+  {
+   "name": "C1b",
+   "got": 99.99999998999999,
+   "want": 100.0,
+   "err": 1.0000007932831068e-10,
+   "tol": 1e-08,
+   "mode": "rel",
+   "ok": true,
+   "desc": "UV limit c_s^2 = alpha/eta = gamma/eta at gamma/eta=100.0",
+   "why": "at high p the conformal term B is negligible: the scalar joins the medium"
+  },
+  {
+   "name": "C2",
+   "got": 2.8360269860310067e-69,
+   "want": 2.836026986031007e-69,
+   "err": 1.815059452826994e-16,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "two independent routes to p_sc (IR branch)",
+   "why": "one uses (K,a0,alpha), the other (K,a0,L*) with alpha = K L*^2/2"
+  },
+  {
+   "name": "C3",
+   "got": 0.9999999999999998,
+   "want": 1.0,
+   "err": 2.220446049250313e-16,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "degeneracy check",
+   "why": "same number"
+  },
+  {
+   "name": "C4",
+   "got": 0.7071067811865476,
+   "want": 1.0,
+   "err": 0.2928932188134524,
+   "tol": 0.5,
+   "mode": "rel",
+   "ok": true,
+   "desc": "the two branches agree within a factor 2 at eta = gamma",
+   "why": "at eta=gamma both reduce to O(1) K^(1/2)/(a0 L*^3)"
+  },
+  {
+   "name": "C5",
+   "got": 0.01189416077435181,
+   "want": 0.01189416077435181,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "p_sc/(M_L^3/(M_Pl a0)) = 2/(3 sqrt pi) (K/2B)^{3/2}",
+   "why": "the parametric form, checked against an independent algebraic route"
+  },
+  {
+   "name": "C6",
+   "got": 1.899315431889532e-36,
+   "want": 1.899e-36,
+   "err": 0.00016610420723106307,
+   "tol": 0.02,
+   "mode": "rel",
+   "ok": true,
+   "desc": "p_sc/H0",
+   "why": "36 orders below Hubble"
+  },
+  {
+   "name": "C7",
+   "got": 1.3800329187562145e-35,
+   "want": 1.38e-35,
+   "err": 2.3854171169858824e-05,
+   "tol": 0.02,
+   "mode": "rel",
+   "ok": true,
+   "desc": "p_sc/a0",
+   "why": "35 orders below a0"
+  },
+  {
+   "name": "C8",
+   "got": 1.0643529685748712e-44,
+   "want": 1.064e-44,
+   "err": 0.00033173738239773904,
+   "tol": 0.02,
+   "mode": "rel",
+   "ok": true,
+   "desc": "p_sc/(1/L*)",
+   "why": "44 orders below the fitted stiffness scale"
+  },
+  {
+   "name": "C9",
+   "got": 1.9044908568507964e-70,
+   "want": 0.0,
+   "err": 1.9044908568507964e-70,
+   "tol": 1e-20,
+   "mode": "abs",
+   "ok": true,
+   "desc": "largest loop factor over CMB/LSS/galactic/L*/a0 scales",
+   "why": "the EFT is perturbative at every astrophysical scale by >30 orders"
+  },
+  {
+   "name": "C10",
+   "got": 4.517129559289401e-09,
+   "want": 0.0,
+   "err": 4.517129559289401e-09,
+   "tol": 0.0001,
+   "mode": "abs",
+   "ok": true,
+   "desc": "nabla^2(-r/8pi) = -1/(4 pi r) pointwise",
+   "why": "the k^4 Green's function is the potential of a delta source"
+  },
+  {
+   "name": "C11",
+   "got": 1.000000110181425,
+   "want": 1.0,
+   "err": 1.1018142509477968e-07,
+   "tol": 0.0001,
+   "mode": "rel",
+   "ok": true,
+   "desc": "unit flux: nabla^4(-r/8pi) = delta^3(r)",
+   "why": "normalisation of the linear potential (Gauss)"
+  },
+  {
+   "name": "C12",
+   "got": 0.9999999999999999,
+   "want": 1.0,
+   "err": 1.1102230246251565e-16,
+   "tol": 1e-06,
+   "mode": "rel",
+   "ok": true,
+   "desc": "d(-G)/dr = 1/(8 pi): constant force",
+   "why": "wrong shape for a 1/r potential"
+  },
+  {
+   "name": "C13",
+   "got": 1.0,
+   "want": 1.0,
+   "err": 0.0,
+   "tol": 0.0,
+   "mode": "abs",
+   "ok": true,
+   "desc": "linear/Newtonian = (r/L*)^2 = 1 at r = L*",
+   "why": "A22's exact solution"
+  },
+  {
+   "name": "C14",
+   "got": 5.828157398408362e-103,
+   "want": 5.828157398408362e-103,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "p_sc a0 = const across the three footings",
+   "why": "p_sc scales as 1/a0, so the kappa error bar moves it by 1/kappa"
+  }
+ ],
+ "data": {
+  "constants": {
+   "a0_eV": 2.055042997515624e-34,
+   "a0_alt_eV": 2.485372514089408e-34,
+   "a0_kappa_eV": 1.8428431217755745e-34,
+   "Lstar_pc": 24.0,
+   "Lstar_eVinv": 3.7529719350958054e+24,
+   "gamma_eV4": 5.937140647895692e-07,
+   "alpha_eV4": 5.937140647895692e-07,
+   "B_eV2": 4.21528267725846e-55,
+   "K_eV2": 8.43056535451692e-56,
+   "Lambda_eV2": 4.245625441064228e-66,
+   "H0_eV": 1.4931837747506682e-33,
+   "kappa_meas": 0.371,
+   "kappa_sig": 0.119
+  },
+  "task1": {
+   "fdiff": [
+    {
+     "eta": 1.0,
+     "gamma": 1.0,
+     "S0": -0.3559751543055044,
+     "S1": -0.35600628989696703,
+     "rel": 8.746563091843045e-05
+    },
+    {
+     "eta": 1.0,
+     "gamma": 10.0,
+     "S0": -8.881709887165092,
+     "S1": -8.881570777377698,
+     "rel": 1.5662500707797578e-05
+    },
+    {
+     "eta": 10.0,
+     "gamma": 1.0,
+     "S0": 4.965983189804544,
+     "S1": 4.96550158851106,
+     "rel": 9.69800490812825e-05
+    },
+    {
+     "eta": 1.0,
+     "gamma": 0.001,
+     "S0": 0.59038140104191,
+     "S1": 0.5903313682133942,
+     "rel": 8.474662045161114e-05
+    }
+   ],
+   "shift": {
+    "u_over_a0": 0.5,
+    "Pabs": 1.2188049739834914e+21,
+    "dS": -2.055042997515624e-34
+   },
+   "conservation": [
+    [
+     0.001,
+     -5.852095443365248e-98,
+     -3.937240904156202e-82,
+     3.9372409041562014e-82,
+     9.340395901318078e-27
+    ],
+    [
+     0.1,
+     -4.6816763546921983e-97,
+     -3.937240904156202e-81,
+     3.9372409041562016e-81,
+     9.340395901318078e-26
+    ],
+    [
+     1.0,
+     -1.8726705418768793e-96,
+     -1.245064895391431e-80,
+     1.2450648953914309e-80,
+     2.9536925295866456e-25
+    ],
+    [
+     100.0,
+     -1.4981364335015035e-95,
+     -1.245064895391431e-79,
+     1.2450648953914308e-79,
+     2.9536925295866454e-24
+    ]
+   ]
+  },
+  "task2": {
+   "cs2_elastic": 5.773788703563445e-18,
+   "rho_c0_kgm3": 2.2566108096e-27,
+   "growth_table": [
+    {
+     "cs2": 1e-09,
+     "S02": 0.9997338565595862,
+     "S01": 0.9999334589600597,
+     "S05": 0.9983375096607443
+    },
+    {
+     "cs2": 1e-08,
+     "S02": 0.9973410505442877,
+     "S01": 0.9993347449825043,
+     "S05": 0.9834718478337573
+    },
+    {
+     "cs2": 1e-07,
+     "S02": 0.9736576106861058,
+     "S01": 0.993362966238193,
+     "S05": 0.8440613557762662
+    },
+    {
+     "cs2": 1e-06,
+     "S02": 0.759945811637734,
+     "S01": 0.9351597206616024,
+     "S05": 0.10732530376481784
+    },
+    {
+     "cs2": 1e-05,
+     "S02": -0.019423837440675697,
+     "S01": 0.4848490820419875,
+     "S05": -0.0007402346969802909
+    }
+   ],
+   "gamma_over_eta_bound_conditional": 1.9161908191124323e-07,
+   "gamma_over_eta_bound_k05": 3.0659166552633375e-08,
+   "lambda_C_bound_kpc": 38.76830971788474,
+   "dneff": 0.5932599318471549
+  },
+  "task3": {
+   "slip_Oeps2": 3.945e-07,
+   "cT2_gw": 1.0,
+   "ct2_min_stability": 5.948294462213275e-19,
+   "gate_conditions": {
+    "gate_i": "all gamma/eta",
+    "gate_ii": "all gamma/eta",
+    "gate_iii": "all gamma/eta (eta absent)",
+    "gate_iv": "gamma/eta > 5.95e-19"
+   }
+  },
+  "task4": {
+   "p_sc_alt_eV": 2.344983444280056e-69,
+   "p_sc_kappa_eV": 3.1625900922010916e-69,
+   "p_sc_eV": 2.8360269860310067e-69,
+   "p_sc_UV_eV": 2.005373913450571e-69,
+   "p_star_eV": 8.426062637443233e-25,
+   "kappa_L_eVinv": 1.1867939309592359e+24,
+   "M_L_eV": 8.426062637443231e-25
+  }
+ }
+}

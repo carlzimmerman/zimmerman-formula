@@ -1,0 +1,242 @@
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/DS_FINAL_2026_10_21/A69_psector_sound/a69_checks.py:692: RuntimeWarning: invalid value encountered in scalar divide
+  ck("O6", (1 - S_02) / (1 - S_01), 4.0, tol=0.06,
+*** MUTATION: no_pressure ***
+A69 -- the P-sector sound speed: symmetry, observable, gates, cutoff
+  a0 = 2.055043e-34 eV (9.36e-11 m/s^2),  L* = 24.0 pc = 3.752972e+24 eV^-1
+  gamma = alpha = K L*^2/2 = 5.937141e-07 eV^-4,  B = 4.215283e-55 eV^-2
+  Lambda = 32 pi a0^2 = 4.245625e-66 eV^2,  1/L* = 2.664555e-25 eV
+  K = 4 pi G = 8.430565e-56 eV^-2,  H0 = 1.493184e-33 eV,  a0(alt) = 2.485373e-34 eV,  a0(kappa=0.371) = 1.842843e-34 eV
+
+==============================================================================
+TASK 1 -- symmetry search: does anything force eta = gamma?
+==============================================================================
+
+(a) foliation-preserving diffeomorphisms (spatial part, xi^i(x),
+    t -> t; the P field is a spatial covector, E_i a covector):
+    eta=1        gamma=1         S0=-3.559751543055e-01  S(lam)=-3.560062898970e-01  |dS|/S=8.747e-05  c_T^2=1
+    eta=1        gamma=10        S0=-8.881709887165e+00  S(lam)=-8.881570777378e+00  |dS|/S=1.566e-05  c_T^2=10
+    eta=10       gamma=1         S0=+4.965983189805e+00  S(lam)=+4.965501588511e+00  |dS|/S=9.698e-05  c_T^2=0.1
+    eta=1        gamma=0.001     S0=+5.903814010419e-01  S(lam)=+5.903313682134e-01  |dS|/S=8.475e-05  c_T^2=0.001
+  S1     PASS  got=9.6980049081e-05  want=0.0000000000e+00  abs-err=9.70e-05  FDiff invariance of the P action, 4 (eta,gamma) pairs, |dS|/S
+  S1b    PASS  got=1.1087789348e+00  want=1.0000000000e+00  rel-err=1.09e-01  the residual does not grow when eta != gamma (max_off/max_same)
+  S2     PASS  got=3.9961375993e+00  want=4.0000000000e+00  rel-err=9.66e-04  quadratic scaling of the FDiff residual (lam 2x)
+  S3     PASS  got=4.0000000000e+00  want=4.0000000000e+00  abs-err=0.00e+00  the four (eta,gamma) pairs give four distinct c_T^2
+
+(b) constant shift P -> P + c.  dS = -int N sqrt(h) K (P.c)/(1-u/a0),
+    plus a total derivative from the clock term.  No shift symmetry if W != 0.
+  S4     PASS  got=-2.0550429975e-34  want=-2.0550429975e-34  rel-err=0.00e+00  shift variation per unit volume = -a0 |c|
+  S5     PASS  got=1.0000000000e+00  want=1.0000000000e+00  rel-err=0.00e+00  the shift variation is nonzero (no shift symmetry)
+  S6     PASS  got=8.4305653558e-56  want=8.4305653545e-56  rel-err=1.46e-10  d^2W/dP^2 at P=0 equals K (the shift-breaking mass term)
+
+(c) Weyl: g -> Om^2 g, P_i -> Om^w P_i (constant Om).
+    w=0.70: exponents (E^2, (D.P)^2, F^2, clock) = +1.400000 +1.400000 +1.400000 +2.700000   [predicted +1.4 +1.4 +1.4 +2.7]
+    w=1.30: exponents (E^2, (D.P)^2, F^2, clock) = +2.600000 +2.600000 +2.600000 +3.300000   [predicted +2.6 +2.6 +2.6 +3.3]
+    w=2.00: exponents (E^2, (D.P)^2, F^2, clock) = +4.000000 +4.000000 +4.000000 +4.000000   [predicted +4.0 +4.0 +4.0 +4.0]
+  S7     PASS  got=8.8817841970e-16  want=0.0000000000e+00  abs-err=8.88e-16  Weyl exponents of the four P operators (4D measure included)
+  S8     PASS  got=2.0000000000e+00  want=2.0000000000e+00  rel-err=0.00e+00  min_w max|exponent| : no w makes the P action Weyl flat
+  S9     PASS  got=0.0000000000e+00  want=0.0000000000e+00  abs-err=0.00e+00  gamma/eta is Weyl invariant (equal exponents)
+
+(d) conservation: d_t T^00 + d_i T^0i = Pdot . EOM  identically;
+    = 0 iff omega^2 = (K + gamma p^2)/eta, for every (eta,gamma).
+    c_T^2=0.001     d_tT00=-3.937241e-82  d_iT0i=+3.937241e-82  sum=-5.852e-98
+    c_T^2=0.1       d_tT00=-3.937241e-81  d_iT0i=+3.937241e-81  sum=-4.682e-97
+    c_T^2=1         d_tT00=-1.245065e-80  d_iT0i=+1.245065e-80  sum=-1.873e-96
+    c_T^2=100       d_tT00=-1.245065e-79  d_iT0i=+1.245065e-79  sum=-1.498e-95
+  S10    PASS  got=7.5203732304e-17  want=0.0000000000e+00  abs-err=7.52e-17  on-shell conservation residual, 4 (eta,gamma) pairs
+  S11    PASS  got=7.5203732304e-17  want=0.0000000000e+00  abs-err=7.52e-17  d_tT00+d_iT0i = Pdot.EOM (Noether identity), independent computation
+
+    NO INVARIANCE OF THE ACTION RELATES eta TO gamma.
+    (a) FDiff: E_i is a covector for any eta, the gradient operators are
+        scalars for any gamma -- each term is separately invariant, so the
+        variation is eta*0 + gamma*0.  (b) no shift symmetry (W(u) != 0).
+    (c) Weyl: all three derivative operators share weight 2w, the clock
+        term w+2, so no w is Weyl flat and the ratio gamma/eta is Weyl
+        invariant anyway.  (d) conservation is the Noether identity
+        Pdot.EOM = 0: it holds for every (eta,gamma).
+
+==============================================================================
+TASK 2 -- the observable: what do data say about gamma/eta?
+==============================================================================
+
+O1  c_T^2 = gamma/eta = m_T^2 L*^2/2  (two independent routes)
+  O1     PASS  got=5.9371406479e-01  want=5.9371406479e-01  rel-err=0.00e+00  gamma/eta = m_T^2 L*^2/2
+    gamma = 5.937141e-07 eV^-4,  m_T(eta_ref) = 2.903544e-25 eV
+
+O2  the medium's equation of state: at O(eps) the P stress is DUST.
+    The clock term  int N sqrt(h) P^i D_i ln N = - int N sqrt(h) d  gives
+    T^00 = d + O(eps^2), T_ij = 0 + O(eps^2).  Hence w = p/rho = O(eps).
+    rho_c(today) = 2.2566e-27 kg/m^3 = 9.7249e-12 eV^4
+  O3     PASS  got=1.0000000000e+01  want=1.0000000000e+01  rel-err=0.00e+00  w = p/rho scales linearly in eps (dust at O(eps))
+    elastic sound speed sqrt(gamma rho_c) = 0.7204 m/s = 2.4029e-09 c   (A16/A20 quote 0.72 m/s)
+  O4     PASS  got=1.0005035864e+00  want=1.0000000000e+00  rel-err=5.04e-04  elastic speed reproduces 0.72 m/s
+    c_T^2 = gamma/eta = 1 is a speed of 2.998e+08 m/s: the transverse P
+    modes, not the dark mass.  c_T^2/c_s,el^2 = 1.732e+17
+
+O5  growth suppression IF the dark mass had sound speed c_T^2 = gamma/eta:
+  O5     PASS  got=7.8798518436e-01  want=7.8798518367e-01  rel-err=8.67e-10  c_s=0 growth = exact LCDM growth function
+    c_s^2=1e-09  S(0.1)=1.0000  S(0.2)=1.0000  S(0.5)=1.0000
+    c_s^2=1e-08  S(0.1)=1.0000  S(0.2)=1.0000  S(0.5)=1.0000
+    c_s^2=1e-07  S(0.1)=1.0000  S(0.2)=1.0000  S(0.5)=1.0000
+    c_s^2=1e-06  S(0.1)=1.0000  S(0.2)=1.0000  S(0.5)=1.0000
+    c_s^2=1e-05  S(0.1)=1.0000  S(0.2)=1.0000  S(0.5)=1.0000
+  O6     FAIL  got=nan  want=4.0000000000e+00  rel-err=nan  1-S ~ k^2 in the weak-pressure limit
+
+    S(0.2 h/Mpc) = 0.95 at c_s^2 = 1.0000e-05  ->  gamma/eta < 1.000e-05 (95% CL, conditional)
+  O7     FAIL  got=1.0000000000e+00  want=9.5000000000e-01  rel-err=5.26e-02  the quoted bound reproduces S=0.95 at k=0.2 h/Mpc
+    the same 5% criterion at k = 0.5 h/Mpc gives c_s^2 < 9.9999e-06
+  O7b    FAIL  got=1.0000000000e+00  want=9.5000000000e-01  rel-err=5.26e-02  bound at k=0.5 h/Mpc reproduces S=0.95
+    that bound implies eta > 5.9371e-02 eV^-4 and a transverse Compton
+    wavelength lambda_C = sqrt(eta/K) > 5.367e+00 kpc (vs 16.971 pc at eta = gamma)
+  O8     PASS  got=5.3665660921e+00  want=5.3665660921e+00  rel-err=0.00e+00  lambda_C = L*/(sqrt(2 c_T^2)) identity
+
+O9  the action's own dark sector: the cold Vlasov medium has
+    sigma_c = sqrt(a0 L*) = 8.33 km/s (A20/A65), FIXED, and its pressure
+    is the elastic one, c_s,el^2 = gamma rho_c.  Neither is gamma/eta.
+  O9     PASS  got=8.3256628074e+00  want=8.3300000000e+00  rel-err=5.21e-04  sigma_c = sqrt(a0 L*) in km/s
+  O10    PASS  got=1.0000000000e+00  want=1.0000000000e+00  rel-err=0.00e+00  growth with the elastic speed is un-suppressed
+    c_s,el^2 = gamma rho_c = 5.774e-18 (in c^2 units); k_J(cosmic mean) = 8.743e+04 h/Mpc
+
+O11 Jeans wavenumbers for the c_T^2 = gamma/eta reading:
+    c_s^2=1e-06: k_J(cosmic mean)=2.101e-01 h/Mpc, k_J(cluster, 1e3 rho_c)=6.644e+00 h/Mpc
+    c_s^2=1e-08: k_J(cosmic mean)=2.101e+00 h/Mpc, k_J(cluster, 1e3 rho_c)=6.644e+01 h/Mpc
+    c_s^2=1e-10: k_J(cosmic mean)=2.101e+01 h/Mpc, k_J(cluster, 1e3 rho_c)=6.644e+02 h/Mpc
+  O11    PASS  got=3.1622776602e+01  want=3.1622776602e+01  rel-err=1.12e-16  k_J ~ sqrt(rho): cluster/mean ratio
+
+O12 CMB: the P sector has no direct coupling to the baryon-photon fluid
+    (L_m minimal, no P.J, no P.F_munu: A22/A33).  Its O(eps) stress is dust,
+    so the acoustic peaks see LCDM + the law, and c_T^2 nowhere.
+    w_dark(z=1100) = gamma rho_c(z=1100) = 7.706e-09  (dust to 1e-8)
+  O12    PASS  got=1.3346333010e+09  want=1.3346333010e+09  rel-err=0.00e+00  dark-sector w at recombination scales as (1+z)^3
+
+O13 GW: the TT quadratic action has no P operator (no P term carries two
+    derivatives of h^TT).  A P background contributes only a MASS:
+    m_TT^2 = u^2(4-3x)/(1-x)^2  (A54 G2), so d(omega^2)/dk^2 = 1 exactly.
+  O13    PASS  got=1.0000000000e+00  want=1.0000000000e+00  rel-err=0.00e+00  d(omega^2)/dk^2 = 1 for the TT mode (c_T^2 = 1)
+    at u = a0/2 the induced graviton mass is 3.249e-34 eV vs the bound 1.2e-22 eV
+  O14    PASS  got=3.6930937180e+11  want=3.7200000000e+11  rel-err=7.23e-03  P-background graviton mass vs LIGO bound
+    loop-induced delta c_T^2 ~ m^4/(16 pi^2 M_Pl^2 k^2) = 6.670e-144
+  O15    PASS  got=6.6702392299e-144  want=0.0000000000e+00  abs-err=6.67e-144  loop correction to c_T^2
+
+O16 if the two transverse modes were thermally populated at T_nu,
+    Delta N_eff = 2 (8/7)(4/11)^(4/3) -- but the action gives no
+    production mechanism, so this is a conditional statement only.
+  O16    PASS  got=5.9325993185e-01  want=5.9340000000e-01  rel-err=2.36e-04  Delta N_eff for two thermalized bosonic modes
+
+    VERDICT (task 2): UNCONSTRAINED in the action as written.
+    gamma/eta enters only the transverse P dispersion; the dark mass's
+    pressure is gamma rho_c (eta-free), so growth, clusters and the CMB
+    are blind to it.  If the medium's pressure were c_T^2 rho instead,
+    LSS gives gamma/eta < 1.00e-05 (95% CL).
+
+==============================================================================
+TASK 3 -- the four gates under c_s^2 != 1
+==============================================================================
+
+(i) lensing = dynamics.  At O(eps) the P stress is a pure trace (dust),
+    so Phi - Psi = 0 at O(eps) for every eta, gamma.  At O(eps^2):
+      Pi_W = u W'(u) = u^2/(K(1-u/a0))          [A54 G4]
+      Pi_g = gamma d (P' - P/r)                  [the gamma-sector quadrupole]
+      Pi_eta = eta E_iE_j (traceless) -> 0 on the static branch.
+    at u=a0/2, r=L*: Pi_W=2.5047e-13 eV^4, Pi_gamma=1.2523e-13 eV^4, ratio=0.5000
+  G1     PASS  got=5.0000000000e-01  want=5.0000000000e-01  rel-err=2.22e-16  Pi_gamma/Pi_W = (1-x)L*^2/r^2 = 1/2 at r = L*
+    quadrupole |Pi| for P ~ r : 2.289e-24 eV^4 (trace 9.393e-14);  for P ~ 1/r : 4.117e+35 eV^4
+  G2     PASS  got=2.4368837598e-11  want=0.0000000000e+00  abs-err=2.44e-11  gradient-sector quadrupole/trace vanishes for P ~ x
+  G3     PASS  got=2.6131531221e-11  want=0.0000000000e+00  abs-err=2.61e-11  computed quadrupole = -gamma d (P'-P/r)(n_i n_j - delta/3)
+    hence (Phi-Psi)/Psi <= 2.63e-7 * (1 + |Pi_gamma/Pi_W|) = 3.945e-07
+
+(ii) c_T^2 = 1 for the graviton: exact, and independent of gamma/eta.
+  G4     PASS  got=1.0000000000e+00  want=1.0000000000e+00  abs-err=0.00e+00  c_T^2(TT) at gamma/eta=0.001
+  G4b    PASS  got=1.0000000000e+00  want=1.0000000000e+00  abs-err=0.00e+00  c_T^2(TT) at gamma/eta=100.0
+    GW170817: |c_T - 1| < 1e-15 is satisfied identically for every eta, gamma.
+
+(iii) alpha_1 = alpha_2 = 0 near source.
+    alpha_1(1 AU) = 2r^2/L*^2 = 8.161493e-14   (independent r^2K/gamma = 8.161493e-14)
+  G5     PASS  got=8.1614929337e-14  want=8.1614929337e-14  rel-err=0.00e+00  alpha_1 = 2r^2/L*^2 = r^2 K/gamma
+  G6     PASS  got=1.0000000000e+00  want=1.0000000000e+00  abs-err=0.00e+00  alpha_1 is eta-independent (no time derivative in the static solution)
+  G7     PASS  got=4.0000000000e+00  want=4.0000000000e+00  rel-err=0.00e+00  alpha_1 ~ 1/gamma (varying gamma by 4x)
+  G8     PASS  got=0.0000000000e+00  want=0.0000000000e+00  abs-err=0.00e+00  momentum density j_P = 0 for E = 0, three eta values
+
+(iv) stability: Hamiltonian bounded.
+  G9     PASS  got=2.4000000000e+01  want=2.4000000000e+01  abs-err=0.00e+00  healthy (Z,omega^2,m_T^2 > 0) on 24 (beta, gamma/eta) points
+    principal positivity beta > 2 eta a0^2/K gives eta < 9.981e+11 eV^-4,
+    i.e. gamma/eta > 5.948e-19: vacuous.
+  G10    PASS  got=1.0000000000e+00  want=1.0000000000e+00  rel-err=0.00e+00  eta_max = beta K/(2 a0^2) inverted back
+  G11    PASS  got=3.0000000000e+00  want=3.0000000000e+00  abs-err=0.00e+00  three widely spaced gamma/eta survive all four gates
+
+    NO GATE FIXES gamma/eta.  (i) exact at O(eps), gamma only at O(eps^2);
+    (ii) exact for every gamma/eta; (iii) eta absent; (iv) gamma/eta > 0 only.
+
+==============================================================================
+TASK 4 -- the gapless k^4 mode: strong-coupling scale
+==============================================================================
+
+Dispersion  omega^2 = alpha p^4 / Z,  Z = B + eta p^2,  B = K(2+3beta)/beta.
+    B = 4.215283e-55 eV^-2,  p_* = sqrt(B/eta) = 8.426063e-25 eV (eta = gamma)
+    p =  0.01 p_*:  Z/B = 1.0001  c_s^2 = 9.999000e-05
+    p =  0.10 p_*:  Z/B = 1.0100  c_s^2 = 9.900990e-03
+    p =  1.00 p_*:  Z/B = 2.0000  c_s^2 = 5.000000e-01
+    p = 10.00 p_*:  Z/B = 101.0000  c_s^2 = 9.900990e-01
+  C1a    PASS  got=3.7000000000e-01  want=3.7000000000e-01  rel-err=3.70e-13  UV limit c_s^2 = alpha/eta = gamma/eta at gamma/eta=0.37
+  C1     PASS  got=1.0000000000e+00  want=1.0000000000e+00  rel-err=1.00e-12  UV limit c_s^2 = alpha/eta = gamma/eta at gamma/eta=1.0
+  C1b    PASS  got=9.9999999990e+01  want=1.0000000000e+02  rel-err=1.00e-10  UV limit c_s^2 = alpha/eta = gamma/eta at gamma/eta=100.0
+    so at p >> p_* the scalar's speed IS gamma/eta.
+
+The leading interaction is the cubic term of W:
+    W = u^2/(2K) + u^3/(3Ka0) + u^4/(4Ka0^2)+... ,  u = K|P|,
+    so L3 = -(K^2/(3 a0)) |grad sigma|^3  and, canonically (sigma_c = sqrt(Z) sigma),
+    L3 = -(K^2/(3 a0 Z^{3/2})) p^3 sigma_c^3 .
+    One-loop 2-point: deltaPi/omega^2 = K^4/(144 pi^2 a0^2 Z^3 kappa_L^6 p^2),
+    kappa_L = sqrt(alpha/B).  Setting = 1 gives the strong-coupling momentum.
+    kappa_L = sqrt(alpha/B) = 1.186794e+24 eV^-1  (the Lifshitz mass M_L = 1/kappa_L = 8.426063e-25 eV)
+
+    IR branch (Z ~ B):  p_sc = K^2/(8.485 pi a0 alpha^{3/2}) = 2.8360e-69 eV
+                        = sqrt(K)/(3 pi a0 L*^3)               = 2.8360e-69 eV
+  C2     PASS  got=2.8360269860e-69  want=2.8360269860e-69  rel-err=1.82e-16  two independent routes to p_sc (IR branch)
+  C3     PASS  got=1.0000000000e+00  want=1.0000000000e+00  rel-err=2.22e-16  degeneracy check
+    UV branch (Z ~ eta p^2): p_sc = K^2/(12 pi a0 alpha eta^(1/2)) = 2.0054e-69 eV
+  C4     PASS  got=7.0710678119e-01  want=1.0000000000e+00  rel-err=2.93e-01  the two branches agree within a factor 2 at eta = gamma
+  C5     PASS  got=1.1894160774e-02  want=1.1894160774e-02  rel-err=0.00e+00  p_sc/(M_L^3/(M_Pl a0)) = 2/(3 sqrt pi) (K/2B)^{3/2}
+    parametric form: p_sc = 0.01189 M_L^3/(M_Pl a0) = 2.3844e-67 eV
+
+    comparisons:  p_sc/H0 = 1.899e-36
+                  p_sc/a0 = 1.380e-35
+                  p_sc/(1/L*) = 1.064e-44
+  C6     PASS  got=1.8993154319e-36  want=1.8990000000e-36  rel-err=1.66e-04  p_sc/H0
+  C7     PASS  got=1.3800329188e-35  want=1.3800000000e-35  rel-err=2.39e-05  p_sc/a0
+  C8     PASS  got=1.0643529686e-44  want=1.0640000000e-44  rel-err=3.32e-04  p_sc/(1/L*)
+
+    loop factor deltaPi/omega^2 = (p_sc/p)^2 across the astrophysical range:
+      CMB    p=6.400e-30 eV   deltaPi/omega^2 = 1.964e-79
+      LSS    p=4.300e-31 eV   deltaPi/omega^2 = 4.350e-77
+      gal    p=1.000e-32 eV   deltaPi/omega^2 = 8.043e-74
+      Lstar  p=2.665e-25 eV   deltaPi/omega^2 = 1.133e-88
+      a0v    p=2.055e-34 eV   deltaPi/omega^2 = 1.904e-70
+  C9     PASS  got=1.9044908569e-70  want=0.0000000000e+00  abs-err=1.90e-70  largest loop factor over CMB/LSS/galactic/L*/a0 scales
+
+    static Green's function: alpha nabla^4 sigma = J  =>  G = -r/(8 pi alpha).
+    nabla^2 G = -1/(4 pi r): max relative deviation 4.52e-09
+    flux 4 pi r^2 d(nabla^2G)/dr = 1.000000 (must be 1)
+  C10    PASS  got=4.5171295593e-09  want=0.0000000000e+00  abs-err=4.52e-09  nabla^2(-r/8pi) = -1/(4 pi r) pointwise
+  C11    PASS  got=1.0000001102e+00  want=1.0000000000e+00  rel-err=1.10e-07  unit flux: nabla^4(-r/8pi) = delta^3(r)
+    a linear potential gives a CONSTANT force: -dPhi/dr = const, not 1/r^2
+  C12    PASS  got=1.0000000000e+00  want=1.0000000000e+00  rel-err=1.11e-16  d(-G)/dr = 1/(8 pi): constant force
+    the theory's own exact linearised solution has Phi = -mu/r + mu r/L*^2
+    (A22): the linear term equals the 1/r term at r = L* = 24 pc, and is
+    (r/L*)^2 of it at radius r.  The k^4 mode supplies that shape, not the law.
+  C13    PASS  got=1.0000000000e+00  want=1.0000000000e+00  abs-err=0.00e+00  linear/Newtonian = (r/L*)^2 = 1 at r = L*
+
+    p_sc for the three a0 in play: canonical 2.8360e-69 eV, alt 2.3450e-69 eV, kappa-measured 3.1626e-69 eV  (p_sc ~ 1/a0)
+  C14    PASS  got=5.8281573984e-103  want=5.8281573984e-103  rel-err=0.00e+00  p_sc a0 = const across the three footings
+
+    The EFT is valid at ALL astrophysical scales: p_sc is 36 orders below
+    H0.  The mode cannot be the mediator of a 1/r force -- its static
+    Green's function is -r/(8 pi alpha).  The law itself is first order
+    (charge + W), not k^4.
+
+==============================================================================
+RESULT: 53/56 checks PASS
+FAILED:
+   O6  got=nan want=4.000000e+00 err=nan tol=6.000e-02
+   O7  got=1.000000e+00 want=9.500000e-01 err=5.263e-02 tol=1.000e-02
+   O7b  got=1.000000e+00 want=9.500000e-01 err=5.263e-02 tol=1.000e-02
+==============================================================================
