@@ -1,0 +1,487 @@
+{
+ "mutation": null,
+ "inputs": {
+  "a0_si": 9.36e-11,
+  "lstar_pc": 24.0,
+  "rho_c_ev4": 9.7249e-12,
+  "rho_c_kg": 2.2566e-27,
+  "gamma_factor": 1.0,
+  "eq_dof": 3,
+  "ct_mode": "sigma",
+  "pressure": true,
+  "shear": true,
+  "eos_factor": 1.0,
+  "hlam_factor": 1.0
+ },
+ "task1": {
+  "dispersion": "(K + gamma*k**2)/eta",
+  "ct2_ct": 0.2529411764705882,
+  "band": {
+   "0.333333": {
+    "ct_ms": 4.806823663057142,
+    "ct2": 2.5708395650304316e-10,
+    "lamc_kpc": 1058.4217513761366
+   },
+   "0.555556": {
+    "ct_ms": 6.205582665058681,
+    "ct2": 4.284732608384053e-10,
+    "lamc_kpc": 819.849963268693
+   },
+   "1.000000": {
+    "ct_ms": 8.325662807439311,
+    "ct2": 7.712518695091296e-10,
+    "lamc_kpc": 611.0800830731678
+   }
+  },
+  "cs_el2": 5.773809908672081e-18,
+  "cs_el_ms": 0.720363905013361,
+  "ratio_3dof": 2.764049115613276,
+  "ratio_perdof": 0.9213497052044252,
+  "a0_impl_si": 2.587149972214026e-10,
+  "kappa_impl": 1.143542243729679,
+  "tension_sigma": 6.491951627980495,
+  "mP_over_TdS": 1407275960.5772574,
+  "L_eq_pc": 33774623053.85418,
+  "eta_rho_c": 7.486283193513522e-09,
+  "ct2_hydro": 5.773809908672081e-18,
+  "ratio_etarho_closure": 133577634.4750688
+ },
+ "task2": {
+  "sigma_c_ms": 8325.662807439312,
+  "ct2": 7.712518695091296e-10,
+  "eta": 769.8056734273383,
+  "mt_ev": 1.0464965380339827e-29,
+  "lamc_kpc": 611.0800830731678,
+  "margin_bound": 248.42727463590538,
+  "S_02": 0.9997947315003608,
+  "S_05": 0.9987176109405267,
+  "S_3": 0.9546347198520809,
+  "S_5": 0.8779439989278105,
+  "S_10": 0.5790172187501327,
+  "k_half": 11.163246259026959,
+  "lam_half": 0.08957967752358485,
+  "S_at_c": 1.0453619780819888e-35,
+  "lamJ_ct_Mpc": 1.2322903718335758,
+  "MJ_ct": 32660790543.407845,
+  "lamJ_ct_200_Mpc": 0.08713608783144135,
+  "MJ_ct_200": 2309466647.2157154,
+  "scale_ratios": {
+   "r_sp": 0.4321641323006844,
+   "u_half": 0.5737841155616599,
+   "r_v": 0.3623792226016532,
+   "r200c": 0.5907683688550356
+  },
+  "min_scale_dev": 0.4092316311449644
+ },
+ "task3": {
+  "kJ_el": 1.9097791255804445e-18,
+  "lamJ_el_pc": 106.62184199571574,
+  "MJ_el": 0.02115563522248399,
+  "pressure_ratio": 133577634.4750688,
+  "T_el_over_TdS": 2.7084479618056634e-09
+ },
+ "checks": [
+  {
+   "name": "K1",
+   "got": 1.8000017647058824,
+   "want": 1.8000017647058824,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "omega^2 from the E-L equation = (K+gamma k^2)/eta"
+  },
+  {
+   "name": "K2",
+   "got": 0.2529411764705882,
+   "want": 0.2529411764705882,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "c_T^2 = lim omega^2/k^2 = gamma/eta (symbolic limit vs ratio)"
+  },
+  {
+   "name": "K3",
+   "got": 1.7058823529411764,
+   "want": 1.7058823529411764,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "mass gap omega^2(0) = K/eta"
+  },
+  {
+   "name": "K4",
+   "got": 2.9,
+   "want": 2.9,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "d^2W/dP^2|_0 = K, so the gap is K/eta (W series vs K)"
+  },
+  {
+   "name": "K5",
+   "got": 0.25294117647058784,
+   "want": 0.2529411764705882,
+   "err": 1.5362388363999259e-15,
+   "tol": 1e-09,
+   "mode": "rel",
+   "ok": true,
+   "desc": "c_T^2 from the finite-difference slope of omega^2(k) at large k"
+  },
+  {
+   "name": "K6",
+   "got": 1.0,
+   "want": 1.0,
+   "err": 0.0,
+   "tol": 1e-15,
+   "mode": "rel",
+   "ok": true,
+   "desc": "sympy: dp/drho = gamma rho  (the Gamma = 2 polytrope)"
+  },
+  {
+   "name": "K7",
+   "got": 0.5189241556460985,
+   "want": 0.519081,
+   "err": 0.0003021577632421694,
+   "tol": 0.001,
+   "mode": "rel",
+   "ok": true,
+   "desc": "gamma rho_c = 0.519081 m^2/s^2 (A16 K8)"
+  },
+  {
+   "name": "K8",
+   "got": 0.720363905013361,
+   "want": 0.720473,
+   "err": 0.0001514213393687543,
+   "tol": 0.001,
+   "mode": "rel",
+   "ok": true,
+   "desc": "elastic sound speed = 0.720473 m/s (A16 K8)"
+  },
+  {
+   "name": "K9",
+   "got": 133577634.4750688,
+   "want": 133577634.47506881,
+   "err": 1.115543126093376e-16,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "c_T^2/c_s,el^2 = 1/(eta rho_c): the two speeds differ by eta*rho_c"
+  },
+  {
+   "name": "K10",
+   "got": 5.773809908672081e-18,
+   "want": 5.773809908672081e-18,
+   "err": 0.0,
+   "tol": 1e-15,
+   "mode": "rel",
+   "ok": true,
+   "desc": "eta = 1/rho_c (the only dimensionally available inertia) => c_T = c_s,el"
+  },
+  {
+   "name": "K11",
+   "got": 7.486283193513522e-09,
+   "want": 7.486283193513524e-09,
+   "err": 2.2098565901694364e-16,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "closure's eta rho_c = c_s,el^2/c_T^2 = 7.48e-9 (not 1)"
+  },
+  {
+   "name": "K12",
+   "got": 2.764049115613276,
+   "want": 2.7639531957706835,
+   "err": 3.470385921840037e-05,
+   "tol": 0.0001,
+   "mode": "rel",
+   "ok": true,
+   "desc": "3 k_B T_dS/(m_P sigma_c^2) = 3 sqrt(32pi/3)/(2pi) = 2.76395"
+  },
+  {
+   "name": "K13",
+   "got": 0.9213497052044252,
+   "want": 0.9213177319235613,
+   "err": 3.470385921819953e-05,
+   "tol": 0.0001,
+   "mode": "rel",
+   "ok": true,
+   "desc": "k_B T_dS/(m_P sigma_c^2) = sqrt(32pi/3)/(2pi) = 0.92116 (per-dof)"
+  },
+  {
+   "name": "K14",
+   "got": 8.62383324071342e-11,
+   "want": 8.62e-11,
+   "err": 0.00044469149807657796,
+   "tol": 0.002,
+   "mode": "rel",
+   "ok": true,
+   "desc": "cH_L/2pi reproduces the declared thermal footing 8.620e-11"
+  },
+  {
+   "name": "K15",
+   "got": 2.587149972214026e-10,
+   "want": 2.586e-10,
+   "err": 0.00044469149807642796,
+   "tol": 0.002,
+   "mode": "rel",
+   "ok": true,
+   "desc": "dof-dof equipartition implies a0 = dof*cH_L/2pi = 2.587e-10 m/s^2 (dof=3)"
+  },
+  {
+   "name": "K16",
+   "got": 6.491951627980495,
+   "want": 6.49,
+   "err": 0.0003007130940670564,
+   "tol": 0.005,
+   "mode": "rel",
+   "ok": true,
+   "desc": "the 3-dof version is 6.49 sigma from A51's kappa"
+  },
+  {
+   "name": "K17",
+   "got": 1407275960.5772574,
+   "want": 1407275960.5772574,
+   "err": 0.0,
+   "tol": 1e-10,
+   "mode": "rel",
+   "ok": true,
+   "desc": "m_P/T_dS = 2pi/(H_L L*) = 1.408e9: the P particle is far above T_dS"
+  },
+  {
+   "name": "K18",
+   "got": 33774623053.85418,
+   "want": 33774623053.85418,
+   "err": 0.0,
+   "tol": 1e-10,
+   "mode": "rel",
+   "ok": true,
+   "desc": "L* at which m_P = T_dS: 2pi/H_L = 3.377e10 pc = 33.77 Gpc"
+  },
+  {
+   "name": "K19",
+   "got": 7.712518695091296e-10,
+   "want": 7.720556347449893e-10,
+   "err": 0.00104107165298423,
+   "tol": 0.002,
+   "mode": "rel",
+   "ok": true,
+   "desc": "(sigma_c/c)^2 from a0L* = 7.7125e-10, vs 7.7206e-10 from 8.33 km/s"
+  },
+  {
+   "name": "K20",
+   "got": 769.8056734273383,
+   "want": 769.8056734273383,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "eta = gamma/c_T^2 = K/m_T^2 (two routes)"
+  },
+  {
+   "name": "K21",
+   "got": 611.0800830731678,
+   "want": 611.0800830731678,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "lambda_C = sqrt(eta/K) = L*/(sqrt2 c_T) (611.1 kpc)"
+  },
+  {
+   "name": "K22",
+   "got": 611.0800830731678,
+   "want": 612.0,
+   "err": 0.0015031322333859958,
+   "tol": 0.01,
+   "mode": "rel",
+   "ok": true,
+   "desc": "lambda_C = 611 kpc (the closure's 612 kpc, 0.2 %)"
+  },
+  {
+   "name": "K24",
+   "got": 248.42727463590538,
+   "want": 248.42727463590538,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "the closure sits 248x below A69's bound, in c_T^2 and in eta"
+  },
+  {
+   "name": "K25",
+   "got": 0.7879851843563634,
+   "want": 0.7879851836729622,
+   "err": 8.672767441056655e-10,
+   "tol": 1e-08,
+   "mode": "rel",
+   "ok": true,
+   "desc": "c_s = 0 growth = the exact LCDM growth function (ODE vs integral)"
+  },
+  {
+   "name": "K26",
+   "got": 0.9736576106861058,
+   "want": 0.9737,
+   "err": 4.353426506544106e-05,
+   "tol": 5e-05,
+   "mode": "rel",
+   "ok": true,
+   "desc": "S(k=0.2) at c_s^2 = 1e-7 reproduces A69's table (0.9737)"
+  },
+  {
+   "name": "K27",
+   "got": 0.9997947315003608,
+   "want": 0.999794731500359,
+   "err": 1.7767215443659423e-15,
+   "tol": 1e-08,
+   "mode": "rel",
+   "ok": true,
+   "desc": "S(k=0.2) at c_T = sigma_c: fixed-step RK4 vs adaptive DOP853"
+  },
+  {
+   "name": "K28",
+   "got": 6.247373862659712,
+   "want": 6.25,
+   "err": 0.0004201819744460522,
+   "tol": 0.01,
+   "mode": "rel",
+   "ok": true,
+   "desc": "1-S ~ k^2: (1-S(0.5))/(1-S(0.2)) = 6.25"
+  },
+  {
+   "name": "K29",
+   "got": 0.08957967752358485,
+   "want": 0.0896,
+   "err": 0.0002268133528476185,
+   "tol": 0.02,
+   "mode": "rel",
+   "ok": true,
+   "desc": "half-mode 1/k_1/2 = 0.090 h^-1 Mpc (k_1/2 = 11.2 h/Mpc)"
+  },
+  {
+   "name": "K30",
+   "got": 1.2322903718335758,
+   "want": 1.2322903718335758,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "lambda_J = 2pi c_T/sqrt(4pi G rho) = 1.2323 Mpc"
+  },
+  {
+   "name": "K31",
+   "got": 32660790543.407845,
+   "want": 32660790543.40784,
+   "err": 1.167974565880478e-16,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "M_J = (4pi/3)rho(lambda/2)^3 = pi lambda^3 rho/6 = 3.266e10 Msun"
+  },
+  {
+   "name": "K32",
+   "got": 0.4092316311449644,
+   "want": 0.3,
+   "err": 0.10923163114496443,
+   "tol": 1e-09,
+   "mode": "ge",
+   "ok": true,
+   "desc": "no measured cluster scale sits at lambda_C (min |ratio-1| >= 0.30)"
+  },
+  {
+   "name": "K32b",
+   "got": 7.712518695091296e-10,
+   "want": 1.916e-07,
+   "err": -1.9082874813049086e-07,
+   "tol": 1e-09,
+   "mode": "le",
+   "ok": true,
+   "desc": "the closure is allowed by A69's bound (gamma/eta < 1.916e-07)"
+  },
+  {
+   "name": "K33",
+   "got": 7.420505148416978,
+   "want": 7.42,
+   "err": 6.80793014794874e-05,
+   "tol": 0.005,
+   "mode": "rel",
+   "ok": true,
+   "desc": "lambda_C / lambda_FS(sigma_c) = 7.42 (A16's 82.35 kpc)"
+  },
+  {
+   "name": "K34",
+   "got": 1.0000000000000167,
+   "want": 1.0,
+   "err": 1.6653345369377348e-14,
+   "tol": 1e-09,
+   "mode": "rel",
+   "ok": true,
+   "desc": "elastic k_J: closed form vs numerical root of the dispersion"
+  },
+  {
+   "name": "K35",
+   "got": 106.62184199571574,
+   "want": 106.62919051580079,
+   "err": 6.891658887682046e-05,
+   "tol": 0.003,
+   "mode": "rel",
+   "ok": true,
+   "desc": "elastic lambda_J = sqrt2 pi L* = 106.62 pc (density-free)"
+  },
+  {
+   "name": "K36",
+   "got": 0.02115563522248399,
+   "want": 0.0212,
+   "err": 0.002092678184717524,
+   "tol": 0.005,
+   "mode": "rel",
+   "ok": true,
+   "desc": "elastic M_J at the cosmic mean = 0.0212 Msun (A16)"
+  },
+  {
+   "name": "K37",
+   "got": 1.0,
+   "want": 1.0,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "dln(lambda_J,el)/dln(rho) = 0: 200x in density, same length"
+  },
+  {
+   "name": "K38",
+   "got": 14.142135623730951,
+   "want": 14.142135623730951,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "the c_T Jeans length does scale: 200x density -> sqrt(200)"
+  },
+  {
+   "name": "K39",
+   "got": 133577634.4750688,
+   "want": 133577634.47506876,
+   "err": 2.2310862521867524e-16,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "rho sigma_c^2 / p_el = (sigma_c/c_s,el)^2 = 1.336e8"
+  },
+  {
+   "name": "K40",
+   "got": 2.7084479618056634e-09,
+   "want": 2.7084479618056634e-09,
+   "err": 0.0,
+   "tol": 1e-12,
+   "mode": "rel",
+   "ok": true,
+   "desc": "T implied by the elastic speed = 2.71e-9 T_dS (a cold solid), two routes"
+  }
+ ],
+ "npass": 40,
+ "ntot": 40
+}

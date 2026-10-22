@@ -1,0 +1,231 @@
+====================================================================================================
+A78  beta closure      mutation = 'no_theta2'
+====================================================================================================
+INPUTS
+   G [m^3/kg/s^2]           = 6.67430000e-11
+   c [m/s]                  = 2.99792458e+08
+   K=4piG [m^3/kg/s^2]      = 8.38717274e-10
+   a0 [m/s^2]               = 9.36000000e-11
+   L* [m]                   = 7.40562620e+17
+   H0 [1/s]                 = 2.18428524e-18
+   Lambda_obs [1/m^2]       = 1.08900000e-52
+   Omega_m                  = 3.16000000e-01
+   K [eV^-2]                = 8.43056500e-56
+   eta [eV^-4]              = 5.93714100e-07
+   p_sc [eV]                = 2.83600000e-69
+   |Delta N_eff| bound      = 3.00000000e-01
+   N_eff^SM                 = 3.04600000e+00
+   A69 max loop factor      = 1.90400000e-70
+   GW170817 |c_T-1|         = 1.00000000e-15
+
+
+[P1] FRW from the full ADM density vs the reduced ansatz
+     L_A - L_B (symbolic)          = 0
+     H^2 from dL/dN = 0            = -4*K*rho/3 - 2*Lambda/3
+     H^2 from the Legendre energy  = NO REAL SOLUTION
+C01_FRW        NO REAL SOLUTION (lhs=nan)   FAIL   the dialled action has no H^2 solution: n A H^2 = 2Lambda+4K rho is inconsistent
+C02_FRW2       NO REAL SOLUTION (lhs=-0.6666666676731273)   FAIL   H^2 < 0 on the dialled background: no real expansion (kinetic term wrong sign)
+
+[P1] second Friedmann equation along the numerical solution of the first
+     A (2Hdot+3H^2) = -2.0000000030 ... -2.0000000030 ; 2 Lambda = 2.0
+
+[P1] cosmological vs static gravitational coupling
+     G_N   (static Poisson, lap^2 Phi = K rho) = 6.67430000e-11
+     G_eff/G_N (beta=0.000) = -2.00000000
+     G_eff/G_N (beta=0.027) = -2.00000000
+     G_eff/G_N (beta=0.500) = -2.00000000
+     G_eff/G_N (beta=1.000) = -2.00000000
+     G_eff/G_N (beta=3.000) = -2.00000000
+C03_GEFF       lhs=-2.000000000000e+00  rhs=+1.000000000000e+00  rel.res=-1.500e+00  tol=1e-14  FAIL   beta=0 must reduce to GR
+C03b_GEFF      lhs=-2.000000000000e+00  rhs=+1.000000000000e+00  rel.res=-1.500e+00  tol=5e-02  FAIL   BBN requires G_cosmo = G_N to <5% at beta < 0.027
+C04b_ROOT      NO REAL SOLUTION (lhs=nan)   FAIL   n A(beta) H0^2 - 2 Lambda has no root: the dialled background cannot reproduce H0
+
+[P1] beta from the vacuum background at (Lambda_bare = Lambda_obs, H = H0)
+     beta (closed form)  = -0.210799756681
+     beta (brentq root)  = nan
+     Lambda_dS = 3 H0^2/c^2 = 1.59257008e-52 m^-2 = 1.462415 Lambda_obs
+     Lambda_obs c^2 = 9.78744390e-36 s^-2 ; 3 H0^2 = 1.43133060e-35 s^-2 ; ratio = 0.683800
+     beta>0 requires Lambda_bare > Lambda_dS = 1.462415 Lambda_obs (vacuum reading)
+     beta=0.000  ->  Lambda_bare =   1.4624 Lambda_obs (vacuum/dS reading, H=H0)
+     beta=0.027  ->  Lambda_bare =   1.5216 Lambda_obs (vacuum/dS reading, H=H0)
+     beta=1.000  ->  Lambda_bare =   3.6560 Lambda_obs (vacuum/dS reading, H=H0)
+     beta=3.000  ->  Lambda_bare =   8.0433 Lambda_obs (vacuum/dS reading, H=H0)
+
+[P1] present-epoch reading, matter included (n A H0^2 = 2Lambda_bare c^2 + 4K rho_m0)
+     Omega_m implied by (Lambda_obs, H0) = 0.316200   (Planck: 0.316)
+     check: Lambda_bare(beta=0)/(Lambda_obs c^2) = -1.1936226958
+     beta=0.000  ->  Lambda_bare =  -1.1936 Lambda_obs
+     beta=0.027  ->  Lambda_bare =  -1.1936 Lambda_obs
+     beta=0.500  ->  Lambda_bare =  -1.1936 Lambda_obs
+     beta=1.000  ->  Lambda_bare =  -1.1936 Lambda_obs
+     beta=3.000  ->  Lambda_bare =  -1.1936 Lambda_obs
+C05_LAM0       lhs=-1.193622695779e+00  rhs=+1.000000000000e+00  rel.res=-1.838e+00  tol=1e-12  FAIL   beta=0 must reproduce the observed Lambda
+     plug-back residual at beta=1: (n A H0^2 - 2Lambda_bare - 4K rho)/(n A H0^2) = 9.337e-17
+
+[P1] stability vs bare vacuum
+     beta=-0.100  Lambda_bare/Lambda_obs= -1.1936  sign(beta)=-1  sign(Lb-Lobs)=+0
+     beta=+0.000  Lambda_bare/Lambda_obs= -1.1936  sign(beta)=+0  sign(Lb-Lobs)=+0
+     beta=+0.027  Lambda_bare/Lambda_obs= -1.1936  sign(beta)=+1  sign(Lb-Lobs)=+0
+     beta=+0.500  Lambda_bare/Lambda_obs= -1.1936  sign(beta)=+1  sign(Lb-Lobs)=+0
+     beta=+1.000  Lambda_bare/Lambda_obs= -1.1936  sign(beta)=+1  sign(Lb-Lobs)=+0
+C06_STAB       lhs=+0.000000000000e+00  rhs=+1.000000000000e+00  rel.res=-1.000e+00  tol=1e-15  FAIL   beta>0 iff Lambda_bare > Lambda_obs (matter-inclusive reading)
+
+====================================================================================================
+PART 2 -- static sector: theta = 0 identically, so no beta anywhere
+====================================================================================================
+
+[P2] theta on the static ansatz (N^i = c_s r rhat), dial c_s = 0:  theta = -3*cs/N
+     (1+beta) theta^2 N sqrt h/(4K) = 0
+C07_THETA      lhs=+0.000000000000e+00  rhs=+0.000000000000e+00  rel.res=+0.000e+00  tol=1e-15  PASS   theta = 0 identically for N^i=0, hdot=0
+C08_BTERM      lhs=+0.000000000000e+00  rhs=+0.000000000000e+00  rel.res=+0.000e+00  tol=1e-15  PASS   the whole beta-term vanishes on the static branch, every beta
+C09_SHARP      value=+0.000000000000e+00  floor=1.000e-08  ratio=0.000e+00  FAIL   and is NON-zero as soon as N^i != 0: beta-invisibility is staticity, not absence
+     d/dbeta of the static action density = 0
+C10_DSDB       lhs=+0.000000000000e+00  rhs=+0.000000000000e+00  rel.res=+0.000e+00  tol=1e-15  PASS   static action has identically zero beta-derivative
+
+[P2] the law from the first integral g_N = g - xi u,  xi g = K W'(u)
+     g_N(g) = -g*(a0*xi**2 - a0 - g*xi)/(a0 + g*xi)
+     xi=1:  g_N = g**2/(a0 + g)
+     A33 K5 form at xi=2, g=a0/3:  g_N = -0.466667 a0 ; law = 0.083333 a0 ; difference = -0.550000 a0
+C11_LAW        lhs=+0.000000000000e+00  rhs=+0.000000000000e+00  rel.res=+0.000e+00  tol=1e-12  PASS   xi=1 reproduces g_N = g^2/(g+a0) exactly (A33 K3)
+     AQUAL residual: g mu(g/a0) - g^2/(g+a0) = 0
+       g/a0= 0.01   g mu - g_N = -8.132e-20
+       g/a0= 0.10   g mu - g_N = +3.469e-18
+       g/a0= 0.50   g mu - g_N = +0.000e+00
+       g/a0= 1.00   g mu - g_N = +0.000e+00
+       g/a0=10.00   g mu - g_N = +0.000e+00
+C12_AQUAL      lhs=+0.000000000000e+00  rhs=+0.000000000000e+00  rel.res=+0.000e+00  tol=1e-14  PASS   the action's first integral g-u(g) IS AQUAL mu(x)=x/(1+x)
+
+[P2] alpha_1(1 AU): 2r^2/L*^2 = 8.16126060e-14 (measured L*) ;  r^2 K/gamma = 8.16126060e-14 (action)
+C13_ALPHA1     lhs=+8.161260603853e-14  rhs=+8.161260603853e-14  rel.res=+0.000e+00  tol=1e-12  PASS   alpha_1(1AU)=2r^2/L*^2=r^2K/gamma; no beta (A54 G6)
+     alpha_1 depends on gamma only; the static solution is beta-free (C07-C10),
+     so d alpha_1/d beta = 0 for every beta.
+
+====================================================================================================
+PART 3 -- TT sector: theta = O(h^2), so beta cannot enter at quadratic order
+====================================================================================================
+
+[P3] TT mode diag(h+,-h+,0): det = 1 - A(tt)**2
+     theta = (1/2) d_t ln det = A(tt)*Derivative(A(tt), tt)/(A(tt)**2 - 1)
+     theta to O(eps^2) = -eps**2*a(tt)*Derivative(a(tt), tt)
+     O(eps) coefficient of theta = 0
+C14_TTTHETA    lhs=+0.000000000000e+00  rhs=+0.000000000000e+00  rel.res=+0.000e+00  tol=1e-15  PASS   theta vanishes at O(eps) for a TT mode: no volume change at linear order
+
+[P3] quadratic TT action  S = (1/4K)[ (1+0 beta) hdot^2/4 - k^2 h^2/4 ]
+     c_T^2 = <(-R3)>/<K^2> = 1
+C15_CT2        lhs=+1.000000000000e+00  rhs=+1.000000000000e+00  rel.res=+0.000e+00  tol=1e-14  PASS   c_T^2 = 1 for every beta (GW170817 |c_T-1|<1e-15)
+     dS_TT/dbeta = 0
+C16_TTBETA     lhs=+0.000000000000e+00  rhs=+0.000000000000e+00  rel.res=+0.000e+00  tol=1e-30  PASS   the O(h^2) TT action has identically zero beta-coefficient
+
+====================================================================================================
+PART 4 -- the fifth mode: Z carries beta, O(1), and it is a pole
+====================================================================================================
+
+[P4] shift elimination:  Y* = zdot
+     reduced L = 0.5*zdot**2/K
+     B = K(3c-1)/(c-1) check: B_direct = 1.0/K
+     B(beta=1)/K = 1.000000   (A68: 5)
+     B(beta=3)/K = 1.000000   (A68: 11/3)
+C17_B          lhs=+1.000000000000e+00  rhs=+5.000000000000e+00  rel.res=-8.000e-01  tol=1e-14  FAIL   B = K(2+3beta)/beta at beta=1
+
+[P4] Z from two routes
+     beta= 1.0  Z(action,numeric)=1.4900000000  Z(record K(2+3b)/b+eta p^2)=5.4900000000
+C18_Z_b1       lhs=+1.490000000000e+00  rhs=+5.490000000000e+00  rel.res=-7.286e-01  tol=1e-06  FAIL   Z from the action vs A68's formula K(2+3beta)/beta+eta p^2
+     beta= 3.0  Z(action,numeric)=1.4900000000  Z(record K(2+3b)/b+eta p^2)=4.1566666667
+C18_Z_b3       lhs=+1.490000000000e+00  rhs=+4.156666666667e+00  rel.res=-6.415e-01  tol=1e-06  FAIL   Z from the action vs A68's formula K(2+3beta)/beta+eta p^2
+
+[P4] sign(Z) vs sign(beta) on the 2+3beta>0 branch
+     beta=-0.60  Z/K=  +1.0000  sign(beta)=-1
+     beta=-0.50  Z/K=  +1.0000  sign(beta)=-1
+     beta=-0.10  Z/K=  +1.0000  sign(beta)=-1
+     beta=+0.10  Z/K=  +1.0000  sign(beta)=+1
+     beta=+0.50  Z/K=  +1.0000  sign(beta)=+1
+     beta=+1.00  Z/K=  +1.0000  sign(beta)=+1
+     beta=+3.00  Z/K=  +1.0000  sign(beta)=+1
+C19_ZSIGN      lhs=+0.000000000000e+00  rhs=+1.000000000000e+00  rel.res=-1.000e+00  tol=1e-15  FAIL   Z>0 iff beta>0 (A68 D11); a negative Z is a ghost
+
+[P4] dispersion  omega^2 = alpha p^4/Z
+     B(beta=1) = 8.43056500e-56 eV^-2 ; B(beta=3) = 8.43056500e-56 eV^-2
+     omega^2(1)/omega^2(3) at p->0 = 1.000000000000  (record B(3)/B(1) = 0.733333333333)
+C20_RATIO      lhs=+1.000000000000e+00  rhs=+7.333333333333e-01  rel.res=+2.667e-01  tol=1e-10  FAIL   the beta-shift is O(1): omega^2(3)/omega^2(1) = 15/11 = 1.3636
+     eta p_sc^2/B(1) = 5.664129e-89   (so Z(p_sc) = B to 89 digits)
+     => Z(p_sc) = B to 89 digits: at every observable momentum the beta-dependence of
+        the fifth mode is the OVERALL coefficient, not the p^2 term
+     beta= 1.0 :  Z^3 kappa_L^6 = 2.092821e-19 eV^-6 ;  alpha^3 = 2.092821e-19 eV^-6  (p_sc is beta-free)
+     beta= 3.0 :  Z^3 kappa_L^6 = 2.092821e-19 eV^-6 ;  alpha^3 = 2.092821e-19 eV^-6  (p_sc is beta-free)
+
+[P4] UV limit of the fifth mode's speed vs the transverse mode's c_T^2 = gamma/eta
+     c_s^2(UV) = 1.0000000000e+00 ; gamma/eta = 1.0000000000e+00
+C22_UVSPEED    lhs=+1.000000000000e+00  rhs=+1.000000000000e+00  rel.res=+0.000e+00  tol=1e-06  PASS   the k^4 mode joins the medium's light cone: c_s(UV) = gamma/eta
+
+====================================================================================================
+PART 5 -- can a field redefinition absorb beta?
+====================================================================================================
+
+Candidate redefinitions that could touch a KINETIC coefficient (beta multiplies no
+vertex, so only normalisations can move it):
+    h_ij -> Omega^2 h_ij ,   N -> chi N ,   P_i -> lam P_i        (Omega, chi, lam const)
+Three measured normalisations must be preserved:
+    (a) the R3 coefficient  1/(4K)      <- the static law's G           : chi*Omega = 1
+    (b) the K_ij K^ij coefficient       <- c_T^2 = 1 (GW170817)         : Omega^3/chi = 1
+    (c) the clock coefficient  xi = 1   <- the shape of g_N = g^2/(g+a0): xi*chi*Omega*lam = 1
+
+[P5] log-space system  M.(lnOmega,lnchi,lnlam) = (0, 0, -ln xi)
+     det M = 4.00000000000000
+C23_DET        lhs=+4.000000000000e+00  rhs=+4.000000000000e+00  rel.res=+0.000e+00  tol=1e-12  PASS   symbolic determinant vs the numerical 3x3 determinant: 4 != 0
+     solution: Omega = 1 , chi = 1 , lam = 1
+C24_IDENT      lhs=+0.000000000000e+00  rhs=+0.000000000000e+00  rel.res=+0.000e+00  tol=1e-13  PASS   (Omega,chi,lam) = (1,1,1): the rescaling group is trivial, no direction is left
+
+[P5] a shift redefinition N^i -> N^i + delta N^i changes the reduced action only at
+     O(delta^2), because N^i_* is defined by dS/dN^i = 0.  Verified numerically below:
+     perturb Y_* = (A/beta) zdot by eps*delta and record the change of the reduced L.
+
+     |Delta L|(eps=1e-3) = 3.422500e-08 ; (eps=5e-4) = 8.556250e-09 ; ratio = 4.000000
+     |Delta L|/eps^2 at eps=1e-3 = 3.422500e-02 ; at eps=5e-4 = 3.422500e-02
+C26_SHIFT2     lhs=+4.000000025951e+00  rhs=+4.000000000000e+00  rel.res=+6.488e-09  tol=1e-03  PASS   the change is O(eps^2)
+
+[P5] the P normalisation is pinned by the law's SHAPE (xi != 1 deforms g_N)
+     xi=1.000 : (g_N - law)/law at g=a0  = +0.000000
+     xi=1.010 : (g_N - law)/law at g=a0  = -0.015025
+     xi=1.050 : (g_N - law)/law at g=a0  = -0.075610
+C27_XI         lhs=+0.000000000000e+00  rhs=+0.000000000000e+00  rel.res=+0.000e+00  tol=1e-12  PASS   a P rescaling at fixed xi=1 is the identity; at xi=1.05 the law is off by 7.6%
+
+[P5] omega^2 = alpha p^4/Z is invariant under sigma -> lam sigma (both alpha and B scale)
+     omega^2 at lam=0.3,1,7 : 9.999990000010e-13 9.999990000010e-13 9.999990000010e-13
+C28_SMAT       lhs=+1.000000000000e+00  rhs=+1.000000000000e+00  rel.res=+0.000e+00  tol=1e-14  PASS   omega^2 is rescaling-invariant: no field redefinition can remove Z's beta
+     but omega^2(beta=1)/omega^2(beta=3) = 1.000000  -> beta IS an on-shell invariant
+
+====================================================================================================
+PART 6 -- the background normalisation as a measured number
+====================================================================================================
+[P6] H^2 ~ G(1 + x N_eff), x = (7/8)(4/11)^(4/3) = 0.227107
+     a change G -> f G is  Delta N_eff = (f-1)(1+x N_eff)/x = 7.4492 (f-1)
+     per unit beta:  Delta N_eff = -22347613987.3754 beta  (at beta -> 0)
+     beta= 0.000  G_eff/G_N=-2.000000  Delta N_eff= -22.3476
+     beta= 0.010  G_eff/G_N=-2.000000  Delta N_eff= -22.3476
+     beta= 0.027  G_eff/G_N=-2.000000  Delta N_eff= -22.3476
+     beta= 0.100  G_eff/G_N=-2.000000  Delta N_eff= -22.3476
+     beta= 0.500  G_eff/G_N=-2.000000  Delta N_eff= -22.3476
+     beta= 1.000  G_eff/G_N=-2.000000  Delta N_eff= -22.3476
+C29_BBN        NO REAL SOLUTION (lhs=nan)   FAIL   G_eff/G_N < 1 for EVERY beta>0: the dialled background is excluded by BBN outright
+     Lambda_bare - Lambda_obs = (9/2) beta H0^2/c^2 ; ratio to Lambda_obs = 2.193623 per unit beta
+
+     the closure Lambda = 32 pi a0^2/c^4 (A33 row 2, kappa=1/2):
+       32 pi a0^2/c^4 = 1.09035705e-52 m^-2 ; Lambda_obs = 1.08900000e-52 m^-2 ; ratio = 1.001246
+
+====================================================================================================
+SUMMARY: 15/29 checks PASS   (mutation = 'no_theta2')
+   FAIL  C01_FRW         the dialled action has no H^2 solution: n A H^2 = 2Lambda+4K rho is inconsistent
+   FAIL  C02_FRW2        H^2 < 0 on the dialled background: no real expansion (kinetic term wrong sign)
+   FAIL  C03_GEFF        beta=0 must reduce to GR
+   FAIL  C03b_GEFF       BBN requires G_cosmo = G_N to <5% at beta < 0.027
+   FAIL  C04b_ROOT       n A(beta) H0^2 - 2 Lambda has no root: the dialled background cannot reproduce H0
+   FAIL  C05_LAM0        beta=0 must reproduce the observed Lambda
+   FAIL  C06_STAB        beta>0 iff Lambda_bare > Lambda_obs (matter-inclusive reading)
+   FAIL  C09_SHARP       and is NON-zero as soon as N^i != 0: beta-invisibility is staticity, not absence
+   FAIL  C17_B           B = K(2+3beta)/beta at beta=1
+   FAIL  C18_Z_b1        Z from the action vs A68's formula K(2+3beta)/beta+eta p^2
+   FAIL  C18_Z_b3        Z from the action vs A68's formula K(2+3beta)/beta+eta p^2
+   FAIL  C19_ZSIGN       Z>0 iff beta>0 (A68 D11); a negative Z is a ghost
+   FAIL  C20_RATIO       the beta-shift is O(1): omega^2(3)/omega^2(1) = 15/11 = 1.3636
+   FAIL  C29_BBN         G_eff/G_N < 1 for EVERY beta>0: the dialled background is excluded by BBN outright
+====================================================================================================

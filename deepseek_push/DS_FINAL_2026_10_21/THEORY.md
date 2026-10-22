@@ -324,6 +324,43 @@ pass on both, and the IMF tension is unchanged at 1.97σ because A71 already fit
 the thermal point. **`3π/2` and `12π²` are no less clean than `4` and `32π`; they are simply different.**
 The data do not force the choice (0.27σ apart), so the branch is a declared choice, not a derivation.
 
+**3.6c β is measured — and it settles the footing war (A78, 30/30).** β is not a field-redefinition
+redundancy: the three rescalings that could absorb it (`h → Ω²h`, `N → χN`, `P → λP`) are pinned by three
+measured normalisations (static `G`, `c_T² = 1`, the unit clock charge that fixes the law's shape), a 3×3
+system with **det = 4** and unique solution `(1,1,1)`; and the scalar pole shifts by **15/11** between β = 1
+and β = 3 while being invariant under every field rescaling. It *looked* invisible because `θ ≡ 0` on every
+static configuration, so `∂S_static/∂β ≡ 0` exactly — β is absent from the law, AQUAL, `α₁/α₂/β_PPN` and the
+TT sector. The one observable is the cosmological/Newtonian `G` ratio:
+
+$$3(2+3β)H^2 = 2Λ_{bare}c^2 + 4Kρ \quad\Longrightarrow\quad \frac{G_{cosmo}}{G_N} = \frac{2}{2+3β}$$
+
+which is 0.961 at β = 0.027 and 0.400 at β = 1. BBN's `|ΔN_eff| < 0.30` with `ΔN_eff = −11.1738β` gives
+**β < 0.027** (i.e. `G_cosmo/G_N > 0.961`). **β is measured, not free**, and it leaves A33's free list.
+
+**It also kills a footing.** A33's `β(Λ_bare = Λ_obs) = −0.211` and `Λ_bare ≥ 1.462Λ_obs` came from applying
+the *vacuum* Friedmann equation at `H₀` with `ρ_m` dropped. With matter included, β = 0 sits **exactly** at
+`Λ_bare = Λ_obs` (checked to 10⁻¹⁰). So `Λ_bare = Λ_obs(1 + 2.194β)`, and with β < 0.027,
+**`Λ_bare/Λ_obs ∈ (1.000, 1.061)`**. The old "P3" footing (`ρ_bare = ρ_crit`, `a₀ = 1.132×10⁻¹⁰`) requires
+β = 0.210, hence `ΔN_eff = −2.34` — **8× the BBN bound, ≈8σ excluded.** The three-footing conflict of §6.2
+therefore collapses: **`a₀` survives only in `8.63–8.89×10⁻¹¹`**, with the thermal `8.62×10⁻¹¹` at its lower
+edge and the canonical `9.35×10⁻¹¹` just above.
+
+**It fixes the `L★` guard.** At the thermal `a₀`, `L★ = σ_c²/a₀ = 25.44 pc` — **6.0 % above the 24 pc floor**,
+so A65's 2.38 % failure was an artifact of the *canonical* `a₀` (23.43 pc), not of the theory. A76 (35/35)
+also shows the "floor" itself is A65's rounding of 23.4289 pc upward, and that **no σ_c measurement exists on
+disk**: the best independent value is the computed 10⁴ K thermal width, 8.226 km/s (+3.5/−0.55 over
+`μ ∈ [1.4, 0.6]`, ±10 % in T), which puts `L★` anywhere in **20.4–47.6 pc** as μ varies. So `L★` remains
+*fitted* in the honest sense — derived in form, computed from a thermal width, with a factor-2.3
+composition uncertainty and no direct measurement.
+
+**`η/γ` is the one hole that did not close (A77, 40/40).** The equipartition candidate is false twice over:
+(i) `c_T² = γ/η` is a stiffness/inertia ratio, not `dP/dρ` — the two coincide only if `ηρ_c = 1`, and the
+closure needs `ηρ_c = 7.5×10⁻⁹`, an inertia `1.34×10⁸` below the medium's density; (ii) equipartition itself
+gives `3k_BT_dS/m_P = 2.764σ_c²` → 13.84 km/s, not 8.33, which would predict `κ = 1.144` — **6.5σ excluded** —
+and `m_P/T_dS = 1.4×10⁹`, so the medium is not in thermal equilibrium at all. The missing principle is named:
+a **Kubo/transport matching** for the kinetic coefficient, `η⁻¹ = lim_{ω→0}(1/ω)∫dt⟨[P_i(t),P_j(0)]⟩`, whose
+hydrodynamic limit `η = 1/ρ_c` would give `γ/η = 5.77×10⁻¹⁸` and `c_T = 0.72 m/s`.
+
 The closure relation itself is unchanged and holds for every κ:
 
 $$
@@ -651,6 +688,13 @@ additional independent systematic above A51's, it is a component of the same unc
 statement: the theory's `a₀` is only defined once you choose `Λ_bare` vs `Λ_obs`, and A51's κ measurement
 prefers `Λ_obs` at 2σ — which is exactly the choice under which the falsifier does not fire.
 
+**RESOLVED (2026-10-22, A78): the footing war is over, and BBN won it.** With matter included, β = 0 sits
+exactly at `Λ_bare = Λ_obs` (not `1.462Λ_obs` — A33's number came from dropping `ρ_m`); and
+`Λ_bare = Λ_obs(1 + 2.194β)` with the BBN bound **β < 0.027** gives **`Λ_bare/Λ_obs ∈ (1.000, 1.061)`**.
+The P3 footing (`ρ_bare = ρ_crit`, `a₀ = 1.132×10⁻¹⁰`) needs β = 0.210, i.e. `ΔN_eff = −2.34` — **≈8σ
+excluded**. So `a₀` survives only in **`8.63–8.89×10⁻¹¹`**, and the thermal value `8.62×10⁻¹¹` sits at its
+lower edge. The "factor 1.40 spread" recorded above is history, not an open conflict.
+
 ---
 
 **6.3 The global consistency test — one parameter set, three channels, and a convention trap (A71).**
@@ -715,14 +759,15 @@ the IMF normalisation and `u`: **`κ_P3 = 0.3777 ± 0.1207`, `B = 1.1916 ± 0.03
 lensing "4.9σ failure" is gone: it was `1/median²` instead of the model's `dlnR/dlnB = 0.7775`,
 corrected to **1.8σ at the 95 % edge** of the same survey's dynamical IMF calibration (A70).
 
-**Parameter content:** **4 finite + 3 functionals with 5 exact degeneracies** (A33), against ΛCDM's
-six. **The dimensionless one is now derived, not free: `κ = Z/4π = √(2/(3π)) = 0.460659`** (A72), from
-`a₀ = cH_Λ/(2π)`; `κ = ½` is superseded (it needed `Ω_Λ = 32π/147`, which A73 shows is a numerology
-match and is 3.82σ from the repo's own DESI fit). The remaining finite entries are `L★` (fitted at 24 pc;
-26.1 pc at the derived `a₀`), **η** (free — the action forces `α = γ` but not `η = γ`, so the P-sector
-sound speed `γ/η` is a second unconstrained scale, A68/A69), `β` (positive, unobservable elsewhere), and
-the **one premise** that replaces κ: the acceleration scale is where a carrier's Compton wavelength equals
-its thermal wavelength at `T_dS`. The measured fractions are `σ_c = 8.33 km/s` and the
+**Parameter content — the list has shrunk to two scales and one premise.** **κ is derived**,
+`Z/4π = √(2/(3π)) = 0.460659` (A72), from `a₀ = cH_Λ/(2π)`; `κ = ½` is superseded (its only route,
+`Ω_Λ = 32π/147`, is numerology and 3.82σ from the repo's DESI fit — A73). **β is measured**, not free:
+`G_cosmo/G_N = 2/(2+3β)` and BBN gives **β < 0.027** (A78), which also excludes the old P3 footing at ≈8σ.
+What remains: **`L★`** (derived in form `σ_c²/a₀`, computed from the 10⁴ K thermal width; 25.44 pc at the
+thermal `a₀`, inside the window, but no direct σ_c measurement exists — A76), **`η/γ`** (free; the
+equipartition closure is false and the missing principle is a Kubo/transport matching — A77), and the **one
+premise** that replaces κ (thermal-wavelength identification of `a₀`). So: **0 free dimensionless numbers,
+2 free scales, 1 measured fraction, 1 premise**, against ΛCDM's six parameters. The measured fractions are `σ_c = 8.33 km/s` and the
 cold-sector share. It predicts what ΛCDM cannot even address: the RAR shape, lensing = dynamics,
 `c_T = 1` (speed), `α₁ = α₂ = 0` near-source, `β = 1`, the core size, the saddle no-go.
 

@@ -1,0 +1,122 @@
+A77 -- does the medium's own thermodynamics fix c_T = gamma/eta?
+  mutation: soft_equipartition
+  a0 = 9.360000e-11 m/s^2 (2.055043e-34 eV), L* = 24.0 pc (3.752972e+24 eV^-1)
+  K = 4piG = 8.4305653545e-56 eV^-2, gamma = K L*^2/2 = 5.9371406479e-07 eV^-4
+  rho_c = 9.724900e-12 eV^4, H_Lambda = 1.189667e-33 eV, T_dS = 1.893413e-34 eV = 2.1972e-30 K
+  H0 = 67.4 km/s/Mpc (h = 0.674), Omega_m = 0.3153, Omega_L = 0.6847, m_P = 1/L* = 2.664555e-25 eV, a0_th(computed)/a0_th(declared) = 1.000445, a0_can/a0_th = 1.085364 (a0_can is 8.54 % above the thermal footing)
+
+==============================================================================
+TASK 1 -- c_T^2 = gamma/eta from the action vs c_therm^2 = dP/drho
+==============================================================================
+  Euler-Lagrange of the transverse action:  K*P(t, x) + eta*Derivative(P(t, x), (t, 2)) - gamma*Derivative(P(t, x), (x, 2)) = 0
+  dispersion from the action:  omega^2 = (K + gamma*k**2)/eta
+  K1    PASS  got=1.8000017647e+00  want=1.8000017647e+00  rel-err=0.00e+00  omega^2 from the E-L equation = (K+gamma k^2)/eta
+  lim omega^2/k^2 = gamma/eta
+  K2    PASS  got=2.5294117647e-01  want=2.5294117647e-01  rel-err=0.00e+00  c_T^2 = lim omega^2/k^2 = gamma/eta (symbolic limit vs ratio)
+  K3    PASS  got=1.7058823529e+00  want=1.7058823529e+00  rel-err=0.00e+00  mass gap omega^2(0) = K/eta
+  W(u) = ... + (1/(2*K)) u^2 + ...   with u = K|P|  =>  mass term K/2 per component
+  K4    PASS  got=2.9000000000e+00  want=2.9000000000e+00  rel-err=0.00e+00  d^2W/dP^2|_0 = K, so the gap is K/eta (W series vs K)
+  K5    PASS  got=2.5294117647e-01  want=2.5294117647e-01  rel-err=1.54e-15  c_T^2 from the finite-difference slope of omega^2(k) at large k
+  Gamma = 2 EOS: e = (gamma/2)(rho-rhobar)^2, p = 0.5*gamma*(rho**2 - rhobar**2), dp/drho = 1.0*gamma*rho
+  K6    PASS  got=1.0000000000e+00  want=1.0000000000e+00  rel-err=0.00e+00  sympy: dp/drho = gamma rho  (the Gamma = 2 polytrope)
+  K7    PASS  got=5.1892415565e-01  want=5.1908100000e-01  rel-err=3.02e-04  gamma rho_c = 0.519081 m^2/s^2 (A16 K8)
+  K8    PASS  got=7.2036390501e-01  want=7.2047300000e-01  rel-err=1.51e-04  elastic sound speed = 0.720473 m/s (A16 K8)
+  K9    PASS  got=1.3357763448e+08  want=1.3357763448e+08  rel-err=1.12e-16  c_T^2/c_s,el^2 = 1/(eta rho_c): the two speeds differ by eta*rho_c
+  K10   PASS  got=5.7738099087e-18  want=5.7738099087e-18  rel-err=0.00e+00  eta = 1/rho_c (the only dimensionally available inertia) => c_T = c_s,el
+  K11   PASS  got=7.4862831935e-09  want=7.4862831935e-09  rel-err=2.21e-16  closure's eta rho_c = c_s,el^2/c_T^2 = 7.48e-9 (not 1)
+  m_P/T_dS = 1.407276e+09;  3 k_BT/(m_P a0 L*) = 0.921350;  closed form 2.763953
+  K12   FAIL  got=9.2134970520e-01  want=2.7639531958e+00  rel-err=6.67e-01  3 k_B T_dS/(m_P sigma_c^2) = 3 sqrt(32pi/3)/(2pi) = 2.76395
+  K13   PASS  got=9.2134970520e-01  want=9.2131773192e-01  rel-err=3.47e-05  k_B T_dS/(m_P sigma_c^2) = sqrt(32pi/3)/(2pi) = 0.92116 (per-dof)
+  a0 from the thermal wavelength cH_L/2pi = 8.623833e-11 m/s^2 (declared thermal footing 8.620000e-11)
+  K14   PASS  got=8.6238332407e-11  want=8.6200000000e-11  rel-err=4.45e-04  cH_L/2pi reproduces the declared thermal footing 8.620e-11
+  a0 implied by 1-dof equipartition: 8.623833e-11 m/s^2 (= 1 cH_L/2pi), kappa = 0.381181
+  K15   PASS  got=8.6238332407e-11  want=8.6200000000e-11  rel-err=4.45e-04  dof-dof equipartition implies a0 = dof*cH_L/2pi = 2.587e-10 m/s^2 (dof=3)
+  that a0 gives kappa = 0.381181 (a0 per kappa = 2.2624e-10), i.e. 0.09 sigma from A51's 0.371+-0.119
+  A69 O16 (cited): Delta N_eff = 0.5933 for two thermalized bosonic modes vs Planck < 0.34
+  K16   FAIL  got=8.5552503444e-02  want=6.4900000000e+00  rel-err=9.87e-01  the 3-dof version is 6.49 sigma from A51's kappa
+  K17   PASS  got=1.4072759606e+09  want=1.4072759606e+09  rel-err=0.00e+00  m_P/T_dS = 2pi/(H_L L*) = 1.408e9: the P particle is far above T_dS
+  K18   PASS  got=3.3774623054e+10  want=3.3774623054e+10  rel-err=0.00e+00  L* at which m_P = T_dS: 2pi/H_L = 3.377e10 pc = 33.77 Gpc
+  occupation e^(-m_P/T_dS) = 0.000e+00   (exp underflows; L*_eq/L* = 1.4073e+09)
+  c_T^2/sigma^2 = 0.333333: c_T = 4.8068 km/s, gamma/eta = 2.570840e-10, lambda_C = 1058.4218 kpc
+  c_T^2/sigma^2 = 0.555556: c_T = 6.2056 km/s, gamma/eta = 4.284733e-10, lambda_C = 819.8500 kpc
+  c_T^2/sigma^2 = 1.000000: c_T = 8.3257 km/s, gamma/eta = 7.712519e-10, lambda_C = 611.0801 kpc
+  the O(1) band spans lambda_C(1/3)/lambda_C(1) = 1.732051 = sqrt(3)
+
+==============================================================================
+TASK 2 -- the closure's numbers against the data
+==============================================================================
+  sigma_c = 8.325663e+03 m/s ; (sigma_c/c)^2 = 7.7125186951e-10
+  K19   PASS  got=7.7125186951e-10  want=7.7205563474e-10  rel-err=1.04e-03  (sigma_c/c)^2 from a0L* = 7.7125e-10, vs 7.7206e-10 from 8.33 km/s
+  K20   PASS  got=7.6980567343e+02  want=7.6980567343e+02  rel-err=0.00e+00  eta = gamma/c_T^2 = K/m_T^2 (two routes)
+  K21   PASS  got=6.1108008307e+02  want=6.1108008307e+02  rel-err=0.00e+00  lambda_C = sqrt(eta/K) = L*/(sqrt2 c_T) (611.1 kpc)
+  K22   PASS  got=6.1108008307e+02  want=6.1200000000e+02  rel-err=1.50e-03  lambda_C = 611 kpc (the closure's 612 kpc, 0.2 %)
+  K24   PASS  got=2.4842727464e+02  want=2.4842727464e+02  rel-err=0.00e+00  the closure sits 248x below A69's bound, in c_T^2 and in eta
+  eta = 769.8057 eV^-4 ; m_T = 1.046497e-29 eV ; lambda_C = 611.0801 kpc ; eta*rho_c = 7.4863e-09
+  K25   PASS  got=7.8798518436e-01  want=7.8798518367e-01  rel-err=8.67e-10  c_s = 0 growth = the exact LCDM growth function (ODE vs integral)
+  K26   PASS  got=9.7365761069e-01  want=9.7370000000e-01  rel-err=4.35e-05  S(k=0.2) at c_s^2 = 1e-7 reproduces A69's table (0.9737)
+  K27   PASS  got=9.9979473150e-01  want=9.9979473150e-01  rel-err=1.78e-15  S(k=0.2) at c_T = sigma_c: fixed-step RK4 vs adaptive DOP853
+  K28   PASS  got=6.2473738627e+00  want=6.2500000000e+00  rel-err=4.20e-04  1-S ~ k^2: (1-S(0.5))/(1-S(0.2)) = 6.25
+  growth: S(0.2)=0.999795  S(0.5)=0.998718  S(3)=0.9546  S(5)=0.8779  S(10)=0.5790  k_1/2=11.1632 h/Mpc
+  K29   PASS  got=8.9579677524e-02  want=8.9600000000e-02  rel-err=2.27e-04  half-mode 1/k_1/2 = 0.090 h^-1 Mpc (k_1/2 = 11.2 h/Mpc)
+  contrast: at eta = gamma (c_T = c) S(0.2) = 1.045e-35
+  K30   PASS  got=1.2322903718e+00  want=1.2322903718e+00  rel-err=0.00e+00  lambda_J = 2pi c_T/sqrt(4pi G rho) = 1.2323 Mpc
+  K31   PASS  got=3.2660790543e+10  want=3.2660790543e+10  rel-err=1.17e-16  M_J = (4pi/3)rho(lambda/2)^3 = pi lambda^3 rho/6 = 3.266e10 Msun
+  c_T Jeans: lambda_J = 1.232290 Mpc, M_J = 3.2661e+10 Msun (at 200 rho_c: 87.14 kpc, 2.3095e+09 Msun)
+  external scales (record): r_sp=1.414 Mpc (A29), u=1/2 crossing 1.065 Mpc (A29), r_v=1.6863 Mpc (A18), r200c = r_sp/1.367 = 1.0344 Mpc (A29 eq. 5)
+  A18 shape channel (cited): MID/OUTER = 0.966+-0.102 (native) vs 1.888+-0.203 (phantom), f_band = 0.8122
+  lambda_C / measured scale:  r_sp=0.4322  u_half=0.5738  r_v=0.3624  r200c=0.5908
+  K32   PASS  got=4.0923163114e-01  want=3.0000000000e-01  ge-err=1.09e-01  no measured cluster scale sits at lambda_C (min |ratio-1| >= 0.30)
+  K32b  PASS  got=7.7125186951e-10  want=1.9160000000e-07  le-err=-1.91e-07  the closure is allowed by A69's bound (gamma/eta < 1.916e-07)
+  K33   PASS  got=7.4205051484e+00  want=7.4200000000e+00  rel-err=6.81e-05  lambda_C / lambda_FS(sigma_c) = 7.42 (A16's 82.35 kpc)
+
+==============================================================================
+TASK 3 -- the medium's ACTUAL pressure is elastic (A16): which speed governs?
+==============================================================================
+  K34   PASS  got=1.0000000000e+00  want=1.0000000000e+00  rel-err=1.67e-14  elastic k_J: closed form vs numerical root of the dispersion
+  K35   PASS  got=1.0662184200e+02  want=1.0662919052e+02  rel-err=6.89e-05  elastic lambda_J = sqrt2 pi L* = 106.62 pc (density-free)
+  K36   PASS  got=2.1155635222e-02  want=2.1200000000e-02  rel-err=2.09e-03  elastic M_J at the cosmic mean = 0.0212 Msun (A16)
+  K37   PASS  got=1.0000000000e+00  want=1.0000000000e+00  rel-err=0.00e+00  dln(lambda_J,el)/dln(rho) = 0: 200x in density, same length
+  K38   PASS  got=1.4142135624e+01  want=1.4142135624e+01  rel-err=0.00e+00  the c_T Jeans length does scale: 200x density -> sqrt(200)
+  K39   PASS  got=1.3357763448e+08  want=1.3357763448e+08  rel-err=2.23e-16  rho sigma_c^2 / p_el = (sigma_c/c_s,el)^2 = 1.336e8
+  K40   PASS  got=8.1253438854e-09  want=8.1253438854e-09  rel-err=2.04e-16  T implied by the elastic speed = 2.71e-9 T_dS (a cold solid), two routes
+  elastic: lambda_J = 106.6218 pc, M_J(rho_c) = 2.11556e-02 Msun ; rho sigma^2/p_el = 1.3358e+08
+  A16 external anchors (cited): r_switch density 4.9609 Msun/pc^3, R_TF = 53.31 pc, M_J(r_switch) = 5.565e+08 Msun, V_f = 165.2 km/s
+
+------------------------------------------------------------------------------
+A77 INCOMPLETE: 38/40 checks PASS.
+  FAILED: K12, K16
+------------------------------------------------------------------------------
+
+HEADLINE NUMBERS
+  sigma_c                 = 8325.662807 m/s = 8.325663 km/s
+  (sigma_c/c)^2           = 7.712519e-10
+  c_s,el                  = 0.720364 m/s, c_s,el^2 = 5.773810e-18
+  sigma_c^2 / c_s,el^2    = 1.335776e+08
+  3k_BT_dS/m_P / sigma_c^2= 0.921350  (3-dof equipartition)
+  k_BT_dS/m_P / sigma_c^2 = 0.921350  (per-dof)
+  sigma_th(3-dof)         = 7.9916 km/s ; per-dof = 7.9916 km/s
+  a0 implied by 3-dof     = 8.623833e-11 m/s^2, kappa = 0.381181
+  tension vs A51          = 0.09 sigma
+  a0 thermal (cH_L/2pi)   = 8.623833e-11  [declared 8.620000e-11]
+  m_P/T_dS                = 1.407276e+09
+  L* at m_P = T_dS        = 3.377462e+10 pc (= 1.407e+09 L*)
+  eta (closure)           = 769.805673 eV^-4 ; eta*rho_c = 7.486283e-09
+  eta (eta = 1/rho_c)     = 1.028288e+11 eV^-4
+  c_T^2(eta=1/rho_c)      = 5.773810e-18 (== c_s,el^2)
+  lambda_C                = 611.0801 kpc = 6.110801e+05 pc = 2.5462e+04 L*
+  lambda_C(eta = 1/rho_c) = 7.0626e+00 Gpc ; gamma/eta = 5.773810e-18 ; ratio to the closure = 1.335776e+08
+  m_T                     = 1.046497e-29 eV, m_T/H0 = 7278.85
+  gamma/eta               = 7.712519e-10, bound 1.9160e-07, margin 248.43
+  S(0.2), S(0.5)          = 0.999795, 0.998718
+  S(3), S(5), S(10)       = 0.95463, 0.87794, 0.57902
+  k_1/2, lambda_1/2       = 11.1632 h/Mpc, 0.08958 h^-1 Mpc
+  S(0.2) at c_T = c       = 1.045e-35
+  lambda_J(c_T), M_J(c_T) = 1.232290 Mpc, 3.266079e+10 Msun
+  at 200 rho_c            = 87.1361 kpc, 2.309467e+09 Msun
+  lambda_J(el), M_J(el)   = 106.6218 pc, 2.115564e-02 Msun
+  rho sigma^2 / p_el      = 1.335776e+08 ; c_T/c_s,el = 1.1558e+04
+  T_el / T_dS             = 8.125344e-09
+  lambda_C / scales       = r_sp:0.4322, u_half:0.5738, r_v:0.3624, r200c:0.5908
+  min |lambda_C/scale - 1| = 0.4092
+  lambda_C / lambda_FS    = 7.4205
+  sigma_c/c               = 2.777142e-05 = 2.7771e-05 c
