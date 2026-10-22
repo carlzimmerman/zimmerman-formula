@@ -106,3 +106,31 @@ solved by two routes.
 Uniform, static Galactic field over the screening region (the Galaxy's gradient on ~L* scales is ignored); O(ε) static
 limit only; no planets' own fields; the published Q₂ is a fitted coefficient, not a refit of the ephemeris with this field.
 κ = ½ FITTED. Not theory closed.
+
+## AMENDMENT 1 (PRE-RESULT for every Cassini/physics line; written after prototype solver runs, 2026-10-22)
+
+Disclosure: before this amendment, prototype runs were made at the canonical footing, E2 only, on coarse grids
+(validation anchors K3/K4/K5, and a coarse Λ sweep while debugging the solver). No pass/fail line, bound, input or
+tolerance is changed. What changes is the numerical method, for reasons found while debugging:
+
+1. **Route N variables.** Newton in p fails near the cap |p| → a₀. Route N is solved in v = h(p) = a₀p/(a₀−|p|)
+   (so p = v/(1+|v|/a₀), no cap constraint). Same equations.
+2. **Production estimator = Richardson.** Route N is 2nd order in both directions; at (30 pts/decade, N_θ = 48) the
+   QUMOND-mode error vs D7b is ~3 %, at (60, 96) ~0.8 %, and (120, 192) does not fit the memory budget. Every Route N
+   number used in K3, K4, K6, K8 and the bound is the Richardson value R = (4Q(60,96) − Q(30,48))/3.
+   **K8 is restated**: |R − Q(60,96)|/|R| < 2 % (the residual discretization correction) at L* = 0 and L* = 3 r_M, and
+   halving r_in at (60,96) changes Q₂ < 2 %.
+3. **K5 runs with Π_L p = p imposed exactly** (true for a spherical configuration). Reason: with a collocated ψ the
+   O(dx²) mismatch between ∇ψ and p (~1e-4 relative) exceeds the isolated nonlinearity u/a₀ ~ 1e-4–1e-6 at
+   L* = 100 r_M (prototype failed for this reason, not for physics). In the Galactic field the same term is O(1)
+   (J − Π_L has eigenvalues x_e and (1+x_e)² − 1), so production runs are unaffected; K6 tests that coupling.
+4. **The L*_C scan.** The prototype showed a genuinely singular band: for L* < r_M the hedgehog saturates the cap at the
+   Sun (radial balance (1 − L*²/r_M²)/r²), and for L* < r_M√(1+x_e) the linear screened core p_e + (GM/L*²) r̂ would
+   exceed the cap on the Galactic-field side. Newton does not converge in between. The scan is therefore run as two
+   continuation sweeps on the frozen Λ grid (upward from L* = 0, downward from 100 r_M) at (30, 48), each point flagged
+   converged (scaled residual < 1e-9 within 60 iterations) or not. **L*_C is reported as a bracket**
+   [largest converged failing L*, smallest converged passing L* above which all converged points pass]; the passing
+   endpoint is re-run with the Richardson estimator. Non-converged points are listed, never scored.
+5. Sign: the prototype shows Route N (QUMOND) and D7b agree with s = −1 on 3ψ₂/r² (Φ = ordinary potential). CFG770's
+   printed negative Q₂ is in the Φ convention (its formula is the same integral); K10 compares in that convention and
+   the README states both.
