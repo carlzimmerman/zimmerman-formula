@@ -832,6 +832,10 @@ the IMF normalisation and `u`: **`κ_P3 = 0.3777 ± 0.1207`, `B = 1.1916 ± 0.03
 **1.89σ** — of which **4.47 of 5.69 is the IMF prior alone**; data-only `T = 1.21` (0.6σ). The
 lensing "4.9σ failure" is gone: it was `1/median²` instead of the model's `dlnR/dlnB = 0.7775`,
 corrected to **1.8σ at the 95 % edge** of the same survey's dynamical IMF calibration (A70).
+**That statement is about the `R_E` channel, and only it.** Adding the on-disk `σ_ap` dispersions (A85)
+does not break the `B`–`κ` degeneracy — the two constraints are 3.08° apart — and pushes the best-fit IMF
+to `B = 1.2269`, **2.27σ** above Treu. So "one parameter set" covers `R_E` + SPARC + clusters; the
+dynamics channel is a **2.3σ pull, not a confirmation**, and the 1.89σ global number does not include it.
 
 **Parameter content — the list has shrunk to two scales and one premise.** **κ is derived**,
 `Z/4π = √(2/(3π)) = 0.460659` (A72), from `a₀ = cH_Λ/(2π)`; `κ = ½` is superseded (its only route,
