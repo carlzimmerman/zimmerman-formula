@@ -1,0 +1,41 @@
+D8_Lstar_value
+inputs: rho_c 2.2565e-27 kg/m^3 (A76); sigma_th(1e4 K, mu 1.22) 8225.510 m/s; AG6D L*_IC frozen < 1.0 pc, post hoc 0.2472 pc
+K0 PASS 8225.5100 A76 8225.51 m/s (1e-6)   # thermal width reproduces A76
+
+=== Part 1: is A76's L* = sigma_c^2/a0 the same object as AG6D's free-medium EOS stiffness?
+K1 PASS 0.720398 m/s (rel 0.00e+00) A76 c_s(24 pc) 0.720398 m/s, rel < 1e-3   # A76's gamma=2piG L*^2, c_s^2=gamma rho_c IS AG6D's free-medium Gamma=2 c_s^2 = 2 pi G L*^2 rho_bar
+   -> A76/A16 evaluate c_s at the COSMIC MEAN rho_c: that is the free medium AG6D C1 tests.
+   AG6D C1: free-medium L* <= 1.0 pc (frozen) / 0.247 pc (post hoc) => c_s(rho_c) <= 0.0300 / 0.0074 m/s; window floor 24 pc is 24x / 97.1x above
+   [canonical] L*_th = 23.426 pc; free-medium cap sigma_c <= 1699.5 m/s (T <= 427 K at mu 1.22) frozen, 845.0 m/s (105.5 K) post hoc; sigma_th/cap = 4.84 / 9.73
+   [canonical] at L*_th: c_s(rho_c) = 0.7032 m/s, sigma_th/c_s = 1.170e+04; Gamma=2 c_s = sigma_th only at rho_eq = a0/(2piG L*) = 3.088e-19 kg/m^3 = 4.56 Msun/pc^3 = 1.368e+08 rho_c (Sigma_M/L*, Sigma_M = 106.8 Msun/pc^2)
+   [alt      ] L*_th = 19.404 pc; free-medium cap sigma_c <= 1867.3 m/s (T <= 515 K at mu 1.22) frozen, 928.4 m/s (127.4 K) post hoc; sigma_th/cap = 4.41 / 8.86
+   [alt      ] at L*_th: c_s(rho_c) = 0.5824 m/s, sigma_th/c_s = 1.412e+04; Gamma=2 c_s = sigma_th only at rho_eq = a0/(2piG L*) = 4.500e-19 kg/m^3 = 6.65 Msun/pc^3 = 1.994e+08 rho_c (Sigma_M/L*, Sigma_M = 129.0 Msun/pc^2)
+K2 PASS 4.405 (min over footings) >= 3 both footings   # C1 applied to A76's reading: the 1e4 K sigma_c exceeds the free-medium cap
+K3 PASS sigma/c_s 1.170e+04; rho_eq/rho_c 1.368e+08 >= 1e3 and >= 1e6   # sigma_c is not the free medium's sound speed; the two relations meet only at galactic density
+
+=== Part 2: CFG820's globular chi^2 at the thermal L* (is the 24 pc floor a measurement?)
+   [canonical] L*_95 grid 23.957 (CFG820 23.957), fine 23.641 pc; thermal L* 23.425 pc: dchi2 = 3.913 -> EXCLUDED at 95%
+   [canonical]   mu 0.60: L* 47.63 pc dchi2 0.399;  mu 1.40: L* 20.41 pc dchi2 5.031
+C6 [canonical] floor sigma_c >= 8.263 km/s (T >= 10092 K at mu 1.22; mu <= 1.209 at 1e4 K)
+C5 [canonical] CLASS thermal (1e4 K, mu 1.22): EXCLUDED at 95% (dchi2 3.913 vs 3.84)
+   [alt      ] L*_95 grid 24.721 (CFG820 24.721), fine 24.476 pc; thermal L* 19.384 pc: dchi2 = 5.992 -> EXCLUDED at 95%
+   [alt      ]   mu 0.60: L* 39.41 pc dchi2 0.937;  mu 1.40: L* 16.89 pc dchi2 7.466
+C6 [alt] floor sigma_c >= 9.243 km/s (T >= 12627 K at mu 1.22; mu <= 0.966 at 1e4 K)
+C5 [alt] CLASS thermal (1e4 K, mu 1.22): EXCLUDED at 95% (dchi2 5.992 vs 3.84)
+K4 PASS 0.00e+00 < 5e-3   # CFG820 L*_95 reproduced on its own grid, both footings
+
+=== Part 3: frozen matching rule L*_pred = sigma_gas^2/a0 on gas dispersions on disk
+PRIMARY Lelli+2015 tidal dwarfs (z~0, HI 3D models): n = 6 (non-numeric/<=0 dropped: 0); sigma_HI = [20.0, 20.0, 12.0, 10.0, 10.0, 7.0] km/s (+- [2.0, 2.0, 2.0, 2.0, 2.0, 1.0]); cross-transcription: None
+P3 [canonical] PRIMARY L*_pred median 42.2 pc (16-84: 31.1-138.5; 84/16 = 4.45) -> CONSISTENT; NOT one constant (84/16 > 2)
+P3 [alt      ] PRIMARY L*_pred median 35.0 pc (16-84: 25.8-114.7; 84/16 = 4.45) -> CONSISTENT; NOT one constant (84/16 > 2)
+P3 SECONDARY (no verdict weight) KMOS3D Ubler+17: n 135 (dropped 0); median sigma 39.6 km/s -> L*_pred median 543 / 450 pc (can/alt) -> TENSION (above 90 pc ceiling) / TENSION (above 90 pc ceiling)
+P3 SECONDARY (no verdict weight) KROSS Harrison+17: n 381 (dropped 0); median sigma 41.8 km/s -> L*_pred median 604 / 501 pc (can/alt) -> TENSION (above 90 pc ceiling) / TENSION (above 90 pc ceiling)
+P3 SECONDARY (no verdict weight) RC100 Nestor Shachar+23 (CORRECTED): n 100 (dropped 0); median sigma 45.5 km/s -> L*_pred median 717 / 594 pc (can/alt) -> TENSION (above 90 pc ceiling) / TENSION (above 90 pc ceiling)
+P3 SECONDARY (no verdict weight) MSA3D 2026: n 30 (dropped 0); median sigma 45.5 km/s -> L*_pred median 715 / 592 pc (can/alt) -> TENSION (above 90 pc ceiling) / TENSION (above 90 pc ceiling)
+P3 SECONDARY (no verdict weight) Simons+16: n 49 (dropped 0); median sigma 55.0 km/s -> L*_pred median 1047 / 868 pc (can/alt) -> TENSION (above 90 pc ceiling) / TENSION (above 90 pc ceiling)
+
+=== The window in velocity terms (report)
+   [canonical] L* in [23.64, 90] pc  <=>  sigma_c in [8.263, 16.123] km/s
+   [alt      ] L* in [24.48, 90] pc  <=>  sigma_c in [9.238, 17.715] km/s
+
+D8_LSTAR_VALUE COMPLETE: 5/5 checks PASS.
