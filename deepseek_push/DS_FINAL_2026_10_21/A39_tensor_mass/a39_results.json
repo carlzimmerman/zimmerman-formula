@@ -1,0 +1,363 @@
+{
+ "lane": "A39_tensor_mass",
+ "mutation": "none",
+ "status": "DERIVED / harmless",
+ "checks": [
+  {
+   "id": "C0_inverse_metric_correct_to_O_h2",
+   "pass": true,
+   "value": "g g^{-1} - I = diag(c**3*h**3, -c**3*h**3, 0)",
+   "threshold": "O(h^3), not 0",
+   "note": "g^ij = delta - h eps + h^2 eps^2 is exact through the order that enters a second-order expansion; dropping the h^2 term is a real defect (mutant)"
+  },
+  {
+   "id": "C1_u_expansion_coefficients",
+   "pass": true,
+   "value": "u/Kp = 1 + (-c/2) h + (3/8) h^2",
+   "threshold": "coeffs 1, -c/2, 3c^2/8",
+   "note": "reproduces A31 check 28 exactly: the h^2 coefficient of u is 3Kp/8 -- but that is d2u/dh2, not the h^2 coefficient of the action"
+  },
+  {
+   "id": "C2_closed_form_literal_expansion",
+   "pass": true,
+   "value": "residual = 0",
+   "threshold": "0",
+   "note": "m_T^2(literal) = u^2(4-3x)/(1-x)^2 + 4a0^2[x+ln(1-x)], x = u/a0"
+  },
+  {
+   "id": "C2b_finite_difference_confirms_the_series",
+   "pass": true,
+   "value": "max rel. error of d2/dh2 = 1.15e-07",
+   "threshold": "< 1e-6",
+   "note": "the sympy series is checked against a direct second difference of the exact Lagrangian at three backgrounds (factor 2 = <c^2> = 1/2)"
+  },
+  {
+   "id": "C3_volume_piece_is_the_Lambda_coupling",
+   "pass": true,
+   "value": "c_hh - c_shape - Wbar/4 = 0",
+   "threshold": "0",
+   "note": "the sqrt(g) piece is exactly +W/4 h^2: the coupling of a TT mode to an energy density W, i.e. a cosmological-constant term.  A Lambda does not give a graviton a mass, so this piece is removed by comparing with GR on the same background.  The P-specific (shape) piece is u^2(4-3x)/(1-x)^2."
+  },
+  {
+   "id": "C4_general_direction_and_polarization",
+   "pass": true,
+   "value": "residual = 0 ; k||Pbar residual 0",
+   "threshold": "0 ; 0",
+   "note": "m_T^2(n) = u^2[4(eps^2)_ij n^i n^j/(1-x) + (eps_ij n^i n^j)^2 x/(1-x)^2] + volume.  The mass is direction- and polarization-dependent and vanishes identically for k || Pbar: an anisotropic medium mass, not Proca."
+  },
+  {
+   "id": "C5_mT2_positive_definite_no_tachyon",
+   "pass": true,
+   "value": "min shape = 4.000e-14, min literal = 2.021e-14 (both > 0)",
+   "threshold": "> 0",
+   "note": "both conventions (shape-only and the literal expansion including the volume piece) are strictly positive on x in (0,1).  4-3x > 0 for every x < 1, so there is no zero and no tachyon: the mode is massive, stable."
+  },
+  {
+   "id": "C6_vanishes_as_u_squared",
+   "pass": true,
+   "value": "shape/u^2 -> 4 ; literal/u^2 -> 2",
+   "threshold": "4 and 2",
+   "note": "m_T^2 -> 4u^2 (shape) / 2u^2 (literal) as u -> 0: quadratic, so m_T = 0 exactly on the Pbar = 0 cosmological background"
+  },
+  {
+   "id": "C7_mT_is_zero_exactly_at_Pbar_0",
+   "pass": true,
+   "value": "m_T^2(p=0) = 0",
+   "threshold": "0",
+   "note": "P = 0 is the unique homogeneous solution (no-aether theorem, FINAL 3), so the cosmological background has m_T = 0 exactly"
+  },
+  {
+   "id": "C8_static_elimination_screens_the_shape_term_to_O_u3",
+   "pass": true,
+   "value": "c_eff(0) - W/2 = x**3/(8*(x - 1))   (= -u^2 x/(8(1-x)) = -x^3/(8(1-x)))",
+   "threshold": "-x^3/(8(1-x))",
+   "note": "with delta P free at zero frequency the O(u^2) shape term is absorbed (a shift of P along Pbar holds u fixed); the residue is O(u^3/a0).  The volume piece survives untouched.  So the mass is a running mass."
+  },
+  {
+   "id": "C9_P_field_mass_is_sqrt2_over_Lstar",
+   "pass": true,
+   "value": "m_Y^2 = -2 c_YY/(K L*^2/2) = 2/(L_**2*(x**2 - 2*x + 1))",
+   "threshold": "2/(L*^2 (1-x)^2)",
+   "note": "the mediator is the P field: m_Y = sqrt(2)/(L*(1-x)) = 3.77e-25 eV, i.e. lambda_P = 17.0 pc = L*/sqrt2 at x = 0 -- A22 eq. (9).  Normalisation check."
+  },
+  {
+   "id": "C10_running_mass_interpolation",
+   "pass": true,
+   "value": "max rel. deviation over 8 (x, omega) points = 2.79e-14",
+   "threshold": "< 1e-9",
+   "note": "c_eff(omega) = c_frozen - (c_frozen - c_eff(0)) m_Y^2/(omega^2+m_Y^2) is exact: c_eff(0) after relaxation, c_frozen for omega >> m_Y"
+  },
+  {
+   "id": "C11_running_mass_closed_form",
+   "pass": true,
+   "value": "max rel. deviation = 7.51e-14",
+   "threshold": "< 1e-9",
+   "note": "m_T^2(omega) = [u^2(4-3x)/(1-x)^2 omega^2 + (u^2 x/(1-x)) m_Y^2]/(omega^2+m_Y^2), m_Y = sqrt(2)/(L*(1-x)): the answer in (a0, K, u, L*)"
+  },
+  {
+   "id": "C12_cT2_is_1_and_vg_is_c_1_minus_m2_over_2E2",
+   "pass": true,
+   "value": "omega^2 = k^2 + m_T^2 -> c_T^2 = 1, v_g = 1 - m_T^2/(2 omega^2)",
+   "threshold": "1",
+   "note": "the mass term is a pure potential (W carries no derivative of h), so it adds to omega^2 but not to the k^2 coefficient: c_T^2 = 1 exactly survives, while the group velocity is c(1 - m_T^2/2omega^2)."
+  },
+  {
+   "id": "C13_mass_table_is_monotone_and_horizon_scale",
+   "pass": true,
+   "value": "m_T(0.1)=4.39e-35 eV ... m_T(0.9)=2.11e-33 eV",
+   "threshold": "< 1e-30 eV",
+   "note": "galactic background u = 0.1 a0 ... 0.9 a0; Compton wavelength 1.5e6 Mpc down to 3.4e3 Mpc -- the mass is a horizon-scale quantity"
+  },
+  {
+   "id": "C14_gw_speed_deficit_vs_GW170817",
+   "pass": true,
+   "value": "max deficit = 1.30e-41 at x=0.9",
+   "threshold": "< 1e-15",
+   "note": "(c_gw-c)/c = -1/2 (m_T c^2/E)^2 with E = hbar 2 pi 100 Hz = 4.14e-13 eV: 26 orders of magnitude inside GW170817, and a 1e-34 s arrival delay"
+  },
+  {
+   "id": "C15_yukawa_cutoff_unobservable_on_the_real_path",
+   "pass": true,
+   "value": "max on a 30 kpc path = 8.90e-06",
+   "threshold": "< 1e-4",
+   "note": "exp(-D/lambda_C).  The mode is massive only inside the P-medium (Pbar = 0 in the IGM by the no-aether theorem), so the physical path is ~30 kpc against lambda_C > 3.4e3 Mpc."
+  },
+  {
+   "id": "C16_below_the_graviton_mass_bound",
+   "pass": true,
+   "value": "min margin = 8.35e+09 at x=0.9",
+   "threshold": "> 1e9",
+   "note": "m_g < 1.76e-23 eV: the theory sits 8.4e9 (x=0.9) to 4.0e11 (x=0.1) below it"
+  },
+  {
+   "id": "C17_bound_needs_u_within_1e-11_of_the_cap",
+   "pass": true,
+   "value": "x_crit = 0.999999999988  (1-x = 1.168e-11)",
+   "threshold": "1-x < 1e-9",
+   "note": "the theory would reach the graviton bound only if u/a0 were within ~1e-11 of the cap u = a0, where W itself is singular"
+  },
+  {
+   "id": "C18_mass_term_is_TT_only_lapse_blind_and_null_for_lensing",
+   "pass": true,
+   "value": "d(coeff)/dN = 0 ; tr(eps) = 0 ; dPhi/Phi <= 4.26e-47",
+   "threshold": "0 ; 0 ; < 1e-40",
+   "note": "W(u) contains neither lapse nor shift and the polarization is traceless, so the mass term has no scalar projection and cannot enter the lapse/shift constraints that fix Phi, Psi.  Its own O(h^2) stress is (m_T/E)^2 rho_gw, a fraction 1e-46 of rho_c: the lensing prediction is untouched."
+  },
+  {
+   "id": "C20_A31_coefficient_is_d2u_dh2_not_the_action",
+   "pass": true,
+   "value": "d2u/dh2 = 3Kp/8 ; d2W/dh2 = -a0*p*(-K*a0*p + 3*a0*(K*p - a0) + 3*(K*p - a0)**2)/(4*(K*p - a0)**2)",
+   "threshold": "3Kp/8 vs a different object",
+   "note": "A31 check 28 quotes 3Kp/8 as the \"h^2 coefficient\"; that is d2u/dh2, not d2W/dh2, so it is not a mass.  The action coefficient is C2.  A31 is qualitatively right that the quadratic action is not Einstein off Pbar=0; the number it prints is not the mass and the magnitude is harmless."
+  }
+ ],
+ "verdict": {
+  "m_T_eV_at_u_a0_over_10": 4.392171256457845e-35,
+  "m_T_eV_at_u_0p9_a0": 2.1087985703020994e-33,
+  "ratio_to_graviton_bound_worst": 8345984413.996773,
+  "gw_speed_deficit_at_100Hz": 1.3000166974283685e-41,
+  "gw170817_speed_bound": 1e-15,
+  "tachyonic": false,
+  "excludes_Pbar_nonzero": false
+ },
+ "formula": {
+  "m_T2_shape": "u^2 (4-3x)/(1-x)^2,  x = u/a0",
+  "m_T2_literal": "u^2(4-3x)/(1-x)^2 + 4 a0^2 [x + ln(1-x)]",
+  "m_T2_running": "[shape*omega^2 + (u^2 x/(1-x))*mY^2]/(omega^2+mY^2)",
+  "m_T2_at_LIGO": "shape to 8e-25 relative",
+  "m_Y": "sqrt(2)/(L*(1-x))"
+ },
+ "table": [
+  {
+   "x": 0.1,
+   "u_over_a0": 0.1,
+   "u_m_s2": 9.36e-12,
+   "m_T_eV": 4.392171256457845e-35,
+   "compton_m": 4.4926977755766006e+28,
+   "compton_pc": 1455984190482.1416,
+   "compton_kpc": 1455984190.4821415,
+   "compton_Mpc": 1455984.1904821415,
+   "compton_Gpc": 1455.9841904821415,
+   "m_T_over_mY": 1.0490159559062031e-10,
+   "margin_vs_1p76e-23": 400712972521.79266
+  },
+  {
+   "x": 0.3,
+   "u_over_a0": 0.3,
+   "u_m_s2": 2.808e-11,
+   "m_T_eV": 1.550689958091277e-34,
+   "compton_m": 4.241702847793067e+27,
+   "compton_pc": 137464227411.04956,
+   "compton_kpc": 137464227.41104957,
+   "compton_Mpc": 137464.22741104956,
+   "compton_Gpc": 137.46422741104956,
+   "m_T_over_mY": 2.880602502354276e-10,
+   "margin_vs_1p76e-23": 113497865309.34654
+  },
+  {
+   "x": 0.5,
+   "u_over_a0": 0.5,
+   "u_m_s2": 4.68e-11,
+   "m_T_eV": 3.2493082798501576e-34,
+   "compton_m": 1.214578386188067e+27,
+   "compton_pc": 39361804793.650475,
+   "compton_kpc": 39361804.79365048,
+   "compton_Mpc": 39361.80479365047,
+   "compton_Gpc": 39.36180479365048,
+   "m_T_over_mY": 4.3114290204535266e-10,
+   "margin_vs_1p76e-23": 54165374547.99957
+  },
+  {
+   "x": 0.7,
+   "u_over_a0": 0.7,
+   "u_m_s2": 6.552e-11,
+   "m_T_eV": 6.60958966652918e-34,
+   "compton_m": 4.264949874652929e+26,
+   "compton_pc": 13821761224.293552,
+   "compton_kpc": 13821761.224293552,
+   "compton_Mpc": 13821.761224293552,
+   "compton_Gpc": 13.821761224293551,
+   "m_T_over_mY": 5.262063352673535e-10,
+   "margin_vs_1p76e-23": 26627976754.935364
+  },
+  {
+   "x": 0.9,
+   "u_over_a0": 0.9,
+   "u_m_s2": 8.424000000000001e-11,
+   "m_T_eV": 2.1087985703020994e-33,
+   "compton_m": 1.0397019585639548e+26,
+   "compton_pc": 3369444574.508808,
+   "compton_kpc": 3369444.574508808,
+   "compton_Mpc": 3369.4445745088083,
+   "compton_Gpc": 3.369444574508808,
+   "m_T_over_mY": 5.596228225356722e-10,
+   "margin_vs_1p76e-23": 8345984413.996773
+  }
+ ],
+ "dispersion": [
+  {
+   "x": 0.1,
+   "m_T_eV": 4.392171256457845e-35,
+   "E_gw_eV": 4.135667694389856e-13,
+   "frac_speed_deficit": 5.639456673449124e-45,
+   "arrival_delay_s_at_40Mpc": 2.3218122490664983e-29
+  },
+  {
+   "x": 0.5,
+   "m_T_eV": 3.2493082798501576e-34,
+   "E_gw_eV": 4.135667694389856e-13,
+   "frac_speed_deficit": 3.0864593956039113e-43,
+   "arrival_delay_s_at_40Mpc": 1.2707215687458534e-27
+  },
+  {
+   "x": 0.9,
+   "m_T_eV": 2.1087985703020994e-33,
+   "E_gw_eV": 4.135667694389856e-13,
+   "frac_speed_deficit": 1.3000166974283685e-41,
+   "arrival_delay_s_at_40Mpc": 5.352279247557539e-26
+  }
+ ],
+ "yukawa": [
+  {
+   "x": 0.1,
+   "D_m": 9.257032744474102e+20,
+   "label": "30 kpc: the real path through the P-medium",
+   "amp_suppression": 2.060461912201106e-08
+  },
+  {
+   "x": 0.1,
+   "D_m": 1.234271032596547e+24,
+   "label": "40 Mpc: if the mass were on all the way",
+   "amp_suppression": 2.7472448402954264e-05
+  },
+  {
+   "x": 0.1,
+   "D_m": 3.0856775814913673e+25,
+   "label": "1 Gpc: unphysical, Pbar = 0 in the IGM",
+   "amp_suppression": 0.0006865848371291339
+  },
+  {
+   "x": 0.5,
+   "D_m": 9.257032744474102e+20,
+   "label": "30 kpc: the real path through the P-medium",
+   "amp_suppression": 7.621598837603827e-07
+  },
+  {
+   "x": 0.5,
+   "D_m": 1.234271032596547e+24,
+   "label": "40 Mpc: if the mass were on all the way",
+   "amp_suppression": 0.001015697395511328
+  },
+  {
+   "x": 0.5,
+   "D_m": 3.0856775814913673e+25,
+   "label": "1 Gpc: unphysical, Pbar = 0 in the IGM",
+   "amp_suppression": 0.0250853391432041
+  },
+  {
+   "x": 0.9,
+   "D_m": 9.257032744474102e+20,
+   "label": "30 kpc: the real path through the P-medium",
+   "amp_suppression": 8.903504949753227e-06
+  },
+  {
+   "x": 0.9,
+   "D_m": 1.234271032596547e+24,
+   "label": "40 Mpc: if the mass were on all the way",
+   "amp_suppression": 0.01180120581193711
+  },
+  {
+   "x": 0.9,
+   "D_m": 3.0856775814913673e+25,
+   "label": "1 Gpc: unphysical, Pbar = 0 in the IGM",
+   "amp_suppression": 0.256796081882964
+  }
+ ],
+ "mass_bound": [
+  {
+   "x": 0.1,
+   "ratio_bound_over_mT": 400712972521.79266
+  },
+  {
+   "x": 0.5,
+   "ratio_bound_over_mT": 54165374547.99957
+  },
+  {
+   "x": 0.9,
+   "ratio_bound_over_mT": 8345984413.996773
+  }
+ ],
+ "numbers": {
+  "a0_m_s2": 9.36e-11,
+  "Lstar_pc": 24.000000000000004,
+  "K_SI": 8.387172739141742e-10,
+  "E_gw_100Hz_eV": 4.135667694389856e-13,
+  "M_graviton_bound_eV": 1.76e-23,
+  "mY_eV_x0": 3.768249766417768e-25,
+  "lambda_P_pc": 16.970562748477143,
+  "x_crit": 0.9999999999883239,
+  "one_minus_x_crit": 1.1676104527680309e-11,
+  "c_over_H0_Mpc": 4448.5402427564995,
+  "c2_over_a0_Mpc": 31118.238990717382,
+  "Lstar_a0_over_c2_sq": 5.948294463490834e-19
+ },
+ "constants_used": [
+  "c=2.99792458e8 m/s",
+  "hbar=1.054571817e-34 J s",
+  "G=6.67430e-11",
+  "pc=3.0856775814913673e16 m",
+  "a0=9.36e-11 m/s^2 (canonical footing)",
+  "L*=24 pc (A20 lower bound)",
+  "K=4*pi*G (action normalisation; cancels in m_T^2)"
+ ],
+ "external": {
+  "A31_check28": "3Kp/8 reproduced as d2u/dh2 (not a mass)",
+  "A3": "c_T^2 = 1 on Pbar = 0 (m_T(p=0) = 0 reproduced)",
+  "A22": "lambda_P = L*/sqrt2 = 17.0 pc (reproduced as m_Y)"
+ },
+ "software": {
+  "python": "3.13.9",
+  "sympy": "1.13.1",
+  "numpy": "1.26.4"
+ }
+}

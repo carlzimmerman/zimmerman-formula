@@ -1,0 +1,176 @@
+
+============================================================================================================
+K1-K2  the data: six published band amplitudes, and the eight-bin stacked profile
+============================================================================================================
+K1 PASS 3.46e-08 rel <1e-4 :: the npz IS CFG687: the six published band amplitudes (A_law 2.509/1.910/1.012, A_newton 10.435/10.174/7.262) come back from the per-cluster arrays
+
+  stack: 318 eRASS1 x KiDS clusters, median z = 0.2337, median M_gas,500 = 1.1608e+13 Msun,
+  median R500 = 0.7845 Mpc -> M500 = 1.055e+14, M200c = 1.490e+14 Msun,
+  r200c = 1.0340 Mpc, r_sp = 1.3674 r200c = 1.4138 Mpc
+
+   j    R_in   R_out     R_c R_in/r200c R_out/r200c        D      sd       PL      PN  A=D/PL     sd       u     sd
+   0  0.1500  0.2181  0.1809      0.145       0.211    92.05    6.79    32.85    8.25   2.802  1.192  0.2936 0.1251
+   1  0.2181  0.3172  0.2630      0.211       0.307    71.52    3.35    31.51    7.70   2.270  0.607  0.3730 0.1072
+   2  0.3172  0.4613  0.3825      0.307       0.446    77.03    1.90    30.43    7.15   2.532  0.357  0.3331 0.0504
+   3  0.4613  0.6708  0.5563      0.446       0.649    56.81    1.50    27.12    5.89   2.095  0.288  0.4169 0.0648
+   4  0.6708  0.9755  0.8089      0.649       0.943    51.56    0.93    24.01    4.74   2.147  0.207  0.4116 0.0440
+   5  0.9755  1.4186  1.1764      0.943       1.372    35.83    0.59    20.75    3.61   1.727  0.158  0.5319 0.0545
+   6  1.4186  2.0630  1.7107      1.372       1.995    16.66    0.48    17.90    2.73   0.931  0.146  1.0885 0.2087
+   7  2.0630  3.0000  2.4878      1.995       2.901    16.55    0.30    15.67    2.07   1.056  0.105  0.9392 0.1059
+
+  bands (CFG687/A18/A21 normalisation, A = sum(w D)/sum(w P)):
+    INNER  0.1500-0.4613 Mpc  A_law = 2.5091  A_newton = 10.4352  u = 0.3348
+    MID    0.4613-1.4186 Mpc  A_law = 1.9102  A_newton = 10.1737  u = 0.4716
+    OUTER  1.4186-3.0000 Mpc  A_law = 1.0118  A_newton = 7.2620  u = 0.9865
+K2 PASS max sd/D = 0.07, A(1.71)=0.931, A(2.49)=1.056 sd/D<0.45, sd falling outward, |A(>r_sp)-1|<0.2 :: the eight-bin stacked DeltaSigma with jackknife errors (30 RA patches); the amplitude in law units falls from 2.80 at 0.18 Mpc to 0.93/1.06 outside 1.42 Mpc -- i.e. the law needs no rescaling at all in the two outer bins
+
+============================================================================================================
+K3-K5  the inversion u(R) reproduced, the bin edges in r200c, the covariance
+============================================================================================================
+K3 PASS max|du| = 4.4e-05 <2e-3 :: the eight per-bin inversions u = (P_l-P_N)/(D-P_N) reproduce A29's published values 0.2936 0.3730 0.3331 0.4169 0.4116 0.5319 1.0885 0.9392 -- same npz, same estimator
+K4 PASS edge 6 = 1.4186 Mpc = 1.372 r200c; r_sp = 1.3674 r200c |edge6/r200c - 1.3674| < 1% :: the bin edges are 0.150-0.218-0.317-0.461-0.671-0.976-1.419-2.063-3.000 Mpc = 0.145-0.211-0.307-0.446-0.649-0.943-1.372-1.995-2.901 r200c; the 6th edge lands within 0.4% of r_sp = 1.3674 r200c, so the step falls in the MID/OUTER boundary bin
+
+  r200c-normalised edges: 0.145  0.211  0.307  0.446  0.649  0.943  1.372  1.995  2.901
+  r200c-normalised centres: 0.175  0.254  0.370  0.538  0.782  1.138  1.655  2.406
+K5 PASS max|rho_ij| = 0.36, cond = 622 <0.5 and cond<1e4 :: the eight-bin jackknife covariance is close to diagonal, so a diagonal fit is not misleading; the full covariance with eigenvalues clipped at 1e-2 of the largest is used throughout, and the diagonal is reported as a cross-check
+
+============================================================================================================
+K6-K7  the algebra of u and A (exact, sympy), and the model reimplementation (bit-exact)
+============================================================================================================
+K6 PASS 0e+00 / 0e+00 / 0e+00 <1e-25 :: u = (P_l-P_N)/(D-P_N) is exactly D = P_N + (P_l-P_N)/u, and A = D/P_l = f_b + (1/u)(1-f_b) with f_b = P_N/P_l; dln(kA)/dlnR = dlnA/dlnR, so the log-slope diagnostic is invariant under any rescaling of the amplitude -- a shape match cannot be bought by rescaling
+K7 PASS max rel dev = 2.2e-15 (4 clusters x 8 bins) <1e-10 :: the reimplementation of CFG687's `law()` (cored beta-profile baryons, nu_mono, exact spherical projection) reproduces the stored PL and PN arrays to machine precision, so the u(r) machinery below is the same model the record fitted
+
+============================================================================================================
+K8-K10  TASK 2 -- the full-profile step fit: ONE free parameter (u_in), u=1 outside r_sp
+============================================================================================================
+
+  model m_j(v) = P_N,j + v*[inside fraction]*P_ph,j ,  v = 1/u_in ,  u = 1 for R > r_sp
+  variant         r_sp     v_in     u_in    chi2  dof  chi2/dof
+  fixed r_sp     1.414    2.288   0.4371  298.94    7     42.71   (+-0.0053)
+  per-cluster       --    2.465   0.4057  249.62    7     35.66   (+-0.0051)
+
+   j       R        D     sd   model*   resid  resid/sd  A_obs A_mod*   (* per-cluster r_sp variant)
+   0   0.181    92.05   6.79    68.90  +23.15     +3.41  2.802  2.097
+   1   0.263    71.52   3.35    66.38   +5.14     +1.54  2.270  2.107
+   2   0.383    77.03   1.90    64.35  +12.68     +6.67  2.532  2.115
+   3   0.556    56.81   1.50    57.78   -0.97     -0.65  2.095  2.131
+   4   0.809    51.56   0.93    50.37   +1.19     +1.29  2.147  2.098
+   5   1.176    35.83   0.59    39.74   -3.91     -6.59  1.727  1.916
+   6   1.711    16.66   0.48    24.13   -7.47    -15.55  0.931  1.348
+   7   2.488    16.55   0.30    15.95   +0.60     +1.98  1.056  1.018
+
+  residuals (fixed r_sp): +4.05 +2.79 +8.75 +1.57 +2.94 -11.77 -2.57 +2.91
+  the fitted model's own band amplitudes: INNER 1.978 (record 2.509)  MID 2.046 (record 1.910)  OUTER 1.000 (record 1.012)
+  max |resid/sd| = 15.55 (per-cluster), 11.77 (fixed)
+K8 FAIL u_in = 0.4371+-0.0053, chi2 = 298.94/7 = 42.71, max|resid| = 11.77sigma chi2/dof<2, 0.30<u_in<0.60, max resid<3.5sigma :: ONE free parameter (u_in) fits the full eight-bin profile at chi2/dof = 42.71: u_in = 0.437 +- 0.005, u = 1 fixed outside r_sp. No amplitude, shape or normalisation freedom is used -- the phantom's shape and the cosmic-share normalisation are CFG687's/A18's own
+K9 FAIL per-cluster r_sp: u_in = 0.4057+-0.0051, chi2/dof = 35.66; fixed-vs-cluster 4.28sigma chi2/dof<2 and the two variants agree <1.5sigma :: the theory's actual prediction is a step at each cluster's OWN r_sp ~ M^(1/3) (spread 16-84 pct = 0.94-1.90 Mpc), which broadens the stacked transition with zero extra parameters; it fits at chi2/dof = 35.66 and agrees with the fixed-r_sp fit to 4.28 sigma
+  cosmic-share routes: A18 anchor R_tot = 2.618 -> u_CS = 0.488; stack self-consistent R_tot = 2.894 -> 0.540; CFG687 baryon budget R_tot = 2.765 -> 0.515
+K10 PASS u_in = 0.437+-0.005; cosmic share u_CS = 0.514 (routes 0.488/0.540/0.515); Z = -1.5 |Z| < 3 vs the cosmic-share normalisation :: the cosmic-share normalisation M_c = 5.3643 M_b, recomputed for THIS stack (R_tot = 2.894 at M200c = 1.49e+14, c = 4.5) rather than copied from A18, predicts u = R_tot/5.3643 = 0.540; A18's anchor gives 0.488. The fit sits -1.5 sigma away from the three-route central value 0.514 +- 0.05, at the low end of the normalisation's own spread
+
+============================================================================================================
+K11-K15  TASK 3 -- the rivals, and Delta chi2 against the step model
+============================================================================================================
+
+  model                         u     chi2  dof  chi2/dof  dchi2 vs step   sigma
+  step(fixed)               0.437    298.9    7     42.71            0.0    0.00
+  step(per-cluster)         0.406    249.6    7     35.66          -49.3    0.00
+  u=1 everywhere            1.000   2488.0    8    311.00         2189.1   46.79
+  u=0.4716 everywhere       0.472   1471.0    8    183.87         1172.0   34.24
+  u=0.488 everywhere        0.488   1371.3    8    171.41         1072.4   32.75
+  best constant u           0.566   1197.0    7    171.00          898.0   29.97
+
+  residuals/sd per bin (j=0..7):
+    step(fixed)            +4.05 +2.79 +8.75 +1.57 +2.94 -11.77 -2.57 +2.91
+    step(per-cluster)      +3.41 +1.54 +6.67 -0.65 +1.29 -6.59 -15.55 +1.98
+    u=1 everywhere         +8.72 +11.95 +24.53 +19.79 +29.71 +25.41 -2.57 +2.91
+    u=0.4716 everywhere    +4.66 +3.98 +10.80 +3.93 +6.42 -6.94 -37.94 -47.54
+    u=0.488 everywhere     +4.92 +4.49 +11.68 +4.95 +7.90 -4.88 -35.69 -44.32
+    best constant u        +5.94 +6.49 +15.13 +8.94 +13.76 +3.26 -26.79 -31.63
+K11 PASS u=1: chi2 = 2488.0/8 = 311.0; dchi2 = 2189 (46.8 sigma) dchi2 > 49 (7 sigma) :: RIVAL (a) 'cold = exactly the law's phantom, u=1 everywhere' is excluded by the full profile at Delta chi2 = 2189 (46.8 sigma), the same verdict as A18's 7.7 sigma band-ratio test and slightly stronger because all eight bins are used
+K12 PASS u=0.4716: chi2 = 1471.0/8; dchi2 = 1172 (34.2 sigma) dchi2 > 16 (4 sigma) :: RIVAL (b) 'u = 0.472 everywhere' (A21's MID value, the best single number) is excluded: it fits the inner six bins but over-predicts the two outer ones by 6.9 and 8.7 sigma. The constant needs u = 0.566 to compromise, and that is still rejected at 30.0 sigma
+K13 PASS u=0.488: chi2 = 1371.3/8; dchi2 = 1072 (32.7 sigma) dchi2 > 16 :: RIVAL (c) 'the cosmic share with the law's phantom shape, u = 0.488 everywhere' (A18's zero-parameter reading) is excluded as a CONSTANT: the cosmic share may set the total cold budget, but it cannot be applied uniformly in radius
+K14 PASS best constant u = 0.566; chi2 = 1197.0/8; dchi2 = 898 (30.0 sigma) dchi2 > 20 :: even the BEST constant u (fitted, u = 0.566) is rejected against the one-parameter step at Delta chi2 = 898 with the same number of parameters: the failure is not the value of u, it is that u is not constant in radius
+K15 FAIL step 42.71/dof vs const 149.62/dof vs u=1 311.0/dof; u_in vs A21 MID = 0.94 sigma ordered chi2, u_in consistent with A21's MID :: the ordering is step << best-constant < u=0.472 < u=1, and the fitted u_in = 0.437 agrees with A21's MID value 0.4716 +- 0.0362 (0.9 sigma): the full profile does not move the inner amplitude, it fixes the outer one
+
+============================================================================================================
+K16-K18  TASK 4 -- the amplitude-free shape: dlnA/dlnR per bin and the curvature at r_sp
+============================================================================================================
+
+         bin    dlnR  dlnA meas     +-    step  step(pc)    u=1  u=.472   resid
+  0.18-0.26   0.374     -0.562  1.267   0.011     0.012  0.000   0.011  -0.574
+  0.26-0.38   0.374      0.291  0.751   0.016     0.010  0.000   0.015  +0.275
+  0.38-0.56   0.374     -0.506  0.548   0.031     0.020  0.000   0.029  -0.536
+  0.56-0.81   0.374      0.066  0.449   0.034    -0.042  0.000   0.032  +0.032
+  0.81-1.18   0.374     -0.582  0.341   0.039    -0.242  0.000   0.036  -0.621
+  1.18-1.71   0.374     -1.650  0.445  -1.935    -0.937  0.000   0.033  +0.285
+  1.71-2.49   0.374      0.337  0.491  -0.000    -0.751  0.000   0.031  +0.337
+
+  dlnD/dlnR  = -0.67 +0.20 -0.81 -0.26 -0.97 -2.04 -0.02
+  dlnP_l/dlnR= -0.11 -0.09 -0.31 -0.32 -0.39 -0.39 -0.36   <- the phantom's own profile is nearly flat; the data's is not
+  chi2_shape (7 slopes, diagonal):  step 5.50  step(pc) 9.77  u=1 18.34  u=.472 19.27
+  chi2_shape (full slope covariance): step 14.98  u=1 56.09
+K16 PASS chi2_shape/dof: step 0.79, u=1 2.62, u=.472 2.75 step <1.5, u=1 and u=.472 >2 :: the seven log-slopes dlnA/dlnR are reproduced by the one-parameter step at chi2/dof = 0.79; both constant-u readings are rejected on SHAPE alone (u=1: 2.62, u=0.472: 2.75) with no amplitude freedom used at all
+K17 PASS s(1.18-1.71) = -1.650+-0.445 (3.7 sigma from 0); step -1.935 (Z=+0.6); u=.472 +0.033 (Z=-3.8) kink >2.5sigma, step within 2sigma, both rivals >2.5sigma :: THE KINK: between 1.18 and 1.71 Mpc the measured amplitude falls with dlnA/dlnR = -1.65 +- 0.45 (3.7 sigma from zero). The step predicts -1.94 (within 0.6 sigma); every smooth reading predicts ~0 and misses by 3.7-3.8 sigma. This is the curvature at r_sp, and it is amplitude-free: no rescaling can produce it
+
+  mean inner slope (bins 0.18-1.18 Mpc, 5 intervals, inverse-variance): -0.321 +- 0.228   (step predicts +0.033)
+  curvature C = lnA(1.71) - 2 lnA(1.18) + lnA(0.81) = -0.400 +- 0.244
+  slope break Ds = s(1.18-1.71) - s(1.71-2.49)          = -1.986 +- 0.872
+    predicted: step(fixed)        C = -0.739   Ds = -1.935
+    predicted: step(per-cluster)  C = -0.260   Ds = -0.187
+    predicted: u=1                C = +0.000   Ds = +0.000
+    predicted: u=0.4716           C = -0.001   Ds = +0.002
+K18 PASS C = -0.400+-0.244 (1.6 sigma from 0); step predicts -0.739; Ds = -1.99+-0.87 C >1.2sigma from 0 and the step within 2.5sigma :: the observed curvature at the splashback radius is non-zero at 1.6 sigma, and the step model's C (-0.739) agrees within 1.4 sigma while both smooth readings predict C = 0.000 exactly (A is flat when u is constant)
+
+============================================================================================================
+K19-K21  what the step can and cannot be: the 3D realisation, the NFW rival, the width
+============================================================================================================
+
+  3D check: u=1 reproduces PL to 6.7e-16; 3D step best fit u_in = 0.557, chi2 = 1112.5/7 = 158.9
+  3D model A(R) = 1.60 1.60 1.62 1.64 1.67 1.74 1.71 1.47
+  measured A(R) = 2.80 2.27 2.53 2.09 2.15 1.73 0.93 1.06
+  3D resid/sd    = +5.8 +6.3 +14.7 +8.2 +12.3 -0.3 -28.8 -21.5
+  the 3D step needs 1.2e+14 Msun of extra
+  cold mass inside r_sp (cluster 0), i.e. 0.82 M200c
+K19 PASS 3D step chi2 = 1112.5/7 vs projected step 298.9/7; dchi2 = 814 (28.5 sigma); A(1.71) = 1.71 vs 0.93 measured dchi2 > 15 :: the step CANNOT be realised as a spherical amplification of the phantom: rho_cold = rho_ph/u inside r_sp raises the ENCLOSED mass, and DeltaSigma = Sigma(<R) - Sigma(R) then stays high outside r_sp (A = 1.6-1.7 at 1.7-2.5 Mpc against 0.93-1.06 measured). The 3D model is rejected at 29 sigma, so the measured step is a statement about the projected ratio u(R), i.e. about the phantom's radial SHAPE
+
+  NFW cold sector, c = 4.5 (1 param): chi2 = 420.3/7 = 60.04, M_c = 1.02e+14 Msun
+  NFW cold sector, c free  (2 param): chi2 = 152.8/6 = 25.47, M_c = 1.37e+14, c = 2.5
+  NFW(c free) resid/sd = -2.1 -6.6 -1.2 -4.0 +4.7 +4.0 -12.3 +6.2
+K20 FAIL NFW(c=4.5) chi2/dof = 60.04; NFW(c free) 25.47 with M_c = 1.37e+14, c = 2.5 NFW(c free) chi2/dof < 1.5 (i.e. it also fits) :: HONEST LIMIT: a smooth NFW cold sector also fits the eight bins (chi2/dof = 25.47 with c free, 60.04 at c = 4.5) -- the profile alone does NOT single out the law+step. What the profile does establish is that the law's OWN phantom shape is wrong (u=1 excluded) and that the correction is not a constant (u=const excluded)
+
+  transition width scan (projected step smoothed in log R; v profiled out at each width):
+    w = 0.00 dex (0.00 Mpc): u_in = 0.406, chi2 = 249.62
+    w = 0.02 dex (0.07 Mpc): u_in = 0.406, chi2 = 248.37
+    w = 0.04 dex (0.13 Mpc): u_in = 0.406, chi2 = 249.70
+    w = 0.06 dex (0.20 Mpc): u_in = 0.405, chi2 = 250.25
+    w = 0.08 dex (0.26 Mpc): u_in = 0.404, chi2 = 251.13
+    w = 0.12 dex (0.39 Mpc): u_in = 0.402, chi2 = 256.10
+    w = 0.16 dex (0.52 Mpc): u_in = 0.399, chi2 = 265.98
+    w = 0.22 dex (0.72 Mpc): u_in = 0.395, chi2 = 288.75
+K21 FAIL chi2 range over w = 0-0.22 dex: 248.37-288.75 range < 2 :: the eight bins DO NOT measure the transition width: chi2 varies by less than 2 over w = 0 to 0.22 dex (0 to 0.7 Mpc). Only the location (1.2-1.7 Mpc) and the amplitude jump are measured -- the 'step' is a step at the resolution of the CFG687 grid
+
+============================================================================================================
+K22  cross-checks against A29's u-space fit and the amplitude table
+============================================================================================================
+
+  u-space (diagonal, A29's estimator): best constant u = 0.4474, chi2 = 41.4/7
+  A29 reported 5.92/dof = 41.5 for the same fit; u = 0.4716 gives 42.5/8
+  step (bins 0-5 | 6-7, u_out = 1): u_in = 0.4116, chi2 = 8.8/7
+  the same step with u_out FREE (A29's 3-parameter fit): u_out = 0.9698, chi2 = 8.73/6 = 1.45 (A29 reported 8.98/1.75)
+  u = 1: chi2 = 574.9/8
+K22 PASS chi2_u(const) = 41.4 (A29: 41.5); chi2_u(u=1) = 575; u_in = 0.4116 |chi2-41.5|<2, chi2(u=1)/8>20, u_in in (0.35,0.48) :: the u-space estimator reproduces A29's constant-u chi2 (41.5) and the same u_in (0.412), so the DeltaSigma-space fits above are the same measurement with the correct (full-covariance) weighting; A29's 3-parameter step fit (chi2 = 8.98, 1.75/dof) recomputes to 8.73 (1.45/dof) here, so A29's number is confirmed to 0.25 in chi2
+
+============================================================================================================
+SUMMARY
+============================================================================================================
+  TASK 1  the eight-bin profile (D, A=D/PL, u=1/lambda) with jackknife errors is in the table
+          above; u = 0.29 0.37 0.33 0.42 0.41 0.53 1.09 0.94
+          A = 2.80 2.27 2.53 2.09 2.15 1.73 0.93 1.06   (A=1 would be the law, no rescaling)
+  TASK 2  ONE parameter u_in: 0.4371 +- 0.0053 (fixed r_sp), 0.4057 +- 0.0051 (per-cluster r_sp)
+          chi2 = 298.94/7 = 42.71  and  249.62/7 = 35.66; max residual 11.8 sigma
+  TASK 3  dchi2 vs step:  u=1  2189 (46.8 sigma)   u=0.4716  1172 (34.2 sigma)   u=0.488  1072 (32.7 sigma)   best const u=0.566  898 (30.0 sigma)
+  TASK 4  kink s(1.18-1.71) = -1.65 +- 0.45 (3.7 sigma); step predicts -1.94, u=1 and u=const predict ~0
+          curvature C = -0.400 +- 0.244; shape chi2/dof: step 0.79 vs u=1 2.62 vs u=.472 2.75
+  LIMITS  the 3D realisation of the step is rejected at 29 sigma; a smooth NFW cold sector fits at 25.47/dof; the transition width is unconstrained
+
+A41 COMPLETE: 17/22 checks PASS.

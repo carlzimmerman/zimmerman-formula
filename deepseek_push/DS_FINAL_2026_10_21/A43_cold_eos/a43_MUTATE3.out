@@ -1,0 +1,114 @@
+
+====================================================================================================
+K0-K2  TASK 1 -- f(x,v,t) -> stress tensor; the tether is the displacement constraint
+====================================================================================================
+  The medium: N elements of mass m, distribution f(x,v,t), n = int f d3v, rho = m n,
+  ubar_i = <v_i>, delta v_i = v_i - ubar_i, Sigma_ij = <delta v_i delta v_j>.
+
+  K0  the three bands reproduce A29 from the npz (provenance)
+      INNER u = 0.3348 +- 0.0563   <w> = -0.2217
+      MID   u = 0.4716 +- 0.0361   <w> = -0.1761
+      OUTER u = 0.9865 +- 0.0984   <w> = -0.0045
+K0 PASS 0.3348/0.4716/0.9865 A29 values +-1e-3 :: the npz and the estimator reproduce A29's three-band inversion; <w> = (u-1)/3
+K1 PASS residuals 0, 0 == 0 exactly :: int v_i v_j f d3v = n(ubar_i ubar_j + Sigma_ij): the stress of a kinetic medium is the second moment, T^ij = rho ubar^i ubar^j + rho Sigma^ij.  No other term can appear
+K2 PASS O(xi) coefficient 0; O(xi^2) rhobar*Derivative(xi(q), q)**2 0 / rhobar*xi'^2 :: mass conservation rho d3x = rhobar d3q gives rho - rhobar = -rhobar div(xi) + O(xi^2); with P = -rhobar xi this is EXACTLY the theory's div P = rho - rhobar.  The polarization is the mass displacement, not an analogy
+K3 PASS p/(rho sigma^2) = 1 == 1 :: isotropic dispersion: p_kin = rho sigma^2 and w_kin = p/(rho c^2) = sigma^2/c^2 >= 0
+      n=2: xi*phi' - n*phi = 0   (3p_T = n eps_T)
+      n=3: xi*phi' - n*phi = 0   (3p_T = n eps_T)
+      n=4: xi*phi' - n*phi = 0   (3p_T = n eps_T)
+      Monte-Carlo n=2: <xi phi'>= 2.000000 (exact 2); p_T/eps_T = 0.666667 (exact 0.666667)
+      Monte-Carlo n=3: <xi phi'>= 3.000000 (exact 3); p_T/eps_T = 1.000000 (exact 1.000000)
+      Monte-Carlo n=4: <xi phi'>= 4.000000 (exact 4); p_T/eps_T = 1.333333 (exact 1.333333)
+K4 PASS 3p_T/eps_T = 0.6667/1.0000/1.3333 n/3 = 0.6667/1/1.3333 :: the virial identity 3 p_T = <rho xi.grad phi_T> = n eps_T for a power-law tether: harmonic n=2 gives p_T = (2/3) eps_T.  The tether pressure TRACKS the sign of the tether energy
+
+  THE RESULT OF TASK 1:
+      T^00 = rho c^2 + rho sigma^2/2 + eps_T ,  T^ij = rho ubar^i ubar^j + rho Sigma^ij
+             + p_T delta^ij ,   p_T = (n/3) eps_T
+      w = p/(rho c^2) = [ rho sigma^2 + (n/3) eps_T ] / (rho c^2)          (A43.1)
+      u = 1 + 3w = 1 + 3 sigma^2/c^2 + n eps_T/(rho c^2)                   (A43.2)
+
+  For the measured u, the tether must supply n eps_T/(rho c^2) = u - 1:
+      INNER  u = 0.3348 -> eps_T/(rho c^2) = -0.3326  (n=2)
+      MID    u = 0.4716 -> eps_T/(rho c^2) = -0.2642  (n=2)
+      OUTER  u = 0.9865 -> eps_T/(rho c^2) = -0.0068  (n=2)
+
+====================================================================================================
+K6-K9  TASK 1/2(i) -- the sign theorem, the virial theorem, and the dispersion route
+====================================================================================================
+K6 FAIL min w over (sigma, eps_T/rho c^2 in [0,0.5]) = -3.333e-01 >= 0 :: a stable (positive-definite) tether has eps_T >= 0, hence p_T >= 0, hence w >= 0: eq (A43.5) can violate the null energy condition only through eps_T < 0
+
+  K7  force balance for a medium whose displacement is the polarization:
+      0 = -(1/rho) d(rho sigma^2)/dr + g + f_T  =>  p_T = rho(sigma^2 + Phi) + const
+      p_tot = rho sigma^2 + p_T = rho(2 sigma^2 + Phi)
+      w(r) = [2 sigma^2(r) + Phi(r)] / c^2                                  (A43.7)
+      isothermal sphere: sigma^2 = GM/(2r) = -Phi/2  =>  w = 0 EXACTLY
+K7 PASS 2 sigma^2 + Phi = 0 == 0 (sympy) :: the virialized isothermal sphere constrained to the polarization has w = 0 EXACTLY (sigma^2 = GM/2r = -Phi/2), and a cold free-falling one has w = sigma^2/c^2 ~ 0: either way u = 1 to 1e-5, a second route to A29's u_OUT = 0.9865 +- 0.0984. The same formula bounds the mechanism: w lies in [Phi/c^2, 0], 4.4 decades all below the measurement
+      at r = 0.6 Mpc: Phi/c^2 = -7.496e-06  =>  w in [-7.496e-06, 0]
+      measured <w>_MID = -0.1761: shortfall 2.350e+04x
+K7b PASS |w_meas|/(|Phi|/c^2) = 2.350e+04 > 1e4 :: the tether mechanism spans [Phi/c^2, 0] = 4.4 decades, ALL of them below the measurement by 2.3e4: the sign is right, the amplitude is the gravitational-potential-to-rest-energy ratio
+      w = -1/6 at sigma = 0 needs Phi = -c^2/3 (a relativistic potential): this cluster has Phi/c^2 = -7.50e-06, short by 4.45e+04x
+      and at virial the same formula gives w = 0 exactly, i.e. u = 1 inside r_sp: the INNER measurement u = 0.335 is 11.8 sigma away
+K7c PASS |Phi_need|/|Phi_cluster| = 4.447e+04; virial w=0 vs w_INNER = 11.8 sigma > 1e4; > 8 sigma :: the tether route reaches w = -1/6 only where |Phi| >= c^2/3, i.e. near a horizon; worse, (A43.3) is negative only for a SUB-virial medium (sigma^2 < -Phi/2), so it predicts w < 0 where the medium is young/unrelaxed -- and the inner band is the OLDEST, most relaxed material. The tether inherits A29's sign no-go (11.8 sigma) as well as the amplitude shortfall
+K8 PASS min w over beta in [-10,1] = 0.000e+00 >= 0 :: w = (sigma_r^2 + 2 sigma_t^2)/(3c^2): the trace depends only on the SUM of the dispersions, so anisotropy redistributes pressure without ever changing its sign. Rotation enters as bulk motion rho u^i u^j and can only ADD to the trace. No anisotropy is 'needed': none works
+K9 PASS sigma_need = c/sqrt6 = 1.2239e+08 m/s = 0.4082 c = 1.469e+04 sigma_c; w(sigma_c) = 7.721e-10 ratio > 1e4; shortfall > 1e8 :: route (i): w = sigma^2/c^2, so w = -1/6 needs sigma^2 = -c^2/6 -- impossible for a positive dispersion; even the |w| = 1/6 MAGNITUDE needs sigma = 0.408c, 1.47e4x the cold medium's own 8.33 km/s. The cold sector is non-relativistic by construction (THEORY s3.3), so its kinetic pressure is 7.7e-10 rho c^2: 2.2e8 short
+
+====================================================================================================
+K10-K12  TASK 2(ii) -- the two-stream route: Cauchy-Schwarz, not a pressure
+====================================================================================================
+  two streams +-v along z, each with dispersion sigma:
+      T^zz = rho(<v_z^2>) = rho(v^2 + sigma^2) ,  T^xx = T^yy = rho sigma^2
+      trace = rho(3 sigma^2 + v^2) ,  w = (3 sigma^2 + v^2)/(3 c^2) >= 0
+K10 PASS min w over (v,sigma) = 0.000e+00 >= 0 :: the counter-stream stress is positive for EVERY (v,sigma); the equation 3 sigma^2 + v^2 = -c^2/2 has no real solution. p_ij = rho<dv_i dv_j> is a covariance matrix: PSD by construction. 'Negative longitudinal pressure' would violate Cauchy-Schwarz
+K11 PASS v_needed(if p_z=rho(sigma^2-v^2)) = 2.1199e+08 m/s = 0.7071 c; v/sigma_vir = 303; crossing time 1 Mpc = 4.6 kyr v/c = 0.7071, ratio > 100, t < 100 kyr :: even the WRONG formula p_z = rho(sigma^2 - v^2) needs a counter-stream at v = c/sqrt2 = 0.707c (v^2 = 3 sigma^2 + c^2/2 -> c^2/2 at sigma->0): 303x the virial velocity, crossing 1 Mpc in 4.6 kyr and 2992 times in a Hubble time. A 0.7c stream is hot dark matter and free-streams out of a 1e14 Msun halo
+
+  K12  the response: linearised Vlasov-Poisson for two cold beams +-v, density rho/2 each:
+       1 = (omega_J^2/2) [ 1/(omega-kv)^2 + 1/(omega+kv)^2 ] ,  omega_J^2 = 4 pi G rho
+       k -> 0:  omega^2 = omega_J^2 + k^2 v^2   =>   c_eff^2 = v^2 > 0
+       unstable only for k v < omega_J, i.e. lambda > 2 pi v / omega_J
+      rho(0.6 Mpc) = 1.840e-24 kg/m^3 -> omega_J = 3.928e-17 /s
+      for the v = 0.707c that the erroneous formula needs: unstable only for lambda > 1.099e+03 Mpc (366x the whole stacked annulus)
+K12 PASS c_eff^2(k->0) = v^2 > 0; lambda_unstable = 1.10e+03 Mpc for v=0.707c > 100 Mpc :: the 'negative longitudinal pressure' of a counter-stream is at best the sign of the linear RESPONSE, not of T^ij: u = 1+3w is built from T^ij, so the response cannot supply it. And even the response is positive (c_eff^2 = v^2) in the k -> 0 limit an equation of state refers to; its negative branch needs lambda > 1 Gpc for the required v, which is 366x the whole annulus. At cluster scales there is neither a negative stress nor a negative response
+
+====================================================================================================
+K13-K15  TASK 2(iii) -- saturation: u = mu or u = 1-mu?  And does either fit the profile?
+====================================================================================================
+  X = g/a0 from the stack NFW (M200c = 1.483e14, c = 4.5):
+      R     =   0.181   0.263   0.383   0.556   0.809   1.176   1.711   2.488
+      X     =   0.168   0.130   0.095   0.066   0.044   0.028   0.017   0.010
+      u=mu  =   0.144   0.115   0.087   0.062   0.042   0.027   0.016   0.010
+      u=1-mu=   0.856   0.885   0.913   0.938   0.958   0.973   0.984   0.990
+      data  =   0.294   0.373   0.333   0.417   0.412   0.532   1.088   0.939
+
+  mu(1) = 1/2 and 1-mu(1) = 1/2: at half capacity the two readings are IDENTICAL (both 0.5).
+  u = 0.4716 needs X = 0.8924 (u=mu) or X = 1.1206 (u=1-mu): -11% / +12% off half capacity, and the two differ by 26% in X
+K13 PASS mu(1)=1/2 exact; r(X=1) = 0.0200 Mpc vs measured u=1/2 at 1.0652 Mpc (factor 53.26) identical at X=1; factor > 3 :: route (iii): at half capacity u = mu and u = 1-mu coincide exactly at 1/2, so 0.47 does not select either; and half capacity sits at g = a0, r = 0.20 Mpc -- 5.3x inside the measured crossing at 1.07 Mpc. Neither reading gives 0.47 at the radius where the data have it
+K14 PASS chi2/dof: mu 40.11, 1-mu 57.51, const 5.92, step 1.45 mu and 1-mu > 10; Delta chi2 vs step > 100 :: both saturation readings are monotone over 1.5 decades in radius; the data are a PLATEAU at 0.33-0.53 out to 1.18 Mpc and then a step to 1. They are rejected at Delta chi2 = 312 / 451 against the step, for zero extra parameters. The step recomputes A29's 1.455 (dof 6); the constant recomputes 5.920 (dof 7)
+K15 PASS data u-step at X = 0.0215 (g = 2.013e-12 m/s^2); half capacity at X = 1: factor 46.49 factor > 4 :: the measured u-transition sits at g ~ 0.13 a0, not at the law's half-capacity point g = a0. So route (iii) does not merely mis-normalise: it puts the transition 7x too far out in acceleration. 0.47 is 'near' 1/2 only because the measured plateau value happens to be there; the transition itself is elsewhere
+
+====================================================================================================
+K16-K19  TASK 4 -- the no-go: what 0.18 rho c^2 costs, and why nothing in the sector can pay
+====================================================================================================
+K16 PASS p_req = 2.913e-08 Pa at 0.6 Mpc; p_ICM = 8.011e-13 Pa; ratio 3.636e+04 > 1e4 :: the tension the measurement demands is 0.176 rho c^2, i.e. 2.9e-8 Pa -- 3.6e4x the thermal pressure of the 5 keV ICM in the same volume. This is not a perturbation of the medium: it is a relativistic stress
+K17 PASS eps_P = a0^2/8piG = 5.223e-12 J/m^3; eps_P/(rho c^2) = 3.159e-05; shortfall 5.58e+03x shortfall > 1e3 :: the tether IS the polarization field by hypothesis, and its stress-energy is bounded by a0^2/8piG (its value at u ~ a0/4, the maximum of W). That is 3.2e-5 of the cold rest energy at 0.6 Mpc: the field can supply at most |w| = 3.2e-5, 5.5e3 short of 0.176
+K18 PASS c_s^2 = -1/6: k = 3.394e-22/m, growth time 0.763 Myr (1.8e+04x shorter than the age) t_grow < 10 Myr :: for a barotropic medium c_s^2 = dp/drho = w = -1/6 < 0 (A21 K12): the mode grows on the sound-crossing time of the band, 0.75 Myr. A w = -1/6 FLUID cannot be static for 10 Gyr; only a solid/network with a positive modulus and a NEGATIVE PRE-STRESS can be
+K19 PASS string fraction f = 3|w| = 0.5284; wall f = 0.2642; slip (Phi-Psi)/Phi ~ 2f = 1.057 vs gate 2.63e-07 (4.0e+06x) slip/gate > 1e6 :: a network is the only STABLE negative-trace carrier (strings w=-1/3, walls w=-2/3): w=-0.176 needs 53% of the cold energy in strings, 26% in walls. Three costs: (a) a 1D/2D network is anisotropic and gives a slip ~2f ~ 1, 4e6x the theory's own lensing=dynamics gate; (b) an isotropic 'foam' (three tensioned families) avoids the slip only by fine tuning, and its tension is a UV scale, not a0; (c) w=-1/3 has c_s^2<0 and rho+3p=0, so it neither gravitates nor clusters -- it cannot follow the cold mass profile it is supposed to explain
+
+====================================================================================================
+K20-K21  TASK 4 -- the identification: u = 1+3<w> presupposes the REST mass in the denominator
+====================================================================================================
+  u = P_law/(D-B): numerator = the law's phantom, denominator = the observed excess over
+  baryons.  The excess is an ACTIVE mass (it is what lenses).  So u = 1+3w only if the
+  denominator is the cold REST mass, i.e. if
+      M_rest(inside) = M_active/(1+3w) = [the u=1 reading] x 1/(1+3w) .
+  A18's amplitude inversion fixes the ACTIVE ratio: R_req = 5.552 +- 0.427 (0.44 sigma from
+  R_cosmic = 5.364).  With the cold rest mass = f_ret R_cosmic M_b and f_ret <= 1:
+      (1+3w) f_ret R_cosmic = R_req   =>   f_ret = (R_req/R_cosmic)/(1+3w) .
+      INNER : 1/(1+3w) = 2.987   f_ret = 3.091 +- 0.520   (4.0 sigma above 1)
+      MID   : 1/(1+3w) = 2.121   f_ret = 2.195 +- 0.336   (3.6 sigma above 1)
+      OUTER : 1/(1+3w) = 1.014   f_ret = 1.049 +- 0.105   (0.5 sigma above 1)
+K20 PASS f_ret(MID) = 2.195 +- 0.336 (3.6 sigma above 1); f_ret(INNER) = 3.091 +- 0.520 > 2.0 / > 2.5, > 3 sigma :: the EOS reading needs 2.12x (MID) / 2.99x (INNER) the cold rest mass that the u=1 reading assigns, i.e. f_ret = 2.20 +- 0.34 (MID) and 3.09 +- 0.52 (INNER), against the ceiling f_ret = 1 imposed by P4 (cold rest mass = the catchment's cosmic share). The SAME amplitudes that give u = 0.47 exclude the EOS interpretation at 3.6 sigma (MID) / 4.0 sigma (INNER) once the normalization is imposed. The MID error is correlated (f_ret = lambda^2 R_tot/R_cosmic), so 3.6 sigma, not the 5.3 sigma an independent-error treatment would give
+K21 PASS shortfalls vs 0.176: kinetic 2.16e+08, gravitational 2.35e+04, field 5.58e+03, potential depth 4.45e+04 all > 1e3 :: routes (i), (ii) and (iii) fail for one reason, not three: every stress the cold sector can carry is bounded by rho x max(sigma^2, |Phi|, a0^2/(8 pi G rho)) = 0.18 rho c^2 x 10^-4ish, and the measurement needs 0.18 rho c^2. The obstruction is dimensional: the cold sector is non-relativistic (THEORY s3.3), and w ~ -1/6 is a rest-mass-scale statement
+
+====================================================================================================
+A43 COMPLETE: 22/23 checks PASS.
+====================================================================================================

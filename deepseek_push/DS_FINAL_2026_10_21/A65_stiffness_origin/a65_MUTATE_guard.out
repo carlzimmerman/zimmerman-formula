@@ -1,0 +1,36 @@
+K1   PASS  value=L* = 24.025012 pc (sigma_c = 8.33 km/s, a0 = 9.36e-11) threshold=24.025012 +- 1e-5 pc       coefficient of sigma_c^2/a0 is exactly 1
+K2   PASS  value=L_MOND/L* = 1.2952434449e+09               threshold=(c/sigma_c)^2 = 1.2952434449e+09 residual 0.0e+00; the nine-decade hierarchy
+K3   PASS  value=L_MOND = 31.1182 Gpc (canon) ; 25.7758 Gpc (alt) threshold=9.602 / 7.954 Gpc          the task quotes 8.0e26 m: that is the ALT footing
+K4   PASS  value=c/H0 = 4.448 Gpc ; ratio 1.85139e+08       threshold=4.448 Gpc ; 1.8514e8       8.27 dex above L*
+K5   PASS  value=c/H_Lam = 5.379 Gpc ; ratio 2.23889e+08    threshold=5.379 Gpc ; 2.2389e8       de Sitter horizon = sqrt(3/Lam)
+K6   PASS  value=sqrt(8pi/Lam) = 15.569 Gpc ; ratio 6.48025e+08 threshold=15.569 Gpc ; 6.4803e8      the vacuum cell
+K6b  PASS  value=c_s,b/H0 = 122.0475 kpc ; ratio 5080.02    threshold=122.0475 kpc ; 5080.02     baryon sound speed does not reach L* either
+K7   PASS  value=lambda_J(rho_c=2.2566e-27) = 196.2273 kpc ; ratio 8.1676e+03 threshold=196.227 kpc ; 8.168e3      4 pi G, not pi G: the 2 pi convention factor does not move the verdict
+K8   PASS  value=lambda_J,elastic = 106.7403 pc = 4.442883 L* threshold=106.740 pc = 4.442883 L*   a multiple of L* by construction: gamma = 2 pi G L*^2
+K9   PASS  value=d = 0.904998 m ; ratio 1.2208e-18          threshold=0.904998 m ; 1.2208e-18    n = rho_c/m_p = 1.3491 m^-3
+K10  PASS  value=R_s(1 Msun) = 2954.008 m ; ratio 3.9847e-15 threshold=2954.008 m ; 3.9847e-15    the smallest macroscopic scale in the list
+K11  PASS  value=a_Bohr/L* = 7.1382e-29                     threshold=7.1382e-29                 atomic scale
+K12  PASS  value=0 independent of 11 scales in [0.5, 2.0] L* threshold=0 independent              the one O(1) entry is the thermal baryon scale (K12b)
+K12b PASS  value=baryon thermal c_s,b^2/a0 = 23.4289 pc = 0.9752 L* ; 2.38 % below 24 pc threshold=23.4289 pc = 0.9752 L* ; 2.38 % the only O(1) entry is the same sigma^2/a0 functional with c_s,b; it is the independent input, not a derivation
+K13  PASS  value=rho(L*=lambda_J)=1.5054e-19 kg/m3 = 90.00 cm^-3 = 6.671e+07 rho_c ; lambda_J(1e-22)=932.2 pc threshold=1.5054e-19 ; 90.00 ; 6.671e7 ; 932.2 pc the density that makes (a) work is a measured galactic density, not a medium constant
+K14  PASS  value=(b) grad/W -> 16.9882 pc = 0.707 L* = lambda_P ; grad/kinetic -> 98.11 kpc threshold=16.988 pc = 0.707 L* = lambda_P ; 98.11 kpc the first is circular (linear in L*); the second is lambda_J/2
+K15  PASS  value=(c) L = sigma_c t_dyn = 196.2273 kpc = lambda_J threshold=196.227 kpc                literal reading does NOT land in the window
+K16  PASS  value=(c) L = sigma_c^2/a0 = 24.025012 pc ; coeff 1.000000000000000 threshold=24.025012 pc ; 1.000000000000000 t_cross = t_acc = sigma_c/a0 ; the only candidate that lands without a tuned density/new constant
+K17  PASS  value=(d) L_Q(m_P)=548.39 kpc ; m needed=3.4963e-52 kg = 1.961e-16 eV threshold=548.39 kpc ; 3.496e-52 kg ; 1.961e-16 eV a new boson the theory does not have (P4: no dark particle)
+K18  FAIL  value=candidates passing C1-C4: 2 (see table)    threshold=1 (c-accel)                pre-registered: window, order-1 coefficient, no r_gal, no new constant
+K19  PASS  value=L*(8.33)=24.0250 pc in window ; L*(8.226)=23.4289 pc, 2.38 % below floor threshold=24.025 in ; 23.429 out by 2.38 % the independent thermal input saturates, not clears, the floor
+K20  PASS  value=canon 24.025 | alt 19.900 | P3 19.865 pc ; 1 in window threshold=24.025 | 19.900 | 19.865 pc ; 1 the number is footing-conditional at 21 %
+K21  PASS  value=L*(2K)/L* = 0.707106781187 ; L*(2K) = 16.9882 pc = lambda_P threshold=0.707106781187 ; 16.9882 pc L* = sigma_c^2/a0 has no K in it; 16.99 pc is lambda_P, not L*
+K22  PASS  value=R_core(24 pc) = 53.3146 pc ; R_core(L*=24.025) = 53.370 pc threshold=53.3146 ; 53.370 pc        A20 polytrope edge at L* = 24 pc is 53.31 pc (prediction, not a measurement)
+
+A65 STIFFNESS-ORIGIN SUMMARY
+  L* = sigma_c^2/a0 = 24.0250 pc   (coefficient exactly 1, no K, no r_gal)
+  L_MOND/L* = (sigma_c/c)^2 = 1.2952e+09  (9.11 dex)
+  kinetic Jeans at cosmic rho: 196.2 kpc = 8168 L*  -> NO
+  gradient/potential balance: 16.99 pc = L*/sqrt2 = lambda_P -> CIRCULAR
+  response=dynamical: 196.2 kpc -> NO ; crossing=sigma_c/a0: 24.025 pc -> YES
+  quantum/gravity: 548 kpc with m_P ; 24 pc needs a new 1.961e-16 eV boson -> NO
+  window: 24.025 pc in by 0.10 % ; thermal 23.429 pc out by 2.38 % ; P3 footing 19.865 pc out by 17 %
+  verdict: DERIVED-IN-FORM / FITTED-IN-NORMALIZATION(sigma_c); no tuned coefficient
+
+A65 COMPLETE: 23/24 checks PASS.

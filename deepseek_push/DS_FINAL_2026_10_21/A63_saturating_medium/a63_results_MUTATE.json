@@ -1,0 +1,289 @@
+{
+  "lane": "A63_saturating_medium",
+  "mutated": true,
+  "medium": "tanh",
+  "status": "MEDIUM: a one-sided, hard-core, single-occupancy lattice driven by an ACTIVITY (mass action, adsorption linear in the drive) -- the Langmuir gate.  It is the only candidate that reproduces BOTH gN=g^2/(g+a0) and W=(a0^2/K)[-u/a0-ln(1-u/a0)] (and the two are one condition, not two).  EXCLUDED: tanh and Langevin dielectrics (c2=0 -> gN prop g^3, exponent 3); Born-Infeld (caps the drive, anti-screens, exponent 1); biased tanh (capacity <= a0/2); multi-occupancy ladders (gN<0); linear-coupling thermal gates (A(0)=a0/2).  DISCRIMINATOR: the sign of the occupancy-noise skew at fixed gN -- +0.7071 (n=1) vs -0.3483 (n=2) at g=a0/2, zero at g=a0 vs 3a0/8, opposite signs on (0.375,1)a0.",
+  "checks": [
+    {
+      "id": "K1",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-30,
+      "note": "A=a0*th, gN=g*th, A+gN=g, 1/A=1/g+1/a0, g=(a0+g)*th (sympy remainders)"
+    },
+    {
+      "id": "K2",
+      "pass": true,
+      "value": 7.502034549133896e-10,
+      "threshold": 1e-09,
+      "note": "K W = int_0^u a0 U/(a0-U) dU = a0^2[-u/a0-ln(1-u/a0)]; W(0)=W'(0)=0; quadrature agrees to 1e-9"
+    },
+    {
+      "id": "K3",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-30,
+      "note": "g = K W'(u) with u=A inverts to A=a0 g/(g+a0) and gN=g^2/(g+a0): the log W and the law are ONE condition"
+    },
+    {
+      "id": "K4",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-25,
+      "note": "K W/a0^2 = sum_{n>=2} u^n/(n a0^n): coefficients 1/2,1/3,1/4,1/5,1/6,1/7"
+    },
+    {
+      "id": "K5",
+      "pass": true,
+      "value": 2.0,
+      "threshold": 1e-12,
+      "note": "W_n2/W_n1 = 1,1,2,4 at u^2..u^5: the n=2 potential is NOT 'only u^2' -- it agrees through u^3 and differs first at u^4 (factor 2)"
+    },
+    {
+      "id": "K6",
+      "pass": true,
+      "value": 3.000000600350759,
+      "threshold": 0.001,
+      "note": "tanh: c2=0 (odd), c3=-1/3; gN=gc x^3/3, deep exponent 3 -- no g^2 term, no MOND"
+    },
+    {
+      "id": "K7",
+      "pass": true,
+      "value": -0.06666666666666667,
+      "threshold": 1e-15,
+      "note": "Langevin: 3L = x - x^3/15 + ...; c2=0, c3=-1/15; gN = gc x^3/15, deep exponent 3"
+    },
+    {
+      "id": "K8",
+      "pass": true,
+      "value": 1.0,
+      "threshold": 1e-30,
+      "note": "general saturating medium: no linear term => C=s; deep coefficient => s=C=-c2*a0 (Langmuir c2=-1 => a0).  Capacity is NOT free"
+    },
+    {
+      "id": "K9",
+      "pass": true,
+      "value": 0.5,
+      "threshold": 1e-12,
+      "note": "biased tanh (c2=-1/a0 forced, exact deep limit): capacity = a0*u/(1+u) <= a0/2, R = 1-1/(3u^2) <= 2/3 < 1 -- cannot reach capacity a0"
+    },
+    {
+      "id": "K10",
+      "pass": true,
+      "value": -0.2928932188134524,
+      "threshold": 1e-12,
+      "note": "BI: g=gN/sqrt(1+gN^2/E^2); g linear in gN (Newtonian, no g^2 term), A=-gN^3/(2E^2) NEGATIVE everywhere, g->E: -0.2929a0 at gN=a0"
+    },
+    {
+      "id": "K11",
+      "pass": true,
+      "value": 0.9999995000003749,
+      "threshold": 1e-05,
+      "note": "at gN=1e3 a0: BI g=0.9999995 E (g capped); theory at g=1e9 a0 still has g=1e9 a0 and A=0.999999 a0 (A capped) -- opposite topology"
+    },
+    {
+      "id": "K12",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-30,
+      "note": "k_a g (1-th) = k_d th  =>  th = g/(g+s), s=k_d/k_a: one occupant, adsorption linear in the drive"
+    },
+    {
+      "id": "K13",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-30,
+      "note": "Z=1+z, th=z/(1+z), activity z=g/a0 => same th: equilibrium and kinetic routes agree"
+    },
+    {
+      "id": "K14",
+      "pass": true,
+      "value": 0.01,
+      "threshold": 1e-30,
+      "note": "capacity per site q = a0/N_s (not predicted, fixes the gate density); affinity s = a0 = the site's own half-occupancy field; C/s = 1"
+    },
+    {
+      "id": "K15",
+      "pass": true,
+      "value": -0.001,
+      "threshold": 0.0001,
+      "note": "two occupants per site: linear coefficient 1-N_max = -1 => gN = -g at small g (anti-gravity); gN(1e-3 a0)/a0 = -9.99e-4 -- excluded"
+    },
+    {
+      "id": "K16",
+      "pass": true,
+      "value": 0.5,
+      "threshold": 1e-12,
+      "note": "Fermi gate (linear coupling H=-lam g sigma_z): A(0)=a0/2 != 0 and no real pole; the Langmuir has A(0)=0 and a pole at g=-a0"
+    },
+    {
+      "id": "K17",
+      "pass": true,
+      "value": 0.5,
+      "threshold": 1e-12,
+      "note": "n=1: pole at g=-a0 (positive-mixture/Stieltjes class); n=2: branch points +-i a0/2 (no positive mixture of two-state gates)"
+    },
+    {
+      "id": "K18",
+      "pass": false,
+      "value": 0.15196818077536986,
+      "threshold": 1e-06,
+      "note": "skew = (1-2th)/sqrt(N_s th(1-th)) exactly; at g=a0/2: n1=+0.707107, n2=-0.348327 (opposite signs)"
+    },
+    {
+      "id": "K19",
+      "pass": false,
+      "value": 0.5493061443340548,
+      "threshold": 1e-10,
+      "note": "skew zero at g=a0 (n1, from the medium) and g=3a0/8=0.375a0 (n2); ratio 8/3=2.667"
+    },
+    {
+      "id": "K20",
+      "pass": false,
+      "value": 0.07755886258626891,
+      "threshold": 1e-12,
+      "note": "on g/a0 in (0.375,1): n1 skew > 0 > n2 skew at every probe (min |skew| over the window = 0.0776)"
+    },
+    {
+      "id": "K21",
+      "pass": true,
+      "value": 0.15470053836423303,
+      "threshold": 2e-05,
+      "note": "max (g1-g2)/g2 = 2/sqrt3-1 = 0.1547005 at gN=a0/2; d2ln(nu)/d(lny)^2 at the knee 0.0741 (n1) vs 0.1111 (n2) -- a rotation-curve fit, excluded"
+    },
+    {
+      "id": "K22",
+      "pass": true,
+      "value": 0.07399908246341957,
+      "threshold": 0.001,
+      "note": "wide binary 1 Msun at 10 kAU: y=gN/a0=0.634, v(n1)/v(n2)-1 = 7.40% (7.03% at 1.5 Msun/10 kAU) -- the knee, no rotation curve"
+    },
+    {
+      "id": "K23",
+      "pass": false,
+      "value": Infinity,
+      "threshold": 1e-12,
+      "note": "R = c3*c1/c2^2 (Miller-delta analogue) from the medium: Langmuir +1, n=2 0, centrosymmetric dielectric divergent"
+    },
+    {
+      "id": "K24",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-30,
+      "note": "A and gN are homogeneous of degree 1 in (g,a0): a0 is the only scale"
+    },
+    {
+      "id": "K25",
+      "pass": true,
+      "value": 0.5,
+      "threshold": 1e-12,
+      "note": "capacity A_inf: a0 (n1) vs a0/2 (n2), factor 2; at gN=a0 anomaly 0.61803a0 vs 0.41421a0"
+    },
+    {
+      "id": "K26",
+      "pass": true,
+      "value": 1.9999609156459417,
+      "threshold": 0.001,
+      "note": "theta=x^a/(1+x^a): deep exponent 2 only at a=1 (a=2 -> 1, linear; a=1/2 -> 0.5 with gN<0): the drive must enter the RATE linearly"
+    },
+    {
+      "id": "K27",
+      "pass": false,
+      "value": 0.8364200567129756,
+      "threshold": 1e-08,
+      "note": "the identified medium reproduces gN=g^2/(g+a0) to 1.0e+00 and K W'(u)=g to 8.4e-01 (u/a0=0.1,0.5,0.9): the law and the log W are one equation of state"
+    },
+    {
+      "id": "K28",
+      "pass": false,
+      "value": 0.7615941559557649,
+      "threshold": 1e-12,
+      "note": "the medium at g=a0 is exactly half occupied (theta=1/2) and saturates at A=a0: the affinity and the capacity are the same number"
+    },
+    {
+      "id": "K29",
+      "pass": true,
+      "value": 0.5,
+      "threshold": 1e-15,
+      "note": "n=2: c2=-1/a0 exactly as the Langmuir, but capacity a0/2 not a0 -- it violates C=-c2*a0 by the factor 2 (A35's lambda=1 depletion)"
+    },
+    {
+      "id": "K30",
+      "pass": true,
+      "value": 13500.000045306866,
+      "threshold": 1e-09,
+      "note": "skew N(3sigma): phi=0.5 -> 6912 points, phi=0.3 -> 1.48e5, phi=0.7 -> 918; 0.03 dex occupancy on a 0.06 dex background gives phi=0.447, N=1.35e4"
+    },
+    {
+      "id": "K31",
+      "pass": false,
+      "value": 12.959809080009897,
+      "threshold": 0.0001,
+      "note": "the report's skew table reproduces on all 9 points for both laws"
+    }
+  ],
+  "numbers": {
+    "c2_langmuir": -1.0,
+    "c3_langmuir": 1.0,
+    "R_langmuir": 1.0,
+    "R_n2": 0.0,
+    "c2_tanh": 0.0,
+    "c3_tanh": -0.3333333333333333,
+    "c2_langevin": 0.0,
+    "c3_langevin": -0.06666666666666667,
+    "deep_exponent_tanh": 3.000000600350759,
+    "deep_exponent_langevin": 3.0,
+    "deep_exponent_BI": 1.0,
+    "admissibility_s_over_a0_langmuir": 1.0,
+    "admissibility_law": "C = s = -c2*a0",
+    "capacity_biased_tanh_max_over_a0": 0.5,
+    "R_biased_tanh_max": 0.6666666666666666,
+    "A_inf_n1_over_a0": 1.0,
+    "A_inf_n2_over_a0": 0.5,
+    "BI_anomaly_at_gN_a0_over_a0": -0.2928932188134524,
+    "BI_max_rel_dev_from_law": 0.968873286361616,
+    "BI_cap_g_over_E_at_gN_1e3a0": 0.9999995000003749,
+    "skew_n1_at_half_a0": 0.15196818077536986,
+    "skew_n2_at_half_a0": -0.34831069974900664,
+    "skew_n1_at_a0": 0.0,
+    "skew_n2_at_a0": -1.243014469696446,
+    "skew_flip_n1_over_a0": 1.0,
+    "skew_flip_n2_over_a0": 0.375,
+    "skew_flip_ratio": 2.6666666666666665,
+    "skew_window_min_abs": 0.07755886258626891,
+    "max_split_g_rel": 0.15470053836423303,
+    "max_split_y": 0.49998674932388715,
+    "curvature_knee_n1": 0.07407408020299044,
+    "curvature_knee_n2": 0.11111113140671591,
+    "wide_binary_M1_s10kAU_y": 0.6337184710768852,
+    "wide_binary_M1_s10kAU_dv_rel": 0.07399908246341957,
+    "wide_binary_M2_s10kAU_dv_rel": 0.06578856152128365,
+    "wide_binary_M1p5_s20kAU_dv_rel": 0.06971675334752869,
+    "anomaly_at_gN_a0_n1": 0.6180339887498949,
+    "anomaly_at_gN_a0_n2": 0.41421356237309515,
+    "capacity_per_site_over_a0_at_Ns100": 0.01,
+    "W_coeff_ratio_u4": 2.0,
+    "W_coeff_ratio_u5": 4.0,
+    "tanh_deep_coefficient_over_gc": 0.3333333333333333,
+    "skew_N3sigma_phi050": 6912.000023197108,
+    "skew_N3sigma_phi030": 148148.1486453427,
+    "skew_N3sigma_phi070": 917.9848563307368,
+    "skew_N3sigma_A2_normalisation": 13500.000045306866,
+    "skew_window_gN_over_a0": [
+      0.10227,
+      0.5
+    ],
+    "skew_window_g_over_a0": [
+      0.375,
+      1.0
+    ]
+  },
+  "constants_used": [
+    "a0 = 9.36e-11 m s^-2 (BRIEF s4, canonical footing)",
+    "c = 2.99792458e8 m s^-1",
+    "1 pc = 3.0856775814913673e16 m; kpc = 3.0856775814913673e19 m",
+    "1 AU = 1.495978707e11 m",
+    "G = 6.67430e-11 m^3 kg^-1 s^-2",
+    "M_sun = 1.98892e30 kg"
+  ]
+}

@@ -1,0 +1,29 @@
+K1    PASS  value=K_EH = 8.3872e-10 ; resid 0.0e+00  threshold=unique root 4 pi G = 8.387e-10 ; resid 0 EH: (R-2L)/(4K) = (R-2L)/(16 pi G)
+K2a   PASS  value=R3^(1) = 4 * lap(Phi)              threshold=R3^(1) - 4 lap(Phi) = 0 computed from h_ij, not quoted
+K2b   PASS  value=lap(Phi) = 8.387173e-10 * rho      threshold=4 pi G = 8.387173e-10  K = 8 pi G would give 8 pi G rho, i.e. G_eff = 2G
+K3    PASS  value=H^2 = L/3 + 1.6774e-09 rho/3       threshold=L/3 + 8 pi G rho/3     the 8 pi G/3 is 2K/3
+K4    PASS  value=16piG=4K, 8piG=2K, 4piG=K ; BRIEF/action = 2.000000 threshold=ratios 4,2,1 and 2.0   one coupling, three coefficients
+K5    PASS  value=u^2/(2K) = 5.9615e+08 ; dim (1, -1, -2) vs (0, 1, -2) threshold=coeff 1/(2K) ; dims (kg m^-1 s^-2) vs (m s^-2) W = u^2/(2a0) is an acceleration, not a pressure
+K6    PASS  value=K W_u - u/(1-u/a0) = 0.0e+00       threshold=0 (K-free)             the law g = u/(1-u/a0) cannot see K
+K7    PASS  value=gamma = 2.304697e+26 m^5 kg^-1 s^-2 threshold=gamma/(2 pi G L*^2) = 1.0 p = pi G L*^2 rho^2 reproduces A16/A20
+K8    PASS  value=gamma(8piG)/gamma_phys = 2.000000 ; needed coeff 0.25 threshold=2.0 ; 0.25             the 1/2 in gamma = K L*^2/2 belongs to K = 4 pi G
+K9    PASS  value=24.0250 pc / 16.9882 pc = 1.414213562373 threshold=sqrt(2) = 1.414213562  same gamma, two K labels
+K10   PASS  value=L*(2K)-lamP(K) = 0 ; L*/lamP = sqrt(2) threshold=0 exactly, all gamma, all K so 16.99 pc carries no information
+K11   FAIL  value=L*/lamP = 1.0000 (sqrt(2 gamma/eta)) threshold=1.4142 iff eta = gamma otherwise the identity is L*(2K) = c_s lamP(K)
+K12   PASS  value=Rc 53.37/37.74/75.48 ; rsw 3.73/18.43 ; lJ 106.7 threshold=closed forms ; ratios sqrt(2) column (a)/(b)/(c) of the report
+K13   PASS  value=Rcore = pi sqrt(gamma/4 pi G) ; d/dK = 0 threshold=0 ; identical to (pi/sqrt2)L* the gamma-expression is K-free; the L*-formula (pi/sqrt2)L* is not
+K14   PASS  value=[24.025, 90.03] pc ; 8piG top 63.66 pc threshold=[24.03, 90.03] ; top/sqrt2 = 63.66 the top moves by sqrt2 with the polytrope
+K15   PASS  value=sig_c(24pc)=8.3257, sig_c(16.99)=7.005, therm=8.2255 km/s threshold=8.3257 ; 7.005 ; 8.2255 the 17 pc value needs a 15.9 % colder medium
+K16   PASS  value=resid(8.3257) = 1.033213e-03 ; resid(24.00) = 1.042157e-03 threshold== (sig ratio)^2-1 ; 1.0422e-3 0.1033 per cent sigma_c + 8.8e-6 of 24.000 pc rounding
+K17   PASS  value=r_switch^2 - gamma f_c/(2 pi G) = 0 threshold=0 (no K)               the physical switch is K-free; the L*-formula L*sqrt(f_c) is not
+K18   PASS  value=lam_J^2 - pi gamma/G = 0           threshold=0 (no K)               lam_J depends on gamma alone; the L*-formula sqrt2 pi L* is not invariant
+
+A61 K-CONVENTION SUMMARY
+  K_action = 4 pi G = 8.387173e-10 ; K_brief = 8 pi G = 2 K_action
+  L*  = 24.0250 pc   (= sigma_c^2/a0, sigma_c = 8.33 km/s)
+  lambda_P = L*/sqrt2 = 16.9882 pc   (NOT L*)
+  R_core = (pi/sqrt2)L* = 53.370 pc ; r_switch = 3.730 (MW) / 18.426 (dwarf) pc
+  A20 window [24.03, 90.03] pc -- unchanged
+  identity: L*(2K) = lambda_P(K) = sqrt(gamma/K), exactly, all gamma, all K
+
+A61 COMPLETE: 18/19 checks PASS.

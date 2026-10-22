@@ -1,0 +1,449 @@
+{
+ "lane": "A43",
+ "status": "CLOSED-NO-GO",
+ "checks": [
+  {
+   "id": "K0",
+   "pass_": true,
+   "value": "0.3348/0.4716/0.9865",
+   "threshold": "A29 values +-1e-3",
+   "label": "the npz and the estimator reproduce A29's three-band inversion; <w> = (u-1)/3"
+  },
+  {
+   "id": "K1",
+   "pass_": true,
+   "value": "residuals 0, 0",
+   "threshold": "== 0 exactly",
+   "label": "int v_i v_j f d3v = n(ubar_i ubar_j + Sigma_ij): the stress of a kinetic medium is the second moment, T^ij = rho ubar^i ubar^j + rho Sigma^ij.  No other term can appear"
+  },
+  {
+   "id": "K2",
+   "pass_": true,
+   "value": "O(xi) coefficient 0; O(xi^2) rhobar*Derivative(xi(q), q)**2",
+   "threshold": "0 / rhobar*xi'^2",
+   "label": "mass conservation rho d3x = rhobar d3q gives rho - rhobar = -rhobar div(xi) + O(xi^2); with P = -rhobar xi this is EXACTLY the theory's div P = rho - rhobar.  The polarization is the mass displacement, not an analogy"
+  },
+  {
+   "id": "K3",
+   "pass_": true,
+   "value": "p/(rho sigma^2) = 1",
+   "threshold": "== 1",
+   "label": "isotropic dispersion: p_kin = rho sigma^2 and w_kin = p/(rho c^2) = sigma^2/c^2 >= 0"
+  },
+  {
+   "id": "K4",
+   "pass_": false,
+   "value": "3p_T/eps_T = 0.0000/0.3333/0.6667",
+   "threshold": "n/3 = 0.6667/1/1.3333",
+   "label": "the virial identity 3 p_T = <rho xi.grad phi_T> = n eps_T for a power-law tether: harmonic n=2 gives p_T = (2/3) eps_T.  The tether pressure TRACKS the sign of the tether energy"
+  },
+  {
+   "id": "K6",
+   "pass_": true,
+   "value": "min w over (sigma, eps_T/rho c^2 in [0,0.5]) = 1.000e-16",
+   "threshold": ">= 0",
+   "label": "a stable (positive-definite) tether has eps_T >= 0, hence p_T >= 0, hence w >= 0: eq (A43.5) can violate the null energy condition only through eps_T < 0"
+  },
+  {
+   "id": "K7",
+   "pass_": true,
+   "value": "2 sigma^2 + Phi = 0",
+   "threshold": "== 0 (sympy)",
+   "label": "the virialized isothermal sphere constrained to the polarization has w = 0 EXACTLY (sigma^2 = GM/2r = -Phi/2), and a cold free-falling one has w = sigma^2/c^2 ~ 0: either way u = 1 to 1e-5, a second route to A29's u_OUT = 0.9865 +- 0.0984. The same formula bounds the mechanism: w lies in [Phi/c^2, 0], 4.4 decades all below the measurement"
+  },
+  {
+   "id": "K7b",
+   "pass_": true,
+   "value": "|w_meas|/(|Phi|/c^2) = 2.350e+04",
+   "threshold": "> 1e4",
+   "label": "the tether mechanism spans [Phi/c^2, 0] = 4.4 decades, ALL of them below the measurement by 2.3e4: the sign is right, the amplitude is the gravitational-potential-to-rest-energy ratio"
+  },
+  {
+   "id": "K7c",
+   "pass_": true,
+   "value": "|Phi_need|/|Phi_cluster| = 4.447e+04; virial w=0 vs w_INNER = 11.8 sigma",
+   "threshold": "> 1e4; > 8 sigma",
+   "label": "the tether route reaches w = -1/6 only where |Phi| >= c^2/3, i.e. near a horizon; worse, (A43.3) is negative only for a SUB-virial medium (sigma^2 < -Phi/2), so it predicts w < 0 where the medium is young/unrelaxed -- and the inner band is the OLDEST, most relaxed material. The tether inherits A29's sign no-go (11.8 sigma) as well as the amplitude shortfall"
+  },
+  {
+   "id": "K8",
+   "pass_": true,
+   "value": "min w over beta in [-10,1] = 0.000e+00",
+   "threshold": ">= 0",
+   "label": "w = (sigma_r^2 + 2 sigma_t^2)/(3c^2): the trace depends only on the SUM of the dispersions, so anisotropy redistributes pressure without ever changing its sign. Rotation enters as bulk motion rho u^i u^j and can only ADD to the trace. No anisotropy is 'needed': none works"
+  },
+  {
+   "id": "K9",
+   "pass_": true,
+   "value": "sigma_need = c/sqrt6 = 1.2239e+08 m/s = 0.4082 c = 1.469e+04 sigma_c; w(sigma_c) = 7.721e-10",
+   "threshold": "ratio > 1e4; shortfall > 1e8",
+   "label": "route (i): w = sigma^2/c^2, so w = -1/6 needs sigma^2 = -c^2/6 -- impossible for a positive dispersion; even the |w| = 1/6 MAGNITUDE needs sigma = 0.408c, 1.47e4x the cold medium's own 8.33 km/s. The cold sector is non-relativistic by construction (THEORY s3.3), so its kinetic pressure is 7.7e-10 rho c^2: 2.2e8 short"
+  },
+  {
+   "id": "K10",
+   "pass_": true,
+   "value": "min w over (v,sigma) = 0.000e+00",
+   "threshold": ">= 0",
+   "label": "the counter-stream stress is positive for EVERY (v,sigma); the equation 3 sigma^2 + v^2 = -c^2/2 has no real solution. p_ij = rho<dv_i dv_j> is a covariance matrix: PSD by construction. 'Negative longitudinal pressure' would violate Cauchy-Schwarz"
+  },
+  {
+   "id": "K11",
+   "pass_": true,
+   "value": "v_needed(if p_z=rho(sigma^2-v^2)) = 2.1199e+08 m/s = 0.7071 c; v/sigma_vir = 303; crossing time 1 Mpc = 4.6 kyr",
+   "threshold": "v/c = 0.7071, ratio > 100, t < 100 kyr",
+   "label": "even the WRONG formula p_z = rho(sigma^2 - v^2) needs a counter-stream at v = c/sqrt2 = 0.707c (v^2 = 3 sigma^2 + c^2/2 -> c^2/2 at sigma->0): 303x the virial velocity, crossing 1 Mpc in 4.6 kyr and 2992 times in a Hubble time. A 0.7c stream is hot dark matter and free-streams out of a 1e14 Msun halo"
+  },
+  {
+   "id": "K12",
+   "pass_": true,
+   "value": "c_eff^2(k->0) = v^2 > 0; lambda_unstable = 1.10e+03 Mpc for v=0.707c",
+   "threshold": "> 100 Mpc",
+   "label": "the 'negative longitudinal pressure' of a counter-stream is at best the sign of the linear RESPONSE, not of T^ij: u = 1+3w is built from T^ij, so the response cannot supply it. And even the response is positive (c_eff^2 = v^2) in the k -> 0 limit an equation of state refers to; its negative branch needs lambda > 1 Gpc for the required v, which is 366x the whole annulus. At cluster scales there is neither a negative stress nor a negative response"
+  },
+  {
+   "id": "K13",
+   "pass_": true,
+   "value": "mu(1)=1/2 exact; r(X=1) = 0.2011 Mpc vs measured u=1/2 at 1.0652 Mpc (factor 5.30)",
+   "threshold": "identical at X=1; factor > 3",
+   "label": "route (iii): at half capacity u = mu and u = 1-mu coincide exactly at 1/2, so 0.47 does not select either; and half capacity sits at g = a0, r = 0.20 Mpc -- 5.3x inside the measured crossing at 1.07 Mpc. Neither reading gives 0.47 at the radius where the data have it"
+  },
+  {
+   "id": "K14",
+   "pass_": true,
+   "value": "chi2/dof: mu 21.05, 1-mu 20.42, const 5.92, step 1.45",
+   "threshold": "mu and 1-mu > 10; Delta chi2 vs step > 100",
+   "label": "both saturation readings are monotone over 1.5 decades in radius; the data are a PLATEAU at 0.33-0.53 out to 1.18 Mpc and then a step to 1. They are rejected at Delta chi2 = 160 / 155 against the step, for zero extra parameters. The step recomputes A29's 1.455 (dof 6); the constant recomputes 5.920 (dof 7)"
+  },
+  {
+   "id": "K15",
+   "pass_": true,
+   "value": "data u-step at X = 0.1369 (g = 1.281e-11 m/s^2); half capacity at X = 1: factor 7.30",
+   "threshold": "factor > 4",
+   "label": "the measured u-transition sits at g ~ 0.13 a0, not at the law's half-capacity point g = a0. So route (iii) does not merely mis-normalise: it puts the transition 7x too far out in acceleration. 0.47 is 'near' 1/2 only because the measured plateau value happens to be there; the transition itself is elsewhere"
+  },
+  {
+   "id": "K16",
+   "pass_": true,
+   "value": "p_req = 2.913e-08 Pa at 0.6 Mpc; p_ICM = 8.011e-13 Pa; ratio 3.636e+04",
+   "threshold": "> 1e4",
+   "label": "the tension the measurement demands is 0.176 rho c^2, i.e. 2.9e-8 Pa -- 3.6e4x the thermal pressure of the 5 keV ICM in the same volume. This is not a perturbation of the medium: it is a relativistic stress"
+  },
+  {
+   "id": "K17",
+   "pass_": true,
+   "value": "eps_P = a0^2/8piG = 5.223e-12 J/m^3; eps_P/(rho c^2) = 3.159e-05; shortfall 5.58e+03x",
+   "threshold": "shortfall > 1e3",
+   "label": "the tether IS the polarization field by hypothesis, and its stress-energy is bounded by a0^2/8piG (its value at u ~ a0/4, the maximum of W). That is 3.2e-5 of the cold rest energy at 0.6 Mpc: the field can supply at most |w| = 3.2e-5, 5.5e3 short of 0.176"
+  },
+  {
+   "id": "K18",
+   "pass_": true,
+   "value": "c_s^2 = -1/6: k = 3.394e-22/m, growth time 0.763 Myr (1.8e+04x shorter than the age)",
+   "threshold": "t_grow < 10 Myr",
+   "label": "for a barotropic medium c_s^2 = dp/drho = w = -1/6 < 0 (A21 K12): the mode grows on the sound-crossing time of the band, 0.75 Myr. A w = -1/6 FLUID cannot be static for 10 Gyr; only a solid/network with a positive modulus and a NEGATIVE PRE-STRESS can be"
+  },
+  {
+   "id": "K19",
+   "pass_": true,
+   "value": "string fraction f = 3|w| = 0.5284; wall f = 0.2642; slip (Phi-Psi)/Phi ~ 2f = 1.057 vs gate 2.63e-07 (4.0e+06x)",
+   "threshold": "slip/gate > 1e6",
+   "label": "a network is the only STABLE negative-trace carrier (strings w=-1/3, walls w=-2/3): w=-0.176 needs 53% of the cold energy in strings, 26% in walls. Three costs: (a) a 1D/2D network is anisotropic and gives a slip ~2f ~ 1, 4e6x the theory's own lensing=dynamics gate; (b) an isotropic 'foam' (three tensioned families) avoids the slip only by fine tuning, and its tension is a UV scale, not a0; (c) w=-1/3 has c_s^2<0 and rho+3p=0, so it neither gravitates nor clusters -- it cannot follow the cold mass profile it is supposed to explain"
+  },
+  {
+   "id": "K20",
+   "pass_": true,
+   "value": "f_ret(MID) = 2.195 +- 0.336 (3.6 sigma above 1); f_ret(INNER) = 3.091 +- 0.520",
+   "threshold": "> 2.0 / > 2.5, > 3 sigma",
+   "label": "the EOS reading needs 2.12x (MID) / 2.99x (INNER) the cold rest mass that the u=1 reading assigns, i.e. f_ret = 2.20 +- 0.34 (MID) and 3.09 +- 0.52 (INNER), against the ceiling f_ret = 1 imposed by P4 (cold rest mass = the catchment's cosmic share). The SAME amplitudes that give u = 0.47 exclude the EOS interpretation at 3.6 sigma (MID) / 4.0 sigma (INNER) once the normalization is imposed. The MID error is correlated (f_ret = lambda^2 R_tot/R_cosmic), so 3.6 sigma, not the 5.3 sigma an independent-error treatment would give"
+  },
+  {
+   "id": "K21",
+   "pass_": true,
+   "value": "shortfalls vs 0.176: kinetic 2.16e+08, gravitational 2.35e+04, field 5.58e+03, potential depth 4.45e+04",
+   "threshold": "all > 1e3",
+   "label": "routes (i), (ii) and (iii) fail for one reason, not three: every stress the cold sector can carry is bounded by rho x max(sigma^2, |Phi|, a0^2/(8 pi G rho)) = 0.18 rho c^2 x 10^-4ish, and the measurement needs 0.18 rho c^2. The obstruction is dimensional: the cold sector is non-relativistic (THEORY s3.3), and w ~ -1/6 is a rest-mass-scale statement"
+  }
+ ],
+ "numbers": {
+  "u_INNER": 0.3348011188200228,
+  "u_MID": 0.4715658920597389,
+  "u_OUTER": 0.9864735709015933,
+  "u_err_INNER": 0.05630360103113831,
+  "u_err_MID": 0.03609957379232797,
+  "u_err_OUTER": 0.09840872638520702,
+  "w_INNER": -0.2217329603933257,
+  "w_MID": -0.17614470264675366,
+  "w_OUTER": -0.0045088096994689115,
+  "w_err_INNER": 0.018767867010379437,
+  "w_err_MID": 0.012033191264109323,
+  "w_err_OUTER": 0.03280290879506901,
+  "w_1p42_2p5": -0.0045088096994689115,
+  "u_profile_8bin": {
+   "R": [
+    0.18088628265460446,
+    0.2630476239355356,
+    0.3825279144591322,
+    0.5562779969315113,
+    0.8089480484258734,
+    1.1763847368793168,
+    1.7107168400436887,
+    2.487750831052557
+   ],
+   "u": [
+    0.29361310464728224,
+    0.3730111720012914,
+    0.333090030214706,
+    0.4168980122450452,
+    0.41163554571723043,
+    0.5318673780423687,
+    1.088491402371928,
+    0.9392435059445235
+   ],
+   "err": [
+    0.12507536762074137,
+    0.10721384254567186,
+    0.05040946101288164,
+    0.06478074184274378,
+    0.04404770295246128,
+    0.054490408207352674,
+    0.20872688406925308,
+    0.10585827409980067
+   ]
+  },
+  "X_8bin": [
+   1.0697399351609516,
+   0.827147438365159,
+   0.6060938434432067,
+   0.42106255346539645,
+   0.278205749259317,
+   0.17569572545815537,
+   0.10667699779062961,
+   0.0626410426195519
+  ],
+  "u_mu_8bin": [
+   0.5168475116067005,
+   0.452698792115676,
+   0.37737137584927105,
+   0.29630120956927286,
+   0.21765333900315276,
+   0.14943979267228238,
+   0.09639397764984689,
+   0.05894845023596433
+  ],
+  "u_1mmu_8bin": [
+   0.48315248839329944,
+   0.547301207884324,
+   0.6226286241507288,
+   0.7036987904307271,
+   0.7823466609968472,
+   0.8505602073277175,
+   0.9036060223501531,
+   0.9410515497640357
+  ],
+  "chi2_dof_mu": 21.04621751018876,
+  "chi2_dof_1mmu": 20.419057461583478,
+  "chi2_dof_const": 5.920077265852792,
+  "chi2_dof_step": 1.454972073598541,
+  "dchi2_mu_vs_step": 159.63990763991885,
+  "dchi2_1mmu_vs_step": 154.62262725107658,
+  "r_half_capacity": 0.20110565719000503,
+  "r_u_half_measured": 1.0652332758755962,
+  "r_ratio": 5.296883691686315,
+  "X_at_u_0461": {
+   "u_eq_mu": 0.8923835251623254,
+   "u_eq_1mmu": 1.120594421348264
+  },
+  "sigma_needed": 122389758.47245947,
+  "sigma_needed_over_c": 0.4082482904638631,
+  "sigma_needed_over_sigma_c": 14692.648075925506,
+  "w_at_sigma_c": 7.720556347449893e-10,
+  "kinetic_shortfall": 215873950.65777892,
+  "v_err_two_stream": 211985280.00038326,
+  "v_err_over_c": 0.7071067811865476,
+  "v_err_over_sigma_vir": 302.8361142862618,
+  "t_cross_1Mpc_kyr": 4.612196964129207,
+  "tether_eps_ratio": {
+   "INNER": -0.3325994405899886,
+   "MID": -0.2642170539701305,
+   "OUTER": -0.006763214549203367
+  },
+  "Phi_over_c2_at_0p6": -7.495711717047443e-06,
+  "w_ceiling": 7.495711717047443e-06,
+  "gravitational_shortfall": 23499.39662782775,
+  "rho_cold_at_0p6": 1.839809809359713e-24,
+  "p_req_Pa": 2.912620639643685e-08,
+  "p_ICM_Pa": 8.01088317e-13,
+  "p_ratio": 36358.29630559554,
+  "eps_field": 5.222832694928201e-12,
+  "eps_field_over_rhoc2": 3.158579251619998e-05,
+  "field_shortfall": 5576.706760053943,
+  "cs2_minus_sixth": -0.16666666666666666,
+  "t_grow_Myr": 0.7628512373103298,
+  "omega_J": 3.9282060381639035e-17,
+  "lambda_unstable_Mpc": 1098.8559632891915,
+  "f_strings": 0.528434107940261,
+  "f_walls": 0.2642170539701305,
+  "slip": 1.056868215880522,
+  "slip_gate": 2.63e-07,
+  "slip_ratio": 4018510.3265419086,
+  "mass_factor_1_over_1p3w": {
+   "INNER": 2.9868478442497812,
+   "MID": 2.120594421348264,
+   "OUTER": 1.013711902170926
+  },
+  "f_ret_required": {
+   "INNER": 3.0913438407604126,
+   "MID": 2.1947842156761808,
+   "OUTER": 1.0491769947754828
+  },
+  "f_ret_err": {
+   "INNER": 0.5198721882223045,
+   "MID": 0.3360326778765494,
+   "OUTER": 0.10466390063967958
+  },
+  "f_ret_Z": {
+   "INNER": 4.0228038509075335,
+   "MID": 3.5555596057688077,
+   "OUTER": 0.46985631602611094
+  },
+  "Phi_need_over_c2": -0.3333333333333333,
+  "potential_depth_shortfall": 44469.87102975635,
+  "Z_virial_w0_vs_INNER": 11.814499765513995,
+  "w_vir_general": -3.7478558585237216e-06,
+  "rho_cold_c2_at_0p6": 1.6535385940528393e-07,
+  "f_ret_dust": 1.0349853765439727,
+  "f_ret_dust_err": 0.07959991998996332,
+  "f_ret_dust_Z": 0.43951522248243446,
+  "R_eos_MID": 11.37556191048787,
+  "R_eos_MID_err": 1.741656652999958,
+  "crossings_in_hubble": 2992.0664939784224,
+  "X_transition_inverse": 7.304390951211841,
+  "age_over_t_grow": 18090.027681748554,
+  "X_transition": 0.13690395361903435,
+  "g_transition": 1.2814210058741615e-11,
+  "g_transition_over_a0": 0.13690395361903435,
+  "shortfalls": {
+   "kinetic": 215873950.65777892,
+   "gravitational": 23499.39662782775,
+   "field": 5576.706760053943,
+   "potential_depth": 44469.87102975635
+  },
+  "R_req": 5.552,
+  "R_req_err": 0.427,
+  "R_cosmic": 5.364327,
+  "R_tot": 2.6179,
+  "M200c_stack": 148300000000000.0,
+  "c_nfw": 4.5,
+  "z_stack": 0.23365,
+  "sigma_c": 8330.0
+ },
+ "constants_used": [
+  {
+   "name": "c",
+   "value": 299792458.0,
+   "unit": "m/s",
+   "source": "BRIEF s4"
+  },
+  {
+   "name": "G",
+   "value": 6.6743e-11,
+   "unit": "m^3 kg^-1 s^-2",
+   "source": "BRIEF s4"
+  },
+  {
+   "name": "a0_canonical",
+   "value": 9.36e-11,
+   "unit": "m/s^2",
+   "source": "BRIEF s4"
+  },
+  {
+   "name": "M_sun",
+   "value": 1.98847e+30,
+   "unit": "kg",
+   "source": "BRIEF s4"
+  },
+  {
+   "name": "Mpc",
+   "value": 3.085677581491367e+22,
+   "unit": "m",
+   "source": "BRIEF s4"
+  },
+  {
+   "name": "sigma_c",
+   "value": 8330.0,
+   "unit": "m/s",
+   "source": "[EXT] THEORY s3.3: 8.33 km/s = c sqrt(L*/L_MOND)"
+  },
+  {
+   "name": "M200c_stack",
+   "value": 148300000000000.0,
+   "unit": "Msun",
+   "source": "[EXT] A29 K18/A43 (M500=f_gas route)"
+  },
+  {
+   "name": "c_nfw",
+   "value": 4.5,
+   "unit": "1",
+   "source": "[EXT] A29, NFW c200c at 1.5e14, z=0.23"
+  },
+  {
+   "name": "z_stack",
+   "value": 0.23365,
+   "unit": "1",
+   "source": "[EXT] median of the 318 CFG687 clusters"
+  },
+  {
+   "name": "R_req",
+   "value": 5.552,
+   "unit": "1",
+   "source": "[EXT] A18 K15: required ACTIVE cold/baryon ratio"
+  },
+  {
+   "name": "R_req_err",
+   "value": 0.427,
+   "unit": "1",
+   "source": "[EXT] A18 K15"
+  },
+  {
+   "name": "R_cosmic",
+   "value": 5.364327,
+   "unit": "1",
+   "source": "[EXT] A18 eq (3), omega_b/omega_m"
+  },
+  {
+   "name": "p_ICM",
+   "value": 8.01088317e-13,
+   "unit": "Pa",
+   "source": "[EXT] n=1e-3 cm^-3, kT=5 keV (illustrative)"
+  },
+  {
+   "name": "slip_gate",
+   "value": 2.63e-07,
+   "unit": "1",
+   "source": "THEORY s3.5 / A12, A3, A32"
+  }
+ ],
+ "record_inputs": [
+  {
+   "name": "u_band_INNER/MID/OUTER",
+   "source": "CFG687 npz, A29 estimator (recomputed here)"
+  },
+  {
+   "name": "w=(u-1)/3",
+   "source": "A21 K10-K12, A29 K5 (exact in sympy)"
+  },
+  {
+   "name": "R_req=5.552+-0.427",
+   "source": "A18 K15, from A_MID/A_newton"
+  },
+  {
+   "name": "a0=9.36e-11",
+   "source": "BRIEF s4"
+  }
+ ],
+ "data_source": "campaign_fresh_gravity/CFG687_erass1_shear_stack/cfg687_percluster.npz",
+ "mutation": "M1",
+ "n_pass": 22,
+ "n_total": 23,
+ "runtime_s": 1.7
+}

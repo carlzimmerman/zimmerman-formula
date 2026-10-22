@@ -1,0 +1,226 @@
+
+====================================================================================================
+K1  THE DATA VECTOR ON DISK
+====================================================================================================
+  K1   PASS  SPARC files=175 fitted=171 points=3375 | KiDS 4x15 radii 0.0354-2.6035 Mpc | SNe=True cov=True
+        threshold: 175 files, 171 in the fit (>=5 pts), 3375 points, KiDS 4x15, Pantheon+ on disk   :: the full data vector is present; sha256 sparc=469f4f556dc813b2 kids=e2568b34578a4752
+
+====================================================================================================
+K2  THE LIKELIHOOD IS THE RECORD'S (THEORY section 4, _parent/full_sparc.out)
+====================================================================================================
+  fixed Upsilon=0.5, a0=1.132e-10 : chi2=23169.6 dof=3375 chi2/dof=6.8651   (record: 6.87)
+  one Upsilon per galaxy, same a0 : chi2=7918.3 dof=3204 chi2/dof=2.4714   (record: 2.42)
+  fixed Upsilon=0.5, a0=9.36e-11  : chi2/dof=6.6312                    (record: 6.63)
+  K2   PASS  6.8651 / 2.4714 / 6.6312
+        threshold: 6.87 +- 0.02 (fixed), 2.42 +- 0.10 (free-Upsilon grid), 6.63 +- 0.02   :: the zero-parameter number reproduces to 4 digits; the free-Upsilon one to the Upsilon-grid resolution (2.42 at [0.02,4.0], 2.47 at the record's [0.05,2.5])
+
+====================================================================================================
+K3  THE KAPPA IDENTITY, IN THE TWO CONVENTIONS THE RECORD USES
+====================================================================================================
+  kappa_P3(1.131204e-10, H0=67.4) = 0.604254426   (target 0.5)
+  kappa_P3(1.132e-10 quoted)       = 0.604680
+  kappa_DE(1.131204e-10)           = 0.730247   (= 0.5/sqrt(Omega_L) = 0.604254)
+  round trip a0 -> kappa -> a0   : residual 2.09e-01
+  a0 at kappa=0.5, H0=67.4       : 1.131204e-10  (P3: 1.1312e-10, quoted 1.132e-10)
+  K3   FAIL  kappa_P3=0.604254  kappa_DE=0.730247  round-trip 2.1e-01
+        threshold: 0.5 +- 1e-6 ; 0.6046 +- 2e-4 ; round trip < 1e-12   :: kappa_P3 = a0 sqrt(8pi/3)/(c H0); the DE convention is sqrt(Omega_L) = 0.8276 larger.  1/2 in one convention is 0.6046 in the other -- a 20.9% relabelling
+
+====================================================================================================
+K4  THE SPARC PROFILE LIKELIHOOD: best fit in (a0, kappa)
+====================================================================================================
+  a0_best   = 8.081465e-11 m/s^2
+  chi2_min  = 7115.88  dof = 3204  chi2/dof = 2.2209
+  kappa_P3  = 0.4317     kappa_DE = 0.5217
+  relative to the theory's footing: a0 is 28.6% low, kappa 13.7% low
+  K4   PASS  a0=8.08147e-11  kappa_P3=0.4317  chi2/dof=2.2209
+        threshold: a0 < 1.1312e-10 and chi2/dof < 2.5   :: with one Upsilon per galaxy the SPARC likelihood peaks BELOW the theory's a0; the record's own 2.21 (at 9.36e-11) vs 2.42 (at 1.132e-10) already showed the direction
+
+====================================================================================================
+K5  THE Delta-chi2 = 1 INTERVAL (the statistical error, before resampling)
+====================================================================================================
+  Delta-chi2 = 1: a0 in [7.98675e-11, 8.16888e-11]  ->  +-1.13%
+  Delta-chi2 =   4 : [7.88419e-11, 8.28546e-11]  (2.0 sigma)
+  Delta-chi2 =   9 : [7.78754e-11, 8.38654e-11]  (3.0 sigma)
+  Delta-chi2 =  25 : [7.59132e-11, 8.59370e-11]  (5.0 sigma)
+  Delta-chi2 = 100 : [7.11945e-11, 9.13198e-11]  (10.0 sigma)
+  K5   PASS  sigma(a0)/a0 = 0.0113  (1.127% in a0, 0.0049 in kappa)
+        threshold: 0.005 < sigma < 0.03   :: Delta-chi2 = 1 gives a sub-percent error, which CANNOT be the honest one at chi2/dof = 2.2 -- K6 tests that
+
+====================================================================================================
+K6  THE BLOCK BOOTSTRAP OVER GALAXIES (the honest statistical error)
+====================================================================================================
+  200 resamples: median 8.07743e-11  mean 8.09213e-11  sd 7.58379e-12  (9.39%)  p16 7.33660e-11  p84 8.80725e-11
+  sigma_boot / sigma_dchi2 = 8.3
+  per-galaxy a0: median 8.449e-11, scatter 0.455 dex (factor 2.9), 16-84% [3.15e-11, 2.31e-10]
+  scatter/sqrt(N) = 0.035 dex = 8.3% -- the bootstrap error is exactly this, so it is galaxy-to-galaxy scatter, not a hidden systematic
+  K6   PASS  sigma_boot = 0.0939 (9.39%), ratio to Delta-chi2 = 8.3
+        threshold: ratio > 3   :: the per-point errors are not the truth: the galaxy-to-galaxy scatter (0.46 dex in the per-galaxy a0) is 8x the formal error.  The bootstrap is the statistical error used below
+
+====================================================================================================
+K6b THE ESTIMATOR ENSEMBLE: WHY THE SYSTEMATIC IS 21% AND NOT 3%
+====================================================================================================
+  estimator                                                a0    kappa
+  chi2, free Upsilon, all 171 (PRIMARY)          8.0815e-11   0.4317
+  chi2, free Upsilon, errV/V<0.10 (141)          8.6630e-11   0.4627
+  chi2, free Upsilon, 10% floor                  7.3417e-11   0.3922
+  chi2, free Upsilon, 3% floor                   8.5464e-11   0.4565
+  unweighted V-space (sigma=1), free Upsilon     1.0258e-10   0.5480
+  log-space, fixed Upsilon, errV/V<0.10          1.1207e-10   0.5986
+  log-space, fixed Upsilon, all 171              9.1168e-11   0.4870
+  span: kappa 0.3922 -> 0.5986 (x1.53) ; half-span 20.8%  <- this is the estimator systematic
+  K6b  PASS  7 estimators, kappa 0.392-0.599, half-span 20.8%
+        threshold: >=6 estimators and 0.10 < half-span < 0.40   :: the same 3375 points, six defensible weightings, give a0 from 7.3e-11 to 1.12e-10. The estimator/error-model choice, not the data, sets the error bar: this half-span IS the systematic used in K10, and it is 8x the bootstrap error
+
+====================================================================================================
+K7  THE CLUSTER CHANNEL (A18: R_req = 5.552 +- 0.427, u = 0.45 +- 0.03)
+====================================================================================================
+  anchor reproduced: r_v=1.6863 Mpc  F=3.7702  R_tot=2.6179   (A18: 1.6863 / 3.7702 / 2.6179)
+  dlnR_tot/dlna0 = +0.928
+  clusters alone: a0 = 8.90017e-11 +- 9.76462e-12 (11.0%)  ->  kappa_P3 = 0.4754 +- 0.0522
+  K7   PASS  sigma(a0)/a0 = 0.110  kappa_cl = 0.4754 +- 0.0522
+        threshold: 0.10 < sigma < 0.30   :: the cluster amplitude measures ONE number; u (the A18 sourcing fraction) is degenerate with it, and u was itself derived from the same amplitudes -- so this channel is a 14-20% upper bound on a0, not a measurement
+
+====================================================================================================
+K8  THE LENSING CHANNEL: A44's MODEL IS EXACTLY (M_b, a0)-DEGENERATE
+====================================================================================================
+  lambda=0.7 : chi2(a0=6.552e-11, M=lam M_b) = 1876.978816   (reference at lambda=1: 1876.978816)
+  lambda=1.0 : chi2(a0=9.360e-11, M=lam M_b) = 1876.978816   (reference at lambda=1: 1876.978816)
+  lambda=1.3 : chi2(a0=1.217e-10, M=lam M_b) = 1876.978816   (reference at lambda=1: 1876.978816)
+  lambda=2.0 : chi2(a0=1.872e-10, M=lam M_b) = 1876.978816   (reference at lambda=1: 1876.978816)
+  DeltaSigma(lam a0, lam M_b) / (lam DeltaSigma(a0, M_b)) - 1  <=  4.44e-16
+  chi2 is invariant to 6 digits on the REAL 60x60 covariance and the REAL DeltaSigma points.
+  -> with M_b profiled per bin, chi2(a0) is CONSTANT: the KiDS vector carries
+     exactly zero Fisher information on a0, hence on kappa.
+  K8   PASS  max deviation 4.44e-16
+        threshold: < 1e-10   :: an exact degeneracy, not a weak constraint: A44 itself notes the amplitude is degenerate with the profiled M_b; this shows it is degenerate INCLUDING the baryon point mass, for every a0
+
+====================================================================================================
+K9  THE COSMOLOGY CHANNEL: on disk, live, and kappa-BLIND
+====================================================================================================
+  BAO: 7 tracers / 13 numbers (DESI DR2); SNe: 1580 after mask (Pantheon+); CMB: 3 priors
+  flat-LCDM fit:      Omega_m=0.3020  h=0.6842  Omega_b h^2=0.02252  chi2=1404.64 / dof=1593
+  framework branch:   Omega_m=0.4376  h=0.4704  Omega_b h^2=0.02250  chi2=1403.24   (Om_eff=0.3044)
+  Delta chi2 (framework - LCDM) = -1.40  -> the branch is NOT excluded: it is an exact
+  reparametrisation, E_fw(z;Om) = E_LCDM(z; Om/(1+Om)).  Verified on the 19 distance numbers:
+     shape identity E_fw^2(1+Om) = 1 + Om(1+z)^3 + Or(1+z)^4 : residual 7.1e-15
+     -> equivalently E_fw(z;Om) = E_LCDM(z; Om_eff) with Om_eff = Om/(1+Om) = 0.3044
+     max |framework/LCDM - 1| over 13 BAO + R + l_A = 2.54e-03
+  the branch's OWN h is not robust here: this fit gives h = 0.470, A46 reports 0.568 for the
+  same data, and the difference is the radiation bookkeeping inside (1+Om).  So the branch
+  determines no H0 that this lane can use: the H0 footing (56.8 / 67.4 / 73.0) is a PRIOR,
+  and kappa = a0 sqrt(8pi/3)/(c H0) carries it in full (S_H0 = 0.125 below).
+  kappa does NOT enter E(z): d chi2/d kappa = 0 identically.
+  K9   PASS  LCDM Om=0.3020 h=0.6842 chi2/dof=0.882 ; framework Om=0.4376 h=0.4704 dchi2=-1.40, distances match to 2.5e-03
+        threshold: 0.28 < Om < 0.33, 0.65 < h < 0.71, chi2/dof < 1.05, |dchi2| < 15, distances < 3%, identity < 1e-6   :: the distance vector is live; the framework's background is an EXACT reparametrisation of flat LCDM (so it is not excluded), and its own h is modelling-dependent (0.470 here, 0.568 in A46), so the H0 footing is a prior.  kappa does not enter E(z) at all: the channel supplies H0 and no kappa information
+
+====================================================================================================
+K10  THE JOINT POSTERIOR ON KAPPA
+====================================================================================================
+  SPARC   : kappa = 0.4317 +- 0.0405  (stat, bootstrap, 9.4%)
+  clusters: kappa = 0.4754 +- 0.0522  (u marginalised)
+  lensing : infinite error (exact degeneracy, K8)
+  cosmology: infinite error on kappa (kappa-blind, K9); H0 to 0.7 pct
+  JOINT (stat only): kappa = 0.4482 +- 0.0320
+  tension with 1/2: 1.62 sigma (stat only)
+  [control] summing the RAW chi2's peaks at kappa=0.4319, i.e. at the SPARC value: the raw
+     curvature is 8.3x tighter than the bootstrap, so a raw sum would ignore the galaxy
+     scatter that chi2/dof = 2.2 is telling us about.  The bootstrap posterior is the one
+     that gets combined, and the product is verified by Monte Carlo:
+  Monte Carlo product: kappa = 0.4485 +- 0.0331   (Laplace: 0.4482 +- 0.0320)
+  systematics (fractional): distance 0.161, law 0.100, Upsilon-window 0.050, H0 0.125, estimator 0.208
+  sigma_sys = 0.312 (31.220%), sigma_tot = 0.1435
+  JOINT (stat + sys): kappa = 0.4482 +- 0.1435
+  tension with 1/2: 0.36 sigma
+  1/2 inside 1 sigma: YES
+  1/2 inside 2 sigma: YES
+  1/2 inside 3 sigma: YES
+  [for contrast] Delta-chi2 = 1 only: kappa = 0.4482 +- 0.0051 -> 1/2 at 10.3 sigma
+  K10  PASS  kappa = 0.4482 +- 0.1435 (tot) ; 1/2 at 0.36 sigma ; 1 sigma interval [0.305, 0.592]
+        threshold: 1/2 inside 2 sigma and sigma_stat(joint) < 0.06   :: the joint fit's statistical error is 7.1% and its total error is 32.0%: 1/2 is excluded at 1.6 sigma statistically and admitted at 0.36 sigma in total.  The measurement does not decide
+
+====================================================================================================
+K11  PRIOR CONTROL 1: flat prior kappa in [0.3, 1.0]
+====================================================================================================
+  the prior spans a0 in [6.7872e-11, 2.2624e-10]; the Delta-chi2 = 9 interval is [7.9867e-11, 8.1689e-11]
+  refit inside the prior: a0=8.081465e-11  kappa=0.4317  chi2=7115.88  (unbounded: 8.081465e-11 / 0.4317 / 7115.88)
+  shift in kappa: 5.78e-10 ; the prior is NOT truncating
+  K11  PASS  interior=True  kappa_flat=0.4317 vs 0.4317
+        threshold: interval strictly inside [0.3,1.0] and |shift| < 1e-4   :: the flat kappa prior changes nothing: the posterior is interior and 5 sigma from both edges.  In THIS parameter the fit is not prior-dominated
+
+====================================================================================================
+K12  PRIOR CONTROL 2: fixed Upsilon vs one Upsilon per galaxy
+====================================================================================================
+  fixed Upsilon=0.5  : a0=9.44218e-11  kappa=0.5044  sigma(a0)/a0=0.0067 (0.67%)  chi2/dof=6.63
+  free Upsilon       : a0=8.08147e-11  kappa=0.4317  sigma(a0)/a0=0.0939 (9.39%)  chi2/dof=2.22
+  error-bar ratio    : 14.1 x
+  IMF lever, fixed   : dln a0/dln Upsilon = -1.486 ; Upsilon 0.5->0.87 moves kappa 0.5044 -> 0.2214 (x0.439)
+  IMF lever, fixed (0.30->0.87): kappa 0.8865 -> 0.2214 (x0.250)
+  Upsilon-window, free: [0.3,1.0] a0=7.7769e-11 ; [0.01,5.0] a0=8.1670e-11  -> kappa moves x1.050
+  K12  PASS  ratio 14.1, IMF move x0.439, free-window move x1.050
+        threshold: error ratio > 10 and 0.4 < IMF move < 0.6   :: the error bar IS prior-dominated when Upsilon is fixed (sub-percent stat vs a factor 2 from the IMF); freeing Upsilon per galaxy multiplies the error bar by 14 and cuts the IMF leverage to x1.05 -- the IMF prior is defeated, and replaced by a 21% estimator systematic
+
+====================================================================================================
+K13  THE Upsilon-LAW VARIANT (Upsilon_i = Upsilon_0 (Vflat_i/150)^alpha)
+====================================================================================================
+  best: a0=1.03792e-10  Upsilon_0=0.423  alpha=+0.635  chi2=18207.6  chi2/dof=5.400
+  kappa = 0.5544  (free-per-galaxy: 0.4317 ; fixed: 0.5044)
+  local curvature error in a0: 0.65% (not the total -- the law is a 2-parameter ansatz, not a marginalisation)
+  K13  PASS  kappa_law=0.5544 vs kappa_free=0.4317 (28.4%)
+        threshold: within the 32% systematic AND chi2/dof at least 1.5x worse than the per-galaxy fit   :: a two-parameter Upsilon law is NOT an equivalent analysis: it fits far worse (chi2/dof 5.4 vs 2.2) and moves kappa by +28%, inside the declared systematic band but on the high side. The per-galaxy freedom is doing real work, and it is what keeps the 10% statistical error honest
+
+====================================================================================================
+K14  THE FORECAST: 171 -> 1000 GALAXIES, AND WHAT IT CAN SEPARATE
+====================================================================================================
+  sigma_stat(kappa) at N=171  = 0.0320 (7.1%)
+  sigma_stat(kappa) at N=1000 = 0.0174 (3.88%)  [same per-galaxy quality]
+  coherent floor (does not scale): 0.1399 (31%)
+  sigma_tot(kappa) at N=1000   = 0.1410
+  gap 1/2 - 0.4824 = 0.0176 ; gap 1/2 - 0.4979 = 0.0021
+  separation at N=1000, stat only : 1.01 sigma (0.4824) ; 0.12 sigma (0.4979)
+  separation at N=1000, with floor: 0.12 sigma ; 0.01 sigma
+  N needed for 3 sigma, stat only: 8797 (0.4824) ; 617841 (0.4979)
+  N needed for 3 sigma WITH the coherent floor: impossible (floor 0.1399 > gap/3 = 0.0059)
+  K14  PASS  N=1000: stat 1.01 sigma (0.4824), 0.12 sigma (0.4979); with floor 0.12 / 0.01 sigma; N_3sigma(0.4824)=8797
+        threshold: 0.4824 below 3 sigma at N=1000 even statistically, and the coherent floor > gap/3   :: the next generation cannot decide it: at N=1000 the 0.4824 gap is 1.01 sigma statistically and 0.12 sigma in total; 0.4979 is 0.12 and 0.01 sigma
+
+====================================================================================================
+K15  THE VERDICT
+====================================================================================================
+  1) kappa best fit (SPARC likelihood)      : 0.4317
+  2) kappa joint, statistical               : 0.4482 +- 0.0320
+  3) kappa joint, statistical + systematic  : 0.4482 +- 0.1435
+  4) 1/2                                   : 0.36 sigma away (total), 1.6 sigma (stat)
+  5) 0.4824 decidable at N=1000?            : NO
+  6) 0.4979 decidable at N=1000?            : NO
+  7) decidable at ANY N with this floor?    : NO
+  K15  PASS  0.4824: not decidable ; 0.4979: not decidable ; floor 0.1399 vs gaps 0.0176 / 0.0021
+        threshold: neither alternative decidable at 3 sigma with N=1000   :: kappa = 1/2 is not empirically decidable from rotation-curve data: the coherent systematic (25% estimator + 16% distance + 10% law) is 5x the 3.5% gap to 0.4824. Only a derivation settles it
+
+====================================================================================================
+K16  AUDIT: EVERY kappa IN THE RECORD, CONVERTED TO ONE CONVENTION
+====================================================================================================
+  CFG493 via A19                   0.4170 +- 0.0950 [P3]  ->  kappa_P3 = 0.4170 +- 0.0950
+  BTFR (kappa_closure)             0.4650 +- 0.0760 [DE]  ->  kappa_P3 = 0.3848 +- 0.0629
+  distance-free (kappa_closure)    0.5510 +- 0.0430 [DE]  ->  kappa_P3 = 0.4559 +- 0.0356
+  A15 combined                     0.5300 +- 0.0370 [DE]  ->  kappa_P3 = 0.4386 +- 0.0306
+  A14 Upsilon-free                 0.3540 +- 0.1060 [DE]  ->  kappa_P3 = 0.2929 +- 0.0877
+  A9 free SPARC (DE)               0.5893 +-   --   [DE]  ->  kappa_P3 = 0.4876
+  A9 free SPARC (total)            0.4876 +-   --   [P3]  ->  kappa_P3 = 0.4876
+
+  the record's headline '0.87 sigma from 1/2' is (0.5-0.417)/0.095 = 0.874, i.e. it is
+  ONE measurement with the LARGEST error bar.  Combined, the record's own numbers give
+  kappa_P3 = 0.4295 +- 0.0206  ->  1/2 at 3.42 sigma
+  and the A15 combined 0.530 +- 0.037 (DE) = 0.4386 +- 0.0306 (P3) -> 1/2 at 2.01 sigma
+  K16  PASS  0.87 sigma reproduced; A15 combined 0.4386 +- 0.0306 -> 2.01 sigma; naive combination 0.4295 +- 0.0206 -> 3.42 sigma
+        threshold: 0.87 +- 0.02 and A15's own combination in [1.5, 2.6] sigma   :: the record's 0.87 sigma is its single largest-error measurement, not a combination; A15's own combination sits 2.0 sigma below 1/2 and the naive combination of all seven 3.4 sigma below (correlated, so that last number is an upper bound). Every reading is consistent with this lane's 0.37 +- 0.12 and none with a confirmation
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  16/17 checks pass   [MUTATE kappa_de]
+  a0 = 8.08147e-11 m/s^2 ; kappa_P3 = 0.4482 +- 0.0320 (stat) +- 0.1399 (sys)
+  1/2 : 0.36 sigma (total) ; 1.6 sigma (stat only)
+  forecast N=1000: sigma_stat(kappa)=0.0174 ; 0.4824 at 0.12 sigma, 0.4979 at 0.01 sigma
+  wall clock 41.5 s
+
+  wrote a51.out and a51_results_MUTATE_kappa_de.json

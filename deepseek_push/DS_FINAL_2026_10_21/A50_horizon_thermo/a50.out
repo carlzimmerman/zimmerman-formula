@@ -1,0 +1,23 @@
+a50_checks -- Lane A50 -- horizon thermodynamics vs kappa
+constants: c=2.99792458e+08 G=6.67430e-11 hbar=1.054571817e-34 kB=1.3806490e-23 H0=2.18430e-18 Z=5.7888100365 1/Z=0.1727470747
+mutation : none
+----------------------------------------------------------------------------------------------------
+K1   PASS measured=residual=0.0e+00 ratio=1.000000000000000       threshold=0, 1                   # T dS = (c^4/G) dr_A exactly (S=A/4l_P^2, T=hbarH/2pik_B)
+K2   PASS measured=lam(0)=0.500000000000000 lam(1/3)=1.000000000000000 dlam/dHdot=0.0e+00 threshold=(1+3w)/2, dHdot=0      # E=c^5/(2GH) identically => dE+PdV=((1+3w)/2)TdS; Hdot cancels
+K3   PASS measured=w_sol=[1/3] dust_factor=2.000000000000000 lam(vac)=-1 threshold=w=1/3, 2, -1           # conformal (radiation) EoS is the only one for which the literal law closes
+K4   PASS measured=spread=2.250000000000000 over w in [-1,1/2]    threshold=2.25 (>2)              # lambda runs -1 -> 1.25; no single coefficient fits all epochs
+K5   PASS measured=resid=0.0e+00 d(resid)/dHdot=0.0e+00 G_eff/G(w=0)=2.000000 threshold=0, 0, 2                # law is a consistency condition: it determines lambda, never Hdot or G
+K6   PASS measured=T*dS/dE=2.000000000032  T*S/E=1.000000000000   threshold=2, 1                   # numeric FRW: d(TS) != T dS; the heat form is twice dE although T*S=E
+K7   PASS measured=ratio=0.500000000000000                        threshold=0.5                    # N_bulk/N_surf=(1/2)(rho/rho_crit); 1/2 = (4piG/3)/(8piG/3), Einstein
+K8   PASS measured=ratio=1.000000000000000 sym=1                  threshold=1                      # Komar energy: N_surf = N_bulk EXACTLY for the theory's vacuum
+K9   PASS measured=residual=0.0e+00 (numeric eval)                threshold=0                      # naive (1/2) and Komar (1) are the same formula at w=0 / w=-1
+K10  PASS measured=rho_sol=[3*H**2/(8*pi*G)]                      threshold=3H^2/8piG              # holographic equipartition IS P3: a restatement, not a derivation of kappa
+K11  PASS measured=absent=True drift=1.7e-16 (400 kappa)          threshold=True, <1e-15           # no horizon functional depends on kappa: no identity among them can contain it
+K12  PASS measured=a0/(cH)=0.172747074735668                      threshold==1/Z=0.1727471         # kappa=1/2 <=> a0/(cH)=(1/2)sqrt(3/8pi)=1/Z exactly
+K13  PASS measured=min|kappa(cand)-1/2|=0.223601255 (kappa [ 1.447203  2.894405  0.723601  3.618006 -2.894405  0.      ]) threshold=>0.2                   # closest physical coefficient (1/4) gives kappa=0.7236, 44.7% above 1/2
+K14  PASS measured=|s-2/Z|=0.0e+00 |1/Z-s/2|=0.0e+00 |2sqrt(32pi/3)-4/s|=0.0e+00 |2sqrt(32pi/3)-2Z|=0.0e+00 threshold=all 0                  # s=sqrt(3/8pi)=2/Z; 2sqrt(32pi/3)=4/s=2Z -- the reciprocal-flavoured number, not the factor
+K15  PASS measured=candidate/required=33.510322                   threshold=>30                    # 1/2 x 2sqrt(32pi/3)=Z=5.7888 is 33.5x the required 0.1727
+K16  PASS measured=kappa_A(1/2)=1.447202509  kappa_A(1)=2.894405018  w*=-0.218168617 threshold=>0.9 from 1/2          # correct identification lands on A1 menu Z/4, Z/2; kappa=1/2 needs w=-0.2182
+K17  PASS measured=eps(cH)=0.147301220 kappa(eps=1/2)=2.894405    threshold=0.147300, 2.894405     # medium supplies 14.73% at the horizon; half-share needs kappa=Z/2=2.894 (5.79x in a0)
+----------------------------------------------------------------------------------------------------
+A50 COMPLETE: 17/17 checks PASS.

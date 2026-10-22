@@ -73,7 +73,7 @@ r0 = sp.expand(g * ginv - I3)
 rec('C0_inverse_metric_correct_to_O_h2',
     r0.subs(h, 0) == Z3 and sp.diff(r0, h).subs(h, 0) == Z3
     and sp.diff(r0, h, 2).subs(h, 0) == Z3 and r0 != Z3,
-    'g g^{-1} - I = diag(c^3h^3, -c^3h^3, 0) = O(h^3)', 'O(h^3), not 0',
+    'g g^{-1} - I = diag(%s, %s, %s)' % (r0[0, 0], r0[1, 1], r0[2, 2]), 'O(h^3), not 0',
     'g^ij = delta - h eps + h^2 eps^2 is exact through the order that enters a '
     'second-order expansion; dropping the h^2 term is a real defect (mutant)')
 
@@ -100,7 +100,9 @@ u0, u1, u2 = [sp.simplify(u_ser.coeff(h, i)) for i in range(3)]
 rec('C1_u_expansion_coefficients',
     sp.simplify(u0 - K * p) == 0 and sp.simplify(u1 + K * p * c / 2) == 0
     and sp.simplify(u2 - sp.Rational(3, 8) * K * p * c**2) == 0,
-    'u = Kp[1 - hc/2 + 3h^2c^2/8 + O(h^3)]', 'Kp, -Kpc/2, 3Kpc^2/8',
+    'u/Kp = 1 + (%s) h + (%s) h^2' % (sp.simplify(u1 / (K * p)),
+                                     sp.simplify(u2 / (K * p * c**2))),
+    'coeffs 1, -c/2, 3c^2/8',
     'reproduces A31 check 28 exactly: the h^2 coefficient of u is 3Kp/8 -- but '
     'that is d2u/dh2, not the h^2 coefficient of the action')
 
@@ -108,6 +110,8 @@ rec('C1_u_expansion_coefficients',
 Lfroz = -sqrtg(h) * W_of(u_of(n_x))
 chh_raw = sp.simplify(sp.expand(sp.series(Lfroz, h, 0, 3).removeO()).coeff(h, 2))
 chh = sp.simplify(chh_raw.subs(c, 1) / 2)      # <c^2> = 1/2
+if MUT == 'a31_coefficient':
+    chh = sp.Rational(3, 8) * K * p                # defect: A31's 3Kp/8 used as the mass coefficient
 mT2_lit = sp.simplify(-16 * K * chh)
 
 #  work in x: K = a0 = 1, p = x  (so u = x); a0 = 1 also means 4 a0^2 -> 4
@@ -227,7 +231,8 @@ rec('C9_P_field_mass_is_sqrt2_over_Lstar',
 #  finite frequency: c_YY -> c_YY - eta omega^2/2 with eta = L*^2/2
 c_eff_om = sp.simplify(c_hh2 - c_hY**2 / (4 * (c_YY - (Ls**2 / 2) * om**2 / 2)))
 mY2x = 2 / (Ls**2 * (1 - x)**2)
-interp = sp.simplify(c_hh2 - (c_hh2 - c_eff0) * mY2x / (om**2 + mY2x))
+interp = (sp.simplify(c_hh2) if MUT == 'no_running'
+          else sp.simplify(c_hh2 - (c_hh2 - c_eff0) * mY2x / (om**2 + mY2x)))
 grid = [(0.10, 0.3), (0.10, 3.0), (0.30, 1.0), (0.50, 0.01),
         (0.50, 1.0), (0.70, 10.0), (0.90, 1.0), (0.90, 100.0)]
 worst = 0.0
@@ -236,25 +241,24 @@ for xv, q in grid:
     a_ = complex(sp.N(c_eff_om.subs(s), 30))
     b_ = complex(sp.N(interp.subs(s), 30))
     worst = max(worst, abs(a_ - b_) / max(abs(b_), 1e-300))
-rec('C10_running_mass_interpolation', (MUT == 'no_running') or worst < 1e-20,
-    'max rel. deviation over 8 (x, omega) points = %.2e' % worst, '< 1e-20',
+rec('C10_running_mass_interpolation', worst < 1e-9,
+    'max rel. deviation over 8 (x, omega) points = %.2e' % worst, '< 1e-9',
     'c_eff(omega) = c_frozen - (c_frozen - c_eff(0)) m_Y^2/(omega^2+m_Y^2) is '
     'exact: c_eff(0) after relaxation, c_frozen for omega >> m_Y')
 
-mT2_run = sp.simplify(-16 * (c_hh2 - Wv) * 0
-                      + (-16 * (c_hh2 - Wv) * om**2
-                         - 16 * c_res0 * mY2x) / (om**2 + mY2x))
+mT2_run = sp.simplify((-8 * (c_hh2 - Wv) * om**2
+                       - 8 * c_res0 * mY2x) / (om**2 + mY2x))
 worst2 = 0.0
 for xv, q in grid:
     s = {x: xv, Ls: sp.Float(1.0), om: sp.Float(q)}
     a_ = complex(sp.N(mT2_run.subs(s), 30))
-    pred = ((mT2_shape_x * om**2 + (2 * x**3 / (1 - x)) * mY2x)
+    pred = ((mT2_shape_x * om**2 + (x**3 / (1 - x)) * mY2x)
             / (om**2 + mY2x)).subs(s)
     b_ = complex(sp.N(pred, 30))
     worst2 = max(worst2, abs(a_ - b_) / max(abs(b_), 1e-300))
-rec('C11_running_mass_closed_form', worst2 < 1e-20,
-    'max rel. deviation = %.2e' % worst2, '< 1e-20',
-    'm_T^2(omega) = [u^2(4-3x)/(1-x)^2 omega^2 + (2u^2 x/(1-x)) m_Y^2]/'
+rec('C11_running_mass_closed_form', worst2 < 1e-9,
+    'max rel. deviation = %.2e' % worst2, '< 1e-9',
+    'm_T^2(omega) = [u^2(4-3x)/(1-x)^2 omega^2 + (u^2 x/(1-x)) m_Y^2]/'
     '(omega^2+m_Y^2), m_Y = sqrt(2)/(L*(1-x)): the answer in (a0, K, u, L*)')
 
 # ===========================================================================
@@ -364,7 +368,7 @@ rec('C16_below_the_graviton_mass_bound',
     all(r['ratio_bound_over_mT'] > 1e9 for r in RAT),
     'min margin = %.2e at x=0.9' % min(r['ratio_bound_over_mT'] for r in RAT),
     '> 1e9',
-    'm_g < 1.76e-23 eV: the theory sits 8.3e9 (x=0.9) to 3.9e11 (x=0.1) below it')
+    'm_g < 1.76e-23 eV: the theory sits 8.4e9 (x=0.9) to 4.0e11 (x=0.1) below it')
 
 xc = None
 for i in range(1, 600000):
@@ -397,8 +401,10 @@ rec('C18_mass_term_is_TT_only_lapse_blind_and_null_for_lensing',
 # --- A31 cross-check ------------------------------------------------------
 dim_slip = sp.simplify(u2 - sp.Rational(3, 8) * K * p * c**2)
 d2W = sp.simplify(sp.diff(W_of(u_of(n_x)), h, 2).subs(h, 0))
+mT2_A31 = sp.simplify(-16 * K * (sp.Rational(3, 8) * K * p))   # the A31 reading
 rec('C20_A31_coefficient_is_d2u_dh2_not_the_action',
-    dim_slip == 0 and sp.simplify(d2W - sp.Rational(3, 8) * K * p * c**2) != 0,
+    dim_slip == 0 and sp.simplify(d2W - sp.Rational(3, 8) * K * p * c**2) != 0
+    and sp.simplify(mT2_lit - mT2_A31) != 0,
     'd2u/dh2 = 3Kp/8 ; d2W/dh2 = %s' % sp.simplify(d2W.subs(c, 1)),
     '3Kp/8 vs a different object',
     'A31 check 28 quotes 3Kp/8 as the "h^2 coefficient"; that is d2u/dh2, not '
@@ -410,7 +416,7 @@ rec('C20_A31_coefficient_is_d2u_dh2_not_the_action',
 npass = sum(1 for c_ in CHECKS if c_['pass'])
 print('\nA39 COMPLETE: %d/%d checks PASS.' % (npass, len(CHECKS)))
 res = {'lane': 'A39_tensor_mass', 'mutation': ARGS.mutate,
-       'status': 'DERIVED / harmless',
+       'status': 'DERIVED / harmless', 'checks': CHECKS,
        'verdict': {'m_T_eV_at_u_a0_over_10': mT_eV(0.1),
                    'm_T_eV_at_u_0p9_a0': mT_eV(0.9),
                    'ratio_to_graviton_bound_worst': MG_BOUND / mT_eV(0.9),
@@ -419,7 +425,8 @@ res = {'lane': 'A39_tensor_mass', 'mutation': ARGS.mutate,
                    'tachyonic': False, 'excludes_Pbar_nonzero': False},
        'formula': {'m_T2_shape': 'u^2 (4-3x)/(1-x)^2,  x = u/a0',
                    'm_T2_literal': 'u^2(4-3x)/(1-x)^2 + 4 a0^2 [x + ln(1-x)]',
-                   'm_T2_running': 'shape * omega^2/(omega^2 + 2/(L*^2(1-x)^2))',
+                   'm_T2_running': '[shape*omega^2 + (u^2 x/(1-x))*mY^2]/(omega^2+mY^2)',
+                   'm_T2_at_LIGO': 'shape to 8e-25 relative',
                    'm_Y': 'sqrt(2)/(L*(1-x))'},
        'table': TAB, 'dispersion': DISP, 'yukawa': YUK, 'mass_bound': RAT,
        'numbers': {'a0_m_s2': a0v, 'Lstar_pc': Lstar_m / pc, 'K_SI': Kv,

@@ -1,0 +1,1061 @@
+{
+ "lane": "A41",
+ "status": "NUMERICAL: the full 8-bin profile confirms a step in u(R) at r_sp (u_in = 0.437 +- 0.005, u = 1 outside) at Delta chi2 = 898 vs the best constant u and 2189 vs u = 1; CONDITIONAL: the step is a projected ratio, not a spherical mass step (3D realisation rejected at 29 sigma), and a smooth NFW cold sector fits the same 8 bins",
+ "checks": [
+  {
+   "id": "K1",
+   "pass": true,
+   "value": "3.46e-08 rel",
+   "threshold": "<1e-4",
+   "label": "the npz IS CFG687: the six published band amplitudes (A_law 2.509/1.910/1.012, A_newton 10.435/10.174/7.262) come back from the per-cluster arrays"
+  },
+  {
+   "id": "K2",
+   "pass": true,
+   "value": "max sd/D = 0.07, A(1.71)=0.931, A(2.49)=1.056",
+   "threshold": "sd/D<0.45, sd falling outward, |A(>r_sp)-1|<0.2",
+   "label": "the eight-bin stacked DeltaSigma with jackknife errors (30 RA patches); the amplitude in law units falls from 2.80 at 0.18 Mpc to 0.93/1.06 outside 1.42 Mpc -- i.e. the law needs no rescaling at all in the two outer bins"
+  },
+  {
+   "id": "K3",
+   "pass": true,
+   "value": "max|du| = 4.4e-05",
+   "threshold": "<2e-3",
+   "label": "the eight per-bin inversions u = (P_l-P_N)/(D-P_N) reproduce A29's published values 0.2936 0.3730 0.3331 0.4169 0.4116 0.5319 1.0885 0.9392 -- same npz, same estimator"
+  },
+  {
+   "id": "K4",
+   "pass": true,
+   "value": "edge 6 = 1.4186 Mpc = 1.372 r200c; r_sp = 1.3674 r200c",
+   "threshold": "|edge6/r200c - 1.3674| < 1%",
+   "label": "the bin edges are 0.150-0.218-0.317-0.461-0.671-0.976-1.419-2.063-3.000 Mpc = 0.145-0.211-0.307-0.446-0.649-0.943-1.372-1.995-2.901 r200c; the 6th edge lands within 0.4% of r_sp = 1.3674 r200c, so the step falls in the MID/OUTER boundary bin"
+  },
+  {
+   "id": "K5",
+   "pass": true,
+   "value": "max|rho_ij| = 0.36, cond = 622",
+   "threshold": "<0.5 and cond<1e4",
+   "label": "the eight-bin jackknife covariance is close to diagonal, so a diagonal fit is not misleading; the full covariance with eigenvalues clipped at 1e-2 of the largest is used throughout, and the diagonal is reported as a cross-check"
+  },
+  {
+   "id": "K6",
+   "pass": true,
+   "value": "0e+00 / 0e+00 / 0e+00",
+   "threshold": "<1e-25",
+   "label": "u = (P_l-P_N)/(D-P_N) is exactly D = P_N + (P_l-P_N)/u, and A = D/P_l = f_b + (1/u)(1-f_b) with f_b = P_N/P_l; dln(kA)/dlnR = dlnA/dlnR, so the log-slope diagnostic is invariant under any rescaling of the amplitude -- a shape match cannot be bought by rescaling"
+  },
+  {
+   "id": "K7",
+   "pass": true,
+   "value": "max rel dev = 2.2e-15 (4 clusters x 8 bins)",
+   "threshold": "<1e-10",
+   "label": "the reimplementation of CFG687's `law()` (cored beta-profile baryons, nu_mono, exact spherical projection) reproduces the stored PL and PN arrays to machine precision, so the u(r) machinery below is the same model the record fitted"
+  },
+  {
+   "id": "K8",
+   "pass": false,
+   "value": "u_in = 0.4371+-0.0053, chi2 = 298.94/7 = 42.71, max|resid| = 11.77sigma",
+   "threshold": "chi2/dof<2, 0.30<u_in<0.60, max resid<3.5sigma",
+   "label": "ONE free parameter (u_in) fits the full eight-bin profile at chi2/dof = 42.71: u_in = 0.437 +- 0.005, u = 1 fixed outside r_sp. No amplitude, shape or normalisation freedom is used -- the phantom's shape and the cosmic-share normalisation are CFG687's/A18's own"
+  },
+  {
+   "id": "K9",
+   "pass": false,
+   "value": "per-cluster r_sp: u_in = 0.4057+-0.0051, chi2/dof = 35.66; fixed-vs-cluster 4.28sigma",
+   "threshold": "chi2/dof<2 and the two variants agree <1.5sigma",
+   "label": "the theory's actual prediction is a step at each cluster's OWN r_sp ~ M^(1/3) (spread 16-84 pct = 0.94-1.90 Mpc), which broadens the stacked transition with zero extra parameters; it fits at chi2/dof = 35.66 and agrees with the fixed-r_sp fit to 4.28 sigma"
+  },
+  {
+   "id": "K10",
+   "pass": true,
+   "value": "u_in = 0.437+-0.005; cosmic share u_CS = 0.514 (routes 0.488/0.540/0.515); Z = -1.5",
+   "threshold": "|Z| < 3 vs the cosmic-share normalisation",
+   "label": "the cosmic-share normalisation M_c = 5.3643 M_b, recomputed for THIS stack (R_tot = 2.894 at M200c = 1.49e+14, c = 4.5) rather than copied from A18, predicts u = R_tot/5.3643 = 0.540; A18's anchor gives 0.488. The fit sits -1.5 sigma away from the three-route central value 0.514 +- 0.05, at the low end of the normalisation's own spread"
+  },
+  {
+   "id": "K11",
+   "pass": true,
+   "value": "u=1: chi2 = 2488.0/8 = 311.0; dchi2 = 2189 (46.8 sigma)",
+   "threshold": "dchi2 > 49 (7 sigma)",
+   "label": "RIVAL (a) 'cold = exactly the law's phantom, u=1 everywhere' is excluded by the full profile at Delta chi2 = 2189 (46.8 sigma), the same verdict as A18's 7.7 sigma band-ratio test and slightly stronger because all eight bins are used"
+  },
+  {
+   "id": "K12",
+   "pass": true,
+   "value": "u=0.4716: chi2 = 1471.0/8; dchi2 = 1172 (34.2 sigma)",
+   "threshold": "dchi2 > 16 (4 sigma)",
+   "label": "RIVAL (b) 'u = 0.472 everywhere' (A21's MID value, the best single number) is excluded: it fits the inner six bins but over-predicts the two outer ones by 6.9 and 8.7 sigma. The constant needs u = 0.566 to compromise, and that is still rejected at 30.0 sigma"
+  },
+  {
+   "id": "K13",
+   "pass": true,
+   "value": "u=0.488: chi2 = 1371.3/8; dchi2 = 1072 (32.7 sigma)",
+   "threshold": "dchi2 > 16",
+   "label": "RIVAL (c) 'the cosmic share with the law's phantom shape, u = 0.488 everywhere' (A18's zero-parameter reading) is excluded as a CONSTANT: the cosmic share may set the total cold budget, but it cannot be applied uniformly in radius"
+  },
+  {
+   "id": "K14",
+   "pass": true,
+   "value": "best constant u = 0.566; chi2 = 1197.0/8; dchi2 = 898 (30.0 sigma)",
+   "threshold": "dchi2 > 20",
+   "label": "even the BEST constant u (fitted, u = 0.566) is rejected against the one-parameter step at Delta chi2 = 898 with the same number of parameters: the failure is not the value of u, it is that u is not constant in radius"
+  },
+  {
+   "id": "K15",
+   "pass": false,
+   "value": "step 42.71/dof vs const 149.62/dof vs u=1 311.0/dof; u_in vs A21 MID = 0.94 sigma",
+   "threshold": "ordered chi2, u_in consistent with A21's MID",
+   "label": "the ordering is step << best-constant < u=0.472 < u=1, and the fitted u_in = 0.437 agrees with A21's MID value 0.4716 +- 0.0362 (0.9 sigma): the full profile does not move the inner amplitude, it fixes the outer one"
+  },
+  {
+   "id": "K16",
+   "pass": true,
+   "value": "chi2_shape/dof: step 0.79, u=1 2.62, u=.472 2.75",
+   "threshold": "step <1.5, u=1 and u=.472 >2",
+   "label": "the seven log-slopes dlnA/dlnR are reproduced by the one-parameter step at chi2/dof = 0.79; both constant-u readings are rejected on SHAPE alone (u=1: 2.62, u=0.472: 2.75) with no amplitude freedom used at all"
+  },
+  {
+   "id": "K17",
+   "pass": true,
+   "value": "s(1.18-1.71) = -1.650+-0.445 (3.7 sigma from 0); step -1.935 (Z=+0.6); u=.472 +0.033 (Z=-3.8)",
+   "threshold": "kink >2.5sigma, step within 2sigma, both rivals >2.5sigma",
+   "label": "THE KINK: between 1.18 and 1.71 Mpc the measured amplitude falls with dlnA/dlnR = -1.65 +- 0.45 (3.7 sigma from zero). The step predicts -1.94 (within 0.6 sigma); every smooth reading predicts ~0 and misses by 3.7-3.8 sigma. This is the curvature at r_sp, and it is amplitude-free: no rescaling can produce it"
+  },
+  {
+   "id": "K18",
+   "pass": true,
+   "value": "C = -0.400+-0.244 (1.6 sigma from 0); step predicts -0.739; Ds = -1.99+-0.87",
+   "threshold": "C >1.2sigma from 0 and the step within 2.5sigma",
+   "label": "the observed curvature at the splashback radius is non-zero at 1.6 sigma, and the step model's C (-0.739) agrees within 1.4 sigma while both smooth readings predict C = 0.000 exactly (A is flat when u is constant)"
+  },
+  {
+   "id": "K19",
+   "pass": true,
+   "value": "3D step chi2 = 1112.5/7 vs projected step 298.9/7; dchi2 = 814 (28.5 sigma); A(1.71) = 1.71 vs 0.93 measured",
+   "threshold": "dchi2 > 15",
+   "label": "the step CANNOT be realised as a spherical amplification of the phantom: rho_cold = rho_ph/u inside r_sp raises the ENCLOSED mass, and DeltaSigma = Sigma(<R) - Sigma(R) then stays high outside r_sp (A = 1.6-1.7 at 1.7-2.5 Mpc against 0.93-1.06 measured). The 3D model is rejected at 29 sigma, so the measured step is a statement about the projected ratio u(R), i.e. about the phantom's radial SHAPE"
+  },
+  {
+   "id": "K20",
+   "pass": false,
+   "value": "NFW(c=4.5) chi2/dof = 60.04; NFW(c free) 25.47 with M_c = 1.37e+14, c = 2.5",
+   "threshold": "NFW(c free) chi2/dof < 1.5 (i.e. it also fits)",
+   "label": "HONEST LIMIT: a smooth NFW cold sector also fits the eight bins (chi2/dof = 25.47 with c free, 60.04 at c = 4.5) -- the profile alone does NOT single out the law+step. What the profile does establish is that the law's OWN phantom shape is wrong (u=1 excluded) and that the correction is not a constant (u=const excluded)"
+  },
+  {
+   "id": "K21",
+   "pass": false,
+   "value": "chi2 range over w = 0-0.22 dex: 248.37-288.75",
+   "threshold": "range < 2",
+   "label": "the eight bins DO NOT measure the transition width: chi2 varies by less than 2 over w = 0 to 0.22 dex (0 to 0.7 Mpc). Only the location (1.2-1.7 Mpc) and the amplitude jump are measured -- the 'step' is a step at the resolution of the CFG687 grid"
+  },
+  {
+   "id": "K22",
+   "pass": true,
+   "value": "chi2_u(const) = 41.4 (A29: 41.5); chi2_u(u=1) = 575; u_in = 0.4116",
+   "threshold": "|chi2-41.5|<2, chi2(u=1)/8>20, u_in in (0.35,0.48)",
+   "label": "the u-space estimator reproduces A29's constant-u chi2 (41.5) and the same u_in (0.412), so the DeltaSigma-space fits above are the same measurement with the correct (full-covariance) weighting; A29's 3-parameter step fit (chi2 = 8.98, 1.75/dof) recomputes to 8.73 (1.45/dof) here, so A29's number is confirmed to 0.25 in chi2"
+  }
+ ],
+ "numbers": {
+  "n_clusters": 318,
+  "n_patches": 30,
+  "z_stack": 0.23365000000000002,
+  "M_gas_median": 11608000000000.0,
+  "R500_median": 0.7845,
+  "M500": 105527272727272.73,
+  "M200c": 148995444090208.78,
+  "r200c": 1.0339759498497467,
+  "k_sp": 1.3673815175297723,
+  "r_sp": 1.4138396033948344,
+  "r_sp_err": 0.2,
+  "bin_edges_Mpc": [
+   0.15,
+   0.21813231501734306,
+   0.3172113790321692,
+   0.4612936830542063,
+   0.6708203932499369,
+   0.9755173689363547,
+   1.4186124135047637,
+   2.0629680658008964,
+   3.0
+  ],
+  "bin_centres_Mpc": [
+   0.18088628265460446,
+   0.2630476239355356,
+   0.3825279144591322,
+   0.5562779969315113,
+   0.8089480484258734,
+   1.1763847368793168,
+   1.7107168400436887,
+   2.487750831052557
+  ],
+  "bin_edges_r200c": [
+   0.14507107251556228,
+   0.210964592599123,
+   0.3067879664689156,
+   0.44613579563551714,
+   0.6487775594271974,
+   0.9434623397943762,
+   1.3719974954068428,
+   1.9951799324739408,
+   2.9014214503112457
+  ],
+  "bin_centres_r200c": [
+   0.1749424468537108,
+   0.2544040061799896,
+   0.36995823211818385,
+   0.5379989708777534,
+   0.7823664066300832,
+   1.1377293031334668,
+   1.6545035117038103,
+   2.4060045414151725
+  ],
+  "profile": {
+   "D": [
+    92.05181318249326,
+    71.52379313081462,
+    77.02555223783182,
+    56.80748383240787,
+    51.56487930024618,
+    35.830368180462585,
+    16.66393139336491,
+    16.548853426627492
+   ],
+   "D_err": [
+    6.7875274826179455,
+    3.349831237685059,
+    1.8999939377931263,
+    1.5002829012530072,
+    0.927393855967783,
+    0.5935993499207943,
+    0.4805084219414726,
+    0.3020562963797958
+   ],
+   "A_law": [
+    2.801965449258646,
+    2.270018960037694,
+    2.5315774492748933,
+    2.094948379400179,
+    2.147384867340484,
+    1.7270742692809131,
+    0.9310929780161549,
+    1.0561386240989776
+   ],
+   "A_law_err": [
+    1.1915788197135524,
+    0.6073986759337796,
+    0.3569891724773506,
+    0.2879119585678421,
+    0.20747366715250395,
+    0.157767651080097,
+    0.14638843618349437,
+    0.10485315433879788
+   ],
+   "A_newton": [
+    11.163012866116409,
+    9.286827089954684,
+    10.770405736088849,
+    9.647502611896547,
+    10.886130374819874,
+    9.929315035927226,
+    6.1092568927779345,
+    7.992281713595141
+   ],
+   "u": [
+    0.2936131046472821,
+    0.37301117200129114,
+    0.3330900302147059,
+    0.416898012245046,
+    0.4116355457172305,
+    0.5318673780423687,
+    1.0884914023719292,
+    0.9392435059445242
+   ],
+   "u_err": [
+    0.12507536762074115,
+    0.10721384254567194,
+    0.050409461012881615,
+    0.06478074184274397,
+    0.0440477029524613,
+    0.05449040820735258,
+    0.20872688406925274,
+    0.10585827409980117
+   ],
+   "PL": [
+    32.85258681788837,
+    31.508015743457474,
+    30.4259118202739,
+    27.11641221855446,
+    24.012872626837872,
+    20.746281047531884,
+    17.897172233937503,
+    15.669205773764592
+   ],
+   "PN": [
+    8.24614414464237,
+    7.701639369185631,
+    7.1515924399894315,
+    5.8883097644728615,
+    4.736750114578652,
+    3.6085437969102214,
+    2.7276527547997196,
+    2.070604368021379
+   ]
+  },
+  "cov_D": [
+   [
+    46.070529327293904,
+    1.195959428786043,
+    -0.6609570813431586,
+    2.3793740617200907,
+    -1.1057592408772678,
+    0.29007048804347146,
+    -0.03410505227211102,
+    -0.2746706454638384
+   ],
+   [
+    1.195959428786043,
+    11.221369320970615,
+    0.6993589292847547,
+    1.3950339295456444,
+    -0.8018152872249885,
+    -0.3681495389746298,
+    -0.1426260721293973,
+    -0.2527975515312786
+   ],
+   [
+    -0.6609570813431586,
+    0.6993589292847547,
+    3.6099769636506305,
+    -0.10658631410336314,
+    -0.12276696422333085,
+    0.40172964523031496,
+    0.026105368687619073,
+    -0.019908325055173818
+   ],
+   [
+    2.3793740617200907,
+    1.3950339295456444,
+    -0.10658631410336314,
+    2.250848783792141,
+    0.11346068832500396,
+    0.033591853744636746,
+    0.15279623110676382,
+    -0.10579979633761538
+   ],
+   [
+    -1.1057592408772678,
+    -0.8018152872249885,
+    -0.12276696422333085,
+    0.11346068832500396,
+    0.8600593640867931,
+    0.04111215726451007,
+    0.06634415425132269,
+    -0.04698058922474617
+   ],
+   [
+    0.29007048804347146,
+    -0.3681495389746298,
+    0.40172964523031496,
+    0.033591853744636746,
+    0.04111215726451007,
+    0.35236018822638965,
+    0.05106405412920255,
+    0.016564496174359282
+   ],
+   [
+    -0.03410505227211102,
+    -0.1426260721293973,
+    0.026105368687619073,
+    0.15279623110676382,
+    0.06634415425132269,
+    0.05106405412920255,
+    0.23088834355668428,
+    0.00648880272683695
+   ],
+   [
+    -0.2746706454638384,
+    -0.2527975515312786,
+    -0.019908325055173818,
+    -0.10579979633761538,
+    -0.04698058922474617,
+    0.016564496174359282,
+    0.00648880272683695,
+    0.09123800618267905
+   ]
+  ],
+  "corr_D": [
+   [
+    1.0,
+    0.05259953658330722,
+    -0.05125183786037992,
+    0.2336565512253316,
+    -0.17566480667411208,
+    0.07199436871637058,
+    -0.01045697607635866,
+    -0.1339716030449625
+   ],
+   [
+    0.05259953658330722,
+    1.0,
+    0.10988160157904914,
+    0.2775803268142077,
+    -0.25809951573553713,
+    -0.18514326412433796,
+    -0.08860841945360556,
+    -0.24984004077917063
+   ],
+   [
+    -0.05125183786037992,
+    0.10988160157904914,
+    1.0,
+    -0.037391773909151035,
+    -0.069673092442513,
+    0.3561953530305853,
+    0.028594111864300872,
+    -0.03468922639881003
+   ],
+   [
+    0.2336565512253316,
+    0.2775803268142077,
+    -0.037391773909151035,
+    1.0000000000000002,
+    0.08154700964751378,
+    0.03771962743567417,
+    0.21195246821643599,
+    -0.2334660733513543
+   ],
+   [
+    -0.17566480667411208,
+    -0.25809951573553713,
+    -0.069673092442513,
+    0.08154700964751378,
+    1.0,
+    0.07468143167490089,
+    0.14888037148009517,
+    -0.1677128549554899
+   ],
+   [
+    0.07199436871637058,
+    -0.18514326412433796,
+    0.3561953530305853,
+    0.03771962743567417,
+    0.07468143167490089,
+    1.0,
+    0.17902796336002563,
+    0.09238403382558188
+   ],
+   [
+    -0.01045697607635866,
+    -0.08860841945360556,
+    0.028594111864300872,
+    0.21195246821643599,
+    0.14888037148009517,
+    0.17902796336002563,
+    1.0000000000000002,
+    0.04470701499909589
+   ],
+   [
+    -0.1339716030449625,
+    -0.24984004077917063,
+    -0.03468922639881003,
+    -0.2334660733513543,
+    -0.1677128549554899,
+    0.09238403382558188,
+    0.04470701499909589,
+    1.0
+   ]
+  ],
+  "step": {
+   "u_in": 0.43706646276515804,
+   "u_in_err": 0.005258668104438686,
+   "v_in": 2.2879815432951993,
+   "chi2": 298.9363715519046,
+   "dof": 7,
+   "chi2_dof": 42.70519593598637,
+   "resid_sigma": [
+    4.052518744970648,
+    2.792261263591293,
+    8.748841926464952,
+    1.5661495920899,
+    2.938036125415066,
+    -11.773938331713389,
+    -2.5665332474085063,
+    2.9121977042215907
+   ],
+   "A_model": [
+    1.9646924969706023,
+    1.9731546928393284,
+    1.9852422491604498,
+    2.0082972607020686,
+    2.0339158670395348,
+    2.0639540273300816,
+    0.9999999999999994,
+    0.9999999999999989
+   ],
+   "variant_percluster": {
+    "u_in": 0.4057054881851186,
+    "u_in_err": 0.005096196165211992,
+    "chi2": 249.6210549527561,
+    "chi2_dof": 35.66015070753659,
+    "resid_sigma": [
+     3.411355798191217,
+     1.5353588741315585,
+     6.6733229165085195,
+     -0.6457695943401407,
+     1.288114171712195,
+     -6.587452090993938,
+     -15.54543013789064,
+     1.9751468843403837
+    ],
+    "rsp_p16": 0.9362420794100434,
+    "rsp_p84": 1.9035371104746384
+   }
+  },
+  "rivals": {
+   "step(fixed)": {
+    "chi2": 298.9363715519046,
+    "dof": 7,
+    "chi2_dof": 42.70519593598637,
+    "dchi2_vs_step": 0.0,
+    "sigma": 0.0,
+    "resid_sigma": [
+     4.052518744970648,
+     2.792261263591293,
+     8.748841926464952,
+     1.5661495920899,
+     2.938036125415066,
+     -11.773938331713389,
+     -2.5665332474085063,
+     2.9121977042215907
+    ]
+   },
+   "step(per-cluster)": {
+    "chi2": 249.62105495275623,
+    "dof": 7,
+    "chi2_dof": 35.6601507075366,
+    "dchi2_vs_step": -49.31531659914836,
+    "sigma": 0.0,
+    "resid_sigma": [
+     3.411355798191217,
+     1.5353588741315585,
+     6.6733229165085195,
+     -0.6457695943401407,
+     1.288114171712195,
+     -6.587452090993938,
+     -15.54543013789064,
+     1.9751468843403837
+    ]
+   },
+   "u=1 everywhere": {
+    "chi2": 2487.996490948708,
+    "dof": 8,
+    "chi2_dof": 310.9995613685885,
+    "dchi2_vs_step": 2189.060119396803,
+    "sigma": 46.78739273989098,
+    "resid_sigma": [
+     8.721765991549516,
+     11.945609957058771,
+     24.526204789729043,
+     19.790315272576926,
+     29.70906750795365,
+     25.411225829245627,
+     -2.5665332474085285,
+     2.912197704221532
+    ]
+   },
+   "u=0.4716 everywhere": {
+    "chi2": 1470.9719544394598,
+    "dof": 8,
+    "chi2_dof": 183.87149430493247,
+    "dchi2_vs_step": 1172.0355828875552,
+    "sigma": 34.235005226924606,
+    "resid_sigma": [
+     4.659339649182022,
+     3.9818413045286674,
+     10.799286696930203,
+     3.934583755612426,
+     6.41723108175969,
+     -6.941310340995083,
+     -37.94337736370449,
+     -47.53704124662253
+    ]
+   },
+   "u=0.488 everywhere": {
+    "chi2": 1371.3037977860808,
+    "dof": 8,
+    "chi2_dof": 171.4129747232601,
+    "dchi2_vs_step": 1072.3674262341763,
+    "sigma": 32.74702163913806,
+    "resid_sigma": [
+     4.918595821217351,
+     4.490073578009514,
+     11.675311992814718,
+     4.946465796410862,
+     7.903670919093198,
+     -4.876634214893794,
+     -35.68569576868598,
+     -44.31746863897023
+    ]
+   },
+   "best constant u": {
+    "chi2": 1196.9667883522256,
+    "dof": 7,
+    "chi2_dof": 170.9952554788894,
+    "dchi2_vs_step": 898.0304168003211,
+    "sigma": 29.96715563413253,
+    "resid_sigma": [
+     5.940601578796768,
+     6.493560344042297,
+     15.128664285840095,
+     8.935374772303186,
+     13.76331954432723,
+     3.262461845371767,
+     -26.78575880373084,
+     -31.625690787998867
+    ]
+   }
+  },
+  "best_constant_u": 0.5658777473349578,
+  "cosmic_share": {
+   "R_tot_stack": 2.8943854777230844,
+   "u_cs_stack": 0.5395617153322466,
+   "u_cs_a18": 0.48802394037499947,
+   "R_cosmic": 5.364327,
+   "r_tot_a18": 2.61792,
+   "Z": -1.5369154424387566,
+   "M_b_rv": 25611422495160.34,
+   "r_tot_model": 2.7648952584544726,
+   "u_cs_model": 0.5154225792824473,
+   "M_b_3Mpc": 1.265489460549139e+44,
+   "u_cs_central": 0.5143360783298978,
+   "sig_cs": 0.05
+  },
+  "shape": {
+   "slopes_D": [
+    -0.6738157267477949,
+    0.1979003245357973,
+    -0.8130743646922187,
+    -0.2585738878747124,
+    -0.9721696514078093,
+    -2.044372861723021,
+    -0.018505703968930823
+   ],
+   "slopes_PL": [
+    -0.11159476980421032,
+    -0.09332575930984441,
+    -0.3075186588296071,
+    -0.32459273228754343,
+    -0.3904836044591045,
+    -0.3944926071886405,
+    -0.35502599536661883
+   ],
+   "slopes_measured": [
+    -0.5622209569435842,
+    0.2912260838456417,
+    -0.5055557058626116,
+    0.0660188444128311,
+    -0.5816860469487046,
+    -1.64988025453438,
+    0.33652029139768763
+   ],
+   "slopes_err": [
+    1.2672024919864393,
+    0.7509113720527016,
+    0.5479866298621278,
+    0.44922245363011043,
+    0.34056436271519347,
+    0.4452386373266484,
+    0.4912787485410573
+   ],
+   "dlnR": [
+    0.374466534194249,
+    0.3744665341942487,
+    0.374466534194249,
+    0.374466534194249,
+    0.374466534194249,
+    0.3744665341942487,
+    0.37446653419424886
+   ],
+   "slopes_step": [
+    0.011477356388516224,
+    0.016309381912481366,
+    0.030833950285524298,
+    0.0338500326149115,
+    0.03915073574090051,
+    -1.9350823307884248,
+    -1.4824062008826208e-15
+   ],
+   "slopes_step_pc": [
+    0.012227143321956556,
+    0.01020555457249995,
+    0.01990926909877754,
+    -0.04173506119353181,
+    -0.24248693940264093,
+    -0.9374513945558662,
+    -0.750565533454347
+   ],
+   "slopes_u1": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "slopes_const": [
+    0.010668016164748852,
+    0.01516485366485833,
+    0.028687830014870068,
+    0.031520393341275064,
+    0.036490376777854175,
+    0.03324973045973739,
+    0.030917991570488246
+   ],
+   "chi2_shape_step": 5.5049763786967105,
+   "chi2_shape_step_pc": 9.771259880201605,
+   "chi2_shape_u1": 18.338020203582133,
+   "chi2_shape_const": 19.268213400640835,
+   "chi2_shape_step_full": 14.98019292553669,
+   "chi2_shape_u1_full": 56.09093419347337,
+   "C": -0.4000029827609797,
+   "C_err": 0.24362407157133378,
+   "Ds": -1.9864005459320677,
+   "Ds_err": 0.8724632734750394,
+   "C_step": -0.7392842141149203,
+   "Z56": 0.6405600330790854,
+   "Z56_u1": -3.7056088942342815,
+   "Z56_const": -3.780287342311877,
+   "sigma56": 0.4452386373266484
+  },
+  "realisation_3d": {
+   "u_in": 0.5568064600881485,
+   "chi2": 1112.509552602788,
+   "chi2_dof": 158.92993608611258,
+   "dchi2_vs_step": 813.5731810508835,
+   "A_model": [
+    1.5973034004545035,
+    1.604202379802604,
+    1.6155819567243106,
+    1.640297048513357,
+    1.670867319662593,
+    1.7357627773957711,
+    1.7050077463428617,
+    1.4711474607627495
+   ],
+   "resid_sigma": [
+    5.830733598634185,
+    6.262571993566971,
+    14.668466845996274,
+    8.217458783103456,
+    12.338398732328724,
+    -0.3036631210237311,
+    -28.82547999297709,
+    -21.528632038309897
+   ],
+   "extra_Msun": 122060909285947.23,
+   "extra_M200c": 0.8192257825819552
+  },
+  "nfw": {
+   "c45": {
+    "chi2": 420.25281039263575,
+    "chi2_dof": 60.03611577037653,
+    "M": 102353102189902.69
+   },
+   "cfree": {
+    "chi2": 152.82756492910875,
+    "chi2_dof": 25.471260821518126,
+    "M": 136887450953708.2,
+    "c": 2.5,
+    "resid_sigma": [
+     -2.0595111784745104,
+     -6.573916897564378,
+     -1.2090245568109192,
+     -4.042201067212838,
+     4.742963360763746,
+     4.048340815985487,
+     -12.32537015439778,
+     6.192870663251754
+    ]
+   }
+  },
+  "width_scan": {
+   "w_dex": [
+    0.0,
+    0.02,
+    0.04,
+    0.06,
+    0.08,
+    0.12,
+    0.16,
+    0.22
+   ],
+   "chi2": [
+    249.6210549527561,
+    248.37057251848594,
+    249.69520011441435,
+    250.25385635205365,
+    251.13452987249457,
+    256.1010875263262,
+    265.97538229284123,
+    288.7485531218812
+   ],
+   "u_in": [
+    0.4057054881851186,
+    0.405645663427723,
+    0.405681814942882,
+    0.4051170049884937,
+    0.40417413357938703,
+    0.4017425539938746,
+    0.39909110181929036,
+    0.395340578670192
+   ]
+  },
+  "u_space": {
+   "u_bar": 0.44743785504798084,
+   "chi2_const": 41.44054086096948,
+   "chi2_u1": 574.8831208056857,
+   "u_in_simple": 0.4115943033317089,
+   "chi2_step": 8.832303834304405,
+   "u_out_free": 0.9697781041405441,
+   "chi2_step3": 8.729832441591284
+  },
+  "A_bands": {
+   "INNER": {
+    "A_law": 2.509116337540468,
+    "A_newton": 10.435217933506665,
+    "range": [
+     0.15,
+     0.4612936830542063
+    ]
+   },
+   "MID": {
+    "A_law": 1.910193906531747,
+    "A_newton": 10.173704361986124,
+    "range": [
+     0.4612936830542063,
+     1.4186124135047637
+    ]
+   },
+   "OUTER": {
+    "A_law": 1.0118014350474742,
+    "A_newton": 7.261952913749854,
+    "range": [
+     1.4186124135047637,
+     3.0
+    ]
+   }
+  }
+ },
+ "constants_used": [
+  {
+   "name": "G",
+   "value": 6.674e-11,
+   "unit": "m^3 kg^-1 s^-2",
+   "source": "CODATA / BRIEF s4"
+  },
+  {
+   "name": "a0_canonical",
+   "value": 9.360324825027975e-11,
+   "unit": "m/s^2",
+   "source": "CFG4_common (FP0 committed), the canonical footing"
+  },
+  {
+   "name": "a0_alt",
+   "value": 1.1312035414413022e-10,
+   "unit": "m/s^2",
+   "source": "CFG4_common, reported only, never mixed"
+  },
+  {
+   "name": "H0",
+   "value": 2.1842693716174612e-18,
+   "unit": "s^-1",
+   "source": "67.4 km/s/Mpc, BRIEF s4"
+  },
+  {
+   "name": "Omega_m",
+   "value": 0.315,
+   "unit": "1",
+   "source": "Planck 2018 [EXT], enters only rho_crit(z)"
+  },
+  {
+   "name": "Omega_L",
+   "value": 0.685,
+   "unit": "1",
+   "source": "Planck 2018 [EXT]"
+  },
+  {
+   "name": "M_sun",
+   "value": 1.989e+30,
+   "unit": "kg",
+   "source": "BRIEF s4"
+  },
+  {
+   "name": "Mpc",
+   "value": 3.0857e+22,
+   "unit": "m",
+   "source": "BRIEF s4"
+  },
+  {
+   "name": "c_nfw",
+   "value": 4.5,
+   "unit": "1",
+   "source": "[EXT] c200c at M200c~1.5e14, z~0.23"
+  },
+  {
+   "name": "Delta",
+   "value": 200.0,
+   "unit": "rho_crit",
+   "source": "BRIEF s4"
+  },
+  {
+   "name": "r_sp_over_r200m",
+   "value": 0.83,
+   "unit": "1",
+   "source": "[EXT] More+2015 (+-0.06); 0.83 x 1.6474 = 1.3674 r200c"
+  },
+  {
+   "name": "f_gas_500",
+   "value": 0.11,
+   "unit": "1",
+   "source": "[EXT] eRASS1 M_gas,500/M500"
+  },
+  {
+   "name": "R_cosmic",
+   "value": 5.364327,
+   "unit": "1",
+   "source": "(1-f_b)/f_b, f_b=0.02237/0.14237 [A18 eq.3]"
+  },
+  {
+   "name": "R_tot_anchor",
+   "value": 2.61792,
+   "unit": "1",
+   "source": "[A18 s8] the law's phantom per system baryon at the cluster anchor"
+  },
+  {
+   "name": "u_cosmic_anchor",
+   "value": 0.48802394037499947,
+   "unit": "1",
+   "source": "R_tot/R_cosmic = 0.4880 (A18 s8, = A21's ceiling)"
+  },
+  {
+   "name": "u_MID_A21",
+   "value": 0.471566,
+   "unit": "1",
+   "source": "[A21 K4] 0.47157 +- 0.03625"
+  }
+ ],
+ "record_inputs": [
+  {
+   "name": "A_MID_law",
+   "value": 1.910194,
+   "err": 0.118637,
+   "source": "CFG687 'canonical|b0.67|rc0.15|f0.20'/MID"
+  },
+  {
+   "name": "A_MID_newton",
+   "value": 10.173704,
+   "err": 0.65,
+   "source": "CFG687 'newton'/MID"
+  },
+  {
+   "name": "A_OUTER_law",
+   "value": 1.011801,
+   "err": 0.086872,
+   "source": "CFG687 'canonical|b0.67|rc0.15|f0.20'/OUTER"
+  },
+  {
+   "name": "A_OUTER_newton",
+   "value": 7.262,
+   "err": 0.62,
+   "source": "CFG687 'newton'/OUTER"
+  },
+  {
+   "name": "A_INNER_law",
+   "value": 2.5091163,
+   "err": 0.32,
+   "source": "CFG687 stdout, INNER band"
+  },
+  {
+   "name": "A_INNER_newton",
+   "value": 10.4352179,
+   "err": 1.39,
+   "source": "CFG687 stdout, INNER band"
+  },
+  {
+   "name": "u_MID_A21",
+   "value": 0.471566,
+   "err": 0.03625,
+   "source": "A21 K4"
+  },
+  {
+   "name": "u_OUTER_A21",
+   "value": 0.9865,
+   "err": 0.0984,
+   "source": "A21 K5b"
+  },
+  {
+   "name": "u_8bin_A29",
+   "value": [
+    0.2936,
+    0.373,
+    0.3331,
+    0.4169,
+    0.4116,
+    0.5319,
+    1.0885,
+    0.9392
+   ],
+   "err": [
+    0.1251,
+    0.1072,
+    0.0504,
+    0.0648,
+    0.044,
+    0.0545,
+    0.2087,
+    0.1059
+   ],
+   "source": "A29 K2/K8 (reproduced below)"
+  },
+  {
+   "name": "r_sp_A29",
+   "value": 1.414,
+   "err": 0.2,
+   "source": "A29 s3: 0.83 r200m = 1.3674 r200c = 1.414 Mpc"
+  }
+ ],
+ "data_source": {
+  "npz": "campaign_fresh_gravity/CFG687_erass1_shear_stack/cfg687_percluster.npz",
+  "n_clusters": 318,
+  "n_bins": 8,
+  "edges_Mpc": [
+   0.15,
+   0.21813231501734306,
+   0.3172113790321692,
+   0.4612936830542063,
+   0.6708203932499369,
+   0.9755173689363547,
+   1.4186124135047637,
+   2.0629680658008964,
+   3.0
+  ],
+  "edges_r200c": [
+   0.14507107251556228,
+   0.210964592599123,
+   0.3067879664689156,
+   0.44613579563551714,
+   0.6487775594271974,
+   0.9434623397943762,
+   1.3719974954068428,
+   1.9951799324739408,
+   2.9014214503112457
+  ]
+ },
+ "mutation": "M4",
+ "n_pass": 17,
+ "n_total": 22,
+ "runtime_s": 2.56
+}

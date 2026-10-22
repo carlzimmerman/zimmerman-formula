@@ -1,0 +1,334 @@
+{
+  "checks": [
+    {
+      "id": "K1",
+      "label": "the full data vector is present; sha256 sparc=469f4f556dc813b2 kids=e2568b34578a4752",
+      "pass_": true,
+      "threshold": "175 files, 171 in the fit (>=5 pts), 3375 points, KiDS 4x15, Pantheon+ on disk",
+      "value": "SPARC files=175 fitted=171 points=3375 | KiDS 4x15 radii 0.0354-2.6035 Mpc | SNe=True cov=True"
+    },
+    {
+      "id": "K2",
+      "label": "the zero-parameter number reproduces to 4 digits; the free-Upsilon one to the Upsilon-grid resolution (2.42 at [0.02,4.0], 2.47 at the record's [0.05,2.5])",
+      "pass_": true,
+      "threshold": "6.87 +- 0.02 (fixed), 2.42 +- 0.10 (free-Upsilon grid), 6.63 +- 0.02",
+      "value": "6.8651 / 2.4714 / 6.6312"
+    },
+    {
+      "id": "K3",
+      "label": "kappa_P3 = a0 sqrt(8pi/3)/(c H0); the DE convention is sqrt(Omega_L) = 0.8276 larger.  1/2 in one convention is 0.6046 in the other -- a 20.9% relabelling",
+      "pass_": false,
+      "threshold": "0.5 +- 1e-6 ; 0.6046 +- 2e-4 ; round trip < 1e-12",
+      "value": "kappa_P3=0.604254  kappa_DE=0.730247  round-trip 2.1e-01"
+    },
+    {
+      "id": "K4",
+      "label": "with one Upsilon per galaxy the SPARC likelihood peaks BELOW the theory's a0; the record's own 2.21 (at 9.36e-11) vs 2.42 (at 1.132e-10) already showed the direction",
+      "pass_": true,
+      "threshold": "a0 < 1.1312e-10 and chi2/dof < 2.5",
+      "value": "a0=8.08147e-11  kappa_P3=0.4317  chi2/dof=2.2209"
+    },
+    {
+      "id": "K5",
+      "label": "Delta-chi2 = 1 gives a sub-percent error, which CANNOT be the honest one at chi2/dof = 2.2 -- K6 tests that",
+      "pass_": true,
+      "threshold": "0.005 < sigma < 0.03",
+      "value": "sigma(a0)/a0 = 0.0113  (1.127% in a0, 0.0049 in kappa)"
+    },
+    {
+      "id": "K6",
+      "label": "the per-point errors are not the truth: the galaxy-to-galaxy scatter (0.46 dex in the per-galaxy a0) is 8x the formal error.  The bootstrap is the statistical error used below",
+      "pass_": true,
+      "threshold": "ratio > 3",
+      "value": "sigma_boot = 0.0939 (9.39%), ratio to Delta-chi2 = 8.3"
+    },
+    {
+      "id": "K6b",
+      "label": "the same 3375 points, six defensible weightings, give a0 from 7.3e-11 to 1.12e-10. The estimator/error-model choice, not the data, sets the error bar: this half-span IS the systematic used in K10, and it is 8x the bootstrap error",
+      "pass_": true,
+      "threshold": ">=6 estimators and 0.10 < half-span < 0.40",
+      "value": "7 estimators, kappa 0.392-0.599, half-span 20.8%"
+    },
+    {
+      "id": "K7",
+      "label": "the cluster amplitude measures ONE number; u (the A18 sourcing fraction) is degenerate with it, and u was itself derived from the same amplitudes -- so this channel is a 14-20% upper bound on a0, not a measurement",
+      "pass_": true,
+      "threshold": "0.10 < sigma < 0.30",
+      "value": "sigma(a0)/a0 = 0.110  kappa_cl = 0.4754 +- 0.0522"
+    },
+    {
+      "id": "K8",
+      "label": "an exact degeneracy, not a weak constraint: A44 itself notes the amplitude is degenerate with the profiled M_b; this shows it is degenerate INCLUDING the baryon point mass, for every a0",
+      "pass_": true,
+      "threshold": "< 1e-10",
+      "value": "max deviation 4.44e-16"
+    },
+    {
+      "id": "K9",
+      "label": "the distance vector is live; the framework's background is an EXACT reparametrisation of flat LCDM (so it is not excluded), and its own h is modelling-dependent (0.470 here, 0.568 in A46), so the H0 footing is a prior.  kappa does not enter E(z) at all: the channel supplies H0 and no kappa information",
+      "pass_": true,
+      "threshold": "0.28 < Om < 0.33, 0.65 < h < 0.71, chi2/dof < 1.05, |dchi2| < 15, distances < 3%, identity < 1e-6",
+      "value": "LCDM Om=0.3020 h=0.6842 chi2/dof=0.882 ; framework Om=0.4376 h=0.4704 dchi2=-1.40, distances match to 2.5e-03"
+    },
+    {
+      "id": "K10",
+      "label": "the joint fit's statistical error is 7.1% and its total error is 32.0%: 1/2 is excluded at 1.6 sigma statistically and admitted at 0.36 sigma in total.  The measurement does not decide",
+      "pass_": true,
+      "threshold": "1/2 inside 2 sigma and sigma_stat(joint) < 0.06",
+      "value": "kappa = 0.4482 +- 0.1435 (tot) ; 1/2 at 0.36 sigma ; 1 sigma interval [0.305, 0.592]"
+    },
+    {
+      "id": "K11",
+      "label": "the flat kappa prior changes nothing: the posterior is interior and 5 sigma from both edges.  In THIS parameter the fit is not prior-dominated",
+      "pass_": true,
+      "threshold": "interval strictly inside [0.3,1.0] and |shift| < 1e-4",
+      "value": "interior=True  kappa_flat=0.4317 vs 0.4317"
+    },
+    {
+      "id": "K12",
+      "label": "the error bar IS prior-dominated when Upsilon is fixed (sub-percent stat vs a factor 2 from the IMF); freeing Upsilon per galaxy multiplies the error bar by 14 and cuts the IMF leverage to x1.05 -- the IMF prior is defeated, and replaced by a 21% estimator systematic",
+      "pass_": true,
+      "threshold": "error ratio > 10 and 0.4 < IMF move < 0.6",
+      "value": "ratio 14.1, IMF move x0.439, free-window move x1.050"
+    },
+    {
+      "id": "K13",
+      "label": "a two-parameter Upsilon law is NOT an equivalent analysis: it fits far worse (chi2/dof 5.4 vs 2.2) and moves kappa by +28%, inside the declared systematic band but on the high side. The per-galaxy freedom is doing real work, and it is what keeps the 10% statistical error honest",
+      "pass_": true,
+      "threshold": "within the 32% systematic AND chi2/dof at least 1.5x worse than the per-galaxy fit",
+      "value": "kappa_law=0.5544 vs kappa_free=0.4317 (28.4%)"
+    },
+    {
+      "id": "K14",
+      "label": "the next generation cannot decide it: at N=1000 the 0.4824 gap is 1.01 sigma statistically and 0.12 sigma in total; 0.4979 is 0.12 and 0.01 sigma",
+      "pass_": true,
+      "threshold": "0.4824 below 3 sigma at N=1000 even statistically, and the coherent floor > gap/3",
+      "value": "N=1000: stat 1.01 sigma (0.4824), 0.12 sigma (0.4979); with floor 0.12 / 0.01 sigma; N_3sigma(0.4824)=8797"
+    },
+    {
+      "id": "K15",
+      "label": "kappa = 1/2 is not empirically decidable from rotation-curve data: the coherent systematic (25% estimator + 16% distance + 10% law) is 5x the 3.5% gap to 0.4824. Only a derivation settles it",
+      "pass_": true,
+      "threshold": "neither alternative decidable at 3 sigma with N=1000",
+      "value": "0.4824: not decidable ; 0.4979: not decidable ; floor 0.1399 vs gaps 0.0176 / 0.0021"
+    },
+    {
+      "id": "K16",
+      "label": "the record's 0.87 sigma is its single largest-error measurement, not a combination; A15's own combination sits 2.0 sigma below 1/2 and the naive combination of all seven 3.4 sigma below (correlated, so that last number is an upper bound). Every reading is consistent with this lane's 0.37 +- 0.12 and none with a confirmation",
+      "pass_": true,
+      "threshold": "0.87 +- 0.02 and A15's own combination in [1.5, 2.6] sigma",
+      "value": "0.87 sigma reproduced; A15 combined 0.4386 +- 0.0306 -> 2.01 sigma; naive combination 0.4295 +- 0.0206 -> 3.42 sigma"
+    }
+  ],
+  "cluster": {
+    "R_req": 5.552,
+    "R_tot_canon": 2.6179291849458104,
+    "a0": 8.90017159382741e-11,
+    "dlnR_dlna0": 0.927708940137828,
+    "kappa": 0.47542001801207845,
+    "sigma_R": 0.427,
+    "sigma_frac": 0.10971274637183477,
+    "sigma_kappa": 0.05215963585625228,
+    "sigma_u": 0.03,
+    "u": 0.45
+  },
+  "constants": {
+    "G": 6.6743e-11,
+    "H0_planck": 67.4,
+    "Omega_L": 0.6847,
+    "a0_per_kappa": 2.2624070828826046e-10,
+    "a0_theory": 1.1312035414413023e-10,
+    "c": 299792458.0,
+    "rho_crit": 8.532855163739318e-27,
+    "sq_8pi3": 2.8944050182330705
+  },
+  "cosmology": {
+    "Omega_m": 0.30203340527287725,
+    "chi2": 1404.6364521810603,
+    "dof": 1593,
+    "h": 0.6841830800829833,
+    "kappa_blind": true,
+    "n_sne": 1580,
+    "omega_b": 0.02252018153101415,
+    "sigma_H0": 0.0074
+  },
+  "data": {
+    "kids_radii": 15,
+    "n_bao": 13,
+    "n_cmb": 3,
+    "n_galaxies": 171,
+    "n_points": 3375,
+    "n_sne": 1580,
+    "n_sparc_files": 175,
+    "sha256_sparc": "469f4f556dc813b2"
+  },
+  "forecast": {
+    "N": 1000,
+    "N_3sigma_04824": 8796.936915278675,
+    "N_3sigma_04979": 617841.3414519042,
+    "coherent_floor": 0.13991449037131062,
+    "decidable_04824": false,
+    "decidable_04979": false,
+    "gap_04824": 0.017599164,
+    "gap_04979": 0.0020999999999999908,
+    "sigma_04824_stat": 1.0114758451642416,
+    "sigma_04824_tot": 0.1248236509644228,
+    "sigma_04979_stat": 0.12069319172461247,
+    "sigma_04979_tot": 0.014894438566814123,
+    "sigma_stat_kappa": 0.017399490145157428,
+    "sigma_tot_kappa": 0.14099222274003273
+  },
+  "generated": "2026-10-22T04:02:52Z",
+  "joint": {
+    "inside_1sigma": true,
+    "inside_2sigma": true,
+    "inside_3sigma": true,
+    "kappa": 0.44815185558347564,
+    "kappa_numeric": 0.448516748132547,
+    "kappa_raw_sum": 0.4319097599805679,
+    "sigma_numeric": 0.03306572141975508,
+    "sigma_stat": 0.0320041910904024,
+    "sigma_sys": 0.31220330481315894,
+    "sigma_tot": 0.14352816052334316,
+    "systematics": {
+      "H0": 0.125,
+      "distance": 0.161,
+      "estimator": 0.20838642838788282,
+      "law": 0.1,
+      "upsilon": 0.05
+    },
+    "tension_stat": 1.6200423335202767,
+    "tension_total": 0.36124022092578734
+  },
+  "lane": "A51",
+  "lensing": {
+    "degeneracy_max_dev": 4.440892098500626e-16,
+    "fisher_info_kappa": 0.0
+  },
+  "mutate": "kappa_de",
+  "n_check": 17,
+  "n_pass": 16,
+  "record": {
+    "combined_P3": 0.42954011443456597,
+    "combined_err_P3": 0.020626854961878327,
+    "combined_tension": 3.4159296555706136,
+    "rows": [
+      {
+        "convention": "P3",
+        "err": 0.095,
+        "err_P3": 0.095,
+        "kappa_P3": 0.417,
+        "name": "CFG493 via A19",
+        "value": 0.417
+      },
+      {
+        "convention": "DE",
+        "err": 0.076,
+        "err_P3": 0.06288741686537935,
+        "kappa_P3": 0.3847716952947553,
+        "name": "BTFR (kappa_closure)",
+        "value": 0.465
+      },
+      {
+        "convention": "DE",
+        "err": 0.043,
+        "err_P3": 0.035581038489622525,
+        "kappa_P3": 0.4559337722740004,
+        "name": "distance-free (kappa_closure)",
+        "value": 0.551
+      },
+      {
+        "convention": "DE",
+        "err": 0.037,
+        "err_P3": 0.030616242421303105,
+        "kappa_P3": 0.4385569860348824,
+        "name": "A15 combined",
+        "value": 0.53
+      },
+      {
+        "convention": "DE",
+        "err": 0.106,
+        "err_P3": 0.08771139720697647,
+        "kappa_P3": 0.29292296803084594,
+        "name": "A14 Upsilon-free",
+        "value": 0.354
+      },
+      {
+        "convention": "DE",
+        "err": null,
+        "err_P3": null,
+        "kappa_P3": 0.48762572051010605,
+        "name": "A9 free SPARC (DE)",
+        "value": 0.5893
+      },
+      {
+        "convention": "P3",
+        "err": null,
+        "err_P3": null,
+        "kappa_P3": 0.4876,
+        "name": "A9 free SPARC (total)",
+        "value": 0.4876
+      }
+    ]
+  },
+  "sparc": {
+    "a0_best": 8.081465489071453e-11,
+    "a0_fixed": 9.442184951791891e-11,
+    "a0_law": 1.0379175645727054e-10,
+    "alpha_law": 0.6348143163621901,
+    "bootstrap_median": 8.07743030333344e-11,
+    "bootstrap_sd": 7.583793300278301e-12,
+    "chi2_dof": 2.220935348153218,
+    "chi2_dof_fixed": 6.865059948737309,
+    "chi2_dof_free": 2.4713725086059863,
+    "chi2_dof_law": 5.399658824085476,
+    "chi2_min": 7115.87685548291,
+    "dof": 3204,
+    "estimator_ensemble": [
+      {
+        "a0": 8.081465489071453e-11,
+        "kappa": 0.4316872352262252,
+        "label": "chi2, free Upsilon, all 171 (PRIMARY)"
+      },
+      {
+        "a0": 8.662978129234982e-11,
+        "kappa": 0.46274986665375106,
+        "label": "chi2, free Upsilon, errV/V<0.10 (141)"
+      },
+      {
+        "a0": 7.341665662946842e-11,
+        "kappa": 0.392169385154051,
+        "label": "chi2, free Upsilon, 10% floor"
+      },
+      {
+        "a0": 8.546427649996056e-11,
+        "kappa": 0.45652409557114454,
+        "label": "chi2, free Upsilon, 3% floor"
+      },
+      {
+        "a0": 1.0258486697689435e-10,
+        "kappa": 0.54797706754043,
+        "label": "unweighted V-space (sigma=1), free Upsilon"
+      },
+      {
+        "a0": 1.120694423012403e-10,
+        "kappa": 0.5986407758071866,
+        "label": "log-space, fixed Upsilon, errV/V<0.10"
+      },
+      {
+        "a0": 9.116786480803785e-11,
+        "kappa": 0.48699092452577025,
+        "label": "log-space, fixed Upsilon, all 171"
+      }
+    ],
+    "estimator_half_span": 0.20838642838788282,
+    "kappa": 0.4316872352262252,
+    "per_galaxy_scatter_dex": 0.4549068462751802,
+    "sigma_fixed": 0.006650023941071388,
+    "sigma_kappa_stat": 0.04053054795128654,
+    "sigma_stat_boot": 0.0938886875588215,
+    "sigma_stat_dchi2": 0.0112688500668242,
+    "ups0_law": 0.4232755467139422
+  },
+  "verdict": "kappa = 0.448 +- 0.032 (stat) +- 0.140 (sys) = 0.448 +- 0.144. 1/2 is 0.36 sigma away in total and 1.6 sigma statistically. At N=1000 the 0.4824 gap is 0.12 sigma and the 0.4979 gap 0.01 sigma, so kappa=1/2 is NOT empirically decidable; only a derivation settles it."
+}

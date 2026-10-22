@@ -1,0 +1,429 @@
+{
+ "lane": "A42_minimal_vacuum",
+ "status": "NO-GO(beta=0 as a cosmology: it forces Omega_m = 0); DERIVED(the chain, Lambda_bare = 3H0^2/c^2, a0 = 1.1312e-10, beta = (2/3)Omega_m); NUMERICAL(the background table and the 8.7% H(z=1) discrepancy)",
+ "mutation": "kappa1",
+ "checks": [
+  {
+   "id": "K1_beta0_gives_H2_eq_Lambda_c2_over_3",
+   "pass": true,
+   "value": "0",
+   "threshold": "0",
+   "note": "the task chain, from (F1); exact"
+  },
+  {
+   "id": "K2_Lam_min_sets_H_eq_H0_identically",
+   "pass": true,
+   "value": "0",
+   "threshold": "0",
+   "note": "H = H0 for every z (empty universe): the de Sitter endpoint"
+  },
+  {
+   "id": "K2b_F1_from_minisuperspace_keeps_the_matter_term",
+   "pass": true,
+   "value": "resid 0 / 0",
+   "threshold": "0 / 0",
+   "note": "vary N of L_bg: 3(2+3beta)H^2 = 2Lambda + 4K rho; at beta=0 it is GR"
+  },
+  {
+   "id": "K3_rho_bare_eq_rho_crit",
+   "pass": true,
+   "value": "1.000000000000000",
+   "threshold": "1 +- 1e-14",
+   "note": "Lambda_bare c^2/8 pi G = 3H0^2/8 pi G"
+  },
+  {
+   "id": "K4_a0_eq_half_c_sqrt_G_rho_crit",
+   "pass": false,
+   "value": "2.262407e-10 m/s^2",
+   "threshold": "|dev from 1.132e-10| < 0.2%",
+   "note": "dev vs 1.132e-10: +99.86%"
+  },
+  {
+   "id": "K5_a0_percent_vs_quoted_values",
+   "pass": false,
+   "value": "+99.77% vs 1.1325e-10",
+   "threshold": "|dev| < 0.2%",
+   "note": "H0 that reproduces the quoted value: 33.724 km/s/Mpc"
+  },
+  {
+   "id": "K6_Lam_eq_32pi_a0sq_over_c4_identity",
+   "pass": true,
+   "value": "0",
+   "threshold": "0",
+   "note": "identity, not a derivation: kappa = 1/2 <=> Lambda = 32 pi a0^2/c^4"
+  },
+  {
+   "id": "K7_kappa_half_is_the_normalisation",
+   "pass": false,
+   "value": "a0(kappa=1)/a0(kappa=1/2) = 1.000000",
+   "threshold": "2",
+   "note": "a0 = 2.2624e-10 would be kappa = 1; the quoted value selects kappa = 1/2"
+  },
+  {
+   "id": "K8_positivity_rhs_eq_a0Lstar_over_c2_sq",
+   "pass": true,
+   "value": "Lstar**2*a0**2",
+   "threshold": "L*^2 a0^2",
+   "note": "in c=1 units a0 has dimension 1/L, so the bound is (a0 L*/c^2)^2 in SI"
+  },
+  {
+   "id": "K9_beta0_satisfies_bound_to_18_digits",
+   "pass": false,
+   "value": "|0 - 3.4752e-18| = 3.4752e-18",
+   "threshold": "< 1e-18",
+   "note": "beta = 0 sits below the bound by 3.48e-18: identical at any physical precision"
+  },
+  {
+   "id": "K10_strict_positivity_excludes_beta0",
+   "pass": true,
+   "value": "violation = 3.4752e-18",
+   "threshold": "0 < violation < 1e-17",
+   "note": "the admissible set is {0} U (3.5e-18, inf): beta = 0 is a limit point"
+  },
+  {
+   "id": "K11_matter_branch_beta_clears_bound",
+   "pass": true,
+   "value": "beta/bound = 6.068e+16",
+   "threshold": "> 1e16",
+   "note": "beta = (2/3)Omega_m = 0.210867"
+  },
+  {
+   "id": "K12_deSitter_Ez_eq_one_no_big_bang",
+   "pass": true,
+   "value": "t(1e3)=100.2, t(1e6)=200.4 Gyr (diverges)",
+   "threshold": "E=1, no finite age",
+   "note": "q0 = -1; dC = (c/H0) z; age integral = ln(1+z)/H0 -> inf"
+  },
+  {
+   "id": "K13_flat_census_matches_closed_form",
+   "pass": true,
+   "value": "age=13.7802 (closed form 13.7802), q0=-0.5255",
+   "threshold": "1e-9 / 1e-15",
+   "note": "t0 = 2/(3H0 sqrt(OL)) asinh(sqrt(OL/Om)); dC1=3398.7, dC2=5306.4"
+  },
+  {
+   "id": "K14_integrator_validated_on_Planck_age",
+   "pass": true,
+   "value": "13.8007 Gyr vs Planck 13.797",
+   "threshold": "|dev| < 0.05 Gyr",
+   "note": "radiation neglected: 0.03% on the age, <1e-4 on dC(z<3)"
+  },
+  {
+   "id": "K15_deSitter_vs_Planck_distance_fractions",
+   "pass": true,
+   "value": "z=1: +30.87%, z=2: +67.65%",
+   "threshold": "> 1% both",
+   "note": "measurable, but the model has no matter: excluded by existence, not by distance"
+  },
+  {
+   "id": "K16_case_b_forces_Lam_obs_and_a0_9p35e-11",
+   "pass": true,
+   "value": "Lam_bare=1.0888e-52, a0=9.3535e-11",
+   "threshold": "Lam_obs +- 0.2%, a0 < 0.9x",
+   "note": "so case (b) is exactly LCDM at the same Omega_m (difference 0) but loses the 1.132e-10 value"
+  },
+  {
+   "id": "K17_case_b_vs_Planck_Om_not_measurable",
+   "pass": true,
+   "value": "z=1: -0.0577%, z=2: -0.0826%",
+   "threshold": "< 0.3% (Euclid)",
+   "note": "dOm = 0.0010: below any planned distance measurement"
+  },
+  {
+   "id": "K18_matter_branch_beta_eq_two_thirds_Om",
+   "pass": true,
+   "value": "[2*Omega_m/3] (used: 0.210867)",
+   "threshold": "2 Omega_m/3",
+   "note": "unique root of (F1) at H=H0, Lambda_bare = 3H0^2/c^2"
+  },
+  {
+   "id": "K19_branch_Ez_eq_LCDM_with_Om_over_1pOm",
+   "pass": true,
+   "value": "Om_eff=0.240295, max|dE|=8.9e-16",
+   "threshold": "< 1e-13",
+   "note": "the (2+3beta) factor rescales the matter term: Omega_m,eff = Omega_m/(1+Omega_m)"
+  },
+  {
+   "id": "K20_branch_vs_Planck_measurable_and_excluded",
+   "pass": true,
+   "value": "dC: +4.81%/+7.15%; dH: -8.65%/-11.36%; 10.3 sigma",
+   "threshold": "> 1% and > 5 sigma",
+   "note": "same Omega_m = 0.3163; vs Planck own Omega_m: dC +4.75%/+7.06%"
+  },
+  {
+   "id": "K21_beta0_plus_matter_gives_Omega_k_minus_Om",
+   "pass": true,
+   "value": "Omega_k = -0.3163, H0_implied = 77.33 km/s/Mpc",
+   "threshold": "Omega_k = -Omega_m",
+   "note": "equivalently flat with a0 = 2.596e-10 (+14.7%): the same mismatch, seen from a0"
+  },
+  {
+   "id": "K22_Omega_k_excluded_by_Planck",
+   "pass": true,
+   "value": "Omega_k = -0.3163  ->  167 sigma",
+   "threshold": "> 50 sigma",
+   "note": "Planck+BAO: Omega_k = 0.0007 +- 0.0019"
+  },
+  {
+   "id": "K23_rho_beta_identity_and_closure",
+   "pass": true,
+   "value": "rho_beta/rho_crit = -0.316300, (rho_bare+rho_beta)/rho_DE = 1.000000000000",
+   "threshold": "0 / 1",
+   "note": "the clock stress is exactly -Omega_m rho_crit at beta = (2/3)Omega_m"
+  },
+  {
+   "id": "K24_excess_1p462_eq_one_over_Omega_DE",
+   "pass": true,
+   "value": "Lam_bare/Lam_obs = 1.46242 vs 1/Omega_L = 1.46263",
+   "threshold": "agree to 1e-3",
+   "note": "(rho_crit - rho_DE)/rho_crit = Omega_m = 0.3163 exactly"
+  },
+  {
+   "id": "K25_only_beta0_closure_is_negative_vacuum",
+   "pass": true,
+   "value": "rho_x = -2.699e-27 kg/m3, max|dE| = 1.8e-15",
+   "threshold": "< 1e-12",
+   "note": "rho_x = -Omega_m rho_crit = -0.3163 rho_bare: not in the action, and negative"
+  },
+  {
+   "id": "K26_one_cosmological_input_Omega_m",
+   "pass": true,
+   "value": "beta = [2*Omega_m/3]",
+   "threshold": "2 Omega_m/3 (one root)",
+   "note": "inputs: Omega_m (census) + H0 (measured); Lambda_bare is tied to a0, beta is then predicted"
+  }
+ ],
+ "numbers": {
+  "H0_kms": 67.4,
+  "H0_s": 2.1842852410855023e-18,
+  "rho_crit_kg_m3": 8.532855163739318e-27,
+  "rho_bare_kg_m3": 8.532855163739318e-27,
+  "Lam_bare_m2": 1.592570077135902e-52,
+  "Lam_obs_m2": 1.089e-52,
+  "a0_m_s2": 2.2624070828826043e-10,
+  "kappa": 1.0,
+  "Omega_m": 0.3163,
+  "Omega_L": 0.6837,
+  "Lstar_pc": 24.000000000000004,
+  "a0_dev_vs_1p132e-10_pct": 99.8592829401594,
+  "a0_dev_vs_1p1325e-10_pct": 99.77104484614607,
+  "H0_for_quoted_a0_kms": 33.72372751891664,
+  "a0_sparc_free_fit_A9": 1.1033e-10,
+  "a0_dev_vs_A9_pct": 105.05819658140166,
+  "a0_canonical_footing": 9.354173485820238e-11,
+  "Lam_from_32pi_a0sq": 6.3702803085436075e-52,
+  "Lam_bare_over_Lam_obs": 1.462415130519653,
+  "one_over_Omega_L": 1.4626298083954952,
+  "a0_if_kappa_1": 2.2624070828826043e-10,
+  "positivity_rhs": 3.475219701632245e-18,
+  "positivity_rhs_canonical_footing": 5.948294463490834e-19,
+  "Lstar_over_LMOND": 1.8641941158667585e-09,
+  "beta_branch": 0.21086666666666667,
+  "beta_used_in_cosmology": 0.21086666666666667,
+  "beta_branch_over_bound": 6.067721893025254e+16,
+  "beta_min_strict": 3.475219701632245e-18,
+  "Lam_shift_from_beta_min": 5.212829552448368e-18,
+  "ds_hubble_time_Gyr": 14.507302992296575,
+  "ds_age_partial_1e3_Gyr": 100.22739888300296,
+  "ds_age_partial_1e6_Gyr": 200.42581216495574,
+  "ds_vs_planck_dc_pct": [
+   30.87198352992595,
+   67.64613027795772
+  ],
+  "ds_hubble_vs_planck_age_pct": 5.182286445087825,
+  "Lam_needed_case_b": 1.0888401617378161e-52,
+  "a0_case_b": 9.353486979988695e-11,
+  "a0_case_b_dev_pct": -17.37202314497619,
+  "b_vs_planck_dc_pct": [
+   -0.05772501161865895,
+   -0.08264626351252025
+  ],
+  "b_vs_planck_age_pct": -0.08922015582756293,
+  "beta_branch_symbolic_root": "2*Omega_m/3",
+  "Omega_m_eff_branch": 0.24029476563093521,
+  "G_eff_over_G_branch": 0.7597052343690648,
+  "branch_vs_planck_dc_pct": [
+   4.808815003452183,
+   7.152056740386814
+  ],
+  "branch_vs_planck_E_pct": [
+   -8.650784047106107,
+   -11.35707381455343
+  ],
+  "branch_vs_planckown_dc_pct": [
+   4.748314102814066,
+   7.06349956921406
+  ],
+  "branch_vs_planckown_E_pct": [
+   -8.551146372899854,
+   -11.231875959779636
+  ],
+  "branch_Om_eff_sigma": 10.27468963959792,
+  "branch_age_Gyr": 14.866017497533784,
+  "branch_q0": -0.6395578515535971,
+  "b_age_Gyr": 13.78022863339018,
+  "b_q0": -0.52555,
+  "ds_age_Gyr": "inf",
+  "ds_dc1_Mpc": 4447.959317507418,
+  "ds_dc2_Mpc": 8895.918635014836,
+  "b_dc1_Mpc": 3398.710096336487,
+  "b_dc2_Mpc": 5306.366821748513,
+  "branch_dc1_Mpc": 3562.1477773729603,
+  "branch_dc2_Mpc": 5685.881187693027,
+  "planck_dc1_Mpc": 3400.673135298951,
+  "planck_dc2_Mpc": 5310.755963116297,
+  "planck_age_Gyr": 13.79253435403342,
+  "planck_q0": -0.52705,
+  "c_over_H0_Mpc": 4447.959317507418,
+  "Omega_k_beta0_matter": -0.3163,
+  "H0_implied_beta0_matter_kms": 77.32809960163253,
+  "a0_if_flat_beta0_matter": 2.595662318168916e-10,
+  "a0_if_flat_dev_pct": 129.2987913576781,
+  "a0_if_flat_dev_vs_A9_pct": 135.26351111836453,
+  "Omega_k_sigma": 166.8421052631579,
+  "rho_beta_branch_kg_m3": -2.6989420882907466e-27,
+  "rho_beta_over_rho_crit": -0.3163,
+  "rho_DE_kg_m3": 5.8339130754485715e-27,
+  "excess_over_rho_crit": 0.3163,
+  "excess_kg_m3": 2.6989420882907466e-27,
+  "rho_x_required_kg_m3": -2.6989420882907466e-27,
+  "rho_x_over_rho_bare": -0.3163,
+  "H0_if_positive_cold_vacuum_kms": 87.45653212882388,
+  "Om_eff_h2": 0.10916014495175874,
+  "Planck_Om_h2": 0.143063263488,
+  "cosmological_free_parameters": 1,
+  "branch_prediction_E1": 1.637700631805626,
+  "branch_prediction_E2": 2.692148566926483,
+  "n_checks": 27,
+  "n_pass": 23
+ },
+ "tables": {
+  "z_grid": [
+   0.0,
+   0.25,
+   0.5,
+   1.0,
+   2.0,
+   3.0
+  ],
+  "backgrounds": {
+   "a_pure_deSitter": {
+    "E": [
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "dc_Mpc": [
+     0.0,
+     1111.9898293768545,
+     2223.979658753709,
+     4447.959317507418,
+     8895.918635014836,
+     13343.877952522253
+    ],
+    "age_Gyr": "inf",
+    "q0": -1.0
+   },
+   "b_flat_census": {
+    "E": [
+     1.0,
+     1.1408213872030977,
+     1.3233338581023308,
+     1.7927911200137066,
+     3.0370709573534826,
+     4.574592878060298
+    ],
+    "dc_Mpc": [
+     0.0,
+     1043.9221277296342,
+     1950.5219919582314,
+     3398.710096336487,
+     5306.366821748513,
+     6498.081457782731
+    ],
+    "age_Gyr": 13.78022863339018,
+    "q0": -0.52555
+   },
+   "c_branch_Lambar_rho_crit": {
+    "E": [
+     1.0,
+     1.1086166823983774,
+     1.253275735173019,
+     1.637700631805626,
+     2.692148566926483,
+     4.01728393753154
+    ],
+    "dc_Mpc": [
+     0.0,
+     1058.7411258445495,
+     2003.8554078795426,
+     3562.1477773729603,
+     5685.881187693027,
+     7037.251224590384
+    ],
+    "age_Gyr": 14.866017497533784,
+    "q0": -0.6395578515535971
+   },
+   "d_beta0_plus_matter_closed": {
+    "E": [
+     1.0,
+     1.0599786259637503,
+     1.1644043541656826,
+     1.5050581384119353,
+     2.587160605760686,
+     4.022735387767881
+    ],
+    "dc_Mpc": [
+     0.0,
+     1083.6175724529526,
+     2087.6240601097993,
+     3780.6966676076217,
+     6049.410731396935,
+     7427.218760214273
+    ],
+    "age_Gyr": 15.420874264298513,
+    "q0": -0.84185
+   },
+   "planck_lcdm": {
+    "E": [
+     1.0,
+     1.1404035743981162,
+     1.3224361988390971,
+     1.7908377927662795,
+     3.0327874966769435,
+     4.567701829147783
+    ],
+    "dc_Mpc": [
+     0.0,
+     1044.1117203488554,
+     1951.1872356474773,
+     3400.673135298951,
+     5310.755963116297,
+     6504.217288923642
+    ],
+    "age_Gyr": 13.79253435403342,
+    "q0": -0.52705
+   }
+  }
+ },
+ "constants_used": {
+  "c": 299792458.0,
+  "G": 6.6743e-11,
+  "H0_kms": 67.4,
+  "Omega_c": 0.2666,
+  "Omega_b": 0.0497,
+  "Omega_m": 0.3163,
+  "Lambda_obs_m2": 1.089e-52,
+  "kappa": 1.0,
+  "Lstar_pc": 24.0,
+  "a0_quoted": 1.132e-10,
+  "Planck_Omega_m": 0.3153,
+  "Planck_Omega_m_err": 0.0073,
+  "Planck_Omega_k": 0.0007,
+  "Planck_Omega_k_err": 0.0019,
+  "Planck_age_Gyr": 13.797
+ }
+}

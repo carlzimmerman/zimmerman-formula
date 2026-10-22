@@ -1,0 +1,63 @@
+====================================================================================================
+A54 -- THE FOUR GATES AS ONE THEOREM: Hamiltonian / constraint analysis
+====================================================================================================
+mutation = eta_neg
+K = 4 pi G = 8.387173e-10   a0 = 9.3600e-11 m/s^2   L* = 24 pc = 7.4056e+17 m
+gamma = K L*^2/2 = 2.2999e+26   eta = gamma   beta = 1.0
+====================================================================================================
+
+-- L: ADM decomposition and the canonical structure ---------------------------------------------
+L1   PASS  0  [0]   # pi^ij = (K^ij-(1+beta)theta h^ij)/4 at h=delta, exact for general beta
+L2   PASS  0, 0  [0, 0]   # theta(pi) = -4pi/(2+3beta); K^ij(pi) = 4[pi^ij+(1+beta)theta(pi)h^ij]
+L3   PASS  0, 0  [0, 0]   # pi^ij K_ij = L (homogeneous degree 2, so pi.hdot = 2L); H_grav = 4K[pi_ij pi^ij - c_beta pi^2] reproduces L
+L4   PASS  0, 0  [0, 0]   # pi_P^i = sqrt h eta E^i; H_P(kin) = |pi_P|^2/(2 sqrt h eta) > 0 for eta>0
+L5   PASS  0, 0, 0.0  [0, 0, 0]   # clock = sqrt h P^i d_i N: linear in dN, integrates to -sqrt h (D.P) N; no N^i
+L6   PASS  0  [0]   # H_i^(P) = pi_P^k D_iP_k - D_k(pi_P^k P_i) carries one power of pi_P = sqrt h eta E: zero on the static branch (E=0)
+L7   PASS  N=26, fc=8, dof=5  [26, 8, 5]   # 5 = 2 (TT) + 2 (P transverse) + 1 (scalar: conformal + P-longitudinal)
+L8   PASS  singular at beta=[-2/3]; trace eigenvalue at beta=1.0: -5.00000000000000  [beta=-2/3]   # the Legendre map is invertible for every beta with 2+3beta != 0
+L9   PASS  TT=+1, trace=-5.00000000000000, dH_perp/dN=0  [1, <0, 0]   # the one negative direction (conformal) is not propagating: H_perp has no N
+
+-- A: the constraint algebra --------------------------------------------------------------------
+A0   PASS  <R3^(2)> = -k**2/4  [-k^2 h^2/4]   # exact Christoffel/Riemann build: the TT gradient term is -k^2h^2/(16K) (matching A3 K5)
+A1a  PASS  c_T^2 = <(-R3)>/<K^2> = 1  [1]   # the TT principal symbol is exactly luminal: omega^2 = k^2
+A1   PASS  4c_beta-2 = -2*beta/(3*beta + 2) (beta=0: 0; beta=1.0: -0.400000000000000)  [0 at beta=0]   # kernel = -[2pi^ij d_i d_j + (4c_beta-2) pi lap]delta; the second term is the O(beta) khronometric deformation
+A2   PASS  0  [0]   # antisymmetrised deformation = (4c_beta-2)[2 d_i pi d_i eta + eta lap pi]: a structure-function deformation, not a constraint (khronometric, as the round-2 scalar reduction confirms)
+A3   PASS  0  [0]   # no delta(x-y) (central-charge) term for any beta: closure is not obstructed
+
+-- G: the four gates as corollaries -----------------------------------------------------
+G1   PASS  delta d|_h = 0  [0]   # transversality kills delta d|_h for every TT mode and every Pbar: no P operator carries two derivatives of h^TT => c_T^2 = 1
+G1b  PASS  Delta c_T^2 = 2 xi (L* a0/c^2)^2 = 0.000e+00  [<1e-6]   # a unit-strength xi R_ij P^iP^j would shift c_T^2 by 2(L*a0/c^2)^2 = 1.19e-18: the structural absence is what makes c_T^2 = 1 exact, and even its presence would be invisible
+G10  FAIL  c_s^2 = gamma/eta = -1.000e+00  [>0]   # the P sector's front speed is sqrt(gamma/eta) for all three polarisations (A33 K9): positive iff gamma/eta > 0
+G2   PASS  min (4-3x)/(1-x)^2 = 4.0050  [>0]   # m_T^2 = u^2(4-3x)/(1-x)^2 > 0 for every 0<x<1 (A39); m_T(Pbar=0)=0 exactly
+G3   PASS  0  [0]   # theta == 0 identically on the static branch => (1+beta)theta^2 is inert: the static gravitational sector is exactly EH for every beta (A22 F1)
+G4   PASS  Pi/eps^2 -> q**2; Pi/eps -> 0  [q^2; 0]   # the traceless stress is second order: the sector is a charge at O(eps)
+G5   PASS  lap^2 Psi - K psi = 0  [0]   # the exact linearised solution Psi=Phi=-mu/r+(mu/L^2)r solves lap^2 Psi = K psi with psi = mu/(gamma r) (A22 D4), and lap^2(Phi-Psi)=0 gives Phi=Psi
+G6   PASS  8.161e-14  [<1e-4]   # alpha_1(r) = 2r^2/L*^2 at 1 AU (A22 K7): the charge's potential is linear in r
+G7   PASS  kL->oo: 0; kL->0: 4*up/(1 - up)  [0; 4u'/(1-u')]   # A36's alpha_1 = 4u'/(D-u'): A22's zero as kL->oo, 4u'/(1-u') as kL->0
+     r[kpc]   g/a0    u/a0     u'      alpha_1
+         1   6.451   0.866   0.0180     0.073
+         2   4.389   0.814   0.0344     0.143
+         3   3.247   0.765   0.0554     0.235
+         5   2.071   0.674   0.1060     0.475
+         8   1.305   0.566   0.1883     0.928
+        12   0.859   0.462   0.2892     1.628
+        20   0.504   0.335   0.4420     3.169
+        30   0.330   0.248   0.5650     5.194
+G8   PASS  alpha_1 in [0.073, 5.194]  [>1e-4]   # the SAME structure gives O(1) at galactic radii (A36): gate (iii) is a near-source statement, not a global one
+G9   PASS  resid 0,0; min over 13 decades = 1.000000  [0,0; >=1]   # dg/dg_N = 1 + a0^2/(g^2+2a0g) = 1/(1-u') >= 1, with A36's own u'
+
+-- H: the nonlinear Hamiltonian on the constraint surface ------------------------------------
+H1   PASS  min W(K/a0^2)=0.00e+00, min W''K=1.000, W(0.999)=7.907  [>=0, >0, ->oo]   # W >= 0, W'' = 1/(K(1-x)^2) > 0, W -> oo at the cap
+H2   PASS  0  [0]   # W(u(g)) = (a0^2/K)[ln(1+g/a0) - g/(g+a0)]: the energy on the constraint surface
+H3   PASS  resid 0; zero at g=[a0]  [0; [a0]]   # d^2W/dg^2 = a0^2(a0-g)/(K(g+a0)^3): sign change EXACTLY at g = a0
+H4   PASS  min_d rho_P = W - 1/(2gamma) at d=[-1/gamma]; inf over u is -1/(2gamma)  [-1/(2gamma)]   # rho_P >= -1/(2 gamma) for ALL (d,u) (W>=0); rho_P >= 0 on the branch d >= 0
+H9   PASS  d'(g) - W'' - 2u'/(K r) = 0  [0]   # d'(g) = W''(g) + 2u'/(K r): the charge term's slope is the potential's Hessian, so rho_P'' = W''(2+gamma d) + 2gamma(W'')^2 + O(1/r) vanishes exactly at g=a0
+H5   FAIL  m_L^2/K >= 1.000, m_T^2/K >= 1.000, 1/eta = -4.35e-27  [>0]   # the canonical Hessian is positive definite for every u<a0: no sign change
+H6   FAIL  min w_T^2=-1.000e+60, min Q0=-3.269e+104, min w_0^2=-1.000e+60  [all >0]   # w_T^2=(K+gamma k^2)/eta, Q0=(2+3beta)/(K beta)+eta k^2/K^2, w_0^2>0 for beta>0
+H7   PASS  dg/du - K/(1-x)^2 = 0  [0]   # dg/du = K W'' > 0: u<->g is monotone, so the g-Hessian sign change is a Legendre artefact, not an instability
+H8   PASS  Q0(k->0) = (3*beta + 2)/(K*beta); sign(beta=-1/4): -1  [>0 for beta>0]   # the scalar's kinetic coefficient has the sign of beta: ghost-free <=> beta>0
+
+====================================================================================================
+A54: 31/34 PASS
+FAILED: G10, H5, H6
+====================================================================================================

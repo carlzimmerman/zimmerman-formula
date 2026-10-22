@@ -1,0 +1,33 @@
+K1 PASS 0.0 1e-30  # A=a0*th, gN=g*th, A+gN=g, 1/A=1/g+1/a0, g=(a0+g)*th (sympy remainders)
+K2 PASS 7.502034549133896e-10 1e-09  # K W = int_0^u a0 U/(a0-U) dU = a0^2[-u/a0-ln(1-u/a0)]; W(0)=W'(0)=0; quadrature agrees to 1e-9
+K3 PASS 0.0 1e-30  # g = K W'(u) with u=A inverts to A=a0 g/(g+a0) and gN=g^2/(g+a0): the log W and the law are ONE condition
+K4 PASS 0.0 1e-25  # K W/a0^2 = sum_{n>=2} u^n/(n a0^n): coefficients 1/2,1/3,1/4,1/5,1/6,1/7
+K5 PASS 2.0 1e-12  # W_n2/W_n1 = 1,1,2,4 at u^2..u^5: the n=2 potential is NOT 'only u^2' -- it agrees through u^3 and differs first at u^4 (factor 2)
+K6 PASS 3.000000600350759 0.001  # tanh: c2=0 (odd), c3=-1/3; gN=gc x^3/3, deep exponent 3 -- no g^2 term, no MOND
+K7 PASS -0.06666666666666667 1e-15  # Langevin: 3L = x - x^3/15 + ...; c2=0, c3=-1/15; gN = gc x^3/15, deep exponent 3
+K8 PASS 1.0 1e-30  # general saturating medium: no linear term => C=s; deep coefficient => s=C=-c2*a0 (Langmuir c2=-1 => a0).  Capacity is NOT free
+K9 PASS 0.5 1e-12  # biased tanh (c2=-1/a0 forced, exact deep limit): capacity = a0*u/(1+u) <= a0/2, R = 1-1/(3u^2) <= 2/3 < 1 -- cannot reach capacity a0
+K10 PASS -0.2928932188134524 1e-12  # BI: g=gN/sqrt(1+gN^2/E^2); g linear in gN (Newtonian, no g^2 term), A=-gN^3/(2E^2) NEGATIVE everywhere, g->E: -0.2929a0 at gN=a0
+K11 FAIL 0.9999995000003749 1e-05  # at gN=1e3 a0: BI g=0.9999995 E (g capped); theory at g=1e9 a0 still has g=1e9 a0 and A=0.999999 a0 (A capped) -- opposite topology
+K12 PASS 0.0 1e-30  # k_a g (1-th) = k_d th  =>  th = g/(g+s), s=k_d/k_a: one occupant, adsorption linear in the drive
+K13 PASS 0.0 1e-30  # Z=1+z, th=z/(1+z), activity z=g/a0 => same th: equilibrium and kinetic routes agree
+K14 PASS 0.01 1e-30  # capacity per site q = a0/N_s (not predicted, fixes the gate density); affinity s = a0 = the site's own half-occupancy field; C/s = 1
+K15 PASS -0.001 0.0001  # two occupants per site: linear coefficient 1-N_max = -1 => gN = -g at small g (anti-gravity); gN(1e-3 a0)/a0 = -9.99e-4 -- excluded
+K16 PASS 0.5 1e-12  # Fermi gate (linear coupling H=-lam g sigma_z): A(0)=a0/2 != 0 and no real pole; the Langmuir has A(0)=0 and a pole at g=-a0
+K17 PASS 0.5 1e-12  # n=1: pole at g=-a0 (positive-mixture/Stieltjes class); n=2: branch points +-i a0/2 (no positive mixture of two-state gates)
+K18 FAIL -0.34831069974900664 1e-06  # skew = (1-2th)/sqrt(N_s th(1-th)) exactly; at g=a0/2: n1=+0.707107, n2=-0.348327 (opposite signs)
+K19 FAIL 0.375 1e-10  # skew zero at g=a0 (n1, from the medium) and g=3a0/8=0.375a0 (n2); ratio 8/3=2.667
+K20 FAIL 0.07755886258626891 1e-12  # on g/a0 in (0.375,1): n1 skew > 0 > n2 skew at every probe (min |skew| over the window = 0.0776)
+K21 PASS 0.15470053836423303 2e-05  # max (g1-g2)/g2 = 2/sqrt3-1 = 0.1547005 at gN=a0/2; d2ln(nu)/d(lny)^2 at the knee 0.0741 (n1) vs 0.1111 (n2) -- a rotation-curve fit, excluded
+K22 PASS 0.07399908246341957 0.001  # wide binary 1 Msun at 10 kAU: y=gN/a0=0.634, v(n1)/v(n2)-1 = 7.40% (7.03% at 1.5 Msun/10 kAU) -- the knee, no rotation curve
+K23 FAIL 0.0 1e-12  # R = c3*c1/c2^2 (Miller-delta analogue) from the medium: Langmuir +1, n=2 0, centrosymmetric dielectric divergent
+K24 PASS 0.0 1e-30  # A and gN are homogeneous of degree 1 in (g,a0): a0 is the only scale
+K25 PASS 0.5 1e-12  # capacity A_inf: a0 (n1) vs a0/2 (n2), factor 2; at gN=a0 anomaly 0.61803a0 vs 0.41421a0
+K26 PASS 1.9999609156459417 0.001  # theta=x^a/(1+x^a): deep exponent 2 only at a=1 (a=2 -> 1, linear; a=1/2 -> 0.5 with gN<0): the drive must enter the RATE linearly
+K27 FAIL 9999998.999999998 1e-08  # the identified medium reproduces gN=g^2/(g+a0) to 2.5e-01 and K W'(u)=g to 1.0e+07 (u/a0=0.1,0.5,0.9): the law and the log W are one equation of state
+K28 FAIL 0.7639320225002103 1e-12  # the medium at g=a0 is exactly half occupied (theta=1/2) and saturates at A=a0: the affinity and the capacity are the same number
+K29 PASS 0.5 1e-15  # n=2: c2=-1/a0 exactly as the Langmuir, but capacity a0/2 not a0 -- it violates C=-c2*a0 by the factor 2 (A35's lambda=1 depletion)
+K30 PASS 13500.000045306866 1e-09  # skew N(3sigma): phi=0.5 -> 6912 points, phi=0.3 -> 1.48e5, phi=0.7 -> 918; 0.03 dex occupancy on a 0.06 dex background gives phi=0.447, N=1.35e4
+K31 FAIL 1.8739948907337003 0.0001  # the report's skew table reproduces on all 9 points for both laws
+
+A63 COMPLETE: 23/31 checks PASS.

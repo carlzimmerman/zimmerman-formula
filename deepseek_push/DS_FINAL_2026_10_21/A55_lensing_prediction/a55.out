@@ -1,0 +1,58 @@
+========================================================================================================================
+A55 -- LENSING COMPUTED, NOT ASSUMED
+========================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------
+TASK 1 -- kappa and the deflection from the action's Phi and Psi
+------------------------------------------------------------------------------------------------------------------------
+  [K1] PASS  exact symbolic identity: G^i_j - (1/3)d^i_j G^k_k = (d^i d_j - (1/3)d^i_j lap)(Phi-Psi): max residual over 9 components = 0.000e+00
+  [K2] PASS  deflection functional reproduces the point mass, alpha = 4GM/(b c^2): alpha_num/alpha_exact - 1 = -1.62e-13
+  [K3] PASS  deflection functional reproduces the SIS, alpha = 4 pi sigma^2/c^2 (b-independent): alpha_num/alpha_SIS - 1 = -6.37e-07 ; d alpha/db over a decade = 6.37e-07
+  [K4] PASS  exact law identity M_tot(<r) = M_b(<r)[1+F(y)], F = (1/2)(sqrt(1+4/y)-1): max relative residual = 3.71e-16
+  [K4b] PASS  phantom density: (1/4 pi r^2) d(M_b F)/dr equals (1/4 pi G r^2) d[r^2(g-g_N)]/dr: max relative difference = 7.61e-10
+  [K4c] PASS  projected mass: g-integral route equals the direct line-of-sight integral of rho_tot: M2D(g)/M2D(LOS) - 1 = -1.43e-04
+  [K5] PASS  slip first integral f' = -3K r int_r^inf Pi/r' satisfies (f'/r)' = 3K Pi: max ODE residual / source = 5.00e-09
+  [K6] PASS  power-law slip: d alpha/alpha = -c_n Psi(R) with c_n = B(2n+1)/B(n+1), from the full LOS integral: n=0.5 c=0.8346 (num 0.8346); n=1.0 c=0.7854 (num 0.7854); n=1.5 c=0.7628 (num 0.7628); n=2.0 c=0.7500 (num 0.7500) ; worst 2.5e-10
+  [K7] PASS  correction to the deflection: |d alpha/alpha| = c_n Psi at R_E, 1e-6..1e-5 (galaxy), 1e-5..1e-4 (cluster): galaxy 2.31e-06, cluster 5.01e-05 (c_n = 0.7854)
+
+------------------------------------------------------------------------------------------------------------------------
+TASK 2 -- zero-parameter Einstein radii against SLACS (Auger+2009, 70 lenses)
+------------------------------------------------------------------------------------------------------------------------
+  rows in file 85 ; usable 70
+  [K8] PASS  lensing geometry: M_E recomputed from R_E, z_l, z_s reproduces Auger's tabulated mass: N=70 median 0.0008 dex, scatter 0.0032 dex
+  [K8b] PASS  profile self-consistency: M_* implied by f_* M_E / (light fraction at R_E) matches the SED M_*: median +0.038 dex, scatter 0.038 dex (N=70)
+
+  model                                    N   median R_E,pred/R_E,obs   <ln> +- sem      scatter   chi2/dof
+  Salpeter @ a0=1.1320e-10                70      0.8852            -0.1245 +- 0.0255   0.093 dex   6.21
+  Chabrier @ a0=1.1320e-10                70      0.5533            -0.6048 +- 0.0299   0.109 dex   41.56
+  Newton @ a0=1.1320e-10                  70      0.7536            -0.2873 +- 0.0272   0.099 dex   13.04
+  Salpeter @ a0=9.3603e-11 (record)       70      0.8664            -0.1477 +- 0.0257   0.093 dex   6.91
+  [K9] PASS  headline zero-parameter prediction at a0=1.132e-10, Salpeter: R_E short by 10-16%, >4 sigma: median 0.8852, <ln> = -0.1245 +- 0.0255 (4.9 sigma), N=70
+  [K10] PASS  Chabrier branch fails far harder (as expected: 0.26 dex lighter stars): median 0.5533, <ln> = -0.6048 (20.2 sigma)
+  [K11] PASS  baryons only (no phantom, Newton) is worse: the phantom closes part of the gap, not all of it: median 0.7536 vs 0.8852 (phantom closes 53% of the Newtonian radius gap)
+  [K12] PASS  the record's canonical footing a0=9.3603e-11 gives the same verdict (not a footing artifact): median 0.8664 vs 0.8852 at the theory's a0
+  [K13] PASS  chi2 with per-lens errors (2% theta_E + propagated M_* + 5% shape) rejects the zero-parameter model: chi2/dof = 6.21 for 69 lenses (Salpeter)
+  [K13b] PASS  per-lens scatter: after removing the mean offset the model still scatters ~2x the tabulated errors (astrophysical IMF/light-profile variation, not predicted): propagated sigma = 0.045 dex (median), observed scatter = 0.093 dex, chi2/dof(offset removed) = 4.55
+  [K13c] PASS  normalisation-route independence: the tabulated total M_* replaces f_* M_E and the verdict is unchanged: f_*-anchored 0.885 vs tabulated-M_* 0.824 (7.5 sigma), both << 1
+
+------------------------------------------------------------------------------------------------------------------------
+TASK 3 -- the sharp test: theory vs GR + dark matter
+------------------------------------------------------------------------------------------------------------------------
+  [K14] PASS  the estimator is sensitive to a0: a0 x 100 over-predicts R_E by a large factor: median 5.315 at a0 x 100 vs 0.885 at a0
+  [K15] PASS  light-profile systematic: n = 3...6 moves the median by < 0.05 dex and the offset stays > 3 sigma: n=3 0.877; n=4 0.885; n=6 0.893
+  [K16] PASS  the projected phantom is insensitive to where the line of sight is cut (0.2/0.5/1000 Mpc): 0.2 Mpc: 0.8793; 0.5 Mpc: 0.8829; 1000.0 Mpc: 0.8852
+  [K17] PASS  shape at fixed theta_E: degenerate at the Einstein radius, discriminating only at ~30 R_E: theta_E = 0.865 arcsec; dlnM2D/dlnR theory 0.966/0.909/0.931/0.958 vs NFW 0.979/0.942/0.945/0.788 at R_E/3/10/30 R_E; radial crit 490 vs 503 pc; radial image 1800 vs 1786 pc (d = -13.1 pc = -0.7%)
+  [K18] PASS  the zero-parameter amplitude difference in theta_E, in arcsec, vs the ~2% measurement error: median theta_E = 1.21 arcsec, median missing deflection = 0.176 arcsec = 15% (measurement error ~0.024 arcsec)
+  [K19] PASS  the slip correction to theta_E is ~1e-6 of theta_E: no survey can see it: delta theta_E(slip) = 2.80e-06 arcsec vs 2% error 2.42e-02 arcsec
+
+------------------------------------------------------------------------------------------------------------------------
+TASK 4 -- verdict
+------------------------------------------------------------------------------------------------------------------------
+  zero-parameter (Salpeter, a0 = 1.132e-10): R_E,pred/R_E,obs = 0.885, 4.9 sigma low, N = 70
+  radius deficit 0.054 dex, mass deficit 0.108 dex = 1.28 x Salpeter M_*/L
+  FAIL -- the failure is in the AMPLITUDE, not the shape
+  [K20] PASS  verdict recorded: the zero-parameter lensing gate FAILS, in the amplitude: pass=False, failure=amplitude, 4.9 sigma
+
+========================================================================================================================
+A55: 25/25 checks PASS   (2.1 s)
+========================================================================================================================

@@ -1,0 +1,81 @@
+==============================================================================
+A36 -- the galactic-regime alpha_1
+==============================================================================
+a0 = 9.360e-11 m/s^2   L* = 24.0 pc   lambda = 16.971 pc
+bound |alpha_1| < 1.0e-04
+*** MUTATION: the (1+2w^2) rescaling of the clock source is DROPPED ***
+
+------------------------------------------------------------------------------
+PART 1 -- quadratic action about the galactic background: who mixes N^i with dP_i?
+------------------------------------------------------------------------------
+    .  clock: N^i-pi mixing = 0
+    .  W(u) : N^i-pi mixing = 0
+    .  eta E^2 (with a wind) : N^i-pi mixing = 1
+    .  (gamma/2)(D.P)^2 : N^i-pi mixing = 0
+    .  (gamma/4)F^2 : N^i-pi mixing = 0
+K1 PASS  value=mixing operators = 1 (E^2 only)  threshold=exactly 1   [only (eta/2)E_iE^i contains N^i x delta P_i; the clock, W, (D.P)^2 and F^2 do not]
+    .  ln N (to O(eps), O(w^2)) = -B1*eps*w1 - B2*eps*w2 - B3*eps*w3 + Phi*eps**2*w1**2 + Phi*eps**2*w2**2 + Phi*eps**2*w3**2 + Phi + Psi*eps**2*w1**2 + Psi*eps**2*w2**2 + Psi*eps**2*w3**2 + eps**2*w1**2/2 + eps**2*w2**2/2 + eps**2*w3**2/2
+K2 PASS  value=lnN w^2 coeff - (1/2+Phi+Psi)w^2 = 0  threshold=0   [the foliation lapse carries w^2(Phi+Psi): this is the exact O(w^2 eps) source, and it is a UNIFORM rescaling of grad(ln N) by (1+2w^2)]
+    .  h^{ij}P_j at O(w^2), no perturbation = [p0*w1*w3, p0*w2*w3, p0*w3**2]
+K3 PASS  value=(h^ij P_j)_w2 - w(w.Pbar) = [0, 0, 0]  threshold=[0,0,0]   [the only w^2 metric correction to P^i is w^i(w.Pbar): a constant times grad(Phi), i.e. a total derivative.  The bulk O(w^2 eps) source is therefore the (1+2w^2) rescaling of grad ln N from K2.]
+    .  MUTATION: the (1+2w^2) rescaling of the clock source is set to zero from here on
+
+------------------------------------------------------------------------------
+PART 2 -- alpha_1 = coefficient of the w^2 U term of g_00
+------------------------------------------------------------------------------
+    .  A = k_i G_ij k_j = k_perp^2/(gam_v*k^2 + m_T) + k_z^2/(gam_v*k^2 + m_L)
+    .  dPhi_w2/dPhi_0 = 0
+    .  longitudinal, framework couplings: dPhi_w2/dPhi_0 = 0
+K5 PASS  value=correction - 2u'/(D-u') = 0  threshold=0   [the w^2 response of the potential, exact in the linearised slaved regime]
+    .  alpha_1(k) = 0
+K6 PASS  value=S = coefficient of (w.nhat)^2 U = 0  threshold=0   [alpha_2 = -S/2 = 0: the anisotropy is in k.Pbar (EFE), not in w]
+    .  k -> infinity : alpha_1 -> 0
+    .  u' -> 0      : alpha_1 -> 0
+    .  k -> 0       : alpha_1 -> 0
+K7 FAIL  value=far=0 sat=0 gal=0  threshold=0, 0, 4u'/(1-u')   [A22's zero is the kL*>>1 limit; the galactic limit is O(u')]
+
+------------------------------------------------------------------------------
+PART 3 -- alpha_1(r) on a Milky-Way-like galaxy, r = 1..30 kpc
+------------------------------------------------------------------------------
+    r =   1.0 kpc | g_N = 5.228e-10 | g = 6.039e-10 ( 6.45 a0) | u/a0 = 0.866 | u' =  0.0180 | alpha_1 =   +0.0000 | /bound =      0.0
+    r =   2.0 kpc | g_N = 3.346e-10 | g = 4.108e-10 ( 4.39 a0) | u/a0 = 0.814 | u' =  0.0344 | alpha_1 =   +0.0000 | /bound =      0.0
+    r =   3.0 kpc | g_N = 2.324e-10 | g = 3.039e-10 ( 3.25 a0) | u/a0 = 0.765 | u' =  0.0554 | alpha_1 =   +0.0000 | /bound =      0.0
+    r =   5.0 kpc | g_N = 1.307e-10 | g = 1.938e-10 ( 2.07 a0) | u/a0 = 0.674 | u' =  0.1060 | alpha_1 =   +0.0000 | /bound =      0.0
+    r =   8.0 kpc | g_N = 6.913e-11 | g = 1.221e-10 ( 1.30 a0) | u/a0 = 0.566 | u' =  0.1883 | alpha_1 =   +0.0000 | /bound =      0.0
+    r =  12.0 kpc | g_N = 3.718e-11 | g = 8.044e-11 ( 0.86 a0) | u/a0 = 0.462 | u' =  0.2892 | alpha_1 =   +0.0000 | /bound =      0.0
+    r =  20.0 kpc | g_N = 1.581e-11 | g = 4.718e-11 ( 0.50 a0) | u/a0 = 0.335 | u' =  0.4420 | alpha_1 =   +0.0000 | /bound =      0.0
+    r =  30.0 kpc | g_N = 7.681e-12 | g = 3.093e-11 ( 0.33 a0) | u/a0 = 0.248 | u' =  0.5650 | alpha_1 =   +0.0000 | /bound =      0.0
+K8 FAIL  value=min |alpha_1| = 0.000e+00 at r = 1.0 kpc  threshold=> 1e-04   [every radius in 1-30 kpc violates the bound]
+K9 FAIL  value=max |alpha_1| = 0.000 at r = 1.0 kpc  threshold=> 1 (O(1), not perturbative)   [the galactic-regime alpha_1 reaches O(1) at large radii]
+K10 PASS  value=conservative 4u' min = 7.204e-02 at r = 1.0 kpc  threshold=> 1e-04   [even dropping the 1/(1-u') enhancement, the bound fails by >2.5 decades]
+
+    cross-check route (b): alpha_1 = 4 f_ph,  f_ph = M_ph/(M_b+M_ph)
+    r =   1.0 kpc | f_ph = 0.134 | alpha_1(b) =   0.537 | alpha_1(a) =   0.000 | ratio =   inf
+    r =   2.0 kpc | f_ph = 0.186 | alpha_1(b) =   0.742 | alpha_1(a) =   0.000 | ratio =   inf
+    r =   3.0 kpc | f_ph = 0.235 | alpha_1(b) =   0.942 | alpha_1(a) =   0.000 | ratio =   inf
+    r =   5.0 kpc | f_ph = 0.326 | alpha_1(b) =   1.303 | alpha_1(a) =   0.000 | ratio =   inf
+    r =   8.0 kpc | f_ph = 0.434 | alpha_1(b) =   1.736 | alpha_1(a) =   0.000 | ratio =   inf
+    r =  12.0 kpc | f_ph = 0.538 | alpha_1(b) =   2.151 | alpha_1(a) =   0.000 | ratio =   inf
+    r =  20.0 kpc | f_ph = 0.665 | alpha_1(b) =   2.659 | alpha_1(a) =   0.000 | ratio =   inf
+    r =  30.0 kpc | f_ph = 0.752 | alpha_1(b) =   3.007 | alpha_1(a) =   0.000 | ratio =   inf
+
+    cross-check route (c): the galaxy as its own source, alpha_1(r) = 4<u'>_g
+    r =   1.0 kpc | alpha_1(c) =   0.046
+    r =   2.0 kpc | alpha_1(c) =   0.068
+    r =   3.0 kpc | alpha_1(c) =   0.091
+    r =   5.0 kpc | alpha_1(c) =   0.142
+    r =   8.0 kpc | alpha_1(c) =   0.219
+    r =  12.0 kpc | alpha_1(c) =   0.316
+    r =  20.0 kpc | alpha_1(c) =   0.477
+    r =  30.0 kpc | alpha_1(c) =   0.629
+K14 FAIL  value=route(b)/route(a) in [inf, inf]  threshold=within a decade   [the two independent routes agree in order of magnitude: alpha_1 = O(0.1-5)]
+    .  solar system: u' = 4.081e-14, D = 1.500, alpha_1 = 5.441e-14
+K11 PASS  value=alpha_1(1 AU) = 5.441e-14  threshold=< 1e-04   [A22's zero is recovered: the solar-system source is 1e-11 of L*]
+    .  u(hedgehog, isolated Sun) = 2.420e-16 m/s^2 = 2.586e-06 a0
+    .  u(galactic, r=8 kpc)      = 5.299e-11 m/s^2 = 0.566 a0
+K12 PASS  value=u_gal/u_hedgehog = 2.19e+05  threshold=> 1e3   [the isolated-Sun hedgehog does not match the galactic background: the solar-system P configuration is not established by A22's solution]
+    .  (kL*)^2 u'/2 at the galactic radii: 1kpc:5.2e-06, 2kpc:2.5e-06, 3kpc:1.8e-06, 5kpc:1.2e-06, 8kpc:8.5e-07, 12kpc:5.8e-07, 20kpc:3.2e-07, 30kpc:1.8e-07
+K13 PASS  value=max (kL*)^2u'/2 = 5.19e-06  threshold=< 1e-3   [the gamma-gradient term is negligible at galactic scales: the slaved reduction is the leading term of a controlled gradient expansion]
+
+A36_galactic_alpha1 COMPLETE: 9/13 checks PASS.
+FAILED: ['K7', 'K8', 'K9', 'K14']

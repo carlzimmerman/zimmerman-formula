@@ -1,0 +1,348 @@
+{
+  "lane": "A60_solar_p_config",
+  "status": "CLOSED-DERIVED (two-scale)",
+  "mutate": "none",
+  "checks": [
+    {
+      "id": "K1",
+      "pass": true,
+      "value": "residuals 0 0 0",
+      "threshold": "0 0 0",
+      "note": "the log potential's first two derivatives and its exact inverse u=a0 g/(g+a0)"
+    },
+    {
+      "id": "K2",
+      "pass": true,
+      "value": "u0=2.4205e-16 m/s^2  K/gamma=3.647e-36 m^-2",
+      "threshold": "= GM/L*^2",
+      "note": "K = 4 pi G, gamma = K L*^2/2, u0 = GM/L*^2 = 2.42e-16 (A22 eq.9)"
+    },
+    {
+      "id": "K3",
+      "pass": true,
+      "value": "ubar=5.2988e-11 m/s^2 = 0.5661 a0",
+      "threshold": "0 < ubar < a0, on-shell",
+      "note": "the galactic background is a solution of the same P equation"
+    },
+    {
+      "id": "K4",
+      "pass": true,
+      "value": "residual 0",
+      "threshold": "0",
+      "note": "p = GM/(2gamma) solves gamma(p''+2p'/r-2p/r^2) = -GM/r^2 exactly"
+    },
+    {
+      "id": "K5",
+      "pass": true,
+      "value": "eps_bg(1pc)=1.095e-01  r*=2.09 pc",
+      "threshold": "< 0.3 ; r* in [1,4] pc",
+      "note": "the two-scale expansion is controlled to 1 pc; it fails at r* = (GM R_gal/g_gal)^(1/3)"
+    },
+    {
+      "id": "K6",
+      "pass": true,
+      "value": "sym=0  fd_rel=1.70e-08",
+      "threshold": "0 ; <1e-6",
+      "note": "only the mass terms survive: m_L^2 = K/(1-u/a0)^2 (along P), m_T^2 = K/(1-u/a0)"
+    },
+    {
+      "id": "K7",
+      "pass": true,
+      "value": "residuals 0 0",
+      "threshold": "0 0",
+      "note": "pi_r = p0 f(r/ell), f = 2[1-e^-x(1+x)]/x^2 solves the massive equation exactly"
+    },
+    {
+      "id": "K8",
+      "pass": true,
+      "value": "lin_err=2.3e-10  nl_err=8.8e-07",
+      "threshold": "<1e-8 ; <1e-5",
+      "note": "independent BVP reproduces the analytic profile; the full nonlinear solve moves it by <1e-6"
+    },
+    {
+      "id": "K9",
+      "pass": true,
+      "value": "u_sun/u_gal=4.57e-06  spread=5.8e-02",
+      "threshold": "4e-6 ; <0.1",
+      "note": "the solar contribution is 4.6e-6 of the galactic one and nearly constant to 1 pc"
+    },
+    {
+      "id": "K10",
+      "pass": true,
+      "value": "r_g=6.969e+03 AU  r_charge=9.665e+03 AU",
+      "threshold": "no u-crossover; dynamical crossover ~6.4e3 AU",
+      "note": "the solar field never matches the galactic one in u; it does in acceleration at 6.4e3 AU"
+    },
+    {
+      "id": "K11",
+      "pass": true,
+      "value": "resid=8.5e-09 ; forced-u0 gradient/g=3.9e+05",
+      "threshold": "<1e-8 ; >1e5",
+      "note": "u is set by gradient balance, not by the background: A36 K12 is a bound on u, not a contradiction"
+    },
+    {
+      "id": "K12",
+      "pass": true,
+      "value": "mut=1.632e-13 exact=1.632e-13",
+      "threshold": "both 1.63e-13",
+      "note": "alpha_1 = 4(r/L*)^2 I(x)/x = 4(r/L*)^2 to 1e-7 at 1 AU, from three routes"
+    },
+    {
+      "id": "K13",
+      "pass": true,
+      "value": "rel=4.93e-08  abs=8.05e-21",
+      "threshold": "<1e-6",
+      "note": "the embedding moves alpha_1 by 5e-8 relative: A22's isolated-Sun value was adequate"
+    },
+    {
+      "id": "K14",
+      "pass": true,
+      "value": "A36=5.441e-14  exact=1.632e-13  ratio=3.00",
+      "threshold": "5.44e-14 ; ratio 3.0",
+      "note": "K11 is low by 3x but in the safe direction; the correction is not the embedding"
+    },
+    {
+      "id": "K15",
+      "pass": true,
+      "value": "margin=6.13e+08  alpha1(160AU)=4.18e-09",
+      "threshold": ">1e8 ; <1e-8",
+      "note": "the Solar System gate survives by 6e8 at 1 AU and by 2e8 at 160 AU"
+    },
+    {
+      "id": "K16",
+      "pass": true,
+      "value": "rel=1.4e-07",
+      "threshold": "<1e-6",
+      "note": "A22's a_P = GM/L*^2 is unchanged by the galactic background"
+    },
+    {
+      "id": "K17",
+      "pass": true,
+      "value": "a_P/a_Pio=2.77e-07 ; w2 signal=1.47e-21",
+      "threshold": "<1e-6 ; <1e-19",
+      "note": "no Pioneer-level preferred-frame anomaly: the P signal is 1e11 below the thermal residual"
+    },
+    {
+      "id": "K18",
+      "pass": true,
+      "value": "grad/mass(70AU)=1.09e+09  u_sun/a0=2.586e-06",
+      "threshold": ">1e8",
+      "note": "near-a0 local accelerations do not slave the P field: gradients dominate by 1e9"
+    },
+    {
+      "id": "K19",
+      "pass": true,
+      "value": "max u/a0 = 0.566109",
+      "threshold": "< 1",
+      "note": "u_total = 0.566 a0 is 43% below the cap everywhere in the Solar System"
+    },
+    {
+      "id": "K20",
+      "pass": true,
+      "value": "u_sun/u_gal=4.57e-06 ; |a1(1AU)|=1.63e-13",
+      "threshold": "established ; survives",
+      "note": "the number that decides: |alpha_1(1 AU)| = 1.6e-13 = 6.1e8 below the bound"
+    }
+  ],
+  "constants": {
+    "K": 8.387172739141742e-10,
+    "gamma": 2.2999011261079398e+26,
+    "Lstar_pc": 24.000000000000004,
+    "lambda_pc": 16.970562748477143,
+    "a0_can": 9.36e-11,
+    "a0_theory": 1.132e-10,
+    "GM_sun": 1.3274648755999998e+20,
+    "p0_kg_m2": 2.8859172695098256e-07,
+    "u0_m_s2": 2.420468665025118e-16
+  },
+  "background": {
+    "gN_8kpc": 6.913338600270091e-11,
+    "g_8kpc": 1.2212091160275434e-10,
+    "g_over_a0": 1.3047105940465207,
+    "ubar": 5.2987525600053427e-11,
+    "ubar_over_a0": 0.5661060427356135,
+    "pbar": 0.06317686215376032,
+    "mL2": 4.455006930234733e-09,
+    "mT2": 1.933000586599815e-09,
+    "ell_L_pc": 7.363424627940332,
+    "ell_T_pc": 11.17861617965942
+  },
+  "expansion": {
+    "eps_amp": 4.567997160868892e-06,
+    "eps_bg_1AU": 1.2476785330389257e-17,
+    "eps_bg_1pc": 0.10949091936001132,
+    "r_star_pc": 2.0902936401650307,
+    "r_g_cross_AU": 6969.33095456798,
+    "r_charge_cross_AU": 9664.650949347842,
+    "eps_nonlinear": 2.086659806170626e-11
+  },
+  "profile": [
+    {
+      "r_AU": 1.0,
+      "r_pc": 4.84813681109536e-06,
+      "u_gal_a0": 0.5661060427356135,
+      "u_sun_a0": 2.585970048281248e-06,
+      "u_sun_over_gal": 4.567995840116768e-06,
+      "f": 0.9999997108684447,
+      "u_tot_max_a0": 0.5661086287056618,
+      "u_tot_min_a0": 0.5661034567655652
+    },
+    {
+      "r_AU": 3.0,
+      "r_pc": 1.454441043328608e-05,
+      "u_gal_a0": 0.5661060427356135,
+      "u_sun_a0": 2.5859685529104615e-06,
+      "u_sun_over_gal": 4.56799319861381e-06,
+      "f": 0.9999991326056163,
+      "u_tot_max_a0": 0.5661086287041664,
+      "u_tot_min_a0": 0.5661034567670606
+    },
+    {
+      "r_AU": 10.0,
+      "r_pc": 4.8481368110953604e-05,
+      "u_gal_a0": 0.5661060427356135,
+      "u_sun_a0": 2.5859633191203692e-06,
+      "u_sun_over_gal": 4.567983953366989e-06,
+      "f": 0.9999971086886794,
+      "u_tot_max_a0": 0.5661086286989326,
+      "u_tot_min_a0": 0.5661034567722945
+    },
+    {
+      "r_AU": 30.0,
+      "r_pc": 0.0001454441043328608,
+      "u_gal_a0": 0.5661060427356135,
+      "u_sun_a0": 2.5859483655000557e-06,
+      "u_sun_over_gal": 4.567957538492063e-06,
+      "f": 0.9999913260942522,
+      "u_tot_max_a0": 0.566108628683979,
+      "u_tot_min_a0": 0.5661034567872479
+    },
+    {
+      "r_AU": 70.0,
+      "r_pc": 0.0003393695767766752,
+      "u_gal_a0": 0.5661060427356135,
+      "u_sun_a0": 2.5859184585512668e-06,
+      "u_sun_over_gal": 4.56790470925773e-06,
+      "f": 0.9999797610182524,
+      "u_tot_max_a0": 0.5661086286540721,
+      "u_tot_min_a0": 0.5661034568171549
+    },
+    {
+      "r_AU": 160.0,
+      "r_pc": 0.0007757018897752577,
+      "u_gal_a0": 0.5661060427356135,
+      "u_sun_a0": 2.5858511693391815e-06,
+      "u_sun_over_gal": 4.567785845993597e-06,
+      "f": 0.9999537401474095,
+      "u_tot_max_a0": 0.5661086285867828,
+      "u_tot_min_a0": 0.5661034568844442
+    },
+    {
+      "r_AU": 1000.0,
+      "r_pc": 0.00484813681109536,
+      "u_gal_a0": 0.5661060427356135,
+      "u_sun_a0": 2.585223231674268e-06,
+      "u_sun_over_gal": 4.566676623308251e-06,
+      "f": 0.9997109154156326,
+      "u_tot_max_a0": 0.5661086279588452,
+      "u_tot_min_a0": 0.5661034575123818
+    },
+    {
+      "r_AU": 10000.0,
+      "r_pc": 0.0484813681109536,
+      "u_gal_a0": 0.5661060427356135,
+      "u_sun_a0": 2.5785060832120256e-06,
+      "u_sun_over_gal": 4.5548110929037655e-06,
+      "f": 0.9971133808755218,
+      "u_tot_max_a0": 0.5661086212416967,
+      "u_tot_min_a0": 0.5661034642295303
+    },
+    {
+      "r_AU": 2062.648062470964,
+      "r_pc": 0.01,
+      "u_gal_a0": 0.5661060427356135,
+      "u_sun_a0": 2.5844291003661646e-06,
+      "u_sun_over_gal": 4.56527382728038e-06,
+      "f": 0.9994038232747074,
+      "u_tot_max_a0": 0.5661086271647139,
+      "u_tot_min_a0": 0.5661034583065131
+    },
+    {
+      "r_AU": 20626.48062470964,
+      "r_pc": 0.1,
+      "u_gal_a0": 0.5661060427356135,
+      "u_sun_a0": 2.570600279843922e-06,
+      "u_sun_over_gal": 4.540845858881708e-06,
+      "f": 0.9940561911421987,
+      "u_tot_max_a0": 0.5661086133358934,
+      "u_tot_min_a0": 0.5661034721353336
+    },
+    {
+      "r_AU": 61879.441874128905,
+      "r_pc": 0.3,
+      "u_gal_a0": 0.5661060427356135,
+      "u_sun_a0": 2.540166715676229e-06,
+      "u_sun_over_gal": 4.487086382970397e-06,
+      "f": 0.9822874719381164,
+      "u_tot_max_a0": 0.5661085829023291,
+      "u_tot_min_a0": 0.5661035025688979
+    },
+    {
+      "r_AU": 206264.80624709636,
+      "r_pc": 1.0,
+      "u_gal_a0": 0.5661060427356135,
+      "u_sun_a0": 2.4368018997278075e-06,
+      "u_sun_over_gal": 4.304497242163971e-06,
+      "f": 0.9423160940286575,
+      "u_tot_max_a0": 0.5661084795375132,
+      "u_tot_min_a0": 0.5661036059337138
+    }
+  ],
+  "alpha1": {
+    "one_AU": -1.6322518848028764e-13,
+    "isolated_one_AU": -1.6322519653368014e-13,
+    "rel_embedding_shift": 4.933915276339462e-08,
+    "A36_K11": 5.4408404025691024e-14,
+    "exact_over_A36": 2.999999566302562,
+    "A36_formula_correct_mass": 3.2645211254321286e-13,
+    "at_20AU": -6.528989605696841e-11,
+    "at_70AU": -7.997954455423068e-10,
+    "at_160AU": -4.1784687784242245e-09,
+    "at_1pc": -0.006741918609313922,
+    "r_cross_1e4_pc": 0.12000000000000001,
+    "r_cross_1e4_AU": 24751.776749651566,
+    "bound": 0.0001,
+    "margin_1AU": 612650540.8328985
+  },
+  "pioneer": {
+    "a_P": 2.420468665025118e-16,
+    "a_Pioneer": 8.74e-10,
+    "ratio": 2.7694149485413247e-07,
+    "w2": 1.5149954428231675e-06,
+    "signal_w2": 7.333997994018659e-22,
+    "signal_at_70AU_alpha1": 1.4667847554822503e-21,
+    "thermal_residual": 1.33e-10,
+    "signal_over_residual": 5.514284206029066e-12
+  },
+  "sensitivity_Lstar": [
+    {
+      "Lstar_pc": 24.0,
+      "u0_a0": 2.5859707959670066e-06,
+      "alpha1_1AU": -1.6322518848028764e-13,
+      "margin": 612650540.8328985
+    },
+    {
+      "Lstar_pc": 40.0,
+      "u0_a0": 9.309494865481227e-07,
+      "alpha1_1AU": -5.876107125083983e-14,
+      "margin": 1701806959.4599295
+    },
+    {
+      "Lstar_pc": 90.0,
+      "u0_a0": 1.8389125660209827e-07,
+      "alpha1_1AU": -1.1607125744682185e-14,
+      "margin": 8615397317.101961
+    }
+  ],
+  "verdict": "configuration established; Solar System gate survives; |alpha_1(1AU)| = 1.63e-13 (6.1e8 below 1e-4)"
+}

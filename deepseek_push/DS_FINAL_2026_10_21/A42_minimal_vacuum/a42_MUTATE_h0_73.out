@@ -1,0 +1,64 @@
+======================================================================================================================
+T1  THE CHAIN: beta = 0  =>  H^2 = Lambda_bare c^2/3  =>  H = H0,  rho_bare = rho_crit,  a0 = 0.5 c sqrt(G rho_crit)
+======================================================================================================================
+K1_beta0_gives_H2_eq_Lambda_c2_over_3                      PASS  value=0                              threshold=0            the task chain, from (F1); exact
+K2_Lam_min_sets_H_eq_H0_identically                        PASS  value=0                              threshold=0            H = H0 for every z (empty universe): the de Sitter endpoint
+K2b_F1_from_minisuperspace_keeps_the_matter_term           PASS  value=resid 0 / 0                    threshold=0 / 0        vary N of L_bg: 3(2+3beta)H^2 = 2Lambda + 4K rho; at beta=0 it is GR
+   => the (2+3 beta) factor multiplies the MATTER term, not only Lambda:
+      G_eff = 2G/(2+3beta) at fixed rho; with beta = (2/3)Omega_m, G_eff = G/(1+Omega_m)
+K3_rho_bare_eq_rho_crit                                    PASS  value=1.000000000000000              threshold=1 +- 1e-14   Lambda_bare c^2/8 pi G = 3H0^2/8 pi G
+K4_a0_eq_half_c_sqrt_G_rho_crit                            FAIL  value=1.225191e-10 m/s^2             threshold=|dev from 1.132e-10| < 0.2% dev vs 1.132e-10: +8.232%
+K5_a0_percent_vs_quoted_values                             FAIL  value=+8.185% vs 1.1325e-10          threshold=|dev| < 0.2% H0 that reproduces the quoted value: 67.447 km/s/Mpc
+K6_Lam_eq_32pi_a0sq_over_c4_identity                       PASS  value=0                              threshold=0            identity, not a derivation: kappa = 1/2 <=> Lambda = 32 pi a0^2/c^4
+K7_kappa_half_is_the_normalisation                         PASS  value=a0(kappa=1)/a0(kappa=1/2) = 2.000000 threshold=2            a0 = 2.2624e-10 would be kappa = 1; the quoted value selects kappa = 1/2
+
+======================================================================================================================
+T2  PRINCIPAL POSITIVITY: beta > 2 eta a0^2/K with eta = gamma = K L*^2/2, L* = 24 pc
+======================================================================================================================
+K8_positivity_rhs_eq_a0Lstar_over_c2_sq                    PASS  value=Lstar**2*a0**2                 threshold=L*^2 a0^2    in c=1 units a0 has dimension 1/L, so the bound is (a0 L*/c^2)^2 in SI
+   2 eta a0^2/K  =  (a0 L*/c^2)^2  =  (L*/L_MOND)^2  =  1.0192e-18   [a0 = 1.2252e-10]
+   same on the canonical footing a0 = 9.36e-11:            5.9483e-19
+   A3 K12 quotes 2(L* a0/c^2)^2 = 1.19e-18 on that footing  ->  1.1897e-18  (cross-check)
+K9_beta0_satisfies_bound_to_18_digits                      FAIL  value=|0 - 1.0192e-18| = 1.0192e-18  threshold=< 1e-18      beta = 0 sits below the bound by 1.02e-18: identical at any physical precision
+K10_strict_positivity_excludes_beta0                       PASS  value=violation = 1.0192e-18         threshold=0 < violation < 1e-17 the admissible set is {0} U (1.0e-18, inf): beta = 0 is a limit point
+K11_matter_branch_beta_clears_bound                        PASS  value=beta/bound = 2.069e+17         threshold=> 1e16       beta = (2/3)Omega_m = 0.210867
+   reading (i):  strict bound -> beta_min = 1.0192e-18, Lambda_bare = 3H0^2/c^2 x (1 + 1.53e-18)
+   reading (ii): beta = 0 is the GR point (the deformed scalar is absent, B -> inf in A3 (S1))
+                 -> the bound has no domain there; both readings agree to 18 digits
+
+======================================================================================================================
+T3  COSMOLOGY: Omega_Lambda,eff = 1 and the three ways to put matter in it
+======================================================================================================================
+   model                              E(0.5)       E(1)    dC(1) Mpc    dC(2) Mpc      age Gyr       q0
+   a_pure_deSitter                    1.0000     1.0000       4106.7       8213.5          inf  -1.0000
+   b_flat_census                      1.3233     1.7928       3138.0       4899.3       12.723  -0.5255
+   c_branch_Lambar_rho_crit           1.2533     1.6377       3288.9       5249.7       13.726  -0.6396
+   d_beta0_plus_matter_closed         1.1644     1.5051       3490.7       5585.3       14.238  -0.8418
+   planck_lcdm                        1.3224     1.7908       3139.8       4903.4       12.734  -0.5271
+K12_deSitter_Ez_eq_one_no_big_bang                         PASS  value=t(1e3)=92.5, t(1e6)=185.1 Gyr (diverges) threshold=E=1, no finite age q0 = -1; dC = (c/H0) z; age integral = ln(1+z)/H0 -> inf
+K13_flat_census_matches_closed_form                        PASS  value=age=12.7231 (closed form 12.7231), q0=-0.5255 threshold=1e-9 / 1e-15 t0 = 2/(3H0 sqrt(OL)) asinh(sqrt(OL/Om)); dC1=3138.0, dC2=4899.3
+K14_integrator_validated_on_Planck_age                     PASS  value=13.8007 Gyr vs Planck 13.797   threshold=|dev| < 0.05 Gyr radiation neglected: 0.03% on the age, <1e-4 on dC(z<3)
+K15_deSitter_vs_Planck_distance_fractions                  PASS  value=z=1: +30.87%, z=2: +67.65%     threshold=> 1% both    measurable, but the model has no matter: excluded by existence, not by distance
+K16_case_b_forces_Lam_obs_and_a0_9p35e-11                  FAIL  value=Lam_bare=1.2773e-52, a0=1.0131e-10 threshold=Lam_obs +- 0.2%, a0 < 0.9x so case (b) is exactly LCDM at the same Omega_m (difference 0) but loses the 1.132e-10 value
+K17_case_b_vs_Planck_Om_not_measurable                     PASS  value=z=1: -0.0577%, z=2: -0.0826%   threshold=< 0.3% (Euclid) dOm = 0.0010: below any planned distance measurement
+K18_matter_branch_beta_eq_two_thirds_Om                    PASS  value=[2*Omega_m/3] (used: 0.210867) threshold=2 Omega_m/3  unique root of (F1) at H=H0, Lambda_bare = 3H0^2/c^2
+K19_branch_Ez_eq_LCDM_with_Om_over_1pOm                    PASS  value=Om_eff=0.240295, max|dE|=8.9e-16 threshold=< 1e-13      the (2+3beta) factor rescales the matter term: Omega_m,eff = Omega_m/(1+Omega_m)
+K20_branch_vs_Planck_measurable_and_excluded               PASS  value=dC: +4.81%/+7.15%; dH: -8.65%/-11.36%; 10.3 sigma threshold=> 1% and > 5 sigma same Omega_m = 0.3163; vs Planck own Omega_m: dC +4.75%/+7.06%
+K21_beta0_plus_matter_gives_Omega_k_minus_Om               PASS  value=Omega_k = -0.3163, H0_implied = 83.75 km/s/Mpc threshold=Omega_k = -Omega_m equivalently flat with a0 = 1.406e-10 (+14.7%): the same mismatch, seen from a0
+K22_Omega_k_excluded_by_Planck                             PASS  value=Omega_k = -0.3163  ->  167 sigma threshold=> 50 sigma   Planck+BAO: Omega_k = 0.0007 +- 0.0019
+
+======================================================================================================================
+T4  THE BUDGET: where the 1.462 goes, and whether the numbers close at beta = 0
+======================================================================================================================
+K23_rho_beta_identity_and_closure                          PASS  value=rho_beta/rho_crit = -0.316300, (rho_bare+rho_beta)/rho_DE = 1.000000000000 threshold=0 / 1        the clock stress is exactly -Omega_m rho_crit at beta = (2/3)Omega_m
+K24_excess_1p462_eq_one_over_Omega_DE                      FAIL  value=Lam_bare/Lam_obs = 1.71552 vs 1/Omega_L = 1.46263 threshold=agree to 1e-3 (rho_crit - rho_DE)/rho_crit = Omega_m = 0.3163 exactly
+K25_only_beta0_closure_is_negative_vacuum                  PASS  value=rho_x = -3.166e-27 kg/m3, max|dE| = 1.8e-15 threshold=< 1e-12      rho_x = -Omega_m rho_crit = -0.3163 rho_bare: not in the action, and negative
+   a positive cold vacuum of rho_DE on top of rho_bare would give H0 = 94.7 km/s/Mpc
+   the branch's Omega_m,eff h^2 = 0.1281 against Planck 0.1430 +- 0.0011
+K26_one_cosmological_input_Omega_m                         PASS  value=beta = [2*Omega_m/3]           threshold=2 Omega_m/3 (one root) inputs: Omega_m (census) + H0 (measured); Lambda_bare is tied to a0, beta is then predicted
+
+======================================================================================================================
+A42 COMPLETE: 22/27 checks PASS.
+MUTATION: h0_73
+======================================================================================================================
+wrote a42_results_H0_73.json

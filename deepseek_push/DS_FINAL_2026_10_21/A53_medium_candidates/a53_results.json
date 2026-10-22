@@ -1,0 +1,581 @@
+{
+  "lane": "A53_medium_candidates",
+  "status": "STATIC: only the one-sided single-occupancy lattice (capacity = affinity = a0) reproduces g=sqrt(a0 gN); Langevin (C/s=3) and Born-Infeld (C infinite / hard cap) are excluded at leading order. N is a modulus. DYNAMIC: the action's second-order kinetic term (c_s=1) excludes Debye relaxation; the gapped luminal medium gives shifts <= (v/c)^2, the Debye medium is bounded by its own drag. No medium gives a measurable frequency dependence in a surviving orbit.",
+  "checks": [
+    {
+      "id": "K1",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-30,
+      "note": "A=a0*th, gN=g*th, 1/A=1/g+1/a0, g=(a0+g)th, homogeneity deg 1 (sympy remainders)"
+    },
+    {
+      "id": "K2",
+      "pass": true,
+      "value": 0.125,
+      "threshold": 1e-12,
+      "note": "law: g=sqrt(a0gN)[1+0.500000*sqrt(y)+0.125000*y+...]; -1/4 is NOT a coefficient (|c_half+1/4|=0.750, |c_one+1/4|=0.375)"
+    },
+    {
+      "id": "K2b",
+      "pass": true,
+      "value": 1.2500033790274756e-06,
+      "threshold": 0.0001,
+      "note": "numeric: (g/sqrt(a0gN)-1)/sqrt(y) = 0.500001250 -> 1/2"
+    },
+    {
+      "id": "K2c",
+      "pass": true,
+      "value": 9.99977500569506,
+      "threshold": 0.2,
+      "note": "the coefficient of y alone DIVERGES as y^-1/2 (decade ratio 10): the half-power is obligatory"
+    },
+    {
+      "id": "K3",
+      "pass": true,
+      "value": 0.25,
+      "threshold": 1e-12,
+      "note": "standard mu=x/sqrt(1+x^2) has +1/4 at first order -- the nearest thing to the prompt's -1/4, with the opposite sign; the Langmuir law has +1/2 (half) / +1/8 (integer)"
+    },
+    {
+      "id": "K4",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-12,
+      "note": "one-scale theorem: C=s => g=sqrt(a0 gN)[1+c_half sqrt(y)+...] with a0=-2s/f''(0), c_half = f'''(0)/(3 f''(0)^2) = (p+2)/(3(p+1)) for the f_p family"
+    },
+    {
+      "id": "K5",
+      "pass": true,
+      "value": 0.5000009771707019,
+      "threshold": 1e-06,
+      "note": "identified medium (langmuir(one-sided)): deep exponent 0.500000977 (must be 1/2); f''(0)=-2.000000 (must be -2)"
+    },
+    {
+      "id": "K6",
+      "pass": true,
+      "value": -1.0,
+      "threshold": 0.0,
+      "note": "g_N/a0 = x^2 - x^3 + ... (law, cubic -1); n=2 even (cubic 0); identified medium must have c2=1, c3=-1 (got 1.000000, -1.000000)"
+    },
+    {
+      "id": "K7",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-30,
+      "note": "Langevin: F=nkT[zL-ln(sinh z/z)], A=A_max L(z), dF/dA = (kT/p) z = g  (exact)"
+    },
+    {
+      "id": "K8",
+      "pass": true,
+      "value": 0.3333333341649908,
+      "threshold": 1e-05,
+      "note": "Langevin (chi0=1, C=a0): deep exponent 0.33333333 = 1/3; g_N a0^2/g^3 = 0.600000000 -> 3/5; next-order coefficient 0.4016346 -> 6 K^5/35 = 0.4016346"
+    },
+    {
+      "id": "K9",
+      "pass": true,
+      "value": 3.0,
+      "threshold": 1e-12,
+      "note": "Langevin capacity/affinity = A_max/g_s = 3 chi0 = 3 (isotropy: <cos^2>=1/3); the law needs 1"
+    },
+    {
+      "id": "K10",
+      "pass": true,
+      "value": -0.3333333333876706,
+      "threshold": 1e-06,
+      "note": "saturated anomaly -> a0 for both (law 0.999999000, Langevin 0.999999667); approach coeff (A-A_max)g_N/a0^2: law -1, Langevin -1/3"
+    },
+    {
+      "id": "K11",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-30,
+      "note": "BI: H(D)=E_max^2(sqrt(1+D^2/E^2)-1), dH/dD = D/sqrt(1+D^2/E^2) = E (exact)"
+    },
+    {
+      "id": "K12",
+      "pass": true,
+      "value": 1.0000000000000002,
+      "threshold": 1e-06,
+      "note": "BI deep exponent 1.00000000 = 1 (linear, no MOND); g_N-g = g^3/(2E^2): coeff 0.500000019 = 1/2"
+    },
+    {
+      "id": "K13",
+      "pass": true,
+      "value": 4.999996251475736e-07,
+      "threshold": 1e-09,
+      "note": "BI cap: g/E_max = 0.999999500000 at g_N=1e3 a0 -> a hard MAXIMUM acceleration E_max"
+    },
+    {
+      "id": "K14",
+      "pass": true,
+      "value": -0.2928932188134524,
+      "threshold": 0.0,
+      "note": "BI at g_N=a0 (E_max=a0): g=0.7071 a0, A=-0.2929 a0 -> SCREENING (A<0); the law gives A=+0.6180 a0"
+    },
+    {
+      "id": "K15",
+      "pass": true,
+      "value": 0.9688732863616161,
+      "threshold": 0.5,
+      "note": "BI (E_max=a0) vs law over g_N/a0 in [1e-3,10]: max relative deviation 0.968873"
+    },
+    {
+      "id": "K16",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-14,
+      "note": "single occupancy + N internal states: theta = X/(1+X) for every N and every spectrum (N absorbed into the affinity); identified medium is that isotherm (dev 0.0e+00)"
+    },
+    {
+      "id": "K17",
+      "pass": true,
+      "value": -9.98001000997945e-07,
+      "threshold": 0.0,
+      "note": "BET (N=2 occupants): theta-x = 0.9980 x^2 > 0 -> g_N = -0.000001 a0 < 0: negative baryonic field, excluded"
+    },
+    {
+      "id": "K18",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-30,
+      "note": "lattice W(u)=a0^2[-u/a0-ln(1-u/a0)]: W'=a0 u/(a0-u)=g, W''=a0^2/(a0-u)^2>0, one-sided pole at u=a0"
+    },
+    {
+      "id": "K19",
+      "pass": true,
+      "value": 2.55351295663786e-15,
+      "threshold": 1e-10,
+      "note": "capacity = affinity = N a0 reproduces the law EXACTLY with a0 -> N a0 (N is a modulus, degenerate with the vacuum scale)"
+    },
+    {
+      "id": "K20",
+      "pass": true,
+      "value": -1.0,
+      "threshold": 1e-12,
+      "note": "capacity N a0 with affinity a0: linear coefficient 1-C/s = 1-N < 0 -> no positive deep limit"
+    },
+    {
+      "id": "K21",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-30,
+      "note": "any even F (A -> -A symmetric) gives g_N(g) odd: the g^2 coefficient is exactly 0, so the deep exponent can never be 1/2"
+    },
+    {
+      "id": "K22",
+      "pass": true,
+      "value": 3.5555555555555554,
+      "threshold": 1.0,
+      "note": "F_Langevin(A)=F_Langevin(-A) and F_BI=F_BI(-A) (both even); the identified medium is one-sided: |F'(1/2)-F'(-1/2)| = 3.5556 (even media give exactly 0)"
+    },
+    {
+      "id": "K36",
+      "pass": true,
+      "value": 0.5,
+      "threshold": 1e-12,
+      "note": "identified medium: g_N(g=a0)/a0 = 0.500000 (the law's 0.5; a dead medium cannot fake it)"
+    },
+    {
+      "id": "K23",
+      "pass": true,
+      "value": 3.0,
+      "threshold": 3.0,
+      "note": "at g_N=1e9 a0: law 1000000001.0, lattice 1000000001.0, Langevin 1000000001.0 a0 (all unbounded); BI 1.000000 a0 (capped)"
+    },
+    {
+      "id": "K24",
+      "pass": true,
+      "value": 0.6385333333333333,
+      "threshold": 0.001,
+      "note": "caps in a0: dielectric 50% at 0.6385, 90% at 3.300; lattice 50% at 1.0, 90% at 9.0; BI hard cap at 1.0 (a0-tied) or >4.231e+08 (Mercury bound)"
+    },
+    {
+      "id": "K25",
+      "pass": true,
+      "value": 0.4179914642919256,
+      "threshold": 0.01,
+      "note": "Debye ODE tau*dA/dt=A_eq-A gives chi(w)=chi0/(1-i w tau): numeric/analytic mismatch 3.83e-05 at w tau=0.7 (|chi|=0.417991)"
+    },
+    {
+      "id": "K26",
+      "pass": true,
+      "value": 6.114497796971818e-11,
+      "threshold": 1e-09,
+      "note": "MOND cutoff from a frozen response: g*/a0 = (1-lam)/lam = x^2 exactly (max rel err 6.1e-11)"
+    },
+    {
+      "id": "K26b",
+      "pass": true,
+      "value": 0.00980581599517305,
+      "threshold": 0.05,
+      "note": "exact solve: x=0.01 at g_N=1e-10 a0 (below g*=1e-4) g=9.9029e-07 vs linear 1.0001e-06; x=0.001 at g_N=1e-5 a0 (above g*=1e-6) g=3.16678e-03 vs sqrt-law 3.16228e-03"
+    },
+    {
+      "id": "K27",
+      "pass": true,
+      "value": 1.5922127699836341,
+      "threshold": 0.01,
+      "note": "drag: one orbit removes dE/E = 4 pi sin(phi) = 0.628057; t/T = 1.5922 = 1/(4 pi sin phi) with phi=0.05"
+    },
+    {
+      "id": "K28",
+      "pass": true,
+      "value": 1.0000000000018234,
+      "threshold": 1.0,
+      "note": "gapped lattice: resonance v_res = L*sqrt(w_g^2+c^2/L^2) = 1.000000 c at minimum -> a bound orbit (v<c) can never reach the gap"
+    },
+    {
+      "id": "K29",
+      "pass": true,
+      "value": 1.406286198601947e-11,
+      "threshold": 1e-08,
+      "note": "at 1e-11/1e-13/1e-15 Hz: BI and lattice shifts < 1e-8; the dielectric's survival-limited shift < 1e-2 -- no medium reaches a measurable frequency dependence"
+    },
+    {
+      "id": "K30",
+      "pass": true,
+      "value": 0.005193619218416323,
+      "threshold": 0.01,
+      "note": "real systems (20 kAU WB, galaxy, cluster, and the 1e-11/13/15 Hz binaries): largest |shift| over all media = 5.194e-03"
+    },
+    {
+      "id": "K34",
+      "pass": true,
+      "value": 0.001001035284410312,
+      "threshold": 0.005,
+      "note": "exact amplification: delta g/g = (lam-1) A/(g(1-lam A')) from implicit differentiation matches the solver to 1.0e-03 (residual = the O(dlam^2) term, dlam~7e-3)"
+    },
+    {
+      "id": "K34b",
+      "pass": true,
+      "value": 0.01101870897117374,
+      "threshold": 0.15,
+      "note": "deep regime (g=0.0225 a0): delta g/g = (a0/2g) x^2 to 1.1%; signs: dielectric -1.49e-06 (-), BI -1.41e-11 (-), lattice 2.78e-11 (+)"
+    },
+    {
+      "id": "K31",
+      "pass": true,
+      "value": 0.7957747154594768,
+      "threshold": 1.0,
+      "note": "dissipative no-go: Delta=1e-2 needs x=0.1, and then t_decay/T = 1/(4 pi x) = 0.7958 < 1 -- the orbit is gone before it completes a period"
+    },
+    {
+      "id": "K32",
+      "pass": true,
+      "value": 5.724755436999999e-10,
+      "threshold": 1e-30,
+      "note": "action P-sector: kinetic term second order in t (no first-order/Debye term), c_s^2=1 exactly, mass gap w_g = 5.724755e-10 rad/s (f=9.1112e-11 Hz)"
+    },
+    {
+      "id": "K33",
+      "pass": true,
+      "value": 9.999999999999991,
+      "threshold": 1.0,
+      "note": "Debye: Im/(1-Re) = 1/x >> 1 (dissipative); BI and lattice: Im = 0 (reactive), with Re shifts of OPPOSITE sign (+ for BI, - for the lattice)"
+    },
+    {
+      "id": "K35",
+      "pass": true,
+      "value": 3.9645731802424385e-10,
+      "threshold": 1e-09,
+      "note": "deep-MOND ceiling: f_M(2 Msun)=3.75e-14 Hz, f_M(1e11 Msun)=7.94e-17; deep MOND at 1e-11 Hz needs M=7.88e+20 kg = 3.96e-10 Msun, r=0.158 AU -> no stellar system is deep-MOND at the requested high frequencies"
+    }
+  ],
+  "numbers": {
+    "law": {
+      "c_half": 0.5,
+      "c_one": 0.125,
+      "alpha": 1.0,
+      "beta": -1.0,
+      "gamma": 1.0,
+      "d_half_to_minus_quarter": 0.75,
+      "d_one_to_minus_quarter": 0.375,
+      "cubic_coeff_gN": -1.0,
+      "n2_cubic": 0.0
+    },
+    "family_c_half": {
+      "1": {
+        "c_half": 0.5,
+        "c_one": 0.125,
+        "closed_form": 0.5,
+        "a0_over_s": 1.0
+      },
+      "2": {
+        "c_half": 0.4444444444444444,
+        "c_one": 0.12345679012345678,
+        "closed_form": 0.4444444444444444,
+        "a0_over_s": 0.6666666666666666
+      },
+      "4": {
+        "c_half": 0.4,
+        "c_one": 0.12,
+        "closed_form": 0.4,
+        "a0_over_s": 0.4
+      },
+      "8": {
+        "c_half": 0.37037037037037035,
+        "c_one": 0.1165980795610423,
+        "closed_form": 0.37037037037037035,
+        "a0_over_s": 0.2222222222222222
+      }
+    },
+    "standard_mu_c_half": 0.0,
+    "langevin": {
+      "eps_over_a0": 0.3333333333333333,
+      "p": 0.3333333341649908,
+      "c3": 0.599999999999486,
+      "c_next": 0.4016346025246425,
+      "c_next_pred": 0.40163460252464256,
+      "C_over_s": 3.0,
+      "anomaly_at_1e6a0": 0.9999996666666666,
+      "approach_coeff": -0.3333333333876706,
+      "gN_at_a0": 0.3283635100196441,
+      "A_at_a0": 0.6716364899803559
+    },
+    "bi": {
+      "p": 1.0000000000000002,
+      "c3": 0.500000019165725,
+      "cap_ratio_at_1e9a0": 0.9999995000003749,
+      "g_at_gN_a0": 0.7071067811865476,
+      "A_at_gN_a0": -0.2928932188134524,
+      "max_dev_vs_law": 0.9688732863616161,
+      "Emax_tied_over_a0": 1.0,
+      "Emax_solar_over_a0": 423076923.0769231
+    },
+    "lattice": {
+      "N_universality_maxdev": 0.0,
+      "bet_f2": 0.9980010009979969,
+      "bet_gN_over_a0": -9.98001000997945e-07,
+      "N_modulus_maxdev": 2.55351295663786e-15,
+      "cap_50": 1.0,
+      "cap_90": 9.0
+    },
+    "caps": {
+      "diel_50_over_a0": 0.6385333333333333,
+      "diel_90_over_a0": 3.3000000000000003,
+      "bi_hard_over_a0": 1.0,
+      "bi_solar_bound_over_a0": 423076923.0769231,
+      "lattice_50_over_a0": 1.0,
+      "lattice_90_over_a0": 9.0
+    },
+    "no_max_accel": {
+      "g_law": 1000000001.0,
+      "g_lattice": 1000000000.9999999,
+      "g_langevin": 1000000000.9999999,
+      "g_bi": 1.0,
+      "n_unbounded": 3
+    },
+    "dynamics": {
+      "omega_g": 5.724755436999999e-10,
+      "f_gap_Hz": 9.111231257907534e-11,
+      "lambda_P_pc": 16.97122610231812,
+      "tau_gap_yr": 55.35273630943923,
+      "min_vres_over_c": 1.0000000000018234,
+      "debye_chi0": 0.5102040816326532
+    },
+    "freq_table": [
+      {
+        "f_Hz": 1e-11,
+        "w_rad_s": 6.283185307179586e-11,
+        "r_AU": 215.79009348528723,
+        "gN_over_a0": 1360.5733339463677,
+        "v_over_c": 6.7657520942617295e-06,
+        "tau_max_s": 546847.1486849568,
+        "x_max": 3.435941969890371e-05,
+        "d_diel_at_taumax": -8.665290707199347e-13,
+        "d_diel_at_x1": -0.0003669530230459017,
+        "d_bi": -1.687538997430238e-14,
+        "d_lat": 3.3306690738754696e-14
+      },
+      {
+        "f_Hz": 1e-13,
+        "w_rad_s": 6.283185307179586e-13,
+        "r_AU": 5087.635304855686,
+        "gN_over_a0": 2.4476708541889773,
+        "v_over_c": 1.5951464065246433e-06,
+        "tau_max_s": 16896775.306222484,
+        "x_max": 1.0616557034277196e-05,
+        "d_diel_at_taumax": -2.8372082461203263e-11,
+        "d_diel_at_x1": -0.12257469930276477,
+        "d_bi": -3.204103649068202e-13,
+        "d_lat": 6.405986852087153e-13
+      },
+      {
+        "f_Hz": 1e-15,
+        "w_rad_s": 6.283185307179587e-15,
+        "r_AU": 357158.67833060405,
+        "gN_over_a0": 0.0004966638455842316,
+        "v_over_c": 1.1198137212280282e-06,
+        "tau_max_s": 41037865907.54651,
+        "x_max": 0.0002578485161083023,
+        "d_diel_at_taumax": -1.4915598829379206e-06,
+        "d_diel_at_x1": -0.9559656382034613,
+        "d_bi": -1.406286198601947e-11,
+        "d_lat": 2.7843061189969376e-11
+      }
+    ],
+    "systems": {
+      "wb_20kau": {
+        "f_Hz": 2.426601718115681e-14,
+        "gN_over_a0": 0.3167779657562557,
+        "g_over_a0": 0.7430812400984741,
+        "lam_D": 0.9999999996718967,
+        "lam_B": 0.9999999999988423,
+        "lam_L": 1.0000000000023155,
+        "v_kms": 0.4561774117910552,
+        "L_pc": 0.0969627362219072,
+        "tau_max_yr": 3.7646357383598503,
+        "x_D": 1.8113621851164008e-05,
+        "x_B": 1.5216440561391814e-06,
+        "x_L": 1.5216192216213719e-06,
+        "amp_a0_over_2g": 0.6728739376245582,
+        "d_diel": -2.805775611847139e-10,
+        "d_bi": -9.900968933607146e-13,
+        "d_lat": 1.9801937867214292e-12,
+        "pred_diel": -2.2077215710861272e-10,
+        "pred_bi": -7.789863707489306e-13,
+        "pred_lat": 1.5579218870475047e-12,
+        "t_over_T_if_x1": 0.1648422824916278
+      },
+      "wb_216au": {
+        "f_Hz": 1e-11,
+        "gN_over_a0": 1360.5733339463677,
+        "g_over_a0": 1361.5726000405195,
+        "lam_D": 0.9999999988194304,
+        "lam_B": 0.9999999999771123,
+        "lam_L": 1.0000000000457754,
+        "v_kms": 2.028321450557372,
+        "L_pc": 0.00104617989569573,
+        "tau_max_yr": 0.017328540468380258,
+        "x_D": 3.435941969890371e-05,
+        "x_B": 6.7657520942617295e-06,
+        "x_L": 6.765752081406721e-06,
+        "amp_a0_over_2g": 0.0003672224308752396,
+        "d_diel": -8.665290707199347e-13,
+        "d_bi": -1.687538997430238e-14,
+        "d_lat": 3.3306690738754696e-14,
+        "pred_diel": -4.3353168314722227e-13,
+        "pred_bi": -8.404877088383816e-15,
+        "pred_lat": 1.6809754112890173e-14,
+        "t_over_T_if_x1": 128.85777913514917
+      },
+      "wb_4650au": {
+        "f_Hz": 1e-13,
+        "gN_over_a0": 2.4476708541889773,
+        "g_over_a0": 3.210149603351741,
+        "lam_D": 0.9999999998872888,
+        "lam_B": 0.9999999999987278,
+        "lam_L": 1.0000000000025446,
+        "v_kms": 0.47821286208189,
+        "L_pc": 0.024665552002899216,
+        "tau_max_yr": 0.535426499677494,
+        "x_D": 1.0616557034277196e-05,
+        "x_B": 1.5951464065246433e-06,
+        "x_L": 1.5951447218148297e-06,
+        "amp_a0_over_2g": 0.1557559808047408,
+        "d_diel": -2.8372082461203263e-11,
+        "d_bi": -3.204103649068202e-13,
+        "d_lat": 6.405986852087153e-13,
+        "pred_diel": -1.7555456472243214e-11,
+        "pred_bi": -1.9815992809118303e-13,
+        "pred_lat": 3.9631901903839514e-13,
+        "t_over_T_if_x1": 0.39815164909268075
+      },
+      "wb_0p49pc": {
+        "f_Hz": 1e-15,
+        "gN_over_a0": 0.0004966638455842316,
+        "g_over_a0": 0.02253567169962751,
+        "lam_D": 0.9999999335141472,
+        "lam_B": 0.9999999999993731,
+        "lam_L": 1.0000000000012412,
+        "v_kms": 0.33571170798907735,
+        "L_pc": 1.731554135816768,
+        "tau_max_yr": 1300.4114985786787,
+        "x_D": 0.0002578485161083023,
+        "x_B": 1.1198137212280282e-06,
+        "x_L": 1.1140302729698588e-06,
+        "amp_a0_over_2g": 22.187046681562393,
+        "d_diel": -1.4915598829379206e-06,
+        "d_bi": -1.406286198601947e-11,
+        "d_lat": 2.7843061189969376e-11,
+        "pred_diel": -1.4751248186747497e-06,
+        "pred_bi": -1.3911087130712098e-11,
+        "pred_lat": 2.753553267981384e-11,
+        "t_over_T_if_x1": 0.09670066441800144
+      },
+      "galaxy": {
+        "f_Hz": 1.292471937720871e-16,
+        "gN_over_a0": 1.489137138486929,
+        "g_over_a0": 2.1740857929215105,
+        "lam_D": 0.9999616512899164,
+        "lam_B": 0.9999996506734095,
+        "lam_L": 1.0000000000020124,
+        "v_kms": 250.58296057001868,
+        "L_pc": 9999.999999999998,
+        "tau_max_yr": 241645.5210448675,
+        "x_D": 0.006192752276942902,
+        "x_B": 0.0008358547851461249,
+        "x_L": 1.4185460118774603e-06,
+        "amp_a0_over_2g": 0.22998172456115726,
+        "d_diel": -1.3413125150463223e-05,
+        "d_bi": -1.2218341083336526e-07,
+        "d_lat": 7.036593530074242e-13,
+        "pred_diel": -8.819840709240591e-06,
+        "pred_bi": -8.033873641582847e-08,
+        "pred_lat": 4.627859660288244e-13,
+        "t_over_T_if_x1": 0.3001716356604647
+      },
+      "cluster": {
+        "f_Hz": 5.626598951512123e-18,
+        "gN_over_a0": 0.3722842846217321,
+        "g_over_a0": 0.8240552882530162,
+        "lam_D": 0.9933615945048805,
+        "lam_B": 0.9999735186926394,
+        "lam_L": 1.0000000000000038,
+        "v_kms": 2181.7569605361396,
+        "L_pc": 2000000.0,
+        "tau_max_yr": 73273748.49622327,
+        "x_D": 0.08174820133637728,
+        "x_B": 0.007277557864835077,
+        "x_L": 6.175453999618646e-08,
+        "amp_a0_over_2g": 0.6067554047981317,
+        "d_diel": -0.005193619218416323,
+        "d_bi": -2.0756048763281854e-05,
+        "d_lat": 2.886579864025407e-15,
+        "pred_diel": -0.004054805858900703,
+        "pred_bi": -1.606774728316569e-05,
+        "pred_lat": 2.313936494616406e-15,
+        "t_over_T_if_x1": 0.17249995593410467
+      }
+    },
+    "drag": {
+      "t_over_T_at_x0.1": 0.7957747154594768,
+      "survival_age_yr": 10000000000.0
+    },
+    "mond_ceiling": {
+      "f_M_0p1Msun": 7.935039805058869e-14,
+      "f_M_2Msun": 3.752248656370311e-14,
+      "f_M_1e11Msun": 7.93503980505887e-17,
+      "f_M_1e15Msun": 7.935039805058869e-18,
+      "M_for_1e-11Hz_kg": 7.883196445768038e+20,
+      "r_for_1e-11Hz_AU": 0.15848592537692477
+    },
+    "constants": {
+      "a0": 9.36e-11,
+      "a0_theory": 1.132e-10,
+      "c": 299792458.0,
+      "G": 6.6743e-11,
+      "Msun": 1.9884098709677423e+30,
+      "kpc": 3.085677581491367e+19,
+      "pc": 3.085677581491367e+16,
+      "AU": 149597870700.0,
+      "yr": 31557600.0,
+      "H0": 2.1842e-18,
+      "m_over_H0": 262098500.0
+    },
+    "mutate": false,
+    "medium": "langmuir(one-sided)"
+  }
+}

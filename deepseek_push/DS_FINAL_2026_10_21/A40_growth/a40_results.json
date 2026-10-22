@@ -1,0 +1,496 @@
+{
+  "lane": "A40_growth",
+  "status": "CONDITIONAL(closure: quasi-static law applied to sub-horizon perturbations; fork resolved to branch S by A33 section 5, which then conflicts with the baryon-only SPARC fits; reference field fixed to cH(z))",
+  "checks": [
+    {
+      "id": "K1",
+      "name": "law inversion g_N = g^2/(g+a0) is an exact identity",
+      "pass": true,
+      "value": "residual = 0 (g_N-form), 0 (s-form)",
+      "threshold": "residual == 0",
+      "reading": "g = (g_N/2)(1+s) with s = sqrt(1+4a0/g_N) inverts the law with no remainder; in the s variable the law is g = 2a0/(s-1), g_N = 4a0/(s^2-1)"
+    },
+    {
+      "id": "K2",
+      "name": "dg/dg_N = (1+s)^2/(4s) exactly; also = g^2/(g_N(2g-g_N))",
+      "pass": true,
+      "value": "residuals = 0, 0",
+      "threshold": "both residuals == 0",
+      "reading": "the chain rule on the exact inverse; no expansion used. This is A4's D7 eq. (19)"
+    },
+    {
+      "id": "K2b",
+      "name": "coded response == finite-difference derivative of the coded law (60 points, 6 decades)",
+      "pass": true,
+      "value": "max relative error = 2.93e-10",
+      "threshold": "< 1e-8",
+      "reading": "this ties the analytic formula to the function the growth ODE actually calls; a rival interpolation (the n=2 quadrature law) fails it at the 10% level"
+    },
+    {
+      "id": "K3",
+      "name": "response is bounded below by 1 and strictly decreasing in g_N",
+      "pass": true,
+      "value": "min = 1 at g_N->inf; d/ds = (s**2 - 1)/(4*s**2) > 0 for s>1; d/dg_N sign = -1; g_N->0 limit = oo",
+      "threshold": "min == 1, derivative sign fixed, divergence at g_N=0",
+      "reading": "G_eff/G in [1,inf): Newtonian at high acceleration, divergent at zero field. The divergence is the deep-MOND square-root cusp A4 K11 flags"
+    },
+    {
+      "id": "K4",
+      "name": "response is a function of the local field alone: no k anywhere",
+      "pass": true,
+      "value": "k in free symbols of dg/dg_N: False; response depends on (g_N, a0) only",
+      "threshold": "no k, no derivative, no H",
+      "reading": "the law is algebraic: g at a point depends on g_N at that point. Hence the growth source (3/2)Omega_m(a)(dg/dg_N)delta has no k-dependent coefficient, and every wavenumber obeys the same ODE -> D(k,z) = D(z): growth is scale-free"
+    },
+    {
+      "id": "K5",
+      "name": "background: E^2(0) = Omega_L,eff + Omega_m exactly; the model's present rate",
+      "pass": true,
+      "value": "E^2(0) = 1.316300 = 1 + 0.3163; H(0) = 77.33 km/s/Mpc = 1.1473 x H0(dS)",
+      "threshold": "|E^2(0)-(1+Omega_m)| < 1e-12",
+      "reading": "A33 section 3.5 with beta=0: Lambda_bare = 3H0^2/c^2 gives Omega_Lambda,eff = 1 and the matter adds on top. FLAG: with H0 fixed as the de Sitter rate the model's present expansion rate is 1.1473 H0 = 77.3 km/s/Mpc (or, equivalently, Omega_K = -Omega_m). This is a background-level prediction of the beta=0 vacuum, not a choice"
+    },
+    {
+      "id": "K6",
+      "name": "a0 -> 0 limit: G_eff -> G and the equation reduces to LCDM",
+      "pass": true,
+      "value": "dg/dg_N = 1 + 0*(a0/g_N) + 1*(a0/g_N)^2 + O(eps^3) -> 1; ODE with a0=0: D(1) = 0.788559 vs integral 0.788559",
+      "threshold": "linear coeff == 0; |D_ode-D_int| < 2e-4",
+      "reading": "the exact growing mode of the same ODE is D=(5/2)Om E(a) int da'/(a'E)^3 = 0.788559. The correction to G_eff is QUADRATIC in a0/g_N (+1*(a0/g_N)^2), so the Newtonian limit is approached from above with zero linear term: LCDM is the exact a0=0 limit, not merely a small-a0 approximation"
+    },
+    {
+      "id": "K7",
+      "name": "LCDM control: f(0) and D(1) at Omega_m = 0.3163",
+      "pass": true,
+      "value": "f(0) = 0.52833 vs integral-solution 0.52833; D(1) = 0.78856",
+      "threshold": "|f_ode-f_int| < 1e-4; |D(1)-0.7886| < 2e-3",
+      "reading": "the solver reproduces the standard flat-LCDM numbers (D(1)=0.7886, f(0)=0.528 for Omega_m=0.3163), so a failure below is the theory's and not the integrator's"
+    },
+    {
+      "id": "K8",
+      "name": "f(z) rises monotonically to 1 with z (the growing mode's signature)",
+      "pass": true,
+      "value": "f = [0.4546, 0.69722, 0.83479, 0.9052, 0.942]; all < 1: True",
+      "threshold": "strictly increasing, f<1",
+      "reading": "a monotone f is what a single growing mode gives; a non-monotone f would mean the integration or the response sign is wrong"
+    },
+    {
+      "id": "K9",
+      "name": "the growth solution is integrator-independent (DOP853 vs LSODA), branch S",
+      "pass": true,
+      "value": "D(1) = 0.740853856 (DOP853) vs 0.740853856 (LSODA) -> ratio-1 = +3.23e-11",
+      "threshold": "|ratio-1| < 1e-6",
+      "reading": "two independent adaptive integrators on the same ODE; a sign or friction error would show up here at O(1)"
+    },
+    {
+      "id": "K10",
+      "name": "the fork is DECIDABLE: branch S and branch A differ far beyond any error",
+      "pass": true,
+      "value": "sigma8(S) = 0.7619 vs sigma8(A) = 0.0024 -> ratio 322.847",
+      "threshold": "ratio > 1.5",
+      "reading": "putting the cold sector in the source raises sigma8 by tens of per cent; the two readings cannot both be called 'the theory'"
+    },
+    {
+      "id": "K11",
+      "name": "the law's g_N is TOTAL (A33 section 5 first integral), so rho_c is not double counted",
+      "pass": true,
+      "value": "M_c/M_b = 5.3642; the law's phantom M_ph/M_b = 25.90; M_c/M_ph = 0.207; g_N,tot/g_N,b = 6.364 -> deep-MOND g ratio sqrt = 2.523",
+      "threshold": "M_src = M_b+M_c and M_ph != M_c",
+      "reading": "the action's first integral fixes M_src = M_b + M_c: the law relates the total field to the total Newtonian field. NOT double counting -- the law contains only the SUM. NOTE the cost: evaluated with M_src = 6.3643 M_b the law predicts g = sqrt(6.3643) x the baryon-only deep-MOND value, i.e. 2.523x the SPARC fit's g. Branch S is the action's reading and it is INCONSISTENT with the baryon-only SPARC fits of THEORY.md section 4. Branch C is what those fits use and it needs the cold to be unboosted"
+    },
+    {
+      "id": "K12",
+      "name": "the amplitude closure breaks the theory: sigma8 is driven to O(10) or diverges",
+      "pass": true,
+      "value": "sigma8(0) fixed point = 2.267 (Planck 0.811; growth-ratio band 0.75-0.85); G_eff/G(g_rms) = 11.7",
+      "threshold": "sigma8 > 1.5 (1.8x the top of the observed band)",
+      "reading": "with g_ref = the perturbation's own rms field, G_eff/G = 10-12 at z=0 and the growth is quasi-linear (G_eff depends on delta). This is the SAME failure L341/FP22 recorded for the chassis (sigma8 = 18-27); it is not cured by this background"
+    },
+    {
+      "id": "K13",
+      "name": "amplitude closure is NOT scale-free: G_eff varies across the linear range",
+      "pass": true,
+      "value": "G_eff(k=0.05)/G_eff(k=0.2) = 0.630 (8.67 vs 13.75); n_eff = -2.4 assumed",
+      "threshold": "ratio differs from 1 by > 20%",
+      "reading": "g_N ~ delta R with delta ~ R^{-(3+n)/2}, so g_N grows with R and the boost is LARGER on SMALLER scales: the amplitude closure predicts scale-DEPENDENT growth (a bluer P(k), more small-scale power). 'Scale-free' holds only at fixed g_N, i.e. only for a reference field that is a function of time alone"
+    },
+    {
+      "id": "K14",
+      "name": "chi^2 on the 8-point f sigma8 compilation, arithmetic verified twice",
+      "pass": true,
+      "value": "theory chi^2 = 14.211 (N = 8), LCDM = 7.846, brute force = 14.211",
+      "threshold": "|bf-chi2|<1e-9; 0.5<chi2_LCDM<30",
+      "reading": "the LCDM control lands in the range the same data give in the literature (chi2/N ~ 1), so the score is not an artefact of the machinery"
+    },
+    {
+      "id": "K15",
+      "name": "sigma8(0) and its direction relative to the sigma8/S8 measurements on disk",
+      "pass": true,
+      "value": "sigma8(0) = 0.7619 vs Planck 0.811 (-0.0491, -8.18 sigma on sigma8); S8(dyn) = 0.6819 vs KiDS-1000 0.759 +- 0.021",
+      "threshold": "|sigma8-0.811|/0.811 < 15%",
+      "reading": "the theory's sigma8 is BELOW Planck by the amount the extra vacuum suppresses growth; whether it lands on KiDS depends on which Omega_m enters S8"
+    },
+    {
+      "id": "K16",
+      "name": "the background over-determination is NOT degenerate in sigma8: the fork decides the prediction",
+      "pass": true,
+      "value": "sigma8(0) = 0.7619 (literal) / 0.8132 (flat) / 1.1695 (closed); observed 0.811 +- 0.006 (Planck) and 0.76-0.83 (lensing)",
+      "threshold": "closed > 1.0 (excluded); flat == 0.811",
+      "reading": "Omega_L,eff = 1, Omega_m = 0.3163 and H(0) = H0 are three statements that cannot all hold with zero curvature. Resolving them by curvature (closed) gives sigma8 = 1.17, excluded by Planck at tens of sigma; resolving them by H(0) = 1.1473 H0 gives 0.760; cancelling the excess with the beta-stress gives 0.811 = LCDM exactly. The growth observable therefore does not test the law -- it tests which background the theory means"
+    }
+  ],
+  "numbers": {
+    "background": {
+      "Omega_b": 0.0497,
+      "Omega_c": 0.2666,
+      "Omega_m": 0.3163,
+      "Omega_L_eff": 1.0,
+      "E2_0": 1.3163,
+      "H0_dS_kms": 67.4,
+      "H_today_kms": 77.32809960163253,
+      "Omega_m_a1": 0.24029476563093521,
+      "note": "E^2 = 1 + Omega_m a^-3; H0 is the de Sitter rate Lambda_bare=3H0^2"
+    },
+    "lcdm_control": {
+      "f0": 0.5283280477175002,
+      "D1_ode": 0.788559344509588,
+      "D1_integral": 0.7885593445105188,
+      "Omega_m": 0.3163,
+      "Omega_L": 0.6837
+    },
+    "growth_primary": {
+      "z": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0
+      ],
+      "f": [
+        0.4545999574259345,
+        0.6972213056391663,
+        0.8347856462067956,
+        0.9051977897768558,
+        0.9420017139863
+      ],
+      "D": [
+        0.7408538561061616,
+        0.5863509781791252,
+        0.46982172157826646,
+        0.38669683940076394,
+        0.32668801385562074
+      ],
+      "sigma8_z": [
+        0.7619369188703992,
+        0.6030372306335514,
+        0.4831918090285737,
+        0.3977013764881033,
+        0.3359848324436247
+      ],
+      "G_eff_over_G": [
+        1.013970157634606,
+        1.0096667749934316,
+        1.0061497244730035,
+        1.0039025072789618,
+        1.00255291580809
+      ],
+      "sigma8_0": 0.7619369188703992,
+      "D1": 0.7408538561061616,
+      "a0": 1.132e-10,
+      "closure": "cosmic cH(z) reference field, total-matter source",
+      "H0_kms": 67.4,
+      "H_today_kms": 77.32809960163253
+    },
+    "fork": {
+      "M_c_over_M_b": 5.364185110663984,
+      "M_ph_over_M_b_MW": 25.9,
+      "M_c_over_M_ph": 0.20711139423413066,
+      "deep_MOND_g_ratio_total_vs_baryon": 2.522733658288957,
+      "branches": {
+        "S": {
+          "sigma8_0": 0.7619369188703992,
+          "D1": 0.7408538561061616,
+          "f": {
+            "0.0": 0.4545999574259345,
+            "0.5": 0.6972213056391663,
+            "1.0": 0.8347856462067956,
+            "1.5": 0.9051977897768558,
+            "2.0": 0.9420017139863
+          }
+        },
+        "A": {
+          "sigma8_0": 0.002360055228548373,
+          "D1": 0.0022947516695814188,
+          "f": {
+            "0.0": 0.13117840531871414,
+            "0.5": 0.20404760289940993,
+            "1.0": 0.24574660355272565,
+            "1.5": 0.26718190048171003,
+            "2.0": 0.27841390275343114
+          }
+        },
+        "C": {
+          "sigma8_0": 0.760503962235999,
+          "D1": 0.7394605498862685,
+          "f": {
+            "0.0": 0.45261271772485717,
+            "0.5": 0.6953478956210426,
+            "1.0": 0.8334513014824487,
+            "1.5": 0.9043136987977315,
+            "2.0": 0.9414132729767829
+          }
+        }
+      },
+      "branch_R": {
+        "sigma8_0": 2.2668041235793446,
+        "iterations": 8,
+        "g_rms_0": 2.2412452841743374e-13,
+        "G_eff_rms": 11.74529322896429,
+        "g_rms_fixed_point": 6.264443960689454e-13,
+        "G_eff_rms_fixed_point": 7.23521967121924,
+        "G_eff_k": {
+          "0.05": 8.665470673682378,
+          "0.2": 13.753252346800926
+        },
+        "n_eff_assumed": -2.4
+      }
+    },
+    "data": {
+      "fs8_points": [
+        {
+          "z": 0.067,
+          "fs8": 0.423,
+          "err": 0.055
+        },
+        {
+          "z": 0.15,
+          "fs8": 0.53,
+          "err": 0.16
+        },
+        {
+          "z": 0.38,
+          "fs8": 0.497,
+          "err": 0.045
+        },
+        {
+          "z": 0.51,
+          "fs8": 0.458,
+          "err": 0.038
+        },
+        {
+          "z": 0.61,
+          "fs8": 0.436,
+          "err": 0.034
+        },
+        {
+          "z": 0.7,
+          "fs8": 0.473,
+          "err": 0.041
+        },
+        {
+          "z": 0.85,
+          "fs8": 0.315,
+          "err": 0.095
+        },
+        {
+          "z": 1.48,
+          "fs8": 0.462,
+          "err": 0.045
+        }
+      ],
+      "fs8_source": "campaign_fresh_gravity/CFG4_cosmology.py lines 85-88 (6dFGS Beutler+2012; SDSS MGS Howlett+2015; BOSS DR12 Alam+2017; eBOSS DR16 Alam+2021)",
+      "chi2_theory_S": 14.210858730193745,
+      "chi2_lcdm": 7.846478990050313,
+      "N": 8,
+      "rows": [
+        {
+          "z": 0.067,
+          "obs": 0.423,
+          "err": 0.055,
+          "pred": 0.36440487309795183,
+          "pull": -1.065365943673603
+        },
+        {
+          "z": 0.15,
+          "obs": 0.53,
+          "err": 0.16,
+          "pred": 0.3829609486235016,
+          "pull": -0.9189940711031152
+        },
+        {
+          "z": 0.38,
+          "obs": 0.497,
+          "err": 0.045,
+          "pred": 0.4141414647832798,
+          "pull": -1.8413007825937824
+        },
+        {
+          "z": 0.51,
+          "obs": 0.458,
+          "err": 0.038,
+          "pred": 0.4207235551890307,
+          "pull": -0.9809590739728766
+        },
+        {
+          "z": 0.61,
+          "obs": 0.436,
+          "err": 0.034,
+          "pred": 0.42162891046372547,
+          "pull": -0.42267910400807435
+        },
+        {
+          "z": 0.7,
+          "obs": 0.473,
+          "err": 0.041,
+          "pred": 0.4199939513868346,
+          "pull": -1.2928304539796434
+        },
+        {
+          "z": 0.85,
+          "obs": 0.315,
+          "err": 0.095,
+          "pred": 0.4133696720638994,
+          "pull": 1.0354702322515728
+        },
+        {
+          "z": 1.48,
+          "obs": 0.462,
+          "err": 0.045,
+          "pred": 0.36181694208600523,
+          "pull": -2.2262901758665508
+        }
+      ],
+      "sigma8_obs": {
+        "KiDS-1000": {
+          "S8_lag": 0.7823624282799287,
+          "S8_dyn": 0.6819154736469685,
+          "obs": 0.759,
+          "err": 0.021,
+          "pull_lag": 1.1124965847585113,
+          "pull_dyn": -3.6706917310967397
+        },
+        "KiDS-Legacy": {
+          "S8_lag": 0.7823624282799287,
+          "S8_dyn": 0.6819154736469685,
+          "obs": 0.815,
+          "err": 0.021,
+          "pull_lag": -1.5541700819081523,
+          "pull_dyn": -6.337358397763403
+        },
+        "Planck-2018": {
+          "S8_lag": 0.7823624282799287,
+          "S8_dyn": 0.6819154736469685,
+          "obs": 0.832,
+          "err": 0.013,
+          "pull_lag": -3.818274747697786,
+          "pull_dyn": -11.544963565617808
+        },
+        "DES-Y3": {
+          "S8_lag": 0.7823624282799287,
+          "S8_dyn": 0.6819154736469685,
+          "obs": 0.776,
+          "err": 0.017,
+          "pull_lag": 0.3742604870546307,
+          "pull_dyn": -5.534383903119503
+        }
+      },
+      "chi2_per_point_theory": 1.7763573412742182
+    },
+    "background_fork": {
+      "literal_OL1_H0dS": {
+        "Omega_L": 1.0,
+        "Omega_K": 0.0,
+        "D1": 0.7408538561061616,
+        "f0": 0.4545999574259345,
+        "sigma8_0": 0.7619369188703992,
+        "H0_today_kms": 77.32809960163253,
+        "note": "Omega_L,eff = 1 flat: H(0) = 1.1473 H0 = 77.3"
+      },
+      "flat_OL1mOm": {
+        "Omega_L": 0.6837,
+        "Omega_K": 0.0,
+        "D1": 0.7906797813805092,
+        "f0": 0.5316558072407385,
+        "sigma8_0": 0.8131807798161172,
+        "H0_today_kms": 67.4,
+        "note": "the beta-term cancels the excess: H(0) = H0, LCDM"
+      },
+      "closed_OL1_OKmOm": {
+        "Omega_L": 1.0,
+        "Omega_K": -0.3163,
+        "D1": 1.1371171179440196,
+        "f0": 0.5440542001384908,
+        "sigma8_0": 1.1694769570274075,
+        "H0_today_kms": 67.4,
+        "note": "Omega_L,eff = 1 with curvature: H(0) = H0, closed"
+      }
+    },
+    "sensitivity": {
+      "theory_1.132e-10": {
+        "sigma8_0": 0.7619369188703992,
+        "f0": 0.4545999574259345,
+        "f2": 0.9420024508512198,
+        "chi2_fs8": 14.211002916012081,
+        "G_eff_0": 1.013970157634606
+      },
+      "canonical_9.36e-11": {
+        "sigma8_0": 0.7614526189384189,
+        "f0": 0.45395692999950993,
+        "f2": 0.9417944810426568,
+        "chi2_fs8": 14.412091529018642,
+        "G_eff_0": 1.010254036892381
+      },
+      "flat_LCDM_normalisation": {
+        "sigma8_0": 0.8131807798161172,
+        "f0": 0.5316558072407385,
+        "note": "Omega_L = 1-Omega_m: the A33 'clock stress cancels the excess' branch; it reproduces LCDM by construction"
+      },
+      "trace_average_response": {
+        "sigma8_0": 0.7836127684232879,
+        "f0": 0.4708772523916402,
+        "G_eff_0": 1.0933155991166104,
+        "note": "(2 nu + dg/dg_N)/3 instead of dg/dg_N: the radial eigenvalue is the SMALLEST for s>1"
+      }
+    },
+    "scale_independence": {
+      "exact_at_fixed_gN": true,
+      "statement": "dg/dg_N = F(g_N) with no k; the growth equation has no k-dependent coefficient; hence D(k,z)=D(z) for every k at fixed reference field",
+      "broken_by": "any reference field that depends on the perturbation amplitude, because g_N ~ delta/k then reintroduces k",
+      "G_eff_ratio_k005_k02": 0.6300670165263135
+    },
+    "derived": {
+      "ratio_sigma8_S_over_A": 322.8470713963133,
+      "ratio_sigma8_S_over_C": 1.0018842198141704,
+      "delta_chi2_theory_minus_lcdm": 6.364379740143432,
+      "sigma8_offset_pct_vs_planck": -6.0497017422442525,
+      "f0_ratio_theory_over_lcdm": 0.860450168015709,
+      "f0_deficit_pct": 13.954983198429105,
+      "f2_deficit_pct": 1.754123801040619,
+      "S8_lag": 0.7823624282799287,
+      "S8_dyn": 0.6819154736469685,
+      "S8_lag_vs_dyn_pct": 14.73011810331235,
+      "a0_footing_sigma8_diff_pct": 0.06356168338689841,
+      "trace_average_sigma8_shift_pct": 2.8448351846533417,
+      "background_span_sigma8_pct": 53.48737251913218,
+      "H0_today_over_H0_dS": 1.1473011810331235,
+      "Omega_m_a1": 0.24029476563093521,
+      "Omega_K_required_if_H0_fixed": -0.3163
+    }
+  },
+  "constants_used": [
+    "c = 2.99792458e8 m/s (BRIEF 4)",
+    "G = 6.67430e-11 (BRIEF 4)",
+    "H0 = 67.4 km/s/Mpc = 2.1843e-18 1/s (BRIEF 4; de Sitter rate per A33 K16)",
+    "Mpc = 3.0856775814913673e22 m (BRIEF 4)",
+    "Omega_b = 0.0497, Omega_c = 0.2666 (task)",
+    "Omega_L,eff = 1 (A33 3.5, beta=0)",
+    "a0 = 1.132e-10 m/s^2 (THEORY.md P3, rho_bare = rho_DE/Omega_L)",
+    "a0 = 9.36e-11 m/s^2 (A33 K14b, canonical footing; sensitivity only)",
+    "sigma8 anchor 0.811 (Planck 2018 LCDM; same A_s and transfer at z>~10)",
+    "f sigma8 8 points (CFG4_cosmology.py 85-88: 6dFGS/SDSS MGS/BOSS DR12/eBOSS DR16)",
+    "S8: KiDS-1000 0.759+-0.021, KiDS-Legacy 0.815, Planck 0.832+-0.013, DES Y3 0.776+-0.017 (campaign_fresh_gravity/CFG1_evidence_audit.py L838)",
+    "M_ph/M_b = 25.90 at the MW virial radius (THEORY.md 3.7)",
+    "n_eff = -2.4 for the sigma_R power law in the K13 scale-dependence estimate (declared)"
+  ],
+  "mutate": null
+}

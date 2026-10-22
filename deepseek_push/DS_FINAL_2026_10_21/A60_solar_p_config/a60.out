@@ -1,0 +1,149 @@
+
+A60 -- THE SOLAR SYSTEM'S P CONFIGURATION: the Sun embedded in the Galaxy.
+
+Lane A22 solved the P field of the *isolated* Sun: a hedgehog of constant
+magnitude, u = K|P| = GM/L*^2 = 2.42e-16 m/s^2 = 2.59e-6 a0.  Lane A36's K12
+then observed that the *galactic* background at the Sun's position carries
+u = 0.566 a0 -- a factor 2.19e5 larger -- and left the mismatch unresolved.
+The P equation is nonlinear, so the field of the Sun-in-the-Galaxy is not the
+sum of the two solutions.  This lane solves the two-scale problem.
+
+Action (frozen round-2 ADM action, A22/A33 verbatim), c = 1, K = 4 pi G:
+
+  L/(N sqrt h) = [R3 + K_ijK^ij - (1+beta)theta^2 - 2Lambda]/(4K)
+                 + P^i D_i ln N - W(u) + (eta/2)E_iE^i
+                 - (gamma/2)(D_iP^i)^2 - (gamma/4)F_ijF^ij,
+  W(u) = (a0^2/K)[-u/a0 - ln(1-u/a0)],  u = K|P|,
+  gamma = K L*^2/2,  lambda = sqrt(gamma/K) = L*/sqrt2.
+
+Static, F = 0, E = 0.  The exact P equation is
+
+  (1)   gamma lap(P_i) + d_i ln N - K W'(u) P_i/|P| = 0 .
+
+THE TWO-SCALE EXPANSION.  With P = Pbar(X) + pi(x), X = x/R_gal (8 kpc),
+x = the local (solar) coordinate, and the three small parameters
+
+  eps_1 = r/R_gal                      scale separation
+  eps_2 = u_sun/u_gal = 4.6e-6         amplitude (controls the NONLINEARITY)
+  eps_3 = m^2/(gamma k^2) = (r/ell)^2  stiffness (controls the background's
+                                       effect on the RESPONSE)
+
+the order-eps_1^0 inner equation is the linearised operator about the local
+background with the solar source.  Its exact solution (isotropic mass m):
+
+  (2)   pi_r(r) = p0 f(r/ell),  f(x) = 2[1 - e^-x(1+x)]/x^2,
+        p0 = GM/(2 gamma),  ell = 1/m,  m_T^2 = K/(1-ubar/a0),  m_L^2 = K/(1-ubar/a0)^2
+
+so  u_sun(r) = (GM/L*^2) f(r/ell),  f(0)=1,  f = 1 - 2x/3 + ...  The charge is
+psi = div(pi) = p0[f' + 2f/x]/ell, and the metric response gives
+
+  (3)   alpha_1(r) = -4 (r/L*)^2 I(r/ell)/(r/ell),  I(x) = int_0^x f,
+
+i.e. exactly A22's -4(r/L*)^2 for r << ell, with ell = 7.4-11.2 pc set by the
+GALACTIC background.  The background changes alpha_1 by O(eps_3) = 5e-8 at
+1 AU: it does not move.
+
+Deliverables: report.md, this script (20 checks), a60.out, a60_results.json,
+MUTATE.md.  Runtime < 60 s, deterministic, no network.
+
+    python3 a60_checks.py [--mutate NAME] [--json-out FILE]
+
+==============================================================================================================
+CONSTANTS  L* = 24.000 pc  lambda = 16.9706 pc  K = 4 pi G = 8.387173e-10 m/kg  gamma = 2.299901e+26 m^5/(kg s^2)
+           a0(canonical) = 9.3600e-11 m/s^2   a0(theory) = 1.1320e-10 m/s^2   GM_sun = 1.327465e+20 m^3/s^2
+           p0 = GM/(2gamma) = 2.885917e-07 kg/m^2   u0 = K p0 = GM/L*^2 = 2.420469e-16 m/s^2
+==============================================================================================================
+     W' = a0*u/(K*(a0 - u))
+     K W' - u/(1-u/a0) = 0 ;  K^2 W'' - K/(1-u/a0)^2 = 0 ;  K W'(u(g)) - g = 0
+K1   PASS value=residuals 0 0 0                              thr=0 0 0        the log potential's first two derivatives and its exact inverse u=a0 g/(g+a0)
+     u0 = 2.420469e-16 m/s^2 = 2.585971e-06 a0(can) = 2.138223e-06 a0(th)   p0 = 2.885917e-07 kg/m^2
+     K/gamma = 2/L*^2 = 3.646754e-36 m^-2   u0/(GM/L*^2) - 1 = -2.22e-16
+K2   PASS value=u0=2.4205e-16 m/s^2  K/gamma=3.647e-36 m^-2  thr== GM/L*^2    K = 4 pi G, gamma = K L*^2/2, u0 = GM/L*^2 = 2.42e-16 (A22 eq.9)
+     g_N(8kpc) = 6.9133e-11  g = 1.2212e-10 (1.3047 a0)  ubar = 5.2988e-11 (0.5661 a0)  KW'(ubar)/g - 1 = 2.1e-16
+K3   PASS value=ubar=5.2988e-11 m/s^2 = 0.5661 a0            thr=0 < ubar < a0, on-shell the galactic background is a solution of the same P equation
+     AMPLITUDE RATIO  u_sun(1AU)/u_gal = 4.5680e-06   (A36 K12 measured 2.19e5 the other way)
+     m_L^2 = 4.455007e-09  m_T^2 = 1.933001e-09  ell_L = 7.3634 pc  ell_T = 11.1786 pc
+     hedgehog residual = 0 ;  homogeneous r -> 0 ;  r^-2 -> 0
+K4   PASS value=residual 0                                   thr=0            p = GM/(2gamma) solves gamma(p''+2p'/r-2p/r^2) = -GM/r^2 exactly
+     eps_bg(1 AU) = 1.25e-17   eps_bg(0.1 pc) = 1.09e-04   eps_bg(1 pc) = 1.09e-01   breakdown r* = 2.090 pc
+K5   PASS value=eps_bg(1pc)=1.095e-01  r*=2.09 pc            thr=< 0.3 ; r* in [1,4] pc the two-scale expansion is controlled to 1 pc; it fails at r* = (GM R_gal/g_gal)^(1/3)
+     symbolic Jacobian residual = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+     finite-difference Jacobian relative error = 1.70e-08
+K6   PASS value=sym=0  fd_rel=1.70e-08                       thr=0 ; <1e-6    only the mass terms survive: m_L^2 = K/(1-u/a0)^2 (along P), m_T^2 = K/(1-u/a0)
+     exact-profile ODE residual = 0 ;  dI/dx - f = 0
+K7   PASS value=residuals 0 0                                thr=0 0          pi_r = p0 f(r/ell), f = 2[1-e^-x(1+x)]/x^2 solves the massive equation exactly
+     BVP status: linear 0, nonlinear 0 ; analytic-vs-numeric 2.30e-10 ; nonlinear-vs-linear 8.79e-07
+K8   PASS value=lin_err=2.3e-10  nl_err=8.8e-07              thr=<1e-8 ; <1e-5 independent BVP reproduces the analytic profile; the full nonlinear solve moves it by <1e-6
+
+     u(r) = K|P| from 1 AU to 1 pc   (galactic background + solar hedgehog)
+     r [AU]     r [pc]     u_sun/a0    u_sun/u_gal  u_max/a0    u_min/a0   
+     1          4.848e-06  2.5860e-06  4.5680e-06   0.566109    0.566103   
+     3          1.454e-05  2.5860e-06  4.5680e-06   0.566109    0.566103   
+     10         4.848e-05  2.5860e-06  4.5680e-06   0.566109    0.566103   
+     30         0.0001454  2.5859e-06  4.5680e-06   0.566109    0.566103   
+     70         0.0003394  2.5859e-06  4.5679e-06   0.566109    0.566103   
+     160        0.0007757  2.5859e-06  4.5678e-06   0.566109    0.566103   
+     1000       0.004848   2.5852e-06  4.5667e-06   0.566109    0.566103   
+     1e+04      0.04848    2.5785e-06  4.5548e-06   0.566109    0.566103   
+     2063       0.01       2.5844e-06  4.5653e-06   0.566109    0.566103   
+     2.063e+04  0.1        2.5706e-06  4.5408e-06   0.566109    0.566103   
+     6.188e+04  0.3        2.5402e-06  4.4871e-06   0.566109    0.566104   
+     2.063e+05  1          2.4368e-06  4.3045e-06   0.566108    0.566104   
+     u_sun/u_gal over the whole range: 4.304e-06 ... 4.568e-06 (factor 1.06) ; u_sun/a0 spread 5.77e-02
+K9   PASS value=u_sun/u_gal=4.57e-06  spread=5.8e-02         thr=4e-6 ; <0.1  the solar contribution is 4.6e-6 of the galactic one and nearly constant to 1 pc
+     g-crossover  r(g_sun=g_gal) = 1.0426e+15 m = 6.9693e+03 AU = 0.03379 pc
+     charge crossover 2 p0/r = psi_gal : r = 9.6647e+03 AU = 0.04686 pc  (psi_gal=3.992e-22 kg/m^3)
+     NO u-magnitude crossover: u_sun/u_gal = 4.568e-06 at 1 AU and 4.304e-06 at 1 pc
+K10  PASS value=r_g=6.969e+03 AU  r_charge=9.665e+03 AU      thr=no u-crossover; dynamical crossover ~6.4e3 AU the solar field never matches the galactic one in u; it does in acceleration at 6.4e3 AU
+     gradient-balance residual |gamma lap(pi)+g_sun|/g_sun = 8.45e-09 at 1-300 AU
+     forcing u_sun = a0 at 1 AU would need 2 gamma u/(K r^2) = 2.294e+03 m/s^2 = 3.87e+05 x g_sun
+K11  PASS value=resid=8.5e-09 ; forced-u0 gradient/g=3.9e+05 thr=<1e-8 ; >1e5 u is set by gradient balance, not by the background: A36 K12 is a bound on u, not a contradiction
+     alpha_1(1 AU): exact -1.632252e-13   analytic form -1.632252e-13   numerical route -1.632252e-13   rel(numerical) 1.4e-07
+K12  PASS value=mut=1.632e-13 exact=1.632e-13                thr=both 1.63e-13 alpha_1 = 4(r/L*)^2 I(x)/x = 4(r/L*)^2 to 1e-7 at 1 AU, from three routes
+     alpha_1(1 AU) embedded (ell_T=11.179 pc) = -1.632252e-13 ; isolated (ell=16.971 pc) = -1.632252e-13 ; rel diff 4.93e-08
+K13  PASS value=rel=4.93e-08  abs=8.05e-21                   thr=<1e-6        the embedding moves alpha_1 by 5e-8 relative: A22's isolated-Sun value was adequate
+     A36 K11 reproduced: 2u'/(D-u') = 5.4408e-14 ; their 4u'/(D-u') = 1.0882e-13 ; formula with the correct mass = 3.2645e-13 ; exact point source = -1.6323e-13
+     ratio |exact|/A36 = 3.000 ; slips: prefactor 2 vs 4 (x2) and u'=r^2/L*^2 used as the mass
+     suppression where the hedgehog has (1-u/a0)^2 = 1 (x3 smaller D -> x3 smaller alpha_1)
+K14  PASS value=A36=5.441e-14  exact=1.632e-13  ratio=3.00   thr=5.44e-14 ; ratio 3.0 K11 is low by 3x but in the safe direction; the correction is not the embedding
+     margin 1e-4/|alpha_1(1AU)| = 6.127e+08 ;  |alpha_1(160 AU)| = 4.178e-09 ;  4(r/L*)^2 = 1e-4 at r = 0.1200 pc = 2.475e+04 AU
+K15  PASS value=margin=6.13e+08  alpha1(160AU)=4.18e-09      thr=>1e8 ; <1e-8 the Solar System gate survives by 6e8 at 1 AU and by 2e8 at 160 AU
+     psi(1 AU) = 2p0/r = 3.8582e-18 kg/m^3 ; Phi_P(1 AU) = 3.620969e-05 m^2/s^2 ; A22 (GM/L*^2)r = 3.620970e-05 ; rel 1.4e-07
+K16  PASS value=rel=1.4e-07                                  thr=<1e-6        A22's a_P = GM/L*^2 is unchanged by the galactic background
+     a_P = 2.4205e-16 m/s^2 = 2.769e-07 a_Pioneer ; 2w^2 a_P = 7.334e-22 m/s^2 ; alpha_1(20AU)=6.529e-11 alpha_1(70AU)=7.998e-10
+     max preferred-frame acceleration at 70 AU = 1.467e-21 m/s^2 ; Pioneer thermal residual 1.330e-10 = 9.1e+10 x larger
+K17  PASS value=a_P/a_Pio=2.77e-07 ; w2 signal=1.47e-21      thr=<1e-6 ; <1e-19 no Pioneer-level preferred-frame anomaly: the P signal is 1e11 below the thermal residual
+     gradient/mass ratio at 20 AU = 1.329e+10 ; at 70 AU = 1.085e+09 ; at 1 AU = 5.317e+12
+K18  PASS value=grad/mass(70AU)=1.09e+09  u_sun/a0=2.586e-06 thr=>1e8         near-a0 local accelerations do not slave the P field: gradients dominate by 1e9
+K19  PASS value=max u/a0 = 0.566109                          thr=< 1          u_total = 0.566 a0 is 43% below the cap everywhere in the Solar System
+K20  PASS value=u_sun/u_gal=4.57e-06 ; |a1(1AU)|=1.63e-13    thr=established ; survives the number that decides: |alpha_1(1 AU)| = 1.6e-13 = 6.1e8 below the bound
+
+--------------------------------------------------------------------------------------------------------------
+SENSITIVITY
+--------------------------------------------------------------------------------------------------------------
+  L* =  24.0 pc : u_sun/a0 = 2.586e-06   alpha_1(1AU) = -1.632e-13   margin = 6.13e+08
+  L* =  40.0 pc : u_sun/a0 = 9.309e-07   alpha_1(1AU) = -5.876e-14   margin = 1.70e+09
+  L* =  90.0 pc : u_sun/a0 = 1.839e-07   alpha_1(1AU) = -1.161e-14   margin = 8.62e+09
+  a0 footing: canonical u_gal/a0 = 0.5661, u_sun/u_gal = 4.568e-06 ; theory u_gal/a0 = 0.4681
+  alpha_1(1 AU) is a0-independent: it is fixed by r/L* alone.
+
+==============================================================================================================
+A60 COMPLETE: 20/20 checks PASS.
+==============================================================================================================
+VERDICT
+  The Sun's P configuration IS established, in the two-scale expansion:
+    P = Pbar(galactic, u = 0.566 a0, outward from the Galactic Centre)
+        + pi(solar hedgehog, u = 2.59e-6 a0, radial, constant to 1 pc,
+             screening lengths 7.4 pc (longitudinal) / 11.2 pc (transverse)).
+    The nonlinearity is controlled by eps_2 = u_sun/u_gal = 4.6e-6: amplitude
+    composition fails at O(eps_2^2) = 2e-11, and the full nonlinear solve
+    moves the profile by <= 9e-7.
+  The Solar System gate SURVIVES the embedding:
+    |alpha_1(1 AU)| = 1.63e-13, i.e. 6.1e8 below 1e-4.
+  The embedding moves alpha_1 by 5e-8 relative (1e-20 absolute): A22's
+  isolated-Sun solution was adequate for alpha_1.  A36's K12 "2.19e5 mismatch"
+  is the small parameter of the expansion, not a contradiction.
+  NO Pioneer-level preferred-frame anomaly: the largest signal is
+  7e-22 to 1.5e-21 m/s^2, ~1e11 below the thermal-recoil residual
+  1.33e-10 m/s^2.
+wrote a60_results.json

@@ -1,0 +1,186 @@
+{
+ "qumond_rho_panc_over_rbarc": -89.31478087192934,
+ "qumond_rho_axis_kgm3": 1.1383400357443331e-24,
+ "qumond_rho_panc_kgm3": -2.0131788256940545e-25,
+ "qumond_deep_vs_full": 1.000109732205916,
+ "qumond_col_neg": -3.471094607385282,
+ "qumond_col_net": -2.3664106404996486,
+ "qumond_col_pos": 1.1046839668856334,
+ "qumond_col_neg_short": -0.016408442225763098,
+ "qumond_col_neg_A6quad": -3.528862367450728,
+ "qumond_col_net_A6quad": -2.4241784005467903,
+ "qumond_quad_convergence": [
+  -3.4710946074607896,
+  -3.471094607385282,
+  -3.4710946073791877
+ ],
+ "aqual_C02": -0.24126758888762212,
+ "aqual_S_ladder": [
+  -0.23458084349578723,
+  -0.23505981706006668,
+  -0.23525954264727839
+ ],
+ "aqual_S_inf": -0.2354023917042561,
+ "aqual_S_sigma": [
+  -0.23426378235126025,
+  -0.23563482422476661
+ ],
+ "err_budget": {
+  "convergence": 0.002,
+  "cusp": 0.014,
+  "source": 0.006,
+  "code": 0.0059572944349154675
+ },
+ "aqual_S_consensus": -0.23068425402271214,
+ "aqual_S_err": 0.0038009692489795353,
+ "U_SIG_A6": 12.42929126962914,
+ "U_SIG_A13": 12.42929126962914,
+ "config_ratio": 1.0,
+ "own_completion_ratio": 1.210604081619647,
+ "conversion_table": {
+  "A6_AQUAL_canonical": 2.867241784565407,
+  "A6_AQUAL_alt": 3.1503993878894194,
+  "A6_QUMOND_canonical": 3.471094607385282,
+  "A6_QUMOND_alt": 3.8138863577109685,
+  "A13_AQUAL_canonical": 2.195579515513699,
+  "A13_AQUAL_alt": 2.412406375692283,
+  "A13_QUMOND_canonical": 2.657977523001371,
+  "A13_QUMOND_alt": 2.920469004938337
+ },
+ "clip_effect": -0.007942796408470842,
+ "final_Msun_pc2": 2.867241784565407,
+ "final_err": 0.04724335390247017,
+ "final_alt": 3.1503993878894194,
+ "checks": [
+  {
+   "id": "K1",
+   "pass": true,
+   "value": "-89.3",
+   "threshold": "-89.3 +-0.5%",
+   "note": "A6's -89.3 reproduced from the analytic QUMOND density"
+  },
+  {
+   "id": "K1b",
+   "pass": true,
+   "value": "1.0001",
+   "threshold": "1 +-1%",
+   "note": "the deep limit nu-1 = sqrt(a0/gN) reproduces the full nu at the saddle: y = 8.78e-04"
+  },
+  {
+   "id": "K2",
+   "pass": true,
+   "value": "1.1047",
+   "threshold": "1.105 +-1%",
+   "note": "the positive part of the column agrees with A6 exactly"
+  },
+  {
+   "id": "K3",
+   "pass": true,
+   "value": "-3.4711",
+   "threshold": "-3.529 +-3%",
+   "note": "negative part agrees with A6 to 1.7%%; the residual is A6's uniform trapezoid failing to resolve the r^-1/2 cusp at the null"
+  },
+  {
+   "id": "K3b",
+   "pass": true,
+   "value": "-3.5289",
+   "threshold": "-3.529 +-0.5%",
+   "note": "A6's arithmetic is exact: its uniform trapezoid reproduces its own 3.529; the cusp-aware integral gives -3.4711, so 1.7% of 3.529 is trapezoid error on r^-1/2"
+  },
+  {
+   "id": "K3c",
+   "pass": true,
+   "value": "-3.47109 vs -3.47109",
+   "threshold": "1e-4",
+   "note": "the cusp-aware column is quadrature-converged"
+  },
+  {
+   "id": "K4",
+   "pass": true,
+   "value": "2.24e-04 / 2.83e-04",
+   "threshold": "< 2e-3 / 5e-3",
+   "note": "third solver reproduces the exact deep-MOND sphere (g = sqrt(GMa0)/r, rho = sqrt(GMa0)/(4 pi G r^2))"
+  },
+  {
+   "id": "K5",
+   "pass": true,
+   "value": "-0.24127",
+   "threshold": "-0.24036 +-1%",
+   "note": "independent solver reproduces A13's mid-plane density at 0.2d"
+  },
+  {
+   "id": "K6",
+   "pass": true,
+   "value": "-0.23540",
+   "threshold": "-0.22931 +-4%",
+   "note": "independent solver reproduces A13's converged column to 2.6%%"
+  },
+  {
+   "id": "K7",
+   "pass": true,
+   "value": "-0.07%",
+   "threshold": "< 0.3%",
+   "note": "the column does not depend on the box: the outer BC is not driving it"
+  },
+  {
+   "id": "K14",
+   "pass": true,
+   "value": "-1.36%",
+   "threshold": "< 3%",
+   "note": "the column moves by 1.4%% when the axis spacing is refined 4x: the r^-1/2 cusp at the null is the residual systematic and it is carried in the error bar"
+  },
+  {
+   "id": "K15",
+   "pass": true,
+   "value": "0.01%",
+   "threshold": "< 0.5%",
+   "note": "the full mu = x/(1+x) reproduces the deep solve: y at the saddle is 8.8e-04, so mu differs from x by 0.09%"
+  },
+  {
+   "id": "K8",
+   "pass": true,
+   "value": "0.58%",
+   "threshold": "< 1%",
+   "note": "the column is independent of the lens core size (0.03-0.12 d): the pancake integral does not see the core"
+  },
+  {
+   "id": "K9",
+   "pass": false,
+   "value": "1.2382",
+   "threshold": "1.6345 +-3%",
+   "note": "the whole 1.5x is (M_b,d) configuration x completion: 1.306 x 1.239 = 1.618"
+  },
+  {
+   "id": "K10",
+   "pass": true,
+   "value": "1.2106 vs 1.2382",
+   "threshold": "agree within 6%",
+   "note": "two independent estimates of the QUMOND/AQUAL amplitude ratio"
+  },
+  {
+   "id": "K13",
+   "pass": true,
+   "value": "-89.3 vs -89.1",
+   "threshold": "< 1%",
+   "note": "the two lanes agree on the cold density at 0.2d: the normalisation is NOT the discrepancy"
+  },
+  {
+   "id": "K11",
+   "pass": true,
+   "value": "-0.79%",
+   "threshold": "< 2%",
+   "note": "the two 'missing depth' definitions (with and without the cosmic mean) differ by < 2%"
+  },
+  {
+   "id": "K12",
+   "pass": true,
+   "value": "2.867",
+   "threshold": "2.7 - 3.1",
+   "note": "the QUMOND value 3.529 must be replaced by the AQUAL value at the stated configuration"
+  }
+ ],
+ "n_pass": 17,
+ "n_total": 18,
+ "runtime_s": 65.22002482414246,
+ "mutate": true
+}

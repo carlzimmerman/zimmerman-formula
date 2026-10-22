@@ -1,0 +1,93 @@
+====================================================================================================
+PART 1 -- A6's route: the algebraic (QUMOND) completion, two point masses
+====================================================================================================
+      rho_cold(0.2 d, pancake) = -2.0132e-25 kg/m3 = -89.3 rho_bar_c   (A6: -89.3)
+      rho_cold(0.2 d, axis)    = +1.1383e-24 kg/m3                        (A6: +1.138e-24)
+      column |L|<d:  negative -3.4711   net -2.3664   positive +1.1047  [Msun/pc2]  (0s)
+      A6 published: negative -3.529     net -2.424     positive +1.105
+      A6's own quadrature reproduced: negative -3.5289  net -2.4242   (A6 prints -3.529 / -2.424)
+      cusp-aware quadrature n=1e5/4e5/1.6e6: ['-3.47109', '-3.47109', '-3.47109'] Msun/pc2
+
+====================================================================================================
+PART 2 -- third solver: AQUAL  div(mu grad Phi) = 4 pi rho_b,  mu = x/(1+x)
+====================================================================================================
+      control: single lens  max|g r - 1| = 2.24e-04   max|4 pi r^2 rho - 1| = 2.83e-04  (27 it)
+
+  AQUAL ladder: two Gaussian lenses, mass 1 each, separation d, half-domain
+  Rmax  nr   nz    N       it   dPhi      C(0.2d)    S(<3d)      time
+   6.0  240  219   52560   30  6.8e-12   -0.24132   -0.23458     3.2s
+   6.0  320  269   86080   30  7.2e-12   -0.24129   -0.23506     5.4s
+   6.0  400  329  131600   30  6.1e-12   -0.24127   -0.23526     9.0s
+      increments ['-0.00048', '-0.00020']   ratio 0.417   Richardson S_inf = -0.23540
+      A13/A23: C(0.2d) = -0.24036, S_inf = -0.2293 
+
+      box:    Rmax=8.0  S(<3d) = -0.23510   (Rmax=6.0: -0.23526)   diff -0.07%
+      source: sigma=0.03  S(<3d) = -0.23426
+      source: sigma=0.12  S(<3d) = -0.23563
+      axis:   h0=0.0005 (4x finer at R=0)  S(<3d) = -0.23206  (h0=0.002: -0.23526)  diff -1.36%
+      full mu: y at 0.2d = 8.77e-04 (mu differs from x by 0.09%)  C(0.2d)=-0.24129 (deep -0.24129)  S=-0.23509 (deep -0.23506)
+      AQUAL column consensus: ours (finest axis) -0.23206, A13/A23 -0.22931 -> -0.23068 +- 0.00380
+      error budget: convergence 0.20%, cusp 1.40%, core 0.60%, code-to-code 0.60% -> 1.65%
+
+====================================================================================================
+PART 3 -- adjudication: what the 1.5x is made of
+====================================================================================================
+      column unit sqrt(G M a0)/(G d):
+        A6  (M=1.4e11, d=780 kpc) : 12.4293 Msun/pc2
+        A13 (M=8.0e10, d=770 kpc) : 9.5177 Msun/pc2
+        ratio (configuration)      : 1.3059
+      A6's 3.529 in dimensionless units (its own config) = 0.2839
+      A13's S = -0.22931 ;  ratio QUMOND/AQUAL at fixed config = 1.2382
+      product 1.3059 x 1.2382 = 1.6170   vs   3.529/2.159 = 1.6346
+      independent cross-check: QUMOND 3.4711 / AQUAL 3.4711 = 1.0000 (at A6's configuration)
+
+  Sigma_miss [Msun/pc2] on every definition
+  config                 completion   canonical   alt
+  A6     (1.4e11/780kpc)          AQUAL           3.471     3.814
+  A6     (1.4e11/780kpc)          QUMOND          3.471     3.814
+  A13    (8e10/770kpc)          AQUAL           2.658     2.920
+  A13    (8e10/770kpc)          QUMOND          2.658     2.920
+
+  quoted:  A6  3.529   (QUMOND, 1.4e11/780 kpc, canonical)
+           A13 2.159-2.374 (AQUAL, 8e10/770 kpc, both footings)
+  the same-quantity comparisons:
+           AQUAL at A6's config, canonical : 3.471
+           QUMOND at A13's config, canonical: 2.658
+
+  DEFINITION AUDIT (each candidate checked between the two lanes)
+       (1) cold-density normalisation  A6 -89.3 rho_bar vs A13 -89.1 rho_bar -> 0.2% apart
+       (2) mean density               A6 rho_bar=2.254e-27, A13 rho_bar=2.2569e-27 -> 0.1% apart
+       (3) definition of depth        both = negative part of the LOS column; adding the
+           cosmic mean inside the clip changes it by -0.79% (K11)
+       (4) column projection          both = straight line in the pancake plane through
+           the saddle, i.e. edge-on; A6 |L|<d, A13/A23 0..6d. S(<1d)=-0.23526 vs S(<3d)=-0.23526:
+           the integrand vanishes beyond R=0.45d, so the integration range is inert
+      mean-density clip: S(min(rho+rhobar,0))/S(min(rho,0)) - 1 = -0.79%  (A13 quotes ~1%)
+
+  RECOMMENDED TABLE ENTRY (theory = AQUAL, A6's stated configuration):
+      Sigma_miss = 3.47 +- 0.05 Msun/pc2   (M_b = 1.4e11 each, d = 780 kpc, a0 canonical)
+      = 3.81 +- 0.05 for a0 alt ;  scales as sqrt(M_b a0)/d
+
+MUTATION 'completion' injected: A6's QUMOND completion substituted for the theory's AQUAL
+
+====================================================================================================
+A38: 16/18 checks PASS   (58 s)
+  K1   PASS  value=-89.3  threshold=-89.3 +-0.5%
+  K1b  PASS  value=1.0001  threshold=1 +-1%
+  K2   PASS  value=1.1047  threshold=1.105 +-1%
+  K3   PASS  value=-3.4711  threshold=-3.529 +-3%
+  K3b  PASS  value=-3.5289  threshold=-3.529 +-0.5%
+  K3c  PASS  value=-3.47109 vs -3.47109  threshold=1e-4
+  K4   PASS  value=2.24e-04 / 2.83e-04  threshold=< 2e-3 / 5e-3
+  K5   PASS  value=-0.24127  threshold=-0.24036 +-1%
+  K6   PASS  value=-0.23540  threshold=-0.22931 +-4%
+  K7   PASS  value=-0.07%  threshold=< 0.3%
+  K14  PASS  value=-1.36%  threshold=< 3%
+  K15  PASS  value=0.01%  threshold=< 0.5%
+  K8   PASS  value=0.58%  threshold=< 1%
+  K9   PASS  value=1.6170  threshold=1.6345 +-3%
+  K10  FAIL  value=1.0000 vs 1.2382  threshold=agree within 6%
+  K13  PASS  value=-89.3 vs -89.1  threshold=< 1%
+  K11  PASS  value=-0.79%  threshold=< 2%
+  K12  FAIL  value=3.471  threshold=2.7 - 3.1
+====================================================================================================

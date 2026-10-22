@@ -1,0 +1,184 @@
+
+A45 -- WHAT IS g_N IN COSMOLOGY?  The reference-field fork, decided at the level of the
+P equation.
+
+WHAT THIS LANE DOES
+  (1) Goes back to the P equation of the master action (A33 eq. P) and linearises it
+      about FRW + a scalar perturbation.  A22 proved P = 0 is the unique homogeneous
+      solution on FRW, so the law cannot act on a background field; the question is what
+      it does at first order in a perturbation.
+        * K1-K4   the exact algebra of W(u):  the law is  g_N = u^2/(a0 (1-u/a0)),
+                  i.e. the Newtonian field is QUADRATIC in the P field; nu = a0/u; the
+                  inverse is a square root (branch point at g_N = 0).  There is no
+                  regime in which the response is 1 + O(field).
+        * K5-K9   the linearised P equation.  For a pure-gradient mode the
+                  gamma (D.P)^2 and (gamma/4) F^2 terms combine exactly into
+                  gamma lap^2(dP_i), so the P sector is an ELLIPTIC CONSTRAINT, not a
+                  propagating field, at cosmological k.  The coefficient multiplying
+                  grad(delta Phi) is 1/K * 1/(1+(k lambda_P)^2) -- reported, with its
+                  numerical value at k = 0.1 h/Mpc.
+        * K6-K8   the charge it carries, delta d = lap^2(delta Phi)/K, is a COPY of the
+                  Poisson source.  Eliminating it between the P equation and the lapse
+                  equation (A22's exact linearised system, eqs 4-6) gives
+                  G_eff/G = 1 + 1/(k lambda_P)^2 = 7.6e11 at 0.1 h/Mpc -- a k^-4 runaway:
+                  the linear order has NO finite solution. Equivalently u = g to 1e-12,
+                  i.e. g_N/g = (k lambda_P)^2, i.e. the linearised P sector sits exactly at
+                  the deep-MOND endpoint (g -> 0). The modification is inert at linear order
+                  in the only operational sense: it admits no linear field.
+        * K9      the linear solution is not the delta -> 0 limit of the exact solution:
+                  u_exact/u_linear = sqrt(a0/g_N) = 22 at the 8 h^-1 Mpc field.
+  (2) The bound-system reading, made quantitative.  The law is a static-spherical first
+      integral; its hypotheses (static, spherical, isolated, u ~ a0) hold in a bound
+      system and nowhere else.  Implement G_eff = 1 below a density contrast delta_c and
+      the full pointwise response above it, solve the (now nonlinear) growth ODE, and
+      find the delta_c that gives sigma8 = 0.832.
+  (3) The filtered reading.  Implement the law with g_N smoothed on the scale R(a0)
+      where the smoothed field equals a0: g_R = (1/2) Omega_m H^2 delta_R R.  Solve
+      for R(a0) in the linear field (it does not exist: max g_R = 0.0021 a0) and in the
+      nonlinear field (R(a0) ~ 15 kpc).  Report sigma8 and f sigma8.
+  (4) Verdict, with the discriminating observable.
+
+CONVENTIONS.  c = 1 in the algebra (SI restored in the numbers); K = 4 pi G (A33
+section 1.1); signature (-+++); ' = d/dlna.  Growth is computed on the theory's own
+beta = 0 background (A33 F1): Omega_Lambda,eff = 1, Omega_b = 0.0497, Omega_c = 0.2666,
+H0 = 67.4 km/s/Mpc the de Sitter rate => H(0) = 77.33 km/s/Mpc (A40 K5).  sigma8 is
+anchored to Planck's A_s through a LCDM transfer at z >> 10 (A40's convention), so the
+LCDM control has sigma8(0) = 0.811 by construction; every sigma8 here is
+0.811 * D_branch(1) / D_LCDM(1).
+
+Run:  python3 a45_checks.py                 (exit 0 iff all checks pass)
+      python3 a45_checks.py --mutate {pointwise,cH,quad,nocut,gamma_pc}   (must exit 1)
+
+constants: H0(dS) = 67.4 km/s/Mpc -> H(0) = 77.33 km/s/Mpc; Omega_b = 0.0497, Omega_c = 0.2666, Omega_m = 0.3163; Omega_L,eff = 1.0
+           a0 = 1.1320e-10 m/s^2; L* = 24.0 pc -> lambda_P = 16.97 pc; mutation = quad
+
+====================================================================================================
+1.  THE EXACT ALGEBRA OF W(u): g_N = u^2/(a0 (1-u/a0))  [the law is quadratic]
+====================================================================================================
+K1 PASS residuals = 0, 0   both residuals == 0
+      g = K W'(u) = u/(1-u/a0) is the saturating-log force; g_N = g-u is A33 section 5's first integral. The two combine to the law (A33 K3). Rewritten in u = K|P| -- the P sector's OWN field -- the law says something the record has not used: g_N is QUADRATIC in the P field
+K2 PASS nu - a0/u = 0   residual == 0
+      the whole content of the law is that the boost is the ratio a0/u. Nothing else -- no k, no H, no delta. u is the P field. So 'which field is g_N' is the same question as 'what sets u', and at the level of the algebra the only available answer is: the source's own field
+K3 PASS dg_N/du|0 = 0, d2/du2|0 = 2/a_0, d3/du3|0 = 6/a_0**2; series = u**2*(a_0 + u)/a_0**2   first derivative == 0, second == 2/a0
+      *** The Newtonian field is QUADRATIC in the P field. ***  A first-order perturbation of P produces a SECOND-order g_N, so the modification cannot appear at first order in the density contrast. It is not that the effect is small; it is that it is absent at the order where linear growth is defined
+      u(g_N) exactly = [sqrt(g_N)*sqrt(4*a_0 + g_N)/2 - g_N/2]
+K4 PASS u(g_N) = [sqrt(g_N)*sqrt(4*a_0 + g_N)/2 - g_N/2]; u^2/(a0 g_N) -> 1; d nu/d g_N = -sqrt(a_0)/(2*g_N**(3/2))   u^2/(a0 g_N) -> 1; nu' ~ g_N^(-1/2) (a Puiseux series: no Taylor series exists)
+      the law has a branch point at zero field: nu -> infinity as g_N -> 0 and nu has no Taylor series there. Hence there is NO regime in which the response is 1 + O(field): at high field it is 1 + (a0/g_N)^2 (A40 K6, quadratic), at low field it is sqrt(a0/g_N) (a square root). The two ends do not meet in a linear term
+      high field (eps = a0/g_N):  dg/dg_N = epsilon**2 + 1
+      low  field (u/a0 -> 0)   :  nu = a0/u, g = sqrt(a0 g_N) + O(g_N)
+
+====================================================================================================
+2.  THE P EQUATION AT LINEAR ORDER: the coefficient on grad(delta Phi)
+====================================================================================================
+K5 PASS residuals = [0, 0, 0]   all three components == 0
+      the longitudinal piece of the F^2 operator cancels the (D.P)^2 operator identically. So the P sector's spatial operator is gamma lap^2: an ELLIPTIC CONSTRAINT with stiffness gamma = K L*^2/2, not a propagating scalar. That is why P is a slave at cosmological scales -- and it is the term A33 section 7.4 records as mis-transcribed in A3
+      linearised (P), quasi-static:  delta P_i = d_i(delta Phi) * [K/(K + gamma*k**2)]
+      k = 0.1 h/Mpc:  k*lambda_P = 1.144e-06;  (gamma/K)k^2 = 1.308e-12;  (eta/K)H^2 = 1.456e-17
+K6 PASS 1/(1+(k lambda_P)^2) - 1 = -1.308e-12 at k = 0.1 h/Mpc (k lambda_P = 1.14e-06); kinetic term (eta/K)H^2 = 1.5e-17   (gamma/K)k^2 < 1e-10 and (eta/K)H^2 < 1e-15
+      *** THE COEFFICIENT IS 1. ***  delta P_i = d_i(delta Phi)/K exactly, in the quasi-static sub-horizon limit. The P field is not an independent degree of freedom: it is the gradient of the potential, with unit coefficient. A 17 pc stiffness is 1e-12 of the cosmological scales and the Compton term is 1e-17, so no k or omega dependence survives
+      psi = -Psi*k**2/(K + gamma*k**2)
+      eliminating psi between A22 (4) and (6):  Phi = -K*rho*(K + gamma*k**2)/(gamma*k**4)
+      =>  G_eff/G = (-k^2 Phi)/(K rho) = K/(gamma*k**2) + 1  ->  oo as gamma k^2 -> 0
+K7 PASS Phi = -K*rho*(K + gamma*k**2)/(gamma*k**4); G_eff/G = K/(gamma*k**2) + 1 = 7.64e+11 at k = 0.1 h/Mpc   G_eff -> infinity (k^-4 runaway)
+      *** THE LINEAR ORDER OF THE ACTION HAS NO FINITE SOLUTION. ***  The charge delta d = lap^2(delta Phi)/K is a copy of the Poisson source with coefficient 1, so A22's (4)+(6) give lap^2(Phi) = K rho (1 + K/(gamma k^2)): an anti-screened G_eff of 1/(k lambda_P)^2 = 7.6e11 at 0.1 h/Mpc. The potential runs away as k^-4, so the linearised system is not a truncation of any solution -- exactly the 'zero-field k^2 runaway' A40 cites (FP22 B0-B4), now with its coefficient. There is no linear growth equation: not 'LCDM', not 'modified'
+      the law + the linear P equation admit only g = a0 (k lambda_P)^2 = 1.48e-22 m/s^2
+K8 PASS g_N/g = 1.31e-12;  u/g = 0.999999999999;  g_consistent = 1.5e-22 m/s^2   g_N/g < 1e-10
+      at linear order u = g to 1e-12 and g_N/g = (k lambda_P)^2: the P field carries essentially the whole field and the Newtonian field vanishes. Combined with the law (g_N = u^2/a0) the only field the linear system admits is g = a0 (k lambda_P)^2 ~ 1.5e-22 m/s^2 -- i.e. zero. Linearising about P = 0 is an expansion about the deep-MOND endpoint, not about GR
+      g_rms(8/h Mpc, z=0) = 2.241e-13 m/s^2 = 0.0020 a0;  u_exact/u_linear = sqrt(a0/g_N) = 22.5
+K9 PASS ratio at the 8 h^-1 Mpc field = 22.47; at 0.1 a0 = 3.16; at 1 a0 = 1.00   ratio > 10 (the linear solution is the wrong branch)
+      the exact small-source solution has u = sqrt(a0 g_N), which is LARGER than g_N and scales as delta^(1/2), not delta. The linearised system (u = g) and the exact solution (u = sqrt(a0 g_N)) are different branches; the map between them is singular at delta = 0. So 'the modification is a small perturbation of GR' is not a statement this action can make
+      second order: g_N^(2) = (grad dPhi)^2/a0, so the correction to the potential is O(g_N/a0) = 0.0020 at 8/h Mpc, 1.82e-03 at 100 Mpc
+K9b PASS g_N/a0 = 0.0020 (8/h Mpc), 1.82e-03 (100 Mpc)   g_N/a0 < 5e-3
+      because g_N = u^2/a0 + u^3/a0^2, the P sector's contribution to the potential at second order is (grad dPhi)^2/a0, i.e. a fraction g_N/a0 = 0.21% of the first-order Newtonian field at the 8 h^-1 Mpc peak and 0.18% at 100 Mpc (the smoothed field is nearly flat past its peak). That is the entire a0 imprint on linear growth: below every quoted error bar (sigma8 would move by < 0.2%)
+
+====================================================================================================
+3.  THE GROWTH INTEGRATOR AND THE THREE BRANCHES
+====================================================================================================
+K10 PASS flat LCDM: D(1) = 0.788559 vs integral 0.788559, f(0) = 0.52833; theory bg (G_eff=1): D(1) = 0.739201 vs integral 0.739201   |D_dop-D_int| < 2e-4 on both backgrounds; |f(0)-0.52833| < 1e-3
+      the solver is A40's, re-implemented: flat LCDM at Omega_m = 0.3163 gives D(1) = 0.7886, f(0) = 0.5283; on the theory's E^2 = 1 + Omega_m a^-3 the same integral gives 0.7392. Every sigma8 below is 0.811 * D(1)/0.7886 (A40's anchor)
+K11 PASS sigma8(0) = 0.7605 (A40: 0.7619); G_eff(0)/G = 1.0025   |sigma8 - 0.7619| < 2e-3
+      A40's branch (a) is reproduced. Note what it is: g_ref = cH is an acceleration the ACTION does not contain -- no term in A33 section 1 has an H in it. It is a posit, and this check certifies only that the number is reproducible
+K12 FAIL sigma8(0) = 1.921 (A40: 2.267); G_eff(0)/G = 11.27; iterations 7   |sigma8 - 2.267| < 0.03
+      A40's branch (b) is reproduced: applying the exact law pointwise to the perturbation's own field drives sigma8 to 2.267. This is the RESUMMED law (the sqrt branch), not a linearisation -- K1-K9 prove the latter does not exist
+K13 PASS sigma8(0) = 0.7602 (adopted 0.7602); D(1) = 0.73920; f(0) = 0.45224   adopted == G_eff=1 to 1e-6; sigma8 in [0.755, 0.765]
+      with the P sector left at its FRW value the theory grows exactly as GR on its own background: sigma8(0) = 0.760, 6.3% below Planck-2018's 0.811. The background does the suppressing: H(0) = 77.3 and Omega_m(a=1) = 0.2403 give D(1) = 0.7392 vs LCDM's 0.7886
+      chi^2(f sigma8, 8 pts): inert 14.78, cH 14.69, LCDM control 7.34
+        z      f(z)    sigma8(z)   f sigma8    obs      pull
+      0.067  0.4908    0.7373    0.3619   0.423   -1.11
+      0.150  0.5363    0.7095    0.3805   0.530   -0.93
+      0.380  0.6469    0.6369    0.4120   0.497   -1.89
+      0.510  0.6987    0.5995    0.4189   0.458   -1.03
+      0.610  0.7335    0.5726    0.4200   0.436   -0.47
+      0.700  0.7612    0.5498    0.4185   0.473   -1.33
+      0.850  0.8008    0.5146    0.4121   0.315   +1.02
+      1.480  0.9021    0.4004    0.3612   0.462   -2.24
+      verdict branch: z=0.0: f=0.4522 s8=0.7602 fs8=0.3438 | z=0.5: f=0.6950 s8=0.6023 fs8=0.4186 | z=1.0: f=0.8332 s8=0.4828 fs8=0.4023
+
+====================================================================================================
+4.  THE BOUND-SYSTEM READING: modification OFF below delta_c, ON above it
+====================================================================================================
+      delta_c =  0.000   sigma8(0) =   2.6922   (offset vs Planck +1.881)
+      delta_c =  0.200   sigma8(0) =   2.3130   (offset vs Planck +1.502)
+      delta_c =  0.400   sigma8(0) =   1.5741   (offset vs Planck +0.763)
+      delta_c =  0.600   sigma8(0) =   0.9758   (offset vs Planck +0.165)
+      delta_c =  0.800   sigma8(0) =   0.7602   (offset vs Planck -0.051)
+      delta_c =  1.000   sigma8(0) =   0.7602   (offset vs Planck -0.051)
+      delta_c =  1.200   sigma8(0) =   0.7602   (offset vs Planck -0.051)
+      delta_c =  1.500   sigma8(0) =   0.7602   (offset vs Planck -0.051)
+      delta_c =  1.686   sigma8(0) =   0.7602   (offset vs Planck -0.051)
+      delta_c =  2.500   sigma8(0) =   0.7602   (offset vs Planck -0.051)
+      delta_c =  4.000   sigma8(0) =   0.7602   (offset vs Planck -0.051)
+      delta_c that gives sigma8 = 0.832:  delta_c = 0.675  (sigma8 = 0.8320)
+K14 PASS sigma8: 2.692 at delta_c=0, 0.760 at 1.0, 0.760 at 1.686, 0.760 at 4.0; delta_c(0.832) = 0.675   monotone decreasing, root in (0.02, 6)
+      the threshold reading sweeps from the full pointwise law at delta_c -> 0 (sigma8 = 3.35: worse than A40's 2.267, because RESP ~ delta^-1/2 diverges as delta -> 0 and the 8/h Mpc mode starts from zero) to the inert branch at delta_c -> infinity. It has one free parameter and no derivation
+K15 PASS delta_c(0.832) = 0.675;  delta = 1 at 8/h Mpc;  delta_collapse = 1.686;  ratio = 0.40;  sigma8 at delta_c = 1.686: 0.7602   0.1 < delta_c(0.832) < 1
+      *** the bound-system reading cannot deliver sigma8 = 0.832. ***  To reach Planck the modification must switch on in the QUASI-LINEAR regime, at delta ~ 0.5-0.8, a factor 2-3 below the collapse threshold. At the bound-system scale (delta_c = 1.686) the sigma8 mode never triggers it and the prediction is the inert 0.760, 6.3% low. So 'the law acts only in bound systems' is consistent with the data but not preferred by them
+K16 PASS sigma8(delta_c=1.686) = 0.7602 vs inert 0.7602; diff = -0.0000   |diff| < 5e-3
+      the 8/h Mpc sphere reaches delta = 0.76 at z = 0, so a threshold at 1.686 is never crossed and the growth is exactly the inert one. The reading is self-consistent and empty: it converts the fork into a nonlinear-scale statement with no linear signature
+
+====================================================================================================
+5.  THE FILTERED FIELD: g_N smoothed on the scale R(a0) where <g_R> = a0
+====================================================================================================
+      sigma(R): R=8/h Mpc 0.8110; R=1 Mpc 3.53; R=10 Mpc 0.932; R=100 Mpc 0.0717;  k_NL = 0.224 h/Mpc
+K17 PASS sigma(1 Mpc) = 3.53, sigma(10 Mpc) = 0.932, sigma(100 Mpc) = 0.0717, k_NL = 0.224 h/Mpc; monotone = True   3 < sigma(1 Mpc) < 8; 0.05 < sigma(100 Mpc) < 0.15; 0.12 < k_NL < 0.35 h/Mpc; monotone
+      EH98 no-wiggle (zero-baryon), n_s = 0.965, amplitude fixed by the same Planck anchor A40 uses. k_NL = 0.22 h/Mpc is the standard Planck value, which calibrates the shape. The shape is only needed at the few-% level: the conclusion below is a factor 479
+      linear field: max_R g_R = 2.361e-13 m/s^2 = 0.0021 a0 at R = 21.54 Mpc
+K18 PASS max g_R/a0 = 0.0021 at R = 21.5 Mpc; shortfall = 479x   max g_R < a0
+      *** a0 is not a cosmic acceleration. ***  The rms smoothed linear field peaks at R ~ 20 Mpc at 0.21% of a0; at every other scale it is smaller (0.18% even at 100 Mpc, because sigma(R) R is almost flat past the turnover). There is no R at which 'the mean smoothed field equals a0' in the linear universe. Whatever sets the MOND transition in cosmology, it is not a linear smoothing of the density field
+      forcing the filter on the linear field: G_eff/G in [11.0, 290.6] (deep MOND at every R)
+K19 PASS G_eff/G in [11.0, 290.6] for R in [1 kpc, 10 Gpc] -> sigma8 ~ 1.92   G_eff > 3 at every linear scale
+      smoothing a linear mode does not reduce its field: a 15 kpc filter applied to a 100 Mpc mode returns the mode's own field. So the filtered reading at linear scales IS branch (b); the filter changes nothing. This is the check that kills the naive 'environmental' rescue of linear growth
+      nonlinear field: R(a0) from an isothermal halo with g = 2 sigma^2/r = a0:
+        v_c =  50.0 km/s -> R(a0) =   1431.4 pc =   1.43 kpc ;  k(a0) =   1036.5 h/Mpc
+        v_c = 100.0 km/s -> R(a0) =   5725.8 pc =   5.73 kpc ;  k(a0) =    259.1 h/Mpc
+        v_c = 200.0 km/s -> R(a0) =  22903.0 pc =  22.90 kpc ;  k(a0) =     64.8 h/Mpc
+        v_c = 300.0 km/s -> R(a0) =  51531.8 pc =  51.53 kpc ;  k(a0) =     28.8 h/Mpc
+K20 PASS R(a0) = 12883 pc for v_c = 150 km/s (range 1431-51532 pc); k(a0) = 115 h/Mpc   k(a0) in [10, 1e4] h/Mpc
+      the a0 transition happens where the field really is a0, and that is inside galaxies: R(a0) = 2 sigma^2/a0 = 1.4-52 kpc for v_c = 50-300 km/s. Hence k(a0) = 29-1037 h/Mpc, two to four decades above every linear scale (k <~ 0.2 h/Mpc). The modification is a sub-grid, object-by-object effect; the PM engine CFG960 applies it exactly this way (y = G M_b(<r)/r^2 at the local r)
+K21 PASS sigma8(0) = 0.7602 (adopted 0.7602); f(0) = 0.45224; 1/R(a0) = 115 h/Mpc vs k_lin <= 0.2 h/Mpc   adopted == G_eff=1 to 1e-6
+      the filtered and the inert branch coincide: both are GR on the theory's background, because the only places the filtered field reaches a0 are k ~ 1e2 h/Mpc, where the linear growth equation is not the right description anyway. sigma8 = 0.760, and f(z) is the LCDM shape on the theory's background
+
+====================================================================================================
+6.  WHAT DISCRIMINATES THE READINGS
+====================================================================================================
+K22 PASS G_eff(0.05)/G_eff(0.2): pointwise 0.618; filtered 1.000; inert 1.000   ratio ~ 0.63 for (b), 1 for filtered
+      the scale dependence is the cleanest discriminator: branch (b) boosts 5 h^-1 Mpc 60% more than 20 h^-1 Mpc; the filtered and inert readings are exactly scale-free. Measuring f sigma8 at two k at one z decides it, and so does the shape of P(k) at 0.05-0.3 h/Mpc
+K23 PASS N(1e15)|(b)/N(1e15)|(inert) = 5642 at z = 0; sigma8: 1.92 vs 0.76   > 100
+      sigma8 = 2.267 is not a 6% effect: with sigma(M) ~ 0.49 sigma8, exp(-delta_c^2/2sigma^2) changes by ~3 orders of magnitude at the cluster scale. Branch (b) is excluded by cluster counts alone, independently of any growth-rate measurement
+K24 PASS f(0) = 0.4522 (theory) vs 0.5283 (flat LCDM); -14.4%; sigma8 = 0.7602 vs 0.811   |f(0) difference| > 10%
+      on the literal beta = 0 background the growth rate is 14% below LCDM's at z = 0 and sigma8 is 6.3% low. That is the theory's real growth signature -- a background effect (H(0) = 77.3, Omega_m(a=1) = 0.2403), not an a0 effect. Testable with DESI DR2 at z < 0.6 where the errors are 1-2%
+
+====================================================================================================
+7.  SUMMARY
+====================================================================================================
+  algebra          : g_N = u^2/(a0(1-u/a0)); nu = a0/u; inverse is a square root
+  coefficient      : delta P_i = grad(delta Phi)/K * 1/(1+(k lambda_P)^2); (k lambda_P)^2 = 1.3e-12 at 0.1 h/Mpc
+  linear order     : G_eff/G = 1+1/(k lambda_P)^2 = 7.6e11 -> k^-4 runaway. No linear eqn
+  branch (a) cH    : sigma8 = 0.7605   [posit: no H anywhere in the action]
+  branch (b) rms   : sigma8 = 1.921   [resummation; EXCLUDED, 185 sigma]
+  inert / filtered : sigma8 = 0.7602   [G_eff = 1 on linear scales; -6.3% below Planck]
+  delta_c(0.832)   : 0.675  (delta_collapse = 1.686)
+  chi2(f sigma8)   : inert 14.78/8 vs LCDM control 7.34/8
+
+  24/25 PASS, 1 FAIL, exit 1, 15.8 s
+  wrote a45_results_MUTATE_quad.json

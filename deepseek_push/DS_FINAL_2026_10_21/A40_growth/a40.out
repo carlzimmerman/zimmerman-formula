@@ -1,0 +1,146 @@
+
+A40 -- LINEAR GROWTH FROM THE MASTER ACTION: the f(z), sigma8(z) observable the
+push has not computed, and the two forks that decide it.
+
+WHAT THIS LANE DOES
+  (1) Derives, exactly (sympy), the response of the canonical law
+          g_N = g^2/(g+a0)   <=>   g = (g_N/2)(1 + s),  s = sqrt(1 + 4 a0/g_N)
+      to a change of its source:  dg/dg_N = (1+s)^2/(4s)  [A4's D7],
+      identifies G_eff = G (dg/dg_N), and shows the response is a function of the
+      LOCAL Newtonian field alone -- no k, no derivative, no horizon scale.  The
+      growth equation of the theory in the quasi-static sub-horizon limit is then
+          delta'' + (2 + dlnH/dlna) delta' = (3/2) Omega_m(a) (G_eff/G) delta
+      and its a0 -> 0 limit is integrated and checked against the exact LCDM
+      growing mode (the integral solution of the same ODE).
+  (2) Integrates it on the theory's OWN background: A33's F1 with beta = 0,
+      Lambda_bare = 3 H0^2/c^2 (Omega_Lambda,eff = 1), Omega_c = 0.2666,
+      Omega_b = 0.0497.  Reports f(z) at z = 0, 0.5, 1, 1.5, 2 and sigma8(0).
+  (3) Scores it against the f sigma8 compilation on disk (8 points: 6dFGS,
+      SDSS MGS, BOSS DR12, eBOSS DR16, typed in
+      campaign_fresh_gravity/CFG4_cosmology.py with its bibliography) and
+      against the sigma8/S8 measurements on disk (KiDS-1000, KiDS-Legacy,
+      Planck 2018, DES Y3).  Reports chi^2 and N, and the size and direction of
+      every offset.
+  (4) THE FORK.  The cold sector is 5.3643 x the baryons and it gravitates.  Does
+      the law's dg/dg_N already carry it (so that adding rho_c double counts), or
+      not?  Three source branches are computed:
+         S  total matter in the source, one response   (a la A33 section 5)
+         A  baryons only in the source                 ("dg/dg_N already carries it")
+         C  baryons boosted + cold unboosted           (reciprocity reading)
+      and the action's own first integral is used to adjudicate.
+      A FOURTH fork, which dominates all of them, is computed too: the reference
+      field at which dg/dg_N is evaluated (cosmic cH(z) vs the perturbation's own
+      rms field).  The first is scale-free by construction; the second destroys
+      scale-independence and the fit.
+
+CONVENTIONS.  c = 1 except in the numbers; K = 4 pi G; signature (-+++).
+Every number printed here is written to a40_results.json.  No network, no fits.
+Units: k in h/Mpc, R in Mpc/h, masses in Msun where stated.
+
+Run:  python3 a40_checks.py            (15 checks, exit 0 iff all pass)
+      python3 a40_checks.py --mutate {quad,nocold,bgflat}   (must exit 1)
+
+constants: H0 = 67.4 km/s/Mpc (de Sitter rate, A33 K16); Omega_b = 0.0497, Omega_c = 0.2666, Omega_m = 0.3163; Omega_Lambda,eff = 1.0
+           a0(theory) = 1.1320e-10 m/s^2 (THEORY.md P3); a0(canonical) = 9.3600e-11
+           mode = none;  Sigma_m = 0.811 (Planck 2018 LCDM anchor)
+
+====================================================================================================
+1.  THE LAW AND ITS RESPONSE, EXACT (sympy)
+====================================================================================================
+K1 PASS residual = 0 (g_N-form), 0 (s-form)   residual == 0
+      g = (g_N/2)(1+s) with s = sqrt(1+4a0/g_N) inverts the law with no remainder; in the s variable the law is g = 2a0/(s-1), g_N = 4a0/(s^2-1)
+K2 PASS residuals = 0, 0   both residuals == 0
+      the chain rule on the exact inverse; no expansion used. This is A4's D7 eq. (19)
+K2b PASS max relative error = 2.93e-10   < 1e-8
+      this ties the analytic formula to the function the growth ODE actually calls; a rival interpolation (the n=2 quadrature law) fails it at the 10% level
+K3 PASS min = 1 at g_N->inf; d/ds = (s**2 - 1)/(4*s**2) > 0 for s>1; d/dg_N sign = -1; g_N->0 limit = oo   min == 1, derivative sign fixed, divergence at g_N=0
+      G_eff/G in [1,inf): Newtonian at high acceleration, divergent at zero field. The divergence is the deep-MOND square-root cusp A4 K11 flags
+K4 PASS k in free symbols of dg/dg_N: False; response depends on (g_N, a0) only   no k, no derivative, no H
+      the law is algebraic: g at a point depends on g_N at that point. Hence the growth source (3/2)Omega_m(a)(dg/dg_N)delta has no k-dependent coefficient, and every wavenumber obeys the same ODE -> D(k,z) = D(z): growth is scale-free
+
+====================================================================================================
+2.  THE THEORY'S OWN BACKGROUND (A33 F1, beta = 0)
+====================================================================================================
+K5 PASS E^2(0) = 1.316300 = 1 + 0.3163; H(0) = 77.33 km/s/Mpc = 1.1473 x H0(dS)   |E^2(0)-(1+Omega_m)| < 1e-12
+      A33 section 3.5 with beta=0: Lambda_bare = 3H0^2/c^2 gives Omega_Lambda,eff = 1 and the matter adds on top. FLAG: with H0 fixed as the de Sitter rate the model's present expansion rate is 1.1473 H0 = 77.3 km/s/Mpc (or, equivalently, Omega_K = -Omega_m). This is a background-level prediction of the beta=0 vacuum, not a choice
+
+====================================================================================================
+3.  THE GROWTH EQUATION AND THE a0 -> 0 LIMIT (LCDM control)
+====================================================================================================
+K6 PASS dg/dg_N = 1 + 0*(a0/g_N) + 1*(a0/g_N)^2 + O(eps^3) -> 1; ODE with a0=0: D(1) = 0.788559 vs integral 0.788559   linear coeff == 0; |D_ode-D_int| < 2e-4
+      the exact growing mode of the same ODE is D=(5/2)Om E(a) int da'/(a'E)^3 = 0.788559. The correction to G_eff is QUADRATIC in a0/g_N (+1*(a0/g_N)^2), so the Newtonian limit is approached from above with zero linear term: LCDM is the exact a0=0 limit, not merely a small-a0 approximation
+K7 PASS f(0) = 0.52833 vs integral-solution 0.52833; D(1) = 0.78856   |f_ode-f_int| < 1e-4; |D(1)-0.7886| < 2e-3
+      the solver reproduces the standard flat-LCDM numbers (D(1)=0.7886, f(0)=0.528 for Omega_m=0.3163), so a failure below is the theory's and not the integrator's
+
+====================================================================================================
+4.  THE THEORY'S GROWTH ON ITS OWN BACKGROUND
+====================================================================================================
+  G_eff/G (cosmic closure): z=0.0: 1.01397, z=0.5: 1.00967, z=1.0: 1.00615, z=1.5: 1.00390, z=2.0: 1.00255
+      z       a      f(z)      D(z)  sigma8(z)   G_eff/G
+   0.00  1.0000   0.45460   0.74085    0.76194   1.01397
+   0.50  0.6667   0.69722   0.58635    0.60304   1.00967
+   1.00  0.5000   0.83479   0.46982    0.48319   1.00615
+   1.50  0.4000   0.90520   0.38670    0.39770   1.00390
+   2.00  0.3333   0.94200   0.32669    0.33598   1.00255
+  sigma8(0) = 0.76194   [= 0.811 x D_th(1)/D_LCDM(1) = 0.811 x 0.74085/0.78856]
+K8 PASS f = [0.4546, 0.69722, 0.83479, 0.9052, 0.942]; all < 1: True   strictly increasing, f<1
+      a monotone f is what a single growing mode gives; a non-monotone f would mean the integration or the response sign is wrong
+K9 PASS D(1) = 0.740853856 (DOP853) vs 0.740853856 (LSODA) -> ratio-1 = +3.23e-11   |ratio-1| < 1e-6
+      two independent adaptive integrators on the same ODE; a sign or friction error would show up here at O(1)
+
+====================================================================================================
+5.  THE FORK -- COLD SECTOR IN THE SOURCE, OR ALREADY IN THE RESPONSE?
+====================================================================================================
+  branch S: sigma8(0) = 0.7619  D(1) = 0.7409  f(0) = 0.4546  f(2) = 0.9420
+  branch A: sigma8(0) = 0.0024  D(1) = 0.0023  f(0) = 0.1312  f(2) = 0.2784
+  branch C: sigma8(0) = 0.7605  D(1) = 0.7395  f(0) = 0.4526  f(2) = 0.9414
+K10 PASS sigma8(S) = 0.7619 vs sigma8(A) = 0.0024 -> ratio 322.847   ratio > 1.5
+      putting the cold sector in the source raises sigma8 by tens of per cent; the two readings cannot both be called 'the theory'
+K11 PASS M_c/M_b = 5.3642; the law's phantom M_ph/M_b = 25.90; M_c/M_ph = 0.207; g_N,tot/g_N,b = 6.364 -> deep-MOND g ratio sqrt = 2.523   M_src = M_b+M_c and M_ph != M_c
+      the action's first integral fixes M_src = M_b + M_c: the law relates the total field to the total Newtonian field. NOT double counting -- the law contains only the SUM. NOTE the cost: evaluated with M_src = 6.3643 M_b the law predicts g = sqrt(6.3643) x the baryon-only deep-MOND value, i.e. 2.523x the SPARC fit's g. Branch S is the action's reading and it is INCONSISTENT with the baryon-only SPARC fits of THEORY.md section 4. Branch C is what those fits use and it needs the cold to be unboosted
+  branch R (rms field, amplitude closure): iterations 8, sigma8(0) -> 2.267; g_rms(8/h Mpc, z=0) = 2.241e-13 m/s^2 = 0.0020 a0 -> G_eff/G = 11.75
+K12 PASS sigma8(0) fixed point = 2.267 (Planck 0.811; growth-ratio band 0.75-0.85); G_eff/G(g_rms) = 11.7   sigma8 > 1.5 (1.8x the top of the observed band)
+      with g_ref = the perturbation's own rms field, G_eff/G = 10-12 at z=0 and the growth is quasi-linear (G_eff depends on delta). This is the SAME failure L341/FP22 recorded for the chassis (sigma8 = 18-27); it is not cured by this background
+K13 PASS G_eff(k=0.05)/G_eff(k=0.2) = 0.630 (8.67 vs 13.75); n_eff = -2.4 assumed   ratio differs from 1 by > 20%
+      g_N ~ delta R with delta ~ R^{-(3+n)/2}, so g_N grows with R and the boost is LARGER on SMALLER scales: the amplitude closure predicts scale-DEPENDENT growth (a bluer P(k), more small-scale power). 'Scale-free' holds only at fixed g_N, i.e. only for a reference field that is a function of time alone
+
+====================================================================================================
+6.  THE DATA ON DISK: f sigma8 AND sigma8
+====================================================================================================
+      z  f s8 obs    err   theory    pull     LCDM    pull
+   0.07     0.423  0.055    0.364   -1.07    0.447   +0.43
+   0.15     0.530  0.160    0.383   -0.92    0.464   -0.41
+   0.38     0.497  0.045    0.414   -1.84    0.488   -0.20
+   0.51     0.458  0.038    0.421   -0.98    0.489   +0.81
+   0.61     0.436  0.034    0.422   -0.42    0.485   +1.45
+   0.70     0.473  0.041    0.420   -1.29    0.480   +0.16
+   0.85     0.315  0.095    0.413   +1.04    0.467   +1.60
+   1.48     0.462  0.045    0.362   -2.23    0.397   -1.45
+  chi^2(theory, S) = 14.21 / 8 points;  chi^2(LCDM control) = 7.85 / 8
+K14 PASS theory chi^2 = 14.211 (N = 8), LCDM = 7.846, brute force = 14.211   |bf-chi2|<1e-9; 0.5<chi2_LCDM<30
+      the LCDM control lands in the range the same data give in the literature (chi2/N ~ 1), so the score is not an artefact of the machinery
+
+  sigma8(0) = 0.7619; Omega_m(a=1) = 0.2403; S8 (Lagrangian Omega_m) = 0.7824; S8 (dynamical Omega_m) = 0.6819
+  KiDS-1000    S8 obs 0.759 +- 0.021; theory(Lag) 0.7824 (+1.11 sigma); theory(dyn) 0.6819 (-3.67 sigma)
+  KiDS-Legacy  S8 obs 0.815 +- 0.021; theory(Lag) 0.7824 (-1.55 sigma); theory(dyn) 0.6819 (-6.34 sigma)
+  Planck-2018  S8 obs 0.832 +- 0.013; theory(Lag) 0.7824 (-3.82 sigma); theory(dyn) 0.6819 (-11.54 sigma)
+  DES-Y3       S8 obs 0.776 +- 0.017; theory(Lag) 0.7824 (+0.37 sigma); theory(dyn) 0.6819 (-5.53 sigma)
+K15 PASS sigma8(0) = 0.7619 vs Planck 0.811 (-0.0491, -8.18 sigma on sigma8); S8(dyn) = 0.6819 vs KiDS-1000 0.759 +- 0.021   |sigma8-0.811|/0.811 < 15%
+      the theory's sigma8 is BELOW Planck by the amount the extra vacuum suppresses growth; whether it lands on KiDS depends on which Omega_m enters S8
+
+====================================================================================================
+7.  SENSITIVITIES -- a0 footing, and the background normalisation
+====================================================================================================
+  theory_1.132e-10: sigma8(0) = 0.7619, f(0) = 0.4546, G_eff(0)/G = 1.01397, chi2_fs8 = 14.21
+  canonical_9.36e-11: sigma8(0) = 0.7615, f(0) = 0.4540, G_eff(0)/G = 1.01025, chi2_fs8 = 14.41
+  flat normalisation (Omega_L = 1-Omega_m): sigma8(0) = 0.8132, f(0) = 0.5317  [= LCDM by construction]
+  trace-average response (2nu+dg/dgN)/3: sigma8(0) = 0.7836, f(0) = 0.4709, G_eff(0)/G = 1.0933
+  literal_OL1_H0dS     Omega_L=1.0000 Omega_K=+0.0000  H(0)= 77.33 km/s/Mpc  D(1)=0.7409  f(0)=0.4546  sigma8(0)=0.7619
+  flat_OL1mOm          Omega_L=0.6837 Omega_K=+0.0000  H(0)= 67.40 km/s/Mpc  D(1)=0.7907  f(0)=0.5317  sigma8(0)=0.8132
+  closed_OL1_OKmOm     Omega_L=1.0000 Omega_K=-0.3163  H(0)= 67.40 km/s/Mpc  D(1)=1.1371  f(0)=0.5441  sigma8(0)=1.1695
+K16 PASS sigma8(0) = 0.7619 (literal) / 0.8132 (flat) / 1.1695 (closed); observed 0.811 +- 0.006 (Planck) and 0.76-0.83 (lensing)   closed > 1.0 (excluded); flat == 0.811
+      Omega_L,eff = 1, Omega_m = 0.3163 and H(0) = H0 are three statements that cannot all hold with zero curvature. Resolving them by curvature (closed) gives sigma8 = 1.17, excluded by Planck at tens of sigma; resolving them by H(0) = 1.1473 H0 gives 0.760; cancelling the excess with the beta-stress gives 0.811 = LCDM exactly. The growth observable therefore does not test the law -- it tests which background the theory means
+
+====================================================================================================
+A40 COMPLETE: 17/17 checks PASS.
+====================================================================================================

@@ -1,0 +1,55 @@
+======================================================================================================================
+A47 -- THE f_ret = 0.10 FACTOR: does the cold sector hold ten times the cosmic share?   [MUTATE density]
+======================================================================================================================
+footing: a0 = 9.3603e-11 m/s^2 (canonical);  R_cosmic = 5.364327;  f_b = 0.157126;  h = 0.674
+rho_crit = 1.2607e+11 Msun/Mpc^3;  cosmic cold density = 3.3472e+10 Msun/Mpc^3;  Delta_ta = 5.5517
+
+-- task 1: what the two f_ret's are (definitions parsed from the source files) --
+  [K1] PASS  CFG416 FROZEN_CRITERIA.md defines f_ret as a retained BARYON fraction (M_b,now = f_ret f_b M_ta) with the three-segment table: 6/6 definitional strings on disk; f_ret(12.0)=0.10, f_ret(13.5)=0.55, f_ret(14.5)=0.85, f_ret(15)=0.90
+  [K2] PASS  the table is monotone non-decreasing and capped at 0.90 (it is a fraction, so the ceiling 1 is definitional): 0.10  0.10  0.33  0.55  0.70  0.85  0.90  0.90
+  [K3] PASS  IDENTITY: with N = R_cosmic/f_ret and M_b = f_ret f_b M_ta, the cold mass is exactly the catchment's cosmic share, f_c = M_c/(R_cosmic f_b M_ta) = 1: sympy 1; numeric residual 2.22e-16
+  [K4] PASS  the same algebra at three loci: system cosmic share -> f_c = f_ret; A44 -> f_c = 1; A43's EOS reading -> f_c = 2.195: 0.100 / 1.000 / 2.195 (+-0.24; A43's 0.34 gives 3.5 sigma above the ceiling)
+  [K5] PASS  symbol ledger: CFG804's N = 1/f_ret (cold mass 5.364 N M_b) and A44's N = R_cosmic/f_ret (cold mass N M_b) are the SAME model, a factor 5.364 apart: CFG804 N=['10.00', '8.95', '7.35', '5.68'] -> cold masses ['53.6', '48.0', '39.4', '30.5'] M_b; A44 N=53.64 (= 10.0 x 5.364)
+      r_e(53.64 M_b) per bin = ['316', '513', '596', '750'] kpc;  r_e(CFG804 per bin) = ['324', '454', '439', '429'] kpc
+  [K6] PASS  A44's two numbers reproduce from the definitions: 53.643 = 5.364/0.10, r_e = sqrt(N(N+1)) r_M = 54.14 r_M = 0.32-0.75 Mpc (A44 quotes 0.19-0.75; the 0.19 end belongs to its N=15.9 edge, not to 53.64): 5.364327/0.10 = 53.643; s_edge = 54.1410; r_e = 316-750 kpc; CFG804 per-bin table gives ['324', '454', '439', '429'] kpc (file: 324/450/440/430)
+
+-- task 2: what 'ten times the cosmic share' does and does not mean --
+  [K7] PASS  the factor 10 is NOT a density: at r_e the cold medium is 133 x the cosmic cold density, at 0.1 Mpc ~6e3 x, and r200 is 200 x the mean matter density by definition: M_b=1e11: r_e=661 kpc, 1+delta_cold(r_e)=133; 1+delta(r200)=200; 1+delta_cold(0.1 Mpc)=5499
+      catchment: M_ta = M_b/(f_ret f_b) = 6.364e+12 Msun (M_ta/M_b = 63.6); r_ta(Delta=5.55) = 1.903 Mpc
+      at the z=0 cosmic cold density 3.35e+10: r needed for 5.36e+12 Msun = 3.37 Mpc; zero-velocity radius = 1.73 Mpc
+  [K8] FAIL  cosmic-mean availability: only 18% (13.5% inside the zero-velocity sphere) of the budget is there at the present cosmic mean density; the other 82% is the catchment's turnaround overdensity (1/fraction = 5.55 = Delta_ta), i.e. the cold sector must trace the matter: mean-density cold mass inside r_ta = 1.801 of 53.64 M_b, inside r_ZV = 1.352; r_needed at mean density = 3.37 Mpc = 1.95 r_ZV
+  [K9] PASS  escape velocity: v_esc/v_H = 6 and v_esc/sigma_c = 32 at r_e, and the ambient-infall capacity v^2 r/G at r_e is 2.6x the budget -- this bound does not bite: v_c=189, v_esc=267, v_H=45 km/s; M_bound(300 km/s, r_e)=1.38e+13 vs M_c=5.36e+12 (ratio 2.58)
+  [K10] PASS  tidal field: an equal-mass neighbour must sit beyond 0.95 Mpc (53.64 model) or 0.68 Mpc (self-consistent N=38); a 10x neighbour beyond 2.0 Mpc: d_eq(53.64) = 0.95 Mpc, d_eq(N=38) = 0.68 Mpc, d_10 = 2.05 Mpc
+  [K11] PASS  phase space: the coarse-grained density implies a Tremaine-Gunn floor m >= 37 eV (no new obstruction), and the sector's own sigma_c could hold only 0.2% of the mass at r_e -- the binding is the total mass, not the sector's dispersion: rho(r_e)=3.01e-28 g/cm^3, Q=3.30e-47, m_TG=37 eV, sigma_c^2 r_e/G=1.1e+10 Msun (0.20% of M_tot)
+
+-- task 3: is 53.64 M_b available?  the self-consistent CFG416 budget --
+      bin  logM_b   f_ret   logM_ta[h]    N       M_c[M_b]   r_e[kpc]   r_e(53.64)[kpc]
+       1   10.36   0.100    11.99      53.64     53.64        316         316
+       2   10.78   0.100    12.41      53.64     53.64        513         513
+       3   10.91   0.107    12.51      50.32     50.32        559         596
+       4   11.11   0.141    12.59      37.94     37.94        532         750
+  [K12] PASS  the CFG416 fixed point exists, is unique, and reproduces A18's grid (44.125 at 1e11, 14.917 at 1e12); per bin N = 53.64, 53.64, 50.3, 37.9: 1e11 -> f_ret 0.1215, N 44.15 (A18: 0.1216, 44.125); 1e12 -> N 14.921 (A18: 14.917); sign changes 1
+  [K13] FAIL  AVAILABILITY vs REQUIREMENT: the smallest available budget (37.9 M_b at the top bin) is 2.4x the N the data require (15.9), so availability does NOT cap below the requirement: N_avail = ['53.6', '53.6', '50.3', '37.9'], min/N_req = 2.38; at 1e11 44.1/15.9 = 2.77; MUTATED density ceiling -> N = 4.0
+  [K14] PASS  the available budget fits: dchi2(primary) at N=44.1 is <= +1 (A44's 53.64 gives +1.1, N_req=15.9 gives +4); the per-bin CFG804 model gives -0.3: dchi2(44.1) = -0.4; dchi2(53.64) = +1.1; dchi2(15.9) = +4.0; CFG804 per-bin = -0.3
+  [K15] PASS  the factor 10 is the LOW-MASS branch: f_ret = 0.10 is the table's value only while M_ta <= 1e12.5 Msun/h, i.e. M_b <= 7.4e10; at 1e11 it is 44.1 (82%), at the top bin 37.9 (71%): M_b,lim = 7.37e+10; f_ret(1e11) = 0.122; 53.64/44.1 = 1.22; 53.64/37.9 = 1.41
+  [K16] PASS  u: A18's u = R_tot/N = 0.467 and A29's u_MID = 0.472 are numerically the same to 0.1 sigma but are different functionals (3D budget fraction vs projected band ratio); u <= 1 never constrained f_ret -- it bounds the law's share of the budget: R_tot/N = 0.4668 vs A29 u_MID = 0.4716 +- 0.0361 (0.13 sigma)
+
+-- geometry: where the edge sits --
+      bin 1: r_e =   316 kpc = 1.39 r200c = 0.31 r_ta   (r200c 228 kpc, r_ta 1021 kpc, M_tot 1.25e+12)
+      bin 2: r_e =   513 kpc = 1.63 r200c = 0.36 r_ta   (r200c 315 kpc, r_ta 1409 kpc, M_tot 3.29e+12)
+      bin 3: r_e =   559 kpc = 1.64 r200c = 0.37 r_ta   (r200c 341 kpc, r_ta 1524 kpc, M_tot 4.17e+12)
+      bin 4: r_e =   532 kpc = 1.47 r200c = 0.33 r_ta   (r200c 362 kpc, r_ta 1618 kpc, M_tot 5.02e+12)
+  [K17] PASS  geometry: the edge is 1.4-1.8 r200c and 0.3-0.4 r_ta -- inside the catchment; the geometric cap is N <= 155, three times the f_ret cap, so the baryon budget binds first: r_e/r200c 1.39-1.64, r_e/r_ta 0.31-0.37, N_max(geometry) = 155
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  f_ret (CFG416)          = retained baryon fraction, M_b/(f_b M_ta) in (0, 0.90]  -> f_ret = 0.10 = 10% of the catchment's baryons
+  N = R_cosmic/f_ret      = cold mass / system baryons = 53.64 at f_ret = 0.10 (DERIVED, not a second f_ret)
+  f_c (A43's f_ret)       = cold mass / catchment's cosmic share = 1.000 at A44's model, 2.195 at A43's EOS reading
+  factor 10               = 1/f_ret (baryon reservoir), NOT a density; 1+delta_cold(r_e) = 133, 1+delta_cold(0.1 Mpc) = 5499
+  53.64 M_b available?    = 44.1 M_b at 1e11 (82% of it), 37.9 at the top bin; N_req = 15.9
+  decisive number         = N_avail/N_req = 2.38 > 1  -> not capped; tension does not return on the primary range
+  dchi2 at the available budget = -0.4 vs +1.1 at 53.64 (both <= 4)
+
+  15/17 checks pass.  runtime 0.11 s.

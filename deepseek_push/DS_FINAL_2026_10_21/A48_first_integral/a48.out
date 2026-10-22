@@ -1,0 +1,167 @@
+======================================================================================================================
+A48 -- RECORD AUDIT: A33 section 5's first integral vs the baryon-only SPARC fits
+======================================================================================================================
+K = 4 pi G = 8.387173e-10 ; f_b = 0.157126 ; M_c/M_b = 5.364327 ; M_src/M_b = 6.364327 ; sqrt = 2.522762
+a0(Lambda=1.0890e-52) = 9.354173e-11 ; canonical = 9.360300e-11 ; record = 1.132000e-10 ; c sqrt(G rho_DE) = 1.870835e-10
+
+----------------------------------------------------------------------------------------------------------------------
+PART A -- what the first integral is, and what it is not
+----------------------------------------------------------------------------------------------------------------------
+A33 section 5, verbatim (MASTER_ACTION.md:278-280):
+  "Consistency of the three: (L) differentiated and (P-sph) substituted give
+   (r^2 g)' = K rho_src r^2 + (r^2 u)', i.e. g = g_N + u with g_N = G M_src/r^2, which is
+   (P-sph)'s first integral.  That is why the law is exact and not an expansion, and why
+   the P sector is a charge sector."
+A33 section 3.1, verbatim: 'rho = rho_m + rho_c is the total matter density, d = D_i P^i.'
+
+A1    PASS  lapse-EL minus printed (L): residual 0                     | 0
+      (L) IS the lapse equation of A33's own action -- the equation is not where the defect sits
+A2    PASS  O(eps) lapse eq residual: 0                                | 0
+      lap(Phi) = K(rho + d) = 4 pi G (rho + D.P); Lambda is absorbed by the background
+A3    PASS  Gauss vs first-integral form: max rel 3.20e-04 (3 radii)   | < 5e-3
+      g = G M_rho/r^2 + u is Gauss' law applied to A2: an identity, no constraint on M_rho
+A4    PASS  (g - u) - g^2/(g+a0) with u = a0 g/(g+a0): 0               | 0
+      the ONLY content is 'g_N is the Newtonian field of the source'; WHICH mass is not in it
+A5    PASS  all-orders residual / term = 0.221                         | > 0.02 means 'not an identity'
+      §5 invokes only (L) and (P); beyond O(eps) those two do NOT imply the identity (the f-equation, which §5 does not use, would be needed).  Every galactic use is at O(eps), so no number moves.
+A6    PASS  S_printed - S_partition = rho_c*varsigma                   | varsigma rho_c
+      the printed (L) counts varsigma*rho_c twice: the charge's share sits in rho_c AND in d
+      A33 section 1: rho_c = varsigma rho_c (charge) + (1-varsigma) rho_c (native).  The
+      first integral then gives M_src = M_b + (1-varsigma) M_c, and the law's amplitude is
+      sqrt(M_src/M_b):
+        varsigma     M_src/M_b     deep-MOND amplitude vs baryons
+        0.0000         6.3643        2.5228
+        0.4716         3.8345        1.9582
+        0.9865         1.0724        1.0356
+        1.0000         1.0000        1.0000
+A6b   PASS  varsigma=0 -> M_src=6.3643 M_b (amp 2.523); varsigma=1 -> M_src=1.0000 M_b (amp 1.000) | 6.3643/2.523 ; 1.0000/1.0000
+      A40's branch is the varsigma=0 end; A33 section 7.3 forces varsigma=1, i.e. M_src = M_b
+      so 'M_src = M_b + M_c' is not a derivation -- it is the varsigma -> 0 end of A33's own
+      one-parameter family, the end at which the P charge is switched off.  The record's own
+      section 7.3 selects varsigma = 1 (a constant partition deforms the law by 0.243 at
+      g = a0/2 and is excluded by the RAR), which is M_src = M_b.
+A7    PASS  deep limit (g_N - g) -> -2*a0                              | -2 a0
+      M_src = M_b + M_ph gives g = g_N + 2u, i.e. Newtonian + 2a0, NOT MOND: not a reading of the law
+A8    PASS  amplitude 2.522762 ; a0 factor 6.364327 ; Lambda factor 40.5047 | 2.52276 ; 6.36433 ; 40.504
+      g ~ sqrt(a0 g_N): a 6.364x source is a 2.523x amplitude, absorbed only by a0/6.3643
+      the brief's 'a0 must be 2.523x smaller' is one factor of 2.523 short: a0 enters as
+      sqrt(a0 g_N), so the a0 correction is 2.523^2 = 6.3643.  All numbers below use 6.3643.
+
+----------------------------------------------------------------------------------------------------------------------
+PART B -- both branches on the full SPARC sample, one Upsilon per galaxy
+----------------------------------------------------------------------------------------------------------------------
+sigma^2 = errV^2 + (0.05 Vobs)^2 ; Upsilon in [0.05, 2.50] (disk = bulge) ; chi^2 in velocity
+space ; 171 galaxies with >= 5 points, 3375 points (A7's frozen selection).
+B1    PASS  175 files, 3391 rows, 171 galaxies, 3375 points            | 175 / 3391 / 171 / 3375
+      A7 K1 reproduced exactly (frozen selection)
+B2    PASS  branch B at a0=9.3603e-11: chi2 = 7259.44  (chi2/dof 2.2657) | 7259.38 +- 0.5
+      reproduces A7's published canonical total
+      branch B (g_N = G M_b/r^2), one Upsilon per galaxy:  chi2 = 7259.44 / 7916.90  (dof 3204)
+      branch T (g_N = 6.3643 G M_b/r^2), same Upsilon freedom: chi2 = 81835.81 / 97368.83
+B3    PASS  Delta chi2 (T-B), a0=9.3603e-11: +74576.4  (386 sigma formal) | > 1000
+      same 171 Upsilon, same a0 -- a0 is NOT refitted
+B4    PASS  Delta chi2 (T-B), a0=1.132e-10: +89451.9  (423 sigma formal) | > 1000
+      the record's own published footing
+B5    PASS  T worse on both footings by 74576.4 / 89451.9              | both > 0
+      the sign is not a footing artefact
+B6    PASS  fixed Upsilon 0.5/0.7, a0=1.132e-10: B 22919.2 (6.79/pt), T 841163.9 (249.23/pt) | T much worse
+      zero free parameters: T is 36.70 x worse in chi2 (B canonical footing: 6.38/dof)
+B7    PASS  branch B: a0* = 8.0801e-11, chi2* = 7114.3                 | a0* in (0.5, 1.3)e-10
+      a0 weakly constrained (A9: degenerate with the distance zero point)
+B8    PASS  branch T: a0* = 2.650e-12 (35.3x below closure), chi2* = 17471.1 ; Delta chi2* = +10356.8 | > 1000
+      EVEN WITH a0 FREE total matter cannot be fitted: its own best a0 collapses by 35x
+      branch T's chi2(a0) has no good minimum: as a0 -> 0 it is Newtonian with 6.364x the mass
+      (V 2.523x too high); as a0 grows the boost overshoots.  min 17471 against 7114.
+B9    PASS  deep-end median g_T/g_B = 2.5228 over 126 galaxies         | 2.5228
+      the 2.523x is exact at fixed baryonic mass in the deep limit
+B10   PASS  galaxies where T beats B at fixed a0: 17 of 171 (they carry 0.0082 of sum|Delta chi2|) | <= 20 and share < 0.01
+      not a population-tail effect: T's wins carry 0.8% of sum|Delta chi2|
+B11   PASS  median |dV/V| at fixed Upsilon 0.5/0.7: B 0.107, T 0.907 (Newtonian end: B 0.095, T 1.288) | B < 0.2 and T > 0.5
+      a 5% error floor against a 91% median error: the chi2 gap is not an artefact of the weighting
+      points with g_bar > a0: 793 of 3375 ; g_bar <= a0: 2582 ; in the Newtonian end branch T
+      predicts g = 6.364 g_bar (V 2.523 x too high) with NO a0 dependence -- the irreducible kill.
+
+  table: chi2 on the full sample (171 galaxies, 3375 points, 3204 dof)
+  model                                            chi2  chi2/dof Delta vs B(a0)
+  B  a0=9.3603e-11 (canonical)                  7259.44    2.2657              -
+  T  a0=9.3603e-11                             81835.81   25.5418       +74576.4
+  B  a0=1.132e-10 (record)                      7916.90    2.4709              -
+  T  a0=1.132e-10                              97368.83   30.3898       +89451.9
+  B  a0 free (a0*=8.080e-11)                    7114.30    2.2204              -
+  T  a0 free (a0*=2.650e-12)                   17471.11    5.4529       +10356.8
+  B  fixed Upsilon 0.5/0.7, a0=1.132e-10       22919.22    6.7909              -
+  T  fixed Upsilon 0.5/0.7, a0=1.132e-10      841163.93  249.2338      +818244.7
+
+----------------------------------------------------------------------------------------------------------------------
+PART C -- what each branch requires of a0 and Lambda
+----------------------------------------------------------------------------------------------------------------------
+C1    PASS  a0(Lambda_obs) = 9.354173e-11 ; c sqrt(G rho_DE) = 1.870835e-10 ; kappa(canonical) = 0.5003 | 9.3542e-11 ; 1.871e-10 ; 0.500
+      A33 K14b/K14c reproduced
+C2    PASS  branch T requires a0 = 1.778664e-11 (record) / 1.470745e-11 (canonical) | 1.7787e-11 / 1.4707e-11
+      a0 factor = 1+M_c/M_b = 6.3643, not 2.523
+C3    PASS  kappa: baryons 0.6051 (record) / 0.5003 (canonical) ; total matter 0.0951 / 0.0786 | total-matter kappa < 0.12
+      A19: kappa = 0.417 +- 0.095; the saturation cap admits only {1, 0.707, 0.5}
+C4    PASS  Lambda at branch T's canonical a0 = 2.6921e-54 m^-2 = Lambda_obs / 40.45 | < 0.03 Lambda_obs
+      Lambda is measured to ~1%; requiring Lambda_obs/40.5 is not a tension, it is a different universe
+      (the record's own a0 = 1.132e-10 implies Lambda = 1.5948e-52 = 1.464 Lambda_obs through the same
+      closure -- the 1.462 Lambda_obs of A33 K16 -- and branch T divides that by 40.50.)
+
+  branch                 a0 required      kappa     Lambda/Lambda_obs   1/kappa
+  baryons (record)     1.1320e-10      0.6051      1.464            1.65
+  baryons (canonical)  9.3603e-11      0.5003      1.001            2.00
+  total matter (rec.)  1.7787e-11      0.0951      0.0362            10.52
+  total matter (can.)  1.4707e-11      0.0786      0.0247            12.72
+  (the record's own a0 already implies 1.464 Lambda_obs through the same closure, so total
+  matter at the record footing is 1.464/40.50 = 0.0362 Lambda_obs; the universal factor is 40.50.)
+
+----------------------------------------------------------------------------------------------------------------------
+PART D -- every file in the record that uses M_src = M_b + M_c
+----------------------------------------------------------------------------------------------------------------------
+D1    PASS  7 files carry the pattern; all 6 downstream found          | 6/6
+      A33, A40 report+checks, A45, A47, A44 report+checks
+  A33_master_action/MASTER_ACTION.md           SOURCE of the claim                          survives=False
+      where: section 3.1 (lapse source rho = rho_m + rho_c) and section 5 (first integral)
+      why:   section 5's 'g_N = GM_src/r^2' is an identity that DEFINES g_N; it is not a statement that M_src is total. Section 3.1's source double counts varsigma*rho_c (A6), and section 1's own partition gives M_src = M_b + (1-varsigma)M_c. Everything else in A33 -- the law K3, PPN, c_T, the coefficient table, K13 -- never uses the VALUE of M_src and survives unchanged.
+  A40_growth/report.md                         the claim that the action decides for total matter survives=False
+      where: section 5.1, K11, branch S of the growth table, abstract
+      why:   the ADJUDICATION does not survive; the NUMBER does. A40's own K11 gives sigma8(S)/sigma8(C) = 1.0019, so sigma8 = 0.7619, f(z), chi2 = 14.21/8 and every growth conclusion stand to 0.19%. The claim 'the action decides for S' falls.
+  A40_growth/a40_checks.py                     the check that encodes the claim             survives=False
+      where: K11, lines 478-492
+      why:   K11 asserts M_src = M_b+M_c and 'the law relates the total field to the total Newtonian field'. That assertion is the defect; the numbers it prints (2.523, M_c/M_ph = 0.207) are correct and are the evidence against it.
+  A45_reference_field/report.md                repeats the fork as OPEN                     survives=True
+      where: section on (P-sph) ('g_N = GM_src/r^2') and the 'what this does not do' item
+      why:   its reference-field conclusions never use the value of M_src; only its restatement of the fork is superseded. A48 settles it in favour of baryons: the sentence should read 'M_src = M_b, so the SPARC fits are the action's own branch'.
+  A47_fret/report.md                           mass BUDGET, not the law's g_N               survives=True
+      where: section 2, 'M_tot = M_b + M_c = 5.464e12' (r200c conversion)
+      why:   same as A44: the cosmic cold share is added to the baryons to define a total halo mass for an r200c/overdensity argument. It does not use the first integral and does not feed the law's g_N. No change needed.
+  A44_no_edge/report.md                        mass BUDGET, not the law's g_N               survives=True
+      where: section 5, 'M200 = M_b + M_c = 6.364 M_b'
+      why:   A44 converts M200 -> M_b through the cosmic budget. That identification is M_total = M_b + M_c as a DEFINITION of the cosmic share (A18), not the statement that the law's source is total. No change needed; flagged for clarity.
+
+  scope: every other lane that uses the law (A7, A9, A11, A14, A16, A18, A20, A21, A25, A26,
+  A29, A36, A41, A43) writes g_N = G M_b/r^2 with M_b baryonic. None consumes A33 section 5.
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+1. The first integral (r^2 g)' = K rho_src r^2 + (r^2 u)' is correct algebra, but it is an
+   IDENTITY defining g_N = g - u.  It does not force M_src = M_b + M_c: M_src is whatever the
+   Hamiltonian constraint sources, and that is exactly the open question.
+2. A33 section 1's own partition gives M_src = M_b + (1-varsigma) M_c.  'M_src = M_b + M_c'
+   is the varsigma -> 0 end of that family -- the end at which the P charge is switched off.
+   A33 section 7.3 forces varsigma = 1 (a constant partition deforms the law by 0.243 at
+   g = a0/2), and at varsigma = 1 the answer is M_src = M_b: BARYONS ONLY.
+   The printed (L) additionally double counts varsigma*rho_c, which is why section 3.1 reads
+   as if total matter were forced.
+3. The data select BARYONS ONLY: Delta chi2 = 74576 at a0 = 9.3603e-11, 89452 at a0 = 1.132e-10,
+   and 10357 with a0 free (branch T's own best a0 = 2.65e-12, 35.3x below the closure).  No a0
+   rescues total matter: the Newtonian end is a0-independent and 6.364x too massive.
+4. A33 section 5's first integral is therefore NOT wrong as algebra -- but the sentence that
+   attaches M_src = M_b + M_c to it is wrong, and every downstream use of that sentence is
+   flagged in Part D.  A33 and A40's adjudication do not survive; A40's numbers and A44 do.
+5. Counterfactual (branch T selected): a0 = 1.132e-10 would be wrong by 6.3643x, not 2.523x;
+   the required a0 is 1.7787e-11, kappa falls from 0.605 to 0.0951, and at fixed kappa = 1/2 Lambda
+   must be 2.6921e-54 = Lambda_obs/40.5.  The footing does not bend; it breaks.
+
+A48 COMPLETE: 25/25 checks PASS.
+======================================================================================================================

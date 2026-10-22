@@ -1,0 +1,41 @@
+K1 PASS 0 1e-30  # A=a0*th, gN=g*th, 1/A=1/g+1/a0, g=(a0+g)th, homogeneity deg 1 (sympy remainders)
+K2 PASS 0.125 1e-12  # law: g=sqrt(a0gN)[1+0.500000*sqrt(y)+0.125000*y+...]; -1/4 is NOT a coefficient (|c_half+1/4|=0.750, |c_one+1/4|=0.375)
+K2b PASS 1.25000337903e-06 0.0001  # numeric: (g/sqrt(a0gN)-1)/sqrt(y) = 0.500001250 -> 1/2
+K2c PASS 9.9997750057 0.2  # the coefficient of y alone DIVERGES as y^-1/2 (decade ratio 10): the half-power is obligatory
+K3 PASS 0.25 1e-12  # standard mu=x/sqrt(1+x^2) has +1/4 at first order -- the nearest thing to the prompt's -1/4, with the opposite sign; the Langmuir law has +1/2 (half) / +1/8 (integer)
+K4 PASS 0 1e-12  # one-scale theorem: C=s => g=sqrt(a0 gN)[1+c_half sqrt(y)+...] with a0=-2s/f''(0), c_half = f'''(0)/(3 f''(0)^2) = (p+2)/(3(p+1)) for the f_p family
+K5 PASS 0.500000977171 1e-06  # identified medium (langmuir(one-sided)): deep exponent 0.500000977 (must be 1/2); f''(0)=-2.000000 (must be -2)
+K6 PASS -1 0  # g_N/a0 = x^2 - x^3 + ... (law, cubic -1); n=2 even (cubic 0); identified medium must have c2=1, c3=-1 (got 1.000000, -1.000000)
+K7 PASS 0 1e-30  # Langevin: F=nkT[zL-ln(sinh z/z)], A=A_max L(z), dF/dA = (kT/p) z = g  (exact)
+K8 PASS 0.333333334165 1e-05  # Langevin (chi0=1, C=a0): deep exponent 0.33333333 = 1/3; g_N a0^2/g^3 = 0.600000000 -> 3/5; next-order coefficient 0.4016346 -> 6 K^5/35 = 0.4016346
+K9 PASS 3 1e-12  # Langevin capacity/affinity = A_max/g_s = 3 chi0 = 3 (isotropy: <cos^2>=1/3); the law needs 1
+K10 PASS -0.333333333388 1e-06  # saturated anomaly -> a0 for both (law 0.999999000, Langevin 0.999999667); approach coeff (A-A_max)g_N/a0^2: law -1, Langevin -1/3
+K11 PASS 0 1e-30  # BI: H(D)=E_max^2(sqrt(1+D^2/E^2)-1), dH/dD = D/sqrt(1+D^2/E^2) = E (exact)
+K12 PASS 1 1e-06  # BI deep exponent 1.00000000 = 1 (linear, no MOND); g_N-g = g^3/(2E^2): coeff 0.500000019 = 1/2
+K13 PASS 4.99999625148e-07 1e-09  # BI cap: g/E_max = 0.999999500000 at g_N=1e3 a0 -> a hard MAXIMUM acceleration E_max
+K14 PASS -0.292893218813 0  # BI at g_N=a0 (E_max=a0): g=0.7071 a0, A=-0.2929 a0 -> SCREENING (A<0); the law gives A=+0.6180 a0
+K15 PASS 0.968873286362 0.5  # BI (E_max=a0) vs law over g_N/a0 in [1e-3,10]: max relative deviation 0.968873
+K16 PASS 0 1e-14  # single occupancy + N internal states: theta = X/(1+X) for every N and every spectrum (N absorbed into the affinity); identified medium is that isotherm (dev 0.0e+00)
+K17 PASS -9.98001000998e-07 0  # BET (N=2 occupants): theta-x = 0.9980 x^2 > 0 -> g_N = -0.000001 a0 < 0: negative baryonic field, excluded
+K18 PASS 0 1e-30  # lattice W(u)=a0^2[-u/a0-ln(1-u/a0)]: W'=a0 u/(a0-u)=g, W''=a0^2/(a0-u)^2>0, one-sided pole at u=a0
+K19 PASS 2.55351295664e-15 1e-10  # capacity = affinity = N a0 reproduces the law EXACTLY with a0 -> N a0 (N is a modulus, degenerate with the vacuum scale)
+K20 PASS -1 1e-12  # capacity N a0 with affinity a0: linear coefficient 1-C/s = 1-N < 0 -> no positive deep limit
+K21 PASS 0 1e-30  # any even F (A -> -A symmetric) gives g_N(g) odd: the g^2 coefficient is exactly 0, so the deep exponent can never be 1/2
+K22 PASS 3.55555555556 1  # F_Langevin(A)=F_Langevin(-A) and F_BI=F_BI(-A) (both even); the identified medium is one-sided: |F'(1/2)-F'(-1/2)| = 3.5556 (even media give exactly 0)
+K36 PASS 0.5 1e-12  # identified medium: g_N(g=a0)/a0 = 0.500000 (the law's 0.5; a dead medium cannot fake it)
+K23 PASS 3 3  # at g_N=1e9 a0: law 1000000001.0, lattice 1000000001.0, Langevin 1000000001.0 a0 (all unbounded); BI 1.000000 a0 (capped)
+K24 PASS 0.638533333333 0.001  # caps in a0: dielectric 50% at 0.6385, 90% at 3.300; lattice 50% at 1.0, 90% at 9.0; BI hard cap at 1.0 (a0-tied) or >4.231e+08 (Mercury bound)
+K25 PASS 0.417991464292 0.01  # Debye ODE tau*dA/dt=A_eq-A gives chi(w)=chi0/(1-i w tau): numeric/analytic mismatch 3.83e-05 at w tau=0.7 (|chi|=0.417991)
+K26 PASS 6.11449779697e-11 1e-09  # MOND cutoff from a frozen response: g*/a0 = (1-lam)/lam = x^2 exactly (max rel err 6.1e-11)
+K26b PASS 0.00980581599517 0.05  # exact solve: x=0.01 at g_N=1e-10 a0 (below g*=1e-4) g=9.9029e-07 vs linear 1.0001e-06; x=0.001 at g_N=1e-5 a0 (above g*=1e-6) g=3.16678e-03 vs sqrt-law 3.16228e-03
+K27 PASS 1.59221276998 0.01  # drag: one orbit removes dE/E = 4 pi sin(phi) = 0.628057; t/T = 1.5922 = 1/(4 pi sin phi) with phi=0.05
+K28 PASS 1 1  # gapped lattice: resonance v_res = L*sqrt(w_g^2+c^2/L^2) = 1.000000 c at minimum -> a bound orbit (v<c) can never reach the gap
+K29 PASS 1.4062861986e-11 1e-08  # at 1e-11/1e-13/1e-15 Hz: BI and lattice shifts < 1e-8; the dielectric's survival-limited shift < 1e-2 -- no medium reaches a measurable frequency dependence
+K30 PASS 0.00519361921842 0.01  # real systems (20 kAU WB, galaxy, cluster, and the 1e-11/13/15 Hz binaries): largest |shift| over all media = 5.194e-03
+K34 PASS 0.00100103528441 0.005  # exact amplification: delta g/g = (lam-1) A/(g(1-lam A')) from implicit differentiation matches the solver to 1.0e-03 (residual = the O(dlam^2) term, dlam~7e-3)
+K34b PASS 0.0110187089712 0.15  # deep regime (g=0.0225 a0): delta g/g = (a0/2g) x^2 to 1.1%; signs: dielectric -1.49e-06 (-), BI -1.41e-11 (-), lattice 2.78e-11 (+)
+K31 PASS 0.795774715459 1  # dissipative no-go: Delta=1e-2 needs x=0.1, and then t_decay/T = 1/(4 pi x) = 0.7958 < 1 -- the orbit is gone before it completes a period
+K32 PASS 5.724755437e-10 1e-30  # action P-sector: kinetic term second order in t (no first-order/Debye term), c_s^2=1 exactly, mass gap w_g = 5.724755e-10 rad/s (f=9.1112e-11 Hz)
+K33 PASS 10 1  # Debye: Im/(1-Re) = 1/x >> 1 (dissipative); BI and lattice: Im = 0 (reactive), with Re shifts of OPPOSITE sign (+ for BI, - for the lattice)
+K35 PASS 3.96457318024e-10 1e-09  # deep-MOND ceiling: f_M(2 Msun)=3.75e-14 Hz, f_M(1e11 Msun)=7.94e-17; deep MOND at 1e-11 Hz needs M=7.88e+20 kg = 3.96e-10 Msun, r=0.158 AU -> no stellar system is deep-MOND at the requested high frequencies
+A53 COMPLETE: 40/40 checks PASS.

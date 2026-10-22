@@ -1,0 +1,28 @@
+====================================================================================================
+A64 -- THE FOUR GATES AS ONE THEOREM: joint constraint algebra, lensing, GW speed, Newtonian, stability
+====================================================================================================
+mutation = none
+K = 4 pi G = 8.387173e-10   a0 = 9.3600e-11 m/s^2 (theory 1.1320e-10)   L* = 24 pc = 7.40563e+17 m
+gamma = K L*^2/2 = 2.29990e+26   eta = gamma   beta = 1.0
+(L* a0/c^2)^2 = 5.948294e-19   (the dimensionless principal-positivity unit)
+====================================================================================================
+
+-- L: the quadratic action and its constraint algebra -------------------------------------------
+L1   PASS  0.0e+00, Euler=0.0e+00  [0, 0]   # pi^ij = (K^ij-(1+beta)theta h^ij)/(4K) is the conjugate of hdot_ij; pi.hdot = 2L
+L2   FAIL  2.1e+00, 4.9e+00  [0, 0]   # theta(pi) = -4K pi/(2+3beta); K^ij(pi) = 4K pi^ij - 4K(1+beta)pi/(2+3beta) h^ij
+L3   PASS  0.0e+00  [0]   # H_grav = 4K[pi_ij pi^ij - c_beta pi^2] reproduces L, c_beta = (beta + 1)/(3*beta + 2)
+L4   PASS  0.0e+00, 0.0e+00  [0, 0]   # pi_P^i = sqrt h eta E^i; H_P(kin) = |pi_P|^2/(2 sqrt h eta) = eta E^2/2 > 0 for eta>0
+L5   PASS  0  [0]   # N sqrt h P^i d_i ln N = -N sqrt h (D.P) + total derivative: a lapse term carrying the charge
+L6   PASS  det = 1.21654309387868e+79*sqrt_h**3  [!= 0]   # for eta>0 the P Legendre map is invertible: P has 3 conjugate momenta, no primary P constraint
+L7   PASS  26, 8, 5  [26, 8, 5]   # 5 dof = 2 TT + 2 P-transverse + 1 mixed scalar (conformal + P-longitudinal)
+L8   PASS  eta>0: 5; eta=0: 3  [no 4]   # 2+1+1=4 is not the count of this action: P contributes 3 components (2 transverse + 1 longitudinal)
+L9   PASS  no N, no N^i  [0]   # the secondary constraints are functionals of (h,pi,P,pi_P) only => all 8 first-class
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/DS_FINAL_2026_10_21/A64_four_gates/a64_checks.py", line 252, in <module>
+    pos = all(float(v) > 0 for v in kin.values())
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/DS_FINAL_2026_10_21/A64_four_gates/a64_checks.py", line 252, in <genexpr>
+    pos = all(float(v) > 0 for v in kin.values())
+              ~~~~~^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/sympy/core/expr.py", line 340, in __float__
+    raise TypeError("Cannot convert expression to float")
+TypeError: Cannot convert expression to float

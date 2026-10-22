@@ -1,0 +1,91 @@
+==============================================================================
+A59 -- is the theory actually excluded by alpha_1?
+==============================================================================
+a0 = 9.360e-11 m/s^2   L* = 24.0 pc   lambda = 16.971 pc
+w_CMB = 369.8 km/s  ->  (w/c)^2 = 1.5217e-06
+declared PPN bound |alpha_1| < 1.0e-04; LLR 1-sigma 9.0e-05; pulsar 95% 3.5e-05
+*** MUTATION nolstar: the (k L*)^2 u'/2 term in D is DROPPED ***
+
+------------------------------------------------------------------------------
+PART 0 -- A36's numbers (input; must reproduce exactly)
+------------------------------------------------------------------------------
+K1 PASS  value=max rel diff route(a) = 4.94e-03, route(b) = 3.63e-04  threshold=< 1e-2 both   [A36's galactic alpha_1 tables reproduced from its own formula (A36 quotes 3 dp, so 1e-2 is the rounding floor)]
+K2 PASS  value=max rel diff route(c) = 1.06e-02  threshold=< 3e-2   [A36's independent 'galaxy as its own source' route reproduced (0.5% quadrature)]
+    .  alpha_1 ladder from A36: 0.073 (1 kpc) ... 0.928 (8 kpc) ... 5.194 (30 kpc)
+
+------------------------------------------------------------------------------
+PART 1 -- what alpha_1 DOES: the signature algebra
+------------------------------------------------------------------------------
+    .  k->0: -4*up/(up - 1)   k->inf: 0   u'->0: 0   asymptote: 8/(Ls**2*k2)
+K3 PASS  value=-4*up/(up - 1), 0, 0, 8/(Ls**2*k2)  threshold=4u'/(1-u'), 0, 0, 8/(kL*)^2   [alpha_1 is screened BOTH by high acceleration (u'->0) and by a source small compared with L* (kL*>>1); it is O(1) only for g~a0 AND r_s >> L*]
+    .  alpha_1 = 1    at g/a0 = 1.236   (analytic 1/sqrt(0.2)-1 = 1.236)
+    .  alpha_1 = 1e-4 at g/a0 = 199.00  (analytic 1/sqrt(2.5e-5)-1 = 199.00)
+K4 PASS  value=1.236, 199.00 a0  threshold=1.236, 199.0 a0   [alpha_1 = 4u'/(1-u'): unity at 1.24 a0, the PPN line 1e-4 at 199 a0]
+    .  alpha_1(g), r_s >> L*: 1e22a0:4.0e-44, 1e21a0:4.0e-42, 1e20a0:4.0e-40, 1e19a0:4.0e-38, 1e18a0:4.0e-36 ...  1e-2a0:1.99e+02
+K5 PASS  value=monotone=True, span=45.7 decades  threshold=monotone, > 40   [alpha_1 spans 46 decades between a neutron-star surface and a galaxy: it is not a PPN parameter, it is a response function]
+    .  crossing at r_s = L*: g* = 199.0 a0 = 1.863e-08 m/s^2
+    .  crossing at r_s = 1 pc: 198.3 a0; at 8 kpc: 199.0 a0; at 20 kAU: 95.8 a0
+    .  max over g: 20 kAU -> 1.31e-04 (= 8(r/L*)^2 = 1.31e-04); 18 AU -> 1.1e-10
+K6 PASS  value=199.0 a0, 198.3 a0, r_x=17502 AU, max(20kAU)=1.3e-04, max(18AU)=1.1e-10  threshold=199 a0, 199 a0, 17502 AU, >1e-4, <1e-6   [the 1e-4 line is a LOCUS: 199 a0 for any source larger than ~1 pc, 96 a0 at 20 kAU, and unreachable (max 8(r_s/L*)^2) below 17.5 kAU]
+    .  v1.v2 = Vx**2 - Vx*m1*ux/(m1 + m2) + Vx*m2*ux/(m1 + m2) + Vy**2 - Vy*m1*uy/(m1 + m2) + Vy*m2*uy/(m1 + m2) + Vz**2 - Vz*m1*uz/(m1 + m2) + Vz*m2*uz/(m1 + m2) - m1*m2*ux**2/(m1**2 + 2*m1*m2 + m2**2) - m1*m2*uy**2/(m1**2 + 2*m1*m2 + m2**2) - m1*m2*uz**2/(m1**2 + 2*m1*m2 + m2**2)
+K7 PASS  value=residual=0, velocity-independent terms=0  threshold=0, 0   [the alpha_1 Lagrangian is BILINEAR in velocities: every alpha_1 observable carries (v/c)^2 with v in {V, u}. There is no alpha_1 effect at zeroth order in velocity.]
+    .  dL/du = [-Gsec*M*Vx*alpha1*m/(2*r), -Gsec*M*Vy*alpha1*m/(2*r), -Gsec*M*Vz*alpha1*m/(2*r)]
+    .  dL/dr  = Gsec*M*alpha1*m*(Vx**2 + Vx*ux + Vy**2 + Vy*uy + Vz**2 + Vz*uz)/(2*r**2)
+K8 PASS  value=sum of component residuals = 0  threshold=0   [preferred-frame acceleration: (alpha1/2)(GM/c^2)[V rdot - (V^2+V.u)rhat]/r^2 -- a V^2 piece (uniform G rescaling, absorbable) plus a V.u piece (velocity-dependent), verified in all three components]
+    .  at 8 kpc, v_rot = 220 km/s: monopole (w/c)^2 = 1.52e-06, dipole 2(w/c)(v/c) = 1.81e-06, v^2 (v/c)^2 = 5.39e-07
+K9 PASS  value=residual = 0  threshold=0   [the monopole piece is exactly degenerate with the mass (a G-rescaling IS a M-rescaling): only the dipole and v^2 pieces are observable in one system]
+
+------------------------------------------------------------------------------
+PART 2 -- alpha_1 in every environment with a bound, and its observable
+------------------------------------------------------------------------------
+environment                  g/a0     uprime    alpha_1  signature  precision  margin/dex
+NS surface               1.38e+22   5.26e-45  2.104e-44   2.10e-44    2.1e-05       39.00
+PSR J1738+0333           6.91e+11   2.09e-24  8.372e-24   8.37e-24    3.5e-05       18.62
+wide pulsar 100 d        3.74e+08   7.15e-18  2.859e-17   2.86e-17      0.001       13.54
+Earth-Moon (LLR)         6.34e+07   4.08e-14  1.088e-13   1.09e-13      9e-05        8.92
+wide binary 18.8 AU      1.79e+05   3.11e-11  1.244e-10   3.52e-18      0.012       15.53
+wide binary 20 kAU       1.58e-01   7.45e-01  1.170e+01   1.01e-08      0.012        6.07
+outer SS 7000 AU         1.29e+00   1.90e-01  9.391e-01   1.38e-09       None         n/a
+rotation curve 8 kpc     1.30e+00   1.88e-01  9.277e-01   8.40e-07       0.01        4.08
+cluster (Coma-like)      3.46e-01   5.52e-01  4.924e+00   2.74e-05       0.01        2.56
+    .  task's 'Earth-Moon 2.4e7 a0': Earth's field at the Moon is 2.88e+07 a0, the Sun's at 1 AU 6.34e+07 a0 -- both give the same conclusion
+    .  LLR: u'(slaved)=2.49e-16  u'(hedgehog,1AU)=4.08e-14
+    .  LLR: alpha_1(slaved)=9.96e-16  alpha_1(hedgehog)=1.09e-13
+    .  LLR: predicted range amplitude 6.37e-11 m; the 9e-5 bound corresponds to 5.26e-02 m (LLR ranging is 2e-2 m)
+K10 PASS  value=dr_pred=6.37e-11 m, dr_at_bound=5.26e-02 m  threshold=< 1e-8 x bound; 1-100 cm   [LLR: alpha_1(theory) ~ 1e-13 in the environment where the 1e-4 bound is measured; the 9e-5 bound corresponds to a 5 cm lunar-range amplitude; the theory predicts 6e-11 m]
+K11 PASS  value=J1738 margin 18.6 dex, wide-pulsar 13.5 dex  threshold=> 15, > 8   [binary pulsars: g/a0 ~ 1e9-1e12, so alpha_1 ~ 1e-17-1e-24 and the 2.1e-5..3.5e-5 strong-field bounds are satisfied by 13-19 decades]
+    .  task's pair (20 kAU, 1.8e5 a0) is internally inconsistent: 1.8e5 a0 occurs at 18.8 AU for a 1 Msun binary; at 20 kAU g = 0.158 a0
+    .  deep-MOND limit: alpha_1 = 8(r/L*)^2 = 1.31e-04 at 20 kAU (formula: 1.17e+01)
+K12 FAIL  value=8(r/L*)^2/alpha_1 = 0.000, r(1.8e5 a0) = 18.8 AU  threshold=1.00 +- 5%, 18.8 AU   [wide binary at 20 kAU: alpha_1 = 8(r/L*)^2 = 1.3e-4, the closest any environment comes to the 1e-4 line -- and its non-degenerate alpha_1 signature is 1e-13]
+    .  7000 AU: g = 1.29 a0, alpha_1 = 9.39e-01; delta a = 8.0e-23 m/s^2 (with w_CMB: 8.6e-17)
+    .  Voyager 1 at 165 AU: g = 2328 a0, alpha_1 = 8.78e-09
+K13 FAIL  value=alpha_1=9.39e-01, delta_a=8.6e-17 m/s^2  threshold=< 1e-4, < 1e-15, no test   [the outer solar system is where g = a0, but the source is small compared with L*, so alpha_1 = 1.6e-5 and the predicted anomaly is 1e-21 m/s^2: no test exists]
+    .  8 kpc: alpha_1 = 0.928; delta v/v = (alpha_1/4)(v/c)^2 = 1.25e-07 (2.7e-02 m/s); dipole alpha_1(w/c)(v/c) = 8.40e-07
+K14 PASS  value=dv/v=1.25e-07, margin=4.08 dex  threshold=< 1e-6, > 4   [galactic rotation: alpha_1 = 0.93 but the signature is 1.3e-7 in v (8.4e-7 in the dipole): 4.1 decades below the 1e-2 rotation-curve systematics]
+    .  cluster: g = 0.35 a0, alpha_1 = 4.924, v_c = 1000 km/s, delta v/v = 1.37e-05, delta M/M = 2.74e-05
+K15 PASS  value=dv/v=1.37e-05, margin=2.56 dex  threshold=< 1e-4, 2-3.5 dex   [clusters are the CLOSEST environment to a test: alpha_1 = 4.9 (largest in nature), signature 2.7e-5 in mass, precision 1e-2 -> 2.6 decades short]
+
+------------------------------------------------------------------------------
+PART 3 -- is there ANY environment with alpha_1 = O(1) and a test?
+------------------------------------------------------------------------------
+    .  environments with alpha_1 >= 0.1: ['wide binary 20 kAU', 'rotation curve 8 kpc', 'cluster (Coma-like)']
+    .  of those, with a test (margin <= 0): []
+K16 PASS  value=count=0, min margin=2.56 dex  threshold=0, > 2 dex   [NO environment has both alpha_1 = O(0.1-5) and a measurement sensitive to the alpha_1 signature; the best (clusters) is 2.7 decades short]
+    .  LLR: 9e-5 -> 5.3 cm vs 2 cm ranging -> factor 2.6
+    .  pulsar: 3.5e-5 x (w/c)(v/c) = 5.1e-11 (eccentricity units)
+K17 PASS  value=2.6  threshold=1-10   [the published alpha_1 bounds are (v/c)^2-suppressed measurements: 9e-5 IS a 5 cm lunar range, i.e. 1.5e-6 x alpha_1 in relative terms]
+    .  A36 K11 as coded: 5.441e-14; with its own headline factor 4: 1.088e-13; ratio 2.00
+K18 PASS  value=ratio=2.00, value=1.09e-13  threshold=2.00, < 1e-4   [A36's solar-system number uses factor 2 while its headline formula is factor 4: 5.44e-14 should read 1.09e-13. Not load-bearing (both << 1e-4).]
+    .  A36 sec.8 claims alpha_1 v^2/c^2 = 2e-7..3e-6 at v=369 km/s; recomputed from its own conservative route: 7.0e-08..9.6e-07
+K19 PASS  value=7.0e-08..9.6e-07  threshold=within a factor 3 of 2e-7..3e-6   [A36 already states that its galactic alpha_1 produces only a 1e-7..1e-6 modulation, 'below any present measurement' -- which contradicts its own EXCLUDED verdict]
+    .  (a) coefficient O(1) in galaxies: True
+    .  (b) every measured bound satisfied: min margin 8.9 dex
+    .  (c) no O(1) environment with a test: True
+K20 PASS  value=True, True, True  threshold=True, True, True   [VERDICT: A36's coefficient is right, its 'EXCLUDED' is over-scoped. What is excluded is the CLAIM alpha_1 = 0; the theory is not excluded by any alpha_1 measurement.]
+    .  ceiling over the P configuration: alpha_1(1 AU) <= 3.26e-13 (at u'=1: 3.26e-13); at 20 kAU <= 1.31e-04
+K22 PASS  value=3.26e-13, 1.31e-04  threshold=3.3e-13, 1.3e-4   [alpha_1 at 1 AU is bounded by 8/(kL*)^2 = 3.3e-13 for ANY P configuration: the LLR pass does not depend on the open solar-system P sector]
+    .  eta_N channel (no velocity suppression assumed): eta = 1.09e-13 vs bound 7.2e-05 -> 8.8 dex
+K21 PASS  value=8.8 dex  threshold=> 8 dex   [even the most damaging reading of the Nordtvedt channel (alpha_1 enters eta_N linearly, no (v/c)^2) is satisfied by 8.7 decades]
+
+A59_alpha1_observable COMPLETE: 20/22 checks PASS.
+FAILED: ['K12', 'K13']

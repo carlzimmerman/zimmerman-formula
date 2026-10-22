@@ -1,0 +1,119 @@
+A52 -- WHAT PHYSICAL QUANTITY EQUALS 2 sqrt(32 pi/3) = 11.5776 ?
+mutation = M2
+
+-- K1 the identity: 2 sqrt(32 pi/3) = 4 sqrt(8 pi/3) = sqrt(128 pi/3) ----
+K1    PASS value=11.5776200729 ; max|residual|=0.0                  all residuals exactly 0                [four spellings, one number]
+
+-- K2 closed-form candidates of order 10, to 10 digits ---------------
+    expression           value (10 dp)      rel. dev     what it is
+    2 sqrt(32 pi/3)      11.5776200729         +0.000000%   the target itself (definition)   <== 6-digit HIT
+    4 sqrt(8 pi/3)       11.5776200729         +0.000000%   4 x the inverse Friedmann coefficient   <== 6-digit HIT
+    sqrt(128 pi/3)       11.5776200729         +0.000000%   same number, factored   <== 6-digit HIT
+    8 sqrt(2 pi/3)       11.5776200729         +0.000000%   same number, factored   <== 6-digit HIT
+    e^sqrt(6)            11.5824351900         +0.041590%   chance near-hit (no physics)
+    4 pi - 1             11.5663706144         -0.097166%   chance near-hit (no physics)
+    3 pi + 2             11.4247779608         -1.320151%   chance near-hit
+    2^(7/2)              11.3137084990         -2.279498%   chance near-hit
+    pi^2 + 2             11.8696044011         +2.521972%   chance near-hit
+    12                   12.0000000000         +3.648245%   cH_L/6 (Verlinde-form); SM gauge generators
+    11                   11.0000000000         -4.989109%   M-theory dimensions
+    4 pi                 12.5663706144         +8.540188%   solid angle of S^2
+    2 pi sqrt(8/3)       10.2603986413        -11.377307%   2 pi x sqrt(Friedmann)
+    10                   10.0000000000        -13.626463%   dS4 Killing vectors; Weyl components
+    8 pi/3               8.3775804096         -27.639875%   Friedmann coefficient
+    16 pi/3              16.7551608191        +44.720251%   4 x Friedmann
+    Vol S5 / Vol B5      5.8904862255         -49.121787%   surface/volume ratio, n=5
+    sqrt(32 pi/3)        5.7888100365         -50.000000%   half the target: cH/a0
+    Vol S4 / Vol B4      5.3333333333         -53.934113%   surface/volume ratio, n=4
+    Vol S3 / Vol B3      4.7123889804         -59.297429%   surface/volume ratio, n=3
+    4 pi/3               4.1887902048         -63.819937%   ball-volume factor
+    Vol S2 / Vol B2      4.0000000000         -65.450585%   surface/volume ratio, n=2 (= n/R)
+    Vol S4 / Vol S2      2.0943951024         -81.909969%   sphere-volume ratio
+    sqrt(4 pi/3)         2.0466534159         -82.322330%   Jeans mass coefficient (4 pi/3)^(1/2)
+    Vol B4 / Vol B2      1.1780972451         -89.824357%   ball-volume ratio
+    (V_H/V_P)^(1/6)      2.9141e+30         (not of order 10)  Hubble/Planck volume, sixth root
+K2    PASS hits=4 (distinct values=1), non-rewrite hits=0, closest miss=0.0416% 0 non-rewrite hits at 6 digits; all hits are one value [4 spellings, 1 number, 0 independent formulas]
+
+-- K3 volumes of S^n and B^n (n=2..5) and every pairwise ratio -------
+    volumes: Vol B2=3.141593, Vol B3=4.188790, Vol B4=4.934802, Vol B5=5.263789, Vol S2=12.566371, Vol S3=19.739209, Vol S4=26.318945, Vol S5=31.006277
+    nearest ratios: S5/B2=9.869604 (-14.75%), S4/B2=8.377580 (-27.64%), S5/B3=7.402203 (-36.06%), S3/B2=6.283185 (-45.73%)
+    largest ratio in the family: 9.869604 (S5/B2)
+K3    PASS hits=0 ; max ratio=9.869604 (S5/B2) ; nearest dev=14.75% 0 hits; every sphere ratio < 0.9 x target [the whole sphere-volume family tops out at pi^2 = 9.870]
+
+-- K4 the solid angle 4 pi and its fractions -------------------------
+    4pi = 12.5663706144  (dev +8.5402%)
+    nearest member: 4pi/1 = 12.5663706144 (dev +8.5402%)
+K4    PASS hits=0 ; 4pi dev=+8.5402% ; nearest dev=8.5402%          0 hits; nearest member > 8% away       [4 pi = 12.5664 is 8.54% high; no fraction of it lands on 11.58]
+
+-- K5 thermodynamic and gravitational candidates of order 10 ---------
+    Jeans (4pi/3)^(1/2)      2.046653416   (dev -8.232e-01)
+    S_dS = A/4l_P^2          3.313015532e+122   (dev +2.862e+121)
+    A_H/l_P^2                1.325206213e+123   (dev +1.145e+122)
+    log2 S_dS                407.0033725   (dev +3.415e+01)
+    Killing vectors dS4      10   (dev -1.363e-01)
+    Weyl components 4D       10   (dev -1.363e-01)
+    (V_H/V_P)^(1/6)          2.914065201e+30   (dev +2.517e+29)
+    closest O(10) item: 12 (SM gauge generators) = 12.000000 (dev +3.6482%)
+K5    PASS hits=0 ; closest O(10)=12 (SM gauge generators) at 3.6482% 0 hits; closest O(10) > 3% away        [static-patch dof are 1e122 or 10, never 11.58]
+
+-- K6 the exact identification: 2cH_L/a0 = 4 sqrt(8 pi/3) <=> kappa=1/2 ----
+K6    FAIL residuals (4*sqrt(pi)*(-sqrt(6) + 3*sqrt(2))/(3*kappa),0,8*sqrt(pi)*(-sqrt(6) + 3*sqrt(2))/3) ; 2cH/a0=11.5776200729 ; a0=9.354173e-11 exact identity; kappa=1/2 <=> target   [this is P3 restated, not a new equation]
+
+-- K7 the same number as a ratio of lengths --------------------------
+K7    PASS L_MOND/(r_H/2)=11.5776200729 ; L_MOND/r_H=5.7888100365 ; residual=0 exact; both ratios reproduce Z and 2Z  [unique meaning: MOND length in half-horizon radii]
+
+-- K8 product test: kappa = 1/(beta sqrt(chi)) and N = 2 sqrt(8pi/3) beta sqrt(chi) ----
+K8    PASS beta=2/sqrt(chi) ; kappa(2,1)=1/2 ; kappa(1,4)=1/2 ; dim(level set)=1 one equation, two unknowns -> 1-parameter family [a hit fixes the product beta sqrt(chi) = 2, i.e. kappa by definition]
+
+-- K9 irrational: no integer count can equal it ----------------------
+K9    PASS pi = 3*p**2/(128*q**2) (rational in p,q) ; integer hits in [8,16]=0 ; 11:-4.99% 12:+3.65% irrationality proof + no integer within 1% [11.58 lies between 11 and 12; neither is within 3.5%]
+
+-- K10 the twelfth: 12 = 2 x round(2 sqrt(8 pi/3)); the 14 control ----
+K10   PASS 12/2Z=1.0364824484 ; kappa(12)=0.4824008 ; R(12)=4.29718 ; |2cH0/a0-14|/14=5.55e-04 closed forms exact; 14-hit 66x tighter than 12 [the twelfth is 2 x round(5.7888): rounding, not counting]
+    round(2 sqrt(8 pi/3)) = round(5.788810) = 6  ->  2 x 6 = 12
+    exact 2Z = 11.577620 ; 12 is +3.648% ; 4pi = 12.566371 is +8.540%
+    H0 footing with a0_can: 2cH0/a0 = 13.992236, i.e. the integer 14 to -0.0555%
+
+-- K11 measurement status of 2cH_L/a0 --------------------------------
+K11   PASS N(kappa_meas)=13.882+-3.163 ; z(2Z)=0.73 ; z(12)=0.60 ; sigma_kappa(3sig)=0.00423 vs 0.095 both within 1 sigma; need 10x better kappa [the data cannot tell 11.5776 from 12 today]
+
+-- K12 look-elsewhere pool: <=3 operations from 9 atoms --------------
+    generated=430461  distinct values=119108  in window [10.420,12.735]: 4008
+    level 1: generated     333  distinct     172  hits@1%    0
+    level 2: generated   12556  distinct    4099  hits@1%   12
+    level 3: generated  417563  distinct  114828  hits@1%  389
+    hits within 1%: 401 (10.00% of window) ; 0.1%: 49 ; 0.01%: 9
+    closest: 11.57755125  dev 5.945e-06  (pi*(pi+(e/5)))
+K12   PASS hits@1%=401 of 4008 window values (10.0%) ; hits@0.01%=9 base rate > 5% of the window           [a 1% coincidence is the norm, not the exception]
+
+-- K13 matched controls: integer targets and 200 random targets ------
+    exact hits: 4->4 10->3 11->3 12->3 13->3 ; target->0
+    hits@1%: 12 -> 376 ; target -> 401 ; random targets: mean 401.1 median 400.0 sd 16.6 [358,441]
+    target z-score -0.00, percentile 54%
+K13   PASS z=-0.00 (pct 54%) ; exact hits at integers=3..4 ; at target=0 |z|<2 ; integers hit exactly, target never [the target is statistically an ordinary point of the pool]
+
+-- K14 look-elsewhere: how many trials does a 'hit' take? ------------
+    p(hit | one candidate) = 0.1000
+    P(>=1 hit | m=1)=0.100  m=12)=0.718
+    candidates needed: 3sigma 56.1, 5sigma 136.3
+K14   PASS p=0.100 ; P(>=1|m=12)=0.72 ; m(3sig)=56.1 ; m(5sig)=136.3 p>5%; 12 candidates give >50% chance of a hit [the task's own list is expected to produce ~1.2 hits]
+
+-- K15 the best chance hit beats every physical near-miss ------------
+    best pool hit: 11.5775512456  dev 5.94e-06  (pi*(pi+(e/5)))
+    best physical near-miss: dev 3.65e-02 ; ratio 6137 x
+K15   PASS pool best dev=5.94e-06 ; physical best=3.65e-02 ; ratio=6137 chance hit 1000x tighter than any physical candidate [a 3-op expression with no meaning wins by three orders]
+
+-- K16 no O(10) dimensionless invariant in {c,G,hbar,Lambda,H} -------
+    nullspace dim = 2 (two invariants); with H=H_Lambda only x remains
+    x = hbar G Lambda / c^3 = 2.8448e-122  (log10 = -121.55)
+K16   PASS nullspace dim=2 ; x=2.845e-122 (log10=-121.5)            dim 2 free, 1 after Friedmann; x < 1e-120 [an analytic F(x) is constant to 122 digits: no O(10) number]
+
+-- K17 the folklore divisors: a0 = cH_L/6 and cH_L/2pi ---------------
+    exact    a0 = cH_L/5.7888 = 9.354173e-11  (dev +0.000%)
+    cH_L/6   (Verlinde form)  = 9.024922e-11  (dev -3.520%)
+    cH_L/2pi (Milgrom form)   = 8.618166e-11  (dev -7.868%)
+    H0 footing (kappa=1/2)    = 1.131211e-10  (dev +20.931% vs H_L)
+K17   PASS a0: 8.6182e-11 < 9.0249e-11 < 9.3542e-11 ; H0 shift +20.9% both divisors > Z, so both a0 < exact ; footing > 20% [both folklore divisors (6, 2pi) exceed Z = 5.7888; neither is derived]
+
+A52 COMPLETE: 16/17 checks PASS.
+MUTATION CONFIRMED (M2): broken checks K6
