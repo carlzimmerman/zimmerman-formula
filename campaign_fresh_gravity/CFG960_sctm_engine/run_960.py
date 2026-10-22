@@ -9,12 +9,14 @@ Jobs (production, 1024^3, NOT started by CFG960):
   SC2x  the same on the ALT footing a0 1.1312e-10
   (A5: own baryons = CFG953 census f_ret for SC1x / SC2x; SC1m / SC2m = the M2-condensed variant, secondary, reported only, not queued)
 Control: NCS0 (CFG654, existing; native_cmb, same ICs; S0 never reads the footing).
+A6 (2026-10-22, pre-result): engine with compact body painting (bit-identical); extra abort at footprint > 52 GB (tightening only).
 kappa = 1/2 FITTED; footings never pooled; not theory closed."""
 import os, sys, subprocess, time, json, re, shutil, ctypes
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENGINE = os.path.join(HERE, "cfg960_sctm_pm.py")
 WORK = os.path.abspath(os.path.join(HERE, "..", "..", "..", "_external_data", "cfg960_work"))
 RSS_MAX_GB = 52.0; SWAP_GROW_MB = 4096.0; DISK_START_GB = 45.0
+FOOTPRINT_MAX_GB = 52.0   # A6 (2026-10-22): the 52 GB rule also read through the macOS footprint (counts compressed pages; ps RSS does not)
 _P = dict(MODE="lean", L="100", NSEED="1024", RMIN="0.78125", THREADS="14", SPILL="1", INPUTS="native_cmb", M3="1", CONVERT="1", MUTATE="none", N=1024, OWNB="fret")
 JOBS = {"SC1x": dict(_P, foot="canonical"), "SC2x": dict(_P, foot="alt"),                      # A5 primary: own baryons = census f_ret
         "SC1m": dict(_P, foot="canonical", OWNB="cond"), "SC2m": dict(_P, foot="alt", OWNB="cond")}   # A5 secondary (M2 condensed): registered, NOT queued
@@ -49,6 +51,8 @@ def watch(r):
         print(time.strftime("%Y-%m-%d %H:%M:%S"), f"rss {g:.2f} GB peak {r['peak']:.2f} swap_used {sw:.0f} MB (start {r['swap0']:.0f}) footprint {fp:.2f} GB disk_free {df:.1f} GB", file=r["wl"], flush=True)
         if g > RSS_MAX_GB or sw - r["swap0"] > SWAP_GROW_MB:
             print("ABORT (frozen rule): rss", g, "swap growth", sw - r["swap0"], file=r["wl"], flush=True); r["p"].kill()
+        elif fp > FOOTPRINT_MAX_GB:
+            print("ABORT (A6 footprint rule): footprint", fp, "GB", file=r["wl"], flush=True); r["p"].kill()
         elif df < 3.0:
             print("ABORT (disk guard): free disk", df, "GB", file=r["wl"], flush=True); r["p"].kill()
         time.sleep(20)

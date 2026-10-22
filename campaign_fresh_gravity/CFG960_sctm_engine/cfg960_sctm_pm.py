@@ -16,6 +16,9 @@ source sector of CFG953 (R0-R9), realised on the PM mesh as the frozen rules S1-
   S9  R7 merges at refreshes (bound fraction < 1/2 or baryon-centroid coalescence), inelastic, no blend
   S10 in situ: labelled-majority peaks give no body;  S11 labelled dust inert, still geodesic;  S12 M3 unchanged
   S13 spin and E_int not tracked; NR limit; no stripping
+  A6 (2026-10-22, pre-result, memory only): S7's inner points are kept as shell records and painted / interpolated in body-aligned
+      blocks (body_shells, shell_points, deposit_shells); bit-identical to the A5 engine (A6_equivalence/); env CFG960_SHELLCHECK=1
+      re-runs body_points every step and asserts equality.
 Usage:  python3 cfg960_sctm_pm.py MODE FOOT N
   MODE = SCT (production / validation)  |  S0REF (the CFG654 engine's own S0, reference control)
   env: CFG960_M3 (1|0), CFG960_CONVERT (1|0: 0 = the K test, births/labels/merges active, nothing converts),
@@ -352,6 +355,181 @@ def body_points(prof, Mc, X, law, edges, dx, M, mut=1.0):
     if ci_l:
         out["cidx"] = np.concatenate(ci_l); out["cw"] = np.concatenate(cw_l); out["cown"] = np.concatenate(co_l).astype(np.int64)
     return out, dg, re
+
+# ------------------------------------------------------------------------------------------------ A6: compact body painting (memory)
+# AMENDMENT A6 (2026-10-22, pre-result): the inner CIC points of S7 are no longer materialised for all bodies at once.  body_shells
+# runs body_points' arithmetic statement for statement but records each shell (body, radius, n_a, rotation index, per-point mass)
+# instead of its points; shell_points regenerates the points of a contiguous item range with the same elementwise expressions;
+# deposit_shells / the accel pass consume them in blocks that never split a body, in the original order (CIC corner-major for the
+# deposit, one bincount per body for the force).  Outputs are bit-identical to body_points + deposit_points (proved in
+# A6_equivalence/, and checked per step when CFG960_SHELLCHECK=1).  body_points / deposit_points are kept unchanged (cfg960_law.py).
+SHELLCHECK = os.environ.get("CFG960_SHELLCHECK", "0") == "1"
+SH_BLOCK = int(os.environ.get("CFG960_SH_BLOCK", str(1 << 21)))          # points per block (memory only; no effect on any number)
+_CT = {}
+def _rot(k):
+    if k not in _CT: th = k * GOLD; _CT[k] = (math.cos(th), math.sin(th))
+    return _CT[k]
+def body_shells(prof, Mc, X, law, edges, dx, M, mut=1.0):
+    """= body_points (S6/S7 + A3/A4), same statements; the inner points are returned as shell records (see shell_points)."""
+    nb = len(Mc); dg = dict(n_bodies=int(nb), n_point=0, n_fallback=0, n_nobaryon=0, n_cap=0, n_outer=0, re_dx=[])
+    SH = dict(X=np.array(X, dtype=float).reshape(-1, 3), mut=mut, pt_idx=np.zeros(0, np.int64), pt_w=np.zeros(0),
+              sq=np.zeros(0, np.int64), srad=np.zeros(0), sna=np.zeros(0, np.int64), sk=np.zeros(0, np.int64), sval=np.zeros(0),
+              cidx=np.zeros(0, np.int64), cw=np.zeros(0), cown=np.zeros(0, np.int64))
+    if nb == 0: _sh_finish(SH); return SH, dg, np.zeros(0)
+    cum = np.concatenate([np.zeros((nb, 1)), np.cumsum(prof, 1)[:, :-1]], 1)
+    Mtot = prof.sum(1)
+    re = np.full(nb, np.nan)
+    s_half = np.full(nb, 0.5 * dx)
+    m_half = law.mph(s_half, mb_at(s_half, cum, prof, edges))
+    point = (m_half >= Mc) | (Mtot <= 0)
+    dg["n_nobaryon"] = int((Mtot <= 0).sum())
+    SH["pt_idx"] = np.nonzero(point)[0]; SH["pt_w"] = Mc[point] * mut
+    sq_l, sr_l, sn_l, sk_l, sv_l = [], [], [], [], []; buf = ([], [], [], [], [])
+    def flush():
+        if buf[0]:
+            sq_l.append(np.array(buf[0], np.int64)); sr_l.append(np.array(buf[1], np.float64)); sn_l.append(np.array(buf[2], np.int64))
+            sk_l.append(np.array(buf[3], np.int64)); sv_l.append(np.array(buf[4], np.float64))
+            for b_ in buf: b_.clear()
+    ci_l, cw_l, co_l = [], [], []
+    dg["n_point"] = int(point.sum())
+    re[point & (Mtot > 0)] = 0.5 * dx
+    rest = np.nonzero(~point)[0]
+    rcap = min(E.L / 4.0, 128.0 * dx)
+    if len(rest):
+        fe = edges[1:]
+        me = law.mph(np.broadcast_to(fe, (len(rest), len(fe))), mb_at(np.broadcast_to(fe, (len(rest), len(fe))), cum[rest], prof[rest], edges))
+        ok = me >= Mc[rest][:, None]; del me
+        has = ok.any(1)
+        jfirst = np.where(has, ok.argmax(1), len(fe) - 1); del ok
+        hi = np.where(has, fe[jfirst], E.L / 2.0)
+        lo = np.where(jfirst > 0, fe[np.maximum(jfirst - 1, 0)], 0.5 * dx); lo = np.maximum(lo, 0.5 * dx)
+        lo = np.minimum(lo, hi)
+        cr, pr_ = cum[rest], prof[rest]
+        for _ in range(80):
+            mid = 0.5 * (lo + hi)
+            mm = law.mph(mid, mb_at(mid, cr, pr_, edges)) >= Mc[rest]
+            hi = np.where(mm & has, mid, hi); lo = np.where(mm & has, lo, mid)
+        del cr, pr_
+        rr = np.where(has, hi, E.L / 2.0); re[rest] = rr
+        dg["n_fallback"] = int((~has).sum())
+        for t, q in enumerate(rest):
+            rp = min(rr[t], rcap)
+            if rr[t] > rcap: dg["n_cap"] += 1
+            rin = rp if rp <= (R_IN + 1.0) * dx else R_IN * dx
+            def msig(sv):
+                return np.minimum(np.maximum.accumulate(law.mph(sv, mb_at(sv[None, :], cum[q:q + 1], prof[q:q + 1], edges)[0])), Mc[q])
+            nr = int(math.ceil(2.0 * rin / dx)); sgrid = rin * np.arange(nr + 1) / nr
+            ms = msig(sgrid[1:])
+            if rp <= rin: ms[-1] = Mc[q]
+            dM = np.diff(np.concatenate([[0.0], ms]))
+            rb = 0.5 * (sgrid[1:] + sgrid[:-1])
+            for k in range(nr):
+                if dM[k] <= 0: continue
+                na = max(6, 2 * int(math.ceil(8.0 * math.pi * rb[k] ** 2 / dx ** 2)))
+                if na > NA_CAP: na = NA_CAP; dg["n_cap"] += 1
+                buf[0].append(q); buf[1].append(rb[k]); buf[2].append(na); buf[3].append(k); buf[4].append(dM[k] / na)
+            if len(buf[0]) >= (1 << 20): flush()
+            if rp <= rin: continue
+            dg["n_outer"] += 1
+            no = int(math.ceil(2.0 * (rp - rin) / dx)); so = rin + (rp - rin) * np.arange(no + 1) / no
+            mo = msig(so); mo[0] = ms[-1]; mo[-1] = Mc[q]; mo = np.maximum.accumulate(mo); dMo = np.diff(mo)
+            lo3 = np.floor((X[q] - rp) / dx).astype(np.int64); hi3 = np.ceil((X[q] + rp) / dx).astype(np.int64)
+            gx, gy, gz = [np.arange(lo3[c], hi3[c] + 1) for c in range(3)]
+            ddx, ddy, ddz = gx * dx - X[q][0], gy * dx - X[q][1], gz * dx - X[q][2]
+            r3 = np.sqrt(ddx[:, None, None] ** 2 + ddy[None, :, None] ** 2 + ddz[None, None, :] ** 2)
+            sel = (r3 > rin) & (r3 <= rp)
+            ii, jj, kk = np.nonzero(sel); rs = r3[ii, jj, kk]; del r3, sel
+            ks = np.clip(((rs - rin) / (rp - rin) * no).astype(np.int64), 0, no - 1)
+            cnt = np.bincount(ks, minlength=no)
+            if cnt.sum() == 0:                                         # A4 fallback: one unrotated CIC point shell at the mid radius
+                rm = 0.5 * (rin + rp); na = max(6, 2 * int(math.ceil(8.0 * math.pi * rm ** 2 / dx ** 2)))
+                buf[0].append(q); buf[1].append(rm); buf[2].append(na); buf[3].append(-1); buf[4].append(dMo.sum() / na)
+                dg["n_node_fallback"] = dg.get("n_node_fallback", 0) + 1
+                continue
+            if (cnt[dMo > 0] == 0).any():
+                fill = np.nonzero(cnt > 0)[0]
+                for k in np.nonzero((cnt == 0) & (dMo > 0))[0]:
+                    j_ = fill[np.argmin(np.abs(fill - k))]; dMo[j_] += dMo[k]; dMo[k] = 0.0
+            wn = dMo[ks] / np.maximum(cnt[ks], 1)
+            ci_l.append((((gx[ii] % M) * M + (gy[jj] % M)) * M + (gz[kk] % M)).astype(np.int64)); cw_l.append(wn * mut); co_l.append(np.full(len(ii), q))
+    flush()
+    dg["re_dx"] = (re[np.isfinite(re)] / dx)
+    if sq_l:
+        SH["sq"] = np.concatenate(sq_l); SH["srad"] = np.concatenate(sr_l); SH["sna"] = np.concatenate(sn_l)
+        SH["sk"] = np.concatenate(sk_l); SH["sval"] = np.concatenate(sv_l)
+    if ci_l:
+        SH["cidx"] = np.concatenate(ci_l); SH["cw"] = np.concatenate(cw_l); SH["cown"] = np.concatenate(co_l).astype(np.int64)
+    _sh_finish(SH)
+    return SH, dg, re
+def _sh_finish(SH):
+    """items = the point bodies (one point each) then the shells, in body_points' order; blocks of about SH_BLOCK points that never
+    split a body (a body's shells are consecutive items)."""
+    npt = len(SH["pt_idx"]); cnt = np.concatenate([np.ones(npt, np.int64), SH["sna"]])
+    own = np.concatenate([SH["pt_idx"], SH["sq"]]); SH["n_items"] = len(cnt); SH["n_points"] = int(cnt.sum())
+    SH["item_off"] = np.concatenate([[0], np.cumsum(cnt)])
+    start = np.r_[True, own[1:] != own[:-1]] if len(own) else np.zeros(0, bool)
+    cand = np.nonzero(start)[0]; bl = [0]
+    for c_ in cand:
+        if SH["item_off"][c_] - SH["item_off"][bl[-1]] >= SH_BLOCK: bl.append(int(c_))
+    if bl[-1] != len(cnt): bl.append(len(cnt))
+    SH["blocks"] = [(bl[i], bl[i + 1]) for i in range(len(bl) - 1) if bl[i + 1] > bl[i]]
+def shell_points(SH, a, b):
+    """points (pos (n, 3) % L, w (n,), own (n,)) of items [a, b), equal elementwise to body_points' rows for those items."""
+    npt = len(SH["pt_idx"]); X = SH["X"]; mut = SH["mut"]
+    P_, W_, O_ = [], [], []
+    if a < npt:
+        e = min(b, npt); idx = SH["pt_idx"][a:e]
+        P_.append(X[idx]); W_.append(SH["pt_w"][a:e]); O_.append(idx)
+    s0, s1 = max(a, npt) - npt, b - npt
+    if s1 > s0:
+        sq, srad, sna, sk, sval = (SH[k][s0:s1] for k in ("sq", "srad", "sna", "sk", "sval"))
+        un = np.unique(sna); tabs = [ang_set(int(n)) for n in un]
+        aoff = np.concatenate([[0], np.cumsum([len(t) for t in tabs])])[:-1]; ANG = np.concatenate(tabs)
+        sh_aoff = aoff[np.searchsorted(un, sna)]
+        rep = np.repeat(np.arange(s1 - s0), sna); first = np.concatenate([[0], np.cumsum(sna)])[:-1]
+        j = np.arange(len(rep)) - first[rep]
+        v = ANG[sh_aoff[rep] + j]
+        ks = np.unique(sk); kr = ks[ks >= 0]
+        CTt = np.zeros(len(ks)); STt = np.zeros(len(ks))
+        for i_, k_ in enumerate(ks):
+            if k_ >= 0: CTt[i_], STt[i_] = _rot(int(k_))
+        ki = np.searchsorted(ks, sk)[rep]; ct = CTt[ki]; st = STt[ki]
+        vr = np.stack([v[:, 0] * ct - v[:, 1] * st, v[:, 0] * st + v[:, 1] * ct, v[:, 2]], 1)
+        fb = (sk < 0)[rep]
+        if fb.any(): vr[fb] = v[fb]                                 # A4 fallback shell: unrotated
+        del v, ct, st, ki
+        q = sq[rep]
+        P_.append(X[q] + srad[rep][:, None] * vr); W_.append(np.repeat(sval, sna) * mut); O_.append(q)
+    pos = (np.concatenate(P_) if len(P_) > 1 else P_[0]) % E.L
+    return pos, (np.concatenate(W_) if len(W_) > 1 else W_[0]), (np.concatenate(O_) if len(O_) > 1 else O_[0]).astype(np.int64)
+def shell_w_all(SH):
+    """the full per-point mass array (= body_points' w), for the painted-mass book (same array, same sum)."""
+    return np.concatenate([SH["pt_w"], np.repeat(SH["sval"], SH["sna"]) * SH["mut"]])
+def deposit_shells(rho, mesh, SH):
+    """= deposit_points(rho, mesh, pos, w) for all body points: CIC corner-major, points in order within a corner (np.add.at is
+    sequential in index order, so splitting a corner's points into consecutive blocks keeps every cell's summation order)."""
+    if SH["n_points"] == 0: return
+    M = mesh.M; flat = rho.reshape(-1)
+    for cx in (0, 1):
+        for cy in (0, 1):
+            for cz in (0, 1):
+                for a, b in SH["blocks"]:
+                    pos, w, _ = shell_points(SH, a, b); i0, i1, wc = mesh.cic_idx(pos); del pos
+                    ix = i1[:, 0] if cx else i0[:, 0]; wx = wc[:, 0] if cx else 1 - wc[:, 0]
+                    iy = i1[:, 1] if cy else i0[:, 1]; wy = wc[:, 1] if cy else 1 - wc[:, 1]
+                    iz = i1[:, 2] if cz else i0[:, 2]; wz = wc[:, 2] if cz else 1 - wc[:, 2]
+                    np.add.at(flat, (ix * M + iy) * M + iz, (wx * wy * wz).astype(np.float64) * w)
+def check_shells(BB, SH):
+    """CFG960_SHELLCHECK: the regenerated points equal body_points' arrays bit for bit."""
+    parts = [shell_points(SH, a, b) for a, b in SH["blocks"]]
+    if parts:
+        pos = np.concatenate([p[0] for p in parts]); w = np.concatenate([p[1] for p in parts]); own = np.concatenate([p[2] for p in parts])
+    else:
+        pos, w, own = np.zeros((0, 3)), np.zeros(0), np.zeros(0, np.int64)
+    for nm, x_, y_ in (("pos", BB["pos"], pos), ("w", BB["w"], w), ("own", BB["own"], own), ("w_all", BB["w"], shell_w_all(SH)),
+                       ("cidx", BB["cidx"], SH["cidx"]), ("cw", BB["cw"], SH["cw"]), ("cown", BB["cown"], SH["cown"])):
+        assert x_.shape == y_.shape and x_.tobytes() == y_.tobytes(), f"A6 SHELLCHECK: {nm} differs"
+    return True
 
 def deposit_points(rho, mesh, pos, w):
     """CIC of weighted points into rho (M, M*M) float64 (the particles' CIC, mesh.cic_idx)."""
@@ -697,6 +875,8 @@ def run_sct(foot, npg):
     calls = 0; n0 = 0
     if ck is not None:
         res = ck["res"]; calls = ck["calls"]; n0 = ck["n_done"]; res.setdefault("resumed_after_step", []).append(n0)
+        sha_now = hashlib.sha256(open(os.path.abspath(__file__), "rb").read()).hexdigest()   # A6: record the engine of every segment
+        res.setdefault("engine_sha256_segments", [[0, res["engine_sha256"]]]).append([n0, sha_now]); res["engine_sha256"] = sha_now
     jfn = os.path.join(E.WORK, f"{tag}.json")
     TM = res.setdefault("timing_s", {})
     def tm(k, t_): TM[k] = TM.get(k, 0.0) + time.time() - t_
@@ -736,22 +916,28 @@ def run_sct(foot, npg):
                 bid, prof, book = pass_profiles(P, PL, dom, edges)
             tm("merge", t_)
         t_ = time.time()
-        BB, bdg, re = body_points(prof, dom.Mc[bid], dom.X[bid], law, edges, mesh.dx, mesh.M, MUT_FAC)
-        bpos_, bw, bown = BB["pos"], BB["w"], BB["own"]
+        E.stage("bodies")
+        BB, bdg, re = body_shells(prof, dom.Mc[bid], dom.X[bid], law, edges, mesh.dx, mesh.M, MUT_FAC)      # A6: compact painting
+        if SHELLCHECK:
+            BB0, bdg0, re0 = body_points(prof, dom.Mc[bid], dom.X[bid], law, edges, mesh.dx, mesh.M, MUT_FAC)
+            check_shells(BB0, BB); assert re0.tobytes() == re.tobytes() and json.dumps(bdg0, default=str) == json.dumps(bdg, default=str), "A6 SHELLCHECK: diagnostics differ"
+            res["shellcheck_steps"] = res.get("shellcheck_steps", 0) + 1; del BB0
+        bw_all = shell_w_all(BB)
         tm("bodies", t_)
         info["bodies"] = {k: v for k, v in bdg.items() if k != "re_dx"}
         if len(bdg["re_dx"]):
-            info["bodies"].update(re_dx_median=float(np.median(bdg["re_dx"])), re_dx_max=float(np.max(bdg["re_dx"])), n_points=int(len(bw)), n_nodes=int(len(BB["cw"])))
-        painted = float(bw.sum() + BB["cw"].sum()); Mcs = float(dom.Mc[bid].sum()) if len(bid) else 0.0
+            info["bodies"].update(re_dx_median=float(np.median(bdg["re_dx"])), re_dx_max=float(np.max(bdg["re_dx"])), n_points=int(len(bw_all)), n_nodes=int(len(BB["cw"])))
+        painted = float(bw_all.sum() + BB["cw"].sum()); Mcs = float(dom.Mc[bid].sum()) if len(bid) else 0.0
+        del bw_all
         bk = dict(step=step_index, a=a, mass_err=(book["M"] + book["Mc"] - P.N) / P.N, painted_err=(painted - Mcs) / P.N,
                   P=book["P"].tolist(), Pabs=book["Pabs"], ev_dP=max(ev), n_dom=int((dom.roots() == np.arange(dom.n)).sum()) if dom.n else 0,
                   n_bodies=int(len(bid)), conv_frac=(1 - E.FB) * book["n_conv"] / P.N, pend_frac=book["n_pend"] / P.N, lab_frac=book["n_lab"] / P.N)
         # extra source: converted particles' inert cold share (- (1 - f_b)) + bodies
         t_ = time.time()
-        if book["n_conv"] or len(bw):
+        if book["n_conv"] or BB["n_points"]:
             rho = np.zeros((mesh.M, mesh.M * mesh.M))
             if book["n_conv"]: deposit_converted(rho, mesh, P, PL, -(1.0 - E.FB))
-            deposit_points(rho, mesh, bpos_, bw)
+            deposit_shells(rho, mesh, BB)                                         # A6: = deposit_points(rho, mesh, pos, w)
             if len(BB["cw"]): np.add.at(rho.reshape(-1), BB["cidx"], BB["cw"])     # A3 outer body nodes
             Dx = E.DField("x960", mesh.M, np.float32); r3 = rho.reshape(mesh.M, mesh.M, mesh.M)
             for s in mesh.slabs: Dx.write(s, (r3[s] / mtot).astype(np.float32))
@@ -786,7 +972,7 @@ def run_sct(foot, npg):
         tm("snap", t_); log(f"snapshot {name} a={a:.4f} sigma8={s8:.4f} grav {s8g:.4f}")
 
     def accel_pass(phik, a, kicks, bodies):
-        BB, bid = bodies; bpos_, bw, bown = BB["pos"], BB["w"], BB["own"]
+        BB, bid = bodies; npts = BB["n_points"]
         cidx = BB["cidx"]; Mm = mesh.M
         cpad = ((cidx // (Mm * Mm)) * Mm + (cidx // Mm) % Mm) * (Mm + 2) + cidx % Mm if len(cidx) else cidx
         b = mesh.cbuf()
@@ -803,9 +989,13 @@ def run_sct(foot, npg):
                 accp = E.interp1(mesh, gpad, P.positions(i0, i1))
                 for cc in kicks: P.kick(c, i0, i1, cc, accp)
             E.pmap(task, P.ichunks)
-            if len(bw):
-                gp = E.interp1(mesh, gpad, bpos_).astype(np.float64)
-                Fq[:, c] = np.bincount(bown, weights=bw * gp, minlength=len(bid))   # bown = index into bid
+            if npts:                                                 # A6: blocks never split a body, so each body's bincount sum
+                fc = np.zeros(len(bid))                              #     is formed inside one block, in the original order (+0.0 elsewhere)
+                for a_, b_ in BB["blocks"]:
+                    bpos_, bw, bown = shell_points(BB, a_, b_)
+                    gp = E.interp1(mesh, gpad, bpos_).astype(np.float64); del bpos_
+                    fc += np.bincount(bown, weights=bw * gp, minlength=len(bid))   # bown = index into bid
+                Fq[:, c] = fc; del fc
             if len(cidx):                                            # A3 outer nodes: the node's own mesh acceleration
                 gn = gpad.reshape(-1)[cpad].astype(np.float64)
                 Fq[:, c] += np.bincount(BB["cown"], weights=BB["cw"] * gn, minlength=len(bid))

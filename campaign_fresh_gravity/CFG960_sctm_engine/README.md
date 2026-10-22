@@ -14,8 +14,13 @@
 4. Its 128³ preview, which is not a verdict, shows more small-scale power than plain dust, because the bodies are compact. The
    M2 variant showed less. Neither says anything reliable about 1024³.
 5. The decisive 1024³ test is pre-registered in `FROZEN_CRITERIA_1024.md` and its dated addendum A1, on both footings. SCT-M passes
-   the shear side only if SC1x and SC2x are both CONSISTENT on raw KiDS-1000 with Δχ² ≤ 0 against NCS0. Nothing has been started;
-   each footing should take about 18–30 h and 43–47 GB.
+   the shear side only if SC1x and SC2x are both CONSISTENT on raw KiDS-1000 with Δχ² ≤ 0 against NCS0.
+   **Status (fix-forward, 2026-10-22; this line formerly read "Nothing has been started").** SC1x was started on 2026-10-21 and was
+   killed four times by its own frozen swap rule; the last three kills came in force call 90 (step 89 of 150, a = 0.19). The body
+   painting outgrew the 64 GiB machine (176 M inner body points at call 90; process footprint about 65 GB). The partial run is VOID
+   (V3) and gives no verdict on either footing. Amendment A6 (`AMENDMENT_A6_memory_fix.md`, owner-approved, pre-result) replaces the
+   painting with a bit-identical, low-memory version and resumes SC1x from its step-89 checkpoint. The frozen §3 estimate of 43–47 GB
+   was wrong; A6 gives the new estimate and its basis.
 
 **The exact command the orchestrator will run** (after review, under the overnight gate; from the repository root):
 
