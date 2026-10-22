@@ -188,11 +188,29 @@ The lattice also predicts something that is not the law: **occupancy noise**.
 exactly at `g = a₀`** (A2). A sign flip is a much cheaper measurement than a 15 % amplitude
 difference, and no other interpolation predicts it at the same place.
 
-`n = 2` (the a₀-line, `g² − g_N² = a₀g_N`, i.e. the quadrature law) is a **NO-GO in the
-thermal-lattice class**: it is not the stationary point of any single-scale two-state
-lattice. Its natural home is elsewhere (a Poisson second-moment identity, `⟨n²⟩ = λ²+λ`,
-not a maximum-entropy law — A10). So the two laws are not two fits to the same medium;
-they are two different media, and the framework's action picks the lattice one.
+**And n = 1 is now *derived*, not asserted.** A35 puts the two laws in one family,
+`Y_m = a₀ − λA` with `n − 1 = λ` the depletion fraction: `λ = 0` gives n=1 with capacity `a₀`,
+`λ = 1` gives n=2 with capacity `a₀/2` and exact form `1/A = 1/g + 1/(a₀ − A)`. Then:
+
+- **Capacity = affinity is derived**, not fitted: with a linear element `A = a₀θ` and
+  `θ_max = 1`, the two are the same number.
+- **Least dissipation selects λ = 0.** Minimising `Ψ(A) = A²/2a₀ + (g−A)²/2g` gives
+  `A = a₀g/(g+a₀)` **exactly** — the canonical law is the stationary point of a Thomson/Onsager
+  dissipation functional, and Lagrange over the two displacements derives the common occupancy.
+- **n = 2 is not a state.** Its residual is `2−√5` at `g = a₀` and non-zero for *every* `g` and
+  every capacity; its excess energy is `(9−4√5)a₀/4`; and it fails the detailed-balance
+  condition `F'(θ₂) = kT ln(2φ) ≠ kT ln 4`, with entropy production `0.6199 a₀k_a > 0`
+  everywhere. A single site has only detailed-balanced steady states, so λ = 1 is not
+  reachable by any occupancy partition.
+
+The discriminator sharpens accordingly: the occupancy-noise **skewness flips at `g = a₀` for
+n=1 but at `g = 3a₀/8` for n=2**, and the two have **opposite signs** across
+`g/a₀ ∈ (0.375, 1)` — at `g = a₀/2`, skew = `+0.7071` vs `−0.3483`. The Nyquist ratio at `a₀`
+is `(5+2√5)/4 = 2.3680`, and it diverges at `a₀/2` for n=2 only.
+
+*Correction to an earlier guess of mine:* `√(g²+a₀²/4) − a₀/2` is **exactly `g_N`**, the
+baryonic branch, not the response — so the "parallel network" reading was wrong, and the
+canonical law is a *series compliance*, not a parallel conductance (A35).
 
 **The discriminator is exact and bigger than the record thought.** At fixed `g_N` the two
 laws differ by at most
@@ -337,10 +355,15 @@ number, not two.
 
 ## 4. Where the stiffness length L\* comes from
 
-**Answer: L\* is the pressure switch-off radius, and that is a derived identity, not a
-definition.**
+**Answer: L\* is the switch-off radius of the P sector's elastic stress — and that attribution
+is a correction.** A33 checked it and the "Γ=2 pressure" is *not* the medium's kinetic pressure:
+the elastic sound speed is `0.72 m/s` against a cold-medium dispersion `σ_c = 8.33 km/s`, so
+`p_kin/p_el = 2.7×10⁸` and the kinetic Jeans length is `198 kpc`. The kinetic pressure therefore
+never switches off where the scaling says; the elastic stress does. The *scaling* `r_switch ∝ L*`
+survives unchanged, and so does `R_core`, but the physical carrier is the field's stiffness, not
+the medium's velocity dispersion.
 
-The Γ=2 contact pressure's ratio to gravity is
+The elastic stress's ratio to gravity is
 
 $$
 \frac{(1/\rho)\,dp/dr}{g}=\Big(\frac{L_*}{r}\Big)^2
@@ -552,7 +575,25 @@ medium is downstream of the law.
     both give exactly ½ and R = 4. "Why the diameter rather than the radius" is therefore
     ill-posed (A27); what is missing is the *link* (which functional of the cell the law's
     length is), not a doubling argument.
-18. **κ has four numbers circulating** (0.42 ± 0.10, 0.551 ± 0.043, 0.45/0.58/0.43, and the
+18. **The dimension route is numerology** (A34). The premise I gave it was simply false: the
+    codimension of a point in D=4 is **3**, not 2 (a codim-2 source is a *string*, a
+    `(D−2)`-brane gives a constant field). `κ = 1/n` is a tautology in the framework's own
+    definitions, and the delivered exponent is `D−3`, which is D-independent. D=5 predicts
+    κ = 0.333 or 0.4 — both **within 1σ** of the measured 0.417 — so the κ data cannot even
+    exclude five dimensions. Look-elsewhere: 11 hits at D=4 in a pool of 90. Dead.
+19. **`υ` cannot be an action coefficient** (A33). A constant partition at 0.4716 deforms the
+    law by **24 %** at `g = a₀/2`; so the measured `υ < 1` must be the catchment `f_ret`, not a
+    coefficient. The master action carries `f_ret`, not `υ`.
+20. **`γ = KL*²/2` is a definition of `L*`**, not a derivation of it (A33) — my first §9.1 said
+    "zero free couplings" and that was wrong; it is one free stiffness, which *is* `L*`.
+21. **A3's reduced P equation is missing its `γP″` term** (A33 caught it in the `D_t` chain),
+    though no A3 conclusion changes because that lane evaluates at `P = 0`.
+22. **The Γ = 2 "pressure" is elastic, not kinetic** (A33): elastic `c_s = 0.72 m/s` against
+    `σ_c = 8.33 km/s`, `p_kin/p_el = 2.7×10⁸`, kinetic Jeans length 198 kpc. The `r_switch ∝ L*`
+    scaling survives; its physical carrier is the field's stiffness.
+23. **My "parallel network" guess was wrong** (A35): `√(g²+a₀²/4) − a₀/2` is **exactly `g_N`**,
+    the baryonic branch, not the response. The canonical law is a *series compliance*.
+24. **κ has four numbers circulating** (0.42 ± 0.10, 0.551 ± 0.043, 0.45/0.58/0.43, and the
    March–May κ = 1). There is no single reconciled κ, and A9 shows why: κ ∝ Υ^−1.23, so an
    IMF change moves it 1.98×. The Υ-free channel gives **κ = 0.354 ± 0.106** from 12
    galaxies and 73 points — consistent with ½ at 1.4σ, but not a measurement (A14). The
@@ -625,13 +666,15 @@ medium is downstream of the law.
 This is the strongest statement the push can make, and it is a statement about structure, not
 about a number.
 
-### 9.1 The P sector has zero free couplings
+### 9.1 The P sector has one coupling, not three
 
-A16 supplies `γ = K L*²/2` from the Γ=2 pressure switch-off. A22's hedgehog solution carries
-`η = γ` — visible in its own output: the Compton wavelength it reports is `L*/√2`, and its
-`m/H₀` is `2.620985163×10⁸`, which is what `c/(H₀ L*/√2)` gives to fifteen digits. So both
-P-sector couplings are fixed by the single scale `L*`, and the consequences are unconditional
-(coordinator, `_parent/closure_theorem.py`, 8/8):
+**Corrected by A33, which is right and my first version was not.** `γ = KL*²/2` is a
+*definition* of the stiffness length (`L*² := 2γ/K`), not a derivation of it. So there is one
+free stiffness, and it *is* `L*`. What is real, and unconditional, is that `η = γ` — one
+stiffness rather than two — which A22's hedgehog solution already carries: the Compton
+wavelength it reports is `L*/√2`, and its `m/H₀ = 2.620985163×10⁸` is what `c/(H₀L*/√2)` gives
+to fifteen digits. So three couplings `(β, η, γ)` collapse to **one scale `L*` plus a bounded
+`β`**, and the following hold (coordinator, `_parent/closure_theorem.py`, 8/8):
 
 | consequence | value |
 |---|---|
@@ -640,8 +683,11 @@ P-sector couplings are fixed by the single scale `L*`, and the consequences are 
 | P mass | `m/H₀ = 2.620985e8` |
 | residual non-luminality | `4γa₀²/(Kc⁴) = 1.19e-18` |
 
-The relativistic sector therefore has **no free coupling left**. What looked like three
-parameters (`β, η, γ`) is one scale `L*` plus `β`, and `β` is bounded, not fitted.
+The relativistic sector therefore has **one free coupling plus a bounded `β`**, down from
+three. `η = γ` is a choice of a single stiffness (A33 lists it as *chosen*, not derived); what
+it *buys* is exact luminality, which is a nontrivial consistency gain: the scalar gate that was
+CONDITIONAL in A3 is now closed, and the same choice fixes the P mass at `L*/√2` with no
+further input.
 
 ### 9.2 κ is a modulus, and that is a theorem
 
@@ -666,16 +712,70 @@ it.** That is not a gap in the search; it is the result of the search.
 
 ### 9.3 The parameter count, stated plainly
 
+A33's master-action count is the honest one, and it is larger than my first estimate:
+
 | theory | free parameters | what it predicts about galaxies |
 |---|---|---|
-| **this framework** | **3** — κ (modulus), L\* (scale), u_inner (measured fraction) | the RAR shape, lensing = dynamics, c_T = 1, α₁ = α₂ = 0, β = 1, the core size, the saddle no-go |
+| **this framework** | **4 finite + 3 functionals**, reduced by **5 exact degeneracies** | the RAR shape, lensing = dynamics, c_T = 1, α₁ = α₂ = 0, β = 1, the core size, the saddle no-go |
 | ΛCDM | 6 (Ω_b, Ω_c, Ω_Λ, H₀, n_s, A_s, +τ) | nothing about the RAR — it needs a separate baryonic-feedback model with more parameters |
 | Standard Model | 19 | nothing gravitational |
 
-So the honest landing is: **this is a closed effective theory with one modulus, and it is more
-constrained than ΛCDM while predicting more.** The remaining question — *why this member of the
-family* — is a UV/landscape question. It is not a gap in the equations; it is the boundary of
-their domain, and §9.2 is the proof that the boundary is where it is.
+The four finite are κ, β, η, γ; the three functionals are the scale-setting functional, the
+`υ(r)` profile and the turn-off *form*. The five degeneracies are exactly what makes the count
+look smaller than it is: `γ–η` (only γ/η is observable), `γ–L*` (same parameter by definition),
+`κ–a₀` (one number given Λ), `β–Λ_bare` (one background equation, two unknowns), and
+`υ–f_ret` (a single-band amplitude cannot separate them). **So the framework is not "3
+parameters"; it is 4 + 3 with 5 degeneracies, and the honest comparison to ΛCDM's 6 is that the
+*observable* content is comparable while the *predictions* are far more numerous.** I would
+rather state that plainly than win an argument with a miscount.
+
+So the honest landing is: **this is a closed effective theory with one modulus, whose observable
+parameter content is comparable to ΛCDM's while its predictions are far more numerous and its
+RAR is not fitted at all.** The remaining question — *why this member of the family* — is a
+UV/landscape question. It is not a gap in the equations; it is the boundary of their domain, and
+§9.2 is the proof that the boundary is where it is.
+
+### 9.4 The footing question is closed — and it picks the alt footing
+
+This is A33's most consequential finding, and it was not asked for. The `θ²` term makes the
+background equation
+
+$$
+2+3\beta=\frac{2\Lambda_{\rm bare}c^2}{3H^2},
+$$
+
+so `β = ½(2Λ_bare c²/3H² − 2)`. Requiring `β > 0` (the principal-positivity bound) with
+`Λ_bare = Λ_obs` gives **β = −0.211 < 0** — excluded. Hence
+
+$$
+\Lambda_{\rm bare}\ \ge\ \frac{3H_0^2}{c^2}=1.462\,\Lambda_{\rm obs},
+\qquad\text{i.e.}\qquad
+\rho_{\rm bare}\ \ge\ \frac{\rho_{\rm DE}}{\Omega_\Lambda}.
+$$
+
+The action's de Sitter endpoint is a **pure** de Sitter universe (`Ω_Λ,eff = 1`), not ΛCDM; the
+observed budget is recovered only with the clock's negative background stress `ρ_β = −9βH²/4K`
+cancelling the excess. That is why `β` is invisible to α₁, α₂ and β_PPN.
+
+**And that resolves the two-footing ambiguity.** With `ρ_bare = ρ_DE/Ω_Λ`,
+
+$$
+a_0=\kappa c\sqrt{G\rho_{\rm bare}}=\frac{\kappa c\sqrt{G\rho_{\rm DE}}}{\sqrt{\Omega_\Lambda}}
+=\frac{a_0^{\rm can}}{\sqrt{\Omega_\Lambda}}=1.2091\,a_0^{\rm can}=\mathbf{1.132\times10^{-10}\ m/s^2}.
+$$
+
+So the two footings are not an ambiguity in the theory — they are the **bare and the observed
+vacuum**, and the action lives at the bare one. **The framework's own value is the alt footing,
+`1.132e-10 m/s²` (a lower bound), and the canonical `9.36e-11` is that same formula evaluated on
+the observed dark-energy density.** This is a prediction, and the data already lean the right
+way: A9's free SPARC fit gives `a₀ = 1.1033e-10` — 2.4 % below the action's bound, where the
+canonical value is 17.3 % below.
+
+The tension to keep in view: κ must be quoted *against a named density*. Against the bare
+vacuum the theory's value is ½; against the observed `ρ_DE` the same a₀ reads κ = 0.605. The
+Υ-free measurement `κ = 0.354 ± 0.106` (A14) is 2.4σ from 0.605 and 1.2σ from 0.5, so the
+footing choice and the κ measurement are not yet separable — A33's degeneracy `(κ, a₀ | Λ)` is
+exactly this.
 
 ---
 

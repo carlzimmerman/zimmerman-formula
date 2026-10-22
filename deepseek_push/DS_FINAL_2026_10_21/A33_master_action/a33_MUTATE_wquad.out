@@ -1,0 +1,31 @@
+K1_lapse_eq_is_hamiltonian_constraint          PASS  value=0                            threshold=0          R3 - KijKij + (1+beta)theta^2 - 2Lambda = 4K(rho + D.P + W + gamma/2 (D.P)^2)
+K1b_R3_formula_vanishes_on_isotropic_Schwarzschild PASS  value=[0, 0, 0]                    threshold=[0,0,0]    f = (1+m/r)^4, exact rational arithmetic
+K2_P_eq_static_spherical                       PASS  value=NV                           threshold=const      (1+gamma D.P)(lnN)' + gamma (D.P)' = K W'(u)
+K3_law_gN_eq_g2_over_g_plus_a0                 FAIL  value=-g**2/(a0 + g)               threshold=0          g = K W'(u),  g_N = g - u  =>  g_N = g^2/(g+a0)
+K3b_quadratic_W_gives_a_different_law          PASS  value=-g**2/(a0 + g)               threshold=nonzero    the log form is selected: only it returns g^2/(g+a0)
+K4_law_is_AQUAL_mu_x_over_1px                  FAIL  value=g**2/(a0 + g)                threshold=0          mu(x)=x/(1+x)
+K5_clock_coefficient_is_one                    PASS  value=resid(xi=1)=0  |dev(xi=2)|=0.55 threshold=0 / >0.05  the law forces the clock coefficient to exactly 1
+K6_cT2_equals_1                                PASS  value=1                            threshold=1          no operator carries two derivatives of h^TT; (xi R_ij P^iP^j shifts it)
+K7_slip_is_second_order                        PASS  value=limit Pi/eps^2=q**2  Pi/eps=0 threshold=finite, nonzero / 0 Pi = u W'(u) K = u^2/(1-u/a0)
+K8a_theta_vanishes_static                      PASS  value=0                            threshold=0          theta = (1/(N sqrt h)) d_i(N sqrt h n^i), n^i = 0
+K8b_no_momentum_density                        PASS  value=0                            threshold=0          clock = P^i D_i ln N has no shift; every other P operator is O(P^2)
+K8c_alpha1_zero_linear_potential               PASS  value=d^2 Phi_c/dr^2 = 0 ; alpha_1(r)->0 as r->0 threshold=0 ; 0      a linear potential has no 1/r^2 -> no w^2 U
+K9_scalar_speed_sqrt_gamma_over_eta            PASS  value=gamma/eta                    threshold=gamma/eta  transverse; longitudinal carries Delta >= 0
+K10_H2_eq_2Lambda_over_3_2p3beta               PASS  value=2*Lambda/(3*(3*beta + 2))    threshold=2*Lambda/(3*(3*beta + 2)) from the lapse variation of L_bg
+K10b_second_cosmological_eq                    PASS  value=(2+3beta)(2Hdot+3H^2)=2Lambda threshold=0          Hdot = 0 on the de Sitter endpoint
+K11a_gamma_eq_K_Lstar2_over_2                  PASS  value=0                            threshold=0          L*^2 := 2 gamma/K
+K11b_rswitch_scaling                           PASS  value=sqrt(2)*Lstar*sqrt(f_c)*sqrt(n)*sqrt(3 - n)/2 threshold=L* sqrt(f_c n(3-n)/2) n=1, f_c=1 -> r_switch = L* exactly
+K12a_unique_homogeneous_P_zero                 PASS  value=[0]                          threshold=[0]        dW/du = u/(K(1-u/a0))
+K12b_P_mass_K_over_eta                         PASS  value=K/eta                        threshold=K/eta      FRW: eta(Pddot+3HPdot)+KP=0
+K13a_sourcing_split_identity                   PASS  value=0                            threshold=0          rho_c = rho_bar + D.P/varsigma  <=>  varsigma = D.P/(rho_c-rho_bar)
+K13b_phantom_is_div_of_1_minus_mu_flux         PASS  value=0                            threshold=0          D.P = lap Phi - div(mu grad Phi) = div((1-mu) grad Phi)
+K13c_negative_density_required                 PASS  value=114.8 x rho_bar_c            threshold=> 1        A13 amplitude (external); a positive-mass medium needs |D.P| <= varsigma rho_bar
+K14a_Lambda_eq_32pi_a02                        PASS  value=1.090357e-52 vs 1.089000e-52 m^-2 threshold=rel < 5e-3 
+K14b_a0_from_Lambda                            PASS  value=9.3542e-11 vs 9.3600e-11 m/s^2 threshold=rel < 5e-3 
+K14c_kappa_half_identity                       PASS  value=9.3542e-11 m/s^2             threshold=rel < 5e-3 
+K15a_sourcing_frac_is_fret_times_phantom_share PASS  value=f_ret*u_over_gc              threshold=f_ret u/g_c A21 u = R_tot f_ret / R_cosmic
+K15b_partition_reading_is_excluded             PASS  value=law deformation at varsigma=0.4716, g=a0/2: 0.243 threshold=> 0.05     so varsigma cannot be a coefficient of the action
+K16_background_forces_Lambda_bare_above_Lambda_obs PASS  value=beta=-0.211 at Lambda_bare=Lambda_obs threshold=< 0 (violates beta>0) hence Lambda_bare >= 3H0^2/c^2 = 1.46 Lambda_obs
+
+A33 statistics: 28 checks, 26 PASS, 2 FAIL
+A33 COMPLETE: 26/28 checks PASS.

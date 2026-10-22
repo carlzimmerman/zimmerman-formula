@@ -231,17 +231,20 @@ sd = sp.Symbol("sd")
 L2s = sp.expand(L2a.subs(sp.diff(sig, t), sd))
 # L2 = A_kin sigma_dot^2 + B_grad (k^2/a^2) sigma^2  (+ mass / total-derivative terms)
 A_kin = sp.simplify(sp.diff(L2s, sd, 2) / 2)                     # coeff of sigma_dot^2
-B_grad = sp.simplify(sp.expand(L2s).coeff(kk**2) / sig**2)        # coeff of (k^2/a^2) sigma^2 * a^2
-print("  coefficient of sigma_dot^2          A =", A_kin)
-print("  coefficient of (k^2/a^2) sigma^2    B =", B_grad, " (times a^2)")
-print("  L2 = A sigma_dot^2 + B (k^2/a^2) sigma^2 + (mass / total-derivative terms)")
-# EOM: 2A sigma'' - 2B (k^2/a^2) sigma = 0  ->  omega^2 = (B/A)(k^2/a^2)
-cT2 = sp.simplify(B_grad / A_kin)                                  # c_T^2 = a^2 omega^2/k^2 = B/A
-print("  c_T^2 = B/A =", cT2)
+B_grad = sp.simplify(sp.expand(L2s).coeff(kk**2) / sig**2)        # coefficient of k^2 sigma^2
+print("  coefficient of sigma_dot^2   A =", A_kin, " = a^3/(16K)")
+print("  coefficient of k^2 sigma^2   B =", B_grad, " = -a/(16K)")
+print("  L2 = A sigma_dot^2 + B k^2 sigma^2 + (mass / total-derivative terms)")
+# EOM: 2A sigma'' - 2B k^2 sigma = 0  ->  sigma'' = (B/A) k^2 sigma, B<0
+#      omega^2 = -(B/A) k^2  ->  c_T^2 = a^2 omega^2/k^2 = -a^2 B/A
+cT2 = sp.simplify(-a**2 * B_grad / A_kin)
+print("  omega^2 = -(B/A) k^2 = ", sp.simplify(-B_grad / A_kin), " * k^2   ->  c_T^2 = a^2 omega^2/k^2 =", cT2)
 
 # beta-independence: coefficient of beta in L2a
 print("  beta-dependence of the quadratic tensor action:", sp.simplify(sp.diff(L2a, beta)))
-print("  (only a total time derivative: the theta^2 term has delta theta = 0 for TT at 1st order)")
+print("  (beta sits only in the sigma^2 / sigma sigma_dot sector: delta theta = 0 at first order for TT,")
+print("   so the only beta-piece left is -(3 beta H/2)(gamma^2)' = -(3 beta/2) d_t(H gamma^2) + (3 beta Hdot/2) gamma^2,")
+print("   a mass-type/total-derivative term that never touches the k^2 or the gamma_dot^2 coefficient)")
 
 # independent ground truth: exact linearised TT Einstein equation from the 4D Ricci tensor
 cs4 = [t, x, YY, z]
@@ -296,8 +299,12 @@ RESULTS["R3"] = {
     "gradient_coefficient": "-a/(16K)  [coefficient of k^2 sigma^2]",
     "cT2": 1.0,
     "cT2_exact": True,
-    "beta_dependence": "none at quadratic order (delta theta = 0 for TT at first order; only a total derivative remains)",
-    "mass_terms": "(3H^2+Lambda) and H(gamma^2)' terms; they reduce to a total derivative on the background 3H^2=Lambda and do not enter the dispersion relation",
+    "beta_dependence": ("none in the speed: beta enters only the mass/total-derivative sector, "
+                        "-(3 beta H/2)(gamma^2)' = -(3 beta/2) d_t(H gamma^2) + (3 beta Hdot/2) gamma^2; "
+                        "the gamma_dot^2 and (d gamma)^2 coefficients are beta-independent"),
+    "mass_terms": ("(1/2)(3H^2+Lambda) gamma^2 + H(gamma^2)' (+ beta pieces); on the only background "
+                   "available to the pure-gravity action (3H^2 = Lambda) they collapse to a total derivative "
+                   "and do not enter the dispersion relation"),
     "dispersion": "omega^2 = k^2/a^2 exactly",
 }
 

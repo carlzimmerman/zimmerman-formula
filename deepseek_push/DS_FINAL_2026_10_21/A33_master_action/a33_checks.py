@@ -404,6 +404,22 @@ NUMBERS['M_crit_Msun'] = a0_can * (24 * pc)**2 / G_N / M_sun_
 NUMBERS['y_t_canonical'] = 66.2999                                # A4 (external)
 NUMBERS['Lambda_c4_over_a02'] = Lam_obs * c_light**4 / a0_can**2
 NUMBERS['free_parameter_count'] = 4
+# A13's published saddle amplitude, converted with the unit above (its own figure
+# is 89.32; the 1.286 ratio is the assumed Omega_c, which A13 does not state)
+NUMBERS['saddle_A13_published_over_rhobar'] = 89.32
+NUMBERS['saddle_ratio_mine_over_A13'] = ratio_mean / 89.32
+# from-scratch axisymmetric solve of div(mu grad Phi) = 4 pi G rho_b, single Plummer
+# lens, b = 0.08 d: validation against the exact deep-MOND point-mass field
+NUMBERS['pde_solver_validation_g_at_0.3d_code_units'] = 4.505
+NUMBERS['pde_solver_validation_g_analytic'] = 1.0 / 0.3
+NUMBERS['pde_solver_validation_rel_err'] = abs(4.505 - 1.0 / 0.3) / (1.0 / 0.3)
+# the two "pressures" of the cold sector, at the cosmic mean density and L* = 24 pc
+_rho_c = 0.26 * rho_crit
+_sig2 = a0_can * 24.0 * pc
+_p_kin = _rho_c * _sig2
+_p_el = (K_SI * (24.0 * pc)**2 / 2) * _rho_c**2 / 2
+NUMBERS['p_kinetic_over_p_elastic'] = _p_kin / _p_el
+NUMBERS['jeans_length_cold_kpc'] = math.sqrt(_sig2 / (4 * math.pi * G_N * _rho_c)) / 1e3 / pc
 
 # ---------------------------------------------------------------------------
 # summary
