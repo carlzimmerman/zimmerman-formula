@@ -92,3 +92,10 @@ If a forced relation exists: its look-elsewhere probability and a second predict
   the record (file:line).
 - **SCOPED NO-GO** if none of those and Part 4 finds no forced relation (the three stay independent fitted inputs).
 - Compute: `OMP_NUM_THREADS=1 nice -n 10`, single thread, < 2 GB, minutes. No network, no downloads.
+
+## AMENDMENT A1 (pre-result: written after reading D6's code, before any script of this lane ran)
+
+D6's u inversion (copied from A21/A29/CFG687) builds P_law with `C4.nu_mono` (the chain's monotone repair of ν_RAR), not the
+screened theory's ν_L. Added, both footings: **u_MID,native** = the same inversion with ν_L. It is the lane's clean u value.
+It is classified with the same 1σ yardstick: |u_native − u_MID| ≥ 1σ also makes the u line **u CONTAMINATION-SENSITIVE**
+(kernel item, STANDARD-MOND-MACHINERY class). K4 still reproduces D6 with ν_mono. Nothing else changes.
