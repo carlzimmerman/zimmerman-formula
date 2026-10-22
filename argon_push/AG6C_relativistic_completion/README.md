@@ -92,6 +92,7 @@ to the 1e-8 noise floor. I boosted each failing background to its own rest frame
 - no kinetic mixing with the photon;
 - the odd continuation of L_dark to X < 0;
 - L(X) without Y-dependence (L(X, Y) extensions not explored);
+  - **ERRATUM (2026-10-22, doors push D9):** L(X, Y) is no longer unexplored: NG2 extends to every Lorentz-invariant L(X, Y) — the Lorentz-violation factor Λ_LV = 1 for all of them (U4a, exact), so v_max² ≥ 1 + g/a₀ and a Lorentz-invariant U(1)-dielectric parent with the enforced Gauss identity is superluminal (D9 V2). Treat L(X, Y) as covered. See `doors_push_2026_10_22/D9_uv_parent/README.md` and `MAP.md`.
 - the neutralising background (unconstructed).
 
 ## 4. Candidate C2 (Blanchet–Le Tiec dipolar fluid)
@@ -179,5 +180,6 @@ Disclosures (all fixes were made before the final runs; earlier outputs are kept
   - detectability of the saddle trough;
   - C1's cosmology (neutralising background, BBN, growth exponent, ΔN_eff from dark photons);
   - L(X, Y) or dispersive repairs of H3.
+    - **ERRATUM (2026-10-22, doors push D9):** L(X, Y) is no longer unexplored: NG2 extends to every Lorentz-invariant L(X, Y) — the Lorentz-violation factor Λ_LV = 1 for all of them (U4a, exact), so v_max² ≥ 1 + g/a₀ and a Lorentz-invariant U(1)-dielectric parent with the enforced Gauss identity is superluminal (D9 V2). Treat L(X, Y) as covered. See `doors_push_2026_10_22/D9_uv_parent/README.md` and `MAP.md`.
 
 κ = ½ FITTED; cold energy's mass required; not theory closed.
