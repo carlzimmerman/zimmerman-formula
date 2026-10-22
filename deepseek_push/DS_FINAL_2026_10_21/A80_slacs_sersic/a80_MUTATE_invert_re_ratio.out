@@ -1,0 +1,259 @@
+========================================================================================================================
+A80 -- THE SLACS SERSIC-n TEST   (mutation: invert_re_ratio)
+========================================================================================================================
+
+  data sha256: slacs d78d7627d6bbcc07   treu 87f0751be13d4843
+               cvd   d52e0f499141e812   eth  50ac40eb18dea535
+  a0 thermal = 8.62570e-11 m/s^2  (kappa_DE = 0.460659, kappa_P3 = 0.38126)
+  a0 (kappa=1/2 branch) = 9.3600e-11 ; A70's footing a0 = 1.1320e-10
+
+------------------------------------------------------------------------------------------------------------------------
+TASK 0 -- THE DATA, AND WHICH FILE HAS WHICH COLUMNS
+------------------------------------------------------------------------------------------------------------------------
+
+  Auger+2009 TSV: 85 rows, 70 usable lenses
+  medians: z_l 0.1925  z_s 0.6055  sigma 241.0 km/s  R_E 4.070 kpc  theta_E 1.2119 arcsec  f*_Salp 0.6900  f*_Chab 0.3950
+  sigma range 164-404 ; x = R_E/R_e(V): min 1.009  median 1.950  max 6.347  (N(x<0.4)=0, N(x>1)=70)
+  [K1] PASS  catalogue census: 85 rows -> 70 usable, medians vs A70's stored median lens: rows 85/70 ; z_l 0.1925 z_s 0.6055 sigma 241.0 R_E 4.070 (A70 0.1925/0.6055/241.0/4.07)
+
+  Etherington+2022 6_Results.tex 'SLACS mass' table: 43 lenses parsed; columns = R_Ein,eff, gamma, q, phi, gamma_ext, phi_ext
+  requested catalogue columns present in the .tex table: NONE of sigma/Mass/RE/Re(V)/Re(I)/Re(B)/zl/zs/F*
+  the same columns in the Auger TSV header: sigma, Mass, RE, Re(V), Re(I), Re(B), zlens, zsrc, Fs, Fc
+  Sersic-index columns in the Auger TSV: NONE
+  [K2] PASS  no Sersic index exists on disk, and the .tex named in the brief has none of the lens columns: tex lenses 43, tex lens-columns 0 ; TSV columns 10/10 ; Sersic columns 0
+
+------------------------------------------------------------------------------------------------------------------------
+TASK 1a -- THE EXACT SERSIC SOLVER, AND ITS VERIFICATION AT n = 4
+------------------------------------------------------------------------------------------------------------------------
+
+  b_n: exact root of gammainc(2n,b)=1/2
+    b_4(exact) = 7.6692494425 ; b_4(A70 B4) = 7.6692499340 ; b_4(inline brentq) = 7.6692494425
+    max |gammainc(2n,b_n)-1/2| over n=2..8: 3.33e-15
+    asymptotic series at n=4: 7.6692484813 (rel. error -1.25e-07) -- A70's b_ser
+  [K3] PASS  b_n is solved exactly, not expanded: |gammainc(2n,b_n)-1/2| and the A70 offset: max residual 3.3e-15 ; b_4 7.6692494425 vs A70 7.6692499340 (4.9e-07) ; asym series -1.25e-07
+
+  exact Abel deprojection vs an independent adaptive-quadrature route, n=4, Re=1:
+    R/Re     F3(table)     M3(<R) direct    rel.dev
+    0.40     0.200687      0.200799        -5.58e-04
+    0.70     0.321719      0.321881        -5.05e-04
+    1.00     0.415155      0.415358        -4.89e-04
+    1.60     0.549471      0.549734        -4.79e-04
+    2.50     0.676561      0.676883        -4.75e-04
+  [K4] PASS  the 3D kernel is the exact deprojection of the 2D Sersic: table vs adaptive quadrature: max |dev| 5.58e-04 over R/Re = 0.4-2.5 ; F3(1,4) = 0.415155 vs PS 0.415584
+
+  is f* an independent aperture mass, or a Sersic enclosed fraction?
+    f* M_E / M*_tot  vs  f2(x, n=4):  slope -0.9274, intercept 0.9922, R^2 0.8969, resid 0.0286
+    (two routes agree to 6.7e-16: polyfit -0.9274 vs normal equations -0.9274)
+    -> f* carries the same n-dependence as the profile.  Varying n at fixed M_tot is the
+       self-consistent choice; varying it at fixed f* freezes the enclosed mass by hand.
+  [K5] FAIL  f* is a Sersic enclosed fraction with n ~ 4 (the evidence for the mass anchor): slope -0.9274 +- ? ; intercept 0.9922 ; R^2 0.8969 ; resid 0.0286 ; two routes 6.7e-16
+
+  A70 reproduction (n=4, a0=1.132e-10, B=1, PS kernel + A70's b_ser):
+    median nan (A55 0.885232) ; <ln> +nan (A55 -0.124539) ; scatter nan dex (A55 0.0927)
+    max |ratio/ratio_A55 - 1| over 70 lenses: 8.81e-01
+  [K6] FAIL  n=4 with A70's kernel reproduces A55/A70's 70 per-lens R_E ratios: max dev 8.81e-01 ; median nan ; <ln> +nan ; scatter nan dex
+
+  chi2 with A70's per-lens error budget (2% theta_E + M* + 5% shape): nan for 69 dof = nan (A70 stored 6.206)
+  median per-lens sigma 0.0446 dex (A70 0.0446)
+  [K26] FAIL  A70's chi2/dof = 6.21 is reproduced from the same 70-lens residual vector and error budget: chi2 nan / 69.00 dof = nan vs A70 6.206 ; median sigma 0.0446 vs 0.0446 dex
+
+  response of R_E to a uniform M/L boost: dlnR/dlnB = nan (A70 0.7775)
+  root-found B = nan (A70 1.1738) ; B = nan +- nan from sigma(logB)=nan dex
+  [K7] FAIL  the M/L response and the required boost: dlnR/dlnB, B_req, sigma_B: dlnR/dlnB nan ; B_req nan ; sigma(logB) nan dex ; B = nan +- nan
+
+  shape residual at fixed amplitude (n=4, a0=1.132e-10, B=1):
+    slope vs ln(R_E/R_e): +nan +- nan (nan sigma) raw ; +nan +- nan (nan sigma) after IMF(sigma)
+    inner (x<0.4, N=0) mean ln r = +nan (A70 0.216 dex) ; outer +nan ; after IMF +nan / +nan
+  [K8] FAIL  A70's 2.9-sigma shape residual is reproduced: slope vs ln(R_E/R_e), IMF-corrected: +nan +- nan (nan sigma) after IMF ; A70 +0.1722 +- 0.0597 ; inner +nan (+nan after IMF)
+
+  exact deprojection vs A70's PS kernel, same n=4 model:
+    per-lens max |dlnR| nan (nan%), mean +nan dex ; B_req nan vs nan (nan%)
+  [K9] FAIL  the two 3D kernels agree well enough that A70's numbers transfer: per-lens and in B_req: max |dlnR| nan ; mean +nan dex ; B_req nan vs nan (nan%)
+
+  off-grid validation of the 4-node lnB interpolation (used by the fits only):
+    n=5, B=1.06: max |dlnR| nan ; n=6, B=0.83: max |dlnR| nan
+
+------------------------------------------------------------------------------------------------------------------------
+TASK 1b -- dlnR_E/dln(n): WHERE IT CHANGES SIGN, FROM THE SOLVER
+------------------------------------------------------------------------------------------------------------------------
+
+  A79's K17 re-computed from the projection, not imported:
+    f2(x=0.30, n=4.0) = 0.212730 (gamma) / 0.212730 (quad) ; f2(x=0.30, n=5.8) = 0.249735 / 0.249735
+    enclosed 2D fraction boost n: 4.0 -> 5.8 = +0.1740 (+17.40%) ; A79 quoted +0.06965 dex (+17.4%)
+  [K10] PASS  A79's +17.4% is real and reproduced from the exact projection by two routes: +0.1740 (+17.40%) ; gamma vs quad agree to 8.5e-07 ; A70's raw inner shortfall is nan dex
+
+  dlnR_E/dln(n) from the solver on a synthetic family (x swept by R_e at fixed R_E, a0=1.132e-10):
+    x      dlnf2/dlnn     dlnR/dlnn|Mtot   dlnR/dlnn|f*     (pipeline)
+    0.15   +0.8568        +1.0342           +0.1279
+    0.20   +0.6905        +0.7987           +0.1135
+    0.30   +0.4739        +0.5239           +0.0933
+    0.40   +0.3355        +0.3661           +0.0794
+    0.50   +0.2381        +0.2632           +0.0689
+    0.70   +0.1097        +0.1376           +0.0540
+    0.90   +0.0294        +0.0650           +0.0436
+    1.00   -0.0000        +0.0394           +0.0394
+    1.10   -0.0245        +0.0187           +0.0358
+    1.30   -0.0622        -0.0125           +0.0298
+    1.60   -0.1001        -0.0427           +0.0228
+    2.00   -0.1297        -0.0658           +0.0160
+    3.00   -0.1558        -0.0865           +0.0059
+
+  zero crossing: dlnf2/dlnn at x = 1.000 ; dlnR/dlnn|Mtot at x = 1.220 ; dlnR/dlnn|f* : none on [0.15,3] (positive everywhere)
+  [K11] PASS  the enclosed-fraction response changes sign at x = 1 exactly, and the solver's fixed-M_tot R_E response changes sign near it: dlnf2/dlnn: +0.4739 (x=0.3) -> -0.0000 (x=1.0) -> -0.1297 (x=2.0) ; zero at x=1.00/1.22 ; dlnR/dlnn|Mtot +0.5239 (x=0.3) -> +0.0394 (x=1) -> -0.0658 (x=2)
+    at x=0.30 the fixed-f* response gives +0.0347 dex for n: 4 -> 5.8, against the +nan dex needed
+  [K12] FAIL  A70's convention (f* held fixed): the response is positive but ~6x too small to supply the inner mass: dlnR/dlnn|f* : +0.0933 (x=0.3) ; +0.0689 (x=0.5) ; +0.0394 (x=1.0) ; +0.0160 (x=2.0) ; n 4->5.8 gives +0.0347 dex vs +nan needed
+
+  per-lens dlnR/dlnn at fixed M_tot over the 70 real lenses: median +nan, 16-84 nan to nan
+    binned in x: 
+
+------------------------------------------------------------------------------------------------------------------------
+TASK 2 -- DOES n CURE THE 2.9-SIGMA RESIDUAL?  (three models, two a0)
+------------------------------------------------------------------------------------------------------------------------
+
+  --- a0 = 8.62570e-11 (thermal) ---
+    model                          n        B       nll     s      chi2/dof  slope(x)      sigma  inner
+    a         renorm  n=  4.00   0.8805       nan  0.6000     nan   +nan+-nan   nan  +nan  AIC     nan BIC     nan
+    b         renorm  n= 20.00   1.8113    -10.40  0.1963    4.74   -0.4801+-0.0429  11.2  +nan  AIC   -6.40 BIC   -1.90
+    a         fstar   n=  4.00   0.8805       nan  0.6000     nan   +nan+-nan   nan  +nan  AIC     nan BIC     nan
+    b         fstar   n= 20.00   1.5502    -24.72  0.1712    3.87   -0.4020+-0.0435   9.2  +nan  AIC  -20.72 BIC  -16.22
+    c_sig0.6  renorm  n=  3.91   0.8805       nan  0.6000     nan   +nan+-nan   nan  +nan  AIC     nan BIC     nan
+    c_re0.5   renorm  n=  3.76   0.8805       nan  0.6000     nan   +nan+-nan   nan  +nan  AIC     nan BIC     nan
+    (chi2/dof uses A70's errors WITH the measured IMF(sigma) correction; without it the n=4 model at
+     the same B gives nan -- that is the number comparable to A70's 6.21 baseline)
+  [K13] FAIL  thermal: the A70 baseline (n=4, B profiled, IMF-corrected) and its 2.9-sigma shape residual: B 0.8805 ; chi2/dof nan ; slope +nan +- nan (nan sigma) ; inner +nan
+  [K15] FAIL  thermal: the uniform free-n fit (renorm anchor) -- where the likelihood and the shape residual go: n_0(ML) 20.00 ; B 1.8113 ; slope -0.4801 +- 0.0429 (11.18 sigma) ; inner +nan ; d(-2lnL) vs n=4: +nan
+
+  --- a0 = 9.36000e-11 (kappa=1/2) ---
+    model                          n        B       nll     s      chi2/dof  slope(x)      sigma  inner
+    a         renorm  n=  4.00   0.8805       nan  0.6000     nan   +nan+-nan   nan  +nan  AIC     nan BIC     nan
+    b         renorm  n= 20.00   1.7933    -10.33  0.1964    4.75   -0.4808+-0.0429  11.2  +nan  AIC   -6.33 BIC   -1.83
+    a         fstar   n=  4.00   0.8805       nan  0.6000     nan   +nan+-nan   nan  +nan  AIC     nan BIC     nan
+    b         fstar   n= 20.00   1.5349    -24.66  0.1713    3.88   -0.4026+-0.0434   9.3  +nan  AIC  -20.66 BIC  -16.17
+    c_sig0.6  renorm  n=  3.91   0.8805       nan  0.6000     nan   +nan+-nan   nan  +nan  AIC     nan BIC     nan
+    c_re0.5   renorm  n=  3.76   0.8805       nan  0.6000     nan   +nan+-nan   nan  +nan  AIC     nan BIC     nan
+    (chi2/dof uses A70's errors WITH the measured IMF(sigma) correction; without it the n=4 model at
+     the same B gives nan -- that is the number comparable to A70's 6.21 baseline)
+  [K14] FAIL  kappa=1/2: the A70 baseline (n=4, B profiled, IMF-corrected) and its 2.9-sigma shape residual: B 0.8805 ; chi2/dof nan ; slope +nan +- nan (nan sigma) ; inner +nan
+  [K16] FAIL  kappa=1/2: the uniform free-n fit (renorm anchor) -- where the likelihood and the shape residual go: n_0(ML) 20.00 ; B 1.7933 ; slope -0.4808 +- 0.0429 (11.21 sigma) ; inner +nan ; d(-2lnL) vs n=4: +nan
+
+  n-profile at a0 = thermal (renorm anchor), B profiled at every n:
+     n      B       nll     d(-2lnL)   s      slope(x)   sigma
+      4.0  0.8805      nan      nan   0.6000  +nan+-nan  nan
+      4.5  0.8805      nan      nan   0.6000  +nan+-nan  nan
+      5.0  0.8805      nan      nan   0.6000  +nan+-nan  nan
+      5.5  0.8805   233.06      nan   0.6000  -1.1795+-0.0663  17.8
+      6.0  0.8805   212.67      nan   0.6000  -1.0771+-0.0623  17.3
+      6.5  2.2000    56.54      nan   0.3448  -0.8283+-0.0539  15.4
+      7.0  2.2000    49.21      nan   0.3253  -0.7869+-0.0524  15.0
+      8.0  2.2000    37.35      nan   0.2958  -0.7225+-0.0503  14.4
+     10.0  2.2000    21.28      nan   0.2590  -0.6371+-0.0476  13.4
+     12.0  2.1269    11.38      nan   0.2381  -0.5845+-0.0460  12.7
+     15.0  1.9874     0.98      nan   0.2175  -0.5331+-0.0445  12.0
+     20.0  1.8113   -10.40      nan   0.1963  -0.4801+-0.0429  11.2
+  local 2D profile slope dln(Sigma)/dlnR at x=0.30: n=4 -> -1.419 ; n=6 -> -1.591 ; n=14 -> -1.813 (isothermal = -2)
+  slope changes sign at n = nan ; d(-2lnL) at that n vs the n=4 baseline: +nan
+  [K17] FAIL  the slope vanishes at a physically plausible n: n_zero, its significance and its d(-2lnL): slope zero at n=-1.00 (inside [4.5,6.5]: no) ; at a0=thermal n=6.0 -> slope -1.0771 +- 0.0623 (17.3 sigma), d(-2lnL) vs n=4 = nan ; ML n_0 = 20.0 overshoots (slope -0.4801)
+
+  model (c): empirical n_i = 4 (sigma_i/250)^alpha and 4 (R_e,i/<R_e>)^beta
+    n(sigma)  fixed exp +0.6: n_i 3.11-5.33  B 0.8805  slope +nan (nan sigma)  nll nan | free exp -0.800: n_i 2.72-5.60  B 0.8805  slope +nan (nan sigma)  nll nan
+    n(sigma)  fixed exp +0.5: n_i 3.24-5.08  B 0.8805  slope +nan (nan sigma)  nll nan | free exp -0.800: n_i 2.72-5.60  B 0.8805  slope +nan (nan sigma)  nll nan
+    n(R_e)    fixed exp +0.6: n_i 1.71-6.72  B 0.8805  slope +nan (nan sigma)  nll nan | free exp -0.800: n_i 2.00-12.37  B 0.8805  slope +nan (nan sigma)  nll nan
+    n(R_e)    fixed exp +0.5: n_i 1.97-6.16  B 0.8805  slope +nan (nan sigma)  nll nan | free exp -0.800: n_i 2.00-12.37  B 0.8805  slope +nan (nan sigma)  nll nan
+
+  -> n(sigma) does NOT touch the x-trend (sigma and x are uncorrelated: corr(ln x,ln sigma)=-0.027)
+  -> n(R_e) DOES absorb it, but x = R_E/R_e by definition, so an n(R_e) law is a coordinate
+     reparametrisation of an n(x) law: the fit cannot tell them apart.  Not evidence for n(R_e).
+  [K18] FAIL  model (c): a sigma-dependent n leaves the x-trend intact; only an R_e-dependent n absorbs it: n(sigma): nan/nan sigma (fixed/free) ; n(R_e): nan sigma (fixed exp 0.5) ; AIC(a) nan vs AIC(c_re) nan
+
+------------------------------------------------------------------------------------------------------------------------
+TASK 3 -- THE IMF NORMALISATION PENALTY
+------------------------------------------------------------------------------------------------------------------------
+
+  Treu+2010 on-disk table (XR33_data_treu2010_table1.tsv): N = 56 lenses, <log10 alpha_Salp> = -0.0005 +- 0.0182 (sem), scatter 0.1359 dex
+  the prior used here is the abstract's 1.00 +- 0.0361 dex (stat+sys), which is 1.98x the table's own sem
+  95% mean bound: Treu alone [0.8498, 1.1767] x Salpeter ; with the lensing error [0.8394, 1.1913]
+  Treu+2010: 1.00 +- 0.0361 dex ; with the lensing error 0.0143 in quadrature -> 0.0388 dex
+    thermal   B(n=4) = 0.8805 -> -1.42 sigma ; B(n_0=20.00) = 1.8113 -> 6.65 sigma ; shift +0.3132 dex
+    kappa=1/2 B(n=4) = 0.8805 -> -1.42 sigma ; B(n_0=20.00) = 1.7933 -> 6.54 sigma ; shift +0.3089 dex
+    at the slope-zeroing n=6.0: B = 0.8805 -> -1.42 sigma (the value the shape residual actually asks for)
+    A70 (a0=1.132e-10, B=1): B = nan -> nan sigma ; A71 joint: B = 1.1916 -> 1.96 sigma
+  [K19] FAIL  profiling n moves the IMF tension: the B shift and its sigma against Treu+2010: thermal -1.42 -> 6.65 sigma (B 0.8805 -> 1.8113) ; kappa=1/2 -1.42 -> 6.54 sigma
+
+------------------------------------------------------------------------------------------------------------------------
+TASK 4 -- A71's Delta chi2 = 6.35: UNLOCKED OR KILLED?
+------------------------------------------------------------------------------------------------------------------------
+
+  (i) A71's own statistic: chi2_shape = N * sd(ln r at B=1)^2 / s^2, s = 0.2317 ln
+      kappa 0.20 / 0.50 / 0.80 : nan / nan / nan  -> Delta = nan (A71: 63.29/59.42/56.94, 6.35)
+  [K20] FAIL  A71's 6.35 is reproduced exactly -- and it is computed at B = 1, not at the profiled B: nan -> nan, Delta nan (A71 6.35)
+
+  (ii) the same statistic with B actually profiled at every kappa (what A71's text claims):
+      kappa 0.20 / 0.50 / 0.80 : nan / nan / nan (B 0.881/0.881/0.881) -> Delta = nan
+  [K21] FAIL  with B profiled the scatter term is flat to 0.02: A71's 6.35 is an unprofiled-B artefact: max-min over [0.2,0.8] = nan (was 6.35 at B=1) ; shape: nan min at kappa nan
+
+  (iii) the exact kappa sweep with (B, n) jointly profiled (exact solver, renorm anchor):
+      kappa is A51's P3 convention, kappa_P3 = a0 sqrt(8pi/3)/(c H0), so that
+      thermal a0 = 8.6257e-11 is kappa_P3 = 0.38126 (= kappa_DE 0.4607) and kappa_P3 = 0.5 is a0 = 1.1314e-10.
+    --- n free ---
+      kappa   B       n      d(-2lnL)    s      sd(ln r)  chi2_shape  B_sigma(Treu)  slope(x)
+      0.2000  1.8612  22.00     0.00   0.1896   0.2211      63.74       +6.96        -0.4610
+      0.2500  1.8297  22.00     0.09   0.1898   0.2212      63.81       +6.76        -0.4622
+      0.3000  1.7998  22.00     0.18   0.1900   0.2213      63.89       +6.58        -0.4633
+      0.3500  1.7713  22.00     0.28   0.1901   0.2215      63.97       +6.40        -0.4644
+      0.3813  1.7541  22.00     0.35   0.1903   0.2216      64.03       +6.29        -0.4651
+      0.4000  1.7441  22.00     0.39   0.1903   0.2216      64.06       +6.23        -0.4655
+      0.4500  1.7179  22.00     0.50   0.1906   0.2218      64.16       +6.06        -0.4665
+      0.5000  1.6928  22.00     0.62   0.1908   0.2220      64.26       +5.89        -0.4674
+      0.5500  1.6686  22.00     0.74   0.1910   0.2222      64.36       +5.73        -0.4684
+      0.6000  1.6452  22.00     0.86   0.1912   0.2223      64.47       +5.57        -0.4693
+      0.7000  1.6007  22.00     1.12   0.1917   0.2227      64.69       +5.27        -0.4711
+      0.8000  1.5589  22.00     1.39   0.1922   0.2231      64.92       +4.97        -0.4728
+      Delta(-2lnL) over kappa_P3 in [0.20,0.80] after profiling (B,n): 1.39 ; minimum at kappa 0.2000
+    --- n prior 5.2 +- 0.8 ---
+      kappa   B       n      d(-2lnL)    s      sd(ln r)  chi2_shape  B_sigma(Treu)  slope(x)
+      0.2000  2.2000   8.50     6.01   0.2938   0.3097      125.09       +8.83        -0.7010
+      0.2500  2.2000   8.44     4.62   0.2918   0.3101      125.36       +8.83        -0.7026
+      0.3000  2.2000   8.38     3.46   0.2903   0.3104      125.66       +8.83        -0.7043
+      0.3500  2.2000   8.30     2.49   0.2899   0.3114      126.41       +8.83        -0.7073
+      0.3813  2.2000   8.25     1.98   0.2899   0.3120      126.95       +8.83        -0.7094
+      0.4000  2.2000   8.22     1.70   0.2898   0.3123      127.19       +8.83        -0.7104
+      0.4500  2.2000   8.16     1.06   0.2895   0.3128      127.56       +8.83        -0.7121
+      0.5000  2.2000   8.08     0.56   0.2901   0.3138      128.38       +8.83        -0.7152
+      0.5500  2.2000   8.03     0.22   0.2904   0.3143      128.78       +8.83        -0.7169
+      0.6000  2.2000   8.00     0.02   0.2904   0.3142      128.76       +8.83        -0.7171
+      0.7000  2.1828   7.95     0.00   0.2914   0.3146      129.04       +8.74        -0.7186
+      0.8000  2.1273   7.90     0.07   0.2926   0.3158      130.01       +8.45        -0.7222
+      Delta(-2lnL) over kappa_P3 in [0.20,0.80] after profiling (B,n): 6.01 ; minimum at kappa 0.7000
+
+  joint kappa constraint (SLACS + the Treu B prior; the n prior is applied in the 'prior' row):
+    free  : best kappa_P3 0.800 ; Delta<1 band [0.80, 0.80] ; Delta at thermal (0.3813) = 13.84 ; at kappa=0.500 = 9.26
+    prior : best kappa_P3 0.800 ; Delta<1 band [0.80, 0.80] ; Delta at thermal (0.3813) = 8.41 ; at kappa=0.500 = 7.00
+  [K22] FAIL  with (B,n) profiled the SLACS scatter term carries < 2 units of kappa information: A71's 6.35 is a degeneracy artefact: Delta(-2lnL) free 1.39, with n prior 6.01 ; A71's 6.35 -> nan at B profiled -> 1.39 after (B,n)
+
+------------------------------------------------------------------------------------------------------------------------
+CROSS-CHECKS AGAINST A70 AND A71
+------------------------------------------------------------------------------------------------------------------------
+
+  A70's kappa results: kappa* (median ratio = 1, Salpeter fixed) = nan (A70 1.0279)
+  dlnR/dlnkappa at kappa=0.5 = nan (A70 0.1205) ; ratio to dlnR/dlnB = inf
+  [K23] FAIL  A70's kappa* and dlnR/dlnkappa are reproduced by the generalised solver: kappa* nan ; dlnR/dlnkappa nan ; ratio inf
+
+  thermal footing identity: a0 = kappa_DE * c H0/sqrt(8pi/3) * sqrt(Omega_Lambda)
+    Omega_L = 0.6847 -> a0 = 8.62384e-11 (input 8.62570e-11, -0.02%) ; with Omega_L = 0.70 -> 8.71966e-11 (1.09% higher)
+    kappa_P3(thermal) = 0.38118 (brief: 0.381) ; kappa_DE = 0.460659
+  [K24] PASS  the thermal a0 is recomputed from its own footing identity, and the Omega_Lambda sensitivity is stated: a0 8.623836e-11 vs 8.625700e-11 (-0.02%) ; kappa_P3 0.38118 ; Omega_L=0.70 would give 8.7197e-11
+
+------------------------------------------------------------------------------------------------------------------------
+VERDICT
+------------------------------------------------------------------------------------------------------------------------
+  best-fit n_0 (free, renorm anchor)      : 20.00   (slope-zeroing n = nan)
+  R_E/R_e slope at n=4 / at n_0           : +nan (nan sigma) / -0.4801 (11.2 sigma)
+  B at n=4 / at n_0                       : 0.8805 / 1.8113
+  IMF tension (Treu) at n=4 / at n_0      : -1.42 sigma / 6.65 sigma
+  Delta(-2lnL) for kappa, (B,n) profiled  : 1.39 (free n) / 6.01 (n prior)
+  A71's 6.35 at B=1 -> at profiled B      : nan -> nan
+  joint kappa (SLACS + Treu, n prior)     : 0.80, Delta<1 [0.80, 0.80]
+
+========================================================================================================================
+A80: 7/25 checks PASS   (40.4 s)
+========================================================================================================================

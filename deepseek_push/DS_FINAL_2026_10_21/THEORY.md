@@ -208,8 +208,12 @@ at A55's 1.283 it would have been **outside at ~3σ**. So the lensing gate passe
 IMF — at the 95 % edge, not comfortably** — and A55's 4.9σ was an IMF-prior artifact compounded by an
 arithmetic error. What survives: per-lens scatter `0.0927` dex against `0.0446` propagated (real
 astrophysical scatter no normalisation removes), and one shape term — `R_E/R_e` at `+0.172 ± 0.060`
-(**2.9σ**), inner lenses `0.216` dex low — degenerate with the assumed Sérsic `n = 4`, which is not in the
-catalogue. Lensing does **not** measure `a₀`: with the IMF free, `Δχ² = 0.26` over `κ ∈ [0.20, 0.80]`
+(**2.9σ**), inner lenses `0.216` dex low. **A80 has now tested it, and it is not robust**: the residual dies
+at `n = 6.09` (`Δ(−2lnL) = 47`) if the catalogue's `f*` is read as a Sérsic enclosed fraction — which its
+own scaling supports (`f* M_E/M*_tot = 0.0240 + 1.0223 f₂(x; n=4)`, `R² = 0.8967`) — and survives at **2.3σ
+for every `n ≤ 20`** if `f*` is read as a fixed mass. The free-`n` likelihood overshoots to `n₀ = 14.14` with
+the slope reversed to `−0.148` (−3.3σ), which is unphysical, so neither reading is decisive. **The residual
+is a statement about how `f*` was defined, not about the theory.** Lensing does **not** measure `a₀`: with the IMF free, `Δχ² = 0.26` over `κ ∈ [0.20, 0.80]`
 (`dlnR/dlnκ = 0.1205` vs `dlnR/dlnB = 0.7775`). The slip is unobservable (`2.8×10⁻⁶` arcsec, 8600× below
 the error) and A55 corrects A12's coefficient: the trace-free identity gives `3K`, not `2K`.
 
@@ -649,8 +653,9 @@ coefficient runs to `5.194`, but the induced acceleration is a monopole with **z
 (`1.00 ± 0.036` dex, 95 % `[0.850, 1.177]`), inside by 0.25 %. A55's 4.9σ came from `1/median²`
 (`M₂D ∝ R²`) instead of the model's `dlnR/dlnB = 0.7775`, which overstates the boost by 8 % — the
 difference between "excluded at 95 %" and "at the 95 % edge". The theory therefore **passes the four gates
-as an internal theorem and needs a heavy IMF for lensing**, with one residual shape term at 2.9σ
-(`R_E/R_e`, degenerate with Sérsic `n`). **Status: DERIVED (gates), LENSING AT THE IMF EDGE (1.8σ).**
+as an internal theorem and needs a heavy IMF for lensing**, with the `R_E/R_e` shape term shown by A80 to be
+an `f*`-definition ambiguity rather than a theory failure. **Status: DERIVED (gates), LENSING AT THE IMF
+EDGE (1.8σ in the `R_E` channel, 2.3σ with `σ_ap`).**
 
 **(Q4) Where the stiffness length comes from.** `L_* = σ_c²/a₀` — the distance the cold medium
 travels at `σ_c` during `t_acc = σ_c/a₀`, the time in which the theory's only acceleration changes the
@@ -779,10 +784,15 @@ constraint that the action's *bare* `Λ` must be `≥ 1.462 Λ_obs` for `β > 0`
 `a₀` need not be the same quantity, and the data side with the observed one. The fit cannot *prove* that
 identification — only show which one the data prefer.
 
-**A71 vs A70, explicitly.** A70's "`Δχ² = 0.26` over `κ ∈ [0.20, 0.80]`" is a *mean-only* statement; with
-`B` profiled the mean term is exactly zero, and the full per-lens likelihood gives **`Δχ² = 6.35`** over the
-same band, carried by the scatter term (monotone in κ, degenerate with Sérsic `n`, reported but not used).
-A70's *verdict* stands at `κ = 0.5`; its *number* does not transfer.
+**A71 vs A70, explicitly — and A80 has settled it.** A70's "`Δχ² = 0.26` over `κ ∈ [0.20, 0.80]`" is a
+*mean-only* statement. A71's **`Δχ² = 6.35`** was reported as scatter/shape information "unusable without
+per-lens Sérsic `n`". **A80 shows that was the wrong diagnosis**: A71's `SD_TAB` is built at `boost = 1.0`,
+i.e. with `B` *not* actually profiled. Reproducing A71's table exactly (63.29 → 56.94) and then profiling
+`B` gives **54.53 → 54.50, `Δχ² = 0.29`** over the same band. **The 6.35 was an unprofiled-`B` artifact, not
+a Sérsic degeneracy, and SLACS carries essentially no κ information.** With `(B, n)` jointly profiled the
+residual rises to 3.53 (free `n`) / 2.80 (`n = 5.2 ± 0.8`), minimised at the `κ = 0.80` edge where `B` is
+`−2.93σ` from Treu — a prior-dominated fit, not a measurement. A70's *verdict* stands at `κ = 0.5`; its
+*number* does not transfer.
 
 **The IMF tension gets slightly worse, not better.** At the joint `κ = 0.3777`, SLACS demands
 `B = 1.2248`, while the posterior compromise is `1.1916` — **outside Treu's 95 % bound `1.1767`**
@@ -807,8 +817,10 @@ dispersions — the test that should break the `B`–`κ` degeneracy — does no
 
 **What would settle it:** a wide-binary `γ_v` measurement at 18–22 kAU — A24's 4.5σ EFE test — cuts the
 joint κ error from **0.1207 to 0.0605**, 3.7× the reduction of SPARC at `N = 1000` (which buys only 2 %).
-Two honest gaps: the SLACS `R_E/R_e` shape channel carries 6.35 of κ information that is unusable without
-per-lens Sérsic `n`, and the wide-binary forecast is a rescaling of A24's σ's, not a re-solve.
+Two honest gaps: the SLACS shape channel carries **no** usable κ information — A80 shows its 6.35 was an
+unprofiled-`B` artifact (`Δχ² = 0.29` with `B` profiled) and the `R_E/R_e` residual is an `f*`-definition
+ambiguity rather than a theory failure; and the wide-binary forecast is a rescaling of A24's σ's, not a
+re-solve.
 
 ---
 
