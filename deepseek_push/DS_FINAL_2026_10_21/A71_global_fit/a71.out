@@ -1,0 +1,345 @@
+A71 -- THE GLOBAL CONSISTENCY TEST    (mutation: none)
+  kappa = a0 sqrt(8 pi/3)/(c H0), H0 = 67.4 km/s/Mpc, a0_per_kappa = 2.262407e-10 m/s^2
+  kappa = 1/2 at a0 = 1.131204e-10 ; canonical a0 = 9.360e-11 -> kappa = 0.413719
+
+==============================================================================================================
+K1  THE SPARC BLOCK: 175 files, 171 galaxies, 3375 points, on disk
+==============================================================================================================
+  files 175 ; galaxies with >=5 points 171 ; total points 3375
+  sha256(concat) = 469f4f556dc813b2   (A51 recorded 469f4f556dc813b2)
+  K1    PASS   175/171/3375, sha 469f4f556dc813b2
+         threshold: 175 files, 171 fitted, 3375 points, sha == A51's   :: the SPARC vector this lane fits is byte-identical to the one A51 fitted
+
+==============================================================================================================
+K2  THE SLACS BLOCK: 85 catalogue rows -> 70 usable lenses
+==============================================================================================================
+  catalogue rows 85 ; usable lenses 70 ; sha256 d78d7627d6bbcc07
+  K2    PASS   raw 85, usable 70, sha d78d7627d6bbcc07
+         threshold: 85 rows and 70 with finite z_l, z_s, R_E, f*_c, f*_s, R_E>0   :: same census as A55/A70; the selection is the file, not a cut made here
+
+==============================================================================================================
+K3  THE LIKELIHOOD IS THE RECORD'S (THEORY sec.4 / A51 K2)
+==============================================================================================================
+  fixed Upsilon=0.5, a0=1.132e-10 : chi2/dof = 6.8651   (record 6.87)
+  fixed Upsilon=0.5, a0=9.36e-11  : chi2/dof = 6.6312   (record 6.63)
+  one Upsilon per galaxy, 1.132e-10: chi2/dof = 2.4714  (record 2.42)
+  K3    PASS   6.8651 / 6.6312 / 2.4714
+         threshold: 6.87+-0.02, 6.63+-0.02, 2.42+-0.10   :: the zero-parameter chi2/dof reproduces the record to 4 digits, so this is the same likelihood
+
+==============================================================================================================
+K4  THE KAPPA IDENTITY, IN BOTH CONVENTIONS THE RECORD USES
+==============================================================================================================
+  kappa(1.131204e-10) = 0.500000000   (target 0.5)
+  kappa_DE(1.131204e-10) = kappa_P3/sqrt(Omega_L) = 0.604254
+  round trip a0 -> kappa -> a0 residual 0.00e+00
+  kappa(canonical 9.36e-11) = 0.413719   <-- the theory's own canonical footing
+  K4    PASS   kappa_P3 = 0.500000000 ; kappa_DE = 0.604254 ; round trip 0.0e+00
+         threshold: 0.5 +- 1e-9 ; 0.6043 +- 5e-4 ; round trip < 1e-12   :: a0 = kappa c sqrt(G rho_bare); the DE convention is 20.9% larger -- 1/2 in one is 0.604 in the other
+
+==============================================================================================================
+K5  CHANNEL 1 -- SPARC ALONE: a0, kappa, chi2/dof
+==============================================================================================================
+  a0 = 8.081465e-11 m/s^2   kappa = 0.357207   chi2 = 7115.88 / 3204 = 2.2209
+  A51 stored: a0 = 8.081465e-11  kappa = 0.357207  chi2/dof = 2.2209
+  K5    PASS   a0 8.081465e-11 vs 8.081465e-11 ; kappa 0.357207 vs 0.357207
+         threshold: agreement to 2e-4 relative on a0 and kappa   :: two independently written likelihoods land on the same minimum: SPARC peaks 27% below the theory's a0
+
+==============================================================================================================
+K6  THE SPARC ERROR BAR: formal Delta-chi2=1 vs the block bootstrap
+==============================================================================================================
+  Delta-chi2 = 1 in a0 : 1.12688%   (chi2/dof = 2.22, so this is NOT the truth)
+  200-draw block bootstrap: median 8.077430e-11, sigma/median = 0.093889  (A51: 0.093889)
+  ratio bootstrap / formal = 8.33
+  K6    PASS   bootstrap 0.093889 vs A51 0.093889 ; ratio to Delta-chi2 8.3
+         threshold: bootstrap matches A51 to 1e-4 and is >5x the formal error   :: the per-galaxy scatter (0.455 dex) makes the formal error wrong by ~8x; the bootstrap is used as sigma(SPARC)
+
+==============================================================================================================
+K7  CHANNEL 2 -- SLACS: the A70 model reproduces A55's 70 per-lens ratios
+==============================================================================================================
+  median R_E,pred/R_E,obs = 0.885232  (A55 0.8852) ; <ln> = -0.124539 (A55 -0.1245)
+  max per-lens deviation from A55's stored ratios: 0.00e+00
+  K7    PASS   median 0.885232, max per-lens deviation 0.00e+00
+         threshold: median 0.8852 +- 1e-4 ; per-lens < 1e-9   :: the SLACS model here IS A55's/A70's, not a rival re-implementation
+
+==============================================================================================================
+K8  THE REQUIRED IMF NORMALISATION B(0.5) AND A55's ARITHMETIC ERROR
+==============================================================================================================
+  root-found B (median ratio = 1) at kappa = 0.5 : 1.1738
+  1/median = 1.1296 ; 1/median^2 = 1.2761 (A55's 1.283) ; B_req/(1/median) = 1.0391
+  K8    PASS   B_req 1.1738 ; 1/median 1.1296 ; 1/median^2 1.2761
+         threshold: B_req = 1.174 +- 0.002 ; 1/median^2 = 1.276 +- 0.002 ; B_req < 0.97 x 1/median^2   :: the M/L that zeroes SLACS is 1.174xSalpeter, not A55's 1.283: M2D does not scale as R^2
+
+==============================================================================================================
+K9  THE TWO RESPONSES: dlnR/dlnB = 0.7775 vs dlnR/dlnkappa = 0.1205
+==============================================================================================================
+  dlnR/dlnB = 0.7775 (per-lens median, scatter 0.0830) ; response route B = exp(0.1245/0.7775) = 1.1737
+  median ratio at kappa = 0.35 / 0.50 / 0.70 : 0.8514 / 0.8852 / 0.9263
+  dlnR/dlnkappa = 0.1205 ; response ratio dlnR/dlnB : dlnR/dlnkappa = 6.45 : 1
+  K9    PASS   dlnR/dlnB 0.7775 ; B_response 1.1737 vs B_root 1.1738 ; dlnR/dlnkappa 0.1205 ; ratio 6.45
+         threshold: 0.7775 +- 0.005 ; B_response == B_root to 2e-3 ; 0.1205 +- 0.005 ; ratio in [6,7]   :: lensing is 6.5x more sensitive to the IMF than to a0: it is a mass-normalisation measurement
+
+==============================================================================================================
+K10  WITH SALPETER FIXED, LENSING 'PREFERS' kappa* = 1.03 -- AND WHY THAT IS NOT A kappa MEASUREMENT
+==============================================================================================================
+  kappa* (median ratio = 1, B = 1) = 1.0279   (A70: 1.0279)
+  Delta-chi2 = 1 width from the full per-lens likelihood: 0.1297 ; (kappa*-0.3572)/sigma = 5.17
+  K10   PASS   kappa* 1.0279, sigma 0.1297, apparent tension 5.2 sigma
+         threshold: kappa* = 1.0279 +- 0.01 ; 0.09 < sigma < 0.17   :: the 6-sigma 'lensing failure' exists ONLY with Salpeter pinned; dlnR/dlnkappa = 0.12 makes it an M/L statement
+
+==============================================================================================================
+K11  sigma(log10 B) FROM TWO ROUTES, AND THE FREE-IMF FLATNESS
+==============================================================================================================
+  mean/SEM route  : scatter 0.0927 dex / sqrt(70) / 0.7775 = 0.0143 dex
+  chi2 curvature  : s/(dlnR/dlnB sqrt(N)) = 0.1006/(0.7775*8.367) = 0.0155 dex
+  two routes agree to 8.5%
+  mean-only chi2 over kappa in [0.2,0.8]: Delta-chi2 = 0.00e+00 (B profiled -> exactly flat)
+  scatter term NL*sd^2/s^2 over the same band: 63.29 -> 56.94, Delta-chi2 = 6.35
+  (over the whole grid kappa in [0.2,1.7] the scatter term runs 63.29 -> 53.14, Delta-chi2 = 10.15)
+  K11   PASS   0.0143 dex (mean/SEM) vs 0.0155 dex (curvature)
+         threshold: 0.0143 +- 0.0005 ; two routes within 12%   :: 70 SLACS lenses measure the IMF normalisation to 3.3% -- the sharpest number in the lensing channel
+
+==============================================================================================================
+K12  THE IMF PRIOR: Treu+2010's dynamical calibration of the same lenses
+==============================================================================================================
+  N = 56 lenses, <log10 alpha_Salp> = -0.0005 +- 0.0182 (sem), scatter 0.1359 dex
+  abstract: 0.00 +- 0.03 (stat) +- 0.02 (sys) -> 95% on the mean = [0.850, 1.177] x Salpeter
+  K12   PASS   N=56, mean -0.0005, 95% hi 1.1767
+         threshold: 56 lenses, |mean| < 0.02, 95% upper = 1.177 +- 0.002   :: the prior is B = 1.00 with sigma = 0.036 dex, and 95% = [0.850, 1.177] -- B=1.174 sits ON the boundary
+
+==============================================================================================================
+K13  CHANNEL 3 -- CLUSTERS: A18's machinery and anchor
+==============================================================================================================
+  r_v = 1.6863 Mpc ; F(y_v) = 3.7702 ; R_tot = 2.6179   (A18: 1.6863 / 3.7702 / 2.6179)
+  K13   PASS   1.6863 Mpc / 3.7702 / 2.6179
+         threshold: 1.6863 +- 0.001 / 3.7702 +- 0.001 / 2.6179 +- 0.001   :: A18's anchor is reproduced by this implementation before it is used as a constraint
+
+==============================================================================================================
+K14  THE CLUSTER CHANNEL ALONE: kappa = 0.393 +- 0.043, circular in u
+==============================================================================================================
+  dlnR_tot/dlna0 = +0.9277
+  cluster-only kappa = 0.3934 +- 0.0432 (11.0%)   (A51: 0.3934 +- 0.0432)
+  K14   PASS   kappa 0.3934 +- 0.0432 (sigma/kappa 0.1097)
+         threshold: 0.3934 +- 0.002, sigma/kappa 0.1097 +- 0.003   :: u was fitted by A18 to the same amplitudes, so this is an 11% consistency band, not an independent measurement
+
+==============================================================================================================
+K15  THE CLOSURE I(y_t) = 8 pi / kappa^2 -- AN IDENTITY, NOT A CONSTRAINT
+==============================================================================================================
+  N_Lambda = Lambda c^4 / a0^2 = 100.405845   (Lambda = 1.0890e-52 m^-2, a0 = 9.360e-11)
+  root of F(y_t) = N_Lambda : y_t = 66.299937   (A28: 66.299937)
+  root of F(y_t) = 8 pi/(1/2)^2 = 32 pi = 100.530965 : y_t = 66.380331   (A28: 66.380331)
+  kappa implied by (Lambda, a0): 0.500311   (A28: 0.500311)
+  K15   PASS   y_t 66.29994 (obs) / 66.38033 (1/2) / kappa 0.500311
+         threshold: 66.29994 +- 0.002 ; 66.38033 +- 0.002 ; 0.500311 +- 1e-4   :: the closure reproduces A28's numbers to 1e-4 -- and it is the definition of kappa rewritten
+
+==============================================================================================================
+K16  WHY THE CLOSURE CANNOT BE COUNTED AS DATA
+==============================================================================================================
+  two independent formulations of the same integral at kappa = 1/2:
+    tan-substitution quadrature : y_t = 66.380330710
+    A28 eq.(5) rational integral: y_t = 66.380330710   (difference 3.52e-12)
+  kappa    y_t        residual F(y_t) - 8pi/kappa^2
+  0.2500  259.22733   -3.411e-13
+  0.3415  140.03653   -4.604e-12
+  0.3710  118.98447   +5.684e-13
+  0.5000   66.38033   +1.421e-14
+  0.5265   60.03874   -4.263e-13
+  0.8000   26.83982   -1.748e-12
+  max |residual| over six kappa: 4.60e-12  -> the closure is satisfied identically, for every kappa
+  dln y_t/dln kappa = -1.9462 (A28: -1.946912): y_t is a FUNCTION of kappa, not a measurement of it
+  K16   PASS   max residual 4.6e-12 ; dln y_t/dln kappa -1.9462 ; two formulations agree to 5.3e-14
+         threshold: residual < 1e-8 for every kappa ; elasticity -1.9469 +- 0.005 ; formulations agree to 1e-9   :: counting it as data would add a zero-variance constraint on a derived quantity: it is EXCLUDED
+
+==============================================================================================================
+K17  BAO + SNe + CMB: VERIFIED kappa-BLIND, THEN EXCLUDED
+==============================================================================================================
+  max |E(z; kappa=0.20)/E(z; kappa=1.00) - 1| over z in [0.05, 2.5] : 0.00e+00
+  max |E_fw(z; Om) / E_LCDM(z; Om/(1+Om)) - 1|                       : 2.22e-16
+  K17   PASS   kappa-blind to 0.0e+00 ; reparametrisation exact to 2.2e-16
+         threshold: < 1e-14 and < 1e-12   :: a0 does not enter E(z) at all; the framework background IS flat LCDM relabelled, so the distance vector supplies neither kappa nor an independent H0 -> EXCLUDED (both directions)
+
+==============================================================================================================
+K18  THE JOINT FIT: (kappa, B, u) AGAINST SPARC + SLACS + CLUSTERS
+==============================================================================================================
+  SPARC chi2 grid: minimum 7116.365 at the grid point kappa 0.3600 ; direct fit 7115.877 at kappa 0.3572
+  spline at the direct minimum: 7116.007 (grid resolution 0.130)
+  kappa   = 0.37765   a0 = 8.54401e-11 m/s^2  (8.7% below canonical, 24.5% below the kappa=1/2 footing)
+  B       = 1.19163  (log10 B = +0.07614 dex)
+  u       = 0.44267
+  chi2 = 5.6861 = SPARC 0.372 + SLACS 0.701 + cluster 0.140 + IMF prior 4.473
+  B_req(kappa_joint) = 1.2248 ; B_joint is the prior-weighted mean of that and 1.00
+  per-channel chi2/dof AT THE JOINT BEST FIT:
+    SPARC   raw chi2 7136.35 / 3204 dof = 2.2273   (compressed 0.372 / 1 dof)
+    SLACS   raw chi2 61.75 / 68 dof = 0.9081   (compressed 0.701 / 1 dof)
+    cluster raw chi2 0.080 / 1 dof            (compressed 0.140 / 1 dof)
+    SLACS residual at the joint: ln B - ln B_req = -0.0275 (-0.84 sigma of the lensing error)
+  independent 3-parameter Nelder-Mead: kappa 0.377651  B 1.191631  u 0.442670  chi2 5.68609
+  K18   PASS   profile 0.377651/1.19163/0.44267 vs NM 0.377651/1.191631/0.442670
+         threshold: two independent minimisers agree to 1e-5 in kappa and B   :: the joint optimum is not an artefact of one minimiser: analytic-profiled and 3-D routes agree
+
+==============================================================================================================
+K19  THE JOINT kappa AGAINST A51's 0.3708 +- 0.0265
+==============================================================================================================
+  joint kappa = 0.37765 +- 0.02579 (stat, Delta-chi2=1)
+  95% statistical: [0.32806, 0.42907]
+  A51 (SPARC + clusters, no SLACS): 0.37083 +- 0.02648
+  shift from adding SLACS: +0.00682 (0.26 sigma of the joint)
+  joint WITHOUT the SLACS channel: kappa = 0.37148  (SLACS moves kappa by 0.00617)
+  K19   PASS   kappa 0.37765 +- 0.02579 vs A51 0.37083 +- 0.02648
+         threshold: agreement to 2% in the mean and 5% in sigma   :: adding the corrected SLACS likelihood to A51's three channels moves kappa by <1%: SLACS carries no kappa weight
+
+==============================================================================================================
+K20  THE PULLS: (channel best fit - joint) / channel sigma
+==============================================================================================================
+  SPARC   : kappa 0.35721 +- 0.03354   pull -0.61 sigma
+  clusters: kappa 0.39347 +- 0.04287   pull +0.37 sigma
+  SLACS   : kappa 1.0417 +- 0.3379    pull +1.97 sigma  (kappa direction)
+  SLACS   : the ridge runs kappa in [0.72, 1.40] at Delta-chi2 = 1 -> dlnR/dlnkappa = 0.121 makes
+            it a 1/6.5 measurement of what it measures directly (B)
+  SLACS   : B 1.0000  ->  in the joint B = 1.1916
+  IMF     : log10(B_joint) = +0.07614 dex ; sigma(pull) = sqrt(0.036^2 + 0.0143^2) = 0.0387 dex
+            pull on the IMF normalisation = +1.97 sigma ; 95% upper bound 1.177 -> B_joint OUTSIDE
+  K20   PASS   SPARC -0.61, clusters +0.37, SLACS(kappa) +1.97, IMF +1.97 sigma
+         threshold: kappa channels within 2.5 sigma; |IMF pull| in [1.5, 2.5]   :: no channel is pulled in kappa; the pull is in the mass normalisation B
+
+==============================================================================================================
+K21  THE GLOBAL TENSION: chi2_joint - sum of the individual best fits
+==============================================================================================================
+  chi2_joint            = 5.6861
+  sum of channel minima = 0.0000  (SPARC 0 + SLACS+prior 0.0000 + clusters 0)
+  T = 5.6861 for 2 shared parameters -> p = 0.0582 (1.89 sigma)
+  decomposition: SPARC 0.372, SLACS 0.701, clusters 0.140, IMF prior 4.473
+  without the IMF-prior term (i.e. using only the three data channels): T = 1.2127
+  K21   PASS   T = 5.686 (1.89 sigma) ; 4.473 of it is the IMF-prior term
+         threshold: 3 < T < 8 and >80% of it is the SLACS + IMF-prior terms   :: the global tension is real but small, and it is entirely the mass normalisation, not kappa
+
+==============================================================================================================
+K22  IS THE THEORY'S OWN kappa = 1/2 INSIDE THE JOINT 95% REGION?
+==============================================================================================================
+  systematic floor: estimator 0.2084, distance 0.161, H0 0.125, law 0.100, Upsilon 0.050 -> 0.3122
+  sigma(kappa) stat = 0.02579 ; total = 0.12069 (32.0%)
+  1/2 is 4.74 sigma away on the statistical error, 1.01 sigma on the total error
+  joint 95%: statistical [0.32806, 0.42907] ; with the declared floor [0.14110, 0.61421]
+  Delta-chi2 of kappa = 1/2 (B profiled, others at their joint values) = 20.916
+  the theory's OWN point (kappa, B, u) = (0.5, 1.00, 0.45): Delta-chi2 = 47.23 (stat errors)
+    decomposition: SPARC 18.13 + SLACS 23.86 + clusters 5.24
+  the same point with the systematic floor on kappa            : Delta-chi2 = 30.50
+  B_joint = 1.1916 vs the 95% upper bound 1.1767 -> OUTSIDE
+  kappa = 1/2 inside the statistical 95% region: False ; with the declared floor: True
+  K22   PASS   stat 4.74 sigma (inside=False) ; total 1.01 sigma (inside=True) ; Delta-chi2(1/2) = 20.92
+         threshold: outside the statistical 95% at >3.5 sigma, inside the total 95% at <2 sigma   :: the answer to 'is 1/2 excluded?' depends entirely on the error model -- exactly A51's lesson, now with SLACS in
+
+==============================================================================================================
+K26  TASK 3(a): SPARC's kappa AND SLACS's B, ONCE THE IMF PRIOR IS APPLIED
+==============================================================================================================
+  at kappa = 0.5 (P3, a0 = 1.1312e-10): B_req = 1.1738 = +0.0696 dex = 1.80 sigma  <- A70's headline, reproduced
+  at SPARC's kappa = 0.3572 the SLACS model demands B = 1.2339
+    = +0.0913 dex above 1.00 -> 2.36 sigma of the combined prior+measurement error (0.0387 dex)
+    and ABOVE Treu's 95% upper bound 1.177
+  to bring the required B down to 1.177 the joint fit would need kappa = 0.4928,
+    i.e. +4.5 sigma from the joint kappa 0.3777
+  the kappa channels themselves: SPARC 0.3572, clusters 0.3935, SLACS ridge 1.0417 -- all within 2 sigma
+  K26   PASS   B_req(kappa_SPARC) = 1.2339 (2.36 sigma) ; kappa needed for B=1.177: 0.493 (+4.5 sigma)
+         threshold: 1.8 < pull < 3.0 ; kappa needed > 0.45 ; SLACS ridge within 2.5 sigma of the joint   :: SPARC and SLACS agree in kappa and disagree in B: the residual is an IMF-normalisation statement
+
+==============================================================================================================
+K28  THE JOINT (kappa, B) POSTERIOR: covariance, correlation, 1-sigma and 2-sigma
+==============================================================================================================
+  curvature matrix at the joint minimum, in (ln kappa, ln B):
+    sigma(ln kappa) = 0.06830 -> sigma(kappa) = 0.02579 (profile gave 0.02579)
+    sigma(ln B)     = 0.03155 -> sigma(B)     = 0.03760 (3.2%)
+    correlation(ln kappa, ln B) = -0.2548
+  1 sigma (Delta-chi2 = 2.30) ellipse: kappa 0.3405-0.4189, B 1.1360-1.2500
+  2 sigma (Delta-chi2 = 6.17) ellipse: kappa 0.3187-0.4475, B 1.1018-1.2888
+  K28   PASS   sigma(kappa) 0.02579 vs profile 0.02579 ; sigma(lnB) 0.03155 ; corr -0.255
+         threshold: marginal and profile sigma(kappa) agree to 10%; 0.02 < sigma(lnB) < 0.05; corr in [-0.5,-0.05]   :: the (kappa, B) posterior is a mildly correlated Gaussian; B is the better-measured direction
+
+==============================================================================================================
+K27  THE CONVENTION TRAP: kappa = 1/2 IS A DIFFERENT a0 IN THE TWO CONVENTIONS
+==============================================================================================================
+  kappa_DE(a0 = 9.36e-11)  = 0.499983   (from the definition; the closure gives 0.500311)
+  kappa_P3(a0 = 9.36e-11)  = 0.413719   <- the same a0 in A51's convention
+  kappa_DE(a0 = 1.1312e-10) = 0.604254 ; kappa_P3 = 0.500000
+  ratio kappa_DE/kappa_P3 = 1.2085 (= 1/sqrt(Omega_L) = 1.2085)
+
+  the joint fit, in both conventions: kappa_P3 = 0.3777 +- 0.0258 ; kappa_DE = 0.4564 +- 0.0312
+  distance to a0 = 9.36e-11   : 1.40 sigma (stat) in P3, 1.40 sigma in DE  <- identical
+  distance to a0 = 1.1312e-10 : 4.74 sigma (stat) in P3, 4.74 sigma in DE  <- identical
+  -> the task's pairing 'kappa = 1/2 <-> a0 = 9.36e-11' is the rho_DE convention; in A51's
+     rho_crit convention that a0 is kappa = 0.4137 and kappa = 1/2 is a0 = 1.1312e-10.
+  falsifier band y_t in [60,140] -> kappa_DE in [0.3415, 0.5267] -> kappa_P3 in [0.2826, 0.4358]
+  A28's quoted falsifier band [0.3415, 0.5265] is the DE convention: reproduced to 3.3e-04
+  the two theory footings (a0 = 9.36e-11 and 1.1312e-10) are 0.0863 apart in kappa_P3,
+    i.e. 3.35 sigma at the joint statistical precision -- the fit separates them
+  K27   PASS   kappa_DE(9.36e-11) = 0.49998 ; kappa_P3(9.36e-11) = 0.41372 ; distance 1.40 sigma in both
+         threshold: the two conventions give 0.500 and 0.414 for the same a0, the same distance to it, and the footings are >3 sigma apart   :: a0 = 9.36e-11 is kappa=1/2 in one convention and 0.4137 in the other; every comparison here is made inside one convention
+
+==============================================================================================================
+K23  WIDE BINARIES: A PREDICTION WITH NO DATA -- EXCLUDED FROM THE LIKELIHOOD
+==============================================================================================================
+  EFE-blind, total-mass composition: gamma_v(20 kAU, canonical) = 1.5316   (A24: 1.5315)
+  EFE-present (A24's exact 1.1811 rescaled by sqrt(nu(y_ext(kappa)))): 1.1811
+  dgamma_v/dkappa = +0.6748 (EFE-blind) / +0.5098 (EFE-present)
+  A24's frozen resolution sigma_tot = 0.0276 -> a 20 kAU measurement alone gives
+    sigma(kappa) = 0.041 (EFE-blind) / 0.054 (EFE-present)
+  NO DATA on disk: this is a prediction, so it is NOT in the likelihood.
+  K23   PASS   gamma_v 1.5316 / 1.1811 ; dgamma/dkappa 0.675 / 0.510
+         threshold: 1.5315 +- 0.001 ; 1.1811 +- 0.005 ; |dgamma/dkappa| > 0.1   :: the EFE-blind value reproduces A24 exactly; the EFE-present one is a declared rescaling of A24's number
+
+==============================================================================================================
+K24  THE ERROR BUDGET, THE DEGENERACIES, AND THE ONE MEASUREMENT THAT WOULD TIGHTEN IT
+==============================================================================================================
+  estimator check: 10% floor -> a0 7.34191e-11 (kappa 0.3245) ; 3% floor -> a0 8.56385e-11 (kappa 0.3785)
+  A51's ensemble at those two settings: 7.3417e-11 / 8.5464e-11
+  term                       sigma_k     share
+  statistical (joint)        0.02579       4.6%
+  estimator/error model      0.07870      42.5%
+  distance zero point        0.06080      25.4%
+  H0 footing                 0.04721      15.3%
+  law choice                 0.03777       9.8%
+  Upsilon window             0.01888       2.4%
+  removing each term in turn (total sigma_kappa, current 0.1207):
+    estimator/error model    -> 0.0915  (24.2% tighter)
+    distance zero point      -> 0.1043  (13.6% tighter)
+    H0 footing               -> 0.1111  (8.0% tighter)
+    law choice               -> 0.1146  (5.0% tighter)
+    Upsilon window           -> 0.1192  (1.2% tighter)
+  A24 inputs used below: sigma_fit(2,223 pairs) = 0.0699, sigma_sys = 0.020, sigma_tot = 0.0726
+  A65 cross-check (not an independent channel -- same SPARC photometry):
+    L* = sigma_c^2/a0 = 24.025 pc at canonical a0, 26.320 pc at the joint a0 (anchor 24.0 pc)
+    the anchor a0 implied by L* = 24.0 pc is 9.3698e-11 -> kappa = 0.4141
+  candidates for the next measurement (sigma_kappa, and the joint error afterwards):
+    wide binary, one 18-22 kAU bin (2,223 pairs)      0.142  ->  joint 0.0995
+    wide binary, full 30,000-pair catalogue (7 bins)  0.040  ->  joint 0.0605
+    wide binary, EFE-blind reading, full catalogue    0.030  ->  joint 0.0555
+    SPARC at N=1000, same systematics (REPLACES it)   0.118  ->  joint 0.1184
+    distance zero point fixed to 2.5%                 -     ->  joint 0.1043
+    estimator half-span eliminated (analysis, not data) -  ->  joint 0.0915
+  K24   PASS   10%/3% floor: 7.3419e-11/8.5639e-11 ; largest removable term 'estimator/error model' -> 0.0915 (24.2% tighter)
+         threshold: endpoints reproduce A51 to 3e-3 ; the estimator term is the largest and worth 15-35%   :: the estimator/error-model term dominates the budget, and the distance zero point is the largest term that a new OBSERVATION could remove
+
+==============================================================================================================
+K25  THE SLACS 'FLATNESS' CLAIM: WHERE IT HOLDS AND WHERE IT DOES NOT
+==============================================================================================================
+  with B profiled, the mean term is EXACTLY zero at every kappa (by construction): max 2.5e-31
+  the full per-lens chi2 at its own best B, kappa = 0.20 / 0.50 / 0.80: 63.29 / 59.42 / 56.94
+  -> Delta-chi2 = 6.35 from the SCATTER term over [0.2,0.8], not the 0.26 A70 reports.
+  the scatter falls monotonically with kappa (0.2203 -> 0.2019 ln) because a larger a0 raises R_pred
+  more for the lenses that are currently under-predicted -- the same R_E/R_e residual A70 measured
+  at +0.172 +- 0.060.  It is degenerate with the assumed Sersic n = 4, so it is NOT used as kappa
+  information in this lane; the primary likelihood uses the mean term (B at fixed kappa) only.
+  K25   PASS   mean term flat to 3e-31 ; scatter term Delta-chi2 = 6.35 over [0.2,0.8]
+         threshold: mean term < 1e-9 ; scatter term > 4   :: A70's Delta-chi2 = 0.26 is a mean-only statement; the full likelihood is NOT flat, and this lane reports the difference rather than hiding it
+
+==============================================================================================================
+SUMMARY
+==============================================================================================================
+  28/28 checks PASS   (26.9 s)
+  joint kappa = 0.37765 +- 0.02579 (stat) +- 0.11790 (syst) = 0.37765 +- 0.12069
+  joint B     = 1.1916 +- 0.0364  (log10 B = +0.0761 dex, 1.97 sigma above 1.00)
+  u           = 0.4427
+  kappa_P3 = 1/2 (a0 = 1.1312e-10): 4.74 sigma (stat), 1.01 sigma (total); inside the total 95%: True
+  a0 = 9.36e-11 (kappa_DE = 1/2, kappa_P3 = 0.4137): 1.40 sigma (stat), 0.30 sigma (total)
+  global tension T = 5.69 for 2 dof (1.89 sigma)
+  channels in the likelihood: 3 (SPARC, SLACS, clusters).  Excluded with reasons: closure (identity), BAO/SNe/CMB (kappa-blind), wide binaries (no data), L* (same photometry).
+
+  wrote a71_results.json ; 28/28 PASS ; exit 0

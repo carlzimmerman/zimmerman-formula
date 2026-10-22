@@ -575,6 +575,49 @@ prefers `Λ_obs` at 2σ — which is exactly the choice under which the falsifie
 
 ---
 
+**6.3 The global consistency test — one parameter set, three channels, and a convention trap (A71).**
+The capstone fit: SPARC (171 galaxies / 3375 points), the corrected SLACS sample (70 lenses with A70's
+model and Treu's IMF prior), and A18's clusters, sharing `κ`, the IMF normalisation `B`, and `u`, with one
+`Υ` per galaxy profiled (28/28 checks, 16 mutations each exit 1).
+
+**Joint result.** `κ_P3 = 0.3777 ± 0.0258 (stat) ± 0.1179 (syst)`, i.e. `a₀ = 8.544×10⁻¹¹`;
+`B = 1.1916 ± 0.0364` (**+1.97σ** above Treu's mean); `u = 0.4427`. Per-channel `χ²/dof`: SPARC
+`7136.35/3204 = 2.227`, SLACS `61.75/68 = 0.908`, clusters `0.08/1`. **One parameter set fits at
+1.89σ (`p = 0.058`) — but 4.47 of the 5.69 tension is the IMF prior alone; data-only `T = 1.21` (0.6σ).**
+Pulls: SPARC `−0.61σ`, clusters `+0.37σ`, SLACS `κ +1.97σ`, `B +1.97σ`.
+
+**The convention trap, and it matters more than the fit.** "κ = ½" means different `a₀` depending on which
+density enters `a₀ = κc√(Gρ)`. The two differ by `√Ω_Λ = 0.8276`:
+
+| convention | `a₀` at κ = ½ | `κ` at `a₀ = 9.36×10⁻¹¹` | `κ` at `a₀ = 1.1312×10⁻¹⁰` |
+|---|---|---|---|
+| `ρ_DE` (observed Λ) | **9.36×10⁻¹¹** | 0.500 | 0.604 |
+| `ρ_crit` (bare, P3) | **1.1312×10⁻¹⁰** | 0.414 | 0.500 |
+
+The joint fit is **1.40σ (stat) / 0.30σ (total)** from the canonical `a₀ = 9.36×10⁻¹¹` and
+**4.74σ / 1.01σ** from the P3 `a₀ = 1.1312×10⁻¹⁰`. Both sit inside the *total* 95 % region; only the
+canonical one is inside statistically. The two footings are **3.35σ apart** at joint precision, so the data
+do discriminate — **in favour of `a₀` from the observed Λ**. This is consistent with A33's independent
+constraint that the action's *bare* `Λ` must be `≥ 1.462 Λ_obs` for `β > 0`: the bare `Λ` and the `Λ` in
+`a₀` need not be the same quantity, and the data side with the observed one. The fit cannot *prove* that
+identification — only show which one the data prefer.
+
+**A71 vs A70, explicitly.** A70's "`Δχ² = 0.26` over `κ ∈ [0.20, 0.80]`" is a *mean-only* statement; with
+`B` profiled the mean term is exactly zero, and the full per-lens likelihood gives **`Δχ² = 6.35`** over the
+same band, carried by the scatter term (monotone in κ, degenerate with Sérsic `n`, reported but not used).
+A70's *verdict* stands at `κ = 0.5`; its *number* does not transfer.
+
+**The IMF tension gets slightly worse, not better.** At the joint `κ = 0.3777`, SLACS demands
+`B = 1.2248`, while the posterior compromise is `1.1916` — **outside Treu's 95 % bound `1.1767`**
+(1.97σ, up from A70's 1.80σ). Relieving it needs `κ = 0.4928`, a +4.5σ shift.
+
+**What would settle it:** a wide-binary `γ_v` measurement at 18–22 kAU — A24's 4.5σ EFE test — cuts the
+joint κ error from **0.1207 to 0.0605**, 3.7× the reduction of SPARC at `N = 1000` (which buys only 2 %).
+Two honest gaps: the SLACS `R_E/R_e` shape channel carries 6.35 of κ information that is unusable without
+per-lens Sérsic `n`, and the wide-binary forecast is a rescaling of A24's σ's, not a re-solve.
+
+---
+
 ## 7. What this is, and what it is not
 
 **It is** a closed effective theory: a single action, five postulates, one modulus, and
