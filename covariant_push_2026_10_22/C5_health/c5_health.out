@@ -1,0 +1,59 @@
+C5_health  mutate=False  (xi=1, SZ K_B-term sign=1)
+  local quadratic matrix built (10 fields: ['n', 'Nx', 'Ny', 'Nz', 'zeta', 'hp', 'hx', 'px', 'py', 'pz']); Hermitian: True; 1.6 s
+H1 PASS det/expected = beta*k**8/512 (omega-free: True); Hermitian True residual 0 (A68's tensor, transverse-P and k^4 scalar exactly)
+  H4 A33 (beta=1, eta=gamma, gF=gL, mu=0)       Minkowski: modes 5 (route2 5), omega=0 roots 0, unstable 0, ghost 0, w2/k2 ['0.09091', '1.0', '1.0', '3.0', '3.0']
+  H4 A33 (beta=1, eta=gamma, gF=gL, mu=0)       y=1      : modes 5 (route2 5), omega=0 roots 0, unstable 0, ghost 0, w2/k2 ['0.5803', '5.0', '5.374', '1.0', '1.0']
+  H4 C4-literal (beta=0, eta=0, gF=0, mu=0)     Minkowski: modes 2 (route2 2), omega=0 roots 2, unstable 0, ghost 0, w2/k2 ['1.0', '1.0']
+  H4 C4-literal (beta=0, eta=0, gF=0, mu=0)     y=1      : modes 2 (route2 2), omega=0 roots 2, unstable 0, ghost 0, w2/k2 ['1.0', '1.0']
+  H4 C4-literal + BS dust (mu^-1=100 kpc)       Minkowski: modes 2 (route2 2), omega=0 roots 2, unstable 0, ghost 0, w2/k2 ['1.0', '1.0']
+  H4 C4-literal + BS dust (mu^-1=100 kpc)       y=1      : modes 2 (route2 2), omega=0 roots 2, unstable 0, ghost 0, w2/k2 ['1.0', '1.0']
+  H4 beta=0, eta=gamma, gF=gL                   Minkowski: modes 4 (route2 4), omega=0 roots 2, unstable 0, ghost 0, w2/k2 ['1.0', '1.0', '3.0', '3.0']
+  H4 beta=0, eta=gamma, gF=gL                   y=1      : modes 5 (route2 5), omega=0 roots 0, unstable 1, ghost 0, w2/k2 ['5.0', '5.349', '1.0', '1.0', '-2.176e-19']
+  H4 beta=1, eta=0, gF=gL                       Minkowski: modes 3 (route2 3), omega=0 roots 0, unstable 0, ghost 0, w2/k2 ['0.1', '1.0', '1.0']
+  H4 beta=1, eta=0, gF=gL                       y=1      : modes 3 (route2 3), omega=0 roots 0, unstable 0, ghost 0, w2/k2 ['0.6412', '1.0', '1.0']
+  H4 A33 + BS dust                              Minkowski: modes 5 (route2 5), omega=0 roots 0, unstable 0, ghost 0, w2/k2 ['0.09091', '1.0', '1.0', '3.0', '3.0']
+  H4 A33 + BS dust                              y=1      : modes 5 (route2 5), omega=0 roots 0, unstable 0, ghost 0, w2/k2 ['0.5803', '5.0', '5.374', '1.0', '1.0']
+H4 PASS routes agree on all 12 rows: True; A33 count 5; C4-literal 2 modes + 2 omega=0 roots routes agree AND A33 = 5 (A68)
+H5 FAIL max rel dev 2.23e-11 at alt|90pc|galaxy y=1|x_e=1.822|kL*=0.001; max dropped factor 0.111; without the NS row: dev 2.23e-11, dropped 3.49e-6 both < 1e-6 at every record background (NS included)
+  H6 (post hoc reading, not a frozen line): 312 points with g/k < 1 (frozen-coefficient WKB valid): all healthy = True; 96 failing points, min g/k among them = 40.7
+  H6 sample canonical|24pc|eta=1gamma|beta=1|unscreened y=1e8|kL*=0.001: {'stable': True, 'ghost_free': True, 'max_w2_over_k2': '2.938e+17', 'g_over_k': '77.1'}
+  H6 sample canonical|24pc|eta=1gamma|beta=1|unscreened y=1e8|kL*=1.0: {'stable': True, 'ghost_free': True, 'max_w2_over_k2': '3.388e+15', 'g_over_k': '0.0771'}
+  H6 sample canonical|24pc|eta=1gamma|beta=1|unscreened y=1e8|kL*=1.0e+3: {'stable': True, 'ghost_free': True, 'max_w2_over_k2': '2.0e+10', 'g_over_k': '7.71e-5'}
+H6 FAIL 432 (footing, L*, eta, beta, background, k) points: no omega^2 < 0, no negative Krein norm; max phase speed^2 1.85e+19 (mass-dominated, finite k) all points stable and ghost-free
+  H7 beta* = 1.48707e-19 vs 2 eta u0^2 = 1.48707e-19; beta=0 rates {'theta=0': {'w2_min': '-37176.8', 'pred_-gL_eta_u0^2_cos^2_k^4': '-37176.8', 'ratio': '1.0'}, 'theta=0.3': {'w2_min': '-33930.1', 'pred_-gL_eta_u0^2_cos^2_k^4': '-33930.1', 'ratio': '1.0'}}; Solar System {'canonical': {'w2_min_Lstar_units': '-4.2514e+7', 'growth_rate_per_yr': '83.3'}, 'alt': {'w2_min_Lstar_units': '-5.54008e+7', 'growth_rate_per_yr': '95.09'}}
+H7 PASS sign change at beta = 1.48707e-19 vs round-2 line 1.48707e-19 (rel 4.0e-18, aligned theta = 0, kL* = 1e6) rel < 1e-3
+  H8 k^4 mode: {'A33 Minkowski': {'min_w2_over_k2_at_kL*=1e-4,1e-3': ['1.0e-9', '1.0e-7'], 'zero_roots': 0}, 'A33 galaxy y=1': {'min_w2_over_k2_at_kL*=1e-4,1e-3': ['0.535746', '0.535746'], 'zero_roots': 0}, 'beta=0 Minkowski': {'min_w2_over_k2_at_kL*=1e-4,1e-3': ['1.0', '1.0'], 'zero_roots': 2}}
+  H8 p_sc canonical 24 pc: {'p_sc_B_regime_eV': 7.536778762954181e-112, 'p_sc_eta_regime_eV': 2.520027181091189e-68, 'A69_formula_eV': 2.836121031914657e-69, 'H_native_eV': 7.523851356815758e-34, 'regime_crossover_k_eV': 8.426062636538367e-25, 'p_B/H': 1.0017181899967643e-78, 'p_eta/H': 3.3493845925176735e-35}
+H8 PASS max p_sc/H_native: B-regime 2.493e-78, eta-regime 5.788e-35 (both footings, L* 20/24/90 pc) < 1 in both regimes (weakly coupled on all sub-Hubble scales)
+  FRW: background Lambda = (9*H**2*Nb_*beta + 6*H**2*Nb_ + 2*Kq0*Nb_ - 2*Kq1)/(2*Nb_), dH/dt = -Kq1/(3*beta + 2); 194.8 s
+H2 PASS kinetic residual 0, mass residual 0 0 vs round-2's 1/2 a^3[(B + eta p^2) s'^2 - (gamma p^4 + 2 B H^2) s^2] (x 1/2 average)
+  H9 kinetic matrix (beta != 0): Matrix([[Kq2*a_**3*(3*beta + 2)/(2*K*Nb_*(6*H**2*Nb_**2*beta + 4*H**2*Nb_**2 + Kq2*beta)), 0], [0, a_*eta*k**2/(2*Nb_)]])
+  H9 kinetic matrix (beta = 0):  Matrix([[Kq2*a_**3/(4*H**2*K*Nb_**3), 0], [0, a_*eta*k**2/(2*Nb_)]])
+  H9 dust sound speed^2 (beta = 0, k >> aH): Kq1*Nb_/Kq2 ; minus K'/(Q K''): 0
+  H9 beta=1|eta=1gamma|mu/H=100.0: Q-1=9.75e-5 k=30: ['7.3797e+16', '-165.14']; k=1e3: ['6.8368e+18', '-1980.6']; k=1e5: ['6.7691e+22', '-1705.1']; k=1e7: ['6.7711e+26', '2.952e+10']; k=1e10: ['2.006e+35', '9.9643e+19']
+  H9 beta=1|eta=1gamma|mu/H=4.4e+4: Q-1=5.036e-10 k=30: ['6.7718e+16', '-180.0']; k=1e3: ['6.7753e+16', '-1.999e+5']; k=1e5: ['4.175e+17', '-3.244e+8']; k=1e7: ['3.4989e+21', '2.9137e+10']; k=1e10: ['1.0366e+30', '9.9663e+19']
+  H9 beta=1|eta=0gamma|mu/H=100.0: Q-1=9.75e-5 k=30: ['-165.14']; k=1e3: ['-1980.6']; k=1e5: ['-1705.1']; k=1e7: ['2.9529e+10']; k=1e10: ['2.9529e+22']
+  H9 beta=1|eta=0gamma|mu/H=4.4e+4: Q-1=5.036e-10 k=30: ['-180.0']; k=1e3: ['-1.999e+5']; k=1e5: ['-3.244e+8']; k=1e7: ['2.9146e+10']; k=1e10: ['2.9534e+22']
+  H9 beta=1e-3|eta=1gamma|mu/H=100.0: Q-1=3.906e-5 k=30: ['7.3806e+16', '-0.43552']; k=1e3: ['6.8384e+18', '-5.2228']; k=1e5: ['6.7707e+22', '-4.5378']; k=1e7: ['6.7707e+26', '7.3719e+7']; k=1e10: ['1.1762e+33', '4.2435e+19']
+  H9 beta=1e-3|eta=1gamma|mu/H=4.4e+4: Q-1=2.017e-10 k=30: ['6.7718e+16', '-0.44933']; k=1e3: ['6.7753e+16', '-498.99']; k=1e5: ['4.175e+17', '-8.0978e+5']; k=1e7: ['3.4979e+21', '7.2756e+7']; k=1e10: ['6.0766e+27', '4.2438e+19']
+  H9 beta=1e-3|eta=0gamma|mu/H=100.0: Q-1=3.906e-5 k=30: ['-0.43552']; k=1e3: ['-5.2228']; k=1e5: ['-4.5378']; k=1e7: ['7.372e+7']; k=1e10: ['7.372e+19']
+  H9 beta=1e-3|eta=0gamma|mu/H=4.4e+4: Q-1=2.017e-10 k=30: ['-0.44933']; k=1e3: ['-498.99']; k=1e5: ['-8.0978e+5']; k=1e7: ['7.2756e+7']; k=1e10: ['7.3725e+19']
+  H9 beta=0|eta=1gamma|mu/H=100.0: Q-1=3.9e-5 k=30: ['7.3806e+16', '-0.0076796']; k=1e3: ['6.8384e+18', '-0.092094']; k=1e5: ['6.7707e+22', '-0.093015']; k=1e7: ['6.7707e+26', '-0.09244']; k=1e10: ['6.7707e+32', '575.79']
+  H9 beta=0|eta=1gamma|mu/H=4.4e+4: Q-1=2.014e-10 k=30: ['6.7718e+16', '-4.3245e-8']; k=1e3: ['6.7753e+16', '-4.8025e-5']; k=1e5: ['4.175e+17', '-0.077936']; k=1e7: ['3.4979e+21', '-0.092447']; k=1e10: ['3.4978e+27', '575.83']
+  H9 beta=0|eta=0gamma|mu/H=100.0: Q-1=3.9e-5 k=30: ['-0.0076796']; k=1e3: ['-0.092094']; k=1e5: ['-0.093015']; k=1e7: ['-0.09244']; k=1e10: ['575.79']
+  H9 beta=0|eta=0gamma|mu/H=4.4e+4: Q-1=2.014e-10 k=30: ['-4.3245e-8']; k=1e3: ['-4.8025e-5']; k=1e5: ['-0.077936']; k=1e7: ['-0.092447']; k=1e10: ['575.83']
+  H9 band aH<<k<<mu  beta=1|eta=1gamma|mu/H=4.4e+4: squared speed -0.1999 (beta/(2+3beta) = 0.2), Jeans offset -0.09008 H^2
+  H9 band aH<<k<<mu  beta=1|eta=0gamma|mu/H=4.4e+4: squared speed -0.1999 (beta/(2+3beta) = 0.2), Jeans offset -0.09008 H^2
+  H9 band aH<<k<<mu  beta=1e-3|eta=1gamma|mu/H=4.4e+4: squared speed -0.000499 (beta/(2+3beta) = 0.0004993), Jeans offset -0.0002392 H^2
+  H9 band aH<<k<<mu  beta=1e-3|eta=0gamma|mu/H=4.4e+4: squared speed -0.000499 (beta/(2+3beta) = 0.0004993), Jeans offset -0.0002392 H^2
+  H9 band aH<<k<<mu  beta=0|eta=1gamma|mu/H=4.4e+4: squared speed -4.802e-11 (beta/(2+3beta) = 0.0), Jeans offset -2.252e-11 H^2
+  H9 band aH<<k<<mu  beta=0|eta=0gamma|mu/H=4.4e+4: squared speed -4.802e-11 (beta/(2+3beta) = 0.0), Jeans offset -2.252e-11 H^2
+H9 FAIL kinetic matrices positive (K''>0, beta>=0, eta>0): True; dust c_s^2 = K'/(Q K'') residual 0; band squared speeds beta=1|eta=1gamma: -0.2, beta=1|eta=0gamma: -0.2, beta=1e-3|eta=1gamma: -0.000499, beta=1e-3|eta=0gamma: -0.000499, beta=0|eta=1gamma: -4.8e-11, beta=0|eta=0gamma: -4.8e-11 kinetic > 0 AND every sub-horizon squared speed >= 0 (beta > 0 and beta = 0 rows)
+H3 PASS scalar residuals [0, 0], vector residuals [0, 0]; det degree in omega 4 (omega^2 = 0 twice + one branch) all 0; two scalar branches (omega^2 = 0 and the massive one)
+  H10 scalar w^2 (AeST + stiffness) = -(K_B - 2)*(2*K_2*L_s**2*Q_0**2*k**2 + 4*K_2*Q_0**2*lambda_s + 4*K_2*Q_0**2 + K_B*L_s**2*k**4 + 2*K_B*k**2*lambda_s + 4*k**2)/(4*K_2*K_B)
+  H10 omega=0 Jordan-mode energy, AeST: [-4*k**2*(2*K_2*Q_0**2*lambda_s + 2*K_2*Q_0**2 + K_B*k**2*lambda_s + 2*k**2)/(Q_0**2*(2*K_2*Q_0**2*lambda_s + 2*K_2*Q_0**2 + K_B*k**2*lambda_s - 2*k**2*lambda_s))]
+  H10 omega=0 Jordan-mode energy, AeST + stiffness: [-4*k**2*(2*K_2*L_s**2*Q_0**2*k**2 + 4*K_2*Q_0**2*lambda_s + 4*K_2*Q_0**2 + K_B*L_s**2*k**4 + 2*K_B*k**2*lambda_s + 4*k**2)/(Q_0**2*(2*K_2*L_s**2*Q_0**2*k**2 + 4*K_2*Q_0**2*lambda_s + 4*K_2*Q_0**2 + K_B*L_s**2*k**4 + 2*K_B*k**2*lambda_s - 2*L_s**2*k**4 - 4*k**2*lambda_s))]
+H10 PASS w^2 residual 0; det degree 4 (count unchanged); all 36 scan points w^2 > 0, Krein > 0: True count unchanged AND every w^2 >= 0 for 0<K_B<2, K_2>0, lambda_eff >= 0
+  Khronon omega=0 Jordan-mode energy (Minkowski): {'beta=0, eta=0, mu_K=0': ['1/(gamma_L*k**2)'], 'beta=0, eta=0, mu_K>0': ['4*k**4/((2*k**2 + 3*mu_K**2)*(2*gamma_L*k**4 + 3*gamma_L*k**2*mu_K**2 + 3*mu_K**2))'], 'beta=0, eta>0, mu_K>0': ['4*k**4/((2*k**2 + 3*mu_K**2)*(2*gamma_L*k**4 + 3*gamma_L*k**2*mu_K**2 + 3*mu_K**2))']}
+  runtime 203.6 s, max RSS 0.082 GB
+C5_HEALTH COMPLETE: 7/10 checks PASS.
