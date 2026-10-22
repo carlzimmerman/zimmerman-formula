@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DSF-21 status</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0; padding: 4px 2px 8px 0;
+    color: var(--foreground);
+    font-family: var(--app-font, ui-sans-serif, system-ui, -apple-system, sans-serif);
+    font-size: 13px; line-height: 1.42;
+    background: transparent;
+  }
+  h1 { font-size: 17px; font-weight: 650; margin: 0 0 2px 0; letter-spacing: -0.01em; }
+  .sub { color: var(--muted-foreground); font-size: 12px; margin-bottom: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(240px, 1fr)); gap: 10px; margin-bottom: 14px; }
+  .card { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; background: var(--card); }
+  .card h2 { font-size: 12px; font-weight: 600; margin: 0 0 6px 0; color: var(--muted-foreground); text-transform: uppercase; letter-spacing: 0.04em; }
+  .q { font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+  .num { font-variant-numeric: tabular-nums; }
+  .chip { display: inline-block; font-size: 10.5px; font-weight: 650; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--border); margin-right: 5px; vertical-align: 1px; }
+  .ok { color: var(--accent); border-color: var(--accent); }
+  .no { color: var(--muted-foreground); }
+  .mid { color: var(--foreground); border-style: dashed; }
+  .note { color: var(--muted-foreground); font-size: 12px; margin-top: 5px; }
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+  td, th { text-align: left; padding: 4px 8px 4px 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--muted-foreground); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+  tr:last-child td { border-bottom: none; }
+  .fork { border: 1px solid var(--accent); border-radius: 8px; padding: 10px 12px; margin-bottom: 14px; }
+  .fork h2 { margin: 0 0 6px 0; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; }
+  .foot { color: var(--muted-foreground); font-size: 11.5px; margin-top: 12px; border-top: 1px solid var(--border); padding-top: 8px; }
+</style>
+</head>
+<body>
+
+<h1>The theory at the end of DSF-21</h1>
+<div class="sub">29 lanes · 398 checks re-run by the coordinator · 40 Lean theorems · <code>deepseek-push-dsf21</code></div>
+
+<div class="grid">
+
+  <div class="card">
+    <h2>Q1 · the twelfth and κ</h2>
+    <div class="q"><span class="chip no">NO-GO</span>κ = √(8π/3)/𝒩</div>
+    <div class="num">𝒩 = 2Z = 11.5776201 is <b>irrational</b> → no count can reach ½. “1/12” read literally gives κ = 0.4824. One equation missing: ρ<sub>Λ</sub>c²/(a₀²/G) = 4.</div>
+    <div class="note">Data exclude cap values 1 and 0.7071 at 6.1σ / 3.1σ; ½ admitted at 0.87σ.</div>
+  </div>
+
+  <div class="card">
+    <h2>Q2 · the medium and n</h2>
+    <div class="q"><span class="chip ok">DERIVED</span>n = 1</div>
+    <div class="num">The law <b>is</b> the Langmuir isotherm; 1/(g−g<sub>N</sub>) = 1/g + 1/a₀. One gate per site forces n=1; n=2 is a no-go in that class.</div>
+    <div class="note">Three discriminators: 15.47 % shape · y<sub>t</sub> ratio 1.94× · skew(δg) flips at a₀.</div>
+  </div>
+
+  <div class="card">
+    <h2>Q3 · relativity, four gates</h2>
+    <div class="q"><span class="chip ok">4 / 4</span></div>
+    <div class="num">Lensing = dynamics (slip 2.6e-7) · c<sub>T</sub>² = 1 <b>exactly</b> · α₁ = α₂ = 0, β = 1 · stable at every acceleration.</div>
+    <div class="note">Solar System conditional on a turn-off y<sub>t</sub> = 66.30 that also closes Λ (planets 9.14× inside).</div>
+  </div>
+
+  <div class="card">
+    <h2>Q4 · the stiffness length</h2>
+    <div class="q"><span class="chip mid">NUMERICAL</span>L* = 24–90 pc</div>
+    <div class="num">L* is the pressure switch-off radius, not a horizon scale. R<sub>core</sub> = (π/√2)L* = <b>53.31 pc</b>. LITTLE THINGS caps the window at 90 pc.</div>
+    <div class="note">ngVLA 0.15″: 21 % dip at 30 pc, ≥5σ per galaxy, ~30 dwarfs.</div>
+  </div>
+
+</div>
+
+<div class="fork">
+  <h2>Open item 0 — the fork</h2>
+  <table>
+    <tr><th>reading</th><th>fundamental</th><th>γ<sub>v</sub> at 20 kAU</th><th>M &lt; 3.87×10⁵ M<sub>⊙</sub></th></tr>
+    <tr><td><b>law-first</b></td><td>the law holds at every scale</td><td class="num">1.18</td><td>MOND</td></tr>
+    <tr><td><b>medium-first</b></td><td>the P-sector crossover is real</td><td class="num">1.0</td><td>Newtonian</td></tr>
+  </table>
+  <div class="note">Same Gaia DR4 bin decides. Medium-first also predicts <i>Newtonian</i> ultra-faints — the opposite of the record’s +0.44 dex dwarf excess, which makes that excess the arbiter.</div>
+</div>
+
+<div class="card">
+  <h2>What died this push (fix-forward, 16 items)</h2>
+  <table>
+    <tr><td>“No external-field effect”</td><td class="num">the law is simple-μ AQUAL; EFE is 18× the solver fork → γ<sub>v</sub> = 1.18, not 1.51</td></tr>
+    <tr><td>GF2’s κ = ½</td><td class="num">it is μ = σ²/v<sub>c</sub>² under an exact symmetry</td></tr>
+    <tr><td>the 5.6× kernel tension</td><td class="num">12.99 = 2π⁴/15 exactly; RAR is the only kernel that <i>cannot</i> close Λ</td></tr>
+    <tr><td>“the saddle column stays positive”</td><td class="num">net −2.424 M⊙/pc²; and −33 needs a group pair, not a cluster pair</td></tr>
+    <tr><td>“smallest strong-field anomaly”</td><td class="num">p=1 has the <i>largest</i>; it is fixed by exact Newton + saturation</td></tr>
+    <tr><td>the saddle-dip test</td><td class="num">needs e ≤ 0.22; a void is already 0.68 → not runnable</td></tr>
+  </table>
+</div>
+
+<div class="foot">One free number (κ) · one free scale (L*) · one free function (y<sub>t</sub>) · one measured sector (cold energy: u rises 0.472 → 0.986 outward). Full text: <code>FINAL_THEORY.md</code>.</div>
+
+</body>
+</html>

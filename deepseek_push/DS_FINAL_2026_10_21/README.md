@@ -30,6 +30,11 @@ coordinator after the lane finished; a lane's own summary is not the evidence.
 | [A20](A20_Lstar_cores/report.md) | L\* from inner cores | **NUMERICAL** | 18/18 | R_core = 53.31 pc; LITTLE THINGS bounds L\* ≤ 90 pc (window 24–90 pc); ngVLA 21 % dip at 30 pc |
 | [A21](A21_u_half/report.md) | is u = ½? | **NO-GO** + NUMERICAL | 25/25 | u(MID) = 0.4716 ± 0.0362 (0.78σ), u(OUT) = 0.9865 ± 0.0984 (4.9σ); u = 1+3⟨w⟩ ⇒ ½ needs w = −1/6 |
 | [A3](A3_lensing_gw/report.md) | lensing + GW speed | **DERIVED** (both gates) | 15/15 | c_T² = 1 exactly; slip 2.63e-7; scalar c_s = √(γ/η) ⇒ γ ≤ η |
+| [A26](A26_fork_decider/report.md) | law-first vs medium-first | **CLOSED by data** | 11/11 | step +0.453 ± 0.099 dex vs medium-first's −1.622; 21σ; LAW-FIRST |
+| [A27](A27_factor_two/report.md) | why L = 2ℓ₁ | **NO-GO** | 16/16 | κ = ½ is the curve β√χ = 2, not a point; no doubling argument fixes it |
+| [A28](A28_turnoff_origin/report.md) | where y_t comes from | **NO-GO** | 16/16 | Λc⁴/a₀² = 8π/κ² ⇒ y_t is κ in disguise; one free number, not two |
+| [A29](A29_u_radial/report.md) | u(r) mechanism | **PARTIAL** (step derived) | 25/25 | step at r_sp = 1.367 r200c = 1.414 Mpc; outer u = 1 forced, inner 0.472 open |
+| [A30](A30_aP_solarsystem/report.md) | the a_P anomaly | **NUMERICAL** (unobservable) | 11/11 | 2.42e-16 m/s²; 0.17σ joint; 5.7–151× below bounds |
 | [A24](A24_wide_binaries/report.md) | wide binaries vs the EFE | **DERIVED** (corrects the record) | 10/10 | law IS AQUAL ⇒ EFE present; γ_v = 1.18 not 1.51; EFE 18× the solver fork |
 | [A25](A25_kernel_conflict/report.md) | which kernel | **CLOSED-DERIVED** | 14/14 | Langmuir is canonical; 12.99 = 2π⁴/15 and RAR cannot close Λ at all |
 | [A22](A22_ppn_frames/report.md) | PPN α₁, α₂, β | **CLOSED-DERIVED** | 13/13 | α₁ = α₂ = 0 exactly, β = 1; new anomaly a_P = GM/L*² = 6.61e-3 B_E; M_crit = 3.87e5 M⊙ |

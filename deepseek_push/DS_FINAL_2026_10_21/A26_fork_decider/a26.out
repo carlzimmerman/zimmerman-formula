@@ -1,0 +1,86 @@
+A26  SETTLE THE FORK (law-first vs medium-first) on dwarfs already on disk
+====================================================================================================
+a0 = 9.3600e-11 m/s^2 (canonical)   L* = 24 pc   lambda = L*/sqrt2 = 16.97 pc
+M_crit = a0 L*^2/G = 3.8669e+05 Msun        u(M=1 Msun) = 2.4206e-16 m/s^2 = 2.586e-06 a0
+
+SAMPLE INVENTORY (every dwarf compilation on disk with the three required columns)
+sample                             file                                   Nrows  Nuse     log M* range  role
+----------------------------------------------------------------------------------------------------------------------
+LVD MW                             lvd_dwarf_mw.csv                          68    45       2.67..9.46  PRIMARY
+LVD M31                            lvd_dwarf_m31.csv                         43    34       4.63..8.86  PRIMARY
+LVD LG field                       lvd_dwarf_local_field.csv                 64    13       5.43..8.51  PRIMARY
+LVD beyond LG                      lvd_dwarf_local_field_distant.csv        736     7       6.07..7.57  cross-check (all are satellites)
+McConnachie 2012                   mcconnachie2012_dsph.csv                  46    46       2.83..8.83  independent sigma/r_h cross-check
+Collins 2013 (M31)                 collins2013_m31_dsph.tsv                  18    14       4.75..6.47  independent M31 cross-check
+Geha 2026 Paper II                 geha2026_paperII_tableA1.csv              67    55       2.75..7.63  independent sigma (DEIMOS), no r_h
+Arroyo-Polonio 2026                arroyo_polonio2026_tableA1.csv            12    12              n/a  binary-corrected sigma, 12 UFDs (confound budget)
+Walker 2023 (M2FS/Hect)            walker2023/ (per-star; CFG51 reduction)    38     2              n/a  multi-epoch binary-cleaned sigma, 2 UFDs
+McQuinn 2022 faint rotators        apjac9285t1_mrt.txt                       25     0       6.57..8.45  rotation-supported: no sigma, not used
+
+K1 sample: N_primary = 92 (LVD MW+M31+field with sigma>0, r_half>0, M_star)   N_below_Mcrit = 45   N_above = 47
+           log M* 2.67..9.46   log g_bar -14.17..-8.56   upper-limit sigma rows: 0
+K1 PASS N=92 N_below=45  threshold: N>=80 and N_below>=40
+
+K2 PASS M_crit=3.8669e+05 Msun (3.87e5 to 0.08%), lambda=16.97 pc, u/a0=2.586e-06  threshold: 1%, 0.05 pc, 1%
+
+K3 PASS CFG828 reproduction: N=29, out-of-SPARC-range N=21, mean Delta=+0.438 dex  threshold |mean-0.44|<=0.06  (record: +0.44)
+
+RAR SPLIT AT M_crit (law g_N = g^2/(g+a0); Delta = dex from the law)
+  below M_crit  N= 45  median log g_bar -12.99  median Delta +0.651 +- 0.090  median log(g_obs/g_bar) +2.147 +- 0.078
+  above M_crit  N= 47  median log g_bar -12.12  median Delta +0.132 +- 0.053  median log(g_obs/g_bar) +1.171 +- 0.089
+  Mann-Whitney p(Delta) = 2.678e-08   KS p(Delta) = 1.361e-08   MW p(log g_obs/g_bar) = 1.023e-11
+  (identity: Delta - Delta_N = log10(g_obs/g_bar) exactly, so the 'distance from Newtonian' and the 'boost' are one number)
+  medium-first requires Delta = Delta_N below M_crit: median -1.490 dex (deficit); measured +0.651 dex -> gap +2.147 +- 0.084 dex
+  within +-0.5 dex of the LAW: 14/45    within +-0.5 dex of NEWTONIAN: 0/45
+  estimator normalisation: with g_obs = sigma^2/r (no Wolf factor 3) the below-M_crit median Delta is +0.173 dex (law-first: 0); with the Wolf dynamical mass 3 sigma^2/r it is +0.651
+
+THE RAR ITSELF (median of log g_obs per g_bar bin; law = g_bar nu(g_bar/a0), Newton = g_bar)
+  log g_bar bin       N  N<Mcrit  med log g_obs      law   Newton  med Delta  deficit?
+  [-14.50,-14.00)    3        2        -11.960  -12.059  -14.094     +0.067        NO
+  [-14.00,-13.50)    6        5        -11.281  -11.873  -13.724     +0.542        NO
+  [-13.50,-13.00)   19       15        -10.958  -11.612  -13.206     +0.607        NO
+  [-13.00,-12.50)   23       20        -10.742  -11.367  -12.726     +0.632        NO
+  [-12.50,-12.00)   19        3        -10.860  -11.178  -12.357     +0.227        NO
+  [-12.00,-11.50)   10        0        -10.785  -10.911  -11.847     +0.162        NO
+  [-11.50,-11.00)    6        0        -10.617  -10.591  -11.258     -0.011       YES
+  [-11.00,-10.50)    3        0        -10.751  -10.197  -10.590     -0.554       YES
+
+  the theory's criterion per system: median r_MOND = sqrt(GM/a0) is 4.4 pc below M_crit and 71.9 pc above (L* = 24 pc); 45/92 systems have r_MOND < L*
+
+  CONFOUND GEOMETRY: Spearman rho(log M*, log g_bar) = +0.791 (p 6.7e-21); 100% of sub-threshold systems lie below g_bar = 1e-12
+
+K4 PASS kernel-free boost below M_crit: median log10(g_obs/g_bar)=+2.147 (140.4x)  threshold >=0.70 (5x); medium-first = 0.000
+K5 PASS sign below M_crit: median Delta=+0.651+-0.090 (95% lo +0.473)  threshold >0 at 95%
+K6 PASS distance from Newtonian below M_crit: +2.147+-0.084 dex threshold >=1.0 dex
+
+K7 PASS step at M_crit, g_bar-controlled: c=+0.453+-0.099 dex (a=+0.140, b=-0.086)
+     medium-first requires c=-1.622 dex; separation 21.0 sigma  threshold >=5 sigma
+     model comparison (Gaussian, scatter by ML, one offset each): s_law=0.472 dex  s_med=1.114 dex  Delta(-2lnL)=+158.0 -> favours LAW-FIRST
+
+K8 PASS matched g_bar in [-14.2,-12.5]: N_below=42 median Delta=+0.654 | N_above=9 median Delta=+0.237 | difference=+0.417 dex  threshold >-1.0 (medium-first: -1.5)
+
+K9 PASS census below M_crit: near-law 14 vs near-Newton 0 threshold >=10 and <=2
+
+K10 robustness (median Delta below M_crit and g_bar-controlled step, every variant)
+     sigma^2/r (no factor 3)    N= 92 N_below= 45  med Delta below +0.173  above -0.345  step +0.453
+     M_dyn(Wolf)                N= 92 N_below= 45  med Delta below +0.640  above +0.135  step +0.440
+     a0 alt = 1.13e-10          N= 92 N_below= 45  med Delta below +0.611  above +0.093  step +0.455
+     MW only                    N= 45 N_below= 32  med Delta below +0.683  above +0.196  step +0.536
+     M31 only                   N= 34 N_below= 12  med Delta below +0.617  above +0.186  step +0.345
+     LG field only              N= 13 N_below=  1  med Delta below +0.414  above +0.034  step +0.132
+     threshold on M*/2          N= 92 N_below= 38  med Delta below +0.683  above +0.151  step +0.494
+     pressure-supported only    N= 83 N_below= 45  med Delta below +0.651  above +0.185  step +0.421
+K10 PASS all 8 variants keep med Delta(below)>0 and step>-0.5  threshold: all
+
+K11 PASS confound budget: binary correction (Arroyo-Polonio f=0.7 vs f=0) median -0.216, largest -0.587 dex in Delta over 12 UFDs
+     Walker 2023 multi-epoch cleaning (Tucana II): -0.530 dex in Delta
+     medium-first needs 2.14 dex; after the LARGEST measured correction (0.59 dex) 1.55 dex survive (73% of the gap)  threshold >=1.0 dex
+     low-g_bar control ABOVE M_crit (N=25, log g_bar<-12): median Delta=+0.227 dex (near the law at 1e-13 m/s^2 without the UFD population)
+
+====================================================================================================
+VERDICT: LAW-FIRST
+  deciding number 1 (kernel-free): median log10(g_obs/g_bar) below M_crit = +2.147 (140x); medium-first = 0 (1x)
+  deciding number 2 (threshold step): c = +0.453 +- 0.099 dex at fixed g_bar; medium-first requires -1.622 dex -> 21.0 sigma
+  deciding number 3 (per system): the most negative Delta below M_crit is -0.438 dex; 0/45 systems show a deficit >=0.5 dex, and medium-first needs -1.49
+  residual honesty: below M_crit the data sit +0.651 dex from the law (medium-first would be -1.622); a non-zero residual here is the separate dwarf-excess problem, not the fork
+A26 COMPLETE: 11/11 checks PASS.

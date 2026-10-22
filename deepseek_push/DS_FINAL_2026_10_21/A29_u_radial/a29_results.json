@@ -1,0 +1,636 @@
+{
+ "lane": "A29",
+ "status": "NUMERICAL + NO-GO(relaxation, phase-space) + CONDITIONAL(r_sp=1.15 r200c)",
+ "checks": [
+  {
+   "id": "K1",
+   "pass": true,
+   "value": "3.46e-08",
+   "threshold": "<1e-4 (rel)",
+   "label": "the npz reproduces CFG687's six band amplitudes: A_law 2.509/1.910/1.012, A_newton 10.435/10.174/7.262 -- same 318 clusters, same 8 bins, same estimator"
+  },
+  {
+   "id": "K2",
+   "pass": true,
+   "value": "u IN=0.3348 MID=0.4716 OUT=0.9865",
+   "threshold": "0.3348+-0.056 / 0.4716+-0.036 / 0.9865+-0.098",
+   "label": "u = (P_l-P_N)/(D-P_N) in three bands; MID and OUTER reproduce A21 K4/K5b to 1e-3, and the INNER band -- never inverted in A21 -- gives u = 0.335"
+  },
+  {
+   "id": "K3",
+   "pass": true,
+   "value": "<w> IN=-0.2217 MID=-0.1761 OUT=-0.0045",
+   "threshold": "-0.2217 / -0.1761 / -0.0045, ordered",
+   "label": "u = 1+3<w> inverted band by band: <w> = -0.222 +- 0.019 (INNER), -0.176 +- 0.012 (MID), -0.0045 +- 0.0328 (OUTER). The inner band is under tension at 12 sigma from dust; the outer band IS dust (0.14 sigma from w=0)"
+  },
+  {
+   "id": "K4",
+   "pass": true,
+   "value": "du/dA_l=-0.3039 (dlnu/dA_l=-0.6445) sigma_u=0.03606 sigma_w=0.01203",
+   "threshold": "sigma_u=0.0363, sigma_<w>=0.0121",
+   "label": "the error bars on <w> are sigma_u/3 exactly (linear map), and sigma_u from the derivative du/dA_l=-0.3039 (dlnu/dA_l=-0.6445) reproduces A21's 0.03625 -- so sigma_<w> = 0.0121 (MID), 0.0328 (OUTER), 0.0188 (INNER)"
+  },
+  {
+   "id": "K5",
+   "pass": true,
+   "value": "0.0e+00 / 0.0e+00",
+   "threshold": "<1e-25",
+   "label": "T_00 - (1/2)g_00 T = (rho+3p)/2 => lap(Phi)=4piG(rho+3p) => M_g = M_c + 3 int p dV, so u = M_g/M_c = 1+3<w> exactly with <w> = int p dV / int rho dV (volume weighted)"
+  },
+  {
+   "id": "K6",
+   "pass": true,
+   "value": "max rel resid 0.0e+00",
+   "threshold": "<1e-10",
+   "label": "the chain <w> -> u=1+3<w> -> A_law = A_n/(1+u(A_n-1)) returns the measured A_law in all three bands to machine precision: the inversion is the amplitude algebra, not a fit"
+  },
+  {
+   "id": "K7",
+   "pass": true,
+   "value": "w(1/2)=-1/6 exact; MID -0.79s from -1/6; OUT -0.14s from 0",
+   "threshold": "exact; |Z|<1.5 and |Z|<1",
+   "label": "u=1/2 <=> <w>=-1/6 exactly; the MID band sits 0.02 sigma from -1/6, the OUTER band 0.14 sigma from 0 (dust). Neither is 1/2: u=1/2 is not a special point of the data"
+  },
+  {
+   "id": "K8",
+   "pass": true,
+   "value": "chi2/dof=5.92 (const u=0.447)",
+   "threshold": ">4",
+   "label": "a single u for all eight radii is rejected: chi2 = 41.4 for 7 dof. u is a function of r"
+  },
+  {
+   "id": "K9",
+   "pass": true,
+   "value": "u(1.71)-u(1.18)=+0.557 (2.6 sigma)",
+   "threshold": ">2 sigma",
+   "label": "the jump is between the 1.18 and 1.71 Mpc bins -- i.e. across the MID/OUTER boundary at 1.417 Mpc: 0.53+-0.05 -> 1.09+-0.21"
+  },
+  {
+   "id": "K10",
+   "pass": true,
+   "value": "step between 1.18 and 1.71 Mpc; u_in=0.412, u_out=0.970, chi2/dof=1.75 (3 params)",
+   "threshold": "step in (1.18,1.71), chi2/dof<2",
+   "label": "a step u=u_in (r<r_t), u_out (r>r_t) with r_t fitted fits the eight bins at chi2/dof = 1.75 (constant u: 5.92); it splits them 0-5 | 6-7, i.e. the discontinuity lies in the gap between 1.18 and 1.71 Mpc"
+  },
+  {
+   "id": "K11",
+   "pass": true,
+   "value": "1.42-2.06: 1.088+-0.209; 2.06-3.0: 0.939+-0.106",
+   "threshold": "both <1.2 sigma from 1, differ <1 sigma",
+   "label": "OUTER splits into two sub-bands, both of which are u=1 within 1 sigma and agree with each other: outside the transition there is no further radial structure -- u saturates at dust"
+  },
+  {
+   "id": "K12",
+   "pass": true,
+   "value": "t_relax(0.6)/t_relax(2.0)=0.0107",
+   "threshold": "<0.1 (inner relaxes faster)",
+   "label": "any local relaxation with a rate rising with density gives t_relax = t_dyn/rho: 24.437 Gyr at 0.6 Mpc vs 2287.903 Gyr at 2.0 Mpc, ratio 0.0107. The inner medium relaxes ~94x FASTER, so it reaches dust FIRST: relaxation predicts u_inner > u_outer. The measurement is u_inner = 0.335 < 0.987"
+  },
+  {
+   "id": "K13",
+   "pass": true,
+   "value": "required t_in/t_out >= 49; predicted 0.0107; discrepancy 3.7 decades, inverted",
+   "threshold": "required>10, predicted<0.1, discrepancy>2 decades",
+   "label": "to have the inner band unrelaxed (u=0.335) and the outer band fully relaxed (u=0.986) the relaxation time must DECREASE outward by a factor 49; the density scaling makes it INCREASE outward by 94. The two differ by 3.7 decades in the wrong direction"
+  },
+  {
+   "id": "K14",
+   "pass": true,
+   "value": "predicted u_INNER=1.000 vs measured 0.335+-0.056 (11.8 sigma)",
+   "threshold": "prediction >0.95, >8 sigma from data",
+   "label": "fix the one free amplitude so the outer band is 'fully relaxed' and the inner band comes out at u=1 as well; the INNER measurement excludes that at 11.8 sigma. Relaxation cannot be rescued by its normalisation either"
+  },
+  {
+   "id": "K15",
+   "pass": true,
+   "value": "r(beta=1/2)=r_s=0.229 Mpc vs data 1.065 Mpc (factor 4.6)",
+   "threshold": "factor >2 apart",
+   "label": "u=1/2 <=> beta=1/2, and for OM that is r=r_a. The one NFW-motivated choice r_a=r_s puts the crossing at 0.229 Mpc, a factor 4.6 inside the measured crossing at 1.065 Mpc. r_a has to be fitted, so the mechanism predicts nothing"
+  },
+  {
+   "id": "K16",
+   "pass": true,
+   "value": "OM chi2/dof=4.25 (r_a=0.39, A=0.63) vs step 1.75 (3 params)",
+   "threshold": "chi2/dof>3 and dchi2>10 vs step",
+   "label": "the smooth phase-space reading, u = A beta(r) with two free parameters, is rejected at chi2/dof = 4.25 against 1.75 for the step (which has one MORE parameter, r_t): the data have a discontinuity (dchi2 = 16.7 for one extra parameter) that no single-scale beta(r) produces"
+  },
+  {
+   "id": "K17",
+   "pass": true,
+   "value": "max|Z| u=beta: 4.3 (at 0.38 Mpc); u=1-beta: 11.0",
+   "threshold": "both >3 sigma in the eight bins",
+   "label": "with r_a fixed at the observed u=1/2 crossing, u = beta (radial fraction) is wrong by 4.3 sigma at 0.38 Mpc and u = 1-beta (isotropic fraction) by 11.0 sigma at 0.38 Mpc, in opposite directions: no single beta(r) normalisation fits the eight bins"
+  },
+  {
+   "id": "K18",
+   "pass": true,
+   "value": "r_sp=1.41 Mpc vs the MID/OUTER boundary 1.42 (ratio 0.997); coefficient band 1.21-1.75",
+   "threshold": "within 15% of the boundary",
+   "label": "r_splash = 0.83 r200m = (0.83 x 1.65) r200c = 1.37 r200c for the stack, from its own median M_gas and z: 1.41 Mpc (1.31-1.63 across the three mass routes). It lands on the 0.461-1.417 Mpc boundary -- the upper edge of the task's window -- with the 7% coefficient scatter spanning it"
+  },
+  {
+   "id": "K19",
+   "pass": true,
+   "value": "steepest dln(excess)/dlnR = -2.24 in [1.18,1.71] -> R=1.42 Mpc",
+   "threshold": "qmin=5 (1.18-1.71 Mpc), R=1.42+-0.05",
+   "label": "the stacked EXCESS has its steepest logarithmic slope, -2.24, between 1.18 and 1.71 Mpc: the caustic is at R = 1.42 Mpc, independently of any mass estimate"
+  },
+  {
+   "id": "K20",
+   "pass": true,
+   "value": "|R_caustic(1.42) - r_sp(1.41)| = 0.00 Mpc (0.02 sigma); r_sp in (1.18,1.71) = True",
+   "threshold": "<1.5 sigma and r_sp inside the u-step interval",
+   "label": "three independent determinations of the transition radius: the u-step (the fit puts it between 1.18 and 1.71 Mpc), the steepest excess slope (R = 1.42 Mpc) and the predicted r_splash (1.41 Mpc). r_sp falls inside the u-step interval and 0.02 sigma from the caustic"
+  },
+  {
+   "id": "K21",
+   "pass": true,
+   "value": "u_OUT 1.90 > 1.04 > 0.68 ; max|Z|=1.63",
+   "threshold": "monotone decreasing in mass, max|Z|<3",
+   "label": "the mass ordering is the prediction: r_sp grows with M, so a FIXED metric annulus is more 'inside' for heavy clusters and u_OUT must fall with mass. Measured 1.90/1.04/0.68 (Z = +1.1/+0.4/-1.6) against a zero-parameter sharp-step prediction from r_sp(M): the ordering is 3/3, and the massive tercile is 1.6 sigma low -- the sharp step is an idealisation (the real transition has finite width)"
+  },
+  {
+   "id": "K22",
+   "pass": true,
+   "value": "(M2/M0)^(1/3)=1.99; u(1.71): 7.76+-43/1.25/0.59",
+   "threshold": ">1.7 and u(1.71) falls with mass",
+   "label": "r_sp \u221d M^(1/3) means the transition moves by 2.0x between the terciles; at the fixed radius 1.71 Mpc u is >1 for the low tercile (outside r_sp, unconstrained), 1.25 +- 0.40 in the middle and 0.59 +- 0.08 for the top: the transition radius is mass-dependent, as a boundary must be and a relaxation time need not be"
+  },
+  {
+   "id": "K23",
+   "pass": true,
+   "value": "r_step(M500) = 5e+13:1.10, 1e+14:1.39, 3e+14:2.00, 1e+15:2.99",
+   "threshold": "1.05-1.15 at 5e13, >2.7 at 1e15, ratio>2.5",
+   "label": "the surviving mechanism's prediction: the u-step sits at r_sp = 1.37 r200c(M,z), so it moves from 1.10 Mpc at 5e13 to 2.99 Mpc at 1e15 -- across the whole OUTER band. A stacked detection of the step in three mass bins tests it"
+  },
+  {
+   "id": "K24",
+   "pass": true,
+   "value": "sigma_u<=0.0648, now 0.0973; N>=717",
+   "threshold": "0.02<sigma_u<0.09, 500<N<3000",
+   "label": "in the 1.42-2.5 Mpc band the step predicts u=1.000 and the phase-space reading predicts u=0.806: 3 sigma needs sigma_u <= 0.065 (sigma_<w> <= 0.022), i.e. N >= 717 clusters at the present per-object noise"
+  },
+  {
+   "id": "K25",
+   "pass": true,
+   "value": "1.42-2.5: u=0.986+-0.097; <w>=-0.0045+-0.0324",
+   "threshold": "u=1/2 and <w>=-1/6 both >3 sigma away",
+   "label": "the third band already exists in the stack: <w> = -0.0045 +- 0.0324, i.e. 5.0 sigma from -1/6 and 5.0 sigma from u=1/2. The open question there is 1.00 vs 0.81, not 1 vs 1/2"
+  }
+ ],
+ "numbers": {
+  "u_INNER": 0.3348011188200228,
+  "u_INNER_err": 0.05630360103113831,
+  "u_MID": 0.4715658920597389,
+  "u_MID_err": 0.03609957379232797,
+  "u_OUTER": 0.9864735709015933,
+  "u_OUTER_err": 0.09840872638520702,
+  "u_OUT_a": 1.088491402371928,
+  "u_OUT_a_err": 0.20872688406925308,
+  "u_OUT_b": 0.9392435059445235,
+  "u_OUT_b_err": 0.10585827409980067,
+  "u_1p42_2p5": 0.9864735709015933,
+  "u_1p42_2p5_err": 0.09725208806615718,
+  "w_INNER": -0.2217329603933257,
+  "w_INNER_err": 0.018767867010379437,
+  "w_MID": -0.17614470264675366,
+  "w_MID_err": 0.012033191264109323,
+  "w_OUTER": -0.0045088096994689115,
+  "w_OUTER_err": 0.03280290879506901,
+  "w_1p42_2p5": -0.0045088096994689115,
+  "w_1p42_2p5_err": 0.03241736268871906,
+  "w_for_half": -0.16666666666666666,
+  "Z_MID_from_minus_sixth": -0.7876577187264177,
+  "Z_OUTER_from_zero": -0.13745152076716696,
+  "du_dAl_MID": -0.30393417839666426,
+  "dlnu_dAl_MID": -0.6445211231650343,
+  "sigma_u_from_derivative": 0.03605783912244506,
+  "A_pred": {
+   "INNER": 2.509116337540468,
+   "MID": 1.910193906531747,
+   "OUTER": 1.0118014350474742
+  },
+  "A_rel_resid": {
+   "INNER": 0.0,
+   "MID": 0.0,
+   "OUTER": 0.0
+  },
+  "u_profile_8bin": {
+   "R": [
+    0.18088628265460446,
+    0.2630476239355356,
+    0.3825279144591322,
+    0.5562779969315113,
+    0.8089480484258734,
+    1.1763847368793168,
+    1.7107168400436887,
+    2.487750831052557
+   ],
+   "u": [
+    0.29361310464728224,
+    0.3730111720012914,
+    0.333090030214706,
+    0.4168980122450452,
+    0.41163554571723043,
+    0.5318673780423687,
+    1.088491402371928,
+    0.9392435059445235
+   ],
+   "err": [
+    0.12507536762074137,
+    0.10721384254567186,
+    0.05040946101288164,
+    0.06478074184274378,
+    0.04404770295246128,
+    0.054490408207352674,
+    0.20872688406925308,
+    0.10585827409980067
+   ],
+   "w": [
+    -0.2354622984509059,
+    -0.20899627599956952,
+    -0.2223033232617647,
+    -0.1943673292516516,
+    -0.19612148476092317,
+    -0.15604420731921043,
+    0.029497134123976032,
+    -0.020252164685158818
+   ]
+  },
+  "chi2_const_per_dof": 5.920077265852792,
+  "u_const": 0.4474378550479807,
+  "step": {
+   "r_t_fit": 1.18,
+   "r_t_lo": 1.1763847368793168,
+   "r_t_hi": 1.7107168400436887,
+   "u_in": 0.4115943033317085,
+   "u_out": 0.9697781041405346,
+   "chi2_dof": 1.454972073598541,
+   "chi2_dof_3param": 1.745966488318249,
+   "chi2_dof_const": 5.920077265852791,
+   "du": 0.5566240243295594,
+   "du_sigma": 2.5802802419166286
+  },
+  "om_fit": {
+   "r_a": 0.3914867641168864,
+   "amp": 0.6278271274433412,
+   "chi2_dof": 4.245274181503204,
+   "dchi2_vs_step": 16.741812647427977,
+   "beta_at_bins": [
+    0.1759304346515655,
+    0.3110461010338597,
+    0.4884270287716848,
+    0.6687712643958175,
+    0.8102393232198843,
+    0.9002943168621035,
+    0.9502366419489185,
+    0.975834457115807
+   ],
+   "max_Z_u_eq_beta": 4.341749403348161,
+   "max_Z_u_eq_1mbeta": 10.963917799183289
+  },
+  "n_patches": 30,
+  "beta_cross": {
+   "r_s": 0.22939799780665573,
+   "r200c": 1.0322909901299508,
+   "r_obs": 1.0652332758755962,
+   "factor": 4.643603196456014,
+   "u_pred_beta_at_2p49": 0.8452965944439504,
+   "u_pred_1mbeta_at_2p49": 0.15470340555604956
+  },
+  "relaxation": {
+   "t_relax_ratio": 0.010680913178424428,
+   "t_dyn_Gyr": [
+    0.7147228393935915,
+    2.7784416593965173
+   ],
+   "rho_rel": [
+    0.029247695559982648,
+    0.0012144053168289762
+   ],
+   "rho_ratio": 24.083965340627355,
+   "t_dyn_ratio": 0.2572387427954239,
+   "radii": [
+    0.6,
+    2.0
+   ],
+   "required_t_in_over_t_out": 49.17771544437624,
+   "predicted_t_in_over_t_out": 0.010680913178424428,
+   "predicted_t_out_over_t_in": 93.62495353112803,
+   "discrepancy_decades": 3.6631599648324933,
+   "u_inner_pred_fully_relaxed_outside": 1.0,
+   "Z": 11.814499765513997
+  },
+  "splash": {
+   "M_gas_med": 11608000000000.0,
+   "R500_med": 0.7845,
+   "z": 0.23365,
+   "routes": {
+    "M_gas/f_gas=0.11": {
+     "M500": 105527272727272.73,
+     "M200c": 148995444090208.78,
+     "r200c": 1.0339020968925,
+     "r_sp": 1.4137386182260803
+    },
+    "catalogue R500 (500 rho_c)": {
+     "M500": 162724742512232.75,
+     "M200c": 229753358053890.28,
+     "r200c": 1.1944712719189563,
+     "r_sp": 1.6332979404422598
+    },
+    "law at R500: M_b(1+F)": {
+     "M500": 83156989520377.5,
+     "M200c": 117410525854866.38,
+     "r200c": 0.9549722771555299,
+     "r_sp": 1.3058114415357909
+    }
+   },
+   "r_sp": 1.4137386182260803,
+   "r_sp_lo": 1.2114154337139265,
+   "r_sp_hi": 1.75136767107664,
+   "r_slope": 1.4186124135047637,
+   "slope_at_caustic": -2.238246968016587,
+   "k_splash": 1.3673815175297723,
+   "M500_route_ratio": 1.5420159955501034,
+   "M500_spread_percent": 54.20159955501034
+  },
+  "terciles": [
+   {
+    "t": 0,
+    "n": 106,
+    "Mgas": 3686500000000.0,
+    "u_out": 1.8978516832770118,
+    "u_out_err": 0.8117927089866979,
+    "u_b6": 7.76246979342555,
+    "u_b6_err": 43.059066598947425,
+    "rsp": {
+     "0.09": 1.0312246952729835,
+     "0.11": 0.9645022523649742,
+     "0.15": 0.8697685932585708
+    },
+    "pred": 1.0,
+    "pred_band": [
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "t": 1,
+    "n": 106,
+    "Mgas": 11608000000000.0,
+    "u_out": 1.0422018439206586,
+    "u_out_err": 0.1570054965895422,
+    "u_b6": 1.2539003331687184,
+    "u_b6_err": 0.4047845998949504,
+    "rsp": {
+     "0.09": 1.5115176413700087,
+     "0.11": 1.4137192178074285,
+     "0.15": 1.2748633529113842
+    },
+    "pred": 0.985253319854165,
+    "pred_band": [
+     0.9676023871920633,
+     0.9996950978902043
+    ]
+   },
+   {
+    "t": 2,
+    "n": 106,
+    "Mgas": 29176500000000.0,
+    "u_out": 0.6825457250990967,
+    "u_out_err": 0.08211632494895506,
+    "u_b6": 0.5912062811087635,
+    "u_b6_err": 0.07861304647956774,
+    "rsp": {
+     "0.09": 2.0551535235299836,
+     "0.11": 1.922180695926649,
+     "0.15": 1.7333836139590342
+    },
+    "pred": 0.816792601029716,
+    "pred_band": [
+     0.7905830970537948,
+     0.8657476467646128
+    ]
+   }
+  ],
+  "tercile_Z": [
+   1.106011021456124,
+   0.36271675389412367,
+   -1.6348378475786567
+  ],
+  "prediction": {
+   "r_step_Msun": {
+    "50000000000000.0": 1.102141997225846,
+    "100000000000000.0": 1.3886119022643852,
+    "300000000000000.0": 2.002724919369238,
+    "1000000000000000.0": 2.9916736532590433
+   },
+   "scaling": "r_step = 1.15 r200c(M,z) ~ M^(1/3)"
+  },
+  "falsifier": {
+   "u_beta_pred_in_band": 0.8056740714454225,
+   "sigma_u_needed": 0.0647753095181925,
+   "sigma_w_needed": 0.021591769839397503,
+   "n_clusters_needed": 716.8132023583106,
+   "n_now": 318,
+   "Z_u_half": -5.002191526938346,
+   "Z_w_sixth": -5.002191526938346,
+   "band": "1.42-2.5 Mpc (the first 1.5 bins of the present OUTER band)"
+  }
+ },
+ "constants_used": [
+  {
+   "name": "G",
+   "value": 6.6743e-11,
+   "unit": "m^3 kg^-1 s^-2",
+   "source": "BRIEF s4"
+  },
+  {
+   "name": "c",
+   "value": 299792458.0,
+   "unit": "m/s",
+   "source": "BRIEF s4"
+  },
+  {
+   "name": "a0_canonical",
+   "value": 9.36e-11,
+   "unit": "m/s^2",
+   "source": "BRIEF s4"
+  },
+  {
+   "name": "H0",
+   "value": 2.1842852410855023e-18,
+   "unit": "s^-1",
+   "source": "BRIEF s4 (67.4 km/s/Mpc)"
+  },
+  {
+   "name": "Omega_m",
+   "value": 0.315,
+   "unit": "1",
+   "source": "Planck 2018 [EXT], used only in rho_crit(z)"
+  },
+  {
+   "name": "Omega_L",
+   "value": 0.685,
+   "unit": "1",
+   "source": "Planck 2018 [EXT]"
+  },
+  {
+   "name": "rho_crit_z0",
+   "value": 8.532855163739318e-27,
+   "unit": "kg/m^3",
+   "source": "3H0^2/(8 pi G)"
+  },
+  {
+   "name": "M_sun",
+   "value": 1.98847e+30,
+   "unit": "kg",
+   "source": "BRIEF s4"
+  },
+  {
+   "name": "Mpc",
+   "value": 3.085677581491367e+22,
+   "unit": "m",
+   "source": "BRIEF s4"
+  },
+  {
+   "name": "t_age_Gyr",
+   "value": 13.8,
+   "unit": "Gyr",
+   "source": "[EXT] Planck 2018 age of the universe"
+  },
+  {
+   "name": "z_stack",
+   "value": 0.23365,
+   "unit": "1",
+   "source": "median z of the 318 CFG687 clusters"
+  },
+  {
+   "name": "c_nfw",
+   "value": 4.5,
+   "unit": "1",
+   "source": "[EXT] NFW c200c at M200c~1.5e14, z~0.23"
+  },
+  {
+   "name": "Delta_200m",
+   "value": 63.0,
+   "unit": "rho_crit",
+   "source": "200 x rho_mean = 200 Omega_m rho_crit"
+  },
+  {
+   "name": "r_sp_over_r200m",
+   "value": 0.83,
+   "unit": "1",
+   "source": "[EXT] More+2015 (+-0.06)"
+  },
+  {
+   "name": "r200m_over_r200c",
+   "value": 1.6474,
+   "unit": "1",
+   "source": "computed in-code: NFW c=4.5 at Delta=200 Omega_m rho_c"
+  },
+  {
+   "name": "k_splash",
+   "value": 1.3674,
+   "unit": "1",
+   "source": "r_sp/r200c = 0.83 x 1.6474"
+  },
+  {
+   "name": "f_gas_500",
+   "value": 0.11,
+   "unit": "1",
+   "source": "[EXT] eRASS1 M_gas,500/M500"
+  },
+  {
+   "name": "f_gas_band",
+   "value": [
+    0.09,
+    0.15
+   ],
+   "unit": "1",
+   "source": "[EXT] mass-dependent f_gas range"
+  }
+ ],
+ "record_inputs": [
+  {
+   "name": "A_MID_law",
+   "value": 1.910194,
+   "err": 0.118637,
+   "source": "CFG687 'canonical|b0.67|rc0.15|f0.20'/MID"
+  },
+  {
+   "name": "A_MID_newton",
+   "value": 10.173704,
+   "err": 0.65,
+   "source": "CFG687 'newton'/MID"
+  },
+  {
+   "name": "A_OUTER_law",
+   "value": 1.011801,
+   "err": 0.086872,
+   "source": "CFG687 'canonical|b0.67|rc0.15|f0.20'/OUTER"
+  },
+  {
+   "name": "A_OUTER_newton",
+   "value": 7.262,
+   "err": 0.62,
+   "source": "CFG687 'newton'/OUTER"
+  },
+  {
+   "name": "A_INNER_law",
+   "value": 2.51,
+   "err": 0.32,
+   "source": "CFG687 stdout, INNER band"
+  },
+  {
+   "name": "A_INNER_newton",
+   "value": 10.44,
+   "err": 1.39,
+   "source": "CFG687 stdout, INNER band"
+  },
+  {
+   "name": "u_MID_A21",
+   "value": 0.471566,
+   "err": 0.03625,
+   "source": "A21 K4 (verified)"
+  },
+  {
+   "name": "u_OUTER_A21",
+   "value": 0.9865,
+   "err": 0.0984,
+   "source": "A21 K5b (verified)"
+  }
+ ],
+ "data_source": {
+  "npz": "campaign_fresh_gravity/CFG687_erass1_shear_stack/cfg687_percluster.npz",
+  "n_clusters": 318,
+  "bins": [
+   0.18088628265460446,
+   0.2630476239355356,
+   0.3825279144591322,
+   0.5562779969315113,
+   0.8089480484258734,
+   1.1763847368793168,
+   1.7107168400436887,
+   2.487750831052557
+  ],
+  "band_edges": {
+   "INNER": [
+    0.15,
+    0.4612936830542063
+   ],
+   "MID": [
+    0.4612936830542063,
+    1.4186124135047637
+   ],
+   "OUTER": [
+    1.4186124135047637,
+    3.0
+   ]
+  }
+ },
+ "mutation": null,
+ "n_pass": 25,
+ "n_total": 25,
+ "runtime_s": 0.34
+}

@@ -1,0 +1,442 @@
+{
+ "checks": [
+  {
+   "id": "K1",
+   "note": "codim-2 field is exactly 1/r",
+   "pass": false,
+   "threshold": "exponent exactly -1, coefficient exactly 2",
+   "value": "g = (1) G_D lam / r ; flux = 4 pi G_D lam"
+  },
+  {
+   "id": "K2",
+   "note": "a (D-2)-brane is a domain wall, not a 1/r source",
+   "pass": true,
+   "threshold": "flux = 4 pi G_D lam for every m; (D-2)-brane has m=1",
+   "value": "m=1 const, m=2 1/r, m=3 1/r^2, m=4 1/r^3; point in D=4 has m=3"
+  },
+  {
+   "id": "K3",
+   "note": "coefficient is one free dimensionful input per source",
+   "pass": true,
+   "threshold": "lam ~ M^1 would be a baryonic source; here it is sqrt(M)",
+   "value": "lam_req ~ M^0.5 ; L_string = 2.00000000000000 r_M"
+  },
+  {
+   "id": "K4",
+   "note": "no constant lambda matches at more than one r",
+   "pass": true,
+   "threshold": "1 and 0 (different topologies)",
+   "value": "d ln(flux_MOND)/d ln r = 1 ; codim-2: 0"
+  },
+  {
+   "id": "K5",
+   "note": "kappa = 1/n carries zero information",
+   "pass": true,
+   "threshold": "both residuals exactly 0",
+   "value": "a0 - cH/Z = 0 ; kappa_def - 1/n = 0"
+  },
+  {
+   "id": "K6",
+   "note": "the value 2 at D=4 fixes nothing",
+   "pass": true,
+   "threshold": "all 10 hit; >=6 distinct kappa(5); spread > 3x",
+   "value": "10/10 formulas give 2 at D=4; kappa(5) takes 9 values in [0.167, 0.625]; 8 within 2 sigma"
+  },
+  {
+   "id": "K7",
+   "note": "a0 is D-independent (Lambda fixed); Z_D is not",
+   "pass": true,
+   "threshold": "G00/H^2 = (D-1)(D-2)/2; Z_4 = 2 sqrt(8 pi/3)",
+   "value": "G00/H^2 = {'D=3': '1', 'D=4': '3', 'D=5': '6'} ; Z_3,4,5 = 10.02651, 5.78881, 4.09331"
+  },
+  {
+   "id": "K8",
+   "note": "flat rotation curves are a D=4 statement",
+   "pass": true,
+   "threshold": "flat iff D=4",
+   "value": "g ~ r^-(D-2)/2 ; v^2 ~ r^((4-D)/2); flat at D=[4]"
+  },
+  {
+   "id": "K9",
+   "note": "the kappa measurement cannot exclude D=5",
+   "pass": true,
+   "threshold": ">= 3 within 1 sigma and D=5(2/D) < 1 sigma",
+   "value": "4/6 (D,kappa-formula) pairs within 1 sigma; D=5(2/D)=0.18 sigma"
+  },
+  {
+   "id": "K10",
+   "note": "no D=5 Euler route exists",
+   "pass": true,
+   "threshold": "D=3 zero; D=4 total derivative; D=5 EL != 0; [A Lambda] = L^(D-4)",
+   "value": "GB: D=3 zero=True, D=4 total derivative (res 0), D=5 EL=480*A**3*H**4"
+  },
+  {
+   "id": "K11",
+   "note": "A19's 8 = chance level; '0 at D=5' is a list artifact",
+   "pass": true,
+   "threshold": ">=8 at D=4 and >0 at D=5 in a plain pool",
+   "value": "pool N=90: hits by D = {'3': 4, '4': 11, '5': 8, '6': 5, '7': 2} ; p(D=4)=0.122"
+  },
+  {
+   "id": "K12",
+   "note": "two inequivalent D-laws, one shared value",
+   "pass": true,
+   "threshold": "unique intersection at D=4; D=5 predictions differ",
+   "value": "intersection [4] ; kappa(4)=1/2 both ; kappa(5)=2/5 vs 1/3"
+  },
+  {
+   "id": "K13",
+   "note": "the premise 'codim of a point in D=4 is 2' is false",
+   "pass": true,
+   "threshold": "point must be 3 and (D-2)-brane 1",
+   "value": "point->3, string->2, (D-2)-brane->1, 'D-2'->2"
+  }
+ ],
+ "constants_used": [
+  "c = 2.99792458e8 m/s (BRIEF 4)",
+  "G = 6.67430e-11 (BRIEF 4)",
+  "Lambda = 1.0890e-52 m^-2 (BRIEF 4)",
+  "a0_can = 9.36e-11 m/s^2 (BRIEF 4)",
+  "M_sun = 1.98892e30 kg (IAU nominal, declared)",
+  "1 pc = 3.0856775814913673e16 m (BRIEF 4)",
+  "kappa_meas = 0.417 +/- 0.095 (CFG493 via A15)",
+  "kappa_can = 1/2 (BRIEF 4)"
+ ],
+ "lane": "A34",
+ "mutation": "M1",
+ "n_checks": 13,
+ "n_pass": 12,
+ "numbers": {
+  "K1": {
+   "codim2_coefficient_4pi_convention": "1",
+   "codim2_coefficient_8pi_convention": 4.0,
+   "codim2_exponent": -1,
+   "codim2_flux_over_GD_lam": "4*pi",
+   "note": "8 pi convention (lap = 8 pi G rho) gives 4 G_D lam / r"
+  },
+  "K10": {
+   "D3_GB_identically_zero": true,
+   "D4_total_derivative_residual": "0",
+   "D5_EulerLagrange_on_dS": "480*A**3*H**4",
+   "D5_GB_on_dS": "120*H**4",
+   "D5_sqrtgGB_on_dS": "120*A**4*H**4",
+   "cell_dimension_exponent": {
+    "3": -1,
+    "4": 0,
+    "5": 1
+   }
+  },
+  "K11": {
+   "a19_formulas_nontrivial": 8,
+   "a19_total_including_identity_D": 9,
+   "counterexample_at_D4": 4,
+   "counterexample_at_D5": 4,
+   "counterexample_formula": "(D-4)(D-5)+4",
+   "expected_hits_in_pool_of_this_size": 11.0,
+   "hit_examples_D5": [
+    "C(D,1)-1",
+    "C(D,4)-1",
+    "C(D,5)+3",
+    "(D-1)(D-2)/3",
+    "(D-1)(D-3)/2",
+    "(D-2)(D-1)/3",
+    "(D-3)(D-1)/2",
+    "(D-3)(D-3)/1"
+   ],
+   "pool_hit_fraction_D4": 0.12222222222222222,
+   "pool_hits_D4": 11,
+   "pool_hits_D5": 8,
+   "pool_hits_both": 0,
+   "pool_hits_by_D": {
+    "3": 4,
+    "4": 11,
+    "5": 8,
+    "6": 5,
+    "7": 2
+   },
+   "pool_size": 90
+  },
+  "K12": {
+   "intersection_D": [
+    4
+   ],
+   "kappa_D3_2overD": 0.6666666666666666,
+   "kappa_D3_invDm2": 1.0,
+   "kappa_D4_2overD": 0.5,
+   "kappa_D4_invDm2": 0.5,
+   "kappa_D5_2overD": 0.4,
+   "kappa_D5_invDm2": 0.3333333333333333,
+   "kappa_D5_ratio": 1.2
+  },
+  "K13": {
+   "codimension_table": {
+    "(D-2)-brane (p=2), spatial codim": 1,
+    "point (p=0), spatial codim D-1-p": 3,
+    "point, spacetime worldvolume codim D-(p+1)": 3,
+    "string (p=1), spatial codim D-1-p": 2,
+    "the number D-2 at D=4": 2
+   }
+  },
+  "K2": {
+   "D_minus_2_brane_transverse_dims": 1,
+   "point_D4_transverse_dims": 3,
+   "source_table": {
+    "D-2 brane = wall": {
+     "D": 4,
+     "exponent": 0,
+     "g(r)": "const",
+     "m": 1,
+     "p": 2
+    },
+    "point (D=5)": {
+     "D": 5,
+     "exponent": -3,
+     "g(r)": "1/r^3",
+     "m": 4,
+     "p": 0
+    },
+    "point (galaxy)": {
+     "D": 4,
+     "exponent": -2,
+     "g(r)": "1/r^2",
+     "m": 3,
+     "p": 0
+    },
+    "string": {
+     "D": 4,
+     "exponent": -1,
+     "g(r)": "1/r",
+     "m": 2,
+     "p": 1
+    },
+    "string (D=5)": {
+     "D": 5,
+     "exponent": -2,
+     "g(r)": "1/r^2",
+     "m": 3,
+     "p": 1
+    }
+   },
+   "transverse_dimension_table": {
+    "m=1": {
+     "exponent": 0,
+     "flux_over_4piGDlam": "1"
+    },
+    "m=2": {
+     "exponent": -1,
+     "flux_over_4piGDlam": "1"
+    },
+    "m=3": {
+     "exponent": -2,
+     "flux_over_4piGDlam": "1"
+    },
+    "m=4": {
+     "exponent": -3,
+     "flux_over_4piGDlam": "1"
+    },
+    "m=5": {
+     "exponent": -4,
+     "flux_over_4piGDlam": "1"
+    }
+   }
+  },
+  "K3": {
+   "far_field_slope": -2,
+   "lambda_mass_exponent": 0.5,
+   "lambda_over_MW_length_density": 1.0,
+   "lambda_required_MW_kg_per_m": 2.640667523924049e+20,
+   "mond_required_slopes": {
+    "large_r": -1,
+    "small_r": -2
+   },
+   "near_field_slope": -1,
+   "rM_MW_kpc": 12.204585935118798,
+   "string_length_MW_kpc": 24.409171870237596,
+   "string_length_MW_m": 7.531883442276186e+20,
+   "string_length_over_rM": "2.00000000000000"
+  },
+  "K4": {
+   "codim2_flux_log_slope": 0,
+   "flux_ratio_at_10rM": 10.0,
+   "flux_ratio_at_rM": 1.0,
+   "mond_flux_S2": "4*pi*sqrt(G)*sqrt(M)*sqrt(a_0)*r",
+   "mond_flux_log_slope": "1",
+   "phantom_mass": "sqrt(M)*sqrt(a_0)*r/sqrt(G)",
+   "phantom_mass_log_slope": "1"
+  },
+  "K5": {
+   "Z_exact": "2*sqrt(6)*sqrt(pi)*n/3",
+   "a0_exact": "sqrt(2)*sqrt(Lambda)*c**2/(4*sqrt(pi)*n)",
+   "a0_over_cH_residual": "0",
+   "dkappa_dn": "-1/n**2",
+   "kappa_minus_inv_n_residual": "0"
+  },
+  "K6": {
+   "formula_names": [
+    "D/2",
+    "D-2",
+    "D(D-1)/6",
+    "sqrt(D)",
+    "log2(D)",
+    "2^D/8",
+    "(D-1)(D-2)/3",
+    "C(D,2)-4",
+    "D^2/8",
+    "8/D"
+   ],
+   "kappa5_distinct": 9,
+   "kappa5_max": 0.625,
+   "kappa5_min": 0.166667,
+   "kappa5_spread": 3.749992500015,
+   "kappa_at_D5": {
+    "(D-1)(D-2)/3": 0.25,
+    "2^D/8": 0.25,
+    "8/D": 0.625,
+    "C(D,2)-4": 0.16666666666666666,
+    "D(D-1)/6": 0.3,
+    "D-2": 0.3333333333333333,
+    "D/2": 0.4,
+    "D^2/8": 0.32,
+    "log2(D)": 0.43067655807339306,
+    "sqrt(D)": 0.4472135954999579
+   },
+   "n_formulas_hit_2": 10,
+   "n_kappa5_within_2sigma": 8
+  },
+  "K7": {
+   "G00_over_H2": {
+    "D=3": "1",
+    "D=4": "3",
+    "D=5": "6"
+   },
+   "H0_per_s": 2.1842852410855023e-18,
+   "Z_D": {
+    "3": 10.026513098524003,
+    "4": 5.788810036466141,
+    "5": 4.093306831785954
+   },
+   "Z_exact_D": "4*sqrt(pi)*sqrt(1/((D - 2)*(D - 1)))/kappa",
+   "a0_exact": "sqrt(2)*sqrt(Lambda)*c**2*kappa/(4*sqrt(pi))",
+   "a0_from_Lambda_at_kappa_half": 9.354173485820239e-11,
+   "a0_if_rho_fixed_and_G5_eq_G4_times_c_over_H0": 1096.5577901347453,
+   "a0_numeric_m_s2": 9.36e-11,
+   "a0_over_cH_residual": "0",
+   "a0_ratio_rho_fixed_over_Lambda_fixed": 11715361005713.09,
+   "compactification_volume_m": 1.3724968349418282e+26,
+   "inv_Z_D": {
+    "3": 0.09973557010035816,
+    "4": 0.17274707473566775,
+    "5": 0.24430125595145996
+   },
+   "master_identity_R_exact": "kappa**(-2)",
+   "master_identity_note": "R = 1/kappa^2 in every D; G_D and D cancel",
+   "master_identity_residual": "0",
+   "two_Z_D4": 11.577620072932282
+  },
+  "K8": {
+   "deep_MOND_slope_D4": 1.0,
+   "flat_rotation_curve_D": [
+    4
+   ],
+   "slopes": {
+    "D=3": {
+     "g_slope": "-1/2",
+     "v2_slope": "1/2"
+    },
+    "D=4": {
+     "g_slope": "-1",
+     "v2_slope": "0"
+    },
+    "D=5": {
+     "g_slope": "-3/2",
+     "v2_slope": "-1/2"
+    }
+   }
+  },
+  "K9": {
+   "D_implied_2_over_D": 4.796163069544365,
+   "D_implied_inv_D_minus_2": 4.398081534772182,
+   "D_range_2_over_D_1sigma": [
+    3.90625,
+    6.2111801242236035
+   ],
+   "D_range_inv_D_minus_2_1sigma": [
+    3.953125,
+    5.105590062111801
+   ],
+   "n_within_1sigma": 4,
+   "separation_D4_D5_sigma_at_1pct": 33.333333333333336,
+   "sigma_kappa_at_1pct": 0.005,
+   "tensions": {
+    "D=3": {
+     "kappa_2_over_D": 0.6666666666666666,
+     "kappa_inv_D_minus_2": 1.0,
+     "tension_2_over_D": 2.6280701754385962,
+     "tension_inv_D_minus_2": 6.136842105263157
+    },
+    "D=4": {
+     "kappa_2_over_D": 0.5,
+     "kappa_inv_D_minus_2": 0.5,
+     "tension_2_over_D": 0.873684210526316,
+     "tension_inv_D_minus_2": 0.873684210526316
+    },
+    "D=5": {
+     "kappa_2_over_D": 0.4,
+     "kappa_inv_D_minus_2": 0.3333333333333333,
+     "tension_2_over_D": 0.17894736842105222,
+     "tension_inv_D_minus_2": 0.8807017543859649
+    }
+   }
+  }
+ },
+ "report_display": {
+  "D_range_inv_hi": "5.106",
+  "Z_3": "10.02651",
+  "Z_4": "5.78881",
+  "Z_5": "4.09331",
+  "a0_from_Lambda": "9.354e-11",
+  "a0_if_rho_fixed": "1096.56",
+  "a0_ratio_e13": "1.1715e13",
+  "a0_ratio_rho_fixed": "1.1715e+13",
+  "compactification_volume_e26": "1.3725e26",
+  "compactification_volume_m": "1.3725e+26",
+  "kappa5_max": "0.625",
+  "kappa5_min": "0.167",
+  "kappa5_spread": "3.75",
+  "kappa_table": {
+   "D3": [
+    "1.000",
+    "0.667"
+   ],
+   "D4": [
+    "0.500",
+    "0.500"
+   ],
+   "D5": [
+    "0.333",
+    "0.400"
+   ]
+  },
+  "lambda_required_MW": "2.6407e+20",
+  "lambda_required_MW_e20": "2.6407e20",
+  "pool_hit_fraction": "0.122",
+  "pool_hits_by_D": {
+   "3": 4,
+   "4": 11,
+   "5": 8,
+   "6": 5,
+   "7": 2
+  },
+  "rM_MW_kpc": "12.20",
+  "separation_at_1pct_sigma": "33.3",
+  "sigma_kappa_1pct": 0.005,
+  "string_length_MW_kpc": "24.41",
+  "tension_D3_2overD": "2.63",
+  "tension_D3_inv": "6.14",
+  "tension_D4": "0.87",
+  "tension_D5_2overD": "0.18",
+  "tension_D5_inv": "0.88",
+  "two_Z_4": "11.57762"
+ },
+ "status": "NUMEROLOGY"
+}

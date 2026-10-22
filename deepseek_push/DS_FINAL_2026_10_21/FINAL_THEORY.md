@@ -6,12 +6,14 @@ coordinator from the lane script (`_parent/parent_audit.py`, 21/21, mutation bit
 quoted with the lane that computed it. Nothing here is a projection of what a lane might
 have said.
 
-**Status in one line.** The framework now has **one free number** (κ), **one free scale**
-(L\*), **one free function** (the strong-field turn-off y\_t, tied to Λ), and **one
-sector with a measured radial structure** (the cold energy). Everything else that was
-asked for is either derived, or proved impossible in a stated class, or converted into a
-pre-registered number. That is a completed *effective* theory. It is not a UV completion
-and this document does not pretend otherwise.
+**Status in one line.** The framework now has **one free number** (κ — and the turn-off `y_t`
+is not independent: it is κ in disguise, A28), **one free scale** (L\* ∈ 24–90 pc), and
+**one unexplained value** (the inner sourcing fraction u = 0.472, whose outer counterpart is
+forced by the splashback radius, A29). Everything else that was asked for is either derived, or
+proved impossible in a stated class, or converted into a pre-registered number. That is a
+completed *effective* theory with one free constant. It is not a UV completion and this
+document does not pretend otherwise. **The law-first vs medium-first fork is resolved:
+LAW-FIRST, at 21σ** (A26).
 
 ---
 
@@ -323,6 +325,13 @@ law over-predicts Λ by **1.9707×**. So `y_t` is not a shared parameter — it 
 **discriminator**: a measurement of the turn-off scale separates n = 1 from n = 2 by a
 factor 1.94, on top of the 15.47 % shape difference. That is a conditional pass with the
 premise named: the turn-off exists and its scale is tied to Λ, not fitted.
+**But `y_t` is not an independent parameter, and A28 proved it:** the closure is exactly
+`Λc⁴/a₀² = 8π/κ²`, so `y_t = F⁻¹(8π/κ²)` is a function of κ alone
+(`d ln y_t/d ln κ = −1.947`). **Deriving `y_t` *is* deriving κ.** None of four named
+principles (strain saturation, response time, one-mode-per-cell, self-consistency) lands
+within a factor 8; the only sub-1 % expression at both footings, `y_t = 2Z²`, is numerology
+(it implies κ = 0.4979 and makes no second prediction). So the theory carries **one** free
+number, not two.
 
 ---
 
@@ -419,51 +428,46 @@ that is a prediction (three numbers from one), not a fit.
    A naive superposition gives the **wrong sign** (+0.64), so the pancake is strictly
    nonlinear (A13). The 11.8× pair requirement (≈ 8282 pairs for 3σ, reproducing the
    published "about twelve times") is confirmed.
-4. **The sourcing fraction is radial, and it is not ½.** `u = 0.4716 ± 0.0362` (MID) →
-   `0.9865 ± 0.0984` (OUT). MID is 0.78σ from ½ but OUT is **4.9σ** from it, and the two
-   bands differ by ≥ 3.8σ for any band correlation (A21). The "≈ ½ at both anchors" is a
-   **cancellation**, not a law: the law's own ratio spans 9.566× between the anchors and the
-   retention table spans 9.0×, quotient 1.063.
-   **u = ½ is structurally excluded as an identity**: `u = 1 + 3⟨w⟩` exactly, so ½ requires
-   `w = −1/6`, i.e. a negative sound speed; and `f_ret ≤ 1` caps the cluster at
-   `u ≤ 0.4880`, so ½ there would need more baryons than the cosmic share (`f_ret = 1.0245`).
-   The MW anchor needs `f_ret = 0.1071`, which is admissible — so the two anchors cannot both
-   be at ½ for a physical reason, only by coincidence. Scaling:
-   `u ≈ (f_ret/R_cosmic)[y_v^{−1/2} − ½]`, `d ln u/d ln M_v → +1/6`, spanning 0.37–0.72 over
-   1e10–1e14 M⊙. **Correction to A18's prose**: the phantom is too *diffuse*, not too
-   centrally concentrated (its own residuals: 1.910 MID vs 1.012 OUTER).
-   Falsifier at 3σ: `σ(A_MID) ≤ 0.0312`, i.e. ≥ 4602 clusters — or, cheaply, a group stack at
-   `M_v = 1e13` where ½ and the cosmic share differ by 33 % in cold mass (A_MID 1.8122 vs
-   1.4051), needing only `σ(A) ≤ 0.136` from a few hundred `M_500 ~ 2e13` stacks.
+4. **The sourcing fraction is radial and half-explained.** `u = 0.4716 ± 0.0361` (MID) →
+   `0.9865 ± 0.0984` (OUT), plus a new inner value **u = 0.3348 ± 0.0563** (A29, 8 bins).
+   The profile is a **step, not a gradient**: constant u is rejected at χ²/dof 5.92, a step
+   fits at 1.75 with the break in (1.176, 1.711) Mpc. The break is the **splashback radius**:
+   `r_sp = 0.83 r200m = 1.367 r200c = 1.414 Mpc`, 0.3 % from the model-independent caustic at
+   1.419 Mpc. Beyond `r_sp` the medium is single-stream, hence dust, hence **u = 1 exactly** —
+   that number is *forced*, not fitted. Inside, `u = 1 + 3⟨w⟩` with `⟨w⟩ = −0.176 ± 0.012`
+   (12σ of tension) and **no velocity distribution supplies it**: relaxation fails on sign
+   (the core would relax 94× faster and be dust first), phase space misses by 4.6× in radius,
+   and mass terciles prefer the zero-parameter splashback prediction (1.00/0.985/0.817
+   vs 1.90/1.04/0.68, max 1.6σ). **The inner 0.472 remains a named premise (P1′).**
+   New prediction: the step sits at `1.37 r200c(M,z)` → 1.10 / 1.39 / 2.00 / 2.99 Mpc across
+   5e13–1e15 M⊙. Falsifier: a 1.42–2.5 Mpc band separating u = 1.000 (step) from 0.806
+   (phase space) at 3σ needs `σ_u ≤ 0.0648`, i.e. **≥ 717 clusters** (2.3× present).
 
 ---
 
-## 5b. The fork this push exposes: law-first or medium-first
+## 5b. The fork, resolved: law-first
 
-This is the sharpest open question the 24 lanes produced, and it is an *internal* tension,
-not a data problem.
+The fork was real and it is now settled by data (A26, 11/11). The threshold is present in the
+dwarf population — a step of **+0.453 ± 0.099 dex** at `M_crit` — but it has the **wrong sign
+for medium-first**, which requires **−1.622 dex**. The median boost below `M_crit` is **140×**
+where medium-first needs 1×. Mann–Whitney p = 2.7×10⁻⁸, KS p = 1.4×10⁻⁸, Δ(−2 ln L) = 158;
+14 of 45 sub-threshold systems sit within 0.5 dex of the law, **0 of 45 within 0.5 dex of
+Newtonian**.
 
-- **A22:** inside `λ = 17 pc` the γ-gradient term in the P equation beats the mass term, so P
-  is a hedgehog of constant magnitude `GM/(2γ)` with `u = 2.59e-6 a₀` — **the Solar System is
-  not in the P sector's MOND regime at all**. The crossover defines a mass threshold
-  `M_crit = a₀L*²/G = 3.87e5 M⊙` below which the medium never reaches the MOND branch.
-  A12's theorem survives (it only needs `P = O(ρ)`) and its galactic application is safe
-  (`r ≫ L*`), but sub-threshold systems are a different regime.
-- **A24:** applies the *law* at 20 kAU — which is 0.1 pc, i.e. **inside** λ — and gets
-  `γ_v = 1.18`.
+**Verdict: LAW-FIRST.** The law holds below the crossover, so A22's `M_crit = 3.87e5 M⊙` is
+*not* a place where MOND switches off — it is the radius inside which the static P-sector
+ansatz changes character, and the ansatz is not the fundamental object. That is a real
+demotion of A22's finding and it is recorded as such. The honest caveat: the `M_crit` split is
+population-degenerate with `g_bar < 1e-12` (ρ = +0.79), and the largest measured
+binary/tidal correction (0.59 dex) leaves 73 % of the +0.65 dex excess unexplained — but that
+excess is a *different* problem (the record's dwarf anomaly), and it does not affect the sign
+test. The clean separator would be isolated (non-satellite) ultra-faints with
+`M* < 3.9e5 M⊙`; exactly one is on disk (Leo T).
 
-So the theory has two readings and they disagree exactly where a measurement exists:
-
-| reading | what is fundamental | wide-binary γ_v at 20 kAU | sub-threshold systems (M < 3.87e5 M⊙) |
-|---|---|---|---|
-| **law-first** | `g_N = g²/(g+a₀)` holds at every scale | **1.18** | MOND |
-| **medium-first** | the P-sector crossover is physical | **1.0** | Newtonian |
-
-Both are falsifiable with the same Gaia DR4 bin, and they also split the dwarf programme:
-medium-first predicts **no MOND** in ultra-faints (10⁵–10⁶ M⊙), which is the opposite of the
-record's +0.44 dex dwarf excess. That makes the dwarf excess, already a 4σ problem, a
-*decider* rather than a nuisance. Nothing in this push chooses between the two readings;
-naming the fork is the result.
+**Consequence for the parameter count.** With law-first, the medium is an *effective*
+description of the law, not its microscopic parent. That is consistent with A27's and A28's
+no-gos: neither the factor 2 nor the turn-off can be derived *from* the medium, because the
+medium is downstream of the law.
 
 ---
 
@@ -476,8 +480,8 @@ naming the fork is the result.
 | P7b | Turn-off scale separates n=1 from n=2 | y_t = 66.30 (n=1) vs 128.76 (n=2), ratio 1.94 | kinematic a₀ at high acceleration, or Λ/a₀² systematics | a y_t outside [60, 140] |
 | P9 | Occupancy-noise skewness flips at a₀ | sign change of skew(δg) exactly at g = a₀ | RAR residuals at fixed g_N, 3 bins either side | no flip, or a flip away from a₀ |
 | P2 | Cluster SCT band ratio | MID/OUTER = **0.966 ± 0.102** (native) vs 1.888 ± 0.203 (phantom) | eRASS1×KiDS, 0.46–1.42 Mpc vs outer | ratio > 1.3 (> 3.3σ) kills the native-cold reading |
-| P3 | Sourcing fraction rises outward | u(MID) = 0.4716 ± 0.0362, u(OUT) = 0.9865 ± 0.0984 | same stack, two bands | constant u at ≥ 3.8σ; σ(A_MID) ≤ 0.0312 reaches 3σ |
-| P3b | Group-scale u diagnostic | at M_v = 1e13, A_MID = 1.8122 (u=½) vs 1.4051 (cosmic share) | few hundred M_500 ~ 2e13 stacks, eRASS1×DESI Y3 | σ(A) ≤ 0.136 needed; 33 % difference |
+| P3 | Sourcing fraction is a **step** at the splashback radius | u(inner) = 0.3348 ± 0.0563, u(MID) = 0.4716, u(OUT) = 0.9865; break at 1.376 r200c = 1.414 Mpc | eRASS1×KiDS 8 radial bins | step radius scaling as 1.37 r200c across mass (predicted 1.10/1.39/2.00/2.99 Mpc) |
+| P3b | Third-band u separates step from phase space | u = 1.000 (step) vs 0.806 (phase space), 3σ needs σ_u ≤ 0.0648 | 1.42–2.5 Mpc band, ≥ 717 clusters | a value between the two at > 3σ |
 | P4 | Pressure core of size L\* | R_core = 53.31 pc at L\*=24 pc; 21.0 % dip at 30 pc, 11.2 % at 40 pc | ngVLA 0.15″, ~30 dwarfs V_f<40 km/s within 8 Mpc, 3 km/s channels | a core size that scales with galaxy mass at fixed L\* |
 | P5 | Wide-binary boost (EFE **present**) | γ_v = **1.18** at 20 kAU (bracket 1.1771–1.1933), 1.16 at 10 kAU; **not** 1.51 | Gaia DR4, 18–22 kAU bin, 2223 pairs, 4.5σ separation | γ_v ≤ 1.05 (Arm B); 1.51 would be a *no-verdict* zone value |
 | P5b | Kernel decision on the RAR knee | Δχ²(Q−L) = **+157.96** canonical / +75.25 alt, no free parameters; +17.05 profiled | SPARC binned transition shape, fixed-Υ diagonal bins | pre-registered: < −25 refutes, > +25 confirms |
@@ -537,7 +541,18 @@ naming the fork is the result.
     48.79/66.38 — matching A4's 66.30.
 15. **73.19 vs 32π is a convention, not physics**: `73.19 = 32π Ω_Λ` with `Ω_Λ = 0.728034`.
     The framework's own `a₀ = c²√(Λ/32π)` makes the target exactly 32π.
-16. **κ has four numbers circulating** (0.42 ± 0.10, 0.551 ± 0.043, 0.45/0.58/0.43, and the
+16. **`y_t` is not a second constant** — the closure is `Λc⁴/a₀² = 8π/κ²` identically, so the
+    turn-off is κ restated and the theory has one free number (A28). A22's `a_P` is real but
+    **unobservable**: 0.17σ in the joint 8-planet fit, 5.7× (formal Mars) to 151× (B_e) below
+    the bounds — a consistency check that passes, not a test (A30). My brief's
+    `L* = c²/a₀` was wrong by 1.3e9 (that length is 31 Gpc); the a_P number uses the *measured*
+    stiffness length 23.45 pc (A30 caught this).
+17. **κ = ½ is a curve, not a point.** In the (β, χ) ledger with `β = L/ℓ₁`, `χ` the cell
+    topology, `κ = 1/(β√χ)`, the condition κ = ½ is `β√χ = 2` — so (β,χ) = (2,1) and (1,4)
+    both give exactly ½ and R = 4. "Why the diameter rather than the radius" is therefore
+    ill-posed (A27); what is missing is the *link* (which functional of the cell the law's
+    length is), not a doubling argument.
+18. **κ has four numbers circulating** (0.42 ± 0.10, 0.551 ± 0.043, 0.45/0.58/0.43, and the
    March–May κ = 1). There is no single reconciled κ, and A9 shows why: κ ∝ Υ^−1.23, so an
    IMF change moves it 1.98×. The Υ-free channel gives **κ = 0.354 ± 0.106** from 12
    galaxies and 73 points — consistent with ½ at 1.4σ, but not a measurement (A14). The
@@ -581,24 +596,27 @@ naming the fork is the result.
 - **R ≠ 4 in the saturation cap**: `R ∈ {1, 2}` gives κ = 1 and 0.7071, excluded by the
   measured κ at 6.14σ and 3.05σ. Only R = 4 survives. A19.
 
+**Closed by data**
+
+- **Law-first** (A26, 21σ): the law holds below `M_crit`; medium-first is excluded. The P
+  sector's crossover is an ansatz artefact, not a MOND switch-off.
+
 **Open, with the missing premise named**
 
-0. **Law-first or medium-first** — the fork in §5b. The law at 20 kAU gives `γ_v = 1.18`; the
-   P sector's crossover at `λ = 17 pc` says sub-`3.87e5 M⊙` systems never reach the MOND
-   branch, giving 1.0. Both are testable with one Gaia DR4 bin and they split the dwarf
-   programme. **This is the most important open question in the theory right now.**
-1. **The scale-setting functional** returning exactly 4 in `ρ_DEc²/(a₀²/G)`. This is the
-   only hole in Q1. The data have already narrowed the cap to three options and picked one;
-   what is missing is the principle that makes the cap the fourth power of the cell scale.
-3. **`u(r)`**: why the inner halo is half-sourced and the outer fully sourced. The
-   measurement exists (P3) and the scaling is known (`u ∝ y_v^{−1/2}`, slope +1/6); the
-   mechanism does not.
-4. **The turn-off's origin**: `y_t = 100.4` closes Λ, but nothing yet forces it.
-5. **`L*`'s microscopic value**: now bounded to **24–90 pc** by LITTLE THINGS, with
-   `L* = σ²/a₀` the surviving map (24 pc ↔ 8.33 km/s) and its own cap at 93.8 pc. The upper
-   half of the published window is gone; the number is not derived.
-6. **A UV completion.** The cold sector has no established covariant parent (A5 clue 4:
-   the best candidate fails its own frozen rule).
+1. **The scale-setting functional** returning exactly 4 in `ρ_DEc²/(a₀²/G)` — or equivalently
+   the link that makes `β√χ = 2` (A27). This is now the **only free number** in the theory:
+   `y_t` folds into it (A28), and the factor 2 folds into it (A27). The data have narrowed the
+   cap to three options and picked one; what is missing is the principle.
+2. **`u(r)`'s inner value**: `u = 0.472` inside the splashback radius needs `⟨w⟩ = −0.176`,
+   i.e. tension, which no velocity distribution supplies. The outer `u = 1` is *derived*
+   (single stream). One named premise (P1′) and one clean falsifier (≥ 717 clusters, third
+   band).
+3. **`L*`'s microscopic value**: bounded to **24–90 pc** by LITTLE THINGS, with
+   `L* = σ²/a₀` the surviving map (24 pc ↔ 8.33 km/s) and its own cap at 93.8 pc. The number
+   is not derived.
+4. **A UV completion.** The cold sector has no established covariant parent (A5 clue 4:
+   the best candidate fails its own frozen rule), and law-first says the medium is downstream
+   of the law rather than its parent — which makes this the hardest item, not merely the last.
 
 ---
 

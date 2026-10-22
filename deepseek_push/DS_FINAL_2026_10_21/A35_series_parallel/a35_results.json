@@ -1,0 +1,213 @@
+{
+  "lane": "A35_series_parallel",
+  "status": "DERIVED n=1 (linear element + least dissipation); NO-GO n=2 as any series/parallel composition of capacity-a0 elements and as a stationary point of the dissipation functional; NUMERICAL discriminator (skew flip a0 vs 0.375a0)",
+  "mutated": false,
+  "checks": [
+    {
+      "id": "K1",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-15,
+      "note": "1/A=1/g+1/a0 exact; A=harmonic sum of g and a0 (compliances add, i.e. series springs)"
+    },
+    {
+      "id": "K2",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-15,
+      "note": "sqrt(g^2+a0^2/4)-a0/2 == g_N exactly (not A); guess/A = phi = 1.618034 at g=a0"
+    },
+    {
+      "id": "K3",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-15,
+      "note": "1/A = 1/g + 1/(a0-A): n=2 is a series string with a self-limiting (depleting) element"
+    },
+    {
+      "id": "K4",
+      "pass": true,
+      "value": 1.0,
+      "threshold": 1.0,
+      "note": "capacity: lam=0 -> a0 (ideal reservoir); lam=1 -> a0/2 (response meets its own headroom); ratio 2"
+    },
+    {
+      "id": "K5",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-15,
+      "note": "both laws (and every lam) have gN = g^2/a0 + O(g^3): the deep limit measures a0, not the capacity"
+    },
+    {
+      "id": "K6",
+      "pass": true,
+      "value": 0.0009999981285083066,
+      "threshold": 0.002,
+      "note": "cubic coefficient = 1-lam: n=2 is the unique even member of the family (A2's evenness criterion)"
+    },
+    {
+      "id": "K7",
+      "pass": true,
+      "value": -1.0,
+      "threshold": 1e-15,
+      "note": "parallel admittances: A = g+a0, gN = -a0 < 0 (anti-gravitating) and no finite capacity -- excluded"
+    },
+    {
+      "id": "K8",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-15,
+      "note": "both wirings reproduce the SAME law (parallel: N gates c=a0/N,s=a0; series: c=a0,s=a0/N); composite capacity Nc or c, never a0/2"
+    },
+    {
+      "id": "K9",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-15,
+      "note": "argmin_A [A^2/2a0 + (g-A)^2/2g] = a0 g/(g+a0); Lagrange over two displacements DERIVES theta_A = theta_N = g/(g+a0) (common occupancy is an output, not an assumption)"
+    },
+    {
+      "id": "K10",
+      "pass": true,
+      "value": -0.2360679774997897,
+      "threshold": 0.001,
+      "note": "n=2 residual R = A/g+A/a0-1 != 0 everywhere; R(a0) = 2-sqrt5; excess Psi(a0) = (9-4sqrt5)a0/4 > 0"
+    },
+    {
+      "id": "K11",
+      "pass": true,
+      "value": 1.0,
+      "threshold": 1e-15,
+      "note": "A_n2 is not Langmuir(C) for any C (g^2 forces C=a0, g^3 then is -1/a0 != 0)"
+    },
+    {
+      "id": "K12",
+      "pass": true,
+      "value": 1.1743590056195488,
+      "threshold": 0.0,
+      "note": "F'(theta_1)=0 identically; F'(theta_2)=kT ln2phi = 1.174359 at g=a0 and -> kT ln4; theta_2>theta_1 always"
+    },
+    {
+      "id": "K13",
+      "pass": true,
+      "value": 0.6199018949890067,
+      "threshold": 0.0,
+      "note": "sigma(theta_1)=0 (detailed balance); sigma(theta_2)>0 for all g, = 0.619902 a0 k_a at g=a0"
+    },
+    {
+      "id": "K14",
+      "pass": true,
+      "value": 9.47213595499958,
+      "threshold": 1e-06,
+      "note": "K cancels: g = a0 u/(a0-u); Z1(a0)=4, Z2(a0)=5+2sqrt5=9.472136"
+    },
+    {
+      "id": "K15",
+      "pass": true,
+      "value": 0.0006671281903963042,
+      "threshold": 0.001,
+      "note": "tau=L/c=3.262e4 yr (10 kpc); omega*tau=6.671e-04, phase 0.0382 deg: the RAR is a dc measurement"
+    },
+    {
+      "id": "K16",
+      "pass": true,
+      "value": 22.342179120754853,
+      "threshold": 0.01,
+      "note": "sigma(log g) ratios 0.3a0/3a0: n1=22.3422 n2=34.4859; a0/10a0: 22.9984/30.3822; slope -1.4998"
+    },
+    {
+      "id": "K17",
+      "pass": true,
+      "value": 0.375,
+      "threshold": 0.375,
+      "note": "skew flips at g=a0 (n1) and g=3a0/8 (n2); at g=a0/2 skews are +0.7071 / -0.3483 (opposite)"
+    },
+    {
+      "id": "K18",
+      "pass": true,
+      "value": 2.368033988749895,
+      "threshold": 1e-05,
+      "note": "Nyquist S2/S1 = (5+2sqrt5)/4 = 2.368034 at g=a0; S2 diverges at g=a0/2, S1 -> 4 only"
+    },
+    {
+      "id": "K19",
+      "pass": true,
+      "value": 0.0,
+      "threshold": 1e-15,
+      "note": "both laws homogeneous degree 1: a0 is the only dimensionful input"
+    },
+    {
+      "id": "K20",
+      "pass": true,
+      "value": 8.0,
+      "threshold": 8.0,
+      "note": "same law, both wirings; Var(A) ratio series/parallel = N = 8 (one collective coordinate vs N independent)"
+    },
+    {
+      "id": "K21",
+      "pass": true,
+      "value": 1.000000000000001,
+      "threshold": 1.0,
+      "note": "identified law: skew flip at g = 1.0000 a0, noise ratio 22.3422 (n=1 values)"
+    },
+    {
+      "id": "K22",
+      "pass": true,
+      "value": 2.0,
+      "threshold": 0.0,
+      "note": "A(0)=0, A(a0->0)=0, A'(0)=1 for BOTH laws: requirement (i) is degenerate, it cannot select n"
+    }
+  ],
+  "numbers": {
+    "harmonic_identity_remainder": 0.0,
+    "prompt_guess_is_gN_remainder": 0.0,
+    "prompt_guess_over_A_at_a0": 1.618033988749895,
+    "capacity_n1": 9.36e-11,
+    "capacity_n2": 4.68e-11,
+    "capacity_ratio": 2.0,
+    "capacity_law": "a0/(1+lambda)",
+    "cubic_coeff_n1": 1.0,
+    "cubic_coeff_n2": 0.0,
+    "cubic_coeff_law": "1-lambda",
+    "deep_limit": "gN = g^2/a0 + O(g^3) for every lambda",
+    "parallel_wiring_gN": -1.0,
+    "residual_R_at_a0": -0.2360679774997897,
+    "residual_R_at_a0_abs": 0.2360679774997897,
+    "probe_ratio_lo": 0.3,
+    "excess_psi_at_a0": 0.013932022500210304,
+    "excess_psi_sup": 0.125,
+    "Fprime_theta2_at_a0_over_kT": 1.1743590056195488,
+    "Fprime_theta2_inf_over_kT": 1.3862943611198906,
+    "sigma_theta2_at_a0": 0.6199018949890067,
+    "Z1_at_a0": 4.0,
+    "Z2_at_a0": 9.47213595499958,
+    "nyquist_ratio_at_a0": 2.368033988749895,
+    "tau_10kpc_yr": 32615.63777167433,
+    "omega_tau_10kpc_200kms": 0.0006671281903963042,
+    "phase_deg": 0.0382236240333066,
+    "noise_ratio_03_3_n1": 22.342179120754853,
+    "noise_ratio_03_3_n2": 34.4859068544583,
+    "noise_ratio_1_10_n1": 22.998382983042767,
+    "noise_ratio_1_10_n2": 30.382150820507604,
+    "noise_slope": -1.4997853494132798,
+    "noise_slope_n2": -1.4999731449963871,
+    "flip_ratio": 2.6666666666666665,
+    "z_at_zero": 1.0,
+    "skew_flip_n1": 1.0,
+    "skew_flip_n2_over_a0": 0.375,
+    "skew_at_half_a0_n1": 0.7071067811865476,
+    "skew_at_half_a0_n2": -0.34831069974900664,
+    "var_ratio_series_parallel_at_N8": 8.0,
+    "identified_flip_g_over_a0": 1.000000000000001,
+    "identified_noise_ratio": 22.342179120754853,
+    "max_law_split": 0.15470053837925168,
+    "impedance_divergence_n2_at": 0.5
+  },
+  "constants_used": [
+    "a0 = 9.36e-11 m s^-2 (BRIEF s4, canonical footing)",
+    "c = 2.99792458e8 m s^-1 (BRIEF s4)",
+    "1 pc = 3.0856775814913673e16 m; kpc = 3.0856775814913673e19 m (BRIEF s4)",
+    "k_B = 1.380649e-23 J/K (SI exact; T is NOT predicted by the theory)",
+    "1 yr = 3.15576e7 s (Julian)"
+  ]
+}

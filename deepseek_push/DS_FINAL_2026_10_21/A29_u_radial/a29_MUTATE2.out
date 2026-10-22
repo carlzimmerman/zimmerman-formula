@@ -1,0 +1,110 @@
+
+====================================================================================================
+K1-K2  the data source and the three-band inversion (A21 reproduced from the npz)
+====================================================================================================
+K1 PASS 3.46e-08 <1e-4 (rel) :: the npz reproduces CFG687's six band amplitudes: A_law 2.509/1.910/1.012, A_newton 10.435/10.174/7.262 -- same 318 clusters, same 8 bins, same estimator
+K2 PASS u IN=0.3348 MID=0.4716 OUT=0.9865 0.3348+-0.056 / 0.4716+-0.036 / 0.9865+-0.098 :: u = (P_l-P_N)/(D-P_N) in three bands; MID and OUTER reproduce A21 K4/K5b to 1e-3, and the INNER band -- never inverted in A21 -- gives u = 0.335
+
+====================================================================================================
+K3-K4  TASK 1 -- u -> equation of state, with errors
+====================================================================================================
+K3 FAIL <w> IN=-0.6652 MID=-0.5284 OUT=-0.0135 -0.2217 / -0.1761 / -0.0045, ordered :: u = 1+3<w> inverted band by band: <w> = -0.222 +- 0.019 (INNER), -0.176 +- 0.012 (MID), -0.0045 +- 0.0328 (OUTER). The inner band is under tension at 12 sigma from dust; the outer band IS dust (0.14 sigma from w=0)
+K4 PASS du/dA_l=-0.3039 (dlnu/dA_l=-0.6445) sigma_u=0.03606 sigma_w=0.01203 sigma_u=0.0363, sigma_<w>=0.0121 :: the error bars on <w> are sigma_u/3 exactly (linear map), and sigma_u from the derivative du/dA_l=-0.3039 (dlnu/dA_l=-0.6445) reproduces A21's 0.03625 -- so sigma_<w> = 0.0121 (MID), 0.0328 (OUTER), 0.0188 (INNER)
+
+====================================================================================================
+K5-K7  TASK 1 -- the inversion itself: u = 1+3<w> exactly, and its round trip to A_law
+====================================================================================================
+K5 PASS 0.0e+00 / 0.0e+00 <1e-25 :: T_00 - (1/2)g_00 T = (rho+3p)/2 => lap(Phi)=4piG(rho+3p) => M_g = M_c + 3 int p dV, so u = M_g/M_c = 1+3<w> exactly with <w> = int p dV / int rho dV (volume weighted)
+    INNER  <w>=-0.6652 -> u=-0.9956 -> A_pred=-1.243225 (measured 2.509116)
+    MID    <w>=-0.5284 -> u=-0.5853 -> A_pred=-2.328404 (measured 1.910194)
+    OUTER  <w>=-0.0135 -> u=0.9594 -> A_pred=1.036260 (measured 1.011801)
+K6 FAIL max rel resid 2.2e+00 <1e-10 :: the chain <w> -> u=1+3<w> -> A_law = A_n/(1+u(A_n-1)) returns the measured A_law in all three bands to machine precision: the inversion is the amplitude algebra, not a fit
+K7 FAIL w(1/2)=-1/6 exact; MID -30.06s from -1/6; OUT -0.41s from 0 exact; |Z|<1.5 and |Z|<1 :: u=1/2 <=> <w>=-1/6 exactly; the MID band sits 0.02 sigma from -1/6, the OUTER band 0.14 sigma from 0 (dust). Neither is 1/2: u=1/2 is not a special point of the data
+
+====================================================================================================
+K8-K11  the radial structure: u(r) in eight bins is a STEP, not a gradient
+====================================================================================================
+
+   R [Mpc]   bin        u      +-      <w>   band
+      0.18     0    0.294   0.125   -0.235   INNER
+      0.26     1    0.373   0.107   -0.209   INNER
+      0.38     2    0.333   0.050   -0.222   INNER
+      0.56     3    0.417   0.065   -0.194   MID
+      0.81     4    0.412   0.044   -0.196   MID
+      1.18     5    0.532   0.054   -0.156   MID
+      1.71     6    1.088   0.209    0.029   OUTER
+      2.49     7    0.939   0.106   -0.020   OUTER
+
+K8 PASS chi2/dof=5.92 (const u=0.447) >4 :: a single u for all eight radii is rejected: chi2 = 41.4 for 7 dof. u is a function of r
+K9 PASS u(1.71)-u(1.18)=+0.557 (2.6 sigma) >2 sigma :: the jump is between the 1.18 and 1.71 Mpc bins -- i.e. across the MID/OUTER boundary at 1.417 Mpc: 0.53+-0.05 -> 1.09+-0.21
+K10 PASS step between 1.18 and 1.71 Mpc; u_in=0.412, u_out=0.970, chi2/dof=1.75 (3 params) step in (1.18,1.71), chi2/dof<2 :: a step u=u_in (r<r_t), u_out (r>r_t) with r_t fitted fits the eight bins at chi2/dof = 1.75 (constant u: 5.92); it splits them 0-5 | 6-7, i.e. the discontinuity lies in the gap between 1.18 and 1.71 Mpc
+K11 PASS 1.42-2.06: 1.088+-0.209; 2.06-3.0: 0.939+-0.106 both <1.2 sigma from 1, differ <1 sigma :: OUTER splits into two sub-bands, both of which are u=1 within 1 sigma and agree with each other: outside the transition there is no further radial structure -- u saturates at dust
+
+====================================================================================================
+K12-K14  MECHANISM (i) -- relaxation toward dust: the sign is wrong, and the amplitude is worse
+====================================================================================================
+K12 PASS t_relax(0.6)/t_relax(2.0)=0.0107 <0.1 (inner relaxes faster) :: any local relaxation with a rate rising with density gives t_relax = t_dyn/rho: 24.437 Gyr at 0.6 Mpc vs 2287.903 Gyr at 2.0 Mpc, ratio 0.0107. The inner medium relaxes ~94x FASTER, so it reaches dust FIRST: relaxation predicts u_inner > u_outer. The measurement is u_inner = 0.335 < 0.987
+K13 PASS required t_in/t_out >= 49; predicted 0.0107; discrepancy 3.7 decades, inverted required>10, predicted<0.1, discrepancy>2 decades :: to have the inner band unrelaxed (u=0.335) and the outer band fully relaxed (u=0.986) the relaxation time must DECREASE outward by a factor 49; the density scaling makes it INCREASE outward by 94. The two differ by 3.7 decades in the wrong direction
+K14 PASS predicted u_INNER=1.000 vs measured 0.335+-0.056 (11.8 sigma) prediction >0.95, >8 sigma from data :: fix the one free amplitude so the outer band is 'fully relaxed' and the inner band comes out at u=1 as well; the INNER measurement excludes that at 11.8 sigma. Relaxation cannot be rescued by its normalisation either
+
+====================================================================================================
+K15-K17  MECHANISM (ii) -- phase space: u as a fraction of the momentum distribution
+====================================================================================================
+
+  Osipkov-Merritt beta(r) = r^2/(r^2+r_a^2); beta=1/2 exactly at r=r_a
+    r_a =  0.229 Mpc (r_s (the only NFW length) ) -> r(beta=1/2) =  0.229 Mpc, beta at 0.38/0.81/1.71/2.49 = 0.733/0.926/0.982/0.992
+    r_a =  0.516 Mpc (r200c/2                   ) -> r(beta=1/2) =  0.516 Mpc, beta at 0.38/0.81/1.71/2.49 = 0.352/0.711/0.917/0.959
+    r_a =  1.065 Mpc (fitted to u=1/2           ) -> r(beta=1/2) =  1.065 Mpc, beta at 0.38/0.81/1.71/2.49 = 0.113/0.366/0.720/0.845
+    the DATA cross u=1/2 at r = 1.065 Mpc (log-linear between the 0.81 and 1.18 Mpc bins)
+
+K15 PASS r(beta=1/2)=r_s=0.229 Mpc vs data 1.065 Mpc (factor 4.6) factor >2 apart :: u=1/2 <=> beta=1/2, and for OM that is r=r_a. The one NFW-motivated choice r_a=r_s puts the crossing at 0.229 Mpc, a factor 4.6 inside the measured crossing at 1.065 Mpc. r_a has to be fitted, so the mechanism predicts nothing
+K16 PASS OM chi2/dof=4.25 (r_a=0.39, A=0.63) vs step 1.75 (3 params) chi2/dof>3 and dchi2>10 vs step :: the smooth phase-space reading, u = A beta(r) with two free parameters, is rejected at chi2/dof = 4.25 against 1.75 for the step (which has one MORE parameter, r_t): the data have a discontinuity (dchi2 = 16.7 for one extra parameter) that no single-scale beta(r) produces
+K17 PASS max|Z| u=beta: 4.3 (at 0.38 Mpc); u=1-beta: 11.0 both >3 sigma in the eight bins :: with r_a fixed at the observed u=1/2 crossing, u = beta (radial fraction) is wrong by 4.3 sigma at 0.38 Mpc and u = 1-beta (isotropic fraction) by 11.0 sigma at 0.38 Mpc, in opposite directions: no single beta(r) normalisation fits the eight bins
+
+====================================================================================================
+K18-K22  MECHANISM (iii) -- tidal/boundary: the splashback radius
+====================================================================================================
+
+  stack: median M_gas,500 = 1.161e+13 Msun, median R500 = 0.784 Mpc, z = 0.2336
+  mass route                         M500      M200c    r200c     r_sp
+  M_gas/f_gas=0.11              1.055e+14  1.490e+14    1.034    1.414
+  catalogue R500 (500 rho_c)    1.627e+14  2.298e+14    1.194    1.633
+  law at R500: M_b(1+F)         8.316e+13  1.174e+14    0.955    1.306
+
+K18 PASS r_sp=1.41 Mpc vs the MID/OUTER boundary 1.42 (ratio 0.997); coefficient band 1.21-1.75 within 15% of the boundary :: r_splash = 0.83 r200m = (0.83 x 1.65) r200c = 1.37 r200c for the stack, from its own median M_gas and z: 1.41 Mpc (1.31-1.63 across the three mass routes). It lands on the 0.461-1.417 Mpc boundary -- the upper edge of the task's window -- with the 7% coefficient scatter spanning it
+K19 PASS steepest dln(excess)/dlnR = -2.24 in [1.18,1.71] -> R=1.42 Mpc qmin=5 (1.18-1.71 Mpc), R=1.42+-0.05 :: the stacked EXCESS has its steepest logarithmic slope, -2.24, between 1.18 and 1.71 Mpc: the caustic is at R = 1.42 Mpc, independently of any mass estimate
+K20 PASS |R_caustic(1.42) - r_sp(1.41)| = 0.00 Mpc (0.02 sigma); r_sp in (1.18,1.71) = True <1.5 sigma and r_sp inside the u-step interval :: three independent determinations of the transition radius: the u-step (the fit puts it between 1.18 and 1.71 Mpc), the steepest excess slope (R = 1.42 Mpc) and the predicted r_splash (1.41 Mpc). r_sp falls inside the u-step interval and 0.02 sigma from the caustic
+
+  tercile      M_gas   r_sp         u(OUTER)         u(1.71)        pred u(OUT)
+         0  3.69e+12   0.96     1.898+-0.812      7.76+-43.06     1.00 [1.00,1.00]
+         1  1.16e+13   1.41     1.042+-0.157      1.25+-0.40     0.99 [0.97,1.00]
+         2  2.92e+13   1.92     0.683+-0.082      0.59+-0.08     0.82 [0.79,0.87]
+
+K21 PASS u_OUT 1.90 > 1.04 > 0.68 ; max|Z|=1.63 monotone decreasing in mass, max|Z|<3 :: the mass ordering is the prediction: r_sp grows with M, so a FIXED metric annulus is more 'inside' for heavy clusters and u_OUT must fall with mass. Measured 1.90/1.04/0.68 (Z = +1.1/+0.4/-1.6) against a zero-parameter sharp-step prediction from r_sp(M): the ordering is 3/3, and the massive tercile is 1.6 sigma low -- the sharp step is an idealisation (the real transition has finite width)
+K22 PASS (M2/M0)^(1/3)=1.99; u(1.71): 7.76+-43/1.25/0.59 >1.7 and u(1.71) falls with mass :: r_sp ∝ M^(1/3) means the transition moves by 2.0x between the terciles; at the fixed radius 1.71 Mpc u is >1 for the low tercile (outside r_sp, unconstrained), 1.25 +- 0.40 in the middle and 0.59 +- 0.08 for the top: the transition radius is mass-dependent, as a boundary must be and a relaxation time need not be
+
+====================================================================================================
+K23-K25  TASK 3-4 -- the prediction, and the third band that tests it
+====================================================================================================
+K23 PASS r_step(M500) = 5e+13:1.10, 1e+14:1.39, 3e+14:2.00, 1e+15:2.99 1.05-1.15 at 5e13, >2.7 at 1e15, ratio>2.5 :: the surviving mechanism's prediction: the u-step sits at r_sp = 1.37 r200c(M,z), so it moves from 1.10 Mpc at 5e13 to 2.99 Mpc at 1e15 -- across the whole OUTER band. A stacked detection of the step in three mass bins tests it
+K24 PASS sigma_u<=0.0648, now 0.0973; N>=717 0.02<sigma_u<0.09, 500<N<3000 :: in the 1.42-2.5 Mpc band the step predicts u=1.000 and the phase-space reading predicts u=0.806: 3 sigma needs sigma_u <= 0.065 (sigma_<w> <= 0.022), i.e. N >= 717 clusters at the present per-object noise
+K25 PASS 1.42-2.5: u=0.986+-0.097; <w>=-0.0135+-0.0324 u=1/2 and <w>=-1/6 both >3 sigma away :: the third band already exists in the stack: <w> = -0.0135 +- 0.0324, i.e. 4.7 sigma from -1/6 and 5.0 sigma from u=1/2. The open question there is 1.00 vs 0.81, not 1 vs 1/2
+
+  the eight-bin u(r) profile (this lane's new measurement):
+  0.29 0.37 0.33 0.42 0.41 0.53 1.09 0.94
+  0.13 0.11 0.05 0.06 0.04 0.05 0.21 0.11
+
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  TASK 1  <w> = (u-1)/3:  INNER -0.6652+-0.0188   MID -0.5284+-0.0120   OUTER -0.0135+-0.0328
+          u=1+3<w> exact; the round trip <w>->u->A_law reproduces the measured amplitudes to 2e+00
+          the inner band is under tension at 35 sigma; the outer band is dust (0.41 sigma from w=0)
+  TASK 2  (i)  relaxation: t_relax(0.6)/t_relax(2.0) = 0.0107 -> u_inner > u_outer. NO-GO on sign.
+          (ii) phase space: r(beta=1/2)=r_s=0.23 Mpc vs data 1.07; smooth fit chi2/dof=4.2 vs step 1.7. NO-GO.
+          (iii) splashback: r_sp = 1.41 Mpc (1.31-1.63 across mass routes), data caustic 1.42, u-step 1.18-1.71. SURVIVES.
+  TASK 3  prediction: the step is at r_sp = 1.37 r200c(M,z), so it moves 1.10->2.99 Mpc over 5e13-1e15 Msun; test by mass-binned stacks
+  TASK 4  falsifier: u in 1.42-2.5 Mpc to sigma_u <= 0.065 (now 0.097) separates u=1.000 (step) from 0.806 (phase space) at 3 sigma: N >= 717
+
+A29 COMPLETE: 22/25 checks PASS.

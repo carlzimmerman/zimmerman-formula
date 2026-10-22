@@ -1,0 +1,251 @@
+{
+ "lane": "A30",
+ "mutation": "none",
+ "status": "NUMERICAL",
+ "checks": [
+  {
+   "id": "K1",
+   "pass": true,
+   "value": "residuals=['0', '0', '0', '0']",
+   "threshold": "all exactly 0",
+   "note": "Phi=Psi=-GM/r+(GM/L*^2)r solves (4) and (6) exactly, real and Fourier space"
+  },
+  {
+   "id": "K2",
+   "pass": true,
+   "value": "a_nonNewton=-G*M/L**2  d/dr=0  u_P=G*M/L**2",
+   "threshold": "-GM/L^2, d/dr=0, u_P=a_P, sunward",
+   "note": "the P-sector force is a CONSTANT-magnitude sunward acceleration GM/L*^2; u=K|P|=a_P"
+  },
+  {
+   "id": "K3",
+   "pass": true,
+   "value": "aP(Sun)=2.419848e-16 aP(Earth)=7.2680e-22 aP(1kg@1m)=1.2170e-46 aP/a0=2.5853e-06",
+   "threshold": "aP(Sun)=2.41985e-16, dln/dlnM=1, dln/dlnL=-2",
+   "note": "mass scaling x2 -> x2.000; L* x2 -> x0.250; aP(Jup)/aP(Sun)=9.5459e-04"
+  },
+  {
+   "id": "K4",
+   "pass": true,
+   "value": "c^2/a0=9.602e+26 m (31.1 Gpc) = 1.297e+09 L*; aP(then)=1.439e-34; A20 L*(sigma_c^2/a0)=23.45 pc",
+   "threshold": "ratio>1e6 and A20 recovers 24 pc",
+   "note": "L*=c^2/a0 is NOT the framework's L*: it would give aP=1.44e-34, 1.7e18x smaller"
+  },
+  {
+   "id": "K5",
+   "pass": true,
+   "value": "rad_amp=3.540916e-04 (pred 3.540908e-04) along=8.899226e-02 (pred 8.899272e-02) err=2.35e-06/5.14e-06",
+   "threshold": "both < 5e-3",
+   "note": "bound orbit: radial oscillation amplitude aP r^3/mu about a shifted equilibrium; secular along-track drift 2 aP t/n"
+  },
+  {
+   "id": "K6",
+   "pass": true,
+   "value": "Mercury: dR(10yr)=0.069m(max 0.25) dRad=5.63e-02m postfit=0.018m da/a=-8.1e-15 | Mars: dR(10yr)=0.198m(max 0.56) dRad=2.05e-01m postfit=0.061m da/a=-1.3e-13 | Saturn: dR(10yr)=8.191m(max 9.39) dRad=8.17e+00m postfit=1.275m da/a=-2.0e-12",
+   "threshold": "drift(Mer)<drift(Mars)<drift(Sat), all >0",
+   "note": "10-yr range drift is 0.07-8 m -- but 86-93% of the arc maximum is absorbed by the 4 in-plane orbital elements; the operative channel is the precession"
+  },
+  {
+   "id": "K7",
+   "pass": true,
+   "value": "Mercury: 3.220e-05 mas/yr vs 0.006 -> 186.3x (0.09m vs 16.8m/10yr) | Venus: 4.498e-05 mas/yr vs 0.015 -> 333.5x (0.24m vs 78.7m/10yr) | Earth: 5.288e-05 mas/yr vs 0.0019 -> 35.9x (0.38m vs 13.8m/10yr) | Mars: 6.499e-05 mas/yr vs 0.00037 -> 5.7x (0.72m vs 4.1m/10yr) | Jupiter: 1.204e-04 mas/yr vs 0.28 -> 2325.3x (4.54m vs 10566.8m/10yr) | Saturn: 1.631e-04 mas/yr vs 0.0047 -> 28.8x (11.28m vs 325.1m/10yr) || binding=Mars 5.69x  <cosf>_t=-0.093412 table_err=0.020",
+   "threshold": "all margins>1, <cosf>_t=-e, table_err<0.05",
+   "note": "aP gives RETROGRADE precession aP sqrt(1-e^2)/(n a); tightest is Mars at 5.7x (1sigma formal)"
+  },
+  {
+   "id": "K8",
+   "pass": true,
+   "value": "sigma(aP)=1.437e-15 (aP/sigma=0.168) sigma(k)=8.94e-28 (k/sigma=3.65e-09) rho=-0.524",
+   "threshold": "|rho|<0.9, 1<aP/sigma<50",
+   "note": "joint 8-planet fit: aP is a 0.17-sigma effect; the Lambda amplitude is 4e-9 sigma -> separable in shape, undetectable in amplitude"
+  },
+  {
+   "id": "K9",
+   "pass": true,
+   "value": "aLam(1AU)=4.881e-25 aLam(30AU)=1.464e-23 aP/aLam=4.958e+08 r_cross=2403.8 pc; tide_ratio=4.081e-14 EMdisp=15.7um",
+   "threshold": "ratio=4.96e8, r_cross=2404 pc, tide_ratio=4.08e-14",
+   "note": "a_P beats Lambda by 5e8 at 1 AU (they cross at 2.4 kpc); a_P's tide is r^2/L*^2 of Newton's -> 16 um on the lunar range"
+  },
+  {
+   "id": "K10",
+   "pass": true,
+   "value": "aP(Earth)=7.268e-22 bound_offset=0.10nm (freefall 36um) dmu/mu=2.69e-19 aP(1kg@1m)=1.217e-46 (aP/g)=1.82e-36",
+   "threshold": "offset<1mm, dmu<1e-15, aP/g<1e-30",
+   "note": "LLR (mm) is 30x above Earth's own a_P; a 1 kg source at 1 m gives 1.2e-46 m/s^2 = 1.8e-36 of its own Newtonian field"
+  },
+  {
+   "id": "K11",
+   "pass": true,
+   "value": "prediction=2.4198e-16 (vs 0)  need sigma_dg<=2.420e-16  margin bracket=[5.69,151]x  Mars_signal=6.50e-05 mas/yr",
+   "threshold": "0<aP<all bounds, bracket>1",
+   "note": "aP=2.42e-16 m/s^2 sunward vs 0; needs 5.7x (formal) to 151x (B_E) better precision; no existing dataset excludes or confirms it"
+  }
+ ],
+ "numbers": {
+  "a_P_sun_m_s2": 2.419847850041258e-16,
+  "a_P_sun_A22_m_s2": 2.4204686650251184e-16,
+  "a_P_A22_relative_gap": 0.00025648544549694563,
+  "a_P_earth_m_s2": 7.267988004624147e-22,
+  "a_P_moon_m_s2": 8.94342528303912e-24,
+  "a_P_jupiter_m_s2": 2.3099728773542194e-19,
+  "a_P_1kg_1m_m_s2": 1.2169763816669944e-46,
+  "a_P_over_a0": 2.585307532095361e-06,
+  "a_P_over_BE": 0.00661160614765371,
+  "a_P_over_gN_1AU": 4.080630301926716e-14,
+  "Lstar_m": 7.405626195579282e+17,
+  "Lstar_pc": 24.0,
+  "c2_over_a0_can_m": 9.602085242914718e+26,
+  "c2_over_a0_over_Lstar": 1296593291.2798908,
+  "a_P_if_Lstar_eq_c2_over_a0_m_s2": 1.4393967568890615e-34,
+  "Lstar_from_sigma_c_pc": 23.451643112607503,
+  "drift": {
+   "Mercury": {
+    "drange_10yr_m": 0.06901747866657418,
+    "drange_max_m": 0.24531175393570967,
+    "dradial_m": 0.056255152879858265,
+    "postfit_m": 0.018264683733122733,
+    "da_over_a": -8.078950122779086e-15
+   },
+   "Mars": {
+    "drange_10yr_m": 0.19805612481553328,
+    "drange_max_m": 0.5643525942010853,
+    "dradial_m": 0.20524084209146756,
+    "postfit_m": 0.06101093883397746,
+    "da_over_a": -1.2587883773340882e-13
+   },
+   "Saturn": {
+    "drange_10yr_m": 8.190789770796135,
+    "drange_max_m": 9.393358780927073,
+    "dradial_m": 8.16638597044638,
+    "postfit_m": 1.2746779066933085,
+    "da_over_a": -1.969446425441465e-12
+   }
+  },
+  "precession": {
+   "Mercury": {
+    "rate_mas_per_yr": 3.2199726015638336e-05,
+    "sigma_mas_per_yr": 0.006,
+    "bound_m_s2": 4.509071627875376e-14,
+    "margin": 186.33698923667853,
+    "signal_10yr_m": 0.09040124801500468,
+    "noise_10yr_m": 16.845096378354242
+   },
+   "Venus": {
+    "rate_mas_per_yr": 4.497622417674426e-05,
+    "sigma_mas_per_yr": 0.015,
+    "bound_m_s2": 8.070423521543019e-14,
+    "margin": 333.5095436436394,
+    "signal_10yr_m": 0.2359505230366721,
+    "noise_10yr_m": 78.69175126043854
+   },
+   "Earth": {
+    "rate_mas_per_yr": 5.287645009327143e-05,
+    "sigma_mas_per_yr": 0.0019,
+    "bound_m_s2": 8.695195889603514e-15,
+    "margin": 35.93282069141356,
+    "signal_10yr_m": 0.38349757082527275,
+    "noise_10yr_m": 13.7801494480572
+   },
+   "Mars": {
+    "rate_mas_per_yr": 6.499469034644117e-05,
+    "sigma_mas_per_yr": 0.00037,
+    "bound_m_s2": 1.3775643821715519e-15,
+    "margin": 5.692772717706465,
+    "signal_10yr_m": 0.7182355257636805,
+    "noise_10yr_m": 4.088751605955039
+   },
+   "Jupiter": {
+    "rate_mas_per_yr": 0.00012041479966382805,
+    "sigma_mas_per_yr": 0.28,
+    "bound_m_s2": 5.62686148133905e-13,
+    "margin": 2325.295568166863,
+    "signal_10yr_m": 4.544271510271893,
+    "noise_10yr_m": 10566.77440338217
+   },
+   "Saturn": {
+    "rate_mas_per_yr": 0.00016309992151833003,
+    "sigma_mas_per_yr": 0.0047,
+    "bound_m_s2": 6.973200716050452e-15,
+    "margin": 28.81669075157581,
+    "signal_10yr_m": 11.281556318559455,
+    "noise_10yr_m": 325.09711962841385
+   },
+   "Uranus": {
+    "rate_mas_per_yr": 0.0002312438479149332,
+    "sigma_mas_per_yr": 0.0047,
+    "bound_m_s2": 4.918308096731621e-15,
+    "margin": 20.324865039129485,
+    "signal_10yr_m": 32.1865215633227,
+    "noise_10yr_m": 654.1867068535648
+   },
+   "Neptune": {
+    "rate_mas_per_yr": 0.00028980660864414857,
+    "sigma_mas_per_yr": 0.0047,
+    "bound_m_s2": 3.9244394558162356e-15,
+    "margin": 16.217711604261915,
+    "signal_10yr_m": 63.2014469463355,
+    "noise_10yr_m": 1024.982839547729
+   }
+  },
+  "fisher": {
+   "sigma_aP": 1.4369247898141146e-15,
+   "sigma_k": 8.941985544543585e-28,
+   "rho": -0.5240329646361739,
+   "snr_aP": 0.16840462821678354,
+   "snr_lambda": 3.648497621208323e-09,
+   "k_true": 3.262481298814648e-36
+  },
+  "lambda_term": {
+   "a_lam_1au": 4.880602555012418e-25,
+   "ratio": 495809241.331494,
+   "r_cross_pc": 2403.751034180479,
+   "tide_ratio": 4.080630301926716e-14,
+   "em_disp_um": 15.685350386675728
+  },
+  "small_scales": {
+   "ap_earth": 7.267988004624147e-22,
+   "drift_em_nm": 0.10258819456588329,
+   "drift_ff_um": 36.19029642949686,
+   "dmu": 2.694282834091328e-19,
+   "ap_lab": 1.2169763816669944e-46
+  },
+  "margin_bracket": [
+   5.692772717706465,
+   151.24917874227498
+  ],
+  "dchi2_joint": 0.028360118804833086,
+  "aP_at_Lstar90pc_m_s2": 1.7207806933626726e-17,
+  "aP_ratio_moon_over_sun": 3.6958626480944394e-08,
+  "aP_ratio_earth_over_sun": 3.003489663410131e-06,
+  "aP_ratio_jup_over_sun": 0.0009545942639802063,
+  "aP_ratio_1kg_over_sun": 5.029144215187931e-31,
+  "aP_lab_over_newton": 1.8233768060575558e-36,
+  "freefall_half_at2_m": 12.049416007780355,
+  "k5_radial_amplitude_m": 0.00035409078309802484,
+  "k5_along_track_m": 0.08899272023076892,
+  "k7_table_reproduction_max_rel_err": 0.02,
+  "required_sigma_dg_m_s2": 2.419847850041258e-16,
+  "required_sigma_precession_mas_per_yr_mars": 6.499469034644117e-05,
+  "external_inputs": {
+   "B_E": "A4 / laneR: Earth 2sigma bound on a constant radial anomaly, 3.66e-14 m/s^2 (Sereno & Jetzer 2006 Table 1 via Eq. 9)",
+   "per_planet_sigma": "FM24 Table 10 supplementary perihelion advance 1sigma, mas/yr (EPM2013 / INPOP10a); Uranus+Neptune carry the Saturn stand-in",
+   "ranging": "MESSENGER range accuracy 5 m, Mercury ephemeris <1 m (Genova 2018); Juno range 20 m; LLR mm-class (all in prep_2026/planetary_doors/BOUNDS.md)",
+   "planet_elements": "J2000 osculating elements, standard; no fit to this analysis"
+  },
+  "notes": "a_P here uses GM_Sun = 1.32712440018e20 (IAU 2015); A22's 2.420468665e-16 corresponds to GM = 1.32746e20, a 2.6e-4 relative difference."
+ },
+ "constants_used": [
+  "c=2.99792458e8",
+  "G=6.67430e-11",
+  "GM_Sun=1.32712440018e20",
+  "GM_Earth=3.986004418e14",
+  "GM_Moon=4.9048695e12",
+  "GM_Jup=1.26686534e17",
+  "AU=1.495978707e11",
+  "pc=3.0856775814913673e16",
+  "a0_can=9.36e-11",
+  "Lambda=1.0890e-52",
+  "Lstar=24 pc (A20)",
+  "B_E=3.66e-14"
+ ]
+}
