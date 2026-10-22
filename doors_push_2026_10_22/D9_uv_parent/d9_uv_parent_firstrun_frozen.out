@@ -1,0 +1,28 @@
+D9_uv_parent: U(1)-dielectric parents vs DSF-21 Proca P (decoupling / principal-symbol limit)
+mode: primary
+
+U1 PASS g-u-g^2/(g+a0)=0 residual exactly 0
+   M = [L_X, 0, 0, 0, L_X, 0, 0, 0, E**2*L_XX + L_X]
+   C = [L_Y, 0, 0, 0, L_Y, 0, 0, 0, E**2*L_XY + L_Y]
+   N = [L_X, 0, 0, 0, L_X, 0, 0, 0, -E**2*L_YY + L_X]
+   det A(omega) = -L_X*omega**2*(-E**4*L_XX*L_YY*k**2*omega**2 + E**4*L_XY**2*k**2*omega**2 + E**2*L_X*L_XX*k**2*omega**2 - E**2*L_X*L_XX*omega**4 + E**2*L_X*L_YY*k**4 - E**2*L_X*L_YY*k**2*omega**2 - L_X**2*k**4 + 2*L_X**2*k**2*omega**2 - L_X**2*omega**4)
+U2 FAIL det(v_X^2=L_X/(L_X+2X L_XX))=-E**4*L_X**3*L_XY**2*k**6/(E**4*L_XX**2 + 2*E**2*L_X*L_XX + L_X**2); A*e_z=[0, E**2*L_XY*k**2*sqrt(L_X/(E**2*L_XX + L_X)), 0]; free of L_Y,L_XY,L_YY=True residual 0, independent of L_Y, L_XY, L_YY
+U3 PASS v_X^2=(E + a0)/a0; minus (1+g/a0) = 0 residual exactly 0 (NG2 reproduced)
+U4 FAIL root=-8*E**4*L_a*L_ac**2*L_b**2*k**6/(4*E**4*L_aa**2 + 4*E**2*L_a*L_aa + L_a**2); A_F*e_z=[0, 2*E**2*L_ac*k**2*sqrt(-L_b/(2*E**2*L_aa + L_a)), 0]; Lambda_LV(L(X,Y))-1=0; embedding=True; v^2*Lambda-eps_perp/eps_par=0 v_X^2 = N_perp/eps_par; Lambda_LV = 1 for L(X,Y); v_X^2<=1 <=> Lambda_LV >= 1+g/a0
+   foliated: eps_par=4*E**2*L_aa + 2*L_a, eps_perp=2*L_a, N_perp=-2*L_b, Lambda_LV=-L_a/L_b
+U5 FAIL max rel diff 5.333e-01 over 20 draws <= 1e-10
+   canonical: a0=9.360e-11  required Lambda_LV >= 6.3355e+07 at 1 AU (g=5.9301e-03); = 2.0000 at g=a0
+   alt: a0=1.130e-10  required Lambda_LV >= 5.2478e+07 at 1 AU (g=5.9301e-03); = 2.0000 at g=a0
+U6 PASS canonical 6.3355e+07, alt 5.2478e+07 Lambda_LV - 1 - g/a0 <= 1e-12 rel
+P1 PASS L_red-(eta/2Delta)qdot^2=0; Delta(theta)-form=0 residual 0 (reproduction of round-2 sec.4 algebra)
+P2 PASS sup v^2 = gamma/eta + 4*a0**2*gamma/K = (gamma/eta)(1+4 eta a0^2/K), finite
+   A33 cone excess at eta=gamma, L*=24pc, canonical: 2(L* a0/c^2)^2 = 1.190e-18
+   A33 cone excess at eta=gamma, L*=24pc, alt: 2(L* a0/c^2)^2 = 1.734e-18
+   A33 cone excess at eta=gamma, L*=1kpc, canonical: 2(L* a0/c^2)^2 = 2.065e-15
+   A33 cone excess at eta=gamma, L*=1kpc, alt: 2(L* a0/c^2)^2 = 3.010e-15
+P3 PASS max 3.010e-15 < 1e-12 at all four (L*, footing)
+P4 PASS U(1): a0/(a0 - u) -> oo;  A33: -> 1 + 4*a0**2*eta/K U(1) diverges at the cap; A33 finite
+G1 PASS dW/d(eps) at a test point = -394/(63*(-20 + sqrt(720661)/315)) (= 3.6140e-01) not identically 0 => P_T physical in A33
+G2 PASS {'A33 (A68 C6: 5 - 2 tensor)': 3, 'AG6C C1 (massless U(1))': 2, "CFG938/CFG938' (chi, lambda elliptic)": 0} pairwise distinct (record-derived, low weight)
+
+D9_UV_PARENT COMPLETE: 9/12 checks PASS.
