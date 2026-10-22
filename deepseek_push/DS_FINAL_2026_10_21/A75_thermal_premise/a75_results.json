@@ -1,0 +1,237 @@
+{
+  "lane": "A75_thermal_premise",
+  "status": "NO-GO(obstruction): the thermal premise is a new postulate, not implied by the action",
+  "mutation": null,
+  "checks": [
+    {
+      "id": "K1",
+      "pass": true,
+      "value": "sym 0; num rel 8.65e-18",
+      "threshold": "sym 0; num rel < 1e-12",
+      "note": "theta = -dOmega/dmu equals z/(1+z)"
+    },
+    {
+      "id": "K2",
+      "pass": true,
+      "value": "sym 0; num rel 0.00e+00",
+      "threshold": "sym 0; num rel < 1e-20",
+      "note": "activity map gives theta = g/(g+a0)"
+    },
+    {
+      "id": "K3",
+      "pass": true,
+      "value": "fd 0.00e+00; analytic 0.00e+00 per K",
+      "threshold": "|dtheta/dT|_g < 1e-40",
+      "note": "the canonical gate is temperature-blind at fixed g"
+    },
+    {
+      "id": "K3b",
+      "pass": true,
+      "value": "sym 0; fd/analytic rel 5.08e-18",
+      "threshold": "sym 0; rel < 1e-6",
+      "note": "T-dependence requires a0 = a0(T): the premise itself"
+    },
+    {
+      "id": "K4",
+      "pass": true,
+      "value": "sym 0; fd/analytic rel 9.80e-17; value -0.0550",
+      "threshold": "sym 0; rel < 1e-6",
+      "note": "dtheta/dT at fixed mu is nonzero"
+    },
+    {
+      "id": "K5",
+      "pass": true,
+      "value": "sym 0/0; F identity rel 0.00e+00",
+      "threshold": "sym 0; rel < 1e-20",
+      "note": "S and F of the gate (F = U - TS + mu N)"
+    },
+    {
+      "id": "K6",
+      "pass": true,
+      "value": "C_mu -438466414868852637696.0000 K_B; C_g 0.0e+00",
+      "threshold": "rel < 1e-6; C_g = 0",
+      "note": "C_mu nonzero, C_g zero: no heat capacity at fixed drive"
+    },
+    {
+      "id": "K7",
+      "pass": true,
+      "value": "theta_F(0)=0.500000; dtheta/dT=-0.1966",
+      "threshold": "theta_F(0)=1/2; dT != 0",
+      "note": "the only T-sensitive gate has A(0) = a0/2 (excluded)"
+    },
+    {
+      "id": "K8",
+      "pass": true,
+      "value": "sym 0; 16.9882 pc vs A56 16.9883 pc (rel 3.3e-06)",
+      "threshold": "sym 0; rel < 1e-4",
+      "note": "lambda_C = sqrt(eta/K) = L*/sqrt(2) under eta=gamma"
+    },
+    {
+      "id": "K9",
+      "pass": true,
+      "value": "ratio 1.9894e+09; m_Pc2/kT 1.9894e+09",
+      "threshold": "ratio > 1e6",
+      "note": "literal lambda_C = lambda_T fails by 2e9"
+    },
+    {
+      "id": "K10",
+      "pass": true,
+      "value": "L*_req 47.796 Gpc (x1.989e+09); eta x3.958e+18",
+      "threshold": "L*_req > 1e6 L*",
+      "note": "the stiffness that would satisfy it"
+    },
+    {
+      "id": "K11",
+      "pass": true,
+      "value": "spread 0.0e+00; a_sat 8.618166e-11",
+      "threshold": "spread < 1e-12",
+      "note": "A72's formula is mass-independent (no action content)"
+    },
+    {
+      "id": "K12",
+      "pass": true,
+      "value": "a_U 5.4150e-10; c^2/lambda_T rel 1.5e-16",
+      "threshold": "rel < 1e-12",
+      "note": "the 2pi: a0 = a_Unruh(T_dS)/(2pi)"
+    },
+    {
+      "id": "K13",
+      "pass": true,
+      "value": "ratio 1.000000000000; canonical 1.085402",
+      "threshold": "rel < 1e-12",
+      "note": "hbar a0/c = k_B T_dS only for the thermal a0"
+    },
+    {
+      "id": "K14",
+      "pass": true,
+      "value": "quad/closed 4.4e-17; rho 3.58e-121 J/m3; log10 ratio -109.09",
+      "threshold": "log10 ratio < -100",
+      "note": "k^4 thermal density at T_dS vs a0^2/(8piG)"
+    },
+    {
+      "id": "K15",
+      "pass": true,
+      "value": "log10 n -8.6400e+08; log10 rho ratio -8.6400e+08",
+      "threshold": "log10 rho ratio < -1e6",
+      "note": "massive P quanta are Boltzmann-suppressed at T_dS"
+    },
+    {
+      "id": "K16",
+      "pass": true,
+      "value": "S_cell 5.2595e+104; log10(S_cell/(a0/aP)) 166.53",
+      "threshold": "|log10 ratio| > 100",
+      "note": "horizon entropy per cell is not a0/a_P"
+    },
+    {
+      "id": "K17",
+      "pass": true,
+      "value": "a0_ent 8.618166e-11; rel 0.0e+00",
+      "threshold": "rel < 1e-10",
+      "note": "entropy route is Lambda inverted (circular)"
+    },
+    {
+      "id": "K18",
+      "pass": true,
+      "value": "g(mu=kT)/a0 = 2.718282; theta = 0.731059",
+      "threshold": "g/a0 = e",
+      "note": "mu = k_B T_dS does not give half occupancy at a0"
+    },
+    {
+      "id": "K19",
+      "pass": true,
+      "value": "N_cells 6.2990e+17; q/a0 1.5875e-18",
+      "threshold": "q/a0 < 1e-6",
+      "note": "per-site capacity is a0/N_s, N_s unpredicted"
+    },
+    {
+      "id": "K20",
+      "pass": true,
+      "value": "kappa 0.460659; R 4.712388980; in {1,2,4}: False",
+      "threshold": "R = 3pi/2 not in {1,2,4}",
+      "note": "thermal kappa gives R = 3pi/2"
+    },
+    {
+      "id": "K21",
+      "pass": true,
+      "value": "ratio 0.84882636 (8/(3pi)=0.84882636); closure 1.7e-16",
+      "threshold": "deviation > 15%",
+      "note": "thermal a0 violates the R=4 closure"
+    },
+    {
+      "id": "K22",
+      "pass": true,
+      "value": "rel 2.8e-16; shape x^2/(1+x) at x=0.37: 0.099927007",
+      "threshold": "rel < 1e-12",
+      "note": "the law is homogeneous: a0 is a pure scale"
+    },
+    {
+      "id": "K23",
+      "pass": true,
+      "value": "ratios 6.283185307180 / 6.283185307180",
+      "threshold": "ratios 2pi, 4pi^2",
+      "note": "the coefficient is convention-fixed at the 2pi level"
+    }
+  ],
+  "numbers": {
+    "K1_r_num": 8.649862215908677e-18,
+    "K2_theta_at_037": 0.27007299270072993,
+    "K3_dtheta_dT_fixed_g": 0.0,
+    "K3b_dtheta_dT_a0T": -0.0006064394972370841,
+    "K4_dtheta_dT_fixed_mu": -0.055033474292933315,
+    "K5_entropy_per_site": 1.1711654616525975,
+    "K6_C_mu": -0.006053682172222665,
+    "K6_C_g": 0.0,
+    "K7_fermi_A0_over_C": 0.50000000000025,
+    "K8_lambda_C_pc": 16.98824890328818,
+    "K8_lambda_C_A56_pc": 16.98830431363478,
+    "K9_lambda_T_over_lambda_C": 1989424193.823181,
+    "K9_mPc2_over_kT": 1989424193.8231812,
+    "K10_Lstar_req_Gpc": 47.79594012969225,
+    "K10_eta_ratio": 3.957808622969013e+18,
+    "K11_a_sat": 8.618165899975416e-11,
+    "K12_a_unruh": 5.414953335756167e-10,
+    "K12_cH_over_a0": 6.283185307179586,
+    "K13_hbar_a0_over_c": 3.031588897524738e-53,
+    "K13_kT_dS": 3.0315888975247383e-53,
+    "K13_ratio_canonical": 1.0854018818374016,
+    "K14_rho_k4_SI": 3.5823849449710497e-121,
+    "K14_a0sq_over_8piG": 4.4277604497686414e-12,
+    "K14_log10_ratio": -109.09201186557834,
+    "K15_log10_occupation": -863995949.5422329,
+    "K15_log10_rho_ratio": -863996054.1582713,
+    "K16_S_cell": 5.2595495381537367e+104,
+    "K16_a0_over_aP": 1.549827390420395e-62,
+    "K16_log10_ratio": 166.53066521795654,
+    "K17_a0_from_entropy": 8.618165899975415e-11,
+    "K17_S_dS": 3.313015532305163e+122,
+    "K18_g_at_mu_kT_over_a0": 2.718281828459045,
+    "K18_theta_at_mu_kT": 0.7310585786300049,
+    "K19_N_cells": 6.299048061572461e+17,
+    "K19_q_over_a0": 1.5875414669409037e-18,
+    "K20_kappa": 0.4606588659617806,
+    "K20_R": 4.712388980384691,
+    "K21_Lambda_pred_thermal": 9.24371909477728e-53,
+    "K21_ratio_thermal": 0.8488263631567751,
+    "K21_ratio_closure": 1.0000000000000002,
+    "K22_homogeneity_rel": 2.779258112915666e-16,
+    "K23_a0_2pi": 8.618165899975416e-11,
+    "K23_a0_1pi": 5.414953335756166e-10,
+    "K23_a0_4pi2": 1.3716237033671002e-11
+  },
+  "constants_used": {
+    "c": 299792458.0,
+    "G": 6.6743e-11,
+    "H0": 2.1843e-18,
+    "Lambda": 1.089e-52,
+    "hbar": 1.054571817e-34,
+    "k_B": 1.380649e-23,
+    "pc": 3.085677581491367e+16,
+    "a0_canonical": 9.36e-11,
+    "L_star_pc": 24.025012000000004,
+    "H_Lambda": 1.806234009981721e-18,
+    "T_dS": 2.1957709001525646e-30,
+    "a0_thermal": 8.618165899975415e-11,
+    "a0_closure": 9.354173485820239e-11,
+    "Z": 5.788810036466141
+  }
+}

@@ -364,6 +364,35 @@ and `m_P/T_dS = 1.4×10⁹`, so the medium is not in thermal equilibrium at all.
 a **Kubo/transport matching** for the kinetic coefficient, `η⁻¹ = lim_{ω→0}(1/ω)∫dt⟨[P_i(t),P_j(0)]⟩`, whose
 hydrodynamic limit `η = 1/ρ_c` would give `γ/η = 5.77×10⁻¹⁸` and `c_T = 0.72 m/s`.
 
+**3.6d The premise is a postulate — proved, not conceded (A75, 24/24; A74, 29/29).** A75 tested whether the
+action forces the thermal identification and returned a clean **no-go**, with four computed obstructions:
+
+1. **The action is classical** — `G, Λ, a₀, η, γ, β` and no `ħ`, no `k_B`. A statement containing both
+   cannot be a functional of variables that carry neither.
+2. **The gate is athermal at fixed drive.** `θ = g/(g+a₀)` exactly, `dθ/dT|_g = 0`, heat capacity
+   **`C_g = 0`**. A system with zero heat capacity cannot generate a thermal-wavelength condition. The one
+   temperature-sensitive gate (linear/energetic coupling) has `A(0) = a₀/2 ≠ 0` and is excluded by A63 K16.
+3. **The action's own carrier fails the literal condition by ×1.99×10⁹** — `λ_C = L★/√2 = 16.99 pc` against
+   `λ_T = 2πc/H_Λ = 33.80 Gpc`; equality would need `L★ = 47.8 Gpc`.
+4. **A72's formula never uses the carrier.** `a_sat = k_BT/(mλ_C) = k_BTc/ħ`: the mass cancels identically
+   (spread 0 over four masses), so no `η, γ, K` enters. It is the Gibbons–Hawking temperature rewritten as
+   an acceleration, `a_Unruh(T_dS) = cH_Λ = 5.414953×10⁻¹⁰`, divided by `2π` — which A72's own census labels
+   **RESTATEMENT**.
+
+So the premise is exactly what it looks like: one identification, `a₀ ≡ cH_Λ/2π`, which supplies
+`κ = Z/4π`. **Forced by the action:** the isotherm, the law `g_N = g²/(g+a₀)`, `λ_C = √(η/K)`,
+`m_T² = K/η`, `L★ = √(2γ/K)`, and the gapless `k⁴` fifth mode. **Not forced:** any relation between
+`λ_C` and `1/T_dS`.
+
+**What the identification costs (A74, 29/29).** Fixing `a₀` at the thermal point costs `Δχ² = +0.0169`
+(**0.13σ**) against the free fit; the `κ = ½` point costs `+1.8808` (**1.37σ**). Head-to-head,
+**`Δχ² = 1.8639 → 1.365σ`, a likelihood ratio of 2.54 : 1** for the thermal point — A72's 2.6 : 1 survives
+the full refit intact. SPARC drives `+2.309` of it, SLACS + the IMF prior gives back `0.569`, clusters cost
+`0.124`. **Neither point is rejected**, the largest pull anywhere is the IMF at `1.955σ`, and the falsifier
+is clean at the thermal point: `y_t = 77.944 ∈ [60,140]`, `L★ = 26.087 pc ∈ [24,90]`, `R_core = 57.95 pc`.
+The 2.5 : 1 lean rests on a 9.4 % block-bootstrap error that is **8.3×** the formal `Δχ² = 1` error — worth
+exactly what a 1.4σ lean is worth, which is nothing yet.
+
 The closure relation itself is unchanged and holds for every κ:
 
 $$
@@ -769,7 +798,9 @@ corrected to **1.8σ at the 95 % edge** of the same survey's dynamical IMF calib
 What remains: **`L★`** (derived in form `σ_c²/a₀`, computed from the 10⁴ K thermal width; 25.44 pc at the
 thermal `a₀`, inside the window, but no direct σ_c measurement exists — A76), **`η/γ`** (free; the
 equipartition closure is false and the missing principle is a Kubo/transport matching — A77), and the **one
-premise** that replaces κ (thermal-wavelength identification of `a₀`). So: **0 free dimensionless numbers,
+premise** that replaces κ — `a₀ ≡ cH_Λ/2π`, **proved independent of the action by A75** (four computed
+obstructions: classical action, `C_g = 0`, carrier fails by ×2×10⁹, mass cancels) and worth `Δχ² = 1.864`
+(**1.365σ**, LR 2.54 : 1) against `κ = ½` with everything refit (A74). So: **0 free dimensionless numbers,
 2 free scales, 1 measured fraction, 1 premise**, against ΛCDM's six parameters. The measured fractions are `σ_c = 8.33 km/s` and the
 cold-sector share. It predicts what ΛCDM cannot even address: the RAR shape, lensing = dynamics,
 `c_T = 1` (speed), `α₁ = α₂ = 0` near-source, `β = 1`, the core size, the saddle no-go.

@@ -1,0 +1,74 @@
+A75 thermal premise -- live parameters: occupancy=langmuir drive=activity twopi=6.283185 temp=dS eta/gamma=1.00 disp=k4 S_norm=4.0
+a0_thermal = 8.618165900e-11 m/s^2   a0_closure = 9.354173486e-11   T_dS = 2.195771e-30 K
+----------------------------------------------------------------------------------------------------
+K1    PASS  sym 0; num rel 8.65e-18  [sym 0; num rel < 1e-12]  theta = -dOmega/dmu equals z/(1+z)
+K2    PASS  sym 0; num rel 0.00e+00  [sym 0; num rel < 1e-20]  activity map gives theta = g/(g+a0)
+K3    PASS  fd 0.00e+00; analytic 0.00e+00 per K  [|dtheta/dT|_g < 1e-40]  the canonical gate is temperature-blind at fixed g
+K3b   PASS  sym 0; fd/analytic rel 5.08e-18  [sym 0; rel < 1e-6]  T-dependence requires a0 = a0(T): the premise itself
+K4    PASS  sym 0; fd/analytic rel 9.80e-17; value -0.0550  [sym 0; rel < 1e-6]  dtheta/dT at fixed mu is nonzero
+K5    PASS  sym 0/0; F identity rel 0.00e+00  [sym 0; rel < 1e-20]  S and F of the gate (F = U - TS + mu N)
+K6    PASS  C_mu -438466414868852637696.0000 K_B; C_g 0.0e+00  [rel < 1e-6; C_g = 0]  C_mu nonzero, C_g zero: no heat capacity at fixed drive
+K7    FAIL  theta_F(0)=0.500000; dtheta/dT=0.0000  [theta_F(0)=1/2; dT != 0]  the only T-sensitive gate has A(0) = a0/2 (excluded)
+K8    PASS  sym 0; 16.9882 pc vs A56 16.9883 pc (rel 3.3e-06)  [sym 0; rel < 1e-4]  lambda_C = sqrt(eta/K) = L*/sqrt(2) under eta=gamma
+K9    PASS  ratio 1.9894e+09; m_Pc2/kT 1.9894e+09  [ratio > 1e6]  literal lambda_C = lambda_T fails by 2e9
+K10   PASS  L*_req 47.796 Gpc (x1.989e+09); eta x3.958e+18  [L*_req > 1e6 L*]  the stiffness that would satisfy it
+K11   PASS  spread 0.0e+00; a_sat 8.618166e-11  [spread < 1e-12]  A72's formula is mass-independent (no action content)
+K12   PASS  a_U 5.4150e-10; c^2/lambda_T rel 1.5e-16  [rel < 1e-12]  the 2pi: a0 = a_Unruh(T_dS)/(2pi)
+K13   PASS  ratio 1.000000000000; canonical 1.085402  [rel < 1e-12]  hbar a0/c = k_B T_dS only for the thermal a0
+K14   PASS  quad/closed 4.4e-17; rho 3.58e-121 J/m3; log10 ratio -109.09  [log10 ratio < -100]  k^4 thermal density at T_dS vs a0^2/(8piG)
+K15   PASS  log10 n -8.6400e+08; log10 rho ratio -8.6400e+08  [log10 rho ratio < -1e6]  massive P quanta are Boltzmann-suppressed at T_dS
+K16   PASS  S_cell 5.2595e+104; log10(S_cell/(a0/aP)) 166.53  [|log10 ratio| > 100]  horizon entropy per cell is not a0/a_P
+K17   PASS  a0_ent 8.618166e-11; rel 0.0e+00  [rel < 1e-10]  entropy route is Lambda inverted (circular)
+K18   PASS  g(mu=kT)/a0 = 2.718282; theta = 0.731059  [g/a0 = e]  mu = k_B T_dS does not give half occupancy at a0
+K19   PASS  N_cells 6.2990e+17; q/a0 1.5875e-18  [q/a0 < 1e-6]  per-site capacity is a0/N_s, N_s unpredicted
+K20   PASS  kappa 0.460659; R 4.712388980; in {1,2,4}: False  [R = 3pi/2 not in {1,2,4}]  thermal kappa gives R = 3pi/2
+K21   PASS  ratio 0.84882636 (8/(3pi)=0.84882636); closure 1.7e-16  [deviation > 15%]  thermal a0 violates the R=4 closure
+K22   PASS  rel 2.8e-16; shape x^2/(1+x) at x=0.37: 0.099927007  [rel < 1e-12]  the law is homogeneous: a0 is a pure scale
+K23   PASS  ratios 6.283185307180 / 6.283185307180  [ratios 2pi, 4pi^2]  the coefficient is convention-fixed at the 2pi level
+----------------------------------------------------------------------------------------------------
+HEADLINE NUMBERS (every number quoted in report.md is printed here)
+ a0_thermal              8.618165899975e-11 m/s^2
+ a0_closure              9.354173485820e-11 m/s^2
+ T_dS                    2.195771e-30 K
+ kappa_thermal           0.460658866
+ R_thermal               4.712388980   (3pi/2 = 4.712388980)
+ a0/(cH_Lambda)          0.159154943   (1/(2pi) = 0.159154943)
+ L* (input, A65)         24.025012 pc
+ lambda_C                16.988249 pc
+ lambda_T                33.796833 Gpc
+ lambda_T/lambda_C       1.989424e+09
+ m_P c^2                 6.031116e-44 J = 3.764327e-25 eV
+ k_B T_dS                3.031589e-53 J
+ L*_required             47.795940 Gpc
+ lambda_C at eta=3gamma  29.4245 pc
+ eta_required/eta        3.957809e+18
+ a_Unruh(T_dS)           5.414953e-10 m/s^2
+ hbar a0/c / kT_dS       1.000000000000   (canonical a0: 1.085402)
+ p_peak (k4 mode)        6.395576e-23 1/m
+ rho_k4(T_dS)            3.582385e-121 J/m^3
+ a0^2/(8 pi G)           4.427760e-12 J/m^3
+ log10(rho_k4/target)    -109.0920
+ log10 n_massive         -8.639959e+08
+ log10(rho_massive/tgt)  -8.639961e+08
+ S_cell                  5.259550e+104
+ S_dS                    3.313016e+122
+ a0/a_Planck             1.549827e-62
+ log10(S_cell/(a0/aP))   166.5307
+ theta(mu=kT)            0.731059
+ g(mu=kT)                2.342660e-10 m/s^2
+ N_cells                 6.299048e+17
+ q = a0/N_cells          1.368170e-28 m/s^2
+ Lambda_pred/Lambda      0.848826363   (8/(3pi) = 0.848826363)
+ 1 - Lambda_pred/Lambda  0.151174
+ 1 - kappa_th/kappa_can  0.078682
+ kappa_th/kappa_can - 1  0.085402
+ a0_th/a0_closure        0.921318
+ deviations (pct)        Lambda 15.12%, a0 7.87%, kappa-half 8.54%
+EXTERNAL INPUTS (quoted, not re-derived)
+ L* = 24.025012 pc (A65)                      [a75_results.json: numbers.L_star_pc]
+ m_P = 6.710500e-61 kg (A56, via lambda_C)            [K8 cross-check]
+ A19 saturation cap: R in {1,2,4}; thermal R = 3pi/2 is not a member  [K20]
+ A72 route b (Unruh, a0 = cH_Lambda): excluded at 16.7 sigma          [cited, K12]
+----------------------------------------------------------------------------------------------------
+A75 COMPLETE: 23/24 checks PASS.
+MUTATION: fermi_nocouple -> {'fermi_lambda': 0.0}
