@@ -187,12 +187,20 @@ the four gates **do** descend from one premise: the charge `D·P` with unit coef
 `O(ε)` P term in `H_i`, and no P-curvature coupling — from which `Φ = Ψ` at `O(ε)`, `c_T² = 1` exactly,
 `α₁ = α₂ = 0` with `β_PPN = 1` wherever `kL_* ≫ 1`, and `dg/dg_N = 1 + a₀²/(g²+2a₀g) ≥ 1` all follow.
 **What A54 does *not* give: the galactic-regime α₁**, which is `0.073–5.194` at 1–30 kpc and needs the
-extra assumption that the PPN expansion holds there — it does not. And A55's observational check is a
-genuine failure: against 70 SLACS lenses at `a₀ = 1.132×10⁻¹⁰` and baryons only, the predicted Einstein
-radius is **11.5 % short (mass 0.108 dex, factor 1.28, 4.9σ)**; one fitted `M_*/L = 1.28×` Salpeter
-absorbs it, so the theory passes lensing **only with a fitted mass-to-light ratio**. The slip itself is
-unobservable (`2.8×10⁻⁶` arcsec, 8600× below the error) and A55 corrects A12's coefficient: the
-trace-free identity gives `3K`, not `2K`, so A12's tabulated slip values are order-of-magnitude only.
+extra assumption that the PPN expansion holds there — it does not. **A55's SLACS shortfall, re-audited by
+A70, is not a falsification.** A55's 11.5 % / 4.9σ used `1/median²` for the mass boost — assuming
+`M₂D ∝ R²` — giving `M_*/L = 1.283×` Salpeter. The model's actual response is `dlnR/dlnB = 0.7775`
+(computed by finite-differencing the lens-equation solver), and root-finding gives **`B = 1.174 ± 0.039`**
+(response route 1.1737, agreement 10⁻⁴). At 1.174 the required IMF normalisation is **1.80σ** from the same
+survey's dynamical calibration (`1.00 ± 0.036` dex) and inside its 95 % bound `[0.850, 1.177]` by 0.25 %;
+at A55's 1.283 it would have been **outside at ~3σ**. So the lensing gate passes **only with a heavy
+IMF — at the 95 % edge, not comfortably** — and A55's 4.9σ was an IMF-prior artifact compounded by an
+arithmetic error. What survives: per-lens scatter `0.0927` dex against `0.0446` propagated (real
+astrophysical scatter no normalisation removes), and one shape term — `R_E/R_e` at `+0.172 ± 0.060`
+(**2.9σ**), inner lenses `0.216` dex low — degenerate with the assumed Sérsic `n = 4`, which is not in the
+catalogue. Lensing does **not** measure `a₀`: with the IMF free, `Δχ² = 0.26` over `κ ∈ [0.20, 0.80]`
+(`dlnR/dlnκ = 0.1205` vs `dlnR/dlnB = 0.7775`). The slip is unobservable (`2.8×10⁻⁶` arcsec, 8600× below
+the error) and A55 corrects A12's coefficient: the trace-free identity gives `3K`, not `2K`.
 
 **3.5c The P-sector sound speed: free, unconstrained, and harmless (A69).** A68 showed the action forces
 `α = γ` but not `η = γ`. A69 asked what does fix it, in four channels, each with a computed obstruction
@@ -416,10 +424,10 @@ first-class constraints give **5 DOF**, with the scalar's kinetic coefficient `Q
 positive **iff `β > 0`** — so all five modes are healthy and the "fifth" is the P longitudinal already
 counted among `P_i`'s three components. The budget of 4 was wrong, not the action. **What remains open is
 observational, not structural**: A54 does *not* imply the galactic-regime `α₁ = 0.073–5.194` (it needs an
-assumption the expansion does not grant), and A55 finds the SLACS lensing prediction **11.5 % short —
-4.9σ — unless `M_*/L = 1.28×` Salpeter is fitted**. So the theory's relativistic sector is internally
-consistent and observationally strained in exactly one place, which is a much sharper statement than a
-ghost hunt.
+assumption the expansion does not grant), and A55's SLACS shortfall — re-audited by A70 — requires
+`M_*/L = 1.174 ± 0.039×` Salpeter, which sits **1.80σ** from the same survey's dynamical IMF calibration
+and **inside its 95 % bound by 0.25 %**. So the relativistic sector is internally consistent and
+observationally at the edge of one IMF calibration, which is a much sharper statement than a ghost hunt.
 
 **6.1 The four core questions, answered as far as the physics allows.**
 
@@ -466,11 +474,13 @@ theorem not an assumption**), `c_T² = 1` to all orders with `m_T² > 0` (**GWs 
 tachyon), `dg/dg_N = 1 + a₀²/(g²+2a₀g) ≥ 1` and `c_s² = 1` (**Newtonian Solar System**), and the principal
 positivity `β > 2ηa₀²/K` satisfied to one part in 10¹⁸ (**stable at every acceleration**). **Two honest
 qualifiers.** First, A54 does *not* imply the galactic-regime `α₁ = 0.073–5.194`; that needs an assumption
-the PPN expansion does not grant. Second, **A55's observational check fails**: against 70 SLACS lenses at
-`a₀ = 1.132×10⁻¹⁰` with baryons only, the predicted Einstein radius is **11.5 % short — mass 0.108 dex,
-factor 1.28, 4.9σ** — and one fitted `M_*/L = 1.28×` Salpeter absorbs it. The theory therefore **passes
-the four gates as an internal theorem and fails lensing as a zero-parameter prediction**, which is the
-sharpest statement available. **Status: DERIVED (gates), FAILED (SLACS amplitude).**
+the PPN expansion does not grant. Second, **A55's observational check is an IMF statement, not a falsification** (A70): the required
+`M_*/L = 1.174 ± 0.039×` Salpeter sits **1.80σ** from the same survey's dynamical calibration
+(`1.00 ± 0.036` dex, 95 % `[0.850, 1.177]`), inside by 0.25 %. A55's 4.9σ came from `1/median²`
+(`M₂D ∝ R²`) instead of the model's `dlnR/dlnB = 0.7775`, which overstates the boost by 8 % — the
+difference between "excluded at 95 %" and "at the 95 % edge". The theory therefore **passes the four gates
+as an internal theorem and needs a heavy IMF for lensing**, with one residual shape term at 2.9σ
+(`R_E/R_e`, degenerate with Sérsic `n`). **Status: DERIVED (gates), LENSING AT THE IMF EDGE (1.8σ).**
 
 **(Q4) Where the stiffness length comes from.** `L_* = σ_c²/a₀` — the distance the cold medium
 travels at `σ_c` during `t_acc = σ_c/a₀`, the time in which the theory's only acceleration changes the

@@ -1,0 +1,216 @@
+======================================================================================================================
+A70 -- IS THE 4.9-SIGMA SLACS LENSING FAILURE REAL?   (mutation: dropmassive)
+======================================================================================================================
+
+  data sha256: slacs d78d7627d6bbcc07
+               treu  87f0751be13d4843   cvd d52e0f499141e812
+               aug10 ba31a31145ae99fc   eth 50ac40eb18dea535
+
+----------------------------------------------------------------------------------------------------------------------
+TASK 1 -- AUDIT THE DATA
+----------------------------------------------------------------------------------------------------------------------
+
+  rows in catalogue 85 ; rows with a usable R_E 62
+  median: z_l 0.1875  z_s 0.6125  sigma 234.5 km/s  R_E 3.645 kpc  theta_E 1.2119 arcsec  f*_Salp 0.7100  f*_Chab 0.4000
+  z_l 16-84: 0.123-0.256 (range 0.063-0.513)   z_s 16-84: 0.473-0.811 (range 0.197-1.300)
+  sigma 16-84: 199-277 (range 164-296)
+  [K1] FAIL  census and median lens: my catalogue read vs A55's stored median_lens: rows 85/62 ; medians (0.1875, 0.6125, 234.5, 3.65) vs (0.1925, 0.6055, 241.0, 4.07)
+  [K2] PASS  theta_E recomputed from R_E and D_A(z_l) vs A55's stored median theta_E: 1.2119 arcsec vs 1.2119 arcsec (ratio 1.000000)
+  log M_E(reconstructed from theta_E, z_l, z_s) - log M_E(tabulated): 0.0002 +- 0.0034 dex
+  [K3] PASS  Einstein mass from geometry vs the tabulated Mass column (A55 K8: 0.0008 +- 0.0032): mean +0.0002, scatter 0.0034 dex
+  R_e(V) conversion kpc/arcsec: median 3.1357 (D_A*ARCSEC at the median z_l = 3.1357); a 2.5" galaxy is 7.8 kpc
+  R_E/R_e(V): median 0.513, 16-84 0.377-0.666 ; R_e(V)/R_e(I) = 1.365 +- 0.340 (the two bands' radii differ in the catalogue)
+  [K4] PASS  arcsec->kpc conversion: kpc/arcsec vs D_A*ARCSEC, and R_E/R_e in its physical range: kpc/arcsec 3.1357 vs 3.1357 (ratio 1.0000) ; R_E/R_e 0.513
+  f*_Salp/f*_Chab median 1.7647 vs 10^(logM*_Salp-logM*_Chab) median 1.7783
+  [K5] PASS  two independent IMF columns agree: Fs/Fc vs the SPS mass ratio (Auger abstract: <f*_Chab>=0.4): Fs/Fc 1.7647 vs mass ratio 1.7783 ; median f*_Chab 0.4000 vs 0.4
+
+  catalogue columns carrying an R_E or Mass uncertainty: NONE  (count 0)
+  Etherington+2022 / Auger+2009 theta_E, 38 common lenses: median ratio 0.9892, scatter 0.0710 (7.1%),
+    |1-ratio| median 0.018 ; A55's assumed per-lens error 0.020
+  Etherington formal error on theta_E: median 0.0076 (max 0.100)
+  [K6] PASS  the 2% R_E error is NOT in the data: zero error columns, and the inter-pipeline scatter is larger: err cols 0 ; inter-pipeline scatter 0.0710 = 3.5x the assumed 0.02
+
+  D_ls/D_s: median 0.653, 16-84 0.541-0.754, min 0.379 ; all z_s>z_l: True
+  Sigma_cr: median 8.712e+00 kg/m^2, 16-84 6.86e+00-1.04e+01
+  [K7] PASS  lens geometry: every source behind its lens, D_ls/D_s in a sane range, Sigma_cr positive and finite: min D_ls/D_s 0.379, median 0.653, max 0.867 ; Sigma_cr median 8.71e+00
+
+  Sersic-index columns in the catalogue: NONE
+  [K8] FAIL  no per-lens Sersic index exists: n=4 is assumed, and the n=3/6 bracket reproduces A55's 0.877/0.893: n cols 0 ; my n=3/6 medians 0.8894/0.9030 vs A55 0.8768/0.8933
+
+  external shear gamma_ext (43 lenses): median 0.062, 16-84 0.023-0.154, max 0.35, frac>0.1 0.33, frac>0.2 0.07
+  leading O(gamma_ext^2) shift of theta_E: median 0.0019, at gamma=0.2 0.0200 -- vs the 0.115 deficit
+  fraction with sigma>250 km/s: 0.35 ; >300 km/s: 0.00 ; >350 km/s: 0.00 (no sigma cut in the selection)
+  [K9] PASS  environment: external shear is measured and non-zero, but its median O(gamma^2) effect on theta_E is << 11.5%: median gamma_ext 0.062, 33% above 0.1, max 0.35 ; median dtheta/theta 0.0019, max 0.0623, frac>0.02 0.07
+
+----------------------------------------------------------------------------------------------------------------------
+THE MODEL -- reproduced, then audited
+----------------------------------------------------------------------------------------------------------------------
+
+  my 70-lens Salpeter prediction: median 0.8963, <ln> -0.0993 +- 0.0249, 4.00 sigma, scatter 0.0850 dex
+  max relative deviation from A55's stored 70 per-lens ratios: 2.22e-16
+  [K10] PASS  the audit uses the same data and the same model: my 70 per-lens ratios vs A55's stored ratios: max |ratio/ratio_A55 - 1| = 2.22e-16
+  [K11] FAIL  headline reproduced: median, <ln>, sigma vs A55's stored value: median 0.8963 vs 0.8852 ; <ln> -0.0993 vs -0.1245 ; 4.00 sigma vs 4.88 sigma
+
+  Newton 0.7662 (A55 0.7536) ; Chabrier 0.5695 (A55 0.5533) ; canonical a0 0.8790 (A55 0.8664)
+  [K12] FAIL  the three control branches (Newton, Chabrier, canonical a0) vs A55's stored values: newton 0.7662/0.7536 ; chabrier 0.5695/0.5533 ; canonical 0.8790/0.8664
+
+  phantom at R_E: y=g_N/a0 median 8.85 ; F(y) 3D median 0.1025 (range 0.034-0.240) ; share of M_E 0.0930
+  Newtonian g-integral projection / analytic projected stellar mass: median 1.0020 (the projection is not double counting)
+  phantom PROJECTED mass inside R_E / stellar projected mass: 0.2401 (law route) vs 0.2371 (direct 3D projection)
+  -> projection amplifies the phantom: 2.34 x its 3D F(y), because rho_ph ~ r^-2 extends along the LOS
+  mass deficit at FIXED observed R_E: 0.0532 dex (factor 1.130) ; radius deficit (median) 0.0475 dex (factor 1.116) ; A55 quoted 0.108 dex = 2x the radius (M~R^2)
+  A55's 0.108 dex = 2 x the radius deficit, which assumes M_2D ~ R^2; the measured response is R^0.81
+
+  c_n = B(2n+1)/B(n+1): n=0.5 0.8346, n=1.0 0.7854, n=1.5 0.7628, n=2.0 0.7500
+  Psi(R_E) = GM_E/(R_E c^2) = 2.258e-06 ; delta-alpha/alpha = -c_n Psi = 1.773e-06
+  correction / deficit = 1.54e-05  (the LOS/slip term cannot double count or explain the 11.5%)
+
+  required single M/L boost: median(R_E,pred/R_E,obs)=1 at B = 1.1532
+  1/median ratio = 1.1157 ; 1/median^2 = 1.2447 (A55's 1.283) ; ratio B_req/(1/median) = 1.0337
+  [K13] PASS  A55's 1.28x Salpeter is NOT the M/L that fixes the fit: B_req vs 1/median vs 1/median^2: B_req 1.1532 ; 1/median 1.1157 ; 1/median^2 1.2447 ; B_req < 1/median^2 by 7%
+  unsubtracted external convergence kappa_ext=0.02: theta_E is boosted 1.0%, so the required B rises to 1.165
+  unsubtracted external convergence kappa_ext=0.05: theta_E is boosted 2.6%, so the required B rises to 1.183
+  unsubtracted external convergence kappa_ext=0.10: theta_E is boosted 5.4%, so the required B rises to 1.216
+
+  response of R_E to a uniform M/L boost: dlnR/dlnB = 0.7746 ; dlnM2D/dlnB = 0.8551 ; ratio 0.906
+  population regression dln(R_pred/R_obs)/dln(M2D/M_E) = 0.9537 (corr 0.994)
+  the same data measure log10(B) to 0.0139 dex, i.e. B = 1.153 +- 0.037 (3.2%) -- a 3% IMF measurement
+  B from the response: exp(0.0993/0.7746) = 1.1368 vs the root-found B_req 1.1532
+  [K14] PASS  the boost is sub-linear in mass: the response route and the root-found boost agree, and both are < 1/median^2: dlnR/dlnB 0.7746 ; B_response 1.1368 vs B_req 1.1532 ; 1/median^2 1.2447
+
+  variance of ln(R_pred/R_obs) explained by ln f* alone: R^2 = 0.9630 ; adding ln(1+F): 0.9861 ; residual 0.0102 dex
+  [K15] PASS  the 'prediction' is 95% a restatement of f*_Salp: R^2 of ln f* alone: R^2(f*) 0.9630 ; R^2(f*, phantom) 0.9861 ; resid 0.0102 dex
+
+----------------------------------------------------------------------------------------------------------------------
+TASK 3 -- THE kappa / a0 TENSION
+----------------------------------------------------------------------------------------------------------------------
+
+  kappa   a0           median R_E,pred/R_E,obs   <ln>
+  0.2520  5.7013e-11   0.8434                 -0.1695
+  0.3000  6.7872e-11   0.8545                 -0.1550
+  0.3415  7.7261e-11   0.8639                 -0.1428
+  0.3710  8.3935e-11   0.8702                 -0.1344
+  0.4137  9.3596e-11   0.8790                 -0.1225
+  0.4500  1.0181e-10   0.8863                 -0.1127
+  0.4900  1.1086e-10   0.8943                 -0.1020
+  0.5265  1.1912e-10   0.9015                 -0.0926
+  0.6000  1.3574e-10   0.9175                 -0.0740
+  0.7000  1.5837e-10   0.9390                 -0.0498
+  0.8000  1.8099e-10   0.9600                 -0.0267
+  0.9000  2.0362e-10   0.9806                 -0.0045
+  1.0000  2.2624e-10   1.0002                 +0.0168
+  1.1000  2.4886e-10   1.0226                 +0.0373
+  1.2000  2.7149e-10   1.0458                 +0.0571
+
+  dln(R_E,pred)/dln(kappa) at kappa=0.5: 0.1104  (the theory is almost blind to a0 at SLACS accelerations)
+  response ratio dlnR/dlnB : dlnR/dlnkappa = 7.05 : 1
+  kappa that makes the median ratio exactly 1, with Salpeter fixed: kappa* = 0.9992
+  A51 measured band [0.252, 0.490] ; falsifier band [0.3415, 0.5265] ; kappa* is 103.91% above the top of the measured band
+  at kappa=0.490: median 0.8943 ; at kappa=0.5265: 0.9015 ; both < 1 (the whole band under-predicts)
+
+  fixed-Salpeter chi2(kappa) from the full per-lens likelihood: minimum 0.9803 ; Delta-chi2=1 width 0.1379
+  mean-based width sigma_kappa = 0.5*sem/(dlnR/dlnkappa) = 0.1126 ; (kappa*-0.371)/sigma = 5.58
+  [K16] PASS  the fixed-Salpeter kappa error from two independent routes (chi2 curvature, mean/SEM): full-likelihood 0.1379 at kappa 0.980 vs mean-based 0.1126 ; tension (kappa*-0.371)/sigma = 5.58
+
+  2D (kappa, B) surface: quadratic interpolation validated off-grid, max |dlnR| = 1.29e-04 / 8.79e-05
+  free-IMF profile chi2(kappa) (B marginalised, flat prior):
+    kappa 0.20  chi2 42.17  dchi2 1.81  best B 1.268
+    kappa 0.25  chi2 41.91  dchi2 1.54  best B 1.249
+    kappa 0.30  chi2 41.67  dchi2 1.30  best B 1.229
+    kappa 0.35  chi2 41.45  dchi2 1.08  best B 1.208
+    kappa 0.40  chi2 41.26  dchi2 0.89  best B 1.187
+    kappa 0.45  chi2 41.09  dchi2 0.72  best B 1.167
+    kappa 0.50  chi2 40.94  dchi2 0.57  best B 1.148
+    kappa 0.55  chi2 40.81  dchi2 0.44  best B 1.130
+    kappa 0.60  chi2 40.69  dchi2 0.32  best B 1.112
+    kappa 0.65  chi2 40.59  dchi2 0.22  best B 1.095
+    kappa 0.70  chi2 40.50  dchi2 0.14  best B 1.079
+    kappa 0.75  chi2 40.43  dchi2 0.06  best B 1.064
+    kappa 0.80  chi2 40.37  dchi2 0.00  best B 1.049
+  [K17] FAIL  with the IMF normalisation free, kappa is UNCONSTRAINED: max Delta-chi2 over kappa in [0.2,0.8]: Delta-chi2_max = 1.81 over a factor 4 in kappa ; best B range 1.049-1.268
+
+----------------------------------------------------------------------------------------------------------------------
+TASK 2 -- THE IMF QUESTION
+----------------------------------------------------------------------------------------------------------------------
+
+  Treu+2010 SLACS (N=56): <log alpha_Salp> = -0.0005 +- 0.0182 (sem), scatter 0.1359 dex, weighted 0.0236 +- 0.0141
+  16-84: -0.110 to +0.114 ; 2.5-97.5: -0.346 to +0.196 ; alpha 95% range 0.45-1.57 x Salpeter
+  weighted mean 0.0236 vs unweighted -0.0005 (two independent estimators of the same table)
+  abstract (Treu+2010): <log alpha> = 0.00 +- 0.03 +- 0.02 for a Salpeter IMF
+  measured mean vs abstract: 0.01 sigma ; 95% CL on the mean: 0.850-1.177 x Salpeter
+  [K18] PASS  Treu+2010 per-lens table reproduces its abstract (0.00 +- 0.03 +- 0.02) and gives the 95% mean range: mean -0.0005 (0.01 sigma from 0) ; scatter 0.1359 ; 95% 0.850-1.177
+  required 1.153 x Salpeter = +0.0619 dex: percentile in Treu's per-lens distribution 67.9% ; 1.72 sigma from the mean
+  a 0.03 dex IMF measurement separates 1.000 from 1.153 at 2.1 sigma ; 3 sigma needs 0.021 dex
+  a 0.04 dex IMF measurement separates 1.000 from 1.153 at 1.5 sigma ; 3 sigma needs 0.021 dex
+  a 0.10 dex IMF measurement separates 1.000 from 1.153 at 0.6 sigma ; 3 sigma needs 0.021 dex
+  A55's 1.283 would be 2.39 sigma from the same mean and OUTSIDE the 95% interval; the margin for 1.174 is 2.04%
+  including the lensing error on B (0.0139 dex): 1.60 sigma from Treu's mean
+  [K19] PASS  where 1.17x Salpeter sits in the direct SLACS dynamical calibration: percentile 67.9% ; 1.72 sigma (1.60 with the lensing error) ; 95% upper bound 1.177 (required 1.153)
+  Salpeter normalisation: 1.55 (MASSIVE, SNELLS) vs ~1.6 (CvD text) -> 0.014 dex ambiguity
+
+  Conroy & van Dokkum 2012b (N=35, sigma 96-385): alpha_MW = M/L_K/(M/L_K)_MW, mean 1.375, range 0.62-2.04
+  fit log10 alpha_MW = 0.1128 + 0.6168 log10(sigma/200), rms 0.1216 dex (XR33 reports 0.111 + 0.628, rms 0.12)
+  at sigma=241: alpha_MW 1.455 -> alpha_Salp 0.939 (Salpeter = 1.55 in these units)
+  required 1.153 is 0.74 sigma (of the rms) above the relation, percentile 83% of the sample
+  [K20] PASS  CvD12b spectroscopic relation: slope and rms vs XR33's fit, and where 1.17x sits: slope 0.6168 (XR33 0.628), rms 0.1216 (0.12), alpha_Salp(241) 0.939, required 0.7 sigma
+
+  literature inputs (alpha in Salpeter units; Kroupa -> Salpeter = 1.55):
+    MASSIVE XVI (sigma>250, R_e/8): alpha_Kroupa mean 1.84, range 1.12-3.05 -> 1.187 x Salpeter
+    MASSIVE XXI: alpha_Kroupa 2.16 at R_e/8 -> 1.394 ; 1.74 at R_e/4-R_e/2 -> 1.123
+    Leier+2016 (18 SLACS ETGs): mu <= 2.2 at 20-30%% dark matter; very bottom-heavy excluded (qualitative)
+    Smith, Lucey & Collier 2018: upper-limit lensing excludes >Salpeter in one sigma=314 system (counter-claim)
+
+  random-effects (DerSimonian-Laird) over four independent IMF calibrations:
+    Treu+2010 SLACS dyn+lens         1.000 +- 0.036
+    CvD12b relation at sigma=241     0.939 +- 0.030
+    MASSIVE XXI, R_e/4-R_e/2         1.123 +- 0.045
+    MASSIVE XVI, R_e/8               1.187 +- 0.050
+    fixed mean 1.024 ; Q 23.93 for 3 dof ; tau 0.103 dex ; random mean 1.057 +- 0.055 ; 95% 0.949-1.166
+    required 1.153 is +0.038 dex from the random mean = 1.7 sigma ; inside 95%: True
+  [K21] FAIL  the two 95% intervals disagree about 1.17: outside the cross-method one, inside the direct SLACS one: RE 95% 0.949-1.166 (1.17 at 1.42 sigma) ; direct SLACS 95% 0.850-1.177 (1.17 at 1.72 sigma)
+
+  Auger+2010 (N=59): f_DM(<R_e/2) Salpeter mean 0.209 median 0.230 (16-84 0.040-0.377, 8 negative)
+                   Chabrier mean 0.552 median 0.570 (16-84 0.453-0.647)
+  theory (Salpeter stars + phantom) at R_e/2: M_theory/M_dyn median 0.835 -> implied f_DM 0.165 vs measured 0.230
+  [K22] FAIL  independent dynamics at R_e/2: the theory+Salpeter leaves the same dark fraction Auger measures: M_th/M_dyn 0.835 (f_DM 0.165) vs f_DM_Salp 0.230 (diff -0.065)
+  with the required 1.153 x Salpeter: M_theory/M_dyn 0.954 -> implied f_DM 0.046 (still non-negative)
+
+----------------------------------------------------------------------------------------------------------------------
+TASK 4 -- AMPLITUDE OR SHAPE?
+----------------------------------------------------------------------------------------------------------------------
+
+  chi2 with A55's per-lens errors (2% theta_E + propagated M* + 5% shape): 268.0 / 61 dof = 4.39 (A55 6.21)
+  propagated sigma median 0.0446 dex vs observed scatter 0.0850 dex (ratio 1.9)
+  [K23] FAIL  A55's chi2/dof and the excess scatter are reproduced, and the 2% R_E error is not what drives either: chi2/dof 4.39 vs 6.21 ; propagated 0.0446 vs observed 0.0850 dex
+
+  residual ln(R_pred/R_obs) trends: vs ln sigma -0.188 +- 0.176 (1.1 sigma) ; vs ln(R_E/R_e) +0.125 +- 0.065 (1.9 sigma)
+  vs ln theta_E -0.372 +- 0.112 (3.3 sigma) ; vs log M_E -0.267 +- 0.089
+    sigma [150,220): N=20  median ratio 0.919
+    sigma [220,260): N=23  median ratio 0.928
+    sigma [260,300): N=19  median ratio 0.882
+    sigma [300,500): N= 0  median ratio nan
+
+  after multiplying by the CvD12b IMF(sigma) trend (normalised at sigma=241):
+    mean ln -0.1141 (was -0.0993) ; slope vs ln sigma +0.298 +- 0.176 (was -0.188 +- 0.176)
+  [K24] FAIL  the mass-dependent residual is the independently measured IMF-sigma trend: the slope flattens to zero: slope -0.188 (1.1 sigma) -> +0.298 (1.7 sigma)
+
+  imaging-only shape test, 38 lenses (Etherington+2022 power-law gamma vs my A55 model normalised to its theta_E):
+    gamma_pred median 2.103 ; gamma_obs median 2.080 ; delta mean +0.016 +- 0.043 (median +0.046), scatter 0.265
+    per-lens M/L boost needed at Etherington's theta_E: median 1.093 (16-84 0.84-1.23)
+  [K25] PASS  shape at fixed amplitude: the model's total-density slope at theta_E vs the imaging-only measurement: gamma_pred 2.103 vs gamma_obs 2.080 ; delta +0.016 +- 0.043
+  control: with the measured inter-pipeline 6.9% theta_E scatter replacing the assumed 2%, chi2/dof = 3.07 (vs 4.39) -- the excess scatter survives
+  after the IMF-sigma correction the R_E/R_e slope is +0.159 +- 0.065 (2.4 sigma; was +0.125)
+
+----------------------------------------------------------------------------------------------------------------------
+VERDICT
+----------------------------------------------------------------------------------------------------------------------
+  R_E failure at Salpeter, a0=1.132e-10 : 4.00 sigma (A55 4.9)
+  M/L that zeroes it                   : 1.153 x Salpeter (A55 quoted 1.283)
+  same, in the direct SLACS IMF units  : 1.72 sigma from the measured mean
+  kappa* with Salpeter fixed           : 0.999 (A51 band 0.252-0.490)
+  kappa* with the IMF free             : unconstrained, Delta-chi2 < 1.8 over 0.2-0.8
+  shape at fixed amplitude             : gamma_pred - gamma_obs = +0.016 +- 0.043
+
+======================================================================================================================
+A70: 16/25 checks PASS   (6.5 s)
+======================================================================================================================
