@@ -1,0 +1,81 @@
+E1_INPUT_AUDIT  (kappa = 1/2 FITTED; footings never pooled; not theory closed)  [MUTATE: 2 pi for Z]
+
+=== S1  framework-native background: what a0 is when H0 comes from the model's own background (A46, CFG886)
+K1 FAIL 7.87e-02 <1e-6 :: native a0 = cH0/Z reproduces A46's own a0 entries (2pt, 3pt, map)
+K2 PASS 2.54e-04 <2e-3 :: canonical footing = c H0 sqrt(Omega_L)/Z at Planck (67.4, 0.685)
+  A46_2pt        : H0,native =  54.992 km/s/Mpc -> a0 = 8.5033e-11  (-9.16% vs canonical 9.3603e-11, -24.83% vs alt 1.1312e-10)
+  A46_3pt        : H0,native =  56.772 km/s/Mpc -> a0 = 8.7786e-11  (-6.21% vs canonical 9.3603e-11, -22.40% vs alt 1.1312e-10)
+  A46_map        : H0,native =  57.160 km/s/Mpc -> a0 = 8.8385e-11  (-5.57% vs canonical 9.3603e-11, -21.87% vs alt 1.1312e-10)
+  CFG886_BAO+BBN : H0,native =  57.463 km/s/Mpc -> a0 = 8.8855e-11  (-5.07% vs canonical 9.3603e-11, -21.45% vs alt 1.1312e-10)
+  native band a0 in [8.5033e-11, 8.8855e-11]  (canonical -9.2% .. -5.1%; alt -21.5% .. -24.8%)
+  Planck H_Lambda = 55.783; the native H0 IS the LCDM H0*sqrt(Omega_L) (A46 map h = h_L sqrt(1-Om_L)), so the canonical footing is the background-invariant one; the alt footing (cH0/Z at 67.4) does not exist in the native background
+  A46 cost of keeping H0 = 67.4 (alt footing): dchi2 = 58.8 (2pt) / 749.3 (3pt)
+  NOTE: the native H0 band 55.0-57.5 sits 15.5-18.0 sigma below the local-ladder 73.0 +- 1.0 used on disk (A51); Planck-LCDM's 67.4 sits 5.6 sigma below it
+
+=== S2  kappa measurements re-expressed in the native background (kappa_nat = a0 Z / (2 c H0,native))
+  CFG493 (kappa_DE)  record 0.4170 +- 0.0950 (1/2 at +0.87 sigma) -> native A46_2pt 0.4230 (+0.80), A46_3pt 0.4097 (+0.97), A46_map 0.4070 (+1.00), CFG886_BAO+BBN 0.4048 (+1.03)
+  A51 (kappa_P3)     record 0.3710 +- 0.1190 (1/2 at +1.08 sigma) -> native A46_2pt 0.4547 (+0.31), A46_3pt 0.4404 (+0.42), A46_map 0.4375 (+0.45), CFG886_BAO+BBN 0.4352 (+0.46)
+  A71 (kappa_P3)     record 0.3777 +- 0.1207 (1/2 at +1.01 sigma) -> native A46_2pt 0.4629 (+0.25), A46_3pt 0.4484 (+0.36), A46_map 0.4454 (+0.38), CFG886_BAO+BBN 0.4430 (+0.40)
+  A81 (kappa_P3)     record 0.3781 +- 0.1208 (1/2 at +1.01 sigma) -> native A46_2pt 0.4634 (+0.25), A46_3pt 0.4489 (+0.36), A46_map 0.4458 (+0.38), CFG886_BAO+BBN 0.4435 (+0.40)
+  A51 coherent floor: H0 term 12.5% -> 2.2% half-span of the native band; total 30.9% -> 28.4%
+
+=== S5  Q2 (D7b solver) and SPARC (AG4b pipeline) at the native a0, via D7c's own code (read-only exec)
+K3 PASS 0.0e+00,0.0e+00 <1e-6,<0.02 :: D7c reproduced: Q2(beta=2.5, canonical, E0) and SPARC worst paired z (beta=2.5, canonical)
+  [nat_lo a0=8.5033e-11] canonical law L: Q2 max/Hees-2sigma 3.50 (FAIL); passers (Hees all E + SPARC primary z>-2): none -> NO LAW PASSES BOTH
+     beta=2.5: Q2/Hees2s max 0.830 [PASS] SPARC z -2.78 [FAIL] S1 z -5.92
+     beta=3  : Q2/Hees2s max 0.795 [PASS] SPARC z -2.74 [FAIL] S1 z -5.98
+     beta=6  : Q2/Hees2s max 0.735 [PASS] SPARC z -2.22 [FAIL] S1 z -6.14
+     n=2     : Q2/Hees2s max 2.494 [FAIL] SPARC z -1.35 [PASS] S1 z -3.55
+     n=8     : Q2/Hees2s max 0.759 [PASS] SPARC z -7.41 [FAIL] S1 z -7.99
+  [nat_c a0=8.7786e-11] canonical law L: Q2 max/Hees-2sigma 3.56 (FAIL); passers (Hees all E + SPARC primary z>-2): none -> NO LAW PASSES BOTH
+     beta=2.5: Q2/Hees2s max 0.868 [PASS] SPARC z -2.75 [FAIL] S1 z -5.79
+     beta=3  : Q2/Hees2s max 0.836 [PASS] SPARC z -2.81 [FAIL] S1 z -5.85
+     beta=6  : Q2/Hees2s max 0.785 [PASS] SPARC z -2.37 [FAIL] S1 z -6.02
+     n=2     : Q2/Hees2s max 2.556 [FAIL] SPARC z -1.08 [PASS] S1 z -3.26
+     n=8     : Q2/Hees2s max 0.783 [PASS] SPARC z -7.17 [FAIL] S1 z -7.81
+  [nat_hi a0=8.8855e-11] canonical law L: Q2 max/Hees-2sigma 3.58 (FAIL); passers (Hees all E + SPARC primary z>-2): none -> NO LAW PASSES BOTH
+     beta=2.5: Q2/Hees2s max 0.883 [PASS] SPARC z -2.66 [FAIL] S1 z -5.74
+     beta=3  : Q2/Hees2s max 0.851 [PASS] SPARC z -2.54 [FAIL] S1 z -5.80
+     beta=6  : Q2/Hees2s max 0.805 [PASS] SPARC z -2.07 [FAIL] S1 z -5.97
+     n=2     : Q2/Hees2s max 2.580 [FAIL] SPARC z -1.12 [PASS] S1 z -3.15
+     n=8     : Q2/Hees2s max 0.792 [PASS] SPARC z -7.12 [FAIL] S1 z -7.74
+  [native c, Upsilon prior centre -0.2 dex] SPARC worst z: L -1.67, Q -4.56, beta=2.5 -5.38, beta=3 -5.26, beta=6 -5.90
+  [native c, Upsilon prior centre +0.2 dex] SPARC worst z: L -4.72, Q -1.68, beta=2.5 -0.20, beta=3 -0.27, beta=6 -0.63
+  (S5 took 60 s)
+  D2 gamma_v(20 kAU, PREREG_primary) [interpolated in ln a0]: canonical 1.1751, alt 1.2095 -> native nat_lo 1.1575, nat_c 1.1634, nat_hi 1.1656
+  D2 gamma_v(20 kAU, PREREG_alt) [interpolated in ln a0]: canonical 1.1514, alt 1.1817 -> native nat_lo 1.1359, nat_c 1.1410, nat_hi 1.1430
+
+=== S3/S4  CFG820's L* floor (estimator verbatim from cfg820.py via D8) under SPS M/L +-0.2 dex, native a0, and its standard-MOND machinery (nu_RAR + algebraic EFE) replaced by the canonical law
+K4 PASS 0.00e+00 <5e-3 :: CFG820 L*_95 reproduced on its own grid, both footings
+  record (nu_RAR+EFE, Ups 1.6)          : canonical L95 23.64 pc, thermal 23.43 pc dchi2 3.91 [EXCLUDED at 95%]; alt L95 24.48 pc, thermal 19.38 pc dchi2 5.99 [EXCLUDED at 95%]; native_lo L95 23.13 pc, thermal 25.79 pc dchi2 3.03 [allowed]; native_c L95 23.30 pc, thermal 24.98 pc dchi2 3.31 [allowed]; native_hi L95 23.37 pc, thermal 24.68 pc dchi2 3.42 [allowed]
+  Ups_V -0.2 dex                        : canonical L95 12.45 pc, thermal 23.43 pc dchi2 0.32 [allowed]; alt L95 13.03 pc, thermal 19.38 pc dchi2 1.14 [allowed]; native_c L95 12.22 pc, thermal 24.98 pc dchi2 0.16 [allowed]
+  Ups_V +0.2 dex                        : canonical L95 41.06 pc, thermal 23.43 pc dchi2 9.67 [EXCLUDED at 95%]; alt L95 42.72 pc, thermal 19.38 pc dchi2 12.89 [EXCLUDED at 95%]; native_c L95 40.56 pc, thermal 24.98 pc dchi2 8.75 [EXCLUDED at 95%]
+  canonical law nu_L + same EFE         : canonical L95 23.87 pc, thermal 23.43 pc dchi2 3.99 [EXCLUDED at 95%]; alt L95 24.66 pc, thermal 19.38 pc dchi2 6.08 [EXCLUDED at 95%]; native_c L95 23.54 pc, thermal 24.98 pc dchi2 3.39 [allowed]
+  canonical law nu_L, no EFE (isolated) : canonical L95 28.85 pc, thermal 23.43 pc dchi2 6.21 [EXCLUDED at 95%]; alt L95 29.12 pc, thermal 19.38 pc dchi2 9.01 [EXCLUDED at 95%]; native_c L95 28.72 pc, thermal 24.98 pc dchi2 5.37 [EXCLUDED at 95%]
+  nu_RAR, no EFE (isolated)             : canonical L95 28.71 pc, thermal 23.43 pc dchi2 6.14 [EXCLUDED at 95%]; alt L95 29.00 pc, thermal 19.38 pc dchi2 8.93 [EXCLUDED at 95%]; native_c L95 28.57 pc, thermal 24.98 pc dchi2 5.30 [EXCLUDED at 95%]
+  D8b at native a0 (floor = record CFG820 estimator at the same a0): sigma_m2 median -> L* 31.9 pc; sigma_m2 5th pct -> L* 22.5 pc; sigma_m2 min (DDO 125) -> L* 18.1 pc; sigma_central median -> L* 21.9 pc; floor 23.30 pc
+
+=== S6  D6's u inputs: LCDM distances (h = 0.70) -> native h, SPS M* +-0.2 dex, NFW r_sp machinery bracket
+K5 PASS 0.47157,0.6605 0.47157+-1e-3, 0.660+-0.002 :: D6 reproduced: cluster u_MID and KiDS u_gal (canonical)
+  u_gal (canonical/alt) record 0.660/0.729; M* -0.2 dex: 0.501/0.567; +0.2 dex: 0.825/0.913; z vs 0.4716 at -0.2 dex: +1.48/+4.18
+  u_gal at native h (A46_3pt, s = 1.233): a0 canonical 0.805 +- 0.034 (+9.9 sigma vs 0.4716); a0 native 0.779 (+9.4)
+  u_gal at native h (A46_map, s = 1.225): a0 canonical 0.800 +- 0.033 (+9.8 sigma vs 0.4716); a0 native 0.776 (+9.4)
+  u_gal at native h (A46_2pt, s = 1.273): a0 canonical 0.835 +- 0.035 (+10.4 sigma vs 0.4716); a0 native 0.793 (+9.7)
+  u_gal at native h (Planck_67.4, s = 1.039): a0 canonical 0.688 +- 0.029 (+7.5 sigma vs 0.4716); a0 native 0.728 (+8.4)
+  u_gal at native h (SH0ES_73.0, s = 0.959): a0 canonical 0.632 +- 0.026 (+6.1 sigma vs 0.4716); a0 native 0.674 (+7.4)
+  d u_MID / d ln h (canonical a0, 0.674 -> 0.730) = -0.670
+  u_MID (canonical) recomputed 0.4716 (D6 0.4716 +- 0.0362): native h (A46_3pt) + native a0 0.6143 (+3.94 sigma); h = 0.674 (Planck), canonical a0 0.4974 (+0.71 sigma); h = 0.730 (SH0ES), canonical a0 0.4439 (-0.76 sigma); native h (A46_2pt) + native a0 0.6283 (+4.33 sigma); native a0 only 0.4551 (-0.46 sigma); f_s 0.20 -> -0.2 dex 0.4553 (-0.45 sigma); f_s 0.20 -> +0.2 dex 0.4968 (+0.70 sigma)
+  H-VR eps=1 canonical, r_sp x 1: u_MID 0.489, chi2 39.0/8 (p 4.9e-06)
+  H-VR eps=1 canonical, r_sp x 0.8: u_MID 0.485, chi2 31.4/8 (p 1.2e-04)
+  H-VR eps=1 canonical, r_sp x 1.25: u_MID 0.494, chi2 44.3/8 (p 5.0e-07)
+  (S6 took 7 s)
+
+=== S7  Omega_c/Omega_b = 5.3643 (Planck LCDM fit) -> CFG886 Planck-free values, on A18's R_req = 5.552 +- 0.427
+  Planck 5.3643       : R_req - ratio = +0.44 sigma; a u defined per unit 5.3643 rescales by 1.0000
+  CFG886 (a) BAO+BBN  : R_req - ratio = +0.58 sigma; a u defined per unit 5.3643 rescales by 1.0175
+  CFG886 (b) SH0ES    : R_req - ratio = -1.07 sigma; a u defined per unit 5.3643 rescales by 0.8762
+
+=== K6  ledger completeness
+K6 PASS rows=43 bad=[] uncovered=[] all classed, paths exist, all verdicts covered :: INPUT_LEDGER.md complete
+
+E1_INPUT_AUDIT COMPLETE: 5/6 checks PASS.
