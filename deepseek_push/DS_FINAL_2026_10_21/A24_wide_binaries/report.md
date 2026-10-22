@@ -182,6 +182,7 @@ instead would cost the covariant parent and the ability to score DR4 in the same
 - **Bin: 18–22 kAU** (the 20 kAU bin). At the frozen `N = 30,000` log-uniform over 2–30 kAU it holds
   **2,223 pairs**; σ_fit = 0.0699, σ_tot = 0.0726, so the separation there is **4.5 σ** — the repo's own
   4.2σ forecast, met.
+  - **ERRATUM (2026-10-22, doors push D2):** the 18–22 kAU bin holds **~208 pairs at N = 30,000** on the DR3 frozen-cut occupancy (43 of 6,210 pairs, 0.69 %), not 2,223 (log-uniform 7.41 % is 10.7× too many; the pipeline's own mock gives 3.73 %, 1,119 pairs). The bin alone then separates 1.18 from 1.0 at only 0.8–2.6σ, so one bin does not decide; the registered whole-catalogue γ̂ does (5.0–5.9σ canonical) only if the contamination systematic σ_sys < 0.054 (alt 0.064). See `doors_push_2026_10_22/D2_wide_binary_fork/README.md`.
 - **Pairs for exactly 4.2σ:** `σ_tot = 0.3286/4.2 = 0.0782`, `σ_fit = 0.0757`, **N = 1,893 pairs** in
   that bin. The like-for-like difference would need **5,134** pairs (N_cat ≈ 69,280).
 - **The 10 kAU bin can never decide.** `Δγ = 0.0536` like-for-like against the irreducible

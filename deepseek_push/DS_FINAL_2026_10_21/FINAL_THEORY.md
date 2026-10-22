@@ -494,6 +494,8 @@ that is a prediction (three numbers from one), not a fit.
 
 ## 5b. The fork, resolved: law-first
 
+> **ERRATUM (2026-10-22, doors push D2):** the fork is **not** resolved and "one DR4 bin decides" does not hold. (i) DR4 can decide it only through the whole-catalogue γ̂, and only if σ_sys < 0.054 (canonical; alt 0.064) — the record's inter-group spread (0.174) is 3.2× that ceiling; the 18–22 kAU bin holds ~208 pairs at N = 30k on DR3 occupancy, not 2,223. (ii) A26's law-first verdict tested the law **without** the host's external field (the EFE-blind reading, whose wide-binary value is 1.40–1.53, not 1.18). With the MW/M31 EFE that P5 uses, the 45 sub-threshold satellites sit **+1.25 dex above the law** (5/45 within 0.5 dex). So both readings fail on satellites; the dwarf leg excludes medium-first but does not certify the EFE-present law-first reading that predicts γ_v = 1.18. The fork stays OPEN, DATA-GATED. See `doors_push_2026_10_22/D2_wide_binary_fork/README.md`.
+
 The fork was real and it is now settled by data (A26, 11/11). The threshold is present in the
 dwarf population — a step of **+0.453 ± 0.099 dex** at `M_crit` — but it has the **wrong sign
 for medium-first**, which requires **−1.622 dex**. The median boost below `M_crit` is **140×**
@@ -535,6 +537,8 @@ medium is downstream of the law.
 | P6 | Laboratory null | \|δG/G\| < 1e-6 (framework) vs 340 ppm (source-boost) | two-configuration Cavendish, source-density swap, 30–50 ppm | +340 ppm kills the screened framework |
 | P7 | n = 1 vs n = 2 | 15.47 % max in g at g_N = a₀/2 | 1330–1980 SPARC-quality galaxies, free Υ per galaxy | a stacked Δχ² that survives the bootstrap |
 | P8 | Jeans mass rises with density | d ln M_J/d ln ρ = +1 | clump mass function in dense vs diffuse regions | the standard −½ scaling |
+
+**ERRATUM (2026-10-22, doors push D2):** (P5 recipe) the 18–22 kAU bin holds **~208 pairs at N = 30,000** on the DR3 frozen-cut occupancy (43 of 6,210 pairs, 0.69 %), not 2,223 (log-uniform 7.41 % is 10.7× too many; the pipeline's own mock gives 3.73 %, 1,119 pairs). The bin alone then separates 1.18 from 1.0 at only 0.8–2.6σ, so one bin does not decide; the registered whole-catalogue γ̂ does (5.0–5.9σ canonical) only if the contamination systematic σ_sys < 0.054 (alt 0.064). See `doors_push_2026_10_22/D2_wide_binary_fork/README.md`.
 
 **ERRATUM (2026-10-22, doors push D1):** (P9) the skew-sign discriminator is **RETIRED for RAR residuals** (D1 SCOPED NO-GO, `doors_push_2026_10_22/D1_skew_preflight/README.md`). RAR errors (distance, Υ, inclination) are symmetric in log g, and in log g **both laws predict a negative skew** across the whole window g/a₀ ∈ (0.375, 1) (√N_s·skew at a₀/2: n=1 −4.38, n=2 −2.44). The sign difference exists only in linear g, where a 0.06 dex log-symmetric background alone has skew +0.42 and SPARC's measured out-of-window skew is +2.9 (canonical) / +3.2 (alt), 17–50× the best-case signal (+0.062 / −0.165). The Gaussian price is also understated: ~1e4–1e6 points, not 7,000–13,500. The statement above is kept as written; it no longer decides n.
 

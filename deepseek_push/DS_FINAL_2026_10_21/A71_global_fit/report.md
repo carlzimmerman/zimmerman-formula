@@ -281,6 +281,8 @@ SPARC at N = 1000, same systematics (replaces it)   sigma(kappa) 0.118  ->  join
 distance zero point fixed to 2.5%                   --                  ->  joint 0.1043
 ```
 
+> **ERRATUM (2026-10-22, doors push D2):** σ(κ) = 0.040 and joint 0.1207 → 0.0605 are overstated. An independent FFT-QUMOND solve gives dγ_v/dκ = 0.41 (not 0.51; A71 rescaled 1.1811 by √ν instead of solving), the shared σ_sys = 0.020 cannot be divided by √7, and γ_v depends almost only on g_ext/a₀ (the two frozen g_ext values add σ(κ) = 0.031, tying a wide-binary κ to Galactic R₀ and v_c). Corrected: **σ(κ) ≈ 0.073, joint 0.1207 → 0.077** (infinite-N floor from σ_sys alone 0.048). See `doors_push_2026_10_22/D2_wide_binary_fork/README.md`.
+
 **The single number: σ(κ) = 0.040, and the observation that delivers it is a wide-binary γ_v
 measurement at 18–22 kAU** — the only channel with no Υ, no IMF and no distance ladder in the
 measurement itself.
@@ -290,6 +292,8 @@ best SPARC-side fix (0.1043) — because it does not share SPARC's systematics (
 does share is re-added in the forecast). `dγ_v/dκ = 0.510` (EFE-present) /
 0.675 (EFE-blind) at 20 kAU, so the same measurement is simultaneously a 4.5σ test of the EFE
 (A24's registered arm, 0.3286/0.0726 = 4.5σ). **More SPARC galaxies are worth 2%: N = 1000 gives 0.1184. Do not buy them.**
+
+> **ERRATUM (2026-10-22, doors push D2):** σ(κ) = 0.040 and joint 0.1207 → 0.0605 are overstated. An independent FFT-QUMOND solve gives dγ_v/dκ = 0.41 (not 0.51; A71 rescaled 1.1811 by √ν instead of solving), the shared σ_sys = 0.020 cannot be divided by √7, and γ_v depends almost only on g_ext/a₀ (the two frozen g_ext values add σ(κ) = 0.031, tying a wide-binary κ to Galactic R₀ and v_c). Corrected: **σ(κ) ≈ 0.073, joint 0.1207 → 0.077** (infinite-N floor from σ_sys alone 0.048). See `doors_push_2026_10_22/D2_wide_binary_fork/README.md`. The bin size ~2,223 is also overstated (~208 at DR3 occupancy).
 
 ## 9. Checks (28/28 PASS, exit 0) and mutations
 

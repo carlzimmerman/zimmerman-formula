@@ -875,6 +875,8 @@ unprofiled-`B` artifact (`Δχ² = 0.29` with `B` profiled) and the `R_E/R_e` re
 ambiguity rather than a theory failure; and the wide-binary forecast is a rescaling of A24's σ's, not a
 re-solve.
 
+> **ERRATUM (2026-10-22, doors push D2):** σ(κ) = 0.040 and joint 0.1207 → 0.0605 are overstated. An independent FFT-QUMOND solve gives dγ_v/dκ = 0.41 (not 0.51; A71 rescaled 1.1811 by √ν instead of solving), the shared σ_sys = 0.020 cannot be divided by √7, and γ_v depends almost only on g_ext/a₀ (the two frozen g_ext values add σ(κ) = 0.031, tying a wide-binary κ to Galactic R₀ and v_c). Corrected: **σ(κ) ≈ 0.073, joint 0.1207 → 0.077** (infinite-N floor from σ_sys alone 0.048). See `doors_push_2026_10_22/D2_wide_binary_fork/README.md`.
+
 ---
 
 ## 7. What this is, and what it is not
@@ -931,6 +933,8 @@ data separate them at only 0.27σ in A71 (0.030σ vs 0.299σ) and 1.35σ in A81,
 measurement lands on `8.626×10⁻¹¹` (P-therm) or `9.355×10⁻¹¹` (κ = ½)** — that is the falsifier. What would: a wide-binary `γ_v` measurement at 18–22 kAU, which cuts the joint κ
 error from 0.1207 to 0.0605 (A71), and a homogeneous spectroscopic IMF for the 70 SLACS lenses at
 `R_E/2–R_E` to ≤ 0.03 dex.
+
+> **ERRATUM (2026-10-22, doors push D2):** σ(κ) = 0.040 and joint 0.1207 → 0.0605 are overstated. An independent FFT-QUMOND solve gives dγ_v/dκ = 0.41 (not 0.51; A71 rescaled 1.1811 by √ν instead of solving), the shared σ_sys = 0.020 cannot be divided by √7, and γ_v depends almost only on g_ext/a₀ (the two frozen g_ext values add σ(κ) = 0.031, tying a wide-binary κ to Galactic R₀ and v_c). Corrected: **σ(κ) ≈ 0.073, joint 0.1207 → 0.077** (infinite-N floor from σ_sys alone 0.048). See `doors_push_2026_10_22/D2_wide_binary_fork/README.md`.
 
 **And the audit is part of the result.** A31 found **32 defects in 130 claims** in the document
 this replaces, and A32 independently re-derived four core results from the equations alone — all

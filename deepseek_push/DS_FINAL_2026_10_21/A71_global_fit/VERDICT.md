@@ -15,3 +15,5 @@ valuable next measurement is a wide-binary γ_v at 18–22 kAU (Gaia DR4, ~30,00
 σ(κ) = 0.040, joint error 0.1207 → 0.0605, with no Υ, no IMF and no distance ladder in the measurement — and
 it doubles as A24's 4.5σ test of the EFE; more SPARC galaxies, by contrast, are worth 2% and should
 not be bought.**
+
+**ERRATUM (2026-10-22, doors push D2):** σ(κ) = 0.040 and joint 0.1207 → 0.0605 are overstated. An independent FFT-QUMOND solve gives dγ_v/dκ = 0.41 (not 0.51; A71 rescaled 1.1811 by √ν instead of solving), the shared σ_sys = 0.020 cannot be divided by √7, and γ_v depends almost only on g_ext/a₀ (the two frozen g_ext values add σ(κ) = 0.031, tying a wide-binary κ to Galactic R₀ and v_c). Corrected: **σ(κ) ≈ 0.073, joint 0.1207 → 0.077** (infinite-N floor from σ_sys alone 0.048). See `doors_push_2026_10_22/D2_wide_binary_fork/README.md`.
