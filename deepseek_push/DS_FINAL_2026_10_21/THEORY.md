@@ -778,10 +778,12 @@ per-lens Sérsic `n`, and the wide-binary forecast is a rescaling of A24's σ's,
 spectrum — 26 phase-space dimensions, 8 first-class constraints, **0 second-class**, `(26−16)/2 = 5`
 (A68, 39/39 checks with the bracket computed rather than asserted). The fifth mode is the mixed
 conformal/P-longitudinal scalar, **gapless** (`m² = 0`, `c_s² = αp²/Z → 0`, a `k⁴` mode) and healthy
-for `β > 0, η > 0, α = γ > 0`; its strong-coupling scale is `2.836×10⁻⁶⁹ eV`, so the EFT needs no
-cutoff below the horizon. Rotation curves: `χ²/dof = 2.227` on 171 SPARC galaxies with one stellar
-M/L each (A71), degenerate with the rival interpolation on total `χ²` and separated by a shape test
-(`Δχ² = 158` with no free parameters). The four gates are an internal theorem: `Φ = Ψ` at `O(ε)`,
+for `β > 0, η > 0, α = γ > 0`; its strong-coupling scale is `2.836×10⁻⁶⁹ eV = 1.9×10⁻³⁶ H₀` — a
+**deep-infrared** scale, so every mode inside the horizon is weakly coupled, and no UV statement follows
+either way (A57: this is not a UV completion). Rotation curves: `χ²/dof = 2.227` on 171 SPARC galaxies with
+one stellar M/L each (A71), degenerate with the rival interpolation on total `χ²` and separated from the
+quadrature kernel by a shape test at **`Δχ² = 158.0` (canonical footing) / `75.3` (alt)** with no free
+parameters (**A25**, not A63 — the footing dependence is A25's). The four gates are an internal theorem: `Φ = Ψ` at `O(ε)`,
 `c_T² = 1` exactly, `α₁ = α₂ = 0` with `β_PPN = 1` wherever `kL★ ≫ 1`, `dg/dg_N ≥ 1` at every
 acceleration (A54, A68, A69).
 
