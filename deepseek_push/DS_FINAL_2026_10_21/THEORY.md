@@ -452,6 +452,20 @@ the one place where a measured κ changes a *falsifiable* prediction is A54's `y
 (inside [60,140]) to 46.01 (outside). **That is a real tension, not a presentation defect**, and it is why
 §6.1's Q1 verdict is an obstruction rather than a derivation.
 
+**The fifth conflict — and it is prior to the other four: three footings for `a₀`, and κ scales linearly
+with it.** A51's own scripts carry `A0_QUOTED = 1.132e-10` (P3, three-digit) and `A0_THEORY = 0.5 ×
+cH₀√(8π/3) = 1.131204e-10`; A54 uses `A0 = 9.36e-11`; A62's "canonical" exact value is `c²√(Λ/32π) =
+9.354173e-11`; and A51's SPARC best fit lands at **`8.0815e-11`** — 28.6 % below P3's footing and 14 %
+below A62's canonical. The reason is the Λ that enters: `Λ_bare = 3H₀²/c²` gives `1.132e-10`, while
+`Λ_obs = 3Ω_ΛH₀²/c²` gives `9.354e-11`, and the two differ by `√Ω_Λ = 0.8275`. Since
+`κ = a₀/(c√(Gρ_bare))`, a 28.6 % shift in `a₀` is a 28.6 % shift in `κ`: the same SPARC data that gives
+κ = 0.371 on P3's footing gives **κ ≈ 0.307** on A62's canonical footing and **κ ≈ 0.266** at the fit's
+own minimum. **Every κ-dependent number in this document — including A54's `y_t`, and therefore the
+falsifier's firing — inherits this ambiguity.** The honest statement: the theory predicts `a₀` only once
+you choose between `Λ_bare` and `Λ_obs`, and that choice is exactly Q1's unresolved content. The three
+values span a factor 1.40, which is larger than A51's 21 % total error bar, so **the footing choice is
+currently the dominant systematic in κ**, above the coherent floor A51 identified.
+
 ---
 
 ## 7. What this is, and what it is not

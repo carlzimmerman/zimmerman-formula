@@ -52,14 +52,15 @@ Two numbers now do all the work:
 
 ## 1. Why the vacuum switches on at a twelfth of the horizon scale
 
-**Answer: it does not switch at a twelfth. It switches at 1/(2Z) = 1/11.5776201, and the
-difference is not a detail — it is the whole content of κ = ½.**
+**Answer: it does not switch at a twelfth. It switches at `1/Z = 1/5.7888100 = 0.1727473` — closer
+to a *sixth* than a twelfth — and the difference is not a detail, it is the whole content of κ = ½.
+The "1/12" is `1/(2Z)` relative to *twice* the horizon, i.e. `a₀ = 2cH/12`.**
 
 Exact, from `H² = 8πGρ/3` (K1–K3, A1; Lean `A8.kappa_Z_identity`):
 
 $$
-\frac{a_0}{cH_\Lambda}=\kappa\sqrt{\frac{3}{8\pi}}=\frac{\kappa}{2}\sqrt{\frac{8\pi}{3}}
-=\frac{1}{2Z}\ \text{at }\kappa=\tfrac12,\qquad
+\frac{a_0}{cH_\Lambda}=\kappa\sqrt{\frac{3}{8\pi}}=\frac{2\kappa}{Z}
+=\frac{1}{Z}\ \text{at }\kappa=\tfrac12,\qquad
 2\sqrt{\frac{32\pi}{3}}=2Z=11.5776201 .
 $$
 

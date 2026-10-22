@@ -37,7 +37,7 @@ surface gravity cH_Λ, *given* the two Einstein substitutions in (1.1).
 Define the pure number g ≡ 2cH_Λ/a0 ("how many a0-lengths make the doubled horizon
 acceleration"). From (1.3), a0/(cH_Λ) = 2/g, so
 
-    (2.1)  κ = (Z/2)/g
+    (2.1)  κ = Z/g            [erratum: earlier printings had (Z/2)/g; A62 proved the correct form, see A62 §6]
     (2.2)  g = 12   ⟹  κ = Z/12 = 0.4824008      ("the twelfth", taken literally)
     (2.3)  g = 2Z   ⟹  κ = 1/2 exactly           (the exact statement, 2cH/a0 = 2Z)
     (2.4)  12/2Z = 1.0364825,  i.e. the "twelfth" is 3.52 % away from κ = 1/2
