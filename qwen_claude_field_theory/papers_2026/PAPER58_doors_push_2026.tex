@@ -1,0 +1,171 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={The Open Doors of a Dark-Energy-Tied Galaxy Law}}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\sloppy
+\begin{document}
+\begin{center}
+{\Large\bfseries The Open Doors of a Dark-Energy-Tied Galaxy Law:\\ Scoped No-Gos, Record Corrections, and a Cassini Failure\\ of the Unscreened Law}\\[6pt]
+{\small Working note, 2026-10-22, v1.0. AI-assisted research programme; not peer reviewed. $\kappa=\tfrac12$ is fitted; the theory is not closed.}
+\end{center}
+
+\begin{abstract}\noindent
+The owner's programme studies a gravity framework whose galactic law is $g_N=g^2/(g+a_0)$ with $a_0=\kappa c\sqrt{G\rho_{\rm DE}}$ and $\kappa=\tfrac12$ fitted. Its extra gravitating mass is a collisionless ``cold energy'' medium, not a particle. On 2026-10-22 we made one rigorous pass over every door the record had left open. Each lane froze its criteria before computing and ran a mutation control. Both $a_0$ footings ($9.36\times10^{-11}$ and $1.13\times10^{-10}$\,m\,s$^{-2}$) are reported and never pooled. Most results are scoped no-gos and corrections to the record. None strengthens the framework.
+\begin{enumerate}
+\item \textbf{$\kappa$ is not derived.} No horizon-thermodynamic monomial gives $\tfrac12$ without square roots; with them, $\tfrac12$ appears only as $\sqrt{G\rho_\Lambda}$ times a half picked from a menu. The class's natural output is Milgrom's $a_0=cH_\Lambda/2\pi$, which is a postulate here, not a derivation. The record's claim that the data select $R=4$ (i.e.\ $\kappa=\tfrac12$) among natural caps is wrong: 5 of 7 grid values lie within $2\sigma$.
+\item \textbf{The unscreened canonical law fails Cassini.} Its $Q_2$ exceeds the Hees et al.\ (2014) $2\sigma$ line by 1.70--3.70$\times$ (canonical) and 1.91--4.03$\times$ (alternative), and the strong-field turn-off cannot help: across its whole band it moves $Q_2$ by 0.052$\sigma$. No member of the record's unscreened law family passes both $Q_2$ and SPARC on both footings (weakest tension $2.6\sigma$). This is the RAR--$Q_2$ class conflict of Desmond, Hees \& Famaey (2024). The turn-off itself has no mechanism in the action, and its scale $y_t$ is $\kappa$ relabelled. The screened case is a separate lane (D7d), still running.
+\item \textbf{The stiffness length $L_\star$} survives only as a property of a tethered state. Dwarf H\,\textsc{i} dispersions are not set by star formation, but they are not one universal number either; read as a floor they put $L_\star$ below the globular-cluster bound.
+\item \textbf{No covariant parent.} A U(1)-dielectric parent that enforces the law's Gauss identity is superluminal or needs a dark-sector Lorentz violation of $6.3\times10^{7}$ at 1\,AU; enforcing the identity in the record's healthy action brings back the no-self-gravity theorem.
+\item \textbf{Tests and their power.} The skew-sign test of the law's form is retired; the wide-binary fork is decided by systematics, not by sample size, and wide binaries shrink the joint $\kappa$ error from 0.121 to 0.077, not to 0.0605; the two sealed ALMA tests are expected to be unscorable; the native $1024^3$ shear run died of memory with no verdict.
+\item \textbf{No tested mechanism gives the retained fraction $u\approx0.47$.} The record's cluster model gives $u=0$ ($13.0\sigma$ from 0.47); counting only inflowing streams gives $u\approx0.50$ with no constants but is rejected by the profile ($\chi^2=39.0$ for 8 degrees of freedom); isolated-galaxy lensing gives $u\ge0.660\pm0.028$, so $u\approx0.47$ is not universal.
+\end{enumerate}
+One lane had not committed a result when this draft was written and is marked pending: D7d (Cassini $Q_2$ of the screened theory).
+\end{abstract}
+
+\section{Setting and rules}
+\begin{itemize}
+\item \textbf{The law.} $g_N=g^2/(g+a_0)$, the record's canonical ($n=1$) form. A tethered cold medium, whose excess density is the law's phantom, supplies the extra mass (PAPER57). Footings: canonical $a_0=9.36\times10^{-11}$, alternative $1.13\times10^{-10}$\,m\,s$^{-2}$.
+\item \textbf{$\kappa$.} $\kappa=\tfrac12$ is fitted. The thermal value $\kappa=Z/4\pi=0.460659$ ($a_0=cH_\Lambda/2\pi$, $Z=2\sqrt{8\pi/3}=5.78881$) is a postulate. It is Milgrom's relation $2\pi a_0\approx c^2(\Lambda/3)^{1/2}$ (arXiv:1605.07458, eq.~5), with the de Sitter Unruh mechanism of Milgrom (1999). The record's DSF-21 documents were corrected to say so (commit d3e4110528).
+\item \textbf{Method.} Each lane (directory \texttt{doors\_push\_2026\_10\_22/}) committed \texttt{FROZEN\_CRITERIA.md} alone before any script, then a deterministic script whose output and \texttt{*\_results.json} carry every number quoted here, and a mutation run that must break at least one check. Amendments are append-only and marked pre- or post-result. Table~\ref{tab:lanes} lists the lanes.
+\end{itemize}
+
+\begin{table}[t]\centering\small
+\caption{The lanes of the doors push. ``Checks'' is the main run; the mutation run must fail at least one. Commits: criteria / result.}\label{tab:lanes}
+\begin{tabular}{llllp{0.30\textwidth}}
+\toprule
+lane & door & verdict & checks & commits\\
+\midrule
+D1 & skew-sign test of $n=1$ vs $n=2$ & SCOPED NO-GO & 10/10 & 1f956de1e8 / ad9bea8355\\
+D2 & wide-binary fork & CRISP FINDING & 7/7 & c8960e6424 / c27b941b99\\
+D3 & CFG960 $1024^3$ run & CRISP FINDING (run) & -- & 77d59a9a38 (read-only)\\
+D4 & sealed ALMA tests & CRISP FINDING & 6/6 & 3537e6f817 / f81efdcf6f\\
+D5 & why $\kappa$ & SCOPED NO-GO & 8/8 & 91ec2c9d07 / 962007715e\\
+D6 & retained fraction $u$ & CRISP FINDING & 6/7 & 3082c43c79, A1 daf92d2d11 / b21dda1a2d\\
+D7 & turn-off $y_t$ & SCOPED NO-GO & 11/11 & f2e0423a60 / a2a07b53d9\\
+D7b & Cassini $Q_2$, unscreened law & CRISP FINDING & 7/8 & c6a0b6f3c7 / 9542a09f54\\
+D7c & $Q_2$--RAR gate, unscreened family & SCOPED NO-GO & 5/6 & e9e5349368 / 26b5db080f\\
+D7d & Cassini $Q_2$, screened law & PENDING & -- & a13e418498 / --\\
+D8 & value of $L_\star$ & CRISP FINDING & 5/5, 2/2 & 3327019734 / 3d5eb3ead9, f1da138742\\
+D8b & universality of $\sigma_c$ & CRISP FINDING & 5/5 & 97ec7892fa / 8a9f0f1234\\
+D9 & covariant parent & SCOPED NO-GO & 9/12 + 3/3 & bfb93eb61c / 2edcee066c\\
+D9b & A33 + multiplier & SCOPED NO-GO & 14/14 & ce12fb3210 / 61883a565f\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Why $\kappa$? A no-go for the horizon class (D5)}
+The law gives $\rho_\Lambda c^2/(a_0^2/G)=1/\kappa^2\equiv R$, so $\kappa=\tfrac12$ is $R=4$, $\Lambda=32\pi a_0^2/c^4$ and $a_0=cH_\Lambda/Z$.
+\begin{itemize}
+\item \textbf{The class.} $a_0$ is any monomial in the de Sitter horizon quantities with their textbook coefficients (radius, area, volume, Gibbons--Hawking temperature, Bekenstein--Hawking entropy, Misner--Sharp, Komar and vacuum energies, surface gravity) times powers of $c,G,\hbar,k_B$, with the result free of $\hbar$ and $k_B$. Exponents are integers ($D=1$) or half-integers ($D=2$).
+\item \textbf{Theorem (checked on all 3,900 enumerated monomials).} Every member is $a_0=q\pi^m cH_\Lambda$ with $q^2$ rational, so $\kappa^2=(8/3)q^2\pi^{2m+1}$. For $D=1$ the power of $\pi$ is odd, so $\tfrac12$ is impossible, and $Z/4\pi$ is the class's simplest member ($a_0=ck_BT_{\rm GH}/\hbar$). For $D=2$ all 16 constructions that give $\tfrac12$ have $m=-\tfrac12$ and $q^2=3/32$: the law's own $\sqrt{G\rho_\Lambda}$ times one of three rational halves (Misner--Sharp, Komar, $\sqrt{}$ of Bekenstein's $\tfrac14$).
+\item \textbf{No evidential weight.} The class covers the data band with probability 1.0000, for both classes and both bands, and for the 11-value minimal subclass. No member fixes a second, coefficient-dependent number: it reads either $H_\Lambda$ (constant $a_0$) or $H(z)$, giving $a_0(2.5)/a_0(0)=3.7687$, the record's rival law. Nearest class values: 0.51824 (canonical) and 0.61421 (alternative) without square roots.
+\item \textbf{Record error.} The record says the data admit only $R=4$ among natural caps. A19's own grid is $R\in\{1,2,3,4,8,12,16\}$. On the CFG493 band ($\kappa=0.417\pm0.095$), 5 of 7 lie within $2\sigma$, and $R=8$ ($-0.67\sigma$) is closer than $R=4$ ($+0.87\sigma$). Erratum e1fd7be4dc.
+\item \textbf{Scope.} Classes outside this one (bare-$G$ portals, media, quantised couplings) stay open. The data cannot rank $\tfrac12$ against $Z/4\pi$.
+\end{itemize}
+
+\section{The strong-field turn-off and Cassini}
+\subsection{The turn-off has no mechanism, and $y_t$ is $\kappa$ (D7)}
+\begin{itemize}
+\item \textbf{The canonical law needs a turn-off.} Its tail is $y(\nu-1)\to1$, a constant anomaly $a_0$. At 1.5\,AU that is 2557.4 times the planetary bound $B_E$ on the canonical footing and 3087.4 times on the alternative. The Galaxy's external field cannot remove it: the monopole of the phantom source changes by less than $10^{-9}$.
+\item \textbf{$y_t$ is $\kappa$ relabelled.} The record's closure $I(y_t)=8\pi/\kappa^2$ is one-to-one: $y_t=66.2999$ (quoted $\Lambda$), 66.3803 ($32\pi$), 46.0148 (alternative), 77.876 (thermal). The falsifier band $y_t\in[60,140]$ is exactly $\kappa\in[0.3415,0.5267]$. Nothing measures $y_t$ now: at $y_t=140$ Saturn's signal is $5.5\times10^{-4}$ of its bound, and wide binaries move by at most 0.57\%.
+\item \textbf{No mechanism in the action.} The stiffness term is a mass threshold, not an acceleration threshold, and curing the planets that way is the medium-first reading. No gate potential $W(u)$ can produce the turn-off: the anomaly peaks at $y=12.24$ with $u=0.899\,a_0$, and the same $u$ recurs at $g=0.816\,a_0$ and $72.9\,a_0$. None of 48 frozen scale monomials matches $y_t$ on all three points; a disclosed coincidence, 66.46, is off by 44\% on the alternative footing.
+\item \textbf{Record errors.} The cure's necessity was not open (A4 had it); the ``planets pass 9.14$\times$'' margin rests on a stand-in Neptune bound; an $O(10^2)$ external-field suppression cannot act on a $1/y$ tail; the thermal $y_t$ is 77.876, not 77.85 or 77.944. Erratum 3c11f5d2e0.
+\end{itemize}
+
+\subsection{Cassini $Q_2$ of the unscreened canonical law (D7b)}
+D7b computed the Solar-System quadrupole $Q_2$ of the canonical law in QUMOND, without stiffness screening (the DSF-21 A26 ``law-first'' reading), with and without the turn-off, for four external fields (A60's framework Milky Way, and kinematic totals 1.9, 2.2 and 2.6\,$a_0$).
+\begin{itemize}
+\item \textbf{The unscreened canonical law fails Cassini by 1.7--4$\times$.} Against the Hees et al.\ (2014) $2\sigma$ line ($9.0\times10^{-27}$\,s$^{-2}$) it fails at every $y_t$, every external field and both footings: 1.70--3.70$\times$ (canonical) and 1.91--4.03$\times$ (alternative). It also fails the tighter Park et al.\ (2026) line. The most favourable field still fails (1.70$\times$ canonical).
+\item \textbf{The turn-off cannot help.} It changes $Q_2$ by +0.06\% to +0.69\% (upward). Across the band $y_t\in[60,140]$, $Q_2$ moves by at most $1.6\times10^{-28}$\,s$^{-2}$, 0.052$\sigma$ of Hees et al. So no $\kappa$ range is selected. $Q_2$ is set near $y\approx1$ ($r\approx7000$\,AU); the turn-off acts at $y>60$.
+\item \textbf{The class conflict.} This failure is the known conflict between the RAR and the Solar-System quadrupole in this class of theories, already shown by Desmond, Hees \& Famaey (2024). It is not new, and it is not a property of the turn-off. The statement is about the unscreened law only; the screened case is D7d.
+\item \textbf{Checks.} An exact limit derived for this lane, $q=-(16/49)\sqrt{e_N}$, is reproduced to $5\times10^{-10}$; two routes agree to $1.1\times10^{-3}$; our QUMOND value is 0.737 of Blanchet \& Novak's AQUAL value (AQUAL fails harder). \textbf{K4 fails as frozen}: against Desmond et al.'s anchors our $|q|$ is 0.974, 0.965 and 0.965 of them (tolerance 3\%); the gap is not a tail effect, and a lower $q$ only strengthens the failure. The script therefore exits 1 (7/8). The record's ``tail'' explanation of a 1.03 calibration factor is wrong.
+\end{itemize}
+
+% PENDING D7d
+\subsection{Cassini $Q_2$ of the screened theory (D7d): pending}
+Lane D7d solves $Q_2$ for the record's screened theory (stiffness $L_\star\ge24$\,pc). Its criteria are committed (a13e418498); its result had not been committed when this draft was written. Nothing about the screened case is reported here, and D7b's failure must not be read as a statement about it.
+
+\subsection{The $Q_2$--RAR gate: does any unscreened law pass both? (D7c)}
+D7c scored the record's whole unscreened law family against both Cassini $Q_2$ (D7b's solver, Hees $2\sigma$, all four external fields) and SPARC (AG4b's per-galaxy pipeline, paired statistic, fail at $z\le-2$). Criteria e9e5349368, result 26b5db080f. SCOPED NO-GO for the unscreened family, with one near-miss.
+\begin{itemize}
+\item \textbf{No law passes both on both footings.} The weakest tension anywhere in the family is $2.56\sigma$ (Hees), in one cell of the $\beta$ family.
+\item \textbf{Named laws.} All five named record laws (the canonical $n=1$ law, $n=2$, $\nu_{\rm mono}$, the standard $\mu$, $\nu_{\rm RAR}$) fail unscreened $Q_2$ at every external field on both footings: 1.18--4.15$\times$ the Hees line overall. All also fail Park et al.
+\item \textbf{The action's capacity family.} SPARC passes on both footings only at $n=2$, whose $Q_2$ fails at $2.89$--$8.24\sigma$. $Q_2$ passes at all four fields only at $n=8$, which SPARC disfavours at $z=-6.32$ (canonical).
+\item \textbf{The near-miss.} In the $\beta$ family (the record's ``effective description''), $\beta\ge2.5$ passes $Q_2$ on the canonical footing and the graded SPARC statistic, but fails the alternative footing in the framework's own Milky-Way field by 1.19--1.23$\times$ for $\beta$ from 4 to 40, a floor no $\beta$ crosses. The secondary SPARC statistic disfavours the same members; which statistic one trusts decides the canonical reading.
+\item \textbf{External-field dependence.} The canonical law passes the Hees line only for a total external field $g_e\le8.20\times10^{-11}$ (canonical) or $8.13\times10^{-11}$\,m\,s$^{-2}$ (alternative), below both the kinematic field at the Sun and the framework's own Milky-Way field.
+\item \textbf{Checks.} 5/6: K4 fails as frozen (a tabulation difference of $3.3\times10^{-9}$ against a $10^{-10}$ tolerance; numerical only), and the script exits 1. The first run's K3 failure was check-side round-off, fixed post-result (amendment A1); that run is kept. The mutation run bites (3/6). The statements concern unscreened law forms only; the screened case is D7d.
+\end{itemize}
+
+\section{The stiffness length $L_\star$ (D8, D8b)}
+\begin{itemize}
+\item \textbf{Two objects, one length.} A76's sound speed (at the cosmic mean density) is exactly AG6D's free-medium equation of state ($0.720398$\,m/s at 24\,pc), so AG6D's bound applies: in the free medium $\sigma_c\le1.70$ (canonical) or 1.87\,km/s (alternative), below the $10^4$\,K width by 4.84 and 4.41 times. $L_\star=\sigma_c^2/a_0$ as a free-medium stiffness is excluded; it survives only as a property of a tethered state that no action term yet defines.
+\item \textbf{Record error: the 24\,pc floor is a measurement.} It is CFG820's globular-cluster $\chi^2$ bound (fine-grid roots 23.641 / 24.476\,pc). It excludes the thermal $L_\star$: $\Delta\chi^2=3.913$ (canonical, by 0.07) and 5.992 (alternative). Erratum 9e6fbbbfcd.
+\item \textbf{Measured dispersions.} Six tidal dwarfs give median $L_\star$ 42.2 / 35.0\,pc with an 84/16 spread of 4.45. Stilp et al.\ (2013), 23 dwarfs at a common 200\,pc beam, give median $\langle\sigma_{m2}\rangle=9.30$\,km/s, so $L_\star=29.95$ / 24.80\,pc, with 84/16 $=1.995$, a knife-edge pass of the frozen ``one constant'' line ($\le2$). The narrow-peak width gives 20.5 / 17.0\,pc, below the floor.
+\item \textbf{But $\sigma$ is not universal (D8b).} Star formation does not drive it (FLOOR FAVOURED: $\rho=+0.474$, $p=0.023$ against $\alpha=0.0125$; slope $+0.088$, 95\% CI [$+0.026$, $+0.149$], excluding $1/3$). But its spread is real: $\chi^2=99.3$ for 22 degrees of freedom on tabulated errors, intrinsic scatter 0.96\,km/s, against an 84/16 of 1.28 from noise alone. It tracks the H\,\textsc{i} column ($\rho=+0.613$, $p=0.0024$). Read as a floor, the minimum $\sigma_{m2}$ gives 17.0 / 14.1\,pc, below the globular bound on both footings. So D8b does not strengthen the conditional prediction $L_\star\approx25$--30\,pc: it holds only if $\sigma_c$ is a typical, gas-set value, and then $L_\star$ depends on environment, in conflict with the record's use of one $L_\star$ for gas-free systems.
+\end{itemize}
+
+\section{No covariant parent (D9, D9b)}
+\begin{itemize}
+\item \textbf{U(1)-dielectric parents (D9).} Any such parent that enforces the law's Gauss identity (phantom $=$ cold medium) has a fastest speed $v_{\max}^2\ge(1+g/a_0)/\Lambda_{\rm LV}$, where $\Lambda_{\rm LV}$ is the dark sector's Lorentz-violation factor. It is exactly 1 for every Lorentz-invariant $L(X,Y)$, so all such parents are superluminal (the record's NG2, now for every $L(X,Y)$; erratum 05a3bfdb73). A foliated parent is causal only if $\Lambda_{\rm LV}\ge1+g/a_0$: $6.3355\times10^{7}$ (canonical) and $5.2478\times10^{7}$ (alternative) at 1\,AU. The frozen exact-speed checks U2, U4 and U5 failed (a parity-odd term mixes polarisations; 9/12); a post-result amendment proved the bound survives the mixing (3/3). A map of all parent classes is in the lane (\texttt{MAP.md}).
+\item \textbf{The record's action escapes only by not enforcing the identity.} DSF-21's A33 action is causal because its field is the capped $u$; its cone excess at $\eta=\gamma$ is $1.19\times10^{-18}$ / $1.73\times10^{-18}$ at $L_\star=24$\,pc. Its identity is a matching, not a field equation.
+\item \textbf{Enforcing it (D9b).} With a multiplier enforcing $\mathbf D\cdot\mathbf P=\rho_c-\bar\rho$, the literal action counts the medium twice ($s=2$): at $g=a_0/3$ it misses the law by $-0.55\,a_0$, with no deep branch. The law-preserving version is unique, has 4 second-class constraints and 7 degrees of freedom, is causal and well posed on FRW, and is exactly AQUAL with $\mu=x/(1+x)$ in the static limit. But it meets every hypothesis of the no-self-gravity theorem D-T (growth $a^{0.60953}$ in EdS), and the positivity no-go NG1 applies ($\rho_c$ down to $-231\,\bar\rho$ at saddles, alternative). 14/14 checks; a first run with three code bugs (11/14) is kept.
+\item \textbf{Conclusion.} Enforcing the identity is what brings back D-T and NG1. No covariant parent is established; $L_\star$ and $\eta/\gamma$ remain inputs.
+\end{itemize}
+
+\section{Tests and their power}
+\subsection{The skew-sign test is retired (D1)}
+The record proposed the sign of the residual skew to separate $n=1$ from $n=2$. In $\log g$ both laws predict negative skew across the whole window ($\sqrt{N_s}\,$skew at $a_0/2$: $-4.38$ for $n=1$, $-2.44$ for $n=2$). In linear $g$ the signs differ, but errors symmetric in $\log g$ make a linear skew: $+0.42$ from a 0.06\,dex background, and 2.86 (canonical) / 3.18 (alternative) measured on SPARC outside the window, against best-case signals of $+0.062$ and $-0.164$ (canonical), 17--51 times smaller. The record's power estimate (7,000--13,500 points) also used the $N_s=1$ skew with $N_s=93.1$ normalisation; correcting it multiplies the required number by 93 ($n=1$) and 384 ($n=2$). SCOPED NO-GO on any rotation-curve data. Erratum f775a7e6c5.
+
+\subsection{The wide-binary fork is decided by systematics (D2)}
+\begin{itemize}
+\item \textbf{1.18 is the law's number.} An independent FFT QUMOND solve gives 1.1971 for A24's case (A24: 1.1933) and, orientation-averaged at the pre-registered external field, 1.175 (canonical) / 1.210 (alternative). Medium-first predicts 1.000.
+\item \textbf{The $\kappa$ leverage was overstated.} With the shared systematic and the external-field degeneracy, $\sigma(\kappa)=0.073$, so the joint error goes 0.121$\,\to\,$0.077, not 0.0605 (floor 0.048 at infinite $N$).
+\item \textbf{One bin cannot decide.} The DR3 frozen-cut catalogue has 43 of 6,210 pairs (0.69\%) in 18--22\,kAU, not A24's 7.41\%. The whole-catalogue $\hat\gamma$ separates the law's floor from 1.000 at 5.04--5.85$\sigma$ (canonical) and 5.98--6.95$\sigma$ (alternative), but 3$\sigma$ is unreachable at any $N$ if the systematic exceeds 0.054 (canonical) / 0.064 (alternative); the record's inter-group spread is 0.174. A pre-DR4 note fixes this rule before the data (commit 8658130bd0; the frozen pre-registration is untouched).
+\item \textbf{Satellites fail both readings.} A26's law-first verdict omitted the host's external field; with it, the 45 sub-threshold satellites sit $+1.25$\,dex above the law (5 of 45 within 0.5\,dex). Current data are open. Erratum c749c5007d.
+\end{itemize}
+
+\subsection{The sealed ALMA tests are expected to be unscorable (D4)}
+The two governing plans (U4\_27928, public 2026-11-06; GS4\_24110, public 2026-11-28; dates from the record's archive metadata, not re-checked) are harness-complete on mock data. The record's forecast puts the gate statistic at S/N 0.18--0.58 (U4) and 0.04--0.15 (GS4) against a required 5, with no taper branch, so the expected outcome on both dates is ``G1 FAIL, upper limit'', with nothing scored. With perfect data, U4 reaches $4.34\sigma$ (framework vs rival, governing kernel, canonical) only for $V_c\approx240$--260\,km/s and only while the 0.2\,dex stellar-mass systematic is kept out; propagated, the separation is 0.00. GS4 cannot separate $n=1$ from $n=2$ ($\le0.51\sigma$ on every branch). The governing plans score only the $\nu_{\rm mono}$ kernel, so the canonical law has no governing reading; a kernel addendum is the owner's choice. One disc excludes no model.
+
+\subsection{The native $1024^3$ shear run died of memory (D3)}
+CFG960's pre-registered SC1x run (canonical footing) was killed four times by its own frozen swap rule, three times at the same force call (step 89 of 150, $a=0.19$); the process footprint reached 65.2\,GB on a 64\,GiB machine, against a pre-registered estimate of 43--47\,GB. SC2x (alternative) never started. No scored snapshot exists: \textbf{no verdict on either footing}. Status when this draft was written: the chain stopped on 2026-10-22 at 01:01 local and has not been restarted; the ledger row still reads ``STARTED''. A restart under the frozen files is expected to die at the same step; any fix changes a frozen file and needs a dated pre-result amendment, or a machine with $\ge96$--128\,GB.
+
+\section{The retained-fraction mechanism (D6)}
+The record's cluster lensing needs the law's phantom to supply a fraction $u=0.4716$ of the observed excess inside splashback (P4). D6 looked for a mechanism. Criteria 3082c43c79, pre-score amendment daf92d2d11, result b21dda1a2d. CRISP FINDING, but no mechanism works.
+\begin{itemize}
+\item \textbf{The record's cluster model gives zero.} CFG959 sets its unrelaxed fraction to 1 for clusters, so P4's sourcing share is $1-f_P=0$, which is $13.0\sigma$ below 0.4716 (read the other way, $u=1$, it is $14.6\sigma$ above). Getting 0.47 would need cluster galaxies with $v/\sigma=1.64$. The two papers' ``$u$'' are complements under one symbol.
+\item \textbf{Record error: a sign.} At fixed retained fraction, $d\ln u/d\ln M_v=-1/6$ (numerically $-0.16680$), not the record's $+1/6$.
+\item \textbf{Stream counting gives $\tfrac12$, and the profile rejects it.} If only inflowing cold matter sources the phantom (a new posit, not in the action), the self-similar infall solution gives $u\approx0.50$ inside splashback at every accretion index tried, and $u_{\rm MID}=0.489$ / 0.492 / 0.495 on the 318-cluster stack, within $0.7\sigma$ of 0.4716. But the 8-bin profile fails: $\chi^2=39.0$ / 37.3 / 36.7 for 8 degrees of freedom (canonical), the same as the record's own fitted 3D step, which the record already rejects. Its two second predictions also fail. Counting only the never-crossed stream gives $u_{\rm MID}=0.06$--0.14.
+\item \textbf{Galaxy lensing gives a different $u$.} Isolated KiDS-1000 lenses give $u_{\rm gal}\ge0.660\pm0.028$ (canonical) and $0.729\pm0.031$ (alternative), $6.8\sigma$ / $8.4\sigma$ above 0.4716 (statistical only; a $-0.25$\,dex stellar-mass systematic would erase it). So $u\approx0.47$ is not universal. Cluster hydrostatic masses give 0.344 or 0.230 depending on the bias assumption; the two ends differ by $6.1\sigma$, so this channel cannot yet test $u$ independently of lensing.
+\item \textbf{Disclosures.} K3 fails (the solver's interior slope is 0.625 against the asymptotic 0.75), so the deep profile is not certified and the script exits 1 (6/7). K4's tolerance was loosened after the run (an interpolation offset of $6\times10^{-6}$), disclosed in the code. The mutation run bites (5/7). Record error also noted: the record's ``3D step in $r$'' should read ``a feature of the projected ratio''.
+\end{itemize}
+
+\section{Record corrections}
+Six errata were written fix-forward into the record (originals kept): f775a7e6c5 (D1: skew-sign discriminator retired), e1fd7be4dc (D5: the data do not select $R=4$), 3c11f5d2e0 (D7: turn-off needed; planet margin; thermal $y_t$), 9e6fbbbfcd (D8: the 24\,pc floor is CFG820's bound; free-medium $L_\star$ excluded), c749c5007d (D2: $\kappa$ leverage, bin occupancy, fork not resolved), 05a3bfdb73 (D9: NG2 covers all Lorentz-invariant $L(X,Y)$). The DSF-21 documents now call $\kappa=Z/4\pi$ a postulate and credit Milgrom (d3e4110528).
+
+\section{What this establishes, and what it does not}
+\begin{itemize}
+\item \textbf{Established.} $\kappa$ is not derivable in the horizon-thermodynamic class, and the data do not select $\tfrac12$ among natural caps. The unscreened canonical law fails Cassini $Q_2$ by 1.7--4$\times$, and the turn-off cannot change that; no member of the unscreened law family passes both $Q_2$ and SPARC on both footings. The turn-off has no mechanism in the action. Free-medium $L_\star$ is excluded. Gauss-enforcing parents are superluminal, Lorentz-violating, or lose self-gravity. The skew-sign test is retired. No tested mechanism gives the retained fraction $u\approx0.47$, and it is not universal.
+\item \textbf{Open and data-gated.} The wide-binary fork (Gaia DR4, if the systematic is below 0.054 / 0.064). The ALMA tests (expected unscorable). The native shear test (no verdict). The screened $Q_2$ (D7d).
+\item \textbf{Not derived.} $\kappa=\tfrac12$, $L_\star$, $\eta/\gamma$, the retained fraction. No covariant parent is established. Cold energy remains a medium, not a particle species. No result here is evidence for the framework over its rivals.
+\end{itemize}
+
+\textbf{Disclosures.} D7b's frozen check K4 fails (anchor convention; exit 1) and one post-result amendment explains it. D9's frozen checks U2, U4, U5 fail; amendment A1 (post-result, 7bdd5fee57) adds the lower-bound checks; the first run is kept. D9b's first run (11/14, code bugs) is kept. D8's amendment A1 (ce9340ccbc) and A2 (95a7ec3a41, the owner-approved fetch of Stilp et al.) are pre-result. D8b's K4 label parser was fixed after its first run (no criterion changed). D7c's K4 fails as frozen; its amendment A1 is post-result (check-side round-off) and its first run is kept. D6's amendment A1 is post-prototype and pre-score; its K3 fails and its K4 tolerance was loosened after the run. D3 is read-only forensics with no criteria file. D1's best case is an upper bound on the signal, not a forecast. D4's power numbers are noise-free ceilings. Not blind: the lanes read the record's numbers before freezing.
+
+\vspace{2pt}\hrule\vspace{2pt}
+{\footnotesize
+Repository lanes (criteria, scripts, outputs) under \texttt{doors\_push\_2026\_10\_22/}: D1--D9b as in Table~\ref{tab:lanes}; the pre-DR4 note under \texttt{prep\_2026/gaia\_dr4\_prep/}. Companion notes: PAPER49 v1.2 (doi:10.5281/zenodo.23533323), PAPER55 (doi:10.5281/zenodo.23482936), PAPER56 (doi:10.5281/zenodo.23532875), PAPER57 (doi:10.5281/zenodo.23532885).
+Planetary bounds: A.~Hees, W.~M.~Folkner, R.~A.~Jacobson, R.~S.~Park, PRD 89, 102002 (2014); R.~S.~Park et al., PRD 114, 024066 (2026). Class conflict: H.~Desmond, A.~Hees, B.~Famaey, MNRAS 530, 1781 (2024). Cross-check: L.~Blanchet, J.~Novak, arXiv:1105.5815 (2011).
+Data: S.~A.~Cookson et al., MNRAS 547, stag342 (2026) (wide binaries); A.~M.~Stilp et al., ApJ 765, 136 (2013) (dwarf H\,\textsc{i} dispersions); F.~Lelli et al., A\&A 584, A113 (2015) (tidal dwarfs); F.~Lelli, S.~McGaugh, J.~Schombert, AJ 152, 157 (2016) (SPARC).
+Theory: M.~Milgrom, ApJ 270, 365 (1983); M.~Milgrom, Phys.\ Lett.\ A 253, 273 (1999) (astro-ph/9805346); M.~Milgrom, arXiv:1605.07458; M.~Milgrom, MNRAS 403, 886 (2010) (QUMOND).
+AI assistance: Anthropic's Claude (lanes, review, drafting).}
+\end{document}
