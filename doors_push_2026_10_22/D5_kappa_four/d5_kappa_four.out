@@ -1,0 +1,42 @@
+==============================================================================
+D5_kappa_four  (mutate=False)
+==============================================================================
+inputs: H0 67.4, Omega_L 0.6847 -> rho_L 5.842446e-27 kg/m^3, H_L 1.807422e-18 1/s; Z = 5.788810
+bands: CFG493 kappa 0.417 +- 0.095 ; A81 joint kappa_P3 0.3781 +- 0.1208 -> kappa_DE 0.4572 +- 0.1461 (x1.20933)
+
+-- K0 convention chain
+K0   PASS R=rho c^2/(a0^2/G) - 1/kappa^2 = 0; kappa=1/2: Lambda-32pi a0^2/c^4 = 0, a0-cH/Z = 0, G rho-4a0^2/c^2 = 0   all exactly 0
+
+-- Angle T: horizon-thermodynamic class H_D (<=3 blocks, |e|<=2)
+     D=1: 717 admissible monomials -> 97 distinct kappa
+     D=2: 3183 admissible monomials -> 394 distinct kappa
+K1   PASS max |SI a0/(q pi^m cH) - 1|, |SI kappa/key kappa - 1| = 1.11e-15 over 3900 monomials; m in Z/D: True   < 1e-9 and True   [T1: every admissible monomial is q pi^m c H_L]
+K2   PASS 1/2 in S_1: False (S_1 pi-exponent parity as the mode predicts [odd; even under MUTATE]: True)   1/2 not in S_1   [T2: kappa^2 = rational x pi^odd != 1/4 (pi transcendental)]
+K3   PASS Z/4pi in S_1: True  via T_GH^1   Z/4pi in S_1   [a0 = cH/2pi = c kB T_GH/hbar]
+K4   PASS 16 S_2 constructions give exactly 1/2; all have m=-1/2, q^2=3/32 and a square root of a pi-odd block: True   True   [T3]
+     1/2 in S_2 via  A^-1/2 * S_BH^1/2 * u_L^1/2   (m=-1/2, q^2=3/32)
+     1/2 in S_2 via  r_H^-1 * E_MS^1 * u_L^1/2   (m=-1/2, q^2=3/32)
+     1/2 in S_2 via  r_H^-1 * u_L^1/2 * E_L^1   (m=-1/2, q^2=3/32)
+     1/2 in S_2 via  E_MS^1 * u_L^1/2 * E_K^-1   (m=-1/2, q^2=3/32)
+     1/2 in S_2 via  E_MS^1 * u_L^1/2 * g_s^1   (m=-1/2, q^2=3/32)
+     S_1 vs CFG493 band [0.227, 0.607]: 10 of 48 values in band (p_elem 0.2083); P_cover 1.0000; within 1% of 1/2 (not 1/2): 0
+     S_1 vs A81_DE band [0.165, 0.749]: 16 of 48 values in band (p_elem 0.3333); P_cover 1.0000; within 1% of 1/2 (not 1/2): 0
+     S_2 vs CFG493 band [0.227, 0.607]: 47 of 228 values in band (p_elem 0.2061); P_cover 1.0000; within 1% of 1/2 (not 1/2): 0
+     S_2 vs A81_DE band [0.165, 0.749]: 71 of 228 values in band (p_elem 0.3114); P_cover 1.0000; within 1% of 1/2 (not 1/2): 0
+     [extra] minimal S_1 (<=2 blocks, sum|e|<=2): 11 values, 3 in CFG493 band, P_cover 1.0000; members in band: 0.2303, 0.3455, 0.4607
+K5   PASS P_cover(S_1, CFG493) 1.0000 ; P_cover(S_2, CFG493) 1.0000   finite, in [0,1]
+     footing canonical a0 9.3603e-11 -> kappa 0.50000 ; nearest S_1 0.51824 (r_H^1 * A^1 * u_L^2, +0.0156 dex) ; nearest S_2 0.50000 (+0.0000 dex)
+     footing alt       a0 1.1312e-10 -> kappa 0.60425 ; nearest S_1 0.61421 (r_H^-1 * T_GH^2 * u_L^-1, +0.0071 dex) ; nearest S_2 0.60021 (-0.0029 dex)
+     D3: class members read H_L (a0 constant for w=-1, same as the framework) or H(z): a0(2.5)/a0(0) = H(2.5)/H0 = 3.7687; no coefficient-dependent second number
+
+-- Angle A: A19's own natural grid vs the data
+K6   PASS A19 K10 reproduced: 6.14 / 3.05 / 0.87   6.14/3.05/0.87 +-0.01
+     CFG493: R=1 k=1.000 z=+6.14  R=2 k=0.707 z=+3.05  R=3 k=0.577 z=+1.69  R=4 k=0.500 z=+0.87  R=8 k=0.354 z=-0.67  R=12 k=0.289 z=-1.35  R=16 k=0.250 z=-1.76
+             R=4pi k=0.282 z=-1.42 ; caps R=1..8 within 2 sigma: [3, 4, 5, 6, 7, 8]
+     V_A CFG493 CONTRADICTED: 5 of 7 A19-grid values within 2 sigma; closer than R=4: [8]
+     A81_DE: R=1 k=1.000 z=+3.71  R=2 k=0.707 z=+1.71  R=3 k=0.577 z=+0.82  R=4 k=0.500 z=+0.29  R=8 k=0.354 z=-0.71  R=12 k=0.289 z=-1.15  R=16 k=0.250 z=-1.42
+             R=4pi k=0.282 z=-1.20 ; caps R=1..8 within 2 sigma: [2, 3, 4, 5, 6, 7, 8]
+     V_A A81_DE CONTRADICTED: 6 of 7 A19-grid values within 2 sigma; closer than R=4: []
+K7   PASS Angle-A verdict computed for both bands: CFG493 CONTRADICTED, A81 CONTRADICTED   computed
+
+D5_KAPPA_FOUR COMPLETE: 8/8 checks PASS.
