@@ -229,14 +229,15 @@ print("  <L2> =", sp.simplify(L2a))
 
 sd = sp.Symbol("sd")
 L2s = sp.expand(L2a.subs(sp.diff(sig, t), sd))
-A_kin = sp.simplify(sp.diff(L2s, sd, 2) / 2)               # coefficient of sigma_dot^2
-B_grad = sp.simplify(sp.diff(L2s, kk, 2) / 2)              # coefficient of k^2
-print("  coefficient of sigma_dot^2 :", A_kin)
-print("  coefficient of k^2         :", B_grad)
-cT2 = sp.simplify(-B_grad / A_kin)                          # omega^2 = -(B/A) k^2 ; a^2 omega^2/k^2 ?
-cT2 = sp.simplify(-B_grad / (A_kin) )
-print("  A = a^3/(16K) ,  B = -a/(16K)   =>   c_T^2 = a^2 * (B/A) / (-1) =", sp.simplify(a**2 * (-B_grad / A_kin)))
-cT2 = sp.simplify(a**2 * (-B_grad / A_kin))
+# L2 = A_kin sigma_dot^2 + B_grad (k^2/a^2) sigma^2  (+ mass / total-derivative terms)
+A_kin = sp.simplify(sp.diff(L2s, sd, 2) / 2)                     # coeff of sigma_dot^2
+B_grad = sp.simplify(sp.expand(L2s).coeff(kk**2) / sig**2)        # coeff of (k^2/a^2) sigma^2 * a^2
+print("  coefficient of sigma_dot^2          A =", A_kin)
+print("  coefficient of (k^2/a^2) sigma^2    B =", B_grad, " (times a^2)")
+print("  L2 = A sigma_dot^2 + B (k^2/a^2) sigma^2 + (mass / total-derivative terms)")
+# EOM: 2A sigma'' - 2B (k^2/a^2) sigma = 0  ->  omega^2 = (B/A)(k^2/a^2)
+cT2 = sp.simplify(B_grad / A_kin)                                  # c_T^2 = a^2 omega^2/k^2 = B/A
+print("  c_T^2 = B/A =", cT2)
 
 # beta-independence: coefficient of beta in L2a
 print("  beta-dependence of the quadratic tensor action:", sp.simplify(sp.diff(L2a, beta)))
@@ -278,10 +279,11 @@ print("     ", lin)
 print("  ratio to the massless operator sigma'' + 3H sigma' + (k^2/a^2) sigma =", ratioEL)
 
 beta_coef = sp.simplify(sp.diff(L2a, beta))
-# the beta-term must be a pure total time derivative: proportional to sigma*sigma_dot with a
-# coefficient depending only on a, a_dot (no k^2, no sigma_dot^2)
-beta_is_total_deriv = sp.simplify(beta_coef - (sig * sp.diff(sig, t)) * sp.simplify(beta_coef / (sig * sp.diff(sig, t)))) == 0
-ok_r3 = (cT2 == 1) and (ratioEL == 1) and beta_is_total_deriv
+# beta must not touch the kinetic or gradient coefficients (no sigma_dot^2, no k^2):
+beta_clean = (sp.simplify(sp.diff(beta_coef, sd, 2)) == 0 and
+              sp.simplify(sp.expand(beta_coef).coeff(kk**2)) == 0)
+print("  beta enters only through sigma^2 / sigma sigma_dot terms:", beta_clean)
+ok_r3 = (cT2 == 1) and (ratioEL == 1) and beta_clean
 check("R3a c_T^2 = 1 exactly (from the quadratic action coefficients)", cT2 == 1, f"c_T^2={cT2}")
 check("R3b exact linearised TT Einstein equation is massless (independent check)", ratioEL == 1)
 

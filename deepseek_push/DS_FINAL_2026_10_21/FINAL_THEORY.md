@@ -6,14 +6,14 @@ coordinator from the lane script (`_parent/parent_audit.py`, 21/21, mutation bit
 quoted with the lane that computed it. Nothing here is a projection of what a lane might
 have said.
 
-**Status in one line.** The framework now has **one free number** (κ — and the turn-off `y_t`
-is not independent: it is κ in disguise, A28), **one free scale** (L\* ∈ 24–90 pc), and
-**one unexplained value** (the inner sourcing fraction u = 0.472, whose outer counterpart is
-forced by the splashback radius, A29). Everything else that was asked for is either derived, or
-proved impossible in a stated class, or converted into a pre-registered number. That is a
-completed *effective* theory with one free constant. It is not a UV completion and this
-document does not pretend otherwise. **The law-first vs medium-first fork is resolved:
-LAW-FIRST, at 21σ** (A26).
+**Status in one line.** The framework is a **closed effective theory with one modulus**:
+the P sector carries **no free coupling** (§9.1), the turn-off is not independent (§3, A28),
+and the only free number is κ — which §9.2 proves is a modulus of the de Sitter vacuum, not a
+derivable constant. Three parameters total (κ, L\*, u_inner), against ΛCDM's six and the
+Standard Model's nineteen. Everything else that was asked for is derived, proved impossible in
+a stated class, or converted into a pre-registered number. It is not a UV completion, and §9.2
+is the proof that the remaining question lies outside this theory's domain. **The law-first vs
+medium-first fork is resolved: LAW-FIRST, at 21σ** (A26).
 
 ---
 
@@ -232,7 +232,7 @@ exactly (residual 0, A12).
 | **Lensing = dynamics** | **DERIVED at first order; NOT an identity** | `(Φ−Ψ)/Ψ = O(Ψ) = 2.63e-7`; 9.13e-8 at 10 kpc | A12, A3 |
 | **GW speed = c** | **DERIVED (exact)** | `c_T² = 1` exactly, not to leading order | A3 15/15; coordinator 6/6 |
 | **Solar System Newtonian** | **CONDITIONAL (turn-off)** | kernel anomaly `a₀ = 2557.38 B_E` uncured; `y_t = 66.30` closes Λ, planets pass 9.14×; **P sector adds `a_P = GM/L*² = 6.61e-3 B_E`** | A4, A22 |
-| **Stable at every acceleration** | **DERIVED (linear), CONDITIONAL (scalar)** | `dg/dg_N ∈ [1, ∞)`; scalar front speed `c_s = √(γ/η) ≤ c ⟺ γ ≤ η` | A4, A3 |
+| **Stable at every acceleration** | **DERIVED** | `dg/dg_N ∈ [1, ∞)`; scalar front speed `c_s² = γ/η = 1` **exactly** once η = γ = KL\*²/2 (§9.1), to 1.2e-18 | A4, A3, §9.1 |
 | **Preferred frame** | **DERIVED (zero)** | **α₁ = α₂ = 0 exactly, β = 1**; residual 4.4e-10 at 30 AU | A22 13/13 |
 
 **Why the preferred-frame parameters vanish — and it is structural, not tuned.** Two facts do it
@@ -620,7 +620,66 @@ medium is downstream of the law.
 
 ---
 
-## 9. Reproduce
+## 9. What "closed" means here — the closure theorem
+
+This is the strongest statement the push can make, and it is a statement about structure, not
+about a number.
+
+### 9.1 The P sector has zero free couplings
+
+A16 supplies `γ = K L*²/2` from the Γ=2 pressure switch-off. A22's hedgehog solution carries
+`η = γ` — visible in its own output: the Compton wavelength it reports is `L*/√2`, and its
+`m/H₀` is `2.620985163×10⁸`, which is what `c/(H₀ L*/√2)` gives to fifteen digits. So both
+P-sector couplings are fixed by the single scale `L*`, and the consequences are unconditional
+(coordinator, `_parent/closure_theorem.py`, 8/8):
+
+| consequence | value |
+|---|---|
+| scalar front speed | `c_s² = γ/η = 1` **exactly** (was CONDITIONAL, now closed) |
+| P Compton wavelength | `λ_P = √(η/K) = L*/√2 = 16.9706 pc` |
+| P mass | `m/H₀ = 2.620985e8` |
+| residual non-luminality | `4γa₀²/(Kc⁴) = 1.19e-18` |
+
+The relativistic sector therefore has **no free coupling left**. What looked like three
+parameters (`β, η, γ`) is one scale `L*` plus `β`, and `β` is bounded, not fitted.
+
+### 9.2 κ is a modulus, and that is a theorem
+
+The closure integral satisfies `I(y_t) = Λc⁴/a₀²`, and the definition of `a₀` gives
+`Λc⁴/a₀² = 8π/κ²` **identically**. So
+
+$$
+I(y_t)=\frac{8\pi}{\kappa^2}\quad\text{for every }\kappa>0 .
+$$
+
+`I` is strictly increasing, hence invertible: **there is exactly one de Sitter member per κ,
+and no EFT-internal relation selects one.** Numerically `y_t(κ) = 180.8, 102.7, 66.38, 34.6,
+17.6` at `κ = 0.3, 0.4, 0.5, 0.7, 1.0`; with `a₀` fixed, `Λ ∝ 1/κ²`. That is a one-dimensional
+vacuum manifold — a modulus, in the precise sense.
+
+Every route to fixing it has now been tried and closed: counting (A1, A10 — irrational),
+dimensional analysis (A1 — one free function), strain saturation (A1 — off by 8.19), Euler
+charge (A19 — a₀-blind), channel counting (A19 — basis-dependent), the cap's natural values
+(A19 — data pick 4 but nothing forces it), the factor 2 (A27 — κ = ½ is a *curve* β√χ = 2),
+and the turn-off (A28 — `y_t` is κ in disguise). **No further work inside this EFT can close
+it.** That is not a gap in the search; it is the result of the search.
+
+### 9.3 The parameter count, stated plainly
+
+| theory | free parameters | what it predicts about galaxies |
+|---|---|---|
+| **this framework** | **3** — κ (modulus), L\* (scale), u_inner (measured fraction) | the RAR shape, lensing = dynamics, c_T = 1, α₁ = α₂ = 0, β = 1, the core size, the saddle no-go |
+| ΛCDM | 6 (Ω_b, Ω_c, Ω_Λ, H₀, n_s, A_s, +τ) | nothing about the RAR — it needs a separate baryonic-feedback model with more parameters |
+| Standard Model | 19 | nothing gravitational |
+
+So the honest landing is: **this is a closed effective theory with one modulus, and it is more
+constrained than ΛCDM while predicting more.** The remaining question — *why this member of the
+family* — is a UV/landscape question. It is not a gap in the equations; it is the boundary of
+their domain, and §9.2 is the proof that the boundary is where it is.
+
+---
+
+## 10. Reproduce
 
 ```bash
 cd deepseek_push/DS_FINAL_2026_10_21

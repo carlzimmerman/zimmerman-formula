@@ -1,0 +1,358 @@
+{
+  "lane": "A33_master_action",
+  "status": "DERIVED (assembly) + CONDITIONAL(3 unfixed functionals)",
+  "mutation": "none",
+  "checks": [
+    {
+      "id": "K1_lapse_eq_is_hamiltonian_constraint",
+      "pass": true,
+      "value": "0",
+      "threshold": "0",
+      "note": "R3 - KijKij + (1+beta)theta^2 - 2Lambda = 4K(rho + D.P + W + gamma/2 (D.P)^2)"
+    },
+    {
+      "id": "K1b_R3_formula_vanishes_on_isotropic_Schwarzschild",
+      "pass": true,
+      "value": "[0, 0, 0]",
+      "threshold": "[0,0,0]",
+      "note": "f = (1+m/r)^4, exact rational arithmetic"
+    },
+    {
+      "id": "K2_P_eq_static_spherical",
+      "pass": true,
+      "value": "NV",
+      "threshold": "const",
+      "note": "(1+gamma D.P)(lnN)' + gamma (D.P)' = K W'(u)"
+    },
+    {
+      "id": "K3_law_gN_eq_g2_over_g_plus_a0",
+      "pass": true,
+      "value": "0",
+      "threshold": "0",
+      "note": "g = K W'(u),  g_N = g - u  =>  g_N = g^2/(g+a0)"
+    },
+    {
+      "id": "K3b_quadratic_W_gives_a_different_law",
+      "pass": true,
+      "value": "-g**2/(a0 + g)",
+      "threshold": "nonzero",
+      "note": "the log form is selected: only it returns g^2/(g+a0)"
+    },
+    {
+      "id": "K4_law_is_AQUAL_mu_x_over_1px",
+      "pass": true,
+      "value": "0",
+      "threshold": "0",
+      "note": "mu(x)=x/(1+x)"
+    },
+    {
+      "id": "K5_clock_coefficient_is_one",
+      "pass": true,
+      "value": "resid(xi=1)=0  |dev(xi=2)|=0.55",
+      "threshold": "0 / >0.05",
+      "note": "the law forces the clock coefficient to exactly 1"
+    },
+    {
+      "id": "K6_cT2_equals_1",
+      "pass": true,
+      "value": "1",
+      "threshold": "1",
+      "note": "no operator carries two derivatives of h^TT; (xi R_ij P^iP^j shifts it)"
+    },
+    {
+      "id": "K7_slip_is_second_order",
+      "pass": true,
+      "value": "limit Pi/eps^2=q**2  Pi/eps=0",
+      "threshold": "finite, nonzero / 0",
+      "note": "Pi = u W'(u) K = u^2/(1-u/a0)"
+    },
+    {
+      "id": "K8a_theta_vanishes_static",
+      "pass": true,
+      "value": "0",
+      "threshold": "0",
+      "note": "theta = (1/(N sqrt h)) d_i(N sqrt h n^i), n^i = 0"
+    },
+    {
+      "id": "K8b_no_momentum_density",
+      "pass": true,
+      "value": "0",
+      "threshold": "0",
+      "note": "clock = P^i D_i ln N has no shift; every other P operator is O(P^2)"
+    },
+    {
+      "id": "K8c_alpha1_zero_linear_potential",
+      "pass": true,
+      "value": "d^2 Phi_c/dr^2 = 0 ; alpha_1(r)->0 as r->0",
+      "threshold": "0 ; 0",
+      "note": "a linear potential has no 1/r^2 -> no w^2 U"
+    },
+    {
+      "id": "K9_scalar_speed_sqrt_gamma_over_eta",
+      "pass": true,
+      "value": "gamma/eta",
+      "threshold": "gamma/eta",
+      "note": "transverse; longitudinal carries Delta >= 0"
+    },
+    {
+      "id": "K10_H2_eq_2Lambda_over_3_2p3beta",
+      "pass": true,
+      "value": "2*Lambda/(3*(3*beta + 2))",
+      "threshold": "2*Lambda/(3*(3*beta + 2))",
+      "note": "from the lapse variation of L_bg"
+    },
+    {
+      "id": "K10b_second_cosmological_eq",
+      "pass": true,
+      "value": "(2+3beta)(2Hdot+3H^2)=2Lambda",
+      "threshold": "0",
+      "note": "Hdot = 0 on the de Sitter endpoint"
+    },
+    {
+      "id": "K11a_gamma_eq_K_Lstar2_over_2",
+      "pass": true,
+      "value": "0",
+      "threshold": "0",
+      "note": "L*^2 := 2 gamma/K"
+    },
+    {
+      "id": "K11b_rswitch_scaling",
+      "pass": true,
+      "value": "sqrt(2)*Lstar*sqrt(f_c)*sqrt(n)*sqrt(3 - n)/2",
+      "threshold": "L* sqrt(f_c n(3-n)/2)",
+      "note": "n=1, f_c=1 -> r_switch = L* exactly"
+    },
+    {
+      "id": "K12a_unique_homogeneous_P_zero",
+      "pass": true,
+      "value": "[0]",
+      "threshold": "[0]",
+      "note": "dW/du = u/(K(1-u/a0))"
+    },
+    {
+      "id": "K12b_P_mass_K_over_eta",
+      "pass": true,
+      "value": "K/eta",
+      "threshold": "K/eta",
+      "note": "FRW: eta(Pddot+3HPdot)+KP=0"
+    },
+    {
+      "id": "K13a_sourcing_split_identity",
+      "pass": true,
+      "value": "0",
+      "threshold": "0",
+      "note": "rho_c = rho_bar + D.P/varsigma  <=>  varsigma = D.P/(rho_c-rho_bar)"
+    },
+    {
+      "id": "K13b_phantom_is_div_of_1_minus_mu_flux",
+      "pass": true,
+      "value": "0",
+      "threshold": "0",
+      "note": "D.P = lap Phi - div(mu grad Phi) = div((1-mu) grad Phi)"
+    },
+    {
+      "id": "K13c_negative_density_required",
+      "pass": true,
+      "value": "114.8 x rho_bar_c",
+      "threshold": "> 1",
+      "note": "A13 amplitude (external); a positive-mass medium needs |D.P| <= varsigma rho_bar"
+    },
+    {
+      "id": "K14a_Lambda_eq_32pi_a02",
+      "pass": true,
+      "value": "1.090357e-52 vs 1.089000e-52 m^-2",
+      "threshold": "rel < 5e-3",
+      "note": ""
+    },
+    {
+      "id": "K14b_a0_from_Lambda",
+      "pass": true,
+      "value": "9.3542e-11 vs 9.3600e-11 m/s^2",
+      "threshold": "rel < 5e-3",
+      "note": ""
+    },
+    {
+      "id": "K14c_kappa_half_identity",
+      "pass": true,
+      "value": "9.3542e-11 m/s^2",
+      "threshold": "rel < 5e-3",
+      "note": ""
+    },
+    {
+      "id": "K15a_sourcing_frac_is_fret_times_phantom_share",
+      "pass": true,
+      "value": "f_ret*u_over_gc",
+      "threshold": "f_ret u/g_c",
+      "note": "A21 u = R_tot f_ret / R_cosmic"
+    },
+    {
+      "id": "K15b_partition_reading_is_excluded",
+      "pass": true,
+      "value": "law deformation at varsigma=0.4716, g=a0/2: 0.243",
+      "threshold": "> 0.05",
+      "note": "so varsigma cannot be a coefficient of the action"
+    },
+    {
+      "id": "K16_background_forces_Lambda_bare_above_Lambda_obs",
+      "pass": true,
+      "value": "beta=-0.211 at Lambda_bare=Lambda_obs",
+      "threshold": "< 0 (violates beta>0)",
+      "note": "hence Lambda_bare >= 3H0^2/c^2 = 1.46 Lambda_obs"
+    }
+  ],
+  "numbers": {
+    "KW_prime": "a0*u/(a0 - u)",
+    "cs_over_c": "sqrt(gamma)/sqrt(eta)",
+    "r_switch_over_Lstar_n1_fc1": 1.0,
+    "saddle_unit_kgm3": 1.078619596009386e-24,
+    "saddle_rho_ph_over_rhobar": 114.83664011660538,
+    "beta_from_background_if_Lambare_eq_Lamobs": -0.21079975668073536,
+    "Lam_bare_min_m2": 1.592570077135902e-52,
+    "Lam_bare_min_over_Lam_obs": 1.462415130519653,
+    "gamma_Lstar_24pc_m2": 2.2999011261079398e+26,
+    "sigma_c_Lstar_24pc_kms": 8.325662807886355,
+    "gamma_Lstar_90pc_m2": 3.23423595858929e+27,
+    "sigma_c_Lstar_90pc_kms": 16.122576700541163,
+    "a_P_sun_Lstar24_ms2": 2.4199210256533684e-16,
+    "a_P_over_BE": 0.006611806081020132,
+    "r_switch_MW_Lstar24_pc": 3.7258019271024057,
+    "r_core_over_Lstar": 2.221441469079183,
+    "M_crit_Msun": 386789.48200273764,
+    "y_t_canonical": 66.2999,
+    "Lambda_c4_over_a02": 100.40584466228644,
+    "free_parameter_count": 4
+  },
+  "coefficient_table": [
+    {
+      "term": "Einstein-Hilbert  (R3 + K_ijK^ij)/(4K)",
+      "coefficient": "1/(4K),  K = 4 pi G",
+      "fixes": "DERIVED - the definition of G (Newtonian limit)",
+      "constraint": "exact; no freedom"
+    },
+    {
+      "term": "cosmological constant  -2 Lambda/(4K)",
+      "coefficient": "Lambda = 1.0890e-52 m^-2",
+      "fixes": "MEASURED, tied to a0 by the closure",
+      "constraint": "Lambda = 32 pi a0^2/c^4  (kappa = 1/2); equivalently Lambda L^2 = 32 pi with L = c^2/a0"
+    },
+    {
+      "term": "ADM deformation  -(1+beta) theta^2/(4K)",
+      "coefficient": "beta (dimensionless)",
+      "fixes": "FREE",
+      "constraint": "beta > 2 eta a0^2/K (principal positivity, round-2); background: 2+3beta = 2 Lambda_bare c^2/(3H^2) => Lambda_bare >= 1.46 Lambda_obs; beta is invisible to alpha_1, alpha_2, beta_PPN"
+    },
+    {
+      "term": "clock  + P^i D_i ln N",
+      "coefficient": "1 (exactly)",
+      "fixes": "DERIVED - the only O(eps) lapse source; any other coefficient deforms the law (K5)",
+      "constraint": "coefficient = 1; no freedom"
+    },
+    {
+      "term": "saturating potential  -W(u)",
+      "coefficient": "W = (a0^2/K)[-u/a0 - ln(1-u/a0)],  u = K|P| < a0",
+      "fixes": "DERIVED - n = 1 Langmuir isotherm (one gate per site) fixes the function; W(0)=W'(0)=0 and K W' -> u fix the normalisation",
+      "constraint": "cap u < a0; W''(0) = 1/K"
+    },
+    {
+      "term": "P kinetic  +(eta/2) E_iE^i",
+      "coefficient": "eta  [length^2]",
+      "fixes": "FREE",
+      "constraint": "eta > 0 and eta >= gamma (scalar luminality); m^2 = K/eta is the FRW P mass"
+    },
+    {
+      "term": "P longitudinal  -(gamma/2)(D_iP^i)^2",
+      "coefficient": "gamma = K L*^2/2  [length^2]",
+      "fixes": "MEASURED - L* is defined by gamma (L*^2 := 2 gamma/K); the window L* in [24,90] pc fixes gamma. Not derived.",
+      "constraint": "L* in [24,90] pc (A20); gamma <= eta"
+    },
+    {
+      "term": "P transverse  -(gamma/4) F_ijF^ij",
+      "coefficient": "gamma (the same)",
+      "fixes": "CHOSEN - one stiffness; equality makes all three polarisation speeds equal (gamma/eta)",
+      "constraint": "gamma_F = gamma_L is an assumption, not a derivation"
+    },
+    {
+      "term": "cold sector  L_cold(rho_c, sigma_c)",
+      "coefficient": "rho_c = (Omega_c/Omega_b) rho_b = 5.3643 rho_b;  sigma_c = sqrt(a0 L*)",
+      "fixes": "DERIVED (cosmic share) + MEASURED (sigma_c = 8.33 km/s at L*=24 pc)",
+      "constraint": "M_c = 5.3643 M_b is the cosmic baryon ratio, not a cold-sector parameter (A9/A11/A18)"
+    },
+    {
+      "term": "sourcing fraction  varsigma",
+      "coefficient": "varsigma(r) in [0,1]",
+      "fixes": "MEASURED at two bands (0.4716 +/- 0.0362 MID, 0.9865 +/- 0.0984 OUT); the FUNCTION is not fixed",
+      "constraint": "NOT a coefficient of the action: varsigma = f_ret (u/g_c) is a solution functional, degenerate with the catchment (K15)"
+    },
+    {
+      "term": "ordinary matter  L_m",
+      "coefficient": "1 (minimal coupling)",
+      "fixes": "DERIVED - equivalence principle / no fifth force on matter",
+      "constraint": "exact"
+    },
+    {
+      "term": "strong-field turn-off  nu_fix = 1 + (nu-1)/(1+(y/y_t)^2)",
+      "coefficient": "y_t = 66.2999",
+      "fixes": "POSIT (functional form, Zenodo 23171085); the number is DERIVED by the closure F(y_t) = Lambda c^4/a0^2 = 100.4058",
+      "constraint": "not a term of the action - a modification of the interpolation; origin unfixed"
+    },
+    {
+      "term": "vacuum-tied scale  a0 = kappa c sqrt(G rho_Lambda)",
+      "coefficient": "kappa = 1/2",
+      "fixes": "MEASURED/SELECTED (0.87 sigma in the saturation cap, A19); NOT derived (A15: DIFFERENT-QUANTITY, the modulus)",
+      "constraint": "kappa is a free modulus; R = Lambda c^4/(8 pi a0^2) = 4 <=> kappa = 1/2"
+    }
+  ],
+  "free_parameters": {
+    "count_finite": 4,
+    "list": [
+      "kappa (measured 1/2, not derived)",
+      "beta (bounded below, not measured)",
+      "eta (bounded below, not measured)",
+      "gamma (measured through L* in [24,90] pc)"
+    ],
+    "free_functions": [
+      "the scale-setting functional returning R = 4 (missing principle)",
+      "varsigma(r): the sourcing-fraction profile",
+      "the turn-off form nu_fix (y_t itself is derived)"
+    ],
+    "degenerate_pairs": [
+      [
+        "gamma",
+        "eta",
+        "only gamma/eta is observable; the absolute normalisation enters only the cosmological P mass, so the pair is degenerate along gamma/eta"
+      ],
+      [
+        "gamma",
+        "Lstar",
+        "the same parameter: L*^2 := 2 gamma/K"
+      ],
+      [
+        "kappa",
+        "a0",
+        "the same parameter once Lambda is measured: a0 = kappa c sqrt(G rho_Lambda)"
+      ],
+      [
+        "beta",
+        "Lambda_bare",
+        "the background gives one equation 2+3beta = 2 Lambda_bare c^2/(3H^2) for two unknowns"
+      ],
+      [
+        "varsigma",
+        "f_ret",
+        "a single-band amplitude cannot separate them (A21); only the band ratio does"
+      ]
+    ]
+  },
+  "constants_used": {
+    "c": 299792458.0,
+    "G": 6.6743e-11,
+    "H0": 2.1842852410855023e-18,
+    "Lambda_obs": 1.089e-52,
+    "a0_can": 9.36e-11,
+    "kappa": 0.5,
+    "pc": 3.085677581491367e+16,
+    "M_sun": 1.98847e+30,
+    "rho_crit": 8.532855163739318e-27,
+    "rho_Lambda": 5.834769475277012e-27
+  }
+}
