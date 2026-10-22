@@ -62,3 +62,22 @@ a₀ footings (brief); L★ window 24 pc (A20) to 1 kpc (CFG820 upper end). No f
 
 Not done: the full A33 cone with gravity off static backgrounds; A33 + a Route-A multiplier enforcing D·P = ρ_c − ρ̄ (the open
 combination); any observational consequence of a slow dark mode. Not "established parent" under any outcome.
+
+## AMENDMENT A1 (POST-RESULT, 2026-10-22; written after the first run, before any new check was coded)
+
+**What the first run showed** (kept as `d9_uv_parent_firstrun_frozen.out` / `_results_firstrun_frozen.json`): 9/12 PASS.
+U2, U4 and U5 FAIL as frozen. Cause: a parity-odd cross term (L_XY in L(X, Y); L_ac in the foliated L(a, b, c)) mixes the
+extraordinary mode (δE ∥ ê) with the ordinary mode (δB ∥ ê) at k ⊥ ê, so the frozen exact formula v_X² = ε_⊥/ε_∥ (resp.
+N_⊥/ε_∥) is not a root when that term is non-zero. The frozen verdicts stand as FAIL: the exact-speed statements hold only for
+L_XY = 0 (resp. L_ac = 0). U1, U3, U6, P1–P4, G1, G2 PASS.
+
+**Added checks (post hoc; they carry the substantive reading, the frozen FAILs stay printed):**
+- V2: for general L(X, Y), the k ⊥ ê dispersion factorises as L_X·k⁴·[(ε_∥s − L_X)(L_Xs − N_∥) − E⁴L_XY²s]
+  with s = ω²/k² (symbolic residual 0, up to an overall sign). With ε_∥, L_X > 0, the bracket at s = L_X/ε_∥ equals −E⁴L_XY²s ≤ 0
+  while the leading coefficient is positive, so the largest root obeys s_max ≥ L_X/ε_∥ = 1 + g/a₀ (law), equality iff L_XY = 0.
+  PASS line: identity residual 0 and the sign statement symbolic.
+- V4: the same for the foliated L(a, b, c): bracket = (ε_∥s − N_⊥)(ε_⊥s − N_∥) − m²s with m real (symbolic residual 0, m read
+  off). Then s_max ≥ N_⊥/ε_∥ = (1 + g/a₀)/Λ_LV, so causality still needs Λ_LV ≥ 1 + g/a₀ (necessary, not sufficient).
+- V5: numeric: 20 random draws with ε_∥, ε_⊥, N_⊥, N_∥ > 0: largest real root of the full determinant ≥ k²N_⊥/ε_∥·(1 − 1e-10).
+- Exit code: the script exits 1 while frozen U2/U4/U5 FAIL (that is the reported finding, not a bug). The final line reports
+  frozen and post-hoc counts separately. MUTATE unchanged.
