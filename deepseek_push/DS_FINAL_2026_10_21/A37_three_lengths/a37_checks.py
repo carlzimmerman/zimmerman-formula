@@ -324,7 +324,7 @@ AUDIT = [
      "glyph": "ell_0", "used_as": "cell length sqrt(8 pi/Lambda)",
      "should_be": "ell_1", "cost": "substituted into line 134 gives Lambda ell_0^2 = 8 pi",
      "cost_quant": "R = 1, kappa = 1 (excluded at 6.14 sigma)", "survives": True},
-    {"id": "C2", "file": "FINAL_THEORY.md", "line": 134,
+    {"id": "C2", "file": "FINAL_THEORY.md", "line": 135,
      "glyph": "ell_0", "used_as": "MOND length c^2/a0",
      "should_be": "L_MOND", "cost": "same glyph as line 28, which defines it as the cell",
      "cost_quant": "factor 4 in Lambda ell_0^2, factor 2 in a0", "survives": True},
@@ -334,7 +334,7 @@ AUDIT = [
      "cost": "the cancellation that gives R = 4 pi hides the substitution",
      "cost_quant": "R = 4 pi = 12.566 either way; conclusion (iii) fails regardless",
      "survives": True},
-    {"id": "C4", "file": "FINAL_THEORY.md", "line": 588,
+    {"id": "C4", "file": "FINAL_THEORY.md", "line": 589,
      "glyph": "L*", "used_as": "c^2/a0 (the brief's definition, recorded as a correction)",
      "should_be": "L_MOND", "cost": "a_P = GM/L^2 falls by 1.68e18",
      "cost_quant": "a_P = 1.439e-34 m/s^2 instead of 2.420e-16", "survives": True},
@@ -357,9 +357,9 @@ def k6_audit_sites(mut):
     missing = []
     probes = [
         ("FINAL_THEORY.md", 28, rf"{E0P}\s*\\?equiv\s*\\?sqrt"),
-        ("FINAL_THEORY.md", 134, rf"\\?Lambda\s*{E0P}\s*{SQ2}\s*=\s*32\s*\\?pi"),
+        ("FINAL_THEORY.md", 135, rf"\\?Lambda\s*{E0P}\s*{SQ2}\s*=\s*32\s*\\?pi"),
         ("A19_scale_functional/a19_checks.py", 410, r"ell0\s*\^\s*2"),
-        ("FINAL_THEORY.md", 588, rf"L\s*\\?\*\s*=\s*{C2P}\s*/\s*{A0P}"),
+        ("FINAL_THEORY.md", 589, rf"L\s*\\?\*\s*=\s*{C2P}\s*/\s*{A0P}"),
         ("A11_cold_normalization/report.md", 133, r"0\.72c"),
         ("A16_cutoffs_edge/report.md", 23, r"9\.99\s*Gpc"),
     ]
