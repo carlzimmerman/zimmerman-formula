@@ -1,0 +1,168 @@
+{
+  "schema_version": 2,
+  "description": "AS worker result, seed AS240 (Tier-0b): gravitational-wave amplitude transport",
+  "task_id": "AS240",
+  "task_sha256": "76a9573a0df9a3b08abccc8f452ab568dd590637d827bcb1c2e8b353213caad5",
+  "run_id": "AS240-r1-20260928T202950Z-dsv4f-hermes",
+  "worker": "deepseek/deepseek-v4-flash-0731 via OpenRouter, platform=subagent, worker id dsv4f-hermes (Hermes agent executing seed AS240, host macOS 26.5.2)",
+  "started_utc": "2026-09-28T20:29:50Z",
+  "finished_utc": "2026-09-28T21:39:13Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On the CA5-GNC-R physical-metric branch (FINAL_ACTION b8c04d4e..., homogeneous expanding inactive FRW branch: f=G=0, z=0, Q_K=0, 3M_P^2 H^2 = M_P^2 Lambda + rho_b + rho_d), with M_P^2 = 1/(8 pi G_bare) CONSTANT, matter/photons coupled via S_b[g] only, a TT tensor mode with integer comoving wavenumber k, omega = |k| >> H, WKB ansatz h = A exp(i theta/eps), theta = -omega eta + k x, on the periodic box [0,2pi), eta in [4,8] (matter era) and three further backgrounds: (1) DERIVED amplitude transport: the tensor EOM from the pinned action is q'' + 2 H q' - d3^2 q = 0 (kappa = -a^2, canonical kinetic +a^2/2 > 0, speed^2 = 1, friction 2H exactly; c2 Q_K^2 etc. have no quadratic TT piece since K^(1) = 0); the WKB collector gives eikonal k^2 = omega^2 and transport A' + H A = 0 with A = A0 a0/a (substitution residual exactly 0; Lean-certified), relative error O((H/omega)^2) with measured C1 = 0.5218 in err = C1 (H/omega)^2 + C2 (H/omega)^4 and leading slope -1.973 +/- 0.05 at omega/H in {6,9,24,60}; wave-code envelope residuals 6.9e-5 (matter), 4.0e-11 (radiation), 6.1e-5 (de Sitter), 4.2e-5 (contracting sign control), 2.2e-11 (flat limiting case, c_T = 1.0000000000); (2) DERIVED: D_L^GW = D_L^EM identically in this sector for constant M_P (4 pi D_L^2 F_obs = L with F_obs = kappa omega_obs^2 A_obs^2, A_obs = A_em/(1+z), omega_obs = omega_e/(1+z): D_L^GW = a0 r (1+z) = D_L^EM, exact; numeric S(z) = h_obs D_L/(1+z) constant to 4.4e-16, max|D_L^GW/D_L^EM - 1| = 3.3e-16 over z in [0.02,2], matter+Lambda); (3) NEGATIVE CONTROL (capable of failing, PASSED): interpreting a changed G-normalization as propagation friction is checked and distinguished: c_N = 1 - alpha/2 (alpha=0.5) rescale sqrt(c_N) = 0.8660254 gives a strain ratio z-INDEPENDENT to 2.6e-16 and fitted friction exponent gamma_hat = -1.3e-4 +/- 5.4e-5 ~ 0 (calibration, not friction), while planted friction gamma_p = 0.12 produces z-monotone residuals of O(0.12) (control fires) and is recovered as gamma_hat = 0.11987 +/- 5.4e-5; equal-luminosity exponent fit delta_hat = +2.7e-4 +/- 8.7e-5 ~ 0 on true data, planted delta_p = 0.08 recovered as 0.08027. Domain: homogeneous expanding inactive FRW branch (matter, radiation, de Sitter, contracting, flat backgrounds), integer k (box harmonics), 2400->9600 step refinement, double precision, seeds 20260928 (NC noise) and 7 (proj), z-window [0.02,2]. The law is dimensionless and a0-free: applies identically to both footings (canonical 9.3619e-11, alternative 1.1279e-10 m/s^2; kappa_eff = 0.60238840 at fixed rho_Lambda). No binary emission model imported; propagation-only.",
+  "framework_cell": {
+    "action": "CA5-GNC-R (CA4-GNC base FINAL_ACTION.md + reciprocal vacuum barrier as referenced by CA5-GNC-R; this seed uses the pinned CA4-GNC FINAL_ACTION b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e as the action cell)",
+    "action_sources": {
+      "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+      "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+      "real_research/common_action_2026_09_26/transport/HOMOGENEOUS_FRW.md": "ecc93b07a62d7ea531abcf4ca8ed8cbe7b9f73c8cb60f931dc8fcb6e9e685c1d"
+    },
+    "branch": "CA5-GNC-R physical-metric branch; filtered nu_mono + causality criterion B is the operative target text but is NOT invoked here (no branch translation; the tensor sector of the pinned action is used directly). Q/RAR/MU2/EXP/MONO never interchanged.",
+    "kernel": "TT tensor sector of the pinned action on the homogeneous inactive FRW branch; carrier/gate/heat terms have no quadratic TT piece (K^(1) = 0 for pure TT); nu_mono not used in this propagation-only result",
+    "gate": "none active (inactive branch f = G = 0); selected gate: wave-sector / tensor-amplitude transport",
+    "coupling": "matter and photons minimally coupled to the single physical metric g (S_b[g]); G_N = G_bare/c_N, G_cosm/G_N = c_N = 1 - alpha/2 (FINAL_ACTION eq.18); M_P^2 = 1/(8 pi G_bare) constant",
+    "parameters": "alpha = 0.5 (c_N = 0.75), Omega_m = 0.3, Omega_Lambda = 0.7 (D_L numeric background), H0 = 1 (dimensionless cell); backgrounds: matter a=(eta/4)^2, radiation a=eta, de Sitter a=1/(1-0.05 eta), contracting a=(2-eta/4)^2, flat a=1; kappa=1/2 ADOPTED (not derived in this seed)",
+    "scale_footings": [
+      {"footing": "canonical", "a0": "9.3619e-11 m/s^2", "kappa": 0.5, "rho_Lambda": "5.844412454021876e-27 kg/m^3", "eps_Lambda": "5.252695959726114e-10 J/m^3"},
+      {"footing": "alternative", "a0": "1.1279e-10 m/s^2", "kappa_eff_at_fixed_rhoL": 0.6023884041, "rho_Lambda_at_fixed_kappa": "8.483089619559099e-27 kg/m^3", "eps_Lambda_fixed_kappa": "7.624220727267281e-10 J/m^3"}
+    ],
+    "boundaries": "periodic box [0, 2*pi) in x^3, conformal time eta in declared ranges per background; integer k box harmonics (m = k L/(2 pi))",
+    "initial_conditions": "WKB outgoing branch to first order: h(eta0,x) = A0 sin(kx), h'(eta0,x) = -A0 (k cos(kx) + H(eta0) sin(kx))",
+    "units": "conformal-time dimensionless cell for the wave code (h dimensionless, omega, k in 1/eta); SI (kg, m, s) for constants and footings: G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16"
+  },
+  "new_assumptions": [
+    "kappa = 1/2 adopted as campaign input (not derived in this seed)",
+    "Homogeneous inactive FRW branch of FINAL_ACTION sec.7 quoted as the background (f = G = 0, z = 0, a = DU = DZ = 0, Q_K = 0; Friedmann eq.18) -- not re-derived",
+    "Tensor-sector operator derived directly from the pinned action (D1) because sibling AS238 (tensor dispersion) is NOT landed in results/; the standard linearized TT reduction on a homogeneous isotropic background (scalar/vector/tensor decoupling at quadratic order) invoked with the explicit K^(1) = 0 component check",
+    "WKB/geometric-optics regime omega >> H with variance rates of the background small (declared domain); leading order A ~ 1/a with quantified O((H/omega)^2) correction",
+    "Constant M_P per the action's parameters: G_bare constant, c_N constant (varying-M_* comparisons are diagnostics, not framework branches)",
+    "No empirical claims; no binary emission model; propagation-only"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS240_compute_gravitational_wave_amplitude_transport.md": "76a9573a0df9a3b08abccc8f452ab568dd590637d827bcb1c2e8b353213caad5",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "real_research/common_action_2026_09_26/transport/HOMOGENEOUS_FRW.md": "ecc93b07a62d7ea531abcf4ca8ed8cbe7b9f73c8cb60f931dc8fcb6e9e685c1d",
+    "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS240/AS240-r1-20260928T202950Z-dsv4f-hermes/derivation.md": "7b42fa72d867ba2735e97984bd3147f7a98876d51b86d1473f762ce2a45f1064",
+    "deepseek_push/astra_spawn_ideas/results/AS240/AS240-r1-20260928T202950Z-dsv4f-hermes/as240_derive.py": "9fe2d189d04b947398bd3ec417af7858dcc51b818e396d7eb6f78e73e30b6dbb",
+    "deepseek_push/astra_spawn_ideas/results/AS240/AS240-r1-20260928T202950Z-dsv4f-hermes/derive_raw.out": "658e82214da9199caba3713d7c58a2defd5cbcfa1566f955225962334cc688ac",
+    "deepseek_push/astra_spawn_ideas/results/AS240/AS240-r1-20260928T202950Z-dsv4f-hermes/time_mem_derive.txt": "edaf527f2f8f4d5cf52ad6c99f29d925b1411d173d0db3982d099e3cdf5d0187",
+    "deepseek_push/astra_spawn_ideas/results/AS240/AS240-r1-20260928T202950Z-dsv4f-hermes/as240_numeric.py": "4d4d98be69f331037bd1b2abad54df05935eec8889eab221ae57cc3e79d29053",
+    "deepseek_push/astra_spawn_ideas/results/AS240/AS240-r1-20260928T202950Z-dsv4f-hermes/numeric_raw.out": "4e7fa1e69fa22021afbf85b3666953e4a389300e77cd2950193607e2d8b23e33",
+    "deepseek_push/astra_spawn_ideas/results/AS240/AS240-r1-20260928T202950Z-dsv4f-hermes/time_mem_numeric.txt": "28068a0b2803704d8a1484b9c462ac9cbf80cf195ab8cedfaa60e910880aa73a",
+    "deepseek_push/astra_spawn_ideas/results/AS240/AS240-r1-20260928T202950Z-dsv4f-hermes/AS240_transport.lean": "b7eddba7b6b6524883210a1ebcb9a7df8ed87825e72b115df677b50a8064996a",
+    "deepseek_push/astra_spawn_ideas/results/AS240/AS240-r1-20260928T202950Z-dsv4f-hermes/AS240_axioms_check.lean": "74abdf8974bc4d84c3f91351bec8f147636ed89095ad3928ad184039bc8428f0",
+    "deepseek_push/astra_spawn_ideas/results/AS240/AS240-r1-20260928T202950Z-dsv4f-hermes/lean_raw.out": "b769f761ab37820b515ef5deea5739ad97ff8b4a8d941c33311de3c1bcbffca0",
+    "deepseek_push/astra_spawn_ideas/results/AS240/AS240-r1-20260928T202950Z-dsv4f-hermes/lean_axioms.out": "3035cde46a9fca1b46f8f5e0c0b3b4e0aa1d20489ac14f8211556dc8cef5cc2f"
+  },
+  "commands": [
+    "shasum -a 256 deepseek_push/astra_spawn_ideas/AS240_compute_gravitational_wave_amplitude_transport.md   (pin verified: 76a9573a0df9a3b08abccc8f452ab568dd590637d827bcb1c2e8b353213caad5)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS240/AS240-r1-20260928T202950Z-dsv4f-hermes && export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1 && /usr/bin/time -l python3 as240_derive.py > derive_raw.out 2> time_mem_derive.txt   (cwd = run dir; exit 0; 1.25 s wall; 67.8 MB peak RSS)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS240/AS240-r1-20260928T202950Z-dsv4f-hermes && export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1 && /usr/bin/time -l python3 as240_numeric.py > numeric_raw.out 2> time_mem_numeric.txt   (cwd = run dir; exit 0; 3.44 s wall; 143.7 MB peak RSS; threading.active_count() = 1)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <abs path>/AS240_transport.lean > lean_raw.out 2>&1   (compile host only; exit 0, warnings only, zero sorry)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <abs path>/AS240_axioms_check.lean > lean_axioms.out 2>&1   (unfiltered #print axioms: both theorems = [propext, Classical.choice, Quot.sound] subseteq allowed set)"
+  ],
+  "execution_bounds": {
+    "declared": {
+      "wall": "<= 120 s per prototype",
+      "memory": "<= 512 MB",
+      "threads": "1",
+      "refinement": "refine once (1700 -> 9600 time steps per background); NC grids and z-grid fixed before evaluation"
+    },
+    "enforced": {
+      "derive": "wall 1.25 s, peak RSS 67,764,224 B = 64.6 MiB (time_mem_derive.txt)",
+      "numeric": "wall 3.44 s, peak RSS 143,671,296 B = 137.0 MiB (time_mem_numeric.txt; both << 512 MB)",
+      "threads": "1 thread enforced: OMP/OPENBLAS/MKL/VECLIB/NUMEXPR_THREADS=1 env, single python3 process, threading.active_count() == 1 printed",
+      "refinement": "time grid 2400 -> 9600 steps (4x) for every N1 background; residuals reported at both grids; N3 z-grid 401 pts; NC z-grid 257 pts",
+      "samples": "integer box harmonics k in {2,3,8,10,20,30,60}; backgrounds matter/radiation/deSitter/contracting/flat; seeds 20260928 (NC noise), 7 (projection trials in failed attempts only)"
+    }
+  },
+  "checks": [
+    {"id": "D1", "name": "tensor EOM direct from the pinned action (Euler-Lagrange of sqrt(-g) R^{(2)} for the TT + mode)", "observed": "EL residual 0; EOM = -a^2 [q'' + 2H q' - d3^2 q]; friction/kappa - 2 a'/a = 0; canonical kinetic +a^2/2 > 0; canonical speed^2 - 1 = 0", "threshold": "residual == 0, friction == 2H, kinetic > 0, speed^2 == 1", "pass": true},
+    {"id": "D2", "name": "K^(1) = 0 for the pure TT mode (c2 Q_K^2, |a-DZ|^2, gate, heat have no quadratic TT piece)", "observed": "K^(1) = (1/2a^2)(q' - q') = 0 exactly", "threshold": "== 0", "pass": true},
+    {"id": "D3", "name": "WKB collector + substitution", "observed": "eikonal residual at omega=k: 0; transport equation A' + H A = 0; substitution residual of A = A0 a0/a: 0; eps^0 residual = -A0 a0 a''/a^2 != 0 (subleading (H/omega)^2)", "threshold": "eikonal == 0, transport substitution == 0, eps^0 consistent", "pass": true},
+    {"id": "D4", "name": "D_L^GW = D_L^EM identically (constant M_P)", "observed": "D_L^GW^2 = aob^4 rM^2 / aem^2 -> D_L^GW/D_L^EM - 1 = 0", "threshold": "== 0", "pass": true},
+    {"id": "D5", "name": "calibration vs friction algebra", "observed": "d/dz ln(h_cal/h) = 0 (calibration z-independent); d/dz ln(h_fric/h) = -gam*phi'(z) != 0; varying G_*: D_L^GW/D_L^EM = sqrt(Gst(0)/Gst(z))", "threshold": "calibration residual 0, friction residual != 0", "pass": true},
+    {"id": "D6", "name": "both footings separate", "observed": "canonical rho_L = 5.844412454e-27 kg/m^3 (kappa = 1/2); alternative at fixed rho_L: kappa_eff = 0.6023884041 != 1/2; at fixed kappa: rho_L' = 8.483089620e-27 kg/m^3; cross-consistent with AS658/AS215 constants", "threshold": "no shared (rho_L, kappa) pair", "pass": true},
+    {"id": "N1-B1", "name": "wave code, matter era a=(eta/4)^2, k=30: envelope A*a = A0*a0", "observed": "res 6.855e-05 (2400) -> 6.856e-05 (9600), thr 1e-3; A tracks 1/a", "threshold": "fine < 1e-3 and growth direction", "pass": true},
+    {"id": "N1-B2", "name": "radiation a=eta, k=60", "observed": "res 7.212e-09 -> 4.007e-11, thr 1e-3", "threshold": "fine < 1e-3", "pass": true},
+    {"id": "N1-B3", "name": "de Sitter a=1/(1-0.05eta), k=10", "observed": "res 6.149e-05 -> 6.149e-05, thr 1e-3", "threshold": "fine < 1e-3", "pass": true},
+    {"id": "N1-B4", "name": "contracting branch (sign control), A must grow", "observed": "res 4.156e-05 -> 4.217e-05, thr 1e-3; A grows as 1/a", "threshold": "fine < 1e-3 AND growth", "pass": true},
+    {"id": "N1-B5", "name": "flat limiting case H = 0", "observed": "res 2.286e-08 -> 2.233e-11, thr 1e-6", "threshold": "fine < 1e-6", "pass": true},
+    {"id": "N1-B5s", "name": "phase speed c_T = 1 (tensor dispersion stand-in)", "observed": "c_T = 1.0000000000", "threshold": "|c_T - 1| < 1e-6", "pass": true},
+    {"id": "N1-measure", "name": "averaging measure orthonormal on box harmonics", "observed": "<sin^2> = 1.000000000000000, <cos^2> = 1.000000000000000", "threshold": "|..-1| < 1e-12", "pass": true},
+    {"id": "N2", "name": "WKB order: err = C1 (H/omega)^2 + C2 (H/omega)^4 (matter era, omega/H in {6,9,24,60})", "observed": "errs [0.013, 0.006, 0.001, ~1.5e-4]; C1 = 0.5218, C2 = -1.420; leading slope -1.973; raw slope -1.942", "threshold": "leading slope in [-2.05, -1.95]", "pass": true},
+    {"id": "N3", "name": "D_L^GW = D_L^EM numerically (matter+Lambda, z in [0.02,2], 401 pts)", "observed": "S(z) constancy 4.441e-16; max|ratio - 1| = 3.331e-16", "threshold": "both < 1e-10", "pass": true},
+    {"id": "NC-1", "name": "planted friction gamma_p = 0.12: gamma=0 model must fail, gamma-fit must recover", "observed": "max|resid| = 1.195e-01 (>> sigma = 1e-3), slope -0.120/unit z (control FIRES); gamma_hat = 0.11987 +- 5.37e-05; max|resid| after fit 2.883e-03", "threshold": "resid > 10 sigma AND |slope|*zspan > 5 sigma AND |gamma_hat - 0.12| < 5 sigma_g + 0.002", "pass": true},
+    {"id": "NC-2", "name": "G_N miscalibration sqrt(c_N): z-independent ratio, no false friction", "observed": "max|ratio - mean|/mean = 2.564e-16 (1e-13); gamma_hat = -0.00013 +- 5.37e-05 ~ 0", "threshold": "ratio dev < 1e-13 AND |gamma_hat| < 5 sigma_g + 0.002", "pass": true},
+    {"id": "NC-3", "name": "equal-luminosity exponent neutrality + recoverability", "observed": "delta_hat = +0.00027 +- 8.65e-05 ~ 0; planted 0.08 -> 0.08027", "threshold": "|delta_hat| < 5 sigma_d + 0.002 AND planted recovered to 0.01", "pass": true},
+    {"id": "LEAN", "name": "Lean 4 certificates compile, zero sorry, axioms subset", "observed": "lake env lean exit 0 both files; #print axioms transport_law = [propext, Classical.choice, Quot.sound]; #print axioms flux_scaling = [propext, Classical.choice, Quot.sound]; grep sorry/sorryAx count 0", "threshold": "exit 0, no sorry, axioms subseteq {propext, Classical.choice, Quot.sound}", "pass": true}
+  ],
+  "tested_domain": "Algebraic (sympy): symbol field over a(eta) positive, q(eta,x3) with derivatives, omega,k>0; exact identities by structural simplification (residual == 0). Wave-code numeric: periodic box [0,2pi), Nx = 256, RK4 + spectral d2; time grids 2400 (coarse) and 9600 (refined) steps; backgrounds: matter a=(eta/4)^2, eta in [4,8], k=30; radiation a=eta, eta in [1,2], k=60; de Sitter a=1/(1-0.05eta), eta in [0,10], k=10; contracting a=(2-eta/4)^2, eta in [0,4], k=30 (sign control); flat, eta in [0,4], k=20; k in {2,3,8,10,20,30,60} integer box harmonics (non-integer k excluded: non-eigenmode initial data diffracts - recorded in failed_attempts); WKB-order scan omega/H(6) in {6,9,24,60}. D_L/NC: flat LCDM-like E(z) = sqrt(0.3(1+z)^3 + 0.7), z in [0.02, 2], 401 pts (N3) and 257 pts (NC), noise sigma = 1e-3 seed 20260928; alpha = 0.5 (c_N = 0.75). Lean: integers avoid; R functions and HasDerivAt only. Exclusions: no curved-leaf/general-background evolution, no nonlinear 3rd-order effects, no emission model, no empirical data.",
+  "failed_attempts": [
+    {"artifact": "as240_derive.py iterations 1-3 (overwritten in run dir)", "cause": "(1) coefficient extraction of the quadratic TT Lagrangian without integration-by-parts pairings gave speed^2 = -2 (q''*q pairing missed) - replaced by the exact Euler-Lagrange operator on the full quadratic density; (2) D4 used the un-redshifted observer frequency om_o instead of om_o = om_e*aem/aob - fixed (D_L ratio then identically 1); (3) sqrt(a(eta)^8) not reduced because the function lacked the positive assumption - a_sym declared positive. All fixed; final run exit 0."},
+    {"artifact": "as240_numeric.py iterations 1-3 (overwritten in run dir)", "cause": "(1) 4th-order centered d2 unstable under RK4 for dt*|mu| >> 2.78 (parasitic stencil modes) - replaced by spectral (FFT) d2, exact on box harmonics; (2) CROSSED RK4 stage coupling (position stages advanced with acceleration components): first-order-accurate blow-up of high-Fourier modes (step-779 flat-space blow-up); fixed to k2v = hp + dt/2*k1a, k2a = d2(h + dt/2*k1v) etc.; (3) N2 used non-integer k = r/3 in {5/3, 10/3, 25/3,...} - non-eigenmode initial data diffracts (envelope 'decay' 0.5 spurious); switched to integer harmonics omega/H in {6,9,24,60}; (4) NC-1 firing criterion |slope| > 1 replaced by |slope|*zspan > 5 sigma; (5) np.trapezoid unavailable in numpy 1.26 -> np.trapz then discrete orthonormal sums. Final run 11/11 PASS, exit 0."},
+    {"artifact": "AS240_axioms_check.lean iteration 1", "cause": "typo '# print axioms flux_scaling' (space) -> unexpected token; fixed to '#print axioms'. Final: exit 0, axioms = [propext, Classical.choice, Quot.sound] for both theorems."},
+    {"artifact": "probe files in ~/.hermes/cache/scratch (dbg_evolve.py, dbg2.py, dbg3.py)", "cause": "diagnostics for the RK4 stage coupling and FFT stability; preserved outside the run dir (scratch) as the house rule requires."}
+  ],
+  "limitations": [
+    "WKB/geometric-optics leading order only: A ~ 1/a with a QUANTIFIED O((H/omega)^2) correction (C1 = 0.52); the eps^0 amplitude-correction equation is not solved to next order",
+    "Tensor operator derived directly from the pinned action because sibling AS238 (tensor dispersion) is not landed; the explicit action check D1 + c_T = 1 phase-speed control substitute for it at this level; the sibling's full dispersion/DOF content remains formally open",
+    "Propagation-only: no binary emission model imported (per the seed), hence no absolute source strain predictions; the matter-sector radiation-reaction/drag via the background only",
+    "Constant M_P assumed per the action parameters (G_bare, c_N constant); varying-M_* ratio D_L^GW/D_L^EM = sqrt(G_*(z)/G_*(0)) derived as a diagnostic, not a framework branch",
+    "kappa = 1/2 adopted (campaign mandate); footings kept separate (kappa_eff = 0.60238840 at fixed rho_Lambda)",
+    "Finite-box integer-k numerics in double precision on the declared domain; single-mode initial data; no general-background or global statements; no empirical fits",
+    "No branch translation claimed: the result is a CA5-GNC-R tensor-sector statement; it does not transfer to Q/RAR/MU2/EXP/MONO interpolations"
+  ],
+  "next_unresolved_implication": "Emission-side bridge: the standard-siren / binary-model link between the propagation-only law A ~ 1/a and D_L^GW = D_L^EM and an observable strain for a compact binary in this action - requires the linearized TT source coupling (M_P^2/2) int sqrt(-g) h_ij T_b^ij of S_b[g], the quadrupole amplitude with the G_N vs G_bare bookkeeping, and the GW170817-type c_T bound at finite H/omega; plus sibling AS238's full tensor-dispersion analysis (not landed).",
+  "suggested_followup": "Dispatch child AS240.C01 (ready spec in child_proposals): derive the tensor two-point emission amplitude and the standard-siren strain h_c from the CA5-GNC-R action's S_b[g] coupling, and check that the sqrt(c_N) calibration shift of this seed's NC-2 appears as the emission-side counter-term so the full emission+transport chain is internally consistent; discriminating control: NC-2 fixture (z-independence) plus planted Gamma-parameter recovery.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": [
+      "CA5-GNC-R action cell: physical metric g, M_P^2 = 1/(8 pi G_bare), S_b[g] minimal matter coupling, carrier/gate/heat sector as FINAL_ACTION sec.1-7 (frozen candidate, not completed theory)",
+      "Homogeneous inactive (expanding) FRW branch: f = G = 0, z = 0, a = DU = DZ = 0, Q_K = 0, 3M_P^2 H^2 = M_P^2 Lambda + rho_b + rho_d (FINAL_ACTION eq.18, quoted)",
+      "G_N = G_bare/c_N with c_N = 1 - alpha/2 constant (FINAL_ACTION sec.5); G_cosm/G_N = c_N",
+      "WKB ansatz h = A exp(i theta/eps), theta = -omega eta + k x, omega = |k| >> H; integer box harmonics; periodic boundary conditions; outgoing first-order WKB initial data",
+      "kappa = 1/2 ADOPTED (campaign mandate; not derived)",
+      "G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 (SI)",
+      "footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 kept separate",
+      "standard linearized SVT decoupling on the homogeneous isotropic background (explicit component check for the non-Einstein K-term: K^(1) = 0)"
+    ],
+    "measured_calibrations": [],
+    "derived_equations": [
+      "EOM for the TT mode from the action: q'' + 2 H q' - d3^2 q = 0 with canonical kinetic +a^2/2 (D1)",
+      "eikonal k^2 = omega^2; transport A' + H A = 0; solution A = A0 a0/a (D3, Lean-certified)",
+      "flux F = kappa omega^2 A^2 dilutes as a^-4; D_L^GW = (1+z) a0 r = D_L^EM exactly (D4)",
+      "calibration-vs-friction discrimination: d/dz ln(h_cal/h) = 0 vs d/dz ln(h_fric/h) = -gamma phi'(z) (D5)",
+      "footings: rho_Lambda(canonical) = 5.844412454e-27 kg/m^3; kappa_eff(alt, fixed rho_L) = 0.6023884041; rho_Lambda'(alt, fixed kappa) = 8.483089620e-27 kg/m^3"
+    ]
+  },
+  "closure_implication": {
+    "gate": "wave-sector gate, tensor amplitude transport sub-gate (requirement 6 propagation content): propagation-only GW amplitude law and luminosity-distance evolution from one common action",
+    "implication": "The CA5-GNC-R tensor sector on the homogeneous inactive FRW branch transports GW amplitudes exactly like GR with constant M_P: A ~ 1/a (WKB) and D_L^GW = D_L^EM; a changed G-normalization is a z-independent calibration, not friction. This supplies the propagation half of the GW sector for the common action; it does NOT close requirement 6 (needs emission/source coupling and the GW170817 bound statement) and does not promote to full gravity closure - the static/lensing/PPN/constraint gates remain open as recorded upstream (AS658, AS215).",
+    "compatibility": "Compatible with AS658 (vacuum sector: zero bulk propagating modes - consistent: the tensor sector is the exactly-two-GW-DOF carrier here, scalars decouple at quadratic order), AS215 (criterion-B orientation - the tensor cone with future-oriented ordering is a subset of the certified block structure; c_T = 1 here), AS056/AS057 static ranks (different channel). Parameter domain: same action cell, kappa = 1/2, one G_N = G_bare/c_N relation; no branch translation.",
+    "parameters": "CA5-GNC-R common action; kappa = 1/2; homogeneous inactive FRW; declared samples as in framework_cell"
+  },
+  "child_proposals": [
+    {
+      "id": "AS240.C01",
+      "title": "Tensor two-point emission amplitude and standard-siren strain from the CA5-GNC-R action",
+      "spec": "Ready spec for the orchestrator (inline; not dispatched - no runner spawn available in this wave). New target: linearized TT source term (M_P^2/2) int sqrt(-g) h_ij T_b^ij from S_b[g]; quadrupole emission amplitude with explicit G_N vs G_bare bookkeeping (h_em = (4/(c^4 r)) (G_N M_cz)^(5/3)... style formula derived from THIS action, not imported); combine with this seed's transport to produce the full-chain observable strain and check the NC-2 sqrt(c_N) shift reappears as the emission counter-term.",
+      "scientific_fingerprint": "SHA-256 of task 76a9573a0df9a3b08abccc8f452ab568dd590637d827bcb1c2e8b353213caad5 + run AS240-r1-20260928T202950Z-dsv4f-hermes + claim: linearized TT source amplitude from S_b[g] and emission+transport strain consistency with the calibration-vs-friction distinction",
+      "new_target": "Emission amplitude h_em (quadrupole, G_N-bookkept) and full-chain h_obs = h_em/(1+z) * (1+z)/D_L form; c_T bound statement for the GW170817 band",
+      "why_existing_result_insufficient": "AS240-r1 is propagation-only (per seed mandate); it contains no source amplitude, so no absolute strain is predicted and requirement 6's emission half is open",
+      "controls": ["NC-2 fixture: the sqrt(c_N) shift must appear as the emission-side calibration counter-term", "planted friction gamma must remain absent in the full chain", "substitution of the emission amplitude into the transport law (residual-based)"],
+      "dependencies": ["AS240-r1-20260928T202950Z-dsv4f-hermes (parent)", "results/AS238 (tensor dispersion; NOT landed)", "AS658 vacuum DOF"],
+      "dispatch_state": "not dispatched (ready spec written for the orchestrator; no runner available)"
+    }
+  ],
+  "closure_candidate": null
+}

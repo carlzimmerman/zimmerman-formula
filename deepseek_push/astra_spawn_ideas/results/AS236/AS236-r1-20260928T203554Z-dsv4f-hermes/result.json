@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "task_id": "AS236",
+  "task_sha256": "99b632e5e85942f5aa8082c5a7764485a41c2501d2da9cad6770900c99f0e883",
+  "run_id": "AS236-r1-20260928T203554Z-dsv4f-hermes",
+  "worker": "deepseek/deepseek-v4-flash-0731 via openrouter (Hermes subagent, hermes-agent runtime on macOS)",
+  "started_utc": "2026-09-28T20:35:54Z",
+  "finished_utc": "2026-09-28T21:22:31Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On the CA5-GNC-R branch, homogeneous reciprocal centered-clock sector (t_c = t = 1, Q_K = 0, A_K = <N Q_K>_h = 0, flat slices R3 = 0, dust rho_b at t_c = 1, reciprocal density rho_d = rho_R(1) = T1 + V0 + Vmix, gate inactive f = G'(Y_h) = 0), the exact fixed-h lapse equation (13) of FINAL_ACTION.md (sha256 b8c04d4e...546e) with metric ds^2 = -N(t)^2 dt^2 + a(t)^2(dx^2+dy^2+dz^2) gives: (M_P^2/2){R3 - T_K - 2Lambda} = rho_b + rho_d with T_K = -6 H^2/N^2, i.e. 3 M_P^2 H^2 = M_P^2 Lambda + rho_b + rho_d (bare-Lambda = 0 branch: 3 M_P^2 H^2 = rho_b + T1 + V0 + Vmix); both coupling normalizations follow from action variations: G_cosm = 1/(8 pi M_P^2) = G_bare (Friedmann sector) and G_N = G_bare/c_N, c_N = 1 - alpha/2 (local high-k weak-field sector, upstream results/AS226, same action), hence G_N/G_cosm = 1/c_N = 1/(1 - alpha/2) = -2/(alpha - 2) and G_cosm/G_N = c_N = 1 - alpha/2, matching FINAL_ACTION eq. (18). The ratio is footing-independent (no a0): identical for canonical a0 = 9.3619e-11 and alternative a0 = 1.1279e-10 m/s^2 (rho_Lambda = 4 a0^2/(G_N c^2) = 5.844412e-27 and 8.483090e-27 kg/m^3 respectively, kappa back-check = 1/2 both). Negative control (replace Q_K by K, uncentered -c2 K^2) fires: lapse source becomes (M_P^2/2) c2 K^2 = (9/2) c2 M_P^2 H^2, Friedmann coefficient changes to 3 M_P^2 (1 + 3 c2/2) (residual factor 3 c2/2 != 0 for c2 > 0), G_cosm/G_N = c_N/(1 + 3 c2/2), while the local normalization G_N = G_bare/c_N is unchanged because static K_ij = 0 kills the c2-block locally. Verified symbolically (all sympy residuals 0) and numerically (FD Ricci scalar vs closed form rel. residual 5.9e-7; K_ij - (H/N)h_ij = 0; static K_ij = 0; equation-13 untuned residual -1.344299 fires and tuned closes to 0.0; uncentered source rel. residual 3.2e-11; control fires with relative residual 1.648). Lean certificates (5 theorems, zero sorry, axioms exactly {propext, Classical.choice, Quot.sound}). Domain: homogeneous FRW slices with lapse, exact symbolic plus numeric prototype on t in [1e-6, 1], 41-point grid refined to 81 (residual ratio 16.0 ~ O(h^4)), alpha in {0.05,0.1,0.2,0.3,0.5,1.0,1.5}. Scoped: a same-action coupling-ratio prediction for later empirical bounds; alpha/c_N value and kappa = 1/2 remain adopted, not derived; not a full gravity closure.",
+  "framework_cell": {
+    "branch": "CA5-GNC-R physical-metric branch; Q (~g^2=B^2+a0*B), RAR, MU2, historical EXP AQUAL, filtered MONO distinct and never interchanged; criterion B operative",
+    "action": "real_research/common_action_2026_09_26/action/FINAL_ACTION.md sha256 b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e (eq. (13) exact fixed-h lapse equation, eq. (18) G_cosm/G_N = c_N; support sources: real_research/breakthrough_review_2026_09_26/vacuum/ACTION.md sha256 290e5cbe83eca682fb68888375bb60f9230f677cbb3176ae6ec27557e777211d, occupied/RESULT.md sha256 6091291f05fca5f1f4fdcc216f305bd31a476a7ea3d16c09131faca1158975d5)",
+    "kernel": "homogeneous three-plus-one sector: metric ds^2 = -N(t)^2 dt^2 + a(t)^2 delta_ij dx^i dx^j; exact Christoffel/Ricci/scalar curvature and leaf extrinsic curvature computed in the 3+1 sector; couplings from lapse variation of the action, never by identification of bare constants",
+    "filter": "none applied (single representative slice t_c = 1; Fourier filter of the local sector lives in upstream AS226, not needed for the homogeneous ratio)",
+    "gate": "inactive at the homogeneous point: f = G'(Y_h) = 0, Y_h = J(DW_b) + ell*Delta*W_b - theta < 0 (as in upstream AS226); no gate translation used",
+    "coupling": "M_P^2 with the action's (M_P^2/2) normalization: M_P^2 = 1/(8 pi G_bare); c_N = 1 - alpha/2; c2 > 0; G_N = G_bare/c_N (local, upstream AS226); G_cosm = G_bare (Friedmann sector, this run)",
+    "parameters": "alpha in (0,2) sample {0.05,0.1,0.2,0.3,0.5,1.0,1.5}; c2 = 1.0 (sample); kappa = 1/2 ADOPTED as input (seed, not derived)",
+    "scale_footing": "a0 = (c/2) sqrt(G_N rho_Lambda) with kappa = 1/2: canonical a0 = 9.3619e-11 m/s^2 -> rho_Lambda = 5.844412e-27 kg/m^3; alternative a0 = 1.1279e-10 m/s^2 -> rho_Lambda = 8.483090e-27 kg/m^3; ratio G_N/G_cosm contains no a0, identical on both footings",
+    "boundaries": "homogeneous reciprocal branch t_c = 1, Q_K = 0, A_K = 0, flat slices R3 = 0; numeric t-grid (1e-6, 1]; static weak-field sample point for the local-sector check",
+    "initial_conditions": "sample FRW a = 1.7 e^{0.8 t}, N = 1 + 0.3 sin(2t) (numeric lane only, scale-free); dust rho_b = 0.2, T1 = 0.3, Vmix = 0.4, V0 = 0.5 (numeric sample for eq-13 untuned/tuned balance)",
+    "units": "SI for footings and G: G_N = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16; homogeneous-sector symbols dimensionless in the numeric prototype"
+  },
+  "new_assumptions": [
+    "kappa = 1/2 adopted as seed-mandated input (explicitly not derived, per seed first-principles obligation)",
+    "alpha (equivalently c_N) is a free parameter in (0,2); this run derives the ratio G_N/G_cosm = 1/c_N but not the value of alpha",
+    "homogeneous reciprocal branch t_c = 1, Q_K = 0, A_K = 0 as the centered-clock sector (upstream AS127/A215 carrier context)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS236_derive_cosmological_versus_local_g_for_the_centered_clock.md": "99b632e5e85942f5aa8082c5a7764485a41c2501d2da9cad6770900c99f0e883",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+    "real_research/breakthrough_review_2026_09_26/vacuum/ACTION.md": "290e5cbe83eca682fb68888375bb60f9230f677cbb3176ae6ec27557e777211d",
+    "real_research/breakthrough_review_2026_09_26/occupied/RESULT.md": "6091291f05fca5f1f4fdcc216f305bd31a476a7ea3d16c09131faca1158975d5",
+    "deepseek_push/astra_spawn_ideas/results/AS226/AS226-r1-20260928T171100Z-dsv4f-hermes/result.json": "232e27b08f02ed00a5a2baa6a10d0ad4a082daab9f84a3edbb8e0540bd48352b",
+    "deepseek_push/astra_spawn_ideas/results/AS127/AS127-r1-20260928T151134Z-dsv4f-hermes/result.json": "7a9bdf10f8341df025863ca0784ecb98e17e1d044230e130660a1c5d5dffba12",
+    "deepseek_push/astra_spawn_ideas/results/AS215/AS215-r1-20260928T172030Z-dsv4f-hermes/result.json": "e75a0de4a5feadb80bf8f2f95a063034f9e8c66d27bf0fae49b8a0eb7e1b0fee",
+    "deepseek_push/astra_spawn_ideas/results/AS142/AS142_20260928T151335Z/result.json": "c36a7853dbaf4364afdfe70224cb3903bf4140f7a874cebc648f5d830b16a753"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS236/AS236-r1-20260928T203554Z-dsv4f-hermes/derivation.md": "0b33e0ed4572cf2024ca073bda6e175268feb9224387166c68c87953e8120a30",
+    "deepseek_push/astra_spawn_ideas/results/AS236/AS236-r1-20260928T203554Z-dsv4f-hermes/as236_derive.py": "b87a8accdde4b829d6d4ff79faccece7ff9f3691219c332f309f286fcaaa5606",
+    "deepseek_push/astra_spawn_ideas/results/AS236/AS236-r1-20260928T203554Z-dsv4f-hermes/as236_numeric.py": "1a2507c3f109225f856ed4f5f78131283fc9a9a069b2084419bba2ca30b95ce5",
+    "deepseek_push/astra_spawn_ideas/results/AS236/AS236-r1-20260928T203554Z-dsv4f-hermes/derive_raw.out": "86f486c2d09183ad03f735dc1af4771d312a48ac251476bb9e7883585666f851",
+    "deepseek_push/astra_spawn_ideas/results/AS236/AS236-r1-20260928T203554Z-dsv4f-hermes/derive_err.txt": "38df841e278b78f4a21e4e4253c31f541884f89bc12ba9feb43bc9982b1e302d",
+    "deepseek_push/astra_spawn_ideas/results/AS236/AS236-r1-20260928T203554Z-dsv4f-hermes/numeric_raw.out": "96e5b043688ac6e0eb4e8e6061cbdb881b55754c3d66947ead008f81177627dd",
+    "deepseek_push/astra_spawn_ideas/results/AS236/AS236-r1-20260928T203554Z-dsv4f-hermes/time_mem_derive.txt": "ebe1bcd2e9b2a7eaff88a93e98876cdcc51e9e1787817fdf7ff18ee6c0c15463",
+    "deepseek_push/astra_spawn_ideas/results/AS236/AS236-r1-20260928T203554Z-dsv4f-hermes/time_mem_numeric.txt": "b904c7e4e401309faf5f85fff1b27343737c17f99b9d3a8c48349a1fde706245",
+    "deepseek_push/astra_spawn_ideas/results/AS236/AS236-r1-20260928T203554Z-dsv4f-hermes/AS236_ratio_certificate.lean": "3609f939f33ba6e3e1004239ba9a1b0276f870a28de173237e726d587ef1baa5",
+    "deepseek_push/astra_spawn_ideas/results/AS236/AS236-r1-20260928T203554Z-dsv4f-hermes/AS236_lean_verify.txt": "d28eed4a62145695903cb8ba2f5293ea59abe63a573a99c7b0399574d8ef0d13"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS236/AS236-r1-20260928T203554Z-dsv4f-hermes && (ulimit -t 110; OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1; /usr/bin/time -l python3 as236_derive.py > derive_raw.out 2> time_mem_derive.txt)",
+    "cd <same run dir> && (ulimit -t 110; OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1; /usr/bin/time -l python3 as236_numeric.py > numeric_raw.out 2> time_mem_numeric.txt)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && timeout 500 lake env lean <run dir>/AS236_ratio_certificate.lean > <run dir>/AS236_lean_verify.txt 2>&1"
+  ],
+  "execution_bounds": {
+    "declared": "<=120 s wall, <=512 MB memory, 1 thread (seed bounded-prototype bound)",
+    "enforced": "ulimit -t 110 (CPU seconds, both python lanes); thread caps OMP/OPENBLAS/MKL/VECLIB/NUMEXPR = 1; timeout 500 on the lean verification",
+    "actual_derive_lane": "0.66 s real, 0.61 s user, 63.7 MB max RSS (66748416 bytes peak memory footprint)",
+    "actual_numeric_lane": "0.10 s real, 0.09 s user, 40.6 MB max RSS (42614784 bytes)",
+    "refinement": "41-point -> 81-point grid once (residual ratio 16.0)"
+  },
+  "checks": [
+    {"name": "S1_R4_closed_form", "target": "R4 = 6(H/N)^2 + 6(a''/a - (a'/a)(N'/N))/N^2", "tolerance": "exact 0", "observed": "sympy residual 0", "pass": true},
+    {"name": "S2_Kij_vs_HN_hij", "target": "K_ij = (H/N) h_ij", "tolerance": "zero 3x3 matrix", "observed": "Matrix([[0,0,0],[0,0,0],[0,0,0]])", "pass": true},
+    {"name": "S3_K_trace", "target": "tr K = 3 H/N", "tolerance": "exact 0 residual", "observed": "0", "pass": true},
+    {"name": "S4_TK", "target": "T_K = Kij K^ij - K^2 = -6 H^2/N^2", "tolerance": "exact 0 residual", "observed": "0", "pass": true},
+    {"name": "S5_QK_homogeneous", "target": "Q_K = 0 on the homogeneous slice (centered clock)", "tolerance": "exact 0", "observed": "0", "pass": true},
+    {"name": "S6_static_K_zero", "target": "static weak-field K_ij = 0 (c2-block absent locally)", "tolerance": "all-zero", "observed": "static_K_allzero = true; numeric N3 max|K_ij| = 0.0", "pass": true},
+    {"name": "S7_eq13_homogeneous", "target": "(M_P^2/2)(R3 - T_K - 2Lambda) = 3 M_P^2 H^2 - M_P^2 Lambda", "tolerance": "exact 0 residual", "observed": "eq13_homogeneous_lhs = MP2*(3*Hv^2 - Lam), residual 0", "pass": true},
+    {"name": "S8_target_general", "target": "3 M_P^2 H^2 = M_P^2 Lambda + rho_b + T1 + V0 + Vmix", "tolerance": "residual exactly 0 under substitution back into eq (13)", "observed": "target_residual_general = 0", "pass": true},
+    {"name": "S9_target_bare_Lambda0", "target": "3 M_P^2 H^2 = rho_b + T1 + V0 + Vmix on the bare-Lambda = 0 branch", "tolerance": "exact 0 residual", "observed": "target_residual_bare_Lam0 = 0", "pass": true},
+    {"name": "S10_NEGATIVE_CONTROL_factor", "target": "replace Q_K by K: Friedmann coefficient must CHANGE; control residual factor 3 c2/2 != 0", "tolerance": "nonzero for c2 != 0 (fires)", "observed": "uncentered_coeff_factor = 1 + 3c2/2; control_residual_factor = 3c2/2 != 0; uncentered lapse source = (9/2) c2 M_P^2 H^2", "pass": true},
+    {"name": "S11_ratio", "target": "G_N/G_cosm = 1/c_N, G_cosm/G_N = c_N", "tolerance": "exact 0 residual", "observed": "G_N_from_action = G_bare/c_N; G_cosm_from_Friedmann = G_bare; G_N/G_cosm = 1/c_N; ratio_in_alpha = -2/(alpha-2) with residual 0 vs 1/(1-alpha/2)", "pass": true},
+    {"name": "S12_uncentered_ratio", "target": "uncentered variant: G_cosm/G_N = c_N/(1 + 3 c2/2) = 2 c_N/(3 c2 + 2)", "tolerance": "exact 0 residual", "observed": "residual 0 (uncentered_ratio_vs_cN_over_1p3c2h)", "pass": true},
+    {"name": "N1_R4_FD_direct", "target": "finite-difference Christoffel->Ricci scalar equals closed form", "tolerance": "rel residual < 1e-6 (set before running)", "observed": "5.89e-7 on 41-point grid, central window", "pass": true},
+    {"name": "N2_Kij_FD", "target": "FD extrinsic curvature K_ij = (H/N) h_ij, tr K = 3 H/N", "tolerance": "abs residual < 1e-9", "observed": "0.0 and 0.0", "pass": true},
+    {"name": "N3_static_K_FD", "target": "static weak-field K_ij = 0", "tolerance": "< 1e-9 of scale", "observed": "0.0", "pass": true},
+    {"name": "N4_eq13_balance", "target": "eq (13) homogeneous balance: untuned source leaves visible residual, tuned source closes", "tolerance": "untuned |residual| > 1e-3; tuned < 1e-12", "observed": "untuned -1.344299 (fires); tuned 0.0", "pass": true},
+    {"name": "N4b_FD_QK2_variation", "target": "delta/delta ln N of -c2 Q_K^2 = 0 (centered)", "tolerance": "abs < 1e-12", "observed": "0.0", "pass": true},
+    {"name": "N4c_FD_K2_variation", "target": "delta/delta ln N of -c2 K^2 = (M_P^2/2) c2 K^2 N a^3 h", "tolerance": "rel residual < 1e-6", "observed": "3.15e-11", "pass": true},
+    {"name": "N5_NEGATIVE_CONTROL_numeric", "target": "uncentered vs centered homogeneous LHS differ by (9/2) c2 M_P^2 H^2", "tolerance": "relative > 1e-3 (fires)", "observed": "absolute 0.091801, relative 1.648; uncentered-tuned closes to 0.0", "pass": true},
+    {"name": "N6_ratio_table_footings", "target": "G_N/G_cosm = 1/c_N on both footings; kappa back-check = 1/2", "tolerance": "ratio alpha=0.3 gives 20/17; kappa = 0.5", "observed": "alpha=0.3: 1.176470... = 20/17; kappa_backcheck 0.5 both; G_cosm_SI(alpha=3/10) = 5.673155e-11", "pass": true},
+    {"name": "N7_refinement", "target": "41 -> 81 point refinement reduces residual ~O(h^4)", "tolerance": "res_81 < res_41 and ratio > 2.5", "observed": "5.89e-7 -> 3.68e-8, ratio 16.0", "pass": true},
+    {"name": "L1_LEAN_certificate", "target": "AS236_ratio_certificate.lean compiles, zero sorry, axioms subseteq {propext, Classical.choice, Quot.sound}", "tolerance": "lake env lean exit 0; #print axioms exact allowed set", "observed": "exit 0; all five theorems: [propext, Classical.choice, Quot.sound]", "pass": true}
+  ],
+  "tested_domain": "Symbolic: homogeneous FRW slices with lapse (t_c = 1, Q_K = 0, A_K = 0, R3 = 0), exact identities over symbol parameter space (positive a(t), N(t), M_P^2, c2, alpha in (0,2)). Numeric: t in [1e-6, 1], a = 1.7 e^{0.8 t}, N = 1 + 0.3 sin(2t), 41-point grid with central-window residuals, refined once to 81; single static weak-field sample point (Phi = 0.1 exp(-|x|^2/1), Psi = 0.08 exp(-|x|^2)) at x = (0.3, -0.2, 0.4) for the local-sector check; alpha samples {0.05, 0.1, 0.2, 0.3, 0.5, 1.0, 1.5}; footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 kept separate (both: rho_Lambda per footing, kappa back-check 1/2, identical ratio). G_N = 6.67430e-11 SI used for footing numerics only. Exclusions: no mixed footing (both vacuum density AND kappa fixed simultaneously), no RAR/MU2/EXP/MONO passes, no k-dependence (the high-k window is upstream AS226), no time-dependent source profiles.",
+  "failed_attempts": [
+    {"artifact": "scratch probes probe_r4.py / probe_r4b.py / probe_r4c.py / probe_r4d.py / probe_chris.py (outside run dir, /Users/carlzimmerman/.hermes/cache/scratch/)", "cause": "initial full 4x4 symbolic Ricci contraction was index-scrambled; R4 closed-form probes mismatched until the Ricci bookkeeping was corrected; numpy FD R4 initially disagreed with the closed form due to (a) missing sum over lam in the d_nu Gamma^lam_{mu lam} term and (b) taking the first instead of second derivative output of tgrid for a''; both fixed; final numeric lane passes all checks"},
+    {"artifact": "run-dir draft as236_derive.py intermediate versions; preserved traceback in <run>/derive_err.txt (AssertionError at line 127, Gauss-Codazzi symbolic gc_res check)", "cause": "Gauss-Codazzi symbolic block on the 4x4 sector was mis-indexed and the full symbolic Ricci too slow; resolved by restricting the symbolic lane to the exact 3+1 FRW sector and moving the independent Gauss-Codazzi-style verification (numeric extrinsic curvature and FD Ricci scalar) to as236_numeric.py. derive_raw.out is the post-rewrite PASS run; derive_err.txt preserves the pre-rewrite failure only."}
+  ],
+  "limitations": "Does not derive the value of alpha (c_N): the ratio G_N/G_cosm = 1/c_N is exact but one-parameter (same as upstream AS226). kappa = 1/2 is an adopted input, not derived (per seed first-principles obligation; an independent argument removing its freedom would be a new derivation). rho_Lambda values (5.844e-27 / 8.483e-27 kg/m^3) are derived only from the adopted footings and G_N; no cosmic observables (H0, Omega_Lambda) are calibrated here. The result is a same-action coupling-ratio prediction for later empirical bounds, not a full gravity closure; no branch translation beyond the declared homogeneous reciprocal centered sector; the high-k k-dependence (G_eff(k)) is outside this seed (upstream AS226/AS142). Numeric lane is a bounded prototype (dimensionless sample amplitudes), exactness rests on the symbolic lane and the Lean certificates.",
+  "next_unresolved_implication": "The single free parameter alpha (equivalently c_N = 1 - alpha/2) is not derived by this seed: G_N/G_cosm = 1/c_N fixes the ratio but not the constant; the first missing bridge is an independent same-action observable that pins c_N in (0,1) - either the vacuum DOF count of AS658 or the deep-rotation flatness sector v_flat^4 = G M_b a0 evaluated with the measured G_N and a0, or an empirical G_cosm bound from the Friedmann sector (e.g. rho_Lambda vs H0) combined with this ratio.",
+  "suggested_followup": "AS236.C01: derive c_N (equivalently alpha in (0,2)) from the same action by imposing consistency of the deep-rotation flatness law v_flat^4 = G_N M_b a0 (or the AS658 vacuum DOF count) with the centered Friedmann sector - target equation: solve for G_cosm in the bare-Lambda = 0 branch, 3 M_P^2 H^2 = rho_b + T1 + V0 + Vmix, at measured cosmic density and use G_cosm/G_N = 1 - alpha/2 to fix alpha; controls: substitution back into eq (13) and eq (18), kappa back-check on both footings; dependency: measured (a0, G_N) pair and an H0/rho_Lambda estimate: distinguishes the one-parameter family into a number.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": "CA5-GNC-R physical-metric action (FINAL_ACTION.md, pinned hash b8c04d4e...546e) with its (M_P^2/2) normalization, lapse N(t) and scale a(t) fields, dust + reciprocal matter sources; homogeneous reciprocal branch t_c = 1, Q_K = 0, A_K = 0; metric ansatz ds^2 = -N^2 dt^2 + a^2 delta_ij dx^i dx^j; kappa = 1/2 adopted (seed); alpha in (0,2), c2 > 0 free",
+    "measured_calibrations": "G_N = 6.67430e-11 m^3 kg^-1 s^-2; c = 299792458 m/s; footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 (used for rho_Lambda and the SI G_cosm scale only; the coupling ratio is footing-free)",
+    "boundary_initial_data": "numeric lane: t in (0,1], a(0) = 1.7, H(0) = 0.8, N(t) = 1 + 0.3 sin(2t) (scale-free samples); static sample Phi, Psi as above",
+    "derived_equations": "eq (13) homogeneous projection: 3 M_P^2 H^2 = M_P^2 Lambda + rho_b + rho_d (residual 0); G_cosm = 1/(8 pi M_P^2) = G_bare; G_N = G_bare/c_N (with upstream AS226); ratio G_N/G_cosm = 1/(1 - alpha/2); uncentered variant 3(1 + 3 c2/2) M_P^2 H^2 and G_cosm/G_N = c_N/(1 + 3 c2/2); rho_Lambda = 4 a0^2/(G_N c^2) with kappa = 1/2"
+  },
+  "closure_implication": {
+    "named_gate": "same-action coupling-ratio prediction for later empirical bounds (seed completion criterion: derived, not promoted to full gravity closure)",
+    "exact_implication": "G_N/G_cosm = 1/c_N = 1/(1 - alpha/2) with G_cosm = G_bare, c_N = 1 - alpha/2, on the declared branch; any empirical bound on G_cosm (from the Friedmann sector) or on alpha maps directly to this ratio; the uncentered variant is excluded by the centered-clock assumption (Q_K = 0) and would give c_N/(1 + 3 c2/2)",
+    "common_action_domain_compatibility": "same action (FINAL_ACTION.md b8c04d4e...546e) as upstream AS226/AS127/AS215/AS142; no branch translation required; gate inactive on both sides; residual open gate: value of alpha"
+  },
+  "child_proposals": [
+    {
+      "id": "AS236.C01",
+      "parent": "AS236-r1-20260928T203554Z-dsv4f-hermes",
+      "new_target": "derive alpha (c_N = 1 - alpha/2 in (0,1)) from a same-action observable: solve the centered Friedmann sector with the bare-Lambda = 0 density 3 M_P^2 H^2 = rho_b + T1 + V0 + Vmix at a measured cosmic rho/H0 and combine with v_flat^4 = G_N M_b a0 (or AS658 vacuum DOF count) to fix c_N; output: a number for alpha with error/domain",
+      "fingerprint": "FINAL_ACTION.md b8c04d4e...546e eq (13)+(18), THIS run ratio 1/c_N, measured G_N = 6.67430e-11, a0 footings, cosmic density input",
+      "controls": "substitution back into eq (13) and eq (18); kappa back-check = 1/2 on both footings; negative control still fires (3 c2/2 != 0)",
+      "dependencies": "an adopted measured (a0, G_N) pair and an H0 or rho_Lambda estimate; AS658 if using the vacuum DOF count",
+      "dispatch_state": "proposed (not dispatched; ready specification for the orchestrator)"
+    },
+    {
+      "id": "AS236.C02",
+      "parent": "AS236-r1-20260928T203554Z-dsv4f-hermes",
+      "new_target": "derive the effective k-dependent coupling G_eff(k) = G_N/(1 - (ell/4) S_k) in the reciprocal window from the AS226 exact Q-solution and verify its real-space kernel on the same torus, linking the local Cavendish sector to the homogeneous ratio at k -> 0+",
+      "fingerprint": "AS226 exact solution Phi_t = -(rho_b+rho_d)/(2 M_P^2 c_N k^2 Q), filter S_k, this run's G_N/G_cosm = 1/c_N limit",
+      "controls": "substitution-back for the exact Q-solution incl. tie; refine k -> 0 limit against 1/c_N",
+      "dependencies": "AS226.C01-equivalent kernel computation (upstream)",
+      "dispatch_state": "proposed (not dispatched)"
+    }
+  ],
+  "closure_candidate": null
+}

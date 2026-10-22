@@ -1,0 +1,197 @@
+{
+  "schema_version": 2,
+  "task_id": "AS233",
+  "task_sha256": "09b8f90719ee5bf44d25517e0f9e63fffb43460ab2d7d8fab819947438d584cd",
+  "run_id": "AS233-r1-20260928T203954Z-dsv4f-hermes",
+  "worker": "deepseek-v4-flash-0731 via hermes-agent (OpenRouter) on macOS 26.5.2, Python3.13/sympy 1.13, executable identity: subagent seed worker",
+  "started_utc": "2026-09-28T18:26:41Z",
+  "finished_utc": "2026-09-28T22:31:11Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On the CA5-GNC-R branch of the pinned common action (FINAL_ACTION.md b8c04d4e...), in the high-acceleration window (heat gate inactive, S_k -> 0, dust, weak source, first order in source velocity), the preferred-frame vector response of the physical metric \u2014 Will dictionary alpha_1 = 2*coeff(g_02, w_2)/U_amp, U_amp = -Psi_k/R_k \u2014 is alpha_1(alpha, c2) = 4*(alpha + 2*c2)/(2 - c2) on the tested domain alpha in {0,1/10,3/10,1/2,3/4,1}, c2 in {0,1/4,1/2} (18 exact rational cells; symbolic-c2 cell at alpha=3/10 gives -2(20c2+3)/(5(c2-2))), with 2 alpha at c2=0 (pure clock-origin response), 8c2/(2-c2) at alpha=0 (trace-mixing channel alone), 0 in the Einstein limit alpha=c2=0, and independence from ell in the window. Reference cell (alpha,ell,c2)=(3/10,1/25,1/2): alpha_1 = 52/15, ladder amplitudes c2t = 416 pi/51, U_amp = 80 pi/17. Dimensionless; both footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 apply identically (kappa = 1/2 back-checked exactly: rho_Lambda = 5.844412e-27 and 8.483090e-27 kg/m^3).",
+  "framework_cell": {
+    "action": "FINAL_ACTION.md eq. (4) CA5-GNC-R, sha256 b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e (common_action_2026_09_26/action)",
+    "kernel": "M_P^2/2 units, flat leaf, mode picture with k = (k_x,0,0), Es/Eis diagonal (real-mode) projection",
+    "filter": "none; Q/RAR/MU2/EXP/MONO branches explicitly not used (CA5-GNC-R only, criterion B respected)",
+    "gate": "heat saddle W_b = S_h U, gate f = G'(Y_h) = 0 inactive on the compact leaf at high acceleration",
+    "couplings": "c_N = 1 - alpha/2 (action definition), alpha, ell, c2 (trace-mixing Q_K^2), GT, Lambda=0 (nonzero modes), G_N = G_bare/c_N (AS226)",
+    "parameters": "reference cell alpha=3/10, ell=1/25, c2=1/2; grid alpha in {0,1/10,3/10,1/2,3/4,1} x c2 in {0,1/4,1/2}; kappa=1/2 adopted",
+    "scale_footing": "dimensionless coefficient; both footings a0=9.3619e-11 and 1.1279e-10 m/s^2 (kappa back-check 0.5 exact for each)",
+    "boundaries": "window S_k -> 0; weak source, first order in velocity; dust rho_d = 0; H[0,1]=0 gauge; w_3=0 so B3=s23=0; F/U decoupled in window",
+    "initial_conditions": "plane-wave nonzero modes, mean-normalized leaf; rho_k source amplitude",
+    "units": "SI inputs used only for footing numerics (G=6.67430e-11, c=299792458); closure claim dimensionless"
+  },
+  "new_assumptions": [
+    "unit clock normal n = -tau/sqrt(X_tau) with X_tau = -g^{mu nu} tau_mu tau_nu (metric couples through g^{0i} w_i; this is the shift-sourcing channel, derived from the action's clock sector, not imported)",
+    "shift kinetic +k^2 B2^2 from the linearized Einstein sector (coefficient consistent with the same metric expansion; certified E_A spelling for the longitudinal part)",
+    "S_k -> 0 window freezes Z/U/F (compensator vanishes); ell-independence verified at three values"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS233_derive_the_high_acceleration_preferred_frame_vector_response.md": "09b8f90719ee5bf44d25517e0f9e63fffb43460ab2d7d8fab819947438d584cd",
+    "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+    "real_research/closure_push_2026_09_26/lapse_kinetic/REPORT.md": "9d241cd3a32f0c1b7114b26da8bb6e2e9b587b0a6ea2c296545d1c8db45c6335",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/results/AS226/AS226-r1-20260928T171100Z-dsv4f-hermes/result.json": "232e27b08f02ed00a5a2baa6a10d0ad4a082daab9f84a3edbb8e0540bd48352b"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS233/AS233-r1-20260928T203954Z-dsv4f-hermes/as233_derive.py": "ad940a6a1f22681c92191f39f06c12db4ae6a2b052df945fa2617ed88af93960",
+    "deepseek_push/astra_spawn_ideas/results/AS233/AS233-r1-20260928T203954Z-dsv4f-hermes/derive_raw.out": "11a6171479fe3d91060216a0852ba8deba26f2c7fe9d3dc6274c892590262340",
+    "deepseek_push/astra_spawn_ideas/results/AS233/AS233-r1-20260928T203954Z-dsv4f-hermes/time_mem_derive.txt": "7a952b71e464e0d4ebcdffb9557ff7c87cf7b0e0690afcc7bdcf7b1b6e29eb89",
+    "deepseek_push/astra_spawn_ideas/results/AS233/AS233-r1-20260928T203954Z-dsv4f-hermes/as233_closed_form.lean": "492f3ce6fd8a43079828e347cb0d93aef128d9b29a4219fa1b566b844f96f633",
+    "deepseek_push/astra_spawn_ideas/results/AS233/AS233-r1-20260928T203954Z-dsv4f-hermes/lean_check.out": "a2def000e6761f6f0d50f3a9b63c8574dcd3202a60b7444c0c142230bfb80cc9",
+    "deepseek_push/astra_spawn_ideas/results/AS233/AS233-r1-20260928T203954Z-dsv4f-hermes/derivation.md": "b56a8ece40688d2a497cf2deaf79c5e61462e1b0edc264b8da0c5c39647f67f0"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS233/AS233-r1-20260928T203954Z-dsv4f-hermes && export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1; ulimit -t 115; /usr/bin/time -l python3 as233_derive.py > derive_raw.out 2> time_mem_derive.txt; echo exit=$?",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <run_dir>/as233_closed_form.lean > <run_dir>/lean_check.out"
+  ],
+  "execution_bounds": {
+    "declared": "wall-time <= 120 s, memory <= 512 MB, 1 thread (seed: cheapest bounded discriminating calculation)",
+    "enforced": "ulimit -t 115 (CPU seconds), single-threaded env (OMP/OPENBLAS/MKL/VECLIB/NUMEXPR/NUMBA = 1), measured by /usr/bin/time -l",
+    "actual": "3.95 s wall, 3.91 s user, 68.65 MB max RSS, 1 thread (time_mem_derive.txt)"
+  },
+  "checks": [
+    {
+      "name": "A ladder regular (pure Einstein alpha=ell=c2=0)",
+      "value": "dict",
+      "tolerance": "non-singular",
+      "pass": true
+    },
+    {
+      "name": "A no-slip Psi + Phi = 0 (AS226 spelling)",
+      "value": "Psi_k + Phi_k = 0",
+      "tolerance": "== 0 exact",
+      "pass": true
+    },
+    {
+      "name": "A alpha_1 = 0 in the Einstein limit",
+      "value": "0",
+      "tolerance": "== 0 exact",
+      "pass": true
+    },
+    {
+      "name": "C1 regular at (3/10, 1/25, 1/2)",
+      "value": "alpha_1 = 52/15",
+      "tolerance": "non-singular",
+      "pass": true
+    },
+    {
+      "name": "C1b substitution-back Psib/Phib/B2b/s22b/Fb brackets",
+      "value": "(0, 0) at (wb^0, wb^1) each",
+      "tolerance": "== 0 exact residuals",
+      "pass": true
+    },
+    {
+      "name": "K closed form alpha_1 = 4(alpha+2c2)/(2-c2) over 18 exact rational cells",
+      "value": "18/18 match",
+      "tolerance": "exact",
+      "pass": true
+    },
+    {
+      "name": "Kell ell-independence in window (1/25, 1/2, 1)",
+      "value": "52/15 each",
+      "tolerance": "exact",
+      "pass": true
+    },
+    {
+      "name": "N1 negative control alpha_1 = -4E rejected (E = 1/100, 1/4, 1)",
+      "value": "residuals 3.5067, 4.4667, 7.4667",
+      "tolerance": "!= 0 (fires)",
+      "pass": true
+    },
+    {
+      "name": "N2 -4E candidate in ORIGINAL B2-bracket rejected",
+      "value": "residual 16 pi rho_k w_2 (-15E-13)/17 != 0 (~ -38.88 at E=1/100)",
+      "tolerance": "!= 0 (fires)",
+      "pass": true
+    },
+    {
+      "name": "unit-normal consistency Aup.Adn + 1 = 0 at (eps^2, wb^1)",
+      "value": "0",
+      "tolerance": "== 0 exact; Lean-certified",
+      "pass": true
+    },
+    {
+      "name": "F footings kappa back-check (both a0)",
+      "value": "kappa_back = 0.500000000 each",
+      "tolerance": "|kappa - 1/2| < 1e-9",
+      "pass": true
+    },
+    {
+      "name": "Lean 4 verification",
+      "value": "lake env lean exit 0, zero sorry, axioms subseteq {propext, Classical.choice, Quot.sound}",
+      "tolerance": "hard bar",
+      "pass": true
+    }
+  ],
+  "tested_domain": "exact rational arithmetic; alpha in {0,1/10,3/10,1/2,3/4,1} x c2 in {0,1/4,1/2} (18 cells) + symbolic-c2 cell at alpha=3/10 + ell in {1/25,1/2,1}; plane-wave nonzero mode k=(k_x,0,0), gauge H[0,1]=0, w3=0 (B3=s23=0), window S_k -> 0 (Z/U/F frozen), dust, first order in velocity, weak source, eps=1 evaluation of the ansatz ratios",
+  "failed_attempts": [
+    {
+      "path": "deepseek_push/astra_spawn_ideas/results/AS233/AS233-r1-20260928T203954Z-dsv4f-hermes/as233_derive_v3.py",
+      "cause": "full 4D Ricci tower with 4-deep product nesting: exceeded the 115 s budget at 359 MB (abandoned as unbounded)"
+    },
+    {
+      "path": "deepseek_push/astra_spawn_ideas/results/AS233/AS233-r1-20260928T203954Z-dsv4f-hermes/as233_derive_v4.py",
+      "cause": "metric-inverse truncation error in the unit normal (wrong sqrt series signs/orders): unit check nonzero at O(eps), blow-up"
+    },
+    {
+      "path": "deepseek_push/astra_spawn_ideas/results/AS233/AS233-r1-20260928T203954Z-dsv4f-hermes/as233_derive_v5.py",
+      "cause": "full-Ricci-rung static sector broke the certified no-slip identity (Phi_k/Psi_k = 3/10, Einstein part differs from the certified E_A spelling); replaced by the certified AS226 density spelling in v6"
+    },
+    {
+      "path": "deepseek_push/astra_spawn_ideas/results/AS233/AS233-r1-20260928T203954Z-dsv4f-hermes/as233_derive_v6.py",
+      "cause": "kept as revision history of the canonical as233_derive.py (identical content)"
+    }
+  ],
+  "limitations": [
+    "S_k -> 0 window: Z/U/F frozen; S_k != 0 corrections and the heat-saddle channel are not in this result",
+    "second order in velocity (alpha_2, alpha_3) out of scope",
+    "CA5-GNC-R statement only; Q/RAR/MU2/historical EXP/MONO branches untouched",
+    "Einstein sector uses the certified AS226 E_A density spelling rather than a re-derived Ricci tower; the 4D Ricci route reproduced alpha_1 = 0 in the Einstein limit but broke the no-slip static identity and was abandoned",
+    "reference-cell coefficient 52/15 is O(1); consistency with observational bounds on preferred-frame effects is a parameter-space question outside this derivation",
+    "single source, plane-wave modes; multipole/source-shape and boundary-value refinements not performed",
+    "alpha_1 = -4E trace-mixing branch value has no action dictionary on CA5-GNC-R and is rejected by N1/N2; this does not rule out other no-dictionary values"
+  ],
+  "next_unresolved_implication": "the S_k -> 0 window freezes the Z/U/F sector, so the window corrections to the shift equation \u2014 the heat-saddle compensator c_N ell a . D W_b and the residual -4 c_N DZ . DU piece at finite S_k \u2014 have not been derived; at finite S_k the F-sector couples back and the L2diag system gains an F-row, which may alter alpha_1 by terms of O(S_k) already visible in the recorded C1c a_1 - D_1F residual.",
+  "suggested_followup": "AS233.C01: derive the alpha_1(S_k) window correction with the F-sector live (same CA5-GNC-R action, keep S_k symbolic, extend the two-rung ladder to the 5-field system {Psi, Phi, B2, s22, F}), target alpha_1 = 4(alpha + 2 c2)/(2 - c2) + O(S_k) with the S-linear coefficient extracted exactly; controls: reproduce 52/15 at S_k -> 0 and re-run N1/N2 at S_k = 1/2.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": [
+      "CA5-GNC-R action (FINAL_ACTION eq. (4)) with c_N = 1 - alpha/2",
+      "dust matter with the standard density coupling -16 pi G_T rho (-H_00/2)",
+      "unit clock normal n = -tau/sqrt(X_tau) with tau = (1, w_b w_i) (uniform source motion across the preferred foliation)",
+      "window S_k -> 0 (high acceleration; recorded not silently set)",
+      "kappa = 1/2 adopted (task input)"
+    ],
+    "measured_calibrations": [
+      "G = 6.67430e-11 SI (footing back-check only)",
+      "c = 299792458 SI (footing back-check only)",
+      "a0 = 9.3619e-11 and 1.1279e-10 m/s^2 (both footings; kappa back-check exact)"
+    ],
+    "derived_equations": [
+      "E_A = 2|D Phi|^2 + 4 D Psi . D Phi (certified AS226 section-5 Einstein density)",
+      "V_a = alpha|a-DZ|^2 + 4 a.DZ - 2|DZ|^2 - 4 c_N DZ.DU with a = D ln N from Christoffels and the boosted unit normal",
+      "ties Z = (ell S_k/4) F, U = F - Z (FINAL_ACTION (6),(7) at f = 0)",
+      "trace-mixing block -c2 Q_K^2, Q_K = K (extrinsic curvature of the boosted foliation)",
+      "shift kinetic +k^2 B2^2 (linearized Einstein sector)",
+      "two-rung ladder brackets (wb^0, wb^1) and the Will dictionary alpha_1 = 2 coeff(g_02, w_2)/U_amp"
+    ]
+  },
+  "closure_implication": {
+    "gate": "preferred-frame vector response gate: alpha_1 (observably: solar-system preferred-frame tests)",
+    "implication": "same-action coefficient derived: alpha_1 = 4(alpha + 2 c2)/(2 - c2) in the high-acceleration window, CA5-GNC-R, dust, first order in velocity; Einstein limit recovers alpha_1 = 0; the task-displayed target 'a same-action vector response coefficient' is answered on this domain",
+    "compatibility": "consistent with the common action pinned at b8c04d4e... and the certified AS226 result G_N = G_bare/c_N; NOT promoted to complete gravity closure (unreviewed, domain-limited)"
+  },
+  "child_proposals": [
+    {
+      "id": "AS233.C01",
+      "target": "alpha_1(S_k) window correction with the F-sector live; extract the O(S_k) coefficient exactly",
+      "controls": "reproduce 52/15 at S_k -> 0; re-run N1/N2 at S_k = 1/2",
+      "dependencies": "this run; AS226",
+      "status": "proposed, not dispatched"
+    }
+  ],
+  "closure_candidate": null
+}

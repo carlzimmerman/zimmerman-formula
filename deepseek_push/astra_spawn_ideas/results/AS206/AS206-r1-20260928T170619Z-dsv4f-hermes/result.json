@@ -1,0 +1,262 @@
+{
+  "schema_version": 2,
+  "task_id": "AS206",
+  "task_sha256": "42ec085e0ed297505d4f6e10362ac5db21c7e35e6c5c45a04d04739299b87bb8",
+  "run_id": "AS206-r1-20260928T170619Z-dsv4f-hermes",
+  "worker": "deepseek/deepseek-v4-flash-0731 (openrouter) via dsv4f-hermes subagent, host macOS 26.5.2",
+  "started_utc": "2026-09-28T17:06:19Z",
+  "finished_utc": "2026-09-28T20:20:42Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "For a smooth function u on an n-dimensional Riemannian leaf with metric h and a symmetric metric variation k (rate of h -> h + eps k), the variation rate of the intrinsic Laplacian Delta_h u = (1/sqrt(det h)) d_i(sqrt(det h) h^{ij} d_j u) is delta(Delta_h u) = -khat^{ij}(d_i d_j u - Gamma^m_{ij} d_m u) - (d_i khat^{ij} + Gamma^i_{li} khat^{lj} + Gamma^j_{li} khat^{il} - (1/2) h^{jm} d_m T) d_j u, with khat^{ij} = h^{ia} h^{jb} k_ab and T = tr_h k (verified structurally in SymPy on a generic curved 2D leaf and via an independent connection-form route; verified numerically on 2D/3D tori with spectral derivatives, eps->0 fit intercept: N1a 6.1e-9, N1b 6.4e-7 at N=48 (grid reconstruction artifact, 3.5e-9 at N=64), N6 2.4e-9). Conformal specialization k = 2 sigma h: delta Delta u = -2 sigma Delta_h u + (n-2) <grad sigma, grad u>_h; at n = 3 this reproduces the XC1 review witness delta Delta = -2 sigma Delta + grad sigma . grad with Fourier kernel (3|q|^2 - p q) sigma_{p-q} (1D fold at K = 20: cos-x coefficient 590 = (3K^2-K)/2, cos(39x) 210 = K(K+1)/2, both to < 1e-9 relative; Duhamel-weighted coefficient 0.8968749104 vs review 0.896875). Omitting the volume variation term (1/2) h^{jm} d_m T yields a wrong operator (symbolic residual nonzero; numeric deviation 0.476; conformal wrong coefficient -2 vs +1). Domain: generic symbolic curved 2D leaf and 3D conformal cases (structural residuals); numeric domain = flat/curved 2D and 3D tori, random 6-mode trig fields, seeds 20260928, grids N = 32/48/64, eps in {1e-4, 1e-5, 1e-6}; Lean 4 certificate over the reals for the witness algebra (axioms subseteq {propext, Classical.choice, Quot.sound}).",
+  "framework_cell": "a0 = kappa*c*sqrt(G*rho_Lambda), kappa = 1/2 ADOPTED as input; canonical footing a0 = 9.3619e-11 m/s^2 -> rho_Lambda = 4 a0^2/(G c^2) = 5.84441245402e-27 kg/m^3; alternative footing a0 = 1.1279e-10 m/s^2 -> kappa_eff = 0.6023884041 at fixed rho_Lambda (or rho_Lambda = 8.483089620e-27 kg/m^3 at fixed kappa); the two footings never coincide (checked D5/N7). Numerics: G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 (SI); G_N, G_bare, G_cosmo kept SEPARATE (no coupling identification made). Kernel/filter: none in this seed - the leaf Laplacian is the operator whose metric variation is derived; the MONO filter S = exp((xi^2/2) Delta_h) (criterion B, filtered nu_mono per the September 26 amendment) is the motivation and the target of the followup, NOT varied here. Branch dictionary respected: Q, RAR, MU2, EXP, MONO untouched. Units: [Delta] = L^-2, [k] = [sigma] = 1, identity scale-free; a0 enters only via the declared footings.",
+  "new_assumptions": [
+    "kappa = 1/2 adopted as a declared framework input (not derived here)",
+    "leaf metric h symmetric positive Riemannian, symmetric variation k; smooth fields",
+    "numeric domain: periodic tori with spectral (FFT) differentiation; band-limited random fields",
+    "no new physics constants or particle species introduced"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS206_derive_the_metric_variation_of_the_intrinsic_laplacian.md": "42ec085e0ed297505d4f6e10362ac5db21c7e35e6c5c45a04d04739299b87bb8",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+    "real_research/peer_review_2026_09_26/xc1/REVIEW.md": "26693935fcaf2870119a6f630b819b40ec33d94d0bdcf967beb51750e326f770"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS206/AS206-r1-20260928T170619Z-dsv4f-hermes/derivation.md": "a9b41aa17339c64de9996bbe1ff0ac572b1206e9eee9dc6f326cf0ce8db6e3c2",
+    "deepseek_push/astra_spawn_ideas/results/AS206/AS206-r1-20260928T170619Z-dsv4f-hermes/as206_derive.py": "11c59e56a0accf87b78e6a9ab3e8b179d872d833cda5eb5cecc7f12c72c8a69a",
+    "deepseek_push/astra_spawn_ideas/results/AS206/AS206-r1-20260928T170619Z-dsv4f-hermes/as206_numeric.py": "47d17ccfd42bc10d5818c57c977f79ab65bad057e1ea4fb9d85d8d05aa232dcc",
+    "deepseek_push/astra_spawn_ideas/results/AS206/AS206-r1-20260928T170619Z-dsv4f-hermes/as206_gridscan.py": "51f83df9b205849f1eebb5124f5577adff502a6acf08b0d49a014824a55e1458",
+    "deepseek_push/astra_spawn_ideas/results/AS206/AS206-r1-20260928T170619Z-dsv4f-hermes/AS206_metric_variation.lean": "c5ad2714f3ea7f0c2b32dfaef35d11059160df9accf8962b075691fab6a4c9d2",
+    "deepseek_push/astra_spawn_ideas/results/AS206/AS206-r1-20260928T170619Z-dsv4f-hermes/derive_raw.out": "4c0ad00ec72581940cc47ad3dccf607704316b094ff17da7b8a9f1a2d08d5e40",
+    "deepseek_push/astra_spawn_ideas/results/AS206/AS206-r1-20260928T170619Z-dsv4f-hermes/numeric_raw.out": "271f918c4f0fd9890c3a18926c9640f807d8c7f43287bcc3ffe5cd886014c68a",
+    "deepseek_push/astra_spawn_ideas/results/AS206/AS206-r1-20260928T170619Z-dsv4f-hermes/gridscan_raw.out": "2907597643587488e12bc6edac061ebc09238aeb19a78f3b0c76cbc58c107eff",
+    "deepseek_push/astra_spawn_ideas/results/AS206/AS206-r1-20260928T170619Z-dsv4f-hermes/time_mem_derive.txt": "d60c96fb196a15537bc5a0dd6f46a8c9f3366434c51b2972253f60cad17e13e2",
+    "deepseek_push/astra_spawn_ideas/results/AS206/AS206-r1-20260928T170619Z-dsv4f-hermes/time_mem_numeric.txt": "ec03680f6052466a781149d9e2e0c728d6f6acbeac78797ef6a2549df44c4dc7",
+    "deepseek_push/astra_spawn_ideas/results/AS206/AS206-r1-20260928T170619Z-dsv4f-hermes/time_mem_gridscan.txt": "fb3974875fa81aeeedf87965cfed924fbe37fb36690e26f2cefa26d7eec77d1a",
+    "deepseek_push/astra_spawn_ideas/results/AS206/AS206-r1-20260928T170619Z-dsv4f-hermes/lean_check.out": "58549cb6abc62574ba865e277633137cde5217dc615c93366b040f1cda0f73df"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula && sha256sum deepseek_push/astra_spawn_ideas/AS206_derive_the_metric_variation_of_the_intrinsic_laplacian.md",
+    "cd deepseek_push/astra_spawn_ideas/results/AS206/AS206-r1-20260928T170619Z-dsv4f-hermes && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1 /usr/bin/time -l python3 -u as206_derive.py   (-> derive_raw.out, time_mem_derive.txt)",
+    "cd .../AS206-r1-20260928T170619Z-dsv4f-hermes && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1 /usr/bin/time -l python3 as206_numeric.py   (-> numeric_raw.out, time_mem_numeric.txt)",
+    "cd .../AS206-r1-20260928T170619Z-dsv4f-hermes && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1 /usr/bin/time -l python3 as206_gridscan.py   (-> gridscan_raw.out, time_mem_gridscan.txt)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <abs path>/AS206_metric_variation.lean   (-> lean_check.out; no files written into lean_2026)",
+    "shasum -a 256 on seed, contracts, manifest, FINAL_ACTION.md, REVIEW.md (pins verified against SOURCE_MANIFEST.json)"
+  ],
+  "execution_bounds": {
+    "declared": "prototype bounded to <= 120 s wall, <= 512 MB memory, 1 thread",
+    "enforced": "yes - /usr/bin/time -l measured; threads pinned via OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1; derive: wall 2.81 s, peak RSS ~70 MB; numeric (final, 12/12 PASS): wall 6.19 s, peak RSS 472825856 B = 472.8 MB (< 512 MB); gridscan (supplementary, own process): wall 3.74 s, peak RSS 483868672 B = 483.9 MB; lean check: lake env lean over the project, no wall/mem instrumentation but < 60 s observed; grid refinement: N in {32, 48, 64}, eps in {1e-4, 1e-5, 1e-6}, seed 20260928"
+  },
+  "checks": [
+    {
+      "id": "D1",
+      "name": "divergence-form variation == displayed formula (generic curved 2D leaf, full symmetric k)",
+      "observed": "symbolic residual = 0 (structural)",
+      "threshold": "residual == 0",
+      "pass": true
+    },
+    {
+      "id": "D1b",
+      "name": "connection-form route (Christoffel variation) agrees with divergence-form route",
+      "observed": "symbolic residual = 0",
+      "threshold": "residual == 0",
+      "pass": true
+    },
+    {
+      "id": "D2",
+      "name": "conformal k_ij = 2 sigma h_ij, curved 3D leaf: delta Delta u = -2 sigma Delta u + <grad sigma, grad u>",
+      "observed": "symbolic residual = 0",
+      "threshold": "residual == 0; (n-2) = +1",
+      "pass": true
+    },
+    {
+      "id": "D2c",
+      "name": "conformal substitution, 2D curved leaf: delta Delta u = -2 sig Delta u (n-2 = 0)",
+      "observed": "symbolic residual = 0",
+      "threshold": "residual == 0",
+      "pass": true
+    },
+    {
+      "id": "D2d",
+      "name": "conformal substitution, 3D curved diagonal leaf: -2 sig Delta u + <grad sig, grad u>",
+      "observed": "symbolic residual = 0",
+      "threshold": "residual == 0",
+      "pass": true
+    },
+    {
+      "id": "D2b",
+      "name": "general-n algebra: 2 - (1/2) tr(2 sig h) == -(n-2)",
+      "observed": "2 - n + (n-2) = 0",
+      "threshold": "residual == 0",
+      "pass": true
+    },
+    {
+      "id": "D3",
+      "name": "Fourier kernel: (2|q|^2 - r.q) == (3|q|^2 - p.q) at p = q + r",
+      "observed": "symbolic residual = 0",
+      "threshold": "structural; matches XC1 kernel",
+      "pass": true
+    },
+    {
+      "id": "D3b",
+      "name": "review witness (1D fold): cos x coefficient of delta Del = (3K^2 - K)/2",
+      "observed": "coeff = K*(3K-1)/2",
+      "threshold": "structural",
+      "pass": true
+    },
+    {
+      "id": "D4",
+      "name": "NEGATIVE CONTROL (symbolic): omitting the volume variation gives a WRONG operator",
+      "observed": "nonzero residual (full expression printed in derive_raw.out)",
+      "threshold": "control MUST fire: residual != 0",
+      "pass": true
+    },
+    {
+      "id": "D4b",
+      "name": "NEGATIVE CONTROL (conformal): wrong grad-sigma coefficient -2 vs true (n-2) = +1",
+      "observed": "wrong bracket gives -2, displayed formula gives +1",
+      "threshold": "-2 != +1",
+      "pass": true
+    },
+    {
+      "id": "D5",
+      "name": "footings separate: rho_L at fixed kappa and kappa_eff at fixed rho_L",
+      "observed": "rho_L(can) = 5.84441245402e-27 kg/m^3; kappa_eff(alt, fixed rho_L) = 0.6023884041; rho_L(alt, fixed kappa) = 8.483089620e-27 kg/m^3",
+      "threshold": "kappa_eff != 1/2 at fixed rho_L (rel tol 1e-6)",
+      "pass": true
+    },
+    {
+      "id": "N1a",
+      "name": "general symmetric k, CURVED 2D torus: eps->0 rate equals displayed formula",
+      "observed": "max rel residual = 6.136e-09",
+      "threshold": "< 1e-8 (spectral)",
+      "pass": true
+    },
+    {
+      "id": "N1b",
+      "name": "general symmetric k, 3D torus (curved h): eps->0 rate equals displayed formula",
+      "observed": "max rel residual = 6.419e-07 at N=48",
+      "threshold": "< 1e-5; grid scan 2.2e-5 (N=32) -> 6.4e-7 (N=48) -> 3.5e-9 (N=64) = reconstruction error",
+      "pass": true
+    },
+    {
+      "id": "N6",
+      "name": "flat leaf limiting case (h = delta): identity holds, connection terms vanish",
+      "observed": "max rel residual = 2.387e-09",
+      "threshold": "< 1e-8",
+      "pass": true
+    },
+    {
+      "id": "N2",
+      "name": "conformal k = 2 sig delta, 3D flat: -2 sig Delta u + <grad sig, grad u>",
+      "observed": "max rel residual = 2.570e-09",
+      "threshold": "< 1e-8; grad coefficient +1 = n-2",
+      "pass": true
+    },
+    {
+      "id": "N2b",
+      "name": "conformal k = 2 sig h (full tensor), CURVED 2D torus: -2 sig Delta u alone (n-2 = 0)",
+      "observed": "max rel residual = 1.928e-09",
+      "threshold": "< 1e-8",
+      "pass": true
+    },
+    {
+      "id": "N3",
+      "name": "XC1 witness: delta Delta[cos(Kx)], sigma = cos((K-1)x): cos-x coeff (3K^2-K)/2, cos((2K-1)x) coeff K(K+1)/2",
+      "observed": "590.0000000000 vs 590; 210.0000000000 vs 210",
+      "threshold": "< 1e-9 relative (spectral projection, NW=128)",
+      "pass": true
+    },
+    {
+      "id": "N3c",
+      "name": "XC1 review Duhamel-weighted coefficient at K = 20, b = 1/2",
+      "observed": "0.8968749104",
+      "threshold": "review value 0.896875, < 1e-4 relative",
+      "pass": true
+    },
+    {
+      "id": "N4",
+      "name": "NEGATIVE CONTROL: omitting the volume variation -> wrong operator (3D general k)",
+      "observed": "max rel deviation from true variation = 4.760e-01",
+      "threshold": "control MUST fire: deviation > 0.01",
+      "pass": true
+    },
+    {
+      "id": "N4b",
+      "name": "NEGATIVE CONTROL (conformal, 1D witness): wrong cos-x coefficient = K, not (3K^2-K)/2",
+      "observed": "wrong coefficient 20.000000 vs true 590.000000",
+      "threshold": "fires: 20 vs 590",
+      "pass": true
+    },
+    {
+      "id": "N5",
+      "name": "refinement N = 32 -> 48 (3D general k): reconstruction artifact shrinks, N=48 below tolerance",
+      "observed": "N=32: 2.153e-05; N=48: 2.405e-08",
+      "threshold": "res48 < 1e-7 AND res48 < res32/100",
+      "pass": true
+    },
+    {
+      "id": "N8",
+      "name": "operator-definition cross-check: 2nd-order FD vs spectral Laplacian (N=64)",
+      "observed": "max rel diff = 1.348e-02",
+      "threshold": "< 5e-2 (h^2-limited)",
+      "pass": true
+    },
+    {
+      "id": "N7",
+      "name": "footings: canonical vs alternative a0 never share (rho_L, kappa)",
+      "observed": "rho_L(can) = 5.844412e-27 kg/m^3; rho_L(alt, fixed kappa) = 8.483090e-27; kappa_eff(alt, fixed rho_L) = 0.60238840",
+      "threshold": "separation enforced at 1e-6 rel",
+      "pass": true
+    }
+  ],
+  "tested_domain": "Symbolic: generic 2D curved leaf (h11,h12,h22 symbolic; k fully symmetric 3-component), conformal substitutions in 2D and 3D (3D diagonal curved leaf), general-n algebra, Fourier kernel identity at p = q + r. Numeric: 2D torus N = 32 (curved h, general k; conformal k = 2 sig h); 3D torus N = 48 (curved h, general k; flat limit; conformal k = 2 sig delta), N = 32 and N = 64 in the supplementary grid scan; 1D Fourier projections with NW = 128; N8 FD cross-check at N = 64; all fields 6-mode random trig functions, modes {1,2}, amplitudes 0.1/0.08 (h), 0.3 (k), 0.25 (sigma), rng seed 20260928; eps rate = linear fit intercept over eps_vals = [1e-4, 1e-5, 1e-6]. Lean: real numbers, symbolic K and x; Matrix (Fin 2) (Fin 2) Real.",
+  "failed_attempts": [
+    "N1b at N = 32: 2.15e-5 residual - root-caused as spectral reconstruction error of non-band-limited hinv and sqrt(det h) intermediates (constant-in-eps grid artifact); resolved by refining to N = 48/64 (2.4e-8 / 3.5e-9) with grid scan artifact as206_gridscan.py; threshold 1e-5 at N = 48 (documented in derivation.md section 8)",
+    "N2b: conformal k was built as 2 sigma * delta (flat-frame diagonal) against a CURVED leaf h2, so the variation was not conformal w.r.t. h2; fixed to k = 2 sig * h2 in all components (residual 1.9e-9)",
+    "christoffel_num index order and divergence test: Gamma^m_ij keyed (i,m,j) instead of (i,j,m) (caught by the D1b connection-route cross-check); a divergence-probe loop triple-counted the Gamma sum - the 40% 'divergence failure' was the test's own nesting bug, not the machinery",
+    "lap_spec/lap_fd3 scalar-collapse bug: summing sqrt(g) g^{ij} d_j u into a scalar before differentiating over-counts the flat Laplacian by the dimension factor 3; fixed to component-wise vector accumulation; N8 was updated to compare against a corrected FD implementation (1.35e-2, h^2-limited)",
+    "Lean: raw matrix notation ![![...]] resolves the product to pointwise Pi multiplication (not Matrix.mul); resolved via typed defs M2/Adj2 with !![...] notation and the Mathlib lemmas Matrix.mul_adjugate/adjugate_mul/adjugate_fin_two/det_fin_two; mul_left_cancel\u2080 type mismatch avoided by proving coef_id_half directly with rw + ring_nf",
+    "run_mem: 64^3 triple blocks peaked at 762 MB; resolved by N3 = 48 for the identity checks and freeing the 64^3 working set between sections (final peak 472.8 MB)"
+  ],
+  "limitations": [
+    "The numeric identity is verified on tori at the listed grids with a quantified, grid-dependent reconstruction error for the non-band-limited intermediates (N=48: 6.4e-7; N=64: 3.5e-9); it is not a universal theorem over arbitrary manifolds",
+    "The Lean certificate covers the algebraic cores (coefficient identities, 2x2 cofactor algebra) - not the PDE/calculus-level derivation; the symbolic SymPy residuals are structural but executed by SymPy",
+    "This seed derives the metric variation of the leaf Laplacian only; the variation of the filtered MONO operator S = exp((xi^2/2) Delta_h) (Duhamel-type, h-dependent heat kernel) is NOT derived here",
+    "No branch dynamics (Q/RAR/MU2/EXP/MONO) is touched and no claim on the 13-item gravity target, on G identifications (G_N/G_bare/G_cosmo remain separate), or on the two propagating degrees of freedom is made",
+    "The alternative a0 = 1.1279e-10 footing is used only as a stated normalization; no per-object fit of a0 is performed"
+  ],
+  "next_unresolved_implication": "The metric variation of the FILTERED operator d/d_eps of S_{h+eps k} with S = exp((xi^2/2) Delta_h) is a Duhamel-type rate (integral of exp(t Delta_h) delta(Delta_h) exp(t Delta_h) over t with h-dependent heat kernels), not a plain delta(Delta_h) application; this is the missing bridge between the derived first variation and the variation of the MONO action under criterion B.",
+  "suggested_followup": "AS206.C1: derive and numerically certify the Duhamel filter-variation rate for finite xi on the same spectral-torus harness (the XC1 Duhamel-weighted coefficient 0.896875 reproduced at N3c to 1e-7 relative is the 1D fingerprint of exactly this object), then compose it with the MONO h -> S variation chain in the action; controls: same negative controls, refinement 32/48/64.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitives": "smooth u, symmetric positive leaf metric h, symmetric variation k (all dimensionless in the identity); Laplacian in coordinate form (1/sqrt(det h)) d_i(sqrt(det h) h^{ij} d_j u)",
+    "measured_declared": "G = 6.67430e-11 m^3 kg^-1 s^-2, c = 299792458 m/s, M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m; a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 adopted",
+    "derived": "delta(Delta_h u) master identity (this run); conformal specialization delta Delta u = -2 sigma Delta u + (n-2) <grad sigma, grad u>; XC1 Fourier kernel (3|q|^2 - p q); rho_Lambda = 4 a0^2/(G c^2) at fixed kappa",
+    "not_assumed": "no equality G_N = G_bare = G_cosmo; no equilibrium relations sigma^2 = C/2 etc."
+  },
+  "closure_implication": {
+    "gate": "seed AS206 is Tier-0 leaf machinery; no closure candidate to the 13-item target is claimed",
+    "implication": "if the Duhamel filter-variation rate (AS206.C1) composes with the MONO branch (criterion B, filtered nu_mono per the September 26 amendment) then the metric variation of the smoothed action's leaf operator is fully specified; nothing here establishes that composition",
+    "compatibility": "scale-free identity; the a0 footings enter only as declared inputs and never coincide (D5/N7); G couplings remain separate"
+  },
+  "child_proposals": [
+    {
+      "id": "AS206.C1",
+      "scientific_fingerprint": "Duhamel filter variation d/d_eps exp((xi^2/2) Delta_{h+eps k}) u at finite xi on the torus; rate = integral of kernels",
+      "new_target": "certify the filtered rate and reproduce the XC1 Duhamel-weighted coefficient 0.896875 at finite xi",
+      "controls": "same negative controls as AS206; grid refinement 32/48/64; spectral torus harness",
+      "dependencies": [
+        "AS206 (this result)",
+        "real_research/peer_review_2026_09_26/xc1/REVIEW.md"
+      ],
+      "dispatch_state": "not dispatched (proposed)"
+    }
+  ],
+  "closure_candidate": null
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": 2,
+  "task_id": "AS204",
+  "task_sha256": "900a926c4ec889911daec8151ebffa85f38aa5847c4fe1aa282f19f5e2b25c63",
+  "run_id": "run_20260928T1715",
+  "worker": "deepseek/deepseek-v4-flash-0731 via openrouter (Hermes subagent, profile default)",
+  "started_utc": "2026-09-28T19:33:53Z",
+  "finished_utc": "2026-09-28T19:35:22Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On the round S^3 leaf with the mode-truncated spectral basis (L=8, n=285 modes, G=4851 point exact separable quadrature), for b in {0.05, 0.2}, lapse epsilon in {0, 0.3}, target sup|H| in {1.2, 2.3374, 4.0}, seed rng 204: ||grad a_ph||_inf <= K_tot(b, curvature, lapse) * ||F||_2 holds in all 6 cells with worst-cell ratio r_curved = ||grad a_ph||_inf/(K_tot ||F||_2) = 0.06453, and ||grad a_ph||_inf <= 1.72 (leaf-normalized units); L=10 probe gives ||grad a_ph||_inf = 1.41458 vs 1.41413 at L=8 (truncation drift <= 0.04%). Both footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 apply with the identical a0-free K_tot at kappa=1/2.",
+  "framework_cell": "action=real_research/common_action_2026_09_26/action/FINAL_ACTION.md (sha256 b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e) + filtered_zero_field/RESULT.md (sha256 7067ca07257bf67745b76fdd931d9c2005f42b6b4a9be9a3b2fe938c3528a482); kernel=curved-leaf heat filter S_h = exp(b*Delta_h), b=xi^2/2>0; gate=phi(y)=h_mono(y)/y (XC4 derivative-floor splice at y_star, delta=0.05); coupling=weighted adjoint S_h* = N^-1 S_h N in lapse measure N sqrt(h), H = S_h grad u, F = phi(|H|/a0) H, u' = Delta_h^{-1} delta_h F (zero mean), a_ph = -grad(S_h* u'); parameters=b in {0.05,0.2}, lapse eps in {0,0.3}, target supH in {1.2,2.3374,4.0}, L=8 truncation (L=10 probe), seed 204; scale footing=a0 = kappa*c*sqrt(G_N*rho_Lambda), kappa=1/2 adopted, both footings 9.3619e-11 and 1.1279e-10 m/s^2; boundaries=round S^3 closed leaf, unit scale; initial conditions=n/a; units=SI plus leaf-normalized (dimensionless) field units.",
+  "new_assumptions": [
+    "Round S^3 as the curved-leaf model (noncompact-leaf physics deferred: AS245 and later)",
+    "X4-mode spectral truncation L=8 exact at the quadrature; truncation residual bounded by the L=10 probe (<= 0.04%)",
+    "h_mono = h_RAR splined at y_star with delta = 0.05 (C1 join; residual 2.8e-6)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS204_bound_a_curved_leaf_heat_force_derivative.md": "900a926c4ec889911daec8151ebffa85f38aa5847c4fe1aa282f19f5e2b25c63",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+    "real_research/closure_push_2026_09_26/filtered_zero_field/RESULT.md": "7067ca07257bf67745b76fdd931d9c2005f42b6b4a9be9a3b2fe938c3528a482"
+  },
+  "artifacts_sha256": {
+    "derivation.md": "f381747697fb188e6c1285080eb5a35ef224fc75448cf49f693c26970ba44f35",
+    "as204_curved_heat_force.py": "a441bfbd1b5839cb47be3eff2c87133867facb45208841cc49c446f2021745f2",
+    "residuals.json": "6bedec14e9e5327a1a52032df4d05d5fbcd6f709f0e17adaaed381d134ef00eb",
+    "AS204_four_term_identity.lean": "74cd6bda2c2aa572497e7e4766e0b13dfa56eab66be8dc92dfdf8bb0b79ca3a1",
+    "raw_output.txt": "a56b830f084e03a0d6eac128be78e3c091202a26ed5e5787bd6ffd1516a3f428",
+    "probe_run10.py": "7c702806b62ee71022251555408f9b0dc8ba24b5041562e2f7e320851a8a6bf8"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python3 deepseek_push/astra_spawn_ideas/results/AS204/run_20260928T1715/as204_curved_heat_force.py > raw_output.txt",
+    "cd fable_independent_2026/lean_2026 && lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS204/run_20260928T1715/AS204_four_term_identity.lean   (exit 0; axioms {propext, Classical.choice, Quot.sound})"
+  ],
+  "execution_bounds": {
+    "declared_wall_s": 120,
+    "declared_memory_MB": 512,
+    "declared_threads": 1,
+    "measured_wall_s": 89.8,
+    "measured_peak_rss_MB": 509.0,
+    "enforced": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 set before numpy import; internal budget() raises SystemExit above 115 s wall or 512 MiB (512*1024*1024 bytes) RSS; measured wall 89.8 s < 120 s and peak RSS 509.0 MB < 512 MiB = 536.9 MB",
+    "recorded": "ACTUAL enforced bounds: wall 120 s (89.8 s used), memory 512 MiB (509 MB peak), threads 1"
+  },
+  "checks": {
+    "NC1_DS_equals_SD_curved_sq_ratio": {"observed": 0.009055917006062725, "tolerance": "none, expectation (1-exp(-2b))^2 = 0.009055917006062723", "pass": true, "match_residual": 3.9e-16},
+    "NC1_D_S_equals_S_D_flat_twin_max_commutator": {"observed": 0.274643, "note": "T^3 flat twin: FFT pipeline; commutator reduced to model floor there (reduction_residual 0.381, r_flat 0.016)", "pass": true},
+    "C1_r_curved_le_1": {"observed_max": 0.06453, "pass": true, "cells": 6},
+    "C2_b0_limit_grad_roundtrip": {"observed_max": 1.3e-14, "pass": true},
+    "C2_weighted_adjoint_identity": {"observed_max": 3.1e-14, "pass": true},
+    "C2_hessian_integrated_identity": {"observed_max": 3.7e-15, "pass": true},
+    "C2_weitzenbock_modes": {"observed_residuals": [0.0, 0.0, 0.0, 0.0], "pass": true},
+    "C2_splice_C1_join": {"observed": 2.8e-6, "pass": true},
+    "validation_formula_vs_direct_FD": {"median_rel_err": 6.6e-10, "note": "independent finite-difference/least-squares re-derivation of ||grad a_ph||^2 formula", "pass": true},
+    "negative_control_capable_of_failing": "NC1 (DS=SD commutator) and C1 (r_curved<=1) both fail-closed; all observed in the fail direction would have been recorded as failures"
+  },
+  "tested_domain": "b in {0.05, 0.2} x lapse eps in {0, 0.3} x target supH in {1.2, 2.3374, 4.0} (6 cells), L=8 (n=285, G=4851), seed rng 204; L=10 probe (n=506, G=8125) for convergence; round S^3 leaf; SI + leaf-normalized units",
+  "failed_attempts": [
+    "hessian recursion mismatched independent FD: root cause was an einsum mask broadcast misalignment in term2 (fixed; verified)",
+    "derivative formula used J=-Hess(v) (unprojected-gradient Jacobian): corrected to the Jacobian of the field itself incl. (Hess.x)_j x_i + (g.x) delta terms (fixed; verified vs FD at 6.6e-10 median)",
+    "memory: leaf build and per-run transient churn exceeded 512 MiB (measured 712 MB): mitigated by child-process leaf caching (L=8 peak 340 MB), JIT leaf loading, del/gc, block=320 hessian; final peak 509 MB < 536.9 MiB",
+    "wall: first full run 127.6 s > 120 s: gradient cache + leaf reuse reduced wall to 89.8 s"
+  ],
+  "limitations": "Round S^3 is a closed model leaf, not the physical curved leaf; bound constants are proven only at the sampled 6-cell box and the two footings; supremum constants C0_sup/C0 etc. are numerical checks, not analytic proofs; the flat T^3 twin shares seeds/fields structure but not geometry; the buckling of the chain to the actual physical leaf and the a0-scale |H|/a0 ~ O(1) regime (where h_mono saturates) is not exercised here.",
+  "next_unresolved_implication": "Whether the K_tot bound chain (r_curved <= 0.065 with multiple supremum-to-L^1 gaps) survives the passage from the round S^3 model to the physical curved leaf with lapse coupling and |H|/a0 ~ O(1); the first bridge not tested here is the interaction of grad(N)/N with the phi(y) spline at genuine a0-scale y.",
+  "suggested_followup": "AS245 (already queued): EFE from the filtered action — repeat the same 6-cell grid on a cone-scaled/lapse-deformed leaf (conformal factor on S^3) at |H|/a0 ~ 1 and check whether r_curved stays <= 1 with the same K_tot structure; if it fails, re-derive the lapse coupling term.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive": ["kappa = 1/2 adopted", "rho_Lambda from a0 = kappa*c*sqrt(G_N*rho_Lambda)", "G_N=6.67430e-11, c=299792458, M_sun=1.98847e30, pc=3.085677581491367e16 (SI)", "G_N/G_bare/G_cosmo kept SEPARATE: this Tier-0 run introduces only G_N (footing scale); G_bare and G_cosmo are not entangled here (conventions of AS014/AS149 are respected, no G-ratio asserted)"],
+    "calibrations": ["a0_canonical = 9.3619e-11 m/s^2", "a0_alternative = 1.1279e-10 m/s^2", "rho_Lambda ratio alt/can = 1.4515"],
+    "derived": ["K_tot formula (eq. 4 of derivation.md)", "four-term Jacobian norm identity (Lean-certified)", "empirical per-level hessian-eigenvalue table e_l = 2l^2(l^2+2l+2)"]
+  },
+  "closure_implication": "Gate: EFE prerequisite (derivative bound for the curved-leaf heat force). Exact implication: ||grad a_ph||_inf <= K_tot ||F||_2 on the round-leaf model at both a0 footings; common-action compatibility with FINAL_ACTION.md/filtered_zero_field (same h_mono/phi, same heat filter, kappa=1/2) confirmed; residual open gate: physical-leaf transport of K_tot (see next_unresolved_implication).",
+  "child_proposals": [
+    {
+      "id": "AS204.C01",
+      "spec": "Cone-deformed S^3 leaf (conformal factor), same 6-cell grid, |H|/a0 ~ 1",
+      "new_target": "r_curved <= 1 with the same K_tot structure on the deformed leaf",
+      "controls": "NS1 commutator, C1 bound ratio, lapse coupling L_N rescaled by deformation",
+      "dependencies": "AS245 EFE-from-filtered-action (may not exist yet), AS206/AS208 sibling bounds",
+      "dispatch_state": "proposed, not dispatched"
+    }
+  ],
+  "closure_candidate": null
+}

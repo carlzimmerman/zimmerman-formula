@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "task_id": "AS252",
+  "task_sha256": "6de8d3e8bd3b8da9fe7e2953e04d0055d54382adafaaac64826ee12bbff1f5d2",
+  "run_id": "AS252-r1-20260928T231847Z-dsv4f-hermes",
+  "worker": "deepseek/deepseek-v4-flash-0731 via openrouter (Hermes subagent, hermes-agent runtime on macOS)",
+  "started_utc": "2026-09-28T23:18:47Z",
+  "finished_utc": "2026-09-28T23:31:51Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On the CA5-GNC-R homogeneous inactive branch of the pinned action (real_research/common_action_2026_09_26/action/FINAL_ACTION.md b8c04d4e...7546e; flat k=0 slices, Q_K=A_K=0, V_a=0, gate inactive f=G'(Y_h)=0, z=0) with the same-action local high-k normalization (upstream results/AS226: G_N = G_bare/c_N): the exact fixed-h lapse equation gives 3 M_P^2 H^2 = M_P^2 Lambda + rho_b + rho_d, so the coefficient multiplying homogeneous energy in H^2 is 1/(3 M_P^2) = 8 pi G_cosm/3 with G_cosm := (8 pi M_P^2)^(-1) = G_bare, and G_cosm/G_N = c_N = 1 - alpha/2 in (0,1) for 0 < alpha < 2 (FINAL_ACTION eq. (18)). Propagating the ratio into the a0-vacuum sector with the operational (measured) constant, rho_Lambda = 4 a0^2/(G_N c^2) (kappa = 1/2 adopted), gives the vacuum-scale dictionary: Lambda_eff = 8 pi G_cosm rho_Lambda/c^2 = 32 pi c_N a0^2/c^4, H_vac^2 = Lambda_eff/3, and rho_Lambda = 4 c_N a0^2/(G_cosm c^2); the naive same-G replacement Lambda_naive = 32 pi a0^2/c^4 overestimates by the factor 1/c_N in (1,2). Controls: (A) alpha -> 0 recovers the Einstein normalization c_N = 1, G_N = G_bare, Lambda_eff = Lambda_naive, standard coefficient 8 pi G_bare/3 (residual 0, both footings); (B) negative control G_cosm = G_N prematurely is equivalent to alpha = 0 and removes the alpha-sector of the compensated gate (+2 alpha DZ.DU and -(alpha/2)[G(Y_h) - ell Delta_h W_b] in the lapse density, units M_P^2/2) and the factor c_N from Lambda_eff; it fires with residual 1 - c_N = alpha/2 != 0 (numeric 0.150000 at alpha = 0.3 on both footings; closes to nil at alpha = 0). SI (alpha = 0.3): G_cosm = G_bare = 5.673155e-11 m^3 kg^-1 s^-2, G_cosm/G_N = 0.8500000000. Both footings kept separate with kappa back-check = 1/2 exactly: canonical a0 = 9.3619e-11 -> rho_Lambda = 5.844412e-27 kg/m^3 (H_vac = 1.666641e-18 s^-1, r_dS = 5.8295 Gpc at alpha = 0.3); alternative a0 = 1.1279e-10 -> rho_Lambda = 8.483090e-27 kg/m^3 (H_vac = 2.007930e-18 s^-1, r_dS = 4.8386 Gpc); holding the canonical density with the alternative a0 gives effective kappa = 0.602388 != 1/2 (the footings do not share BOTH fixed density AND fixed kappa). Domain: 0 < alpha < 2, homogeneous inactive branch, positive symbols; the ratio is alpha-parameterized (one-parameter family; alpha itself not derived) and kappa = 1/2 remains adopted. Scoped claim: a normalized a0-vacuum <-> cosmological dictionary; does not close the thirteen requirements, does not derive alpha or kappa, no empirical H0/Omega calibration.",
+  "framework_cell": {
+    "branch": "CA5-GNC-R homogeneous inactive branch; Q (g^2=B^2+a0*B), RAR, MU2, historical EXP AQUAL, filtered MONO distinct and never interchanged; criterion B operative; no branch translation used",
+    "action": "real_research/common_action_2026_09_26/action/FINAL_ACTION.md sha256 b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e (eq. (4) action, eq. (13) exact fixed-h lapse equation, eq. (18) G_cosm/G_N = c_N); support: HOMOGENEOUS_FRW.md ecc93b07a62d7ea531abcf4ca8ed8cbe7b9f73c8cb60f931dc8fcb6e9e685c1d, vacuum/ACTION.md 290e5cbe83eca682fb68888375bb60f9230f677cbb3176ae6ec27557e777211d",
+    "kernel": "homogeneous 3+1 sector of eq. (13): R^(3)=0 (flat), T_K = K_ij K^ij - K^2 = -6 H^2 (K_ij = H h_ij), Q_K = A_K = 0, V_a = 0 (a = DZ = DU = 0), gate inactive f = G'(Y_h) = 0 with Y_h = -theta < 0",
+    "filter": "none in the homogeneous sector (the local high-k window and its S_k filter live in upstream AS226 and are not needed for the ratio or the dictionary)",
+    "gate": "inactive on the branch; the compensated gate enters only through the recorded local normalization G_N = G_bare/c_N (c_N = 1 - alpha/2) and through the exhibited removed terms of the negative control",
+    "coupling": "M_P^2 = 1/(8 pi G_bare); G_cosm := (8 pi M_P^2)^(-1) = G_bare; G_N = G_bare/c_N (upstream AS226, same action); c_N = 1 - alpha/2; 4 pi G_N = 1/(2 M_P^2 c_N); kappa = 1/2 adopted input",
+    "parameters": "alpha in (0,2) free (samples 0.05, 0.1, 0.2, 0.3, 0.5, 1.0, 1.5; headline sample alpha = 0.3, c_N = 0.85); no c2-sector dependence (Q_K = 0 kills it); V0/Lambda free inputs of the action, untouched",
+    "scale_footing": "a0 = (c/2) sqrt(G_N rho_Lambda), kappa = 1/2 adopted (seed input, not derived): canonical a0 = 9.3619e-11 m/s^2 -> rho_Lambda = 5.844412e-27 kg/m^3; alternative a0 = 1.1279e-10 m/s^2 -> rho_Lambda = 8.483090e-27 kg/m^3; kappa back-check 0.500000000000000 on both; kappa_eff = 0.602388 when the canonical density is held fixed with the alternative a0; the ratio G_cosm/G_N = c_N itself is a0-free, identical on both footings",
+    "boundaries": "compact homogeneous slices (flat k=0), mean-normalized leaves; no finite-boundary effects enter the single-scale dictionary",
+    "initial_conditions": "none needed: the homogeneous constraint is algebraic at a slice; the numeric lane evaluates the dictionary at sample parameter points",
+    "units": "SI constants: G_N = 6.67430e-11 m^3 kg^-1 s^-2, c = 299792458 m/s, M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m; Lambda_eff in m^-2, rho_Lambda in kg/m^3, H_vac in s^-1, r_dS in m (reported in Gpc)"
+  },
+  "new_assumptions": [
+    "alpha (equivalently c_N = 1 - alpha/2) is a free parameter in (0,2); this run derives the ratio and the dictionary but not the value of alpha (one-parameter family, same status as upstream AS226/AS236)",
+    "kappa = 1/2 adopted as the seed-mandated framework input (not derived; AS138.C01's continuum kappa(r) = sqrt(2/(r+2b)) does not pin it)",
+    "the local high-k normalization G_N = G_bare/c_N transfers to the homogeneous sector through the shared alpha (same action parameter cell; no branch translation; this is the same-theory discipline of FRAMEWORK_CONTRACT)",
+    "the a0-scale relations (a0, r_M, v_flat) run on the operational measured G_N while the Friedmann sector runs on G_cosm; distinguishing them in each occurrence is the seed's principal discipline"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS252_match_the_cosmological_einstein_coefficient_to_measured_newton_gravity.md": "6de8d3e8bd3b8da9fe7e2953e04d0055d54382adafaaac64826ee12bbff1f5d2",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+    "real_research/common_action_2026_09_26/transport/HOMOGENEOUS_FRW.md": "ecc93b07a62d7ea531abcf4ca8ed8cbe7b9f73c8cb60f931dc8fcb6e9e685c1d",
+    "real_research/breakthrough_review_2026_09_26/vacuum/ACTION.md": "290e5cbe83eca682fb68888375bb60f9230f677cbb3176ae6ec27557e777211d",
+    "deepseek_push/astra_spawn_ideas/results/AS226/AS226-r1-20260928T171100Z-dsv4f-hermes/result.json": "232e27b08f02ed00a5a2baa6a10d0ad4a082daab9f84a3edbb8e0540bd48352b",
+    "deepseek_push/astra_spawn_ideas/results/AS236/AS236-r1-20260928T203554Z-dsv4f-hermes/result.json": "4478e8a0535d6cc531956144e8940e05084359e35f9e6428bd4c338577732dcf",
+    "deepseek_push/astra_spawn_ideas/results/AS127/AS127-r1-20260928T151134Z-dsv4f-hermes/result.json": "7a9bdf10f8341df025863ca0784ecb98e17e1d044230e130660a1c5d5dffba12",
+    "deepseek_push/astra_spawn_ideas/results/AS138/AS138.C01-20260928T1950Z-dsv4f-hermes/result.json": "82d19c831fa06ed0547c4ab8d16d3845a4ce2d0d452349c7245ca017523a8742"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS252/AS252-r1-20260928T231847Z-dsv4f-hermes/derivation.md": "a0a6a458037f93231133bc6e5877772f6e6d80afb7809419ab9acc9d87d9d199",
+    "deepseek_push/astra_spawn_ideas/results/AS252/AS252-r1-20260928T231847Z-dsv4f-hermes/as252_derive.py": "3f36d14ac5cd2d997f67039b72529ec56faa5af1a4a5ba5cb1ca8d09d77388b6",
+    "deepseek_push/astra_spawn_ideas/results/AS252/AS252-r1-20260928T231847Z-dsv4f-hermes/derive_raw.out": "c98eff7d2c4db15dd27a6880e1b3331972bf39b1509e1c89e78e759a2705ff5f",
+    "deepseek_push/astra_spawn_ideas/results/AS252/AS252-r1-20260928T231847Z-dsv4f-hermes/time_mem_derive.txt": "4736631bc3376ee9e10872505242100430cb37e42792bc615402c410cc72daf2",
+    "deepseek_push/astra_spawn_ideas/results/AS252/AS252-r1-20260928T231847Z-dsv4f-hermes/as252_numeric.py": "99a3422e60b1fc8dac6935c863069553fa1cae6966bdb79bf11b1014ecdf47fd",
+    "deepseek_push/astra_spawn_ideas/results/AS252/AS252-r1-20260928T231847Z-dsv4f-hermes/numeric_raw.out": "70733d046a429da09e0c6bd2ecaf22f9bdb7e7ce0a13286e981836b50e19ad71",
+    "deepseek_push/astra_spawn_ideas/results/AS252/AS252-r1-20260928T231847Z-dsv4f-hermes/time_mem_numeric.txt": "fa1336513caaa4b7c3ea2290cf8e2ecc72649963996a5ee94e1fa6c236230d65",
+    "deepseek_push/astra_spawn_ideas/results/AS252/AS252-r1-20260928T231847Z-dsv4f-hermes/AS252_vacuum_dictionary.lean": "c8d683a31a9b9d4e69c6c90121455eafea3ce1b831c476ab97e625bfe4f93f25",
+    "deepseek_push/astra_spawn_ideas/results/AS252/AS252-r1-20260928T231847Z-dsv4f-hermes/lean_verify.txt": "d35f3b0fc041aa14ceed0cdde9ee7aa687211c34440434f3aa9152467fa1fb9e"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS252/AS252-r1-20260928T231847Z-dsv4f-hermes && (ulimit -t 120; OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1; /usr/bin/time -l python3 as252_derive.py > derive_raw.out 2> time_mem_derive.txt)  (exit 0; 20/20 exact symbolic checks PASS)",
+    "cd <same run dir> && (ulimit -t 120; OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1; /usr/bin/time -l python3 as252_numeric.py > numeric_raw.out 2> time_mem_numeric.txt)  (exit 0; 15/15 numeric checks PASS)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && timeout 570 lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS252/AS252-r1-20260928T231847Z-dsv4f-hermes/AS252_vacuum_dictionary.lean > <run dir>/lean_verify.txt 2>&1  (exit 0; zero errors; #print axioms on all 7 theorems exactly [propext, Classical.choice, Quot.sound]; compile host read-only)"
+  ],
+  "execution_bounds": {
+    "declared": "<=120 s wall, <=512 MB memory, 1 thread (seed bounded-prototype bound); lean verification timeout 570 s",
+    "enforced": "ulimit -t 120 (CPU seconds) on both python lanes; thread caps OMP/OPENBLAS/MKL/VECLIB/NUMEXPR = 1; /usr/bin/time -l RSS capture; timeout 570 on lake env lean",
+    "actual_derive_lane": "0.27 s real (0.25 s user), max RSS 57,196,544 B (54.6 MB) on the final PASS run; earlier failing runs bounded likewise",
+    "actual_numeric_lane": "0.01 s real, max RSS 12,419,072 B (11.8 MB)",
+    "actual_lean_lane": "lake env lean exit 0 within the 570 s timeout (compile of a small Mathlib import; wall a few minutes at typical cache state)"
+  },
+  "checks": {
+    "C1_lapse_flat_homogeneous": {"pass": true, "residual": 0, "detail": "(MP2/2)(6H^2 - 2Lambda) = rho_b + rho_d with 3 MP2 H^2 = MP2 Lambda + rho_b + rho_d, exact"},
+    "C1b_coeff_of_rho_in_H2": {"pass": true, "residual": 0, "detail": "d(H^2)/d(rho) = 1/(3 MP2)"},
+    "C1c_coeff_via_Gcosm": {"pass": true, "residual": 0, "detail": "1/(3 MP2) = 8 pi G_cosm/3 with G_cosm = (8 pi MP2)^-1"},
+    "C1d_Gcosm_is_bare": {"pass": true, "residual": 0, "detail": "G_cosm = (8 pi MP2)^-1 and MP2 = (8 pi G_bare)^-1 give G_cosm = G_bare by definition"},
+    "C2_trace_local_normalization": {"pass": true, "residual": 0, "detail": "G_N = G_bare/c_N with c_N = 1 - alpha/2 (upstream AS226 trace, same pinned action)"},
+    "C2b_ratio": {"pass": true, "residual": 0, "detail": "G_cosm/G_N = c_N exactly; prematurity map G_cosm = G_N <=> c_N = 1 <=> alpha = 0 (open-domain boundary)"},
+    "C3_vacuum_lambda_dictionary": {"pass": true, "residual": 0, "detail": "Lambda_eff = 8 pi G_cosm rho_Lambda/c^2 = 32 pi c_N a0^2/c^4 with rho_Lambda = 4 a0^2/(G_N c^2), G_cosm = c_N G_N"},
+    "C3b_naive_mismatch_factor": {"pass": true, "residual": 0, "detail": "Lambda_eff/Lambda_naive = c_N"},
+    "C3c_Hvac2": {"pass": true, "residual": 0, "detail": "H_vac^2 = Lambda_eff/3 = 32 pi c_N a0^2/(3 c^4)"},
+    "C3d_rhoL_in_Gcosm": {"pass": true, "residual": 0, "detail": "rho_Lambda = 4 c_N a0^2/(G_cosm c^2)"},
+    "C3e_Friedmann_in_GN_and_ratio": {"pass": true, "residual": 0, "detail": "3 H^2 = Lambda + 8 pi c_N G_N (rho_b + rho_d) (matter sector coefficient is c_N G_N, not G_N)"},
+    "A1_alpha_to_zero_cN": {"pass": true, "residual": 0, "detail": "alpha = 0 -> c_N = 1"},
+    "A2_alpha_to_zero_GN": {"pass": true, "residual": 0, "detail": "alpha = 0 -> G_N = G_bare"},
+    "A3_alpha_to_zero_Lambda": {"pass": true, "residual": 0, "detail": "alpha = 0 -> Lambda_eff = Lambda_naive (naive same-G value recovered)"},
+    "A4_alpha_to_zero_coeff": {"pass": true, "residual": 0, "detail": "alpha = 0 -> standard Einstein coefficient 8 pi G_bare/3 in H^2 (normalization 1/(16 pi G_bare))"},
+    "B1_premature_ratio": {"pass": true, "residual": 0, "detail": "Lambda_eff = c_N Lambda_naive; equality iff c_N = 1"},
+    "B2_mismatch_content": {"pass": true, "residual": 0, "detail": "Lambda_naive - Lambda_eff = (alpha/2) Lambda_naive at c_N = 1 - alpha/2"},
+    "B3_removed_lapse_term": {"pass": true, "residual": 0, "detail": "premature G_cosm=G_N in the lapse density (units MP2/2) removes alpha|a-DZ|^2 + 2 alpha DZ.DU (i.e. -4 c_N DZ.DU -> -4 DZ.DU)"},
+    "B4_removed_gate_prefactor": {"pass": true, "residual": 0, "detail": "c_N[G - ell Delta_h W_b] -> [G - ell Delta_h W_b] removes -(alpha/2)[G - ell Delta_h W_b]"},
+    "N1_rhoL_footings": {"pass": true, "residual": [5.844412e-27, 8.483090e-27], "tolerance": "kappa back-check |kappa - 1/2| < 1e-12", "detail": "canonical/alternative rho_Lambda kg/m^3, eps = rho c^2 = 5.252696e-10 / 7.624221e-10 J/m^3, kappa_back = 0.500000000000000 both"},
+    "N2_kappa_eff_fixed_density": {"pass": true, "residual": 0.602388, "detail": "alternative a0 with canonical density gives kappa_eff = 0.602388 != 1/2 (footings never share BOTH fixed density AND fixed kappa)"},
+    "N3_dict_identity_both": {"pass": true, "residual": [0.8500000000, 0.8500000000], "tolerance": "1e-15", "detail": "Lambda_eff c^4/(32 pi a0^2) = c_N on both footings"},
+    "N4_Hvac": {"pass": true, "residual": [1.666641e-18, 2.007930e-18], "tolerance": "1e-24 relative", "detail": "H_vac = c sqrt(Lambda_eff/3) s^-1 (canonical/alternative at alpha=0.3); r_dS = 5.8295 / 4.8386 Gpc; naive r_dS 1.658395e26 / 1.376517e26 m"},
+    "N5_ratio": {"pass": true, "residual": [0.85, 0.85], "detail": "Lambda_eff/Lambda_naive = c_N < 1 both footings"},
+    "N6_NEGATIVE_CONTROL_fires": {"pass": true, "residual": 0.150000, "tolerance": "> 1e-7 (fires)", "detail": "premature G_cosm=G_N residual = 1 - c_N = alpha/2 = 0.150000 on both footings (alpha = 0.3); closes to 0 at alpha = 0 (control A)"},
+    "N7_SI_ratio": {"pass": true, "residual": 0.8500000000, "tolerance": "1e-15", "detail": "G_cosm = G_bare = c_N G_N = 5.673155e-11 m^3 kg^-1 s^-2; G_cosm/G_N = 0.8500000000"},
+    "LEAN_certificate": {"pass": true, "detail": "AS252_vacuum_dictionary.lean: 7 theorems, lake env lean exit 0, zero errors, zero sorry, #print axioms exactly [propext, Classical.choice, Quot.sound] on all seven"}
+  },
+  "tested_domain": "Symbolic: exact identities over positive symbol parameters (a0, c, G_N, G_cosm, alpha in (0,2)) on the homogeneous inactive branch; the four execution steps of the seed each carry residuals 0. Numeric: both footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 with kappa = 1/2 adopted and G_N = 6.67430e-11 SI; alpha samples {0.05, 0.1, 0.2, 0.3, 0.5, 1.0, 1.5} (headline alpha = 0.3); rho_Lambda, Lambda_eff/Lambda_naive, H_vac, r_dS, kappa back-check, kappa_eff for the fixed-canonical-density variant; single-slice algebraic evaluation (no time integration). Exclusions: gate-active and inhomogeneous sectors, k-dependence (upstream AS226/AS142), RAR/MU2/EXP/MONO passes, PPN, redshift/strong-field data, H0/Omega_Lambda calibration; no two-footing combination with BOTH density and kappa fixed (kappa_eff check fires instead).",
+  "failed_attempts": [
+    "derive lane runs 1-2 (exit 1): free-symbol vs substituted-expression mismatches in checks C1d/C2/C2b/C3d/C3e/B2 (G_cosm, G_N, c_N declared as independent symbols without substituting their defining relations; sympy solve of the prematurity condition returned empty). Physics unchanged; resolved by disciplined substitution (subs maps including G_bare -> 1/(8 pi MP2)) in the affected checks; final run exit 0, 20/20 PASS. Preserved only as the final PASS run's raw outputs (derive_raw.out) and the run history above.",
+    "numeric lane v1 (single run, superseded in place): H_vac printed as sqrt(Lambda_eff/3) labelled s^-1 and r_dS computed as c/H_vac with that value - a unit slip: sqrt(Lambda/3) is m^-1 and the SI Hubble rate is c*sqrt(Lambda/3); the reported H_vac/r_dS values were off by the factor c. The dictionary identities (Lambda_eff, ratios, kappa back-checks, control residuals) were unaffected. Fixed in place: H_vac = c*sqrt(Lambda_eff/3) [s^-1], r_dS = sqrt(3/Lambda_eff) [m]; re-run exit 0, 15/15 PASS; derivation.md and result.json carry only the corrected values (canonical H_vac 1.666641e-18 s^-1, r_dS 5.8295 Gpc at alpha = 0.3).",
+    "AS252_vacuum_dictionary.lean compile iterations (3): (a) field_simp left ring identities unclosed in lambda_eff_of_rho_Lambda and h_vac_square - added ring after field_simp; (b) two trailing ring tactics fired after field_simp had already closed goals in coeff_of_rho_in_H2 - removed; (c) mul_ne_zero nesting mismatch in negative_control_fires (32*pi*a0^2/c^4 elaborated as nested products; needed div_eq_mul_inv before the product-of-nonzeros chain (32 != 0, pi != 0, a0^2 != 0, (c^4)^-1 != 0)). Final compile exit 0 with axioms exactly {propext, Classical.choice, Quot.sound}."
+  ],
+  "limitations": "Does not derive alpha: G_cosm/G_N = c_N = 1 - alpha/2 fixes the ratio as a one-parameter family (same status as upstream AS226/AS236). kappa = 1/2 remains an adopted input (the AS138.C01 conservation continuum kappa(r) = sqrt(2/(r+2b)) gives a matching condition on r, not a derivation of kappa). The local-to-homogeneous transfer rests on the shared alpha parameter cell of the single action (same-theory discipline; no explicit proof that the high-k and homogeneous sectors realize the same alpha was attempted here). No empirical content is claimed: V0 and Lambda remain free inputs; the a0-H0 numerical proximity (canonical, c_N = 1: H = 1.808e-18 s^-1 vs H0 ~ 2.2e-18 s^-1) is a noted coincidence, not a prediction; no H0/Omega_Lambda calibration. Numeric lane is a bounded single-slice prototype; exactness rests on the symbolic lane and the Lean certificates. Historical branches (Q, RAR, MU2, EXP) and the filtered MONO target are untouched; the dictionary does not close any of the thirteen requirements by itself.",
+  "next_unresolved_implication": "The value of alpha (equivalently c_N in (0,1)) is not derived: the dictionary Lambda_eff = 32 pi c_N a0^2/c^4 and the Friedmann sector 3 M_P^2 H^2 = M_P^2 Lambda + rho fix G_cosm only through the ratio; the first missing bridge is an independent same-action observable that pins c_N - e.g. the AS138.C01 four-form continuum point r*(kappa = 1/2) = 8 - 2b evaluated against this dictionary, the AS658 vacuum DOF count, or the deep flatness sector v_flat^4 = G_N M_b a0 at the measured (a0, G_N) - before any of the a0-calibrated vacuum quantities (Lambda_eff, H_vac, r_dS) become numbers rather than a c_N-parameterized family.",
+  "suggested_followup": "AS252.C01 as specified in child_proposals: evaluate the AS138.C01 conservation continuum at the adopted kappa = 1/2 (r* = 8 - 2b) and require the vacuum-scale dictionary Lambda_eff = 32 pi c_N a0^2/c^4 to hold at that continuum point on the same action - controls: every other continuum point r != r* must fire the dictionary mismatch; if the continuum point and the dictionary are jointly satisfiable only for one c_N, alpha is pinned (distinguishes the one-parameter family into a number).",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": "CA5-GNC-R physical-metric common action (FINAL_ACTION.md b8c04d4e...7546e) with its (M_P^2/2) lapse normalization and eq. (13)/(18); homogeneous inactive branch: flat slices R^(3) = 0, K_ij = H h_ij, Q_K = A_K = 0, V_a = 0, gate inactive (Y_h = -theta < 0, f = 0), z = 0; dust + reciprocal sources rho_b, rho_d; alpha in (0,2), c_N = 1 - alpha/2; M_P^2 = (8 pi G_bare)^-1; local normalization G_N = G_bare/c_N (upstream AS226, same action); kappa = 1/2 adopted (seed input); scale relations a0 = kappa c sqrt(G rho_Lambda), rho_Lambda = 4 a0^2/(G c^2) with the operational G = G_N",
+    "measured_calibrations": "G_N = 6.67430e-11 m^3 kg^-1 s^-2; c = 299792458 m/s; M_sun = 1.98847e30 kg; pc = 3.085677581491367e16 m; footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 (both carried separately; used only for the dictionary numerics, the ratio is a0-free)",
+    "boundary_initial_data": "no dynamical data required: the homogeneous constraint is algebraic per slice; sample parameter points for the numeric dictionary evaluation",
+    "derived_equations": "3 M_P^2 H^2 = M_P^2 Lambda + rho_b + rho_d (coeff of rho in H^2: 1/(3 M_P^2) = 8 pi G_cosm/3); G_cosm = (8 pi M_P^2)^-1 = G_bare; G_cosm/G_N = c_N = 1 - alpha/2; Lambda_eff = 32 pi c_N a0^2/c^4; H_vac^2 = Lambda_eff/3; rho_Lambda = 4 c_N a0^2/(G_cosm c^2); matter-sector coefficient 8 pi c_N G_N; naive mismatch Lambda_naive - Lambda_eff = (alpha/2) Lambda_naive"
+  },
+  "closure_implication": {
+    "named_gate": "the cosmological-calibration gate: a normalized a0-vacuum <-> cosmological dictionary preventing inconsistent G identification (seed completion criterion: a normalized dictionary or a precise local-matching blocker)",
+    "exact_implication": "Given the same-action ratio G_cosm/G_N = c_N = 1 - alpha/2 (AS226/AS236/FINAL_ACTION eq. (18)) and kappa = 1/2, every vacuum-scale quantity derived from a0 must carry the c_N factor: Lambda_eff = 32 pi c_N a0^2/c^4, H_vac^2 = (32 pi/3) c_N a0^2/c^4, rho_Lambda = 4 c_N a0^2/(G_cosm c^2); the naive same-G replacement Lambda_naive = 32 pi a0^2/c^4 is inconsistent calibration with error factor 1/c_N in (1,2) (fired control). Compatible with upstream AS226 (local G_N), AS236 (homogeneous centered clock, same ratio), AS127 (reciprocal lapse density rho_R = t K_d + W_exc/t + V0 F(t) feeding rho_d), AS138.C01 (kappa continuum; matching condition on r at kappa = 1/2), all on the common-action parameter domain (0 < alpha < 2, homogeneous inactive branch, shared alpha cell); blocks: any same-G substitution in flow from a0-footings into cosmological quantities. Classification: derived (scoped); does not close the thirteen requirements; alpha and kappa remain free.",
+    "common_action_domain_compatibility": "same pinned action (FINAL_ACTION.md b8c04d4e...7546e) as AS226/AS236/AS127/AS138.C01; no branch translation; condition-B operative; the dictionary is a0-free in the ratio and footing-resolved in the numerics"
+  },
+  "child_proposals": [
+    {
+      "id": "AS252.C01",
+      "parent": "AS252-r1-20260928T231847Z-dsv4f-hermes",
+      "new_target": "contract the vacuum-scale dictionary with the AS138.C01 conservation continuum: evaluate kappa(r) = sqrt(2/(r+2b)) at the adopted kappa = 1/2 (continuum point r* = 8 - 2b) and verify Lambda_eff = 32 pi c_N a0^2/c^4 (this run) holds at that point on the same action",
+      "fingerprint": "AS138.C01 result.json 82d19c83...8742 (continuum theorem), THIS run dictionary, FINAL_ACTION.md b8c04d4e...7546e",
+      "controls": "every continuum point r != r* must fire the dictionary mismatch (negative control capable of failing); if jointly satisfiable at a unique c_N in (0,1), alpha = 2(1 - c_N) is pinned; kappa back-check = 1/2 on both footings",
+      "dependencies": "AS138.C01 (kappa datum), AS252 (this run), AS236 (ratio) — same action parameter domain",
+      "dispatch_state": "proposed (ready specification; not dispatched)"
+    },
+    {
+      "id": "AS252.C02",
+      "parent": "AS252-r1-20260928T231847Z-dsv4f-hermes",
+      "new_target": "conditional deep-equilibrium transfer of the dictionary: re-express r_M = sqrt(G_N M_b/a0) and v_flat^4 = G_N M_b a0 via rho_Lambda(G_N) on both footings and verify the a0-relations are internally consistent with G_cosm/G_N = c_N",
+      "fingerprint": "THIS run dictionary; AS226/AS236 ratio; framework-contract deep-equilibrium relations (conditional inputs, not solved time-dependent statements)",
+      "controls": "negative control: replacing G_N by G_bare in the a0-relations rescales rho_Lambda by 1/c_N and must fire for alpha > 0; both footings carried separately",
+      "dependencies": "AS252 (this run), AS226, AS236; framework contract deep-equilibrium qualifier respected",
+      "dispatch_state": "proposed (ready specification; not dispatched)"
+    }
+  ],
+  "closure_candidate": null
+}
