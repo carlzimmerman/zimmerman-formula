@@ -193,6 +193,8 @@ The lattice also predicts something that is not the law: **occupancy noise**.
 exactly at `g = a₀`** (A2). A sign flip is a much cheaper measurement than a 15 % amplitude
 difference, and no other interpolation predicts it at the same place.
 
+> **ERRATUM (2026-10-22, doors push D1):** the skew-sign discriminator is **RETIRED for RAR residuals** (D1 SCOPED NO-GO, `doors_push_2026_10_22/D1_skew_preflight/README.md`). RAR errors (distance, Υ, inclination) are symmetric in log g, and in log g **both laws predict a negative skew** across the whole window g/a₀ ∈ (0.375, 1) (√N_s·skew at a₀/2: n=1 −4.38, n=2 −2.44). The sign difference exists only in linear g, where a 0.06 dex log-symmetric background alone has skew +0.42 and SPARC's measured out-of-window skew is +2.9 (canonical) / +3.2 (alt), 17–50× the best-case signal (+0.062 / −0.165). The Gaussian price is also understated: ~1e4–1e6 points, not 7,000–13,500. The statement above is kept as written; it no longer decides n.
+
 **And n = 1 is now *derived*, not asserted.** A35 puts the two laws in one family,
 `Y_m = a₀ − λA` with `n − 1 = λ` the depletion fraction: `λ = 0` gives n=1 with capacity `a₀`,
 `λ = 1` gives n=2 with capacity `a₀/2` and exact form `1/A = 1/g + 1/(a₀ − A)`. Then:
@@ -212,6 +214,8 @@ The discriminator sharpens accordingly: the occupancy-noise **skewness flips at 
 n=1 but at `g = 3a₀/8` for n=2**, and the two have **opposite signs** across
 `g/a₀ ∈ (0.375, 1)` — at `g = a₀/2`, skew = `+0.7071` vs `−0.3483`. The Nyquist ratio at `a₀`
 is `(5+2√5)/4 = 2.3680`, and it diverges at `a₀/2` for n=2 only.
+
+> **ERRATUM (2026-10-22, doors push D1):** the skew-sign discriminator is **RETIRED for RAR residuals** (D1 SCOPED NO-GO, `doors_push_2026_10_22/D1_skew_preflight/README.md`). RAR errors (distance, Υ, inclination) are symmetric in log g, and in log g **both laws predict a negative skew** across the whole window g/a₀ ∈ (0.375, 1) (√N_s·skew at a₀/2: n=1 −4.38, n=2 −2.44). The sign difference exists only in linear g, where a 0.06 dex log-symmetric background alone has skew +0.42 and SPARC's measured out-of-window skew is +2.9 (canonical) / +3.2 (alt), 17–50× the best-case signal (+0.062 / −0.165). The Gaussian price is also understated: ~1e4–1e6 points, not 7,000–13,500. The statement above is kept as written; it no longer decides n.
 
 *Correction to an earlier guess of mine:* `√(g²+a₀²/4) − a₀/2` is **exactly `g_N`**, the
 baryonic branch, not the response — so the "parallel network" reading was wrong, and the
@@ -529,6 +533,8 @@ medium is downstream of the law.
 | P6 | Laboratory null | \|δG/G\| < 1e-6 (framework) vs 340 ppm (source-boost) | two-configuration Cavendish, source-density swap, 30–50 ppm | +340 ppm kills the screened framework |
 | P7 | n = 1 vs n = 2 | 15.47 % max in g at g_N = a₀/2 | 1330–1980 SPARC-quality galaxies, free Υ per galaxy | a stacked Δχ² that survives the bootstrap |
 | P8 | Jeans mass rises with density | d ln M_J/d ln ρ = +1 | clump mass function in dense vs diffuse regions | the standard −½ scaling |
+
+**ERRATUM (2026-10-22, doors push D1):** (P9) the skew-sign discriminator is **RETIRED for RAR residuals** (D1 SCOPED NO-GO, `doors_push_2026_10_22/D1_skew_preflight/README.md`). RAR errors (distance, Υ, inclination) are symmetric in log g, and in log g **both laws predict a negative skew** across the whole window g/a₀ ∈ (0.375, 1) (√N_s·skew at a₀/2: n=1 −4.38, n=2 −2.44). The sign difference exists only in linear g, where a 0.06 dex log-symmetric background alone has skew +0.42 and SPARC's measured out-of-window skew is +2.9 (canonical) / +3.2 (alt), 17–50× the best-case signal (+0.062 / −0.165). The Gaussian price is also understated: ~1e4–1e6 points, not 7,000–13,500. The statement above is kept as written; it no longer decides n.
 
 ---
 

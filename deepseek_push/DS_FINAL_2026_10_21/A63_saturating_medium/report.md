@@ -294,6 +294,8 @@ skew(δg | g_N) = (1 − 2θ)/√(N_s θ(1−θ)).                              
 is the sign of `1−2θ`** — dimensionless, normalisation-free, `N_s`-free, `Υ`-free, `a₀`-free. The
 flip is at **half capacity**, `θ = 1/2`, which is a different drive for the two laws:
 
+> **ERRATUM (2026-10-22, doors push D1):** "normalisation-free, `N_s`-free" holds only for the skew of δg in **linear** g. Taking log g adds a term −3σ_rel (also ∝ N_s^{-1/2}), and in log g both laws are **negative** throughout (0.375, 1)a₀ (√N_s·skew at a₀/2: n=1 −4.38, n=2 −2.44; exact binomial sums at N_s = 93 agree). RAR errors are symmetric in log g, so the sign test is not N_s-free on RAR data. See `doors_push_2026_10_22/D1_skew_preflight/README.md`.
+
 ```
 n=1:  θ = g/(g+a₀) = 1/2  ⇔  g = a₀
 n=2:  θ = 2A₂/a₀   = 1/2  ⇔  A₂ = a₀/4  ⇔  g = 3a₀/8 = 0.375a₀                        (18)
@@ -337,6 +339,8 @@ baryonic masses. **One sign decides: positive → n=1, negative → n=2.** A nul
 bounds the occupancy fraction of the variance (hence `N_s`, hence the gate density); it does not
 rescue n=2.
 
+> **ERRATUM (2026-10-22, doors push D1):** K30 (and eq. 19) combines the N_s = 1 skew `s_true = 0.7071` with A2's normalisation, which means N_s = 93.1 (relative error in s_true 8.6), and takes φ at g = a₀ but s at g = a₀/2. Evaluated consistently at a₀/2 (σ_occ = 0.076 dex, φ = 0.786) the Gaussian price is N(3σ) ≈ 4.3×10⁴ (n=1) and 1.6×10⁴–4.2×10⁶ (n=2), i.e. **~10⁴–10⁶, not 7,000–13,500**. Independently, "one sign decides" is RETIRED for RAR residuals (log-g sign obstruction above). See `doors_push_2026_10_22/D1_skew_preflight/README.md`.
+
 ### 6.3 The other candidates, with their numbers
 
 **Third-order response in a laboratory analogue.** `R = c₃c₁/c₂²` (a Miller-delta analogue) is
@@ -374,6 +378,8 @@ the coherent part. The skew's signal has no coherent systematic — a sign canno
 normalisation error, and an odd moment is blind to any symmetric error — so its S/N grows as `√N`
 without bound; the only question is how many points are needed, and (19) answers it. That is why it
 wins on signal-to-noise even though it needs more data than the mean-field routes.
+
+> **ERRATUM (2026-10-22, doors push D1):** "no normalisation budget" and "an odd moment is blind to any symmetric error" hold only for errors symmetric in the variable used. RAR errors are symmetric in **log** g, where both laws are negative across the window; in linear g a 0.06 dex log-symmetric background has skew +0.42, and SPARC's measured out-of-window linear skew is +2.9 / +3.2 (canonical / alt), 17–50× the best-case signal. The pick of §6.4 is RETIRED for RAR residuals (D1 SCOPED NO-GO, `doors_push_2026_10_22/D1_skew_preflight/README.md`).
 
 ## 7. Verdict
 
@@ -449,6 +455,8 @@ K17, K29 here). **UNDECIDED** — n=1 vs n=2 on existing data (A7).
 | K29 | n=2: same `c₂=−1/a₀`, capacity `a₀/2` — violates `C=−c₂a₀` by 2 | 0.5 |
 | K30 | skew `N(3σ)`: 918 / 6912 / 1.35e4 / 1.48e5 at φ=0.7/0.5/0.447/0.3 | 1.35e4 |
 | K31 | the report's 9-point skew table reproduces for both laws | 4.9e−6 |
+
+**ERRATUM (2026-10-22, doors push D1):** the K18 row prints −0.348327; the computed value is **−0.3483107** (typo; D1 results `s_n2_half_Ns1`, `doors_push_2026_10_22/D1_skew_preflight/README.md`).
 
 `MUTATE.md`: replacing the medium by `tanh` breaks K18, K19, K20, K23, K27, K28, K31 (24/31, exit 1)
 and returns the dielectric's numbers (flip at 0.5493 a₀, skew +0.152, `R = ∞`); replacing it by the

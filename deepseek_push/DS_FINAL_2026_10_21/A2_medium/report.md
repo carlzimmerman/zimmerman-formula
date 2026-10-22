@@ -184,6 +184,8 @@ The normalisation inverts to the gate number: 0.03 dex intrinsic scatter at `g =
 has `skew(δg) ∝ (1−2θ)`, changing sign exactly at `θ = 1/2`, i.e. at `g = a0` (K13). Shape
 (19), ratios (20) and the skew flip are lattice consequences, not restatements of the law.
 
+> **ERRATUM (2026-10-22, doors push D1):** "`N_s`-free zero" holds only for δg in linear g. RAR errors are symmetric in log g, and in log g both laws give a negative skew across (0.375, 1)a₀, so the skew sign does not decide n on RAR residuals (D1 SCOPED NO-GO, `doors_push_2026_10_22/D1_skew_preflight/README.md`).
+
 ## Status
 
 **CONDITIONAL(single-scale driven two-state lattice: capacity = affinity = a0)** for the

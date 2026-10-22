@@ -570,6 +570,8 @@ by **scale dependence** — that is the discriminator A45 names.
 | laboratory | `|δG/G| < 10⁻⁶` vs 340 ppm source-boost | +340 ppm |
 | galactic α₁ | coefficient runs `0.046–5.19` at `g ~ a₀`, but the induced acceleration is a **monopole with identically zero dipole** (A82), bounded by `w²a₀ = 1.42×10⁻¹⁶ m/s²`; `α̂₁ = 3.0×10⁻²⁴` in a Galactic-field pulsar | not a falsifier as stated — **retired** (A82). A measured preferred-frame *dipole* in a system at `g ≪ a₀` would kill it, but no such measurement exists |
 
+**ERRATUM (2026-10-22, doors push D1):** the skew-sign discriminator is **RETIRED for RAR residuals** (D1 SCOPED NO-GO, `doors_push_2026_10_22/D1_skew_preflight/README.md`). RAR errors (distance, Υ, inclination) are symmetric in log g, and in log g **both laws predict a negative skew** across the whole window g/a₀ ∈ (0.375, 1) (√N_s·skew at a₀/2: n=1 −4.38, n=2 −2.44). The sign difference exists only in linear g, where a 0.06 dex log-symmetric background alone has skew +0.42 and SPARC's measured out-of-window skew is +2.9 (canonical) / +3.2 (alt), 17–50× the best-case signal (+0.062 / −0.165). The Gaussian price is also understated: ~1e4–1e6 points, not 7,000–13,500. The statement above is kept as written; it no longer decides n.
+
 ---
 
 ## 6. The no-go ledger
@@ -664,6 +666,8 @@ with `C = s = a₀`, and by least dissipation (n = 2 is not a stationary state, 
 is a **sign**, needing no calibration: the occupancy-noise skew at fixed `g_N` is **+0.7071 (n=1) vs
 −0.3483 (n=2)** at `g = a₀/2`, zero at `a₀` vs `3a₀/8`, opposite signs on `(0.375,1)a₀`; N ≈
 7,000–13,500 points in the window decides it. **Status: DERIVED (medium), UNDECIDED (data).**
+
+> **ERRATUM (2026-10-22, doors push D1):** the skew-sign discriminator is **RETIRED for RAR residuals** (D1 SCOPED NO-GO, `doors_push_2026_10_22/D1_skew_preflight/README.md`). RAR errors (distance, Υ, inclination) are symmetric in log g, and in log g **both laws predict a negative skew** across the whole window g/a₀ ∈ (0.375, 1) (√N_s·skew at a₀/2: n=1 −4.38, n=2 −2.44). The sign difference exists only in linear g, where a 0.06 dex log-symmetric background alone has skew +0.42 and SPARC's measured out-of-window skew is +2.9 (canonical) / +3.2 (alt), 17–50× the best-case signal (+0.062 / −0.165). The Gaussian price is also understated: ~1e4–1e6 points, not 7,000–13,500. The statement above is kept as written; it no longer decides n.
 
 **(Q3) A relativistic version that predicts lensing — the four gates.** Structurally **closed, and the
 answer is the opposite of A64's first reading**: A54's canonical analysis gives 26 phase-space dimensions
