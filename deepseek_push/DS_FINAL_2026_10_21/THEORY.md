@@ -296,6 +296,33 @@ nonlinear.
   ½; a 2.9 % `a₀` measurement decides, and until then "derived" means "derived from one stated premise",
   not "proved".*
 
+**3.6b What changes if you take the thermal point — the algebra does not break, two coincidences die.**
+The spine is untouched: the law `g_N = g²/(g+a₀)`, the closure identity (true for every κ), `c_T² = 1`,
+the 5-mode count, the four gates, `α₁/α₂`, and all 40 Lean theorems — those are conditional algebra about
+the κ = ½ branch and remain true; only their labelling as "the theory's value" changes. What shifts:
+
+| quantity | κ = ½ | κ = Z/4π | band / verdict |
+|---|---|---|---|
+| `a₀` | 9.354e-11 | **8.618e-11** | 0.30σ / **0.03σ** from A71 |
+| `y_t` | 66.35 | **77.85** | both inside [60,140] |
+| `L★ = σ_c²/a₀` | 24.04 pc | **26.09 pc** | both inside [24,90] |
+| `R_core = (π/√2)L★` | 53.4 pc | **58.0 pc** | — |
+| `m_P = ħ/(cL★)` | 2.66e-25 eV | **2.45e-25 eV** | — |
+| `R ≡ Λc⁴/(8πa₀²)` | 4 | **3π/2 = 4.712389** | — |
+| `Λc⁴/a₀² = 8π/κ²` | 32π = 100.531 | **12π² = 118.435** | — |
+| `a₀/(cH₀)` | 1/7 | **1/5.20** | — |
+| `L_MOND/ℓ₁` | 2 exactly | **2.171** | — |
+
+**Two interpretive stories die with κ = ½, and they are the real cost.** (i) A19's saturation cap
+enumerates `R ∈ {1,2,4} ⇒ κ ∈ {1, 0.7071, ½}`, and `3π/2` is **not** in that set — the cap family no longer
+contains the thermal point. (ii) `L_MOND = 2ℓ₁` becomes `2.171 ℓ₁`, so the exact "twice the cell" reading is
+lost. Nothing else fails: the falsifier band `κ ∈ [0.3415, 0.5265]` contains both (0.381 P3 at the thermal
+point), the `L★` window and the `y_t` band pass on both, and the IMF tension is unchanged at 1.97σ because
+A71 already fit at `8.544e-11` — essentially the thermal point. **`3π/2` and `12π²` are no less clean than
+`4` and `32π`; they are simply different.** The data do not force the choice (0.27σ apart), so the branch is
+a declared choice, not a derivation — and κ = ½ remains available as a fit if one prefers `R = 4` and
+`L = 2ℓ₁`.
+
 The closure relation itself is unchanged and holds for every κ:
 
 $$
