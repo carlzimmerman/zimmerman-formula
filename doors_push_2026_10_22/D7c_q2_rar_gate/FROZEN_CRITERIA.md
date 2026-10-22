@@ -66,3 +66,15 @@ g_e intervals where Q₂ ≤ 9.0e-27 and ≤ 5.2e-27 (bisected edges).
 
 ## Settings
 κ = ½ FITTED; footings never pooled; no dark-matter particle; not theory closed; single thread, nice 10, no downloads.
+
+## AMENDMENT A1 (POST-RESULT, 2026-10-22; the frozen lines above are unchanged)
+- K3 first run FAILED (6.0e-11 > 1e-12): the check computed μ_α1 = (√(1+4x²)−1)/(2x), which cancels at small x. The check
+  implementation now uses the algebraically identical stable form 2x/(√(1+4x²)+1); tolerance unchanged; it passes at 6.7e-16.
+  First-run output kept: `d7c_q2_rar_gate_firstrun.out`, `d7c_q2_rar_gate_results_firstrun.json`.
+- K4 FAILS as frozen (3.27e-9 > 1e-10): CFG4's `nu_mono` is a tabulated trapezoid integral (FP1), A25's is the closed-form
+  splice; they differ at 3e-9. Kept failed; the script exits 1 for this reason only. It moves no Q₂ or SPARC number visibly.
+- The frozen tension metric "Hees σ at the most favourable E" is ill-defined for E-DEPENDENT members (their best cell is
+  inside the band). Added: the member's WORST-cell Hees σ (a PASS needs every cell); the family N now uses it. Both are printed.
+- Added (reported, not graded): a footing-split reading (members passing Q₂ and the SPARC primary on one footing), and the
+  β family's alt-footing E0 cell at β = 4, 6, 10, 20, 40 (beyond the frozen grid) to show the cell's floor.
+- The E-field "peak" label is renamed "max on grid" (Q₂ rises monotonically to the grid top).
