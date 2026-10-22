@@ -1,0 +1,84 @@
+E4_FITTED_THREE  (kappa, L*, u): measurement audit, dependency, forced relations
+K5 PASS 5.55e-16 <1e-12 :: native kernel satisfies g_N = g^2/(g+a0) on y in [1e-4, 1e4]
+
+=== PART A: kappa (galaxy gas routes, CFG493; cluster channel excluded as circular, A81 sec. 9.4)
+K1 PASS -10.10732+-0.098475 -10.10732+-0.098475 (1e-4) :: CFG493 GLS reproduced from its JSON with its own covariance
+K2 PASS -10.0621 -10.0621+-0.002 :: CFG493 V6 (HF distances at H0 73.04) by lever arithmetic
+  [canonical] record (Planck rho, HF at H0 67.4): a0 7.8105e-11 (log -10.1073 +- 0.0985); kappa 0.4172 +- 0.0946
+  [canonical] BAO+BBN (CFG886 T2a): a0 7.9859e-11 (log -10.0977); kappa 0.4141 +- 0.0939; shift -0.03 sigma_CFG493; pull of 1/2 +0.91, of Z/4pi +0.50
+  [canonical] SH0ES h + BAO Om (CFG886 T2b, variant): a0 8.6685e-11 (log -10.0621); kappa 0.4219 +- 0.0957; shift +0.05 sigma_CFG493; pull of 1/2 +0.82, of Z/4pi +0.40
+  [canonical] LINE: kappa ROBUST
+  [alt] record (Planck rho, HF at H0 67.4): a0 7.8105e-11 (log -10.1073 +- 0.0985); kappa 0.3452 +- 0.0783
+  [alt] BAO+BBN (CFG886 T2a): a0 7.9859e-11 (log -10.0977); kappa_crit 0.3470 +- 0.0787; shift +0.02 sigma_CFG493; pull of 1/2 +1.94
+  [alt] SH0ES h + BAO Om (CFG886 T2b, variant): a0 8.6685e-11 (log -10.0621); kappa_crit 0.3536 +- 0.0802; shift +0.11 sigma_CFG493; pull of 1/2 +1.83
+  [alt] LINE: kappa ROBUST
+  kernel bound at y=0.03: nu_mono 6.2879, nu_L 6.2951; a0(nu_L)/a0(nu_mono) = 0.9975 (-0.0011 dex)
+  kernel bound at y=0.072: nu_mono 4.2491, nu_L 4.2602; a0(nu_L)/a0(nu_mono) = 0.9940 (-0.0026 dex)
+  kernel bound at y=0.3: nu_mono 2.3712, nu_L 2.3930; a0(nu_L)/a0(nu_mono) = 0.9754 (-0.0108 dex)
+
+=== PART B: L* (CFG820 globular floor; CFG821 dSph ceiling, conditional)
+  [canonical] L*_95: R0 (nu_RAR + EFE recipe) 23.640 pc | N1 native (nu_L, no recipe) 28.853 pc | N2 (nu_L + recipe, reported) 23.867 pc
+  [canonical]   Upsilon_V x10^+0.15 -> 42.280 pc; x10^-0.15 -> 20.009 pc; d ln L*_95/d ln a0 = +0.065; Delta chi2_N1 at thermal 23.43 pc = 6.210 (excluded) -> L* FLOOR MOVES
+  [alt] L*_95: R0 (nu_RAR + EFE recipe) 24.476 pc | N1 native (nu_L, no recipe) 29.123 pc | N2 (nu_L + recipe, reported) 24.657 pc
+  [alt]   Upsilon_V x10^+0.15 -> 43.477 pc; x10^-0.15 -> 20.741 pc; d ln L*_95/d ln a0 = +0.075; Delta chi2_N1 at thermal 19.38 pc = 9.013 (excluded) -> L* FLOOR MOVES
+K3 PASS 23.640/24.476 23.641/24.476 +-0.02 :: CFG820 fine-grid floor reproduced (record machinery)
+    NGC 2419  y_int 0.8619, y_ext(recipe) 0.0097: B_RAR+EFE 1.648, B_L iso 1.688, sigma_obs/sigma_N 1.020
+    Pal 4     y_int 0.0489, y_ext(recipe) 0.0083: B_RAR+EFE 4.704, B_L iso 5.052, sigma_obs/sigma_N 0.882
+    Pal 14    y_int 0.0102, y_ext(recipe) 0.0190: B_RAR+EFE 6.369, B_L iso 10.437, sigma_obs/sigma_N 1.183
+  CFG821 native [canonical] n=11: chi2 unscreened 58.4 for 11 dSphs; 95% upper L* 22.0 pc (CONDITIONAL: no bound cold mass; reported only)
+  CFG821 native [alt] n=11: chi2 unscreened 51.8 for 11 dSphs; 95% upper L* 22.0 pc (CONDITIONAL: no bound cold mass; reported only)
+
+=== PART C: u (CFG687 eRASS1 x KiDS stack; D6/A21 inversion)
+  318 clusters; MID band = bins [3, 4, 5]: R = 0.461-1.419 Mpc (fixed physical radii; centres 0.556, 0.809, 1.176 Mpc). No r_sp, r200 or NFW quantity enters u_MID.
+K4 PASS 0.47157/0.5234 0.47157(1e-3)/0.5234(2e-3) :: D6 u_MID reproduced (nu_mono, record conventions)
+  [canonical] u_MID (record kernel nu_mono) = 0.4716 +- 0.0325
+  [canonical]   native kernel nu_L [A1]                             : 0.4726 +- 0.0325  (shift +0.0010 = +0.03 sigma)
+  [canonical]   a0 x1.05                                            : 0.4845 +- 0.0334  (shift +0.0129 = +0.40 sigma)
+  [canonical]   a0 /1.05                                            : 0.4590 +- 0.0316  (shift -0.0126 = -0.39 sigma)
+  [canonical]   M_gas x1.10 (survey)                                : 0.4974 +- 0.0346  (shift +0.0259 = +0.80 sigma)
+  [canonical]   R500 x10^+0.033 (LCDM-processed)                    : 0.4461 +- 0.0304  (shift -0.0254 = -0.78 sigma)
+  [canonical]   R500 x10^-0.033 (LCDM-processed)                    : 0.4984 +- 0.0347  (shift +0.0268 = +0.83 sigma)
+  [canonical]   f_s 0.10 (external)                                 : 0.4495 +- 0.0307  (shift -0.0221 = -0.68 sigma)
+  [canonical]   f_s 0.30 (external)                                 : 0.4932 +- 0.0343  (shift +0.0216 = +0.67 sigma)
+  [canonical]   background Planck->BAO+BBN (LCDM-processed, 1st order): 0.4605 +- 0.0316  (shift -0.0111 = -0.34 sigma)
+  [canonical]   d ln u/d ln a0 = +0.553; d ln u/d ln M_gas = +0.560; max LCDM-bracket shift 0.0268; kernel shift 0.0010 -> u CLEAN
+  [alt] u_MID (record kernel nu_mono) = 0.5234 +- 0.0360
+  [alt]   native kernel nu_L [A1]                             : 0.5244 +- 0.0361  (shift +0.0009 = +0.03 sigma)
+  [alt]   a0 x1.05                                            : 0.5376 +- 0.0370  (shift +0.0142 = +0.39 sigma)
+  [alt]   a0 /1.05                                            : 0.5096 +- 0.0351  (shift -0.0138 = -0.38 sigma)
+  [alt]   M_gas x1.10 (survey)                                : 0.5524 +- 0.0385  (shift +0.0290 = +0.80 sigma)
+  [alt]   R500 x10^+0.033 (LCDM-processed)                    : 0.4950 +- 0.0337  (shift -0.0285 = -0.79 sigma)
+  [alt]   R500 x10^-0.033 (LCDM-processed)                    : 0.5535 +- 0.0385  (shift +0.0301 = +0.83 sigma)
+  [alt]   f_s 0.10 (external)                                 : 0.4987 +- 0.0340  (shift -0.0247 = -0.69 sigma)
+  [alt]   f_s 0.30 (external)                                 : 0.5476 +- 0.0381  (shift +0.0242 = +0.67 sigma)
+  [alt]   background Planck->BAO+BBN (LCDM-processed, 1st order): 0.5111 +- 0.0351  (shift -0.0123 = -0.34 sigma)
+  [alt]   d ln u/d ln a0 = +0.549; d ln u/d ln M_gas = +0.565; max LCDM-bracket shift 0.0301; kernel shift 0.0009 -> u CLEAN
+
+=== PART D: dependency structure -- Jacobian of observables w.r.t. (ln a0, ln L*, ln u), canonical footing
+  galaxy g (1e10 Msun, 10 kpc)  : d/dln a0 +0.4053  d/dln L* -1.589e-05  d/dln u +0.0000
+  NGC 2419 sigma                : d/dln a0 +0.0634  d/dln L* -1.382e-01  d/dln u +0.0000
+  Pal 14 sigma                  : d/dln a0 +0.0203  d/dln L* -6.063e-01  d/dln u +0.0000
+  cluster MID DeltaSigma        : d/dln a0 +0.4970  d/dln L* -2.559e-09  d/dln u -0.9017
+  singular values 1.051, 0.6227, 0.3507; rank 3 of 3 (tol 1e-3 x largest)
+K6 PASS u-col gal/gc 0.0e+00,0.0e+00,0.0e+00; L*-col cluster -2.6e-09 0,0,0; <1e-3 :: Jacobian structural zeros
+  measurement coupling: d ln L*_95/d ln a0 = +0.065 (canonical) / +0.075 (alt); screening-only (fixed s) = -0.250; d ln u_MID/d ln a0 = +0.553 / +0.549
+
+=== PART E: forced relations among (kappa, L*, u)
+  L* = sigma_c^2/a0                             -> POSIT: A76/A65 premise; D8: not in the action, no tethered-state term; D8b: sigma not one constant
+  I(y_t) = 8 pi/kappa^2                         -> POSIT (P5 closure): D7: one-to-one relabelling of kappa; y_t has no independent observable today
+  u = f(a0) or f(L*)                            -> NONE in the action: P4 is a posit on the cold sector; no action term carries u (THEORY P4; D6 H-VR is a new posit). The measured u_MID depends on a0 through the inversion (Part C), a measurement coupling, not a relation.
+  eta = gamma                                   -> NOT FORCED: A69/A77: action invariant for arbitrary (eta, gamma)
+  screening variable s = (8/3) r_h r_M / L*^2   -> FORCED combination (reparametrisation): gamma = K L*^2/2 with saturation scale a0/K: L* enters observables only via L*^2 a0^(1/2) at fixed system; it fixes the degeneracy direction d ln L*/d ln a0 = -1/4 at fixed s, removes no constant, and predicts no new number
+  => no relation among kappa, L* and u follows from the action without inserting a number. LEE / second prediction: not applicable.
+
+=== POST-RESULT (added after the first run; reported only, no line or check depends on it)
+  galaxy-measured a0 (clean background, footing-free) = 7.9859e-11 m/s^2 (+-0.0985 dex)
+  u_MID (native kernel) at that a0 = 0.4328 +- 0.0298 (stat)
+  [canonical] u systematic brackets in quadrature = 0.0442 (stat 0.0325); u error carried from the galaxy a0 error (0.0985 dex) = 0.0593
+  [canonical] L*_95 floor: EFE treatment 23.9-28.9 pc; coherent Upsilon_V +-0.15 dex 20.0-42.3 pc
+  [alt] u systematic brackets in quadrature = 0.0495 (stat 0.0360); u error carried from the galaxy a0 error (0.0985 dex) = 0.0652
+  [alt] L*_95 floor: EFE treatment 24.7-29.1 pc; coherent Upsilon_V +-0.15 dex 20.7-43.5 pc
+
+LINES: ['kappa ROBUST', 'kappa ROBUST', 'L* FLOOR MOVES', 'L* FLOOR MOVES', 'u CLEAN', 'u CLEAN']
+VERDICT (frozen mapping, script part): CRISP FINDING
+E4_FITTED_THREE COMPLETE: 6/6 checks PASS.
