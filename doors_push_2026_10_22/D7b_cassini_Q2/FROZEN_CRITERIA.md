@@ -76,3 +76,12 @@ Outcome statements:
 
 Static, uniform external field (no Galactic tide, no time dependence); QUMOND only (AQUAL differs by ≲ 30 %,
 K5); the bound is the published fitted Q₂, not a refit with this law's full field.
+
+## AMENDMENT 1 (POST-RESULT, 2026-10-22) — K4 fails as frozen; nothing re-tuned
+
+K4 came out 0.9737 / 0.9646 / 0.9647 against the 3 % line (gap 2.6–3.5 %). The check is left as frozen and
+reported as FAIL; the script exits 1. Diagnosis (in the script, not a check): the integral is converged to
+v = ∞ (K1 analytic limit to 5e-10, independent grid route K3 to 1.1e-3, K8), and truncating at v = 60 changes
+q by only 5e-6 to 1.5e-5. So the gap is **not** a tail effect. It is a convention or transcription difference in
+the anchors as recorded (they were not re-read from Desmond+2024 here). If our q is low by 3.5 %, every Q₂
+below is low by the same factor, which strengthens the FAIL verdicts; no PASS/FAIL line is near 3.5 %.
