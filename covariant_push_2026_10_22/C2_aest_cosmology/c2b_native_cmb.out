@@ -1,0 +1,54 @@
+== P1: AeST source verification (arXiv:2007.00082 newRMONDLett.tex; arXiv:2304.05134 main.tex)
+  found   action Eq.5: R - K_B/2 F^2 + 2(2-K_B) J.dphi - (2-K_B) Y - F(Y,Q) - lambda(A.A+1)
+  found   J_mu = A^alpha nabla_alpha A_mu (aether acceleration)
+  found   Q = A^mu d_mu phi, Y = q^{mu nu} d phi d phi
+  found   K(Qbar) = -1/2 F(0,Qbar)
+  found   J -> 2 lambda_s/(3(1+lambda_s) a0) Y^{3/2}
+  found   Gt = (1 - K_B/2) G_qs
+  found   G_N = (1 + 1/lambda_s) G_qs (tracking; screening = lambda_s -> inf)
+  found   mu = sqrt(2 K2/(2-K_B)) Q0
+  found   vectors healthy if 0<K_B<2 and lambda_s>-1
+  found   scalar requires K2>0
+  found   omega=0 mode requires lambda_s>0
+  found   lambda_s influences the effective cosmological gravitational strength
+  found   VSZ: G_qs = G_N/(1+beta_0)
+  found   VSZ: lambda_s = 1/beta_0
+  found   VSZ: Minkowski stability lambda_s>0, mu^2>0
+  discrepancy/note: real_research/bridge1_aest_equations.md: matches the source on every load-bearing item checked (action, lambda_s coefficient, Gt = (1-K_B/2) G_qs, mu, the E equation); it omits J_mu = A^a nabla_a A_mu and K = -F(0,Q)/2 (omissions, not errors).
+  discrepancy/note: real_research/THE_NEXT_CALCULATION_aest_quasistatic.md: writes F(Y,Q) = -K(Q) + ...; the source has F(0,Q) = -2 K(Q) (K = -F(0,Q)/2, PRL text after Eq. 5).
+  discrepancy/note: C1 (covariant_push_2026_10_22/C1_aest_embedding/README.md, point 1): takes the mass term as K2 Q0^2 Psi^2 in 16 pi Gt L, m^2 = K2 Q0^2/(2-K_B), and calls the record's 2K2 'a convention'. With K = -F(0,Q)/2 the source fixes (2-K_B) mu^2 = 2 K2 Q0^2 (Eq. 6): C1's m^2 is mu^2/2 (a factor-2 slip in C1; it touches only the Mpc-scale mass term, not C1's verdict).
+  discrepancy/note: C1 K2: G_N = 2 Gt/(2-K_B) at lambda_s -> inf agrees with the source; the 'Newtonian regime as a cap' is the screening limit lambda_s -> inf, which the source equates with screening.
+P1 PASS 15/15 found all found
+== P2: G_cosmo/G_N in AeST and the A78 BBN line g > 0.9611
+  g = Gt/G_N = lambda_s*(2 - K_B)/(2*(lambda_s + 1));  residual vs (1-K_B/2) lambda_s/(1+lambda_s) = 0
+  BBN: K_B < 0.0778 (lambda_s -> inf), lambda_s > 24.707 (K_B -> 0); jointly (1-K_B/2) lambda_s/(1+lambda_s) > 0.9611
+  VSZ's plotted lambda_s = 1, 2, 10 give g <= 0.500, 0.667, 0.909 (Delta N_eff = -3.72, -2.48, -0.68; A78 line |Delta N_eff| < 0.30); SZ's CMB 'MOND models' have lambda_s = inf
+P2 PASS res=0,KB<0.0778,ls>24.707 0, 0.0778, 24.71
+== P3: which G does linear growth feel
+  delta normalised with Gt: True;  Einstein equations in GR form: True  (the PRL writes '8 pi G' there; with the action normalised by 1/16 pi Gt and delta defined with Gt, that G is Gt)
+  => linear growth is sourced by Gt = G_cosmo; K7's G_N variant (+16 % sigma8) is NOT AeST's linear behaviour: withdrawn
+P3 PASS True,True True,True
+== P4: acoustic scale under the emulated g (fixed physical densities, h = sqrt(g) h_1)  [EMULATION, not AeST]
+  g=1: 100theta_s=1.041100, z*=1085.12, h=0.67603;  g=0.9611: 100theta_s=1.041527, z*=1084.33, h=0.66275;  dtheta/theta = 4.11e-04
+P4 PASS 4.11e-04 |dtheta/theta|<1e-3
+== P5: plik-lite TTTEEE + low-l TT + low-l EE (reimplemented)  [EMULATION of g, NOT the AeST prediction]
+  low-l tau scan: tau_hat = 0.0510 +- 0.0085 (parabola over 7 points)
+    g=1.0: GN it1: steered chi2 591.74 -> 582.60 (step 1.0)
+    g=1.0: GN it2: steered chi2 582.60 -> 582.60 (step 0.5)
+    g=1.0: GN it3: steered chi2 582.60 -> 582.60 (step 0.0625)
+    g=1.0: GN it4: steered chi2 582.60 -> 582.70 (step 0.0625)
+  LCDM refit (g=1): params [0.02231, 0.12057, 1.0418, 3.04935, 0.96183, 0.05628], A_planck 1.00049; chi2 {"plik": 582.28, "lowTT": 24.29, "lowEE": 396.59, "Aprior": 0.04, "total": 1003.2, "H0": 67.58}
+  Fisher (plik-lite + tau prior + A prior): sigma(g) = 0.0266 marginalised over 6 LCDM + A_planck (0.0036 with the others fixed)
+    g=0.9611: GN it1: steered chi2 703.39 -> 580.92 (step 1.0)
+    g=0.9611: GN it2: steered chi2 580.92 -> 580.89 (step 0.25)
+    g=0.9611: GN it3: steered chi2 580.89 -> 580.86 (step 1.0)
+    g=0.9611: GN it4: steered chi2 580.86 -> 580.85 (step 0.25)
+  g=0.9611: refit [0.02207, 0.12205, 1.04245, 3.03536, 0.95037, 0.05482], H0=65.60; chi2 {"plik": 580.62, "lowTT": 26.2, "lowEE": 396.37, "Aprior": 0.03, "total": 1003.23, "H0": 65.6}; Delta chi2 = +0.03
+    g=0.6845: GN it1: steered chi2 17709.78 -> 876.61 (step 1.0)
+    g=0.6845: GN it2: steered chi2 876.61 -> 743.65 (step 1.0)
+    g=0.6845: GN it3: steered chi2 743.65 -> 743.31 (step 1.0)
+    g=0.6845: GN it4: steered chi2 743.31 -> 743.37 (step 0.0625)
+  g=0.6845: refit [0.02003, 0.13574, 1.04949, 2.89273, 0.85327, 0.0461], H0=51.06; chi2 {"plik": 743.03, "lowTT": 54.22, "lowEE": 395.77, "Aprior": 0.01, "total": 1193.02, "H0": 51.06}; Delta chi2 = +189.83
+P5 PASS chi2_plik=582.3 in [500,750] for 613 bins
+  outcome: g=0.6845 DISFAVOURED (Delta chi2 > 25) in this emulation; BBN band edge g=0.9611 not distinguishable (Delta chi2 < 4); neither is an AeST verdict
+C2B_NATIVE_CMB COMPLETE: 5/5 checks PASS.  (CLASS runs: 124)

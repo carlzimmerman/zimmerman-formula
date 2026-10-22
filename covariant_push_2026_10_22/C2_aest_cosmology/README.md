@@ -131,3 +131,79 @@ vanilla CLASS *is* ΛCDM, so running it now would test ΛCDM, not the framework.
   - The first scored run's output is kept as `c2_aest_cosmology_RUN1_prefix.out` (7/9).
 - `C2_MUTATE=1` puts the full metric in place of the projector and drops the √ in the H₀ map. K1 and K4 fail and the run exits 1 (`*_MUTATE.*`).
 - Run: `OMP_NUM_THREADS=1 nice -n 10 python3 c2_aest_cosmology.py`. It takes about 9 s on one thread with 0.22 GB peak RSS. Nothing was downloaded or installed.
+
+---
+
+## 6. Wave 2 (owner-approved fetches): the papers on disk, G_N vs Ĝ, and a vanilla-CLASS emulation vs plik-lite
+
+**Verdict update.**
+- **COMPUTED:** the background ratio g, from the AeST source (P1–P3).
+- **DATA-GATED → TOOL-GATED:** the full AeST CMB prediction. The data are now on disk. The AeST Boltzmann code is not.
+
+The run is `c2b_native_cmb.py` under AMENDMENT A2 (pre-result, bfd11598d9). It passes **5/5**. `C2B_MUTATE=1` breaks
+P2 and P4 (3/5, exit 1). It made 124 CLASS runs in 202 s on one thread. Peak footprint was 0.23 GB; macOS reports a
+max RSS of 1.02e9 B (0.95 GiB), right at the 1 GB line. Provenance is in `PROVENANCE.md`. No downloaded code was executed for any number.
+
+**P1. Source check: 15/15 load-bearing items match.** The two sources are `newRMONDLett.tex` and `main.tex`.
+- The record's transcription (`real_research/bridge1_aest_equations.md`) is right on every item checked. It omits
+  J_μ = A^α∇_αA_μ and K(Q̄) = −½F(0, Q̄).
+- `real_research/THE_NEXT_CALCULATION_aest_quasistatic.md` writes F = −K + …. The source has F(0, Q) = −2K.
+- **C1 has a factor-2 slip** in the mass term (C1 README, point 1).
+  - C1 uses m² = K₂Q₀²/(2−K_B). The source's Eq. 6 has μ² = 2K₂Q₀²/(2−K_B).
+  - This is fixed by K = −F/2, so it is not a convention.
+  - It touches only the Mpc-scale term, not C1's verdict.
+
+**P2. Newton's constant in AeST is G_N = (1 + 1/λ_s)·Ĝ.** This is PRL L254; VSZ's Ĝ = G_N/(1+β₀) with λ_s = 1/β₀ says the same.
+- Hence **g = G_cosmo/G_N = (1 − K_B/2)·λ_s/(1+λ_s) ≤ 1**. AeST can only lower the native H₀.
+- The A78 BBN line (g > 0.9611) needs **both K_B < 0.0778 and λ_s > 24.7**.
+- VSZ's plotted λ_s = 1, 2 and 10 would give ΔN_eff = −3.7, −2.5 and −0.68. All three fail the |ΔN_eff| < 0.30 line, if cosmological G is G̃.
+- SZ's CMB "MOND models" use λ_s = ∞, where g = 1 − K_B/2. **K6's OPEN item is settled: the bound is K_B < 0.078 at λ_s = ∞.**
+
+**P3. Linear growth feels G̃ = G_cosmo.** The source normalises δ with G̃ and states the Einstein equations in GR form.
+- So K7 stands: γ = 0.555.
+- **The K7 "G_N variant" (+16 % σ₈) is withdrawn.** It is not AeST's linear behaviour.
+
+**P4/P5. Vanilla-CLASS emulation of g. This is NOT the AeST prediction.**
+- **How it works.** Baryons stay physical, so the microphysics is right. The extra gravity is removed through the CDM and N_ur densities.
+  - The background and recombination are exact for H² = (8πgG_N/3)ρ.
+  - The per-species Poisson weights and the neutrino shear are off by O(1−g): about 6 % of the ν shear at g = 0.961 and about 45 % at g = 0.6845.
+- **Likelihoods.** plik-lite TTTEEE (613 bins), low-ℓ TT and low-ℓ EE, reimplemented from the data files.
+  - They are not validated against cobaya's own output.
+  - Sanity: the ΛCDM refit gives χ²_plik = 582.3 for 613 bins.
+- **Results:**
+
+| quantity | value |
+|---|---|
+| acoustic scale at fixed physical densities, g = 0.9611 | Δθ_s/θ_s = 4.1e-4 (almost blind; absorbed in a refit) |
+| low-ℓ τ (native scan) | 0.0510 ± 0.0085 |
+| ΛCDM refit (g = 1) | ω_b 0.02231, ω_c 0.1206, 100θ_s 1.0418, n_s 0.962, τ 0.056; H₀ 67.6 |
+| Fisher σ(g), marginalised (plik-lite + τ + A priors) | **0.027** (0.0036 with the others fixed) |
+| profile at g = 0.9611 (BBN edge) | Δχ² = **+0.03**, H₀ = 65.6 (n_s 0.950, ω_b 0.0221) |
+| profile at g = 0.6845 (record's β = (2/3)Ω_m branch) | Δχ² = **+190**, H₀ = 51.1 (emulation crude here) |
+
+- **Reading.**
+  - The CMB alone measures g to about 2.7 %, about as well as BBN (3.9 %). The BBN-allowed band cannot be told apart from g = 1.
+  - The record's β = (2/3)Ω_m branch is disfavoured by Planck too in this emulation, independently of A78's BBN exclusion.
+  - The CMB-preferred H₀ falls with g, never toward 73.
+- **Mutation check.** With N_ur left unscaled, the CMB absorbs g entirely into ω_c (Δχ² ≈ 0 even at 0.6845). So the CMB's handle on g is the radiation-era expansion rate.
+
+**A native AeST CMB run: what it needs.**
+- The papers give the closed linear system. Besides the background Q(a) from K′(Q) = I₀/a³, there are four extra ODEs per k:
+  - δ and θ (Eqs. 8–9);
+  - E (the E equation after Fig. 1);
+  - α (from E = α̇ + Ψ), with Π (Eq. 10) and χ = φ + φ̄̇α closing it.
+- This fits a CLASS patch of roughly 300–500 lines of C in background/perturbations/input, in the Newtonian gauge. Estimated work: about 1–2 weeks including validation.
+- Two gaps:
+  - (i) **The adiabatic initial conditions are not in either paper.** SZ cite "in preparation". They would have to be derived (super-horizon expansion).
+  - (ii) **The CLASS C source (class_public v3.3.4) is not on disk.** Only the binary wheel is. Fetching it was not part of this approval.
+- Validation could only be against SZ's Fig. 1 curves; no table exists.
+- Not built, as instructed.
+
+**C1's open items, from the source (report only).**
+- **Stability conditions.** 0 < K_B < 2 and λ_s > −1 (vectors); K₂ > 0 (scalar); λ_s > 0 (the ω = 0 mode at low k, also in VSZ); μ² > 0.
+- **Mode count on Minkowski.** Tensor as in GR (2); a massive transverse vector, M² = (2−K_B)(1+λ_s)Q₀²/K_B (2); and two scalar normal modes, ω² = 0 and ω² = (2−K_B)(1+K_Bλ_s/2)k²/(K₂K_B) + M².
+  - That is 5 modes with ω ≠ 0 plus one zero-frequency scalar, matching A68's count of 5. The kinetic structure differs, as C1 said.
+- **C1's capped F sits at λ_s → ∞.** This is SZ's own "screening" limit, and SZ's cosmology uses it. But the scalar's
+  speed² ∝ (1 + K_Bλ_s/2) and the vector mass M² ∝ (1+λ_s) both diverge there.
+  - If one extrapolates the Minkowski result to the cap, where the local 𝒥′ → ∞, the scalar propagates without bound.
+  - Whether the capped F is healthy is still **OPEN**. It is flagged, not settled.
