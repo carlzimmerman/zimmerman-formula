@@ -94,3 +94,18 @@ K4. At least K1 and K4 must FAIL; outputs go to `c3_scale_map_MUTATE.out`, `c3_s
 
 No covariant well-posedness proof of V1 beyond linear order on FRW; no CMB; no nonlinear Cassini solve of V0 (V0 is
 decided by K9 first); no EFE-aware globular floor (open for both theories, per E4).
+
+## AMENDMENT A1 (POST-RESULT, 2026-10-22, after run 1; run-1 output kept as `c3_scale_map_RUN1_preamend.out`)
+
+Run 1 gave 8/10. Two frozen checks FAILED; both stay on record.
+
+- **K5 clause (b) FAILED (5.6e-2 vs 1e-6).** The frozen clause compared g = 1e8 with the g → ∞ closed form over
+  κ ∈ [1e-3, 1e3]. At κ = 1e-3, gκ²/2 = 50 is not asymptotic, so the clause tested a regime the physics does not ask
+  about. The physical V1 has a **finite** g = (L★_F/L★)² with L★_F ≥ √2 μ⁻¹. Added (post-result, does not replace the
+  frozen clause): **K5b** — Q₂ with the minimum physical g_phys = 2μ⁻²/L★² (the AeST curl stiffness closest to D7d's)
+  agrees with the χ∞ Q₂ to < 1e-3 relative at every (footing, L★, E). K6 and K7 are re-scored at g_phys (their primary
+  numbers), with the χ∞ numbers kept beside them. The frozen K5 is printed as before and still counts.
+- **K10 FAILED (min ratio 36.4 vs 1e3).** The smallest AeST length is the Sun's mass-term onset radius
+  r_C = (r_M μ⁻²)^{1/3} = 3.3–3.4 kpc, 36–38× the window top. The threshold is **not** changed post-result. Reading:
+  no AeST length sits in the window, but the frozen 1e3 margin is not met. r_C is an outward onset (the term grows with r),
+  not a screening length, so the Q2/Q4 classification does not hinge on it.
