@@ -1,0 +1,29 @@
+C1_aest_embedding  [MUTATE: J coefficient (2-K_B) instead of 2(2-K_B); +(gL/2)(lap chi)^2 in K5]
+  K1 reduced form (x16 pi Gt): 2|grad phi|^2 - 4 grad phi.grad psi + K_B|grad psi|^2 - K_B|curl a|^2 + 2(2-K_B) grad psi.V - (2-K_B)|V|^2 - (2-K_B)Jf(|V|^2) + K_2 Q_0^2 psi^2 - 16 pi Gt rho psi,  V = grad chi + Q_0 a
+  K1 unit constraint residual 0; Y - eps^2|V|^2 = 0; O(1) term 0; O(eps) term a divergence: True
+K1 FAIL nonzero_EL_residuals=5/6 0/6 and unit=Yres=L0=0
+  K2 Jf(Y) = 2 a0^2[-y - ln(1-y) - y^2/2], y = sqrt(Y)/a0;  Jf'(v^2) - v/(a0-v) = 0
+  K2 |V| = a_0*g/(a_0 + g);  mu - x/(1+x) = 0;  Jf ~ 0*Y + 2/(3*a_0)*Y^(3/2): SZ coefficient at lambda_s->inf residual 0
+  K2 Newton's constant G = 2 Gt/(2-K_B) (the record transcription's Gt = (1-K_B/2) G_qs); cap Y < a0^2 = hard boundary (as A33's u < a0)
+K2 PASS mu_res=0,SZ_res=0,linear_Y_coeff=0 all 0
+  K3 map: K P_i = d_i chi + Q_0 a_i (= q_i^mu d_mu phi),  Phi = Psi,  K = 8 pi Gt/(2-K_B) = 4 pi G
+  K3 AeST supplies gamma_F = K K_B/((2-K_B) Q_0^2) = 8*pi*Gtilde*K_B/(Q_0**2*(K_B - 2)**2)  [=> L*_F^2 = 2 gamma_F/K = 2 K_B/((2-K_B) Q_0^2)],  gamma_L = 0
+  K3 L_AeST - L_A33(gamma_L=0, gamma_F as above) = -P1(x, y, z)*Derivative(Phi(x, y, z), x)/2 - P2(x, y, z)*Derivative(Phi(x, y, z), y)/2 - P3(x, y, z)*Derivative(Phi(x, y, z), z)/2   (AeST mass term K_2Q_0^2 Psi^2 dropped: relative size (m r)^2)
+K3 FAIL residual=-P1(x, y, z)*Derivative(Phi(x, y, z), x)/2 - P2(x, y, z)*Derivative(Phi(x, y, z), y)/2 - P3(x, y, z)*Derivative(Phi(x, y, z), z)/2 0
+  K4 xi = (J.dphi coefficient)/(2 x Y coefficient) = 1/2;  law at xi: g_N - g^2/(g+a0) = a_0*g*(3*a_0 + g)/(2*(2*a_0**2 + 3*a_0*g + g**2))
+K4 FAIL xi=1/2 1 exactly
+  K5 longitudinal kernel (coefficient of V_L^2): (gL_m*k**2*(c1 + c2 + c3) - (K_B - 2)*(lambda_L + 1)*(Q_0**2*gL_m + 2*c1 + 2*c2 + 2*c3))/(Q_0**2*gL_m + 2*c1 + 2*c2 + 2*c3);  k^2 coeff gL_m*(c1 + c2 + c3)/(Q_0**2*gL_m + 2*c1 + 2*c2 + 2*c3);  d/dk 2*gL_m*k*(c1 + c2 + c3)/(Q_0**2*gL_m + 2*c1 + 2*c2 + 2*c3)
+  K5 transverse kernel: (-Q_0**2*(K_B - 2)*(lambda_T + 1) + k**2*(K_B + c1))/Q_0**2;  k^2 coeff (K_B + c1)/Q_0**2  (pure AeST c1=0: K_B/Q_0^2)
+K5 FAIL k2_long=gL_m*(c1 + c2 + c3)/(Q_0**2*gL_m + 2*c1 + 2*c2 + 2*c3),k2_trans=(K_B + c1)/Q_0**2 k2_long=0 and k2_trans!=0
+  K6 canonical Earth  radial a_anom = 9.3600e-11 m/s^2 (D7d 9.3600e-11); bound 8.7e-15; ratio 1.076e+04
+  K6 canonical Mars   radial a_anom = 9.3600e-11 m/s^2 (D7d 9.3600e-11); bound 1.4e-15; ratio 6.686e+04
+  K6 canonical Saturn radial a_anom = 9.3600e-11 m/s^2 (D7d 9.3600e-11); bound 7.0e-15; ratio 1.337e+04
+  K6 alt       Earth  radial a_anom = 1.1300e-10 m/s^2 (D7d 1.1300e-10); bound 8.7e-15; ratio 1.299e+04
+  K6 alt       Mars   radial a_anom = 1.1300e-10 m/s^2 (D7d 1.1300e-10); bound 1.4e-15; ratio 8.071e+04
+  K6 alt       Saturn radial a_anom = 1.1300e-10 m/s^2 (D7d 1.1300e-10); bound 7.0e-15; ratio 1.614e+04
+K6 PASS max_rel_diff=3.94e-09 <1e-3
+  K7 |curl V_AQUAL| = 1.7385e-02 at test point (|V| = 5.9474e-01); khronometric AeST forces curl V = 0. E2 transverse fraction (record) = 0.2185
+K7 PASS curlV=1.739e-02 >0 (1e-6)
+  K8 static map (chi, a_L, a_T1, a_T2) -> V: rank 3, nullity 1 (chi <-> a_L); content 3 = A33's P_i
+K8 PASS nullity=1 1
+C1_AEST_EMBEDDING COMPLETE: 4/8 checks PASS.

@@ -1,0 +1,116 @@
+{
+ "mutate": false,
+ "checks": {
+  "K1": {
+   "pass": true,
+   "value": "nonzero_EL_residuals=0/6",
+   "threshold": "0/6 and unit=Yres=L0=0"
+  },
+  "K2": {
+   "pass": true,
+   "value": "mu_res=0,SZ_res=0,linear_Y_coeff=0",
+   "threshold": "all 0"
+  },
+  "K3": {
+   "pass": true,
+   "value": "residual=0",
+   "threshold": "0"
+  },
+  "K4": {
+   "pass": true,
+   "value": "xi=1",
+   "threshold": "1 exactly"
+  },
+  "K5": {
+   "pass": true,
+   "value": "k2_long=0,k2_trans=(K_B + c1)/Q_0**2",
+   "threshold": "k2_long=0 and k2_trans!=0"
+  },
+  "K6": {
+   "pass": true,
+   "value": "max_rel_diff=3.94e-09",
+   "threshold": "<1e-3"
+  },
+  "K7": {
+   "pass": true,
+   "value": "curlV=1.739e-02",
+   "threshold": ">0 (1e-6)"
+  },
+  "K8": {
+   "pass": true,
+   "value": "nullity=1",
+   "threshold": "1"
+  }
+ },
+ "K1_EL_residuals": [
+  "0",
+  "0",
+  "0",
+  "0",
+  "0",
+  "0"
+ ],
+ "K1_mass_term": "K_2 Q_0^2 psi^2 -> Poisson mass m^2 = K_2 Q_0^2/(2-K_B) (record transcription writes mu^2 = 2 K_2 Q_0^2/(2-K_B): K_2 convention, not load-bearing)",
+ "K2": {
+  "Jf": "2 a0^2 [-y - ln(1-y) - y^2/2], y=sqrt(Y)/a0",
+  "lambda_s": "infinity (Newtonian regime is the cap)",
+  "G": "2 Gt/(2-K_B)",
+  "mu": "g/(a_0 + g)"
+ },
+ "K3": {
+  "gamma_F": "K K_B/((2-K_B) Q_0^2)",
+  "Lstar_F^2": "2 K_B/((2-K_B) Q_0^2)",
+  "gamma_L": "0",
+  "field_map": "K P_i = q_i^mu d_mu phi ~ d_i chi + Q_0 a_i ; Phi = Psi ; clock D_i lnN <-> J^mu (aether acceleration)"
+ },
+ "K5": {
+  "kernel_long": "-(K_B - 2)*(lambda_L + 1)",
+  "kernel_trans": "(-Q_0**2*(K_B - 2)*(lambda_T + 1) + k**2*(K_B + c1))/Q_0**2"
+ },
+ "K6": {
+  "canonical|Earth": {
+   "anomaly": 9.359999841168642e-11,
+   "D7d_no_turnoff": 9.359999844679054e-11,
+   "bound": 8.7e-15,
+   "ratio_to_bound": 10758.620507090394
+  },
+  "canonical|Mars": {
+   "anomaly": 9.359999667696295e-11,
+   "D7d_no_turnoff": 9.359999644726612e-11,
+   "bound": 1.4e-15,
+   "ratio_to_bound": 66857.14048354496
+  },
+  "canonical|Saturn": {
+   "anomaly": 9.359986441785043e-11,
+   "D7d_no_turnoff": 9.3599864411308e-11,
+   "bound": 7e-15,
+   "ratio_to_bound": 13371.409202550061
+  },
+  "alt|Earth": {
+   "anomaly": 1.1299999738006994e-10,
+   "D7d_no_turnoff": 1.129999978252212e-10,
+   "bound": 8.7e-15,
+   "ratio_to_bound": 12988.50544598505
+  },
+  "alt|Mars": {
+   "anomaly": 1.1299999477798472e-10,
+   "D7d_no_turnoff": 1.1299999493137715e-10,
+   "bound": 1.4e-15,
+   "ratio_to_bound": 80714.2819842748
+  },
+  "alt|Saturn": {
+   "anomaly": 1.1299980237275669e-10,
+   "D7d_no_turnoff": 1.1299980238043665e-10,
+   "bound": 7e-15,
+   "ratio_to_bound": 16142.828910393813
+  }
+ },
+ "K7": {
+  "curl_V_test": 0.017385155519148595,
+  "E2_transverse_fraction": 0.21851408655761934
+ },
+ "n_pass": 8,
+ "n_checks": 8,
+ "verdict": "EMBEDS WITH EXTRA TERM: AQUAL mu=x/(1+x), the clock term (xi=1) and the curl stiffness gamma_F are AeST's static limit (F(Y,Q0)=(2-K_B)Jf, lambda_s->inf, twisting aether); the longitudinal stiffness gamma_L(div P)^2 is identically absent in AeST's class and must be added: one coefficient, a second-derivative operator (q^{mu nu} nabla_mu nabla_nu phi + theta Q)^2 outside F(Y,Q). Without it the Sun is unscreened.",
+ "runtime_s": 1.3
+}
