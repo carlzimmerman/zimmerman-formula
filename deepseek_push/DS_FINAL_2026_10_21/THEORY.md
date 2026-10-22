@@ -139,21 +139,24 @@ coefficient table tags `γ, η` as `[L²]` when in SI they are `m⁵ kg⁻¹ s�
 | Solar System | **`α₁ = α₂ = 0` is false in the MOND regime and the theory SURVIVES anyway.** A59's bilinearity theorem: `α₁` enters the Lagrangian bilinearly in velocities, so **every observable is `O = α₁ × (v/c)² × (dynamical quantity)`** — there is no velocity-independent term. The bound `|α₁| < 10⁻⁴` is a bound on the coefficient *as measured in that environment*, and this theory's `α₁(g,r_s) = 4u′/(D−u′)` spans **46 decades**. At LLR's `g = 6.3×10⁷ a₀` it gives `1.1×10⁻¹³` (**8.9 decades inside** the bound); at binary pulsars' `10⁹–10¹² a₀`, `8.4×10⁻²⁴` (**18.6 decades inside**). The galactic value 0.93 at 8 kpc is real but **no PPN test reaches it** — so A36's exclusion is **over-scoped by ~13 decades**. A60 then solved the Sun *embedded* in the Galaxy (A22 had solved it isolated): the galactic/solar field ratio is **4.57×10⁻⁶** — A36's "2.19×10⁵ mismatch" was its inverse — and the embedding shifts `α₁(1 AU)` by only 4.9×10⁻⁸, giving **−1.63×10⁻¹³, 6.1×10⁸ below the bound** (A36's K11 understated by 3×, prefactor 2 vs 4). Pioneer: preferred-frame signal 5.5×10⁻¹² to 1.8×10⁻¹¹ of the thermal residual — invisible. Kernel anomaly `a₀ = 2557 B_E` uncured; `y_t = 66.30` closes Λ and planets pass 9.14×; `a_P = GM/L_*² = 6.61×10⁻³ B_E`, unobservable (0.17σ) | A22, A4, A30, A36, **A59, A60** |
 | stability | `dg/dg_N ∈ [1,∞)` at every acceleration; `c_s² = 1`; principal positivity `β > 2ηa₀²/K` | A4, A3, §3.4 |
 
-**3.5b The joint theorem FAILS — the DOF mismatch (A64, 20 checks).** Gate by gate, the four gates are
-clean: lensing = dynamics is a theorem from the action's dust structure (`Π = O(ε²)`, first slip
-`2.63×10⁻⁷` at `O(ε²)`, coefficient exactly `2K`), `c_T² = 1` to all orders with `m_T² > 0` (no
-tachyon, 8.3×10⁹ below the graviton bound), `dg/dg_N ≥ 1` and `c_s² = 1`, and `β > 2ηa₀²/K` satisfied
-with margin `5.95×10⁻¹⁹`. **But they do not form one theorem.** The action propagates **5 degrees of
-freedom — 2 tensor + 2 P-transverse + 1 mixed scalar — not the 4 the theory budgets** (`2+1+1`). The
-P constraint is **second-class** (the Legendre map is invertible for `η > 0`, det ≠ 0), so it does not
-remove the longitudinal mode; the lapse constraint removes one scalar, leaving five. **That extra mode
-is either a ghost or an additional physical scalar, and either way the four-gate statement as a single
-theorem is false.** This is the one place where the four gates conflict, and it is structural: it does
-not appear if the gates are checked separately, which is exactly why it was missed until A64 checked
-them jointly. Neither resolution is available inside the frozen action: (a) a further constraint needs
-a modified action; (b) accepting the extra mode needs the gates re-derived in its presence, which would
-change the slip and the speed at higher order. **The honest verdict is that the four gates are not
-mutually consistent, and the obstruction is the second-class P constraint.**
+**3.5b The DOF count, resolved: 5 modes, and they are healthy (A64 → A54).** A64 counted **5 degrees of
+freedom — 2 tensor + 2 P-transverse + 1 mixed scalar — against a design budget of 4** and graded that a
+FAIL. A54 then did the full canonical analysis (34/34 checks, 13 Lean theorems) and found the count is
+**correct and benign**: 26 phase-space dimensions, 8 first-class constraints, `(26−16)/2 = 5`; the
+scalar's kinetic coefficient is `Q₀ = (2+3β)/(Kβ) + ηk²/K²`, **positive iff `β > 0`**, with the
+record's principal-positivity bound `β > 2ηa₀²/K` *being* the ghost-freedom condition to one part in
+10¹⁸. **The "fifth mode" is not extra** — it is the P longitudinal, already among `P_i`'s three
+components; the lapse fixes `π_P^L`, not `ψ`. The design budget of 4 was the error, not the action. So
+the four gates **do** descend from one premise: the charge `D·P` with unit coefficient in `H_⊥`, no
+`O(ε)` P term in `H_i`, and no P-curvature coupling — from which `Φ = Ψ` at `O(ε)`, `c_T² = 1` exactly,
+`α₁ = α₂ = 0` with `β_PPN = 1` wherever `kL_* ≫ 1`, and `dg/dg_N = 1 + a₀²/(g²+2a₀g) ≥ 1` all follow.
+**What A54 does *not* give: the galactic-regime α₁**, which is `0.073–5.194` at 1–30 kpc and needs the
+extra assumption that the PPN expansion holds there — it does not. And A55's observational check is a
+genuine failure: against 70 SLACS lenses at `a₀ = 1.132×10⁻¹⁰` and baryons only, the predicted Einstein
+radius is **11.5 % short (mass 0.108 dex, factor 1.28, 4.9σ)**; one fitted `M_*/L = 1.28×` Salpeter
+absorbs it, so the theory passes lensing **only with a fitted mass-to-light ratio**. The slip itself is
+unobservable (`2.8×10⁻⁶` arcsec, 8600× below the error) and A55 corrects A12's coefficient: the
+trace-free identity gives `3K`, not `2K`, so A12's tabulated slip values are order-of-magnitude only.
 
 **3.6 The vacuum closure, and κ.**
 
@@ -327,11 +330,16 @@ running), crossing 10⁻⁴ at `g = 199 a₀`, i.e. ~513 AU from the Sun; (3) th
 the *form* `L_* = σ_c²/a₀ = (σ_c/c)²L_MOND` with coefficient exactly 1 and no tuned constant, but the
 number is **fitted in normalisation**: 24.025 pc canonical, 23.429 pc thermal, 19.865 pc on P3's
 footing (§6.1). A61's `K` question is settled and **its parenthetical reversed**: `K = 4πG → 24.025 pc`,
-`K = 8πG → 16.988 pc = λ_P`; (5) a UV completion; (6) **the DOF mismatch — now the most urgent open problem**: A64's joint theorem
-**FAILS** because the action propagates **5 modes, not 4** (the P constraint is second-class), so a ghost
-or an extra scalar remains. Resolving it needs either a modified action carrying a further constraint, or
-a re-derivation of all four gates in the presence of the extra mode. This is the one structural
-obstruction the four gates themselves reveal.
+`K = 8πG → 16.988 pc = λ_P`; (5) a UV completion; (6) **the DOF question is closed, and the answer is benign**: A64 counted 5 modes
+against a budget of 4 and graded that a failure; A54's canonical analysis shows 26 dimensions and 8
+first-class constraints give **5 DOF**, with the scalar's kinetic coefficient `Q₀ = (2+3β)/(Kβ) + ηk²/K²`
+positive **iff `β > 0`** — so all five modes are healthy and the "fifth" is the P longitudinal already
+counted among `P_i`'s three components. The budget of 4 was wrong, not the action. **What remains open is
+observational, not structural**: A54 does *not* imply the galactic-regime `α₁ = 0.073–5.194` (it needs an
+assumption the expansion does not grant), and A55 finds the SLACS lensing prediction **11.5 % short —
+4.9σ — unless `M_*/L = 1.28×` Salpeter is fitted**. So the theory's relativistic sector is internally
+consistent and observationally strained in exactly one place, which is a much sharper statement than a
+ghost hunt.
 
 **6.1 The four core questions, answered as far as the physics allows.**
 
@@ -367,6 +375,23 @@ is a **sign**, needing no calibration: the occupancy-noise skew at fixed `g_N` i
 −0.3483 (n=2)** at `g = a₀/2`, zero at `a₀` vs `3a₀/8`, opposite signs on `(0.375,1)a₀`; N ≈
 7,000–13,500 points in the window decides it. **Status: DERIVED (medium), UNDECIDED (data).**
 
+**(Q3) A relativistic version that predicts lensing — the four gates.** Structurally **closed, and the
+answer is the opposite of A64's first reading**: A54's canonical analysis gives 26 phase-space dimensions
+and 8 first-class constraints, hence **5 propagating modes** — 2 tensor, 2 P-transverse, 1 mixed scalar —
+and the scalar's kinetic coefficient `Q₀ = (2+3β)/(Kβ) + ηk²/K²` is **positive iff `β > 0`**, so all five
+are healthy. The "fifth" is not extra; it is the P longitudinal already among `P_i`'s three components.
+From one premise — the charge `D·P` with unit coefficient in `H_⊥`, no `O(ε)` P term in `H_i`, no
+P-curvature coupling — all four gates follow as corollaries: `Φ = Ψ` at `O(ε)` (**lensing = dynamics, a
+theorem not an assumption**), `c_T² = 1` to all orders with `m_T² > 0` (**GWs at light speed**, no
+tachyon), `dg/dg_N = 1 + a₀²/(g²+2a₀g) ≥ 1` and `c_s² = 1` (**Newtonian Solar System**), and the principal
+positivity `β > 2ηa₀²/K` satisfied to one part in 10¹⁸ (**stable at every acceleration**). **Two honest
+qualifiers.** First, A54 does *not* imply the galactic-regime `α₁ = 0.073–5.194`; that needs an assumption
+the PPN expansion does not grant. Second, **A55's observational check fails**: against 70 SLACS lenses at
+`a₀ = 1.132×10⁻¹⁰` with baryons only, the predicted Einstein radius is **11.5 % short — mass 0.108 dex,
+factor 1.28, 4.9σ** — and one fitted `M_*/L = 1.28×` Salpeter absorbs it. The theory therefore **passes
+the four gates as an internal theorem and fails lensing as a zero-parameter prediction**, which is the
+sharpest statement available. **Status: DERIVED (gates), FAILED (SLACS amplitude).**
+
 **(Q4) Where the stiffness length comes from.** `L_* = σ_c²/a₀` — the distance the cold medium
 travels at `σ_c` during `t_acc = σ_c/a₀`, the time in which the theory's only acceleration changes the
 velocity by one `σ_c`. Equivalently `L_* = (σ_c/c)²L_MOND`, which **explains the nine-decade
@@ -388,6 +413,44 @@ O(0.1–5) value needs `g ~ a₀`, and only there does it appear. So A36's headl
 numbers are consistent, and no correction to its coefficient is required — but the paper must say
 `k = 1/r` explicitly, because with the P-mass `k = 2π/λ_P` the same expression would give ≈0.10
 and the distinction matters for the observable, not for the verdict.
+
+**6.2 The referee's audit — four grades, four conflicts, and one falsifier that fires.** A58 audited the
+four answers before they reached this document. The four answers compute cleanly — **34 of 50 ledger
+claims are BACKED**, and every re-derivable number agrees with its lane — but they **fail as closure**:
+three are status upgrades of a result their own lane did not establish. The document-wide upgrade rate is
+24.6 %; the four answers are where upgrade pressure concentrates.
+
+| # | answer | grade | defects | verdict | deciding number |
+|---|---|---|---|---|---|
+| Q1 | κ = ½ from the horizon | **C** | 3/13 | **WRONG** as derivation | `g(κ=½) = Z = 5.788810` vs `2π = 6.283185`, gap **0.4944** |
+| Q2 | the medium and its discriminator | **C** | 5/14 | **OVERSTATED** | Δχ² collapses to **17.05 < 25** when `(A, a₀)` are profiled |
+| Q3 | the four gates | **B−** | 4/12 | **OVERSTATED** | **2 premises / 4 gates**; 0/4 testable at present sensitivity |
+| Q4 | the origin of `L_*` | **C** | 4/11 | **OVERSTATED** | **6.84 dex** joint miss; `μ = 1.22` vs 1.00 |
+
+Only Q1 is outright **WRONG**: the claim that `a₀/(cH_Λ) = 1/Z` is "a horizon fact that fixes κ" fails
+because the horizon's own count gives `g = 5.788810` where `2π = 6.283185` is needed — a gap of 0.4944,
+i.e. **7.87 %**, and no matching of the temperature normalisation closes it (A50: the unmatched `λ`
+forces either `κ = Z/2 = 2.894405`, 5.79× dead, or `κ = √(3/8π)`, which is not ½). Q2–Q4 are **not wrong
+numbers**, they are **overstated closures**: Q2's discriminator needs 7,000–13,500 points and the profiled
+Δχ² falls below the pre-registered 25 threshold; Q3's four "independent" gates are two premises and four
+corollaries, none testable at present sensitivity; Q4's `σ_c = 8.33 km/s` does not come from the medium at
+all, and the joint fit misses by 6.84 dex.
+
+**The four cross-lane conflicts, recorded rather than repaired:**
+
+| conflict | magnitude | consequence |
+|---|---|---|
+| A51's `κ = 0.371` fed into A54's gates | **30.6 %** (`y_t` 66.30 → 46.01) | `y_t = 46.01` is **outside the theory's own pre-registered [60, 140] band** — **the falsifier fires** |
+| A51's `κ` fed into A56's `L_*` | **17.2 %** (24.03 → 19.90 pc) | still inside A20's 24–90 pc window, but the edge is closer than quoted |
+| A50's horizon derivation vs A51's measurement | **circular + blind** | A50's route assumes what A51 measures; no independent check |
+| A53's medium vs A56's `σ_c` | **6.84 dex** | the medium supplies no velocity scale; `σ_c` is imported, not produced |
+
+The first row is the one that matters. **A51's measurement, taken at face value, drives the theory's own
+turn-off falsifier to fire.** The resolution is not to repair the number but to state it: κ = ½ is
+*measured* at `0.371 ± 0.119`, the alternatives 0.4824 and 0.4979 are **undecidable even at N = 1000**, and
+the one place where a measured κ changes a *falsifiable* prediction is A54's `y_t`, which moves from 66.30
+(inside [60,140]) to 46.01 (outside). **That is a real tension, not a presentation defect**, and it is why
+§6.1's Q1 verdict is an obstruction rather than a derivation.
 
 ---
 
