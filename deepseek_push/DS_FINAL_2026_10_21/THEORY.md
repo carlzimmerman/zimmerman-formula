@@ -118,13 +118,25 @@ below the MOND length **because the cold medium is non-relativistic** (`σ_c = 8
 value A22 reports (coordinator, `closure_theorem.py`). So `(β, η, γ)` collapse to one scale plus
 a bounded `β`. Do **not** read `γ = KL_*²/2` as a derivation of `L_*`: it is the definition.
 
+**The K question, settled by A61 (19/19).** `K = 4πG` **uniquely**: the Einstein–Hilbert
+normalisation is `1/(4K) = 1/(16πG)`, Poisson is `∇²Φ = Kρ`, and Friedmann's `8πG` is `2K` — so
+BRIEF's `K = 8πG` is the same symbol carrying a factor 2, not a second convention. Consequences:
+`L_* = 24.025 pc`, `λ_P = 16.988 pc`, `R_core = π√(γ/4πG) = 53.370 pc`, `r_switch = 3.73 pc` (MW) /
+`18.43 pc` (dwarf), `λ_J = 106.74 pc`. **A20's window is unchanged** at `[24.03, 90.03] pc` — `8πG` is
+never used in any lane's arithmetic. The "coincidence" `L*(4πG) = λ_P(8πG)` is an **exact identity**,
+`L*(2K) ≡ λ_P(K) = √(γ/K)` with residual 0 for all `γ, K` — and the *direction* is corrected: it is
+`L*(8πG) = λ_P(4πG)`; `λ_P(8πG) = 12.013 pc` and `L*(4πG) = 2λ_P(8πG)`. The identity needs `η = γ`,
+else `L*(2K) = c_s λ_P(K)`. Two defects A61 found in A33 and this document: A33's extrinsic-curvature
+term has the **opposite sign** to its own lapse equation (R3 coefficient unaffected), and its
+coefficient table tags `γ, η` as `[L²]` when in SI they are `m⁵ kg⁻¹ s⁻²`. No number moves.
+
 **3.5 The four gates.**
 
 | gate | result | provenance |
 |---|---|---|
 | lensing = dynamics | `Φ = Ψ` at O(ε); `(Φ−Ψ)/Ψ = O(Ψ) = 2.63×10⁻⁷`; first slip is second order. The sector is a **charge** sector: exactly one O(ε) lapse source, so the stress is dust at leading order | A12, A3, A32 (clean room) |
 | GW speed | `c_T² = 1` **exactly** for the speed. Off the `P̄=0` background the mode also acquires a **mass** — a mass, not a speed | A3, A31 (check 28) |
-| Solar System | α₁ = α₂ = 0, β = 1 **for `r ≪ λ = 17 pc`** — and A36 now computes the MOND regime: **α₁ = 4u′/(D−u′) = 0.046–5.19** for `r = 1–30 kpc`, with `u′ = a₀²/(g+a₀)²`, `D = 1+(kL_*)²u′/2`, and `k` the **perturbation** wavenumber `1/r` (so `D ≈ 1` and `α₁ ≈ 4u′/(1−u′)`; K13's gradient term is ≤ 5.2×10⁻⁶). The structural claim "α₁ = α₂ = 0" is therefore **false in the MOND regime**, and the bound is met where it is measured for one reason only: **`u′ → 0` at high acceleration**. Earth–Moon at `2.4×10⁷ a₀` gives `α₁ ≈ 1.4×10⁻¹⁴`; binary pulsars at `≳10⁹ a₀` give `≲10⁻¹⁸`; `1 AU` sits at `5.2×10⁷ a₀`, so `α₁(1 AU) ≈ 1.3×10⁻¹⁴` (A36's K11: 5.4×10⁻¹⁴). The O(0.1–5) value needs `g ~ a₀`, reached only at kpc radii in galaxies and at `7.2×10³ AU` around the Sun — where no precision PPN test exists and the effect is `α₁ v²/c² ≈ 10⁻⁶`. The bound `|α₁| < 10⁻⁴` is satisfied where it is measured; A59 computes the margin in each environment. Kernel anomaly `a₀ = 2557 B_E` uncured; `y_t = 66.30` closes Λ and lets all planets pass with 9.14× margin; P adds `a_P = GM/L_*² = 6.61×10⁻³ B_E`, unobservable (0.17σ) | A22, A4, A30, A36 |
+| Solar System | **`α₁ = α₂ = 0` is false in the MOND regime and the theory SURVIVES anyway.** A59's bilinearity theorem: `α₁` enters the Lagrangian bilinearly in velocities, so **every observable is `O = α₁ × (v/c)² × (dynamical quantity)`** — there is no velocity-independent term. The bound `|α₁| < 10⁻⁴` is a bound on the coefficient *as measured in that environment*, and this theory's `α₁(g,r_s) = 4u′/(D−u′)` spans **46 decades**. At LLR's `g = 6.3×10⁷ a₀` it gives `1.1×10⁻¹³` (**8.9 decades inside** the bound); at binary pulsars' `10⁹–10¹² a₀`, `8.4×10⁻²⁴` (**18.6 decades inside**). The galactic value 0.93 at 8 kpc is real but **no PPN test reaches it** — so A36's exclusion is **over-scoped by ~13 decades**. A60 then solved the Sun *embedded* in the Galaxy (A22 had solved it isolated): the galactic/solar field ratio is **4.57×10⁻⁶** — A36's "2.19×10⁵ mismatch" was its inverse — and the embedding shifts `α₁(1 AU)` by only 4.9×10⁻⁸, giving **−1.63×10⁻¹³, 6.1×10⁸ below the bound** (A36's K11 understated by 3×, prefactor 2 vs 4). Pioneer: preferred-frame signal 5.5×10⁻¹² to 1.8×10⁻¹¹ of the thermal residual — invisible. Kernel anomaly `a₀ = 2557 B_E` uncured; `y_t = 66.30` closes Λ and planets pass 9.14×; `a_P = GM/L_*² = 6.61×10⁻³ B_E`, unobservable (0.17σ) | A22, A4, A30, A36, **A59, A60** |
 | stability | `dg/dg_N ∈ [1,∞)` at every acceleration; `c_s² = 1`; principal positivity `β > 2ηa₀²/K` | A4, A3, §3.4 |
 
 **3.6 The vacuum closure, and κ.**
@@ -288,11 +300,14 @@ A51's joint fit gives `κ = 0.371 ± 0.119` (total), with ½ at **1.09σ in tota
 statistically**; 0.4824 and 0.4979 are **undecidable even at N = 1000** (0.15σ / 0.02σ with the
 coherent floor; three sigma on 0.4824 needs 6,023 galaxies). And **A62 has closed the three named
 derivation routes with exact numbers** — §6.1 below. No route works, so the number stays open *for
-the reason that it is κ = ½*; (2) the galactic-regime α₁ — *computed and positive*: A36 gives
-0.046–5.19 at 1–30 kpc, so the claim is now "α₁ ≠ 0 in the MOND regime, and its observable effect is
-v²/c²-suppressed where it is large"; A59 settles whether any precision test reaches that regime, A60
-settles whether the Sun's own P field is the isolated hedgehog or the embedded galactic one (A36's
-K12 finds a 2.19×10⁵ mismatch); (3) the inner `u = 0.47`; (4) `L_*`'s **normalisation** — A65 derives
+the reason that it is κ = ½*; (2) the galactic-regime α₁ — **computed, positive, and SURVIVED**: A36
+gives 0.93 at 8 kpc (its own 0.046–5.19 table spans the radii), so "α₁ = α₂ = 0" is false in the MOND
+regime; but **A59 proves every α₁ observable carries (v/c)²**, so the bound `|α₁| < 10⁻⁴` only binds
+where it is measured — at LLR's `6.3×10⁷ a₀` the theory gives `1.1×10⁻¹³`, 8.9 decades inside — and
+**A60** shows the Sun-embedded-in-Galaxy field moves `α₁(1 AU)` by 4.9×10⁻⁸ to `−1.63×10⁻¹³`, 6.1×10⁸
+below the bound. A36's exclusion is over-scoped by ~13 decades; the theory survives its own
+coefficient. The distinctive *prediction* is that α₁ is **environment-dependent** (46 decades of
+running), crossing 10⁻⁴ at `g = 199 a₀`, i.e. ~513 AU from the Sun; (3) the inner `u = 0.47`; (4) `L_*`'s **normalisation** — A65 derives
 the *form* `L_* = σ_c²/a₀ = (σ_c/c)²L_MOND` with coefficient exactly 1 and no tuned constant, but the
 number is **fitted in normalisation**: 24.025 pc canonical, 23.429 pc thermal, 19.865 pc on P3's
 footing (§6.1). A61's `K` question is settled and **its parenthetical reversed**: `K = 4πG → 24.025 pc`,

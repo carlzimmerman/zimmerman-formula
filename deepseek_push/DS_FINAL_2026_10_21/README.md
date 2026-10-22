@@ -85,6 +85,9 @@ sweeps plus the odd-format lanes (A23, A31, A32), and **40 Lean theorems**, no `
 | [A63](A63_saturating_medium/report.md) | saturating medium; n=1 vs n=2 | **DERIVED medium** | 31/31 | Langmuir gate unique; tanh/Langevin odd ⇒ exponent 3; Born–Infeld anti-screens; skew +0.7071 vs −0.3483 decides n |
 | [A64](A64_four_gates/report.md) | four gates as one theorem | **IN FLIGHT** | — | joint constraint algebra; ghost count; Φ=Ψ from the action |
 | [A65](A65_stiffness_origin/report.md) | where `L_*` comes from | **FITTED(σ_c)** | 24/24 | `L_* = σ_c²/a₀ = (σ_c/c)²L_MOND`; 24.025 pc canonical; guard pre-registered; K parenthetical reversed |
+| [A59](A59_alpha1_observable/report.md) | is α₁ an exclusion? | **SURVIVES — A36 over-scoped 13 decades** | 22/22 | α₁ enters bilinearly in velocities; LLR at 6.3e7 a₀ gives 1.1e-13 (8.9 dec inside); galactic 0.93 but no PPN test reaches it |
+| [A60](A60_solar_p_config/report.md) | Sun embedded in Galaxy | **CLOSED — gate survives** | 20/20 | `u_sun/u_gal = 4.57e-6` (A36's 2.19e5 was its inverse); α₁(1 AU) = −1.63e-13, 6.1e8 below bound; no Pioneer signal |
+| [A61](A61_K_convention/report.md) | K = 4πG or 8πG? | **RESOLVED — K = 4πG uniquely** | 19/19 | L* = 24.025 pc; the "coincidence" is an exact identity `L*(2K) ≡ λ_P(K) = √(γ/K)`; A20 window unchanged |
 
 ## Corrections (fix-forward; nothing deleted)
 
