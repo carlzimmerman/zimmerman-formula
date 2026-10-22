@@ -26,9 +26,15 @@
 > scales — that claim needs `L★` fixed by something other than the fit it was fitted to.
 >
 > The ghost question is therefore answered **conditionally**, and the answer is: healthy for `β > 0`,
-> with the mass set by `L★` rather than predicted. Replacement lane A68 to compute the real kinetic
-> coefficient from the quadratic action, with `Z` and `m²` derived from the action's own coefficients
-> rather than inserted through `η`.
+> with the mass set by `L★` rather than predicted.
+>
+> **A68 has now computed it from the action, and two corrections follow.** (i) The fifth mode is **not**
+> the massive mode at all: it is the mixed conformal/P-longitudinal scalar, and it is **gapless** —
+> `m² = 0`, `c_s² = αp²/Z → 0` (a `k⁴` mode), with `Z = K(2+3β)/β + ηp² > 0` iff `β > 0`, healthy on an
+> open set (36/36 grid points). (ii) The `m² = K/η` computed here is the **transverse P modes'** mass, and
+> its Compton wavelength is `√(η/K)` — 16.9706 pc only under the `η = KL★²/2` assumption made in this
+> lane, and 24 pc or 29.39 pc under others. The action forces `α = γ` but **not** `η = γ`, so this lane's
+> central value was an assumption, not a derivation. See `A68_bracket_algebra/report.md`.
 
 **Lane:** A67_ghost_diagnosis · **Date:** 2026-10-22 · **Base:** A64_four_gates, A66_dof_repair, A54_four_gates, A33_master_action, A22_ppn_frames, A39_tensor_mass.
 **Script:** `a67_checks.py` (18 checks, 18/18 PASS) · **Output:** `a67.out` · **Data:** `a67_results.json` · **Mutation:** `MUTATE.md`.

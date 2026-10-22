@@ -31,7 +31,11 @@
 > reasons (dropping `γ` leaves the Legendre map invertible; `η = 0` longitudinally changes `W(u)`), and
 > Route D's cost — gates change if 5 DOF are accepted — is a real trade-off. Those are worth keeping.
 >
-> Replacement lane A68 dispatched to do the actual bracket algebra with stubs banned.
+> **A68 has now computed it, and Route C is dead.** There is no `φ_P` at all — the P Legendre map is
+> invertible (`det = η³h^{3/2}/N³ ≠ 0`) — and the exact `O(P²)` content of the shift constraint is
+> `H_i^(P) = π_P^kF_ik − (D·π_P)P_i`, in which the coefficient of `P_iD_jP^j` is **exactly 0**. The bracket
+> `{H_i, π_P^j}` is linear in `π_P`, contains no `P`, and has rank 0 at `π_P = 0`; so `SC = 0` and the count
+> is `(26−16−0)/2 = 5`. See `A68_bracket_algebra/report.md`.
 
 **Lane:** A66_dof_repair · **Date:** 2026-10-21 · **Base:** A64_four_gates, BRIEF.md, A3, A12, A22.
 **Script:** `a66_checks.py` (17 checks) · **Output:** `a66.out` · **Data:** `a66_results.json` · **Mutation:** `MUTATE.md`.

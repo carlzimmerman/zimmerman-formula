@@ -1,0 +1,105 @@
+========================================================================================================
+A68 -- the {H_i, phi_P} bracket, the Dirac count, and the fifth mode's kinetic term
+========================================================================================================
+mutation = none
+action coefficients: eta = 1.0, alpha = 1.0, gamma = 1.0, beta = 1.0
+K = 4 pi G = 8.387173e-10   L* = 24 pc = 7.4056e+17 m (FITTED, A65)   a0 = 9.3600e-11 m/s^2
+========================================================================================================
+
+-- A: the P sector of the frozen action ----------------------------------------------------------
+A1   PASS  max|d2L/dPdot_i dPdot_j - sqrt(h) eta delta_ij/N| = 0.000e+00   [expect 0 (symbolic residual 0)]   # the P kinetic term is Gaussian in Pdot: pi_P^i = sqrt(h) eta E^i
+A2   PASS  det = 2.476491e+00 at sqrt(h)=2.3, eta=1, N=1.7 (closed form 2.476491e+00, residual 0)   [expect eta^3 h^(3/2)/N^3, nonzero]   # det != 0 => Pdot is invertible => pi_P = 0 is NOT a constraint; there is no phi_P
+A3   PASS  coefficient of sigma-ddot^2 in L_P = 0.490000 (closed form 0.490000)   [expect eta p^2 != 0]   # a non-zero sigma-ddot^2 coefficient => the P equation is an evolution equation, never a constraint
+A4   PASS  max residual of delta S_P/delta N^j - [pi_P^i F_ij + (D.pi_P) P_j] over 3 components = 0.000e+00   [expect 0]   # the shift enters the P sector only through Lie_N P: this fixes H_i^(P) exactly
+A5   PASS  coefficient of P_i D_j P^j in H_i^(P) = 0; linear in (P,dP): True; linear in (pi_P,d pi_P): True; closed-form residuals [0, 0, 0]   [expect 0, True, True, [0,0,0]]   # A66's term is ABSENT: H_i^(P) = pi_P^k F_ik - (D.pi_P)P_i carries exactly one pi_P and no P^2
+A6   PASS  H_i^(P)|_(pi_P=0) = 0   [expect 0]   # the P part of the momentum constraint is a momentum flux: it vanishes on the static branch
+
+-- B: the bracket {H_i(x), pi_P^j(y)} --------------------------------------------------------------
+B1   PASS  9/9 components reproduce -i q_i pi_P^j + i q_l pi_P^l delta_i^j + sign*(D.pi_P) delta_i^j   [expect 9/9]   # the bracket is a MOMENTUM flux: every term carries one pi_P
+B2   PASS  max|lhs-rhs| = 0.000e+00 over 5 random configurations, |matrix| up to 6.408e+00   [expect < 1e-11 with a non-trivial matrix]   # the identity is checked numerically at random field configurations, not only symbolically
+B3   PASS  max|{H_i, pi_P^j}| on pi_P=0 = 0.0e+00; rank there = 0   [expect 0 and rank 0]   # the Dirac matrix of the pair (H_i, pi_P^j) is IDENTICALLY ZERO on the surface the pair defines
+B4   PASS  rank at D.pi_P = 0.85: 3; rank at D.pi_P = 0: 2   [expect 3 and 2]   # off the surface the matrix has rank 3; when the ultralocal (D.pi_P) piece vanishes it drops to 2
+B5   PASS  eigenvalues [-0.85-4.46j -0.85-4.46j -0.85+0.j  ] vs {-b, -b+ia, -b+ia} at k=(0.7, -1.3, 2.1), pi_P=(0.4, 0.9, -1.7), b=0.850, a=-4.460   [expect max dev < 1e-12 (got 9.9e-16)]   # the spectrum is organised by pi_P (doublet) and by D.pi_P (singlet)
+B6   PASS  in (khat,e1,e2): T-block = (-0.85-4.46j) I2, L-block = (-0.85+0j), (T,L) = 1.9e-16, (L,T) = [ 0.+0.3326j -0.+2.3313j]   [expect -(b-ia) I2, -b, (T,L)=0, (L,T)=-i|k|pi_T (max dev 9.2e-16)]   # upper triangular in (khat,e1,e2): khat is always an eigenvector with eigenvalue -D.pi_P; the eigenvalue -(D.pi_P)+i(pi_P.k) is doubly degenerate and its eigenspace is the transverse plane only when pi_P is purely longitudinal
+B7   PASS  max|M(2.7 pi_P) - 2.7 M(pi_P)| = 1.8e-15; kernel independent of P: True   [expect 0]   # the bracket is linear in pi_P and independent of P: NOT proportional to D_j P^j, not P_i D_j P^j
+B8   PASS  9/9 components of {h_i, P_k} = F_ki delta + P_i d_k delta (the diffeomorphism generator)   [expect 9/9]   # H_i^(P) is the canonical generator of spatial diffeos: it stays first class
+B9   PASS  3/3 components of {h_i, D.P} = K_i (q.P) - (q.K) P_i + q^2 P_i: linear in P, contains no pi_P   [expect 3/3]   # the scalar D.P constraint is a DIFFERENT pair (Route A's, which needs a Lagrange multiplier); the P-momentum bracket that Route C needs is the one that degenerates on the surface
+
+-- C: the Dirac count ----------------------------------------------------------------------------------
+C1   PASS  sum over sectors 2*n_components = 26 (independent sum 26); sectors {'h_ij (symmetric)': 6, 'P_i': 3, 'N': 1, 'N^i': 3}   [expect 26]   # 6 metric + 3 P + 1 lapse + 3 shift, doubled
+C2   PASS  no Ndot or Ndot^i anywhere in K_ij, theta or E_i: True; primaries = 4   [expect 4 (pi_N, pi_N^i)]   # the lapse and the shift are Lagrange multipliers: no velocities anywhere in the action
+C3   PASS  d(N L_kin)/dN = 0 (N enters only as the algebraic 1/N of E_i); secondaries = 4   [expect 4 (H_perp, H_i)]   # N enters as 1/N in E_i only: H_perp is the secondary of pi_N, H_i of pi_N^i
+C4   PASS  dH_perp/dN = 0; H_perp - [|pi_P|^2/(2 sqrt(h) eta) + sqrt(h) K/2 |P|^2] = 0; P equation order: 2   [expect 0 tertiary]   # no tertiary: the P equation is evolutionary (A3) and H_perp carries no N, so the chain terminates
+C5   PASS  rank of the P-block of the Dirac matrix on the constraint surface = 0; SC = 0   [expect 0, 0]   # no second-class pair exists in the P sector: the only candidate block is identically zero
+C6   PASS  DOF = (26 - 2*8 - 0)/2 = 5.0; explicit modes 2 tensor + 2 vector + 1 scalar = 5   [expect 5]   # agrees with A54 (26, 8, 5): no constraint is reclassified
+C7   PASS  SC=2 branch -> DOF = 4.0; computed rank on the surface = 0 -> DOF = 5.0; if H_perp left the first-class set: (FC=7,SC=0) -> 6.0, (FC=7,SC=2) -> 5.0   [expect 4 needs SC=2; computed SC=0 -> 5; the H_perp caveat gives 6 or 5, never 4]   # Route C's 4 needs two second-class constraints; the computed bracket gives none, and the H_perp caveat gives 6 or 5, never 4
+
+-- D: the kinetic coefficient from the quadratic action -----------------------------------------------
+D1   PASS  K^2-(1+beta)theta^2 = -Y**2*beta - 6*Y*beta*zdot - 4*Y*zdot - 9*beta*zdot**2 - 6*zdot**2/N^2 ; at Y=0 residual 0   [expect -3(2+3beta) zdot^2/N^2 at Y=0]   # the conformal mode's kinetic term is NEGATIVE for beta>0: it is the would-be ghost direction
+D2   PASS  R3^(2) = 2*p**2*zeta**2 -> 0.540800 at p=1.3, zeta=0.4   [expect 0.540800]   # sqrt(h) R3 = 2 (d zeta)^2 + total derivative: the conformal gradient term
+D3   PASS  after eliminating Y: coefficient of zeta-dot^2 = (3*beta + 2)/(2*K*beta); C/2 = (3*beta + 2)/(2*K*beta)   [expect C/2 = (2+3beta)/(2 K beta)]   # the shift's contribution cancels the negative conformal sign for beta>0
+D4   PASS  dL/dn = p**2*(K*sigma(t) + zeta(t))/K;  p^2(zeta/K+sigma) residual = 0   [expect p^2 (zeta/K + sigma)]   # at H=0 the lapse equation contains no n: it is the constraint Z = zeta/K + sigma = 0
+D5   PASS  Q = 3*K + 2*K/beta + eta*p**2  (B + eta p^2 = K*(3*beta + 2)/beta + eta*p**2);  V = alpha*p**4  (alpha p^4 = alpha*p**4)   [expect Q = B+eta p^2, V = alpha p^4 (residuals 0)]   # the mixed scalar's quadratic action, derived from the frozen action at H=0
+D6   PASS  Z = Q = K(2+3beta)/beta + eta p^2 = 4.193586e-09 at p=1/L*, beta=1.0, eta=1.0   [expect 4.193586e-09]   # Z is a FUNCTION of beta, eta and p: the action does not fix its value
+D7   PASS  c_s^2 from the action's V/Q at p=[0.001, 0.01, 0.1] -> ['2.0000e-07', '2.0000e-05', '1.9960e-03']; vs alpha p^2/Q ['2.0000e-07', '2.0000e-05', '1.9960e-03']; max dev 0.0e+00; c_s^2(1e-6) = 2.00e-13   [expect equal to alpha p^2/(K(2+3beta)/beta + eta p^2); rising with p from 0]   # the fifth mode is a k^4 mode: its sound speed vanishes in the IR, it is NOT c_s^2 = gamma/eta
+D8   PASS  m^2 = lim_(p->0) V/Q = 0   [expect 0]   # the fifth mode is GAPLESS at H=0: A67's m^2 = 2/L*^2 is not this mode's mass
+D9   PASS  m_T^2 = (K/2)/(eta/2) = 8.387173e-10; c_T^2 = gamma/eta = 1.0   [expect 8.387173e-10; gamma/eta]   # the MASSIVE P modes are the two transverse ones; A67 attributed their mass to the scalar
+D10  PASS  det d(eta, gamma/eta)/d(eta,gamma) = 1/eta = 1.0000 != 0; c_T^2(1,1) = 1.000, c_T^2(2,1) = 0.500   [expect 1/eta, nonzero, and two distinct inputs -> two distinct c_T^2]   # eta and gamma are independently observable: the action does NOT force eta = gamma. It does force alpha = gamma (one coefficient in front of both gradient operators)
+D11  PASS  Q(beta) for beta in -0.6: -0.333, -0.5: -1.000, -0.1: -17.000, 0.1: +23.000, 0.5: +7.000, 1.0: +5.000, 3.0: +3.667; Q(beta=1.0) = +5.000   [expect sign(Q) = sign(beta)]   # on the branch 2+3beta>0 (where the theta Legendre map is invertible, A54 L8) the fifth mode's kinetic term has the sign of beta: Q = K(2+3beta)/beta
+D12  PASS  36/36 points of beta>0, eta>0, gamma>0 have Z>0, omega^2>0, m_T^2>0, c_s^2>0   [expect 36/36]   # ghost-free and tachyon-free on an OPEN set of the action's coefficients (beta>0, eta>0, gamma>0)
+D15  PASS  at (beta, eta, alpha, gamma) = (1.0, 1.0, 1.0, 1.0): Q = +5.0001, omega^2 = +2.000e-09, m_T^2 = +1.000e+00, c_s^2 = +2.000e-05   [expect all four > 0]   # the coefficients as dialled are ghost-free and tachyon-free
+D13  PASS  with eta=K L*^2/2: K/eta = 3.646754e-36 = 2/L*^2 = 3.646754e-36; with eta=3K L*^2/2: K/eta = 1.215585e-36 = 0.333 x 2/L*^2   [expect identity then 1/3]   # the '2/L*^2' is eta = K L*^2/2 in disguise: an input echo, not a prediction
+D14  PASS  W''(0) = 1/K; (1/2) W''(0) K^2 = K/2 (coefficient of |P|^2)   [expect 1/K and K/2]   # the P mass term is (K/2)|P|^2 with a FIXED coefficient K/2: it is what gives m_T^2 = K/eta
+D16  PASS  [coefficient of (D.P)^2]/[coefficient of F^2] = 2*alpha/gamma = 2 alpha/gamma   [expect 2 (one gamma in front of both operators)]   # the FROZEN action uses one gamma for both gradient operators, so alpha = gamma is FORCED; nothing ties eta to gamma
+D17  PASS  max|F_ij F^ij - 2 p^2 |P_T|^2| = 3.55e-15 over 3 random transverse modes   [expect 0]   # the (gamma/4)F^2 term gives (gamma/2) p^2 |P_T|^2, so c_T^2 = gamma/eta follows from the action
+
+========================================================================================================
+A68: 39/39 PASS
+========================================================================================================
+
+numbers:
+  K_4piG = 8.387172739141742e-10
+  Lstar_m = 7.405626195579282e+17
+  Lstar_pc = 24.000000000000004
+  a0 = 9.36e-11
+  eta = 1.0
+  alpha = 1.0
+  gamma = 1.0
+  beta = 1.0
+  phase_space_dim = 26
+  n_first_class = 8
+  n_second_class = 0
+  sc_rank_on_surface = 0
+  bracket_rank_off_surface = 3
+  bracket_rank_divpi_zero = 2
+  bracket_eigenvalues_re_im = [[-0.8500000000000005, -4.460000000000001], [-0.8500000000000001, -4.460000000000001], [-0.85, 1.8735013540549517e-16]]
+  bracket_on_surface_max = 0.0
+  A4_residual = 0.0
+  B2_max_abs_dev = 0.0
+  B2_matrix_scale = 6.407734081371098
+  P_P_term_coefficient = 0
+  dof = 5.0
+  dof_if_SC2 = 4.0
+  dof_if_FC7_SC0 = 6.0
+  dof_if_FC7_SC2 = 5.0
+  Z_at_1_over_Lstar_eta1 = 4.193586369570871e-09
+  Z_physical_eta_KL2_over_2 = 4.6129450065279575e-09
+  B_over_K = 5.0
+  m2_scalar_H0 = 0
+  c_s2_p001 = 1.99999960000008e-07
+  c_s2_p01 = 1.999960000799984e-05
+  c_s2_p1 = 0.0019960079840319364
+  mT2 = 8.387172739141742e-10
+  cT2 = 1.0
+  mT2_with_eta_A67 = 3.6467536121151116e-36
+  Z_with_eta_A67_at_1_over_Lstar = 4.6129450065279575e-09
+  Q_at_k0_beta1 = 4.193586369570871e-09
+  Z_over_K_with_eta_A67_at_1_over_Lstar = 5.5
+  compton_transverse_eta_A67_pc = 16.970562748477143
+  compton_transverse_if_eta_K_L2_pc = 24.000000000000004
+  compton_transverse_if_eta_3KL2_over_2_pc = 29.39387691339814
+  A67_m2_K_over_eta = 3.6467536121151116e-36
+  two_over_Lstar2 = 3.6467536121151116e-36
+  healthy_set = [36, 36]
+  Q_sign_table = [{'beta': -0.6, 'Q': -0.33323333333333366}, {'beta': -0.5, 'Q': -0.9999}, {'beta': -0.1, 'Q': -16.9999}, {'beta': 0.1, 'Q': 23.0001}, {'beta': 0.5, 'Q': 7.0001}, {'beta': 1.0, 'Q': 5.0001}, {'beta': 3.0, 'Q': 3.6667666666666667}]
+wrote a68_results.json

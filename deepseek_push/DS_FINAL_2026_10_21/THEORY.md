@@ -139,17 +139,41 @@ coefficient table tags `γ, η` as `[L²]` when in SI they are `m⁵ kg⁻¹ s�
 | Solar System | **`α₁ = α₂ = 0` is false in the MOND regime and the theory SURVIVES anyway.** A59's bilinearity theorem: `α₁` enters the Lagrangian bilinearly in velocities, so **every observable is `O = α₁ × (v/c)² × (dynamical quantity)`** — there is no velocity-independent term. The bound `|α₁| < 10⁻⁴` is a bound on the coefficient *as measured in that environment*, and this theory's `α₁(g,r_s) = 4u′/(D−u′)` spans **46 decades**. At LLR's `g = 6.3×10⁷ a₀` it gives `1.1×10⁻¹³` (**8.9 decades inside** the bound); at binary pulsars' `10⁹–10¹² a₀`, `8.4×10⁻²⁴` (**18.6 decades inside**). The galactic value 0.93 at 8 kpc is real but **no PPN test reaches it** — so A36's exclusion is **over-scoped by ~13 decades**. A60 then solved the Sun *embedded* in the Galaxy (A22 had solved it isolated): the galactic/solar field ratio is **4.57×10⁻⁶** — A36's "2.19×10⁵ mismatch" was its inverse — and the embedding shifts `α₁(1 AU)` by only 4.9×10⁻⁸, giving **−1.63×10⁻¹³, 6.1×10⁸ below the bound** (A36's K11 understated by 3×, prefactor 2 vs 4). Pioneer: preferred-frame signal 5.5×10⁻¹² to 1.8×10⁻¹¹ of the thermal residual — invisible. Kernel anomaly `a₀ = 2557 B_E` uncured; `y_t = 66.30` closes Λ and planets pass 9.14×; `a_P = GM/L_*² = 6.61×10⁻³ B_E`, unobservable (0.17σ) | A22, A4, A30, A36, **A59, A60** |
 | stability | `dg/dg_N ∈ [1,∞)` at every acceleration; `c_s² = 1`; principal positivity `β > 2ηa₀²/K` | A4, A3, §3.4 |
 
-**3.5b The DOF count: 5 modes by A54's canonical analysis — and the repair to 4 is *not* established
-(A64 → A54; A66/A67 errata).** *Status correction (2026-10-22): A66 claimed to reduce the count to 4 via
-Route C — the shift constraint turning second-class against the P constraint at `O(ε²)` — but its three
-Route-C checks compute nothing: one declares `bracket = sp.Symbol('bracket')` and hardcodes PASS, another's
-docstring contains three rejected arithmetic attempts before asserting the answer, and the third returns a
-constant. The bracket `{H_i, φ_P}` at `O(ε²)` has never been evaluated. So the 5-vs-4 mismatch remains
-**open**, and A54's count below is the only one actually derived. A67's ghost verdict is likewise
-*conditional*: `Z = 5/(4πG) > 0` and `m² = K/η = 2/L*²` follow because the script defines `η ≡ γ ≡ KL*²/2`,
-so its "mass 3.768×10⁻²⁵ eV, Compton wavelength 16.97 pc" is `L*/√2` read back out, not a prediction. The
-honest residue: **if `β > 0` and `η > 0`, the fifth mode is neither ghost nor tachyon** — a correct
-implication, not a derivation. A68 is dispatched to do the actual bracket algebra.*
+**3.5b The DOF count: 5 modes — computed, not budgeted (A64 → A54 → A68).** *Resolution (2026-10-22,
+A68's bracket algebra, 39/39 checks, 9 mutations each breaking a named check).* The 5-vs-4 "mismatch" is
+**closed in favour of 5, and there was never a repair to make.** Three computed facts decide it:
+
+1. **There is no `φ_P`.** The P Legendre map is invertible — `det ∂²L/∂Ṗ∂Ṗ = η³h^{3/2}/N³ ≠ 0` (2.476491,
+   closed form matching to residual 0) — so `π_P = 0` is not a primary constraint, and the P equation is
+   second order. A66's "P momentum constraint" does not exist in this action.
+2. **A66's mechanism is absent, not merely small.** The exact `O(P²)` content of the shift constraint is
+   `H_i^(P) = π_P^k F_ik − (D·π_P) P_i`; the coefficient of `P_i D_j P^j` is **exactly 0**, and the whole
+   object is linear in `π_P`.
+3. **The bracket is degenerate on the only surface that matters:**
+   `{H_i(x), π_P^j(y)} = [π_P^j δ_i^k − δ_i^j π_P^k] ∂_k δ − δ_i^j (D·π_P) δ`. It is linear in `π_P`,
+   contains no `P` at all, and is the **zero matrix at `π_P = 0`** (rank 0 at five configurations, max
+   entry 0.0; off-surface rank 3, or 2 when `D·π_P = 0`). Since the bracket is linear in `π_P` with no other
+   field dependence, "rank 0 on `π_P = 0`" is an identity at every configuration — not an order-counting
+   artefact.
+
+So `SC = 0`, and `(26 − 2·8 − 0)/2 = 5`, agreeing with A54 with **none** of its eight first-class
+constraints reclassified. Route C's 4 needed `SC = 2` that the action does not supply. *The design budget of
+4 was the error, not the action.*
+
+**The fifth mode, derived rather than dialled.** `Z = K(2+3β)/β + ηp²`, positive iff `β > 0` on the branch
+where the θ Legendre map is invertible (`2+3β > 0`); the potential is `αp⁴` with the longitudinal P's `K/2`
+mass exactly cancelled by the conformal gradient, so **`m² = 0` and `c_s² = αp²/Z → 0`** — a **gapless `k⁴`
+mode**, healthy for `β > 0`, `η > 0`, `α = γ > 0` (36/36 grid points). It is the mixed conformal /
+P-longitudinal scalar. **A67's `m² = 2/L★²` is retracted**: it is `K/η` with `η = KL★²/2` substituted — an
+input echo — and it belongs to the two **transverse** P modes, whose Compton wavelength is `√(η/K)`, equal to
+16.9706 pc *only* under that assumption and 24 pc or 29.39 pc under others. **The action forces `α = γ`
+(ratio 2) but not `η = γ`** (Jacobian `1/η ≠ 0`); so exact luminality of the P sector is a choice, not a
+theorem. The graviton's `c_T² = 1` is a separate result (the TT action) and is unaffected — A68's `c_T²` is
+the transverse *P-mode* sound speed, an overloaded symbol worth watching.
+
+Two inherited gaps, stated: the full nonlinear `{H_⊥, H_⊥}` closure at `β ≠ 0` is A54's, not re-derived
+(it can only move the count to 6 or 5, never 4); and the transverse/scalar decoupling at quadratic order is
+round-2 §3's. Both are flagged in A68 §6.
 
 **The count itself.** A64 counted **5 degrees of
 freedom — 2 tensor + 2 P-transverse + 1 mixed scalar — against a design budget of 4** and graded that a
