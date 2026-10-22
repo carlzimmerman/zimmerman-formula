@@ -73,7 +73,7 @@ def check():
     A = sp.Function('A')(z)
     g3 = sp.diag(A, sp.Integer(1), sp.Integer(1))
     R3, _, _ = ricci_scalar(g3, cs)
-    hand = -sp.diff(A, z, 2) / A + sp.Rational(3, 4) * (sp.diff(A, z) / A) ** 2
+    hand = -sp.diff(A, z, 2) / A + sp.Rational(1, 2) * (sp.diff(A, z) / A) ** 2
     print("  diag(A(z),1,1): R3-hand =", sp.simplify(R3 - hand), "(expect 0)")
 
 

@@ -1,16 +1,20 @@
 # The theory at the end of the DSF-21 push
 
-**2026-10-21.** 23 lanes, all in this folder, each with a script that exits non-zero on a
-failed check and a mutation that must break it. Every number below was re-run by the
-coordinator from the lane script (`_parent/parent_audit.py`, 21/21, mutation bites) or is
-quoted with the lane that computed it. Nothing here is a projection of what a lane might
-have said.
+**2026-10-21.** **34 lanes**, all in this folder, each with a script that exits non-zero on a
+failed check and a mutation that must break it. Each number is attributed to the lane or
+script that produced it. The coordinator's harness (`_parent/parent_audit.py`, 21/21, mutation
+bites) checks **21 specific identities, not every number here**: A31's adversarial audit
+re-derived 35 and classified all 130 claims in this file as BACKED / OVERSTATED / UNBACKED /
+WRONG — **32 were not BACKED**, and they have been corrected in place (§7b records the audit).
+A32 independently re-derived the four core results from the equations alone, without reading
+any lane; all four match. Nothing here is a projection of what a lane might have said.
 
-**Status in one line.** The framework is a **closed effective theory with one modulus**:
-the P sector carries **no free coupling** (§9.1), the turn-off is not independent (§3, A28),
-and the only free number is κ — which §9.2 proves is a modulus of the de Sitter vacuum, not a
-derivable constant. Three parameters total (κ, L\*, u_inner), against ΛCDM's six and the
-Standard Model's nineteen. Everything else that was asked for is derived, proved impossible in
+**Status in one line.** The framework is a **closed effective theory whose only dimensionless
+modulus is κ**: the P sector has **one free stiffness** (§9.1, corrected), the turn-off is not
+independent (§3, A28), and κ is a modulus of the de Sitter vacuum rather than a derivable
+constant (§9.2) — with the caveat that this rests on the halo truncation (A31). The count is
+**4 finite parameters + 3 functionals with 5 exact degeneracies** (§9.3, A33), against ΛCDM's
+six and the Standard Model's nineteen. Everything else that was asked for is derived, proved impossible in
 a stated class, or converted into a pre-registered number. It is not a UV completion, and §9.2
 is the proof that the remaining question lies outside this theory's domain. **The law-first vs
 medium-first fork is resolved: LAW-FIRST, at 21σ** (A26).
@@ -219,9 +223,12 @@ $$
 \max\frac{g_{n=1}-g_{n=2}}{g_{n=2}}=\frac{2}{\sqrt3}-1=15.4700\%\quad\text{at }g_N=\tfrac{a_0}{2},
 $$
 
-which is `√(2/3) − 1 = 7.4570 %` in circular speed (A2; my harness Q2.8 reproduces both
-and reconciles the record's "7.46 %"). `v² = gr`, so the two figures are the same number
-in different units.
+which is `√(2/√3) − 1 = 7.4570 %` in circular speed. **Three normalisations exist and they are
+not equal** (A31, A32): relative to `g_alt` the maximum is **15.470 %**, relative to `g_can` it
+is **13.397 %**, and relative to `g_N` **26.795 %** — all at `g_N = a₀/2`. The record's "7.46 %"
+is the circular-speed form `√(2/√3)−1 = 7.457 %`; half the 15.47 % figure (7.735 %) is a
+*linearisation*, not the exact value, and my earlier claim that the harness "reproduced both"
+was wrong.
 
 **Can SPARC decide?** No (A7, pre-registered): Δχ² = **+219.45** on the canonical footing
 (n=1 favoured) and **−344.66** on the alt footing (n=2 favoured) — the pre-registered rule
@@ -248,10 +255,10 @@ exactly (residual 0, A12).
 | gate | status | number | source |
 |---|---|---|---|
 | **Lensing = dynamics** | **DERIVED at first order; NOT an identity** | `(Φ−Ψ)/Ψ = O(Ψ) = 2.63e-7`; 9.13e-8 at 10 kpc | A12, A3 |
-| **GW speed = c** | **DERIVED (exact)** | `c_T² = 1` exactly, not to leading order | A3 15/15; coordinator 6/6 |
+| **GW speed = c** | **DERIVED (speed); mode acquires a MASS when P̄ ≠ 0** | `c_T² = 1` exactly; but `W(u)` contracts `P_iP_j` with `h^TT` off the P̄=0 background, giving an `h²` **mass** term (A31 check 28) — a mass, not a speed | A3 15/15; A31 |
 | **Solar System Newtonian** | **CONDITIONAL (turn-off)** | kernel anomaly `a₀ = 2557.38 B_E` uncured; `y_t = 66.30` closes Λ, planets pass 9.14×; **P sector adds `a_P = GM/L*² = 6.61e-3 B_E`** | A4, A22 |
 | **Stable at every acceleration** | **DERIVED** | `dg/dg_N ∈ [1, ∞)`; scalar front speed `c_s² = γ/η = 1` **exactly** once η = γ = KL\*²/2 (§9.1), to 1.2e-18 | A4, A3, §9.1 |
-| **Preferred frame** | **DERIVED (zero)** | **α₁ = α₂ = 0 exactly, β = 1**; residual 4.4e-10 at 30 AU | A22 13/13 |
+| **Preferred frame** | **DERIVED near-source; GALACTIC REGIME OPEN** | α₁ = α₂ = 0 and β = 1 hold for `r ≪ λ = 17 pc`; the galactic-regime α₁ is **not computed** (A22 says so; A31 flags my earlier "DERIVED (zero)" as a contradiction with my own text) | A22 13/13, A31 |
 
 **Why the preferred-frame parameters vanish — and it is structural, not tuned.** Two facts do it
 (A22). (F1) On any static preferred-frame configuration `θ ≡ 0` identically, so the gravity
@@ -342,7 +349,9 @@ the quadrature law needs `y_t = 128.7559`. Feeding the quadrature's value to the
 law over-predicts Λ by **1.9707×**. So `y_t` is not a shared parameter — it is a
 **discriminator**: a measurement of the turn-off scale separates n = 1 from n = 2 by a
 factor 1.94, on top of the 15.47 % shape difference. That is a conditional pass with the
-premise named: the turn-off exists and its scale is tied to Λ, not fitted.
+premise named: the turn-off exists, and its scale is tied to Λ's *observed value* — which is a
+posit, not a derivation. A4 is explicit that `y_t` is a **fitted** number once Λ is taken from
+data; what the lane shows is that one value does both jobs.
 **But `y_t` is not an independent parameter, and A28 proved it:** the closure is exactly
 `Λc⁴/a₀² = 8π/κ²`, so `y_t = F⁻¹(8π/κ²)` is a function of κ alone
 (`d ln y_t/d ln κ = −1.947`). **Deriving `y_t` *is* deriving κ.** None of four named
@@ -382,12 +391,12 @@ self-gravity identically). The force-balance deviation is **13.40 % at 2 r_switc
 | | value |
 |---|---|
 | published window | 24 pc – 1 kpc |
-| **window after the data** | **24 pc – 90 pc** (LITTLE THINGS: L\* ≤ 90.0 pc from IC 10; 300 pc excluded by 3.33×, 1 kpc by 11.11×) |
+| **window after the data** | **24–90 pc under `f_c → 1`; up to 180 pc at `f_c = 0.25`** (LITTLE THINGS R0.3(IC 10)/2.22; the bound is model-dependent — sample 10th percentile 184.6 pc, median 787.8 pc) |
 | in horizon units `L*H₀/c` | 5.40e-9 – 2.25e-7 |
 | a `c/√(Gρ)` reading requires | ρ = 2.4e14 – 4.2e17 ρ_Λ (a medium density, not the vacuum) |
 | `L* = σ²/a₀` maps to | 24 pc ↔ 8.33 km/s; 90 pc ↔ 16.1 km/s |
 | core radius (MW-like, L\*=24 pc) | **R_core = 53.31 pc** |
-| Jeans mass at switch-off | **M_J = 3.654 V_f²L\*/G = 2.04e4 (V_f/km/s)² M⊙ = 5.57e8 M⊙** |
+| Jeans mass at switch-off | `M_J = 3.654 V_f²L*/G = 2.04e4 (V_f/km/s)² M⊙` = **5.57e8 M⊙** for a flat-curve profile; **3.15e6 M⊙** for NFW (A31: the profile matters by 177×) |
 | signature | `d ln M_J/d ln ρ = +1` — *denser regions make bigger clumps* (standard Jeans: −½) |
 
 **No-juggling guard, and it bit.** L\* is **one number for all galaxies**, no per-galaxy
@@ -415,8 +424,10 @@ that is a prediction (three numbers from one), not a fit.
 
 ## 5. The cold sector — the part nobody else has
 
-1. **Two ratios, not one.** `M_ph/M_b = ½(√(1+4/y)−1)` at the virial radius is **25.04**
-   (MW-like) and **2.62** (cluster-like), 9.57× apart; the cosmic share is **5.3643**.
+1. **Two ratios, not one.** At the virial radius `M_ph(<r_v)/M_b(<r_v) = ½(√(1+4/y_v)−1)` is
+   **25.90** (MW-like) and **3.77** (cluster-like), **6.87×** apart (A31 corrected my earlier
+   25.04/2.62, which are `R_tot = μ(1+F)−1` — the phantom per *total* baryon, a different
+   quantity). The cosmic share is **5.3643**.
    They cross at `M_v = 1.7584e14 M⊙`, **independent of concentration** (A18, structural).
 2. **"Cold = the law's phantom" is excluded at 7.7σ.** On the 318-cluster eRASS1×KiDS stack,
    measured `A_MID = 1.9102 ± 0.1186`; the phantom reading predicts **1.000**, the cosmic-
@@ -445,14 +456,20 @@ that is a prediction (three numbers from one), not a fit.
    - the **net column is negative**: −2.424 M⊙/pc² (negative part −3.529, positive +1.105).
      The published "total column still positive (+0.016)" appears only within ~1° of
      φ = 77.44°; at the physical φ = 90° it is −2.42. **That claim does not survive.**
-   - the missing depth for the MW configuration is **3.529 M⊙/pc²** (A6, explicit masses),
-     not 2.16–2.37 (A13, which rescales the paper's own units rather than recomputing). The
-     two differ by 1.5× and A6's is the one with stated inputs.
+   - the missing depth for the MW configuration has **two independent values that do not
+     agree**: **3.529 M⊙/pc²** (A6, explicit masses and an analytic null) and **2.16–2.37**
+     (A13, a converged axisymmetric field solve). The 1.5× discrepancy is **unresolved**. My
+     earlier characterisation of A13 as "rescaling the paper's units" was wrong (A31): it is an
+     independent PDE solve. A6's value is quoted in the predictions table because it has stated
+     inputs; the disagreement is the honest state.
    A naive superposition gives the **wrong sign** (+0.64), so the pancake is strictly
    nonlinear (A13). The 11.8× pair requirement (≈ 8282 pairs for 3σ, reproducing the
    published "about twelve times") is confirmed.
 4. **The sourcing fraction is radial and half-explained.** `u = 0.4716 ± 0.0361` (MID) →
    `0.9865 ± 0.0984` (OUT), plus a new inner value **u = 0.3348 ± 0.0563** (A29, 8 bins).
+   **Caveat (A31):** `u` is a ΔΣ-weighted *band amplitude ratio*, not a 3D mass ratio — the
+   unmodelled band-to-3D mapping gives a 3D MID value of 0.65 against the 0.812 band share. The
+   qualitative rise is robust; the numbers are band-level.
    The profile is a **step, not a gradient**: constant u is rejected at χ²/dof 5.92, a step
    fits at 1.75 with the break in (1.176, 1.711) Mpc. The break is the **splashback radius**:
    `r_sp = 0.83 r200m = 1.367 r200c = 1.414 Mpc`, 0.3 % from the model-independent caustic at
@@ -506,7 +523,7 @@ medium is downstream of the law.
 | P3 | Sourcing fraction is a **step** at the splashback radius | u(inner) = 0.3348 ± 0.0563, u(MID) = 0.4716, u(OUT) = 0.9865; break at 1.376 r200c = 1.414 Mpc | eRASS1×KiDS 8 radial bins | step radius scaling as 1.37 r200c across mass (predicted 1.10/1.39/2.00/2.99 Mpc) |
 | P3b | Third-band u separates step from phase space | u = 1.000 (step) vs 0.806 (phase space), 3σ needs σ_u ≤ 0.0648 | 1.42–2.5 Mpc band, ≥ 717 clusters | a value between the two at > 3σ |
 | P4 | Pressure core of size L\* | R_core = 53.31 pc at L\*=24 pc; 21.0 % dip at 30 pc, 11.2 % at 40 pc | ngVLA 0.15″, ~30 dwarfs V_f<40 km/s within 8 Mpc, 3 km/s channels | a core size that scales with galaxy mass at fixed L\* |
-| P5 | Wide-binary boost (EFE **present**) | γ_v = **1.18** at 20 kAU (bracket 1.1771–1.1933), 1.16 at 10 kAU; **not** 1.51 | Gaia DR4, 18–22 kAU bin, 2223 pairs, 4.5σ separation | γ_v ≤ 1.05 (Arm B); 1.51 would be a *no-verdict* zone value |
+| P5 | Wide-binary boost (EFE **present**) | γ_v = **1.18** at 20 kAU (bracket 1.1771–1.1933); at 10 kAU EFE-present is **1.100–1.107**, not the EFE-blind 1.16; **not** 1.51 | Gaia DR4, 18–22 kAU bin, 2223 pairs, 4.5σ separation | γ_v ≤ 1.05 (Arm B); 1.51 would be a *no-verdict* zone value |
 | P5b | Kernel decision on the RAR knee | Δχ²(Q−L) = **+157.96** canonical / +75.25 alt, no free parameters; +17.05 profiled | SPARC binned transition shape, fixed-Υ diagonal bins | pre-registered: < −25 refutes, > +25 confirms |
 | P6 | Laboratory null | \|δG/G\| < 1e-6 (framework) vs 340 ppm (source-boost) | two-configuration Cavendish, source-density swap, 30–50 ppm | +340 ppm kills the screened framework |
 | P7 | n = 1 vs n = 2 | 15.47 % max in g at g_N = a₀/2 | 1330–1980 SPARC-quality galaxies, free Υ per galaxy | a stacked Δχ² that survives the bootstrap |
@@ -601,6 +618,42 @@ medium is downstream of the law.
 
 ---
 
+## 7b. The adversarial audit — 32 defects in 130 claims
+
+A31 was given this document and told to break it. It classified every quantitative claim
+against the backing files: **98 BACKED, 17 OVERSTATED, 1 UNBACKED, 14 WRONG — 32/130, a 24.6 %
+defect rate.** It re-derived 35 numbers independently; 29 matched, 6 did not. A32 re-derived
+the four core results in a clean room, forbidden to read any lane: **all four match**, including
+`a₀/(cH) = 0.1727471`, `2√(32π/3) = 11.5776` (12 is 3.648 % off), the strong-field offsets
+1 and ½, `c_T² = 1`, and `θ⁽¹⁾ = Π⁽¹⁾ = 0`.
+
+The six load-bearing verdicts, and what was done:
+
+| claim | verdict | action |
+|---|---|---|
+| "κ is a modulus" | **OVERSTATED** — A15's flat direction is a one-parameter family of the *two-equation halo truncation*, and A15 itself disclaims general underivability | §9.2 now says the theorem is conditional on the truncation; the list of closed routes stands |
+| "n = 1 is forced by the lattice" | **OVERSTATED** — the lattice *matches* capacity to `a₀`, it does not derive it | superseded: A35 derives capacity = affinity and n=1 from least dissipation (added after the referee's snapshot) |
+| `c_T² = 1` exactly | **OVERSTATED** — true for the *speed*, but on a `P̄ ≠ 0` background `W(u)` contracts `P_iP_j` with `h^TT` and gives an `h²` **mass** term | gate table now separates speed from mass |
+| `α₁ = α₂ = 0` | **OVERSTATED + WRONG** — the aether `α₁` is `0/0` at `c₁=c₃=c₄=0`; the zero rests on the near-source argument (`r ≪ λ`), the galactic regime is uncomputed, and my table contradicted my own text | gate table now reads "DERIVED near-source; GALACTIC REGIME OPEN" |
+| `L* = 24–90 pc` | **OVERSTATED** — 90 pc assumes `f_c → 1`; at `f_c = 0.25` it is 180 pc | window now quoted with its `f_c` dependence |
+| "u rises outward" | **OVERSTATED** — `u` is a ΔΣ-weighted band ratio, not a 3D mass ratio (3D MID 0.65 vs 0.812 band) | caveat added in §5 |
+
+The rest were arithmetic or attribution, all now corrected: `√(2/√3)−1 = 7.457 %` (I had
+written `√(2/3)`, and "half of 15.47 %" is a linearisation, not the exact value); `y_t = 100.4`
+in one place (that is `N_Λ`, not `y_t`); "1.16 at 10 kAU" (EFE-present is 1.100–1.107);
+`M_J` depends on the profile by 177× (flat-curve 5.57e8 vs NFW 3.15e6); `M_ph/M_b` at the
+virial radius is 25.90/3.77, not 25.04/2.62 (the latter is `R_tot`, a different quantity); the
+saddle depth has **two independent values that disagree by 1.5×** and I no longer call A13's a
+unit rescaling; the horizon-window row was the 24 pc–1 kpc value, not the 90 pc one; the
+turn-off is a **fitted** posit (A4 says so), not "tied to Λ, not fitted"; and "every number was
+re-run (21/21)" was a universal claim about 21 specific checks, which it is not.
+
+**This table is the reason to trust the rest.** A 24.6 % defect rate in a document I wrote is
+the useful number, not an embarrassment to be hidden — and A32's clean-room agreement on the
+four core results is what survives independent of my prose.
+
+---
+
 ## 8. The final ledger
 
 **Closed by derivation**
@@ -608,9 +661,9 @@ medium is downstream of the law.
 - Lensing = dynamics: slip is second order, `2.63e-7`, structurally (charge sector). A12, A3.
 - **GW speed = c: `c_T² = 1` exactly**, from the absence of any two-derivative TT operator and
   the TT-blindness of the constraints. A3 15/15, coordinator 6/6.
-- **Preferred frame: α₁ = α₂ = 0 exactly, β = 1.** θ ≡ 0 on static configurations, so the
-  gravity sector is exactly Einstein–Hilbert; P carries no momentum density and no
-  anisotropic stress. A22 13/13.
+- **Preferred frame near-source: α₁ = α₂ = 0, β = 1** for `r ≪ λ = 17 pc`; θ ≡ 0 on static
+  configurations, P carries no momentum density and no anisotropic stress. The **galactic-regime
+  α₁ is not computed** (A22, A31) — that is the open part of this gate, not the near-source part.
 - m = 1 is the unique thermal-lattice law; the canonical law is Langmuir. A2.
 - **The kernel is decided**: Langmuir/simple, the action's own — forced by three independent
   constraints, and the only one of the four that both closes Λ and is derived. A25.
@@ -689,7 +742,7 @@ it *buys* is exact luminality, which is a nontrivial consistency gain: the scala
 CONDITIONAL in A3 is now closed, and the same choice fixes the P mass at `L*/√2` with no
 further input.
 
-### 9.2 κ is a modulus, and that is a theorem
+### 9.2 κ is a modulus of the truncated halo system
 
 The closure integral satisfies `I(y_t) = Λc⁴/a₀²`, and the definition of `a₀` gives
 `Λc⁴/a₀² = 8π/κ²` **identically**. So
@@ -702,6 +755,12 @@ $$
 and no EFT-internal relation selects one.** Numerically `y_t(κ) = 180.8, 102.7, 66.38, 34.6,
 17.6` at `κ = 0.3, 0.4, 0.5, 0.7, 1.0`; with `a₀` fixed, `Λ ∝ 1/κ²`. That is a one-dimensional
 vacuum manifold — a modulus, in the precise sense.
+
+**The scope, stated honestly (A31):** the flat direction is a property of the *two-equation
+halo truncation* — two equations, three unknowns. That is enough to kill every route that
+starts from those equations, and it is not enough to prove that *no* system of equations could
+fix κ. A15 says so itself. So the correct claim is "κ is a modulus of this system, and the
+missing object is one more equation", not "κ is underivable, full stop".
 
 Every route to fixing it has now been tried and closed: counting (A1, A10 — irrational),
 dimensional analysis (A1 — one free function), strain saturation (A1 — off by 8.19), Euler

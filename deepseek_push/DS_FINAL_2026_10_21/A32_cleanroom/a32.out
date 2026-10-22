@@ -1,0 +1,89 @@
+==============================================================================
+R1  a0/(c H_Lambda), kappa = 1/2, and 2 sqrt(32 pi/3)
+==============================================================================
+  rho_Lambda = Lambda c^2/(8 pi G)
+  G rho_Lambda = Lambda c^2/(8 pi)      ->  sqrt(G rho_Lambda) = c sqrt(Lambda/(8 pi))
+  a0 = kappa c^2 sqrt(Lambda/(8 pi))
+  H_Lambda^2 = 8 pi G rho_Lambda/3 = Lambda c^2/3  ->  H_Lambda = c sqrt(Lambda/3)
+  a0/(c H_Lambda) = sqrt(6)*kappa/(4*sqrt(pi))  = kappa sqrt(3/(8 pi))
+  at kappa = 1/2 :  sqrt(6)/(8*sqrt(pi)) = 0.17274707473566774940
+  numeric: a0(kappa=1/2) = 9.354173e-11 m/s^2   (a0_can = 9.36e-11 -> ratio 0.999378)
+  numeric: H_Lambda = 1.806234e-18 s^-1 ;  a0/(cH_Lambda) = 0.172747074736
+
+  2 sqrt(32 pi/3) = 11.577620072932
+  12/(2 sqrt(32 pi/3)) - 1 = +3.64824484%   2 sqrt(32 pi/3)/12 - 1 = -3.51983273%
+  [PASS] R1a a0/(cH_Lambda) = kappa sqrt(3/(8pi)), at kappa=1/2 -> 0.172747074735668   sym=0.172747074735668 num=0.172747074735668
+  [PASS] R1b 12 != 2 sqrt(32 pi/3) (differs by 3.65%)   2sqrt(32pi/3)=11.5776200729, 12 is +3.6482% high
+
+==============================================================================
+R2  canonical g_N = g^2/(g+a0)  vs  alternative g^2 - g_N^2 = a0 g_N
+==============================================================================
+  canonical  : g/a0 = (y + sqrt(y^2+4y))/2
+  alternative: g/a0 = sqrt(y^2+y)
+
+  (a) strong field, (g-g_N)/a0 as g_N->oo : canonical -> 1,  alternative -> 1/2
+  (b) nu-1, canonical  : -5/y**4 + 2/y**3 - 1/y**2 + 1/y + O(y**(-5), (y, oo))
+      nu-1, alternative: -5/(128*y**4) + 1/(16*y**3) - 1/(8*y**2) + 1/(2*y) + O(y**(-5), (y, oo))
+
+  (c) fractional difference f(y) = (g_can - g_alt)/g_can
+      df/dy = 0 at [1/2]  (unique positive root)
+      f(1/2) = 1 - sqrt(3)/2 = 0.133974596215561
+      f(0+) = 0,  f(oo) = 0
+      numeric scan: max 0.133974596215 at y = 0.499998
+  [PASS] R2a strong-field offset: canonical -> a0, alternative -> a0/2
+  [PASS] R2b nu-1 -> 1/y (canonical), 1/(2y) (alternative)
+  [PASS] R2c max fractional difference 1-sqrt(3)/2 = 13.3975% at y = 1/2   max=0.133974596216 at y=0.499998
+
+==============================================================================
+R3  TT tensor quadratic action on flat FRW  ->  c_T^2
+==============================================================================
+  <L2> = (4*(3*beta + 2)*a(t)*sigma(t)*Derivative(a(t), t)*Derivative(sigma(t), t) + (2*Lambda*sigma(t)**2 + Derivative(sigma(t), t)**2)*a(t)**2 + (9*beta*Derivative(a(t), t)**2 - k**2 + 6*Derivative(a(t), t)**2)*sigma(t)**2)*sqrt(a(t)**6)/(16*K*a(t)**2)
+  coefficient of sigma_dot^2   A = sqrt(a(t)**6)/(16*K)  = a^3/(16K)
+  coefficient of k^2 sigma^2   B = -sqrt(a(t)**6)/(16*K*a(t)**2)  = -a/(16K)
+  L2 = A sigma_dot^2 + B k^2 sigma^2 + (mass / total-derivative terms)
+  omega^2 = -(B/A) k^2 =  a(t)**(-2)  * k^2   ->  c_T^2 = a^2 omega^2/k^2 = 1
+  beta-dependence of the quadratic tensor action: 3*(4*a(t)*Derivative(sigma(t), t) + 3*sigma(t)*Derivative(a(t), t))*sqrt(a(t)**6)*sigma(t)*Derivative(a(t), t)/(16*K*a(t)**2)
+  (beta sits only in the sigma^2 / sigma sigma_dot sector: delta theta = 0 at first order for TT,
+   so the only beta-piece left is -(3 beta H/2)(gamma^2)' = -(3 beta/2) d_t(H gamma^2) + (3 beta Hdot/2) gamma^2,
+   a mass-type/total-derivative term that never touches the k^2 or the gamma_dot^2 coefficient)
+  exact linearised TT Einstein equation (d/deps of G^x_x - G^y_y at eps=0):
+      (k**2*sigma(t) + a(t)**2*Derivative(sigma(t), (t, 2)) + 3*a(t)*Derivative(a(t), t)*Derivative(sigma(t), t))*cos(k*z)/a(t)**2
+  ratio to the massless operator sigma'' + 3H sigma' + (k^2/a^2) sigma = 1
+  beta enters only through sigma^2 / sigma sigma_dot terms: True
+  [PASS] R3a c_T^2 = 1 exactly (from the quadratic action coefficients)   c_T^2=1
+  [PASS] R3b exact linearised TT Einstein equation is massless (independent check)
+
+==============================================================================
+R4  static background: trace of K_ij for a trace-free perturbation, Pi, slip
+==============================================================================
+  K_ij = (1/2N)(d_t h_ij - D_i N_j - D_j N_i) = d_t h_ij/(2N)   (static h, zero shift)
+  theta^(0) = 0
+  theta^(1) = 0
+  contrast, perturbation with trace tr: theta^(1) = 3*Derivative(tr(t, xn, yn, zn), t)/(2*N(xn, yn, zn))
+  cross-check theta = d_t ln det h /(2N): True
+
+  P-sector operator content (order in P):
+     O(P^1)   P^i D_i ln N
+     O(P^2)   -W(u)  [W = O(u^2)]
+     O(P^2)   (eta/2) E_iE^i
+     O(P^2)   -(gamma/2)(D_iP^i)^2
+     O(P^2)   -(gamma/4) F_ijF^ij
+  lowest order in P = 1  ->  with Pbar = 0 every stress-energy component
+  built from these operators is O(P) or higher, so delta T_ij = 0 at first order.
+  [PASS] R4a theta^(1) = 0 for a trace-free perturbation (nonzero only with a trace)
+  [PASS] R4b no first-order anisotropic stress from the extra sector (Pbar=0) -> Phi = Psi
+
+==============================================================================
+SUMMARY
+==============================================================================
+  R1  a0/(cH_Lambda) = kappa sqrt(3/(8pi)); at kappa=1/2 -> 0.172747074736
+      2 sqrt(32 pi/3) = 11.577620073; 12 differs by 3.6482%
+  R2  strong field: g-g_N -> a0 (canonical), a0/2 (alternative)
+      nu-1 ~ 1/y (canonical), 1/(2y) (alternative)
+      max fractional difference in g: 13.3975% at g_N/a0 = 1/2
+  R3  c_T^2 = 1 exactly (beta does not enter the speed; exact TT Einstein eq. massless)
+  R4  theta^(1)=0; Pi^(1)=0; Phi/Psi = 1
+
+  0 failure(s)
+
+  wrote a32_results.json

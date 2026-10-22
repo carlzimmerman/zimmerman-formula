@@ -388,7 +388,7 @@ print(f"      2 sqrt(32 pi/3) = {two_sqrt:.9f}; 12 differs by {100*(12/two_sqrt-
 print(f"  R2  strong field: g-g_N -> a0 (canonical), a0/2 (alternative)")
 print(f"      nu-1 ~ 1/y (canonical), 1/(2y) (alternative)")
 print(f"      max fractional difference in g: {100*float(fmax):.4f}% at g_N/a0 = 1/2")
-print(f"  R3  c_T^2 = 1 exactly (beta drops out; exact TT Einstein eq. massless)")
+print(f"  R3  c_T^2 = 1 exactly (beta does not enter the speed; exact TT Einstein eq. massless)")
 print(f"  R4  theta^(1)=0; Pi^(1)=0; Phi/Psi = 1")
 print(f"\n  {len(FAILS)} failure(s)" + (": " + ", ".join(FAILS) if FAILS else ""))
 
