@@ -71,3 +71,22 @@ the matching rule runs. DATA-GATED if Part 3 finds none and Parts 1–2 add noth
 ## Compute
 
 `OMP_NUM_THREADS=1 nice -n 10`, stdlib + numpy, seconds, no network, no downloads.
+
+## AMENDMENT A1 — PRE-RESULT (written after the file/header inventory, before any σ value was read or any script run)
+
+Part 3 inventory (file names and column headers only):
+- **Qualifying, z ≈ 0, HI, per galaxy (PRIMARY):** `real_research/data/tidal_dwarfs/lelli2015_tdg.csv`
+  (`sigma_HI_kms`, `e_sigma_HI_kms`; Lelli+2015 Table 7, 3D kinematic models of HI cubes; 6 tidal dwarfs).
+  Cross-check transcription: `real_research/data/tdg/lelli2015_tdgs.csv` (independent transcription, if it carries σ).
+- **Qualifying under the frozen text as written, but not σ_c by the record's own definition** (A65 §5 / A76 §9 define
+  σ_c as the cold phase of a low-mass dwarf at z ≈ 0): ionised-gas σ0 of z ≈ 0.5–3 star-forming discs
+  (`real_research/data/kmos3d_ubler2017.csv`, `kross_harrison2017.csv`, `rc100_nestorshachar2023_table3_CORRECTED.csv`,
+  `msa3d_2026_rotation_curves.csv`, `data_assembly/high_z_tf_tables/simons2016_sigma.csv`). These are run with the
+  identical frozen rule and reported as **SECONDARY (frozen-as-written)**; they carry no verdict weight.
+- **Excluded by the frozen protocol:** stellar dispersions (dSph/UFD/GC tables, ATLAS3D, SLACS, SLUGGS, Walker 2023),
+  global HI widths (ALFALFA, FASHI, xGASS, MIGHTEE), DiskMass `sigMod` (an extra error term, not a dispersion),
+  GMC CO line widths (molecular clouds, not per-galaxy gas), McQuinn+22 (no σ column; V_cor − V_rot is a model
+  correction, not a published σ), SPARC / LITTLE THINGS (no dispersion column; A76 §3.1).
+- Caveat stated before the result: tidal dwarfs are young (< 1 orbit), gas-dominated, and their σ_HI comes from
+  kpc-scale beams, not the 30–100 pc maps A76 §9 asks for. A PRIMARY result from them is a first look, not the
+  measurement A76 specifies.
