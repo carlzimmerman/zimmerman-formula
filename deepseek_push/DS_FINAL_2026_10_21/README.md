@@ -16,7 +16,7 @@ sweeps plus the odd-format lanes (A23, A31, A32), and **40 Lean theorems**, no `
 |---|---|---|
 | **Q1** why the vacuum switches at `2√(32π/3) = 11.5776` (≈ 1/12 horizon) | it *is* `2Z = Z/κ`, so "why 11.5776" is "why κ = ½"; all three named mechanisms fail with exact numbers (capacity saturation = Friedmann ⇒ κ = 2.894; equipartition = Friedmann ⇒ 1; Langevin ⇒ 1/(2π); Langmuir ⇒ 1/Z) | **A62 — OBSTRUCTION** |
 | **Q2** which medium, and n=1 or n=2 | the Langmuir gate — one-sided, hard-core, single-occupancy, activity-driven; needs *rectification* (`f″(0) ≠ 0`), not saturation. n=1 forced twice. Discriminator: sign of occupancy-noise skew, +0.7071 vs −0.3483 | **A63 — DERIVED medium, UNDECIDED data** |
-| **Q3** relativistic lensing, four gates as one theorem | A3/A12/A4/A22 each closed 1–2 gates; the joint constraint algebra (ghost count) is A64, still running | **A64 — IN FLIGHT** |
+| **Q3** relativistic lensing, four gates as one theorem | gates (i)–(iv) each **PASS** individually — lensing = dynamics is a theorem from the dust structure, `c_T² = 1` exactly, `dg/dg_N ≥ 1`, `β > 2ηa₀²/K` — but the **JOINT theorem FAILS**: the action propagates **5 DOF, not 4** (2 tensor + 2 P-transverse + 1 mixed scalar). The P constraint is second-class, so the extra longitudinal mode is not removed: a ghost or an unremoved scalar | **A64 — FAIL (5 vs 4 DOF)** |
 | **Q4** where `L_*` comes from, 24 pc–1 kpc | `L_* = σ_c²/a₀ = (σ_c/c)²L_MOND` — form derived, coefficient exactly 1; **number fitted** to the 24 pc anchor; guard pre-registered and honestly failed | **A65 — FITTED(σ_c)** |
 
 ## The five coordinator scripts — the spine, run these first
@@ -83,7 +83,7 @@ sweeps plus the odd-format lanes (A23, A31, A32), and **40 Lean theorems**, no `
 | [A51](A51_kappa_measured/report.md) | κ measured to sub-percent | **MEASURED — not decidable** | 17/17 | `κ = 0.371 ± 0.119` (total); ½ at 1.09σ total, **4.9σ stat**; N=1000 gap 0.15σ; needs 6,023 galaxies |
 | [A62](A62_twelfth/report.md) | why 11.5776 / 1-12 horizon | **OBSTRUCTION** | 25/25 | all 3 routes fail: saturation=Friedmann ⇒ κ=2.894; equipartition ⇒ 1; Langevin ⇒ 1/(2π); Langmuir ⇒ 1/Z. New: Ω_Λ = 32π/147 |
 | [A63](A63_saturating_medium/report.md) | saturating medium; n=1 vs n=2 | **DERIVED medium** | 31/31 | Langmuir gate unique; tanh/Langevin odd ⇒ exponent 3; Born–Infeld anti-screens; skew +0.7071 vs −0.3483 decides n |
-| [A64](A64_four_gates/report.md) | four gates as one theorem | **IN FLIGHT** | — | joint constraint algebra; ghost count; Φ=Ψ from the action |
+| [A64](A64_four_gates/report.md) | four gates as one theorem | **FAIL — 5 vs 4 DOF** | 20 | gates (i)–(iv) each pass; the JOINT theorem fails: 2 tensor + 2 P-transverse + 1 mixed scalar = **5 DOF**; the P constraint is second-class, leaving an extra longitudinal mode (ghost or unremoved scalar) |
 | [A65](A65_stiffness_origin/report.md) | where `L_*` comes from | **FITTED(σ_c)** | 24/24 | `L_* = σ_c²/a₀ = (σ_c/c)²L_MOND`; 24.025 pc canonical; guard pre-registered; K parenthetical reversed |
 | [A59](A59_alpha1_observable/report.md) | is α₁ an exclusion? | **SURVIVES — A36 over-scoped 13 decades** | 22/22 | α₁ enters bilinearly in velocities; LLR at 6.3e7 a₀ gives 1.1e-13 (8.9 dec inside); galactic 0.93 but no PPN test reaches it |
 | [A60](A60_solar_p_config/report.md) | Sun embedded in Galaxy | **CLOSED — gate survives** | 20/20 | `u_sun/u_gal = 4.57e-6` (A36's 2.19e5 was its inverse); α₁(1 AU) = −1.63e-13, 6.1e8 below bound; no Pioneer signal |

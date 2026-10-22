@@ -139,6 +139,22 @@ coefficient table tags `γ, η` as `[L²]` when in SI they are `m⁵ kg⁻¹ s�
 | Solar System | **`α₁ = α₂ = 0` is false in the MOND regime and the theory SURVIVES anyway.** A59's bilinearity theorem: `α₁` enters the Lagrangian bilinearly in velocities, so **every observable is `O = α₁ × (v/c)² × (dynamical quantity)`** — there is no velocity-independent term. The bound `|α₁| < 10⁻⁴` is a bound on the coefficient *as measured in that environment*, and this theory's `α₁(g,r_s) = 4u′/(D−u′)` spans **46 decades**. At LLR's `g = 6.3×10⁷ a₀` it gives `1.1×10⁻¹³` (**8.9 decades inside** the bound); at binary pulsars' `10⁹–10¹² a₀`, `8.4×10⁻²⁴` (**18.6 decades inside**). The galactic value 0.93 at 8 kpc is real but **no PPN test reaches it** — so A36's exclusion is **over-scoped by ~13 decades**. A60 then solved the Sun *embedded* in the Galaxy (A22 had solved it isolated): the galactic/solar field ratio is **4.57×10⁻⁶** — A36's "2.19×10⁵ mismatch" was its inverse — and the embedding shifts `α₁(1 AU)` by only 4.9×10⁻⁸, giving **−1.63×10⁻¹³, 6.1×10⁸ below the bound** (A36's K11 understated by 3×, prefactor 2 vs 4). Pioneer: preferred-frame signal 5.5×10⁻¹² to 1.8×10⁻¹¹ of the thermal residual — invisible. Kernel anomaly `a₀ = 2557 B_E` uncured; `y_t = 66.30` closes Λ and planets pass 9.14×; `a_P = GM/L_*² = 6.61×10⁻³ B_E`, unobservable (0.17σ) | A22, A4, A30, A36, **A59, A60** |
 | stability | `dg/dg_N ∈ [1,∞)` at every acceleration; `c_s² = 1`; principal positivity `β > 2ηa₀²/K` | A4, A3, §3.4 |
 
+**3.5b The joint theorem FAILS — the DOF mismatch (A64, 20 checks).** Gate by gate, the four gates are
+clean: lensing = dynamics is a theorem from the action's dust structure (`Π = O(ε²)`, first slip
+`2.63×10⁻⁷` at `O(ε²)`, coefficient exactly `2K`), `c_T² = 1` to all orders with `m_T² > 0` (no
+tachyon, 8.3×10⁹ below the graviton bound), `dg/dg_N ≥ 1` and `c_s² = 1`, and `β > 2ηa₀²/K` satisfied
+with margin `5.95×10⁻¹⁹`. **But they do not form one theorem.** The action propagates **5 degrees of
+freedom — 2 tensor + 2 P-transverse + 1 mixed scalar — not the 4 the theory budgets** (`2+1+1`). The
+P constraint is **second-class** (the Legendre map is invertible for `η > 0`, det ≠ 0), so it does not
+remove the longitudinal mode; the lapse constraint removes one scalar, leaving five. **That extra mode
+is either a ghost or an additional physical scalar, and either way the four-gate statement as a single
+theorem is false.** This is the one place where the four gates conflict, and it is structural: it does
+not appear if the gates are checked separately, which is exactly why it was missed until A64 checked
+them jointly. Neither resolution is available inside the frozen action: (a) a further constraint needs
+a modified action; (b) accepting the extra mode needs the gates re-derived in its presence, which would
+change the slip and the speed at higher order. **The honest verdict is that the four gates are not
+mutually consistent, and the obstruction is the second-class P constraint.**
+
 **3.6 The vacuum closure, and κ.**
 
 $$
@@ -311,7 +327,11 @@ running), crossing 10⁻⁴ at `g = 199 a₀`, i.e. ~513 AU from the Sun; (3) th
 the *form* `L_* = σ_c²/a₀ = (σ_c/c)²L_MOND` with coefficient exactly 1 and no tuned constant, but the
 number is **fitted in normalisation**: 24.025 pc canonical, 23.429 pc thermal, 19.865 pc on P3's
 footing (§6.1). A61's `K` question is settled and **its parenthetical reversed**: `K = 4πG → 24.025 pc`,
-`K = 8πG → 16.988 pc = λ_P`; (5) a UV completion.
+`K = 8πG → 16.988 pc = λ_P`; (5) a UV completion; (6) **the DOF mismatch — now the most urgent open problem**: A64's joint theorem
+**FAILS** because the action propagates **5 modes, not 4** (the P constraint is second-class), so a ghost
+or an extra scalar remains. Resolving it needs either a modified action carrying a further constraint, or
+a re-derivation of all four gates in the presence of the extra mode. This is the one structural
+obstruction the four gates themselves reveal.
 
 **6.1 The four core questions, answered as far as the physics allows.**
 
