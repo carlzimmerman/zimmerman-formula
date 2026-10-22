@@ -67,6 +67,54 @@ conflicts with this file, this file is newer unless it says otherwise.
 
 ---
 
+## ⚠⚠⚠ REVISION 12 BLOCK — 2026-10-22 (campaign checkpoint 29; `deepseek_push/DS_FINAL_2026_10_21`). Newer than everything below it; where they conflict, this block wins.
+
+This is a **separate branch record**, not a rewrite of the headline above. Full text:
+[`deepseek_push/DS_FINAL_2026_10_21/THEORY.md`](deepseek_push/DS_FINAL_2026_10_21/THEORY.md).
+
+**1. The 5-DOF spine, machine-checked (A54/A68/A83).** The tethered-medium `P_i` action's canonical
+analysis is now **87 Lean 4 theorems, zero `sorry`**, every footprint exactly
+`{propext, Classical.choice, Quot.sound}` (A8's 40 + A83's 47; A8 sources byte-identical, no weakening).
+26 phase-space dimensions, 8 first-class constraints, 0 second-class ⇒ **5 healthy DOF**: 2 tensor with
+`c_T² = 1`, 2 transverse `P` with `m_T² = K/η`, and 1 gapless mixed scalar with `ω² = αp⁴/Z(p)`,
+strong-coupling momentum `2.836×10⁻⁶⁹ eV` (deep IR, not a UV cutoff). All four relativistic gates hold
+as internal theorems wherever `kL★ ≫ 1`.
+
+**2. The galactic α₁ is a zero-dipole monopole (A82).** The old `α₁ = 0.073–5.194` at 1–30 kpc was a
+coefficient with no dipole observable. Both PPN small parameters break in a galaxy (`w² ≪ ε` everywhere;
+`1−u′ > 1/2` beyond 24.14 kpc), and the exact nonlinear BVP gives an ℓ=0 monopole
+`δa ≤ w²a₀ = 1.42×10⁻¹⁶ m/s²` plus an ℓ=2 quadrupole, with the **ℓ=1 dipole identically zero**; the
+binary-pulsar prediction is `α̂₁ = 3.0×10⁻²⁴`, 19 decades inside Shao–Wex. The falsifier is retired.
+
+**3. β is bounded by BBN, and the bare vacuum is pinned (A78).** On the matter-inclusive background
+`2+3β = 2(Ω_Λ r_Λ + Ω_m)`, ghost stability (`β > 0`) plus
+`ΔN_eff = −11.174β/(1+1.5β)`, `|ΔN_eff| ≤ 0.30` confines **`0 < β < 0.02798`** and
+**`1 < Λ_bare/Λ_obs < 1.0613`**. The old `ρ_crit` ("P3") footing needs β = 0.21 and is excluded at ≈8σ.
+
+**4. The acceleration-scale fork is explicit (A72/A73/A74/A75).** `Ω_Λ = 32π/147` is numerology (65
+hits at 0.11σ in a 260k-form pool; 3.82σ from the repo's DESI fit). Attaching the reduced
+Gibbons–Hawking wavelength to the de Sitter horizon gives `a₀ = cH_Λ/2π = 8.6257×10⁻¹¹`,
+`κ_DE = Z/4π = 0.460659`, `2cH_Λ/a₀ = 4π`, as an **external postulate** (A75: the classical action has
+no `ħ` or `k_B`; Unruh–DeWitt alone gives `cH_Λ`, 16.7σ out). It is a **rival** of the `R = 4`
+(`κ = ½`) closure, 15.1% apart in Λ; head-to-head `Δχ² = 1.82–1.86` (**1.35σ**), undecided until a
+2.9% `a₀` measurement.
+
+**5. The lensing audit and the global fit (A70/A71/A80/A81/A85).** A55's 4.9σ SLACS failure was a
+`1/median²` error; the model's `dlnR/dlnB = 0.7775` gives `B = 1.174 ± 0.039` (1.80σ from Treu). The
+on-disk SDSS `σ_ap` channel passes the zero-parameter dynamical-vs-lensing test (**−2.33%**, 1.58σ,
+13.3% scatter) but does not break B–κ; it pushes `B` to 1.2269 ± 0.0106 (2.27σ). A71's
+`Δχ² = 6.35` was an **unprofiled-`B` artifact** (`SD_TAB` at `boost = 1.0`): with `B` profiled it is
+**0.29**, so SLACS is κ-blind. The final fit with everything profiled gives
+`κ_P3 = 0.3781 ± 0.0258 ± 0.1180`, global **1.854σ** (data-only **0.298σ**).
+
+**6. What is still open — do not promote it (Rule 5).** This is an effective theory, not a UV
+completion (A57). `L★ = σ_c²/a₀` has no measured `σ_c` on disk (A76: a computed 10⁴ K thermal width
+spans 20.4–47.6 pc across μ); `η/γ` remains a free kinetic scale needing a Kubo matching (A77); the
+pressure-supported excess and the cosmic-shear parent remain unexplained; the P-therm branch is a
+postulate. **The theory is not closed.**
+
+---
+
 ## ⚠⚠⚠ REVISION 11 BLOCK — 2026-09-26. Dark energy's gate, pinned by the framework's own gates. Newer than everything below it.
 
 **What dark energy does in the construction, and how tightly the data pin it** ([`dark_energy_2026/`](real_research/dark_energy_2026/README.md); note [`THE_CLEAN_PATH_2026-09-26.md`](real_research/dark_energy_2026/THE_CLEAN_PATH_2026-09-26.md); Lean [`DE_vacuum_gate_certificates.lean`](fable_independent_2026/lean_2026/DE_vacuum_gate_certificates.lean), 17 theorems, standard axioms, no `sorry`).

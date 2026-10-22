@@ -1,5 +1,10 @@
 # A64 — THE FOUR GATES AS ONE THEOREM: joint constraint algebra, lensing, GW speed, Newtonian limit, stability
 
+> **SUPERSEDED by A54 (2026-10-21).** A64 counted 5 DOF against a 4-DOF *design budget* and graded the
+> action FAIL; the budget was wrong, not the action. The canonical analysis is A54 (26 dims, 8 first-class
+> ⇒ 5 DOF), the bracket is computed in A68, and the Lean certificate is A83. This report is kept as the
+> record of the wrong budget.
+
 **Lane:** A64_four_gates · **Date:** 2026-10-21 · **Base:** `deepseek_push/DS_FINAL_2026_10_21/BRIEF.md`, A3, A12, A4, A22, A39.
 **Script:** `a64_checks.py` (20 checks) · **Output:** `a64.out` · **Data:** `a64_results.json` · **Mutation:** `MUTATE.md`.
 **Action source:** round-2 ADM action, `core_open_problems_round2_2026_10_20/03_relativity/report.md` §2; `K = 4πG`, `c = 1`, `(-+++)`.

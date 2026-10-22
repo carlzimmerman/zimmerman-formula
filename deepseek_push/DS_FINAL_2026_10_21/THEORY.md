@@ -357,8 +357,8 @@ which is 0.961 at β = 0.027 and 0.400 at β = 1. BBN's `|ΔN_eff| < 0.30` with 
 
 **It also kills a footing.** A33's `β(Λ_bare = Λ_obs) = −0.211` and `Λ_bare ≥ 1.462Λ_obs` came from applying
 the *vacuum* Friedmann equation at `H₀` with `ρ_m` dropped. With matter included, β = 0 sits **exactly** at
-`Λ_bare = Λ_obs` (checked to 10⁻¹⁰). So `Λ_bare = Λ_obs(1 + 2.194β)`, and with β < 0.027,
-**`Λ_bare/Λ_obs ∈ (1.000, 1.061)`**. The old "P3" footing (`ρ_bare = ρ_crit`, `a₀ = 1.132×10⁻¹⁰`) requires
+`Λ_bare = Λ_obs` (checked to 10⁻¹⁰). So `Λ_bare = Λ_obs(1 + 2.194β)`, and with **β < 0.02798**,
+**`Λ_bare/Λ_obs ∈ (1.000, 1.0613)`**. The old "P3" footing (`ρ_bare = ρ_crit`, `a₀ = 1.132×10⁻¹⁰`) requires
 β = 0.210, hence `ΔN_eff = −2.34` — **8× the BBN bound, ≈8σ excluded.** The three-footing conflict of §6.2
 therefore collapses: **`a₀` survives only in `8.63–8.89×10⁻¹¹`**, with the thermal `8.62×10⁻¹¹` at its lower
 edge and the canonical `9.35×10⁻¹¹` just above.
@@ -815,6 +815,16 @@ dispersions — the test that should break the `B`–`κ` degeneracy — does no
   to 1 it is `Δχ² = 2.96`, under 3σ. **It neither confirms nor kills A71's 6.35** — SLACS stays κ-blind
   without per-lens Sérsic `n` and better `σ` errors.
 
+**The final joint fit confirms rather than moves it (A81, 27/27).** Re-running all three channels with
+**every** parameter profiled at every grid point — the defect A71 had — gives `κ_P3 = 0.3781 ± 0.0258 (stat)
+± 0.1180 (syst)`, `a₀ = 8.554×10⁻¹¹`, `B = 1.1996`, `u = 0.4429`, global tension **1.854σ**, of which the
+IMF prior supplies `4.97` and the data only `0.53` (**0.298σ**). Head-to-head, the thermal point beats
+`κ = ½` by `Δχ² = 1.8245` → **1.351σ, LR 2.49 : 1**. Removing SLACS from the fit moves κ by `+0.0066`
+(0.26σ of the joint error) and SLACS alone gives `κ = 0.979 ± 0.312` — it runs to the edge, as a κ-blind
+channel should. The three independent lensing solvers now agree on the shared IMF at
+`B = 1.2280 / 1.2269 / 1.2365` (A80/A85/A81, spread 0.8%), and the ledger resolves to **2 independent free
+parameters** — one P-sector scale plus `η` — with `a₀` on the postulate and `β` BBN-bounded.
+
 **What would settle it:** a wide-binary `γ_v` measurement at 18–22 kAU — A24's 4.5σ EFE test — cuts the
 joint κ error from **0.1207 to 0.0605**, 3.7× the reduction of SPARC at `N = 1000` (which buys only 2 %).
 Two honest gaps: the SLACS shape channel carries **no** usable κ information — A80 shows its 6.35 was an
@@ -841,7 +851,9 @@ acceleration (A54, A68, A69).
 
 **The joint fit says one parameter set is enough.** SPARC + corrected SLACS + clusters, sharing κ,
 the IMF normalisation and `u`: **`κ_P3 = 0.3777 ± 0.1207`, `B = 1.1916 ± 0.0364`**, global tension
-**1.89σ** — of which **4.47 of 5.69 is the IMF prior alone**; data-only `T = 1.21` (0.6σ). The
+**1.89σ** — of which **4.47 of 5.69 is the IMF prior alone**; data-only `T = 1.21` (0.6σ). **A81's re-fit
+with every parameter genuinely profiled reproduces it: `κ_P3 = 0.3781 ± 0.0258 ± 0.1180`, tension
+1.854σ, data-only 0.298σ, `Δχ²`(thermal − ½) = 1.8245 → 1.351σ.** The
 lensing "4.9σ failure" is gone: it was `1/median²` instead of the model's `dlnR/dlnB = 0.7775`,
 corrected to **1.8σ at the 95 % edge** of the same survey's dynamical IMF calibration (A70).
 **That statement is about the `R_E` channel, and only it.** Adding the on-disk `σ_ap` dispersions (A85)

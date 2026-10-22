@@ -1,0 +1,406 @@
+{
+ "lane": "A81",
+ "generated": "2026-10-22T16:54:08Z",
+ "mutate": "no_boot",
+ "n_check": 27,
+ "n_pass": 24,
+ "runtime_s": 28.392454862594604,
+ "checks": [
+  {
+   "id": "C1",
+   "pass_": true,
+   "measured": "SPARC 175/171/3375 sha 469f4f556dc813b2 ; SLACS 85/70 sha d78d7627d6bbcc07 ; Treu 56",
+   "threshold": "175 files, 171 fitted, 3375 points, sha == A51's ; 85 rows, 70 lenses ; 56 Treu lenses",
+   "label": "the three channels are the record's own data, byte-identical where A51 recorded a hash"
+  },
+  {
+   "id": "C2",
+   "pass_": true,
+   "measured": "6.8651 / 6.6312 / 2.4714",
+   "threshold": "6.87 +- 0.02, 6.63 +- 0.02, 2.42 +- 0.10",
+   "label": "the zero-parameter chi2/dof reproduces the record to four digits: same likelihood"
+  },
+  {
+   "id": "C3",
+   "pass_": true,
+   "measured": "a0 8.081465e-11 vs 8.081465e-11 ; kappa 0.357207 vs 0.357207 ; chi2/dof 2.2209 vs 2.2209",
+   "threshold": "2e-4 relative on a0 and kappa, 1e-3 on chi2/dof",
+   "label": "an independently written likelihood lands on A51's minimum; SPARC peaks well below both theory points"
+  },
+  {
+   "id": "C4",
+   "pass_": true,
+   "measured": "bootstrap 0.093888688 vs A51 0.093888688 ; ratio to formal 8.33",
+   "threshold": "bootstrap matches A51 to 1e-4 and is >5x the formal error",
+   "label": "the 3375 points are not independent; the bootstrap is the declared honest error and it is used below"
+  },
+  {
+   "id": "C5",
+   "pass_": true,
+   "measured": "Z/4pi 0.460658865962 ; kappa_DE(a0_half) 0.499662147 ; kappa_P3 0.381262/0.413453 ; round trip 1.1e-16",
+   "threshold": "identity to 1e-12 ; kappa_DE(a0_half) = 1/2 to 2e-3 ; round trip < 1e-12",
+   "label": "the thermal point is kappa_P3 = 0.381 / kappa_DE = 0.4607; kappa = 1/2 is a different a0, 8.5% higher"
+  },
+  {
+   "id": "C6",
+   "pass_": true,
+   "measured": "median 0.885232, max dev 0.0e+00, B_req(1/2) 1.1738",
+   "threshold": "median 0.8852 +- 1e-4 ; per-lens < 1e-9 ; B_req 1.1738 +- 2e-3",
+   "label": "the lensing model here IS A55's/A70's, not a re-implementation, and the required boost is 1.174"
+  },
+  {
+   "id": "C7",
+   "pass_": true,
+   "measured": "dlnR/dlnB 0.7775 ; B_resp 1.1737 vs B_root 1.1738 ; dlnR/dlnkappa 0.1205 ; ratio 6.45",
+   "threshold": "0.7775 +- 0.006 ; B_resp == B_root to 3e-3 ; 0.1205 +- 0.006 ; ratio in [5.8, 7.2]",
+   "label": "lensing is 6.5x more sensitive to the IMF than to a0: it is a mass-normalisation measurement"
+  },
+  {
+   "id": "C8",
+   "pass_": true,
+   "measured": "Delta(B=1) = 6.3517 ; Delta(B profiled) = 0.3985",
+   "threshold": "Delta(B=1) > 4 ; Delta(profiled) < 0.5 ; ratio > 8",
+   "label": "A71's 6.35 is real at B = 1 but 20x smaller at the B the lane says it profiled -- A80 confirmed"
+  },
+  {
+   "id": "C9",
+   "pass_": true,
+   "measured": "1.6863 Mpc / 3.7702 / 2.6179 ; kappa 0.3934 +- 0.0432",
+   "threshold": "1.6863/3.7702/2.6179 +- 1e-3 ; 0.3934 +- 0.002, 10.97% +- 0.3%",
+   "label": "A18's anchor is reproduced before it is used; u and R_req come from the same amplitudes (circular, stated)"
+  },
+  {
+   "id": "C10",
+   "pass_": true,
+   "measured": "det 1.4286e+05 ; cond 746.04 ; sigma(kappa) 0.26767 ; angle 3.0798 deg ; improvement 2.351",
+   "threshold": "1e-3 on det, 1e-2 on cond, 1e-3 on sigma, 0.05 deg on the angle, 0.02 on the improvement (F's entries are published to 1 decimal)",
+   "label": "A85's Fisher is internally consistent: the two constraints are 3.08 deg apart and sigma(kappa) improves only 2.35x"
+  },
+  {
+   "id": "C10b",
+   "pass_": true,
+   "measured": "B_sigma(thermal) 1.21748 ; s_cond 0.04731 -> sigma(kappa)_sigma 0.73180",
+   "threshold": "B_sigma to 5e-3 of A85's table ; sigma(kappa)_sigma 0.7318 +- 2% ; |slope| < 0.2",
+   "label": "the imported sigma_ap channel reproduces A85's own marginalised kappa error by construction"
+  },
+  {
+   "id": "C11",
+   "pass_": true,
+   "measured": "A80 1.22799 vs A85 1.22688 (+0.09%, 0.01 sigma) ; A81 vs A85(R_E) -0.29% ; B(n=6) 1.09854",
+   "threshold": "A80/A85 within 1% and 1 sigma ; A81/A85(R_E) within 1% ; B(n=6) 1.0985 +- 1e-3",
+   "label": "three independent lensing solvers agree on the shared IMF normalisation to ~1%: B is not solver-dependent"
+  },
+  {
+   "id": "C12",
+   "pass_": true,
+   "measured": "profile 0.357722/1.20700/0.43321 vs NM 0.357722/1.20700/0.43321 ; B 1.2070 in (1, 1.2468) ; chi2 diff 2.6e-05",
+   "threshold": "two minimisers agree to 1e-4 ; spline == direct to 1e-3 ; 1 < B < B_req and |B - B_req| > 0.01",
+   "label": "the joint optimum is not a minimiser artefact, and B is the prior-weighted compromise, not B_req"
+  },
+  {
+   "id": "C13",
+   "pass_": true,
+   "measured": "SPARC -0.13, clusters +0.83, SLACS(kappa) +1.99, IMF +2.11 ; chi2/dof 2.2209 / 0.8048",
+   "threshold": "kappa pulls within 2 sigma ; IMF pull in [1.5,3.5] ; SPARC chi2/dof 2.22 +- 0.05 ; SLACS 0.4-1.6",
+   "label": "no channel is pulled in kappa; the one >2 sigma statement is the IMF normalisation"
+  },
+  {
+   "id": "C14",
+   "pass_": true,
+   "measured": "T = 6.156 (1.99 sigma) ; data-only 0.853 (0.45 sigma) ; prior 5.302",
+   "threshold": "1 < T < 8 ; decomposition exact ; 0 <= T_data < T ; more than half of T is the prior",
+   "label": "the tension is small and mostly the IMF normalisation, not a kappa disagreement"
+  },
+  {
+   "id": "C15",
+   "pass_": false,
+   "measured": "Delta = +159.0666 -> 12.612 sigma, LR 34743348380698886211883585369014272.000 ; decomposition closes to 0.0e+00",
+   "threshold": "1 < Delta < 3 ; decomposition exact ; 1.5 < LR < 5",
+   "label": "with everything profiled the thermal point beats kappa = 1/2 by ~1.4 sigma: not a decision"
+  },
+  {
+   "id": "C16",
+   "pass_": true,
+   "measured": "kappa(SLACS) - kappa(no SLACS) = +0.00017 ; SLACS data Delta = +0.2113 ; prior Delta = +8.8955 ; sigma_SLACS = 0.312",
+   "threshold": "shift < 0.02 ; |data Delta| < 1 over the band ; prior part > 5x the data part ; sigma_SLACS > 0.3",
+   "label": "the lensing DATA are kappa-blind (A80); the 9 units of 'preference' are the IMF prior acting through B_req(kappa)"
+  },
+  {
+   "id": "C17",
+   "pass_": true,
+   "measured": "B +0.39% formal / +0.07% honest ; kappa -0.00001 ; Delta +159.1109",
+   "threshold": "B rises 0-5% formally, less when inflated ; kappa shifts < 0.02 ; Delta changes < 1",
+   "label": "adding sigma_ap raises B (the IMF pull worsens slightly) and leaves kappa where SPARC put it"
+  },
+  {
+   "id": "C18",
+   "pass_": true,
+   "measured": "residual 8.74e-04 (Lambda) / 2.16e-04 (H0) ; kappa_DE(implied) 0.461062 vs 0.460659",
+   "threshold": "< 2e-3 and < 1e-3 ; kappa_DE within 2e-3",
+   "label": "the postulate's identity holds at the 1e-3 level; the residual is the BRIEF's Lambda/H0 rounding, not physics"
+  },
+  {
+   "id": "C19",
+   "pass_": true,
+   "measured": "y_t 77.87636 (band [60,140]) ; residual 1.6e-13 ; two quadratures 6.8e-12 apart ; closure residual 1.75e-03",
+   "threshold": "residual < 1e-8 ; quadratures < 1e-6 ; y_t inside [60,140] ; closure within 0.5%",
+   "label": "the thermal point's falsifier is satisfied and I(y_t) = 8 pi/kappa^2 is an identity, not data"
+  },
+  {
+   "id": "C20",
+   "pass_": true,
+   "measured": "sigma_c 8.22551 km/s ; L* 25.4203 pc ; mu band 22.15-51.69 pc ; identity residual 0.0e+00",
+   "threshold": "sigma_c 8.22551 +- 1e-3 ; L* 25.44 +- 0.15 pc ; identity exact ; mu band > factor 2",
+   "label": "the identity is exact and the number is ~6% above the 24 pc anchor -- A76's rounded thermal width"
+  },
+  {
+   "id": "C21",
+   "pass_": true,
+   "measured": "r_Lambda(0) = 1.000000000 ; Delta N_eff(beta_max) = -0.30026 ; r_Lambda(beta_max) = 1.06134 ; beta(-0.30) = 0.02798",
+   "threshold": "r_Lambda(0) = 1 to 1e-9 ; Delta N_eff = -0.30 +- 2e-3 ; r_Lambda < 1.061 +- 0.005 ; beta 0.0280 +- 5e-4",
+   "label": "beta is bounded by BBN, and the bound puts the bare vacuum within 6% of the observed one"
+  },
+  {
+   "id": "C22",
+   "pass_": true,
+   "measured": "rank 2/5 ; free block (gamma,L*,sigma_c) nullity 1 ; null vector (+1.000, -0.500, +0.250)",
+   "threshold": "rank 2 ; nullity 1 in the free block ; dln gamma/dln L* = 2, dln sigma_c/dln L* = 0.5",
+   "label": "the ledger's three 'free' symbols are one scale; with eta that is two free parameters, not four"
+  },
+  {
+   "id": "C23",
+   "pass_": false,
+   "measured": "sys 0.3122 ; sigma_tot 0.11175 ; thermal +5.88 stat ; 1/2 +13.92 stat ; kappa_P3=1/2 +35.54 stat",
+   "threshold": "sys 0.3122 +- 5e-4 ; sigma_tot 0.1207 +- 0.008 ; thermal inside 1 sigma total ; 1/2 (a0 = 9.354e-11) 1-2.5 sigma ; kappa_P3 = 1/2 > 4 sigma",
+   "label": "the thermal point is inside the total error and ~1.4 sigma away statistically; the old kappa_P3 = 1/2 target is ~4.8 sigma"
+  },
+  {
+   "id": "C24",
+   "pass_": false,
+   "measured": "Delta(raw) 115.89 -> 7.22 sigma ; compressed 12.612 sigma ; ratio 0.3",
+   "threshold": "100 < raw Delta < 140 ; ratio > 20",
+   "label": "if the per-point errors were right the thermal point would win at 7 sigma; they are not, and the bootstrap is why"
+  },
+  {
+   "id": "C25",
+   "pass_": true,
+   "measured": "9 symbols: 2 forced, 1 postulate, 1 atomic, 2 bounded, 3 free -> 2 independent",
+   "threshold": "9 symbols, every one in exactly one class, 3 free symbols collapsing to 2 independent",
+   "label": "the ledger is complete and its count is the rank computation's: two free parameters, not four"
+  },
+  {
+   "id": "C26",
+   "pass_": true,
+   "measured": "A74 1.863869/1.3652 sigma/2.5394 ; A80 6.3517/0.2854 ; A85 2.2729 sigma ; A76 25.4425 pc ; A77 611.7142 kpc",
+   "threshold": "each anchor reproduces its lane's arithmetic to its quoted precision",
+   "label": "the numbers this report imports are re-derived, so a misquote in either direction would show up here"
+  }
+ ],
+ "constants": {
+  "G": 6.6743e-11,
+  "c": 299792458.0,
+  "H0": 67.4,
+  "Omega_L": 0.6847,
+  "a0_per_kappa": 2.2624070828826046e-10,
+  "a0_thermal_deployed": 8.6257e-11,
+  "a0_thermal_lambda": 8.618165899975415e-11,
+  "a0_thermal_h0": 8.623833237862579e-11,
+  "a0_half": 9.354e-11,
+  "kappa_de_alg": 0.46065886596178063,
+  "kappa_p3_thermal": 0.3812620666396483,
+  "kappa_p3_half": 0.41345344393466854,
+  "kappa_p3_05": 0.49999843465779037
+ },
+ "data": {
+  "n_sparc_files": 175,
+  "n_galaxies": 171,
+  "n_points": 3375,
+  "sha256_sparc": "469f4f556dc813b2",
+  "sha256_slacs": "d78d7627d6bbcc0789bde334ca607f760b40b5b7f8a1d04720eae8206f2d7b6d",
+  "n_lenses": 70,
+  "n_treu": 56
+ },
+ "sparc": {
+  "a0": 8.081465493789752e-11,
+  "kappa": 0.357206514907693,
+  "chi2": 7115.876855482908,
+  "dof": 3204,
+  "chi2_dof": 2.2209353481532172,
+  "sigma_boot_frac": 0.0938886875588215,
+  "sigma_formal_frac": 0.011268849966643391,
+  "sigma_kappa": 0.004025306623602358,
+  "chi2_raw_at_joint": 7115.908440168676
+ },
+ "slacs": {
+  "B_req_half": 1.1738250649687387,
+  "median_ratio": 0.885232449268376,
+  "mean_ln": -0.12453879980374076,
+  "sd_ln": 0.21345190432419642,
+  "dlnR_dlnB": 0.7774750479902267,
+  "dlnR_dlnB_mean": 0.8004035064690608,
+  "dlnR_dlnB_scatter": 0.08296703999145398,
+  "dlnR_dlnkappa": 0.12053695412204274,
+  "sigma_logB_dex": 0.0143,
+  "chi2_at_B1": [
+   63.28811071559361,
+   61.77509696447454,
+   60.50279915539326,
+   59.8232805813554,
+   59.41520652386233,
+   58.47498745159614,
+   57.65550776039256,
+   56.93641011262447
+  ],
+  "chi2_at_Bprof": [
+   54.77099642397808,
+   54.67482041461699,
+   54.65263530174022,
+   54.668601518130444,
+   54.689219607503176,
+   54.77333840281403,
+   54.89631240131569,
+   55.05112986936911
+  ],
+  "kappa_grid": [
+   0.2,
+   0.3,
+   0.4,
+   0.4607,
+   0.5,
+   0.6,
+   0.7,
+   0.8
+  ],
+  "delta_B1": 6.351700602969139,
+  "delta_Bprof": 0.39849456762889446,
+  "B_ml_thermal": 1.236513171908481,
+  "B_req_thermal": 1.223232542413269,
+  "B80_n4": 1.2279861628533104,
+  "B80_n6": 1.0985413515571107,
+  "B85": 1.2268767617777288,
+  "B85_scaled_err": 0.012346525445175416
+ },
+ "cluster": {
+  "kappa": 0.39339390603778607,
+  "sigma_kappa": 0.04316032583734902,
+  "R_tot": 2.6179291849458104,
+  "r_v_Mpc": 1.6863491914837274,
+  "F": 3.7701540164330085,
+  "dlnR_dlna0": 0.927708940137828
+ },
+ "sigma_ap": {
+  "angle_deg": 3.0798360763685775,
+  "det": 142860.71000000017,
+  "cond": 746.0417972753785,
+  "sk_re": 0.6291825506353446,
+  "sk_joint": 0.2676703400904706,
+  "B_sigma_thermal": 1.2174786507692015,
+  "slope": -0.06464302523200109,
+  "s_cond": 0.0473057658647784,
+  "inflation": 2.851628040426438,
+  "formal": {
+   "kappa": 0.35771384140662854,
+   "B": 1.2117632986886648,
+   "chi2": 60.68712660782907,
+   "dchi2": 159.11089491189244,
+   "B_th": 1.2043790288940346,
+   "B_hf": 1.194521837863389,
+   "s_cond": 0.0473057658647784,
+   "sigma_kappa": 0.004002915401180779
+  },
+  "honest": {
+   "kappa": 0.3577206339062512,
+   "B": 1.207804492227418,
+   "chi2": 60.64616519507626,
+   "dchi2": 159.07408422099283,
+   "B_th": 1.1995013964809758,
+   "B_hf": 1.188437086028262,
+   "s_cond": 0.1348984484138499,
+   "sigma_kappa": 0.004003043309608101
+  }
+ },
+ "joint": {
+  "kappa": 0.3577220164386124,
+  "a0": 8.093128236937642e-11,
+  "B": 1.207000303470785,
+  "B_req": 1.2467876020300337,
+  "u": 0.4332102792298984,
+  "chi2": 60.63782792155426,
+  "sigma_kappa_stat": 0.0040030693427136055,
+  "sigma_kappa_syst": 0.11168199573656196,
+  "sigma_kappa_tot": 0.11175371464011394,
+  "sys_frac": 0.31220330481315894,
+  "kappa_lo": 0.3537191120319553,
+  "kappa_hi": 0.3617252507173825,
+  "chi2_sparc": 0.01640068483159824,
+  "chi2_slacs": 54.72853419912074,
+  "chi2_cluster": 0.7415845264452552,
+  "chi2_prior": 5.1513085111566745,
+  "chi2_dof_sparc": 2.2209452060451547,
+  "chi2_dof_slacs": 0.8048313852811874,
+  "pull_sparc": -0.12806515853891814,
+  "pull_cluster": 0.8338639892764972,
+  "pull_slacs_kappa": 1.9886923640060659,
+  "pull_B": 2.109330965759637,
+  "tension": 6.1555221119525525,
+  "tension_sigma": 1.9948222281585812,
+  "tension_data": 0.8530543070286072,
+  "tension_data_sigma": 0.4499144328718219,
+  "tension_prior": 5.302467804923945,
+  "kappa_noslac": 0.3575555782311668,
+  "kappa_slacs_only": 0.9785971943887777,
+  "sigma_kappa_slacs_only": 0.31220272636812496,
+  "slacs_band_delta": 9.10686079403714,
+  "chi2_thermal": 95.20240427149866,
+  "chi2_half": 254.26899668947334,
+  "dchi2_thermal_half": 159.06659241797468,
+  "sigma_thermal_half": 12.612160497629844,
+  "LR_thermal_half": 3.4743348380698886e+34,
+  "chi2_p3half": 1321.0449147432553,
+  "B_thermal": 1.1985111105630708,
+  "B_half": 1.1872025034217721,
+  "d_to_thermal_stat": 5.880500232623633,
+  "d_to_thermal_tot": 0.21064221692176485,
+  "d_to_half_stat": 13.922173893264825,
+  "d_to_half_tot": 0.4986986578077591,
+  "d_to_p3half_stat": 35.541832038995224
+ },
+ "ledger": {
+  "K": "FORCED BY ACTION",
+  "alpha": "FORCED BY ACTION",
+  "gamma": "UNCONSTRAINED FREE SCALE",
+  "eta": "UNCONSTRAINED FREE SCALE",
+  "beta": "BOUNDED BY BBN/BACKGROUND",
+  "a0": "FIXED BY THE P-therm POSTULATE",
+  "Lstar": "UNCONSTRAINED FREE SCALE",
+  "sigma_c": "DERIVED FROM ATOMIC INPUT",
+  "Lambda_bare": "BOUNDED BY BBN/BACKGROUND",
+  "n_independent_free": 2,
+  "rank": 2,
+  "nullity": 1
+ },
+ "identities": {
+  "a0_res_lambda": 0.00087421153317635,
+  "a0_res_h0": 0.0002164654725955728,
+  "kappa_de_implied": 0.46106157925526425,
+  "y_t": 77.87635560672074,
+  "y_t_half": 66.38033070988784,
+  "y_t_residual": 1.5631940186722204e-13,
+  "closure_residual": 0.0017491873121571189,
+  "Lstar_pc": 25.42030626097932,
+  "Lstar_canon_pc": 23.426061508048,
+  "sigma_c_kms": 8.225510036324081,
+  "Lstar_mu_lo": 22.151981170281978,
+  "Lstar_mu_hi": 51.68795606399129,
+  "beta_max": 0.028,
+  "dne_at_max": -0.3002556621880999,
+  "r_lambda_max": 1.0613407331678106,
+  "B80_minus_B85": 0.001109401075581662
+ },
+ "error_model": {
+  "dchi2_raw": 115.8924067409207,
+  "scale": 2.2209353481532172,
+  "sigma_raw": 7.2236971950983735,
+  "ratio": 0.32805003472605676
+ }
+}
