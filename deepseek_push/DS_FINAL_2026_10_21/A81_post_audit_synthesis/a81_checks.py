@@ -718,6 +718,8 @@ P("  like-for-like (R_E only): A81 vs A85 = %+.5f (%+.2f%%, %.2f sigma of the 0.
 P("  the task's comparison: A80 B(n=4) vs A85's headline B = %+.5f (%+.2f%%, %.2f sigma)"
   % (B80_N4 - B85, 100 * (B80_N4 / B85 - 1), (B80_N4 - B85) / SIG_B_CMP))
 P("  A85 vs Treu = %.2f sigma (its own 2.27, reproduced)" % (math.log10(B85) / SIG_B_PULL_DEX))
+P("  the n-band in IMF units: at n = 4 the pull is %.2f sigma, at n = 6.0 it would be %.2f sigma (A80: 1.05)"
+  % (math.log10(B80_N4) / SIG_B_PULL_DEX, math.log10(B80_N6) / SIG_B_PULL_DEX))
 ck("C11", abs(B80_N4 / B85 - 1) < 0.01 and abs((B80_N4 - B85) / SIG_B_CMP) < 1.0
    and abs(B_ML_TH / B85_RE - 1) < 0.01 and abs(B80_N6 - 1.0985) < 1e-3,
    "A80 %.5f vs A85 %.5f (%+.2f%%, %.2f sigma) ; A81 vs A85(R_E) %+.2f%% ; B(n=6) %.5f"

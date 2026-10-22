@@ -2,7 +2,7 @@
 
 **Lane:** A81_post_audit_synthesis · **Date:** 2026-10-22 · **Base:** `deepseek_push/DS_FINAL_2026_10_21`
 **Script:** `a81_checks.py` — **27/27 PASS, exit 0, ~30 s from a cold start** · **Output:** `a81.out` · **Data:** `a81_results.json`
-**Mutations:** seven (`MUTATE.md`, `a81_MUTATE_*.out`), each one input, each **exit 1**.
+**Mutations:** ten (`MUTATE.md`, `a81_MUTATE_*.out`), each one input, each **exit 1**, **22/27 checks killed**.
 **Read:** A71 (the three-channel likelihood), A80 (the SLACS Sérsic-n audit), A85 (the σ_ap channel), A74/A75
 (the thermal point and its postulate), A76 (`L*`), A77 (η/γ), A78 (β), A72 (the coefficient), A33 (the action).
 Nothing downloaded; nothing committed; no other lane's directory or the docs touched.
@@ -66,8 +66,8 @@ the likelihood's own ML); every comparison with A70/A71/A80/A85 is made like-for
 
 **Sérsic n is not a parameter of this likelihood**, because no per-lens n exists on disk (A80 K2).
 A80's n-curve is imported instead: `n_zero = 6.0932`, `n_ML = 14.1421`, `B(n=4) = 1.22799`,
-`B(n=6.0) = 1.09854` — a shift of `-0.0484 dex`, which moves the IMF pull from `+2.04 sigma` to below
-`1.5 sigma` (§7). The n-variant is therefore a declared systematic band, not a fitted parameter;
+`B(n=6.0) = 1.09854` — a shift of `-0.0484 dex`, which moves the IMF pull from `+2.04 sigma` to
+`1.05 sigma` (§9). The n-variant is therefore a declared systematic band, not a fitted parameter;
 A80's own conclusion is that the mass anchor (f\* vs total mass) is undecidable from disk, which is
 why n cannot be honestly profiled here.
 
@@ -331,6 +331,9 @@ answered "no" to.
 | `drop_sigma_ap` | the A85 σ_ap term removed from the likelihood | C17 |
 | `sersic_default` | the SLACS baseline at n = 6 instead of n = 4 | C11, C13, C16 |
 | `vacuum_beta` | the `Ω_Λ,eff = 1` slice (A33's 1.462 floor) | C21 |
+| `drop_lens` | the SLACS census loses every 7th lens (70 → 60) | C1, C6, C7, C11 |
+| `sd_at_b1` | A80's "B profiled" column computed at boost = 1 (A71's defect) | C8 |
+| `floor10` | the SPARC per-point floor widened from 5% to 10% | C2, C3, C4, C13, C15, C24 |
 
 Every check is a comparison between two independently computed numbers, a lane's published number, or
 a physics threshold — no check is a closed-form target decoupled from the quantity it tests, and no
@@ -351,7 +354,7 @@ in this file appears literally in `a81.out`.
    A85's 12-point sweep and its published Fisher; A81 audits the Fisher (C10/C10b) and re-runs the
    joint fit with the term, but does not re-run the Jeans solver.
 4. **The cluster channel is circular** (`u` and `R_req` from the same amplitudes). It is the channel
-   that tightens σ(κ) from `0.03354` to `0.02576`; nothing here would survive its removal at the
+   that tightens σ(κ) from `0.03304` to `0.02581`; nothing here would survive its removal at the
    quoted precision, and A18/A51/A71 all flag it.
 5. **The error model decides everything numeric.** On the raw SPARC χ² the thermal point beats κ = ½ by
    `115.892` → `7.22 sigma`; on the declared bootstrap it is `1.3507 sigma`, a factor `28.6` in χ².
