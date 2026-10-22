@@ -78,3 +78,17 @@ Verdict on the statement "the screened theory is an EFT without a parent":
 - **(c) open** otherwise (e.g. S1/S2 robustness fails so the saddle answer is undecided).
 Lane verdict word: SCOPED NO-GO for (a), CRISP FINDING for (b), NOTHING NEW / RUNNABLE NOW for (c), as the README states.
 "Established parent": none, under any outcome.
+
+## AMENDMENT A1 (POST-RESULT, 2026-10-22; written after the first run, before any new check was coded)
+
+**First run** (kept as `e5_parent_logic_firstrun.out` / `_results_firstrun.json`): 13/14 PASS. **E1 FAILS as frozen.**
+Cause: the frozen pass line asked the double series of the stiffened linear tensor to equal 2u/a₀ + L★²k²/2 (resp.
+u/a₀ + L★²k²/2) exactly, but a series truncated at O(u) and O(k²) also keeps the cross terms −2L★²k²u/a₀ (∥) and
+−L★²k²u/a₀ (⊥). The frozen line was mis-specified; the FAIL stays printed and the exit code stays 1.
+**Added (post hoc, carries the substantive reading of E1):**
+- E1b: the E1 series residuals equal exactly −2L★²k²u/a₀ and −L★²k²u/a₀, i.e. they are O(u/a₀) relative to the L★²k²/2
+  term, so the screening crossovers ℓ_∥ = L★√(a₀/4u), ℓ_⊥ = L★√(a₀/2u) hold to leading order. PASS: both residuals match
+  exactly (sympy) and the other three E1 items are 0.
+- Reported only (no pass line): the first-order change of AG6C's mid-plane negative column (−0.20640) under the stiffness,
+  at r_cut = 0.1, per fiducial, footing and L★, so PAPER49 v1.2's unsuppliable-column numbers can be read against it.
+MUTATE unchanged.
