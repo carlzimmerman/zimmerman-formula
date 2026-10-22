@@ -620,17 +620,38 @@ per-lens Sérsic `n`, and the wide-binary forecast is a rescaling of A24's σ's,
 
 ## 7. What this is, and what it is not
 
-**It is** a closed effective theory: a single action, five postulates, one modulus, and
-rotation curves at `χ²/dof = 2.42` on 171 SPARC galaxies with one stellar M/L each — degenerate
-with the rival interpolation on total χ² (2.31), and separated by a shape test (Δχ² = 158 with no
-free parameters). Its parameter content is **4 finite + 3 functionals with 5 exact degeneracies**
-(A33), against ΛCDM's six, and it predicts what ΛCDM cannot even address: the RAR shape,
-lensing = dynamics, `c_T = 1` (speed), `α₁ = α₂ = 0` near-source, `β = 1`, the core size, the
-saddle no-go.
+**It is** a closed effective theory: a single action, five postulates, and a **computed** five-mode
+spectrum — 26 phase-space dimensions, 8 first-class constraints, **0 second-class**, `(26−16)/2 = 5`
+(A68, 39/39 checks with the bracket computed rather than asserted). The fifth mode is the mixed
+conformal/P-longitudinal scalar, **gapless** (`m² = 0`, `c_s² = αp²/Z → 0`, a `k⁴` mode) and healthy
+for `β > 0, η > 0, α = γ > 0`; its strong-coupling scale is `2.836×10⁻⁶⁹ eV`, so the EFT needs no
+cutoff below the horizon. Rotation curves: `χ²/dof = 2.227` on 171 SPARC galaxies with one stellar
+M/L each (A71), degenerate with the rival interpolation on total `χ²` and separated by a shape test
+(`Δχ² = 158` with no free parameters). The four gates are an internal theorem: `Φ = Ψ` at `O(ε)`,
+`c_T² = 1` exactly, `α₁ = α₂ = 0` with `β_PPN = 1` wherever `kL★ ≫ 1`, `dg/dg_N ≥ 1` at every
+acceleration (A54, A68, A69).
+
+**The joint fit says one parameter set is enough.** SPARC + corrected SLACS + clusters, sharing κ,
+the IMF normalisation and `u`: **`κ_P3 = 0.3777 ± 0.1207`, `B = 1.1916 ± 0.0364`**, global tension
+**1.89σ** — of which **4.47 of 5.69 is the IMF prior alone**; data-only `T = 1.21` (0.6σ). The
+lensing "4.9σ failure" is gone: it was `1/median²` instead of the model's `dlnR/dlnB = 0.7775`,
+corrected to **1.8σ at the 95 % edge** of the same survey's dynamical IMF calibration (A70).
+
+**Parameter content:** **4 finite + 3 functionals with 5 exact degeneracies** (A33), against ΛCDM's
+six. The finite ones are κ (the one dimensionless number; **convention-dependent**, and the data
+prefer the `Λ_obs` reading at **3.35σ**, A71), `L★` (fitted at 24 pc), **η** (free — the action forces
+`α = γ` but not `η = γ`, so the P-sector sound speed `γ/η` is a second unconstrained scale, A68/A69),
+and `β` (positive, unobservable elsewhere). The measured fractions are `σ_c = 8.33 km/s` and the
+cold-sector share. It predicts what ΛCDM cannot even address: the RAR shape, lensing = dynamics,
+`c_T = 1` (speed), `α₁ = α₂ = 0` near-source, `β = 1`, the core size, the saddle no-go.
 
 **It is not** a UV completion, and §3.6 proves the difference is not a gap in the search but a
-property of the system. The honest summary is the one line in `FINAL_THEORY.md`: one free
-dimensionless number, one free scale, one measured fraction.
+property of the system: κ and `L★` are **two independent UV inputs** (A57), and A69 shows nothing in
+the action ties `η` to `γ`. The honest summary is: **one free dimensionless number (κ), two free
+scales (`L★`, `η/γ`), one measured fraction (`σ_c`)** — and the data cannot yet distinguish the two
+κ conventions. What would: a wide-binary `γ_v` measurement at 18–22 kAU, which cuts the joint κ
+error from 0.1207 to 0.0605 (A71), and a homogeneous spectroscopic IMF for the 70 SLACS lenses at
+`R_E/2–R_E` to ≤ 0.03 dex.
 
 **And the audit is part of the result.** A31 found **32 defects in 130 claims** in the document
 this replaces, and A32 independently re-derived four core results from the equations alone — all
