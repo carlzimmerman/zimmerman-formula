@@ -19,6 +19,8 @@ at κ = ½), **A11 §15** (where the window's two ends come from).
 excludes `L* = 23.43 pc` — but no datum measures a 53.31 pc core either, because 53.31 pc is the
 prediction at the rounded anchor, and the nearest measured core radius is 150 pc.
 
+> **ERRATUM (2026-10-22, doors push D8):** the 24 pc floor is **not** a rounding of the thermal width. It is CFG820's globular χ² bound (NGC 2419, Pal 4, Pal 14), which A11 cites as `LS_LO = 24 pc # [EXT] CFG820` (`a11_checks.py:49`); the fine-grid roots are 23.641 pc (canonical) and 24.476 pc (alt). A datum does bite the thermal value: at the thermal L* the CFG820 χ² gives **Δχ² = 3.91 (canonical, 23.43 pc; excluded at 95 % by a 0.07 margin) and 5.99 (alt, 19.38 pc)**. The 0.46 % agreement between the thermal width and the floor is a coincidence between a premise and a 95 % bound, not a self-comparison. Separately, A76's `L* = σ_c²/a₀` read as the **free-medium** stiffness is excluded by AG6D's C1 (σ_c ≤ 1.70 / 0.845 km/s canonical, frozen / post hoc; 1.87 / 0.928 alt, against 8.2 km/s at 10⁴ K); it can survive only as a property of the **tethered (bound) state**, which no term in the action yet writes. Original text kept as written. See `doors_push_2026_10_22/D8_Lstar_value/README.md`.
+
 **`σ_c` is not measured anywhere on disk.** 175 SPARC curves and 26 LITTLE THINGS curves carry no
 dispersion column; ALFALFA's 21 global profiles have 5.148 km/s channels (62.6 % of `σ_c`) and no
 spatial information; the only "independent" value is a *computed* thermal width, `8.226 km/s`, whose
@@ -63,6 +65,8 @@ moves `c_s` by 0.05 % and nothing in this lane depends on it.
 
 ## 2. TASK 1 — the 24 pc floor is a derived round number, and the 2.38 % is its rounding
 
+> **ERRATUM (2026-10-22, doors push D8):** the 24 pc floor is CFG820's globular χ² bound, not a derived round number; the thermal L* has Δχ² = 3.91 (canonical) / 5.99 (alt) against it, so the statement here does not hold. Full correction in §0 erratum and `doors_push_2026_10_22/D8_Lstar_value/README.md`.
+
 ### 2.1 Where the floor comes from, line by line
 
 - **A20 `FROZEN_CRITERIA.md` C3**: "`L* ∈ [24 pc, 1 kpc]` — the record's window (**A11 §15**,
@@ -81,6 +85,8 @@ window's bottom is the theory's own preferred answer, written twice. Nothing on 
 scale: 0/175 SPARC curves reach it (floor 80 pc = 3.33×, K26/K27), only 2/26 LITTLE THINGS galaxies
 have `r_first < 53 pc` (WLM 10.0008 pc, DDO_210 40.0 pc; K23/K24), and the only core bound is the
 one-sided `L* ≤ 90 pc`.
+
+> **ERRATUM (2026-10-22, doors push D8):** the 24 pc floor is CFG820's globular χ² bound, not a derived round number; the thermal L* has Δχ² = 3.91 (canonical) / 5.99 (alt) against it, so the statement here does not hold. Full correction in §0 erratum and `doors_push_2026_10_22/D8_Lstar_value/README.md`.
 
 ### 2.2 The 2.38 % is the rounding, to four digits
 
@@ -142,6 +148,8 @@ not the edge of a `Γ = 2` polytrope, so neither number is a like-for-like test.
 kernel-level bound is one-sided (`L* ≤ 90 pc`). A20's best existing core test (DDO_210's innermost
 point, 40 pc, an 11.21 % dip at 0.36σ) separates 23.43 from 24.025 at **0.0061σ per galaxy**, and
 **0.031σ** stacked over all 26 dwarfs (K32); 1σ would need **27,254** such galaxies.
+
+> **ERRATUM (2026-10-22, doors push D8):** the 24 pc floor is CFG820's globular χ² bound, not a derived round number; the thermal L* has Δχ² = 3.91 (canonical) / 5.99 (alt) against it, so the statement here does not hold. Full correction in §0 erratum and `doors_push_2026_10_22/D8_Lstar_value/README.md`.
 
 ### 2.5 Task 1 result
 
@@ -262,6 +270,7 @@ The precise statement, which is narrower than A65's and harder on it:
   `L* ∝ 1/μ` moves the answer over `20.41–47.63 pc` (factor 2.33) for the plausible ionisation range.
 - **The "2.38 % failure" is withdrawn.** It is the floor's own rounding (2.3796 %), and the floor is a
   derived round number, so `L* = 23.43 pc` is not excluded by anything.
+  - **ERRATUM (2026-10-22, doors push D8):** the 24 pc floor is CFG820's globular χ² bound, not a derived round number; the thermal L* has Δχ² = 3.91 (canonical) / 5.99 (alt) against it, so the statement here does not hold. Full correction in §0 erratum and `doors_push_2026_10_22/D8_Lstar_value/README.md`.
 - **Under reading (a), if `σ_c` were measured:** `L* = 23.43 (+24.2 / −3.0) pc` at canonical `a0`,
   `25.44 (+26.3 / −3.3) pc` at the thermal `a0`. Both are conditional on "10⁴ K, μ = 1.22".
 
@@ -295,6 +304,8 @@ by any instrument now operating at the precision the claim requires.**
 | 2 — is `σ_c` independently measured? | **CLOSED-NO-GO** | zero measured determinations on disk; best value is a computed 10⁴ K width, `μ`-systematic at factor 2.33 |
 | 3 — the `c_s` route | **CLOSED-NO-GO(obstruction)** | `γ ≡ KL*²/2` is one dof with `L*`; every probe is `γ`-free or `ρ`-degenerate; effect is `(L*/r)²`, O(1) only inside 24 pc |
 | 4 — verdict | **FITTED(σ_c) / CONDITIONAL(10⁴ K cold phase)** | coefficient 1 is derived; the number is not |
+
+**ERRATUM (2026-10-22, doors push D8):** (task 1 row) the 24 pc floor is CFG820's globular χ² bound, not a derived round number; the thermal L* has Δχ² = 3.91 (canonical) / 5.99 (alt) against it, so the statement here does not hold. Full correction in §0 erratum and `doors_push_2026_10_22/D8_Lstar_value/README.md`.
 
 ---
 
