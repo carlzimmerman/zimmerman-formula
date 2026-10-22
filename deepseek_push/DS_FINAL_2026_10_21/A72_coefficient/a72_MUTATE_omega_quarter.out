@@ -1,0 +1,35 @@
+A72_coefficient -- a0/(cH): 1/7 or 1/(2pi)?   (K = 4 pi G, c = 1)
+cH0 = 6.548322e-10   cH_L = 5.414953e-10   Omega_L = 0.68380036   rho_L = 5.834769e-27
+Z = 5.788810036   1/Z = 0.172747075   1/(2pi) = 0.159154943   1/7 = 0.142857143
+a0(kappa=1/2) = c^2 sqrt(L/32pi) = 9.354173486e-11   a0/cH_L = 0.172747075   a0/cH0 = 0.142848395
+a0 = cH0/7 = 9.354746306e-11 ; cH_L/(2pi) = 8.618165900e-11 ; cH0/(2pi) = 1.042197881e-10
+measured a0 = 8.5440e-11 +- 2.73e-11 ; kappa_P3 = 0.37765 +- 0.12069 ; kappa_DE = 0.4564 +- 0.0312
+pool: 9217780 closed forms -> 582481 distinct values in [1e-3,1e3]
+*** MUTATION omega_quarter ACTIVE: {'omega_l': 0.25} ***
+
+C1   PASS a0/cHL=0.172747075 vs 1/Z=0.172747075; resid=0                   residual 0; rel < 1e-12        kappa=1/2 <=> a0/(cH_Lambda)=1/Z=0.172747 (A62 K3 reproduced)
+C2   FAIL a0/cH0=0.142848395 vs k sqrt(3Om/8pi)=0.086373537; vs 1/7 rel=6.12e-05 1e-9 to the identity, <1e-3 to 1/7 a0/(cH0) is NOT a pure number: it carries sqrt(Omega_Lambda)
+C3   PASS Omega*=0.683884115 (exact) vs 0.683884115 (brentq); 32pi/147=0.683884115 relerr < 1e-9; exact = 32pi/147 the 1/7 is a statement about Omega_Lambda, not about a0
+C4   PASS 1/Z=0.172747075 vs 1/(2pi)=0.159154943; rel diff=0.085402        rel diff > 0.05                kappa=1/2 is 8.55% above the thermal value in the cH_L frame
+C5   PASS a_sat=8.618166e-11 (m=1e-30) = 8.618166e-11 (m=1e-20); target 8.618166e-11 resid 0; mass-indep <1e-12; =cH_L/2pi the coefficient 1/(2pi) IS derived, with no free parameter, from a quantum carrier at T_dS (A62 K14)
+C6   PASS a_U/(cH_L)=1.000000000; a_U=5.414953e-10                         = 1 to 1e-12                   route (b): coefficient exactly 1 -> kappa = Z/2, 16.7 sigma dead
+C7   PASS N_surf=N_bulk <=> rho=3H^2/8piG (resid 0); N_b/N_s=1.000000000000 resid 0; ratio 1 to 1e-10      route (d): equipartition has no content beyond Friedmann
+C8   PASS A=8.618166e-11 B=8.618166e-11; A/(cH0/2pi)=0.826922224 (sqrtOm=0.826922224) A=B 1e-14; ratio sqrt(Om) 1e-9; A!=cH0/2pi routes (e) and (f) are the same number: 1/(2pi) is inserted, not derived
+C9   FAIL Om_L=0.25000000 vs 32pi/147=0.68388412 rel=6.34e-01; Planck dist=0.112 sigma rel < 1e-3; Planck dist < 0.5 sigma Omega_Lambda = 32pi/147 is 0.11 sigma from Planck -- a coincidence, not a prediction
+C10  PASS closest p/q (q<=1000): 331/484, |d|=1.825e-07; irrational=True   |d| > 1e-8; 32pi/147 not rational any integer cell count gives Omega_L in Q, but 1/7 needs 32pi/147 = (8pi/3)(2/7)^2, which is not in Q
+C11  PASS forms=9217780 distinct=582481 | 1/7: 540/42/5 | 1/2pi: 564/49/4  distinct>=200000; >=1 hit at 0.01% for both both candidates are matched, at every window, by hundreds of closed forms: a match carries no information
+C12  PASS 1/7 z=-0.53, 1/2pi z=-0.22 (random mean 581.8 +- 79.5)           |z| < 3 for both; pool >= 200000 neither candidate sits in an unusually dense or empty part of the pool
+C13  PASS routes =1/7: 0 ; =1/(2pi): 3 ; closest to 1/7: closure in the cH0 frame (cH0) (6.12e-05); distinct a0: 7 n(1/7)=0 exact and n(1/2pi)>=1 and >=5 distinct a0 no stated premise produces 1/7 exactly; the closest is the closure at 6.1e-5 -- the 32pi/147 coincidence restated
+C14  PASS delta_a0=7.365804e-12 (0.08621 of a0); separation=0.2698 sigma   |separation| < 1 sigma and delta/a0 > 0.05 the two candidates differ by 8.55% in a0 and 0.27 sigma in the current measurement
+C15  PASS a_route/a_record=0.826922224 (sqrtOm=0.826922224); record dist=0.688 sigma ratio = sqrt(Om) to 1e-9; record within 1 sigma attaching 1/(2pi) to H0 instead of H_Lambda moves a0 by 20.9%
+C16  PASS dKappa=0.032557; seps {'current joint (A71)': 0.27, 'wide binary, full DR4 catalogue': 0.814, 'wide binary + joint': 0.538, 'SPARC at N = 1000': 0.276, 'wide binary (live forecast)': 0.814}; sigma_req(3sig)=0.01085; N=4.08e+05 pairs every forecast < 1 sigma; 2e5 < N < 1e6 no measurement in the record's forecast set reaches 3 sigma
+C17  PASS chi2(1/7)=0.0882 chi2(1/2pi)=0.0007 dchi2=0.0875 LR=0.9572       dchi2 < 1 and LR > 0.5         the data prefer the thermal value by a likelihood ratio of 1.04 -- no evidence
+C18  FAIL Om required by 1/7 & 1/(2pi) together=0.805682; 16.6 sigma from Planck > 5 sigma, and 32pi/147 within 1e-3 of the observed Om the two coefficients are not two names for one number: they need Omega_L = 0.6839 vs 0.8059
+C19  PASS closed forms strictly between 0.131609 and 0.142857: 2178        > 1000                         the gap between the candidates is filled with closed forms: interpolation is not discrimination
+C20  FAIL kappa_P3=0.377651 kappa_DE=0.755302 ratio=2.000000 (1/sqrtOm=2.000000) 1e-3 / 1e-2 of A71; ratio = 1/sqrt(Om) kappa_DE = kappa_P3/sqrt(Omega_L): the same a0 is 0.378 or 0.456
+C21  PASS 1/7: 540 hits, 0 derivable | 1/(2pi): 564 hits, 1 derivable      0 derivable for 1/7 and >=1 for 1/(2pi) of the hundreds of matches, only the thermal one is the output of a stated premise
+C22  PASS P(>=1 hit): 1%=1.0000 0.1%=1.0000 0.01%=0.9963 0.001%=0.4323 (mean counts 582.3/58.28/5.87/0.578) P(1%)>0.99 and P(0.01%)>0.5    a 0.01% match is expected by chance for a random coefficient
+
+A72 COMPLETE: 18/22 checks PASS.
+# mutated checks broken: C18,C2,C20,C9
+# MUTATION CONFIRMED

@@ -1,5 +1,22 @@
 # A62 — WHY THE VACUUM SWITCHES AT ONE TWELFTH OF THE HORIZON SCALE
 
+> ## ⚠️ ERRATUM (2026-10-22, A72/A73) — the obstruction was real, but the target was wrong
+>
+> This lane proved that no named mechanism produces `κ = ½`. That stands. What changed is that **`κ = ½`
+> is not the right target.** A72 found the coefficient has exactly one derivation — the thermal wavelength
+> at the Gibbons–Hawking temperature, `a₀ = c²/λ_T(T_dS) = cH_Λ/(2π)`, mass-independent — which gives
+> **`κ_DE = Z/4π = √(2/(3π)) = 0.460659`** and `2cH_Λ/a₀ = 4π`. This lane's own census already contained
+> the answer: it lists "Langevin/Brillouin give exactly `1/(2π)`" as a *failure*, because the target was
+> `1/Z`. Attached to the **de Sitter** horizon rather than `H₀`, `1/(2π)` is the derived value and
+> `κ = Z/4π` follows. Measured `κ_P3 = 0.3777 ± 0.1207` is **0.030σ** from it and 0.299σ from ½.
+>
+> Also superseded: the `Ω_Λ = 32π/147` route (the `1/7` reading). A73 shows 147 = 3(cH₀/a₀)² is defined by
+> the measured ratio, 65 closed forms land within 0.11σ, and the repo's own DESI fit is 3.82σ away.
+>
+> What survives here unchanged: the exact identity `a₀/(cH_L) = 2κ/Z`; the proof that `2Z = 12` iff
+> `π = 27/8`; the look-elsewhere control (223 hits at 1%); and the demonstration that saturation and
+> equipartition reduce to Friedmann. See `A72_coefficient/` and `A73_omega_lambda/`.
+
 Lane A62. `a62_checks.py` — 25 checks, **25/25 PASS**, exit 0, 0.7 s, deterministic, no network,
 stdlib + numpy + scipy + sympy; `a62.out` is its stdout and `a62_results.json` holds every number
 below. Constants: BRIEF §4 (c, G, ħ CODATA, k_B, Λ, H0, a0_can, Mpc); nothing fitted.

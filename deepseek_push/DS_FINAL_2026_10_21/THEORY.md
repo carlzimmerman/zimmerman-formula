@@ -246,7 +246,33 @@ constant force**, the `μr/L★²` term of A22's exact solution — not the law.
 `W(u)`/charge structure, not a propagating mode**, which is consistent with MOND being intrinsically
 nonlinear.
 
-**3.6 The vacuum closure, and κ.**
+**3.6 The vacuum closure, and κ — now DERIVED, at `Z/4π`, not ½.**
+
+> **Update (2026-10-22, A72/A73): κ is no longer a free number.** The coefficient `a₀/(cH)` has exactly
+> one derivation in a 260,129-expression census: the thermal wavelength at the Gibbons–Hawking
+> temperature, `λ_T(T_dS) = 2πR_Λ`, so **`a₀ = c²/λ_T = cH_Λ/(2π) = 8.6257×10⁻¹¹ m/s²`**, mass-independent
+> to 10⁻¹². That `a₀` gives
+> **`κ_DE = a₀/(c√(Gρ_DE)) = √(2/(3π)) = Z/(4π) = 0.460659`**, `κ_P3 ≈ 0.381`, and
+> **`2cH_Λ/a₀ = 4π = 12.566`** — so the "twelfth" is really **`4π`, the solid angle**, not `2Z = 11.578`.
+> Against A71's joint fit (`κ_P3 = 0.3777 ± 0.1207`, `a₀ = 8.544×10⁻¹¹`), the derived point sits
+> **0.030σ** away in κ and **0.030σ** in `a₀`; `κ = ½` sits 0.299σ away. The data mildly prefer the
+> derived value (2.6 : 1 on statistical errors alone; LR 1.045), and **only a 2.9 % `a₀` measurement
+> decides** — wide binaries at 18–22 kAU with ≈4×10⁵ pairs. Downstream at the derived point:
+> `y_t = 77.85` (inside [60,140]), `L★ = σ_c²/a₀ = 26.1 pc` (inside 24–90), `R_core = 57.9 pc`.
+>
+> **The competing route is dead.** `1/7` (⟺ `Ω_Λ = 32π/147`) is a *match*, not a derivation: `147 =
+> 3(cH₀/a₀)²` is defined by the measured ratio, the number is irrational so no cell count produces it,
+> and in a 260k-form pool **65 expressions land within 0.11σ of 0.6847** with `√3 − π/3` **5.32× closer**.
+> Worse, the repo's own DESI 3-pt fit gives `Ω_Λ = 0.69797 ± 0.00368` — **3.82σ** from 32π/147 (A73).
+> The Planck 0.11σ agreement is number-vs-one-dataset, not a test.
+>
+> **What remains a premise, not a theorem:** that the acceleration scale is the one at which a carrier's
+> Compton wavelength equals its thermal wavelength at `T_dS`. A72 shows that premise derives the *scale*
+> with zero free parameters and a mass-independent cancellation, but its response is analytic (slope 1),
+> so it does **not** derive MOND's shape — the law still comes from the Langmuir gate (§3.5). One premise
+> for the scale, one for the shape.
+
+The closure relation itself is unchanged and holds for every κ:
 
 $$
 I(y_t)\equiv\int_0^\infty \frac{y(\nu-1)}{1+(y/y_t)^2}\,dy=\frac{\Lambda c^4}{a_0^2}=\frac{8\pi}{\kappa^2}
@@ -254,7 +280,8 @@ I(y_t)\equiv\int_0^\infty \frac{y(\nu-1)}{1+(y/y_t)^2}\,dy=\frac{\Lambda c^4}{a_
 $$
 
 For the canonical kernel the left side is `(π/2)y_t − ln(y_t/4) + C_can`, `C_can = −0.8862944`;
-with `Λc⁴/a₀² = 100.4058` this solves to **`y_t = 66.2999`** (A4, A25, A28). `I` is strictly
+at the **derived** point `Λc⁴/a₀² = 118.6` and **`y_t = 77.85`**; at the old `κ = ½` footing
+`Λc⁴/a₀² = 100.4058` and **`y_t = 66.2999`** (A4, A25, A28) — the numbers below are the κ = ½ ones. `I` is strictly
 increasing, hence invertible: **one de Sitter member per κ, and no internal relation selects
 one.** `y_t(κ) = 180.8, 102.7, 66.38, 34.6, 17.6` at `κ = 0.3, 0.4, 0.5, 0.7, 1.0`.
 
@@ -431,8 +458,7 @@ observationally at the edge of one IMF calibration, which is a much sharper stat
 
 **6.1 The four core questions, answered as far as the physics allows.**
 
-**(Q1) Why the vacuum switches at one-twelfth of the horizon scale.** It does not — and the arithmetic
-must be stated exactly, because A62 found the loose version wrong. The exact chain is
+**(Q1) Why the vacuum switches at one-twelfth of the horizon scale — RESOLVED: it switches at `1/(2π)` of the de Sitter horizon, and the "twelfth" is `4π = 12.566`.** *Update (A72/A73, 2026-10-22): the coefficient is not `1/Z`. The only derivation in a 260,129-expression census is the thermal wavelength at `T_dS`, `a₀ = c²/λ_T = cH_Λ/(2π)` (mass-independent to 10⁻¹²), which gives `κ_DE = √(2/(3π)) = Z/(4π) = 0.460659` and `2cH_Λ/a₀ = 4π`. The measured `κ_P3 = 0.3777 ± 0.1207` is **0.030σ** from it and 0.299σ from ½; a 2.9 % `a₀` measurement decides. See §3.6.* The text below records why every route to `κ = ½` failed — which is now the point: **½ was the wrong target.** The exact chain is
 `a₀/(cH_L) = 2κ/Z` with `Z = 2√(8π/3) = 5.788810`, so **`κ = ½` ⟺ `a₀/(cH_L) = 1/Z = 0.1727473`** —
 a fifth of the horizon, not a twelfth. The "twelfth" is `1/(2Z) = 0.0863735 = a₀/(2cH_L)`, i.e. the
 ratio to **twice** the horizon scale. And `2Z = 12` **iff `π = 27/8`**, which it is not: the exact gap is
@@ -638,18 +664,23 @@ lensing "4.9σ failure" is gone: it was `1/median²` instead of the model's `dln
 corrected to **1.8σ at the 95 % edge** of the same survey's dynamical IMF calibration (A70).
 
 **Parameter content:** **4 finite + 3 functionals with 5 exact degeneracies** (A33), against ΛCDM's
-six. The finite ones are κ (the one dimensionless number; **convention-dependent**, and the data
-prefer the `Λ_obs` reading at **3.35σ**, A71), `L★` (fitted at 24 pc), **η** (free — the action forces
-`α = γ` but not `η = γ`, so the P-sector sound speed `γ/η` is a second unconstrained scale, A68/A69),
-and `β` (positive, unobservable elsewhere). The measured fractions are `σ_c = 8.33 km/s` and the
+six. **The dimensionless one is now derived, not free: `κ = Z/4π = √(2/(3π)) = 0.460659`** (A72), from
+`a₀ = cH_Λ/(2π)`; `κ = ½` is superseded (it needed `Ω_Λ = 32π/147`, which A73 shows is a numerology
+match and is 3.82σ from the repo's own DESI fit). The remaining finite entries are `L★` (fitted at 24 pc;
+26.1 pc at the derived `a₀`), **η** (free — the action forces `α = γ` but not `η = γ`, so the P-sector
+sound speed `γ/η` is a second unconstrained scale, A68/A69), `β` (positive, unobservable elsewhere), and
+the **one premise** that replaces κ: the acceleration scale is where a carrier's Compton wavelength equals
+its thermal wavelength at `T_dS`. The measured fractions are `σ_c = 8.33 km/s` and the
 cold-sector share. It predicts what ΛCDM cannot even address: the RAR shape, lensing = dynamics,
 `c_T = 1` (speed), `α₁ = α₂ = 0` near-source, `β = 1`, the core size, the saddle no-go.
 
 **It is not** a UV completion, and §3.6 proves the difference is not a gap in the search but a
-property of the system: κ and `L★` are **two independent UV inputs** (A57), and A69 shows nothing in
-the action ties `η` to `γ`. The honest summary is: **one free dimensionless number (κ), two free
-scales (`L★`, `η/γ`), one measured fraction (`σ_c`)** — and the data cannot yet distinguish the two
-κ conventions. What would: a wide-binary `γ_v` measurement at 18–22 kAU, which cuts the joint κ
+property of the system: `L★` and `η/γ` are **two independent UV inputs**, and A69 shows nothing in
+the action ties `η` to `γ`. The honest summary is now: **zero free dimensionless numbers (`κ = Z/4π`
+derived, A72), two free scales (`L★`, `η/γ`), one measured fraction (`σ_c`), and one premise** (the
+thermal-wavelength identification of `a₀`). κ = ½ is a 7.9 % approximation to the derived value and the
+two are separated by the data at only 0.27σ (0.030σ vs 0.299σ), so **a 2.9 % `a₀` measurement lands on
+`8.626×10⁻¹¹` (derived) or `9.355×10⁻¹¹` (κ = ½)** — that is the falsifier. What would: a wide-binary `γ_v` measurement at 18–22 kAU, which cuts the joint κ
 error from 0.1207 to 0.0605 (A71), and a homogeneous spectroscopic IMF for the 70 SLACS lenses at
 `R_E/2–R_E` to ≤ 0.03 dex.
 

@@ -1,0 +1,157 @@
+====================================================================================================
+A73 -- Omega_Lambda = 32*pi/147 : prediction or numerology?   [A73_MUTATE=omega_0688]
+====================================================================================================
+inputs: H0=67.4 km/s/Mpc  Lambda=1.0890e-52 m^-2  a0=9.3600e-11 m/s^2  kappa=0.500
+        Planck 0.6889 +- 0.0073   Pantheon+ Omega_m 0.334 +- 0.018   DESI-fit Omega_m 0.30203 / 0.31001
+----------------------------------------------------------------------------------------------------
+K1   PASS 32*pi/147 = 0.68388411506717 (mpmath 50d, sympy 40d agree to 0.0e+00); vs published 0.6838841151 dev 3.3e-11
+            | engine agreement <1e-35, published string <5e-11 | two independent arithmetic engines reproduce the value; the ten digits are 0.6838841151
+K2   PASS kappa*sqrt(3*Omega/8pi) - 1/7 = 0 (exact); r = 1/7
+            | residual exactly 0 | the two statements are the same statement, not two coincidences
+K3   PASS kappa = (1/7)sqrt(8pi/(3*Omega)) = 1/2, residual 0
+            | exactly 1/2, residual 0 | 32pi/147 is exactly the kappa = 1/2 point of the rho_DE convention
+K4   PASS a0 = 9.35417e-11 (kappa c^2 sqrt(L/8pi)) vs 9.35417e-11 (kappa c sqrt(G rho_L)) rel 0.0e+00; vs a0_can 9.3600e-11 rel 6.22e-04
+            | two routes <1e-12; a0_can <1e-3 | the quoted Lambda reproduces the canonical a0 through the closure (this is why Lambda is not independent)
+K5   FAIL Omega_pred=0.6838841151  Planck=1-Omega_m=0.6847  z=-0.6871 sigma (-5e-03 abs)
+            | |z+0.112|<0.02 and 1-Omega_m = 0.6847 | the headline: 0.11 sigma from Planck 2018, and the 8.2e-4 offset is 0.112 sigma
+K6   PASS Lambda c^2/(3H0^2) = 0.683800 vs pred 0.683884 rel 1.2e-04; Lambda needed = 1.08913e-52 vs quoted 1.0890e-52 rel 1.2e-04
+            | both <2e-4 | the theory's Lambda is 32pi a0^2/c^4 rounded, so this agreement is bookkeeping, not evidence
+K7   PASS a0/(cH0)=0.142937 vs 1/7=0.142857 rel 5.62e-04; pull +0.01 sigma (9.389% error); 4 simple p/q (q<=20) inside 1 sigma: 1/7, 2/13, 2/15, 3/20
+            | rel<1e-3, |pull|<0.1, and >2 rival fractions inside 1 sigma | the canonical footing reproduces 1/7 to 6e-4, but its own error is 9.4%: four simple fractions fit equally well, so the data do not select 1/7
+K8   PASS r=0.130476+-0.008910 pull(1/7)=-1.39 sigma (A71: 1.40); Omega(a0)=0.5705+-0.0779 pull(Planck)=-1.52
+            | pull(1/7) within 0.05 of -1.40; Omega pull -1.47+-0.10 | the theory's own a0 sits 1.4 sigma below the value that gives 32pi/147, and implies Omega=0.571+-0.078
+K9   PASS 1/sqrt(Omega): pred 1.20923, Planck 1.20482; a0_P3/a0 1.20855; the two kappa footings 3.34 sigma apart
+            | ratios agree <5e-3; footing separation 3.2-3.5 sigma | the kappa_DE vs kappa_P3 distinction is exactly this factor; the record's two footings differ at 3.35 sigma
+K10  PASS pool: 11 atoms x 4 ops + sqrt, <=3 operations -> 260129 distinct values in [1e-3,1e3]; band[0.5,0.9] 18452
+            | >= 200000 distinct values | the pool is larger than A62's 156210 and is built from exactly the specified atom set
+K11  PASS within 0.11 sigma (8.0e-04 abs): 82 hits; at the target's own 5.02e-03: 482; boolean recount 82
+            | >=10 hits and the two counting routes agree | the target value is not isolated in closed-form space: ~70 forms sit within 0.11%% of it
+K12  PASS random targets in [0.5,0.9]: mean 462.3 hits (median 461, range 370-589); P(>=1)=1.000000; fraction with >=1 1.000
+            | lambda>10 and P>=1 > 0.99 | the base rate is ~100%%: EVERY value in the band has dozens of closed forms within 0.11%%
+K13  PASS density per unit relative window per 1000 forms: 32pi/147 127.2439; 2Z (this pool) 187.0226; 2Z (A62) 71.3783
+            | same order (0.3-3.0) as both 11.5776 baselines | 32pi/147 is no more remarkable than the 11.5776 hit A62 already called NO EVIDENCE
+K14  PASS own shape k*pi/n (k<=64, n<=400): 85 values within the window, 84 of them other than 32pi/147
+            | >=3 alternatives in the target's own family | even inside 32pi/147's own functional family, a dozen k*pi/n forms match as well
+K15  FAIL rival sqrt3-pi/3 = 0.684853256, dev 4.05e-03, 2 ops / 3 symbols; prediction dev 5.02e-03 -> rival is 1.2x closer
+            | rival within 1e-3 and >3x closer than the prediction | a two-operation, three-symbol form beats 32pi/147 by 5x: the number is not selected by its fit
+K16  FAIL 3/8 0.3750 (+43.00 sigma); 0.7 0.7000 (-1.52 sigma); 2/3 0.6667 (+3.05 sigma); 11/16 0.6875 (+0.19 sigma); 0.68 0.6800 (+1.22 sigma); 0.69 0.6900 (-0.15 sigma)
+            | 11/16 within 0.6 sigma, 0.7 beyond 2 sigma, 3/8 dead | Planck cannot separate 32pi/147 (0.11) from 11/16 (0.38) or 0.68/0.69; the number is not sharp
+K17  FAIL 3-sigma discrimination needs sigma(Omega)=1.67e-03 (0.2445%); Planck has 7.30e-03 -> 4.4x too coarse
+            | 20 < ratio < 35 | the prediction differs from Planck by 0.12%%, so excluding it at 3 sigma needs 0.04%% precision
+K18  FAIL curvature: dOmega_L/dOmega_k=-1; 1 sigma (0.0019) moves it 0.4x the gap; Planck-only closed (-0.044) 9x
+            | 1-sigma curvature >1.5x the gap | the claim presupposes flatness; free curvature at Planck-only precision moves Omega_L by 54x the offset
+K19  FAIL dlnOmega/dlnH0=-2.000000; a 0.5 km/s/Mpc shift moves Omega by 1.00e-02 = 2.0x the gap
+            | slope -2.000 and ratio >10 | at fixed Lambda the claimed 0.12%% is far below the 1.5%% H0-footing uncertainty
+K20  PASS 147 = 3*(cH0/a0)^2 at a0/cH0=1/7 -> 147; 32 = 8/kappa^2 at kappa=1/2 -> 32; (8pi/3)(2/7)^2 residual 0; (4pi/3)(2sqrt2/7)^2 residual 0; area ratio 4*(a0/cH0)^2 residual 0
+            | all five identities exact | 147 is DEFINED by the measured ratio cH0/a0, 32 by kappa, and (2/7)^2 is the horizon-area ratio: the integer carries no independent content
+K21  PASS 1/Omega_pred = 147/(32 pi) = 1.46224; A33's 1.462 rel 1.6e-04; 1/Planck 1.45159 rel 7.3e-03
+            | matches A33's 1.462 to <1e-4 | A33's Lambda_bare >= 1.462 Lambda_obs is the same number; A46 shows it is a flat-budget identity
+K22  PASS Z=5.788810, 2Z=11.577620; 1/7 / (1/(2Z)) = 2Z/7 = 1.653946; the same ratio from Omega_pred 1.653946; |1/7-1/(2Z)| = 0.0565
+            | identities exact; the two A62 numbers differ by >0.05 | 1/7 and 1/(2Z)=1/11.5776 are different numbers: the 1/7 hit is NOT the 1/12 claim
+K23  PASS repo DESI DR2+Pantheon+ (A46): 3pt Omega=0.69797+-0.00368 z=-3.82; 2pt Omega=0.68999+-0.00589 z=-1.04
+            | 3pt pull -4.2..-3.4, 2pt -1.3..-0.8 | the repo's own BAO+SNe+CMB fit is 3.8 sigma HIGH: the Planck agreement is dataset-dependent
+K24  PASS Pantheon+ (Brout+2022, SNe alone): Omega=0.666+-0.018 z=+0.99
+            | pull +0.8..+1.2 | the local/SNe determination sits 1 sigma LOW: the prediction is bracketed, not confirmed
+K25  PASS pulls: Planck -0.69, Pantheon+ +0.99, DESI3pt -3.82, DESI2pt -1.04 -> spread 4.82
+            | max |pull| >3 and the sign changes across datasets | the same number is -3.8 sigma from one dataset and +1.0 from another: no single Omega_Lambda is 'the' test
+K26  PASS 147/x: g_*(rec)3.91->37.5959(miss 0.40); g_*(EW)106.75->1.3770(miss 0.38); N_eff3.046->48.2600(miss 0.26); N_e60->2.4500(miss 0.45); 1/alpha137.036->1.0727(miss 0.07); 2^7128->1.1484(miss 0.15); ln(10^64)=147.365 (0.25% from 147); 3(D-3)^2 at D=10 = 147 and 7*C(7,2) = 147 (both chosen)
+            | no standard count hits 147; the one exact integer route needs D=10 chosen | no g_*, N_eff, e-fold or 1/alpha count gives 147; 3(10-3)^2 does, but D=10 is an assumption with no link to Omega_Lambda
+----------------------------------------------------------------------------------------------------
+pool detail: atoms=11, ops={+,-,*,/} plus unary sqrt, maxops=3, distinct=260129, band=18452
+simplest 2-op hits near the target:
+    dev 6.80e-04  ops 2  (pi/(pi+sqrt2))                          = 0.689579957
+----------------------------------------------------------------------------------------------------
+A73 COMPLETE: 20/26 checks PASS.  (0.1 s)
+
+NUMBERS
+  2Z                                     11.577620072932282
+  P_at_least_one                         1.0
+  Z                                      5.788810036466141
+  a0_fit_frac_below_1_7                  0.0871815866980604
+  a0_from_lambda                         9.354173485820239e-11
+  a33_ratio_dev                          0.00016144983364461192
+  alternatives_sigma_from_planck         {'3/8': 42.99999999999999, '2/3': 3.04566210045662, '0.7': -1.5205479452054793, '11/16': 0.1917808219178023, '0.68': 1.2191780821917682, '0.69': -0.15068493150684792, '32pi/147': 0.687107525045769}
+  band_n                                 18452
+  cell_count_fraction                    0.08163265306122448
+  cell_count_needed_for_147              0.006802721088435374
+  curvature_1sigma_over_gap              0.3787965683906643
+  curvature_closed_over_gap              8.772131057468014
+  dataset_spread_over_gap                6.373750679710294
+  density_2Z_a62_pool                    6.1651939017973545
+  density_2Z_a62_pool_rel                71.3782728378465
+  density_2Z_this_pool                   16.153802855971254
+  density_2Z_this_pool_rel               187.02259263673025
+  density_32pi147                        184.70587362859055
+  density_32pi147_rel                    127.24387634273602
+  density_ratio_2Zthis_over_here         1.4697964099504333
+  density_ratio_here_over_a62            1.782669589551461
+  desi_sigma_over_required               2.2037384160840174
+  external_quotes                        {'DESI_DR2_w0wa_preference_sigma': [2.8, 4.2], 'DESI_DR2_BAO_vs_CMB_omega_m_tension_sigma': 2.3, 'Planck_2018_omega_m': 0.3153, 'Planck_2018_omega_k': [0.0007, 0.0019], 'Planck_only_omega_k': -0.044, 'Pantheon_plus_omega_m': 0.334, 'A33_ratio': 1.462, 'THEORY_md_quoted_sigma': 0.13, 'A62_pool_size': 156210, 'A62_hits_2Z_1pct': 223, 'A62_simplest_hit_sqrt134': 11.575837, 'A62_sqrt134_dev': 0.000154, 'A46_SNe_points': 1580, 'A46_3pt_omega_b_h2': 0.02252, 'A46_2pt_omega_b_h2': 0.01955, 'BBN_omega_b_h2': 0.02236}
+  family_kpi_n_others                    84
+  frac_targets_with_hit                  1.0
+  h0_sensitivity_ratio                   2.0003685396334774
+  h0_shift_fraction                      0.007418397626112759
+  hits_0p11sigma                         82
+  hits_11p5776_1pct                      973
+  hits_own_window                        482
+  inv_2Z                                 0.08637353736783387
+  inv_Z                                  0.17274707473566775
+  inv_omega_planck                       1.451589490492089
+  inv_omega_pred                         1.4622360396567884
+  kappa_DE_over_P3                       1.2092295231496744
+  lambda_needed_for_pred                 1.0891333778845343e-52
+  lambda_random                          462.316
+  mutation                               omega_0688
+  mutations                              ['a0_alt', 'curvature', 'denom_148', 'desi_om', 'family_small', 'h0_70', 'kappa_051', 'kappa_p3', 'omega_0688', 'pantheon_om', 'planck_sigma', 'pool_1op']
+  omega_dataset_spread_width             0.031970000000000054
+  omega_desi_2pt                         0.68999
+  omega_desi_3pt                         0.69797
+  omega_from_a0_fit                      0.5704780899999999
+  omega_from_a0_fit_frac                 0.13658149079835827
+  omega_pantheon                         0.6659999999999999
+  omega_theory_footing                   0.683800364978897
+  one_seventh                            0.14285714285714285
+  pantheon_desi_tension_sigma            1.740030405385587
+  planck                                 0.6889
+  planck_frac_precision                  0.010596603280592249
+  planck_omega_from_om                   0.6847
+  planck_over_required                   4.3661288672397625
+  planck_sigma                           0.0073
+  pool_n                                 260129
+  pull_omega_from_a0_fit_vs_planck       -1.51985180387662
+  pull_r_fit_from_1_7                    -1.3895475446356307
+  r_canonical                            0.14293737247902272
+  r_canonical_rel_dev                    0.0005616073531590771
+  r_fit                                  0.13047586554784985
+  ratio_1_7_over_inv2Z                   1.6539457247046117
+  rival_over_prediction_dev_ratio        1.239486706910478
+  sigma_a0_required_3sigma               0.02906052889935347
+  sigma_desi_2pt                         0.005889969511979919
+  sigma_desi_3pt                         0.0036845661057145125
+  sigma_omega_from_a0_canonical          0.1284197591273124
+  sigma_omega_from_a0_fit                0.077916748
+  sigma_omega_theory_footing             0.010145406008588976
+  sigma_pantheon                         0.018
+  sigma_r_fit                            0.008910294114865743
+  sigma_required_3sigma                  0.0016719616442780378
+  sigma_required_fraction                0.0024448025731871703
+  simple_fractions_within_1sigma_of_r_canonical ['1/7', '2/13', '2/15', '3/20']
+  simplest_hit_dev                       0.000679956799326864
+  simplest_hit_expr                      (pi/(pi+sqrt2))
+  simplest_hit_ops                       2
+  simplest_hit_value                     0.6895799567993268
+  structural_counts_147_over_x           {'g_star_rec_3.91': 37.59590792838875, 'g_star_EW_106.75': 1.3770491803278688, 'N_eff_3.046': 48.260013131976365, 'N_e_60': 2.45, 'inv_alpha_137.036': 1.0727108205143174, '2^7_128': 1.1484375, 'ln_10^64': 147.36544595161894, '3(D-3)^2_D10': 147}
+  theory_md_quoted_value                 0.683827
+  theory_md_value_error                  5.711506716588044e-05
+  tol                                    0.0008
+  tol_own                                0.005015884932834114
+  two_footings_sigma                     3.3414743589743576
+  value_10dp                             0.6838841151
+  value_12sig                            0.683884115067
+  value_32pi_147                         0.6838841150671658
+  wide_binary_pull_at_sigma_kappa_040    2.17953966745151
+  z_desi_2pt                             -1.0366581559403778
+  z_desi_3pt                             -3.822942655578328
+  z_pantheon                             0.9935619481758844
+  z_planck                               -0.687107525045769
+  z_theory_footing                       0.008254976508380635
