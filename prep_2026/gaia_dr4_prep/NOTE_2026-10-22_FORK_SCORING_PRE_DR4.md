@@ -176,3 +176,30 @@ DR4 by construction.** This is reported, not repaired. Dropping (d) would need i
 decision.
 
 No frozen statistic, estimator, cut or verdict line of the pre-registration is changed.
+
+---
+
+## AMENDMENT A3 (2026-10-22, pre-data): OWNER DECISION on the σ_sys rule
+
+**Status.** Owner decision, given directly on 2026-10-22, before any DR4 byte exists: "Use (b) as the primary
+sigma_sys; (a), (e), (g2) must agree as robustness checks; (c), (d), (f) reported as context with no verdict weight.
+Write it as a dated pre-data owner decision." It replaces the ruling of A2 (whose text and table are kept). The
+pre-registration, its hash files and every frozen statistic, estimator, cut and verdict line are unchanged.
+
+**Ruling.**
+1. **Primary.** The fork is scored with definition **(b)**, σ_sys = max(0.020, ½ × full spread of γ̂ across the frozen
+   robustness ladder and the NSS-off probe), measured on the DR4 catalogue with the recipe of A2. A verdict needs the
+   whole-catalogue γ̂ to separate screened (γ_v − 1 ≈ 8.1e-6, D7d) from AQUAL law-first (A1: 1.167 / 1.199 at the
+   primary g_ext, 1.145 / 1.173 at the alternative) at **≥ 3σ** under (b), with σ = √(σ_fit² + σ_sys²).
+2. **Robustness checks.** Definitions **(a)** (0.020 frozen allowance), **(e)** (jackknife over the implementable cut
+   variants) and **(g2)** (Amendment 18 σ_build in quadrature) must each give **the same verdict at ≥ 3σ**. If any of
+   them disagrees or falls below 3σ, the fork is **UNDECIDED**.
+3. **Context only.** Definitions **(c)** (full spread), **(d)** (inter-group spread 0.174) and **(f)** (itemised quadrature
+   budget), and the §1.5 stability gate (g3), are computed and reported beside the verdict with **no verdict weight**.
+4. **Footings.** Canonical and alt are scored separately, never pooled; each footing gets its own verdict line. The alt
+   footing has no framework-native background (doors push E1), which is stated next to its line.
+5. **Both frozen g_ext values** are scored; a verdict at one g_ext only is reported as such.
+
+**Expected power (from A2, DR3-based, non-scoring).** At N = 30,000 under (b): canonical 3.2–4.0σ, alt 3.65–4.4σ;
+pairs needed for 3σ under (b): 6,445–20,360 canonical, 4,042–10,044 alt. (a), (e), (g2) are all stronger than (b) on
+DR3, so under this ruling (b) is the binding definition.
