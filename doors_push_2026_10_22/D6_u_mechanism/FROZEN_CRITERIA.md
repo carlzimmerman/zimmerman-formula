@@ -88,3 +88,16 @@ mass slope d ln M/d ln λ = 3/4 ± 0.05 (Bertschinger's known result); K4 M(λ=1
 load matches CFG801's v_circ; K6 the deep-limit slope is computed symbolically and numerically and agree.
 `--mutate`: drop the baryon subtraction in the inversion (u = P_l/(D − P_N)); must break K2. Outputs
 `*_MUTATE.out`, `*_results_MUTATE.json`. OMP_NUM_THREADS=1, nice, single thread, minutes.
+
+## AMENDMENT A1 (2026-10-22; after prototyping the solver and the data loaders, BEFORE any frozen T-line was scored)
+
+Seen before this amendment: the ε = 1 and ε = 1/2 u_3D tables (u_VR ≈ 0.50 inside r_sp; u_1S ≈ 0.03–0.3), the ε = 1
+caustic λ_sp = 0.361 and interior slope ≈ 0.63 at λ 0.01–0.03; prototype numbers for the galaxy u (≈ 0.6–0.7 at M_b = M*)
+and X-COP u (≈ 0.34 at b = 0). None of the frozen pass lines was evaluated. Changes, none of which touches a pass line:
+1. Numerical: τ_max scales with ε so every ε resolves the same λ floor, τ_max = 300^{(8/9)/α} (ε = 1/3 at τ_max = 300 needs
+   ~33 000 pericentre passages per iteration, hours). Settings listed in `SS_PAR`.
+2. K3 is evaluated over λ = 0.01–0.03 as coded. The prototype gives 0.63, so K3 is expected to FAIL: the iterated solution
+   has not reached the asymptotic 3/4 at the resolved radii (a τ_max = 3000 test was started and stopped for compute).
+   Added **K3b**: Bertschinger's ε = 1 outermost caustic r_sp/r_ta = 0.364 ± 0.01 (published value) as the solver check.
+3. Added a POST-HOC, reported-only diagnostic: X-COP u evaluated at the shear bands' own x = r/r_sp (INNER, MID).
+   It carries no verdict weight.
