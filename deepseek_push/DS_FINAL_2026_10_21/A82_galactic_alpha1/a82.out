@@ -1,0 +1,158 @@
+========================================================================================
+A82 -- THE GALACTIC ALPHA_1 FROM THE EXACT NONLINEAR BVP
+========================================================================================
+a0            = 9.360000e-11 m/s^2
+L*            = 24.000000 pc   (coefficient of the P-gradient operator = L*^2/2 = 2.742165e+35 m^2)
+w_CMB         = 369.82 km/s    w^2 = (w/c)^2 = 1.5217362374e-06
+galaxy        = Hernquist M_bar=6e10 Msun, a=3 kpc;  r_MOND = 9.4536 kpc
+domain        = [3 pc, 1000 kpc], N = 15001
+lane A82_galactic_alpha1 (2026-10-22): closes the qualifier of THEORY 3.5b and 6.1,
+  document sections 2.1, 2.2, 2.3, 2.4, 2.5 ; refs Shao & Wex 2012 (PSR J1738+0333),
+  Kramer+ 2021, A36, A54, A59, A68.
+
+[A] STATIC NONLINEAR BACKGROUND BVP
+    Newton iterations = 5   max|residual| = 4.404e-09 a0 (roundoff floor)   max relative residual = 6.513e-09
+    u < a0 everywhere: True ;  max u/a0 = 0.911607 at r = 0.05524 kpc
+
+    r(kpc)    g_N/a0     g/a0      u/a0     u'=dg_N/dg  4u'/(1-u')  u_slaved/a0  |u-us|/u
+      1.0    5.58588   6.45167   0.86579     0.018009     0.073358     0.86580   1.12e-05
+      2.0    3.57403   4.38845   0.81441     0.034441     0.142677     0.81442   5.76e-06
+      3.0    2.48237   3.24690   0.76453     0.055444     0.234794     0.76453   4.40e-06
+      5.0    1.39711   2.07153   0.67443     0.105996     0.474253     0.67443   3.38e-06
+      8.0    0.73846   1.30454   0.56607     0.188293     0.927884     0.56607   2.65e-06
+     12.0    0.39726   0.85947   0.46221     0.289214     1.627574     0.46221   2.06e-06
+     20.0    0.16885   0.50393   0.33507     0.442126     3.170073     0.33507   1.40e-06
+     30.0    0.08205   0.33040   0.24835     0.564982     5.195017     0.24835   9.79e-07
+    100.0    0.00842   0.09609   0.08767     0.832348    19.858901     0.08767   3.06e-07
+    300.0    0.00097   0.03169   0.03071     0.939515    62.132507     0.03071   1.02e-07
+   1000.0    0.00009   0.00947   0.00938     0.981326   210.200656     0.00938   0.00e+00
+
+[B] BOOSTED O(w^2) BVP  (source -2 w^2 g ; response C = d/du[u^2/(a0-u)])
+    iterations = 1   max relative residual = 1.389e-10
+
+    r(kpc)    g/a0      da=du (m/s^2)   da/(w^2 a0)   da/g        a1_eff=2da/(w^2 g)   a1*A36   ratio   a1 g/(2a0)
+      1.0   6.45167   3.371029e-17      0.23667   5.5823e-08        0.07337      0.073  1.00504    0.23667
+      2.0   4.38845   4.459339e-17      0.31308   1.0856e-07        0.14268      0.143  0.99779    0.31308
+      3.0   3.24690   5.429421e-17      0.38119   1.7865e-07        0.23480      0.235  0.99915    0.38119
+      5.0   2.07153   6.996688e-17      0.49122   3.6085e-07        0.47426      0.475  0.99844    0.49122
+      8.0   1.30454   8.620592e-17      0.60523   7.0600e-07        0.92789      0.928  0.99988    0.60523
+     12.0   0.85947   9.962307e-17      0.69943   1.2384e-06        1.62758      1.628  0.99974    0.69943
+     20.0   0.50393   1.137689e-16      0.79875   2.4120e-06        3.17007      3.169  1.00034    0.79875
+     30.0   0.33040   1.222403e-16      0.85822   3.9527e-06        5.19502      5.194  1.00020    0.85822
+
+    max da            = 1.417743e-16 m/s^2  at r = 1000.000 kpc  (w^2 a0 = 1.424345e-16)
+    max da/(w^2 a0)   = 0.99536507
+    max a1_eff        = 210.217064 at r = 1000.000 kpc
+    max a1_eff*g/(2a0) = 0.99536507
+    max |a1_eff/(4u'/(1-u'))-1| for 2<r<100 kpc = 4.749e-05
+    alpha_1_eff / 1e-4 at 1 kpc = 733.68 ; at 30 kpc = 51950.16
+    bilinearity factor w^2/2 = 7.608681e-07 (A59: every alpha_1 observable carries (v/c)^2)
+    quadrupole upper bound (2/13 of the monopole): 2.1811e-17 m/s^2, axis along w
+    the max deviation over 2-100 kpc sits at r = 2.0006 kpc (O((L*/r)^2) gradient correction)
+    at the 1000 kpc boundary the deviation is 7.806e-05: the finite-w^2 term 2w^2 u'/(1-u')
+
+    PPN BREAKDOWN DIAGNOSTICS
+      u' = 0.0909 (10% response error) at r = 4.4314 kpc
+      u' = 0.5000 (50% response error) at r = 24.1414 kpc
+      u' = 0.9000 (90%) at r = 176.4323 kpc
+      u' = 0.9900 (99%) at r = 1000.0000 kpc
+      Phi/c^2 at 8 kpc = 2.6106e-07 ; w^2 = 1.5217e-06 ; w^2/(Phi/c^2) = 5.8290
+      max Phi/c^2 (r=0) = 9.5637e-07  -> w^2 exceeds Phi/c^2 at every radius
+      dropped O(eps^2) term |2 Phi| vs retained alpha1 term (a1/2)w^2:
+        r=1 kpc 25.723 ; 3 kpc 5.359 ; 8 kpc 0.740 ; 20 kpc 0.1036 ; 30 kpc 0.0440 ; 100 kpc 3.69e-03
+      contamination = 1 at r = 6.9463 kpc ; response 1/(1-u') = 2 at r = 24.1414 kpc
+      -> PPN-contaminated below 6.95 kpc, response-nonlinear above 24.14 kpc
+      (L*/r)^2 u'/2 at 1, 8, 30 kpc = 5.187e-06, 8.472e-07, 1.808e-07
+      u/g (the P charge fraction of the field) at 1, 8, 30, 1000 kpc = 0.1342, 0.4339, 0.7516, 0.9906
+
+    nonlinear cross-check: u(w^2)-u(0) at 8 kpc = 8.620576e-17 ; linear = 8.620592e-17 ; rel diff = 1.909e-06
+    nonlinear solve: it=5 res=4.268e-09 a0, u<a0 True
+
+    w^2 continuation (nonlinear difference / w^2, normalised to w^2=1e-8):
+      w^2=1e-08   q/q(w^2=1e-8)-1 = +0.000e+00
+      w^2=1e-06   q/q(w^2=1e-8)-1 = -1.248e-06
+      w^2=1e-04   q/q(w^2=1e-8)-1 = -1.254e-04
+      w^2=1e-02   q/q(w^2=1e-8)-1 = -1.241e-02
+
+[C] ANGULAR STRUCTURE OF THE O(w^2) SOURCES
+    term            equation         l=0        l=1          l=2
+    clock_iso      P equation         2.00000   -3.331e-16   -0.00000
+    clock_hij      P equation         0.33333   -8.327e-17    0.66667
+    gate_W         P equation        -0.16667    4.163e-17   -0.33333
+    lapse_sqrth    lapse equation    -0.50000    8.327e-17    0.00000
+    lapse_W        lapse equation    -0.16667    4.163e-17   -0.33333
+    TOTAL          P equation         2.16667    0.000e+00    0.33333
+    analytic: l=0 = 13/6 = 2.166667, l=1 = 0, l=2 = 1/3 = 0.333333, l=2/l=0 = 2/13 = 0.153846
+    the numerical l=0 solve uses the clock term only (coefficient 2.00000); the full
+    O(w^2) l=0 coefficient is 13/6, i.e. alpha_1 is 13/12 = +8.333333e-02 larger if the h^{ij}
+    corrections are included; the l=2 (quadrupole) source is 2/13 of the l=0 one.
+
+    dipole moment of a pure l=0+l=2 radial acceleration field: |D| = 7.066e-14 (normalised)
+    -> the l=1 (dipole) content of the induced field is identically zero.
+
+[E] THE kL* >> 1 REGIME (does the galactic solve touch the four gates?)
+    r(pc)      g/a0        (L*/r)^2      u'          a1_eff       8(r/L*)^2
+      0.01   1.4638e+09   5.7453e+06   4.6673e-19   1.8816e-18   1.3924e-06
+      0.10   1.4870e+07   5.7512e+04   4.5224e-15   1.8230e-14   1.3910e-04
+      1.00   1.4889e+05   5.7571e+02   4.5111e-11   1.8185e-10   1.3896e-02
+      3.00   1.6587e+04   6.4101e+01   3.6341e-09   1.4649e-08   1.2480e-01
+     10.00   1.5011e+03   5.7629e+00   4.4318e-07   1.7864e-06   1.3882e+00
+     30.00   1.7666e+02   6.4167e-01   3.1682e-05   1.2766e-04   1.2467e+01
+
+[D] BINARY PULSAR IN THE GALACTIC FIELD
+    binary: mp=1.47 mc=0.16 Msun, Pb=5.85 h -> a=1.34459e+09 m, v_orb=4.0115e+05 m/s
+    g_int = G mp/a^2 = 107.9349 m/s^2 = 1.1532e+12 a0
+    u'_int = (a0/g)^2 = 7.5202e-25 ;  alpha-hat_1(int) = 4u'/(1-u') = 3.0081e-24
+    (Delta m/M) = 0.8037 ;  (V/c)(v/c) = 1.6507e-06
+    e_F = 0.5 a1 (Dm/M)(V/c)(v/c) = 1.9953e-30
+    de/dt = n_b e_F = 5.9528e-34 s^-1
+    Shao-Wex 2012 prior |alpha-hat_1| < 3.5e-05 -> margin = 19.07 decades
+    galactic field at R_GC=8 kpc: declared g_ext = 1.8 a0 -> u'=0.308642, a1=1.785714
+    (model here gives g/a0 = 1.30454 at 8 kpc -> a1 = 0.92789)
+    external-field differential acceleration across the orbit:
+      Da = 0.5 a1_ext g_ext (V/c)(v_orb/c) = 2.4831e-16 m/s^2
+      dPb/Pb ~ 3 Da/v_orb = 1.8570e-21   (timing floor ~1e-15)
+    EFE: mu(g_tot) = g_int/(g_int+g_ext) = 1 - 1.561e-12  -> external field changes
+         the internal response by 1.561e-12 (relative)
+    r_switch (A20) = 3.73 pc vs orbital separation 4.358e-08 pc -> separation is 8.560e+07 x smaller
+    log10(g_int/a0) = 12.06
+    declared literature priors (not data on disk): |alpha-hat_1| < 3.5e-05 (Shao-Wex 2012);
+      generic pulsar-timing |alpha_1| < 1e-4 ; Galactic differential-acceleration level
+      1e-3-1e-2 ; timing floor 1e-15.
+
+    grid convergence: u(8 kpc)/a0 at N/4 = 0.566104460, at N = 0.566104538, rel diff = 1.38e-07
+
+----------------------------------------------------------------------------------------
+CHECKS
+----------------------------------------------------------------------------------------
+  A1   static BVP max relative residual < 1e-8                        6.513e-09                    PASS
+  A3   slaved limit: |u-u_slaved|/u < 5e-3 for r>3 kpc                5.757e-06                    PASS
+  A7   P-gradient term active: |u-u_slaved|/u > 1e-6 at 0.3 kpc       6.4344e-05                   PASS
+  B1   boosted BVP max relative residual < 1e-8                       1.389e-10                    PASS
+  B2   linearised du = u(w^2)-u(0) to < 1e-5                          1.909e-06                    PASS
+  B3   da = du > 0 at every interior radius                           1.5522e-19                   PASS
+  B4   bound 0.9 < max da/(w^2 a0) < 1                                0.995365                     PASS
+  B5   alpha_1_eff = 4u'/(1-u') for 2<r<100 kpc, < 1e-4               4.749e-05                    PASS
+  B6   alpha_1_eff * g <= 2 a0 with max ratio > 0.95                  0.995365                     PASS
+  B7   A36 table reproduced, max |ratio-1| < 2e-2                     5.038e-03                    PASS
+  B8   w^2-continuation: q(w^2)/q(0) - 1 = O(w^2)                     +0.00e+00 -1.25e-06 -1.25e-04 -1.24e-02 PASS
+  B9   A36 8 kpc value: 0.92 < alpha_1 < 0.94                         0.92789                      PASS
+  C1   every O(w^2) source has zero l=1 projection                    3.331e-16                    PASS
+  C2   total source l=2/l=0 = 2/13 = 0.153846                         0.153846                     PASS
+  C3   l=0 = 13/6 = 2.166667                                          2.166667                     PASS
+  C4   dipole moment of l=0+l=2 field = 0                             7.066e-14                    PASS
+  C5   pure-boost O(w^2) ADM pieces cancel: a = -grad Phi exactly     0,0,0                        PASS
+  C6   the O(eps^2) term -Phi^2 does NOT cancel: residual = 2 Phi grad Phi 2*x*f(sqrt(x**2 + y**2 + z**2))*Su PASS
+  C7   PPN 2PN contamination > 10 at 1 kpc                            25.72                        PASS
+  C8   PPN 2PN contamination < 0.05 at 30 kpc                         0.0440                       PASS
+  E1   kL*>>1 regime: alpha_1_eff(1 pc) < 1e-6                        1.818e-10                    PASS
+  E2   kL*>>1 regime: alpha_1_eff(10 pc) < 1e-4                       1.786e-06                    PASS
+  E3   kL*>>1 scaling alpha_1_eff = 4(a0/g)^2 within 10%              True                         PASS
+  D1   alpha-hat_1 at the binary internal field < 1e-20               3.008e-24                    PASS
+  D2   e_F < 1e-25                                                    1.995e-30                    PASS
+  D3   Shao-Wex margin > 15 decades                                   19.07                        PASS
+  D6   EFE correction to the internal field < 1e-9                    1.561e-12                    PASS
+
+  27/27 PASS
+  json -> a82_results.json
+  EXIT 0

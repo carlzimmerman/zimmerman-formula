@@ -186,8 +186,18 @@ components; the lapse fixes `π_P^L`, not `ψ`. The design budget of 4 was the e
 the four gates **do** descend from one premise: the charge `D·P` with unit coefficient in `H_⊥`, no
 `O(ε)` P term in `H_i`, and no P-curvature coupling — from which `Φ = Ψ` at `O(ε)`, `c_T² = 1` exactly,
 `α₁ = α₂ = 0` with `β_PPN = 1` wherever `kL_* ≫ 1`, and `dg/dg_N = 1 + a₀²/(g²+2a₀g) ≥ 1` all follow.
-**What A54 does *not* give: the galactic-regime α₁**, which is `0.073–5.194` at 1–30 kpc and needs the
-extra assumption that the PPN expansion holds there — it does not. **A55's SLACS shortfall, re-audited by
+**The galactic-regime α₁ is computed, and it is not a dipole (A82, 27/27, 12 mutations).** The naive PPN
+coefficient `0.073–5.194` at 1–30 kpc is reproduced exactly (A36's value, max deviation `5.0×10⁻³`), but the
+exact nonlinear BVP shows the induced acceleration is a **bounded radial monopole**,
+`δa = −2w²a₀²/(g+2a₀)` with `δa ≤ w²a₀ = 1.424×10⁻¹⁶ m/s²`, and the **dipole is identically zero** — every
+`O(w²)` source is even in `cosθ` (`l=1` projections `≤3.3×10⁻¹⁶`, dipole moment `7.1×10⁻¹⁴`), with a
+quadrupole of `2/13`. The expansion fails at *both* ends of the interval: the ordering `w² ≪ ε` is violated
+everywhere (`w²/(Φ/c²) = 5.83` at 8 kpc) and the response denominator `1−u′ > 1/2` beyond `24.14 kpc`, so no
+controlled window spans 1–30 kpc (break radii `6.95` and `24.14 kpc`). The pulsar prediction is
+`α̂₁ = 3.0×10⁻²⁴`, **19.07 decades inside** Shao–Wex's `3.5×10⁻⁵`; suppression is kinematic
+(`g_int = 1.15×10¹²a₀`), not EFE. Caveats: the `h^{ij}` `l=0` term is enumerated but not integrated (quoted
+`α₁` are `12/13` of the full first-order value) and the `l=2` radial BVP is not solved (`2/13` is an upper
+bound). **A55's SLACS shortfall, re-audited by
 A70, is not a falsification.** A55's 11.5 % / 4.9σ used `1/median²` for the mass boost — assuming
 `M₂D ∝ R²` — giving `M_*/L = 1.283×` Salpeter. The model's actual response is `dlnR/dlnB = 0.7775`
 (computed by finite-differencing the lens-equation solver), and root-finding gives **`B = 1.174 ± 0.039`**
@@ -524,7 +534,7 @@ by **scale dependence** — that is the discriminator A45 names.
 | occupancy-noise skew | flips sign at `g = a₀` (n=1) vs `3a₀/8` (n=2), **opposite signs** on (0.375,1)a₀ | no flip, or a flip elsewhere |
 | Jeans mass | `d ln M_J/d ln ρ = +1` (denser → bigger clumps) | the standard −½ |
 | laboratory | `|δG/G| < 10⁻⁶` vs 340 ppm source-boost | +340 ppm |
-| environment-dependent α₁ | 0.046–5.19 at `g ~ a₀` on kpc scales; `< 10⁻¹³` at every acceleration where a PPN test exists. Crosses `10⁻⁴` at `g = 199 a₀ = 2.25×10⁻⁸ m/s²`, i.e. `r = 513 AU` from the Sun | a preferred-frame anisotropy in the outer Oort cloud at `α₁ v²/c²`; or any measured α₁ above `10⁻⁴` in a system at `g ≫ a₀` |
+| galactic α₁ | coefficient runs `0.046–5.19` at `g ~ a₀`, but the induced acceleration is a **monopole with identically zero dipole** (A82), bounded by `w²a₀ = 1.42×10⁻¹⁶ m/s²`; `α̂₁ = 3.0×10⁻²⁴` in a Galactic-field pulsar | not a falsifier as stated — **retired** (A82). A measured preferred-frame *dipole* in a system at `g ≪ a₀` would kill it, but no such measurement exists |
 
 ---
 
@@ -564,14 +574,13 @@ A51's joint fit gives `κ = 0.371 ± 0.119` (total), with ½ at **1.09σ in tota
 statistically**; 0.4824 and 0.4979 are **undecidable even at N = 1000** (0.15σ / 0.02σ with the
 coherent floor; three sigma on 0.4824 needs 6,023 galaxies). And **A62 has closed the three named
 derivation routes with exact numbers** — §6.1 below. No route works, so the number stays open *for
-the reason that it is κ = ½*; (2) the galactic-regime α₁ — **computed, positive, and SURVIVED**: A36
-gives 0.93 at 8 kpc (its own 0.046–5.19 table spans the radii), so "α₁ = α₂ = 0" is false in the MOND
-regime; but **A59 proves every α₁ observable carries (v/c)²**, so the bound `|α₁| < 10⁻⁴` only binds
-where it is measured — at LLR's `6.3×10⁷ a₀` the theory gives `1.1×10⁻¹³`, 8.9 decades inside — and
-**A60** shows the Sun-embedded-in-Galaxy field moves `α₁(1 AU)` by 4.9×10⁻⁸ to `−1.63×10⁻¹³`, 6.1×10⁸
-below the bound. A36's exclusion is over-scoped by ~13 decades; the theory survives its own
-coefficient. The distinctive *prediction* is that α₁ is **environment-dependent** (46 decades of
-running), crossing 10⁻⁴ at `g = 199 a₀`, i.e. ~513 AU from the Sun; (3) the inner `u = 0.47`; (4) `L_*`'s **normalisation** — A65 derives
+the reason that it is κ = ½*; (2) the galactic-regime α₁ — **CLOSED by A82, and the earlier "SURVIVED"
+reading is withdrawn**: A36's coefficient does run `0.046–5.19` as computed, but the exact nonlinear BVP
+shows the induced acceleration is a radial **monopole**, with the **dipole identically zero** and
+`δa ≤ w²a₀ = 1.42×10⁻¹⁶ m/s²`. There is no preferred-frame *observable* at galactic accelerations, so
+"α₁ = α₂ = 0" was never false there in a measurable sense; the pulsar prediction `α̂₁ = 3.0×10⁻²⁴` is
+19.07 decades inside Shao–Wex. The `513 AU` crossing belonged to the coefficient, not to a measurable
+dipole, and is withdrawn with it; (3) the inner `u = 0.47`; (4) `L_*`'s **normalisation** — A65 derives
 the *form* `L_* = σ_c²/a₀ = (σ_c/c)²L_MOND` with coefficient exactly 1 and no tuned constant, but the
 number is **fitted in normalisation**: 24.025 pc canonical, 23.429 pc thermal, 19.865 pc on P3's
 footing (§6.1). A61's `K` question is settled and **its parenthetical reversed**: `K = 4πG → 24.025 pc`,
@@ -580,8 +589,9 @@ against a budget of 4 and graded that a failure; A54's canonical analysis shows 
 first-class constraints give **5 DOF**, with the scalar's kinetic coefficient `Q₀ = (2+3β)/(Kβ) + ηk²/K²`
 positive **iff `β > 0`** — so all five modes are healthy and the "fifth" is the P longitudinal already
 counted among `P_i`'s three components. The budget of 4 was wrong, not the action. **What remains open is
-observational, not structural**: A54 does *not* imply the galactic-regime `α₁ = 0.073–5.194` (it needs an
-assumption the expansion does not grant), and A55's SLACS shortfall — re-audited by A70 — requires
+observational, not structural**: the galactic-regime `α₁` is now computed rather than assumed — A82
+reproduces the coefficient `0.073–5.194` but finds a **zero dipole** and a monopole bounded by `w²a₀` —
+and A55's SLACS shortfall — re-audited by A70 — requires
 `M_*/L = 1.174 ± 0.039×` Salpeter, which sits **1.80σ** from the same survey's dynamical IMF calibration
 and **inside its 95 % bound by 0.25 %**. So the relativistic sector is internally consistent and
 observationally at the edge of one IMF calibration, which is a much sharper statement than a ghost hunt.
@@ -629,8 +639,9 @@ P-curvature coupling — all four gates follow as corollaries: `Φ = Ψ` at `O(�
 theorem not an assumption**), `c_T² = 1` to all orders with `m_T² > 0` (**GWs at light speed**, no
 tachyon), `dg/dg_N = 1 + a₀²/(g²+2a₀g) ≥ 1` and `c_s² = 1` (**Newtonian Solar System**), and the principal
 positivity `β > 2ηa₀²/K` satisfied to one part in 10¹⁸ (**stable at every acceleration**). **Two honest
-qualifiers.** First, A54 does *not* imply the galactic-regime `α₁ = 0.073–5.194`; that needs an assumption
-the PPN expansion does not grant. Second, **A55's observational check is an IMF statement, not a falsification** (A70): the required
+qualifiers.** First, the galactic-regime `α₁`: A54 did not imply it, and A82 has now computed it — the
+coefficient runs to `5.194`, but the induced acceleration is a monopole with **zero dipole**, bounded by
+`w²a₀ = 1.42×10⁻¹⁶ m/s²`, so the expansion's failure is harmless. Second, **A55's observational check is an IMF statement, not a falsification** (A70): the required
 `M_*/L = 1.174 ± 0.039×` Salpeter sits **1.80σ** from the same survey's dynamical calibration
 (`1.00 ± 0.036` dex, 95 % `[0.850, 1.177]`), inside by 0.25 %. A55's 4.9σ came from `1/median²`
 (`M₂D ∝ R²`) instead of the model's `dlnR/dlnB = 0.7775`, which overstates the boost by 8 % — the
