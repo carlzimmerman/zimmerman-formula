@@ -5,9 +5,19 @@ that follows) → [FINAL_THEORY.md](FINAL_THEORY.md) (the working document, incl
 its own 32 defects) → [BRIEF.md](BRIEF.md) (the contract every lane worked to) →
 [STATUS_BOARD.html](STATUS_BOARD.html) (one screen).
 
-**Scale:** 44 lanes (A1–A16, A18–A44; there is no A17), **507 checks counted in the coordinator's
-sweep plus ~56 in the three lanes that print a different format (A23, A31, A32) — ≈563 total**,
-and **40 Lean theorems**, no `sorry`, axioms `{propext, Classical.choice, Quot.sound}`.
+**Scale:** 48 lanes (A1–A16, A18–A65; there is no A17), **≈670 checks** counted in the coordinator's
+sweeps plus the odd-format lanes (A23, A31, A32), and **40 Lean theorems**, no `sorry`, axioms
+`{propext, Classical.choice, Quot.sound}` — verified by `lake env lean` from
+`fable_independent_2026/lean_2026`.
+
+## The four core questions — status
+
+| question | answer | status |
+|---|---|---|
+| **Q1** why the vacuum switches at `2√(32π/3) = 11.5776` (≈ 1/12 horizon) | it *is* `2Z = Z/κ`, so "why 11.5776" is "why κ = ½"; all three named mechanisms fail with exact numbers (capacity saturation = Friedmann ⇒ κ = 2.894; equipartition = Friedmann ⇒ 1; Langevin ⇒ 1/(2π); Langmuir ⇒ 1/Z) | **A62 — OBSTRUCTION** |
+| **Q2** which medium, and n=1 or n=2 | the Langmuir gate — one-sided, hard-core, single-occupancy, activity-driven; needs *rectification* (`f″(0) ≠ 0`), not saturation. n=1 forced twice. Discriminator: sign of occupancy-noise skew, +0.7071 vs −0.3483 | **A63 — DERIVED medium, UNDECIDED data** |
+| **Q3** relativistic lensing, four gates as one theorem | A3/A12/A4/A22 each closed 1–2 gates; the joint constraint algebra (ghost count) is A64, still running | **A64 — IN FLIGHT** |
+| **Q4** where `L_*` comes from, 24 pc–1 kpc | `L_* = σ_c²/a₀ = (σ_c/c)²L_MOND` — form derived, coefficient exactly 1; **number fitted** to the 24 pc anchor; guard pre-registered and honestly failed | **A65 — FITTED(σ_c)** |
 
 ## The five coordinator scripts — the spine, run these first
 
@@ -70,6 +80,11 @@ and **40 Lean theorems**, no `sorry`, axioms `{propext, Classical.choice, Quot.s
 | [A46](A46_cosmology_fit/report.md) | is the cosmology falsified | COMPLETE | 17/17 | **exact ΛCDM reparametrisation**, Δχ² = −0.58; `H₀ = 56.8` |
 | [A47](A47_fret/report.md) | the `f_ret = 0.10` factor | **RESOLVED** | 18/18 | it is a **baryon** fraction; `N = 53.64`; `N_avail/N_req = 2.38` |
 | [A48](A48_first_integral/report.md) | A33 §5's first integral | **RESOLVED** | 25/25 | an **identity**, not a constraint; `M_src = M_b`; Δχ² = 7.5×10⁴ |
+| [A51](A51_kappa_measured/report.md) | κ measured to sub-percent | **MEASURED — not decidable** | 17/17 | `κ = 0.371 ± 0.119` (total); ½ at 1.09σ total, **4.9σ stat**; N=1000 gap 0.15σ; needs 6,023 galaxies |
+| [A62](A62_twelfth/report.md) | why 11.5776 / 1-12 horizon | **OBSTRUCTION** | 25/25 | all 3 routes fail: saturation=Friedmann ⇒ κ=2.894; equipartition ⇒ 1; Langevin ⇒ 1/(2π); Langmuir ⇒ 1/Z. New: Ω_Λ = 32π/147 |
+| [A63](A63_saturating_medium/report.md) | saturating medium; n=1 vs n=2 | **DERIVED medium** | 31/31 | Langmuir gate unique; tanh/Langevin odd ⇒ exponent 3; Born–Infeld anti-screens; skew +0.7071 vs −0.3483 decides n |
+| [A64](A64_four_gates/report.md) | four gates as one theorem | **IN FLIGHT** | — | joint constraint algebra; ghost count; Φ=Ψ from the action |
+| [A65](A65_stiffness_origin/report.md) | where `L_*` comes from | **FITTED(σ_c)** | 24/24 | `L_* = σ_c²/a₀ = (σ_c/c)²L_MOND`; 24.025 pc canonical; guard pre-registered; K parenthetical reversed |
 
 ## Corrections (fix-forward; nothing deleted)
 

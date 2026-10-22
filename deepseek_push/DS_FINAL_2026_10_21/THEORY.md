@@ -150,6 +150,20 @@ pick 4, nothing forces it), the factor 2 (A27: `κ = ½` is a **curve** `β√χ
 excluded). **Deriving κ is a UV problem, not an EFT problem, and that is a proved statement
 about this system.**
 
+**What the data say about κ — measured, and not decisive.** A51 ran the first joint fit with a
+real error bar on κ itself (171 SPARC curves, the cluster amplitude, KiDS lensing, BAO+SNe+CMB):
+**`κ = 0.371 ± 0.026 (stat) ± 0.116 (syst) = 0.371 ± 0.119`** in the P3 convention. So ½ sits
+**1.09σ away in total error** — admitted, not confirmed — but **4.9σ away statistically**; the whole
+distance between "excluded" and "admitted" is the error model, not the data. The fit is dominated by
+SPARC (±9.4 %); the cluster adds 11.0 % but only by marginalising `u`, which was derived from the same
+amplitudes; KiDS carries **exactly zero** information (an exact `(M_b,a₀)` degeneracy — χ² constant to
+6 digits over a factor 2.9 in `a₀`); and BAO+SNe+CMB is **κ-blind**, because κ does not enter `E(z)` at
+all. Seven defensible weightings of the same 3375 points give κ from **0.325 to 0.495** (20.8 % half-span,
+6× the bootstrap error) — the systematic is analysis choice, not a prior. At `N = 1000` the gap to
+0.4824 is **1.2σ statistically, 0.15σ with the coherent floor**; three sigma needs **6,023 galaxies**,
+and no `N` reaches it while the floor stands. **κ = ½ is therefore not empirically decidable; only a
+derivation settles it** — which is exactly what A62 attempts.
+
 **3.7 The cold sector.** `M_c = 5.3643 M_b` is `Ω_c/Ω_b`, not a cold-sector parameter (A9, A11).
 The law's phantom-to-baryon ratio at the virial radius is **25.90** (MW-like) and **3.77**
 (cluster-like), 6.87× apart, crossing 5.3643 at `M_v = 1.758×10¹⁴ M⊙` independently of
@@ -269,14 +283,59 @@ nulls; "cold = the law's phantom" (7.7σ).
    baryons-only by **Δχ² = 7.5×10⁴** at the theory's `a₀`. A40's "2.523× defect" claim falls
    (its ratio is really 6.3643, the total-to-baryon mass ratio), and so does A33 §5's sentence.
 
-**Open, precisely**: (1) the one equation for κ; (2) the galactic-regime α₁ — *computed and
-positive*: A36 gives 0.046–5.19 at 1–30 kpc, so the claim is now "α₁ ≠ 0 in the MOND regime, and
-its observable effect is v²/c²-suppressed where it is large"; A59 settles whether any precision
-test reaches that regime, A60 settles whether the Sun's own P field is the isolated hedgehog or
-the embedded galactic one (A36's K12 finds a 2.19×10⁵ mismatch); (3) the inner `u = 0.47`;
-(4) `L_*`'s microscopic value (24–90 pc under `f_c→1`, up to 180 pc at `f_c=0.25`) — A61 settles
-whether the length is 24.02 pc (`K = 8πG`) or 16.99 pc (`K = 4πG`), which moves `R_core` by √2;
-(5) a UV completion.
+**Open, precisely**: (1) the one equation for κ — **measured, not decidable, and now obstructed**:
+A51's joint fit gives `κ = 0.371 ± 0.119` (total), with ½ at **1.09σ in total error** but **4.9σ
+statistically**; 0.4824 and 0.4979 are **undecidable even at N = 1000** (0.15σ / 0.02σ with the
+coherent floor; three sigma on 0.4824 needs 6,023 galaxies). And **A62 has closed the three named
+derivation routes with exact numbers** — §6.1 below. No route works, so the number stays open *for
+the reason that it is κ = ½*; (2) the galactic-regime α₁ — *computed and positive*: A36 gives
+0.046–5.19 at 1–30 kpc, so the claim is now "α₁ ≠ 0 in the MOND regime, and its observable effect is
+v²/c²-suppressed where it is large"; A59 settles whether any precision test reaches that regime, A60
+settles whether the Sun's own P field is the isolated hedgehog or the embedded galactic one (A36's
+K12 finds a 2.19×10⁵ mismatch); (3) the inner `u = 0.47`; (4) `L_*`'s **normalisation** — A65 derives
+the *form* `L_* = σ_c²/a₀ = (σ_c/c)²L_MOND` with coefficient exactly 1 and no tuned constant, but the
+number is **fitted in normalisation**: 24.025 pc canonical, 23.429 pc thermal, 19.865 pc on P3's
+footing (§6.1). A61's `K` question is settled and **its parenthetical reversed**: `K = 4πG → 24.025 pc`,
+`K = 8πG → 16.988 pc = λ_P`; (5) a UV completion.
+
+**6.1 The four core questions, answered as far as the physics allows.**
+
+**(Q1) Why the vacuum switches at one-twelfth of the horizon scale.** It does not. `2√(32π/3) =
+11.57762` is `2Z = Z/κ`, so **"why 11.5776" is identically "why κ = ½"** — and A62 shows none of the
+three named mechanisms produces it: capacity saturation against the horizon **is** the Friedmann
+equation and returns `κ = Z/2 = 2.894` (5.79× too big, empirically dead); the field's own zero-point
+stress saturates at the **Planck** acceleration (4.458×10⁶¹ × cH); a conformal field gives **0**;
+holographic equipartition **is** Friedmann (coefficient 1); a volume law gives 6; Langevin/Brillouin
+give exactly `1/(2π) = 0.159155` = 1.8426 × 1/(2Z); Langmuir gives exactly `1/Z`, wrong shape *and*
+scale. The literal "one twelfth" is `Z/12 = 0.4824008`, 3.52 % below ½. **Look-elsewhere: 223 hits,
+and `√134` is simpler and closer than `2Z`.** So the factor is a *consequence*, not a cause, and the
+honest statement is an obstruction, not a derivation. One new falsifiable identity falls out: the
+`a₀/(cH₀) = 1/7` coincidence to 5.6×10⁻⁴ is **exactly `Ω_Λ = 32π/147`**, i.e. `0.683827` vs Planck's
+`0.6847 ± 0.0073` — a 0.13σ agreement that is a *prediction*, not a fit.
+
+**(Q2) What medium produces the saturating term, and does nature pick n = 1 or n = 2.** A63's
+admissibility theorem: the medium must supply **rectification**, not saturation — the isotherm needs
+`f″(0) ≠ 0` so that `A = g − g²/a₀ + …`. Every **centrosymmetric** saturator (`tanh`, Langevin) is
+odd, has `f″(0) = 0`, and gives `g_N ∝ g³` — exponent 3, **no MOND at all**. **Born–Infeld** caps the
+*drive* instead of the *response* and anti-screens everywhere. The only serious dielectric rival, a
+**biased** non-centrosymmetric `tanh`, matches the deep limit exactly but its capacity is bounded by
+`a₀/2` — it cannot reach the observed anomaly. The unique admissible medium is a **one-sided,
+hard-core, single-occupancy lattice driven by an activity: the Langmuir gate**, with capacity per
+site `q = a₀/N_s` and affinity `a₀`. Given a lattice, **n = 1 is forced twice over** — by `c₂ = −1`
+with `C = s = a₀`, and by least dissipation (n = 2 is not a stationary state, A35). The discriminator
+is a **sign**, needing no calibration: the occupancy-noise skew at fixed `g_N` is **+0.7071 (n=1) vs
+−0.3483 (n=2)** at `g = a₀/2`, zero at `a₀` vs `3a₀/8`, opposite signs on `(0.375,1)a₀`; N ≈
+7,000–13,500 points in the window decides it. **Status: DERIVED (medium), UNDECIDED (data).**
+
+**(Q4) Where the stiffness length comes from.** `L_* = σ_c²/a₀` — the distance the cold medium
+travels at `σ_c` during `t_acc = σ_c/a₀`, the time in which the theory's only acceleration changes the
+velocity by one `σ_c`. Equivalently `L_* = (σ_c/c)²L_MOND`, which **explains the nine-decade
+hierarchy** rather than fitting it. The guard against constant-juggling was pre-registered (four
+criteria C1–C4, written before any number was computed) and **A65 fails its own zero-parameter
+standard honestly**: the form is derived with coefficient 1, the number is a one-parameter fit to the
+24 pc anchor (`σ_c = 8.33 km/s`), and the independent thermal width gives 23.429 pc — 2.38 % below the
+window floor. Label: `FITTED(σ_c) / CONDITIONAL(footing)`. The measurement that would convert it to a
+derivation: a **core-independent `σ_c` to ~1 %** at 30–100 pc in a face-on low-mass dwarf.
 
 **What A36's `k` is — and what the hedgehog zero actually covers.** A36 evaluates the gradient
 term with the **perturbation's** wavenumber `k = 1/r`, so `(kL_*)²u′/2 ≤ 5.2×10⁻⁶` and `D ≈ 1`
