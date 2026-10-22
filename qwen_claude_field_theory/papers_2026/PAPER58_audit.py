@@ -180,7 +180,7 @@ num("D5 minimal subclass 11 values (JSON)", str(lee["S1_minimal_CFG493"]["n_vals
 num("D5 a0(2.5)/a0(0) (JSON)", f4(d5["angle_T"]["Hz2p5_over_H0"]), "= {}, the record's rival law")
 ft = d5["angle_T"]["footings"]
 num("D5 nearest S1 (JSON)", f"{ft['canonical']['nearest_S1']['kappa']:.5f} (canonical) and {ft['alt']['nearest_S1']['kappa']:.5f} (alternative)", "{}")
-check("D5 A19 grid (JSON)", [g["R"] for g in d5["angle_A"]["CFG493"]["grid"]] == [1, 2, 3, 4, 8, 12, 16] and "R ∈ {1, 2, 3, 4, 8, 12, 16}" in flat)
+check("D5 A19 grid (JSON)", [g["R"] for g in d5["angle_A"]["CFG493"]["grid"]] == [1, 2, 3, 4, 8, 12, 16] and "R∈{1,2,3,4,8,12,16}" in flat.replace(" ", "").replace("∈2{", "∈{"))
 b = d5["inputs"]["bands"]["CFG493"]
 num("D5 CFG493 band (JSON)", f"{b[0]:.3f} ± {b[1]:.3f}", "κ = {})")
 num("D5 5 of 7 within 2 sigma (JSON)", str(d5["angle_A"]["CFG493"]["n_within_2sigma"]), "{} of 7 lie within 2σ")
@@ -379,9 +379,12 @@ rd("D3 SC2x never started", R3, "README.md", "SC2x (alt) never started", "SC2x (
 rd("D3 stopped 01:01", R3, "README.md", "the chain stopped at 2026-10-22 01:01 local", "2026-10-22 at 01:01 local")
 LED = open(os.path.join(ROOT, "campaign_fresh_gravity", "LEDGER.md"), encoding="utf-8").read().splitlines()
 r960 = [l for l in LED if l.startswith("| CFG960")]
-check("D3 ledger: no CFG960 outcome row yet ('STARTED' only)", any("chain960.sh STARTED" in l for l in r960) and not any(w in l for l in r960 for w in ("killed", "swap rule", "SC1x VOID"))
-      and "the ledger row still reads \"STARTED\"" in flat.replace("“", '"').replace("”", '"'))
-check("D3 no CFG960 commit after D3", git("log", "--format=%h", "77d59a9a38..HEAD", "--", "campaign_fresh_gravity/CFG960_sctm_engine").stdout.strip() == "")
+check("V11 D3 ledger outcome row CFG960-RUN-1021 and A6 row exist, cited", any(l.startswith("| CFG960-RUN-1021 |") and "killed 4×" in l for l in LED)
+      and any(l.startswith("| CFG960-A6 |") and "PRE-RESULT" in l for l in LED) and "CFG960-RUN-1021" in flat)
+after = git("log", "--format=%h %s", "77d59a9a38..HEAD", "--", "campaign_fresh_gravity/CFG960_sctm_engine").stdout
+check("V11 D3 CFG960 commits after D3 are A6 + its engine, cited", "f72bef68ea CFG960 AMENDMENT A6" in after and "2ccd47be97 CFG960 A6 engine" in after and "13.4 GB above particles" in after
+      and "f72bef68ea" in flat and "2ccd47be97" in flat and "13.4 GB above the particles" in flat)
+check("V11 D3 no CFG960 verdict commit", "VERDICT" not in after.upper().replace("FROZEN READING/SCORER/VERDICT UNCHANGED", ""))
 has("D3 no verdict", "no verdict")
 
 
@@ -464,11 +467,11 @@ num("W E2 least tense beta=5 (JSON)", f"{e2['R3_outcome']['least_tense'][1]:.2f}
 check("W E2 no-go survives, nobody passes (JSON)", e2["R3_outcome"]["outcome"] == "No-go SURVIVES" and not any(v.get("both") for v in R3e.values() if isinstance(v, dict)))
 e1 = J("E1_input_audit", "e1_input_audit_results.json")
 s1 = e1["S1"]
-num("W E1 native H0 band (JSON)", f"{min(s1['H0_native'].values()):.1f}-{max(s1['H0_native'].values()):.1f} km/s/Mpc", "({}")
-num("W E1 canonical shift (JSON)", f"-{abs(s1['shift_vs_canonical_pct'][0]):.1f}% to +{s1['shift_vs_canonical_pct'][1]:.1f}%", "within {} of the canonical")
+num("W E1 withdrawn native H0 band, named as E1's (JSON)", f"{min(s1['H0_native'].values()):.1f}-{max(s1['H0_native'].values()):.1f} km/s/Mpc", "H0 of {} from the record's")
+num("W E1 a0 bracket (JSON)", f"-{abs(s1['shift_vs_canonical_pct'][0]):.1f}% to +{s1['shift_vs_canonical_pct'][1]:.1f}%", "values, {} around the canonical footing")
 sb = s1["sigma_below_SH0ES"].values()
-num("W E1 sigma below ladder (JSON)", f"{min(sb):.1f}-{max(sb):.1f}σ", "sits {} below the local")
-check("W E1 ladder 73.0 +- 1.0 (JSON)", s1["SH0ES_on_disk"] == [73.0, 1.0] and "(73.0 ± 1.0)" in flat)
+check("V11 E1's 15.5-18 sigma flag removed (only named as v1.0's)", f"{min(sb):.1f}-{max(sb):.1f}σ" not in flat and "not the 15-18σ of v1.0" in flat)
+check("W E1 ladder 73.0 +- 1.0 (JSON)", s1["SH0ES_on_disk"] == [73.0, 1.0] and "73.0 ± 1.0" in flat)
 rd("W E1 43 inputs (README)", "E1_input_audit", "README.md", "43 inputs, each with a class", "43 inputs, each classed")
 S5 = e1["S5_D7b_D7c"]
 qq = [S5[n]["laws"][b]["max_over_Hees"] for n in ("nat_lo", "nat_c", "nat_hi") for b in S5[n]["passers_primary"]]
@@ -481,12 +484,33 @@ check("W E1 beta>=3 pass at all three native a0, 2.5 at two (JSON)", all({"beta=
 s1z = [S5[n]["laws"][b]["S1_worst_z"] for n in ("nat_lo", "nat_c", "nat_hi") for b in S5[n]["passers_primary"]]
 num("W E1 S1 still against (JSON)", f"{max(s1z):.2f}", "(z ≤ {})")
 c8 = e1["S3_S4_CFG820"]
-num("W E1 D8 flip native (JSON)", f"{c8['record (nu_RAR+EFE, Ups 1.6)']['native_lo']['dchi2_thermal']:.2f}", "native a0 ({}, allowed)")
+num("W E1 D8 flip at a0 -1.4% (JSON)", f"{c8['record (nu_RAR+EFE, Ups 1.6)']['native_lo']['dchi2_thermal']:.2f}", "below canonical ({}, allowed")
 num("W E1 D8 flip M/L (JSON)", f"{c8['Ups_V -0.2 dex']['canonical']['dchi2_thermal']:.2f}", "M/L ({})")
 num("W E1 D6 u_gal flip (JSON)", f"{e1['S6_D6']['u_gal_sps_full']['-0.2']['canonical']['u']:.3f}, +{e1['S6_D6']['u_gal_sps_full']['-0.2']['canonical']['z_vs_0p4716']:.1f}σ", "ugal = {}")
-num("W E1 u at native h (JSON)", f"{e1['S6_D6']['u_MID_variants']['native h (A46_3pt) + native a0']:.3f}", "becomes {}")
+uv = e1['S6_D6']['u_MID_variants']
+num("W E1 u at h 0.674 / 0.730 (JSON)", f"{uv['h = 0.674 (Planck), canonical a0']:.3f} at h = 0.674 and {uv['h = 0.730 (SH0ES), canonical a0']:.3f}", "{} at h = 0.730")
+check("V11 u at the excluded native h withdrawn", f"{uv['native h (A46_3pt) + native a0']:.3f}" not in flat and "the number is withdrawn" in flat)
+# ---- v1.1: covariant lane C2 (native H0 on the BBN-allowed background)
+CP = os.path.join(ROOT, "covariant_push_2026_10_22", "C2_aest_cosmology")
+c2 = json.load(open(os.path.join(CP, "c2_aest_cosmology_results.json")))
+k5 = c2["K5"]
+num("V11 C2 native H0 band (JSON)", f"{k5['H0_band'][0]:.2f}-{k5['H0_band'][1]:.2f} km/s/Mpc", "native H0 is {} (lane C2")
+num("V11 C2 abstract band (JSON)", f"{k5['H0_band'][0]:.1f}-{k5['H0_band'][1]:.1f} km/s/Mpc, {k5['tension_ladder_only'][0]:.1f}-{k5['tension_ladder_only'][1]:.1f}σ", "native H0 is {} below the local ladder")
+num("V11 C2 tension ladder-only (JSON)", f"{k5['tension_ladder_only'][0]:.2f}-{k5['tension_ladder_only'][1]:.2f}σ (ladder error only) or {k5['tension_combined'][0]:.2f}-{k5['tension_combined'][1]:.2f}σ", "that is {}")
+num("V11 C2 note (JSON)", f"{k5['tension_ladder_only'][0]:.1f}-{k5['tension_ladder_only'][1]:.1f}σ (ladder error) or {k5['tension_combined'][0]:.1f}-{k5['tension_combined'][1]:.1f}σ (combined)", "{} below")
+num("V11 C2 beta-branch g (JSON)", f"{k5['g_beta_native']:.4f}", "Gcosmo/GN = {} and")
+num("V11 C2 beta-branch dNeff (JSON)", f"-{abs(k5['dNeff_beta_native']):.2f}", "ΔNeff = {})")
+check("V11 C2 A78 bound g > 0.9611 (JSON cases)", "0.9611" in c2["K4"]["cases"] and "Gcosmo/GN > 0.9611" in flat)
+check("V11 C2 9/9 checks (.out)", "C2_AEST_COSMOLOGY COMPLETE: 9/9 checks PASS." in open(os.path.join(CP, "c2_aest_cosmology.out"), encoding="utf-8").read())
+check("V11 C2 record flag names E1 (JSON)", "E1_input_audit/README.md" in k5["record_flag"])
+cr = norm(open(os.path.join(CP, "README.md"), encoding="utf-8").read())
+check("V11 C2 README: canonical a0 unaffected", "The canonical a0 value does not change" in cr and "The canonical a0 is unaffected" in flat)
+check("V11 C2 result commit 2dd388643a touches the lane; cited", "covariant_push_2026_10_22/C2_aest_cosmology/" in git("show", "--name-only", "--format=", "2dd388643a").stdout and "2dd388643a" in flat)
+check("V11 A78 commit dc7cc7e409 exists; cited", "beta<0.027" in git("show", "-s", "--format=%s", "dc7cc7e409").stdout and "dc7cc7e409" in flat and "A78: β < 0.027" in flat)
+check("V11 changes note present", "Changes in v1.1 (2026-10-22)" in flat and "approved by the owner" in flat)
+check("V11 zenodo version 1.1", json.load(open(ZJ))["metadata"]["version"] == "1.1")
 rd("W E1 four flips (README)", "E1_input_audit", "README.md", "Most verdicts survive clean substitution. Four do not", "Four do not survive clean substitution")
-rd("W E1 alt is a LCDM import (README)", "E1_input_audit", "README.md", "The alt footing is a ΛCDM import", "it is a pure ΛCDM import")
+check("V11 'alt footing is a pure LCDM import' withdrawn", "it is a pure ΛCDM import" not in flat and "the alternative footing is a pure ΛCDM import (E1)" not in flat)
 e4 = J("E4_fitted_three", "e4_fitted_three_results.json")
 c4 = e4["Lstar"]["CFG820"]
 num("W E4 native floor (JSON)", f"{c4['canonical']['N1_native']:.2f} pc (canonical) / {c4['alt']['N1_native']:.2f} pc", "floor is {}")
