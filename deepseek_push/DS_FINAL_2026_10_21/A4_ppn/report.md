@@ -221,6 +221,7 @@ are unconditional.
   repo's earlier EFE estimate for the quadrature law is an O(10²) suppression; applied here it
   would leave the canonical law over the bound by more than an order of magnitude, but that
   number is not recomputed in this lane.
+  - **ERRATUM (2026-10-22, doors push D7):** an O(10²) EFE suppression cannot apply to the canonical law's 1/y tail: D7 adds the Galaxy's field to the algebraic QUMOND phantom source at 1.5 AU and finds the angle-averaged monopole (which sets the radial anomaly) unchanged to 1e-9 (local phantom density changes ≤ 3.3e-8; tidal term ~1.9e-4 a₀). The 2557× stands without a turn-off. See `doors_push_2026_10_22/D7_turnoff_yt/README.md` (K3).
 - **No Cassini Q₂.** The quadrupole is a different functional of `ν`; the patched canonical law's
   Q₂ is a separate calculation (and the sharper gate in Park+2026).
 - **No galactic/RAR fit.** The turn-off costs 2.22% of the anomaly at `y = 10`

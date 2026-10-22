@@ -46,6 +46,8 @@ Units: c = 1 unless stated; signature (-+++); K = 8πG.
   (Zenodo 23171085, 23251231.) Whether the *canonical* law needs the same cure
   is an open question for lane C2.
 
+> **ERRATUM (2026-10-22, doors push D7):** this is not open. A4 already showed the canonical law needs the cure (bare anomaly 2557× B_E), and D7 confirms it: its tail is y(ν−1) → 1, a constant a₀ anomaly, **2557.4× B_E (canonical) / 3087.4× (alt) at 1.5 AU** (quadrature 1278.7× / 1543.7×). Adding the Galaxy's external field leaves the monopole unchanged to 1e-9, so EFE does not remove it. P5 (or another turn-off) is needed on both footings, and nothing in the action supplies it (D7 SCOPED NO-GO; `doors_push_2026_10_22/D7_turnoff_yt/README.md`).
+
 ## 2. Closed doors — do NOT re-run
 
 κ: sonnet55 puzzle_32pi (~50 lanes), opus_48 kappa_audit, KS01 channel-count,

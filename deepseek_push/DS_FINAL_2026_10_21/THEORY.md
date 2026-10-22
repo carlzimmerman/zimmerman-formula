@@ -155,6 +155,8 @@ coefficient table tags `γ, η` as `[L²]` when in SI they are `m⁵ kg⁻¹ s�
 | Solar System | **`α₁ = α₂ = 0` is false in the MOND regime and the theory SURVIVES anyway.** A59's bilinearity theorem: `α₁` enters the Lagrangian bilinearly in velocities, so **every observable is `O = α₁ × (v/c)² × (dynamical quantity)`** — there is no velocity-independent term. The bound `|α₁| < 10⁻⁴` is a bound on the coefficient *as measured in that environment*, and this theory's `α₁(g,r_s) = 4u′/(D−u′)` spans **46 decades**. At LLR's `g = 6.3×10⁷ a₀` it gives `1.1×10⁻¹³` (**8.9 decades inside** the bound); at binary pulsars' `10⁹–10¹² a₀`, `8.4×10⁻²⁴` (**18.6 decades inside**). The galactic value 0.93 at 8 kpc is real but **no PPN test reaches it** — so A36's exclusion is **over-scoped by ~13 decades**. A60 then solved the Sun *embedded* in the Galaxy (A22 had solved it isolated): the galactic/solar field ratio is **4.57×10⁻⁶** — A36's "2.19×10⁵ mismatch" was its inverse — and the embedding shifts `α₁(1 AU)` by only 4.9×10⁻⁸, giving **−1.63×10⁻¹³, 6.1×10⁸ below the bound** (A36's K11 understated by 3×, prefactor 2 vs 4). Pioneer: preferred-frame signal 5.5×10⁻¹² to 1.8×10⁻¹¹ of the thermal residual — invisible. Kernel anomaly `a₀ = 2557 B_E` uncured; `y_t = 66.30` closes Λ and planets pass 9.14×; `a_P = GM/L_*² = 6.61×10⁻³ B_E`, unobservable (0.17σ) | A22, A4, A30, A36, **A59, A60** |
 | stability | `dg/dg_N ∈ [1,∞)` at every acceleration; `c_s² = 1`; principal positivity `β > 2ηa₀²/K` | A4, A3, §3.4 |
 
+**ERRATUM (2026-10-22, doors push D7):** (Solar System row) "planets pass 9.14×" rests on a **stand-in** Neptune bound that A4 flags `published_bound: false`. With published bounds only, the margin is **90× in y_t**, and the signal is 1.2e-4 of Saturn's bound at y_t = 66.3 (5.5e-4 even at y_t = 140). The turn-off itself remains a posit (P5). See `doors_push_2026_10_22/D7_turnoff_yt/README.md`.
+
 **3.5b The DOF count: 5 modes — computed, not budgeted (A64 → A54 → A68).** *Resolution (2026-10-22,
 A68's bracket algebra, 39/39 checks, 9 mutations each breaking a named check).* The 5-vs-4 "mismatch" is
 **closed in favour of 5, and there was never a repair to make.** Three computed facts decide it:
@@ -307,6 +309,8 @@ nonlinear.
 > decides** — wide binaries at 18–22 kAU with ≈4×10⁵ pairs. Downstream at the thermal point:
 > `y_t = 77.85` (inside [60,140]), `L★ = σ_c²/a₀ = 26.1 pc` (inside 24–90), `R_core = 57.9 pc`.
 >
+> **ERRATUM (2026-10-22, doors push D7):** the thermal y_t is quoted inconsistently in this file: 77.85 (thermal-point summary, κ table, closure paragraph), 77.944 (falsifier line) and Λc⁴/a₀² = 118.6 (closure paragraph). With 8π/κ_th² = **Λc⁴/a₀² = 118.435** the closure gives **y_t = 77.876** (118.6 would give 77.98). The original values are kept as written. See `doors_push_2026_10_22/D7_turnoff_yt/README.md` (K5).
+>
 > **The competing *derivation* of ½ is dead; ½ itself survives as the fitted value (1.35σ, A81).** `1/7` (⟺ `Ω_Λ = 32π/147`) is a *match*, not a derivation: `147 =
 > 3(cH₀/a₀)²` is defined by the measured ratio, the number is irrational so no cell count produces it,
 > and in a 260k-form pool **65 expressions land within 0.11σ of 0.6847** with `√3 − π/3` **5.32× closer**.
@@ -359,6 +363,8 @@ the κ = ½ branch and remain true; only their labelling as "the theory's value"
 | `Λc⁴/a₀² = 8π/κ²` | 32π = 100.531 | **12π² = 118.435** | — |
 | `a₀/(cH₀)` | 1/7 | **1/5.20** | — |
 | `L_MOND/ℓ₁` | 2 exactly | **2.171** | — |
+
+**ERRATUM (2026-10-22, doors push D7):** the thermal y_t is quoted inconsistently in this file: 77.85 (thermal-point summary, κ table, closure paragraph), 77.944 (falsifier line) and Λc⁴/a₀² = 118.6 (closure paragraph). With 8π/κ_th² = **Λc⁴/a₀² = 118.435** the closure gives **y_t = 77.876** (118.6 would give 77.98). The original values are kept as written. See `doors_push_2026_10_22/D7_turnoff_yt/README.md` (K5).
 
 **Neither apparent casualty is one, on inspection.** (i) A19's saturation cap was already principle-free by
 its own words — *"Nothing in the class picks one; the data pick the quarter, but the data measure κ itself"* —
@@ -446,6 +452,8 @@ is clean at the thermal point: `y_t = 77.944 ∈ [60,140]`, `L★ = 26.087 pc �
 The 2.5 : 1 lean rests on a 9.4 % block-bootstrap error that is **8.3×** the formal `Δχ² = 1` error — worth
 exactly what a 1.4σ lean is worth, which is nothing yet.
 
+> **ERRATUM (2026-10-22, doors push D7):** the thermal y_t is quoted inconsistently in this file: 77.85 (thermal-point summary, κ table, closure paragraph), 77.944 (falsifier line) and Λc⁴/a₀² = 118.6 (closure paragraph). With 8π/κ_th² = **Λc⁴/a₀² = 118.435** the closure gives **y_t = 77.876** (118.6 would give 77.98). The original values are kept as written. See `doors_push_2026_10_22/D7_turnoff_yt/README.md` (K5).
+
 The closure relation itself is unchanged and holds for every κ:
 
 $$
@@ -458,6 +466,8 @@ at the **thermal (postulated)** point `Λc⁴/a₀² = 118.6` and **`y_t = 77.85
 `Λc⁴/a₀² = 100.4058` and **`y_t = 66.2999`** (A4, A25, A28) — the numbers below are the κ = ½ ones. `I` is strictly
 increasing, hence invertible: **one de Sitter member per κ, and no internal relation selects
 one.** `y_t(κ) = 180.8, 102.7, 66.38, 34.6, 17.6` at `κ = 0.3, 0.4, 0.5, 0.7, 1.0`.
+
+> **ERRATUM (2026-10-22, doors push D7):** the thermal y_t is quoted inconsistently in this file: 77.85 (thermal-point summary, κ table, closure paragraph), 77.944 (falsifier line) and Λc⁴/a₀² = 118.6 (closure paragraph). With 8π/κ_th² = **Λc⁴/a₀² = 118.435** the closure gives **y_t = 77.876** (118.6 would give 77.98). The original values are kept as written. See `doors_push_2026_10_22/D7_turnoff_yt/README.md` (K5).
 
 The scope, honestly: this is a modulus of the **two-equation halo truncation** (A15), and every
 route to fixing it inside that system is closed — counting (A1, A10: the required count
