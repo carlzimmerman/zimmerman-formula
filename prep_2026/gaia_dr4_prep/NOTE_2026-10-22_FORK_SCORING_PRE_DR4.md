@@ -93,3 +93,86 @@ Two further readings:
   to be scoreable on every frozen g_ext becomes **σ_sys < 0.048 (canonical) / < 0.058 (alt)**, not 0.054 / 0.064.
   This pre-data amendment adopts the tighter values. They can only move outcomes to UNDECIDED, never to a verdict.
 - No frozen statistic, estimator, cut or verdict line of the pre-registration is changed.
+
+---
+
+## AMENDMENT A2 (2026-10-22, pre-data, append-only)
+
+**Origin.** The owner asked that every candidate σ_sys definition be tried ("we need to try all of them"). The text of
+§3 and of A1 is kept. **This amendment replaces their single-definition condition with the ruling below.**
+`PREREGISTRATION_DR4.md` and the hash files are untouched.
+
+**Source.** Script `doors_push_2026_10_22/D2_wide_binary_fork/d2_sigma_sys_defs.py` (3/3 checks; MUTATE bites),
+results in `d2_sigma_sys_defs_results.json`. It runs the frozen pipeline's own estimator, imported read-only, on the
+DR3 frozen-cut catalogue on disk. The baseline γ̂ = 1.0750 ± 0.0550 canonical reproduces the record's dry run. **All
+DR3 values below are NON-SCORING.**
+
+**What is compared.** Screened γ_v − 1 = 8.1e-6 (D7d) against AQUAL law-first (E2), at N = 30,000. The four
+separations per row are, in order:
+1. primary g_ext, mock σ_fit 0.019;
+2. primary g_ext, DR3-calibrated σ_fit;
+3. alternative g_ext, mock σ_fit 0.019;
+4. alternative g_ext, DR3-calibrated σ_fit.
+
+"N for 3σ" uses the same four cases, and "never" means 3σ is unreachable at any N.
+
+**DR3 inputs.** Implementable ladder rungs and their γ̂ shifts from the baseline:
+
+| footing | R_chance < 0.001 | 3–20 kAU | NSS-off probe | jackknife |
+|---|---|---|---|---|
+| canonical | +0.015 | +0.033 | +0.075 | 0.016 |
+| alt | −0.013 | −0.025 | +0.058 | 0.018 |
+
+RUWE 1.4 → 1.2 and the RV-screened subsample cannot be implemented on DR3. They are declared, not substituted.
+
+**Canonical footing** (law-first 1.167 primary / 1.145 alternative g_ext)
+
+| definition | σ_sys (DR3) | z at N = 30k (cases 1–4) | N for 3σ |
+|---|---|---|---|
+| (a) frozen allowance | 0.020 | 6.04 / 5.20 / 5.25 / 4.52 | 4,031–9,739 |
+| (b) max(0.02, ½ ladder + NSS-off spread) | 0.0375 | 3.96 / 3.70 / 3.44 / 3.21 | 6,445–20,360 |
+| (c) max(0.02, full spread) | 0.075 | 2.15 / 2.11 / 1.87 / 1.83 | never |
+| (d) record inter-group spread | 0.174 | 0.95 / 0.95 / 0.83 / 0.82 | never |
+| (e) jackknife over implementable cut variants | 0.016 | 6.67 / 5.59 / 5.80 / 4.86 | 3,835–9,093 |
+| (f) quadrature budget (ecc 0.015, footing 0.005, shape 0.0373, NSS-off, triples 0 / 0.05 / 0.10) | 0.085 / 0.099 / 0.131 | 1.91–1.08 | never |
+| (g1) Amdt 3 one-sided, δ_up 0 / 0.05 / 0.10 | 0.020 | 6.04–4.52 / 4.23–2.96 / 2.42–1.40 | 4,031–9,739 / 9,735–31,411 / 115,291–199,980, and never at the alternative g_ext |
+| (g2) Amdt 18 σ_build in quadrature | 0.0217 | 5.78 / 5.03 / 5.02 / 4.37 | 4,139–10,105 |
+| (g3) PREREG §1.5 stability gate | 0.020 | as (a) | as (a) |
+
+On DR3 the stability gate **FAILS**: the largest ladder shift is 0.075, above σ_fit 0.055.
+
+**Alt footing** (law-first 1.199 primary / 1.173 alternative g_ext)
+
+| definition | σ_sys (DR3) | z at N = 30k (cases 1–4) | N for 3σ |
+|---|---|---|---|
+| (a) | 0.020 | 7.20 / 6.46 / 6.27 / 5.63 | 2,720–5,575 |
+| (b) | 0.041 | 4.37 / 4.19 / 3.81 / 3.65 | 4,042–10,044 |
+| (c) | 0.0825 | 2.35 / 2.32 / 2.04 / 2.02 | never |
+| (d) | 0.174 | 1.13 / 1.13 / 0.99 / 0.99 | never |
+| (e) | 0.018 | 7.54 / 6.71 / 6.57 / 5.85 | 2,675–5,449 |
+| (f) triples 0 / 0.05 / 0.10 | 0.070 / 0.086 / 0.122 | 2.73–1.39 | never |
+| (g1) δ_up 0 / 0.05 / 0.10 | 0.020 | 7.20–5.63 / 5.39–4.00 / 3.57–2.38 | 2,720–5,575 / 5,276–12,732 / 15,936–84,876 |
+| (g2) | 0.0217 | 6.89 / 6.24 / 6.00 / 5.43 | 2,769–5,712 |
+| (g3) | 0.020 | as (a) | as (a) |
+
+On DR3 the stability gate **FAILS** (0.0575 > 0.0512).
+
+**Ruling (replaces the single condition of §3 and A1).**
+1. At DR4 the fork is scored under **every** definition (a)–(g3). It is reported **per definition and per footing,
+   never pooled**.
+2. A verdict (law-first excluded, or medium-first/screened excluded) is issued **only if every definition gives the
+   same verdict at ≥ 3σ**.
+3. Otherwise the fork is **UNDECIDED**, and the full table is reported.
+4. A definition's σ_sys is measured on the DR4 catalogue itself, with the same recipe as here.
+
+**Consequence, stated before data.** Definitions (c), (d) and (f) cap the separation below 3σ at any N, on both
+footings. So **under this ruling the fork cannot be decided by Gaia DR4** unless those definitions' DR4 values fall
+below the 3σ ceilings:
+- canonical: 0.0556 (primary g_ext) and 0.0483 (alternative g_ext);
+- alt: 0.0662 and 0.0577.
+
+Definition (d) is a fixed record number, 0.174, and cannot fall. **Therefore, as written, the fork is UNDECIDED at
+DR4 by construction.** This is reported, not repaired. Dropping (d) would need its own dated, pre-data owner
+decision.
+
+No frozen statistic, estimator, cut or verdict line of the pre-registration is changed.

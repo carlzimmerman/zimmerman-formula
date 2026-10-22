@@ -1,0 +1,58 @@
+====================================================================================================
+D2 sigma_sys definitions on the DR3 dry run (NON-SCORING)   mutation: deep-pair v_perp x1.20
+====================================================================================================
+master MC after selection: 477088 (frozen code: 3,000,000 oversampled; smaller here, declared)
+unimplementable on DR3 (declared, not substituted): ladder RUWE 1.4->1.2 (no RUWE column), RV-screened subsample
+  canonical V0 baseline (frozen-cut build)     N= 6210  gamma-hat 1.2825 +- 0.0625  kappa 1.1727
+  canonical V1 ladder: R_chance < 0.001        N= 5718  gamma-hat 1.0900 +- 0.0700  kappa 1.0211
+  canonical V2 ladder: sep 3-20 kAU            N= 3862  gamma-hat 1.1075 +- 0.0737  kappa 1.0071
+  canonical V3 NSS-off probe (s < 30 kAU)      N= 6302  gamma-hat 1.1500 +- 0.0587  kappa 1.0037
+  canonical V4 build: El-Badry R               N= 6230  gamma-hat 1.1300 +- 0.0537  kappa 1.0085
+  canonical V5 build: scaled_clean             N= 6257  gamma-hat 1.1125 +- 0.0537  kappa 1.0150
+  alt       V0 baseline (frozen-cut build)     N= 6210  gamma-hat 1.2500 +- 0.0562  kappa 1.1818
+  alt       V1 ladder: R_chance < 0.001        N= 5718  gamma-hat 1.0575 +- 0.0650  kappa 1.0332
+  alt       V2 ladder: sep 3-20 kAU            N= 3862  gamma-hat 1.0450 +- 0.0650  kappa 1.0289
+  alt       V3 NSS-off probe (s < 30 kAU)      N= 6302  gamma-hat 1.1275 +- 0.0550  kappa 1.0118
+  alt       V4 build: El-Badry R               N= 6230  gamma-hat 1.0850 +- 0.0500  kappa 1.0216
+  alt       V5 build: scaled_clean             N= 6257  gamma-hat 1.0925 +- 0.0525  kappa 1.0223
+S1 FAIL 1.2825 |g-1.0750|<=0.03   baseline reproduces the record's DR3 dry run (DRY_RUN_2026-10-09.md; estimator jitter ~0.02)
+S2 PASS 6210 6210   frozen-cut DR3 catalogue
+S3 PASS min N 3862 >=1000   every variant has enough pairs for the 8-bin estimator
+
+[canonical] ladder shifts -0.1925, -0.1750, -0.1325 ; spread 0.1925 ; jackknife 0.0435 ; NSS-off |shift| 0.1325 ; baseline sigma_fit 0.0625
+  definition                                     sig_sys | z at N=30k (mock/DR3cal) prim | altg | N for 3 sigma (mock/DR3cal) prim | altg
+  a  frozen allowance                             0.0200 |  6.04/ 4.79 |  5.25/ 4.16        |   4031/  9029 |   5615/ 12576
+  b  max(0.02, half ladder+NSS-off spread)        0.0962 |  1.70/ 1.66 |  1.48/ 1.44        |  never/ never |  never/ never
+  c  max(0.02, full ladder+NSS-off spread)        0.1925 |  0.86/ 0.86 |  0.75/ 0.74        |  never/ never |  never/ never
+  d  record inter-group spread                    0.1740 |  0.95/ 0.95 |  0.83/ 0.82        |  never/ never |  never/ never
+  e  jackknife over implementable cut variants    0.0435 |  3.51/ 3.21 |  3.05/ 2.78        |   9086/ 20352 |  24948/ 55880
+  f  quadrature budget, triples 0.00              0.1386 |  1.19/ 1.18 |  1.04/ 1.02        |  never/ never |  never/ never
+  f  quadrature budget, triples 0.05              0.1473 |  1.12/ 1.11 |  0.97/ 0.97        |  never/ never |  never/ never
+  f  quadrature budget, triples 0.10              0.1709 |  0.97/ 0.96 |  0.84/ 0.84        |  never/ never |  never/ never
+  g1 Amdt 3 one-sided, delta_up 0.00              0.0200 |  6.04/ 4.79 |  5.25/ 4.16        |   4031/  9029 |   5615/ 12576
+  g1 Amdt 3 one-sided, delta_up 0.05              0.0200 |  4.23/ 3.36 |  3.44/ 2.73        |   9735/ 21804 |  18109/ 40561
+  g1 Amdt 3 one-sided, delta_up 0.10              0.0200 |  2.42/ 1.92 |  1.62/ 1.29        | 115291/258238 |  never/ never
+  g2 Amdt 18 sigma_build in quadrature            0.0217 |  5.78/ 4.66 |  5.02/ 4.05        |   4139/  9270 |   5826/ 13049
+  g3 PREREG 1.5 stability gate                    0.0200 |  6.04/ 4.79 |  5.25/ 4.16        |   4031/  9029 |   5615/ 12576
+      gate on DR3: max ladder shift 0.1925 vs sigma_fit 0.0625 -> FAIL (systematic-limited)
+  -> canonical: worst z over all definitions 0.74 ; definitions under which 3 sigma is reachable at some N: 6 of 13
+
+[alt] ladder shifts -0.1925, -0.2050, -0.1225 ; spread 0.2050 ; jackknife 0.0470 ; NSS-off |shift| 0.1225 ; baseline sigma_fit 0.0562
+  definition                                     sig_sys | z at N=30k (mock/DR3cal) prim | altg | N for 3 sigma (mock/DR3cal) prim | altg
+  a  frozen allowance                             0.0200 |  7.20/ 6.11 |  6.27/ 5.33        |   2720/  4935 |   3702/  6716
+  b  max(0.02, half ladder+NSS-off spread)        0.1025 |  1.90/ 1.88 |  1.66/ 1.64        |  never/ never |  never/ never
+  c  max(0.02, full ladder+NSS-off spread)        0.2050 |  0.96/ 0.96 |  0.84/ 0.84        |  never/ never |  never/ never
+  d  record inter-group spread                    0.1740 |  1.13/ 1.13 |  0.99/ 0.98        |  never/ never |  never/ never
+  e  jackknife over implementable cut variants    0.0470 |  3.92/ 3.71 |  3.41/ 3.23        |   4982/  9039 |   9684/ 17570
+  f  quadrature budget, triples 0.00              0.1290 |  1.52/ 1.51 |  1.33/ 1.32        |  never/ never |  never/ never
+  f  quadrature budget, triples 0.05              0.1384 |  1.42/ 1.41 |  1.24/ 1.23        |  never/ never |  never/ never
+  f  quadrature budget, triples 0.10              0.1632 |  1.21/ 1.20 |  1.05/ 1.05        |  never/ never |  never/ never
+  g1 Amdt 3 one-sided, delta_up 0.00              0.0200 |  7.20/ 6.11 |  6.27/ 5.33        |   2720/  4935 |   3702/  6716
+  g1 Amdt 3 one-sided, delta_up 0.05              0.0200 |  5.39/ 4.57 |  4.46/ 3.79        |   5276/  9573 |   8454/ 15337
+  g1 Amdt 3 one-sided, delta_up 0.10              0.0200 |  3.57/ 3.03 |  2.65/ 2.25        |  15936/ 28913 |  56355/102245
+  g2 Amdt 18 sigma_build in quadrature            0.0217 |  6.89/ 5.92 |  6.00/ 5.16        |   2769/  5024 |   3792/  6881
+  g3 PREREG 1.5 stability gate                    0.0200 |  7.20/ 6.11 |  6.27/ 5.33        |   2720/  4935 |   3702/  6716
+      gate on DR3: max ladder shift 0.2050 vs sigma_fit 0.0562 -> FAIL (systematic-limited)
+  -> alt: worst z over all definitions 0.84 ; definitions under which 3 sigma is reachable at some N: 7 of 13
+
+D2_SIGMA_SYS_DEFS COMPLETE: 2/3 checks PASS.
