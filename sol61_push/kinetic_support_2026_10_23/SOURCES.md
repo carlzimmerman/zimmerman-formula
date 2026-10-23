@@ -1,0 +1,6 @@
+# Source scope
+The action, canonical matter/field equations and3D TSC solver are inherited from ../fragment_radiation_2026_10_22/model.py, copied as particle_base.py. The prior passive mass-selection identities and exact nonlinear dual are documented in ../nonlinear_nonradial_2026_10_22/DERIVATION.md. The immediate failed-core-resolution result is ../compatible_gas_2026_10_23/RESULT.md. These are project evidence, not independent external validation.
+
+Guo & Rein, Isotropic steady states in galactic dynamics revised, https://arxiv.org/abs/math-ph/0010031 : abstract consulted for the standard energy-Casimir strategy and the distinction between spherical equilibria and nonspherical stability. Its Newtonian Vlasov-Poisson theorem is NOT invoked as a theorem for the modified action, waterbag boundary, dynamical polarization or baryon-coupled system. No source-dependent stability certificate is claimed. The waterbag density, kinetic minimum, field Schur complement and mass identity are derived explicitly in DERIVATION.md.
+
+All new evidence is self-reviewed; no independent agent or independent solver reproduction. Primordial streaming is a stated ballistic EdS diagnostic, not a literature transfer or a coupled cosmological-growth forecast.
