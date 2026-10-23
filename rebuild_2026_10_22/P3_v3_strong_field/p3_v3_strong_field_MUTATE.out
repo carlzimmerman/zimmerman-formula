@@ -1,0 +1,87 @@
+P3_v3_strong_field  mutate=True (xi = 2)
+A: covariant reduced Lagrangian built (1.7 s); e.e = 1, e.n = 0
+A1 FAIL |L_P - [r^2 p N' - r^2 W - (gL/2) N^2 ((r^2p)')^2/r^2]| = 1.31e-01 (scale 4.26e+00); |gamma^rr - N^2| = 3.23e-173; |q^mn nabla_m P_n - (div P - P.A)| on a general (Phi, f, R, b) background = 8.09e-174 (so xi P.A = xi div P - xi D.P: the clock is -xi D.P up to a total divergence) residual 0 (< 1e-25 of scale)
+  A2 EL_Phi at PG: |residual| = 0.00e+00 (5.3 s)
+  A2 EL_f at PG: |residual| = 0.00e+00 (4.0 s)
+  A2 EL_R at PG: |residual| = 0.00e+00 (1.6 s)
+  A2 EL_b at PG: |residual| = 0.00e+00 (4.7 s)
+  A2 EL_p at PG: |residual| = 0.00e+00 (1.3 s)
+  A2 khronon first integral at PG: 0.00e+00 (C = 0)
+A2 PASS PG-Schwarzschild, p = 0: max residual over EL(Phi, f, R, b, p) and the khronon integral 1.29e-172; p = 0 => EL_p = xi r^2 N', J = s N (-mu^2 r^2 (1-N)/(K N^3)) (residuals 1.3e-172, 2.0e-174) => N' = 0 and N = 1 (PG unique) all residuals 0 (< 1e-25)
+A3 FAIL J - s N E_N: 3.87e-01 (scale 8.42e-01); EL_p - r^2[N' - K W'(Kp) + gL (N D)']: 1.19e+00 (scale 1.43e+02) residual 0 (< 1e-25 of scale)
+A done (69.2 s)
+stress tensor lambdified (92.4 s)
+C1 PASS a_hat = 0 returns Schwarzschild: max |dev| = 1.78e-15 < 1e-10
+
+B: stationary foliations on Schwarzschild
+  screened transonic X-point: kappa* = 1.4938014385, r_c = 3.65138788 M, N_c = 0.76759188
+  B1 sample SgrA* canonical 24 pc: exponents Trr -1.000, Tthth -0.506, L_P -0.506, T.T -1.012; 1 - u/a0 = 2.65e-21
+B1 FAIL static branch: max 1 - u/a0 at e = 1e-8: 4.83e-18; T^r_r exponent range [-1.000, 0.448]; (reading, A1(a): T^th_th exponent range [-0.932, -0.025], L_P [-0.932, -0.500], T.T [-1.913, -0.050]) cap reached (1 - u/a0 <= 1e-3) AND T^r_r exponent in [-0.6, -0.4] (frozen; A1(a): expected FAIL)
+B2 PASS kappa* = 1.493801, r_c = 3.6514 M; transonic N(2M) = 0.626550; algebraic residual 2.8e-13; slopes at r_c 0.053516/0.053516; N/sqrt(e) - 1 at 200 M = 2.81e-05; every sigma >= 2 benchmark has a valid p(2M) member residual <= 1e-10, slopes agree 1e-4, N(2M) > 0, |N/sqrt(e)-1| <= 1e-3
+B3 PASS cap family (sigma < 1/2): all c in [0.01, 0.1, 0.3, 1.0] regular (N(2M) > 0, w > 0 on [2, 200] M); largest valid c per benchmark: min 1.35, max 1.40 N(2M) > 0 and w > 0 for every c in the grid
+B4 PASS intermediate sigma in [1/2, 2): a valid T member exists for every benchmark; OPEN: [] valid type-T or type-C member for each benchmark (A1(b))
+A4 FAIL radial conservation residual (relative) max 5.09e-02 over ['T sigma=1.93e4 p(2M)=0', 'T sigma=0.63 p(2M)=-0.5', 'C sigma=3e-5 c=0.3', 'C sigma=0.045 c=1.0'] <= 1e-5 on [2.3, 11.5] M away from r_c
+C3 PASS T^v_v and T_rr(EF) at 2.001 M vs 2.5 M: T sigma=1.93e4 p(2M)=0: 3.09e-05/2.80e-05, 5.08e-05/4.07e-05; T sigma=0.63 p(2M)=-0.5: 9.47e-01/8.58e-01, 3.93e+00/1.25e+00; C sigma=3e-5 c=0.3: 4.22e-01/5.53e-01, 1.42e+00/1.48e+00; C sigma=0.045 c=1.0: 6.25e-01/6.02e-01, 2.34e+00/8.44e-01 finite at the horizon (<= 10 x the 2.5 M value) (A1(c))
+B/A4 done (141.4 s)
+
+C: observables (d ln X / d a_hat; physical shift = coefficient x a_hat)
+  reading: regular members carry an ingoing khronon-sector energy flux r^2 T^r_t = c, dM/dt/M = c a0/c_light; max over computed members 2.327e-02 per Gyr (SMBH cap family, c up to 1.0; c is not fixed here)
+C2 PASS linearity (1e-6 vs 1e-7) max rel diff 1.27e-06; PG control max |coefficient| 0.0e+00 < 1e-3 and PG exactly 0
+  worst |shift| shadow_dyn    = 1.247e-03 (M87*|alt|20pc)
+  worst |shift| shadow_local  = 5.534e-11 (M87*|alt|90pc)
+  worst |shift| r_ph          = 5.778e-11 (M87*|alt|90pc)
+  worst |shift| r_isco        = 5.871e-11 (M87*|alt|90pc)
+  worst |shift| Omega_isco    = 5.718e-11 (M87*|alt|90pc)
+  worst |shift| f_qnm         = 5.534e-11 (M87*|alt|90pc)
+  worst |shift| tau_qnm       = 5.521e-11 (M87*|alt|90pc)
+C done (164.9 s)
+
+D: neutron stars (SLy as recalled in CFG318; static foliation, screened P)
+D1 PASS SLy M_max = 2.04845 Msun at log10 rho_c = 15.30244 2.0485 +- 0.002 (CFG318's in-lane value)
+D2 PASS screened static P on SLy stars: max p-eq residual 6.8e-13; max u/a0 2.59e-05 p equation residual <= 1e-8 and u/a0 < 1 (cap not reached)
+D3 PASS linear response: max rel diff between amplifications 2.29e-05 <= 1e-3
+  NS: max |dR/R| (1.4 Msun) = 4.576e-28; max |dM_max/M_max| = 6.463e-28; timing-mass offset <= 2.626e-18
+D done (170.0 s)
+
+E: strong coupling (decoupling limit tau = Qbar t + pi; P integrated out at tree level)
+  E1: background A_z = g; dA_1,z = -pi_tz/Qbar
+  E3: dA_2,z = (2*g*pi_z**2 + pi_t*pi_tz + pi_tt*pi_z + pi_z*pi_zz)/Qbar**2
+E1 PASS dA_1,z (leading WKB) = -pi_tz/Qbar; Z_P(k) = k**2/(Qbar**2*(K*M_L + gamma_L*k**2)) (minus k^2/(Qbar^2 (K M_L + gL k^2)): 0); dust kinetic term mu^2/K in this normalisation (E3 expansion) Z_P = k^2/(Qbar^2 (K M_L + gamma_L k^2)) exactly
+  E2(i): unitary-gauge Schur complement k**2/(2*N0*(K*M_L + gamma_L*k**2)) |n|^2 -> Z = N0*k**2/(Qbar**2*(K*M_L + gamma_L*k**2)); minus E1's Z_P at N0 = 1: 0
+  E3: dA_2,z = c_tt pi_t pi_tz + c_zz pi_z pi_zz + c_tilt pi_tt pi_z (+ g terms) with c_tt = 1.0, c_zz = 1.0, c_tilt = 1.0; other monomials {}
+  E3: K(Q) quadratic -mu**2*(Qbar*gr**2 - Qbar*qd**2 - gr**2)/(2*K*Qbar); cubic -gr**2*mu**2*qd/(2*K*Qbar**2)
+      V1 pidot (grad pi)^2 [clock]: lam = Z_P c_zz/2
+      V2 pidot^3 [clock]: lam = Z_P c_tt/2
+      V3 pidot d^-1(pi_tt grad pi) [tilt]: lam = Z_P |c_tilt|
+      V4 (grad pi)^4 [clock, quartic]: lam4 = Z_P (c_zz/2)^2/2
+      V5 pidot (grad pi)^2 [K(Q) dust]: lam = mu^2/(2 K Qbar^2)
+      V6 pidot^3 [W cubic]: lam = W3 k^3/(6 (M + L*^2 k^2/2)^3), W3 = 2 a0^2/(K (a0 - u0)^3)
+E2 PASS (i) unitary-gauge Z - E1 Z_P = 0; (ii) G_eff / [D.P (1 + gL D.P) + mu^2 (Qbar - 1)/K] at 1 - e = 1e-5, 1e-6: ['0.999980', '0.999998'] (i) 0; (ii) within 1e-3 of 1 (A2)
+E3 PASS clock-nonlinearity coefficients c_tt = 1.0, c_zz = 1.0, c_tilt = 1.0 (exact); K(Q) cubic -gr**2*mu**2*qd/(2*K*Qbar**2) derived exactly; no other monomials at g = 0
+E4 PASS scales computed for 60 system x footing x L* rows; G <= 0 (pair not propagating stably): [] all finite
+  E4 reading: double-pulsar pi-metric mixing eps <= 2.01e-09 (energy leakage ~ eps^2 = 4.0e-18; Pdot_b precision 6.3e-5)
+  E4 worst loop factor eps = 1.312e-03 at Eot-Wash (38.6 um)|canonical|90pc (V1 pidot (grad pi)^2 [clock])
+    Eot-Wash (38.6 um)|canonical|20pc                             : c_pi 1.028e-04  E 2.663e+00 m^-1  V1 k_sc 2.887e+05 m^-1  eps_max 6.481e-05 (V1 pidot (grad pi)^2 [clock])
+    Eot-Wash (38.6 um)|canonical|24pc                             : c_pi 1.028e-04  E 2.663e+00 m^-1  V1 k_sc 2.636e+05 m^-1  eps_max 9.333e-05 (V1 pidot (grad pi)^2 [clock])
+    planets (1 AU)|canonical|24pc                                 : c_pi 9.935e-05  E 6.641e-16 m^-1  V1 k_sc 2.569e+05 m^-1  eps_max 4.582e-67 (V1 pidot (grad pi)^2 [clock])
+    double pulsar|canonical|24pc                                  : c_pi 2.086e-03  E 2.376e-12 m^-1  V1 k_sc 2.520e+06 m^-1  eps_max 4.176e-62 (V1 pidot (grad pi)^2 [clock])
+    galaxy (1 kpc; phantom 0.01 Msun/pc^3, ILLUSTRATIVE)|canonical|24pc: c_pi 1.567e-04  E 5.079e-24 m^-1  V1 k_sc 3.332e+04 m^-1  eps_max 8.947e-97 (V1 pidot (grad pi)^2 [clock])
+    cosmology (10 h/Mpc; FRW, P0 = 0)|canonical|24pc              : c_pi 1.172e-05  E 7.338e-27 m^-1  V1 k_sc 1.323e+03 m^-1  eps_max 2.417e-97 (V5 pidot (grad pi)^2 [K(Q) dust])
+    BH10 (r = 3M)|canonical|24pc                                  : c_pi 3.300e-01  E 2.235e-05 m^-1  V1 k_sc 9.583e+07 m^-1  eps_max 2.494e-49 (V1 pidot (grad pi)^2 [clock])
+    BH63 (r = 3M)|canonical|24pc                                  : c_pi 3.300e-01  E 3.548e-06 m^-1  V1 k_sc 9.583e+07 m^-1  eps_max 1.583e-52 (V1 pidot (grad pi)^2 [clock])
+    SgrA* (r = 3M)|canonical|24pc                                 : c_pi 2.607e+02  E 4.105e-08 m^-1  V1 k_sc 2.302e+13 m^-1  eps_max 3.016e-74 (V5 pidot (grad pi)^2 [K(Q) dust])
+    M87* (r = 3M)|canonical|24pc                                  : c_pi 6.658e+00  E 6.937e-13 m^-1  V1 k_sc 1.446e+12 m^-1  eps_max 3.467e-82 (V5 pidot (grad pi)^2 [K(Q) dust])
+    NS surface|canonical|24pc                                     : c_pi 4.424e-01  E 8.543e-05 m^-1  V1 k_sc 1.256e+08 m^-1  eps_max 5.582e-48 (V1 pidot (grad pi)^2 [clock])
+    Eot-Wash (38.6 um)|canonical|90pc                             : c_pi 1.028e-04  E 2.663e+00 m^-1  V1 k_sc 1.361e+05 m^-1  eps_max 1.312e-03 (V1 pidot (grad pi)^2 [clock])
+    Eot-Wash (38.6 um)|alt|20pc                                   : c_pi 1.028e-04  E 2.663e+00 m^-1  V1 k_sc 2.887e+05 m^-1  eps_max 6.481e-05 (V1 pidot (grad pi)^2 [clock])
+    Eot-Wash (38.6 um)|alt|24pc                                   : c_pi 1.028e-04  E 2.663e+00 m^-1  V1 k_sc 2.636e+05 m^-1  eps_max 9.333e-05 (V1 pidot (grad pi)^2 [clock])
+    Eot-Wash (38.6 um)|alt|90pc                                   : c_pi 1.028e-04  E 2.663e+00 m^-1  V1 k_sc 1.361e+05 m^-1  eps_max 1.312e-03 (V1 pidot (grad pi)^2 [clock])
+
+VERDICTS (frozen rules, section 3 + amendments)
+  V1 black holes (EHT): PASS  (max |shift| 1.247e-03; regular members exist: True; B4 OPEN: [])
+  V2 ringdown: PASS  (eikonal max |shift| 5.534e-11; mixing eps max 2.350e-09 at SgrA* (r = 3M)|canonical|90pc; leakage eps^2 5.5e-18)
+  V3 neutron stars: PASS  (|dR/R| 4.576e-28, |dMmax/Mmax| 6.463e-28, timing-mass 2.626e-18)
+  V4 strong coupling: PASS  (worst eps 1.312e-03 at Eot-Wash (38.6 um)|canonical|90pc; E2 True)
+  V5 strong-field leaf condition (static spherical): PASS
+run: 170.4 s, peak RSS 0.15 GB, single thread
+P3_V3_STRONG_FIELD COMPLETE: 14/18 checks PASS.
