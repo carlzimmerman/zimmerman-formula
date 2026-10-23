@@ -1,0 +1,592 @@
+--- a/include/background.h
++++ b/include/background.h
+@@ -66,6 +66,16 @@
+   double Omega0_ur; /**< \f$ \Omega_{0 \nu r} \f$: ultra-relativistic neutrinos */
+ 
+   double Omega0_cdm;      /**< \f$ \Omega_{0 cdm} \f$: cold dark matter */
++  /* C7_aest_class: AeST extra sector (Skordis & Zlosnik, arXiv:2007.00082) */
++  double Omega0_aest;     /**< present density of the AeST sector (set by the shift charge I0: FITTED initial condition) */
++  int aest_K_type;        /**< 0 exact dust limit (K2 -> infinity), 1 Cosh, 2 Exp, 3 quadratic */
++  double aest_K_B;        /**< K_B (vector kinetic coefficient) */
++  double aest_Q0;         /**< Q0 in Mpc^-1 */
++  double aest_K2;         /**< K2 (dimensionless) */
++  double aest_Z0;         /**< Z0 in Mpc^-1 (Cosh, Exp) */
++  double aest_lambda_c;   /**< F_Y/(2-K_B) at Y = 0 on FRW (premise P-F: 0 in all runs) */
++  double aest_g;          /**< G_cosmo/G_N (premise P-g; 1 = paper convention) */
++  double aest_I0;         /**< shift charge a^3 K'(Q) in Mpc^-1, solved from Omega0_aest */
+ 
+   double Omega0_idm; /**< \f$ \Omega_{0 idm} \f$: interacting dark matter with photons, baryons, and idr */
+ 
+@@ -164,6 +174,12 @@
+   int index_bg_rho_g;         /**< photon density */
+   int index_bg_rho_b;         /**< baryon density */
+   int index_bg_rho_cdm;       /**< cdm density */
++  int index_bg_rho_aest;      /**< AeST sector density (units 8piG/3) */
++  int index_bg_p_aest;        /**< AeST sector pressure */
++  int index_bg_Q_aest;        /**< Qbar = A^mu d_mu phi (Mpc^-1) */
++  int index_bg_Kz_aest;       /**< K(Qbar) (Mpc^-2), constant -2 Lambda moved to Omega_Lambda */
++  int index_bg_Kp_aest;       /**< K'(Qbar) = I0/a^3 (Mpc^-1) */
++  int index_bg_ca2_aest;      /**< adiabatic sound speed K'/(Q K'') */
+   int index_bg_rho_idm;       /**< idm density */
+   int index_bg_rho_lambda;    /**< cosmological constant density */
+   int index_bg_rho_fld;       /**< fluid density */
+@@ -280,6 +296,7 @@
+   //@{
+ 
+   short has_cdm;       /**< presence of cold dark matter? */
++  short has_aest;      /**< presence of the AeST extra sector? */
+   short has_idm;       /**< presence of interacting dark matter with photons, baryons, and idr */
+   short has_dcdm;      /**< presence of decaying cold dark matter? */
+   short has_dr;        /**< presence of relativistic decay radiation? */
+@@ -412,6 +429,10 @@
+                            enum vecback_format return_format,
+                            double * pvecback
+                            );
++
++  int background_aest_K(struct background * pba, double a, double * Q, double * Kz, double * Kp, double * ca2);
++
++  int background_aest_solve_I0(struct background * pba);
+ 
+   int background_w_fld(
+                        struct background * pba,
+--- a/include/perturbations.h
++++ b/include/perturbations.h
+@@ -477,6 +477,10 @@
+   int index_pt_theta_idm; /**< idm velocity */
+   int index_pt_delta_dcdm; /**< dcdm density */
+   int index_pt_theta_dcdm; /**< dcdm velocity */
++  int index_pt_delta_aest; /**< AeST sector density contrast (C7) */
++  int index_pt_theta_aest; /**< AeST sector velocity divergence */
++  int index_pt_E_aest;     /**< AeST vector E = F_0x/a (gauge-invariant) */
++  int index_pt_chi_aest;   /**< AeST chi = phi + Q alpha (gauge-invariant) */
+   int index_pt_delta_fld;  /**< dark energy density in true fluid case */
+   int index_pt_theta_fld;  /**< dark energy velocity in true fluid case */
+   int index_pt_Gamma_fld;  /**< unique dark energy dynamical variable in PPF case */
+--- a/source/background.c
++++ b/source/background.c
+@@ -442,6 +442,24 @@
+     rho_m += pvecback[pba->index_bg_rho_cdm];
+   }
+ 
++  /* AeST extra sector (C7): 8piG~ rho = Q K' - K, 8piG~ p = K (SZ21); CLASS stores 8piG rho/3 */
++  if (pba->has_aest == _TRUE_) {
++    double Qa, Kza, Kpa, ca2a;
++    class_call(background_aest_K(pba,a,&Qa,&Kza,&Kpa,&ca2a),
++               pba->error_message,
++               pba->error_message);
++    pvecback[pba->index_bg_Q_aest] = Qa;
++    pvecback[pba->index_bg_Kz_aest] = Kza;
++    pvecback[pba->index_bg_Kp_aest] = Kpa;
++    pvecback[pba->index_bg_ca2_aest] = ca2a;
++    pvecback[pba->index_bg_rho_aest] = (Qa*Kpa - Kza)/3.;
++    pvecback[pba->index_bg_p_aest] = Kza/3.;
++    rho_tot += pvecback[pba->index_bg_rho_aest];
++    p_tot += pvecback[pba->index_bg_p_aest];
++    dp_dloga += -ca2a*Qa*Kpa;   /* dK/dlna = K' dQ/dlna = -3 ca2 Q K' ; p = K/3 */
++    rho_m += pvecback[pba->index_bg_rho_aest];
++  }
++
+   /* idm */
+   if (pba->has_idm == _TRUE_) {
+     pvecback[pba->index_bg_rho_idm] = pba->Omega0_idm * pow(pba->H0,2) / pow(a,3);
+@@ -661,6 +679,116 @@
+  * @return the error status
+  */
+ 
++/**
++ * C7_aest_class: background of the AeST extra sector (SZ21, arXiv:2007.00082). Single place where K(Q) lives.
++ * K'(Qbar) = I0/a^3 (shift charge, an initial condition). Returns Qbar, K, K' and c_ad^2 = K'/(Q K'').
++ * A Khronon-dust variant would replace this function (and perturbations_aest_rhs()).
++ */
++int background_aest_K(
++                      struct background * pba,
++                      double a,
++                      double * Q,
++                      double * Kz,
++                      double * Kp,
++                      double * ca2
++                      ) {
++  double I0 = pba->aest_I0, Q0 = pba->aest_Q0, K2 = pba->aest_K2, Z0 = pba->aest_Z0;
++  double kp = I0/(a*a*a), s, Z, y, lny, g, gp, dZ;
++  int it;
++
++  *Kp = kp;
++  switch (pba->aest_K_type) {
++  case 0: /* exact dust limit: K2 -> infinity at fixed Q0, I0 */
++    *Q = Q0;
++    *Kz = 0.;
++    *ca2 = 0.;
++    break;
++  case 1: /* Cosh: K = 2 K2 Z0^2 [cosh(Z) - 1], Z = (Q-Q0)/Z0; K' = 2 K2 Z0 sinh Z */
++    s = kp/(2.*K2*Z0);
++    Z = asinh(s);
++    *Q = Q0 + Z0*Z;
++    *Kz = 2.*K2*Z0*Z0*s*s/(sqrt(1.+s*s)+1.);
++    *ca2 = kp/((*Q)*2.*K2*sqrt(1.+s*s));
++    break;
++  case 2: /* Exp: K = 2 K2 Z0^2 [exp(Z^2) - 1]; K' = 4 K2 Z0 Z exp(Z^2); K'' = 4 K2 (1+2Z^2) exp(Z^2) */
++    y = kp/(4.*K2*Z0);
++    if (y < 1.) {
++      Z = y;
++      for (it=0; it<100; it++) {
++        g = Z*exp(Z*Z) - y;
++        gp = exp(Z*Z)*(1.+2.*Z*Z);
++        dZ = g/gp;
++        Z -= dZ;
++        if (fabs(dZ) < 1.e-15*fabs(Z)) break;
++      }
++    }
++    else {
++      lny = log(y);
++      Z = sqrt(lny) > 0.5 ? sqrt(lny) : 0.5;
++      for (it=0; it<100; it++) {
++        g = Z*Z + log(Z) - lny;
++        gp = 2.*Z + 1./Z;
++        dZ = g/gp;
++        Z -= dZ;
++        if (fabs(dZ) < 1.e-15*fabs(Z)) break;
++      }
++    }
++    *Q = Q0 + Z0*Z;
++    *Kz = 2.*K2*Z0*Z0*expm1(Z*Z);
++    *ca2 = Z0*Z/((*Q)*(1.+2.*Z*Z));
++    break;
++  case 3: /* quadratic: K = K2 (Q-Q0)^2 */
++    *Q = Q0 + kp/(2.*K2);
++    *Kz = kp*kp/(4.*K2);
++    *ca2 = kp/((*Q)*2.*K2);
++    break;
++  default:
++    class_stop(pba->error_message,"aest_K_type = %d not coded (0 dust, 1 cosh, 2 exp, 3 quadratic)",pba->aest_K_type);
++  }
++  return _SUCCESS_;
++}
++
++/**
++ * C7_aest_class: solve the shift charge I0 so that 8piG~ rho_aest(a=1) = 3 Omega0_aest H0^2 (Omega0_aest is FITTED).
++ * d(Q K' - K)/dI0 = Q at a = 1, so Newton converges from the dust guess I0 = 3 Omega H0^2 / Q0.
++ */
++int background_aest_solve_I0(
++                             struct background * pba
++                             ) {
++  double target, I0, Q, Kz, Kp, ca2, f = 0.;
++  int it;
++
++  if (pba->has_aest == _FALSE_)
++    return _SUCCESS_;
++
++  class_test((pba->aest_K_B <= 0.) || (pba->aest_K_B >= 2.),
++             pba->error_message,
++             "AeST needs 0 < K_B < 2 (SZ21 vector stability); got %e",pba->aest_K_B);
++  class_test(pba->aest_Q0 <= 0.,pba->error_message,"AeST needs Q0 > 0");
++  class_test((pba->aest_K_type != 0) && (pba->aest_K2 <= 0.),pba->error_message,"AeST needs K2 > 0");
++  class_test(((pba->aest_K_type == 1) || (pba->aest_K_type == 2)) && (pba->aest_Z0 <= 0.),
++             pba->error_message,"AeST Cosh/Exp need Z0 > 0");
++
++  target = 3.*pba->Omega0_aest*pba->H0*pba->H0;
++  I0 = target/pba->aest_Q0;
++  for (it=0; it<200; it++) {
++    pba->aest_I0 = I0;
++    class_call(background_aest_K(pba,1.,&Q,&Kz,&Kp,&ca2),
++               pba->error_message,
++               pba->error_message);
++    f = Q*Kp - Kz - target;
++    if (fabs(f) < 1.e-15*target) break;
++    I0 -= f/Q;
++  }
++  class_test(fabs(f) > 1.e-12*target,
++             pba->error_message,
++             "could not solve for the AeST shift charge I0 (residual %e)",f/target);
++  pba->aest_I0 = I0;
++  if (pba->background_verbose > 1)
++    printf(" -> AeST: K_type=%d, I0 = %.10e Mpc^-1, Q(1) = %.10e, ca2(1) = %e\n",pba->aest_K_type,I0,Q,ca2);
++  return _SUCCESS_;
++}
++
+ int background_w_fld(
+                      struct background * pba,
+                      double a,
+@@ -823,6 +951,11 @@
+ 
+   /** - assign values to all indices in vectors of background quantities */
+   class_call(background_indices(pba),
++             pba->error_message,
++             pba->error_message);
++
++  /** - AeST extra sector: solve the shift charge I0 from Omega0_aest (C7) */
++  class_call(background_aest_solve_I0(pba),
+              pba->error_message,
+              pba->error_message);
+ 
+@@ -991,6 +1124,10 @@
+   if (pba->Omega0_cdm != 0.)
+     pba->has_cdm = _TRUE_;
+ 
++  pba->has_aest = _FALSE_;
++  if (pba->Omega0_aest != 0.)
++    pba->has_aest = _TRUE_;
++
+   if (pba->Omega0_idm != 0.)
+     pba->has_idm = _TRUE_;
+ 
+@@ -1046,6 +1183,12 @@
+ 
+   /* - index for rho_cdm */
+   class_define_index(pba->index_bg_rho_cdm,pba->has_cdm,index_bg,1);
++  class_define_index(pba->index_bg_rho_aest,pba->has_aest,index_bg,1);
++  class_define_index(pba->index_bg_p_aest,pba->has_aest,index_bg,1);
++  class_define_index(pba->index_bg_Q_aest,pba->has_aest,index_bg,1);
++  class_define_index(pba->index_bg_Kz_aest,pba->has_aest,index_bg,1);
++  class_define_index(pba->index_bg_Kp_aest,pba->has_aest,index_bg,1);
++  class_define_index(pba->index_bg_ca2_aest,pba->has_aest,index_bg,1);
+ 
+   /* - index for rho_idm  */
+   class_define_index(pba->index_bg_rho_idm,pba->has_idm,index_bg,1);
+@@ -2098,6 +2241,8 @@
+   pba->Omega0_nfsm =  pba->Omega0_b;
+   if (pba->has_cdm == _TRUE_)
+     pba->Omega0_nfsm += pba->Omega0_cdm;
++  if (pba->has_aest == _TRUE_)
++    pba->Omega0_nfsm += pba->Omega0_aest;
+   if (pba->has_idm == _TRUE_)
+     pba->Omega0_nfsm += pba->Omega0_idm;
+   if (pba->has_dcdm == _TRUE_)
+@@ -2816,6 +2961,10 @@
+       class_print_species("Decaying Cold Dark Matter",dcdm);
+       budget_matter+=pba->Omega0_dcdm;
+     }
++    if (pba->has_aest == _TRUE_) {
++      class_print_species("AeST sector (C7)",aest);
++      budget_matter+=pba->Omega0_aest;
++    }
+ 
+     if (pba->N_ncdm > 0) {
+       printf(" ---> Non-Cold Dark Matter Species (incl. massive neutrinos)\n");
+--- a/source/input.c
++++ b/source/input.c
+@@ -2374,6 +2374,16 @@
+ 
+   sigma_B = 2.*pow(_PI_,5.)*pow(_k_B_,4.)/15./pow(_h_P_,3.)/pow(_c_,2);  // [W/(m^2 K^4) = Kg/(K^4 s^3)]
+ 
++  /** 0) AeST extra sector (C7_aest_class); read first because aest_g rescales Omega0_g (premise P-g) */
++  class_read_double("aest_g",pba->aest_g);
++  class_read_double("aest_K_B",pba->aest_K_B);
++  class_read_double("aest_Q0",pba->aest_Q0);
++  class_read_double("aest_K2",pba->aest_K2);
++  class_read_double("aest_Z0",pba->aest_Z0);
++  class_read_double("aest_lambda_c",pba->aest_lambda_c);
++  class_read_int("aest_K_type",pba->aest_K_type);
++  class_test(pba->aest_g <= 0.,errmsg,"aest_g = G_cosmo/G_N must be > 0");
++
+   /** 1) Omega_0_g (photons) and T_cmb */
+   /* Read */
+   class_call(parser_read_double(pfc,"T_cmb",&param1,&flag1,errmsg),
+@@ -2393,11 +2403,11 @@
+      rho_g = (4 sigma_B/c) T^4
+      rho_c0 = 3 c^2 H_0^2/(8 \pi G) */
+   if (class_none_of_three(flag1,flag2,flag3)){
+-    pba->Omega0_g = (4.*sigma_B/_c_*pow(pba->T_cmb,4.))/(3.*_c_*_c_*1.e10*pba->h*pba->h/_Mpc_over_m_/_Mpc_over_m_/8./_PI_/_G_);
++    pba->Omega0_g = pba->aest_g*(4.*sigma_B/_c_*pow(pba->T_cmb,4.))/(3.*_c_*_c_*1.e10*pba->h*pba->h/_Mpc_over_m_/_Mpc_over_m_/8./_PI_/_G_);
+   }
+   else {
+     if (flag1 == _TRUE_){
+-      pba->Omega0_g = (4.*sigma_B/_c_*pow(param1,4.))/(3.*_c_*_c_*1.e10*pba->h*pba->h/_Mpc_over_m_/_Mpc_over_m_/8./_PI_/_G_);
++      pba->Omega0_g = pba->aest_g*(4.*sigma_B/_c_*pow(param1,4.))/(3.*_c_*_c_*1.e10*pba->h*pba->h/_Mpc_over_m_/_Mpc_over_m_/8./_PI_/_G_);
+       pba->T_cmb=param1;
+     }
+     if (flag2 == _TRUE_){
+@@ -2508,6 +2518,22 @@
+     has_cdm_userdefined = _TRUE_;
+   }
+   class_test(pba->Omega0_cdm<0,errmsg, "You cannot set the cold dark matter density to negative values.");
++
++  /** 3b) AeST extra sector density (C7): Omega_aest or omega_aest (FITTED initial condition I0) */
++  class_call(parser_read_double(pfc,"Omega_aest",&param1,&flag1,errmsg),
++             errmsg,
++             errmsg);
++  class_call(parser_read_double(pfc,"omega_aest",&param2,&flag2,errmsg),
++             errmsg,
++             errmsg);
++  class_test(((flag1 == _TRUE_) && (flag2 == _TRUE_)),
++             errmsg,
++             "You can only enter one of 'Omega_aest' or 'omega_aest'.");
++  if (flag1 == _TRUE_)
++    pba->Omega0_aest = param1;
++  if (flag2 == _TRUE_)
++    pba->Omega0_aest = param2/pba->h/pba->h;
++  class_test(pba->Omega0_aest<0,errmsg,"Omega_aest must be >= 0");
+ 
+   /** 4) (Second part) Omega_0_m (total non-relativistic) */
+   class_call(parser_read_double(pfc,"Omega_m",&param1,&flag1,errmsg),
+@@ -3222,6 +3248,7 @@
+   Omega_tot += pba->Omega0_b;
+   Omega_tot += pba->Omega0_ur;
+   Omega_tot += pba->Omega0_cdm;
++  Omega_tot += pba->Omega0_aest;
+   Omega_tot += pba->Omega0_idm;
+   Omega_tot += pba->Omega0_dcdmdr;
+   Omega_tot += pba->Omega0_idr;
+@@ -5862,6 +5889,16 @@
+   /** 7.1) Decaying CDM into Dark Radiation = dcdm+dr */
+   /** 7.1.a) Current fractional density of dcdm+dr */
+   pba->Omega0_dcdmdr = 0.0;
++  /* AeST extra sector (C7): off by default */
++  pba->Omega0_aest = 0.;
++  pba->aest_K_type = 0;
++  pba->aest_K_B = 0.5;
++  pba->aest_Q0 = 0.1;
++  pba->aest_K2 = 1.;
++  pba->aest_Z0 = 1.e-9;
++  pba->aest_lambda_c = 0.;
++  pba->aest_g = 1.;
++  pba->aest_I0 = 0.;
+   pba->Omega0_dcdm = 0.0;
+   /** 7.1.b) Initial fractional density of dcdm+dr */
+   pba->Omega_ini_dcdm = 0.;
+--- a/source/perturbations.c
++++ b/source/perturbations.c
+@@ -26,6 +26,54 @@
+ 
+ #include "perturbations.h"
+ #include "parallel.h"
++
++/**
++ * C7_aest_class: the AeST extra sector's linear equations (SZ21, arXiv:2007.00082), derived from the covariant
++ * action in covariant_push_2026_10_22/C7_aest_class/c7_derive.py (checks D2-D6). Single place where they live;
++ * a Khronon-dust variant would replace this function and background_aest_K().
++ * y[0..3] = (delta, theta, E, chi); E = F_0x/a and chi = phi + Q alpha are gauge-invariant.
++ * gam = ca2 (rho_hat delta + (k/a)^2 [K_B E + (2-K_B) chi]) / K' ;  dp/rho = K' gam / rho_hat
++ * delta' = -(1+w)(theta + metric_continuity) - 3H(dp/rho - w delta)
++ * theta' = -H(1-3ca2) theta + k^2 (dp/rho)/(1+w) + metric_euler
++ * E'     = -H E + (a/K_B){K' chi - (2-K_B)[gam + (H/a + (1+lambda_c) Q) chi - 3 ca2 (H/a) Q alpha]}
++ * chi'   = a (gam + Q E) - 3 H ca2 Q alpha,     Q alpha = chi - a Q theta / k^2
++ */
++static int perturbations_aest_rhs(
++                                  struct background * pba,
++                                  double k,
++                                  double * pvecback,
++                                  double metric_continuity,
++                                  double metric_euler,
++                                  double * y,
++                                  double * dy,
++                                  double * dp_over_rho
++                                  ) {
++  double a = pvecback[pba->index_bg_a];
++  double H = pvecback[pba->index_bg_H]*a;
++  double Q = pvecback[pba->index_bg_Q_aest];
++  double Kz = pvecback[pba->index_bg_Kz_aest];
++  double Kp = pvecback[pba->index_bg_Kp_aest];
++  double ca2 = pvecback[pba->index_bg_ca2_aest];
++  double KB = pba->aest_K_B;
++  double lc = pba->aest_lambda_c;
++  double rho_hat = Q*Kp - Kz;
++  double w = Kz/rho_hat;
++  double k2 = k*k;
++  double delta = y[0], theta = y[1], E = y[2], chi = y[3];
++  double qa = chi - a*Q*theta/k2;
++  double gam = ca2*(rho_hat*delta + k2/a/a*(KB*E + (2.-KB)*chi))/Kp;
++  double Pi = Kp*gam/rho_hat;
++
++  *dp_over_rho = Pi;
++  if (dy != NULL) {
++    dy[0] = -(1.+w)*(theta + metric_continuity) - 3.*H*(Pi - w*delta);
++    dy[1] = -H*(1.-3.*ca2)*theta + k2*Pi/(1.+w) + metric_euler;
++    dy[2] = -H*E + a/KB*(Kp*chi - (2.-KB)*(gam + (H/a + (1.+lc)*Q)*chi - 3.*ca2*H/a*qa));
++    dy[3] = a*(gam + Q*E) - 3.*H*ca2*qa;
++  }
++  return _SUCCESS_;
++}
++
+ 
+ 
+ /**
+@@ -3929,6 +3977,12 @@
+     class_define_index(ppv->index_pt_delta_dcdm,pba->has_dcdm,index_pt,1); /* dcdm density */
+     class_define_index(ppv->index_pt_theta_dcdm,pba->has_dcdm,index_pt,1); /* dcdm velocity */
+ 
++    /* AeST extra sector (C7): four contiguous variables */
++    class_define_index(ppv->index_pt_delta_aest,pba->has_aest,index_pt,1);
++    class_define_index(ppv->index_pt_theta_aest,pba->has_aest,index_pt,1);
++    class_define_index(ppv->index_pt_E_aest,pba->has_aest,index_pt,1);
++    class_define_index(ppv->index_pt_chi_aest,pba->has_aest,index_pt,1);
++
+     /* ultra relativistic decay radiation */
+     if (pba->has_dr==_TRUE_){
+       ppv->l_max_dr = ppr->l_max_dr;
+@@ -4391,6 +4445,13 @@
+ 
+         ppv->y[ppv->index_pt_theta_dcdm] =
+           ppw->pv->y[ppw->pv->index_pt_theta_dcdm];
++      }
++
++      if (pba->has_aest == _TRUE_) {
++        ppv->y[ppv->index_pt_delta_aest] = ppw->pv->y[ppw->pv->index_pt_delta_aest];
++        ppv->y[ppv->index_pt_theta_aest] = ppw->pv->y[ppw->pv->index_pt_theta_aest];
++        ppv->y[ppv->index_pt_E_aest] = ppw->pv->y[ppw->pv->index_pt_E_aest];
++        ppv->y[ppv->index_pt_chi_aest] = ppw->pv->y[ppw->pv->index_pt_chi_aest];
+       }
+ 
+       if (pba->has_dr == _TRUE_){
+@@ -5331,6 +5392,10 @@
+     rho_m += ppw->pvecback[pba->index_bg_rho_dcdm];
+   }
+ 
++  if (pba->has_aest == _TRUE_) {
++    rho_m += ppw->pvecback[pba->index_bg_rho_aest];
++  }
++
+   if (pba->has_dr == _TRUE_) {
+     rho_r += ppw->pvecback[pba->index_bg_rho_dr];
+     rho_nu += ppw->pvecback[pba->index_bg_rho_dr];
+@@ -5457,6 +5522,26 @@
+ 
+       }
+ 
++      /* AeST extra sector (C7): adiabatic IC, c7_derive.py IC1-IC3/IC_cform. Radiation era, leading order,
++         w, ca2, Qbar frozen at tau_ini; h = Cn (k tau)^2 with Cn = curvature_ini/2. delta carries CLASS's
++         (1 - om tau/5) factor through delta_g, as CDM does; dust limit = CDM IC exactly. */
++      if (pba->has_aest == _TRUE_) {
++        double Qa = ppw->pvecback[pba->index_bg_Q_aest];
++        double Kpa = ppw->pvecback[pba->index_bg_Kp_aest];
++        double Kza = ppw->pvecback[pba->index_bg_Kz_aest];
++        double c_a = ppw->pvecback[pba->index_bg_ca2_aest];
++        double w_a = Kza/(Qa*Kpa - Kza);
++        double den_a = 2.+3.*c_a-3.*w_a;
++        double Cn = ppr->curvature_ini*s2_squared/2.;
++        double th_a = -c_a*Cn*k*ktau_three/((4.-3.*c_a)*den_a);
++        double E_a = -Cn*c_a*Qa*Kpa*a*a*k*k*pow(tau,4)/(4.*pba->aest_K_B*(4.-3.*c_a)*den_a);
++        double qal_a = -Qa*Cn*c_a*Qa*Kpa*a*a*a*k*k*pow(tau,5)/(20.*pba->aest_K_B*(4.-3.*c_a)*den_a);
++        ppw->pv->y[ppw->pv->index_pt_delta_aest] = 3./4.*ppw->pv->y[ppw->pv->index_pt_delta_g]*(1.+w_a)*2./den_a;
++        ppw->pv->y[ppw->pv->index_pt_theta_aest] = th_a;
++        ppw->pv->y[ppw->pv->index_pt_E_aest] = E_a;
++        ppw->pv->y[ppw->pv->index_pt_chi_aest] = a*Qa*th_a/k/k + qal_a;
++      }
++
+       /* fluid (assumes wa=0, if this is not the case the
+          fluid will catch anyway the attractor solution) */
+       if (pba->has_fld == _TRUE_) {
+@@ -5697,6 +5782,10 @@
+         delta_cdm += ppw->pvecback[pba->index_bg_rho_dcdm] * ppw->pv->y[ppw->pv->index_pt_delta_dcdm];
+         rho_cdm += ppw->pvecback[pba->index_bg_rho_dcdm];
+       }
++      if (pba->has_aest == _TRUE_){
++        delta_cdm += ppw->pvecback[pba->index_bg_rho_aest] * ppw->pv->y[ppw->pv->index_pt_delta_aest];
++        rho_cdm += ppw->pvecback[pba->index_bg_rho_aest];
++      }
+ 
+ 
+       if (rho_cdm > 0 ) {
+@@ -5715,6 +5804,11 @@
+         velocity_tot += rho_m_over_rho_r*fracidm*ppw->pv->y[ppw->pv->index_pt_theta_idm]/(1.+rho_m_over_rho_r);
+       }
+ 
++      if (pba->has_aest == _TRUE_) {
++        velocity_tot += (ppw->pvecback[pba->index_bg_rho_aest]+ppw->pvecback[pba->index_bg_p_aest])/rho_r
++          *ppw->pv->y[ppw->pv->index_pt_theta_aest]/(1.+rho_m_over_rho_r);
++      }
++
+       alpha = (eta + 3./2.*a_prime_over_a*a_prime_over_a/k/k/s2_squared*(delta_tot + 3.*a_prime_over_a/k/k*velocity_tot))/a_prime_over_a;
+ 
+       ppw->pv->y[ppw->pv->index_pt_phi] = eta - a_prime_over_a*alpha;
+@@ -5738,6 +5832,12 @@
+       if (pba->has_dcdm == _TRUE_) {
+         ppw->pv->y[ppw->pv->index_pt_delta_dcdm] -= (3.*a_prime_over_a + a*pba->Gamma_dcdm)*alpha;
+         ppw->pv->y[ppw->pv->index_pt_theta_dcdm] = k*k*alpha;
++      }
++
++      /* AeST (C7): D3 map; E and chi are gauge-invariant */
++      if (pba->has_aest == _TRUE_) {
++        ppw->pv->y[ppw->pv->index_pt_delta_aest] -= 3.*(1.+ppw->pvecback[pba->index_bg_p_aest]/ppw->pvecback[pba->index_bg_rho_aest])*a_prime_over_a*alpha;
++        ppw->pv->y[ppw->pv->index_pt_theta_aest] += k*k*alpha;
+       }
+ 
+       /* fluid */
+@@ -6996,6 +7096,27 @@
+       }
+     }
+ 
++    /* AeST extra sector contribution (C7) */
++    if (pba->has_aest == _TRUE_) {
++      double rho_a = ppw->pvecback[pba->index_bg_rho_aest];
++      double rpp_a = rho_a + ppw->pvecback[pba->index_bg_p_aest];
++      double dpr_a;
++      perturbations_aest_rhs(pba,k,ppw->pvecback,0.,0.,&(y[ppw->pv->index_pt_delta_aest]),NULL,&dpr_a);
++      ppw->delta_rho += rho_a*y[ppw->pv->index_pt_delta_aest];
++      ppw->rho_plus_p_theta += rpp_a*y[ppw->pv->index_pt_theta_aest];
++      ppw->delta_p += rho_a*dpr_a;
++      ppw->rho_plus_p_tot += rpp_a;
++
++      if (ppt->has_source_delta_m == _TRUE_) {
++        delta_rho_m += rho_a*y[ppw->pv->index_pt_delta_aest];
++        rho_m += rho_a;
++      }
++      if ((ppt->has_source_delta_m == _TRUE_) || (ppt->has_source_theta_m == _TRUE_)) {
++        rho_plus_p_theta_m += rpp_a*y[ppw->pv->index_pt_theta_aest];
++        rho_plus_p_m += rpp_a;
++      }
++    }
++
+     /* ultra-relativistic decay radiation */
+ 
+     if (pba->has_dr == _TRUE_) {
+@@ -8936,7 +9057,7 @@
+       H0 = pba->H0 * _c_ / _Mpc_over_m_;
+ 
+       //Computation of Nnow in SI units
+-      Nnow = 3.*H0*H0*pba->Omega0_b*(1.-pth->YHe)/(8.*_PI_*_G_*_m_H_);
++      Nnow = 3.*H0*H0*pba->Omega0_b*(1.-pth->YHe)/(8.*_PI_*_G_*pba->aest_g*_m_H_);
+ 
+       // total amount of hydrogen today
+       n_H = Nnow/pow(a,3);
+@@ -9233,6 +9354,13 @@
+       if (ppt->gauge == synchronous) {
+         dy[pv->index_pt_delta_cdm] = -metric_continuity; /* cdm density */
+       }
++    }
++
++    /** - ---> AeST extra sector (C7) */
++    if (pba->has_aest == _TRUE_) {
++      double dpr_a;
++      perturbations_aest_rhs(pba,k,pvecback,metric_continuity,metric_euler,
++                             &(y[pv->index_pt_delta_aest]),&(dy[pv->index_pt_delta_aest]),&dpr_a);
+     }
+ 
+     /** - ---> interacting dark radiation */
+--- a/source/thermodynamics.c
++++ b/source/thermodynamics.c
+@@ -352,7 +352,7 @@
+   pth->fHe = pth->YHe/(_not4_ *(1.-pth->YHe));
+ 
+   /** - infer number of hydrogen nuclei today in m**-3 */
+-  pth->n_e = 3.*pow(pba->H0 * _c_ / _Mpc_over_m_,2)*pba->Omega0_b/(8.*_PI_*_G_*_m_H_)*(1.-pth->YHe);
++  pth->n_e = 3.*pow(pba->H0 * _c_ / _Mpc_over_m_,2)*pba->Omega0_b/(8.*_PI_*_G_*pba->aest_g*_m_H_)*(1.-pth->YHe);
+ 
+   /** - test whether all parameters are in the correct regime */
+   class_call(thermodynamics_checks(ppr,pba,pth),
+@@ -576,7 +576,7 @@
+    * Note that even if 3.044 is a better default value, we must keep 3.046 here as long as the BBN file we are
+    * using has been computed assuming 3.046.
+    */
+-  DeltaNeff = Neff_bbn - 3.046;
++  DeltaNeff = Neff_bbn - 3.046 + 43./7.*(pba->aest_g - 1.); /* C7 premise P-g: H_BBN^2 scales with g, g* = 10.75 */
+ 
+   /* the following file is assumed to contain (apart from comments and blank lines):
+      - the two numbers (num_omegab, num_deltaN) = number of values of BBN free parameters
+@@ -652,7 +652,7 @@
+              pth->error_message,
+              pth->error_message);
+ 
+-  omega_b=pba->Omega0_b*pba->h*pba->h;
++  omega_b=pba->Omega0_b*pba->h*pba->h/pba->aest_g; /* C7 premise P-g: baryon number in G_N units */
+ 
+   class_test(omega_b < omegab[0],
+              pth->error_message,
+@@ -809,7 +809,7 @@
+   /* Hubble parameter today in SI units */
+   ptw->SIunit_H0 = pba->H0 * _c_ / _Mpc_over_m_;
+   /* H number density today in SI units*/
+-  ptw->SIunit_nH0 = 3.*ptw->SIunit_H0*ptw->SIunit_H0*pba->Omega0_b/(8.*_PI_*_G_*_m_H_)*(1.-ptw->YHe);
++  ptw->SIunit_nH0 = 3.*ptw->SIunit_H0*ptw->SIunit_H0*pba->Omega0_b/(8.*_PI_*_G_*pba->aest_g*_m_H_)*(1.-ptw->YHe);
+   /* CMB temperature today in Kelvin */
+   ptw->Tcmb = pba->T_cmb;
+ 
