@@ -4,6 +4,22 @@
 
 **Next steps (21 October 2026):** the current state is the [status board](explainers/crispy_fried_chicken_status_board.md) and the [summary figure](campaign_fresh_gravity/FIGURE_SUMMARY_2026-10-21/summary_figure.png), resting on the adopted [canonical statement](campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md) with its dated notes. What any completion must still supply is §5 of the audited [v4 draft](campaign_fresh_gravity/THEORY_CANONICAL_2026-10-21_DRAFT.md), which the owner has not yet adopted. The theory remains incomplete: the excess in pressure-supported systems is unexplained, and the engine behind the cosmic-shear pass has no known physical parent.
 
+> **Checkpoint 2026-10-22, evening (doors push + audit wave + covariant push).** One covariant candidate now survives the local tests:
+> the Blanchet–Skordis Khronon theory (arXiv:2404.06584) in its literal healthy form, plus a covector P and one stiffness term
+> −(γ_L/2)(D·P)². Statement: [`covariant_push_2026_10_22/THEORY_V3_DRAFT.md`](covariant_push_2026_10_22/THEORY_V3_DRAFT.md);
+> board: [status board](explainers/crispy_fried_chicken_status_board.md#what-changed-since-21-october-doors-push-audit-wave-covariant-push-22-october).
+> - **Galaxies:** static limit is AQUAL with μ = x/(1+x) exactly — AQUAL, not QUMOND (doors E2, covariant C4).
+> - **Health:** conditionally healthy; only the two tensor modes propagate, at c (C5); leaf problem well posed (C8). It violates
+>   "v ≤ c" (criterion A) by a real but ~10⁻⁴⁶ m/s² signal and meets criterion B. DSF-21's A33 with η > 0 is ill-posed.
+> - **Solar System:** the screened theory passes Cassini by 2.8×10⁷–5.1×10⁹ and the planets (C6); the **unscreened** law fails
+>   Cassini by 2.4–5.2× (E2) and no unscreened law form passes both Cassini and SPARC (D7c).
+> - **Fitted, not derived:** κ (0.417 ± 0.095; the thermal Z/4π is Milgrom's relation, a postulate), L★ (≥ 21.7 / 22.9 pc from
+>   outer globulars, M/L-limited, D10) and the dust abundance (an initial condition, C2/C4).
+> - **Decisive next data:** Gaia DR4 wide binaries (screened γ_v − 1 ≈ 8×10⁻⁶ vs law-first 1.167 / 1.199), the native CMB (patched
+>   CLASS validated, C7; tests the dust sector only) and the native 1024³ shear run (CFG960, running past its old failure point).
+> - **Papers:** PAPER58 v1.1, DOI [10.5281/zenodo.23579379](https://doi.org/10.5281/zenodo.23579379) (doors push, with an H₀
+>   correction: native H₀ 67.2–68.6); PAPER59 (the covariant theory) in draft.
+
 > **Checkpoint 2026-10-22 (campaign rev. 29; `deepseek_push/DS_FINAL_2026_10_21`).** The 5-DOF tethered-medium branch has machine-checked its algebraic spine in Lean (**87 theorems, 0 `sorry`**), computed the galactic α₁ as a **zero-dipole monopole** (A82), and bounded β from BBN (`β < 0.02798`, A78). On the acceleration scale it records a **fork**, not a replacement: the reduced Gibbons–Hawking wavelength at the de Sitter horizon gives `a₀ = cH_Λ/2π = 8.6257e-11` (`κ_DE = Z/4π = 0.4607`, A72) as an **external postulate** (A75), while the `R = 4` closure keeps `κ = ½` and `a₀ = 9.36e-11`; the two are 15.1% apart in Λ and the data cannot yet decide (`Δχ² = 1.82`, 1.35σ). Nothing here overwrites the headline equation. Detail: [THEORY.md](deepseek_push/DS_FINAL_2026_10_21/THEORY.md); dated block in [STANDING.md](STANDING.md).
 
 $$a_0 \;=\; \kappa\,c\sqrt{G\rho_\Lambda}\;=\;c^2\sqrt{\frac{\Lambda}{32\pi}}\;=\;9.3619\times10^{-11}\ \mathrm{m\,s^{-2}}$$

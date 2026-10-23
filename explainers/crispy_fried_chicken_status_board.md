@@ -1,6 +1,6 @@
 # The Crispy Fried Chicken Status Board
 
-*Where the theory stands, as of 21 October 2026, in one picture. The theory is not complete.*
+*Where the theory stands, as of 22 October 2026 (evening). The theory is not complete. The tile picture below is still the 21 October one; the changes since then are listed in the next section.*
 
 The theory makes one claim: the acceleration scale where galaxies stop obeying Newton, a₀, is set by the density of dark energy.
 
@@ -23,6 +23,42 @@ Each tile is one test. The colour restates a verdict recorded in the campaign LE
 | 🟦 **not decidable yet** | today's data cannot tell the theory from its rival |
 | 🟥 **fails** | the theory misses the test, and audits from the raw data confirm the miss |
 | ⬜ **open** | not yet answered, or waiting on data |
+
+## What changed since 21 October (doors push, audit wave, covariant push; 22 October)
+
+Every item below is a committed lane whose script the coordinator reran and reproduced. Full statement:
+[`covariant_push_2026_10_22/THEORY_V3_DRAFT.md`](../covariant_push_2026_10_22/THEORY_V3_DRAFT.md).
+Papers: PAPER58 v1.1, DOI [10.5281/zenodo.23579379](https://doi.org/10.5281/zenodo.23579379); PAPER59 (the covariant theory) in draft.
+
+- **Column 1 (chassis) has a new candidate, and a healthy one.** The relativistic theory is now the Blanchet–Skordis
+  Khronon theory (arXiv:2404.06584) in its literal form, plus the covector P and one stiffness term −(γ_L/2)(D·P)².
+  - Its static limit is AQUAL with μ = x/(1+x), exactly (E2, C4). The field equation is AQUAL, not QUMOND: earlier
+    lanes that used QUMOND understated the unscreened Cassini failure.
+  - It is conditionally healthy (no ghost, no gradient instability; only the two tensor modes propagate, at c) and its
+    leaf problem is well posed (C5, C8). DSF-21's A33 with a P kinetic term (η > 0) is **ill-posed** and is dropped.
+  - Cost: P and the khronon are instantaneous constraints. That meets the owner's criterion B and **violates criterion A
+    (v ≤ c)** by a real but unmeasurably small signal (C8). Binary pulsars and GW170817 do not constrain it.
+  - The stiffness term and the J that gives μ = x/(1+x) are additions to the published theory (C1, C3, C4).
+- **🟩 Cassini and the planets pass for the screened theory**: Q₂ is 2.8×10⁷–5.1×10⁹ inside Hees and Park; at
+  L★ = 24 pc Mars sees 0.17 of its bound (C6, D7d). The **unscreened** law fails Cassini by 2.4–5.2× (E2), and no
+  unscreened member of the record's law family passes both Cassini and SPARC (D7c).
+- **🟨 Globulars → L★ floor, measured with the field solved**: L★ ≥ 21.7 pc (canonical) / 22.9 pc (alt) with the SPS
+  M/L prior; 3–24 pc across M/L priors (D10). The unscreened law is excluded in every case.
+- **🟨 Dwarf satellites**: +0.89 dex above the screened prediction (not +2.15 dex above Newton, E3). The theory's
+  dynamics cannot fix a satellite's cold supply; the satellites' own chemistry says it is there, conditional on wind
+  metallicity and no pre-enrichment (E6).
+- **Gaia DR4 (December 2026) is now a clean decider**: screened γ_v − 1 ≈ 8×10⁻⁶ vs law-first (AQUAL) 1.167 / 1.199;
+  scored on the whole catalogue under the owner's σ_sys rule (pre-DR4 note, amendment A3).
+- **ALMA**: addendum E adds the n = 1 and n = 2 laws as labelled parallel readings (harness ready, MOCK-tested); both
+  discs are expected to be unscorable (D4).
+- **Native CMB**: a patched CLASS (AeST sector) is built and validated against pristine CLASS to 2×10⁻⁶ (C7); spectra
+  not yet run. It tests the dust sector and G_cosmo/G_N only — a₀ is absent from the CMB at linear order (C2).
+- **Native shear (CFG960)**: the memory fix (amendment A6) worked; the 1024³ canonical run is past its old failure
+  point. No verdict yet.
+- **Column 5**: κ is not derived — no horizon construction gives ½ without hand-picking it, and the "thermal" Z/4π is
+  Milgrom's relation, a postulate (D5, A75). The dust abundance is an initial condition (C2, C4). L★ is a new fitted
+  constant (C3). The skew-sign test of n = 1 vs n = 2 is retired (D1).
+- **Corrected in the record**: the native H₀ is 67.2–68.6 (the ordinary Hubble tension), not 55–57.5 (C2; PAPER58 v1.1).
 
 ## What changed since 9 October
 
