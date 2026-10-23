@@ -201,3 +201,16 @@ A failure of A2–A5 or D1–D3 stops the dependent part (disclosed; no number f
 rule is an append-only AMENDMENT, marked pre- or post-result. A fail is checked as hard as a pass: if v3 cures the MW slope,
 the cure must be traced to a named ingredient (kernel, geometry or EFE) with its size; if it does not, the tension is
 reported as v3's own.
+
+## AMENDMENT A1 (2026-10-23, PRE-RESULT: solver development only; no MW, κ, seal or ALMA number of this lane exists yet)
+
+**A4(ii) and D3 were mis-specified.** The Brada–Milgrom Kuzmin identity is not "in-plane AQUAL = ν₁(g_N,R) g_N,R". Above a
+Kuzmin disc the Newtonian field is a point mass's at (0, 0, −a), so AQUAL's exact solution is that point mass's spherical
+AQUAL field, and in the plane g_R(R, 0) = ν₁(|g_N(R, 0⁺)|/a₀) g_N,R(R, 0) with |g_N(0⁺)| = GM/(R² + a²), the FULL field
+magnitude just off the plane (it includes the vertical 2πGΣ-type component). Corrected checks (same tolerances):
+- **A4(ii)/D3:** in-plane AQUAL vs ν₁(GM/(R² + a²)/a₀) · GMR/(R² + a²)^{3/2} ≤ 0.5 % on R ∈ [0.3, 20] a, AND the off-plane field
+  magnitude at z = 0.5 a vs the point-mass AQUAL value ≤ 0.5 %.
+- Reported alongside (not a check): the in-plane AQUAL / in-plane-algebraic ratio on the Kuzmin disc (it is −11.7 % at
+  R = 0.3 a for y ≈ 4 at that radius), which is the size of the "geometry" ingredient this lane measures.
+- Solver default tolerance set to the frozen 1e-8 relative residual (a round-off floor near 4e-9 makes 1e-9 unreachable).
+Nothing else changes.
