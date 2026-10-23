@@ -1,0 +1,39 @@
+================================================================================================================
+S3 Part B: kappa under v3's AQUAL disc law 
+kappa = 1/2 FITTED (measured here, never derived); footings never pooled; not theory closed
+================================================================================================================
+  CFG493 read-only: L1 -10.015171 L2 -10.080732 L3 -10.302046; combined -10.107322 +- 0.098475 (JSON -10.107321721892731 +- 0.09847540443535711)
+B1 PASS CFG493 reproduced with nu_mono: max |dL_route| 0.0e+00, combined -10.107322 +- 0.098475 (tol 1e-6)
+  my fit1C(nu_mono) on CFG493's P1 parts: -10.015171 vs CFG493 -10.015171
+  P3: Sigma replication of CFG493's build (4 variants, 40 galaxies each): max rel 0.0e+00
+  P1: 12 SPARC galaxies; P3 rebuilt: 44 WALLABY galaxies with gas points under my V_gas^2 (record's v2_disc selection: 46; in both 41)
+
+--- AQUAL corrections (child processes)
+  P1 done (7 s; child peak RSS 518 MB)
+  P3 and outer-gas-extent variants done (7 s; child peak RSS 579 MB)
+  P1 inversion gas mass / (1.33 M_HI,SPARC f^2): D631-7 1.00, DDO154 1.00, DDO168 1.00, ESO444-G084 1.00, NGC2915 1.00, NGC3109 1.00, NGC3741 1.00, UGC04483 1.00, UGCA442 1.00, UGCA444 1.00, DDO161 1.00, UGC05829 1.00
+  max AQUAL residual over all galaxy solves 1.0e-08
+B2 PASS P1 gas inversion rms (per galaxy, worst) 0.0146 of V_bar^2 (tol 0.03); my Newtonian V_bar^2 vs rotmod median |d| 0.0052 (tol 0.05)
+B3 FAIL (frozen; AMENDMENT A6: the reference is noisy) P3 my grid V_gas^2 vs CFG493 v2_disc at CFG493's gas points: median |d| 0.3193 (tol 0.02)
+B3p PASS (AMENDMENT A6) my V_gas^2 (sech2 0.1 kpc) vs its razor-thin variant at the rebuilt gas points: median |d| 0.0097 (tol 0.02)
+  P2: kernel shift -0.00130 +- 0.00130 dex; reference deep disc (y at 3/4/5 R_d [0.0483, 0.0358, 0.0267]): C [0.91845, 0.95276, 0.9759] -> AQUAL shift +0.04570 +- 0.02635 dex (razor-thin +0.04609)
+
+--- steps (per route: log a0 +- total; GLS combined; both footings)
+  P1 L: primary -9.9802, razor-thin -9.9757, gas tail to 2 R_last -9.9833; P3 L: primary -10.0982, razor-thin -10.0960, tail 2 r_last -10.0969
+B4 PASS C interpolated in log a0 vs direct at the fitted a0: P1 0.0000, P3 0.0006 (tol 0.003)
+  [record nu_mono (CFG493)] P1 -10.0152+-0.1408 | P2 -10.0807+-0.1511 | P3 -10.3020+-0.1714 || combined -10.1073 +- 0.0985 (chi2 2.01, p 0.37) || kappa_L 0.417 +- 0.095 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 0.80 sig) | kappa_crit 0.345 +- 0.078 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 1.63 sig)
+  [K kernel nu1, record P3 (reported)] P1 -10.0163+-0.1395 | P2 -10.0820+-0.1511 | P3 -10.3043+-0.1720 || combined -10.1075 +- 0.0981 (chi2 2.02, p 0.36) || kappa_L 0.417 +- 0.094 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 0.80 sig) | kappa_crit 0.345 +- 0.078 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 1.64 sig)
+  [K kernel nu1 (rebuilt P3)] P1 -10.0163+-0.1395 | P2 -10.0820+-0.1511 | P3 -10.1667+-0.1739 || combined -10.0744 +- 0.0980 (chi2 0.51, p 0.77) || kappa_L 0.450 +- 0.102 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 0.47 sig) | kappa_crit 0.372 +- 0.084 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 1.31 sig)
+  [A AQUAL disc (v3)] P1 -9.9802+-0.1494 | P2 -10.0363+-0.1534 | P3 -10.0982+-0.1776 || combined -10.0296 +- 0.1012 (chi2 0.29, p 0.87) || kappa_L 0.499 +- 0.116 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 0.01 sig) | kappa_crit 0.413 +- 0.096 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 0.82 sig)
+  [A razor-thin variant] P1 -9.9757+-0.1495 | P2 -10.0359+-0.1534 | P3 -10.0960+-0.1776 || combined -10.0272 +- 0.1012 (chi2 0.30, p 0.86) || kappa_L 0.502 +- 0.117 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 0.02 sig) | kappa_crit 0.415 +- 0.097 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 0.80 sig)
+  P1 C at its gas points (primary): median 0.9537; P3: median 0.9594 (at a0 = 1.05e-10)
+
+--- step E: EFE along the disc axis (reported only; SURVEY-CALIBRATION e_N; geometry gamma = 0)
+  [E EFE noclu (P2 unchanged: no e_N on disk)] P1 -9.9812+-0.1494 | P2 -10.0363+-0.1534 | P3 -10.0983+-0.1776 || combined -10.0300 +- 0.1012 (chi2 0.28, p 0.87) || kappa_L 0.498 +- 0.116 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 0.01 sig) | kappa_crit 0.412 +- 0.096 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 0.83 sig)
+     noclu: P1 12/12 with e_N (median e_N 0.0004281700313426379), dL1 -0.0010; P3 44/44 with e_N (median 0.00047702030115832623), dL3 -0.0000
+  [E EFE maxclu (P2 unchanged: no e_N on disk)] P1 -9.9658+-0.1494 | P2 -10.0363+-0.1534 | P3 -10.0489+-0.1776 || combined -10.0117 +- 0.1012 (chi2 0.18, p 0.91) || kappa_L 0.520 +- 0.121 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 0.17 sig) | kappa_crit 0.430 +- 0.100 (CONSISTENT BUT NOT DISCRIMINATING; 1/2 at 0.65 sig)
+     maxclu: P1 12/12 with e_N (median e_N 0.00361863986662496), dL1 +0.0144; P3 44/44 with e_N (median 0.003947325241209764), dL3 +0.0493
+
+VERDICT (step A, v3): kappa_Lambda 0.499 +- 0.116 (CONSISTENT BUT NOT DISCRIMINATING); kappa_crit 0.413 +- 0.096 (CONSISTENT BUT NOT DISCRIMINATING); combined log a0 shifts: kernel (record P3) -0.0002, P3 rebuilt on a smooth V_gas^2 (record error, A6) +0.0331, AQUAL disc +0.0447 dex -> AQUAL moves kappa
+
+S3_PARTB COMPLETE: 4/5 checks PASS.  runtime 71.4 s, parent peak RSS 126.1 MB, child peaks {'p1': 513.409024, 'p1thin': 517.865472, 'p3': 555.204608, 'p3thin': 578.748416, 'p1tail2': 519.04512, 'p3tail2': 556.367872, 'p2ref': 349.339648, 'b4': 434.847744, 'p1efe_noclu': 438.35392, 'p3efe_noclu': 496.402432, 'p1efe_maxclu': 454.443008, 'p3efe_maxclu': 511.67232}
