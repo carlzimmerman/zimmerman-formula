@@ -179,7 +179,11 @@ A_form[0, 0] = a_0
 A_form[1:, 0] = c0
 A_form[0, 1:] = c0.H
 A_form[1:, 1:] = B0
-res_form = sp.simplify(A_bg - A_form)
+res_form_sec0 = sp.simplify(A_bg - A_form)            # section-0 convention (k -> -k image)
+A_form_conj = A_form.copy()
+A_form_conj[1:, 0] = c0.conjugate()
+A_form_conj[0, 1:] = c0.T
+res_form = sp.simplify(A_bg - A_form_conj)             # ket convention delta D = +i k.p (AMENDMENT A1, item 1)
 form_ok = res_form == sp.zeros(4, 4)
 Binv = B0.inv()
 S_schur = sp.simplify(A_form[0, 0] - (c0.H * Binv * c0)[0, 0])
@@ -188,8 +192,18 @@ S_ident = a_0 - kap ** 2 * (kv.T * Binv * kv)[0, 0] - (g0.T * Binv * g0)[0, 0]
 ident_ok = sp.simplify(S_schur - S_ident) == 0
 det_ok = sp.simplify(A_form.det() - B0.det() * S_schur) == 0
 gx = sp.simplify(g0[0] / a0)
-record("V2", form_ok and ident_ok and det_ok,
-       f"Hessian of the frozen-coefficient density = section-0 form: {form_ok}; S = a - kappa^2 k.B^-1.k - g0.B^-1.g0: "
+# exact closed form (AMENDMENT A1, item 2): Sherman-Morrison + Lagrange identity, M diagonal
+mT = [1 / Mm[i, i] for i in range(3)]
+qk = sum(mT[i] * kv[i] ** 2 for i in range(3))
+gMg = mT[0] * g0[0] ** 2
+cross = sum(mT[i] * mT[j] * (g0[i] * kv[j] - g0[j] * kv[i]) ** 2 for i in range(3) for j in range(i + 1, 3))
+KS_closed = -muc ** 2 / Nn ** 3 - (kap ** 2 * qk + gMg + (gc / Kc) * cross) / (Nn * (1 + (gc / Kc) * qk))
+closed_ok = sp.simplify(Kc * S_schur - KS_closed) == 0
+detB_ok = sp.simplify(B0.det() - Nn ** 3 * Kc ** 3 * Mm.det() * (1 + (gc / Kc) * qk)) == 0
+record("V2", form_ok and ident_ok and det_ok and closed_ok and detB_ok,
+       f"Hessian = form with c-bar (ket convention): {form_ok} (section-0 convention residual non-zero: "
+       f"{res_form_sec0 != sp.zeros(4, 4)}); closed form K S: {closed_ok}; det B lemma: {detB_ok}; "
+       f"S = a - kappa^2 k.B^-1.k - g0.B^-1.g0: "
        f"{ident_ok}; det A = det B * S: {det_ok}; g0/a0 = {gx} (= x with z = u/a0)")
 out["V2_symbolic"] = {"A_bg_minus_form": str(res_form), "S": str(S_schur), "g0_over_a0": str(gx)}
 
@@ -218,11 +232,42 @@ def S_and_det(x, grho, ang, kL, muL, Lstar, a0SI, N0v=1.0):
     return KS, bound, detA, kk
 
 
+def KS_closed_num(x, grho, ang, kL, muL, Lstar, a0SI, N0v=1.0):
+    g = a0SI * x / cl ** 2
+    kk = kL / Lstar
+    k1n, k2n = kk * np.cos(ang), kk * np.sin(ang)
+    m0, m1 = 1 / (1 + x) ** 2, 1 / (1 + x)
+    q = m0 * k1n ** 2 + m1 * k2n ** 2
+    kap_n = (1 + grho) if clock else grho
+    cr = m0 * m1 * (g * k2n) ** 2
+    KS = -(muL / Lstar) ** 2 / N0v ** 3 - (kap_n ** 2 * q + m0 * g ** 2 + 0.5 * Lstar ** 2 * cr) / (N0v * (1 + 0.5 * Lstar ** 2 * q))
+    return KS, kk
+
+
+import mpmath as mp
+mp.mp.dps = 50
+
+
+def KS_mp(x, grho, ang, kL, muL, Lstar, a0SI, N0v=1.0):
+    x, grho, ang, kL, muL, Lstar, a0SI = (mp.mpf(v) for v in (x, grho, ang, kL, muL, Lstar, a0SI))
+    g = a0SI * x / mp.mpf(cl) ** 2
+    kk = kL / Lstar
+    kvec = mp.matrix([kk * mp.cos(ang), kk * mp.sin(ang), 0])
+    Mn = mp.diag([(1 + x) ** 2, 1 + x, 1 + x])
+    Bk = N0v * (Mn + mp.mpf(1) / 2 * Lstar ** 2 * kvec * kvec.T)
+    kap_n = (1 + grho) if clock else grho
+    cvec = mp.matrix([kap_n * 1j * kvec[0] + g, kap_n * 1j * kvec[1], 0])
+    Bi = mp.inverse(Bk)
+    quad = (cvec.H * Bi * cvec)[0]
+    return -(muL / Lstar) ** 2 / N0v ** 3 - mp.re(quad)
+
+
 xs = np.logspace(-3, 9, 49)
 grhos = [-0.9, -0.1, -1e-12, 0.0, 1e-12, 0.1]
 angs = [0.0, np.pi / 4, np.pi / 2]
 kLs = np.logspace(-3, 8, 45)
 n_pts, n_neg, worst_ratio, min_rel = 0, 0, 0.0, np.inf
+inv_err = []
 min_rel_at = None
 for foot, (a0SI, floor) in footings.items():
     for Lpc in (floor, 24.0, 90.0):
@@ -232,22 +277,42 @@ for foot, (a0SI, floor) in footings.items():
                 for gr in grhos:
                     for ang in angs:
                         for kL in kLs:
-                            KS, bnd, dA, kk = S_and_det(x, gr, ang, kL, muL, Ls, a0SI)
+                            KSi, bnd, dA, kk = S_and_det(x, gr, ang, kL, muL, Ls, a0SI)   # run-1 (inverse) path
+                            KS, kk = KS_closed_num(x, gr, ang, kL, muL, Ls, a0SI)
                             n_pts += 1
-                            n_neg += dA < 0
+                            n_neg += KS < 0            # det A = K^4 N0^3 det M (1 + L^2 q/2) S, all other factors > 0
                             if bnd != 0:
-                                worst_ratio = max(worst_ratio, abs(KS / bnd - 1))
+                                inv_err.append((abs(KSi / bnd - 1), (x, gr, ang, kL, muL, Ls, a0SI), KS))
                             rel = abs(KS) / kk ** 2
                             if rel < min_rel:
                                 min_rel, min_rel_at = rel, (foot, Lpc, muL, float(x), gr, ang, float(kL))
-v2_ok = n_neg == n_pts and worst_ratio < 1e-9
-record("V2", v2_ok, f"sweep: det A < 0 at {n_neg}/{n_pts} points; max |S/bound - 1| = {worst_ratio:.1e}; "
+inv_err.sort(key=lambda t: -t[0])
+mp_rows = []
+for err, args, KSc in inv_err[:20]:
+    KSm = KS_mp(*args)
+    KSc_mp = mp.mpf(0)
+    xx, gr, ang, kL, muL, Ls, a0SI = (mp.mpf(v) for v in args)
+    g = a0SI * xx / mp.mpf(cl) ** 2
+    kk = kL / Ls
+    k1n, k2n = kk * mp.cos(ang), kk * mp.sin(ang)
+    m0, m1 = 1 / (1 + xx) ** 2, 1 / (1 + xx)
+    q = m0 * k1n ** 2 + m1 * k2n ** 2
+    kap_n = (1 + gr) if clock else gr
+    KSc_mp = -(muL / Ls) ** 2 - (kap_n ** 2 * q + m0 * g ** 2 + Ls ** 2 / 2 * m0 * m1 * (g * k2n) ** 2) / (1 + Ls ** 2 / 2 * q)
+    mp_rows.append({"run1_inverse_rel_err": err, "closed_mp_vs_inverse_mp": float(abs(KSc_mp / KSm - 1)),
+                    "closed_f64_vs_mp": float(abs(mp.mpf(KSc) / KSm - 1))})
+worst_ratio = max(r["closed_f64_vs_mp"] for r in mp_rows)
+mp_agree = max(r["closed_mp_vs_inverse_mp"] for r in mp_rows)
+v2_ok = n_neg == n_pts and worst_ratio < 1e-9 and mp_agree < 1e-30
+record("V2", v2_ok, f"sweep (closed form): det A < 0 at {n_neg}/{n_pts} points; at the 20 worst run-1 rows (inverse err "
+                    f"up to {inv_err[0][0]:.2f}) closed vs 50-digit inverse {mp_agree:.1e}, float64 closed vs mp "
+                    f"{worst_ratio:.1e}; "
                     f"min |K S|/k^2 = {min_rel:.2e} at (footing, L* pc, mu L*, x, gamma_L rho0, angle, kL*) = {min_rel_at}")
 # the locus itself, as a control on the sweep
 loc = S_and_det(0.0, -1.0, 0.0, 1.0, 0.0, 24 * pc, 9.36e-11)
 record("V2", abs(loc[0]) < 1e-30 if not MUTATE else True,
        f"on the locus (mu_K = 0, x = 0, gamma_L rho0 = -1): K S = {loc[0]:.2e} (degenerate, as derived)")
-out["V2_sweep"] = {"points": n_pts, "negative_det": int(n_neg), "max_S_over_bound_minus_1": worst_ratio,
+out["V2_sweep"] = {"points": n_pts, "negative_det": int(n_neg), "mp_rows": mp_rows, "f64_closed_vs_mp": worst_ratio,
                    "min_absKS_over_k2": min_rel, "at": min_rel_at, "locus_KS": loc[0]}
 
 # ================================================================ V3: J(Y) representation (gamma_L = 0)
@@ -262,8 +327,9 @@ xu = sp.simplify(Kc * sp.diff(Wu, u) / a0)
 MTu = sp.simplify(Kc * sp.diff(Wu, u) / u)      # (K^2 W'/u)/K
 MLu = sp.simplify(Kc * sp.diff(Wu, u, 2))       # (K^2 W'')/K
 Yu = (a0 * xu) ** 2
-c1 = sp.simplify(J1.subs(Yv, Yu) + 1 / MTu)
-c2 = sp.simplify((J1 + 2 * Yv * J2).subs(Yv, Yu) + 1 / MLu)
+dd = sp.symbols("d", positive=True)                      # W's domain u < a0 (AMENDMENT A1, item 3)
+c1 = sp.simplify((J1.subs(Yv, Yu) + 1 / MTu).subs(a0, u + dd))
+c2 = sp.simplify(((J1 + 2 * Yv * J2).subs(Yv, Yu) + 1 / MLu).subs(a0, u + dd))
 record("V3", c1 == 0 and c2 == 0, f"J_x: J'(Y) + 1/M_T = {c1}; J' + 2Y J'' + 1/M_L = {c2} (with x(u) = {xu}): the P-sector "
                                   f"Schur principal symbol = (1/(K N0))[J' k^2 + 2 J''(g.k)^2], the J(Y) lapse Hessian")
 out["V3"] = {"x_of_u": str(xu), "MT": str(MTu), "ML": str(MLu), "res_T": str(c1), "res_L": str(c2)}

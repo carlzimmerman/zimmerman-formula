@@ -78,6 +78,11 @@ where P moves (π_P ≠ 0) the count is **5.5** — a half mode whose weight van
 backgrounds are strongly coupled. This supports C5's "η > 0 is ill-posed" from the Hamiltonian side. v3 (β = η = 0) is
 not covered by this note; its constraint algebra stays OPEN. The 87 Lean theorems are algebraic identities, not the
 constraint algebra. Rest of the Revision 12 block unchanged.
+**Later the same day (`reviews/v3_constraint_algebra_2026_10_23/README.md`):** v3's constraint algebra (β = η = 0, P
+auxiliary, BS K(Q) with J(Y) represented by the P sector) **closes uniformly**. There is no tertiary constraint and
+there are 3 DOF on Minkowski (μ_K = 0 and > 0), on FRW with BS dust and on sheared backgrounds. det A < 0 except on
+{μ_K = 0, zero acceleration, γ_Lρ_P = −1}. H4's ρ_τ < 0 regions sit 12 decades from that locus, so H4's ill-posedness
+is the scalar's dynamics, not the algebra.
 
 ## ⚠⚠⚠ REVISION 12 BLOCK — 2026-10-22 (campaign checkpoint 29; `deepseek_push/DS_FINAL_2026_10_21`). Newer than everything below it; where they conflict, this block wins.
 

@@ -2,9 +2,9 @@ V1   PASS  B1 Minkowski, mu_K = 0: residuals ['0', '0', '0']; ranks {'7/10': 4, 
 V1   PASS  B2 Minkowski, mu_K = 0.3: residuals ['0', '0', '0']; ranks {'7/10': 4, '13/10': 4, '3': 4}; first-class rows ['p_s', 'H_x']; det A = -(1027*k**2 + 90)/1000; scalar DOF/mode 1
 V1   PASS  B3 FRW point, BS dust (N0 = 0.9): residuals ['0', '0', '0']; ranks {'7/10': 4, '13/10': 4, '3': 4}; first-class rows ['p_s', 'H_x']; det A = -(93*k**2 + 10)/90; scalar DOF/mode 1
 V1   PASS  B4 sheared momentum + BS dust: residuals ['0', '0', '0']; ranks {'7/10': 4, '13/10': 4, '3': 4}; first-class rows ['p_s', 'H_x']; det A = -(93*k**2 + 10)/90; scalar DOF/mode 1
-V2   FAIL  Hessian of the frozen-coefficient density = section-0 form: False; S = a - kappa^2 k.B^-1.k - g0.B^-1.g0: True; det A = det B * S: True; g0/a0 = -K*p0/(K*p0 - a0) (= x with z = u/a0)
-V2   FAIL  sweep: det A < 0 at 476280/476280 points; max |S/bound - 1| = 2.0e-01; min |K S|/k^2 = 9.95e-21 at (footing, L* pc, mu L*, x, gamma_L rho0, angle, kL*) = ('canonical', 21.7, 0.0, 1000000000.0, -0.9, 0.0, 100000000.0)
+V2   PASS  Hessian = form with c-bar (ket convention): True (section-0 convention residual non-zero: True); closed form K S: True; det B lemma: True; S = a - kappa^2 k.B^-1.k - g0.B^-1.g0: True; det A = det B * S: True; g0/a0 = -K*p0/(K*p0 - a0) (= x with z = u/a0)
+V2   PASS  sweep (closed form): det A < 0 at 476280/476280 points; at the 20 worst run-1 rows (inverse err up to 0.20) closed vs 50-digit inverse 2.9e-39, float64 closed vs mp 1.7e-16; min |K S|/k^2 = 9.95e-21 at (footing, L* pc, mu L*, x, gamma_L rho0, angle, kL*) = ('canonical', 21.7, 0.0, 1000000000.0, -0.9, 0.0, 100000000.0)
 V2   PASS  on the locus (mu_K = 0, x = 0, gamma_L rho0 = -1): K S = -0.00e+00 (degenerate, as derived)
-V3   FAIL  J_x: J'(Y) + 1/M_T = u*(a0 - u - Abs(a0 - u))/(a0*(u + Abs(a0 - u))); J' + 2Y J'' + 1/M_L = 2*u*(-a0**3 + 3*a0**2*u + a0**2*Abs(a0 - u) - 3*a0*u**2 - 2*a0*u*Abs(a0 - u) + u**3 + u**2*Abs(a0 - u))/(a0**2*(a0**2 - 2*a0*u + 2*u**2 + 2*u*Abs(a0 - u))) (with x(u) = u/(a0 - u)): the P-sector Schur principal symbol = (1/(K N0))[J' k^2 + 2 J''(g.k)^2], the J(Y) lapse Hessian
+V3   PASS  J_x: J'(Y) + 1/M_T = 0; J' + 2Y J'' + 1/M_L = 0 (with x(u) = u/(a0 - u)): the P-sector Schur principal symbol = (1/(K N0))[J' k^2 + 2 J''(g.k)^2], the J(Y) lapse Hessian
 V4   PASS  320 H4 region values; max |rho_tau| 7.985e-23 kg/m^3 at /S2_LMC-MW|alt|e0/f0/fine/near/max_abs_rho_excl_null; gamma_L|rho| = 1.67e-13 (L* 21.7 pc), 1.86e-13 (L* 22.9 pc), 2.04e-13 (L* 24.0 pc), 2.87e-12 (L* 90.0 pc); distance to the locus gamma_L rho0 = -1: >= 0.999999999997
-6/9 PASS
+9/9 PASS
