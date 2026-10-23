@@ -88,3 +88,12 @@ Reading limits declared now: frozen-coefficient (WKB) analysis; linear only; no 
 
 κ = ½ FITTED. Both footings, never pooled. No dark-matter particle. Never "theory closed". Nothing here says the data
 favour the framework.
+
+## AMENDMENT A1 (PRE-RESULT: written before any script of this lane was run; no pass line changed)
+
+The illustrative Galactic model in §1 is changed from a Kuzmin disc to a **Miyamoto–Nagai** disc (M = 6e10 M☉,
+a = 3 kpc, b = 0.28 kpc; Sun at (8.2, 0.02) kpc). Reason (pen and paper, while writing the script): above and below a
+Kuzmin disc the field is that of a displaced point mass, |g_N| depends only on the distance to that point, so the
+pointwise-law twist source ∇ν × g_N vanishes identically off the plane and its tangential part is continuous across it.
+The Kuzmin case is kept as a code sanity line (its twist must come out ≈ 0, reported, not scored). K7's scored line
+(grid refinement < 10 % at the Sun) now applies to the Miyamoto–Nagai disc.
