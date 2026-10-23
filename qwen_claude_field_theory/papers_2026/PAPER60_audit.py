@@ -126,6 +126,10 @@ th = git("show", "45bd132464:covariant_push_2026_10_22/THEORY_V3_DRAFT.md").stdo
 check("B THEORY_V3_DRAFT at 45bd132464 has the S4 and H4 rows, cited", "SCOPED NO-GO for every allowed μ_K" in th and "ILL-POSED" in th and "45bd132464" in flat)
 board = git("show", "fc50a03878:explainers/make_status_board.py").stdout
 check("B board at fc50a03878 (v3 only, tidal dwarfs green via U1), cited", "VERIFIED_GREEN" in board and "pass (U1: v3's own dynamics)" in board and "fc50a03878" in flat)
+bfix = git("show", "271d7449ca:explainers/make_status_board.py").stdout
+bfiles = git("show", "--name-only", "--format=", "271d7449ca").stdout
+check("B board fix 271d7449ca: four notes corrected, cited", "+0.032 dex, line 0.15" in bfix and "0.88 / 0.81 (primary field)" in bfix and "+0.033 dex" not in bfix
+      and "the khronon/dust pair also propagates" in bfix and "ruins it for every μ_K ≥ 0.1/Mpc" in bfix and "explainers/img/status_board.png" in bfiles and "271d7449ca" in flat)
 has("B footings", "(9.36x10-11 and 1.13x10-10 m s-2")
 has("B kappa fitted, not closed", "is fitted; the theory is not closed")
 has("B never pooled", "never pooled")
@@ -293,7 +297,7 @@ rd("F S4 pass line 11.07 (README)", RB, "S4_v3_muK_clusters", "README.md", "χ²
 rd("F S4 README 'law's own 33.0' (disclosed)", RB, "S4_v3_muK_clusters", "README.md", "the law's own: 27.5 alt, 33.0 canonical", "the law's own 33.0")
 law = s4["law"]["h0672|canonical"]["P3"]["MID"][0]
 check("F S4 mu_K <= 0.03 untouched (JSON: MID moves < 0.5%)", abs(W["0.03|h0672|canonical"]["A_MID_D0"][0] / law - 1) < 0.005 and "For μK ≤ 0.03 Mpc-1 the clusters are untouched" in flat)
-check("F S4 about 1% at 0.1 (JSON)", 0.005 < abs(W["0.1|h0672|canonical"]["A_MID_D0"][0] / law - 1) < 0.02 and "cluster cores move by about 1%" in flat)
+check("F S4 about 1% at 0.1 (JSON)", 0.005 < abs(W["0.1|h0672|canonical"]["A_MID_D0"][0] / law - 1) < 0.02 and "the cluster cores move by" in flat and "about 1%, while isolated-galaxy lensing is already ruined" in flat)
 num("F S4 galaxy lensing at 0.1 (JSON)", f"+{s4['galaxy']['0.1|canonical|0.0']['dchi2_zero_vs_law']:.1f} / +{s4['galaxy']['0.1|alt|0.0']['dchi2_zero_vs_law']:.1f}", "(Δχ2 = {})")
 rd("F S4 guard fails for every mu_K >= 0.1 (README)", RB, "S4_v3_muK_clusters", "README.md", "The isolated-galaxy guard fails for every μ_K ≥ 0.1 Mpc⁻¹", "the galaxy guard fails for every μK ≥ 0.1 Mpc-1")
 num("F S4 psi zeros at 0.1 (JSON)", f"{s4['galaxy_profiles']['0.1|canonical']['first_zero_psi_Mpc'][1]:.2f} Mpc around a galaxy and {s4['cluster_profiles']['0.1|h0672|canonical']['first_zero_psi_Mpc_median']:.2f}", "is at {} Mpc around")
@@ -424,6 +428,9 @@ e = bibentry("Skordis2021")
 check("O Skordis & Zlosnik 2021 (bib)", "2007.00082" in e and "161302" in e and "PRL 127, 161302 (2021) (arXiv:2007.00082)" in flat)
 check("O Hees 2014 (bib)", "102002" in bibentry("Hees2014") and "PRD 89, 102002 (2014)" in flat)
 check("O Park 2026 (bib)", "024066" in bibentry("Park2026") and "PRD 114, 024066 (2026)" in flat)
+pub = open(os.path.join(HERE, "PAPER60_zenodo_publish.py"), encoding="utf-8").read()
+check("O publish script: PAPER60 files only, audit gate before any Zenodo call, --check mode", "PAPER59" not in pub and '"PAPER60_audit.py"' in pub
+      and pub.index("audit_gate()  ") < pub.index("tok = token()") and '"--check" in sys.argv' in pub)
 z = json.load(open(ZJ))["metadata"]
 ids = {r["identifier"] for r in z["related_identifiers"]}
 check("O related identifiers (PAPER59, PAPER58 v1.1)", {"10.5281/zenodo.23585319", "10.5281/zenodo.23579379"} <= ids)
