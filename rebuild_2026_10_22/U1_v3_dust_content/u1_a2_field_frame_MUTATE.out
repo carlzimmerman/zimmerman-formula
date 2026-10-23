@@ -1,0 +1,41 @@
+====================================================================================================================
+U1 A2: the field-galaxy frame (held phantom vs relative velocity to the local khronon flow)   *** MUTATE: no hold kernel ***
+====================================================================================================================
+
+--- F1: linear baryon-dust differential acceleration on FRW ---
+F1 FAIL (acc_b - acc_dust) - s*Phi_tau = a**2*drho_tau*fourpiG/(a**2*mu**2 + k**2); k>>a mu: ratio -> 0; k<<a mu: ratio ~ 0 0; 1; k^2/(a mu)^2  differential acceleration = s grad(Phi_tau): full on k >> a muK, suppressed (k/a muK)^2 on k << a muK (co-flow)
+
+--- F2: linear rms baryon-dust relative velocity at z = 0 (v3 two-fluid, J_x/BSK2 kernel) ---
+   reproduction: sigma8 ratio at mu 14.79771 h/Mpc = 1.00000 (F3 K4 0.39080)
+   BS24_own_0.015637/Mpc  mu    0.0228 h/Mpc: k<=0.3: sigma_b  497.4, sigma_rel    0.00 km/s; k<=1.0: sigma_b  521.1, sigma_rel    0.00 km/s; k<=10.0: sigma_b  526.9, sigma_rel    0.00 km/s; k<=50.0: sigma_b  527.0, sigma_rel    0.00 km/s
+                          share of baryon velocity not carried by dust (delta_b'-delta_tau')/delta_b' at k = 0.01/0.1/1/10 h/Mpc: 0.000/0.000/0.000/0.000
+   cap_14.8h/Mpc          mu   14.8000 h/Mpc: k<=0.3: sigma_b  497.4, sigma_rel    0.00 km/s; k<=1.0: sigma_b  521.1, sigma_rel    0.00 km/s; k<=10.0: sigma_b  526.9, sigma_rel    0.00 km/s; k<=50.0: sigma_b  527.0, sigma_rel    0.00 km/s
+                          share of baryon velocity not carried by dust (delta_b'-delta_tau')/delta_b' at k = 0.01/0.1/1/10 h/Mpc: 0.000/0.000/0.000/0.000
+   M1_411h/Mpc            mu  411.0000 h/Mpc: k<=0.3: sigma_b  497.4, sigma_rel    0.00 km/s; k<=1.0: sigma_b  521.1, sigma_rel    0.00 km/s; k<=10.0: sigma_b  526.9, sigma_rel    0.00 km/s; k<=50.0: sigma_b  527.0, sigma_rel    0.00 km/s
+                          share of baryon velocity not carried by dust (delta_b'-delta_tau')/delta_b' at k = 0.01/0.1/1/10 h/Mpc: 0.000/0.000/0.000/0.000
+   post-recombination streaming today (EXTERNAL, ~30 km/s at z~1020, decaying as 1/a): 0.029 km/s
+F2 FAIL F3 K4 reproduced 1.00000 vs 0.39080 (1.6e+00); all cells finite True <= 1e-3  
+
+--- F3: SPARC hold radii: V_hold = sqrt(2) V_bar (Upsilon_d 0.5, Upsilon_b 0.7; spherical approximation) ---
+   V_rel     1 km/s: RAR points not held  0.001; median r_f/R_last 1.000; galaxies with r_f < R_last/2 0.000
+   V_rel     3 km/s: RAR points not held  0.002; median r_f/R_last 1.000; galaxies with r_f < R_last/2 0.000
+   V_rel    10 km/s: RAR points not held  0.014; median r_f/R_last 1.000; galaxies with r_f < R_last/2 0.000
+   V_rel    30 km/s: RAR points not held  0.128; median r_f/R_last 1.000; galaxies with r_f < R_last/2 0.086
+   V_rel   100 km/s: RAR points not held  0.491; median r_f/R_last 0.000; galaxies with r_f < R_last/2 0.634
+   V_rel   300 km/s: RAR points not held  0.889; median r_f/R_last 0.000; galaxies with r_f < R_last/2 0.977
+   V_rel   600 km/s: RAR points not held  1.000; median r_f/R_last 0.000; galaxies with r_f < R_last/2 1.000
+   V_hold percentiles (1/5/25/50/75/95 %): 8.1, 18.4, 45.2, 103.1, 216.0, 338.1 km/s; median at the last point 64.4
+F3 PASS 175 galaxies, 3391 points 175  a0-free
+
+--- F4: acceleration criterion: RAR points with g_obs < g_e (dust cannot follow if the surroundings are held) ---
+   [canonical] 109 galaxies, 1682 points: g_obs < g_e at 0.010 of points (held surroundings); 0.0000 with the field x s = 0.277 (unheld, D = 1 Mpc, cap)
+   [alt] 109 galaxies, 1682 points: g_obs < g_e at 0.012 of points (held surroundings); 0.0006 with the field x s = 0.277 (unheld, D = 1 Mpc, cap)
+F4 PASS computed computed  
+
+--- F5: a moving-member class: SPARC Ursa Major members (distance method 4) ---
+   [canonical] 28 members (19 with cz), sigma_LOS 115 km/s -> V_rel 199 km/s; 285 member points beyond r_f (0.81 of their points); their RAR offset vs field points in the same g_bar bins -0.042 +- 0.009 dex (a dust-free member would sit at -0.440 dex)
+   [alt] 28 members (19 with cz), sigma_LOS 115 km/s -> V_rel 199 km/s; 285 member points beyond r_f (0.81 of their points); their RAR offset vs field points in the same g_bar bins -0.038 +- 0.010 dex (a dust-free member would sit at -0.472 dex)
+F5 PASS computed computed  
+F6 PASS 0.136 GB < 1 GB  peak RSS
+
+U1_A2_FIELD_FRAME COMPLETE: 4/6 checks PASS.  (2 s)

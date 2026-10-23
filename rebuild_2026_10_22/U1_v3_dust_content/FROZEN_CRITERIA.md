@@ -229,3 +229,24 @@ s ≈ (k/aμ_K)² (k ≪ aμ_K: co-flow). Bulk flows enter only through their k 
 - "DEPENDS ON <assumption>" whenever the reading flips between the stated alternatives (held vs unheld surroundings;
   BS24's own μ_K vs the cap; whether held dust is dragged). The favourable alternative is never chosen.
 - Board tiles that would change are listed for every LOST or DEPENDS reading.
+
+## AMENDMENT A3 (POST-RESULT, 2026-10-23; no threshold, line or reading changed)
+
+1. **N4 FAIL is kept as frozen.** The largest hold self-force is 2.29e-3 of M·x_e, in the strongest cell (x_e = 3, internal
+   field 10 x_e, blob b = 2 at 64³); the other eight cells are ≤ 8.7e-5. Diagnosis (reported, ungated, run in the same
+   script): the same cell with a smoother blob (b = 3, same grid) gives 3.6e-4. The error grows with field strength and
+   with blob/grid coarseness, as expected from discretising a nonlinear stress identity that is exact in the continuum
+   (D7(b)). Reading: T3(b) is confirmed to the resolution limit; N4 as frozen FAILS on resolution, not on physics. The
+   main run therefore exits 1 (15/16).
+2. **Mutate-path bug (D7).** The symbols a, F were declared positive, so sympy found no solution when MUTATE makes F = 0
+   (crash). They are now declared real. The normal-mode D7 solution is unchanged; the main outputs were regenerated with the
+   final script.
+3. **A2 script.** The F3 reference was read as a dict and crashed before any F2 number was printed; it now reads the
+   `sigma8_ratio` field (pre-result for F2).
+4. **N7 reading for Coma.** With the generous zero point |Ξ_ref| = 3 v_c,host², ε_K reaches 8 for Coma UDGs at the BS cap.
+   That zero point would put a uniform K-dust density inside the UDGs far above Coma's measured total local density
+   (S1: ≤ 1.1 % of each UDG's need), so it is excluded by Coma's own hydrostatic data; S1's measured-density bound applies.
+5. **N3 reading.** Cold radial infall (pure radial orbits, outside T1's premise) overshoots the phantom transiently
+   (maximum 1.09 satellite, 1.15 TDG, λ = 0.5) and leaves a radially anisotropic remnant 6 % above it at r12 (TDG, late
+   mean 1.057). This agrees with N2 (radial anisotropy can exceed the phantom near the centre) and is reported as the size
+   of the time-dependent escape from the bound.
