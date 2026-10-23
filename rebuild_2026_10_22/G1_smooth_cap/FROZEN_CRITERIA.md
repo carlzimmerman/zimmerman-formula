@@ -87,3 +87,17 @@ as a change of rule, not as a numerical cure.
 
 Compute: `OMP_NUM_THREADS=1 nice -n 15`, < 1 GB RSS, no PM simulation, CFG960 untouched.
 κ = ½ FITTED; footing canonical only (both records used here are canonical; the alt 512³ run 439_A is read in K1 only).
+
+## AMENDMENT A1 (pre-result: written before the first full run produced any K3 number)
+
+K3's PASS line changes from "computed" to a control gate: the linear round trip N → 2N → N of s_ph alone must return
+P(k ≤ 1) to ≤ 1e-5 relative. Shares are reported as frozen. Implementation notes (no effect on any definition):
+the macOS allocator is run with `MallocMediumZone=0 MallocLargeCache=0` (the script re-execs itself with them; without
+them freed 1–16 MB temporaries stay resident and RSS passes 1 GB), particle deposits run in a child process that
+streams the npz, and the tidal components are parked on disk. Arithmetic is the engine's (K0 reproduces to 3.3e-7).
+
+## AMENDMENT A2 (post-result)
+
+The §5 ARTEFACT clause "(b1n) or (b2) bringing max|P−1| at 512³-state (K5) below 0.10" is vacuous: on the 256³ operator
+grid the step itself already gives 0.077 for the 512³ state. The frozen line returns ARTEFACT through S = 0.553 (b2) and
+that vacuous clause. The README reports the frozen outcome and, separately, what the numbers support. Nothing is re-scored.
