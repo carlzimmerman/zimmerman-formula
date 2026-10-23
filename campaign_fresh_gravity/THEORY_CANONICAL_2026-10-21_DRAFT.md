@@ -268,7 +268,7 @@ Every system with an excess is pressure-supported, and no rotator carries one. B
 | CFG921 | five one-constant selectors | NONE SURVIVES | f4c87a342 |
 | CFG922 | cluster-core excess vs baryon census | EXCESS STANDS | e10ff47a2 |
 | CFG923 | late binding vs the framework's clock | canonical CONTRADICTED; OVERALL UNDERDETERMINED | ec6316d0f |
-| CFG924 | aperture-mass recheck of an earlier lane's condensed masses (owner-started) | PENDING (no LEDGER row) | — |
+| CFG924 | aperture-mass recheck of an earlier lane's condensed masses (owner-started) | the earlier hot-group lensing verdict moves: BOTH EXCLUDED → NOT DIAGNOSTIC (FRAGILE: gas extent) | 8e7374552 |
 | CFG925 | reframings A: Jeans estimator, self-sourcing, EFE | NO EFFECT; WORSENS; WORSENS | 45e1c487a |
 | CFG926 | reframings B: fossil a0, IMF α–σ, ESD estimator | R4 NO EFFECT / WORSENS (rival PARTIAL); R5 RESOLVES the red-lens excess (conditional); R6 NO EFFECT | a15a87fb7 |
 | CFG927 | sealed high-L CMB-lensing forecast | SEALED FORECAST | 4f7b35baf |
@@ -356,8 +356,7 @@ Do not use any number for these until the lane's README result and LEDGER row ar
 - **P4. CFG689 BAO fold-in: FILLED (no longer pending).** It landed in 6c064b83a (LEDGER row, README, `cfg689_summary.md`) and is
   folded in as §3.8, following its handoff (07259c4c6) and the dated note in v3 (f39b66063). Primary rows only. The θ* rows are
   held back because K9 failed as frozen; the handoff's rule is to report a failed check as a failure, so §3.8 does.
-- **P5. CFG924. PENDING (fill when committed).** The owner-started aperture-mass recheck. It bears on CFG922's side finding that
-  an earlier lane's condensed masses are probably biased low ×1.5–3.
+- **P5. CFG924: FILLED (8e7374552).** The data re-check of the earlier hot-group lensing test (eFEDS groups) with CFG922 A1's total-flux census moves its verdict: both models go from EXCLUDED to NOT DIAGNOSTIC (FRAGILE: gas extent), on both footings.
 
 ## Sources (read only)
 - `THEORY_CANONICAL_2026-10-18.md` (v3 and all its notes), `THEORY_CANONICAL_2026-10-16.md` (v2, b7b3ba9a7),

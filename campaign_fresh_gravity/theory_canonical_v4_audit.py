@@ -112,7 +112,6 @@ for h in hashes:
 # ---------------------------------------------------------------- L: lane IDs
 # PENDING placeholders: (LEDGER row that must name them, text that must appear in that row)
 PENDING = {
-    "CFG924": ("CFG920–929", "CFG924"),
 }
 lanes = sorted(set(re.findall(r"CFG\d+(?:-A\d+)?", DRAFT)), key=lambda x: (int(re.match(r"CFG(\d+)", x).group(1)), x))
 for lane in lanes:
@@ -148,7 +147,7 @@ CLASSES = {
     "CFG919": ["SELECTOR CONTRADICTED", "FRAGILE"], "CFG920": ["UNDERDETERMINED"], "CFG921": ["NONE SURVIVES"],
     "CFG922": ["EXCESS STANDS"], "CFG923": ["CONTRADICTED", "UNDERDETERMINED"], "CFG925": ["NO EFFECT", "WORSENS"],
     "CFG926": ["NO EFFECT", "WORSENS", "PARTIAL", "RESOLVES the red-lens excess"], "CFG927": ["SEALED FORECAST"],
-    "CFG928": ["SURVIVES", "FAIL", "UNDERDETERMINED"], "CFG929": ["none resolves it"],
+    "CFG924": ["NOT DIAGNOSTIC"], "CFG928": ["SURVIVES", "FAIL", "UNDERDETERMINED"], "CFG929": ["none resolves it"],
 }
 sec = DRAFT.split("### 4.4", 1)[1].split("\n## ", 1)[0] if "### 4.4" in DRAFT else ""
 report("T", bool(sec), "section 4.4 table found")
@@ -313,7 +312,7 @@ for ph, h in [("P1. NC2x", "8e1f1763c"), ("P2. CFG928", "82a69be8f"), ("P3. CFG9
     seg = DRAFT.split(ph, 1)[1][:200] if ph in DRAFT else ""
     report("W", "FILLED" in seg and h in seg, f"placeholder '{ph}' FILLED from {h} (2026-10-21)")
 seg = DRAFT.split("P5. CFG924", 1)[1][:200] if "P5. CFG924" in DRAFT else ""
-report("W", "PENDING (fill when committed)" in seg, "placeholder 'P5. CFG924' marked 'PENDING (fill when committed)'")
+report("W", "FILLED" in seg and "8e7374552" in seg, "placeholder 'P5. CFG924' FILLED from 8e7374552 (2026-10-23)")
 report("W", "max(0.01, 3σ_R)" in DRAFT, "DR4 row states the restated kill line (owner decision 2026-10-21)")
 report("W", "P4. CFG689" in DRAFT and "6c064b83a" in DRAFT, "CFG689 placeholder filled from 6c064b83a")
 
