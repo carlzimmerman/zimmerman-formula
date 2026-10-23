@@ -1,0 +1,170 @@
+{
+ "result": "PASS",
+ "date": "2026-10-23 08:39",
+ "dummy": "--mb 512 --steps 60 --step-sleep 0.2",
+ "checks": [
+  {
+   "name": "0 reference run (uninterrupted) completes",
+   "ok": true,
+   "detail": "24.8 s, acc 510a132ed209b1f0..., buf_sha256 9b4a0ac80d2ce376..."
+  },
+  {
+   "name": "1 second daemon on the same queue dir refused",
+   "ok": true,
+   "detail": "heavyq: a daemon already runs for compute_queue/test/_work/q (pid 71021); not starting a second one"
+  },
+  {
+   "name": "2 add",
+   "ok": true,
+   "detail": "added dummy (est 1.0 GB, priority 5, threads 1)"
+  },
+  {
+   "name": "2 job in its own process group at nice 5",
+   "ok": true,
+   "detail": "pgid 71133 (daemon pgid 70710); members [(71133, 5, 'python3'), (71142, 5, 'python3')]"
+  },
+  {
+   "name": "2 footprint read (libproc phys_footprint over the group) and < 2 GB",
+   "ok": true,
+   "detail": "0.572 GB at step 11"
+  },
+  {
+   "name": "3 YIELD file -> SIGTERM -> checkpoint -> exit 75 -> paused",
+   "ok": true,
+   "detail": "0.7 s; checkpoint at step 11; yielded (YIELD file present); exit 75"
+  },
+  {
+   "name": "3 job process group gone after the yield",
+   "ok": true,
+   "detail": "pgid 71133"
+  },
+  {
+   "name": "3 stays paused while YIELD exists",
+   "ok": true,
+   "detail": "blockers ['YIELD file present']"
+  },
+  {
+   "name": "4 YIELD removed -> resume_cmd from the checkpoint",
+   "ok": true,
+   "detail": "4.1 s after rm (clear_s 3); log: 'resumed from checkpoint at step 11'"
+  },
+  {
+   "name": "5 remove of a running job refused",
+   "ok": true,
+   "detail": "heavyq remove: dummy is running; `heavyq.py pause dummy` first, remove it once it is paused"
+  },
+  {
+   "name": "5 `pause` -> checkpoint -> exit 75 -> paused (held)",
+   "ok": true,
+   "detail": "checkpoint at step 20; yielded (pause requested); exit 75"
+  },
+  {
+   "name": "5 held job does not restart with the gates clear",
+   "ok": true,
+   "detail": "blockers ['no runnable job']"
+  },
+  {
+   "name": "5 `resume` -> resume_cmd from the checkpoint",
+   "ok": true,
+   "detail": "dummy: hold cleared; state paused (runs resume_cmd when the gates allow)"
+  },
+  {
+   "name": "6 daemon stopped; the job keeps running without it",
+   "ok": true,
+   "detail": "steps 20 -> 25 while no daemon ran"
+  },
+  {
+   "name": "6 new daemon adopts the running job",
+   "ok": true,
+   "detail": "running pid 71604, footprint 0.563 GB"
+  },
+  {
+   "name": "7 job done (exit 0, done_file present) after 3 runs and 2 yields",
+   "ok": true,
+   "detail": "exit 0, done_file present"
+  },
+  {
+   "name": "7 final result identical to the uninterrupted run",
+   "ok": true,
+   "detail": "acc 510a132ed209b1f0182882dcd1ef2c2f01267c71b2d99d405378c1330214ac26, buf_sha256 9b4a0ac80d2ce37649b98c3b567ac96d56e7a05e46ffb3806aab8166c7a22455 (both runs)"
+  },
+  {
+   "name": "7 no process left in any of the job's groups",
+   "ok": true,
+   "detail": "pgids [71133, 71371, 71604]"
+  },
+  {
+   "name": "7 remove the finished job",
+   "ok": true,
+   "detail": "removed dummy (its log and checkpoints are left in place)"
+  },
+  {
+   "name": "8 job ignoring SIGTERM is SIGKILLed after its grace (3 s) and paused",
+   "ok": true,
+   "detail": "4.2 s; yielded (YIELD file present); no exit record (killed or lost); no exit 3 s after SIGTERM"
+  },
+  {
+   "name": "8 its process group is gone",
+   "ok": true,
+   "detail": "pgid 72003"
+  },
+  {
+   "name": "8 floor rule blocks the start (config.json re-read live)",
+   "ok": true,
+   "detail": "blockers ['free+inactive 47.7 GB < floor 1000.0 GB']"
+  },
+  {
+   "name": "8 free+inactive below the floor -> SIGTERM (ignored) -> SIGKILL -> paused",
+   "ok": true,
+   "detail": "yielded (free+inactive 47.5 GB < floor 1000.0 GB); no exit record (killed or lost); no exit 3 s after SIGTERM"
+  },
+  {
+   "name": "8 held + removed",
+   "ok": true,
+   "detail": "removed stubborn (its log and checkpoints are left in place)"
+  }
+ ],
+ "facts": {
+  "machine_at_start": {
+   "free_inactive_gb": 47.97,
+   "free_gb": 32.4,
+   "inactive_gb": 15.57,
+   "swap_used_gb": 4.43,
+   "swap_total_gb": 5.37,
+   "disk_free_gb": 93.13
+  },
+  "footprint_gb_running": 0.572,
+  "yield1": {
+   "latency_s": 0.7,
+   "checkpoint_step": 11,
+   "rc": 75,
+   "why": "yielded (YIELD file present); exit 75"
+  },
+  "final_job": {
+   "runs": 3,
+   "yields": 2,
+   "peak_gb": 0.574,
+   "runtime_s": 25.9,
+   "last_exit": {
+    "run": 3,
+    "rc": 0,
+    "at": "2026-10-23 08:39:04",
+    "why": "exit 0, done_file present"
+   }
+  },
+  "result_queued": {
+   "steps": 60,
+   "mb": 512,
+   "seed": 20261023,
+   "acc": "510a132ed209b1f0182882dcd1ef2c2f01267c71b2d99d405378c1330214ac26",
+   "buf_sha256": "9b4a0ac80d2ce37649b98c3b567ac96d56e7a05e46ffb3806aab8166c7a22455"
+  },
+  "result_reference": {
+   "steps": 60,
+   "mb": 512,
+   "seed": 20261023,
+   "acc": "510a132ed209b1f0182882dcd1ef2c2f01267c71b2d99d405378c1330214ac26",
+   "buf_sha256": "9b4a0ac80d2ce37649b98c3b567ac96d56e7a05e46ffb3806aab8166c7a22455"
+  }
+ }
+}

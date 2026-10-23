@@ -1,0 +1,62 @@
+[   0.0 s] heavyq full-cycle test; throwaway queue dir compute_queue/test/_work/q; dummy --mb 512 --steps 60 --step-sleep 0.2; config: poll 0.5 s, status 1 s, clear 3 s, grace 60 s
+[  24.8 s] PASS  0 reference run (uninterrupted) completes: 24.8 s, acc 510a132ed209b1f0..., buf_sha256 9b4a0ac80d2ce376...
+[  27.0 s] PASS  1 second daemon on the same queue dir refused: heavyq: a daemon already runs for compute_queue/test/_work/q (pid 71021); not starting a second one
+[  27.0 s] machine: free+inactive 48.0 GB, swap used 4.43 GB, disk free 93 GB; other processes > 4 GB: 0; known heavy runs: 0
+[  27.1 s] PASS  2 add: added dummy (est 1.0 GB, priority 5, threads 1)
+[  34.5 s] PASS  2 job in its own process group at nice 5: pgid 71133 (daemon pgid 70710); members [(71133, 5, 'python3'), (71142, 5, 'python3')]
+[  35.7 s] PASS  2 footprint read (libproc phys_footprint over the group) and < 2 GB: 0.572 GB at step 11
+[  36.3 s] PASS  3 YIELD file -> SIGTERM -> checkpoint -> exit 75 -> paused: 0.7 s; checkpoint at step 11; yielded (YIELD file present); exit 75
+[  36.4 s] PASS  3 job process group gone after the yield: pgid 71133
+[  41.4 s] PASS  3 stays paused while YIELD exists: blockers ['YIELD file present']
+[  45.5 s] PASS  4 YIELD removed -> resume_cmd from the checkpoint: 4.1 s after rm (clear_s 3); log: 'resumed from checkpoint at step 11'
+[  48.5 s] PASS  5 remove of a running job refused: heavyq remove: dummy is running; `heavyq.py pause dummy` first, remove it once it is paused
+[  49.5 s] PASS  5 `pause` -> checkpoint -> exit 75 -> paused (held): checkpoint at step 20; yielded (pause requested); exit 75
+[  54.5 s] PASS  5 held job does not restart with the gates clear: blockers ['no runnable job']
+[  58.8 s] PASS  5 `resume` -> resume_cmd from the checkpoint: dummy: hold cleared; state paused (runs resume_cmd when the gates allow)
+[  60.5 s] PASS  6 daemon stopped; the job keeps running without it: steps 20 -> 25 while no daemon ran
+[  60.6 s] PASS  6 new daemon adopts the running job: running pid 71604, footprint 0.563 GB
+[  74.7 s] PASS  7 job done (exit 0, done_file present) after 3 runs and 2 yields: exit 0, done_file present
+[  74.7 s] PASS  7 final result identical to the uninterrupted run: acc 510a132ed209b1f0182882dcd1ef2c2f01267c71b2d99d405378c1330214ac26, buf_sha256 9b4a0ac80d2ce37649b98c3b567ac96d56e7a05e46ffb3806aab8166c7a22455 (both runs)
+[  74.7 s] PASS  7 no process left in any of the job's groups: pgids [71133, 71371, 71604]
+[  74.8 s] PASS  7 remove the finished job: removed dummy (its log and checkpoints are left in place)
+[  83.9 s] PASS  8 job ignoring SIGTERM is SIGKILLed after its grace (3 s) and paused: 4.2 s; yielded (YIELD file present); no exit record (killed or lost); no exit 3 s after SIGTERM
+[  83.9 s] PASS  8 its process group is gone: pgid 72003
+[  87.9 s] PASS  8 floor rule blocks the start (config.json re-read live): blockers ['free+inactive 47.7 GB < floor 1000.0 GB']
+[  97.1 s] PASS  8 free+inactive below the floor -> SIGTERM (ignored) -> SIGKILL -> paused: yielded (free+inactive 47.5 GB < floor 1000.0 GB); no exit record (killed or lost); no exit 3 s after SIGTERM
+[  97.2 s] PASS  8 held + removed: removed stubborn (its log and checkpoints are left in place)
+[  97.6 s] daemon event log (compute_queue/test/_work/q/heavyq.log):
+    2026-10-23 08:38:14 daemon start pid 71021, queue dir compute_queue/test/_work/q
+    2026-10-23 08:38:20 start dummy run 1 (pgid 71133, need 1.0 GB, free+inactive 48.0 GB): python3 compute_queue/test/dummy_job.py --work compute_queue/test/_work/queued --mb 512 --steps 60 --step-sleep 0.2
+    2026-10-23 08:38:25 yield dummy (SIGTERM to pgid 71133): YIELD file present
+    2026-10-23 08:38:25 dummy -> paused: yielded (YIELD file present); exit 75
+    2026-10-23 08:38:34 resume dummy run 2 (pgid 71371, need 1.0 GB, free+inactive 47.3 GB): python3 compute_queue/test/dummy_job.py --work compute_queue/test/_work/queued --mb 512 --steps 60 --step-sleep 0.2 --resume
+    2026-10-23 08:38:38 yield dummy (SIGTERM to pgid 71371): pause requested
+    2026-10-23 08:38:39 dummy -> paused: yielded (pause requested); exit 75
+    2026-10-23 08:38:48 resume dummy run 3 (pgid 71604, need 1.0 GB, free+inactive 47.1 GB): python3 compute_queue/test/dummy_job.py --work compute_queue/test/_work/queued --mb 512 --steps 60 --step-sleep 0.2 --resume
+    2026-10-23 08:38:48 daemon stop (a running job is left running; the next daemon adopts it)
+    2026-10-23 08:38:50 daemon start pid 71611, queue dir compute_queue/test/_work/q
+    2026-10-23 08:38:50 adopted running job dummy (pgid 71604)
+    2026-10-23 08:39:04 dummy -> done: exit 0, done_file present
+    2026-10-23 08:39:08 start stubborn run 1 (pgid 72003, need 0.2 GB, free+inactive 47.6 GB): python3 compute_queue/test/dummy_job.py --work compute_queue/test/_work/stubborn --mb 64 --steps 100000 --step-sleep 0.05 --ignore-term
+    2026-10-23 08:39:09 yield stubborn (SIGTERM to pgid 72003): YIELD file present
+    2026-10-23 08:39:12 SIGKILL stubborn: no exit 3 s after SIGTERM
+    2026-10-23 08:39:13 stubborn -> paused: yielded (YIELD file present); no exit record (killed or lost); no exit 3 s after SIGTERM
+    2026-10-23 08:39:21 resume stubborn run 2 (pgid 72188, need 0.2 GB, free+inactive 47.8 GB): python3 compute_queue/test/dummy_job.py --work compute_queue/test/_work/stubborn --mb 64 --steps 100000 --step-sleep 0.05 --ignore-term --resume
+    2026-10-23 08:39:22 yield stubborn (SIGTERM to pgid 72188): free+inactive 47.5 GB < floor 1000.0 GB
+    2026-10-23 08:39:26 SIGKILL stubborn: no exit 3 s after SIGTERM
+    2026-10-23 08:39:26 stubborn -> paused: yielded (free+inactive 47.5 GB < floor 1000.0 GB); no exit record (killed or lost); no exit 3 s after SIGTERM
+    2026-10-23 08:39:26 daemon stop (a running job is left running; the next daemon adopts it)
+[  97.6 s] job log (compute_queue/test/_work/q/logs/dummy.log):
+    === heavyq START run 1 at 2026-10-23 08:38:20 (threads 1): python3 compute_queue/test/dummy_job.py --work compute_queue/test/_work/queued --mb 512 --steps 60 --step-sleep 0.2
+    fresh start (512 MiB, 60 steps)
+    signal 15: checkpoint written at step 11; exit 75
+    === heavyq run 1 exit 75 at 2026-10-23 08:38:25
+    === heavyq RESUME run 2 at 2026-10-23 08:38:34 (threads 1): python3 compute_queue/test/dummy_job.py --work compute_queue/test/_work/queued --mb 512 --steps 60 --step-sleep 0.2 --resume
+    resumed from checkpoint at step 11
+    signal 15: checkpoint written at step 20; exit 75
+    === heavyq run 2 exit 75 at 2026-10-23 08:38:38
+    === heavyq RESUME run 3 at 2026-10-23 08:38:48 (threads 1): python3 compute_queue/test/dummy_job.py --work compute_queue/test/_work/queued --mb 512 --steps 60 --step-sleep 0.2 --resume
+    resumed from checkpoint at step 20
+    done: acc 510a132ed209b1f0 buf_sha256 9b4a0ac80d2ce376
+    === heavyq run 3 exit 0 at 2026-10-23 08:39:04
+[  97.6 s] RESULT: PASS (24/24 checks)
