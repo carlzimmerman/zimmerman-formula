@@ -100,3 +100,17 @@ for k_x ≠ 0, so the chain should stop at χ there. Added, before computing it:
   the extra half mode's bracket → 0 as J → 0, so π_P = 0 backgrounds (Minkowski, static galaxies) are strongly coupled";
   r = 2 ⇒ "count 1 on both, classification differs, no jump found" (then no strong-coupling claim is made);
   any other r reported as found. A7 has a MUTATE (clock deleted) whose result is reported, with no expectation fixed.
+
+## AMENDMENT A3 (POST-RESULT for A7; PRE-RESULT for A8)
+
+A7 ran (`r1_rank_moving_P.out`): {p_N, χ} = 2iJk/η; first-class rows p_s, H_x; complex rank 3 for every J ≠ 0 tested
+(1, 0.1, 0.001) and 2 at J = 0; det of the {p_N, H_⊥, χ} block = 8iJ³k³/η³; 3/2 scalar DOF per mode at J ≠ 0 vs 1 at
+J = 0 (A6). MUTATE (clock deleted): rank 2 at every J, 1 DOF. Reading per A2: r = 3 ⇒ background-dependent count.
+
+- **A8 (the standard cure, sympy; outside DSF-21 — a design test, not the theory).** Add Blanchet–Pujolàs–Sibiryakov's
+  lapse term α a_i a^i (a_i = ∂_i ln N, α > 0) to A33's Lagrangian, i.e. H_T ⊃ −α√h h^{xx}(N′)²/N in the A7 sector. Then
+  N enters H_T non-linearly; the secondary is C_N := δH_T/δN, and preservation of C_N contains λ_N through
+  δ²H_T/δN² (elliptic). Compute the bracket matrix of {p_N, p_s, C_N, H_x} at A7's background for J = 0 and J ≠ 0.
+  Expectation: {p_N, C_N} ∝ αk² ≠ 0, rank 2 at every J ⇒ 2 scalar DOF per mode on both backgrounds (6 in total).
+  **Reading:** uniform rank ⇒ "the BPS term removes the background dependence at the price of a sixth mode (health
+  untested here)"; non-uniform ⇒ reported as found. No health/ghost claim either way.
