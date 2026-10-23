@@ -1,0 +1,77 @@
+S3_v3_mw_seals lane checker (MUTATE: mu == 1)
+A:A6 PASS slope estimator Kepler -0.5000000 flat +0.0000000 (tol 1e-6)
+A:A1 PASS row counts [37, 38, 19, 18, 34, 45, 12] (all as tables); data slopes vs CFG532b max |d| 0.0e+00 (tol 1e-9)
+A:A2i PASS razor-thin Freeman on the MW grid max |dV2/V2| 0.0023 on 0.5-15 R_d (tol 0.005)
+A:A2ii PASS B1 in-plane Newtonian V vs CFG532 v_model('N') max |dV/V| 0.0008 on 5-27.5 kpc (tol 0.01); density transcription 3.2e-15
+A:A4v PASS nonlinear residual max 1.1e-09 (<= 1e-8, or the A2 round-off floor <= 1e-7: 0 solves)
+A:A5i PASS 3-D ratio N 128 vs 160 max change 0.0000 on 15-60 kpc (tol 0.005)
+A:A5ii PASS 3-D gamma 0 azimuthal mean vs axisymmetric gamma 0 max |d| 0.0015 on 15-60 kpc (tol 0.03)
+A:A5iii PASS 3-D gamma 0 azimuthal variation max 0.0000 on 15-60 kpc (tol 0.003)
+A:A3 PASS ALG nu_mono law slope max |d| 0.0009 (tol 0.003), chi2 max rel 0.0061 (tol 0.03)
+A:A7 FAIL v3 V(20 kpc) 123.7 / 123.7 km/s (>= 170)
+A:A4iv PASS main vs fine grid: V(15-27.5) max |d| 0.0006 (tol 0.003), slope |d| 0.0001 (tol 0.003); fine grid 299x499
+A:A4i PASS Plummer isolated AQUAL vs nu1 algebraic max |d| 0.0018 on 0.3-30 b (tol 0.003); grid 258x515
+A:A4iii PASS EFE along z (y_e 0.1): equatorial g_R vs E2 aqual_axi point mass at r = 0.5, 1, 2, 4 r_M max |d| 0.0008 (tol 0.01)
+A:A4ii PASS Kuzmin (A1 form): in-plane vs nu1(|gN(0+)|) gN_R max |d| 0.0010, off-plane |g| at z = 0.5a max |d| 0.0005 (tol 0.005); reported: in-plane AQUAL / in-plane algebraic at R = 0.3a -0.1170; child peak RSS 740 MB
+D:D1 PASS 126 cells: max |d log| 0.0e+00 dex (tol 1e-6); FLOOR mismatches 0
+D:D2 PASS razor-thin Freeman on the ALMA grid max |dV2/V2| 0.0030 on 0.5-5 R_d (tol 0.003)
+D:D3 PASS Kuzmin AQUAL identity (A1 form) on the ALMA grid max |d| 0.0026 (tol 0.005)
+D:D4 PASS requirement iterations converged: max last step 0.0020 dex (tol 0.002)
+D:D6 FAIL (frozen; AMENDMENT A5: mis-specified near FLOOR) AQUAL requirement within 0.3 dex of the algebraic nu1 one: max |d log Mgas| 1.531, |d log Vbar2| 0.277
+D:D6p PASS (AMENDMENT A5) |d log Vbar2,req| <= 0.3 dex on every non-FLOOR cell: max 0.2766
+D:D5 PASS GS4 10.76 canonical F-flat Rg=Rd: log Mgas,req,AQ main 10.771538644451894 fine 10.771587906289176 |d| 0.0000 (tol 0.005)
+{
+ "A": {
+  "reading": {
+   "primary_step": "AQ_v3",
+   "use3d": true,
+   "canonical": {
+    "label": "NOT DIAGNOSTIC",
+    "robust": true,
+    "alternatives": {
+     "rho0.5": "NOT DIAGNOSTIC",
+     "e_N 0 (isolated)": "NOT DIAGNOSTIC",
+     "e_N 2 x h81": "NOT DIAGNOSTIC",
+     "azimuthal mean": "NOT DIAGNOSTIC",
+     "gamma 0": "NOT DIAGNOSTIC"
+    },
+    "depends_on": [],
+    "reported_3d": {
+     "AQ_v3": "NOT DIAGNOSTIC",
+     "AQ_v3_mean": "NOT DIAGNOSTIC",
+     "AQ_v3_2x": "NOT DIAGNOSTIC"
+    },
+    "Z": 3.7391671660264327
+   },
+   "alt": {
+    "label": "NOT DIAGNOSTIC",
+    "robust": true,
+    "alternatives": {
+     "rho0.5": "NOT DIAGNOSTIC",
+     "e_N 0 (isolated)": "NOT DIAGNOSTIC",
+     "e_N 2 x h81": "NOT DIAGNOSTIC",
+     "azimuthal mean": "NOT DIAGNOSTIC",
+     "gamma 0": "NOT DIAGNOSTIC"
+    },
+    "depends_on": [],
+    "reported_3d": {
+     "AQ_v3": "NOT DIAGNOSTIC",
+     "AQ_v3_mean": "NOT DIAGNOSTIC",
+     "AQ_v3_2x": "NOT DIAGNOSTIC"
+    },
+    "Z": 3.7391671660283214
+   }
+  },
+  "v3_step": "AQ_v3"
+ },
+ "D": {
+  "decision": {
+   "max_abs_dlogVbar2_nonfloor": 0.276553441743717,
+   "max_abs_dlogMgas": 1.531184691904663,
+   "floor_flips": 40,
+   "label": "v3 NEEDS ADDENDUM F"
+  },
+  "sha256": null
+ }
+}
+S3_V3_MW_SEALS COMPLETE: 19/21 checks PASS.

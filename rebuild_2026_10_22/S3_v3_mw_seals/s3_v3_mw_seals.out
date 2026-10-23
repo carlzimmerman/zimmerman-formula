@@ -1,0 +1,126 @@
+S3_v3_mw_seals lane checker 
+A:A6 PASS slope estimator Kepler -0.5000000 flat +0.0000000 (tol 1e-6)
+A:A1 PASS row counts [37, 38, 19, 18, 34, 45, 12] (all as tables); data slopes vs CFG532b max |d| 0.0e+00 (tol 1e-9)
+A:A2i PASS razor-thin Freeman on the MW grid max |dV2/V2| 0.0023 on 0.5-15 R_d (tol 0.005)
+A:A2ii PASS B1 in-plane Newtonian V vs CFG532 v_model('N') max |dV/V| 0.0008 on 5-27.5 kpc (tol 0.01); density transcription 3.2e-15
+A:A4v PASS nonlinear residual max 9.9e-09 (<= 1e-8, or the A2 round-off floor <= 1e-7: 0 solves)
+A:A5i PASS 3-D ratio N 128 vs 160 max change 0.0003 on 15-60 kpc (tol 0.005)
+A:A5ii PASS 3-D gamma 0 azimuthal mean vs axisymmetric gamma 0 max |d| 0.0258 on 15-60 kpc (tol 0.03)
+A:A5iii FAIL 3-D gamma 0 azimuthal variation max 0.0063 on 15-60 kpc (tol 0.003)
+A:A3 PASS ALG nu_mono law slope max |d| 0.0009 (tol 0.003), chi2 max rel 0.0061 (tol 0.03)
+A:A7 PASS v3 V(20 kpc) 196.0 / 203.2 km/s (>= 170)
+A:A4iv PASS main vs fine grid: V(15-27.5) max |d| 0.0003 (tol 0.003), slope |d| 0.0001 (tol 0.003); fine grid 299x499
+A:A4i PASS Plummer isolated AQUAL vs nu1 algebraic max |d| 0.0018 on 0.3-30 b (tol 0.003); grid 258x515
+A:A4iii PASS EFE along z (y_e 0.1): equatorial g_R vs E2 aqual_axi point mass at r = 0.5, 1, 2, 4 r_M max |d| 0.0008 (tol 0.01)
+A:A4ii PASS Kuzmin (A1 form): in-plane vs nu1(|gN(0+)|) gN_R max |d| 0.0010, off-plane |g| at z = 0.5a max |d| 0.0005 (tol 0.005); reported: in-plane AQUAL / in-plane algebraic at R = 0.3a -0.1170; child peak RSS 704 MB
+B:B1 PASS CFG493 reproduced with nu_mono: max |dL_route| 0.0e+00, combined -10.107322 +- 0.098475 (tol 1e-6)
+B:B2 PASS P1 gas inversion rms (per galaxy, worst) 0.0146 of V_bar^2 (tol 0.03); my Newtonian V_bar^2 vs rotmod median |d| 0.0052 (tol 0.05)
+B:B3 FAIL (frozen; AMENDMENT A6: the reference is noisy) P3 my grid V_gas^2 vs CFG493 v2_disc at CFG493's gas points: median |d| 0.3193 (tol 0.02)
+B:B3p PASS (AMENDMENT A6) my V_gas^2 (sech2 0.1 kpc) vs its razor-thin variant at the rebuilt gas points: median |d| 0.0097 (tol 0.02)
+B:B4 PASS C interpolated in log a0 vs direct at the fitted a0: P1 0.0000, P3 0.0006 (tol 0.003)
+C:C5 PASS tilted Plummer: pointwise estimator vs exact 57 deg in-plane F_R max |d| 0.0048 (tol 0.01); peak-to-peak exact [0.0432, 0.0651, 0.0968, 0.141, 0.1573] vs estimator [0.0425, 0.064, 0.0954, 0.1389, 0.1532] (max |d| 0.0042, tol 0.005)
+C:C3 PASS Jeans integrator: uniform K_z -> sigma^2 / (K h) = 1.000052 (tol 1e-3)
+C:C2 PASS NFW fit to Ou+24 on my B1 Newtonian field: chi2 9.885 vs CFG553 9.872 (tol 3%); M200 5.721e+11 c 18.32
+C:C4 PASS seal's gamma-0 V_c(20 kpc) equals Part A's AQ_gamma0 V20 (max |d| 2.8e-14 km/s)
+C:C1 PASS independent rerun (independent cache directory 'c1cache', populated from scratch by this check's first run) hash 15b7e6ffb0a340248e111d83a4dd214492f0f2e3b2294e5ff23d6542da3b6160 vs sealed 15b7e6ffb0a340248e111d83a4dd214492f0f2e3b2294e5ff23d6542da3b6160
+D:D1 PASS 126 cells: max |d log| 0.0e+00 dex (tol 1e-6); FLOOR mismatches 0
+D:D2 PASS razor-thin Freeman on the ALMA grid max |dV2/V2| 0.0030 on 0.5-5 R_d (tol 0.003)
+D:D3 PASS Kuzmin AQUAL identity (A1 form) on the ALMA grid max |d| 0.0026 (tol 0.005)
+D:D4 PASS requirement iterations converged: max last step 0.0020 dex (tol 0.002)
+D:D6 FAIL (frozen; AMENDMENT A5: mis-specified near FLOOR) AQUAL requirement within 0.3 dex of the algebraic nu1 one: max |d log Mgas| 0.465, |d log Vbar2| 0.046
+D:D6p PASS (AMENDMENT A5) |d log Vbar2,req| <= 0.3 dex on every non-FLOOR cell: max 0.0458
+D:D5 PASS GS4 10.76 canonical F-flat Rg=Rd: log Mgas,req,AQ main 10.415147581439951 fine 10.415172655989316 |d| 0.0000 (tol 0.005)
+{
+ "A": {
+  "reading": {
+   "primary_step": "AQ_gamma0",
+   "use3d": false,
+   "canonical": {
+    "label": "SHAPE EXCLUDED",
+    "robust": true,
+    "alternatives": {
+     "rho0.5": "SHAPE EXCLUDED",
+     "e_N 0 (isolated)": "SHAPE EXCLUDED",
+     "e_N 2 x h81": "SHAPE EXCLUDED"
+    },
+    "depends_on": [],
+    "reported_3d": {
+     "AQ_v3": "SHAPE EXCLUDED",
+     "AQ_v3_mean": "SHAPE EXCLUDED",
+     "AQ_v3_2x": "SHAPE EXCLUDED"
+    },
+    "Z": -4.373275218644812
+   },
+   "alt": {
+    "label": "SHAPE EXCLUDED",
+    "robust": true,
+    "alternatives": {
+     "rho0.5": "SHAPE EXCLUDED",
+     "e_N 0 (isolated)": "SHAPE EXCLUDED",
+     "e_N 2 x h81": "SHAPE EXCLUDED"
+    },
+    "depends_on": [],
+    "reported_3d": {
+     "AQ_v3": "SHAPE EXCLUDED",
+     "AQ_v3_mean": "SHAPE EXCLUDED",
+     "AQ_v3_2x": "SHAPE EXCLUDED"
+    },
+    "Z": -4.616528294127258
+   }
+  },
+  "v3_step": "AQ_gamma0"
+ },
+ "B": {
+  "record_numono": {
+   "canonical": {
+    "kappa": 0.4172136551990932,
+    "err": 0.09460236117123161,
+    "verdict": "CONSISTENT BUT NOT DISCRIMINATING"
+   },
+   "alt": {
+    "kappa": 0.3452302843670502,
+    "err": 0.07828027592566118,
+    "verdict": "CONSISTENT BUT NOT DISCRIMINATING"
+   }
+  },
+  "K_kernel_nu1": {
+   "canonical": {
+    "kappa": 0.450089295791535,
+    "err": 0.10153171886800268,
+    "verdict": "CONSISTENT BUT NOT DISCRIMINATING"
+   },
+   "alt": {
+    "kappa": 0.37243377257757293,
+    "err": 0.08401408664428621,
+    "verdict": "CONSISTENT BUT NOT DISCRIMINATING"
+   }
+  },
+  "A_aqual_disc": {
+   "canonical": {
+    "kappa": 0.4989399099597009,
+    "err": 0.11621967515081548,
+    "verdict": "CONSISTENT BUT NOT DISCRIMINATING"
+   },
+   "alt": {
+    "kappa": 0.41285601478039147,
+    "err": 0.09616787706101292,
+    "verdict": "CONSISTENT BUT NOT DISCRIMINATING"
+   }
+  },
+  "label": "AQUAL moves kappa"
+ },
+ "C": {
+  "sha256": "15b7e6ffb0a340248e111d83a4dd214492f0f2e3b2294e5ff23d6542da3b6160",
+  "use3d": true
+ },
+ "D": {
+  "decision": {
+   "max_abs_dlogVbar2_nonfloor": 0.04579630901359266,
+   "max_abs_dlogMgas": 0.4652785069014591,
+   "floor_flips": 4,
+   "label": "v3 NEEDS ADDENDUM F"
+  },
+  "sha256": "b5d65a5e17bbce21c3ca2f3cd748169fe736e9b86281ff1329449176e1a8c11d"
+ }
+}
+S3_V3_MW_SEALS COMPLETE: 28/31 checks PASS.
