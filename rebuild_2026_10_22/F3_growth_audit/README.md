@@ -156,3 +156,5 @@ A Khronon-native PM. It is not CFG960, which runs the old engine family.
 - It does not re-score CFG596; its frozen verdict stands.
 - It does not test the alt footing (no a₀ enters the linear sector).
 - It does not show that BS dust can or cannot be rescued by a non-quadratic K. With a K whose K″ is larger at early Q̄, the early Jeans scale shrinks while today's static μ stays small. That is an open door, and it would add a POSTULATED K shape.
+
+**ERRATUM (2026-10-23, lane M1, reproduced):** the cause of v3's linear growth failure stated above ("J′(0) = −1 removes the linear Newtonian term") is wrong. The exact dust kernel is s(k) = μ²/(k²+μ²) for v3's J; it tends to 1 as k → 0, so Newtonian growth survives on large scales. The failure comes from Blanchet–Skordis's cap μ_K ≤ 14.8 h/Mpc (σ₈ ≈ 0.39 at the cap; ≈ 0.95 needs μ_K ≥ 411 h/Mpc). See `rebuild_2026_10_22/M1_trilemma/README.md`.
