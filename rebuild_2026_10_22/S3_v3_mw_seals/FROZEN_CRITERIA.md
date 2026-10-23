@@ -265,3 +265,18 @@ largest at 5–12.5 kpc and 0.59 % at 17.5 kpc; every step SHAPE EXCLUDED, v3 Z 
    diagnostics showed C at the outermost points moving by up to ~10 % with the outer gas (NGC3741, UGC05829), the size of the
    effect being measured. Primary stays 1.5 (CFG493's own P3 tail).
 3. B2's tolerances unchanged. Nothing else changes.
+
+## AMENDMENT A5 (2026-10-23, POST-RESULT for Part D; numerics unchanged)
+
+Seen before writing this: Part D's first full run (D1–D5 PASS; frozen D6 FAIL; decision "v3 NEEDS ADDENDUM F": max
+|Δ log V²_bar,req| 0.046 dex (GS4), max |Δ log M_gas,req| 0.465 dex, 4 FLOOR flips, all in GS4 log M★ 10.89; U4: |Δ log V²_bar,req|
+≤ 0.0009 dex, |Δ log M_gas,req| ≤ 0.055 dex, no flips).
+
+1. **D6 was mis-specified.** It was written as the mutate's target ("Newton must leave the algebraic requirement by > 0.3 dex"),
+   but its gas-mass clause also fires in the normal run: near FLOOR the gas requirement is a small difference of two
+   near-equal terms, so a 0.03–0.04 dex shift of V²_bar,req becomes 0.37–0.47 dex in M_gas (GS4 10.89 canonical BH-k3 / F-DESI,
+   GS4 10.76 alt E / E-CCBH). The frozen D6 FAIL is kept in the output. **D6′ (added):** |Δ log V²_bar,req| ≤ 0.3 dex on every
+   non-FLOOR cell (the quantity the μ ≡ 1 mutate is meant to break).
+2. **Sealing guard.** §5 says the AQUAL-disc reading is sealed "in both cases"; the numbers depend on D1–D5 (reproduction, grid,
+   convergence). The seal is written when D1–D5 and D6′ pass; the frozen D6 result is printed beside it.
+3. The decision is reported per release as well (U4 for 2026-11-06, GS4 for 2026-11-28), under the same frozen thresholds.
