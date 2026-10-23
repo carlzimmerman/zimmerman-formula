@@ -140,3 +140,18 @@ No ΛCDM-processed input enters a graded line.
 
 Compute: `OMP_NUM_THREADS=1 nice -n 15`, < 1 GB RSS, minutes, no downloads (a 1024³ job is live).
 κ = ½ FITTED. Footings never pooled. No dark-matter particle. Never "theory closed". Nothing here says the data favour the framework.
+
+## AMENDMENT A1 (post-result, 2026-10-22): two code fixes; no pass line changed
+
+Run 1 (`*_RUN1.*`) scored 5/6. K4 failed: the tabulated maps matched the direct solve to 1.8e-8, against the frozen 1e-8.
+The same table round-off made cap-n1, which is the canonical law exactly (K4: 1.1e-15), score z = −3.50 / −4.00
+"against itself". Its d was 0.0000 dex and its S1 was −0.0 / +0.0. That z is round-off amplified by the paired
+statistic; it is not a law difference.
+
+Fixes:
+1. The table is 5× denser: Δlog y = 1e-4, 180001 points.
+2. A member whose map equals a closed-form law to ≤ 1e-12 under K4 is scored with that closed form. This covers cap-n1
+   (ν₁) and cap-n2 (√(1+1/y)). Under MUTATE, cap-n1 is x/(1+x); it fails K4 and is scored from the table.
+
+The thresholds, the family, the declared values and the verdict rule are unchanged. A third item is reported only: the
+radius where the floor door changes the far field.
