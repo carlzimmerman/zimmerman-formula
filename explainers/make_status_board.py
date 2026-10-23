@@ -33,6 +33,11 @@ ALMA addendum F. Coordinator decisions: black holes and strong coupling grey -> 
 FAIL -> PASS (U1) through VERIFIED_GREEN, the one narrow route to a first green (lane, result commit and coordinator
 rerun named; the RECOLOURS step into green must name the same lane). Radiative stability stays grey: P3 gives no
 replacement for it. Notes may run to four lines (rows 1.10 in tall).
+PAPER60 audit (every number re-read from the lane JSONs): four notes corrected, no colour changed -- MeerKAT
++0.032 dex (P4's dlog 0.0325 had been double-rounded to 0.033); inner lensing blue A alt 0.81 at the primary field
+(0.80 was the zero-field cell) and its validity range from S4 (mu_K < 0.1/Mpc); all-radii lensing now carries S4's
+mu_K^2 result (the guard fails for every mu_K >= 0.1/Mpc); gravity waves carry P3's correction (the khronon/dust pair
+propagates where D.P > 0; metric coupling <= 2.3e-9).
 
 Guards (check()):
   * colours of tiles on the main board cannot change, against the 22 October, 23 October morning, 23 October
@@ -178,7 +183,10 @@ def A(col, name, st, note, lanes, why, v3, ev="N0"):
 
 TILES = [
     # ---- column 0: the chassis (v3 = Khronon literal form + P + gamma_L + BS dust) ----
-    T(0, "Gravity waves at light speed", "PASS", "only the 2 tensor modes propagate, at c exactly", ["C5", "C8", "CFG292"], "PASS"),
+    # PAPER60 audit: re-annotated, colour kept. P3 corrects "only the 2 tensor modes propagate".
+    T(0, "Gravity waves at light speed", "PASS",
+      "tensor modes at c exactly; where D·P > 0 the khronon/dust pair also propagates (P3: ~1e-4 c in the Solar "
+      "System), metric coupling ≤ 2.3e-9", ["C5", "C8", "CFG292", "P3"], "PASS", new=True),
     # H4 (23 October night): COND -> FAIL
     T(0, "Health: ghosts, gradients", "FAIL",
       "gradient instability wherever ρ_τ < 0 (every two-body saddle; EFE lobes): Γ = L★k√(2πG|ρ_τ|), unbounded, "
@@ -209,16 +217,17 @@ TILES = [
     T(1, "Rotation curves (SPARC RAR)", "COND",
       "one Υ per galaxy, EFE solved (109): rms 0.054/0.054 dex; median Υ 0.52 / 0.44 (alt below the 0.50–0.80 "
       "window); χ² line fails both (63–64% acceptable; ν_mono same)", ["P4"], "PASS", new=True),
-    T(1, "Local a0 from MeerKAT", "PASS", "a0 1.31e-10 vs SPARC same recipe 1.21e-10 (+0.033 dex, line 0.15)",
+    T(1, "Local a0 from MeerKAT", "PASS", "a0 1.31e-10 vs SPARC same recipe 1.21e-10 (+0.032 dex, line 0.15)",
       ["CFG301", "CFG309", "P4"], "PASS", new=True),
     # S2 (recomputed for v3, 23 October evening): was grey (old result PASS: supply suffices <= 0.31 Mpc, A 1.016)
     T(1, "Isolated-galaxy lensing, inner", "COND",
-      "v3 blue A 0.88 / 0.80; EFE ≤ 0.004 here; decided by hot CGM and M★; before S4's μ_K² term", ["S2"], "PASS",
+      "v3 blue A 0.88 / 0.81 (primary field); EFE ≤ 0.004 here; decided by hot CGM and M★; holds for μ_K < 0.1/Mpc "
+      "(S4)", ["S2", "S4"], "PASS",
       new=True),
     T(1, "Isolated-galaxy lensing, all radii", "UNDEC",
       "spectroscopic isolation (P2): N too small (needs ~22–26k lenses); data favour the catalogue's EFE; "
-      "μ_K² to add (S4)",
-      ["CFG902", "CFG903", "F2", "P2"], "FAIL", new=True, am="UNDEC"),
+      "S4: the μ_K² term ruins it for every μ_K ≥ 0.1/Mpc (Δχ² +110 / +190 at 0.1)",
+      ["CFG902", "CFG903", "F2", "P2", "S4"], "FAIL", new=True, am="UNDEC"),
     # P4 (v3): was grey (old result COND: at Newton if they captured no cold energy; host EFE untested)
     # U1 (VERIFIED_GREEN): FAIL -> PASS by a new derivation (T3), not a re-scored number
     T(1, "Tidal dwarfs, NGC 1052-DF2/DF4", "PASS",
