@@ -16,6 +16,7 @@ import argparse, ctypes, json, os, signal, subprocess, sys, time
 from pathlib import Path
 import numpy as np
 from scipy.special import hankel1, h1vp
+import scipy.fft as sfft
 
 HERE = Path(__file__).resolve().parent
 m = .001; M = 2*m*np.sqrt(1+.02**2); g = 2.168e-6; lam = .00881292
@@ -117,7 +118,7 @@ class Diag:
         self.shell = np.rint(self.k/self.dk).astype(np.int32); self.nsh = int(self.shell.max())+1
         self.cnt = np.bincount(self.shell.ravel(), minlength=self.nsh).astype(float)
         self.kmean = np.bincount(self.shell.ravel(), weights=self.k.ravel(), minlength=self.nsh)/np.maximum(self.cnt, 1)
-        self.thr = [1, 2, 3, 5, 10, 20, 50, 100]
+        self.thr = [1, 2, 3, 5, 10, 20, 50, 100]; self.workers = 1
 
     def __call__(self, st, tau, H):
         phi, pphi, x, px = st; c = self.meta['c']; dx = self.dx; V = self.V
@@ -140,10 +141,11 @@ class Diag:
         g4 = np.mean(np.abs(d)**4)/(2*np.mean(np.abs(d)**2)**2)-1
         # spectra
         dx3 = dx**3
-        Fp = np.abs(np.fft.fftn(phi)*dx3)**2; Pp = np.abs(np.fft.fftn(pphi)*dx3)**2
+        W = self.workers
+        Fp = np.abs(sfft.fftn(phi, workers=W)*dx3)**2; Pp = np.abs(sfft.fftn(pphi, workers=W)*dx3)**2
         w2 = self.k**2+max(mH2, 0.)+mp2; w = np.sqrt(np.maximum(w2, 1e-30))
         n = ((Pp+w2*Fp)/(V*w)-1)/2; n[0, 0, 0] = 0
-        Fx = np.abs(np.fft.fftn(x)*dx3)**2; Px = np.abs(np.fft.fftn(px)*dx3)**2
+        Fx = np.abs(sfft.fftn(x, workers=W)*dx3)**2; Px = np.abs(sfft.fftn(px, workers=W)*dx3)**2
         wx = np.sqrt(np.maximum(self.k**2+mx2, 1e-30)); nx = ((Px+wx**2*Fx)/(V*wx)-1)/2; nx[0, 0, 0] = 0
         sh = self.shell.ravel()
         nbar = np.bincount(sh, weights=n.ravel(), minlength=self.nsh)/np.maximum(self.cnt, 1)
@@ -191,7 +193,7 @@ def main():
     else:
         st, meta = build_ic(spec); step = 0; rows = []
     meta.update(dt=dt, steps_per_output=every, nsteps_total=nsteps_total)
-    diag = Diag(spec, meta); H = A.H; c = meta['c']
+    diag = Diag(spec, meta); diag.workers = max(1, A.threads); H = A.H; c = meta['c']
     phi, pphi, x, px = st; fphi = np.empty_like(phi); fx = np.empty_like(x)
 
     def params(s):

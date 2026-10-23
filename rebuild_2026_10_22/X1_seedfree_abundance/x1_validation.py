@@ -70,7 +70,7 @@ def v3(scenario, nu, n, mode, free=False, mutate=False):
     else:
         Wbar = 2*n if scenario == 'A' else n
         model = FockK0(Wmax=int(Wbar+8*np.sqrt(Wbar)+10), volume=V, rwa=False, g=g, lam=lam)
-    if model.dim > 3e5 and mode == 'full':
+    if (model.dim > 4e4 and mode == "full") or (model.dim > 4e5 and mode == "rwa"):
         dump(f'v3_{scenario}_nu{nu:g}_n{n}_{mode}', dict(skipped=True, dim=model.dim)); print('skip', model.dim); return
     psi0, loss = model.coherent(gam)
     ex = observables_exact(model, model.evolve(psi0, T_VAL, NUM), driven); times = ex['t']; t1 = time.time()
