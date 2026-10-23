@@ -185,3 +185,21 @@ Scripts `q6_derive.py`, `q6_make_patch.py`, `q6_validate.py`, `q6_native.py`, ea
 `<NAME> COMPLETE: N/M checks PASS.` (exit 0 iff all pass). README verdict first (one of CRISP FINDING, RUNNABLE NOW,
 DATA-GATED, SCOPED NO-GO, NOTHING NEW). CLASS source is not committed (only `khronon.patch`, scripts, outputs). Commit
 only this lane's paths; never push. Any change to this file is an append-only AMENDMENT marked pre- or post-result.
+
+## AMENDMENT A1 (PRE-RESULT, 2026-10-23; written after a 0.3 s sympy prototype of the kinematics in the scratchpad that printed only A_μ⁽⁰⁾ = 0 and the symbolic form of A_x⁽¹⁾ = ∂ₓ(Ψ − π′ − ℋπ), and before any script of this lane, any check line or any number)
+
+1. **LO, precisely.** LO is the fluid with background w = 0, c_a² = 0 (ρ̄_K = I₀/(8πGa³)) and δp/ρ̄ = c²_{s,LO}·δ_rest,
+   δ_rest = δ + 3ℋθ/k² (gauge-invariant when w = 0), where c²_{s,LO} is the leading-order-in-ε value of the rest-frame
+   sound speed that D2 derives (with K″ = 2μ_K², Q̄ → 1). The exact fluid conservation equations are used, including
+   the −3ℋ δp/ρ̄ term of the continuity equation (it is O(ε) without a k² factor; it is kept so that LO conserves its own
+   T^{μν} exactly and is exactly gauge-covariant). D3 and D4 are checked for LO as well as for the exact system.
+2. **IC_C7, precisely.** If the series solution of the LO system has θ's leading coefficient proportional to I₀ (the
+   khronon charge, i.e. O(ωτ) in CLASS's radiation-era expansion, where CDM has θ = 0 exactly), then C7's IC block
+   (θ = 0, δ = ¾δ_γ when w = c_a² = 0) is correct at zeroth order in ωτ. **IC_C7 PASS** iff C7's δ equals the series'
+   leading δ exactly AND the series' leading θ vanishes as I₀ → 0. The O(ωτ_ini) remainder is then tested numerically by
+   V5 (start × 0.5), at C7's threshold; if V5 fails, the IC block is edited (a further amendment).
+3. **Slots 2, 3.** If D2 shows δp is fixed by (δ, θ) alone, C7's slots 2, 3 (E, χ) are dormant: their IC from C7's block
+   is ∝ c_a² (zero for LO and DUST) and the swapped function sets their derivatives to 0.
+4. **V1c with j₁ = 0 (reported, not gated):** at j₁ = 0 the LO rest-frame sound speed is K′/K″ = I₀/(2μ_K²a³), which exceeds
+   1 at early times for any finite μ_K (LO is not the literal theory there). That run is attempted with a 600 s limit and
+   reported as it ends (completed / failed / timed out).
