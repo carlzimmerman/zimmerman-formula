@@ -51,3 +51,14 @@ read-only; `--mutate` described in W5)
 
 Not tested: P3's decoupling-limit method itself (O(1) loop factors, first order in background gradients), the
 non-spherical saddles (H4's region), the BH cap rows (P3 already feeds them M_L at the cap), and the DBI K.
+
+## AMENDMENT A1 (POST-RESULT; main run 5/5 PASS, MUTATE run kept)
+
+Main run: W1–W4 and W5b PASS. MUTATE (M_kk = 1, du = a₀ in W4): max |log₁₀(eps_mut/eps)| = 4.41 ≥ log₁₀2, so W5a
+PASS-as-required. The worst W4 eps rises from 3.4e-86 to 5.8e-85 when the weakening is ignored. **Disclosed
+defect in a reported (non-gated) quantity:** the "d log eps / d log M_L" slopes (V1 +0.71, V5 +1.25) were fitted along
+the radial profile, so r, k, G and ω vary together with M_L. The MUTATE run (M_L ≡ 1) also gives non-zero "slopes"
+(+2.19 / +0.75), which proves the confounding. They do not test the hand trends (V1 ∝ M_L^(−1/2), V5 ∝ M_L^(3/2)).
+Added, reported only: `p3_weak_lapse_partial.py` scans M_kk ∈ [1, 1e6] at fixed (r, k, G, ω, L★, footing), with
+du = a₀/√M_kk tied as at the cap. It reports the partial slope per vertex in each regime (E = ω/c or c_π k;
+Z_P ≷ μ_K²). No threshold; nothing in W1–W5 changes.

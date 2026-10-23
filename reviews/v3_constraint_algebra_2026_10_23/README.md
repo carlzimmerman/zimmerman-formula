@@ -48,6 +48,11 @@ Reported, no threshold set: **near-degeneracy at high acceleration.** For kL★ 
 |S| ≈ κ²k²/(K(1+x)²). At x = 1e9 (Solar-System accelerations) |KS|/k² ~ 1e-18, the sweep minimum. The lapse operator
 is non-degenerate but weak there. This is the P-side image of BS's J′ → 0 at large Y, and it bears on the
 strong-coupling scale P3 estimated (loop factor ≤ 1.3e-3). That estimate is not re-examined here.
+**Correction (later the same day, `reviews/p3_lapse_weakening_2026_10_23/`):** "x = 1e9 (Solar-System
+accelerations)" is a misidentification. In A, x is the background-P variable u₀/(a₀ − u₀), not g/a₀. Screening keeps
+the Sun's u₀/a₀ ≤ 3.7e-6, and the Galactic field gives x_e ≈ 1–3 (M_L 4–16). In the lab and the Solar System,
+kL★ ≫ √M_L, so the weakening is inert there (P3's eps moves ≤ 4.4e-12). It is real only in unscreened galaxy
+interiors, where eps stays ≤ 3.4e-86.
 
 ## Checks
 
