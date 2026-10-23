@@ -198,3 +198,20 @@ moved):
    errors govern at those n and the disagreement is reported.
 3. V2 is unchanged; its exact P_abs ≈ 1.3e-9 (Codex) is far below any TW sampling floor at ≤ 1e6 trajectories, so V2 is
    expected to report "unresolvable at n ~ 1" with the floor stated.
+
+## AMENDMENT A2 (PRE-RESULT for the E1 prototype; no threshold changed)
+
+Plumbing runs made while building the lattice engine (not results, disclosed): 16³ to τ = 100; 32³ to τ = 200 and three
+32³ runs to τ = 600 for the resume test; 64³ to τ = 100. Seen: Φ coherent fraction 0.90 at τ = 0 falling to ≈ 0.2–0.8
+(oscillating) by τ = 200–500 at 32³; energy residual 1.1e-4 (32³) and 4.5e-4 (64³); charge drift ≤ 2e-13.
+1. K8 is evaluated on the evolved state: sha256 of (φ, π_φ, x, π_x) byte-identical after SIGTERM → 75 → `--resume`
+   (shown: stop-after-steps twice and a real SIGTERM, all three equal to the uninterrupted run). The FFT-based spectral
+   diagnostics carry 1-ulp jitter (seen even between two fresh runs; numpy pocketfft alignment), so diagnostics are
+   compared with a stated tolerance of 1e-12 relative. This is the lane's resume tolerance under JOB_CONTRACT §3.
+2. K6 stays as frozen (dt = dx/20, residual < 1e-4 of E_phys(0)). With dt fixed at dx/20 the Verlet oscillation of the TW
+   vacuum-noise energy at the cutoff is a fixed fraction of a vacuum energy that grows ∝ N⁴ relative to E_phys, so K6 can
+   FAIL at 64³ without any secular drift. Added diagnostics (reported, not checks): the same residual for CSA (no UV
+   noise) and for dt/2.
+3. scipy's expm_multiply leaked ~80 MB per call here; the one V3 point B ν=8 n=8 (full) peaked at 4.36 GB before this was
+   found (rule breach, disclosed). The exact propagator is now a shifted Taylor series (agrees with expm_multiply to 8e-13),
+   and all full-H V3 points are recomputed with it.
