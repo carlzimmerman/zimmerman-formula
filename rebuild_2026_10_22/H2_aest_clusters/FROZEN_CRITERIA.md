@@ -79,3 +79,16 @@ Separately reported, never graded:
 ends `H2_AEST_CLUSTERS COMPLETE: N/M checks PASS.`, exit 0 iff all pass. `OMP_NUM_THREADS=1 nice -n 15`, < 1 GB RSS, minutes.
 
 ## AMENDMENTS (append-only)
+
+- **A0 (implementation, post-result, no physics change):** the first full run (kept as `h2_aest_clusters_RUN1_rss.out`) failed
+  K6 (macOS ru_maxrss 1.116 GB; physical footprint 0.38 GB). The script now holds one h's projection operators at a time and
+  hands freed blocks back to the OS between chunks (`malloc_zone_pressure_relief`). Every scan line is byte-identical to RUN1.
+- **A1 (POST-RESULT; the frozen verdict is kept and printed first):** the frozen OUTER clause was one-sided (Z_OUT ≥ −2, written
+  against an overshoot only). In the oscillatory regime the AeST prediction can go *below* the OUTER data or negative in one
+  OUTER bin while the band sum cancels; the frozen rule then passes μ = 0.7, Δ = −0.25 with A_OUT = 1.85 (canonical), i.e. the
+  prediction at 54 % of the OUTER data and negative in the 2.07–3 Mpc bin. The brief's target is "outer bins at ~1". A1 adds,
+  for every (μ, Δ, cell): (i) two-sided |Z_OUT| ≤ 2; (ii) a profile test over bins 3–7: residual stack
+  s_j = Σ_i W_ij (D_ij B_j − P_ij) / Σ_i W_ij, jackknife covariance over the same 30 patches, Hartlap factor (30−5−2)/29,
+  pass if χ² ≤ 11.07 (5 bins, p = 0.05); the law's own χ² is printed for scale. A cell passes A1 if it passes the frozen
+  conditions and (i) and (ii). A1 verdict uses the frozen wording with "passes" read as "passes A1". Reported only (not graded):
+  the force at 1 Mpc around the 1e11 M☉ guard galaxy under the same (μ, Δ).
