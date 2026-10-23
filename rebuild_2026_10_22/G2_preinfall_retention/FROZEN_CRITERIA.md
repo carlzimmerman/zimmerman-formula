@@ -93,3 +93,17 @@ Reading E3's code (not its numbers) shows `e3_per_system.csv` stores per-system 
 central values. A ≤ 1e-6 identity is impossible with an independent pipeline. K2 is replaced by: this lane's per-system MC
 medians of B_scr and M_dyn vs the CSV, **median |relative difference| ≤ 2 % and max ≤ 10 %** (canonical). Nothing else
 changes.
+
+## AMENDMENT A2 (POST-HOC, written after the main and MUTATE runs; reporting and disclosure only, no criterion changed)
+
+- **First-run bug (fixed before the committed run):** the first run filtered the sample to MW + M31 hosts and gave N = 44;
+  E3's 45 include one field system (Leo T). The filter was removed and Leo T is treated as isolated (ζ = 1, no tidal
+  truncation). The first run's rule numbers were within 0.03 dex of the committed ones; no verdict changed.
+- **K2 and K5 FAIL as frozen.** Independent MC (own seed, NMC 500) vs E3's (NMC 2000): K2 median 1.2 % but max 18 %
+  (Andromeda XXII M_dyn, asymmetric σ errors); K5 median 3.8 % (L_req is a difference of two MC medians). The headline K1
+  reproduces E3 (+0.883 / +0.846 vs +0.89 / +0.85). Not re-tuned.
+- **MUTATE did not fail K6 as frozen.** With M_coll → 0 the rule still differs from E3 by +0.11 dex because the criterion's
+  own ζ = 0 assignment (Boötes III, Crater II stripped at pericentre; Andromeda XVII) sends three systems to Newton. The
+  mutation does return the no-debris answer (native range +0.97..+0.99). Exit status 1 in both runs (from K2/K5).
+- **Verdict reporting:** for cells that close the median, the B3 overshoot count is printed with the verdict (the frozen B3
+  line applies to every cell that would claim closure).
