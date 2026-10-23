@@ -1,0 +1,431 @@
+================================================================================================================
+Z2_satellite_systematics: how much of the dwarf-satellite excess is real?
+kappa = 1/2 FITTED; footings canonical 9.3603e-11 / alt 1.1312e-10 m/s^2, never pooled; not theory closed
+================================================================================================================
+
+--- prediction tables (D10 stiffened-AQUAL solver, S1's grid; 3-node y and Lambda grids) ---
+   read cached z2_stage_tables.json (129 entries)
+
+--- orbits: PM-based pericentres in S1's own MW field (law mu = x/(1+x) on Hernquist 6e10; E_lo/E_hi bracket) ---
+   [canonical] 42 PM systems x (300+1 draws E_mid; central E_lo/E_hi) (1 s)
+   [alt] 42 PM systems x (300+1 draws E_mid; central E_lo/E_hi) (1 s)
+K5 PASS Draco S1-field r_p/r_a 54.5/122.5 vs leapfrog 54.5/122.5 (max rel 0.0000) <= 0.02  (turning points vs a direct 5-Gyr leapfrog in S1's MW field)
+K6 PASS rel 2.7e-15 <= 1e-3  (King radius, Newtonian point mass, circular orbit)
+
+--- velocity gradients: Walker et al. 2023 per-star data, CFG51's member rule (read-only), >= 10 members ---
+   Bootes I           N  53  |grad|    0.4 km/s/kpc  -2dlnL   0.02  p 0.992  -> no gradient
+   Crater II          N  78  |grad|    0.7 km/s/kpc  -2dlnL   1.71  p 0.425  -> no gradient
+   Hydrus I           N  25  |grad|   52.9 km/s/kpc  -2dlnL   6.98  p 0.031  -> no gradient
+   Reticulum II       N  13  |grad|   46.9 km/s/kpc  -2dlnL   0.23  p 0.893  -> no gradient
+   Tucana II          N  12  |grad|    2.1 km/s/kpc  -2dlnL   0.02  p 0.990  -> no gradient
+   Ursa Major II      N  11  |grad|   37.6 km/s/kpc  -2dlnL   4.11  p 0.128  -> no gradient
+   (systems of S_E3 not listed have no per-star data on disk or < 10 members: not certifiable, not flagged)
+K7 PASS Crater II (N 78, rms radius 0.724 kpc): injected 10 km/s/kpc p 3.96e-29; shuffled false-flag rate 0.010 p < 0.01 and <= 0.03  (velocity-gradient test power and size)
+   attributes built (5 s)
+
+--- K1/K2: E3 and S1 reproduced with this lane's own code ---
+   [canonical] N 45: Newton E_N +2.014, unscreened law +0.561 | V3S +1.333+-0.144, MOND +1.138, ISO +0.554, V3D +2.008+-0.114
+   [alt] N 46: Newton E_N +2.007, unscreened law +0.510 | V3S +1.303+-0.146, MOND +1.076, ISO +0.499, V3D +1.990+-0.108
+K1 PASS N 45/46; max |diff| 0.009 45/46 and <= 0.02  (E3: Newton E_N and the unscreened law)
+K2 PASS S1 chain max |diff| 0.008; per-system logG 0.0e+00; V3D vs U1 B0 0.0e+00 <= 0.02 / 0.01 / 0.005  (S1's S2/S3/S4 medians, S1 per-system central logG, U1 Delta_B0)
+
+================================================================================================================
+TASK 1: T1's host-field tracking vs CFG838/839 (factor grid; slope sign: + = residual rises with x_e / T, falls with D)
+================================================================================================================
+   [canonical] T1 tracking slope at eps = 0: +0.7607 (T1 +0.7607); A3 partial with log y0 +0.7792 (T1 +0.7792)
+   [alt] T1 tracking slope at eps = 0: +0.8382 (T1 +0.8382); A3 partial with log y0 +0.8526 (T1 +0.8526)
+K3 PASS max |diff| 0.0000 <= 0.02  (T1 tracking slope (eps 0) and A3 partial slope)
+K4 PASS rho(D,logT) -0.001, rho(D,D) -0.017, rho(D,logTp) +0.077; Draco in CFG839's field r_p/r_a 53.4/120.0 |diff| <= 0.01; 2 %  (CFG838/839 statistics from their rows; own orbit code in CFG839's field)
+
+   factor grid (OLS slope +- bootstrap sd, z; one-sided Spearman rho, permutation p)  [110 s]
+   [canonical]
+     S_E3        R_V3S0  log x_e    N 45: b +0.761 +- 0.257 (z +3.0) | rho +0.40 p 0.007
+     S_E3        R_V3S0  log D      N 45: b +0.825 +- 0.245 (z +3.4) | rho +0.46 p 0.001
+     S_E3        R_V3S0  log T_now  N 45: b +0.015 +- 0.149 (z +0.1) | rho +0.14 p 0.180
+     S_E3        R_V3S0  log T_peri N 33: b -0.311 +- 0.151 (z -2.1) | rho -0.27 p 0.940
+     S_E3        R_V3S   log x_e    N 45: b +1.104 +- 0.213 (z +5.2) | rho +0.58 p 0.000
+     S_E3        R_V3S   log D      N 45: b +1.168 +- 0.201 (z +5.8) | rho +0.64 p 0.000
+     S_E3        R_V3S   log T_now  N 45: b +0.328 +- 0.129 (z +2.5) | rho +0.43 p 0.002
+     S_E3        R_V3S   log T_peri N 33: b -0.035 +- 0.139 (z -0.3) | rho -0.02 p 0.537
+     S_E3        R_ISO   log x_e    N 45: b +0.277 +- 0.173 (z +1.6) | rho +0.23 p 0.062
+     S_E3        R_ISO   log D      N 45: b +0.294 +- 0.167 (z +1.8) | rho +0.26 p 0.042
+     S_E3        R_ISO   log T_now  N 45: b -0.035 +- 0.103 (z -0.3) | rho +0.05 p 0.390
+     S_E3        R_ISO   log T_peri N 33: b -0.207 +- 0.108 (z -1.9) | rho -0.22 p 0.888
+     S_E3        R_N     log x_e    N 45: b +0.408 +- 0.194 (z +2.1) | rho +0.26 p 0.037
+     S_E3        R_N     log D      N 45: b +0.464 +- 0.186 (z +2.5) | rho +0.32 p 0.015
+     S_E3        R_N     log T_now  N 45: b +0.154 +- 0.101 (z +1.5) | rho +0.25 p 0.045
+     S_E3        R_N     log T_peri N 33: b -0.041 +- 0.104 (z -0.4) | rho +0.03 p 0.457
+     S_E3        R_828   log x_e    N  5: b +0.760 +- 3.051 (z +0.2) | rho +0.30 p 0.329
+     S_E3        R_828   log D      N  5: b +0.307 +- 30.057 (z +0.0) | rho +0.10 p 0.461
+     S_E3        R_828   log T_now  N  5: b -0.370 +- 1.877 (z -0.2) | rho +0.10 p 0.461
+     S_838       R_V3S0  log x_e    N 24: b -0.192 +- 0.265 (z -0.7) | rho -0.00 p 0.522
+     S_838       R_V3S0  log D      N 24: b -0.169 +- 0.266 (z -0.6) | rho +0.00 p 0.509
+     S_838       R_V3S0  log T_now  N 24: b -0.053 +- 0.116 (z -0.5) | rho +0.05 p 0.410
+     S_838       R_V3S0  log T_peri N 12: b -0.020 +- 0.347 (z -0.1) | rho +0.18 p 0.297
+     S_838       R_ISO   log x_e    N 24: b -0.136 +- 0.242 (z -0.6) | rho +0.03 p 0.470
+     S_838       R_ISO   log D      N 24: b -0.130 +- 0.244 (z -0.5) | rho +0.01 p 0.478
+     S_838       R_ISO   log T_now  N 24: b -0.033 +- 0.102 (z -0.3) | rho +0.05 p 0.402
+     S_838       R_ISO   log T_peri N 12: b -0.027 +- 0.280 (z -0.1) | rho +0.22 p 0.255
+     S_838       R_N     log x_e    N 24: b -0.224 +- 0.432 (z -0.5) | rho -0.00 p 0.509
+     S_838       R_N     log D      N 24: b -0.155 +- 0.413 (z -0.4) | rho -0.02 p 0.535
+     S_838       R_N     log T_now  N 24: b +0.125 +- 0.197 (z +0.6) | rho +0.23 p 0.139
+     S_838       R_N     log T_peri N 12: b +0.083 +- 0.456 (z +0.2) | rho +0.43 p 0.093
+     S_838       R_828   log x_e    N 24: b -0.135 +- 0.203 (z -0.7) | rho +0.02 p 0.480
+     S_838       R_828   log D      N 24: b -0.124 +- 0.208 (z -0.6) | rho +0.02 p 0.486
+     S_838       R_828   log T_now  N 24: b -0.044 +- 0.084 (z -0.5) | rho +0.04 p 0.422
+     S_838       R_828   log T_peri N 12: b -0.039 +- 0.226 (z -0.2) | rho +0.13 p 0.356
+     S_839       R_V3S0  log x_e    N 12: b -0.300 +- 0.453 (z -0.7) | rho -0.06 p 0.553
+     S_839       R_V3S0  log D      N 12: b -0.304 +- 0.460 (z -0.7) | rho -0.06 p 0.553
+     S_839       R_V3S0  log T_now  N 12: b -0.117 +- 0.197 (z -0.6) | rho -0.03 p 0.535
+     S_839       R_V3S0  log T_peri N 12: b -0.020 +- 0.348 (z -0.1) | rho +0.18 p 0.288
+     S_839       R_ISO   log x_e    N 12: b -0.212 +- 0.419 (z -0.5) | rho -0.06 p 0.555
+     S_839       R_ISO   log D      N 12: b -0.214 +- 0.425 (z -0.5) | rho -0.06 p 0.555
+     S_839       R_ISO   log T_now  N 12: b -0.087 +- 0.165 (z -0.5) | rho -0.06 p 0.568
+     S_839       R_ISO   log T_peri N 12: b -0.027 +- 0.282 (z -0.1) | rho +0.22 p 0.256
+     S_839       R_N     log x_e    N 12: b -0.149 +- 0.667 (z -0.2) | rho -0.02 p 0.528
+     S_839       R_N     log D      N 12: b -0.148 +- 0.677 (z -0.2) | rho -0.02 p 0.528
+     S_839       R_N     log T_now  N 12: b -0.011 +- 0.273 (z -0.0) | rho +0.06 p 0.423
+     S_839       R_N     log T_peri N 12: b +0.083 +- 0.459 (z +0.2) | rho +0.43 p 0.094
+     S_839       R_828   log x_e    N 12: b -0.237 +- 0.319 (z -0.7) | rho -0.10 p 0.613
+     S_839       R_828   log D      N 12: b -0.240 +- 0.325 (z -0.7) | rho -0.10 p 0.613
+     S_839       R_828   log T_now  N 12: b -0.091 +- 0.132 (z -0.7) | rho -0.10 p 0.620
+     S_839       R_828   log T_peri N 12: b -0.039 +- 0.229 (z -0.2) | rho +0.13 p 0.355
+     S_ovl       R_V3S0  log x_e    N  5: b +0.412 +- 3.773 (z +0.1) | rho -0.10 p 0.603
+     S_ovl       R_V3S0  log D      N  5: b -0.304 +- 22.419 (z -0.0) | rho -0.30 p 0.729
+     S_ovl       R_V3S0  log T_now  N  5: b -0.637 +- 2.153 (z -0.3) | rho -0.30 p 0.729
+     S_ovl       R_ISO   log x_e    N  5: b +1.052 +- 3.340 (z +0.3) | rho +0.30 p 0.349
+     S_ovl       R_ISO   log D      N  5: b +0.796 +- 24.386 (z +0.0) | rho +0.10 p 0.486
+     S_ovl       R_ISO   log T_now  N  5: b -0.391 +- 2.903 (z -0.1) | rho +0.10 p 0.486
+     S_ovl       R_N     log x_e    N  5: b +0.644 +- 2.246 (z +0.3) | rho +0.30 p 0.349
+     S_ovl       R_N     log D      N  5: b +0.430 +- 16.462 (z +0.0) | rho +0.10 p 0.486
+     S_ovl       R_N     log T_now  N  5: b -0.240 +- 1.454 (z -0.2) | rho +0.10 p 0.486
+     S_ovl       R_828   log x_e    N  5: b +0.760 +- 2.915 (z +0.3) | rho +0.30 p 0.349
+     S_ovl       R_828   log D      N  5: b +0.307 +- 24.143 (z +0.0) | rho +0.10 p 0.486
+     S_ovl       R_828   log T_now  N  5: b -0.370 +- 1.978 (z -0.2) | rho +0.10 p 0.486
+     S_E3+S_838  R_V3S0  log x_e    N 64: b +0.710 +- 0.267 (z +2.7) | rho +0.30 p 0.005
+     S_E3+S_838  R_V3S0  log D      N 64: b +0.802 +- 0.259 (z +3.1) | rho +0.35 p 0.000
+     S_E3+S_838  R_V3S0  log T_now  N 64: b +0.088 +- 0.123 (z +0.7) | rho +0.17 p 0.092
+     S_E3+S_838  R_V3S0  log T_peri N 42: b -0.220 +- 0.135 (z -1.6) | rho -0.10 p 0.729
+     S_E3+S_838  R_ISO   log x_e    N 64: b +0.279 +- 0.170 (z +1.6) | rho +0.21 p 0.046
+     S_E3+S_838  R_ISO   log D      N 64: b +0.321 +- 0.166 (z +1.9) | rho +0.24 p 0.022
+     S_E3+S_838  R_ISO   log T_now  N 64: b +0.024 +- 0.085 (z +0.3) | rho +0.12 p 0.175
+     S_E3+S_838  R_ISO   log T_peri N 42: b -0.156 +- 0.096 (z -1.6) | rho -0.08 p 0.680
+     S_E3+S_838  R_N     log x_e    N 64: b +0.504 +- 0.243 (z +2.1) | rho +0.27 p 0.017
+     S_E3+S_838  R_N     log D      N 64: b +0.609 +- 0.232 (z +2.6) | rho +0.31 p 0.007
+     S_E3+S_838  R_N     log T_now  N 64: b +0.263 +- 0.127 (z +2.1) | rho +0.32 p 0.004
+     S_E3+S_838  R_N     log T_peri N 42: b +0.028 +- 0.134 (z +0.2) | rho +0.15 p 0.176
+     S_E3+S_838  R_828   log x_e    N 24: b -0.135 +- 0.204 (z -0.7) | rho +0.02 p 0.461
+     S_E3+S_838  R_828   log D      N 24: b -0.124 +- 0.208 (z -0.6) | rho +0.02 p 0.478
+     S_E3+S_838  R_828   log T_now  N 24: b -0.044 +- 0.083 (z -0.5) | rho +0.04 p 0.419
+     S_E3+S_838  R_828   log T_peri N 12: b -0.039 +- 0.223 (z -0.2) | rho +0.13 p 0.339
+   [alt]
+     S_E3        R_V3S0  log x_e    N 46: b +0.838 +- 0.253 (z +3.3) | rho +0.42 p 0.004
+     S_E3        R_V3S0  log D      N 46: b +0.896 +- 0.238 (z +3.8) | rho +0.48 p 0.002
+     S_E3        R_V3S0  log T_now  N 46: b +0.050 +- 0.150 (z +0.3) | rho +0.16 p 0.145
+     S_E3        R_V3S0  log T_peri N 33: b -0.325 +- 0.153 (z -2.1) | rho -0.28 p 0.942
+     S_E3        R_V3S   log x_e    N 46: b +1.180 +- 0.210 (z +5.6) | rho +0.61 p 0.000
+     S_E3        R_V3S   log D      N 46: b +1.232 +- 0.194 (z +6.3) | rho +0.66 p 0.000
+     S_E3        R_V3S   log T_now  N 46: b +0.359 +- 0.130 (z +2.8) | rho +0.45 p 0.002
+     S_E3        R_V3S   log T_peri N 33: b -0.053 +- 0.139 (z -0.4) | rho -0.03 p 0.568
+     S_E3        R_ISO   log x_e    N 46: b +0.317 +- 0.166 (z +1.9) | rho +0.25 p 0.048
+     S_E3        R_ISO   log D      N 46: b +0.332 +- 0.159 (z +2.1) | rho +0.28 p 0.034
+     S_E3        R_ISO   log T_now  N 46: b -0.013 +- 0.102 (z -0.1) | rho +0.08 p 0.302
+     S_E3        R_ISO   log T_peri N 33: b -0.208 +- 0.108 (z -1.9) | rho -0.22 p 0.890
+     S_E3        R_N     log x_e    N 46: b +0.470 +- 0.188 (z +2.5) | rho +0.30 p 0.026
+     S_E3        R_N     log D      N 46: b +0.521 +- 0.178 (z +2.9) | rho +0.36 p 0.010
+     S_E3        R_N     log T_now  N 46: b +0.181 +- 0.100 (z +1.8) | rho +0.29 p 0.027
+     S_E3        R_N     log T_peri N 33: b -0.043 +- 0.103 (z -0.4) | rho +0.02 p 0.477
+     S_E3        R_828   log x_e    N  5: b +0.762 +- 3.060 (z +0.2) | rho +0.30 p 0.329
+     S_E3        R_828   log D      N  5: b +0.307 +- 30.057 (z +0.0) | rho +0.10 p 0.461
+     S_E3        R_828   log T_now  N  5: b -0.372 +- 1.905 (z -0.2) | rho +0.10 p 0.461
+     S_838       R_V3S0  log x_e    N 24: b -0.198 +- 0.271 (z -0.7) | rho -0.01 p 0.542
+     S_838       R_V3S0  log D      N 24: b -0.173 +- 0.270 (z -0.6) | rho -0.01 p 0.527
+     S_838       R_V3S0  log T_now  N 24: b -0.059 +- 0.118 (z -0.5) | rho +0.04 p 0.428
+     S_838       R_V3S0  log T_peri N 12: b -0.017 +- 0.356 (z -0.0) | rho +0.13 p 0.350
+     S_838       R_ISO   log x_e    N 24: b -0.133 +- 0.242 (z -0.5) | rho +0.03 p 0.470
+     S_838       R_ISO   log D      N 24: b -0.128 +- 0.243 (z -0.5) | rho +0.01 p 0.478
+     S_838       R_ISO   log T_now  N 24: b -0.036 +- 0.101 (z -0.4) | rho +0.05 p 0.402
+     S_838       R_ISO   log T_peri N 12: b -0.026 +- 0.277 (z -0.1) | rho +0.20 p 0.263
+     S_838       R_N     log x_e    N 24: b -0.225 +- 0.434 (z -0.5) | rho -0.00 p 0.509
+     S_838       R_N     log D      N 24: b -0.155 +- 0.413 (z -0.4) | rho -0.02 p 0.535
+     S_838       R_N     log T_now  N 24: b +0.123 +- 0.197 (z +0.6) | rho +0.23 p 0.139
+     S_838       R_N     log T_peri N 12: b +0.090 +- 0.454 (z +0.2) | rho +0.39 p 0.114
+     S_838       R_828   log x_e    N 24: b -0.135 +- 0.204 (z -0.7) | rho +0.02 p 0.480
+     S_838       R_828   log D      N 24: b -0.124 +- 0.208 (z -0.6) | rho +0.02 p 0.486
+     S_838       R_828   log T_now  N 24: b -0.045 +- 0.084 (z -0.5) | rho +0.04 p 0.422
+     S_838       R_828   log T_peri N 12: b -0.037 +- 0.226 (z -0.2) | rho +0.11 p 0.365
+     S_839       R_V3S0  log x_e    N 12: b -0.316 +- 0.462 (z -0.7) | rho -0.10 p 0.602
+     S_839       R_V3S0  log D      N 12: b -0.319 +- 0.467 (z -0.7) | rho -0.10 p 0.602
+     S_839       R_V3S0  log T_now  N 12: b -0.123 +- 0.203 (z -0.6) | rho -0.07 p 0.585
+     S_839       R_V3S0  log T_peri N 12: b -0.017 +- 0.357 (z -0.0) | rho +0.13 p 0.349
+     S_839       R_ISO   log x_e    N 12: b -0.214 +- 0.419 (z -0.5) | rho -0.06 p 0.555
+     S_839       R_ISO   log D      N 12: b -0.215 +- 0.424 (z -0.5) | rho -0.06 p 0.555
+     S_839       R_ISO   log T_now  N 12: b -0.088 +- 0.165 (z -0.5) | rho -0.06 p 0.568
+     S_839       R_ISO   log T_peri N 12: b -0.026 +- 0.280 (z -0.1) | rho +0.20 p 0.277
+     S_839       R_N     log x_e    N 12: b -0.148 +- 0.670 (z -0.2) | rho -0.02 p 0.528
+     S_839       R_N     log D      N 12: b -0.148 +- 0.677 (z -0.2) | rho -0.02 p 0.528
+     S_839       R_N     log T_now  N 12: b -0.011 +- 0.273 (z -0.0) | rho +0.06 p 0.423
+     S_839       R_N     log T_peri N 12: b +0.090 +- 0.458 (z +0.2) | rho +0.39 p 0.116
+     S_839       R_828   log x_e    N 12: b -0.238 +- 0.321 (z -0.7) | rho -0.10 p 0.613
+     S_839       R_828   log D      N 12: b -0.240 +- 0.325 (z -0.7) | rho -0.10 p 0.613
+     S_839       R_828   log T_now  N 12: b -0.091 +- 0.132 (z -0.7) | rho -0.10 p 0.620
+     S_839       R_828   log T_peri N 12: b -0.037 +- 0.229 (z -0.2) | rho +0.11 p 0.374
+     S_ovl       R_V3S0  log x_e    N  5: b +0.342 +- 3.826 (z +0.1) | rho -0.10 p 0.603
+     S_ovl       R_V3S0  log D      N  5: b -0.423 +- 22.162 (z -0.0) | rho -0.30 p 0.729
+     S_ovl       R_V3S0  log T_now  N  5: b -0.666 +- 2.123 (z -0.3) | rho -0.30 p 0.729
+     S_ovl       R_ISO   log x_e    N  5: b +1.056 +- 3.352 (z +0.3) | rho +0.30 p 0.349
+     S_ovl       R_ISO   log D      N  5: b +0.796 +- 24.402 (z +0.0) | rho +0.10 p 0.486
+     S_ovl       R_ISO   log T_now  N  5: b -0.393 +- 3.014 (z -0.1) | rho +0.10 p 0.486
+     S_ovl       R_N     log x_e    N  5: b +0.646 +- 2.253 (z +0.3) | rho +0.30 p 0.349
+     S_ovl       R_N     log D      N  5: b +0.430 +- 16.462 (z +0.0) | rho +0.10 p 0.486
+     S_ovl       R_N     log T_now  N  5: b -0.242 +- 1.461 (z -0.2) | rho +0.10 p 0.486
+     S_ovl       R_828   log x_e    N  5: b +0.762 +- 2.924 (z +0.3) | rho +0.30 p 0.349
+     S_ovl       R_828   log D      N  5: b +0.307 +- 24.143 (z +0.0) | rho +0.10 p 0.486
+     S_ovl       R_828   log T_now  N  5: b -0.372 +- 2.007 (z -0.2) | rho +0.10 p 0.486
+     S_E3+S_838  R_V3S0  log x_e    N 65: b +0.760 +- 0.270 (z +2.8) | rho +0.32 p 0.005
+     S_E3+S_838  R_V3S0  log D      N 65: b +0.846 +- 0.258 (z +3.3) | rho +0.36 p 0.002
+     S_E3+S_838  R_V3S0  log T_now  N 65: b +0.103 +- 0.128 (z +0.8) | rho +0.18 p 0.071
+     S_E3+S_838  R_V3S0  log T_peri N 42: b -0.235 +- 0.137 (z -1.7) | rho -0.11 p 0.755
+     S_E3+S_838  R_ISO   log x_e    N 65: b +0.299 +- 0.168 (z +1.8) | rho +0.23 p 0.031
+     S_E3+S_838  R_ISO   log D      N 65: b +0.337 +- 0.162 (z +2.1) | rho +0.26 p 0.021
+     S_E3+S_838  R_ISO   log T_now  N 65: b +0.031 +- 0.086 (z +0.4) | rho +0.14 p 0.136
+     S_E3+S_838  R_ISO   log T_peri N 42: b -0.161 +- 0.095 (z -1.7) | rho -0.09 p 0.700
+     S_E3+S_838  R_N     log x_e    N 65: b +0.524 +- 0.240 (z +2.2) | rho +0.28 p 0.010
+     S_E3+S_838  R_N     log D      N 65: b +0.620 +- 0.226 (z +2.7) | rho +0.33 p 0.003
+     S_E3+S_838  R_N     log T_now  N 65: b +0.268 +- 0.126 (z +2.1) | rho +0.33 p 0.001
+     S_E3+S_838  R_N     log T_peri N 42: b +0.022 +- 0.132 (z +0.2) | rho +0.14 p 0.196
+     S_E3+S_838  R_828   log x_e    N 24: b -0.135 +- 0.205 (z -0.7) | rho +0.02 p 0.461
+     S_E3+S_838  R_828   log D      N 24: b -0.124 +- 0.208 (z -0.6) | rho +0.02 p 0.478
+     S_E3+S_838  R_828   log T_now  N 24: b -0.045 +- 0.083 (z -0.5) | rho +0.04 p 0.419
+     S_E3+S_838  R_828   log T_peri N 12: b -0.037 +- 0.223 (z -0.2) | rho +0.11 p 0.352
+   [canonical] T1 cell z +3.0, p 0.0075. Single swaps that remove the trend (z < 1 or p > 0.2): sample -> S_838, sample -> S_ovl, variable -> log T_now, variable -> log T_peri
+   [alt] T1 cell z +3.3, p 0.0040. Single swaps that remove the trend (z < 1 or p > 0.2): sample -> S_838, sample -> S_ovl, variable -> log T_now, variable -> log T_peri
+
+--- V3: is T1's host-field trend real? (S_E3, R_V3S0 vs log x_e; also R_V3S, R_ISO, R_N, MOND) ---
+   [canonical] V3S0  b +0.761+-0.257 | +y0,Lambda +0.034+-0.195 | rho all +0.40 (p 0.005), MW +0.43 (p 0.009, N 32) | jk [+0.65, +0.86] (min drops Segue 1) | TS +0.75 -> PROXY (M_V)
+        + log y0          : b_xe +0.779+-0.279 | b_cov +0.069+-0.268
+        + log Lambda      : b_xe +0.197+-0.191 | b_cov +1.331+-0.201
+        + M_V             : b_xe +0.020+-0.203 | b_cov +0.266+-0.046
+        + log sigma       : b_xe +0.930+-0.239 | b_cov +1.193+-0.470
+        + binary-specific : b_xe +0.713+-0.276 | b_cov +0.137+-0.291
+        + M31             : b_xe +0.672+-0.245 | b_cov -0.450+-0.191
+   [canonical] V3S   b +1.104+-0.213 | +y0,Lambda +0.489+-0.181 | rho all +0.58 (p 0.000), MW +0.61 (p 0.000, N 32) | jk [+1.03, +1.19] (min drops Segue 1) | TS +1.20 -> TRACKS HOST FIELD
+   [canonical] ISO   b +0.277+-0.173 | +y0,Lambda -0.061+-0.186 | rho all +0.23 (p 0.067), MW +0.24 (p 0.094, N 32) | jk [+0.21, +0.34] (min drops Carina III) | TS +0.35 -> PROXY (log Lambda, M_V)
+   [canonical] MOND  b +1.158+-0.188 | +y0,Lambda +0.701+-0.188 | rho all +0.65 (p 0.000), MW +0.71 (p 0.000, N 32) | jk [+1.10, +1.23] (min drops Andromeda XVI) | TS +1.13 -> TRACKS HOST FIELD
+   [canonical] V3D   b +0.408+-0.194 | +y0,Lambda -0.061+-0.186 | rho all +0.26 (p 0.040), MW +0.22 (p 0.107, N 32) | jk [+0.35, +0.49] (min drops Andromeda XVI) | TS +0.37 -> PROXY (M_V)
+   [canonical] permutation control (x_e shuffled, seed 2): partial -0.143+-0.144, MW p 0.903 -> does not track (control OK)
+   [alt] V3S0  b +0.838+-0.253 | +y0,Lambda +0.036+-0.196 | rho all +0.42 (p 0.003), MW +0.45 (p 0.007, N 32) | jk [+0.73, +0.94] (min drops Segue 1) | TS +0.81 -> PROXY (M_V)
+        + log y0          : b_xe +0.853+-0.279 | b_cov +0.046+-0.269
+        + log Lambda      : b_xe +0.227+-0.187 | b_cov +1.387+-0.198
+        + M_V             : b_xe +0.015+-0.205 | b_cov +0.276+-0.045
+        + log sigma       : b_xe +1.004+-0.237 | b_cov +1.173+-0.486
+        + binary-specific : b_xe +0.787+-0.270 | b_cov +0.145+-0.296
+        + M31             : b_xe +0.711+-0.239 | b_cov -0.489+-0.187
+   [alt] V3S   b +1.180+-0.210 | +y0,Lambda +0.491+-0.182 | rho all +0.61 (p 0.000), MW +0.61 (p 0.000, N 32) | jk [+1.11, +1.27] (min drops Segue 1) | TS +1.28 -> TRACKS HOST FIELD
+   [alt] ISO   b +0.317+-0.166 | +y0,Lambda -0.048+-0.187 | rho all +0.25 (p 0.044), MW +0.24 (p 0.094, N 32) | jk [+0.25, +0.38] (min drops Carina III) | TS +0.39 -> PROXY (log Lambda, M_V)
+   [alt] MOND  b +1.223+-0.181 | +y0,Lambda +0.722+-0.189 | rho all +0.67 (p 0.000), MW +0.71 (p 0.000, N 32) | jk [+1.17, +1.30] (min drops Segue 1) | TS +1.21 -> TRACKS HOST FIELD
+   [alt] V3D   b +0.470+-0.188 | +y0,Lambda -0.049+-0.187 | rho all +0.30 (p 0.025), MW +0.22 (p 0.107, N 32) | jk [+0.41, +0.55] (min drops Andromeda XXVIII) | TS +0.47 -> PROXY (M_V)
+   [alt] permutation control (x_e shuffled, seed 2): partial -0.148+-0.154, MW p 0.978 -> does not track (control OK)
+
+================================================================================================================
+TASK 2: physical systematics on S_E3 (primary data; bootstrap median of per-draw residuals; W beside the clean subset)
+================================================================================================================
+
+   [canonical] V3S: all N 45 Delta +1.332+-0.148
+     (a) PM systems 33: median q 0.70; safe (q<0.5) 12, exposed (q>=1.0) 6; b(log q) +0.276+-0.380, rho +0.21 p 0.118; partial log rho_tid +0.160+-0.154 (z +1.0) -> not implicated
+     (a) q<0.5 (PM) vs rest          : in N 12 +1.235+-0.273 | out N 33 +1.373+-0.170 | diff -0.138+-0.322
+     (b) ell<0.5 vs >=0.5            : in N 35 +1.309+-0.143 | out N 10 +1.474+-0.390 | diff -0.164+-0.415
+     (c) Nq>=10 vs <10               : in N 23 +1.175+-0.161 | out N 22 +1.577+-0.208 | diff -0.402+-0.263
+     (c) binary-specific vs median   : in N  8 +1.515+-0.295 | out N 37 +1.298+-0.167 | diff +0.217+-0.339
+     (d) UFD vs classical            : in N 38 +1.442+-0.152 | out N  7 +0.482+-0.266 | diff +0.960+-0.307
+     (e) MW vs M31/field             : in N 32 +1.524+-0.167 | out N 13 +0.779+-0.243 | diff +0.745+-0.295
+     (b) rho(ell) +0.19 p 0.097; (c) rho(-log Nq) +0.10 p 0.271, rho(dsig/sig) -0.04 p 0.624
+     (e) b(log x_e) +1.104+-0.213 rho +0.58 p 0.000; b(log D) -1.168+-0.201 rho(-) +0.64 p 0.000
+     subset clean   N  6: Delta +0.900+-0.213  (W +0.529+-0.198); f_sys +0.32 68% [0.14, 0.49] 95% [-0.0, 0.65] -> ROBUST
+        Eridanus II, Leo IV, Leo V, Pegasus III, Pegasus IV, Leo T
+     subset STRICT  N  2: Delta +0.970+-0.274  (W +0.639+-0.277); f_sys +0.27 68% [0.01, 0.49] 95% [-0.26, 0.62] -> TOO FEW
+        Eridanus II, Leo V
+     subset C2-C4   N 19: Delta +1.169+-0.146  (W +0.773+-0.158); f_sys +0.12 68% [0.02, 0.22] 95% [-0.06, 0.34] -> ROBUST
+        Bootes I, Bootes II, Canes Venatici II, Carina II, Centaurus I, Coma Berenices, Crater II, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Andromeda X, Andromeda XXVII, Andromeda XXIX, Leo T
+     per-test fractions: C1 q<0.5 (PM) N 12 f +0.08; C2 ell<0.5 N 35 f +0.01; C3 no gradient N 45 f -0.00; C4 Nq>=10 N 23 f +0.11; UFD only N 38 f -0.08; MW only N 32 f -0.15
+
+   [canonical] V3D: all N 45 Delta +2.006+-0.113
+     (a) PM systems 33: median q 1.05; safe (q<0.5) 3, exposed (q>=1.0) 17; b(log q) -0.052+-0.279, rho +0.06 p 0.366; partial log rho_tid -0.045+-0.111 (z -0.4) -> not implicated
+     (a) q<0.5 (PM) vs rest          : in N  3 +2.066+-0.255 | out N 42 +1.996+-0.121 | diff +0.070+-0.282
+     (b) ell<0.5 vs >=0.5            : in N 35 +2.005+-0.120 | out N 10 +2.027+-0.335 | diff -0.022+-0.356
+     (c) Nq>=10 vs <10               : in N 23 +1.886+-0.109 | out N 22 +2.240+-0.172 | diff -0.354+-0.204
+     (c) binary-specific vs median   : in N  8 +1.995+-0.190 | out N 37 +2.021+-0.138 | diff -0.026+-0.235
+     (d) UFD vs classical            : in N 38 +2.072+-0.120 | out N  7 +1.469+-0.251 | diff +0.603+-0.278
+     (e) MW vs M31/field             : in N 32 +2.123+-0.142 | out N 13 +1.644+-0.218 | diff +0.479+-0.260
+     (b) rho(ell) +0.19 p 0.097; (c) rho(-log Nq) +0.09 p 0.264, rho(dsig/sig) -0.08 p 0.715
+     (e) b(log x_e) +0.408+-0.194 rho +0.26 p 0.040; b(log D) -0.464+-0.186 rho(-) +0.32 p 0.017
+     subset clean   N  2: Delta +1.925+-0.239  (W +1.553+-0.240); f_sys +0.04 68% [-0.05, 0.15] 95% [-0.16, 0.34] -> TOO FEW
+        Eridanus II, Leo V
+     subset STRICT  N  2: Delta +1.915+-0.233  (W +1.558+-0.241); f_sys +0.05 68% [-0.05, 0.15] 95% [-0.15, 0.34] -> TOO FEW
+        Eridanus II, Leo V
+     subset C2-C4   N 19: Delta +1.880+-0.097  (W +1.477+-0.109); f_sys +0.06 68% [0.02, 0.12] 95% [-0.02, 0.19] -> ROBUST
+        Bootes I, Bootes II, Canes Venatici II, Carina II, Centaurus I, Coma Berenices, Crater II, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Andromeda X, Andromeda XXVII, Andromeda XXIX, Leo T
+     per-test fractions: C1 q<0.5 (PM) N 3 f -0.03; C2 ell<0.5 N 35 f +0.00; C3 no gradient N 45 f +0.00; C4 Nq>=10 N 23 f +0.06; UFD only N 38 f -0.04; MW only N 32 f -0.06
+
+   [canonical] MOND: all N 45 Delta +1.137+-0.151
+     (a) PM systems 33: median q 0.58; safe (q<0.5) 13, exposed (q>=1.0) 6; b(log q) +0.439+-0.339, rho +0.37 p 0.018; partial log rho_tid +0.176+-0.150 (z +1.2) -> not implicated
+     (a) q<0.5 (PM) vs rest          : in N 13 +0.868+-0.227 | out N 32 +1.239+-0.179 | diff -0.372+-0.289
+     (b) ell<0.5 vs >=0.5            : in N 35 +1.123+-0.151 | out N 10 +1.286+-0.393 | diff -0.163+-0.421
+     (c) Nq>=10 vs <10               : in N 23 +0.962+-0.171 | out N 22 +1.398+-0.215 | diff -0.436+-0.275
+     (c) binary-specific vs median   : in N  8 +1.368+-0.280 | out N 37 +1.073+-0.181 | diff +0.295+-0.333
+     (d) UFD vs classical            : in N 38 +1.236+-0.158 | out N  7 +0.453+-0.253 | diff +0.783+-0.298
+     (e) MW vs M31/field             : in N 32 +1.315+-0.183 | out N 13 +0.691+-0.234 | diff +0.625+-0.297
+     (b) rho(ell) +0.13 p 0.180; (c) rho(-log Nq) +0.10 p 0.261, rho(dsig/sig) -0.08 p 0.724
+     (e) b(log x_e) +1.158+-0.188 rho +0.65 p 0.000; b(log D) -1.199+-0.177 rho(-) +0.70 p 0.000
+     subset clean   N  7: Delta +0.693+-0.150  (W +0.362+-0.146); f_sys +0.39 68% [0.24, 0.53] 95% [0.1, 0.69] -> ROBUST
+        Canes Venatici II, Eridanus II, Leo IV, Leo V, Pegasus III, Pegasus IV, Leo T
+     subset STRICT  N  2: Delta +0.666+-0.209  (W +0.406+-0.208); f_sys +0.41 68% [0.22, 0.57] 95% [-0.01, 0.76] -> TOO FEW
+        Eridanus II, Leo V
+     subset C2-C4   N 19: Delta +0.952+-0.154  (W +0.561+-0.145); f_sys +0.16 68% [0.04, 0.3] 95% [-0.05, 0.44] -> ROBUST
+        Bootes I, Bootes II, Canes Venatici II, Carina II, Centaurus I, Coma Berenices, Crater II, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Andromeda X, Andromeda XXVII, Andromeda XXIX, Leo T
+     per-test fractions: C1 q<0.5 (PM) N 13 f +0.23; C2 ell<0.5 N 35 f +0.02; C3 no gradient N 45 f +0.00; C4 Nq>=10 N 23 f +0.15; UFD only N 38 f -0.09; MW only N 32 f -0.15
+
+   [canonical] ISO: all N 45 Delta +0.557+-0.099
+     (a) PM systems 33: median q 0.33; safe (q<0.5) 27, exposed (q>=1.0) 2; b(log q) -0.655+-0.298, rho -0.27 p 0.937; partial log rho_tid -0.085+-0.091 (z -0.9) -> not implicated
+     (a) q<0.5 (PM) vs rest          : in N 27 +0.629+-0.128 | out N 18 +0.428+-0.179 | diff +0.201+-0.220
+     (b) ell<0.5 vs >=0.5            : in N 35 +0.556+-0.103 | out N 10 +0.517+-0.264 | diff +0.039+-0.284
+     (c) Nq>=10 vs <10               : in N 23 +0.451+-0.107 | out N 22 +0.695+-0.140 | diff -0.244+-0.176
+     (c) binary-specific vs median   : in N  8 +0.505+-0.199 | out N 37 +0.571+-0.110 | diff -0.066+-0.227
+     (d) UFD vs classical            : in N 38 +0.605+-0.096 | out N  7 +0.166+-0.312 | diff +0.439+-0.326
+     (e) MW vs M31/field             : in N 32 +0.611+-0.110 | out N 13 +0.388+-0.200 | diff +0.223+-0.229
+     (b) rho(ell) +0.16 p 0.144; (c) rho(-log Nq) +0.05 p 0.366, rho(dsig/sig) -0.09 p 0.734
+     (e) b(log x_e) +0.277+-0.173 rho +0.23 p 0.067; b(log D) -0.294+-0.167 rho(-) +0.26 p 0.046
+     subset clean   N 14: Delta +0.465+-0.110  (W +0.235+-0.122); f_sys +0.16 68% [-0.01, 0.32] 95% [-0.27, 0.5] -> ROBUST
+        Bootes I, Bootes II, Canes Venatici II, Carina II, Coma Berenices, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Leo T
+     subset STRICT  N  2: Delta +0.589+-0.203  (W +0.362+-0.221); f_sys -0.06 68% [-0.42, 0.24] 95% [-0.97, 0.68] -> TOO FEW
+        Eridanus II, Leo V
+     subset C2-C4   N 19: Delta +0.450+-0.094  (W +0.216+-0.105); f_sys +0.19 68% [0.03, 0.33] 95% [-0.1, 0.49] -> ROBUST
+        Bootes I, Bootes II, Canes Venatici II, Carina II, Centaurus I, Coma Berenices, Crater II, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Andromeda X, Andromeda XXVII, Andromeda XXIX, Leo T
+     per-test fractions: C1 q<0.5 (PM) N 27 f -0.14; C2 ell<0.5 N 35 f -0.00; C3 no gradient N 45 f +0.01; C4 Nq>=10 N 23 f +0.18; UFD only N 38 f -0.09; MW only N 32 f -0.10
+
+   [alt] V3S: all N 46 Delta +1.302+-0.146
+     (a) PM systems 33: median q 0.71; safe (q<0.5) 9, exposed (q>=1.0) 8; b(log q) +0.245+-0.387, rho +0.21 p 0.126; partial log rho_tid +0.141+-0.156 (z +0.9) -> not implicated
+     (a) q<0.5 (PM) vs rest          : in N  9 +0.963+-0.304 | out N 37 +1.378+-0.165 | diff -0.415+-0.345
+     (b) ell<0.5 vs >=0.5            : in N 36 +1.272+-0.144 | out N 10 +1.460+-0.393 | diff -0.188+-0.419
+     (c) Nq>=10 vs <10               : in N 23 +1.165+-0.162 | out N 23 +1.521+-0.228 | diff -0.356+-0.280
+     (c) binary-specific vs median   : in N  8 +1.481+-0.300 | out N 38 +1.257+-0.170 | diff +0.224+-0.345
+     (d) UFD vs classical            : in N 38 +1.435+-0.146 | out N  8 +0.404+-0.219 | diff +1.031+-0.263
+     (e) MW vs M31/field             : in N 32 +1.522+-0.163 | out N 14 +0.676+-0.234 | diff +0.846+-0.285
+     (b) rho(ell) +0.16 p 0.143; (c) rho(-log Nq) +0.05 p 0.377, rho(dsig/sig) -0.05 p 0.657
+     (e) b(log x_e) +1.180+-0.210 rho +0.61 p 0.000; b(log D) -1.232+-0.194 rho(-) +0.66 p 0.000
+     subset clean   N  5: Delta +0.787+-0.235  (W +0.438+-0.207); f_sys +0.40 68% [0.2, 0.55] 95% [-0.0, 0.72] -> TOO FEW
+        Eridanus II, Leo IV, Leo V, Pegasus III, Leo T
+     subset STRICT  N  2: Delta +0.972+-0.289  (W +0.637+-0.263); f_sys +0.25 68% [-0.0, 0.49] 95% [-0.28, 0.62] -> TOO FEW
+        Eridanus II, Leo V
+     subset C2-C4   N 19: Delta +1.162+-0.150  (W +0.765+-0.164); f_sys +0.11 68% [0.01, 0.2] 95% [-0.09, 0.34] -> ROBUST
+        Bootes I, Bootes II, Canes Venatici II, Carina II, Centaurus I, Coma Berenices, Crater II, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Andromeda X, Andromeda XXVII, Andromeda XXIX, Leo T
+     per-test fractions: C1 q<0.5 (PM) N 9 f +0.26; C2 ell<0.5 N 36 f +0.02; C3 no gradient N 46 f +0.00; C4 Nq>=10 N 23 f +0.10; UFD only N 38 f -0.10; MW only N 32 f -0.17
+
+   [alt] V3D: all N 46 Delta +1.993+-0.110
+     (a) PM systems 33: median q 1.07; safe (q<0.5) 3, exposed (q>=1.0) 18; b(log q) -0.061+-0.277, rho +0.05 p 0.387; partial log rho_tid -0.052+-0.110 (z -0.5) -> not implicated
+     (a) q<0.5 (PM) vs rest          : in N  3 +2.058+-0.247 | out N 43 +1.982+-0.123 | diff +0.076+-0.275
+     (b) ell<0.5 vs >=0.5            : in N 36 +1.991+-0.116 | out N 10 +2.029+-0.327 | diff -0.038+-0.347
+     (c) Nq>=10 vs <10               : in N 23 +1.887+-0.111 | out N 23 +2.189+-0.179 | diff -0.302+-0.211
+     (c) binary-specific vs median   : in N  8 +1.992+-0.192 | out N 38 +1.996+-0.135 | diff -0.004+-0.235
+     (d) UFD vs classical            : in N 38 +2.076+-0.118 | out N  8 +1.437+-0.209 | diff +0.639+-0.240
+     (e) MW vs M31/field             : in N 32 +2.119+-0.137 | out N 14 +1.601+-0.196 | diff +0.518+-0.240
+     (b) rho(ell) +0.16 p 0.136; (c) rho(-log Nq) +0.05 p 0.376, rho(dsig/sig) -0.10 p 0.752
+     (e) b(log x_e) +0.470+-0.188 rho +0.30 p 0.025; b(log D) -0.521+-0.178 rho(-) +0.36 p 0.009
+     subset clean   N  2: Delta +1.928+-0.227  (W +1.546+-0.234); f_sys +0.03 68% [-0.06, 0.14] 95% [-0.19, 0.34] -> TOO FEW
+        Eridanus II, Leo V
+     subset STRICT  N  2: Delta +1.924+-0.227  (W +1.546+-0.233); f_sys +0.03 68% [-0.05, 0.14] 95% [-0.17, 0.34] -> TOO FEW
+        Eridanus II, Leo V
+     subset C2-C4   N 19: Delta +1.885+-0.100  (W +1.472+-0.109); f_sys +0.05 68% [0.01, 0.11] 95% [-0.02, 0.17] -> ROBUST
+        Bootes I, Bootes II, Canes Venatici II, Carina II, Centaurus I, Coma Berenices, Crater II, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Andromeda X, Andromeda XXVII, Andromeda XXIX, Leo T
+     per-test fractions: C1 q<0.5 (PM) N 3 f -0.03; C2 ell<0.5 N 36 f +0.00; C3 no gradient N 46 f -0.00; C4 Nq>=10 N 23 f +0.05; UFD only N 38 f -0.04; MW only N 32 f -0.06
+
+   [alt] MOND: all N 46 Delta +1.078+-0.152
+     (a) PM systems 33: median q 0.59; safe (q<0.5) 14, exposed (q>=1.0) 6; b(log q) +0.426+-0.340, rho +0.37 p 0.017; partial log rho_tid +0.160+-0.151 (z +1.1) -> not implicated
+     (a) q<0.5 (PM) vs rest          : in N 14 +0.897+-0.217 | out N 32 +1.163+-0.199 | diff -0.266+-0.295
+     (b) ell<0.5 vs >=0.5            : in N 36 +1.055+-0.153 | out N 10 +1.212+-0.388 | diff -0.157+-0.417
+     (c) Nq>=10 vs <10               : in N 23 +0.926+-0.168 | out N 23 +1.307+-0.224 | diff -0.380+-0.280
+     (c) binary-specific vs median   : in N  8 +1.317+-0.283 | out N 38 +1.007+-0.175 | diff +0.310+-0.332
+     (d) UFD vs classical            : in N 38 +1.202+-0.158 | out N  8 +0.363+-0.214 | diff +0.839+-0.266
+     (e) MW vs M31/field             : in N 32 +1.275+-0.181 | out N 14 +0.583+-0.222 | diff +0.692+-0.286
+     (b) rho(ell) +0.10 p 0.245; (c) rho(-log Nq) +0.06 p 0.362, rho(dsig/sig) -0.10 p 0.748
+     (e) b(log x_e) +1.223+-0.181 rho +0.67 p 0.000; b(log D) -1.249+-0.167 rho(-) +0.71 p 0.000
+     subset clean   N  8: Delta +0.711+-0.157  (W +0.386+-0.153); f_sys +0.34 68% [0.15, 0.49] 95% [-0.0, 0.64] -> ROBUST
+        Canes Venatici II, Coma Berenices, Eridanus II, Leo IV, Leo V, Pegasus III, Pegasus IV, Leo T
+     subset STRICT  N  2: Delta +0.624+-0.209  (W +0.354+-0.198); f_sys +0.42 68% [0.21, 0.58] 95% [-0.02, 0.8] -> TOO FEW
+        Eridanus II, Leo V
+     subset C2-C4   N 19: Delta +0.917+-0.159  (W +0.512+-0.141); f_sys +0.15 68% [0.02, 0.28] 95% [-0.09, 0.43] -> ROBUST
+        Bootes I, Bootes II, Canes Venatici II, Carina II, Centaurus I, Coma Berenices, Crater II, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Andromeda X, Andromeda XXVII, Andromeda XXIX, Leo T
+     per-test fractions: C1 q<0.5 (PM) N 14 f +0.17; C2 ell<0.5 N 36 f +0.01; C3 no gradient N 46 f -0.00; C4 Nq>=10 N 23 f +0.14; UFD only N 38 f -0.11; MW only N 32 f -0.19
+
+   [alt] ISO: all N 46 Delta +0.498+-0.099
+     (a) PM systems 33: median q 0.33; safe (q<0.5) 27, exposed (q>=1.0) 2; b(log q) -0.662+-0.295, rho -0.28 p 0.944; partial log rho_tid -0.088+-0.090 (z -1.0) -> not implicated
+     (a) q<0.5 (PM) vs rest          : in N 27 +0.592+-0.125 | out N 19 +0.352+-0.185 | diff +0.240+-0.224
+     (b) ell<0.5 vs >=0.5            : in N 36 +0.505+-0.103 | out N 10 +0.484+-0.265 | diff +0.021+-0.285
+     (c) Nq>=10 vs <10               : in N 23 +0.411+-0.107 | out N 23 +0.627+-0.148 | diff -0.216+-0.183
+     (c) binary-specific vs median   : in N  8 +0.466+-0.204 | out N 38 +0.510+-0.108 | diff -0.045+-0.231
+     (d) UFD vs classical            : in N 38 +0.569+-0.093 | out N  8 +0.087+-0.250 | diff +0.482+-0.267
+     (e) MW vs M31/field             : in N 32 +0.570+-0.108 | out N 14 +0.310+-0.181 | diff +0.260+-0.211
+     (b) rho(ell) +0.13 p 0.182; (c) rho(-log Nq) +0.01 p 0.471, rho(dsig/sig) -0.11 p 0.763
+     (e) b(log x_e) +0.317+-0.166 rho +0.25 p 0.044; b(log D) -0.332+-0.159 rho(-) +0.28 p 0.032
+     subset clean   N 14: Delta +0.424+-0.108  (W +0.193+-0.118); f_sys +0.15 68% [-0.05, 0.33] 95% [-0.39, 0.52] -> ROBUST
+        Bootes I, Bootes II, Canes Venatici II, Carina II, Coma Berenices, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Leo T
+     subset STRICT  N  2: Delta +0.545+-0.191  (W +0.325+-0.198); f_sys -0.09 68% [-0.47, 0.24] 95% [-1.17, 0.73] -> TOO FEW
+        Eridanus II, Leo V
+     subset C2-C4   N 19: Delta +0.409+-0.097  (W +0.175+-0.105); f_sys +0.18 68% [0.0, 0.33] 95% [-0.17, 0.51] -> ROBUST
+        Bootes I, Bootes II, Canes Venatici II, Carina II, Centaurus I, Coma Berenices, Crater II, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Andromeda X, Andromeda XXVII, Andromeda XXIX, Leo T
+     per-test fractions: C1 q<0.5 (PM) N 27 f -0.19; C2 ell<0.5 N 36 f -0.01; C3 no gradient N 46 f -0.00; C4 Nq>=10 N 23 f +0.18; UFD only N 38 f -0.14; MW only N 32 f -0.14
+
+================================================================================================================
+VERDICTS (frozen lines)
+================================================================================================================
+   [canonical] V3S  V1 ROBUST     clean +0.900+-0.213 vs all +1.332; f_sys +0.32 68% [0.14, 0.49]; tides not implicated; STRICT TOO FEW; C2-C4 ROBUST
+   [canonical] V3D  V1 TOO FEW    clean +1.925+-0.239 vs all +2.006; f_sys +0.04 68% [-0.05, 0.15]; tides not implicated; STRICT TOO FEW; C2-C4 ROBUST
+   [canonical] MOND V1 ROBUST     clean +0.693+-0.150 vs all +1.137; f_sys +0.39 68% [0.24, 0.53]; tides not implicated; STRICT TOO FEW; C2-C4 ROBUST
+   [canonical] ISO  V1 ROBUST     clean +0.465+-0.110 vs all +0.557; f_sys +0.16 68% [-0.01, 0.32]; tides not implicated; STRICT TOO FEW; C2-C4 ROBUST
+   [canonical] V3 T1's host-field trend: PROXY (M_V)
+   [alt] V3S  V1 TOO FEW    clean +0.787+-0.235 vs all +1.302; f_sys +0.40 68% [0.2, 0.55]; tides not implicated; STRICT TOO FEW; C2-C4 ROBUST
+   [alt] V3D  V1 TOO FEW    clean +1.928+-0.227 vs all +1.993; f_sys +0.03 68% [-0.06, 0.14]; tides not implicated; STRICT TOO FEW; C2-C4 ROBUST
+   [alt] MOND V1 ROBUST     clean +0.711+-0.157 vs all +1.078; f_sys +0.34 68% [0.15, 0.49]; tides not implicated; STRICT TOO FEW; C2-C4 ROBUST
+   [alt] ISO  V1 ROBUST     clean +0.424+-0.108 vs all +0.498; f_sys +0.15 68% [-0.05, 0.33]; tides not implicated; STRICT TOO FEW; C2-C4 ROBUST
+   [alt] V3 T1's host-field trend: PROXY (M_V)
+
+--- A1 post-result diagnostics (reported only; see AMENDMENT_A1.md) ---
+   [canonical] V3S  clean : drop of the median residual +0.346; expected from x_e selection +0.386, from x_e + M_V +0.048 -> left for the systematics -0.041+-0.192 / +0.297+-0.194
+   [canonical] V3S  C2-C4 : drop of the median residual +0.049; expected from x_e selection +0.139, from x_e + M_V +0.096 -> left for the systematics -0.090+-0.147 / -0.047+-0.132
+   [canonical] V3D  clean : drop of the median residual +0.097; expected from x_e selection +0.193, from x_e + M_V +0.122 -> left for the systematics -0.096+-0.158 / -0.026+-0.241
+   [canonical] V3D  C2-C4 : drop of the median residual +0.144; expected from x_e selection +0.051, from x_e + M_V +0.002 -> left for the systematics +0.092+-0.092 / +0.142+-0.101
+   [canonical] MOND clean : drop of the median residual +0.408; expected from x_e selection +0.348, from x_e + M_V +0.055 -> left for the systematics +0.060+-0.167 / +0.353+-0.190
+   [canonical] MOND C2-C4 : drop of the median residual +0.233; expected from x_e selection +0.146, from x_e + M_V +0.030 -> left for the systematics +0.088+-0.130 / +0.204+-0.139
+   [canonical] ISO  clean : drop of the median residual +0.032; expected from x_e selection -0.005, from x_e + M_V -0.039 -> left for the systematics +0.037+-0.111 / +0.070+-0.107
+   [canonical] ISO  C2-C4 : drop of the median residual +0.048; expected from x_e selection +0.035, from x_e + M_V +0.009 -> left for the systematics +0.014+-0.089 / +0.039+-0.099
+   [canonical] V3S  clean with E_lo: N  6 Delta +0.889+-0.216  (Eridanus II, Leo IV, Leo V, Pegasus III, Pegasus IV, Leo T)
+   [canonical] V3S  clean with E_hi: N  4 Delta +0.913+-0.192  (Eridanus II, Leo IV, Leo V, Pegasus III)
+   [canonical] V3S  clean with q84 : N  4 Delta +0.917+-0.190  (Eridanus II, Leo IV, Leo V, Pegasus III)
+   [canonical] MOND clean with E_lo: N  8 Delta +0.752+-0.154  (Canes Venatici II, Coma Berenices, Eridanus II, Leo IV, Leo V, Pegasus III, Pegasus IV, Leo T)
+   [canonical] MOND clean with E_hi: N  5 Delta +0.594+-0.160  (Eridanus II, Leo IV, Leo V, Pegasus III, Leo T)
+   [canonical] MOND clean with q84 : N  5 Delta +0.713+-0.149  (Eridanus II, Leo IV, Leo V, Pegasus III, Pegasus IV)
+   [canonical] ISO  clean with E_lo: N 15 Delta +0.471+-0.100  (Bootes I, Bootes II, Canes Venatici II, Carina II, Centaurus I, Coma Berenices, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Leo T)
+   [canonical] ISO  clean with E_hi: N 11 Delta +0.466+-0.141  (Bootes II, Coma Berenices, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Leo T)
+   [canonical] ISO  clean with q84 : N 13 Delta +0.491+-0.122  (Bootes I, Bootes II, Canes Venatici II, Carina II, Coma Berenices, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1)
+   [canonical] d/dlog x_e at fixed M_V: data log(g_obs/g_bar) -0.050+-0.194 | V3S prediction -0.545+-0.052 | MOND prediction -0.761+-0.032 | ISO prediction +0.018+-0.091 | V3S0 prediction -0.071+-0.134
+   [alt] V3S  clean : drop of the median residual +0.481; expected from x_e selection +0.460, from x_e + M_V +0.077 -> left for the systematics +0.021+-0.197 / +0.403+-0.215
+   [alt] V3S  C2-C4 : drop of the median residual +0.063; expected from x_e selection +0.138, from x_e + M_V +0.077 -> left for the systematics -0.075+-0.145 / -0.015+-0.127
+   [alt] V3D  clean : drop of the median residual +0.083; expected from x_e selection +0.217, from x_e + M_V +0.136 -> left for the systematics -0.134+-0.159 / -0.053+-0.241
+   [alt] V3D  C2-C4 : drop of the median residual +0.130; expected from x_e selection +0.055, from x_e + M_V +0.007 -> left for the systematics +0.075+-0.086 / +0.123+-0.094
+   [alt] MOND clean : drop of the median residual +0.349; expected from x_e selection +0.341, from x_e + M_V +0.045 -> left for the systematics +0.008+-0.161 / +0.304+-0.171
+   [alt] MOND C2-C4 : drop of the median residual +0.203; expected from x_e selection +0.143, from x_e + M_V +0.028 -> left for the systematics +0.059+-0.123 / +0.175+-0.132
+   [alt] ISO  clean : drop of the median residual +0.029; expected from x_e selection -0.008, from x_e + M_V -0.038 -> left for the systematics +0.037+-0.112 / +0.066+-0.104
+   [alt] ISO  C2-C4 : drop of the median residual +0.045; expected from x_e selection +0.037, from x_e + M_V +0.006 -> left for the systematics +0.008+-0.087 / +0.040+-0.095
+   [alt] V3S  clean with E_lo: N  6 Delta +0.885+-0.224  (Eridanus II, Leo IV, Leo V, Pegasus III, Pegasus IV, Leo T)
+   [alt] V3S  clean with E_hi: N  4 Delta +0.914+-0.206  (Eridanus II, Leo IV, Leo V, Pegasus III)
+   [alt] V3S  clean with q84 : N  4 Delta +0.917+-0.204  (Eridanus II, Leo IV, Leo V, Pegasus III)
+   [alt] MOND clean with E_lo: N  8 Delta +0.713+-0.158  (Canes Venatici II, Coma Berenices, Eridanus II, Leo IV, Leo V, Pegasus III, Pegasus IV, Leo T)
+   [alt] MOND clean with E_hi: N  5 Delta +0.553+-0.158  (Eridanus II, Leo IV, Leo V, Pegasus III, Leo T)
+   [alt] MOND clean with q84 : N  4 Delta +0.631+-0.148  (Eridanus II, Leo IV, Leo V, Pegasus III)
+   [alt] ISO  clean with E_lo: N 15 Delta +0.430+-0.101  (Bootes I, Bootes II, Canes Venatici II, Carina II, Centaurus I, Coma Berenices, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Leo T)
+   [alt] ISO  clean with E_hi: N 11 Delta +0.431+-0.140  (Bootes II, Coma Berenices, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1, Leo T)
+   [alt] ISO  clean with q84 : N 13 Delta +0.450+-0.121  (Bootes I, Bootes II, Canes Venatici II, Carina II, Coma Berenices, Eridanus II, Eridanus IV, Hydrus I, Leo IV, Leo V, Pegasus III, Pegasus IV, Segue 1)
+   [alt] d/dlog x_e at fixed M_V: data log(g_obs/g_bar) -0.033+-0.196 | V3S prediction -0.531+-0.054 | MOND prediction -0.769+-0.031 | ISO prediction +0.026+-0.091 | V3S0 prediction -0.048+-0.136
+K8 PASS peak RSS 0.35 GB < 1 GB  (memory)
+
+Z2_SATELLITE_SYSTEMATICS COMPLETE: 8/8 checks PASS.  (212 s)
