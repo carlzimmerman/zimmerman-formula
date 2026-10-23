@@ -61,3 +61,23 @@ as a FAIL with its numbers; no tolerance is changed after a number is seen. What
 
 Reading rule: B1–B3 PASS ⇒ "compatible-gas numbers REPRODUCED" (numbers only — the physics reading, that the spherical
 compact-core route shows no resolved core, is Codex's and is reported as theirs).
+
+## AMENDMENT A1 (PRE-RESULT — no Part A script written or run yet; B3 reruns launched, none read)
+
+Reason, disclosed: working A5 through by hand I found its *reading* was too strong. The preservation condition
+`∂_j(N²V^j) = 0` with `V^j = (2β/(2+3β))∂^jπ + π_P^j/η + O(P)` is a condition on the lapse **and** the data together, not on
+the lapse alone: for data with `P = π_P = 0` it forces `N∂π = 0` (A5's identity, unchanged), but data with longitudinal
+P momentum can satisfy it with `N > 0`. So A5's PASS will be read as "**static-P data with non-uniform foliation
+expansion are not admissible at β > 0**", not as HKLG's "the lapse must vanish" (that reading needs the P freedom absent,
+as in pure Hořava). A5's check itself is unchanged. One check is added:
+
+- **A6 (linear Dirac algorithm on Minkowski, scalar sector, sympy).** Background h = δ, π = 0, P = π_P = 0, N = 1, Λ = 0;
+  scalar perturbations for k ∥ x: h = diag(1+a, 1+b, 1+b), π^xx = p_a, π^yy = π^zz = p_b/2, P_x, π_P^x, lapse n, shift s;
+  quadratic Hamiltonian from A54 §1.3 with `(√h ³R)` expanded to second order by sympy. Run the algorithm: preservation of
+  `H_⊥^(1)` under H^(2). PASS iff (i) it yields a tertiary `χ = (2β/(2+3β)) π'' + (π_P^x)'/η` modulo `H_x^(1)'` exactly
+  (i.e. the eight constraints are NOT closed already at linear order); (ii) the Fourier symbol of `{χ, H_⊥^(1)}` is
+  `∝ k² Z(k)`, Z = K(2+3β)/β + ηk² (A68's scalar kinetic coefficient), non-zero for k ≠ 0 at β, η > 0; (iii) preservation
+  of χ involves the lapse with symbol `∝ k² Z(k)` (a quaternary fixing n); (iv) the scalar-sector bracket matrix of
+  {π_n, H_⊥, χ, ψ} has rank 4 and {π_s, H_x} commute with everything on the surface, so the scalar sector has
+  (10 − 2·2 − 4)/2 = 1 DOF. Reading: A6 PASS ⇒ "the linear 5-mode count survives with a different classification
+  (π_N, H_⊥ second class with χ, ψ; the lapse is determined, not gauge)". A6 FAIL on (iv) ⇒ the linear count itself moves.
