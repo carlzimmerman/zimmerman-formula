@@ -231,3 +231,24 @@ Nothing else changes.
    and interpolated linearly in ln s; the 3-D ratio W is computed at s = 1 and applied at every s (s* only). The e_N = 2 × h81
    variant uses its own solve at s = 1 (census) and h81's C for s* (reported variant only). Solver controls A4(i)–(iii) run
    with the true μ in both modes (they validate the code, not the mutate). A4(i)'s Plummer grid resolves b by 20 cells.
+
+## AMENDMENT A3 (2026-10-23, POST-RESULT for Part A; PRE-RESULT for Parts B, C, D)
+
+Seen before writing this: Part A's development run (13/14 checks; A5iii FAILED, 3-D γ = 0 azimuthal variation 0.63 % > 0.3 %,
+largest at 5–12.5 kpc and 0.59 % at 17.5 kpc; every step SHAPE EXCLUDED, v3 Z −4.37 / −4.61; that run's parent RSS peaked at
+1.74 GB because the fine-grid solves ran in-process before the child-process presolve was wired — disclosed; numerics unaffected).
+
+1. **As frozen (§7), A5iii's failure removes the γ = 57° 3-D cells (AQ_v3, AQ_v3_mean, AQ_v3_2x) from Part A's reading.** The
+   EFE cell of the reading becomes the exact axisymmetric γ = 0 solve (AQ_gamma0); its robustness set is {ρ = 0.5, isolated,
+   e_N = 2 × h81 at γ = 0}. The 3-D cells stay in the output, labelled "A5iii failed".
+2. **Post-result diagnostic (reported):** a Plummer sphere (M 6.6e10, b 3 kpc) in the record's field tilted 57° from the grid
+   axis has an exact solution (my axisymmetric solver about the field axis). Its in-plane radial field varies with azimuth by
+   4.3 / 9.7 / 15.8 % (peak-to-peak / mean) at 15 / 27.5 / 60 kpc, and the 3-D solver reproduces this (4.5 / 9.6 / 15.3 %, N 160,
+   box 640 kpc). The large m = 1 pattern is physical AQUAL, not a grid artifact; the record's QUMOND linear-response estimate
+   (hunt h81: |A| 0.3–1.4 % at 15–25 kpc) is several times smaller.
+3. **Part C's 3-D estimator (decided before any Part C number):** pointwise ratio V²(R, φ) = V²_axi,γ0(R) × F₃(R, φ; 57°) /
+   F₃(R, φ; 0) (N 160, box 640 kpc; cancels the grid's azimuthal artifact present in both runs). New check **C5:** on the tilted
+   Plummer reference the pointwise estimator reproduces the exact 57° in-plane F_R to ≤ 1 % at every sampled (R, φ) on
+   15–60 kpc and its peak-to-peak variation to ≤ 0.5 % absolute. If C5 fails, the seal's primary is the exact γ = 0 solve and
+   the 3-D numbers (anticentre wedge, P6) are sealed as "unvalidated".
+4. **RSS:** every AQUAL solve now runs in a short-lived child process (parent and child peaks are reported in each results JSON).
