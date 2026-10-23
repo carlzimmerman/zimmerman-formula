@@ -1,6 +1,6 @@
 # The Crispy Fried Chicken Status Board
 
-*Where the theory stands, as of 22 October 2026 (evening). The theory is not complete. The tile picture below shows the 22 October evening state; the 21 October picture is kept as [`img/status_board_2026-10-21.png`](img/status_board_2026-10-21.png).*
+*Where the theory stands, as of 23 October 2026 (morning). The theory is not complete. The tile picture below shows the 23 October morning state; earlier pictures are kept as [`img/status_board_2026-10-22.png`](img/status_board_2026-10-22.png) (22 October evening) and [`img/status_board_2026-10-21.png`](img/status_board_2026-10-21.png).*
 
 The theory makes one claim: the acceleration scale where galaxies stop obeying Newton, a₀, is set by the density of dark energy.
 
@@ -14,7 +14,7 @@ The ½ is **fitted**, not derived; the current measurement is κ = 0.417 ± 0.09
 
 ## How to read it
 
-The picture is the 22 October evening state, drawn by [`make_status_board.py`](make_status_board.py); tiles marked **22 OCT** were added or re-annotated from a 22 October lane (listed in the next section). Each tile is one test. The colour restates a verdict recorded in the campaign LEDGER ([`campaign_fresh_gravity/LEDGER.md`](../campaign_fresh_gravity/LEDGER.md)) or in the dated notes of [`THEORY_CANONICAL_2026-10-18.md`](../campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md), and the lane IDs on each tile point to the scripts that produced it. Verdicts come from committed scripts with pass/fail rules frozen *before* the data were read, plus a control that is deliberately broken and must fail. Where a colour depends on a rule added afterwards (post hoc), the tile says so.
+The picture is the 23 October morning state, drawn by [`make_status_board.py`](make_status_board.py); tiles marked **23 OCT** were added, recoloured or re-annotated from an overnight rebuild lane (listed in the next section). The generator refuses any green, and any recolour not listed with its evidence lane. Each tile is one test. The colour restates a verdict recorded in the campaign LEDGER ([`campaign_fresh_gravity/LEDGER.md`](../campaign_fresh_gravity/LEDGER.md)) or in the dated notes of [`THEORY_CANONICAL_2026-10-18.md`](../campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md), and the lane IDs on each tile point to the scripts that produced it. Verdicts come from committed scripts with pass/fail rules frozen *before* the data were read, plus a control that is deliberately broken and must fail. Where a colour depends on a rule added afterwards (post hoc), the tile says so.
 
 | colour | meaning |
 |---|---|
@@ -23,6 +23,19 @@ The picture is the 22 October evening state, drawn by [`make_status_board.py`](m
 | 🟦 **not decidable yet** | today's data cannot tell the theory from its rival |
 | 🟥 **fails** | the theory misses the test, and audits from the raw data confirm the miss |
 | ⬜ **open** | not yet answered, or waiting on data |
+
+## What changed overnight (23 October)
+
+Every item is a committed lane in [`rebuild_2026_10_22/`](../rebuild_2026_10_22/BRIEF.md). The v4 candidate (AeST plus the same stiffness term and the exact-law free function) is §1b of [`THEORY_V3_DRAFT.md`](../covariant_push_2026_10_22/THEORY_V3_DRAFT.md). PAPER59 (the covariant theory) is published: DOI [10.5281/zenodo.23585319](https://doi.org/10.5281/zenodo.23585319). One tile changed colour; nothing turned green.
+
+- **Cluster cores stay 🟥, now a real failure.** Rebuilt from the raw eRASS1 × KiDS data, the core excess is 1.68–1.85× (canonical) / 1.54–1.70× (alt) over the law, Z ≈ +5–6 (F1). AeST's own dust has the wrong radial shape to supply it (H2).
+- **Isolated-galaxy lensing, all radii: 🟥 → 🟦 not decidable yet** (F2). The frozen failure is not robust: the strict "isolated" sample still leaks satellites' hosts, and the old Δχ² of +100 came from the supply edge, which v3 and v4 do not have.
+- **Growth under the zero-knob supply rule stays 🟥** for the old settling engine. The excess belongs to the settling rules, not to v3 or v4 (F3), and it grows with grid resolution (G1).
+- **New tile: linear growth, v3 Khronon 🟥.** J′(0) = −1 removes the linear Newtonian term, and the window for the K(Q) mass is empty (F3).
+- **New tile: linear growth, v4 AeST 🟨.** The Newtonian term survives on large scales for any free function (H1). Pending: nonlinear behaviour and the native CMB. Open: the contact-term binding between about 1 Mpc and 4 kpc (H3).
+- **Health stays 🟨.** v4 is ghost-free at linear order; the criterion that flagged it also flags ordinary self-gravitating dust (H3).
+- **Dwarf satellites stay 🟥.** Pre-infall retention fails on native inputs; it closes only with a ΛCDM-processed subhalo mass put in by hand (G2).
+- **"Law + a¹ growth + no external-field effect" stays 🟥**: the no-go stands. v4 evades it by having an external-field effect, and its growth is conditional at linear order (H1).
 
 ## What changed since 21 October (doors push, audit wave, covariant push; 22 October)
 
