@@ -39,6 +39,7 @@ Papers: PAPER58 v1.1, DOI [10.5281/zenodo.23579379](https://doi.org/10.5281/zeno
   - Cost: P and the khronon are instantaneous constraints. That meets the owner's criterion B and **violates criterion A
     (v ≤ c)** by a real but unmeasurably small signal (C8). Binary pulsars and GW170817 do not constrain it.
   - The stiffness term and the J that gives μ = x/(1+x) are additions to the published theory (C1, C3, C4).
+- **Control tile (22 October, evening):** the red "Unscreened law vs Cassini" tile is labelled a *control*: it is the same test with the screening switched off, and its failure shows L★ > 0 is required. It is not a failure of the screened theory, whose Cassini tile is green.
 - **🟩 Cassini and the planets pass for the screened theory**: Q₂ is 2.8×10⁷–5.1×10⁹ inside Hees and Park; at
   L★ = 24 pc Mars sees 0.17 of its bound (C6, D7d). The **unscreened** law fails Cassini by 2.4–5.2× (E2), and no
   unscreened member of the record's law family passes both Cassini and SPARC (D7c).
