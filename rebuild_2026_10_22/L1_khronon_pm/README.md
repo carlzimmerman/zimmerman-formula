@@ -448,6 +448,23 @@ python3 compute_queue/heavyq.py add --id L1_A6_KX_alt_dbi_P1_N384_zi199 --cwd re
 kernel (m² − fk²)/((1 − f)k² + m²) falls monotonically, to the Jeans form as x → ∞. Early strong fields stiffen the khronon;
 they do not release it. That matches the 128³ z_i = 199 run, where KX ended 9 % below LIN.
 
+## A5 ladder, rung by rung (convergence only; no verdict)
+
+Scored as each rung lands, by the owner's request ("score L1 when it lands"). `l1_ladder.py` reads only completed cells and
+uses the frozen §4 definitions; the A5 reading bands carry the word "indicative". The KiDS score uses the frozen
+`l1_score.py` on that rung's cells only (a link directory under `work/`, label `_A5_N<N>`). MUTATE (S0 normaliser replaced by
+LIN) makes L4 FAIL, as required.
+
+| rung | σ₈,PM S0 / LIN / KX-can / KX-alt | ρ_NL can / alt | indicative reading | KiDS (`l1_score.py`) | checks |
+|---|---|---|---|---|---|
+| 256³ | 0.820 / 0.285 / 0.254 / 0.260 | −0.058 / −0.047 | does not restore growth (KX sits below LIN) | NOT DIAGNOSTIC: N_kept 0 at k_hi 2.0 h/Mpc; the scorer's own S0 reproduces CFG596 (+68.73) | 4/4; MUTATE L4 FAIL |
+| 384³ | running | | | | |
+| 128³ (NSEED 512) | queued | | | | |
+
+KX halos at 256³ (reported only, resolution-limited: cell 0.57 Mpc): 4 / 7 galaxy-class halos, median dust/baryon in
+0.3–1 Mpc 4.16 / 4.20 against the cosmic 5.27. Reading sentence (A4): every L1 result belongs to "v3 on a dust background
+with a yet-unspecified early K", not to the literal theory.
+
 ## Files and commits
 
 **Criteria and amendments**, each committed before the results it governs:
