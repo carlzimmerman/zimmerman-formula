@@ -1,4 +1,6 @@
-# The full picture of the current theory, v3 (2026-10-23)
+# The full picture of the current theory, v3s (2026-10-23)
+
+**v3s = v3 with the switched stiffness −(γ_L/2)[max(D·P, 0)]², adopted by the owner on 2026-10-23** (§4.7, lane X3). It equals v3 wherever D·P ≥ 0, so the v3 results below carry over except where a solve has D·P < 0 lobes; there X3's globular re-solve moved L★ by +0.006 %.
 
 One document that pulls together the pieces scattered across the record: the action, its field equations, every result as a
 statement with its equation, the lane that computed it, and whether it is certified in Lean. Read this first; follow the

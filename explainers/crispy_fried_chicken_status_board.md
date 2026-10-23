@@ -1,8 +1,8 @@
 # The Crispy Fried Chicken Status Board
 
-**Crispiest recipe (v3):** General relativity plus a preferred cosmic time (Khronon) and one extra field giving the simple MOND law (AQUAL, external-field effect included, κ fitted), switched off within L★ ≥ 22 pc, plus fitted cold dust; no settling or supply rules.
+**Crispiest recipe (v3s):** General relativity plus a preferred cosmic time (Khronon) and one extra field giving the simple MOND law (AQUAL, external-field effect included, κ fitted), switched off within L★ ≥ 22 pc by a stiffness that acts only where D·P ≥ 0, plus fitted cold dust; no settling or supply rules.
 
-*Where the current theory, v3, stands as of 23 October 2026. The board shows v3 only. The theory is not complete. The board before the PAPER60 audit's note corrections is kept as [`img/status_board_2026-10-23late3.png`](img/status_board_2026-10-23late3.png); before the coordinator's decisions on the night batch, as [`img/status_board_2026-10-23late2.png`](img/status_board_2026-10-23late2.png); before the S3, S4, H4 and U1 batch, as [`img/status_board_2026-10-23night.png`](img/status_board_2026-10-23night.png); before the P4 and Q6 recomputes, as [`img/status_board_2026-10-23late.png`](img/status_board_2026-10-23late.png); the first v3-only board, before the S1 and S2 recomputes, as [`img/status_board_2026-10-23eve.png`](img/status_board_2026-10-23eve.png). Earlier pictures, which mixed models, are kept as [`img/status_board_2026-10-23pm.png`](img/status_board_2026-10-23pm.png) (23 October afternoon), [`img/status_board_2026-10-23am.png`](img/status_board_2026-10-23am.png) (23 October morning), [`img/status_board_2026-10-22.png`](img/status_board_2026-10-22.png) (22 October evening) and [`img/status_board_2026-10-21.png`](img/status_board_2026-10-21.png).*
+*Where the current theory, v3s, stands as of 23 October 2026. The board shows v3s only. The theory is not complete. The last plain-v3 board, before v3s was adopted, is kept as [`img/status_board_2026-10-23v3.png`](img/status_board_2026-10-23v3.png). The board before the PAPER60 audit's note corrections is kept as [`img/status_board_2026-10-23late3.png`](img/status_board_2026-10-23late3.png); before the coordinator's decisions on the night batch, as [`img/status_board_2026-10-23late2.png`](img/status_board_2026-10-23late2.png); before the S3, S4, H4 and U1 batch, as [`img/status_board_2026-10-23night.png`](img/status_board_2026-10-23night.png); before the P4 and Q6 recomputes, as [`img/status_board_2026-10-23late.png`](img/status_board_2026-10-23late.png); the first v3-only board, before the S1 and S2 recomputes, as [`img/status_board_2026-10-23eve.png`](img/status_board_2026-10-23eve.png). Earlier pictures, which mixed models, are kept as [`img/status_board_2026-10-23pm.png`](img/status_board_2026-10-23pm.png) (23 October afternoon), [`img/status_board_2026-10-23am.png`](img/status_board_2026-10-23am.png) (23 October morning), [`img/status_board_2026-10-22.png`](img/status_board_2026-10-22.png) (22 October evening) and [`img/status_board_2026-10-21.png`](img/status_board_2026-10-21.png).*
 
 The theory makes one claim: the acceleration scale where galaxies stop obeying Newton, a₀, is set by the density of dark energy.
 
@@ -13,6 +13,29 @@ a₀ = κ · c · √(G ρ_Λ),   κ = ½   →   a₀ = 9.36 × 10⁻¹¹ m/s²
 The ½ is **fitted**, not derived; the current measurement is κ = 0.417 ± 0.095 (CFG493). Every number is quoted on two footings, 9.3603 × 10⁻¹¹ and 1.1312 × 10⁻¹⁰ m/s², and the two are never pooled. The framework also needs a cold component, "cold energy", with Ω_c/Ω_b = 5.364 (an input). It is real gravitating mass, not a particle species; no dark-matter particle is added.
 
 ![Status board: every test of the current theory, v3, as a coloured tile](img/status_board.png)
+
+## v3s adopted as the current theory (23 October, owner)
+
+**v3s is v3 with the switched stiffness** −(γ_L/2)[max(D·P, 0)]². It adds no new constant. Source: lane [X3](../rebuild_2026_10_22/X3_switched_stiffness/README.md), commits 8aeba82a87 / 31febd3b70. The coordinator reran it: the main run is identical, and one D10 bracket regenerated from scratch matches 9,384 numbers to 1e-9. The whole theory is on one page in [`V3_FULL_PICTURE.md`](../covariant_push_2026_10_22/V3_FULL_PICTURE.md).
+
+- **Why it was adopted.** v3 as written is Hadamard ill-posed wherever the khronon density is negative, which happens at every two-body saddle and in the external-field lobes ([H4](../rebuild_2026_10_22/H4_v3_saddle_stability/README.md)). The switched form removes that instability:
+  - in the nonlinear 1D equations the khronon/dust pair has a sound speed c² = γ_L(D·P + ρ_d)Θ(D·P) ≥ 0;
+  - a slab test with no approximations converges under resolution doubling, where v3 diverges;
+  - the bound is certified point by point in Lean (`fable_independent_2026/lean_2026/V3_PICTURE_2026_10_23.lean`).
+- **What it keeps.** v3s equals v3 wherever D·P ≥ 0, so every screened result carries over:
+  - the Sun keeps D·P > 0, with a margin ≥ 1.8e4;
+  - the strong-field rows all have D·P > 0.
+- **Where the two differ.** Where a static solve has D·P < 0 lobes, X3 re-solved the outer globulars in full; the L★ floor moved by +0.006 %. The dwarf-satellite and Coma tiles (S1) were not re-solved, and their change is expected to be of the same size.
+- **Qualifiers** (stated on the Health tile):
+  1. the dust density must be ≥ −D·P inside stiff regions, which holds in the μ_K range S4 allows;
+  2. at zero dust the interface is a knife edge, so numerics must be sign-consistent;
+  3. H4's bounded growth remains (≤ 0.20 e-folds median);
+  4. the D·P < 0 side is strongly coupled, as in Blanchet–Skordis without stiffness;
+  5. 2D/3D evolution and a proof for a moving interface are open.
+
+**Recoloured with X3 as evidence.** The generator's lane list gains exactly X3, and nothing turned green.
+- **Health: ghosts, gradients: 🟥 → 🟨 conditional.** v3s is well-posed where ρ_τ < 0, under the qualifiers above. H4's unbounded rate applies to v3 as written.
+- **Leaf problem well-posed: 🟥 → 🟨 conditional.** This is a correction as well as a recompute. H4 §5 states that C8's well-posedness verdict stands for the (P, lapse) leaf problem; H4's ill-posedness is in the khronon/dust evolution and belongs on the Health tile. For v3s, the switched leaf functional stays convex (an obstacle-type free boundary), so the leaf problem is still uniquely solvable (X3). The infinite-volume theorem and the coupled GR + dust problem remain open, as in C8.
 
 ## How to read it
 

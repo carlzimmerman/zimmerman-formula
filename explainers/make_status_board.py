@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""The Crispy Fried Chicken status board, 23 October 2026: current theory v3 only. Plot only.
+"""The Crispy Fried Chicken status board, 23 October 2026: current theory v3s only. Plot only.
+
+v3s (adopted by the owner, 23 October): v3 with the switched stiffness -(gamma_L/2)[max(D.P, 0)]^2, zero new constants
+(lane X3, rebuild_2026_10_22/X3_switched_stiffness, 8aeba82a87 / 31febd3b70; coordinator rerun: main identical, a D10
+bracket regenerated from scratch to 1e-9). v3s equals v3 wherever D.P >= 0 (X3 lemma), so every screened result
+carries over; where a static solve has D.P < 0 lobes, X3's full re-solve of the outer globulars moved the L* floor by
++0.006 %. Two tiles recoloured with X3 as evidence: Health FAIL -> COND (v3s is well-posed where rho_tau < 0, with
+qualifiers) and Leaf problem FAIL -> COND (H4 section 5: C8's leaf problem was never ill-posed; the FAIL belonged on
+Health; the v3s leaf functional stays convex). LANE_NEW gains exactly X3. No first green.
 
 The board shows ONLY the current best theory, v3 (covariant_push_2026_10_22/THEORY_V3_DRAFT.md sections 1-3: the
 Blanchet-Skordis Khronon in its literal form + covector P + one stiffness term -(gamma_L/2)(D.P)^2 + BS K(Q) dust; static
@@ -87,7 +95,7 @@ COLUMNS = ["Relativistic theory (the chassis)", "Galaxies", "The excess family (
 # the board audit N0 on 23 October) and C7 (step N, covariant_push_2026_10_22/C7_aest_class/, committed 23 October).
 # 23 October evening: S1, S2 (N0 recompute batches R1, R2), P1, P2 and M2; late evening: P4 and Q6; night: S3, S4, P3,
 # H4, U1, Q7 and T1 (rebuild_2026_10_22/).
-LANE_NEW = re.compile(r"^(F[1-3]|G[12]|H[1-4]|I1|J1|K1|C7|N0|S[1-4]|P[1-4]|M2|Q[67]|U1|T1)$")
+LANE_NEW = re.compile(r"^(F[1-3]|G[12]|H[1-4]|I1|J1|K1|C7|N0|S[1-4]|P[1-4]|M2|Q[67]|U1|T1|X3)$")
 RETIRE_EVIDENCE = {"N0"}           # the only lane allowed to move a tile off the board into ARCHIVE
 # N0's recompute batches (AUDIT.md, "Recompute batches to launch") and the lane id each one runs under.
 RECOMPUTE = {"R1": "S1", "R2": "S2", "R3": "S3", "R4": "S4", "R5": "P3", "R6": "S4", "R7": "Q6"}
@@ -182,17 +190,20 @@ def A(col, name, st, note, lanes, why, v3, ev="N0"):
 
 
 TILES = [
-    # ---- column 0: the chassis (v3 = Khronon literal form + P + gamma_L + BS dust) ----
+    # ---- column 0: the chassis (v3s = Khronon literal form + P + switched gamma_L + BS dust) ----
     # PAPER60 audit: re-annotated, colour kept. P3 corrects "only the 2 tensor modes propagate".
     T(0, "Gravity waves at light speed", "PASS",
       "tensor modes at c exactly; where D·P > 0 the khronon/dust pair also propagates (P3: ~1e-4 c in the Solar "
       "System), metric coupling ≤ 2.3e-9", ["C5", "C8", "CFG292", "P3"], "PASS", new=True),
-    # H4 (23 October night): COND -> FAIL
-    T(0, "Health: ghosts, gradients", "FAIL",
-      "gradient instability wherever ρ_τ < 0 (every two-body saddle; EFE lobes): Γ = L★k√(2πG|ρ_τ|), unbounded, "
-      "driven by the γ_L screening term; Solar System healthy", ["C5", "H4"], "COND", new=True),
-    T(0, "Leaf problem well-posed", "FAIL", "ILL-POSED at saddles (H4); C8's leaf result holds only where ρ_τ ≥ 0",
-      ["C8", "H4"], "COND", new=True),
+    # H4 (23 October night): COND -> FAIL for v3; X3 (v3s adopted): FAIL -> COND
+    T(0, "Health: ghosts, gradients", "COND",
+      "v3s: switched stiffness well-posed where ρ_τ < 0 (X3: 1D nonlinear c² ≥ 0, slab converges; Lean); "
+      "if dust ≥ −D·P; zero-dust edge; D·P < 0 side strongly coupled; 2D/3D open (v3: H4 unbounded)",
+      ["C5", "H4", "X3"], "COND", new=True),
+    # X3 (v3s adopted) + H4 section 5: FAIL -> COND (the leaf problem was never ill-posed; H4's FAIL belongs on Health)
+    T(0, "Leaf problem well-posed", "COND", "C8's (P, lapse) leaf problem well-posed (H4 §5); v3s: switched leaf "
+      "functional convex, unique; obstacle-type free boundary (X3); open: infinite volume, coupled GR + dust",
+      ["C8", "H4", "X3"], "COND", new=True),
     T(0, "Causality: criterion A / B", "COND", "instantaneous constraints; faster-than-light signal ~1e-46 m/s^2", ["C5", "C8"],
       "COND", lab="B met, A violated"),
     T(0, "Binary pulsars + GW170817", "PASS", "no radiative channel; <= 3e-14 of double-pulsar error", ["C8"], "PASS",
@@ -382,8 +393,8 @@ RECOLOURS = {"Isolated-galaxy lensing, all radii": [("FAIL", "UNDEC", "F2")],
              "Red (early-type) lenses": [("COND", "STALE", "N0"), ("STALE", "COND", "S2")],
              "High-z on halo-free inputs": [("UNDEC", "STALE", "N0"), ("STALE", "UNDEC", "S4")],
              "CRISTAL z~5 / ALESS 122.1": [("UNDEC", "STALE", "N0"), ("STALE", "UNDEC", "S4")],
-             "Health: ghosts, gradients": [("COND", "FAIL", "H4")],
-             "Leaf problem well-posed": [("COND", "FAIL", "H4")],
+             "Health: ghosts, gradients": [("COND", "FAIL", "H4"), ("FAIL", "COND", "X3")],
+             "Leaf problem well-posed": [("COND", "FAIL", "H4"), ("FAIL", "COND", "X3")],
              "Native CMB (patched CLASS)": [("OPEN", "STALE", "N0"), ("STALE", "FAIL", "Q6")],
              "Radiative stability (G12)": [("COND", "STALE", "N0")]}
 # The only first greens allowed: tile -> (lane, result commit, coordinator rerun note). A tile may turn green for the
@@ -391,9 +402,9 @@ RECOLOURS = {"Isolated-galaxy lensing, all radii": [("FAIL", "UNDEC", "F2")],
 # refused. 23 October (night): the tidal dwarfs, by U1's derivation that held dust is weightless in its host (T3).
 VERIFIED_GREEN = {"Tidal dwarfs, NGC 1052-DF2/DF4": (
     "U1", "54ee83e54e", "coordinator rerun 2026-10-23: main 15/16 and A2 6/6 reproduced, runtime/RSS-only diffs")}
-RECIPE = ("Crispiest recipe (v3): General relativity plus a preferred cosmic time (Khronon) and one extra field giving "
-          "the simple MOND law (AQUAL, external-field effect included, κ fitted), switched off within L★ ≥ 22 pc, "
-          "plus fitted cold dust; no settling or supply rules.")
+RECIPE = ("Crispiest recipe (v3s): General relativity plus a preferred cosmic time (Khronon) and one extra field giving "
+          "the simple MOND law (AQUAL, external-field effect included, κ fitted), switched off within L★ ≥ 22 pc by a "
+          "stiffness that acts only where D·P ≥ 0, plus fitted cold dust; no settling or supply rules.")
 WRAP = 56     # characters per note line at fontsize 7.8
 MAXL = 4      # note lines per board tile (4 since the 23 October night board; rows 1.10 in tall)
 WRAP_A, MAXL_A = 56, 4   # archive tiles
@@ -551,11 +562,11 @@ def draw(tiles, out):
     top_in, bot_in = 1.70, 0.95                      # header and legend bands, inches
     ax = fig.add_axes([0.012, bot_in / H, 0.976, 1 - (top_in + bot_in) / H])
     ax.set_xlim(0, ncol); ax.set_ylim(-0.25, nmax + 0.65); ax.axis("off")
-    fig.text(0.015, 1 - 0.50 / H, "The Crispy Fried Chicken Status Board  ·  23 October 2026 — current theory v3 only",
+    fig.text(0.015, 1 - 0.50 / H, "The Crispy Fried Chicken Status Board  ·  23 October 2026 — current theory v3s only",
              fontsize=24, fontweight="bold", color="#16201d")
     _fit(fig, 0.015, 1 - 0.95 / H, RECIPE, 12.0, color="#16201d", fontstyle="italic")
     fig.text(0.015, 1 - 1.30 / H, "a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 fitted; footings 9.3603e-11 / 1.1312e-10 "
-             "m/s^2 never pooled.  Every tile is scored for v3, or drawn grey until it is recomputed for v3.  Lane ids on "
+             "m/s^2 never pooled.  Every tile is scored for v3s (= v3 wherever D·P ≥ 0, X3), or drawn grey until recomputed.  Lane ids on "
              "every tile.  The theory is incomplete.", fontsize=10.5, color="#4d5a56")
     for c, title in enumerate(COLUMNS):
         ax.text(c + 0.03, nmax + 0.4, title, fontsize=13, fontweight="bold", color="#16201d", va="center")
@@ -774,7 +785,7 @@ def main():
         next(t for t in tiles if t["name"] == "Unscreened law vs Cassini")["lanes"] = []   # strip one tile's lane
     errs = check(tiles, archive)
     cnt = {k: sum(1 for t in tiles if t["st"] == k) for k in COL}
-    print(f"{len(tiles)} tiles on the v3 board (" + ", ".join(f"{LAB[k]} {v}" for k, v in cnt.items())
+    print(f"{len(tiles)} tiles on the v3s board (" + ", ".join(f"{LAB[k]} {v}" for k, v in cnt.items())
           + f"); {len(archive)} archived (N0); {sum(t['new'] for t in tiles)} flagged 23 OCT")
     if errs:
         for e in errs:
