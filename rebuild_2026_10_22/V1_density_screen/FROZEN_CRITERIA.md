@@ -209,3 +209,25 @@ peaked at **1.00 GB RSS** (COLAMD; MMD orderings 1.14–1.20 GB), at the budget 
 Q_R = (2.25·Q(G1.5) − Q(G1)) / 1.25 (second order, as D7d's G1/G2 formula). D1's line (≤ 1e-3 of D7d's K4 3.8181e-26) and
 every other Part D line are unchanged. The Newton loop stops at a scaled residual < 1e-11 or after 12 iterations; a point is
 scored only if the final residual is < 1e-9 (D7d's scoring rule).
+
+---
+
+## AMENDMENT A2 (2026-10-23, POST-RESULT: written after run 1; no pass line, threshold or verdict rule is changed)
+
+Run 1 (kept as `v1_density_screen_RUN1.out` / `_results_RUN1.json`) gave 16/19 checks, exit 1: I1 FAIL and I2 FAIL (physics
+results, kept), and **K-RSS FAIL: the Part D child peaked at 1.018 GB**, over the 1 GB budget (disclosed). Three
+code-side changes, none of which touches a line of §2–§3:
+1. **Part D runs one child process per job** (BN11, and each footing × field), so no single process accumulates all 51
+   Route N solves. The solves, grids, continuation order within each grid and the Richardson formula are unchanged; the
+   numbers are deterministic and must reproduce run 1.
+2. **Fit-existence line, code defect.** Run 1's script tested Regime A with the maximum S_95 over all 36 cells instead of
+   the frozen rule (§3: every P1 central-band cell, E_mid, both footings; both field treatments are used). The outcome in
+   run 1 was the same (no fit in Regime A). The script now applies the frozen rule and reports the 36-cell maximum as a
+   sensitivity.
+3. **Disclosures.** (a) Before the production run, A3's identity check compared sympy's factored form structurally and
+   failed on a sign arrangement of the same expression (seen in the first `--mutate` run, which was then discarded); it now
+   compares by `simplify(difference) == 0`. (b) §4's expectation that the frozen mutation breaks D1 and G1 was wrong:
+   under "s multiplies source and phantom" Q₂ still vanishes at S = 0, and G1 tests S = 1 only. The mutation breaks C1
+   (S = 0 no longer Newton) and H1 (γ_L restored, unbounded). (c) `rebuild_2026_10_22/M1_trilemma/` (R2b1–R2b3: static
+   potential, body-density and pointwise ambient-density keying, scored for v4) was not read before freezing, against the
+   check-the-record rule. It is cross-referenced in the README; nothing here depends on it.
