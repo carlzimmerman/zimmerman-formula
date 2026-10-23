@@ -1,0 +1,205 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={The Scope of a Dark-Energy-Tied Galaxy Law}}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\sloppy
+\begin{document}
+\begin{center}
+{\Large\bfseries The Scope of a Dark-Energy-Tied Galaxy Law:\\ What Its Screened Khronon Theory Passes, and the Mechanisms\\ of Its Cluster, Growth and Saddle Failures}\\[6pt]
+{\small Working note, 2026-10-23, v1.0 (draft 1). AI-assisted research programme; not peer reviewed. $\kappa=\tfrac12$ is fitted; the theory is not closed.}
+\end{center}
+
+\begin{abstract}\noindent
+The owner's programme studies a gravity framework whose galactic law is $g_N=g^2/(g+a_0)$, with $a_0=\kappa c\sqrt{G\rho_{\rm DE}}$ and $\kappa=\tfrac12$ fitted; its extra gravitating mass is a collisionless ``cold energy'' sector, not a particle. PAPER59 wrote the screened theory covariantly; its Khronon form, v3, is the current best theory. Since then the tests on the programme's status board have been recomputed for v3 alone (one, radiative stability, is still grey), each by a lane that froze its criteria before computing and ran a mutation control, on both $a_0$ footings ($9.36\times10^{-11}$ and $1.13\times10^{-10}$\,m\,s$^{-2}$, never pooled). This note states what v3 is a theory of, and why it fails where it fails.
+\begin{enumerate}
+\item \textbf{What passes.} The acceleration scale (MeerKAT's local $a_0$ sits $+0.032$\,dex from SPARC's with the same recipe), isolated galaxy groups, Cassini and the planets (screened), gravitational waves and binary pulsars, static black holes and neutron stars, and, with no knob, the tidal dwarfs and NGC~1052-DF2/DF4. Conditional: the SPARC radial-acceleration relation (rms 0.054\,dex, but the $\chi^2$ line fails), inner galaxy lensing, red lenses, strong coupling.
+\item \textbf{Galaxy-scale failures.} The Milky Way: the AQUAL disc's extra field is disc-shaped (vertical force $K_{z,1.1}$ 92.3 / 96.9 against $66.4\pm2.2$) and the outer slope is excluded ($Z=-4.37$ / $-4.62$). Dwarf satellites ($+2.00$ / $+1.99$\,dex) and Coma's ultra-diffuse galaxies ($+1.41$\,dex) fail structurally: v3's held dust is weightless in a static host, the same theorem that passes the tidal dwarfs.
+\item \textbf{Clusters: a scoped no-go.} The cores sit 1.68--1.85 (canonical) / 1.54--1.70 (alternative) times above the law on their baryons. v3's one cluster-scale freedom, the dust mass $\mu_K$, fixes no cluster cell (0 of 1,804): its static dust is attractive inside the well, then oscillates negative, and the oscillation reaches galaxies before clusters.
+\item \textbf{Linear growth: no allowed $\mu_K$.} The dust holds only below the scale $\mu_K$, which Blanchet and Skordis cap at 14.8\,$h$/Mpc; at the cap v3 reaches 0.391 of the dust-limit $\sigma_8$, and reaching 0.95 needs $\mu_K\ge361$--2542\,$h$/Mpc, 24--172 times the cap. The galaxy passes need $\mu_K<0.1$\,Mpc$^{-1}$, so in the static branch no single $\mu_K$ serves both. The literal dust sector also has no radiation era; Blanchet and Skordis's later DBI form fixes BBN only.
+\item \textbf{Saddles: ill-posed.} Where the khronon density is negative, at every two-body saddle and in the external-field lobes, the screening term turns the khronon/dust pair into an unbounded gradient instability. The term that passes Cassini is the term that breaks well-posedness.
+\item \textbf{The pattern.} Each repair tried so far moves the failure rather than removing it (Table~\ref{tab:repairs}). v3 is an effective theory of the acceleration scale and the mean radial-acceleration relation of isolated systems, with a screened Solar System. It is not a cluster theory, not a cosmology, and not well posed at saddles.
+\end{enumerate}
+\end{abstract}
+
+\section{Setting and rules}
+\begin{itemize}
+\item $\kappa=\tfrac12$ is fitted. Footings: canonical $a_0=9.36\times10^{-11}$, alternative $1.13\times10^{-10}$\,m\,s$^{-2}$, never pooled; pairs below are canonical / alternative. Status words follow the record: DERIVED, COMPUTED, POSTULATED, FITTED, OPEN, PENDING.
+\item The source document is \texttt{covariant\_push\_2026\_10\_22/THEORY\_V3\_DRAFT.md} at commit 45bd132464; the board is \texttt{explainers/make\_status\_board.py} at commit fc50a03878. The lanes below are in \texttt{rebuild\_2026\_10\_22/}; each was rerun and reproduced by the coordinator. Lanes C1--C8, D10, E2, F1--H3 are as in PAPER59.
+\item The board shows v3 only: a tile computed for an older model is recomputed for v3 or left grey, never kept at its old colour. No result here is evidence for the framework over its rivals.
+\end{itemize}
+
+\begin{table}[t]\centering\small
+\caption{Lanes used here that are not in PAPER59. Checks are the main run's frozen checks; commits are criteria / result. $^a$Under amendment A1; the frozen rule reads UNDECIDED. $^b$Derivation; validation 8/12 (frozen gates V2, V3, V5 fail; post-result A3 gates pass); native 6/6. $^c$Transcription; validation 12/14; native 6/7.}\label{tab:lanes}
+\begin{tabular}{lllll}
+\toprule
+lane & question & verdict & checks & commits\\
+\midrule
+P3 & strong field & PASS (five tiles, two scoped) & 17/18 & f28b8c6a92 / 2b067f2813\\
+P4 & galaxy tiles & CRISP FINDING & 11/11 & 6c5e6161b9 / 6c0249a8bc\\
+S1 & hosted small systems & both FAIL & 10/10 & 25c5861b57 / 2b6bb658a1\\
+S2 & inner and red lensing & both CONDITIONAL & 8/9 & c94150c05d / 0a3db18162\\
+S3 & Milky Way, $\kappa$, seals & CRISP FINDING & 28/31 & 8f6c6587e1 / a2e4a36598\\
+S4 & dust mass on clusters & SCOPED NO-GO & 8/8$^a$ & f167979b09 / 0ef14fdd9a\\
+T1 & external-field strength & FOOTING SPLIT & 10/11 & 0fbdb17c87 / 31e3c85bf6\\
+U1 & v3's own dust & CRISP FINDING & 15/16 & edb372c22d / 54ee83e54e\\
+M1 & the growth trilemma & NO-GO & 11/11 & 3298c74815 / 836cc3661f\\
+Q6 & native CMB, literal $K$ & CRISP FINDING & 19/19$^b$ & 386ab3c2bb / ed5894d6e1\\
+Q7 & DBI $K$ cosmology & (B) BBN ONLY & 11/11$^c$ & 6dac2d6486 / 142d9d8ccd\\
+H4 & saddle stability & ILL-POSED & 13/14 & b8860b6666 / 58bf38dcb3\\
+I1 & v4 causality & ILL-POSED & 9/9 & d5e8ba9842 / 81af28477c\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{The theory, v3}
+Blanchet and Skordis's Khronon theory in its literal healthy form (PAPER59): metric, a preferred foliation $\tau$, an independent spatial covector $\mathbf P$, no extra curvature term and no $\mathbf P$ kinetic term, a free function $J_x$ whose static limit is AQUAL with $\mu=x/(1+x)$ exactly (POSTULATED; outside Blanchet and Skordis's admissible class), their $K(Q)$ dust sector, and one stiffness term $-(\gamma_L/2)(D\cdot P)^2$, $\gamma_L=KL_\star^2/2$ (POSTULATED). Fitted: $\kappa$, the stiffness length $L_\star$ (lower bound only, $L_\star\ge21.68$ / 22.85\,pc from the outer globulars, D10) and the dust abundance (an initial condition). Free: the dust mass $\mu_K$, which Blanchet and Skordis bound by $\mu_K^{-1}\ge100$\,kpc, i.e.\ $\mu_K\le14.8\,h$/Mpc (10\,Mpc$^{-1}$). There are no settling, supply, ownership or capture rules. The galaxy tiles of Section~3 are computed without the static $\mu_K^2\psi$ term, i.e.\ in the small-$\mu_K$ limit; S4 shows that this term leaves isolated galaxies alone only for $\mu_K<0.1$\,Mpc$^{-1}$ (Section~5).
+
+\section{What passes}
+Table~\ref{tab:pass} lists every test v3 passes or passes conditionally. The pattern is plain: v3 passes where an isolated system's acceleration scale is tested, where screening is tested, and where a system carries no dust (the tidal dwarfs).
+
+\begin{table}[t]\centering\small
+\caption{Tests v3 passes (top) and passes conditionally (bottom). Canonical / alternative.}\label{tab:pass}
+\begin{tabular}{p{0.24\textwidth}p{0.6\textwidth}l}
+\toprule
+test & result & lane\\
+\midrule
+local $a_0$ (MeerKAT) & $1.31\times10^{-10}$ against SPARC's $1.21\times10^{-10}$\,m\,s$^{-2}$ with the same recipe: $+0.032$\,dex (line 0.15) & P4\\
+galaxy groups, isolated & $+0.010$ / $-0.010$\,dex from the law on baryons, no supply rule; above the law if their field were $g_e\ge0.03\,a_0$ ($Z=4.74$) & P4\\
+tidal dwarfs, DF2/DF4 & $+0.055\pm0.114$\,dex; DF2/DF4 $+0.30$ / $-0.24$ in ln; dust-free, hence Newtonian (theorem T3), no knob & U1\\
+Cassini, screened & all 24 cells pass Hees and Park, by $4.8\times10^{7}$ to $5.1\times10^{9}$; the frozen rule reads UNDECIDED on one rounding check & C6\\
+planets & the screened field is a hedgehog $GM/L_\star^2$: Mars at 0.173 of its bound & C6\\
+outer globulars & the unscreened law is excluded in all 18 cells; sets $L_\star\ge21.68$ / 22.85\,pc & D10\\
+gravitational waves, pulsars & tensor speed $c$ ($\Delta v/c\le6.2\times10^{-32}$); at most $3.2\times10^{-14}$ of the double pulsar's precision & C8\\
+static black holes, ringdown, neutron stars & shape shifts $\le2.9\times10^{-11}$, ringdown $\le2.8\times10^{-11}$, $|\Delta R/R|\le5.3\times10^{-28}$ (1.4\,$M_\odot$ and maximum-mass stars); regular holes need an infalling khronon; rotating and moving holes OPEN & P3\\
+\midrule
+SPARC radial acceleration & one $\Upsilon$ per galaxy, external field solved for 109: rms 0.054 / 0.054\,dex; median $\Upsilon$ 0.52 / 0.44 (alternative below the 0.50--0.80 window); the $\chi^2$ line fails on both (63--64\% of galaxies acceptable) & P4\\
+inner galaxy lensing (blue) & data/v3 0.88 / 0.81 at the primary field; decided by the hot gas fraction and $M_\star$ & S2\\
+red lenses & inventory alone 1.31 / 1.20 short; 1.02 / 0.93 with the record's perturbers and IMF posit & S2\\
+strong coupling & an estimate: worst loop factor $1.3\times10^{-3}$ at E\"ot-Wash (38.6\,$\mu$m), a margin of only 1.7 in $k$ & P3\\
+$\kappa$ on AQUAL discs & $0.499\pm0.116$ / $0.413\pm0.096$: consistent with $\tfrac12$, not discriminating & S3\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two corrections to the record come with these passes. P3 finds that the khronon/dust pair propagates where $D\cdot P>0$ (about $10^{-4}c$ in the Solar System, 0.44$c$ at a neutron-star surface), so C5/C8's ``only the tensor modes propagate'' holds at leading WKB order only; the metric coupling is at most $2.3\times10^{-9}$, so the binary-pulsar result stands. And P4's MeerKAT offset is $+0.032$\,dex, not the board's $+0.033$ (a double rounding).
+
+\section{Galaxy-scale failures and their mechanism}
+\subsection{The Milky Way: the AQUAL disc has the wrong shape}
+\begin{itemize}
+\item \textbf{Vertical force (P4, FAIL).} v3's static limit is AQUAL, and AQUAL's extra field around a disc is itself disc-like. At 1.1\,kpc $K_z=92.3$ / 96.9 against $66.4\pm2.2$ ($\chi^2=178$ / 251 against a line of 67.5), for all four baryon models, every $L_\star$ and with the external field. v3 has no rule that rounds the extra field.
+\item \textbf{Outer slope (S3, FAIL, robust).} The law's slope is $-0.126$ / $-0.114$ against the data's $-0.325$: $Z=-4.37$ / $-4.62$, worse than the record's $-3.63$ / $-3.90$. The algebraic kernel, $\nu_1$, the AQUAL disc and the external field all fail; screening is inert at these radii.
+\end{itemize}
+
+\subsection{Hosted small systems: the dust sits in the wrong place}
+U1 asked what v3's own dust can supply, and proved two theorems.
+\begin{itemize}
+\item \textbf{T1: held dust never exceeds the AQUAL phantom density} (14,373 equilibria; maximum ratio 0.666).
+\item \textbf{T3: held dust is weightless in a static host:} $\psi=\Phi-\Xi$ is flat across it, so a system that falls with its host carries no dust, and dust it does hold is bound only by the baryons' Newtonian well.
+\end{itemize}
+The consequences cut both ways, and they must be read together:
+\begin{itemize}
+\item \textbf{Tidal dwarfs and DF2/DF4 pass natively.} Dust-free systems are Newtonian, which is what they show: $+0.055\pm0.114$\,dex and $+0.30$ / $-0.24$ in ln. Static AQUAL (P4) had them $-0.59$ / $-0.62$\,dex below v3.
+\item \textbf{Dwarf satellites fail structurally:} $+2.00$ / $+1.99$\,dex above v3 under its own dynamics (isolated AQUAL alone would leave $+0.52$ / $+0.47$). With the static host field solved instead (S1) the gap is $+1.33$ / $+1.30$\,dex at the $L_\star$ floor. A weaker external field does not rescue them (T1): at zero external field they still sit $+0.91$ / $+0.89$\,dex high, and one external-field strength does not fit the data sets together (goodness-of-fit $p=0.023$ / 0.014; Coma wants $\epsilon\le0.21$ / 0.24 of the full field, isolated-galaxy lensing wants $\epsilon\ge0.67$ / 0.81).
+\item \textbf{Coma's ultra-diffuse galaxies fail:} $+1.41$\,dex ($z=5.4$) under v3's dynamics; $+1.12$ / $+1.08$\,dex in the static host field (S1).
+\item \textbf{The Milky Way's circular speed at the Sun} under v3's dust is at most 215.6 / 220.6\,km\,s$^{-1}$ in every branch U1 tested, against $229.1\pm4.6$.
+\end{itemize}
+\textbf{Mechanism.} v3's dust couples to $\psi$, which is flat across a freely falling system, so the dust sector cannot put extra mass where hosted dwarfs need it. U1's conclusion: what would have to change is the dust coupling (and $J$), not a parameter.
+
+\section{Clusters: a scoped no-go (F1, H2, S4)}
+\begin{itemize}
+\item \textbf{The failure.} Rebuilt from the raw eRASS1 and KiDS data (F1, 326 clusters), the cores (0.3--1\,Mpc) sit 1.68--1.85 / 1.54--1.70 times above the law on their baryons, $Z\approx+5$ to $+6$. The field equation, native $h$, gas calibration, $R_{500}$ and miscentring each move it by at most 4\%; any added cold profile that fixes the cores overshoots the outskirts.
+\item \textbf{v3's only cluster-scale freedom does not fix it (S4).} Blanchet and Skordis's static $\mu_K^2\psi$ term is v3's dust in hydrostatic equilibrium. In spherical symmetry the Khronon static equation is AeST's (H2) with $\mu\to\mu_K$, reproduced to 0.0058. Over every allowed $\mu_K$ and dust offset, 0 of 1,804 cells pass even one cluster cell, and the best profile $\chi^2$ anywhere on the grid is 32.0 / 27.5 against a pass line of 11.07.
+\item \textbf{Mechanism: the ordering is backwards.} The static dust is attractive inside the well, then turns negative and oscillates. For $\mu_K\le0.03$\,Mpc$^{-1}$ the clusters are untouched. At $\mu_K=0.1$\,Mpc$^{-1}$ the cluster cores move by about 1\%, while isolated-galaxy lensing is already ruined ($\Delta\chi^2=+109.7$ / $+189.7$); the galaxy guard fails for every $\mu_K\ge0.1$\,Mpc$^{-1}$, up to the cap. The first zero of $\psi$ is at 1.21\,Mpc around a galaxy and 4.21\,Mpc around a cluster at that $\mu_K$, and the onset scales as $M^{1/6}$, so galaxies are hit before clusters, the reverse of what the data need. At $\mu_K^{-1}=1$ / 0.3 / 0.1\,Mpc the cluster MID amplitude becomes 1.33 / $-3.84$ / $-9.86$ (canonical), and the absolute dust is negative over 46--89\% of the cluster volume for $\mu_K=0.3$--1\,Mpc$^{-1}$.
+\item \textbf{Other cluster components tried} (PAPER59 and the draft): AeST's static dust has the wrong radial shape (H2); a potential-depth selector, braneworld Weyl closures and a screened tidal charge all fail (J1, K1, M2). M2's lesson is the useful one: anything attached to every mass element acts like a halo on small systems; a cluster component would need its own scale between galaxies and clusters.
+\end{itemize}
+
+\section{Linear growth and the early universe (F3, M1, Q6, Q7)}
+\begin{itemize}
+\item \textbf{The kernel (M1, corrects F3 and PAPER59).} The exact dust kernel of the Blanchet--Skordis post-Newtonian system is $s(k;f_0)=(\mu^2-f_0k^2)/((1-f_0)k^2+\mu^2)$ with $f_0=1+J'(0)$. Both $J_x$ ($f_0=0$) and $J'(0)=0$ give $s\to1$ as $k\to0$: the Newtonian term survives on large scales, and $J_x$ holds the dust better. The failure is the cap on $\mu_K$, not $J'(0)=-1$ as PAPER59 stated.
+\item \textbf{Mechanism: the dust holds only below the scale $\mu_K$.} At Blanchet and Skordis's cap, 14.8\,$h$/Mpc, $\sigma_8/\sigma_{8,\rm dust}=0.391$ for $J_x$ (0.121 for $J'(0)=0$), starting at $a_i=10^{-3}$. Reaching 0.95 needs $\mu_K\ge361$--2542\,$h$/Mpc for $J_x$ ($a_i=10^{-3}$ to $10^{-4}$; 24--172 times the cap, F3) and 411\,$h$/Mpc for $J'(0)=0$ (27.8 times, M1). No analytic $K$ shape escapes: the late Jeans scale is $K''(1)/2$. Above the cap the dust forms galaxy halos and double-counts against the law (F3).
+\item \textbf{The full Boltzmann calculation is worse (Q6).} On a dust background with the literal perturbations, $\sigma_8=0.061$ at the cap ($R_B=0.073$, against the ODE's 0.391); even $\mu_K=2542$\,$h$/Mpc reaches only $R_B=0.88$. Planck lite gives $\Delta\chi^2=+13{,}891$ (not converged) down to $+18.7$ over that range.
+\item \textbf{No radiation era (Q6).} The quadratic $K=\mu_K^2(Q-1)^2$ carries a stiff $a^{-6}$ partner fixed by today's dust density; it beats radiation before $z=1854$ at the cap and before $3.2\times10^{5}$ at 2542\,$h$/Mpc. BBN needs $\mu_K\ge1.84\times10^{8}$\,$h$/Mpc, $1.24\times10^{7}$ times the cap.
+\item \textbf{Blanchet and Skordis's DBI $K$ fixes BBN only (Q7).} It makes the early khronon dust-like ($\Delta N_{\rm eff}$-equivalent at 1\,MeV $4.3\times10^{-6}$ / $7.2\times10^{-6}$ at $\lambda_D=30$ / 1, against $7.7\times10^{13}$ for the quadratic $K$), but growth stays at $R_B=0.26$--0.32, Planck lite $\Delta\chi^2=+350$ to $+748$. Their own CMB claim compares only the background $w(a)$; they ran no Boltzmann code. A DBI scale of $\lambda_D\approx7.8\times10^{9}$ restores $\sigma_8$ but leaves $P(k)$ at 1\,$h$/Mpc at 0.33 of $\Lambda$CDM and, by an order-of-magnitude estimate, makes $K$ complex inside cluster potentials.
+\item \textbf{The one open escape is nonlinear} (PENDING, L1): a Khronon-native particle-mesh run tests whether the full $J_x$ hold term restores $\sigma_8$ at the cap. Its indicative $128^3$ run is labelled not a verdict; no production result is committed.
+\end{itemize}
+
+\section{Saddles: v3 is ill-posed where the khronon density is negative (H4)}
+\begin{itemize}
+\item \textbf{The dispersion.} In the weak field, to first order in background gradients and with self-gravity, the khronon/dust pair obeys $\omega^2=\rho_\tau[k^2/\chi-4\pi G]$ with $\chi=k^2/(4\pi GM_\theta+\gamma_Lk^2)+\mu_K^2/4\pi G$, where $\rho_\tau=D\cdot P+{\rm dust}$.
+\item \textbf{Mechanism.} Where $\rho_\tau<0$ the growth rate $\Gamma=L_\star k\sqrt{2\pi G|\rho_\tau|}$ rises linearly with $k$ without a cap: a gradient (Hadamard) instability. The stiffness term makes it unbounded; without $\gamma_L$ the same pair grows by only 0.006--0.20 e-folds.
+\item \textbf{Where.} $\rho_\tau<0$ at every two-body saddle (the Milky Way and M31, the LMC and the Milky Way, galaxy pairs, cluster pairs) and, with an external field, in lobes around every system. Wavelengths below 4.2--326\,pc grow by more than one e-fold over a region's life; a 1\,AU wavelength grows by $8.6\times10^{5}$ to $6.7\times10^{7}$ e-folds. The Solar System is healthy: screening keeps $D\cdot P\ge0.045\,M_\odot$\,pc$^{-3}$.
+\item \textbf{Why it is not a detail.} No dust offset or $\mu_K$ removes the regions. A cutoff would have to sit near $L_\star$, but the stiffness must act at AU scales to screen the Sun. The AeST form (v4) does not escape: the same term makes it ill-posed wherever its aether twists (I1; relayed signals can close loops in time, by 4\,ms to 3.9\,s around an illustrative galaxy), and it runs away on FRW for the dust shape tried (C7, $P/P_{\Lambda\rm CDM}$ up to $2.8\times10^{41}$ at $k=10\,h$/Mpc). The screening routes without $\gamma_L$ fail too (M1): galileons screen but cost SPARC 0.68 / 0.54\,dex (cubic / quartic, median), potential keying has the wrong ordering, density keying is a conditional no-go, and Weyl keying carries an Ostrogradsky ghost.
+\end{itemize}
+
+\section{The pattern: each repair moves the failure}
+\begin{table}[h]\centering\small
+\caption{Repairs tried within v3's family, what each fixes and what it breaks.}\label{tab:repairs}
+\begin{tabular}{p{0.19\textwidth}p{0.19\textwidth}p{0.42\textwidth}l}
+\toprule
+repair & fixes & breaks & lanes\\
+\midrule
+stiffness $\gamma_L$ ($L_\star\ge22$\,pc) & Cassini, planets, outer globulars & well-posedness wherever $\rho_\tau<0$ & C6, D10, H4\\
+no stiffness & --- & Cassini, by 2.44--5.19$\times$ & E2\\
+other screening keys & --- & SPARC (galileons), ordering (potential), conditional no-go (density), ghost (Weyl) & M1\\
+$\mu_K<0.1$\,Mpc$^{-1}$ & galaxies untouched & clusters unchanged; growth far short & S4, M1\\
+$\mu_K$ up to the cap & --- & galaxy lensing ruined before clusters move; growth still short ($R_B$ 0.391 ODE, 0.073 Boltzmann); no radiation era & S4, M1, Q6\\
+$\mu_K$ above the cap & linear growth & outside the bound; dust double-counts in galaxies; static branch Jeans-unstable & F3, S4\\
+DBI $K$ & BBN & growth ($R_B$ 0.26--0.32) & Q7\\
+AeST form (v4) & linear growth (IR) & ill-posed where the aether twists; FRW runaway & I1, C7\\
+weaker external field & Coma's dwarfs & isolated-galaxy lensing; satellites still $+0.91$\,dex & T1\\
+v3's own dust dynamics & tidal dwarfs, DF2/DF4 & dwarf satellites $+2.00$, Coma $+1.41$\,dex & U1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+When each repair fixes one regime and breaks another, the family is missing an ingredient; more lanes of the same kind will not close it. Three requirements follow from the mechanisms, each stated by its lane:
+\begin{enumerate}
+\item a dust coupling that lets hosted systems carry extra mass (U1);
+\item a cluster component with its own scale between galaxies and clusters, not one attached to every mass element (M2, S4);
+\item a screening operator that acts at AU scales and stays well posed where the khronon density is negative (H4).
+\end{enumerate}
+None of these is a fitted knob; each changes the action. Adding a particle species is excluded by the programme's rules.
+
+\section{Scope}
+v3, as it stands, is an effective theory of:
+\begin{itemize}
+\item the acceleration scale $a_0$ and, conditionally, the mean radial-acceleration relation of isolated, rotation-supported galaxies, and isolated groups;
+\item a screened Solar System, Cassini and the planets, with $L_\star$ bounded below by the outer globulars;
+\item the relativistic sector for static, non-rotating compact objects and the tensor waves.
+\end{itemize}
+These passes hold in the small-$\mu_K$ limit ($\mu_K<0.1$\,Mpc$^{-1}$), where linear growth fails; no single $\mu_K$ serves galaxies and growth in the static branch, and whether collapsed dust at growth-level $\mu_K$ changes this is L1's question. It is not a theory of galaxy clusters, of linear structure growth or the early universe, of systems hosted in a larger potential, or of the Milky Way's disc in detail, and it is not well posed at two-body saddles. Not decidable today: isolated-galaxy lensing at all radii (too few spectroscopically isolated lenses), the SLUGGS central ellipticals (tension 2.8 to 3.1$\sigma$ with v3's kernel), high-redshift discs and CRISTAL / ALESS.
+
+\section{Sealed predictions and pending}
+\begin{itemize}
+\item \textbf{Gaia DR4 wide binaries (20\,kAU):} screened $\gamma_v-1=8.1\times10^{-6}$ at $L_\star=24$\,pc (C6) against $\gamma_v\approx1.17$ for the unscreened law (PAPER59).
+\item \textbf{Gaia DR4 Milky Way:} v3's file \texttt{SEALED\_V3\_MW\_DR4.json} (sha256 15b7e6ff\ldots, commit ec0c57d236); a new observable, the external-field-driven asymmetry of the in-plane circular speed, 3.0 / 5.2 / 8.2\% at 20 / 30 / 60\,kpc.
+\item \textbf{ALMA U4 (2026-11-06) and GS4 (2026-11-28):} v3's AQUAL-disc reading sealed (sha256 b5d65a5e\ldots, commit 90f4d517d6) and filed as addendum F (f6f0ba66a4); expected unscorable.
+\item \textbf{Pending:} the Khronon-native nonlinear growth run (L1). The native cosmic-shear rerun of the retired settling engine (CFG960) was scored canonical only and tests that engine, not v3.
+\end{itemize}
+
+\section{What this is not}
+\begin{itemize}
+\item Not closed: $\kappa$, $L_\star$ and the dust abundance are fitted; $J_x$ and the stiffness term are postulated; $\mu_K$ has no allowed value.
+\item Not a UV completion: an effective theory with a preferred foliation.
+\item Not evidence for the framework over $\Lambda$CDM or any other rival. The passes in Table~\ref{tab:pass} are passes of the law at the scale it was built for.
+\item No particle species is added: the dust is a field sector of the action.
+\end{itemize}
+
+\textbf{Disclosures.} S4's frozen rule reads UNDECIDED (two frozen checks, K5 and K7, fail) and its verdict uses amendment A1, committed after test runs and before production. S4's README calls the law's own 33.0 the best canonical profile $\chi^2$; its grid gives 32.0 at $\mu_K=0.1$\,Mpc$^{-1}$, used here. S2's K6 fails and its amendment A1 is post-result. S3 keeps three frozen fails (28/31) with post-result amendments A3, A5 and A6; A6 found a ring-singularity error in the record's CFG493 disc solver. T1's K3b fails (frozen) and its amendment A2 is post-hoc but pre-result. U1's N4 fails (frozen) and amendments A3 and A4 are post-result. P3's B1 fails (frozen). H4's C2 fails (frozen) and its first run is disclosed (amendment A1, post-result). Q6's frozen validation gates V2, V3 and V5 fail where its spectrum is far below $\Lambda$CDM's; its $+13{,}891$ fit is not converged. Q7's frozen fit check fails (one parameter set does not converge). The draft's M1 row gives 411\,$h$/Mpc (27.8$\times$) as v3's requirement; that figure is for $J'(0)=0$, and v3's $J_x$ needs 361--2542\,$h$/Mpc (F3). H4's README quotes the 1\,AU growth as $0.9$--$6.7\times10^{7}$ e-folds; its JSON gives $8.6\times10^{5}$ to $6.7\times10^{7}$, used here. For neutron stars the draft's $2.7\times10^{-28}$ is the 1.4\,$M_\odot$ star; maximum-mass stars give $5.3\times10^{-28}$. The board's blue-lens $0.80$ is the alternative footing at zero external field; the primary field gives 0.81. The Khronon equations were read from the arXiv HTML and re-derived symbolically (C4), not verified on disk.
+
+\vspace{2pt}\hrule\vspace{2pt}
+{\footnotesize
+Repository: \texttt{rebuild\_2026\_10\_22/} (P3--U1, M1, Q6, Q7, H4, I1, L1; F1--H3, J1, K1, M2 via PAPER59 and the draft); \texttt{covariant\_push\_2026\_10\_22/} (C1--C8, \texttt{THEORY\_V3\_DRAFT.md}); \texttt{doors\_push\_2026\_10\_22/} (D10, E2); \texttt{explainers/} (status board). Companion notes: PAPER59 (doi:10.5281/zenodo.23585319), PAPER58 v1.1 (doi:10.5281/zenodo.23579379).
+Theory: L.~Blanchet, C.~Skordis, JCAP 11 (2024) 040 (arXiv:2404.06584); L.~Blanchet, C.~Skordis, arXiv:2507.00912 (2025); C.~Skordis, T.~Z{\l}o{\'s}nik, PRL 127, 161302 (2021) (arXiv:2007.00082).
+Bounds: A.~Hees, W.~M.~Folkner, R.~A.~Jacobson, R.~S.~Park, PRD 89, 102002 (2014); R.~S.~Park et al., PRD 114, 024066 (2026).
+AI assistance: Anthropic's Claude (lanes, review, drafting).}
+\end{document}
