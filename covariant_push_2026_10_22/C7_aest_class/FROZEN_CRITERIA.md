@@ -148,3 +148,33 @@ V2 high-precision settings gives 1.0×10⁻⁵). Physical AeST deviations from �
 settings (`tol_perturbations_integration = 1e-7`, `perturbations_sampling_stepsize = 0.05`, `k_per_decade_for_pk = 20`,
 `l_logstep = 1.026`, `l_linstep = 25`); (2) V6 is also reported at those settings (V6hi, diagnostic). No pass/fail line
 changes.
+
+## AMENDMENT A3 (pre-result for step N; coordinator request of 2026-10-23, before any native spectrum or χ²)
+
+The coordinator relayed the owner's "keep going" and asked for step N plus the **v4** configuration (AeST + γ_L + C1's
+capped F; `rebuild_2026_10_22/H1_aest_F`, `H3_jeans_control`, `THEORY_V3_DRAFT.md` §1b). Additions and changes, all
+fixed now:
+
+1. **Optimiser.** The frozen Nelder–Mead (7 parameters, ≤ 150 runs) is replaced by C2's own Gauss–Newton
+   (`c2b_native_cmb.py`: plik-lite residuals + A_planck prior 0.0025 + a Gaussian τ prior from a low-ℓ τ scan; 4
+   iterations, halving line search), started at C2's ΛCDM refit, budget ≤ 150 CLASS runs per model. The reported χ² is
+   C2's `total_chi2` (plik-lite + low-ℓ TT + low-ℓ EE + A prior). C2's likelihood code is executed read-only from its
+   file (the block between its "likelihoods" and "CLASS emulation" markers). Fitted: ω_b, ω_aest (FITTED initial
+   condition), 100θ_s, ln10¹⁰A_s, n_s, τ, A_planck. ΛCDM uses the pristine build with ω_cdm in place of ω_aest.
+2. **Models fitted** (λ_c = 0 throughout): ΛCDM; the frozen B-Cosh, B-Exp (g = 1), B-Cosh-g, B-Exp-g (g = 1 − K_B/2),
+   N1, N2; and **v4**: λ_s = ∞ so g = 1 − K_B/2, λ₀ = λ_c = 0, K_B ∈ {0.01, 0.05, 0.078}, nominal μ⁻¹ = 1 Mpc
+   (H1/H3's declared value); plus v4 at μ⁻¹ = 10 Mpc (H1's reported value) with K_B = 0.05.
+   - **v4 K-shape (POSTULATED; v4 fixes only K's curvature at the minimum):** Cosh with Q₀ = 0.1 Mpc⁻¹ (SZ21),
+     K₂ = μ²(2−K_B)/(2Q₀²) (SZ21's μ definition), and Z₀ set so that s = I₀/(2K₂Z₀) = 0.1 at a = 1 for the
+     caption-parameter I₀ (so today's curvature gives μ_eff = μ(1+s²)^{1/4} ≈ μ); Z₀ then stays fixed during the fit.
+     μ_eff(z = 0) is reported per run.
+   - **γ_L is not in the patch.** H1/H3 put its effect at the band end k_c ≈ 243μ; at k ≤ 10 h/Mpc its relative weight
+     is estimated as (k/k_c)⁴ from H1's scale (an estimate, not an FRW derivation), reported.
+3. **λ_s → ∞ convergence:** v4 at K_B = 0.05, μ⁻¹ = 1 Mpc, caption parameters, λ_s ∈ {10², 10³, 10⁴, ∞} (λ_s enters
+   only through g at λ_c = 0); max relative spectrum difference vs ∞ reported.
+4. **Small-scale linear P(k):** P(k, z = 0)/P_ΛCDM for every v4 run and the benchmarks, at the caption parameters and at
+   each model's best fit vs the ΛCDM best fit, up to k = 10 h/Mpc, tabulated; beside it H1's Jeans-swindle ratio
+   Γ²/Γ²_GR = 1/(1 + 2k²/((2−K_B)μ²)) for reference (a different quantity; not scored). The question "enhanced linear
+   growth at k ≳ μ?" is answered by the sign of P/P_ΛCDM − 1 there.
+5. **Reported per fit:** χ² parts, Δχ² vs the ΛCDM refit, H₀, σ₈, Ω_m (incl. the AeST sector), S₈ = σ₈(Ω_m/0.3)^½.
+   Numbers only, no verdict. Every run uses A2's high precision; `nice -n 19`, one process at a time.
