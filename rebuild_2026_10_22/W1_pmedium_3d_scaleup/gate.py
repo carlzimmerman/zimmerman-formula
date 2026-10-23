@@ -54,7 +54,11 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--mutate', action='store_true'); a = ap.parse_args()
     mut = 'drop_h_cold' if a.mutate else None
     configs = [(8, .001), (8, .03)] if a.mutate else [(8, .001), (12, .001), (16, .001), (8, .03), (12, .03), (16, .03)]
-    res = dict(criteria='FROZEN_CRITERIA.md 2.1' + (' / 2.2 MUTATE drop_h_cold' if mut else ''), tolerance=TOL, runs=[])
+    import hashlib
+    res = dict(criteria='FROZEN_CRITERIA.md 2.1' + (' / 2.2 MUTATE drop_h_cold' if mut else ''), tolerance=TOL,
+               engine_sha256=hashlib.sha256((HERE / 'engine' / 'pmedium3d.py').read_bytes()).hexdigest(),
+               kernel_sha256=hashlib.sha256((HERE / 'engine' / 'tsc_kernels.c').read_bytes()).hexdigest(),
+               se_model_sha256=hashlib.sha256((HERE / 'repro' / 'spatial_expansion_2026_10_23' / 'model.py').read_bytes()).hexdigest(), runs=[])
     for n, amp in configs:
         t0 = time.time(); ref = SE.evolve(n, amp, 1100, 10, .6); tse = time.time() - t0
         for th in ([1, 4] if (amp == .03 and not mut) else [1]):

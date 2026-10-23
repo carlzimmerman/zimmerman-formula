@@ -15,7 +15,13 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-static inline int64_t pmod(int64_t a, int64_t n) { int64_t r = a % n; return r < 0 ? r + n : r; }
+/* Python-style modulo; wrapped particles give a in [-1, n+1], so the branch path avoids the integer division. */
+static inline int64_t pmod(int64_t a, int64_t n) {
+    if (a >= 0 && a < n) return a;
+    if (a < 0 && a >= -n) return a + n;
+    if (a >= n && a < 2 * n) return a - n;
+    int64_t r = a % n; return r < 0 ? r + n : r;
+}
 
 static inline void weights1d(double u, int64_t j, double dx, double w[3], double dw[3]) {
     for (int o = -1; o <= 1; o++) {
@@ -45,15 +51,14 @@ static void *deposit_worker(void *arg) {
         if (!any) continue;
         double w[3][3], dw[3][3];
         for (int a = 0; a < 3; a++) weights1d(u[a], j[a], dx, w[a], dw[a]);
+        int64_t iy[3], iz[3];
+        for (int o = 0; o < 3; o++) { iy[o] = pmod(j[1] + o - 1, n) * n; iz[o] = pmod(j[2] + o - 1, n); }
         for (int ox = 0; ox < 3; ox++) {
             if (ix[ox] < J->x0 || ix[ox] >= J->x1) continue;
+            double *row = J->out + ix[ox] * n * n;
             for (int oy = 0; oy < 3; oy++) {
-                int64_t iy = pmod(j[1] + oy - 1, n);
-                for (int oz = 0; oz < 3; oz++) {
-                    int64_t iz = pmod(j[2] + oz - 1, n);
-                    double weight = (w[0][ox] * w[1][oy]) * w[2][oz];
-                    J->out[(ix[ox] * n + iy) * n + iz] += J->val * weight;
-                }
+                const double a0 = w[0][ox] * w[1][oy];
+                for (int oz = 0; oz < 3; oz++) row[iy[oy] + iz[oz]] += J->val * (a0 * w[2][oz]);
             }
         }
     }
@@ -80,15 +85,16 @@ static void *gather_worker(void *arg) {
         for (int a = 0; a < 3; a++) { u[a] = J->x[3 * p + a] / dx + half; j[a] = (int64_t)floor(u[a] + .5); }
         double w[3][3], dw[3][3];
         for (int a = 0; a < 3; a++) weights1d(u[a], j[a], dx, w[a], dw[a]);
+        int64_t ix[3], iy[3], iz[3];
+        for (int o = 0; o < 3; o++) { ix[o] = pmod(j[0] + o - 1, n) * n * n; iy[o] = pmod(j[1] + o - 1, n) * n; iz[o] = pmod(j[2] + o - 1, n); }
         double t0[27], t1[27], t2[27]; int k = 0;
         for (int ox = 0; ox < 3; ox++) {
-            int64_t ix = pmod(j[0] + ox - 1, n);
             for (int oy = 0; oy < 3; oy++) {
-                int64_t iy = pmod(j[1] + oy - 1, n);
+                const double *Frow = J->F + ix[ox] + iy[oy];
+                const double a0 = dw[0][ox] * w[1][oy];
                 for (int oz = 0; oz < 3; oz++, k++) {
-                    int64_t iz = pmod(j[2] + oz - 1, n);
-                    double f = J->F[(ix * n + iy) * n + iz];
-                    t0[k] = f * ((dw[0][ox] * w[1][oy]) * w[2][oz]);
+                    double f = Frow[iz[oz]];
+                    t0[k] = f * (a0 * w[2][oz]);
                     t1[k] = f * ((dw[1][oy] * w[2][oz]) * w[0][ox]);
                     t2[k] = f * ((dw[2][oz] * w[0][ox]) * w[1][oy]);
                 }

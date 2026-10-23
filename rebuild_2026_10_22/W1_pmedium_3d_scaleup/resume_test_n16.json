@@ -1,0 +1,89 @@
+{
+ "criteria": "FROZEN_CRITERIA.md 2.3",
+ "n": 16,
+ "runs": {
+  "A_threads1": {
+   "cmd": "/usr/bin/python3 engine/pmedium3d.py --n 16 --amp 0.03 --footing canonical --threads 1 --outdir runs/resume_test/n16/A",
+   "exit": 0,
+   "wall": 3.0215957164764404,
+   "peak_footprint_gb": 0.047514056,
+   "max_rss_gb": 0.064847872,
+   "log_tail": [
+    "[n16_strong_can] step 2500 z=12.483 peak=2.0801 wall=2s",
+    "[n16_strong_can] done: steps 2874, reason endpoint, peak 3.27037, wall 3s"
+   ]
+  },
+  "B_threads4": {
+   "cmd": "/usr/bin/python3 engine/pmedium3d.py --n 16 --amp 0.03 --footing canonical --threads 4 --outdir runs/resume_test/n16/B",
+   "exit": 0,
+   "wall": 2.928152084350586,
+   "peak_footprint_gb": 0.046678472,
+   "max_rss_gb": 0.064012288,
+   "log_tail": [
+    "[n16_strong_can] step 2500 z=12.483 peak=2.0801 wall=2s",
+    "[n16_strong_can] done: steps 2874, reason endpoint, peak 3.27037, wall 3s"
+   ]
+  },
+  "C1_sigterm": {
+   "cmd": "/usr/bin/python3 engine/pmedium3d.py --n 16 --amp 0.03 --footing canonical --threads 1 --outdir runs/resume_test/n16/C",
+   "exit": 75,
+   "wall": 1.1129651069641113,
+   "peak_footprint_gb": 0.04507284,
+   "max_rss_gb": 0.062406656,
+   "log_tail": [
+    "[n16_strong_can] step 500 z=149.582 peak=0.1238 wall=1s",
+    "[n16_strong_can] checkpoint at step 739; yielding"
+   ],
+   "checkpoint_exists": true,
+   "checkpoint_step": 739
+  },
+  "C2_resume_then_sigterm": {
+   "cmd": "/usr/bin/python3 engine/pmedium3d.py --n 16 --amp 0.03 --footing canonical --threads 1 --outdir runs/resume_test/n16/C --resume",
+   "exit": 75,
+   "wall": 1.1909348964691162,
+   "peak_footprint_gb": 0.046236104,
+   "max_rss_gb": 0.063455232,
+   "log_tail": [
+    "[n16_strong_can] step 1500 z=29.090 peak=0.5504 wall=1s",
+    "[n16_strong_can] checkpoint at step 1590; yielding"
+   ],
+   "checkpoint_exists": true,
+   "checkpoint_step": 1590
+  },
+  "C3_resume_to_end": {
+   "cmd": "/usr/bin/python3 engine/pmedium3d.py --n 16 --amp 0.03 --footing canonical --threads 1 --outdir runs/resume_test/n16/C --resume",
+   "exit": 0,
+   "wall": 1.549461841583252,
+   "peak_footprint_gb": 0.047628744,
+   "max_rss_gb": 0.064847872,
+   "log_tail": [
+    "[n16_strong_can] step 2500 z=12.483 peak=2.0801 wall=1s",
+    "[n16_strong_can] done: steps 2874, reason endpoint, peak 3.27037, wall 1s"
+   ]
+  },
+  "C4_resume_on_complete": {
+   "cmd": "/usr/bin/python3 engine/pmedium3d.py --n 16 --amp 0.03 --footing canonical --threads 1 --outdir runs/resume_test/n16/C --resume",
+   "exit": 0,
+   "wall": 0.25398969650268555,
+   "peak_footprint_gb": 0.040960456,
+   "max_rss_gb": 0.05767168,
+   "log_tail": [
+    "[n16_strong_can] result complete; nothing to do"
+   ]
+  }
+ },
+ "checks": {
+  "threads_1_vs_4_state_bitidentical": true,
+  "threads_1_vs_4_result_identical": true,
+  "sigterm_exit_75": true,
+  "checkpoints_written": true,
+  "resume_completes_exit_0": true,
+  "resumed_state_bitidentical": true,
+  "resumed_result_identical": true,
+  "resume_on_complete_exit0_unchanged": true,
+  "final_state_sha_A_C_equal": true
+ },
+ "G_P3": true,
+ "peak_c": 3.270372293551835,
+ "steps": 2874
+}

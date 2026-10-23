@@ -40,7 +40,7 @@ YIELD_EXIT = int(os.environ.get("HEAVYQ_YIELD_EXIT", "75"))
 # ----------------------------------------------------------------------------------------------- C kernels
 def _load_lib():
     src = HERE / "tsc_kernels.c"
-    flags = ["-O2", "-ffp-contract=off", "-fPIC", "-shared"]
+    flags = ["-O3", "-mcpu=native", "-ffp-contract=off", "-fno-fast-math", "-fPIC", "-shared"]
     tag = hashlib.sha256(src.read_bytes() + " ".join(flags).encode()).hexdigest()[:16]
     build = HERE / "build"
     build.mkdir(exist_ok=True)
@@ -147,11 +147,11 @@ class Model:
     def minimage(self, d):
         return d - self.box * np.round(d / self.box)
 
-    def certificate(self, F, A, H, xc, xb, P, c, pc, pb, Q, V, hubble=True):
+    def certificate(self, F, A, H, xc, xb, P, c, pc, pb, Q, V, hubble=True, apertures_kpc=APERTURES_KPC, centre_kpc=CENTRE_KPC):
         n = self.n; rc = F['rc']
         idx = np.array(np.unravel_index(int(np.argmax(rc)), rc.shape), dtype=float)
         cen = (idx - n / 2) * self.dx
-        Rc = CENTRE_KPC / (1000 * self.ell) / A
+        Rc = centre_kpc / (1000 * self.ell) / A
         it = 0
         for it in range(50):
             d = self.minimage(xc - cen); sel = np.sum(d * d, axis=1) <= Rc * Rc
@@ -171,7 +171,7 @@ class Model:
                     Wx=(A ** 3 * vol * F['h'] * (-3 * F['rc'] + F['div'])).ravel())
         rhoc_bar = self.mc * n ** 3 / self.box ** 3
         out = dict(z=(1 + self.zi) / A - 1, lnA=float(np.log(A)), centre=cen.tolist(), centre_iterations=it + 1, apertures=[])
-        for Rk in APERTURES_KPC:
+        for Rk in apertures_kpc:
             R = Rk / (1000 * self.ell) / A
             sc = np.sum(dc_ * dc_, axis=1) <= R * R; sb = np.sum(db_ * db_, axis=1) <= R * R; scell = rcell2 <= R * R
             Nc, Nb = int(sc.sum()), int(sb.sum())
@@ -215,9 +215,16 @@ def atomic_write_bytes(path, data):
 
 
 def atomic_savez(path, **arrays):
+    """np.savez-compatible archive with fixed zip timestamps (byte-reproducible), written tmp -> fsync -> os.replace."""
+    import zipfile
+    from numpy.lib import format as npf
     path = Path(path); tmp = path.with_name(f".{path.name}.tmp{os.getpid()}.npz")
     with open(tmp, 'wb') as f:
-        np.savez(f, **arrays); f.flush(); os.fsync(f.fileno())
+        with zipfile.ZipFile(f, 'w', zipfile.ZIP_STORED, allowZip64=True) as zf:
+            for k, v in arrays.items():
+                with zf.open(zipfile.ZipInfo(k + '.npy', date_time=(1980, 1, 1, 0, 0, 0)), 'w', force_zip64=True) as fid:
+                    npf.write_array(fid, np.asanyarray(v), allow_pickle=False)
+        f.flush(); os.fsync(f.fileno())
     os.replace(tmp, path)
 
 
@@ -256,7 +263,9 @@ def evolve(n=8, amp=.001, zi=1100, zend=10, cfl=.6, footing='canonical', threads
     wall0 = time.time(); run_info = dict(started=time.strftime('%Y-%m-%dT%H:%M:%S'), resumed_from_step=None)
     if paths and resume and paths['ckpt'].exists():
         z = np.load(paths['ckpt'])
-        S = {k: z[k].copy() for k in STATE_ARRAYS}
+        # np.load returns fresh writable arrays in their saved memory order (chi and V are Fortran-ordered, as ifftn makes them);
+        # keeping that order keeps every NumPy reduction, hence the trajectory, bit-identical to an uninterrupted run.
+        S = {k: z[k] for k in STATE_ARRAYS}
         for k in STATE_SCALARS: S[k] = z[k].item()
         meta = json.loads(str(z['meta']))
         rows, cert_rows, res, init_info = meta['rows'], meta['cert_rows'], meta['initial_residuals'], meta['init_info']
