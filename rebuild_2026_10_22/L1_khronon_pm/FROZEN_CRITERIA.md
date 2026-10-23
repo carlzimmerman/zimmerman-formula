@@ -363,3 +363,34 @@ K = (2μ²/λ_D)[1 − √(1 − λ_D(Q−1)²)] is the only BBN-viable early-ti
 6. **est_gb** = 1.2 × the measured 3-step peak footprint of DBI KX at 256³. 384³ is extrapolated if the 256³ point
    matches A5's scaling; otherwise it is measured. Queue priorities 290–299, after the A5 ladder and before the 512³
    calibration.
+
+## AMENDMENT A7 (PRE-RESULT, 2026-10-23: the "early release" test; the X0-dust numbers below were computed before any A7 cell)
+
+Coordinator's premise: for x ≫ 1 the hold coefficient 1 − μ(x) = 1/(1+x) is small, so the dust would fall nearly freely,
+and the linear growth failure would be partly an artefact. Rule given: run z_i = 1000 cells only if z_x ≳ 300.
+
+**X0-dust pre-flight** (`l1_x0dust.py`; 3/3 PASS; MUTATE flips J′(0) and breaks XD3):
+- **XD1, the dust-limit spectrum** (vanilla CLASS cdm transfer, model B, hold "off"), linear Yukawa hold field, k ≤ 4 h/Mpc:
+  - canonical x_rms = 51 / 14 / 2.7 / 1.5 / 0.52 at z = 3000 / 1000 / 300 / 199 / 100;
+  - **z_x = 153 (canonical), 174 (alt)**; 152 / 173 for k ≤ 16.
+  - On the self-consistent large-x (Jeans) branch, x would be 4e4 at z = 1000 and 248 at z = 199.
+- **XD2, the DBI background** (cap, λ_D = 30):
+  - M²/μ² = 3.2e4 / 3.9 / 1.08 / 1.00 at z = 3000 / 1000 / 500 / 199;
+  - the background excess is 0.18 / 0.078 / 0.012 / 7.6e-4, and w is 0.006 / 0.054 / 0.012 / 7.6e-4.
+  - With DBI's M(z): z_x = 153 / 174 on the dust spectrum, and **242 / 264** on DBI's own khronon spectrum.
+- **XD3, exact.** The khronon's net self-force kernel about a background with hold argument x is
+  s(k; f) = (m² − f k²)/((1 − f)k² + m²), with f = μ + xμ′ ∈ [0, 1). Then ds/df = −k⁴/((1 − f)k² + m²)² < 0. At f = 0 it is
+  F3's BSK2 kernel; as f → 1 it is the Jeans kernel 1 − k²/m².
+
+**Reading.**
+- **"Hold off before z_x" is not self-consistent in v3's PN system.** A small divergence coefficient 1/(1+x) does not
+  weaken the hold force ∇Ξ. The constraint's mass term then sets Ξ ≈ −S/(aμ)², which is Jeans pressure. So large x
+  stiffens the khronon, as BSK1 M4 (record) and the 128³ z_i = 199 run (KX 9 % below LIN) already showed.
+- The linear (x = 0) growth numbers of F3, Q6 and Q7 are, if anything, optimistic for v3's J_x.
+
+**Decision (the coordinator's rule): no A7 cells.** z_x is 153–264 < 300 for every spectrum, background and footing.
+- The engine check from a = 1e-3 (2LPT at z = 1000, the step count, Anderson at x ~ 10, z_i = 1000 vs 199 S0) is therefore
+  not run.
+- A z_i = 1000 engine would also need the DBI background (ρ̄ excess 7.8 %, w = 0.054, M²/μ² = 3.9 at z = 1000) as a declared
+  input. That is listed, not built.
+- No ENQUEUE-A7 jobs.
