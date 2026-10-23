@@ -96,3 +96,12 @@ Before freezing, the author made back-of-envelope estimates: L_min ~ 40–150 fo
 ν_req ~ 1–2 for M_ta ~ 6e5 M☉. E3's numbers and CFG920's were seen. No threshold above was moved after those estimates.
 
 Compute: one thread, nice 15, < 1 GB, seconds. Nothing downloaded. Writes only inside this lane.
+
+## AMENDMENT A1 (after the first run crashed; PRE-RESULT for every D/C number — none was printed)
+The first run printed only K1–K4 and then crashed in K5 (`np.trapezoid` is absent in NumPy 1.26; replaced by `np.trapz`,
+no numerical change). K3 failed as frozen: it compared the median over systems of E3's per-system q (the CSV, 0.828 / 0.804)
+with E3's printed headline 0.811 / 0.768, which is a different statistic (E3's `boot_median` over log q of all MC draws).
+The L_req half of K3 is the same statistic as E3's printed `median_Lreq` and passed (8.28 / 8.04).
+**K3 is replaced by K3′:** (i) median over systems of the CSV L_req equals E3's printed median_Lreq 8.3 / 8.0 within 0.1, and
+(ii) per system q_fret010 = L_req / 10 to ≤ 1e-9 (E3 internal consistency of the CSV this lane uses). The frozen K3 line is
+still printed, labelled "as frozen, mis-specified statistic", and does not enter the exit code. No other line changes.
