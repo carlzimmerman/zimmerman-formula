@@ -25,6 +25,7 @@ particle. Not "theory closed". Nothing here says the data favour the framework.
 | main | **15/16 PASS** | N4 FAILS as frozen on grid resolution (A3) |
 | field-frame (A2) | **6/6 PASS** | |
 | `--mutate` | D4, D7, N1 / F1, F2 FAIL as required | |
+| reruns (10-23) | main mutate 10/16, exit 1 (962 s, 0.32 GB): D4, D7, N1 FAIL as required (also N2, N3, N4); D1–D3, D5, D6, N0 PASS. A deterministic rerun of the main script and clean reruns of the A2 script (normal + mutate) match the committed JSONs in every number; only runtime/RSS differ | |
 
 ## The two readings of the dust
 
@@ -161,7 +162,7 @@ last point). Fraction of RAR points not held, by V_rel:
 dust is held. At the cap it is unheld for a source at 1 Mpc (s = 0.28): 0 % / 0.06 %.
 
 **Ursa Major members (F5).** 28 members; σ_LOS of cz = 115 km/s, so V_rel = 199 km/s.
-- 81 % of their points lie beyond r_f, so in a held UMa they would be dust-free: **−0.44 / −0.47 dex** below the RAR.
+- 81 % of their points have V_hold < V_rel (counted at any radius, not only beyond r_f), so in a held UMa they would be dust-free: **−0.44 / −0.47 dex** below the RAR.
 - Observed: **−0.042 ± 0.009 / −0.038 ± 0.010 dex** against field points in the same g_bar bins.
 
 **Verdict (frozen readings):**
