@@ -1,0 +1,43 @@
+--- a/source/background.c
++++ b/source/background.c
+@@ -711,8 +711,22 @@
+     *Kz = kp*kp/(4.*mu2);
+     *ca2 = kp/((*Q)*2.*mu2);
+     break;
++  case 5: /* Q7_bs25_cosmology: BS DBI K = (2 mu^2/lambda_D)[1 - sqrt(1 - lambda_D (Q-1)^2)], lambda_D = aest_Z0;
++             Z = K'/(2 mu^2), r = sqrt(1 + lambda_D Z^2): Qbar = 1 + Z/r, K = 2 mu^2 Z^2/(r(r+1)), c_ad^2 = Z/(r^2(r+Z)) */
++    {
++      double lamD = pba->aest_Z0;
++      double Zd = kp/(2.*mu2);
++      double rd;
++      if (lamD < 0.)
++        class_stop(pba->error_message,"Khronon DBI (Q7): lambda_D = aest_Z0 = %e must be >= 0",lamD);
++      rd = sqrt(1. + lamD*Zd*Zd);
++      *Q = 1. + Zd/rd;
++      *Kz = 2.*mu2*Zd*Zd/(rd*(rd + 1.));
++      *ca2 = Zd/(rd*rd*(rd + Zd));
++    }
++    break;
+   default:
+-    class_stop(pba->error_message,"Khronon (Q6): aest_K_type = %d not coded (0 DUST, 3 LIT, 4 LOB)",pba->aest_K_type);
++    class_stop(pba->error_message,"Khronon (Q6/Q7): aest_K_type = %d not coded (0 DUST, 3 LIT, 4 LOB, 5 DBI)",pba->aest_K_type);
+   }
+   return _SUCCESS_;
+ }
+--- a/source/perturbations.c
++++ b/source/perturbations.c
+@@ -67,6 +67,14 @@
+   case 4: /* LOB: literal Qbar on a dust background */
+     Ql = 1. + Kp/(2.*mu2);
+     cs2 = Ql*Kp/(Ql*Ql*2.*mu2 - 2.*j1*k2/a/a);
++    break;
++  case 5: /* Q7_bs25_cosmology: DBI, K'' = 2 mu^2 r^3, r = sqrt(1 + lambda_D Z^2), Z = K'/(2 mu^2); c_s^2 = BS24 Eq. 71 */
++    {
++      double Zd = Kp/(2.*mu2);
++      double rd = sqrt(1. + pba->aest_Z0*Zd*Zd);
++      double K2pp = 2.*mu2*rd*rd*rd;
++      cs2 = Q*Kp/(Q*Q*K2pp - 2.*j1*k2/a/a);
++    }
+     break;
+   default: /* DUST */
+     cs2 = 0.;

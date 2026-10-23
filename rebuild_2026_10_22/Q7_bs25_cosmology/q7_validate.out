@@ -1,0 +1,24 @@
+== Q7 validation (DBI build)
+V_prov PASS Q6 tree == pristine + khronon.patch: True; tree == Q6 + dbi.patch: True; only background_aest_K (690, 718) / perturbations_aest_rhs (39, 84) differ: True all true
+== V_unit: C harness compiled from the two function texts of the built tree
+V_unit_i_lambda0_equals_LIT PASS 240 points; max rel |DBI(lambda=0) - LIT| over (Q, K, K', c_ad^2, c_s^2) = 2.80e-16 <= 1e-13
+V_unit_ii_finite_lambda_vs_BS FAIL lambda_D ['1e-06', '1', '30', '1e+06', '1e+12', '1e+24']: max rel = 1.82e-06; worst per quantity Q88 2.7e-16, rho89a 3.8e-16, p89b 1.8e-06, w94a 5.2e-16, cad94b 8.8e-16, cs2_Eq71 9.5e-16 <= 1e-10 (Q vs Eq.88, rho/p vs 89a/b, w/c_ad^2 vs 94a/b, c_s^2 vs Eq.71)
+V_unit_ii_b_120digits_A1 PASS lambda_D ['1e-06', '1', '30', '1e+06', '1e+12', '1e+24']: max rel = 9.45e-16; worst per quantity Q88 2.7e-16, rho89a 3.8e-16, p89b 5.2e-16, w94a 5.2e-16, cad94b 8.8e-16, cs2_Eq71 9.5e-16 <= 1e-10 (A1: reference at 120 digits)
+V0_types_0_4_bit_identical_to_Q6 PASS DUST: identical; LOB14.8: identical bit-identical C_l and P(k)
+== V1: DBI (lambda_D = 1e-25) vs Q6's LIT at the smallest mu_gate where Q6's binary runs LIT
+  Q6 LIT at 1e+13 h/Mpc: refused: '->tol_initial_Omega_r) is true; Omega_r = 9.937434e-01, not close enough to 1. Decrease a_ini_over_a_today_default in order to start from radiation domination.\n'
+  Q6 LIT at 1e+14 h/Mpc: runs
+V1_lambda0_vs_LIT FAIL mu_gate 1e+14 h/Mpc: DBI(1e-25) vs LIT TT=7.34e-04, EE=1.22e-03, TE=4.69e-04, pp=7.85e-05, pk=8.55e-08 | (reported) LIT vs DUST TT=4.19e-07, EE=2.57e-07, TE=2.51e-07, pp=4.21e-09, pk=8.22e-08 every spectrum <= 1e-5 (tol 1e-7)
+V1b_lambda0_bitwise_vs_LIT_A1 PASS DBI(lambda_D = 0) vs Q6 LIT at 1e+14 h/Mpc: bit-identical bit-identical C_l and P(k) (A1)
+V1c_noise_floor_A1 PASS DBI(1e-25) vs LIT TT=7.34e-04, EE=1.22e-03, TE=4.69e-04, pp=7.85e-05, pk=8.55e-08 | N (LIT at mu^2(1+1e-10) vs mu^2) TT=7.34e-04, EE=1.22e-03, TE=4.69e-04, pp=7.85e-05, pk=7.74e-08 each <= max(1e-5, 2N) (A1)
+V2_lambda_inf_vs_DUST_synchronous PASS TT=2.02e-06, EE=1.54e-06, TE=1.40e-06, pp=5.00e-06, pk=6.06e-07; 100theta_s 0.0e+00, r_drag 6.8e-09 <= 1e-4 every spectrum; background <= 1e-6
+V2_lambda_inf_vs_DUST_newtonian PASS TT=1.94e-06, EE=1.48e-06, TE=1.64e-06, pp=5.00e-06, pk=9.11e-07; 100theta_s 0.0e+00, r_drag 6.8e-09 <= 1e-4 every spectrum; background <= 1e-6
+V3_gauge_P1 PASS DBI TT=3.74e-05, EE=6.33e-05, TE=1.76e-05, pp=5.48e-05, pk=1.27e-04 | vanilla TT=1.95e-05, EE=8.12e-05, TE=2.22e-05, pp=1.17e-04, pk=1.84e-04 |dX|/X_LCDM each <= max(1e-3, 3 x vanilla)
+  (reported) DBI P1 vs pristine LCDM at the same parameters: TT=3.44e-01, EE=6.25e-01, TE=3.48e-01, pp=9.81e-01, pk=9.92e-01
+V3_gauge_C30 PASS DBI TT=2.16e-05, EE=6.85e-05, TE=2.56e-05, pp=5.84e-05, pk=2.08e-04 | vanilla TT=1.95e-05, EE=8.12e-05, TE=2.22e-05, pp=1.17e-04, pk=1.84e-04 |dX|/X_LCDM each <= max(1e-3, 3 x vanilla)
+  (reported) DBI C30 vs pristine LCDM at the same parameters: TT=2.62e-01, EE=5.24e-01, TE=2.93e-01, pp=9.82e-01, pk=9.92e-01
+V4_convergence_same_grid PASS DBI P1 TT=8.25e-04, EE=1.65e-03, TE=6.13e-04, pp=2.56e-03, pk=6.33e-06 | vanilla TT=8.09e-04, EE=1.88e-03, TE=7.07e-04, pp=8.81e-03, pk=7.20e-05 |dX|/X_LCDM each <= max(2e-3, 2 x vanilla)
+V5_ic_attractor_x0.25 PASS DBI P1 TT=1.45e-05, EE=2.29e-05, TE=1.09e-05, pp=2.99e-06, pk=2.13e-06 | vanilla TT=2.49e-05, EE=1.09e-05, TE=1.24e-05, pp=1.27e-06, pk=1.52e-05 each <= vanilla + 1e-4 (C_l relative, P(k) in units of LCDM)
+  DBI ready (frozen gates) on this build: False
+  DBI ready (A1 gates) on this build: True; elapsed 70.2 s
+Q7_VALIDATE COMPLETE: 12/14 checks PASS.

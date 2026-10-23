@@ -1,0 +1,13 @@
+== Q7 step S: BS24/BS25 cosmological sector (WebFetch, PROVISIONAL) [MUTATE: Q6 j1 = +1]
+S1_DBI_shape PASS lim_(lambda->0) = 2*mu**2*(Q**2/2 - Q + 1/2); K^(n)(1) n=0..4: [0, 0, 2*mu**2, 0, 6*lambda_D*mu**2] = mu^2(Q-1)^2; 0, 0, 2mu^2, 0, 6 mu^2 lambda_D
+S2_background_Eq88 PASS K'(Qbar88) - I0/a^3 = 0; Eq.88 = coded 1+Z/r: True; K, K'' coded: True; 1 - lambda(Qbar-1)^2 = 1/(Z**2*lambda_D + 1) residuals 0; 1 - lambda q^2 = 1/(1+lambda Z^2) > 0 (1 <= Qbar < 1 + lambda^-1/2)
+S3_rho_p_Eq89_conservation PASS 89a/b = (QK'-K, K) on Eq.88: True; d rho/da + 3(rho+p)/a = 0 residuals 0
+S4_w_cad2_Eqs92_94 PASS Eq.92/93 (q) = Eq.45/46; Eq.94a/b (Z) = Eq.45/46 on q = Z/r; coded c_ad^2 = 94b residuals 0 (or < 1e-25 at 40 random points)
+S5_limits_Eqs90_95 PASS w/(Z/2)->1, cad2/Z->1 (late); w, cad2 / Eq.95b -> sqrt(lambda_D)*(sqrt(lambda_D) + 1)/(sqrt(lambda_D) + lambda_D), 1 (early); rho/(I0/a^3): late 1, early (sqrt(lambda_D) + lambda_D)/lambda_D 1, 1, 1, 1, 1, 1 + lambda^-1/2
+S6_quadratic_limit PASS lim_(lambda->0) 8piG rho = I_0**2/(4*a**6*mu**2) + I_0/a**3 = I0/a^3 + I0^2/(4 mu^2 a^6) (Q6 step B)
+S7_BS_Eq71_equals_Q6_cs2 FAIL c_s^2(BS Eq.71) - c_s^2(Q6, j1 = 1) = -4*Kp*Qbar*a**2*k**2/(Kpp**2*Qbar**4*a**4 - 4*k**4) 0 for general K: BS's own perturbations contain the J'(0) = -1 hold
+S8_kernel_Upsilon_Xi_Eq66a FAIL (a) Upsilon = -4piG rho a^2 Delta/(k^2 + a^2 M^2), M^2 = Q^2K''/2: True; (b) s = a^2M^2/(k^2+a^2M^2): True, Q->1, K''=2mu^2 -> F3/BSK2 kernel: True; (c) Upsilon(Eq.62) = Xi(Q6): True; (d) Eq.66a = Q6 delta rho (j1 = 1): residual -4*k**2*(phi - pidot)*(w_q + 1)/(Kp*Qbar*a**2) all exact
+S9_BS24_bounds_reproduce PASS wtilde0_max 5.273e-16 (quoted 5.3e-16); mu_inv_max_kpc 0.2227 (quoted 0.22); wtilde0_at_100kpc 1.063e-10 (quoted 1.06e-10) each within 3 % (Eqs. 76-80)
+S10_BS25_equals_BS24 PASS Eq.4b: J(0)=Lambda, J'(0)=-1, a0 first at Y^3/2: True; 1+J_Y = sqrt(Y)/a0 (deep MOND): True; BS25 Eq.17 = BS24 Eqs.54/57 on Eq.53: True; Eq.16/47 K_Q = I0/a^3: True; BS25 Eq.6 = BS24 Eq.87 (same text) all exact
+S11_BS25_Eq11_equals_Q6 FAIL 2x Eq.11 (J_Y = -1, static) = Q6 8piG drho (j1 = 1): False; Eq.10a + Eq.11 at Xi = phi -> Eq.13 (any J_Y): True exact
+Q7_SOURCE COMPLETE: 8/11 checks PASS. (0.5 s)
