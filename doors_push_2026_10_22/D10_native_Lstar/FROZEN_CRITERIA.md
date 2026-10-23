@@ -92,3 +92,10 @@ It must break K2 and/or K4. Outputs `*_MUTATE.out`, `*_results_MUTATE.json`.
 Input classes are listed in the README ledger: RAW / FRAMEWORK-NATIVE / SURVEY-CALIBRATION / ΛCDM / STANDARD-MOND.
 κ = ½ FITTED. Footings never pooled. No dark-matter particle. Not "theory closed". Nothing here says the data favour the
 framework over ΛCDM.
+
+## AMENDMENT A1 (PRE-RESULT: written after solver unit tests, before any L★, χ² or likelihood number)
+
+- **K7's analytic constant was a slip.** For a Plummer sphere W = −(3π/32) GM²/a, so the one-dimensional (line-of-sight)
+  dispersion is σ² = −W/(3M) = **(π/32) GM/a**; (3π/64) GM/a is ⟨v²⟩/2. K7 is scored against π/32 with the same 1e-3
+  tolerance. The script also prints the frozen (3π/64) comparison, which fails by construction (ratio 2/3).
+- No other line changes.
