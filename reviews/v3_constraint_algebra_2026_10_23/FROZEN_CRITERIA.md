@@ -56,3 +56,25 @@ change of constraint rank.
 Not tested: vector/tensor sectors, k ⊥ x on the reduced sector (V2 covers arbitrary k directions, frozen coefficients
 only), the sign/health of the reduced scalar Hamiltonian (that is H4's question), matter fields beyond BS dust, the
 DBI K (Q7), and anything non-perturbative beyond the frozen-coefficient symbol.
+
+## AMENDMENT A1 (POST-RESULT, run 1 kept as `v3_dirac_RUN1.{py,out}` / `v3_dirac_results_RUN1.json`; no threshold changed)
+
+Run 1: **6/9 PASS**. V1 PASS on B1–B4 (rank 4, first-class rows {π_s, H_x}, det A = −k² on Minkowski, 1 scalar
+DOF/mode); V4 PASS (γ_L|ρ| ≤ 2.9e-12); V2 locus control PASS. Three FAILs, each diagnosed before any fix:
+
+1. **V2(i) form check False** — the identity checks passed (S Schur identity, det A = det B·S). Cause: Fourier
+   convention. With δD = +i k·p in the ket, the (p, N) entry of J†H_F J is g₀ − iκk, not §0's g₀ + iκk (§0's form is the
+   k → −k image). det A and S depend on k only through kkᵀ and |c|², so neither changes. Fix: compare against c̄; the run
+   reports both conventions' residuals.
+2. **V2(ii) max |S/bound − 1| = 0.20** (det A < 0 at all 476,280 points, but that pass is not trusted alone). Cause:
+   `np.linalg.inv` on B = N₀(M + ½L★²kkᵀ), condition number up to ~1e16 at kL★ = 1e8 — the worst rows are all kL★ = 1e8,
+   angle π/4, μ_K = 0. Fix: the exact closed form (matrix-determinant lemma + Sherman–Morrison + Lagrange identity,
+   M diagonal, m_i = 1/M_i, q = kᵀM⁻¹k):
+   `K S = −(μ_K)²/N₀³ − [κ²q + gᵀM⁻¹g + ½L★² Σ_{i<j} m_i m_j (g_i k_j − g_j k_i)²] / (N₀(1 + ½L★²q))`,
+   `det A = K⁴ N₀³ det M (1 + ½L★²q) · S`. It is verified against the sympy Schur form (residual 0) and against a
+   50-digit mpmath inverse at the 20 worst run-1 points (relative agreement ≤ 1e-30 required). The V2(ii) threshold
+   (1e-9) now compares the float64 closed form with the mpmath value.
+3. **V3 residual not simplified** (sympy left |a₀ − u|). Cause: missing domain assumption; W is defined only for
+   u < a₀. Fix: substitute a₀ = u + d, d > 0; the residuals must then be 0.
+
+MUTATE is run after the fixed run 2, with V5's frozen reading.
