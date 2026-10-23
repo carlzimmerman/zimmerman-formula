@@ -1,0 +1,57 @@
+================================================================================================================
+T1_efe_strength: EFE strength eps (eps x total host field in v3's AQUAL solve; 1 = v3, 0 = isolated)   *** MUTATE: eps x Newtonian y_e handed to every solver ***
+kappa = 1/2 FITTED; footings canonical 9.3603e-11 / alt 1.1312e-10, never pooled; diagnostic, not a theory
+================================================================================================================
+
+--- reproduction and solver checks ---
+   K1 canonical: eps 1 Delta +1.0247+-0.1396 (S1 +1.3307+-0.1474); eps 0 +0.9142+-0.1266 (S1 +0.9142+-0.1266)
+   K1 alt: eps 1 Delta +0.9924+-0.1445 (S1 +1.2990+-0.1474); eps 0 +0.8918+-0.1287 (S1 +0.8918+-0.1287)
+K1 FAIL 3.1e-01 dex <= 0.005  (SAT reproduces S1 at eps 1 (v3) and eps 0 (isolated native screening), L* floor, E-W)
+   K2 canonical eps 1: <E> +2.0782 (S1 +2.5806) z_sys +3.429 (S1 +4.277)
+   K2 canonical eps 0.5: <E> +1.5654 (S1 +2.1736) z_sys +2.625 (S1 +3.599)
+   K2 canonical eps 0: <E> +0.7485 (S1 +0.7485) z_sys +1.645 (S1 +1.645)
+   K2 alt eps 1: <E> +1.8619 (S1 +2.4812) z_sys +3.073 (S1 +4.111)
+   K2 alt eps 0.5: <E> +1.3323 (S1 +2.0428) z_sys +2.265 (S1 +3.381)
+   K2 alt eps 0: <E> +0.6579 (S1 +0.6579) z_sys +1.447 (S1 +1.447)
+K2 FAIL max normalised diff 355.24 <= 1 (|d<E>| <= 2e-3, |dz_sys| <= 0.01)  (COMA reproduces S1 at eps 1, 0.5 (field/2), 0 (isolated))
+   K3 canonical|noclu: chi2_all 160.857 (F2 427.988)
+   K3 canonical|zero: chi2_all 160.702 (F2 160.702)
+   K3 canonical|maxclu: chi2_all 160.961 (F2 799.902)
+   K3 canonical|scan1e-05: chi2_all 160.624 (F2 156.886)
+   K3 canonical|scan0.0001: chi2_all 160.623 (F2 201.943)
+   K3 alt|noclu: chi2_all 127.779 (F2 382.847)
+   K3 alt|zero: chi2_all 127.600 (F2 127.600)
+   K3 alt|maxclu: chi2_all 118.781 (F2 760.396)
+   K3 alt|scan1e-05: chi2_all 127.579 (F2 121.305)
+   K3 alt|scan0.0001: chi2_all 127.578 (F2 172.372)
+K3 FAIL max |dchi2| 641.614; y_e refs == F2 <= 1.0  (LENS reproduces F2 Track A (noclu, maxclu, y_e 0, scan 1e-5 / 1e-4))
+   K3b canonical: P2 scan nodes y_e 0, 1e-06, 3e-06, 1e-05, 3e-05, 0.0001, 0.0003, 0.001, 0.003, 0.01; GLS A_out(a) from P2's profile 0.126770+-0.261235 (P2 0.195461+-0.268592); outer bins 7; reference x_e catalogue 0.0081, bary 0.0378
+   K3b alt: P2 scan nodes y_e 0, 1e-06, 3e-06, 1e-05, 3e-05, 0.0001, 0.0003, 0.001, 0.003, 0.01; GLS A_out(a) from P2's profile 0.115219+-0.237812 (P2 0.177758+-0.244513); outer bins 7; reference x_e catalogue 0.0074, bary 0.0343
+K3b FAIL max normalised diff 6.87e+04 <= 1 (1e-12 scan/amplitudes; 1e-9 x_of_y; 1e-6 GLS)  (A1: P2's committed scan read consistently (scan node 0 = S3 (a); x_of_y = P2's solves; GLS from P2's profile))
+   K3c canonical (a): P2 estimator A_out 0.195461 (P2 0.195461); propagated sigma 0.2694 (P2 jackknife 0.2686)
+   K3c canonical (b): P2 estimator A_out 0.342023 (P2 0.342023); propagated sigma 0.3293 (P2 jackknife 0.3282)
+   K3c canonical (b_lo): P2 estimator A_out 0.269547 (P2 0.269547); propagated sigma 0.2999 (P2 jackknife 0.2989)
+   K3c alt (a): P2 estimator A_out 0.177758 (P2 0.177758); propagated sigma 0.2452 (P2 jackknife 0.2445)
+   K3c alt (b): P2 estimator A_out 0.311122 (P2 0.311122); propagated sigma 0.2998 (P2 jackknife 0.2989)
+   K3c alt (b_lo): P2 estimator A_out 0.245094 (P2 0.245094); propagated sigma 0.2730 (P2 jackknife 0.2721)
+K3c PASS max normalised diff 3.25e-01 <= 1 (A_out 1e-6; sigma 1 %)  (A2 post-hoc: P2's own diagonal-weighted amplitude reproduced from its committed profile (a, b, b_lo))
+K4 FAIL sigma tables 8.0e-01; L*_95(eps 1) 27.62/28.41 <= 1e-5; within 0.3 pc of 21.68/22.85  (GC: D10's committed sigma tables and floor reproduced at eps = 1)
+K5 PASS 3.0e-09 <= 2e-3  (eps -> 0 continuity: embedded x_e 1e-8 vs isolated solve)
+
+--- SS: Cassini / planets (C6, read only) ---
+   [canonical L* 24] Q2/bound max 3.57e-08 at E0-E3 (x_e 1.30-2.60); dlnQ2/dln x_e 0.85; eps 1.5 -> 5.03e-08; eps 0 -> 0 (isotropy)
+   [canonical L* 50] Q2/bound max 3.95e-09 at E0-E3 (x_e 1.30-2.60); dlnQ2/dln x_e 0.85; eps 1.5 -> 5.56e-09; eps 0 -> 0 (isotropy)
+   [canonical L* 90] Q2/bound max 6.77e-10 at E0-E3 (x_e 1.30-2.60); dlnQ2/dln x_e 0.85; eps 1.5 -> 9.54e-10; eps 0 -> 0 (isotropy)
+   [alt L* 24] Q2/bound max 3.04e-08 at E0-E3 (x_e 1.15-2.15); dlnQ2/dln x_e 0.84; eps 1.5 -> 4.27e-08; eps 0 -> 0 (isotropy)
+   [alt L* 50] Q2/bound max 3.36e-09 at E0-E3 (x_e 1.15-2.15); dlnQ2/dln x_e 0.84; eps 1.5 -> 4.72e-09; eps 0 -> 0 (isotropy)
+   [alt L* 90] Q2/bound max 5.76e-10 at E0-E3 (x_e 1.15-2.15); dlnQ2/dln x_e 0.84; eps 1.5 -> 8.09e-10; eps 0 -> 0 (isotropy)
+   planets: hedgehog GM/L*^2 is field-independent; worst ratio to bound at 24 pc 0.173 (C6 R2)
+K6 PASS 5.0e-08 <= 1e-3  (SS flat premise: screened Q2/bound at E0-E3 and the eps 1.5 extrapolation)
+
+--- WB: wide binaries ---
+K7 FAIL gamma_pm(1) 1.255/1.320 vs E2 1.167/1.199 within 0.06  (WB unscreened contrast anchored to E2's binary AQUAL value)
+   screened v3 (C6 R3, 24 pc): gamma_v - 1 = 8.12e-06..8.10e-06 over E0-E3 (set by L*, not the field): flat, no eps information
+K8 FAIL D10 solver 1.0e-10; F2 solver last change 1.1e-03 < 1e-8; < 1e-3 (A1)  (every production solve converged)
+K9 PASS satcoma 0.51, lens 0.49, gc 0.38, wb 0.24, assembly 0.09 GB < 1 GB each  (peak RSS per process)
+
+T1_EFE_STRENGTH COMPLETE: 4/11 checks PASS.  (MUTATE: check cells only)

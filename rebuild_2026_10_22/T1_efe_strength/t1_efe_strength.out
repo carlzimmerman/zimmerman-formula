@@ -1,0 +1,222 @@
+================================================================================================================
+T1_efe_strength: EFE strength eps (eps x total host field in v3's AQUAL solve; 1 = v3, 0 = isolated)
+kappa = 1/2 FITTED; footings canonical 9.3603e-11 / alt 1.1312e-10, never pooled; diagnostic, not a theory
+================================================================================================================
+
+--- reproduction and solver checks ---
+   K1 canonical: eps 1 Delta +1.3307+-0.1474 (S1 +1.3307+-0.1474); eps 0 +0.9142+-0.1266 (S1 +0.9142+-0.1266)
+   K1 alt: eps 1 Delta +1.2990+-0.1474 (S1 +1.2990+-0.1474); eps 0 +0.8918+-0.1287 (S1 +0.8918+-0.1287)
+K1 PASS 0.0e+00 dex <= 0.005  (SAT reproduces S1 at eps 1 (v3) and eps 0 (isolated native screening), L* floor, E-W)
+   K2 canonical eps 1: <E> +2.5806 (S1 +2.5806) z_sys +4.277 (S1 +4.277)
+   K2 canonical eps 0.5: <E> +2.1736 (S1 +2.1736) z_sys +3.599 (S1 +3.599)
+   K2 canonical eps 0: <E> +0.7485 (S1 +0.7485) z_sys +1.645 (S1 +1.645)
+   K2 alt eps 1: <E> +2.4812 (S1 +2.4812) z_sys +4.111 (S1 +4.111)
+   K2 alt eps 0.5: <E> +2.0428 (S1 +2.0428) z_sys +3.381 (S1 +3.381)
+   K2 alt eps 0: <E> +0.6579 (S1 +0.6579) z_sys +1.447 (S1 +1.447)
+K2 PASS max normalised diff 0.00 <= 1 (|d<E>| <= 2e-3, |dz_sys| <= 0.01)  (COMA reproduces S1 at eps 1, 0.5 (field/2), 0 (isolated))
+   K3 canonical|noclu: chi2_all 427.988 (F2 427.988)
+   K3 canonical|zero: chi2_all 160.702 (F2 160.702)
+   K3 canonical|maxclu: chi2_all 799.902 (F2 799.902)
+   K3 canonical|scan1e-05: chi2_all 156.886 (F2 156.886)
+   K3 canonical|scan0.0001: chi2_all 201.943 (F2 201.943)
+   K3 alt|noclu: chi2_all 382.847 (F2 382.847)
+   K3 alt|zero: chi2_all 127.600 (F2 127.600)
+   K3 alt|maxclu: chi2_all 760.396 (F2 760.396)
+   K3 alt|scan1e-05: chi2_all 121.305 (F2 121.305)
+   K3 alt|scan0.0001: chi2_all 172.372 (F2 172.372)
+K3 PASS max |dchi2| 0.000; y_e refs == F2 <= 1.0  (LENS reproduces F2 Track A (noclu, maxclu, y_e 0, scan 1e-5 / 1e-4))
+   K3b canonical: P2 scan nodes y_e 0, 1e-06, 3e-06, 1e-05, 3e-05, 0.0001, 0.0003, 0.001, 0.003, 0.01; GLS A_out(a) from P2's profile 0.126770+-0.261235 (P2 0.195461+-0.268592); outer bins 7; reference x_e catalogue 0.0081, bary 0.0378
+   K3b alt: P2 scan nodes y_e 0, 1e-06, 3e-06, 1e-05, 3e-05, 0.0001, 0.0003, 0.001, 0.003, 0.01; GLS A_out(a) from P2's profile 0.115219+-0.237812 (P2 0.177758+-0.244513); outer bins 7; reference x_e catalogue 0.0074, bary 0.0343
+K3b FAIL max normalised diff 6.87e+04 <= 1 (1e-12 scan/amplitudes; 1e-9 x_of_y; 1e-6 GLS)  (A1: P2's committed scan read consistently (scan node 0 = S3 (a); x_of_y = P2's solves; GLS from P2's profile))
+   K3c canonical (a): P2 estimator A_out 0.195461 (P2 0.195461); propagated sigma 0.2694 (P2 jackknife 0.2686)
+   K3c canonical (b): P2 estimator A_out 0.342023 (P2 0.342023); propagated sigma 0.3293 (P2 jackknife 0.3282)
+   K3c canonical (b_lo): P2 estimator A_out 0.269547 (P2 0.269547); propagated sigma 0.2999 (P2 jackknife 0.2989)
+   K3c alt (a): P2 estimator A_out 0.177758 (P2 0.177758); propagated sigma 0.2452 (P2 jackknife 0.2445)
+   K3c alt (b): P2 estimator A_out 0.311122 (P2 0.311122); propagated sigma 0.2998 (P2 jackknife 0.2989)
+   K3c alt (b_lo): P2 estimator A_out 0.245094 (P2 0.245094); propagated sigma 0.2730 (P2 jackknife 0.2721)
+K3c PASS max normalised diff 3.25e-01 <= 1 (A_out 1e-6; sigma 1 %)  (A2 post-hoc: P2's own diagonal-weighted amplitude reproduced from its committed profile (a, b, b_lo))
+K4 PASS sigma tables 1.3e-07; L*_95(eps 1) 21.69/22.85 <= 1e-5; within 0.3 pc of 21.68/22.85  (GC: D10's committed sigma tables and floor reproduced at eps = 1)
+K5 PASS 3.0e-09 <= 2e-3  (eps -> 0 continuity: embedded x_e 1e-8 vs isolated solve)
+
+--- SS: Cassini / planets (C6, read only) ---
+   [canonical L* 24] Q2/bound max 3.57e-08 at E0-E3 (x_e 1.30-2.60); dlnQ2/dln x_e 0.85; eps 1.5 -> 5.03e-08; eps 0 -> 0 (isotropy)
+   [canonical L* 50] Q2/bound max 3.95e-09 at E0-E3 (x_e 1.30-2.60); dlnQ2/dln x_e 0.85; eps 1.5 -> 5.56e-09; eps 0 -> 0 (isotropy)
+   [canonical L* 90] Q2/bound max 6.77e-10 at E0-E3 (x_e 1.30-2.60); dlnQ2/dln x_e 0.85; eps 1.5 -> 9.54e-10; eps 0 -> 0 (isotropy)
+   [alt L* 24] Q2/bound max 3.04e-08 at E0-E3 (x_e 1.15-2.15); dlnQ2/dln x_e 0.84; eps 1.5 -> 4.27e-08; eps 0 -> 0 (isotropy)
+   [alt L* 50] Q2/bound max 3.36e-09 at E0-E3 (x_e 1.15-2.15); dlnQ2/dln x_e 0.84; eps 1.5 -> 4.72e-09; eps 0 -> 0 (isotropy)
+   [alt L* 90] Q2/bound max 5.76e-10 at E0-E3 (x_e 1.15-2.15); dlnQ2/dln x_e 0.84; eps 1.5 -> 8.09e-10; eps 0 -> 0 (isotropy)
+   planets: hedgehog GM/L*^2 is field-independent; worst ratio to bound at 24 pc 0.173 (C6 R2)
+K6 PASS 5.0e-08 <= 1e-3  (SS flat premise: screened Q2/bound at E0-E3 and the eps 1.5 extrapolation)
+
+--- WB: wide binaries ---
+K7 PASS gamma_pm(1) 1.173/1.207 vs E2 1.167/1.199 within 0.06  (WB unscreened contrast anchored to E2's binary AQUAL value)
+   screened v3 (C6 R3, 24 pc): gamma_v - 1 = 8.12e-06..8.10e-06 over E0-E3 (set by L*, not the field): flat, no eps information
+   unscreened law-first [canonical] gamma_pm(eps): 0:1.532, 0.05:1.530, 0.1:1.524, 0.2:1.501, 0.35:1.419, 0.5:1.321, 0.75:1.226, 1:1.173, 1.25:1.140, 1.5:1.117 | vs CFG825 R 0.973+-0.178: z(eps 0) +3.15, z(eps 1) +1.13, z(eps 1.5) +0.81
+   unscreened law-first [alt] gamma_pm(eps): 0:1.586, 0.05:1.585, 0.1:1.580, 0.2:1.558, 0.35:1.484, 0.5:1.377, 0.75:1.269, 1:1.207, 1.25:1.168, 1.5:1.141 | vs CFG825 R 0.973+-0.178: z(eps 0) +3.45, z(eps 1) +1.32, z(eps 1.5) +0.95
+K8 PASS D10 solver 1.0e-10; F2 solver last change 3.1e-04 < 1e-8; < 1e-3 (A1)  (every production solve converged)
+K9 PASS satcoma 0.51, lens 0.44, gc 0.41, wb 0.36, assembly 0.09 GB < 1 GB each  (peak RSS per process)
+
+--- per-dataset eps constraints (fine grid 0..1.5, step 0.001; 95 % = dchi2 <= 3.84) ---
+   [canonical] SAT       eps_hat 0.000  95% [0.000, 0.228]               dchi2(1)   29.41  dchi2(0)    0.00  chi2_min   52.15 p 5.1e-13  FAILED-AT-EVERY-eps (scaled S2 52.15)   [satellites (S1 tile 26), Delta/sd]
+   [canonical] SAT-TRK   eps_hat 0.000  95% [0.000, 0.069]               dchi2(1)   18.09  dchi2(0)    0.00  chi2_min    8.75 p 3.1e-03  FAILED-AT-EVERY-eps (scaled S2 8.75)   [satellites tracking slope b/sd]
+   [canonical] COMA      eps_hat 0.000  95% [0.000, 0.212]               dchi2(1)   15.59  dchi2(0)    0.00  chi2_min    2.71 p 1.0e-01   [Coma UDGs (S1 tile 29), z_sys at dmean]
+   [canonical] LENS-F2   eps_hat 0.159  95% [0.107, 0.203]               dchi2(1)  273.71  dchi2(0)    6.90  chi2_min  153.80 p 2.2e-10  FAILED-AT-EVERY-eps (scaled S2 2.61)   [KiDS photo-z isolated lensing (F2 Track A), x_e = eps x 0.0283 (noclu)]
+   [canonical] LENS-P2   eps_hat 1.500  95% [0.674, 1.500]               dchi2(1)    2.00  dchi2(0)    6.18  chi2_min    2.79 p 9.5e-02   [GAMA spec-isolated lensing (P2 S3 A_out), x_e = eps x 0.0081 (catalogue median)]
+   [canonical] LENS-P2-bary eps_hat 0.850  95% [0.251, 1.500]               dchi2(1)    0.06  dchi2(0)    8.95  chi2_min    0.02 p 8.9e-01   [P2 with the 'bary' reference field, x_e = eps x 0.0378 (reported)]
+   [canonical] GC        eps_hat 1.500  95% [0.000, 1.500]               dchi2(1)    0.59  dchi2(0)    3.37  chi2_min    3.71   [outer globulars (D10) at the L* floor, -2 lnL]
+   [canonical] REC-Chae  eps_hat 0.760  95% [0.447, 1.073]               dchi2(1)    2.25  dchi2(0)   22.56  chi2_min    0.00 p 1.0e+00   [record: Chae amplitude A read as eps (CFG179; standard-MOND machinery)]
+   [alt      ] SAT       eps_hat 0.050  95% [0.000, 0.242]               dchi2(1)   30.25  dchi2(0)    0.63  chi2_min   47.39 p 5.8e-12  FAILED-AT-EVERY-eps (scaled S2 47.39)   [satellites (S1 tile 26), Delta/sd]
+   [alt      ] SAT-TRK   eps_hat 0.000  95% [0.000, 0.062]               dchi2(1)   20.57  dchi2(0)    0.00  chi2_min   10.97 p 9.3e-04  FAILED-AT-EVERY-eps (scaled S2 10.97)   [satellites tracking slope b/sd]
+   [alt      ] COMA      eps_hat 0.000  95% [0.000, 0.237]               dchi2(1)   14.80  dchi2(0)    0.00  chi2_min    2.10 p 1.5e-01   [Coma UDGs (S1 tile 29), z_sys at dmean]
+   [alt      ] LENS-F2   eps_hat 0.175  95% [0.133, 0.217]               dchi2(1)  265.50  dchi2(0)   10.55  chi2_min  117.05 p 1.0e-05  FAILED-AT-EVERY-eps (scaled S2 1.98)   [KiDS photo-z isolated lensing (F2 Track A), x_e = eps x 0.0258 (noclu)]
+   [alt      ] LENS-P2   eps_hat 1.500  95% [0.812, 1.500]               dchi2(1)    2.65  dchi2(0)    7.64  chi2_min    3.67 p 5.5e-02   [GAMA spec-isolated lensing (P2 S3 A_out), x_e = eps x 0.0074 (catalogue median)]
+   [alt      ] LENS-P2-bary eps_hat 0.936  95% [0.308, 1.500]               dchi2(1)    0.02  dchi2(0)   11.29  chi2_min    0.02 p 8.8e-01   [P2 with the 'bary' reference field, x_e = eps x 0.0343 (reported)]
+   [alt      ] GC        eps_hat 1.500  95% [0.000, 1.500]               dchi2(1)    0.54  dchi2(0)    3.13  chi2_min    3.75   [outer globulars (D10) at the L* floor, -2 lnL]
+   [alt      ] REC-Chae  eps_hat 0.880  95% [0.587, 1.173]               dchi2(1)    0.64  dchi2(0)   34.42  chi2_min    0.00 p 1.0e+00   [record: Chae amplitude A read as eps (CFG179; standard-MOND machinery)]
+
+--- dataset detail ---
+   SAT [canonical] primary_EW      Delta(eps): 0:+0.914+-0.127, 0.05:+0.950+-0.130, 0.1:+0.991+-0.135, 0.2:+1.061+-0.143, 0.35:+1.139+-0.148, 0.5:+1.199+-0.149, 0.75:+1.273+-0.148, 1:+1.331+-0.147, 1.5:+1.416+-0.145
+   SAT [canonical] primary_EV      Delta(eps): 0:+0.876+-0.120, 0.05:+0.939+-0.129, 0.1:+0.999+-0.137, 0.2:+1.093+-0.146, 0.35:+1.192+-0.149, 0.5:+1.265+-0.150, 0.75:+1.354+-0.149, 1:+1.418+-0.147, 1.5:+1.515+-0.145
+   SAT [canonical] W_EW            Delta(eps): 0:+0.612+-0.122, 0.05:+0.634+-0.124, 0.1:+0.663+-0.128, 0.2:+0.717+-0.136, 0.35:+0.782+-0.143, 0.5:+0.838+-0.147, 0.75:+0.909+-0.149, 1:+0.964+-0.150, 1.5:+1.048+-0.150
+   SAT [canonical] primary_EW_L90  Delta(eps): 0:+1.596+-0.139, 0.05:+1.616+-0.140, 0.1:+1.633+-0.140, 0.2:+1.654+-0.138, 0.35:+1.675+-0.138, 0.5:+1.691+-0.137, 0.75:+1.711+-0.138, 1:+1.723+-0.137, 1.5:+1.745+-0.136
+   SAT [canonical] tracking slope d r / d log x_e: 0:+0.761+-0.257, 0.05:+0.866+-0.254, 0.1:+0.938+-0.248, 0.2:+1.013+-0.238, 0.35:+1.066+-0.227, 0.5:+1.090+-0.222, 0.75:+1.105+-0.216, 1:+1.104+-0.213, 1.5:+1.083+-0.210  (n 45)
+   SAT [canonical] host-field scale: x_e(E_mid)/x_e(E_lo) median 1.237, /x_e(E_hi) 0.683; median x_e(E_mid) 0.112
+   COMA [canonical] dmean <E> / z_sys: 0:+0.75/+1.65, 0.02:+0.76/+1.66, 0.05:+0.80/+1.70, 0.1:+1.00/+1.86, 0.15:+1.27/+2.18, 0.2:+1.49/+2.50, 0.3:+1.81/+2.99, 0.5:+2.17/+3.60, 0.75:+2.43/+4.02, 1:+2.58/+4.28, 1.25:+2.69/+4.45, 1.5:+2.76/+4.58
+   COMA [canonical] dproj <E> / z_sys: 0:+0.75/+1.65, 0.1:+1.36/+2.33, 0.2:+1.88/+3.13, 0.5:+2.48/+4.12, 1:+2.80/+4.65
+   COMA [canonical] tracking dE/dlog x_e: 0:+1.64+-2.88, 0.02:+1.67+-2.88, 0.05:+1.83+-2.90, 0.1:+2.53+-2.98, 0.15:+3.11+-2.94, 0.2:+3.28+-2.90, 0.3:+3.24+-2.88, 0.5:+3.04+-2.88, 0.75:+2.82+-2.87, 1:+2.66+-2.87, 1.25:+2.52+-2.87, 1.5:+2.42+-2.87
+   LENS [canonical] x_e: chi2_all / chi2_in / A_O1 / A_O2 (central) | chi2_all envelope:
+        x_e  0.0000:   160.7 /   71.9 / 1.389 / 1.039 |   142.4
+        x_e  0.0010:   161.0 /   71.9 / 1.388 / 1.036 |   142.7
+        x_e  0.0020:   160.1 /   71.9 / 1.388 / 1.040 |   142.7
+        x_e  0.0030:   157.7 /   71.9 / 1.388 / 1.062 |   140.6
+        x_e  0.0045:   153.8 /   71.9 / 1.389 / 1.141 |   133.4
+        x_e  0.0060:   158.3 /   71.9 / 1.394 / 1.263 |   123.7
+        x_e  0.0080:   175.6 /   71.8 / 1.405 / 1.480 |   118.8
+        x_e  0.0100:   201.3 /   71.7 / 1.425 / 1.747 |   123.2
+        x_e  0.0125:   236.1 /   71.4 / 1.471 / 2.103 |   139.5
+        x_e  0.0150:   269.7 /   71.0 / 1.532 / 2.469 |   160.5
+        x_e  0.0175:   302.2 /   70.3 / 1.603 / 2.838 |   182.6
+        x_e  0.0200:   333.6 /   69.7 / 1.681 / 3.210 |   204.4
+        x_e  0.0250:   392.1 /   69.6 / 1.865 / 3.954 |   248.0
+        x_e  0.0300:   445.0 /   72.4 / 2.088 / 4.696 |   290.3
+        x_e  0.0350:   493.7 /   78.6 / 2.341 / 5.434 |   330.0
+        x_e  0.0425:   557.8 /   91.3 / 2.734 / 6.528 |   385.6
+        x_e  0.0500:   612.8 /  106.1 / 3.132 / 7.607 |   436.5
+        x_e  0.0700:   734.5 /  154.9 / 4.191 / 10.403 |   545.8
+        x_e  0.0850:   806.8 /  191.9 / 4.969 / 12.422 |   613.8
+        x_e  0.1000:   866.7 /  225.9 / 5.728 / 14.378 |   672.1
+        x_e  0.1250:   946.7 /  275.5 / 6.948 / 17.503 |   751.8
+   GC [canonical] -2lnL at floor / 24 / 50 / 90 pc / AQUAL / Newton, L*_95 (eps):
+        eps 0.00:   7.07 /   5.98 /   1.24 /   0.48 /  29.01 /   0.50   L*_95 28.42 pc (interpolated); per cluster at floor NGC 2419 -0.56, Pal 4 3.90, Pal 14 3.74
+        eps 0.25:   6.15 /   5.18 /   1.11 /   0.48 /  27.93 /   0.50   L*_95 26.51 pc (interpolated); per cluster at floor NGC 2419 -0.56, Pal 4 3.78, Pal 14 2.94
+        eps 0.50:   5.29 /   4.48 /   1.03 /   0.48 /  24.95 /   0.50   L*_95 24.63 pc (interpolated); per cluster at floor NGC 2419 -0.57, Pal 4 3.55, Pal 14 2.31
+        eps 0.75:   4.71 /   4.02 /   0.99 /   0.48 /  21.98 /   0.50   L*_95 23.02 pc (interpolated); per cluster at floor NGC 2419 -0.57, Pal 4 3.35, Pal 14 1.93
+        eps 1.00:   4.29 /   3.68 /   0.95 /   0.48 /  19.79 /   0.50   L*_95 21.69 pc (interpolated); per cluster at floor NGC 2419 -0.57, Pal 4 3.19, Pal 14 1.67
+        eps 1.25:   3.97 /   3.41 /   0.92 /   0.48 /  18.09 /   0.50   L*_95 20.64 pc (interpolated); per cluster at floor NGC 2419 -0.58, Pal 4 3.06, Pal 14 1.49
+        eps 1.50:   3.71 /   3.20 /   0.90 /   0.48 /  16.61 /   0.50   L*_95 19.64 pc (interpolated); per cluster at floor NGC 2419 -0.59, Pal 4 2.94, Pal 14 1.35
+   GC [canonical] Pal 3 (reported): eps 0: floor 0.32 AQUAL 0.30 Newton 1.46, eps 1: floor 0.59 AQUAL -0.04 Newton 1.46
+   SAT [alt] primary_EW      Delta(eps): 0:+0.892+-0.129, 0.05:+0.927+-0.135, 0.1:+0.969+-0.140, 0.2:+1.037+-0.147, 0.35:+1.112+-0.150, 0.5:+1.169+-0.150, 0.75:+1.243+-0.149, 1:+1.299+-0.147, 1.5:+1.383+-0.145
+   SAT [alt] primary_EV      Delta(eps): 0:+0.847+-0.122, 0.05:+0.912+-0.132, 0.1:+0.971+-0.140, 0.2:+1.062+-0.148, 0.35:+1.160+-0.150, 0.5:+1.231+-0.151, 0.75:+1.318+-0.149, 1:+1.383+-0.148, 1.5:+1.477+-0.145
+   SAT [alt] W_EW            Delta(eps): 0:+0.588+-0.125, 0.05:+0.611+-0.128, 0.1:+0.640+-0.133, 0.2:+0.691+-0.139, 0.35:+0.755+-0.144, 0.5:+0.806+-0.147, 0.75:+0.876+-0.149, 1:+0.928+-0.150, 1.5:+1.009+-0.149
+   SAT [alt] primary_EW_L90  Delta(eps): 0:+1.566+-0.141, 0.05:+1.584+-0.143, 0.1:+1.600+-0.142, 0.2:+1.621+-0.141, 0.35:+1.642+-0.140, 0.5:+1.659+-0.139, 0.75:+1.680+-0.138, 1:+1.696+-0.137, 1.5:+1.716+-0.136
+   SAT [alt] tracking slope d r / d log x_e: 0:+0.838+-0.253, 0.05:+0.938+-0.249, 0.1:+1.003+-0.243, 0.2:+1.074+-0.233, 0.35:+1.129+-0.223, 0.5:+1.157+-0.218, 0.75:+1.177+-0.213, 1:+1.180+-0.210, 1.5:+1.165+-0.207  (n 46)
+   SAT [alt] host-field scale: x_e(E_mid)/x_e(E_lo) median 1.235, /x_e(E_hi) 0.708; median x_e(E_mid) 0.100
+   COMA [alt] dmean <E> / z_sys: 0:+0.66/+1.45, 0.02:+0.67/+1.46, 0.05:+0.70/+1.50, 0.1:+0.87/+1.65, 0.15:+1.11/+1.94, 0.2:+1.33/+2.25, 0.3:+1.66/+2.75, 0.5:+2.04/+3.38, 0.75:+2.31/+3.83, 1:+2.48/+4.11, 1.25:+2.60/+4.31, 1.5:+2.68/+4.45
+   COMA [alt] dproj <E> / z_sys: 0:+0.66/+1.45, 0.1:+1.20/+2.09, 0.2:+1.74/+2.90, 0.5:+2.37/+3.94, 1:+2.72/+4.52
+   COMA [alt] tracking dE/dlog x_e: 0:+1.65+-2.88, 0.02:+1.67+-2.88, 0.05:+1.80+-2.89, 0.1:+2.40+-2.97, 0.15:+3.03+-2.96, 0.2:+3.28+-2.91, 0.3:+3.30+-2.89, 0.5:+3.13+-2.88, 0.75:+2.93+-2.87, 1:+2.77+-2.87, 1.25:+2.64+-2.87, 1.5:+2.53+-2.87
+   LENS [alt] x_e: chi2_all / chi2_in / A_O1 / A_O2 (central) | chi2_all envelope:
+        x_e  0.0000:   127.6 /   58.9 / 1.264 / 0.945 |   199.5
+        x_e  0.0010:   128.2 /   58.9 / 1.265 / 0.942 |   200.0
+        x_e  0.0020:   126.5 /   58.9 / 1.264 / 0.949 |   199.7
+        x_e  0.0030:   122.4 /   58.9 / 1.264 / 0.976 |   196.2
+        x_e  0.0045:   117.0 /   58.9 / 1.266 / 1.069 |   184.0
+        x_e  0.0060:   122.3 /   58.9 / 1.272 / 1.204 |   170.0
+        x_e  0.0080:   143.1 /   58.9 / 1.285 / 1.441 |   161.9
+        x_e  0.0100:   171.7 /   58.7 / 1.312 / 1.719 |   166.1
+        x_e  0.0125:   208.7 /   58.2 / 1.366 / 2.081 |   182.1
+        x_e  0.0150:   244.3 /   57.4 / 1.434 / 2.450 |   202.2
+        x_e  0.0175:   279.0 /   56.4 / 1.509 / 2.823 |   222.9
+        x_e  0.0200:   312.5 /   55.6 / 1.595 / 3.196 |   243.9
+        x_e  0.0250:   374.1 /   56.2 / 1.798 / 3.944 |   287.0
+        x_e  0.0300:   430.3 /   60.7 / 2.042 / 4.688 |   328.5
+        x_e  0.0350:   481.3 /   68.3 / 2.303 / 5.427 |   367.7
+        x_e  0.0425:   547.0 /   81.9 / 2.704 / 6.523 |   423.2
+        x_e  0.0500:   604.6 /   98.8 / 3.107 / 7.603 |   472.3
+        x_e  0.0700:   731.0 /  151.7 / 4.174 / 10.401 |   579.0
+        x_e  0.0850:   804.7 /  189.9 / 4.956 / 12.421 |   645.6
+        x_e  0.1000:   865.0 /  224.4 / 5.718 / 14.377 |   701.9
+        x_e  0.1250:   946.5 /  275.4 / 6.941 / 17.502 |   777.6
+   GC [alt] -2lnL at floor / 24 / 50 / 90 pc / AQUAL / Newton, L*_95 (eps):
+        eps 0.00:   6.88 /   6.34 /   1.28 /   0.49 /  30.94 /   0.50   L*_95 29.25 pc (interpolated); per cluster at floor NGC 2419 -0.41, Pal 4 3.72, Pal 14 3.57
+        eps 0.25:   5.98 /   5.50 /   1.15 /   0.48 /  30.05 /   0.50   L*_95 27.20 pc (interpolated); per cluster at floor NGC 2419 -0.41, Pal 4 3.60, Pal 14 2.79
+        eps 0.50:   5.20 /   4.80 /   1.07 /   0.48 /  27.02 /   0.50   L*_95 25.53 pc (interpolated); per cluster at floor NGC 2419 -0.41, Pal 4 3.39, Pal 14 2.22
+        eps 0.75:   4.67 /   4.32 /   1.02 /   0.48 /  23.88 /   0.50   L*_95 24.11 pc (interpolated); per cluster at floor NGC 2419 -0.42, Pal 4 3.21, Pal 14 1.88
+        eps 1.00:   4.29 /   3.98 /   0.98 /   0.48 /  21.63 /   0.50   L*_95 22.85 pc (interpolated); per cluster at floor NGC 2419 -0.42, Pal 4 3.07, Pal 14 1.65
+        eps 1.25:   3.99 /   3.71 /   0.96 /   0.48 /  19.91 /   0.50   L*_95 21.78 pc (interpolated); per cluster at floor NGC 2419 -0.43, Pal 4 2.95, Pal 14 1.48
+        eps 1.50:   3.75 /   3.49 /   0.93 /   0.48 /  18.42 /   0.50   L*_95 20.92 pc (interpolated); per cluster at floor NGC 2419 -0.44, Pal 4 2.85, Pal 14 1.35
+   GC [alt] Pal 3 (reported): eps 0: floor 0.37 AQUAL 0.66 Newton 1.46, eps 1: floor 0.63 AQUAL 0.21 Newton 1.46
+   LENS [canonical] absolute bound: x_e,95 0.0058 (scaled 0.0066); envelope 0.0097 (scaled 0.0105) -> eps_95 0.204 (scaled 0.234) of noclu x_e 0.0283; 0.069 (0.079) of maxclu x_e 0.0834
+   LENS [alt] absolute bound: x_e,95 0.0056 (scaled 0.0062); envelope 0.0098 (scaled 0.0110) -> eps_95 0.217 (scaled 0.242) of noclu x_e 0.0258; 0.074 (0.082) of maxclu x_e 0.0756
+
+--- one eps for all: combinations (Delta chi2 summed; FAILED-AT-EVERY-eps curves scaled by S2 = chi2_min/nu) ---
+   [canonical] V (primary)          eps_hat 0.020 95% [0.000, 0.263]               dchi2(1)    9.25 dchi2(0)    0.06 chi2_PG   9.49/3 p 2.3e-02 -> DATA PREFER WEAK EFE (eps 0.02, 95% [0.000, 0.263]) | no-overlap: COMA vs LENS-P2 | removing COMA lowers chi2_PG most (0.83)
+   [canonical] C1 V unscaled        eps_hat 0.000 95% [0.000, 0.157]               dchi2(1)   38.03 dchi2(0)    0.00 chi2_PG   9.55/3 p 2.3e-02 -> DATA PREFER WEAK EFE (eps 0.00, 95% [0.000, 0.157]) | no-overlap: SAT vs LENS-P2, COMA vs LENS-P2 | removing LENS-P2 lowers chi2_PG most (3.37)
+   [canonical] C2 V - GC            eps_hat 0.000 95% [0.000, 0.226]               dchi2(1)   11.97 dchi2(0)    0.00 chi2_PG   6.18/2 p 4.5e-02 -> DATA PREFER WEAK EFE (eps 0.00, 95% [0.000, 0.226]) | no-overlap: COMA vs LENS-P2 | removing LENS-P2 lowers chi2_PG most (0.00)
+   [canonical] C3 V - SAT           eps_hat 0.020 95% [0.000, 0.267]               dchi2(1)    8.69 dchi2(0)    0.07 chi2_PG   9.48/2 p 8.7e-03 -> INCONSISTENT | no-overlap: COMA vs LENS-P2 | removing COMA lowers chi2_PG most (0.00)
+   [canonical] C4 V - LENS-P2       eps_hat 0.020 95% [0.000, 0.242]               dchi2(1)   13.40 dchi2(0)    0.03 chi2_PG   3.34/2 p 1.9e-01 -> DATA PREFER WEAK EFE (eps 0.02, 95% [0.000, 0.242]) | removing GC lowers chi2_PG most (0.00)
+   [canonical] C5 SAT -> SAT-TRK    eps_hat 0.000 95% [0.000, 0.215]               dchi2(1)   10.69 dchi2(0)    0.00 chi2_PG   9.55/3 p 2.3e-02 -> DATA PREFER WEAK EFE (eps 0.00, 95% [0.000, 0.215]) | no-overlap: COMA vs LENS-P2 | removing COMA lowers chi2_PG most (2.04)
+   [canonical] C6 V + REC-Chae      eps_hat 0.685 95% [0.323, 1.046]               dchi2(1)    2.89 dchi2(0)   14.01 chi2_PG  18.10/4 p 1.2e-03 -> INCONSISTENT | no-overlap: COMA vs LENS-P2, COMA vs REC-Chae | removing COMA lowers chi2_PG most (4.47)
+   [canonical] C7 LENS-P2 -> LENS-F2 (frozen primary) eps_hat 0.158 95% [0.000, 0.218]               dchi2(1)  116.63 dchi2(0)    0.90 chi2_PG   5.11/3 p 1.6e-01 -> DATA PREFER WEAK EFE (eps 0.16, 95% [0.000, 0.218]) | removing GC lowers chi2_PG most (2.33)
+   [canonical] C8 SAT + COMA + LENS-P2 eps_hat 0.000 95% [0.000, 0.226]               dchi2(1)   11.97 dchi2(0)    0.00 chi2_PG   6.18/2 p 4.5e-02 -> DATA PREFER WEAK EFE (eps 0.00, 95% [0.000, 0.226]) | no-overlap: COMA vs LENS-P2 | removing LENS-P2 lowers chi2_PG most (0.00)
+   [canonical] C9 COMA + LENS-P2    eps_hat 0.000 95% [0.000, 0.229]               dchi2(1)   11.41 dchi2(0)    0.00 chi2_PG   6.18/1 p 1.3e-02 -> DATA PREFER WEAK EFE (eps 0.00, 95% [0.000, 0.229]) | no-overlap: COMA vs LENS-P2
+   [canonical] C10 SAT + LENS-P2    eps_hat 1.500 95% [0.565, 1.500]               dchi2(1)    1.73 dchi2(0)    5.35 chi2_PG   0.83/1 p 3.6e-01 -> EFE CONSISTENT WITH v3
+   [canonical] C9b COMA + LENS-P2 (bary ref) eps_hat 0.100 95% [0.000, 0.606]               dchi2(1)    7.22 dchi2(0)    0.53 chi2_PG   8.42/1 p 3.7e-03 -> INCONSISTENT | no-overlap: COMA vs LENS-P2-bary
+   [canonical] C10b SAT + LENS-P2 (bary ref) eps_hat 0.850 95% [0.236, 1.500]               dchi2(1)    0.15 dchi2(0)    8.48 chi2_PG   0.47/1 p 4.9e-01 -> EFE CONSISTENT WITH v3
+   [canonical] Vb V with LENS-P2 (bary ref) eps_hat 0.265 95% [0.000, 0.737]               dchi2(1)    5.60 dchi2(0)    1.12 chi2_PG  11.20/3 p 1.1e-02 -> NOT DECIDED | no-overlap: COMA vs LENS-P2-bary | removing COMA lowers chi2_PG most (1.09)
+   [alt      ] V (primary)          eps_hat 0.050 95% [0.000, 0.299]               dchi2(1)    7.96 dchi2(0)    0.11 chi2_PG  10.67/3 p 1.4e-02 -> NOT DECIDED | no-overlap: COMA vs LENS-P2 | removing COMA lowers chi2_PG most (0.93)
+   [alt      ] C1 V unscaled        eps_hat 0.050 95% [0.000, 0.191]               dchi2(1)   37.57 dchi2(0)    0.73 chi2_PG  10.67/3 p 1.4e-02 -> DATA PREFER WEAK EFE (eps 0.05, 95% [0.000, 0.191]) | no-overlap: SAT vs LENS-P2, COMA vs LENS-P2 | removing LENS-P2 lowers chi2_PG most (3.11)
+   [alt      ] C2 V - GC            eps_hat 0.020 95% [0.000, 0.258]               dchi2(1)   10.45 dchi2(0)    0.01 chi2_PG   7.64/2 p 2.2e-02 -> DATA PREFER WEAK EFE (eps 0.02, 95% [0.000, 0.258]) | no-overlap: COMA vs LENS-P2 | removing LENS-P2 lowers chi2_PG most (0.01)
+   [alt      ] C3 V - SAT           eps_hat 0.050 95% [0.000, 0.310]               dchi2(1)    7.32 dchi2(0)    0.10 chi2_PG  10.67/2 p 4.8e-03 -> INCONSISTENT | no-overlap: COMA vs LENS-P2 | removing COMA lowers chi2_PG most (0.00)
+   [alt      ] C4 V - LENS-P2       eps_hat 0.020 95% [0.000, 0.269]               dchi2(1)   12.89 dchi2(0)    0.05 chi2_PG   3.09/2 p 2.1e-01 -> DATA PREFER WEAK EFE (eps 0.02, 95% [0.000, 0.269]) | removing GC lowers chi2_PG most (0.01)
+   [alt      ] C5 SAT -> SAT-TRK    eps_hat 0.000 95% [0.000, 0.255]               dchi2(1)    9.10 dchi2(0)    0.00 chi2_PG  10.77/3 p 1.3e-02 -> DATA PREFER WEAK EFE (eps 0.00, 95% [0.000, 0.255]) | no-overlap: COMA vs LENS-P2 | removing COMA lowers chi2_PG most (1.88)
+   [alt      ] C6 V + REC-Chae      eps_hat 0.861 95% [0.542, 1.167]               dchi2(1)    0.89 dchi2(0)   26.82 chi2_PG  18.38/4 p 1.0e-03 -> INCONSISTENT | no-overlap: COMA vs LENS-P2, COMA vs REC-Chae | removing COMA lowers chi2_PG most (4.40)
+   [alt      ] C7 LENS-P2 -> LENS-F2 (frozen primary) eps_hat 0.174 95% [0.000, 0.034] U [0.041, 0.231] dchi2(1)  144.98 dchi2(0)    3.63 chi2_PG   4.83/3 p 1.8e-01 -> DATA PREFER WEAK EFE (eps 0.17, 95% [0.000, 0.034] U [0.041, 0.231]) | removing GC lowers chi2_PG most (2.33)
+   [alt      ] C8 SAT + COMA + LENS-P2 eps_hat 0.020 95% [0.000, 0.258]               dchi2(1)   10.45 dchi2(0)    0.01 chi2_PG   7.64/2 p 2.2e-02 -> DATA PREFER WEAK EFE (eps 0.02, 95% [0.000, 0.258]) | no-overlap: COMA vs LENS-P2 | removing LENS-P2 lowers chi2_PG most (0.01)
+   [alt      ] C9 COMA + LENS-P2    eps_hat 0.020 95% [0.000, 0.262]               dchi2(1)    9.82 dchi2(0)    0.01 chi2_PG   7.63/1 p 5.7e-03 -> INCONSISTENT | no-overlap: COMA vs LENS-P2
+   [alt      ] C10 SAT + LENS-P2    eps_hat 1.500 95% [0.737, 1.500]               dchi2(1)    2.36 dchi2(0)    6.72 chi2_PG   0.93/1 p 3.3e-01 -> EFE CONSISTENT WITH v3
+   [alt      ] C9b COMA + LENS-P2 (bary ref) eps_hat 0.292 95% [0.000, 0.751]               dchi2(1)    5.52 dchi2(0)    1.98 chi2_PG   9.31/1 p 2.3e-03 -> INCONSISTENT | no-overlap: COMA vs LENS-P2-bary
+   [alt      ] C10b SAT + LENS-P2 (bary ref) eps_hat 0.935 95% [0.283, 1.500]               dchi2(1)    0.07 dchi2(0)   10.71 chi2_PG   0.59/1 p 4.4e-01 -> EFE CONSISTENT WITH v3
+   [alt      ] Vb V with LENS-P2 (bary ref) eps_hat 0.292 95% [0.000, 0.919]               dchi2(1)    4.48 dchi2(0)    2.91 chi2_PG  11.52/3 p 9.2e-03 -> INCONSISTENT | no-overlap: COMA vs LENS-P2-bary | removing COMA lowers chi2_PG most (1.13)
+
+--- A1: outer lensing, F2 (photo-z isolated) vs P2 (spectroscopic, hole-subtracted), absolute x_e ---
+   [canonical] P2: x_hat 0.0321, 95% x_e [0.0095, 0.1051] (= eps [1.17, 12.92] of the catalogue field, [0.251, 2.779] of the 'bary' field); zero field at dchi2 8.95
+   [canonical] F2: x_hat 0.0045, 95% x_e (S2-scaled 2.61) [0.0000, 0.0066]; C11 F2 + P2 on one x_e axis: chi2_PG 7.22/1, p 7.2e-03 (joint x_hat 0.0045)
+   [canonical] P2 7-point outer chi2 (a) 18.40, (b) 12.22, (b_lo) 14.80; A_out (b) 0.342+-0.328, (b_lo) 0.270+-0.299
+   [canonical] P2 scan: y 0 (x 0.0000): A_out 0.20+-0.27, y 1e-06 (x 0.0010): A_out 0.20+-0.27, y 3e-06 (x 0.0017): A_out 0.20+-0.27, y 1e-05 (x 0.0032): A_out 0.21+-0.28, y 3e-05 (x 0.0055): A_out 0.25+-0.29, y 0.0001 (x 0.0101): A_out 0.37+-0.34, y 0.0003 (x 0.0175): A_out 0.55+-0.42, y 0.001 (x 0.0321): A_out 0.92+-0.61, y 0.003 (x 0.0563): A_out 1.51+-0.99, y 0.01 (x 0.1051): A_out 2.65+-1.72
+   [alt] P2: x_hat 0.0321, 95% x_e [0.0106, 0.1051] (= eps [1.43, 14.21] of the catalogue field, [0.308, 3.060] of the 'bary' field); zero field at dchi2 11.29
+   [alt] F2: x_hat 0.0045, 95% x_e (S2-scaled 1.98) [0.0025, 0.0062]; C11 F2 + P2 on one x_e axis: chi2_PG 8.82/1, p 3.0e-03 (joint x_hat 0.0045)
+   [alt] P2 7-point outer chi2 (a) 21.07, (b) 13.74, (b_lo) 16.81; A_out (b) 0.311+-0.299, (b_lo) 0.245+-0.272
+   [alt] P2 scan: y 0 (x 0.0000): A_out 0.18+-0.24, y 1e-06 (x 0.0010): A_out 0.18+-0.25, y 3e-06 (x 0.0017): A_out 0.19+-0.25, y 1e-05 (x 0.0032): A_out 0.20+-0.25, y 3e-05 (x 0.0055): A_out 0.24+-0.27, y 0.0001 (x 0.0101): A_out 0.36+-0.32, y 0.0003 (x 0.0175): A_out 0.54+-0.40, y 0.001 (x 0.0321): A_out 0.91+-0.61, y 0.003 (x 0.0563): A_out 1.51+-0.98, y 0.01 (x 0.1051): A_out 2.64+-1.71
+
+--- A3 post-result diagnostics (reported only) ---
+   [canonical] SAT tracking slope controlled for log y0 (corr(log x_e, log y0) -0.20): 0:+0.78+-0.28, 0.05:+0.87+-0.28, 0.1:+0.92+-0.27, 0.2:+0.97+-0.26, 0.35:+1.00+-0.24, 0.5:+1.02+-0.23, 0.75:+1.02+-0.22, 1:+1.01+-0.22, 1.5:+0.98+-0.21
+   [canonical] absolute fields: Coma UDGs median x_e 0.846 -> allowed x_e <= 0.179 (eps_95 0.212); P2 lenses need x_e >= 0.0095; F2 photo-z lenses allow x_e <= 0.0066 (S2-scaled)
+   [alt] SAT tracking slope controlled for log y0 (corr(log x_e, log y0) -0.24): 0:+0.85+-0.28, 0.05:+0.93+-0.28, 0.1:+0.98+-0.27, 0.2:+1.02+-0.26, 0.35:+1.05+-0.25, 0.5:+1.07+-0.24, 0.75:+1.07+-0.23, 1:+1.07+-0.22, 1.5:+1.04+-0.21
+   [alt] absolute fields: Coma UDGs median x_e 0.700 -> allowed x_e <= 0.166 (eps_95 0.237); P2 lenses need x_e >= 0.0106; F2 photo-z lenses allow x_e <= 0.0062 (S2-scaled)
+
+--- VERDICT (frozen rule; primary set V = {SAT, COMA, LENS-P2, GC@floor} per A1) ---
+   [canonical] DATA PREFER WEAK EFE (eps 0.02, 95% [0.000, 0.263]); non-overlapping 95% intervals: COMA vs LENS-P2  -- FRAGILE: C3 V - SAT -> INCONSISTENT; C6 V + REC-Chae -> INCONSISTENT; C10 SAT + LENS-P2 -> EFE CONSISTENT WITH v3; C9b COMA + LENS-P2 (bary ref) -> INCONSISTENT; C10b SAT + LENS-P2 (bary ref) -> EFE CONSISTENT WITH v3; Vb V with LENS-P2 (bary ref) -> NOT DECIDED
+   [alt] NOT DECIDED; non-overlapping 95% intervals: COMA vs LENS-P2  -- FRAGILE: C1 V unscaled -> DATA PREFER WEAK EFE (eps 0.05, 95% [0.000, 0.191]); C2 V - GC -> DATA PREFER WEAK EFE (eps 0.02, 95% [0.000, 0.258]); C3 V - SAT -> INCONSISTENT; C4 V - LENS-P2 -> DATA PREFER WEAK EFE (eps 0.02, 95% [0.000, 0.269]); C5 SAT -> SAT-TRK -> DATA PREFER WEAK EFE (eps 0.00, 95% [0.000, 0.255]); C6 V + REC-Chae -> INCONSISTENT; C7 LENS-P2 -> LENS-F2 (frozen primary) -> DATA PREFER WEAK EFE (eps 0.17, 95% [0.000, 0.034] U [0.041, 0.231]); C8 SAT + COMA + LENS-P2 -> DATA PREFER WEAK EFE (eps 0.02, 95% [0.000, 0.258]); C9 COMA + LENS-P2 -> INCONSISTENT; C10 SAT + LENS-P2 -> EFE CONSISTENT WITH v3; C9b COMA + LENS-P2 (bary ref) -> INCONSISTENT; C10b SAT + LENS-P2 (bary ref) -> EFE CONSISTENT WITH v3; Vb V with LENS-P2 (bary ref) -> INCONSISTENT
+   LANE VERDICT: FOOTING SPLIT (canonical DATA PREFER WEAK EFE (eps 0.02, 95% [0.000, 0.263]); alt NOT DECIDED)
+
+--- record EFE claims (classes per criteria Sec. 6) ---
+   (a) Chae SPARC [canonical] A = 0.76 +- 0.16 (zero-intercept; tracking slope non-diagnostic) vs primary eps 95% [0.000, 0.263]: CONTRADICTED BY THIS LANE (and NOT A DETECTION: tracking not shown)
+   (a) Chae SPARC [alt] A = 0.88 +- 0.15 (zero-intercept; tracking slope non-diagnostic) vs primary eps 95% [0.000, 0.299]: CONTRADICTED BY THIS LANE (and NOT A DETECTION: tracking not shown)
+   (b) directional EFE: n16 Ahat +2.95+-3.13, WALLABY -1.70+-2.98 (analytic; boot 2.12) -> combined +0.51+-2.16 (units of the QUMOND-class AQUAL floor; eps = Ahat/k, k in [1, 5]): NOT DIAGNOSTIC
+   (c) wide binaries [canonical]: CFG447 -> OTHER READING; CFG825 R 0.973+-0.178 -> NOT DIAGNOSTIC for v3 (screened); unscreened law-first gamma_pm within 2 sigma of R at eps in [0.5, 0.75, 1.0, 1.25, 1.5]
+   (c) wide binaries [alt]: CFG447 -> OTHER READING; CFG825 R 0.973+-0.178 -> NOT DIAGNOSTIC for v3 (screened); unscreened law-first gamma_pm within 2 sigma of R at eps in [0.75, 1.0, 1.25, 1.5]
+   (d) CFG478: OTHER READING (QUMOND force-with-EFE vs satellite lensing; ownership-era model)
+   (e) S1 [canonical]: EFE step at the floor Delta(1) - Delta(0) = +0.416 dex (S1's +0.58/+0.57 is the L* = 0 step S3 - S2); F2: data/model A_O2 at noclu = 4.45 -> the EFE prediction is too LOW (the brief's 'too high' is a sign slip); S2: chi2_in moves 69.6-91.3 for x_e <= 0.0425
+   (e) S1 [alt]: EFE step at the floor Delta(1) - Delta(0) = +0.407 dex (S1's +0.58/+0.57 is the L* = 0 step S3 - S2); F2: data/model A_O2 at noclu = 4.06 -> the EFE prediction is too LOW (the brief's 'too high' is a sign slip); S2: chi2_in moves 55.6-81.9 for x_e <= 0.0425
+
+T1_EFE_STRENGTH COMPLETE: 10/11 checks PASS.
