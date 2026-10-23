@@ -215,3 +215,27 @@ Plumbing runs made while building the lattice engine (not results, disclosed): 1
 3. scipy's expm_multiply leaked ~80 MB per call here; the one V3 point B ν=8 n=8 (full) peaked at 4.36 GB before this was
    found (rule breach, disclosed). The exact propagator is now a shifted Taylor series (agrees with expm_multiply to 8e-13),
    and all full-H V3 points are recomputed with it.
+
+## AMENDMENT A3 (POST-RESULT for the closure-L and closure-C values at the primary point and for the partial V3 table, which
+## were seen while building; PRE-RESULT for closure K, E2, the input map, the isocurvature legs and the final V3 table)
+
+Seen before this amendment (disclosed): Y_L ≈ 3.9e-14 (Ω_L ≈ 1.07e-8) and Ω_C = 0.167 at the primary point; Ω(ξ = 1/6)
+≈ 6e-30; the V3 scenario-B rows and A rows for ν = 8, n ≤ 4; the E1 prototype diagnostics (A2). No threshold moves.
+1. V3 metric (unchanged): with max-over-time absolute errors, O5/O6 are dominated by instants where κ₄/κ₂² ≈ 10 (thin,
+   phase-aligned quadrature distributions); the frozen n* is reported as computed (it may not exist for n ≤ 32). Added
+   diagnostic only: the median-over-time errors and an occupation-only validity occupation (O1–O4), labelled as such.
+2. Hand-over f₀ = trailing 100-τ mean of |φ̄|²/(⟨|φ|²⟩ − c): the instantaneous value passes through zero twice per
+   zero-mode oscillation. If the frozen n* does not exist the criterion is unreachable and E2 is CONDITIONAL.
+3. Boltzmann numerics: f(p₄) interpolated in energy through ln(1 + 1/f) (classical: 1/f), and C[f] − C[f_eq] with f_eq
+   the grid BE (or Rayleigh–Jeans) state of equal number and energy (raw equilibrium residual 3 % / 1.3 % at Np = 96/192).
+4. r3 above T = 2m (the frozen text did not say): Monte-Carlo average of Codex's complete tree amplitude (x1_dmc.py,
+   validated against Codex's MB table to ≤ 0.74 %), BE statistics and Hartree masses; thermal X for the network, X at rest
+   for the condensate (closure K). Codex's last-interval power law (slope −3.39) is a reported sensitivity. Thermal widths
+   are not included; Γ_Φ ≈ 2M at onset would lower the X-at-rest rate by an O(1) factor there.
+5. Closure K numerics: if the per-X absorption rate of the condensate Γ/H > 10 at onset, the cold X are absorbed at onset
+   (stiff limit): energy M per X into the bath, N_Φ unchanged (r3 stoichiometry), no thermal X; the network then runs.
+6. E4 thermodynamics: Bose sums with scaled Bessel functions, Hartree Φ mass from the μ = 0 table; LSODA in log variables
+   (rtol 1e-6). Added sensitivities (not frozen): 4→2 off above T = m ("relcut"), crossed channel ×1, D power law.
+7. ξ = 1/6: the conformal mode starts in its vacuum at x ≈ 0 (a ≈ 0 in the scaled variable), a half-line problem; the
+   full-line exp(−πk²/(mH)) named in K14 is not its exact answer (half/full = 0.371), so K14 FAILS as frozen; the control
+   value reported is the numerical half-line one. Production during a w = 0 era (H_rh < 10 m_s) is not evaluated.
