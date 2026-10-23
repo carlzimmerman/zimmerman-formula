@@ -1,0 +1,33 @@
+====================================================================================================
+D10_native_Lstar  EFE-aware native L* floor   *** MUTATE: L*^2 stiffness in the 2D solver ***
+====================================================================================================
+  NGC 2419  sigma_obs 4.771+-0.481 N 62  L_V 5.021e+05  r_h,l 19.76 pc  R_GC 95.93  R_bin 19.76 pc (1.000 a)
+  Pal 3     sigma_obs 1.700+-0.340 N 22  L_V 1.293e+04  r_h,l 20.16 pc  R_GC 98.17  R_bin 11.10 pc (0.551 a)
+  Pal 4     sigma_obs 0.880+-0.185 N 23  L_V 1.838e+04  r_h,l 15.88 pc  R_GC 104.05  R_bin 13.13 pc (0.827 a)
+  Pal 14    sigma_obs 0.710+-0.160 N 16  L_V 1.156e+04  r_h,l 27.63 pc  R_GC 68.55  R_bin 27.51 pc (0.996 a)
+  MW bracket [canonical]: E_lo M_b 4.000e+10, E_mid M_b 6.000e+10, E_hi M_b 1.229e+11 | x_e: NGC 2419 0.0811/0.1002/0.1464, Pal 3 0.0793/0.0979/0.1430, Pal 4 0.0747/0.0923/0.1346, Pal 14 0.1139/0.1411/0.2078
+  MW bracket [alt]: E_lo M_b 4.000e+10, E_mid M_b 6.000e+10, E_hi M_b 1.154e+11 | x_e: NGC 2419 0.0735/0.0908/0.1280, Pal 3 0.0719/0.0887/0.1250, Pal 4 0.0678/0.0836/0.1178, Pal 14 0.1031/0.1276/0.1811
+K1 PASS h(p(v))-v:0.0 kernel:0 dp/dv:[0, 0, 0, 0, 0, 0, 0, 0, 0] AQUAL:[0, 0, 0] all 0 :: sympy: p=v/(1+|v|) inverts h; linear response = C6 kernel m/(1-m+kap^2 m/2); dp/dv at background; L*=0 is AQUAL mu=x/(1+x)
+   K2 y 0.04 Lam 0.5: |dg/g| at r=a 2.72e-01, |d sigma_p/sigma_p| 1.40e-01, res 4.5e-11, bvp status 0
+   K2 y 0.04 Lam 2.0: |dg/g| at r=a 1.26e-01, |d sigma_p/sigma_p| 1.08e-01, res 8.3e-11, bvp status 0
+   K2 y 0.04 Lam 8.0: |dg/g| at r=a 1.14e-02, |d sigma_p/sigma_p| 1.23e-02, res 7.1e-11, bvp status 0
+   K2 y 3.0 Lam 0.5: |dg/g| at r=a 2.42e-02, |d sigma_p/sigma_p| 9.68e-03, res 9.5e-15, bvp status 0
+   K2 y 3.0 Lam 2.0: |dg/g| at r=a 7.48e-02, |d sigma_p/sigma_p| 5.35e-02, res 2.1e-14, bvp status 0
+   K2 y 3.0 Lam 8.0: |dg/g| at r=a 1.09e-02, |d sigma_p/sigma_p| 1.15e-02, res 2.1e-14, bvp status 0
+K2 FAIL 2.72e-01 < 2e-3 :: isolated 2D vs independent 1D BVP (field at r=a and sigma_p)
+K3 PASS 1.69e-04 < 2e-3 :: isolated L*=0: 2D sigma_p equals the algebraic law (spherical AQUAL)
+   K4 Lam 0.0: 2D 3.098237e-05 Route F 3.106414e-05 rel 2.63e-03 (Route F Newton self-check 2.2e-16)
+   K4 Lam 1.0: 2D 5.310439e-06 Route F 6.594958e-06 rel 1.95e-01 (Route F Newton self-check 2.2e-16)
+   K4 Lam 4.0: 2D 3.684796e-06 Route F 3.821084e-06 rel 3.57e-02 (Route F Newton self-check 2.2e-16)
+K4 FAIL 1.95e-01 < 2e-2 :: linear EFE (y=1e-4 x_e, x_e=0.1): 2D monopole field at r=a vs Route F (C6 kernel)
+K5 PASS 8.36e-09 < 2e-3 :: Lam = 1e4 (x_e 0.1, y 0.2) gives the Newtonian Jeans sigma_p
+   K6 NGC 2419: base 0.709226 fine 0.709238 far 0.709229 (dimensionless sigma)
+   K6 Pal 14: base 0.083193 fine 0.083189 far 0.083193 (dimensionless sigma)
+K6 PASS 4.75e-05 < 5e-3 :: doubling N_r, N_theta and r_out x 10 (E_mid, canonical, Lam = 1)
+   K7 frozen-text constant (3pi/64) ratio 0.666699 (fails by construction; amendment A1)
+K7 PASS 4.89e-05/3.26e-05 < 1e-3 / < 2e-3 :: Plummer virial sigma^2 = (pi/32) GM/a (A1); luminosity-weighted sigma_p^2 = virial
+K8 PASS P 0.2641 median 1.155 |P-0.26|<0.03, |med-1.16|<0.05 :: CFG334 primary reproduced (N 22, sigma_int 0.75, e 1.0, f 0.3)
+K9 PASS 28.853/29.123 28.853/29.123 +-0.02 :: E4 N1 machinery (Wolf, nu_L, CFG691 S(s), Ups 1.6) reproduced
+K10 PASS 0.579 GB < 1 GB :: peak RSS
+
+D10_NATIVE_LSTAR COMPLETE: 8/10 checks PASS.  (UNDECIDED: a validation check failed)  6 s
