@@ -29,11 +29,11 @@ N0 PASS S1 iso law max 2.0e-04 dex; P4 K9 max 0.0e+00; S1 EFE central medians +1
    [peak RSS so far 0.10 GB, 1 s]
 
 --- N1: T1 verified (isotropic spherical dust, muK = 0) on 137 system-footing cases ---
-   137 cases, 70144 equilibria: edge 14373, cap 55646, unfinished 125; rho_ph non-increasing fails in 0 cases; 205 s
+   137 cases, 70144 equilibria: edge 14373, cap 55646, unfinished 125; rho_ph non-increasing fails in 0 cases; 221 s
    cap-reached runs that had passed the phantom first: 52544 (T1's proof: any excess runs away to the cap)
    max ratio: frozen grid 0.665643 (tdg|NGC5291N|uniform|canonical); A1 near-cold/n=2-2.5 grid 0.660486 (tdg|NGC5291N|plummer|canonical); max gravity gain log10[(M_b+M_tau)/(M_b+M_ph)](<r) over all r and all finite equilibria -0.11382 dex
 N1 PASS max M_tau(<r)/M_ph(<r) over 14373 finite equilibria = 0.665643 <= 1.001  T1: isotropic held dust never exceeds the phantom (any radius)
-   [peak RSS so far 0.10 GB, 205 s]
+   [peak RSS so far 0.10 GB, 221 s]
 
 --- N2: counterexample search -- anisotropic f = L^(-2 beta) g(E), rho = K r^(-2 beta) Psi^n ---
    beta -1.00: finite   3562, cap   7398; max M_tau/M_ph 0.3296; max gain at r12 -0.4686 dex, any r -0.3357 dex [tdg|NGC5291N|uniform|canonical|n3.0]; excess configs 0, starting beyond r* 0  [tdg|NGC5291N|uniform|canonical|n3.0]
@@ -43,8 +43,8 @@ N1 PASS max M_tau(<r)/M_ph(<r) over 14373 finite equilibria = 0.665643 <= 1.001 
    beta +0.35: finite   5480, cap  11657; max M_tau/M_ph 2.0723; max gain at r12 -0.2179 dex, any r +0.3164 dex [sat|Bootes III|alt|n4.5]; excess configs 1096, starting beyond r* 0  [sat|Bootes III|alt|n4.5]
    beta +0.45: finite   5480, cap  10705; max M_tau/M_ph 15.1548; max gain at r12 -0.1541 dex, any r +1.1805 dex [sat|Bootes III|alt|n4.5]; excess configs 2192, starting beyond r* 0  [sat|Bootes III|alt|n4.5]
    beta +0.49: finite   5230, cap  10799; max M_tau/M_ph 33.6708; max gain at r12 -0.1169 dex, any r +1.5272 dex [sat|Bootes III|alt|n1.5]; excess configs 1942, starting beyond r* 0  [sat|Bootes III|alt|n1.5]
-N2 PASS beta<=0 max ratio 0.36012; beta>0 excess starts beyond r* = 0; max beta>0 ratio 33.6708, max gain at r12 -0.1169 dex, any r +1.5272 dex beta<=0: <=1.001; beta>0: 0 starts beyond r*  generalised T1 (566 s)
-   [peak RSS so far 0.11 GB, 771 s]
+N2 PASS beta<=0 max ratio 0.36012; beta>0 excess starts beyond r* = 0; max beta>0 ratio 33.6708, max gain at r12 -0.1169 dex, any r +1.5272 dex beta<=0: <=1.001; beta>0: 0 starts beyond r*  generalised T1 (579 s)
+   [peak RSS so far 0.11 GB, 801 s]
 
 --- N3: counterexample search -- time-dependent infall (shell code, muK = 0) ---
    satellite y 3.85e-03 lambda 1.0 f_t 0.0: ratio(r12) t0 0.998 max 0.998 late 0.998; first crossing None t_dyn; cap steps 0; |dE/E| 3.5e-12; 2000 steps; v_t/v_esc,N(baryons) 0.00
@@ -68,7 +68,7 @@ N2 PASS beta<=0 max ratio 0.36012; beta>0 excess starts beyond r* = 0; max beta>
    TDG       y 1.53e-01 lambda 3.0 f_t 0.0: ratio(r12) t0 3.003 max 3.003 late 0.281; first crossing 3.187 t_dyn; cap steps 1675; |dE/E| 2.3e-05; 8244 steps; v_t/v_esc,N(baryons) 0.00
    TDG       y 1.53e-01 lambda 3.0 f_t 0.5: ratio(r12) t0 3.003 max 3.003 late 0.240; first crossing 3.406 t_dyn; cap steps 84; |dE/E| 2.7e-05; 7324 steps; v_t/v_esc,N(baryons) 1.31
 N3 PASS controls (lambda 1, cold): satellite |dE/E| 3.5e-12, ratio late 0.9983; TDG |dE/E| 3.1e-11, ratio late 1.0009 |dE/E| <= 1e-2, |ratio-1| <= 0.02  shell code sane (25 s)
-   [peak RSS so far 0.12 GB, 796 s]
+   [peak RSS so far 0.12 GB, 825 s]
 
 --- N4: nonlinear hold in a uniform host field: the hold self-force on a dust blob ---
    x_e  0.03  Q   0.0294  internal hold field max   0.0030 (  0.10 x_e)  self-force/(M x_e) -3.37e-10  (perp 1.3e-18)  iters 4 res 1.8e-09
@@ -83,7 +83,7 @@ N3 PASS controls (lambda 1, cold): satellite |dE/E| 3.5e-12, ratio late 0.9983; 
    [reported, A1] resolution test x_e 3, 10 x_e, blob b = 3 (vs 2): self-force/(M x_e) +3.60e-04 (internal max 30.17, iters 111)
 N4 FAIL max |self-force|/(M x_e) = 2.29e-03; worst residual 9.9e-09 <= 1e-3, converged  total hold force on a blob = M grad(Xi_host); with D7(a) the static host's net force on held dust is 0
    linear-EFE AQUAL phantom of a Plummer: negative/positive mass = {'0.03': 0.2221181761996208, '0.3': 0.2538302353408848, '3.0': 0.37563993458033246} (allowed for LIT, forbidden for MS dust)
-   [peak RSS so far 0.26 GB, 872 s]
+   [peak RSS so far 0.26 GB, 902 s]
 
 --- N5: v3's own dynamics for the hosted tiles (B0 dust-free; B1-MS acceleration-held; B1-LIT also streaming-limited) ---
    satellites [canonical] N 45 (LVD 3-D speeds 32, others PROXY), median V 193 km/s
@@ -111,7 +111,7 @@ N4 FAIL max |self-force|/(M x_e) = 2.29e-03; worst residual 9.9e-09 <= 1e-3, con
    [canonical] baryonic Newtonian escape speed from the centre / observed sigma (or V): satellites median 0.39, Coma 0.81, TDGs 1.60, DF2/DF4 [3.41, 4.46]  (held dust must move slower than this)
    [alt] baryonic Newtonian escape speed from the centre / observed sigma (or V): satellites median 0.40, Coma 0.81, TDGs 1.60, DF2/DF4 [3.41, 4.46]  (held dust must move slower than this)
 N5 PASS branches computed for 91 satellite cases, 18 Coma, 12 TDG, 4 DF cases; B1 >= B0 everywhere True all computed; B1 >= B0  
-   [peak RSS so far 0.29 GB, 873 s]
+   [peak RSS so far 0.29 GB, 904 s]
 
 --- N6: Milky Way: round dust at the T1 bound (McMillan17 baryons) ---
    [canonical] T1 bound (round dust = monopole phantom): v_c(R0) 215.6 km/s (Eilers 229.1 +- 4.6: +2.9 sigma short); K_z(R0,1.1) 71.1 (baryons 62.0 + dust 9.1) vs 66.4 +- 2.2; chi2_Kz 43.9 (line 67.5); dust scaled to K_z = 66.4 (lambda 0.48) gives v_c 196.9
@@ -119,7 +119,7 @@ N5 PASS branches computed for 91 satellite cases, 18 Coma, 12 TDG, 4 DF cases; B
    [alt] T1 bound (round dust = monopole phantom): v_c(R0) 220.6 km/s (Eilers 229.1 +- 4.6: +1.8 sigma short); K_z(R0,1.1) 72.4 (baryons 62.0 + dust 10.4) vs 66.4 +- 2.2; chi2_Kz 42.5 (line 67.5); dust scaled to K_z = 66.4 (lambda 0.42) gives v_c 196.9
       [reported] round dust at lambda x bound: lambda 0.0: chi2_Kz 88.3, K_z(R0) 62.0, v_c 177.6; lambda 0.25: chi2_Kz 69.0, K_z(R0) 64.6, v_c 189.3; lambda 0.5: chi2_Kz 54.9, K_z(R0) 67.2, v_c 200.3; lambda 0.75: chi2_Kz 46.1, K_z(R0) 69.8, v_c 210.7; lambda 1.0: chi2_Kz 42.5, K_z(R0) 72.4, v_c 220.6
 N6 PASS my baryon K_z(R0,1.1) 61.996 vs P4 ring 61.996 (0.00e+00); g_R ring formula vs FD 3.3e-10 <= 1%  MW computed on both footings
-   [peak RSS so far 0.32 GB, 881 s]
+   [peak RSS so far 0.32 GB, 912 s]
 
 --- N7: the muK^2 term: eps_K = muK^2 r^3 |Xi_ref| / (3 G M_ph(<r)) ---
    [canonical] cap_14.8h/Mpc           : satellites eps median 4.8e-03 max 1.2e-01; Coma max 8.0e+00; cluster 1e14 at 0.3/1 Mpc 3.11e+01/1.51e+02; zero-point offset needed (median) 9.2e-04 c^2
@@ -127,7 +127,7 @@ N6 PASS my baryon K_z(R0,1.1) 61.996 vs P4 ring 61.996 (0.00e+00); g_R ring form
    [alt] cap_14.8h/Mpc           : satellites eps median 4.8e-03 max 1.2e-01; Coma max 7.2e+00; cluster 1e14 at 0.3/1 Mpc 2.82e+01/1.46e+02; zero-point offset needed (median) 9.1e-04 c^2
    [alt] BS24_own_0.015637/Mpc   : satellites eps median 1.1e-08 max 3.0e-07; Coma max 1.7e-05; cluster 1e14 at 0.3/1 Mpc 6.69e-05/3.47e-04; zero-point offset needed (median) 3.8e+02 c^2
 N7 PASS computed computed  reported quantity (eps_K <= 0.01 = negligible)
-   [peak RSS so far 0.32 GB, 881 s]
-N8 PASS 0.319 GB < 1 GB  peak RSS
+   [peak RSS so far 0.32 GB, 912 s]
+N8 PASS 0.320 GB < 1 GB  peak RSS
 
-U1_V3_DUST_CONTENT COMPLETE: 15/16 checks PASS.  (881 s, peak RSS 0.32 GB)
+U1_V3_DUST_CONTENT COMPLETE: 15/16 checks PASS.  (912 s, peak RSS 0.32 GB)
