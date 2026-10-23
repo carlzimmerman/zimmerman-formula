@@ -202,3 +202,10 @@ uniform field enters each face flux through its exact face average and the inner
 is zero. The first version carried a ≈ 2 % uniform-field error from the θ discretisation, found when K2 failed. (b) The Newton
 start uses |g_N|: SPARC's negative inner gas masses had given NaN in the first T1 L★ = 24 / 90 rows. Development outputs are
 superseded by the committed run.
+
+**A4 (POST-RESULT; K3 numerics, no line change).** The first full run read K3 = 0.0042 dex on the TDGs (line 0.003). Two
+causes, both numerical: the field was read at the uniform sphere's sharp edge between radial faces (fixed: one radial face now
+sits on the smallest evaluation radius, which converges L★ = 0 to ≤ 3e-4 dex), and at L★ = 90 pc the screened edge layer
+(≈ 85 pc) is under-resolved at 20 cells per decade (first-order convergence). T5's production grid is therefore 40 cells per
+decade; K3 compares it with 60 (still × 1.5 in n_per and N_θ). SPARC stays at 20 → 30. The move of the TDG predictions is
+≤ 0.004 dex, against a class gap of ≈ 0.5 dex.
