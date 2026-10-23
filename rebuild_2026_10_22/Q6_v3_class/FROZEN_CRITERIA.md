@@ -203,3 +203,32 @@ only this lane's paths; never push. Any change to this file is an append-only AM
 4. **V1c with j₁ = 0 (reported, not gated):** at j₁ = 0 the LO rest-frame sound speed is K′/K″ = I₀/(2μ_K²a³), which exceeds
    1 at early times for any finite μ_K (LO is not the literal theory there). That run is attempted with a 600 s limit and
    reported as it ends (completed / failed / timed out).
+
+## AMENDMENT A2 (POST-RESULT for step D's derivation lines, PRE-RESULT for everything else: written after `q6_derive.py` printed D0–D9 PASS and its LO initial-condition series failed to solve; before any CLASS build, spectrum, χ² or validation number)
+
+What step D showed: the v3 khronon sector is exactly a fluid (no shear) whose rest-frame sound speed is
+c_s² = Q̄K′/(Q̄²K″ − 2j₁k²/a²) (D2_fluid). The frozen LO uses its Q̄ → 1 value c²_{s,LO} = K′/(K″ − 2j₁k²/a²), which for
+j₁ = −1 is bounded by K′/K″ = ε = I₀/(2μ_K²a³) and so **exceeds 1 wherever ε > 1** — at CLASS's initial times for every grid
+μ_K (ε ≫ 1 there). With X = δ_rest the fluid equations give X′ = −θ − h′/2 + 3(ℋ′ − ℋ²)θ/k² (independent of c_s²) and
+θ′ = −ℋθ + k²c_s²X, i.e. a super-horizon mode of frequency ω² = 3(ℋ² − ℋ′)c_s² (6c_s²ℋ² in radiation), ≫ ℋ² when c_s² ≫ 1:
+the frozen LO has a superluminal, stiff mode exactly where it is not the literal theory, and its regular solution is not
+a power series in τ (why the IC series failed). Changes, fixed now:
+
+1. **Frozen LO is not run** (its derivation checks D3, D4_LO, D5, D8 stay). The run model replacing it is **LOB**:
+   background exactly dust (w = c_a² = 0, ρ̄_K = I₀/(8πGa³); the a⁻⁶ partner and all O(ε) background terms dropped, as
+   F3's background), perturbations with the **literal** rest-frame sound speed c_s² = Q̄K′/(Q̄²K″ − 2j₁k²/a²) with the
+   exact quadratic-K Q̄ = 1 + I₀/(2μ_K²a³) and K″ = 2μ_K². It is the fluid {w = 0, c_s²(k, τ)} with exact conservation
+   (gauge-covariant by the D4_LO argument, which holds for any c_s²); c_s² ≤ ε/(1+ε) < 1 (subluminal, no stiff mode);
+   LOB = LO to O(ε) where ε ≪ 1 (D8). LOB is "literal v3's perturbations on F3's dust background"; its only departure
+   from LIT is the dropped O(ε) background, which step B scores separately. Implementation: `aest_K_type` 4 = LOB.
+   Every "LO" in §§6, 8, 9 (validation runs, native runs, fits, the step-C reading) reads "LOB".
+2. **IC edit outside the two functions (the §4 fallback).** C7's IC lines assume c_s² = c_a² = w (true for AeST's
+   k-essence, false here). The khronon IC is replaced by CLASS's own fluid formula (1004.5509, as for `fld`) with w from
+   the background and c_s² = c_s²(k, τ_ini) obtained from the swapped `perturbations_aest_rhs()` (its δp/ρ at δ = 1, θ = 0):
+   δ = ¾δ_γ(1+w)(4 − 3c_s²)/(4 − 6w + 3c_s²), θ = −k(kτ)³c_s²/(4(4 − 6w + 3c_s²))·curvature_ini·s2², E = χ = 0. This one block
+   and the two functions are the only differences from `aest.patch`.
+3. **Step-D IC checks re-pointed:** IC1 (the constant-c_s² w = 0 series solves the LOB system), IC2 (c_s² = 0 gives CDM's IC),
+   IC3 (Newtonian IC via the D3 map), IC_fld (the coded formula equals the series). IC_C7 is printed as a reported line
+   (it is expected to fail for c_s² ≠ 0; its failure is what triggers this fallback), not counted. Added D10: c_s² of LOB
+   ≤ ε/(1+ε) < 1 and c²_{s,LO} → ε at k → 0 (exact), with the super-horizon frequency identity above.
+4. Nothing else changes (thresholds, readings, grid, fits, MUTATE).
