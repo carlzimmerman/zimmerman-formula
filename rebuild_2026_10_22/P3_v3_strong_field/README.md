@@ -150,3 +150,12 @@ theory's own AQUAL limit.
 
 Files: `p3_v3_strong_field.py`, `.out`, `_results.json` (main); `_MUTATE.out`, `_results_MUTATE.json` (mutation).
 Run: `OMP_NUM_THREADS=1 nice -n 15 python3 rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field.py`.
+
+**Erratum (fix-forward, 2026-10-23; from `reviews/p3_lapse_weakening_2026_10_23/README.md`, 1ba071e2b5). Inert; no verdict
+changes.** The Solar-System rows have two input defects:
+1. u₀ = 2Φ/L★ is 6–33 × a₀/c², outside W's domain; the screened point mass has K|P| = GM/(c²L★²) exactly. Because
+   a₀ − u₀ < 0, `scales()` skips V6 (`if lh <= 0: continue`), so V6 is absent from those rows of the JSON.
+2. M_kk = 1 omits the Galactic external P (x_e ≈ 1–3, M_L 4–16).
+With both corrected, eps moves by ≤ 4.4e-12 (Eöt-Wash at 90 pc stays 1.312e-3) and V6 ≤ 4.4e-100, because kL★ ≫ √M_L. The
+strong-coupling PASS (estimate) stands. P3's Z_P/E2(i) is exactly v3's lapse-operator Schur complement, so its 1/(1+x)²
+factor is M_L.
