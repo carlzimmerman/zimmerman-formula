@@ -24,7 +24,6 @@ theorem p32_iff_MUTATE {b0 c G ρ a0 Λ H β Z κ : ℝ} (h : Framework b0 c G �
   have key : Λ * (π * (c ^ 2 / a0) ^ 2) = 8 * π ^ 2 / κ ^ 2 := by
     rw [he, div_pow, ht]
     field_simp
-    ring
   rw [key, div_eq_iff (pow_pos hκ 2).ne']
   constructor
   · intro h1
