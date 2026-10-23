@@ -1,0 +1,38 @@
+Z1_successor_design checks
+kappa = 1/2 FITTED; footings canonical 9.3603e-11 / alt 1.1312e-10 m/s^2, never pooled
+
+K1 PASS BLT(85,86) reproduced by s=[1] (used s=1, residual0=True); det H=-1, eigs=[-0.618, 1.618] exactly one sign reproduces; det<0
+K2 PASS W2=4*pi*G, W3=32*pi**2*G**2/a_0; kappa=Z/(4 pi alpha): kappa(0.8)=0.5758, alpha(kappa=1/2)=0.9213 W2=4 pi G and W3=32 pi^2 G^2/a0 unique
+K3 PASS (a) anchor at rest iff W2=4*pi*G; (b) y=x+xi geodesic, xi kinetic -1/2 xidot^2: True; (c) cubic=quadratic at 4 pi G Pi=a_0; (d) |anchor acc|/g = x_f (=11-14 at z~1100, X0 MAP L22) residuals 0; threshold a0
+K4 PASS F'(y)=y mu(y): True; F''=1 - 1/(y + 1)**2>0: True; planar EL = AQUAL: True; spherical = a0-line: True; BS24 Eq.35 at mu_K=0 = AQUAL: True all residuals 0
+K5 PASS law where supplied: True; r_s = r_M sqrt(f_s(f_s+1)) = 5.8426 r_M at f_s=5.364: True; deep r_s/(f_s r_M) -> 1; excess zero at R=r_s: True; rich total = (1+f_s) M_b: True identities, residual 0
+K6 PASS design fall rate a/g = 1 (owned: 1; v3 control: M_b/(M_b + M_h)); EFE example x_int 0.1 at x_e 1: one foliation 0.0121 (-0.917 dex), owner frame 0.1 a = g exactly
+K7 PASS g>0 for all r (sympy ask: True); E<0 on 30 grid points (2 footings x 3 masses x 5 radii): True E < 0 everywhere inside the owner
+K8 PASS EL(rho)=HJ: True; EL(phi)=continuity: True; s(k)=1 for all k; EdS delta propto a: True; v3 control s(mu_K=0)=0 s(k)=1 exactly; delta propto a
+K9 PASS Delta log g = 1/2 log(M_orig/M_now) (deep, lower bound); X1 iso-AQUAL residuals need lost fractions MW classical: 0.72/0.67, MW ultra-faints: 0.95/0.93, bright M31 dSphs: 0.68/0.62, M31 others: 0.95/0.93, LG field, isolated: 0.21/0.09 identity residual 0
+K10 PASS M_x [Msun] canonical H0 67.9: 200rho_c 2.68e+13, 18pi2rho_m 3.84e+14; alt: 4.74e+13, 6.78e+14 closed form residual 0; finite, positive; footings separate
+
+Tercile forecast (no lensing data; X2 catalogue gas medians / 0.85; f_s = 5.364 record input):
+  canonical|T1: M_b 3.88e+12 Msun, r_M 76 kpc, r_s 0.444 Mpc; 200rho_c: R 0.613 Mpc, rich=False, excess -0.41, total/law 1.00; 18pi2_rho_m_EdS: R 0.955 Mpc, rich=False, excess -1.25, total/law 1.00
+  canonical|T2: M_b 1.38e+13 Msun, r_M 143 kpc, r_s 0.836 Mpc; 200rho_c: R 0.935 Mpc, rich=False, excess -0.13, total/law 1.00; 18pi2_rho_m_EdS: R 1.457 Mpc, rich=False, excess -0.81, total/law 1.00
+  canonical|T3: M_b 3.44e+13 Msun, r_M 226 kpc, r_s 1.321 Mpc; 200rho_c: R 1.268 Mpc, rich=True, excess +0.04, total/law 1.04; 18pi2_rho_m_EdS: R 1.976 Mpc, rich=False, excess -0.54, total/law 1.00
+  alt|T1: M_b 3.88e+12 Msun, r_M 69 kpc, r_s 0.404 Mpc; 200rho_c: R 0.613 Mpc, rich=False, excess -0.56, total/law 1.00; 18pi2_rho_m_EdS: R 0.955 Mpc, rich=False, excess -1.48, total/law 1.00
+  alt|T2: M_b 1.38e+13 Msun, r_M 130 kpc, r_s 0.761 Mpc; 200rho_c: R 0.935 Mpc, rich=False, excess -0.25, total/law 1.00; 18pi2_rho_m_EdS: R 1.457 Mpc, rich=False, excess -0.99, total/law 1.00
+  alt|T3: M_b 3.44e+13 Msun, r_M 206 kpc, r_s 1.202 Mpc; 200rho_c: R 1.268 Mpc, rich=False, excess -0.06, total/law 1.00; 18pi2_rho_m_EdS: R 1.976 Mpc, rich=False, excess -0.70, total/law 1.00
+Design/law enclosed mass beyond r_s (reported):
+  canonical|T1: 0.5Mpc 0.90, 1.0Mpc 0.47, 2.0Mpc 0.24, 3.0Mpc 0.16
+  canonical|T2: 0.5Mpc 1.00, 1.0Mpc 0.85, 2.0Mpc 0.44, 3.0Mpc 0.30
+  canonical|T3: 0.5Mpc 1.00, 1.0Mpc 1.00, 2.0Mpc 0.68, 3.0Mpc 0.46
+  alt|T1: 0.5Mpc 0.82, 1.0Mpc 0.43, 2.0Mpc 0.22, 3.0Mpc 0.15
+  alt|T2: 0.5Mpc 1.00, 1.0Mpc 0.78, 2.0Mpc 0.40, 3.0Mpc 0.27
+  alt|T3: 0.5Mpc 1.00, 1.0Mpc 1.00, 2.0Mpc 0.62, 3.0Mpc 0.42
+Galaxy supply radii at f_s = 5.364 (owned supply is formation-dependent; reported only):
+  canonical|dwarf_1e8: r_M 0.4 kpc, r_s 2.3 kpc
+  canonical|MW_6e10: r_M 9.5 kpc, r_s 55.2 kpc
+  alt|dwarf_1e8: r_M 0.4 kpc, r_s 2.1 kpc
+  alt|MW_6e10: r_M 8.6 kpc, r_s 50.2 kpc
+Minimum owned supply ratio for an untruncated law out to R (f(f+1) = (R/r_M)^2): R/r_M=5 -> 4.5, R/r_M=10 -> 9.5, R/r_M=20 -> 19.5, R/r_M=50 -> 49.5, R/r_M=100 -> 99.5
+Coma UDGs (reported): lower-bound excess from gas fraction 0.81 = +0.361 dex; S1 isolated-law excess +0.33 dex
+M_x at owned supply f = 100 (200 rho_c): canonical 2.61e+08 Msun, alt 4.61e+08 Msun
+
+Z1_SUCCESSOR_DESIGN COMPLETE: 10/10 checks PASS.
