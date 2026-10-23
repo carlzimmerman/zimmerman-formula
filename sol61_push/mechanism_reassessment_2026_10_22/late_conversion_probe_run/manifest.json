@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "LATE_CONDITIONAL_TRANSFER",
+  "repository": {
+    "commit": "84dadfee7886e7a4696b01804a0d71e609d8fb15",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "late_conversion_probe.py",
+    "late_conversion_probe_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "clang",
+        "version": "Apple clang 21.0.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Measure X to Phi energy transfer in four-cycle local 3D evolutions of the original action at the high-H no-transfer envelope. Test energy, charge, uncoupled control, time/space changes and UV occupancy.",
+    "coefficient_domain": "IEEE754 double",
+    "conventions": "canonical real fields, periodic nearest-neighbor Hamiltonian, neutral warm random initial Phi waves; a=1 in local Minkowski window",
+    "inputs": [
+      "physical benchmark and saved screening probe; prescribed Phi energy C/a^4; PCG64 seed 2026102301"
+    ],
+    "bounds": {
+      "cycles": 4,
+      "n": [
+        24,
+        32
+      ],
+      "dt": [
+        0.04,
+        0.02
+      ],
+      "L": 32
+    },
+    "non_claims": [
+      "No derived late Phi state",
+      "No full quantum reaction evolution",
+      "No surviving cosmological yield or cold core",
+      "No statistical ensemble convergence"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy PCG64",
+    "seed": 2026102301
+  },
+  "run": {
+    "started_at": "2026-10-23T10:51:42.644642+00:00",
+    "runtime_seconds": 29.289466,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 1500.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "late_conversion_probe.py",
+    "late_conversion_lattice.cpp",
+    "late_conversion_lattice",
+    "screening_exit_bound_v2_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "late_conversion_probe.py",
+      "sha256": "9a256a31708a985b89812379c6db152cb88f2f7db9d28d794a0fa7bdb9f2910e",
+      "sha256_after": "9a256a31708a985b89812379c6db152cb88f2f7db9d28d794a0fa7bdb9f2910e"
+    },
+    {
+      "path": "late_conversion_lattice.cpp",
+      "sha256": "d79a194b99cb868ae11f50eb2a108859c97ef61558cd1feed49c6ef051105d82",
+      "sha256_after": "d79a194b99cb868ae11f50eb2a108859c97ef61558cd1feed49c6ef051105d82"
+    },
+    {
+      "path": "late_conversion_lattice",
+      "sha256": "07c6b93bfd39df87fd3b9f022bd594a07f5b5c4e62c30120920ea6dca3124381",
+      "sha256_after": "07c6b93bfd39df87fd3b9f022bd594a07f5b5c4e62c30120920ea6dca3124381"
+    },
+    {
+      "path": "screening_exit_bound_v2_run/results.json",
+      "sha256": "d98bd7224d0e71ad7c878756126197feaa126a580983016cb8bc5b46e7c7ff25",
+      "sha256_after": "d98bd7224d0e71ad7c878756126197feaa126a580983016cb8bc5b46e7c7ff25"
+    }
+  ],
+  "output_directory": "late_conversion_probe_run",
+  "declared_results": [
+    "late_conversion_probe_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "late_conversion_probe_run/stdout.txt",
+      "sha256": "25de0dd4111de2b644ec6c02c861cfdecd5f054ab3818c1acc9a0eba8daa5cfd",
+      "kind": "log"
+    },
+    {
+      "path": "late_conversion_probe_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "late_conversion_probe_run/results.json",
+      "sha256": "3bdf2bed3c746c42c766223b9380a6a53f1c9c555bcdfb58249ce2dcc24860f8",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

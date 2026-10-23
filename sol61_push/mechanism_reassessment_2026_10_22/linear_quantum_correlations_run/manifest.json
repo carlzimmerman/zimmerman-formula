@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "PRE_BACKREACTION_QUANTUM_CORRELATION_EVOLUTION",
+  "repository": {
+    "commit": "0ef14fdd9a1d1d0952d88fd741194bfdac6f49d3",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "linear_quantum_correlations.py",
+    "linear_quantum_correlations_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Linear quantum Phi mode evolution retaining squeezing, Wronskian and time/grid checks until backreaction diagnostic 10%",
+    "coefficient_domain": "IEEE double",
+    "conventions": "D defined by Wdot=-D nX nPhi^2 forward, balanced total densities",
+    "inputs": [
+      "m=.001 M=2m sqrt(1+.02^2), g=2.168e-6, lambda=.00881292"
+    ],
+    "bounds": {
+      "z_max": 100,
+      "grids": [
+        32,
+        48,
+        64
+      ],
+      "dt": [
+        0.01,
+        0.005
+      ]
+    },
+    "non_claims": [
+      "No thermalization declaration",
+      "No full renormalization",
+      "No collision or number-changing kernel inserted",
+      "No relic yield"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-10-23T14:46:36.193208+00:00",
+    "runtime_seconds": 0.285985,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "linear_quantum_correlations.py",
+    "coupled_fragmentation_96_run/results.json",
+    "coupled_fragmentation_96_run/fine96_initial.bin"
+  ],
+  "input_artifacts": [
+    {
+      "path": "linear_quantum_correlations.py",
+      "sha256": "668367010e01df64c083c542c37af55192214e42c94c850698c35b0f092fe8a8",
+      "sha256_after": "668367010e01df64c083c542c37af55192214e42c94c850698c35b0f092fe8a8"
+    },
+    {
+      "path": "coupled_fragmentation_96_run/results.json",
+      "sha256": "a1602d885b6ef3436cd860aa4e190d0457b833c0f332ac41a6fd28ca3eaedbf4",
+      "sha256_after": "a1602d885b6ef3436cd860aa4e190d0457b833c0f332ac41a6fd28ca3eaedbf4"
+    },
+    {
+      "path": "coupled_fragmentation_96_run/fine96_initial.bin",
+      "sha256": "81f8e785fa6711a50205bf0bcdc96b6fd5890cb62fb723151cdd5ce813f3f69b",
+      "sha256_after": "81f8e785fa6711a50205bf0bcdc96b6fd5890cb62fb723151cdd5ce813f3f69b"
+    }
+  ],
+  "output_directory": "linear_quantum_correlations_run",
+  "declared_results": [
+    "linear_quantum_correlations_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "linear_quantum_correlations_run/stdout.txt",
+      "sha256": "c9e7a694ce8c53a51afd5e57abcb8b62fae0f8600ab2726f74207a3d279aa476",
+      "kind": "log"
+    },
+    {
+      "path": "linear_quantum_correlations_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "linear_quantum_correlations_run/results.json",
+      "sha256": "2770b56d5491d87f24f2b70281d477adcc350ba0d34715a1859842be542bb1c3",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

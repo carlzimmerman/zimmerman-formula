@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "STREAMING_OUTPUT_EQUIVALENCE",
+  "repository": {
+    "commit": "735c9f693ebb0bf81df63e9a8e3cbbd3a0d262a0",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/mechanism_reassessment_2026_10_22/audit_streaming_output.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/audit_streaming_output_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Dense-history and t_eval-only outputs agree through the first barrier event for N32.",
+    "coefficient_domain": "float64",
+    "conventions": "unit masses; cold gamma .01; uniform homologous gas inertia .6 and thermal energy .3/B squared; single minimum-gap terminal event selects first inward node crossing",
+    "inputs": [
+      "initial cold radius6, gas radius3, both at rest"
+    ],
+    "bounds": {
+      "N": 32,
+      "T_max": 8,
+      "epsilon": 1e-08,
+      "rtol": 2e-11
+    },
+    "non_claims": [
+      "No primordial production, natural initial entropy, gas cooling or cosmological initial conditions",
+      "Not the exact logarithmic barrier flow; no certified permanent remnant."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T01:23:16.329158+00:00",
+    "runtime_seconds": 0.504543,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/mechanism_reassessment_2026_10_22/audit_streaming_output.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/collapse_force.cpp",
+    "sol61_push/mechanism_reassessment_2026_10_22/collapse_force.dylib"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/audit_streaming_output.py",
+      "sha256": "4bbf3f8dfbc818853c4c46e5acf67e821b2a5a4ae040b743e6ea8c4e40e86b87",
+      "sha256_after": "4bbf3f8dfbc818853c4c46e5acf67e821b2a5a4ae040b743e6ea8c4e40e86b87"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/collapse_force.cpp",
+      "sha256": "6e9153d7713c01b1968be6085ce67e2d2f2137c301c053a94043aa6293d4525e",
+      "sha256_after": "6e9153d7713c01b1968be6085ce67e2d2f2137c301c053a94043aa6293d4525e"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/collapse_force.dylib",
+      "sha256": "2f5f1702862a2151a141e56d96eab6f1ee87cbdf0df5d8c6fae9bac5c84d57f4",
+      "sha256_after": "2f5f1702862a2151a141e56d96eab6f1ee87cbdf0df5d8c6fae9bac5c84d57f4"
+    }
+  ],
+  "output_directory": "sol61_push/mechanism_reassessment_2026_10_22/audit_streaming_output_run",
+  "declared_results": [
+    "sol61_push/mechanism_reassessment_2026_10_22/audit_streaming_output_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/audit_streaming_output_run/stdout.txt",
+      "sha256": "06d2ac74bb28789dfd9d29da176cb1b281f582eb7e9eb2f4dc076ebed5bf6f63",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/audit_streaming_output_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/audit_streaming_output_run/results.json",
+      "sha256": "facc4fc21c3b1a6078da2e39a237eb2535df7d8a2bf335ac326f93d4437d20c8",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

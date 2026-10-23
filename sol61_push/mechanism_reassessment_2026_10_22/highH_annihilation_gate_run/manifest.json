@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "HIGHH_ANNIHILATION_GATE",
+  "repository": {
+    "commit": "1b5444fb472aab25fd71a9268e080a3fc8671624",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "highH_annihilation_gate.py",
+    "highH_annihilation_gate_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "clang",
+        "version": "Apple clang 21.0.0"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Angular integration of the tree X-antiparticle annihilation amplitude and vacuum reaction-to-expansion ratio along a hypothetical freely redshifting high-H reservoir.",
+    "coefficient_domain": "IEEE754 double",
+    "conventions": "canonical real fields, periodic nearest-neighbor Hamiltonian, neutral warm random initial Phi waves; a=1 in local Minkowski window",
+    "inputs": [
+      "physical benchmark and saved screening probe; prescribed Phi energy C/a^4; PCG64 seed 2026102301"
+    ],
+    "bounds": {
+      "A_GeV": [
+        0.01,
+        0.003,
+        0.001,
+        0.0003
+      ],
+      "v": [
+        1e-05,
+        0.001,
+        0.01,
+        0.1,
+        0.5
+      ]
+    },
+    "non_claims": [
+      "No demonstrated actual late reservoir or bath state",
+      "No full inverse/number-changing network",
+      "Forward-only yield is not a final abundance"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T11:04:11.245403+00:00",
+    "runtime_seconds": 0.831603,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "highH_annihilation_gate.py",
+    "screening_exit_bound_v2_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "highH_annihilation_gate.py",
+      "sha256": "0c3eb740402ef77961276f060f8897d3b4b40213d61b9d68a9c36efac5d67759",
+      "sha256_after": "0c3eb740402ef77961276f060f8897d3b4b40213d61b9d68a9c36efac5d67759"
+    },
+    {
+      "path": "screening_exit_bound_v2_run/results.json",
+      "sha256": "d98bd7224d0e71ad7c878756126197feaa126a580983016cb8bc5b46e7c7ff25",
+      "sha256_after": "d98bd7224d0e71ad7c878756126197feaa126a580983016cb8bc5b46e7c7ff25"
+    }
+  ],
+  "output_directory": "highH_annihilation_gate_run",
+  "declared_results": [
+    "highH_annihilation_gate_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "highH_annihilation_gate_run/stdout.txt",
+      "sha256": "e7c57da632391dafc9d986b567cf2950cbc467bfe0ba207124e10d7e88fca3bb",
+      "kind": "log"
+    },
+    {
+      "path": "highH_annihilation_gate_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "highH_annihilation_gate_run/results.json",
+      "sha256": "64c660e64a0e461a6f92d8930537e6301d19b61d980d2436b8e9f6fd5268d578",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,3 @@
+# Resolved linewidth test
+
+Prior turn improved action-space response and stabilized the low peak near.823. Test peak location and half-height width with epsilon=.003,.001,.0003,.0001 using64x64 and128x128 action grids and eight field shapes. Find the peak in .818–.828 and both half-height crossings within .79–.85. Report measured HWHM and HWHM-epsilon only as diagnostics, not a physical damping rate: a background, basis truncation and unresolved resonances can change the interpretation. If peak width lacks quadrature convergence, preserve that failure instead of extrapolating a lifetime. Retain direct128-grid construction separately from the bounded audit.

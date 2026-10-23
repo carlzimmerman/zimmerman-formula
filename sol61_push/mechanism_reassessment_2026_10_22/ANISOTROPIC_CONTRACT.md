@@ -1,0 +1,7 @@
+# Anisotropic force-free kinetic realization, before computation
+
+Test whether the identified-medium cold force law admits a stationary warm distribution once isotropy is dropped. Work with point baryons, gamma=0, negligible background density, spherical symmetry, and the full native algebraic relation u²/(a0-u)=GMb/r². On this branch the effective force on identified cold matter vanishes. Derive its density from divP and construct a positive distribution of straight trajectories labelled by impact parameter b=L/v. Check density and radial/tangential stress moments by independent quadrature, and the zero-force anisotropic Jeans identity symbolically.
+
+Candidate: a=rM/2, rho=C/[r sqrt(r²+a²)] and f(r,v)=C a/[2pi² v0² b(b²+a²)] delta(v-v0), where C=a0 rM/K and v0>0 is arbitrary. Verify normalization, density, positivity, stress divergence, and relation to the native full law. Analyze finite-mass/isolation limits; do not infer a formed halo, boundary confinement, finite-stiffness solution, or selected distribution. The singular b=0 population is integrable in velocity solid angle at any r>0; origin behavior must be stated.
+
+Post-construction boundary check: verify4pi r³ Pi_rr=v0² M(<r), the stationary zero-force virial balance. This identifies the nonvanishing surface stress carrying the infinite profile. A mutation deleting tangential stress must fail the anisotropic Jeans identity (and associated moment relations). No relaxation or finite-halo stability is inferred from this equilibrium.

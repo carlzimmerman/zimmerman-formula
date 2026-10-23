@@ -1,0 +1,137 @@
+{
+  "schema_version": 2,
+  "claim_id": "NONLINEAR_QUANTUM_EVOLUTION_AUDIT",
+  "repository": {
+    "commit": "a50a7fcb3fad87868531223baa41eaa15dc5ca59",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "audit_quantum_fock_evolution_v2.py",
+    "quantum_fock_evolution_audit_v2_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Two-time connected quantum correlators, state cutoff comparison, independent time-dependent integration, ground state stationarity, source representation bound",
+    "coefficient_domain": "IEEE double",
+    "conventions": "D defined by Wdot=-D nX nPhi^2 forward, balanced total densities",
+    "inputs": [
+      "m=.001 M=2m sqrt(1+.02^2), g=2.168e-6, lambda=.00881292"
+    ],
+    "bounds": {
+      "energy_cuts": [
+        12,
+        14
+      ],
+      "occupation_cut": 10,
+      "time_test_cut": 8
+    },
+    "non_claims": [
+      "No cosmological initial state",
+      "No bath or continuum rate",
+      "No surviving abundance"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-10-23T15:24:02.043359+00:00",
+    "runtime_seconds": 0.99308,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "quantum_fock_solver.py",
+    "audit_quantum_fock_evolution_v2.py",
+    "coupled_fragmentation_96_run/fine96_initial.bin"
+  ],
+  "input_artifacts": [
+    {
+      "path": "quantum_fock_solver.py",
+      "sha256": "1dd843c0f5ce59b0847d379109c11de09cfc96dcfc26e119743dc676125e8927",
+      "sha256_after": "1dd843c0f5ce59b0847d379109c11de09cfc96dcfc26e119743dc676125e8927"
+    },
+    {
+      "path": "audit_quantum_fock_evolution_v2.py",
+      "sha256": "86ba4c9d21016247b7d8e3c2d2c6cd334796ffef8278df774a354cdbb157e982",
+      "sha256_after": "86ba4c9d21016247b7d8e3c2d2c6cd334796ffef8278df774a354cdbb157e982"
+    },
+    {
+      "path": "coupled_fragmentation_96_run/fine96_initial.bin",
+      "sha256": "81f8e785fa6711a50205bf0bcdc96b6fd5890cb62fb723151cdd5ce813f3f69b",
+      "sha256_after": "81f8e785fa6711a50205bf0bcdc96b6fd5890cb62fb723151cdd5ce813f3f69b"
+    }
+  ],
+  "output_directory": "quantum_fock_evolution_audit_v2_run",
+  "declared_results": [
+    "quantum_fock_evolution_audit_v2_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "quantum_fock_evolution_audit_v2_run/stdout.txt",
+      "sha256": "b6a290d8659f2f90c89e8c9c1dde70bc68abd5453ab4628602e5ff86052ee458",
+      "kind": "log"
+    },
+    {
+      "path": "quantum_fock_evolution_audit_v2_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "quantum_fock_evolution_audit_v2_run/results.json",
+      "sha256": "655c703e9b73734ae8509687cad703fa48da654041135ab1a1dd2620f072b15d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

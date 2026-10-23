@@ -1,0 +1,126 @@
+{
+  "schema_version": 2,
+  "claim_id": "STOCHASTIC_FIELD_SOURCE",
+  "repository": {
+    "commit": "ae428dc252c44c9a0ef28071e599510718304e18",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/mechanism_reassessment_2026_10_22/stochastic_source.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/stochastic_source_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Two common-noise discretizations of the specified stochastic field equations agree in variance and match the free-X variance within five Monte Carlo standard errors.",
+    "coefficient_domain": "float64",
+    "conventions": "Four canonical real fields scaled by imposed H; complex fields are (real1+i real2)/sqrt2; drift from existing potential; noise per e-fold1/(2pi).",
+    "inputs": [
+      "declared smooth FLRW scale factor; no occupied X or Phi input"
+    ],
+    "bounds": {
+      "patches": 4096,
+      "N_e": 60,
+      "dt": [
+        0.02,
+        0.01
+      ],
+      "H_GeV": 13445177278.709404
+    },
+    "non_claims": [
+      "No conjugate momenta, local charge, post-inflation particle abundance or coldness."
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng PCG64",
+    "seed": 20261022
+  },
+  "run": {
+    "started_at": "2026-10-23T01:13:29.342210+00:00",
+    "runtime_seconds": 1.385535,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/mechanism_reassessment_2026_10_22/stochastic_source.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/stochastic_source.py",
+      "sha256": "dc7fa142550b756bf60cab62e74adec7063dedb5410760ac23b087a442490e10",
+      "sha256_after": "dc7fa142550b756bf60cab62e74adec7063dedb5410760ac23b087a442490e10"
+    }
+  ],
+  "output_directory": "sol61_push/mechanism_reassessment_2026_10_22/stochastic_source_run",
+  "declared_results": [
+    "sol61_push/mechanism_reassessment_2026_10_22/stochastic_source_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/stochastic_source_run/stdout.txt",
+      "sha256": "48ad146d51ad802988a4c62dfd95ec3eafe3bcd7032f602182d9b9014e7de40e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/stochastic_source_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/stochastic_source_run/results.json",
+      "sha256": "856130578bbaf349649fbe01ff1ac632604c50977aafa6da45b53a476730cda0",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

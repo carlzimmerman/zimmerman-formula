@@ -1,0 +1,146 @@
+{
+  "schema_version": 2,
+  "claim_id": "INDEPENDENT_LINEAR_QUANTUM_EVOLUTION_CHECK",
+  "repository": {
+    "commit": "dc6d6a3e1ed3fb5c4beb9d6454d527e0d743de0d",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "audit_linear_quantum_correlations.py",
+    "audit_linear_quantum_correlations_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Adaptive DOP853 vs symplectic quantum-mode propagation for 31 shells and two polarizations",
+    "coefficient_domain": "IEEE double",
+    "conventions": "D defined by Wdot=-D nX nPhi^2 forward, balanced total densities",
+    "inputs": [
+      "m=.001 M=2m sqrt(1+.02^2), g=2.168e-6, lambda=.00881292"
+    ],
+    "bounds": {
+      "z": 3,
+      "shells": 31
+    },
+    "non_claims": [
+      "No thermalization declaration",
+      "No full renormalization",
+      "No collision or number-changing kernel inserted",
+      "No relic yield"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-10-23T14:51:45.922569+00:00",
+    "runtime_seconds": 0.312289,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "audit_linear_quantum_correlations.py",
+    "coupled_fragmentation_96_run/results.json",
+    "coupled_fragmentation_96_run/fine96_initial.bin",
+    "linear_quantum_correlations_run/base32_final.npz",
+    "linear_quantum_correlations_run/time32_final.npz"
+  ],
+  "input_artifacts": [
+    {
+      "path": "audit_linear_quantum_correlations.py",
+      "sha256": "f379c754ef80fbe9973ea0489c98b10293ded6c38d2b0c414eab1e1a34e1cf03",
+      "sha256_after": "f379c754ef80fbe9973ea0489c98b10293ded6c38d2b0c414eab1e1a34e1cf03"
+    },
+    {
+      "path": "coupled_fragmentation_96_run/results.json",
+      "sha256": "a1602d885b6ef3436cd860aa4e190d0457b833c0f332ac41a6fd28ca3eaedbf4",
+      "sha256_after": "a1602d885b6ef3436cd860aa4e190d0457b833c0f332ac41a6fd28ca3eaedbf4"
+    },
+    {
+      "path": "coupled_fragmentation_96_run/fine96_initial.bin",
+      "sha256": "81f8e785fa6711a50205bf0bcdc96b6fd5890cb62fb723151cdd5ce813f3f69b",
+      "sha256_after": "81f8e785fa6711a50205bf0bcdc96b6fd5890cb62fb723151cdd5ce813f3f69b"
+    },
+    {
+      "path": "linear_quantum_correlations_run/base32_final.npz",
+      "sha256": "989a9120c6f669c31b6ba48281b03a1a251ab38ffa8fa0adb879a10974a3ab4a",
+      "sha256_after": "989a9120c6f669c31b6ba48281b03a1a251ab38ffa8fa0adb879a10974a3ab4a"
+    },
+    {
+      "path": "linear_quantum_correlations_run/time32_final.npz",
+      "sha256": "42cc1677d65500b0b5eeddc74990d5aae8305652d4a4f1c9bc7ff0b653ff6b5e",
+      "sha256_after": "42cc1677d65500b0b5eeddc74990d5aae8305652d4a4f1c9bc7ff0b653ff6b5e"
+    }
+  ],
+  "output_directory": "audit_linear_quantum_correlations_run",
+  "declared_results": [
+    "audit_linear_quantum_correlations_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "audit_linear_quantum_correlations_run/stdout.txt",
+      "sha256": "740ac18606235ccffee48c8d2880830e2f83edf40f4636bbdc5c80ef4d789775",
+      "kind": "log"
+    },
+    {
+      "path": "audit_linear_quantum_correlations_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "audit_linear_quantum_correlations_run/results.json",
+      "sha256": "cbbfd09589b735c9b4bef011b09e57d6acc527911b0a2a807456e68f70de296b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

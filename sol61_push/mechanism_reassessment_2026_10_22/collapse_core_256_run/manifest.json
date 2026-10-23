@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "CORE_CONVERGENCE",
+  "repository": {
+    "commit": "646943feab8fe15df1a6d4103b88b8da2faf33f0",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/mechanism_reassessment_2026_10_22/collapse_core_256.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/collapse_core_256_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Compare finite-radius retained mass and trajectories across 32,64,128 shells through t=30; energy/domain controls; no asymptotic binding claim.",
+    "coefficient_domain": "float64",
+    "conventions": "unit masses; cold gamma .01; uniform homologous gas inertia .6 and thermal energy .3/B squared",
+    "inputs": [
+      "initial cold radius6, gas radius3, both at rest"
+    ],
+    "bounds": {
+      "N": [
+        256
+      ],
+      "epsilon": [
+        1e-08
+      ],
+      "rtol": [
+        2e-11
+      ],
+      "T": 30,
+      "event_budget": 10000
+    },
+    "non_claims": [
+      "No primordial production, natural initial entropy, gas cooling or cosmological initial conditions",
+      "Not the exact logarithmic barrier flow; no certified permanent remnant."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T00:46:20.923575+00:00",
+    "runtime_seconds": 900.422879,
+    "exit_status": -9,
+    "status": "timeout",
+    "timeout_seconds": 900.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/mechanism_reassessment_2026_10_22/collapse_core_256_run/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/mechanism_reassessment_2026_10_22/collapse_core_256.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/reciprocal_collapse_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/collapse_core_256.py",
+      "sha256": "0df17eac3e885e94a823088ea24936f7c73976d86d9f14828bc9789f6920dcb5",
+      "sha256_after": "0df17eac3e885e94a823088ea24936f7c73976d86d9f14828bc9789f6920dcb5"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/reciprocal_collapse_v2.py",
+      "sha256": "7ae7c00e09a040c7c26ba470379684702f5ec29be3e78cc1afacdba5c0d73240",
+      "sha256_after": "7ae7c00e09a040c7c26ba470379684702f5ec29be3e78cc1afacdba5c0d73240"
+    }
+  ],
+  "output_directory": "sol61_push/mechanism_reassessment_2026_10_22/collapse_core_256_run",
+  "declared_results": [
+    "sol61_push/mechanism_reassessment_2026_10_22/collapse_core_256_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/collapse_core_256_run/stdout.txt",
+      "sha256": "d009fbf87247c1e76a50e4246dcc91cf5b6778e74e6f755b6610c61ec3436040",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/collapse_core_256_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run timeout; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: sol61_push/mechanism_reassessment_2026_10_22/collapse_core_256_run/results.json"
+  ]
+}

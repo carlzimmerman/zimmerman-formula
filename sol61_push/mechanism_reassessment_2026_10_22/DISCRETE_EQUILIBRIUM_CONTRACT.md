@@ -1,0 +1,9 @@
+# Equilibrium of the actual particle-mesh mean field, before computation
+
+Use the same radial cloud-in-cell energy as live_relaxation.py, fixed baryons, A10,ra1,gamma0.01 and mass1. Solve its continuous stationary distribution f=F Q_+ using the interpolated grid chemical potential, not a nodal continuum approximation. At radial quadrature points Psi=Ecut-Phi_b-interp(mu_grid); density=A Psi_+^(5/2)/(1+r²). Deposit this continuous density with the identical interpolation weights to obtain grid masses. Require self-consistency of masses/chemical potential, mass1, q<0.98, and quadrature refinement.
+
+Use Gauss integration within every interpolation interval and solve z_j=Ecut-mu_j jointly with Ecut. Sample the resulting continuous distribution for live controls. A finite particle sample is not an exact stationary distribution even when its underlying mean field is solved exactly. Compare unperturbed drift with prior continuum-initialized controls; do not infer damping-rate convergence before controls and matched-energy perturbations are checked.
+
+## Live comparison settings, before refined results
+
+Use N32768/grid256/dt0.005 and N131072/grid512/dt0.0025, duration40, with an unperturbed and perturbed run at each. Choose the dilation by a scalar root solve on each sampled discrete Hamiltonian so injected energy is exactly0.0008; retain angular momentum through x->lambda x,v->v/lambda. This replaces the previous unequal-energy comparison. Record dilation factors, control drift and control-subtracted response; no fitted damping rate or asymptotic-settling criterion. Numerical audit gates remain force derivative1e-4, total-energy drift1e-4 and angular-momentum error1e-10, plus equilibrium residual1e-10 and mass error1e-10. The finite-particle control need not be perfectly stationary.

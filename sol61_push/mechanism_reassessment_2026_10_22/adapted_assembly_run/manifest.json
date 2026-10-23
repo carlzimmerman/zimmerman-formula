@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "ADAPTED_ASSEMBLY",
+  "repository": {
+    "commit": "2ccd47be97737855bcf5d8f645b307e0ac7d9d23",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/mechanism_reassessment_2026_10_22/adapted_assembly.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/adapted_assembly_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Evaluate reciprocal-beta ramp at two durations and resolutions with external-work and force checks.",
+    "coefficient_domain": "float64",
+    "conventions": "unit cold mass, gamma .01; beta=1/(10-9S); S quintic smoothstep",
+    "inputs": [
+      "unit cold mass, gamma .01, Plummer scale1"
+    ],
+    "bounds": {
+      "N": [
+        64,
+        128
+      ],
+      "dt": [
+        0.0005,
+        0.00025
+      ],
+      "durations": [
+        100,
+        200
+      ],
+      "beta": [
+        0.1,
+        1.0
+      ]
+    },
+    "non_claims": [
+      "No primordial cold generation, continuum convergence proof or nonspherical stability"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-22T21:40:27.243366+00:00",
+    "runtime_seconds": 66.964733,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/mechanism_reassessment_2026_10_22/adapted_assembly.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/adapted_assembly.py",
+      "sha256": "c1a03f034f88b025627a07f15a18379c1f1666359cbc101cce0c8f74241a8925",
+      "sha256_after": "c1a03f034f88b025627a07f15a18379c1f1666359cbc101cce0c8f74241a8925"
+    }
+  ],
+  "output_directory": "sol61_push/mechanism_reassessment_2026_10_22/adapted_assembly_run",
+  "declared_results": [
+    "sol61_push/mechanism_reassessment_2026_10_22/adapted_assembly_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/adapted_assembly_run/stdout.txt",
+      "sha256": "34b8762c1864d0b85dfaaf28d231813e74f1cd5996fb8065c26d80d10571c320",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/adapted_assembly_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/adapted_assembly_run/results.json",
+      "sha256": "5ed6ae704ce0ef1502df5acbf94be61407b99ab20a174d1148766f2987e3d42f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

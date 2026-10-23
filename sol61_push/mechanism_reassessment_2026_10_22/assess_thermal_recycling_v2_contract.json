@@ -1,0 +1,70 @@
+{
+  "claim_id": "THERMAL_RECYCLING_ASSESSMENT_V2",
+  "mathematics": {
+    "assertion_tested": "Integrated reaction accounting and handoff sensitivity of conditional thermal branch",
+    "coefficient_domain": "IEEE double",
+    "conventions": "two charged signs, total density conventions of previous threshold audit; thermal MB normalization",
+    "inputs": [
+      "existing m M g lambda; Sobol seeds 202610231 and 202610232"
+    ],
+    "bounds": {
+      "start_T_over_m": 0.5,
+      "end_T_over_m": 1e-05,
+      "contact_multipliers": [
+        0,
+        0.1,
+        1,
+        10
+      ],
+      "pair_multipliers": [
+        0,
+        0.5,
+        1,
+        2
+      ],
+      "integration_samples": 24001
+    },
+    "non_claims": [
+      "No source-to-thermal-state derivation",
+      "No full Bose or RIS-subtracted off-shell cubic network",
+      "No full high-H prediction"
+    ]
+  },
+  "execution_artifacts": [
+    "assess_thermal_recycling_v2.py",
+    "thermal_recycling_evolution.py",
+    "thermal_recycling_rates_run/results.json",
+    "highH_annihilation_gate_run/results.json",
+    "thermal_recycling_evolution_run/results.json",
+    "thermal_recycling_anchor0_run/results.json",
+    "thermal_recycling_anchor1_run/results.json",
+    "thermal_recycling_anchor3_run/results.json",
+    "thermal_recycling_evolution_run/full.csv",
+    "thermal_recycling_evolution_run/no_pair.csv",
+    "thermal_recycling_evolution_run/no_loss.csv",
+    "thermal_recycling_dense_run/full.csv"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.9.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

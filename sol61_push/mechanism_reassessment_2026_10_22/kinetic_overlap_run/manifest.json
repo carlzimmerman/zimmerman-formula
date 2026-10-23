@@ -1,0 +1,167 @@
+{
+  "schema_version": 2,
+  "claim_id": "HIGH_H_KINETIC_OVERLAP_DIAGNOSTIC",
+  "repository": {
+    "commit": "b30db59ad2727707f1f0d2736d2a41b7e474f025",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "kinetic_overlap_probe.py",
+    "kinetic_overlap_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "Apple clang",
+        "version": "21"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Energy balance and Parseval in absolute-time continuation; compare occupation and coherence proxies over z=200..220 at dt=.01/.005 and n96/128",
+    "coefficient_domain": "IEEE double",
+    "conventions": "q=a field/Fmax; z=Omega eta; lambda=.00881292; f_cl=(P+omega^2 F)/(2 lambda omega); omega^2=kFD^2+2<qPhi^2>",
+    "inputs": [
+      "Saved actual finite-band high-H realization at z200; no new random modes"
+    ],
+    "bounds": {
+      "z": [
+        200,
+        220
+      ],
+      "n": [
+        96,
+        128
+      ],
+      "dt": [
+        0.01,
+        0.005
+      ],
+      "samples": 21
+    },
+    "non_claims": [
+      "No quantum density matrix propagation",
+      "No bath or yield",
+      "No renormalized UV limit",
+      "No ensemble or infinite-volume convergence"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-10-23T17:23:05.271555+00:00",
+    "runtime_seconds": 201.093569,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 600.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "kinetic_overlap_probe.py",
+    "coupled_field_restart.cpp",
+    "coupled_field_restart",
+    "test_absolute_restart.py",
+    "coupled_fragmentation_96_run/fine96_initial.bin",
+    "coupled_fragmentation_96_run/fine96_final.bin"
+  ],
+  "input_artifacts": [
+    {
+      "path": "kinetic_overlap_probe.py",
+      "sha256": "ccd09ba00f20341e5a8a6ce12492bf7fe1a622e562dc3a43e5f7aac961a07ce9",
+      "sha256_after": "ccd09ba00f20341e5a8a6ce12492bf7fe1a622e562dc3a43e5f7aac961a07ce9"
+    },
+    {
+      "path": "coupled_field_restart.cpp",
+      "sha256": "011e5b9d0ced0aa43efa465b206022172b1d9ed5056e3155ada0995db964dff1",
+      "sha256_after": "011e5b9d0ced0aa43efa465b206022172b1d9ed5056e3155ada0995db964dff1"
+    },
+    {
+      "path": "coupled_field_restart",
+      "sha256": "8aedb15dfbb3405923035cc812ed297e058d756e54adfa5f94f688359ac8ab46",
+      "sha256_after": "8aedb15dfbb3405923035cc812ed297e058d756e54adfa5f94f688359ac8ab46"
+    },
+    {
+      "path": "test_absolute_restart.py",
+      "sha256": "8305418fb5674cd637108616fe058b0357fb5f3210fefb86d84c80a46a6ba4e4",
+      "sha256_after": "8305418fb5674cd637108616fe058b0357fb5f3210fefb86d84c80a46a6ba4e4"
+    },
+    {
+      "path": "coupled_fragmentation_96_run/fine96_initial.bin",
+      "sha256": "81f8e785fa6711a50205bf0bcdc96b6fd5890cb62fb723151cdd5ce813f3f69b",
+      "sha256_after": "81f8e785fa6711a50205bf0bcdc96b6fd5890cb62fb723151cdd5ce813f3f69b"
+    },
+    {
+      "path": "coupled_fragmentation_96_run/fine96_final.bin",
+      "sha256": "b0b8ef491821e6986c82ca847edce9469c3bceaca051c358dc57b709644a288b",
+      "sha256_after": "b0b8ef491821e6986c82ca847edce9469c3bceaca051c358dc57b709644a288b"
+    }
+  ],
+  "output_directory": "kinetic_overlap_run",
+  "declared_results": [
+    "kinetic_overlap_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "kinetic_overlap_run/stdout.txt",
+      "sha256": "00f7791dd0fde109a1004556d7ae5cd9caebda90c1db8348381fb620ceba5364",
+      "kind": "log"
+    },
+    {
+      "path": "kinetic_overlap_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "kinetic_overlap_run/results.json",
+      "sha256": "009d5fee9171fb159aceb4078fbb0c1a93cc6eb301b603cd67d621b027ce0e59",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

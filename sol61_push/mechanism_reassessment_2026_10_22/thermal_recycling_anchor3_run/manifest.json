@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "claim_id": "THERMAL_HANDOFF_SENSITIVITY",
+  "repository": {
+    "commit": "0944553f404ec3d57f8651cc14ddb4895f52045d",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "thermal_recycling_anchor_scan.py",
+    "thermal_recycling_anchor3_run",
+    "3"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Energy-conserving thermal moment evolution with rapid decay equilibrium, inverse pair conversion and direct contact 4-to-2 plus inverse 2-to-4; kinetic closure explicitly conditional.",
+    "coefficient_domain": "IEEE double",
+    "conventions": "two charged signs, total density conventions of previous threshold audit; thermal MB normalization",
+    "inputs": [
+      "existing m M g lambda; Sobol seeds 202610231 and 202610232"
+    ],
+    "bounds": {
+      "start_T_over_m": 0.5,
+      "end_T_over_m": 1e-05,
+      "contact_multipliers": [
+        0,
+        0.1,
+        1,
+        10
+      ],
+      "pair_multipliers": [
+        0,
+        0.5,
+        1,
+        2
+      ],
+      "anchor_indices": [
+        0,
+        1,
+        3
+      ]
+    },
+    "non_claims": [
+      "No source-to-thermal-state derivation",
+      "No full Bose or RIS-subtracted off-shell cubic network",
+      "No full high-H prediction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T12:34:03.861631+00:00",
+    "runtime_seconds": 0.489091,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "thermal_recycling_anchor_scan.py",
+    "thermal_recycling_rates_run/results.json",
+    "highH_annihilation_gate_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "thermal_recycling_anchor_scan.py",
+      "sha256": "462d917ba32c16a5cbfbb8d7f2b9dd06cffdc05a75d50f919037583fd28ae2e8",
+      "sha256_after": "462d917ba32c16a5cbfbb8d7f2b9dd06cffdc05a75d50f919037583fd28ae2e8"
+    },
+    {
+      "path": "thermal_recycling_rates_run/results.json",
+      "sha256": "ddc4fc7dc953c34c2c723dc69b5d3ecee1bac6c408966f7ea98d1da74bdfa462",
+      "sha256_after": "ddc4fc7dc953c34c2c723dc69b5d3ecee1bac6c408966f7ea98d1da74bdfa462"
+    },
+    {
+      "path": "highH_annihilation_gate_run/results.json",
+      "sha256": "64c660e64a0e461a6f92d8930537e6301d19b61d980d2436b8e9f6fd5268d578",
+      "sha256_after": "64c660e64a0e461a6f92d8930537e6301d19b61d980d2436b8e9f6fd5268d578"
+    }
+  ],
+  "output_directory": "thermal_recycling_anchor3_run",
+  "declared_results": [
+    "thermal_recycling_anchor3_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "thermal_recycling_anchor3_run/stdout.txt",
+      "sha256": "525e12031836b893c5f89d857dee557283407518c765c0c4c79daa35bed78773",
+      "kind": "log"
+    },
+    {
+      "path": "thermal_recycling_anchor3_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "thermal_recycling_anchor3_run/results.json",
+      "sha256": "550226758fcb2a9d1e6bcec5b6fed57ea764dc417ed8698eb70713fd9697e0cd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

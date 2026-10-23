@@ -1,0 +1,3 @@
+# Orbit frequency diagnostic
+
+Previous turn made progress by deriving and computing the cold radial spectrum. Test whether occupied single-particle radial frequencies approach the zero-dispersion fundamental omega=.82776. Use continuum fixed-mass equilibria A10,100,1000,10000; sample1024 deterministic Sobol phase points from each f(Q), compute turning points and radial periods by endpoint-regularized quadrature at64 and128 nodes. Compare omega_r and its first few harmonics with the cold collective frequency. This is a finite sample, not a rigorous spectral support bound, and resonance access alone is not a damping-rate calculation. Warm branches need their own collective spectra for actual resonance predictions.

@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "MOVING_GAUSSIAN_SOURCE_AND_RESIDUAL_KERNEL",
+  "repository": {
+    "commit": "0a43187beae5a92951341b2e518e7a080ea9ab59",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "moving_source_basis.py",
+    "moving_source_basis_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Canonical source-adapted Gaussian basis, exact Wick initial residual-norm kernels, fixed-band momentum refinement and separate UV scan",
+    "coefficient_domain": "IEEE double",
+    "conventions": "D defined by Wdot=-D nX nPhi^2 forward, balanced total densities",
+    "inputs": [
+      "m=.001 M=2m sqrt(1+.02^2), g=2.168e-6, lambda=.00881292"
+    ],
+    "bounds": {
+      "fixed_band_L": [
+        32,
+        48,
+        64,
+        96,
+        128
+      ],
+      "UV_axis_K": [
+        4,
+        8,
+        12,
+        16,
+        24
+      ]
+    },
+    "non_claims": [
+      "No evolved residual density matrix",
+      "No thermalization rate",
+      "No continuum renormalization",
+      "No surviving yield"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-10-23T16:34:24.545123+00:00",
+    "runtime_seconds": 1.929215,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "moving_source_basis.py",
+    "coupled_fragmentation_96_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "moving_source_basis.py",
+      "sha256": "ee8b94dc3f3a276481c809f00c6b14ca483e98195394f4d9ac6a840024eddc1a",
+      "sha256_after": "ee8b94dc3f3a276481c809f00c6b14ca483e98195394f4d9ac6a840024eddc1a"
+    },
+    {
+      "path": "coupled_fragmentation_96_run/results.json",
+      "sha256": "a1602d885b6ef3436cd860aa4e190d0457b833c0f332ac41a6fd28ca3eaedbf4",
+      "sha256_after": "a1602d885b6ef3436cd860aa4e190d0457b833c0f332ac41a6fd28ca3eaedbf4"
+    }
+  ],
+  "output_directory": "moving_source_basis_run",
+  "declared_results": [
+    "moving_source_basis_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "moving_source_basis_run/stdout.txt",
+      "sha256": "fa57a8c1a2b07a499bbed62ef20026e570c70cc9dd14b6f3ffd5cc8b6769f9c8",
+      "kind": "log"
+    },
+    {
+      "path": "moving_source_basis_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "moving_source_basis_run/results.json",
+      "sha256": "e46eb1a91ed523e5984f38105db71d6181d36b5c44966907b378150dfb4279c9",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

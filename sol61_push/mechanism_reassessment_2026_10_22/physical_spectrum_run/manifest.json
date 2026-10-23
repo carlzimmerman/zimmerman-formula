@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "PHYSICAL_SPECTRUM",
+  "repository": {
+    "commit": "e3333cb274b939be9c94636eadc52d3356d05c03",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/mechanism_reassessment_2026_10_22/physical_spectrum.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/physical_spectrum_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Compute integrated free quantum spectra on smooth inflation-to-radiation background and compare two numerical setups, then map to an illustrative MeV yield.",
+    "coefficient_domain": "float64",
+    "conventions": "H_inf=m_Phi=1; H(N)=1/(1+exp(2N)); xi=0; particle plus antiparticle counted; g*=106.75 and complete radiation thermalization for illustrative abundance",
+    "inputs": [
+      "declared smooth FLRW scale factor; no occupied X or Phi input"
+    ],
+    "bounds": {
+      "masses": [
+        1,
+        2.000399960008
+      ],
+      "k_range": [
+        0.0001,
+        10
+      ],
+      "grid_sizes": [
+        81,
+        161
+      ],
+      "early_frequency_ratio": [
+        50,
+        100
+      ],
+      "late_H": [
+        0.01,
+        0.005
+      ],
+      "rtol": [
+        2e-09,
+        2e-10
+      ]
+    },
+    "non_claims": [
+      "No scalar condensate, abundance prediction, source-background dynamics or mapping to identified medium"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T00:38:28.617365+00:00",
+    "runtime_seconds": 15.203979,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 900.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/mechanism_reassessment_2026_10_22/physical_spectrum_run/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/mechanism_reassessment_2026_10_22/physical_spectrum.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/physical_spectrum.py",
+      "sha256": "9b7bc4d55a703567bbb8e8beb4b12d4c38f8145763a7bee57a3d1516e97fcafb",
+      "sha256_after": "9b7bc4d55a703567bbb8e8beb4b12d4c38f8145763a7bee57a3d1516e97fcafb"
+    }
+  ],
+  "output_directory": "sol61_push/mechanism_reassessment_2026_10_22/physical_spectrum_run",
+  "declared_results": [
+    "sol61_push/mechanism_reassessment_2026_10_22/physical_spectrum_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/physical_spectrum_run/stdout.txt",
+      "sha256": "62ad0e941f872f8149f2d767b9e816d69468de08f42426d2aae224ad3f615fa1",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/physical_spectrum_run/stderr.txt",
+      "sha256": "bc815eb70cd6af20bf5ff14e95afb4ca90a5278e0bdde976194c169f130cea25",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: sol61_push/mechanism_reassessment_2026_10_22/physical_spectrum_run/results.json"
+  ]
+}

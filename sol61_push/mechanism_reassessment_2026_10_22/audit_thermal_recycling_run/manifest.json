@@ -1,0 +1,171 @@
+{
+  "schema_version": 2,
+  "claim_id": "THERMAL_RECYCLING_INDEPENDENT_AUDIT",
+  "repository": {
+    "commit": "526a565deccec685c4518b083bb31234d7b361c7",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "audit_thermal_recycling.py",
+    "audit_thermal_recycling_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent Bose detailed balance, finite difference thermodynamic derivatives, integrated energy/entropy, and finite-decay approach to constrained kinetic system.",
+    "coefficient_domain": "IEEE double",
+    "conventions": "two charged signs, total density conventions of previous threshold audit; thermal MB normalization",
+    "inputs": [
+      "existing m M g lambda; Sobol seeds 202610231 and 202610232"
+    ],
+    "bounds": {
+      "start_T_over_m": 0.5,
+      "end_T_over_m": 1e-05,
+      "contact_multipliers": [
+        0,
+        0.1,
+        1,
+        10
+      ],
+      "pair_multipliers": [
+        0,
+        0.5,
+        1,
+        2
+      ]
+    },
+    "non_claims": [
+      "No source-to-thermal-state derivation",
+      "No full Bose or RIS-subtracted off-shell cubic network",
+      "No full high-H prediction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T12:35:44.279803+00:00",
+    "runtime_seconds": 0.37432,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "audit_thermal_recycling.py",
+    "thermal_recycling_evolution.py",
+    "thermal_recycling_rates_run/results.json",
+    "highH_annihilation_gate_run/results.json",
+    "thermal_recycling_evolution_run/fine.csv",
+    "thermal_recycling_evolution_run/full.csv",
+    "thermal_recycling_evolution_run/no_loss.csv"
+  ],
+  "input_artifacts": [
+    {
+      "path": "audit_thermal_recycling.py",
+      "sha256": "f4da3936ed67ccdd84ccef44117ef166646316a2e3b56e61edc6745f404704a3",
+      "sha256_after": "f4da3936ed67ccdd84ccef44117ef166646316a2e3b56e61edc6745f404704a3"
+    },
+    {
+      "path": "thermal_recycling_evolution.py",
+      "sha256": "0361069eea9647fb19ca2b1c708069a2058a599d983b95986237074121151565",
+      "sha256_after": "0361069eea9647fb19ca2b1c708069a2058a599d983b95986237074121151565"
+    },
+    {
+      "path": "thermal_recycling_rates_run/results.json",
+      "sha256": "ddc4fc7dc953c34c2c723dc69b5d3ecee1bac6c408966f7ea98d1da74bdfa462",
+      "sha256_after": "ddc4fc7dc953c34c2c723dc69b5d3ecee1bac6c408966f7ea98d1da74bdfa462"
+    },
+    {
+      "path": "highH_annihilation_gate_run/results.json",
+      "sha256": "64c660e64a0e461a6f92d8930537e6301d19b61d980d2436b8e9f6fd5268d578",
+      "sha256_after": "64c660e64a0e461a6f92d8930537e6301d19b61d980d2436b8e9f6fd5268d578"
+    },
+    {
+      "path": "thermal_recycling_evolution_run/fine.csv",
+      "sha256": "e1ae95b732c0d6eaa0ea0bffe8f9306d9a67eddb8663198b3e57fae90ef79972",
+      "sha256_after": "e1ae95b732c0d6eaa0ea0bffe8f9306d9a67eddb8663198b3e57fae90ef79972"
+    },
+    {
+      "path": "thermal_recycling_evolution_run/full.csv",
+      "sha256": "52e94b5fcc0ae129b0d57d6afdd56921e643a70107e98cdcfa549c7e48e2d571",
+      "sha256_after": "52e94b5fcc0ae129b0d57d6afdd56921e643a70107e98cdcfa549c7e48e2d571"
+    },
+    {
+      "path": "thermal_recycling_evolution_run/no_loss.csv",
+      "sha256": "f6fcedfd0aca7c90fdf05abf6d494b694359cc412d0954c6128dbef6fe772841",
+      "sha256_after": "f6fcedfd0aca7c90fdf05abf6d494b694359cc412d0954c6128dbef6fe772841"
+    }
+  ],
+  "output_directory": "audit_thermal_recycling_run",
+  "declared_results": [
+    "audit_thermal_recycling_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "audit_thermal_recycling_run/stdout.txt",
+      "sha256": "5b8a5b6cdf7b97c09b1c2b891c0cd7df794e1824e2ae41c8d4a2ae5132c3d301",
+      "kind": "log"
+    },
+    {
+      "path": "audit_thermal_recycling_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "audit_thermal_recycling_run/results.json",
+      "sha256": "38396609acf80584f9e0672dbf458a001025532831953b7a340d70c149a36fa0",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

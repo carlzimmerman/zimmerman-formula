@@ -1,0 +1,9 @@
+# Collisionless response discriminator, before computation
+
+Inspect the A33 collisionless cold sector and test its minimal gravitational coupling to the formal reduced longitudinal scalar. This is a uniform polarized local patch with a Maxwellian of one-dimensional dispersion s; it does not impose the unproved cold/P sourcing identification. Let Q=B+eta k², D=h k²+gamma k⁴-Q omega². Then sigma=-K delta_rho/D and Phi=-K delta_rho/k²+K sigma. Combine this with delta_rho=-(rho/s²)(1+z Z(z)) Phi, z=omega/(sqrt2 k s), to derive D(1-J R)-K k² J R=0, J=K rho/(k² s²).
+
+Test normalized determinant [1-(z/z0)²](1-J R)-a J R, a=K/(h+gamma k²)=1/3, z0=0.5,1,2,5 and J=0.1,0.5,0.74. Follow a root near the positive field mode; report failures and residuals, do not claim a complete root census. At J=0.8,z0=1 search for the Jeans growing root. Check static threshold Jcrit=1/(1+a), zero-density field limit, density response sign, and analytic field/Poisson elimination. Threshold is a local static diagnostic, not a global stability theorem.
+
+Compare bare phase velocity for beta0.02798,h/K=3 with dispersion8.33km/s quoted by A33. Estimate Maxwellian resonant exponential as exp(-z0²) in logarithmic form. Derive beta needed for phase velocity equal to s; it is a tuning requirement, not a prediction. Do not transfer this patch's roots to a solved galaxy. Independent source verification is abstract-level for Moretti et al. arXiv2005.08010v4; its massive relativistic scalar is not this model.
+
+Probe correction: NumPy boolean scalars prevented JSON serialization on the initial run; checks were converted to Python bool before writing the result. No equations or tolerances changed. The nonrelativistic Maxwellian exponential at a0.2c phase speed is a formal extrapolation only; a relativistic distribution is required for an exact high-velocity tail. The velocity mismatch itself is the robust diagnostic.

@@ -1,0 +1,7 @@
+# Radial wave operator and long-range exterior, before computation
+
+Continue the formal reduced fixed-source model, with spherical background q from SPHERICAL_RESULT.md. Radial perturbations P=grad sigma have quadratic stiffness h(r)=K[(1-q)^(-2)-1]. Derive the spherical fourth-order operator by setting u=r sigma; verify its constant-h limit and the quadratic form. Derive the outgoing large-r phase when h=H/r+O(r^-2); test cancellation of the 1/r residual using u=exp(i k r) r^(i alpha). An outgoing free exp(i k r) boundary is expected to miss a logarithmic phase.
+
+For an illustrative dimensionless exterior use B=1, gamma=0.01, eta=0.01/b, b=(2+3 beta)/beta, beta=0.02798, H=2 (A=1). Frequencies 0.01,0.03,0.1,0.3,1. Compute the acoustic/bending crossover r_cross=H/(sqrt(B gamma) omega), the exact local positive dispersion root and group velocity, and WKB travel integral from r=10 to r_cross when larger than 10. Report |k'|/k² to assess WKB, not assume validity. This is an idealized asymptotic tail, not a solved global eigenmode or cooling calculation.
+
+Checks: radial operator identity, constant-stiffness limit, logarithmic-phase coefficient, positive root, positive group velocity, numerical derivative agreement for group velocity. A mutation reversing logarithmic-phase sign must fail its residual cancellation. No proof of a full-theory causal/stable mode or observational novelty.

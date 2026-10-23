@@ -1,0 +1,9 @@
+# Slow-source radiation, pre-computation
+
+Use the same reduced Plummer background, Gaussian breathing source, dimensional conventions and equations as FORCED_RADIAL_RESULT and BACKREACTION_RESULT. Test omega=0.01,0.03. For each frequency set outer radii to2,4,8 times the crossover20/omega (4000,8000,16000 for0.01;1333.33,2666.67,5333.33 for0.03). Reuse the outgoing and decaying logarithmic/power branches. Retain solver tolerance2e-7 initially, max_nodes120000; report failure rather than claiming slow radiation if powers are unresolved.
+
+Checks: BVP convergence, positive power and Im chi, source work/flux and exterior flux constancy within1e-4 relative; final doubling changes power below1%. Compare chi real with the prior static value, but do not impose a threshold treating finite frequency as exactly static. If absolute error control proves insufficient for small imaginary response, introduce explicit component scaling and verify refinement; retain probes. This is prescribed-source linear response, not a derived free halo mode or cold selector.
+
+## Post-probe refinement and analytic extension
+
+At2e-7 the omega0.01 work/flux residual exceeded the frozen1e-4 threshold (up to1.59e-4). Tightening the solver tolerance to2e-9 passes without changing acceptance thresholds; the failed probe is retained. The observed near-fifth-power scaling motivated a matched acoustic-tail derivation, not a pre-registered prediction. Compute the static moment S0=integral r² sigma0 dr and compare P~pi S0² omega^5/(6H), H=2, with numerical powers; report ratios without a fitted pass threshold. Check the Hankel flux normalization numerically. An extra frequency0.003 at outer53333.33 checks the predicted trend, but has no outer-radius doubling test of its own. It must meet energy/flux1e-4; it does not independently establish domain convergence there.

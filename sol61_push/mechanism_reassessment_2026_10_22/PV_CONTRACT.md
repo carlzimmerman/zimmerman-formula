@@ -1,0 +1,3 @@
+# Real principal-value response
+
+Prior turn established a candidate resonant absorption channel with direct orbit refinement. Compute the real matrix by explicit pole subtraction on the endpoint-completed PCHIP orbit representation. For each simple root of f(E)=omega²-n²Omega², subtract G(root)/f'(root)/(E-root) and add its analytic logarithmic principal value. Compare energy quadrature16/32 points per interpolation interval and action orders64/128. Use three nearby frequencies for an exploratory real-mode crossing, but do not infer a damping rate if real response or basis convergence remains insufficient. Interpolation is an approximation; direct resonance results remain separate evidence.

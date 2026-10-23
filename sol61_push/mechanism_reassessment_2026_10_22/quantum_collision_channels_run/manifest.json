@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "claim_id": "QUANTUM_HAMILTONIAN_OTHER_LOSS_CHANNELS",
+  "repository": {
+    "commit": "a50a7fcb3fad87868531223baa41eaa15dc5ca59",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "audit_quantum_collision_channels.py",
+    "quantum_collision_channels_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Original Hamiltonian reproduces independent pair conversion and contact 31/22 4-to-2 amplitudes",
+    "coefficient_domain": "IEEE double",
+    "conventions": "D defined by Wdot=-D nX nPhi^2 forward, balanced total densities",
+    "inputs": [
+      "m=.001 M=2m sqrt(1+.02^2), g=2.168e-6, lambda=.00881292"
+    ],
+    "bounds": {
+      "energy_cut": 12,
+      "number_cut": 8,
+      "channels": [
+        "31",
+        "22",
+        "pair"
+      ]
+    },
+    "non_claims": [
+      "No cosmological initial state",
+      "No bath or continuum rate",
+      "No surviving abundance"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-10-23T15:22:56.237143+00:00",
+    "runtime_seconds": 0.426196,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "quantum_collision_channels_run/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "quantum_fock_solver.py",
+    "audit_quantum_collision_channels.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "quantum_fock_solver.py",
+      "sha256": "1dd843c0f5ce59b0847d379109c11de09cfc96dcfc26e119743dc676125e8927",
+      "sha256_after": "1dd843c0f5ce59b0847d379109c11de09cfc96dcfc26e119743dc676125e8927"
+    },
+    {
+      "path": "audit_quantum_collision_channels.py",
+      "sha256": "6fc786b0519260522c29de4aca099d52ea650d74d321de8d83db988df6426ecd",
+      "sha256_after": "6fc786b0519260522c29de4aca099d52ea650d74d321de8d83db988df6426ecd"
+    }
+  ],
+  "output_directory": "quantum_collision_channels_run",
+  "declared_results": [
+    "quantum_collision_channels_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "quantum_collision_channels_run/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "quantum_collision_channels_run/stderr.txt",
+      "sha256": "3116b48a93577d77d04fc58e29cc59f7447e0eb6e2047f6229f4505e01677c17",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: quantum_collision_channels_run/results.json"
+  ]
+}

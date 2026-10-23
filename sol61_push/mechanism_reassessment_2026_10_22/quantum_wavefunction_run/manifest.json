@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "PERSISTENT_NONGAUSSIAN_WAVEFUNCTION",
+  "repository": {
+    "commit": "b30db59ad2727707f1f0d2736d2a41b7e474f025",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "audit_quantum_wavefunction.py",
+    "quantum_wavefunction_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Repeated full Hamiltonian propagation preserves the complete non-Gaussian state; unitarity, time reversal, timestep convergence, configuration-grid refinement, and analytic free limit",
+    "coefficient_domain": "IEEE complex double",
+    "conventions": "Single cell V=1 mPhi^-3; mPhi=1; g=.002168; lambda=.00881292; M=2 sqrt(1+.02^2); canonical real fields",
+    "inputs": [
+      "Free product state with one real X oscillator excited; numerical benchmark only"
+    ],
+    "bounds": {
+      "n": [
+        24,
+        32,
+        40
+      ],
+      "length": 12,
+      "duration": 2,
+      "dt": [
+        0.04,
+        0.02,
+        0.01
+      ]
+    },
+    "non_claims": [
+      "No high-H source propagation",
+      "No spatial momentum convergence",
+      "No scattering continuum or bath",
+      "No cold seed or relic abundance inferred"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-10-23T17:25:21.579045+00:00",
+    "runtime_seconds": 23.462631,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 420.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "quantum_wavefunction.py",
+    "audit_quantum_wavefunction.py",
+    "test_quantum_wavefunction.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "quantum_wavefunction.py",
+      "sha256": "b520b7613348c7bf2801ed41218627c4c0800469f874e2f79099754211f02d78",
+      "sha256_after": "b520b7613348c7bf2801ed41218627c4c0800469f874e2f79099754211f02d78"
+    },
+    {
+      "path": "audit_quantum_wavefunction.py",
+      "sha256": "ce7d14f1fbc0c2f6e50976940d2e0cc26b12c408ac15cc5ea4c40a360cf5de89",
+      "sha256_after": "ce7d14f1fbc0c2f6e50976940d2e0cc26b12c408ac15cc5ea4c40a360cf5de89"
+    },
+    {
+      "path": "test_quantum_wavefunction.py",
+      "sha256": "b4a6e85ad15bd6fca5dccb89918c79c9b7e0579c3a83a0543867ed57a84e088e",
+      "sha256_after": "b4a6e85ad15bd6fca5dccb89918c79c9b7e0579c3a83a0543867ed57a84e088e"
+    }
+  ],
+  "output_directory": "quantum_wavefunction_run",
+  "declared_results": [
+    "quantum_wavefunction_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "quantum_wavefunction_run/stdout.txt",
+      "sha256": "4ec2cfca485bf826258776db5bd730d7c57aea5d8a089a8dc76193c182049fc3",
+      "kind": "log"
+    },
+    {
+      "path": "quantum_wavefunction_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "quantum_wavefunction_run/results.json",
+      "sha256": "1c9afc2bc62d563f9ae4f75a98f53a25e05333d98e6c2b6b87703abbdd8f6f00",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

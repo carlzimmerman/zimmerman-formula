@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "BATH_ASSISTED_FULL_TREE_CONVERSION",
+  "repository": {
+    "commit": "6dac2d6486ef4a00c333cfa9d13ee8c0744cc529",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "bath_assisted_conversion.py",
+    "bath_assisted_conversion_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Six tree diagrams for X Phi antiPhi -> Phi Phi; independent recursive roots; thermal averages; detailed balance; identical two-point state counterexample",
+    "coefficient_domain": "IEEE double",
+    "conventions": "D defined by Wdot=-D nX nPhi^2 forward, balanced total densities",
+    "inputs": [
+      "m=.001 M=2m sqrt(1+.02^2), g=2.168e-6, lambda=.00881292"
+    ],
+    "bounds": {
+      "T_over_m": [
+        0.01,
+        2
+      ],
+      "temperature_points": 17,
+      "samples": [
+        16384,
+        65536
+      ]
+    },
+    "non_claims": [
+      "No derived thermalization time",
+      "No surviving cosmological abundance",
+      "No full all-channel RIS-subtracted collision operator",
+      "No in-medium spectral functions"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "scrambled Sobol",
+    "seed": [
+      202610233,
+      202610234
+    ]
+  },
+  "run": {
+    "started_at": "2026-10-23T14:01:03.532290+00:00",
+    "runtime_seconds": 1.64587,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "bath_assisted_conversion.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "bath_assisted_conversion.py",
+      "sha256": "ca6706fa1e3e7a1384c39dd8a37e22c1d882cfff94929ab89b673a3526943965",
+      "sha256_after": "ca6706fa1e3e7a1384c39dd8a37e22c1d882cfff94929ab89b673a3526943965"
+    }
+  ],
+  "output_directory": "bath_assisted_conversion_run",
+  "declared_results": [
+    "bath_assisted_conversion_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "bath_assisted_conversion_run/stdout.txt",
+      "sha256": "7c919f235e4f5d98caedcb78af52d96b0389d591e6b6c11621aefd538d410c1d",
+      "kind": "log"
+    },
+    {
+      "path": "bath_assisted_conversion_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "bath_assisted_conversion_run/results.json",
+      "sha256": "14467c8536834b5ddca4a3f49870b42e4c0fe9a1964409adb99741c3a6b7c377",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "claim_id": "COUPLED_EARLY_CLASSICAL_STATISTICAL_FRAGMENTATION",
+  "mathematics": {
+    "assertion_tested": "Evolve all four real scalar fields with the original cubic and quartic vertices in a radiation background; measure coarse fragmentation, charge conservation, explicit-time Hamiltonian work balance, time/space sensitivity and UV cascade fraction.",
+    "coefficient_domain": "float64",
+    "conventions": "Phi=(f1+i f2)/sqrt2; q=a f/Fmax, z=sqrt(lambda) Fmax eta; nearest-neighbor 3D lattice and velocity Verlet; no phenomenological collision sink added.",
+    "inputs": [
+      "55 stochastic e-folds from zero plus 5 drift-only e-folds; one deterministic representative patch; resolved finite-band constant-background de Sitter Hankel Wigner covariance; physical m,M,g,lambda retained"
+    ],
+    "bounds": {
+      "grids": [
+        32,
+        64
+      ],
+      "L": 32,
+      "z_final": 200,
+      "dt": [
+        0.04,
+        0.02
+      ],
+      "initial_k_over_H_max": 0.35,
+      "coarse_patches": 4096,
+      "cases": [
+        "base",
+        "time",
+        "space",
+        "uncoupled"
+      ]
+    },
+    "non_claims": [
+      "Not the full inflationary quantum state; IR gap and UV vacuum modes excluded; not a final cold yield or complete quantum 4-to-2 collision calculation; no collapse input."
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/mechanism_reassessment_2026_10_22/run_coupled_fragmentation.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/coupled_field_lattice.cpp",
+    "sol61_push/mechanism_reassessment_2026_10_22/coupled_field_lattice"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "Apple clang",
+      "version": "21.0.0"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "NumPy PCG64",
+    "seed": 2026102201,
+    "note": "Fourier mode seed 2026102202; shared modes across space/time refinement."
+  }
+}

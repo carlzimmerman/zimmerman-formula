@@ -1,0 +1,5 @@
+# Conditional spherical kinetic stability, before computation
+
+Use the finite identified-medium f0=F[Ecut-E0-L²/(2ra²)]_+ family, fixed spherical baryons, and the same positive remainder energy V(P)=a0²/K[-q-ln(1-q)-q²/2], q=K|P|/a0<1. P is the linear spherical density map and gradient energy is gamma rho²/2. Build the conserved functional H+integral f²/(2F)+integral L²f/(2ra²)-Ecut integral f for spherical Vlasov evolution. Derive its exact gap as phase-space L2 distance, field convex remainder, density stiffness square, and the nonnegative unoccupied-support term.
+
+Check potential derivatives/convexity, occupied/unoccupied complementarity algebra, central-force angular-momentum invariance, phase-space incompressibility and positive numerical field remainders. Mutation removes the angular-momentum term while retaining the anisotropic distribution and must break stationarity. No unconditional global well-posedness, cap-margin persistence, nonspherical stability, generic formation or attraction claim. Prior numerical equilibria are approximations, not exact continuum existence certificates.

@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "REFLECTION_COLLAPSE",
+  "repository": {
+    "commit": "08daade3f873ad4fa6dfbf31b9be950a833d9072",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/mechanism_reassessment_2026_10_22/collapse_reflection.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/collapse_reflection_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Hard-wall approximations complete t=20 with monitored energy and domain; compare cutoff and integration tolerances and spatial resolution.",
+    "coefficient_domain": "float64",
+    "conventions": "unit masses; cold gamma .01; uniform homologous gas inertia .6 and thermal energy .3/B squared",
+    "inputs": [
+      "initial cold radius6, gas radius3, both at rest"
+    ],
+    "bounds": {
+      "N": [
+        32,
+        64
+      ],
+      "epsilon": [
+        0.0001,
+        1e-06
+      ],
+      "rtol": [
+        1e-08,
+        2e-09
+      ],
+      "T": 20,
+      "event_budget": 10000
+    },
+    "non_claims": [
+      "No primordial production, natural initial entropy, gas cooling or cosmological initial conditions",
+      "Not the exact logarithmic barrier flow; no certified permanent remnant."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T00:28:14.857331+00:00",
+    "runtime_seconds": 72.574642,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 600.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/mechanism_reassessment_2026_10_22/collapse_reflection.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/reciprocal_collapse_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/collapse_reflection.py",
+      "sha256": "1629771dbb6af6684d67200316ff06764657fcb1b3504e505d727f8f3a5b870b",
+      "sha256_after": "1629771dbb6af6684d67200316ff06764657fcb1b3504e505d727f8f3a5b870b"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/reciprocal_collapse_v2.py",
+      "sha256": "7ae7c00e09a040c7c26ba470379684702f5ec29be3e78cc1afacdba5c0d73240",
+      "sha256_after": "7ae7c00e09a040c7c26ba470379684702f5ec29be3e78cc1afacdba5c0d73240"
+    }
+  ],
+  "output_directory": "sol61_push/mechanism_reassessment_2026_10_22/collapse_reflection_run",
+  "declared_results": [
+    "sol61_push/mechanism_reassessment_2026_10_22/collapse_reflection_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/collapse_reflection_run/stdout.txt",
+      "sha256": "3697e1484928b629280b02524dd81c5ee52bbb23248abc045555c69a17cdc1b2",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/collapse_reflection_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/collapse_reflection_run/results.json",
+      "sha256": "150b4eab7ccd84258bb837664e417dc67cbde9131e7d080aa0f0f9e59d97d507",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,3 @@
+# Multi-shape kinetic response
+
+Prior turn demonstrated one-shape feedback misses the cold mode. Expand displacement trials xi_k=r P_k(2r²/R²-1), k0..7. Construct their exact finite-A density and potential variations, stiffness matrix S, and spatial high-frequency moment matrix. Use nested1,2,4,8-dimensional field spaces. First test positive stiffness and high-frequency generalized eigenvalues; those are not kinetic eigenvalues. Compute orbit Fourier coefficients for these shapes and assemble the derivative-weighted kinetic response. Report broadening, basis and sampling dependence rather than fitting a lifetime. A10000, gamma.01, fixed Plummer baryons, mass1. No formation, novelty, or complete-parent claim.

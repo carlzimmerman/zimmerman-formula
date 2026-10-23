@@ -1,0 +1,3 @@
+# Orbital harmonic refinement
+
+Prior turn stabilized the provisional indicator across8/12/16 field shapes but exposed a.676% sixteen-shape high-frequency moment deficit at sixteen harmonics. Double retained harmonics to32 on the64x64 action grid, preserving the same16 field shapes and old outputs. Compare nested coefficients, matrix moment and real principal-value response, and the selected complex-mode diagnostic. This is a truncation check, not a completed continued-pole or formation calculation. Reuse the existing absorptive matrix only if no additional resonances are found in the represented orbit domain; record the finite-domain qualification.

@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "claim_id": "CONTINUUM_SOURCE_RESIDUAL_KERNEL",
+  "repository": {
+    "commit": "0a43187beae5a92951341b2e518e7a080ea9ab59",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "moving_source_continuum.py",
+    "moving_source_continuum_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Continuum radial and independent triangle momentum integrals of fixed-band source kernels; single-kick number identity",
+    "coefficient_domain": "IEEE double",
+    "conventions": "D defined by Wdot=-D nX nPhi^2 forward, balanced total densities",
+    "inputs": [
+      "m=.001 M=2m sqrt(1+.02^2), g=2.168e-6, lambda=.00881292"
+    ],
+    "bounds": {
+      "band": [
+        0.19634954084936207,
+        1.5707963267948966
+      ],
+      "radial_orders": [
+        256,
+        512,
+        1024
+      ],
+      "direct_orders": [
+        128,
+        256
+      ]
+    },
+    "non_claims": [
+      "No evolved residual density matrix",
+      "No thermalization rate",
+      "No continuum renormalization",
+      "No surviving yield"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-10-23T16:38:21.473760+00:00",
+    "runtime_seconds": 0.66028,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "moving_source_continuum.py",
+    "moving_source_basis.py",
+    "coupled_fragmentation_96_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "moving_source_continuum.py",
+      "sha256": "b2ccc381d862fd12927df397f096754211a1a41a09cc7a3a336a37b5f4a54ddf",
+      "sha256_after": "b2ccc381d862fd12927df397f096754211a1a41a09cc7a3a336a37b5f4a54ddf"
+    },
+    {
+      "path": "moving_source_basis.py",
+      "sha256": "ee8b94dc3f3a276481c809f00c6b14ca483e98195394f4d9ac6a840024eddc1a",
+      "sha256_after": "ee8b94dc3f3a276481c809f00c6b14ca483e98195394f4d9ac6a840024eddc1a"
+    },
+    {
+      "path": "coupled_fragmentation_96_run/results.json",
+      "sha256": "a1602d885b6ef3436cd860aa4e190d0457b833c0f332ac41a6fd28ca3eaedbf4",
+      "sha256_after": "a1602d885b6ef3436cd860aa4e190d0457b833c0f332ac41a6fd28ca3eaedbf4"
+    }
+  ],
+  "output_directory": "moving_source_continuum_run",
+  "declared_results": [
+    "moving_source_continuum_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "moving_source_continuum_run/stdout.txt",
+      "sha256": "afc488252c8b550e5f261bdd2fd6870586ba551fa9db6771f84568f6580131cb",
+      "kind": "log"
+    },
+    {
+      "path": "moving_source_continuum_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "moving_source_continuum_run/results.json",
+      "sha256": "6a9ff1c64e5f1cb7f805582592dd994ee8c472583f4c6fcbb3e5eb74d29e0f15",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

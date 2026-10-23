@@ -1,0 +1,155 @@
+{
+  "schema_version": 2,
+  "claim_id": "SPHERICAL_BACKGROUND_20261022",
+  "repository": {
+    "commit": "b21dda1a2df916baf57339cb65528a921deda7d1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/mechanism_reassessment_2026_10_22/spherical_background.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/spherical_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite-stiffness fixed-Plummer-source weak-field spherical stationary boundary value problem; convergence and original vector differential equation residual",
+    "coefficient_domain": "symbolic reals and binary64",
+    "conventions": "s=r/R, q=K P/a0, epsilon²=gamma/(K R²); fixed baryons",
+    "inputs": [
+      "sol61_push/mechanism_reassessment_2026_10_22/spherical_background.py",
+      "sol61_push/mechanism_reassessment_2026_10_22/SPHERICAL_CONTRACT.md",
+      "sol61_push/mechanism_reassessment_2026_10_22/NONLINEAR_WEAK_RESULT.md"
+    ],
+    "bounds": {
+      "A": 1,
+      "epsilon": [
+        0.03,
+        0.1,
+        0.3
+      ],
+      "inner_radius": 1e-05,
+      "outer_radius": [
+        100,
+        200
+      ],
+      "tolerance": [
+        1e-06,
+        2e-08
+      ]
+    },
+    "non_claims": [
+      "No self-consistent halo or cooling time",
+      "No complete relativistic parent",
+      "No cold-sector selector"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-22T19:09:09.970277+00:00",
+    "runtime_seconds": 0.351945,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 35.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/mechanism_reassessment_2026_10_22/spherical_background.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/SPHERICAL_CONTRACT.md",
+    "sol61_push/mechanism_reassessment_2026_10_22/NONLINEAR_WEAK_RESULT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/spherical_background.py",
+      "sha256": "e215b7e0badbcaf89c2537d893abf59be3933e2dadaf814b94080733438beed4",
+      "sha256_after": "e215b7e0badbcaf89c2537d893abf59be3933e2dadaf814b94080733438beed4"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/SPHERICAL_CONTRACT.md",
+      "sha256": "30430193c40b502f2d6f12d63e4c354a46d969e64f9fc49cf936a20bb0fd1779",
+      "sha256_after": "30430193c40b502f2d6f12d63e4c354a46d969e64f9fc49cf936a20bb0fd1779"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/NONLINEAR_WEAK_RESULT.md",
+      "sha256": "0053054d44cfb687a80eab485dfa07b8ee2ee311fa24a8eb9ee4760d05ea6b47",
+      "sha256_after": "0053054d44cfb687a80eab485dfa07b8ee2ee311fa24a8eb9ee4760d05ea6b47"
+    }
+  ],
+  "output_directory": "sol61_push/mechanism_reassessment_2026_10_22/spherical_run",
+  "declared_results": [
+    "sol61_push/mechanism_reassessment_2026_10_22/spherical_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/spherical_run/stdout.txt",
+      "sha256": "bac57076121444e8dac48075165a309a02f61a27c4c8d6e093332654e21f8d7b",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/spherical_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/spherical_run/results.json",
+      "sha256": "88228859f2bf8efdb3e0e3bced7e4df579ffd2b0cb3b442a34062196bdeb9885",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

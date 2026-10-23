@@ -1,0 +1,154 @@
+{
+  "schema_version": 2,
+  "claim_id": "COUPLED_EARLY_CLASSICAL_STATISTICAL_FRAGMENTATION",
+  "repository": {
+    "commit": "9921a5172a5e9f2da981505a1596decd5adc44ef",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/mechanism_reassessment_2026_10_22/run_coupled_fragmentation.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/coupled_fragmentation_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "Apple clang",
+        "version": "21.0.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Evolve all four real scalar fields with the original cubic and quartic vertices in a radiation background; measure coarse fragmentation, charge conservation, explicit-time Hamiltonian work balance, time/space sensitivity and UV cascade fraction.",
+    "coefficient_domain": "float64",
+    "conventions": "Phi=(f1+i f2)/sqrt2; q=a f/Fmax, z=sqrt(lambda) Fmax eta; nearest-neighbor 3D lattice and velocity Verlet; no phenomenological collision sink added.",
+    "inputs": [
+      "55 stochastic e-folds from zero plus 5 drift-only e-folds; one deterministic representative patch; resolved finite-band constant-background de Sitter Hankel Wigner covariance; physical m,M,g,lambda retained"
+    ],
+    "bounds": {
+      "grids": [
+        32,
+        64
+      ],
+      "L": 32,
+      "z_final": 200,
+      "dt": [
+        0.04,
+        0.02
+      ],
+      "initial_k_over_H_max": 0.35,
+      "coarse_patches": 4096,
+      "cases": [
+        "base",
+        "time",
+        "space",
+        "uncoupled"
+      ]
+    },
+    "non_claims": [
+      "Not the full inflationary quantum state; IR gap and UV vacuum modes excluded; not a final cold yield or complete quantum 4-to-2 collision calculation; no collapse input."
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy PCG64",
+    "seed": 2026102201,
+    "note": "Fourier mode seed 2026102202; shared modes across space/time refinement."
+  },
+  "run": {
+    "started_at": "2026-10-23T02:15:28.942098+00:00",
+    "runtime_seconds": 71.327951,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 900.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/mechanism_reassessment_2026_10_22/run_coupled_fragmentation.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/coupled_field_lattice.cpp",
+    "sol61_push/mechanism_reassessment_2026_10_22/coupled_field_lattice"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/run_coupled_fragmentation.py",
+      "sha256": "ed2a116813580e6c7ac270658cbf9fccffa99dffedc73c2eaa2751ec6ec1c247",
+      "sha256_after": "ed2a116813580e6c7ac270658cbf9fccffa99dffedc73c2eaa2751ec6ec1c247"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/coupled_field_lattice.cpp",
+      "sha256": "8c8d4b71feea70e75a9867ce5163e57382d11d5c557da4d661c473866958bf04",
+      "sha256_after": "8c8d4b71feea70e75a9867ce5163e57382d11d5c557da4d661c473866958bf04"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/coupled_field_lattice",
+      "sha256": "b070e424fee73ef5c8aec82671b0bfa02e154c1130edb432f2ff11038b65cc2c",
+      "sha256_after": "b070e424fee73ef5c8aec82671b0bfa02e154c1130edb432f2ff11038b65cc2c"
+    }
+  ],
+  "output_directory": "sol61_push/mechanism_reassessment_2026_10_22/coupled_fragmentation_run",
+  "declared_results": [
+    "sol61_push/mechanism_reassessment_2026_10_22/coupled_fragmentation_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/coupled_fragmentation_run/stdout.txt",
+      "sha256": "aea19793bb52c1e264adc3e4272faa665311abe73241811e38a2c5ecb0f9cdce",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/coupled_fragmentation_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/coupled_fragmentation_run/results.json",
+      "sha256": "6a7d2fea48fd91d1dfa8a0803b9026bbe87b4cb651eb2f34118bf31c6863f307",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

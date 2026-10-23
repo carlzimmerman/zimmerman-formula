@@ -1,0 +1,5 @@
+# Longer matched-energy response test
+
+Prior turn: progress; mesh-consistent equilibria and equal-energy response artifacts validated. This extension tests the unresolved possibility of revival beyond t=40. It does not test cosmological formation or establish novelty.
+
+Use unchanged live_discrete.py and discrete_eq_256/512.json. Run control and delta-E=0.0008 perturbation to t=120 (three times prior duration), at the existing coarse (32768 particles, 256 nodes, dt=.005) and refined (131072,512,.0025) settings. Preserve prior outputs. Runs are direct single-thread experiments; record input hashes alongside output summaries. Stop on cap or domain exceptions. Compare exact deterministic prefixes with prior runs; measure response in fixed windows 0–10,30–40,70–80,110–120 and report full curves, not a fitted damping rate. Conservation errors must be reported relative to injected energy as well as total energy. Two coupled resolutions are not independent particle/grid convergence. A smaller final response does not exclude still later revivals.

@@ -1,0 +1,137 @@
+{
+  "schema_version": 2,
+  "claim_id": "NONLINEAR_QUANTUM_HAMILTONIAN_REACTION_BENCHMARK",
+  "repository": {
+    "commit": "a50a7fcb3fad87868531223baa41eaa15dc5ca59",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "run_quantum_fock_benchmark.py",
+    "quantum_fock_benchmark_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Original-action normal-ordered Hamiltonian reproduces mixed and cubic absorption tree amplitude; unitary inverse propagation",
+    "coefficient_domain": "IEEE double",
+    "conventions": "D defined by Wdot=-D nX nPhi^2 forward, balanced total densities",
+    "inputs": [
+      "m=.001 M=2m sqrt(1+.02^2), g=2.168e-6, lambda=.00881292"
+    ],
+    "bounds": {
+      "energy_cuts": [
+        8,
+        10,
+        12
+      ],
+      "occupation_cut": 8,
+      "momentum_modes": [
+        -1,
+        0,
+        1
+      ],
+      "charge": 2
+    },
+    "non_claims": [
+      "No cosmological initial state",
+      "No bath or continuum rate",
+      "No surviving abundance"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-10-23T15:17:28.914954+00:00",
+    "runtime_seconds": 0.533479,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "quantum_fock_solver.py",
+    "run_quantum_fock_benchmark.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "quantum_fock_solver.py",
+      "sha256": "1dd843c0f5ce59b0847d379109c11de09cfc96dcfc26e119743dc676125e8927",
+      "sha256_after": "1dd843c0f5ce59b0847d379109c11de09cfc96dcfc26e119743dc676125e8927"
+    },
+    {
+      "path": "run_quantum_fock_benchmark.py",
+      "sha256": "7297a68c6703b86fc9649f8c7f2701e184416b0b4e98744a8a028bcd3a7f102d",
+      "sha256_after": "7297a68c6703b86fc9649f8c7f2701e184416b0b4e98744a8a028bcd3a7f102d"
+    }
+  ],
+  "output_directory": "quantum_fock_benchmark_run",
+  "declared_results": [
+    "quantum_fock_benchmark_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "quantum_fock_benchmark_run/stdout.txt",
+      "sha256": "315d6b71821e43cf67c57b2cf239cd3b207f222f1f68d7d00c4a1621bc4d5573",
+      "kind": "log"
+    },
+    {
+      "path": "quantum_fock_benchmark_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "quantum_fock_benchmark_run/results.json",
+      "sha256": "b943a9da5e5c757ea062aad475e84c94db9b854dab445f1e21343509a8de37b5",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

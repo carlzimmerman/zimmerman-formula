@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "claim_id": "LATE_KINETICS_INDEPENDENT_CONTROLS",
+  "repository": {
+    "commit": "a4d76f492e90e7ddb53979686e9ab816f49a525b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/mechanism_reassessment_2026_10_22/audit_late_kinetics.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/audit_late_kinetics_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Inverse formation integral equals analytic Maxwell-Boltzmann thermal decay rate, and exact radiation Bessel solution approaches claimed free-X envelope.",
+    "coefficient_domain": "float64",
+    "conventions": "Both charge signs; total weighted population Nphi+2 NX; Bose net collision factor fX(1+f1+f2)-f1 f2; no double counting a resonant elastic pole.",
+    "inputs": [
+      "Hinf=m spectrum and benchmark couplings; existing threshold 4-to-2 coefficient"
+    ],
+    "bounds": {
+      "T_over_m": [
+        0.05,
+        0.2,
+        1.0
+      ],
+      "Mt": [
+        1000,
+        1100
+      ]
+    },
+    "non_claims": [
+      "No dense high-H solution; no complete early all-channel collision integral; no rigorous nonperturbative final-yield interval."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T02:50:45.062977+00:00",
+    "runtime_seconds": 0.252619,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/mechanism_reassessment_2026_10_22/audit_late_kinetics.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/audit_late_kinetics.py",
+      "sha256": "c7feebc2acacc74868c3159b71bc4a6da41cdcdcad1e159b95f66bdb0f9ae354",
+      "sha256_after": "c7feebc2acacc74868c3159b71bc4a6da41cdcdcad1e159b95f66bdb0f9ae354"
+    }
+  ],
+  "output_directory": "sol61_push/mechanism_reassessment_2026_10_22/audit_late_kinetics_run",
+  "declared_results": [
+    "sol61_push/mechanism_reassessment_2026_10_22/audit_late_kinetics_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/audit_late_kinetics_run/stdout.txt",
+      "sha256": "94a530001e1e50a8e1bf61311780df1d9a014be48a9f8f557821cff3aed72d68",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/audit_late_kinetics_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/audit_late_kinetics_run/results.json",
+      "sha256": "68d83bce77928c7562109c78896727e5aaf52db161a392b315715b84c3a4df10",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

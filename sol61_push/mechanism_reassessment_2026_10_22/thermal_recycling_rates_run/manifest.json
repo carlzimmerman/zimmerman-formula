@@ -1,0 +1,133 @@
+{
+  "schema_version": 2,
+  "claim_id": "FINITE_T_RECYCLING_RATES",
+  "repository": {
+    "commit": "522babce9a685ad8b867497130cb882ccb41cfb6",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "thermal_recycling_rates.py",
+    "thermal_recycling_rates_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite-temperature MB contact 4-to-2 kernel and X pair thermal cross section with threshold, conservation and sampling checks",
+    "coefficient_domain": "IEEE double",
+    "conventions": "two charged signs, total density conventions of previous threshold audit; thermal MB normalization",
+    "inputs": [
+      "existing m M g lambda; Sobol seeds 202610231 and 202610232"
+    ],
+    "bounds": {
+      "T_over_m": [
+        0.02,
+        2
+      ],
+      "temperature_points": 25,
+      "samples": [
+        16384,
+        65536
+      ]
+    },
+    "non_claims": [
+      "No full RIS-subtracted cubic-containing 4-to-2 kernel",
+      "No quantum Bose collision factors",
+      "No derived thermalization of source"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "scrambled Sobol",
+    "seed": [
+      202610231,
+      202610232
+    ]
+  },
+  "run": {
+    "started_at": "2026-10-23T12:29:00.365571+00:00",
+    "runtime_seconds": 2.461573,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 300.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "thermal_recycling_rates.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "thermal_recycling_rates.py",
+      "sha256": "6ea9a8b5c14b4b79a95ce53160f6593f46c8b2e245e5dafd4ba2313e8c3cf3cb",
+      "sha256_after": "6ea9a8b5c14b4b79a95ce53160f6593f46c8b2e245e5dafd4ba2313e8c3cf3cb"
+    }
+  ],
+  "output_directory": "thermal_recycling_rates_run",
+  "declared_results": [
+    "thermal_recycling_rates_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "thermal_recycling_rates_run/stdout.txt",
+      "sha256": "498a2aac5c48470bf85cdcda807f9f5c2ecbd1801f4e6ea127cb2a35ab0bc495",
+      "kind": "log"
+    },
+    {
+      "path": "thermal_recycling_rates_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "thermal_recycling_rates_run/results.json",
+      "sha256": "ddc4fc7dc953c34c2c723dc69b5d3ecee1bac6c408966f7ea98d1da74bdfa462",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

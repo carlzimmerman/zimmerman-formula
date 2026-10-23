@@ -1,0 +1,137 @@
+{
+  "schema_version": 2,
+  "claim_id": "FREQUENCY_TOPOLOGY",
+  "repository": {
+    "commit": "2ccd47be97737855bcf5d8f645b307e0ac7d9d23",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/mechanism_reassessment_2026_10_22/frequency_topology.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/frequency_topology_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Nonmonotone energy-frequency rows occur in stored 64 and 128 order action samples; PCHIP interior roots agree with sign brackets.",
+    "coefficient_domain": "float64",
+    "conventions": "u=L squared; E differs from -Q by row constant; positive radial harmonics",
+    "inputs": [
+      "A10000 equilibrium stored orbit samples"
+    ],
+    "bounds": {
+      "action_orders": [
+        64,
+        128
+      ],
+      "harmonics": 32,
+      "frequency": 0.8228
+    },
+    "non_claims": [
+      "No exhaustive turning points, endpoints, continuation or damping proof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-22T21:22:25.429385+00:00",
+    "runtime_seconds": 0.867121,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/mechanism_reassessment_2026_10_22/frequency_topology.py",
+    "sol61_push/mechanism_reassessment_2026_10_22/actionh32_64.npz",
+    "sol61_push/mechanism_reassessment_2026_10_22/action16_128.npz"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/frequency_topology.py",
+      "sha256": "4af44f1e54b807cc01d6d50e083adeac7565c8e5b4d971977b55cc2bf909bf95",
+      "sha256_after": "4af44f1e54b807cc01d6d50e083adeac7565c8e5b4d971977b55cc2bf909bf95"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/actionh32_64.npz",
+      "sha256": "0ddf664111b43b8dc456fcffeacddcadf770272d7c3027d93c1c690f1daf3078",
+      "sha256_after": "0ddf664111b43b8dc456fcffeacddcadf770272d7c3027d93c1c690f1daf3078"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/action16_128.npz",
+      "sha256": "1a8d7cefe51ed64be60cea4e58ab715518cfd7abd178447f357fa8aad4981f43",
+      "sha256_after": "1a8d7cefe51ed64be60cea4e58ab715518cfd7abd178447f357fa8aad4981f43"
+    }
+  ],
+  "output_directory": "sol61_push/mechanism_reassessment_2026_10_22/frequency_topology_run",
+  "declared_results": [
+    "sol61_push/mechanism_reassessment_2026_10_22/frequency_topology_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/frequency_topology_run/stdout.txt",
+      "sha256": "2f87e7ee11d0d74786365abe880f5b7f72adc03736510001539b49963563056a",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/frequency_topology_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/mechanism_reassessment_2026_10_22/frequency_topology_run/results.json",
+      "sha256": "58c55f34695037fe65705dbbcae2d3c0785726afa868c73aa3de57856ba06d49",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

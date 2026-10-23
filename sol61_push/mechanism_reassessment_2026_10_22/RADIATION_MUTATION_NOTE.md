@@ -1,0 +1,3 @@
+# Mutation diagnostic correction
+
+The first reversed-outgoing-wave mutation also reversed the identical-media control. This made its two incoming-wave columns linearly dependent and numpy.linalg.solve raised Singular matrix before result serialization. That is a malformed scattering problem, but not a clean named-check diagnostic. The corrected mutation reverses only the actual unequal-media interface and keeps the identical-media control unchanged. Baseline physics and thresholds are unchanged. The baseline must be re-recorded because the script hash changed; radiation_run is historical, radiation_run2 is current.

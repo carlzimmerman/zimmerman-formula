@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "PERSISTENT_STATE_CHARGE_AUDIT",
+  "repository": {
+    "commit": "b30db59ad2727707f1f0d2736d2a41b7e474f025",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "audit_persistent_state_charge.py",
+    "persistent_state_charge_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent Fourier derivative charge generator conserves Q and Q squared on saved evolved state",
+    "coefficient_domain": "IEEE complex double",
+    "conventions": "Single cell V=1 mPhi^-3; mPhi=1; g=.002168; lambda=.00881292; M=2 sqrt(1+.02^2); canonical real fields",
+    "inputs": [
+      "Free product state with one real X oscillator excited; numerical benchmark only"
+    ],
+    "bounds": {
+      "n": [
+        24,
+        32,
+        40
+      ],
+      "length": 12,
+      "duration": 2,
+      "dt": [
+        0.04,
+        0.02,
+        0.01
+      ]
+    },
+    "non_claims": [
+      "No high-H source propagation",
+      "No spatial momentum convergence",
+      "No scattering continuum or bath",
+      "No cold seed or relic abundance inferred"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-10-23T17:28:44.166387+00:00",
+    "runtime_seconds": 0.247292,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "audit_persistent_state_charge.py",
+    "quantum_wavefunction.py",
+    "quantum_wavefunction_run/persistent_state_n32_dt001.npy"
+  ],
+  "input_artifacts": [
+    {
+      "path": "audit_persistent_state_charge.py",
+      "sha256": "bf6af94c432a9b39246b28dfed6ed372b7f82cefc2684145bfa4cfb0f808c973",
+      "sha256_after": "bf6af94c432a9b39246b28dfed6ed372b7f82cefc2684145bfa4cfb0f808c973"
+    },
+    {
+      "path": "quantum_wavefunction.py",
+      "sha256": "b520b7613348c7bf2801ed41218627c4c0800469f874e2f79099754211f02d78",
+      "sha256_after": "b520b7613348c7bf2801ed41218627c4c0800469f874e2f79099754211f02d78"
+    },
+    {
+      "path": "quantum_wavefunction_run/persistent_state_n32_dt001.npy",
+      "sha256": "10c16f7cbe023470c7d3d237977e4ee4ac2c4d9afa66bb934c687bc1a8c81611",
+      "sha256_after": "10c16f7cbe023470c7d3d237977e4ee4ac2c4d9afa66bb934c687bc1a8c81611"
+    }
+  ],
+  "output_directory": "persistent_state_charge_run",
+  "declared_results": [
+    "persistent_state_charge_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "persistent_state_charge_run/stdout.txt",
+      "sha256": "7f938b1b4ab38d2334c125188c7769a2b131f44d7996bbbbc0d3a272989b42b1",
+      "kind": "log"
+    },
+    {
+      "path": "persistent_state_charge_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "persistent_state_charge_run/results.json",
+      "sha256": "bd18f63beba6ed5fd572fbadf260f85ae6865343373b6b1819acefc6347d40b3",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

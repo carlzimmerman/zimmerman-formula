@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "claim_id": "EXACT_SOURCE_POTENTIAL_SUBSTEP_AUDIT",
+  "repository": {
+    "commit": "0a43187beae5a92951341b2e518e7a080ea9ab59",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "audit_quantum_source_kick.py",
+    "quantum_source_kick_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent Gauss-Hermite expectation of residual force squared matches Wick number identity, polynomial gradient, unitary inverse kick",
+    "coefficient_domain": "IEEE double",
+    "conventions": "D defined by Wdot=-D nX nPhi^2 forward, balanced total densities",
+    "inputs": [
+      "m=.001 M=2m sqrt(1+.02^2), g=2.168e-6, lambda=.00881292"
+    ],
+    "bounds": {
+      "quadrature": 7,
+      "dimensions": 4
+    },
+    "non_claims": [
+      "No full kinetic propagation",
+      "No physical inverse collision rate",
+      "No relic"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-10-23T16:40:20.593627+00:00",
+    "runtime_seconds": 0.184523,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "quantum_source_kick.py",
+    "audit_quantum_source_kick.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "quantum_source_kick.py",
+      "sha256": "5204300a13d00a75d324e668df5391a51d48c8932229ad1b35218717a6a1f031",
+      "sha256_after": "5204300a13d00a75d324e668df5391a51d48c8932229ad1b35218717a6a1f031"
+    },
+    {
+      "path": "audit_quantum_source_kick.py",
+      "sha256": "701141a9a16ca8fb08159bdfd7a9de4c0fbaf577a8b1149fb6456767ba771062",
+      "sha256_after": "701141a9a16ca8fb08159bdfd7a9de4c0fbaf577a8b1149fb6456767ba771062"
+    }
+  ],
+  "output_directory": "quantum_source_kick_run",
+  "declared_results": [
+    "quantum_source_kick_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "quantum_source_kick_run/stdout.txt",
+      "sha256": "48a62e52ff6692b22c85dc58ce197887f482777f881e1174c232c7398389c015",
+      "kind": "log"
+    },
+    {
+      "path": "quantum_source_kick_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "quantum_source_kick_run/results.json",
+      "sha256": "e1415ef92b010f402417b29836f8c21bbb7f0aa13e25a65f4c3250af504cd308",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
