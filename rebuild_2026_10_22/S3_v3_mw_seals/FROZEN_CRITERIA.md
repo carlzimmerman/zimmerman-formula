@@ -252,3 +252,16 @@ largest at 5–12.5 kpc and 0.59 % at 17.5 kpc; every step SHAPE EXCLUDED, v3 Z 
    15–60 kpc and its peak-to-peak variation to ≤ 0.5 % absolute. If C5 fails, the seal's primary is the exact γ = 0 solve and
    the 3-D numbers (anticentre wedge, P6) are sealed as "unvalidated".
 4. **RSS:** every AQUAL solve now runs in a short-lived child process (parent and child peaks are reported in each results JSON).
+
+## AMENDMENT A4 (2026-10-23, PRE-RESULT for κ: no κ, route or combined number of Part B computed yet; per-galaxy C diagnostics seen)
+
+1. **Gas inversion basis (§3 P1).** The frozen node set (rotmod radii + free nodes at 1.5 and 2 R_last) is degenerate: mass in the
+   unconstrained outer nodes barely changes V² inside, so NNLS did not converge and a bounded solve put 4.7e9 M☉ of gas into
+   NGC3109's outer nodes (SPARC M_HI ≈ 5e8). Replaced by one hat per rotmod radius, flat inside R_1, the last hat declining
+   linearly to zero at 1.5 R_last; bounded-variable least squares with a 1e-6 relative ridge (minimum-norm among equal fits).
+   NGC3109 then has 4.6e8 M☉. The inversion gas mass / (1.33 M_HI,SPARC f²) is reported per galaxy.
+2. **New unique error term "outer gas extent"** per route (P1, P3) = |L(gas to 1.5 R_last) − L(gas to 2 R_last)| / 2 (P1: the
+   last hat reaches zero at 2 R_last; P3: CFG493's exponential tail cut at 2 instead of 1.5 r_last). Reason: the development
+   diagnostics showed C at the outermost points moving by up to ~10 % with the outer gas (NGC3741, UGC05829), the size of the
+   effect being measured. Primary stays 1.5 (CFG493's own P3 tail).
+3. B2's tolerances unchanged. Nothing else changes.
