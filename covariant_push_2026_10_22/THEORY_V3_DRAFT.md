@@ -16,6 +16,24 @@ The Blanchet–Skordis Khronon theory (arXiv:2404.06584) in its literal healthy 
 
 DSF-21's A33 is this theory with η > 0, which C5 shows is ill-posed; v3 drops η.
 
+## 1b. A better-surviving candidate found overnight: AeST + γ_L with the capped F ("v4")
+
+Lanes H1, H2, H3 (`rebuild_2026_10_22/`, all reproduced by the coordinator):
+- The Skordis–Złośnik AeST action with C1's capped free function (static limit = the canonical law μ = x/(1+x) exactly)
+  plus the same single stiffness term γ_L passes **growth** (the Newtonian term survives in the IR for any F:
+  Γ²(k→0) = 4πG̃ρ̄ — unlike v3's Khronon J with J′(0) = −1), **the RAR** (exact law), **Cassini** (≤ 7e-8 of Park),
+  and **BBN** (λ_s = ∞).
+- Its only "health failure" (C5) is **not a ghost** (H3): the same energy criterion flags ordinary Newtonian dust and
+  GR + k-essence dust, so it was mis-specified; the AeST mode is non-propagating dust, ghost-free at linear order, with a
+  growth rate bounded by √(4πG̃ρ̄) and a band that ends at k_c ≈ 243 μ. Not "only ordinary gravity": between μ and k_c
+  the binding is AeST's contact-term static law (up to 2.3×10⁴ × Newton near k ≈ 185 μ) — its consequences for
+  small-scale structure are OPEN.
+- It does **not** fix cluster cores: AeST's static (hydrostatic) dust has the wrong radial shape (H2).
+- OPEN: C5 defect (b) (γ_L gives no causal cone), an FRW linear run with C7's patched CLASS at this F, nonlinear
+  behaviour, strong field.
+
+Net: v4 keeps everything v3 passed and removes v3's growth failure at linear order; clusters stay red in both.
+
 ## 2. Parameters
 
 | symbol | status | value | source |
