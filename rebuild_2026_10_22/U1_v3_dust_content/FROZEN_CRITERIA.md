@@ -182,3 +182,50 @@ changes. Changes:
    next to the observed σ, because D4 implies ψ′ ≤ g_N,b: spherical held dust is bound by at most the baryons' Newtonian
    well.
 6. RuntimeWarnings from masked overflow in dead configurations are silenced.
+
+## AMENDMENT A2 (PRE-RESULT, 2026-10-23; coordinator request; written before any number of this part): the field-galaxy frame
+
+**Question.** Part (b) gives: held dust only where 2GM_b(<r)/r ≥ V_rel² (LIT, stationary streaming), and only where the
+internal field exceeds the khronon acceleration of the surroundings (T3, any reading). What do these imply for ISOLATED
+FIELD GALAXIES (SPARC RAR, BTFR, MeerKAT)? What is V_rel there, and does v3 keep the held phantom?
+
+**Frame (derivation, F1).** The khronon congruence is the dust velocity field; there is no separate cosmic frame locally.
+Linearised on FRW (L1 §1 kernels, J_x): baryons feel ∇Φ (all mass), dust feels ∇ψ. The baryon–dust differential
+acceleration per comoving mode is ∇Ξ_k = s(k,a)·∇Φ_τ,k with s = k²/(k² + a²μ_K²) (the dust's own potential, times the
+kernel). sympy check: residual 0, and limits s → 1 (k ≫ aμ_K: the full dust potential is differential) and
+s ≈ (k/aμ_K)² (k ≪ aμ_K: co-flow). Bulk flows enter only through their k > aμ_K part.
+
+**Checks of the new script `u1_a2_field_frame.py` (one line each; exit 0 iff all PASS; `--mutate` via U1_MUTATE=1):**
+- **F1** the sympy statements above.
+- **F2 (linear relative velocity, z = 0).** Reproduce first: this lane's copy of F3's two-fluid ODE on F3's background A
+  gives F3 K4 `bsk2_ai0.001` σ₈ ratio 0.39080 at μ = 14.79771 h/Mpc to ≤ 1e-3 relative. Then, on model B (F3's CLASS
+  settings; dust-limit P(k), FRAMEWORK-NATIVE in the dust limit), ICs δ_b = δ_τ = a at a_i = 1e-3, BSK2/J_x kernel:
+  rms baryon peculiar velocity σ_b and rms baryon–dust relative velocity σ_rel = rms[H₀(δ_b′ − δ_τ′)/k], with the share
+  F(k) = (δ_b′ − δ_τ′)/δ_b′, for μ_K ∈ {BS24 own 0.015637 Mpc⁻¹, cap 14.8 h/Mpc, M1 411 h/Mpc} and k_max ∈ {0.3, 1, 10, 50}
+  h/Mpc. Linear theory is not valid beyond k ≈ 0.3 h/Mpc at z = 0 (labelled). Also quoted: the decaying
+  post-recombination streaming velocity (EXTERNAL, Tseliakhovich & Hirata 2010: ≈ 30 km/s at z ≈ 1020, ∝ 1/a).
+  PASS iff the reproduction holds and all cells are finite.
+- **F3 (SPARC hold radii).** All 175 `real_research/data/sparc_data/*_rotmod.dat`, V_bar² = |V_gas|V_gas + Υ_d V_disk² +
+  Υ_b V_bul² (Υ_d = 0.5, Υ_b = 0.7, SPS labels; spherical approximation GM_b(<r)/r ≈ V_bar², labelled): per point
+  V_hold = √2·V_bar. For V_rel ∈ {1, 3, 10, 30, 100, 300, 600} km/s: fraction of RAR points with V_hold < V_rel (phantom
+  not held there, LIT), and the median over galaxies of r_f/R_last. a₀-free (both footings identical). PASS iff 175
+  galaxies are read.
+- **F4 (acceleration criterion, environment).** For the Chae-matched SPARC galaxies (P4's file and recipe: g_e =
+  law(10^primary e_N · GE_CHAE)), the fraction of RAR points with g_obs < g_e, both footings: these are the points whose
+  dust cannot follow the galaxy IF the environment's khronon acceleration equals its gravitational field (held
+  surroundings); and the same with the field scaled by s at the cap for a source at D = 1 Mpc (unheld, linear). PASS iff
+  computed.
+- **F5 (a moving-member class: Ursa Major).** SPARC galaxies with distance method 4 (UMa members): V_rel = √3 × the
+  dispersion of their cz (RAW, `sparc_a0_environment_table.csv` / `sparc_master_clean.csv`); their points beyond r_f; the
+  mean log(g_obs/g_law) of those points against non-UMa points in the same g_bar bins (reported, no gate). If the UMa
+  members' outer points sit on the RAR, the held-group branch (members lose their phantom) is contradicted by data.
+  PASS iff computed.
+- **F6** peak RSS < 1 GB.
+
+**Readings (frozen).**
+- "KEPT" for field galaxies if, at the BS cap, every linear σ_rel estimate (k_max ≤ 1 h/Mpc) is below V_hold at ≥ 95 %
+  of SPARC points, and F4's held-surroundings fraction is ≤ 5 %.
+- "LOST for class X" if a class's V_rel exceeds V_hold at a majority of its RAR points.
+- "DEPENDS ON <assumption>" whenever the reading flips between the stated alternatives (held vs unheld surroundings;
+  BS24's own μ_K vs the cap; whether held dust is dragged). The favourable alternative is never chosen.
+- Board tiles that would change are listed for every LOST or DEPENDS reading.
