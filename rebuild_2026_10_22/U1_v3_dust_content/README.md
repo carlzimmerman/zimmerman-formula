@@ -162,8 +162,14 @@ last point). Fraction of RAR points not held, by V_rel:
 dust is held. At the cap it is unheld for a source at 1 Mpc (s = 0.28): 0 % / 0.06 %.
 
 **Ursa Major members (F5).** 28 members; σ_LOS of cz = 115 km/s, so V_rel = 199 km/s.
-- 81 % of their points have V_hold < V_rel (counted at any radius, not only beyond r_f), so in a held UMa they would be dust-free: **−0.44 / −0.47 dex** below the RAR.
-- Observed: **−0.042 ± 0.009 / −0.038 ± 0.010 dex** against field points in the same g_bar bins.
+There are two readings of "not held" (A4). Values are canonical / alt, measured against field points in the same g_bar
+bins; "Newton" is where a dust-free member would sit.
+- **Any radius (the committed count):** 81 % of member points (285) have V_hold < V_rel. Newton: **−0.44 / −0.47 dex**.
+  Observed per point: **−0.042 ± 0.009 / −0.038 ± 0.010 dex**. Per galaxy (27): −0.063 ± 0.027 / −0.060 ± 0.028 against
+  Newton −0.41 / −0.44 (12.6 / 13.4σ).
+- **Beyond r_f (the frozen wording read literally, R > the last radius with V_hold ≥ V_rel):** 75 % (262 points). Newton:
+  −0.46 / −0.50. Observed per point: −0.037 ± 0.009 / −0.033 ± 0.010. Per galaxy: −0.060 ± 0.027 / −0.057 ± 0.028
+  against −0.42 / −0.45 (13.6 / 14.4σ).
 
 **Verdict (frozen readings):**
 - **Field galaxies: KEPT at the BS cap and at M1's μ_K.** σ_rel ≤ 1.8 km/s leaves at most 0.2 % of points unheld, and held
@@ -171,8 +177,9 @@ dust is held. At the cap it is unheld for a source at 1 Mpc (s = 0.28): 0 % / 0.
 - **At BS24's own μ_K: DEPENDS** on the flow amplitude. v3's own σ_rel ≈ 30 km/s loses 12.8 % of RAR points (8.6 % of
   galaxies inside R_last/2). With the observed ~300 km/s flows and share 0.64, the phantom would be lost almost everywhere.
   That μ_K already fails growth (F3).
-- **Group members (class UMa): LOST if the group's dust is held** (81 % of points to Newton). The data contradict this at
-  ~40σ statistical (−0.04 vs −0.44 dex). So either a loose group's khronon is not held, which v3 does not establish, or v3
+- **Group members (class UMa): LOST if the group's dust is held** (81 % of points, or 75 % beyond r_f, go to Newton). The
+  data contradict this at ≈ 13–14σ per galaxy (−0.06 vs −0.41 to −0.45 dex). The earlier "~40σ" was per point (42–49σ),
+  which overstates it because points within a galaxy are correlated (A4). So either a loose group's khronon is not held, which v3 does not establish, or v3
   fails for group members. **DEPENDS ON that unestablished assumption; the favourable one is not assumed.**
 - **Tiles that change if held groups strip their members:**
   - SPARC RAR: 28 UMa members, plus other group members;
@@ -216,3 +223,5 @@ U1_MUTATE=1 OMP_NUM_THREADS=1 nice -n 15 python3 rebuild_2026_10_22/U1_v3_dust_c
 - Outputs: `*.out`, `*_results.json`, `u1_satellites_per_system.csv`, and the `*_MUTATE.*` files.
 - Criteria commits: edb372c22d (criteria + ledger, alone first), fbd28ee9b7 (A1, pre-result), 616ad70e96 (A2, pre-result).
   A3 (post-result) and the result are in the same commit as this README. Nothing was downloaded.
+- `AMENDMENT_A4.md` (post-result, fix-forward) adds the literal "beyond r_f" reading of F5 and per-galaxy statistics as
+  reported lines. Every earlier number is unchanged. No verdict changes.

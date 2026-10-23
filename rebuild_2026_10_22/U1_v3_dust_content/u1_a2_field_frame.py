@@ -249,6 +249,55 @@ for f in FOOTS:
       f"{xu.size} member points beyond r_f ({F5['footings'][f]['frac_member_points_beyond_rf']:.2f} of their points); "
       f"their RAR offset vs field points in the same g_bar bins {F5['footings'][f]['mean_offset_vs_field']:+.3f} +- {F5['footings'][f]['se']:.3f} dex "
       f"(a dust-free member would sit at {-newton_gap:+.3f} dex)")
+
+    # [A4, post-result, REPORTED] The count above selects member points with V_hold < V_rel at ANY radius. The frozen F5
+    # wording is "their points beyond r_f"; read literally, r_f = the last radius with V_hold >= V_rel (0 if none) and the
+    # points are R > r_f. Both readings, each with per-point and per-galaxy statistics (points within a galaxy are
+    # correlated, so the per-point se understates the error). Nothing above is changed.
+    def sel_pts(nm, mode):
+        g = GALS[nm]; ok_ = g["Vbar2"] > 0; vh = np.sqrt(2 * np.maximum(g["Vbar2"], 0))
+        if mode == "any_radius":
+            return ok_ & (vh < Vu)
+        rf = float(g["R"][vh >= Vu][-1]) if np.any(vh >= Vu) else 0.0
+        return ok_ & (g["R"] > rf)
+    n_member_pts = sum(int(np.sum(GALS[n]["Vbar2"] > 0)) for n in uma)
+    A4 = {}
+    for mode in ("any_radius", "beyond_rf"):
+        dp, npn, gal_d, gal_n = [], [], [], []
+        npts = 0
+        for nm in uma:
+            g = GALS[nm]; s_ = sel_pts(nm, mode); R = g["R"][s_] * KPC
+            npts += int(s_.sum())
+            if not s_.any():
+                continue
+            gbar = g["Vbar2"][s_] * 1e6 / R; gobs = (g["Vo"][s_] * 1e3) ** 2 / R
+            xx = np.log10(gbar / a0); yy = np.log10(gobs / (law(gbar / a0) * a0))
+            nn_all = list(-np.log10(law(10 ** xx) / 10 ** xx))
+            npn += nn_all
+            dd = []
+            for i in range(len(bins) - 1):
+                su = (xx >= bins[i]) & (xx < bins[i + 1]); so = (xo >= bins[i]) & (xo < bins[i + 1])
+                if su.sum() and so.sum() > 5:
+                    dd += list(yy[su] - np.mean(yo[so]))
+            dp += dd
+            if dd:
+                gal_d.append(float(np.mean(dd))); gal_n.append(float(np.mean(nn_all)))
+        dp, gal_d = np.array(dp), np.array(gal_d)
+        se_p = float(np.std(dp, ddof=1) / math.sqrt(dp.size)); se_g = float(np.std(gal_d, ddof=1) / math.sqrt(gal_d.size))
+        A4[mode] = dict(N_pts=npts, frac_member_points=npts / max(1, n_member_pts), N_matched_pts=int(dp.size),
+                        per_point=dict(mean=float(np.mean(dp)), se=se_p, Newton=float(np.mean(npn)),
+                                       z_from_Newton=float((np.mean(dp) - np.mean(npn)) / se_p)),
+                        per_galaxy=dict(N_gal=int(gal_d.size), mean=float(np.mean(gal_d)), se=se_g, Newton=float(np.mean(gal_n)),
+                                        z_from_Newton=float((np.mean(gal_d) - np.mean(gal_n)) / se_g)))
+    A4["any_radius_reproduces_count_above"] = float(abs(A4["any_radius"]["per_point"]["mean"] - F5["footings"][f]["mean_offset_vs_field"]))
+    F5["footings"][f]["A4"] = A4
+    P(f"   [{f}] [A4] the count above is V_hold < V_rel at ANY radius; the frozen wording 'beyond r_f' read literally is R > the last "
+      f"radius with V_hold >= V_rel (reported; any-radius per-point mean reproduced to {A4['any_radius_reproduces_count_above']:.1e}):")
+    for mode in ("any_radius", "beyond_rf"):
+        q = A4[mode]; pp = q["per_point"]; pg = q["per_galaxy"]
+        P(f"      {mode:10s}: {q['N_pts']} points ({q['frac_member_points']:.3f} of members' points); per point {pp['mean']:+.4f} +- {pp['se']:.4f} dex "
+          f"vs Newton {pp['Newton']:+.3f} ({pp['z_from_Newton']:.1f} se); per galaxy {pg['mean']:+.4f} +- {pg['se']:.4f} dex vs Newton "
+          f"{pg['Newton']:+.3f} ({pg['z_from_Newton']:.1f} se, {pg['N_gal']} galaxies)")
 check("F5", len(uma) > 0 and cz.size > 2, "computed", "computed", "")
 RES["numbers"]["F5"] = F5
 
