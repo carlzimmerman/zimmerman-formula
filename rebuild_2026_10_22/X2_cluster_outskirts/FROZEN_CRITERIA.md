@@ -175,3 +175,18 @@ No knob scans; no component amplitude fitted; the needed-λ of §2.1 is a diagno
 to name a class. If R1/R2 or K0 fail, nothing downstream is graded (UNDECIDED, missing input named).
 
 ## AMENDMENTS (append-only; each labelled PRE-RESULT or POST-RESULT)
+
+- **A1 (PRE-RESULT, implementation; written before any script had run and before any number of this lane existed):** the
+  4th-order reduced-shear series of §2(d) cannot meet R3's frozen 1e-6 at Σ_t = 300 M☉ pc⁻² (κ ≈ 0.07 there, so the
+  truncation error is ≈ κ⁵ ≈ 2e-6). The replay stores m_k for k = 2…8 and the series is taken to 6th order,
+  P_red = P Σ_{k=0..6} Σ^k m_{k+2}/m_2, in both R3 and (d). R3's threshold is unchanged.
+- **A2 (POST-RESULT for R4 only; memory handling, no physics or statistic change):** the first full replay (kept as
+  `x2_replay_RUN1_rss.out`, `x2_replay_results_RUN1_rss.json`) reproduced F1's caches exactly (R1, R2: max |Δ| = 0) and
+  passed R3, but FAILED R4 at 1.126 GB macOS ru_maxrss (the touched pages of the memory-mapped KiDS columns count there).
+  The replay now re-opens the memory maps every 15 tried clusters, which unmaps the touched pages. R1–R4 are re-run and
+  must pass again; R4's threshold is unchanged. No number of the analysis script existed when this was written.
+- **A3 (written after a development run had printed C0 and the (a1)/(a2) rows, and BEFORE any (c) row was seen; solver
+  setting only):** with F2's default iteration cap (300) the Kacanov iteration stops before its 1e-9 tolerance at the
+  weak fields (last relative change 1.1e-8 / 2.3e-8 for noclu, 4.2e-6 / 5.3e-6 for the P2 catalogue field). All EFE solves
+  (and the K4(i) solve) now use `maxit = 3000` with F2's resolution and tolerance unchanged; the reached tolerance is
+  reported per solve. The development run's outputs are overwritten by the final run.
