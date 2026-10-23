@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
-"""PAPER56 audit: the built PDF must be newer than the TeX and 4-7 pages long (the deposit version adds NC2x and CFG929); every quoted number must match the committed lane
+"""PAPER56 audit: the built PDF must be newer than the TeX and 4-8 pages long (the deposit version adds NC2x and CFG929, 7 pages; the
+v1.1 correction box an 8th, which is accepted); every quoted number must match the committed lane
 outputs (JSON first; LEDGER row or lane README text where the number lives only there); the honesty phrases and post-hoc
 disclosures must be present; the in-progress statements must still be true; no forbidden claim or local path may appear.
+v1.1 (2026-10-23, section V): the dated correction box (lane CFG963, attribution of the native shear pass) must exist above the
+abstract on page 1; no unqualified "matched control" may remain (TeX outside the box, PDF, Zenodo description) other than the one
+quotation of v1.0 and "feedback-matched"; the v1.0 sentences that presented -10.08 / -9.39 as the framework's lead must be gone and
+every changed sentence marked "Correction v1.1"; every CFG963 number must match its results JSON (attribution and reuse/A1); the
+credited commits must exist; the Zenodo metadata must be v1.1, lead with the correction, mark isNewVersionOf 10.5281/zenodo.23532875,
+and keep v1.0's other fields. The v1.1 box re-paginates the note, so the PDF text is now read with each page-number footer removed
+at page breaks (two v1.0 phrases, unchanged in the TeX, fell across a break), and Table 1's float placement is [b] instead of [t]
+(at [t] the table landed inside an unchanged v1.0 sentence); no check string was loosened.
 Run: python3 PAPER56_audit.py (exit 0 only if all pass).  Read-only: it opens committed files and the PDF, nothing else."""
 import json, math, os, re, subprocess, sys
 
@@ -45,9 +54,11 @@ def readme(path):
 # ---------------------------------------------------------------- A. build
 check("A1 PDF newer than TeX", os.path.getmtime(PDF) >= os.path.getmtime(TEX))
 pages = int(re.search(r"Pages:\s+(\d+)", subprocess.run(["pdfinfo", PDF], capture_output=True, text=True, check=True).stdout).group(1))
-check("A2 page count 4-7", 4 <= pages <= 7, f"{pages} pages")
+check("A2 page count 4-8 (8 accepted for v1.1's correction box)", 4 <= pages <= 8, f"{pages} pages")
 # two extractions of the same PDF: layout mode (running text) and reading-order mode (keeps table cells contiguous)
-flat = " ||| ".join(norm(subprocess.run(["pdftotext"] + m + [PDF, "-"], capture_output=True, text=True, check=True).stdout) for m in (["-layout"], []))
+FOOT = re.compile(r"\n[ \t]*\d{1,2}[ \t]*\n*\f")   # v1.1: drop the page-number footer at each page break, so a sentence split by a break still matches
+raw = [norm(FOOT.sub("\n", subprocess.run(["pdftotext"] + m + [PDF, "-"], capture_output=True, text=True, check=True).stdout)) for m in (["-layout"], [])]
+flat = " ||| ".join(raw)
 tex = open(TEX, encoding="utf-8").read()
 
 
@@ -355,6 +366,178 @@ for bad in ("theory closed", "theory is closed", "data favour the framework", "d
             "breakthrough", "/users/", "gmail", "dark matter particle"):
     check(f"M forbidden '{bad}' absent", bad not in low)
 check("M no home path in TeX", "/Users/" not in tex and "~/" not in tex)
+
+# ---------------------------------------------------------------- V. v1.1 correction (2026-10-23): CFG963, attribution of the native shear pass
+C63 = "CFG963_shear_attribution"
+r63 = J(f"{C63}/cfg963_attrib_results.json")          # frozen-criteria scoring (f2354ed22)
+u63 = J(f"{C63}/cfg963_reuse_results.json")           # amendment A1 items (CFG646 bracket R3, K2-K4)
+p1 = norm(subprocess.run(["pdftotext", "-f", "1", "-l", "1", PDF, "-"], capture_output=True, text=True, check=True).stdout)
+BOX0 = "\\noindent\\fbox{\\parbox{"
+BOXT = "\\textbf{Correction (v1.1, 2026-10-23).}"
+ib, ia, ic = tex.find(BOX0), tex.find("\\begin{abstract}"), tex.find("\\end{center}")
+check("V1 correction box in the TeX, dated, between the title block and the abstract", 0 <= ic < ib < tex.find(BOXT) < ia and tex.count(BOXT) == 1)
+box_end = tex.find("\n\n\\begin{abstract}")
+box = tex[ib:box_end] if 0 <= ib < box_end else ""
+check("V1 correction box closes before the abstract", box.rstrip().endswith("}}") and "Consequences." in box)
+check("V1 correction box on PDF page 1, dated", "Correction (v1.1, 2026-10-23)." in p1 and "Consequences." in p1 and "M3-CARRIED on both footings" in p1)
+has("V2 header v1.1 dated 2026-10-23", "Working note, v1.1, 2026-10-23 (correction of v1.0 of 2026-10-21; see the box below)")
+check("V2 v1.0 header gone", "Working note, 2026-10-21, v1.0" not in flat and "2026-10-21, v1.0." not in tex)
+# --- no unqualified "matched control": outside the box only "feedback-matched"; inside it, one quotation of v1.0
+outside = tex if not box else tex[:ib] + tex[box_end:]
+MC = re.compile(r"matched\s+(?:Poisson\s+)?control", re.I)
+def mc_hits(text, quote):
+    """(unqualified, quoted) starts of 'matched (Poisson) control'; 'feedback-matched' is qualified, a quotation of v1.0 is quoted"""
+    un, qu = [], []
+    for m_ in MC.finditer(text):
+        pre = text[:m_.start()]
+        if pre.endswith("feedback-"):
+            continue
+        (qu if pre.endswith(quote) else un).append(m_.start())
+    return un, qu
+un, qu = mc_hits(outside, "``")
+check("V3 TeX outside the box: no 'matched control' except 'feedback-matched'", not un and not qu, f"{len(un)} unqualified, {len(qu)} quoted")
+un, qu = mc_hits(box, "``")
+check("V3 TeX inside the box: 'matched control' only as the one quotation of v1.0", bool(box) and not un and len(qu) == 1, f"{len(un)} unqualified, {len(qu)} quoted")
+for i_, mode in enumerate(("layout", "reading-order")):
+    un = [s_ for s_ in mc_hits(raw[i_], "“")[0] if not raw[i_][:s_].endswith('"')]
+    qu = mc_hits(raw[i_], "“")[1]
+    check(f"V3 PDF ({mode}): no unqualified 'matched control'; one quotation of v1.0", not un and len(qu) == 1, f"{len(un)} unqualified, {len(qu)} quoted")
+check("V3 'matched in initial conditions only' in the box, the abstract, section 1 and the disclosures",
+      len(re.findall(r"matched in initial conditions only", outside)) == 3 and "NCS0 is matched in initial conditions only.}" in box
+      and len(re.findall(r"matched in initial conditions only", flat)) >= 8)   # 4 places x 2 extractions
+# --- the v1.0 sentences that presented -10.08 / -9.39 as the framework's lead or preference are gone
+for s in ("against its matched control on both footings", "The size of the lead is set mainly by the lensing amplitude",
+          "The framework beats its control by suppressing small-scale power", "so the pass is a computational result of that engine",
+          "Four caveats limit what this means", "is the same pipeline on the same initial conditions with plain Poisson gravity"):
+    check(f"V4 v1.0 sentence gone from TeX and PDF: '{s[:50]}'", s not in tex and norm(s) not in flat)
+# --- every changed sentence is present and marked "Correction v1.1"
+MK = "(Correction v1.1)"
+for s in ("which is matched in initial conditions only and has no gas expulsion (∆χ2 = -10.08 canonical, -9.39 alternative; Correction v1.1)",
+          "KiDS cannot tell the capped cold sector from plain gravity plus gas expulsion, and the result shows that the capped cold sector does not "
+          "overproduce structure, not a preference for the law " + MK,
+          "On the alternative footing DES Y3 is diagnostic and also CONSISTENT (-2.15), but plain gravity with the expulsion gives -2.17 " + MK,
+          "Shear ∆χ2 sizes are set mainly by the lensing amplitude, and no arm fits well in absolute terms " + MK,
+          "The engine that produces the pass has no established physical parent (PAPER57); per CFG963 that is not load-bearing for the shear result " + MK,
+          "The control, NCS0, is the same pipeline with every module off (plain Poisson gravity) on the same initial conditions; it has no a0 , so it "
+          "serves both footings, but it is matched in initial conditions only: it applies no gas expulsion, while NC1x and NC2x include the census gas "
+          "expulsion M3 (CFG963; Correction v1.1)",
+          "Five caveats limit what this means; the first is new in v1.1 " + MK,
+          "The lead over NCS0 is carried by gas expulsion " + MK,
+          "The CONSISTENT class holds against this fair control too, but KiDS cannot tell the capped cold sector from plain gravity plus gas expulsion",
+          "CFG963 traces the deficit to the gas expulsion: the M3 transfer alone is", "at the same k " + MK,
+          "The framework beats NCS0 by suppressing small-scale power, and the suppression is the gas expulsion's: plain gravity with the same expulsion reaches",
+          "as good a fit or slightly better " + MK,
+          "Per CFG963 the missing parent is not load-bearing for the shear result: any parent that clusters like plain dust on",
+          "and expels the census gas would pass " + MK,
+          "Against plain gravity with the same gas expulsion it is also CONSISTENT", "the pass shows only that the capped cold sector does not overproduce "
+          "structure (CFG963; Correction v1.1)",
+          "Also not established: any shear preference for the law over plain gravity with gas expulsion (CFG963; Correction v1.1)",
+          "v1.1 corrects the reading of the native shear result: NCS0 is matched in initial conditions only, and the lead over it is carried by the census "
+          "gas expulsion (CFG963, a diagnostic attribution reported only; its CFG646 bracket comes from amendment A1, written after the frozen result was seen)",
+          "for v1.1, CFG963"):
+    has(f"V5 changed text '{s[:56]}'", s)
+check("V5 13 'Correction v1.1' markers outside the box, none left unmatched", outside.count("Correction v1.1") == 13
+      and len(re.findall(r"Correction v1\.1", raw[1])) == 14, f"TeX {outside.count('Correction v1.1')}, PDF {len(re.findall(r'Correction v1.1', raw[1]))}")
+check("V5 Table 1 float at [b] (v1.1 re-pagination; caption and rows unchanged)", "\\begin{table}[b]" in tex and "\\begin{table}[t]" not in tex
+      and "Table 1: Six small reframings of the pressure-supported excess." in flat)
+# --- wording from CFG963's LEDGER row and README
+L63 = row("CFG963")
+for s, pdf_s in (("M3-CARRIED on both footings", None), ("matched in ICs only", "matched in initial conditions only"),
+                 ("KiDS cannot tell the framework's capped cold sector from plain gravity + the same gas expulsion",
+                  "KiDS cannot tell the framework's capped cold sector from plain gravity plus gas expulsion"),
+                 ("the capped cold sector does not overproduce", "the capped cold sector does not overproduce structure"),
+                 ("not a preference for the law", None), ("The engine-parent problem is not load-bearing for this result", "missing parent is not load-bearing for this result"),
+                 ("+68.7", "excluded at +68.7 (CFG596)"), ("A1 64718930a committed alone before its numbers", "64718930a, committed alone before its numbers")):
+    check(f"V6 LEDGER CFG963 '{s[:48]}' (and the PDF)", bool(L63) and s in L63 and (pdf_s or s) in flat)
+R63 = f"{C63}/README.md"
+for s, pdf_s in (("CFG596's uncapped engine gave +68.7", "the uncapped settling engine was excluded at +68.7"),
+                 ("DIAGNOSTIC attribution, reported only", "diagnostic attribution, reported only"),
+                 ("This lane changes how that pass is read, not its class", "it changes how the result reads, not any frozen class"),
+                 ("clusters like plain dust", None), ("and expels the census gas would pass", None),
+                 ("The decisive 1024³ control NCS0+M3 is designed but not run", "is designed but not run"),
+                 ("Before amendment A1, the frozen result", "after the frozen result was seen")):
+    rd(f"V6 README CFG963 '{s[:48]}'", R63, s, pdf_s)
+crit = readme(f"{C63}/FROZEN_CRITERIA.md")
+check("V6 noise scale |d| >= 4 is the frozen 'KiDS can tell' rule; M3-CARRIED needs f >= 0.70 and |d| <= 3", "Only if |d| ≥ 4 (the CFG592 TENSION scale)" in crit
+      and "**M3-CARRIED** if f ≥ 0.70 AND |d| ≤ 3" in crit and "< 4 noise scale" in flat and "< 4 against the fair control" in flat)
+# --- numbers: every CFG963 number in the note is read from its results JSON
+at = r63["attribution"]; pr = r63["pairs"]
+kid = lambda p: pr[p]["surveys"]["KiDS"]
+bt = lambda f_, t_: at[f_]["by_transfer"][t_]
+r3 = u63["R3_attribution"]
+check("V7 CFG963 controls exact: K (stored NC1x / NC2x vs NCS0), A1 K2-K4; not a mutation run; the note says reported only",
+      r63["K_pass"] and r63["K_max_abs_diff"] == 0 and u63["K2_pass"] and u63["K34_pass"] and r63["mutate"] is False and u63["mutate"] is False
+      and abs(kid("K_NC1x_vs_NCS0")["dchi2"] - n1["surveys"]["KiDS"]["dchi2"]) < 1e-9 and abs(kid("K_NC2x_vs_NCS0")["dchi2"] - n2["surveys"]["KiDS"]["dchi2"]) < 1e-9
+      and "CFG963 is a diagnostic attribution, reported only" in flat)
+check("V7 stored leads -10.08 / -9.39 quoted in the box (JSON)", f"framework's {f2(at['canonical']['dchi2_framework_vs_NCS0'])} / {f2(at['alt']['dchi2_framework_vs_NCS0'])}" in flat)
+ex = [r63["m3_expelled_mass_frac"][r_][z_] for r_ in ("NC1x", "NC2x") for z_ in ("z0", "z0.5", "z1")]
+check("V7 M3 re-places 3.2-3.7% of all mass at z = 0-1, NC1x and NC2x (JSON)", f"{100 * min(ex):.1f}-{100 * max(ex):.1f}" == "3.2-3.7"
+      and f"re-places {100 * min(ex):.1f}-{100 * max(ex):.1f}% of all mass at z = 0-1" in flat, f"{min(ex):.4f}..{max(ex):.4f}")
+m3 = {t_: kid(f"S0+M3[{t_}]_canonical_vs_NCS0")["dchi2"] for t_ in ("M3-1024", "M3-256", "M3-alone-256")}
+check("V7 one surrogate serves both footings (canonical = alt pair, every bracket; R3 too)", all(kid(f"S0+M3[{t_}]_alt_vs_NCS0")["dchi2"] == m3[t_] for t_ in m3)
+      and r3["canonical"]["dchi2_S0M3_vs_NCS0"] == r3["alt"]["dchi2_S0M3_vs_NCS0"] and "(a surrogate: NCS0 times the M3 transfer" in flat)
+check("V7 plain gravity + M3 vs NCS0 -11.87 (JSON), box and abstract", f2(m3["M3-1024"]) == "-11.87" and f"{f2(m3['M3-1024'])} against NCS0 on KiDS-1000" in flat
+      and f"census gas expulsion scores {f2(m3['M3-1024'])} against NCS0" in flat)
+fc, fa = bt("canonical", "M3-1024")["f"], bt("alt", "M3-1024")["f"]
+has("V7 f = 118% canonical / 126% alt (JSON)", f"{100 * fc:.0f}% (canonical) and {100 * fa:.0f}% (alternative)")
+has("V7 brackets 256^3 / M3 alone / CFG646 (JSON, R3 from A1)", f"give {f2(m3['M3-256'])}, {f2(m3['M3-alone-256'])} and {f2(r3['canonical']['dchi2_S0M3_vs_NCS0'])}")
+d1, d2_ = bt("canonical", "M3-1024")["dchi2_framework_vs_S0M3"], bt("alt", "M3-1024")["dchi2_framework_vs_S0M3"]
+has("V7 NC1x / NC2x vs the feedback-matched control +1.78 / +2.47 (JSON), box", f"NC1x scores {d1:+.2f} and NC2x {d2_:+.2f}")
+check("V7 +1.78 / +2.47 in the abstract and section 4 (JSON)", f"framework scores {d1:+.2f} / {d2_:+.2f} against it, within noise" in flat
+      and f"also CONSISTENT ({d1:+.2f} / {d2_:+.2f})" in flat and f"NC1x scores {d1:+.2f} and NC2x {d2_:+.2f}, within noise" in flat)
+db = {f_: [bt(f_, t_)["dchi2_framework_vs_S0M3"] for t_ in ("M3-256", "M3-alone-256")] + [r3[f_]["dchi2_framework_vs_S0M3"]] for f_ in ("canonical", "alt")}
+has("V7 bracket ranges of d (JSON)", f"(brackets {min(db['canonical']):+.2f} to {max(db['canonical']):+.2f} and {min(db['alt']):+.2f} to {max(db['alt']):+.2f})")
+alld = [d1, d2_] + db["canonical"] + db["alt"]
+check("V7 every d within |d| < 4, KiDS never distinguishes, M3-CARRIED in every bracket and both footings (JSON)",
+      all(abs(v) < 4 for v in alld) and all(not bt(f_, t_)["KiDS_distinguishes"] and bt(f_, t_)["attribution"] == "M3-CARRIED"
+      for f_ in ("canonical", "alt") for t_ in ("M3-1024", "M3-256", "M3-alone-256")) and all(at[f_]["class_primary"] == "M3-CARRIED" for f_ in at)
+      and all(r3[f_]["attribution"] == "M3-CARRIED" for f_ in r3) and "M3-CARRIED on both footings and in every bracket" in flat, f"max |d| {max(map(abs, alld)):.2f}")
+m12 = at["canonical"]["M12"]["M12-1024"]["dchi2_S0M12_vs_NCS0"]
+check("V7 M1+M2 alone vs NCS0 +2.66 (JSON), box and section 1", m12 == at["alt"]["M12"]["M12-1024"]["dchi2_S0M12_vs_NCS0"]
+      and f"(M1+M2) alone score {m12:+.2f} against NCS0" in flat and f"rules alone cost {m12:+.2f} against NCS0" in flat)
+cl = (at["canonical"]["closure"], at["alt"]["closure"])
+check("V7 closure -10.21 / -9.51, to within 0.13, PASS (JSON)", all(c_["PASS"] for c_ in cl)
+      and f"to within {max(abs(c_['diff']) for c_ in cl):.2f} ({f2(cl[0]['dchi2'])} / {f2(cl[1]['dchi2'])})" in flat)
+dz = pr["S0+M3[M3-1024]_canonical_vs_NCS0"]["surveys"]["DES"]["dchi2"]
+dd = [pr[f"{r_}_vs_S0+M3[M3-1024]"]["surveys"]["DES"] for r_ in ("NC1x", "NC2x")]
+check("V7 DES: plain gravity + M3 -2.17 vs NCS0; framework +0.27 / +0.43 vs it, NOT DIAGNOSTIC (JSON)", all(x["class"] == "NOT DIAGNOSTIC" for x in dd)
+      and f"plain gravity plus M3 gives {f2(dz)} against NCS0, and the framework {dd[0]['dchi2']:+.2f} / {dd[1]['dchi2']:+.2f} against it (NOT DIAGNOSTIC)" in flat
+      and f"plain gravity with the expulsion gives {f2(dz)}" in flat)
+s3 = kid("S0+M3[M3-1024]_canonical_vs_NCS0")
+check("V7 plain gravity + M3 absolute fit 142.89 on 108 points (JSON)", s3["N_kept"] == 108 and f"reaches {f2(s3['chi2_F'])} on {s3['N_kept']} points" in flat
+      and f"= {f2(s3['chi2_F'])}, as good a fit or slightly better" in flat and s3["chi2_F"] < min(n1["surveys"]["KiDS"]["chi2_F"], n2["surveys"]["KiDS"]["chi2_F"]))
+tm = r63["transfers"]["M3-1024"]["z0"]
+has("V7 M3 transfer at k = 0.3 / 0.5 / 1, z = 0 (JSON)", f"the M3 transfer alone is {tm['0.3']:.3f}, {tm['0.5']:.3f} and {tm['1.0']:.3f} at the same k")
+# --- credits: the lane's commits exist and are what the note says they are
+def gsub(c):
+    r_ = subprocess.run(["git", "log", "-1", "--format=%s", c], capture_output=True, text=True, cwd=HERE)
+    return r_.stdout.strip() if r_.returncode == 0 else ""
+for c, key, s in (("d3b18181c", "CFG963 FROZEN_CRITERIA", "frozen criteria d3b18181c"), ("f2354ed22", "CFG963 scoring under the frozen criteria", "frozen scoring f2354ed22"),
+                  ("64718930a", "CFG963 AMENDMENT A1", "amendment A1 64718930a"), ("e96c21a87", "CFG963 amendment A1 results", "results e96c21a87")):
+    check(f"V8 commit {c} exists ({key}) and is credited in the PDF", key in gsub(c) and s in flat)
+check("V8 the JSONs name the same criteria and amendment commits", r63["criteria"] == "FROZEN_CRITERIA.md (d3b18181c)" and u63["amendment"] == "AMENDMENT_A1_2026-10-23.md (64718930a)"
+      and "CFG963" in L63 and L63.rstrip(" |").endswith("e96c21a87") and "Source: the repository lane CFG963 (frozen criteria d3b18181c" in flat)
+# --- Zenodo metadata for the new version
+ZJ = os.path.join(HERE, "PAPER56_pressure_supported_excess_2026.zenodo.json")
+zj = json.load(open(ZJ, encoding="utf-8"))["metadata"]
+z0 = json.loads(subprocess.run(["git", "show", "ee866f4bc2:qwen_claude_field_theory/papers_2026/PAPER56_pressure_supported_excess_2026.zenodo.json"],
+                               cwd=HERE, capture_output=True, text=True, check=True).stdout)["metadata"]
+zd = re.sub(r"<[^>]+>", "", zj["description"])
+check("V9 Zenodo version 1.1", zj["version"] == "1.1" and z0["version"] == "1.0")
+check("V9 Zenodo description leads with 'Correction (v1.1, 2026-10-23):'", zd.startswith("Correction (v1.1, 2026-10-23):") and "version 1.1 (2026-10-23; v1.0 2026-10-21)" in zd)
+check("V9 Zenodo isNewVersionOf 10.5281/zenodo.23532875", {"identifier": "10.5281/zenodo.23532875", "relation": "isNewVersionOf", "scheme": "doi"} in zj["related_identifiers"])
+check("V9 Zenodo keeps v1.0's other fields and every v1.0 related identifier", all(zj[k_] == z0[k_] for k_ in z0 if k_ not in ("version", "description", "related_identifiers"))
+      and set(zj) == set(z0) and all(r_ in zj["related_identifiers"] for r_ in z0["related_identifiers"]) and len(zj["related_identifiers"]) == len(z0["related_identifiers"]) + 1)
+un, qu = mc_hits(zd, "'")
+check("V9 Zenodo description: no unqualified 'matched control'; one quotation of v1.0", not un and len(qu) == 1 and "matched in initial conditions only" in zd, f"{len(un)} unqualified, {len(qu)} quoted")
+check("V9 Zenodo: v1.0 lead wording gone", all(s not in zd for s in ("The size of the lead is amplitude-driven", "against its matched Poisson control",
+      "(companion note PAPER57): the pass is a computational result")))
+check("V9 Zenodo numbers match CFG963 JSON", f"Delta chi^2 = {f2(m3['M3-1024'])} against NCS0" in zd and f"{d1:+.2f} (canonical) / {d2_:+.2f} (alternative)" in zd
+      and f"framework scores {d1:+.2f} / {d2_:+.2f}" in zd and f"rules alone score {m12:+.2f}" in zd and f"re-places {100 * min(ex):.1f}-{100 * max(ex):.1f}% of all mass" in zd
+      and f"plain gravity with the expulsion gives {f2(dz)}" in zd and "excluded at +68.7" in zd and "M3-CARRIED on both footings" in zd
+      and all(c in zd for c in ("d3b18181c", "f2354ed22", "64718930a", "e96c21a87")) and "(Delta chi^2 -10.08 canonical, -9.39 alternative)" in zd)
+check("V9 Zenodo honesty kept, nothing forbidden", "kappa = 1/2 is fitted; the theory is not closed" in zd and "A CONSISTENT class is not a preference" in zd
+      and "not a preference for the law" in zd and not any(b_ in zd.lower() for b_ in ("theory closed", "theory is closed", "data favour the framework", "data favor the framework", "/users/", "gmail")))
 
 print(f"\nPAPER56 audit: {N - F}/{N} PASS" + ("" if F == 0 else f", {F} FAIL"))
 sys.exit(1 if F else 0)
