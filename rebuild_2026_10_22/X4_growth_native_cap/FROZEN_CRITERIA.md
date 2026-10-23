@@ -171,3 +171,14 @@ S4's quadratic-K static solve applies to the DBI K in galaxies.
 - No CMB fit at P1μ or P2μ; their forest numbers are at fixed ΛCDM-refit parameters.
 - δQ is linear; the cluster static branch is inherited from Q7, not solved.
 - BS24/BS25 equations remain the record's PROVISIONAL WebFetch transcriptions (Q6/Q7).
+
+## AMENDMENT A1 (POST-RESULT, written after the first runs; changes no verdict line)
+
+- **"k = 5 h/Mpc" in F0b and F_L319 means L319's own grid point nearest 5**, k5 = 4.6199 h/Mpc (L319 L184–185,
+  `K_H = geomspace(0.02, 30, 44)`, `k5 = argmin |K_H − 5|`). That is the point at which L319's printed 0.995 holds
+  (T²_5.3keV = 0.99519 there; 0.99425 at exactly 5.00). The scripts used k5 from their first run; this note records it.
+  Reported only, no verdict weight: every model's T² at exactly 5.00 h/Mpc (JSON `T2_at_exactly_5.00_hMpc_reported_A1`),
+  added to the step-2 script after its first run and re-run (deterministic; every other number unchanged).
+- Implementation details fixed in the scripts before their first run, not in the text above: h for unit conversion and
+  for I₀ is taken from CLASS's background file (12 digits) rather than its stdout (6 digits), with a 1e-5 consistency
+  assert; CLASS output files are located by glob (CLASS appends "_" to the root).

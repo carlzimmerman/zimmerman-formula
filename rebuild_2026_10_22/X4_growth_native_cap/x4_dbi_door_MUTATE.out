@@ -1,0 +1,89 @@
+X4_growth_native_cap step 0 (D0a-e, F0a-c) + step 2, question (ii) (FROZEN_CRITERIA.md sections 2, 4, 5, 7):
+is Q7's large-lambda_D DBI door (R_B = 0.95 at lambda_D,95) closed by its own consistency (linear |dQ| against the DBI
+square-root ceiling lambda_D^-1/2) and by the record's Lyman-alpha forest gates (L346 band, L319 line) on linear P(k)?
+
+  OMP_NUM_THREADS=1 nice -n 15 python3 -I x4_dbi_door.py              -> x4_dbi_door.out, x4_dbi_door_results.json
+  X4_MUTATE=1 OMP_NUM_THREADS=1 nice -n 15 python3 -I x4_dbi_door.py  -> *_MUTATE.* (Q7's MUTATE binary + extraction without
+                                                                         the photon/ur subtraction and theta term: D0a and D0c must FAIL)
+
+Read-only use of Q7's validated DBI binary and C7's vanilla binary; parameters from Q7's committed JSON and on-disk .ini
+files. Points: Q7's three committed lambda_D,95 values only (no lambda_D or mu scan; no fit). a0 is absent at linear order:
+neither footing enters; kappa = 1/2 FITTED does not enter; omega_K FITTED; lambda_D is a growth-set KNOB, graded, never adopted.
+
+MUTATE = True; DBI binary ../_external_data/class_khronon_dbi_build_2026_10_23/class_dbi_mutate/class; vanilla ../_external_data/class_aest_build_2026_10_22/class_vanilla/class
+  point cap: mu 9.9977 Mpc^-1 (mu^-1 0.1 Mpc), lambda_D,95 7.839653e+09, ceiling 1.1294e-05, line L 3.7647e-06
+  point P1mu: mu 4.4843 Mpc^-1 (mu^-1 0.223 Mpc), lambda_D,95 3.551214e+10, ceiling 5.3065e-06, line L 1.7688e-06
+  point P2mu: mu 0.044843 Mpc^-1 (mu^-1 22.3 Mpc), lambda_D,95 3.978281e+09, ceiling 1.5854e-05, line L 5.2848e-06
+== CLASS runs (one at a time; Q7 precision; z_pk grid 0, 0.5, 1, 2, 3, 5, 10, 20, 37, 60, 100, 200, 500)
+  CAP_best: ran; h 0.674487, sigma8 0.0586317, z with pk [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], tk z 13; {'seconds': 6.4, 'z_pk': [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], 'children_peak_rss_GB_so_far': 0.483115008}
+  LCDM_best: ran; h 0.675519, sigma8 0.827959, z with pk [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], tk z 0; {'seconds': 6.7, 'z_pk': [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], 'children_peak_rss_GB_so_far': 0.483115008}
+  DUST_fix: ran; h 0.675519, sigma8 0.827958, z with pk [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], tk z 13; {'seconds': 1.3, 'z_pk': [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], 'children_peak_rss_GB_so_far': 0.483115008}
+  LCDM_fix: ran; h 0.675519, sigma8 0.827958, z with pk [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], tk z 0; {'seconds': 1.3, 'z_pk': [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], 'children_peak_rss_GB_so_far': 0.483115008}
+  cap_fix: ran; h 0.675525, sigma8 0.0586981, z with pk [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], tk z 13; {'seconds': 3.2, 'z_pk': [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], 'children_peak_rss_GB_so_far': 0.483115008}
+  P1mu_fix: ran; h 0.675521, sigma8 0.0424387, z with pk [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], tk z 13; {'seconds': 3.3, 'z_pk': [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], 'children_peak_rss_GB_so_far': 0.483115008}
+  P2mu_fix: ran; h 0.675515, sigma8 0.0171513, z with pk [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], tk z 13; {'seconds': 3.2, 'z_pk': [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], 'children_peak_rss_GB_so_far': 0.483115008}
+  N0_cap_1e30: ran; h 0.675519, sigma8 0.0170847, z with pk [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], tk z 0; {'seconds': 3.1, 'z_pk': [0.0, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 37.0, 60.0, 100.0, 200.0, 500.0], 'children_peak_rss_GB_so_far': 0.483115008}
+== D0a: Q7's committed CAP@l95_best / LCDM_best reproduced
+[FAIL] D0a_Q7_bestfits_reproduced: {"max_dlnP_CAP_vs_Q7_file": 6.163972475177143, "max_dlnP_LCDM_vs_Q7_file": 0.0, "ratios_this": {"0.1": 0.0036213544724729677, "1": 0.0007113552279646712, "3": 0.0002621700389323914}, "ratios_Q7": {"0.1": 0.9767738161716665, "1": 0.32937471525986534, "3": 0.09799353484532401}, "sigma8_this": 0.0586317, "sigma8_Q7": 0.787585}   (line: max |dlnP| <= 1e-4 (k <= 10 h/Mpc); ratios within 1e-3; sigma8 within 1e-5)
+[FAIL] D0b_lambda95_R_B: cap: R_B 0.07090; P1mu: R_B 0.05126; P2mu: R_B 0.02072   (line: each |R_B - 0.95| <= 0.002)
+== D0e: analytic DBI background vs CLASS's background file; own I0 vs CLASS's
+  cap_fix: I0 own 4.026508864591e-08 vs CLASS 4.0265088646e-08; max |rho_K analytic/CLASS - 1| (z <= 500, 7714 rows) = 1.75e-12
+  CAP_best: I0 own 4.033251790065e-08 vs CLASS 4.0332517901e-08; max |rho_K analytic/CLASS - 1| (z <= 500, 7714 rows) = 1.75e-12
+  P1mu_fix: I0 own 4.026508862981e-08 vs CLASS 4.026508863e-08; max |rho_K analytic/CLASS - 1| (z <= 500, 7714 rows) = 1.70e-12
+  P2mu_fix: I0 own 4.026490396102e-08 vs CLASS 4.0264903961e-08; max |rho_K analytic/CLASS - 1| (z <= 500, 7714 rows) = 1.78e-12
+[PASS] D0e_background_and_I0: {"cap_fix": {"I0_own": 4.0265088645912635e-08, "I0_class": 4.0265088646e-08, "dI0_rel": 2.1697088570249434e-12, "max_rel_dev_rhoK_z<=500": 1.751265799043722e-12, "rows": 7714}, "CAP_best": {"I0_own": 4.033251790065396e-08, "I0_class": 4.0332517901e-08, "dI0_rel": 8.579692512000747e-12, "max_rel_dev_rhoK_z<=500": 1.7535972673954348e-12, "rows": 7714}, "P1mu_fix": {"I0_own": 4.026508862981157e-08, "I0_class": 4.026508863e-08, "dI0_rel": 4.67981209339996e-12, "max_rel_dev_rhoK_z<=500": 1.7004175845158898e-12, "rows": 7714}, "P2mu_fix": {"I0_own": 4.02649039610248e-08, "I0_class": 4.0264903961e-08, "dI0_rel": 6.157296894571118e-13, "max_rel_dev_rhoK_z<=500": 1.7821299991283013e-12, "rows": 7714}}   (line: rho_K <= 1e-6 relative at z <= 500; I0 <= 1e-8 relative)
+== D0c: extraction of delta_K, theta_K validated on DUST (delta_K must equal d_cdm, theta_K = 0)
+  z 0: 4.6e-04 / 0.0e+00; z 0.5: 6.9e-04 / 0.0e+00; z 1: 9.2e-04 / 0.0e+00; z 2: 1.4e-03 / 0.0e+00; z 3: 1.8e-03 / 0.0e+00; z 5: 2.8e-03 / 0.0e+00; z 10: 5.1e-03 / 0.0e+00; z 20: 9.7e-03 / 0.0e+00; z 37: 1.8e-02 / 0.0e+00; z 60: 2.8e-02 / 0.0e+00; z 100: 4.7e-02 / 0.0e+00; z 200: 9.3e-02 / 0.0e+00; z 500: 2.3e-01 / 0.0e+00
+[FAIL] D0c_extraction_on_DUST: worst over z: dK 2.32e-01, theta term 0.00e+00   (line: max |dK/d_cdm - 1| <= 1e-5 and max |3 H theta_K/k^2|/|d_cdm| <= 1e-5 at every z, k <= 10 h/Mpc)
+== D0d: P(k, z) = (2 pi^2/k^3) A_s (k/k_p)^(n_s - 1) d_m^2  (k_p = 0.05 Mpc^-1)
+[PASS] D0d_normalisation: CAP_best: 2.30e-07; DUST_fix: 5.53e-06; cap_fix: 1.48e-05; P1mu_fix: 1.48e-05; P2mu_fix: 1.48e-05   (line: <= 1e-3 relative at every z, k <= 10 h/Mpc)
+== D: linear rest-frame dQ (gauge-invariant, Q6 D2) per point; line L = lambda_D^-1/2 / 3
+  cap_fix: max_z sigma_dQ,rest 9.883e-09 (z 37), max_(k,z) per-ln-k 6.917e-09 (z 37, k 0.199 h/Mpc) vs L 3.765e-06 -> S/L 2.625e-03 / 1.837e-03: D = PASS; sync-gauge max mode 6.917e-09; headroom ratio (3 sigma, reported) max 2.032e-02
+      z    0: sigma_rest 2.031e-11, max mode 1.135e-11 at k 0.199; Qbar-1 2.014e-10; headroom 1.129e-05; aM 14.8 h/Mpc
+      z    3: sigma_rest 3.662e-10, max mode 2.205e-10 at k 0.199; Qbar-1 1.289e-08; headroom 1.128e-05; aM 3.7 h/Mpc
+      z   10: sigma_rest 2.354e-09, max mode 1.549e-09 at k 0.199; Qbar-1 2.680e-07; headroom 1.103e-05; aM 1.35 h/Mpc
+      z   37: sigma_rest 9.883e-09, max mode 6.917e-09 at k 0.199; Qbar-1 7.899e-06; headroom 3.395e-06; aM 0.645 h/Mpc
+      z  100: sigma_rest 1.130e-10, max mode 6.249e-11 at k 3.36; Qbar-1 1.128e-05; headroom 1.669e-08; aM 11.6 h/Mpc
+      z  500: sigma_rest 6.449e-15, max mode 4.194e-15 at k 9.47; Qbar-1 1.129e-05; headroom 1.123e-12; aM 3.14e+03 h/Mpc
+  CAP_best: max_z sigma_dQ,rest 9.866e-09 (z 37), max_(k,z) per-ln-k 6.905e-09 (z 37, k 0.201 h/Mpc) vs L 3.765e-06 -> S/L 2.621e-03 / 1.834e-03: D = PASS; sync-gauge max mode 6.905e-09; headroom ratio (3 sigma, reported) max 2.037e-02
+      z    0: sigma_rest 2.033e-11, max mode 1.135e-11 at k 0.201; Qbar-1 2.018e-10; headroom 1.129e-05; aM 14.8 h/Mpc
+      z    3: sigma_rest 3.661e-10, max mode 2.204e-10 at k 0.201; Qbar-1 1.291e-08; headroom 1.128e-05; aM 3.71 h/Mpc
+      z   10: sigma_rest 2.354e-09, max mode 1.548e-09 at k 0.201; Qbar-1 2.685e-07; headroom 1.103e-05; aM 1.35 h/Mpc
+      z   37: sigma_rest 9.866e-09, max mode 6.905e-09 at k 0.201; Qbar-1 7.906e-06; headroom 3.388e-06; aM 0.646 h/Mpc
+      z  100: sigma_rest 1.129e-10, max mode 6.219e-11 at k 3.12; Qbar-1 1.128e-05; headroom 1.663e-08; aM 11.6 h/Mpc
+      z  500: sigma_rest 6.476e-15, max mode 4.195e-15 at k 9.87; Qbar-1 1.129e-05; headroom 1.119e-12; aM 3.15e+03 h/Mpc
+  P1mu_fix: max_z sigma_dQ,rest 6.475e-09 (z 10), max_(k,z) per-ln-k 4.691e-09 (z 10, k 0.138 h/Mpc) vs L 1.769e-06 -> S/L 3.661e-03 / 2.652e-03: D = PASS; sync-gauge max mode 4.691e-09; headroom ratio (3 sigma, reported) max 2.618e-02
+      z    0: sigma_rest 6.983e-11, max mode 4.041e-11 at k 0.199; Qbar-1 1.001e-09; headroom 5.306e-06; aM 6.64 h/Mpc
+      z    3: sigma_rest 1.164e-09, max mode 7.570e-10 at k 0.199; Qbar-1 6.407e-08; headroom 5.242e-06; aM 1.66 h/Mpc
+      z   10: sigma_rest 6.475e-09, max mode 4.691e-09 at k 0.138; Qbar-1 1.292e-06; headroom 4.014e-06; aM 0.632 h/Mpc
+      z   37: sigma_rest 2.145e-10, max mode 1.195e-10 at k 1.68; Qbar-1 5.282e-06; headroom 2.458e-08; aM 5.86 h/Mpc
+      z  100: sigma_rest 5.190e-13, max mode 3.273e-13 at k 9.47; Qbar-1 5.306e-06; headroom 7.022e-11; aM 178 h/Mpc
+      z  500: sigma_rest 2.708e-17, max mode 1.761e-17 at k 9.47; Qbar-1 5.307e-06; headroom 4.714e-15; aM 4.84e+04 h/Mpc
+  P2mu_fix: max_z sigma_dQ,rest 4.153e-08 (z 0), max_(k,z) per-ln-k 3.534e-08 (z 0, k 0.0711 h/Mpc) vs L 5.285e-06 -> S/L 7.859e-03 / 6.687e-03: D = PASS; sync-gauge max mode 3.534e-08; headroom ratio (3 sigma, reported) max 8.994e-02
+      z    0: sigma_rest 4.153e-08, max mode 3.534e-08 at k 0.0711; Qbar-1 8.465e-06; headroom 7.389e-06; aM 0.0854 h/Mpc
+      z    3: sigma_rest 1.454e-10, max mode 8.270e-11 at k 1.34; Qbar-1 1.585e-05; headroom 4.851e-09; aM 4.27 h/Mpc
+      z   10: sigma_rest 2.387e-13, max mode 1.512e-13 at k 9.47; Qbar-1 1.585e-05; headroom 1.122e-11; aM 147 h/Mpc
+      z   37: sigma_rest 7.092e-17, max mode 4.484e-17 at k 9.47; Qbar-1 1.585e-05; headroom 6.603e-15; aM 1.13e+04 h/Mpc
+      z  100: sigma_rest 1.385e-19, max mode 8.755e-20 at k 9.47; Qbar-1 1.585e-05; headroom 1.873e-17; aM 3.45e+05 h/Mpc
+      z  500: sigma_rest 7.221e-24, max mode 4.696e-24 at k 9.47; Qbar-1 1.585e-05; headroom 1.257e-21; aM 9.38e+07 h/Mpc
+== F0a: L346's gate reproduced from its committed JSON
+[PASS] F0a_L346_reproduced: bins [1.1, 1.39, 1.76, 2.23, 2.81, 3.56]; sw5_canon z3 1.0644-1.2168, sw5_alt z3 1.0728-1.2463 -> gate FAIL (L346: FAIL); never_on (1.0, 1.0)   (line: band ends equal to L346's stored F2 to 1e-9; verdict FAIL; control exactly 1)
+[PASS] F0b_L319_line: T^2_5.3keV(k = 4.6199 h/Mpc) = 0.99519 vs L319's printed 0.995   (line: within 5e-4)
+== F0c: the gate on LCDM through this lane's CLASS pipeline
+  DUST(DBI binary) vs vanilla LCDM, P0: z=3 bins 1 1 1 1 1 1 | T2(k5) 1; z=2 bins 1 1 1 1 1 1 | T2(k5) 1 -> L346 PASS, L319 strict PASS, loose PASS, outside [0.5,2]: False => F = PASS [A1 reported: T2 at k = 5.00: z3 1, z2 1; k5 = 4.6199: z3 1, z2 1]
+  DBI(cap, 1e30) vs DUST, P0: z=3 bins 0.00037 0.000346 0.000326 0.000308 0.000293 0.00028 | T2(k5) 0.000267; z=2 bins 0.000298 0.000279 0.000263 0.000249 0.000236 0.000226 | T2(k5) 0.000215 -> L346 FAIL, L319 strict FAIL, loose FAIL, outside [0.5,2]: True => F = FAIL [A1 reported: T2 at k = 5.00: z3 0.0002633, z2 0.0002122; k5 = 4.6199: z3 0.0002669, z2 0.0002151]
+[FAIL] F0c_gate_on_LCDM: DUST/LCDM z3 1.000000-1.000000, T2(k5) 1.000000; N0/DUST z3 0.000280-0.000370   (line: every bin and T2(k5) within 1e-3 of 1 => gate PASS)
+== F: forest gate per point (linear P(k); L346 band [0.8,1.2] at z = 3 and 2; L319 T2(k5) strict / loose)
+  cap (CMB best fit) vs LCDM best fit: z=3 bins 0.000702 0.000583 0.00049 0.000419 0.000366 0.000327 | T2(k5) 0.000295; z=2 bins 0.000679 0.000555 0.000459 0.000386 0.00033 0.000287 | T2(k5) 0.000253 -> L346 FAIL, L319 strict FAIL, loose FAIL, outside [0.5,2]: True => F = FAIL [A1 reported: T2 at k = 5.00: z3 0.0002868, z2 0.0002448; k5 = 4.6199: z3 0.0002947, z2 0.0002532]
+  cap (fixed P0) vs DUST: z=3 bins 0.000706 0.000586 0.000493 0.000422 0.000369 0.000329 | T2(k5) 0.000297; z=2 bins 0.000682 0.000559 0.000462 0.000388 0.000332 0.00029 | T2(k5) 0.000255 -> L346 FAIL, L319 strict FAIL, loose FAIL, outside [0.5,2]: True => F = FAIL [A1 reported: T2 at k = 5.00: z3 0.0002891, z2 0.0002467; k5 = 4.6199: z3 0.0002969, z2 0.0002551]
+  P1mu (fixed P0) vs DUST: z=3 bins 0.000467 0.000411 0.000368 0.000335 0.00031 0.00029 | T2(k5) 0.000273; z=2 bins 0.000425 0.000366 0.00032 0.000286 0.00026 0.000241 | T2(k5) 0.000224 -> L346 FAIL, L319 strict FAIL, loose FAIL, outside [0.5,2]: True => F = FAIL [A1 reported: T2 at k = 5.00: z3 0.0002683, z2 0.0002197; k5 = 4.6199: z3 0.0002728, z2 0.0002239]
+  P2mu (fixed P0) vs DUST: z=3 bins 0.00037 0.000346 0.000326 0.000308 0.000293 0.00028 | T2(k5) 0.000267; z=2 bins 0.000298 0.000279 0.000263 0.000248 0.000236 0.000226 | T2(k5) 0.000215 -> L346 FAIL, L319 strict FAIL, loose FAIL, outside [0.5,2]: True => F = FAIL [A1 reported: T2 at k = 5.00: z3 0.0002633, z2 0.0002122; k5 = 4.6199: z3 0.0002669, z2 0.0002151]
+  context cap_best: P/P_ref z0: k0.1 0.00362, k0.3 0.00187, k1 0.000711, k3 0.000262, k10 0.000119; z3: k0.1 0.00362, k0.3 0.00189, k1 0.000761, k3 0.000355, k10 0.000241
+  context cap_fix: P/P_ref z0: k0.1 0.00361, k0.3 0.0019, k1 0.000714, k3 0.000263, k10 0.00012; z3: k0.1 0.00362, k0.3 0.00192, k1 0.000765, k3 0.000357, k10 0.000243
+  context P1mu_fix: P/P_ref z0: k0.1 0.00182, k0.3 0.00101, k1 0.000399, k3 0.000169, k10 0.000103; z3: k0.1 0.00184, k0.3 0.00106, k1 0.000495, k3 0.000304, k10 0.000238
+  context P2mu_fix: P/P_ref z0: k0.1 0.000287, k0.3 0.00022, k1 0.000155, k3 0.000118, k10 9.69e-05; z3: k0.1 0.000701, k0.3 0.000538, k1 0.00038, k3 0.000289, k10 0.000237
+  G cap: mu 9.998 Mpc^-1 -> FAIL; lambda_D (v^2/c^2)^2 at 220 km/s = 2.27e-03
+  G P1mu: mu 4.484 Mpc^-1 -> FAIL; lambda_D (v^2/c^2)^2 at 220 km/s = 1.03e-02
+  G P2mu: mu 0.04484 Mpc^-1 -> NOT ON S4'S GRID; lambda_D (v^2/c^2)^2 at 220 km/s = 1.15e-03
+[PASS] V_ii_verdict: UNDECIDED (a step-2 reproduction failed); per point cap: D PASS, F FAIL, G FAIL; P1mu: D PASS, F FAIL, G FAIL; P2mu: D PASS, F FAIL, G NOT ON S4'S GRID   (line: computed (the verdict is a result))
+X4 STEP 2 COMPLETE: 5/9 checks PASS; elapsed 29 s; peak RSS self 0.13 GB, children 0.48 GB

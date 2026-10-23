@@ -1,0 +1,261 @@
+{
+ "lane": "X4_growth_native_cap",
+ "script": "x4_growth.py",
+ "date": "2026-10-23",
+ "mutate": true,
+ "checks": {
+  "G0c_conversion": {
+   "pass": true,
+   "value": "10 Mpc^-1 / h_A = 14.7977084631 h/Mpc vs F3's mu_hMpc 14.7977084631",
+   "threshold": "<= 1e-9 relative"
+  },
+  "G0a_F3_ODE_reproduced": {
+   "pass": false,
+   "value": "bsk2_ai0.001 1.000000 vs 0.390800; bsk2_ai0.0001 1.000000 vs 0.202602; jeans_ai0.001 1.000000 vs 0.120552",
+   "threshold": "each |r/r_F3 - 1| <= 1e-4"
+  },
+  "G0b_Q6_reproduced": {
+   "pass": false,
+   "value": "DUST sigma8 2.6845 vs Q6 0.827959; LOB 14.8 15.1606 vs Q6 0.0607512; R_B 5.647458 vs Q6 0.073375",
+   "threshold": "each <= 1e-4 relative"
+  },
+  "G2_boltzmann_runs_complete": {
+   "pass": true,
+   "value": "R_B: {'cap_14.8hMpc': 5.647457627118644, '0.03': 55.00949897560067, '0.1': 38.1203203576085}; runs {'DUST_fix': {'seconds': 6.2, 'children_peak_rss_GB_so_far': 0.28647424}, 'LOB_14.8_fix': {'seconds': 5.9, 'children_peak_rss_GB_so_far': 0.289865728}, 'LOB_0.03perMpc_fix': {'seconds': 6.2, 'children_peak_rss_GB_so_far': 0.289865728}, 'LOB_0.1perMpc_fix': {'seconds': 6.0, 'children_peak_rss_GB_so_far': 0.290062336}}",
+   "threshold": "both LOB runs complete, each <= 30 min (FAIL allowed; then the ODE alone is used)"
+  },
+  "G1_monotone_in_mu": {
+   "pass": false,
+   "value": "ODE bsk2_ai0.001: 1.00000 <= 1.00000 <= 0.39080; bsk2_ai0.0001: 1.00000 <= 1.00000 <= 0.20260; R_B 55.00950 <= 38.12032 <= 5.64746",
+   "threshold": "R(0.03) <= R(0.1) <= R(cap) for every estimator"
+  },
+  "V_i_verdict": {
+   "pass": true,
+   "value": "UNDECIDED (reproduction failed): primary R_B R(0.03) = 55.00950, R(0.1) = 38.12032; ODE (a_i 1e-3) R(0.1) = 1.00000",
+   "threshold": "computed (the verdict is a result)"
+  }
+ },
+ "note": "a0 absent at linear order (neither footing enters); kappa = 1/2 FITTED; omega_K FITTED; numbers only",
+ "conversion": {
+  "h_A": 0.6757803091543079,
+  "rule": "mu[h/Mpc] = mu[Mpc^-1] / h_A; S4's mu_K is physical Mpc^-1; CLASS aest_K2 = mu^2 [Mpc^-2]",
+  "cap": {
+   "mu_per_Mpc_phys": 10.0,
+   "mu_hMpc_at_hA": 14.79770846314582
+  },
+  "guard_points": {
+   "0.03": {
+    "mu_per_Mpc_phys": 0.03,
+    "mu_hMpc_at_hA": 0.04439312538943746,
+    "mu_inv_Mpc_phys": 33.333333333333336
+   },
+   "0.1": {
+    "mu_per_Mpc_phys": 0.1,
+    "mu_hMpc_at_hA": 0.1479770846314582,
+    "mu_inv_Mpc_phys": 10.0
+   }
+  }
+ },
+ "elapsed_s": 25.6,
+ "peak_rss_GB_self": 0.100909056,
+ "peak_rss_GB_children": 0.290062336,
+ "G0a": {
+  "bsk2_ai0.001": {
+   "this": 1.0,
+   "F3": 0.39080047567004617
+  },
+  "bsk2_ai0.0001": {
+   "this": 1.0,
+   "F3": 0.20260204602232276
+  },
+  "jeans_ai0.001": {
+   "this": 1.0,
+   "F3": 0.12055236562022648
+  }
+ },
+ "ode": {
+  "0.03": {
+   "mu_hMpc_at_hA": 0.04439312538943746,
+   "bsk2_ai0.001": {
+    "sigma8_ratio": 1.0,
+    "sigma8": 0.8274231033311932,
+    "T_at_k": {
+     "0.001": 1.0,
+     "0.003139": 1.0,
+     "0.009851": 1.0,
+     "0.03092": 1.0,
+     "0.09703": 1.0,
+     "0.3045": 1.0,
+     "0.9558": 1.0,
+     "3": 1.0
+    }
+   },
+   "bsk2_ai0.0001": {
+    "sigma8_ratio": 1.0,
+    "sigma8": 0.8274231033311932,
+    "T_at_k": {
+     "0.001": 1.0,
+     "0.003139": 1.0,
+     "0.009851": 1.0,
+     "0.03092": 1.0,
+     "0.09703": 1.0,
+     "0.3045": 1.0,
+     "0.9558": 1.0,
+     "3": 1.0
+    }
+   },
+   "jeans_ai0.001": null,
+   "jeans_ai0.0001": null
+  },
+  "0.1": {
+   "mu_hMpc_at_hA": 0.1479770846314582,
+   "bsk2_ai0.001": {
+    "sigma8_ratio": 1.0,
+    "sigma8": 0.8274231033311932,
+    "T_at_k": {
+     "0.001": 1.0,
+     "0.003139": 1.0,
+     "0.009851": 1.0,
+     "0.03092": 1.0,
+     "0.09703": 1.0,
+     "0.3045": 1.0,
+     "0.9558": 1.0,
+     "3": 1.0
+    }
+   },
+   "bsk2_ai0.0001": {
+    "sigma8_ratio": 1.0,
+    "sigma8": 0.8274231033311932,
+    "T_at_k": {
+     "0.001": 1.0,
+     "0.003139": 1.0,
+     "0.009851": 1.0,
+     "0.03092": 1.0,
+     "0.09703": 1.0,
+     "0.3045": 1.0,
+     "0.9558": 1.0,
+     "3": 1.0
+    }
+   },
+   "jeans_ai0.001": null,
+   "jeans_ai0.0001": null
+  }
+ },
+ "boltzmann_Pk_over_DUST_z0": {
+  "0.03": {
+   "0.1": 2788.234897124704,
+   "0.3": 2837.6777277072733,
+   "1": 3644.287542488191,
+   "3": 4785.4870127592,
+   "10": 6918.278557765725
+  },
+  "0.1": {
+   "0.1": 1407.560190624046,
+   "0.3": 1242.327238834968,
+   "1": 1548.4630490542706,
+   "3": 2027.4484816658457,
+   "10": 2930.0130895071675
+  }
+ },
+ "R_B": {
+  "cap_14.8hMpc": 5.647457627118644,
+  "0.03": 55.00949897560067,
+  "0.1": 38.1203203576085
+ },
+ "runinfo": {
+  "DUST_fix": {
+   "seconds": 6.2,
+   "children_peak_rss_GB_so_far": 0.28647424
+  },
+  "LOB_14.8_fix": {
+   "seconds": 5.9,
+   "children_peak_rss_GB_so_far": 0.289865728
+  },
+  "LOB_0.03perMpc_fix": {
+   "seconds": 6.2,
+   "children_peak_rss_GB_so_far": 0.289865728
+  },
+  "LOB_0.1perMpc_fix": {
+   "seconds": 6.0,
+   "children_peak_rss_GB_so_far": 0.290062336
+  }
+ },
+ "class_failures": {},
+ "literal_background_reported": {
+  "0.03": {
+   "dNeff_equiv_1MeV_literal_quadratic": 8.549008426537325e+18,
+   "a_at_eps_1": 0.0281762879983793
+  },
+  "0.1": {
+   "dNeff_equiv_1MeV_literal_quadratic": 7.694264205721435e+17,
+   "a_at_eps_1": 0.012626977916407963
+  },
+  "cap": {
+   "dNeff_equiv_1MeV_literal_quadratic": 76978264444696.31,
+   "a_at_eps_1": 0.0005861826347401697
+  },
+  "cap_reproduces_Q6_stepB": true
+ },
+ "gaps": {
+  "sigma8_shortfall_0.95_over_R": {
+   "0.03": {
+    "R_B": 0.0172697446384918,
+    "ODE_bsk2_ai0.001": 0.95,
+    "ODE_bsk2_ai0.0001": 0.95
+   },
+   "0.1": {
+    "R_B": 0.024921091719272183,
+    "ODE_bsk2_ai0.001": 0.95,
+    "ODE_bsk2_ai0.0001": 0.95
+   }
+  },
+  "mu_gap_mu95_over_mu_guard": {
+   "0.03": {
+    "F3_jeans_ai0.001": 9260.540808073756,
+    "F3_bsk2_ai0.001": 8125.903147798929,
+    "F3_bsk2_ai0.0001": 57268.10879837594,
+    "Q6_boltzmann_lower_bound": 57239.06133333333
+   },
+   "0.1": {
+    "F3_jeans_ai0.001": 2778.162242422127,
+    "F3_bsk2_ai0.001": 2437.7709443396784,
+    "F3_bsk2_ai0.0001": 17180.432639512783,
+    "Q6_boltzmann_lower_bound": 17171.718399999998
+   }
+  },
+  "mu95_inherited": {
+   "F3_K5": {
+    "jeans_ai0.001": {
+     "mu_hMpc": 411.10434926682075,
+     "mu_per_Mpc_phys": 277.8162242422127
+    },
+    "bsk2_ai0.001": {
+     "mu_hMpc": 360.7342373426624,
+     "mu_per_Mpc_phys": 243.77709443396787
+    },
+    "bsk2_ai0.0001": {
+     "mu_hMpc": 2542.3103347022497,
+     "mu_per_Mpc_phys": 1718.0432639512783
+    }
+   },
+   "Q6": {
+    "mu_hMpc": 2542.0,
+    "mu_per_Mpc_phys": 1717.17184,
+    "note": "Q6: R_B(2542 h/Mpc) = 0.8827 < 0.95, so mu_95 > 2542 h/Mpc"
+   }
+  }
+ },
+ "verdict_i": {
+  "class": "UNDECIDED (reproduction failed)",
+  "primary_estimator": "R_B",
+  "R_primary": {
+   "0.03": 55.00949897560067,
+   "0.1": 38.1203203576085
+  },
+  "R_ODE_bsk2_ai0.001": {
+   "0.03": 1.0,
+   "0.1": 1.0
+  },
+  "guard_edge_bracket": "S4's guard edge lies in (0.03, 0.1) Mpc^-1; with G1 monotonicity R(edge) lies in [R(0.03), R(0.1))"
+ }
+}

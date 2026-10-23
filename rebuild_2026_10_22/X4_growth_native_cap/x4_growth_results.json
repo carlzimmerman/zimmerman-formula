@@ -1,0 +1,261 @@
+{
+ "lane": "X4_growth_native_cap",
+ "script": "x4_growth.py",
+ "date": "2026-10-23",
+ "mutate": false,
+ "checks": {
+  "G0c_conversion": {
+   "pass": true,
+   "value": "10 Mpc^-1 / h_A = 14.7977084631 h/Mpc vs F3's mu_hMpc 14.7977084631",
+   "threshold": "<= 1e-9 relative"
+  },
+  "G0a_F3_ODE_reproduced": {
+   "pass": true,
+   "value": "bsk2_ai0.001 0.390800 vs 0.390800; bsk2_ai0.0001 0.202602 vs 0.202602; jeans_ai0.001 0.120552 vs 0.120552",
+   "threshold": "each |r/r_F3 - 1| <= 1e-4"
+  },
+  "G0b_Q6_reproduced": {
+   "pass": true,
+   "value": "DUST sigma8 0.827959 vs Q6 0.827959; LOB 14.8 0.0607512 vs Q6 0.0607512; R_B 0.073375 vs Q6 0.073375",
+   "threshold": "each <= 1e-4 relative"
+  },
+  "G2_boltzmann_runs_complete": {
+   "pass": true,
+   "value": "R_B: {'cap_14.8hMpc': 0.07337464777845279, '0.03': 0.0031691786670596006, '0.1': 0.005231877423882101}; runs {'DUST_fix': {'seconds': 5.8, 'children_peak_rss_GB_so_far': 0.289193984}, 'LOB_14.8_fix': {'seconds': 5.5, 'children_peak_rss_GB_so_far': 0.289193984}, 'LOB_0.03perMpc_fix': {'seconds': 5.9, 'children_peak_rss_GB_so_far': 0.289193984}, 'LOB_0.1perMpc_fix': {'seconds': 6.3, 'children_peak_rss_GB_so_far': 0.28925952}}",
+   "threshold": "both LOB runs complete, each <= 30 min (FAIL allowed; then the ODE alone is used)"
+  },
+  "G1_monotone_in_mu": {
+   "pass": true,
+   "value": "ODE bsk2_ai0.001: 0.07574 <= 0.08171 <= 0.39080; bsk2_ai0.0001: 0.04144 <= 0.04470 <= 0.20260; R_B 0.00317 <= 0.00523 <= 0.07337",
+   "threshold": "R(0.03) <= R(0.1) <= R(cap) for every estimator"
+  },
+  "V_i_verdict": {
+   "pass": true,
+   "value": "GROWTH FAILS AT THE NATIVE CAP: primary R_B R(0.03) = 0.00317, R(0.1) = 0.00523; ODE (a_i 1e-3) R(0.1) = 0.08171",
+   "threshold": "computed (the verdict is a result)"
+  }
+ },
+ "note": "a0 absent at linear order (neither footing enters); kappa = 1/2 FITTED; omega_K FITTED; numbers only",
+ "conversion": {
+  "h_A": 0.6757803091543079,
+  "rule": "mu[h/Mpc] = mu[Mpc^-1] / h_A; S4's mu_K is physical Mpc^-1; CLASS aest_K2 = mu^2 [Mpc^-2]",
+  "cap": {
+   "mu_per_Mpc_phys": 10.0,
+   "mu_hMpc_at_hA": 14.79770846314582
+  },
+  "guard_points": {
+   "0.03": {
+    "mu_per_Mpc_phys": 0.03,
+    "mu_hMpc_at_hA": 0.04439312538943746,
+    "mu_inv_Mpc_phys": 33.333333333333336
+   },
+   "0.1": {
+    "mu_per_Mpc_phys": 0.1,
+    "mu_hMpc_at_hA": 0.1479770846314582,
+    "mu_inv_Mpc_phys": 10.0
+   }
+  }
+ },
+ "elapsed_s": 24.6,
+ "peak_rss_GB_self": 0.102580224,
+ "peak_rss_GB_children": 0.28925952,
+ "G0a": {
+  "bsk2_ai0.001": {
+   "this": 0.39080047567004617,
+   "F3": 0.39080047567004617
+  },
+  "bsk2_ai0.0001": {
+   "this": 0.20260204602232276,
+   "F3": 0.20260204602232276
+  },
+  "jeans_ai0.001": {
+   "this": 0.12055236562022648,
+   "F3": 0.12055236562022648
+  }
+ },
+ "ode": {
+  "0.03": {
+   "mu_hMpc_at_hA": 0.04439312538943746,
+   "bsk2_ai0.001": {
+    "sigma8_ratio": 0.07574171849599637,
+    "sigma8": 0.06267044776959495,
+    "T_at_k": {
+     "0.001": 0.2619675571823965,
+     "0.003139": 0.16503774378211902,
+     "0.009851": 0.10929218561246831,
+     "0.03092": 0.0828663394000777,
+     "0.09703": 0.07579145648286392,
+     "0.3045": 0.07481379175969675,
+     "0.9558": 0.07470990322434862,
+     "3": 0.07469930488750583
+    }
+   },
+   "bsk2_ai0.0001": {
+    "sigma8_ratio": 0.041440103393991005,
+    "sigma8": 0.03428849895262155,
+    "T_at_k": {
+     "0.001": 0.13960594310784763,
+     "0.003139": 0.08973954462741829,
+     "0.009851": 0.059767710244731376,
+     "0.03092": 0.045342255096015374,
+     "0.09703": 0.041467626996404536,
+     "0.3045": 0.040931943395392495,
+     "0.9558": 0.0408750175496104,
+     "3": 0.040869210146067356
+    }
+   },
+   "jeans_ai0.001": null,
+   "jeans_ai0.0001": null
+  },
+  "0.1": {
+   "mu_hMpc_at_hA": 0.1479770846314582,
+   "bsk2_ai0.001": {
+    "sigma8_ratio": 0.0817144265022229,
+    "sigma8": 0.06761240436339797,
+    "T_at_k": {
+     "0.001": 0.4398053658632154,
+     "0.003139": 0.26866604314812514,
+     "0.009851": 0.16894813851690044,
+     "0.03092": 0.11143519230014068,
+     "0.09703": 0.08365077436645883,
+     "0.3045": 0.0759245239612519,
+     "0.9558": 0.07482851278139725,
+     "3": 0.07471141194221516
+    }
+   },
+   "bsk2_ai0.0001": {
+    "sigma8_ratio": 0.04470474811807529,
+    "sigma8": 0.03698974142149717,
+    "T_at_k": {
+     "0.001": 0.22533260000480607,
+     "0.003139": 0.1429432327498676,
+     "0.009851": 0.09181005284256737,
+     "0.03092": 0.06093304747177217,
+     "0.09703": 0.04577162435913315,
+     "0.3045": 0.04154053312427102,
+     "0.9558": 0.040940009477936676,
+     "3": 0.040875843983526276
+    }
+   },
+   "jeans_ai0.001": null,
+   "jeans_ai0.0001": null
+  }
+ },
+ "boltzmann_Pk_over_DUST_z0": {
+  "0.03": {
+   "0.1": 1.568261894377651e-05,
+   "0.3": 4.1948073893385814e-07,
+   "1": 7.290803721021295e-11,
+   "3": 5.1157615436346304e-12,
+   "10": 1.94431125659721e-11
+  },
+  "0.1": {
+   "0.1": 3.031126123039731e-05,
+   "0.3": 6.313584666836472e-07,
+   "1": 1.734355318340115e-11,
+   "3": 1.301070915171351e-10,
+   "10": 3.965143532371603e-11
+  }
+ },
+ "R_B": {
+  "cap_14.8hMpc": 0.07337464777845279,
+  "0.03": 0.0031691786670596006,
+  "0.1": 0.005231877423882101
+ },
+ "runinfo": {
+  "DUST_fix": {
+   "seconds": 5.8,
+   "children_peak_rss_GB_so_far": 0.289193984
+  },
+  "LOB_14.8_fix": {
+   "seconds": 5.5,
+   "children_peak_rss_GB_so_far": 0.289193984
+  },
+  "LOB_0.03perMpc_fix": {
+   "seconds": 5.9,
+   "children_peak_rss_GB_so_far": 0.289193984
+  },
+  "LOB_0.1perMpc_fix": {
+   "seconds": 6.3,
+   "children_peak_rss_GB_so_far": 0.28925952
+  }
+ },
+ "class_failures": {},
+ "literal_background_reported": {
+  "0.03": {
+   "dNeff_equiv_1MeV_literal_quadratic": 8.549008426537325e+18,
+   "a_at_eps_1": 0.0281762879983793
+  },
+  "0.1": {
+   "dNeff_equiv_1MeV_literal_quadratic": 7.694264205721435e+17,
+   "a_at_eps_1": 0.012626977916407963
+  },
+  "cap": {
+   "dNeff_equiv_1MeV_literal_quadratic": 76978264444696.31,
+   "a_at_eps_1": 0.0005861826347401697
+  },
+  "cap_reproduces_Q6_stepB": true
+ },
+ "gaps": {
+  "sigma8_shortfall_0.95_over_R": {
+   "0.03": {
+    "R_B": 299.76220964576305,
+    "ODE_bsk2_ai0.001": 12.542625370326341,
+    "ODE_bsk2_ai0.0001": 22.924653227041755
+   },
+   "0.1": {
+    "R_B": 181.57917761289815,
+    "ODE_bsk2_ai0.001": 11.625854095349453,
+    "ODE_bsk2_ai0.0001": 21.250539148343627
+   }
+  },
+  "mu_gap_mu95_over_mu_guard": {
+   "0.03": {
+    "F3_jeans_ai0.001": 9260.540808073756,
+    "F3_bsk2_ai0.001": 8125.903147798929,
+    "F3_bsk2_ai0.0001": 57268.10879837594,
+    "Q6_boltzmann_lower_bound": 57239.06133333333
+   },
+   "0.1": {
+    "F3_jeans_ai0.001": 2778.162242422127,
+    "F3_bsk2_ai0.001": 2437.7709443396784,
+    "F3_bsk2_ai0.0001": 17180.432639512783,
+    "Q6_boltzmann_lower_bound": 17171.718399999998
+   }
+  },
+  "mu95_inherited": {
+   "F3_K5": {
+    "jeans_ai0.001": {
+     "mu_hMpc": 411.10434926682075,
+     "mu_per_Mpc_phys": 277.8162242422127
+    },
+    "bsk2_ai0.001": {
+     "mu_hMpc": 360.7342373426624,
+     "mu_per_Mpc_phys": 243.77709443396787
+    },
+    "bsk2_ai0.0001": {
+     "mu_hMpc": 2542.3103347022497,
+     "mu_per_Mpc_phys": 1718.0432639512783
+    }
+   },
+   "Q6": {
+    "mu_hMpc": 2542.0,
+    "mu_per_Mpc_phys": 1717.17184,
+    "note": "Q6: R_B(2542 h/Mpc) = 0.8827 < 0.95, so mu_95 > 2542 h/Mpc"
+   }
+  }
+ },
+ "verdict_i": {
+  "class": "GROWTH FAILS AT THE NATIVE CAP",
+  "primary_estimator": "R_B",
+  "R_primary": {
+   "0.03": 0.0031691786670596006,
+   "0.1": 0.005231877423882101
+  },
+  "R_ODE_bsk2_ai0.001": {
+   "0.03": 0.07574171849599637,
+   "0.1": 0.0817144265022229
+  },
+  "guard_edge_bracket": "S4's guard edge lies in (0.03, 0.1) Mpc^-1; with G1 monotonicity R(edge) lies in [R(0.03), R(0.1))"
+ }
+}
