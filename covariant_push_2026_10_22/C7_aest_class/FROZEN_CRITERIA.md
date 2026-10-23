@@ -178,3 +178,15 @@ fixed now:
    growth at k ≳ μ?" is answered by the sign of P/P_ΛCDM − 1 there.
 5. **Reported per fit:** χ² parts, Δχ² vs the ΛCDM refit, H₀, σ₈, Ω_m (incl. the AeST sector), S₈ = σ₈(Ω_m/0.3)^½.
    Numbers only, no verdict. Every run uses A2's high precision; `nice -n 19`, one process at a time.
+
+## AMENDMENT A4 (POST-RESULT: written after the fixed-parameter step-N runs, before any fit; 2026-10-23)
+
+The fixed-parameter runs at SZ21's caption parameters gave runaway growth for N1, N2 and every v4 run (e.g. P/P_ΛCDM up
+to 10⁹–10⁴⁰ at k ≤ 10 h/Mpc, χ² non-finite), but not for B-Cosh, B-Exp, B-Cosh-g, B-Exp-g. A scratch re-run of N1 and
+v4 (K_B = 0.078) in Newtonian gauge and at tol 1e-9 reproduced them (≤ 6e-4, ≤ 4e-6). Changes:
+1. A model is **RUNAWAY** if at the caption parameters its χ² is non-finite or max P/P_ΛCDM over the tabulated k > 10.
+   RUNAWAY models are not fitted (no parameter of the six can undo a growth by many decades); their fixed-parameter
+   numbers are reported. All others are fitted as in A3.
+2. Added checks: K5 the runaway is gauge-consistent (N1, v4 K_B = 0.078: synchronous vs Newtonian max relative C_ℓ and
+   P(k) ≤ 1e-2) and K6 converged (tol 1e-9 vs 1e-7 ≤ 1e-3). These are statements about the computation, not a verdict.
+3. The README gives the mechanism read off the derived equations (an estimate, labelled as such).
