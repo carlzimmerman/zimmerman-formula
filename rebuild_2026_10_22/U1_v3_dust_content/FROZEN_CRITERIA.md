@@ -156,3 +156,29 @@ phantom). D4, D7 and N1 must FAIL; exit 1. D1–D3, D5, D6, N0 unchanged.
 No verdict on growth (F3/M1/L1), on cluster profiles (S4/F1), or on the MW rotation curve beyond R₀. Nonlinear EFE solves
 of the static tiles are S1's/P4's (read-only references, not redone). B1 is an upper bound on held dust (L★ = 0; the
 isolated internal field defines r_h). Speeds labelled PROXY are record-derived, not measured.
+
+## AMENDMENT A1 (PRE-RESULT for the production run; written after a smoke run on 2 of 137 N1/N2 cases, 2026-10-23)
+
+The smoke run (scratch copy, not committed) exposed implementation problems. No PASS line, threshold, input or reading
+changes. Changes:
+1. **N1 grid made harder, not easier.** The frozen King/polytrope grid never came close to the bound (max ratio 0.48–0.58
+   in the smoke cases), so it is a weak test of T1. Added (reported separately, same PASS line): near-cold King
+   configurations s² ∈ {1e-4, 1e-3, 1e-2} σ_N² with W₀ ∈ {10, 20, 30}, and polytropes n ∈ {2, 2.5} (ρ ∝ r⁻² and r⁻²·⁵ in
+   the baryons' Kepler tail, the families that can approach the bound at large r). The N1 check uses the union; the
+   frozen-grid maximum is also printed. Also reported (not gated): the maximum over r of the gravity gain
+   log10[(M_b + M_τ)/(M_b + M_ph)](<r).
+2. **N2 statistic bug.** The reported "max gain at r12" was initialised at 0 and so hid negative values; it now starts at
+   −∞. Added (reported): the maximum over all r of the same gain, because N2's excess sits near the centre where both
+   masses are small (ratio is a poor measure of gravity there).
+3. **N4 Q targeting.** The blob charge Q was set by an approximate formula and overshot the frozen internal-field range
+   (one smoke case reached 16.5 x_e, where the self-force was 5.8e-3). Q is now found by bisection so that the internal
+   hold-field maximum equals 0.1, 1 and 10 x_e, as frozen. The smoke value at 16.5 x_e is disclosed here; the threshold
+   1e-3 is unchanged and a FAIL at 10 x_e will be reported as such (with a reported, ungated resolution test at a
+   smoother blob).
+4. **N6 sign bug.** The ring formula for g_R returned the outward component (the smoke run crashed on v_c² < 0). Fixed to
+   the inward magnitude; the frozen finite-difference sanity check of the formula is kept.
+5. **N3/N5 additions (reported, not gated).** N3 prints the dust's binding depth against the baryons' Newtonian well;
+   N5 prints, per tile, the median baryonic Newtonian escape speed from the centre (v_esc,N = √(2GM_b/a) for a Plummer)
+   next to the observed σ, because D4 implies ψ′ ≤ g_N,b: spherical held dust is bound by at most the baryons' Newtonian
+   well.
+6. RuntimeWarnings from masked overflow in dead configurations are silenced.
