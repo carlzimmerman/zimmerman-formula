@@ -1,0 +1,29 @@
+CFG303 R5 / A2.4 -- X-COP identity reading (CFG4_clusters, 0.946 +- 0.080) with the gas profile's radius decoded from R/R500 with
+R500,FORW (solved from the forward hydrostatic mass) instead of the gas file's NFW-derived R500 (LCDM-MODEL).
+The audit's own loader / profile builder (cluster_audit.run, no writing) and CFG4_clusters' cluster_table / summ, exec'd from committed source.
+R500,FORW: M_FORW(<R) = 500 rho_c(z) (4 pi / 3) R^3, rho_c(z) for H0 = 70, Omega_m = 0.3, Omega_L = 0.7 (the X-COP release convention: geometry),
+z from real_research/data/xcop/xcop_r500_ettori2019.json.
+Frozen criteria: FROZEN_CRITERIA.md (52976ec22) + ADDENDUM_1 + ADDENDUM_2 (section A2.4), written before any native number was computed.
+kappa = 1/2 FITTED.  The cold mass is still required (this is the cluster test of it); no dark-matter particle is added.
+  FROZEN_CRITERIA.md: sha256 1a5e710a769b4224086cca29b48137c37fecc85d0c7b73af7be0852a625b267c
+  FROZEN_CRITERIA_ADDENDUM_1.md: sha256 7d46b26d0204e80286fccb387ca565bf006be76c37a971f41850c06db77194b0
+  FROZEN_CRITERIA_ADDENDUM_2.md: sha256 96cc8ee2611138cb42f1c736eb4ea208c95797e53c785047aa91e94b050703f6
+  cluster_audit.py (sha 745bea8b11b9) definitions and CFG4_clusters.py (sha e71f48e0e02e) up to its table loop: exec'd
+
+R500 (kpc): the gas file's NFW-derived header value -> the forward-mass value
+  A1644 1054 -> 993 (-0.026 dex); A1795 1153 -> 1107 (-0.018 dex); A2029 1414 -> 1357 (-0.018 dex); A2142 1424 -> 1442 (+0.005 dex); A2255 1196 -> 1204 (+0.003 dex); A2319 1368 -> 1386 (+0.006 dex); A3158 1123 -> 1143 (+0.008 dex); A3266 1430 -> 1392 (-0.012 dex); A644 1250 -> 1177 (-0.026 dex); A85 1235 -> 1210 (-0.009 dex); RXC1825 1105 -> 1101 (-0.001 dex); ZW1215 1358 -> 1355 (-0.001 dex)
+  median log10(R500,FORW / R500,header) -0.0052 dex (range -0.026 to +0.008)
+
+CONTROLS
+  [PASS] C-ii the committed audit rows through CFG4_clusters' exec'd cluster_table / summ reproduce CFG4_clusters' committed eta and identity ratio (4 cells): max |diff| 0.0e+00
+  [PASS] C-i the replacement path with R500 := the header value (audit run() in this process) reproduces the committed numbers: max |diff| 0.0e+00
+  [PASS] C-iii MUTATE: R500 x 10^0.2 moves the decoded gas radius grid by exactly 0.2 dex (and moves the identity ratio): grid shift exact True; identity can/nu_mono 0.946 -> 0.473
+  (R500,FORW run: the audit's pressure diagnostic ran normally)
+
+THE IDENTITY READING AND eta AT THE OUTERMOST AUDITED RADIUS (median over the 12 clusters)
+  canonical|P2      : committed eta 2.029, identity/measured 0.946 +- 0.080  ->  R500,FORW: eta 1.993, identity/measured 0.947 +- 0.087 (r 1000 kpc = 0.83 R500,FORW)
+  canonical|nu_mono : committed eta 1.820, identity/measured 0.946 +- 0.080  ->  R500,FORW: eta 1.786, identity/measured 0.947 +- 0.087 (r 1000 kpc = 0.83 R500,FORW)
+  alt|P2            : committed eta 1.861, identity/measured 0.946 +- 0.080  ->  R500,FORW: eta 1.829, identity/measured 0.947 +- 0.087 (r 1000 kpc = 0.83 R500,FORW)
+  alt|nu_mono       : committed eta 1.679, identity/measured 0.946 +- 0.080  ->  R500,FORW: eta 1.648, identity/measured 0.947 +- 0.087 (r 1000 kpc = 0.83 R500,FORW)
+
+3/3 checks pass   (1 s)

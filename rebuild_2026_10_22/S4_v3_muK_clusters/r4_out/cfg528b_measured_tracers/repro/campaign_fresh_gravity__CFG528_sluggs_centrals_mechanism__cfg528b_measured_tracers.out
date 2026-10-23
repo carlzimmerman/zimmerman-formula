@@ -1,0 +1,56 @@
+============================================================================================================================
+CFG528b -- SLUGGS centrals with MEASURED GC density profiles and anisotropy
+============================================================================================================================
+columns: offset dex (Z) for NGC 4486 | 4365 | 4374 | 5846; sigma_i = CFG466 bootstrap
+
+CONTROLS
+  [PASS] K1 new solver vs CFG331 sig_los (rho r^-3, beta 0 / +0.5) <= 1e-3 dex
+         max |dlog sigma| 1.35e-15
+  [PASS] K2 Abel deprojection of a Plummer profile <= 1e-3 relative (1-120 kpc)
+         max rel 6.66e-16
+  [PASS] K3 M87 Agnello central, beta 0, K0 reproduces CFG466 C4 (+0.2178 / +0.2062) <= 2e-3
+         +0.21780 / +0.20620
+  [PASS] K4 SHA-256 of every source tar matches FETCH_LOG.md
+         mismatches: []
+
+TRACERS (local 3D slope -dln rho/dln r at the outer GC bins; beta at those radii)
+    NGC4486: gamma_loc [1.93, 1.88, 1.87, 1.9, 2.06, 2.34] at R [8.1, 12.9, 18.5, 30.1, 56.3, 108.7] kpc; beta [-0.11, -0.03, 0.04, 0.14, 0.14, 0.02]
+    NGC4365: gamma_loc [1.87, 2.11, 2.31, 2.51, 2.8] at R [9.8, 16.6, 24.0, 33.2, 50.0] kpc; beta [0.0, 0.0, 0.0, 0.0, 0.0]
+    NGC4374: gamma_loc [2.09] at R [22.1] kpc; beta [0.0]
+    NGC5846: gamma_loc [2.33, 2.5, 2.6, 2.71, 2.83] at R [15.6, 23.2, 30.1, 39.6, 53.6] kpc; beta [0.03, 0.21, 0.35, 0.41, 0.43]; [0.13, 0.15, 0.15, 0.15, 0.15]
+
+ROW M (measured density + measured beta; NGC 4365 / 4374 beta = 0)
+  M K0                                 canonical +0.212(+12.2) +0.186( +8.1) +0.126( +1.7) +0.202( +9.1) | mean +0.181 Zc  +8.8 | cleared 1/4
+  M K0                                 alt       +0.200(+11.5) +0.178( +7.7) +0.113( +1.5) +0.192( +8.6) | mean +0.171 Zc  +8.3 | cleared 1/4
+                                       -> CLOSES both footings: False
+  M bar                                canonical +0.134( +7.7) +0.184( +8.0) +0.115( +1.6) +0.185( +8.3) | mean +0.155 Zc  +7.5 | cleared 1/4
+  M bar                                alt       +0.121( +7.0) +0.175( +7.6) +0.102( +1.4) +0.174( +7.8) | mean +0.143 Zc  +6.9 | cleared 1/4
+                                       -> CLOSES both footings: False
+  M own                                canonical +0.126( +7.2) +0.184( +8.0) +0.115( +1.6) +0.176( +7.9) | mean +0.150 Zc  +7.3 | cleared 1/4
+  M own                                alt       +0.113( +6.5) +0.175( +7.6) +0.102( +1.4) +0.165( +7.4) | mean +0.139 Zc  +6.7 | cleared 1/4
+                                       -> CLOSES both footings: False
+
+REPORTED
+  M own, beta 0 for all                canonical +0.133( +7.7) +0.184( +8.0) +0.115( +1.6) +0.179( +8.0) | mean +0.153 Zc  +7.4 | cleared 1/4
+  M own, beta 0 for all                alt       +0.121( +6.9) +0.175( +7.6) +0.102( +1.4) +0.168( +7.6) | mean +0.142 Zc  +6.9 | cleared 1/4
+                                       -> CLOSES both footings: False
+  M own, alt tracer (Peng / PL 2.21 / red 2.22 / red-only) canonical +0.203(+11.7) +0.131( +5.7) +0.131( +1.8) +0.232(+10.4) | mean +0.174 Zc  +8.5 | cleared 1/4
+  M own, alt tracer (Peng / PL 2.21 / red 2.22 / red-only) alt       +0.191(+11.0) +0.121( +5.3) +0.118( +1.6) +0.222(+10.0) | mean +0.163 Zc  +7.9 | cleared 1/4
+                                       -> CLOSES both footings: False
+  M own, NGC 4374 blue 2.00 (others M) canonical +0.126( +7.2) +0.184( +8.0) +0.103( +1.4) +0.176( +7.9) | mean +0.147 Zc  +7.2 | cleared 1/4
+  M own, NGC 4374 blue 2.00 (others M) alt       +0.113( +6.5) +0.175( +7.6) +0.089( +1.2) +0.165( +7.4) | mean +0.136 Zc  +6.6 | cleared 1/4
+                                       -> CLOSES both footings: False
+
+JOINT BEST CASE (R-own, heaviest admissible IMF, D x1.1, most favourable density/beta within quoted +-2 sigma)
+  J joint best case                    canonical +0.103( +5.9) +0.137( +6.0) -0.089( -1.2) +0.139( +6.3) | mean +0.073 Zc  +3.5 | cleared 1/4
+  J joint best case                    alt       +0.090( +5.2) +0.120( +5.2) -0.105( -1.4) +0.122( +5.5) | mean +0.057 Zc  +2.8 | cleared 1/4
+                                       -> CLOSES both footings: False
+    canonical: 4486: {'dens': 'agn', 'bshift': 0.1} IMF jam (grid range +0.103..+0.194); 4365: {'dn': -0.82, 'dRe': 2.4, 'bconst': 0.5} IMF jam (grid range +0.137..+0.225); 4374: {'gamma': 1.85, 'bconst': 0.5} IMF jam (grid range -0.089..+0.159); 5846: {'f': 0.8, 'g': 1.2, 'bshift': 0.1} IMF salp (grid range +0.139..+0.161)
+    alt: 4486: {'dens': 'agn', 'bshift': 0.1} IMF jam (grid range +0.090..+0.183); 4365: {'dn': -0.82, 'dRe': 2.4, 'bconst': 0.5} IMF chab (grid range +0.120..+0.208); 4374: {'gamma': 1.85, 'bconst': 0.5} IMF jam (grid range -0.105..+0.147); 5846: {'f': 0.8, 'g': 1.2, 'bshift': 0.1} IMF salp (grid range +0.122..+0.144)
+
+VERDICT (frozen order)
+  headline: GENUINE TENSION (2.8 sigma, joint best case, less favourable footing)
+  row M Z_class: K0 canonical +8.82 (1/4), alt +8.29 (1/4); bar canonical +7.51 (1/4), alt +6.95 (1/4); own canonical +7.31 (1/4), alt +6.75 (1/4)
+  J Z_class: canonical +3.53 (1/4), alt +2.76 (1/4)
+
+  4/4 checks pass
