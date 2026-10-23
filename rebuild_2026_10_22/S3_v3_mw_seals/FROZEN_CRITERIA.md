@@ -297,3 +297,11 @@ Seen before writing this: Part D's first full run (D1–D5 PASS; frozen D6 FAIL;
    galaxy that newly enters. The record's P3 (with `v2_disc`) is reported as step "record" and as a kernel-only row, never as
    the verdict. B3′ (added): my V²_gas vs its own razor-thin variant on the gas points, median |Δ| ≤ 2 %.
 3. P1 and P2 are unaffected (P1 uses SPARC's rotmod V_gas; P2 committed numbers).
+
+## AMENDMENT A7 (2026-10-23, PRE-RESULT for every κ number; none has been read)
+
+A4's inversion still let the outer hats run away where V_gas falls at the last points (DDO161: 1.0e11 M☉ of gas, 85× SPARC's
+1.33 M_HI). The P1 inversion now carries one extra row holding the total gas mass to SPARC's own 1.33 M_HI × f² (f = ladder /
+SPARC distance; weight 1 in units where the V² rows are scaled by max|V_gas²|), plus the 1e-6 ridge. Development check on all 12
+P1 galaxies: gas mass = target to 1 %, V²_gas fit rms at the P1 points ≤ 1.5 % of V²_bar (B2's tolerance is 3 %). The outer-gas-
+extent variant (A4 item 2) uses the same constraint. Classification: SPARC M_HI is RAW (HI flux) + SURVEY-CALIBRATION (distance).
