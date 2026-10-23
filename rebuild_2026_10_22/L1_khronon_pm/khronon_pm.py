@@ -393,6 +393,57 @@ def cross_growth(m, dk, dk0):
     ok = (nb[1:len(edges)] > 0) & (den[1:len(edges)] > 0)
     return (sk[1:len(edges)] / np.maximum(nb[1:len(edges)], 1))[ok], (num[1:len(edges)] / np.maximum(den[1:len(edges)], 1e-300))[ok]
 
+
+# ================================================================ LOB-IC (AMENDMENT A4): Q6's validated Khronon CLASS binary, read-only
+CLASS_KHRONON = os.path.join(REPO, "..", "_external_data", "class_khronon_build_2026_10_23", "class_khronon", "class")
+LOB_Z = (0.0, 195.0, 199.0, 203.0)
+def _read_tk(fn):
+    hdr = [l for l in open(fn) if l.startswith("#")]
+    cols = [c.split(":")[1] for c in hdr[-1].strip("# \n").split() if ":" in c]
+    d = np.loadtxt(fn)
+    return {c: d[:, i] for i, c in enumerate(cols)}
+def lob_tables(muK, bg, kmax=40.0, kdec=100, mut=None):
+    """LOB and DUST runs of class_khronon at model B (A4 item 3).  Returns k (h/Mpc) and, at z = 199, R_b, R_t (delta / d_m^DUST(z=0)),
+    V_b, V_t (d delta/dln a over the same normaliser), Tm0 = d_m^LOB(0)/d_m^DUST(0), sigma8 (CLASS) of both runs."""
+    fn = os.path.join(WORK, f"lob_tables_mu{muK:g}" + ("_MUT" if mut else "") + ".npz")
+    if os.path.exists(fn):
+        d = np.load(fn); return {k_: d[k_] for k_ in d.files}
+    h = bg.h; wb = bg.Ob * h * h; wcdm = 1e-8; wa = bg.Om * h * h - wb - wcdm
+    rd = os.path.join(WORK, f"lob_class_mu{muK:g}"); os.makedirs(rd, exist_ok=True)
+    out = {}
+    for typ, nm in ((4, "LOB"), (0, "DUST")):
+        p = {"h": h, "omega_b": wb, "omega_cdm": wcdm, "omega_aest": wa, "ln10^{10}A_s": LNAS_C2B, "n_s": NS_C2B, "tau_reio": TAU_C2B,
+             "T_cmb": 2.7255, "aest_Q0": 1.0, "aest_K_B": 1.0, "aest_g": 1.0, "aest_lambda_c": -1.0, "aest_K_type": typ,
+             "aest_K2": (muK * h) ** 2 if typ == 4 else 1.0, "output": "mTk,mPk", "z_pk": ", ".join(f"{z:g}" for z in LOB_Z),
+             "z_max_pk": 210, "P_k_max_h/Mpc": kmax, "tol_perturbations_integration": 1e-7, "perturbations_sampling_stepsize": 0.05,
+             "k_per_decade_for_pk": kdec, "start_small_k_at_tau_c_over_tau_h": 0.0015 * 0.25, "start_large_k_at_tau_h_over_tau_k": 0.07 * 0.25,
+             "write_parameters": "no", "input_verbose": 1, "background_verbose": 1, "fourier_verbose": 1, "overwrite_root": "yes",
+             "root": os.path.join(rd, nm + "_")}
+        ini = os.path.join(rd, nm + ".ini")
+        with open(ini, "w") as f: f.write("".join(f"{k_} = {v_}\n" for k_, v_ in p.items()))
+        r = subprocess.run(["nice", "-n", "15", CLASS_KHRONON, ini], capture_output=True, text=True, env=dict(os.environ, OMP_NUM_THREADS="1"))
+        if r.returncode != 0: raise RuntimeError(f"class_khronon {nm} failed: {(r.stdout + r.stderr)[-300:]}")
+        import re as _re
+        s8 = float(_re.search(r"sigma8=([0-9.eE+-]+) for total matter", r.stdout).group(1))
+        tk = [_read_tk(os.path.join(rd, f"{nm}__z{i + 1}_tk.dat")) for i in range(len(LOB_Z))]
+        pk0 = np.loadtxt(os.path.join(rd, f"{nm}__z1_pk.dat"))
+        out[nm] = dict(tk=tk, s8=s8, pk0=pk0)
+    Om, Ob, Oc = bg.Om, wb / h ** 2, wcdm / h ** 2; Oa = Om - Ob - Oc
+    L = out["LOB"]["tk"]; D = out["DUST"]["tk"]
+    k = L[0]["k (h/Mpc)"] if "k (h/Mpc)" in L[0] else L[0]["k"]
+    kD = D[0]["k (h/Mpc)"] if "k (h/Mpc)" in D[0] else D[0]["k"]
+    dm0D = np.interp(np.log(k), np.log(kD), D[0]["d_m"])
+    def tau_of(t):
+        return t["d_b"] if mut == "tau_from_b" else (Om * t["d_m"] - Ob * t["d_b"] - Oc * t["d_cdm"]) / Oa
+    iz = {z: i for i, z in enumerate(LOB_Z)}
+    dlna = math.log((1 + 203.0) / (1 + 195.0))
+    res = dict(k=k, R_b=L[iz[199.0]]["d_b"] / dm0D, R_t=tau_of(L[iz[199.0]]) / dm0D,
+               V_b=(L[iz[195.0]]["d_b"] - L[iz[203.0]]["d_b"]) / dlna / dm0D, V_t=(tau_of(L[iz[195.0]]) - tau_of(L[iz[203.0]])) / dlna / dm0D,
+               Tm0=L[iz[0.0]]["d_m"] / dm0D, s8_lob=np.array(out["LOB"]["s8"]), s8_dust=np.array(out["DUST"]["s8"]),
+               pk0_dust_k=out["DUST"]["pk0"][:, 0], pk0_dust=out["DUST"]["pk0"][:, 1], tau199=tau_of(L[iz[199.0]]))
+    atomic_npz(fn, **res)
+    return res
+
 # ================================================================ initial conditions
 def white_noise_k(npg, nseed, seed, cache=True):
     """cfg596 recipe (initial_conditions_exact / lean): seed-359 Gaussian white noise; NSEED > N selects the low modes.
@@ -420,14 +471,21 @@ def ics_native(m, sp_b, sp_t, cfg, bg):
     dk = wk * np.sqrt(np.interp(np.log(np.maximum(m.kmag, 1e-5)), np.log(KS), Pk, left=0, right=0) / (L / npg) ** 3) * npg ** 1.5 * cfg["eps"]
     del wk
     dk = nyq_zero(m, dk)
-    kg = np.geomspace(max(m.kf * 0.5, 1e-4), m.kmag.max() * 1.05, 160)
-    tr = linear_transfer(kg, cfg["mode"], cfg["muK"], bg, [a_i, 1.0])
-    ti, t1 = tr[0], tr[1]
+    if cfg.get("ic_src", "ode") == "lob" and cfg["mode"] != "S0":
+        assert abs(1 / a_i - 1 - 199.0) < 1e-9, "LOB-IC is defined at z_i = 199 (A4)"
+        T = lob_tables(cfg["muK"], bg, mut=cfg.get("lob_mut"))
+        kg = T["k"]; ti = dict(Rb=T["R_b"], Rt=T["R_t"], fb=T["V_b"] / T["R_b"], ft=T["V_t"] / T["R_t"]); t1 = dict(Tm=T["Tm0"])
+        ti["Vb"], ti["Vt"] = T["V_b"], T["V_t"]
+    else:
+        kg = np.geomspace(max(m.kf * 0.5, 1e-4), m.kmag.max() * 1.05, 160)
+        tr = linear_transfer(kg, cfg["mode"], cfg["muK"], bg, [a_i, 1.0])
+        ti, t1 = tr[0], tr[1]
+        ti["Vb"], ti["Vt"] = ti["Rb"] * ti["fb"], ti["Rt"] * ti["ft"]
     lk = np.log(np.maximum(m.kmag, kg[0]))
-    info = dict(kgrid=kg, Tm_z0=t1["Tm"], Rb_ai=ti["Rb"], Rt_ai=ti["Rt"], fb_ai=ti["fb"], ft_ai=ti["ft"])
+    info = dict(kgrid=kg, Tm_z0=t1["Tm"], Rb_ai=ti["Rb"], Rt_ai=ti["Rt"], Vb_ai=ti["Vb"], Vt_ai=ti["Vt"], ic_src=cfg.get("ic_src", "ode"))
     cm = a_i ** 2 * bg.E(a_i)
-    for S, R, f in ((sp_b, ti["Rb"], ti["fb"]), (sp_t, ti["Rt"], ti["ft"])):
-        Rk = np.interp(lk, np.log(kg), R); Vk = np.interp(lk, np.log(kg), R * f)     # interpolate d delta/dlna, not f (f has poles where delta = 0)
+    for S, R, V in ((sp_b, ti["Rb"], ti["Vb"]), (sp_t, ti["Rt"], ti["Vt"])):
+        Rk = np.interp(lk, np.log(kg), R); Vk = np.interp(lk, np.log(kg), V)        # interpolate d delta/dlna, not f (f has poles where delta = 0)
         for c in range(3):
             kc = (m.kx, m.ky, m.kz)[c]
             S.disp[c] = m.ifft(1j * kc * dk * Rk * m.ik2).reshape(-1).astype(np.float32)
@@ -612,7 +670,7 @@ def run_sim(cfg):
     log = cfg.get("log", True)
     def P(msg):
         if log: print(f"  [{tag}] {msg} t={time.time() - T0:.0f}s rss_peak={peak_rss_gb():.2f}GB", flush=True)
-    if cfg.get("resume") and os.path.exists(os.path.join(wdir, "DONE")):
+    if cfg.get("resume") and (os.path.exists(os.path.join(wdir, "DONE")) or (cfg.get("maxsteps") and os.path.exists(os.path.join(wdir, "CALIB_DONE")))):
         P("already complete (DONE present): exit 0"); return json.load(open(res_fn))
     guard = start_guard() if cfg.get("guard", True) else None
     signal.signal(signal.SIGTERM, _on_term); signal.signal(signal.SIGINT, _on_term)
@@ -716,7 +774,8 @@ def run_sim(cfg):
             res["status"] = "calibration_stop"; res["peak_rss_gb"] = peak_rss_gb()
             if guard: res["guard"] = dict(guard)
             res["sec_per_step"] = [d["t"] for d in res["diag"]]
-            atomic_json(res_fn, res); P(f"calibration stop after {cfg['maxsteps']} loop steps"); return res
+            atomic_json(res_fn, res); atomic_text(os.path.join(wdir, "CALIB_DONE"), json.dumps(dict(peak_rss_gb=res["peak_rss_gb"], guard=res.get("guard"))) + "\n")
+            P(f"calibration stop after {cfg['maxsteps']} loop steps"); return res
         if cfg.get("ckpt_every", 10) and (n + 1) % cfg.get("ckpt_every", 10) == 0 and not last:
             save_ckpt(n + 1, "running")
     h = hashlib.sha256()
@@ -748,7 +807,7 @@ def main():
     ap.add_argument("--resume", action="store_true"); ap.add_argument("--ckpt_every", type=int, default=10)
     ap.add_argument("--xgrowth", action="store_true"); ap.add_argument("--snaps", default="0.5,0.6666666666666666,1.0")
     ap.add_argument("--no_guard", action="store_true"); ap.add_argument("--halos", action="store_true")
-    ap.add_argument("--maxsteps", type=int, default=0)
+    ap.add_argument("--maxsteps", type=int, default=0); ap.add_argument("--ic", default="ode", choices=["ode", "lob"])
     a = ap.parse_args()
     if a.cmd == "estimate":
         print(json.dumps({"N": a.N, "declared_peak_gb": estimate_gb(a.N)})); return
@@ -759,7 +818,7 @@ def main():
     tag = a.tag or f"{a.mode}_{a.foot}_mu{a.muK:g}_N{a.N}_L{a.L:g}_zi{a.zi}_ns{a.nseed}" + (f"_eps{a.eps:g}" if a.eps != 1 else "")
     cfg = dict(mode=a.mode, foot=a.foot, muK=mu, N=a.N, L=a.L, zi=a.zi, nseed=a.nseed, seed=a.seed, eps=a.eps, bg="B",
                ic="native", tag=tag, resume=a.resume, ckpt_every=a.ckpt_every, xgrowth=a.xgrowth,
-               snaps=[float(s) for s in a.snaps.split(",")], guard=not a.no_guard, halos=a.halos, maxsteps=a.maxsteps)
+               snaps=[float(s) for s in a.snaps.split(",")], guard=not a.no_guard, halos=a.halos, maxsteps=a.maxsteps, ic_src=a.ic)
     run_sim(cfg)
 
 if __name__ == "__main__":
