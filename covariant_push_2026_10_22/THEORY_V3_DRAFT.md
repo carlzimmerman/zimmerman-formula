@@ -33,8 +33,8 @@ DSF-21's A33 is this theory with η > 0, which C5 shows is ill-posed; v3 drops �
 | galactic law (RAR) | the law itself (AQUAL μ = x/(1+x)) | E2, C4 |
 | health (ghosts, gradients) | CONDITIONALLY HEALTHY in literal form; tensor modes at c | C5 |
 | instantaneous constraints / well-posedness | WELL-POSED (weak-field leaf problem: one strictly convex functional, elliptic for all u < a₀, unique for γ_L > 0) + UNCONSTRAINED (binary pulsars: no radiative channel, ≤ 3e-14 of the double-pulsar error; GW speed exactly c). Violates criterion A by a real but tiny signal; meets criterion B. OPEN: infinite-volume theorem, coupled GR + leaf + dust, strong fields | C8 |
-| Cassini Q₂ | with full stiffness: passes by 10⁷–10⁹ (D7d); literal form (γ_F = 0): PENDING | D7d, C6 |
-| planets | PENDING (literal form) | C6 |
+| Cassini Q₂ | healthy literal form (γ_F = 0): all 24 cells pass Hees and Park; Q₂ 0.93–1.86e-34 s⁻² at 24 pc, 1.8–3.5e-36 at 90 pc (2.8e7–5.1e9 inside); hedgehog has no quadrupole. Frozen rule reads UNDECIDED on one float-cancellation check (identity exact in sympy). Unscreened law fails 2.4–5.2× (E2) | C6, D7d, E2 |
+| planets | hedgehog GM/L★²: at 24 pc Mars 0.17, Saturn 0.035, Earth 0.028 of their bounds | C6 |
 | wide binaries 20 kAU | screened γ_v − 1 ≈ 8e-6 vs law-first 1.167/1.199; DR4 decides (σ_sys rule A3) | D2, D7d, E2 |
 | outer globulars | unscreened law (L★ = 0) excluded in all 18 cells (Δχ² 4.9–22.8); no finite L★ beats Newton; sets the L★ lower bound (Pal 4, Pal 14 dominate; Υ_V-limited) | D10 |
 | dwarf satellites | +0.89 dex above screened prediction (E3). Supply: the framework's dynamics cannot fix a satellite's catchment (it needs the patch's initial overdensity and infall epoch — UNDECIDABLE); the satellites' own [Fe/H] (leaky box, no ΛCDM input) gives ≥ 38× present baryons, enough (median need 0.21 of supply), with 6/36 short at central values and none at 2σ — CONDITIONAL on ζ = 1 winds and no pre-enrichment | E3, E6 |
@@ -44,7 +44,9 @@ DSF-21's A33 is this theory with η > 0, which C5 shows is ill-posed; v3 drops �
 
 ## 4. Sealed predictions for data still to come
 
-PENDING assembly after C6/C7: DR4 (A3 rule), ALMA (CFG806/809 + addendum E), native CMB (C7).
+- **Gaia DR4 wide binaries (20 kAU):** screened γ_v − 1 = 8.1e-6 / 1.9e-6 / 5.8e-7 at L★ = 24 / 50 / 90 pc (C6) vs law-first AQUAL 1.167 / 1.199 (canonical / alt, primary g_ext; E2); scored on whole-catalogue γ̂ under σ_sys rule A3 (owner decision 3d82af0a7e).
+- **ALMA U4 (2026-11-06) / GS4 (2026-11-28):** CFG806/CFG809 frozen plans + addendum E (ffb14e40bc); nu_mono verdict, n1/n2 parallel readings (harness 92fa9f9471); expected unscorable (D4).
+- **Native CMB:** PENDING C7 (AeST patch; tests the dust sector and G_cosmo/G_N only).
 
 ## 5. What this is not
 
