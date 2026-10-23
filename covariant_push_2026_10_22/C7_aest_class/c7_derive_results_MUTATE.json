@@ -1,0 +1,144 @@
+{
+ "mutate": true,
+ "D0_unit": {
+  "pass": true,
+  "value": "A.A + 1 = 0 to O(e^2), A_0 = -a(1 + e h00/2) + O(e^2)",
+  "threshold": "identically 0"
+ },
+ "D0_Ybg": {
+  "pass": true,
+  "value": "Y^(0) = Y^(1) = 0 on FRW (as C2 K1)",
+  "threshold": "identically 0"
+ },
+ "D1_phibar": {
+  "pass": true,
+  "value": "EL_vphi(L1) = -d(2 a^3 K')/dtau, so a^3 K' = I0 (SZ21)",
+  "threshold": "residual 0"
+ },
+ "D1_rho_p": {
+  "pass": true,
+  "value": "8piG~rho = Qbar*K1(tau) - K0(tau), 8piG~P = K0(tau)",
+  "threshold": "Q K' - K and K (SZ21)"
+ },
+ "D2_shear": {
+  "pass": true,
+  "value": "(rho+p) sigma_aest = 0",
+  "threshold": "0 (SZ21: shear eq. as in GR)"
+ },
+ "D2_compact": {
+  "pass": true,
+  "value": "8piG~ drho = Q K'' gam - (k/a)^2 [K_B E + (2-K_B) chi]; 8piG~ dp = K' gam; 8piG~ (rho+p) theta = k^2 K' vphi / a",
+  "threshold": "exact (h0x = 0)"
+ },
+ "compact": {
+  "drho": "Kpp*Q*(-Q*H00k(tau)/2 + Derivative(VPHIk(tau), tau)/A) - k**2*(K_B*(H00k(tau)/2 + Derivative(ALPHAk(tau), tau)/A) + (2 - K_B)*(Q*ALPHAk(tau) + VPHIk(tau)))/A**2",
+  "dp": "Kp*(-Q*H00k(tau)/2 + Derivative(VPHIk(tau), tau)/A)",
+  "rho_plus_p_theta": "Kp*k**2*VPHIk(tau)/A"
+ },
+ "D2_delta": {
+  "pass": true,
+  "value": "drho/rho = SZ21 eq. delta_field_relation",
+  "threshold": "residual 0"
+ },
+ "D2_theta": {
+  "pass": true,
+  "value": "theta_CLASS = k^2 theta_SZ / a, theta_SZ = vphi/Qbar (eq. theta_field_relation)",
+  "threshold": "residual 0"
+ },
+ "D2_Pi": {
+  "pass": true,
+  "value": "dp/rho = SZ21 eq. Pi_delta_E_alpha",
+  "threshold": "residual 0"
+ },
+ "D2_Eeq": {
+  "pass": true,
+  "value": "SZ21 E equation = (-1/(2*A**2*k**2)) x EL_alpha at lambda_c = 0; residual 0",
+  "threshold": "residual 0"
+ },
+ "E_eq_lambda_c_term": "Q*lambda_c*(K_B - 2)*(Q*ALPHAk(tau) + VPHIk(tau))",
+ "D4_sync": {
+  "pass": true,
+  "value": "sync: d(delta)/dtau - fluid RHS = c1 EL_vphi + c2 EL_alpha (residual 0); theta eq. residual 0",
+  "threshold": "0 and 0"
+ },
+ "D4_newt": {
+  "pass": true,
+  "value": "newt: d(delta)/dtau - fluid RHS = c1 EL_vphi + c2 EL_alpha (residual 0); theta eq. residual 0",
+  "threshold": "0 and 0"
+ },
+ "D3_gauge": {
+  "pass": false,
+  "value": "sync system + map = Newtonian system: residuals {'delta': '0', 'theta': '0', 'E': '(2*A*K_B*Kp*Q*dS(tau) - 2*A*K_B*Kz*dS(tau) - 4*A*Kp*Q*dS(tau) + 4*A*Kz*dS(tau) - 6*Ap*K_B*Kp*Q*alC(tau) + 12*Ap*Kp*Q*alC(tau))/(K_B*Kpp*Q)', 'alv': '0'}",
+  "threshold": "all 0"
+ },
+ "IC_free_set_zero": [],
+ "IC_sync_leading": {
+  "delta": [
+   [
+    2,
+    "C*k**2*(w + 1)/(-3*c_ad2 + 3*w - 2)"
+   ],
+   [
+    4,
+    "-C*c_ad2*k**4*(3*c_ad2 + 4)*(w + 1)/(4*(3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 4)*(-3*c_ad2 + 3*w - 2))"
+   ]
+  ],
+  "theta": [
+   [
+    3,
+    "-C*c_ad2*k**4/((3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 2))"
+   ],
+   [
+    5,
+    "C*c_ad2**2*k**6*w/(4*(c_ad2 - 2)*(3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 4)*(-3*c_ad2 + 3*w - 2))"
+   ]
+  ],
+  "E": [
+   [
+    3,
+    "-C*I_0*Q*c_ad2*k**2/(4*K_B*a_1*(3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 2))"
+   ],
+   [
+    4,
+    "-C*Q*c_ad2*k**2*(I_0**2*Q - 60*K_B**2*a_1**3*c_ad2 + 100*K_B**2*a_1**3 + 120*K_B*a_1**3*c_ad2 - 200*K_B*a_1**3)/(100*K_B**2*a_1**2*(3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 2))"
+   ]
+  ],
+  "alpha": [
+   [
+    5,
+    "-C*I_0*Q*c_ad2*k**2/(20*K_B*(3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 2))"
+   ],
+   [
+    6,
+    "-C*Q*c_ad2*k**2*(I_0**2*Q - 60*K_B**2*a_1**3*c_ad2 + 100*K_B**2*a_1**3 + 120*K_B*a_1**3*c_ad2 - 200*K_B*a_1**3)/(600*K_B**2*a_1*(3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 2))"
+   ]
+  ]
+ },
+ "IC1_series": {
+  "pass": true,
+  "value": "leading-term IC (as coded in CLASS): residual lowest power vs leading power per equation: {'delta': {'residual_lowest_power': 3, 'lhs_lowest_power': 1}, 'theta': {'residual_lowest_power': 4, 'lhs_lowest_power': 2}, 'E': {'residual_lowest_power': 3, 'lhs_lowest_power': 2}, 'alv': {'residual_lowest_power': 99, 'lhs_lowest_power': 4}}",
+  "threshold": "residual power > leading power"
+ },
+ "IC2_dust": {
+  "pass": true,
+  "value": "dust limit: delta = -C*k**2*t**2/2, theta = 0, E = 0, alpha = 0",
+  "threshold": "delta = 3/4 delta_g = -C (k t)^2/2, theta = E = alpha = 0"
+ },
+ "IC_theta_vs_fld_formula_w_eq_c": "0",
+ "IC3_newtonian": {
+  "pass": false,
+  "value": "Newtonian IC via the D3 map (2 exact rational parameter sets): {'delta': {'residual_lowest_power': [3, 3], 'lhs_lowest_power': [1, 1]}, 'theta': {'residual_lowest_power': [4, 4], 'lhs_lowest_power': [0, 0]}, 'E': {'residual_lowest_power': [1, 1], 'lhs_lowest_power': [2, 2]}, 'alv': {'residual_lowest_power': [99, 99], 'lhs_lowest_power': [1, 1]}}",
+  "threshold": "residual power > leading power"
+ },
+ "D5_cform": {
+  "pass": false,
+  "value": "C-form E' and dp/rho minus derived (sync, newt): {'sync': ('0', '0'), 'newt': ('(-2*A*K_B*Kp*Q*delta(tau) + 2*A*K_B*Kz*delta(tau) + 4*A*Kp*Q*delta(tau) - 4*A*Kz*delta(tau))/(K_B*Kpp*Q)', '0')}",
+  "threshold": "all 0"
+ },
+ "IC_cform": {
+  "pass": true,
+  "value": "C-form leading ICs minus series: {'d': '0', 't': '0', 'e': '0', 'q': '0'}",
+  "threshold": "all 0"
+ },
+ "elapsed_s": 40.4
+}

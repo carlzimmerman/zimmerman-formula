@@ -1,0 +1,39 @@
+== C7 step D: AeST linear perturbations from the covariant action (sympy)
+D0_unit PASS A.A + 1 = 0 to O(e^2), A_0 = -a(1 + e h00/2) + O(e^2) identically 0
+D0_Ybg PASS Y^(0) = Y^(1) = 0 on FRW (as C2 K1) identically 0
+  action expanded: 41 terms at second order; background Q = Derivative(pb(tau), tau)/a(tau)
+D1_phibar PASS EL_vphi(L1) = -d(2 a^3 K')/dtau, so a^3 K' = I0 (SZ21) residual 0
+D1_rho_p PASS 8piG~rho = Qbar*K1(tau) - K0(tau), 8piG~P = K0(tau) Q K' - K and K (SZ21)
+  Euler-Lagrange equations, Fourier, background symbolised (0.3s)
+D2_shear PASS (rho+p) sigma_aest = 0 0 (SZ21: shear eq. as in GR)
+D2_compact PASS 8piG~ drho = Q K'' gam - (k/a)^2 [K_B E + (2-K_B) chi]; 8piG~ dp = K' gam; 8piG~ (rho+p) theta = k^2 K' vphi / a exact (h0x = 0)
+D2_delta PASS drho/rho = SZ21 eq. delta_field_relation residual 0
+D2_theta PASS theta_CLASS = k^2 theta_SZ / a, theta_SZ = vphi/Qbar (eq. theta_field_relation) residual 0
+D2_Pi PASS dp/rho = SZ21 eq. Pi_delta_E_alpha residual 0
+D2_Eeq PASS SZ21 E equation = (-1/(2*A**2*k**2)) x EL_alpha at lambda_c = 0; residual 0 residual 0
+  with lambda_c != 0 the SZ21 E equation misses: Q*lambda_c*(K_B - 2)*(Q*ALPHAk(tau) + VPHIk(tau))  (SZ21 writes the lambda_c = 0 case)
+  CLASS-form systems built (0.1s)
+D4_sync PASS sync: d(delta)/dtau - fluid RHS = c1 EL_vphi + c2 EL_alpha (residual 0); theta eq. residual 0 0 and 0
+D4_newt PASS newt: d(delta)/dtau - fluid RHS = c1 EL_vphi + c2 EL_alpha (residual 0); theta eq. residual 0 0 and 0
+D3_gauge FAIL sync system + map = Newtonian system: residuals {'delta': '0', 'theta': '0', 'E': '(2*A*K_B*Kp*Q*dS(tau) - 2*A*K_B*Kz*dS(tau) - 4*A*Kp*Q*dS(tau) + 4*A*Kz*dS(tau) - 6*Ap*K_B*Kp*Q*alC(tau) + 12*Ap*Kp*Q*alC(tau))/(K_B*Kpp*Q)', 'alv': '0'} all 0
+== IC: adiabatic initial conditions (synchronous gauge, radiation era, leading order in k tau and om tau)
+  series equations built (0.3s)
+  IC solve order by order: ok=True; free coefficients set to 0 (homogeneous modes): [] (34.0s)
+  delta: t^2: C*k**2*(w + 1)/(-3*c_ad2 + 3*w - 2); t^4: -C*c_ad2*k**4*(3*c_ad2 + 4)*(w + 1)/(4*(3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 4)*(-3*c_ad2 + 3*w - 2))
+  theta: t^3: -C*c_ad2*k**4/((3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 2)); t^5: C*c_ad2**2*k**6*w/(4*(c_ad2 - 2)*(3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 4)*(-3*c_ad2 + 3*w - 2))
+  E: t^3: -C*I_0*Q*c_ad2*k**2/(4*K_B*a_1*(3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 2)); t^4: -C*Q*c_ad2*k**2*(I_0**2*Q - 60*K_B**2*a_1**3*c_ad2 + 100*K_B**2*a_1**3 + 120*K_B*a_1**3*c_ad2 - 200*K_B*a_1**3)/(100*K_B**2*a_1**2*(3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 2))
+  alpha: t^5: -C*I_0*Q*c_ad2*k**2/(20*K_B*(3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 2)); t^6: -C*Q*c_ad2*k**2*(I_0**2*Q - 60*K_B**2*a_1**3*c_ad2 + 100*K_B**2*a_1**3 + 120*K_B*a_1**3*c_ad2 - 200*K_B*a_1**3)/(600*K_B**2*a_1*(3*c_ad2 - 4)*(-3*c_ad2 + 3*w - 2))
+IC1_series PASS leading-term IC (as coded in CLASS): residual lowest power vs leading power per equation: {'delta': {'residual_lowest_power': 3, 'lhs_lowest_power': 1}, 'theta': {'residual_lowest_power': 4, 'lhs_lowest_power': 2}, 'E': {'residual_lowest_power': 3, 'lhs_lowest_power': 2}, 'alv': {'residual_lowest_power': 99, 'lhs_lowest_power': 4}} residual power > leading power
+IC2_dust PASS dust limit: delta = -C*k**2*t**2/2, theta = 0, E = 0, alpha = 0 delta = 3/4 delta_g = -C (k t)^2/2, theta = E = alpha = 0
+  theta leading minus CLASS fld formula (w = c_s^2 = c): 0
+IC3_newtonian FAIL Newtonian IC via the D3 map (2 exact rational parameter sets): {'delta': {'residual_lowest_power': [3, 3], 'lhs_lowest_power': [1, 1]}, 'theta': {'residual_lowest_power': [4, 4], 'lhs_lowest_power': [0, 0]}, 'E': {'residual_lowest_power': [1, 1], 'lhs_lowest_power': [2, 2]}, 'alv': {'residual_lowest_power': [99, 99], 'lhs_lowest_power': [1, 1]}} residual power > leading power
+D5_cform FAIL C-form E' and dp/rho minus derived (sync, newt): {'sync': ('0', '0'), 'newt': ('(-2*A*K_B*Kp*Q*delta(tau) + 2*A*K_B*Kz*delta(tau) + 4*A*Kp*Q*delta(tau) - 4*A*Kz*delta(tau))/(K_B*Kpp*Q)', '0')} all 0
+IC_cform PASS C-form leading ICs minus series: {'d': '0', 't': '0', 'e': '0', 'q': '0'} all 0
+  exported E', alpha', dp/rho for both gauges -> c7_aest_equations.json
+  [synchronous] E_prime = E*(K_B*k**2/(Kpp*Qb*a) - a_prime/a - 2*k**2/(Kpp*Qb*a)) + alv*(-K_B*k**2/(Kpp*a) - 3*Kp*a_prime/(Kpp*a) + Qb**2*a*lambda_c + Qb**2*a + Qb*a_prime/a + 4*k**2/(Kpp*a) + Kp*Qb*a/K_B + 6*Kp*a_prime/(K_B*Kpp*a) - 2*Qb**2*a*lambda_c/K_B - 2*Qb**2*a/K_B - 2*Qb*a_prime/(K_B*a) - 4*k**2/(K_B*Kpp*a)) + delta*(Kp*a/Kpp - Kz*a/(Kpp*Qb) - 2*Kp*a/(K_B*Kpp) + 2*Kz*a/(K_B*Kpp*Qb)) + theta*(-K_B/Kpp + Qb**2*a**2*lambda_c/k**2 + Qb**2*a**2/k**2 + Qb*a_prime/k**2 + 4/Kpp + Kp*Qb*a**2/(K_B*k**2) - 2*Qb**2*a**2*lambda_c/(K_B*k**2) - 2*Qb**2*a**2/(K_B*k**2) - 2*Qb*a_prime/(K_B*k**2) - 4/(K_B*Kpp))
+  [synchronous] alv_prime = E*a
+  [synchronous] dp_over_rho = E*K_B*Kp*k**2/(Kp*Kpp*Qb**2*a**2 - Kpp*Kz*Qb*a**2) - K_B*Kp*Qb*alv*k**2/(Kp*Kpp*Qb**2*a**2 - Kpp*Kz*Qb*a**2) - K_B*Kp*Qb*theta/(Kp*Kpp*Qb**2*a - Kpp*Kz*Qb*a) + Kp**2*Qb*delta/(Kp*Kpp*Qb**2 - Kpp*Kz*Qb) - Kp*Kz*delta/(Kp*Kpp*Qb**2 - Kpp*Kz*Qb) + 2*Kp*Qb*alv*k**2/(Kp*Kpp*Qb**2*a**2 - Kpp*Kz*Qb*a**2) + 2*Kp*Qb*theta/(Kp*Kpp*Qb**2*a - Kpp*Kz*Qb*a)
+  [newtonian] E_prime = E*(K_B*k**2/(Kpp*Qb*a) - a_prime/a - 2*k**2/(Kpp*Qb*a)) + alv*(-K_B*k**2/(Kpp*a) - 3*Kp*a_prime/(Kpp*a) + Qb**2*a*lambda_c + Qb**2*a + Qb*a_prime/a + 4*k**2/(Kpp*a) + Kp*Qb*a/K_B + 6*Kp*a_prime/(K_B*Kpp*a) - 2*Qb**2*a*lambda_c/K_B - 2*Qb**2*a/K_B - 2*Qb*a_prime/(K_B*a) - 4*k**2/(K_B*Kpp*a)) + delta*(-Kp*a/Kpp + Kz*a/(Kpp*Qb) + 2*Kp*a/(K_B*Kpp) - 2*Kz*a/(K_B*Kpp*Qb)) + theta*(-K_B/Kpp + Qb**2*a**2*lambda_c/k**2 + Qb**2*a**2/k**2 + Qb*a_prime/k**2 + 4/Kpp + Kp*Qb*a**2/(K_B*k**2) - 2*Qb**2*a**2*lambda_c/(K_B*k**2) - 2*Qb**2*a**2/(K_B*k**2) - 2*Qb*a_prime/(K_B*k**2) - 4/(K_B*Kpp))
+  [newtonian] alv_prime = E*a - a*psi
+  [newtonian] dp_over_rho = E*K_B*Kp*k**2/(Kp*Kpp*Qb**2*a**2 - Kpp*Kz*Qb*a**2) - K_B*Kp*Qb*alv*k**2/(Kp*Kpp*Qb**2*a**2 - Kpp*Kz*Qb*a**2) - K_B*Kp*Qb*theta/(Kp*Kpp*Qb**2*a - Kpp*Kz*Qb*a) + Kp**2*Qb*delta/(Kp*Kpp*Qb**2 - Kpp*Kz*Qb) - Kp*Kz*delta/(Kp*Kpp*Qb**2 - Kpp*Kz*Qb) + 2*Kp*Qb*alv*k**2/(Kp*Kpp*Qb**2*a**2 - Kpp*Kz*Qb*a**2) + 2*Kp*Qb*theta/(Kp*Kpp*Qb**2*a - Kpp*Kz*Qb*a)
+C7_DERIVE COMPLETE: 15/18 checks PASS.
