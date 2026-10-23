@@ -1,0 +1,120 @@
+H4_v3_saddle_stability: khronon/dust pair where the phantom density D.P < 0
+mutate = True (sign of the first-order term = -1); kappa = 1/2 FITTED; footings never pooled
+
+A: derivation (sympy)
+  A1: sigma-EL + [d_t rho_tau + div(rho_tau v_tau)] = 0; phi-EL - [lap phi/K - rho_m - rho_tau] = 0; static P elimination: mu = g/(a_0 + g), minus x/(1+x) = 0
+A1 PASS continuity identity residual 0; Poisson residual 0; AQUAL mu residual 0 all identically 0
+  A2: D.P - (div4 P - P.A) at O(eps^0,1,2) = [0, 0, 0]; tilt term of div4 P at O(eps): -P00(x, y, z)*Derivative(sigma(t, x, y, z), t, x) - P01(x, y, z)*Derivative(sigma(t, x, y, z), t, y) - P02(x, y, z)*Derivative(sigma(t, x, y, z), t, z); O(eps) of D.P minus div p = 0
+A2 PASS identity residuals [0, 0, 0]; O(eps) D.P has no sigma term (residual 0); the cancelled tilt term is -P00(x, y, z)*Derivative(sigma(t, x, y, z), t, x) - P01(x, y, z)*Derivative(sigma(t, x, y, z), t, y) - P02(x, y, z)*Derivative(sigma(t, x, y, z), t, z) identity 0; sigma-free O(eps) leaf divergence
+  A3: O(eps^2) of P.A = P0(z)*Derivative(sigma(t, z), t)*Derivative(sigma(t, z), t, z) + P0(z)*Derivative(sigma(t, z), (t, 2))*Derivative(sigma(t, z), z) + P0(z)*Derivative(sigma(t, z), z)*Derivative(sigma(t, z), (z, 2)) - p(t, z)*Derivative(sigma(t, z), t, z)
+      Euler operator of [sigma-sigma part + (1/2) P0' sigma_z^2] = []; of [cross part + p sigma_tz] = []; |P|^2 at O(eps^2) = -P0(z)**2*Derivative(sigma(t, z), z)**2 + p(t, z)**2 (the W tilt term, PN order); chi from integrating p out minus k^2/(K M + gL k^2) = 0
+A3 PASS sigma-sigma part = -(1/2)(d_z P0_z) sigma_z^2 + total derivative ([]); cross = -p sigma_tz ([]); chi residual 0 identically 0 (Euler operator)
+  A4: derived omega^2 = K*rho_0*(-K*M_L*M_T*k**2 + K*M_L*M_T*mu_K**2 + K*M_L*k**2*sin(theta)**2 - K*M_T*k**2*sin(theta)**2 + K*M_T*k**2 - M_L*gamma_L*k**4*sin(theta)**2 + M_L*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**4*sin(theta)**2 - M_T*gamma_L*k**4 - M_T*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**2*mu_K**2)/(K*M_L*M_T*mu_K**2 + K*M_L*k**2*sin(theta)**2 - K*M_T*k**2*sin(theta)**2 + K*M_T*k**2 + M_L*gamma_L*k**2*mu_K**2*sin(theta)**2 - M_T*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**2*mu_K**2)
+      minus rho_tau (k^2/chi - K): 2*K*rho_0*(-K*M_L*M_T*k**2 + K*M_L*M_T*mu_K**2 + K*M_L*k**2*sin(theta)**2 - K*M_T*k**2*sin(theta)**2 + K*M_T*k**2 - M_L*gamma_L*k**4*sin(theta)**2 + M_L*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**4*sin(theta)**2 - M_T*gamma_L*k**4 - M_T*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**2*mu_K**2)/(K*M_L*M_T*mu_K**2 + K*M_L*k**2*sin(theta)**2 - K*M_T*k**2*sin(theta)**2 + K*M_T*k**2 + M_L*gamma_L*k**2*mu_K**2*sin(theta)**2 - M_T*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**2*mu_K**2); gamma_L = 0 minus BSK1 M4: 2*K*rho_0*(-M_L*M_T*k**2 + M_L*M_T*mu_K**2 + M_L*k**2*sin(theta)**2 - M_T*k**2*sin(theta)**2 + M_T*k**2)/(M_L*M_T*mu_K**2 + M_L*k**2*sin(theta)**2 - M_T*k**2*sin(theta)**2 + M_T*k**2); no-Poisson minus P3's rho_tau k^2/chi: 2*K*k**2*rho_0*(-K*M_L*M_T - M_L*gamma_L*k**2*sin(theta)**2 + M_T*gamma_L*k**2*sin(theta)**2 - M_T*gamma_L*k**2)/(K*M_L*M_T*mu_K**2 + K*M_L*k**2*sin(theta)**2 - K*M_T*k**2*sin(theta)**2 + K*M_T*k**2 + M_L*gamma_L*k**2*mu_K**2*sin(theta)**2 - M_T*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**2*mu_K**2); mu_K = 0 form K rho_tau (M_theta - 1 + gamma_L k^2/K): 0
+A4 FAIL dispersion residual 2*K*rho_0*(-K*M_L*M_T*k**2 + K*M_L*M_T*mu_K**2 + K*M_L*k**2*sin(theta)**2 - K*M_T*k**2*sin(theta)**2 + K*M_T*k**2 - M_L*gamma_L*k**4*sin(theta)**2 + M_L*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**4*sin(theta)**2 - M_T*gamma_L*k**4 - M_T*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**2*mu_K**2)/(K*M_L*M_T*mu_K**2 + K*M_L*k**2*sin(theta)**2 - K*M_T*k**2*sin(theta)**2 + K*M_T*k**2 + M_L*gamma_L*k**2*mu_K**2*sin(theta)**2 - M_T*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**2*mu_K**2); BSK1 limit residual 2*K*rho_0*(-M_L*M_T*k**2 + M_L*M_T*mu_K**2 + M_L*k**2*sin(theta)**2 - M_T*k**2*sin(theta)**2 + M_T*k**2)/(M_L*M_T*mu_K**2 + M_L*k**2*sin(theta)**2 - M_T*k**2*sin(theta)**2 + M_T*k**2); P3 decoupled limit residual 2*K*k**2*rho_0*(-K*M_L*M_T - M_L*gamma_L*k**2*sin(theta)**2 + M_T*gamma_L*k**2*sin(theta)**2 - M_T*gamma_L*k**2)/(K*M_L*M_T*mu_K**2 + K*M_L*k**2*sin(theta)**2 - K*M_T*k**2*sin(theta)**2 + K*M_T*k**2 + M_L*gamma_L*k**2*mu_K**2*sin(theta)**2 - M_T*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**2*mu_K**2) all identically 0
+  A5: 1-mu - 1/(1+x) = 0; 1-f_L - 1/(1+x)^2 = 0; M_T from W = x + 1; M_L from W = x**2 + 2*x + 1
+A5 PASS residuals [0, 0, 0, 0] all 0: M_T = 1+x, M_L = (1+x)^2
+  A6: linearised Bernoulli dXi = -I*A_s*V*k + I*A_s*omega + F_p; continuity A_s*k**2*rho_0 + I*B_r*V*k - I*B_r*omega; (omega - kV)^2 minus rho_tau(k^2/chi - K) = 2*K*rho_0*(-K*M_L*M_T*k**2 + K*M_L*M_T*mu_K**2 + K*M_L*k**2*sin(theta)**2 - K*M_T*k**2*sin(theta)**2 + K*M_T*k**2 - M_L*gamma_L*k**4*sin(theta)**2 + M_L*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**4*sin(theta)**2 - M_T*gamma_L*k**4 - M_T*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**2*mu_K**2)/(K*M_L*M_T*mu_K**2 + K*M_L*k**2*sin(theta)**2 - K*M_T*k**2*sin(theta)**2 + K*M_T*k**2 + M_L*gamma_L*k**2*mu_K**2*sin(theta)**2 - M_T*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**2*mu_K**2)
+A6 FAIL boosted dispersion residual 2*K*rho_0*(-K*M_L*M_T*k**2 + K*M_L*M_T*mu_K**2 + K*M_L*k**2*sin(theta)**2 - K*M_T*k**2*sin(theta)**2 + K*M_T*k**2 - M_L*gamma_L*k**4*sin(theta)**2 + M_L*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**4*sin(theta)**2 - M_T*gamma_L*k**4 - M_T*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**2*mu_K**2)/(K*M_L*M_T*mu_K**2 + K*M_L*k**2*sin(theta)**2 - K*M_T*k**2*sin(theta)**2 + K*M_T*k**2 + M_L*gamma_L*k**2*mu_K**2*sin(theta)**2 - M_T*gamma_L*k**2*mu_K**2*sin(theta)**2 + M_T*gamma_L*k**2*mu_K**2) 0: (omega - k.V)^2 = rho_tau (k^2/chi - K)
+
+B: well-posedness
+  B1: lim omega^2/k^2 (k -> inf) = -K*gamma_L*rho_0/(K + gamma_L*mu_K**2); gamma_L = 0: lim omega^2 = K*rho_0*(-M_L*M_T + M_L*sin(theta)**2 - M_T*sin(theta)**2 + M_T)/(M_L*sin(theta)**2 - M_T*sin(theta)**2 + M_T)
+B1 PASS UV: omega^2 -> (-K*gamma_L*rho_0/(K + gamma_L*mu_K**2)) k^2 (Gamma proportional to k where SGN*rho_tau < 0: UV-unbounded); gamma_L = 0: omega^2 -> K*rho_0*(-M_L*M_T + M_L*sin(theta)**2 - M_T*sin(theta)**2 + M_T)/(M_L*sin(theta)**2 - M_T*sin(theta)**2 + M_T) (finite: bounded) both limits derived; UV coefficient gamma_L rho_tau/(1 + mu^2 gL/K)
+  B2: Gamma_max ladder N = 64..512: gamma_L = 1e-3: [3.8673, 8.1202, 16.827, 34.4619]; gamma_L = 0: [0.703898, 0.706281, 0.706897, 0.707054]; bounded prediction sqrt(K(M-1)|min rho|) = 1.224745
+B2 FAIL gamma_L > 0: Gamma(512)/Gamma(256) = 2.0480; gamma_L = 0: ratio 1.000222, Gamma(512)/prediction = 0.577307 [1.8, 2.2]; <= 1.01 and within 1%
+  B3: 48 scored P3 rows, max |c_pi(H4)/c_pi(P3) - 1| = inf; reported rows: galaxy (1 kpc; phantom 0.01 Msun/pc^3, ILLUSTRATIVE)|canonical|24pc: 0.866; cosmology (10 h/Mpc; FRW, P0 = 0)|canonical|24pc: Jeans branch
+B3 FAIL 48 rows (lab, planets, double pulsar, BH, NS; both footings, all L*): max dev inf <= 1e-3 (P3's D.P > 0 speeds reproduced)
+A, B done (17.1 s)
+
+C: where rho_tau < 0 (own axisymmetric AQUAL solver, mu = x/(1+x); validation in deep units G = M = d = a0 = 1)
+  solved V_single                               grid 170x280 iters 24 residual 8.7e-09 box 20 nulls [] (2 s, child RSS 0.37 GB)
+  solved V_pair                                 grid 178x409 iters 24 residual 8.2e-09 box 30 nulls [0.0] (4 s, child RSS 0.53 GB)
+  solved V_efe0.3                               grid 190x545 iters 24 residual 8.7e-09 box 60 nulls [-3.821, 0.041] (6 s, child RSS 0.71 GB)
+  solved V_efe0.68                              grid 190x550 iters 24 residual 9.9e-09 box 60 nulls [-1.861, 0.086] (6 s, child RSS 0.69 GB)
+  solved S1_MW-M31|canonical|e0                 grid 190x512 iters 26 residual 4.7e-09 box 60 nulls [0.068] (6 s, child RSS 0.72 GB)
+  solved S1_MW-M31|canonical|e0.01              grid 190x615 iters 25 residual 7.7e-09 box 60 nulls [-1.875, 0.143] (7 s, child RSS 0.80 GB)
+  solved S2_LMC-MW|canonical|e0                 grid 190x438 iters 24 residual 8.1e-09 box 60 nulls [-0.332] (5 s, child RSS 0.58 GB)
+  solved S3_galaxy_pair|canonical|e0            grid 190x434 iters 25 residual 5.7e-09 box 60 nulls [0.0] (5 s, child RSS 0.59 GB)
+  solved S3_galaxy_pair|canonical|e0.01         grid 191x546 iters 24 residual 6.9e-09 box 61 nulls [-3.392, 0.044] (6 s, child RSS 0.72 GB)
+  solved S4_cluster_pair|canonical|e0           grid 190x421 iters 25 residual 5.7e-09 box 60 nulls [-0.054] (4 s, child RSS 0.57 GB)
+  solved S4_cluster_pair|canonical|e0.01        grid 220x579 iters 26 residual 8.0e-09 box 305 nulls [-16.291, -0.05] (8 s, child RSS 0.88 GB)
+  solved S6_single_in_field|canonical|e0.01     grid 206x391 iters 23 residual 8.9e-09 box 142 nulls [-7.326] (4 s, child RSS 0.53 GB)
+  solved S5a_MW_disc|canonical|e0               grid 132x245 iters 24 residual 6.7e-09 box 200 nulls [] (1 s, child RSS 0.31 GB)
+  solved S5a_MW_disc|canonical|e0.01            grid 192x366 iters 25 residual 6.3e-09 box 5453 nulls [] (4 s, child RSS 0.55 GB)
+  solved S5b_dwarf_disc|canonical|e0            grid 132x240 iters 27 residual 5.5e-09 box 200 nulls [] (2 s, child RSS 0.30 GB)
+  solved S5b_dwarf_disc|canonical|e0.01         grid 165x306 iters 26 residual 7.5e-09 box 1220 nulls [] (3 s, child RSS 0.41 GB)
+  solved S1_MW-M31|alt|e0                       grid 190x512 iters 25 residual 7.5e-09 box 60 nulls [0.068] (6 s, child RSS 0.74 GB)
+  solved S1_MW-M31|alt|e0.01                    grid 190x616 iters 25 residual 5.5e-09 box 60 nulls [-1.768, 0.158] (7 s, child RSS 0.83 GB)
+  solved S2_LMC-MW|alt|e0                       grid 190x438 iters 24 residual 8.4e-09 box 60 nulls [-0.332] (5 s, child RSS 0.61 GB)
+  solved S3_galaxy_pair|alt|e0                  grid 190x434 iters 24 residual 1.0e-08 box 60 nulls [0.0] (4 s, child RSS 0.61 GB)
+  solved S3_galaxy_pair|alt|e0.01               grid 190x546 iters 24 residual 7.0e-09 box 60 nulls [-3.107, 0.047] (5 s, child RSS 0.73 GB)
+  solved S4_cluster_pair|alt|e0                 grid 190x421 iters 25 residual 5.5e-09 box 60 nulls [-0.054] (4 s, child RSS 0.52 GB)
+  solved S4_cluster_pair|alt|e0.01              grid 218x575 iters 26 residual 6.9e-09 box 278 nulls [-14.914, -0.05] (7 s, child RSS 0.86 GB)
+  solved S6_single_in_field|alt|e0.01           grid 204x387 iters 23 residual 9.1e-09 box 129 nulls [-6.699] (3 s, child RSS 0.57 GB)
+  solved S5a_MW_disc|alt|e0                     grid 132x245 iters 24 residual 7.2e-09 box 200 nulls [] (1 s, child RSS 0.26 GB)
+  solved S5a_MW_disc|alt|e0.01                  grid 190x362 iters 25 residual 6.3e-09 box 4963 nulls [] (3 s, child RSS 0.50 GB)
+  solved S5b_dwarf_disc|alt|e0                  grid 132x240 iters 27 residual 5.5e-09 box 200 nulls [] (1 s, child RSS 0.34 GB)
+  solved S5b_dwarf_disc|alt|e0.01               grid 163x302 iters 26 residual 8.2e-09 box 1111 nulls [] (2 s, child RSS 0.33 GB)
+  C1: single lens max|4 pi r^2 rho - 1| = 0.0051; pair C(0.2d) base/fine = -0.24043 / -0.24049 (A38 -0.2413, A23 -0.2404); EFE C(0.2d) e = 0.3: -0.02182 (A23 -0.0315), e = 0.68: 0.16783 (A23 +0.1453)
+C1 PASS (i) 0.0051; (ii) -0.24049 vs -0.2413 (-0.33 %); (iii) e 0.3: -0.02182, e 0.68: 0.16783 (i) <= 0.02; (ii) within 1.5 %; (iii) within 0.02 of -0.0315 and > 0
+      reading: negative volume (d^3) inside r < 0.6 d / r < 3 d: e 0: {'V_neg_r<0.6': 0.05627010822149832, 'V_neg_r<3': 0.05627010822149832}, e 0.3: {'V_neg_r<0.6': 0.059049854136894876, 'V_neg_r<3': 0.059049854136894876}, e 0.68: {'V_neg_r<0.6': 0.0670933043875297, 'V_neg_r<3': 47.34754067538822} -- the external field empties the saddle but opens equatorial lobes
+  S1_MW-M31|canonical|e0                  : near zone V^(1/3)    2517.5 kpc, median |rho| 5.24e-07 Msun/pc^3 (x 1.24e-02), max 5.77e-02; whole box V^(1/3) 84060 kpc (touches box: True); f = 3: near V^(1/3) 2517.6 kpc
+  S1_MW-M31|canonical|e0.01               : near zone V^(1/3)    5398.5 kpc, median |rho| 1.66e-08 Msun/pc^3 (x 1.09e-02), max 5.81e-02; whole box V^(1/3) 58567 kpc (touches box: True); f = 3: near V^(1/3) 7462.0 kpc
+  S2_LMC-MW|canonical|e0                  : near zone V^(1/3)     161.4 kpc, median |rho| 8.14e-05 Msun/pc^3 (x 1.29e-01), max 2.55e-01; whole box V^(1/3) 5388 kpc (touches box: True); f = 3: near V^(1/3) 161.4 kpc
+  S3_galaxy_pair|canonical|e0             : near zone V^(1/3)     967.9 kpc, median |rho| 2.80e-06 Msun/pc^3 (x 2.58e-02), max 5.35e-02; whole box V^(1/3) 32331 kpc (touches box: True); f = 3: near V^(1/3) 967.9 kpc
+  S3_galaxy_pair|canonical|e0.01          : near zone V^(1/3)    4295.2 kpc, median |rho| 2.08e-08 Msun/pc^3 (x 1.08e-02), max 6.03e-02; whole box V^(1/3) 23013 kpc (touches box: True); f = 3: near V^(1/3) 5888.7 kpc
+  S4_cluster_pair|canonical|e0            : near zone V^(1/3)    9682.2 kpc, median |rho| 1.40e-06 Msun/pc^3 (x 1.35e-01), max 2.40e-03; whole box V^(1/3) 323310 kpc (touches box: True); f = 3: near V^(1/3) 9682.4 kpc
+  S4_cluster_pair|canonical|e0.01         : near zone V^(1/3)  215198.9 kpc, median |rho| 4.15e-10 Msun/pc^3 (x 1.08e-02), max 2.40e-03; whole box V^(1/3) 1151065 kpc (touches box: True); f = 3: near V^(1/3) 295174.3 kpc
+  S6_single_in_field|canonical|e0.01      : near zone V^(1/3)    3334.1 kpc, median |rho| 2.70e-08 Msun/pc^3 (x 1.08e-02), max 1.46e-01; whole box V^(1/3) 17820 kpc (touches box: True); f = 3: near V^(1/3) 4545.3 kpc
+  S5a_MW_disc|canonical|e0                : near zone V^(1/3)     209.7 kpc, median |rho| 4.75e-05 Msun/pc^3 (x 9.60e-02), max 6.73e-01; whole box V^(1/3) 934 kpc (touches box: True); f = 3: near V^(1/3) 209.7 kpc
+  S5a_MW_disc|canonical|e0.01             : near zone V^(1/3)    3344.5 kpc, median |rho| 2.63e-08 Msun/pc^3 (x 1.08e-02), max 7.96e-01; whole box V^(1/3) 17836 kpc (touches box: True); f = 3: near V^(1/3) 4542.9 kpc
+  S5b_dwarf_disc|canonical|e0             : near zone V^(1/3)     120.9 kpc, median |rho| 1.85e-05 Msun/pc^3 (x 2.07e-02), max 7.32e-01; whole box V^(1/3) 539 kpc (touches box: True); f = 3: near V^(1/3) 120.9 kpc
+  S5b_dwarf_disc|canonical|e0.01          : near zone V^(1/3)     431.5 kpc, median |rho| 2.05e-07 Msun/pc^3 (x 1.08e-02), max 7.60e-01; whole box V^(1/3) 2304 kpc (touches box: True); f = 3: near V^(1/3) 535.7 kpc
+  S1_MW-M31|alt|e0                        : near zone V^(1/3)    2517.4 kpc, median |rho| 5.76e-07 Msun/pc^3 (x 1.13e-02), max 6.77e-02; whole box V^(1/3) 84060 kpc (touches box: True); f = 3: near V^(1/3) 2517.6 kpc
+  S1_MW-M31|alt|e0.01                     : near zone V^(1/3)    4901.6 kpc, median |rho| 2.20e-08 Msun/pc^3 (x 1.09e-02), max 7.10e-02; whole box V^(1/3) 58530 kpc (touches box: True); f = 3: near V^(1/3) 6767.5 kpc
+  S2_LMC-MW|alt|e0                        : near zone V^(1/3)     161.4 kpc, median |rho| 8.95e-05 Msun/pc^3 (x 1.17e-01), max 2.93e-01; whole box V^(1/3) 5388 kpc (touches box: True); f = 3: near V^(1/3) 161.4 kpc
+  S3_galaxy_pair|alt|e0                   : near zone V^(1/3)     967.9 kpc, median |rho| 3.07e-06 Msun/pc^3 (x 2.35e-02), max 6.26e-02; whole box V^(1/3) 32331 kpc (touches box: True); f = 3: near V^(1/3) 967.9 kpc
+  S3_galaxy_pair|alt|e0.01                : near zone V^(1/3)    3908.7 kpc, median |rho| 2.74e-08 Msun/pc^3 (x 1.08e-02), max 6.38e-02; whole box V^(1/3) 22606 kpc (touches box: True); f = 3: near V^(1/3) 5338.7 kpc
+  S4_cluster_pair|alt|e0                  : near zone V^(1/3)    9682.2 kpc, median |rho| 1.54e-06 Msun/pc^3 (x 1.22e-01), max 2.69e-03; whole box V^(1/3) 323310 kpc (touches box: True); f = 3: near V^(1/3) 9682.4 kpc
+  S4_cluster_pair|alt|e0.01               : near zone V^(1/3)  196306.1 kpc, median |rho| 5.49e-10 Msun/pc^3 (x 1.08e-02), max 2.69e-03; whole box V^(1/3) 1047439 kpc (touches box: True); f = 3: near V^(1/3) 268605.7 kpc
+  S6_single_in_field|alt|e0.01            : near zone V^(1/3)    3037.8 kpc, median |rho| 3.55e-08 Msun/pc^3 (x 1.08e-02), max 1.69e-01; whole box V^(1/3) 16218 kpc (touches box: True); f = 3: near V^(1/3) 4126.2 kpc
+  S5a_MW_disc|alt|e0                      : near zone V^(1/3)     209.7 kpc, median |rho| 5.22e-05 Msun/pc^3 (x 8.70e-02), max 8.06e-01; whole box V^(1/3) 934 kpc (touches box: True); f = 3: near V^(1/3) 209.7 kpc
+  S5a_MW_disc|alt|e0.01                   : near zone V^(1/3)    3037.3 kpc, median |rho| 3.51e-08 Msun/pc^3 (x 1.08e-02), max 9.49e-01; whole box V^(1/3) 16233 kpc (touches box: True); f = 3: near V^(1/3) 4113.7 kpc
+  S5b_dwarf_disc|alt|e0                   : near zone V^(1/3)     120.9 kpc, median |rho| 2.03e-05 Msun/pc^3 (x 1.88e-02), max 8.14e-01; whole box V^(1/3) 539 kpc (touches box: True); f = 3: near V^(1/3) 120.9 kpc
+  S5b_dwarf_disc|alt|e0.01                : near zone V^(1/3)     391.8 kpc, median |rho| 2.74e-07 Msun/pc^3 (x 1.08e-02), max 8.46e-01; whole box V^(1/3) 2097 kpc (touches box: True); f = 3: near V^(1/3) 463.5 kpc
+C2 PASS 24 maps; worst base->fine change S5b_dwarf_disc|canonical|e0.01: volume 0.038, median 0.026 <= 0.10 each
+  C2b S2_LMC-MW|canonical|e0           extra-fine grid 253x584 residual 9.3e-09 (child RSS 0.82 GB): fine->extra-fine volume 0.0192, median 0.0085
+  C2b S4_cluster_pair|canonical|e0     extra-fine grid 253x561 residual 6.5e-09 (child RSS 0.82 GB): fine->extra-fine volume 0.0192, median 0.0047
+  C2b S2_LMC-MW|alt|e0                 extra-fine grid 253x584 residual 9.7e-09 (child RSS 0.76 GB): fine->extra-fine volume 0.0192, median 0.0085
+  C2b S4_cluster_pair|alt|e0           extra-fine grid 253x561 residual 6.4e-09 (child RSS 0.73 GB): fine->extra-fine volume 0.0192, median 0.0047
+C2b PASS max change volume 0.0192, median 0.0085 over 4 maps <= 0.10 each (AMENDMENT A1, post-result; C2 kept as frozen)
+  C3: Galactic phantom at the Sun (S5a, in-plane, 8.2 kpc) = [0.0447, 0.0514] Msun/pc^3 (canonical, alt); min screened D.P over samples = 4.494e-02 Msun/pc^3 at 0.1 pc (canonical, L* 90.0 pc, x_e 2.6)
+C3 PASS min D.P = 4.494e-02 Msun/pc^3 over 72 samples > 0 everywhere (screening removes the region)
+C done (167.7 s)
+
+D: growth rates, e-folds, verdicts
+  S1_MW-M31             : canonical ILL-POSED                      alt ILL-POSED
+  S2_LMC-MW             : canonical ILL-POSED                      alt ILL-POSED
+  S3_galaxy_pair        : canonical ILL-POSED                      alt ILL-POSED
+  S4_cluster_pair       : canonical ILL-POSED                      alt ILL-POSED
+  S5a_MW_disc           : canonical ILL-POSED                      alt ILL-POSED
+  S5b_dwarf_disc        : canonical ILL-POSED                      alt ILL-POSED
+  S6_single_in_field    : canonical ILL-POSED                      alt ILL-POSED
+  S7_solar_system       : canonical ILL-POSED                      alt ILL-POSED
+  OVERALL: ILL-POSED
+    S1_MW-M31|canonical|e0|L*24.0                        T 13.80 Gyr: N_bounded 3.76e-01; N(L*) 1.06e+01, N(1 pc) 2.53e+02, N(1 AU) 5.22e+07; lambda_1 273 pc; Gamma(1 AU) 1.20e-10 /s
+    S1_MW-M31|canonical|e0.01|L*24.0                     T 13.80 Gyr: N_bounded 6.25e-02; N(L*) 1.88e+00, N(1 pc) 4.51e+01, N(1 AU) 9.30e+06; lambda_1 45.2 pc; Gamma(1 AU) 2.14e-11 /s
+    S2_LMC-MW|canonical|e0|L*24.0                        T 0.49 Gyr: N_bounded 5.55e-01; N(L*) 4.73e+00, N(1 pc) 1.13e+02, N(1 AU) 2.33e+07; lambda_1 136 pc; Gamma(1 AU) 1.50e-09 /s
+    S3_galaxy_pair|canonical|e0|L*24.0                   T 6.31 Gyr: N_bounded 5.74e-01; N(L*) 1.12e+01, N(1 pc) 2.68e+02, N(1 AU) 5.52e+07; lambda_1 327 pc; Gamma(1 AU) 2.77e-10 /s
+    S3_galaxy_pair|canonical|e0.01|L*24.0                T 13.80 Gyr: N_bounded 6.98e-02; N(L*) 2.10e+00, N(1 pc) 5.05e+01, N(1 AU) 1.04e+07; lambda_1 50.6 pc; Gamma(1 AU) 2.39e-11 /s
+    S4_cluster_pair|canonical|e0|L*24.0                  T 9.47 Gyr: N_bounded 1.43e+00; N(L*) 1.19e+01, N(1 pc) 2.84e+02, N(1 AU) 5.87e+07; lambda_1 inf pc; Gamma(1 AU) 1.96e-10 /s
+    S4_cluster_pair|canonical|e0.01|L*24.0               T 13.80 Gyr: N_bounded 9.87e-03; N(L*) 2.97e-01, N(1 pc) 7.13e+00, N(1 AU) 1.47e+06; lambda_1 7.13 pc; Gamma(1 AU) 3.38e-12 /s
+    S5a_MW_disc|canonical|e0|L*24.0                      T 10.00 Gyr: N_bounded 7.35e+00; N(L*) 7.32e+01, N(1 pc) 1.75e+03, N(1 AU) 3.60e+08; lambda_1 inf pc; Gamma(1 AU) 1.14e-09 /s
+    S5a_MW_disc|canonical|e0.01|L*24.0                   T 10.00 Gyr: N_bounded 5.69e-02; N(L*) 1.71e+00, N(1 pc) 4.11e+01, N(1 AU) 8.48e+06; lambda_1 41.2 pc; Gamma(1 AU) 2.69e-11 /s
+    S5b_dwarf_disc|canonical|e0|L*24.0                   T 10.00 Gyr: N_bounded 2.09e+00; N(L*) 4.54e+01, N(1 pc) 1.09e+03, N(1 AU) 2.25e+08; lambda_1 inf pc; Gamma(1 AU) 7.12e-10 /s
+    S5b_dwarf_disc|canonical|e0.01|L*24.0                T 10.00 Gyr: N_bounded 1.59e-01; N(L*) 4.78e+00, N(1 pc) 1.15e+02, N(1 AU) 2.37e+07; lambda_1 116 pc; Gamma(1 AU) 7.49e-11 /s
+    S6_single_in_field|canonical|e0.01|L*24.0            T 10.00 Gyr: N_bounded 5.77e-02; N(L*) 1.74e+00, N(1 pc) 4.17e+01, N(1 AU) 8.60e+06; lambda_1 41.8 pc; Gamma(1 AU) 2.72e-11 /s
+D1 PASS 74 e-fold rows, all finite: True all finite
+  reading: hydrostatic mu_K^2 dust / median |rho_tau| (|dpsi| = sqrt(G M a0) ln 10): S1_MW-M31 e0: 3.6e-02 (0.1/Mpc), 3.6e+02 (cap); S1_MW-M31 e0.01: 1.1e+00 (0.1/Mpc), 1.1e+04 (cap); S2_LMC-MW e0: 1.5e-04 (0.1/Mpc), 1.5e+00 (cap); S3_galaxy_pair e0: 5.4e-03 (0.1/Mpc), 5.4e+01 (cap); S3_galaxy_pair e0.01: 7.2e-01 (0.1/Mpc), 7.2e+03 (cap); S4_cluster_pair e0: 5.3e-01 (0.1/Mpc), 5.3e+03 (cap); S4_cluster_pair e0.01: 1.8e+03 (0.1/Mpc), 1.8e+07 (cap)
+run: 167.7 s, peak RSS parent 0.46 GB, children 0.88 GB, single thread
+H4_V3_SADDLE_STABILITY COMPLETE: 10/14 checks PASS.
