@@ -194,3 +194,13 @@ No nonlinear growth (L1's job). No native cluster dust profile (C1b's cluster gr
 content in satellites, UDGs and galaxies uses record estimators (cosmic ratio; CFG946's D-F), not a simulation. AeST (C4) is
 graded from the record only. The BS24/BS25 equations are WebFetch transcriptions (PROVISIONAL), checked for self-consistency
 by C4/Q6/Q7. The cluster OUTER baseline is F1's β = 2/3 gas extrapolation (X0 A1; lane X2).
+
+## AMENDMENT A1 (POST-RESULT, 2026-10-23; code only, error correction; no line, threshold, candidate or reading changed)
+
+The first complete main run (`x6_dust_coupling_RUN1.out`, `x6_dust_coupling_results_RUN1.json`, kept) failed the frozen
+X-R line: peak RSS 4.36 GB against < 1 GB (16/17, exit 1). Cause: `solve_ivp` stored every step of ~150 ODE solves and macOS's
+medium malloc zone kept the freed buffers resident (the same effect U1 disclosed). Fix: `solve_ivp(..., t_eval=[0.0])` keeps
+only the endpoint, freed blocks are handed back after each solve, and the script re-executes itself with
+`MallocMediumZone=0` (as U1). The rerun gives 17/17, peak RSS 0.177 GB, and every one of the 165 numeric leaves of the results
+JSON equal to RUN1's (maximum relative difference 0). The free memory on the machine stayed above 30 GB during RUN1; the live
+L1 run and `compute_queue/` were not touched.
