@@ -1,0 +1,217 @@
+================================================================================================================
+S3 Part A: MW outer rotation slope under v3 *** MUTATE: mu == 1 (Newton) ***
+kappa = 1/2 FITTED; footings 9.3603e-11 / 1.1312e-10 never pooled; census baryons held; not theory closed
+================================================================================================================
+
+--- controls on data and the estimator
+A6 PASS slope estimator Kepler -0.5000000 flat +0.0000000 (tol 1e-6)
+A1 PASS row counts [37, 38, 19, 18, 34, 45, 12] (all as tables); data slopes vs CFG532b max |d| 0.0e+00 (tol 1e-9)
+
+--- Milky Way model (McMillan17 B1; my grid)
+  grid {'nR': 201, 'nz': 337, 'Rmax': 3091.2165142310214, 'Zmax': 3151.492829446055, 'dR0': 0.02, 'dz0': 0.01}; stars 5.4523e+10 gas 1.1902e+10 Msun (census stars 5.43e+10 +- 5.70e+09)
+A2i PASS razor-thin Freeman on the MW grid max |dV2/V2| 0.0023 on 0.5-15 R_d (tol 0.005)
+  transcription of McMillan17 / B2 / B3 densities vs CFG514/516 functions: max rel diff 3.2e-15 (child peak RSS 172 MB)
+A2ii PASS B1 in-plane Newtonian V vs CFG532 v_model('N') max |dV/V| 0.0008 on 5-27.5 kpc (tol 0.01); density transcription 3.2e-15
+
+--- AQUAL solves (isolated and EFE along the axis, gamma = 0) over the s grid
+  presolved 0 in child processes (batches of 4; child peak RSS 0 MB)
+  52 solves; max residual 1.1e-09; 0 at the round-off floor (A2); RSS 296 MB; 1 s
+A4v PASS nonlinear residual max 1.1e-09 (<= 1e-8, or the A2 round-off floor <= 1e-7: 0 solves)
+
+--- 3-D EFE (periodic FFT, box 640 kpc): gamma = 57 deg vs gamma = 0, N = 128 and 160
+  canonical eN 0.01273 gamma  0.0 N 128: iters 6 converged True ; RSS 296 MB
+  canonical eN 0.01273 gamma  0.0 N 160: iters 6 converged True ; RSS 296 MB
+  canonical eN 0.01273 gamma 57.0 N 128: iters 6 converged True ; RSS 296 MB
+  canonical eN 0.01273 gamma 57.0 N 160: iters 6 converged True ; RSS 296 MB
+  canonical eN 0.02546 gamma  0.0 N 160: iters 6 converged True ; RSS 296 MB
+  canonical eN 0.02546 gamma 57.0 N 160: iters 6 converged True ; RSS 296 MB
+  alt       eN 0.01054 gamma  0.0 N 128: iters 6 converged True ; RSS 296 MB
+  alt       eN 0.01054 gamma  0.0 N 160: iters 6 converged True ; RSS 296 MB
+  alt       eN 0.01054 gamma 57.0 N 128: iters 6 converged True ; RSS 297 MB
+  alt       eN 0.01054 gamma 57.0 N 160: iters 6 converged True ; RSS 297 MB
+  alt       eN 0.02108 gamma  0.0 N 160: iters 6 converged True ; RSS 297 MB
+  alt       eN 0.02108 gamma 57.0 N 160: iters 6 converged True ; RSS 297 MB
+A5i PASS 3-D ratio N 128 vs 160 max change 0.0000 on 15-60 kpc (tol 0.005)
+A5ii PASS 3-D gamma 0 azimuthal mean vs axisymmetric gamma 0 max |d| 0.0015 on 15-60 kpc (tol 0.03)
+A5iii PASS 3-D gamma 0 azimuthal variation max 0.0000 on 15-60 kpc (tol 0.003)
+
+--- A3: ALG nu_mono on my Newtonian field vs the record's ALG cells
+  canonical Ou24             slope -0.1200 (record -0.1200)  chi2   196.96 (record   196.46)
+  canonical Eilers19         slope -0.1186 (record -0.1186)  chi2   147.52 (record   147.12)
+  canonical Wang23           slope -0.1130 (record -0.1133)  chi2    56.16 (record    56.06)
+  canonical Jiao23           slope -0.1172 (record -0.1180)  chi2   164.14 (record   163.80)
+  canonical Zhou23           slope -0.1179 (record -0.1182)  chi2   237.57 (record   237.07)
+  canonical SL23_DR3plus     slope -0.1155 (record -0.1157)  chi2  2509.43 (record  2508.07)
+  canonical Feng26_Cepheids  slope -0.1214 (record -0.1205)  chi2   174.54 (record   174.27)
+  alt       Ou24             slope -0.1097 (record -0.1097)  chi2    81.34 (record    81.56)
+  alt       Eilers19         slope -0.1084 (record -0.1085)  chi2    52.99 (record    53.19)
+  alt       Wang23           slope -0.1034 (record -0.1038)  chi2    33.20 (record    33.18)
+  alt       Jiao23           slope -0.1072 (record -0.1080)  chi2    55.09 (record    55.22)
+  alt       Zhou23           slope -0.1078 (record -0.1082)  chi2   101.18 (record   101.47)
+  alt       SL23_DR3plus     slope -0.1057 (record -0.1059)  chi2   996.58 (record  1002.71)
+  alt       Feng26_Cepheids  slope -0.1093 (record -0.1085)  chi2   103.92 (record   104.06)
+A3 PASS ALG nu_mono law slope max |d| 0.0009 (tol 0.003), chi2 max rel 0.0061 (tol 0.03)
+
+--- per-curve cells (census held; s* post hoc) and the combined RGB/LIM slope test, step by step
+  ALG_numono  canonical V20  195.0 | law slope Ou -0.120 Jiao -0.117 | primary Ou+Jiao D -0.203+-0.045 Z -4.51 SHAPE EXCLUDED; rho0.5 Z -3.73; pairs -5.02..-2.82 | Cepheid Z +1.42
+  ALG_numono  alt       V20  202.3 | law slope Ou -0.110 Jiao -0.107 | primary Ou+Jiao D -0.213+-0.045 Z -4.73 SHAPE EXCLUDED; rho0.5 Z -3.92; pairs -5.24..-3.02 | Cepheid Z +1.24
+      canonical Ou24             chi2   197.0/37 p 1.1e-23 | M*need 6.96e+10 (z +2.7) | slope data -0.325+-0.074 law -0.120 (-2.8sig) -> EXCLUDED
+      canonical Eilers19         chi2   147.5/38 p 8.0e-15 | M*need 6.67e+10 (z +2.2) | slope data -0.278+-0.071 law -0.119 (-2.2sig) -> NEEDS-HEAVY-DISC
+      canonical Wang23           chi2    56.2/19 p 1.5e-05 | M*need 6.35e+10 (z +1.6) | slope data -0.356+-0.058 law -0.113 (-4.2sig) -> EXCLUDED
+      canonical Jiao23           chi2   164.1/18 p 1.3e-25 | M*need 6.62e+10 (z +2.1) | slope data -0.319+-0.057 law -0.117 (-3.5sig) -> EXCLUDED
+      canonical Zhou23           chi2   237.6/34 p 2.2e-32 | M*need 7.08e+10 (z +2.9) | slope data -0.186+-0.061 law -0.118 (-1.1sig) -> NEEDS-HEAVY-DISC
+      canonical SL23_DR3plus     chi2  2509.4/45 p 0.0e+00 | M*need 6.64e+10 (z +2.1) | slope data -0.271+-0.020 law -0.116 (-7.9sig) -> EXCLUDED  (REPORTED ONLY)
+      canonical Feng26_Cepheids  chi2   174.5/12 p 5.6e-31 | M*need 7.85e+10 (z +4.2) | slope data -0.026+-0.067 law -0.121 (+1.4sig) -> NEEDS-HEAVY-DISC
+      alt       Ou24             chi2    81.3/37 p 3.6e-05 | M*need 6.32e+10 (z +1.6) | slope data -0.325+-0.074 law -0.110 (-2.9sig) -> EXCLUDED
+      alt       Eilers19         chi2    53.0/38 p 5.4e-02 | M*need 6.08e+10 (z +1.1) | slope data -0.278+-0.071 law -0.108 (-2.4sig) -> EXCLUDED
+      alt       Wang23           chi2    33.2/19 p 2.3e-02 | M*need 5.62e+10 (z +0.3) | slope data -0.356+-0.058 law -0.103 (-4.4sig) -> EXCLUDED
+      alt       Jiao23           chi2    55.1/18 p 1.2e-05 | M*need 5.95e+10 (z +0.9) | slope data -0.319+-0.057 law -0.107 (-3.7sig) -> EXCLUDED
+      alt       Zhou23           chi2   101.2/34 p 1.4e-08 | M*need 6.46e+10 (z +1.8) | slope data -0.186+-0.061 law -0.108 (-1.3sig) -> NEEDS-HEAVY-DISC
+      alt       SL23_DR3plus     chi2   996.6/45 p 1.7e-179 | M*need 6.14e+10 (z +1.2) | slope data -0.271+-0.020 law -0.106 (-8.4sig) -> EXCLUDED  (REPORTED ONLY)
+      alt       Feng26_Cepheids  chi2   103.9/12 p 9.5e-17 | M*need 7.23e+10 (z +3.2) | slope data -0.026+-0.067 law -0.109 (+1.2sig) -> NEEDS-HEAVY-DISC
+  ALG_nu1     canonical V20  195.8 | law slope Ou -0.128 Jiao -0.125 | primary Ou+Jiao D -0.196+-0.045 Z -4.34 SHAPE EXCLUDED; rho0.5 Z -3.59; pairs -4.86..-2.68 | Cepheid Z +1.58
+  ALG_nu1     alt       V20  203.0 | law slope Ou -0.116 Jiao -0.114 | primary Ou+Jiao D -0.207+-0.045 Z -4.59 SHAPE EXCLUDED; rho0.5 Z -3.80; pairs -5.10..-2.89 | Cepheid Z +1.38
+      canonical Ou24             chi2   159.0/37 p 4.6e-17 | M*need 6.74e+10 (z +2.3) | slope data -0.325+-0.074 law -0.128 (-2.7sig) -> EXCLUDED
+      canonical Eilers19         chi2   111.7/38 p 3.5e-09 | M*need 6.46e+10 (z +1.8) | slope data -0.278+-0.071 law -0.126 (-2.1sig) -> NEEDS-HEAVY-DISC
+      canonical Wang23           chi2    47.4/19 p 3.2e-04 | M*need 6.20e+10 (z +1.4) | slope data -0.356+-0.058 law -0.120 (-4.1sig) -> EXCLUDED
+      canonical Jiao23           chi2   130.9/18 p 3.6e-19 | M*need 6.43e+10 (z +1.8) | slope data -0.319+-0.057 law -0.125 (-3.4sig) -> EXCLUDED
+      canonical Zhou23           chi2   191.5/34 p 7.5e-24 | M*need 6.85e+10 (z +2.5) | slope data -0.186+-0.061 law -0.125 (-1.0sig) -> NEEDS-HEAVY-DISC
+      canonical SL23_DR3plus     chi2  1771.2/45 p 0.0e+00 | M*need 6.40e+10 (z +1.7) | slope data -0.271+-0.020 law -0.123 (-7.5sig) -> EXCLUDED  (REPORTED ONLY)
+      canonical Feng26_Cepheids  chi2   151.2/12 p 3.2e-26 | M*need 7.57e+10 (z +3.7) | slope data -0.026+-0.067 law -0.132 (+1.6sig) -> EXCLUDED
+      alt       Ou24             chi2    60.1/37 p 9.5e-03 | M*need 6.15e+10 (z +1.3) | slope data -0.325+-0.074 law -0.116 (-2.8sig) -> EXCLUDED
+      alt       Eilers19         chi2    34.9/38 p 6.1e-01 | M*need 5.91e+10 (z +0.8) | slope data -0.278+-0.071 law -0.115 (-2.3sig) -> EXCLUDED
+      alt       Wang23           chi2    30.5/19 p 4.5e-02 | M*need 5.51e+10 (z +0.1) | slope data -0.356+-0.058 law -0.109 (-4.3sig) -> EXCLUDED
+      alt       Jiao23           chi2    41.4/18 p 1.3e-03 | M*need 5.81e+10 (z +0.7) | slope data -0.319+-0.057 law -0.114 (-3.6sig) -> EXCLUDED
+      alt       Zhou23           chi2    73.6/34 p 9.6e-05 | M*need 6.28e+10 (z +1.5) | slope data -0.186+-0.061 law -0.114 (-1.2sig) -> NEEDS-HEAVY-DISC
+      alt       SL23_DR3plus     chi2   593.8/45 p 7.4e-97 | M*need 5.94e+10 (z +0.9) | slope data -0.271+-0.020 law -0.112 (-8.1sig) -> EXCLUDED  (REPORTED ONLY)
+      alt       Feng26_Cepheids  chi2    87.9/12 p 1.2e-13 | M*need 7.00e+10 (z +2.8) | slope data -0.026+-0.067 law -0.119 (+1.4sig) -> NEEDS-HEAVY-DISC
+  AQ_iso      canonical V20  123.7 | law slope Ou -0.489 Jiao -0.491 | primary Ou+Jiao D +0.169+-0.045 Z +3.74 NOT DIAGNOSTIC; rho0.5 Z +3.12; pairs +2.65..+5.62 | Cepheid Z +6.04
+  AQ_iso      alt       V20  123.7 | law slope Ou -0.489 Jiao -0.491 | primary Ou+Jiao D +0.169+-0.045 Z +3.74 NOT DIAGNOSTIC; rho0.5 Z +3.12; pairs +2.65..+5.62 | Cepheid Z +6.04
+      canonical Ou24             chi2  3758.0/37 p 0.0e+00 | M*need 1.23e+11 (z +12.1) | slope data -0.325+-0.074 law -0.489 (+2.2sig) -> EXCLUDED
+      canonical Eilers19         chi2  3478.8/38 p 0.0e+00 | M*need 1.16e+11 (z +10.8) | slope data -0.278+-0.071 law -0.490 (+3.0sig) -> EXCLUDED
+      canonical Wang23           chi2  2121.8/19 p 0.0e+00 | M*need 1.40e+11 (z +15.0) | slope data -0.356+-0.058 law -0.495 (+2.4sig) -> EXCLUDED
+      canonical Jiao23           chi2  4777.8/18 p 0.0e+00 | M*need 1.26e+11 (z +12.6) | slope data -0.319+-0.057 law -0.491 (+3.0sig) -> EXCLUDED
+      canonical Zhou23           chi2  3995.7/34 p 0.0e+00 | M*need 1.21e+11 (z +11.7) | slope data -0.186+-0.061 law -0.491 (+5.0sig) -> EXCLUDED
+      canonical SL23_DR3plus     chi2 42296.9/45 p 0.0e+00 | M*need 1.02e+11 (z +8.3) | slope data -0.271+-0.020 law -0.492 (+11.2sig) -> EXCLUDED  (REPORTED ONLY)
+      canonical Feng26_Cepheids  chi2  1412.0/12 p 3.7e-295 | M*need 1.23e+11 (z +12.1) | slope data -0.026+-0.067 law -0.432 (+6.0sig) -> EXCLUDED
+      alt       Ou24             chi2  3758.0/37 p 0.0e+00 | M*need 1.23e+11 (z +12.1) | slope data -0.325+-0.074 law -0.489 (+2.2sig) -> EXCLUDED
+      alt       Eilers19         chi2  3478.8/38 p 0.0e+00 | M*need 1.16e+11 (z +10.8) | slope data -0.278+-0.071 law -0.490 (+3.0sig) -> EXCLUDED
+      alt       Wang23           chi2  2121.8/19 p 0.0e+00 | M*need 1.40e+11 (z +15.0) | slope data -0.356+-0.058 law -0.495 (+2.4sig) -> EXCLUDED
+      alt       Jiao23           chi2  4777.8/18 p 0.0e+00 | M*need 1.26e+11 (z +12.6) | slope data -0.319+-0.057 law -0.491 (+3.0sig) -> EXCLUDED
+      alt       Zhou23           chi2  3995.7/34 p 0.0e+00 | M*need 1.21e+11 (z +11.7) | slope data -0.186+-0.061 law -0.491 (+5.0sig) -> EXCLUDED
+      alt       SL23_DR3plus     chi2 42296.9/45 p 0.0e+00 | M*need 1.02e+11 (z +8.3) | slope data -0.271+-0.020 law -0.492 (+11.2sig) -> EXCLUDED  (REPORTED ONLY)
+      alt       Feng26_Cepheids  chi2  1412.0/12 p 3.7e-295 | M*need 1.23e+11 (z +12.1) | slope data -0.026+-0.067 law -0.432 (+6.0sig) -> EXCLUDED
+  AQ_gamma0   canonical V20  123.7 | law slope Ou -0.489 Jiao -0.491 | primary Ou+Jiao D +0.169+-0.045 Z +3.74 NOT DIAGNOSTIC; rho0.5 Z +3.12; pairs +2.65..+5.62 | Cepheid Z +6.04
+  AQ_gamma0   alt       V20  123.7 | law slope Ou -0.489 Jiao -0.491 | primary Ou+Jiao D +0.169+-0.045 Z +3.74 NOT DIAGNOSTIC; rho0.5 Z +3.12; pairs +2.65..+5.62 | Cepheid Z +6.04
+      canonical Ou24             chi2  3758.0/37 p 0.0e+00 | M*need 1.23e+11 (z +12.1) | slope data -0.325+-0.074 law -0.489 (+2.2sig) -> EXCLUDED
+      canonical Eilers19         chi2  3478.8/38 p 0.0e+00 | M*need 1.16e+11 (z +10.8) | slope data -0.278+-0.071 law -0.490 (+3.0sig) -> EXCLUDED
+      canonical Wang23           chi2  2121.8/19 p 0.0e+00 | M*need 1.40e+11 (z +15.0) | slope data -0.356+-0.058 law -0.495 (+2.4sig) -> EXCLUDED
+      canonical Jiao23           chi2  4777.8/18 p 0.0e+00 | M*need 1.26e+11 (z +12.6) | slope data -0.319+-0.057 law -0.491 (+3.0sig) -> EXCLUDED
+      canonical Zhou23           chi2  3995.7/34 p 0.0e+00 | M*need 1.21e+11 (z +11.7) | slope data -0.186+-0.061 law -0.491 (+5.0sig) -> EXCLUDED
+      canonical SL23_DR3plus     chi2 42296.9/45 p 0.0e+00 | M*need 1.02e+11 (z +8.3) | slope data -0.271+-0.020 law -0.492 (+11.2sig) -> EXCLUDED  (REPORTED ONLY)
+      canonical Feng26_Cepheids  chi2  1412.0/12 p 3.7e-295 | M*need 1.23e+11 (z +12.1) | slope data -0.026+-0.067 law -0.432 (+6.0sig) -> EXCLUDED
+      alt       Ou24             chi2  3758.0/37 p 0.0e+00 | M*need 1.23e+11 (z +12.1) | slope data -0.325+-0.074 law -0.489 (+2.2sig) -> EXCLUDED
+      alt       Eilers19         chi2  3478.8/38 p 0.0e+00 | M*need 1.16e+11 (z +10.8) | slope data -0.278+-0.071 law -0.490 (+3.0sig) -> EXCLUDED
+      alt       Wang23           chi2  2121.8/19 p 0.0e+00 | M*need 1.40e+11 (z +15.0) | slope data -0.356+-0.058 law -0.495 (+2.4sig) -> EXCLUDED
+      alt       Jiao23           chi2  4777.8/18 p 0.0e+00 | M*need 1.26e+11 (z +12.6) | slope data -0.319+-0.057 law -0.491 (+3.0sig) -> EXCLUDED
+      alt       Zhou23           chi2  3995.7/34 p 0.0e+00 | M*need 1.21e+11 (z +11.7) | slope data -0.186+-0.061 law -0.491 (+5.0sig) -> EXCLUDED
+      alt       SL23_DR3plus     chi2 42296.9/45 p 0.0e+00 | M*need 1.02e+11 (z +8.3) | slope data -0.271+-0.020 law -0.492 (+11.2sig) -> EXCLUDED  (REPORTED ONLY)
+      alt       Feng26_Cepheids  chi2  1412.0/12 p 3.7e-295 | M*need 1.23e+11 (z +12.1) | slope data -0.026+-0.067 law -0.432 (+6.0sig) -> EXCLUDED
+  AQ_gamma0_2x canonical V20  123.7 | law slope Ou -0.489 Jiao -0.491 | primary Ou+Jiao D +0.169+-0.045 Z +3.74 NOT DIAGNOSTIC; rho0.5 Z +3.12; pairs +2.65..+5.62 | Cepheid Z +6.04
+  AQ_gamma0_2x alt       V20  123.7 | law slope Ou -0.489 Jiao -0.491 | primary Ou+Jiao D +0.169+-0.045 Z +3.74 NOT DIAGNOSTIC; rho0.5 Z +3.12; pairs +2.65..+5.62 | Cepheid Z +6.04
+      canonical Ou24             chi2  3758.0/37 p 0.0e+00 | M*need 1.23e+11 (z +12.1) | slope data -0.325+-0.074 law -0.489 (+2.2sig) -> EXCLUDED
+      canonical Eilers19         chi2  3478.8/38 p 0.0e+00 | M*need 1.16e+11 (z +10.8) | slope data -0.278+-0.071 law -0.490 (+3.0sig) -> EXCLUDED
+      canonical Wang23           chi2  2121.8/19 p 0.0e+00 | M*need 1.40e+11 (z +15.0) | slope data -0.356+-0.058 law -0.495 (+2.4sig) -> EXCLUDED
+      canonical Jiao23           chi2  4777.8/18 p 0.0e+00 | M*need 1.26e+11 (z +12.6) | slope data -0.319+-0.057 law -0.491 (+3.0sig) -> EXCLUDED
+      canonical Zhou23           chi2  3995.7/34 p 0.0e+00 | M*need 1.21e+11 (z +11.7) | slope data -0.186+-0.061 law -0.491 (+5.0sig) -> EXCLUDED
+      canonical SL23_DR3plus     chi2 42296.9/45 p 0.0e+00 | M*need 1.02e+11 (z +8.3) | slope data -0.271+-0.020 law -0.492 (+11.2sig) -> EXCLUDED  (REPORTED ONLY)
+      canonical Feng26_Cepheids  chi2  1412.0/12 p 3.7e-295 | M*need 1.23e+11 (z +12.1) | slope data -0.026+-0.067 law -0.432 (+6.0sig) -> EXCLUDED
+      alt       Ou24             chi2  3758.0/37 p 0.0e+00 | M*need 1.23e+11 (z +12.1) | slope data -0.325+-0.074 law -0.489 (+2.2sig) -> EXCLUDED
+      alt       Eilers19         chi2  3478.8/38 p 0.0e+00 | M*need 1.16e+11 (z +10.8) | slope data -0.278+-0.071 law -0.490 (+3.0sig) -> EXCLUDED
+      alt       Wang23           chi2  2121.8/19 p 0.0e+00 | M*need 1.40e+11 (z +15.0) | slope data -0.356+-0.058 law -0.495 (+2.4sig) -> EXCLUDED
+      alt       Jiao23           chi2  4777.8/18 p 0.0e+00 | M*need 1.26e+11 (z +12.6) | slope data -0.319+-0.057 law -0.491 (+3.0sig) -> EXCLUDED
+      alt       Zhou23           chi2  3995.7/34 p 0.0e+00 | M*need 1.21e+11 (z +11.7) | slope data -0.186+-0.061 law -0.491 (+5.0sig) -> EXCLUDED
+      alt       SL23_DR3plus     chi2 42296.9/45 p 0.0e+00 | M*need 1.02e+11 (z +8.3) | slope data -0.271+-0.020 law -0.492 (+11.2sig) -> EXCLUDED  (REPORTED ONLY)
+      alt       Feng26_Cepheids  chi2  1412.0/12 p 3.7e-295 | M*need 1.23e+11 (z +12.1) | slope data -0.026+-0.067 law -0.432 (+6.0sig) -> EXCLUDED
+  AQ_v3       canonical V20  123.7 | law slope Ou -0.489 Jiao -0.491 | primary Ou+Jiao D +0.169+-0.045 Z +3.74 NOT DIAGNOSTIC; rho0.5 Z +3.12; pairs +2.65..+5.62 | Cepheid Z +6.04
+  AQ_v3       alt       V20  123.7 | law slope Ou -0.489 Jiao -0.491 | primary Ou+Jiao D +0.169+-0.045 Z +3.74 NOT DIAGNOSTIC; rho0.5 Z +3.12; pairs +2.65..+5.62 | Cepheid Z +6.04
+      canonical Ou24             chi2  3758.0/37 p 0.0e+00 | M*need 1.23e+11 (z +12.1) | slope data -0.325+-0.074 law -0.489 (+2.2sig) -> EXCLUDED
+      canonical Eilers19         chi2  3478.8/38 p 0.0e+00 | M*need 1.16e+11 (z +10.8) | slope data -0.278+-0.071 law -0.490 (+3.0sig) -> EXCLUDED
+      canonical Wang23           chi2  2121.8/19 p 0.0e+00 | M*need 1.40e+11 (z +15.0) | slope data -0.356+-0.058 law -0.495 (+2.4sig) -> EXCLUDED
+      canonical Jiao23           chi2  4777.8/18 p 0.0e+00 | M*need 1.26e+11 (z +12.6) | slope data -0.319+-0.057 law -0.491 (+3.0sig) -> EXCLUDED
+      canonical Zhou23           chi2  3995.7/34 p 0.0e+00 | M*need 1.21e+11 (z +11.7) | slope data -0.186+-0.061 law -0.491 (+5.0sig) -> EXCLUDED
+      canonical SL23_DR3plus     chi2 42296.9/45 p 0.0e+00 | M*need 1.02e+11 (z +8.3) | slope data -0.271+-0.020 law -0.492 (+11.2sig) -> EXCLUDED  (REPORTED ONLY)
+      canonical Feng26_Cepheids  chi2  1412.0/12 p 3.7e-295 | M*need 1.23e+11 (z +12.1) | slope data -0.026+-0.067 law -0.432 (+6.0sig) -> EXCLUDED
+      alt       Ou24             chi2  3758.0/37 p 0.0e+00 | M*need 1.23e+11 (z +12.1) | slope data -0.325+-0.074 law -0.489 (+2.2sig) -> EXCLUDED
+      alt       Eilers19         chi2  3478.8/38 p 0.0e+00 | M*need 1.16e+11 (z +10.8) | slope data -0.278+-0.071 law -0.490 (+3.0sig) -> EXCLUDED
+      alt       Wang23           chi2  2121.8/19 p 0.0e+00 | M*need 1.40e+11 (z +15.0) | slope data -0.356+-0.058 law -0.495 (+2.4sig) -> EXCLUDED
+      alt       Jiao23           chi2  4777.8/18 p 0.0e+00 | M*need 1.26e+11 (z +12.6) | slope data -0.319+-0.057 law -0.491 (+3.0sig) -> EXCLUDED
+      alt       Zhou23           chi2  3995.7/34 p 0.0e+00 | M*need 1.21e+11 (z +11.7) | slope data -0.186+-0.061 law -0.491 (+5.0sig) -> EXCLUDED
+      alt       SL23_DR3plus     chi2 42296.9/45 p 0.0e+00 | M*need 1.02e+11 (z +8.3) | slope data -0.271+-0.020 law -0.492 (+11.2sig) -> EXCLUDED  (REPORTED ONLY)
+      alt       Feng26_Cepheids  chi2  1412.0/12 p 3.7e-295 | M*need 1.23e+11 (z +12.1) | slope data -0.026+-0.067 law -0.432 (+6.0sig) -> EXCLUDED
+  AQ_v3_mean  canonical V20  123.7 | law slope Ou -0.489 Jiao -0.491 | primary Ou+Jiao D +0.169+-0.045 Z +3.74 NOT DIAGNOSTIC; rho0.5 Z +3.12; pairs +2.65..+5.62 | Cepheid Z +6.04
+  AQ_v3_mean  alt       V20  123.7 | law slope Ou -0.489 Jiao -0.491 | primary Ou+Jiao D +0.169+-0.045 Z +3.74 NOT DIAGNOSTIC; rho0.5 Z +3.12; pairs +2.65..+5.62 | Cepheid Z +6.04
+      canonical Ou24             chi2  3758.0/37 p 0.0e+00 | M*need 1.23e+11 (z +12.1) | slope data -0.325+-0.074 law -0.489 (+2.2sig) -> EXCLUDED
+      canonical Eilers19         chi2  3478.8/38 p 0.0e+00 | M*need 1.16e+11 (z +10.8) | slope data -0.278+-0.071 law -0.490 (+3.0sig) -> EXCLUDED
+      canonical Wang23           chi2  2121.8/19 p 0.0e+00 | M*need 1.40e+11 (z +15.0) | slope data -0.356+-0.058 law -0.495 (+2.4sig) -> EXCLUDED
+      canonical Jiao23           chi2  4777.8/18 p 0.0e+00 | M*need 1.26e+11 (z +12.6) | slope data -0.319+-0.057 law -0.491 (+3.0sig) -> EXCLUDED
+      canonical Zhou23           chi2  3995.7/34 p 0.0e+00 | M*need 1.21e+11 (z +11.7) | slope data -0.186+-0.061 law -0.491 (+5.0sig) -> EXCLUDED
+      canonical SL23_DR3plus     chi2 42296.9/45 p 0.0e+00 | M*need 1.02e+11 (z +8.3) | slope data -0.271+-0.020 law -0.492 (+11.2sig) -> EXCLUDED  (REPORTED ONLY)
+      canonical Feng26_Cepheids  chi2  1412.0/12 p 3.7e-295 | M*need 1.23e+11 (z +12.1) | slope data -0.026+-0.067 law -0.432 (+6.0sig) -> EXCLUDED
+      alt       Ou24             chi2  3758.0/37 p 0.0e+00 | M*need 1.23e+11 (z +12.1) | slope data -0.325+-0.074 law -0.489 (+2.2sig) -> EXCLUDED
+      alt       Eilers19         chi2  3478.8/38 p 0.0e+00 | M*need 1.16e+11 (z +10.8) | slope data -0.278+-0.071 law -0.490 (+3.0sig) -> EXCLUDED
+      alt       Wang23           chi2  2121.8/19 p 0.0e+00 | M*need 1.40e+11 (z +15.0) | slope data -0.356+-0.058 law -0.495 (+2.4sig) -> EXCLUDED
+      alt       Jiao23           chi2  4777.8/18 p 0.0e+00 | M*need 1.26e+11 (z +12.6) | slope data -0.319+-0.057 law -0.491 (+3.0sig) -> EXCLUDED
+      alt       Zhou23           chi2  3995.7/34 p 0.0e+00 | M*need 1.21e+11 (z +11.7) | slope data -0.186+-0.061 law -0.491 (+5.0sig) -> EXCLUDED
+      alt       SL23_DR3plus     chi2 42296.9/45 p 0.0e+00 | M*need 1.02e+11 (z +8.3) | slope data -0.271+-0.020 law -0.492 (+11.2sig) -> EXCLUDED  (REPORTED ONLY)
+      alt       Feng26_Cepheids  chi2  1412.0/12 p 3.7e-295 | M*need 1.23e+11 (z +12.1) | slope data -0.026+-0.067 law -0.432 (+6.0sig) -> EXCLUDED
+  AQ_v3_2x    canonical V20  123.7 | law slope Ou -0.489 Jiao -0.491 | primary Ou+Jiao D +0.169+-0.045 Z +3.74 NOT DIAGNOSTIC; rho0.5 Z +3.12; pairs +2.65..+5.62 | Cepheid Z +6.04
+  AQ_v3_2x    alt       V20  123.7 | law slope Ou -0.489 Jiao -0.491 | primary Ou+Jiao D +0.169+-0.045 Z +3.74 NOT DIAGNOSTIC; rho0.5 Z +3.12; pairs +2.65..+5.62 | Cepheid Z +6.04
+      canonical Ou24             chi2  3758.0/37 p 0.0e+00 | M*need 1.23e+11 (z +12.1) | slope data -0.325+-0.074 law -0.489 (+2.2sig) -> EXCLUDED
+      canonical Eilers19         chi2  3478.8/38 p 0.0e+00 | M*need 1.16e+11 (z +10.8) | slope data -0.278+-0.071 law -0.490 (+3.0sig) -> EXCLUDED
+      canonical Wang23           chi2  2121.8/19 p 0.0e+00 | M*need 1.40e+11 (z +15.0) | slope data -0.356+-0.058 law -0.495 (+2.4sig) -> EXCLUDED
+      canonical Jiao23           chi2  4777.8/18 p 0.0e+00 | M*need 1.26e+11 (z +12.6) | slope data -0.319+-0.057 law -0.491 (+3.0sig) -> EXCLUDED
+      canonical Zhou23           chi2  3995.7/34 p 0.0e+00 | M*need 1.21e+11 (z +11.7) | slope data -0.186+-0.061 law -0.491 (+5.0sig) -> EXCLUDED
+      canonical SL23_DR3plus     chi2 42296.9/45 p 0.0e+00 | M*need 1.02e+11 (z +8.3) | slope data -0.271+-0.020 law -0.492 (+11.2sig) -> EXCLUDED  (REPORTED ONLY)
+      canonical Feng26_Cepheids  chi2  1412.0/12 p 3.7e-295 | M*need 1.23e+11 (z +12.1) | slope data -0.026+-0.067 law -0.432 (+6.0sig) -> EXCLUDED
+      alt       Ou24             chi2  3758.0/37 p 0.0e+00 | M*need 1.23e+11 (z +12.1) | slope data -0.325+-0.074 law -0.489 (+2.2sig) -> EXCLUDED
+      alt       Eilers19         chi2  3478.8/38 p 0.0e+00 | M*need 1.16e+11 (z +10.8) | slope data -0.278+-0.071 law -0.490 (+3.0sig) -> EXCLUDED
+      alt       Wang23           chi2  2121.8/19 p 0.0e+00 | M*need 1.40e+11 (z +15.0) | slope data -0.356+-0.058 law -0.495 (+2.4sig) -> EXCLUDED
+      alt       Jiao23           chi2  4777.8/18 p 0.0e+00 | M*need 1.26e+11 (z +12.6) | slope data -0.319+-0.057 law -0.491 (+3.0sig) -> EXCLUDED
+      alt       Zhou23           chi2  3995.7/34 p 0.0e+00 | M*need 1.21e+11 (z +11.7) | slope data -0.186+-0.061 law -0.491 (+5.0sig) -> EXCLUDED
+      alt       SL23_DR3plus     chi2 42296.9/45 p 0.0e+00 | M*need 1.02e+11 (z +8.3) | slope data -0.271+-0.020 law -0.492 (+11.2sig) -> EXCLUDED  (REPORTED ONLY)
+      alt       Feng26_Cepheids  chi2  1412.0/12 p 3.7e-295 | M*need 1.23e+11 (z +12.1) | slope data -0.026+-0.067 law -0.432 (+6.0sig) -> EXCLUDED
+
+--- step 0 (OLD, read from cfg532b_results.json)
+  RMv   canonical law slope Ou -0.160 | primary Z -3.63 SHAPE EXCLUDED; rho0.5 Z -3.00
+  RMphi canonical law slope Ou -0.119 | primary Z -4.53 SHAPE EXCLUDED; rho0.5 Z -3.75
+  RMv   alt       law slope Ou -0.148 | primary Z -3.90 SHAPE EXCLUDED; rho0.5 Z -3.23
+  RMphi alt       law slope Ou -0.107 | primary Z -4.79 SHAPE EXCLUDED; rho0.5 Z -3.96
+A7 FAIL v3 V(20 kpc) 123.7 / 123.7 km/s (>= 170)
+
+--- step 5 screening: l_g = L*^2/(2 r_M)
+  canonical r_M 9.95 kpc; l_g = 0.0237 pc (L* 21.7), 0.0264 pc (L* 22.9), 0.0290 pc (L* 24.0), 0.4072 pc (L* 90.0) -> unscreened at every radius used (>= 5 kpc)
+  alt       r_M 9.05 kpc; l_g = 0.0260 pc (L* 21.7), 0.0290 pc (L* 22.9), 0.0318 pc (L* 24.0), 0.4477 pc (L* 90.0) -> unscreened at every radius used (>= 5 kpc)
+
+--- step 6 mu_K^2 bound (reported only; R6 owns the term): delta rho = mu_K^2 |psi_int| / (4 pi G), EFE zero point
+  canonical mu_K 0.00998/kpc: delta M(<15, 20, 27.5) 6.74e+08 1.24e+09 2.41e+09 Msun; dV2/V2 +0.013 +0.027 +0.065; slope shift +0.041
+  alt       mu_K 0.00998/kpc: delta M(<15, 20, 27.5) 6.74e+08 1.24e+09 2.41e+09 Msun; dV2/V2 +0.014 +0.029 +0.069; slope shift +0.044
+
+--- A4(iv): grid refinement at s = 1 (isolated and EFE)
+  fine grid: presolved 0 in child processes (child peak RSS 0 MB)
+A4iv PASS main vs fine grid: V(15-27.5) max |d| 0.0006 (tol 0.003), slope |d| 0.0001 (tol 0.003); fine grid 299x499
+
+--- A4 (i)-(iii) solver controls (child processes; true mu)
+A4i PASS Plummer isolated AQUAL vs nu1 algebraic max |d| 0.0018 on 0.3-30 b (tol 0.003); grid 258x515
+A4iii PASS EFE along z (y_e 0.1): equatorial g_R vs E2 aqual_axi point mass at r = 0.5, 1, 2, 4 r_M max |d| 0.0008 (tol 0.01)
+A4ii PASS Kuzmin (A1 form): in-plane vs nu1(|gN(0+)|) gN_R max |d| 0.0010, off-plane |g| at z = 0.5a max |d| 0.0005 (tol 0.005); reported: in-plane AQUAL / in-plane algebraic at R = 0.3a -0.1170; child peak RSS 740 MB
+
+--- tile-25 reading for v3 (primary: AQ_v3, Ou+Jiao, rho 0)
+  canonical v3: NOT DIAGNOSTIC (Z +3.74; ROBUST); alternatives {'rho0.5': 'NOT DIAGNOSTIC', 'e_N 0 (isolated)': 'NOT DIAGNOSTIC', 'e_N 2 x h81': 'NOT DIAGNOSTIC', 'azimuthal mean': 'NOT DIAGNOSTIC', 'gamma 0': 'NOT DIAGNOSTIC'}; 3-D cells (reported) {'AQ_v3': 'NOT DIAGNOSTIC', 'AQ_v3_mean': 'NOT DIAGNOSTIC', 'AQ_v3_2x': 'NOT DIAGNOSTIC'}
+  alt       v3: NOT DIAGNOSTIC (Z +3.74; ROBUST); alternatives {'rho0.5': 'NOT DIAGNOSTIC', 'e_N 0 (isolated)': 'NOT DIAGNOSTIC', 'e_N 2 x h81': 'NOT DIAGNOSTIC', 'azimuthal mean': 'NOT DIAGNOSTIC', 'gamma 0': 'NOT DIAGNOSTIC'}; 3-D cells (reported) {'AQ_v3': 'NOT DIAGNOSTIC', 'AQ_v3_mean': 'NOT DIAGNOSTIC', 'AQ_v3_2x': 'NOT DIAGNOSTIC'}
+
+--- detection power (CFG532b's M3, reported): Keplerian tail injected beyond 15 kpc into every RGB/LIM curve, v3 cell
+  canonical primary Z -0.21 -> not detected
+  alt       primary Z -0.21 -> not detected
+
+S3_PARTA COMPLETE: 13/14 checks PASS.  runtime 16.3 s, peak RSS 322.1 MB
