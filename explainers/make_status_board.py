@@ -198,7 +198,7 @@ TILES = [
     # H4 (23 October night): COND -> FAIL for v3; X3 (v3s adopted): FAIL -> COND
     T(0, "Health: ghosts, gradients", "COND",
       "v3s: switched stiffness well-posed where ρ_τ < 0 (X3: 1D nonlinear c² ≥ 0, slab converges; Lean); "
-      "if dust ≥ −D·P; zero-dust edge; D·P < 0 side strongly coupled; 2D/3D open (v3: H4 unbounded)",
+      "if dust ≥ −D·P; zero-dust edge; soft side weakly coupled (≥ 57 m); 2D/3D open (v3: H4 unbounded)",
       ["C5", "H4", "X3"], "COND", new=True),
     # X3 (v3s adopted) + H4 section 5: FAIL -> COND (the leaf problem was never ill-posed; H4's FAIL belongs on Health)
     T(0, "Leaf problem well-posed", "COND", "C8's (P, lapse) leaf problem well-posed (H4 §5); v3s: switched leaf "

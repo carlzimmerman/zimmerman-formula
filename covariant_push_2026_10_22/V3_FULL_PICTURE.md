@@ -187,7 +187,7 @@ switch removed, fails 6 of 12; coordinator rerun: main run identical; the D10 E_
   1. The dust must be ≥ −D·P inside stiff regions, which holds in the μ_K range S4 allows.
   2. At zero dust the interface is a knife edge, so numerics must be sign-consistent.
   3. H4's bounded growth remains: 0.006–0.20 e-folds median, ≤ 4.2 at the deepest cells.
-  4. The D·P < 0 side is strongly coupled (c_π = 0), as in Blanchet–Skordis without stiffness.
+  4. The D·P < 0 side's strong coupling: RESOLVED BENIGN (review `reviews/v3s_soft_side_strong_coupling_2026_10_23/`, d27e01f42e, 5/5): the soft-side khronon is a dispersionless fluid, ω² = Kρ_τ(M − 1); 'Λ = 0' came from putting c_π = 0 (the k → ∞ limit) into the relativistic scaling. With c_π(k) = ω/k, the strong-coupling length across all 320 H4 region values is 57 m–54 km, so the soft-side EFT holds on astrophysical scales. Open: classical nonlinearity of real khronon flows, ε_cl = k|v|/ω, possibly O(1) in Mpc bulk flows.
 - **Not shown:** 2D/3D time evolution; a well-posedness proof for the moving interface.
 
 So the saddle failure has a zero-constant cure. **v3 with the switched stiffness ("v3s")** keeps every v3 pass and removes

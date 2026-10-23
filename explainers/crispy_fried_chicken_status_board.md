@@ -30,7 +30,7 @@ The ½ is **fitted**, not derived; the current measurement is κ = 0.417 ± 0.09
   1. the dust density must be ≥ −D·P inside stiff regions, which holds in the μ_K range S4 allows;
   2. at zero dust the interface is a knife edge, so numerics must be sign-consistent;
   3. H4's bounded growth remains (≤ 0.20 e-folds median);
-  4. the D·P < 0 side is strongly coupled, as in Blanchet–Skordis without stiffness;
+  4. the D·P < 0 side's strong coupling: RESOLVED BENIGN (review `reviews/v3s_soft_side_strong_coupling_2026_10_23/`, d27e01f42e, 5/5): the soft-side khronon is a dispersionless fluid, ω² = Kρ_τ(M − 1); 'Λ = 0' came from putting c_π = 0 (the k → ∞ limit) into the relativistic scaling. With c_π(k) = ω/k, the strong-coupling length across all 320 H4 region values is 57 m–54 km, so the soft-side EFT holds on astrophysical scales. Open: classical nonlinearity of real khronon flows, ε_cl = k|v|/ω, possibly O(1) in Mpc bulk flows;
   5. 2D/3D evolution and a proof for a moving interface are open.
 
 **Recoloured with X3 as evidence.** The generator's lane list gains exactly X3, and nothing turned green.

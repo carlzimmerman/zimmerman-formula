@@ -292,3 +292,5 @@ any check. No downloads.
   `OMP_NUM_THREADS=1 nice -n 15 python3 rebuild_2026_10_22/X3_switched_stiffness/x3_switched_stiffness.py [--d10 B]`.
   - It is deterministic: it re-executes itself with PYTHONHASHSEED = 0.
   - Every slab level and every solver part runs in its own spawned process.
+
+**Qualifier 4 resolved (fix-forward, 2026-10-23).** RESOLVED BENIGN (review `reviews/v3s_soft_side_strong_coupling_2026_10_23/`, d27e01f42e, 5/5): the soft-side khronon is a dispersionless fluid, ω² = Kρ_τ(M − 1); 'Λ = 0' came from putting c_π = 0 (the k → ∞ limit) into the relativistic scaling. With c_π(k) = ω/k, the strong-coupling length across all 320 H4 region values is 57 m–54 km, so the soft-side EFT holds on astrophysical scales. Open: classical nonlinearity of real khronon flows, ε_cl = k|v|/ω, possibly O(1) in Mpc bulk flows.
