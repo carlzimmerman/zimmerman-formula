@@ -158,8 +158,38 @@ LEAN:
   - `switched_agrees_where_screened`: identical to v3 wherever D·P ≥ 0, which covers every screened region;
   - `switched_uniform_bound`: −ω² ≤ 4πG|ρ_τ||M − 1| for all k, everywhere.
 
-These are pointwise statements at leading WKB order. Lane X3 is testing the rest: the D·P = 0 interface, the C¹
-Lagrangian, convergence under resolution, and whether D·P ≥ 0 wherever C6 and D10 rely on screening. **PENDING.**
+**The constraint algebra is not the problem** (Codex review, `reviews/v3_constraint_algebra_2026_10_23/`, d2d14f8326):
+- v3's algebra closes uniformly with 3 DOF: no tertiary constraint, 8 second-class constraints, rank 4 on every background
+  tested.
+- In H4's ρ_τ < 0 regions γ_L|ρ| ≤ 2.9e-12, so the rank does not change there.
+- The ill-posedness is therefore the scalar's own dynamics, and a cure has to change those dynamics. The switched stiffness
+  does exactly that.
+
+These are pointwise statements at leading WKB order. **Lane X3 tested the rest. Frozen verdict: WELL-POSED + STATICS
+UNCHANGED** (`rebuild_2026_10_22/X3_switched_stiffness`, 8aeba82a87 / 31febd3b70; 13/13 checks; the MUTATE run, with the
+switch removed, fails 6 of 12; coordinator rerun: main run identical; the D10 E_lo bracket regenerated from scratch matches 9,384 numbers to 1e-9).
+- **Nonlinear, 1D.** The khronon pair is exactly a barotropic Euler fluid with c² = γ_L(D·P + ρ_d)Θ(D·P). That is ≥ 0 for
+  every state when ρ_d ≥ 0; v3 as written has c² = −γ_L s_n. Any smoothing of the switch gives c² ≈ −0.058 εγ_L < 0, so the
+  switch must be exact: it adds no new scale. SYMPY.
+- **The interface.** The leaf functional stays convex ((s₊)² is C¹ and convex), so the leaf problem stays uniquely solvable.
+  It becomes a free-boundary (obstacle-type) problem with Φ ∈ C¹, P continuous, and s₊ = ∂ₙs₊ = 0 on the stiff side. If v3's
+  solution has D·P ≥ 0 everywhere, it is the switched solution.
+- **Slab without WKB.** The growth rate converges under resolution doubling (finest ratio 1.0000; Γ → 1.22474 against the
+  localised 1.224745), where v3 diverges (2.03). The rigorous bound held at every level.
+- **Statics unchanged:**
+  - Cassini: the Galactic phantom keeps D·P > 0 within 1 kpc of the Sun, with a margin ≥ 1.8e4.
+  - Outer globulars: their external-field lobes do have D·P < 0 (180–1555 pc). The full switched re-solve (11,250 solves,
+    0 unconverged) moves the L★ floor to 21.682 / 22.849 pc (+0.006 %).
+  - P3: all 60 rows have D·P > 0.
+- **Qualifiers:**
+  1. The dust must be ≥ −D·P inside stiff regions, which holds in the μ_K range S4 allows.
+  2. At zero dust the interface is a knife edge, so numerics must be sign-consistent.
+  3. H4's bounded growth remains: 0.006–0.20 e-folds median, ≤ 4.2 at the deepest cells.
+  4. The D·P < 0 side is strongly coupled (c_π = 0), as in Blanchet–Skordis without stiffness.
+- **Not shown:** 2D/3D time evolution; a well-posedness proof for the moving interface.
+
+So the saddle failure has a zero-constant cure. **v3 with the switched stiffness ("v3s")** keeps every v3 pass and removes
+H4's ill-posedness.
 
 ### 4.8 The Milky Way disc
 
@@ -173,8 +203,10 @@ models; S3, X5), and this holds for the whole μ-law family. Joint radial-plus-v
     v3 = [ law field Ξ, certified a₀-line ]  +  [ screening γ_L ]  +  [ ONE dust = the same field Ξ, scale μ_K ]
 
 1. **The law works where it was built to work:** isolated, quasi-static systems, and the Solar System once screened.
-2. **Screening → saddles.** γ_L makes negative-ρ_τ regions Hadamard ill-posed. The switched form removes this pointwise at
-   no cost in constants; X3 decides whether it survives the interface.
+2. **Screening → saddles: cured.** γ_L makes negative-ρ_τ regions Hadamard ill-posed. The switched form
+   −(γ_L/2)[max(D·P, 0)]² removes this at no cost in constants. It is certified pointwise in Lean, and lane X3 checked it
+   nonlinearly in 1D, in a slab without WKB, at the interface (still uniquely solvable) and in every screened static result
+   (unchanged). The qualifiers are in §4.7.
 3. **The single dust → everything else.** Because the dust's coupling is fixed by kinematics (α ≡ 1):
    - it has no weight in hosts (hosted dwarfs fail, at odds with T3's prediction);
    - it is held only below μ_K (growth fails at any μ_K that galaxies allow);
@@ -200,7 +232,7 @@ No such sector is in the record, and no rule-compatible framework in the literat
 
 | item | what decides it | status |
 |---|---|---|
-| Switched stiffness at the interface and in the statics | X3 (`rebuild_2026_10_22/X3_switched_stiffness`) | running |
+| Switched stiffness at the interface and in the statics | X3 (`rebuild_2026_10_22/X3_switched_stiffness`) | **WELL-POSED + STATICS UNCHANGED** (qualifiers in §4.7); 2D/3D evolution and the moving-interface proof remain open |
 | Nonlinear growth (v3's one dynamical escape) | L1 384³ rung, then the 512³ production | 256³: does not restore growth (indicative); 384³ running |
 | Cluster light/heavy split | per-tercile physics; a selector the theory lacks (CFG939) | data result (X2); no mechanism |
 | Wide binaries, MW in Gaia DR4 | sealed predictions (C6; S3 `SEALED_V3_MW_DR4.json`) | data 2026-12-02 |
