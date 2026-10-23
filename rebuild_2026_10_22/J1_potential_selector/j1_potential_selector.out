@@ -1,0 +1,59 @@
+=== PART A: where does Phi itself enter the static action? (sympy) ===
+  (a) Y(psi+C)-Y(psi) = 0;  clock P.grad ln N shift residual = 0
+  (b) L_J(psi+C) - e^(C/c^2) L_J(psi) = 0   (J sector: Phi enters only through sqrt(-g)=N, a 1+O(Phi/c^2) factor)
+  (c) d2/dC2 L_K at C=0 = 4*mu**2*cosh(psi(x, y, z)/c**2)/c**4 (nonzero: K(Q) is the only non-shift-covariant term)
+      weak-field dL_K/dphi = 4*mu**2*phi/c**4  -> field-equation term linear in phi with coefficient ~ mu^2 (H2's dust, free zero point)
+K6 PASS (a) 0,0 (b) 0 (c) d2K!=0, EL-4mu^2phi/c^4=0 residuals 0, d2K != 0
+K1 PASS F1 exec checks [('K6', True), ('K4', True), ('K5', True), ('K1', True), ('K2', True)] F1 K1 K2 K4 K5 K6 all PASS
+K5 PASS max rel 5.21e-07 <= 1e-3 at 0.05-10 Mpc
+
+=== PART B: clusters (F1 PRIMARY) ===
+K2 PASS max rel 0.0e+00 <= 1e-6 vs F1 PRIMARY (both h, both footings)
+median |Phi_N|/c^2 of the cluster baryons at r = 0.1/0.5/1/2 Mpc (h 0.672): 3.66e-06 2.91e-06 2.29e-06 1.57e-06
+CAL canonical h0672: phi_* = 1.575e-06  -> MID 1.000+-0.068  OUTER 0.621+-0.057  INNER 1.300+-0.164  profile A_k(3-7) [1.292, 1.081, 0.863, 0.598, 0.635] chi2 36.0 (law alone 37.5)
+    reported: A1 boost clipped at 1 -> phi_* = 1.245e-06
+CAL canonical h0686: phi_* = 1.412e-06  -> MID 1.000+-0.064  OUTER 0.606+-0.051  INNER 1.226+-0.172  profile A_k(3-7) [1.267, 1.067, 0.879, 0.559, 0.634] chi2 50.4 (law alone 46.9)
+    reported: A1 boost clipped at 1 -> phi_* = 1.125e-06
+CAL alt       h0672: phi_* = 2.130e-06  -> MID 1.000+-0.069  OUTER 0.614+-0.057  INNER 1.312+-0.165  profile A_k(3-7) [1.298, 1.083, 0.861, 0.594, 0.626] chi2 37.8 (law alone 29.9)
+    reported: A1 boost clipped at 1 -> phi_* = 1.645e-06
+CAL alt       h0686: phi_* = 1.893e-06  -> MID 1.000+-0.064  OUTER 0.600+-0.051  INNER 1.237+-0.173  profile A_k(3-7) [1.272, 1.069, 0.877, 0.556, 0.625] chi2 52.8 (law alone 38.2)
+    reported: A1 boost clipped at 1 -> phi_* = 1.477e-06
+
+=== (a) SPARC RAR ===
+K3 PASS n 2696 vs CFG828 2696 equal
+SPARC |Phi_N|/c^2 at the data points: median 1.45e-07, 90% 9.63e-07, max 3.04e-06
+canonical h0672: dchi2 (floor 0.10) -155.9 [small -12.7, large -143.2]; floor 0.05: -611.7; median predicted shift +0.014 dex (large galaxies +0.019); law chi2 4203/2696; median residual law +0.026 -> +0.009
+canonical h0686: dchi2 (floor 0.10) -159.3 [small -14.2, large -145.2]; floor 0.05: -632.1; median predicted shift +0.015 dex (large galaxies +0.021); law chi2 4203/2696; median residual law +0.026 -> +0.007
+alt       h0672: dchi2 (floor 0.10) +8.4 [small -4.8, large +13.1]; floor 0.05: -43.8; median predicted shift +0.011 dex (large galaxies +0.015); law chi2 3975/2696; median residual law -0.003 -> -0.016
+alt       h0686: dchi2 (floor 0.10) +19.1 [small -5.4, large +24.5]; floor 0.05: -15.9; median predicted shift +0.012 dex (large galaxies +0.017); law chi2 3975/2696; median residual law -0.003 -> -0.018
+
+=== (b) dwarf satellites (E3) ===
+|Phi|/c^2 at the Sun: MW Hernquist 2.58e-07 (+ Sun at 1 AU -> 2.68e-07); point-mass MW 3.54e-07
+canonical: N 45; host |Phi|/c^2 median 4.07e-08 max 1.06e-07 (Sun 2.58e-07); shallower than the Sun 100%; no distance_gc 0; base residual +0.887+-0.126 (E3 +0.886)
+    [A1] no a0 multiplier <= 1e8 closes 29/45 satellites (screened B_scr saturates: median log B(1e8 a0)/B(a0) = +0.247 dex); reachable ones need epsilon median 4.4; a monotone selector then gives the Sun's orbit >= that: MW V(R0) law 174 km/s x 1.30
+    h0672: phi_* 1.57e-06: epsilon median 1.0258; predicted shift +0.0027 dex; residual +0.889+-0.121 -> FAIL
+    h0686: phi_* 1.41e-06: epsilon median 1.0288; predicted shift +0.0030 dex; residual +0.885+-0.123 -> FAIL
+alt      : N 46; host |Phi|/c^2 median 4.06e-08 max 1.06e-07 (Sun 2.58e-07); shallower than the Sun 100%; no distance_gc 0; base residual +0.847+-0.128 (E3 +0.846)
+    [A1] no a0 multiplier <= 1e8 closes 29/46 satellites (screened B_scr saturates: median log B(1e8 a0)/B(a0) = +0.239 dex); reachable ones need epsilon median 2.5; a monotone selector then gives the Sun's orbit >= that: MW V(R0) law 179 km/s x 1.17
+    h0672: phi_* 2.13e-06: epsilon median 1.0191; predicted shift +0.0020 dex; residual +0.844+-0.126 -> FAIL
+    h0686: phi_* 1.89e-06: epsilon median 1.0215; predicted shift +0.0022 dex; residual +0.840+-0.129 -> FAIL
+K4 PASS max |base - E3| 0.001 <= 0.03 dex
+
+=== (c) isolated field dwarfs (LVD) and tidal dwarfs (Lelli+15) ===
+canonical h0672: 13 LVD field dwarfs |Phi|/c^2 median 1.1e-08: shift median +0.0015, max 0.0022 dex; 6 TDGs |Phi|/c^2 <= 1.0e-07: shift max 0.0125 dex -> PASS
+canonical h0686: 13 LVD field dwarfs |Phi|/c^2 median 1.1e-08: shift median +0.0016, max 0.0025 dex; 6 TDGs |Phi|/c^2 <= 1.0e-07: shift max 0.0139 dex -> PASS
+    context (not graded): TDG V_obs/V_law(isolated) = [0.63, 0.5, 0.49, 0.37, 0.36, 0.42] (canonical)
+alt       h0672: 13 LVD field dwarfs |Phi|/c^2 median 1.1e-08: shift median +0.0011, max 0.0017 dex; 6 TDGs |Phi|/c^2 <= 1.0e-07: shift max 0.0094 dex -> PASS
+alt       h0686: 13 LVD field dwarfs |Phi|/c^2 median 1.1e-08: shift median +0.0012, max 0.0019 dex; 6 TDGs |Phi|/c^2 <= 1.0e-07: shift max 0.0106 dex -> PASS
+    context (not graded): TDG V_obs/V_law(isolated) = [0.6, 0.48, 0.47, 0.35, 0.34, 0.4] (alt)
+
+=== (d) Solar System, (e) wide binaries ===
+canonical h0672: eps_sun 1.1702; Mars 0.202 of bound; Q2 4.9e-08 of Park -> (d) PASS; WB gamma_v-1 1.1e-05 -> (e) PASS
+canonical h0686: eps_sun 1.1899; Mars 0.206 of bound; Q2 5.1e-08 of Park -> (d) PASS; WB gamma_v-1 1.1e-05 -> (e) PASS
+alt       h0672: eps_sun 1.1259; Mars 0.195 of bound; Q2 4.6e-08 of Park -> (d) PASS; WB gamma_v-1 1.0e-05 -> (e) PASS
+alt       h0686: eps_sun 1.1416; Mars 0.198 of bound; Q2 4.7e-08 of Park -> (d) PASS; WB gamma_v-1 1.1e-05 -> (e) PASS
+
+=== VERDICT (frozen rule) ===
+canonical: FAILS  CAL:PASS O1:FAIL a:PASS b:FAIL c:PASS d:PASS e:PASS
+alt: FAILS  CAL:PASS O1:FAIL a:FAIL b:FAIL c:PASS d:PASS e:PASS
+J1_POTENTIAL_SELECTOR COMPLETE: 6/6 checks PASS.
