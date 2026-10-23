@@ -1,0 +1,158 @@
+==============================================================================================================
+V1_density_screen -- one-constant symmetron-type density screen in place of gamma_L / L*
+==============================================================================================================
+
+[Part A] sympy: the screen's equations
+A1 PASS 0/0/0/0 all 0 :: uniform s: mu_S = 1 - s/(1+x); s=1 -> x/(1+x); s=0 -> 1; on-shell P-sector L_P0 = (a0^2/K)(x - ln(1+x))
+A2 PASS 0/0/0 all 0 :: psi EL / v^2 = lap psi - mu^2 psi(psi^2-1) - (rho c^2/M^2) psi + (2/v^2) psi L_P0; v-free at L_P0 = 0; uniform psi^2 = 1 - rho/rho_*
+A3 PASS -psi*(psi - psi_a)*(psi + psi_a); 0 psi(psi_a-psi)(psi_a+psi) >= 0; 0 :: exterior u = psi_a - psi subharmonic -> u <= u(R) R/r; then 1 - s/s_a <= 2R/r - R^2/r^2 <= 2R/r
+A4 PASS [0]; 0; lim k->oo omega^2 = K*rho_tau*(M - S)/S [0]; 0; K rho_tau (M - S)/S (finite) :: c=0: omega^2 = rho_tau (k^2/chi_S - K), chi_S = S k^2/(K M) + mu_K^2/K; S=1 is H4's gamma_L=0 relation; UV limit finite for S>0
+   coupled det (c != 0) is a polynomial of degree 2 in omega^2
+
+[Part B] the screen's regimes: own 1D symmetron BVP (lengths in the body radius R = 1; m = R/lambda_C = 0.01)
+   s_a 0.3, rho R^2/M^2     0.1: max r u/(psi_a R) 0.031800; charge fraction q 0.9623; psi(R)/psi_a 0.9682 (res 1.0e-16)
+   s_a 0.3, rho R^2/M^2      10: max r u/(psi_a R) 0.683322; charge fraction q 0.2070; psi(R)/psi_a 0.3167 (res 6.5e-14)
+   s_a 0.3, rho R^2/M^2    1000: max r u/(psi_a R) 0.968154; charge fraction q 0.0029; psi(R)/psi_a 0.0318 (res 2.5e-13)
+   s_a 0.9, rho R^2/M^2     0.1: max r u/(psi_a R) 0.031645; charge fraction q 0.9625; psi(R)/psi_a 0.9684 (res 2.4e-16)
+   s_a 0.9, rho R^2/M^2      10: max r u/(psi_a R) 0.682165; charge fraction q 0.2083; psi(R)/psi_a 0.3178 (res 8.7e-13)
+   s_a 0.9, rho R^2/M^2    1000: max r u/(psi_a R) 0.967992; charge fraction q 0.0030; psi(R)/psi_a 0.0320 (res 9.8e-17)
+B1 PASS max(u - psi_a R/r) = -7.22e-05 <= 1e-6 :: exterior bound u(r) <= psi_a R/r (linear and thin-shell bodies)
+B2 PASS q = 0.0030 at rho R^2/M^2 = 1e3 < 0.1 :: thin-shell body's exterior psi-charge is a small fraction of its mass
+
+[Part C] the one-constant fit to the outer globulars: D10's data, likelihood tables and statistic; parameter S_GC
+   [canonical] solved (3645 solves, worst scaled residual 1.0e-10, 205 s)
+   [alt] solved (7290 solves, worst scaled residual 1.0e-10, 408 s)
+C1 PASS 1.78e-14 over 720 nodes <= 1e-6 :: S=1 reproduces D10's AQUAL sigma_p and S=0 its Newton sigma_p (E-P), every node used
+   [canonical P1 E_lo ] S_95 = 0.625 (F-D10) / 0.599 (F-S); dchi2 at S=1 20.88, at S=0 0.00; min at S = 0.0
+   [canonical P1 E_mid] S_95 = 0.635 (F-D10) / 0.602 (F-S); dchi2 at S=1 19.26, at S=0 0.00; min at S = 0.0
+   [canonical P1 E_hi ] S_95 = 0.663 (F-D10) / 0.611 (F-S); dchi2 at S=1 16.25, at S=0 0.00; min at S = 0.0
+   [canonical P2 E_lo ] S_95 = 0.913 (F-D10) / 0.886 (F-S); dchi2 at S=1 8.84, at S=0 2.17; min at S = 0.6
+   [canonical P2 E_mid] S_95 = 0.927 (F-D10) / 0.906 (F-S); dchi2 at S=1 7.32, at S=0 2.18; min at S = 0.6
+   [canonical P2 E_hi ] S_95 = 0.975 (F-D10) / 0.967 (F-S); dchi2 at S=1 4.61, at S=0 2.19; min at S = 0.7
+   [canonical P3 E_lo ] S_95 = 0.863 (F-D10) / 0.828 (F-S); dchi2 at S=1 11.46, at S=0 1.01; min at S = 0.5
+   [canonical P3 E_mid] S_95 = 0.884 (F-D10) / 0.841 (F-S); dchi2 at S=1 9.80, at S=0 1.01; min at S = 0.5
+   [canonical P3 E_hi ] S_95 = 0.922 (F-D10) / 0.889 (F-S); dchi2 at S=1 6.76, at S=0 1.01; min at S = 0.5
+   [alt       P1 E_lo ] S_95 = 0.612 (F-D10) / 0.585 (F-S); dchi2 at S=1 22.75, at S=0 0.00; min at S = 0.0
+   [alt       P1 E_mid] S_95 = 0.621 (F-D10) / 0.588 (F-S); dchi2 at S=1 21.09, at S=0 0.00; min at S = 0.0
+   [alt       P1 E_hi ] S_95 = 0.642 (F-D10) / 0.596 (F-S); dchi2 at S=1 18.36, at S=0 0.00; min at S = 0.0
+   [alt       P2 E_lo ] S_95 = 0.903 (F-D10) / 0.866 (F-S); dchi2 at S=1 10.44, at S=0 2.22; min at S = 0.6
+   [alt       P2 E_mid] S_95 = 0.914 (F-D10) / 0.884 (F-S); dchi2 at S=1 8.76, at S=0 2.23; min at S = 0.6
+   [alt       P2 E_hi ] S_95 = 0.946 (F-D10) / 0.926 (F-S); dchi2 at S=1 5.97, at S=0 2.23; min at S = 0.6
+   [alt       P3 E_lo ] S_95 = 0.846 (F-D10) / 0.815 (F-S); dchi2 at S=1 13.30, at S=0 0.99; min at S = 0.5
+   [alt       P3 E_mid] S_95 = 0.862 (F-D10) / 0.824 (F-S); dchi2 at S=1 11.48, at S=0 1.00; min at S = 0.5
+   [alt       P3 E_hi ] S_95 = 0.903 (F-D10) / 0.853 (F-S); dchi2 at S=1 8.41, at S=0 1.00; min at S = 0.5
+C2 PASS 1.28e-13 <= 0.01 :: S=1 / S=0 chi2 columns reproduce D10's band-cell dchi2_AQUAL / dchi2_Newton (18 cells)
+      canonical NGC 2419  dchi2(S): 0.00:0.18 0.20:0.03 0.50:0.08 0.80:0.64 1.00:1.44
+      canonical Pal 3     dchi2(S): 0.00:1.88 0.20:1.69 0.50:1.16 0.80:0.19 1.00:0.38
+      canonical Pal 4     dchi2(S): 0.00:0.00 0.20:0.50 0.50:2.22 0.80:7.05 1.00:12.78
+      canonical Pal 14    dchi2(S): 0.00:0.09 0.20:0.00 0.50:0.24 0.80:2.10 1.00:5.30
+   [canonical] all four clusters (F-D10, P1, E_mid): S_95 = 0.703
+      alt       NGC 2419  dchi2(S): 0.00:0.17 0.20:0.02 0.50:0.13 0.80:0.90 1.00:1.97
+      alt       Pal 3     dchi2(S): 0.00:1.85 0.20:1.66 0.50:1.12 0.80:0.13 1.00:0.60
+      alt       Pal 4     dchi2(S): 0.00:0.00 0.20:0.50 0.50:2.28 0.80:7.44 1.00:13.41
+      alt       Pal 14    dchi2(S): 0.00:0.09 0.20:0.00 0.50:0.25 0.80:2.27 1.00:5.96
+   [alt] all four clusters (F-D10, P1, E_mid): S_95 = 0.683
+   S_95 central (P1, E_mid, F-S): canonical 0.602, alt 0.588; max over the 36 cells 0.975 / 0.946
+
+[Part D] (a) Cassini Q2 and planets (D7d Route N at L* = 0 with the phantom rows x s; child process)
+D1 PASS Q2(S=1) 3.818016e-26 vs 3.818051e-26 (rel 9.2e-06); |Q2(S=0)| 0.0e+00 <= 1e-3; 0 :: BN11 AQUAL anchor reproduced (G1/G1.5 Richardson); S=0 gives no anomalous quadrupole
+   canonical E0: x_e 1.305  Q2(S=1) 2.185e-26 (E2 2.200e-26)  Q2(0.3) 5.784e-27  Q2(0.15) 2.827e-27  Q2(0.3)/0.3Q2(1) 0.883
+   canonical E1: x_e 1.900  Q2(S=1) 3.107e-26 (E2 3.127e-26)  Q2(0.3) 8.549e-27  Q2(0.15) 4.205e-27  Q2(0.3)/0.3Q2(1) 0.917
+   canonical E2: x_e 2.200  Q2(S=1) 3.534e-26 (E2 3.557e-26)  Q2(0.3) 9.843e-27  Q2(0.15) 4.852e-27  Q2(0.3)/0.3Q2(1) 0.928
+   canonical E3: x_e 2.600  Q2(S=1) 4.070e-26 (E2 4.097e-26)  Q2(0.3) 1.147e-26  Q2(0.15) 5.667e-27  Q2(0.3)/0.3Q2(1) 0.940
+   [canonical] S_C (Hees 2 sigma, all four fields) = 0.2361;  Park = 0.1376
+   alt       E0: x_e 1.146  Q2(S=1) 2.548e-26 (E2 2.565e-26)  Q2(0.3) 6.637e-27  Q2(0.15) 3.236e-27  Q2(0.3)/0.3Q2(1) 0.868
+   alt       E1: x_e 1.574  Q2(S=1) 3.469e-26 (E2 3.492e-26)  Q2(0.3) 9.378e-27  Q2(0.15) 4.599e-27  Q2(0.3)/0.3Q2(1) 0.901
+   alt       E2: x_e 1.822  Q2(S=1) 3.970e-26 (E2 3.996e-26)  Q2(0.3) 1.089e-26  Q2(0.15) 5.351e-27  Q2(0.3)/0.3Q2(1) 0.914
+   alt       E3: x_e 2.154  Q2(S=1) 4.604e-26 (E2 4.632e-26)  Q2(0.3) 1.280e-26  Q2(0.15) 6.308e-27  Q2(0.3)/0.3Q2(1) 0.927
+   [alt] S_C (Hees 2 sigma, all four fields) = 0.2122;  Park = 0.1237
+D2 PASS 6.81e-03 <= 3e-2 :: S=1 Q2 at E0-E3 agrees with E2's R1 AQUAL values (both footings)
+   Q2 monotone in S at every field: True; all points scored (residual < 1e-9): True (worst 1.5e-11); child RSS 1.018 GB
+   [canonical] planets at S=1: Earth 1.08e+04x bound, Mars 6.69e+04x bound, Saturn 1.34e+04x bound;  S_pl = 1.496e-05
+   [alt] planets at S=1: Earth 1.30e+04x bound, Mars 8.07e+04x bound, Saturn 1.61e+04x bound;  S_pl = 1.239e-05
+
+[Part B3/B4] regimes: A (stars linear: rho_* lambda_C^2 >= M_sun/(4 pi R_sun)) and B (stars thin-shell)
+   Sun [canonical]: |Phi_N,bar,MW(R0)| up to 4.753e+10 m^2/s^2 (218 km/s)^2 vs required (1 - sqrt(s_t)) GM/R_sun = 1.900e+11 (436 km/s)^2 -> shortfall x4.00; Regime A leaves s_Sun >= 0.564
+   Sun [alt]: |Phi_N,bar,MW(R0)| up to 4.753e+10 m^2/s^2 (218 km/s)^2 vs required (1 - sqrt(s_t)) GM/R_sun = 1.901e+11 (436 km/s)^2 -> shortfall x4.00; Regime A leaves s_Sun >= 0.564
+   NGC 2419  [canonical] Regime A: |Phi_N,c| <= 5.692e+09 m^2/s^2 vs required 2.409e+09 (S_95 max) -> shortfall x0.423 (central x7.52); Regime B self-screening (capacitance): N* R_sun / a short by x3.45
+   Pal 4     [canonical] Regime A: |Phi_N,c| <= 4.954e+09 m^2/s^2 vs required 2.409e+09 (S_95 max) -> shortfall x0.486 (central x8.64); Regime B self-screening (capacitance): N* R_sun / a short by x75.8
+   Pal 14    [canonical] Regime A: |Phi_N,c| <= 7.393e+09 m^2/s^2 vs required 2.409e+09 (S_95 max) -> shortfall x0.326 (central x5.79); Regime B self-screening (capacitance): N* R_sun / a short by x210
+   NGC 2419  [alt] Regime A: |Phi_N,c| <= 5.365e+09 m^2/s^2 vs required 5.269e+09 (S_95 max) -> shortfall x0.982 (central x8.3); Regime B self-screening (capacitance): N* R_sun / a short by x7.55
+   Pal 4     [alt] Regime A: |Phi_N,c| <= 4.651e+09 m^2/s^2 vs required 5.269e+09 (S_95 max) -> shortfall x1.13 (central x9.57); Regime B self-screening (capacitance): N* R_sun / a short by x166
+   Pal 14    [alt] Regime A: |Phi_N,c| <= 6.941e+09 m^2/s^2 vs required 5.269e+09 (S_95 max) -> shortfall x0.759 (central x6.41); Regime B self-screening (capacitance): N* R_sun / a short by x458
+   fit exists in Regime A: False; Regime B by GC self-screening: False; Regime B via ambient halo gas: conditional (rho_* <= rho_gas(R_GC) / (1 - S_95))
+
+[Part E] (b) dwarfs: S1's satellites with the screen (D10 solver, s uniform at each system)
+E1 PASS 5.46e-14 (91 systems; host-field recompute max rel 3.9e-05) <= 1e-6 :: S=1 reproduces S1's per-system logG_emb0 (E-W, central y, E_mid)
+   [canonical] N 45: v3 median Delta +1.282 (S1 central values); no-gamma_L unscreened +1.108; B95 (MW sats <= 104.0 kpc at S 0.602) +1.337 (shift +0.055); B0 +1.540 (shift +0.258); +M31 +1.340; newly screened MW 19, M31 5
+   [alt] N 46: v3 median Delta +1.281 (S1 central values); no-gamma_L unscreened +1.038; B95 (MW sats <= 104.0 kpc at S 0.588) +1.299 (shift +0.018); B0 +1.382 (shift +0.101); +M31 +1.337; newly screened MW 19, M31 5
+
+[Part F] (c) wide binaries at 20 kAU (1+1 Msun, orientation-averaged, linear EFE of mu_S anchored to E2)
+F1 PASS 0.0103 <= 0.02 :: linear EFE response at S=1 vs E2's registered AQUAL gamma_v (anchoring error)
+   [canonical PREREG_primary] x_e 1.900: gamma_v - 1 = 0.1667 (S=1, E2 anchor) / 0.0724 (0.5) / 0.0269 (0.2) / 0 (S=0);  Regime A (s_Sun >= 0.564) >= 0.0830;  Regime B: 0
+   [canonical PREREG_alt] x_e 2.220: gamma_v - 1 = 0.1448 (S=1, E2 anchor) / 0.0641 (0.5) / 0.0240 (0.2) / 0 (S=0);  Regime A (s_Sun >= 0.564) >= 0.0733;  Regime B: 0
+   [alt PREREG_primary] x_e 1.573: gamma_v - 1 = 0.1986 (S=1, E2 anchor) / 0.0842 (0.5) / 0.0310 (0.2) / 0 (S=0);  Regime A (s_Sun >= 0.564) >= 0.0967;  Regime B: 0
+   [alt PREREG_alt] x_e 1.839: gamma_v - 1 = 0.1730 (S=1, E2 anchor) / 0.0749 (0.5) / 0.0278 (0.2) / 0 (S=0);  Regime A (s_Sun >= 0.564) >= 0.0859;  Regime B: 0
+
+[Part G] (d) guard: SPARC RAR (P4's iso_perUps statistic) and the thin-slab test
+G1 PASS max|drms| 2.6e-08; U equal True <= 1e-4; equal :: P4's iso_perUps reproduced (175 galaxies)
+   [canonical] rms / median Ups: P4 0.0541/0.52; S=1 0.0541/0.52; S_95 0.602: 0.1257/1.11; S=0: 0.2528/1.20
+   [alt] rms / median Ups: P4 0.0537/0.44; S=1 0.0537/0.44; S_95 0.588: 0.1253/1.08; S=0: 0.2528/1.20
+   slab test Sigma0 = 3.0 Sigma_M, slab0.1: dlog g(R = 0.5..6 R_d) = -0.039 -0.028 -0.018 -0.020 -0.019 -0.010
+   slab test Sigma0 = 3.0 Sigma_M, slab0.3: dlog g(R = 0.5..6 R_d) = -0.075 -0.065 -0.059 -0.055 -0.055 -0.052
+   slab test Sigma0 = 3.0 Sigma_M, S0     : dlog g(R = 0.5..6 R_d) = -0.155 -0.185 -0.264 -0.349 -0.432 -0.580
+   slab test Sigma0 = 0.3 Sigma_M, slab0.1: dlog g(R = 0.5..6 R_d) = -0.115 -0.085 -0.059 -0.060 -0.056 -0.034
+   slab test Sigma0 = 0.3 Sigma_M, slab0.3: dlog g(R = 0.5..6 R_d) = -0.244 -0.210 -0.180 -0.161 -0.155 -0.146
+   slab test Sigma0 = 0.3 Sigma_M, S0     : dlog g(R = 0.5..6 R_d) = -0.478 -0.532 -0.648 -0.761 -0.863 -1.035
+
+[Part H] (e) well-posedness: the khronon/dust pair + the screening field
+H1 PASS max ratio 1.000001 <= 1.01 and Gmax <= uncoupled cap :: rho_tau < 0, S in {1,.5,.1,.01}, mu_K in {0,1}, mixing c in {0,1,10}: growth rate bounded in k
+H2 PASS 1039.3 [900, 1100] :: gamma_L restored (H4's term): Gamma ~ k, unbounded (reproduces H4)
+H3 PASS 0.0e+00 <= 1e-6 :: S=1 bounded rate reproduces H4's Gamma_bounded on every region (median and max)
+   S1_MW-M31|canonical|e0           T  2.58 Gyr: N(S=1) median 0.097 max 0.111;  N(S=0) median 0.494 max 1.812
+   S1_MW-M31|canonical|e0.01        T 13.80 Gyr: N(S=1) median 0.038 max 0.685;  N(S=0) median 0.274 max 10.325
+   S1_MW-M31|alt|e0                 T  2.58 Gyr: N(S=1) median 0.097 max 0.111;  N(S=0) median 0.516 max 1.897
+   S1_MW-M31|alt|e0.01              T 13.80 Gyr: N(S=1) median 0.044 max 0.662;  N(S=0) median 0.315 max 11.356
+   S2_LMC-MW|canonical|e0           T  0.04 Gyr: N(S=1) median 0.062 max 0.113;  N(S=0) median 0.109 max 0.311
+   S2_LMC-MW|alt|e0                 T  0.04 Gyr: N(S=1) median 0.060 max 0.108;  N(S=0) median 0.112 max 0.321
+   S3_galaxy_pair|canonical|e0      T  0.73 Gyr: N(S=1) median 0.093 max 0.105;  N(S=0) median 0.331 max 1.180
+   S3_galaxy_pair|canonical|e0.01   T 13.80 Gyr: N(S=1) median 0.043 max 2.008;  N(S=0) median 0.310 max 22.587
+   S3_galaxy_pair|alt|e0            T  0.74 Gyr: N(S=1) median 0.092 max 0.105;  N(S=0) median 0.345 max 1.239
+   S3_galaxy_pair|alt|e0.01         T 13.80 Gyr: N(S=1) median 0.050 max 1.689;  N(S=0) median 0.358 max 24.558
+   S4_cluster_pair|canonical|e0     T  0.94 Gyr: N(S=1) median 0.196 max 0.288;  N(S=0) median 0.339 max 0.807
+   S4_cluster_pair|canonical|e0.01  T 13.80 Gyr: N(S=1) median 0.006 max 4.212;  N(S=0) median 0.044 max 11.844
+   S4_cluster_pair|alt|e0           T  0.94 Gyr: N(S=1) median 0.194 max 0.284;  N(S=0) median 0.349 max 0.835
+   S4_cluster_pair|alt|e0.01        T 13.80 Gyr: N(S=1) median 0.007 max 4.264;  N(S=0) median 0.050 max 12.192
+   S5a_MW_disc|canonical|e0.01      T 10.00 Gyr: N(S=1) median 0.036 max 0.133;  N(S=0) median 0.255 max 1.809
+   S5a_MW_disc|alt|e0.01            T 10.00 Gyr: N(S=1) median 0.041 max 0.160;  N(S=0) median 0.293 max 2.086
+   S5b_dwarf_disc|canonical|e0.01   T 10.00 Gyr: N(S=1) median 0.099 max 0.383;  N(S=0) median 0.708 max 5.036
+   S5b_dwarf_disc|alt|e0.01         T 10.00 Gyr: N(S=1) median 0.114 max 0.458;  N(S=0) median 0.818 max 5.793
+   S6_single_in_field|canonical|e0.01 T 10.00 Gyr: N(S=1) median 0.036 max 0.072;  N(S=0) median 0.255 max 2.466
+   S6_single_in_field|alt|e0.01     T 10.00 Gyr: N(S=1) median 0.041 max 0.074;  N(S=0) median 0.293 max 3.014
+   Sun [canonical] x_e 1.15: would-be D.P min -339.5 Msun/pc^3; negative lobes; S->0 rate max 2.36e-13 s^-1 -> N 447 (60 Myr) / 34272 (4.6 Gyr); median over lobes N(60 Myr) 80; metric coupling of the mode ~ s
+   Sun [canonical] x_e 2.6: would-be D.P min -1354.7 Msun/pc^3; negative lobes; S->0 rate max 6.54e-13 s^-1 -> N 1239 (60 Myr) / 95007 (4.6 Gyr); median over lobes N(60 Myr) 164; metric coupling of the mode ~ s
+   Sun [canonical] isolated: min would-be D.P 2.000e-10 (>= 0 expected)
+   Sun [alt] x_e 1.15: would-be D.P min -450.4 Msun/pc^3; negative lobes; S->0 rate max 2.72e-13 s^-1 -> N 515 (60 Myr) / 39472 (4.6 Gyr); median over lobes N(60 Myr) 92; metric coupling of the mode ~ s
+   Sun [alt] x_e 2.6: would-be D.P min -1797.0 Msun/pc^3; negative lobes; S->0 rate max 7.54e-13 s^-1 -> N 1427 (60 Myr) / 109423 (4.6 Gyr); median over lobes N(60 Myr) 189; metric coupling of the mode ~ s
+   Sun [alt] isolated: min would-be D.P 2.000e-10 (>= 0 expected)
+
+[Part I] constants and (f)
+I1 FAIL fit exists: Regime A False, Regime B True same in A and B :: lambda_C decouples from the tested verdicts (it sets the A/B boundary)
+   I2 [canonical] at R_s = 104.0 kpc, x = 0.092: L_P0 = 4.19e-14 J/m^3; window needs rho_gas >= 6.88e-05 Msun/pc^3 (n_H 1.99e-03 cm^-3; generous) / 1.28e-02 (strict) -> implied gas inside R_s >= 3.25e+11 Msun = 2.6 x M_b(E_hi)
+   I2 [alt] at R_s = 104.0 kpc, x = 0.084: L_P0 = 5.05e-14 J/m^3; window needs rho_gas >= 8.30e-05 Msun/pc^3 (n_H 2.40e-03 cm^-3; generous) / 1.55e-02 (strict) -> implied gas inside R_s >= 3.91e+11 Msun = 3.4 x M_b(E_hi)
+I2 FAIL implied/M_b(E_hi) = 2.6 / 3.4 <= 1 (both footings) :: a v^2/M^2 window exists (back-reaction <= 10% and fifth-force step within the allowance)
+   MW [canonical] K_z(R0, 1.1) S=1 92.3 (P4 92.3) / S_95 79.3 / S=0 61.9 vs 66.4 +- 2.2; chi2_Kz 178 / 59 / 89 (N 43); v_c(R0) 215.2 / 199.7 / 177.1 km/s; chi2_RC 270 / 2120 / 7132 (N 38)
+   MW [alt] K_z(R0, 1.1) S=1 96.9 (P4 96.9) / S_95 81.1 / S=0 61.9 vs 66.4 +- 2.2; chi2_Kz 251 / 69 / 89 (N 43); v_c(R0) 220.4 / 202.0 / 177.1 km/s; chi2_RC 94 / 1898 / 7132 (N 38)
+   clusters: if the ICM is screened (it is far denser than halo gas at 100 kpc) the prediction is Newtonian baryons: F1's A_MID 9.82 +- 0.63 (law: 1.68-1.85 can / 1.54-1.70 alt)
+K-RSS FAIL parent 0.430 GB, child 1.018 GB < 1 GB :: peak RSS
+
+--- verdict lines ---
+   COUNT: >= 2 constants (lambda_C, v^2/M^2 do not decouple)
+   FIT: Regime A DOES NOT EXIST; Regime B EXISTS only via halo gas (P-mono): S_95 central 0.602 / 0.588
+   V-a Cassini/planets: Regime A FAIL / FAIL; Regime B PASS (s_Sun = 0 under P-mono)
+   V-b dwarfs (Regime B, the fit's regime): shift vs v3 +0.055 / +0.018 dex -> FAIL
+   V-d SPARC RAR: halo-screened (S_95) fails; slab-only max |dlog g| 0.244 -> FAIL
+   V-e well-posedness: BOUNDED (gamma_L's Hadamard instability removed; bounded khronon rates; s -> 0 decouples and strongly couples the khronon)
+   VERDICT: NO-GO for 'a well-posed one-constant density screen replaces gamma_L'
+
+V1_DENSITY_SCREEN COMPLETE: 16/19 checks PASS.  578 s

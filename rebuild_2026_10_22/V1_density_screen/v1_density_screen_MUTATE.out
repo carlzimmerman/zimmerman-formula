@@ -1,0 +1,44 @@
+==============================================================================================================
+V1_density_screen -- one-constant symmetron-type density screen in place of gamma_L / L*   *** MUTATE: s multiplies source and phantom (wrong insertion point) ***
+==============================================================================================================
+
+[Part A] sympy: the screen's equations
+A1 PASS 0/0/0/0 all 0 :: uniform s: mu_S = 1 - s/(1+x); s=1 -> x/(1+x); s=0 -> 1; on-shell P-sector L_P0 = (a0^2/K)(x - ln(1+x))
+A2 PASS 0/0/0 all 0 :: psi EL / v^2 = lap psi - mu^2 psi(psi^2-1) - (rho c^2/M^2) psi + (2/v^2) psi L_P0; v-free at L_P0 = 0; uniform psi^2 = 1 - rho/rho_*
+A3 PASS -psi*(psi - psi_a)*(psi + psi_a); 0 psi(psi_a-psi)(psi_a+psi) >= 0; 0 :: exterior u = psi_a - psi subharmonic -> u <= u(R) R/r; then 1 - s/s_a <= 2R/r - R^2/r^2 <= 2R/r
+A4 PASS [0]; 0; lim k->oo omega^2 = K*rho_tau*(M - S)/S [0]; 0; K rho_tau (M - S)/S (finite) :: c=0: omega^2 = rho_tau (k^2/chi_S - K), chi_S = S k^2/(K M) + mu_K^2/K; S=1 is H4's gamma_L=0 relation; UV limit finite for S>0
+   coupled det (c != 0) is a polynomial of degree 2 in omega^2
+
+[Part B] the screen's regimes: own 1D symmetron BVP (lengths in the body radius R = 1; m = R/lambda_C = 0.01)
+   s_a 0.3, rho R^2/M^2     0.1: max r u/(psi_a R) 0.031800; charge fraction q 0.9623; psi(R)/psi_a 0.9682 (res 1.0e-16)
+   s_a 0.3, rho R^2/M^2      10: max r u/(psi_a R) 0.683322; charge fraction q 0.2070; psi(R)/psi_a 0.3167 (res 6.5e-14)
+   s_a 0.3, rho R^2/M^2    1000: max r u/(psi_a R) 0.968154; charge fraction q 0.0029; psi(R)/psi_a 0.0318 (res 2.5e-13)
+   s_a 0.9, rho R^2/M^2     0.1: max r u/(psi_a R) 0.031645; charge fraction q 0.9625; psi(R)/psi_a 0.9684 (res 2.4e-16)
+   s_a 0.9, rho R^2/M^2      10: max r u/(psi_a R) 0.682165; charge fraction q 0.2083; psi(R)/psi_a 0.3178 (res 8.7e-13)
+   s_a 0.9, rho R^2/M^2    1000: max r u/(psi_a R) 0.967992; charge fraction q 0.0030; psi(R)/psi_a 0.0320 (res 9.8e-17)
+B1 PASS max(u - psi_a R/r) = -7.22e-05 <= 1e-6 :: exterior bound u(r) <= psi_a R/r (linear and thin-shell bodies)
+B2 PASS q = 0.0030 at rho R^2/M^2 = 1e3 < 0.1 :: thin-shell body's exterior psi-charge is a small fraction of its mass
+
+[Part C] the one-constant fit to the outer globulars: D10's data, likelihood tables and statistic; parameter S_GC
+C1 FAIL 1.00e+00 over 30 nodes <= 1e-6 :: S=1 reproduces D10's AQUAL sigma_p and S=0 its Newton sigma_p (E-P), every node used
+
+[Part D] (a) Cassini Q2 and planets (D7d Route N at L* = 0 with the phantom rows x s; child process)
+   1 child processes; peak child RSS 0.728 GB
+D1 PASS Q2(S=1) 3.818016e-26 vs 3.818051e-26 (rel 9.2e-06); |Q2(S=0)| 0.0e+00 <= 1e-3; 0 :: BN11 AQUAL anchor reproduced (G1/G1.5 Richardson); S=0 gives no anomalous quadrupole
+
+[Part E] (b) dwarfs: S1's satellites with the screen (D10 solver, s uniform at each system)
+E1 PASS 8.22e-15 (6 systems; host-field recompute max rel 3.6e-05) <= 1e-6 :: S=1 reproduces S1's per-system logG_emb0 (E-W, central y, E_mid)
+
+[Part F] (c) wide binaries at 20 kAU (1+1 Msun, orientation-averaged, linear EFE of mu_S anchored to E2)
+F1 PASS 0.0103 <= 0.02 :: linear EFE response at S=1 vs E2's registered AQUAL gamma_v (anchoring error)
+
+[Part G] (d) guard: SPARC RAR (P4's iso_perUps statistic) and the thin-slab test
+G1 PASS max|drms| 2.6e-08; U equal True <= 1e-4; equal :: P4's iso_perUps reproduced (175 galaxies)
+
+[Part H] (e) well-posedness: the khronon/dust pair + the screening field
+H1 FAIL ratio 1039.3 (gamma_L restored) <= 1.01 :: MUTATE: H1 run with gamma_L restored must read unbounded
+H2 PASS 1039.3 [900, 1100] :: gamma_L restored (H4's term): Gamma ~ k, unbounded (reproduces H4)
+H3 PASS 0.0e+00 <= 1e-6 :: S=1 bounded rate reproduces H4's Gamma_bounded on every region (median and max)
+K-RSS PASS parent 0.299 GB, child 0.728 GB < 1 GB :: peak RSS
+
+V1_DENSITY_SCREEN COMPLETE: 13/15 checks PASS.  20 s  (MUTATE: validations only)
