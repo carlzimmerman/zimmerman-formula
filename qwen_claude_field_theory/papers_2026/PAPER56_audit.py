@@ -6,7 +6,8 @@ disclosures must be present; the in-progress statements must still be true; no f
 v1.1 (2026-10-23, section V): the dated correction box (lane CFG963, attribution of the native shear pass) must exist above the
 abstract on page 1; no unqualified "matched control" may remain (TeX outside the box, PDF, Zenodo description) other than the one
 quotation of v1.0 and "feedback-matched"; the v1.0 sentences that presented -10.08 / -9.39 as the framework's lead must be gone and
-every changed sentence marked "Correction v1.1"; every CFG963 number must match its results JSON (attribution and reuse/A1); the
+every changed sentence marked "Correction v1.1", including the qualifier after the CMB-lensing forecast sentence (its control, like
+NCS0, has no gas expulsion; CFG963 does not analyse CMB lensing); every CFG963 number must match its results JSON (attribution and reuse/A1); the
 credited commits must exist; the Zenodo metadata must be v1.1, lead with the correction, mark isNewVersionOf 10.5281/zenodo.23532875,
 and keep v1.0's other fields. The v1.1 box re-paginates the note, so the PDF text is now read with each page-number footer removed
 at page breaks (two v1.0 phrases, unchanged in the TeX, fell across a break), and Table 1's float placement is [b] instead of [t]
@@ -436,8 +437,15 @@ for s in ("which is matched in initial conditions only and has no gas expulsion 
           "gas expulsion (CFG963, a diagnostic attribution reported only; its CFG646 bracket comes from amendment A1, written after the frozen result was seen)",
           "for v1.1, CFG963"):
     has(f"V5 changed text '{s[:56]}'", s)
-check("V5 13 'Correction v1.1' markers outside the box, none left unmatched", outside.count("Correction v1.1") == 13
-      and len(re.findall(r"Correction v1\.1", raw[1])) == 14, f"TeX {outside.count('Correction v1.1')}, PDF {len(re.findall(r'Correction v1.1', raw[1]))}")
+QCMB = ("High-L lensing at S4-class depth is therefore the first CMB channel that could separate theory-v2 from its control. Its control, like NCS0, "
+        "applies no gas expulsion, so part of the separation it forecasts may come from M3; CFG963 does not analyse CMB lensing, and the forecast is not "
+        "re-derived here " + MK)
+check("V5 CMB-lensing forecast qualifier present right after its sentence, marked (TeX and PDF)",
+      "could separate theory-v2 from its control. Its control, like NCS0, applies no gas expulsion, so part of the separation it forecasts may come from M3; "
+      "CFG963 does not analyse CMB lensing, and the forecast is not re-derived here (Correction v1.1)." in tex and QCMB in flat
+      and "The CMB-lensing gate is outside this lane" in readme(f"{C63}/README.md"))
+check("V5 14 'Correction v1.1' markers outside the box, none left unmatched", outside.count("Correction v1.1") == 14
+      and len(re.findall(r"Correction v1\.1", raw[1])) == 15, f"TeX {outside.count('Correction v1.1')}, PDF {len(re.findall(r'Correction v1.1', raw[1]))}")
 check("V5 Table 1 float at [b] (v1.1 re-pagination; caption and rows unchanged)", "\\begin{table}[b]" in tex and "\\begin{table}[t]" not in tex
       and "Table 1: Six small reframings of the pressure-supported excess." in flat)
 # --- wording from CFG963's LEDGER row and README
