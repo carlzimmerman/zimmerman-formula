@@ -103,3 +103,12 @@ For each of (a), (b), (c), exactly one of:
 
 A failure can carry two labels for two distinct parts (e.g. the settling-rule part and v3's own nonlinear part); each part is
 stated with its number. Nothing here re-scores CFG596's frozen verdict; the CFG596 verdict stands as frozen.
+
+## AMENDMENT A1 (post-result, 2026-10-22)
+
+- **K1(ii) as frozen was an algebra slip in this file.** It wrote k_J² = μ²Q̄² "exactly"; that used 8πGρ ≈ QK′. With
+  8πGρ/c⁴ = QK′ − K = μ²(Q² − 1) the exact identity is **k_J² = μ²Q̄(Q̄+1)/2**, which → μ² as Q̄ → 1 (the dust limit, where
+  Q̄ − 1 ∝ a⁻³ is small). The physical statement (the dust's Jeans scale is the static mass of the μ²ψ term, comoving ≈ aμ_K)
+  is unchanged at leading order.
+- The frozen line is kept and printed as `K1-orig FAIL`. The scored K1 uses the exact identity plus the Q̄ → 1 limit.
+  No other check, threshold or verdict rule changes.
