@@ -1,0 +1,36 @@
+H3_jeans_control  mutate=False
+kappa = 1/2 FITTED; footings never pooled; no dark-matter particle; not theory closed.
+K2 PASS E_J signs free/ghost/first-order = [1, -1, 1] ([1], [-1], [1]) +, -, + (T0: jordan_energy reads kinetic sign correctly)
+K3 PASS sz_lagrangian - GR - AeST extras = 0 0 (T1a's GR operator is exactly C5's)
+K1 PASS E_J - C5 (no gL, gL), Gamma^2 - H1 (no gL, gL) = [0, 0, 0, 0] all 0 (MUTATE: I sign flipped, Gamma^2 differs by design)
+  T1a GR+k-essence: dQ^(1) = (-Psi(t, z) + Derivative(chi(t, z), t)/Q_0)*Abs(Q_0); E_J(I=0) = [4*K_2*k**2/(-K_2*Q_0**2 + k**2)]; Gamma^2 (O(I)) = [-I*(-K_2*Q_0**2 + k**2)*Abs(Q_0)/(2*K_2*Q_0**2)]
+  T1b Newton Clebsch: E_J(rho=0) = [-4*k**2]; Gamma^2 (O(rho)) = [rho_bar/4]
+K4 PASS jordan_energy / hand Noether H = 2 (constant normalisation); Gamma^2 - 4 pi G rho = [0] positive constant AND 0 at every k
+  lump [Newton]: dQ_static = 4*k**2, dQ_secular = 0, G_eff/G = 1
+  lump [GR+kess]: dQ_static = k**2/(-K_2*Q_0**2 + k**2), dQ_secular = 0, G_eff/G = 1 - k**2/(K_2*Q_0**2)
+  lump [AeST]: dQ_static = 2*k**2*(-lambda_s - 1)/(2*K_2*Q_0**2*lambda_s + 2*K_2*Q_0**2 + K_B*k**2*lambda_s - 2*k**2*lambda_s), dQ_secular = 0, G_eff/G = (2*K_2*Q_0**2*lambda_s + 2*K_2*Q_0**2 + K_B*k**2*lambda_s + 2*k**2)*(2*K_2*Q_0**2*lambda_s + 2*K_2*Q_0**2 + K_B*k**2*lambda_s - 2*k**2*lambda_s)/(4*K_2**2*Q_0**4*(lambda_s + 1)**2)
+  lump [AeST+gL]: dQ_static = 2*k**2*(-L_s**2*k**2 - 2*lambda_s - 2)/(2*K_2*L_s**2*Q_0**2*k**2 + 4*K_2*Q_0**2*lambda_s + 4*K_2*Q_0**2 + K_B*L_s**2*k**4 + 2*K_B*k**2*lambda_s - 2*L_s**2*k**4 - 4*k**2*lambda_s), dQ_secular = 0, G_eff/G = (2*K_2*L_s**2*Q_0**2*k**2 + 4*K_2*Q_0**2*lambda_s + 4*K_2*Q_0**2 + K_B*L_s**2*k**4 + 2*K_B*k**2*lambda_s + 4*k**2)*(2*K_2*L_s**2*Q_0**2*k**2 + 4*K_2*Q_0**2*lambda_s + 4*K_2*Q_0**2 + K_B*L_s**2*k**4 + 2*K_B*k**2*lambda_s - 2*L_s**2*k**4 - 4*k**2*lambda_s)/(4*K_2**2*Q_0**4*(L_s**2*k**2 + 2*lambda_s + 2)**2)
+  T1 [GR+kess]: E_J<0 all k: False; Gamma^2(0) - 4 pi G rho = I*(-Q_0 + Abs(Q_0))/2; E_J*src/Gamma^2 < 0 on grid: True
+  T1 [Newton]: E_J<0 all k: True; Gamma^2(0) - 4 pi G rho = 0; E_J*src/Gamma^2 < 0 on grid: True
+T1 control (criterion (i) flags normal gravity): FAIL
+  T2a [no gL] k=1e-3: omega=0 multiplicity 2; roots [(39.00004, 7.8000081999998e-06, 1.4867368766056337e-68)]
+  T2a [no gL] k=1: omega=0 multiplicity 2; roots [(79.0, 15.794873458792992, 6.01543309629455e-64)]
+  T2a [no gL] k=1e3: omega=0 multiplicity 2; roots [(40000039.0, 311988745.016404, 6.908293677451413e-65)]
+  T2a [no gL] k=1e6: omega=0 multiplicity 2; roots [(40000000000039.0, 311999999988744.6, 6.066058616010971e-71)]
+  T2a [gL] k=1e-3: omega=0 multiplicity 2; roots [(39.00004000000001, 7.800008199999802e-06, 9.920070754455002e-69)]
+  T2a [gL] k=1: omega=0 multiplicity 2; roots [(79.00000001152, 15.794873461153077, 2.854545481502261e-63)]
+  T2a [gL] k=1e3: omega=0 multiplicity 2; roots [(40000327.011232, 311990991.5916102, 6.382002136949386e-65)]
+  T2a [gL] k=1e6: omega=0 multiplicity 2; roots [(328000000011271.0, 2558400000163964.0, 4.6613701031975526e-71)]
+  T2b: G_eff/G(k->0) AeST = 1 (no gL), 1 (gL); GR+kess = 1; Newton = 1
+  T2b: AeST no gL: G_eff in (0, G_eff(0)] on grid: False; gL: <= G_eff(0), negative only above k = 251.19 mu: False
+T2 (instability, not ghost): FAIL  (T2a True)
+T3 vacuum: AeST dQ_static = 2*k**2*(-lambda_s - 1)/(2*K_2*Q_0**2*lambda_s + 2*K_2*Q_0**2 + K_B*k**2*lambda_s - 2*k**2*lambda_s) / 2*k**2*(-L_s**2*k**2 - 2*lambda_s - 2)/(2*K_2*L_s**2*Q_0**2*k**2 + 4*K_2*Q_0**2*lambda_s + 4*K_2*Q_0**2 + K_B*L_s**2*k**4 + 2*K_B*k**2*lambda_s - 2*L_s**2*k**4 - 4*k**2*lambda_s); GR+kess dQ_static = k**2/(-K_2*Q_0**2 + k**2), G_eff^GR(0)/G = 1; verdict: genuine vacuum negative-energy mode (or control differs)
+  T4 [I=2e-7|no gL]: max Gamma^2/(4 pi G rho) = 0.9999141199; max #unstable W2 roots/k = 1; band ends (gL) -; largest k with growth = 1.0e+6 mu (k_c = 242.75)
+  T4 [I=2e-7|gL]: max Gamma^2/(4 pi G rho) = 0.9999141199; max #unstable W2 roots/k = 1; band ends (gL) True; largest k with growth = 240.32 mu (k_c = 242.75)
+  T4 [I=2e-3|no gL]: max Gamma^2/(4 pi G rho) = 0.9640031117; max #unstable W2 roots/k = 2; band ends (gL) -; largest k with growth = 1.0e+6 mu (k_c = 242.75)
+  T4 [I=2e-3|gL]: max Gamma^2/(4 pi G rho) = 0.9640031117; max #unstable W2 roots/k = 2; band ends (gL) False; largest k with growth = 1865.0 mu (k_c = 242.75)
+K5 FAIL exact vs O(I) Gamma^2 at k = 1e-3 mu, I = 2e-7: rel inf <= 1e-4
+T4 (rate bounded, band ends): FAIL
+VERDICT: UNDECIDED (a check failed)
+  runtime 62.0 s, max RSS 0.075 GB
+H3 COMPLETE: 4/5 checks PASS.

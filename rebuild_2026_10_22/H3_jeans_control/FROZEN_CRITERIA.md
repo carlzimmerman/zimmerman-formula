@@ -124,3 +124,11 @@ No data enter. No ΛCDM-processed input enters a graded line. Compute: `OMP_NUM_
 minutes, no downloads (a 1024³ job is live).
 κ = ½ FITTED. Footings never pooled (no footing enters). No dark-matter particle. Never "theory closed". Nothing here
 says the data favour the framework.
+
+## AMENDMENT A1 (post-result, 2026-10-22): code fixes and reported additions; no pass line or declared value changed
+
+Run 1 (`*_RUN1.*`) is kept. A1-1: Q₀ > 0 in the k-essence norm (Run 1 left Abs(Q₀)). A1-2: K5's O(I) closed form kept I
+symbolic (Run 1 substituted I = 0, rel = inf). A1-3: T3 coded to the frozen wording (Run 1 added "control E_J < 0 at
+every k"). A1-4 (reported only): the lump's static potential G_pot, the GR + k-essence exact-root scan, Krein of every
+ω² > 0 root at I > 0. A1-5: the verdict mapping coded to §3 (Run 1 sent any K failure to UNDECIDED). The frozen verdict
+is printed first in the README; the post-result reading of each FAIL line is labelled as such.
