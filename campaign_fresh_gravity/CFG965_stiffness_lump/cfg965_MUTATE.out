@@ -1,0 +1,183 @@
+CFG965 stiffness-bound cold lump (NA-3). mutate=True (hold critical-quadratic coefficient c2 = 0)
+kappa = 1/2 FITTED; footings never pooled; AQUAL mu = x/(1+x) only; not theory closed
+inputs: rc870 104.0 pc; CFG877 canonical Mcl 5.251e+06 rt 198.98 pc; alt Mcl 4.235e+06 rt 162.56 pc
+inputs: L* canonical {'D10_central': 21.680757539917785, 'E4_native': 28.85296793918427, 'top_90pc': 90.0, 'soft_edge': 2040.0}; alt {'D10_central': 22.847696106846282, 'E4_native': 29.122701653065455, 'top_90pc': 90.0, 'soft_edge': 2140.0}
+
+== K: reproductions
+K1_NA3_hand_numbers PASS R/L*=2.2214 half/L*=1.3403 L*=77.6,90.0 M=3.91e+06,6.11e+06 maxdev=0.0032 LE res 0; 1% on hand numbers
+K2_NA3_hydrostatic PASS EL residual 0; 4piG/gamma - 2/L*^2 = 0 both exactly 0
+K3_H4_v3_dispersion FAIL residuals -K**3*k**4*rho0/(K**2*M_theta**2*mu_K**4 + 2*K**2*M_theta*k**2*mu_K**2 - K**2*M_theta*mu_K**4 + K**2*k**4 - K**2*k**2*mu_K**2 + 2*K*M_theta*gamma_L*k**2*mu_K**4 + 2*K*gamma_L*k**4*mu_K**2 - K*gamma_L*k**2*mu_K**4 + gamma_L**2*k**4*mu_K**4) / -K*rho0 exactly 0 (H4 README)
+K4_H4_equals_CFG938 FAIL M_L-1-R' = -1; M_T-1-R/u = -1; record M_L,M_T forms ok=True exactly 0
+K5_CFG888_S4_stiffness_is_rho2 PASS identity residual 0; gamma/2 - pi G L*^2 = 0 exactly 0
+K6_CFG888_S1_no_self_gravity FAIL C^2 coeff K/(4*k**2); BC coeff K/(2*k**2) C^2 = 0, BC = K/2k^2 (Newtonian)
+   RSS 0.118 GB
+
+== D1: v3 exact nonlinear statics, mu_K = 0, spherical
+D1a_v3_statics_equal_CFG938_E PASS L_onshell + E_938 = 0; phi' = G(M+M_b)/r^2 exactly 0
+D1b_v3_static_equation PASS gamma_L D' = u^2/(a0-u) - u - g_N,b (residual 0) exactly 0
+D1c_gamma0_limit_is_the_law FAIL EL(gamma=0) residual at u = a0 g/(a0+g): -a0*g_tot/(a0 + g_tot); g_b - g^2/(g+a0) = 0 exactly 0
+   u(L*)/a0 = 0.001 : edge 2.2223788076113773  hold-cap radius None  D monotone non-decreasing False  D_end/D_c -3.725e-17
+   u(L*)/a0 = 0.05  : edge 2.273011265916779  hold-cap radius None  D monotone non-decreasing False  D_end/D_c -5.109e-17
+   u(L*)/a0 = 0.2   : edge 2.531596905714037  hold-cap radius None  D monotone non-decreasing False  D_end/D_c 6.812e-17
+   u(L*)/a0 = 0.5   : edge None  hold-cap radius 1.8593960672450136  D monotone non-decreasing False  D_end/D_c 3.65
+D1d_no_isolated_v3_lump FAIL edges found: [2.2223788076113773, 2.273011265916779, 2.531596905714037, None] (small-u edge / (pi/sqrt2) = 1.0004219505871486) no edge (mutate expects FAIL)
+   RSS 0.119 GB
+
+== D2: v3 with the BS dust mass mu_K (linear statics: omega = 0 of K3)
+   marginal condition (K = 1, gamma_L = L*^2/2): (L_s**2*ks2**2 - L_s**2*ks2*mu_K**2 + 2*M_theta*ks2 - 2*M_theta*mu_K**2 - 4*ks2 + 2*mu_K**2)/2 = 0
+   mu_K L* giving the NA-3 radius: s* = [sqrt(2*M_theta - 2)/sqrt(M_theta)]
+D2a_marginal_quadratic PASS coeffs vs gamma_L k^4 + [K(M_eff-1) - mu^2 gamma_L] k^2 - K M_eff mu^2 : 0, 0, 0 exactly 0 (M_eff = M_theta - (1 - c2))
+D2b_limits_M1 PASS mu_K L* >> 1: k_s^2/mu_K^2 -> 1; mu_K L* << 1: k_s^2/(sqrt2 mu_K/L*) -> 1 both 1
+D2c_profile_sin_kr_over_kr PASS lap D = -k^2 D; rho_tau = (L_s**2*k**2/2 + M_theta - 1) D (same zeros) exactly 0
+   [canonical] x_cl = G M_cl/(r_t^2 a0) = 0.1975; targets R_edge = r_t = 198.98 pc, R_half = rc870 = 104.0 pc
+     L*    21.68 M=1        edge_rt   : no mu_K gives this static scale
+     L*    21.68 M=1        half_rc870: no mu_K gives this static scale
+     L*    21.68 M=1+x      edge_rt   : no mu_K gives this static scale
+     L*    21.68 M=1+x      half_rc870: no mu_K gives this static scale
+     L*    21.68 M=(1+x)^2  edge_rt   : no mu_K gives this static scale
+     L*    21.68 M=(1+x)^2  half_rc870: no mu_K gives this static scale
+     L*    28.85 M=1        edge_rt   : no mu_K gives this static scale
+     L*    28.85 M=1        half_rc870: no mu_K gives this static scale
+     L*    28.85 M=1+x      edge_rt   : no mu_K gives this static scale
+     L*    28.85 M=1+x      half_rc870: no mu_K gives this static scale
+     L*    28.85 M=(1+x)^2  edge_rt   : no mu_K gives this static scale
+     L*    28.85 M=(1+x)^2  half_rc870: no mu_K gives this static scale
+     L*    90.00 M=1        edge_rt   : 1/mu_K    650.2 pc  mu_K      2282 h/Mpc =   154.2 x cap (x5.55 growth-411)  dlnR/dlnL* 0.991
+     L*    90.00 M=1        half_rc870: 1/mu_K    108.3 pc  mu_K  1.37e+04 h/Mpc =   925.7 x cap (x33.33 growth-411)  dlnR/dlnL* 0.743
+     L*    90.00 M=1+x      edge_rt   : 1/mu_K    152.9 pc  mu_K      9702 h/Mpc =   655.6 x cap (x23.61 growth-411)  dlnR/dlnL* 0.802
+     L*    90.00 M=1+x      half_rc870: 1/mu_K     92.5 pc  mu_K 1.604e+04 h/Mpc =  1083.8 x cap (x39.03 growth-411)  dlnR/dlnL* 0.616
+     L*    90.00 M=(1+x)^2  edge_rt   : 1/mu_K    114.3 pc  mu_K 1.298e+04 h/Mpc =   877.4 x cap (x31.59 growth-411)  dlnR/dlnL* 0.612
+     L*    90.00 M=(1+x)^2  half_rc870: 1/mu_K     82.9 pc  mu_K  1.79e+04 h/Mpc =  1209.2 x cap (x43.54 growth-411)  dlnR/dlnL* 0.492
+     L*  2040.00 M=1        edge_rt   : 1/mu_K     63.4 pc  mu_K  2.34e+04 h/Mpc =  1581.3 x cap (x56.94 growth-411)  dlnR/dlnL* 0.002
+     L*  2040.00 M=1        half_rc870: 1/mu_K     54.9 pc  mu_K 2.702e+04 h/Mpc =  1825.8 x cap (x65.75 growth-411)  dlnR/dlnL* 0.001
+     L*  2040.00 M=1+x      edge_rt   : 1/mu_K     63.4 pc  mu_K  2.34e+04 h/Mpc =  1581.3 x cap (x56.94 growth-411)  dlnR/dlnL* 0.002
+     L*  2040.00 M=1+x      half_rc870: 1/mu_K     54.9 pc  mu_K 2.702e+04 h/Mpc =  1825.8 x cap (x65.75 growth-411)  dlnR/dlnL* 0.001
+     L*  2040.00 M=(1+x)^2  edge_rt   : 1/mu_K     63.4 pc  mu_K  2.34e+04 h/Mpc =  1581.3 x cap (x56.94 growth-411)  dlnR/dlnL* 0.002
+     L*  2040.00 M=(1+x)^2  half_rc870: 1/mu_K     54.9 pc  mu_K 2.702e+04 h/Mpc =  1825.8 x cap (x65.75 growth-411)  dlnR/dlnL* 0.001
+     at the BS cap: L*    21.68 M=1       : R_edge 48.16253331705202 pc;  NA-3 radius needs mu_K L* = 0.0000 -> mu_K 0 h/Mpc (0 x cap)
+     at the BS cap: L*    21.68 M=1+x     : R_edge 53.76281401009092 pc;  NA-3 radius needs mu_K L* = 0.5743 -> mu_K 3.93e+04 h/Mpc (2656 x cap)
+     at the BS cap: L*    21.68 M=(1+x)^2 : R_edge 64.0157990987596 pc;  NA-3 radius needs mu_K L* = 0.7780 -> mu_K 5.324e+04 h/Mpc (3597 x cap)
+     at the BS cap: L*    28.85 M=1       : R_edge 64.09517815875348 pc;  NA-3 radius needs mu_K L* = 0.0000 -> mu_K 0 h/Mpc (0 x cap)
+     at the BS cap: L*    28.85 M=1+x     : R_edge 71.54808702516021 pc;  NA-3 radius needs mu_K L* = 0.5743 -> mu_K 2.953e+04 h/Mpc (1995 x cap)
+     at the BS cap: L*    28.85 M=(1+x)^2 : R_edge 85.19286024118924 pc;  NA-3 radius needs mu_K L* = 0.7780 -> mu_K 4.001e+04 h/Mpc (2703 x cap)
+     at the BS cap: L*    90.00 M=1       : R_edge 199.9296919319283 pc;  NA-3 radius needs mu_K L* = 0.0000 -> mu_K 0 h/Mpc (0 x cap)
+     at the BS cap: L*    90.00 M=1+x     : R_edge 223.17724950336037 pc;  NA-3 radius needs mu_K L* = 0.5743 -> mu_K 9468 h/Mpc (639.7 x cap)
+     at the BS cap: L*    90.00 M=(1+x)^2 : R_edge 265.7388006489903 pc;  NA-3 radius needs mu_K L* = 0.7780 -> mu_K 1.283e+04 h/Mpc (866.6 x cap)
+     at the BS cap: L*  2040.00 M=1       : R_edge 4531.271523121953 pc;  NA-3 radius needs mu_K L* = 0.0000 -> mu_K 0 h/Mpc (0 x cap)
+     at the BS cap: L*  2040.00 M=1+x     : R_edge 5057.872999915318 pc;  NA-3 radius needs mu_K L* = 0.5743 -> mu_K 417.7 h/Mpc (28.22 x cap)
+     at the BS cap: L*  2040.00 M=(1+x)^2 : R_edge 6021.471843586586 pc;  NA-3 radius needs mu_K L* = 0.7780 -> mu_K 565.8 h/Mpc (38.23 x cap)
+   [alt] x_cl = G M_cl/(r_t^2 a0) = 0.1975; targets R_edge = r_t = 162.56 pc, R_half = rc870 = 104.0 pc
+     L*    22.85 M=1        edge_rt   : no mu_K gives this static scale
+     L*    22.85 M=1        half_rc870: no mu_K gives this static scale
+     L*    22.85 M=1+x      edge_rt   : no mu_K gives this static scale
+     L*    22.85 M=1+x      half_rc870: no mu_K gives this static scale
+     L*    22.85 M=(1+x)^2  edge_rt   : no mu_K gives this static scale
+     L*    22.85 M=(1+x)^2  half_rc870: no mu_K gives this static scale
+     L*    29.12 M=1        edge_rt   : no mu_K gives this static scale
+     L*    29.12 M=1        half_rc870: no mu_K gives this static scale
+     L*    29.12 M=1+x      edge_rt   : no mu_K gives this static scale
+     L*    29.12 M=1+x      half_rc870: no mu_K gives this static scale
+     L*    29.12 M=(1+x)^2  edge_rt   : no mu_K gives this static scale
+     L*    29.12 M=(1+x)^2  half_rc870: no mu_K gives this static scale
+     L*    90.00 M=1        edge_rt   : 1/mu_K     88.9 pc  mu_K 1.669e+04 h/Mpc =  1127.8 x cap (x40.61 growth-411)  dlnR/dlnL* 0.661
+     L*    90.00 M=1        half_rc870: 1/mu_K    108.3 pc  mu_K  1.37e+04 h/Mpc =   925.7 x cap (x33.33 growth-411)  dlnR/dlnL* 0.743
+     L*    90.00 M=1+x      edge_rt   : 1/mu_K     80.3 pc  mu_K 1.848e+04 h/Mpc =  1248.4 x cap (x44.96 growth-411)  dlnR/dlnL* 0.555
+     L*    90.00 M=1+x      half_rc870: 1/mu_K     92.5 pc  mu_K 1.604e+04 h/Mpc =  1083.8 x cap (x39.03 growth-411)  dlnR/dlnL* 0.616
+     L*    90.00 M=(1+x)^2  edge_rt   : 1/mu_K     74.2 pc  mu_K 1.999e+04 h/Mpc =  1351.0 x cap (x48.65 growth-411)  dlnR/dlnL* 0.451
+     L*    90.00 M=(1+x)^2  half_rc870: 1/mu_K     82.9 pc  mu_K  1.79e+04 h/Mpc =  1209.2 x cap (x43.54 growth-411)  dlnR/dlnL* 0.492
+     L*  2140.00 M=1        edge_rt   : 1/mu_K     51.8 pc  mu_K 2.866e+04 h/Mpc =  1936.2 x cap (x69.72 growth-411)  dlnR/dlnL* 0.001
+     L*  2140.00 M=1        half_rc870: 1/mu_K     54.9 pc  mu_K 2.702e+04 h/Mpc =  1825.9 x cap (x65.75 growth-411)  dlnR/dlnL* 0.001
+     L*  2140.00 M=1+x      edge_rt   : 1/mu_K     51.8 pc  mu_K 2.866e+04 h/Mpc =  1936.2 x cap (x69.72 growth-411)  dlnR/dlnL* 0.001
+     L*  2140.00 M=1+x      half_rc870: 1/mu_K     54.9 pc  mu_K 2.702e+04 h/Mpc =  1825.9 x cap (x65.75 growth-411)  dlnR/dlnL* 0.001
+     L*  2140.00 M=(1+x)^2  edge_rt   : 1/mu_K     51.8 pc  mu_K 2.866e+04 h/Mpc =  1936.2 x cap (x69.72 growth-411)  dlnR/dlnL* 0.001
+     L*  2140.00 M=(1+x)^2  half_rc870: 1/mu_K     54.9 pc  mu_K 2.702e+04 h/Mpc =  1825.9 x cap (x65.75 growth-411)  dlnR/dlnL* 0.001
+     at the BS cap: L*    22.85 M=1       : R_edge 50.7548189455764 pc;  NA-3 radius needs mu_K L* = 0.0000 -> mu_K 0 h/Mpc (0 x cap)
+     at the BS cap: L*    22.85 M=1+x     : R_edge 56.65652741259026 pc;  NA-3 radius needs mu_K L* = 0.5743 -> mu_K 3.729e+04 h/Mpc (2520 x cap)
+     at the BS cap: L*    22.85 M=(1+x)^2 : R_edge 67.46136592559971 pc;  NA-3 radius needs mu_K L* = 0.7780 -> mu_K 5.052e+04 h/Mpc (3414 x cap)
+     at the BS cap: L*    29.12 M=1       : R_edge 64.69437577880201 pc;  NA-3 radius needs mu_K L* = 0.0000 -> mu_K 0 h/Mpc (0 x cap)
+     at the BS cap: L*    29.12 M=1+x     : R_edge 72.21695859554694 pc;  NA-3 radius needs mu_K L* = 0.5743 -> mu_K 2.926e+04 h/Mpc (1977 x cap)
+     at the BS cap: L*    29.12 M=(1+x)^2 : R_edge 85.98929073752734 pc;  NA-3 radius needs mu_K L* = 0.7780 -> mu_K 3.964e+04 h/Mpc (2678 x cap)
+     at the BS cap: L*    90.00 M=1       : R_edge 199.9296919319283 pc;  NA-3 radius needs mu_K L* = 0.0000 -> mu_K 0 h/Mpc (0 x cap)
+     at the BS cap: L*    90.00 M=1+x     : R_edge 223.17724950336037 pc;  NA-3 radius needs mu_K L* = 0.5743 -> mu_K 9468 h/Mpc (639.7 x cap)
+     at the BS cap: L*    90.00 M=(1+x)^2 : R_edge 265.7388006489903 pc;  NA-3 radius needs mu_K L* = 0.7780 -> mu_K 1.283e+04 h/Mpc (866.6 x cap)
+     at the BS cap: L*  2140.00 M=1       : R_edge 4753.343260337314 pc;  NA-3 radius needs mu_K L* = 0.0000 -> mu_K 0 h/Mpc (0 x cap)
+     at the BS cap: L*  2140.00 M=1+x     : R_edge 5305.722327239947 pc;  NA-3 radius needs mu_K L* = 0.5743 -> mu_K 398.2 h/Mpc (26.9 x cap)
+     at the BS cap: L*  2140.00 M=(1+x)^2 : R_edge 6316.437293224066 pc;  NA-3 radius needs mu_K L* = 0.7780 -> mu_K 539.4 h/Mpc (36.44 x cap)
+   smallest required mu_K / BS cap over all cells (h = 0.73): 142.4; smallest required mu / v4 bound: 1538
+   mu_K = 0, x -> 0: static wavenumber 1.4142135623730951 (NA-3 needs sqrt2/L*)
+D2e_v3_mu0_no_static_scale FAIL k_s(mu_K=0, x->0) = 1.4142135623730951 None (mutate expects FAIL: NA-3 scale sqrt2/L*)
+   RSS 0.120 GB
+
+== D3: CFG941 R1 (W_full -> W_rem; rejected, NOT REPAIRABLE): self-gravity + stiffness + residual tether
+   u(L*)/a0 = 0.0001: edge R/L* = 2.2215350484569862  (R/(pi L*/sqrt2) = 1.000042125520346)  max u/a0 = 0.000
+   u(L*)/a0 = 0.05  : edge R/L* = 2.273011265916779  (R/(pi L*/sqrt2) = 1.0232145647568975)  max u/a0 = 0.047
+   u(L*)/a0 = 0.1   : edge R/L* = 2.3368029551197993  (R/(pi L*/sqrt2) = 1.0519309140692485)  max u/a0 = 0.096
+   u(L*)/a0 = 0.2   : edge R/L* = 2.531596905714037  (R/(pi L*/sqrt2) = 1.1396190000735953)  max u/a0 = 0.204
+D3_R1_lump_is_NA3 PASS R/L* at u->0: 2.2215350484569862 pi/sqrt2 = 2.2214 to 1% (R1 is a rejected variant: law FAIL 1.64 / 1.88, CFG941)
+
+== D4: CFG938 local-EOS form (a) + tether off (rejected variant + unwritten switch)
+D4_local_EOS_pressure PASS p = gamma*rho_**2/2 = pi G L*^2 rho^2; with Newtonian self-gravity -> K2 (NA-3 exactly) exactly 0
+   CFG938 S2d3: eps_stiff/eps_rad at z_BBN = 1326 (24 pc) / 2.303e+06 (1 kpc); 10% of radiation at z = 3.47e+06 / 8.34e+04. A population born free after z ~ 8e4 would escape BBN, but no formulation writes the switch (CFG938 B1) or gives the free population this term.
+
+== D5: formulation table (record strings verified in their files)
+   cite S2       : campaign_fresh_gravity/THEORY_CANONICAL_2026-10-14.md:18
+   cite S4       : campaign_fresh_gravity/THEORY_CANONICAL_2026-10-14.md:33
+   cite S4nd     : campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md:175
+   cite 888      : campaign_fresh_gravity/CFG888_clump_self_gravity_from_action/README.md:76
+   cite 938cancel: campaign_fresh_gravity/CFG938_medium_continuum_eft/DERIVATION.md:277
+   cite 938bbn   : campaign_fresh_gravity/CFG938_medium_continuum_eft/DERIVATION.md:132
+   cite 938B1    : campaign_fresh_gravity/CFG938_medium_continuum_eft/DERIVATION.md:338
+   cite 939      : campaign_fresh_gravity/CFG939_lagrangian_displacement_shell_crossing/README.md:41
+   cite 941R1    : campaign_fresh_gravity/CFG941_self_gravity_repair/README.md:33
+   cite 941R2    : campaign_fresh_gravity/CFG941_self_gravity_repair/README.md:34
+   cite 941R3    : campaign_fresh_gravity/CFG941_self_gravity_repair/README.md:35
+   cite 941DT    : campaign_fresh_gravity/CFG941_self_gravity_repair/README.md:21
+   cite 638      : campaign_fresh_gravity/CFG638_cold_energy_fluid_equations/README.md:24
+   cite 638p     : campaign_fresh_gravity/CFG638_cold_energy_fluid_equations/README.md:30
+   cite 848      : campaign_fresh_gravity/CFG848_maxent_partition/README.md:135
+   cite 953      : campaign_fresh_gravity/CFG953_source_changing_theory/README.md:27
+   cite 953R9    : campaign_fresh_gravity/CFG953_source_changing_theory/README.md:36
+   cite v3       : covariant_push_2026_10_22/THEORY_V3_DRAFT.md:15
+   cite v3cap    : covariant_push_2026_10_22/THEORY_V3_DRAFT.md:48
+   cite v3growth : covariant_push_2026_10_22/THEORY_V3_DRAFT.md:75
+   cite v3bbn    : covariant_push_2026_10_22/THEORY_V3_DRAFT.md:79
+   cite v3halo   : covariant_push_2026_10_22/THEORY_V3_DRAFT.md:64
+   cite v3top    : covariant_push_2026_10_22/THEORY_V3_DRAFT.md:44
+   cite v4S4     : covariant_push_2026_10_22/THEORY_V3_DRAFT.md:87
+   cite H4       : rebuild_2026_10_22/H4_v3_saddle_stability/README.md:7
+   cite U1       : rebuild_2026_10_22/U1_v3_dust_content/README.md:66
+   cite H2poly   : rebuild_2026_10_22/H2_aest_clusters/README.md:80
+   cite H2C3     : rebuild_2026_10_22/H2_aest_clusters/README.md:64
+   cite soft     : campaign_fresh_gravity/THEORY_CANONICAL_2026-10-21_DRAFT.md:47
+D5a_citations_present PASS 29/29 all present
+   v3 screened theory (Khronon + gamma_L, BS dust mu_K) [primary]
+      live=True stiffness=True self-gravity: only for k < ~mu_K (BS dust); NA-3=True partial-allowed=False; hold cancels self-gravity (M_theta >= 1): isolated mu_K = 0 statics give gamma_L D' = u^2/(a0-u) >= 0, no lump (D1); with mu_K the static scale needs mu_K far outside the BS cap (D2)
+   v4 AeST + gamma_L (capped F)
+      live=True stiffness=True self-gravity: only for k < ~mu (AeST dust); NA-3=True partial-allowed=False; spherical statics = v3 with mu_K -> mu (S4); hydrostatic dust is an n = 1 polytrope of radius pi/mu (H2), mu <= 1 Mpc^-1 (H2 C3); v4 is ill-posed off symmetry (I1)
+   canonical S2 + S3 (ID) + S4
+      live=True stiffness=True self-gravity: tethered: none (critical quadratic); S4 free: Newtonian, no action; NA-3=True partial-allowed=False; statics = D1 (identical E[M]); S4's free population has no written action, so no stiffness
+   CFG938 covariant parent (chi-tidal stiffness, adopted)
+      live=True stiffness=True self-gravity: none (cancelled by the tether); NA-3=True partial-allowed=False; S5a: self-gravity cancelled exactly; untethering not derived (B1)
+   CFG938 local EOS (a) + tether off
+      live=False stiffness=True self-gravity: Newtonian; NA-3=True partial-allowed=False; NA-3 exactly (D4) but rejected: BBN if the medium exists then; switch unwritten
+   CFG939 single medium
+      live=True stiffness=True self-gravity: none (D-T); NA-3=True partial-allowed=False; its Newtonian lambda_J = sqrt2 pi L* is a tether-off control
+   CFG941 R1 (W_full -> W_rem)
+      live=False stiffness=True self-gravity: Newtonian; NA-3=True partial-allowed=False; NA-3 lump (D3) but NOT REPAIRABLE: the law fails (1.64 / 1.88)
+   CFG941 R2 (two populations, tether sector on n_t)
+      live=False stiffness=False self-gravity: free: Newtonian; NA-3=False partial-allowed=False; free population carries no stiffness; NOT REPAIRABLE
+   CFG941 R3n / R3theta / R3l (switch multiplies W_full + stiffness)
+      live=False stiffness=False self-gravity: where switched off: Newtonian; NA-3=False partial-allowed=False; untethered regions lose the stiffness with the tether; R3theta has a ghost
+   class A (CFG541/638/882)
+      live=True stiffness=False self-gravity: Newtonian; NA-3=False partial-allowed=False; pressure = bath sigma_J^2 relaxation; no gamma stiffness
+   CFG848 two-population functional
+      live=False stiffness=False self-gravity: free: Newtonian; NA-3=False partial-allowed=False; zero-stiffness force; WRONG SIGN / ILL-POSED
+   SCT (CFG953; SCT-M retired after CFG960 SC1x)
+      live=False stiffness=False self-gravity: Newtonian (untethered dust); NA-3=False partial-allowed=False; no stiffness in R0-R9; no action principle
+
+PART A OUTCOME: A-PASS
+PART B: WOULD RUN (not run in this mode)
+The lane does not address the lump MASS (supply), which stays open whatever the class.
+OUTCOME_unchanged_by_mutation FAIL A-PASS NO FORMULATION (mutate expects FAIL: the outcome must flip)
+
+CFG965 COMPLETE: 11/18 checks PASS. Peak RSS 0.120 GB.
