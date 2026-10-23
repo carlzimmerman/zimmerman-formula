@@ -1,0 +1,150 @@
+X3_switched_stiffness: -(gamma_L/2)[max(D.P,0)]^2 in v3 -- well-posed where rho_tau < 0? statics unchanged?
+mutate = False (Theta = 1 everywhere: the switch removed); kappa = 1/2 FITTED; footings never pooled
+
+A: reproduction of H4 with H4's own code (source executed verbatim, nothing edited)
+  A0a: H4 A4 block: H4's own A4 check = True; omega^2 - rho_tau(k^2/chi - K) = 0; UV coefficient = K*gamma_L*rho_0/(K + gamma_L*mu_K**2) (json residual 0); gamma_L = 0 limit = K*rho_0*(M_L*M_T - M_L*sin(theta)**2 + M_T*sin(theta)**2 - M_T)/(M_L*sin(theta)**2 - M_T*sin(theta)**2 + M_T) (json residual 0)
+A0a PASS H4 A4 True; dispersion residual 0; B1 json residuals 0, 0 H4's block reproduces its own A4 and B1 json strings (residuals 0)
+  A0b: H4 gmax ladder gamma_L = 1e-3: [7.1398, 14.6205, 29.8445, 60.5699]; gamma_L = 0: [1.222895, 1.224268, 1.224624, 1.224714]; max rel. dev. from H4 json 0.0e+00; ratio 2.0295
+A0b PASS dev 0.0e+00; Gamma(512)/Gamma(256) = 2.0295; gamma_L=0: 1.224714 vs 1.224745 <= 1e-12; [1.8, 2.2]; within 1 %
+
+B: the switched operator (sympy)
+  B1-S: D.P0 > 0 side: omega^2 - H4's = 0; D.P0 < 0 side: omega^2 = K*rho_0*(M_L*M_T*k**2 - M_L*M_T*mu_K**2 - M_L*k**2*sin(theta)**2 + M_T*k**2*sin(theta)**2 - M_T*k**2)/(M_L*M_T*mu_K**2 + M_L*k**2*sin(theta)**2 - M_T*k**2*sin(theta)**2 + M_T*k**2)
+        D.P0 < 0: lim omega^2/k^2 = 0; lim omega^2 = K*rho_0*(M_L*M_T - M_L*sin(theta)**2 + M_T*sin(theta)**2 - M_T)/(M_L*sin(theta)**2 - M_T*sin(theta)**2 + M_T) (minus K rho (M_theta - 1): 0); mu_K = 0, D.P0 > 0: omega^2 - K rho (M_theta - 1 + gL k^2/K) = 0; min(M_theta - 1) over 2e4 J_x samples 1.031e-04
+B1-S PASS P side residual 0; N side UV omega^2/k^2 -> 0, omega^2 -> K rho (M-1) (residual 0); mu=0 P side residual 0, M_theta - 1 >= 1.03e-04 P side = H4; N side finite UV limit K rho_tau (M_theta - 1); P side omega^2 >= 0 for rho_tau >= 0
+  B2-S: sigma-EL + continuity(rho_tau = s - mu^2 Xi/K) = 0; P-EL - [Xi_z - K W'(KP) + d_z((gL/2)F'(s))] = 0; D_t v - (Xi_z - phi_z) = 0; principal symbol omega^2/k^2 = h_1*(rho_d + s_0)
+        c^2 switch: s0 > 0 -> gamma_L*(rho_d + s_p); s0 < 0 -> 0; v3 (F = s^2) at s0 = -(rho_d + s_n): -gamma_L*s_n; eps-smoothed max at s0 = -eps, rho_d = 0: epsilon*gamma_L*(-8 + 5*sqrt(2))/16 (values at eps = 1e-6..1e3, gL = 1: ['-5.806e-08', '-5.806e-05', '-5.806e-02', '-5.806e+01'])
+B2-S PASS identities 0/0/0; switch c^2 >= 0 both branches: True; v3 c^2 < 0: True; eps-smoothing c^2 < 0: True switch: c^2 = gL (s0 + rho_d) Theta(s0) >= 0; v3 and every smoothing: c^2 < 0 somewhere
+  B3-S: f'(0+) = 0, f'(0-) = 0 (C^1); f'' = 2 / 0 (convex); s^2 - f = 0 (s > 0), s_n**2 (s < 0); h(p(grad chi)) - grad chi = 4.4e-16 with chi = Phi + (L*^2/2)(div p)_+
+B3-S PASS C1 0/0; f'' 2/0; E_s - E_u = 0 iff s >= 0: 0, s_n**2; reduction 4.4e-16 C^1, convex, E_switched <= E_v3 with equality iff D.P >= 0; scalar reduction exact
+A, B done (6 s)
+
+C: slab (1D periodic, no WKB): K = 1, M = 2, s0 = -0.5 + cos(2 pi z); staggered FV, Theta on nodes
+  C0 unswitched gamma_L 1e-3: [5.0361, 9.9199, 19.7972, 39.608]; gamma_L 0: [1.224253, 1.224622, 1.224714, 1.224737]
+C0 PASS ratio 2.0007; gamma_L=0: ratio 1.000019, 1.224737 vs 1.224745 [1.8, 2.2]; <= 1.01 and within 1 %
+  C1 gamma_L 0.001: Gamma [1.22453, 1.22469, 1.22473, 1.22474, 1.22474] (N [96, 192, 384, 768, 1536]); finest ratio 1.0000; bound 1.58114; violations [0, 0, 0, 0, 0]; localised-mode value 1.224745 (finest/target 1.0000)
+  C1 gamma_L 0.01: Gamma [1.22453, 1.22469, 1.22473, 1.22474, 1.22474] (N [96, 192, 384, 768, 1536]); finest ratio 1.0000; bound 1.58114; violations [0, 0, 0, 0, 0]; localised-mode value 1.224745 (finest/target 1.0000)
+C1 PASS finest ratios [1.0, 1.0]; bound held [True, True]; sign-consistent [True, True] (a) |ratio - 1| <= 0.10, (b) Gamma <= bound, (c) 0 violations
+  C2 gamma_L 0.001: Gamma [1.18271, 1.18309, 1.18318, 1.18321, 1.18321] (N [64, 128, 256, 512, 1024]); finest ratio 1.0000; bound 1.51102; violations [0, 0, 0, 0, 0]; localised-mode value 1.183216 (finest/target 1.0000)
+  C2 gamma_L 0.01: Gamma [1.18271, 1.18309, 1.18318, 1.18321, 1.18321] (N [64, 128, 256, 512, 1024]); finest ratio 1.0000; bound 1.51102; violations [0, 0, 0, 0, 0]; localised-mode value 1.183216 (finest/target 1.0000)
+C2 PASS finest ratios [1.0, 1.0]; bound held [True, True]; sign-consistent [True, True] (a) |ratio - 1| <= 0.10, (b) Gamma <= bound, (c) 0 violations
+  C3a (diagnostic) zero dust, unaligned, gamma_L 0.001: Gamma [1.2243, 1.2246, 1.2247, 1.2247, 1.2247, 1.2247]; ratios [1.0, 1.0, 1.0, 1.0, 1.0]; slope 0.000; violations [0, 2, 0, 2, 0, 2]
+  C3b (diagnostic) aligned, Theta(0) := 1, gamma_L 0.001: Gamma [1.2245, 1.2247, 1.2247, 1.2247, 1.282]; ratios [1.0, 1.0, 1.0, 1.047]; slope 0.066; violations [2, 2, 2, 2, 2]
+  C3a (diagnostic) zero dust, unaligned, gamma_L 0.01: Gamma [1.2243, 1.2246, 1.2247, 1.2247, 1.2247, 1.2247]; ratios [1.0, 1.0, 1.0, 1.0, 1.0]; slope 0.000; violations [0, 2, 0, 2, 0, 2]
+  C3b (diagnostic) aligned, Theta(0) := 1, gamma_L 0.01: Gamma [1.2245, 1.4613, 2.0371, 2.8664, 4.0461]; ratios [1.193, 1.394, 1.407, 1.412]; slope 0.497; violations [2, 2, 2, 2, 2]
+C done (32 s; C child RSS 0.07 GB, worst slab-level child RSS 0.40 GB)
+
+D: statics
+  D1(a) isolated (lemma): min D over cases 2.196e-09; max switched/unswitched dev 7.99e-14
+  D1(b) s_g = +1e6 vs unswitched EFE: dev 0.00e+00; D1(c) s_g = -1e6 vs AQUAL (Lam 0): dev 0.00e+00 (unswitched vs AQUAL differ by 3.948e-01)
+  D1(d) six D10 cells reproduced: max rel dev 0.00e+00; central L*95 from D10's tables {'canonical': 21.680757539917785, 'alt': 22.847696106846282} (max |dev| 0.0e+00 pc)
+  D1(e) NGC 2419: switched sigma base/fine/far [0.72768, 0.727713, 0.727682] residuals ['2e-14', '8e-11', '2e-13'] -> change 4.51e-05
+  D1(e) Pal 4: switched sigma base/fine/far [0.19077, 0.19077, 0.190771] residuals ['5e-11', '1e-14', '5e-11'] -> change 2.96e-06
+  D1(e) Pal 14: switched sigma base/fine/far [0.102024, 0.102032, 0.102025] residuals ['8e-13', '2e-14', '8e-13'] -> change 7.42e-05
+D1 PASS (a) minD 2.20e-09, dev 8.0e-14; (b) 0.0e+00; (c) 0.0e+00; (d) 0.0e+00, 0.0e+00 pc; (e) 7.4e-05 (a) minD >= 0 & <= 1e-8; (b), (c), (d) <= 1e-8 / 1e-6 pc; (e) <= 5e-3
+  (D1 child RSS 0.49 GB)
+  D2 Galactic phantom (H4 S5a solver, canonical): at the Sun 0.0447 (H4 json 0.0447); min over R 7.2-9.2 kpc, |z| <= 1 kpc: 0.0055 Msun/pc^3 at (R, z) = [8.996, -0.984] kpc (175 nodes; residual 6.7e-09; child RSS 0.20 GB, 1 s)
+  D2 Galactic phantom (H4 S5a solver, alt): at the Sun 0.0514 (H4 json 0.0514); min over R 7.2-9.2 kpc, |z| <= 1 kpc: 0.0062 Msun/pc^3 at (R, z) = [8.996, -0.984] kpc (175 nodes; residual 7.2e-09; child RSS 0.26 GB, 1 s)
+    D2 canonical x_e 1.15 L*  21.7 pc: Sun's deepest lobe -1.363e-07 Msun/pc^3 at r 53.6 pc, theta 93 deg (negative for r in [40.2, 953.2] pc); total min 0.0055; margin 4.04e+04
+    D2 canonical x_e 1.15 L*  24.0 pc: Sun's deepest lobe -1.008e-07 Msun/pc^3 at r 59.0 pc, theta 93 deg (negative for r in [44.2, 953.2] pc); total min 0.0055; margin 5.46e+04
+    D2 canonical x_e 1.15 L*  90.0 pc: Sun's deepest lobe -1.907e-09 Msun/pc^3 at r 226.0 pc, theta 93 deg (negative for r in [169.5, 953.2] pc); total min 0.0055; margin 2.89e+06
+    D2 canonical x_e 2.60 L*  21.7 pc: Sun's deepest lobe -3.118e-07 Msun/pc^3 at r 33.2 pc, theta 93 deg (negative for r in [24.9, 953.2] pc); total min 0.0055; margin 1.77e+04
+    D2 canonical x_e 2.60 L*  24.0 pc: Sun's deepest lobe -2.308e-07 Msun/pc^3 at r 36.5 pc, theta 93 deg (negative for r in [27.4, 953.2] pc); total min 0.0055; margin 2.39e+04
+    D2 canonical x_e 2.60 L*  90.0 pc: Sun's deepest lobe -4.346e-09 Msun/pc^3 at r 139.9 pc, theta 87 deg (negative for r in [95.3, 953.2] pc); total min 0.0055; margin 1.27e+06
+    D2 alt       x_e 1.15 L*  22.9 pc: Sun's deepest lobe -1.147e-07 Msun/pc^3 at r 59.0 pc, theta 93 deg (negative for r in [44.2, 953.2] pc); total min 0.0062; margin 5.39e+04
+    D2 alt       x_e 1.15 L*  24.0 pc: Sun's deepest lobe -1.008e-07 Msun/pc^3 at r 59.0 pc, theta 93 deg (negative for r in [44.2, 953.2] pc); total min 0.0062; margin 6.13e+04
+    D2 alt       x_e 1.15 L*  90.0 pc: Sun's deepest lobe -1.907e-09 Msun/pc^3 at r 226.0 pc, theta 93 deg (negative for r in [169.5, 953.2] pc); total min 0.0062; margin 3.24e+06
+    D2 alt       x_e 2.60 L*  22.9 pc: Sun's deepest lobe -2.657e-07 Msun/pc^3 at r 33.2 pc, theta 93 deg (negative for r in [24.9, 953.2] pc); total min 0.0062; margin 2.33e+04
+    D2 alt       x_e 2.60 L*  24.0 pc: Sun's deepest lobe -2.308e-07 Msun/pc^3 at r 36.5 pc, theta 93 deg (negative for r in [27.4, 953.2] pc); total min 0.0062; margin 2.68e+04
+    D2 alt       x_e 2.60 L*  90.0 pc: Sun's deepest lobe -4.346e-09 Msun/pc^3 at r 139.9 pc, theta 93 deg (negative for r in [95.3, 953.2] pc); total min 0.0062; margin 1.42e+06
+  D2 reported: H4 C3 near-zone minimum 0.0449 Msun/pc^3; nearest MW external-field lobe (H4 S5a e0.01) inner R 40.7 kpc -> far-region stiffness effect ~ (L*/R)^2 = 2.8e-07 (estimate)
+D2 PASS min total D.P 0.0055 Msun/pc^3; min margin 1.77e+04 over 12 cells > 0 and margin >= 10 (all cells)
+  (D2 child RSS 0.19 GB)
+  D3: P3 E4 rows with G_hat > 0: 60/60; E4_G_nonpositive []; isolated spherical screened min s / max s over 12 cases 1.62e-07 (bvp status [0])
+D3 PASS P3 rows positive True; spherical min/max 1.62e-07 all G_hat > 0; s >= -1e-6 max s, BVPs converged
+    D4 map canonical NGC 2419 L*  21.7 pc (x_e 0.100, rho_gal 5.5e-05): min D.P -3.27e-03 Msun/pc^3 at r 369 pc, theta 129 deg; D.P < 0 for r in [304, 1555] pc; min inside L* 2.52e+00; sigma_p switched/unswitched - 1 = +2.95e-07
+    D4 map canonical NGC 2419 L*  24.0 pc (x_e 0.100, rho_gal 5.5e-05): min D.P -2.85e-03 Msun/pc^3 at r 406 pc, theta 118 deg; D.P < 0 for r in [335, 1555] pc; min inside L* 2.15e+00; sigma_p switched/unswitched - 1 = +3.36e-07
+    D4 map canonical NGC 2419 L*  90.0 pc (x_e 0.100, rho_gal 5.5e-05): min D.P -1.53e-04 Msun/pc^3 at r 874 pc, theta 96 deg; D.P < 0 for r in [722, 1555] pc; min inside L* 1.02e-01; sigma_p switched/unswitched - 1 = +9.28e-07
+    D4 map canonical Pal 3    L*  21.7 pc (x_e 0.098, rho_gal 5.2e-05): min D.P -2.54e-04 Msun/pc^3 at r 233 pc, theta 96 deg; D.P < 0 for r in [192, 502] pc; min inside L* 1.30e-01; sigma_p switched/unswitched - 1 = +1.96e-05
+    D4 map canonical Pal 3    L*  24.0 pc (x_e 0.098, rho_gal 5.2e-05): min D.P -1.82e-04 Msun/pc^3 at r 256 pc, theta 96 deg; D.P < 0 for r in [212, 502] pc; min inside L* 1.03e-01; sigma_p switched/unswitched - 1 = +1.50e-05
+    D4 map canonical Pal 3    L*  90.0 pc (x_e 0.098, rho_gal 5.2e-05): min D.P 4.69e-05 Msun/pc^3 at r 892 pc, theta 96 deg; D.P < 0 for r in none pc; min inside L* 2.71e-03; sigma_p switched/unswitched - 1 = +0.00e+00
+    D4 map canonical Pal 4    L*  21.7 pc (x_e 0.092, rho_gal 4.6e-05): min D.P -4.06e-04 Msun/pc^3 at r 222 pc, theta 96 deg; D.P < 0 for r in [183, 580] pc; min inside L* 2.24e-01; sigma_p switched/unswitched - 1 = +1.83e-05
+    D4 map canonical Pal 4    L*  24.0 pc (x_e 0.092, rho_gal 4.6e-05): min D.P -2.96e-04 Msun/pc^3 at r 245 pc, theta 96 deg; D.P < 0 for r in [202, 580] pc; min inside L* 1.75e-01; sigma_p switched/unswitched - 1 = +1.45e-05
+    D4 map canonical Pal 4    L*  90.0 pc (x_e 0.092, rho_gal 4.6e-05): min D.P 3.92e-05 Msun/pc^3 at r 937 pc, theta 96 deg; D.P < 0 for r in none pc; min inside L* 4.19e-03; sigma_p switched/unswitched - 1 = +0.00e+00
+    D4 map canonical Pal 14   L*  21.7 pc (x_e 0.141, rho_gal 1.1e-04): min D.P -1.52e-04 Msun/pc^3 at r 217 pc, theta 96 deg; D.P < 0 for r in [179, 319] pc; min inside L* 8.37e-02; sigma_p switched/unswitched - 1 = +3.52e-05
+    D4 map canonical Pal 14   L*  24.0 pc (x_e 0.141, rho_gal 1.1e-04): min D.P -9.76e-05 Msun/pc^3 at r 217 pc, theta 96 deg; D.P < 0 for r in [197, 319] pc; min inside L* 6.39e-02; sigma_p switched/unswitched - 1 = +2.30e-05
+    D4 map canonical Pal 14   L*  90.0 pc (x_e 0.141, rho_gal 1.1e-04): min D.P 1.01e-04 Msun/pc^3 at r 757 pc, theta 96 deg; D.P < 0 for r in none pc; min inside L* 2.42e-03; sigma_p switched/unswitched - 1 = +0.00e+00
+  (D4 maps canonical child RSS 0.15 GB)
+    D4 map alt       NGC 2419 L*  22.8 pc (x_e 0.091, rho_gal 6.0e-05): min D.P -3.13e-03 Msun/pc^3 at r 406 pc, theta 118 deg; D.P < 0 for r in [335, 1555] pc; min inside L* 2.41e+00; sigma_p switched/unswitched - 1 = +3.61e-07
+    D4 map alt       NGC 2419 L*  24.0 pc (x_e 0.091, rho_gal 6.0e-05): min D.P -2.98e-03 Msun/pc^3 at r 406 pc, theta 118 deg; D.P < 0 for r in [335, 1555] pc; min inside L* 2.35e+00; sigma_p switched/unswitched - 1 = +3.72e-07
+    D4 map alt       NGC 2419 L*  90.0 pc (x_e 0.091, rho_gal 6.0e-05): min D.P -1.36e-04 Msun/pc^3 at r 962 pc, theta 96 deg; D.P < 0 for r in [794, 1555] pc; min inside L* 1.05e-01; sigma_p switched/unswitched - 1 = +7.99e-07
+    D4 map alt       Pal 3    L*  22.8 pc (x_e 0.089, rho_gal 5.7e-05): min D.P -1.98e-04 Msun/pc^3 at r 256 pc, theta 96 deg; D.P < 0 for r in [212, 502] pc; min inside L* 1.24e-01; sigma_p switched/unswitched - 1 = +1.55e-05
+    D4 map alt       Pal 3    L*  24.0 pc (x_e 0.089, rho_gal 5.7e-05): min D.P -1.65e-04 Msun/pc^3 at r 256 pc, theta 96 deg; D.P < 0 for r in [212, 502] pc; min inside L* 1.06e-01; sigma_p switched/unswitched - 1 = +1.36e-05
+    D4 map alt       Pal 3    L*  90.0 pc (x_e 0.089, rho_gal 5.7e-05): min D.P 5.25e-05 Msun/pc^3 at r 982 pc, theta 96 deg; D.P < 0 for r in none pc; min inside L* 2.78e-03; sigma_p switched/unswitched - 1 = +0.00e+00
+    D4 map alt       Pal 4    L*  22.8 pc (x_e 0.084, rho_gal 5.1e-05): min D.P -3.23e-04 Msun/pc^3 at r 245 pc, theta 96 deg; D.P < 0 for r in [202, 580] pc; min inside L* 1.94e-01; sigma_p switched/unswitched - 1 = +1.51e-05
+    D4 map alt       Pal 4    L*  24.0 pc (x_e 0.084, rho_gal 5.1e-05): min D.P -2.79e-04 Msun/pc^3 at r 269 pc, theta 96 deg; D.P < 0 for r in [222, 580] pc; min inside L* 1.80e-01; sigma_p switched/unswitched - 1 = +1.34e-05
+    D4 map alt       Pal 4    L*  90.0 pc (x_e 0.084, rho_gal 5.1e-05): min D.P 4.42e-05 Msun/pc^3 at r 937 pc, theta 96 deg; D.P < 0 for r in none pc; min inside L* 4.29e-03; sigma_p switched/unswitched - 1 = +0.00e+00
+    D4 map alt       Pal 14   L*  22.8 pc (x_e 0.128, rho_gal 1.2e-04): min D.P -1.04e-04 Msun/pc^3 at r 217 pc, theta 96 deg; D.P < 0 for r in [197, 319] pc; min inside L* 7.58e-02; sigma_p switched/unswitched - 1 = +2.28e-05
+    D4 map alt       Pal 14   L*  24.0 pc (x_e 0.128, rho_gal 1.2e-04): min D.P -8.19e-05 Msun/pc^3 at r 239 pc, theta 96 deg; D.P < 0 for r in [197, 319] pc; min inside L* 6.61e-02; sigma_p switched/unswitched - 1 = +1.84e-05
+    D4 map alt       Pal 14   L*  90.0 pc (x_e 0.128, rho_gal 1.2e-04): min D.P 1.12e-04 Msun/pc^3 at r 757 pc, theta 96 deg; D.P < 0 for r in none pc; min inside L* 2.50e-03; sigma_p switched/unswitched - 1 = +0.00e+00
+  (D4 maps alt child RSS 0.17 GB)
+    D4 [canonical P1 E_lo ] L*95 switched  22.668 pc vs D10  22.667 (json  22.667): +0.006 %; dchi2 AQUAL 20.93, Newton 0.05
+    D4 [canonical P1 E_mid] L*95 switched  21.682 pc vs D10  21.681 (json  21.681): +0.006 %; dchi2 AQUAL 19.31, Newton 0.05
+    D4 [canonical P1 E_hi ] L*95 switched  19.766 pc vs D10  19.764 (json  19.764): +0.009 %; dchi2 AQUAL 16.30, Newton 0.05
+    D4 [canonical P2 E_lo ] L*95 switched   6.906 pc vs D10   6.904 (json   6.904): +0.026 %; dchi2 AQUAL 9.07, Newton 2.41
+    D4 [canonical P2 E_mid] L*95 switched   5.732 pc vs D10   5.731 (json   5.731): +0.029 %; dchi2 AQUAL 7.58, Newton 2.44
+    D4 [canonical P2 E_hi ] L*95 switched   2.933 pc vs D10   2.932 (json   2.932): +0.041 %; dchi2 AQUAL 4.89, Newton 2.47
+    D4 [canonical P3 E_lo ] L*95 switched   9.644 pc vs D10   9.642 (json   9.642): +0.021 %; dchi2 AQUAL 11.42, Newton 0.97
+    D4 [canonical P3 E_mid] L*95 switched   8.410 pc vs D10   8.407 (json   8.407): +0.025 %; dchi2 AQUAL 9.75, Newton 0.97
+    D4 [canonical P3 E_hi ] L*95 switched   5.761 pc vs D10   5.759 (json   5.759): +0.035 %; dchi2 AQUAL 6.70, Newton 0.96
+    D4 [alt       P1 E_lo ] L*95 switched  23.799 pc vs D10  23.798 (json  23.798): +0.004 %; dchi2 AQUAL 22.80, Newton 0.05
+    D4 [alt       P1 E_mid] L*95 switched  22.849 pc vs D10  22.848 (json  22.848): +0.005 %; dchi2 AQUAL 21.14, Newton 0.05
+    D4 [alt       P1 E_hi ] L*95 switched  21.211 pc vs D10  21.210 (json  21.210): +0.006 %; dchi2 AQUAL 18.41, Newton 0.05
+    D4 [alt       P2 E_lo ] L*95 switched   7.723 pc vs D10   7.722 (json   7.722): +0.022 %; dchi2 AQUAL 10.63, Newton 2.41
+    D4 [alt       P2 E_mid] L*95 switched   6.583 pc vs D10   6.581 (json   6.581): +0.028 %; dchi2 AQUAL 8.94, Newton 2.41
+    D4 [alt       P2 E_hi ] L*95 switched   4.403 pc vs D10   4.401 (json   4.401): +0.034 %; dchi2 AQUAL 6.19, Newton 2.44
+    D4 [alt       P3 E_lo ] L*95 switched  10.640 pc vs D10  10.638 (json  10.638): +0.016 %; dchi2 AQUAL 13.25, Newton 0.94
+    D4 [alt       P3 E_mid] L*95 switched   9.549 pc vs D10   9.547 (json   9.547): +0.021 %; dchi2 AQUAL 11.42, Newton 0.94
+    D4 [alt       P3 E_hi ] L*95 switched   7.368 pc vs D10   7.366 (json   7.366): +0.029 %; dchi2 AQUAL 8.34, Newton 0.93
+  D4 [canonical] switched: central 21.682 pc (D10 21.681, +0.006 %); band 2.93-22.67; STRADDLES the 20 pc edge; FLOOR HOLDS; AQUAL excluded all cells True; s_g = 0 variant central 21.683 pc
+  D4 [alt] switched: central 22.849 pc (D10 22.848, +0.005 %); band 4.40-23.80; STRADDLES the 20 pc edge; FLOOR HOLDS; AQUAL excluded all cells True; s_g = 0 variant central 22.850 pc
+  D4 production: 9000 switched-chain solves, unconverged 0, worst residual 1.0e-10; max |dsigma/sigma| at Ups 1.67, E_mid, L* 20-90 pc, three primary clusters 3.53e-05
+D4 PASS status PASS; central [0.006, 0.005] %; band ok True; max dsigma 3.53e-05; unconverged 0/9000 central <= 2 %, band <= max(2 %, 0.2 pc), sigma <= 1 %, >= 99 % converged
+D done (72 s)
+
+E: secondary (report only)
+E0 PASS max rel dev 0.0e+00 <= 1e-9 (P3's A69 estimate reproduced)
+  E1 S1_MW-M31|canonical|e0|L*21.7: P side c_pi 4.95 m/s, strong-coupling length 2.11e-02 m; at rho/1e9: c_pi 1.56e-04 m/s, length 4.99e+01 m, eps(1/L*) 2.0e-68; N side: c_pi = 0
+  E1 S1_MW-M31|canonical|e0.01|L*21.7: P side c_pi 0.51 m/s, strong-coupling length 1.15e-01 m; at rho/1e9: c_pi 1.62e-05 m/s, length 2.72e+02 m, eps(1/L*) 1.7e-65; N side: c_pi = 0
+  E1 S1_MW-M31|alt|e0|L*22.9: P side c_pi 5.45 m/s, strong-coupling length 2.01e-02 m; at rho/1e9: c_pi 1.72e-04 m/s, length 4.77e+01 m, eps(1/L*) 1.3e-68; N side: c_pi = 0
+  E1 S1_MW-M31|alt|e0.01|L*22.9: P side c_pi 0.62 m/s, strong-coupling length 1.02e-01 m; at rho/1e9: c_pi 1.97e-05 m/s, length 2.42e+02 m, eps(1/L*) 8.8e-66; N side: c_pi = 0
+  E2 S1_MW-M31|canonical|e0|L*21.7: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['9.70e-02', '9.70e-02', '1.25e-01', '3.22e+00'] (H4 bounded branch 0.097)
+  E2 S1_MW-M31|canonical|e0.01|L*21.7: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['3.82e-02', '3.82e-02', '3.82e-02', '1.90e-01'] (H4 bounded branch 0.038)
+  E2 S1_MW-M31|alt|e0|L*22.9: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['9.67e-02', '9.67e-02', '1.38e-01', '3.72e+00'] (H4 bounded branch 0.097)
+  E2 S1_MW-M31|alt|e0.01|L*22.9: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['4.39e-02', '4.39e-02', '4.39e-02', '2.65e-01'] (H4 bounded branch 0.044)
+  E2 S2_LMC-MW|canonical|e0|L*21.7: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['6.15e-02', '6.15e-02', '2.50e-01', '7.79e+00'] (H4 bounded branch 0.062)
+  E2 S2_LMC-MW|alt|e0|L*22.9: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['6.05e-02', '6.05e-02', '2.85e-01', '8.91e+00'] (H4 bounded branch 0.060)
+  E2 S3_galaxy_pair|canonical|e0|L*21.7: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['9.26e-02', '9.26e-02', '1.68e-01', '4.88e+00'] (H4 bounded branch 0.093)
+  E2 S3_galaxy_pair|canonical|e0.01|L*21.7: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['4.33e-02', '4.33e-02', '4.33e-02', '2.44e-01'] (H4 bounded branch 0.043)
+  E2 S3_galaxy_pair|alt|e0|L*22.9: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['9.21e-02', '9.21e-02', '1.89e-01', '5.60e+00'] (H4 bounded branch 0.092)
+  E2 S3_galaxy_pair|alt|e0.01|L*22.9: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['5.00e-02', '5.00e-02', '5.00e-02', '3.43e-01'] (H4 bounded branch 0.050)
+  E2 S4_cluster_pair|canonical|e0|L*21.7: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['1.96e-01', '1.96e-01', '1.96e-01', '2.89e+00'] (H4 bounded branch 0.196)
+  E2 S4_cluster_pair|canonical|e0.01|L*21.7: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['6.10e-03', '6.10e-03', '6.10e-03', '6.75e-03'] (H4 bounded branch 0.006)
+  E2 S4_cluster_pair|alt|e0|L*22.9: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['1.94e-01', '1.94e-01', '1.94e-01', '3.33e+00'] (H4 bounded branch 0.194)
+  E2 S4_cluster_pair|alt|e0.01|L*22.9: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['7.03e-03', '7.03e-03', '7.03e-03', '8.58e-03'] (H4 bounded branch 0.007)
+  E2 S5a_MW_disc|canonical|e0.01|L*21.7: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['3.55e-02', '3.55e-02', '3.55e-02', '2.26e-01'] (H4 bounded branch 0.036)
+  E2 S5a_MW_disc|alt|e0.01|L*22.9: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['4.09e-02', '4.09e-02', '4.09e-02', '3.16e-01'] (H4 bounded branch 0.041)
+  E2 S5b_dwarf_disc|canonical|e0.01|L*21.7: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['9.87e-02', '9.87e-02', '9.93e-02', '1.74e+00'] (H4 bounded branch 0.099)
+  E2 S5b_dwarf_disc|alt|e0.01|L*22.9: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['1.14e-01', '1.14e-01', '1.19e-01', '2.45e+00'] (H4 bounded branch 0.114)
+  E2 S6_single_in_field|canonical|e0.01|L*21.7: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['3.56e-02', '3.56e-02', '3.56e-02', '2.27e-01'] (H4 bounded branch 0.036)
+  E2 S6_single_in_field|alt|e0.01|L*22.9: e-folds at beta 1e-9/1e-12/1e-15/1e-18: ['4.09e-02', '4.09e-02', '4.09e-02', '3.15e-01'] (H4 bounded branch 0.041)
+  E2: worst median region S2_LMC-MW|alt|e0|L*22.9 reaches 1 e-fold at beta = 7.95e-17 (C5 window upper edge ~1e-9, estimate); beta is a new constant in v3 (not adopted)
+
+WELL-POSEDNESS: WELL-POSED -- finite UV limit where D.P < 0; nonlinear c^2 = gamma_L (D.P + rho_d) Theta(D.P) >= 0; slab rates converge
+STATICS: UNCHANGED
+OVERALL: WELL-POSED + STATICS UNCHANGED
+  qualifier: conditional on rho_d >= -D.P wherever D.P > 0 (non-negative dust; v3's mu_K -> 0 regime)
+  qualifier: requires sign-consistent numerics (C3 diagnostic)
+  qualifier: the bounded instability where rho_tau < 0 remains (H4's gamma_L = 0 branch: 0.006-0.20 e-folds median, <= 4.2 at the deepest cells)
+  qualifier: strong coupling: c_pi = 0 on the D.P < 0 side (E1)
+run: 72.2 s, peak RSS parent 0.14 GB, children 0.49 GB, single thread
+X3_SWITCHED_STIFFNESS COMPLETE: 13/13 checks PASS.
