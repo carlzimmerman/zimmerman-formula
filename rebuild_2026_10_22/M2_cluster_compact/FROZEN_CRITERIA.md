@@ -107,3 +107,19 @@ Reported with every verdict: what the component physically is (a postulated term
 
 Runs: `OMP_NUM_THREADS=1 nice -n 15`, < 1 GB RSS, single thread, minutes, no downloads, no network. F1's measurement cache
 is passed as argv[1] (a read-only copy in session scratch); nothing of another lane is written.
+
+## AMENDMENT A1 (2026-10-23, PRE-RESULT: no script written or run yet)
+
+1. **R3 baseline at L★ = 50 and 90 pc, and M4.** Reading E3's code (`e3_dwarf_excess.py` L117–143, L267–301) shows that the
+   CSV column `B_scr_L24` is the median of B_scr over E3's 2000 Monte Carlo draws (distance modulus and R_h vary), not
+   B_scr at the CSV's central log M★ and R_h. So it cannot be reproduced from the CSV columns to 1e-6. Changes:
+   - At L★ = 24 pc the baseline uses the CSV `B_scr_L24` exactly, as K1 did (so M3 and M4's K9 line stay exact).
+   - At L★ = 50 and 90 pc: B_scr(L★) = B_scr,CSV(24) × B_c(L★)/B_c(24), where B_c is E3's own `B_scr` at the central
+     log M★ and r₁₂ = (4/3) R_h (E3's Υ = 2 convention: M★ = 10^{log M★}).
+   - M4's first line becomes: B_c(24) vs the CSV `B_scr_L24`, median |Δ log10 B| ≤ 0.02 dex and max ≤ 0.10 dex over each
+     footing's systems. The second line (baseline medians 0.94566 / 0.90929 to ≤ 1e-4 dex) is unchanged.
+2. **Tidal numerics (M6, R5a's Galactic term, R5b, R6's tide).** The Galaxy's C2 potential near R₀ is taken from a direct
+   adaptive quadrature of K1's shell kernel, Φ_W(R) = −Gℓ_Q ∫ dm(s) (1/2Rs) ln[(R + s)/|R − s|] (`scipy.integrate.quad`,
+   breakpoint at s = R), with second-order central differences (step 1e-2 R). The 3000-point grid's midpoint rule leaves the
+   potential slightly jagged where s ≈ R, and a second derivative amplifies that. M6 is run with the same quadrature (Plummer,
+   b = 5 kpc, R = 100 b, line ≤ 1e-2 unchanged).
