@@ -53,20 +53,29 @@ def v2s(lm, R=RE): return float(NS["v2_exp"](10 ** lm, RD, R))
 def v2g(lg, Rg, R=RE): return float(NS["v2_exp"](10 ** lg, Rg, R)) if lg is not None else 0.0
 
 
-def vreq2(key, lm, Vc=None):
+def vreq2(key, lm, Vc=None, Rg=None):
     """V_bar,req^2 at R_e: the sealed number at V_c 206 (never recomputed); the CFG571 functions only for the [CI] V_c branch (3.4)"""
+    if C.KERNEL == "v3aq":       # addendum F rules 4-6: sealed V_c 206 only; the 1.5 R_d branch has its own sealed requirement
+        if Vc is not None: raise C.NotSealed(f"GS4 [CI] V_c {Vc:.1f}: only V_c 206 is sealed")
+        if Rg is not None and abs(Rg - 1.5 * RD) < 1e-9: return 10 ** SEAL[str(lm)][key]["logVbar2R_G_Rg=1.5Rd"] * G / RE
+        if Rg is not None and abs(Rg - RD) > 1e-9: raise C.NotSealed(f"GS4 measured R_g {Rg:.2f} kpc is not sealed")
+        return 10 ** SEAL[str(lm)][key]["logVbar2R_G"] * G / RE
     if Vc is None:
         return 10 ** SEAL[str(lm)][key]["logVbar2R_G"] * G / RE
     return 10 ** C.predict(NS, RE, Vc, C.GS4["z"], lm, RD)[key]["logVbar2R_G"] * G / RE
 
 
 def floor_at(key, lm, Vc=None, dm=0.0):
+    if C.KERNEL == "v3aq":       # FLOOR from the stars-only AQUAL ratio C_stars (S3 aqual_cell); at dm = 0 this is the sealed flag
+        if Vc is not None: raise C.NotSealed(f"GS4 [CI] V_c {Vc:.1f}: only V_c 206 is sealed")
+        vs = 10 ** C.predict(NS, RE, C.GS4["Vc"], C.GS4["z"], lm, RD)[key]["logVbar2R_G_stars"] * G / RE
+        return vs - v2s(lm + dm) <= 0
     return vreq2(key, lm, Vc) - v2s(lm + dm) <= 0
 
 
 def delta_v(route, key, lm, Rg, Vc=None):
     """route: dict(logMgas, sig_flux_dex, detected). Returns Delta_v, sigma, wording (CFG809 s4; FLOOR rule; one-sided for limits)."""
-    vr = vreq2(key, lm, Vc); g = route["logMgas"]; sg = math.hypot(route["sig_flux_dex"], 0.2)
+    vr = vreq2(key, lm, Vc, Rg) if C.KERNEL == "v3aq" else vreq2(key, lm, Vc); g = route["logMgas"]; sg = math.hypot(route["sig_flux_dex"], 0.2)
     f = lambda dg, dm: math.log10((v2s(lm + dm) + v2g(g + dg if g is not None else None, Rg)) / vr)
     fl = floor_at(key, lm, Vc)
     out = dict(model=key.split("|")[1], foot=key.split("|")[0], Mstar=lm, floor=fl)
@@ -138,6 +147,12 @@ def score(meas, run):
     vc_branches = {"V_c 206 (RC100, sealed)": None}
     for b, (V, eV) in meas.get("ci_vc", {}).items():
         vc_branches[f"V_c {b} {V:.1f}+-{eV:.1f} ([CI] branch, recomputed)"] = V
+    if C.KERNEL == "v3aq":           # addendum F rules 4 and 6: only the sealed V_c 206 and the sealed R_g rows are read
+        for vb in [k for k, v in vc_branches.items() if v is not None]:
+            run.P(f"  v3 AQUAL disc: {vb} NOT SEALED (addendum F rule 4); not scored for this reading"); del vc_branches[vb]
+        if "measured" in shapes:
+            run.P(f"  v3 AQUAL disc: measured R_g {shapes['measured']:.2f} kpc NOT SEALED (addendum F rule 6); only R_g = R_d / 1.5 R_d scored")
+            del shapes["measured"]
     for vb, Vc in vc_branches.items():
         for rn, rt in R.items():
             for lm in C.GS4["lmstars"]:
@@ -612,7 +627,12 @@ def required(kind, m, sc, run):
 def selftest(run):
     run.P("\n=== R2 reproduction of the sealed GS4 numbers by CFG571's own functions (executed read-only) ===")
     w, n, bad = C.reproduce(NS, "GS4_24110")
-    run.check("R2 reproduction <= 1e-12 dex, FLOOR flags identical", w <= 1e-12 and not bad, f"max |d| {w:.1e} over {n} entries; mismatches {bad}")
+    if C.KERNEL == "v3aq":   # S3's own root finder sealed these numbers (addendum F): agreement to 1e-9 dex, the 1.5 R_d requirement included
+        run.check("R2 reproduction of the v3 AQUAL-disc seal <= 1e-9 dex (incl. logVbar2R_G_Rg=1.5Rd), FLOOR flags identical", w <= 1e-9 and not bad, f"max |d| {w:.1e} over {n} entries; mismatches {bad}")
+        fl = [(lm, k) for lm, ent in SEAL.items() for k in ent if k.split("|")[1] in C.MODELS and floor_at(k, float(lm)) != ent[k]["floor"]]
+        run.check("R2b v3 AQUAL-disc FLOOR test from C_stars reproduces every sealed FLOOR flag", not fl, f"mismatches {fl}")
+    else:
+        run.check("R2 reproduction <= 1e-12 dex, FLOOR flags identical", w <= 1e-12 and not bad, f"max |d| {w:.1e} over {n} entries; mismatches {bad}")
     run.P("\n=== R3 transcription: CFG809 section 2 table vs the seal ===")
     rows, worst, bad = C.transcription(PLAN, "GS4_24110")
     run.check("R3 every CFG809 s2 cell within 0.005 dex of the seal; FLOOR cells identical", rows == 4 and not bad, f"{rows} rows, worst {worst:.4f} dex, mismatches {bad}")

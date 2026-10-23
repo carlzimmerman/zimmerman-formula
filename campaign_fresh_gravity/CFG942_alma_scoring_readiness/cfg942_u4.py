@@ -61,7 +61,8 @@ def dm_bar(g, sg, V, eV, key, shape):
     Interval: the gas error (sg) and the primary V_c interval (eV) propagated through the same functions."""
     R, Rd = GEO["R"], GEO["Rd"]; Rg = Rd * (1.0 if shape == "Rg=Rd" else 1.5)
     vs2 = float(NS["v2_exp"](10 ** GEO["lmstar"], Rd, R))
-    f = lambda gg, VV: math.log10((vs2 + float(NS["v2_exp"](10 ** gg, Rg, R))) * R / NS["G"]) - req(VV)[key]["logVbar2R_G"]
+    kq = "logVbar2R_G_Rg=1.5Rd" if (C.KERNEL == "v3aq" and shape == "Rg=1.5Rd") else "logVbar2R_G"   # addendum F rule 5
+    f = lambda gg, VV: math.log10((vs2 + float(NS["v2_exp"](10 ** gg, Rg, R))) * R / NS["G"]) - req(VV)[key][kq]
     D = f(g, V)
     return D, math.hypot(0.5 * (f(g + sg, V) - f(g - sg, V)), 0.5 * (f(g, V + eV) - f(g, V - eV)) if eV else 0.0)
 
@@ -152,6 +153,14 @@ def score(meas, run):
             res["branches"][bname] = b; overall.append("TESTS NOTHING"); continue
         partial = V - eV < 200
         evals = [(V - eV, 0.0, "lower end"), (V + eV, 0.0, "upper end")] if partial else [(V, eV, "")]
+        if C.KERNEL == "v3aq":       # addendum F rule 4: every V_c this branch evaluates must lie on the sealed grid
+            try:
+                for Vt in [x for (Vx, eVx, _) in evals for x in (Vx - eVx, Vx, Vx + eVx)] + [V - eVi, V + eVi]:
+                    req(Vt); req(Vt, GEO["lmstar"] - 0.2); req(Vt, GEO["lmstar"] + 0.2)
+            except C.NotSealed as e:
+                b["status"] = "NOT SEALED (v3 AQUAL disc, addendum F rule 4)"; b["why"] = str(e)
+                run.P(f"  [{bname}] {vline}: v3 AQUAL disc NOT SEALED here ({e}); nothing scored for this reading")
+                res["branches"][bname] = b; overall.append(b["status"]); continue
         b["status"] = "PARTIAL" if partial else "SCORED"; b["rows"] = []
         for (Vx, eVx, tag) in evals:
             for aco, g in meas["logMgas"].items():
@@ -475,7 +484,10 @@ def required_classes(kind, meas, sc, run):
 def selftest(run):
     run.P("\n=== R2 reproduction of the sealed U4 numbers by CFG571's own functions (executed read-only) ===")
     w, n, bad = C.reproduce(NS, "U4_27928")
-    run.check("R2 reproduction <= 1e-12 dex, FLOOR flags identical", w <= 1e-12 and not bad, f"max |d| {w:.1e} over {n} entries; mismatches {bad}")
+    if C.KERNEL == "v3aq":   # S3's own root finder sealed these numbers (addendum F): agreement to 1e-9 dex, the 1.5 R_d requirement included
+        run.check("R2 reproduction of the v3 AQUAL-disc seal <= 1e-9 dex (incl. logVbar2R_G_Rg=1.5Rd), FLOOR flags identical", w <= 1e-9 and not bad, f"max |d| {w:.1e} over {n} entries; mismatches {bad}")
+    else:
+        run.check("R2 reproduction <= 1e-12 dex, FLOOR flags identical", w <= 1e-12 and not bad, f"max |d| {w:.1e} over {n} entries; mismatches {bad}")
     run.P(f"  CFG571 radius 2 R_e = {GEO['R']:.3f} kpc (R_e {GEO['Re']:.3f} kpc), R_d = {GEO['Rd']:.3f} kpc; CFG806 evaluates V_c at 8.3 kpc")
     run.flag("A-U7", f"radius: CFG806 3.1 reads V_c at R = 8.3 kpc; the sealed requirement is computed at CFG571's 2 R_e = {GEO['R']:.3f} kpc. The harness uses 8.3 for V_c and 2 R_e for the requirement (as sealed)")
     run.P("\n=== R3 transcription: CFG806 section 2 table vs the seal ===")
@@ -521,6 +533,8 @@ def power(run):
         run.P(f"  footing {f}:")
         for V in (200, 210, 220, 225, 230, 240, 250, 260, 275, 300, 325, 350, 375, 400):
             line = []
+            if C.KERNEL == "v3aq" and V + 5.0 > 300.0:      # addendum F rule 4: the +-5 km/s interval leaves the sealed grid
+                run.P(f"    V_c {V:3d}: v3 AQUAL disc NOT SEALED (V_c +- 5 km/s outside 150-300)"); continue
             for mm in ("F-DESI", "R-H"):
                 g = gas_req(float(V), f"{f}|{mm}", "Rg=Rd")
                 if g is None: line.append(f"gas=req({mm}): {mm} FLOOR"); continue

@@ -48,26 +48,43 @@ FROZEN = [
 # addendum E (CFG806/CFG809 CLARIFICATION_2026-10-22_ADDENDUM_E.md, ffb14e40bc): labelled parallel kernel readings.
 # CFG942_KERNEL unset or "nu_mono" leaves every line of the frozen nu_mono path unchanged (verdict kernel, CFG571 seal).
 KERNEL = os.environ.get("CFG942_KERNEL", "nu_mono")
-assert KERNEL in ("nu_mono", "n1", "n2"), "CFG942_KERNEL must be nu_mono, n1 or n2"
+assert KERNEL in ("nu_mono", "n1", "n2", "v3aq"), "CFG942_KERNEL must be nu_mono, n1, n2 or v3aq"
 KSEAL = {"n1": ("argon_push/AG4e_n1_alma_seal/SEALED_N1.json", "b1bb9296db", "9802de0d170ccaea"),
-         "n2": ("argon_push/AG4d_n2_alma_seal/SEALED_N2.json", "502a070a27", "d64727b54b07b31c")}
+         "n2": ("argon_push/AG4d_n2_alma_seal/SEALED_N2.json", "502a070a27", "d64727b54b07b31c"),
+         "v3aq": ("rebuild_2026_10_22/S3_v3_mw_seals/SEALED_V3_ALMA_AQUAL.json", "90f4d517d6", "b5d65a5e17bbce21")}
 KNU = {"n1": lambda y: 0.5 * (1 + np.sqrt(1 + 4 / np.asarray(y, float))),       # g_N = g^2/(g + a0)
        "n2": lambda y: np.sqrt(1 + 1 / np.asarray(y, float))}                    # g^2 - g_N^2 = a0 g_N
+KNU["v3aq"] = KNU["n1"]          # addendum F: nu1 times the sealed AQUAL/algebraic in-plane ratio C, per cell (_predict_v3aq)
 if KERNEL != "nu_mono":
     FROZEN = FROZEN + [
-        (f"{KERNEL} seal (addendum E)", KSEAL[KERNEL][0], KSEAL[KERNEL][1]),
+        (f"{KERNEL} seal (addendum {'F' if KERNEL == 'v3aq' else 'E'})", KSEAL[KERNEL][0], KSEAL[KERNEL][1]),
         ("U4 clarification addendum E 10-22 (CFG806 dir)", "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-22_ADDENDUM_E.md", "ffb14e40bc"),
         ("GS4 clarification addendum E 10-22 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-22_ADDENDUM_E.md", "ffb14e40bc"),
     ]
+if KERNEL == "v3aq":
+    FROZEN = FROZEN + [
+        ("U4 clarification addendum F 10-23 (CFG806 dir)", "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-23_ADDENDUM_F.md", "f6f0ba66a4"),
+        ("GS4 clarification addendum F 10-23 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-23_ADDENDUM_F.md", "f6f0ba66a4"),
+    ]
+
+
+class NotSealed(Exception):
+    """addendum F rules 4 and 6: an input the v3 AQUAL-disc seal does not cover; that reading is reported 'not sealed'"""
 
 
 def kernel_tag():
-    """'' on the frozen nu_mono path (slugs and file names unchanged); '_KERNEL_n1' / '_KERNEL_n2' for addendum-E readings"""
+    """'' on the frozen nu_mono path (slugs and file names unchanged); '_KERNEL_n1' / '_KERNEL_n2' / '_KERNEL_v3aq' otherwise"""
     return "" if KERNEL == "nu_mono" else f"_KERNEL_{KERNEL}"
 
 
 def kernel_banner(run):
-    if KERNEL != "nu_mono":
+    if KERNEL == "v3aq":
+        run.P(f"*** ADDENDUM F PARALLEL READING: v3 AQUAL disc (seal {KSEAL[KERNEL][0]}, sha256 {KSEAL[KERNEL][2]}...). "
+              "NOT the verdict kernel (nu_mono); never pooled with it, with n = 1, n = 2, the other footing or the other disc. ***")
+        run.P("    rule 4: U4 interpolates the sealed C linearly in V_c (150-300 km/s); a U4 M* variant keeps the C sealed at log M* 10.74 "
+              "(harness convention); GS4 is read at the sealed V_c 206. Rules 4/6: GS4 [CI] V_c branches, the measured R_g and a U4 "
+              "V_c outside the grid are 'not sealed'.")
+    elif KERNEL != "nu_mono":
         run.P(f"*** ADDENDUM E PARALLEL READING: kernel {KERNEL} (seal {KSEAL[KERNEL][0]}, sha256 {KSEAL[KERNEL][2]}...). "
               "NOT the verdict kernel (nu_mono); never pooled with it, with the other law form, footing or disc. ***")
 
@@ -285,7 +302,58 @@ GS4 = dict(z=1.997, R=7.39, Rd=7.39 / 1.678, Vc=206.0, lmstars=(10.89, 10.76))
 
 
 def predict(ns, R, Vc, z, lm, Rd):
+    if KERNEL == "v3aq":
+        return _predict_v3aq(ns, R, Vc, z, lm, Rd)
     return {f"{a}|{b}": c for (a, b), c in ns["predict"](R, float(Vc), z, 10 ** lm, Rd).items()}
+
+
+def v3aq_C(R, Vc, lm):
+    """addendum F rule 4: the sealed AQUAL/algebraic in-plane ratios per 'footing|model' -> (C_stars, C_Rd, C_1.5Rd).
+    GS4: read at the sealed V_c 206 and sealed log M* rows. U4: linear in V_c between the bracketing sealed grid points; a U4 M*
+    variant keeps the C sealed at log M* 10.74 (harness convention, printed). Anything else raises NotSealed."""
+    S = sealed()
+    if abs(R - u4_geometry()["R"]) < 1e-9:
+        grid = sorted(S["U4_27928"], key=float); xs = [float(g) for g in grid]
+        if not xs[0] <= float(Vc) <= xs[-1]:
+            raise NotSealed(f"U4 V_c {float(Vc):.2f} km/s outside the sealed grid {xs[0]:.0f}-{xs[-1]:.0f}")
+        i = min(int(np.searchsorted(xs, float(Vc), side="right")) - 1, len(xs) - 2)
+        t = (float(Vc) - xs[i]) / (xs[i + 1] - xs[i]); lo, hi = S["U4_27928"][grid[i]], S["U4_27928"][grid[i + 1]]
+        mix = lambda a, b: (1 - t) * a + t * b
+        return {k: (mix(lo[k]["C_stars"], hi[k]["C_stars"]), mix(lo[k]["C_final"]["Rg=Rd"], hi[k]["C_final"]["Rg=Rd"]),
+                    mix(lo[k]["C_final"]["Rg=1.5Rd"], hi[k]["C_final"]["Rg=1.5Rd"])) for k in lo}
+    if abs(R - GS4["R"]) < 1e-9:
+        if abs(float(Vc) - GS4["Vc"]) > 1e-9 or str(lm) not in S["GS4_24110"]:
+            raise NotSealed(f"GS4 V_c {float(Vc):.1f} / log M* {lm}: only V_c 206 and log M* 10.89 / 10.76 are sealed")
+        return {k: (e["C_stars"], e["C_final"]["Rg=Rd"], e["C_final"]["Rg=1.5Rd"]) for k, e in S["GS4_24110"][str(lm)].items()}
+    raise NotSealed(f"radius {R:.3f} kpc is neither U4's 2 R_e nor GS4's R_e")
+
+
+def _predict_v3aq(ns, R, Vc, z, lm, Rd):
+    """S3's aqual_cell algebra on CFG571's head: g_bar,req solves C nu1(g_bar/a0) g_bar = g_obs. FLOOR from C_stars; the R_g = R_d row
+    (and logVbar2R_G) from C_Rd; the R_g = 1.5 R_d row (and logVbar2R_G_Rg=1.5Rd) from C_1.5Rd, as sealed in SEALED_V3_ALMA_AQUAL.json"""
+    Cs = v3aq_C(R, Vc, lm); base = KNU["v3aq"]; save = ns["NU"]; runs = {}; out = {}
+
+    def at(c):
+        if c not in runs:
+            ns["NU"] = lambda y, c=c: c * base(y)
+            runs[c] = ns["predict"](R, float(Vc), z, 10 ** lm, Rd)
+        return runs[c]
+    try:
+        for key, (cs, c1, c15) in Cs.items():
+            fn, mn = key.split("|")
+            if mn not in ns["MODELS"]: continue        # S3 also sealed CFG775/778 models CFG571's head lacks (as AG4e/AG4d)
+            ps = at(cs)[(fn, mn)]
+            if ps["floor"]:
+                out[key] = {"logVbar2R_G": ps["logVbar2R_G"], "logVbar2R_G_Rg=1.5Rd": ps["logVbar2R_G"], "floor": True,
+                            "logMgas_Rg=Rd": None, "logMgas_Rg=1.5Rd": None, "logVbar2R_G_stars": ps["logVbar2R_G"]}
+                continue
+            p1, p2 = at(c1)[(fn, mn)], at(c15)[(fn, mn)]
+            out[key] = {"logVbar2R_G": p1["logVbar2R_G"], "logVbar2R_G_Rg=1.5Rd": p2["logVbar2R_G"], "floor": False,
+                        "logMgas_Rg=Rd": p1["logMgas_Rg=Rd"], "logMgas_Rg=1.5Rd": p2["logMgas_Rg=1.5Rd"],
+                        "logVbar2R_G_stars": ps["logVbar2R_G"]}
+    finally:
+        ns["NU"] = save
+    return out
 
 
 def newtonian_round_trip(ns):
@@ -311,6 +379,8 @@ def reproduce(ns, target):
         for k2, d in ent.items():
             if KERNEL != "nu_mono" and k2 not in r: continue   # AG4e/AG4d also sealed CFG775/778 models CFG571's head lacks
             m = r[k2]; worst = max(worst, abs(m["logVbar2R_G"] - d["logVbar2R_G"])); n += 1
+            if KERNEL == "v3aq":                             # addendum F rule 4: the 1.5 R_d requirement is reproduced too
+                worst = max(worst, abs(m["logVbar2R_G_Rg=1.5Rd"] - d["logVbar2R_G_Rg=1.5Rd"]))
             if str(bool(m["floor"])) != str(d["floor"]): bad.append((key, k2, "floor"))
             for sh in ("logMgas_Rg=Rd", "logMgas_Rg=1.5Rd"):
                 if (m[sh] is None) != (d[sh] is None): bad.append((key, k2, sh))

@@ -525,3 +525,32 @@ Owner-approved addendum E (CFG806/CFG809 `CLARIFICATION_2026-10-22_ADDENDUM_E.md
     separate them under n = 2 there (the alternate footing reads FRAMEWORK SIDE).
 
 κ = ½ FITTED; footings never pooled; one disc excludes no model; not theory closed.
+
+## Addendum F reading 'v3aq' (2026-10-23; PRE-DATA; MOCK only)
+
+Owner-approved addendum F (CFG806/CFG809 `CLARIFICATION_2026-10-23_ADDENDUM_F.md`, f6f0ba66a4) adds v3's AQUAL-disc requirement
+(lane S3_v3_mw_seals, `SEALED_V3_ALMA_AQUAL.json`, sha256 b5d65a5e…, commit 90f4d517d6) as a labelled parallel reading.
+
+- **Switch.** `CFG942_KERNEL=v3aq python3 -B cfg942_u4.py …` (same for `cfg942_gs4.py`). Outputs are named `…_KERNEL_v3aq`;
+  K1 adds the seal and both addendum-E and addendum-F files.
+- **What it computes (rule 4).** CFG571's head, read-only, with NU = C·ν₁. C is the sealed AQUAL/algebraic in-plane ratio:
+  C_stars for the FLOOR test, C_final[R_g = R_d] for the R_d row and logVbar2R_G, C_final[R_g = 1.5 R_d] for the 1.5 R_d row and
+  logVbar2R_G_Rg=1.5Rd. GS4 is read at the sealed V_c 206 and log M★ 10.89 / 10.76. U4 interpolates C linearly in V_c between the
+  bracketing sealed grid points; a U4 M★ variant (±0.2 dex) keeps the C sealed at log M★ 10.74 (harness convention, printed in
+  the banner). No AQUAL solve is ever run.
+- **Not sealed (rules 4, 6).** A U4 branch whose evaluated V_c (incl. ±eV and the M★ variants) leaves 150–300 km/s, GS4's [CI]
+  V_c branches and GS4's measured R_g are reported 'NOT SEALED' and not scored for this reading; the information-only R6 power
+  table prints 'NOT SEALED' where V_c ± 5 leaves the grid.
+- **Δ_v (rule 5).** GS4's R_g = 1.5 R_d shape uses the sealed logVbar2R_G_Rg=1.5Rd; U4's information-only Δ_m does the same.
+- **Tests (mirror run, then outputs copied here).**
+  - R2 reproduces the seal to 2.1e-13 dex (U4, 56 entries) and 2.2e-11 dex (GS4, 16 entries), incl. the 1.5 R_d requirement;
+    the largest GS4 difference is log M_gas next to FLOOR (root-finder tolerance), so this reading's R2 line is ≤ 1e-9 dex.
+    R2b: the C_stars FLOOR test reproduces every sealed GS4 FLOOR flag.
+  - MOCK-a reads FRAMEWORK SIDE on U4 and GS4 (GS4: 8 of 8 primary-route cells); both MUTATE controls bite (U4 selection-aware
+    S/N −0.30, GS4 +0.29, exit 1).
+  - GS4 selftest exits 1 on "A-G4 scan agrees with addendum A s1" only, as under n = 1 / n = 2: addendum A's robustness
+    sentence was written for ν_mono.
+- **ν_mono, n = 1 and n = 2 paths unchanged.** Re-run with the new code: selftest and MOCK-a plain + MUTATE (U4, GS4) for ν_mono and
+  n = 1 are identical to the committed outputs line for line, apart from the sha256 and peak-RSS lines.
+
+κ = ½ FITTED; footings never pooled; one disc excludes no model; not theory closed.
