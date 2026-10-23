@@ -138,3 +138,13 @@ invertible (α = (χ − aQ̄θ/k²)/Q̄). χ and E are gauge-invariant, so thei
 in both gauges. Evolving α in Newtonian gauge would make χ a difference of two large numbers. The equivalence is a
 derivation check (D6 in `c7_derive.py`, sympy, both gauges). Nothing else changes: same checks, same thresholds,
 same MUTATE (the metric-source term of the density equation).
+
+## AMENDMENT A2 (pre-result for step N; written after the validation run, before any native spectrum or χ²; 2026-10-23)
+
+The validation run showed that CLASS's default precision leaves run-to-run numerical differences up to ~2×10⁻³ in EE
+between an AeST run and its dust limit (V6 at default precision: Cosh Z₀×0.1 gives EE 2.1×10⁻³; the same pair at the
+V2 high-precision settings gives 1.0×10⁻⁵). Physical AeST deviations from ΛCDM in TT/EE are of order 10⁻⁴. Therefore:
+(1) every step-N run (native spectra and every χ² evaluation, AeST and vanilla ΛCDM alike) uses the V2 high-precision
+settings (`tol_perturbations_integration = 1e-7`, `perturbations_sampling_stepsize = 0.05`, `k_per_decade_for_pk = 20`,
+`l_logstep = 1.026`, `l_linstep = 25`); (2) V6 is also reported at those settings (V6hi, diagnostic). No pass/fail line
+changes.
