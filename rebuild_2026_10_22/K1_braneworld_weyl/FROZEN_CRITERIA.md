@@ -144,3 +144,26 @@ prediction; it is reported as what stays open, never as a pass.
 
 Runs: `OMP_NUM_THREADS=1 nice -n 15`, < 1 GB RSS, single thread, minutes, no downloads, no network. F1's measurement cache
 is copied read-only into session scratch (path as argv[1]); nothing of another lane is written.
+
+## AMENDMENT A1 (2026-10-23, PRE-RESULT: before any K1 script was written or run)
+
+- **R3 / K9 baseline.** E3's per-system CSV `M_dyn` is already the binary-corrected median (E3 `build(..., binmode="free")`,
+  `e3_dwarf_excess.py` L252 and L302). Applying the CSV `binary_ratio` again would double-correct. So the baseline is
+  r_i = log10(M_dyn,i / M_pred,i), with no b_i². Disclosed: while reading the CSV I saw its central medians (0.95 / 0.91 dex
+  without b², 0.81 / 0.77 with b²; E3's Monte Carlo gives 0.886 / 0.846). K9's 0.10 dex line is unchanged.
+- **K8.** For a Plummer sphere the far-field correction to −GMℓ/r² is not small at 50 b: the r⁻⁵ tail makes the second
+  moment log-divergent, ⟨s²⟩_{<r} ≈ 3b²[ln(2r/b) − 4/3], which gives ≈ 1e-3 at r = 50 b (analytic, from the expansion
+  K = r⁻²(1 + s²/3r² + …)). K8 is therefore evaluated at r ≥ 100 b (correction ≈ 3e-4); the 50 b value is printed.
+
+## AMENDMENT A2 (2026-10-23, PRE-RESULT, coordinator request after J1 landed in 3d75573e2c; reporting only, no graded line changes)
+
+J1 found that a |Φ| selector calibrated on F1 MID overshoots OUTER (|Φ| is nearly flat across a cluster) and does nothing
+for satellites (they sit in shallower host potential than the Sun). Added reports:
+- For each closure, the variable the Weyl mass tracks: the potential ψ (C0), a fixed per-object power law (C1), or the
+  local baryon density / its gradient (C2: in Fourier space Φ_W,k = −2π²Gℓ_Q ρ_k/k, so ρ_eff = (πℓ_Q/2)(−∇²)^{1/2}ρ_b; to be
+  checked with sympy as K2(d), reported only, not a graded check).
+- Compactness against F1's needed shape (extra ≈ 1.4–1.8 × gas inside 1 Mpc, ≈ 0 outside, more concentrated than the gas):
+  the calibrated Weyl lensing mass over the gas mass inside 0.5, 1, 2, 3 Mpc (median cluster), and the radius holding half
+  of the Weyl excess inside 3 Mpc vs the same radius for the gas.
+- For satellites, the variable each closure uses (host depth ψ for C0, which J1 showed is the wrong variable; the
+  satellite's own baryon mass for C1; the satellite's own baryon structure, ℓ_Q/r12, for C2).
