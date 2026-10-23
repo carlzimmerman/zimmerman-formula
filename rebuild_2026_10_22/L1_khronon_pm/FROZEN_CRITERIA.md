@@ -320,3 +320,46 @@ halo cores, where x > 1, are unresolved at 128³.
    one thread.
    - Re-checked at 8 threads (64³, KX, z_i = 199): SIGTERM → exit 75 in 0.3 s → `--resume` gives a sha256 and P(k)
      bit-identical to the uninterrupted run.
+
+## AMENDMENT A6 (PRE-RESULT, 2026-10-23: DBI-IC set, the owner's "where was the cold energy at BBN, then how does it form galaxies"; before any DBI table or run)
+
+Source: Q7_bs25_cosmology (`rebuild_2026_10_22/Q7_bs25_cosmology/README.md`), reproduced by the coordinator. BS25's DBI
+K = (2μ²/λ_D)[1 − √(1 − λ_D(Q−1)²)] is the only BBN-viable early-time completion of v3 on record (ΔN_eff,equiv 4e-6 to
+7e-6). **No new knobs.**
+1. **Parameters: BS's own published sets only, never fitted here.**
+   - (a) the cap: μ_K = 14.8 h/Mpc, the value every L1 cell uses (10.15 Mpc⁻¹ at model B's h, μ⁻¹ = 98.5 kpc; Q7's cap is
+     10.0 Mpc⁻¹, 1.5 % apart), with λ_D = 30 (BS24 Fig. 1 P1's λ_D);
+   - (b) BS24 Fig. 1 P1: μ⁻¹ = 223 kpc (4.484 Mpc⁻¹ = 6.540 h/Mpc at model B's h), with λ_D = 30.
+   - **Q7's λ_D,95 door is not used:** it is a fitted knob.
+2. **ICs at z_i = 199** from Q7's validated DBI build, run read-only:
+   - binary `../_external_data/class_khronon_dbi_build_2026_10_23/class_dbi/class` (sha256 d30e764e…, Q7 PROVENANCE);
+   - `aest_K_type` 5, `aest_Z0` = λ_D, `aest_K2` = μ² in Mpc⁻², `aest_lambda_c` −1, with Q6/Q7's HIGH and START×0.25
+     precision settings;
+   - model B parameters, as A4's LOB construction. A DUST run is the normaliser.
+   - Per-species δ_b and δ_τ come from d_b and d_m at z = 199. The baryon and khronon velocities enter as dδ_s/dln a: the
+     central difference over z = 195–203, which on these sub-horizon scales is the continuity-equation velocity (−θ/(aH)).
+   - Outputs go to this lane's `work/`.
+3. **Engine changes: none needed. Every residual is declared, not fitted.** From Q7's formulas
+   (𝒵 = I₀/(2μ²a³), r = √(1 + λ_D𝒵²)), at z_i = 199:
+   - the K background's excess over dust, 𝒵/(r + 1), and its w ≈ 𝒵/(r(r + 1)) are 7.6e-4 (cap) and 3.9e-3 (P1);
+   - the late hold mass M² = Q̄²K″/2 differs from μ² by 3.2e-3 (cap) and 1.8e-2 (P1);
+   - λ_D𝒵² ≤ 1.8e-3, so the early (1 + λ_D^{-1/2}) dust factor (λ_D𝒵² ≫ 1) does not apply at z ≤ 199.
+   All of these fall as a⁻³ (≤ 2.4e-4 by z = 49). The engine keeps the w = 0 background and M = μ_K, the approximation
+   stated here. The DBI early history enters only through the CLASS ICs.
+4. **Cells** (L = 100, NSEED = 512 phases as A5, z_i = 199, `--halos`): LIN, KX-can and KX-alt × {cap-λ30, P1-λ30} ×
+   {256³, 384³}, 12 cells. The controls are A5's S0-256 and S0-384 (the dust limit, the same phases).
+5. **Reported, never pooled, no verdict weight:**
+   - σ₈ and the P(k) ratio against S0;
+   - ρ_NL with the frozen bands, each marked "indicative";
+   - halo dust/baryon profiles (A3 item 5), plus a satellite split. A "satellite" is a galaxy-mass halo
+     (1e12 ≤ M₁ < 1e13 M_⊙) whose centre lies 1–3 Mpc (physical) from a cluster-class or top50 halo. A "field" halo is a
+     galaxy-mass halo with none within 3 Mpc. Each is reported as the 0.3–1 and 1–3 Mpc dust-to-baryon ratios against the
+     cosmic Ω_τ/Ω_b.
+   - The question asked: does v3's own dynamics, started from BBN-consistent ICs, put cold energy into satellites and
+     cluster cores?
+   - Resolution caveat, stated in advance: a 384³ cell is 0.38 Mpc (physical), so cores and satellites inside 1 Mpc of a
+     host are not resolved.
+   - Every DBI result also carries Q7's linear finding: growth fails at both sets (R_B 0.295 cap-λ30, 0.259 P1).
+6. **est_gb** = 1.2 × the measured 3-step peak footprint of DBI KX at 256³. 384³ is extrapolated if the 256³ point
+   matches A5's scaling; otherwise it is measured. Queue priorities 290–299, after the A5 ladder and before the 512³
+   calibration.
