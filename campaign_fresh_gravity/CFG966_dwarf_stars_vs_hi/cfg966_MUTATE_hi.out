@@ -1,0 +1,79 @@
+CFG966  stars vs HI inside the same dwarfs (WLM, IC 1613, DDO 210, DDO 216)   [MUTATE hi]
+  record estimator for both tracers; kernel primary nu_A (AQUAL mu = x/(1+x)), co-reading nu_e; kappa = 1/2 FITTED; N = 4: a pointer
+  inputs (sha256):
+    6970dea6a1c29f9eeb42f3f894dccf7cfc0483e44ddb51de9fa0ecc90b18fa5f  real_research/data/dsph/lvd_dwarf_mw.csv
+    eb5a6cedf4a585cf30cc8f34cc34eab76d91ad26031435980eb05449325f1b35  real_research/data/dsph/lvd_dwarf_m31.csv
+    d9ea1a0cf93e2eb1e7f3ed29590211a310c6c6065f064c7dd158793de1b285db  real_research/data/dsph/lvd_dwarf_local_field.csv
+    1ce3e9ee850b0a25c5f97fa36db3b0705fb558979f1e5df77eea71c3c56efe4c  campaign_fresh_gravity/CFG442_a0_rung_expansion/data/oh15_rotdmbar.dat
+    cc8ab9e5351d60b5ee017a61d0d6a1fa42d0d85a278a6c4ea136cfd53f940efb  campaign_fresh_gravity/CFG442_a0_rung_expansion/data/oh15_table2.dat
+    4dc9f3727818062ea1e424e10dcfedf385af5723c79ff3b213702cc39d96b3f4  campaign_fresh_gravity/CFG442_a0_rung_expansion/data/oh15_table1.dat
+    d4c456c65801f65742a6c5b2b377cbd7c05b30db1acca75523554d0b98ce2285  campaign_fresh_gravity/CFG449_a0_rung_iorio_edd/data/iorio17_finalrot.zip
+    75814d6f80287edb44afdb4aa7ffb174eb8617ab9a7c2b073fd1eab3a9b03787  real_research/data/sparc_data/UGCA444_rotmod.dat
+    5aa0501f6b0d881fa579030e315e7b5b6ef561a5bd3a07472f9929c7e5728243  real_research/data/SPARC_Lelli2016c.mrt
+    9be00d72f3ec2a70b6b15fe7f341ee3edb22611dd4c345b987fa123525a14a03  campaign_fresh_gravity/CFG874_isolated_dwarfs_pooled/cfg874_results.json
+    c6496738043d3cae3aeaa45c1d6c24982e0bec2dd17c8dfdad246de72ef0916d  campaign_fresh_gravity/CFG860_stripping_vs_isolated_dwarfs/cfg860_results.json
+    d31d84379765ed47110faafbb1e3b723ae1a3522597874c96780b21603e91bae  campaign_fresh_gravity/CFG931_faint_rotator_discriminator/cfg931_results.json
+
+=== K stage
+  [PASS] K1 record excess for Aquarius (CFG874 primary gas -0.04408/-0.08229; CFG860 zero gas +0.13177/+0.09265; nu_e): max |diff| 0.0e+00; canonical/alt with gas -0.04408 / -0.08229, zero gas +0.13177 / +0.09265
+  [PASS] K2 WLM, IC 1613, Pegasus dIrr carry no stored stellar excess in the record (absent from CFG874/CFG860 stored members): absent: WLM, IC 1613, Pegasus dIrr (record excluded them as the rotating / gas-rich set); nothing to reproduce
+  [PASS] K3 SPARC residual for UGCA 444 = CFG931 A1-3 cell means (no point cut, Ups_disk 0.5, nu_e): max |diff| 0.0e+00; canonical [-12.5,-12.0) +0.19659 (3 pts); canonical [-12.0,-11.5) -0.01555 (7 pts); alt [-12.5,-12.0) +0.15704 (3 pts); alt [-12.0,-11.5) -0.05366 (7 pts)
+  [PASS] K4 parse: Oh V(R_max) = table 2 within 0.6 km/s; Iorio |V_c - sqrt(V_r^2+V_a^2)| <= 0.02 km/s: WLM 37.35 vs 37.3; IC_1613 16.95 vs 16.9; DDO_210 12.02 vs 12.0; DDO_216 18.91 vs 18.9; Iorio max dev 0.008 km/s
+
+=== Per-dwarf table (V0: circularised r12, Oh+2015 primary, CFG874 gas)  [MUTATE hi]
+
+  [canonical a0 9.3603e-11 | nu_A (AQUAL, primary)]
+    dwarf                   r12 pc lg g_bar          E_star               E_HI (set)    Oh15 Iorio17   SPARC           Delta   c_AD usable
+    WLM                       1066   -11.12  -0.043 +- 0.111  +0.223 +- 0.140 (Oh15   )  +0.223  +0.127  +0.171  -0.266 +- 0.164  0.017 no
+    IC 1613                   1920   -11.32  -0.603 +- 0.091  -0.218 +- 0.120 (Oh15   )  -0.218     -       -    -0.386 +- 0.133    -   no
+    DDO 210 (Aquarius)         426   -11.66  -0.044 +- 0.169  +0.512 +- 0.430 (Iorio17)     -    +0.512     -    -0.556 +- 0.457  0.962 no
+    DDO 216 (Pegasus dIrr)     869   -11.72  +0.073 +- 0.095  +0.287 +- 0.199 (Oh15   )  +0.287  +0.066     -    -0.214 +- 0.209  0.094 no
+    switch 1 (WLM Oh15 vs SPARC at r12): 0.052 dex (kill > 0.15) -> no
+    switch 2 (Iorio c_AD at r12 vs effect 0.372): DDO 210 0.962, DDO 216 0.094 dex -> FIRES (DDO 210 (Aquarius))
+    core: usable 0 (none), SYSTEM count 0, TRACER count 0 -> NOT DIAGNOSTIC (NO LEVER)
+    CLASS: NOT DIAGNOSTIC (AD)     shadow (switches ignored, AD-dominated dropped; no class weight): NOT DIAGNOSTIC (NO LEVER)
+
+  [canonical a0 9.3603e-11 | nu_e (record co-reading)]
+    dwarf                   r12 pc lg g_bar          E_star               E_HI (set)    Oh15 Iorio17   SPARC           Delta   c_AD usable
+    WLM                       1066   -11.12  -0.042 +- 0.111  +0.224 +- 0.140 (Oh15   )  +0.224  +0.129  +0.172  -0.266 +- 0.164  0.017 no
+    IC 1613                   1920   -11.32  -0.602 +- 0.091  -0.217 +- 0.120 (Oh15   )  -0.217     -       -    -0.386 +- 0.133    -   no
+    DDO 210 (Aquarius)         426   -11.66  -0.044 +- 0.169  +0.512 +- 0.430 (Iorio17)     -    +0.512     -    -0.556 +- 0.457  0.962 no
+    DDO 216 (Pegasus dIrr)     869   -11.72  +0.073 +- 0.095  +0.287 +- 0.199 (Oh15   )  +0.287  +0.066     -    -0.214 +- 0.209  0.094 no
+    switch 1 (WLM Oh15 vs SPARC at r12): 0.052 dex (kill > 0.15) -> no
+    switch 2 (Iorio c_AD at r12 vs effect 0.372): DDO 210 0.962, DDO 216 0.094 dex -> FIRES (DDO 210 (Aquarius))
+    core: usable 0 (none), SYSTEM count 0, TRACER count 0 -> NOT DIAGNOSTIC (NO LEVER)
+    CLASS: NOT DIAGNOSTIC (AD)     shadow (switches ignored, AD-dominated dropped; no class weight): NOT DIAGNOSTIC (NO LEVER)
+
+  [alt a0 1.1312e-10 | nu_A (AQUAL, primary)]
+    dwarf                   r12 pc lg g_bar          E_star               E_HI (set)    Oh15 Iorio17   SPARC           Delta   c_AD usable
+    WLM                       1066   -11.12  -0.079 +- 0.111  +0.188 +- 0.140 (Oh15   )  +0.188  +0.092  +0.135  -0.266 +- 0.164  0.017 no
+    IC 1613                   1920   -11.32  -0.640 +- 0.091  -0.254 +- 0.120 (Oh15   )  -0.254     -       -    -0.386 +- 0.133    -   no
+    DDO 210 (Aquarius)         426   -11.66  -0.083 +- 0.169  +0.473 +- 0.430 (Iorio17)     -    +0.473     -    -0.556 +- 0.457  0.962 no
+    DDO 216 (Pegasus dIrr)     869   -11.72  +0.034 +- 0.095  +0.248 +- 0.199 (Oh15   )  +0.248  +0.028     -    -0.214 +- 0.209  0.094 no
+    switch 1 (WLM Oh15 vs SPARC at r12): 0.052 dex (kill > 0.15) -> no
+    switch 2 (Iorio c_AD at r12 vs effect 0.332): DDO 210 0.962, DDO 216 0.094 dex -> FIRES (DDO 210 (Aquarius))
+    core: usable 0 (none), SYSTEM count 0, TRACER count 0 -> NOT DIAGNOSTIC (NO LEVER)
+    CLASS: NOT DIAGNOSTIC (AD)     shadow (switches ignored, AD-dominated dropped; no class weight): NOT DIAGNOSTIC (NO LEVER)
+
+  [alt a0 1.1312e-10 | nu_e (record co-reading)]
+    dwarf                   r12 pc lg g_bar          E_star               E_HI (set)    Oh15 Iorio17   SPARC           Delta   c_AD usable
+    WLM                       1066   -11.12  -0.077 +- 0.111  +0.189 +- 0.140 (Oh15   )  +0.189  +0.093  +0.136  -0.266 +- 0.164  0.017 no
+    IC 1613                   1920   -11.32  -0.639 +- 0.091  -0.254 +- 0.120 (Oh15   )  -0.254     -       -    -0.386 +- 0.133    -   no
+    DDO 210 (Aquarius)         426   -11.66  -0.082 +- 0.169  +0.474 +- 0.430 (Iorio17)     -    +0.474     -    -0.556 +- 0.457  0.962 no
+    DDO 216 (Pegasus dIrr)     869   -11.72  +0.034 +- 0.095  +0.249 +- 0.199 (Oh15   )  +0.249  +0.028     -    -0.214 +- 0.209  0.094 no
+    switch 1 (WLM Oh15 vs SPARC at r12): 0.052 dex (kill > 0.15) -> no
+    switch 2 (Iorio c_AD at r12 vs effect 0.332): DDO 210 0.962, DDO 216 0.094 dex -> FIRES (DDO 210 (Aquarius))
+    core: usable 0 (none), SYSTEM count 0, TRACER count 0 -> NOT DIAGNOSTIC (NO LEVER)
+    CLASS: NOT DIAGNOSTIC (AD)     shadow (switches ignored, AD-dominated dropped; no class weight): NOT DIAGNOSTIC (NO LEVER)
+
+=== LANE CLASS (primary kernel nu_A): NOT DIAGNOSTIC (AD)   (nu_e co-reading: NOT DIAGNOSTIC (AD))
+=== Secondary (scout NA-4 (iv); no class weight; footing- and kernel-free): D-bar = -0.323 +- 0.091 dex (N 4; unweighted -0.355) -> unresolved; full-excess estimator inflation (0.372) disfavoured: True
+
+=== MUTATE grading (decision core; switches reported above, not applied)
+  canonical|A  main core NOT DIAGNOSTIC (NO LEVER)    mutated core NOT DIAGNOSTIC (NO LEVER)    -> n/a (main core not TRACER: no stellar lever to flip)
+  canonical|e  main core NOT DIAGNOSTIC (NO LEVER)    mutated core NOT DIAGNOSTIC (NO LEVER)    -> n/a (main core not TRACER: no stellar lever to flip)
+  alt|A        main core NOT DIAGNOSTIC (NO LEVER)    mutated core NOT DIAGNOSTIC (NO LEVER)    -> n/a (main core not TRACER: no stellar lever to flip)
+  alt|e        main core NOT DIAGNOSTIC (NO LEVER)    mutated core NOT DIAGNOSTIC (NO LEVER)    -> n/a (main core not TRACER: no stellar lever to flip)
+  MUTATE hi: not applicable on this data (no stellar lever); the plant_system / plant_tracer modes carry the control
+
+  done [0.0 s, peak RSS 45 MB], exit 0.  kappa = 1/2 FITTED; footings never pooled; N = 4 is a pointer, not a verdict; not theory closed.

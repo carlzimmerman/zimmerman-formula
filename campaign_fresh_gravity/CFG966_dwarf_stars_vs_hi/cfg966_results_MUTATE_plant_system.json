@@ -1,0 +1,786 @@
+{
+ "lane": "CFG966",
+ "criteria": "5ec3dc16a",
+ "mode": "plant_system",
+ "inputs": {
+  "real_research/data/dsph/lvd_dwarf_mw.csv": "6970dea6a1c29f9eeb42f3f894dccf7cfc0483e44ddb51de9fa0ecc90b18fa5f",
+  "real_research/data/dsph/lvd_dwarf_m31.csv": "eb5a6cedf4a585cf30cc8f34cc34eab76d91ad26031435980eb05449325f1b35",
+  "real_research/data/dsph/lvd_dwarf_local_field.csv": "d9ea1a0cf93e2eb1e7f3ed29590211a310c6c6065f064c7dd158793de1b285db",
+  "campaign_fresh_gravity/CFG442_a0_rung_expansion/data/oh15_rotdmbar.dat": "1ce3e9ee850b0a25c5f97fa36db3b0705fb558979f1e5df77eea71c3c56efe4c",
+  "campaign_fresh_gravity/CFG442_a0_rung_expansion/data/oh15_table2.dat": "cc8ab9e5351d60b5ee017a61d0d6a1fa42d0d85a278a6c4ea136cfd53f940efb",
+  "campaign_fresh_gravity/CFG442_a0_rung_expansion/data/oh15_table1.dat": "4dc9f3727818062ea1e424e10dcfedf385af5723c79ff3b213702cc39d96b3f4",
+  "campaign_fresh_gravity/CFG449_a0_rung_iorio_edd/data/iorio17_finalrot.zip": "d4c456c65801f65742a6c5b2b377cbd7c05b30db1acca75523554d0b98ce2285",
+  "real_research/data/sparc_data/UGCA444_rotmod.dat": "75814d6f80287edb44afdb4aa7ffb174eb8617ab9a7c2b073fd1eab3a9b03787",
+  "real_research/data/SPARC_Lelli2016c.mrt": "5aa0501f6b0d881fa579030e315e7b5b6ef561a5bd3a07472f9929c7e5728243",
+  "campaign_fresh_gravity/CFG874_isolated_dwarfs_pooled/cfg874_results.json": "9be00d72f3ec2a70b6b15fe7f341ee3edb22611dd4c345b987fa123525a14a03",
+  "campaign_fresh_gravity/CFG860_stripping_vs_isolated_dwarfs/cfg860_results.json": "c6496738043d3cae3aeaa45c1d6c24982e0bec2dd17c8dfdad246de72ef0916d",
+  "campaign_fresh_gravity/CFG931_faint_rotator_discriminator/cfg931_results.json": "d31d84379765ed47110faafbb1e3b723ae1a3522597874c96780b21603e91bae"
+ },
+ "checks": {
+  "K1 record excess for Aquarius (CFG874 primary gas -0.04408/-0.08229; CFG860 zero gas +0.13177/+0.09265; nu_e)": {
+   "ok": true,
+   "measured": "max |diff| 0.0e+00; canonical/alt with gas -0.04408 / -0.08229, zero gas +0.13177 / +0.09265"
+  },
+  "K2 WLM, IC 1613, Pegasus dIrr carry no stored stellar excess in the record (absent from CFG874/CFG860 stored members)": {
+   "ok": true,
+   "measured": "absent: WLM, IC 1613, Pegasus dIrr (record excluded them as the rotating / gas-rich set); nothing to reproduce"
+  },
+  "K3 SPARC residual for UGCA 444 = CFG931 A1-3 cell means (no point cut, Ups_disk 0.5, nu_e)": {
+   "ok": true,
+   "measured": "max |diff| 0.0e+00; canonical [-12.5,-12.0) +0.19659 (3 pts); canonical [-12.0,-11.5) -0.01555 (7 pts); alt [-12.5,-12.0) +0.15704 (3 pts); alt [-12.0,-11.5) -0.05366 (7 pts)"
+  },
+  "K4 parse: Oh V(R_max) = table 2 within 0.6 km/s; Iorio |V_c - sqrt(V_r^2+V_a^2)| <= 0.02 km/s": {
+   "ok": true,
+   "measured": "WLM 37.35 vs 37.3; IC_1613 16.95 vs 16.9; DDO_210 12.02 vs 12.0; DDO_216 18.91 vs 18.9; Iorio max dev 0.008 km/s"
+  }
+ },
+ "mutate_grades": {
+  "canonical|A": {
+   "mut": "SYSTEM PROPERTY",
+   "ok": true
+  },
+  "canonical|e": {
+   "mut": "SYSTEM PROPERTY",
+   "ok": true
+  },
+  "alt|A": {
+   "mut": "SYSTEM PROPERTY",
+   "ok": true
+  },
+  "alt|e": {
+   "mut": "SYSTEM PROPERTY",
+   "ok": true
+  }
+ },
+ "mutate_ok": true,
+ "lane_class": "NOT DIAGNOSTIC (AD)",
+ "lane_class_nu_e": "NOT DIAGNOSTIC (AD)",
+ "flag": null,
+ "secondary": {
+  "N": 4,
+  "Dbar": 0.0,
+  "sDbar": 0.09085411980282274,
+  "unweighted": 0.0,
+  "reading": "tracers agree",
+  "full_excess_disfavoured": true
+ },
+ "V0": {
+  "canonical|A": {
+   "cls": {
+    "cls": "NOT DIAGNOSTIC (AD)",
+    "core": "SYSTEM PROPERTY",
+    "core_info": {
+     "n_usable": 4,
+     "usable": [
+      "WLM",
+      "IC 1613",
+      "Aquarius",
+      "Pegasus dIrr"
+     ],
+     "n_system": 4,
+     "n_tracer": 0
+    },
+    "switch1_WLM_Oh_vs_SPARC": 0.05233038516231869,
+    "switch1": false,
+    "c_AD": {
+     "Aquarius": 0.9616234696191056,
+     "Pegasus dIrr": 0.09354398683279247
+    },
+    "switch2": [
+     "Aquarius"
+    ],
+    "shadow": "SYSTEM PROPERTY",
+    "shadow_info": {
+     "n_usable": 3,
+     "usable": [
+      "WLM",
+      "IC 1613",
+      "Pegasus dIrr"
+     ],
+     "n_system": 3,
+     "n_tracer": 0
+    }
+   },
+   "rows": [
+    {
+     "name": "WLM",
+     "label": "WLM",
+     "r12_pc": 1065.5066666666667,
+     "lg_gbar": -11.116505831079696,
+     "law": 3.0849562233229714e-11,
+     "g_star": 2.7943929711249355e-11,
+     "E_star": 0.37,
+     "kin_star": 0.09926731014931468,
+     "sE_star": 0.11114854413927443,
+     "sets": {
+      "Oh15": {
+       "V": 26.89436082104683,
+       "eV": 3.751528826352901,
+       "E": -0.14683642312524794
+      },
+      "Iorio17": {
+       "V": 24.082274916508887,
+       "eV": 2.253144448037875,
+       "E": -0.24276385773497097
+      },
+      "SPARC": {
+       "V": 25.321885145625366,
+       "eV": 2.78,
+       "E": -0.19916680828756664
+      }
+     },
+     "spread": 0.09592743460972303,
+     "s_curve": 0.05,
+     "primary": "Oh15",
+     "c_AD": 0.01704577236415673,
+     "Vr_io": 23.614275390392514,
+     "Mg": 13966135.991865454,
+     "Ms2": 48305880.20397738,
+     "E_HI": 0.37,
+     "kin_HI": 0.12116058669897996,
+     "sE_HI": 0.14028502332480483,
+     "Delta": 0.0,
+     "sDelta": 0.16441984866043782,
+     "Delta_direct": null
+    },
+    {
+     "name": "IC 1613",
+     "label": "IC 1613",
+     "r12_pc": 1919.7066666666665,
+     "lg_gbar": -11.32026938374405,
+     "law": 2.3686134975777162e-11,
+     "g_star": 5.9071798296839056e-12,
+     "E_star": 0.37,
+     "kin_star": 0.07640365885334983,
+     "sE_star": 0.09131001635187162,
+     "sets": {
+      "Oh15": {
+       "V": 19.04477704048102,
+       "eV": 2.12617185506237,
+       "E": -0.5875309880054035
+      }
+     },
+     "spread": 0.0,
+     "s_curve": 0.05,
+     "primary": "Oh15",
+     "c_AD": null,
+     "Vr_io": null,
+     "Mg": 30941408.352602266,
+     "Ms2": 95499258.60214369,
+     "E_HI": 0.37,
+     "kin_HI": 0.09696986236897058,
+     "sE_HI": 0.12001314181312435,
+     "Delta": 0.0,
+     "sDelta": 0.1331941188417723,
+     "Delta_direct": null
+    },
+    {
+     "name": "Aquarius",
+     "label": "DDO 210 (Aquarius)",
+     "r12_pc": 426.1733333333333,
+     "lg_gbar": -11.663667856761842,
+     "law": 1.537577566137657e-11,
+     "g_star": 1.3879393480867032e-11,
+     "E_star": 0.37,
+     "kin_star": 0.16146846122043979,
+     "sE_star": 0.16903273046631137,
+     "sets": {
+      "Iorio17": {
+       "V": 16.735989475605308,
+       "eV": 8.170675872977249,
+       "E": 0.14152578240915112
+      }
+     },
+     "spread": 0.0,
+     "s_curve": 0.05,
+     "primary": "Iorio17",
+     "c_AD": 0.9616234696191056,
+     "Vr_io": 5.531458510767734,
+     "Mg": 1507866.5354274495,
+     "Ms2": 1318256.7385564102,
+     "E_HI": 0.37,
+     "kin_HI": 0.4240537376324697,
+     "sE_HI": 0.4299087954439493,
+     "Delta": 0.0,
+     "sDelta": 0.4565015184738865,
+     "Delta_direct": null
+    },
+    {
+     "name": "Pegasus dIrr",
+     "label": "DDO 216 (Pegasus dIrr)",
+     "r12_pc": 869.2133333333333,
+     "lg_gbar": -11.721238569633838,
+     "law": 1.4319812889960291e-11,
+     "g_star": 1.692198857554733e-11,
+     "E_star": 0.37,
+     "kin_star": 0.0812095372664617,
+     "sE_star": 0.09536765144970716,
+     "sets": {
+      "Oh15": {
+       "V": 17.80672003286235,
+       "eV": 3.2230494166139607,
+       "E": -0.08324956231089459
+      },
+      "Iorio17": {
+       "V": 13.81,
+       "eV": 4.98,
+       "E": -0.30403006622349255
+      }
+     },
+     "spread": 0.22078050391259796,
+     "s_curve": 0.11039025195629898,
+     "primary": "Oh15",
+     "c_AD": 0.09354398683279247,
+     "Vr_io": 12.4,
+     "Mg": 4159140.301720139,
+     "Ms2": 6137620.051647945,
+     "E_HI": 0.37,
+     "kin_HI": 0.1572162165692155,
+     "sE_HI": 0.19850175434820128,
+     "Delta": 0.0,
+     "sDelta": 0.20856158664132393,
+     "Delta_direct": null
+    }
+   ]
+  },
+  "canonical|e": {
+   "cls": {
+    "cls": "NOT DIAGNOSTIC (AD)",
+    "core": "SYSTEM PROPERTY",
+    "core_info": {
+     "n_usable": 4,
+     "usable": [
+      "WLM",
+      "IC 1613",
+      "Aquarius",
+      "Pegasus dIrr"
+     ],
+     "n_system": 4,
+     "n_tracer": 0
+    },
+    "switch1_WLM_Oh_vs_SPARC": 0.05233038516231875,
+    "switch1": false,
+    "c_AD": {
+     "Aquarius": 0.9616234696191056,
+     "Pegasus dIrr": 0.09354398683279247
+    },
+    "switch2": [
+     "Aquarius"
+    ],
+    "shadow": "SYSTEM PROPERTY",
+    "shadow_info": {
+     "n_usable": 3,
+     "usable": [
+      "WLM",
+      "IC 1613",
+      "Pegasus dIrr"
+     ],
+     "n_system": 3,
+     "n_tracer": 0
+    }
+   },
+   "rows": [
+    {
+     "name": "WLM",
+     "label": "WLM",
+     "r12_pc": 1065.5066666666667,
+     "lg_gbar": -11.116505831079696,
+     "law": 3.0759623638222725e-11,
+     "g_star": 2.7943929711249355e-11,
+     "E_star": 0.37,
+     "kin_star": 0.09926731014931468,
+     "sE_star": 0.11114854413927443,
+     "sets": {
+      "Oh15": {
+       "V": 26.89436082104683,
+       "eV": 3.751528826352901,
+       "E": -0.14556843483045565
+      },
+      "Iorio17": {
+       "V": 24.082274916508887,
+       "eV": 2.253144448037875,
+       "E": -0.24149586944017862
+      },
+      "SPARC": {
+       "V": 25.321885145625366,
+       "eV": 2.78,
+       "E": -0.1978988199927744
+      }
+     },
+     "spread": 0.09592743460972297,
+     "s_curve": 0.05,
+     "primary": "Oh15",
+     "c_AD": 0.01704577236415673,
+     "Vr_io": 23.614275390392514,
+     "Mg": 13966135.991865454,
+     "Ms2": 48305880.20397738,
+     "E_HI": 0.37,
+     "kin_HI": 0.12116058669897996,
+     "sE_HI": 0.14028502332480483,
+     "Delta": 0.0,
+     "sDelta": 0.16441984866043782,
+     "Delta_direct": null
+    },
+    {
+     "name": "IC 1613",
+     "label": "IC 1613",
+     "r12_pc": 1919.7066666666665,
+     "lg_gbar": -11.32026938374405,
+     "law": 2.364143261798379e-11,
+     "g_star": 5.9071798296839056e-12,
+     "E_star": 0.37,
+     "kin_star": 0.07640365885334983,
+     "sE_star": 0.09131001635187162,
+     "sets": {
+      "Oh15": {
+       "V": 19.04477704048102,
+       "eV": 2.12617185506237,
+       "E": -0.5867105785029463
+      }
+     },
+     "spread": 0.0,
+     "s_curve": 0.05,
+     "primary": "Oh15",
+     "c_AD": null,
+     "Vr_io": null,
+     "Mg": 30941408.352602266,
+     "Ms2": 95499258.60214369,
+     "E_HI": 0.37,
+     "kin_HI": 0.09696986236897058,
+     "sE_HI": 0.12001314181312435,
+     "Delta": 0.0,
+     "sDelta": 0.1331941188417723,
+     "Delta_direct": null
+    },
+    {
+     "name": "Aquarius",
+     "label": "DDO 210 (Aquarius)",
+     "r12_pc": 426.1733333333333,
+     "lg_gbar": -11.663667856761842,
+     "law": 1.5362063912268405e-11,
+     "g_star": 1.3879393480867032e-11,
+     "E_star": 0.37,
+     "kin_star": 0.16146846122043979,
+     "sE_star": 0.16903273046631137,
+     "sets": {
+      "Iorio17": {
+       "V": 16.735989475605308,
+       "eV": 8.170675872977249,
+       "E": 0.14191324863660987
+      }
+     },
+     "spread": 0.0,
+     "s_curve": 0.05,
+     "primary": "Iorio17",
+     "c_AD": 0.9616234696191056,
+     "Vr_io": 5.531458510767734,
+     "Mg": 1507866.5354274495,
+     "Ms2": 1318256.7385564102,
+     "E_HI": 0.37,
+     "kin_HI": 0.4240537376324697,
+     "sE_HI": 0.4299087954439493,
+     "Delta": 0.0,
+     "sDelta": 0.4565015184738865,
+     "Delta_direct": null
+    },
+    {
+     "name": "Pegasus dIrr",
+     "label": "DDO 216 (Pegasus dIrr)",
+     "r12_pc": 869.2133333333333,
+     "lg_gbar": -11.721238569633838,
+     "law": 1.4308568682348137e-11,
+     "g_star": 1.692198857554733e-11,
+     "E_star": 0.37,
+     "kin_star": 0.0812095372664617,
+     "sE_star": 0.09536765144970716,
+     "sets": {
+      "Oh15": {
+       "V": 17.80672003286235,
+       "eV": 3.2230494166139607,
+       "E": -0.08290841151561791
+      },
+      "Iorio17": {
+       "V": 13.81,
+       "eV": 4.98,
+       "E": -0.3036889154282158
+      }
+     },
+     "spread": 0.2207805039125979,
+     "s_curve": 0.11039025195629895,
+     "primary": "Oh15",
+     "c_AD": 0.09354398683279247,
+     "Vr_io": 12.4,
+     "Mg": 4159140.301720139,
+     "Ms2": 6137620.051647945,
+     "E_HI": 0.37,
+     "kin_HI": 0.1572162165692155,
+     "sE_HI": 0.19850175434820125,
+     "Delta": 0.0,
+     "sDelta": 0.20856158664132393,
+     "Delta_direct": null
+    }
+   ]
+  },
+  "alt|A": {
+   "cls": {
+    "cls": "NOT DIAGNOSTIC (AD)",
+    "core": "SYSTEM PROPERTY",
+    "core_info": {
+     "n_usable": 4,
+     "usable": [
+      "WLM",
+      "IC 1613",
+      "Aquarius",
+      "Pegasus dIrr"
+     ],
+     "n_system": 4,
+     "n_tracer": 0
+    },
+    "switch1_WLM_Oh_vs_SPARC": 0.05233038516231869,
+    "switch1": false,
+    "c_AD": {
+     "Aquarius": 0.9616234696191056,
+     "Pegasus dIrr": 0.09354398683279247
+    },
+    "switch2": [
+     "Aquarius"
+    ],
+    "shadow": "SYSTEM PROPERTY",
+    "shadow_info": {
+     "n_usable": 3,
+     "usable": [
+      "WLM",
+      "IC 1613",
+      "Pegasus dIrr"
+     ],
+     "n_system": 3,
+     "n_tracer": 0
+    }
+   },
+   "rows": [
+    {
+     "name": "WLM",
+     "label": "WLM",
+     "r12_pc": 1065.5066666666667,
+     "lg_gbar": -11.116505831079696,
+     "law": 3.3482490872651015e-11,
+     "g_star": 2.7943929711249355e-11,
+     "E_star": 0.37,
+     "kin_star": 0.09926731014931468,
+     "sE_star": 0.11114854413927443,
+     "sets": {
+      "Oh15": {
+       "V": 26.89436082104683,
+       "eV": 3.751528826352901,
+       "E": -0.18240517663096406
+      },
+      "Iorio17": {
+       "V": 24.082274916508887,
+       "eV": 2.253144448037875,
+       "E": -0.27833261124068703
+      },
+      "SPARC": {
+       "V": 25.321885145625366,
+       "eV": 2.78,
+       "E": -0.23473556179328275
+      }
+     },
+     "spread": 0.09592743460972297,
+     "s_curve": 0.05,
+     "primary": "Oh15",
+     "c_AD": 0.01704577236415673,
+     "Vr_io": 23.614275390392514,
+     "Mg": 13966135.991865454,
+     "Ms2": 48305880.20397738,
+     "E_HI": 0.37,
+     "kin_HI": 0.12116058669897996,
+     "sE_HI": 0.14028502332480483,
+     "Delta": 0.0,
+     "sDelta": 0.16441984866043782,
+     "Delta_direct": null
+    },
+    {
+     "name": "IC 1613",
+     "label": "IC 1613",
+     "r12_pc": 1919.7066666666665,
+     "lg_gbar": -11.32026938374405,
+     "law": 2.577565028949424e-11,
+     "g_star": 5.9071798296839056e-12,
+     "E_star": 0.37,
+     "kin_star": 0.07640365885334983,
+     "sE_star": 0.09131001635187162,
+     "sets": {
+      "Oh15": {
+       "V": 19.04477704048102,
+       "eV": 2.12617185506237,
+       "E": -0.6242464190565897
+      }
+     },
+     "spread": 0.0,
+     "s_curve": 0.05,
+     "primary": "Oh15",
+     "c_AD": null,
+     "Vr_io": null,
+     "Mg": 30941408.352602266,
+     "Ms2": 95499258.60214369,
+     "E_HI": 0.37,
+     "kin_HI": 0.09696986236897058,
+     "sE_HI": 0.12001314181312435,
+     "Delta": 0.0,
+     "sDelta": 0.1331941188417723,
+     "Delta_direct": null
+    },
+    {
+     "name": "Aquarius",
+     "label": "DDO 210 (Aquarius)",
+     "r12_pc": 426.1733333333333,
+     "lg_gbar": -11.663667856761842,
+     "law": 1.6787382575523272e-11,
+     "g_star": 1.3879393480867032e-11,
+     "E_star": 0.37,
+     "kin_star": 0.16146846122043979,
+     "sE_star": 0.16903273046631137,
+     "sets": {
+      "Iorio17": {
+       "V": 16.735989475605308,
+       "eV": 8.170675872977249,
+       "E": 0.10337982837034121
+      }
+     },
+     "spread": 0.0,
+     "s_curve": 0.05,
+     "primary": "Iorio17",
+     "c_AD": 0.9616234696191056,
+     "Vr_io": 5.531458510767734,
+     "Mg": 1507866.5354274495,
+     "Ms2": 1318256.7385564102,
+     "E_HI": 0.37,
+     "kin_HI": 0.4240537376324697,
+     "sE_HI": 0.4299087954439493,
+     "Delta": 0.0,
+     "sDelta": 0.4565015184738865,
+     "Delta_direct": null
+    },
+    {
+     "name": "Pegasus dIrr",
+     "label": "DDO 216 (Pegasus dIrr)",
+     "r12_pc": 869.2133333333333,
+     "lg_gbar": -11.721238569633838,
+     "law": 1.5641320924281364e-11,
+     "g_star": 1.692198857554733e-11,
+     "E_star": 0.37,
+     "kin_star": 0.0812095372664617,
+     "sE_star": 0.09536765144970716,
+     "sets": {
+      "Oh15": {
+       "V": 17.80672003286235,
+       "eV": 3.2230494166139607,
+       "E": -0.12158564586760677
+      },
+      "Iorio17": {
+       "V": 13.81,
+       "eV": 4.98,
+       "E": -0.3423661497802047
+      }
+     },
+     "spread": 0.2207805039125979,
+     "s_curve": 0.11039025195629895,
+     "primary": "Oh15",
+     "c_AD": 0.09354398683279247,
+     "Vr_io": 12.4,
+     "Mg": 4159140.301720139,
+     "Ms2": 6137620.051647945,
+     "E_HI": 0.37,
+     "kin_HI": 0.1572162165692155,
+     "sE_HI": 0.19850175434820125,
+     "Delta": 0.0,
+     "sDelta": 0.20856158664132393,
+     "Delta_direct": null
+    }
+   ]
+  },
+  "alt|e": {
+   "cls": {
+    "cls": "NOT DIAGNOSTIC (AD)",
+    "core": "SYSTEM PROPERTY",
+    "core_info": {
+     "n_usable": 4,
+     "usable": [
+      "WLM",
+      "IC 1613",
+      "Aquarius",
+      "Pegasus dIrr"
+     ],
+     "n_system": 4,
+     "n_tracer": 0
+    },
+    "switch1_WLM_Oh_vs_SPARC": 0.05233038516231878,
+    "switch1": false,
+    "c_AD": {
+     "Aquarius": 0.9616234696191056,
+     "Pegasus dIrr": 0.09354398683279247
+    },
+    "switch2": [
+     "Aquarius"
+    ],
+    "shadow": "SYSTEM PROPERTY",
+    "shadow_info": {
+     "n_usable": 3,
+     "usable": [
+      "WLM",
+      "IC 1613",
+      "Pegasus dIrr"
+     ],
+     "n_system": 3,
+     "n_tracer": 0
+    }
+   },
+   "rows": [
+    {
+     "name": "WLM",
+     "label": "WLM",
+     "r12_pc": 1065.5066666666667,
+     "lg_gbar": -11.116505831079696,
+     "law": 3.3400501921559194e-11,
+     "g_star": 2.7943929711249355e-11,
+     "E_star": 0.37,
+     "kin_star": 0.09926731014931468,
+     "sE_star": 0.11114854413927443,
+     "sets": {
+      "Oh15": {
+       "V": 26.89436082104683,
+       "eV": 3.751528826352901,
+       "E": -0.181340410675236
+      },
+      "Iorio17": {
+       "V": 24.082274916508887,
+       "eV": 2.253144448037875,
+       "E": -0.277267845284959
+      },
+      "SPARC": {
+       "V": 25.321885145625366,
+       "eV": 2.78,
+       "E": -0.2336707958375548
+      }
+     },
+     "spread": 0.095927434609723,
+     "s_curve": 0.05,
+     "primary": "Oh15",
+     "c_AD": 0.01704577236415673,
+     "Vr_io": 23.614275390392514,
+     "Mg": 13966135.991865454,
+     "Ms2": 48305880.20397738,
+     "E_HI": 0.37,
+     "kin_HI": 0.12116058669897996,
+     "sE_HI": 0.14028502332480483,
+     "Delta": 0.0,
+     "sDelta": 0.16441984866043782,
+     "Delta_direct": null
+    },
+    {
+     "name": "IC 1613",
+     "label": "IC 1613",
+     "r12_pc": 1919.7066666666665,
+     "lg_gbar": -11.32026938374405,
+     "law": 2.573493175629969e-11,
+     "g_star": 5.9071798296839056e-12,
+     "E_star": 0.37,
+     "kin_star": 0.07640365885334983,
+     "sE_star": 0.09131001635187162,
+     "sets": {
+      "Oh15": {
+       "V": 19.04477704048102,
+       "eV": 2.12617185506237,
+       "E": -0.6235598091500952
+      }
+     },
+     "spread": 0.0,
+     "s_curve": 0.05,
+     "primary": "Oh15",
+     "c_AD": null,
+     "Vr_io": null,
+     "Mg": 30941408.352602266,
+     "Ms2": 95499258.60214369,
+     "E_HI": 0.37,
+     "kin_HI": 0.09696986236897058,
+     "sE_HI": 0.12001314181312435,
+     "Delta": 0.0,
+     "sDelta": 0.1331941188417723,
+     "Delta_direct": null
+    },
+    {
+     "name": "Aquarius",
+     "label": "DDO 210 (Aquarius)",
+     "r12_pc": 426.1733333333333,
+     "lg_gbar": -11.663667856761842,
+     "law": 1.6774901989387586e-11,
+     "g_star": 1.3879393480867032e-11,
+     "E_star": 0.37,
+     "kin_star": 0.16146846122043979,
+     "sE_star": 0.16903273046631137,
+     "sets": {
+      "Iorio17": {
+       "V": 16.735989475605308,
+       "eV": 8.170675872977249,
+       "E": 0.10370282485343253
+      }
+     },
+     "spread": 0.0,
+     "s_curve": 0.05,
+     "primary": "Iorio17",
+     "c_AD": 0.9616234696191056,
+     "Vr_io": 5.531458510767734,
+     "Mg": 1507866.5354274495,
+     "Ms2": 1318256.7385564102,
+     "E_HI": 0.37,
+     "kin_HI": 0.4240537376324697,
+     "sE_HI": 0.4299087954439493,
+     "Delta": 0.0,
+     "sDelta": 0.4565015184738865,
+     "Delta_direct": null
+    },
+    {
+     "name": "Pegasus dIrr",
+     "label": "DDO 216 (Pegasus dIrr)",
+     "r12_pc": 869.2133333333333,
+     "lg_gbar": -11.721238569633838,
+     "law": 1.5631087100736714e-11,
+     "g_star": 1.692198857554733e-11,
+     "E_star": 0.37,
+     "kin_star": 0.0812095372664617,
+     "sE_star": 0.09536765144970716,
+     "sets": {
+      "Oh15": {
+       "V": 17.80672003286235,
+       "eV": 3.2230494166139607,
+       "E": -0.12130140211833662
+      },
+      "Iorio17": {
+       "V": 13.81,
+       "eV": 4.98,
+       "E": -0.3420819060309346
+      }
+     },
+     "spread": 0.22078050391259796,
+     "s_curve": 0.11039025195629898,
+     "primary": "Oh15",
+     "c_AD": 0.09354398683279247,
+     "Vr_io": 12.4,
+     "Mg": 4159140.301720139,
+     "Ms2": 6137620.051647945,
+     "E_HI": 0.37,
+     "kin_HI": 0.1572162165692155,
+     "sE_HI": 0.19850175434820128,
+     "Delta": 0.0,
+     "sDelta": 0.20856158664132393,
+     "Delta_direct": null
+    }
+   ]
+  }
+ },
+ "variants": {},
+ "K_all_pass": true,
+ "runtime_s": 0.0,
+ "peak_rss_mb": 44.2,
+ "exit": 0
+}
