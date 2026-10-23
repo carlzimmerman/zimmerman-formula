@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
-"""PAPER57 audit: the built PDF must be newer than the TeX and 6-9 pages long (the update with CFG935 and CFG950-CFG952 needs 9
-pages, which is accepted); every quoted number must match the committed
+"""PAPER57 audit: the built PDF must be newer than the TeX and 6-10 pages long (the update with CFG935 and CFG950-CFG952 needs 9
+pages, and the v1.1 correction box a 10th, which is accepted); every quoted number must match the committed
 lane outputs (JSON where the number is stored there; otherwise the lane's LEDGER row, README or DERIVATION text); every theorem
 statement must match the wording of its lane's DERIVATION / README; the post-hoc disclosures must be present; the lanes the first
 draft called "in progress" (CFG935, CFG950-CFG952) must now have LEDGER rows and no in-progress statement may remain; no forbidden
 claim, local path or personal name may appear.
+v1.1 (2026-10-23, section V): the dated correction box (WT-02, CFG961) must exist above the abstract; no unqualified "linear
+well-posedness" may remain (TeX outside the box, PDF, Zenodo description); "PASS A5" must be gone; every c_T and growth number in the
+box must match CFG961's results JSON; the credited commits must exist; the Zenodo metadata must be v1.1, lead with the correction,
+mark isNewVersionOf 10.5281/zenodo.23532885, and keep v1.0's other fields; the duplicate record 23532894 must appear nowhere.
+The v1.1 box re-paginates the note, so the PDF text is now read with each page-number footer removed at page breaks (two v1.0
+phrases, unchanged in the TeX, fell across a break); no check string was loosened.
 Run: python3 PAPER57_audit.py (exit 0 only if all pass).  Read-only: it opens committed files and the PDF, nothing else."""
 import json, os, re, subprocess, sys
 
@@ -79,8 +85,9 @@ def src(path):
 # ---------------------------------------------------------------- A. build
 check("A1 PDF newer than TeX", os.path.getmtime(PDF) >= os.path.getmtime(TEX))
 pages = int(re.search(r"Pages:\s+(\d+)", subprocess.run(["pdfinfo", PDF], capture_output=True, text=True, check=True).stdout).group(1))
-check("A2 page count 6-9 (9 accepted for the updated draft)", 6 <= pages <= 9, f"{pages} pages")
-raw = [norm(subprocess.run(["pdftotext"] + m + [PDF, "-"], capture_output=True, text=True, check=True).stdout) for m in (["-layout"], [], ["-raw"])]  # -raw keeps super/subscripts inline
+check("A2 page count 6-10 (10 accepted for v1.1's correction box)", 6 <= pages <= 10, f"{pages} pages")
+FOOT = re.compile(r"\n[ \t]*\d{1,2}[ \t]*\n*\f")   # v1.1: drop the page-number footer at each page break, so a sentence split by a break still matches
+raw = [norm(FOOT.sub("\n", subprocess.run(["pdftotext"] + m + [PDF, "-"], capture_output=True, text=True, check=True).stdout)) for m in (["-layout"], [], ["-raw"])]  # -raw keeps super/subscripts inline
 flat = " ||| ".join(raw + [keephyph(x) for x in raw] + [dehyph(x) for x in raw])
 flat_ns = nsp(" ".join(raw))
 low = flat.lower()
@@ -186,7 +193,9 @@ check("C differential free fall range (JSON)", f"{min(rr):.2f}" == "0.03" and f"
 sc = {s["gate"]: s["status"] for s in r38["scorecard"]}
 check("C scorecard (JSON)", [g for g in sc if sc[g] == "PASS"] == ["A5", "C2"] and [g for g in sc if sc[g] == "CONDITIONAL"] == ["A1", "A2", "B3", "C1"]
       and [g for g in sc if sc[g] == "FAIL"] == ["C3"] and [g for g in sc if sc[g] == "UNTESTED"] == ["A3", "A4", "A6", "B1", "B2", "D1", "D2"])
-led("C scorecard (LEDGER, PDF)", "CFG938", "PASS A5, C2; CONDITIONAL A1, A2, B3, C1; FAIL C3 (inherited from the law); UNTESTED A3, A4, A6, B1, B2, D1, D2")
+lonly("C scorecard as CFG938 recorded it (LEDGER; v1.0 quoted it)", "CFG938", "PASS A5, C2; CONDITIONAL A1, A2, B3, C1; FAIL C3 (inherited from the law); UNTESTED A3, A4, A6, B1, B2, D1, D2")
+has("C scorecard as corrected in v1.1 (PDF)", "(CFG678): PASS C2; CONDITIONAL A1, C1, A5 (computed bound, L* ≲ 1.0 kpc; v1.0 read PASS); A2 and B3: linear support "
+    "withdrawn off static backgrounds (Correction v1.1); FAIL C3 (inherited from the law); UNTESTED A3, A4, A6, B1, B2, D1, D2")
 rd("C particle in disguise for the mass", R38, "Particle in disguise: yes, for the mass", "Particle in disguise. Yes for the mass")
 led("C no propagating mode", "CFG938", "the tether sector has no propagating mode", "The tether sector has no propagating mode")
 check("C class CONDITIONAL, 30/30 checks (JSON)", r38["class"] == "CONDITIONAL" and len(r38["checks"]) == 30)
@@ -539,8 +548,9 @@ for s in r50["scorecard"]:
     st.setdefault(s["status"], []).append(s["gate"].split()[0])
 check("K2 CFG950 scorecard (JSON)", st["PASS"] == ["A5", "C2"] and st["CONDITIONAL"] == ["A1", "A2", "B3", "C1"] and st["FAIL"] == ["C3"]
       and "B1" in st["UNTESTED"] and "D2" in st["UNTESTED"], json.dumps(st))
-led("K2 CFG950 scorecard (LEDGER)", "CFG950", "PASS A5, C2; CONDITIONAL A1, A2, B3, C1; FAIL C3 (inherited from the law); UNTESTED incl. B1 (prescribed labels) and D2 (needs an LDT PM engine, CFG952)",
-    "(PASS A5, C2; CONDITIONAL A1, A2, B3, C1; FAIL C3, inherited from the law), with B1 (prescribed labels) and D2 (it needs an LDT engine) UNTESTED")
+led("K2 CFG950 scorecard (LEDGER; PDF as corrected in v1.1)", "CFG950", "PASS A5, C2; CONDITIONAL A1, A2, B3, C1; FAIL C3 (inherited from the law); UNTESTED incl. B1 (prescribed labels) and D2 (needs an LDT PM engine, CFG952)",
+    "CFG938's as corrected in v1.1 (PASS C2; CONDITIONAL A1, C1, A5, the last a computed bound, L* ≲ 1.0 kpc; A2 and B3: linear support withdrawn off static "
+    "backgrounds; FAIL C3, inherited from the law), with B1 (prescribed labels) and D2 (it needs an LDT engine) UNTESTED")
 check("K2 CFG950 K 7/7 (JSON)", r50["K_all"] is True); led("K2 CFG950 K 7/7, MUTATE 6/6 (LEDGER)", "CFG950", "K 7/7; MUTATE 6/6", "K 7/7; MUTATE 6/6 bite")
 led("K2 CFG950 A1 post hoc", "CFG950", "A1 fb9af871f POST HOC", "CFG950 A1 (the merger-toy metric f3 replaced after the first main run; the frozen class is reported alongside)")
 sonly("K2 CFG950 A1 after first complete main run", "CFG950_ldt_construction/AMENDMENT_A1_post_hoc.md", "Written after the first complete main run")
@@ -729,6 +739,110 @@ for bad in ("theory closed", "theory is closed", "data favour the framework", "d
 check("M no home path in TeX", "/Users/" not in tex and "~/" not in tex)
 gu = subprocess.run(["git", "config", "user.name"], capture_output=True, text=True, cwd=HERE).stdout.split()
 check("M no personal name (repo user) in PDF or TeX", all(w.lower() not in low and w.lower() not in tex.lower() for w in gu if len(w) >= 3), f"{len(gu)} name parts checked")
+
+# ---------------------------------------------------------------- V. v1.1 correction (2026-10-23): WT-02 and its independent check CFG961
+C61 = "CFG961_wt02_verification"
+DR61 = f"{C61}/CORRECTION_PAPER57_v1.1_DRAFT.md"
+r61 = J(f"{C61}/cfg961_results.json")
+p1 = norm(subprocess.run(["pdftotext", "-f", "1", "-l", "1", PDF, "-"], capture_output=True, text=True, check=True).stdout)
+BOX0 = "\\noindent\\fbox{\\parbox{"
+BOXT = "\\textbf{Correction (v1.1, 2026-10-23).}"
+ib, ia, ic = tex.find(BOX0), tex.find("\\begin{abstract}"), tex.find("\\end{center}")
+check("V1 correction box in the TeX, dated, between the title block and the abstract", ic < ib < tex.find(BOXT) < ia and tex.count(BOXT) == 1)
+box_end = tex.find("\n\n\\begin{abstract}")
+box = tex[ib:box_end] if 0 <= ib < box_end else ""
+check("V1 correction box closes before the abstract", box.rstrip().endswith("}}") and "Consequences." in box)
+check("V1 correction box on PDF page 1", "Correction (v1.1, 2026-10-23)." in p1)
+has("V2 header v1.1 dated 2026-10-23", "Working note, v1.1, 2026-10-23 (correction of v1.0 of 2026-10-21; see the box below)")
+check("V2 v1.0 header gone", "Working note, 2026-10-21, v1.0" not in flat and "v1.0. AI-assisted" not in tex)
+outside = tex[:ib] + tex[box_end:]
+check("V3 no 'linear well-posed' in the TeX outside the correction box", not re.search(r"linear\s+well-?pos", outside, re.I),
+      f"{len(re.findall(r'linear\s+well-?pos', outside, re.I))} outside")
+inbox = [m.start() for m in re.finditer(r"linear\s+well-?pos", box, re.I)]
+check("V3 inside the box every 'linear well-posed' is a quotation of v1.0", len(inbox) == 2 and all(box[i - 2:i] == "``" for i in inbox), f"{len(inbox)} quoted")
+pl = norm(raw[1])
+hits = [m.start() for m in re.finditer(r"linear well-?pos", pl, re.I)]
+check("V3 no unqualified 'linear well-posed' in the PDF (only the two quotations)", len(hits) == 2 and all(pl[i - 1] in "“\"" for i in hits), f"{len(hits)} hits")
+check("V4 'PASS A5' gone from TeX and PDF", "PASS A5" not in tex and "PASS A5" not in flat)
+has("V4 A5 re-graded", "A5 (computed bound, L* ≲ 1.0 kpc; v1.0 read PASS)")
+for s in ("linear stability on static backgrounds and slip ≤ " + sci("1.54e-5") + ", under five conditions (CONDITIONAL). On expanding or contracting backgrounds its constraint pair is Hadamard ill-posed, and its tensor speed is not exactly c (Correction v1.1)",
+          "This is the static WKB result. On FRW the χ/λ pair is a forward/backward heat pair and the linear Cauchy problem is ill-posed (Correction v1.1)",
+          "Well-posedness is CONDITIONAL on CFG938's premises, which hold only for static media (Correction v1.1)",
+          "linear stability on static backgrounds and negligible slip, under five stated conditions. That parent is ill-posed on expanding backgrounds and its gravitational waves are not exactly at c (Correction v1.1)",
+          "v1.1 corrects two statements about CFG938 (well-posedness off static backgrounds; A5 cT = c), following WT-02 and an independent check (CFG961), with the FRW tensor coefficient first derived by the sol61 audit",
+          "the support v1.0 gave for A2 (hyperbolicity) and B3 (cold sector, “linear well-posed”) is withdrawn off static backgrounds",
+          "A5 is a computed bound, not a structural pass: CONDITIONAL on L* ≲ 1.0 kpc and on no medium at early times",
+          "It is not a well-posed covariant theory on cosmological backgrounds", "“Linear well-posedness” holds only on static backgrounds",
+          "“cT = c (structural)” (gate A5) is wrong", "so it is Hadamard ill-posed", "The growing mode is physical, not a multiplier artefact"):
+    has(f"V5 corrected text '{s[:58]}'", s)
+for s, pdf_s in (("is withdrawn for", "is withdrawn off static backgrounds"), ("Hadamard ill-posed", None), ("non-causal two-point problem", None),
+                 ("The growing mode is physical, not a multiplier artefact", None), ("A5 is a computed bound, not a structural pass", None),
+                 ("Nothing else in the note depends on these two statements", None), ("derived from the static equation", None),
+                 ("That repaired parent is not the action of v1.0", "that repaired parent is not the action of v1.0")):
+    rd(f"V6 wording from the CFG961 draft '{s[:40]}'", DR61, s, pdf_s)
+rd("V6 v1.0 numbers kept: dust background, stress, slip unchanged", DR61, "with the dust background, the derived", "with the dust background, the derived field-aligned stress and the slip bound unchanged")
+# --- numbers: every c_T / growth / anticipation number in the box is read from CFG961's results JSON
+bn = r61["B_numbers"]
+loc = [f"{bn['local'][f'wall|{f_}|{L_}']:.1e}" for f_ in ("canonical", "alt") for L_ in ("24pc", "1kpc")]
+check("V7 c_T at the W wall, both footings, L* 24 pc-1 kpc (JSON)", loc == ["4.5e-19", "7.7e-16", "6.5e-19", "1.1e-15"]
+      and f"cT /c - 1 = {sci(loc[0])} to {sci(loc[1])} (canonical footing) and {sci(loc[2])} to {sci(loc[3])} (alternative), for L* = 24 pc to 1 kpc" in flat, ", ".join(loc))
+pth = bn["path"]
+lo = min(v["total"] for k, v in pth.items() if k.endswith("|24pc")); hi = max(v["total"] for k, v in pth.items() if k.endswith("|1kpc"))
+check("V7 GW170817 path average 3.9e-19 to 6.8e-16, every case inside the bound (JSON)", f"{lo:.1e}" == "3.9e-19" and f"{hi:.1e}" == "6.8e-16"
+      and all(v["inside_bound"] for v in pth.values()) and len(pth) == 8
+      and f"Averaged along the path of GW170817, cT /c - 1 = {sci(f'{lo:.1e}')} to {sci(f'{hi:.1e}')}" in flat, f"{lo:.4e} .. {hi:.4e}")
+check("V7 L* cap 1.0 kpc (JSON Lmax_clock_kpc)", f"{bn['Lmax_clock_kpc']:.1f}" == "1.0" and r61["B_class"]["Lmax_clock_kpc"] == bn["Lmax_clock_kpc"]
+      and "but caps L* ≲ 1.0 kpc, at the top of the L* window" in flat, f"{bn['Lmax_clock_kpc']:.4f} kpc")
+check("V7 GW170817 bound (-3e-15, 7e-16) is the one CFG961 used", "inside' if ok else 'OUTSIDE'} (-3e-15, 7e-16)" in open(os.path.join(CFG, C61, "cfg961.py"), encoding="utf-8").read()
+      and "inside the bound (-3x10-15, 7x10-16)" in flat)
+check("V7 cosmic clock 8.7e-11 m/s^2 (JSON ubar0)", f"{bn['ubar0']:.1e}" == "8.7e-11" and f"= {sci('8.7e-11')} m s-2 (independent of the footing)" in flat, f"{bn['ubar0']:.4e}")
+qt = r61["B_QT_sol61_crosscheck"]
+check("V7 Q_T < 0 before 1+z = 2.7e5 (1 kpc) to 1.1e7 (24 pc) (JSON)", f"{qt['1kpc']['onepluszQ0']:.1e}" == "2.7e+05" and f"{qt['24pc']['onepluszQ0']:.1e}" == "1.1e+07"
+      and qt["1kpc"]["Q_T_z4e8"] < 0 and qt["24pc"]["Q_T_z4e8"] < 0 and f"1 + z ≈ {sci('2.7e5')} (L* = 1 kpc) to {sci('1.1e7')} (24 pc)" in flat)
+cf = r61["B_coeffs"]
+check("V7 coefficient 3/2, spatial and timelike, one formula (JSON)", cf["C_spatial"] == "3/2" and cf["C_timelike"] == "3/2"
+      and cf["both"] == "3*L**2*(V_0**2 + 2*V_0*u_0*cos(theta_k) + u_0**2)/2" and "(3/2)L" in flat_ns and "(superluminal)" in flat)
+check("V7 b1-b3 CONFIRMED (JSON)", all(r61["B_class"][k] == "CONFIRMED" for k in ("b1", "b2", "b3")))
+qs = r61["A"]["qs"]["labels"]
+p2 = r61["A"]["P2"]
+check("V7 growth rate c^2k^2/(3|H|), forward chi / backward lambda (JSON)", qs["lambda"]["root_sigma"] == "c**2*k**2/(3*H)" and qs["chi"]["root_sigma"] == "-c**2*k**2/(3*H)"
+      and qs["chi"]["label"] == "FORWARD-parabolic for H>0" and qs["lambda"]["label"] == "BACKWARD-parabolic for H>0"
+      and abs(p2["grav_off|1kpc|H+"]["sigma_over_k2_3"] - 1) < 1e-9 and "Reσ=c2k2/(3|H|)" in flat_ns)
+check("V7 growing mode PHYSICAL in every gravity model (JSON)", r61["A"]["P2_label"] == {"grav_off": "PHYSICAL", "quasi_static": "PHYSICAL", "full_GR": "PHYSICAL"})
+p3 = r61["A"]["P3"]
+check("V7 anticipation 0.22 yr at 10 kpc, 2.2e3 yr at 1 Mpc (JSON)", f"{p3['10kpc']['tau_yr']:.2f}" == "0.22" and f"{p3['1000kpc']['tau_yr']:.1e}" == "2.2e+03"
+      and f"which is 0.22 yr at 10 kpc and {sci('2.2e3')} yr at 1 Mpc" in flat)
+check("V7 static law still 2.2e-16 on NGC 3198, both footings (JSON K_a4)", all(r61["A"]["K_a4"][f_] < 2.3e-16 for f_ in ("canonical", "alt"))
+      and f"({sci('2.2e-16')} on NGC 3198)" in flat)
+check("V7 CFG961 controls K-a2, K-a3 (slip), K-a4, b2, FRW clock term pass (JSON)", all(r61["checks"][k]["pass_"] for k in ("K_a2_static_dispersion_equals_CFG938_S5a",
+      "K_a3_slip_reproduced", "K_a4_NGC3198_law_unaffected", "b2_coefficient_1p5_all_angles_and_polarisations", "b_FRW_tau_has_clock_term")) and r61["mutate"] is False)
+# --- credits: lane IDs and commits exist, and say what the paper says they are
+def gsub(c):
+    r = subprocess.run(["git", "log", "-1", "--format=%s", c], capture_output=True, text=True, cwd=HERE)
+    return r.stdout.strip() if r.returncode == 0 else ""
+for c, key in (("9b3d77382", "WT-02"), ("f7b966292", "CFG961 RESULT"), ("83b04219e", "CFG961 FROZEN CRITERIA"), ("f3cbd85e5", "CFG961 AMENDMENT A1")):
+    check(f"V8 commit {c} exists ({key}) and is credited in the PDF", key in gsub(c) and c in flat)
+check("V8 sol61 audit RESULT.md in the repository at a67f9ed9c, credited", subprocess.run(["git", "cat-file", "-e", "a67f9ed9c:sol61_push/cold_covariant_audit_2026_10_20/RESULT.md"],
+      cwd=HERE, capture_output=True).returncode == 0 and "in the repository at commit a67f9ed9c" in flat)
+has("V8 lanes credited by ID", "the parallel repository lane WT-02 (what_is_time/, commit 9b3d77382) and an independent check of it, lane CFG961 (commit f7b966292")
+# --- Zenodo metadata for the new version
+ZJ = os.path.join(HERE, "PAPER57_cold_sector_structure_2026.zenodo.json")
+zj = json.load(open(ZJ, encoding="utf-8"))["metadata"]
+z0 = json.loads(subprocess.run(["git", "show", "ee866f4bc2:qwen_claude_field_theory/papers_2026/PAPER57_cold_sector_structure_2026.zenodo.json"],
+                               cwd=HERE, capture_output=True, text=True, check=True).stdout)["metadata"]
+zd = re.sub(r"<[^>]+>", "", zj["description"])
+check("V9 Zenodo version 1.1", zj["version"] == "1.1" and z0["version"] == "1.0")
+check("V9 Zenodo description leads with 'Correction (v1.1'", zd.startswith("Correction (v1.1, 2026-10-23):") and "version 1.1 (2026-10-23; v1.0 2026-10-21)" in zd)
+check("V9 Zenodo isNewVersionOf 10.5281/zenodo.23532885", {"identifier": "10.5281/zenodo.23532885", "relation": "isNewVersionOf", "scheme": "doi"} in zj["related_identifiers"])
+check("V9 Zenodo keeps v1.0's other fields and every v1.0 related identifier", all(zj[k] == z0[k] for k in z0 if k not in ("version", "description", "related_identifiers"))
+      and set(zj) == set(z0) and all(r_ in zj["related_identifiers"] for r_ in z0["related_identifiers"]) and len(zj["related_identifiers"]) == len(z0["related_identifiers"]) + 1)
+zh = [m.start() for m in re.finditer(r"linear well-?pos", zd, re.I)]
+check("V9 Zenodo description: no unqualified 'linear well-posedness'", len(zh) == 1 and zd[zh[0] - 1] == "'" and "linear stability on static backgrounds" in zd)
+check("V9 Zenodo numbers match CFG961 JSON", f"c_T/c - 1 = {lo:.1e} to {hi:.1e}" in zd and f"{bn['ubar0']:.1e} m/s^2" in zd and f"about {bn['Lmax_clock_kpc']:.1f} kpc" in zd
+      and "9b3d77382" in zd and "f7b966292" in zd and "WT-02" in zd and "CFG961" in zd)
+check("V9 Zenodo honesty kept, nothing forbidden", "kappa = 1/2 is fitted; the theory is not closed" in zd
+      and not any(b_ in zd.lower() for b_ in ("theory closed", "theory is closed", "data favour the framework", "data favor the framework", "/users/", "gmail")))
+check("V10 duplicate record 23532894 appears nowhere (TeX, PDF, Zenodo JSON)", all("23532894" not in x for x in (tex, flat, json.dumps(zj))))
 
 print(f"\nPAPER57 audit: {N - F}/{N} PASS" + ("" if F == 0 else f", {F} FAIL"))
 sys.exit(1 if F else 0)
