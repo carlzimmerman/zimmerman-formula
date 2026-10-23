@@ -280,3 +280,20 @@ Seen before writing this: Part D's first full run (D1–D5 PASS; frozen D6 FAIL;
 2. **Sealing guard.** §5 says the AQUAL-disc reading is sealed "in both cases"; the numbers depend on D1–D5 (reproduction, grid,
    convergence). The seal is written when D1–D5 and D6′ pass; the frozen D6 result is printed beside it.
 3. The decision is reported per release as well (U4 for 2026-11-06, GS4 for 2026-11-28), under the same frozen thresholds.
+
+## AMENDMENT A6 (2026-10-23, POST-RESULT for check B3; PRE-RESULT for every κ number — written before reading any route or combined value of Part B)
+
+1. **B3 failed (median 0.32) because its reference is wrong.** CFG493's `v2_disc`
+   (`campaign_fresh_gravity/CFG493_kappa_combined/cfg493_kappa_combined.py:126-142`) sums ring potentials K(k²)/(a + R) with
+   k² clipped at 1 − 1e-12 and differentiates them by ±1e-3 R. Whenever R falls near a ring the log singularity dominates, so the
+   gas V² flips sign from point to point on smooth Σ profiles (first P3 galaxy: 2948, −2639, −1065, 562, 4444, 2818, −1273 (km/s)²
+   at consecutive radii; my grid's V² for the same Σ rises smoothly from −3 to 4042, and its razor-thin variant agrees with it
+   to ~1 %). This is a record error: CFG493's P3 gas-point mask (f_gas > 0.8 and V²_gas > 0) and its g_bar inherit the noise.
+   The frozen B3 FAIL is kept in the output.
+2. **Consequence for Part B (decided now, before any κ number is read).** The v3 verdict (step A) and the kernel step (K) use a
+   **rebuilt P3**: the same WALLABY inputs (Σ profile, H₀ 67.4, flux correction, CFG493's stellar model), but V²_gas from my own
+   axisymmetric Newtonian solve (primary thickness), for the nominal build and for every P3 variant (H₀ 70, CMB frame, AD 8,
+   R_d × 0.5 / × 2, no flux correction); masks, g_bar, levers and error terms recomputed with CFG493's formulas; C tables for any
+   galaxy that newly enters. The record's P3 (with `v2_disc`) is reported as step "record" and as a kernel-only row, never as
+   the verdict. B3′ (added): my V²_gas vs its own razor-thin variant on the gas points, median |Δ| ≤ 2 %.
+3. P1 and P2 are unaffected (P1 uses SPARC's rotmod V_gas; P2 committed numbers).
