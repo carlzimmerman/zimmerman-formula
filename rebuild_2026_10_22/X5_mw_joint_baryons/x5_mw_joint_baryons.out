@@ -1,0 +1,87 @@
+======================================================================================================================
+X5_mw_joint_baryons 
+kappa = 1/2 FITTED; footings 9.3603e-11 / 1.1312e-10 never pooled; no dark-matter particle; not theory closed
+======================================================================================================================
+
+--- Step 0a: P4's B1 (McMillan17) F0 L* 24 pc with P4's solver (read-only)
+  canonical K_z(R0) 92.282 (P4 92.282); chi2_Kz 178.370 (P4 178.371); v_c(R0) 215.170 (P4 215.170); h 3.845
+  alt       K_z(R0) 96.860 (P4 96.860); chi2_Kz 250.708 (P4 250.710); v_c(R0) 220.377 (P4 220.377); h 3.898
+C0a PASS dK=8.02e-05;dchi2=1.41e-03;dvc=9.01e-05 <=0.05;<=0.1;<=0.05   [P4 B1 F0 L*24 pc reproduced on both footings]
+
+--- Step 0b: the family at McMillan17's column and bulge with R_d = 2.15 is P4's B3
+  canonical K_z(R0) 96.828 (P4 B3 96.828); chi2_Kz 332.943 (332.944); v_c 240.858 (240.858)
+  alt       K_z(R0) 101.162 (P4 B3 101.162); chi2_Kz 435.108 (435.110); v_c 246.128 (246.128)
+C0b PASS identity=5.5e-15;dK=7.61e-05;dchi2=1.93e-03;dvc=9.15e-05 <=1e-12;<=0.05;<=0.1;<=0.05   [family(Sigma_McM, M_bulge_McM, 2.15) == P4 rho_b3 at 2000 points, and its solve == P4's B3 cell]
+C2 PASS 229.0530+-4.6450 (U1 229.0530+-4.6450) <=1e-6   [Eilers v_c(R0) target]
+
+--- Step 0c: S3 Part A with S3's code (read-only; census solved fresh in this lane's cache)
+  off-census S3 cache files copied 48 (missing in S3's cache, solved here: 0); census cells solved now 6 (already solved by this lane earlier: 0); child peak RSS 569 MB
+C0d PASS 0.0e+00 (6/6 S3 census files) <=1e-6   [this lane's census AQUAL solves vs S3's cached ones, g_R 5-27.5 kpc]
+  S3's own data controls inside the executed segment: A6 PASS, A1 PASS
+  AQ_iso        canonical primary Z -4.4576 (S3 -4.4576) SHAPE EXCLUDED; rho0.5 -3.6910 (S3 -3.6910); law slope Ou -0.12226
+  AQ_iso        alt       primary Z -4.7067 (S3 -4.7067) SHAPE EXCLUDED; rho0.5 -3.8969 (S3 -3.8969); law slope Ou -0.11082
+  AQ_gamma0     canonical primary Z -4.3733 (S3 -4.3733) SHAPE EXCLUDED; rho0.5 -3.6196 (S3 -3.6196); law slope Ou -0.12565
+  AQ_gamma0     alt       primary Z -4.6165 (S3 -4.6165) SHAPE EXCLUDED; rho0.5 -3.8206 (S3 -3.8206); law slope Ou -0.11446
+  AQ_gamma0_2x  canonical primary Z -4.2131 (S3 -4.2131) SHAPE EXCLUDED; rho0.5 -3.4848 (S3 -3.4848); law slope Ou -0.13228
+  AQ_gamma0_2x  alt       primary Z -4.4505 (S3 -4.4505) SHAPE EXCLUDED; rho0.5 -3.6809 (S3 -3.6809); law slope Ou -0.12135
+C0c PASS dZ=0.0e+00;db_law=0.0e+00 <=0.01;<=1e-4   [S3 Part A AQ_iso / AQ_gamma0 / AQ_gamma0_2x primary and rho 0.5 Z, and Ou / Jiao law slopes, both footings]
+
+=== (ii) S3 Part A under CFG532's S2 error budget (Ou 5 % inner / 15 % beyond; Eilers 5 %; Wang, Zhou, Feng stat + 5 %; Jiao, SL23 as published)
+  Ou24             stat + 5% (R<=22) / 15%    data slope -0.3272 +- 0.1124 (primary -0.3251 +- 0.0737; n 19)
+  Eilers19         stat + 5%                  data slope -0.2820 +- 0.1045 (primary -0.2778 +- 0.0711; n 18)
+  Wang23           table + 5%                 data slope -0.3734 +- 0.0865 (primary -0.3558 +- 0.0579; n 13)
+  Jiao23           as published               data slope -0.3193 +- 0.0570 (primary -0.3193 +- 0.0570; n 12)
+  Zhou23           table + 5%                 data slope -0.1874 +- 0.0975 (primary -0.1856 +- 0.0609; n 14)
+  SL23_DR3plus     as published               data slope -0.2711 +- 0.0197 (primary -0.2711 +- 0.0197; n 25)
+  Feng26_Cepheids  table + 5%                 data slope -0.0268 +- 0.1103 (primary -0.0259 +- 0.0673; n 8)
+C1 PASS 0.0e+00;Jiao/SL23 unchanged 0.0e+00 <=1e-9;0   [S2 data slopes and errors vs CFG532 (Ou S2_5pct_inner, Eilers S2_5pct) and CFG532b (Wang, Zhou, Feng S2_5pct)]
+
+  canonical: v3 cell AQ_gamma0, Ou+Jiao rho 0 under S2: Delta -0.1972 +- 0.0509, Z -3.878 -> SHAPE EXCLUDED   (primary errors: Z -4.373)
+    robustness set: rho0.5 Z -3.436 SHAPE EXCLUDED; e_N 0 (AQ_iso) Z -3.956 SHAPE EXCLUDED; e_N 2 x h81 (AQ_gamma0_2x) Z -3.731 SHAPE EXCLUDED
+    all one-per-group pairs: Z -3.878 .. -2.295; Ou24+Jiao23|rho0.0 -3.88, Ou24+Wang23|rho0.0 -3.42, Eilers19+Jiao23|rho0.0 -3.74, Eilers19+Wang23|rho0.0 -3.23, Zhou23+Jiao23|rho0.0 -3.29, Zhou23+Wang23|rho0.0 -2.63
+    Cepheids (Feng): Z +0.879 SHAPE CONSISTENT
+    per-curve CFG532 s4 labels at the v3 cell under S2: Ou24 NEEDS-HEAVY-DISC (chi2 61.9/37, slope -1.80 sig); Eilers19 CONSISTENT (chi2 46.5/38, slope -1.51 sig); Wang23 EXCLUDED (chi2 20.1/19, slope -2.93 sig); Jiao23 EXCLUDED (chi2 133.9/18, slope -3.43 sig); Zhou23 NEEDS-HEAVY-DISC (chi2 74.6/34, slope -0.65 sig); SL23_DR3plus EXCLUDED (chi2 2097.4/45, slope -7.58 sig); Feng26_Cepheids NEEDS-HEAVY-DISC (chi2 58.5/12, slope +0.88 sig)
+    -> (ii) canonical: SHAPE EXCLUDED ROBUST
+
+  alt: v3 cell AQ_gamma0, Ou+Jiao rho 0 under S2: Delta -0.2081 +- 0.0509, Z -4.092 -> SHAPE EXCLUDED   (primary errors: Z -4.617)
+    robustness set: rho0.5 Z -3.626 SHAPE EXCLUDED; e_N 0 (AQ_iso) Z -4.175 SHAPE EXCLUDED; e_N 2 x h81 (AQ_gamma0_2x) Z -3.939 SHAPE EXCLUDED
+    all one-per-group pairs: Z -4.092 .. -2.427; Ou24+Jiao23|rho0.0 -4.09, Ou24+Wang23|rho0.0 -3.58, Eilers19+Jiao23|rho0.0 -3.96, Eilers19+Wang23|rho0.0 -3.38, Zhou23+Jiao23|rho0.0 -3.51, Zhou23+Wang23|rho0.0 -2.79
+    Cepheids (Feng): Z +0.757 SHAPE CONSISTENT
+    per-curve CFG532 s4 labels at the v3 cell under S2: Ou24 CONSISTENT (chi2 25.2/37, slope -1.90 sig); Eilers19 CONSISTENT (chi2 17.7/38, slope -1.62 sig); Wang23 EXCLUDED (chi2 15.8/19, slope -3.05 sig); Jiao23 EXCLUDED (chi2 43.2/18, slope -3.63 sig); Zhou23 CONSISTENT (chi2 30.7/34, slope -0.76 sig); SL23_DR3plus EXCLUDED (chi2 826.3/45, slope -8.12 sig); Feng26_Cepheids NEEDS-HEAVY-DISC (chi2 34.6/12, slope +0.76 sig)
+    -> (ii) alt: SHAPE EXCLUDED ROBUST
+
+=== (i) the prior box (x5_grid.py outputs): pass = chi2_Kz <= 67.459 AND |v_c - 229.1| <= 9.2 AND |v_c - 229.053| <= 9.290
+C3 PASS cells={'canonical': 175, 'alt': 175};res_max=9.2e-11 175 each;<=1e-8   [grid complete; P4 scaled Newton residuals]
+C4 PASS 2.01e-06 <=0.01   [grid mass vs analytic (discs 2 pi Sigma0 Rd^2 + M_bb + gas quadrature)]
+
+  canonical: 7 of 175 cells pass -> (i) FEASIBLE (wide priors only)
+    best cell: Sigma_b 40.3, M_bb 1.64e10, R_d 1.933 | M* 6.02e10 (M*-IN True, R_d-IN False) | chi2_Kz 48.17, v_c(R0) 229.71, K_z(R0) 76.66, h 3.08, D 0.714
+    best cell at L* 90 pc: chi2_Kz 48.15, v_c 229.71; with g_e 0.03 a0: chi2_Kz 48.09, v_c 229.73
+    cells with v_c inside the line: 26; lowest chi2_Kz among them: 48.17 (Sigma_b 40.3, M_bb 1.64, R_d 1.933, v_c 229.71)
+    cells with chi2_Kz inside the line: 31; highest v_c among them: 235.86 (Sigma_b 40.3, M_bb 2.12, R_d 1.933, chi2 55.78)
+    ranges over the box: chi2_Kz 44.5 .. 1401.7; v_c(R0) 180.8 .. 311.1 km/s
+    PASS cell 40.3|1.64e+10|1.9333: chi2 48.17, v_c 229.71, M* 6.02e10, tags M*-IN True R_d-IN False, robust to L* 90 and g_e 0.03
+    PASS cell 40.3|1.76e+10|1.9333: chi2 49.84, v_c 231.27, M* 6.14e10, tags M*-IN True R_d-IN False, robust to L* 90 and g_e 0.03
+    PASS cell 40.3|1.88e+10|1.9333: chi2 51.66, v_c 232.81, M* 6.26e10, tags M*-IN True R_d-IN False, robust to L* 90 and g_e 0.03
+    PASS cell 40.3|2e+10|1.9333: chi2 53.64, v_c 234.34, M* 6.38e10, tags M*-IN True R_d-IN False, robust to L* 90 and g_e 0.03
+    PASS cell 40.3|2.12e+10|1.9333: chi2 55.78, v_c 235.86, M* 6.50e10, tags M*-IN True R_d-IN False, robust to L* 90 and g_e 0.03
+    PASS cell 43.7|2e+10|2.2667: chi2 50.22, v_c 221.24, M* 5.64e10, tags M*-IN True R_d-IN False, robust to L* 90 and g_e 0.03
+    PASS cell 43.7|2.12e+10|2.2667: chi2 51.00, v_c 222.87, M* 5.76e10, tags M*-IN True R_d-IN False, robust to L* 90 and g_e 0.03
+
+  alt: 4 of 175 cells pass -> (i) FEASIBLE (wide priors only)
+    best cell: Sigma_b 40.3, M_bb 2.12e10, R_d 2.267 | M* 5.36e10 (M*-IN True, R_d-IN False) | chi2_Kz 49.67, v_c(R0) 222.32, K_z(R0) 77.13, h 3.48, D 0.736
+    best cell at L* 90 pc: chi2_Kz 49.64, v_c 222.32; with g_e 0.03 a0: chi2_Kz 49.58, v_c 222.34
+    cells with v_c inside the line: 30; lowest chi2_Kz among them: 49.42 (Sigma_b 40.3, M_bb 2.00, R_d 2.267, v_c 220.62)
+    cells with chi2_Kz inside the line: 18; highest v_c among them: 223.17 (Sigma_b 43.7, M_bb 1.76, R_d 2.267, chi2 66.41)
+    ranges over the box: chi2_Kz 49.3 .. 1586.5; v_c(R0) 185.9 .. 316.3 km/s
+    PASS cell 40.3|2e+10|2.2667: chi2 49.42, v_c 220.62, M* 5.24e10, tags M*-IN True R_d-IN False, robust to L* 90 and g_e 0.03
+    PASS cell 40.3|2.12e+10|2.2667: chi2 49.67, v_c 222.32, M* 5.36e10, tags M*-IN True R_d-IN False, robust to L* 90 and g_e 0.03
+    PASS cell 43.7|1.64e+10|2.2667: chi2 65.12, v_c 221.48, M* 5.28e10, tags M*-IN True R_d-IN False, robust to L* 90 and g_e 0.03
+    PASS cell 43.7|1.76e+10|2.2667: chi2 66.41, v_c 223.17, M* 5.40e10, tags M*-IN True R_d-IN False, robust to L* 90 and g_e 0.03
+C5 PASS rss_max=569MB;runtime_max=181s <1000;<=1800   [grid runs, this run and S3 child processes]
+
+--- verdicts (per footing, never pooled)
+  canonical (i) FEASIBLE (wide priors only); (ii) SHAPE EXCLUDED ROBUST
+  alt       (i) FEASIBLE (wide priors only); (ii) SHAPE EXCLUDED ROBUST
+
+X5_MW_JOINT_BARYONS COMPLETE: 9/9 checks PASS.  runtime 31.6 s, peak RSS 568.7 MB

@@ -170,3 +170,21 @@ best cell and the two one-sided extremes.
 - FEASIBLE says a published-prior baryon model exists; it does not say the Milky Way has it, and it is not a fit.
 - (ii) is S3's statistic with the record's S2 errors; it is not a Jeans forward model (Koop+24), not a DR4 result, and it
   does not re-derive any paper's systematic budget.
+
+## AMENDMENT A1 (2026-10-23, POST-RESULT: reported diagnostics only; no line, grid, class or check changes)
+
+Seen before writing this: the frozen run (9/9 checks PASS). (i) FEASIBLE (wide priors only) on both footings: 7 / 4 passing
+cells, all at Σ_b 40.3-43.7 and R_d 1.93-2.27 kpc (R_d-IN false, M★-IN true), best D 0.714 / 0.736, K_z(R₀) 76.7-80.9,
+h 3.0-3.5, χ²_RC (Eilers) 96-194. (ii) SHAPE EXCLUDED ROBUST on both footings (S2 primary Z −3.88 / −4.09).
+
+Because the pass rests on P4's χ² statistic (σ ⊕ 5 % per MAP) while the cells sit well above Bovy & Rix's own summary
+K_z(R₀) = 66.4 ± 2.2, the win is checked as hard as a fail with these REPORTED diagnostics (no verdict weight), for every
+passing cell and each footing's best cell:
+- **D1** χ²_Kz with the table errors only (no 5 % term), against the same line.
+- **D2** pulls against Bovy & Rix's summary numbers: (K_z(R₀) − 66.4)/2.2 and (h − 2.72)/0.15 (the model's h by P4's
+  log-linear fit at the MAP radii).
+- **D3** the same baryons' outer rotation shape: P4's solve (isolated, L★ 24 pc) evaluated in the plane at every curve's
+  radii; S3's per-curve law slope (same weights) and the combined Ou+Jiao Z (ρ = 0 and 0.5, all pairs) under the primary and
+  the S2 errors, with S3's labels. Validation before use (**D3-ref**, a reported control): the same evaluation on B1
+  McMillan17 must give the Ou and Jiao law slopes of S3's AQ_iso within 0.005; if not, D3 is reported as unvalidated.
+- **D4** χ²_RC against Eilers (stat ⊕ 2 %, P4's statistic) for the same cells, with χ²₀.₉₉(38) quoted beside it.
