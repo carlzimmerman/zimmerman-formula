@@ -21,7 +21,10 @@ Never "theory closed". Every line cites the lane whose committed script backs it
 - **Qualifiers:**
   1. the dust must be ≥ −D·P inside stiff regions;
   2. at zero dust the interface is a knife edge, so numerics must be sign-consistent;
-  3. H4's bounded growth remains (≤ 0.20 e-folds median);
+  3. H4's bounded growth remains at saddles (0.006–0.20 e-folds median, ≤ 4.2 deepest). **OPEN for v3s's own D·P < 0 lobes around outer globulars** (X3 D4_maps: −8e-5 to −3.3e-3 M☉/pc³ at 180–1555 pc), raised by the H4/V1 coordinator. Preliminary, with H4's rates(), M − 1 = (1 + x_e)² − 1 and the deepest cell:
+     - under H4's lifetime convention T = ℓ/v (cluster motion through the khronon background, ~2–12 Myr per lobe), N ≲ 0.1, which is benign;
+     - if the khronon fluid co-moves with the lobe, N is 1–6 e-folds per Gyr (up to 86 per Hubble time for NGC 2419).
+     The reading rests on the khronon velocity relative to the lobe. Dwarf-satellite lobes are not computed. V1's −340 to −1800 lobes belong to the unscreened solution and do not apply to v3s (X3 lemma);
   4. the D·P < 0 side's strong coupling: RESOLVED BENIGN (review `reviews/v3s_soft_side_strong_coupling_2026_10_23/`, d27e01f42e, 5/5): the soft-side khronon is a dispersionless fluid, ω² = Kρ_τ(M − 1); 'Λ = 0' came from putting c_π = 0 (the k → ∞ limit) into the relativistic scaling. With c_π(k) = ω/k, the strong-coupling length across all 320 H4 region values is 57 m–54 km, so the soft-side EFT holds on astrophysical scales. Open: classical nonlinearity of real khronon flows, ε_cl = k|v|/ω, possibly O(1) in Mpc bulk flows;
   5. 2D/3D evolution and a proof for a moving interface are open.
 - **Certified.** The pointwise bound is in Lean: `fable_independent_2026/lean_2026/V3_PICTURE_2026_10_23.lean`,
