@@ -248,3 +248,9 @@ ACT DR6 × DES Y3, annuli scaled to each group's `r_500`. The cluster anchor is 
    only structural reading I found, and a new postulate, not a derivation.
 3. Measure `u` as a *function*, not a number: the same inversion in 4–5 mass bins, testing the predicted
    `M_v^{1/6}` run of (12) rather than a constant.
+
+**ERRATUM (2026-10-23, lane D6_u_mechanism, commit b21dda1a2d; reproduced):** the sign in eq. (12) is wrong. With
+`u ≃ (f_ret/R_cosmic)[y_v^{-1/2} − ½]` and `y_v ∝ M_v^{1/3}`, `∂ln u/∂ln M_v → −1/6` as `y_v → 0` at fixed f_ret
+(sympy limit; D6 reads −0.16680 at y_v = 1e-6). So u falls with mass, and "Next 3" should test an `M_v^{−1/6}` run.
+D6 also finds the measured cluster terciles (0.692, 0.399, 0.430) and the galaxy-scale u (≥ 0.66) do not follow one
+universal u; see `doors_push_2026_10_22/D6_u_mechanism/README.md`.
