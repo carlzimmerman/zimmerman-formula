@@ -25,6 +25,7 @@ DSF-21's A33 is this theory with η > 0, which C5 shows is ill-posed; v3 drops �
 | dust abundance (Ω_c-like) | FITTED (initial condition) | — | C2, C4 |
 | u | measured function of scale, convention-dependent | 0.43–0.50 (E4, E1) | no mechanism (D6) |
 | G_cosmo/G_N | bounded | Planck-lite ±0.027 (C2 emulation); BBN | C2 |
+| μ_K (K(Q) mass of the BS dust) | FREE, and **no allowed value** (see §3 growth) | BS24 Eq. 39 caps μ_K ≤ 14.8 h/Mpc; keeping σ₈ within 5 % of the dust limit needs μ_K ≥ 361–2542 h/Mpc — a gap of 24–172× | F3 |
 
 ## 3. Tests
 
@@ -40,6 +41,7 @@ DSF-21's A33 is this theory with η > 0, which C5 shows is ill-posed; v3 drops �
 | dwarf satellites | +0.89 dex above screened prediction (E3). Supply: the framework's dynamics cannot fix a satellite's catchment (it needs the patch's initial overdensity and infall epoch — UNDECIDABLE); the satellites' own [Fe/H] (leaky box, no ΛCDM input) gives ≥ 38× present baryons, enough (median need 0.21 of supply), with 6/36 short at central values and none at 2σ — CONDITIONAL on ζ = 1 winds and no pre-enrichment | E3, E6 |
 | CMB / linear P(k) | a₀ absent at linear order (tests dust + G ratio only); native spectra PENDING | C2, C7 |
 | cosmic shear (native PM) | canonical settling rules excluded by raw KiDS (CFG596); CFG960 rerun PENDING | CFG596, CFG960 |
+| **linear growth of the v3 theory** | **FAILS as written.** With J_x, J′(0) = −1 exactly, so the Newtonian term vanishes on FRW; GR-on-dust growth holds only for k < aμ_K. Inside BS's allowed μ_K (≤ 14.8 h/Mpc) linear σ₈ is 0.03–0.32 (0.04–0.39 of the dust limit); above it the dust forms galaxy halos and double-counts against the law (CFG946). Whether the cubic deep-MOND term restores growth needs a Khronon-native PM (spec in F3 §6). In the μ_K → ∞ limit, linear S₈ = 0.814–0.845 is CONSISTENT with raw KiDS on k ≤ 0.3 h/Mpc points (0.9–1.5σ). The earlier 15–19 % excess and CFG596's Δχ² +68.7 belong to the settling rules and QUMOND phantom, which v3 does not contain | F3 |
 | ALMA U4/GS4 | expected unscorable (S/N 0.04–0.58); sealed, all three kernels harness-ready | D4, CFG942 |
 
 ## 4. Sealed predictions for data still to come
@@ -50,5 +52,5 @@ DSF-21's A33 is this theory with η > 0, which C5 shows is ill-posed; v3 drops �
 
 ## 5. What this is not
 
-Not a UV completion. Not derived constants: κ, L★ and the dust abundance are fitted. The CMB cannot test
+**Growth is the open wound:** as written, v3 has no μ_K that gives both the law and normal structure growth (F3). Not a UV completion. Not derived constants: κ, L★ and the dust abundance are fitted. The CMB cannot test
 the galactic law at linear order. Dwarf satellites are an open tension.
