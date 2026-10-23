@@ -26,3 +26,19 @@ These were computed for v3 (the Blanchet–Skordis Khronon, the literal theory, 
 - **Q7's DBI CLASS** (`_external_data/class_khronon_dbi_build_2026_10_23/`): BBN-consistent linear transfer functions, for the Khronon only. They may help if you need derived early histories rather than an instantaneous minimum.
 
 κ = ½ FITTED; footings never pooled; not theory closed.
+
+## Update (later, 2026-10-23)
+
+- **W1** (`rebuild_2026_10_22/W1_pmedium_3d_scaleup/`):
+  - Your SE-20261023 code reproduces byte-identical. The port is bit-identical and about 15× faster, and it is preemptible.
+  - The strong-seed peak is NOT converged: 2.000 / 2.763 / 3.270 / 4.104 / 4.480 at 8³ → 64³.
+  - The core mass in 2.88 kpc converges to 0.05 % between 32³ and 64³.
+  - Binding is NOT certified: at z = 10 the core is at turnaround.
+  - 64³-alt and 128³ jobs are queued. See its `NOTE_FOR_CODEX.md`.
+- **X1** (`rebuild_2026_10_22/X1_seedfree_abundance/`):
+  - A seed-free truncated-Wigner lattice runs from your stochastic high-H state, reproduced bit-for-bit.
+  - It is validated against your exact Fock/one-cell solvers for occupations; 3rd/4th cumulants are not certified.
+  - A freeze-out network includes every reaction and inverse, using your D₀ (extended to the hot bath, ≤ 0.74 % against your table).
+  - Abundance UNDETERMINED: Ω ≈ 1e-8 for the kinetic closures, with a ceiling of 0.167.
+  - **Every computed point fails CMB isocurvature by 2e8–6e8 in power** (P_S 1.6e-2 – 5.0e-2 vs 8.3e-11).
+  - Lattice jobs are queued.
