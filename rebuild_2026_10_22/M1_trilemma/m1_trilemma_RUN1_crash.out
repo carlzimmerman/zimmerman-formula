@@ -1,0 +1,43 @@
+M1_trilemma   criteria 3298c74815   kappa = 1/2 FITTED; footings never pooled
+
+=== R1b(i): khronon-dust kernel s(k; f0) from the BS24 post-Newtonian system (BSK1 L15-21 transcription) ===
+  s(k; f0) = (-f_0*k**2 + mu**2)/(-f_0*k**2 + k**2 + mu**2);  baryon->dust coefficient = 1;  ds/df0 = -k**4/(k**2*(f_0 - 1) - mu**2)**2
+M1 PASS residuals s:0 BSK2:0 Jeans:0 ds/df0:0; cross-1:0 all exactly 0
+
+=== R1b(ii): late-time Jeans scale = static mass for any K analytic at Q = 1 with K'(1) = 0 ===
+  lim_(Q->1) 4 pi G rho / c_s^2 = mu**2;  series: 3*epsilon*(2*c3 + mu**2)/2 + mu**2
+M2 PASS limit mu**2 == mu^2 == K''(1)/2 exact
+
+=== M0 + R1b(iii): sigma8 ratio at the BS cap, f0 = 1 (R1: J'(0) = 0) vs f0 = 0 (J_x) ===
+  f0 = 1 (jeans), a_i = 0.001: sigma8 ratio 0.12055   (F3: 0.12055)
+  f0 = 1 (jeans), a_i = 0.0001: sigma8 ratio 0.03575   (F3: 0.03575)
+  f0 = 0 (bsk2), a_i = 0.001: sigma8 ratio 0.39080   (F3: 0.39080)
+  f0 = 0 (bsk2), a_i = 0.0001: sigma8 ratio 0.20260   (F3: 0.20260)
+M0 PASS max rel dev of 4 ratios 0.00e+00; mu_min(f0=1, a_i 1e-3) 411.10 vs F3 411.10 h/Mpc <= 1% and <= 2%
+  diagnostic (reported only), a_i 1e-3: f0 0.01: 0.3881; f0 0.1: 0.3626; f0 0.5: 0.2256
+  R1 linear growth line: ratio(f0=1, a_i=1e-3) = 0.1206 vs 0.95 -> FAIL; mu_min = 411 h/Mpc = 27.8 x the cap; monotone decreasing in f0 over [0, .01, .1, .5, 1]: True
+
+=== R1a: the lowest field strength at which data require the law ===
+M3 PASS 175 rotmod files; 2700 SPARC points kept (Q<=2, i>=30, eV/V<=0.1); B21 g_obs[0] 4.2416e-13 = README formula 175 files, conversion exact
+  [canonical] SPARC x_obs p1 1.180e-01 (min 4.321e-02, p99 22.44); B21 lowest S/N>=3 bin (g_bar 1.38e-15, S/N 8.0): x 4.532e-03 -> x_min 4.532e-03 (SPARC only 1.180e-01); T1: x_t <= 2.04e-05 (SPARC only 1.24e-02); WB x_e 1.30-2.60; Pal 4/14 x_e 0.075-0.208 (they demand Newton)
+  [alt] SPARC x_obs p1 9.762e-02 (min 3.576e-02, p99 18.57); B21 lowest S/N>=3 bin (g_bar 1.38e-15, S/N 8.0): x 3.750e-03 -> x_min 3.750e-03 (SPARC only 9.762e-02); T1: x_t <= 1.40e-05 (SPARC only 8.68e-03); WB x_e 1.15-2.15; Pal 4/14 x_e 0.068-0.181 (they demand Newton)
+
+=== R1b(iv): is the Y = 0 expansion the physical one?  rms field of the modes whose kernel differs (a mu < k < 10 h/Mpc) ===
+M4 PASS model B sigma8 own 0.81716 vs CLASS 0.81715 <= 1e-3
+  [canonical] a: x_all | x(k>a mu) | x(k>a mu, f0=1 suppressed) | / x_t,max(B21) | P(x < x_t,max) -- x_t,max 2.04e-05 (SPARC only 1.24e-02)
+     a 0.001 : 1.599e+01 | 1.544e+01 | 1.544e+01 | 7.55e+05 | 3.2e-18  (SPARC-only ratio 1240.0, P 7.2e-10)
+     a 0.003 : 4.926e+00 | 3.823e+00 | 1.017e+00 | 4.97e+04 | 1.1e-14  (SPARC-only ratio 81.7, P 2.5e-06)
+     a 0.01  : 1.431e+00 | 6.821e-01 | 9.212e-02 | 4.51e+03 | 1.5e-11  (SPARC-only ratio 7.4, P 3.4e-03)
+     a 0.03  : 4.718e-01 | 1.215e-01 | 7.755e-03 | 3.79e+02 | 2.5e-08  (SPARC-only ratio 0.6, P 9.5e-01)
+     a 0.1   : 1.408e-01 | 1.514e-02 | 3.720e-04 | 1.82e+01 | 2.3e-04  (SPARC-only ratio 0.0, P 1.0e+00)
+     a 0.3   : 4.638e-02 | 1.905e-03 | 2.423e-05 | 1.19e+00 | 4.6e-01  (SPARC-only ratio 0.0, P 1.0e+00)
+     a 1     : 1.094e-02 | (empty k range: a mu > 10 h/Mpc)
+  [alt] a: x_all | x(k>a mu) | x(k>a mu, f0=1 suppressed) | / x_t,max(B21) | P(x < x_t,max) -- x_t,max 1.40e-05 (SPARC only 8.68e-03)
+     a 0.001 : 1.323e+01 | 1.277e+01 | 1.277e+01 | 9.12e+05 | 1.8e-18  (SPARC-only ratio 1471.2, P 4.3e-10)
+     a 0.003 : 4.076e+00 | 3.163e+00 | 8.414e-01 | 6.01e+04 | 6.4e-15  (SPARC-only ratio 96.9, P 1.5e-06)
+     a 0.01  : 1.184e+00 | 5.644e-01 | 7.623e-02 | 5.44e+03 | 8.6e-12  (SPARC-only ratio 8.8, P 2.0e-03)
+     a 0.03  : 3.904e-01 | 1.006e-01 | 6.417e-03 | 4.58e+02 | 1.4e-08  (SPARC-only ratio 0.7, P 8.6e-01)
+     a 0.1   : 1.165e-01 | 1.253e-02 | 3.078e-04 | 2.20e+01 | 1.3e-04  (SPARC-only ratio 0.0, P 1.0e+00)
+     a 0.3   : 3.838e-02 | 1.577e-03 | 2.005e-05 | 1.43e+00 | 3.1e-01  (SPARC-only ratio 0.0, P 1.0e+00)
+     a 1     : 9.051e-03 | (empty k range: a mu > 10 h/Mpc)
+  summary: canonical: min x/x_t,max 1.19e+00 (SPARC only 0.0) -> Y = 0 expansion physical: True; alt: min x/x_t,max 1.43e+00 (SPARC only 0.0) -> Y = 0 expansion physical: True

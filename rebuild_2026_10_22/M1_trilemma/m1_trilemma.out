@@ -1,0 +1,87 @@
+M1_trilemma   criteria 3298c74815   kappa = 1/2 FITTED; footings never pooled
+
+=== R1b(i): khronon-dust kernel s(k; f0) from the BS24 post-Newtonian system (BSK1 L15-21 transcription) ===
+  s(k; f0) = (-f_0*k**2 + mu**2)/(-f_0*k**2 + k**2 + mu**2);  baryon->dust coefficient = 1;  ds/df0 = -k**4/(k**2*(f_0 - 1) - mu**2)**2
+M1 PASS residuals s:0 BSK2:0 Jeans:0 ds/df0:0; cross-1:0 all exactly 0
+
+=== R1b(ii): late-time Jeans scale = static mass for any K analytic at Q = 1 with K'(1) = 0 ===
+  lim_(Q->1) 4 pi G rho / c_s^2 = mu**2;  series: 3*epsilon*(2*c3 + mu**2)/2 + mu**2
+M2 PASS limit mu**2 == mu^2 == K''(1)/2 exact
+  dust-limit validity at the BS cap (model A): Q_bar - 1 = 2.01e+02 at a = 0.0001, 2.01e-01 at a = 0.001, 7.45e-03 at a = 0.003, 2.01e-04 at a = 0.01
+
+=== M0 + R1b(iii): sigma8 ratio at the BS cap, f0 = 1 (R1: J'(0) = 0) vs f0 = 0 (J_x) ===
+  f0 = 1 (jeans), a_i = 0.001: sigma8 ratio 0.12055   (F3: 0.12055)
+  f0 = 1 (jeans), a_i = 0.0001: sigma8 ratio 0.03575   (F3: 0.03575)
+  f0 = 0 (bsk2), a_i = 0.001: sigma8 ratio 0.39080   (F3: 0.39080)
+  f0 = 0 (bsk2), a_i = 0.0001: sigma8 ratio 0.20260   (F3: 0.20260)
+M0 PASS max rel dev of 4 ratios 0.00e+00; mu_min(f0=1, a_i 1e-3) 411.10 vs F3 411.10 h/Mpc <= 1% and <= 2%
+  diagnostic (reported only), a_i 1e-3: f0 0.01: 0.3881; f0 0.1: 0.3626; f0 0.5: 0.2256
+  K-shape door, reported only: GR growth until a = 3e-3, then the dust limit: f0=1|ai=0.003 0.3041; f0=0|ai=0.003 0.5855
+  R1 linear growth line: ratio(f0=1, a_i=1e-3) = 0.1206 vs 0.95 -> FAIL; mu_min = 411 h/Mpc = 27.8 x the cap; monotone decreasing in f0 over [0, .01, .1, .5, 1]: True
+
+=== R1a: the lowest field strength at which data require the law ===
+M3 PASS 175 rotmod files; 2700 SPARC points kept (Q<=2, i>=30, eV/V<=0.1); B21 g_obs[0] 4.2416e-13 = README formula 175 files, conversion exact
+  [canonical] SPARC x_obs p1 1.180e-01 (min 4.321e-02, p99 22.44); B21 lowest S/N>=3 bin (g_bar 1.38e-15, S/N 8.0): x 4.532e-03 -> x_min 4.532e-03 (SPARC only 1.180e-01); T1: x_t <= 2.04e-05 (SPARC only 1.24e-02); WB x_e 1.30-2.60; Pal 4/14 x_e 0.075-0.208 (they demand Newton)
+  [alt] SPARC x_obs p1 9.762e-02 (min 3.576e-02, p99 18.57); B21 lowest S/N>=3 bin (g_bar 1.38e-15, S/N 8.0): x 3.750e-03 -> x_min 3.750e-03 (SPARC only 9.762e-02); T1: x_t <= 1.40e-05 (SPARC only 8.68e-03); WB x_e 1.15-2.15; Pal 4/14 x_e 0.068-0.181 (they demand Newton)
+
+=== R1b(iv): is the Y = 0 expansion the physical one?  rms field of the modes whose kernel differs (a mu < k < 10 h/Mpc) ===
+M4 PASS model B sigma8 own 0.81716 vs CLASS 0.81715 <= 1e-3
+  [canonical] a: x_all | x(k>a mu) | x(k>a mu, f0=1 suppressed) | x/x_t,max(B21) dust-limit (suppressed) | P(x < x_t,max) -- x_t,max 2.04e-05 (SPARC only 1.24e-02)
+     a 0.001 : 1.599e+01 | 1.544e+01 | 1.544e+01 | 7.55e+05 (7.55e+05) | 3.2e-18 (3.2e-18)  [SPARC-only: ratio 1239.96 (1239.96), P 7.2e-10 (7.2e-10); x/x_min 3406.52 / 130.85]
+     a 0.003 : 4.926e+00 | 3.823e+00 | 1.017e+00 | 1.87e+05 (4.97e+04) | 2.1e-16 (1.1e-14)  [SPARC-only: ratio 307.08 (81.68), P 4.8e-08 (2.5e-06); x/x_min 843.65 / 32.41]
+     a 0.01  : 1.431e+00 | 6.821e-01 | 9.212e-02 | 3.34e+04 (4.51e+03) | 3.7e-14 (1.5e-11)  [SPARC-only: ratio 54.79 (7.40), P 8.4e-06 (3.4e-03); x/x_min 150.52 / 5.78]
+     a 0.03  : 4.718e-01 | 1.215e-01 | 7.755e-03 | 5.94e+03 (3.79e+02) | 6.6e-12 (2.5e-08)  [SPARC-only: ratio 9.76 (0.62), P 1.5e-03 (9.5e-01); x/x_min 26.82 / 1.03]
+     a 0.1   : 1.408e-01 | 1.514e-02 | 3.720e-04 | 7.41e+02 (1.82e+01) | 3.4e-09 (2.3e-04)  [SPARC-only: ratio 1.22 (0.03), P 4.3e-01 (1.0e+00); x/x_min 3.34 / 0.13]
+     a 0.3   : 4.638e-02 | 1.905e-03 | 2.423e-05 | 9.32e+01 (1.19e+00) | 1.7e-06 (4.6e-01)  [SPARC-only: ratio 0.15 (0.00), P 1.0e+00 (1.0e+00); x/x_min 0.42 / 0.02]
+     a 1     : 1.094e-02 | (empty k range: a mu > 10 h/Mpc)
+  [alt] a: x_all | x(k>a mu) | x(k>a mu, f0=1 suppressed) | x/x_t,max(B21) dust-limit (suppressed) | P(x < x_t,max) -- x_t,max 1.40e-05 (SPARC only 8.68e-03)
+     a 0.001 : 1.323e+01 | 1.277e+01 | 1.277e+01 | 9.12e+05 (9.12e+05) | 1.8e-18 (1.8e-18)  [SPARC-only: ratio 1471.21 (1471.21), P 4.3e-10 (4.3e-10); x/x_min 3406.52 / 130.85]
+     a 0.003 : 4.076e+00 | 3.163e+00 | 8.414e-01 | 2.26e+05 (6.01e+04) | 1.2e-16 (6.4e-15)  [SPARC-only: ratio 364.35 (96.91), P 2.9e-08 (1.5e-06); x/x_min 843.65 / 32.41]
+     a 0.01  : 1.184e+00 | 5.644e-01 | 7.623e-02 | 4.03e+04 (5.44e+03) | 2.1e-14 (8.6e-12)  [SPARC-only: ratio 65.01 (8.78), P 5.0e-06 (2.0e-03); x/x_min 150.52 / 5.78]
+     a 0.03  : 3.904e-01 | 1.006e-01 | 6.417e-03 | 7.18e+03 (4.58e+02) | 3.7e-12 (1.4e-08)  [SPARC-only: ratio 11.58 (0.74), P 8.8e-04 (8.6e-01); x/x_min 26.82 / 1.03]
+     a 0.1   : 1.165e-01 | 1.253e-02 | 3.078e-04 | 8.94e+02 (2.20e+01) | 1.9e-09 (1.3e-04)  [SPARC-only: ratio 1.44 (0.04), P 3.0e-01 (1.0e+00); x/x_min 3.34 / 0.13]
+     a 0.3   : 3.838e-02 | 1.577e-03 | 2.005e-05 | 1.13e+02 (1.43e+00) | 9.7e-07 (3.1e-01)  [SPARC-only: ratio 0.18 (0.00), P 1.0e+00 (1.0e+00); x/x_min 0.42 / 0.02]
+     a 1     : 9.051e-03 | (empty k range: a mu > 10 h/Mpc)
+  summary (frozen rule: dust-limit column vs x_t,max with B21): canonical: min x/x_t,max 93.2 -> Y = 0 expansion physical: False [SPARC-only variant: min ratio 0.15 -> True; suppressed column min ratios 1.19 / 0.0019]; alt: min x/x_t,max 112.6 -> Y = 0 expansion physical: False [SPARC-only variant: min ratio 0.18 -> True; suppressed column min ratios 1.43 / 0.0023]
+  [canonical] mean-field WKB ESTIMATE (not a verdict): sigma8 ratio 0.1276; f_t(a) 0.001:0.960, 0.003:0.878, 0.01:0.669, 0.03:0.393, 0.1:0.160, 0.3:0.058, 1:0.014
+  [alt] mean-field WKB ESTIMATE (not a verdict): sigma8 ratio 0.1213; f_t(a) 0.001:0.952, 0.003:0.856, 0.01:0.625, 0.03:0.348, 0.1:0.136, 0.3:0.049, 1:0.012
+
+=== R1c: health (C5) of an explicit R1 construction, and the Cassini carry-over (C6) ===
+  [canonical] x_t 1.022e-05, x_min 4.532e-03: 0<=f<=1, 0<=F'<=1, F monotone on 1e-8..1e4: True; f, F' at C6 x_e 1.30-2.60 identical to J_x (max rel 1.1e-16); C6 max Q2/Hees upper 2.06e-08 (24 pc 2.06e-08) -> Cassini PASS
+  [alt] x_t 7.004e-06, x_min 3.750e-03: 0<=f<=1, 0<=F'<=1, F monotone on 1e-8..1e4: True; f, F' at C6 x_e 1.15-2.15 identical to J_x (max rel 0.0e+00); C6 max Q2/Hees upper 1.76e-08 (24 pc 1.76e-08) -> Cassini PASS
+M5 PASS R1 construction meets C5's inequalities on the grid; identity at x_e exact all grid points; <= 1e-12
+
+=== R2: theorem T2 -- health makes the anomaly non-decreasing in g (AeST / A33 static sector) ===
+M7 PASS M_L = dg/du = a_0**2/(a_0**2 - 2*a_0*u + u**2); R' = u*(2*a_0 - u)/(a_0 - u)**2 >= 0 on [0, a0) exact
+  [canonical] SPARC x99 22.44 -> any C5-healthy AeST/A33 law matching SPARC has planet anomaly >= 8.961e-11 m/s^2 = Earth 1.03e+04x, Mars 6.40e+04x, Saturn 1.28e+04x its bound; reported only, floor at x = 1 (u = a0/2): Earth 5.38e+03x, Mars 3.34e+04x, Saturn 6.69e+03x
+  [alt] SPARC x99 18.57 -> any C5-healthy AeST/A33 law matching SPARC has planet anomaly >= 1.073e-10 m/s^2 = Earth 1.23e+04x, Mars 7.67e+04x, Saturn 1.53e+04x its bound; reported only, floor at x = 1 (u = a0/2): Earth 6.50e+03x, Mars 4.04e+04x, Saturn 8.08e+03x
+
+=== R2a: Horndeski galileons of the AeST scalar (Vainshtein) ===
+M6 PASS E3 = 4*r1*u**2, E4 = 4*u**3, E5 = 0; AeST+galileon chi flux exact: True; EL(L3) shift-blind: True; EL(L3) = -2[(tr H)^2 - tr H^2]: True; EL order 2; I1 kappa_c^2 reproduced: True; kappa_c -> oo as A -> 0+ E3 = 4 r u^2, E4 = 4 u^3, E5 = 0; exact
+  [canonical] planets need r3 >= 9.009e+11 pc (900.92 Gpc) or r4 >= 6.671e+05 pc; SPARC deep points (N 794) median dlog g: cubic -0.681; quartic -0.537; mix_0.1 -0.681; mix_0.5 -0.681; mix_0.9 -0.681 -> (G) FAIL
+  [alt] planets need r3 >= 1.089e+12 pc (1088.76 Gpc) or r4 >= 8.062e+05 pc; SPARC deep points (N 919) median dlog g: cubic -0.697; quartic -0.557; mix_0.1 -0.697; mix_0.5 -0.697; mix_0.9 -0.697 -> (G) FAIL
+
+=== R2b: density- and curvature-keyed couplings ===
+  b1 potential-keyed: Sun 2.12e-06, Pal 4 8.86e-11, Pal 14 3.20e-11 (must screen) vs SPARC |Phi| >= V_flat^2/c^2 in [3.85e-09, 1.23e-06] (must not): increasing rule fails True (Pal 14 is 120x shallower than the shallowest galaxy); decreasing rule fails True -> NO-GO
+  b2 [canonical] body-density (stars screened as sources), SPARC deep star-dominated points N 394: median dlog g -0.173 (p10 -0.359) -> (G) FAIL
+  b2 [alt] body-density (stars screened as sources), SPARC deep star-dominated points N 499: median dlog g -0.179 (p10 -0.339) -> (G) FAIL
+  b3 [canonical] ambient density (CONDITIONAL, external n_sw, h_z): 0.70 of deep SPARC points lie inside R_HI; n_HI(R_HI) h_z 100: 0.202 cm^-3, h_z 300: 0.067 cm^-3, h_z 1000: 0.020 cm^-3 vs solar wind at Saturn 0.054 cm^-3 (h_z must exceed 371 pc to escape) -> NO-GO (CONDITIONAL)
+  b3 [alt] ambient density (CONDITIONAL, external n_sw, h_z): 0.72 of deep SPARC points lie inside R_HI; n_HI(R_HI) h_z 100: 0.202 cm^-3, h_z 300: 0.067 cm^-3, h_z 1000: 0.020 cm^-3 vs solar wind at Saturn 0.054 cm^-3 (h_z must exceed 371 pc to escape) -> NO-GO (CONDITIONAL)
+M9 PASS R(dust) = 8*pi*G*rho/c**2; residues of 1/(k^2 + eps k^4): 1, -1 +1 and -1
+  b4 curvature: R-keyed = b3; Weyl-keyed contrast Sun@Saturn 4.5e-17 s^-2 vs SPARC deep max 8.6e-31 (Pal 4/14 3.3e-29/4.0e-30) would screen, but the term is fourth order -> Ostrogradsky ghost -> NO-GO
+
+=== R2c: capped W / law form / k-mouflage ===
+M8 PASS C1 K6 ratio = anomaly/bound (max rel 0.0e+00); E2 AQUAL Q2/Hees canonical 2.44-4.59, alt 2.85-5.19; family least-tense ['beta=5', 1.4146465553875753] <= 1e-6; ranges > 1
+
+=== VERDICTS (frozen rules, FROZEN_CRITERIA §2, §4) ===
+  R1: NO-GO + residual DEFERRED TO L1
+    R2a galileons (L3/L4/L5): NO-GO
+    R2b1 potential/thin-shell: NO-GO
+    R2b2 body density: NO-GO
+    R2b3 ambient density: NO-GO (CONDITIONAL)
+    R2b4 curvature (R = b3; Weyl ghost): NO-GO (health)
+    R2c law form / capped W / k-mouflage: NO-GO
+  R2: NO-GO
+  R3: MOOT (R2 has no way through)
+M10 PASS peak RSS 0.197 GB < 1 GB
+M1_TRILEMMA COMPLETE: 11/11 checks PASS.  (4 s, peak RSS 0.20 GB)
