@@ -286,3 +286,37 @@ Reason: Q6_v3_class (`rebuild_2026_10_22/Q6_v3_class/README.md`) landed, relayed
    reported, not gated, because the parameters differ). ρ_NL,LOB = (σ₈[KX-LOB] − σ₈[LIN-LOB])/(σ₈[S0-199] − σ₈[LIN-LOB]), with
    the frozen reading bands. MUTATE: δ_τ taken from d_b (the khronon's own transfer dropped) must FAIL K-LOB3, the check that
    the IC's khronon δ equals the CLASS-derived one to 1e-6.
+
+## AMENDMENT A5 (PRE-RESULT, 2026-10-23: a resolution ladder that fits now; before any ladder run)
+
+Reason (coordinator): the 512³ cells cannot start yet (free + inactive memory is about 35 GB, and the queue needs 44 GB), and
+halo cores, where x > 1, are unresolved at 128³.
+1. **Ladder cells.** μ_K = 14.8 h/Mpc, z_i = 199, F3-ODE ICs, L = 100 Mpc/h, model B, `--halos`.
+   - **NSEED = 512 at every N**, so the rungs share phases with the frozen 512³ cells. The 128³ indicative set used
+     NSEED = 256, so it is not a rung. The ladder adds a 128³ NSEED-512 rung instead.
+   - Rungs: N = 128, 256 and 384, each with S0, LIN, KX-can and KX-alt. Plus LOB-IC LIN and KX-can at 384, with S0-384 as
+     their control.
+   - The frozen 512³ cells (A3, A4) are unchanged.
+2. **Statistics per rung** (definitions as §4 / A3 / A4):
+   - σ₈,PM(z = 0), total and per species;
+   - ρ_NL per footing;
+   - halo profiles (reported);
+   - the KiDS score from `l1_score.py --dir work/prod` wherever N_kept ≥ 10. k_hi = πN/(4L) is 1.0, 2.0 and 3.0 h/Mpc at
+     128, 256 and 384.
+   The trend 128 → 256 → 384 (→ 512) is **reported as convergence only**: no verdict, never pooled with the 512³ cells. The
+   frozen reading bands for ρ_NL are quoted per rung with the word "indicative".
+3. **est_gb, measured** (3-step KX-can, z_i = 199, 8 threads; peak phys_footprint from `/usr/bin/time -l`):
+   - 128³: 0.539 GB; 256³: 2.727 GB.
+   - Two-point fit: 0.226 GB + 149 B per cell. The constant is the interpreter baseline, and 149 B per cell sits below the
+     declared formula's 224 B.
+   - 384³ extrapolates to 8.66 GB, so **the 384³ calibration is skipped**. The formula's upper bound there is 13.0 GB.
+   - 512³ extrapolates to 20.2 GB; the queued est of 35 is unchanged.
+   - est_gb = 1.2 × measured or extrapolated peak: 0.65 / 3.3 / 10.4 GB. The KX value is used for every cell at a given N.
+   - The NSEED-512 white-noise caches for N = 128, 256 and 384 are pre-generated in `work/prod`. That step peaks at 2.20 GB
+     for about 1 s and was done here. So the queued ladder jobs never run the 512³ noise transform.
+4. **Engineering fix, found by the 256³ calibration.** The guard thread probed swap through `subprocess` (a fork) every 2 s.
+   pocketfft shuts down its worker pool around a fork, so with workers > 1 a transform could fail ("Work item submitted after
+   shutdown"). The swap probe now uses `sysctlbyname` through ctypes, with no fork. Numerics are unchanged; validation used
+   one thread.
+   - Re-checked at 8 threads (64³, KX, z_i = 199): SIGTERM → exit 75 in 0.3 s → `--resume` gives a sha256 and P(k)
+     bit-identical to the uninterrupted run.

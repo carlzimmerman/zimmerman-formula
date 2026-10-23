@@ -251,6 +251,97 @@ python3 compute_queue/heavyq.py add --id L1_KX_alt_mu400_zi199_LOB --cwd rebuild
 ```
 
 
+
+## ENQUEUE-A5 (resolution ladder, AMENDMENT A5; for the coordinator, this lane does not enqueue)
+
+The rungs run at priorities 300–310, above the 512³ calibration (200), so they run first. They are reported as convergence
+only, never pooled with the 512³ cells.
+
+**est_gb.** It is 1.2 × the measured peak footprint (3-step KX at z_i = 199, 8 threads):
+- 128³: 0.539 GB measured → est 0.65;
+- 256³: 2.727 GB measured → est 3.3;
+- 384³: 8.66 GB, extrapolated from 0.226 GB + 149 B per cell → est 10.4. Its calibration was skipped because the two-point
+  scaling is clean.
+
+**Caches.** The NSEED-512 white-noise caches and the model-B CLASS spectrum are already in `work/prod`.
+
+**Fix.** The 256³ calibration found a fork-related pocketfft failure at > 1 thread. It is fixed, and SIGTERM → resume is
+bit-identical at 8 threads.
+
+```bash
+# A5 resolution ladder (run from the repository root). mu_K 14.8, z_i 199, L 100, NSEED 512 (phases shared with the 512^3 cells).
+
+python3 compute_queue/heavyq.py add --id L1_A5_S0_N256_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode S0 --foot canonical --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_S0_N256_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode S0 --foot canonical --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_S0_N256_zi199 --resume" \
+  --est-gb 3.3 --threads 8 --priority 310 --env L1_WORK=work/prod --done-file work/prod/A5_S0_N256_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A5_LIN_N256_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_LIN_N256_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_LIN_N256_zi199 --resume" \
+  --est-gb 3.3 --threads 8 --priority 309 --env L1_WORK=work/prod --done-file work/prod/A5_LIN_N256_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A5_KX_can_N256_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_KX_can_N256_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_KX_can_N256_zi199 --resume" \
+  --est-gb 3.3 --threads 8 --priority 308 --env L1_WORK=work/prod --done-file work/prod/A5_KX_can_N256_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A5_KX_alt_N256_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_KX_alt_N256_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_KX_alt_N256_zi199 --resume" \
+  --est-gb 3.3 --threads 8 --priority 307 --env L1_WORK=work/prod --done-file work/prod/A5_KX_alt_N256_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A5_S0_N384_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode S0 --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_S0_N384_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode S0 --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_S0_N384_zi199 --resume" \
+  --est-gb 10.4 --threads 8 --priority 306 --env L1_WORK=work/prod --done-file work/prod/A5_S0_N384_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A5_LIN_N384_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_LIN_N384_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_LIN_N384_zi199 --resume" \
+  --est-gb 10.4 --threads 8 --priority 305 --env L1_WORK=work/prod --done-file work/prod/A5_LIN_N384_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A5_KX_can_N384_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_KX_can_N384_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_KX_can_N384_zi199 --resume" \
+  --est-gb 10.4 --threads 8 --priority 304 --env L1_WORK=work/prod --done-file work/prod/A5_KX_can_N384_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A5_KX_alt_N384_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_KX_alt_N384_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_KX_alt_N384_zi199 --resume" \
+  --est-gb 10.4 --threads 8 --priority 303 --env L1_WORK=work/prod --done-file work/prod/A5_KX_alt_N384_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A5_LIN_N384_zi199_LOB --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic lob --tag A5_LIN_N384_zi199_LOB" \
+  --resume-cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic lob --tag A5_LIN_N384_zi199_LOB --resume" \
+  --est-gb 10.4 --threads 8 --priority 302 --env L1_WORK=work/prod --done-file work/prod/A5_LIN_N384_zi199_LOB/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A5_KX_can_N384_zi199_LOB --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic lob --tag A5_KX_can_N384_zi199_LOB" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic lob --tag A5_KX_can_N384_zi199_LOB --resume" \
+  --est-gb 10.4 --threads 8 --priority 301 --env L1_WORK=work/prod --done-file work/prod/A5_KX_can_N384_zi199_LOB/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A5_S0_N128_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode S0 --foot canonical --muK 14.8 --N 128 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_S0_N128_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode S0 --foot canonical --muK 14.8 --N 128 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_S0_N128_zi199 --resume" \
+  --est-gb 0.65 --threads 8 --priority 300 --env L1_WORK=work/prod --done-file work/prod/A5_S0_N128_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A5_LIN_N128_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 14.8 --N 128 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_LIN_N128_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 14.8 --N 128 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_LIN_N128_zi199 --resume" \
+  --est-gb 0.65 --threads 8 --priority 300 --env L1_WORK=work/prod --done-file work/prod/A5_LIN_N128_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A5_KX_can_N128_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 14.8 --N 128 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_KX_can_N128_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 14.8 --N 128 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_KX_can_N128_zi199 --resume" \
+  --est-gb 0.65 --threads 8 --priority 300 --env L1_WORK=work/prod --done-file work/prod/A5_KX_can_N128_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A5_KX_alt_N128_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 14.8 --N 128 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_KX_alt_N128_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 14.8 --N 128 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic ode --tag A5_KX_alt_N128_zi199 --resume" \
+  --est-gb 0.65 --threads 8 --priority 300 --env L1_WORK=work/prod --done-file work/prod/A5_KX_alt_N128_zi199/DONE
+```
+
 ## Files and commits
 
 **Criteria and amendments**, each committed before the results it governs:

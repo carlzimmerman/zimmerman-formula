@@ -15,7 +15,7 @@ Usage (production, AMENDMENT A1):
     python3 khronon_pm.py estimate --N 512
 SIGTERM: finish the current step, checkpoint, exit 0.  --resume: continue from the latest checkpoint (bit-identical).
 """
-import os, sys, json, math, time, signal, hashlib, threading, subprocess, io, argparse
+import os, sys, json, math, time, signal, hashlib, threading, subprocess, io, argparse, ctypes
 for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "VECLIB_MAXIMUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
     os.environ.setdefault(_v, "1")
 import numpy as np
@@ -600,13 +600,16 @@ def _on_term(signum, frame):
     print(f"[khronon_pm] SIGTERM received: checkpoint at the next safe point", flush=True)
 
 def swap_used_mb():
+    """vm.swapusage through sysctlbyname (no fork: a fork from the guard thread shuts pocketfft's worker pool mid-transform)."""
     try:
-        s = subprocess.run(["sysctl", "-n", "vm.swapusage"], capture_output=True, text=True, timeout=10).stdout
-        return float(s.split("used =")[1].split("M")[0])
+        class _XSW(ctypes.Structure):
+            _fields_ = [("total", ctypes.c_uint64), ("avail", ctypes.c_uint64), ("used", ctypes.c_uint64), ("pagesize", ctypes.c_uint32), ("enc", ctypes.c_bool)]
+        libc = ctypes.CDLL("/usr/lib/libc.dylib"); x = _XSW(); sz = ctypes.c_size_t(ctypes.sizeof(x))
+        if libc.sysctlbyname(b"vm.swapusage", ctypes.byref(x), ctypes.byref(sz), None, ctypes.c_size_t(0)) != 0: return None
+        return x.used / 1048576.0
     except Exception:
         return None
 
-import ctypes
 class _RU(ctypes.Structure):          # rusage_info_v2 (flavor 2), as compute_queue/heavyq.py
     _fields_ = [("uuid", ctypes.c_uint8 * 16)] + [(n, ctypes.c_uint64) for n in (
         "user_time", "system_time", "pkg_idle_wkups", "interrupt_wkups", "pageins", "wired", "resident", "footprint",
