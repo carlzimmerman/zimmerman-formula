@@ -1,0 +1,188 @@
+==============================================================================================================
+X1_hosted_recount -- stage controls: step 0 (S1 reproduced) + step 1 (published-MOND controls)
+kappa = 1/2 FITTED; footings canonical 9.3603e-11 / alt 1.1312e-10, never pooled; controls use the papers' own a0
+==============================================================================================================
+
+--- C3: solver physics (D10 read-only; F2 read-only; Route F) ---
+   C3a y 1e-05: E-V sigma^2 7.029701e-04 vs (2/9)sqrt(y) 7.027284e-04  |dlog sigma| 7.47e-05
+   C3a y 1e-04: E-V sigma^2 2.226349e-03 vs (2/9)sqrt(y) 2.222222e-03  |dlog sigma| 4.03e-04
+C3a PASS 4.03e-04 dex <= 0.005 dex  (isolated deep MOND: solver E-V vs sigma^4 = (4/81) G M a0 (exact))
+   C3b x_e 0.05 Lam 0.0: 2D 2.933030e-05 Route F 2.941249e-05 rel 2.79e-03
+   C3b x_e 0.05 Lam 0.5: 2D 6.812569e-06 Route F 6.811342e-06 rel 1.80e-04
+   C3b x_e 0.05 Lam 2.0: 2D 2.306288e-06 Route F 2.305911e-06 rel 1.63e-04
+   C3b x_e 0.5 Lam 0.0: 2D 4.439497e-05 Route F 4.447382e-05 rel 1.77e-03
+   C3b x_e 0.5 Lam 0.5: 2D 3.394137e-05 Route F 3.395134e-05 rel 2.94e-04
+   C3b x_e 0.5 Lam 2.0: 2D 2.125399e-05 Route F 2.125224e-05 rel 8.20e-05
+   C3b x_e 0.076 Lam 0.0: 2D 3.018852e-05 Route F 3.027050e-05 rel 2.71e-03
+   C3b x_e 0.3 Lam 0.0: 2D 3.765084e-05 Route F 3.773107e-05 rel 2.13e-03
+C3b PASS 2.79e-03 < 2e-2  (linear EFE: D10 2D monopole at r = a vs Route F (C6 kernel))
+   C3c x_e 0.1 r/r_M 3.0: M_eff D10 3.50635 F2 3.50430 rel 5.85e-04
+   C3c x_e 0.1 r/r_M 10.0: M_eff D10 7.92383 F2 7.93050 rel 8.41e-04
+   C3c x_e 0.5 r/r_M 3.0: M_eff D10 2.43641 F2 2.43206 rel 1.79e-03
+   C3c x_e 0.5 r/r_M 10.0: M_eff D10 2.50789 F2 2.51092 rel 1.20e-03
+C3c PASS 1.79e-03 < 2e-2  (embedded AQUAL: D10 2D vs F2's independent point-mass solver)
+
+--- step 1: published MOND controls (LITERATURE-INPUT, PROVISIONAL; papers' own a0; S1's solver at L* = 0, AQUAL + EFE) ---
+   C0 Crater II: Eq.(1) 4.014 km/s (printed ~4); Eq.(2) 2.093 km/s (printed 2.1)
+C0 PASS max |dlog sigma| 0.0080 dex over 32 values <= 0.02 dex  (transcription: Eq.(2)/(1) from transcribed L_V reproduce every printed sigma_iso; Crater II Eq.(1)/(2) reproduce 4 and 2.1)
+   C1 (reported): Eq.(3), mu = x/(1+x), V_M31 230, LVD distance_host vs printed sigma_efe: median |dlog sigma| 0.0240 dex over 23 rows (max 0.187); flag line 0.05 -> consistent
+   control rows: 29 (dropped: ['And XVIII'])
+   And I      x_e 0.320 (pub) y 2.66e-02 | pub  8.00 | D1  8.00 D2(Wolf M/2)  5.66 | solver E-W  5.19 E-V  4.54 | dlog: tot -0.188 mass -0.151 rem -0.038
+   And II     x_e 0.084 (LVD) y 1.38e-02 | pub 11.00 | D1 11.02 D2(Wolf M/2) 10.20 | solver E-W  9.08 E-V  7.94 | dlog: tot -0.083 mass -0.034 rem -0.050
+   And III    x_e 0.231 (pub) y 1.49e-02 | pub  5.40 | D1  5.40 D2(Wolf M/2)  3.82 | solver E-W  3.48 E-V  3.05 | dlog: tot -0.191 mass -0.151 rem -0.040
+   And V      x_e 0.134 (pub) y 2.83e-02 | pub  5.50 | D1  5.53 D2(Wolf M/2)  4.95 | solver E-W  4.45 E-V  3.89 | dlog: tot -0.092 mass -0.048 rem -0.047
+   And VI     x_e 0.050 (LVD) y 7.20e-02 | pub  8.60 | D1  8.57 D2(Wolf M/2)  8.83 | solver E-W  9.09 E-V  8.46 | dlog: tot +0.024 mass +0.013 rem +0.013
+   And VII    x_e 0.062 (LVD) y 7.64e-02 | pub 13.00 | D1 12.96 D2(Wolf M/2) 13.35 | solver E-W 13.69 E-V 12.64 | dlog: tot +0.022 mass +0.013 rem +0.011
+   And IX     x_e 0.530 (pub) y 2.02e-03 | pub  1.50 | D1  1.50 D2(Wolf M/2)  1.06 | solver E-W  0.98 E-V  0.86 | dlog: tot -0.183 mass -0.151 rem -0.033
+   And X      x_e 0.154 (pub) y 3.26e-03 | pub  2.30 | D1  2.30 D2(Wolf M/2)  1.63 | solver E-W  1.47 E-V  1.29 | dlog: tot -0.193 mass -0.151 rem -0.042
+   And XI     x_e 0.105 (pub) y 9.55e-03 | pub  3.00 | D1  2.97 D2(Wolf M/2)  2.26 | solver E-W  2.04 E-V  1.79 | dlog: tot -0.168 mass -0.118 rem -0.045
+   And XII    x_e 0.119 (pub) y 1.52e-03 | pub  1.70 | D1  1.70 D2(Wolf M/2)  1.20 | solver E-W  1.09 E-V  0.95 | dlog: tot -0.194 mass -0.151 rem -0.044
+   And XIII   x_e 0.102 (pub) y 4.08e-03 | pub  2.50 | D1  2.50 D2(Wolf M/2)  1.77 | solver E-W  1.60 E-V  1.40 | dlog: tot -0.195 mass -0.151 rem -0.044
+   And XIV    x_e 0.095 (pub) y 2.98e-03 | pub  3.60 | D1  3.60 D2(Wolf M/2)  2.55 | solver E-W  2.30 E-V  2.01 | dlog: tot -0.195 mass -0.151 rem -0.045
+   And XV     x_e 0.182 (pub) y 2.31e-02 | pub  5.80 | D1  5.79 D2(Wolf M/2)  4.31 | solver E-W  3.91 E-V  3.43 | dlog: tot -0.171 mass -0.128 rem -0.042
+   And XVI    x_e 0.051 (LVD) y 5.30e-02 | pub  5.00 | D1  5.05 D2(Wolf M/2)  5.20 | solver E-W  5.30 E-V  4.90 | dlog: tot +0.025 mass +0.013 rem +0.008
+   And XXI    x_e 0.104 (pub) y 1.80e-03 | pub  3.70 | D1  3.70 D2(Wolf M/2)  2.62 | solver E-W  2.36 E-V  2.07 | dlog: tot -0.195 mass -0.151 rem -0.044
+   And XXII   x_e 0.059 (pub) y 1.24e-03 | pub  2.30 | D1  2.30 D2(Wolf M/2)  1.63 | solver E-W  1.46 E-V  1.28 | dlog: tot -0.196 mass -0.151 rem -0.046
+   And XVII   x_e 0.456 (pub) y 7.34e-03 | pub  2.50 | D1  2.50 D2(Wolf M/2)  1.77 | solver E-W  1.63 E-V  1.43 | dlog: tot -0.185 mass -0.151 rem -0.034
+   And XIX    x_e 0.084 (pub) y 3.34e-04 | pub  2.60 | D1  2.60 D2(Wolf M/2)  1.84 | solver E-W  1.66 E-V  1.45 | dlog: tot -0.195 mass -0.151 rem -0.045
+   And XX     x_e 0.124 (pub) y 4.21e-03 | pub  2.10 | D1  2.10 D2(Wolf M/2)  1.48 | solver E-W  1.34 E-V  1.18 | dlog: tot -0.194 mass -0.151 rem -0.044
+   And XXIII  x_e 0.121 (pub) y 2.18e-03 | pub  4.40 | D1  4.40 D2(Wolf M/2)  3.11 | solver E-W  2.81 E-V  2.47 | dlog: tot -0.194 mass -0.151 rem -0.044
+   And XXIV   x_e 0.076 (pub) y 1.61e-03 | pub  2.80 | D1  2.80 D2(Wolf M/2)  1.98 | solver E-W  1.78 E-V  1.56 | dlog: tot -0.196 mass -0.151 rem -0.045
+   And XXV    x_e 0.192 (pub) y 2.98e-03 | pub  3.50 | D1  3.50 D2(Wolf M/2)  2.47 | solver E-W  2.25 E-V  1.97 | dlog: tot -0.192 mass -0.151 rem -0.041
+   And XXVI   x_e 0.167 (pub) y 2.76e-03 | pub  2.00 | D1  2.00 D2(Wolf M/2)  1.41 | solver E-W  1.28 E-V  1.12 | dlog: tot -0.193 mass -0.151 rem -0.042
+   And XXVII  x_e 0.225 (pub) y 1.47e-03 | pub  1.80 | D1  1.80 D2(Wolf M/2)  1.27 | solver E-W  1.16 E-V  1.02 | dlog: tot -0.191 mass -0.151 rem -0.040
+   And XXVIII x_e 0.039 (LVD) y 1.07e-02 | pub  4.30 | D1  4.27 D2(Wolf M/2)  4.40 | solver E-W  4.22 E-V  3.76 | dlog: tot -0.008 mass +0.013 rem -0.018
+   And XXIX   x_e 0.080 (pub) y 3.19e-03 | pub  3.80 | D1  3.80 D2(Wolf M/2)  2.69 | solver E-W  2.42 E-V  2.12 | dlog: tot -0.196 mass -0.151 rem -0.045
+   And XXX    x_e 0.101 (pub) y 4.53e-03 | pub  3.50 | D1  3.50 D2(Wolf M/2)  2.47 | solver E-W  2.23 E-V  1.96 | dlog: tot -0.195 mass -0.151 rem -0.044
+   And XXXI   x_e 0.054 (LVD) y 1.14e-02 | pub  9.00 | D1  8.98 D2(Wolf M/2)  9.25 | solver E-W  8.32 E-V  7.27 | dlog: tot -0.034 mass +0.013 rem -0.046
+   And XXXII  x_e 0.110 (pub) y 7.72e-03 | pub 10.30 | D1 10.30 D2(Wolf M/2)  7.28 | solver E-W  6.57 E-V  5.76 | dlog: tot -0.195 mass -0.151 rem -0.044
+   Crater II  x_e 0.076 (pub) y 3.37e-04 | pub 2.10 | D1 2.09 D2 1.48 | solver E-W 1.38 E-V 1.21 | dlog: tot -0.181 mass -0.151 rem -0.029
+   C2 (control): MM13 median |dlog sigma| 0.192 dex (signed -0.192; E-V 0.249 / -0.249) over 29; Crater II -0.181 (E-V -0.239) -> C2 FAIL (line 0.10 dex)
+   decomposition (signed medians, dex in sigma): input step +0.000; mass convention (Wolf M/2) -0.151; remainder (exact AQUAL solve vs Wolf-convention formula) -0.044; total -0.192
+
+--- step 0 (K0): S1's headline on E3's sample, S1's code path, seed 20261023 ---
+   [canonical] 45 systems tabulated at the floor (435 solves so far, 50 s)
+   [alt] 46 systems tabulated at the floor (849 solves so far, 77 s)
+   [canonical] v3 floor E-W Delta +1.33072 +- 0.14735 (N 45)  vs S1 +1.33072 +- 0.14735
+   [alt] v3 floor E-W Delta +1.29900 +- 0.14742 (N 46)  vs S1 +1.29900 +- 0.14742
+K0 PASS N 45/46; max |diff| 0.00e+00 dex 45/46 and <= 0.005 dex  (S1's headline (+1.331/+1.299 at the floor) reproduced with S1's solver, code path and seed)
+   C3d Crater II: max |d sigma/sigma| (fine, far; E-W, E-V) 1.03e-03
+   C3d And I: max |d sigma/sigma| (fine, far; E-W, E-V) 7.92e-04
+C3d PASS 1.03e-03 < 5e-3  (convergence at the Crater II and And I control cells)
+
+   STEP-1 OUTCOME: CONTROL FAIL, PUBLISHED APPROXIMATION  (approximation rule MM13 True, Crater II True; base checks True)
+KS_controls PASS 9.9e-11 over 849 solves < 1e-8  (every production solve converged (controls stage))
+KR_controls PASS 0.450 GB < 1 GB  (peak RSS (controls stage))
+
+STAGE CONTROLS COMPLETE: 8/8 checks PASS.  77 s, 849 production solves
+--- stage tables [canonical]: 89 LG systems (excluded: ['LMC', 'M 32', 'SMC']) ---
+   [canonical] 10/89 systems (350 solves, worst residual 9.9e-11, 32 s)
+   [canonical] 20/89 systems (700 solves, worst residual 9.9e-11, 69 s)
+   [canonical] 30/89 systems (1050 solves, worst residual 9.9e-11, 108 s)
+   [canonical] 40/89 systems (1400 solves, worst residual 1.0e-10, 140 s)
+   [canonical] 50/89 systems (1750 solves, worst residual 1.0e-10, 181 s)
+   [canonical] 60/89 systems (2100 solves, worst residual 1.0e-10, 217 s)
+   [canonical] 70/89 systems (2450 solves, worst residual 1.0e-10, 253 s)
+   [canonical] 80/89 systems (2800 solves, worst residual 1.0e-10, 336 s)
+   [canonical] done: 89 systems, 3115 solves, worst residual 1.0e-10, peak RSS 0.397 GB, 414 s
+--- stage tables [alt]: 89 LG systems (excluded: ['LMC', 'M 32', 'SMC']) ---
+   [alt] 10/89 systems (350 solves, worst residual 8.7e-11, 35 s)
+   [alt] 20/89 systems (700 solves, worst residual 9.8e-11, 74 s)
+   [alt] 30/89 systems (1050 solves, worst residual 9.9e-11, 113 s)
+   [alt] 40/89 systems (1400 solves, worst residual 9.9e-11, 147 s)
+   [alt] 50/89 systems (1750 solves, worst residual 9.9e-11, 190 s)
+   [alt] 60/89 systems (2100 solves, worst residual 1.0e-10, 228 s)
+   [alt] 70/89 systems (2450 solves, worst residual 1.0e-10, 264 s)
+   [alt] 80/89 systems (2800 solves, worst residual 1.0e-10, 335 s)
+   [alt] done: 89 systems, 3115 solves, worst residual 1.0e-10, peak RSS 0.403 GB, 406 s
+
+==============================================================================================================
+X1_hosted_recount -- stage final: step 2 (all LG satellites, no mass cut) and step 3 (T3 bookkeeping)
+==============================================================================================================
+   sample: 89 systems; excluded ['LMC', 'M 32', 'SMC']; classes: LG field 13, M31 dE 3, M31 others 5, MW classical 8, MW ultra-faint 31, bright M31 25, indiv:Antlia II 1, indiv:Canes Venatici I 1, indiv:Crater II 1, indiv:Sagittarius 1
+KT PASS max |diff| 0.0e+00 over 91 system-footings <= 1e-9  (step-2 floor tables reproduce step-0 tables (E3 systems))
+KS PASS 1.0e-10 over 6230 solves < 1e-8  (every step-2 production solve converged)
+KR PASS 0.403 GB < 1 GB  (peak RSS (tables and final stages))
+
+--- step 2: class statistics (bootstrap median over systems of Delta = log10 g_obs/g_pred, dex in g; +- bootstrap sd) ---
+
+   [canonical]
+   MW classical           N  8 | N +1.21+-0.28 iso +0.28 MOND+EFE +0.34 v3fl +0.36+-0.26 v3_24 +0.36 v3_90 +0.59 v3fl_EV +0.45 Elo +0.34 Ehi +0.42 MM13rec +0.34 | W v3fl +0.16+-0.23
+   MW ultra-faint         N 31 | N +2.14+-0.15 iso +0.63 MOND+EFE +1.35 v3fl +1.56+-0.17 v3_24 +1.58 v3_90 +1.93 v3fl_EV +1.64 Elo +1.51 Ehi +1.63 MM13rec +0.99 | W v3fl +1.18+-0.16
+   bright M31             N 25 | N +1.52+-0.12 iso +0.25 MOND+EFE +0.58 v3fl +0.60+-0.13 v3_24 +0.61 v3_90 +0.80 v3fl_EV +0.70 Elo +0.55 Ehi +0.70 MM13rec +0.39 | W v3fl +0.35+-0.12
+   M31 others             N  5 | N +1.90+-0.33 iso +0.64 MOND+EFE +0.99 v3fl +1.14+-0.32 v3_24 +1.16 v3_90 +1.55 v3fl_EV +1.24 Elo +1.08 Ehi +1.25 MM13rec +0.75 | W v3fl +0.77+-0.32
+   M31 dE                 N  3 | N +0.15+-0.16 iso -0.09 MOND+EFE -0.09 v3fl -0.09+-0.22 v3_24 -0.09 v3_90 -0.08 v3fl_EV -0.02 Elo -0.09 Ehi -0.09 MM13rec +0.12 | W v3fl -0.31+-0.21
+   LG field               N 13 | N +0.95+-0.19 iso +0.05 MOND+EFE +0.06 v3fl +0.06+-0.08 v3_24 +0.06 v3_90 +0.12 v3fl_EV +0.10 Elo +0.06 Ehi +0.06 MM13rec +0.13 | W v3fl -0.11+-0.08
+   indiv:Antlia II        N  1 | N +2.05+-0.07 iso +0.06 MOND+EFE +1.01 v3fl +1.01+-0.07 v3_24 +1.01 v3_90 +1.01 v3fl_EV +1.12 Elo +0.92 Ehi +1.15 MM13rec +0.62 | W v3fl +0.71+-0.07
+   indiv:Canes Venatici I N  1 | N +1.81+-0.05 iso +0.47 MOND+EFE +0.59 v3fl +0.62+-0.05 v3_24 +0.63 v3_90 +0.88 v3fl_EV +0.74 Elo +0.58 Ehi +0.74 MM13rec +0.51 | W v3fl +0.40+-0.05
+   indiv:Crater II        N  1 | N +1.51+-0.14 iso -0.44 MOND+EFE +0.49 v3fl +0.50+-0.14 v3_24 +0.50 v3_90 +0.53 v3fl_EV +0.61 Elo +0.41 Ehi +0.64 MM13rec +0.10 | W v3fl +0.20+-0.14
+   indiv:Sagittarius      N  1 | N +0.94+-0.07 iso -0.15 MOND+EFE +0.56 v3fl +0.56+-0.07 v3_24 +0.56 v3_90 +0.56 v3fl_EV +0.68 Elo +0.49 Ehi +0.67 MM13rec +0.19 | W v3fl +0.26+-0.07
+
+   [alt]
+   MW classical           N  8 | N +1.21+-0.29 iso +0.24 MOND+EFE +0.29 v3fl +0.32+-0.26 v3_24 +0.32 v3_90 +0.58 v3fl_EV +0.41 Elo +0.30 Ehi +0.37 MM13rec +0.30 | W v3fl +0.13+-0.23
+   MW ultra-faint         N 31 | N +2.14+-0.14 iso +0.59 MOND+EFE +1.31 v3fl +1.55+-0.16 v3_24 +1.56 v3_90 +1.92 v3fl_EV +1.63 Elo +1.51 Ehi +1.62 MM13rec +0.96 | W v3fl +1.18+-0.16
+   bright M31             N 25 | N +1.52+-0.12 iso +0.21 MOND+EFE +0.54 v3fl +0.58+-0.13 v3_24 +0.58 v3_90 +0.78 v3fl_EV +0.68 Elo +0.52 Ehi +0.66 MM13rec +0.36 | W v3fl +0.32+-0.12
+   M31 others             N  5 | N +1.88+-0.34 iso +0.59 MOND+EFE +0.93 v3fl +1.10+-0.32 v3_24 +1.12 v3_90 +1.52 v3fl_EV +1.20 Elo +1.05 Ehi +1.20 MM13rec +0.68 | W v3fl +0.76+-0.32
+   M31 dE                 N  3 | N +0.14+-0.16 iso -0.11 MOND+EFE -0.11 v3fl -0.11+-0.22 v3_24 -0.11 v3_90 -0.11 v3fl_EV -0.05 Elo -0.11 Ehi -0.11 MM13rec +0.08 | W v3fl -0.33+-0.21
+   LG field               N 13 | N +0.96+-0.19 iso +0.02 MOND+EFE +0.02 v3fl +0.02+-0.08 v3_24 +0.02 v3_90 +0.09 v3fl_EV +0.06 Elo +0.02 Ehi +0.02 MM13rec +0.09 | W v3fl -0.14+-0.08
+   indiv:Antlia II        N  1 | N +2.06+-0.07 iso +0.02 MOND+EFE +0.97 v3fl +0.97+-0.07 v3_24 +0.97 v3_90 +0.98 v3fl_EV +1.09 Elo +0.89 Ehi +1.11 MM13rec +0.58 | W v3fl +0.67+-0.07
+   indiv:Canes Venatici I N  1 | N +1.81+-0.05 iso +0.43 MOND+EFE +0.55 v3fl +0.59+-0.05 v3_24 +0.59 v3_90 +0.86 v3fl_EV +0.70 Elo +0.54 Ehi +0.69 MM13rec +0.47 | W v3fl +0.37+-0.05
+   indiv:Crater II        N  1 | N +1.52+-0.13 iso -0.48 MOND+EFE +0.46 v3fl +0.47+-0.13 v3_24 +0.47 v3_90 +0.50 v3fl_EV +0.58 Elo +0.38 Ehi +0.60 MM13rec +0.07 | W v3fl +0.16+-0.14
+   indiv:Sagittarius      N  1 | N +0.94+-0.07 iso -0.19 MOND+EFE +0.53 v3fl +0.53+-0.07 v3_24 +0.53 v3_90 +0.53 v3fl_EV +0.64 Elo +0.46 Ehi +0.63 MM13rec +0.16 | W v3fl +0.23+-0.07
+
+--- step 2: class status at the L* floor (E-W), FROZEN section 2 ---
+   [canonical primary] MW classical    N  8  median +0.355 +- 0.255 (+1.4 sd)  chi2/N 15.5 (line 2.50)  -> UNRESOLVED (chi2 unacceptable; |median| > 0.15 but < 3 sd)
+   [canonical primary] MW ultra-faint  N 31  median +1.556 +- 0.170 (+9.2 sd)  chi2/N 34.6 (line 1.76)  -> FAIL
+   [canonical primary] bright M31      N 25  median +0.603 +- 0.132 (+4.6 sd)  chi2/N 10.8 (line 1.85)  -> FAIL
+   [canonical primary] M31 others      N  5  median +1.141 +- 0.322 (+3.5 sd)  chi2/N 7.9 (line 2.90)  -> FAIL
+   [canonical W      ] MW classical    N  8  median +0.159 +- 0.226 (+0.7 sd)  chi2/N 8.7 (line 2.50)  -> UNRESOLVED (chi2 unacceptable; |median| > 0.15 but < 3 sd)
+   [canonical W      ] MW ultra-faint  N 31  median +1.182 +- 0.164 (+7.2 sd)  chi2/N 20.9 (line 1.76)  -> FAIL
+   [canonical W      ] bright M31      N 25  median +0.349 +- 0.118 (+3.0 sd)  chi2/N 5.8 (line 1.85)  -> UNRESOLVED (chi2 unacceptable; |median| > 0.15 but < 3 sd)
+   [canonical W      ] M31 others      N  5  median +0.775 +- 0.320 (+2.4 sd)  chi2/N 4.0 (line 2.90)  -> UNRESOLVED (chi2 unacceptable; |median| > 0.15 but < 3 sd)
+   [alt       primary] MW classical    N  8  median +0.321 +- 0.261 (+1.2 sd)  chi2/N 14.2 (line 2.50)  -> UNRESOLVED (chi2 unacceptable; |median| > 0.15 but < 3 sd)
+   [alt       primary] MW ultra-faint  N 31  median +1.547 +- 0.165 (+9.4 sd)  chi2/N 34.3 (line 1.76)  -> FAIL
+   [alt       primary] bright M31      N 25  median +0.576 +- 0.133 (+4.3 sd)  chi2/N 9.8 (line 1.85)  -> FAIL
+   [alt       primary] M31 others      N  5  median +1.103 +- 0.321 (+3.4 sd)  chi2/N 7.5 (line 2.90)  -> FAIL
+   [alt       W      ] MW classical    N  8  median +0.126 +- 0.226 (+0.6 sd)  chi2/N 8.4 (line 2.50)  -> UNRESOLVED (chi2 unacceptable)
+   [alt       W      ] MW ultra-faint  N 31  median +1.177 +- 0.163 (+7.2 sd)  chi2/N 20.4 (line 1.76)  -> FAIL
+   [alt       W      ] bright M31      N 25  median +0.316 +- 0.119 (+2.6 sd)  chi2/N 5.4 (line 1.85)  -> UNRESOLVED (chi2 unacceptable; |median| > 0.15 but < 3 sd)
+   [alt       W      ] M31 others      N  5  median +0.757 +- 0.321 (+2.4 sd)  chi2/N 3.6 (line 2.90)  -> UNRESOLVED (chi2 unacceptable; |median| > 0.15 but < 3 sd)
+
+   STEP-2 VERDICT (Q1): CLASS-GRADED  [W-SENSITIVE]   (step-1 outcome: CONTROL FAIL, PUBLISHED APPROXIMATION)
+
+--- step 2: individual systems (per-system median of MC draws; s_i includes the Upsilon prior) ---
+   [canonical] Crater II        x_e 0.083 y 4.3e-04 | Newton +1.51 MOND+EFE +0.50 v3 floor +0.50 +- 0.20 (24 +0.50, 90 +0.53) MM13 recipe +0.10
+   [canonical] Antlia II        x_e 0.077 y 3.5e-04 | Newton +2.05 MOND+EFE +1.01 v3 floor +1.01 +- 0.17 (24 +1.01, 90 +1.01) MM13 recipe +0.61
+   [canonical] Canes Venatici I x_e 0.045 y 7.5e-03 | Newton +1.81 MOND+EFE +0.59 v3 floor +0.62 +- 0.13 (24 +0.63, 90 +0.88) MM13 recipe +0.51
+   [canonical] Sagittarius      x_e 0.544 y 2.6e-02 | Newton +0.94 MOND+EFE +0.56 v3 floor +0.56 +- 0.17 (24 +0.56, 90 +0.56) MM13 recipe +0.19
+   [alt      ] Crater II        x_e 0.075 y 3.6e-04 | Newton +1.52 MOND+EFE +0.46 v3 floor +0.46 +- 0.20 (24 +0.46, 90 +0.50) MM13 recipe +0.07
+   [alt      ] Antlia II        x_e 0.069 y 2.9e-04 | Newton +2.06 MOND+EFE +0.97 v3 floor +0.97 +- 0.17 (24 +0.97, 90 +0.98) MM13 recipe +0.58
+   [alt      ] Canes Venatici I x_e 0.041 y 6.2e-03 | Newton +1.81 MOND+EFE +0.55 v3 floor +0.59 +- 0.14 (24 +0.59, 90 +0.86) MM13 recipe +0.47
+   [alt      ] Sagittarius      x_e 0.485 y 2.1e-02 | Newton +0.94 MOND+EFE +0.53 v3 floor +0.53 +- 0.17 (24 +0.53, 90 +0.53) MM13 recipe +0.16
+
+--- step 3: T3 bookkeeping (hosted systems vs Newton on their baryons; z at Upsilon_V = 4) ---
+   [canonical] Crater II                  Delta_N +1.51 +- 0.14 dex (Ups 2) -> z(Ups 4) +8.7
+   [canonical] Antlia II                  Delta_N +2.05 +- 0.07 dex (Ups 2) -> z(Ups 4) +24.2
+   [canonical] MW classical               Delta_N +1.21 +- 0.28 dex (Ups 2) -> z(Ups 4) +3.3 N 8, members with z_i >= 3: 8
+   [canonical] MW ultra-faint             Delta_N +2.14 +- 0.15 dex (Ups 2) -> z(Ups 4) +12.6 N 31, members with z_i >= 3: 28
+   [canonical] bright M31                 Delta_N +1.52 +- 0.12 dex (Ups 2) -> z(Ups 4) +9.8 N 25, members with z_i >= 3: 20
+   [canonical] M31 others                 Delta_N +1.90 +- 0.33 dex (Ups 2) -> z(Ups 4) +4.8 N 5, members with z_i >= 3: 3
+   [canonical] Coma UDGs (9)              z vs Newton +5.4 (read: z_CFG948 5.45, z_U1_B0 5.41)
+   [canonical] UMa members (27 galaxies)  z vs Newton +12.6 (read: z_any_radius 12.60, z_beyond_rf 13.61)
+   [canonical] TDGs (6), booked           T3-consistent: B0 offset +0.055 +- 0.114 (z +0.48)
+   [canonical] DF2/DF4, booked            T3-consistent: B0 offset +0.028 +- 0.539 (z +0.05)
+   [alt      ] Crater II                  Delta_N +1.52 +- 0.14 dex (Ups 2) -> z(Ups 4) +8.9
+   [alt      ] Antlia II                  Delta_N +2.06 +- 0.07 dex (Ups 2) -> z(Ups 4) +24.1
+   [alt      ] MW classical               Delta_N +1.21 +- 0.29 dex (Ups 2) -> z(Ups 4) +3.2 N 8, members with z_i >= 3: 8
+   [alt      ] MW ultra-faint             Delta_N +2.14 +- 0.14 dex (Ups 2) -> z(Ups 4) +13.0 N 31, members with z_i >= 3: 29
+   [alt      ] bright M31                 Delta_N +1.52 +- 0.12 dex (Ups 2) -> z(Ups 4) +9.9 N 25, members with z_i >= 3: 19
+   [alt      ] M31 others                 Delta_N +1.88 +- 0.34 dex (Ups 2) -> z(Ups 4) +4.7 N 5, members with z_i >= 3: 3
+   [alt      ] Coma UDGs (9)              z vs Newton +5.4 (read: z_CFG948 5.45, z_U1_B0 5.41)
+   [alt      ] UMa members (27 galaxies)  z vs Newton +13.4 (read: z_any_radius 13.37, z_beyond_rf 14.35)
+   [alt      ] TDGs (6), booked           T3-consistent: B0 offset +0.055 +- 0.114 (z +0.48)
+   [alt      ] DF2/DF4, booked            T3-consistent: B0 offset +0.028 +- 0.539 (z +0.05)
+
+   STEP-3 VERDICT (Q2): T3 PREMISE CONTRADICTED  (independent hosted rows >= 5 sigma: canonical 6, alt 6; >= 3 sigma: 8 / 8)
+
+X1_HOSTED_RECOUNT COMPLETE: 11/11 checks PASS.  Step-1 outcome: CONTROL FAIL, PUBLISHED APPROXIMATION.  Q1: CLASS-GRADED.  Q2: T3 PREMISE CONTRADICTED.
+kappa = 1/2 FITTED; footings never pooled; no dark-matter particle; not theory closed; nothing here says the data favour the framework.

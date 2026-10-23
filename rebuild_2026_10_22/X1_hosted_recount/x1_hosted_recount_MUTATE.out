@@ -1,0 +1,77 @@
+==============================================================================================================
+X1_hosted_recount -- stage controls: step 0 (S1 reproduced) + step 1 (published-MOND controls)   *** MUTATE: Newtonian y_e as the background ***
+kappa = 1/2 FITTED; footings canonical 9.3603e-11 / alt 1.1312e-10, never pooled; controls use the papers' own a0
+==============================================================================================================
+
+--- C3: solver physics (D10 read-only; F2 read-only; Route F) ---
+   C3a y 1e-05: E-V sigma^2 7.029701e-04 vs (2/9)sqrt(y) 7.027284e-04  |dlog sigma| 7.47e-05
+   C3a y 1e-04: E-V sigma^2 2.226349e-03 vs (2/9)sqrt(y) 2.222222e-03  |dlog sigma| 4.03e-04
+C3a PASS 4.03e-04 dex <= 0.005 dex  (isolated deep MOND: solver E-V vs sigma^4 = (4/81) G M a0 (exact))
+   C3b x_e 0.05 Lam 0.0: 2D 5.786004e-04 Route F 2.941249e-05 rel 1.87e+01
+   C3b x_e 0.05 Lam 0.5: 2D 1.061394e-05 Route F 6.811342e-06 rel 5.58e-01
+   C3b x_e 0.05 Lam 2.0: 2D 2.402687e-06 Route F 2.305911e-06 rel 4.20e-02
+   C3b x_e 0.5 Lam 0.0: 2D 9.958558e-05 Route F 4.447382e-05 rel 1.24e+00
+   C3b x_e 0.5 Lam 0.5: 2D 4.870473e-05 Route F 3.395134e-05 rel 4.35e-01
+   C3b x_e 0.5 Lam 2.0: 2D 2.225535e-05 Route F 2.125224e-05 rel 4.72e-02
+   C3b x_e 0.076 Lam 0.0: 2D 3.941928e-04 Route F 3.027050e-05 rel 1.20e+01
+   C3b x_e 0.3 Lam 0.0: 2D 1.298479e-04 Route F 3.773107e-05 rel 2.44e+00
+C3b FAIL 1.87e+01 < 2e-2  (linear EFE: D10 2D monopole at r = a vs Route F (C6 kernel))
+   C3c x_e 0.1 r/r_M 3.0: M_eff D10 3.54369 F2 3.50430 rel 1.12e-02
+   C3c x_e 0.1 r/r_M 10.0: M_eff D10 10.49739 F2 7.93050 rel 3.24e-01
+   C3c x_e 0.5 r/r_M 3.0: M_eff D10 3.43490 F2 2.43206 rel 4.12e-01
+   C3c x_e 0.5 r/r_M 10.0: M_eff D10 5.45726 F2 2.51092 rel 1.17e+00
+C3c FAIL 1.17e+00 < 2e-2  (embedded AQUAL: D10 2D vs F2's independent point-mass solver)
+
+--- step 1: published MOND controls (LITERATURE-INPUT, PROVISIONAL; papers' own a0; S1's solver at L* = 0, AQUAL + EFE) ---
+   C0 Crater II: Eq.(1) 4.014 km/s (printed ~4); Eq.(2) 2.093 km/s (printed 2.1)
+C0 PASS max |dlog sigma| 0.0080 dex over 32 values <= 0.02 dex  (transcription: Eq.(2)/(1) from transcribed L_V reproduce every printed sigma_iso; Crater II Eq.(1)/(2) reproduce 4 and 2.1)
+   C1 (reported): Eq.(3), mu = x/(1+x), V_M31 230, LVD distance_host vs printed sigma_efe: median |dlog sigma| 0.0240 dex over 23 rows (max 0.187); flag line 0.05 -> consistent
+   control rows: 29 (dropped: ['And XVIII'])
+   And I      x_e 0.320 (pub) y 2.66e-02 | pub  8.00 | D1  8.00 D2(Wolf M/2)  5.66 | solver E-W  8.81 E-V  7.72 | dlog: tot +0.042 mass -0.151 rem +0.192
+   And II     x_e 0.084 (LVD) y 1.38e-02 | pub 11.00 | D1 11.02 D2(Wolf M/2) 10.20 | solver E-W 11.58 E-V 11.10 | dlog: tot +0.022 mass -0.034 rem +0.055
+   And III    x_e 0.231 (pub) y 1.49e-02 | pub  5.40 | D1  5.40 D2(Wolf M/2)  3.82 | solver E-W  6.30 E-V  5.63 | dlog: tot +0.067 mass -0.151 rem +0.217
+   And V      x_e 0.134 (pub) y 2.83e-02 | pub  5.50 | D1  5.53 D2(Wolf M/2)  4.95 | solver E-W  5.84 E-V  5.56 | dlog: tot +0.026 mass -0.048 rem +0.072
+   And VI     x_e 0.050 (LVD) y 7.20e-02 | pub  8.60 | D1  8.57 D2(Wolf M/2)  8.83 | solver E-W  9.20 E-V  8.83 | dlog: tot +0.029 mass +0.013 rem +0.018
+   And VII    x_e 0.062 (LVD) y 7.64e-02 | pub 13.00 | D1 12.96 D2(Wolf M/2) 13.35 | solver E-W 13.93 E-V 13.36 | dlog: tot +0.030 mass +0.013 rem +0.019
+   And IX     x_e 0.530 (pub) y 2.02e-03 | pub  1.50 | D1  1.50 D2(Wolf M/2)  1.06 | solver E-W  1.44 E-V  1.26 | dlog: tot -0.018 mass -0.151 rem +0.133
+   And X      x_e 0.154 (pub) y 3.26e-03 | pub  2.30 | D1  2.30 D2(Wolf M/2)  1.63 | solver E-W  3.26 E-V  2.91 | dlog: tot +0.151 mass -0.151 rem +0.302
+   And XI     x_e 0.105 (pub) y 9.55e-03 | pub  3.00 | D1  2.97 D2(Wolf M/2)  2.26 | solver E-W  3.10 E-V  2.95 | dlog: tot +0.015 mass -0.118 rem +0.137
+   And XII    x_e 0.119 (pub) y 1.52e-03 | pub  1.70 | D1  1.70 D2(Wolf M/2)  1.20 | solver E-W  2.63 E-V  2.36 | dlog: tot +0.189 mass -0.151 rem +0.339
+   And XIII   x_e 0.102 (pub) y 4.08e-03 | pub  2.50 | D1  2.50 D2(Wolf M/2)  1.77 | solver E-W  2.94 E-V  2.77 | dlog: tot +0.070 mass -0.151 rem +0.221
+   And XIV    x_e 0.095 (pub) y 2.98e-03 | pub  3.60 | D1  3.60 D2(Wolf M/2)  2.55 | solver E-W  4.41 E-V  4.16 | dlog: tot +0.089 mass -0.151 rem +0.239
+   And XV     x_e 0.182 (pub) y 2.31e-02 | pub  5.80 | D1  5.79 D2(Wolf M/2)  4.31 | solver E-W  6.04 E-V  5.64 | dlog: tot +0.018 mass -0.128 rem +0.146
+   And XVI    x_e 0.051 (LVD) y 5.30e-02 | pub  5.00 | D1  5.05 D2(Wolf M/2)  5.20 | solver E-W  5.39 E-V  5.18 | dlog: tot +0.033 mass +0.013 rem +0.016
+   And XXI    x_e 0.104 (pub) y 1.80e-03 | pub  3.70 | D1  3.70 D2(Wolf M/2)  2.62 | solver E-W  5.29 E-V  4.88 | dlog: tot +0.155 mass -0.151 rem +0.306
+   And XXII   x_e 0.059 (pub) y 1.24e-03 | pub  2.30 | D1  2.30 D2(Wolf M/2)  1.63 | solver E-W  2.83 E-V  2.70 | dlog: tot +0.090 mass -0.151 rem +0.241
+   And XVII   x_e 0.456 (pub) y 7.34e-03 | pub  2.50 | D1  2.50 D2(Wolf M/2)  1.77 | solver E-W  2.54 E-V  2.22 | dlog: tot +0.006 mass -0.151 rem +0.157
+   And XIX    x_e 0.084 (pub) y 3.34e-04 | pub  2.60 | D1  2.60 D2(Wolf M/2)  1.84 | solver E-W  4.94 E-V  4.41 | dlog: tot +0.278 mass -0.151 rem +0.429
+   And XX     x_e 0.124 (pub) y 4.21e-03 | pub  2.10 | D1  2.10 D2(Wolf M/2)  1.48 | solver E-W  2.65 E-V  2.45 | dlog: tot +0.100 mass -0.151 rem +0.251
+   And XXIII  x_e 0.121 (pub) y 2.18e-03 | pub  4.40 | D1  4.40 D2(Wolf M/2)  3.11 | solver E-W  6.35 E-V  5.78 | dlog: tot +0.159 mass -0.151 rem +0.310
+   And XXIV   x_e 0.076 (pub) y 1.61e-03 | pub  2.80 | D1  2.80 D2(Wolf M/2)  1.98 | solver E-W  3.61 E-V  3.42 | dlog: tot +0.110 mass -0.151 rem +0.261
+   And XXV    x_e 0.192 (pub) y 2.98e-03 | pub  3.50 | D1  3.50 D2(Wolf M/2)  2.47 | solver E-W  5.00 E-V  4.36 | dlog: tot +0.155 mass -0.151 rem +0.305
+   And XXVI   x_e 0.167 (pub) y 2.76e-03 | pub  2.00 | D1  2.00 D2(Wolf M/2)  1.41 | solver E-W  2.93 E-V  2.57 | dlog: tot +0.166 mass -0.151 rem +0.317
+   And XXVII  x_e 0.225 (pub) y 1.47e-03 | pub  1.80 | D1  1.80 D2(Wolf M/2)  1.27 | solver E-W  2.46 E-V  2.15 | dlog: tot +0.135 mass -0.151 rem +0.286
+   And XXVIII x_e 0.039 (LVD) y 1.07e-02 | pub  4.30 | D1  4.27 D2(Wolf M/2)  4.40 | solver E-W  4.49 E-V  4.32 | dlog: tot +0.018 mass +0.013 rem +0.008
+   And XXIX   x_e 0.080 (pub) y 3.19e-03 | pub  3.80 | D1  3.80 D2(Wolf M/2)  2.69 | solver E-W  4.27 E-V  4.06 | dlog: tot +0.051 mass -0.151 rem +0.201
+   And XXX    x_e 0.101 (pub) y 4.53e-03 | pub  3.50 | D1  3.50 D2(Wolf M/2)  2.47 | solver E-W  4.00 E-V  3.78 | dlog: tot +0.058 mass -0.151 rem +0.209
+   And XXXI   x_e 0.054 (LVD) y 1.14e-02 | pub  9.00 | D1  8.98 D2(Wolf M/2)  9.25 | solver E-W  9.43 E-V  9.07 | dlog: tot +0.020 mass +0.013 rem +0.009
+   And XXXII  x_e 0.110 (pub) y 7.72e-03 | pub 10.30 | D1 10.30 D2(Wolf M/2)  7.28 | solver E-W 10.73 E-V 10.16 | dlog: tot +0.018 mass -0.151 rem +0.168
+   Crater II  x_e 0.076 (pub) y 3.37e-04 | pub 2.10 | D1 2.09 D2 1.48 | solver E-W 4.01 E-V 3.64 | dlog: tot +0.281 mass -0.151 rem +0.432
+   C2 (control): MM13 median |dlog sigma| 0.058 dex (signed +0.058; E-V 0.045 / +0.029) over 29; Crater II +0.281 (E-V +0.238) -> C2 FAIL (line 0.10 dex)
+   decomposition (signed medians, dex in sigma): input step +0.000; mass convention (Wolf M/2) -0.151; remainder (exact AQUAL solve vs Wolf-convention formula) +0.209; total +0.058
+
+--- step 0 (K0): S1's headline on E3's sample, S1's code path, seed 20261023 ---
+   [canonical] 45 systems tabulated at the floor (435 solves so far, 58 s)
+   [alt] 46 systems tabulated at the floor (849 solves so far, 100 s)
+   [canonical] v3 floor E-W Delta +1.02465 +- 0.13955 (N 45)  vs S1 +1.33072 +- 0.14735
+   [alt] v3 floor E-W Delta +0.99239 +- 0.14446 (N 46)  vs S1 +1.29900 +- 0.14742
+K0 FAIL N 45/46; max |diff| 3.07e-01 dex 45/46 and <= 0.005 dex  (S1's headline (+1.331/+1.299 at the floor) reproduced with S1's solver, code path and seed)
+   C3d Crater II: max |d sigma/sigma| (fine, far; E-W, E-V) 3.75e-04
+   C3d And I: max |d sigma/sigma| (fine, far; E-W, E-V) 5.01e-04
+C3d PASS 5.01e-04 < 5e-3  (convergence at the Crater II and And I control cells)
+
+   STEP-1 OUTCOME: CONTROL FAIL, UNEXPLAINED  (approximation rule MM13 False, Crater II False; base checks False)
+KS_controls PASS 1.0e-10 over 849 solves < 1e-8  (every production solve converged (controls stage))
+KR_controls PASS 0.462 GB < 1 GB  (peak RSS (controls stage))
+
+STAGE CONTROLS COMPLETE: 5/8 checks PASS.  102 s, 849 production solves  (MUTATE)
