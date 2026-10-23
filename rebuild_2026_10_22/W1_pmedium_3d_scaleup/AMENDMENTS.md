@@ -42,3 +42,21 @@ Disclosure, in order:
 5. C-S1 script: the frozen rule is |K + U| ≤ 0.10 K. The script's first version also demanded an exactly zero vacuum
    field energy, which fails at 4e-30 (deposit roundoff of a uniform lattice); that extra condition is now reported
    separately with a 1e-12 K tolerance and does not gate.
+
+## A3 (POST-RESULT, after the direct ladder; no frozen line changed) — resolution reading, one overrun, a script fix
+
+1. **Resolution reading.** FROZEN_CRITERIA §4 lists "R = 2.88 kpc: n ≥ 32; R = 1.44 kpc: n ≥ 64; R = 0.3215 kpc: never"
+   and also defines resolved as "R ≥ 4 physical cells at z = 10". 2.88 and 1.44 kpc were rounded from 4 × 0.7206 and
+   4 × 0.3603 kpc, so the literal arithmetic gives 3.996 cells at 32³ (2.88) and at 64³ (1.44): the two statements disagree
+   by 0.1%. I noticed this only after the ladder numbers existed. `analyze.py` therefore reports **both** readings:
+   `enum` (the enumerated n-lists, the frozen file's explicit statement) and `strict` (R_cells ≥ 4). Every verdict that
+   depends on the reading is shown with both in README and LADDER_RESULTS.json (`strict_reading`). The 128³ runs make
+   both readings agree for both radii (8 and 16 cells).
+2. **Overrun.** The canonical strong 64³ run took 605 s of wall time at one thread (probe projection 575 s; limit 600 s);
+   the weak run took 556 s. Peak footprint 0.345 / 0.349 GB. Reported as A2 item 4 promised; no result is affected.
+3. **Script fix.** `analyze.py`'s first run divided by an empty-aperture mass (M_c(<0.3215 kpc) = 0 at n ≤ 32); the change
+   is now `None` when the coarser grid's aperture is empty. That aperture is unresolved at every grid under both readings.
+4. **ENQUEUE.** est-gb uses the largest peak footprint measured at 32³ and 64³ across ladder runs, resume tests and probes
+   (0.106 / 0.376 GB), as §2.4 requires, scaled linearly in n³ to 128³ (2.542 GB) and multiplied by 1.2. The 128³ jobs add
+   `--grace 900` (contract §2 permits a per-job grace) because SIGTERM is honoured at step boundaries and the 128³ initial
+   minimization may outlast 300 s.

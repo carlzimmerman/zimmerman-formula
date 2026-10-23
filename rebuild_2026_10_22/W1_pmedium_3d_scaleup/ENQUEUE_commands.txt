@@ -1,0 +1,38 @@
+# measured peak footprint (ladder, resume tests, probes): 32^3 0.106 GB, 64^3 0.376 GB; 128^3 scaled 2.542 GB
+
+python3 compute_queue/heavyq.py add --id W1_n64_strong_alt --cwd rebuild_2026_10_22/W1_pmedium_3d_scaleup \
+    --cmd "/usr/bin/python3 engine/pmedium3d.py --n 64 --amp 0.03 --footing alt --threads 4 --outdir runs/ladder" \
+    --resume-cmd "/usr/bin/python3 engine/pmedium3d.py --n 64 --amp 0.03 --footing alt --threads 4 --outdir runs/ladder --resume" \
+    --est-gb 0.5 --threads 4 --priority 259 --done-file runs/ladder/n64_strong_alt/result.json \
+    --note "W1 lane ladder n64_strong_alt; checkpoint 42 MB (+ final_state.npz 42 MB)"
+
+python3 compute_queue/heavyq.py add --id W1_n64_weak_alt --cwd rebuild_2026_10_22/W1_pmedium_3d_scaleup \
+    --cmd "/usr/bin/python3 engine/pmedium3d.py --n 64 --amp 0.001 --footing alt --threads 4 --outdir runs/ladder" \
+    --resume-cmd "/usr/bin/python3 engine/pmedium3d.py --n 64 --amp 0.001 --footing alt --threads 4 --outdir runs/ladder --resume" \
+    --est-gb 0.5 --threads 4 --priority 258 --done-file runs/ladder/n64_weak_alt/result.json \
+    --note "W1 lane ladder n64_weak_alt; checkpoint 42 MB (+ final_state.npz 42 MB)"
+
+python3 compute_queue/heavyq.py add --id W1_n128_strong_can --cwd rebuild_2026_10_22/W1_pmedium_3d_scaleup \
+    --cmd "/usr/bin/python3 engine/pmedium3d.py --n 128 --amp 0.03 --footing canonical --threads 8 --outdir runs/ladder" \
+    --resume-cmd "/usr/bin/python3 engine/pmedium3d.py --n 128 --amp 0.03 --footing canonical --threads 8 --outdir runs/ladder --resume" \
+    --est-gb 3.1 --threads 8 --priority 257 --done-file runs/ladder/n128_strong_can/result.json --grace 900 \
+    --note "W1 lane ladder n128_strong_can; checkpoint 336 MB (+ final_state.npz 336 MB)"
+
+python3 compute_queue/heavyq.py add --id W1_n128_strong_alt --cwd rebuild_2026_10_22/W1_pmedium_3d_scaleup \
+    --cmd "/usr/bin/python3 engine/pmedium3d.py --n 128 --amp 0.03 --footing alt --threads 8 --outdir runs/ladder" \
+    --resume-cmd "/usr/bin/python3 engine/pmedium3d.py --n 128 --amp 0.03 --footing alt --threads 8 --outdir runs/ladder --resume" \
+    --est-gb 3.1 --threads 8 --priority 256 --done-file runs/ladder/n128_strong_alt/result.json --grace 900 \
+    --note "W1 lane ladder n128_strong_alt; checkpoint 336 MB (+ final_state.npz 336 MB)"
+
+python3 compute_queue/heavyq.py add --id W1_n128_weak_can --cwd rebuild_2026_10_22/W1_pmedium_3d_scaleup \
+    --cmd "/usr/bin/python3 engine/pmedium3d.py --n 128 --amp 0.001 --footing canonical --threads 8 --outdir runs/ladder" \
+    --resume-cmd "/usr/bin/python3 engine/pmedium3d.py --n 128 --amp 0.001 --footing canonical --threads 8 --outdir runs/ladder --resume" \
+    --est-gb 3.1 --threads 8 --priority 255 --done-file runs/ladder/n128_weak_can/result.json --grace 900 \
+    --note "W1 lane ladder n128_weak_can; checkpoint 336 MB (+ final_state.npz 336 MB)"
+
+python3 compute_queue/heavyq.py add --id W1_n128_weak_alt --cwd rebuild_2026_10_22/W1_pmedium_3d_scaleup \
+    --cmd "/usr/bin/python3 engine/pmedium3d.py --n 128 --amp 0.001 --footing alt --threads 8 --outdir runs/ladder" \
+    --resume-cmd "/usr/bin/python3 engine/pmedium3d.py --n 128 --amp 0.001 --footing alt --threads 8 --outdir runs/ladder --resume" \
+    --est-gb 3.1 --threads 8 --priority 254 --done-file runs/ladder/n128_weak_alt/result.json --grace 900 \
+    --note "W1 lane ladder n128_weak_alt; checkpoint 336 MB (+ final_state.npz 336 MB)"
+
