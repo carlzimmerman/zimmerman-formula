@@ -73,6 +73,8 @@ k7 = {k: v['charge_drift']/max(v['charge_scale'], 1e-300) for k, v in lat.items(
 check('K7', all(v < 1e-10 for v in k7.values()), f"max {max(k7.values()):.1e}", '<1e-10')
 # ---------------- K8 resume (rerun here at 32^3, tau 600) ----------------
 rd = HERE/'lattice_resume_check'; rd.mkdir(exist_ok=True)
+for fn in ('I.json', 'I.ckpt.npz'):          # the interrupted job must start fresh every time this script runs
+    if (rd/fn).exists(): (rd/fn).unlink()
 env = dict(os.environ, OMP_NUM_THREADS='1')
 base = [sys.executable, str(HERE/'x1_lattice.py'), '--N', '32', '--tau-end', '600', '--outdir', 'lattice_resume_check']
 codes = []
@@ -154,7 +156,13 @@ gmap = []
 for line in (HERE/'abundance/jobs.txt').read_text().splitlines():
     if not line.startswith('point') or '--tag map_' not in line: continue
     d = ab(line.split('--tag ')[1])
-    if not d: continue
+    if not d:       # combined L,K,C run exceeded its budget: L and C from the isocurvature base run, K run separately
+        im0 = ab(line.split('--tag ')[1].replace('map_', 'isomap_'))
+        if not im0: continue
+        d = im0['base']; d['res'] = {c: v for c, v in d['res'].items() if c in 'LC'}
+    if 'K' not in d['res']:       # K run separately for points whose combined run exceeded the budget
+        dk = ab(line.split('--tag ')[1].replace('map_', 'mapK_'))
+        d['res']['K'] = dk['res']['K'] if dk else dict(Omega=float('nan'), extra=dict(W_status='not completed (budget)'))
     oL, oK, oC = (d['res'][c]['Omega'] for c in 'LKC')
     g1 = 'BELOW' if oC < TARGET else ('ABOVE' if oL > TARGET else 'BRACKETS')
     ctl = ab(line.split('--tag ')[1].replace('map_', 'ctrl_'))

@@ -239,3 +239,19 @@ Seen before this amendment (disclosed): Y_L ≈ 3.9e-14 (Ω_L ≈ 1.07e-8) and �
 7. ξ = 1/6: the conformal mode starts in its vacuum at x ≈ 0 (a ≈ 0 in the scaled variable), a half-line problem; the
    full-line exp(−πk²/(mH)) named in K14 is not its exact answer (half/full = 0.371), so K14 FAILS as frozen; the control
    value reported is the numerical half-line one. Production during a w = 0 era (H_rh < 10 m_s) is not evaluated.
+
+## AMENDMENT A4 (POST-RESULT; numerics and scope only, no threshold or verdict rule changed)
+
+Made while running E4 and the map, after the primary-point values were seen:
+1. The E4 plasma follows the frozen rule literally (μ = 0 for the whole plasma while T_d > m/3 and C n³/H > 100); the
+   X-out-of-equilibrium variant ("pb") is a reported sensitivity (Ω_L 1.07e-8 vs 9.8e-9 at the primary point).
+2. After the frozen-rule phase the network is integrated in (ln E_c, ln W, N_X/W) with W = N_Φ + 2N_X, so r1 conserves W
+   exactly; an earlier per-species stiffness cap broke that stoichiometry and was removed from this phase. Integration stops
+   once T_d < m/3 and the W-changing log-rate is < 1e-4 per e-fold on two consecutive e-folds (rates only fall afterwards).
+3. Closure K's slow-absorption branch (Γ/H < 10 at onset) is integrated with a 300 s budget; where it does not complete
+   (9 of 28 grid points) K is reported as not computed. K never decides G1. Map points whose combined run exceeded its
+   budget take L and C from the isocurvature base run (identical code and inputs).
+4. G2 on the map is computed for closures L and C at all 28 points; K only at the primary point.
+5. ξ = 1/6 production during a w = 0 era (T_rh = 1e6) is now evaluated (scaled y⁴ mode problem, production complete
+   before reheating at every grid point), replacing A3 item 7's "not evaluated".
+6. The "relcut" sensitivity did not finish within 25 minutes and is reported as not completed.

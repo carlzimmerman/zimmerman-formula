@@ -41,6 +41,14 @@ def kernel():
     return lib
 
 
+def _rel(p):
+    """Repo-relative path for printing (no home paths in logs)."""
+    try:
+        return str(Path(p).resolve().relative_to(HERE.parent.parent))
+    except ValueError:
+        return Path(p).name
+
+
 def atomic_write_bytes(path, data):
     tmp = Path(str(path)+f'.tmp{os.getpid()}')
     with open(tmp, 'wb') as f:
@@ -178,7 +186,7 @@ def main():
     od = HERE/A.outdir; od.mkdir(exist_ok=True)
     res_path = od/f'{A.job}.json'; ck_path = od/f'{A.job}.ckpt.npz'
     if A.resume and res_path.exists():
-        print('result complete', res_path); sys.exit(0)
+        print('result complete', _rel(res_path)); sys.exit(0)
     spec = dict(N=A.N, L=A.L, variant=A.variant, patch=A.patch, seed=A.seed, tau_end=A.tau_end, dt_div=A.dt_div,
                 out_every=A.out_every, H=A.H, xi=1/6 if A.variant == 'XI16' else 0.)
     lib = kernel(); t_start = time.time()
@@ -235,7 +243,7 @@ def main():
                    b''.join(a.tobytes() for a in (phi, pphi, x, px))).hexdigest())
     atomic_write_bytes(res_path, json.dumps(out).encode())
     if ck_path.exists(): ck_path.unlink()
-    print('done', res_path, 'energy_residual', out['energy_residual'], 'charge_drift', out['charge_drift'], flush=True)
+    print('done', _rel(res_path), 'energy_residual', out['energy_residual'], 'charge_drift', out['charge_drift'], flush=True)
     sys.exit(0)
 
 
