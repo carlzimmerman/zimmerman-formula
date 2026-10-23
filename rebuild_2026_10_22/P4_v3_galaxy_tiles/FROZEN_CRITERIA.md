@@ -178,3 +178,27 @@ change, one at a time (old kernel → μ = x/(1+x) → geometry → rules remove
 `_MUTATE.*`. README verdict first, one line per tile (old → v3, class). `OMP_NUM_THREADS=1 nice -n 15`, < 1 GB RSS, no
 downloads. Pathspec commits of this lane only; never push. Any later change: an append-only AMENDMENT section marked pre- or
 post-result.
+
+## AMENDMENTS (append-only)
+
+All three are **POST-RESULT** (written after development runs that printed T1's L★ = 0 row and T2–T5's tile numbers).
+None changes a tile line, a threshold or a tile input.
+
+**A1 (K8, check specification).** The frozen K8 clause "Newtonian K_z(R₀, 1.1)/2πG vs the direct column ≤ 3 %" is
+mis-specified: K_z(z) = 2πGΣ(<z) − ∫₀^z (1/R)∂_R(R g_R) dz′, and the radial-force term is ≈ 12 % at R₀ for McMillan17.
+The record's CFG514 K3b fails the same clause at +12.63 % (62.0 vs 55.1); this lane's first development run read 0.124.
+Replaced by an independent check of the same quantity: the solver's Newtonian K_z(R₀, 1.1)/2πG against a direct ring
+quadrature (elliptic integrals) of the same density, ≤ 1 %. The frozen clause's value is still printed.
+
+**A2 (numerical extraction).** The first development run read K3 = 0.0065 dex on the SPARC EFE galaxies (line 0.003). The
+cause is interpolation at the data radii where the spherical mass profile has kinks; refining 30 → 40 per decade did not
+shrink it. Every solved prediction is therefore the exact isolated spherical law (exact in AQUAL for a sphere) times the
+solver's correction factor: the solved internal field (EFE and/or L★) divided by an isolated L★ = 0 solve on the same radial
+grid, so the interpolation error cancels. The same ratio is used for virial σ (group EFE sensitivity, DF2/DF4 virial variant).
+The MW disc has no algebraic reference and is unchanged. K3's line is unchanged and is evaluated on these predictions.
+
+**A3 (solver fixes found in development, disclosed).** (a) The solver's unknown is the internal potential φ = Φ − g_e z; the
+uniform field enters each face flux through its exact face average and the inner sphere's inflow, so its discrete divergence
+is zero. The first version carried a ≈ 2 % uniform-field error from the θ discretisation, found when K2 failed. (b) The Newton
+start uses |g_N|: SPARC's negative inner gas masses had given NaN in the first T1 L★ = 24 / 90 rows. Development outputs are
+superseded by the committed run.
