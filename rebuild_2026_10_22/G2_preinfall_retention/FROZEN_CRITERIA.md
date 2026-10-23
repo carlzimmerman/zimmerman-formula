@@ -86,3 +86,10 @@ distance modulus). Per footing.
 ## 6. Mutation
 
 `--mutate`: M_coll → 0 in every cell. K6 must FAIL and the verdict must return E3's offset. Output `*_MUTATE.*`.
+
+## AMENDMENT A1 (PRE-RESULT, before any script output of this lane)
+
+Reading E3's code (not its numbers) shows `e3_per_system.csv` stores per-system **MC medians** (E3's own seeded RNG), not
+central values. A ≤ 1e-6 identity is impossible with an independent pipeline. K2 is replaced by: this lane's per-system MC
+medians of B_scr and M_dyn vs the CSV, **median |relative difference| ≤ 2 % and max ≤ 10 %** (canonical). Nothing else
+changes.
