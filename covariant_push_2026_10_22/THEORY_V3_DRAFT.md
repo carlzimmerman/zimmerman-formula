@@ -21,7 +21,7 @@ DSF-21's A33 is this theory with η > 0, which C5 shows is ill-posed; v3 drops �
 | symbol | status | value | source |
 |---|---|---|---|
 | a₀ (κ) | FITTED | κ_Λ = 0.417 ± 0.095 (CFG493); Planck-free 0.414 ± 0.094 (E4) | thermal Z/4π is Milgrom's relation, a POSTULATE (A75) |
-| L★ | FITTED, new constant | native floor ≈ 29 pc, M/L-dominated 20–42 pc (E4, C3) | PENDING D10 (native, EFE-aware) |
+| L★ | FITTED, new constant (lower bound only) | EFE-aware native floor L★_95 = 21.7 pc (canonical) / 22.9 pc (alt) with the SPS Υ_V prior; 2.9–22.7 / 4.4–23.8 pc across Υ_V priors and the MW bracket (D10). Upper edge ~90 pc (LITTLE THINGS) | D10, E4, C3 |
 | dust abundance (Ω_c-like) | FITTED (initial condition) | — | C2, C4 |
 | u | measured function of scale, convention-dependent | 0.43–0.50 (E4, E1) | no mechanism (D6) |
 | G_cosmo/G_N | bounded | Planck-lite ±0.027 (C2 emulation); BBN | C2 |
@@ -36,7 +36,7 @@ DSF-21's A33 is this theory with η > 0, which C5 shows is ill-posed; v3 drops �
 | Cassini Q₂ | with full stiffness: passes by 10⁷–10⁹ (D7d); literal form (γ_F = 0): PENDING | D7d, C6 |
 | planets | PENDING (literal form) | C6 |
 | wide binaries 20 kAU | screened γ_v − 1 ≈ 8e-6 vs law-first 1.167/1.199; DR4 decides (σ_sys rule A3) | D2, D7d, E2 |
-| outer globulars | PENDING native floor | D10 |
+| outer globulars | unscreened law (L★ = 0) excluded in all 18 cells (Δχ² 4.9–22.8); no finite L★ beats Newton; sets the L★ lower bound (Pal 4, Pal 14 dominate; Υ_V-limited) | D10 |
 | dwarf satellites | +0.89 dex above screened prediction (E3). Supply: the framework's dynamics cannot fix a satellite's catchment (it needs the patch's initial overdensity and infall epoch — UNDECIDABLE); the satellites' own [Fe/H] (leaky box, no ΛCDM input) gives ≥ 38× present baryons, enough (median need 0.21 of supply), with 6/36 short at central values and none at 2σ — CONDITIONAL on ζ = 1 winds and no pre-enrichment | E3, E6 |
 | CMB / linear P(k) | a₀ absent at linear order (tests dust + G ratio only); native spectra PENDING | C2, C7 |
 | cosmic shear (native PM) | canonical settling rules excluded by raw KiDS (CFG596); CFG960 rerun PENDING | CFG596, CFG960 |
