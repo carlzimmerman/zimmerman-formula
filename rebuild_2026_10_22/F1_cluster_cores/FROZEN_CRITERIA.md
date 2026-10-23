@@ -59,3 +59,17 @@ cluster-core dust: DERIVED / FITTED / NOT COMPUTABLE, with the reason.
 `f1_cluster_cores.py` prints `K# PASS|FAIL value threshold`, ends `F1_CLUSTER_CORES COMPLETE: N/M checks PASS.`, exit 0 iff all
 pass; writes `f1_cluster_cores.out`, `f1_cluster_cores_results.json`. `--mutate` measures the cross shear instead of the
 tangential shear (outputs `*_MUTATE.*`): K2 and K3 must FAIL. Runs: `OMP_NUM_THREADS=1 nice -n 15`, < 1 GB RSS, minutes.
+
+## AMENDMENTS (append-only)
+
+- **A0 (implementation, pre-result):** cluster centres are eRASS1 RA_XFIT / DEC_XFIT (the record's TSV columns are these);
+  the miscentring offset is |(RA, DEC) − (RA_XFIT, DEC_XFIT)|. Sources with Z_B = 1.2 exactly are dropped (float32 1.2 > 1.2),
+  as in the record. The measurement is cached in session scratch so reruns do not re-measure.
+- **A1 (POST-RESULT):** the measured "boost" is < 1 at every radius (0.85–0.96): a source deficit (masking / blending near
+  clusters), not member dilution. A dilution correction is ≥ 1, so the frozen primary's boost (which lowered A by ~7 %, in the
+  law's favour) is wrong in sign. Reported: the primary with the boost clipped at 1. The frozen-rule verdict is computed on the
+  frozen primary (more lenient); A1 only strengthens it.
+- **A2 (POST-FREEZE, coordinator request):** one reported, ungraded row family: the law + the settled cold component of
+  Ω_c/Ω_b = 5.364 × baryons in an NFW with L187's c* = 0.40 relative to a self-consistent R200c (truncated at R200), with u = 1
+  and u = 0.443 (DS_FINAL), the cold mass either sourcing the AQUAL field (V3 reading) or added Newtonian (CFG949 reading).
+  L187's c* is ΛCDM-PROCESSED (NFW concentration fitted against Dutton & Macciò c(M) at R200c, Planck ρ_c). No refit.

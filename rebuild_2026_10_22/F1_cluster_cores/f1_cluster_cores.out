@@ -1,0 +1,75 @@
+sources in cache 21,262,011; with Z_B <= 1.2 (float32): 21,262,011
+eRASS1 candidates in KiDS boxes (FITS): 920
+K6 PASS matched 920/920 max_rel 0.00e+00 all matched, <= 1e-3
+clusters used: 326
+K4 PASS [0.9889, 0.9924, 0.9948, 0.9964, 0.9975, 0.9983, 0.9988, 0.9992] |ratio-1| < 0.01 in MID/OUTER bins
+X-COP measured gas shape: 12 clusters, x range 0.03-1.64, M(<x) outer log-slope 1.03 (beta=2/3 -> 1)
+K5 PASS Gauss 4.4e-16 QUMOND-id 4.4e-16 max|nu_mono/nu_simple-1| 0.037 <1e-9, <1e-9, >1e-3
+  nu_mono/nu_simple at y = [0.05, 0.1, 0.2, 0.5, 1.0]: {'0.05': 0.9982, '0.1': 0.9965, '0.2': 0.9935, '0.5': 0.9863, '1.0': 0.9777}
+K1 PASS 1.9102 vs record JSON 1.9102 (n=318) |diff| < 0.005
+STACK DeltaSigma (Msun/pc2), h = 0.70: 52.1+-60.6  82.9+-15.0  89.8+-11.0  62.8+-6.7  49.2+-5.9  34.8+-3.5  18.0+-2.8  16.9+-1.8
+record stack:                         92.1+-37.2  71.5+-18.3  77.0+-10.4  56.8+-8.2  51.6+-5.1  35.8+-3.3  16.7+-2.6  16.5+-1.7
+K2 PASS [-1.08, 0.62, 1.22, 0.73, -0.46, -0.32, 0.5, 0.21] |own - record| <= 1 sigma_record in bins 3-7
+boost (cluster/random source weight) h070: 0.858 0.900 0.906 0.931 0.925 0.929 0.950 0.956
+boost (cluster/random source weight) h0672: 0.851 0.903 0.899 0.933 0.921 0.929 0.950 0.954
+boost (cluster/random source weight) h0686: 0.848 0.906 0.903 0.930 0.923 0.930 0.949 0.955
+
+=== R0: record recipe on my pipeline (nu_mono, h 0.70, no gas rescale, beta-model, f* 0.20) ===
+R0 record recipe                                           can: MID 1.868+-0.126 (Z +6.9)  OUT 1.042+-0.090  alt: MID 1.715+-0.115 (Z +6.2)  OUT 0.954+-0.083
+K3 PASS MID 1.868/1.715 OUTER 1.042/0.954 N 326 within 0.10 of 1.91/1.75, 1.01/0.93; N 318+-15
+  Newtonian baryons: MID 9.82+-0.63  OUTER 7.39
+
+=== one correction at a time (from R0) ===
+C1 kernel nu_mono -> AQUAL mu=x/(1+x)                      can: MID 1.865+-0.125 (Z +6.9)  OUT 1.041+-0.090  alt: MID 1.713+-0.115 (Z +6.2)  OUT 0.953+-0.083
+C2a eRASS1 gas rescaled to pipeline distances (h 0.70)     can: MID 1.836+-0.123 (Z +6.8)  OUT 1.021+-0.088  alt: MID 1.686+-0.113 (Z +6.0)  OUT 0.935+-0.081
+C2 native h0672 (with gas rescale)                         can: MID 1.800+-0.130 (Z +6.2)  OUT 0.998+-0.094  alt: MID 1.653+-0.120 (Z +5.5)  OUT 0.914+-0.086
+C2 native h0686 (with gas rescale)                         can: MID 1.847+-0.125 (Z +6.8)  OUT 0.996+-0.087  alt: MID 1.696+-0.115 (Z +6.1)  OUT 0.912+-0.080
+C3a R500 +0.033 dex (gas at fixed r held)                  can: MID 1.874+-0.126 (Z +6.9)  OUT 1.037+-0.090  alt: MID 1.721+-0.116 (Z +6.2)  OUT 0.949+-0.082
+C3a R500 -0.033 dex (gas at fixed r held)                  can: MID 1.862+-0.125 (Z +6.9)  OUT 1.047+-0.091  alt: MID 1.710+-0.115 (Z +6.2)  OUT 0.959+-0.083
+C3b Mgas500_H                                              can: MID 1.639+-0.111 (Z +5.8)  OUT 0.918+-0.079  alt: MID 1.506+-0.102 (Z +5.0)  OUT 0.841+-0.073
+C3b Mgas500_L                                              can: MID 2.273+-0.155 (Z +8.2)  OUT 1.260+-0.111  alt: MID 2.085+-0.142 (Z +7.6)  OUT 1.153+-0.101
+C3c gas shape G1 (X-COP measured)                          can: MID 1.860+-0.125 (Z +6.9)  OUT 1.086+-0.094  alt: MID 1.707+-0.115 (Z +6.2)  OUT 0.994+-0.086
+C3c gas shape G2 (aperture only)                           can: MID 1.814+-0.121 (Z +6.7)  OUT 1.572+-0.136  alt: MID 1.665+-0.111 (Z +6.0)  OUT 1.436+-0.124
+C4 stars f* 0.30                                           can: MID 1.787+-0.120 (Z +6.6)  OUT 0.998+-0.086  alt: MID 1.642+-0.110 (Z +5.8)  OUT 0.914+-0.079
+C4 stars f* 0.10                                           can: MID 1.960+-0.132 (Z +7.3)  OUT 1.092+-0.094  alt: MID 1.799+-0.121 (Z +6.6)  OUT 0.999+-0.087
+C5a catalogue miscentring                                  can: MID 1.878+-0.126 (Z +7.0)  OUT 1.042+-0.090  alt: MID 1.724+-0.116 (Z +6.3)  OUT 0.954+-0.083
+C5b data boost                                             can: MID 1.734+-0.116 (Z +6.3)  OUT 0.994+-0.086  alt: MID 1.592+-0.107 (Z +5.5)  OUT 0.910+-0.079
+
+C3d ACCEPT/eRASS1 gas mass (same shells, r_out >= 0.3 R500): N 51, median 1.034, 16-84% 0.71-1.27
+C3d X-COP/eRASS1 M_gas(<R500_eRASS1): N 5, median 1.236; R500 eRASS1/X-COP median 1.035
+C3d deep X-ray gas factor x1.091                           can: MID 1.780+-0.120 (Z +6.5)  OUT 0.994+-0.086  alt: MID 1.635+-0.110 (Z +5.8)  OUT 0.911+-0.079
+C5d Sigma_crit bin-n(z) bound F(z_l) (true = measured x F): 0.1:1.038 0.2:1.089 0.3:1.114 0.4:1.149 0.5:1.139
+C5d Sigma_crit bin-n(z) bound                              can: MID 2.028+-0.133  alt: MID 1.862+-0.122
+C5c two-halo bound subtracted                              can: bound 0.00 Msun/pc2, MID 1.868+-0.126  alt: bound 0.00 Msun/pc2, MID 1.715+-0.115
+
+=== PRIMARY rebuild: AQUAL, native h, gas rescaled, beta-model, f* 0.20, data boost, catalogue miscentring ===
+PRIMARY h0672                                              can: MID 1.676+-0.121 (Z +5.6)  OUT 0.950+-0.090  alt: MID 1.540+-0.111 (Z +4.9)  OUT 0.870+-0.082
+PRIMARY h0686                                              can: MID 1.720+-0.115 (Z +6.2)  OUT 0.949+-0.083  alt: MID 1.580+-0.106 (Z +5.5)  OUT 0.869+-0.076
+
+=== most-favourable corner (f* 0.30, Mgas_H, gas factor if > 1, best shape, two-halo bound) ===
+FAVOURABLE h0672 canonical: MID 1.331+-0.097 (Z +3.4)  OUTER 0.794+-0.075  shape G1 two-halo 0.00
+FAVOURABLE h0672 alt      : MID 1.225+-0.089 (Z +2.5)  OUTER 0.728+-0.069  shape G1 two-halo 0.00
+FAVOURABLE h0686 canonical: MID 1.366+-0.092 (Z +4.0)  OUTER 0.794+-0.069  shape G1 two-halo 0.00
+FAVOURABLE h0686 alt      : MID 1.257+-0.085 (Z +3.0)  OUTER 0.728+-0.063  shape G1 two-halo 0.00
+
+=== V3 dust sector (reported only): dust tracing the gas, sourcing the AQUAL field ===
+canonical: needed dust/gas 1.77 (median M_dust(<0.5) 1.22e+13, (<1 Mpc) 3.00e+13 Msun; OUTER then 0.576+-0.054); cosmic ratio 5.364 tracing gas: MID 0.619 OUTER 0.365
+alt      : needed dust/gas 1.39 (median M_dust(<0.5) 9.53e+12, (<1 Mpc) 2.36e+13 Msun; OUTER then 0.572+-0.054); cosmic ratio 5.364 tracing gas: MID 0.576 OUTER 0.338
+
+=== ADDENDUM (coordinator request, post-freeze, not graded): law + settled cold component, c* = 0.40 (L187), 5.364 x baryons ===
+A1 (post-result): measured boost < 1 at every radius = source deficit (masking/blending), not member dilution; a dilution boost is >= 1, so clipped at 1 (= no boost)
+A1 PRIMARY h0672 boost clipped at 1                        can: MID 1.808+-0.130 (Z +6.2)  OUT 0.997+-0.094  alt: MID 1.661+-0.120 (Z +5.5)  OUT 0.914+-0.086
+A1 PRIMARY h0686 boost clipped at 1                        can: MID 1.854+-0.125 (Z +6.9)  OUT 0.995+-0.087  alt: MID 1.703+-0.115 (Z +6.1)  OUT 0.912+-0.080
+baseline of CFG687's 1.91/1.75: the law (nu_mono) on gas x (1 + f*) ONLY, no cold component (cfg687_stack.py law())
+ADD h0672 cold c*=0.40 u=1 sourced                         can: MID 0.607+-0.044 (Z -8.9)  OUT 0.422+-0.039  alt: MID 0.565+-0.041 (Z -10.6)  OUT 0.390+-0.036
+ADD h0672 cold c*=0.40 u=0.443 (DS_FINAL) sourced          can: MID 0.887+-0.063 (Z -1.8)  OUT 0.658+-0.061  alt: MID 0.821+-0.058 (Z -3.1)  OUT 0.605+-0.056
+ADD h0672 cold c*=0.40 u=1 newtonian                       can: MID 0.889+-0.064 (Z -1.7)  OUT 0.627+-0.058  alt: MID 0.849+-0.061 (Z -2.5)  OUT 0.591+-0.055
+ADD h0672 cold c*=0.40 u=0.443 (DS_FINAL) newtonian        can: MID 1.195+-0.084 (Z +2.3)  OUT 0.822+-0.077  alt: MID 1.124+-0.079 (Z +1.6)  OUT 0.762+-0.071
+ADD h0686 cold c*=0.40 u=1 sourced                         can: MID 0.621+-0.043 (Z -8.9)  OUT 0.429+-0.037  alt: MID 0.577+-0.040 (Z -10.7)  OUT 0.396+-0.034
+ADD h0686 cold c*=0.40 u=0.443 (DS_FINAL) sourced          can: MID 0.917+-0.061 (Z -1.4)  OUT 0.666+-0.057  alt: MID 0.848+-0.056 (Z -2.7)  OUT 0.612+-0.053
+ADD h0686 cold c*=0.40 u=1 newtonian                       can: MID 0.912+-0.061 (Z -1.4)  OUT 0.635+-0.054  alt: MID 0.871+-0.058 (Z -2.2)  OUT 0.599+-0.051
+ADD h0686 cold c*=0.40 u=0.443 (DS_FINAL) newtonian        can: MID 1.234+-0.081 (Z +2.9)  OUT 0.827+-0.071  alt: MID 1.160+-0.076 (Z +2.1)  OUT 0.766+-0.066
+  self-consistent R200 of baryons x (1 + 5.364 u): median 0.80 Mpc, 16-84% 0.45-1.19
+
+VERDICT (frozen rule): REAL FAILURE   primary Z_MID {'h0672': {'canonical': 5.60704277283561, 'alt': 4.868611387225881}, 'h0686': {'canonical': 6.23369525891387, 'alt': 5.4613485038903615}}   favourable Z_MID {'h0672': {'canonical': 3.4250114491355435, 'alt': 2.524813720747586}, 'h0686': {'canonical': 3.9748425690782017, 'alt': 3.028613173002811}}
+F1_CLUSTER_CORES COMPLETE: 6/6 checks PASS.
