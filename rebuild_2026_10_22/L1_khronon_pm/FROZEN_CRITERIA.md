@@ -162,3 +162,30 @@ the reading, the sentence "indicative, not a verdict; the frozen production run 
   whether the nonlinear term moves σ₈ at all, and in which direction.
 - Physics outside the engine (pre-z_i history beyond the linear ICs; quadratic-K background before z ≈ 200 at μ_K = 14.8;
   khronon multistreaming) is listed in the README as a limitation, with the X0 numbers.
+
+## AMENDMENT A1 (PRE-RESULT, 2026-10-23, before any script or number; coordinator instructions relaying the owner)
+
+Reason: the owner stopped CFG960 to free memory for v3 work (ledger 89fbefe1c0), and asked that heavy runs be preemptible.
+Nothing in §1–§4 (equations, gates, thresholds, indicative set, readings) changes. Changes:
+
+1. **Compute for the validation and indicative runs** stays as frozen (≤ 128³, one thread, < 1 GB, nice 15).
+2. **Production is run in this lane, after KA, KB, KC (and KR below) pass**, no longer "not run now". §5's runs, box,
+   scoring and readings are unchanged. Launch conditions replacing §5 "When" and the per-run command's thread/nice settings:
+   - size: the largest N ∈ {512, 1024} whose **declared** peak memory (engine `--estimate`, calibrated on the measured
+     64³/128³ peaks) is ≤ 45 GB; 1024³ is used only if it fits;
+   - `nohup`, `nice -n 5`, up to 8 threads (scipy.fft workers and numexpr; particle chunks in a thread pool);
+   - hard abort (exit 3, no output written) if system swap use grows by > 4 GB over its value at start or the process RSS
+     exceeds 52 GB (the CFG960 rule); a crash or abort resumes from the latest checkpoint;
+   - if `compute_queue/heavyq.py` exists when production is ready, the runs are enqueued with `python3 compute_queue/heavyq.py add ...`
+     instead of launched directly; otherwise launched directly with the SIGTERM handler in place;
+   - run order: S0, LIN-14.8, KX-can-14.8, KX-alt-14.8, LIN-400, KX-can-400, KX-alt-400 (one heavy job at a time).
+3. **Preemptible engine.** On SIGTERM the engine finishes the current step, writes a checkpoint at that safe point (after
+   the drift) and exits 0 (target ≤ 300 s at 512³). `--resume` continues from the latest checkpoint. Checkpoints are also
+   written every 10 steps. Checkpoint and result files are written atomically (temporary file + `os.replace`). The run JSON
+   declares the peak-memory estimate before the first step.
+4. **New validation check KR (resume).** 64³, L = 25 Mpc/h, mode KX, μ_K = 14.8, canonical, full amplitude, model B, one
+   thread: an uninterrupted run vs a run that receives a real SIGTERM mid-run (after step ≥ 40 is reported), exits, and is
+   resumed with `--resume`. PASS iff the interrupted process exits with code 0 within 300 s of the signal, a checkpoint
+   exists, and the resumed run's final particle state and z = 0 P(k) are **bit-identical** to the uninterrupted run's
+   (sha256 of the state arrays equal). If bit-identity fails, the measured max |ΔP/P| is reported and KR FAILS (no
+   tolerance is set after the fact). KR is not mutated (it is an engineering check); MUTATE still must fail KA, KB, KC.
