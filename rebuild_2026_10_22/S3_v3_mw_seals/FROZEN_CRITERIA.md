@@ -214,3 +214,20 @@ magnitude just off the plane (it includes the vertical 2πGΣ-type component). C
   R = 0.3 a for y ≈ 4 at that radius), which is the size of the "geometry" ingredient this lane measures.
 - Solver default tolerance set to the frozen 1e-8 relative residual (a round-off floor near 4e-9 makes 1e-9 unreachable).
 Nothing else changes.
+
+## AMENDMENT A2 (2026-10-23, PRE-RESULT: solver and bookkeeping only; still no MW, κ, seal or ALMA number of this lane)
+
+1. **Round-off floor.** With a large dynamic range (cells 0.0005–3000 kpc) or a uniform external flux the relative residual
+   stalls near 1e-8–5e-8 (round-off). A solve is converged when the residual ≤ 1e-8, OR it has stalled for 10 iterations at
+   ≤ 1e-7 (flagged "floor" and counted in A4(v)).
+2. **EFE numerics.** The uniform external field is carried analytically: Φ = φ + g_e z, with g_e added to every z-gradient
+   used in μ and the uniform part's flux added per cell. Same equation and boundary physics as §1; only the round-off
+   changes. E2 cross-check (A4(iii)) unchanged.
+3. **3-D stop rule.** Plain fixed point (Anderson raised RSS to 0.8 GB for no gain), float32 storage; stop when the in-plane
+   radial fields at 15, 27.5 and 60 kpc (8 azimuths) change by < 2e-6 (relative) for 5 consecutive iterations.
+   The 3-D ratio is also tabulated at 5–12.5 kpc so the χ² over each whole curve uses the EFE model (W → 1 inside).
+4. **Bookkeeping.** B2 / B2b / B3 densities are transcribed from CFG516 (checked identical to CFG516's functions by
+   evaluation, A2(ii)) instead of executed. C(R; s) is tabulated on s ∈ {0.25, 0.5, 0.75, s±, (s± + 1)/2, 1, 1.3, 1.6, 2, 3, 4}
+   and interpolated linearly in ln s; the 3-D ratio W is computed at s = 1 and applied at every s (s* only). The e_N = 2 × h81
+   variant uses its own solve at s = 1 (census) and h81's C for s* (reported variant only). Solver controls A4(i)–(iii) run
+   with the true μ in both modes (they validate the code, not the mutate). A4(i)'s Plummer grid resolves b by 20 cells.
