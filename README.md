@@ -4,6 +4,11 @@
 
 **Next steps (21 October 2026):** the current state is the [status board](explainers/crispy_fried_chicken_status_board.md) and the [summary figure](campaign_fresh_gravity/FIGURE_SUMMARY_2026-10-21/summary_figure.png), resting on the adopted [canonical statement](campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md) with its dated notes. What any completion must still supply is §5 of the audited [v4 draft](campaign_fresh_gravity/THEORY_CANONICAL_2026-10-21_DRAFT.md), which the owner has not yet adopted. The theory remains incomplete: the excess in pressure-supported systems is unexplained, and the engine behind the cosmic-shear pass has no known physical parent.
 
+> **Checkpoint 2026-10-23, overnight (from-scratch rebuild + AeST route).** [PAPER59, DOI 10.5281/zenodo.23585319](https://doi.org/10.5281/zenodo.23585319).
+> - **Cluster cores are a REAL FAILURE** of the law on baryons, rebuilt from raw eRASS1 × KiDS: 1.68–1.85× (canonical) / 1.54–1.70× (alt) at Z ≈ +5–6 in 0.3–1 Mpc; any cold profile that fills the cores overshoots the outskirts (F1, H2).
+> - **The Khronon form (v3) fails linear growth** (J′(0) = −1; F3). **An AeST form (v4: AeST + the same stiffness + the exact-law free function) survives at linear order**: exact law, Cassini, BBN, Newtonian growth on large scales; its flagged "health" defect was a criterion that also flags ordinary gravity (H1, H3). Open: strong contact-term binding between ~1 Mpc and ~4 kpc, the stiffness term's causal cone, nonlinear behaviour.
+> - Outer galaxy lensing: undecidable on current isolation (F2). Dwarf satellites: +0.89 dex tension. Lanes: [`rebuild_2026_10_22/`](rebuild_2026_10_22/).
+
 > **Checkpoint 2026-10-22, evening (doors push + audit wave + covariant push).** One covariant candidate now survives the local tests:
 > the Blanchet–Skordis Khronon theory (arXiv:2404.06584) in its literal healthy form, plus a covector P and one stiffness term
 > −(γ_L/2)(D·P)². Statement: [`covariant_push_2026_10_22/THEORY_V3_DRAFT.md`](covariant_push_2026_10_22/THEORY_V3_DRAFT.md);
