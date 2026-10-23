@@ -182,3 +182,19 @@ Local runs: `OMP_NUM_THREADS=1 nice -n 15`, < 2 GB, ≤ 10 min each. Lattice pro
 carries an ENQUEUE block with exact `heavyq.py add` commands (est-gb = measured × 1.2, ≤ 8 threads, priority 240–249,
 resume-cmd, done-file). This lane does not enqueue. Commits are pathspec-limited to this directory; never push; no personal
 names or home paths; `sol61_push/` is read-only.
+
+## AMENDMENT A1 (PRE-RESULT, before any V1–V3 number; R0 has run and passed bit-identically)
+
+Feasibility, found while sizing V3 by hand: scenario A (X coherent, Φ vacuum) produces single-mode-squeezed Φ⁺ and Φ⁻
+whose number tails fall only as tanh(r)ⁿ, so the full four-mode basis needs ~10⁶–10⁷ states for n ≥ 8 at ν = 8 over
+t = 500; exact sparse evolution of that size does not fit the ≤ 10 min / < 2 GB rule. Change (method only, no threshold
+moved):
+1. V3 exact runs use the full normal-ordered Hamiltonian wherever the basis (edge probability < 1e-7 over the window) has
+   ≤ 3e5 states, and the W-conserving (rotating-wave) projection H_RWA of the same Hamiltonian (keep the monomials with
+   ΔW = 0, W = N_Φ + 2N_X) for every n. H_RWA is block-diagonal in (W, Q) and exactly solvable at all n ≤ 32.
+2. TW is run with the classical Weyl symbol of the same Hamiltonian in each case (full H: Strang with exact harmonic part;
+   H_RWA: RK4 in the rotating frame). The validity occupation n* is computed from the RWA pairs (exact-RWA vs TW-RWA) at
+   all n; wherever full pairs exist, their errors must agree with the RWA-pair errors within a factor 2, else the full-pair
+   errors govern at those n and the disagreement is reported.
+3. V2 is unchanged; its exact P_abs ≈ 1.3e-9 (Codex) is far below any TW sampling floor at ≤ 1e6 trajectories, so V2 is
+   expected to report "unresolvable at n ~ 1" with the floor stated.
