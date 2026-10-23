@@ -111,7 +111,7 @@ TILES = [
       ["CFG654-A2", "CFG654-A3", "CFG909"], "COND"),
     T(3, "Native shear rerun (CFG960)", "OPEN", "1024^3 running past its old failure point; no verdict", ["CFG960"], "OPEN",
       lab="open: running"),
-    T(3, "Native CMB (patched CLASS)", "OPEN", "validated vs CLASS to 2e-6; spectra not yet run", ["C7", "C2"], "OPEN"),
+    T(3, "Native CMB (patched CLASS)", "OPEN", "validated to 2e-6; SZ benchmarks fit at g = 1; v4 runs away (shape tried)", ["C7", "C2"], "OPEN"),
     T(3, "CMB lensing (Planck PR4)", "UNDEC", "SAFE; CONSISTENT only under post-hoc A1; low power", ["CFG917", "CFG927"], "UNDEC"),
     T(3, "Growth, zero-knob supply rule", "FAIL",
       "old settling engine; F3/G1: belongs to the settling rules (not v3/v4); excess grows with resolution",
@@ -215,7 +215,7 @@ def draw(tiles, out):
     fig.text(0.015, 1 - 0.55 / H, "The Crispy Fried Chicken Status Board  ·  23 October 2026 (afternoon)", fontsize=24,
              fontweight="bold", color="#16201d")
     fig.text(0.015, 1 - 1.0 / H, "a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 fitted; footings 9.3603e-11 / 1.1312e-10 m/s^2 never "
-             "pooled.  Chassis: Khronon (v3) or AeST (v4 candidate), screened by L*.  Lane ids on every tile.  "
+             "pooled.  Chassis: Khronon (v3, fails growth) or AeST (v4, ill-posed off symmetry), screened by L*.  Lane ids on every tile.  "
              "The theory is incomplete.", fontsize=11.0, color="#4d5a56")
     for c, title in enumerate(COLUMNS):
         ax.text(c + 0.03, nmax + 0.4, title, fontsize=13, fontweight="bold", color="#16201d", va="center")
