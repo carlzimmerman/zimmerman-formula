@@ -5,7 +5,7 @@ pre-DR4 note or the git record); every cited commit must exist and touch its lan
 resolved (C7 milestone 5; CFG960 SC1x scored on the retired engine) and v1.1's one PENDING statement (L1 nonlinear production,
 no result) must be true at build time (no L1 commit after the A6 implementation 28c65bc28d; no production output tracked),
 else this audit FAILS until the paper is updated; section V checks every number added in v1.1 against the theory draft at
-45bd132464 and the lane README by file:line; citations must match citations/REFERENCES.bib; no forbidden claim, local
+be52681b9b and the lane README by file:line; citations must match citations/REFERENCES.bib; no forbidden claim, local
 path or personal name may appear.
 Run: python3 PAPER59_audit.py (exit 0 only if all pass).  Read-only."""
 import json, os, re, subprocess, sys
@@ -129,10 +129,10 @@ has("B footings", "(9.36x10-11 and 1.13x10-10 m s-2")
 has("B kappa FITTED, not closed", "FITTED; the theory is not closed")
 check("B kappa = 1/2 FITTED written in TeX (header, abstract, setting)", tex.count("$\\kappa=\\tfrac12$ FITTED") >= 3, str(tex.count("$\\kappa=\\tfrac12$ FITTED")))
 DRAFT = "covariant_push_2026_10_22/THEORY_V3_DRAFT.md"
-th3 = git("show", "45bd132464:" + DRAFT).stdout
-check("B v1.1 source: THEORY_V3_DRAFT at 45bd132464 equals the working file and is its last commit, cited",
-      th3 == open(os.path.join(ROOT, DRAFT), encoding="utf-8").read() and git("log", "-1", "--format=%h", "--abbrev=10", "--", DRAFT).stdout.strip() == "45bd132464"
-      and "commit 45bd132464 for v1.1" in flat)
+th3 = git("show", "be52681b9b:" + DRAFT).stdout
+check("B v1.1 source: THEORY_V3_DRAFT at be52681b9b equals the working file and is its last commit, cited",
+      th3 == open(os.path.join(ROOT, DRAFT), encoding="utf-8").read() and git("log", "-1", "--format=%h", "--abbrev=10", "--", DRAFT).stdout.strip() == "be52681b9b"
+      and "commit be52681b9b for v1.1" in flat and "(commit be52681b9b)" in flat)
 
 # ---------------------------------------------------------------- C. lane table: checks and commits
 COV = {  # lane: (out file, checks in table, verdict in README, commits)
@@ -543,6 +543,8 @@ v("S3 ring-singularity record error", "ring-singularity noise", (D, 82, "CFG493'
 v("S3 DR4 MW seal 15b7e6ff", "SEALED_V3_MW_DR4.json (sha256 15b7e6ff", (D, 82, "SEALED_V3_MW_DR4.json` (sha256 15b7e6ff"), (RB_("S3_v3_mw_seals"), 17, "15b7e6ffb0a340248e111d83a4dd214492f0f2e3b2294e5ff23d6542da3b6160"))
 v("S3 ALMA seal b5d65a5e", "SEALED_V3_ALMA_AQUAL.json (sha256 b5d65a5e", (D, 82, "SEALED_V3_ALMA_AQUAL.json` (sha256 b5d65a5e"), (RB_("S3_v3_mw_seals"), 24, "b5d65a5e17bbce21c3ca2f3cd748169fe736e9b86281ff1329449176e1a8c11d"))
 v("S3 P6 asymmetry 3.0 / 5.2 / 8.2% at 20 / 30 / 60 kpc", "3.0 / 5.2 / 8.2% at 20 / 30 / 60 kpc", (D, 82, "3.0 / 5.2 / 8.2 % at 20 / 30 / 60 kpc"), (RB_("S3_v3_mw_seals"), 21, "1.8 / 3.0 / 4.1 / 5.2 / 8.2 % at R = 15 / 20 / 25 / 30 / 60 kpc"))
+v("S3/ALMA addendum F filed (f6f0ba66a4), four labelled readings, verdict kernel nu_mono", "addendum F (owner-approved, pre-data, f6f0ba66a4) adds it as a labelled parallel reading, and the verdict kernel stays",
+  (D, 82, "addendum F FILED (owner-approved 2026-10-23, f6f0ba66a4"), (D, 88, "ν_mono (verdict kernel), n = 1 and n = 2 (addendum E), v3 AQUAL disc (addendum F, f6f0ba66a4)"))
 v("S3 GS4 +0.03 to +0.05 dex", "+0.03 to +0.05 dex more", (D, 82, "GS4 +0.03–0.05 dex in V²_bar"), (RB_("S3_v3_mw_seals"), 26, "+0.03 to +0.05 dex more"))
 # S4
 v("S4 SCOPED NO-GO", "SCOPED NO-GO.", (D, 87, "Clusters: SCOPED NO-GO for every allowed μ_K"), (RB_("S4_v3_muK_clusters"), 3, "SCOPED NO-GO (R6)"))
@@ -554,7 +556,7 @@ v("S4 A_MID 1.33 / -3.84 / -9.86", "AMID = 1.33 / -3.84 / -9.86", (D, 87, "A_MID
 v("S4 outer lensing +110 at 0.1 /Mpc", "+110 already at 0.1 Mpc-1", (D, 87, "outer lensing Δχ² +110 already at 0.1 Mpc⁻¹"), (RB_("S4_v3_muK_clusters"), 94, "274 (+110)"))
 v("S4 negative dust 46-89%", "46-89% of the cluster volume", (D, 87, "negative absolute dust over 46–89 % of the cluster volume for μ_K ≥ 0.3"), (RB_("S4_v3_muK_clusters"), 148, "0.66 / 0.89 / 0.78 / 0.46 at μ_K = 0.3 / 0.5 / 0.7 / 1"))
 # P1
-v("P1 need-to-supply 0.463 / 0.445", "0.463 / 0.445", (D, 74, "0.46 (canonical) / 0.45 (alt)"), (RB_("P1_dwarf_chemistry"), 6, "Median q = L_req / L_MDF = 0.463"), (RB_("P1_dwarf_chemistry"), 6, "0.445"))
+v("P1 need-to-supply 0.463 / 0.445 (draft label need/supply since be52681b9b)", "(ratio of need to supply 0.463 / 0.445)", (D, 74, "median need/supply q = L_req/L_MDF 0.46 (canonical) / 0.45 (alt)"), (RB_("P1_dwarf_chemistry"), 6, "Median q = L_req / L_MDF = 0.463"), (RB_("P1_dwarf_chemistry"), 6, "0.445"))
 v("P1 10 systems too narrow", "(10 systems too narrow)", (D, 74, "(10 systems too narrow"), (RB_("P1_dwarf_chemistry"), 11, "10 systems are too narrow"))
 v("P1 not robust at 2 sigma: 1.12 / 1.08", "median 1.12 / 1.08 with every width", (D, 74, "the median is 1.12 / 1.08"), (RB_("P1_dwarf_chemistry"), 23, "the median q is 1.12 canonical / 1.08"))
 v("P1 pre-enrichment raises the supply", "pre-enrichment raises the supply", (D, 74, "Pre-enrichment raises the supply"), (RB_("P1_dwarf_chemistry"), 19, "Pre-enrichment raises L; it does not lower it."))
