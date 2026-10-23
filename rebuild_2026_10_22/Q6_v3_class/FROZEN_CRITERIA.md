@@ -232,3 +232,29 @@ a power series in τ (why the IC series failed). Changes, fixed now:
    (it is expected to fail for c_s² ≠ 0; its failure is what triggers this fallback), not counted. Added D10: c_s² of LOB
    ≤ ε/(1+ε) < 1 and c²_{s,LO} → ε at k → 0 (exact), with the super-horizon frequency identity above.
 4. Nothing else changes (thresholds, readings, grid, fits, MUTATE).
+
+## AMENDMENT A3 (POST-RESULT: written after `q6_validate.py` ran in both modes and after scratch diagnostics; before any step-B, step-N or step-C number)
+
+**What happened.** V_prov, V0, V1 (both gauges; DUST with j₁ = 0 and, reported, j₁ = −1, ≤ 4e-6) PASS; MUTATE breaks V1
+and V3 as required. The frozen **V2, V3 (both μ_K) and V5 FAIL**, and the frozen "native prediction ready" flag is False.
+These lines stay in the record. Scratch diagnostics (not scored; disclosed in the README):
+- LOB's matter transfer function passes through a node at k ≈ 0.5–1 Mpc⁻¹ (P/P_ΛCDM down to 3.4e-6 at μ_K = 361 h/Mpc;
+  to 1e-8 at 14.8 h/Mpc). V2's 45 % P(k) change comes from interpolating log P across the two precisions' different k
+  grids through that node; on the **same** k grid default and high precision agree to ≤ 1.2e-3 for every k ≤ 1 Mpc⁻¹
+  (≤ 1.1e-4 for k ≤ 0.5).
+- V3's P(k) and φφ mismatches sit where the model's own spectrum is 1e-3 to 1e-8 of ΛCDM's (φφ: ℓ = 2500, φφ_LOB/φφ_ΛCDM =
+  1.7e-6; in units of the ΛCDM spectrum the gauge gap is 2.3e-5). TT/TE/EE gauge gaps are ≤ 8.5e-5 (vanilla's own ≤ 8.1e-5).
+- V5's TT change sits at ℓ ≈ 9–14, is identical at high precision, and shrinks ≈ 3.8× per halving of the start time
+  (5.25e-4 for ×1 → ×0.5; 1.38e-4 for ×0.5 → ×0.25): an initial-condition truncation error ∝ τ_ini², converging.
+
+**Supplementary gates (fixed now; the frozen ones are still printed):**
+- **V2b** same-grid convergence: LOB, μ_K = 361 h/Mpc, j₁ = −1, default precision with `k_per_decade_for_pk = 20` vs C7's high
+  precision (same k grid); metric |ΔX|/X_ΛCDM (X_ΛCDM = pristine ΛCDM at the same parameters and precision) for TT, TE
+  (normalised by √(TT·EE)_ΛCDM), EE, φφ, P(k); PASS ≤ max(2e-3, 2 × vanilla's change).
+- **V3b** gauge consistency in units of the ΛCDM spectrum: the frozen V3 pairs, metric |ΔX|/X_ΛCDM; PASS ≤ max(1e-3, 3 × vanilla).
+- **V5b** attractor at the native start time: every step-N run (ΛCDM and Khronon alike) uses
+  `start_small_k_at_tau_c_over_tau_h` and `start_large_k_at_tau_h_over_tau_k` × 0.25; V5b compares × 0.25 with × 0.125 for
+  LOB 361 h/Mpc (relative C_ℓ, P(k) in units of ΛCDM); PASS ≤ vanilla's own change + 1e-4.
+- MUTATE must break V1 or V3b. **"Native prediction ready (A3)"** iff V1, V2b, V3b, V5b pass and MUTATE breaks V1 or V3b.
+  The README states that the frozen gates failed and that the native numbers rest on the A3 gates.
+- Step N: C7's high precision (A2 of C7) plus the × 0.25 start, for ΛCDM and Khronon runs alike. Nothing else changes.
