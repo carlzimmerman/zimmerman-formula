@@ -33,7 +33,7 @@ The owner's rule: the board shows only the current best theory, and a failure on
 
 The read-only audit [N0](../rebuild_2026_10_22/N0_board_audit/AUDIT.md) checked each of the 55 tiles of the 23 October afternoon board against v3 ([`THEORY_V3_DRAFT.md`](../covariant_push_2026_10_22/THEORY_V3_DRAFT.md) §1–3). The board follows its classes:
 
-- **Current (15 tiles): colour kept.** The evidence lane computed v3 itself. N0's re-annotations are applied: health cites C5 only; binary pulsars cite C8 only; the screened Cassini tile cites C6 and says that C6's frozen rule reads UNDECIDED on one float-rounding check; the unscreened control cites E2 only; matter conservation cites C4 (the identity holds for any diffeomorphism-invariant action); cluster cores say 326 clusters (F1) and drop H2; the no-go tile drops v4. Cluster cores and isolated lensing at all radii note that v3's μ_K²ψ term is not yet included (P4).
+- **Current (15 tiles): colour kept.** The evidence lane computed v3 itself. N0's re-annotations are applied: health cites C5 only; binary pulsars cite C8 only; the screened Cassini tile cites C6 and says that C6's frozen rule reads UNDECIDED on one float-rounding check; the unscreened control cites E2 only; matter conservation cites C4 (the identity holds for any diffeomorphism-invariant action); cluster cores say 326 clusters (F1) and drop H2; the no-go tile drops v4. Cluster cores and isolated lensing at all radii note that v3's μ_K²ψ term is not yet included (S4).
 - **Not yet recomputed for v3 (15 tiles): grey, dashed.** The note keeps the old result as "was …", and the label names the recompute lane. The old colour is dropped. Five of these may change colour once recomputed (N0): isolated-galaxy lensing inside 0.31 Mpc, tidal dwarfs and DF2/DF4, the Milky Way's outer slope, Coma's ultra-diffuse galaxies and red lenses. The dwarf satellites were red; N0 expects them to stay red (v3's external-field effect can only raise the excess), but the +0.89 dex has to be recomputed. Galaxy groups were green; CFG543's no-edge row (+0.010 / −0.010) is v3's number, but the external-field check is still to do (S4).
 - **Data-gated or open (9 tiles): kept.** ALMA, the Gaia DR4 Milky Way predictions and κ now name the v3 work they need (S3).
 - **Old-model only (16 tiles): archived** (list below, and [`img/status_board_archive_retired.png`](img/status_board_archive_retired.png)). Three of them were in the generator's must-stay-red list. They now satisfy it only by sitting red in the archive with N0 as the evidence lane.
@@ -42,17 +42,17 @@ No tile turned green. The two v3 counterparts that are not yet tiles, "MW vertic
 
 ### Recompute lanes
 
-N0's recompute batches R1–R7 run as lanes S1–S4, P3, P4 and Q6. All are small (one thread, under 1 GB). The heavy one is L1.
+N0's recompute batches run as these lanes (all small: one thread, under 1 GB). The heavy one is L1.
 
-| lane | N0 batch | what it computes for v3 | tiles |
-|---|---|---|---|
-| S1 | R1 | small systems in their host's field: AQUAL + γ_L stiffness at L★ 21.7 / 22.9, 24, 90 pc, with the external-field effect | tidal dwarfs and DF2/DF4; dwarf satellites; Coma's ultra-diffuse galaxies; feeds the family selector |
-| S2 | R2 | galaxy–galaxy lensing at low acceleration, with F2's AQUAL solver and the external-field effect | isolated-galaxy lensing, inner; red lenses; feeds the selector |
-| S3 | R3 | discs solved as AQUAL with v3's kernel | rotation curves; the Milky Way's outer slope; the new "MW vertical force, AQUAL disc" tile; ALMA's sealed AQUAL-disc addendum (before 6 November); a new dated Gaia DR4 Milky Way sealed file (before 2 December); κ re-fit |
-| S4 | R4 | kernel-only swaps (verdicts not expected to move) | central ellipticals; galaxy groups; high-z; CRISTAL / ALESS |
-| P3 | R5 | the relativistic sector: strong coupling, a static and slowly moving black hole, radiative stability | strong coupling; black holes; radiative stability |
-| P4 | R6 | v3's static μ_K²ψ term beyond 0.1 Mpc | cluster cores and isolated lensing at all radii (both current; the term is a caveat); feeds the selector |
-| Q6 | R7 | a Khronon-v3 CLASS patch (TT/EE/φφ, P(k)) | native CMB; the new "CMB lensing, v3 linear" tile |
+| lane | what it computes for v3 | tiles |
+|---|---|---|
+| P4 | AQUAL with v3's kernel and the external field solved, for galaxy tiles | rotation curves (SPARC); local a₀ from MeerKAT; galaxy groups; MW vertical force; tidal dwarfs and DF2/DF4 |
+| S1 | small systems in their host's field (AQUAL + stiffness at L★ 24 / 90 pc, external field solved) | dwarf satellites; Coma's ultra-diffuse galaxies; feeds the family selector |
+| S2 | galaxy–galaxy lensing at low acceleration (F2's AQUAL solver, external field) | isolated-galaxy lensing, inner; red lenses |
+| S3 | discs as AQUAL with v3's kernel | the Milky Way's outer slope; κ re-fit; a new sealed Gaia DR4 Milky Way file (before 2 December); v3's ALMA disc reading (before 6 November) |
+| S4 | v3's static μ_K²ψ (dust) term on clusters and the outer-lensing stack; kernel-only swaps | cluster cores and isolated lensing at all radii (caveat); central ellipticals; high-z; CRISTAL / ALESS |
+| P3 | the relativistic sector: strong coupling, black holes, ringdown, neutron stars | strong coupling; black holes; radiative stability |
+| Q6 | a Khronon-v3 CLASS patch (TT/EE/φφ, P(k)) | native CMB; CMB lensing, v3 linear |
 | L1 | heavy | the Khronon-native PM run ([frozen 512³ plan](../rebuild_2026_10_22/L1_khronon_pm/FROZEN_CRITERIA.md)) | v3's nonlinear growth and shear, which stand in for 5 archived tiles; the one open escape of "Covariant completion" |
 
 ## Archived: retired models

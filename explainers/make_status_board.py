@@ -63,7 +63,10 @@ COLUMNS = ["Relativistic theory (the chassis)", "Galaxies", "The excess family (
 LANE_NEW = re.compile(r"^(F[1-3]|G[12]|H[1-3]|I1|J1|K1|C7|N0)$")
 RETIRE_EVIDENCE = {"N0"}           # the only lane allowed to move a tile off the board into ARCHIVE
 # N0's recompute batches (AUDIT.md, "Recompute batches to launch") and the lane id each one runs under.
-RECOMPUTE = {"R1": "S1", "R2": "S2", "R3": "S3", "R4": "S4", "R5": "P3", "R6": "P4", "R7": "Q6"}
+RECOMPUTE = {"R1": "S1", "R2": "S2", "R3": "S3", "R4": "S4", "R5": "P3", "R6": "S4", "R7": "Q6"}
+# tiles whose recompute the coordinator assigned to lane P4 (galaxy tiles), overriding the batch default
+REDO_BY_TILE = {"Rotation curves (SPARC RAR)": "P4", "Local a0 from MeerKAT": "P4", "Galaxy groups (BFJR)": "P4",
+                "MW vertical force (round rule)": "P4", "Tidal dwarfs, NGC 1052-DF2/DF4": "P4"}
 _SAME = object()
 
 # The 23 October afternoon board (commit 1205446ebc; image kept as explainers/img/status_board_2026-10-23pm.png):
@@ -107,7 +110,7 @@ def S(col, name, was, old_note, lanes, batch):
     result, `batch` the N0 recompute batch (-> lane id in RECOMPUTE). For all 15 the 22 October, 23 October morning and
     23 October afternoon colours were the same, so prev = am = was; PREVIOUS_BOARD is what check() trusts."""
     return dict(col=col, name=name, st="STALE", note=f"was {LAB[was]}: {old_note}", lanes=list(lanes) + ["N0"],
-                prev=was, am=was, lab=None, new=True, was=was, redo=RECOMPUTE.get(batch), batch=batch)
+                prev=was, am=was, lab=None, new=True, was=was, redo=REDO_BY_TILE.get(name, RECOMPUTE.get(batch)), batch=batch)
 
 
 def A(col, name, st, note, lanes, why, v3, ev="N0"):
@@ -144,7 +147,7 @@ TILES = [
       ["CFG804", "CFG829", "CFG840", "CFG902"], "R2"),
     T(1, "Isolated-galaxy lensing, all radii", "UNDEC",
       "F2: frozen fail not robust (isolation leaks hosts); old +100 was the supply edge, absent in v3; mu_K^2 term "
-      "to add (P4)", ["CFG902", "CFG903", "F2"], "FAIL", new=True, am="UNDEC"),
+      "to add (S4)", ["CFG902", "CFG903", "F2"], "FAIL", new=True, am="UNDEC"),
     S(1, "Tidal dwarfs, NGC 1052-DF2/DF4", "COND", "at Newton if they captured no cold energy; host EFE untested",
       ["CFG936", "CFG939"], "R1"),
     T(1, "Outer globulars: L* floor", "COND", "L* >= 21.7 / 22.9 pc (SPS M/L); unscreened law excluded", ["D10"], "COND"),
@@ -157,7 +160,7 @@ TILES = [
     S(2, "Dwarf satellites vs screened law", "FAIL", "+0.89 dex over screened law, no EFE; N0: will not lift",
       ["E3", "E6", "G2"], "R1"),
     T(2, "Cluster cores (326 eRASS1)", "FAIL",
-      "F1 rebuild: real failure, x1.68-1.85 / x1.54-1.70, Z ~ +5-6; v3's mu_K^2 term not yet in (P4)",
+      "F1 rebuild: real failure, x1.68-1.85 / x1.54-1.70, Z ~ +5-6; v3's mu_K^2 term not yet in (S4)",
       ["CFG687", "F1"], "FAIL", new=True),
     S(2, "Coma ultra-diffuse galaxies", "UNDEC", "+0.33 dex over the isolated law; Coma's field not applied",
       ["CFG933", "CFG948"], "R1"),
@@ -313,7 +316,7 @@ def check(tiles, archive):
                 errs.append(f"STALE tile's 'was' colour is not its 23 October afternoon colour: {n}")
             if "N0" not in t["lanes"] or not t["note"].startswith("was "):
                 errs.append(f"STALE tile without N0 or without its old result ('was ...'): {n}")
-            if t["redo"] not in RECOMPUTE.values():
+            if t["redo"] not in set(RECOMPUTE.values()) | set(REDO_BY_TILE.values()):
                 errs.append(f"STALE tile without a recompute lane: {n}")
         elif t["was"] is not None or t["redo"] is not None:
             errs.append(f"'was'/recompute lane on a tile that is not STALE: {n}")
