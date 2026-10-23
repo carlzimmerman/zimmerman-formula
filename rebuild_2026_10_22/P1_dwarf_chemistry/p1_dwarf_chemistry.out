@@ -1,0 +1,100 @@
+P1_dwarf_chemistry normal run
+kappa = 1/2 FITTED. Footings canonical 9.3603e-11 / alt 1.1312e-10 m/s^2, never pooled. Cold energy, no particle. Not 'theory closed'.
+Nothing here says the data favour the framework.  Supply is not mechanism: binding stays open (G2 failed).
+
+K1 PASS max|dg| 4.0e-14 max|ds2| 3.3e-13 <=1e-6  -- quadrature vs exact (k=0 closed form + adaptive quad; u=inf Beta(1,1/k) digamma/trigamma, k 0.1-100)
+K6 PASS k=0 sigma range [0.4343, 0.5570] dex [0.4343, 0.5570] +-2e-3  -- A2 band: zeta = 1, Z0 = 0 family width
+   grid: 602 k x 1202 u; family sigma max 0.5570 dex, grid minimum 0.0213 dex (k = 1000)
+K2 PASS max rel 1.1e-14 over 36 systems <=1e-3  -- E6 Lmin(-0.5,W2) and Lmin(+0.1,W1) reproduced by independent k = 0 code
+K3 PASS (i) L_min Z0=0 -> 0.3Zg: -2.0: 11.9->19.7, -2.5: 37.0->61.7, -3.0: 116.6->194.3; (ii) L_MDF/L_true max 0.037 (i) rises x3; (ii) <=1 x9  -- pre-enrichment raises L; the zeta reading is the conservative one
+K4 FAIL sigma_model 0.250: median ratio 0.780, sigma_model 0.450: median ratio 0.906 |ratio-1|<=0.15  -- Gaussian intrinsic-sigma estimator vs the skewed family (N 30, err 0.3 dex)
+   A1 K4 diagnostic (post-result): sig 0.25 N 30 e 0.30: median 0.79 mean 0.80; sig 0.25 N 100 e 0.30: median 0.97 mean 0.97; sig 0.25 N 30 e 0.15: median 0.80 mean 0.84; sig 0.45 N 30 e 0.30: median 0.92 mean 0.93; sig 0.45 N 100 e 0.30: median 0.98 mean 0.98; sig 0.45 N 30 e 0.15: median 0.93 mean 0.94
+   (a low-biased width maps to a lower L_MDF and a higher q: the bias pushes the graded q toward shortfall, i.e. conservative)
+
+== Step 1: inventory (46 systems: 45 canonical + Andromeda XXVIII alt) ==
+K5 PASS max |dv| 2.67 km/s over 6 systems <=3 km/s  -- Walker membership: member median velocity vs LVD systemic (N_mem >= 10)
+   LVD mean [Fe/H]: 37/46; LVD sigma central 32 (spec 31, phot 1), LVD UL only 3; S19 sigma 19 (+1 UL); Geha N_stars 16
+   Walker 2023 per-star: 14 E3 systems with a target; N_Fe >= 10 in 6; N_Mg >= 5 in 8
+   system             N_mem N_Fe (CFG51) e_med         sig_W           LVD           S19        Mg/Fe N_EMP
+   Bootes I              54   54      55  0.48 0.40-0.05+0.06          0.28          0.44  +0.11+-0.04 1
+   Bootes II              4    4       4  0.74             -          0.38         <0.35            - 0
+   Bootes III             8    8       8  0.56             -          0.36             -  +0.48+-0.10 0
+   Crater II             77   77    None  0.58 0.24-0.05+0.05          0.24          0.22  -0.40+-0.03 0
+   Grus I                 3    3       3  0.45             -         <0.44          0.41            - 0
+   Hydrus I              25   25      25  0.63 0.35-0.07+0.09          0.41          0.41  +0.04+-0.07 0
+   Leo IV                 0    0       0   nan             -          0.28          0.56            - -
+   Leo V                  4    4       4  0.70             -          0.30          0.47            - 0
+   Pisces II              3    3       4  0.35             -          0.48          0.48            - 0
+   Reticulum II          13   13      13  0.73 0.45-0.19+0.22          0.28          0.28  +0.07+-0.06 0
+   Segue 1                2    2       6  0.22             -          0.59          0.95            - 0
+   Tucana II             13   13      14  0.21 0.18-0.05+0.07             -          0.29  +0.07+-0.14 1
+   Ursa Major I           7    7       7  0.60             -          0.24          0.62  +0.07+-0.15 0
+   Ursa Major II         11   11      11  0.66 0.44-0.13+0.19          0.22          0.67  +0.31+-0.12 0
+
+== Step 2: premise tests ==
+   P-W LVD   : CONSISTENT 23, NARROW 10, NONE 11, UNDETERMINED 2   NARROW: Bootes I, Carina II, Coma Berenices, Crater II, Eridanus IV, Hercules, Leo IV, Pictor II, Ursa Major I, Ursa Major II
+   P-W S19   : CONSISTENT 17, NARROW 3, NONE 26   NARROW: Bootes II, Carina II, Crater II
+   P-W Walker: CONSISTENT 4, NARROW 2, NONE 40   NARROW: Crater II, Tucana II
+   (band [0.4343, 0.5570] dex; NARROW = sigma + 2ep below it: the zeta = 1, Z0 = 0, no-inflow box cannot make it)
+   P-S Bootes I           N_Fe  54  best k=0 fit u 4.22  AD 1.66  p 0.025  FAIL
+   P-S Crater II          N_Fe  77  best k=0 fit u 3.16  AD 3.22  p 0.005  FAIL
+   P-S Hydrus I           N_Fe  25  best k=0 fit u 7.5  AD 1.90  p 0.015  FAIL
+   P-S Reticulum II       N_Fe  13  best k=0 fit u 4.22  AD 0.31  p 0.776  pass
+   P-S Tucana II          N_Fe  13  best k=0 fit u 0.00133  AD 2.50  p 0.010  FAIL
+   P-S Ursa Major II      N_Fe  11  best k=0 fit u 0.001  AD 0.48  p 0.577  pass
+   P-S: 4/6 FAIL (p < 0.05): Bootes I, Crater II, Hydrus I, Tucana II
+   P-A Bootes I           N_Mg  54  <[Mg/Fe]> +0.11+-0.04  slope -0.36+-0.09  DECLINE      alpha-anchored log y_Fe [-0.20, +0.16] IN
+   P-A Bootes III         N_Mg   8  <[Mg/Fe]> +0.48+-0.10  slope -0.08+-0.27  PLATEAU      alpha-anchored log y_Fe [-0.67, -0.10] IN
+   P-A Crater II          N_Mg  77  <[Mg/Fe]> -0.40+-0.03  slope -0.11+-0.07  LOW          alpha-anchored log y_Fe [+0.34, +0.65] ABOVE
+   P-A Hydrus I           N_Mg  25  <[Mg/Fe]> +0.04+-0.07  slope -0.03+-0.17  UNDETERMINED alpha-anchored log y_Fe [-0.18, +0.28] IN
+   P-A Reticulum II       N_Mg  13  <[Mg/Fe]> +0.07+-0.06  slope -0.05+-0.10  UNDETERMINED alpha-anchored log y_Fe [-0.19, +0.23] IN
+   P-A Tucana II          N_Mg  13  <[Mg/Fe]> +0.07+-0.14  slope +0.55+-0.61  UNDETERMINED alpha-anchored log y_Fe [-0.34, +0.39] IN
+   P-A Ursa Major I       N_Mg   7  <[Mg/Fe]> +0.07+-0.15  slope +0.03+-0.23  UNDETERMINED alpha-anchored log y_Fe [-0.37, +0.42] IN
+   P-A Ursa Major II      N_Mg  11  <[Mg/Fe]> +0.31+-0.12  slope -0.02+-0.30  UNDETERMINED alpha-anchored log y_Fe [-0.54, +0.10] IN
+   P-0: pre-enrichment raises L (K3); N_EMP ([Fe/H] + 2e < -3) per Walker system listed in the inventory table above.
+
+== Step 3: supply from the MDF (L_MDF = min L over the zeta >= 1 family at the observed width; q = L_req / L_MDF) ==
+                    N             logy -0.5              logy -0.2              logy +0.1    I2 (2sig-low width) -0.5
+   canonical  F2   31  0.463 [0.298,0.620]   0.232 [0.149,0.311]   0.116 [0.075,0.156]    1.124 [0.860,2.323]
+   canonical  F1   31  0.275 [0.200,0.520]   0.138 [0.096,0.261]   0.069 [0.048,0.131]    1.048 [0.539,2.064]
+   alt        F2   32  0.445 [0.284,0.588]   0.223 [0.142,0.295]   0.112 [0.071,0.149]    1.078 [0.860,2.323]
+   alt        F1   32  0.242 [0.195,0.457]   0.121 [0.098,0.219]   0.061 [0.049,0.115]    0.824 [0.516,1.976]
+   (median q [bootstrap 16-84%]; I0 = central LVD width; graded cell: F2, logy -0.5, I0; E6's same-set ratio for comparison below)
+   E6 premise (zeta = 1, mean only) on the same 31 systems, canonical F2 logy -0.5 W2: median q 0.269
+   E6 premise (zeta = 1, mean only) on the same 32 systems, alt F2 logy -0.5 W2: median q 0.269
+   class [LVD]: SUPPLY CONFIRMED  canonical N 31 cons 0.463 [0.298,0.620] least 0.116 [0.075,0.156]; alt N 32 cons 0.445 [0.284,0.591] least 0.112 [0.071,0.148]
+   class [R1 ]: SUPPLY CONFIRMED  canonical N 33 cons 0.286 [0.250,0.491] least 0.072 [0.063,0.124]; alt N 34 cons 0.283 [0.249,0.483] least 0.071 [0.063,0.122]
+   class [R2 ]: SUPPLY CONFIRMED  canonical N 32 cons 0.366 [0.285,0.651] least 0.092 [0.072,0.151]; alt N 33 cons 0.301 [0.282,0.573] least 0.076 [0.071,0.144]
+
+   canonical: tested 31; SHORT (F2, -0.5, I0) 10: Aquarius II, Carina II, Columba I, Eridanus IV, Horologium I, Leo VI, Segue 1, Ursa Major I, Ursa Major II, Willman 1
+   canonical: robust supply (q <= 1 at the 2sig-low width) 14/31; robust shortfall (F1 2.5% need, +0.1, 2sig-high width) 0: -
+   canonical: NOT TESTED 14: Andromeda XI, Andromeda XIII, Andromeda XV, Andromeda XVII, Andromeda XX, Andromeda XXII, Andromeda XXVI, Andromeda XXVII, Carina III, Cassiopeia II, Grus I, Pictor II, Tucana II, Tucana IV
+   canonical: I0 flags ABOVE 4, OK 27; median zeta_MDF 346.87; median eta 0.1
+   canonical: A1 (post-result reading) 24 systems minimise in the eta -> 0, zeta >> 1 corner (metal-only winds); within 1% of their L_MDF, eta spans median [0.005, 6.25] and zeta median [15, 9609]: the MDF does not fix zeta; it bounds L anyway
+   canonical: f_break (unmixed-escape fraction that would close the supply, supplied systems) median 0.74, min 0.07
+   alt: tested 32; SHORT (F2, -0.5, I0) 10: Aquarius II, Carina II, Columba I, Eridanus IV, Horologium I, Leo VI, Segue 1, Ursa Major I, Ursa Major II, Willman 1
+   alt: robust supply (q <= 1 at the 2sig-low width) 15/32; robust shortfall (F1 2.5% need, +0.1, 2sig-high width) 0: -
+   alt: NOT TESTED 14: Andromeda XI, Andromeda XIII, Andromeda XV, Andromeda XVII, Andromeda XX, Andromeda XXII, Andromeda XXVI, Andromeda XXVII, Carina III, Cassiopeia II, Grus I, Pictor II, Tucana II, Tucana IV
+   alt: I0 flags ABOVE 5, OK 27; median zeta_MDF 326.93; median eta 0.2
+   alt: A1 (post-result reading) 24 systems minimise in the eta -> 0, zeta >> 1 corner (metal-only winds); within 1% of their L_MDF, eta spans median [0.005, 6.25] and zeta median [15, 9609]: the MDF does not fix zeta; it bounds L anyway
+   alt: f_break (unmixed-escape fraction that would close the supply, supplied systems) median 0.74, min 0.06
+
+   E6's six short systems (canonical | alt), F2 logy -0.5:
+   Columba I      P-W LVD CONSISTENT, S19 NONE, Walker NONE | canonical q 1.34 (E6 premise 2.03; I2 6.83; R1 1.34; R2 1.34) [ABOVE, zeta 1.0] | alt q 1.36 (E6 premise 2.05; I2 6.90; R1 1.36; R2 1.36) [ABOVE, zeta 1.0]
+   Segue 1        P-W LVD CONSISTENT, S19 CONSISTENT, Walker NONE | canonical q 1.14 (E6 premise 1.73; I2 1.51; R1 1.14; R2 1.14) [ABOVE, zeta 1.0] | alt q 1.11 (E6 premise 1.69; I2 1.48; R1 1.11; R2 1.11) [ABOVE, zeta 1.0]
+   Tucana IV      P-W LVD UNDETERMINED, S19 NONE, Walker NONE | canonical NOT TESTED (LVD-spec-UL, UL 0.64) | alt NOT TESTED (LVD-spec-UL, UL 0.64)
+   Ursa Major I   P-W LVD NARROW, S19 CONSISTENT, Walker NONE | canonical q 3.73 (E6 premise 1.16; I2 10.11; R1 0.76; R2 3.73) [OK, zeta 1023.7] | alt q 3.77 (E6 premise 1.17; I2 10.23; R1 0.77; R2 3.77) [OK, zeta 1023.7]
+   Ursa Major II  P-W LVD NARROW, S19 CONSISTENT, Walker CONSISTENT | canonical q 4.30 (E6 premise 1.13; I2 29.73; R1 0.74; R2 1.12) [OK, zeta 225.9] | alt q 4.30 (E6 premise 1.13; I2 29.72; R1 0.74; R2 1.12) [OK, zeta 225.9]
+   Willman 1      P-W LVD CONSISTENT, S19 NONE, Walker NONE | canonical q 2.17 (E6 premise 1.03; I2 27.12; R1 2.17; R2 2.17) [OK, zeta 795.3] | alt q 2.26 (E6 premise 1.07; I2 28.30; R1 2.26; R2 2.26) [OK, zeta 795.3]
+
+   canonical F2 Upsilon sensitivity (gas-free L independent of M*): Upsilon_V 1.5: median q 0.619; Upsilon_V 2.0: median q 0.463; Upsilon_V 2.5: median q 0.370  [F2 L_req rebuilt from E3, max rel 2.2e-16]
+   alt F2 Upsilon sensitivity (gas-free L independent of M*): Upsilon_V 1.5: median q 0.597; Upsilon_V 2.0: median q 0.445; Upsilon_V 2.5: median q 0.354  [F2 L_req rebuilt from E3, max rel 2.2e-16]
+
+VERDICT: SUPPLY CONFIRMED  (primary LVD class SUPPLY CONFIRMED; R1 S19 SUPPLY CONFIRMED; R2 Walker SUPPLY CONFIRMED)
+   graded cell is the central width; at every system's 2sig-low width at once (I2) the median q is 1.12 canonical / 1.08 alt (F2, -0.5): not robust at 2sig in the widths
+   K4 FAILED as frozen: Gaussian sigma of a narrow skewed MDF is low-biased (median); the bias makes the graded q conservative (A1)
+   zeta = 1 & Z0 = 0 premise (P-W, LVD): NARROW in 10 systems; S19: 3; Walker: 2
+   Untested on disk: homogeneous mixing; unmixed escape of fresh ejecta (shape-identical to a lower retained yield; f_break above).
+   Supply is not mechanism: even where the supply holds, no binding mechanism puts the cold energy inside r12 (G2 failed).
+
+P1_DWARF_CHEMISTRY COMPLETE: 5/6 checks PASS.

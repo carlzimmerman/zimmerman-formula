@@ -124,3 +124,19 @@ the first rows of Geha's table, and the Walker row counts per target. A back-of-
 2.8× below E6's (about 8× at its 2σ-low width). No threshold above was moved after that; the band edges are analytic.
 
 Compute: one thread, nice 15, < 1 GB, minutes. Nothing downloaded. Writes only inside this lane.
+
+## AMENDMENT A1 (POST-RESULT, after the first complete run; RUN1 kept as `*_RUN1.*`; no outcome line or threshold changes)
+1. **Bug fix (one system).** For a gas-bearing system the frozen "family maximum" is its own k = 0 gas root (u is fixed by the gas
+   and σ falls with k). The code compared the width with the gas-free maximum 0.5570, so Leo T (σ 0.54, no error) was flagged UNDER
+   with L := 1 (q_F2 2.58) instead of ABOVE with L at its k = 0 gas root (L 2.79, q_F2 0.93), as the frozen ABOVE rule says.
+   Graded medians unchanged (F2 0.463 / 0.445); F1 median 0.358 → 0.275 canonical, 0.302 → 0.242 alt; I2 median F2 1.515 → 1.124
+   canonical, 1.306 → 1.078 alt; SHORT 11 → 10. The class is the same in RUN1 and in the final run.
+2. **K4 FAILED as frozen** (median σ_MLE/σ_model 0.78 at σ_model 0.25, N 30, errors 0.3 dex). Kept as FAIL; the normal run exits 1.
+   Post-result diagnostic (reported, not a check): the bias is small-sample (N 100: 0.97) and is the same with errors 0.15 dex.
+   Direction: a low-biased width gives a lower L_MDF and a higher q, so the graded q is biased toward shortfall (conservative).
+3. **Reading added (no number changes).** In 24 systems the L-minimising point lies in a flat valley toward η → 0 with ζ ≫ 1
+   (metal-only winds): within 1% of L_MDF, η spans a median [0.005, 6.25] and ζ a median [15, 9609]. ζ_MDF at the argmin is therefore
+   not a measurement; the MDF width bounds L without fixing ζ. An independent brute-force random search (scratch, not committed)
+   reproduced five systems' L_MDF to 0.1–0.3%.
+4. **Inventory only:** Geha 2026 names aliased (ComaBer, CVn II, Eridanus 4, Herc, Pegasus 3/4, UMa 1/2): 8 → 16 matched.
+5. **Memory:** shape-test arrays in float32, in place (RUN1 max RSS 0.88 GB; final 0.66 GB, peak footprint 0.21 GB).
