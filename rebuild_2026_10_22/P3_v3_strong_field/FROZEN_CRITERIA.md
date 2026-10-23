@@ -172,3 +172,24 @@ outputs go to `p3_v3_strong_field_MUTATE.out` and `p3_v3_strong_field_results_MU
 ## 7. Compute
 
 `OMP_NUM_THREADS=1 nice -n 15`, single thread, < 1 GB RSS, minutes; no downloads; no PM runs.
+
+## AMENDMENT A1 (written after scratch prototyping, before the lane script exists)
+
+- **(a) B1, POST-RESULT.** Scratch prototyping of the static branch (capped zone p_tilde = 1, N = sqrt(e)) gave
+  T^r_r -> 0 (proportional to e), not e^(-1/2). The frozen B1 exponent line will therefore read FAIL; it is kept as
+  frozen and kept FAIL. Added reading (not a frozen line, used by no verdict): the exponents of T^th_th and of the
+  on-shell scalar Lagrangian density L_P (expected -1/2 from the prototype) and of the invariant T^mu_nu T^nu_mu
+  (expected -1). If those diverge, the static branch is singular through its tangential stress.
+- **(b) B2/B4, PRE-RESULT (no B4 number computed).** The homogeneous q/r^2 mode is scanned over p_tilde(2M) in
+  [-1, 1] (P may point inward near the horizon; W depends on |P|); a member is valid only if |p_tilde| <= 1 on
+  [2M, r_out]. B4's finite-a_hat regulated IVP is dropped: in a capped zone it is a stiff saddle (one growing mode in
+  either direction). B4 instead uses the exact a_hat -> 0 constructions of B2 (type T, screened, transonic) and B3
+  (type C, capped). Junction-type members (screened outside, capped inside) are not computed: in the a_hat -> 0 limit
+  they carry thin shells that need the regulated layer. B4 PASS iff a valid T or C member exists for each
+  1/2 <= sigma < 2 benchmark; otherwise that benchmark is OPEN.
+- **(c) Part C, PRE-RESULT.** On tilted solutions the khronon flux gives r^2 T^r_t = c, so the static-frame T^t_t
+  grows like 1/e near the horizon. The mass function therefore uses ingoing coordinates: m' = -4 pi r^2 T^v_v with
+  T^v_v = T^t_t + T^r_t/e, and psi' = 4 pi r T_rr(EF) with T_rr(EF) = (T^r_r - T^t_t)/e - 2 T^r_t/e^2. Then
+  A = e^(2 psi)(1 - 2m/r) and B = 1 - 2m/r. The dynamical mass is Keplerian, M_dyn = r^2 A'/2 at r_dyn. The added
+  check: T^v_v and T_rr(EF) stay finite as r -> 2M on every regular member (|value| at r = 2.001 M <= 10 x the value
+  at 2.5 M).
