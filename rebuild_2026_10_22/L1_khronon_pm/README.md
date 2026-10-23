@@ -436,6 +436,18 @@ python3 compute_queue/heavyq.py add --id L1_A6_KX_alt_dbi_P1_N384_zi199 --cwd re
   --est-gb 10.6 --threads 8 --priority 290 --env L1_WORK=work/prod --done-file work/prod/A6_KX_alt_dbi_P1_N384_zi199/DONE
 ```
 
+
+## A7, the "early release" test: no cells (`l1_x0dust.py`; A7)
+
+- **Dust-limit spectrum, hold off:** x_rms crosses 1 at **z_x = 153 (canonical) / 174 (alt)**. Before that, x_rms is 51 at
+  z = 3000 and 14 at z = 1000.
+- **DBI (cap, λ_D 30) on its own spectrum:** z_x = 242 / 264. M²/μ² is 3.2e4 at z = 3000, 3.9 at z = 1000 and 1.0 by z = 199.
+- **The coordinator's rule (z_x ≳ 300) is not met, so no A7 cell is queued.**
+
+**The premise is also inverted, shown exactly (XD3).** Larger x raises f = μ + xμ′, and the khronon's net self-force
+kernel (m² − fk²)/((1 − f)k² + m²) falls monotonically, to the Jeans form as x → ∞. Early strong fields stiffen the khronon;
+they do not release it. That matches the 128³ z_i = 199 run, where KX ended 9 % below LIN.
+
 ## Files and commits
 
 **Criteria and amendments**, each committed before the results it governs:
