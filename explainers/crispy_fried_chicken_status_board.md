@@ -1,6 +1,6 @@
 # The Crispy Fried Chicken Status Board
 
-*Where the theory stands, as of 23 October 2026 (morning). The theory is not complete. The tile picture below shows the 23 October morning state; earlier pictures are kept as [`img/status_board_2026-10-22.png`](img/status_board_2026-10-22.png) (22 October evening) and [`img/status_board_2026-10-21.png`](img/status_board_2026-10-21.png).*
+*Where the theory stands, as of 23 October 2026 (afternoon). The theory is not complete. The tile picture below shows the 23 October afternoon state; earlier pictures are kept as [`img/status_board_2026-10-23am.png`](img/status_board_2026-10-23am.png) (23 October morning), [`img/status_board_2026-10-22.png`](img/status_board_2026-10-22.png) (22 October evening) and [`img/status_board_2026-10-21.png`](img/status_board_2026-10-21.png).*
 
 The theory makes one claim: the acceleration scale where galaxies stop obeying Newton, a₀, is set by the density of dark energy.
 
@@ -14,7 +14,7 @@ The ½ is **fitted**, not derived; the current measurement is κ = 0.417 ± 0.09
 
 ## How to read it
 
-The picture is the 23 October morning state, drawn by [`make_status_board.py`](make_status_board.py); tiles marked **23 OCT** were added, recoloured or re-annotated from an overnight rebuild lane (listed in the next section). The generator refuses any green, and any recolour not listed with its evidence lane. Each tile is one test. The colour restates a verdict recorded in the campaign LEDGER ([`campaign_fresh_gravity/LEDGER.md`](../campaign_fresh_gravity/LEDGER.md)) or in the dated notes of [`THEORY_CANONICAL_2026-10-18.md`](../campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md), and the lane IDs on each tile point to the scripts that produced it. Verdicts come from committed scripts with pass/fail rules frozen *before* the data were read, plus a control that is deliberately broken and must fail. Where a colour depends on a rule added afterwards (post hoc), the tile says so.
+The picture is the 23 October afternoon state, drawn by [`make_status_board.py`](make_status_board.py); tiles marked **23 OCT** were added, recoloured or re-annotated on 23 October, overnight or this afternoon (listed in the next two sections). The generator refuses any green, and any recolour not listed with its evidence lane. Each tile is one test. The colour restates a verdict recorded in the campaign LEDGER ([`campaign_fresh_gravity/LEDGER.md`](../campaign_fresh_gravity/LEDGER.md)) or in the dated notes of [`THEORY_CANONICAL_2026-10-18.md`](../campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md), and the lane IDs on each tile point to the scripts that produced it. Verdicts come from committed scripts with pass/fail rules frozen *before* the data were read, plus a control that is deliberately broken and must fail. Where a colour depends on a rule added afterwards (post hoc), the tile says so.
 
 | colour | meaning |
 |---|---|
@@ -23,6 +23,15 @@ The picture is the 23 October morning state, drawn by [`make_status_board.py`](m
 | 🟦 **not decidable yet** | today's data cannot tell the theory from its rival |
 | 🟥 **fails** | the theory misses the test, and audits from the raw data confirm the miss |
 | ⬜ **open** | not yet answered, or waiting on data |
+
+## What changed this afternoon (23 October)
+
+Four lanes landed after the morning board: I1, J1 and K1 in [`rebuild_2026_10_22/`](../rebuild_2026_10_22/BRIEF.md), and step N of [C7](../covariant_push_2026_10_22/C7_aest_class/README.md). The summary is §1b of [`THEORY_V3_DRAFT.md`](../covariant_push_2026_10_22/THEORY_V3_DRAFT.md). One tile changed colour; nothing turned green.
+
+- **Linear growth, v4 AeST: 🟨 → 🟥** (C7). On FRW it runs away: P/P_ΛCDM reaches 10²–10⁴¹ by k = 10 h/Mpc, for the dust shape tried. The result is gauge- and tolerance-stable. The escape through a different early K-shape is untested.
+- **New tile: v4 well-posedness 🟥** (I1). v4 is ill-posed wherever the aether twists, which is everywhere off exact symmetry. Relayed signals can close loops in time. No healthy completion was found.
+- **One selector for the family stays ⬜ open, re-annotated** (J1, K1). The potential-depth selector fails (J1). The owner's idea that cold energy is "a dip into another dimension", tested as the braneworld Weyl term, also fails (K1); its tidal-charge form comes closest on the clusters.
+- **New tile: covariant completion 🟥** (I1, C7, F3). The trilemma: Solar-System screening needs γ_L; γ_L is well posed only with an untwisted aether; the untwisted form (v3) fails linear growth. The one open escape is a native nonlinear v3 run.
 
 ## What changed overnight (23 October)
 

@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
-"""The Crispy Fried Chicken status board, 23 October 2026 (morning). Plot only.
+"""The Crispy Fried Chicken status board, 23 October 2026 (afternoon). Plot only.
 
 Every tile restates a verdict recorded in campaign_fresh_gravity/LEDGER.md, THEORY_CANONICAL_2026-10-18.md, a committed
 lane of 22 October (doors_push_2026_10_22/, covariant_push_2026_10_22/, summarised in
-covariant_push_2026_10_22/THEORY_V3_DRAFT.md), or a committed overnight rebuild lane (rebuild_2026_10_22/: F1, F2, F3,
-G1, G2, H1, H2, H3; the v4 candidate is THEORY_V3_DRAFT.md section 1b). Layout and colours follow the 22 October board
-(kept as explainers/img/status_board_2026-10-22.png).
+covariant_push_2026_10_22/THEORY_V3_DRAFT.md), or a committed rebuild lane of 22-23 October (rebuild_2026_10_22/: F1,
+F2, F3, G1, G2, H1, H2, H3 overnight; I1, J1, K1 on 23 October; the v4 candidate is THEORY_V3_DRAFT.md section 1b),
+or C7's step N (covariant_push_2026_10_22/C7_aest_class/, committed 23 October). Layout and colours follow the
+22 October board (kept as explainers/img/status_board_2026-10-22.png); the 23 October morning board is kept as
+explainers/img/status_board_2026-10-23am.png.
 
-Re-scoring rule for this board: a tile changes colour only if a committed overnight lane changes it AND the recolour is
-listed in RECOLOURS with that lane as evidence; nothing turns green without a committed lane that passes it; unresolved
-reds stay red. Each tile records its 22 October colour (`prev`, None for a tile new on this board) so the checks below
-can enforce that rule.
+Re-scoring rule for this board: a tile changes colour only if a committed 22-23 October lane changes it AND the recolour
+is listed in RECOLOURS with that lane as evidence; nothing turns green without a committed lane that passes it;
+unresolved reds stay red. Each tile records its 22 October colour (`prev`, None for a tile new on 23 October) and its
+23 October morning colour (`am`; defaults to `prev`, None for a tile new this afternoon), so the checks below can
+enforce that rule against both earlier boards.
 
 kappa = 1/2 is FITTED; footings never pooled; cold energy is real gravitating mass, not a particle species;
 the theory is not closed.
@@ -38,13 +41,17 @@ COL = {"PASS": "#2f8f5b", "COND": "#d9a521", "OPEN": "#8a94a0", "FAIL": "#c4452f
 LAB = {"PASS": "pass", "COND": "conditional", "OPEN": "open", "FAIL": "fails", "UNDEC": "not decidable yet"}
 COLUMNS = ["Relativistic theory (the chassis)", "Galaxies", "The excess family (open)",
            "Cosmology and a0 over time", "The deep 'why' and the parent"]
-# Lane ids committed overnight 22-23 October (rebuild_2026_10_22/).
-LANE_NEW = re.compile(r"^(F[1-3]|G[12]|H[1-3])$")
+# Lane ids with a result committed 22-23 October: rebuild_2026_10_22/ (F1-F3, G1-G2, H1-H3 overnight; I1, J1, K1 on
+# 23 October) and C7 (step N, covariant_push_2026_10_22/C7_aest_class/, committed 23 October).
+LANE_NEW = re.compile(r"^(F[1-3]|G[12]|H[1-3]|I1|J1|K1|C7)$")
+_SAME = object()
 
 
-def T(col, name, st, note, lanes, prev, lab=None, new=False):
-    """One tile: column index, label, colour (status), note, evidence lane ids, 22 October colour, 23 OCT flag."""
-    return dict(col=col, name=name, st=st, note=note, lanes=list(lanes), prev=prev, lab=lab, new=new)
+def T(col, name, st, note, lanes, prev, lab=None, new=False, am=_SAME):
+    """One tile: column index, label, colour (status), note, evidence lane ids, 22 October colour, 23 OCT flag,
+    23 October morning colour (defaults to the 22 October colour)."""
+    return dict(col=col, name=name, st=st, note=note, lanes=list(lanes), prev=prev, lab=lab, new=new,
+                am=prev if am is _SAME else am)
 
 
 TILES = [
@@ -56,6 +63,9 @@ TILES = [
     T(0, "Leaf problem well-posed", "COND", "weak field: elliptic, unique; strong fields open", ["C8"], "COND"),
     T(0, "Causality: criterion A / B", "COND", "instantaneous constraints; faster-than-light signal ~1e-46 m/s^2", ["C5", "C8"],
       "COND", lab="B met, A violated"),
+    T(0, "v4 well-posedness", "FAIL",
+      "ill-posed where the aether twists (off symmetry); closed signal loops; no completion found", ["I1"], None,
+      new=True, am=None),
     T(0, "Lapse condition, realistic matter", "PASS", "all but extreme GRB jets (older chassis lane)", ["CFG312"], "PASS"),
     T(0, "Binary pulsars + GW170817", "PASS", "no radiative channel; <= 3e-14 of double-pulsar error", ["C8", "CFG291", "CFG311"], "PASS"),
     T(0, "Solar system + Cassini (screened)", "PASS", "Q2 2.8e7-5.1e9 inside bound at L* 24-90 pc; Mars 0.17", ["D7d", "C6"], "PASS"),
@@ -72,7 +82,7 @@ TILES = [
     T(1, "Isolated-galaxy lensing, inner", "PASS", "supply suffices <= 0.31 Mpc; blue lenses A 1.016", ["CFG804", "CFG829", "CFG840", "CFG902"], "PASS"),
     T(1, "Isolated-galaxy lensing, all radii", "UNDEC",
       "F2: frozen fail not robust (isolation leaks hosts); old +100 came from the supply edge, which v3/v4 lack",
-      ["CFG902", "CFG903", "F2"], "FAIL", new=True),
+      ["CFG902", "CFG903", "F2"], "FAIL", new=True, am="UNDEC"),
     T(1, "Tidal dwarfs, NGC 1052-DF2/DF4", "COND", "at Newton, if they captured no cold energy", ["CFG936", "CFG939"], "COND"),
     T(1, "Outer globulars: L* floor", "COND", "L* >= 21.7 / 22.9 pc (SPS M/L); unscreened law excluded", ["D10"], "COND"),
     T(1, "Globulars + ownership rule", "COND", "Newton ~1.6 sigma; 3 of 4 pops", ["CFG332", "CFG333"], "COND"),
@@ -90,7 +100,9 @@ TILES = [
     T(2, "Coma ultra-diffuse galaxies", "UNDEC", "+0.33 dex over the law, 2.4-2.6 sigma, fragile", ["CFG933", "CFG948"], "UNDEC"),
     T(2, "Red (early-type) lenses", "COND", "an IMF alpha-sigma relation removes it, if discs stay near Chabrier",
       ["CFG926"], "COND"),
-    T(2, "One selector for the family", "OPEN", "no one-constant selector fits all", ["CFG914", "CFG919", "CFG921", "CFG928"], "OPEN"),
+    T(2, "One selector for the family", "OPEN",
+      "J1 potential-depth selector fails; K1 braneworld Weyl term fails (tidal-charge form closest on clusters)",
+      ["CFG914", "CFG919", "CFG921", "CFG928", "J1", "K1"], "OPEN", new=True),
     # ---- column 3: cosmology and a0 over time ----
     T(3, "a0(z): native band vs a0 ~ H(z)", "UNDEC", "own BAO ruler band; data cannot decide yet", ["CFG689", "PAPER38"], "UNDEC"),
     T(3, "High-z on halo-free inputs", "UNDEC", "RC100 on the flat line", ["CFG303"], "UNDEC"),
@@ -105,10 +117,10 @@ TILES = [
       "old settling engine; F3/G1: belongs to the settling rules (not v3/v4); excess grows with resolution",
       ["CFG555", "CFG556", "F3", "G1"], "FAIL", new=True),
     T(3, "Linear growth, v3 Khronon", "FAIL", "F3: J'(0) = -1 removes the linear Newtonian term; empty mu_K window",
-      ["F3"], None, new=True),
-    T(3, "Linear growth, v4 AeST", "COND",
-      "H1: Newtonian term survives in the IR; nonlinear + native CMB pending; contact-term binding open",
-      ["H1", "H3"], None, new=True),
+      ["F3"], None, new=True, am="FAIL"),
+    T(3, "Linear growth, v4 AeST", "FAIL",
+      "runs away on FRW (P/P_ΛCDM 10²–10⁴¹ by 10 h/Mpc) for the dust shape tried; early-K escape untested",
+      ["C7", "H1", "H3"], None, new=True, am="COND"),
     T(3, "Structure growth, chassis alone", "FAIL", "~7x too fast; CMB lensing excludes", ["L341"], "FAIL"),
     T(3, "ALMA U4 (6 Nov), GS4 (28 Nov)", "OPEN", "harness ready, 3 kernels; expected unscorable", ["CFG806-U4", "CFG809", "CFG942", "D4"],
       "OPEN"),
@@ -130,6 +142,9 @@ TILES = [
       ["CFG951", "CFG954", "CFG955"], "OPEN", lab="open: none known"),
     T(4, "Energy books of settling", "OPEN", "not conserved; a repair needs new physics", ["CFG932", "CFG935"], "OPEN"),
     T(4, "Radiative stability (G12)", "COND", "needs UV new physics <~1e9 GeV", ["CFG320"], "COND"),
+    T(4, "Covariant completion", "FAIL",
+      "trilemma: screening needs γ_L; γ_L well-posed only untwisted; untwisted (v3) fails growth; open: native "
+      "nonlinear v3 run", ["I1", "C7", "F3"], None, new=True, am=None),
 ]
 
 # Reds that must stay red until a committed rebuild lane says otherwise.
@@ -137,9 +152,13 @@ TILES = [
 # (rebuild_2026_10_22/F2_outer_lensing/) found its frozen REAL FAILURE not robust (UNDECIDABLE: the old +100 came from
 # the supply edge, which v3/v4 lack, and the strict isolated sample leaks hosts). It is recoloured to UNDEC via RECOLOURS.
 MUST_STAY_RED = ["Cluster cores (318 eRASS1)", "Growth, zero-knob supply rule", "Law + a^1 growth + no EFE, local",
-                 "Dwarf satellites vs screened law", "Linear growth, v3 Khronon"]
-# Every permitted recolour on this board: tile -> (22 October colour, new colour, evidence lane that justifies it).
-RECOLOURS = {"Isolated-galaxy lensing, all radii": ("FAIL", "UNDEC", "F2")}
+                 "Dwarf satellites vs screened law", "Linear growth, v3 Khronon", "Linear growth, v4 AeST",
+                 "v4 well-posedness", "Covariant completion"]
+# Every permitted recolour on this board: tile -> (earlier colour, new colour, evidence lane that justifies it).
+# The earlier colour is the 22 October colour (F2, recoloured on the 23 October morning board) or the 23 October morning
+# colour (C7, recoloured this afternoon: v4's linear growth runs away on FRW for the dust shape tried).
+RECOLOURS = {"Isolated-galaxy lensing, all radii": ("FAIL", "UNDEC", "F2"),
+             "Linear growth, v4 AeST": ("COND", "FAIL", "C7")}
 WRAP = 56     # characters per note line at fontsize 7.8
 MAXL = 3      # note lines per tile
 
@@ -155,16 +174,17 @@ def check(tiles):
             errs.append(f"no evidence lane: {t['name']}")
         if t["st"] not in COL:
             errs.append(f"bad colour {t['st']}: {t['name']}")
-        changed = t["prev"] is not None and t["st"] != t["prev"]
-        if changed:
+        for base in dict.fromkeys(b for b in (t["prev"], t["am"]) if b is not None):   # vs 22 Oct, then 23 Oct am
+            if t["st"] == base:
+                continue
             if not any(LANE_NEW.match(x) for x in t["lanes"]):
-                errs.append(f"colour changed without an overnight lane: {t['name']}")
+                errs.append(f"colour changed without a 22-23 October lane: {t['name']}")
             rc = RECOLOURS.get(t["name"])
-            if rc is None or rc[:2] != (t["prev"], t["st"]) or rc[2] not in t["lanes"]:
-                errs.append(f"recolour not listed in RECOLOURS with its evidence lane: {t['name']}")
+            if rc is None or rc[:2] != (base, t["st"]) or rc[2] not in t["lanes"]:
+                errs.append(f"recolour {base}->{t['st']} not listed in RECOLOURS with its evidence lane: {t['name']}")
             if not t["new"]:
                 errs.append(f"recoloured tile not flagged 23 OCT: {t['name']}")
-        if t["st"] == "PASS" and t["prev"] != "PASS":
+        if t["st"] == "PASS" and (t["prev"] != "PASS" or t["am"] != "PASS"):
             errs.append(f"turned green: {t['name']} (needs a committed passing lane; refused on this board)")
         if t["prev"] is None and not t["new"]:
             errs.append(f"new tile not flagged as 23 October: {t['name']}")
@@ -192,7 +212,7 @@ def draw(tiles, out):
     top_in, bot_in = 1.25, 0.95                      # header and legend bands, inches
     ax = fig.add_axes([0.012, bot_in / H, 0.976, 1 - (top_in + bot_in) / H])
     ax.set_xlim(0, ncol); ax.set_ylim(-0.25, nmax + 0.65); ax.axis("off")
-    fig.text(0.015, 1 - 0.55 / H, "The Crispy Fried Chicken Status Board  ·  23 October 2026 (morning)", fontsize=24,
+    fig.text(0.015, 1 - 0.55 / H, "The Crispy Fried Chicken Status Board  ·  23 October 2026 (afternoon)", fontsize=24,
              fontweight="bold", color="#16201d")
     fig.text(0.015, 1 - 1.0 / H, "a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 fitted; footings 9.3603e-11 / 1.1312e-10 m/s^2 never "
              "pooled.  Chassis: Khronon (v3) or AeST (v4 candidate), screened by L*.  Lane ids on every tile.  "
@@ -218,8 +238,8 @@ def draw(tiles, out):
                                           transform=fig.transFigure, figure=fig))
         fig.text(lx + 0.019, ly, LAB[st], fontsize=10.5, va="center", color="#16201d")
         lx += 0.095
-    fig.text(0.47, ly + 0.11 / H, "23 OCT = tile added, recoloured or re-annotated from an overnight rebuild lane "
-             "(F1-F3, G1-G2, H1-H3).  PAPER59: DOI 10.5281/zenodo.23585319.", fontsize=9.0,
+    fig.text(0.47, ly + 0.11 / H, "23 OCT = tile added, recoloured or re-annotated on 23 October "
+             "(F1-F3, G1-G2, H1-H3, I1, J1, K1, C7 step N).  PAPER59: DOI 10.5281/zenodo.23585319.", fontsize=9.0,
              va="center", color="#4d5a56")
     fig.text(0.47, ly - 0.11 / H, "Cold energy (Omega_c/Omega_b = 5.364, an input) is real gravitating mass, not a particle species.",
              fontsize=9.0, va="center", color="#4d5a56")
@@ -231,10 +251,11 @@ def main():
     mutate = "--mutate" in sys.argv[1:]
     tiles = copy.deepcopy(TILES)
     if mutate:
-        tiles[7]["lanes"] = []                       # strip one tile's evidence lane: the checks must fail
+        next(t for t in tiles if t["name"] == "Unscreened law vs Cassini")["lanes"] = []   # strip one tile's lane
     errs = check(tiles)
-    print(f"{len(tiles)} tiles; {sum(t['new'] for t in tiles)} added or re-annotated from overnight lanes; "
-          f"{sum(1 for t in tiles if t['prev'] is not None and t['st'] != t['prev'])} recoloured vs 22 October")
+    print(f"{len(tiles)} tiles; {sum(t['new'] for t in tiles)} added or re-annotated on 23 October; "
+          f"{sum(1 for t in tiles if t['prev'] is not None and t['st'] != t['prev'])} recoloured vs 22 October; "
+          f"{sum(1 for t in tiles if t['am'] is not None and t['st'] != t['am'])} recoloured vs 23 October morning")
     if errs:
         for e in errs:
             print("CHECK FAIL:", e)
