@@ -22,6 +22,11 @@ and red lenses -> CONDITIONAL. Re-annotated, colour kept: isolated lensing at al
 running), and the archived dwarf cold-supply tile (P1; it stays archived: v3 has no supply rule). The first v3-only
 board (commit a77915b2de, image explainers/img/status_board_2026-10-23eve.png) is V3_BOARD, a fourth baseline: a grey
 tile takes a colour only through a RECOLOURS step STALE -> colour naming its own recompute lane (V3_REDO).
+Late evening: P4 (P4_v3_galaxy_tiles/) rotation curves -> CONDITIONAL, tidal dwarfs -> FAIL, galaxy groups -> PASS
+(the lane's verdict; it was green before it was greyed, so no new green), MeerKAT re-annotated (PASS), and the MW
+vertical force back from the archive (V3_ARCHIVED; only its recompute lane may return it) -> FAIL as an AQUAL disc;
+Q6 (Q6_v3_class/) native CMB -> FAIL and linear growth re-annotated (FAIL). A new tile ("BBN / radiation era", Q6) is
+refused by the guards (a tile on no earlier board) and is not drawn.
 
 Guards (check()):
   * colours of tiles on the main board cannot change, against the 22 October, 23 October morning, 23 October
@@ -69,8 +74,8 @@ COLUMNS = ["Relativistic theory (the chassis)", "Galaxies", "The excess family (
            "Cosmology and a0 over time", "The deep 'why' and the parent"]
 # Lane ids with a result committed 22-23 October: rebuild_2026_10_22/ (F1-F3, G1-G2, H1-H3 overnight; I1, J1, K1 and
 # the board audit N0 on 23 October) and C7 (step N, covariant_push_2026_10_22/C7_aest_class/, committed 23 October).
-# 23 October evening: S1, S2 (N0 recompute batches R1, R2), P1, P2 and M2 (rebuild_2026_10_22/).
-LANE_NEW = re.compile(r"^(F[1-3]|G[12]|H[1-3]|I1|J1|K1|C7|N0|S[12]|P[12]|M2)$")
+# 23 October evening: S1, S2 (N0 recompute batches R1, R2), P1, P2 and M2; late evening: P4 and Q6 (rebuild_2026_10_22/).
+LANE_NEW = re.compile(r"^(F[1-3]|G[12]|H[1-3]|I1|J1|K1|C7|N0|S[12]|P[124]|M2|Q6)$")
 RETIRE_EVIDENCE = {"N0"}           # the only lane allowed to move a tile off the board into ARCHIVE
 # N0's recompute batches (AUDIT.md, "Recompute batches to launch") and the lane id each one runs under.
 RECOMPUTE = {"R1": "S1", "R2": "S2", "R3": "S3", "R4": "S4", "R5": "P3", "R6": "S4", "R7": "Q6"}
@@ -132,6 +137,15 @@ V3_REDO = {
     'Coma ultra-diffuse galaxies': 'S1', 'Red (early-type) lenses': 'S2', 'High-z on halo-free inputs': 'S4',
     'CRISTAL z~5 / ALESS 122.1': 'S4', 'Native CMB (patched CLASS)': 'Q6', 'Radiative stability (G12)': 'P3',
 }
+# The 16 tiles archived on the first v3-only board. One returns to the board only when its recompute lane
+# (REDO_BY_TILE) has computed it for v3: that lane must be on the tile and must be the last RECOLOURS step.
+V3_ARCHIVED = {
+    'v4 well-posedness', 'Lapse condition, realistic matter', 'Structural order (G0)', 'Zero-field nonlinear, ungated',
+    'Globulars + ownership rule', 'MW vertical force (round rule)', 'Dwarf cold supply (chemistry)',
+    'Cosmic shear, native inputs', 'Native shear rerun (CFG960)', 'CMB lensing (Planck PR4)',
+    'Growth, zero-knob supply rule', 'Linear growth, v4 AeST', 'Structure growth, chassis alone',
+    'Ownership from an action', 'Physical parent of the shear engine', 'Energy books of settling',
+}
 
 
 def T(col, name, st, note, lanes, prev, lab=None, new=False, am=_SAME):
@@ -176,9 +190,12 @@ TILES = [
     S(0, "Black holes (EHT, LIGO ringdown)", "COND", "hidden mild inner-horizon defect (older chassis)",
       ["CFG318", "CFG319"], "R5"),
     # ---- column 1: galaxies ----
-    S(1, "Rotation curves (SPARC RAR)", "PASS", "rms 0.101 / 0.099 dex, algebraic law, not AQUAL discs",
-      ["CFG695", "CFG919"], "R3"),
-    T(1, "Local a0 from MeerKAT", "PASS", "0.9-1.4e-10, matches SPARC", ["CFG301", "CFG309"], "PASS"),
+    # P4 (recomputed for v3, 23 October late evening): was grey (old result PASS: rms 0.101 / 0.099 dex, algebraic law)
+    T(1, "Rotation curves (SPARC RAR)", "COND",
+      "one Υ per galaxy, EFE solved (109): rms 0.054/0.054 dex; median Υ 0.52 / 0.44 (alt below the 0.50–0.80 "
+      "window); χ² line fails both (63–64% acceptable; ν_mono same)", ["P4"], "PASS", new=True),
+    T(1, "Local a0 from MeerKAT", "PASS", "a0 1.31e-10 vs SPARC same recipe 1.21e-10 (+0.033 dex, line 0.15)",
+      ["CFG301", "CFG309", "P4"], "PASS", new=True),
     # S2 (recomputed for v3, 23 October evening): was grey (old result PASS: supply suffices <= 0.31 Mpc, A 1.016)
     T(1, "Isolated-galaxy lensing, inner", "COND",
       "v3 blue A 0.88 / 0.80; EFE ≤ 0.004 here; decided by hot CGM and M★; before S4's μ_K² term", ["S2"], "PASS",
@@ -187,12 +204,20 @@ TILES = [
       "spectroscopic isolation (P2): N too small (needs ~22–26k lenses); data favour the catalogue's EFE; "
       "μ_K² to add (S4)",
       ["CFG902", "CFG903", "F2", "P2"], "FAIL", new=True, am="UNDEC"),
-    S(1, "Tidal dwarfs, NGC 1052-DF2/DF4", "COND", "at Newton if they captured no cold energy; host EFE untested",
-      ["CFG936", "CFG939"], "R1"),
+    # P4 (v3): was grey (old result COND: at Newton if they captured no cold energy; host EFE untested)
+    T(1, "Tidal dwarfs, NGC 1052-DF2/DF4", "FAIL",
+      "host field solved: TDGs −0.59/−0.62 dex, DF2/DF4 −1.66/−1.74 ln below v3; no capture rule in v3", ["P4"],
+      "COND", new=True),
     T(1, "Outer globulars: L* floor", "COND", "L* >= 21.7 / 22.9 pc (SPS M/L); unscreened law excluded", ["D10"], "COND"),
     S(1, "Central ellipticals (SLUGGS)", "UNDEC", "~3 sigma with measured tracers (nu_mono)", ["CFG528b"], "R4"),
-    S(1, "Galaxy groups (BFJR)", "PASS", "supply closes; CFG543 no-edge row +0.010 / -0.010, EFE unchecked",
-      ["CFG540", "CFG543"], "R4"),
+    # P4 (v3): was grey (old result PASS: supply closes; CFG543 no-edge row +0.010 / -0.010, EFE unchecked)
+    T(1, "Galaxy groups (BFJR)", "PASS",
+      "isolated: +0.010/−0.010 dex (Z ±0.31), no supply rule; ABOVE LAW if g_e ≥ 0.03 a0 (Z 4.7/4.5); no group "
+      "field on disk", ["P4"], "PASS", lab="pass (lane verdict, isolated)", new=True),
+    # P4 (v3): back from the archive (old result PASS for the round rule, retired by N0), computed for v3 as an AQUAL disc
+    T(1, "MW vertical force (round rule)", "FAIL",
+      "v3 has no round rule; AQUAL disc K_z,1.1 92.3/96.9 vs 66.4 ± 2.2, χ² 178/251 vs 67.5; all four baryon models",
+      ["P4"], "PASS", new=True),
     S(1, "MW outer slope (Gaia)", "UNDEC", "3-5 sigma steeper (round rule, no AQUAL, no EFE)",
       ["CFG532b", "CFG533"], "R3"),
     # ---- column 2: the excess family ----
@@ -217,10 +242,13 @@ TILES = [
     T(3, "a0(z): native band vs a0 ~ H(z)", "UNDEC", "own BAO ruler band; data cannot decide yet", ["CFG689", "PAPER38"], "UNDEC"),
     S(3, "High-z on halo-free inputs", "UNDEC", "RC100 on the flat line (nu_mono)", ["CFG303"], "R4"),
     S(3, "CRISTAL z~5 / ALESS 122.1", "UNDEC", "stress tests: not robust (nu_mono)", ["CFG307", "CFG308"], "R4"),
-    S(3, "Native CMB (patched CLASS)", "OPEN", "the patch is AeST (v4); v3 at finite mu_K not run", ["C7", "C2"], "R7"),
+    # Q6 (v3): was grey (old result OPEN: the patch is AeST (v4); v3 at finite mu_K not run)
+    T(3, "Native CMB (patched CLASS)", "FAIL",
+      "literal v3 has no radiation era (BS quadratic K's stiff a^-6 term); on a dust background, plik-lite Δχ² vs "
+      "ΛCDM +13891 at the cap, +18.7 at μ_K 2542", ["Q6"], "OPEN", new=True),
     T(3, "Linear growth, v3 Khronon", "FAIL",
-      "BS cap mu_K <= 14.8 h/Mpc gives sigma8 ~0.39; needs >= 411 (M1 erratum: cause is the cap, not J'(0)); nonlinear -> L1",
-      ["F3", "M1"], None, new=True, am="FAIL"),
+      "Boltzmann σ8 0.061 at the cap (F3 ODE 0.391); 5% growth needs μ_K > 2542; cause is the BS cap (M1)",
+      ["F3", "M1", "Q6"], None, new=True, am="FAIL"),
     T(3, "ALMA U4 (6 Nov), GS4 (28 Nov)", "OPEN",
       "harness ready, expected unscorable; v3 kernel sealed as AG4e; AQUAL-disc addendum due (S3)",
       ["CFG806-U4", "CFG809", "CFG942", "D4", "AG4e"], "OPEN", new=True),
@@ -257,8 +285,6 @@ ARCHIVE = [
       "ungated nu_mono chassis on open FRW", "L1's native nonlinear run"),
     A(1, "Globulars + ownership rule", "COND", "Newton ~1.6 sigma; 3 of 4 pops", ["CFG332", "CFG333"],
       "ownership classes; v3 has no ownership", "outer globulars, L* floor (D10)"),
-    A(1, "MW vertical force (round rule)", "PASS", "beats MOND phantom disc 32/32", ["CFG516"],
-      "the round enclosed-mass rule is not in v3", "MW vertical force, AQUAL disc: to compute (S3), at risk"),
     A(2, "Dwarf cold supply (chemistry)", "COND",
       "own [Fe/H] supply if zeta = 1 winds; P1 MDF test: supply confirmed for the median, not 2σ-robust", ["E6", "P1"],
       "catchment supply; v3's dust has no supply or capture rule", "dust capture into satellites (L1)"),
@@ -294,23 +320,25 @@ MUST_STAY_RED = ["Cluster cores (326 eRASS1)", "Growth, zero-knob supply rule", 
                  "v4 well-posedness", "Covariant completion"]
 # Every permitted recolour, as an ordered chain of steps per tile: [(earlier colour, new colour, evidence lane), ...].
 # F2 (23 October morning) and C7 (23 October afternoon; that tile is now in ARCHIVE, red), then N0's 15 STALE tiles,
-# then (23 October evening) the four grey tiles recomputed for v3 by their recompute lanes S1 and S2.
+# then (23 October evening) the four grey tiles recomputed for v3 by their recompute lanes S1 and S2, then (late
+# evening) P4's four grey tiles and the MW vertical force back from the archive, and Q6's native CMB.
 RECOLOURS = {"Isolated-galaxy lensing, all radii": [("FAIL", "UNDEC", "F2")],
              "Linear growth, v4 AeST": [("COND", "FAIL", "C7")],
              "Strong coupling": [("COND", "STALE", "N0")],
              "Black holes (EHT, LIGO ringdown)": [("COND", "STALE", "N0")],
-             "Rotation curves (SPARC RAR)": [("PASS", "STALE", "N0")],
+             "Rotation curves (SPARC RAR)": [("PASS", "STALE", "N0"), ("STALE", "COND", "P4")],
              "Isolated-galaxy lensing, inner": [("PASS", "STALE", "N0"), ("STALE", "COND", "S2")],
-             "Tidal dwarfs, NGC 1052-DF2/DF4": [("COND", "STALE", "N0")],
+             "Tidal dwarfs, NGC 1052-DF2/DF4": [("COND", "STALE", "N0"), ("STALE", "FAIL", "P4")],
              "Central ellipticals (SLUGGS)": [("UNDEC", "STALE", "N0")],
-             "Galaxy groups (BFJR)": [("PASS", "STALE", "N0")],
+             "Galaxy groups (BFJR)": [("PASS", "STALE", "N0"), ("STALE", "PASS", "P4")],
+             "MW vertical force (round rule)": [("PASS", "FAIL", "P4")],
              "MW outer slope (Gaia)": [("UNDEC", "STALE", "N0")],
              "Dwarf satellites vs screened law": [("FAIL", "STALE", "N0"), ("STALE", "FAIL", "S1")],
              "Coma ultra-diffuse galaxies": [("UNDEC", "STALE", "N0"), ("STALE", "FAIL", "S1")],
              "Red (early-type) lenses": [("COND", "STALE", "N0"), ("STALE", "COND", "S2")],
              "High-z on halo-free inputs": [("UNDEC", "STALE", "N0")],
              "CRISTAL z~5 / ALESS 122.1": [("UNDEC", "STALE", "N0")],
-             "Native CMB (patched CLASS)": [("OPEN", "STALE", "N0")],
+             "Native CMB (patched CLASS)": [("OPEN", "STALE", "N0"), ("STALE", "FAIL", "Q6")],
              "Radiative stability (G12)": [("COND", "STALE", "N0")]}
 RECIPE = ("Crispiest recipe (v3): General relativity plus a preferred cosmic time (Khronon) and one extra field giving "
           "the simple MOND law (AQUAL, external-field effect included, κ fitted), switched off within L★ ≥ 22 pc, "
@@ -376,8 +404,15 @@ def check(tiles, archive, recolours=None):
             used = _chain(recolours.get(n, []), "STALE", t["st"])
             if not used or used[0][2] != V3_REDO.get(n):
                 errs.append(f"grey tile recoloured by a lane other than its recompute lane {V3_REDO.get(n)}: {n}")
-        if t["st"] == "PASS" and any(b != "PASS" for b in (t["prev"], t["am"], pm, v3)):
+        # no new green: a grey tile may return to green only if every earlier verdict was green (the recompute lane
+        # check above makes the step out of grey its own lane); grey itself is not a verdict
+        if t["st"] == "PASS" and any(b != "PASS" for b in (t["prev"], t["am"], pm, v3) if b != "STALE"):
             errs.append(f"turned green: {n} (needs a committed passing lane; refused on this board)")
+        if n in V3_ARCHIVED:
+            lane = REDO_BY_TILE.get(n)
+            rc = recolours.get(n) or [(None, None, None)]
+            if lane is None or lane not in t["lanes"] or rc[-1][2] != lane or not t["new"]:
+                errs.append(f"archived tile back on the board without being recomputed by its lane {lane}: {n}")
         if t["st"] == "STALE":
             if pm is None or t["was"] != pm:
                 errs.append(f"STALE tile's 'was' colour is not its 23 October afternoon colour: {n}")
@@ -493,7 +528,7 @@ def draw(tiles, out):
     fig.text(0.65, ly, "23 OCT = added, recoloured or re-annotated on 23 October.  PAPER59: DOI 10.5281/zenodo.23585319.",
              fontsize=9.0, va="center", color="#4d5a56")
     fig.text(0.015, 0.40 / H, "Grey, dashed = computed for an older model (board audit N0): the old result is shown as "
-             "'was', and the tile names its recompute lane (S1-S4, P3, P4, Q6).  The 16 tiles that tested only retired "
+             "'was', and the tile names its recompute lane (S1-S4, P3, P4, Q6).  The tiles that tested only retired "
              "models are archived in img/status_board_archive_retired.png.", fontsize=9.0, va="center", color="#4d5a56")
     fig.text(0.015, 0.18 / H, "Cold energy (Omega_c/Omega_b = 5.364, an input) is real gravitating mass, not a particle "
              "species.", fontsize=9.0, va="center", color="#4d5a56")
@@ -557,7 +592,7 @@ def broken_cases():
         _by(t, "MW outer slope (Gaia)")["was"] = "COND"
 
     def c7(t, a, r):   # STALE tile with no recompute lane
-        _by(t, "Rotation curves (SPARC RAR)")["redo"] = None
+        _by(t, "Black holes (EHT, LIGO ringdown)")["redo"] = None
 
     def c8(t, a, r):   # a must-stay-red tile on the board turned blue
         _by(t, "Cluster cores (326 eRASS1)")["st"] = "UNDEC"
@@ -569,8 +604,9 @@ def broken_cases():
         t.append(dict(_by(a, "Energy books of settling"), prev="OPEN", am="OPEN", lab=None, new=False, was=None,
                       redo=None))
 
-    def c11(t, a, r):  # a STALE tile turned green
-        x = _by(t, "Galaxy groups (BFJR)"); x.update(st="PASS", was=None, redo=None)
+    def c11(t, a, r):  # a recomputed grey tile turned green although it was not green before greying
+        r["Tidal dwarfs, NGC 1052-DF2/DF4"][-1] = ("STALE", "PASS", "P4")
+        _by(t, "Tidal dwarfs, NGC 1052-DF2/DF4")["st"] = "PASS"
 
     def c12(t, a, r):  # retire a tile with no retiring reason
         _by(a, "Structural order (G0)")["why"] = " "
@@ -603,6 +639,17 @@ def broken_cases():
     def c20(t, a, r):  # a recomputed tile that still carries its grey 'was' and recompute lane
         _by(t, "Isolated-galaxy lensing, inner").update(was="PASS", redo="S2")
 
+    def c21(t, a, r):  # bring an archived tile back to the board unchanged (not recomputed for v3)
+        x = a.pop(a.index(_by(a, "Ownership from an action")))
+        t.append(dict(x, prev="OPEN", am="OPEN", lab=None, new=True, was=None, redo=None))
+
+    def c22(t, a, r):  # the MW vertical force back from the archive without its recompute lane P4
+        _by(t, "MW vertical force (round rule)")["lanes"] = ["CFG516"]
+
+    def c23(t, a, r):  # a STALE tile turned green with no recompute (its old green kept)
+        x = _by(t, "Galaxy groups (BFJR)"); x.update(lanes=["CFG540", "CFG543"])
+        r["Galaxy groups (BFJR)"].pop()
+
     return [("archive a must-stay-red tile with evidence C7, not N0", c1),
             ("silently drop an archived red tile", c2),
             ("drop a board tile without archiving it", c3),
@@ -613,7 +660,7 @@ def broken_cases():
             ("must-stay-red board tile turned blue", c8),
             ("archived red repainted", c9),
             ("tile on board and in archive", c10),
-            ("STALE tile turned green", c11),
+            ("recomputed grey tile turned green, was not green", c11),
             ("archived without a retiring reason", c12),
             ("rename without RENAMES", c13),
             ("grey tile coloured without a RECOLOURS step", c14),
@@ -622,7 +669,10 @@ def broken_cases():
             ("recomputed grey tile not flagged 23 OCT", c17),
             ("must-stay-red grey tile recomputed to conditional", c18),
             ("v3-board tile retired after N0", c19),
-            ("recomputed tile keeps 'was'/recompute lane", c20)]
+            ("recomputed tile keeps 'was'/recompute lane", c20),
+            ("archived tile back on the board unchanged", c21),
+            ("archived tile back without its recompute lane", c22),
+            ("grey tile back to its old green with no recompute", c23)]
 
 
 def selftest():
