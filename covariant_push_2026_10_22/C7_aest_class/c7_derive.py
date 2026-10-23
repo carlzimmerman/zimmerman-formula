@@ -565,6 +565,23 @@ for gname, SYS, DPR in (("sync", SYS_S, DPR_S), ("newt", SYS_N, DPR_N)):
     d5[gname] = (str(sp.cancel(sp.expand(SYS["E"] - Ep_c))), str(sp.cancel(sp.expand(DPR - dpr_c))))
 check("D5_cform", all(v == ("0", "0") for v in d5.values()),
       f"C-form E' and dp/rho minus derived (sync, newt): {d5}", "all 0")
+# D6: evolution variable chi = phi + Q alpha (gauge-invariant) in place of alpha; with Q alpha = chi - a Q theta/k^2:
+#   chi' = a (gam + Q E) - 3 H ca2 (chi - a Q theta/k^2)
+#   E'   = -H E + (a/K_B){K' chi - (2-K_B)[gam + (H/a + (1+lam_c) Q) chi - 3 ca2 (H/a)(chi - a Q theta/k^2)]}
+CH = sp.Symbol("CHI")
+gam_x = ca2s * (rhoh * de + k**2 / A_**2 * (KB * EE + (2 - KB) * CH)) / k1
+chip_x = A_ * (gam_x + Qs * EE) - 3 * Hh_ * ca2s * (CH - A_ * Qs * th / k**2)
+Ep_x = -Hh_ * EE + A_ / KB * (k1 * CH - (2 - KB) * (gam_x + (Hh_ / A_ + (1 + lamc) * Qs) * CH
+                                                    - 3 * ca2s * Hh_ / A_ * (CH - A_ * Qs * th / k**2)))
+d6 = {}
+for gname, SYS in (("sync", SYS_S), ("newt", SYS_N)):
+    chi_e = A_ * Qs * th / k**2 + Qs * al
+    dchi = sp.expand(Dt(chi_e).subs({sp.Derivative(th, tau): SYS["theta"], sp.Derivative(al, tau): SYS["alv"]}))
+    r1 = sp.cancel(sp.expand(dchi - chip_x.subs(CH, chi_e)))
+    r2 = sp.cancel(sp.expand(SYS["E"] - Ep_x.subs(CH, chi_e)))
+    d6[gname] = (str(r1), str(r2))
+check("D6_chi_form", all(v == ("0", "0") for v in d6.values()),
+      f"chi' and E' in (delta, theta, E, chi) minus derived (sync, newt): {d6}", "all 0; no metric term")
 # C-form ICs (synchronous; C = curvature_ini/2, c = c_ad2, a1 = a/tau, I0 = K' a^3)
 ic_c = {dco: -(1 + ww) / (2 + 3 * cc - 3 * ww) * C * k**2 * tt**2,
         tco: -cc * k**4 * C * tt**3 / ((4 - 3 * cc) * (2 + 3 * cc - 3 * ww)),
