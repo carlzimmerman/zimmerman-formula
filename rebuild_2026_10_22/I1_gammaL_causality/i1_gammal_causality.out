@@ -1,0 +1,35 @@
+  K1 Minkowski first order: Q_0*Derivative(a1(t, x, y, z), x) + Q_0*Derivative(a2(t, x, y, z), y) + Q_0*Derivative(a3(t, x, y, z), z) + Derivative(varphi(t, x, y, z), (x, 2)) + Derivative(varphi(t, x, y, z), (y, 2)) + Derivative(varphi(t, x, y, z), (z, 2))
+  K1 FRW background: 0; FRW first order: (Derivative(B1(t, x, y, z), x)*Derivative(phibar(t), t) + Derivative(B2(t, x, y, z), y)*Derivative(phibar(t), t) + Derivative(B3(t, x, y, z), z)*Derivative(phibar(t), t) + Derivative(varphi(t, x, y, z), (x, 2)) + Derivative(varphi(t, x, y, z), (y, 2)) + Derivative(varphi(t, x, y, z), (z, 2)))/a(t)**2
+K1 PASS unit-norm residual 0; Minkowski X0 0; X1 - div(grad varphi + Q0 A_i) = 0; d_t in X1: False; FRW X0 0; d_t varphi in FRW X1: False (other d_t: ['Derivative(phibar(t), t)']) all residuals 0 and no d_t (Minkowski); FRW background 0, no d_t varphi
+  K2 nonzero w^2 root(s): [(-K_2*K_B*Q_0**2*(L_s**2*k**2 + 2*lambda + 2)/2 + K_2*Q_0**2*(L_s**2*k**2 + 2*lambda + 2) + K_B*k**2*(-K_B*L_s**2*k**2 - 2*K_B*lambda + 2*L_s**2*k**2 + 4*lambda - 4)/4 + 2*k**2)/(K_2*K_B)]
+K2 PASS det degree in omega 4; residual vs C5 H10 closed form [0] degree 4 AND residual 0
+  K3 A = lim w^2/k^4 = L_s**2*(2 - K_B)/(4*K_2)
+K3 PASS all k-coefficients of w^2 nonnegative (lambda>0, lambda=0): [True, True]; A = L_s**2*(2 - K_B)/(4*K_2) > 0: True every w^2 root real >= 0 AND A > 0
+  K4 kappa_c^2 = -M**2*w**2 + (-B*w**2 + 1)**2/(4*A*w**2); Im/(kappa/(gamma w)) by angle: {'0.000': 0.04471017333895799, '0.262': 0.2625226644958263, '0.524': 0.5017280642550888, '0.785': 0.7081053687690344, '1.047': 0.866601984650393, '1.309': 0.9661932207787925, '1.571': 0.999999499999875}; below/above kc: 0/7.09e+04
+K4 PASS p2 residual 0, Y-quadratic residual 0; w=0 max|Im| 0; |Im| just below/above kc 0/7.09e+04; max Im ratio over 7 directions 0.999999 (a) real at w=0, (b) complex iff kappa > kappa_c, (c) max ratio within 1e-2 of 1
+K5 PASS |Pi M khat|^2 residual 0; toroidal solution residual [0, 0, 0]; source residual [0, 0, 0] all residuals 0 (twist forced by the anisotropic capped-F response)
+K6 PASS e0 = a1*e1 + a2*e2 + a3*e3; dt - (dtau + a.dx) = O(a^2) residual 0 residual 0 -> Delta t = l/v + loop integral of a.dx
+  K7 canonical: J_d(Sun) = -5.6842e-04 (2x grid -5.9067e-04, rel 0.0391); near-Sun max 9.665e-03; loop flux -1.705e-01; Kuzmin sanity [-2.92086993e-17 -1.06604854e-16]
+  K7 alt: J_d(Sun) = -5.2763e-04 (2x grid -5.4826e-04, rel 0.0391); near-Sun max 8.991e-03; loop flux -1.593e-01; Kuzmin sanity [-2.71146473e-17 -1.00082639e-16]
+  K7 range w_100AU: 3.13e-23 .. 3.06e-20
+  K7 range w_1kpc: 1.1e-15 .. 1.08e-12
+  K7 range lambda_c_100AU_m: 1.46e-05 .. 0.119
+  K7 range lambda_c_1kpc_m: 511 .. 4.2e+06
+  K7 range rate_2kc_100AU_per_s: 8.93e+29 .. 7.15e+36
+  K7 range rate_2kc_1kpc_per_s: 7.23e+14 .. 5.81e+21
+  K7 range dt_gal_loop_s: 0.00399 .. 3.92
+  K7 range v_needed_gal_c: 5.25e+11 .. 5.16e+14
+  K7 range lambda_needed_gal_m: 901 .. 7.44e+06
+  K7 range dt_ss_loop_s: 3.12e-18 .. 3.05e-15
+  K7 range lambda_needed_ss_m: 7.28e-06 .. 0.0597
+  K7 range vg_lab_1km_c: 1.66e+13 .. 2.78e+15
+  K7 reference point: {"foot": "canonical", "K_B": "0.05", "c_s": "1", "mu_inv_Mpc": "1", "Lstar_pc": "24", "Q0_per_m": "5.12e-24", "ell_F_Mpc": "1.43", "K2": "39", "sqrtA_m": "8.28e+16", "x_e": "2.6", "w_100AU": "2.73e-20", "kappa_c_100AU_per_m": "221", "lambda_c_100AU_m": "0.0284", "rate_2kc_100AU_per_s": "4.21e+30", "w_1kpc": "9.58e-13", "kappa_c_1kpc_per_m": "6.31e-06", "lambda_c_1kpc_m": "9.96e+05", "rate_2kc_1kpc_per_s": "3.42e+15", "dt_gal_loop_s": "3.48", "v_needed_gal_c": "5.92e+11", "lambda_needed_gal_m": "1.76e+06", "dt_ss_loop_s": "2.73e-15", "v_needed_ss_c": "7.32e+19", "lambda_needed_ss_m": "0.0142", "vg_lab_1km_c": "1.66e+14"}
+K7 PASS Omega at Sun, grid x2 rel change: canonical 0.0391, alt 0.0391; ring kernel vs quadrature 1e-15 < 0.10 (and ring kernel < 1e-6)
+  K8a time derivatives introduced by q->g: ['Derivative(H00(t, x, y, z), t)', 'Derivative(varphi(t, x, y, z), (t, 2))']
+  K8a reduced roots (w, Krein): [(9.582568153347388, 6372.247619507753), (10.44865482186355, -7576.167619507753)]
+  K8b aux sigma: {"eps=1/100|k=10": {"max_Im_w": 25.878846840768023, "max_Im_w_over_k": 2.587884684076802, "krein_of_real_positive_roots": [60649334.18172084]}, "eps=1/100|k=100": {"max_Im_w": 254.1332780177565, "max_Im_w_over_k": 2.541332780177565, "krein_of_real_positive_roots": [65048979984307.21]}, "eps=1/100|k=1000": {"max_Im_w": 2540.87154192832, "max_Im_w_over_k": 2.5408715419283197, "krein_of_real_positive_roots": [6.509493205886606e+19]}, "eps=-1/100|k=10": {"max_Im_w": 17.638757137071593, "max_Im_w_over_k": 1.7638757137071592, "krein_of_real_positive_roots": []}, "eps=-1/100|k=100": {"max_Im_w": 179.74024858772964, "max_Im_w_over_k": 1.7974024858772963, "krein_of_real_positive_roots": []}, "eps=-1/100|k=1000": {"max_Im_w": 1797.734590938491, "max_Im_w_over_k": 1.797734590938491, "krein_of_real_positive_roots": []}}
+K8 PASS static part of (box phi + theta Q) - (q DD phi + theta Q) = 0 residual 0 (health reported)
+K9 PASS lab signal 1.217e-46 m/s^2 vs C8 1.2e-46 (rel 0) < 1e-2
+  VERDICT (frozen rule): ILL-POSED (where the aether twists)
+  runtime 5.8 s, max RSS 0.470 GB
+I1_GAMMAL_CAUSALITY COMPLETE: 9/9 checks PASS.
