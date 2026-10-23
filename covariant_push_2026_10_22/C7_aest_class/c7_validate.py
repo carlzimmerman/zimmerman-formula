@@ -33,6 +33,8 @@ VAN = os.path.join(BLD, "class_vanilla", "class")
 AEST_DIR = os.path.join(BLD, "class_aest_mutate" if MUT else "class_aest")
 AEST = os.path.join(AEST_DIR, "class")
 RUNS = os.path.join(BLD, f"runs_validate{TAG}")
+import shutil
+shutil.rmtree(RUNS, ignore_errors=True)   # fresh run directory (CLASS never reads stale output)
 os.makedirs(RUNS, exist_ok=True)
 OUT = open(os.path.join(HERE, f"c7_validate{TAG}.out"), "w")
 RES = {"mutate": MUT, "checks": {}}
@@ -82,7 +84,8 @@ assert patch_ok and van_src_ok
 # ------------------------------------------------------------------ run helpers
 ENV = dict(os.environ, OMP_NUM_THREADS="1")
 BASE = {"output": "tCl,pCl,lCl,mPk", "lensing": "yes", "l_max_scalars": 2600, "P_k_max_1/Mpc": 1.0,
-        "write_parameters": "no", "thermodynamics_verbose": 1, "background_verbose": 2}
+        "write_parameters": "no", "thermodynamics_verbose": 1, "background_verbose": 2,
+        "overwrite_root": "yes"}   # CLASS v3 otherwise writes _01_, _02_, ... and the reader would see stale _00_ files
 PLANCK = {"omega_b": 0.02237, "h": 0.6736, "A_s": 2.1e-9, "n_s": 0.9649, "tau_reio": 0.0544}   # V1 parameters
 OMC_PL = 0.1200
 CAPTION = {"omega_b": 0.02235, "100*theta_s": 1.04171, "A_s": 2.078e-9, "n_s": 0.963, "tau_reio": 0.049,
@@ -108,11 +111,13 @@ def run(name, binary, params):
         for k_, v_ in p.items():
             fh.write(f"{k_} = {v_}\n")
     t = time.time()
+    t_launch = time.time()
     r = subprocess.run(["nice", "-n", "15", binary, ini], capture_output=True, text=True, env=ENV)
     if r.returncode != 0:
         raise RuntimeError(f"{name}: CLASS failed: {r.stdout[-500:]} {r.stderr[-500:]}")
+    assert os.path.getmtime(root + "_cl_lensed.dat") >= t_launch - 1, "stale-output guard"
     log = r.stdout
-    out = {"cl": np.loadtxt(root + "00_cl_lensed.dat"), "pk": np.loadtxt(root + "00_pk.dat")}
+    out = {"cl": np.loadtxt(root + "_cl_lensed.dat"), "pk": np.loadtxt(root + "_pk.dat")}
     m = re.search(r"100\*theta_s = ([0-9.]+)", log)
     out["theta_s"] = float(m.group(1)) if m else np.nan
     m = re.search(r"baryon drag stops.*?\n.*?\n\s+with comoving sound horizon rs = ([0-9.]+)", log)

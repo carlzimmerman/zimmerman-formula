@@ -1,13 +1,20 @@
 # C7_aest_class: AeST's own linear CMB and P(k), from a patched CLASS v3.3.4
 
-## Verdict (milestone 4 of 5)
+## Verdict (milestone 5 of 5): CRISP FINDING (numbers only; the frozen criteria define no χ² verdict)
 
-**RUNNABLE NOW.** The patched CLASS reproduces pristine ΛCDM CLASS in AeST's exact dust limit to 2.2×10⁻⁶. It passes the
-convergence, gauge and initial-condition checks. The MUTATE build breaks it. So the frozen "native prediction ready"
-conditions hold.
+**1. Every BBN-compatible small-K_B configuration runs away at linear order.** That covers v4 (λ_s = ∞, λ_c = 0,
+K_B ∈ {0.01, 0.05, 0.078}), N1 and N2.
+- At SZ21's caption parameters the computed P(k)/P_ΛCDM reaches 10²–10⁴¹ by k ≤ 10 h/Mpc, and χ² is 1.2×10³ to infinite.
+- The result is gauge-consistent to ≤ 7.8×10⁻⁴ and converged to ≤ 5.3×10⁻⁶ (tol 10⁻⁹ vs 10⁻⁷). It is a solution of the
+  derived equations, not a numerical artefact.
 
-No native spectrum has been confronted with data yet: that is step N. The numbers in §Milestone 4 are code validation,
-not a test of the theory.
+**2. SZ21's own benchmarks (K_B = 0.5 Cosh, 0.1 Exp) do not run away.** With the dust abundance (FITTED) and the six
+standard parameters refitted to plik-lite + low-ℓ:
+- at g = 1 (the paper's convention) they match the ΛCDM refit (Δχ² = +0.16 and −0.09);
+- at the physical g = 1 − K_B/2 (λ_s = ∞) the Cosh benchmark gives Δχ² = +118.7 and H₀ = 55.6.
+
+This tests AeST's dust and gravity sectors only. The a₀ sector is absent at linear order on FRW. Ω_aest is a FITTED
+initial condition. Never "the framework fits the CMB".
 
 This lane tests AeST's dust sector and G_cosmo/G_N, not the galactic law: the a₀ term is absent at linear order on FRW.
 Ω_aest (the Ω_c-like density) is a FITTED initial condition.
@@ -141,12 +148,77 @@ All numbers are in `c7_validate_results.json`.
 - **Exploratory runs.** A few CLASS smoke runs were made in a scratch directory before `c7_validate.py` existed, to check
   that the build ran. They are not scored, and the thresholds were frozen before them (08daade3f8).
 
-## What this does not show (yet)
+## Milestone 5: native spectra and fits (`c7_native.py`, 7/7 checks; MUTATE 1/2)
 
-No comparison with data and no χ² yet: that is step N. It is frozen (FROZEN_CRITERIA step N plus A2) and reports numbers only, no verdict.
+Criteria are step N plus three amendments:
+- A2: high precision.
+- A3 (pre-result): v4 runs, C2's Gauss–Newton fitter, H₀/σ₈/S₈ reporting.
+- A4 (**post-result**): RUNAWAY models are not fitted; K5/K6 added.
 
-The g ≠ 1 runs, which use the P-g conversions, have not been made yet. P-g itself is a premise: it puts G̃ in the
-Friedmann equation and keeps T_cmb and the baryon number physical.
+All numbers are in `c7_native_results.json`. The run took 134 CLASS runs in 20 min at nice 19, one process at a time,
+with the Python process at most 0.11 GB.
 
-The Higgs-like K is not coded for running: SZ21 say it is not a MOND model. This lane tests AeST's dust sector and G_cosmo/G_N, not the galactic law: the a₀
+**Likelihood check.** K1: C2's ΛCDM refit point gives χ² = 1003.48 with the pristine binary, against C2's 1003.20.
+
+**Fits** (plik-lite TTTEEE + low-ℓ TT + low-ℓ EE + A_planck prior; free: ω_b, ω_dm (FITTED), 100θ_s, ln10¹⁰A_s, n_s, τ, A).
+- The optimiser resolves χ² to about 0.1: B-Exp is ΛCDM to 8e-5 in the spectra, yet lands 0.09 below it.
+- ω_b and ω_dm are in G̃ units (P-g).
+
+| model | Δχ² vs ΛCDM refit | H₀ | σ₈ | S₈ | P/P_ΛCDM (best fits) at k = 0.1, 0.3, 1, 3, 10 h/Mpc |
+|---|---|---|---|---|---|
+| ΛCDM (pristine) | 0 (χ² 1003.48, plik 582.40) | 67.55 | 0.8280 | 0.8460 | — |
+| B-Cosh, g = 1 | +0.16 | 67.56 | 0.8272 | 0.8452 | 1.001, 0.995, 0.936, 0.603, 0.098 |
+| B-Exp, g = 1 | −0.09 | 67.56 | 0.8274 | 0.8453 | 0.999, 0.999, 0.999, 0.999, 0.976 |
+| B-Cosh-g (g = 0.75) | +118.69 | 55.62 | 0.7950 | 0.8551 | 0.954, 0.907, 0.812, 0.517, 0.082 |
+| B-Exp-g (g = 0.95) | +3.11 | 65.21 | 0.8220 | 0.8483 | 0.992, 0.982, 0.973, 0.962, 0.928 |
+
+**RUNAWAY, not fitted.** Values are P/P_ΛCDM at the caption parameters, k = 0.1, 0.3, 1, 3, 10 h/Mpc. g = 1 − K_B/2 (N2: × 400/401).
+
+| model | μ_eff(z=0) (Mpc⁻¹) | P/P_ΛCDM | χ² at caption |
+|---|---|---|---|
+| N1 (SZ21 Cosh shape, K_B = 0.05) | 8.8 | 1.02, 0.96, 54, 6.3e5, 1.9e9 | 3.7e5 |
+| N2 (K_B = 0.07, λ_s = 400) | 8.8 | 1.03, 1.04, 0.72, 146, 5.0e5 | 1205 |
+| v4 K_B = 0.01, μ⁻¹ = 1 Mpc | 1.00 | 4.9e26 … 2.8e41 | ∞ |
+| v4 K_B = 0.05, μ⁻¹ = 1 Mpc | 1.00 | 0.89, 128, 4.3e6, 6.1e9, 1.8e12 | ∞ |
+| v4 K_B = 0.078, μ⁻¹ = 1 Mpc | 1.00 | 1.01, 0.74, 136, 1.9e5, 9.8e7 | 2.2e5 |
+| v4 K_B = 0.05, μ⁻¹ = 10 Mpc | 0.10 | 1.1e5 … 7.5e19 | ∞ |
+
+Linear theory has plainly left its range in these runs; the numbers say the linear system is unstable, nothing more.
+
+**λ_s → ∞ (K3).**
+- For the stable B-Cosh shape the spectra converge as 1/λ_s: 2.1e-2, 2.2e-3, 3.2e-4 at λ_s = 10², 10³, 10⁴.
+- For v4 (K_B = 0.05) the differences do not converge (TT 64, 6.5, 1010). A runaway amplifies the ~10⁻⁴ change in g.
+
+**Question 2: does v4 show enhanced linear growth at k ≳ μ?**
+- **Yes, and without bound.** At K_B = 0.078, P/P_ΛCDM is 1.01 at 0.1 h/Mpc, 0.74 at 0.3, then 136 at 1, 1.9e5 at 3 and
+  9.8e7 at 10 h/Mpc.
+- H1's Jeans-swindle ratio predicts suppression at the same k (0.69 at 1 h/Mpc, 0.022 at 10).
+- γ_L is not in the patch. Its weight at 10 h/Mpc is (k/k_c)⁴ ≈ 6e-7 (H1's k_c), so it cannot stop this.
+
+**Mechanism.** This is an ESTIMATE read off the derived equations (D2/D6); it was not isolated numerically.
+- With c_ad² → 0 the vector pair obeys χ̈ ≈ (Q̄/K_B)[K′ − (2−K_B)Q̄]χ (cosmic time).
+- Early on, K′ = I₀/a³ exceeds (2−K_B)Q̄. The pair is then tachyonic with rate² ≈ 8πG̃ρ̄(1+w)/K_B. That is 2/K_B times
+  H3's bound 4πG̃ρ̄, which H3 derived in the opposite regime K′ ≪ (2−K_B)Q₀.
+- The window closes at a_c³ = I₀/((2−K_B)Q₀): z_c ≈ 71–78 for Q₀ = 0.1 Mpc⁻¹.
+- In the matter era χ ∝ τ^p with p(p−1) ≈ 12f/K_B: p ≈ 5 (K_B = 0.5), 15 (0.05), 32 (0.01).
+- The pair feeds δ through δp ∝ c_ad²(k/a)²[K_B E + (2−K_B)χ]. That is why it scales with k and is harmless only when
+  c_ad² is tiny (Exp, ~10⁻¹⁴) or K_B is large.
+- **Consequence (estimate).** A small-K_B AeST cosmology needs a K-shape with negligible early c_ad², or Q₀ large enough
+  that a_c < a_eq (roughly Q₀ ≳ 30 Mpc⁻¹). Neither is fixed by v4. The BBN route via K_B < 0.078 pushes straight into
+  this regime.
+
+**Process notes.**
+- The first step-N attempts read stale CLASS output: CLASS v3 numbers output files `_00_`, `_01_`, … unless
+  `overwrite_root = yes`. The scripts now set it, wipe the run directory and check each file's timestamp.
+- Re-running `c7_validate.py` cleanly reproduced every committed validation number exactly (7/7; MUTATE 1/7).
+- The first, aborted step-N run showed the runaway before any fit. That is why A4 is marked post-result.
+
+## What this does not show
+
+- **No statement that AeST, v4 or the framework fits or fails the CMB.** The χ² are numbers only.
+- **The v4 K-shape (Cosh, Q₀ = 0.1, s = 0.1) is POSTULATED.** A different early K might remove the runaway. That was not
+  scanned (no knob scans).
+- **The mechanism is an estimate.** The runaway itself is computed and checked.
+- **P-g is a premise.** It puts G̃ in the Friedmann equation and keeps T_cmb and the baryon number physical.
+- **Not covered:** Higgs-like K (not run); λ_c ≠ 0 (H1's floor door, not run); γ_L (not in the patch). This lane tests AeST's dust sector and G_cosmo/G_N, not the galactic law: the a₀
 term is absent at linear order on FRW. κ = ½ is FITTED and does not enter. Neither a₀ footing enters.
