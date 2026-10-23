@@ -1,0 +1,22 @@
+== Q6 validation (Khronon build)
+V_prov PASS tree == pristine + khronon.patch: True; vanilla == pristine: True; vs C7 tree only background_aest_K (683, 752), perturbations_aest_rhs (31, 74), IC block (5525, 5543) differ: True all true (extra check)
+V0_no_sector PASS TT=0.00e+00, EE=0.00e+00, TE=0.00e+00, pp=0.00e+00, pk=0.00e+00 bit-identical (extra check)
+V1_dust_synchronous PASS TT=2.03e-06, EE=1.52e-06, TE=1.40e-06, pp=4.11e-06, pk=5.17e-07; 100theta_s 0.0e+00, r_drag 6.8e-09 <= 1e-4 every spectrum; background <= 1e-6
+V1_dust_newtonian PASS TT=1.91e-06, EE=1.48e-06, TE=1.80e-06, pp=4.11e-06, pk=5.82e-07; 100theta_s 0.0e+00, r_drag 6.8e-09 <= 1e-4 every spectrum; background <= 1e-6
+  (reported) DUST_j1m1 vs pristine (synchronous, tol 1e-7): TT=2.03e-06, EE=1.52e-06, TE=1.40e-06, pp=4.11e-06, pk=5.17e-07
+  (reported) LOB_mu1e6_j1m1 vs pristine (synchronous, tol 1e-7): TT=4.25e-06, EE=6.84e-06, TE=3.90e-06, pp=6.19e-04, pk=9.52e-04
+  (reported) LOB_mu1e6_j10 vs pristine (synchronous, tol 1e-7): TT=5.95e-06, EE=7.14e-06, TE=4.13e-06, pp=8.35e-04, pk=1.23e-03
+V2_convergence FAIL LOB361 TT=7.91e-04, EE=1.96e-03, TE=6.97e-04, pp=7.02e-03, pk=4.51e-01 | vanilla TT=8.10e-04, EE=1.87e-03, TE=7.07e-04, pp=8.89e-03, pk=1.59e-04 each <= max(2e-3, 2 x vanilla)
+V3_gauge_LOB361 FAIL LOB TT=2.37e-05, EE=8.28e-05, TE=2.31e-05, pp=5.99e-04, pk=7.97e-02 | vanilla TT=1.95e-05, EE=8.12e-05, TE=2.22e-05, pp=1.17e-04, pk=1.84e-04 TT/TE/EE/pp/P(k) each <= max(1e-3, 3 x vanilla)
+  (reported) LOB 361 h/Mpc vs pristine LCDM at the same parameters: TT=1.22e-01, EE=1.53e-01, TE=8.95e-02, pp=9.88e-01, pk=1.00e+00
+V3_gauge_LOB14.8 FAIL LOB TT=4.17e-05, EE=8.47e-05, TE=3.65e-05, pp=7.37e-03, pk=2.90e+01 | vanilla TT=1.95e-05, EE=8.12e-05, TE=2.22e-05, pp=1.17e-04, pk=1.84e-04 TT/TE/EE/pp/P(k) each <= max(1e-3, 3 x vanilla)
+  (reported) LOB 14.8 h/Mpc vs pristine LCDM at the same parameters: TT=1.12e+00, EE=2.72e+00, TE=1.15e+00, pp=1.00e+00, pk=1.00e+00
+V5_ic_attractor FAIL LOB361 TT=5.25e-04, EE=6.99e-04, TE=4.78e-04, pp=7.02e-05, pk=1.75e-04 | vanilla TT=1.66e-05, EE=1.66e-04, TE=1.25e-04, pp=6.34e-06, pk=2.65e-05 each <= vanilla + 1e-4
+== AMENDMENT A3 supplementary gates (post-result; the frozen V2/V3/V5 lines above stay as printed)
+V2b_convergence_same_grid PASS LOB361 TT=7.94e-04, EE=1.98e-03, TE=7.42e-04, pp=6.89e-03, pk=6.51e-06 | vanilla TT=8.09e-04, EE=1.88e-03, TE=7.07e-04, pp=8.81e-03, pk=7.20e-05 |dX|/X_LCDM each <= max(2e-3, 2 x vanilla) (A3)
+V3b_gauge_LOB361 PASS LOB TT=2.43e-05, EE=8.20e-05, TE=2.28e-05, pp=5.28e-05, pk=1.82e-04 | vanilla TT=1.95e-05, EE=8.12e-05, TE=2.22e-05, pp=1.17e-04, pk=1.84e-04 |dX|/X_LCDM each <= max(1e-3, 3 x vanilla) (A3)
+V3b_gauge_LOB14.8 PASS LOB TT=4.09e-05, EE=8.04e-05, TE=3.60e-05, pp=2.25e-05, pk=5.75e-04 | vanilla TT=1.95e-05, EE=8.12e-05, TE=2.22e-05, pp=1.17e-04, pk=1.84e-04 |dX|/X_LCDM each <= max(1e-3, 3 x vanilla) (A3)
+V5b_ic_attractor_x0.25 PASS LOB361 TT=2.08e-05, EE=1.85e-05, TE=1.36e-05, pp=3.36e-06, pk=5.96e-06 | vanilla TT=2.49e-05, EE=1.09e-05, TE=1.24e-05, pp=1.27e-06, pk=1.52e-05 each <= vanilla + 1e-4 (A3; C_l relative, P(k) in units of LCDM)
+  native-prediction-ready (A3 gates V1, V2b, V3b, V5b) on this build: True
+  native-prediction-ready conditions on this build (V1, V2, V3, V5): False; elapsed 76.4 s
+Q6_VALIDATE COMPLETE: 8/12 checks PASS.
