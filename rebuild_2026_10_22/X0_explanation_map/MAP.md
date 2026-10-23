@@ -149,3 +149,36 @@ Literature (provisional): KL24 2405.08557; FPS 2410.02612; Kroupa+26 2602.06082;
 Coquery & Blanchard 2025; McGaugh & Milgrom 2013 (1308.5894); McGaugh 2016 (1610.06189); Hammer+2019 (1812.10714);
 Freundlich+2022 (2109.04487); BDEF 2011 (1106.2538); Blas–Pujolàs–Sibiryakov 2011; Sanna+ 2109.11217;
 Blanchet–Heisenberg 1505.05146; Durakovic & Skordis 2312.00889.
+
+## 4. Lane results (2026-10-23; each lane reran by the coordinator and reproduced)
+
+Lane directories are named in full. **X1 here means `X1_hosted_recount`.** Another session's `X1_seedfree_abundance`, started at
+14:17 after this map named X1 at 14:11, is unrelated.
+
+| lane | frozen verdict | key numbers (canonical / alt) | commits (criteria / results) |
+|---|---|---|---|
+| `X1_hosted_recount` | Controls: CONTROL FAIL, PUBLISHED APPROXIMATION (frozen class). Q1: CLASS-GRADED [W-SENSITIVE]. Q2: T3 PREMISE CONTRADICTED | v3 at the L★ floor, all 89 LG systems, no mass cut: MW ultra-faints +1.56 / +1.55 dex (FAIL); M31 others +1.14 / +1.10 (FAIL); bright M31 dSphs +0.60 / +0.58 ± 0.13 (FAIL, 4.6σ; +0.35 at the worst-case data choice); MW classical +0.36 / +0.32 ± 0.26 (UNRESOLVED; Fornax and Leo I fit, Draco/UMi/Sextans +0.9–1.1); isolated LG dwarfs +0.06 / +0.02 ± 0.08 (consistent). Exact MOND + EFE without screening is within 0.02–0.04 dex of v3: the failure is AQUAL's external field, not screening. Hosted sets ≥ 5σ above Newton: Antlia II 24.2σ, MW ultra-faints 12.6σ, UMa 12.6σ, bright M31 9.8σ, Crater II 8.7σ, Coma 5.4σ | cfd0ae45fb / c74c622229 |
+| `X2_cluster_outskirts` | V1 OVERSHOOT WEAKENED BY the shear systematics; V2 A FIXED-FORM COMPONENT PASSES (CFG949 debris *replacing* the law at cluster scale); V3 core excess WEAKENED with all systematics, SURVIVES without them | The stacked A_OUTER ≈ 1 is a cancellation: OUTER by mass tercile 0.46–0.54 / 0.72–0.80 / 1.25–1.40. **The lightest tercile has no core excess** (MID 1.02–1.13). Core excess Z 5.4 / 6.1 / 4.7 / 5.3 → 2.7 / 2.6 / 2.3 / 2.2 with the cross-shear offset (+0.19–0.24, 1.7–2.1σ) propagated. The measured r⁻³ gas slope changes A by ≤ 0.01; the external field by ≤ 0.004; reduced shear moves A_MID by −0.03. Debris *added to* the law overshoots; FPS Eq. 17 fails | 40624db7e9 / 1d837f6945 |
+| `X3_switched_stiffness` | (pending) | | |
+| `X4_growth_native_cap` | (i) GROWTH FAILS AT THE NATIVE CAP; (ii) DBI DOOR CLOSED BY THE FOREST (marginal at one point) | At S4's galaxy-guard μ_K (0.03 / 0.1 Mpc⁻¹): Boltzmann R_B 0.0032 / 0.0052 (the cap gives 0.073), ODE upper bound 0.076 / 0.082. Gap to 0.95: ×300 / ×182; μ_K gap 2.4e3–5.7e4. The khronon is radiation-like until z ≈ 35–78. DBI λ_D,95: δQ consistency passes everywhere (0.05–0.35 of the line); forest FAIL at the cap and P1μ; P2μ passes L346's band but fails L319's strict line (0.972 / 0.896 vs 0.995) and the loose 0.9 line at z = 2 by 0.004 | 2060d39ced / c778d300e8 |
+| `X5_mw_joint_baryons` | (i) FEASIBLE (wide priors only); (ii) SHAPE EXCLUDED ROBUST | 7 / 175 (canonical) and 4 / 175 (alt) prior-box cells pass χ²_Kz ≤ 67.5 with v_c(R₀) inside 2σ. All need R_d 1.93–2.27 kpc (≥ 2.8σ below Licquia & Newman) and Σ_b 40.3–43.7 (McKee −2σ to −1σ). Post-result diagnostics (no verdict weight): in every passing cell K_z(R₀) is still 76.7–80.9 vs 66.4 ± 2.2, the full rotation curve fails (χ² 96–194 vs 61.2), and the outer slope stays excluded. U1's v_c bound is specific to McMillan17. Outer slope under CFG532's S2 budget: Z −3.88 / −4.09, still EXCLUDED | 8e5b65bca5 / 04e5c6be40 |
+| `X6_dust_coupling` | NO-GO FOR THE STATED CLASS | sympy theorems: in the khronon family the dust's coupling is fixed by kinematics (its acceleration relative to free fall is ∇Ξ, the field that carries the law; α ≡ 1); at Q = 1 it is exactly mimetic dust. Dust that has weight in hosts and self-gravity on linear scales must be a separate field, which sources the law like baryons and double counts. A separate mimetic dust passes growth for f_d ≥ 0.762 but fails isolated galaxies for every f_d > 0 (NGC 3198 off by 0.145 dex; SPARC Υ falls to 0.42 / 0.37): CDM under another name. AeST's sector fails clusters (H2) and health (H1) | fd303cac8b / fbcce8f612 |
+
+### Corrections to sections 1 and 3 from the lanes (fix-forward)
+- **§1.A.1:** the measured gas slope is not OUTER's weak point; it changes nothing under CFG814's prescription. The weak points are
+  the tercile mix and where the steepening starts (X2).
+- **§3, first bullet:** CFG949's passing debris *replaces* the law at cluster scale. Added to the law, the same debris overshoots
+  ×1.6–2.0. F1's sentence holds for law-plus-component profiles shaped like the gas, but a compact central mass passes the
+  profile χ² in 3 of 4 cells (X2). Quote the core-excess Z as 2.2–2.7 with systematics, beside the jackknife-only 5–6.
+- **§1.B:** at the native cap the gap is 2.4e3–5.7e4 and v3's R_B is 0.003–0.005 (X4). The DBI door is closed by the forest, not
+  by its own consistency.
+- **§1.D:** the medians in §1.D came from S1's binary-corrected sample. X1 gives Crater II +0.50 / +0.46 without that correction.
+  Published MOND's Crater II and M31 successes rest on the approximate EFE formula's full-mass normalisation; exact AQUAL + EFE is
+  0.19 dex lower (X1 controls). §1.D.5: the −∇Φ coupling has no action at all (X6). U1's "what would have to change: the dust
+  coupling (and J)" should read: the field content. J does not enter T3 (X6).
+- **§1.E.1:** expected FAIL; the frozen result is FEASIBLE on wide priors, inside a corner that fails other Milky Way data (X5).
+- **§1.C.4 (peer review):** the Codex arrival audit (reviews/codex_arrival_audit_2026_10_23/, c638cd7c12) finds a Hořava half mode
+  in DSF-21's η > 0 branch and a second non-closure for β ≠ 0. This weakens the "A33 with η plus β" escape; it does not cover v3
+  (β = η = 0).
+- **L1:** the A5 ladder's 256³ rung gives ρ_NL −0.058 / −0.047 ("does not restore growth", indicative; 799a7af151). The L1 engine
+  carries no gas expulsion; its KiDS score is KX against its own S0 (feedback-matched by construction; cf. CFG963).

@@ -2,6 +2,8 @@
 
 **One claim: the galactic acceleration scale is set by the dark-energy density.**
 
+**Start here (23 October 2026):** [`covariant_push_2026_10_22/V3_FULL_PICTURE.md`](covariant_push_2026_10_22/V3_FULL_PICTURE.md) is the whole current theory on one page: the action, its field equations, every pass and fail with its mechanism, and which results are certified in Lean (`fable_independent_2026/lean_2026/V3_PICTURE_2026_10_23.lean`, 23 theorems, 0 sorry). The map of every explanation tried is [`rebuild_2026_10_22/X0_explanation_map/MAP.md`](rebuild_2026_10_22/X0_explanation_map/MAP.md).
+
 **Next steps (21 October 2026):** the current state is the [status board](explainers/crispy_fried_chicken_status_board.md) and the [summary figure](campaign_fresh_gravity/FIGURE_SUMMARY_2026-10-21/summary_figure.png), resting on the adopted [canonical statement](campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md) with its dated notes. What any completion must still supply is §5 of the audited [v4 draft](campaign_fresh_gravity/THEORY_CANONICAL_2026-10-21_DRAFT.md), which the owner has not yet adopted. The theory remains incomplete: the excess in pressure-supported systems is unexplained, and the engine behind the cosmic-shear pass has no known physical parent.
 
 > **Checkpoint 2026-10-23 (v3 recomputed tile by tile; the scope note).** [PAPER60, DOI 10.5281/zenodo.23601528](https://doi.org/10.5281/zenodo.23601528): what the current theory, v3, is a theory of, and why it fails where it fails.
