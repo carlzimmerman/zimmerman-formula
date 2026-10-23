@@ -2,7 +2,7 @@
 
 **Crispiest recipe (v3):** General relativity plus a preferred cosmic time (Khronon) and one extra field giving the simple MOND law (AQUAL, external-field effect included, κ fitted), switched off within L★ ≥ 22 pc, plus fitted cold dust; no settling or supply rules.
 
-*Where the current theory, v3, stands as of 23 October 2026. The board shows v3 only. The theory is not complete. The v3-only board before the P4 and Q6 recomputes is kept as [`img/status_board_2026-10-23late.png`](img/status_board_2026-10-23late.png); the first v3-only board, before the S1 and S2 recomputes, as [`img/status_board_2026-10-23eve.png`](img/status_board_2026-10-23eve.png). Earlier pictures, which mixed models, are kept as [`img/status_board_2026-10-23pm.png`](img/status_board_2026-10-23pm.png) (23 October afternoon), [`img/status_board_2026-10-23am.png`](img/status_board_2026-10-23am.png) (23 October morning), [`img/status_board_2026-10-22.png`](img/status_board_2026-10-22.png) (22 October evening) and [`img/status_board_2026-10-21.png`](img/status_board_2026-10-21.png).*
+*Where the current theory, v3, stands as of 23 October 2026. The board shows v3 only. The theory is not complete. The v3-only board before the S3, S4, H4 and U1 batch is kept as [`img/status_board_2026-10-23night.png`](img/status_board_2026-10-23night.png); before the P4 and Q6 recomputes, as [`img/status_board_2026-10-23late.png`](img/status_board_2026-10-23late.png); the first v3-only board, before the S1 and S2 recomputes, as [`img/status_board_2026-10-23eve.png`](img/status_board_2026-10-23eve.png). Earlier pictures, which mixed models, are kept as [`img/status_board_2026-10-23pm.png`](img/status_board_2026-10-23pm.png) (23 October afternoon), [`img/status_board_2026-10-23am.png`](img/status_board_2026-10-23am.png) (23 October morning), [`img/status_board_2026-10-22.png`](img/status_board_2026-10-22.png) (22 October evening) and [`img/status_board_2026-10-21.png`](img/status_board_2026-10-21.png).*
 
 The theory makes one claim: the acceleration scale where galaxies stop obeying Newton, a₀, is set by the density of dark energy.
 
@@ -16,7 +16,7 @@ The ½ is **fitted**, not derived; the current measurement is κ = 0.417 ± 0.09
 
 ## How to read it
 
-The picture shows the current theory, v3, only. It is drawn by [`make_status_board.py`](make_status_board.py); tiles marked **23 OCT** were added, recoloured, greyed or re-annotated on 23 October. The generator refuses any new green (a grey tile may return to green only if it was green before it was greyed and its own recompute lane passes it), any recolour not listed with its evidence lane, and any tile that leaves the board without going to the archive with N0 as its evidence (`--selftest` runs 23 broken cases; each must be caught). Each tile is one test. The colour restates a verdict recorded in the campaign LEDGER ([`campaign_fresh_gravity/LEDGER.md`](../campaign_fresh_gravity/LEDGER.md)) or in the dated notes of [`THEORY_CANONICAL_2026-10-18.md`](../campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md), and the lane IDs on each tile point to the scripts that produced it. Verdicts come from committed scripts with pass/fail rules frozen *before* the data were read, plus a control that is deliberately broken and must fail. Where a colour depends on a rule added afterwards (post hoc), the tile says so.
+The picture shows the current theory, v3, only. It is drawn by [`make_status_board.py`](make_status_board.py); tiles marked **23 OCT** were added, recoloured, greyed or re-annotated on 23 October. The generator refuses any new green (a grey tile may return to green only if it was green before it was greyed and its own recompute lane passes it), any recolour not listed with its evidence lane, and any tile that leaves the board without going to the archive with N0 as its evidence (`--selftest` runs 24 broken cases; each must be caught). Each tile is one test. The colour restates a verdict recorded in the campaign LEDGER ([`campaign_fresh_gravity/LEDGER.md`](../campaign_fresh_gravity/LEDGER.md)) or in the dated notes of [`THEORY_CANONICAL_2026-10-18.md`](../campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md), and the lane IDs on each tile point to the scripts that produced it. Verdicts come from committed scripts with pass/fail rules frozen *before* the data were read, plus a control that is deliberately broken and must fail. Where a colour depends on a rule added afterwards (post hoc), the tile says so.
 
 | colour | meaning |
 |---|---|
@@ -65,6 +65,33 @@ Two more lanes landed, and the coordinator reproduced both: [P4](../rebuild_2026
 - **Linear growth, v3 Khronon: stays 🟥, Q6 added.** The Boltzmann calculation gives σ₈ = 0.061 at the cap (F3's ODE gave 0.391). Reaching 95% of ΛCDM growth needs μ_K > 2542 h/Mpc.
 - **Not drawn: "BBN / radiation era (literal K)"** (Q6). The stiff term beats radiation before z ≈ 1854–3.2 × 10⁵. BBN needs μ_K ≥ 1.84 × 10⁸ h/Mpc, 1.2 × 10⁷ times the BS cap. BS25's DBI K is the literature cure (lane Q7, open). The generator refuses a tile that was on no earlier board, so this one is recorded here and in Q6, and not on the picture.
 
+### Recomputed for v3 (23 October, night)
+
+The coordinator reran and reproduced every lane in this batch: [S3](../rebuild_2026_10_22/S3_v3_mw_seals/README.md), [S4](../rebuild_2026_10_22/S4_v3_muK_clusters/README.md), [P3](../rebuild_2026_10_22/P3_v3_strong_field/README.md), [H4](../rebuild_2026_10_22/H4_v3_saddle_stability/README.md), [U1](../rebuild_2026_10_22/U1_v3_dust_content/README.md), [Q7](../rebuild_2026_10_22/Q7_bs25_cosmology/README.md) and [T1](../rebuild_2026_10_22/T1_efe_strength/README.md). Six tiles changed colour and none turned green. The green guard refused three items, which stay as they were. Three tiles stay grey. Notes may now run to four lines.
+
+- **MW outer slope (Gaia): grey → 🟥 fails** (S3). The shape is excluded: the law's slope is −0.126 / −0.114 against the data's −0.325 (Z −4.37 / −4.62). The algebraic law, ν₁, the AQUAL disc and the external field all fail.
+- **Central ellipticals (SLUGGS): grey → 🟦 not decidable yet** (S4, R4 with v3's ν₁). The class is unchanged, so the tile returns to its colour before greying. The tension rises from 2.8σ to 3.1σ (3.3σ without ownership).
+- **High-z on halo-free inputs: grey → 🟦** (S4). All six CFG303 classes are unchanged; s★ moves by at most 0.1 dex.
+- **CRISTAL z ≈ 5 / ALESS 122.1: grey → 🟦** (S4). NOT ROBUST and NOT DISCRIMINATING, unchanged.
+- **Health: 🟨 → 🟥 fails** (H4). There is a gradient instability wherever the khronon density ρ_τ < 0, which happens at every two-body saddle and in the external-field lobes. Its rate Γ = L★k√(2πG|ρ_τ|) is unbounded, and the γ_L screening term drives it. The Solar System is healthy.
+- **Leaf problem: 🟨 → 🟥 fails** (H4). The problem is ill-posed at saddles. C8's leaf result holds only where ρ_τ ≥ 0.
+- **Refused by the green guard, unchanged: black holes and strong coupling stay grey; tidal dwarfs stay 🟥.**
+  - P3 passes static, non-rotating black holes: shadow and ISCO shifts ≤ 2.9 × 10⁻¹¹, ringdown ≤ 2.8 × 10⁻¹¹. Regular holes need an infalling khronon, and rotating or moving holes are open.
+  - P3 also passes strong coupling, as an estimate: the loop factor is ≤ 1.3 × 10⁻³ at Eöt-Wash's 38.6 μm, with only 1.7× margin in k. Tests below 5 μm would probe it.
+  - Both tiles were conditional before they were greyed, and the generator refuses a first green.
+  - U1 derives that held dust is weightless in its host (theorem T3). A system that falls with its host is therefore dust-free and Newtonian. On that reading the tidal dwarfs sit +0.055 ± 0.114 dex and DF2/DF4 +0.30 / −0.24 in ln from v3, with no knob, against P4's static AQUAL reading of −0.59 dex. This green comes from a new derivation, not a re-scored number. The guard refuses it; the tile keeps P4's red until the green rule is changed on purpose.
+- **Radiative stability stays grey.** P3's README gives no replacement for it.
+- **Notes only, colour kept:**
+  - Dwarf satellites: +2.00 / +1.99 dex under v3's own dynamics, dust-free (U1). This is structural: the dust coupling would have to change.
+  - Coma's ultra-diffuse galaxies: +1.41 dex, z 5.4 (U1), also structural.
+  - Cluster cores: no allowed μ_K fixes them (0 of 1,804 cells). A small μ_K leaves the clusters unchanged, and a large one wrecks galaxies first (S4).
+  - Native CMB and linear growth: BS25's DBI K fixes BBN only; growth R_B is 0.26–0.32, and BS ran no Boltzmann code (Q7).
+  - One selector: no single external-field strength fits (p 0.023 / 0.014). Coma wants it weak, P2's lensing wants it strong, and the satellites sit +0.9 dex high even at ε = 0 (T1).
+  - Cold-mass amount: held dust ≤ the phantom density (U1, theorem T1), and hosted systems carry none (T3).
+  - Gaia DR4 MW predictions: v3's file is sealed (S3: `SEALED_V3_MW_DR4.json`, 15b7e6ff…). A new observable is the asymmetry in V_c driven by the external field: 3 / 5 / 8 % at 20 / 30 / 60 kpc.
+  - ALMA: addendum F is filed (f6f0ba66a4) with v3's AQUAL-disc reading, and the v3aq harness has passed its MOCK test.
+  - κ: on AQUAL discs, κ_Λ = 0.499 ± 0.116 and κ_crit = 0.413 ± 0.096 (S3). These are consistent, but they do not discriminate.
+
 ### Recompute lanes
 
 N0's recompute batches run as these lanes (all small: one thread, under 1 GB). The heavy one is L1.
@@ -74,9 +101,9 @@ N0's recompute batches run as these lanes (all small: one thread, under 1 GB). T
 | P4 | AQUAL with v3's kernel and the external field solved, for galaxy tiles | rotation curves (SPARC); local a₀ from MeerKAT; galaxy groups; MW vertical force; tidal dwarfs and DF2/DF4 (done 23 October) |
 | S1 | small systems in their host's field (AQUAL + stiffness at L★ 24 / 90 pc, external field solved) | dwarf satellites; Coma's ultra-diffuse galaxies; feeds the family selector (done 23 October: both fail) |
 | S2 | galaxy–galaxy lensing at low acceleration (F2's AQUAL solver, external field) | isolated-galaxy lensing, inner; red lenses (done 23 October: both conditional) |
-| S3 | discs as AQUAL with v3's kernel | the Milky Way's outer slope; κ re-fit; a new sealed Gaia DR4 Milky Way file (before 2 December); v3's ALMA disc reading (before 6 November) |
-| S4 | v3's static μ_K²ψ (dust) term on clusters and the outer-lensing stack; kernel-only swaps | cluster cores and isolated lensing at all radii (caveat); central ellipticals; high-z; CRISTAL / ALESS |
-| P3 | the relativistic sector: strong coupling, black holes, ringdown, neutron stars | strong coupling; black holes; radiative stability |
+| S3 | discs as AQUAL with v3's kernel | the Milky Way's outer slope; κ re-fit; a new sealed Gaia DR4 Milky Way file (before 2 December); v3's ALMA disc reading (before 6 November) (done 23 October) |
+| S4 | v3's static μ_K²ψ (dust) term on clusters and the outer-lensing stack; kernel-only swaps | cluster cores and isolated lensing at all radii (caveat); central ellipticals; high-z; CRISTAL / ALESS (R4 and the cluster no-go done 23 October; the outer-lensing stack not yet) |
+| P3 | the relativistic sector: strong coupling, black holes, ringdown, neutron stars | strong coupling; black holes; radiative stability (done 23 October: two passes, held grey by the green guard; no radiative-stability result) |
 | Q6 | a Khronon-v3 CLASS patch (TT/EE/φφ, P(k)) | native CMB (done 23 October: fails); CMB lensing, v3 linear |
 | L1 | heavy | the Khronon-native PM run ([frozen 512³ plan](../rebuild_2026_10_22/L1_khronon_pm/FROZEN_CRITERIA.md)) | v3's nonlinear growth and shear, which stand in for 5 archived tiles; the one open escape of "Covariant completion" |
 
@@ -301,7 +328,17 @@ The framework's a₀ follows the dark-energy density. With the framework's own B
 
 ## The bottom line (current theory, v3)
 
-For v3, the weak-field tests of gravity pass with the screening switched on: gravitational waves at light speed, binary pulsars and GW170817, and Cassini and the planets at L★ = 24–90 pc. Switched off, the same law fails Cassini (the control). Health, the leaf problem and causality are conditional, and the globulars put L★ ≥ 21.7 / 22.9 pc. MeerKAT's a₀ and the isolated galaxy groups pass for v3 (P4). v3 fails eight tests computed for it: cluster cores (a real failure in the raw data, F1); the dwarf satellites and Coma's ultra-diffuse galaxies in their hosts' fields (S1); the tidal dwarfs with DF2/DF4, and the Milky Way's vertical force as an AQUAL disc (P4); the native CMB, since literal v3 has no radiation era (Q6); linear growth (F3, Q6); and so the covariant completion, whose only open escape is L1's native nonlinear run. Rotation curves, inner isolated-galaxy lensing and red lenses are conditional for v3 (P4, S2). The no-go for "law + a¹ growth + no external-field effect" stands. Seven tiles (strong coupling, black holes, radiative stability, central ellipticals, the Milky Way's outer slope, high-z and CRISTAL / ALESS) are not yet recomputed for v3. They show their old results as "was". Open: why κ = ½, the stiffness length L★, and what sets the cold-mass amount. The dated tests are ALMA U4 (6 November), GS4 (28 November) and Gaia DR4 (December). An undated one is a kinematic a₀ point at z ≈ 2.5, measured to about 0.10 dex. The theory remains incomplete.
+For v3, the weak-field tests of gravity pass with the screening switched on: gravitational waves at light speed, binary pulsars and GW170817, and Cassini and the planets at L★ = 24–90 pc. Switched off, the same law fails Cassini (the control). MeerKAT's a₀ and the isolated galaxy groups pass for v3 (P4). Causality is conditional, and the globulars put L★ ≥ 21.7 / 22.9 pc. v3 fails eleven tests computed for it:
+- health and the leaf problem, which are ill-posed wherever the khronon density is negative, as at every two-body saddle (H4);
+- cluster cores (F1); no allowed μ_K fixes them (S4);
+- the dwarf satellites and Coma's ultra-diffuse galaxies in their hosts' fields (S1); the failure is structural under v3's own dynamics (U1);
+- the tidal dwarfs with DF2/DF4, read as static AQUAL systems (P4);
+- the Milky Way's vertical force as an AQUAL disc (P4) and its outer slope (S3);
+- the native CMB, since literal v3 has no radiation era (Q6);
+- linear growth (F3, Q6); BS25's DBI K fixes BBN only (Q7);
+- and so the covariant completion, whose only open escape is L1's native nonlinear run.
+
+Rotation curves, inner isolated-galaxy lensing and red lenses are conditional (P4, S2). The SLUGGS centrals, high-z and CRISTAL / ALESS stay not decidable (S4). The no-go for "law + a¹ growth + no external-field effect" stands. Three tiles are not yet on v3 colours. P3 computed strong coupling and black holes as passes, but the generator refuses a first green; P3 did not recompute radiative stability. U1 reads the tidal dwarfs as a native pass under v3's own dynamics, but the board keeps P4's red until a green is approved. Open: why κ = ½ (S3: consistent, not discriminating), the stiffness length L★, what sets the cold-mass amount, and the one selector for the family (T1: no single external-field strength fits). The dated tests are ALMA U4 (6 November), GS4 (28 November) and Gaia DR4 (December; v3's file is sealed by S3). An undated one is a kinematic a₀ point at z ≈ 2.5, measured to about 0.10 dex. The theory remains incomplete.
 
 ---
 
