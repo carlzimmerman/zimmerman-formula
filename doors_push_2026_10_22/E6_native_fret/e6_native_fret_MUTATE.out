@@ -1,0 +1,50 @@
+E6_native_fret  native satellite catchment rule + chemical lower bound, applied to E3's sub-threshold systems
+kappa = 1/2 FITTED; footings canonical 9.3603e-11 / alt 1.1312e-10, never pooled   [MUTATE: law acts outside the ball]
+
+K1 PASS EdS Delta 5.55165 dlin 1.06243; native vs CFG654 max|rel| 0.0019 5.5517/1.0624 & <=1%  (spherical collapse in the framework background)
+K2 FAIL |dt_ta/t_ta| 8.26e-01 <=1e-6  (catchment identity: shell outside the ball (code check, by construction))
+K3-as-frozen FAIL q 0.828/0.804 L_req 8.28/8.04 0.811/0.768 +-0.005; 8.3/8.0 +-0.1  (mis-specified statistic, A1; not in the exit code)
+K3' PASS L_req 8.28/8.04; max rel |q - L_req/10| 3.6e-16 8.3/8.0 +-0.1; <=1e-9  (E3 per-system CSV reproduced (A1))
+K4 PASS max rel 0.0e+00 <=1e-6  (CFG920 leaky box reproduced (Hercules, 6 corners))
+K5 PASS sigma8 0.8271 0.8271 +-0.5%  (CFG654 native IC column)
+
+[D1] the law acts only inside the turnaround ball and its phantom is drawn from the same catchment (sum zero), so every
+     shell outside the ball turns around under GR dust + Lambda with its true enclosed mass: M_ta is set by the patch's
+     initial overdensity and by when accretion stops. M_b, a0, kappa, L* do not enter. (K2 is the code check.)
+     toy: edge r_e 0.21 kpc, outer shell Lagrangian radius 46.3 kpc; MUTATE (law outside) t_ta shift 8.257e-01
+
+[canonical] N = 45
+  F1 q census f_ret 0.10: 0.828 [0.698-0.856]   f_ret 1 (floor): 8.28 [6.98-8.56]   median M_ta,req 5.971e+05 Msun
+  F2 q census f_ret 0.10: 0.934 [0.858-1.141]   f_ret 1 (floor): 9.34 [8.58-11.41]   median M_ta,req 1.186e+06 Msun
+  D2 tidal epoch z_req (turnaround sphere denser than 3T/4piG at d_now): median 11.28, range 3.65-inf (N 44; field systems undefined)
+  D3 F1 nu_req (IC column, EXTERNALLY CALIBRATED): median 1.21 [1.12-1.43], max 3.73, >3: 2/38; slope n_s-4 median 1.22; physical r_ta,req median 0.81 kpc
+  D3 F2 nu_req (IC column, EXTERNALLY CALIBRATED): median 1.27 [1.14-1.43], max 3.77, >3: 2/43; slope n_s-4 median 1.27; physical r_ta,req median 0.89 kpc
+  Part C chemistry: tested 36 / 45 (no LVD [Fe/H]: Carina III, Andromeda XI, Andromeda XIII, Andromeda XVII, Andromeda XX, Andromeda XXII, Andromeda XXVI, Andromeda XXVII, Cassiopeia II)
+   F1 median q_chem  -0.5W2:0.211  -0.5W1:0.151  -0.2W2:0.105  -0.2W1:0.076  +0.1W2:0.053  +0.1W1:0.038   (conservative corner 84%: 0.246)
+   F2 median q_chem  -0.5W2:0.274  -0.5W1:0.181  -0.2W2:0.138  -0.2W1:0.091  +0.1W2:0.069  +0.1W1:0.046   (conservative corner 84%: 0.320)
+   median L_min (-0.5, W2) 38.3  vs median L_req F1 8.28  (census 10)
+   F1 q_chem > 1 at the conservative corner: central 6 (Columba I, Segue 1, Tucana IV, Ursa Major I, Ursa Major II, Willman 1); at 2 sigma 0 (none)
+   zeta_need (metal-enhanced wind that would remove the bound, log y -0.5): Columba I 1.0, Segue 1 1.0, Tucana IV 1.0, Ursa Major I 1.0, Ursa Major II 1.0, Willman 1 1.0
+   A2 (post-result) zeta_break, F1 (-0.5): metal-enhanced wind at which the floor stops supplying, over 24 supplied systems: median 14.46, min 2.84, <= 3 for 1 (>1000 counted 1001)
+   D2 systems whose required turnaround density exceeds the z = 49 value: Pictor II
+
+[alt] N = 46
+  F1 q census f_ret 0.10: 0.804 [0.652-0.887]   f_ret 1 (floor): 8.04 [6.48-8.87]   median M_ta,req 5.341e+05 Msun
+  F2 q census f_ret 0.10: 0.918 [0.780-1.089]   f_ret 1 (floor): 9.18 [7.88-10.89]   median M_ta,req 1.226e+06 Msun
+  D2 tidal epoch z_req (turnaround sphere denser than 3T/4piG at d_now): median 11.61, range 3.80-inf (N 45; field systems undefined)
+  D3 F1 nu_req (IC column, EXTERNALLY CALIBRATED): median 1.31 [1.16-1.47], max 3.81, >3: 3/37; slope n_s-4 median 1.31; physical r_ta,req median 0.80 kpc
+  D3 F2 nu_req (IC column, EXTERNALLY CALIBRATED): median 1.26 [1.18-1.45], max 3.85, >3: 4/44; slope n_s-4 median 1.27; physical r_ta,req median 0.89 kpc
+  Part C chemistry: tested 37 / 46 (no LVD [Fe/H]: Carina III, Andromeda XI, Andromeda XIII, Andromeda XVII, Andromeda XX, Andromeda XXII, Andromeda XXVI, Andromeda XXVII, Cassiopeia II)
+   F1 median q_chem  -0.5W2:0.188  -0.5W1:0.141  -0.2W2:0.094  -0.2W1:0.071  +0.1W2:0.047  +0.1W1:0.035   (conservative corner 84%: 0.237)
+   F2 median q_chem  -0.5W2:0.271  -0.5W1:0.180  -0.2W2:0.137  -0.2W1:0.090  +0.1W2:0.069  +0.1W1:0.045   (conservative corner 84%: 0.315)
+   median L_min (-0.5, W2) 37.9  vs median L_req F1 8.04  (census 10)
+   F1 q_chem > 1 at the conservative corner: central 6 (Columba I, Segue 1, Tucana IV, Ursa Major I, Ursa Major II, Willman 1); at 2 sigma 0 (none)
+   zeta_need (metal-enhanced wind that would remove the bound, log y -0.5): Columba I 1.0, Segue 1 1.0, Tucana IV 1.0, Ursa Major I 1.0, Ursa Major II 1.0, Willman 1 1.0
+   A2 (post-result) zeta_break, F1 (-0.5): metal-enhanced wind at which the floor stops supplying, over 24 supplied systems: median 14.30, min 3.04, <= 3 for 0 (>1000 counted 1001)
+   D2 systems whose required turnaround density exceeds the z = 49 value: Pictor II
+
+-> MAIN (dynamics): STILL UNDECIDABLE -- ingredient: the satellite's Lagrangian catchment mass, i.e. the initial overdensity of its patch and the epoch its accretion stopped (infall); the law, the host's tides and M_b do not fix it (D1)
+-> canonical: D3 IC-ORDINARY (median nu_req F1 1.21 / F2 1.27);  Part C CHEM-SUPPLIES (q_chem F1 at -0.5 W2 0.211, at +0.1 W1 0.038)
+-> alt: D3 IC-ORDINARY (median nu_req F1 1.31 / F2 1.26);  Part C CHEM-SUPPLIES (q_chem F1 at -0.5 W2 0.188, at +0.1 W1 0.035)
+
+E6_NATIVE_FRET COMPLETE: 4/5 checks PASS.

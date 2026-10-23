@@ -105,3 +105,14 @@ The L_req half of K3 is the same statistic as E3's printed `median_Lreq` and pas
 **K3 is replaced by K3′:** (i) median over systems of the CSV L_req equals E3's printed median_Lreq 8.3 / 8.0 within 0.1, and
 (ii) per system q_fret010 = L_req / 10 to ≤ 1e-9 (E3 internal consistency of the CSV this lane uses). The frozen K3 line is
 still printed, labelled "as frozen, mis-specified statistic", and does not enter the exit code. No other line changes.
+
+## AMENDMENT A2 (POST-RESULT, after the first complete run; no class line changes)
+The frozen "ζ_need for systems still short" is vacuous: a metal-enhanced wind (ζ > 1) only lowers L_min, so for a system whose
+chemical floor is already below its L_req it returns 1.0 by construction. Added, reported only: **ζ_break**, the ζ at which
+the floor of each *supplied* system (q_chem ≤ 1 at log y −0.5, W2) falls to its L_req (same CFG920 function), with the median,
+the minimum and the count ≤ 3. Also listed: systems whose D2 z_req lies beyond the CFG654 table (z > 49). A print label in
+the D1 block ("MUTATE (law outside)") was wrong in the normal run and is corrected; no number changed.
+A2 bug fix (post-result, disclosed): E3's CSV floors a non-positive F1 requirement at M_req ≈ 1e-30 M☉ (Bootes III, Crater II,
+Hercules, Andromeda XV, Andromeda XVII on the canonical footing). The first complete run gave these a meaningless ν_req ≈ 0.02–0.05
+and counted them in the ν median. They have no requirement, so ν_req is now undefined for M_req ≤ 1e-6 M*. This raises the
+ν medians slightly; the D3 class line is unchanged in form.
