@@ -146,3 +146,25 @@ ill-posed). Outputs: `h4_v3_saddle_stability_MUTATE.out`, `h4_v3_saddle_stabilit
 
 `OMP_NUM_THREADS=1 nice -n 15`, single thread, < 1 GB RSS, minutes; no downloads; no PM runs; nothing from the heavy
 queue touched.
+
+## AMENDMENT A1 (POST-RESULT: written after production run 3; no pass line above is changed)
+
+- **Execution history.**
+  - Run 1 (kept: `h4_v3_saddle_stability_RUN1.out`, `_results_RUN1.json`): 12/13, C2 FAIL (S2 median 12.7 %). Two code
+    defects caused it. (a) The on-axis null finder took the global |∇Φ| minimum on the axis; for isolated pairs that is the
+    box edge, so the saddle null of the unequal pairs was never refined. (b) The Picard loop stopped on the relative change
+    of Φ, which for the isolated full-μ cases stopped with a nonlinear residual up to 7e-4.
+  - Fixes: local axis minima within 30 units of the barycentre, null keys with spacing scaled by the null's distance;
+    stop on the nonlinear residual (≤ 1e-8, undamped μ).
+  - Run 2 (aborted by hand, no outputs written): the isolated full-μ cases stalled at residuals 1e-4–1e-6. Cause: the
+    spherical boundary potential was integrated from r = 1e-6, so Φ ≈ 1e6 and the gradients lost precision. One child
+    process (S4, external field) reached **1.05 GB RSS, over the 1 GB budget** (disclosed). Fixes: Φ set to zero at the box
+    and a softened start guess; distance-scaled null keys; MMD ordering. Worst child RSS afterwards 0.85 GB.
+  - Run 3 is the production run. Every solve converges to a nonlinear residual < 1e-8.
+- **Run 3 result for C2: FAIL, kept.** Base → fine change in the median depth: 11.1 % (S4 alt, isolated) and 11.0 %
+  (S2 canonical, isolated), above the frozen 10 %. Every equal-mass and external-field map changes ≤ 5.6 %; every volume
+  ≤ 4.0 %. The base level is too coarse for unequal isolated pairs.
+- **Added check C2b (post-result; it does not replace C2).** The four isolated unequal-mass maps (S2, S4 × both footings)
+  are solved once more at an extra-fine level (spacings × 0.5, growth rate 0.042). C2b PASS iff the fine → extra-fine
+  change is ≤ 10 % in volume and in median depth. Not blind: a development test before this amendment gave 0.05–0.6 %.
+- The verdict rules (section 4) do not use C2 or C2b; no verdict line changes.
