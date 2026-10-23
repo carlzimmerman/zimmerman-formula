@@ -1,6 +1,6 @@
 # The Crispy Fried Chicken Status Board
 
-*Where the theory stands, as of 22 October 2026 (evening). The theory is not complete. The tile picture below is still the 21 October one; the changes since then are listed in the next section.*
+*Where the theory stands, as of 22 October 2026 (evening). The theory is not complete. The tile picture below shows the 22 October evening state; the 21 October picture is kept as [`img/status_board_2026-10-21.png`](img/status_board_2026-10-21.png).*
 
 The theory makes one claim: the acceleration scale where galaxies stop obeying Newton, a₀, is set by the density of dark energy.
 
@@ -14,7 +14,7 @@ The ½ is **fitted**, not derived; the current measurement is κ = 0.417 ± 0.09
 
 ## How to read it
 
-Each tile is one test. The colour restates a verdict recorded in the campaign LEDGER ([`campaign_fresh_gravity/LEDGER.md`](../campaign_fresh_gravity/LEDGER.md)) or in the dated notes of [`THEORY_CANONICAL_2026-10-18.md`](../campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md), and the lane IDs on each tile point to the scripts that produced it. Verdicts come from committed scripts with pass/fail rules frozen *before* the data were read, plus a control that is deliberately broken and must fail. Where a colour depends on a rule added afterwards (post hoc), the tile says so.
+The picture is the 22 October evening state, drawn by [`make_status_board.py`](make_status_board.py); tiles marked **22 OCT** were added or re-annotated from a 22 October lane (listed in the next section). Each tile is one test. The colour restates a verdict recorded in the campaign LEDGER ([`campaign_fresh_gravity/LEDGER.md`](../campaign_fresh_gravity/LEDGER.md)) or in the dated notes of [`THEORY_CANONICAL_2026-10-18.md`](../campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md), and the lane IDs on each tile point to the scripts that produced it. Verdicts come from committed scripts with pass/fail rules frozen *before* the data were read, plus a control that is deliberately broken and must fail. Where a colour depends on a rule added afterwards (post hoc), the tile says so.
 
 | colour | meaning |
 |---|---|
@@ -44,7 +44,7 @@ Papers: PAPER58 v1.1, DOI [10.5281/zenodo.23579379](https://doi.org/10.5281/zeno
   unscreened member of the record's law family passes both Cassini and SPARC (D7c).
 - **🟨 Globulars → L★ floor, measured with the field solved**: L★ ≥ 21.7 pc (canonical) / 22.9 pc (alt) with the SPS
   M/L prior; 3–24 pc across M/L priors (D10). The unscreened law is excluded in every case.
-- **🟨 Dwarf satellites**: +0.89 dex above the screened prediction (not +2.15 dex above Newton, E3). The theory's
+- **Dwarf satellites** (the tile stays 🟥; the cold-supply tile is 🟨): +0.89 dex above the screened prediction (not +2.15 dex above Newton, E3). The theory's
   dynamics cannot fix a satellite's cold supply; the satellites' own chemistry says it is there, conditional on wind
   metallicity and no pre-enrichment (E6).
 - **Gaia DR4 (December 2026) is now a clean decider**: screened γ_v − 1 ≈ 8×10⁻⁶ vs law-first (AQUAL) 1.167 / 1.199;
@@ -58,6 +58,24 @@ Papers: PAPER58 v1.1, DOI [10.5281/zenodo.23579379](https://doi.org/10.5281/zeno
 - **Column 5**: κ is not derived — no horizon construction gives ½ without hand-picking it, and the "thermal" Z/4π is
   Milgrom's relation, a postulate (D5, A75). The dust abundance is an initial condition (C2, C4). L★ is a new fitted
   constant (C3). The skew-sign test of n = 1 vs n = 2 is retired (D1).
+- **The picture, tile by tile (22 October evening).** No tile changed colour: no committed 22 October lane passes or fails
+  a tile that the 21 October board scored differently, and nothing was turned green. Tiles added (new colour on the board)
+  or re-annotated (colour kept), each with its lane:
+  - Column 1, re-annotated to the Khronon literal form: gravity waves at c 🟩 (C5, C8); health 🟨 (C5); leaf problem
+    well-posed 🟨, weak field only (C8); binary pulsars + GW170817 🟩 (C8); Solar System + Cassini, screened 🟩 (D7d, C6;
+    C6's own frozen rule reads UNDECIDED on one float-rounding check).
+  - Column 1, added: causality 🟨 "criterion B met, criterion A violated" (C5, C8); unscreened law vs Cassini 🟥 (E2, D7c).
+  - Column 2, added: outer globulars, L★ floor 🟨 (D10). The older globulars + ownership tile is kept.
+  - Column 3: the Local Group dwarfs tile is re-scored against the screened prediction and **stays 🟥** (E3, E6): +0.89 dex
+    above it, and both lanes find no mechanism in the record that packs the cold energy inside the half-light radius.
+    Added: dwarf cold supply from the satellites' own chemistry 🟨, conditional on ζ = 1 winds and no pre-enrichment (E6).
+  - Column 4, added: native shear rerun ⬜ running (CFG960); native CMB ⬜, validated, spectra pending (C7, C2).
+    Re-annotated: ALMA ⬜, harness ready, expected unscorable (D4); Gaia DR4 wide binaries ⬜, screened γ_v − 1 ≈ 8×10⁻⁶ vs
+    AQUAL 1.167 / 1.199 (C6, E2, D2).
+  - Column 5: κ ⬜ fitted (D5); new tile L★ ⬜ fitted (C3, D10); cold-mass amount ⬜, dust abundance an initial condition (C2, C4).
+  - **Still 🟥, being re-examined by the rebuild lanes F1–F3** ([`rebuild_2026_10_22/`](../rebuild_2026_10_22/BRIEF.md)):
+    cluster cores (F1), isolated-galaxy lensing at all radii (F2), growth under the zero-knob supply rule (F3), and the
+    no-go "law + a¹ growth + no external-field effect" (F1–F3). No rebuild verdict exists yet.
 - **Corrected in the record**: the native H₀ is 67.2–68.6 (the ordinary Hubble tension), not 55–57.5 (C2; PAPER58 v1.1).
 
 ## What changed since 9 October
@@ -182,4 +200,4 @@ The law wins where it is cleanest: rotation curves (0.10 dex, κ = ½ fitted), M
 
 ---
 
-κ = ½ is fitted, not derived. Cold energy is real gravitating mass that is not a particle species. The board is generated by [`campaign_fresh_gravity/closure_map/status_picture_2026_10_21.py`](../campaign_fresh_gravity/closure_map/status_picture_2026_10_21.py); the 9 October board's script, [`status_picture_2026_10_03.py`](../campaign_fresh_gravity/closure_map/status_picture_2026_10_03.py), is kept unedited. The a₀ chart is made by [`chart_a0z_one.py`](../campaign_fresh_gravity/CHART_a0z_rar_z0_5_2026-10-01/chart_a0z_one.py).
+κ = ½ is fitted, not derived. Cold energy is real gravitating mass that is not a particle species. The board is generated by [`make_status_board.py`](make_status_board.py) (`--mutate` must fail: it strips one tile's evidence lane); the 21 October board's script, [`campaign_fresh_gravity/closure_map/status_picture_2026_10_21.py`](../campaign_fresh_gravity/closure_map/status_picture_2026_10_21.py), and the 9 October board's script, [`status_picture_2026_10_03.py`](../campaign_fresh_gravity/closure_map/status_picture_2026_10_03.py), are kept unedited. The a₀ chart is made by [`chart_a0z_one.py`](../campaign_fresh_gravity/CHART_a0z_rar_z0_5_2026-10-01/chart_a0z_one.py).
