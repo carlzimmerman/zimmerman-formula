@@ -382,3 +382,11 @@ Do not use any number for these until the lane's README result and LEDGER row ar
   - If the medium exists early, the tensor kinetic coefficient turns negative before 1 + z ≈ 2.7e5 to 1.1e7 (sol61 audit a67f9ed9c).
 - **The hidden cosmic clock is confirmed:** 1.1e-3 a₀ at 370 km/s. Not visible in SPARC, wide binaries or the Solar System; undecided against the KiDS tail ends.
 - PAPER57 (10.5281/zenodo.23532885) states "linear well-posedness". A v1.1 correction is drafted in CFG961_wt02_verification/CORRECTION_PAPER57_v1.1_DRAFT.md and awaits the owner's go.
+
+---
+**Dated note, 2026-10-23 (CFG963 e96c21a87): the native shear pass is carried by gas expulsion.**
+- **M3 does it.** The KiDS lead of theory-v2 over NCS0 (NC1x −10.08, NC2x −9.39) comes from the census gas expulsion M3, which the Poisson control does not apply. Plain gravity + the same M3 scores −11.87 vs NCS0.
+- **Against that feedback-matched control** the engine scores +1.78 / +2.47, within noise, and the capped cold-sector rules alone (M1+M2) score +2.66.
+- **Correct reading of the shear tile:** the capped cold sector does not overproduce structure (unlike CFG596's +68.7), and gas expulsion lowers power. KiDS cannot tell the framework's cold sector from plain gravity + feedback. It is not a preference for the law.
+- The engine-parent problem is therefore not load-bearing for the shear result.
+- **Rule for every future engine score (v3, L1 khronon included):** report vs NCS0 first, then vs a control with the same baryon physics.
