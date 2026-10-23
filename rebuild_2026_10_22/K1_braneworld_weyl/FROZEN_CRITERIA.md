@@ -167,3 +167,21 @@ for satellites (they sit in shallower host potential than the Sun). Added report
   of the Weyl excess inside 3 Mpc vs the same radius for the gas.
 - For satellites, the variable each closure uses (host depth ψ for C0, which J1 showed is the wrong variable; the
   satellite's own baryon mass for C1; the satellite's own baryon structure, ℓ_Q/r12, for C2).
+
+## AMENDMENT A3 (2026-10-23, POST-RESULT: implementation fixes after RUN1; frozen lines and thresholds unchanged)
+
+RUN1 is kept as `*_RUN1.*` (8/9 checks, verdict FAILS, the same per-closure statuses as the final run except C2's R1 line).
+1. **K2** failed in RUN1 because the sympy symbol w had no realness assumption, so `dsolve` returned a complex-exponent
+   form. w is now declared real. No number changes.
+2. **R1 for C2 (a graded line).** The galaxy projection cannot resolve C2's far field. Around a compact galaxy the C2
+   effective density is a positive core (scale 2Mℓ/b) plus a negative r⁻⁴ envelope, and their net ΔΣ at 0.4–2.6 Mpc is
+   about 1/400 of either part. F1's 2 kpc inner disc and 90-point 2D cumulative integral are not that accurate: RUN1 gave
+   −0.16 to −0.55, and adding the inner 1 kpc mass as a point gave −0.5 to −1.8. The line is now graded on the exact
+   point-source result ΔΣ_lens = (9/16) M ℓ_Q / R³ (README; corrections O((b/R)² ln) ≤ 1e-3 at R ≥ 80 b), which gives
+   +0.04 to +0.13 (PASS). The projector values are still printed. For clusters (no such cancellation) the C2 template is
+   checked against the projected-potential method: median ratio 1.000–1.004 in bins 3–7 (10 clusters). This moves C2's
+   R1 from FAIL to PASS. C2's verdict is unchanged (it FAILS O1, R3 and R5).
+3. **R1, law and C1:** the galaxy's mass inside 1 kpc (RG[0]) is added as a central point (≤ 0.5 % effect on the ratios).
+4. **RSS hygiene.** RUN1 peaked at 1.38 GB (ru_maxrss), above the < 1 GB rule, from heap growth in the C0 calibration
+   scan. The C0 solver now uses reusable step-major buffers. The final run peaks at 0.85 GB; its numbers are identical to
+   the run before this change (all non-memory output lines equal).

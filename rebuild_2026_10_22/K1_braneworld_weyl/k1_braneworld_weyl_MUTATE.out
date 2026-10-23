@@ -1,0 +1,132 @@
+=== PART A: static spherical brane equations with the projected Weyl term (sympy) ===
+  Bianchi div(G)_r = 0;  divergence identity residual = 0
+  TOV limit (U = P = 0): tt residual 0, rr residual 0 (with e^-lambda = 1 - 2Gm/rc^2, m' = 4 pi r^2 rho, nu' = TOV)
+  Weyl conservation  div(T_W)_r  =  c^2 [ (U+2P)'/3 + nu'(4U+2P)/6 + 2P/r ]  residual: c**2*(-2*r*((P(r) + 2*U(r))*Derivative(nu(r), r) + 2*Derivative(P(r), r) + Derivative(U(r), r)) + 3*r*U(r)*Derivative(nu(r), r) - 8*P(r) - 4*U(r))/(6*r)
+  unknowns {nu, lambda, U, P} (matter rho, p given with its own conservation); independent equations {tt, rr, Weyl conservation};
+  the theta-theta equation follows from them by the divergence identity (Bianchi). Free functions: 4 - 3 = 1 (the non-closure).
+K1 FAIL Bianchi 0, identity 0, TOV tt 0 rr 0, Weyl conservation residual c**2*(-2*r*((P(r) + 2*U(r))*Derivative(nu(r), r) + 2*Derivative(P(r), r) + Derivative(U(r), r)) + 3*r*U(r)*Derivative(nu(r), r) - 8*P(r) - 4*U(r))/(6*r); unknowns-equations = 1 all residuals 0
+  C0 (P = 0, exact): U = C1*exp(-2*nu(r))   [Tolman radiation; linear: dU = -4 U_inf psi / c^2]
+  C1 (P = wU, leading order): U = C1/r**(6*w/(2*w + 1));  r dlnU/dr = -6*w/(2*w + 1)  -> w = 1 gives -2 (flat rotation, HC), w = -2 gives -4
+  C2 (DMPR, e^nu = e^-lambda = 1 - 2GM/rc^2 + Q/r^2, vacuum): U = Q*c**2/(8*pi*G*r**4), P = -Q*c**2/(4*pi*G*r**4), traceless 0
+  C2 kernel (A2): FT of 1/r^2 in 3D = 2*pi**2/k  -> Phi_W,k = -G l (2 pi^2/k) rho_k, rho_eff = (pi l/2)(-Lap)^(1/2) rho_b (density-gradient-like)
+K2 PASS P=0: U ~ exp(-2 nu) True; P=wU: r^(-6w/(1+2w)) True; DMPR P=-2U, U = Qc^2/(8 pi G r^4) exactly True all True
+  slip: dM_dyn/dr = 4 pi r^2 x 1 U, dM_lens/dr = 4 pi r^2 x 1 U, dM_lambda/dr = 4 pi r^2 x 1 U  (Weyl lensing/dynamics = 1)
+  C0 linearised: Lap psi + mu_W^2 psi = 4 pi G rho_b with mu_W^2 = 16*pi*G*U_inf/c**2  (relativistic Jeans wavenumber of the dark radiation)
+K3 FAIL coefficients dyn 1, lens 1; mu_W^2 = 16*pi*G*U_inf/c**2 2, 3/2; 32 pi G U_inf / c^2
+  FRW: traceless conserved isotropic Weyl term: rho_W = C1/a(t)**4  (w = 1/3, dark radiation; it cannot be the growth dust)
+K4 PASS rho_W ~ a^-4 True; (1 + x N_eff)/x = 7.44920 vs A78 7.4492 True; |diff| < 1e-4
+  DGP (decoupling limit, EXTERNAL): d/dr[3 beta r^2 phi' + 2 (r_c/c)^2 r phi'^2] - r^2 x operator = 0; phi' = c*(-3*beta*c*r**(3/2) + sqrt(16*GM*r_c**2 + 9*beta**2*c**2*r**3))/(4*sqrt(r)*r_c**2)
+
+=== PART B: calibration on F1 MID, predictions with no refit ===
+  law h0672 canonical: A_MID 1.6758+-0.1205 (F1 1.6758)  A_OUTER 0.9496+-0.0896 (F1 0.9496)  chi2_prof 33.4
+  law h0672 alt      : A_MID 1.5396+-0.1108 (F1 1.5396)  A_OUTER 0.8701+-0.0821 (F1 0.8701)  chi2_prof 27.3
+  law h0686 canonical: A_MID 1.7198+-0.1155 (F1 1.7198)  A_OUTER 0.9485+-0.0829 (F1 0.9485)  chi2_prof 41.8
+  law h0686 alt      : A_MID 1.5798+-0.1062 (F1 1.5798)  A_OUTER 0.8690+-0.0760 (F1 0.8690)  chi2_prof 34.9
+K5 PASS sha 961ea4fc...e720, max rel dev 0.0e+00 over 4 cells x MID/OUTER sha 961ea4fc...e720; <= 1e-6
+  [mem] law built: max RSS so far 0.332 GB, t = 5 s
+K6 PASS linear vs F1 projector, max rel band deviation 1.31e-04 <= 0.005
+  [mem] operators built: max RSS so far 0.477 GB, t = 6 s
+K7 PASS homogeneous vs sin(mu r)/(mu r): 3.6e-06; exact vs test fluid at mu r_ref = 1e-3: 1.6e-07 <= 1e-4; <= 1e-3
+K8 PASS max |Phi_W/(-GMl/r^2) - 1| at r >= 100 b: 4.3e-04 (at >= 50 b: 1.4e-03) <= 1e-3 (A1)
+  [mem] closure machinery: max RSS so far 0.558 GB, t = 6 s
+  [mem] linear calibrations: max RSS so far 0.619 GB, t = 7 s
+  CAL h0672 canonical: C0 U_inf = 1.157e-20 kg/m^3 (test fluid 3.645e-20); C1 xi = 0.4039; C2 l_Q = 1.1895 Mpc
+  CAL h0672 alt      : C0 U_inf = 1.081e-20 kg/m^3 (test fluid 2.904e-20); C1 xi = 0.3193; C2 l_Q = 1.0338 Mpc
+  CAL h0686 canonical: C0 U_inf = 1.177e-20 kg/m^3 (test fluid 3.885e-20); C1 xi = 0.4310; C2 l_Q = 1.2823 Mpc
+  CAL h0686 alt      : C0 U_inf = 1.106e-20 kg/m^3 (test fluid 3.123e-20); C1 xi = 0.3438; C2 l_Q = 1.1245 Mpc
+  [mem] C0 calibration: max RSS so far 0.663 GB, t = 88 s
+  O1 C0   h0672 canonical: A_INNER 2.197  A_MID 1.000  A_OUTER 0.267+-0.025 (Z -29.0)  chi2_prof 690.4  -> FAIL   data/pred per bin 1.81 2.38 2.22 1.85 1.27 0.73 0.33 0.24
+     A2 compactness C0 canonical: M_lens,W/M_gas (median) at 0.5/1/2/3 Mpc = 3.50 / 9.92 / 23.71 / 24.93;  r_half(Weyl excess <3 Mpc) 1.81 Mpc vs gas 1.59 Mpc; |M_W(<1 kpc)|/M_W(<0.5 Mpc) 0.0e+00
+  O1 C0   h0672 alt      : A_INNER 2.049  A_MID 1.000  A_OUTER 0.291+-0.027 (Z -25.8)  chi2_prof 571.3  -> FAIL   data/pred per bin 1.68 2.21 2.08 1.76 1.24 0.75 0.36 0.26
+     A2 compactness C0 alt: M_lens,W/M_gas (median) at 0.5/1/2/3 Mpc = 3.04 / 8.53 / 20.22 / 21.24;  r_half(Weyl excess <3 Mpc) 1.81 Mpc vs gas 1.59 Mpc; |M_W(<1 kpc)|/M_W(<0.5 Mpc) 0.0e+00
+  O1 C0   h0686 canonical: A_INNER 2.141  A_MID 1.000  A_OUTER 0.254+-0.022 (Z -33.5)  chi2_prof 821.2  -> FAIL   data/pred per bin 1.28 2.49 2.25 1.84 1.26 0.74 0.31 0.23
+  O1 C0   h0686 alt      : A_INNER 1.998  A_MID 1.000  A_OUTER 0.275+-0.024 (Z -30.1)  chi2_prof 704.6  -> FAIL   data/pred per bin 1.19 2.32 2.11 1.75 1.24 0.76 0.33 0.25
+  O1 C1   h0672 canonical: A_INNER 0.865  A_MID 1.000  A_OUTER 0.675+-0.064 (Z -5.1)  chi2_prof 21.7  -> FAIL   data/pred per bin 0.47 0.88 1.08 1.16 1.07 0.90 0.65 0.69
+     A2 compactness C1 canonical: M_lens,W/M_gas (median) at 0.5/1/2/3 Mpc = 4.80 / 3.87 / 3.48 / 3.37;  r_half(Weyl excess <3 Mpc) 1.50 Mpc vs gas 1.59 Mpc; |M_W(<1 kpc)|/M_W(<0.5 Mpc) 2.0e-03
+  O1 C1   h0672 alt      : A_INNER 0.912  A_MID 1.000  A_OUTER 0.657+-0.062 (Z -5.5)  chi2_prof 25.3  -> FAIL   data/pred per bin 0.51 0.93 1.12 1.18 1.07 0.89 0.64 0.67
+     A2 compactness C1 alt: M_lens,W/M_gas (median) at 0.5/1/2/3 Mpc = 4.17 / 3.36 / 3.03 / 2.93;  r_half(Weyl excess <3 Mpc) 1.50 Mpc vs gas 1.59 Mpc; |M_W(<1 kpc)|/M_W(<0.5 Mpc) 2.0e-03
+  O1 C1   h0686 canonical: A_INNER 0.807  A_MID 1.000  A_OUTER 0.661+-0.058 (Z -5.9)  chi2_prof 30.8  -> FAIL   data/pred per bin 0.32 0.89 1.06 1.13 1.05 0.92 0.61 0.69
+  O1 C1   h0686 alt      : A_INNER 0.850  A_MID 1.000  A_OUTER 0.644+-0.056 (Z -6.3)  chi2_prof 35.5  -> FAIL   data/pred per bin 0.34 0.94 1.10 1.15 1.06 0.91 0.60 0.67
+  O1 C2   h0672 canonical: A_INNER 0.676  A_MID 1.000  A_OUTER 0.795+-0.074 (Z -2.8)  chi2_prof 7.0  -> FAIL   data/pred per bin 0.39 0.66 0.83 1.00 1.04 0.97 0.75 0.82
+     A2 compactness C2 canonical: M_lens,W/M_gas (median) at 0.5/1/2/3 Mpc = 5.48 / 2.72 / 1.40 / 1.72;  r_half(Weyl excess <3 Mpc) 1.54 Mpc vs gas 1.59 Mpc; |M_W(<1 kpc)|/M_W(<0.5 Mpc) 1.1e-04
+  O1 C2   h0672 alt      : A_INNER 0.726  A_MID 1.000  A_OUTER 0.753+-0.071 (Z -3.5)  chi2_prof 10.5  -> FAIL   data/pred per bin 0.43 0.71 0.89 1.04 1.05 0.95 0.72 0.78
+     A2 compactness C2 alt: M_lens,W/M_gas (median) at 0.5/1/2/3 Mpc = 4.76 / 2.37 / 1.22 / 1.49;  r_half(Weyl excess <3 Mpc) 1.54 Mpc vs gas 1.59 Mpc; |M_W(<1 kpc)|/M_W(<0.5 Mpc) 1.1e-04
+  O1 C2   h0686 canonical: A_INNER 0.618  A_MID 1.000  A_OUTER 0.786+-0.068 (Z -3.2)  chi2_prof 11.5  -> FAIL   data/pred per bin 0.25 0.66 0.81 0.97 1.02 1.00 0.71 0.83
+  O1 C2   h0686 alt      : A_INNER 0.662  A_MID 1.000  A_OUTER 0.745+-0.065 (Z -4.0)  chi2_prof 16.0  -> FAIL   data/pred per bin 0.28 0.71 0.86 1.00 1.03 0.98 0.68 0.79
+  O1 C0tf h0672 canonical: A_INNER 2.132  A_MID 1.000  A_OUTER 0.313+-0.030 (Z -23.2)  chi2_prof 466.0  -> FAIL   data/pred per bin 1.77 2.32 2.14 1.78 1.23 0.75 0.37 0.29
+  O1 C0tf h0672 alt      : A_INNER 2.004  A_MID 1.000  A_OUTER 0.332+-0.031 (Z -21.3)  chi2_prof 397.8  -> FAIL   data/pred per bin 1.65 2.17 2.03 1.71 1.21 0.76 0.39 0.31
+  O1 C0tf h0686 canonical: A_INNER 2.074  A_MID 1.000  A_OUTER 0.300+-0.026 (Z -26.7)  chi2_prof 576.2  -> FAIL   data/pred per bin 1.26 2.43 2.17 1.76 1.22 0.76 0.34 0.28
+  O1 C0tf h0686 alt      : A_INNER 1.950  A_MID 1.000  A_OUTER 0.317+-0.028 (Z -24.6)  chi2_prof 504.3  -> FAIL   data/pred per bin 1.17 2.27 2.05 1.69 1.20 0.77 0.36 0.30
+  [mem] O1: max RSS so far 0.736 GB, t = 88 s
+  R1 C0 h0672 canonical: Weyl/law O1 0.171 0.170 0.170 0.170  O2 1.402 1.401 1.401 1.401  -> FAIL (max 1.402 vs 0.14)
+  R1 C0 h0672 alt      : Weyl/law O1 0.142 0.141 0.141 0.141  O2 1.107 1.106 1.106 1.106  -> FAIL (max 1.107 vs 0.14)
+  R1 C0 h0686 canonical: Weyl/law O1 0.180 0.180 0.180 0.179  O2 1.498 1.497 1.497 1.497  -> FAIL (max 1.498 vs 0.14)
+  R1 C0 h0686 alt      : Weyl/law O1 0.150 0.150 0.150 0.150  O2 1.194 1.193 1.193 1.193  -> FAIL (max 1.194 vs 0.14)
+  R1 C1 h0672 canonical: Weyl/law O1 0.301 0.300 0.299 0.298  O2 0.307 0.306 0.306 0.305  -> FAIL (max 0.307 vs 0.14)
+  R1 C1 h0672 alt      : Weyl/law O1 0.238 0.237 0.237 0.236  O2 0.242 0.242 0.242 0.242  -> FAIL (max 0.242 vs 0.14)
+  R1 C1 h0686 canonical: Weyl/law O1 0.321 0.320 0.319 0.318  O2 0.327 0.327 0.326 0.326  -> FAIL (max 0.327 vs 0.14)
+  R1 C1 h0686 alt      : Weyl/law O1 0.256 0.255 0.255 0.254  O2 0.261 0.261 0.260 0.260  -> FAIL (max 0.261 vs 0.14)
+     C2 projector value (not graded, A3): O1 -0.661 -1.131 -1.388 -1.683  O2 -0.263 -0.452 -0.555 -0.675
+  R1 C2 h0672 canonical: Weyl/law O1 0.048 0.083 0.102 0.123  O2 0.007 0.012 0.015 0.018  -> PASS (max 0.123 vs 0.14)
+     C2 projector value (not graded, A3): O1 -0.523 -0.895 -1.098 -1.332  O2 -0.208 -0.357 -0.439 -0.534
+  R1 C2 h0672 alt      : Weyl/law O1 0.038 0.066 0.080 0.098  O2 0.005 0.009 0.011 0.014  -> PASS (max 0.098 vs 0.14)
+     C2 projector value (not graded, A3): O1 -0.713 -1.219 -1.496 -1.814  O2 -0.284 -0.487 -0.599 -0.727
+  R1 C2 h0686 canonical: Weyl/law O1 0.052 0.089 0.110 0.133  O2 0.007 0.013 0.016 0.019  -> PASS (max 0.133 vs 0.14)
+     C2 projector value (not graded, A3): O1 -0.569 -0.973 -1.195 -1.449  O2 -0.227 -0.389 -0.478 -0.580
+  R1 C2 h0686 alt      : Weyl/law O1 0.042 0.071 0.088 0.106  O2 0.006 0.010 0.012 0.015  -> PASS (max 0.106 vs 0.14)
+  [mem] R1: max RSS so far 0.736 GB, t = 88 s
+  A3 cross-check, cluster C2 template: projector / projected-potential, median over 10 clusters, bins 3-7: 1.001 1.004 1.000 1.004 1.003
+K9 PASS central baseline median canonical +0.946 / alt +0.909 vs E3 MC +0.886 / +0.846 (diff +0.060 / +0.063); N 45/46 |diff| <= 0.10
+  R3 C0 h0672 canonical: median Weyl mass in r12 2.838e+01 Msun (x1.54e-04 of the screened prediction); residual +0.946 -> +0.946 dex -> FAIL
+  R3 C0 h0672 alt      : median Weyl mass in r12 2.713e+01 Msun (x1.31e-04 of the screened prediction); residual +0.909 -> +0.909 dex -> FAIL
+  R3 C0 h0686 canonical: median Weyl mass in r12 2.998e+01 Msun (x1.61e-04 of the screened prediction); residual +0.946 -> +0.946 dex -> FAIL
+  R3 C0 h0686 alt      : median Weyl mass in r12 2.875e+01 Msun (x1.39e-04 of the screened prediction); residual +0.909 -> +0.909 dex -> FAIL
+  R3 C1 h0672 canonical: median Weyl mass in r12 1.517e+05 Msun (x1.03e+00 of the screened prediction); residual +0.946 -> +0.540 dex -> FAIL
+  R3 C1 h0672 alt      : median Weyl mass in r12 1.391e+05 Msun (x8.41e-01 of the screened prediction); residual +0.909 -> +0.559 dex -> FAIL
+  R3 C1 h0686 canonical: median Weyl mass in r12 1.619e+05 Msun (x1.09e+00 of the screened prediction); residual +0.946 -> +0.523 dex -> FAIL
+  R3 C1 h0686 alt      : median Weyl mass in r12 1.498e+05 Msun (x9.05e-01 of the screened prediction); residual +0.909 -> +0.541 dex -> FAIL
+  R3 C2 h0672 canonical: median Weyl mass in r12 2.138e+08 Msun (x1.29e+03 of the screened prediction); residual +0.946 -> -2.488 dex -> FAIL
+  R3 C2 h0672 alt      : median Weyl mass in r12 2.100e+08 Msun (x1.03e+03 of the screened prediction); residual +0.909 -> -2.434 dex -> FAIL
+  R3 C2 h0686 canonical: median Weyl mass in r12 2.305e+08 Msun (x1.39e+03 of the screened prediction); residual +0.946 -> -2.520 dex -> FAIL
+  R3 C2 h0686 alt      : median Weyl mass in r12 2.284e+08 Msun (x1.13e+03 of the screened prediction); residual +0.909 -> -2.470 dex -> FAIL
+  [mem] R3: max RSS so far 0.756 GB, t = 88 s
+  R5 C0 h0672 canonical: a_W/bound Earth 1.33e-09 Mars 1.25e-08 Saturn 1.57e-08; gamma-1 (slip, M_dyn,W(<1 AU)) -9.7e-22 -> PASS
+  R5 C0 h0672 alt      : a_W/bound Earth 1.24e-09 Mars 1.18e-08 Saturn 1.48e-08; gamma-1 (slip, M_dyn,W(<1 AU)) -9.1e-22 -> PASS
+  R5 C0 h0686 canonical: a_W/bound Earth 1.38e-09 Mars 1.31e-08 Saturn 1.64e-08; gamma-1 (slip, M_dyn,W(<1 AU)) -1.0e-21 -> PASS
+  R5 C0 h0686 alt      : a_W/bound Earth 1.31e-09 Mars 1.24e-08 Saturn 1.55e-08; gamma-1 (slip, M_dyn,W(<1 AU)) -9.6e-22 -> PASS
+  R5 C1 h0672 canonical: a_W/bound Earth 3.46e+07 Mars 1.41e+08 Saturn 4.49e+06; gamma-1 (slip, M_dyn,W(<1 AU)) -2.5e-05 -> FAIL
+  R5 C1 h0672 alt      : a_W/bound Earth 3.01e+07 Mars 1.23e+08 Saturn 3.90e+06; gamma-1 (slip, M_dyn,W(<1 AU)) -2.2e-05 -> FAIL
+  R5 C1 h0686 canonical: a_W/bound Earth 3.69e+07 Mars 1.51e+08 Saturn 4.79e+06; gamma-1 (slip, M_dyn,W(<1 AU)) -2.7e-05 -> FAIL
+  R5 C1 h0686 alt      : a_W/bound Earth 3.24e+07 Mars 1.32e+08 Saturn 4.20e+06; gamma-1 (slip, M_dyn,W(<1 AU)) -2.4e-05 -> FAIL
+  R5 C2 h0672 canonical: a_W/bound Earth 3.35e+23 Mars 5.87e+23 Saturn 4.73e+20; gamma-1 (slip, M_dyn,W(<1 AU)) -2.5e+11 -> FAIL
+  R5 C2 h0672 alt      : a_W/bound Earth 2.91e+23 Mars 5.10e+23 Saturn 4.11e+20; gamma-1 (slip, M_dyn,W(<1 AU)) -2.1e+11 -> FAIL
+  R5 C2 h0686 canonical: a_W/bound Earth 3.61e+23 Mars 6.33e+23 Saturn 5.10e+20; gamma-1 (slip, M_dyn,W(<1 AU)) -2.6e+11 -> FAIL
+  R5 C2 h0686 alt      : a_W/bound Earth 3.16e+23 Mars 5.55e+23 Saturn 4.47e+20; gamma-1 (slip, M_dyn,W(<1 AU)) -2.3e+11 -> FAIL
+  [mem] R5: max RSS so far 0.756 GB, t = 89 s
+  R4 C0 h0672 canonical: U_inf = 1.364e+06 rho_crit -> Omega_W h^2 6.159e+05, Delta N_eff 1.098e+11 (bound 0.30) -> FAIL; mu_W = 0.907/Mpc (mu r_ref 2.72); at the BBN cap the MID excess is 5.86e-13 of the law vs 0.676 needed (short by 1.15e+12)
+  R4 C0 h0672 alt      : U_inf = 1.274e+06 rho_crit -> Omega_W h^2 5.753e+05, Delta N_eff 1.026e+11 (bound 0.30) -> FAIL; mu_W = 0.876/Mpc (mu r_ref 2.63); at the BBN cap the MID excess is 5.87e-13 of the law vs 0.540 needed (short by 9.19e+11)
+  R4 C0 h0686 canonical: U_inf = 1.331e+06 rho_crit -> Omega_W h^2 6.264e+05, Delta N_eff 1.117e+11 (bound 0.30) -> FAIL; mu_W = 0.915/Mpc (mu r_ref 2.74); at the BBN cap the MID excess is 5.85e-13 of the law vs 0.720 needed (short by 1.23e+12)
+  R4 C0 h0686 alt      : U_inf = 1.251e+06 rho_crit -> Omega_W h^2 5.888e+05, Delta N_eff 1.050e+11 (bound 0.30) -> FAIL; mu_W = 0.887/Mpc (mu r_ref 2.66); at the BBN cap the MID excess is 5.87e-13 of the law vs 0.580 needed (short by 9.88e+11)
+  [mem] R4: max RSS so far 0.766 GB, t = 89 s
+
+  B1 RS2 (bulk-supplied, l <= 0.1 mm): dyn 1.1e-53, lens 8.0e-54 (x100 extended-source log factor: 8.0e-52) at 0.808 Mpc vs needed 0.676/0.540 -> FAIL by 8.4e+50. l needed ~ 0.94 Mpc = 2.9e+26 x the table-top bound; gravity would be 5D below it (Solar System off by ~l/AU = 1.9e+11)
+  B2 DGP beta 1 (r_c = c/H0): fractional boost at 0.808 Mpc: cluster 7e13 Msun 0.042 (r_V 4.88 Mpc), galaxy 10^10.83 0.317 (r_V 0.48 Mpc); cluster/galaxy 0.13 (<1 = anti-selector); max 1/(3 beta) = 0.333 vs needed 0.676 -> FAIL
+  B2 DGP beta 3 (r_c = c/H0): fractional boost at 0.808 Mpc: cluster 7e13 Msun 0.037 (r_V 2.35 Mpc), galaxy 10^10.83 0.110 (r_V 0.23 Mpc); cluster/galaxy 0.33 (<1 = anti-selector); max 1/(3 beta) = 0.111 vs needed 0.676 -> FAIL
+
+  A2 low-energy source pi/T ~ rho/lambda_b (lambda_b = (1 TeV)^4 = 2.32e+32 kg/m^3): cluster centre 8.2e-56, galaxy centre 8.4e-53, solar centre 6.5e-28
+
+=== PART C / A2: what each closure's Weyl mass tracks ===
+  canonical C0: |psi|/c^2 median at 0.1/0.5/1/2 Mpc = 4.80e-05 / 4.30e-05 / 3.52e-05 / 1.69e-05  (flat, like J1's |Phi|); Sun a_W/g_N(1 AU) 1.9e-21
+  alt       C0: |psi|/c^2 median at 0.1/0.5/1/2 Mpc = 4.49e-05 / 3.98e-05 / 3.23e-05 / 1.54e-05  (flat, like J1's |Phi|); Sun a_W/g_N(1 AU) 1.8e-21
+
+=== VERDICT (frozen rule) ===
+  C0 canonical: CAL True  O1 False  R1 False  R3 False  R5 True  R4 False  -> FAILS
+  C0 alt      : CAL True  O1 False  R1 False  R3 False  R5 True  R4 False  -> FAILS
+  C1 canonical: CAL True  O1 False  R1 False  R3 False  R5 False  R4 NOT LINKED  -> FAILS
+  C1 alt      : CAL True  O1 False  R1 False  R3 False  R5 False  R4 NOT LINKED  -> FAILS
+  C2 canonical: CAL True  O1 False  R1 True  R3 False  R5 False  R4 NOT LINKED  -> FAILS
+  C2 alt      : CAL True  O1 False  R1 True  R3 False  R5 False  R4 NOT LINKED  -> FAILS
+  bulk-supplied: B1 RS2 FAIL, B2 DGP FAIL
+OVERALL VERDICT: FAILS
+  [mem] end: max RSS so far 0.766 GB, t = 89 s
+K1_BRANEWORLD_WEYL COMPLETE: 7/9 checks PASS.
