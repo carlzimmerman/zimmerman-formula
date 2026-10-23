@@ -193,3 +193,22 @@ outputs go to `p3_v3_strong_field_MUTATE.out` and `p3_v3_strong_field_results_MU
   A = e^(2 psi)(1 - 2m/r) and B = 1 - 2m/r. The dynamical mass is Keplerian, M_dyn = r^2 A'/2 at r_dyn. The added
   check: T^v_v and T_rr(EF) stay finite as r -> 2M on every regular member (|value| at r = 2.001 M <= 10 x the value
   at 2.5 M).
+
+## AMENDMENT A2 (PRE-RESULT for Part E: no Part E number has been computed by any script)
+
+- **Why E2 changes.** C5's local matrix freezes the background coefficients at one point. After integrations by parts,
+  that drops every term proportional to a background gradient. On v3 backgrounds the khronon pair's gradient energy
+  is entirely such a term (it comes from the phantom density div P0 and from the stiffness mismatch). A frozen-matrix
+  omega^2/k^2 at d != 0 therefore cannot test E1's G.
+- **New E2.**
+  - (i) Kinetic coefficient. In C5's unitary-gauge expansion (beta = eta = gamma_F = 0, the 1/N in K_ij restored),
+    restricted to the lapse perturbation n and the longitudinal p_z, integrate p_z out. The result must equal E1's
+    P-sector kinetic coefficient Z_P(k) = k^2/(K M_kk + gamma_L k^2) under n = -pidot; residual 0.
+  - (ii) Gradient coefficient. G is taken from the exact spherical khronon first integral (A3). Its linear response
+    to a static radial tilt around the static foliation is c = r^2 h' G_eff. The code must reproduce the weak-field
+    limit G_eff -> D.P (1 + gamma_L D.P) + mu_K^2 (Q_bar - 1)/K within 1e-3 at 1 - e <= 1e-4.
+  - C5's own omega = 0 count is cited, not re-run.
+- **E4 dispersion.** E4 uses c_pi^2 = G/Z: first order in background gradients, labelled ESTIMATE. Where G <= 0 the
+  pair does not propagate stably; such systems are reported separately and are not scored as weakly coupled.
+- **Ringdown mixing bound (V2 (i)).** The pi-metric mixing is eps_mix = sqrt(Z_P K) c_pi/omega. The energy
+  leakage per cycle is bounded by eps_mix^2.
