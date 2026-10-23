@@ -103,7 +103,21 @@ LCDM_GREY_ROWS = {"Rotation curves (SPARC RAR)", "Local a0 from MeerKAT", "Galax
                   "MW outer slope (Gaia)", "Central ellipticals (SLUGGS)", "High-z on halo-free inputs",
                   "CRISTAL z~5 / ALESS 122.1", "Coma ultra-diffuse galaxies", "Cluster cores (eRASS1 × KiDS)",
                   "Isolated-galaxy lensing, inner", "Isolated-galaxy lensing, all radii", "Red (early-type) lenses",
-                  "ALMA U4 (6 Nov), GS4 (28 Nov)", "a0(z): native band vs a0 ~ H(z)", "Why kappa = 1/2"}
+                  "ALMA U4 (6 Nov), GS4 (28 Nov)", "a0(z): native band vs a0 ~ H(z)", "Why kappa = 1/2",
+                  # G2's Moster+NFW route is PAPER36 eq. 1 (M_dark = M_ph + f_ex(1 - f_b) M_NFW, G2 README L45) scored
+                  # under the framework's law; ΛCDM's own satellite prediction (Newtonian dynamics in a tidally evolved
+                  # subhalo) was never computed
+                  "Dwarf satellites (MW / M31)"}
+# Lanes allowed to carry a ΛCDM (or GR) arm, with the file:line where that arm is stated. Any other lane registered for
+# 'lcdm' is refused; a ΛCDM cell may reuse only the Newtonian limit, never a framework-law flavor.
+LCDM_ARMS = {
+    "C2": "covariant_push_2026_10_22/C2_aest_cosmology/README.md:L172 (ΛCDM refit to plik-lite)",
+    "C7": "covariant_push_2026_10_22/C7_aest_class/README.md:L161 (the same ΛCDM refit, pristine CLASS)",
+    "Q6": "rebuild_2026_10_22/Q6_v3_class/README.md:L21, L131 (ΛCDM refit; DUST reproduces ΛCDM)",
+    "F3": "rebuild_2026_10_22/F3_growth_audit/README.md:L25, L75 (GR + dust on the ΛCDM refit)",
+    "CFG596": "campaign_fresh_gravity/CFG596_lean_pm_1024/README.md:L116-L121, L141 (S0 arm: GR + Newtonian dust, "
+              "ΛCDM-inherited ICs and background)",
+}
 
 
 def row_of(name):
@@ -151,7 +165,7 @@ L("D7d", {"canonical"}, DP + "D7d_screened_q2/README.md:L1-L6 (the stiffened DSF
 L("D6", {"canonical"}, DP + "D6_u_mechanism/README.md:L1-L8")
 L("P1", {"canonical"}, R + "P1_dwarf_chemistry/README.md:L1-L6 (E6's catchment supply)")
 L("G1", {"canonical"}, TV3 + ":L67 (the old engine's growth excess)")
-L("G2", {"canonical", "lcdm"}, R + "G2_preinfall_retention/README.md:L1-L23 (PAPER36's rule; L91 ΛCDM-processed route)")
+L("G2", {"canonical"}, R + "G2_preinfall_retention/README.md:L1-L23 (PAPER36's rule)")
 L("CFG596", {"canonical", "lcdm"}, CF + "CFG596_lean_pm_1024/README.md:L116-L142 (F arm = settling rules; S0 arm = "
   "GR + Newtonian dust with ΛCDM-inherited ICs and background)")
 L("F1", {"v3", "canonical"}, R + "F1_cluster_cores/README.md:L59-L75 (addendum: the record's settled c* = 0.40)")
@@ -241,7 +255,6 @@ V("F1", "v3", "Cluster cores (eRASS1 × KiDS)", "FAIL", TV3 + ":L66")
 V("C2", "lcdm", "Native CMB", "PASS", CP + "C2_aest_cosmology/README.md:L172")
 V("F3", "lcdm", "Linear growth", "PASS", R + "F3_growth_audit/README.md:L8, L75")
 V("CFG596", "lcdm", "Cosmic shear, 1024³ PM vs raw KiDS", "COND", CF + "CFG596_lean_pm_1024/README.md:L131, L141-L142")
-V("G2", "lcdm", "Dwarf satellites (MW / M31)", "FAIL", R + "G2_preinfall_retention/README.md:L20-L23, L91")
 V("U1", "newton", "Tidal dwarfs, NGC 1052-DF2/DF4", "PASS", R + "U1_v3_dust_content/README.md:L135")
 V("D10", "newton", "Outer globular clusters", "COND", DP + "D10_native_Lstar/README.md:L18, L21")
 
@@ -471,9 +484,6 @@ CELLS = [
     C("lcdm", 3, "Cosmic shear, 1024³ PM vs raw KiDS", "COND",
       "S0 arm (GR + Newtonian dust, ΛCDM-inherited ICs): χ² 144.3 on 104 KiDS points, p 0.014; no baryonic feedback; "
       "L100 box", ["CFG596"], lab="marginal (p 0.014)"),
-    C("lcdm", 2, "Dwarf satellites (Moster+13 + NFW route)", "FAIL",
-      "subhalo mass from Moster+13 (extrapolated to M★ 1e3–1e6) + NFW, through PAPER36's rule: median −0.07 / −0.08 "
-      "dex, but 8 overshoot > 2σ (line 5)", ["G2"], lab="fails G2's breakage line (8 > 5)"),
     C("lcdm", 1, "Tidal dwarfs (Newton)", "COND",
       "TDGs at Newton, as ΛCDM's DM-free TDGs: +0.055 ± 0.114 dex (U1), +0.08 ± 0.10 (G2); why DF2/DF4 lack DM needs "
       "formation modelling not run", ["U1", "G2"], comp="newton"),
@@ -488,8 +498,9 @@ def all_cells(cells):
     return v3_cells() + cells
 
 
-def check(cells, reuse=None, verified=None, lanes=None, verdicts=None):
+def check(cells, reuse=None, verified=None, lanes=None, verdicts=None, arms=None):
     reuse = REUSE if reuse is None else reuse
+    arms = LCDM_ARMS if arms is None else arms
     verified = VERIFIED_GREEN_F if verified is None else verified
     lanes = LANES if lanes is None else lanes
     verdicts = VERDICTS if verdicts is None else verdicts
@@ -498,6 +509,9 @@ def check(cells, reuse=None, verified=None, lanes=None, verdicts=None):
     if main:
         errs.append(f"the main v3 board's own guard fails: {main[0]}")
     v3_main = {t["name"]: (None if t["st"] == "STALE" else t["st"]) for t in msb.TILES}
+    for ln, rec in lanes.items():
+        if "lcdm" in rec["flavors"] and not FILE_LINE.search(arms.get(ln, "")):
+            errs.append(f"lane {ln} registered for ΛCDM without a cited ΛCDM/GR arm (LCDM_ARMS)")
     seen = set()
     for c in all_cells(cells):
         f, row, st = c["flavor"], c["row"], c["st"]
@@ -546,6 +560,9 @@ def check(cells, reuse=None, verified=None, lanes=None, verdicts=None):
                 errs.append(f"green without verified evidence for {f}: {row}")
         if f == "plain_mond" and row in COSMO_ROWS:
             errs.append(f"plain MOND has no cosmology, so this row must stay grey: {row}")
+        if f == "lcdm" and comp not in {"lcdm"} | PSEUDO:
+            errs.append(f"ΛCDM cell reused from a framework-law lane ({comp}, {ev}); only the Newtonian limit may be "
+                        f"reused: {row}")
         if f == "lcdm" and row in LCDM_GREY_ROWS:
             errs.append(f"ΛCDM row needs modelling the record never ran; it must stay grey: {row}")
     for (f, row), vg in verified.items():
@@ -732,17 +749,28 @@ def broken_cases():
     def b14(c, r, v, l, d):  # an OPEN cell where the lane's verdict is a fail
         _cell(c, "v4", "Cluster cores (eRASS1 × KiDS)")["st"] = "OPEN"
 
-    def b15(c, r, v, l, d):  # ΛCDM coloured on a row that needs galaxy-formation modelling (with a fake REUSE)
-        c.append(C("lcdm", 1, "Local a0 from MeerKAT", "PASS", "halo fits", ["P4"], comp="v3"))
-        r[("lcdm", "Local a0 from MeerKAT")] = ("v3", "P4", "P4 README L17")
-        v[("lcdm", "Local a0 from MeerKAT")] = ("P4", "6c0249a8bc", "rerun")
-        d[("P4", "v3", "Local a0 from MeerKAT")] = ("PASS", "P4 README L17")
+    def b15(c, r, v, l, d):  # ΛCDM coloured on a galaxy-formation row by a lane with a ΛCDM arm (verdict faked)
+        c.append(C("lcdm", 1, "Local a0 from MeerKAT", "PASS", "halo fits", ["C2"]))
+        v[("lcdm", "Local a0 from MeerKAT")] = ("C2", "5e93769089", "rerun")
+        d[("C2", "lcdm", "Local a0 from MeerKAT")] = ("PASS", "C2 README L172")
 
     def b16(c, r, v, l, d):  # a ΛCDM green with no verification (the withheld linear growth turned green)
         _cell(c, "lcdm", "Linear growth")["st"] = "PASS"
 
     def b17(c, r, v, l, d):  # a verdict citation with no file:line
         d[("H2", "v4", "Cluster cores (eRASS1 × KiDS)")] = ("FAIL", "somewhere")
+
+    def b18(c, r, v, l, d):  # ΛCDM satellites from G2's PAPER36 route (framework law), with a cited REUSE entry
+        c.append(C("lcdm", 2, "Dwarf satellites (Moster+13 + NFW route)", "FAIL", "PAPER36 eq. 1", ["G2"],
+                   comp="canonical"))
+        r[("lcdm", "Dwarf satellites (MW / M31)")] = ("canonical", "G2", "G2 README L91")
+
+    def b19(c, r, v, l, d):  # ΛCDM reuses a framework-law verdict on a row not forced grey (only the new guard bites)
+        c.append(C("lcdm", 2, "Dwarf cold supply (chemistry)", "COND", "borrowed", ["E6"], comp="canonical"))
+        r[("lcdm", "Dwarf cold supply (chemistry)")] = ("canonical", "E6", "E6 README L1")
+
+    def b20(c, r, v, l, d):  # G2 registered as computing ΛCDM directly, with no cited ΛCDM arm
+        l["G2"] = dict(flavors={"canonical", "lcdm"}, where="G2 README L91")
 
     return [("plain-MOND reuse with its REUSE entry removed", b1), ("REUSE justification without file:line", b2),
             ("v4 borrows a v3 verdict without REUSE", b3), ("v4 borrows a v3 lane as if it computed v4", b4),
@@ -752,7 +780,9 @@ def broken_cases():
             ("plain MOND given a cosmology verdict", b11), ("lane registry lacks the flavor", b12),
             ("canonical green the earlier board never drew", b13), ("OPEN where the lane says fails", b14),
             ("ΛCDM coloured on a galaxy-formation row", b15), ("ΛCDM green with no verification", b16),
-            ("verdict citation without file:line", b17)]
+            ("verdict citation without file:line", b17),
+            ("ΛCDM satellites from G2's framework-law route", b18),
+            ("ΛCDM reuse of a framework-law verdict", b19), ("lane registered for ΛCDM without a ΛCDM arm", b20)]
 
 
 def selftest():

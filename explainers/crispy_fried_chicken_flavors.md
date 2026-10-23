@@ -26,7 +26,7 @@ Boards: [v4](img/status_board_v4.png) · [canonical rules](img/status_board_cano
 - **Greens need verification.** A green needs a `VERIFIED_GREEN_F` entry: the lane, its result commit, and a rerun or an independent reproduction. The canonical rules are the exception: they keep the greens that the 23 October afternoon board already drew.
 - **Some rows stay grey by rule.** Plain MOND has no cosmology, so its cosmology rows stay grey. ΛCDM rows that would need galaxy-formation, feedback or halo modelling the record never ran stay grey; they are never filled from literature claims.
 - **The v3 column is the main board.** The main generator's own check must still pass.
-- **Checks.** `--selftest` runs 17 broken cases, and every one is caught. They cover reuse, cross-flavor borrowing, unjustified ΛCDM cells and greens without evidence. `--mutate` strips one reuse justification, and the checks must fail.
+- **Checks.** `--selftest` runs 20 broken cases, and every one is caught. They cover reuse, cross-flavor borrowing, unjustified ΛCDM cells (including a ΛCDM cell reused from a framework-law lane) and greens without evidence. `--mutate` strips one reuse justification, and the checks must fail.
 
 ## Counts
 
@@ -38,7 +38,7 @@ The grid has 50 rows.
 | v4 | 1 | 1 | 6 | 0 | 1 | 41 |
 | canonical rules | 6 | 5 | 9 | 7 | 8 | 15 |
 | plain MOND | 2 | 3 | 8 | 4 | 2 | 31 |
-| ΛCDM | 1 | 4 | 1 | 0 | 0 | 44 |
+| ΛCDM | 1 | 4 | 0 | 0 | 0 | 45 |
 
 ## v4
 
@@ -133,7 +133,6 @@ The grid has 50 rows.
 | Native CMB (plik-lite refit) | 🟩 pass — pass (reference refit) | ΛCDM refit to plik-lite: χ² 582.3 for 613 bins (6 fitted parameters); reproduced with low-ℓ TT/EE by C7 and Q6 (χ² 1003.47) | C2, C7, Q6 |
 | Linear growth (dust limit, ΛCDM refit) | 🟨 conditional — consistent (linear only); green withheld | S₈ 0.845 / 0.814 (record / native H₀) vs raw KiDS, linear k ≤ 0.3 h/Mpc: CONSISTENT; green withheld, no rerun on record | F3, Q6 |
 | Cosmic shear, 1024³ PM vs raw KiDS | 🟨 conditional — marginal (p 0.014) | S0 arm (GR + Newtonian dust, ΛCDM-inherited ICs): χ² 144.3 on 104 KiDS points, p 0.014; no baryonic feedback; L100 box | CFG596 |
-| Dwarf satellites (Moster+13 + NFW route) | 🟥 fails — fails G2's breakage line (8 > 5) | subhalo mass from Moster+13 (extrapolated to M★ 1e3–1e6) + NFW, through PAPER36's rule: median −0.07 / −0.08 dex, but 8 overshoot > 2σ (line 5) | G2 |
 | Tidal dwarfs (Newton) | 🟨 conditional | TDGs at Newton, as ΛCDM's DM-free TDGs: +0.055 ± 0.114 dex (U1), +0.08 ± 0.10 (G2); why DF2/DF4 lack DM needs formation modelling not run | U1, G2 (reused from newton: U1) |
 | Outer globulars (Newton) | 🟨 conditional | Newton is D10's best fit (Δχ² ≤ 2.5 vs every L★); assumes outer globulars carry no DM, as ΛCDM expects | D10 (reused from newton: D10) |
 
@@ -179,7 +178,8 @@ The grid has 50 rows.
   - CFG516 used an NFW halo for the MW's K_z only as an ungraded reference: K_z,1.1 75.2 against the measured 66.4 ± 2.2 (CFG516 README L71-L75).
   - Older ΛCDM controls exist on other samples and statistics: CFG23 (KiDS NFW halos, χ² 173.7), CFG67 (KiDS early/late split, χ² 6.5 / 7), CFG79 / CFG84 (X-ray ellipticals) and CFG86 (SLACS). They are not mapped onto these rows, because their data are not the rows' data.
 - **ΛCDM, tidal dwarfs and outer globulars.** These are drawn **conditional**. ΛCDM's TDGs and outer globulars carry no dark matter, so its prediction is the Newtonian row the record computed (U1 and G2 for the TDGs, D10 for the globulars). Two things are assumed: that the globulars carry no dark matter, and that DF2/DF4 lost theirs. Showing either needs formation modelling the record never ran.
-- **ΛCDM, dwarf satellites.** This is G2's ΛCDM-processed route: the Moster+13 SHMR, extrapolated to M★ ≈ 1e3–1e6, plus NFW, through PAPER36's retention rule. It closes the median (−0.07 / −0.08 dex) but overshoots 8 systems against G2's frozen breakage line of 5. It is drawn as fails, the lane's own class.
+- **ΛCDM, dwarf satellites: grey (coordinator review).** G2's Moster+NFW route is PAPER36 eq. 1, M_dark = M_ph + f_ex(1 − f_b) M_NFW (G2 README L45): the framework's phantom plus a fraction of an NFW halo, scored under the framework's law. It is not ΛCDM's prediction, which would be Newtonian dynamics in a tidally evolved subhalo, and the record never computed that. A ΛCDM cell may now reuse only the Newtonian limit, and only lanes with a cited ΛCDM/GR arm (`LCDM_ARMS`: C2, C7, Q6, F3, CFG596) may be registered for ΛCDM.
+- **Canonical rules, CFG960.** It is counted under the canonical rules, as the coordinator classed it; N0 labels it the SCT-M engine (domains, conversion of cold energy into phantom bodies, census baryons; AUDIT L52-L53, L116).
 
 ---
 
