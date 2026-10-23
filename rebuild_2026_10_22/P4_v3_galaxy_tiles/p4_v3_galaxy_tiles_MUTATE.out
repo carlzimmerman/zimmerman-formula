@@ -1,0 +1,21 @@
+P4_v3_galaxy_tiles: the five galaxy-column tiles of the status board recomputed for v3.
+
+v3 static weak field on baryons only: AQUAL with mu = x/(1+x) exactly; external field solved as a boundary condition;
+screened by the C4-literal stiffness at L* = 24 and 90 pc (L* = 0 reported); no settling / supply / catchment / edge /
+round rules; both footings (9.3603e-11, 1.1312e-10 m/s^2), never pooled.  Not included: BS24 Eq. 35's mu_K^2 psi term (R6).
+Criteria: FROZEN_CRITERIA.md (6c5e6161b9, committed alone first).  kappa = 1/2 FITTED.  Not "theory closed".
+
+Run:   OMP_NUM_THREADS=1 nice -n 15 python3 p4_v3_galaxy_tiles.py            -> .out, _results.json  (exit 0 iff all checks pass)
+       OMP_NUM_THREADS=1 nice -n 15 python3 p4_v3_galaxy_tiles.py --mutate   -> _MUTATE.out, _results_MUTATE.json (validations
+       only, mu swapped for the standard x/sqrt(1+x^2): K1/K2 must FAIL, exit 1)
+Inputs are read only; nothing is downloaded.
+
+footings (FP0): canonical 9.360325e-11, alt 1.131204e-10 m/s^2;  L* bracket 24 / 90 pc;  mutate = True
+
+=== VALIDATION
+K1 FAIL 2.11e-01 <=5e-3   [isolated Plummer (y 0.03/1/30), sphere-averaged g vs nu1(gN) gN, r = 0.1-30 a]
+K2 FAIL 2.29e-01 <=0.015   [linear EFE (y 1e-4, x_e 0.3): internal radial field at every theta vs the quasi-Newtonian solution 1/(mu_e sqrt(1+L_e) r^2 q(theta)), r = 30, 100 a]
+K4 FAIL 1.60e-01 <=0.01   [vs D10 Solver2D (record's independent screened solver), Plummer y 0.5, x_e 0.1, Lambda 0 / 0.2 a]
+
+MUTATE (mu = x/sqrt(1+x^2) in the solver): validations only
+P4_V3_GALAXY_TILES COMPLETE: 0/3 checks PASS.

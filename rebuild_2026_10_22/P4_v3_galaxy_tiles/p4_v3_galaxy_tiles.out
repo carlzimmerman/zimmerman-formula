@@ -1,0 +1,72 @@
+P4_v3_galaxy_tiles: the five galaxy-column tiles of the status board recomputed for v3.
+
+v3 static weak field on baryons only: AQUAL with mu = x/(1+x) exactly; external field solved as a boundary condition;
+screened by the C4-literal stiffness at L* = 24 and 90 pc (L* = 0 reported); no settling / supply / catchment / edge /
+round rules; both footings (9.3603e-11, 1.1312e-10 m/s^2), never pooled.  Not included: BS24 Eq. 35's mu_K^2 psi term (R6).
+Criteria: FROZEN_CRITERIA.md (6c5e6161b9, committed alone first).  kappa = 1/2 FITTED.  Not "theory closed".
+
+Run:   OMP_NUM_THREADS=1 nice -n 15 python3 p4_v3_galaxy_tiles.py            -> .out, _results.json  (exit 0 iff all checks pass)
+       OMP_NUM_THREADS=1 nice -n 15 python3 p4_v3_galaxy_tiles.py --mutate   -> _MUTATE.out, _results_MUTATE.json (validations
+       only, mu swapped for the standard x/sqrt(1+x^2): K1/K2 must FAIL, exit 1)
+Inputs are read only; nothing is downloaded.
+
+footings (FP0): canonical 9.360325e-11, alt 1.131204e-10 m/s^2;  L* bracket 24 / 90 pc;  mutate = False
+
+=== VALIDATION
+K1 PASS 3.42e-03 <=5e-3   [isolated Plummer (y 0.03/1/30), sphere-averaged g vs nu1(gN) gN, r = 0.1-30 a]
+K2 PASS 7.36e-03 <=0.015   [linear EFE (y 1e-4, x_e 0.3): internal radial field at every theta vs the quasi-Newtonian solution 1/(mu_e sqrt(1+L_e) r^2 q(theta)), r = 30, 100 a]
+K4 PASS 5.37e-04 <=0.01   [vs D10 Solver2D (record's independent screened solver), Plummer y 0.5, x_e 0.1, Lambda 0 / 0.2 a]
+
+=== T1 ROTATION CURVES (SPARC RAR) under v3
+K5 PASS loader_equal=True;max|drms|=0.0e+00;U_equal=True equal;<=1e-4;equal   [CFG695 S2 reproduced: canonical 0.1009@0.60, alt 0.0994@0.55]
+K10 PASS 109/109 100%   [Chae 2021 Table 3 environment names found in SPARC]
+  [canonical] L*    0 pc: rms 0.0540 dex, median Ups 0.52; chi2/dof 4.934, frac p>=1e-3 0.634  (35 s)
+  [canonical] L*   24 pc: rms 0.0540 dex, median Ups 0.52; chi2/dof 4.932, frac p>=1e-3 0.634  (114 s)
+  [canonical] L*   90 pc: rms 0.0539 dex, median Ups 0.52; chi2/dof 4.922, frac p>=1e-3 0.634  (209 s)
+  [alt] L*    0 pc: rms 0.0535 dex, median Ups 0.44; chi2/dof 4.770, frac p>=1e-3 0.640  (276 s)
+  [alt] L*   24 pc: rms 0.0535 dex, median Ups 0.44; chi2/dof 4.768, frac p>=1e-3 0.640  (353 s)
+  [alt] L*   90 pc: rms 0.0535 dex, median Ups 0.44; chi2/dof 4.757, frac p>=1e-3 0.640  (459 s)
+  T1 class COND (ROBUST); chi2 line {'canonical|L24': 'FAIL', 'canonical|L90': 'FAIL', 'alt|L24': 'FAIL', 'alt|L90': 'FAIL'}; K3(sparc) 0.0004 dex
+
+=== T2 LOCAL a0 FROM MeerKAT (MIGHTEE-HI) under v3
+K6 PASS N=47;N_SPARC=123;maxrel=0.0e+00 47;123;<=2e-3   [CFG301 s* 1.1171 (1.1171), CFG309 REST a0 1.3111e-10 (1.3111e-10), CC2 1.3044 (1.3044)]
+  REST nu_mono: a0 = 1.3111e-10 (95% 1.235e-10-1.655e-10); SPARC-recipe 1.2210e-10; log M/S +0.0309; vs canonical +0.146, alt +0.064
+  REST nu1    : a0 = 1.3084e-10 (95% 1.233e-10-1.651e-10); SPARC-recipe 1.2141e-10; log M/S +0.0325; vs canonical +0.145, alt +0.063
+  OBS  nu_mono: a0 = 1.0456e-10 (95% 9.264e-11-1.259e-10); SPARC-recipe 1.2210e-10; log M/S -0.0673; vs canonical +0.048, alt -0.034
+  OBS  nu1    : a0 = 1.0428e-10 (95% 9.242e-11-1.254e-10); SPARC-recipe 1.2141e-10; log M/S -0.0661; vs canonical +0.047, alt -0.035
+  T2 class PASS (ROBUST; OBS-frame variant |dlog| 0.066); screening g ratio at R: {'canonical': {'L0': 1.0, 'L24': 0.9999970075527805, 'L90': 0.9999579177455487}, 'alt': {'L0': 1.0, 'L24': 0.9999966209567153, 'L90': 0.9999524809317032}}
+
+=== T3 GALAXY GROUPS (BFJR, Tian+2026) under v3
+K7 PASS N=63;max|d|=9.3e-10 63;<=0.002   [CFG540 law-without-edge (nu_mono) class means +0.0100 / -0.0101 (record +0.0100 / -0.0101)]
+  [canonical] nu_mono no edge +0.0100 (Z +0.31); v3 isolated +0.0100 (Z +0.31) CONSISTENT; L24 +0.0100, L90 +0.0100; EFE 0.01 +0.0625 (CONSISTENT), 0.03 +0.1509 (ABOVE LAW); aperture R<Re +0.0279 (CONSISTENT)
+  [alt] nu_mono no edge -0.0103 (Z -0.31); v3 isolated -0.0103 (Z -0.31) CONSISTENT; L24 -0.0103, L90 -0.0103; EFE 0.01 +0.0472 (CONSISTENT), 0.03 +0.1427 (ABOVE LAW); aperture R<Re +0.0078 (CONSISTENT)
+  T3 class PASS (ROBUST; variant flips []; EFE-sensitivity flips ['canonical|ge=0.03', 'alt|ge=0.03'])
+
+=== T4 MILKY WAY VERTICAL FORCE under v3 (AQUAL disc solve)
+  B1_McMillan17        [canonical] F0 L24: K(R0) 92.3, chi2_Kz 178.4, h 3.84, v_c(R0) 215.2, chi2_RC 270;  L90 chi2_Kz 178.2;  L0 178.4;  FA A 1.186 chi2_Kz 445.9;  ge 0.03 chi2_Kz 178.1
+  B1_McMillan17        [alt      ] F0 L24: K(R0) 96.9, chi2_Kz 250.7, h 3.90, v_c(R0) 220.4, chi2_RC 94;  L90 chi2_Kz 250.5;  L0 250.7;  FA A 1.095 chi2_Kz 397.5;  ge 0.03 chi2_Kz 250.3
+  B2_L172_6.0e10       [canonical] F0 L24: K(R0) 90.1, chi2_Kz 148.3, h 3.89, v_c(R0) 209.1, chi2_RC 524;  L90 chi2_Kz 148.2;  L0 148.3;  FA A 1.279 chi2_Kz 546.1
+  B2_L172_6.0e10       [alt      ] F0 L24: K(R0) 94.7, chi2_Kz 212.6, h 3.94, v_c(R0) 214.3, chi2_RC 249;  L90 chi2_Kz 212.4;  L0 212.6;  FA A 1.181 chi2_Kz 489.4
+  B2b_L172_7.3e10      [canonical] F0 L24: K(R0) 104.5, chi2_Kz 430.6, h 3.83, v_c(R0) 225.2, chi2_RC 39;  L90 chi2_Kz 430.4;  L0 430.6;  FA A 1.052 chi2_Kz 546.6
+  B2b_L172_7.3e10      [alt      ] F0 L24: K(R0) 109.5, chi2_Kz 559.7, h 3.89, v_c(R0) 230.5, chi2_RC 32;  L90 chi2_Kz 559.5;  L0 559.8;  FA A 0.970 chi2_Kz 488.6
+  B3_short_disc_2.15   [canonical] F0 L24: K(R0) 96.8, chi2_Kz 332.9, h 3.26, v_c(R0) 240.9, chi2_RC 102;  L90 chi2_Kz 332.8;  L0 333.0;  FA A 0.929 chi2_Kz 215.8
+  B3_short_disc_2.15   [alt      ] F0 L24: K(R0) 101.2, chi2_Kz 435.1, h 3.30, v_c(R0) 246.1, chi2_RC 251;  L90 chi2_Kz 434.9;  L0 435.1;  FA A 0.859 chi2_Kz 186.3
+K8 PASS mass=3.5e-05;ring=1.7e-03;farfield=1.7e-02;NFWchi2=43.62 <=0.02;<=0.01(A1);<=0.02;43.7+-2   [MW grid mass vs direct integral; Newtonian K_z(R0,1.1) 61.89 vs ring quadrature 62.00 (AMENDMENT A1; the frozen column clause reads 0.124 against 0.03: column 55.1 omits the radial-force term, as CFG514 K3b's +12.6%); AQUAL v_c 40-60 kpc vs spherical law; own NFW comparator vs CFG514's 43.70]
+  T4 line chi2_Kz <= 67.5; class FAIL (ROBUST; flips []); NFW comparator chi2_Kz 43.6
+
+=== T5 TIDAL DWARFS (Lelli+15) AND NGC 1052-DF2/DF4 under v3 (host field solved)
+K9 PASS 0.0e+00 <=1e-3   [CFG936 TDG law means -0.6904 / -0.7276; CFG933 E_obs DF2 -1.7091, DF4 -2.1701]
+  [canonical] L*    0: T rbar -0.588 +- 0.110 dex (p 1.6e-06) FAILS  [law -0.691, Newton +0.055];  U rbar -1.658 +- 0.480 ln (p 0.0019) FAILS  [law -1.940]; g_e/a0 T 0.161-0.279, U 0.167/0.161
+  [canonical] L*   24: T rbar -0.587 +- 0.110 dex (p 1.6e-06) FAILS  [law -0.691, Newton +0.055];  U rbar -1.657 +- 0.480 ln (p 0.002) FAILS  [law -1.940]; g_e/a0 T 0.161-0.279, U 0.167/0.161
+  [canonical] L*   90: T rbar -0.581 +- 0.109 dex (p 2.1e-06) FAILS  [law -0.691, Newton +0.055];  U rbar -1.648 +- 0.480 ln (p 0.0021) FAILS  [law -1.940]; g_e/a0 T 0.161-0.279, U 0.167/0.161
+  [canonical] variants (L* 24): T_plummer -0.458 FAILS; T_ring -0.589 FAILS; T_great_circle -0.587 FAILS; T_host_x0.5 -0.645 FAILS; T_host_x2 -0.496 FAILS; U_scalar_sum -1.657 FAILS; U_Mg5e10 -1.765 FAILS; U_Mg3e11 -1.374 FAILS; U_M35_3e9 -1.701 FAILS; U_M35_1e10 -1.557 FAILS; U_virial -1.390 FAILS
+  [alt] L*    0: T rbar -0.624 +- 0.110 dex (p 1.8e-07) FAILS  [law -0.728, Newton +0.055];  U rbar -1.743 +- 0.480 ln (p 0.00099) FAILS  [law -2.028]; g_e/a0 T 0.145-0.251, U 0.151/0.145
+  [alt] L*   24: T rbar -0.623 +- 0.110 dex (p 1.8e-07) FAILS  [law -0.728, Newton +0.055];  U rbar -1.742 +- 0.480 ln (p 0.00099) FAILS  [law -2.028]; g_e/a0 T 0.145-0.251, U 0.151/0.145
+  [alt] L*   90: T rbar -0.615 +- 0.109 dex (p 2.4e-07) FAILS  [law -0.728, Newton +0.055];  U rbar -1.732 +- 0.480 ln (p 0.0011) FAILS  [law -2.028]; g_e/a0 T 0.145-0.251, U 0.151/0.145
+  [alt] variants (L* 24): T_plummer -0.493 FAILS; T_ring -0.625 FAILS; T_great_circle -0.623 FAILS; T_host_x0.5 -0.681 FAILS; T_host_x2 -0.531 FAILS; U_scalar_sum -1.742 FAILS; U_Mg5e10 -1.851 FAILS; U_Mg3e11 -1.455 FAILS; U_M35_3e9 -1.786 FAILS; U_M35_1e10 -1.641 FAILS; U_virial -1.474 FAILS
+  T5 class FAIL (ROBUST; flips []); cells {'canonical|L24': ['FAILS', 'FAILS'], 'canonical|L90': ['FAILS', 'FAILS'], 'alt|L24': ['FAILS', 'FAILS'], 'alt|L90': ['FAILS', 'FAILS']}; K3(tdg) 0.0017
+K3 PASS 1.70e-03 <=0.003   [grid convergence (x1.5 in nper and N_theta: SPARC 20 -> 30, T5 40 -> 60 per decade; N_theta 16 -> 24) at L* 0 and 90 pc: sparc 3.9e-04, tdg 1.7e-03]
+K11 PASS 0.756GB <1GB   [peak RSS]
+
+runtime 594 s; peak RSS 0.756 GB
+P4_V3_GALAXY_TILES COMPLETE: 11/11 checks PASS.
