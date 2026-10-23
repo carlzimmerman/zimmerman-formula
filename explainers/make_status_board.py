@@ -29,15 +29,16 @@ Q6 (Q6_v3_class/) native CMB -> FAIL and linear growth re-annotated (FAIL). A ne
 refused by the guards (a tile on no earlier board) and is not drawn.
 Night: S3 MW outer slope -> FAIL; S4's R4 (kernel nu_1) SLUGGS, high-z and CRISTAL / ALESS -> NOT DECIDABLE (classes
 unchanged, so their pre-grey colour); H4 health and leaf problem COND -> FAIL; notes from S3, S4, U1, Q7, T1 and the
-ALMA addendum F. Refused by the green guard and left as they were: black holes and strong coupling (P3 PASS; grey
-tiles that were conditional before greying) and tidal dwarfs FAIL -> PASS (U1). Radiative stability stays grey: P3
-gives no replacement for it. Notes may run to four lines (rows 1.10 in tall).
+ALMA addendum F. Coordinator decisions: black holes and strong coupling grey -> CONDITIONAL (P3); tidal dwarfs
+FAIL -> PASS (U1) through VERIFIED_GREEN, the one narrow route to a first green (lane, result commit and coordinator
+rerun named; the RECOLOURS step into green must name the same lane). Radiative stability stays grey: P3 gives no
+replacement for it. Notes may run to four lines (rows 1.10 in tall).
 
 Guards (check()):
   * colours of tiles on the main board cannot change, against the 22 October, 23 October morning, 23 October
     afternoon and first v3-only (V3_BOARD) boards, without a RECOLOURS chain of steps from that colour to the current
     one, the last step's evidence lane on the tile (a CURRENT -> STALE greying is a recolour too, with evidence N0);
-    nothing turns green; no tile of V3_BOARD leaves the board (N0's retirements are closed);
+    no first green except through VERIFIED_GREEN; no tile of V3_BOARD leaves the board (N0's retirements are closed);
   * a tile leaves the main board only into ARCHIVE, only with N0 as the evidence lane (RETIRE_EVIDENCE), and keeps its
     23 October afternoon colour there; no tile of that board may simply vanish (PREVIOUS_BOARD);
   * every MUST_STAY_RED tile is red on the main board, or grey with "was: fails" (STALE, RECOLOURS FAIL -> STALE, N0),
@@ -193,11 +194,16 @@ TILES = [
       ["C6"], "PASS", new=True),
     T(0, "Unscreened law vs Cassini", "FAIL", "control: screening switched off; fails 2.4-5.2x, so L* > 0 is required",
       ["E2"], "FAIL", lab="fails - control (mechanism off)", new=True),
-    S(0, "Strong coupling", "COND", "bounded pass, on the filtered C-H/K chassis", ["XC1", "XC3"], "R5"),
+    # P3 (v3, 23 October night): was grey (old COND: bounded pass, on the filtered C-H/K chassis)
+    T(0, "Strong coupling", "COND",
+      "estimate: loop factor ≤ 1.3e-3; margin only 1.7× in k at 38.6 μm; sub-5 μm tests would probe it", ["P3"],
+      "COND", new=True),
     T(0, "Matter conservation (G9)", "PASS", "Bianchi identity, grad T = 0: holds for any diffeomorphism-invariant "
       "action, v3 included", ["CFG329", "C4"], "PASS", new=True),
-    S(0, "Black holes (EHT, LIGO ringdown)", "COND", "hidden mild inner-horizon defect (older chassis)",
-      ["CFG318", "CFG319"], "R5"),
+    # P3 (v3): was grey (old COND: hidden mild inner-horizon defect, older chassis)
+    T(0, "Black holes (EHT, LIGO ringdown)", "COND",
+      "PASS for static non-rotating holes (shifts ≤ 3e-11); regular holes need an infalling khronon; rotating/moving "
+      "holes open", ["P3"], "COND", new=True),
     # ---- column 1: galaxies ----
     # P4 (recomputed for v3, 23 October late evening): was grey (old result PASS: rms 0.101 / 0.099 dex, algebraic law)
     T(1, "Rotation curves (SPARC RAR)", "COND",
@@ -214,9 +220,11 @@ TILES = [
       "μ_K² to add (S4)",
       ["CFG902", "CFG903", "F2", "P2"], "FAIL", new=True, am="UNDEC"),
     # P4 (v3): was grey (old result COND: at Newton if they captured no cold energy; host EFE untested)
-    T(1, "Tidal dwarfs, NGC 1052-DF2/DF4", "FAIL",
-      "host field solved: TDGs −0.59/−0.62 dex, DF2/DF4 −1.66/−1.74 ln below v3; no capture rule in v3", ["P4"],
-      "COND", new=True),
+    # U1 (VERIFIED_GREEN): FAIL -> PASS by a new derivation (T3), not a re-scored number
+    T(1, "Tidal dwarfs, NGC 1052-DF2/DF4", "PASS",
+      "static AQUAL (P4) read −0.59 dex; v3's own dynamics (T3) makes hosted systems dust-free → Newtonian: TDGs "
+      "+0.055 ± 0.114 dex, DF2/DF4 +0.30/−0.24 ln; no knob", ["P4", "U1"], "COND",
+      lab="pass (U1: v3's own dynamics)", new=True),
     T(1, "Outer globulars: L* floor", "COND", "L* >= 21.7 / 22.9 pc (SPS M/L); unscreened law excluded", ["D10"], "COND"),
     # S4 R4 (v3 kernel nu_1, 23 October night): was grey (old UNDEC: ~3 sigma with measured tracers, nu_mono); class
     # GENUINE TENSION unchanged, drawn in its pre-grey colour
@@ -237,8 +245,8 @@ TILES = [
     # ---- column 2: the excess family ----
     # S1 (recomputed for v3, 23 October evening): was grey (old result FAIL: +0.89 dex over the screened law, no EFE)
     T(2, "Dwarf satellites vs screened law", "FAIL",
-      "v3, host EFE solved: +1.33/+1.30 dex (L★ floor), +1.72/+1.68 at 90 pc (EFE +0.58); supply (P1), no binding; "
-      "U1 dynamics (dust-free): +2.00/+1.99; STRUCTURAL: the dust coupling must change",
+      "v3, host EFE solved: +1.33/+1.30 dex (L★ floor), +1.72/+1.68 at 90 pc; supply (P1), no binding; U1: the "
+      "theorem (T3) that passes the tidal dwarfs leaves them dust-free: +2.00/+1.99 dex; STRUCTURAL",
       ["S1", "P1", "U1"], "FAIL", new=True),
     T(2, "Cluster cores (326 eRASS1)", "FAIL",
       "F1 rebuild: real failure, x1.68-1.85 / x1.54-1.70, Z ~ +5-6; S4: no allowed μ_K fixes them (0 of 1,804 cells); "
@@ -350,11 +358,12 @@ MUST_STAY_RED = ["Cluster cores (326 eRASS1)", "Growth, zero-knob supply rule", 
 # MW outer slope, S4's three R4 tiles (classes unchanged, so back to their pre-grey colour) and H4's health and leaf.
 RECOLOURS = {"Isolated-galaxy lensing, all radii": [("FAIL", "UNDEC", "F2")],
              "Linear growth, v4 AeST": [("COND", "FAIL", "C7")],
-             "Strong coupling": [("COND", "STALE", "N0")],
-             "Black holes (EHT, LIGO ringdown)": [("COND", "STALE", "N0")],
+             "Strong coupling": [("COND", "STALE", "N0"), ("STALE", "COND", "P3")],
+             "Black holes (EHT, LIGO ringdown)": [("COND", "STALE", "N0"), ("STALE", "COND", "P3")],
              "Rotation curves (SPARC RAR)": [("PASS", "STALE", "N0"), ("STALE", "COND", "P4")],
              "Isolated-galaxy lensing, inner": [("PASS", "STALE", "N0"), ("STALE", "COND", "S2")],
-             "Tidal dwarfs, NGC 1052-DF2/DF4": [("COND", "STALE", "N0"), ("STALE", "FAIL", "P4")],
+             # U1: static AQUAL (P4) read -0.59 dex; v3's own dynamics (T3) makes hosted systems dust-free -> Newtonian
+             "Tidal dwarfs, NGC 1052-DF2/DF4": [("COND", "STALE", "N0"), ("STALE", "FAIL", "P4"), ("FAIL", "PASS", "U1")],
              "Central ellipticals (SLUGGS)": [("UNDEC", "STALE", "N0"), ("STALE", "UNDEC", "S4")],
              "Galaxy groups (BFJR)": [("PASS", "STALE", "N0"), ("STALE", "PASS", "P4")],
              "MW vertical force (round rule)": [("PASS", "FAIL", "P4")],
@@ -368,6 +377,11 @@ RECOLOURS = {"Isolated-galaxy lensing, all radii": [("FAIL", "UNDEC", "F2")],
              "Leaf problem well-posed": [("COND", "FAIL", "H4")],
              "Native CMB (patched CLASS)": [("OPEN", "STALE", "N0"), ("STALE", "FAIL", "Q6")],
              "Radiative stability (G12)": [("COND", "STALE", "N0")]}
+# The only first greens allowed: tile -> (lane, result commit, coordinator rerun note). A tile may turn green for the
+# first time ONLY if it is listed here AND its RECOLOURS step into PASS names the same lane; every other first green is
+# refused. 23 October (night): the tidal dwarfs, by U1's derivation that held dust is weightless in its host (T3).
+VERIFIED_GREEN = {"Tidal dwarfs, NGC 1052-DF2/DF4": (
+    "U1", "54ee83e54e", "coordinator rerun 2026-10-23: main 15/16 and A2 6/6 reproduced, runtime/RSS-only diffs")}
 RECIPE = ("Crispiest recipe (v3): General relativity plus a preferred cosmic time (Khronon) and one extra field giving "
           "the simple MOND law (AQUAL, external-field effect included, κ fitted), switched off within L★ ≥ 22 pc, "
           "plus fitted cold dust; no settling or supply rules.")
@@ -400,8 +414,9 @@ def _chain(chain, base, st):
     return used
 
 
-def check(tiles, archive, recolours=None):
+def check(tiles, archive, recolours=None, verified=None):
     recolours = RECOLOURS if recolours is None else recolours
+    verified = VERIFIED_GREEN if verified is None else verified
     errs = []
     names = {t["name"]: t for t in tiles}
     arch = {a["name"]: a for a in archive}
@@ -435,7 +450,11 @@ def check(tiles, archive, recolours=None):
         # no new green: a grey tile may return to green only if every earlier verdict was green (the recompute lane
         # check above makes the step out of grey its own lane); grey itself is not a verdict
         if t["st"] == "PASS" and any(b != "PASS" for b in (t["prev"], t["am"], pm, v3) if b != "STALE"):
-            errs.append(f"turned green: {n} (needs a committed passing lane; refused on this board)")
+            vg = verified.get(n)
+            into = [s_ for s_ in recolours.get(n, []) if s_[1] == "PASS"]
+            if vg is None or not into or into[-1][2] != vg[0] or vg[0] not in t["lanes"] or not vg[1] or not vg[2]:
+                errs.append(f"turned green: {n} (a first green needs a VERIFIED_GREEN entry whose lane is its "
+                            f"RECOLOURS step; refused on this board)")
         if n in V3_ARCHIVED:
             lane = REDO_BY_TILE.get(n)
             rc = recolours.get(n) or [(None, None, None)]
@@ -486,6 +505,9 @@ def check(tiles, archive, recolours=None):
             ok = False
         if not ok:
             errs.append(f"must stay red: {n}")
+    for n in verified:
+        if n not in names or names[n]["st"] != "PASS":
+            errs.append(f"VERIFIED_GREEN entry not applied (tile not green on the board): {n}")
     for n, rc in recolours.items():
         held = names.get(n) or arch.get(n)
         if held is None or not rc or held["st"] != rc[-1][1]:
@@ -600,87 +622,93 @@ def _by(seq, name):
 def broken_cases():
     """Each case breaks one guard; check() must report at least one error for every case. A case gets the tiles, the
     archive and a copy of RECOLOURS (r)."""
-    def c1(t, a, r):   # retire a MUST_STAY_RED tile with an evidence lane other than N0
+    def c1(t, a, r, v):   # retire a MUST_STAY_RED tile with an evidence lane other than N0
         _by(a, "Linear growth, v4 AeST")["ev"] = "C7"
 
-    def c2(t, a, r):   # retire a tile that is not in the archive list at all (silent drop)
+    def c2(t, a, r, v):   # retire a tile that is not in the archive list at all (silent drop)
         a.remove(_by(a, "v4 well-posedness"))
 
-    def c3(t, a, r):   # drop a board tile without archiving it
+    def c3(t, a, r, v):   # drop a board tile without archiving it
         t.remove(_by(t, "Local a0 from MeerKAT"))
 
-    def c4(t, a, r):   # recolour a main-board tile with no RECOLOURS entry
+    def c4(t, a, r, v):   # recolour a main-board tile with no RECOLOURS entry
         _by(t, "Leaf problem well-posed")["st"] = "UNDEC"; _by(t, "Leaf problem well-posed")["new"] = True
 
-    def c5(t, a, r):   # grey a CURRENT tile as STALE with no RECOLOURS entry
+    def c5(t, a, r, v):   # grey a CURRENT tile as STALE with no RECOLOURS entry
         x = _by(t, "Health: ghosts, gradients")
         x.update(st="STALE", was="COND", redo="P3", note="was conditional: " + x["note"]); x["lanes"].append("N0")
 
-    def c6(t, a, r):   # STALE tile whose 'was' hides its old colour
-        _by(t, "Strong coupling")["was"] = "PASS"
+    def c6(t, a, r, v):   # STALE tile whose 'was' hides its old colour
+        _by(t, "Radiative stability (G12)")["was"] = "PASS"
 
-    def c7(t, a, r):   # STALE tile with no recompute lane
-        _by(t, "Black holes (EHT, LIGO ringdown)")["redo"] = None
+    def c7(t, a, r, v):   # STALE tile with no recompute lane
+        _by(t, "Radiative stability (G12)")["redo"] = None
 
-    def c8(t, a, r):   # a must-stay-red tile on the board turned blue
+    def c8(t, a, r, v):   # a must-stay-red tile on the board turned blue
         _by(t, "Cluster cores (326 eRASS1)")["st"] = "UNDEC"
 
-    def c9(t, a, r):   # archived tile repainted (its old red hidden)
+    def c9(t, a, r, v):   # archived tile repainted (its old red hidden)
         _by(a, "Growth, zero-knob supply rule")["st"] = "OPEN"
 
-    def c10(t, a, r):  # a tile kept on the board and also archived
+    def c10(t, a, r, v):  # a tile kept on the board and also archived
         t.append(dict(_by(a, "Energy books of settling"), prev="OPEN", am="OPEN", lab=None, new=False, was=None,
                       redo=None))
 
-    def c11(t, a, r):  # a recomputed grey tile turned green although it was not green before greying
+    def c11(t, a, r, v):  # a recomputed grey tile turned green although it was not green before greying
         r["Tidal dwarfs, NGC 1052-DF2/DF4"][-1] = ("STALE", "PASS", "P4")
         _by(t, "Tidal dwarfs, NGC 1052-DF2/DF4")["st"] = "PASS"
 
-    def c12(t, a, r):  # retire a tile with no retiring reason
+    def c12(t, a, r, v):  # retire a tile with no retiring reason
         _by(a, "Structural order (G0)")["why"] = " "
 
-    def c13(t, a, r):  # rename a tile without a RENAMES entry
+    def c13(t, a, r, v):  # rename a tile without a RENAMES entry
         _by(t, "Outer globulars: L* floor")["name"] = "Outer globulars (renamed)"
 
-    def c14(t, a, r):  # give a grey tile a colour with no RECOLOURS step out of grey
+    def c14(t, a, r, v):  # give a grey tile a colour with no RECOLOURS step out of grey
         x = _by(t, "Radiative stability (G12)")
         x.update(st="COND", was=None, redo=None, note="recomputed", lanes=["P3"], new=True)
 
-    def c15(t, a, r):  # a recomputed grey tile that does not carry its recompute lane
+    def c15(t, a, r, v):  # a recomputed grey tile that does not carry its recompute lane
         _by(t, "Coma ultra-diffuse galaxies")["lanes"] = ["CFG933"]
 
-    def c16(t, a, r):  # a grey tile recoloured by a lane other than its own recompute lane (S2 for an S1 tile)
+    def c16(t, a, r, v):  # a grey tile recoloured by a lane other than its own recompute lane (S2 for an S1 tile)
         r["Coma ultra-diffuse galaxies"][-1] = ("STALE", "FAIL", "S2")
         _by(t, "Coma ultra-diffuse galaxies")["lanes"] = ["S2"]
 
-    def c17(t, a, r):  # a recomputed grey tile not flagged 23 OCT
+    def c17(t, a, r, v):  # a recomputed grey tile not flagged 23 OCT
         _by(t, "Red (early-type) lenses")["new"] = False
 
-    def c18(t, a, r):  # must-stay-red dwarf satellites recomputed to conditional, with a matching RECOLOURS step
+    def c18(t, a, r, v):  # must-stay-red dwarf satellites recomputed to conditional, with a matching RECOLOURS step
         r["Dwarf satellites vs screened law"][-1] = ("STALE", "COND", "S1")
         _by(t, "Dwarf satellites vs screened law")["st"] = "COND"
 
-    def c19(t, a, r):  # retire a tile of the first v3-only board to the archive after N0's audit
+    def c19(t, a, r, v):  # retire a tile of the first v3-only board to the archive after N0's audit
         t.remove(_by(t, "Red (early-type) lenses"))
         a.append(A(2, "Red (early-type) lenses", "COND", "inventory short", ["S2"], "late retirement", "none"))
 
-    def c20(t, a, r):  # a recomputed tile that still carries its grey 'was' and recompute lane
+    def c20(t, a, r, v):  # a recomputed tile that still carries its grey 'was' and recompute lane
         _by(t, "Isolated-galaxy lensing, inner").update(was="PASS", redo="S2")
 
-    def c21(t, a, r):  # bring an archived tile back to the board unchanged (not recomputed for v3)
+    def c21(t, a, r, v):  # bring an archived tile back to the board unchanged (not recomputed for v3)
         x = a.pop(a.index(_by(a, "Ownership from an action")))
         t.append(dict(x, prev="OPEN", am="OPEN", lab=None, new=True, was=None, redo=None))
 
-    def c22(t, a, r):  # the MW vertical force back from the archive without its recompute lane P4
+    def c22(t, a, r, v):  # the MW vertical force back from the archive without its recompute lane P4
         _by(t, "MW vertical force (round rule)")["lanes"] = ["CFG516"]
 
-    def c23(t, a, r):  # a STALE tile turned green with no recompute (its old green kept)
+    def c23(t, a, r, v):  # a STALE tile turned green with no recompute (its old green kept)
         x = _by(t, "Galaxy groups (BFJR)"); x.update(lanes=["CFG540", "CFG543"])
         r["Galaxy groups (BFJR)"].pop()
 
-    def c24(t, a, r):  # a red v3 tile turned green by a new derivation (U1), listed in RECOLOURS: still refused
-        r["Tidal dwarfs, NGC 1052-DF2/DF4"].append(("FAIL", "PASS", "U1"))
-        x = _by(t, "Tidal dwarfs, NGC 1052-DF2/DF4"); x.update(st="PASS", lanes=["P4", "U1"])
+    def c24(t, a, r, v):  # a first green listed in RECOLOURS but with no VERIFIED_GREEN entry
+        r["Black holes (EHT, LIGO ringdown)"].append(("COND", "PASS", "P3"))
+        _by(t, "Black holes (EHT, LIGO ringdown)")["st"] = "PASS"
+
+    def c25(t, a, r, v):  # a VERIFIED_GREEN entry whose lane differs from the RECOLOURS step into green
+        v["Tidal dwarfs, NGC 1052-DF2/DF4"] = ("P4",) + v["Tidal dwarfs, NGC 1052-DF2/DF4"][1:]
+
+    def c26(t, a, r, v):  # a VERIFIED_GREEN entry for a tile that is not green
+        v["Rotation curves (SPARC RAR)"] = ("P4", "6c0249a8bc", "rerun")
 
     return [("archive a must-stay-red tile with evidence C7, not N0", c1),
             ("silently drop an archived red tile", c2),
@@ -705,17 +733,23 @@ def broken_cases():
             ("archived tile back on the board unchanged", c21),
             ("archived tile back without its recompute lane", c22),
             ("grey tile back to its old green with no recompute", c23),
-            ("red tile turned green by a listed new lane (U1)", c24)]
+            ("first green with no VERIFIED_GREEN entry", c24),
+            ("VERIFIED_GREEN lane differs from the RECOLOURS step", c25),
+            ("VERIFIED_GREEN entry for a tile that is not green", c26)]
 
 
 def selftest():
     base = check(copy.deepcopy(TILES), copy.deepcopy(ARCHIVE))
     print(f"clean board: {len(base)} errors")
     bad = 1 if base else 0
+    td = _by(TILES, "Tidal dwarfs, NGC 1052-DF2/DF4")
+    ok = td["st"] == "PASS" and not any("Tidal dwarfs" in e for e in base)
+    print(f"  {'ALLOWED' if ok else 'BLOCKED'}: the tidal-dwarf verified green (VERIFIED_GREEN, U1) passes the checks")
+    bad += 0 if ok else 1
     for label, fn in broken_cases():
-        t, a, r = copy.deepcopy(TILES), copy.deepcopy(ARCHIVE), copy.deepcopy(RECOLOURS)
-        fn(t, a, r)
-        e = check(t, a, r)
+        t, a, r, v = copy.deepcopy(TILES), copy.deepcopy(ARCHIVE), copy.deepcopy(RECOLOURS), copy.deepcopy(VERIFIED_GREEN)
+        fn(t, a, r, v)
+        e = check(t, a, r, v)
         print(f"  {'CAUGHT' if e else 'MISSED'}: {label}" + (f"  ->  {e[0]}" if e else ""))
         bad += 0 if e else 1
     print("SELFTEST PASS: every broken case caught; nothing written." if not bad else "SELFTEST FAIL")
