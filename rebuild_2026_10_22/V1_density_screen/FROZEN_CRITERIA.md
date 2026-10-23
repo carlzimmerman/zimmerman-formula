@@ -195,3 +195,17 @@ Outputs `v1_density_screen_MUTATE.out`, `v1_density_screen_results_MUTATE.json`.
 
 `OMP_NUM_THREADS=1 nice -n 15`, < 1 GB RSS, single thread, minutes; no PM; no downloads; heavy queue untouched; record
 scripts imported read-only (D10 solver, D7d solver, P4 solver), record json read-only.
+
+---
+
+## AMENDMENT A1 (2026-10-23, PRE-RESULT: no lane script exists yet, no S_95, S_C or verdict number computed)
+
+**Why.** A plumbing test of the uniform-S Route N wrapper on D7d's G2 grid (60 per decade, 96 θ) at the BN11 inputs, S = 1,
+peaked at **1.00 GB RSS** (COLAMD; MMD orderings 1.14–1.20 GB), at the budget line. On (45 per decade, 72 θ) it peaks at
+0.64 GB. The test values (disclosed): Q₂(S = 1, BN11) = 3.93527e-26 (G1, equal to D7d's stored Q30), 3.87013e-26 (45/72),
+3.84735e-26 (G2, equal to D7d's stored Q60); 4.2938e-26 on (15, 24).
+
+**Change (Part D only).** The Richardson pair is G1 = (30, 48) and G1.5 = (45, 72) with refinement ratio 1.5:
+Q_R = (2.25·Q(G1.5) − Q(G1)) / 1.25 (second order, as D7d's G1/G2 formula). D1's line (≤ 1e-3 of D7d's K4 3.8181e-26) and
+every other Part D line are unchanged. The Newton loop stops at a scaled residual < 1e-11 or after 12 iterations; a point is
+scored only if the final residual is < 1e-9 (D7d's scoring rule).
