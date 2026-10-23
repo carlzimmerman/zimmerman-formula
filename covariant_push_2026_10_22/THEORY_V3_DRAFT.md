@@ -34,6 +34,8 @@ Lanes H1, H2, H3 (`rebuild_2026_10_22/`, all reproduced by the coordinator):
 
 Net: v4 keeps everything v3 passed and removes v3's growth failure at linear order; clusters stay red in both.
 
+**Update (I1, 23 October, reproduced): v4 is ILL-POSED wherever the aether twists.** The γ_L term gives a real dispersive ω ∝ k² scalar (ω² = A k⁴ + …). On aether-orthogonal slices (Minkowski, FRW, exact spherical symmetry) the Cauchy problem is well posed; on any slice tilted relative to the aether two roots go complex above κ_c ≈ 1/(2√A w) — Hadamard ill-posed. v4 *needs* a twisting aether to give the law off symmetry (C1), so every non-symmetric bound system (the Sun in the Galaxy's field, discs) has no good slice; relayed signals can close loops in time (criterion B violated in principle; illustrative loop gains 4 ms–3.9 s around the Galaxy). No completion found: a (□φ)² partner keeps the statics but adds an Ostrogradsky ghost; a hypersurface-orthogonal aether is v3, which fails growth. **So neither v3 nor v4 is a complete, healthy theory: v3 fails growth, v4 fails well-posedness off symmetry.**
+
 ## 2. Parameters
 
 | symbol | status | value | source |
