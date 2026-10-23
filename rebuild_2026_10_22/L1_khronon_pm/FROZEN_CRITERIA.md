@@ -253,3 +253,36 @@ RUN1: K0 PASS, X0 PASS (flag raised), KA FAIL, KB FAIL, KC PASS, KR PASS (4/6). 
    - KX vs S0 at the same z_i; LIN vs S0 reported;
    - T-OWN tooth: inject the run's own P_KX/P_S0 at z = 0 into an S0 mock, and require χ²_min ≥ 9 for "diagnostic", as CFG596;
    - plus the model-B projection variant (F3 K3 style), reported. KiDS is the frozen survey; DES is reported.
+
+## AMENDMENT A4 (PRE-RESULT for production and for a 128³ LOB check, 2026-10-23; after the indicative set, before any production number or any LOB-IC run)
+
+Reason: Q6_v3_class (`rebuild_2026_10_22/Q6_v3_class/README.md`) landed, relayed by the coordinator.
+1. **Reading sentence, added to every production reading.** Literal v3's quadratic K has no radiation era: the stiff a⁻⁶ partner
+   beats radiation before z = 1854 at μ_K = 14.8, and BBN needs μ_K ≥ 1.84×10⁸ h/Mpc (Q6 §4). So every L1 production result
+   belongs to "v3 on a dust background with a yet-unspecified early K", not to the literal theory.
+2. **The frozen ICs overstate the linear state.** The frozen LIN/KX ICs come from F3's BSK2 ODE started at a = 1e-3 with
+   δ_b = δ_τ ∝ a (§2 ledger, POSITED start). Q6's full Boltzmann LOB model (dust background, literal perturbations, from early
+   times) gives R_B = 0.073 at the cap, against the ODE's 0.391. The frozen cells stay unchanged and are reported.
+3. **New variant "LOB-IC"** (fix-forward). Same engine, mode, box, phases and step grid as the z_i = 199 cells. Only the
+   per-species linear state at z_i = 199 changes:
+   - Q6's validated Khronon CLASS binary (`class_khronon`, sha256 3ccb50b2..., PROVENANCE.md), run read-only with Q6's HIGH
+     and START×0.25 precision settings, at model B: h, ω_b, A_s, n_s, τ as §2; ω_cdm = 1e-8 and ω_aest = Ω_τh² − 1e-8 (Q6's
+     convention); LOB (`aest_K_type` 4, `aest_lambda_c` −1, `aest_K2` = (μ_K h)² Mpc⁻²). A DUST run (`aest_K_type` 0) at the
+     same parameters is the normaliser. Outputs mTk at z = 0, 195, 199, 203, synchronous gauge, written to this lane's
+     `work/` (not to `_external_data`).
+   - δ_b = d_b. δ_τ = (Ω_m d_m − Ω_b d_b − Ω_cdm d_cdm)/Ω_τ from the total-matter transfer, which includes the khronon in the
+     patch (aest.patch L518–520).
+   - R_s(k) = δ_s^LOB(k, z_i)/d_m^DUST(k, 0). dδ_s/dln a is the central difference between z = 195 and 203. The momentum is
+     built from dδ/dln a (as the engine does).
+   - T_m(z = 0) for σ₈,lin,box is d_m^LOB(k, 0)/d_m^DUST(k, 0).
+   - The sub-horizon N-body reading of synchronous-gauge δ at z = 199 is accurate to O((aH/k)²) ≤ 2e-3 at the box's k_f.
+4. **LOB-IC production cells**, appended after the frozen 14 (lower priority; the frozen cells stay unchanged):
+   LIN-LOB-14.8-199, KX-can-LOB-14.8-199, KX-alt-LOB-14.8-199, then LIN-LOB-400-199, KX-can-LOB-400-199, KX-alt-LOB-400-199.
+   The control is the frozen S0-199. They are scored and read exactly as the frozen cells (same ρ_NL, the same scorer). Both
+   IC families are reported, never pooled.
+5. **128³ LOB check (indicative, `l1_lob.py`)**: LIN-LOB-199 and KX-can-LOB-199 at the indicative settings, plus K-LOB1, the
+   DUST normaliser against this lane's vanilla classy P(k) at z = 0 (|P_DUST/P_classy − 1| ≤ 1e-3 for k ≤ 7 h/Mpc), and
+   K-LOB2, which reports the LOB linear σ₈ (z = 0, infinite volume) against Q6's R_B = 0.073 (at Q6's own parameters; it is
+   reported, not gated, because the parameters differ). ρ_NL,LOB = (σ₈[KX-LOB] − σ₈[LIN-LOB])/(σ₈[S0-199] − σ₈[LIN-LOB]), with
+   the frozen reading bands. MUTATE: δ_τ taken from d_b (the khronon's own transfer dropped) must FAIL K-LOB3, the check that
+   the IC's khronon δ equals the CLASS-derived one to 1e-6.
