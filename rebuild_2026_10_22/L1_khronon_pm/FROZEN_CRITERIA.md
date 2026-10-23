@@ -189,3 +189,67 @@ Nothing in §1–§4 (equations, gates, thresholds, indicative set, readings) ch
    exists, and the resumed run's final particle state and z = 0 P(k) are **bit-identical** to the uninterrupted run's
    (sha256 of the state arrays equal). If bit-identity fails, the measured max |ΔP/P| is reported and KR FAILS (no
    tolerance is set after the fact). KR is not mutated (it is an engineering check); MUTATE still must fail KA, KB, KC.
+
+## AMENDMENT A2 (POST-RESULT, 2026-10-23, after validation RUN1; RUN1 kept as `l1_khronon_pm_RUN1.out` / `_results_RUN1.json`)
+
+RUN1: K0 PASS, X0 PASS (flag raised), KA FAIL, KB FAIL, KC PASS, KR PASS (4/6). Peak RSS 2.27 GB.
+
+1. **KA: a script bug, not a gate result.** The script added an unfrozen sanity condition (k-bin centres equal to 1e-9
+   absolute). CFG596 builds k in float32, so its bin centres differ by ~1e-7 relative and the line printed FAIL although the
+   frozen statistic was max|P/P_CFG596 − 1| = 8.7e-5 (threshold 0.02). The sanity condition is now 1e-5 relative. The
+   frozen statistic and threshold are unchanged.
+2. **KB FAILED as frozen** (max|R/R_ODE − 1| = 0.0345 at a = 0.253 and 0.0356 at z = 0, threshold 0.02). Diagnosis (post-result):
+   - lowest two bins (k = 0.32, 0.56): the frozen line evaluates the ODE at the bin-mean k, while the estimator weights each
+     mode by |δ(z_i)|². Pushing the linear prediction through the same estimator gives deviations 0.0003 / 0.0011;
+   - bins k ≳ 1 h/Mpc: the PM's own force deficit near the grid scale (S0's PM/ODE growth falls from 0.997 to 0.83 over the
+     bins) does not cancel in R, because the suppressed khronon couples more weakly than dust. Fitting one PM coupling g per
+     bin on the **S0 run alone** (dust ODE) and reusing it for KX brings these bins to ≤ 0.007.
+   **Re-scored statistic KB-A2 (post-result):** max over the same bins and epochs of |G_KX,PM / G_KX,A2 − 1| ≤ 0.02 (threshold
+   unchanged), where G_KX,A2 is the linear (ODE) prediction per mode, weighted per mode by wt·|δ_lin(k, z_i)|²·W_CIC(k)²
+   (the estimator's own weights), with the coupling g_j fitted on S0's PM growth in bin j. The frozen line is still
+   printed as `KB-frozen` and stays FAIL. The same A2 statistic for GRJ (Jeans kernel) is reported, not gated (its
+   transfer oscillates in k, so the frozen bin-mean comparison is meaningless for it).
+   What KB-A2 does not show: that the PM is accurate near its grid scale. It shows that the hold term reproduces the linear
+   theory once the PM's own deficit, common to KX and S0, is calibrated on S0. The production statistic compares KX with
+   S0 on the same mesh, so that deficit enters both arms.
+3. **KC (reported addition):** the c1 projection iteration stalls at a 2.5 % iterate change (grid-scale aliasing; the
+   residual at k < k_Nyq/2 is ≤ 1e-3). An independent Anderson AQUAL solve (the KX solver with coefficient 1 − μ in the
+   divergence, i.e. ∇²Φ = S + ∇·[(1 − μ)∇Φ]) converges to 8e-10 at 128³ and agrees with it in every shell to 4.6e-5. It is
+   printed as a reported line. The gate is unchanged.
+4. **Memory disclosure:** RUN1 peaked at 2.27 GB RSS, above the frozen 1 GB guideline (KC at 128³ and the CFG596 reference's
+   256³ white noise). The owner had lifted the memory restriction (A1) before the run.
+
+## AMENDMENT A3 (PRE-RESULT for the indicative set and production, 2026-10-23, before any indicative or production number)
+
+1. **X0 raised the flag** (x_hold,rms,lin = 0.78 / 0.65 at z = 199, 11.2 / 9.3 at z ≈ 1000, canonical / alt; 0.049 / 0.041
+   at z = 49). The z_i = 199 variant is therefore mandatory (frozen rule). The quadratic-K background has Q̄ − 1 = 1.5e-3
+   (w = 7.6e-4) at z = 199 and 0.19 (w = 0.087) at z ≈ 1000, so the engine cannot start earlier than z ≈ 200 at μ_K = 14.8.
+   The epoch z ≈ 1000 → 199, where x ≫ 1, is not simulated by any run here. That is a stated limitation.
+2. **Indicative set** adds `S0-199` (control for the z_i = 199 pair). ρ_NL,199 = (σ₈[KX-199] − σ₈[LIN-199]) /
+   (σ₈[S0-199] − σ₈[LIN-199]).
+3. **Production = both z_i for every mode**, 14 runs at 512³ (1024³ is excluded: particles alone need 51.5 GB). Order:
+   S0-199, LIN-14.8-199, KX-can-14.8-199, KX-alt-14.8-199, S0-49, LIN-14.8-49, KX-can-14.8-49, KX-alt-14.8-49,
+   LIN-400-49, KX-can-400-49, KX-alt-400-49, LIN-400-199, KX-can-400-199, KX-alt-400-199.
+4. **Queue.** `compute_queue/heavyq.py` exists, so each run is a queue job:
+   `heavyq add --id L1_<tag> --cmd "<run>" --resume-cmd "<run> --resume" --est-gb E --threads 8 --done-file work/<tag>/DONE`,
+   with priorities in the order above. Under the queue, the engine exits with `$HEAVYQ_YIELD_EXIT` (75) after its SIGTERM
+   checkpoint (0 otherwise, as validated by KR). It writes `work/<tag>/DONE` only on completion. E = 1.15 × the measured peak
+   of a 3-step 512³ KX z_i = 199 calibration run (its outputs are not used).
+5. **Halo profiles (coordinator request; reported only, no verdict weight)**, at z = 0 in every production run:
+   - centres: local maxima (3³ cells, periodic) of the total-mass CIC density smoothed with a Gaussian of σ = 1 cell,
+     above 20× the mean;
+   - M₁ = total mass within 1 Mpc (physical);
+   - greedy exclusion within 1 Mpc, most massive first;
+   - classes by M₁: cluster ≥ 1e14 M_⊙, group 1e13–1e14, galaxy 1e12–1e13; if fewer than 10 clusters, also "top50" (the 50
+     largest M₁);
+   - per class: stacked mean ρ_b, ρ_τ in shells with edges 0.1, 0.2, 0.3, 0.5, 0.7, 1, 1.5, 2, 3 Mpc (physical);
+   - dust-to-baryon mass ratio in 0.3–1 Mpc and in 1–3 Mpc (stacked, and the median over halos), against the cosmic Ω_τ/Ω_b.
+   Caveat stated in advance: the 512³ cell is 0.285 Mpc (physical) and the PM softening is 1–2 cells, so the 0.3–1 Mpc
+   annulus is resolution-limited.
+6. **Production scorer `l1_score.py`.** CFG596's flow, with the CFG592 library exec'd unchanged:
+   - nodes z = 0, 0.5, 1 of the total-matter particle P(k); k_lo = first bin, k_hi = πN/(4L); support ≥ 0.9;
+   - fits with and without IA; robust variants widen2, DESI and noIA (CFG596's "held" variant has no analogue: omitted);
+   - `klass` as in CFG592;
+   - KX vs S0 at the same z_i; LIN vs S0 reported;
+   - T-OWN tooth: inject the run's own P_KX/P_S0 at z = 0 into an S0 mock, and require χ²_min ≥ 9 for "diagnostic", as CFG596;
+   - plus the model-B projection variant (F3 K3 style), reported. KiDS is the frozen survey; DES is reported.
