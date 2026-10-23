@@ -1,0 +1,245 @@
+==============================================================================================================
+S1_v3_hosted_small: v3 small systems in their host's field (tiles 26, 29)
+kappa = 1/2 FITTED; footings canonical 9.3603e-11 / alt 1.1312e-10, never pooled; tile 19 is lane P4's
+==============================================================================================================
+
+--- solver validation (D10 solver read-only; F2 AQUAL read-only) ---
+   K2 y 3e-04: |d sigma/sigma| E-W 2.25e-04 E-V 1.44e-04 (res 2.5e-12)
+   K2 y 3e-03: |d sigma/sigma| E-W 2.18e-04 E-V 1.40e-04 (res 2.1e-13)
+   K2 y 3e-02: |d sigma/sigma| E-W 1.98e-04 E-V 1.29e-04 (res 8.8e-13)
+K2 PASS 2.25e-04 < 2e-3  (isolated L*=0 2D solve vs the algebraic law (E-W, E-V))
+   K3 x_e 0.1 (F2 y_e 0.0091, x_e 0.1000, it 128) r/r_M 3.0: M_eff D10 3.50635 F2 3.50430 rel 5.85e-04
+   K3 x_e 0.1 (F2 y_e 0.0091, x_e 0.1000, it 128) r/r_M 10.0: M_eff D10 7.92383 F2 7.93050 rel 8.41e-04
+   K3 x_e 0.5 (F2 y_e 0.1667, x_e 0.5000, it 42) r/r_M 3.0: M_eff D10 2.43641 F2 2.43206 rel 1.79e-03
+   K3 x_e 0.5 (F2 y_e 0.1667, x_e 0.5000, it 42) r/r_M 10.0: M_eff D10 2.50789 F2 2.51092 rel 1.20e-03
+K3 PASS 1.79e-03 < 2e-2  (embedded AQUAL: D10 2D vs F2's independent point-mass AQUAL solver (angle-averaged M_eff))
+   K4 x_e 0.05 Lam 0.0: 2D 2.933030e-05 Route F 2.941249e-05 rel 2.79e-03
+   K4 x_e 0.05 Lam 0.5: 2D 6.812569e-06 Route F 6.811342e-06 rel 1.80e-04
+   K4 x_e 0.05 Lam 2.0: 2D 2.306288e-06 Route F 2.305911e-06 rel 1.63e-04
+   K4 x_e 0.5 Lam 0.0: 2D 4.439497e-05 Route F 4.447382e-05 rel 1.77e-03
+   K4 x_e 0.5 Lam 0.5: 2D 3.394137e-05 Route F 3.395134e-05 rel 2.94e-04
+   K4 x_e 0.5 Lam 2.0: 2D 2.125399e-05 Route F 2.125224e-05 rel 8.20e-05
+K4 PASS 2.79e-03 < 2e-2  (linear EFE: D10 2D monopole at r = a vs Route F (C6 kernel))
+   K5 UFD-like: max |d sigma/sigma| (fine, far; E-W, E-V) 3.72e-04
+   K5 UDG-like: max |d sigma/sigma| (fine, far; E-W, E-V) 6.22e-04
+K5 PASS 6.22e-04 < 5e-3  (convergence: grid doubling and r_out x 10)
+K6 PASS 2.67e-08 < 2e-3  (Newton limit Lambda = 1e4 (x_e 0.1, y 3e-3))
+
+--- K1: E3 reproduced with this lane's own code (CFG691 recipe, isolated) ---
+   canonical N 45: above CFG691 L*24 +0.885+-0.127, L*90 +1.517, law +0.558; clean E_N +2.010
+   alt       N 46: above CFG691 L*24 +0.842+-0.128, L*90 +1.484, law +0.506; clean E_N +2.000
+K1 PASS N 45/46; max |diff| 0.005 dex 45/46 and <= 0.02  (E3 reproduced (own code): Delta above CFG691 recipe L*24/90, unscreened law; clean E_N)
+
+--- K7/K8: CFG933 and CFG948 reproduced (isolated nu_e law) ---
+   canonical <E> +0.760358 (CFG933 +0.760358) se 0.261796 (0.261796); sigma_sys s_M 0.2400 (0.2400) s_A 0.2795 (0.2795) s_D 0.0500 (0.0500)
+   alt       <E> +0.669464 (CFG933 +0.669464) se 0.261796 (0.261796); sigma_sys s_M 0.2391 (0.2391) s_A 0.2795 (0.2795) s_D 0.0500 (0.0500)
+K7 PASS membership == CFG933; max |diff| 4.2e-16 <= 1e-9 (mean/se <= 1e-6)  (CFG933 per-galaxy E_obs, <E>, se_obs reproduced (isolated nu_e, Wolf))
+K8 PASS 1.1e-16 <= 2e-3  (CFG948 sigma_sys components s_M, s_A, s_D reproduced (isolated nu_e))
+
+--- satellites: native v3 tables per system (3x3 MC grids in log y, log Lambda) ---
+   [canonical] 45 systems tabulated (3060 solves so far, worst scaled residual 1.0e-10, 458 s)
+   [alt] 46 systems tabulated (6188 solves so far, worst scaled residual 1.0e-10, 926 s)
+
+--- satellites: the chain (bootstrap median over systems of log10 g_obs/g_pred; +- bootstrap sd) ---
+   canonical S0 Newton (E3 g_bar)                                 Delta +2.010 +- 0.113  (+17.9 sd)
+   canonical S0 E3 unscreened law (nu1, algebraic)                Delta +0.558 +- 0.099  (+5.7 sd)
+   canonical S0 E3 CFG691 recipe L*floor                          Delta +0.847 +- 0.124  (+6.8 sd)
+   canonical S0 E3 CFG691 recipe L*24                             Delta +0.885 +- 0.127  (+7.0 sd)
+   canonical S0 E3 CFG691 recipe L*90                             Delta +1.517 +- 0.138  (+11.0 sd)
+   canonical S2 AQUAL isolated L*0 E-W                            Delta +0.553 +- 0.099  (+5.6 sd)
+   canonical S3 AQUAL + EFE (E_mid) L*0 E-W                       Delta +1.130 +- 0.154  (+7.3 sd)
+   canonical S4 v3: AQUAL + EFE + screening L*floor E-W           Delta +1.331 +- 0.147  (+9.0 sd)
+   canonical side: isolated native screening L*floor E-W          Delta +0.914 +- 0.127  (+7.2 sd)
+   canonical bracket E_lo L*floor E-W                             Delta +1.285 +- 0.148  (+8.7 sd)
+   canonical bracket E_hi L*floor E-W                             Delta +1.414 +- 0.146  (+9.7 sd)
+   canonical S4 v3: AQUAL + EFE + screening L*24 E-W              Delta +1.355 +- 0.147  (+9.2 sd)
+   canonical side: isolated native screening L*24 E-W             Delta +0.956 +- 0.128  (+7.5 sd)
+   canonical bracket E_lo L*24 E-W                                Delta +1.311 +- 0.148  (+8.9 sd)
+   canonical bracket E_hi L*24 E-W                                Delta +1.432 +- 0.145  (+9.9 sd)
+   canonical S4 v3: AQUAL + EFE + screening L*90 E-W              Delta +1.715 +- 0.138  (+12.4 sd)
+   canonical side: isolated native screening L*90 E-W             Delta +1.571 +- 0.138  (+11.4 sd)
+   canonical bracket E_lo L*90 E-W                                Delta +1.700 +- 0.138  (+12.3 sd)
+   canonical bracket E_hi L*90 E-W                                Delta +1.737 +- 0.137  (+12.7 sd)
+   canonical bracket E_lo L*0 E-W                                 Delta +1.055 +- 0.153  (+6.9 sd)
+   canonical bracket E_hi L*0 E-W                                 Delta +1.266 +- 0.153  (+8.3 sd)
+   canonical S2 AQUAL isolated L*0 E-V                            Delta +0.585 +- 0.099  (+5.9 sd)
+   canonical S3 AQUAL + EFE (E_mid) L*0 E-V                       Delta +1.245 +- 0.154  (+8.1 sd)
+   canonical S4 v3: AQUAL + EFE + screening L*floor E-V           Delta +1.418 +- 0.147  (+9.6 sd)
+   canonical side: isolated native screening L*floor E-V          Delta +0.876 +- 0.120  (+7.3 sd)
+   canonical bracket E_lo L*floor E-V                             Delta +1.369 +- 0.148  (+9.2 sd)
+   canonical bracket E_hi L*floor E-V                             Delta +1.512 +- 0.146  (+10.3 sd)
+   canonical S4 v3: AQUAL + EFE + screening L*24 E-V              Delta +1.439 +- 0.147  (+9.8 sd)
+   canonical side: isolated native screening L*24 E-V             Delta +0.910 +- 0.122  (+7.4 sd)
+   canonical bracket E_lo L*24 E-V                                Delta +1.392 +- 0.148  (+9.4 sd)
+   canonical bracket E_hi L*24 E-V                                Delta +1.527 +- 0.146  (+10.5 sd)
+   canonical S4 v3: AQUAL + EFE + screening L*90 E-V              Delta +1.768 +- 0.140  (+12.7 sd)
+   canonical side: isolated native screening L*90 E-V             Delta +1.498 +- 0.138  (+10.9 sd)
+   canonical bracket E_lo L*90 E-V                                Delta +1.751 +- 0.140  (+12.5 sd)
+   canonical bracket E_hi L*90 E-V                                Delta +1.800 +- 0.139  (+12.9 sd)
+   canonical bracket E_lo L*0 E-V                                 Delta +1.170 +- 0.153  (+7.6 sd)
+   canonical bracket E_hi L*0 E-V                                 Delta +1.380 +- 0.153  (+9.0 sd)
+   canonical Newton E-V (exact Plummer virial)                    Delta +2.115 +- 0.113  (+18.8 sd)
+   canonical [W  ] S4 v3 L*floor E-W                                Delta +0.964 +- 0.150  (+6.4 sd)
+   canonical [W  ] S4 v3 L*24    E-W                                Delta +0.989 +- 0.150  (+6.6 sd)
+   canonical [W  ] S4 v3 L*90    E-W                                Delta +1.343 +- 0.140  (+9.6 sd)
+   canonical [raw] S4 v3 L*floor E-W                                Delta +1.460 +- 0.144  (+10.1 sd)
+   canonical [raw] S4 v3 L*24    E-W                                Delta +1.485 +- 0.144  (+10.3 sd)
+   canonical [raw] S4 v3 L*90    E-W                                Delta +1.851 +- 0.138  (+13.5 sd)
+   alt       S0 Newton (E3 g_bar)                                 Delta +2.000 +- 0.112  (+17.8 sd)
+   alt       S0 E3 unscreened law (nu1, algebraic)                Delta +0.506 +- 0.098  (+5.2 sd)
+   alt       S0 E3 CFG691 recipe L*floor                          Delta +0.823 +- 0.127  (+6.5 sd)
+   alt       S0 E3 CFG691 recipe L*24                             Delta +0.842 +- 0.128  (+6.6 sd)
+   alt       S0 E3 CFG691 recipe L*90                             Delta +1.484 +- 0.141  (+10.5 sd)
+   alt       S2 AQUAL isolated L*0 E-W                            Delta +0.502 +- 0.098  (+5.1 sd)
+   alt       S3 AQUAL + EFE (E_mid) L*0 E-W                       Delta +1.075 +- 0.154  (+7.0 sd)
+   alt       S4 v3: AQUAL + EFE + screening L*floor E-W           Delta +1.299 +- 0.147  (+8.8 sd)
+   alt       side: isolated native screening L*floor E-W          Delta +0.892 +- 0.129  (+6.9 sd)
+   alt       bracket E_lo L*floor E-W                             Delta +1.254 +- 0.148  (+8.5 sd)
+   alt       bracket E_hi L*floor E-W                             Delta +1.371 +- 0.145  (+9.4 sd)
+   alt       S4 v3: AQUAL + EFE + screening L*24 E-W              Delta +1.312 +- 0.147  (+8.9 sd)
+   alt       side: isolated native screening L*24 E-W             Delta +0.913 +- 0.130  (+7.0 sd)
+   alt       bracket E_lo L*24 E-W                                Delta +1.268 +- 0.148  (+8.5 sd)
+   alt       bracket E_hi L*24 E-W                                Delta +1.381 +- 0.145  (+9.5 sd)
+   alt       S4 v3: AQUAL + EFE + screening L*90 E-W              Delta +1.681 +- 0.139  (+12.1 sd)
+   alt       side: isolated native screening L*90 E-W             Delta +1.543 +- 0.140  (+11.0 sd)
+   alt       bracket E_lo L*90 E-W                                Delta +1.670 +- 0.139  (+12.0 sd)
+   alt       bracket E_hi L*90 E-W                                Delta +1.702 +- 0.138  (+12.4 sd)
+   alt       bracket E_lo L*0 E-W                                 Delta +1.001 +- 0.153  (+6.5 sd)
+   alt       bracket E_hi L*0 E-W                                 Delta +1.200 +- 0.154  (+7.8 sd)
+   alt       S2 AQUAL isolated L*0 E-V                            Delta +0.534 +- 0.098  (+5.5 sd)
+   alt       S3 AQUAL + EFE (E_mid) L*0 E-V                       Delta +1.190 +- 0.155  (+7.7 sd)
+   alt       S4 v3: AQUAL + EFE + screening L*floor E-V           Delta +1.383 +- 0.148  (+9.4 sd)
+   alt       side: isolated native screening L*floor E-V          Delta +0.847 +- 0.122  (+7.0 sd)
+   alt       bracket E_lo L*floor E-V                             Delta +1.333 +- 0.149  (+9.0 sd)
+   alt       bracket E_hi L*floor E-V                             Delta +1.467 +- 0.146  (+10.1 sd)
+   alt       S4 v3: AQUAL + EFE + screening L*24 E-V              Delta +1.393 +- 0.147  (+9.5 sd)
+   alt       side: isolated native screening L*24 E-V             Delta +0.865 +- 0.123  (+7.0 sd)
+   alt       bracket E_lo L*24 E-V                                Delta +1.344 +- 0.148  (+9.1 sd)
+   alt       bracket E_hi L*24 E-V                                Delta +1.475 +- 0.146  (+10.1 sd)
+   alt       S4 v3: AQUAL + EFE + screening L*90 E-V              Delta +1.733 +- 0.141  (+12.3 sd)
+   alt       side: isolated native screening L*90 E-V             Delta +1.465 +- 0.141  (+10.4 sd)
+   alt       bracket E_lo L*90 E-V                                Delta +1.714 +- 0.141  (+12.1 sd)
+   alt       bracket E_hi L*90 E-V                                Delta +1.764 +- 0.139  (+12.7 sd)
+   alt       bracket E_lo L*0 E-V                                 Delta +1.115 +- 0.153  (+7.3 sd)
+   alt       bracket E_hi L*0 E-V                                 Delta +1.314 +- 0.154  (+8.5 sd)
+   alt       Newton E-V (exact Plummer virial)                    Delta +2.105 +- 0.112  (+18.7 sd)
+   alt       [W  ] S4 v3 L*floor E-W                                Delta +0.928 +- 0.150  (+6.2 sd)
+   alt       [W  ] S4 v3 L*24    E-W                                Delta +0.941 +- 0.150  (+6.3 sd)
+   alt       [W  ] S4 v3 L*90    E-W                                Delta +1.317 +- 0.143  (+9.2 sd)
+   alt       [raw] S4 v3 L*floor E-W                                Delta +1.424 +- 0.143  (+9.9 sd)
+   alt       [raw] S4 v3 L*24    E-W                                Delta +1.437 +- 0.143  (+10.0 sd)
+   alt       [raw] S4 v3 L*90    E-W                                Delta +1.822 +- 0.137  (+13.3 sd)
+
+--- satellites: per-system central values (canonical) and S5 bounds ---
+   [canonical] S5: eps = mu_K^2 (3 r12)^2 / mu(x_e) max 2.4e-02; host local density / needed density: median 7.9e-04, max 4.0e-01 (systems already at/above prediction: 0)
+   [alt] S5: eps = mu_K^2 (3 r12)^2 / mu(x_e) max 2.6e-02; host local density / needed density: median 8.5e-04, max 4.3e-01 (systems already at/above prediction: 0)
+   Aquarius II          MW    d  105.1 x_e 0.091 y 9.3e-04 Lam_fl 0.18 | obs +2.59 | E3 L24 +1.56 law +1.80 EFE +0.99 v3 fl/24/90 +0.89/+0.87/+0.47 | Delta_v3(fl) +1.70
+   Bootes I             MW    d   64.0 x_e 0.151 y 2.5e-03 Lam_fl 0.13 | obs +1.90 | E3 L24 +1.49 law +1.59 EFE +0.80 v3 fl/24/90 +0.76/+0.75/+0.50 | Delta_v3(fl) +1.14
+   Bootes II            MW    d   39.5 x_e 0.248 y 3.5e-03 Lam_fl 0.66 | obs +1.81 | E3 L24 +0.71 law +1.51 EFE +0.62 v3 fl/24/90 +0.38/+0.36/+0.09 | Delta_v3(fl) +1.42
+   Bootes III           MW    d   47.5 x_e 0.206 y 2.5e-04 Lam_fl 0.05 | obs +1.69 | E3 L24 +2.04 law +2.08 EFE +0.69 v3 fl/24/90 +0.68/+0.68/+0.64 | Delta_v3(fl) +1.00
+   Canes Venatici II    MW    d  160.6 x_e 0.059 y 1.0e-02 Lam_fl 0.40 | obs +2.01 | E3 L24 +0.96 law +1.29 EFE +1.14 v3 fl/24/90 +0.76/+0.72/+0.21 | Delta_v3(fl) +1.26
+   Carina II            MW    d   18.6 x_e 0.542 y 2.9e-03 Lam_fl 0.28 | obs +2.02 | E3 L24 +1.23 law +1.55 EFE +0.39 v3 fl/24/90 +0.36/+0.35/+0.19 | Delta_v3(fl) +1.66
+   Carina III           MW    d   25.0 x_e 0.399 y 6.1e-03 Lam_fl 1.11 | obs +2.73 | E3 L24 +0.44 law +1.40 EFE +0.47 v3 fl/24/90 +0.22/+0.20/+0.04 | Delta_v3(fl) +2.51
+   Centaurus I          MW    d  114.1 x_e 0.084 y 6.9e-03 Lam_fl 0.31 | obs +1.86 | E3 L24 +1.11 law +1.37 EFE +1.02 v3 fl/24/90 +0.79/+0.75/+0.28 | Delta_v3(fl) +1.08
+   Columba I            MW    d  187.3 x_e 0.051 y 1.3e-03 Lam_fl 0.22 | obs +2.76 | E3 L24 +1.42 law +1.73 EFE +1.22 v3 fl/24/90 +0.99/+0.96/+0.42 | Delta_v3(fl) +1.77
+   Coma Berenices       MW    d   43.5 x_e 0.225 y 4.4e-03 Lam_fl 0.39 | obs +1.97 | E3 L24 +1.03 law +1.47 EFE +0.66 v3 fl/24/90 +0.51/+0.49/+0.17 | Delta_v3(fl) +1.45
+   Crater II            MW    d  115.5 x_e 0.083 y 4.3e-04 Lam_fl 0.02 | obs +1.38 | E3 L24 +1.96 law +1.96 EFE +1.03 v3 fl/24/90 +1.02/+1.02/+1.00 | Delta_v3(fl) +0.36
+   Eridanus II          MW    d  371.6 x_e 0.026 y 5.6e-03 Lam_fl 0.12 | obs +1.98 | E3 L24 +1.37 law +1.42 EFE +1.37 v3 fl/24/90 +1.29/+1.27/+0.76 | Delta_v3(fl) +0.70
+   Eridanus IV          MW    d   76.2 x_e 0.127 y 2.1e-03 Lam_fl 0.39 | obs +2.80 | E3 L24 +1.10 law +1.62 EFE +0.86 v3 fl/24/90 +0.63/+0.61/+0.20 | Delta_v3(fl) +2.17
+   Grus I               MW    d  122.7 x_e 0.078 y 9.0e-04 Lam_fl 0.19 | obs +2.09 | E3 L24 +1.52 law +1.81 EFE +1.05 v3 fl/24/90 +0.92/+0.90/+0.45 | Delta_v3(fl) +1.17
+   Hercules             MW    d  125.0 x_e 0.077 y 3.8e-03 Lam_fl 0.18 | obs +1.35 | E3 L24 +1.35 law +1.50 EFE +1.06 v3 fl/24/90 +0.93/+0.91/+0.47 | Delta_v3(fl) +0.42
+   Horologium I         MW    d   38.2 x_e 0.258 y 5.8e-03 Lam_fl 0.68 | obs +2.42 | E3 L24 +0.70 law +1.41 EFE +0.61 v3 fl/24/90 +0.37/+0.35/+0.08 | Delta_v3(fl) +2.05
+   Hydrus I             MW    d   23.9 x_e 0.418 y 7.1e-03 Lam_fl 0.41 | obs +1.61 | E3 L24 +0.97 law +1.36 EFE +0.46 v3 fl/24/90 +0.38/+0.37/+0.14 | Delta_v3(fl) +1.23
+   Leo IV               MW    d  151.9 x_e 0.063 y 2.4e-03 Lam_fl 0.21 | obs +1.76 | E3 L24 +1.37 law +1.60 EFE +1.14 v3 fl/24/90 +0.95/+0.92/+0.42 | Delta_v3(fl) +0.81
+   Leo V                MW    d  169.8 x_e 0.056 y 1.2e-02 Lam_fl 0.62 | obs +1.85 | E3 L24 +0.75 law +1.26 EFE +1.15 v3 fl/24/90 +0.59/+0.54/+0.12 | Delta_v3(fl) +1.26
+   Leo VI               MW    d  113.7 x_e 0.084 y 9.0e-04 Lam_fl 0.25 | obs +2.32 | E3 L24 +1.38 law +1.81 EFE +1.02 v3 fl/24/90 +0.84/+0.81/+0.35 | Delta_v3(fl) +1.48
+   Pegasus III          MW    d  212.8 x_e 0.045 y 1.8e-03 Lam_fl 0.26 | obs +2.03 | E3 L24 +1.31 law +1.66 EFE +1.27 v3 fl/24/90 +0.97/+0.93/+0.36 | Delta_v3(fl) +1.06
+   Pegasus IV           MW    d   89.1 x_e 0.108 y 7.3e-03 Lam_fl 0.52 | obs +1.87 | E3 L24 +0.86 law +1.36 EFE +0.92 v3 fl/24/90 +0.57/+0.53/+0.14 | Delta_v3(fl) +1.30
+   Pictor II            MW    d   11.8 x_e 0.871 y 2.9e-03 Lam_fl 0.68 | obs +2.43 | E3 L24 +0.71 law +1.56 EFE +0.28 v3 fl/24/90 +0.21/+0.20/+0.07 | Delta_v3(fl) +2.22
+   Pisces II            MW    d  181.9 x_e 0.052 y 4.2e-03 Lam_fl 0.39 | obs +2.07 | E3 L24 +1.04 law +1.48 EFE +1.20 v3 fl/24/90 +0.79/+0.75/+0.22 | Delta_v3(fl) +1.28
+   Reticulum II         MW    d   22.2 x_e 0.452 y 3.3e-03 Lam_fl 0.59 | obs +2.16 | E3 L24 +0.80 law +1.53 EFE +0.44 v3 fl/24/90 +0.32/+0.30/+0.09 | Delta_v3(fl) +1.85
+   Segue 1              MW    d   27.8 x_e 0.358 y 2.2e-03 Lam_fl 1.11 | obs +2.86 | E3 L24 +0.44 law +1.61 EFE +0.51 v3 fl/24/90 +0.23/+0.21/+0.04 | Delta_v3(fl) +2.63
+   Tucana II            MW    d   52.5 x_e 0.186 y 3.1e-04 Lam_fl 0.13 | obs +2.77 | E3 L24 +1.79 law +2.04 EFE +0.72 v3 fl/24/90 +0.70/+0.69/+0.47 | Delta_v3(fl) +2.08
+   Tucana IV            MW    d   44.5 x_e 0.220 y 4.2e-04 Lam_fl 0.22 | obs +2.96 | E3 L24 +1.51 law +1.97 EFE +0.66 v3 fl/24/90 +0.61/+0.59/+0.31 | Delta_v3(fl) +2.36
+   Tucana V             MW    d   51.8 x_e 0.188 y 1.3e-03 Lam_fl 0.95 | obs +1.98 | E3 L24 +0.52 law +1.72 EFE +0.72 v3 fl/24/90 +0.32/+0.29/+0.06 | Delta_v3(fl) +1.66
+   Ursa Major I         MW    d  101.9 x_e 0.094 y 1.3e-03 Lam_fl 0.14 | obs +2.73 | E3 L24 +1.58 law +1.73 EFE +0.98 v3 fl/24/90 +0.91/+0.90/+0.54 | Delta_v3(fl) +1.82
+   Ursa Major II        MW    d   40.8 x_e 0.240 y 1.8e-03 Lam_fl 0.24 | obs +2.70 | E3 L24 +1.36 law +1.66 EFE +0.63 v3 fl/24/90 +0.57/+0.56/+0.29 | Delta_v3(fl) +2.12
+   Willman 1            MW    d   42.7 x_e 0.229 y 6.6e-03 Lam_fl 1.09 | obs +2.59 | E3 L24 +0.45 law +1.38 EFE +0.65 v3 fl/24/90 +0.27/+0.24/+0.05 | Delta_v3(fl) +2.32
+   Andromeda X          M31   d  160.7 x_e 0.077 y 6.8e-03 Lam_fl 0.12 | obs +1.84 | E3 L24 +1.32 law +1.37 EFE +1.05 v3 fl/24/90 +0.99/+0.98/+0.62 | Delta_v3(fl) +0.85
+   Andromeda XI         M31   d  102.9 x_e 0.122 y 7.8e-03 Lam_fl 0.20 | obs +2.14 | E3 L24 +1.22 law +1.35 EFE +0.88 v3 fl/24/90 +0.79/+0.77/+0.40 | Delta_v3(fl) +1.36
+   Andromeda XIII       M31   d  125.7 x_e 0.099 y 1.0e-02 Lam_fl 0.19 | obs +1.77 | E3 L24 +1.19 law +1.29 EFE +0.95 v3 fl/24/90 +0.85/+0.83/+0.43 | Delta_v3(fl) +0.92
+   Andromeda XV         M31   d   95.1 x_e 0.132 y 9.4e-03 Lam_fl 0.09 | obs +1.15 | E3 L24 +1.27 law +1.31 EFE +0.85 v3 fl/24/90 +0.83/+0.82/+0.64 | Delta_v3(fl) +0.32
+   Andromeda XVI        M31   d  279.1 x_e 0.044 y 1.5e-02 Lam_fl 0.17 | obs +1.17 | E3 L24 +1.14 law +1.20 EFE +1.15 v3 fl/24/90 +1.06/+1.04/+0.54 | Delta_v3(fl) +0.12
+   Andromeda XVII       M31   d   46.7 x_e 0.278 y 7.2e-03 Lam_fl 0.10 | obs +1.04 | E3 L24 +1.32 law +1.36 EFE +0.59 v3 fl/24/90 +0.58/+0.57/+0.46 | Delta_v3(fl) +0.47
+   Andromeda XX         M31   d  127.1 x_e 0.098 y 1.7e-02 Lam_fl 0.30 | obs +1.93 | E3 L24 +1.02 law +1.18 EFE +0.95 v3 fl/24/90 +0.75/+0.73/+0.28 | Delta_v3(fl) +1.17
+   Andromeda XXII       M31   d  111.6 x_e 0.112 y 6.4e-03 Lam_fl 0.18 | obs +1.32 | E3 L24 +1.27 law +1.39 EFE +0.91 v3 fl/24/90 +0.82/+0.81/+0.44 | Delta_v3(fl) +0.49
+   Andromeda XXVI       M31   d  102.2 x_e 0.123 y 2.3e-03 Lam_fl 0.13 | obs +2.59 | E3 L24 +1.50 law +1.60 EFE +0.87 v3 fl/24/90 +0.83/+0.82/+0.53 | Delta_v3(fl) +1.76
+   Andromeda XXVII      M31   d   78.6 x_e 0.161 y 3.4e-03 Lam_fl 0.07 | obs +2.60 | E3 L24 +1.49 law +1.52 EFE +0.77 v3 fl/24/90 +0.77/+0.76/+0.66 | Delta_v3(fl) +1.83
+   Andromeda XXIX       M31   d  189.1 x_e 0.066 y 8.1e-03 Lam_fl 0.09 | obs +1.53 | E3 L24 +1.30 law +1.34 EFE +1.11 v3 fl/24/90 +1.07/+1.06/+0.77 | Delta_v3(fl) +0.46
+   Cassiopeia II        M31   d  237.3 x_e 0.052 y 9.6e-03 Lam_fl 0.12 | obs +2.21 | E3 L24 +1.26 law +1.30 EFE +1.18 v3 fl/24/90 +1.11/+1.09/+0.69 | Delta_v3(fl) +1.10
+   Leo T                field d  413.1 x_e 0.023 y 1.7e-02 Lam_fl 0.14 | obs +1.46 | E3 L24 +1.14 law +1.18 EFE +1.17 v3 fl/24/90 +1.12/+1.11/+0.69 | Delta_v3(fl) +0.33
+
+--- Coma UDGs: the chain (unweighted mean E = 2 ln(sigma_obs/sigma_pred) over the 9; se_obs CFG933; sigma_sys CFG948 recipe) ---
+   canonical S0 old: isolated nu_e law (CFG933)                   <E> +0.760 ln (+0.330 dex)  se 0.262
+   canonical S1 kernel nu1 (algebraic)                            <E> +0.760 ln (+0.330 dex)  se 0.262
+   canonical S2 AQUAL isolated L*0 E-W                            <E> +0.748 ln (+0.325 dex)  se 0.262  sigma_sys 0.372 (M 0.240 A 0.280 D 0.050)  z_stat +2.86  z_sys +1.64
+   canonical S3 AQUAL + EFE dmean L*0 E-W                         <E> +2.581 ln (+1.121 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.072)  z_stat +9.86  z_sys +4.28
+   canonical S4 v3 dmean L*floor E-W                              <E> +2.581 ln (+1.121 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.072)  z_stat +9.86  z_sys +4.28
+   canonical S4 v3 dmean L*24 E-W                                 <E> +2.581 ln (+1.121 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.072)  z_stat +9.86  z_sys +4.28
+   canonical S4 v3 dmean L*90 E-W                                 <E> +2.581 ln (+1.121 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.072)  z_stat +9.86  z_sys +4.28
+   canonical v3 dmean L*floor E-V                                 <E> +2.846 ln (+1.236 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.072)  z_stat +10.87  z_sys +4.72
+   canonical v3 dmean L*floor field/2                             <E> +2.174 ln (+0.944 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.080)  z_stat +8.30  z_sys +3.60
+   canonical S6 native H0 (D x 70/67.9, ASSUMED) dmean L*floor    <E> +2.536 ln (+1.102 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.073)  z_stat +9.69  z_sys +4.20
+   canonical v3 all 11 Coma dmean L*floor                         <E> +2.542 ln (+1.104 dex)  se 0.221  sigma_sys 0.544 (M 0.460 A 0.280 D 0.073)  z_stat +11.51  z_sys +4.33
+   canonical S3 AQUAL + EFE dproj L*0 E-W                         <E> +2.797 ln (+1.215 dex)  se 0.262  sigma_sys 0.542 (M 0.461 A 0.280 D 0.060)  z_stat +10.68  z_sys +4.65
+   canonical S4 v3 dproj L*floor E-W                              <E> +2.797 ln (+1.215 dex)  se 0.262  sigma_sys 0.542 (M 0.461 A 0.280 D 0.060)  z_stat +10.68  z_sys +4.65
+   canonical S4 v3 dproj L*24 E-W                                 <E> +2.797 ln (+1.215 dex)  se 0.262  sigma_sys 0.542 (M 0.461 A 0.280 D 0.060)  z_stat +10.68  z_sys +4.65
+   canonical S4 v3 dproj L*90 E-W                                 <E> +2.798 ln (+1.215 dex)  se 0.262  sigma_sys 0.542 (M 0.461 A 0.280 D 0.060)  z_stat +10.69  z_sys +4.65
+   canonical v3 dproj L*floor E-V                                 <E> +3.062 ln (+1.330 dex)  se 0.262  sigma_sys 0.542 (M 0.461 A 0.280 D 0.060)  z_stat +11.70  z_sys +5.09
+   canonical v3 dproj L*floor field/2                             <E> +2.480 ln (+1.077 dex)  se 0.262  sigma_sys 0.542 (M 0.460 A 0.280 D 0.065)  z_stat +9.47  z_sys +4.12
+   canonical S6 native H0 (D x 70/67.9, ASSUMED) dproj L*floor    <E> +2.760 ln (+1.199 dex)  se 0.262  sigma_sys 0.542 (M 0.461 A 0.280 D 0.061)  z_stat +10.54  z_sys +4.59
+   canonical v3 all 11 Coma dproj L*floor                         <E> +2.755 ln (+1.196 dex)  se 0.221  sigma_sys 0.542 (M 0.461 A 0.280 D 0.062)  z_stat +12.48  z_sys +4.70
+   canonical isolated bound (x_e = 0) L*floor                     <E> +0.749 ln (+0.325 dex)  se 0.262  sigma_sys 0.372 (M 0.240 A 0.280 D 0.050)  z_stat +2.86  z_sys +1.65
+   alt       S0 old: isolated nu_e law (CFG933)                   <E> +0.669 ln (+0.291 dex)  se 0.262
+   alt       S1 kernel nu1 (algebraic)                            <E> +0.669 ln (+0.291 dex)  se 0.262
+   alt       S2 AQUAL isolated L*0 E-W                            <E> +0.657 ln (+0.285 dex)  se 0.262  sigma_sys 0.371 (M 0.239 A 0.280 D 0.050)  z_stat +2.51  z_sys +1.45
+   alt       S3 AQUAL + EFE dmean L*0 E-W                         <E> +2.481 ln (+1.078 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.075)  z_stat +9.48  z_sys +4.11
+   alt       S4 v3 dmean L*floor E-W                              <E> +2.481 ln (+1.078 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.075)  z_stat +9.48  z_sys +4.11
+   alt       S4 v3 dmean L*24 E-W                                 <E> +2.481 ln (+1.078 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.075)  z_stat +9.48  z_sys +4.11
+   alt       S4 v3 dmean L*90 E-W                                 <E> +2.482 ln (+1.078 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.075)  z_stat +9.48  z_sys +4.11
+   alt       v3 dmean L*floor E-V                                 <E> +2.746 ln (+1.193 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.075)  z_stat +10.49  z_sys +4.55
+   alt       v3 dmean L*floor field/2                             <E> +2.043 ln (+0.887 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.082)  z_stat +7.80  z_sys +3.38
+   alt       S6 native H0 (D x 70/67.9, ASSUMED) dmean L*floor    <E> +2.436 ln (+1.058 dex)  se 0.262  sigma_sys 0.544 (M 0.460 A 0.280 D 0.075)  z_stat +9.30  z_sys +4.04
+   alt       v3 all 11 Coma dmean L*floor                         <E> +2.440 ln (+1.060 dex)  se 0.221  sigma_sys 0.544 (M 0.460 A 0.280 D 0.075)  z_stat +11.05  z_sys +4.16
+   alt       S3 AQUAL + EFE dproj L*0 E-W                         <E> +2.722 ln (+1.182 dex)  se 0.262  sigma_sys 0.542 (M 0.461 A 0.280 D 0.061)  z_stat +10.40  z_sys +4.52
+   alt       S4 v3 dproj L*floor E-W                              <E> +2.722 ln (+1.182 dex)  se 0.262  sigma_sys 0.542 (M 0.461 A 0.280 D 0.061)  z_stat +10.40  z_sys +4.52
+   alt       S4 v3 dproj L*24 E-W                                 <E> +2.722 ln (+1.182 dex)  se 0.262  sigma_sys 0.542 (M 0.461 A 0.280 D 0.061)  z_stat +10.40  z_sys +4.52
+   alt       S4 v3 dproj L*90 E-W                                 <E> +2.723 ln (+1.183 dex)  se 0.262  sigma_sys 0.542 (M 0.461 A 0.280 D 0.061)  z_stat +10.40  z_sys +4.52
+   alt       v3 dproj L*floor E-V                                 <E> +2.987 ln (+1.297 dex)  se 0.262  sigma_sys 0.542 (M 0.461 A 0.280 D 0.061)  z_stat +11.41  z_sys +4.96
+   alt       v3 dproj L*floor field/2                             <E> +2.372 ln (+1.030 dex)  se 0.262  sigma_sys 0.543 (M 0.460 A 0.280 D 0.066)  z_stat +9.06  z_sys +3.94
+   alt       S6 native H0 (D x 70/67.9, ASSUMED) dproj L*floor    <E> +2.685 ln (+1.166 dex)  se 0.262  sigma_sys 0.542 (M 0.461 A 0.280 D 0.062)  z_stat +10.26  z_sys +4.46
+   alt       v3 all 11 Coma dproj L*floor                         <E> +2.676 ln (+1.162 dex)  se 0.221  sigma_sys 0.542 (M 0.461 A 0.280 D 0.063)  z_stat +12.12  z_sys +4.57
+   alt       isolated bound (x_e = 0) L*floor                     <E> +0.658 ln (+0.286 dex)  se 0.262  sigma_sys 0.372 (M 0.240 A 0.280 D 0.050)  z_stat +2.51  z_sys +1.45
+   [canonical] S5: eps max 6.4e-02; Coma local density / needed density: mean 5.2e-03, max 1.1e-02
+   [alt] S5: eps max 7.3e-02; Coma local density / needed density: mean 5.2e-03, max 1.1e-02
+   DFX1                   x_e 0.498 y 0.0284  E old +0.735  v3 dmean +2.247  dproj +2.421  (sE 0.467)
+   J125848.94+281037.1    x_e 0.846 y 0.0332  E old +0.507  v3 dmean +2.237  dproj +2.475  (sE 1.444)
+   J125904.20+281507.7    x_e 0.830 y 0.0377  E old +0.261  v3 dmean +1.921  dproj +2.158  (sE 1.176)
+   J125929.89+274303.0    x_e 0.874 y 0.0242  E old +0.320  v3 dmean +2.217  dproj +2.457  (sE 0.667)
+   J125937.23+274815.2    x_e 0.974 y 0.0267  E old +0.840  v3 dmean +2.741  dproj +2.972  (sE 0.727)
+   J130005.40+275333.0    x_e 1.060 y 0.0275  E old +1.864  v3 dmean +3.786  dproj +3.961  (sE 0.324)
+   J130026.26+272735.2    x_e 0.651 y 0.0145  E old +0.143  v3 dmean +2.136  dproj +2.345  (sE 0.526)
+   J130028.34+274820.5    x_e 0.922 y 0.0189  E old +0.953  v3 dmean +2.993  dproj +3.231  (sE 0.609)
+   J130038.63+272835.3    x_e 0.652 y 0.0254  E old +1.222  v3 dmean +2.946  dproj +3.156  (sE 0.370)
+K9 PASS 1.0e-10 over 8512 solves < 1e-8  (every production solve converged)
+K10 PASS 0.524 GB < 1 GB  (peak RSS)
+
+--- verdict lines (frozen) ---
+   tile 26 [canonical] v3 Delta (E-W): L*floor +1.331+-0.147, L*24 +1.355+-0.147, L*90 +1.715+-0.138 | W at floor +0.964+-0.150 | best bracket cell 8.7 sd
+   tile 26 [alt] v3 Delta (E-W): L*floor +1.299+-0.147, L*24 +1.312+-0.147, L*90 +1.681+-0.139 | W at floor +0.928+-0.150 | best bracket cell 8.5 sd
+   TILE 26 (dwarf satellites): old FAIL -> v3 FAIL   [E-V also >= 3 sd everywhere: True]
+   tile 29 [canonical] v3 z_sys (z_stat): dmean L*floor +4.28 (+9.86), dmean L*24 +4.28 (+9.86), dmean L*90 +4.28 (+9.86), dproj L*floor +4.65 (+10.68), dproj L*24 +4.65 (+10.68), dproj L*90 +4.65 (+10.69)
+   tile 29 [alt] v3 z_sys (z_stat): dmean L*floor +4.11 (+9.48), dmean L*24 +4.11 (+9.48), dmean L*90 +4.11 (+9.48), dproj L*floor +4.52 (+10.40), dproj L*24 +4.52 (+10.40), dproj L*90 +4.52 (+10.40)
+   TILE 29 (Coma UDGs): old UNDEC -> v3 FAIL, ROBUST
+
+S1_V3_HOSTED_SMALL COMPLETE: 10/10 checks PASS.  1113 s, 8512 production solves

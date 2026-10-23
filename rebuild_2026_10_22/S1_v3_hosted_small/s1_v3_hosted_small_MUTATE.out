@@ -1,0 +1,40 @@
+==============================================================================================================
+S1_v3_hosted_small: v3 small systems in their host's field (tiles 26, 29)   *** MUTATE: Newtonian y_e as the background ***
+kappa = 1/2 FITTED; footings canonical 9.3603e-11 / alt 1.1312e-10, never pooled; tile 19 is lane P4's
+==============================================================================================================
+
+--- solver validation (D10 solver read-only; F2 AQUAL read-only) ---
+   K2 y 3e-04: |d sigma/sigma| E-W 2.25e-04 E-V 1.44e-04 (res 2.5e-12)
+   K2 y 3e-03: |d sigma/sigma| E-W 2.18e-04 E-V 1.40e-04 (res 2.1e-13)
+   K2 y 3e-02: |d sigma/sigma| E-W 1.98e-04 E-V 1.29e-04 (res 8.8e-13)
+K2 PASS 2.25e-04 < 2e-3  (isolated L*=0 2D solve vs the algebraic law (E-W, E-V))
+   K3 x_e 0.1 (F2 y_e 0.0091, x_e 0.1000, it 128) r/r_M 3.0: M_eff D10 3.54369 F2 3.50430 rel 1.12e-02
+   K3 x_e 0.1 (F2 y_e 0.0091, x_e 0.1000, it 128) r/r_M 10.0: M_eff D10 10.49739 F2 7.93050 rel 3.24e-01
+   K3 x_e 0.5 (F2 y_e 0.1667, x_e 0.5000, it 42) r/r_M 3.0: M_eff D10 3.43490 F2 2.43206 rel 4.12e-01
+   K3 x_e 0.5 (F2 y_e 0.1667, x_e 0.5000, it 42) r/r_M 10.0: M_eff D10 5.45726 F2 2.51092 rel 1.17e+00
+K3 FAIL 1.17e+00 < 2e-2  (embedded AQUAL: D10 2D vs F2's independent point-mass AQUAL solver (angle-averaged M_eff))
+   K4 x_e 0.05 Lam 0.0: 2D 5.786004e-04 Route F 2.941249e-05 rel 1.87e+01
+   K4 x_e 0.05 Lam 0.5: 2D 1.061394e-05 Route F 6.811342e-06 rel 5.58e-01
+   K4 x_e 0.05 Lam 2.0: 2D 2.402687e-06 Route F 2.305911e-06 rel 4.20e-02
+   K4 x_e 0.5 Lam 0.0: 2D 9.958558e-05 Route F 4.447382e-05 rel 1.24e+00
+   K4 x_e 0.5 Lam 0.5: 2D 4.870473e-05 Route F 3.395134e-05 rel 4.35e-01
+   K4 x_e 0.5 Lam 2.0: 2D 2.225535e-05 Route F 2.125224e-05 rel 4.72e-02
+K4 FAIL 1.87e+01 < 2e-2  (linear EFE: D10 2D monopole at r = a vs Route F (C6 kernel))
+   K5 UFD-like: max |d sigma/sigma| (fine, far; E-W, E-V) 2.10e-04
+   K5 UDG-like: max |d sigma/sigma| (fine, far; E-W, E-V) 8.56e-04
+K5 PASS 8.56e-04 < 5e-3  (convergence: grid doubling and r_out x 10)
+K6 PASS 2.67e-08 < 2e-3  (Newton limit Lambda = 1e4 (x_e 0.1, y 3e-3))
+
+--- K1: E3 reproduced with this lane's own code (CFG691 recipe, isolated) ---
+   canonical N 45: above CFG691 L*24 +0.885+-0.127, L*90 +1.517, law +0.558; clean E_N +2.010
+   alt       N 46: above CFG691 L*24 +0.842+-0.128, L*90 +1.484, law +0.506; clean E_N +2.000
+K1 PASS N 45/46; max |diff| 0.005 dex 45/46 and <= 0.02  (E3 reproduced (own code): Delta above CFG691 recipe L*24/90, unscreened law; clean E_N)
+
+--- K7/K8: CFG933 and CFG948 reproduced (isolated nu_e law) ---
+   canonical <E> +0.760358 (CFG933 +0.760358) se 0.261796 (0.261796); sigma_sys s_M 0.2400 (0.2400) s_A 0.2795 (0.2795) s_D 0.0500 (0.0500)
+   alt       <E> +0.669464 (CFG933 +0.669464) se 0.261796 (0.261796); sigma_sys s_M 0.2391 (0.2391) s_A 0.2795 (0.2795) s_D 0.0500 (0.0500)
+K7 PASS membership == CFG933; max |diff| 4.2e-16 <= 1e-9 (mean/se <= 1e-6)  (CFG933 per-galaxy E_obs, <E>, se_obs reproduced (isolated nu_e, Wolf))
+K8 PASS 1.1e-16 <= 2e-3  (CFG948 sigma_sys components s_M, s_A, s_D reproduced (isolated nu_e))
+K10 PASS 0.400 GB < 1 GB  (peak RSS)
+
+S1_V3_HOSTED_SMALL COMPLETE: 7/9 checks PASS.  (MUTATE: checks only)  12 s

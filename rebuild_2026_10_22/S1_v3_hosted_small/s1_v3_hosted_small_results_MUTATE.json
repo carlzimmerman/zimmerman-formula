@@ -1,0 +1,156 @@
+{
+ "lane": "S1_v3_hosted_small",
+ "mutate": true,
+ "frozen": "25c5861b57",
+ "constants": {
+  "G": 6.6743e-11,
+  "MSUN": 1.989e+30,
+  "PC": 3.085677581491367e+16,
+  "a0": {
+   "canonical": 9.3603e-11,
+   "alt": 1.1312e-10
+  },
+  "L_floor": {
+   "canonical": 21.68,
+   "alt": 22.85
+  },
+  "mu_K_per_m": 3.288379855647724e-22,
+  "NMC": 2000,
+  "NBOOT": 4000,
+  "DY": 0.6,
+  "DL": 0.3,
+  "FW_N": 1.0239999999999998,
+  "FV_N": 0.7853981633974483,
+  "beta_model": {
+   "kT": 8.6,
+   "rc": 276.0,
+   "beta": 0.71,
+   "mu": 0.6
+  },
+  "MHOST": {
+   "MW": 60000000000.0,
+   "M31": 100000000000.0,
+   "field": 60000000000.0
+  }
+ },
+ "validation": {
+  "K2": [
+   0.00022456939018700162,
+   0.0002178795336984507,
+   0.0001978854619080206
+  ],
+  "K3": [
+   0.011238886519883584,
+   0.32367399344942394,
+   0.41233965631289116,
+   1.1734150603080886
+  ],
+  "K4": [
+   18.671927290066403,
+   0.5582741170643513,
+   0.041968449317129064,
+   1.2391957574789911,
+   0.4345451391629924,
+   0.047200125681255534
+  ],
+  "K5": [
+   0.0002104679034561352,
+   0.0008556701319197835
+  ],
+  "K6": 2.6698716348860785e-08
+ },
+ "K1_E3": {
+  "canonical": {
+   "L24": [
+    0.8853691767251681,
+    0.1266745405368448
+   ],
+   "L90": [
+    1.517311681082242,
+    0.1382160745296588
+   ],
+   "law": [
+    0.5578417949467855,
+    0.09860289817348408
+   ],
+   "EN": [
+    2.0102060479292643,
+    0.1125501173782774
+   ]
+  },
+  "alt": {
+   "L24": [
+    0.8421900585396451,
+    0.1280586442009733
+   ],
+   "L90": [
+    1.4838854724767545,
+    0.14098392507105084
+   ],
+   "law": [
+    0.5060444601712939,
+    0.0979591590457432
+   ],
+   "EN": [
+    2.0002896253003604,
+    0.11245347235788945
+   ]
+  }
+ },
+ "checks": {
+  "K2": {
+   "ok": true,
+   "value": "2.25e-04",
+   "threshold": "< 2e-3",
+   "what": "isolated L*=0 2D solve vs the algebraic law (E-W, E-V)"
+  },
+  "K3": {
+   "ok": false,
+   "value": "1.17e+00",
+   "threshold": "< 2e-2",
+   "what": "embedded AQUAL: D10 2D vs F2's independent point-mass AQUAL solver (angle-averaged M_eff)"
+  },
+  "K4": {
+   "ok": false,
+   "value": "1.87e+01",
+   "threshold": "< 2e-2",
+   "what": "linear EFE: D10 2D monopole at r = a vs Route F (C6 kernel)"
+  },
+  "K5": {
+   "ok": true,
+   "value": "8.56e-04",
+   "threshold": "< 5e-3",
+   "what": "convergence: grid doubling and r_out x 10"
+  },
+  "K6": {
+   "ok": true,
+   "value": "2.67e-08",
+   "threshold": "< 2e-3",
+   "what": "Newton limit Lambda = 1e4 (x_e 0.1, y 3e-3)"
+  },
+  "K1": {
+   "ok": true,
+   "value": "N 45/46; max |diff| 0.005 dex",
+   "threshold": "45/46 and <= 0.02",
+   "what": "E3 reproduced (own code): Delta above CFG691 recipe L*24/90, unscreened law; clean E_N"
+  },
+  "K7": {
+   "ok": true,
+   "value": "membership == CFG933; max |diff| 4.2e-16",
+   "threshold": "<= 1e-9 (mean/se <= 1e-6)",
+   "what": "CFG933 per-galaxy E_obs, <E>, se_obs reproduced (isolated nu_e, Wolf)"
+  },
+  "K8": {
+   "ok": true,
+   "value": "1.1e-16",
+   "threshold": "<= 2e-3",
+   "what": "CFG948 sigma_sys components s_M, s_A, s_D reproduced (isolated nu_e)"
+  },
+  "K10": {
+   "ok": true,
+   "value": "0.400 GB",
+   "threshold": "< 1 GB",
+   "what": "peak RSS"
+  }
+ }
+}
