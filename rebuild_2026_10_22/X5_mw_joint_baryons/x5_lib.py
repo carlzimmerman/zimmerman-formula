@@ -156,6 +156,28 @@ def solve_cell(ns, rhof, foot, Lam_kpc=LSTAR_SCORED_KPC, mutate=False, keep_L0=T
     return obs0, obsL, info
 
 
+def solve_field(ns, rhof, foot, Lam_kpc=LSTAR_SCORED_KPC):
+    """AMENDMENT A1 (D3): P4's isolated solve (L* = Lam) returning the grid, potential and a0."""
+    PS = ns["S"]
+    a0 = A0_SI[foot]
+    Mu = PS.mass_unit(a0)
+    g = ns["mw_grid"](6.6e10 / Mu)
+    rho1 = g.rho_axisym(lambda R, z: rhof(R, z) / Mu, nq=4)
+    Mt = 2 * float(np.sum(rho1 * g.vol))
+    pr = PS.Problem(g, rho1, Mt, 0.0, Lam=Lam_kpc)
+    pr.solve()
+    return g, pr.Phi, a0
+
+
+def vc_plane(ns, g, Phi, a0, R):
+    """in-plane circular speed (km/s) at radii R (kpc), P4's mw_obs convention (half grid, last cell above the plane)."""
+    PS = ns["S"]
+    R = np.asarray(R, float)
+    dr, dt = g.grad_cells(Phi)
+    dR = np.sin(g.t2d) * dr + np.cos(g.t2d) * dt
+    return np.sqrt(np.maximum(g.interp_cells(dR, R, np.zeros_like(R)), 0) * a0 * R * PS.KPC) / 1e3
+
+
 def eilers_target(ns):
     vE = float(np.interp(ns["R0_MW"], ns["EIL_R"], ns["EIL_V"]))
     eE = float(np.interp(ns["R0_MW"], ns["EIL_R"], ns["EIL_E"]))

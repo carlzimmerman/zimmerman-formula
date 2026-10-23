@@ -188,3 +188,10 @@ passing cell and each footing's best cell:
   the S2 errors, with S3's labels. Validation before use (**D3-ref**, a reported control): the same evaluation on B1
   McMillan17 must give the Ou and Jiao law slopes of S3's AQ_iso within 0.005; if not, D3 is reported as unvalidated.
 - **D4** χ²_RC against Eilers (stat ⊕ 2 %, P4's statistic) for the same cells, with χ²₀.₉₉(38) quoted beside it.
+
+## AMENDMENT A2 (2026-10-23, POST-RESULT: one more reported diagnostic; nothing else changes)
+
+Seen before writing this: the A1 diagnostics (every passing cell +4.7 to +6.6σ above K_z(R₀) = 66.4 ± 2.2). Added, reported
+only: **D5** the smallest model K_z(R₀) over all 175 cells whose v_c(R₀) is inside the frozen v_c line, and over all cells,
+per footing, with its pull against 66.4 ± 2.2. It answers whether ANY v_c-passing cell of the box reaches Bovy & Rix's
+summary K_z(R₀); it carries no verdict weight (the frozen K line is the per-MAP χ²).

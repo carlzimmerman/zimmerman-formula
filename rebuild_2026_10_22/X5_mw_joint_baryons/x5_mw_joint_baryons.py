@@ -7,6 +7,7 @@ Step 0  reproductions with the record's own code, read-only: P4's B1 (and the B3
 (i)     reads x5_grid_<foot>.json (x5_grid.py), applies the frozen pass line, FEASIBLE / AQUAL-STRUCTURAL per footing, the
         best cell and its robustness re-solves (L* 90 pc; g_e 0.03 a0 along the axis).
 (ii)    S3 Part A under CFG532's S2 error budget: SHAPE EXCLUDED ROBUST / ERROR-MODEL-DEPENDENT per footing.
+A1, A2  (POST-RESULT amendments) reported diagnostics D1-D5 for the passing and best cells; no verdict weight.
 Run:  OMP_NUM_THREADS=1 nice -n 15 python3 x5_mw_joint_baryons.py            (after x5_grid.py for both footings)
       OMP_NUM_THREADS=1 nice -n 15 python3 x5_mw_joint_baryons.py --mutate   (P4 mu -> x/sqrt(1+x^2), S3 mu == 1; exit 1)
 kappa = 1/2 FITTED; footings never pooled; no dark-matter particle; not theory closed.
@@ -331,6 +332,81 @@ if not MUT:
               f"tags M*-IN {c['tag_Mstar_IN']} R_d-IN {c['tag_Rd_IN']}, {'FRAGILE' if rob[k]['fragile'] else 'robust to L* 90 and g_e 0.03'}")
     rss_runs = [GR[f]["peak_rss_MB"] for f in L.FOOTS]
     rt_runs = [GR[f]["runtime_s"] for f in L.FOOTS]
+
+    # ---------------------------------------------------------------------------------------- AMENDMENT A1 diagnostics
+    P("\n=== AMENDMENT A1 (POST-RESULT; reported diagnostics, no verdict weight): the win checked as hard as a fail")
+    BR_K, BR_E = np.asarray(ns["BR_K"]), np.asarray(ns["BR_E"])
+    LINE_RC = float(chi2dist.ppf(0.99, len(ns["EIL_R"])))
+    combine = nsS["combine"]
+    APO, LIM = nsS["APO"], nsS["LIM"]
+
+    def comb_model(vfun, curves):
+        """S3's run_combined with the law's V replaced by a supplied in-plane curve vfun(R)."""
+        d = {}
+        for k in APO + LIM:
+            c = curves[k]
+            lo, hi = window(c)
+            bl = slope(c["R"], vfun(c["R"]), c["E"], lo, hi)[0]
+            d[k] = (c["b_data"] - bl, c["b_err"], bl)
+        rows = {}
+        for a_, b_ in itertools.product(APO, LIM):
+            for rho in (0.0, 0.5):
+                m, s_ = combine([d[a_][0], d[b_][0]], [d[a_][1], d[b_][1]], rho)
+                bl = 0.5 * (d[a_][2] + d[b_][2])
+                rows[f"{a_}+{b_}|rho{rho}"] = dict(mean=m, sig=s_, Z=m / s_, verdict=class_verdict(m / s_, s_, bl))
+        Zs = [r["Z"] for r in rows.values()]
+        return dict(per_curve={k: dict(delta=v[0], sig=v[1], b_law=v[2]) for k, v in d.items()}, primary=rows["Ou24+Jiao23|rho0.0"],
+                    primary_rho05=rows["Ou24+Jiao23|rho0.5"], Z_range=[min(Zs), max(Zs)])
+
+    RES["A1_diagnostics"] = {}
+    for foot in L.FOOTS:
+        # D3-ref: B1 McMillan17 through P4's solver vs S3's AQ_iso law slopes (primary errors)
+        gB, PhiB, a0B = L.solve_field(ns, ns["rho_mcm"], foot)
+        cB = comb_model(lambda R: L.vc_plane(ns, gB, PhiB, a0B, R), CUR)
+        refB = S3J["AQ_iso"][foot]["combined"]["per_curve"]
+        dref = max(abs(cB["per_curve"][k]["b_law"] - refB[k]["b_law"]) for k in ("Ou24", "Jiao23"))
+        ref_ok = dref <= 0.005
+        P(f"\n  {foot}: D3-ref {'PASS' if ref_ok else 'FAIL'}: B1 through P4's solver, law slope Ou {cB['per_curve']['Ou24']['b_law']:+.4f} "
+          f"(S3 AQ_iso {refB['Ou24']['b_law']:+.4f}), Jiao {cB['per_curve']['Jiao23']['b_law']:+.4f} ({refB['Jiao23']['b_law']:+.4f}); "
+          f"max |d| {dref:.4f} (<= 0.005); B1 primary Z {cB['primary']['Z']:+.3f} (S3 AQ_iso {S3J['AQ_iso'][foot]['combined']['primary']['Z']:+.3f})")
+        dg = dict(D3_ref=dict(ok=ref_ok, max_dslope=dref, Z_B1_P4solver=cB["primary"]["Z"], Z_B1_S3=S3J["AQ_iso"][foot]["combined"]["primary"]["Z"]), cells={})
+        cells = GR[foot]["cells"]
+        best = min(cells, key=lambda c: c["D"])
+        diag = [best] + [c for c in cells if c["passes"] and c is not best]
+        for c in diag:
+            K = np.asarray(c["L24"]["K"])
+            chi2_raw = float(np.sum(((K - BR_K) / BR_E) ** 2))
+            pullK = (c["L24"]["K_R0"] - 66.4) / 2.2
+            pullh = (c["L24"]["h"] - 2.72) / 0.15
+            rhof, p = F.rho(c["sig_b"], c["M_bb"], c["R_d"])
+            gC, PhiC, a0C = L.solve_field(ns, rhof, foot)
+            vf = lambda R, gC=gC, PhiC=PhiC, a0C=a0C: L.vc_plane(ns, gC, PhiC, a0C, R)
+            c1, c2 = comb_model(vf, CUR), comb_model(vf, CUR2)
+            key = f"{c['sig_b']}|{c['M_bb']:.3g}|{c['R_d']:.4f}"
+            dg["cells"][key] = dict(best=(c is best), passes=c["passes"], chi2_kz_sigma_plus_5pct=c["L24"]["chi2_kz"], chi2_kz_table_errors=chi2_raw,
+                                    K_R0=c["L24"]["K_R0"], pull_K_R0=pullK, h=c["L24"]["h"], pull_h=pullh, chi2_rc=c["L24"]["chi2_rc"], line_rc=LINE_RC,
+                                    V20=float(vf(np.array([20.0]))[0]), V27p5=float(vf(np.array([27.5]))[0]),
+                                    slope_primary=dict(Z=c1["primary"]["Z"], label=c1["primary"]["verdict"], Z_rho05=c1["primary_rho05"]["Z"],
+                                                       Z_range=c1["Z_range"], b_law_Ou=c1["per_curve"]["Ou24"]["b_law"], b_law_Jiao=c1["per_curve"]["Jiao23"]["b_law"]),
+                                    slope_S2=dict(Z=c2["primary"]["Z"], label=c2["primary"]["verdict"], Z_rho05=c2["primary_rho05"]["Z"],
+                                                  Z_range=c2["Z_range"], b_law_Ou=c2["per_curve"]["Ou24"]["b_law"]))
+            P(f"  {foot} {'BEST' if c is best else 'pass'} {key}: D1 chi2_Kz table-errors-only {chi2_raw:.1f} (sigma+5% {c['L24']['chi2_kz']:.1f}; line {L.LINE_CHI2:.1f}) | "
+              f"D2 K_z(R0) {c['L24']['K_R0']:.1f} ({pullK:+.1f} sig vs 66.4 +- 2.2), h {c['L24']['h']:.2f} ({pullh:+.1f} sig vs 2.72 +- 0.15) | "
+              f"D4 chi2_RC {c['L24']['chi2_rc']:.1f} (99% line {LINE_RC:.1f})")
+            P(f"      D3 isolated law slope Ou {c1['per_curve']['Ou24']['b_law']:+.4f}, V(20) {dg['cells'][key]['V20']:.1f}; Ou+Jiao Z primary {c1['primary']['Z']:+.2f} "
+              f"{c1['primary']['verdict']} (rho0.5 {c1['primary_rho05']['Z']:+.2f}), S2 {c2['primary']['Z']:+.2f} {c2['primary']['verdict']} (rho0.5 {c2['primary_rho05']['Z']:+.2f})")
+        # AMENDMENT A2 (POST-RESULT, reported): D5 the smallest K_z(R0) among cells with v_c inside the line, and overall
+        invc5 = [c for c in cells if abs(c["L24"]["vc_R0"] - L.VC_BRIEF) <= L.VC_BRIEF_LINE and abs(c["L24"]["vc_R0"] - vE) <= 2 * eE]
+        k5 = min(invc5, key=lambda c: c["L24"]["K_R0"])
+        k5all = min(cells, key=lambda c: c["L24"]["K_R0"])
+        dg["D5"] = dict(min_K_R0_vc_in_line=k5["L24"]["K_R0"], pull=(k5["L24"]["K_R0"] - 66.4) / 2.2,
+                        cell=f"{k5['sig_b']}|{k5['M_bb']:.3g}|{k5['R_d']:.4f}", n_vc_in_line=len(invc5),
+                        min_K_R0_all=k5all["L24"]["K_R0"], pull_all=(k5all["L24"]["K_R0"] - 66.4) / 2.2,
+                        cell_all=f"{k5all['sig_b']}|{k5all['M_bb']:.3g}|{k5all['R_d']:.4f}", vc_of_cell_all=k5all["L24"]["vc_R0"])
+        P(f"  {foot} D5 (A2): smallest K_z(R0) among the {len(invc5)} cells with v_c in the line {k5['L24']['K_R0']:.2f} "
+          f"({(k5['L24']['K_R0'] - 66.4) / 2.2:+.1f} sig vs 66.4 +- 2.2; cell {dg['D5']['cell']}); over all cells {k5all['L24']['K_R0']:.2f} "
+          f"({(k5all['L24']['K_R0'] - 66.4) / 2.2:+.1f} sig; cell {dg['D5']['cell_all']}, v_c {k5all['L24']['vc_R0']:.1f})")
+        RES["A1_diagnostics"][foot] = dg
 else:
     P("\n=== (i) MUTATE: the grid is not run; the central cell once with P4's mutate mu (reported)")
     rhof, p = F.rho(47.1, 1.88e10, 2.6)
