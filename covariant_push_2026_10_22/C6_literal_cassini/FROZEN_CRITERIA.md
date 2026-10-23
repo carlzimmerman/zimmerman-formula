@@ -69,3 +69,18 @@ Outputs `*_MUTATE.out`, `*_results_MUTATE.json`.
 
 κ = ½ FITTED. Footings never pooled. No dark-matter particle. Not "theory closed". Nothing here says the data favour
 the framework.
+
+## AMENDMENT 1 (POST-RESULT, after execution 1; no pass line changed)
+
+- Execution 1 (`*_RUN1.*`) gave 6/8. Three code defects were found and fixed; the frozen pass lines are unchanged.
+  1. **C6 code was stricter than the frozen text.** The code also demanded residual < 1e-9 at Λ = 0.01; the frozen C6
+     line is the ratio only. Execution 2 scores the frozen line and reports the residual. The Λ = 0.01 solve does
+     **not** converge (residual ≈ 2, as D7d's own K7 at Λ = 0.01: residual 150), so C6 is weak evidence and is flagged.
+  2. **R2 printed NaN** for Earth/Mars: the general 2×2 kernel cancels catastrophically at κ ≳ 1e8. Route F integrals now
+     use the closed form m/(1 − m + κ²m/2) at r_F = 0 (proved equal in C1, checked to 4e-15 in C2) and D7d's `chi` at r_F = 1.
+  3. **RSS 1.80 GB** (over the 1 GB budget; no 1024³ job was running). Every Route N job now runs in its own forked
+     process; RSS is reported per job.
+- **C2 stays a frozen FAIL**: the x_e = 0 isolated comparison at κ = 0.01 is 3.8e-11 against < 1e-12. It is float
+  cancellation in (κ²/2 + 1) − 1 in the general 2×2 kernel; C1 proves the identity exactly. The relative difference at
+  κ ≥ 0.1 is reported. By the frozen verdict rule a C2 FAIL gives **UNDECIDED**; the README states both the mechanical
+  verdict and the reading.
