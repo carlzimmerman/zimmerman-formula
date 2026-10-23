@@ -32,7 +32,7 @@ DSF-21's A33 is this theory with η > 0, which C5 shows is ill-posed; v3 drops �
 |---|---|---|
 | galactic law (RAR) | the law itself (AQUAL μ = x/(1+x)) | E2, C4 |
 | health (ghosts, gradients) | CONDITIONALLY HEALTHY in literal form; tensor modes at c | C5 |
-| instantaneous constraints / well-posedness | PENDING | C8 |
+| instantaneous constraints / well-posedness | WELL-POSED (weak-field leaf problem: one strictly convex functional, elliptic for all u < a₀, unique for γ_L > 0) + UNCONSTRAINED (binary pulsars: no radiative channel, ≤ 3e-14 of the double-pulsar error; GW speed exactly c). Violates criterion A by a real but tiny signal; meets criterion B. OPEN: infinite-volume theorem, coupled GR + leaf + dust, strong fields | C8 |
 | Cassini Q₂ | with full stiffness: passes by 10⁷–10⁹ (D7d); literal form (γ_F = 0): PENDING | D7d, C6 |
 | planets | PENDING (literal form) | C6 |
 | wide binaries 20 kAU | screened γ_v − 1 ≈ 8e-6 vs law-first 1.167/1.199; DR4 decides (σ_sys rule A3) | D2, D7d, E2 |
