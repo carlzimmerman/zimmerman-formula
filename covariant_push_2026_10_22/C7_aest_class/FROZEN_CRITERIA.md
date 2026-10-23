@@ -130,3 +130,11 @@ Relative difference = |ΔX/X|; for TE, |ΔTE|/√(TT·EE).
 Commit only this lane's paths; never push. CLASS source is not committed: only `aest.patch`, scripts, outputs,
 `PROVENANCE.md`, README. Milestones: (1) this file alone; (2) derivation + IC; (3) patch; (4) validation; (5) native.
 Any change to this file is an append-only AMENDMENT marked pre- or post-result.
+
+## AMENDMENT A1 (pre-result, before any patch build or spectrum; 2026-10-23)
+
+The four evolved extra-sector variables are (δ, θ, E, χ) with χ = ϕ + Q̄α, instead of (δ, θ, E, α). The map is
+invertible (α = (χ − aQ̄θ/k²)/Q̄). χ and E are gauge-invariant, so their equations carry no metric term and are identical
+in both gauges. Evolving α in Newtonian gauge would make χ a difference of two large numbers. The equivalence is a
+derivation check (D6 in `c7_derive.py`, sympy, both gauges). Nothing else changes: same checks, same thresholds,
+same MUTATE (the metric-source term of the density equation).
