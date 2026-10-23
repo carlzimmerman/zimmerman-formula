@@ -371,3 +371,15 @@ Do not use any number for these until the lane's README result and LEDGER row ar
 - `argon_push/AG4g_galaxy_pull_census/README.md`, `argon_push/AG4h_pull_systematics/README.md`.
 
 κ = ½ FITTED; footings never pooled; cold energy mass required; not theory closed.
+
+---
+**Correction, 2026-10-23 (CFG961 f7b966292, independent check of what_is_time WT-02 9b3d77382; corrects the 2026-10-20 CFG938 note, whose text is left as written).**
+- **Well-posedness holds only on static media.** That case stands: the dispersion relation, slip ≤ 1.54e-5, and the law to 2.2e-16.
+- **On FRW the parent is Hadamard ILL-POSED.** S1d's constraint operator turns (χ, λ) into a forward/backward heat pair, and λ becomes χ's conjugate momentum. Growing modes have Re σ = c²k²/(3|H|), for both signs of H, at z = 0 and 10, with gravity off and in full GR.
+  - The mode is PHYSICAL, not a multiplier artefact: λ's gradient drives the medium (1.05×), the Bardeen potential responds, and in GR the λ equation follows from the Hamiltonian and trace-ij equations.
+  - The intrinsic-Laplacian repair needs an explicit mean-density subtraction (under test in WT-08).
+- **c_T is not structurally c (A5 withdrawn as structural).** δ(c_T²/c²) = (3/2) L*² [u_⊥² + (u_∥ + ∂₀χ)²]/c⁴. The FRW clock term ∂₀χ̄ = c Ω_c H/2 dominates GW170817's path average, which gives c_T/c − 1 = 3.9e-19 (L* = 24 pc) to 6.8e-16 (1 kpc).
+  - This passes, but caps L* ≲ 1.0 kpc (0.76 kpc at the measured distance).
+  - If the medium exists early, the tensor kinetic coefficient turns negative before 1 + z ≈ 2.7e5 to 1.1e7 (sol61 audit a67f9ed9c).
+- **The hidden cosmic clock is confirmed:** 1.1e-3 a₀ at 370 km/s. Not visible in SPARC, wide binaries or the Solar System; undecided against the KiDS tail ends.
+- PAPER57 (10.5281/zenodo.23532885) states "linear well-posedness". A v1.1 correction is drafted in CFG961_wt02_verification/CORRECTION_PAPER57_v1.1_DRAFT.md and awaits the owner's go.
