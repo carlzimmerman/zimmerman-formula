@@ -218,3 +218,30 @@ DATA-GATED, SCOPED NO-GO, NOTHING NEW) plus the (A)/(B)/(C) line. CLASS source n
 scripts, outputs). Commit only this lane's paths; never push. Any change to this file is an append-only AMENDMENT marked
 pre- or post-result. If any step needs BS24/BS25's exact TeX (a transcription the self-consistency checks cannot settle),
 the README says so and stops that step.
+
+## AMENDMENT A1 (POST-RESULT for V_unit (ii) and V1; PRE-RESULT for V3–V5 and every later step: written after the first `q7_validate.py` run printed V_prov, V_unit (i)/(ii), V0, V1, V2 and crashed inside V3 before printing any V3 number)
+
+**What happened.** V_prov, V_unit (i) (2.8e-16), V0 (bit-identical) and V2 (both gauges, ≤ 5e-6) PASS. Two frozen lines FAIL:
+- **V_unit (ii)** at 1.8e-6, in p̄ (Eq. 89b) only; every other quantity ≤ 1e-15. The reference is the culprit: BS's 89b form
+  (2μ²/λ_D)(1 − 1/√(1 + λ_D𝒵²)) cancels catastrophically when λ_D𝒵² ≲ 1e-34 (λ_D = 1e-6 at late times with μ = 1e6 h/Mpc
+  reaches λ_D𝒵² ≈ 2e-45), which a 50-digit evaluation cannot resolve.
+- **V1**: μ_gate = 1e14 h/Mpc (Q6's LIT is refused at 1e13); DBI(λ_D = 1e-25) vs LIT gives TT 7.3e-4, EE 1.2e-3, TE 4.7e-4,
+  φφ 7.9e-5, P(k) 8.6e-8, while LIT vs DUST is ≤ 4.2e-7. Scratch diagnostics (scratchpad, not committed, at V1's settings):
+  (a) the DBI binary with type 3, and with type 5 at λ_D = 0 exactly, reproduces Q6's LIT bit for bit; (b) λ_D = 1e-40 and
+  1e-30 are bit-identical to LIT (r = 1 in double precision), λ_D = 1e-20 differs by 5e-7, λ_D = 1e-25 and 1e-15 by 9.0e-4
+  (unlensed TT 2.2e-3, EE 5.8e-3, at ℓ 500–3000) — non-monotone in λ_D, while the physical correction is O(λ_D𝒵²) ≤ 2e-12;
+  (c) Q6's own LIT with μ² × (1 + 1e-10) or × (1 + 1e-8) differs from LIT at μ² by unlensed TT 3.7e-4 / EE 1.45e-3
+  (× (1 + 1e-12): 5e-7). At μ_gate the LIT model sits on a numerical bistability of CLASS (a stiff khronon at ≈ 1e-4 of
+  radiation at a_ini, at the edge of CLASS's start test); its reproducibility floor (~1e-3) is above the frozen 1e-5.
+
+**Supplementary gates (fixed now; the frozen lines are still printed and stay FAIL on record):**
+- **V_unit (ii-b)**: as (ii), with the mpmath reference at 120 digits; ≤ 1e-10.
+- **V1b**: DBI at λ_D = 0 exactly vs Q6's LIT at μ_gate: bit-identical C_ℓ and P(k) (the λ_D → 0 limit inside CLASS).
+- **V1c**: N ≡ the per-spectrum difference between Q6's LIT at μ_gate²(1 + 1e-10) and at μ_gate² (same settings); DBI(λ_D = 1e-25)
+  vs LIT ≤ max(1e-5, 2N) per spectrum.
+- **V3–V5 (pre-result)**: the ΛCDM reference spectrum is interpolated log–log onto the model's k grid when CLASS's k
+  sampling differs (DBI's early abundance (1 + λ_D^{-1/2}) × dust changes CLASS's sampling; Q6's LOB had a dust background and
+  the same grid as ΛCDM). Model-vs-model comparisons stay on identical grids (asserted).
+- **"DBI ready (A1)"** iff V_prov, V_unit (i), V_unit (ii-b), V0, V1b, V1c, V2 (both gauges), V3 (both), V4, V5 pass and
+  MUTATE breaks V_unit (ii-b) and V2. The README states that the frozen V_unit (ii) and V1 failed.
+- Nothing else changes (models, parameter sets, steps B/G/F/C, thresholds, verdict rule).
