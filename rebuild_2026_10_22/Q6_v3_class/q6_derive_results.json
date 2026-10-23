@@ -1,0 +1,132 @@
+{
+ "mutate": false,
+ "D0_a0_absent": {
+  "pass": true,
+  "value": "n.n=-1; A^(0)=[0, 0, 0, 0]; Y^(0),Y^(1)=[0, 0]; J_x = Lambda + (-1) Y + (2/(3*a_0)) Y^(3/2) + ...",
+  "threshold": "A^(0)=Y^(0)=Y^(1)=0; J(0)=Lambda, J'(0)=-1 free of a0; a0 first at Y^(3/2)"
+ },
+ "J_x_series": "Lambda - s**2 + 2*s**3/(3*a_0)",
+ "D1_background": {
+  "pass": true,
+  "value": "EL_vt(L1) = -d(2a^3K')/dtau; 8piG rho = Qbar*K1(tau) - K0(tau); 8piG p = K0(tau); J absent from L1",
+  "threshold": "a^3 K' = I0; Q K' - K; K; no J (G_cosmo = G)"
+ },
+ "D2_shear": {
+  "pass": true,
+  "value": "(rho+p) sigma = 0",
+  "threshold": "0"
+ },
+ "D2_compact": {
+  "pass": true,
+  "value": "A_x = i k Xi, Xi = Psi - pi' - H pi; dQ = -Q Xi + Q' pi; 8piG drho = Q K'' dQ + 2 j1 (k/a)^2 Xi; 8piG dp = K' dQ; 8piG (rho+p) theta = k^2 K' Q pi (all gauges, h0x kept)",
+  "threshold": "exact"
+ },
+ "D2_fluid": {
+  "pass": true,
+  "value": "8piG drho_rest = -(Q^2 K'' - 2 j1 k^2/a^2) Xi; dp = cs2 drho_rest - 3H ca2 (rho+p) theta/k^2, cs2 = Q K'/(Q^2 K'' - 2 j1 k^2/a^2), ca2 = K'/(Q K'')",
+  "threshold": "exact: a fluid fixed by (delta, theta), no shear"
+ },
+ "cs2": "Kp*Q/(Kpp*Q**2 - 2*j_1*k**2/A**2)",
+ "compact": {
+  "drho": "Kpp*Q*(-Q*H00k(tau)/2 + Derivative(VTk(tau), tau)/A) + 2*j_1*k**2*(H00k(tau)/2 - Derivative(VTk(tau), tau)/(A*Q) - 3*Ap*Kp*VTk(tau)/(A**2*Kpp*Q**2))/A**2",
+  "dp": "Kp*(-Q*H00k(tau)/2 + Derivative(VTk(tau), tau)/A)",
+  "rho_plus_p_theta": "Kp*k**2*VTk(tau)/A",
+  "Xi": "H00k(tau)/2 - Derivative(VTk(tau), tau)/(A*Q) - 3*Ap*Kp*VTk(tau)/(A**2*Kpp*Q**2)"
+ },
+ "D4_sync": {
+  "pass": true,
+  "value": "sync: continuity and Euler residuals on the shell of EL_vt: 0, 0",
+  "threshold": "0 and 0"
+ },
+ "D4_newt": {
+  "pass": true,
+  "value": "newt: continuity and Euler residuals on the shell of EL_vt: 0, 0",
+  "threshold": "0 and 0"
+ },
+ "D3_gauge": {
+  "pass": true,
+  "value": "sync system + fluid map = Newtonian system: {'exact': ['0', '0'], 'LO': ['0', '0']}",
+  "threshold": "all 0 (exact and LO)"
+ },
+ "D4_LO": {
+  "pass": true,
+  "value": "LO pressure is c_s,LO^2 delta_rest with delta_rest gauge-invariant (residual 0); fluid equations with w = c_a^2 = 0 conserve T exactly",
+  "threshold": "0"
+ },
+ "D8_LO_limit": {
+  "pass": true,
+  "value": "quadratic K: cs2/cs2_LO -> 1; w = varepsilon/(varepsilon + 2) ~ e/2; ca2 = varepsilon/(varepsilon + 1) ~ e (e = Qbar - 1)",
+  "threshold": "cs2/cs2_LO -> 1; w, ca2 = O(e)"
+ },
+ "D5_kernels": {
+  "pass": true,
+  "value": "LO self-force kernel s = (-A**2*mu2 + j_1*k**2 + k**2)/(-A**2*mu2 + j_1*k**2): j1=-1 -> A**2*mu2/(A**2*mu2 + k**2); j1=0 -> -(-A**2*mu2 + k**2)/(A**2*mu2)",
+  "threshold": "BSK2 a^2mu^2/(k^2+a^2mu^2) and Jeans 1-k^2/(a^2mu^2) exactly"
+ },
+ "D6_dust": {
+  "pass": true,
+  "value": "K''->inf: cs2 -> 0, ca2 -> 0, cs2_LO -> 0 (j1 symbolic); with K -> 0 the system is CDM's",
+  "threshold": "all 0"
+ },
+ "D7_minkowski": {
+  "pass": true,
+  "value": "EL_vt (Minkowski) = -2*Kpp*Derivative(VTk(tau), (tau, 2)) + 4*j_1*k**2*Derivative(VTk(tau), (tau, 2)); dispersion -2*omega**2*(-Kpp + 2*j_1*k**2)",
+  "threshold": "omega = 0 double root (non-propagating)"
+ },
+ "D10_superluminal": {
+  "pass": true,
+  "value": "LOB cs2 <= eps/(1+eps) (bound - cs2 = k**2*varepsilon/((varepsilon + 1)*(A**2*mu2*varepsilon**2 + 2*A**2*mu2*varepsilon + A**2*mu2 + k**2))); LO cs2(k->0) = varepsilon; X' = -theta - h'/2 + 3(H'-H^2)theta/k^2 (no cs2) => super-horizon omega^2 = 3(H^2-H')cs2",
+  "threshold": "LOB subluminal; LO -> eps (> 1 early); identity exact"
+ },
+ "IC_LOB_series": {
+  "delta": "C*k**2*t**2*(3*s - 4)/(2*(3*s + 4))",
+  "theta": "-C*k**4*s*t**3/(2*(3*s + 4))",
+  "lower_coefficients": {
+   "d1": "0",
+   "t0": "0",
+   "t1": "0",
+   "t2": "0"
+  }
+ },
+ "IC1_series": {
+  "pass": true,
+  "value": "(residual lowest power, lhs lowest power): {'delta': (3, 1), 'theta': (99, 2)}",
+  "threshold": "residual power > leading power; no lower terms"
+ },
+ "IC_fld": {
+  "pass": true,
+  "value": "coded IC delta = 3/4 delta_g (4-3s)/(4+3s), theta = -k (k tau)^3 s/(4(4+3s)) curvature_ini: residuals 0, 0",
+  "threshold": "0, 0"
+ },
+ "IC2_dust": {
+  "pass": true,
+  "value": "s = 0: delta = -C*k**2*t**2/2, theta = 0",
+  "threshold": "CDM: -C k^2 t^2/2 (= 3/4 delta_g), 0"
+ },
+ "IC3_newtonian": {
+  "pass": true,
+  "value": "(residual, lhs) lowest powers: {'delta': (3, 1), 'theta': (99, 0)}",
+  "threshold": "residual power > leading power"
+ },
+ "IC_C7_reported": {
+  "pass": false
+ },
+ "D9_cform": {
+  "pass": true,
+  "value": "C-form Pi (LIT, LO) minus derived",
+  "threshold": "0"
+ },
+ "export": {
+  "cs2_exact": "Kp*Q/(Kpp*Q**2 - 2*j_1*k**2/A**2)",
+  "ca2": "Kp/(Kpp*Q)",
+  "w": "Kz/(Kp*Q - Kz)",
+  "cs2_LO": "Kp/(2*mu2 - 2*j_1*k**2/A**2)",
+  "cs2_LOB": "(1+eps)*Kp/((1+eps)^2*Kpp - 2*j1*k^2/a^2), eps = Kp/Kpp (quadratic K: Q = 1 + eps), Kpp = 2 mu^2",
+  "IC": "delta = 3/4 delta_g (1+w)(4-3 cs2)/(4-6w+3 cs2); theta = -k (k tau)^3 cs2/(4(4-6w+3 cs2)) curvature_ini s2^2",
+  "Pi_exact": "cs2*(delta + 3*H*(1+w)*theta/k^2) - 3*H*ca2*(1+w)*theta/k^2",
+  "Pi_LO": "cs2_LO*(delta + 3*H*theta/k^2)",
+  "fluid": "delta' = -(1+w)(theta + metric_continuity) - 3H(Pi - w delta); theta' = -H(1-3ca2) theta + k^2 Pi/(1+w) + metric_euler; sigma = 0",
+  "note": "Kz, Kp, Kpp = K, K', K'' at Qbar (Mpc^-2; Q dimensionless); Kpp = 2 mu_K^2 (quadratic K); j1 = J'(0) (-1 for J_x); H = a'/a conformal; units 8piG = 1 in rho_hat = Q Kp - Kz."
+ },
+ "elapsed_s": 1.7
+}

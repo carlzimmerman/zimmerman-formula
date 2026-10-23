@@ -1,0 +1,26 @@
+== Q6 step D: v3 (Khronon + J_x + BS K(Q)) linear perturbations from the action (sympy)
+D0_a0_absent PASS n.n=-1; A^(0)=[0, 0, 0, 0]; Y^(0),Y^(1)=[0, 0]; J_x = Lambda + (-1) Y + (2/(3*a_0)) Y^(3/2) + ... A^(0)=Y^(0)=Y^(1)=0; J(0)=Lambda, J'(0)=-1 free of a0; a0 first at Y^(3/2)
+  action expanded: 27 terms at second order
+D1_background PASS EL_vt(L1) = -d(2a^3K')/dtau; 8piG rho = Qbar*K1(tau) - K0(tau); 8piG p = K0(tau); J absent from L1 a^3 K' = I0; Q K' - K; K; no J (G_cosmo = G)
+  Euler-Lagrange equations, Fourier, background symbolised (0.3s)
+D2_shear PASS (rho+p) sigma = 0 0
+D2_compact PASS A_x = i k Xi, Xi = Psi - pi' - H pi; dQ = -Q Xi + Q' pi; 8piG drho = Q K'' dQ + 2 j1 (k/a)^2 Xi; 8piG dp = K' dQ; 8piG (rho+p) theta = k^2 K' Q pi (all gauges, h0x kept) exact
+D2_fluid PASS 8piG drho_rest = -(Q^2 K'' - 2 j1 k^2/a^2) Xi; dp = cs2 drho_rest - 3H ca2 (rho+p) theta/k^2, cs2 = Q K'/(Q^2 K'' - 2 j1 k^2/a^2), ca2 = K'/(Q K'') exact: a fluid fixed by (delta, theta), no shear
+D4_sync PASS sync: continuity and Euler residuals on the shell of EL_vt: 0, 0 0 and 0
+D4_newt PASS newt: continuity and Euler residuals on the shell of EL_vt: 0, 0 0 and 0
+D3_gauge PASS sync system + fluid map = Newtonian system: {'exact': ['0', '0'], 'LO': ['0', '0']} all 0 (exact and LO)
+D4_LO PASS LO pressure is c_s,LO^2 delta_rest with delta_rest gauge-invariant (residual 0); fluid equations with w = c_a^2 = 0 conserve T exactly 0
+D8_LO_limit PASS quadratic K: cs2/cs2_LO -> 1; w = varepsilon/(varepsilon + 2) ~ e/2; ca2 = varepsilon/(varepsilon + 1) ~ e (e = Qbar - 1) cs2/cs2_LO -> 1; w, ca2 = O(e)
+D5_kernels FAIL LO self-force kernel s = (A**2*mu2 + j_1*k**2 - k**2)/(A**2*mu2 + j_1*k**2): j1=-1 -> (-A**2*mu2 + 2*k**2)/(-A**2*mu2 + k**2); j1=0 -> -(-A**2*mu2 + k**2)/(A**2*mu2) BSK2 a^2mu^2/(k^2+a^2mu^2) and Jeans 1-k^2/(a^2mu^2) exactly
+D6_dust PASS K''->inf: cs2 -> 0, ca2 -> 0, cs2_LO -> 0 (j1 symbolic); with K -> 0 the system is CDM's all 0
+D7_minkowski PASS EL_vt (Minkowski) = -2*Kpp*Derivative(VTk(tau), (tau, 2)) + 4*j_1*k**2*Derivative(VTk(tau), (tau, 2)); dispersion -2*omega**2*(-Kpp + 2*j_1*k**2) omega = 0 double root (non-propagating)
+D10_superluminal PASS LOB cs2 <= eps/(1+eps) (bound - cs2 = k**2*varepsilon/((varepsilon + 1)*(A**2*mu2*varepsilon**2 + 2*A**2*mu2*varepsilon + A**2*mu2 + k**2))); LO cs2(k->0) = varepsilon; X' = -theta - h'/2 + 3(H'-H^2)theta/k^2 (no cs2) => super-horizon omega^2 = 3(H^2-H')cs2 LOB subluminal; LO -> eps (> 1 early); identity exact
+== IC (A2): LOB, synchronous gauge, radiation era, leading order, c_s^2 = s frozen at tau_ini (w = 0)
+  series (s const): delta = C*k**2*t**2*(3*s - 4)/(2*(3*s + 4)) + ..., theta = -C*k**4*s*t**3/(2*(3*s + 4)) + ...; lower coefficients {'d1': '0', 't0': '0', 't1': '0', 't2': '0'}
+IC1_series PASS (residual lowest power, lhs lowest power): {'delta': (3, 1), 'theta': (99, 2)} residual power > leading power; no lower terms
+IC_fld PASS coded IC delta = 3/4 delta_g (4-3s)/(4+3s), theta = -k (k tau)^3 s/(4(4+3s)) curvature_ini: residuals 0, 0 0, 0
+IC2_dust PASS s = 0: delta = -C*k**2*t**2/2, theta = 0 CDM: -C k^2 t^2/2 (= 3/4 delta_g), 0
+IC3_newtonian PASS (residual, lhs) lowest powers: {'delta': (3, 1), 'theta': (99, 0)} residual power > leading power
+IC_C7 (reported, A2) FAIL C7's block (w = c_a^2 = 0): delta = -C k^2 t^2/2, theta = 0 vs LOB delta C*k**2*t**2*(3*s - 4)/(2*(3*s + 4)), theta -C*k**4*s*t**3/(2*(3*s + 4)); equal only at s = 0 -> IC block replaced (A2.2)
+D9_cform PASS C-form Pi (LIT, LO) minus derived 0
+Q6_DERIVE COMPLETE: 18/19 checks PASS.
