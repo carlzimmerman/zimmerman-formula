@@ -37,7 +37,7 @@ DSF-21's A33 is this theory with η > 0, which C5 shows is ill-posed; v3 drops �
 | planets | PENDING (literal form) | C6 |
 | wide binaries 20 kAU | screened γ_v − 1 ≈ 8e-6 vs law-first 1.167/1.199; DR4 decides (σ_sys rule A3) | D2, D7d, E2 |
 | outer globulars | PENDING native floor | D10 |
-| dwarf satellites | +0.89 dex above screened prediction; capacity PENDING native rule | E3, E6 |
+| dwarf satellites | +0.89 dex above screened prediction (E3). Supply: the framework's dynamics cannot fix a satellite's catchment (it needs the patch's initial overdensity and infall epoch — UNDECIDABLE); the satellites' own [Fe/H] (leaky box, no ΛCDM input) gives ≥ 38× present baryons, enough (median need 0.21 of supply), with 6/36 short at central values and none at 2σ — CONDITIONAL on ζ = 1 winds and no pre-enrichment | E3, E6 |
 | CMB / linear P(k) | a₀ absent at linear order (tests dust + G ratio only); native spectra PENDING | C2, C7 |
 | cosmic shear (native PM) | canonical settling rules excluded by raw KiDS (CFG596); CFG960 rerun PENDING | CFG596, CFG960 |
 | ALMA U4/GS4 | expected unscorable (S/N 0.04–0.58); sealed, all three kernels harness-ready | D4, CFG942 |
