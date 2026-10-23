@@ -81,3 +81,22 @@ as in pure Hořava). A5's check itself is unchanged. One check is added:
   {π_n, H_⊥, χ, ψ} has rank 4 and {π_s, H_x} commute with everything on the surface, so the scalar sector has
   (10 − 2·2 − 4)/2 = 1 DOF. Reading: A6 PASS ⇒ "the linear 5-mode count survives with a different classification
   (π_N, H_⊥ second class with χ, ψ; the lapse is determined, not gauge)". A6 FAIL on (iv) ⇒ the linear count itself moves.
+
+## AMENDMENT A2 (POST-RESULT for A1–A6, which ran 20/20 PASS and MUTATE 7 FAIL as required; PRE-RESULT for A7)
+
+A1–A6 thresholds and readings unchanged. A6 showed `{χ, π_N}` vanishes on Minkowski (V = 0), which is why a
+quaternary ψ appears there. On Codex's witness (π_P = J x̂ ≠ 0) the same bracket is `2∂_x(N V ·)` with V = J/η, non-zero
+for k_x ≠ 0, so the chain should stop at χ there. Added, before computing it:
+
+- **A7 (constraint rank on the moving-P background, sympy).** Same reduced scalar sector as A6 (k ∥ x, fields a, b, P_x,
+  N, N^x and momenta) but **exact** (non-linearised) in the fields, with ³R exact for diag(1+a, 1+b, 1+b) and W kept to
+  the order that fixes second derivatives at P = 0. χ := {H_⊥(x), H_T} is computed exactly. Background = A1's witness
+  (a = b = P = 0, p_a = q, p_b = 2q, π_P^x = J, N = 1, N^x = 0; q from H_⊥ = 0). Linearise {π_N, π_s, H_⊥, H_x, χ} there and
+  form the Fourier bracket matrix M(k) (skew-Hermitian). Report: (i) the symbol of {χ, π_N} (expected ∝ iJk/η);
+  (ii) which rows vanish (expected π_s, H_x: first class); (iii) the complex rank r of the {π_N, H_⊥, χ} block at
+  J = 1 and at J → 0 with q fixed; (iv) scalar-sector DOF per Fourier mode = (10 − 4 − r)/2 at J ≠ 0 vs the A6 value 1.
+  Expectation, stated so it cannot steer: r = 3 at J ≠ 0, i.e. 1.5 DOF per mode — the Hořava half mode. **Reading:**
+  r = 3 ⇒ "DSF-21's count is background-dependent: 1 scalar per mode on π_P = 0 backgrounds, 1.5 when P moves;
+  the extra half mode's bracket → 0 as J → 0, so π_P = 0 backgrounds (Minkowski, static galaxies) are strongly coupled";
+  r = 2 ⇒ "count 1 on both, classification differs, no jump found" (then no strong-coupling claim is made);
+  any other r reported as found. A7 has a MUTATE (clock deleted) whose result is reported, with no expectation fixed.
