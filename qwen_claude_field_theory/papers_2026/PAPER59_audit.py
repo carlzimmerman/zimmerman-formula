@@ -178,7 +178,6 @@ crd("E C5 tensor modes at c (README)", "C5_health", "README.md", "Only the 2 ten
 crd("E C5 three frozen fails (README)", "C5_health", "README.md", "Checks: 7/10 PASS, exit 1 (three frozen FAILs kept)", "7/10, exit 1")
 c8 = CJ("C8_instantaneous", "c8_instantaneous_results.json")
 num("E C8 signal at 24 pc (JSON)", sci(c8["signal_illustration"]["L24"], 1), "1 km away by {} m s-2")
-num("E C8 abstract signal (JSON)", sci(c8["signal_illustration"]["L24"], 1), "about {} m s-2")
 num("E C8 pulsars (JSON)", sci(c8["K7"]["worst_ratio"], 1), "at most {} of the double pulsar")
 num("E C8 alpha2 (JSON)", sci(c8["K8"]["L24"]["ratio_vs_2.4e-7"], 1), "of {} of the bound")
 dv = max(c8["K9"]["canonical_Earth_surface_g"]["dv_over_c"], c8["K9"]["alt_Earth_surface_g"]["dv_over_c"])
@@ -190,7 +189,7 @@ crd("E C8 infinite volume OPEN (README)", "C8_instantaneous", "README.md", "The 
 d10 = J("D10_native_Lstar", "d10_native_lstar_results.json")
 v10 = d10["verdict"]
 num("F D10 central floor (JSON)", f"{v10['canonical']['central']:.2f} pc (canonical) / {v10['alt']['central']:.2f} pc", "L⋆,95 = {}")
-num("F D10 abstract floor (JSON)", f"{v10['canonical']['central']:.2f} / {v10['alt']['central']:.2f} pc", "({} with the")
+num("F D10 abstract floor (JSON)", f"{v10['canonical']['central']:.2f} / {v10['alt']['central']:.2f} pc", "set L⋆ ≥ {}")
 num("F D10 band (JSON)", f"{v10['canonical']['band'][0]:.2f}-{v10['canonical']['band'][1]:.2f} / {v10['alt']['band'][0]:.2f}-{v10['alt']['band'][1]:.2f} pc", "spans {}")
 check("F D10 straddles 20 pc (JSON)", v10["canonical"]["window"] == v10["alt"]["window"] == "STRADDLES the 20 pc edge" and "straddles 20 pc" in flat)
 c2 = CJ("C2_aest_cosmology", "c2_aest_cosmology_results.json")
@@ -210,7 +209,7 @@ num("G C6 Q2 at 24 pc (JSON)", f"{min(q24) * 1e34:.2f}-{max(q24) * 1e34:.2f}x10-
 num("G C6 Q2 at 90 pc (JSON)", f"{min(q90) * 1e36:.2f}-{max(q90) * 1e36:.2f}x10-36", "at 90 pc {}")
 mg = c6["R1_margin"]
 num("G C6 margin (JSON)", f"{sci(mg['Hees_min'], 1)} to {sci(mg['Hees_max'], 1)}", "Hees line is {}")
-num("G C6 abstract margin (JSON)", f"{sci(mg['Hees_min'], 1)} to {sci(mg['Hees_max'], 1)}", "pass, by {}")
+num("G C6 abstract margin (JSON)", f"{sci(mg['Hees_min'], 1)} to {sci(mg['Hees_max'], 1)}", "cells, by {}")
 rt = [v["ratio_to_D7d"] for v in R1.values()]
 num("G C6 10-19% lower than D7d (JSON)", f"{round(100 * (1 - max(rt)))}-{round(100 * (1 - min(rt)))}%", "lowers Q2 by {}")
 num("G C6 frozen C2 float cancellation (JSON)", sci(c6["C2"]["isolated_rF0_vs_rF1_rel"], 1), "fails at {} against")
@@ -246,6 +245,97 @@ zb = [dd[bkey][c]["z"] for c in ("primary|mock", "primary|DR3-cal", "alt_gext|mo
 num("H DR4 expected power under (b) (JSON)", f"{min(zb):.2f}-{max(zb):.2f}σ canonical", "{}")
 rd("H ALMA dates (D4 README)", "D4_alma_status", "README.md", "Public **2026-11-06**".replace("**", ""), "public 2026-11-06")
 rd("H ALMA GS4 date", "D4_alma_status", "README.md", "Public **2026-11-28**".replace("**", ""), "GS4 (2026-11-28)")
+
+
+# ---------------------------------------------------------------- R. rebuild lanes (F1-H3) and the v3/v4 restructure
+RB = os.path.join(ROOT, "rebuild_2026_10_22")
+def RJ(lane, fname):
+    return json.load(open(os.path.join(RB, lane, fname)))
+def rtxt(lane, fname="README.md"):
+    return norm(open(os.path.join(RB, lane, fname), encoding="utf-8").read())
+def rout(lane, fname):
+    m = re.findall(r"COMPLETE: (\d+)/(\d+) checks PASS", open(os.path.join(RB, lane, fname), encoding="utf-8").read())
+    return f"{m[-1][0]}/{m[-1][1]}" if m else None
+REB = {"F1_cluster_cores": ("f1_cluster_cores.out", "6/6", "REAL FAILURE", ["9fd5aee16e", "f1803b0256"]),
+       "F2_outer_lensing": ("f2_outer_lensing.out", "9/9", "UNDECIDABLE", ["e9816b47d2", "7c8c3d5302"]),
+       "F3_growth_audit": ("f3_growth_audit.out", "9/9", "BELONGS TO THE SETTLING RULES ONLY", ["0bef684eea", "059766caa5"]),
+       "G1_smooth_cap": ("g1_smooth_cap.out", "7/7", "ARTEFACT", ["9921a5172a", "a048e6d468"]),
+       "G2_preinfall_retention": ("g2_preinfall_retention.out", "4/6", "FAILS on native inputs", ["92716d0148", "b3fbb9ed9d", "3cdcf3b4c5"]),
+       "H1_aest_F": ("h1_aest_f.out", "6/6", "NONE IN THE FAMILY", ["a4d76f492e", "1654b84f78"]),
+       "H2_aest_clusters": ("h2_aest_clusters.out", "6/6", "CANNOT", ["364a56c250", "5160a89939", "385f61a14c"]),
+       "H3_jeans_control": ("h3_jeans_control.out", "4/5", "CLAIM FAILS", ["04355110c4", "6b905cb6d8"])}
+for lane, (out, chk, verdict, commits) in REB.items():
+    check(f"R {lane} checks {chk} (.out), in table", rout(lane, out) == chk and f"& {chk} &" in tex, f"{rout(lane, out)}")
+    check(f"R {lane} verdict '{verdict}' (README)", norm(verdict) in rtxt(lane))
+    for h in commits:
+        check(f"R {lane} commit {h} touches lane, cited", f"rebuild_2026_10_22/{lane}/" in git("show", "--name-only", "--format=", h).stdout and h in flat)
+th2 = git("show", "8bcafea2fa:covariant_push_2026_10_22/THEORY_V3_DRAFT.md").stdout
+check("R THEORY draft section 1b (v4) at 8bcafea2fa, cited", "## 1b. A better-surviving candidate" in th2 and "8bcafea2fa" in flat)
+f1 = RJ("F1_cluster_cores", "f1_cluster_cores_results.json")
+check("R F1 verdict REAL FAILURE (JSON)", f1["verdict"] == "REAL FAILURE")
+rows = f1["rows"]
+pc = [rows[f"PRIMARY {h}"]["canonical"]["MID"][0] for h in ("h0672", "h0686")]; pa = [rows[f"PRIMARY {h}"]["alt"]["MID"][0] for h in ("h0672", "h0686")]
+zc = [f1["Z_primary"][h]["canonical"] for h in ("h0672", "h0686")]; za = [f1["Z_primary"][h]["alt"] for h in ("h0672", "h0686")]
+num("R F1 primary canonical (JSON)", f"{min(pc):.2f}-{max(pc):.2f} (canonical, Z = +{min(zc):.1f} to +{max(zc):.1f})", "AMID = {}")
+num("R F1 primary alt (JSON)", f"{min(pa):.2f}-{max(pa):.2f} (alternative, Z = +{min(za):.1f} to +{max(za):.1f})", "and {}")
+bc = [rows[f"A1 PRIMARY {h} boost clipped at 1"]["canonical"]["MID"][0] for h in ("h0672", "h0686")]; ba = [rows[f"A1 PRIMARY {h} boost clipped at 1"]["alt"]["MID"][0] for h in ("h0672", "h0686")]
+num("R F1 boost-fixed (JSON)", f"{min(bc):.2f}-{max(bc):.2f} / {min(ba):.2f}-{max(ba):.2f}", "(post-result) {}")
+num("R F1 abstract range (JSON)", f"{min(pc):.2f}-{max(bc):.2f} (canonical) and {min(pa):.2f}-{max(ba):.2f} (alternative)", "sit {} times above")
+fv = f1["favourable"]
+fc = [fv[h]["canonical"]["A"]["MID"][0] for h in ("h0672", "h0686")]; fa = [fv[h]["alt"]["A"]["MID"][0] for h in ("h0672", "h0686")]
+num("R F1 favourable corner (JSON)", f"{min(fc):.2f}-{max(fc):.2f} (canonical) and {min(fa):.2f}-{max(fa):.2f} (alternative)", "still {}")
+check("R F1 326 clusters (JSON K3)", "N 326" in f1["checks"]["K3"]["value"] and "(326 clusters" in flat)
+check("R F1 levers <= 4% (README)", "Native h moves A_MID by 1–4 %".replace("–", "-") in rtxt("F1_cluster_cores") and "by at most 4%" in flat)
+h2 = RJ("H2_aest_clusters", "h2_aest_clusters_results.json")
+cellbest = {}
+for k_, v_ in h2["A1_min_chi2"].items():
+    c_ = k_.split("|", 1)[1]; cellbest[c_] = min(v_, cellbest.get(c_, 1e9))
+mc = list(cellbest.values())
+check("R H2 four cells (JSON)", len(mc) == 4)
+num("R H2 best profile chi2 (JSON)", f"{min(mc):.1f}-{max(mc):.1f}", "profile χ2 is {}")
+check("R H2 law alone 27.3-41.8 and pass 11.07 (README)", "The law alone gives 27.3–41.8".replace("–", "-") in rtxt("H2_aest_clusters") and "11.07" in rtxt("H2_aest_clusters")
+      and "against 27.3-41.8 for the law alone and a pass line of 11.07" in flat)
+f2 = RJ("F2_outer_lensing", "f2_outer_lensing_results.json")
+ta = f2["trackA"]["canonical"]
+num("R F2 record dchi2 (JSON)", f"+{f2['K0']['canonical']['all']['dchi2']:.1f}", "∆χ2 = {} came".replace("∆", "Δ"))
+num("R F2 edge removal (JSON)", f"{ta['L0_record_Dder']['A_O2']:.2f} to {ta['L1_no_edge_B']['A_O2']:.2f}", "falls from {} of the data")
+num("R F2 weakest field (JSON)", f"{ta['L5_plus_EFE_noclu=T_central']['A_O2']:.2f}", "an amplitude of {}")
+num("R F2 isolation shift (JSON)", f"{f2['trackB']['canonical']['zero']['diff_out']['d']:.2f}", "moves by {} ±")
+check("R F2 y_e <~ 3e-5 and 8.6 sigma (README)", "B21's sample allows only y_e ≲ 3e-5".replace("y_e", "y_e") in rtxt("F2_outer_lensing").replace("ye", "y_e") or "3e-5" in rtxt("F2_outer_lensing"))
+has("R F2 8.6 sigma in PDF", "(8.6σ)")
+f3 = RJ("F3_growth_audit", "f3_growth_audit_results.json")
+check("R F3 J'(0) = -1 (JSON K1)", "J'(0) = -1" in f3["checks"]["K1"]["value"] and "J ′ (0) = -1" in " ||| ".join(raw))
+w = f3["K5"]["windows"]
+mins = [w[k]["mu_min_hMpc"] for k in w if k.startswith("bsk2")]; gaps = [w[k]["gap_factor"] for k in w]
+num("R F3 mu_K window (JSON)", f"{min(mins):.0f}-{max(mins):.0f} h/Mpc", "at least {}")
+num("R F3 BS cap (JSON)", f"{f3['K5']['mu_max_hMpc_BS24_Eq39']:.1f} h/Mpc", "caps it at {}")
+num("R F3 gap (JSON)", f"{min(gaps):.0f}-{max(gaps):.0f}x", "a gap of {}")
+num("R F3 abstract gap (JSON)", f"{min(gaps):.0f}-{max(gaps):.0f}x", "(a gap of {})")
+sr = [v["sigma8_ratio"] for k, v in f3["K4"]["BS24_Eq39_edge_100kpc"].items() if isinstance(v, dict) and "sigma8_ratio" in v]
+num("R F3 sigma8 inside allowed range (JSON)", f"{min(sr):.2f}-{max(sr):.2f}", "only {} of the dust limit")
+num("R F3 CFG596 reproduced (JSON)", f"+{f3['K0']['dchi2']:.2f}", "exactly ({})")
+k3 = f3["K3"]
+num("R F3 S8 (JSON)", f"{k3['A_c2b_refit']['0.3']['S8_pred']:.3f} / {k3['B_cfg886_bg']['0.3']['S8_pred']:.3f}", "S8 = {} against")
+num("R F3 KiDS S8 (JSON)", f"{k3['A_c2b_refit']['0.3']['S8_data_lin']:.3f} ± {k3['A_c2b_refit']['0.3']['S8_data_sigma']:.3f} / {k3['B_cfg886_bg']['0.3']['S8_data_lin']:.3f} ± {k3['B_cfg886_bg']['0.3']['S8_data_sigma']:.3f}", "({})")
+check("R F3 both CONSISTENT (JSON)", k3["A_c2b_refit"]["0.3"]["cls"] == k3["B_cfg886_bg"]["0.3"]["cls"] == "CONSISTENT")
+g1 = RJ("G1_smooth_cap", "g1_smooth_cap_results.json")
+check("R G1 512^3 excess 0.163 (JSON) and 0.040/0.077 coarser grids (README)", f"{g1['K1']['425_R3_can_512']['maxdev']:.3f}" == "0.163"
+      and "0.040 (128³), 0.077 (256³)" in open(os.path.join(RB, "G1_smooth_cap", "README.md"), encoding="utf-8").read() and "0.040 / 0.077 / 0.163" in flat)
+g2 = RJ("G2_preinfall_retention", "g2_preinfall_retention_results.json")["verdict"]
+num("R G2 offset (JSON)", f"+{g2['canonical']['primary_CHEMcons']['O']:.2f}", "offset stays {} ±")
+num("R G2 offset alt (JSON)", f"+{g2['alt']['primary_CHEMcons']['O']:.2f}", "/ {} ± 0.15 (alternative)")
+check("R G2 overshoots 8 (README)", "It overshoots **8** systems".replace("**", "") in rtxt("G2_preinfall_retention") and "overshoots 8 systems" in flat)
+h1 = RJ("H1_aest_F", "h1_aest_f_results.json")["SPARC"]
+zcn = [h1["canonical"][m]["z_vs_canonical"] for m in ("SZ-simple", "SZ-exp", "SZ-sharp", "SZ-inf")]; zal = [h1["alt"][m]["z_vs_canonical"] for m in ("SZ-simple", "SZ-exp", "SZ-sharp", "SZ-inf")]
+num("R H1 SZ interpolants lose (JSON)", f"z = {max(zcn):.2f} to {min(zcn):.2f} (canonical) and {max(zal):.2f} to {min(zal):.2f}", "SPARC at {}")
+check("R H1 BBN lambda_s >= 24.7 (C2b JSON + README)", f"{c2b['P2']['lambda_s_min']:.1f}" == "24.7" and "BBN needs λ_s ≥ 24.7" in open(os.path.join(RB, "H1_aest_F", "README.md"), encoding="utf-8").read() and "λs ≥ 24.7" in flat)
+h3 = RJ("H3_jeans_control", "h3_jeans_control_results.json")
+num("R H3 bounded rate (JSON)", f"{h3['T4']['I=2e-7|gL']['max_Gamma2_over_4piGrho']:.5f}", "(maximum {} of it)")
+check("R H3 band end and contact term (README)", "242.75 μ" in open(os.path.join(RB, "H3_jeans_control", "README.md"), encoding="utf-8").read() and "2.3e4 × Newton at" in open(os.path.join(RB, "H3_jeans_control", "README.md"), encoding="utf-8").read()
+      and "kc ≈ 243 µ".replace("µ", "μ") in flat.replace("µ", "μ") and "2.3x104 times Newton" in flat)
+check("R H3 criterion flags ordinary dust (README)", "Criterion (i) is mis-specified" in rtxt("H3_jeans_control") and "flags ordinary self-gravitating Newtonian dust" in flat)
+check("R abstract: clusters fail, v4 health linear only", "Clusters fail, in both forms" in flat and "at linear order only" in flat and "REAL FAILURE" in flat)
+check("R v4 not established", "v4 is the better-surviving candidate; it is not established" in flat)
 
 # ---------------------------------------------------------------- P. pending statements must be true at build time
 c7log = git("log", "--format=%h %s", "b0ced915c8..HEAD", "--", "covariant_push_2026_10_22/C7_aest_class").stdout
