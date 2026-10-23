@@ -67,6 +67,18 @@ conflicts with this file, this file is newer unless it says otherwise.
 
 ---
 
+## ⚠ FIX-FORWARD NOTE — 2026-10-23, on Revision 12 item 1 (`reviews/codex_arrival_audit_2026_10_23/README.md`)
+
+Item 1's "26 dimensions, 8 first-class constraints, 0 second-class ⇒ 5 healthy DOF" for the DSF-21 / A33 action is
+**false**. Codex's witness (commit `420fde16a5`, R1) is reproduced with independent code: on a point satisfying all
+eight constraints, `{H[sin x], H[cos x]} = −2πJ/η ≠ 0`, from the clock term `√h P^i∂_iN`. A second non-closure, from
+β ≠ 0 (Hořava λ ≠ 1), holds even with P absent. The correct linear algorithm on Minkowski adds a tertiary and a
+quaternary constraint; the lapse is determined, not gauge, and the count there is still 5 (2 + 2 + 1). On backgrounds
+where P moves (π_P ≠ 0) the count is **5.5** — a half mode whose weight vanishes as π_P³ → 0 — so static-P
+backgrounds are strongly coupled. This supports C5's "η > 0 is ill-posed" from the Hamiltonian side. v3 (β = η = 0) is
+not covered by this note; its constraint algebra stays OPEN. The 87 Lean theorems are algebraic identities, not the
+constraint algebra. Rest of the Revision 12 block unchanged.
+
 ## ⚠⚠⚠ REVISION 12 BLOCK — 2026-10-22 (campaign checkpoint 29; `deepseek_push/DS_FINAL_2026_10_21`). Newer than everything below it; where they conflict, this block wins.
 
 This is a **separate branch record**, not a rewrite of the headline above. Full text:

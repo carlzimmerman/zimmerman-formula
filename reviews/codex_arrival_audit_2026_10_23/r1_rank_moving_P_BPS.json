@@ -1,0 +1,96 @@
+{
+ "mutate": false,
+ "bg_residuals": {
+  "H_perp": "0",
+  "H_x": "0",
+  "C_N": "0"
+ },
+ "q": "sqrt(3)*sqrt(3*beta + 2)*sqrt(J**2/(2*eta) + Lambda/(2*K))/(6*sqrt(K))",
+ "linearised": {
+  "p_N": "dp_N(X)",
+  "p_s": "dp_s(X)",
+  "C_N": "J**2*da(X)/(6*eta) - 2*J**2*db(X)/(3*eta) + J*dPi(X)/eta + 2*alpha*Derivative(dN(X), (X, 2)) + Derivative(dP(X), X) - 2*sqrt(6)*sqrt(J**2*K + Lambda*eta)*dp_a(X)/(3*sqrt(eta)*sqrt(3*beta + 2)) - 2*sqrt(6)*sqrt(J**2*K + Lambda*eta)*dp_b(X)/(3*sqrt(eta)*sqrt(3*beta + 2)) + Lambda*da(X)/(6*K) + Lambda*db(X)/(3*K) + Derivative(db(X), (X, 2))/(2*K)",
+  "H_x": "-2*Derivative(dp_a(X), X) - sqrt(6)*sqrt(3*beta + 2)*sqrt(J**2*K + Lambda*eta)*Derivative(da(X), X)/(12*K*sqrt(eta)) + sqrt(6)*sqrt(3*beta + 2)*sqrt(J**2*K + Lambda*eta)*Derivative(db(X), X)/(6*K*sqrt(eta))"
+ },
+ "M": [
+  [
+   "0",
+   "0",
+   "2*alpha*k**2",
+   "0"
+  ],
+  [
+   "0",
+   "0",
+   "0",
+   "0"
+  ],
+  [
+   "-2*alpha*k**2",
+   "0",
+   "2*I*J*k/eta",
+   "0"
+  ],
+  [
+   "0",
+   "0",
+   "0",
+   "0"
+  ]
+ ],
+ "names": [
+  "p_N",
+  "p_s",
+  "C_N",
+  "H_x"
+ ],
+ "bps": true,
+ "sym_pN_chi": "2*alpha*k**2",
+ "zero_rows": [
+  "p_s",
+  "H_x"
+ ],
+ "ranks": {
+  "J=1,k=7/10": 2,
+  "J=1,k=13/10": 2,
+  "J=1,k=3": 2,
+  "J=1/10,k=7/10": 2,
+  "J=1/10,k=13/10": 2,
+  "J=1/10,k=3": 2,
+  "J=1/1000,k=7/10": 2,
+  "J=1/1000,k=13/10": 2,
+  "J=1/1000,k=3": 2,
+  "J=0,k=7/10": 2,
+  "J=0,k=13/10": 2,
+  "J=0,k=3": 2
+ },
+ "det_block": "4*alpha**2*k**4",
+ "dof_per_mode_J1": "2",
+ "checks": [
+  {
+   "check": "A7",
+   "pass": true,
+   "detail": "background on all constraints incl. chi at J = 1: ['0', '0', '0']"
+  },
+  {
+   "check": "A7",
+   "pass": true,
+   "detail": "symbol {p_N, C_N} = 2*alpha*k**2"
+  },
+  {
+   "check": "A7",
+   "pass": true,
+   "detail": "identically vanishing rows (first class at this point): ['p_s', 'H_x']"
+  },
+  {
+   "check": "A7",
+   "pass": true,
+   "detail": "complex rank of M(k): J=1,k=7/10: 2, J=1,k=13/10: 2, J=1,k=3: 2, J=1/10,k=7/10: 2, J=1/10,k=13/10: 2, J=1/10,k=3: 2, J=1/1000,k=7/10: 2, J=1/1000,k=13/10: 2, J=1/1000,k=3: 2, J=0,k=7/10: 2, J=0,k=13/10: 2, J=0,k=3: 2"
+  },
+  {
+   "check": "A7",
+   "pass": true,
+   "detail": "det of {p_N, C_N} block = 4*alpha**2*k**4; scalar DOF per mode at J = 1: 2; at J = 0 (chain stops at C_N): 2"
+  }
+ ]
+}
