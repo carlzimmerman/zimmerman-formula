@@ -136,3 +136,30 @@ and its own printed verdict/class. **Verdict-safe** iff the record's own class/v
 
 No PM run, no aspherical solve, no in-field μ_K solve, no Track B (F2) re-score, no new data, no fitted amplitude.
 Anything not computed is said so in the README.
+
+## AMENDMENTS (append-only)
+
+**A1 (POST-RESULT for test runs, PRE-PRODUCTION; written after a `--quick` test run that printed scan rows at μ_K = 0.1, 1
+and 10 and 243.78 Mpc⁻¹, and after convergence diagnostics; before the production run). No pass/fail line of R6.3 changes.**
+
+1. **K5, the P1 leg.** P1 is by construction F1's 90-point convention (centre value by linear interpolation in ln R), used
+   only to reproduce F1 and H2 (K1, K2) and never graded. On the Plummer test it is accurate to 4.3e-3, against the frozen
+   2e-3; F1 itself held its projector to 1 % (F1 K4). Amended K5: P1 ≤ 1e-2, P2 and P3 (the graded projectors) ≤ 2e-3
+   unchanged. The frozen K5 line is still printed (`K5-frozen`) and reported.
+2. **Grids (implementation).** The lensing mass M_L = r²ψ′/G has square-root cusps wherever the total field vanishes
+   (deep-MOND g ∝ √|M_b + M_K|), i.e. AQUAL's phantom density has integrable 1/√ singularities at every zero-force surface
+   of the oscillating solution. Piecewise-linear projection then converges only as ~h^0.9. Diagnostic (μ_K = 10, one
+   cluster cell, Δ = 0): the bin-7 stacked ratio is 0.046 / 0.036 / 0.030 on 2e-3 / 1e-3 / 5e-4 Mpc projection nodes,
+   while the ODE step alone converges to 7e-4. Production therefore uses cluster projection nodes of 2e-3 Mpc for
+   μ_K ≤ 2 and 5e-4 Mpc (log part dlnr 0.00175) for μ_K ≥ 3.333; galaxy nodes 2.5e-4 (μ_K ≤ 1), 1.25e-4 (≤ 3.4),
+   6.25e-5 Mpc (above); growth nodes (2π/μ_K)/200. K7 halves these as frozen.
+3. **K7, the growth leg (μ_K = 1718).** At growth μ_K the static solution's secular lensing cancels (the hydrostatic dust
+   offsets the baryons) and the stacked ratios beyond 0.5 Mpc are 0 ± 0.03; under halving they move by up to 0.035
+   ((2π/μ_K)/100 → /200 → /400 diagnostic) because only the oscillation phase is left. Growth μ_K rows are never graded,
+   so this leg is moved from the gate to the report: amended K7 = the cluster (μ_K = 10, ≤ 0.005) and galaxy (μ_K = 10,
+   ≤ 0.005) legs, thresholds unchanged; the growth leg's value is printed and the growth rows carry a ±0.03 resolution
+   statement. The frozen K7 line is still printed (`K7-frozen`).
+4. **Verdicts.** Both are printed and stored: the frozen-rule verdict (gated on the frozen K5/K7 lines, so UNDECIDED if
+   either frozen line fails) and the A1 verdict (gated on the amended lines). The README reports both, frozen first.
+5. **Growth Δ envelope (implementation).** Δ ∈ {−8, −4, −2, −1, 0, +1, +2} on the h 0.672 cells (both footings);
+   Δ = 0 on the h 0.686 cells (runtime).
