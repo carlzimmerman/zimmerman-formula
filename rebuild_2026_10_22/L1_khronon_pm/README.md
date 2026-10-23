@@ -342,6 +342,100 @@ python3 compute_queue/heavyq.py add --id L1_A5_KX_alt_N128_zi199 --cwd rebuild_2
   --est-gb 0.65 --threads 8 --priority 300 --env L1_WORK=work/prod --done-file work/prod/A5_KX_alt_N128_zi199/DONE
 ```
 
+
+## ENQUEUE-A6 (DBI-IC set, AMENDMENT A6; for the coordinator, this lane does not enqueue)
+
+The owner's question: where was the cold energy at BBN, and how does it form galaxies from there? The ICs at z_i = 199 come
+from Q7's validated DBI CLASS, the only BBN-viable early completion of v3 on record. It is run read-only, with BS's
+published sets only:
+- the cap, μ_K = 14.8 h/Mpc with λ_D = 30;
+- BS24 P1, μ⁻¹ = 223 kpc (6.54029 h/Mpc at model B's h) with λ_D = 30.
+
+Q7's fitted λ_D,95 door is not used.
+
+**Linear check on model B** (the DUST normaliser equals classy; reported). DBI σ₈ is 0.2509 (cap-λ30) and 0.2200 (P1), so
+R_B = 0.307 and 0.269. Q7 found 0.295 and 0.259 at its own parameters.
+
+**Engine.** No change is needed (A6 item 3). At z_i = 199 the DBI background differs from dust by ≤ 3.9e-3 in ρ̄ and w, and
+its late hold mass differs from μ_K by ≤ 1.8e-2 in M². Both fall as a⁻³, and they are declared, not fitted.
+
+**Satellite split** (pre-result clarification of A6 item 5). A galaxy-mass halo's hosts are the other, more massive
+cluster-class or top50 halos.
+- satellite = the nearest host lies 1–3 Mpc (physical) away;
+- field = no host within 3 Mpc.
+
+**est_gb.** The measured 3-step DBI KX peak footprint at 256³ is 2.770 GB (A5's ODE KX was 2.727), so est = 3.4. 384³ is
+extrapolated with A5's scaling to 8.80 GB, so est = 10.6. Calibration: 256³ DBI KX took about 14 s/step at 8 threads, with
+16–26 hold iterations.
+
+**Order.** Priorities 299–290, after the A5 ladder and before the 512³ calibration. The DBI tables are pre-built in
+`work/prod`.
+
+```bash
+# A6 DBI-IC set (run from the repository root). BS's published sets only: cap mu_K 14.8 h/Mpc + lambda_D 30; P1 223 kpc (6.54029 h/Mpc) + lambda_D 30.
+# Controls: A5's S0 cells at the same N (L1_A5_S0_N256_zi199, L1_A5_S0_N384_zi199). DBI tables are pre-built in work/prod.
+
+python3 compute_queue/heavyq.py add --id L1_A6_LIN_dbi_cap30_N256_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_LIN_dbi_cap30_N256_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_LIN_dbi_cap30_N256_zi199 --resume" \
+  --est-gb 3.4 --threads 8 --priority 299 --env L1_WORK=work/prod --done-file work/prod/A6_LIN_dbi_cap30_N256_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A6_KX_can_dbi_cap30_N256_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_can_dbi_cap30_N256_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_can_dbi_cap30_N256_zi199 --resume" \
+  --est-gb 3.4 --threads 8 --priority 298 --env L1_WORK=work/prod --done-file work/prod/A6_KX_can_dbi_cap30_N256_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A6_KX_alt_dbi_cap30_N256_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_alt_dbi_cap30_N256_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 14.8 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_alt_dbi_cap30_N256_zi199 --resume" \
+  --est-gb 3.4 --threads 8 --priority 297 --env L1_WORK=work/prod --done-file work/prod/A6_KX_alt_dbi_cap30_N256_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A6_LIN_dbi_P1_N256_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 6.54029 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_LIN_dbi_P1_N256_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 6.54029 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_LIN_dbi_P1_N256_zi199 --resume" \
+  --est-gb 3.4 --threads 8 --priority 296 --env L1_WORK=work/prod --done-file work/prod/A6_LIN_dbi_P1_N256_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A6_KX_can_dbi_P1_N256_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 6.54029 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_can_dbi_P1_N256_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 6.54029 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_can_dbi_P1_N256_zi199 --resume" \
+  --est-gb 3.4 --threads 8 --priority 295 --env L1_WORK=work/prod --done-file work/prod/A6_KX_can_dbi_P1_N256_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A6_KX_alt_dbi_P1_N256_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 6.54029 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_alt_dbi_P1_N256_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 6.54029 --N 256 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_alt_dbi_P1_N256_zi199 --resume" \
+  --est-gb 3.4 --threads 8 --priority 294 --env L1_WORK=work/prod --done-file work/prod/A6_KX_alt_dbi_P1_N256_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A6_LIN_dbi_cap30_N384_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_LIN_dbi_cap30_N384_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_LIN_dbi_cap30_N384_zi199 --resume" \
+  --est-gb 10.6 --threads 8 --priority 293 --env L1_WORK=work/prod --done-file work/prod/A6_LIN_dbi_cap30_N384_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A6_KX_can_dbi_cap30_N384_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_can_dbi_cap30_N384_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_can_dbi_cap30_N384_zi199 --resume" \
+  --est-gb 10.6 --threads 8 --priority 292 --env L1_WORK=work/prod --done-file work/prod/A6_KX_can_dbi_cap30_N384_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A6_KX_alt_dbi_cap30_N384_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_alt_dbi_cap30_N384_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 14.8 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_alt_dbi_cap30_N384_zi199 --resume" \
+  --est-gb 10.6 --threads 8 --priority 291 --env L1_WORK=work/prod --done-file work/prod/A6_KX_alt_dbi_cap30_N384_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A6_LIN_dbi_P1_N384_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 6.54029 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_LIN_dbi_P1_N384_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode LIN --foot canonical --muK 6.54029 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_LIN_dbi_P1_N384_zi199 --resume" \
+  --est-gb 10.6 --threads 8 --priority 290 --env L1_WORK=work/prod --done-file work/prod/A6_LIN_dbi_P1_N384_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A6_KX_can_dbi_P1_N384_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 6.54029 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_can_dbi_P1_N384_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot canonical --muK 6.54029 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_can_dbi_P1_N384_zi199 --resume" \
+  --est-gb 10.6 --threads 8 --priority 290 --env L1_WORK=work/prod --done-file work/prod/A6_KX_can_dbi_P1_N384_zi199/DONE
+
+python3 compute_queue/heavyq.py add --id L1_A6_KX_alt_dbi_P1_N384_zi199 --cwd rebuild_2026_10_22/L1_khronon_pm \
+  --cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 6.54029 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_alt_dbi_P1_N384_zi199" \
+  --resume-cmd "python3 khronon_pm.py run --mode KX --foot alt --muK 6.54029 --N 384 --L 100 --zi 199 --nseed 512 --threads 8 --halos --ic dbi --lamD 30 --tag A6_KX_alt_dbi_P1_N384_zi199 --resume" \
+  --est-gb 10.6 --threads 8 --priority 290 --env L1_WORK=work/prod --done-file work/prod/A6_KX_alt_dbi_P1_N384_zi199/DONE
+```
+
 ## Files and commits
 
 **Criteria and amendments**, each committed before the results it governs:

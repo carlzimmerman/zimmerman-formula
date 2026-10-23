@@ -396,32 +396,37 @@ def cross_growth(m, dk, dk0):
 
 # ================================================================ LOB-IC (AMENDMENT A4): Q6's validated Khronon CLASS binary, read-only
 CLASS_KHRONON = os.path.join(REPO, "..", "_external_data", "class_khronon_build_2026_10_23", "class_khronon", "class")
+CLASS_DBI = os.path.join(REPO, "..", "_external_data", "class_khronon_dbi_build_2026_10_23", "class_dbi", "class")      # Q7 (A6)
 LOB_Z = (0.0, 195.0, 199.0, 203.0)
 def _read_tk(fn):
     hdr = [l for l in open(fn) if l.startswith("#")]
     cols = [c.split(":")[1] for c in hdr[-1].strip("# \n").split() if ":" in c]
     d = np.loadtxt(fn)
     return {c: d[:, i] for i, c in enumerate(cols)}
-def lob_tables(muK, bg, kmax=40.0, kdec=100, mut=None):
+def lob_tables(muK, bg, kmax=40.0, kdec=100, mut=None, kind="lob", lamD=None):
     """LOB and DUST runs of class_khronon at model B (A4 item 3).  Returns k (h/Mpc) and, at z = 199, R_b, R_t (delta / d_m^DUST(z=0)),
     V_b, V_t (d delta/dln a over the same normaliser), Tm0 = d_m^LOB(0)/d_m^DUST(0), sigma8 (CLASS) of both runs."""
-    fn = os.path.join(WORK, f"lob_tables_mu{muK:g}" + ("_MUT" if mut else "") + ".npz")
+    lab = "lob" if kind == "lob" else f"dbi_lam{lamD:g}"
+    fn = os.path.join(WORK, f"{lab}_tables_mu{muK:g}" + ("_MUT" if mut else "") + ".npz") if kind != "lob" else \
+         os.path.join(WORK, f"lob_tables_mu{muK:g}" + ("_MUT" if mut else "") + ".npz")
     if os.path.exists(fn):
         d = np.load(fn); return {k_: d[k_] for k_ in d.files}
     h = bg.h; wb = bg.Ob * h * h; wcdm = 1e-8; wa = bg.Om * h * h - wb - wcdm
-    rd = os.path.join(WORK, f"lob_class_mu{muK:g}"); os.makedirs(rd, exist_ok=True)
+    rd = os.path.join(WORK, f"lob_class_mu{muK:g}" if kind == "lob" else f"{lab}_class_mu{muK:g}"); os.makedirs(rd, exist_ok=True)
     out = {}
-    for typ, nm in ((4, "LOB"), (0, "DUST")):
+    binary = CLASS_KHRONON if kind == "lob" else CLASS_DBI
+    for typ, nm in (((4 if kind == "lob" else 5), "LOB"), (0, "DUST")):
         p = {"h": h, "omega_b": wb, "omega_cdm": wcdm, "omega_aest": wa, "ln10^{10}A_s": LNAS_C2B, "n_s": NS_C2B, "tau_reio": TAU_C2B,
              "T_cmb": 2.7255, "aest_Q0": 1.0, "aest_K_B": 1.0, "aest_g": 1.0, "aest_lambda_c": -1.0, "aest_K_type": typ,
-             "aest_K2": (muK * h) ** 2 if typ == 4 else 1.0, "output": "mTk,mPk", "z_pk": ", ".join(f"{z:g}" for z in LOB_Z),
+             "aest_K2": (muK * h) ** 2 if typ in (4, 5) else 1.0, "output": "mTk,mPk", "z_pk": ", ".join(f"{z:g}" for z in LOB_Z),
              "z_max_pk": 210, "P_k_max_h/Mpc": kmax, "tol_perturbations_integration": 1e-7, "perturbations_sampling_stepsize": 0.05,
              "k_per_decade_for_pk": kdec, "start_small_k_at_tau_c_over_tau_h": 0.0015 * 0.25, "start_large_k_at_tau_h_over_tau_k": 0.07 * 0.25,
              "write_parameters": "no", "input_verbose": 1, "background_verbose": 1, "fourier_verbose": 1, "overwrite_root": "yes",
              "root": os.path.join(rd, nm + "_")}
+        if typ == 5: p["aest_Z0"] = float(lamD)
         ini = os.path.join(rd, nm + ".ini")
         with open(ini, "w") as f: f.write("".join(f"{k_} = {v_}\n" for k_, v_ in p.items()))
-        r = subprocess.run(["nice", "-n", "15", CLASS_KHRONON, ini], capture_output=True, text=True, env=dict(os.environ, OMP_NUM_THREADS="1"))
+        r = subprocess.run(["nice", "-n", "15", binary, ini], capture_output=True, text=True, env=dict(os.environ, OMP_NUM_THREADS="1"))
         if r.returncode != 0: raise RuntimeError(f"class_khronon {nm} failed: {(r.stdout + r.stderr)[-300:]}")
         import re as _re
         s8 = float(_re.search(r"sigma8=([0-9.eE+-]+) for total matter", r.stdout).group(1))
@@ -471,9 +476,9 @@ def ics_native(m, sp_b, sp_t, cfg, bg):
     dk = wk * np.sqrt(np.interp(np.log(np.maximum(m.kmag, 1e-5)), np.log(KS), Pk, left=0, right=0) / (L / npg) ** 3) * npg ** 1.5 * cfg["eps"]
     del wk
     dk = nyq_zero(m, dk)
-    if cfg.get("ic_src", "ode") == "lob" and cfg["mode"] != "S0":
-        assert abs(1 / a_i - 1 - 199.0) < 1e-9, "LOB-IC is defined at z_i = 199 (A4)"
-        T = lob_tables(cfg["muK"], bg, mut=cfg.get("lob_mut"))
+    if cfg.get("ic_src", "ode") in ("lob", "dbi") and cfg["mode"] != "S0":
+        assert abs(1 / a_i - 1 - 199.0) < 1e-9, "LOB/DBI-IC is defined at z_i = 199 (A4, A6)"
+        T = lob_tables(cfg["muK"], bg, mut=cfg.get("lob_mut"), kind=cfg["ic_src"], lamD=cfg.get("lamD"))
         kg = T["k"]; ti = dict(Rb=T["R_b"], Rt=T["R_t"], fb=T["V_b"] / T["R_b"], ft=T["V_t"] / T["R_t"]); t1 = dict(Tm=T["Tm0"])
         ti["Vb"], ti["Vt"] = T["V_b"], T["V_t"]
     else:
@@ -574,6 +579,20 @@ def halo_profiles(m, db, dt, bg, a=1.0, max_cand=10000, max_halo=3000):
                                   M1_Msun_max=float(accM[idx].max()), rho_b_over_mean_b=PB.mean(0) / bg.Ob, rho_tau_over_mean_tau=PT.mean(0) / bg.Otau,
                                   tau_over_b_shell=PT.mean(0) / PB.mean(0), ratio_0p3_1_stacked=st1, ratio_1_3_stacked=st2,
                                   ratio_0p3_1_median=float(np.median(r1)), ratio_1_3_median=float(np.median(r2)))
+    big = np.where(classes.get("cluster", np.zeros(len(accM), bool)) | classes.get("top50", np.zeros(len(accM), bool)))[0]
+    gal = np.where(classes["galaxy"])[0]
+    if len(big) and len(gal):
+        dd = np.abs(acc[gal][:, None, :] - acc[big][None, :, :]); dd = np.minimum(dd, N - dd)
+        dist = np.sqrt((dd ** 2).sum(2)) * dx / h * a                               # physical Mpc, galaxy x host
+        dist = np.where(accM[big][None, :] > accM[gal][:, None], dist, np.inf)      # hosts: other, more massive cluster/top50 halos
+        dmin = dist.min(1)
+        for nm, sel in (("satellite_1_3Mpc", (dmin >= 1.0) & (dmin <= 3.0)), ("field_gt3Mpc", dmin > 3.0)):
+            idx = gal[sel]
+            if len(idx) == 0: out["classes"][nm] = dict(n=0); continue
+            out["classes"][nm] = dict(n=int(len(idx)), M1_Msun_median=float(np.median(accM[idx])),
+                                      ratio_0p3_1_stacked=sum(prof[i][4] for i in idx) / sum(prof[i][5] for i in idx),
+                                      ratio_1_3_stacked=sum(prof[i][6] for i in idx) / sum(prof[i][7] for i in idx),
+                                      ratio_0p3_1_median=float(np.median([prof[i][2] for i in idx])), ratio_1_3_median=float(np.median([prof[i][3] for i in idx])))
     out["catalog_top200"] = dict(pos_Mpch=(acc[:200] * dx).tolist(), M1_Msun=accM[:200].tolist(),
                                  ratio_0p3_1=[prof[i][2] for i in range(min(200, len(prof)))], ratio_1_3=[prof[i][3] for i in range(min(200, len(prof)))])
     return out
@@ -810,7 +829,8 @@ def main():
     ap.add_argument("--resume", action="store_true"); ap.add_argument("--ckpt_every", type=int, default=10)
     ap.add_argument("--xgrowth", action="store_true"); ap.add_argument("--snaps", default="0.5,0.6666666666666666,1.0")
     ap.add_argument("--no_guard", action="store_true"); ap.add_argument("--halos", action="store_true")
-    ap.add_argument("--maxsteps", type=int, default=0); ap.add_argument("--ic", default="ode", choices=["ode", "lob"])
+    ap.add_argument("--maxsteps", type=int, default=0); ap.add_argument("--ic", default="ode", choices=["ode", "lob", "dbi"])
+    ap.add_argument("--lamD", type=float, default=None)
     a = ap.parse_args()
     if a.cmd == "estimate":
         print(json.dumps({"N": a.N, "declared_peak_gb": estimate_gb(a.N)})); return
@@ -821,7 +841,7 @@ def main():
     tag = a.tag or f"{a.mode}_{a.foot}_mu{a.muK:g}_N{a.N}_L{a.L:g}_zi{a.zi}_ns{a.nseed}" + (f"_eps{a.eps:g}" if a.eps != 1 else "")
     cfg = dict(mode=a.mode, foot=a.foot, muK=mu, N=a.N, L=a.L, zi=a.zi, nseed=a.nseed, seed=a.seed, eps=a.eps, bg="B",
                ic="native", tag=tag, resume=a.resume, ckpt_every=a.ckpt_every, xgrowth=a.xgrowth,
-               snaps=[float(s) for s in a.snaps.split(",")], guard=not a.no_guard, halos=a.halos, maxsteps=a.maxsteps, ic_src=a.ic)
+               snaps=[float(s) for s in a.snaps.split(",")], guard=not a.no_guard, halos=a.halos, maxsteps=a.maxsteps, ic_src=a.ic, lamD=a.lamD)
     run_sim(cfg)
 
 if __name__ == "__main__":
