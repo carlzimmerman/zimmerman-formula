@@ -282,3 +282,14 @@ one run of the final method on a production case.
 
 MUTATE (frozen F) uses the same particles and deposit. Its acceleration is the B2 gradient of
 χ₀ − γ_L ρ₊₀ − φ_b(t), with χ₀ and ρ₊₀ fixed at t_i.
+
+## AMENDMENT A2 (PRE-RESULT: written before any N-check or production run; clarifies §4 N-checks to match §5)
+
+Once a soft element has folded, S is a post-fold, multi-stream value (it can be −10³ or below) and is not expected to
+converge. §5 already handles this for CAUSTIC cases by comparing threshold times rather than S, and the N-checks now
+follow the same logic. For each of N-dt, N-box and N-tol:
+- if the base case (canonical, O2, t_i 3, h = 10) has a threshold event, the check PASSES iff the variant also has one and
+  |Δt_c| ≤ 0.2 Gyr;
+- if it has none, the check PASSES iff the variant has none and |ΔS| ≤ 0.02.
+
+Both S and t_c are printed for every variant.
