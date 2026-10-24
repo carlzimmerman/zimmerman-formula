@@ -322,6 +322,16 @@ No such sector is in the record, and no rule-compatible framework in the literat
       - At μ_K = 0.03 the window reaches 1.1e-4 and 369 km/s stays subsonic (Mach ≤ 0.69).
       - The khronon's rest frame relative to galaxies is not fixed by the record.
     - Not computed in X15: binary-pulsar scalar radiation (now X16, below), neutron-star sensitivities, and 2PN.
+  - **Peer review** (`reviews/v3s_khronon_fluid_caustics_2026_10_24/`, cc727f275c; not rerun by this coordinator):
+    **SELF-CONSISTENT SHELL CROSSING** (frozen reading).
+    - The particle-mesh khronon fluid with the nonlinear Gauss law and γ_L pressure was run on the constant-velocity
+      MW–M31 orbit. Soft-lobe khronon folds 40–70 kpc from the MW at t₀ + 0.1 to 3 Gyr: 6/6 cases, both footings,
+      h 20 and 10.
+    - The timing-argument orbit does not cross.
+    - Soft elements get no γ_L pressure, so these folds are singular. That qualifies X3's "well-posed" at the nonlinear
+      level, consistent with X14.
+    - Caveat: solver checks V1/V2 fail (accuracy near a one-cell core and the axis), and V3/V5 fail from the omitted
+      γ_L pressure in the initial state.
   - **X16** (`rebuild_2026_10_22/X16_beta_binary_radiation`, db3a4913a0 / ff02290692 / 4799209bf5; rerun identical):
     **C1 PASSES BINARY PULSARS, on one condition.**
     - There is one radiating scalar, with positive energy. Fed through the tensor sector, the same flux formula
