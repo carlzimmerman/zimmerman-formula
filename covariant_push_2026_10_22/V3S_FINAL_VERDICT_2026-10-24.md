@@ -157,3 +157,7 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
 **Parameter reduction.**
 - c₀ stays a lead, not adopted.
 - The dwarfs push L★ monotonically to its floor. Together with CFG821 (L★ ≤ 22 pc), that squeezes L★ from a lower bound to a narrow band near 21.7–22.9 pc. The joint frozen bound is not yet computed.
+- **Update** (`X27_joint_lstar_band`, 4bf6612dc5 / b10263968f, a peer lane; coordinator rerun identical apart from timing): **no reduction.**
+  - The literal v3s pins L★ only through a fit at χ²/N ≈ 52. Rescaling its errors widens the upper end to 26.6 / 27.1 pc.
+  - Profiling a floor nuisance removes any upper bound up to 90 pc.
+  - So the dwarf "upper bound" is the mass shortfall, not screening. L★ stays one-sided: ≥ 21.7 / 22.9 pc.
