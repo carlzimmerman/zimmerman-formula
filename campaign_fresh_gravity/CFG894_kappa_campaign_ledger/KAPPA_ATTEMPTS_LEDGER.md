@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (760 rows)
+## Totals (762 rows)
 
-- **536 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **537 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **129 produced a number.** 60 produced one determinate value; 69 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -151,10 +151,10 @@ fact.
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
 | QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 29 | 6 | 1 | 22 | 0 | 0 |
 | KS Kinetic / settling / collective / cold-energy dynamics | 35 | 2 | 2 | 31 | 0 | 0 |
-| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 49 | 2 | 4 | 39 | 0 | 0 |
+| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 50 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 115 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 116 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -741,6 +741,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K661 | W4-11/Q1 | `why_4_puzzle/W4_11_last_gravity_classes` | f(Q) = Q + alpha Q^n symmetric teleparallel (background = f(T)) | - | free | TRADE: kappa^2 = 16pi(2n-1)^(1/(n-1)), as f(T) | 1cbcd12ee |
 | K662 | W4-11/Q2 | `why_4_puzzle/W4_11_last_gravity_classes` | f(R,T) = R + 2 lambda T | - | free | TRADE: GR in vacuum, Lambda free | 1cbcd12ee |
 | K739 | W4-19/L2 | `why_4_puzzle/W4_19_literature_addendum` | Maeder 2023 (2302.06206) scale-invariant vacuum: a0 = ((1-Om)^2/4) n c H0, n ~ 1 | - | free | FREE: kappa = n Omega_L^(3/2) sqrt(pi/6) = 0.410 today, Omega-dependent (a0 evolves), pi-odd | 726716bac |
+| K761 | SELFSELECT-20261024/KGB | `reviews/self_tuning_selector_2026_10_24` | constant-X tadpole-free KGB with direct B(X) response bridge | - | free | SCOPED NONSELECTION: stable logarithmic vacuum removes prior time drift; at fixed residual H, d ln a0_bare/dV=-B_X/(B K_X); constant response across bare-V interval forces constant B on branch, leaving normalization free; full local screening not solved | freeze:f458ddcc26 |
 
 ## NU: Numerology and grammar searches (flagged)
 
@@ -959,6 +960,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K757 | MICROMED-20261024/HEALTH | `reviews/microscopic_medium_2026_10_24` | common clock-solid medium at exact vacuum stress | - | audit | SCOPE: q^2 K-mu^2 S=(rho+p)/2 forbids positive kinetic and clock-gradient energy on nondegenerate first-derivative branch; derivative mixing cannot repair positive-elastic branch; higher k^4 stabilizer leaves an IR band in isolated example | freeze:36c2d800d1;continuation:0e132d0606 |
 | K758 | MICROMED-20261024/VOLUME | `reviews/microscopic_medium_2026_10_24` | constrained determinant medium U(J) | - | audit | AUDIT: on invertible U-second-derivative-nonzero branch U-prime=C retains integration constant; stress is vacuum-like but no local J response; explicit quadratic example reproduces flux-type freedom | freeze:36c2d800d1;continuation:0e132d0606 |
 | K760 | MICROMED-20261024/PARENT | `reviews/microscopic_medium_2026_10_24` | published vector-condensation higher-energy parent arXiv:1410.2408v2 | - | audit | SOURCE CHECK: equations 31 and 34-41 retain independent vacuum V0 versus response scale mu^2=m_A M_V; not an exact Lambda-medium or MOND completion | freeze:36c2d800d1;continuation:0e132d0606 |
+| K762 | SELFSELECT-20261024/PROMOTE | `reviews/self_tuning_selector_2026_10_24` | remaining cubic response coefficient promoted to rigid or local variable | - | audit | AUDIT: rigid variation without potential enforces integral O3=0; W(b) inserts new potential and average; local positive-gradient model gives b_infinity-Q/(4pi Z r), retaining boundary normalization; not a general no-go | freeze:f458ddcc26 |
 
 ## LN: Logic / Lean formalisations
 
