@@ -77,3 +77,21 @@ on an empty soft region. Diagnosis (scratch, disclosed):
 3. In O2 the lobe reaches the box edge at 400 kpc transverse. Elements beyond are not tracked (disclosed truncation;
    frozen box unchanged).
 Nothing in C3's thresholds, brackets or reading changes.
+
+## AMENDMENT A2 (POST-RESULT; the frozen reading stands as computed; a validity diagnostic is added before it is run)
+
+Run 2 (`caustics.out`): C0, C1 PASS; C2 FAIL (wording, A1); **C3 frozen reading SHELL-CROSSES**. 6/12 cases cross in
+both brackets, all of them O2, identical on both footings. The earliest is t₀ + 0.64 Gyr, about 25 kpc from a galaxy.
+O1 crosses only for t_i = 3 Gyr with s = 1 (t₀ + 1.46 Gyr, 254 kpc from a galaxy); its s = 0 runs reach min det +0.0000
+(t_i 3) and +0.0005 (t_i 9) by t_end, and all O1 runs go negative by r = 150 kpc. MUTATE: det = 1.000000 in all 24
+runs (PASS).
+
+**Concern, raised before the diagnostic is computed:** the model keeps the khronon's own field F frozen apart from its
+local WKB response. Near a galaxy, the positive phantom halo responds at ω_loc = √(4πG ρ_ph (M − 1)) ≫ 1/Gyr. It should
+then follow the galaxy adiabatically, carrying F along and cancelling Δg_b there. The model is invalid in such
+regions. Diagnostic (reported only, no verdict change), for every element that crosses, or reaches det < 0.1, by t_end:
+at the crossing time t_c, take the element's current position, the current QUMOND equilibrium phantom ρ_eq and x
+there, ω_loc² = 4πG ρ_eq (M_L − 1) with M_L = (1+x)², and the forcing time T_f = r/|ṙ| at t_c. Classify the crossing
+as **ADIABATIC-REGION (model invalid)** if ρ_eq > 0 and ω_loc T_f ≥ 1, and as **SLOW-REGION (model valid)**
+otherwise. Report the counts per case, the minimum det among elements whose whole track stays SLOW-REGION up to t_end,
+and its time.
