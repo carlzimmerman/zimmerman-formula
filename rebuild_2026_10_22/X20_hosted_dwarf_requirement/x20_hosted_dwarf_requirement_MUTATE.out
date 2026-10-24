@@ -1,0 +1,26 @@
+==============================================================================================================
+X20_hosted_dwarf_requirement -- per-system rank test of the required extra (X1's 89 LG systems)   [MUTATE]
+criteria 8a6247efea + AMENDMENT_A1 (check code); kappa = 1/2 FITTED; footings never pooled; not theory closed
+==============================================================================================================
+sample: 89 systems; classes LG field 13, M31 dE 3, M31 others 5, MW classical 8, MW ultra-faint 31, bright M31 25, indiv:Antlia II 1, indiv:Canes Venatici I 1, indiv:Crater II 1, indiv:Sagittarius 1
+MUTATE: per-system rows of the B_iso and B_EFE draw arrays shuffled across systems (seed 777, per footing)
+
+--- step 0: X1 reproduced ---
+K0 FAIL max |diff| 2.27e+00, 352 mismatches over 178 system-footings x 2 baselines <= 1e-9 dex  (per-system B_iso/B_EFE median and sd reproduce x1_per_system.csv)
+K1 FAIL max |diff| 1.37e+00, 40 mismatches over 40 class-baseline-footing cells <= 1e-9  (X1 bootstrap class medians and sd reproduced)
+   [canonical] MW classical iso +0.363 EFE +0.809; MW ultra-faint iso +0.314 EFE +0.529; bright M31 iso +0.303 EFE +0.743; M31 others iso +0.869 EFE +1.979; M31 dE iso +0.565 EFE +1.146; LG field iso +0.063 EFE +0.400; indiv:Crater II iso +0.160 EFE +0.781; indiv:Antlia II iso +0.499 EFE +1.314; indiv:Canes Venatici I iso +0.327 EFE +0.561; indiv:Sagittarius iso +0.627 EFE +0.856
+   [alt] MW classical iso +0.179 EFE +0.335; MW ultra-faint iso +0.366 EFE +0.699; bright M31 iso +0.290 EFE +0.774; M31 others iso +0.226 EFE +0.633; M31 dE iso +0.523 EFE +0.853; LG field iso +0.075 EFE +0.246; indiv:Crater II iso +0.191 EFE +1.175; indiv:Antlia II iso +0.261 EFE +1.161; indiv:Canes Venatici I iso +0.071 EFE +0.072; indiv:Sagittarius iso +1.136 EFE +1.896
+
+--- checks ---
+K2 FAIL canonical: rho -0.147 z 1.3 separates False (offenders 25); alt: rho -0.017 z 0.1 separates False (offenders 26) z >= 3 and SEPARATES  (oracle V = x1_per_system.csv E column (z) and E/s_i (separation, A1) (positive control))
+K3 PASS false-alarm rate 0.000 (0/200) <= 0.05  (null random V)
+K4 PASS 0.0e+00, ties 1.1e-16 < 1e-12  (vectorised Spearman equals scipy.stats.spearmanr (with ties))
+K5 PASS max rel diff 2.2e-16 <= 1e-6  (Plummer V_esc,b closed form vs numerical integral)
+K6 PASS 0.331 GB < 1 GB  (peak RSS)
+
+==============================================================================================================
+VERDICT: UNDECIDED (stop rule)
+   reason: K0 or K1 failed
+checks: 4/7 PASS -- FAIL: K0, K1, K2
+runtime 11 s; peak RSS 0.331 GB; one thread
+kappa = 1/2 FITTED; footings never pooled; no dark-matter particle; not theory closed.

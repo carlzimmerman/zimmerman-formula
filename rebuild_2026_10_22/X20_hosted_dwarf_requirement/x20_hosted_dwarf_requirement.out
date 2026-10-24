@@ -1,0 +1,265 @@
+==============================================================================================================
+X20_hosted_dwarf_requirement -- per-system rank test of the required extra (X1's 89 LG systems)
+criteria 8a6247efea + AMENDMENT_A1 (check code); kappa = 1/2 FITTED; footings never pooled; not theory closed
+==============================================================================================================
+sample: 89 systems; classes LG field 13, M31 dE 3, M31 others 5, MW classical 8, MW ultra-faint 31, bright M31 25, indiv:Antlia II 1, indiv:Canes Venatici I 1, indiv:Crater II 1, indiv:Sagittarius 1
+
+--- step 0: X1 reproduced ---
+K0 PASS max |diff| 0.00e+00, 0 mismatches over 178 system-footings x 2 baselines <= 1e-9 dex  (per-system B_iso/B_EFE median and sd reproduce x1_per_system.csv)
+K1 PASS max |diff| 0.00e+00, 0 mismatches over 40 class-baseline-footing cells <= 1e-9  (X1 bootstrap class medians and sd reproduced)
+   [canonical] MW classical iso +0.277 EFE +0.335; MW ultra-faint iso +0.625 EFE +1.350; bright M31 iso +0.249 EFE +0.578; M31 others iso +0.644 EFE +0.990; M31 dE iso -0.086 EFE -0.086; LG field iso +0.055 EFE +0.055; indiv:Crater II iso -0.443 EFE +0.494; indiv:Antlia II iso +0.060 EFE +1.007; indiv:Canes Venatici I iso +0.471 EFE +0.593; indiv:Sagittarius iso -0.146 EFE +0.561
+   [alt] MW classical iso +0.235 EFE +0.294; MW ultra-faint iso +0.585 EFE +1.315; bright M31 iso +0.211 EFE +0.544; M31 others iso +0.587 EFE +0.934; M31 dE iso -0.113 EFE -0.113; LG field iso +0.017 EFE +0.018; indiv:Crater II iso -0.478 EFE +0.465; indiv:Antlia II iso +0.024 EFE +0.972; indiv:Canes Venatici I iso +0.429 EFE +0.552; indiv:Sagittarius iso -0.187 EFE +0.527
+
+--- checks ---
+K2 PASS canonical: rho +1.000 z 18.0 separates True (offenders 0); alt: rho +1.000 z 17.8 separates True (offenders 0) z >= 3 and SEPARATES  (oracle V = x1_per_system.csv E column (z) and E/s_i (separation, A1) (positive control))
+K3 PASS false-alarm rate 0.005 (1/200) <= 0.05  (null random V)
+K4 PASS 0.0e+00, ties 1.1e-16 < 1e-12  (vectorised Spearman equals scipy.stats.spearmanr (with ties))
+K5 PASS max rel diff 2.2e-16 <= 1e-6  (Plummer V_esc,b closed form vs numerical integral)
+K6 PASS 0.372 GB < 1 GB  (peak RSS)
+
+--- [canonical] per-system labels (HOSTED): B_iso EXTRA 32, AMBIG 15, NONE 29; B_EFE EXTRA 49, AMBIG 13, NONE 14
+
+   [canonical | HOSTED | B_iso]  var                N   rho_S     sd     z   tau_b     sd  p_perm  sep: off/nE/nN  AUC+-sd
+                                 log M*            76  -0.601  0.089   6.8  -0.429  0.068  0.0005  19/32/29  0.30+-0.07
+                                 log r_half        76  -0.601  0.089   6.8  -0.427  0.068  0.0005  18/32/29  0.28+-0.07
+                                 log Sigma         76  -0.309  0.112   2.8  -0.209  0.080  0.0095  23/32/29  0.42+-0.08
+                                 log x             76  -0.309  0.115   2.7  -0.209  0.081  0.0065  23/32/29  0.42+-0.08
+                                 log e             76  +0.212  0.111   1.9  +0.150  0.074  0.0625  21/32/29  0.63+-0.08
+                                 log x/e           76  -0.312  0.115   2.7  -0.211  0.078  0.0060  22/32/29  0.39+-0.07
+                                 log Vrel/Vesc     76  +0.527  0.099   5.3  +0.373  0.075  0.0005  21/32/29  0.65+-0.07
+                                 log q (peri)      32  -0.258  0.175   1.5  -0.177  0.123  0.1479  7/18/9  0.41+-0.13
+                                 ellipticity       74  +0.082  0.118   0.7  +0.062  0.082  0.4828  22/32/28  0.54+-0.08
+                                 log d_host        76  -0.245  0.111   2.2  -0.170  0.079  0.0270  19/32/29  0.35+-0.08
+                                 log dsig/sig      76  +0.191  0.121   1.6  +0.138  0.080  0.1024  19/32/29  0.39+-0.07
+                                 log N*            24  -0.145  0.201   0.7  -0.080  0.147  0.5072  4/10/7  0.70+-0.14
+                                 log b (binary)    76  -0.446  0.103   4.3  -0.358  0.084  0.0005  22/32/29  0.37+-0.06
+                                 binary flag       76  +0.463  0.104   4.5  +0.381  0.085  0.0005  22/32/29  0.64+-0.06
+                                 source family     76  KW H 13.78  p_perm 0.0480  z 1.98  medians collins +0.78 (n9), geha +0.53 (n18), li +0.51 (n4), martin -0.05 (n3), mcconnachie -0.06 (n5), other +0.45 (n20), tollerud +0.26 (n12), walker +0.20 (n5)
+   => PHYSICAL SELECTOR: log r_half   best P log r_half z 6.78; best M binary flag z 4.47; separating P [], M []
+
+   [canonical | HOSTED | B_EFE]  var                N   rho_S     sd     z   tau_b     sd  p_perm  sep: off/nE/nN  AUC+-sd
+                                 log M*            76  -0.746  0.074  10.1  -0.565  0.064  0.0005  8/49/14  0.19+-0.06
+                                 log r_half        76  -0.563  0.086   6.5  -0.400  0.062  0.0005  14/49/14  0.29+-0.06
+                                 log Sigma         76  -0.707  0.077   9.2  -0.505  0.061  0.0005  9/49/14  0.17+-0.05
+                                 log x             76  -0.707  0.074   9.5  -0.505  0.058  0.0005  9/49/14  0.17+-0.05
+                                 log e             76  +0.576  0.089   6.5  +0.409  0.066  0.0005  12/49/14  0.71+-0.08
+                                 log x/e           76  -0.800  0.070  11.5  -0.592  0.064  0.0005  8/49/14  0.13+-0.05
+                                 log Vrel/Vesc     76  +0.804  0.065  12.4  +0.616  0.055  0.0005  9/49/14  0.84+-0.06
+                                 log q (peri)      32  +0.350  0.177   2.0  +0.230  0.123  0.0585  1/25/1  0.76+-0.09
+                                 ellipticity       74  +0.156  0.112   1.4  +0.092  0.077  0.1694  13/47/14  0.52+-0.09
+                                 log d_host        76  -0.614  0.088   7.0  -0.439  0.067  0.0005  12/49/14  0.26+-0.07
+                                 log dsig/sig      76  +0.318  0.115   2.8  +0.210  0.079  0.0060  10/49/14  0.48+-0.12
+                                 log N*            24  -0.150  0.209   0.7  -0.101  0.150  0.4843  4/18/4  0.50+-0.17
+                                 log b (binary)    76  -0.564  0.092   6.1  -0.449  0.072  0.0005  14/49/14  0.32+-0.06
+                                 binary flag       76  +0.582  0.086   6.7  +0.478  0.070  0.0005  14/49/14  0.68+-0.06
+                                 source family     76  KW H 25.24  p_perm 0.0005  z 3.48  medians collins +1.19 (n9), geha +0.88 (n18), li +1.31 (n4), martin -0.01 (n3), mcconnachie -0.01 (n5), other +1.13 (n20), tollerud +0.67 (n12), walker +0.34 (n5)
+   => PHYSICAL SELECTOR: log Vrel/Vesc   best P log Vrel/Vesc z 12.38; best M binary flag z 6.74; separating P [], M []
+
+   [canonical | ALL | B_iso]  var                N   rho_S     sd     z   tau_b     sd  p_perm  sep: off/nE/nN  AUC+-sd
+                                 log M*            89  -0.654  0.079   8.3  -0.480  0.059  0.0005  20/34/38  0.25+-0.06
+                                 log r_half        89  -0.635  0.079   8.1  -0.451  0.060  0.0005  20/34/38  0.24+-0.06
+                                 log Sigma         89  -0.427  0.098   4.4  -0.300  0.070  0.0005  25/34/38  0.34+-0.06
+                                 log x             89  -0.427  0.097   4.4  -0.300  0.067  0.0005  25/34/38  0.34+-0.06
+                                 log e             89  +0.324  0.103   3.1  +0.231  0.072  0.0025  23/34/38  0.69+-0.06
+                                 log x/e           89  -0.424  0.099   4.3  -0.299  0.073  0.0005  24/34/38  0.31+-0.06
+                                 log Vrel/Vesc     89  +0.595  0.088   6.8  +0.434  0.063  0.0005  23/34/38  0.71+-0.06
+                                 log q (peri)      33  -0.270  0.172   1.6  -0.186  0.115  0.1319  7/19/9  0.42+-0.12
+                                 ellipticity       87  +0.028  0.108   0.3  +0.021  0.075  0.7981  30/34/37  0.49+-0.07
+                                 log d_host        89  -0.348  0.097   3.6  -0.244  0.066  0.0020  21/34/38  0.30+-0.06
+                                 log dsig/sig      89  +0.273  0.108   2.5  +0.194  0.075  0.0130  28/34/38  0.46+-0.07
+                                 log N*            25  -0.147  0.203   0.7  -0.080  0.143  0.4963  4/11/7  0.70+-0.13
+                                 log b (binary)    89  -0.491  0.091   5.4  -0.395  0.073  0.0005  24/34/38  0.34+-0.06
+                                 binary flag       89  +0.504  0.095   5.3  +0.414  0.076  0.0005  24/34/38  0.66+-0.06
+                                 source family     89  KW H 22.68  p_perm 0.0025  z 3.02  medians collins +0.78 (n9), geha +0.50 (n19), kirby -0.00 (n8), li +0.51 (n4), martin -0.05 (n3), mcconnachie -0.06 (n5), other +0.36 (n24), tollerud +0.26 (n12), walker +0.20 (n5)
+   => PHYSICAL SELECTOR: log M*   best P log M* z 8.29; best M log b (binary) z 5.38; separating P [], M []
+
+   [canonical | ALL | B_EFE]  var                N   rho_S     sd     z   tau_b     sd  p_perm  sep: off/nE/nN  AUC+-sd
+                                 log M*            89  -0.807  0.058  13.9  -0.623  0.054  0.0005  11/51/23  0.14+-0.05
+                                 log r_half        89  -0.595  0.079   7.6  -0.427  0.061  0.0005  21/51/23  0.25+-0.05
+                                 log Sigma         89  -0.794  0.059  13.6  -0.586  0.047  0.0005  12/51/23  0.12+-0.04
+                                 log x             89  -0.794  0.058  13.7  -0.586  0.051  0.0005  12/51/23  0.12+-0.04
+                                 log e             89  +0.676  0.072   9.3  +0.495  0.059  0.0005  14/51/23  0.81+-0.06
+                                 log x/e           89  -0.857  0.051  16.7  -0.652  0.045  0.0005  9/51/23  0.09+-0.04
+                                 log Vrel/Vesc     89  +0.857  0.053  16.1  +0.675  0.049  0.0005  11/51/23  0.88+-0.04
+                                 log q (peri)      33  +0.372  0.172   2.2  +0.239  0.123  0.0370  1/26/1  0.73+-0.09
+                                 ellipticity       87  +0.090  0.105   0.9  +0.051  0.071  0.4138  22/49/23  0.46+-0.08
+                                 log d_host        89  -0.701  0.070  10.1  -0.516  0.054  0.0005  14/51/23  0.18+-0.06
+                                 log dsig/sig      89  +0.434  0.097   4.5  +0.289  0.065  0.0005  19/51/23  0.58+-0.09
+                                 log N*            25  -0.180  0.202   0.9  -0.133  0.139  0.3743  4/19/4  0.50+-0.19
+                                 log b (binary)    89  -0.625  0.076   8.2  -0.499  0.063  0.0005  23/51/23  0.29+-0.05
+                                 binary flag       89  +0.638  0.078   8.2  +0.523  0.061  0.0005  23/51/23  0.71+-0.05
+                                 source family     89  KW H 36.28  p_perm 0.0005  z 3.48  medians collins +1.19 (n9), geha +0.88 (n19), kirby -0.00 (n8), li +1.31 (n4), martin -0.01 (n3), mcconnachie -0.01 (n5), other +1.02 (n24), tollerud +0.67 (n12), walker +0.34 (n5)
+   => PHYSICAL SELECTOR: log x/e   best P log x/e z 16.69; best M log b (binary) z 8.25; separating P [], M []
+
+--- [alt] per-system labels (HOSTED): B_iso EXTRA 30, AMBIG 14, NONE 32; B_EFE EXTRA 47, AMBIG 13, NONE 16
+
+   [alt | HOSTED | B_iso]  var                N   rho_S     sd     z   tau_b     sd  p_perm  sep: off/nE/nN  AUC+-sd
+                                 log M*            76  -0.600  0.090   6.7  -0.428  0.068  0.0005  19/30/32  0.27+-0.06
+                                 log r_half        76  -0.600  0.092   6.5  -0.425  0.069  0.0005  18/30/32  0.25+-0.06
+                                 log Sigma         76  -0.313  0.111   2.8  -0.213  0.076  0.0050  23/30/32  0.41+-0.07
+                                 log x             76  -0.313  0.112   2.8  -0.213  0.080  0.0065  23/30/32  0.41+-0.07
+                                 log e             76  +0.218  0.113   1.9  +0.153  0.075  0.0630  21/30/32  0.63+-0.07
+                                 log x/e           76  -0.318  0.112   2.8  -0.217  0.080  0.0055  22/30/32  0.38+-0.07
+                                 log Vrel/Vesc     76  +0.530  0.096   5.5  +0.374  0.071  0.0005  21/30/32  0.68+-0.07
+                                 log q (peri)      32  -0.271  0.175   1.6  -0.190  0.125  0.1379  7/18/9  0.40+-0.13
+                                 ellipticity       74  +0.084  0.122   0.7  +0.062  0.083  0.4688  24/30/31  0.55+-0.07
+                                 log d_host        76  -0.251  0.112   2.2  -0.174  0.077  0.0300  18/30/32  0.33+-0.07
+                                 log dsig/sig      76  +0.188  0.120   1.6  +0.139  0.082  0.1039  22/30/32  0.40+-0.07
+                                 log N*            24  -0.126  0.201   0.6  -0.065  0.136  0.5752  4/10/7  0.70+-0.14
+                                 log b (binary)    76  -0.445  0.104   4.3  -0.356  0.081  0.0010  21/30/32  0.34+-0.06
+                                 binary flag       76  +0.462  0.101   4.6  +0.380  0.084  0.0005  21/30/32  0.66+-0.06
+                                 source family     76  KW H 13.59  p_perm 0.0420  z 2.03  medians collins +0.70 (n9), geha +0.50 (n18), li +0.48 (n4), martin -0.08 (n3), mcconnachie -0.08 (n5), other +0.41 (n20), tollerud +0.22 (n12), walker +0.16 (n5)
+   => PHYSICAL SELECTOR: log M*   best P log M* z 6.65; best M binary flag z 4.58; separating P [], M []
+
+   [alt | HOSTED | B_EFE]  var                N   rho_S     sd     z   tau_b     sd  p_perm  sep: off/nE/nN  AUC+-sd
+                                 log M*            76  -0.747  0.072  10.3  -0.566  0.061  0.0005  9/47/16  0.19+-0.06
+                                 log r_half        76  -0.561  0.088   6.4  -0.400  0.066  0.0005  16/47/16  0.28+-0.06
+                                 log Sigma         76  -0.710  0.074   9.6  -0.507  0.059  0.0005  11/47/16  0.15+-0.05
+                                 log x             76  -0.710  0.076   9.4  -0.507  0.062  0.0005  11/47/16  0.15+-0.05
+                                 log e             76  +0.575  0.089   6.5  +0.411  0.068  0.0005  14/47/16  0.71+-0.07
+                                 log x/e           76  -0.802  0.066  12.1  -0.596  0.057  0.0005  8/47/16  0.12+-0.05
+                                 log Vrel/Vesc     76  +0.804  0.067  11.9  +0.615  0.059  0.0005  10/47/16  0.85+-0.05
+                                 log q (peri)      32  +0.351  0.182   1.9  +0.234  0.129  0.0580  1/25/1  0.76+-0.09
+                                 ellipticity       74  +0.157  0.113   1.4  +0.091  0.075  0.1784  15/45/16  0.57+-0.09
+                                 log d_host        76  -0.614  0.086   7.1  -0.440  0.067  0.0005  14/47/16  0.26+-0.07
+                                 log dsig/sig      76  +0.317  0.114   2.8  +0.210  0.083  0.0050  12/47/16  0.48+-0.11
+                                 log N*            24  -0.140  0.208   0.7  -0.094  0.154  0.5117  4/17/4  0.53+-0.19
+                                 log b (binary)    76  -0.561  0.092   6.1  -0.448  0.072  0.0005  16/47/16  0.31+-0.06
+                                 binary flag       76  +0.578  0.090   6.4  +0.475  0.073  0.0005  16/47/16  0.69+-0.06
+                                 source family     76  KW H 25.12  p_perm 0.0010  z 3.29  medians collins +1.13 (n9), geha +0.85 (n18), li +1.30 (n4), martin -0.03 (n3), mcconnachie -0.04 (n5), other +1.10 (n20), tollerud +0.63 (n12), walker +0.29 (n5)
+   => PHYSICAL SELECTOR: log x/e   best P log x/e z 12.13; best M binary flag z 6.42; separating P [], M []
+
+   [alt | ALL | B_iso]  var                N   rho_S     sd     z   tau_b     sd  p_perm  sep: off/nE/nN  AUC+-sd
+                                 log M*            89  -0.652  0.079   8.2  -0.478  0.061  0.0005  20/32/41  0.22+-0.05
+                                 log r_half        89  -0.633  0.079   8.0  -0.448  0.061  0.0005  19/32/41  0.22+-0.05
+                                 log Sigma         89  -0.428  0.101   4.2  -0.303  0.069  0.0005  25/32/41  0.34+-0.06
+                                 log x             89  -0.428  0.100   4.3  -0.303  0.069  0.0005  25/32/41  0.34+-0.06
+                                 log e             89  +0.327  0.102   3.2  +0.233  0.072  0.0035  23/32/41  0.68+-0.06
+                                 log x/e           89  -0.427  0.100   4.3  -0.304  0.069  0.0005  24/32/41  0.31+-0.06
+                                 log Vrel/Vesc     89  +0.596  0.087   6.9  +0.434  0.067  0.0005  23/32/41  0.73+-0.05
+                                 log q (peri)      33  -0.283  0.173   1.6  -0.197  0.123  0.1234  7/19/9  0.42+-0.12
+                                 ellipticity       87  +0.028  0.109   0.3  +0.019  0.075  0.7976  31/32/40  0.50+-0.07
+                                 log d_host        89  -0.351  0.098   3.6  -0.247  0.066  0.0020  20/32/41  0.29+-0.06
+                                 log dsig/sig      89  +0.270  0.109   2.5  +0.195  0.078  0.0080  31/32/41  0.46+-0.06
+                                 log N*            25  -0.128  0.202   0.6  -0.067  0.152  0.5382  4/11/7  0.70+-0.13
+                                 log b (binary)    89  -0.489  0.094   5.2  -0.393  0.074  0.0005  23/32/41  0.33+-0.05
+                                 binary flag       89  +0.502  0.093   5.4  +0.412  0.078  0.0005  23/32/41  0.67+-0.05
+                                 source family     89  KW H 22.39  p_perm 0.0010  z 3.29  medians collins +0.70 (n9), geha +0.46 (n19), kirby -0.04 (n8), li +0.48 (n4), martin -0.08 (n3), mcconnachie -0.08 (n5), other +0.32 (n24), tollerud +0.22 (n12), walker +0.16 (n5)
+   => PHYSICAL SELECTOR: log M*   best P log M* z 8.21; best M binary flag z 5.39; separating P [], M []
+
+   [alt | ALL | B_EFE]  var                N   rho_S     sd     z   tau_b     sd  p_perm  sep: off/nE/nN  AUC+-sd
+                                 log M*            89  -0.808  0.057  14.1  -0.625  0.052  0.0005  12/49/25  0.14+-0.04
+                                 log r_half        89  -0.593  0.078   7.6  -0.427  0.059  0.0005  21/49/25  0.24+-0.06
+                                 log Sigma         89  -0.797  0.056  14.3  -0.588  0.048  0.0005  13/49/25  0.12+-0.04
+                                 log x             89  -0.797  0.057  13.9  -0.588  0.047  0.0005  13/49/25  0.12+-0.04
+                                 log e             89  +0.675  0.073   9.2  +0.496  0.058  0.0005  16/49/25  0.79+-0.06
+                                 log x/e           89  -0.859  0.050  17.2  -0.656  0.048  0.0005  10/49/25  0.09+-0.03
+                                 log Vrel/Vesc     89  +0.857  0.052  16.4  +0.674  0.051  0.0005  12/49/25  0.89+-0.04
+                                 log q (peri)      33  +0.373  0.172   2.2  +0.242  0.122  0.0360  1/26/1  0.73+-0.09
+                                 ellipticity       87  +0.089  0.105   0.8  +0.050  0.069  0.4383  24/47/25  0.50+-0.07
+                                 log d_host        89  -0.702  0.070  10.1  -0.517  0.056  0.0005  16/49/25  0.18+-0.05
+                                 log dsig/sig      89  +0.435  0.097   4.5  +0.291  0.070  0.0005  21/49/25  0.57+-0.08
+                                 log N*            25  -0.171  0.204   0.8  -0.127  0.153  0.4273  4/18/4  0.53+-0.18
+                                 log b (binary)    89  -0.622  0.078   7.9  -0.497  0.061  0.0005  25/49/25  0.28+-0.05
+                                 binary flag       89  +0.634  0.076   8.3  +0.521  0.064  0.0005  25/49/25  0.72+-0.05
+                                 source family     89  KW H 36.16  p_perm 0.0005  z 3.48  medians collins +1.13 (n9), geha +0.84 (n19), kirby -0.04 (n8), li +1.30 (n4), martin -0.03 (n3), mcconnachie -0.04 (n5), other +0.99 (n24), tollerud +0.63 (n12), walker +0.29 (n5)
+   => PHYSICAL SELECTOR: log x/e   best P log x/e z 17.21; best M binary flag z 8.32; separating P [], M []
+
+--- collinearity on the verdict cell (HOSTED x B_iso) ---
+   [canonical] best P log r_half vs best M binary flag (N 76): mutual rho -0.833; partial P|M -0.439 +- 0.115 (z 3.8); partial M|P -0.085 +- 0.128 (z 0.7); CONFOUNDED False
+   [alt] best P log M* vs best M binary flag (N 76): mutual rho -0.866; partial P|M -0.452 +- 0.110 (z 4.1); partial M|P -0.145 +- 0.143 (z 1.0); CONFOUNDED False
+   reported: every P against M1 (log dsig/sig), HOSTED x B_iso:
+   [canonical] log M*         N 76 mutual -0.61  P|M1 -0.622+-0.092 (z 6.7)  M1|P -0.275+-0.130 (z 2.1)
+   [canonical] log r_half     N 76 mutual -0.50  P|M1 -0.595+-0.091 (z 6.6)  M1|P -0.157+-0.131 (z 1.2)
+   [canonical] log Sigma      N 76 mutual -0.40  P|M1 -0.259+-0.117 (z 2.2)  M1|P +0.076+-0.135 (z 0.6)
+   [canonical] log x          N 76 mutual -0.40  P|M1 -0.259+-0.117 (z 2.2)  M1|P +0.076+-0.135 (z 0.6)
+   [canonical] log e          N 76 mutual +0.10  P|M1 +0.198+-0.115 (z 1.7)  M1|P +0.174+-0.129 (z 1.3)
+   [canonical] log x/e        N 76 mutual -0.35  P|M1 -0.266+-0.115 (z 2.3)  M1|P +0.090+-0.132 (z 0.7)
+   [canonical] log Vrel/Vesc  N 76 mutual +0.58  P|M1 +0.521+-0.104 (z 5.0)  M1|P -0.168+-0.136 (z 1.2)
+   [canonical] log q (peri)   N 32 mutual -0.21  P|M1 -0.267+-0.168 (z 1.6)  M1|P -0.071+-0.185 (z 0.4)
+   [canonical] ellipticity    N 74 mutual +0.02  P|M1 +0.081+-0.122 (z 0.7)  M1|P +0.176+-0.126 (z 1.4)
+   [canonical] log d_host     N 76 mutual -0.08  P|M1 -0.236+-0.112 (z 2.1)  M1|P +0.178+-0.129 (z 1.4)
+   [alt] log M*         N 76 mutual -0.61  P|M1 -0.623+-0.091 (z 6.8)  M1|P -0.278+-0.130 (z 2.1)
+   [alt] log r_half     N 76 mutual -0.50  P|M1 -0.595+-0.090 (z 6.6)  M1|P -0.160+-0.131 (z 1.2)
+   [alt] log Sigma      N 76 mutual -0.40  P|M1 -0.264+-0.117 (z 2.3)  M1|P +0.071+-0.135 (z 0.5)
+   [alt] log x          N 76 mutual -0.40  P|M1 -0.264+-0.117 (z 2.3)  M1|P +0.071+-0.135 (z 0.5)
+   [alt] log e          N 76 mutual +0.10  P|M1 +0.203+-0.115 (z 1.8)  M1|P +0.171+-0.129 (z 1.3)
+   [alt] log x/e        N 76 mutual -0.35  P|M1 -0.274+-0.115 (z 2.4)  M1|P +0.085+-0.132 (z 0.6)
+   [alt] log Vrel/Vesc  N 76 mutual +0.58  P|M1 +0.527+-0.103 (z 5.1)  M1|P -0.176+-0.136 (z 1.3)
+   [alt] log q (peri)   N 32 mutual -0.22  P|M1 -0.277+-0.164 (z 1.7)  M1|P -0.056+-0.184 (z 0.3)
+   [alt] ellipticity    N 74 mutual +0.02  P|M1 +0.082+-0.123 (z 0.7)  M1|P +0.173+-0.126 (z 1.4)
+   [alt] log d_host     N 76 mutual -0.08  P|M1 -0.241+-0.112 (z 2.2)  M1|P +0.175+-0.128 (z 1.4)
+
+--- baseline dependence (HOSTED) ---
+   [canonical] median E: B_iso +0.395, B_EFE +0.851; rho(E_EFE - E_iso, log e) +0.702; 25 label changes:
+      Antlia II                NONE   -> EXTRA   (E_iso +0.06, E_EFE +1.01)
+      Bootes II                NONE   -> EXTRA   (E_iso +0.30, E_EFE +1.20)
+      Bootes III               NONE   -> AMBIG   (E_iso -0.39, E_EFE +0.99)
+      Carina II                AMBIG  -> EXTRA   (E_iso +0.46, E_EFE +1.62)
+      Crater II                NONE   -> EXTRA   (E_iso -0.44, E_EFE +0.50)
+      Grus I                   NONE   -> EXTRA   (E_iso +0.27, E_EFE +1.03)
+      Hydrus I                 AMBIG  -> EXTRA   (E_iso +0.25, E_EFE +1.15)
+      Leo IV                   NONE   -> EXTRA   (E_iso +0.16, E_EFE +0.63)
+      Leo VI                   NONE   -> AMBIG   (E_iso +0.49, E_EFE +1.25)
+      Pegasus III              NONE   -> AMBIG   (E_iso +0.38, E_EFE +0.77)
+      Pegasus IV               AMBIG  -> EXTRA   (E_iso +0.50, E_EFE +0.95)
+      Sagittarius              NONE   -> EXTRA   (E_iso -0.15, E_EFE +0.56)
+      Tucana V                 NONE   -> AMBIG   (E_iso +0.25, E_EFE +1.24)
+      Andromeda I              AMBIG  -> EXTRA   (E_iso +0.19, E_EFE +0.82)
+      Andromeda VII            NONE   -> AMBIG   (E_iso +0.10, E_EFE +0.12)
+      Andromeda XI             AMBIG  -> EXTRA   (E_iso +0.79, E_EFE +1.26)
+      Andromeda XIV            NONE   -> AMBIG   (E_iso +0.17, E_EFE +0.46)
+      Andromeda XV             NONE   -> AMBIG   (E_iso -0.01, E_EFE +0.44)
+      Andromeda XIX            AMBIG  -> EXTRA   (E_iso +0.24, E_EFE +1.22)
+      Andromeda XX             AMBIG  -> EXTRA   (E_iso +0.78, E_EFE +1.00)
+      Andromeda XXI            AMBIG  -> EXTRA   (E_iso +0.24, E_EFE +0.95)
+      Andromeda XXIII          NONE   -> EXTRA   (E_iso +0.16, E_EFE +0.78)
+      Andromeda XXV            NONE   -> AMBIG   (E_iso -0.23, E_EFE +0.49)
+      Andromeda XXIX           AMBIG  -> EXTRA   (E_iso +0.33, E_EFE +0.56)
+      Cassiopeia II            AMBIG  -> EXTRA   (E_iso +1.05, E_EFE +1.19)
+   [alt] median E: B_iso +0.352, B_EFE +0.810; rho(E_EFE - E_iso, log e) +0.702; 24 label changes:
+      Antlia II                NONE   -> EXTRA   (E_iso +0.02, E_EFE +0.97)
+      Bootes II                NONE   -> EXTRA   (E_iso +0.27, E_EFE +1.16)
+      Bootes III               NONE   -> AMBIG   (E_iso -0.42, E_EFE +0.98)
+      Carina                   NONE   -> AMBIG   (E_iso +0.15, E_EFE +0.29)
+      Carina II                AMBIG  -> EXTRA   (E_iso +0.44, E_EFE +1.61)
+      Crater II                NONE   -> EXTRA   (E_iso -0.48, E_EFE +0.46)
+      Grus I                   NONE   -> EXTRA   (E_iso +0.24, E_EFE +1.00)
+      Hydrus I                 AMBIG  -> EXTRA   (E_iso +0.21, E_EFE +1.12)
+      Leo IV                   NONE   -> EXTRA   (E_iso +0.12, E_EFE +0.59)
+      Leo VI                   NONE   -> AMBIG   (E_iso +0.49, E_EFE +1.23)
+      Pegasus III              NONE   -> AMBIG   (E_iso +0.33, E_EFE +0.72)
+      Pegasus IV               AMBIG  -> EXTRA   (E_iso +0.46, E_EFE +0.90)
+      Sagittarius              NONE   -> EXTRA   (E_iso -0.19, E_EFE +0.53)
+      Tucana V                 NONE   -> AMBIG   (E_iso +0.24, E_EFE +1.24)
+      Andromeda I              NONE   -> EXTRA   (E_iso +0.16, E_EFE +0.79)
+      Andromeda X              AMBIG  -> EXTRA   (E_iso +0.42, E_EFE +0.73)
+      Andromeda XI             AMBIG  -> EXTRA   (E_iso +0.75, E_EFE +1.20)
+      Andromeda XIV            NONE   -> AMBIG   (E_iso +0.13, E_EFE +0.42)
+      Andromeda XIX            NONE   -> EXTRA   (E_iso +0.19, E_EFE +1.18)
+      Andromeda XXI            AMBIG  -> EXTRA   (E_iso +0.19, E_EFE +0.91)
+      Andromeda XXIII          NONE   -> EXTRA   (E_iso +0.12, E_EFE +0.75)
+      Andromeda XXV            NONE   -> AMBIG   (E_iso -0.27, E_EFE +0.45)
+      Andromeda XXIX           AMBIG  -> EXTRA   (E_iso +0.29, E_EFE +0.52)
+      Cassiopeia II            AMBIG  -> EXTRA   (E_iso +0.99, E_EFE +1.13)
+
+--- named systems (canonical / alt; E dex, Z) ---
+   Crater II          iso -0.44 (Z -2.9) EFE +0.50 (Z +2.4) / iso -0.48 (Z -3.2) EFE +0.46 (Z +2.3)  | log M* 5.51 log x -3.91 log e -1.08 dsig/sig 0.15 N* None
+   Antlia II          iso +0.06 (Z +0.6) EFE +1.01 (Z +6.0) / iso +0.02 (Z +0.2) EFE +0.97 (Z +5.8)  | log M* 6.13 log x -4.00 log e -1.12 dsig/sig 0.06 N* None
+   Canes Venatici I   iso +0.47 (Z +5.2) EFE +0.59 (Z +4.5) / iso +0.43 (Z +4.7) EFE +0.55 (Z +4.2)  | log M* 5.73 log x -2.68 log e -1.34 dsig/sig 0.06 N* None
+   Sagittarius        iso -0.15 (Z -1.5) EFE +0.56 (Z +3.4) / iso -0.19 (Z -1.9) EFE +0.53 (Z +3.2)  | log M* 7.63 log x -2.14 log e -0.26 dsig/sig 0.06 N* None
+   Fornax             iso -0.09 (Z -1.1) EFE -0.08 (Z -0.9) / iso -0.13 (Z -1.6) EFE -0.12 (Z -1.3)  | log M* 7.59 log x -1.47 log e -1.18 dsig/sig 0.02 N* None
+   Leo I              iso -0.03 (Z -0.3) EFE -0.03 (Z -0.3) / iso -0.06 (Z -0.7) EFE -0.06 (Z -0.7)  | log M* 6.96 log x -1.14 log e -1.44 dsig/sig 0.03 N* 686
+   Draco              iso +0.63 (Z +7.6) EFE +0.86 (Z +6.2) / iso +0.59 (Z +7.2) EFE +0.82 (Z +5.9)  | log M* 5.78 log x -2.17 log e -0.93 dsig/sig 0.03 N* 995
+   Ursa Minor         iso +0.57 (Z +6.7) EFE +0.94 (Z +6.2) / iso +0.53 (Z +6.3) EFE +0.91 (Z +6.0)  | log M* 5.78 log x -2.40 log e -0.87 dsig/sig 0.03 N* 827
+   Sextans            iso +0.50 (Z +3.1) EFE +1.11 (Z +5.3) / iso +0.47 (Z +2.8) EFE +1.08 (Z +5.0)  | log M* 5.72 log x -3.03 log e -0.97 dsig/sig 0.16 N* None
+   Segue 1            iso +1.25 (Z +5.4) EFE +2.36 (Z +8.5) / iso +1.21 (Z +5.4) EFE +2.32 (Z +8.6)  | log M* 2.75 log x -3.21 log e -0.45 dsig/sig 0.23 N* 53
+   Willman 1          iso +1.22 (Z +4.1) EFE +1.94 (Z +5.8) / iso +1.16 (Z +3.7) EFE +1.88 (Z +5.4)  | log M* 3.25 log x -2.73 log e -0.64 dsig/sig 0.30 N* None
+   Bootes I           iso +0.32 (Z +2.9) EFE +1.11 (Z +6.5) / iso +0.28 (Z +2.6) EFE +1.07 (Z +6.3)  | log M* 4.64 log x -3.15 log e -0.82 dsig/sig 0.09 N* None
+
+==============================================================================================================
+VERDICT: UNDECIDED  [EFE-DIFFERS (canonical: B_EFE gives PHYSICAL SELECTOR P6_logVrel_Vesc); EFE-DIFFERS (alt: B_EFE gives PHYSICAL SELECTOR P5_logx_over_e); ALL-DIFFERS (canonical: ALL gives PHYSICAL SELECTOR P0_logMstar)]
+   reason: footings differ: canonical PHYSICAL SELECTOR P1_logrh, alt PHYSICAL SELECTOR P0_logMstar
+checks: 7/7 PASS
+runtime 30 s; peak RSS 0.372 GB; one thread
+kappa = 1/2 FITTED; footings never pooled; no dark-matter particle; not theory closed.
