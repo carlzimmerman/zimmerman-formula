@@ -459,6 +459,7 @@ LIN) makes L4 FAIL, as required.
 |---|---|---|---|---|---|
 | 256³ | 0.820 / 0.285 / 0.254 / 0.260 | −0.058 / −0.047 | does not restore growth (KX sits below LIN) | NOT DIAGNOSTIC: N_kept 0 at k_hi 2.0 h/Mpc; the scorer's own S0 reproduces CFG596 (+68.73) | 4/4; MUTATE L4 FAIL |
 | 384³ | 0.821 / 0.286 / 0.254 / 0.261 | −0.059 / −0.047 | does not restore growth (KX below LIN); converged with 256³ to ≤ 0.0005 in ρ_NL | NOT DIAGNOSTIC: N_kept 0 even at k_hi 3.0 h/Mpc; only the 512³ production can be scored against KiDS | 4/4; MUTATE L4 FAIL |
+| 384³ LOB-IC (Q6's Boltzmann state at z_i 199; control S0-384) | LIN 0.01347 / KX-can 0.01345 (S0 0.821) | −0.0000 (−1.7e-5) | from the Boltzmann linear state the khronon barely grows (σ₈ ≈ 1.6 % of the dust limit) and the nonlinear term does nothing (amplitudes stay linear) | not scored (amplitude far below the KiDS range) | in the 4/4 run; L1 now counts the 2 LOB cells (10/10 converged); peak RSS 14.1 / 18.7 GB under the queue |
 | 128³ (NSEED 512) | queued | | | | |
 
 KX halos at 256³ (reported only, resolution-limited: cell 0.57 Mpc): 4 / 7 galaxy-class halos, median dust/baryon in

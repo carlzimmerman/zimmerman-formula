@@ -93,6 +93,7 @@ for N in (128, 256, 384):
         tLL, LL = cell("LIN", N, ic="LOB"); tKL, KL = cell("KX", N, ic="LOB", foot="can")
         if LL is not None and KL is not None:
             rung["LIN_LOB"], rung["KX_can_LOB"] = stats(LL), stats(KL)
+            all_conv += [LL["nonconverged_calls"] == 0, KL["nonconverged_calls"] == 0]
             den = s0n["sigma8_pm"] - rung["LIN_LOB"]["sigma8_pm"]
             rho = (rung["KX_can_LOB"]["sigma8_pm"] - rung["LIN_LOB"]["sigma8_pm"]) / den if den != 0 else float("nan")
             rung["rho_NL_LOB_can"] = rho; rung["reading_LOB_can"] = reading(rho); rho_ok.append((N, "LOB_can", rho))

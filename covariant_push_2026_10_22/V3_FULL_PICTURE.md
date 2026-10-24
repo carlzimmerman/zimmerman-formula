@@ -107,7 +107,8 @@ NUM:
   z ≈ 35–78. Reaching 0.95 needs μ_K 2.4e3–5.7e4 times larger than galaxies allow (X4).
 - The nonlinear J_x term does not restore it. L1's ladder gives ρ_NL −0.053 at 128³, −0.058 / −0.047 at 256³ and
   −0.059 / −0.047 at 384³: converged, with KX below LIN. This is indicative; the 512³ production decides, and it is the
-  only rung KiDS can score.
+  only rung KiDS can score. Starting instead from Q6's Boltzmann state (LOB-IC, 384³), σ₈ is only 0.0135, about 1.6 % of the dust limit,
+  and the nonlinear term changes nothing (ρ_NL ≈ 0).
 
 ### 4.3 Hosted systems: the dust has no weight in a host
 
@@ -240,7 +241,7 @@ No such sector is in the record, and no rule-compatible framework in the literat
 | item | what decides it | status |
 |---|---|---|
 | Switched stiffness at the interface and in the statics | X3 (`rebuild_2026_10_22/X3_switched_stiffness`) | **WELL-POSED + STATICS UNCHANGED** (qualifiers in §4.7); 2D/3D evolution and the moving-interface proof remain open |
-| Nonlinear growth (v3's one dynamical escape) | L1 512³ production | ladder converged at 256³ / 384³: does not restore growth (ρ_NL ≈ −0.05, indicative); the 384³ LOB-IC pair is running; the 512³ cells are queued |
+| Nonlinear growth (v3's one dynamical escape) | L1 512³ production | ladder converged at 256³ / 384³: does not restore growth (ρ_NL ≈ −0.05, indicative); LOB-IC 384³: σ₈ 0.0135, ρ_NL ≈ 0; the 512³ cells are queued |
 | Dynamical state of moving subsystems | H5 A2–A5; lane O1 (H4/V1 coordinator) | **OPEN.** In the literal single-stream reading, a system moving at V through its host's held khronon is not in the static branch: outside r_cap = 2GM_b/V² (the Sun ≈ 0.03 AU, globulars ≤ 0.25 pc) its interior sees ψ → φ_N. This is the dynamical form of U1's T3 (hosted ⇒ Newtonian). It questions the static AQUAL solutions (D10, S1, X1_hosted_recount) as the dynamical state of hosted systems. It may also make L★ unnecessary (velocity screening plus 'ownership by formation'), which O1 is testing |
 | Soft-side caustics in v3s | review `reviews/v3s_soft_side_caustics_2026_10_23/` (b362f12477) | **OPEN: not established, not excluded.** A soft khronon element is a test particle in the difference field Δg_b plus a WKB self term, and its density sign is carried with it, so it never gets γ_L pressure. The frozen reading shell-crosses in 6 of 12 cases (constant-velocity orbit, ~26 kpc from a galaxy, earliest t₀ + 0.64 Gyr), but every crossing element passes through an adiabatic halo region where the frozen-F premise fails. Elements that stay in the valid region never cross (deepest J = 0.35). Deciding it needs a self-consistent khronon-fluid code: Lagrangian flow plus the nonlinear Gauss law ∇·P(∇Ξ) = ρ_τ, axisymmetric |
 | Cluster light/heavy split | per-tercile physics; a selector the theory lacks (CFG939) | data result (X2); no mechanism |
