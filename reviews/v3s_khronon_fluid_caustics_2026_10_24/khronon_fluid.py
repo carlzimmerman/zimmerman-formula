@@ -342,6 +342,12 @@ class Run:
         self.eq_check = float(np.max(np.hypot(self.acc[0][~self.frozen], self.acc[1][~self.frozen])))
         gR, gz = g.cell_grad(phi, self.bc)
         self.eq_scale = float(np.max(np.hypot(gR, gz).ravel()[~self.frozen]))
+        if self.a.mode != "frozen":
+            nR_ = interp(g, self.noL[0], self.Rp, self.zp)
+            nz_ = interp(g, self.noL[1], self.Rp, self.zp)
+            self.eq_noL = float(np.max(np.hypot(nR_, nz_)[~self.frozen]))
+        else:
+            self.eq_noL = self.eq_check
 
     def accel(self, t):
         g = self.grid
@@ -363,6 +369,8 @@ class Run:
             qR, qz = np.gradient(rp, g.h, edge_order=1)
             aR = pR - fR - GAMMA_L * qR
             az = pz - fz - GAMMA_L * qz
+            self.noL = (pR - fR, pz - fz)
+            self.gauss_worst = max(getattr(self, "gauss_worst", 0.0), self.gauss_res)
         AR = interp(g, aR, self.Rp, self.zp)
         Az = interp(g, az, self.Rp, self.zp)
         AR[self.frozen] = 0.0
@@ -480,6 +488,7 @@ def main():
     d_end = [x for x in run.diag if x["t"] <= run.t_end + 1e-9]
     out = {"args": vars(a), "t_i": run.ti, "t_end": run.t_end, "t_ext": run.t_ext, "aqual": run.aqual_info,
            "eq_max_acc": run.eq_check, "eq_scale": run.eq_scale, "eq_rel": run.eq_check / run.eq_scale,
+           "eq_rel_without_gammaL": run.eq_noL / run.eq_scale, "gauss_worst_residual": float(getattr(run, "gauss_worst", 0.0)),
            "n_soft": int(((run.rho_tau0 < 0)).sum()), "softJmin_to_t_end": min(x["softJmin"] for x in d_end),
            "t_softJmin": min(d_end, key=lambda x: x["softJmin"])["t"], "stiffJmin_to_t_end": min(x["stiffJmin"] for x in d_end),
            "softJmin_to_ext": min(x["softJmin"] for x in run.diag), "first_cross": run.first_cross,
