@@ -195,3 +195,31 @@ Splits, edges, thresholds, R, draw counts and the decision rule are fixed above.
 scan, no new physics. A pattern seen in the numbers that is not one of §3–§6 is reported as an observation, never graded.
 
 ## AMENDMENTS (append-only; each labelled PRE-RESULT or POST-RESULT)
+
+- **A1 (POST-RESULT for X3 only; memory handling, no statistic changed).** The first `x11_extract_extra.py` run passed X1 and
+  X2 and printed the class edges, then failed X3 at 1.124 GB (macOS keeps freed 1–8 MB temporaries resident; X7 A3). The
+  script now re-executes itself with `MallocMediumZone=0`, as X7's measurement does. The rerun passed X1–X3 (0.710 GB) with
+  every printed edge, weight fraction and count slope identical (first run's output kept in session scratch). The edges
+  were computed from the catalogue alone; no shear statistic of this lane existed at that point.
+- **A2 (PRE-RESULT, implementation; written before any split, null or E-mode number).**
+  (i) `x11_common.call()` returns right after the h 0.70 count when a random is rejected (`min070`), and without classes
+  reads only the six columns the sums need; the accepted calls and every draw are unchanged (M1, M2, R1 verify). The first
+  full `x11_measure.py` run was stopped after ~2 minutes (progress lines only, no number) to take this change.
+  (ii) `x11_randoms.py` takes > 30 min in one run (5-cluster MUTATE timing), so it runs in two parts (clusters 0–162 and
+  163–325); part 1 saves its arrays and the numpy generator state to scratch and part 2 resumes with it (the same draws as
+  one run). R1 runs in part 1, R2 in part 2, R3 in both.
+  (iii) Step-0 extractor E1 compares against X7's earlier scratch cache (`x7cache`), as §1 says; S0-1 checks the committed
+  sha256 independently.
+  (iv) For a source variable, the clean subset of §7 (if ever needed) is the GLS combination of its clean classes
+  (tangential: paired-bootstrap covariance; cross: rotation covariance), because the per-random per-class sums needed for
+  an exact union statistic are not stored; cluster-variable clean subsets are exact (X7's `summ` on the union).
+- **A3 (POST-RESULT, implementation bug; no threshold or statistic changed).** A development run of `x11_analysis.py` with a
+  stub extended-random file (all other inputs final) showed the straddle2 and aniso2 splits with a single class: 14 of the
+  326 clusters have no MID source at h 0.672, so f_main and m2 are undefined (NaN) there and `np.median` returned NaN. The
+  medians are now taken over the defined values (`nanmedian`, as §4 intends) and the 14 clusters, which carry zero MID
+  weight, go to class 0. No other split, null or E-mode number changed between the development run and the final run except
+  through the real extended randoms.
+- **A4 (POST-RESULT, reporting only, no verdict weight).** Added after the development run showed E3's size dependence of the
+  tangential signal: E3 repeated under the clipped boost; the per-class MID boost B and count ratio Q of every source
+  variable; the tangential Z_MID,STAT of each size2 and mag2 class. These check whether the class boosts or member dilution
+  drive the size dependence. Not graded; E3's sub-verdict is unchanged.
