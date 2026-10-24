@@ -1,0 +1,3 @@
+# Handoff
+
+Frozen 234b155255. Exact spectral pairing cancels the preceding formal one-loop response for arbitrary common gamma; no amplitude selection follows. Splitting control formulas e1/e2 in RESULT.md are analytic. Restricted derivative-only real detailed-balance W gives zero Euler derivative on affine phi; this does NOT exclude extra auxiliary multiplets whose W depends explicitly on spectator fields, nonlocal W, or general superspace operators. Positive vacuum statement is for rigid positive superalgebra and normalizable unbroken state, not all supergravity. Sources 1508.03338v1 and 1908.03220v1 authenticated. No executable, independent review, completed baryon portal or stable positive MOND vacuum. Original goal unresolved.

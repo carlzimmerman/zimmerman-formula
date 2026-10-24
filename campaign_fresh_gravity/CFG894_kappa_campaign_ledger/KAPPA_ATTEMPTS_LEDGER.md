@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (785 rows)
+## Totals (787 rows)
 
 - **537 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 138 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 140 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -984,6 +984,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K783 | AESTJOINT-20261024/MATCH | `reviews/aest_joint_matching_2026_10_24` | AeST symmetry-preserving vacuum and spatial deformations | - | audit | CONDITIONAL NONSELECTION: constant Y and Y^(3/2) coefficients independent under stated symmetries; a0=Ghat/(gamma G_N); doubling gamma halves a0 with calibration fixed; positive quadratic coefficient restores lowest-gradient inverse-square response | freeze:0d491d43b2 |
 | K784 | LIFSHITZLOOP-20261024/SHELL | `reviews/lifshitz_radiative_protection_2026_10_24` | finite-shell one-loop cubic-gradient scalar with k4 stabilizer | - | audit | CONDITIONAL RESULT: healthy nonzero-gradient quadratic fluctuations generate /grad phi/ and gradient-squared terms in formal finite-shell determinant; bare b=0 not automatically preserved; coefficients regulator dependent and higher-loop zero-gradient limit unresolved | freeze:5b11740a2a |
 | K785 | LIFSHITZLOOP-20261024/SYMMETRY | `reviews/lifshitz_radiative_protection_2026_10_24` | polynomial-shift protection transfer test | - | audit | CONDITIONAL OBSTRUCTION: cubic-gradient Euler expression changes under linear spatial shift so known polynomial-shift protection does not transfer to this operator alone; constant shift leaves vacuum and force amplitude independent | freeze:5b11740a2a |
+| K786 | SUSYLIF-20261024/PAIRING | `reviews/susy_lifshitz_matching_2026_10_24` | supersymmetric Lifshitz spectral pairing on gradient backgrounds | - | audit | CONDITIONAL CANCELLATION: equal full boson-fermion spectra cancel one-loop terms for arbitrary common gamma; illustrative splitting restores lower-gradient terms; no interacting MOND multiplet or positive-vacuum matching constructed | freeze:234b155255 |
+| K787 | SUSYLIF-20261024/ACTION | `reviews/susy_lifshitz_matching_2026_10_24` | detailed-balance MOND operator and positive vacuum audit | - | audit | RESTRICTED OBSTRUCTION: derivative-only single-field local W has zero Euler derivative on affine backgrounds; additional auxiliary multiplets not excluded; unbroken rigid vacuum has zero algebraic energy; stable positive sourced amplitude remains unselected | freeze:234b155255 |
 
 ## LN: Logic / Lean formalisations
 
