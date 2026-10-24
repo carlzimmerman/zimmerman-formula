@@ -1,0 +1,136 @@
+X25_dwarf_pericentre_tides  MUTATE run (r_peri <-> r_apo swapped)
+kappa = 1/2 FITTED; footings canonical 9.3603e-11 / alt 1.1312e-10 never pooled; not theory closed
+E column: Delta[iso AQUAL L*0] (B_iso). Pericentres: Z2's PM orbits in S1's MW field (static, no LMC).
+K2 orbit routine vs Kepler: V_p rel 1.54e-10, T_r rel 3.74e-09: PASS
+
+=== [canonical] set H: 61 systems
+  STEP 0 (X20 reproduction): median tau 0.012147 (X20 0.012147); rho +0.002644 (+0.002644); p 0.112694 (0.112694); tau<=0.1 N 54 median +0.480495 (+0.480495) sd 0.082765 (0.082765) Z 5.8055 (5.8055) EXTRA: PASS
+  K1 S1 host field reproduces X1 x_e_mid (all 61 H systems): max rel 0.00e+00: PASS
+  set P (H with a pericentre on disk): N 31  (MW ultra-faint 31/31, bright M31 0/25, M31 others 0/5)
+  no pericentre on disk (30): Andromeda I, Andromeda II, Andromeda III, Andromeda V, Andromeda VI, Andromeda VII, Andromeda IX, Andromeda X, Andromeda XI, Andromeda XIII, Andromeda XIV, Andromeda XV, Andromeda XVI, Andromeda XVII, Andromeda XVIII, Andromeda XIX, Andromeda XX, Andromeda XXI, Andromeda XXII, Andromeda XXIII, Andromeda XXV, Andromeda XXVI, Andromeda XXVII, Andromeda XXVIII, Andromeda XXIX, Cassiopeia II, Cassiopeia III, Lacerta I, LGS 3, Perseus I
+  K6 orbit sanity r_p <= 1.02 d_gc + 0.5 kpc and r_p <= r_a: violations 31 ['Aquarius II', 'Bootes I', 'Bootes II', 'Bootes III', 'Canes Venatici II', 'Carina II', 'Carina III', 'Centaurus I'] (no d_gc: []): FAIL
+  tau on P: current-distance (X20) median 0.01378; pericentre median 0.002004 (min 1.67e-06, max 0.0563); median ratio tau_peri/tau_now 0.175
+  heating proxy H: median 3.37e-06 (min 3.74e-15, max 0.00875); N_p median 3.26; unbound/capped 0
+  C1 Spearman(E, log tau_peri) +0.073 +- 0.190 (boot); Kendall +0.058; same-host permutation p 0.05915 (Z_p +1.56)
+  C2 Spearman(E, log H)        +0.108 +- 0.187 (boot); Kendall +0.075; same-host permutation p 0.0592 (Z_p +1.56)
+  W tau_peri <= 0.1 : N 31  median E +0.596 +- 0.113  Z +5.28  EXTRA      (tau_peri > 0.1: N 0, median +nan)  [PRIMARY]
+  W tau_peri <= 0.03: N 29  median E +0.596 +- 0.113  Z +5.28  EXTRA      (tau_peri > 0.03: N 2, median +0.303)  [decision-side]
+  all of P: median E +0.596 +- 0.113 (N 31)
+  f_tid = 1 - E(tau_peri<=0.1)/E(P) = +0.000  68% [+0.000, +0.000]
+  PC E vs logMstar : raw Spearman -0.450; partial at fixed log tau_peri -0.455 +- 0.170; two-sided permutation p 0.0109 -> SURVIVES
+  PC E vs log_rhalf: raw Spearman -0.342; partial at fixed log tau_peri -0.412 +- 0.169; two-sided permutation p 0.0231 -> SURVIVES
+  PC reported: partial Spearman(E, log H | log M*) +0.126; raw Spearman(log tau_peri, log M*) +0.030
+  reported tau_grad: median 0.00101; Spearman(E, log) +0.067; <= 0.1: N 31, median E +0.596 +- 0.113 (Z +5.28)
+  reported tau_max : median 0.0138; Spearman(E, log) +0.065; <= 0.1: N 26, median E +0.583 +- 0.125 (Z +4.68)
+  reported S1 (per passage) Spearman(E, log S1) +0.077; factor-3 tau has the same ranks as tau_peri
+  reported no-pericentre systems: r_p/d needed for tau = 0.1: median 0.290 (16% 0.131, 84% 0.845); fraction needing r_p/d < 0.3: 0.53
+  VERDICT [canonical] (set P, N 31): TIDES RULED OUT AT PERICENTRE
+  per system (sorted by tau_peri) name r_p tau_now tau_peri H E:
+     Pisces II          r_p  5000.0  tau_now 0.00128  tau_peri 1.67e-06  H 3.74e-15  E +0.61
+     Pegasus III        r_p  5000.0  tau_now 0.00207  tau_peri 3.72e-06  H 3.08e-14  E +0.38
+     Carina III         r_p   421.2  tau_now 0.0199  tau_peri 6.68e-05  H 1.01e-10  E +1.34
+     Leo V              r_p   350.0  tau_now 0.000532  tau_peri 0.000125  H 1.83e-09  E +0.60
+     Bootes II          r_p   381.4  tau_now 0.0173  tau_peri 0.00018  H 1.78e-09  E +0.30
+     Hydrus I           r_p   295.0  tau_now 0.0543  tau_peri 0.00034  H 1e-08  E +0.25
+     Carina II          r_p   441.2  tau_now 0.206  tau_peri 0.000345  H 5.83e-09  E +0.46
+     Eridanus II        r_p   469.9  tau_now 0.000819  tau_peri 0.000512  H 4.74e-08  E +0.57
+     Columba I          r_p   446.8  tau_now 0.00376  tau_peri 0.000657  H 8.73e-08  E +1.02
+     Canes Venatici II  r_p   193.8  tau_now 0.000972  tau_peri 0.000666  H 1.01e-07  E +0.72
+     Pictor II          r_p   189.3  tau_now 0.223  tau_peri 0.000807  H 2.45e-07  E +0.87
+     Centaurus I        r_p   175.0  tau_now 0.00313  tau_peri 0.00132  H 6.02e-07  E +0.49
+     Horologium I       r_p   120.8  tau_now 0.0138  tau_peri 0.00134  H 2.18e-06  E +1.02
+     Hercules           r_p   247.0  tau_now 0.00588  tau_peri 0.0015  H 9.98e-07  E -0.14
+     Coma Berenices     r_p   143.9  tau_now 0.0213  tau_peri 0.0019  H 3.37e-06  E +0.50
+     Tucana V           r_p   125.6  tau_now 0.012  tau_peri 0.002  H 3.91e-06  E +0.25
+     Grus I             r_p   266.5  tau_now 0.0121  tau_peri 0.00256  H 2.1e-06  E +0.27
+     Pegasus IV         r_p    93.0  tau_now 0.00289  tau_peri 0.00265  H 1.34e-05  E +0.50
+     Eridanus IV        r_p   149.6  tau_now 0.0103  tau_peri 0.00265  H 7.16e-06  E +1.18
+     Ursa Major II      r_p   185.9  tau_now 0.0655  tau_peri 0.00307  H 7.21e-06  E +1.04
+     Segue 1            r_p    75.5  tau_now 0.0273  tau_peri 0.00359  H 3.15e-05  E +1.25
+     Reticulum II       r_p    89.0  tau_now 0.0646  tau_peri 0.00386  H 3.31e-05  E +0.63
+     Leo IV             r_p   152.2  tau_now 0.00433  tau_peri 0.00431  H 3.23e-05  E +0.16
+     Leo VI             r_p   180.0  tau_now 0.0115  tau_peri 0.00457  H 2.4e-05  E +0.49
+     Willman 1          r_p    43.3  tau_now 0.0067  tau_peri 0.00652  H 0.000326  E +1.22
+     Tucana II          r_p   219.0  tau_now 0.168  tau_peri 0.00944  H 8.66e-05  E +0.74
+     Aquarius II        r_p   130.4  tau_now 0.0178  tau_peri 0.0115  H 0.00044  E +0.79
+     Bootes I           r_p   102.7  tau_now 0.0381  tau_peri 0.0147  H 0.000909  E +0.32
+     Ursa Major I       r_p   101.9  tau_now 0.0196  tau_peri 0.0196  H 0.00202  E +1.00
+     Tucana IV          r_p    83.0  tau_now 0.119  tau_peri 0.0337  H 0.00875  E +0.99
+     Bootes III         r_p   160.7  tau_now 0.659  tau_peri 0.0563  H 0.00566  E -0.39
+  K3 positive control (E = 0.5 log tau_peri + noise): C1 p = 5e-05: PASS
+  K4 negative control (E shuffled, 200 x 2000 perms): fraction C1 p > 0.01 = 0.980: PASS
+
+=== [alt] set H: 61 systems
+  STEP 0 (X20 reproduction): median tau 0.012059 (X20 0.012059); rho +0.012322 (+0.012322); p 0.103295 (0.103295); tau<=0.1 N 54 median +0.445101 (+0.445101) sd 0.082054 (0.082054) Z 5.4245 (5.4245) EXTRA: PASS
+  K1 S1 host field reproduces X1 x_e_mid (all 61 H systems): max rel 0.00e+00: PASS
+  set P (H with a pericentre on disk): N 31  (MW ultra-faint 31/31, bright M31 0/25, M31 others 0/5)
+  no pericentre on disk (30): Andromeda I, Andromeda II, Andromeda III, Andromeda V, Andromeda VI, Andromeda VII, Andromeda IX, Andromeda X, Andromeda XI, Andromeda XIII, Andromeda XIV, Andromeda XV, Andromeda XVI, Andromeda XVII, Andromeda XVIII, Andromeda XIX, Andromeda XX, Andromeda XXI, Andromeda XXII, Andromeda XXIII, Andromeda XXV, Andromeda XXVI, Andromeda XXVII, Andromeda XXVIII, Andromeda XXIX, Cassiopeia II, Cassiopeia III, Lacerta I, LGS 3, Perseus I
+  K6 orbit sanity r_p <= 1.02 d_gc + 0.5 kpc and r_p <= r_a: violations 31 ['Aquarius II', 'Bootes I', 'Bootes II', 'Bootes III', 'Canes Venatici II', 'Carina II', 'Carina III', 'Centaurus I'] (no d_gc: []): FAIL
+  tau on P: current-distance (X20) median 0.01369; pericentre median 0.002519 (min 1.66e-06, max 0.0682); median ratio tau_peri/tau_now 0.224
+  heating proxy H: median 6.8e-06 (min 3.63e-15, max 0.0155); N_p median 3.79; unbound/capped 0
+  C1 Spearman(E, log tau_peri) +0.102 +- 0.189 (boot); Kendall +0.075; same-host permutation p 0.0377 (Z_p +1.78)
+  C2 Spearman(E, log H)        +0.138 +- 0.186 (boot); Kendall +0.105; same-host permutation p 0.03865 (Z_p +1.77)
+  W tau_peri <= 0.1 : N 31  median E +0.539 +- 0.112  Z +4.82  EXTRA      (tau_peri > 0.1: N 0, median +nan)  [PRIMARY]
+  W tau_peri <= 0.03: N 29  median E +0.539 +- 0.112  Z +4.80  EXTRA      (tau_peri > 0.03: N 2, median +0.269)  [decision-side]
+  all of P: median E +0.539 +- 0.112 (N 31)
+  f_tid = 1 - E(tau_peri<=0.1)/E(P) = +0.000  68% [+0.000, +0.000]
+  PC E vs logMstar : raw Spearman -0.465; partial at fixed log tau_peri -0.471 +- 0.169; two-sided permutation p 0.00855 -> SURVIVES
+  PC E vs log_rhalf: raw Spearman -0.341; partial at fixed log tau_peri -0.426 +- 0.167; two-sided permutation p 0.0184 -> SURVIVES
+  PC reported: partial Spearman(E, log H | log M*) +0.152; raw Spearman(log tau_peri, log M*) +0.016
+  reported tau_grad: median 0.00127; Spearman(E, log) +0.102; <= 0.1: N 31, median E +0.539 +- 0.112 (Z +4.81)
+  reported tau_max : median 0.0137; Spearman(E, log) +0.071; <= 0.1: N 26, median E +0.536 +- 0.124 (Z +4.32)
+  reported S1 (per passage) Spearman(E, log S1) +0.097; factor-3 tau has the same ranks as tau_peri
+  reported no-pericentre systems: r_p/d needed for tau = 0.1: median 0.288 (16% 0.131, 84% 0.839); fraction needing r_p/d < 0.3: 0.53
+  VERDICT [alt] (set P, N 31): TIDES PARTIAL
+  per system (sorted by tau_peri) name r_p tau_now tau_peri H E:
+     Pisces II          r_p  5000.0  tau_now 0.00126  tau_peri 1.66e-06  H 3.63e-15  E +0.57
+     Pegasus III        r_p  5000.0  tau_now 0.00212  tau_peri 3.82e-06  H 3.28e-14  E +0.33
+     Carina III         r_p   331.5  tau_now 0.0191  tau_peri 0.000105  H 5e-10  E +1.30
+     Leo V              r_p   312.4  tau_now 0.000543  tau_peri 0.00016  H 4.14e-09  E +0.54
+     Bootes II          r_p   309.4  tau_now 0.0176  tau_peri 0.00028  H 8.06e-09  E +0.27
+     Hydrus I           r_p   236.9  tau_now 0.0537  tau_peri 0.000529  H 4.64e-08  E +0.21
+     Carina II          r_p   354.0  tau_now 0.202  tau_peri 0.000535  H 2.69e-08  E +0.44
+     Eridanus II        r_p   452.9  tau_now 0.00082  tau_peri 0.000552  H 6.19e-08  E +0.53
+     Canes Venatici II  r_p   190.4  tau_now 0.000985  tau_peri 0.000699  H 1.19e-07  E +0.69
+     Columba I          r_p   395.0  tau_now 0.00369  tau_peri 0.000827  H 1.92e-07  E +0.99
+     Pictor II          r_p   163.9  tau_now 0.215  tau_peri 0.00107  H 6.45e-07  E +0.84
+     Centaurus I        r_p   168.2  tau_now 0.00315  tau_peri 0.00145  H 8.15e-07  E +0.45
+     Horologium I       r_p   110.2  tau_now 0.0137  tau_peri 0.00161  H 4.04e-06  E +0.98
+     Hercules           r_p   229.4  tau_now 0.00588  tau_peri 0.00174  H 1.67e-06  E -0.18
+     Tucana V           r_p   114.6  tau_now 0.0115  tau_peri 0.00233  H 6.8e-06  E +0.24
+     Coma Berenices     r_p   125.4  tau_now 0.0213  tau_peri 0.00252  H 8.75e-06  E +0.46
+     Pegasus IV         r_p    92.5  tau_now 0.00293  tau_peri 0.00272  H 1.46e-05  E +0.46
+     Grus I             r_p   247.9  tau_now 0.0119  tau_peri 0.0029  H 3.31e-06  E +0.24
+     Eridanus IV        r_p   138.9  tau_now 0.0102  tau_peri 0.00305  H 1.17e-05  E +1.13
+     Ursa Major II      r_p   159.1  tau_now 0.0645  tau_peri 0.00416  H 2.05e-05  E +1.00
+     Leo IV             r_p   152.1  tau_now 0.00427  tau_peri 0.00426  H 3.24e-05  E +0.12
+     Segue 1            r_p    67.7  tau_now 0.0268  tau_peri 0.00443  H 6.47e-05  E +1.21
+     Reticulum II       r_p    79.4  tau_now 0.0635  tau_peri 0.00482  H 7.08e-05  E +0.59
+     Leo VI             r_p   170.9  tau_now 0.0121  tau_peri 0.00532  H 3.88e-05  E +0.49
+     Willman 1          r_p    43.2  tau_now 0.0067  tau_peri 0.00657  H 0.000343  E +1.16
+     Tucana II          r_p   190.5  tau_now 0.164  tau_peri 0.0123  H 0.000218  E +0.69
+     Aquarius II        r_p   123.5  tau_now 0.0172  tau_peri 0.0125  H 0.000591  E +0.75
+     Bootes I           r_p    96.2  tau_now 0.0379  tau_peri 0.0167  H 0.00142  E +0.28
+     Ursa Major I       r_p   101.9  tau_now 0.0196  tau_peri 0.0196  H 0.00208  E +0.96
+     Tucana IV          r_p    76.3  tau_now 0.119  tau_peri 0.04  H 0.0155  E +0.95
+     Bootes III         r_p   144.2  tau_now 0.639  tau_peri 0.0682  H 0.0113  E -0.42
+  K3 positive control (E = 0.5 log tau_peri + noise): C1 p = 5e-05: PASS
+  K4 negative control (E shuffled, 200 x 2000 perms): fraction C1 p > 0.01 = 0.975: PASS
+
+=== VERDICT (both footings must agree; scope = set P): UNDECIDED (footings disagree)
+
+=== CHECKS
+  [PASS] K2
+  [PASS] K0[canonical]
+  [PASS] K1[canonical]
+  [FAIL] K6[canonical]
+  [PASS] K3[canonical]
+  [PASS] K4[canonical]
+  [PASS] K0[alt]
+  [PASS] K1[alt]
+  [FAIL] K6[alt]
+  [PASS] K3[alt]
+  [PASS] K4[alt]
+  [PASS] K5
+
+checks 10/12; runtime 4.6 s; peak RSS 0.558 GB
