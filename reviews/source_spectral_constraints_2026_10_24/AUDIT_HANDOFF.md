@@ -1,0 +1,9 @@
+# Continuation handoff
+
+Parent 2ce8f3c2b8; frozen lane 13dd783e9e. Goal remains microscopic protection of alpha=beta=0 and selection of R=u^3/(v sqrt(e)) with healthy positive vacuum. No number has been selected; kappa=1/2 remains FITTED.
+
+New evidence: positive finite-band source spectral matrix gives Delta beta_B = g^2 I_B for a linear Hermitian scalar portal into a Lorentz-invariant unitary matter vacuum. Independent healthy species cannot cancel this by opposite spectral signs. Interacting combinations can be spectral nulls. Contact terms defeat a universal full-beta positivity claim. Conditional no-cancellation criterion gives R <= epsilon a_min M_Pl/(I_B sqrt(e)), not a universal numerical bound. Analytic rotational energy in gradient components excludes both linear absolute-gradient and cubic absolute-gradient terms, so a regular analytic heavy sector cannot supply the desired selective protection/origin.
+
+Analytic controls and provenance in REVIEW.md. No new executable, independent review, full source matching or gravitational stability result. Sources were inspected through web text, not downloaded. Official UCLA section 6.2 is a foundation; the application and its limits are derived here.
+
+Changed decision: stop treating independent healthy source-coupled partners or ordinary analytic heavy-field matching as automatic protection mechanisms. Keep constrained gravitational mixing, critical/nonanalytic sectors and complete symmetry-fixed nonlinear/contact portals open. Cheapest next meaningful continuation: choose an existing explicit covariant source-mixing action, retain all constraints and contact terms, and test whether a source Ward identity actually fixes the local quadratic cancellation. Do not repeat the direct scalar-portal calculation as if it covers that case. A joint vacuum/cubic-amplitude identity remains a separate missing dependency.
