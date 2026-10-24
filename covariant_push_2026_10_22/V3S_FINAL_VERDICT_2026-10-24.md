@@ -134,3 +134,10 @@ No single new field or switch can supply all three. So the theory cannot be clos
 - The 30 M31 systems have no orbits on disk, so they keep only the current-distance bound.
 
 The ultra-faint overshoot of the velocity floor is therefore not tidal either.
+
+**One sound speed against every constraint** (`X23_late_heated_cold`, b8d81770bb / df896db507 / 8b21926ce6 / d5f2a449d1; coordinator rerun identical apart from timing): **WRONG AMPLITUDE**, and the one-c_s **INTERSECTION is EMPTY** on both footings.
+- At c_s,need, clusters capture the whole fair share: A_MID 7.5–10.7 against the measured 1.0–2.2 (×11–15), and the cold mass self-gravity makes it worse.
+- Scanning one c_s ≥ c_s,need: T1 ≈ none needs ≥ 475 / 503 km/s, T2 only 570 / 604, T3 and the KT slope only 760 / 805, and no single value fits all three KT terciles.
+- An isothermal c_s produces a step in well depth, not X21's smooth rise with KT.
+- Groups, the MW disc, the forest and σ₈ pass.
+- **Reading.** Universal, single-temperature late heating is excluded by the clusters alone, independently of the dwarfs. Any late-heated cold sector would need a temperature that scales with the well it sits in, i.e. heating keyed to the system. `X24_vacuum_heated_cold` tests the density-keyed version.
