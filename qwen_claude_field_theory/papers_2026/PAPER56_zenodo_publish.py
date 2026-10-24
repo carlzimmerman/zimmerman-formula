@@ -74,10 +74,23 @@ def main():
     # 1) create deposition, a new version of a published record, or reuse a DRAFT id
     if "--newversion" in sys.argv:
         rec = sys.argv[sys.argv.index("--newversion") + 1]
-        st, nv = req("POST", f"{BASE}/deposit/depositions/{rec}/actions/newversion", tok, tries=1)
-        if st not in (200, 201):
-            sys.exit(f"newversion failed [{st}]: {nv}")
-        draft_url = nv["links"]["latest_draft"]
+        # Reuse an unpublished new-version draft left by an earlier interrupted run, so a
+        # rerun never creates a second draft (or a duplicate record).
+        draft_url = None
+        gst, cur = req("GET", f"{BASE}/deposit/depositions/{rec}", tok, tries=6)
+        if gst == 200:
+            ld = cur.get("links", {}).get("latest_draft")
+            own = cur.get("links", {}).get("self")
+            if ld and own and ld.rstrip("/") != own.rstrip("/"):
+                dst_, dd = req("GET", ld, tok, tries=6)
+                if dst_ == 200 and not dd.get("submitted"):
+                    draft_url = ld
+                    print(f"found an unpublished new-version draft {dd.get('id')} from an earlier run -- reusing it")
+        if draft_url is None:
+            st, nv = req("POST", f"{BASE}/deposit/depositions/{rec}/actions/newversion", tok, tries=1)
+            if st not in (200, 201):
+                sys.exit(f"newversion failed [{st}]: {nv}")
+            draft_url = nv["links"]["latest_draft"]
         st, dep = req("GET", draft_url, tok, tries=6)
         if st != 200:
             sys.exit(f"cannot fetch new-version draft [{st}]: {dep}")
@@ -157,8 +170,18 @@ def main():
 
     # 3) attach metadata (idempotent -- safe to retry)
     st, md = req("PUT", f"{BASE}/deposit/depositions/{dep_id}", tok, data={"metadata": meta}, tries=6)
+    if st not in (200, 201) and any(r.get("relation", "").lower() == "isnewversionof"
+                                    for r in meta.get("related_identifiers", [])):
+        # Zenodo links versions itself; some API versions reject an explicit isNewVersionOf.
+        print(f"  metadata rejected [{st}]: {str(md)[:160]} -- retrying without the isNewVersionOf entry "
+              "(Zenodo's own version link is kept)")
+        meta = dict(meta)
+        meta["related_identifiers"] = [r for r in meta.get("related_identifiers", [])
+                                       if r.get("relation", "").lower() != "isnewversionof"]
+        st, md = req("PUT", f"{BASE}/deposit/depositions/{dep_id}", tok, data={"metadata": meta}, tries=6)
     if st not in (200, 201):
-        sys.exit(f"metadata failed [{st}]: {md}")
+        sys.exit(f"metadata failed [{st}]: {md} -- the uploaded draft is {dep_id}; rerun with: "
+                 f"python {os.path.basename(__file__)} {dep_id}")
     print("metadata attached")
 
     # 4) publish. IRREVERSIBLE, so it is never auto-retried: a 504 here may mean the
