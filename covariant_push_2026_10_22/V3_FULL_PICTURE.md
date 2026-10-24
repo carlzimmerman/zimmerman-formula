@@ -133,6 +133,9 @@ NUM, the data side (X2):
 - The stacked core excess (A_MID 1.68–1.85 / 1.54–1.70) is Z 4.5–5.5 on statistical errors. With the cross-shear
   systematic calibrated it is **Z 2.4–2.9, MARGINAL** (X7). The offset is 2.2–2.5σ against 200 rotated-source realisations,
   of unidentified origin; it is not PSF leakage. If it is a pure B-mode, the statistical Z stands.
+  **X11 (reproduced) shows the offset behaves like noise, so the statistical Z 4.5–5.5 stands.** But the excess depends on
+  source size: small sources A_MID 1.10–1.24, consistent with the law; large 1.86–2.11. The cause is not identified, and X13 is
+  testing whether it is a measurement systematic.
 - **The lightest third of clusters shows no core excess** (MID 1.02–1.13). The stacked outskirts ratio near 1 is light and
   heavy clusters cancelling (0.5 / 0.76 / 1.3).
 - A debris profile that *replaces* the law at cluster scale passes; added to the law it overshoots.
@@ -269,7 +272,9 @@ No such sector is in the record, and no rule-compatible framework in the literat
   - **Reading.** In the axisymmetric model v3s's single-stream khronon develops caustics within a few Gyr behind moving
     galaxies. What that means for the foliation (multi-stream flow, a global-time breakdown, or new UV physics) is not
     decided. Still open: non-axisymmetric encounters, a smooth irrotational co-moving start, and back-reaction on the
-    baryons |
+    baryons. X12 (3D) failed its own Galilean check, so the stop rule held and there is no 3D result. A single moving mass in
+    a cold stream is axisymmetric in 3D too, so the wake is generic focusing; the question is now a caustic-free completion
+    (X14) |
 | Cluster light/heavy split | per-tercile physics; a selector the theory lacks (CFG939) | data result (X2); no mechanism |
 | Wide binaries, MW in Gaia DR4 | sealed predictions (C6; S3 `SEALED_V3_MW_DR4.json`) | data 2026-12-02 |
 | ALMA U4 / GS4 | sealed, addendum F | data 2026-11-06 / 11-28 |

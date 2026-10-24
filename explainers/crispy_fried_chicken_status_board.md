@@ -47,6 +47,9 @@ The ½ is **fitted**, not derived; the current measurement is κ = 0.417 ± 0.09
   - If that offset is a pure B-mode, Z returns to 4.5–5.5.
   - The core excess shows no significant mass trend. The outskirts trend (+0.8 to +1.0 per dex in mass) is robust.
 - **[X9](../rebuild_2026_10_22/X9_mog_stvg_check/README.md)** (reproduced): MOG/STVG with its published universal parameters fails both SPARC (rms 0.136 dex against the law's 0.054) and this cluster stack (no core excess, outskirts too high).
+- **[X11](../rebuild_2026_10_22/X11_cross_shear_diagnosis/README.md)** (reproduced) reverses X7's discount. The cross-shear offset behaves like noise: no pre-declared split fires, 6,499 new random points give +0.000 ± 0.022, and the per-cluster variance is normal. So the statistical **Z 4.5–5.5 stands**.
+  - The tangential excess depends on **source size**: small sources give A_MID 1.10–1.24, consistent with the law; large sources give 1.86–2.11 (Z 5–6).
+  - The cause is not identified. Lane X13 tests whether it is a source-side measurement systematic.
 - The tile stays red: it is on the generator's must-stay-red list, and turning it "not decidable" is an owner decision.
 
 ## How to read it
