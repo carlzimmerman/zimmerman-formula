@@ -4,6 +4,8 @@ Criteria: `FROZEN_CRITERIA.md` (committed alone, 9a105431c9; amendments A1–A4 
 `ASSUMPTION_LEDGER.md`. κ = ½ FITTED. Footings 9.3603e-11 / 1.1312e-10 m s⁻², never pooled. No dark-matter particle. Not
 "theory closed". Nothing here says the data favour the framework.
 
+> **Superseded in part by X13 (2026-10-24, `rebuild_2026_10_22/X13_source_size_test`, c4e5a5a064 / 4eeeceba07; coordinator rerun reproduced).** The source-size dependence below is an artefact of the split: the lensfit scalelength behaves as a major-axis length, so shear stretches it, and a cut on it puts tangentially aligned sources in the large half and radially aligned ones in the small half. Neither half measures the true amplitude (they are biased by about ∓30 %). A circularised-size split gives ratio 1.13–1.17 ± 0.15; galaxy lenses show the same split ratio (1.47 ± 0.19). Quote the core excess as Z_MID 4.5–5.5 all-source and 4.1–5.0 selection-corrected, not "with an unexplained source-size dependence". This lane's verdict on the cross-shear offset is unchanged.
+
 ## Verdict (frozen classes; JSON keys in `x11_analysis_results.json`)
 
 **CONSISTENT WITH A FLUCTUATION** (`verdict`).

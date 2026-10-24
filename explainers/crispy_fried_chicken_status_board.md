@@ -50,7 +50,12 @@ The ½ is **fitted**, not derived; the current measurement is κ = 0.417 ± 0.09
 - **[X11](../rebuild_2026_10_22/X11_cross_shear_diagnosis/README.md)** (reproduced) reverses X7's discount. The cross-shear offset behaves like noise: no pre-declared split fires, 6,499 new random points give +0.000 ± 0.022, and the per-cluster variance is normal. So the statistical **Z 4.5–5.5 stands**.
   - The tangential excess depends on **source size**: small sources give A_MID 1.10–1.24, consistent with the law; large sources give 1.86–2.11 (Z 5–6).
   - The cause is not identified. Lane X13 tests whether it is a source-side measurement systematic.
-- The tile stays red: it is on the generator's must-stay-red list, and turning it "not decidable" is an owner decision.
+- **[X13](../rebuild_2026_10_22/X13_source_size_test/README.md)** (24 October, reproduced): **the size dependence is an artefact of the split**, not of the clusters.
+  - The lensfit scalelength behaves as a major-axis length, so shear stretches it. A cut on it puts tangentially aligned sources in the large half and radially aligned ones in the small half.
+  - Splitting on a shear-invariant circularised size removes most of the effect (ratio 1.13–1.17 ± 0.15). Galaxy lenses show the same split ratio (1.47 ± 0.19). Random points give a null.
+  - Selection-corrected, the core excess is A_MID 1.66 / 1.70 (canonical) and 1.52 / 1.56 (alt), **Z 4.1–5.0**. "Small sources are consistent with the law" was the suppressed half.
+  - Caveat: the first-order response overshoots the measured ratios by 0.9–2.4σ; image simulations are not on disk.
+- The tile stays red: it is on the generator's must-stay-red list, and after X11 and X13 the excess stands at Z 4.1–5.5.
 
 ## How to read it
 

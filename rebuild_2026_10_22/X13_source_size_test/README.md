@@ -155,6 +155,19 @@ estimator and bins. G1 reproduces the record's CFG110 per-lens sums exactly: WW 
 | `x13_galaxy.py` | G1–G3 PASS (65 s, 0.60 GB) | G1 FAIL as required (cross shear) |
 | `x13_analysis.py` | X7-K1, K1–K4 PASS (26 s, 0.875 GB) | K1 FAIL as required (cross shear) → UNDECIDED |
 
+## Coordinator rerun (2026-10-24)
+
+The coordinator reran the whole chain on its own cache, rebuilt independently from the raw KiDS FITS during the X11 rerun:
+- extract, measure, galaxy and analysis, each with its MUTATE twin;
+- the SOM n(z) re-extracted from the tarball.
+
+Results:
+- `psfD`, `snr`, `frad` and `x13_edges.json` are byte-identical to the lane's;
+- so are `x13_measure_classes.npz` and `x13_galaxy_sums.npz`;
+- every result line of the 16 `.out` / `.json` files is identical, and only timing and RSS lines differ;
+- the main runs pass 3/3, 4/4, 3/3 and 5/5 checks at peak RSS ≤ 0.959 GB;
+- each MUTATE twin fails its named checks (X1; M1, M2; G1; K1).
+
 ## Amendments (full text in `FROZEN_CRITERIA.md`)
 
 - **A1 (PRE-RESULT, implementation).** Several declared scope limits:

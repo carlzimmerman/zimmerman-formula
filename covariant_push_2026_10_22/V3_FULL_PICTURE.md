@@ -133,9 +133,17 @@ NUM, the data side (X2):
 - The stacked core excess (A_MID 1.68–1.85 / 1.54–1.70) is Z 4.5–5.5 on statistical errors. With the cross-shear
   systematic calibrated it is **Z 2.4–2.9, MARGINAL** (X7). The offset is 2.2–2.5σ against 200 rotated-source realisations,
   of unidentified origin; it is not PSF leakage. If it is a pure B-mode, the statistical Z stands.
-  **X11 (reproduced) shows the offset behaves like noise, so the statistical Z 4.5–5.5 stands.** But the excess depends on
-  source size: small sources A_MID 1.10–1.24, consistent with the law; large 1.86–2.11. The cause is not identified, and X13 is
-  testing whether it is a measurement systematic.
+  **X11 (reproduced) shows the offset behaves like noise, so the statistical Z 4.5–5.5 stands.** X11 also found the excess
+  depends on source size (small sources A_MID 1.10–1.24, large 1.86–2.11).
+  **X13 (reproduced) shows that size dependence is an artefact of the split, not of the clusters.** The lensfit scalelength
+  acts as a major-axis length, so shear stretches it: a cut on it sends tangentially aligned sources to the large half and
+  radially aligned ones to the small half. Evidence:
+  - splitting on a shear-invariant circularised size removes most of it (ratio 1.13–1.17 ± 0.15, against 1.69–1.71);
+  - 181,477 galaxy lenses show the same split ratio (1.47 ± 0.19);
+  - random points give a null.
+  The selection-corrected A_MID is 1.66 / 1.70 (canonical) and 1.52 / 1.56 (alt), **Z 4.1–5.0**, close to the all-source
+  values. "Small sources are consistent with the law" was the suppressed half. Caveat: the response's size is not pinned
+  (the first-order prediction overshoots the measured ratios by 0.9–2.4σ), and no image simulations are on disk.
 - **The lightest third of clusters shows no core excess** (MID 1.02–1.13). The stacked outskirts ratio near 1 is light and
   heavy clusters cancelling (0.5 / 0.76 / 1.3).
 - A debris profile that *replaces* the law at cluster scale passes; added to the law it overshoots.
@@ -228,11 +236,14 @@ models; S3, X5), and this holds for the whole μ-law family. Joint radial-plus-v
    - its literal K has no radiation era.
    Replacing it with a separate dust brings back CDM's double count in galaxies.
 4. **Some failures are softer in the data than the record said:**
-   - the cluster excess is 2.2–2.7σ with systematics, and absent in light clusters;
+   - the cluster excess is absent in light clusters. (Its overall significance is not softer: after X11 and X13 it stands
+     at Z 4.1–5.5; X7's calibrated 2.4–2.9 assumed the cross-shear offset was a systematic, and X11 found it is noise);
    - the dwarf failure depends on class, and isolated dwarfs fit;
    - the Milky Way has a narrow light-disc corner.
 5. **Three failures are generic to every MOND-type theory:** clusters, the CMB's third peak (z ≈ 1100 is Newtonian, so a₀
    is inert there), and the Milky Way's joint fit.
+6. **The single-stream khronon forms caustics generically** (X14, analytic: any stream crossing a sheet folds at
+   w/(KΣ_b)). Removing them needs a new constant; of nine classes only the β term survives, in a narrow window.
 
 **What a completion would need**, read off the mechanisms (X0 §2, X6): a gravitating cold sector that
 (i) clusters linearly like dust from z ≈ 1100;
@@ -256,7 +267,7 @@ No such sector is in the record, and no rule-compatible framework in the literat
   - **but every moving mass focuses the khronon wind into a line behind it** that a single-stream khronon cannot pass
     (a caustic; γ_L does not fix it, Mach ≈ 300). X10 confirms the wake line behind a moving Milky Way-mass galaxy at
     t_i + 3.9–4.4 Gyr, converged, so velocity screening carries the caustic problem with it |
-| Soft-side caustics in v3s | review `reviews/v3s_soft_side_caustics_2026_10_23/` (b362f12477) | **OPEN: not established, not excluded.** A soft khronon element is a test particle in the difference field Δg_b plus a WKB self term, and its density sign is carried with it, so it never gets γ_L pressure. The frozen reading shell-crosses in 6 of 12 cases (constant-velocity orbit, ~26 kpc from a galaxy, earliest t₀ + 0.64 Gyr), but every crossing element passes through an adiabatic halo region where the frozen-F premise fails. Elements that stay in the valid region never cross (deepest J = 0.35). Deciding it needs a self-consistent khronon-fluid code: Lagrangian flow plus the nonlinear Gauss law ∇·P(∇Ξ) = ρ_τ, axisymmetric **X8** (`rebuild_2026_10_22/X8_soft_side_caustics`, 43eedad42a / 72515e7e75; coordinator rerun of the decisive runs identical) built the self-consistent axisymmetric solver. Frozen verdict **UNDECIDED**: halving the time step moves one fold by 0.221 Gyr against the 0.2 line.
+| Soft-side caustics in v3s | review `reviews/v3s_soft_side_caustics_2026_10_23/` (b362f12477); X8, X10, X12, X14 | **CAUSTICS GENERIC (X14, analytic); no caustic-free completion without a new constant (only β survives).** History: the review left it open, not established and not excluded. A soft khronon element is a test particle in the difference field Δg_b plus a WKB self term, and its density sign is carried with it, so it never gets γ_L pressure. The frozen reading shell-crosses in 6 of 12 cases (constant-velocity orbit, ~26 kpc from a galaxy, earliest t₀ + 0.64 Gyr), but every crossing element passes through an adiabatic halo region where the frozen-F premise fails. Elements that stay in the valid region never cross (deepest J = 0.35). Deciding it needs a self-consistent khronon-fluid code: Lagrangian flow plus the nonlinear Gauss law ∇·P(∇Ξ) = ρ_τ, axisymmetric **X8** (`rebuild_2026_10_22/X8_soft_side_caustics`, 43eedad42a / 72515e7e75; coordinator rerun of the decisive runs identical) built the self-consistent axisymmetric solver. Frozen verdict **UNDECIDED**: halving the time step moves one fold by 0.221 Gyr against the 0.2 line.
   - All six O2 cases fold on both footings, converged, at t₀ + 0.4 to 2.7 Gyr (none before today). O1 t_i 9 does not fold; four O1 cases are unconverged.
   - The mechanism is an axis collapse (a hoop factor of 0.022), which may be specific to axisymmetry.
   - Self-consistency does not remove the crossing.
@@ -274,7 +285,22 @@ No such sector is in the record, and no rule-compatible framework in the literat
     decided. Still open: non-axisymmetric encounters, a smooth irrotational co-moving start, and back-reaction on the
     baryons. X12 (3D) failed its own Galilean check, so the stop rule held and there is no 3D result. A single moving mass in
     a cold stream is axisymmetric in 3D too, so the wake is generic focusing; the question is now a caustic-free completion
-    (X14) |
+    (X14).
+  - **X14** (`rebuild_2026_10_22/X14_caustic_completion`, 68bf6e379d / c23149c508; rerun reproduced) answers both questions
+    analytically from v3s's own PN equations.
+    - **(i) Caustics are generic.** In the planar reduction a zero-charge stream crossing any sheet of surface density Σ_b
+      folds at τ_f = w/(KΣ_b), for every speed w. Soft (ρ_τ < 0) elements fold for every initial datum. Stiff elements fold
+      outright or by phase mixing. v3s's own terms act too late: the stiffness is a nonlinear pressure that meets the stream
+      at Mach ≥ 311 / 280, and K(Q) is inert at the fold scale (q_K ≤ 0.017 at μ_K = 0.1 Mpc⁻¹).
+    - **(ii) Every caustic-free completion needs a new constant.** Of nine frozen classes only C1 survives: a K²/(□φ)²
+      term, the record's β. Its window is β ∈ [2.0e-6, 1.0e-5] at μ_K = 0.1 Mpc⁻¹. It removes the fold only in linear,
+      subsonic flow, and its preferred-frame PPN and galaxy dynamics are not checked. The complex-scalar (Madelung)
+      completion needs ρ_τ ≥ 0 and is singular where ρ_τ crosses zero. Adhesion adds no constant but is non-variational, and
+      with sign-indefinite charge a sticky merger creates energy.
+    - **New structural fact.** The PN hold flux is capped, |KP| < a₀: under the simple μ the phantom acceleration
+      g − g_N = a₀x/(1+x) never reaches a₀. Its inverse 𝒰(y) = a₀y/(a₀ − |y|) has 𝒰′ = (1+x)². Negative enclosed charge
+      therefore collapses within a free-fall time.
+    - The coordinator checked the cap identity, τ_f, the C9 energy gain and β_max by hand. |
 | Cluster light/heavy split | per-tercile physics; a selector the theory lacks (CFG939) | data result (X2); no mechanism |
 | Wide binaries, MW in Gaia DR4 | sealed predictions (C6; S3 `SEALED_V3_MW_DR4.json`) | data 2026-12-02 |
 | ALMA U4 / GS4 | sealed, addendum F | data 2026-11-06 / 11-28 |

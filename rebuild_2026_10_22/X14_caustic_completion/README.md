@@ -172,6 +172,8 @@ Jacobson–Mattingly; ASZ82 Arnold–Shandarin–Zel'dovich; GSS89 Gurbatov–Sa
 | `x14_caustic_completion_MUTATE.out`, `_results_MUTATE.json` | MUTATE run (m1–m4) |
 
 ```
-OMP_NUM_THREADS=1 nice -n 15 python3 rebuild_2026_10_22/X14_caustic_completion/x14_caustic_completion.py              # exit 0
-X14_MUTATE=1 OMP_NUM_THREADS=1 nice -n 15 python3 rebuild_2026_10_22/X14_caustic_completion/x14_caustic_completion.py  # exit 1 by design
+PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 rebuild_2026_10_22/X14_caustic_completion/x14_caustic_completion.py              # exit 0
+PYTHONHASHSEED=0 X14_MUTATE=1 OMP_NUM_THREADS=1 nice -n 15 python3 rebuild_2026_10_22/X14_caustic_completion/x14_caustic_completion.py  # exit 1 by design
 ```
+
+**Coordinator rerun (2026-10-24).** With `PYTHONHASHSEED=0` both runs reproduce exactly: `.out` files identical apart from timing, all 592 / 603 JSON leaves equal, and MUTATE fails exactly F1b, F2, C1-P6a and C1-FT (23–24 s each). **Run with `PYTHONHASHSEED=0`.** Under a random hash seed (`python3 -I`), one rerun stalled in a C5 `sp.simplify` call for more than 10 min and passed 1 GB RSS before it was stopped. sympy's simplification order depends on the hash seed, so the runtime does; the results did not differ in any completed run.
