@@ -4,7 +4,7 @@
 
 ![Flavor comparison grid](img/flavor_comparison_grid.png)
 
-Boards: [v4](img/status_board_v4.png) · [canonical rules](img/status_board_canonical_rules.png) · [plain MOND](img/status_board_plain_mond.png) · [ΛCDM](img/status_board_lcdm.png) · [P-medium (Codex)](img/status_board_pmedium.png). The v3 board is [`img/status_board.png`](img/status_board.png). All are drawn by [`make_flavor_boards.py`](make_flavor_boards.py), which imports v3's tiles from [`make_status_board.py`](make_status_board.py) and leaves that board and its image untouched.
+Boards: [v4](img/status_board_v4.png) · [canonical rules](img/status_board_canonical_rules.png) · [plain MOND](img/status_board_plain_mond.png) · [ΛCDM](img/status_board_lcdm.png) · [P-medium (Codex)](img/status_board_pmedium.png) · [v3v](img/status_board_v3v.png). The v3 board is [`img/status_board.png`](img/status_board.png). All are drawn by [`make_flavor_boards.py`](make_flavor_boards.py), which imports v3's tiles from [`make_status_board.py`](make_status_board.py) and leaves that board and its image untouched.
 
 ## The flavors (one-line recipes)
 
@@ -16,6 +16,7 @@ Boards: [v4](img/status_board_v4.png) · [canonical rules](img/status_board_cano
 | plain MOND | AQUAL with μ = x/(1+x) on baryons, external-field effect included; no screening, no dust, no cosmology; κ = ½ fitted. |
 | ΛCDM | GR + Λ + cold dark matter particles (6 fitted cosmological parameters; halos from simulations). It has a dark-matter particle, which this framework's owner rules out for the framework itself; a reference only. |
 | P-medium (Codex) | Newtonian Poisson on baryons + a cold particle medium that also feels a saturating polarization P and a stiffening scalar χ (Codex's reduced preferred-frame action); ℓ₀ = 0.44 kpc fitted to growth. |
+| v3v (velocity-screened, no γ_L) | Literal Blanchet–Skordis Khronon (J_x, BS K(Q) dust) + covector P, with NO γ_L stiffness. Moving subsystems hold phantom only within 2GM_b/V² (velocity screening). κ fitted; no L★. |
 
 ΛCDM is a reference column only. It has a dark-matter particle, which this framework's owner rules out for the framework itself.
 
@@ -28,7 +29,7 @@ Boards: [v4](img/status_board_v4.png) · [canonical rules](img/status_board_cano
 - **Some rows stay grey by rule.** Plain MOND has no cosmology, so its cosmology rows stay grey. ΛCDM rows that would need galaxy-formation, feedback or halo modelling the record never ran stay grey; they are never filled from literature claims.
 - **The v3 column is the main board.** The main generator's own check must still pass, and v3's recipe line is the main board's own.
 - **n/c is not grey.** n/c ("not computable") means a lane showed that the flavor's action does not determine the test. It is a finding, cited like any verdict. Grey means nobody computed it.
-- **Checks.** `--selftest` runs 25 broken cases, and every one is caught. They cover reuse, cross-flavor borrowing, unjustified ΛCDM cells (including a ΛCDM cell reused from a framework-law lane) and greens without evidence. `--mutate` strips one reuse justification, and the checks must fail.
+- **Checks.** `--selftest` runs 31 broken cases, and every one is caught. They cover reuse, cross-flavor borrowing, unjustified ΛCDM cells (including a ΛCDM cell reused from a framework-law lane) and greens without evidence. `--mutate` strips one reuse justification, and the checks must fail.
 
 ## Counts
 
@@ -42,6 +43,7 @@ The grid has 50 rows.
 | plain MOND | 2 | 3 | 8 | 4 | 2 | 0 | 31 |
 | ΛCDM | 1 | 4 | 0 | 0 | 0 | 0 | 45 |
 | P-medium (Codex) | 3 | 2 | 0 | 0 | 0 | 7 | 38 |
+| v3v (velocity-screened, no γ_L) | 3 | 4 | 7 | 0 | 1 | 0 | 35 |
 
 ## v4
 
@@ -158,7 +160,29 @@ The grid has 50 rows.
 | Cluster cores | n/c (not computable) | no static prediction independent of the cold distribution (cold-free Newton: A_MID 9.8) | Y1 |
 | Linear growth | 🟩 pass | σ₈ / dust limit 0.9991 (from a = 1e-3), 0.967 (1e-4); a WDM-like cutoff at k ~ 1–6 h/Mpc is flagged | Y1 |
 
-## Reused verdicts (16 cells)
+## v3v (velocity-screened, no γ_L)
+
+**Recipe:** Literal Blanchet–Skordis Khronon (J_x, BS K(Q) dust) + covector P, with NO γ_L stiffness. Moving subsystems hold phantom only within 2GM_b/V² (velocity screening). κ fitted; no L★.
+
+| tile | colour | what the lane found | evidence lanes |
+|---|---|---|---|
+| Health: ghosts, gradients | 🟨 conditional | no γ_L ⇒ H4's bounded branch; H5 lobes benign; O1 open item: the khronon-wind line caustic behind moving masses | H4, H5, O1 |
+| Leaf problem well-posed | 🟨 conditional | no γ_L ⇒ H4's bounded branch; H5 lobes benign; O1 open item: the khronon-wind line caustic behind moving masses | H4, H5, O1 |
+| Cassini (velocity-screened) | 🟨 conditional — conditional (estimate) | estimate: Sun's r_cap 0.037 / 0.028 AU; residual tide ≤ 5.3e-32 s⁻², ~1e-5 of Park | O1 |
+| Rotation curves (SPARC RAR) | 🟨 conditional | isolated galaxies keep the phantom; one Υ per galaxy: rms 0.054 / 0.054 dex; χ² line fails both | P4 (reused from v3: P4) |
+| Local a0 from MeerKAT | 🟩 pass | 1.31e-10 vs SPARC same recipe 1.21e-10 (+0.032 dex) | P4 (reused from v3: P4) |
+| Tidal dwarfs, NGC 1052-DF2/DF4 | 🟩 pass | formed moving through the host's khronon, so dust-free → Newtonian: TDGs +0.055 ± 0.114 dex (U1 B0); no knob | O1, U1 |
+| Outer globulars: L* floor | 🟩 pass — pass (PROXY speeds) | r_cap ≤ 0.25 pc (PROXY 167 km/s), ≤ 5.35 pc at 36 km/s vs r_hl 16–28 pc; Newton within Δχ² 2.47 of best in all 18 D10 cells | O1, D10 |
+| MW vertical force (AQUAL disc) | 🟥 fails | K_z,1.1 92.3 / 96.9 vs 66.4 ± 2.2; χ² 178 / 251 vs a line of 67.5 | P4 (reused from v3: P4) |
+| MW outer slope (Gaia) | 🟥 fails | SHAPE EXCLUDED: slope −0.126 / −0.114 vs −0.325, Z −4.37 / −4.62 | S3 (reused from v3: S3) |
+| Dwarf satellites (MW / M31) | 🟥 fails | dust-free under velocity screening: +2.00 / +1.99 dex (U1 B0); +1.88 ROBUST (Z2) | O1, U1 |
+| Coma ultra-diffuse galaxies | 🟥 fails | +1.41 dex, z_sys 5.4 | O1, U1 |
+| Cluster cores | 🟥 fails | the law on baryons: A_MID 1.68–1.85 / 1.54–1.70, Z ≈ +5–6 | F1 (reused from v3: F1) |
+| Native CMB (patched CLASS) | 🟥 fails | literal K: no radiation era; plik-lite Δχ² vs ΛCDM +13891 at the cap, +18.7 at μ_K 2542 | Q6 (reused from v3: Q6) |
+| Linear growth | 🟥 fails | Boltzmann σ₈ 0.061 at the BS cap; 5 % growth needs μ_K > 2542 | Q6 (reused from v3: Q6) |
+| Gaia DR4 wide binaries (Dec) | ⬜ open | Newtonian prediction (same sign as v3s's sealed one); DR4 decides | O1 |
+
+## Reused verdicts
 
 | flavor | row | taken from | justification (file and line) |
 |---|---|---|---|
@@ -176,6 +200,13 @@ The grid has 50 rows.
 | plain MOND | Central ellipticals (SLUGGS) | S4 (v3) | S4 README L170-L180: a kernel-only swap to ν₁ with no screening, ownership or dust in the R4 scripts |
 | plain MOND | High-z on halo-free inputs | S4 (v3) | S4 README L170-L187: kernel-only swap to ν₁ |
 | plain MOND | CRISTAL z~5 / ALESS 122.1 | S4 (v3) | S4 README L170-L188: kernel-only swap to ν₁ |
+| v3v (velocity-screened, no γ_L) | Rotation curves (SPARC RAR) | P4 (v3) | P4 README L22, L36: L★ 24 vs 90 pc identical (screening acts only inside l_g ≤ 0.45 pc, S3 README L50), and O1 README L124: L★ = 0 lies inside P4's window, so γ_L is inert; O1 README L109: isolated galaxies keep the phantom (V_rel ≈ 0.03 km/s) |
+| v3v (velocity-screened, no γ_L) | Local a0 from MeerKAT | P4 (v3) | P4 README L22, L36 and O1 README L124: γ_L / L★ inert at these radii; O1 README L109: isolated galaxies keep the phantom |
+| v3v (velocity-screened, no γ_L) | MW vertical force | P4 (v3) | P4 README L19, L22: every L★; S3 README L50: l_g ≤ 0.45 pc, the Galaxy is unscreened at every radius, so γ_L is inert; O1 README L109: an isolated host keeps its phantom |
+| v3v (velocity-screened, no γ_L) | MW outer slope (Gaia) | S3 (v3) | S3 README L50: l_g ≤ 0.45 pc, the Galaxy is unscreened at every radius (γ_L inert); O1 README L109: an isolated host keeps its phantom |
+| v3v (velocity-screened, no γ_L) | Cluster cores (eRASS1 × KiDS) | F1 (v3) | THEORY_V3_DRAFT L73: L★ screening never touches cluster scales (ℓ_g ~ 1e-3–1e-2 pc), so γ_L is inert; L66: F1 is the law on baryons |
+| v3v (velocity-screened, no γ_L) | Native CMB | Q6 (v3) | Q6 README L172: γ_L is not in the patch ((kL★)² ≤ 8e-7); Q7 README L97: γ_L does not enter linear growth |
+| v3v (velocity-screened, no γ_L) | Linear growth | Q6 (v3) | Q6 README L172: γ_L is not in the patch ((kL★)² ≤ 8e-7); Q7 README L97: γ_L does not enter linear growth |
 | ΛCDM | Tidal dwarfs, NGC 1052-DF2/DF4 | U1 (newton) | U1 README L135: B0 is the dust-free Newtonian prediction for the 19 TDGs; G2 README L25: data +0.08 ± 0.10 dex vs Newton. ΛCDM's tidal dwarfs carry no dark matter, so its prediction is the same Newtonian computation |
 | ΛCDM | Outer globular clusters | D10 (newton) | D10 README L18: Newton row (Δχ²_Newton ≤ 2.5; 9000 Newton solves, L55). ΛCDM's outer globulars carry no dark matter, so its prediction is that Newtonian row |
 
@@ -188,6 +219,9 @@ The grid has 50 rows.
 - **P-medium (Codex), Health: ghosts, gradients:** Y1, result 55aed1b71c; coordinator rerun 2026-10-23: reproduced, identical.
 - **P-medium (Codex), Well-posed (leaf / Cauchy problem):** Y1, result 55aed1b71c; coordinator rerun 2026-10-23: reproduced, identical.
 - **P-medium (Codex), Linear growth:** Y1, result 55aed1b71c; coordinator rerun 2026-10-23: reproduced, identical.
+- **v3v (velocity-screened, no γ_L), Tidal dwarfs, NGC 1052-DF2/DF4:** O1, result ecbb964b0e; coordinator rerun identical; with U1 (54ee83e54e; coordinator rerun: main 15/16, A2 6/6).
+- **v3v (velocity-screened, no γ_L), Outer globular clusters:** O1, result ecbb964b0e; coordinator rerun identical.
+- **v3v (velocity-screened, no γ_L), Local a0 from MeerKAT:** P4, result 6c0249a8bc; coordinator rerun 2026-10-23: P4 identical except peak RSS.
 - **ΛCDM, Native CMB:** C2, result 5e93769089; the ΛCDM refit is reproduced independently by C7 K1 (README L161: 1003.48 vs C2's 1003.20) and Q6 (README L21: 1003.47).
 - **Canonical rules:** the six greens are the 23 October afternoon board's own (SPARC RAR, MeerKAT, inner lensing, groups, MW vertical force by the round rule, screened Cassini by the stiffened DSF-21 action, D7d).
 - **Withheld: ΛCDM, Linear growth.** F3's own verdict is CONSISTENT, but F3's dust-limit KiDS comparison has no rerun on record, so the cell is drawn conditional and labelled.
@@ -205,6 +239,7 @@ The grid has 50 rows.
 - **ΛCDM, tidal dwarfs and outer globulars.** These are drawn **conditional**. ΛCDM's TDGs and outer globulars carry no dark matter, so its prediction is the Newtonian row the record computed (U1 and G2 for the TDGs, D10 for the globulars). Two things are assumed: that the globulars carry no dark matter, and that DF2/DF4 lost theirs. Showing either needs formation modelling the record never ran.
 - **ΛCDM, dwarf satellites: grey (coordinator review).** G2's Moster+NFW route is PAPER36 eq. 1, M_dark = M_ph + f_ex(1 − f_b) M_NFW (G2 README L45): the framework's phantom plus a fraction of an NFW halo, scored under the framework's law. It is not ΛCDM's prediction, which would be Newtonian dynamics in a tidally evolved subhalo, and the record never computed that. A ΛCDM cell may now reuse only the Newtonian limit, and only lanes with a cited ΛCDM/GR arm (`LCDM_ARMS`: C2, C7, Q6, F3, CFG596) may be registered for ΛCDM.
 - **P-medium (Codex), everything not on its board.** Lane Y1 (results 55aed1b71c, reproduced by the coordinator) scored ten board tests. The rest are grey. Y1's n/c rows are: GW speed and binary pulsars (no tensor sector); SPARC RAR (no galaxy law; the history-free branch fails at rms 0.24 dex); MeerKAT and groups (the same argument, not recomputed); satellites (core masses free); and cluster cores (no static prediction).
+- **v3v (velocity-screened, no γ_L).** Its own cells come from O1 §3 (ecbb964b0e) with H4 and H5. A reused v3 verdict needs a cited line showing γ_L does not enter (the guard requires it). Grey: groups (O1 L112: members DEPEND on whether the group's khronon is held); the strong-field rows (P3's regular holes and strong coupling depend on L★; only the static exterior, P3 L25, is γ_L-free); lensing, SLUGGS, high-z and the rest, which were never shown to be γ_L-free. BBN (Q6, γ_L-free per Q6 L172) has no grid row, because the main board refused that tile. Outer globulars take O1's own class (PASS, PROXY speeds); Cassini is drawn conditional because O1 calls it an estimate.
 - **Canonical rules, CFG960.** It is counted under the canonical rules, as the coordinator classed it; N0 labels it the SCT-M engine (domains, conversion of cold energy into phantom bodies, census baryons; AUDIT L52-L53, L116).
 
 ---

@@ -50,12 +50,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 IMG = os.path.join(HERE, "img")
 OUT_BOARD = {"v4": "status_board_v4.png", "canonical": "status_board_canonical_rules.png",
              "plain_mond": "status_board_plain_mond.png", "lcdm": "status_board_lcdm.png",
-             "pmedium": "status_board_pmedium.png"}
+             "pmedium": "status_board_pmedium.png", "v3v": "status_board_v3v.png"}
 OUT_GRID = "flavor_comparison_grid.png"
 
-FLAVORS = ["v3", "v4", "canonical", "plain_mond", "lcdm", "pmedium"]
+FLAVORS = ["v3", "v4", "canonical", "plain_mond", "lcdm", "pmedium", "v3v"]
 TITLE = {"v3": "v3", "v4": "v4", "canonical": "canonical rules", "plain_mond": "plain MOND", "lcdm": "ΛCDM",
-         "pmedium": "P-medium (Codex)"}
+         "pmedium": "P-medium (Codex)", "v3v": "v3v (velocity-screened, no γ_L)"}
+GRID_TITLE = dict(TITLE, pmedium="P-medium\n(Codex)", v3v="v3v (velocity-\nscreened, no γ_L)")
 RECIPES = {
     "v3": msb.RECIPE.split(": ", 1)[1],          # the main board's own recipe line, whatever it currently says
     "v4": "AeST (Skordis–Złośnik) with C1's capped free function (static limit = the law μ = x/(1+x)) plus the same "
@@ -69,6 +70,8 @@ RECIPES = {
             "dark-matter particle, which this framework's owner rules out for the framework itself; a reference only.",
     "pmedium": "Newtonian Poisson on baryons + a cold particle medium that also feels a saturating polarization P and a "
                "stiffening scalar χ (Codex's reduced preferred-frame action); ℓ₀ = 0.44 kpc fitted to growth.",
+    "v3v": "Literal Blanchet–Skordis Khronon (J_x, BS K(Q) dust) + covector P, with NO γ_L stiffness. Moving subsystems "
+           "hold phantom only within 2GM_b/V² (velocity screening). κ fitted; no L★.",
 }
 PSEUDO = {"newton"}   # the Newtonian / GR limit some lanes compute as a row; never a column of its own
 
@@ -81,6 +84,7 @@ RANK = {"FAIL": 0, "UNDEC": 1, "COND": 2, "PASS": 3}
 # Tiles that are the same test under different names share one grid row.
 ROW_OF = {
     "Solar system + Cassini (screened)": "Solar system + Cassini",
+    "Cassini (velocity-screened)": "Solar system + Cassini",
     "Cluster cores": "Cluster cores (eRASS1 × KiDS)",
     "Leaf problem well-posed": "Well-posed (leaf / Cauchy problem)",
     "v4 well-posedness": "Well-posed (leaf / Cauchy problem)",
@@ -186,6 +190,9 @@ L("U1", {"v3", "newton"}, R + "U1_v3_dust_content/README.md:L12, L135 (B0 = dust
 for lane in ("P4", "S2", "S3", "S4", "P2"):
     L(lane, {"v3"}, R + {"P4": "P4_v3_galaxy_tiles", "S2": "S2_v3_lowg_lensing", "S3": "S3_v3_mw_seals",
                         "S4": "S4_v3_muK_clusters", "P2": "P2_spec_isolated_lensing"}[lane] + "/README.md:L1")
+L("O1", {"v3v"}, R + "O1_ownership_action/README.md:L97-L139 (VS = velocity screening with γ_L removed)")
+L("H4", {"v3", "v3v"}, R + "H4_v3_saddle_stability/README.md:L11, L71, L81 (the γ_L = 0 branch is bounded)")
+L("H5", {"v3", "v3v"}, R + "H5_v3s_lobe_growth/README.md:L3-L24 (static branch only in the khronon's rest frame)")
 L("Y1", {"pmedium"}, "rebuild_2026_10_22/Y1_pmedium_flavor/README.md:L1-L38 (Codex's XP/SE-20261023 reduced action)")
 L("Q6", {"v3", "lcdm"}, R + "Q6_v3_class/README.md:L21, L131 (ΛCDM refit; DUST = ΛCDM)")
 
@@ -277,6 +284,19 @@ for row, st, where in [
         ("Local a0 from MeerKAT", NC, "README.md:L45 (same argument as the RAR; not recomputed)"),
         ("Galaxy groups (BFJR)", NC, "README.md:L45 (same argument as the RAR; not recomputed)")]:
     V("Y1", "pmedium", row, st, "rebuild_2026_10_22/Y1_pmedium_flavor/" + where)
+# v3v (velocity-screened, no γ_L): lane O1 §3 (ecbb964b0e) with H4/H5, and the v3 lanes it reuses (REUSE)
+O1R = R + "O1_ownership_action/README.md"
+V("O1", "v3v", "Solar system + Cassini", "PASS", O1R + ":L105 (PASS, 1e-5 of Park, estimate)")
+V("O1", "v3v", "Outer globular clusters", "PASS", O1R + ":L106")
+V("O1", "v3v", "Tidal dwarfs, NGC 1052-DF2/DF4", "PASS", O1R + ":L108")
+V("O1", "v3v", "Dwarf satellites (MW / M31)", "FAIL", O1R + ":L110")
+V("O1", "v3v", "Coma ultra-diffuse galaxies", "FAIL", O1R + ":L111")
+V("O1", "v3v", "Gaia DR4 wide binaries (Dec)", "OPEN", O1R + ":L107")
+for _row in ("Health: ghosts, gradients", "Well-posed (leaf / Cauchy problem)"):
+    V("H4", "v3v", _row, "COND", R + "H4_v3_saddle_stability/README.md:L11, L81 (γ_L = 0: bounded); " + R
+      + "H5_v3s_lobe_growth/README.md:L3; " + O1R + ":L127-L130 (open: the khronon-wind focal line)")
+V("Q6", "v3", "Native CMB", "FAIL", R + "Q6_v3_class/README.md:L120-L131")
+V("Q6", "v3", "Linear growth", "FAIL", R + "Q6_v3_class/README.md:L120-L131")
 V("U1", "newton", "Tidal dwarfs, NGC 1052-DF2/DF4", "PASS", R + "U1_v3_dust_content/README.md:L135")
 V("D10", "newton", "Outer globular clusters", "COND", DP + "D10_native_Lstar/README.md:L18, L21")
 
@@ -305,6 +325,26 @@ REUSE = {
         "S4 README L170-L180: a kernel-only swap to ν₁ with no screening, ownership or dust in the R4 scripts"),
     ("plain_mond", "High-z on halo-free inputs"): ("v3", "S4", "S4 README L170-L187: kernel-only swap to ν₁"),
     ("plain_mond", "CRISTAL z~5 / ALESS 122.1"): ("v3", "S4", "S4 README L170-L188: kernel-only swap to ν₁"),
+    ("v3v", "Rotation curves (SPARC RAR)"): ("v3", "P4",
+        "P4 README L22, L36: L★ 24 vs 90 pc identical (screening acts only inside l_g ≤ 0.45 pc, S3 README L50), and O1 "
+        "README L124: L★ = 0 lies inside P4's window, so γ_L is inert; O1 README L109: isolated galaxies keep the phantom "
+        "(V_rel ≈ 0.03 km/s)"),
+    ("v3v", "Local a0 from MeerKAT"): ("v3", "P4",
+        "P4 README L22, L36 and O1 README L124: γ_L / L★ inert at these radii; O1 README L109: isolated galaxies keep the "
+        "phantom"),
+    ("v3v", "MW vertical force"): ("v3", "P4",
+        "P4 README L19, L22: every L★; S3 README L50: l_g ≤ 0.45 pc, the Galaxy is unscreened at every radius, so γ_L is "
+        "inert; O1 README L109: an isolated host keeps its phantom"),
+    ("v3v", "MW outer slope (Gaia)"): ("v3", "S3",
+        "S3 README L50: l_g ≤ 0.45 pc, the Galaxy is unscreened at every radius (γ_L inert); O1 README L109: an isolated "
+        "host keeps its phantom"),
+    ("v3v", "Cluster cores (eRASS1 × KiDS)"): ("v3", "F1",
+        "THEORY_V3_DRAFT L73: L★ screening never touches cluster scales (ℓ_g ~ 1e-3–1e-2 pc), so γ_L is inert; L66: F1 is "
+        "the law on baryons"),
+    ("v3v", "Native CMB"): ("v3", "Q6",
+        "Q6 README L172: γ_L is not in the patch ((kL★)² ≤ 8e-7); Q7 README L97: γ_L does not enter linear growth"),
+    ("v3v", "Linear growth"): ("v3", "Q6",
+        "Q6 README L172: γ_L is not in the patch ((kL★)² ≤ 8e-7); Q7 README L97: γ_L does not enter linear growth"),
     ("lcdm", "Tidal dwarfs, NGC 1052-DF2/DF4"): ("newton", "U1",
         "U1 README L135: B0 is the dust-free Newtonian prediction for the 19 TDGs; G2 README L25: data +0.08 ± 0.10 "
         "dex vs Newton. ΛCDM's tidal dwarfs carry no dark matter, so its prediction is the same Newtonian computation"),
@@ -313,6 +353,7 @@ REUSE = {
         "dark matter, so its prediction is that Newtonian row"),
 }
 FILE_LINE = re.compile(r"(README|THEORY|AUDIT|\.md|\.py).{0,40}L\d+")
+GAMMA_L_IRRELEVANT = re.compile(r"γ_L")   # a v3v reuse must say, with its citation, why γ_L does not enter
 
 # A first green: (flavor, row) -> (lane, result commit, rerun or independent reproduction).
 VERIFIED_GREEN_F = {
@@ -326,6 +367,10 @@ VERIFIED_GREEN_F = {
     ("pmedium", "Well-posed (leaf / Cauchy problem)"): ("Y1", "55aed1b71c",
         "coordinator rerun 2026-10-23: reproduced, identical"),
     ("pmedium", "Linear growth"): ("Y1", "55aed1b71c", "coordinator rerun 2026-10-23: reproduced, identical"),
+    ("v3v", "Tidal dwarfs, NGC 1052-DF2/DF4"): ("O1", "ecbb964b0e",
+        "coordinator rerun identical; with U1 (54ee83e54e; coordinator rerun: main 15/16, A2 6/6)"),
+    ("v3v", "Outer globular clusters"): ("O1", "ecbb964b0e", "coordinator rerun identical"),
+    ("v3v", "Local a0 from MeerKAT"): ("P4", "6c0249a8bc", "coordinator rerun 2026-10-23: P4 identical except peak RSS"),
     ("lcdm", "Native CMB"): ("C2", "5e93769089",
         "the ΛCDM refit is reproduced independently by C7 K1 (README L161: 1003.48 vs C2's 1003.20) and Q6 "
         "(README L21: 1003.47)"),
@@ -540,6 +585,42 @@ CELLS = [
       ["Y1"]),
     C("pmedium", 2, "Cluster cores", NC,
       "no static prediction independent of the cold distribution (cold-free Newton: A_MID 9.8)", ["Y1"]),
+    # ---------------- v3v (velocity-screened, no γ_L): O1, H4/H5, and reused v3 lanes ----------------
+    C("v3v", 0, "Health: ghosts, gradients", "COND",
+      "no γ_L ⇒ H4's bounded branch; H5 lobes benign; O1 open item: the khronon-wind line caustic behind moving masses",
+      ["H4", "H5", "O1"]),
+    C("v3v", 0, "Leaf problem well-posed", "COND",
+      "no γ_L ⇒ H4's bounded branch; H5 lobes benign; O1 open item: the khronon-wind line caustic behind moving masses",
+      ["H4", "H5", "O1"]),
+    C("v3v", 0, "Cassini (velocity-screened)", "COND",
+      "estimate: Sun's r_cap 0.037 / 0.028 AU; residual tide ≤ 5.3e-32 s⁻², ~1e-5 of Park", ["O1"],
+      lab="conditional (estimate)"),
+    C("v3v", 1, "Rotation curves (SPARC RAR)", "COND",
+      "isolated galaxies keep the phantom; one Υ per galaxy: rms 0.054 / 0.054 dex; χ² line fails both", ["P4"],
+      comp="v3"),
+    C("v3v", 1, "Local a0 from MeerKAT", "PASS", "1.31e-10 vs SPARC same recipe 1.21e-10 (+0.032 dex)", ["P4"],
+      comp="v3"),
+    C("v3v", 1, "Tidal dwarfs, NGC 1052-DF2/DF4", "PASS",
+      "formed moving through the host's khronon, so dust-free → Newtonian: TDGs +0.055 ± 0.114 dex (U1 B0); no knob",
+      ["O1", "U1"]),
+    C("v3v", 1, "Outer globulars: L* floor", "PASS",
+      "r_cap ≤ 0.25 pc (PROXY 167 km/s), ≤ 5.35 pc at 36 km/s vs r_hl 16–28 pc; Newton within Δχ² 2.47 of best in all "
+      "18 D10 cells", ["O1", "D10"], lab="pass (PROXY speeds)"),
+    C("v3v", 1, "MW vertical force (AQUAL disc)", "FAIL",
+      "K_z,1.1 92.3 / 96.9 vs 66.4 ± 2.2; χ² 178 / 251 vs a line of 67.5", ["P4"], comp="v3"),
+    C("v3v", 1, "MW outer slope (Gaia)", "FAIL", "SHAPE EXCLUDED: slope −0.126 / −0.114 vs −0.325, Z −4.37 / −4.62",
+      ["S3"], comp="v3"),
+    C("v3v", 2, "Dwarf satellites (MW / M31)", "FAIL",
+      "dust-free under velocity screening: +2.00 / +1.99 dex (U1 B0); +1.88 ROBUST (Z2)", ["O1", "U1"]),
+    C("v3v", 2, "Coma ultra-diffuse galaxies", "FAIL", "+1.41 dex, z_sys 5.4", ["O1", "U1"]),
+    C("v3v", 2, "Cluster cores", "FAIL", "the law on baryons: A_MID 1.68–1.85 / 1.54–1.70, Z ≈ +5–6", ["F1"],
+      comp="v3"),
+    C("v3v", 3, "Native CMB (patched CLASS)", "FAIL",
+      "literal K: no radiation era; plik-lite Δχ² vs ΛCDM +13891 at the cap, +18.7 at μ_K 2542", ["Q6"], comp="v3"),
+    C("v3v", 3, "Linear growth", "FAIL", "Boltzmann σ₈ 0.061 at the BS cap; 5 % growth needs μ_K > 2542", ["Q6"],
+      comp="v3"),
+    C("v3v", 3, "Gaia DR4 wide binaries (Dec)", "OPEN", "Newtonian prediction (same sign as v3s's sealed one); DR4 "
+      "decides", ["O1"]),
     C("pmedium", 3, "Linear growth", "PASS",
       "σ₈ / dust limit 0.9991 (from a = 1e-3), 0.967 (1e-4); a WDM-like cutoff at k ~ 1–6 h/Mpc is flagged", ["Y1"]),
 ]
@@ -593,6 +674,8 @@ def check(cells, reuse=None, verified=None, lanes=None, verdicts=None, arms=None
             r = reuse.get((f, row))
             if r is None or r[0] != comp or r[1] != ev or not FILE_LINE.search(r[2] or ""):
                 errs.append(f"cross-flavor reuse without a file:line justification: {f} {row} (from {comp}, {ev})")
+            elif f == "v3v" and (comp != "v3" or not GAMMA_L_IRRELEVANT.search(r[2])):
+                errs.append(f"v3v reuse must come from v3 with a cited reason γ_L does not enter: {row}")
         vd = verdicts.get((ev, comp, row))
         if vd is None:
             errs.append(f"no recorded verdict of {ev} for {comp} on this row: {f} {row}")
@@ -718,7 +801,7 @@ def draw_grid(cells, out):
     rows, col_of = grid_rows(cells)
     got = {(c["flavor"], c["row"]): c["st"] for c in all_cells(cells)}
     n = len(rows) + len(COLUMNS)                      # rows + one header line per column group
-    rh, W = 0.25, 14.6
+    rh, W = 0.25, 16.2
     H = 1.85 + rh * n + 1.0
     fig = plt.figure(figsize=(W, H), dpi=150)
     fig.patch.set_facecolor("#f6f7f5")
@@ -730,8 +813,8 @@ def draw_grid(cells, out):
              "board. Colour = the verdict a committed lane computed for that flavor.", fontsize=9.5, color="#4d5a56")
     x0, cw = 5.6, 1.45
     for i, f in enumerate(FLAVORS):
-        fig.text((x0 + cw * i + cw / 2) / W, 1 - 1.45 / H, TITLE[f], fontsize=11.5, fontweight="bold",
-                 ha="center", color="#16201d")
+        fig.text((x0 + cw * i + cw / 2) / W, 1 - 1.45 / H, GRID_TITLE[f], fontsize=10.5, fontweight="bold",
+                 ha="center", va="center", color="#16201d")
     y, grp = 0, None
     for r in rows:
         if col_of[r] != grp:
@@ -854,6 +937,29 @@ def broken_cases():
         _cell(c, "pmedium", "Galaxy groups (BFJR)")["lanes"] = ["P4"]
         _cell(c, "pmedium", "Galaxy groups (BFJR)")["ev"] = "P4"
 
+    def b26(c, r, v, l, d):  # v3v reuse whose justification does not say why γ_L does not enter
+        r[("v3v", "Cluster cores (eRASS1 × KiDS)")] = ("v3", "F1", "THEORY_V3_DRAFT L66: F1 is the law on baryons")
+
+    def b27(c, r, v, l, d):  # v3v borrows P3's screened strong-field pass (black holes) with no γ_L justification
+        c.append(C("v3v", 0, "Black holes (EHT, LIGO ringdown)", "COND", "borrowed", ["P3"], comp="v3"))
+        r[("v3v", "Black holes (EHT, LIGO ringdown)")] = ("v3", "P3", "P3 README L25")
+        l["P3"] = dict(flavors={"v3"}, where="P3 README L1")
+        d[("P3", "v3", "Black holes (EHT, LIGO ringdown)")] = ("COND", "P3 README L25")
+
+    def b28(c, r, v, l, d):  # v3v green with its verification removed
+        del v[("v3v", "Tidal dwarfs, NGC 1052-DF2/DF4")]
+
+    def b29(c, r, v, l, d):  # v3v Cassini upgraded to green (O1 says PASS, but no verification entry)
+        _cell(c, "v3v", "Solar system + Cassini")["st"] = "PASS"
+
+    def b30(c, r, v, l, d):  # v3v reuses a canonical-rules verdict (not v3), even with a γ_L sentence and a citation
+        c.append(C("v3v", 1, "Central ellipticals (SLUGGS)", "UNDEC", "borrowed", ["CFG528b"], comp="canonical"))
+        r[("v3v", "Central ellipticals (SLUGGS)")] = ("canonical", "CFG528b", "N0 AUDIT L102: γ_L not used")
+
+    def b31(c, r, v, l, d):  # v3v galaxy groups borrowed from P4 with no REUSE (O1 says group members DEPEND)
+        c.append(C("v3v", 1, "Galaxy groups (BFJR)", "PASS", "borrowed", ["P4"], comp="v3"))
+        v[("v3v", "Galaxy groups (BFJR)")] = ("P4", "6c0249a8bc", "rerun")
+
     return [("plain-MOND reuse with its REUSE entry removed", b1), ("REUSE justification without file:line", b2),
             ("v4 borrows a v3 verdict without REUSE", b3), ("v4 borrows a v3 lane as if it computed v4", b4),
             ("green without verified evidence", b5), ("green verified by another lane", b6),
@@ -867,7 +973,10 @@ def broken_cases():
             ("ΛCDM reuse of a framework-law verdict", b19), ("lane registered for ΛCDM without a ΛCDM arm", b20),
             ("P-medium green without verification", b21), ("P-medium borrows a v3 verdict without REUSE", b22),
             ("n/c finding drawn as a verdict", b23), ("Y1 verdict without file:line", b24),
-            ("n/c from a lane that did not compute P-medium", b25)]
+            ("n/c from a lane that did not compute P-medium", b25),
+            ("v3v reuse without a γ_L reason", b26), ("v3v borrows P3's screened strong field", b27),
+            ("v3v green without verification", b28), ("v3v Cassini upgraded to green", b29),
+            ("v3v reuses a canonical-rules verdict", b30), ("v3v groups borrowed without REUSE", b31)]
 
 
 def selftest():
