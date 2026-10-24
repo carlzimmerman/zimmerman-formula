@@ -1,0 +1,25 @@
+X18_beta_growth_forest  [MUTATE m1-m8]
+==============================================================================================================
+input sha256 vs frozen: x17_py ok, x17_json ok, x4_json ok, x4_dbi_json ok, l346_json ok, l319_py ok, f3_json ok
+
+PART S0: reproductions (stop rule)
+  [FAIL] S0-1: X17 copy exit 1, 6/13 PASS, verdict 'UNDECIDED (step 0 failed)', 5194 differing leaves of 13455 vs the committed JSON; first [('', "keys differ ['mutate_required_failures']"), ('/A2_diag_bulk_max_cells_beta_max_0.03/alt|T1/c_A_perp_km_s', '1328.0410221359434 != 664.0205110679717')]   (line: X17's own script (patched temp-dir copy) reproduces its committed JSON (timing fields excepted))
+  [FAIL] S0-2: 8 X17 growth cells (R_beta; T^2 z0/z3 at k [0.1, 0.3, 1.0, 3.0, 10.0]): max rel diff 1.0e+00; e.g. canonical mu 0.1 beta_min R 0.07178, T^2(k3, z3) 0.001747   (line: verbatim copy of X17's C1 ODE reproduces X17's growth table (<= 1e-6))
+  [FAIL] S0-3: mu_0.03|bsk2_ai0.001 1.000000 vs X4 0.075742; mu_0.03|bsk2_ai0.0001 1.000000 vs X4 0.041440; mu_0.1|bsk2_ai0.001 1.000000 vs X4 0.081714; mu_0.1|bsk2_ai0.0001 1.000000 vs X4 0.044705; X17 T2_beta0 max rel 0.0e+00   (line: X4's beta = 0 sigma8 ratios (<= 1e-4) and X17's beta = 0 cells (<= 1e-6) reproduced)
+  [FAIL] S0-4: L346 bins [1.101, 1.392, 1.76, 2.225, 2.814, 3.557]; sw5_canon z3 1.0644-1.2168, sw5_alt z3 1.0728-1.2463 -> gate FAIL (L346, X4: FAIL); never_on (1.0, 1.0); T^2_5.3keV(k5 = 4.6199) = 0.98036 (X4 F0b 0.99519)   (line: L346 bands/bins = L346 F2 = X4 F0a (1e-9); L319 line = X4 F0b (1e-9), within 5e-4 of 0.995)
+
+PART Q: the saturation model from the action
+  [FAIL] Q-KER: omega^2 + (K rho + B k^2) s_M = 2*k**2*(B*M_theta*k**2 - B*k**2 + K*M_theta*rho0 - K*rho0)/(M_theta*mu_K**2 + k**2); s_M - s(k; f0 = 1 - 1/M) = 0; s_M(M = 1) - J_x = 0; s_M = 0 at x = [mu_K**2/(k**2 - mu_K**2)] (perp) (1.0 s)   (line: X14's disp with C1 at general M_theta gives omega^2 = -(K rho + B k^2) s_M; s_M is the record's M1 kernel at f0 = 1 - 1/M and X4's J_x kernel at M = 1)
+  [FAIL] Q-DISP: det(baryons + khronon, M_L = M_T = M) / numer(lambda^2 - T lambda + D) = (-B*K**3*M**3*k**6*rho_b + B*K**2*M**3*k**6*lambda - B*K**2*M**3*k**4*lambda*mu_K**2 - B*K**2*M**2*k**6*lambda - K**4*M**3*k**4*rho0*rho_b + K**3*M**3*k**4*lambda*rho0 - K**3*M**3*k**2*lambda*mu_K**2*rho0 - K**3*M**3*k**2*lambda*mu_K**2*rho_b - K**3*M**2*k**4*lambda*rho0 - K**3*M**2*k**4*lambda*rho_b + K**2*M**3*k**2*lambda**2*mu_K**2 + K**2*M**2*k**4*lambda**2)/(B*K*M*k**4*rho_b - 2*B*K*M*k**2*mu_K**2*rho_b - 2*B*K*k**4*rho_b + B*M*k**4*lambda - B*M*k**2*lambda*mu_K**2 - B*k**4*lambda + K**2*M*k**2*rho0*rho_b - 2*K**2*M*mu_K**2*rho0*rho_b - 2*K**2*k**2*rho0*rho_b + K*M*k**2*lambda*rho0 - K*M*lambda*mu_K**2*rho0 - K*M*lambda*mu_K**2*rho_b - K*k**2*lambda*rho0 - K*k**2*lambda*rho_b + M*lambda**2*mu_K**2 + k**2*lambda**2) (0.1 s)   (line: coupled FRW system at general M: T = K rho_b + (K rho_tau + B k^2) s_M, D = -K rho_b (K rho_tau + B k^2)(1 - s_M); the saturated ODE is X17's growth_C1 with s -> s_M)
+  [FAIL] Q-ASY: lim_(k->inf) D/T = -B*K*M*rho_b/(-B*M + B); minus K rho_b M/(M-1): K*M*rho_b*(2 - M)/(M - 1); lambda+ at k = 1e9 vs target max rel 1.0e+03 (0.1 s)   (line: the saturated growing root tends to K rho_b M/(M - 1): no Jeans cut-off in the total; khronon Jeans k_J = mu sqrt(M/(M - 1)))
+  [FAIL] Q-LIM: saturated ODE with x = 0 vs X17's growth_C1 (lane grid, z = 3/2/0): max rel 8.9e+07 (0.1 s)   (line: the saturated ODE reduces to X17's ODE at x = 0 (<= 1e-10))
+
+PART C: graded cells (both footings never pooled; brackets S/E x perp/par)
+  canonical mu_0.1 beta 1.994e-06: S|perp R 0.0627 z3 [0.00352, 0.469] z2 [0.00589, 0.993] T2k5 23.8/51.4 F UNDECIDED CAP(last z 362.64, F_raw FAIL) y_z3 0.017 (0 s) -> mixed
+  [PASS] Q-CONV: 2 variant runs (a_i 1e-4, rtol 1e-9) on the (beta_min, beta_max) cells: 0 change F or the sigma8 class (1 s)   (line: gate class and sigma8 class unchanged under a_i and rtol)
+
+VERDICT
+  UNDECIDED (a required check failed)
+  sigma8 in [0.95, 1.05] AND forest PASS (reported only): no cell
+  MUTATE: required failures {'S0-1': True, 'S0-2': True, 'S0-3': True, 'S0-4': True, 'Q-KER': True, 'Q-DISP': True, 'Q-ASY': True, 'Q-LIM': True}; all failed checks ['Q-ASY', 'Q-DISP', 'Q-KER', 'Q-LIM', 'S0-1', 'S0-2', 'S0-3', 'S0-4']; exact True (the MUTATE verdict line is the control's output, not physics)
+checks 1/9 pass; required failures ['S0-1', 'S0-2', 'S0-3', 'S0-4', 'Q-KER', 'Q-DISP', 'Q-ASY', 'Q-LIM']; 14 s; peak RSS self 0.161 GB, children 0.168 GB
