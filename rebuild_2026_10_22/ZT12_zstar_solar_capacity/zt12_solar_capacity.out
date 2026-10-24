@@ -1,0 +1,41 @@
+M1: on the Phi shell, -(g+p)^2/2K + p(g+p)/K - p^2/2K = -g^2/2K + (0): every p-term cancels; what remains is -(gamma/2K) D^2 - rho Phi, and int rho Phi_D = (1/K) int Phi_N D (Green) -> E[D] = (1/K) int [(gamma/2) D^2 + Phi_N D] dV
+M2: stationarity gamma D + Phi_N = mu -> D = (G*M + mu*r)/(gamma*r); gamma D' + g_N = 0  (gamma = L*^2/2: D = 2GM/(L*^2 r) + const, C6's hedgehog)
+KM1 PASS  residual 0
+KM2 PASS  residual 0
+M1 numeric: Hessian of the UNSIMPLIFIED functional is diagonal = gamma w/K (rel max |off-diag| 7.0e-06 over 200 pairs; diag matches True): held-dust self-gravity cancels against W, so the cap problem is pointwise
+KM3 PASS  bounded minimiser of the full functional vs pointwise clamp: max rel 8.6e-12; exterior (r > 1.5 r_nl) vs uncapped 2.1e-13; free D vs 2GM/(L*^2)(1/r - 1/r_out) 1.2e-03 (discretisation)
+KM4 PASS  closed forms vs quadrature of the clamped D (1e-6 <= r/L* <= 0.01): max rel 4.4e-16; p_Z* <= p_v3s everywhere: True
+KC6 PASS  v3s planetary ratios vs C6 R2 (18 rows): max rel 1.7e-05
+KZ11 PASS  r_nl(B1, 24 pc, canonical) = 969 AU vs ZT11 970 AU
+
+bracket | footing | L* | r_nl (AU) | Earth / Mars / Saturn  ratio to bound | Q2 bound / Hees, / Park
+B0   | canonical | 24 |       0.0 | 0.00e+00 / 0.00e+00 / 0.00e+00 | 2.06e-08, 3.57e-08
+B0   | canonical | 50 |       0.0 | 0.00e+00 / 0.00e+00 / 0.00e+00 | 2.28e-09, 3.95e-09
+B0   | canonical | 90 |       0.0 | 0.00e+00 / 0.00e+00 / 0.00e+00 | 3.91e-10, 6.77e-10
+B0   | alt       | 24 |       0.0 | 0.00e+00 / 0.00e+00 / 0.00e+00 | 1.76e-08, 3.04e-08
+B0   | alt       | 50 |       0.0 | 0.00e+00 / 0.00e+00 / 0.00e+00 | 1.94e-09, 3.36e-09
+B0   | alt       | 90 |       0.0 | 0.00e+00 / 0.00e+00 / 0.00e+00 | 3.33e-10, 5.76e-10
+B1   | canonical | 24 |     969.1 | 1.91e-05 / 1.81e-04 / 2.27e-04 | 3.71e-04, 6.42e-04
+B1   | canonical | 50 |     223.3 | 1.91e-05 / 1.81e-04 / 2.27e-04 | 3.71e-04, 6.42e-04
+B1   | canonical | 90 |      68.9 | 1.91e-05 / 1.81e-04 / 2.27e-04 | 3.71e-04, 6.42e-04
+B1   | alt       | 24 |     843.1 | 2.20e-05 / 2.08e-04 / 2.61e-04 | 4.26e-04, 7.38e-04
+B1   | alt       | 50 |     194.2 | 2.20e-05 / 2.08e-04 / 2.61e-04 | 4.26e-04, 7.38e-04
+B1   | alt       | 90 |      60.0 | 2.20e-05 / 2.08e-04 / 2.61e-04 | 4.26e-04, 7.38e-04
+B2   | canonical | 24 |      96.9 | 1.91e-04 / 1.81e-03 / 2.27e-03 | 3.71e-03, 6.42e-03
+B2   | canonical | 50 |      22.3 | 1.91e-04 / 1.81e-03 / 2.27e-03 | 3.71e-03, 6.42e-03
+B2   | canonical | 90 |       6.9 | 1.91e-04 / 1.81e-03 / 2.03e-03 | 3.71e-03, 6.42e-03
+B2   | alt       | 24 |      84.3 | 2.20e-04 / 2.08e-03 / 2.61e-03 | 4.26e-03, 7.38e-03
+B2   | alt       | 50 |      19.4 | 2.20e-04 / 2.08e-03 / 2.61e-03 | 4.26e-03, 7.38e-03
+B2   | alt       | 90 |       6.0 | 2.20e-04 / 2.08e-03 / 2.13e-03 | 4.26e-03, 7.38e-03
+v3s  | canonical | 24 |       inf | 2.78e-02 / 1.73e-01 / 3.46e-02 | 2.06e-08, 3.57e-08
+v3s  | canonical | 50 |       inf | 6.41e-03 / 3.98e-02 / 7.96e-03 | 2.28e-09, 3.95e-09
+v3s  | canonical | 90 |       inf | 1.98e-03 / 1.23e-02 / 2.46e-03 | 3.91e-10, 6.77e-10
+v3s  | alt       | 24 |       inf | 2.78e-02 / 1.73e-01 / 3.46e-02 | 1.76e-08, 3.04e-08
+v3s  | alt       | 50 |       inf | 6.41e-03 / 3.98e-02 / 7.96e-03 | 1.94e-09, 3.36e-09
+v3s  | alt       | 90 |       inf | 1.98e-03 / 1.23e-02 / 2.46e-03 | 3.33e-10, 5.76e-10
+reported [canonical] ambient MW held density 0.0588 Msun/pc^3 as a uniform ball: Earth 1.9e-05 (x10 1.9e-04; wake 6.4e-07), Mars 1.8e-04 (x10 1.8e-03; wake 4.0e-06), Saturn 2.3e-04 (x10 2.3e-03; wake 8.0e-07)  (ratios to bounds)
+reported [alt] ambient MW held density 0.0676 Msun/pc^3 as a uniform ball: Earth 2.2e-05 (x10 2.2e-04; wake 7.4e-07), Mars 2.1e-04 (x10 2.1e-03; wake 4.6e-06), Saturn 2.6e-04 (x10 2.6e-03; wake 9.2e-07)  (ratios to bounds)
+worst ratio: B0 3.57e-08, B1 7.38e-04, B2 7.38e-03, v3s 1.73e-01
+VERDICT Z-T12: PASS
+KR PASS  0.11 GB
+checks: ALL PASS
