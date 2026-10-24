@@ -201,3 +201,17 @@ W(foot, μ_K) = passing grid points.
   verdict, the radiated-power formula and its β, η dependence, δ per binary vs bounds, every amendment labelled PRE-RESULT
   or POST-RESULT, and "what this does not show".
 - Git: pathspec commits of this lane only; never push; no rebase or amend.
+
+## 9. Amendments
+
+- **A1 (PRE-RESULT, written with the script, before any run).** S0-4's last clause ("this lane's own K7 recomputation
+  (C8's formula, this lane's inputs) reproduces C8's JSON eps to 1e-9") cannot hold as written although nothing is wrong:
+  this lane's mass pairs (§2) sum to the record's M_tot only to 3.9e-7 (J0737: 1.338185 + 1.248868 vs 2.587052) and 7.8e-6
+  (B1913: 1.4398 + 1.3886 vs 2.828378), visible in the input tables. Replaced by two clauses: (i) the own K7 recomputation
+  uses the record table's (P_b, M_tot) and must reproduce C8's JSON eps to 1e-9; (ii) this lane's inputs agree with the
+  record table, |ΔP_b/P_b| and |Δ(m₁ + m₂)/M_tot| ≤ 1e-5 for J0737/B1913/J1738. MUTATE m4 (P_b × 1.01) still fails (ii)
+  and S0-5.
+- **A2 (PRE-RESULT implementation).** D-GR is implemented as: the tensor residues derived symbolically (expected 4K per
+  polarisation) and the angular integral of the TT-projected source done by the same Gauss–Legendre × uniform-φ quadrature
+  as ANG (exact for these polynomial degrees); pass threshold 1e-10 relative to (G/10)ω⁶|Q|². D-LIM uses the exact
+  dispersion with symbolic M = 1 + m (m ≥ 0) and symbolic B.
