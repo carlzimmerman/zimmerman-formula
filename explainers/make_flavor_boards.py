@@ -49,15 +49,15 @@ from matplotlib.patches import FancyBboxPatch, Rectangle
 HERE = os.path.dirname(os.path.abspath(__file__))
 IMG = os.path.join(HERE, "img")
 OUT_BOARD = {"v4": "status_board_v4.png", "canonical": "status_board_canonical_rules.png",
-             "plain_mond": "status_board_plain_mond.png", "lcdm": "status_board_lcdm.png"}
+             "plain_mond": "status_board_plain_mond.png", "lcdm": "status_board_lcdm.png",
+             "pmedium": "status_board_pmedium.png"}
 OUT_GRID = "flavor_comparison_grid.png"
 
-FLAVORS = ["v3", "v4", "canonical", "plain_mond", "lcdm"]
-TITLE = {"v3": "v3", "v4": "v4", "canonical": "canonical rules", "plain_mond": "plain MOND", "lcdm": "ΛCDM"}
+FLAVORS = ["v3", "v4", "canonical", "plain_mond", "lcdm", "pmedium"]
+TITLE = {"v3": "v3", "v4": "v4", "canonical": "canonical rules", "plain_mond": "plain MOND", "lcdm": "ΛCDM",
+         "pmedium": "P-medium (Codex)"}
 RECIPES = {
-    "v3": "General relativity plus a preferred cosmic time (Khronon) and one extra field giving the simple MOND law "
-          "(AQUAL, external-field effect included, κ fitted), switched off within L★ ≥ 22 pc, plus fitted cold dust; "
-          "no settling or supply rules.",
+    "v3": msb.RECIPE.split(": ", 1)[1],          # the main board's own recipe line, whatever it currently says
     "v4": "AeST (Skordis–Złośnik) with C1's capped free function (static limit = the law μ = x/(1+x)) plus the same "
           "stiffness term γ_L; AeST's own dust; κ fitted. Not the best theory: ill-posed where the aether twists (I1).",
     "canonical": "The pre-covariant framework (THEORY_CANONICAL v2; DSF-21's stiffened action): the law on baryons "
@@ -67,15 +67,21 @@ RECIPES = {
                   "cosmology; κ = ½ fitted.",
     "lcdm": "GR + Λ + cold dark matter particles (6 fitted cosmological parameters; halos from simulations). It has a "
             "dark-matter particle, which this framework's owner rules out for the framework itself; a reference only.",
+    "pmedium": "Newtonian Poisson on baryons + a cold particle medium that also feels a saturating polarization P and a "
+               "stiffening scalar χ (Codex's reduced preferred-frame action); ℓ₀ = 0.44 kpc fitted to growth.",
 }
 PSEUDO = {"newton"}   # the Newtonian / GR limit some lanes compute as a row; never a column of its own
 
 COL, LAB, COLUMNS = msb.COL, msb.LAB, msb.COLUMNS
 GREY = "#dcdfe2"
+# NOT COMPUTABLE: a lane showed that the flavor's action does not determine the test. Distinct from grey (not computed).
+NC, NC_COL, NC_LAB = "NC", "#f3efe2", "n/c: the action does not determine it"
 RANK = {"FAIL": 0, "UNDEC": 1, "COND": 2, "PASS": 3}
 
 # Tiles that are the same test under different names share one grid row.
 ROW_OF = {
+    "Solar system + Cassini (screened)": "Solar system + Cassini",
+    "Cluster cores": "Cluster cores (eRASS1 × KiDS)",
     "Leaf problem well-posed": "Well-posed (leaf / Cauchy problem)",
     "v4 well-posedness": "Well-posed (leaf / Cauchy problem)",
     "Linear growth, v3 Khronon": "Linear growth",
@@ -180,6 +186,7 @@ L("U1", {"v3", "newton"}, R + "U1_v3_dust_content/README.md:L12, L135 (B0 = dust
 for lane in ("P4", "S2", "S3", "S4", "P2"):
     L(lane, {"v3"}, R + {"P4": "P4_v3_galaxy_tiles", "S2": "S2_v3_lowg_lensing", "S3": "S3_v3_mw_seals",
                         "S4": "S4_v3_muK_clusters", "P2": "P2_spec_isolated_lensing"}[lane] + "/README.md:L1")
+L("Y1", {"pmedium"}, "rebuild_2026_10_22/Y1_pmedium_flavor/README.md:L1-L38 (Codex's XP/SE-20261023 reduced action)")
 L("Q6", {"v3", "lcdm"}, R + "Q6_v3_class/README.md:L21, L131 (ΛCDM refit; DUST = ΛCDM)")
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -195,7 +202,7 @@ def V(lane, comp, row, st, where):
 V("H3", "v4", "Health: ghosts, gradients", "COND", TV3 + ":L26-L30")
 V("I1", "v4", "Well-posed (leaf / Cauchy problem)", "FAIL", R + "I1_gammaL_causality/README.md:L3-L14")
 V("I1", "v4", "Causality: criterion A / B", "FAIL", R + "I1_gammaL_causality/README.md:L5-L14")
-V("H1", "v4", "Solar system + Cassini (screened)", "PASS", R + "H1_aest_F/README.md:L95; " + TV3 + ":L22-L25")
+V("H1", "v4", "Solar system + Cassini", "PASS", R + "H1_aest_F/README.md:L95; " + TV3 + ":L22-L25")
 V("H2", "v4", "Cluster cores (eRASS1 × KiDS)", "FAIL", R + "H2_aest_clusters/README.md:L3-L11")
 V("C7", "v4", "Linear growth", "FAIL", TV3 + ":L72")
 V("C7", "v4", "Native CMB", "FAIL", CP + "C7_aest_class/README.md:L13-L14; " + TV3 + ":L72")
@@ -223,7 +230,7 @@ for row, lane, st in [
 V("CFG902", "canonical", "Isolated-galaxy lensing, all radii", "FAIL",
   "explainers/make_status_board.py TILES prev = FAIL (22 October board); " + TV3 + ":L65")
 V("C5", "canonical", "Health: ghosts, gradients", "FAIL", TV3 + ":L13, L17")
-V("D7d", "canonical", "Solar system + Cassini (screened)", "PASS", DP + "D7d_screened_q2/README.md:L3-L6")
+V("D7d", "canonical", "Solar system + Cassini", "PASS", DP + "D7d_screened_q2/README.md:L3-L6")
 V("D7b", "canonical", "Unscreened law vs Cassini", "FAIL", DP + "D7b_cassini_Q2/README.md:L3-L8")
 V("G2", "canonical", "Dwarf satellites (MW / M31)", "FAIL", R + "G2_preinfall_retention/README.md:L1-L10")
 V("CFG815", "canonical", "Cluster cores (eRASS1 × KiDS)", "FAIL", CF + "THEORY_CANONICAL_2026-10-16.md:L22-L27")
@@ -255,6 +262,21 @@ V("F1", "v3", "Cluster cores (eRASS1 × KiDS)", "FAIL", TV3 + ":L66")
 V("C2", "lcdm", "Native CMB", "PASS", CP + "C2_aest_cosmology/README.md:L172")
 V("F3", "lcdm", "Linear growth", "PASS", R + "F3_growth_audit/README.md:L8, L75")
 V("CFG596", "lcdm", "Cosmic shear, 1024³ PM vs raw KiDS", "COND", CF + "CFG596_lean_pm_1024/README.md:L131, L141-L142")
+# P-medium (Codex), lane Y1 (results 55aed1b71c): README table L29-L38 and the .out lines it cites
+for row, st, where in [
+        ("Gravity waves at light speed", NC, "README.md:L29; y1_pmedium_flavor.out:L5-L7"),
+        ("Binary pulsars + GW170817", NC, "README.md:L30; y1_pmedium_flavor.out:L6"),
+        ("Health: ghosts, gradients", "PASS", "README.md:L31; y1_pmedium_flavor.out:L10-L12"),
+        ("Well-posed (leaf / Cauchy problem)", "PASS", "README.md:L32; y1_pmedium_flavor.out:L13-L14"),
+        ("Rotation curves (SPARC RAR)", NC, "README.md:L33; y1_pmedium_flavor.out:L32-L33"),
+        ("Solar system + Cassini", "COND", "README.md:L34; y1_pmedium_flavor.out:L36-L41"),
+        ("Tidal dwarfs, NGC 1052-DF2/DF4", "COND", "README.md:L35; y1_pmedium_flavor.out:L44-L50"),
+        ("Dwarf satellites (MW / M31)", NC, "README.md:L36; y1_pmedium_flavor.out:L47-L50"),
+        ("Cluster cores (eRASS1 × KiDS)", NC, "README.md:L37; y1_pmedium_flavor.out:L53"),
+        ("Linear growth", "PASS", "README.md:L38, L148; y1_pmedium_flavor.out:L62-L68"),
+        ("Local a0 from MeerKAT", NC, "README.md:L45 (same argument as the RAR; not recomputed)"),
+        ("Galaxy groups (BFJR)", NC, "README.md:L45 (same argument as the RAR; not recomputed)")]:
+    V("Y1", "pmedium", row, st, "rebuild_2026_10_22/Y1_pmedium_flavor/" + where)
 V("U1", "newton", "Tidal dwarfs, NGC 1052-DF2/DF4", "PASS", R + "U1_v3_dust_content/README.md:L135")
 V("D10", "newton", "Outer globular clusters", "COND", DP + "D10_native_Lstar/README.md:L18, L21")
 
@@ -294,12 +316,16 @@ FILE_LINE = re.compile(r"(README|THEORY|AUDIT|\.md|\.py).{0,40}L\d+")
 
 # A first green: (flavor, row) -> (lane, result commit, rerun or independent reproduction).
 VERIFIED_GREEN_F = {
-    ("v4", "Solar system + Cassini (screened)"): ("H1", "1654b84f78",
+    ("v4", "Solar system + Cassini"): ("H1", "1654b84f78",
         "reproduced by the coordinator (THEORY_V3_DRAFT §1b L21: lanes H1-H3 all reproduced)"),
     ("plain_mond", "Local a0 from MeerKAT"): ("P4", "6c0249a8bc",
         "coordinator rerun 2026-10-23: P4 identical except peak RSS"),
     ("plain_mond", "Galaxy groups (BFJR)"): ("P4", "6c0249a8bc",
         "coordinator rerun 2026-10-23: P4 identical except peak RSS"),
+    ("pmedium", "Health: ghosts, gradients"): ("Y1", "55aed1b71c", "coordinator rerun 2026-10-23: reproduced, identical"),
+    ("pmedium", "Well-posed (leaf / Cauchy problem)"): ("Y1", "55aed1b71c",
+        "coordinator rerun 2026-10-23: reproduced, identical"),
+    ("pmedium", "Linear growth"): ("Y1", "55aed1b71c", "coordinator rerun 2026-10-23: reproduced, identical"),
     ("lcdm", "Native CMB"): ("C2", "5e93769089",
         "the ΛCDM refit is reproduced independently by C7 K1 (README L161: 1003.48 vs C2's 1003.20) and Q6 "
         "(README L21: 1003.47)"),
@@ -490,6 +516,32 @@ CELLS = [
     C("lcdm", 1, "Outer globulars (Newton)", "COND",
       "Newton is D10's best fit (Δχ² ≤ 2.5 vs every L★); assumes outer globulars carry no DM, as ΛCDM expects",
       ["D10"], comp="newton"),
+    # ---------------- P-medium (Codex), lane Y1 ----------------
+    C("pmedium", 0, "Gravity waves at light speed", NC, "no tensor sector: gravity is instantaneous Poisson", ["Y1"]),
+    C("pmedium", 0, "Binary pulsars + GW170817", NC, "no tensor sector; baryons source no P or χ radiation", ["Y1"]),
+    C("pmedium", 0, "Health: ghosts, gradients", "PASS",
+      "reduced action: every mode Jeans-bounded (max rate / √(4πGρ) = 1.000000 over 2000 backgrounds, k to 1e8)",
+      ["Y1"], lab="pass (reduced action)"),
+    C("pmedium", 0, "Leaf problem well-posed", "PASS",
+      "reduced action: FRW modes damped, never above dust; no covariant completion; global mean subtraction",
+      ["Y1"], lab="pass (reduced action)"),
+    C("pmedium", 0, "Solar system + Cassini", "COND",
+      "ambient cold medium: worst gate ratio 7.4e-4; a bound zero-dispersion atmosphere would fail (2.2e4× the bound)",
+      ["Y1"]),
+    C("pmedium", 1, "Rotation curves (SPARC RAR)", NC,
+      "no galaxy law (the RAR depends on the cold distribution); history-free branch fails: rms 0.24 dex", ["Y1"]),
+    C("pmedium", 1, "Local a0 from MeerKAT", NC, "no galaxy law; same argument as the RAR, not recomputed", ["Y1"]),
+    C("pmedium", 1, "Galaxy groups (BFJR)", NC, "no galaxy law; same argument as the RAR, not recomputed", ["Y1"]),
+    C("pmedium", 1, "Tidal dwarfs, NGC 1052-DF2/DF4", "COND",
+      "TDGs derived cold-free: Newton +0.055 ± 0.114 dex (pass); DF2/DF4 cold-free only as a formation history",
+      ["Y1"]),
+    C("pmedium", 2, "Dwarf satellites (MW / M31)", NC,
+      "cold-free Newton +2.00 / +1.99 dex fails; cold cores can bind, but their masses are free, one per system",
+      ["Y1"]),
+    C("pmedium", 2, "Cluster cores", NC,
+      "no static prediction independent of the cold distribution (cold-free Newton: A_MID 9.8)", ["Y1"]),
+    C("pmedium", 3, "Linear growth", "PASS",
+      "σ₈ / dust limit 0.9991 (from a = 1e-3), 0.967 (1e-4); a WDM-like cutoff at k ~ 1–6 h/Mpc is flagged", ["Y1"]),
 ]
 
 
@@ -525,7 +577,7 @@ def check(cells, reuse=None, verified=None, lanes=None, verdicts=None, arms=None
         if f not in FLAVORS or c["comp"] not in set(FLAVORS) | PSEUDO:
             errs.append(f"unknown flavor: {f} / {c['comp']}: {row}")
             continue
-        if st is not None and st not in COL:
+        if st is not None and st not in COL and st != NC:
             errs.append(f"bad colour {st}: {f} {row}")
         for ln in c["lanes"]:
             if ln not in lanes:
@@ -548,7 +600,7 @@ def check(cells, reuse=None, verified=None, lanes=None, verdicts=None, arms=None
             vst, where = vd
             if not FILE_LINE.search(where) and "PREVIOUS_BOARD" not in where:
                 errs.append(f"verdict without a file:line: {ev} {row}")
-            if vst == "OPEN" or st == "OPEN":
+            if vst in ("OPEN", NC) or st in ("OPEN", NC):
                 if vst != st:
                     errs.append(f"open/verdict mismatch ({st} vs lane's {vst}): {f} {row}")
             elif RANK[st] > RANK[vst]:
@@ -591,7 +643,7 @@ def counts(cells):
     out = {}
     for f in FLAVORS:
         got = {c["row"]: c["st"] for c in all_cells(cells) if c["flavor"] == f}
-        k = {s: sum(1 for r in rows if got.get(r) == s) for s in ("PASS", "COND", "FAIL", "UNDEC", "OPEN")}
+        k = {s: sum(1 for r in rows if got.get(r) == s) for s in ("PASS", "COND", "FAIL", "UNDEC", "OPEN", NC)}
         k["grey"] = sum(1 for r in rows if got.get(r) is None)
         out[f] = k
     return out
@@ -622,14 +674,20 @@ def draw_board(f, cells, out):
         ax.text(k + 0.03, nmax + 0.4, title, fontsize=13, fontweight="bold", color="#16201d", va="center")
         for j, t in enumerate([t for t in tiles if t["col"] == k]):
             y = nmax - 0.5 - j
-            msb._box(ax, k + 0.03, y - 0.46, 0.93, 0.90, t["st"])
-            ax.text(k + 0.065, y + 0.33, t["name"], fontsize=10.4, fontweight="bold", color="white", va="center")
-            lab = (t["lab"] or LAB[t["st"]]).upper()
+            nc = t["st"] == NC
+            ink = "#3b3524" if nc else "white"
+            if nc:
+                ax.add_patch(FancyBboxPatch((k + 0.03, y - 0.46), 0.93, 0.90, boxstyle="round,pad=0.0,rounding_size=0.05",
+                                            facecolor=NC_COL, edgecolor="#d4cba8", linewidth=1.0, hatch="/"))
+            else:
+                msb._box(ax, k + 0.03, y - 0.46, 0.93, 0.90, t["st"])
+            ax.text(k + 0.065, y + 0.33, t["name"], fontsize=10.4, fontweight="bold", color=ink, va="center")
+            lab = (t["lab"] or (NC_LAB if nc else LAB[t["st"]])).upper()
             if t["comp"] != f:
                 lab += "  ·  REUSED (" + t["ev"] + ")"
-            ax.text(k + 0.065, y + 0.18, lab, fontsize=8.2, color="white", va="center", alpha=0.95)
+            ax.text(k + 0.065, y + 0.18, lab, fontsize=8.2, color=ink, va="center", alpha=0.95)
             for i, ln in enumerate(_notes(t)):
-                ax.text(k + 0.065, y + 0.03 - 0.1154 * i, ln, fontsize=7.8, color="white", va="center", alpha=0.97)
+                ax.text(k + 0.065, y + 0.03 - 0.1154 * i, ln, fontsize=7.8, color=ink, va="center", alpha=0.97)
     lx, ly = 0.015, 0.95 / H
     for st in ("PASS", "COND", "UNDEC", "FAIL", "OPEN"):
         fig.patches.append(FancyBboxPatch((lx, ly - 0.01 * 13.2 / H), 0.014, 0.02 * 13.2 / H,
@@ -637,6 +695,11 @@ def draw_board(f, cells, out):
                                           edgecolor="none", transform=fig.transFigure, figure=fig))
         fig.text(lx + 0.019, ly, LAB[st], fontsize=10.5, va="center", color="#16201d")
         lx += 0.095
+    if any(t["st"] == NC for t in tiles):
+        fig.patches.append(FancyBboxPatch((lx, ly - 0.01 * 13.2 / H), 0.014, 0.02 * 13.2 / H,
+                                          boxstyle="round,pad=0,rounding_size=0.003", facecolor=NC_COL,
+                                          edgecolor="#d4cba8", hatch="/", transform=fig.transFigure, figure=fig))
+        fig.text(lx + 0.019, ly, NC_LAB, fontsize=10.5, va="center", color="#16201d")
     foot = ("A cell is a computed verdict for that flavor; grey = not computed; nothing here says the data favour any "
             "flavor, including ΛCDM.")
     if f == "lcdm":
@@ -648,14 +711,14 @@ def draw_board(f, cells, out):
     plt.close(fig)
 
 
-SHORT = {"PASS": "pass", "COND": "cond.", "FAIL": "fails", "UNDEC": "undec.", "OPEN": "open", None: "—"}
+SHORT = {"PASS": "pass", "COND": "cond.", "FAIL": "fails", "UNDEC": "undec.", "OPEN": "open", NC: "n/c", None: "—"}
 
 
 def draw_grid(cells, out):
     rows, col_of = grid_rows(cells)
     got = {(c["flavor"], c["row"]): c["st"] for c in all_cells(cells)}
     n = len(rows) + len(COLUMNS)                      # rows + one header line per column group
-    rh, W = 0.25, 13.0
+    rh, W = 0.25, 14.6
     H = 1.85 + rh * n + 1.0
     fig = plt.figure(figsize=(W, H), dpi=150)
     fig.patch.set_facecolor("#f6f7f5")
@@ -678,20 +741,23 @@ def draw_grid(cells, out):
         ax.text(0.25, y + 0.5, r, fontsize=8.6, color="#16201d", va="center")
         for i, f in enumerate(FLAVORS):
             st = got.get((f, r))
+            nc = st == NC
             ax.add_patch(Rectangle((x0 + cw * i + 0.04, y + 0.08), cw - 0.08, 0.84,
-                                   facecolor=COL[st] if st else GREY, edgecolor="none"))
+                                   facecolor=NC_COL if nc else (COL[st] if st else GREY),
+                                   edgecolor="#d4cba8" if nc else "none", linewidth=0.8, hatch="/" if nc else None))
             ax.text(x0 + cw * i + cw / 2, y + 0.5, SHORT[st], fontsize=8.2, ha="center", va="center",
-                    color="white" if st else "#5b6469")
+                    color="#3b3524" if nc else ("white" if st else "#5b6469"))
         y += 1
     k = counts(cells)
     line = "   ".join(f"{TITLE[f]}: {k[f]['PASS']}/{k[f]['COND']}/{k[f]['FAIL']}/{k[f]['UNDEC']}/{k[f]['OPEN']}/"
-                       f"{k[f]['grey']}" for f in FLAVORS)
+                       f"{k[f][NC]}/{k[f]['grey']}" for f in FLAVORS)
     fig.text(0.02, 0.70 / H, "a cell is a computed verdict for that flavor; grey = not computed; nothing here says the "
              "data favour any flavor, including ΛCDM", fontsize=9.5, color="#16201d", fontweight="bold")
-    fig.text(0.02, 0.42 / H, "pass / cond. / fails / undec. / open / grey per column — " + line, fontsize=8.2,
+    fig.text(0.02, 0.42 / H, "pass / cond. / fails / undec. / open / n/c / grey per column — " + line, fontsize=8.2,
              color="#4d5a56")
-    fig.text(0.02, 0.17 / H, "ΛCDM has a dark-matter particle, which the framework rules out for itself; its column is "
-             "a reference only. κ = ½ fitted. Justifications: crispy_fried_chicken_flavors.md.", fontsize=8.2,
+    fig.text(0.02, 0.17 / H, "n/c = a lane showed the flavor's action does not determine the test. ΛCDM has a "
+             "dark-matter particle, which the framework rules out for itself; its column is a reference only. κ = ½ "
+             "fitted. Justifications: crispy_fried_chicken_flavors.md.", fontsize=8.2,
              color="#4d5a56")
     fig.savefig(out, dpi=150, facecolor=fig.get_facecolor())
     plt.close(fig)
@@ -720,7 +786,7 @@ def broken_cases():
         del v[("plain_mond", "Local a0 from MeerKAT")]
 
     def b6(c, r, v, l, d):   # a green whose verification names another lane
-        v[("v4", "Solar system + Cassini (screened)")] = ("H2",) + v[("v4", "Solar system + Cassini (screened)")][1:]
+        v[("v4", "Solar system + Cassini")] = ("H2",) + v[("v4", "Solar system + Cassini")][1:]
 
     def b7(c, r, v, l, d):   # a cell better than its lane's verdict (P4 says COND)
         _cell(c, "plain_mond", "Rotation curves (SPARC RAR)")["st"] = "PASS"
@@ -772,6 +838,22 @@ def broken_cases():
     def b20(c, r, v, l, d):  # G2 registered as computing ΛCDM directly, with no cited ΛCDM arm
         l["G2"] = dict(flavors={"canonical", "lcdm"}, where="G2 README L91")
 
+    def b21(c, r, v, l, d):  # P-medium green with its verification removed
+        del v[("pmedium", "Linear growth")]
+
+    def b22(c, r, v, l, d):  # P-medium borrows a v3 verdict (outer globulars from D10) without REUSE
+        c.append(C("pmedium", 1, "Outer globulars: L* floor", "COND", "borrowed", ["D10"], comp="v3"))
+
+    def b23(c, r, v, l, d):  # a NOT COMPUTABLE finding drawn as a verdict (the RAR's failing branch shown as fails)
+        _cell(c, "pmedium", "Rotation curves (SPARC RAR)")["st"] = "FAIL"
+
+    def b24(c, r, v, l, d):  # a Y1 verdict cited without file:line
+        d[("Y1", "pmedium", "Linear growth")] = ("PASS", "Y1 says so")
+
+    def b25(c, r, v, l, d):  # n/c claimed by a lane that did not compute P-medium
+        _cell(c, "pmedium", "Galaxy groups (BFJR)")["lanes"] = ["P4"]
+        _cell(c, "pmedium", "Galaxy groups (BFJR)")["ev"] = "P4"
+
     return [("plain-MOND reuse with its REUSE entry removed", b1), ("REUSE justification without file:line", b2),
             ("v4 borrows a v3 verdict without REUSE", b3), ("v4 borrows a v3 lane as if it computed v4", b4),
             ("green without verified evidence", b5), ("green verified by another lane", b6),
@@ -782,7 +864,10 @@ def broken_cases():
             ("ΛCDM coloured on a galaxy-formation row", b15), ("ΛCDM green with no verification", b16),
             ("verdict citation without file:line", b17),
             ("ΛCDM satellites from G2's framework-law route", b18),
-            ("ΛCDM reuse of a framework-law verdict", b19), ("lane registered for ΛCDM without a ΛCDM arm", b20)]
+            ("ΛCDM reuse of a framework-law verdict", b19), ("lane registered for ΛCDM without a ΛCDM arm", b20),
+            ("P-medium green without verification", b21), ("P-medium borrows a v3 verdict without REUSE", b22),
+            ("n/c finding drawn as a verdict", b23), ("Y1 verdict without file:line", b24),
+            ("n/c from a lane that did not compute P-medium", b25)]
 
 
 def selftest():
@@ -811,7 +896,7 @@ def main():
     k = counts(cells)
     for f in FLAVORS:
         print(f"{TITLE[f]:>16}: pass {k[f]['PASS']}, cond {k[f]['COND']}, fail {k[f]['FAIL']}, undec {k[f]['UNDEC']}, "
-              f"open {k[f]['OPEN']}, grey {k[f]['grey']}")
+              f"open {k[f]['OPEN']}, n/c {k[f][NC]}, grey {k[f]['grey']}")
     print(f"reused cells: {sum(1 for c in cells if c['comp'] != c['flavor'])} (REUSE entries {len(reuse)})")
     if errs:
         for e in errs:

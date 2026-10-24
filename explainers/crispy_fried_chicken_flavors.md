@@ -4,17 +4,18 @@
 
 ![Flavor comparison grid](img/flavor_comparison_grid.png)
 
-Boards: [v4](img/status_board_v4.png) · [canonical rules](img/status_board_canonical_rules.png) · [plain MOND](img/status_board_plain_mond.png) · [ΛCDM](img/status_board_lcdm.png). The v3 board is [`img/status_board.png`](img/status_board.png). All are drawn by [`make_flavor_boards.py`](make_flavor_boards.py), which imports v3's tiles from [`make_status_board.py`](make_status_board.py) and leaves that board and its image untouched.
+Boards: [v4](img/status_board_v4.png) · [canonical rules](img/status_board_canonical_rules.png) · [plain MOND](img/status_board_plain_mond.png) · [ΛCDM](img/status_board_lcdm.png) · [P-medium (Codex)](img/status_board_pmedium.png). The v3 board is [`img/status_board.png`](img/status_board.png). All are drawn by [`make_flavor_boards.py`](make_flavor_boards.py), which imports v3's tiles from [`make_status_board.py`](make_status_board.py) and leaves that board and its image untouched.
 
 ## The flavors (one-line recipes)
 
 | flavor | recipe |
 |---|---|
-| v3 | General relativity plus a preferred cosmic time (Khronon) and one extra field giving the simple MOND law (AQUAL, external-field effect included, κ fitted), switched off within L★ ≥ 22 pc, plus fitted cold dust; no settling or supply rules. |
+| v3 | General relativity plus a preferred cosmic time (Khronon) and one extra field giving the simple MOND law (AQUAL, external-field effect included, κ fitted), switched off within L★ ≥ 22 pc by a stiffness that acts only where D·P ≥ 0, plus fitted cold dust; no settling or supply rules. |
 | v4 | AeST (Skordis–Złośnik) with C1's capped free function (static limit = the law μ = x/(1+x)) plus the same stiffness term γ_L; AeST's own dust; κ fitted. Not the best theory: ill-posed where the aether twists (I1). |
 | canonical rules | The pre-covariant framework (THEORY_CANONICAL v2; DSF-21's stiffened action): the law on baryons (QUMOND phantom, ν_mono / algebraic) plus cold-energy rules for settling, catchment supply, round enclosed mass, capture and ownership; κ fitted. |
 | plain MOND | AQUAL with μ = x/(1+x) on baryons, external-field effect included; no screening, no dust, no cosmology; κ = ½ fitted. |
 | ΛCDM | GR + Λ + cold dark matter particles (6 fitted cosmological parameters; halos from simulations). It has a dark-matter particle, which this framework's owner rules out for the framework itself; a reference only. |
+| P-medium (Codex) | Newtonian Poisson on baryons + a cold particle medium that also feels a saturating polarization P and a stiffening scalar χ (Codex's reduced preferred-frame action); ℓ₀ = 0.44 kpc fitted to growth. |
 
 ΛCDM is a reference column only. It has a dark-matter particle, which this framework's owner rules out for the framework itself.
 
@@ -25,20 +26,22 @@ Boards: [v4](img/status_board_v4.png) · [canonical rules](img/status_board_cano
 - **Never better than the lane's own verdict.** `VERDICTS` records each lane's verdict with the file and line that states it. A cell may be worse, never better.
 - **Greens need verification.** A green needs a `VERIFIED_GREEN_F` entry: the lane, its result commit, and a rerun or an independent reproduction. The canonical rules are the exception: they keep the greens that the 23 October afternoon board already drew.
 - **Some rows stay grey by rule.** Plain MOND has no cosmology, so its cosmology rows stay grey. ΛCDM rows that would need galaxy-formation, feedback or halo modelling the record never ran stay grey; they are never filled from literature claims.
-- **The v3 column is the main board.** The main generator's own check must still pass.
-- **Checks.** `--selftest` runs 20 broken cases, and every one is caught. They cover reuse, cross-flavor borrowing, unjustified ΛCDM cells (including a ΛCDM cell reused from a framework-law lane) and greens without evidence. `--mutate` strips one reuse justification, and the checks must fail.
+- **The v3 column is the main board.** The main generator's own check must still pass, and v3's recipe line is the main board's own.
+- **n/c is not grey.** n/c ("not computable") means a lane showed that the flavor's action does not determine the test. It is a finding, cited like any verdict. Grey means nobody computed it.
+- **Checks.** `--selftest` runs 25 broken cases, and every one is caught. They cover reuse, cross-flavor borrowing, unjustified ΛCDM cells (including a ΛCDM cell reused from a framework-law lane) and greens without evidence. `--mutate` strips one reuse justification, and the checks must fail.
 
 ## Counts
 
 The grid has 50 rows.
 
-| flavor | pass | conditional | fails | not decidable | open | grey (not computed) |
-|---|---|---|---|---|---|---|
-| v3 | 7 | 7 | 12 | 5 | 8 | 11 |
-| v4 | 1 | 1 | 6 | 0 | 1 | 41 |
-| canonical rules | 6 | 5 | 9 | 7 | 8 | 15 |
-| plain MOND | 2 | 3 | 8 | 4 | 2 | 31 |
-| ΛCDM | 1 | 4 | 0 | 0 | 0 | 45 |
+| flavor | pass | conditional | fails | not decidable | open | n/c (not computable) | grey (not computed) |
+|---|---|---|---|---|---|---|---|
+| v3 | 7 | 9 | 10 | 5 | 8 | 0 | 11 |
+| v4 | 1 | 1 | 6 | 0 | 1 | 0 | 41 |
+| canonical rules | 6 | 5 | 9 | 7 | 8 | 0 | 15 |
+| plain MOND | 2 | 3 | 8 | 4 | 2 | 0 | 31 |
+| ΛCDM | 1 | 4 | 0 | 0 | 0 | 0 | 45 |
+| P-medium (Codex) | 3 | 2 | 0 | 0 | 0 | 7 | 38 |
 
 ## v4
 
@@ -136,6 +139,25 @@ The grid has 50 rows.
 | Tidal dwarfs (Newton) | 🟨 conditional | TDGs at Newton, as ΛCDM's DM-free TDGs: +0.055 ± 0.114 dex (U1), +0.08 ± 0.10 (G2); why DF2/DF4 lack DM needs formation modelling not run | U1, G2 (reused from newton: U1) |
 | Outer globulars (Newton) | 🟨 conditional | Newton is D10's best fit (Δχ² ≤ 2.5 vs every L★); assumes outer globulars carry no DM, as ΛCDM expects | D10 (reused from newton: D10) |
 
+## P-medium (Codex)
+
+**Recipe:** Newtonian Poisson on baryons + a cold particle medium that also feels a saturating polarization P and a stiffening scalar χ (Codex's reduced preferred-frame action); ℓ₀ = 0.44 kpc fitted to growth.
+
+| tile | colour | what the lane found | evidence lanes |
+|---|---|---|---|
+| Gravity waves at light speed | n/c (not computable) | no tensor sector: gravity is instantaneous Poisson | Y1 |
+| Binary pulsars + GW170817 | n/c (not computable) | no tensor sector; baryons source no P or χ radiation | Y1 |
+| Health: ghosts, gradients | 🟩 pass — pass (reduced action) | reduced action: every mode Jeans-bounded (max rate / √(4πGρ) = 1.000000 over 2000 backgrounds, k to 1e8) | Y1 |
+| Leaf problem well-posed | 🟩 pass — pass (reduced action) | reduced action: FRW modes damped, never above dust; no covariant completion; global mean subtraction | Y1 |
+| Solar system + Cassini | 🟨 conditional | ambient cold medium: worst gate ratio 7.4e-4; a bound zero-dispersion atmosphere would fail (2.2e4× the bound) | Y1 |
+| Rotation curves (SPARC RAR) | n/c (not computable) | no galaxy law (the RAR depends on the cold distribution); history-free branch fails: rms 0.24 dex | Y1 |
+| Local a0 from MeerKAT | n/c (not computable) | no galaxy law; same argument as the RAR, not recomputed | Y1 |
+| Galaxy groups (BFJR) | n/c (not computable) | no galaxy law; same argument as the RAR, not recomputed | Y1 |
+| Tidal dwarfs, NGC 1052-DF2/DF4 | 🟨 conditional | TDGs derived cold-free: Newton +0.055 ± 0.114 dex (pass); DF2/DF4 cold-free only as a formation history | Y1 |
+| Dwarf satellites (MW / M31) | n/c (not computable) | cold-free Newton +2.00 / +1.99 dex fails; cold cores can bind, but their masses are free, one per system | Y1 |
+| Cluster cores | n/c (not computable) | no static prediction independent of the cold distribution (cold-free Newton: A_MID 9.8) | Y1 |
+| Linear growth | 🟩 pass | σ₈ / dust limit 0.9991 (from a = 1e-3), 0.967 (1e-4); a WDM-like cutoff at k ~ 1–6 h/Mpc is flagged | Y1 |
+
 ## Reused verdicts (16 cells)
 
 | flavor | row | taken from | justification (file and line) |
@@ -160,9 +182,12 @@ The grid has 50 rows.
 ## Greens and how each is verified
 
 - **v3:** the main board's own guard checks them (tidal dwarfs through `VERIFIED_GREEN`, U1).
-- **v4, Solar system + Cassini (screened):** H1, result 1654b84f78; reproduced by the coordinator (THEORY_V3_DRAFT §1b L21: lanes H1-H3 all reproduced).
+- **v4, Solar system + Cassini:** H1, result 1654b84f78; reproduced by the coordinator (THEORY_V3_DRAFT §1b L21: lanes H1-H3 all reproduced).
 - **plain MOND, Local a0 from MeerKAT:** P4, result 6c0249a8bc; coordinator rerun 2026-10-23: P4 identical except peak RSS.
 - **plain MOND, Galaxy groups (BFJR):** P4, result 6c0249a8bc; coordinator rerun 2026-10-23: P4 identical except peak RSS.
+- **P-medium (Codex), Health: ghosts, gradients:** Y1, result 55aed1b71c; coordinator rerun 2026-10-23: reproduced, identical.
+- **P-medium (Codex), Well-posed (leaf / Cauchy problem):** Y1, result 55aed1b71c; coordinator rerun 2026-10-23: reproduced, identical.
+- **P-medium (Codex), Linear growth:** Y1, result 55aed1b71c; coordinator rerun 2026-10-23: reproduced, identical.
 - **ΛCDM, Native CMB:** C2, result 5e93769089; the ΛCDM refit is reproduced independently by C7 K1 (README L161: 1003.48 vs C2's 1003.20) and Q6 (README L21: 1003.47).
 - **Canonical rules:** the six greens are the 23 October afternoon board's own (SPARC RAR, MeerKAT, inner lensing, groups, MW vertical force by the round rule, screened Cassini by the stiffened DSF-21 action, D7d).
 - **Withheld: ΛCDM, Linear growth.** F3's own verdict is CONSISTENT, but F3's dust-limit KiDS comparison has no rerun on record, so the cell is drawn conditional and labelled.
@@ -179,6 +204,7 @@ The grid has 50 rows.
   - Older ΛCDM controls exist on other samples and statistics: CFG23 (KiDS NFW halos, χ² 173.7), CFG67 (KiDS early/late split, χ² 6.5 / 7), CFG79 / CFG84 (X-ray ellipticals) and CFG86 (SLACS). They are not mapped onto these rows, because their data are not the rows' data.
 - **ΛCDM, tidal dwarfs and outer globulars.** These are drawn **conditional**. ΛCDM's TDGs and outer globulars carry no dark matter, so its prediction is the Newtonian row the record computed (U1 and G2 for the TDGs, D10 for the globulars). Two things are assumed: that the globulars carry no dark matter, and that DF2/DF4 lost theirs. Showing either needs formation modelling the record never ran.
 - **ΛCDM, dwarf satellites: grey (coordinator review).** G2's Moster+NFW route is PAPER36 eq. 1, M_dark = M_ph + f_ex(1 − f_b) M_NFW (G2 README L45): the framework's phantom plus a fraction of an NFW halo, scored under the framework's law. It is not ΛCDM's prediction, which would be Newtonian dynamics in a tidally evolved subhalo, and the record never computed that. A ΛCDM cell may now reuse only the Newtonian limit, and only lanes with a cited ΛCDM/GR arm (`LCDM_ARMS`: C2, C7, Q6, F3, CFG596) may be registered for ΛCDM.
+- **P-medium (Codex), everything not on its board.** Lane Y1 (results 55aed1b71c, reproduced by the coordinator) scored ten board tests. The rest are grey. Y1's n/c rows are: GW speed and binary pulsars (no tensor sector); SPARC RAR (no galaxy law; the history-free branch fails at rms 0.24 dex); MeerKAT and groups (the same argument, not recomputed); satellites (core masses free); and cluster cores (no static prediction).
 - **Canonical rules, CFG960.** It is counted under the canonical rules, as the coordinator classed it; N0 labels it the SCT-M engine (domains, conversion of cold energy into phantom bodies, census baryons; AUDIT L52-L53, L116).
 
 ---
