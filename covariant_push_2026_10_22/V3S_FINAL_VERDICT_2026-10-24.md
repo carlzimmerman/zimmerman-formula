@@ -84,3 +84,20 @@ C1 cures a health problem. It does not touch the mechanism in §3. Every test th
   and adds nothing in isolated galaxies. That needs a selector between galaxy and cluster scales. Nothing in the record
   provides one: density-keyed pressure is excluded by the μ-pincer, and C1's acceleration-keyed sound speed is inert in
   statics (X17).
+
+## 7. The missing piece: what the data allow (X19, 2026-10-24)
+
+`rebuild_2026_10_22/X19_selector_rank_test` (8960ea2285 / 0fc9bade54 / a9ec701f5b; coordinator rerun identical apart from RSS) ranked every measured system class by eleven catalogue variables. The variables were baryon mass, velocity dispersion or temperature, density, internal acceleration x, host field e, potential depth, hot-gas fraction or kT, orbit count, environment density, and the hosted flag. The test was whether any single variable puts every class that needs extra cold mass on one side and every class that needs none on the other.
+
+**Verdict: NO LOW-DIMENSIONAL SELECTOR, on both footings.** No single variable separates the classes, and no axis-aligned pair does.
+- The variables that split light from heavy clusters (M_b ≈ 8e12 M☉, |Φ|/c² ≈ 1.7e-6) put the compact hosted dwarfs (MW ultra-faints, bright M31 dSphs) on the wrong side.
+- The variables keyed to being hosted pull in Crater II, the tidal dwarfs, DF2/DF4 and the UMa members, which need no extra, and they miss the clusters and the cosmic background.
+- The nearest miss is the pair (M_b, |Φ|), which fails on one class.
+- Against the isolated law, Crater II, Antlia II and the Coma UDGs do not need extra. Their large "excess" exists only against the v3s EFE baseline.
+
+**Reading.** The data ask for at least three separate ingredients:
+- something that makes compact hosted dwarfs heavier, but not diffuse or tidal ones;
+- a switch between about 4e12 and 1e13 M☉ of cluster baryons (the cluster mass trend itself is only marginal, X7);
+- a cosmic dust.
+
+No single new field or switch can supply all three. So the theory cannot be closed by adding one ingredient, and that rules out the whole one-selector family at once.
