@@ -1,0 +1,65 @@
+Z-T2 cluster terciles under the capacity-truncated law (Z* v3s-OC) normal run
+kappa = 1/2 FITTED. Footings canonical 9.3603e-11 / alt 1.1312e-10 m/s^2, never pooled. Cold energy, no particle. Not 'theory closed'.
+Nothing here says the data favour the framework.
+
+replay npz 8d473764e791df67..., clusters 326; tercile Mgas500 medians T1 3.30e+12 T2 1.17e+13 T3 2.92e+13
+  F2 EFE noclu tables (K0 reproduction of X2's C* only) [17 s]
+K0 PASS max |A, s_jk, s_tot - X2 terciles (C0, C*; boost; 4 cells)| 0.0e+00 <= 1e-6  -- X2's tercile statistics reproduced (same data, same code path)
+K1 PASS max_i max|P_Z(inactive) - P_law| / max|P_law| 2.8e-15 (2 cells) <= 1e-9 (skipped under MUTATE)  -- with capacity and owner boundary removed the Z* code path reproduces the C*_own law
+K4 PASS min factor 1.00000; median kappa_MID 0.0178 >= 1; < 0.1  -- reduced shear perturbative and >= 1 (C*_own law)
+K2 PASS max |r_s(cap) / r_s(closed form) - 1| 1.1e-08 (point masses 3e12-1e14 Msun, both footings) <= 1e-3  -- capacity definition equals the plan's closed form r_M sqrt(f_s(f_s+1)) for point-mass baryons (K5)
+
+=== Z* on the terciles (A = data / model; +- s_tot with systematics (e); boost convention) ===
+C*_own R_own 200c   r_s cap can h0672: T1 MID 1.53+-0.55 OUT 1.97+-1.38 [R 0.59 r_s 0.51 rich 0.00]  T2 MID 1.64+-0.36 OUT 1.50+-0.26 [R 0.99 r_s 1.00 rich 0.59]  T3 MID 1.45+-0.14* OUT 1.47+-0.14* [R 1.38 r_s 1.59 rich 1.00]  neg 0.064  -> FAIL
+C*_own R_own 200c   r_s cap can h0686: T1 MID 1.61+-0.57 OUT 2.19+-1.45 [R 0.57 r_s 0.49 rich 0.00]  T2 MID 1.73+-0.37 OUT 1.60+-0.24* [R 0.96 r_s 0.96 rich 0.60]  T3 MID 1.47+-0.16* OUT 1.48+-0.12* [R 1.33 r_s 1.53 rich 1.00]  neg 0.065  -> FAIL
+C*_own R_own 200c   r_s cap alt h0672: T1 MID 1.49+-0.54 OUT 1.97+-1.38 [R 0.59 r_s 0.48 rich 0.00]  T2 MID 1.55+-0.34 OUT 1.48+-0.25 [R 0.99 r_s 0.94 rich 0.18]  T3 MID 1.41+-0.14* OUT 1.42+-0.13* [R 1.38 r_s 1.49 rich 0.93]  neg 0.065  -> FAIL
+C*_own R_own 200c   r_s cap alt h0686: T1 MID 1.57+-0.56 OUT 2.19+-1.45 [R 0.57 r_s 0.46 rich 0.00]  T2 MID 1.64+-0.35 OUT 1.59+-0.24* [R 0.96 r_s 0.90 rich 0.19]  T3 MID 1.43+-0.16* OUT 1.43+-0.12* [R 1.33 r_s 1.44 rich 0.93]  neg 0.065  -> FAIL
+C*_own R_own 200c   r_s lit can h0672: T1 MID 1.56+-0.56 OUT 2.01+-1.41 [R 0.59 r_s 0.47 rich 0.00]  T2 MID 1.64+-0.36 OUT 1.50+-0.26 [R 0.99 r_s 1.01 rich 0.59]  T3 MID 1.45+-0.14* OUT 1.47+-0.14* [R 1.38 r_s 1.70 rich 1.00]  neg 0.064  -> FAIL
+C*_own R_own 200c   r_s lit can h0686: T1 MID 1.64+-0.59 OUT 2.24+-1.48 [R 0.57 r_s 0.45 rich 0.00]  T2 MID 1.73+-0.37* OUT 1.61+-0.24* [R 0.96 r_s 0.98 rich 0.60]  T3 MID 1.47+-0.16* OUT 1.48+-0.12* [R 1.33 r_s 1.64 rich 1.00]  neg 0.065  -> FAIL
+C*_own R_own 200c   r_s lit alt h0672: T1 MID 1.53+-0.55 OUT 2.03+-1.43 [R 0.59 r_s 0.42 rich 0.00]  T2 MID 1.56+-0.34 OUT 1.49+-0.25 [R 0.99 r_s 0.92 rich 0.18]  T3 MID 1.41+-0.14* OUT 1.42+-0.13* [R 1.38 r_s 1.55 rich 0.93]  neg 0.065  -> FAIL
+C*_own R_own 200c   r_s lit alt h0686: T1 MID 1.60+-0.57 OUT 2.27+-1.50 [R 0.57 r_s 0.41 rich 0.00]  T2 MID 1.65+-0.35 OUT 1.60+-0.24* [R 0.96 r_s 0.89 rich 0.19]  T3 MID 1.43+-0.16* OUT 1.43+-0.12* [R 1.33 r_s 1.49 rich 0.93]  neg 0.065  -> FAIL
+C*_own R_own 18pi2m r_s cap can h0672: T1 MID 1.13+-0.41 OUT 1.18+-0.83 [R 1.02 r_s 0.74 rich 0.00]  T2 MID 1.72+-0.37 OUT 0.91+-0.16 [R 1.67 r_s 1.47 rich 0.04]  T3 MID 1.68+-0.17* OUT 1.21+-0.11 [R 2.19 r_s 2.24 rich 0.57]  neg 0.068  -> PARTIAL
+C*_own R_own 18pi2m r_s cap can h0686: T1 MID 1.17+-0.42 OUT 1.33+-0.88 [R 0.99 r_s 0.72 rich 0.00]  T2 MID 1.76+-0.37* OUT 0.97+-0.15 [R 1.61 r_s 1.42 rich 0.04]  T3 MID 1.71+-0.19* OUT 1.18+-0.10 [R 2.11 r_s 2.17 rich 0.58]  neg 0.065  -> PARTIAL
+C*_own R_own 18pi2m r_s cap alt h0672: T1 MID 1.07+-0.39 OUT 1.18+-0.83 [R 1.02 r_s 0.70 rich 0.00]  T2 MID 1.54+-0.33 OUT 0.90+-0.15 [R 1.67 r_s 1.38 rich 0.00]  T3 MID 1.62+-0.16* OUT 1.15+-0.11 [R 2.19 r_s 2.10 rich 0.36]  neg 0.068  -> PARTIAL
+C*_own R_own 18pi2m r_s cap alt h0686: T1 MID 1.11+-0.40 OUT 1.33+-0.88 [R 0.99 r_s 0.68 rich 0.00]  T2 MID 1.58+-0.33 OUT 0.96+-0.15 [R 1.61 r_s 1.33 rich 0.00]  T3 MID 1.65+-0.18* OUT 1.13+-0.10 [R 2.11 r_s 2.03 rich 0.36]  neg 0.065  -> PARTIAL
+C*_own R_own 18pi2m r_s lit can h0672: T1 MID 1.16+-0.42 OUT 1.25+-0.88 [R 1.02 r_s 0.64 rich 0.00]  T2 MID 1.70+-0.37 OUT 0.93+-0.16 [R 1.67 r_s 1.36 rich 0.04]  T3 MID 1.68+-0.17* OUT 1.21+-0.11 [R 2.19 r_s 2.29 rich 0.57]  neg 0.068  -> PARTIAL
+C*_own R_own 18pi2m r_s lit can h0686: T1 MID 1.20+-0.43 OUT 1.39+-0.92 [R 0.99 r_s 0.61 rich 0.00]  T2 MID 1.74+-0.36* OUT 0.99+-0.15 [R 1.61 r_s 1.32 rich 0.04]  T3 MID 1.71+-0.19* OUT 1.18+-0.10 [R 2.11 r_s 2.21 rich 0.58]  neg 0.065  -> PARTIAL
+C*_own R_own 18pi2m r_s lit alt h0672: T1 MID 1.09+-0.39 OUT 1.27+-0.90 [R 1.02 r_s 0.58 rich 0.00]  T2 MID 1.52+-0.33 OUT 0.93+-0.16 [R 1.67 r_s 1.24 rich 0.00]  T3 MID 1.62+-0.16* OUT 1.15+-0.11 [R 2.19 r_s 2.08 rich 0.36]  neg 0.068  -> PARTIAL
+C*_own R_own 18pi2m r_s lit alt h0686: T1 MID 1.13+-0.40 OUT 1.42+-0.94 [R 0.99 r_s 0.56 rich 0.00]  T2 MID 1.55+-0.32 OUT 1.00+-0.15 [R 1.61 r_s 1.20 rich 0.00]  T3 MID 1.65+-0.18* OUT 1.13+-0.10 [R 2.11 r_s 2.01 rich 0.36]  neg 0.065  -> PARTIAL
+C0+e   R_own 200c   r_s cap can h0672: T1 MID 1.53+-0.55 OUT 1.96+-1.38 [R 0.59 r_s 0.51 rich 0.00]  T2 MID 1.65+-0.36 OUT 1.51+-0.26 [R 0.99 r_s 1.00 rich 0.59]  T3 MID 1.48+-0.15* OUT 1.48+-0.14* [R 1.38 r_s 1.59 rich 1.00]  neg 0.064  -> FAIL
+C0+e   R_own 200c   r_s cap can h0686: T1 MID 1.61+-0.58 OUT 2.19+-1.45 [R 0.57 r_s 0.49 rich 0.00]  T2 MID 1.74+-0.37* OUT 1.61+-0.24* [R 0.96 r_s 0.96 rich 0.60]  T3 MID 1.49+-0.16* OUT 1.49+-0.12* [R 1.33 r_s 1.53 rich 1.00]  neg 0.065  -> FAIL
+C0+e   R_own 200c   r_s cap alt h0672: T1 MID 1.49+-0.54 OUT 1.96+-1.38 [R 0.59 r_s 0.48 rich 0.00]  T2 MID 1.56+-0.34 OUT 1.49+-0.25 [R 0.99 r_s 0.94 rich 0.18]  T3 MID 1.44+-0.15* OUT 1.42+-0.13* [R 1.38 r_s 1.49 rich 0.93]  neg 0.064  -> FAIL
+C0+e   R_own 200c   r_s cap alt h0686: T1 MID 1.57+-0.56 OUT 2.19+-1.45 [R 0.57 r_s 0.47 rich 0.00]  T2 MID 1.65+-0.35 OUT 1.59+-0.24* [R 0.96 r_s 0.90 rich 0.19]  T3 MID 1.45+-0.16* OUT 1.43+-0.12* [R 1.33 r_s 1.44 rich 0.93]  neg 0.065  -> FAIL
+C0+e   R_own 200c   r_s lit can h0672: T1 MID 1.56+-0.56 OUT 2.00+-1.41 [R 0.59 r_s 0.47 rich 0.00]  T2 MID 1.65+-0.36 OUT 1.51+-0.26 [R 0.99 r_s 1.01 rich 0.59]  T3 MID 1.48+-0.15* OUT 1.48+-0.14* [R 1.38 r_s 1.70 rich 1.00]  neg 0.064  -> FAIL
+C0+e   R_own 200c   r_s lit can h0686: T1 MID 1.65+-0.59 OUT 2.23+-1.48 [R 0.57 r_s 0.45 rich 0.00]  T2 MID 1.74+-0.37* OUT 1.61+-0.24* [R 0.96 r_s 0.98 rich 0.60]  T3 MID 1.49+-0.16* OUT 1.49+-0.12* [R 1.33 r_s 1.64 rich 1.00]  neg 0.065  -> FAIL
+C0+e   R_own 200c   r_s lit alt h0672: T1 MID 1.53+-0.55 OUT 2.03+-1.43 [R 0.59 r_s 0.42 rich 0.00]  T2 MID 1.56+-0.34 OUT 1.50+-0.25 [R 0.99 r_s 0.92 rich 0.18]  T3 MID 1.44+-0.15* OUT 1.42+-0.13* [R 1.38 r_s 1.55 rich 0.93]  neg 0.064  -> FAIL
+C0+e   R_own 200c   r_s lit alt h0686: T1 MID 1.60+-0.57 OUT 2.26+-1.50 [R 0.57 r_s 0.41 rich 0.00]  T2 MID 1.66+-0.35 OUT 1.61+-0.24* [R 0.96 r_s 0.89 rich 0.19]  T3 MID 1.45+-0.16* OUT 1.43+-0.12* [R 1.33 r_s 1.49 rich 0.93]  neg 0.065  -> FAIL
+C0+e   R_own 18pi2m r_s cap can h0672: T1 MID 1.14+-0.41 OUT 1.18+-0.83 [R 1.02 r_s 0.74 rich 0.00]  T2 MID 1.73+-0.37 OUT 0.92+-0.16 [R 1.67 r_s 1.47 rich 0.04]  T3 MID 1.72+-0.17* OUT 1.22+-0.11 [R 2.19 r_s 2.24 rich 0.57]  neg 0.066  -> PARTIAL
+C0+e   R_own 18pi2m r_s cap can h0686: T1 MID 1.17+-0.42 OUT 1.32+-0.88 [R 0.99 r_s 0.72 rich 0.00]  T2 MID 1.78+-0.37* OUT 0.97+-0.15 [R 1.61 r_s 1.42 rich 0.04]  T3 MID 1.75+-0.19* OUT 1.19+-0.10 [R 2.11 r_s 2.17 rich 0.59]  neg 0.066  -> PARTIAL
+C0+e   R_own 18pi2m r_s cap alt h0672: T1 MID 1.08+-0.39 OUT 1.18+-0.83 [R 1.02 r_s 0.70 rich 0.00]  T2 MID 1.55+-0.33 OUT 0.90+-0.16 [R 1.67 r_s 1.38 rich 0.00]  T3 MID 1.66+-0.16* OUT 1.16+-0.11 [R 2.19 r_s 2.10 rich 0.36]  neg 0.066  -> PARTIAL
+C0+e   R_own 18pi2m r_s cap alt h0686: T1 MID 1.12+-0.40 OUT 1.32+-0.88 [R 0.99 r_s 0.68 rich 0.00]  T2 MID 1.59+-0.33 OUT 0.96+-0.15 [R 1.61 r_s 1.33 rich 0.00]  T3 MID 1.68+-0.18* OUT 1.13+-0.10 [R 2.11 r_s 2.03 rich 0.36]  neg 0.066  -> PARTIAL
+C0+e   R_own 18pi2m r_s lit can h0672: T1 MID 1.16+-0.42 OUT 1.25+-0.88 [R 1.02 r_s 0.64 rich 0.00]  T2 MID 1.71+-0.37 OUT 0.93+-0.16 [R 1.67 r_s 1.36 rich 0.04]  T3 MID 1.72+-0.17* OUT 1.21+-0.11 [R 2.19 r_s 2.29 rich 0.57]  neg 0.066  -> PARTIAL
+C0+e   R_own 18pi2m r_s lit can h0686: T1 MID 1.20+-0.43 OUT 1.38+-0.92 [R 0.99 r_s 0.61 rich 0.00]  T2 MID 1.76+-0.37* OUT 0.99+-0.15 [R 1.61 r_s 1.32 rich 0.04]  T3 MID 1.75+-0.19* OUT 1.19+-0.10 [R 2.11 r_s 2.21 rich 0.59]  neg 0.066  -> PARTIAL
+C0+e   R_own 18pi2m r_s lit alt h0672: T1 MID 1.09+-0.39 OUT 1.27+-0.90 [R 1.02 r_s 0.58 rich 0.00]  T2 MID 1.53+-0.33 OUT 0.93+-0.16 [R 1.67 r_s 1.24 rich 0.00]  T3 MID 1.66+-0.16* OUT 1.16+-0.11 [R 2.19 r_s 2.08 rich 0.36]  neg 0.066  -> PARTIAL
+C0+e   R_own 18pi2m r_s lit alt h0686: T1 MID 1.13+-0.40 OUT 1.42+-0.94 [R 0.99 r_s 0.56 rich 0.00]  T2 MID 1.56+-0.33 OUT 1.00+-0.15 [R 1.61 r_s 1.20 rich 0.00]  T3 MID 1.68+-0.18* OUT 1.14+-0.10 [R 2.11 r_s 2.01 rich 0.36]  neg 0.066  -> PARTIAL
+K3 PASS max |M(r_max) / (M_b(r_max) + S) - 1| 4.4e-16 <= 1e-6  -- mass bookkeeping: total = baryons + supply
+   (* = outside 2 s_tot; max fraction of floored negative-density cells over all runs 0.068)
+
+   reference: the untruncated law at C*_own (no EFE)
+   law can h0672: T1 MID 1.10+-0.40 OUT 0.50+-0.35  T2 MID 1.85+-0.40 OUT 0.77+-0.13  T3 MID 1.84+-0.18 OUT 1.37+-0.13
+   law can h0686: T1 MID 1.12+-0.40 OUT 0.53+-0.35  T2 MID 1.92+-0.40 OUT 0.78+-0.12  T3 MID 1.88+-0.21 OUT 1.33+-0.11
+   law alt h0672: T1 MID 1.01+-0.37 OUT 0.45+-0.32  T2 MID 1.70+-0.37 OUT 0.70+-0.12  T3 MID 1.69+-0.17 OUT 1.26+-0.12
+   law alt h0686: T1 MID 1.02+-0.37 OUT 0.48+-0.32  T2 MID 1.76+-0.37 OUT 0.72+-0.11  T3 MID 1.72+-0.19 OUT 1.22+-0.10
+
+=== FROZEN CLASS (per footing, per R_own convention; stands only if both h cells and both r_s definitions agree) ===
+   C*_own canonical R_own 200c  : FAIL   bands outside 2 sigma in any cell: T2:MID, T2:OUTER, T3:MID, T3:OUTER
+   C*_own canonical R_own 18pi2m: PARTIAL   bands outside 2 sigma in any cell: T2:MID, T3:MID
+   C*_own alt       R_own 200c  : FAIL   bands outside 2 sigma in any cell: T2:OUTER, T3:MID, T3:OUTER
+   C*_own alt       R_own 18pi2m: PARTIAL   bands outside 2 sigma in any cell: T3:MID
+   C0+e   canonical R_own 200c  : FAIL   bands outside 2 sigma in any cell: T2:MID, T2:OUTER, T3:MID, T3:OUTER
+   C0+e   canonical R_own 18pi2m: PARTIAL   bands outside 2 sigma in any cell: T2:MID, T3:MID
+   C0+e   alt       R_own 200c  : FAIL   bands outside 2 sigma in any cell: T2:OUTER, T3:MID, T3:OUTER
+   C0+e   alt       R_own 18pi2m: PARTIAL   bands outside 2 sigma in any cell: T3:MID
+K5 PASS peak RSS 0.369 GB < 1 GB  -- memory
+
+ZT2 COMPLETE: 6/6 checks PASS. [71 s]

@@ -1,0 +1,42 @@
+Z-T3 two-sided obstacle 0 <= D.P <= rho_d (Z* v3s-OC) MUTATE (switch removed)
+kappa = 1/2 FITTED. Footings canonical 9.3603e-11 / alt 1.1312e-10 m/s^2, never pooled. Cold energy, no particle. Not 'theory closed'.
+
+PART B (principal symbol, X3's B2-S with the upper wall):
+   c^2 = h_1*(rho_d + s_0) with h1 = (gamma_L/2) F''(s0)
+   saturated set, from below: c^2 -> 2*gamma_L*rho_d; penalty side s0 = rho_d (1 + t): gamma_L*rho_d*(P + 1)*(t + 2); soft side s0 = -(rho_d + s_n): -gamma_L*s_n
+   footings (gamma_L = 4 pi G L*^2 / 2 at the D10 floors; rho_d 1e-3..1 Msun/pc^3; P 0/1/1e6): min c^2 canonical 2.541e+04, alt 2.821e+04 m^2 s^-2 (SI)
+   diagnostic: smoothed wall in the soft region (rho_d 0.1, s_n 0.05, eps 1e-3/1e-2/1e-1): c^2 ['-5.00e-02', '-5.00e-02', '-5.02e-02']
+   diagnostic: penalty support from rho_d - eps (rho_d 0.1): eps 0.05: c^2(-0.101) -1.00e-03; eps 0.19: c^2(-0.101) -1.00e-03; eps 0.21: c^2(-0.105) -1.00e-02; eps 0.5: c^2(-0.250) -3.00e-01  [c^2 < 0 possible iff eps > 2 rho_d]
+B2-Z PASS saturated set c^2 = 2*gamma_L*rho_d > 0 (rho_d > 0); penalty side >= 0: True; both footings >= 0: True; branch x-check 6e-17 c^2 >= 0 everywhere in the saturated set for rho_d > 0, both footings  -- frozen symbol line
+K0 PASS max rel |Gamma - X3 C2 (gamma_L 1e-3, N 64-1024)| 4.2e-14 <= 1e-9  -- X3's slab exec'd from source reproduces X3
+K1 PASS two-sided copy with the wall removed vs X3's slab: max rel 0.0e+00 <= 1e-12 (skipped under MUTATE)  -- the copy differs from X3 only by the wall
+K2 PASS pinned Gamma at gamma_sat 1e4 / 1e6 (N 512): 185.4108078 / 185.4108078 agree to 1e-3  -- the pinned limit is reached (delta(D.P) = 0 on saturated nodes)
+
+PART C (slab; K = 1, M = 2, s0 = -0.5 + cos 2 pi z; rho_d = 0.1; unaligned grid; X3's bound):
+   footing gamma_L = L*^2/(2 lambda^2): canonical lambda 100 pc 2.3503e-02, canonical lambda 1000 pc 2.3503e-04, alt lambda 100 pc 2.6101e-02, alt lambda 1000 pc 2.6101e-04
+   canonical lambda  100 pc released: Gamma [22.907295, 46.111063, 92.540636, 185.410808, 371.156664]; finest ratio 2.00181; bound 1.51102 held False; saturated nodes 303/1024; violations [41, 81, 163, 325, 647]
+   canonical lambda  100 pc pinned  : Gamma [22.907295, 46.111063, 92.540636, 185.410808, 371.156664]; finest ratio 2.00181; bound 1.51102 held False; saturated nodes 303/1024; violations [41, 81, 163, 325, 647]
+   canonical lambda 1000 pc released: Gamma [2.571887, 4.75798, 9.328379, 18.578351, 37.134316]; finest ratio 1.99879; bound 1.51102 held False; saturated nodes 303/1024; violations [41, 81, 163, 325, 647]
+   canonical lambda 1000 pc pinned  : Gamma [2.571887, 4.75798, 9.328379, 18.578351, 37.134316]; finest ratio 1.99880; bound 1.51102 held False; saturated nodes 303/1024; violations [41, 81, 163, 325, 647]
+   alt       lambda  100 pc released: Gamma [24.137091, 48.59135, 97.520725, 195.389908, 391.13349]; finest ratio 2.00181; bound 1.51102 held False; saturated nodes 303/1024; violations [41, 81, 163, 325, 647]
+   alt       lambda  100 pc pinned  : Gamma [24.137091, 48.59135, 97.520725, 195.389908, 391.13349]; finest ratio 2.00181; bound 1.51102 held False; saturated nodes 303/1024; violations [41, 81, 163, 325, 647]
+   alt       lambda 1000 pc released: Gamma [2.681985, 4.998725, 9.82262, 19.574361, 39.131047]; finest ratio 1.99910; bound 1.51102 held False; saturated nodes 303/1024; violations [41, 81, 163, 325, 647]
+   alt       lambda 1000 pc pinned  : Gamma [2.681985, 4.998725, 9.82262, 19.574361, 39.131047]; finest ratio 1.99910; bound 1.51102 held False; saturated nodes 303/1024; violations [41, 81, 163, 325, 647]
+   X3's gamma_L 1e-3   released: Gamma [4.86295, 9.581125, 19.123505, 38.26257, 76.56802]; finest ratio 2.00112 (X3 C2 without the wall: 1.183214)
+   X3's gamma_L 1e-3   pinned  : Gamma [4.86295, 9.581125, 19.123504, 38.26257, 76.56802]; finest ratio 2.00112 (X3 C2 without the wall: 1.183214)
+C-Z FAIL all 8 primary ladders converge (finest ratios 1.99879-2.00181) and Gamma <= bound at every level: False |ratio - 1| <= 0.10; Gamma <= sqrt(K(M - 1 + f_-) max|rho_-|)  -- frozen slab line (both brackets, both footings, both lambda)
+
+   diagnostics (no verdict weight):
+   rho_d 0.01 unaligned               released (gamma_L 1e-2): Gamma [15.44947, 31.05027, 62.28724, 124.7789, 249.77107]; finest ratio 2.0017; slope 1.001; violations [43, 85, 171, 341, 679]
+   rho_d 0.01 unaligned               pinned   (gamma_L 1e-2): Gamma [15.44947, 31.05027, 62.28724, 124.7789, 249.77107]; finest ratio 2.0017; slope 1.001; violations [43, 85, 171, 341, 679]
+   rho_d 0 aligned (wall = switch)    released (gamma_L 1e-2): Gamma [11.59854, 23.32457, 46.82387, 93.84617, 187.90262]; finest ratio 2.0022; slope 1.002; violations [33, 65, 129, 257, 513]
+   rho_d 0 aligned (wall = switch)    pinned   (gamma_L 1e-2): Gamma [11531.12571, 16235.99935, 22908.91263, 32360.53459, 45737.93634]; finest ratio 1.4134; slope 0.499; violations [33, 65, 129, 257, 513]
+   rho_d 0 unaligned (wall = switch)  released (gamma_L 1e-2): Gamma [15.50198, 31.15504, 62.49665, 125.19766, 250.60857]; finest ratio 2.0017; slope 1.001; violations [43, 87, 171, 343, 683]
+   rho_d 0 unaligned (wall = switch)  pinned   (gamma_L 1e-2): Gamma [15.50198, 10786.84473, 62.49665, 21554.73245, 250.60857]; finest ratio 0.0116; slope -6.426; violations [43, 87, 171, 343, 683]
+   lower obstacle literal, rho_d 0.1  released (gamma_L 1e-2): Gamma [0.0, 0.0, 0.0]; finest ratio nan; slope nan; violations [0, 0, 0]
+   lower obstacle literal, rho_d 0.1  pinned   (gamma_L 1e-2): Gamma [0.0, 0.0, 0.0]; finest ratio nan; slope nan; violations [0, 0, 0]
+   rho_d 0 aligned pinned, N 384: Gamma at gamma_sat 1e2 / 1e4 / 1e6 = 323.6 / 3236 / 3.236e+04  (Gamma ~ sqrt(gamma_sat): the zero-dust pinned limit has no finite rate)
+K3 PASS peak RSS 0.783 GB < 1 GB  -- memory
+
+Z-T3 FROZEN VERDICT: FAIL  (symbol B2-Z PASS; slab C-Z FAIL; divergent primary ladder: True)
+ZT3 COMPLETE: 5/6 checks PASS. [2 s]
