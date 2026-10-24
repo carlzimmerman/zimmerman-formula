@@ -293,3 +293,23 @@ follow the same logic. For each of N-dt, N-box and N-tol:
 - if it has none, the check PASSES iff the variant has none and |ΔS| ≤ 0.02.
 
 Both S and t_c are printed for every variant.
+
+## AMENDMENT A3 (POST-RESULT: written after the h = 20 and h = 10 production runs, some h = 5 runs and the N-checks; diagnostic only, no verdict weight)
+
+What has been seen so far:
+- **Events.** Every O2 case reaches the soft threshold at t_c ≈ 14.3–16.7 Gyr, close to the review's frozen-F crossing
+  times. The event label sits in the second lattice column from the axis (R_q = 2h) at both h = 20 and h = 10, so the
+  compression is near-axis.
+- **O1.** No O1 case reaches the threshold, and its S falls with resolution.
+- **N-dt fails** by 0.021 Gyr: t_c 14.565 → 14.344.
+
+The frozen reading is applied unchanged.
+
+Added diagnostic, `x8_mechanism.py`, declared before it is computed. It reruns canonical O2 t_i 3 and canonical O1 t_i 9
+at h = 10 and follows the event label (O1: the S label). For that label it reports:
+- the split J = (R/R_q) × det₂, i.e. radial collapse onto the axis versus an in-plane fold;
+- its distance to the nearer galaxy and its velocity;
+- the number of already-folded positive labels within 30 kpc of it.
+
+At the event time it also reports the minimum soft J by label radius near the event height, which shows whether the
+compression is confined to the axis.
