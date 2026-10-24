@@ -1,0 +1,195 @@
+======================================================================================================================
+O1_ownership_action  MUTATE   frozen 45d70e5e2f   kappa = 1/2 FITTED; footings never pooled
+======================================================================================================================
+
+--- K1 (T-G): Xi is invariant under arbitrary time-dependent translations; grad Xi = khronon proper acceleration ---
+K1 PASS :: Xi' - Xi - (|D'|^2/2 - f') = 0; grad Xi - grad Phi - Dv/Dt = [0, 0, 0]  choose f' = |D'|^2/2: Xi is a Milne scalar; x = |a_khronon - g|/a0 (the khronon's proper acceleration)
+
+--- K2 (T-W, 1D exact): total force on everything in [z1, z2] is a boundary function ---
+K2 PASS :: dB/dz - force density = 0  any odd hold flux, any local stiffness U, any internal action-reaction pair: F[z1,z2] = B(z2) - B(z1)
+
+--- K3: H is even and increasing in |s|; ownership <=> ambient khronon unheld ---
+   H(s) = ((s + 1)*(log(s + 1) - 1) + 1)/(s + 1) for s >= 0 (H' - s f' = 0); H(-s) = H(s) since f' is even
+   g_ext  0.05 a0, column  0.01: a/g_ext = +1.90676; held share -0.9071; 1 - held share = 1.90705
+   g_ext  0.05 a0, column  0.10: a/g_ext = +1.88022; held share -0.9091; 1 - held share = 1.90909
+   g_ext  0.05 a0, column  0.50: a/g_ext = +2.89000; held share -0.1282; 1 - held share = 1.12821
+   g_ext  0.30 a0, column  0.01: a/g_ext = +1.59170; held share -0.5917; 1 - held share = 1.59172
+   g_ext  0.30 a0, column  0.10: a/g_ext = +1.59006; held share -0.5926; 1 - held share = 1.59259
+   g_ext  0.30 a0, column  0.50: a/g_ext = +1.54830; held share -0.6144; 1 - held share = 1.61444
+   g_ext  1.00 a0, column  0.01: a/g_ext = +1.25000; held share -0.2500; 1 - held share = 1.25000
+   g_ext  1.00 a0, column  0.10: a/g_ext = +1.24995; held share -0.2502; 1 - held share = 1.25016
+   g_ext  1.00 a0, column  0.50: a/g_ext = +1.24866; held share -0.2540; 1 - held share = 1.25397
+K3 FAIL :: H' - s f' = 0; hovering edges never give a = g_ext with held charge: True; antisymmetric (unheld) edges: Khronon force 1.02e-01 with held column 0.000  Mu4 (even flux) must FAIL this check
+
+--- K4 (T-W, 3D): linear-medium stress identity, force on a held charge in a uniform Xi gradient ---
+K4 PASS :: surface force - q E = 0  with grad Xi_amb = grad Phi_amb (held host): net host force on the composite = M_b g (U1 D7/N4: nonlinear to <= 8.7e-5)
+
+--- K5 (T-E): spherical host, any khronon motion: |grad Xi_amb| = f^-1(G M_tau(<r)/r^2); held AQUAL host -> eps = 1 ---
+K5 PASS :: G M_ph/r^2 - f(g) = 0 on the AQUAL branch  so f^-1(G M_ph/r^2) = g: the held phase's ambient anti-weight equals g_host, eps = 1, at every radius
+
+--- N1: eps(r) for a MW-like host (M_b 6e10), held v3s host and Z*'s supply-edge statics ---
+   [canonical] r_M 9.45 kpc, Z* supply edge r_s 55.2 kpc
+      r   20 kpc: g_host 0.5973 a0; eps (held v3s host) 0.000000; eps (Z* statics) 0.0000; eps_B 0.344: OWN PASS
+      r   50 kpc: g_host 0.2078 a0; eps (held v3s host) 0.000000; eps (Z* statics) 0.0000; eps_B 0.344: OWN PASS
+      r  100 kpc: g_host 0.0991 a0; eps (held v3s host) 0.000000; eps (Z* statics) 0.0000; eps_B 0.344: OWN PASS
+      r  250 kpc: g_host 0.0385 a0; eps (held v3s host) 0.000000; eps (Z* statics) 0.0000; eps_B 0.344: OWN PASS
+      r  400 kpc: g_host 0.0239 a0; eps (held v3s host) 0.000000; eps (Z* statics) 0.0000; eps_B 0.344: OWN PASS
+   [alt] r_M 8.60 kpc, Z* supply edge r_s 50.2 kpc
+      r   20 kpc: g_host 0.5321 a0; eps (held v3s host) 0.000000; eps (Z* statics) 0.0000; eps_B 0.317: OWN PASS
+      r   50 kpc: g_host 0.1874 a0; eps (held v3s host) 0.000000; eps (Z* statics) 0.0000; eps_B 0.317: OWN PASS
+      r  100 kpc: g_host 0.0898 a0; eps (held v3s host) 0.000000; eps (Z* statics) 0.0000; eps_B 0.317: OWN PASS
+      r  250 kpc: g_host 0.0350 a0; eps (held v3s host) 0.000000; eps (Z* statics) 0.0000; eps_B 0.317: OWN PASS
+      r  400 kpc: g_host 0.0217 a0; eps (held v3s host) 0.000000; eps (Z* statics) 0.0000; eps_B 0.317: OWN PASS
+N1-OWN FAIL :: OWN passes at any of 50/100/250 kpc: True  frozen M1a line; Mu1 must flip it
+
+--- N2: what OWN would cost the host: largest phantom fraction phi inside r with eps <= eps_B ---
+   [canonical] r  50 kpc: phi_max 0.1059; host v_c  173.2 km/s (law) ->   88.3 km/s (with phi_max)
+   [canonical] r 100 kpc: phi_max 0.0516; host v_c  169.2 km/s (law) ->   62.6 km/s (with phi_max)
+   [canonical] r 250 kpc: phi_max 0.0202; host v_c  166.8 km/s (law) ->   39.7 km/s (with phi_max)
+   [alt] r  50 kpc: phi_max 0.0853; host v_c  180.8 km/s (law) ->   86.7 km/s (with phi_max)
+   [alt] r 100 kpc: phi_max 0.0415; host v_c  177.0 km/s (law) ->   61.4 km/s (with phi_max)
+   [alt] r 250 kpc: phi_max 0.0162; host v_c  174.7 km/s (law) ->   38.9 km/s (with phi_max)
+
+--- K6 (T-N): per-label khronons: separate continuity; N labels static in one galaxy -> floor at x = N - 1 ---
+K6 FAIL :: EL(sigma1) contains sigma2: False; EL(sigma2) contains sigma1: False; N-label coefficient 1 - N(1 - mu) = 0 at x = [N - 1]; at N = 1: floor x = 0  each label's charge is a separate Noether charge (no merging); Mu2 (N = 1) must flip
+   with per-label capacity (deep limit, co-spatial labelled supplies, N equal progenitors): held/demand = N=2: 1.41 (+0.15 dex in g), N=4: 2.00 (+0.30 dex in g), N=10: 3.16 (+0.50 dex in g), N=100: 10.00 (+1.00 dex in g)
+
+--- K7 (T-R): a flat rotation curve is not curl-free; the khronon flow is ---
+K7 PASS :: (curl v_b)_z = v_c/R; curl(-grad sigma) = 0  a2 (v_tau = v_b where rho_b > 0) has no solution in any rotating disc; c's mean-flow khronon likewise
+
+--- K8 (T-X): an inter-label exchange V(sigma1 - sigma2) ---
+K8 PASS :: source in label-1 continuity -Subs(Derivative(V(_xi_1), _xi_1), _xi_1, sigma1(z, t) - sigma2(z, t)); label-2 Subs(Derivative(V(_xi_1), _xi_1), _xi_1, sigma1(z, t) - sigma2(z, t)); sum 0  total conserved, each label not: where V' != 0 and rho = 0, equal and opposite charges appear (one negative)
+
+--- K9 (a1): baryon-khronon drag -(beta/2) rho_b |v_tau - v_b|^2 enters the khronon equation as a charge flux ---
+K9 PASS :: extra term = beta*((v_b(z, t) + Derivative(sigma(z, t), z))*Derivative(rho_b(z, t), z) + (Derivative(sigma(z, t), (z, 2)) + Derivative(v_b(z, t), z))*rho_b(z, t))  d_t rho + d_z[rho v_tau + beta rho_b (v_tau - v_b)] = 0: drag re-routes charge (can create rho < 0 where rho = 0), does not change D v_tau/Dt = -d(Phi - Xi)
+
+--- K10 (T-M): v3s's covector P carries no memory (beta = eta = 0) ---
+K10 PASS :: EL(P) contains d_t P: False  the PN state is (rho_tau, v_tau, Xi); two parcels at one point with one velocity are identical: no formation memory
+
+--- K11 (T-C): a zero-charge exterior label flow is geodesic; radial infall from rest in a flat-curve host ---
+K11 PASS :: t_centre * v_c = sqrt(2)*sqrt(pi)*r_0/2  every exterior streamline reaches the centre at t = sqrt(pi/2) r0/v_c: the innermost at once -> caustic at the host centre
+   at v_c = 200 km/s: r0 = 1 kpc -> 6.1 Myr, 10 kpc -> 61.3 Myr, 50 kpc -> 306.3 Myr
+
+--- K12: record reproduced ---
+   Z1 r_s (MW-like, canonical) 55.23 kpc vs 55 (Z1 DESIGN risk 4)
+   D10: 18 cells, max dchi2_Newton 2.468 (README <= 2.5), dchi2_AQUAL 4.89-22.80
+   U1 N5 B0: satellites +2.001 +- 0.081 / +1.987 +- 0.074; Coma +1.41 dex z_sys 5.41; TDG +0.055 +- 0.114
+   H5 r_cap (globulars, PROXY speed): max 0.2489 pc; this lane's 2 G M_b/V^2 0.2489 pc
+K12 PASS :: [True, True, True, True]  Z1 r_s, D10 cells, U1 N5, H5 r_cap
+
+--- N3 (VS): capture radii and the Solar-System tide with gamma_L removed ---
+   Sun at 220 km/s: r_cap = 0.0367 AU = 7.9 R_sun; x there = 4.71e+10
+   Sun at 250 km/s: r_cap = 0.0284 AU = 6.1 R_sun; x there = 7.86e+10
+   [canonical] V 220: rho 0.0447 Msun/pc^3, omega_p 1.59e-15 s^-1, r_M 7959 AU, (omega_p r_M/V)^2 = 7.43e-11; wake tide at 1/9.5/30 AU: 4.7e-32 / 4.9e-33 / 1.6e-33 s^-2
+   [canonical] V 250: rho 0.0447 Msun/pc^3, omega_p 1.59e-15 s^-1, r_M 7959 AU, (omega_p r_M/V)^2 = 5.76e-11; wake tide at 1/9.5/30 AU: 3.6e-32 / 3.8e-33 / 1.2e-33 s^-2
+   [alt] V 220: rho 0.0514 Msun/pc^3, omega_p 1.71e-15 s^-1, r_M 7240 AU, (omega_p r_M/V)^2 = 7.07e-11; wake tide at 1/9.5/30 AU: 5.3e-32 / 5.6e-33 / 1.8e-33 s^-2
+   [alt] V 250: rho 0.0514 Msun/pc^3, omega_p 1.71e-15 s^-1, r_M 7240 AU, (omega_p r_M/V)^2 = 5.48e-11; wake tide at 1/9.5/30 AU: 4.1e-32 / 4.4e-33 / 1.4e-33 s^-2
+   max wake tide 5.35e-32 s^-2 vs Hees 9.0e-27 / Park 5.2e-27: ratio 1.0e-05 -> Cassini (VS, gamma_L = 0) PASS
+   outer globulars (H5 PROXY speed and V_apo,10), r_cap vs r_hl:
+      NGC 2419  M_b 8.04e+05: r_cap 0.2489 pc (V 167) / 5.351 pc (V 36); r_hl 19.8 pc
+      Pal 3     M_b 2.07e+04: r_cap 0.0064 pc (V 167) / 0.138 pc (V 36); r_hl 20.2 pc
+      Pal 4     M_b 2.94e+04: r_cap 0.0091 pc (V 167) / 0.196 pc (V 36); r_hl 15.9 pc
+      Pal 14    M_b 1.85e+04: r_cap 0.0057 pc (V 167) / 0.122 pc (V 36); r_hl 27.6 pc
+   D10 dchi2 at Newton (velocity-screened = Newton): max 22.80 (Mu3: AQUAL column) < 3.84: False; r_cap < r_hl at both speeds: True -> outer globulars (VS, gamma_L = 0) FAIL
+VS-GC FAIL :: FAIL  Mu3 must FAIL this
+   isolated galaxy (M_b 1e9, V_rel 0.03 km/s streaming, khronon chargeless on FRW so geodesic): r_cap 9.6e+09 pc -> RAR kept
+   [canonical] satellites (dust-free, U1 B0) +2.00 +- 0.08 dex (FAIL); Coma +1.41 dex z_sys 5.4 (FAIL); TDG +0.055 +- 0.114 (PASS)
+   [alt] satellites (dust-free, U1 B0) +1.99 +- 0.07 dex (FAIL); Coma +1.41 dex z_sys 5.4 (FAIL); TDG +0.055 +- 0.114 (PASS)
+
+--- N4 (g, reported): gas loss needed if satellites keep only released FREE dust (held part stripped, eps = 1) ---
+   MW classical   : Z* (owned held + free) lost 0.72 / 0.67; free-only lost 0.882 / 0.867
+   MW ultra-faint : Z* (owned held + free) lost 0.95 / 0.93; free-only lost 0.964 / 0.958
+   bright M31     : Z* (owned held + free) lost 0.68 / 0.62; free-only lost 0.870 / 0.855
+   M31 others     : Z* (owned held + free) lost 0.95 / 0.93; free-only lost 0.965 / 0.958
+   Leo T [canonical] (gas-rich, no release): LIT/VS Delta +1.447 dex; MS acceleration-stripping Delta +0.273 dex (U1 csv)
+   Leo T [alt] (gas-rich, no release): LIT/VS Delta +1.447 dex; MS acceleration-stripping Delta +0.233 dex (U1 csv)
+
+--- candidate scores (M1a OWN, M1b slope, M2 TDG/DF, M3 isolated + merged, M4 Cassini, M5 health, M6 s=1, M7 constants, M8 action) ---
+   a1 drag                      -> EXCLUDED BY THEOREM
+        M1a: FAIL (K2/K4/K5: internal term, eps = 1)
+        M1b: PASS trivially (Newtonian), amplitude FAIL +2.0 dex
+        M2: PASS
+        M3: FAIL (rotating discs: drag term nonzero, new term in the law)
+        M4: not reached
+        M5: FAIL (K9: charge re-routed, rho < 0 where rho = 0)
+        M6: PASS
+        M7: FAIL (+1: beta)
+        M8: PASS
+   a2 alignment                 -> EXCLUDED BY THEOREM
+        M1a: FAIL (K2/K4/K5)
+        M1b: n/a
+        M2: PASS
+        M3: FAIL (K7: no solution in discs)
+        M4: not reached
+        M5: FAIL (over-determined)
+        M6: PASS
+        M7: PASS
+        M8: PASS
+   a3 gate |Phi_int|>|Phi_ext|  -> NOT VIABLE
+        M1a: FAIL
+        M1b: n/a
+        M2: PASS
+        M3: n/a
+        M4: n/a
+        M5: n/a
+        M6: PASS
+        M7: PASS
+        M8: FAIL (Phi_int not a local field, K1); local proxies reduce to a1/a2
+   b CM-frame hold              -> EXCLUDED BY THEOREM
+        M1a: FAIL (single Xi: K2/K4/K5) unless the domain's Xi is a separate field (-> e)
+        M1b: n/a
+        M2: PASS
+        M3: PASS (isolated, single owner)
+        M4: not reached
+        M5: n/a
+        M6: PASS
+        M7: PASS
+        M8: FAIL (X_q = centroid of a domain: non-local)
+   c MS mean-flow khronon       -> EXCLUDED BY THEOREM
+        M1a: FAIL (same-point + K2/K4/K5, eps = 1)
+        M1b: n/a
+        M2: PASS
+        M3: FAIL (K7: mean flow not curl-free in discs)
+        M4: not reached
+        M5: n/a
+        M6: PASS
+        M7: PASS
+        M8: FAIL (posited particles; slaving has no action)
+   d formation memory           -> EXCLUDED BY THEOREM
+        M1a: FAIL (K10: no memory variable)
+        M1b: n/a
+        M2: PASS
+        M3: PASS
+        M4: PASS
+        M5: PASS
+        M6: PASS
+        M7: PASS
+        M8: PASS
+   e per-owner khronons         -> EXCLUDED BY THEOREM
+        M1a: PASS only if the exterior label flow free-falls (eps = 0); hovering exterior gives eps = 1
+        M1b: PASS (no EFE in the owned frame)
+        M2: PASS (labels from formation)
+        M3: FAIL (K6: labels never merge; N-label floor x = N-1, capped over-hold sqrt(N))
+        M4: PASS
+        M5: FAIL (K11: free-falling exterior label flows caustic at the host centre)
+        M6: PASS
+        M7: PASS (no continuous constant; one field per owner)
+        M8: PASS (local, variational)
+   f e + exchange V             -> NOT VIABLE
+        M1a: as e
+        M1b: as e
+        M2: PASS
+        M3: open
+        M4: PASS
+        M5: FAIL (K8: opposite-sign pair creation)
+        M6: PASS
+        M7: FAIL (+1 function V)
+        M8: PASS
+
+OVERALL (frozen rule): NO-GO. Blocking must-keep: M3 - the host's own phantom inside the satellite's orbit (its Gauss field anti-weights any held phase, eps = 1 for a held host; OWN needs phi <= 0.052 of it at 100 kpc, v_c 169 -> 63 km/s), with alpha = 1 forced by the same law; labelled escapes fail M3(ii) (no merging) and M5 (exterior caustics).
+
+VS tiles (gamma_L removed): Cassini PASS; outer globulars FAIL; WB Newtonian (prediction; DR4 decides); TDG/DF2/DF4 PASS (U1 B0); isolated RAR kept (r_cap >> R_last); satellites FAIL; Coma UDGs FAIL; UMa group members DEPENDS (U1 F5).
+Constants if L* goes: kappa (FITTED) + cold abundance (FITTED initial condition) + the cold-sector rule (mu_K in v3, or Z*'s R1).
+K13 PASS :: peak RSS 0.096 GB  < 1 GB
+
+O1 MUTATE COMPLETE: 11/15 checks PASS. [1 s]
