@@ -141,3 +141,10 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
 - An isothermal c_s produces a step in well depth, not X21's smooth rise with KT.
 - Groups, the MW disc, the forest and σ₈ pass.
 - **Reading.** Universal, single-temperature late heating is excluded by the clusters alone, independently of the dwarfs. Any late-heated cold sector would need a temperature that scales with the well it sits in, i.e. heating keyed to the system. `X24_vacuum_heated_cold` tests the density-keyed version.
+
+**Vacuum heating** (`X24b_vacuum_heated_cold`, 1d0f8c6967 / 3492bcbeb4; coordinator rerun identical apart from timing): **NO ε WINDOW** on both footings, and the sign is wrong at both ε edges.
+- The forest gives ε ≤ 2.41e-6. SPARC needs ε ≥ 7.65e-6 / 8.59e-6, or 360–740 × ε_up if SPARC's content assembled at its own z_c.
+- The density inversion is real (sympy: entropy ∝ ρ^{-5/3}; non-barotropic attractor s = −(13/18)δ), but the divide falls at assembly z ≈ 1, not between galaxies and dwarfs.
+- SPARC, groups, T1 and the MW disc come out with the wrong sign (SPARC +0.9 dex). Clusters over-capture ×3–4.
+- The dwarf sign is mostly right, but the trend with M★ is reversed.
+- The energy scale (~1e-6 of ρ_Λ) is invisible to DESI. No local action exists: CFG944 Theorem G blocks θ-keyed terms.
