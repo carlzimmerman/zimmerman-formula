@@ -148,3 +148,12 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
 - SPARC, groups, T1 and the MW disc come out with the wrong sign (SPARC +0.9 dex). Clusters over-capture ×3–4.
 - The dwarf sign is mostly right, but the trend with M★ is reversed.
 - The energy scale (~1e-6 of ρ_Λ) is invisible to DESI. No local action exists: CFG944 Theorem G blocks θ-keyed terms.
+
+**The floor is not in the action** (`X25_floor_from_action`, 230c922864 / 63a4001236, a peer lane; coordinator rerun identical apart from timing; `X25_dwarf_pericentre_tides` is a different lane): **WRONG SIGN**. The v3s held medium's γ_L sound speed is not X24's floor.
+- Raising L★ lowers the dwarf predictions: screening, not a floor.
+- c_s at 24 pc is 0.6–0.95 km/s, far below the 4.1–4.6 km/s needed.
+- The ultra-faints get the largest c_s, but they need the smallest.
+
+**Parameter reduction.**
+- c₀ stays a lead, not adopted.
+- The dwarfs push L★ monotonically to its floor. Together with CFG821 (L★ ≤ 22 pc), that squeezes L★ from a lower bound to a narrow band near 21.7–22.9 pc. The joint frozen bound is not yet computed.
