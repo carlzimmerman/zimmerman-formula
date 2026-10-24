@@ -126,3 +126,11 @@ No single new field or switch can supply all three. So the theory cannot be clos
   - The MW ultra-faints are overshot (Z −3.9 / −3.0), and Crater II and Antlia II get worse.
   - SPARC moves by 0.002 dex.
 - **So the dwarf rows are not a selector problem.** They are a single small-scale velocity constant of about 4–5 km/s, not yet derived. That removes the hosted-dwarf argument against late heating; clusters and growth are unchanged.
+
+**Pericentre tides** (`X25_dwarf_pericentre_tides`, d4827bece5 / 5a754eb2e2; coordinator rerun identical apart from timing): **TIDES RULED OUT AT PERICENTRE** for the 31 MW ultra-faints, the only hosted dwarfs with orbits on disk. On both footings:
+- Spearman(E, log τ_peri) is −0.17 / −0.16, and a heating proxy gives a null.
+- The weak-stress subset (τ_peri ≤ 0.1) is still +0.60 / +0.55 dex, Z 4.8 / 4.4.
+- The M★ trend survives at fixed τ_peri.
+- The 30 M31 systems have no orbits on disk, so they keep only the current-distance bound.
+
+The ultra-faint overshoot of the velocity floor is therefore not tidal either.
