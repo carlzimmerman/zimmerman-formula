@@ -87,3 +87,13 @@ the Hubble flow and other Local Group members, a time-dependent outer boundary, 
   verdict already requires h = 10 confirmation. **Added now:** if the h = 20 and h = 10 readings of a rung case differ,
   that case is also run at h = 5 (dt 0.005; through the compute queue if over ~10 min), and h = 10/5 decide it.
 - V4 PASS (yield exit 75, resume, idempotent re-resume, bit-identical positions).
+
+## AMENDMENT A2 (owner request 2026-10-24, after the main result; PRE-RESULT for O1 at h = 10 and h = 5)
+
+Owner: "run the timing orbit O1 (all t_i, both footings) at h = 10, and h = 5 for its lowest-J case via the queue if heavy,
+and report whether O1 stays crossing-free." Same engine (`khronon_fluid.py`, unchanged), self-consistent mode, window to
+r = 300 kpc (extended to 150 kpc, no verdict weight). h = 10: dt 0.01 Gyr, all 6 O1 cases. h = 5: dt 0.005 Gyr, the O1
+case with the lowest soft min J at h = 10 (ties → canonical), one run per footing; through `compute_queue` if a timing
+probe projects more than ~15 min. **Reading:** O1 CROSSING-FREE iff soft min J > 0 by t_end in all six h = 10 runs and in
+the h = 5 run(s); O1 CROSSES if any of them reaches J ≤ 0 by t_end (report t_sc, distance to a galaxy, and whether h = 10
+and h = 5 agree within ±1 Gyr). Also reported: min J trend with h (20 → 10 → 5). No expectation fixed.
