@@ -458,11 +458,14 @@ LIN) makes L4 FAIL, as required.
 | rung | σ₈,PM S0 / LIN / KX-can / KX-alt | ρ_NL can / alt | indicative reading | KiDS (`l1_score.py`) | checks |
 |---|---|---|---|---|---|
 | 256³ | 0.820 / 0.285 / 0.254 / 0.260 | −0.058 / −0.047 | does not restore growth (KX sits below LIN) | NOT DIAGNOSTIC: N_kept 0 at k_hi 2.0 h/Mpc; the scorer's own S0 reproduces CFG596 (+68.73) | 4/4; MUTATE L4 FAIL |
-| 384³ | running | | | | |
+| 384³ | 0.821 / 0.286 / 0.254 / 0.261 | −0.059 / −0.047 | does not restore growth (KX below LIN); converged with 256³ to ≤ 0.0005 in ρ_NL | NOT DIAGNOSTIC: N_kept 0 even at k_hi 3.0 h/Mpc; only the 512³ production can be scored against KiDS | 4/4; MUTATE L4 FAIL |
 | 128³ (NSEED 512) | queued | | | | |
 
 KX halos at 256³ (reported only, resolution-limited: cell 0.57 Mpc): 4 / 7 galaxy-class halos, median dust/baryon in
-0.3–1 Mpc 4.16 / 4.20 against the cosmic 5.27. Reading sentence (A4): every L1 result belongs to "v3 on a dust background
+0.3–1 Mpc 4.16 / 4.20 against the cosmic 5.27. At 384³ (cell 0.38 Mpc): 20 / 35 galaxy-class halos (3 / 5 satellites at 1–3 Mpc from a
+larger host), median dust/baryon 4.06 / 4.08. Scoring note (CFG963, e96c21a87): the L1 engine carries no gas expulsion
+(FROZEN_CRITERIA L76), and its KiDS score is KX against its own S0, feedback-matched by construction. If L1 is ever
+compared with NCS0 / theory-v2 numbers, use CFG963's score_vs_feedback_control. Reading sentence (A4): every L1 result belongs to "v3 on a dust background
 with a yet-unspecified early K", not to the literal theory.
 
 ## Files and commits
