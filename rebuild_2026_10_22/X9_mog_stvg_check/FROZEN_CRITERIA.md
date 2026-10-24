@@ -162,3 +162,21 @@ different mass distribution near the edge than the true exponential disc (mass b
 which is meant to test the numerics, samples the exponential discs at 0.05–30 R_d (600 points) and is still evaluated at
 R = 0.25–10 R_d with the same 5e-3 line. The truncated-sampling number is printed as diagnostic **D-EXT** (no weight): it
 bounds the effect of rule B6 on a disc at ≲ 0.6 % in g (≲ 0.003 dex), far below P4's 0.110 dex line. Nothing else changes.
+
+**A2 (POST-RESULT for K5 only; numerics, no line, threshold or input changed).** Run 1 stopped at the script's RSS guard
+(0.958 GB macOS ru_maxrss, after K1–K4, R1, R2, K3; no MOG number printed). Run 2 (same code plus an env-flagged RSS trace in
+the log lines) completed with SPARC FAIL (ROBUST), CLUSTERS FAIL and K5 FAIL at 1.051 GB; its `.out` was overwritten by the
+next run and is not kept. The cause was the size of vectorised temporaries in the K2 quadrature, the shell sums and the
+cluster Yukawa matrix. The chunk sizes were reduced (quadrature 500 → 50 rows; shell sums ≤ 1e5 elements per block; Yukawa
+matrix 500 → 40 rows); the arithmetic per element is unchanged. Run 3: 10/10 PASS at 0.418 GB, classes unchanged. The trace
+(`X9_RSS_TRACE=1`) is off in the committed runs.
+
+**A3 (POST-RESULT diagnostic, no class weight).** After seeing that the cluster outcome is driven by the OUTER band
+(A_OUTER ≈ 0.65 in every graded reading), the script also reports P-PH with the gas beyond R500 reduced: X2's bracket (a3)
+(ρ ∝ r⁻³ from R500) and F1's C3c G2 (gas inside R500 only), at both setups, and the corner most favourable to MOG (G2 gas,
+clipped boost, α = 8.55). These rows test whether the FAIL rests on the β-model extrapolation of the gas to 3 Mpc. They
+never change the frozen class.
+
+**A4 (POST-RESULT, text only).** §1's transcription of MR13 Table 1 understated the per-galaxy μ range. It is 0.018–0.22 kpc⁻¹:
+DDO 154 has μ = 0.22 ± 0.03, IC 2574 0.12, NGC 925 0.11. The three LSB galaxies therefore sit at α ≈ 13–14 and
+μ ≈ 0.11–0.22 kpc⁻¹. The table is reported only and is never used, so no input, line or class changes.
