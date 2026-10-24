@@ -130,11 +130,14 @@ r_M ∝ M^{1/2}. LEAN: `onset_exponent` ((M^{1/2})^{1/3} = M^{1/6}), `onset_stri
 radii, so galaxies are hit before clusters: 0 of 1,804 cells pass (S4).
 
 NUM, the data side (X2):
-- The stacked core excess (A_MID 1.68–1.85 / 1.54–1.70) is Z 5–6 on jackknife errors and Z 2.2–2.7 with the cross-shear
-  systematics propagated.
+- The stacked core excess (A_MID 1.68–1.85 / 1.54–1.70) is Z 4.5–5.5 on statistical errors. With the cross-shear
+  systematic calibrated it is **Z 2.4–2.9, MARGINAL** (X7). The offset is 2.2–2.5σ against 200 rotated-source realisations,
+  of unidentified origin; it is not PSF leakage. If it is a pure B-mode, the statistical Z stands.
 - **The lightest third of clusters shows no core excess** (MID 1.02–1.13). The stacked outskirts ratio near 1 is light and
   heavy clusters cancelling (0.5 / 0.76 / 1.3).
 - A debris profile that *replaces* the law at cluster scale passes; added to the law it overshoots.
+- MOG/STVG with its published universal parameters fails this stack the other way (no core excess, outskirts too high)
+  and fails SPARC (rms 0.136 against the law's 0.054). X9.
 
 ### 4.5 The early universe: the literal dust has no radiation era
 

@@ -269,8 +269,9 @@ TILES = [
       "theorem (T3) that passes the tidal dwarfs leaves them dust-free: +2.00/+1.99 dex; STRUCTURAL",
       ["S1", "P1", "U1"], "FAIL", new=True),
     T(2, "Cluster cores (326 eRASS1)", "FAIL",
-      "F1 rebuild: real failure, x1.68-1.85 / x1.54-1.70, Z ~ +5-6; S4: no allowed μ_K fixes them (0 of 1,804 cells); "
-      "small μ_K leaves clusters unchanged, large μ_K wrecks galaxies first", ["CFG687", "F1", "S4"], "FAIL", new=True),
+      "x1.68-1.85 / x1.54-1.70 the law (F1); Z 4.5-5.5 stat, 2.4-2.9 with the calibrated cross-shear systematic (X7: "
+      "MARGINAL); no allowed μ_K fixes it (S4); MOG's universal set fails too (X9)", ["CFG687", "F1", "S4", "X7", "X9"],
+      "FAIL", new=True),
     # S1 (v3): was grey (old result UNDEC: +0.33 dex over the isolated law, Coma's field not applied)
     T(2, "Coma ultra-diffuse galaxies", "FAIL",
       "in Coma's field +1.12/+1.08 dex, z +4.3–4.7 / +4.1–4.5; isolated only 1.65/1.45σ off; U1: +1.41 dex, z 5.4 "

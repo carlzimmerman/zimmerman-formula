@@ -40,6 +40,15 @@ The ½ is **fitted**, not derived; the current measurement is κ = 0.417 ± 0.09
 - **Health: ghosts, gradients: 🟥 → 🟨 conditional.** v3s is well-posed where ρ_τ < 0, under the qualifiers above. H4's unbounded rate applies to v3 as written.
 - **Leaf problem well-posed: 🟥 → 🟨 conditional.** This is a correction as well as a recompute. H4 §5 states that C8's well-posedness verdict stands for the (P, lapse) leaf problem; H4's ill-posedness is in the khronon/dust evolution and belongs on the Health tile. For v3s, the switched leaf functional stays convex (an obstacle-type free boundary), so the leaf problem is still uniquely solvable (X3). The infinite-volume theorem and the coupled GR + dust problem remain open, as in C8.
 
+### Cluster cores re-annotated (X7, X9; colour kept)
+
+- **[X7](../rebuild_2026_10_22/X7_cluster_core_significance/README.md)** (reproduced from a fresh raw-KiDS cache): with the shear systematics calibrated, the core excess is **MARGINAL**, Z 2.4–2.9 on both footings. It is 4.5–5.5 on statistical errors alone.
+  - What decides it is a cross-shear offset of 2.2–2.5σ against 200 rotated-source realisations, of unidentified origin; it is not PSF leakage (≤ 0.003).
+  - If that offset is a pure B-mode, Z returns to 4.5–5.5.
+  - The core excess shows no significant mass trend. The outskirts trend (+0.8 to +1.0 per dex in mass) is robust.
+- **[X9](../rebuild_2026_10_22/X9_mog_stvg_check/README.md)** (reproduced): MOG/STVG with its published universal parameters fails both SPARC (rms 0.136 dex against the law's 0.054) and this cluster stack (no core excess, outskirts too high).
+- The tile stays red: it is on the generator's must-stay-red list, and turning it "not decidable" is an owner decision.
+
 ## How to read it
 
 The picture shows the current theory, v3, only. It is drawn by [`make_status_board.py`](make_status_board.py); tiles marked **23 OCT** were added, recoloured, greyed or re-annotated on 23 October. The generator refuses any first green except one listed in `VERIFIED_GREEN` (lane, result commit and the coordinator's rerun, with the same lane on the recolour step); a grey tile may also return to green if it was green before it was greyed and its own recompute lane passes it. It refuses any recolour not listed with its evidence lane, and any tile that leaves the board without going to the archive with N0 as its evidence (`--selftest` runs 26 broken cases, each of which must be caught, and checks that the one verified green passes). Each tile is one test. The colour restates a verdict recorded in the campaign LEDGER ([`campaign_fresh_gravity/LEDGER.md`](../campaign_fresh_gravity/LEDGER.md)) or in the dated notes of [`THEORY_CANONICAL_2026-10-18.md`](../campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md), and the lane IDs on each tile point to the scripts that produced it. Verdicts come from committed scripts with pass/fail rules frozen *before* the data were read, plus a control that is deliberately broken and must fail. Where a colour depends on a rule added afterwards (post hoc), the tile says so.
