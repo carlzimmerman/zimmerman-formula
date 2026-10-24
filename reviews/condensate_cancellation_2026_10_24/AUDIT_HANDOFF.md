@@ -1,0 +1,3 @@
+# Handoff
+
+Source pins and assumptions in RESULT.md. Frozen ceec4e5b4b. New result is the sourced static timelike P(X) branch: smooth healthy condensate gives negative cubic current, while imposing attractive MOND current requires P_XX=-C/y and negative rest-frame time kinetic for y^2<v^2/2. Do not extrapolate to spacelike branches, leading higher derivatives, dynamical lapse shifts, disformal portals or all supergravity. Source paper IV.59 stabilizes with nonzero k^2, coefficient not selected. Baseline 13/13 identities; mutation 8/13. Vacuum offset and sourced shift-charge equations are conditional EFT diagnostics, not a microscopic no-go. Goal remains unresolved.

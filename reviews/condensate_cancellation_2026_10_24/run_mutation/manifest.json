@@ -1,0 +1,120 @@
+{
+  "schema_version": 2,
+  "claim_id": "CONDCANCEL-20261024",
+  "repository": {
+    "commit": "ceec4e5b4b85771bdf26561a56285f347c27739a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/condensate_cancellation_2026_10_24/check.py",
+    "--output",
+    "reviews/condensate_cancellation_2026_10_24/run_mutation/result.json",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Smooth condensate static response, imposed MOND response kinetic sign, source and vacuum shifts",
+    "coefficient_domain": "positive A C v y; physical timelike small-gradient branch y much smaller than v; n spatial dimensions",
+    "conventions": "X=-(partial phi)^2/2; -+++; source -q rho phi; outward psi prime positive for attractive force",
+    "inputs": [
+      "FROZEN_CRITERIA.md"
+    ],
+    "bounds": {
+      "identity_count": 13
+    },
+    "non_claims": [
+      "No complete scalar-gravity halo solution",
+      "No microscopic vacuum amplitude selection",
+      "No universal condensate no-go"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-24T22:44:31.706160+00:00",
+    "runtime_seconds": 0.2963,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 30000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/condensate_cancellation_2026_10_24/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/condensate_cancellation_2026_10_24/check.py",
+      "sha256": "742a3414be72f6832bf1c9ab85acd10fdc3258e7b673118b9edeb19220c4d0d4",
+      "sha256_after": "742a3414be72f6832bf1c9ab85acd10fdc3258e7b673118b9edeb19220c4d0d4"
+    }
+  ],
+  "output_directory": "reviews/condensate_cancellation_2026_10_24/run_mutation",
+  "declared_results": [
+    "reviews/condensate_cancellation_2026_10_24/run_mutation/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/condensate_cancellation_2026_10_24/run_mutation/stdout.txt",
+      "sha256": "1b656186f57350395faf32c6d144ea9a723ba8b68d969552cb38fae63835f3f3",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/condensate_cancellation_2026_10_24/run_mutation/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/condensate_cancellation_2026_10_24/run_mutation/result.json",
+      "sha256": "1b656186f57350395faf32c6d144ea9a723ba8b68d969552cb38fae63835f3f3",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
