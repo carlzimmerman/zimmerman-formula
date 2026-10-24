@@ -1,0 +1,84 @@
+==============================================================================================================
+PH1_two_phase_cold_energy   *** MUTATE: normal phase carries Xi-charge ***
+kappa = 1/2 FITTED; footings canonical 9.3603e-11 / alt 1.1312e-10 m/s^2, never pooled; not theory closed
+==============================================================================================================
+
+T1  ACTION (classical complex scalar; condensed = coherent phase = khronon; normal = incoherent part)
+  S = (c^3/16piG) Int sqrt(-g) [R - 2Lambda - 2 J_x(Y[theta]) + 2 K(Q[theta])] + S_gammaL/switch[theta]
+      + Int sqrt(-g) [ -|d psi_n|^2 - mu^2 |psi_n|^2 ]_incoherent  + S_m[g]
+  psi = sqrt(rho_s) e^{i theta} (coherent, <psi> != 0)  +  psi_n (<psi_n> = 0, Wigner -> multi-stream dust)
+  The law sector J_x sees only theta (the coherent phase).  The normal part couples to g only.
+D1 PASS  condensed static limit: g mu(g/a0) = g_N with g = a0 g_from_gN; residual 0; held dust = phantom of (rho_b + rho_n), Xi = Phi + C (U1 D2)   [residual 0]
+D2 PASS  normal static limit: isothermal rho = sigma^2/(2 pi G r^2) solves Jeans + Poisson (residual 0); M_n(<r) = 2*r*sigma**2/G = v_n^2 r/G   [residual 0]
+D3 FAIL  composite weight F = M_b*g_h; normal share accelerates at 0 -> eps_n = 1 (condensed share eps_s = 1)   [eps_n = 0]
+D4 PASS  Landau v_c = min_k omega/k = sqrt(2)*sqrt(pi)*sqrt(G)*L_star*sqrt(rhobar) (held phase linear dispersion with the L* stiffness, O1 sec.3)   [derived]
+D5 PASS  fold first at t = [1/A]; dx/dq(q=0) = -A*t + 1 < 0 for every t > 1/A: once multi-stream the medium never returns to single-stream (no single-valued theta, so no condensate)   [fold persists]
+  Landau v_c (km/s): {"canonical": {"satellite rho 0.1": 1.127, "disc halo rho 0.01": 0.356, "cluster core rho 0.003": 0.195}, "alt": {"satellite rho 0.1": 1.188, "disc halo rho 0.01": 0.376, "cluster core rho 0.003": 0.206}}
+
+T2  CRITERION MENU (phase assigned per class; REQUIRED: disc C, satellite N, cluster core part-N, early N, TDG none, SS none)
+  state  isolated disc (R 8-30 kpc)     g/a0 0.4-2                        rho 1e-2       sigma 150    V_rel 0.03 (O1)        multi if built by dust growth
+  state  satellite (r_half)             g/a0 0.01-0.3                     rho 0.1        sigma 3-10   V_rel 100-300          single (held) before infall
+  state  cluster core (0.3-1 Mpc)       g/a0 1-3                          rho 3e-3       sigma 1000   V_rel members 1000     multi
+  state  early universe z 1100-30       g/a0 15.6 at z 1100 (LEDGER:705)  rho >5.2e+01-> sigma ~0     V_rel ~0               single
+  state  TDG / DF2-DF4                  g/a0 0.05-0.3                     rho -          sigma -      V_rel 100-200 at birth baryons only
+  state  Solar System / globulars       g/a0 >1e3                         rho -          sigma -      V_rel 36-220 (O1)      -
+  C-g  |grad Phi| < a0 => condensed                  [0 new]  disc C (outer) / N (inner) | sat C  X | cl mixed | early N to z~90, then C  X (Theorem G) | TDG n/a | SS N ok
+  C-rho  rho < k rho_Lambda => condensed             [0 new (+ O(1) k)]  disc N  X (rho ~ 1e5 rho_L) | sat N | cl N | early N | TDG n/a | SS N
+  C-rho' rho > k rho_Lambda => condensed             [0 new (+ O(1) k)]  disc C | sat C  X | cl C  X | early C  X | TDG n/a | SS C
+  C-sigma  sigma < (G M a0)^1/4 => condensed         [0 new]  disc C (ratio 0.71) | sat C  X (ratio 0.47 pre-infall, unchanged by infall) | cl C | early C  X (sigma -> 0) | TDG n/a | SS -
+  C-V  V_rel < c_s(L*, rho) => condensed (Landau)    [0 new (L* FITTED, allowed)]  disc C ok (0.03 << ~1 km/s) | sat N ok (released at dv = v_c << sigma: bound) | cl members N; cluster khronon still holds => debris ADDED | early C  X (no relative flow on FRW) | TDG none ok | SS none ok (O1 VS)
+  C-SX  single-stream => condensed                   [0 new]  disc N  X (virialised) | sat N | cl N | early C  X | TDG n/a | SS -
+  C-lambda  c/(mu sigma) > size => condensed         [+1 NEW (mu); mu = 1/L* gives m c^2 = 2.9e-25 eV]  disc C (66 kpc) | sat C  X (660 kpc) | cl N ok (6.6 kpc) | early C  X (fuzzy, Jeans k ~ 0.3/Mpc) | TDG n/a | SS -
+  => no criterion from {kappa, a0, G, c, Lambda, L*} is ADMISSIBLE; best = C-V (fails only 'early universe' as a phase rule).
+     Early-normal can only be an INITIAL CONDITION (branch EN), and D5 forbids normal -> condensed later.
+
+G   GROWTH (three fluids: baryons, normal s = 1, condensed held s = 0; a_i = 1e-3; line ratio >= 0.95)
+  A_c2b: Om 0.3129 Ob 0.0488 h 0.6758: EC (f_n = 0) ratio 0.0747; f_n,min = 1.0000 (line 0.95)
+  B_cfg886: Om 0.2976 Ob 0.0475 h 0.6856: EC (f_n = 0) ratio 0.0773; f_n,min = 1.0000 (line 0.95)
+KG FAIL  F3 growth_ratio(mu->0, BSK2 kernel) 0.07470 vs mine f_n=0 0.07470; f_n = 1 with the run's charge assignment (Xi-charge 1): 0.0747   [|diff| < 1e-3 and f_n = 1 meets 0.95]
+
+P4  ISOLATED RAR + DOUBLE COUNTING (P4 statistic: weighted rms <= 0.110 and median Upsilon in [0.50, 0.80])
+  canonical: control rms 0.0541 U 0.52 (P4 0.0541 / 0.52)
+     EN A_c2b: rms 0.1050  U_med 0.30  line FAIL   double count: d rms +0.0510, d U -0.22
+     EN B_cfg886: rms 0.1057  U_med 0.30  line FAIL   double count: d rms +0.0516, d U -0.22
+     EC merger debris: lambda_max 0.00 of own phantom (lambda 0.5: rms 0.1206 U 0.30; lambda 1: rms 0.1884 U 0.30); EN m_max 0.00 x fair share at f_n,min
+  alt: control rms 0.0537 U 0.44 (P4 0.0537 / 0.44)
+     EN A_c2b: rms 0.1205  U_med 0.30  line FAIL   double count: d rms +0.0668, d U -0.14
+     EN B_cfg886: rms 0.1212  U_med 0.30  line FAIL   double count: d rms +0.0675, d U -0.14
+     EC merger debris: lambda_max 0.00 of own phantom (lambda 0.5: rms 0.1447 U 0.30; lambda 1: rms 0.2204 U 0.30); EN m_max 0.00 x fair share at f_n,min
+KP PASS  control reproduces P4 iso_perUps rms and median Upsilon on both footings   [|d rms| <= 1e-4, U equal]
+
+Z2  SATELLITES (Z2 per-system Delta_ISO; C2-C4 subset; EC freeze-out radial collapse; EN normal subhalo)
+KS1 PASS  cold uniform sphere to 0.9 t_ff: |dE/E| 1.69e-07; outer radius 0.351   [< 1 %]
+  R_J/r12 range 0.73-65.0; y12 range 1.18e-04-9.39e-03
+KS2 PASS  (A1 method) B at (1e-2.5, 10): 4.235; 2x N, eps/2: 4.210; N/2, 2 eps: 4.055; max |d log B| 0.019   [<= 0.02 dex]
+KS2b FAIL  (A1, largest R_J node) B at (1e-2.5, 31.6): 9.848; fine 9.612; coarse 9.304; max |d log B| 0.025   [<= 0.02 dex]
+  canonical: C2-C4 N 19: ISO +0.467 +- 0.071 (ABOVE); median log B +0.594, stellar contraction log c -0.300
+     EC freeze-out (radial collapse, present D): residual -0.146 +- 0.051 -> BELOW; pericentre R_J: -0.128 +- 0.078 -> CONSISTENT
+     EC host-field slope at fixed M_V (MW+M31, N 44): +0.322 +- 0.191 (ISO's -0.062 +- 0.190)  -> flat OK
+     EN normal subhalo (fair share of present stars, f_n,min): residual +1.602 +- 0.057 -> ABOVE
+  alt: C2-C4 N 19: ISO +0.427 +- 0.073 (ABOVE); median log B +0.595, stellar contraction log c -0.300
+     EC freeze-out (radial collapse, present D): residual -0.187 +- 0.050 -> BELOW; pericentre R_J: -0.165 +- 0.078 -> BELOW
+     EC host-field slope at fixed M_V (MW+M31, N 45): +0.340 +- 0.190 (ISO's -0.052 +- 0.191)  -> flat OK
+     EN normal subhalo (fair share of present stars, f_n,min): residual +1.602 +- 0.056 -> ABOVE
+KZ PASS  C2-C4 N [19, 19]; median Delta_ISO [0.467, 0.427] vs Z2 [0.45, 0.409]   [N 19, |d| <= 0.05]
+
+ROW VERDICTS
+  F3 growth                  EC: FAIL: ratio 0.075 / 0.077 (line 0.95)
+                             EN: PASS only as an INITIAL CONDITION f_n >= 1.000 / 1.000 (+1 IC)
+  P4 isolated RAR            EC: PASS if no merger debris (control); lambda_max 0.00 / 0.00
+                             EN: FAIL: canonical rms 0.105 U 0.30; alt rms 0.120 U 0.30
+  Z2 satellites              EC: MIXED: ['BELOW', 'BELOW']
+                             EN: ['ABOVE', 'ABOVE']
+  F1 cluster cores           EC: FAIL (REUSED X2): members' released debris is ADDED to the cluster law (khronon still holds); X2: added overshoots
+                             EN: FAIL (REUSED X2/X6): fair-share normal mass sources the law like baryons (X6 C1b 'CDM under another name'); X2 added form fails
+  U1 TDGs / DF2-DF4          EC: PASS (REUSED U1 B0 +0.055 +- 0.114): born at V_rel >> v_c, no condensate
+                             EN: PASS for TDGs (gas-born); DF2/DF4 history-dependent
+  Solar System / globulars   EC: PASS (REUSED O1 VS)
+                             EN: PASS for the condensate; an ambient normal component is CDM-like (Y1: ambient gate ratio 7.4e-4)
+
+CONSTANT COUNT: EC adds none (v_c from L*, FITTED but allowed) but has no early-normal phase (growth FAIL);
+  EN needs +1 initial condition (f_n) and, for a field-level normal phase on dwarf scales, a wave scale mu^-1 <= ~3e-3 pc (NEW).
+RSS PASS  peak RSS 0.170 GB   [< 1 GB]
+
+checks 9/12 pass; runtime 222 s
