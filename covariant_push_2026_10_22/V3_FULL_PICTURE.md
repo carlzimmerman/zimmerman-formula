@@ -107,7 +107,8 @@ NUM:
   z ≈ 35–78. Reaching 0.95 needs μ_K 2.4e3–5.7e4 times larger than galaxies allow (X4).
 - The nonlinear J_x term does not restore it. L1's A5 ladder gives ρ_NL −0.057 / −0.045 (128³), −0.058 / −0.047 (256³)
   and −0.059 / −0.047 (384³): monotonically converged, with KX below LIN. This is indicative; the 512³ production decides, and it is the
-  only rung KiDS can score. Starting instead from Q6's Boltzmann state (LOB-IC, 384³), σ₈ is only 0.0135, about 1.6 % of the dust limit,
+  only rung KiDS can score. Caveat (X18): on forest scales the linear khronon ODE exceeds the PN flux cap |KP| < a₀ at z ≳ 200–500, so its
+  early-time evolution there is formal. Starting instead from Q6's Boltzmann state (LOB-IC, 384³), σ₈ is only 0.0135, about 1.6 % of the dust limit,
   and the nonlinear term changes nothing (ρ_NL ≈ 0).
 
 ### 4.3 Hosted systems: the dust has no weight in a host
@@ -357,7 +358,14 @@ No such sector is in the record, and no rule-compatible framework in the literat
       amplifies the khronon's response to baryon wells at large k, with growth rate ∝ k^{1/2}. In X4's linear ODE every
       window cell overshoots at k ≳ 1–3 h/Mpc. At β_min σ₈ is 0.19–0.22 of dust, yet P(k = 3) is 300–470× dust; at
       β_max(0.1) σ₈ is 9.97× dust. So wherever σ₈ would match dust, small-scale power is far above it. Nonlinear
-      saturation and the Lyman-α forest are not yet computed. |
+      saturation and the Lyman-α forest are not yet computed.
+  - **X18** (`rebuild_2026_10_22/X18_beta_growth_forest`, 71e86472ea / c9832d656f): **UNDECIDED**, frozen rule.
+    - c_A is on from z ≈ 1000, but saturation cuts C1's rate only at k ≳ 3 h/Mpc.
+    - The linear khronon charge on forest scales exceeds X14's flux cap at early times, last at z ≈ 200–500. That holds
+      even at β = 0, so X4's and X17's linear growth ODE is formal there.
+    - Ignoring the cap, the forest fails in 80/80 cells (wrong shape) and no β gets σ₈ and the forest both within lines.
+    - Q-CONV also fails in 2 of 52 variant runs.
+    - The next step would be a nonlinear code started from a cap-consistent state. |
 | Cluster light/heavy split | per-tercile physics; a selector the theory lacks (CFG939) | data result (X2); no mechanism. The β completion's sound speed is not that selector (X17: inert in statics, wrong mass ordering in motion) |
 | Wide binaries, MW in Gaia DR4 | sealed predictions (C6; S3 `SEALED_V3_MW_DR4.json`) | data 2026-12-02 |
 | ALMA U4 / GS4 | sealed, addendum F | data 2026-11-06 / 11-28 |
