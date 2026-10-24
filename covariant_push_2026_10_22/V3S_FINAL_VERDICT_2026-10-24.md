@@ -62,7 +62,7 @@ rule-compatible framework in the literature claims a clean pass (MAP §1).
 | Galaxy/cluster selector | NO (WRONG SIGN): inert in statics, wrong mass ordering in motion | X17 |
 | Galaxy dynamics | works only for motion slower than c_A (160–770 km/s at the window top) | X15, X17 |
 | Linear growth on forest scales | overshoots at k ≳ 1–3 h/Mpc for every β (linear) | X17 |
-| Forest after saturation | **UNDECIDED** under the frozen rule: the linear khronon ODE breaks X14's flux cap at early times (last at z ≈ 200–500, even at β = 0), so it is outside its own validity. Ignoring the cap, the forest fails in 80/80 cells and no β puts both σ₈ and the forest inside the lines. Deciding it needs a nonlinear code started from a cap-consistent state | X18 (71e86472ea / c9832d656f; coordinator rerun in progress, 96 min) |
+| Forest after saturation | **UNDECIDED** under the frozen rule: the linear khronon ODE breaks X14's flux cap at early times (last at z ≈ 200–500, even at β = 0), so it is outside its own validity. Ignoring the cap, the forest fails in 80/80 cells and no β puts both σ₈ and the forest inside the lines. Deciding it needs a nonlinear code started from a cap-consistent state | X18 (71e86472ea / c9832d656f; coordinator rerun identical apart from timing) |
 
 C1 cures a health problem. It does not touch the mechanism in §3. Every test that could be graded passes or is conditional; the one test X18 could not grade (the forest) fails in every cell once the cap is ignored.
 
