@@ -179,6 +179,8 @@ With η(k) ≡ 2/(1 + L★²k²/2), which is P integrated out:
   - FROZEN §7's parenthetical expectation "(α₁,∞ = −8)" for m2 was wrong. The degenerate system gives
     α₁,∞ = −24β(a² + b²)/(…), which depends on direction. P-A1 still fails, as required.
 
+> **Update (X17, 2026-10-24):** the step-3 cluster sound speed 449–1032 km/s used a 1e14 M☉ point mass at 300 kpc. For the eRASS1 tercile masses c_A is 209–482 km/s at β_max(0.1) (`rebuild_2026_10_22/X17_beta_sound_selector`). Internal motion is subsonic only inside r_β = Bc²/a₀, whatever the mass.
+
 ## What this does not show
 
 - **Weak field and linear only.** The strong-field α̂₁ and α̂₂ rows use the weak-field residual at the binary separation
@@ -188,7 +190,7 @@ With η(k) ≡ 2/(1 + L★²k²/2), which is P integrated out:
 - **The β = 0 moving Sun is not solved.** Linear theory says its hedgehog is not carried. The nonlinear charge transport
   (the Sun's own charge gives a local sound speed c₀ = √(γ_Lρ_τ) = √(GM/r), the local circular speed, against the
   illustrative w ≥ 220 km/s) is not solved.
-- **Binary-pulsar radiation with C1 is not computed.**
+- **Binary-pulsar radiation with C1 is not computed.** *(Update 2026-10-24: now computed in X16, `rebuild_2026_10_22/X16_beta_binary_radiation`; C1 passes all four record binaries, on a neutron-star sensitivity condition.)*
   - C1 turns the khronon into a propagating scalar, so khronometric-type scalar (dipole) radiation is possible. In the
     screened regime it is suppressed by η(k).
   - C8's "no radiative channel" holds only at β = 0.

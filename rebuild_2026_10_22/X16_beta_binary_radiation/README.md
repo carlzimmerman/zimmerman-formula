@@ -192,6 +192,10 @@ Reported: P3's double-pulsar π–metric mixing ε = 2.012e-9 (read, not rerun).
 - **CFG291.** Its counterfactual B3 is X16's σX. On the old chassis it failed; in v3s + C1 it fails only the double pulsar,
   above β ≈ 3.2e-6. The open item is the same in both: a strong-field NS sensitivity at small α.
 
+## Coordinator rerun (2026-10-24)
+
+Main and MUTATE were rerun in place with `PYTHONHASHSEED=0`: main exit 0, MUTATE exit 1. Every output file matches the committed one leaf by leaf, apart from timing strings. This includes the step-0 copies of X14, X15 and C8. Hand check: c_S/c ≈ √(2B/η) gives 47–105 for B 1e-6–5e-6 at η 9e-10, consistent with the 47–133 c reported.
+
 ## Files and run
 
 | file | contents |

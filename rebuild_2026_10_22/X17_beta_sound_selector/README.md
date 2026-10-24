@@ -246,6 +246,10 @@ c_s is set by the dust's local density.
   effects are largest in the lightest tercile.
 - **MAP §4.** Add a row for X17 with the verdict above.
 
+## Coordinator rerun (2026-10-24)
+
+Main and MUTATE were rerun in place with `PYTHONHASHSEED=0`: main exit 0, MUTATE exit 1. Every output file matches the committed one leaf by leaf, apart from timing strings. Hand check: v_c/c_A = √(r/r_β) follows from v_c² = a₀ x r and c_A,⊥² = B c² x. r_β = Bc²/a₀ = 31 / 28, 156 / 129 and 1737 / 1438 kpc reproduce the table (the alt value at β_max(0.03) differs from 1437 only by rounding).
+
 ## Files and run
 
 | file | contents |

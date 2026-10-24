@@ -70,7 +70,7 @@ This is AQUAL, not QUMOND (doors E2, C4). With μ_K → 0 and spherical symmetry
 | SPARC RAR (conditional) | rms 0.054 / 0.054 dex with one Υ per galaxy and the EFE solved for 109; the χ² line fails (63–64 % acceptable) | NUM: P4 |
 | Isolated groups | +0.010 / −0.010 dex | NUM: P4 |
 | Solar System (screened) | inside L★ the Sun's field is a hedgehog GM/L★² r̂ with no quadrupole; all 24 Cassini cells pass, by 4.8e7–5.1e9 | NUM: C6. The unscreened law fails Cassini 2.44–5.19× (E2) |
-| Gravitational waves, binary pulsars | tensor speed c; at most 3.2e-14 of the double pulsar's precision (no scalar channel at β = 0; with the β completion, scalar radiation is not computed, X15) | NUM: C8, P3 |
+| Gravitational waves, binary pulsars | tensor speed c; at most 3.2e-14 of the double pulsar's precision (no scalar channel at β = 0; with the β completion, X16: δṖ_b ≤ 2.1e-14 for J0737, provided the neutron-star sensitivity difference |s₁ − s₂| < 7e-7, which is bracketed but not computed in strong field) | NUM: C8, P3 |
 | Static black holes, neutron stars | shifts ≤ 2.9e-11; \|ΔR/R\| ≤ 5.3e-28 | NUM: P3 |
 | Tidal dwarfs, DF2/DF4 | dust-free in their host, hence Newtonian (§4.3) | NUM: U1, consistent with T3 |
 | Isolated Local Group dwarfs | +0.06 / +0.02 ± 0.08 dex | NUM: X1 |
@@ -244,15 +244,17 @@ models; S3, X5), and this holds for the whole μ-law family. Joint radial-plus-v
    is inert there), and the Milky Way's joint fit.
 6. **The single-stream khronon forms caustics generically** (X14, analytic: any stream crossing a sheet folds at
    w/(KΣ_b)). Removing them needs a new constant; of nine classes only the β term survives, in a narrow window. It
-   passes preferred-frame PPN (X15), but it works only for motion slower than the khronon's new sound speed
-   (160–770 km/s at the top of the window). Whether galaxies are subsonic depends on the khronon's rest frame.
+   passes preferred-frame PPN (X15) and binary pulsars (X16, on a neutron-star sensitivity condition). But it works only
+   for motion slower than the khronon's new sound speed, it is no galaxy/cluster selector (X17), and in linear theory it
+   makes small-scale growth overshoot (X17; whether nonlinear saturation or the forest decides is open).
 
 **What a completion would need**, read off the mechanisms (X0 §2, X6): a gravitating cold sector that
 (i) clusters linearly like dust from z ≈ 1100;
 (ii) has weight in hosted systems; and
 (iii) contributes nothing extra in isolated galaxies.
 That last condition must come from a scale or selector that lies between galaxies and clusters (M2, S4); the record's
-μ-pincer theorem rules out pressure for that role. Inside the khronon family (iii) conflicts with (i)–(ii) through α ≡ 1.
+μ-pincer theorem rules out pressure for that role. That covers density-keyed pressure; the β completion's
+acceleration-keyed sound speed lies outside it, but has no effect in statics (X17). Inside the khronon family (iii) conflicts with (i)–(ii) through α ≡ 1.
 No such sector is in the record, and no rule-compatible framework in the literature claims one (X0 §1).
 
 ## 6. Still open
@@ -319,9 +321,34 @@ No such sector is in the record, and no rule-compatible framework in the literat
       - At CMB-dipole speeds galaxy outskirts are supersonic (Mach up to 2.3) and not estimable.
       - At μ_K = 0.03 the window reaches 1.1e-4 and 369 km/s stays subsonic (Mach ≤ 0.69).
       - The khronon's rest frame relative to galaxies is not fixed by the record.
-    - Not computed: binary-pulsar scalar radiation from the new mode (it is superluminal and dispersive at Solar-System
-      scales), neutron-star sensitivities, and 2PN. |
-| Cluster light/heavy split | per-tercile physics; a selector the theory lacks (CFG939) | data result (X2); no mechanism |
+    - Not computed in X15: binary-pulsar scalar radiation (now X16, below), neutron-star sensitivities, and 2PN.
+  - **X16** (`rebuild_2026_10_22/X16_beta_binary_radiation`, db3a4913a0 / ff02290692 / 4799209bf5; rerun identical):
+    **C1 PASSES BINARY PULSARS, on one condition.**
+    - There is one radiating scalar, with positive energy. Fed through the tensor sector, the same flux formula
+      reproduces GR's quadrupole to 2.2e-15. In the matching limit it equals Yagi et al. 2014's khronometric flux at
+      α = η(k_S), λ = β (PROVISIONAL).
+    - δṖ_b/Ṗ_b over the window: J0737 ≤ 2.1e-14, B1913 ≤ 9.0e-13, J1738 ≤ 1.2e-17, J0348 ≤ 1.6e-19 (41/41 points
+      in every cell).
+    - The condition: the dipole channel is strong, so the stars' sensitivity difference must stay below 7.2e-7
+      (J0737) to 4.5e-5. The weak-field estimate gives s ≈ 1e-27 and a generous envelope gives ≤ 4.4e-15. No
+      strong-field sensitivity calculation exists for v3s + C1.
+    - The scalar moves at 47–133 c at the double pulsar. The tensor speed is exactly c.
+  - **X17** (`rebuild_2026_10_22/X17_beta_sound_selector`, 348993ca40 / 3d8f8c6a0c; rerun identical): **C1's sound speed
+    is no galaxy/cluster selector (WRONG SIGN).**
+    - **Inert in statics, at all orders.** K = 0 on static slices, and β enters the PN charge equation only through a
+      term that vanishes on held and boosted-held khronon. So static cluster lensing, isolated galaxies and S4's
+      ordering are unchanged.
+    - **The speed is set by acceleration, not density.** c_A² ∝ B c² x, where x = |∇Ξ|/a₀. So C1 is outside the
+      μ-pincer's scope. Internal Mach v_c/c_A = √(r/r_β) with r_β = Bc²/a₀ (31–1737 kpc), whatever the mass.
+      eRASS1-mass cluster cores have c_A 209–482 km/s at β_max(0.1), not X15's 449–1032.
+    - **Motion effects are too small and ordered the wrong way.** They lower heavy-cluster cores or are largest in the
+      lightest clusters, and none reaches a quarter of the excess.
+    - **New problem for C1: growth.** c_A = 0 on the cosmic background, so there is no Jeans suppression. Instead C1
+      amplifies the khronon's response to baryon wells at large k, with growth rate ∝ k^{1/2}. In X4's linear ODE every
+      window cell overshoots at k ≳ 1–3 h/Mpc. At β_min σ₈ is 0.19–0.22 of dust, yet P(k = 3) is 300–470× dust; at
+      β_max(0.1) σ₈ is 9.97× dust. So wherever σ₈ would match dust, small-scale power is far above it. Nonlinear
+      saturation and the Lyman-α forest are not yet computed. |
+| Cluster light/heavy split | per-tercile physics; a selector the theory lacks (CFG939) | data result (X2); no mechanism. The β completion's sound speed is not that selector (X17: inert in statics, wrong mass ordering in motion) |
 | Wide binaries, MW in Gaia DR4 | sealed predictions (C6; S3 `SEALED_V3_MW_DR4.json`) | data 2026-12-02 |
 | ALMA U4 / GS4 | sealed, addendum F | data 2026-11-06 / 11-28 |
 
