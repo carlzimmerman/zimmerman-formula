@@ -168,3 +168,43 @@ shape-model amplitudes of §4, none of which enter the law. No post-hoc bin choi
 counts and thresholds are fixed above. If M1 or K0 fail, nothing downstream is graded (UNDECIDED, missing input named).
 
 ## AMENDMENTS (append-only; each labelled PRE-RESULT or POST-RESULT)
+
+- **A1 (PRE-RESULT, implementation; written after the first extraction run, which produces no number of this lane, and before
+  any other script ran).** (i) E2 was coded as "THELI_NAME ↔ THELI_INT one-to-one", which is stronger than the frozen
+  "THELI_NAME ↔ tile id". THELI_INT takes 514 values for 988 tile names, so it is not a unique tile key and is not used. E2 now
+  checks the frozen statement (the name → integer id map), and reports the THELI_INT count. (ii) E3 failed at 20.8 GB
+  ru_maxrss: the byte-order check read astropy's full THELI_NAME column, which maps every page of the 17.7 GB file (clean
+  file-backed pages; the queue showed no swap growth and 36 GB free). The check now slices the first 5 rows before reading
+  the columns. E1 passed (all 7 shared columns byte-identical to F1's cache). The run is repeated; E1–E3 must pass.
+  The repeated run passed E1 and E2 and failed E3 at 1.144 GB (the reorder held an int64 index and the PSF finiteness loop kept
+  its maps). The index is now int32 and the loop re-opens its maps per chunk; run again (third run), E1–E3 must pass.
+- **A2 (POST-RESULT for G3 only; memory handling, no statistic changed).** The first regression run passed G1 and G2 and
+  printed the coefficient tables, then failed G3 at 1.440 GB (2-million-row chunks and a list-concatenating G2). The chunk is
+  now 500,000 rows and G2 fills preallocated arrays one component at a time. Sums are order-independent up to rounding; the
+  rerun must pass G1–G3 and reproduce the printed coefficients. The first run's output is kept in session scratch.
+  The second run reproduced the coefficient tables exactly and failed G3 again at 1.527 GB: unmapping a numpy memory map does
+  not release its touched pages from macOS ru_maxrss. Columns are now read by seek + fromfile (no memory map); values are
+  identical. Third run below. The same reader is used in `x7_measure.py` (written before any of its runs).
+  The third run (no memory map) again reproduced the tables and failed G3 at 1.536 GB. A synthetic test shows the cause:
+  macOS keeps freed multi-megabyte numpy temporaries resident (0.65 GB after 43 loops of 4 MB arrays; 0.19 GB with 0.8 MB
+  arrays). The chunk is now 100,000 rows. Fourth run below.
+- **A3 (PRE-RESULT, implementation of `x7_measure.py`; written after its first `--mutate` run (20 clusters, M1 FAIL as
+  required, M2–M6 PASS, peak 0.79 GB) and before any full run).** The KiDS columns are read with `os.pread` on the contiguous
+  gather ranges (values identical to the memory-map indexing; M1 re-verifies). The script re-executes itself with
+  `MallocMediumZone=0`: macOS's medium malloc zone keeps freed 1–8 MB temporaries resident (synthetic test 0.44 → 0.14 GB;
+  this script's `--mutate` run 0.79 → 0.50 GB). Rotation blocks are ≤ 1e5 elements. No statistic, threshold or input changed.
+  Also before any full run: the rotated random-point stacks (mean of the randoms, tangential and cross) are stored, which
+  §2(b) needs for their rotated-noise errors; M5 covers them too. A first full run was stopped at 25 clusters for this.
+- **A4 (POST-RESULT, K2 only; no graded quantity changed).** The first analysis run (kept as `x7_analysis_RUN1_K2.out` /
+  `_results_RUN1_K2.json`) FAILED K2(b) at 0.882: the frozen test compared the bootstrap σ with the population σ/√n, but the
+  one synthetic draw (seed 7) has a sample σ of 0.274 for a population 0.3 (8.6 % low, a 2.6σ draw). The bootstrap estimates
+  the sample's own σ/√n; K2(b) now uses that, with the 10 % line unchanged (the population ratio is still printed). The
+  bootstrap σ of the real data is within 11 % of the jackknife, and the D = 2P test (K2(a)) passed. Every graded number
+  of RUN1 is unchanged by this amendment.
+- **A5 (POST-RESULT, reporting only).** Added after RUN1: an analytic shape-noise σ per band (independent clusters,
+  √(Σ W B² (1 + 1/n_rand)) / Σ W P) beside the rotated-source σ_n and the jackknife σ of the tangential and cross stacks. No
+  verdict weight. `x7_extract.py` gets a `--mutate` control (e2 sign flipped before the comparison; E1 must FAIL), which the
+  frozen §6 did not list.
+- **Closing notes on A1/A2 (no change).** The third extraction run passed E1–E3 (0.906 GB); after A5's `--mutate` was added
+  it was run again (0.899 GB, E1–E3 PASS, same cache bytes on the 7 shared columns). The fourth regression run passed G1–G3
+  (0.541 GB) with coefficient tables identical to runs 1–3.

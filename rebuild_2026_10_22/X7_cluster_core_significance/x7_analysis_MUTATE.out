@@ -1,0 +1,197 @@
+EFE solve (X2's) canonical noclu: y_e 7.814e-04 iters 371 last change 9.9e-10 [8 s]
+EFE solve (X2's) alt noclu: y_e 6.466e-04 iters 402 last change 9.8e-10 [9 s]
+
+=== STEP 0: reproduction of X2 (C0, C*, terciles) and F1 PRIMARY with the record's code ===
+  C0 can h0672: MID 0.2093 s_jk 0.1190 s_tot 0.2427 (Z -6.65)  OUT 0.0749  | X2 JSON MID 1.6758 s_tot 0.2423
+  C* can h0672: MID 0.2048 s_jk 0.1164 s_tot 0.2375 (Z -3.35)  OUT 0.0734  | X2 JSON MID 1.6403 s_tot 0.2371
+  C0 can h0686: MID 0.2427 s_jk 0.1255 s_tot 0.2809 (Z -6.03)  OUT 0.0732  | X2 JSON MID 1.7198 s_tot 0.2711
+  C* can h0686: MID 0.2376 s_jk 0.1228 s_tot 0.2750 (Z -2.77)  OUT 0.0718  | X2 JSON MID 1.6840 s_tot 0.2654
+  C0 alt h0672: MID 0.1923 s_jk 0.1093 s_tot 0.2230 (Z -7.39)  OUT 0.0686  | X2 JSON MID 1.5396 s_tot 0.2226
+  C* alt h0672: MID 0.1879 s_jk 0.1068 s_tot 0.2178 (Z -3.73)  OUT 0.0673  | X2 JSON MID 1.5046 s_tot 0.2176
+  C0 alt h0686: MID 0.2229 s_jk 0.1153 s_tot 0.2580 (Z -6.74)  OUT 0.0670  | X2 JSON MID 1.5798 s_tot 0.2491
+  C* alt h0686: MID 0.2179 s_jk 0.1127 s_tot 0.2522 (Z -3.10)  OUT 0.0658  | X2 JSON MID 1.5446 s_tot 0.2435
+K0 FAIL max|X2 code on X2 npz - X2 JSON / F1 JSON| over C0, C*, terciles, F1 PRIMARY: 1.2e+01 (236 numbers) <= 1e-4
+K1 PASS my replay vs X2 npz: max|diff| D/Dx/DRR/E 0.0e+00; names equal True <= 1e-9 x max|D|
+model predictions C0 and C* built for 4 cells [33 s]
+K2 PASS sigma_boot(D = 2P) 0.0e+00; synthetic sigma_boot/(sample sigma/sqrt n) 0.966 (vs population sigma 0.882; the draw's sample sigma is 0.2741 for population 0.3) <= 1e-12; within 10 %
+K4 PASS finite-difference vs gradient (group 3, alpha1) rel 2.2e-14; stored leakP = templates x coefficients 0.0e+00 (scale 8.75e+00) <= 1e-6; <= 1e-9 rel
+
+=== STEP 1: calibration (all 326 clusters; C* model; boost convention unless stated) ===
+global leakage: alpha1 +0.0083+-0.0042  alpha2 +0.0087+-0.0045  c1 +6.4e-05  c2 +6.1e-04
+  can h0672 MID  : leak LK-P t -0.0001+-0.0004 x +0.0030 | LK-T t +0.0255 x +0.0064 | PSF pattern (alpha=1) t -0.018 x +0.057
+       cross A_x +0.2048 (jk 0.1164, rotated noise 0.0898, p 0.010) -> excess s_x 0.1808;  R-R -0.0301 (noise 0.0930) -> s_RR 0.0000;  random-point raw t -0.0137 (Z -0.33) x -0.0753 (Z -1.84)
+       sigma: jk 0.1164 boot 0.0942 rotated-noise(t) 0.0959 (mean -0.0060)
+  can h0672 OUTER: leak LK-P t +0.0026+-0.0005 x +0.0027 | LK-T t +0.0629 x +0.0134 | PSF pattern (alpha=1) t +0.081 x +0.044
+       cross A_x +0.0734 (jk 0.0670, rotated noise 0.0646, p 0.300) -> excess s_x 0.0288;  R-R -0.0058 (noise 0.0581) -> s_RR 0.0000;  random-point raw t -0.0149 (Z -0.52) x -0.0163 (Z -0.62)
+       sigma: jk 0.0670 boot 0.0681 rotated-noise(t) 0.0646 (mean +0.0195)
+  can h0686 MID  : leak LK-P t -0.0000+-0.0004 x +0.0031 | LK-T t +0.0266 x +0.0070 | PSF pattern (alpha=1) t -0.017 x +0.059
+       cross A_x +0.2376 (jk 0.1228, rotated noise 0.0945, p 0.010) -> excess s_x 0.2145;  R-R -0.0638 (noise 0.0944) -> s_RR 0.0000;  random-point raw t -0.0182 (Z -0.41) x -0.0878 (Z -2.15)
+       sigma: jk 0.1228 boot 0.0940 rotated-noise(t) 0.0962 (mean -0.0042)
+  can h0686 OUTER: leak LK-P t +0.0027+-0.0005 x +0.0028 | LK-T t +0.0658 x +0.0140 | PSF pattern (alpha=1) t +0.082 x +0.048
+       cross A_x +0.0718 (jk 0.0653, rotated noise 0.0663, p 0.330) -> excess s_x 0.0192;  R-R +0.0183 (noise 0.0600) -> s_RR 0.0000;  random-point raw t +0.0013 (Z +0.05) x -0.0189 (Z -0.71)
+       sigma: jk 0.0653 boot 0.0689 rotated-noise(t) 0.0652 (mean +0.0201)
+  alt h0672 MID  : leak LK-P t -0.0001+-0.0003 x +0.0027 | LK-T t +0.0234 x +0.0059 | PSF pattern (alpha=1) t -0.016 x +0.053
+       cross A_x +0.1879 (jk 0.1068, rotated noise 0.0824, p 0.010) -> excess s_x 0.1658;  R-R -0.0276 (noise 0.0854) -> s_RR 0.0000;  random-point raw t -0.0125 (Z -0.33) x -0.0691 (Z -1.84)
+       sigma: jk 0.1068 boot 0.0864 rotated-noise(t) 0.0880 (mean -0.0055)
+  alt h0672 OUTER: leak LK-P t +0.0023+-0.0004 x +0.0025 | LK-T t +0.0576 x +0.0122 | PSF pattern (alpha=1) t +0.074 x +0.041
+       cross A_x +0.0673 (jk 0.0614, rotated noise 0.0592, p 0.300) -> excess s_x 0.0264;  R-R -0.0053 (noise 0.0532) -> s_RR 0.0000;  random-point raw t -0.0136 (Z -0.52) x -0.0149 (Z -0.62)
+       sigma: jk 0.0614 boot 0.0623 rotated-noise(t) 0.0591 (mean +0.0179)
+  alt h0686 MID  : leak LK-P t -0.0000+-0.0003 x +0.0029 | LK-T t +0.0244 x +0.0065 | PSF pattern (alpha=1) t -0.016 x +0.054
+       cross A_x +0.2179 (jk 0.1127, rotated noise 0.0867, p 0.010) -> excess s_x 0.1968;  R-R -0.0585 (noise 0.0866) -> s_RR 0.0000;  random-point raw t -0.0167 (Z -0.41) x -0.0806 (Z -2.15)
+       sigma: jk 0.1127 boot 0.0863 rotated-noise(t) 0.0882 (mean -0.0038)
+  alt h0686 OUTER: leak LK-P t +0.0025+-0.0005 x +0.0026 | LK-T t +0.0602 x +0.0129 | PSF pattern (alpha=1) t +0.075 x +0.044
+       cross A_x +0.0658 (jk 0.0598, rotated noise 0.0607, p 0.330) -> excess s_x 0.0176;  R-R +0.0167 (noise 0.0549) -> s_RR 0.0000;  random-point raw t +0.0012 (Z +0.05) x -0.0173 (Z -0.71)
+       sigma: jk 0.0598 boot 0.0631 rotated-noise(t) 0.0597 (mean +0.0184)
+  analytic shape noise can h0672: MID 0.0949 (rotations t 0.0959 x 0.0898; jackknife t 0.1164 x 0.1164)  OUTER 0.0684 (rotations t 0.0646 x 0.0646; jackknife t 0.0670 x 0.0670)
+  analytic shape noise can h0686: MID 0.0962 (rotations t 0.0962 x 0.0945; jackknife t 0.1228 x 0.1228)  OUTER 0.0696 (rotations t 0.0652 x 0.0663; jackknife t 0.0653 x 0.0653)
+  analytic shape noise alt h0672: MID 0.0870 (rotations t 0.0880 x 0.0824; jackknife t 0.1068 x 0.1068)  OUTER 0.0626 (rotations t 0.0591 x 0.0592; jackknife t 0.0614 x 0.0614)
+  analytic shape noise alt h0686: MID 0.0883 (rotations t 0.0882 x 0.0867; jackknife t 0.1127 x 0.1127)  OUTER 0.0637 (rotations t 0.0597 x 0.0607; jackknife t 0.0598 x 0.0598)
+  cross-shear profile h0672: chi2 10.92 / 8 vs rotation covariance (Hartlap 0.955), p 0.206; stack/sigma +0.07 -0.43 -1.88 +0.12 +1.64 +1.66 +0.86 +0.71
+  cross-shear profile h0686: chi2 12.34 / 8 vs rotation covariance (Hartlap 0.955), p 0.137; stack/sigma +0.09 -0.43 -2.23 +0.93 +1.52 +1.62 +0.99 +0.57
+
+=== STEP 2: Z_MID and Z_OUT under the three treatments (STAT = max(boot, jk); CAL = calibrated; CONS = X2's (e)) ===
+-- C* model, boost convention  [GRADED]
+  can h0672 MID  : A 0.205 | STAT +-0.116 Z -6.83 | CAL A 0.205 +-0.215 Z -3.70 | CONS +-0.237 Z -3.35
+  can h0672 OUTER: A 0.073 | STAT +-0.068 Z -13.61 | CAL A 0.071 +-0.074 Z -12.57 | CONS +-0.100 Z -9.30
+  can h0686 MID  : A 0.238 | STAT +-0.123 Z -6.21 | CAL A 0.238 +-0.247 Z -3.08 | CONS +-0.275 Z -2.77
+  can h0686 OUTER: A 0.072 | STAT +-0.069 Z -13.47 | CAL A 0.069 +-0.072 Z -13.02 | CONS +-0.099 Z -9.40
+  alt h0672 MID  : A 0.188 | STAT +-0.107 Z -7.61 | CAL A 0.188 +-0.197 Z -4.12 | CONS +-0.218 Z -3.73
+  alt h0672 OUTER: A 0.067 | STAT +-0.062 Z -14.97 | CAL A 0.065 +-0.068 Z -13.82 | CONS +-0.091 Z -10.23
+  alt h0686 MID  : A 0.218 | STAT +-0.113 Z -6.94 | CAL A 0.218 +-0.227 Z -3.45 | CONS +-0.252 Z -3.10
+  alt h0686 OUTER: A 0.066 | STAT +-0.063 Z -14.81 | CAL A 0.063 +-0.065 Z -14.30 | CONS +-0.090 Z -10.33
+-- C* model, clip convention
+  can h0672 MID  : A 0.221 | STAT +-0.126 Z -6.20 | CAL A 0.221 +-0.232 Z -3.35 | CONS +-0.256 Z -3.04
+  can h0672 OUTER: A 0.077 | STAT +-0.071 Z -12.91 | CAL A 0.075 +-0.078 Z -11.92 | CONS +-0.105 Z -8.82
+  can h0686 MID  : A 0.256 | STAT +-0.132 Z -5.62 | CAL A 0.256 +-0.267 Z -2.79 | CONS +-0.296 Z -2.51
+  can h0686 OUTER: A 0.075 | STAT +-0.072 Z -12.79 | CAL A 0.073 +-0.075 Z -12.34 | CONS +-0.104 Z -8.91
+  alt h0672 MID  : A 0.203 | STAT +-0.115 Z -6.92 | CAL A 0.203 +-0.213 Z -3.74 | CONS +-0.235 Z -3.39
+  alt h0672 OUTER: A 0.071 | STAT +-0.065 Z -14.20 | CAL A 0.068 +-0.071 Z -13.10 | CONS +-0.096 Z -9.70
+  alt h0686 MID  : A 0.235 | STAT +-0.121 Z -6.30 | CAL A 0.235 +-0.244 Z -3.13 | CONS +-0.272 Z -2.81
+  alt h0686 OUTER: A 0.069 | STAT +-0.066 Z -14.07 | CAL A 0.066 +-0.069 Z -13.57 | CONS +-0.095 Z -9.80
+-- C0 model, boost convention
+  can h0672 MID  : A 0.209 | STAT +-0.119 Z -6.65 | CAL A 0.209 +-0.220 Z -3.60 | CONS +-0.243 Z -3.26
+  can h0672 OUTER: A 0.075 | STAT +-0.069 Z -13.34 | CAL A 0.072 +-0.075 Z -12.31 | CONS +-0.102 Z -9.11
+  can h0686 MID  : A 0.243 | STAT +-0.125 Z -6.03 | CAL A 0.243 +-0.253 Z -3.00 | CONS +-0.281 Z -2.70
+  can h0686 OUTER: A 0.073 | STAT +-0.070 Z -13.21 | CAL A 0.070 +-0.073 Z -12.76 | CONS +-0.101 Z -9.21
+  alt h0672 MID  : A 0.192 | STAT +-0.109 Z -7.39 | CAL A 0.192 +-0.202 Z -4.00 | CONS +-0.223 Z -3.62
+  alt h0672 OUTER: A 0.069 | STAT +-0.064 Z -14.65 | CAL A 0.066 +-0.069 Z -13.53 | CONS +-0.093 Z -10.02
+  alt h0686 MID  : A 0.223 | STAT +-0.115 Z -6.74 | CAL A 0.223 +-0.232 Z -3.35 | CONS +-0.258 Z -3.01
+  alt h0686 OUTER: A 0.067 | STAT +-0.064 Z -14.51 | CAL A 0.064 +-0.067 Z -14.02 | CONS +-0.092 Z -10.12
+-- C0 model, clip convention
+  can h0672 MID  : A 0.226 | STAT +-0.128 Z -6.03 | CAL A 0.226 +-0.237 Z -3.26 | CONS +-0.262 Z -2.95
+  can h0672 OUTER: A 0.079 | STAT +-0.073 Z -12.65 | CAL A 0.076 +-0.079 Z -11.67 | CONS +-0.107 Z -8.64
+  can h0686 MID  : A 0.262 | STAT +-0.135 Z -5.46 | CAL A 0.262 +-0.272 Z -2.71 | CONS +-0.303 Z -2.44
+  can h0686 OUTER: A 0.077 | STAT +-0.074 Z -12.54 | CAL A 0.074 +-0.077 Z -12.10 | CONS +-0.106 Z -8.73
+  alt h0672 MID  : A 0.208 | STAT +-0.118 Z -6.72 | CAL A 0.208 +-0.218 Z -3.63 | CONS +-0.241 Z -3.29
+  alt h0672 OUTER: A 0.072 | STAT +-0.067 Z -13.90 | CAL A 0.070 +-0.073 Z -12.83 | CONS +-0.098 Z -9.50
+  alt h0686 MID  : A 0.240 | STAT +-0.124 Z -6.11 | CAL A 0.240 +-0.250 Z -3.04 | CONS +-0.278 Z -2.73
+  alt h0686 OUTER: A 0.070 | STAT +-0.067 Z -13.78 | CAL A 0.068 +-0.070 Z -13.29 | CONS +-0.097 Z -9.60
+
+=== STEP 3: mass trend (catalogue MGAS500, the record's proxy) ===
+quintile edges [4.37, 8.83, 14.58, 26.3] e12 Msun; tercile edges [7.37, 17.31] e12 (step at M_T 7.370e+12); pivot 1.167e+13
+K3 FAIL synthetic S1/S2 with the statistic's weights: max chi2 6.2e-02, max|param - true| 4.9e-02 chi2 <= 1e-10, params <= 1e-8
+noise rule: max quintile sigma_STAT,MID over 4 cells = 0.646 (line 0.40) -> graded binning: terciles
+-- quintiles can h0672
+   bin 1 n  65 median Mgas500 1.51e+12: MID 0.077 (CAL 0.076) STAT +-0.623 CAL Z -1.48 CONS Z -1.47 | OUT -0.096 (CAL -0.107) STAT +-0.288 CAL Z -3.84 | A_x MID +0.077 (noise 0.386)
+   bin 2 n  65 median Mgas500 6.59e+12: MID 0.445 (CAL 0.445) STAT +-0.206 CAL Z -1.29 CONS Z -1.09 | OUT 0.290 (CAL 0.287) STAT +-0.173 CAL Z -2.41 | A_x MID +0.445 (noise 0.225)
+   bin 3 n  65 median Mgas500 1.16e+13: MID 0.319 (CAL 0.320) STAT +-0.247 CAL Z -1.96 CONS Z -1.65 | OUT 0.022 (CAL 0.018) STAT +-0.124 CAL Z -7.90 | A_x MID +0.319 (noise 0.200)
+   bin 4 n  65 median Mgas500 1.87e+13: MID 0.047 (CAL 0.049) STAT +-0.150 CAL Z -6.36 CONS Z -6.02 | OUT 0.179 (CAL 0.179) STAT +-0.128 CAL Z -4.76 | A_x MID +0.047 (noise 0.186)
+   bin 5 n  66 median Mgas500 3.87e+13: MID 0.095 (CAL 0.094) STAT +-0.130 CAL Z -6.98 CONS Z -5.55 | OUT -0.092 (CAL -0.091) STAT +-0.128 CAL Z -8.55 | A_x MID +0.095 (noise 0.148)
+   MID   CAL : chi2 S0 2.83 S1 1.73 (b -0.302) S2 1.49 (lo 0.502 hi 0.112) | dchi2 S1 1.10 S2 1.33 | preferred S0 | Z_lightest -1.26
+   MID   STAT: chi2 S0 3.17 S1 1.74 (b -0.295) S2 1.48 (lo 0.503 hi 0.112) | dchi2 S1 1.43 S2 1.69 | preferred S2 | Z_lightest -1.48
+   MID   CONS: chi2 S0 0.86 S1 0.75 (b -0.111) S2 0.68 (lo 0.299 hi 0.091) | dchi2 S1 0.10 S2 0.17 | preferred S0 | Z_lightest -1.47
+   OUTER CAL : chi2 S0 4.43 S1 3.98 (b -0.121) S2 4.02 (lo 0.181 hi 0.044) | dchi2 S1 0.45 S2 0.41 | preferred S0 | Z_lightest -3.75
+   OUTER STAT: chi2 S0 4.43 S1 3.93 (b -0.126) S2 3.99 (lo 0.186 hi 0.044) | dchi2 S1 0.50 S2 0.45 | preferred S0 | Z_lightest -3.80
+   OUTER CONS: chi2 S0 1.84 S1 1.74 (b -0.065) S2 1.83 (lo 0.038 hi 0.008) | dchi2 S1 0.10 S2 0.01 | preferred S0 | Z_lightest -3.59
+-- quintiles can h0686
+   bin 1 n  65 median Mgas500 1.51e+12: MID 0.111 (CAL 0.110) STAT +-0.646 CAL Z -1.38 CONS Z -1.35 | OUT -0.056 (CAL -0.067) STAT +-0.279 CAL Z -3.82 | A_x MID +0.111 (noise 0.386)
+   bin 2 n  65 median Mgas500 6.59e+12: MID 0.450 (CAL 0.449) STAT +-0.207 CAL Z -1.27 CONS Z -1.04 | OUT 0.294 (CAL 0.291) STAT +-0.170 CAL Z -2.23 | A_x MID +0.450 (noise 0.231)
+   bin 3 n  65 median Mgas500 1.16e+13: MID 0.325 (CAL 0.326) STAT +-0.243 CAL Z -1.84 CONS Z -1.48 | OUT 0.052 (CAL 0.049) STAT +-0.130 CAL Z -6.68 | A_x MID +0.325 (noise 0.202)
+   bin 4 n  65 median Mgas500 1.87e+13: MID 0.110 (CAL 0.112) STAT +-0.160 CAL Z -5.57 CONS Z -4.56 | OUT 0.136 (CAL 0.135) STAT +-0.145 CAL Z -5.94 | A_x MID +0.110 (noise 0.187)
+   bin 5 n  66 median Mgas500 3.87e+13: MID 0.149 (CAL 0.148) STAT +-0.127 CAL Z -6.71 CONS Z -4.30 | OUT -0.109 (CAL -0.108) STAT +-0.129 CAL Z -8.18 | A_x MID +0.149 (noise 0.148)
+   MID   CAL : chi2 S0 1.90 S1 1.17 (b -0.257) S2 1.01 (lo 0.497 hi 0.165) | dchi2 S1 0.72 S2 0.88 | preferred S0 | Z_lightest -1.12
+   MID   STAT: chi2 S0 2.20 S1 1.18 (b -0.249) S2 1.01 (lo 0.498 hi 0.165) | dchi2 S1 1.02 S2 1.20 | preferred S0 | Z_lightest -1.38
+   MID   CONS: chi2 S0 0.50 S1 0.44 (b -0.092) S2 0.41 (lo 0.311 hi 0.150) | dchi2 S1 0.06 S2 0.09 | preferred S0 | Z_lightest -1.35
+   OUTER CAL : chi2 S0 4.01 S1 3.15 (b -0.165) S2 3.34 (lo 0.201 hi 0.027) | dchi2 S1 0.87 S2 0.68 | preferred S0 | Z_lightest -3.78
+   OUTER STAT: chi2 S0 4.05 S1 3.11 (b -0.171) S2 3.32 (lo 0.208 hi 0.027) | dchi2 S1 0.95 S2 0.73 | preferred S0 | Z_lightest -3.78
+   OUTER CONS: chi2 S0 1.65 S1 1.46 (b -0.093) S2 1.62 (lo 0.055 hi 0.011) | dchi2 S1 0.19 S2 0.02 | preferred S0 | Z_lightest -3.48
+-- quintiles alt h0672
+   bin 1 n  65 median Mgas500 1.51e+12: MID 0.070 (CAL 0.069) STAT +-0.569 CAL Z -1.64 CONS Z -1.62 | OUT -0.088 (CAL -0.098) STAT +-0.263 CAL Z -4.17 | A_x MID +0.070 (noise 0.352)
+   bin 2 n  65 median Mgas500 6.59e+12: MID 0.408 (CAL 0.408) STAT +-0.188 CAL Z -1.51 CONS Z -1.27 | OUT 0.265 (CAL 0.262) STAT +-0.158 CAL Z -2.73 | A_x MID +0.408 (noise 0.206)
+   bin 3 n  65 median Mgas500 1.16e+13: MID 0.292 (CAL 0.293) STAT +-0.226 CAL Z -2.22 CONS Z -1.87 | OUT 0.020 (CAL 0.016) STAT +-0.114 CAL Z -8.65 | A_x MID +0.292 (noise 0.183)
+   bin 4 n  65 median Mgas500 1.87e+13: MID 0.044 (CAL 0.045) STAT +-0.137 CAL Z -6.96 CONS Z -6.59 | OUT 0.164 (CAL 0.164) STAT +-0.118 CAL Z -5.29 | A_x MID +0.044 (noise 0.171)
+   bin 5 n  66 median Mgas500 3.87e+13: MID 0.088 (CAL 0.086) STAT +-0.120 CAL Z -7.64 CONS Z -6.08 | OUT -0.084 (CAL -0.083) STAT +-0.117 CAL Z -9.25 | A_x MID +0.088 (noise 0.136)
+   MID   CAL : chi2 S0 2.82 S1 1.73 (b -0.276) S2 1.49 (lo 0.459 hi 0.103) | dchi2 S1 1.09 S2 1.33 | preferred S0 | Z_lightest -1.39
+   MID   STAT: chi2 S0 3.16 S1 1.74 (b -0.270) S2 1.48 (lo 0.460 hi 0.103) | dchi2 S1 1.42 S2 1.68 | preferred S2 | Z_lightest -1.63
+   MID   CONS: chi2 S0 0.85 S1 0.75 (b -0.102) S2 0.68 (lo 0.273 hi 0.084) | dchi2 S1 0.10 S2 0.17 | preferred S0 | Z_lightest -1.62
+   OUTER CAL : chi2 S0 4.43 S1 3.98 (b -0.110) S2 4.02 (lo 0.165 hi 0.041) | dchi2 S1 0.44 S2 0.40 | preferred S0 | Z_lightest -4.07
+   OUTER STAT: chi2 S0 4.43 S1 3.94 (b -0.114) S2 3.99 (lo 0.170 hi 0.041) | dchi2 S1 0.50 S2 0.44 | preferred S0 | Z_lightest -4.13
+   OUTER CONS: chi2 S0 1.84 S1 1.74 (b -0.059) S2 1.83 (lo 0.035 hi 0.007) | dchi2 S1 0.10 S2 0.01 | preferred S0 | Z_lightest -3.90
+-- quintiles alt h0686
+   bin 1 n  65 median Mgas500 1.51e+12: MID 0.102 (CAL 0.101) STAT +-0.590 CAL Z -1.52 CONS Z -1.49 | OUT -0.051 (CAL -0.061) STAT +-0.255 CAL Z -4.17 | A_x MID +0.102 (noise 0.353)
+   bin 2 n  65 median Mgas500 6.59e+12: MID 0.412 (CAL 0.411) STAT +-0.190 CAL Z -1.49 CONS Z -1.21 | OUT 0.269 (CAL 0.266) STAT +-0.156 CAL Z -2.52 | A_x MID +0.412 (noise 0.211)
+   bin 3 n  65 median Mgas500 1.16e+13: MID 0.298 (CAL 0.299) STAT +-0.223 CAL Z -2.09 CONS Z -1.68 | OUT 0.048 (CAL 0.044) STAT +-0.119 CAL Z -7.33 | A_x MID +0.298 (noise 0.185)
+   bin 4 n  65 median Mgas500 1.87e+13: MID 0.101 (CAL 0.103) STAT +-0.146 CAL Z -6.13 CONS Z -5.01 | OUT 0.124 (CAL 0.124) STAT +-0.133 CAL Z -6.57 | A_x MID +0.101 (noise 0.172)
+   bin 5 n  66 median Mgas500 3.87e+13: MID 0.137 (CAL 0.136) STAT +-0.117 CAL Z -7.39 CONS Z -4.74 | OUT -0.100 (CAL -0.099) STAT +-0.118 CAL Z -8.83 | A_x MID +0.137 (noise 0.136)
+   MID   CAL : chi2 S0 1.89 S1 1.17 (b -0.235) S2 1.01 (lo 0.455 hi 0.152) | dchi2 S1 0.72 S2 0.88 | preferred S0 | Z_lightest -1.24
+   MID   STAT: chi2 S0 2.19 S1 1.18 (b -0.227) S2 1.01 (lo 0.456 hi 0.152) | dchi2 S1 1.01 S2 1.19 | preferred S0 | Z_lightest -1.52
+   MID   CONS: chi2 S0 0.50 S1 0.44 (b -0.084) S2 0.41 (lo 0.284 hi 0.138) | dchi2 S1 0.06 S2 0.09 | preferred S0 | Z_lightest -1.49
+   OUTER CAL : chi2 S0 4.01 S1 3.15 (b -0.150) S2 3.34 (lo 0.183 hi 0.025) | dchi2 S1 0.86 S2 0.67 | preferred S0 | Z_lightest -4.12
+   OUTER STAT: chi2 S0 4.05 S1 3.11 (b -0.156) S2 3.32 (lo 0.190 hi 0.025) | dchi2 S1 0.94 S2 0.73 | preferred S0 | Z_lightest -4.13
+   OUTER CONS: chi2 S0 1.65 S1 1.46 (b -0.084) S2 1.62 (lo 0.050 hi 0.010) | dchi2 S1 0.19 S2 0.02 | preferred S0 | Z_lightest -3.80
+-- terciles can h0672  [GRADED]
+   bin 1 n 109 median Mgas500 3.30e+12: MID 0.250 (CAL 0.250) STAT +-0.330 CAL Z -2.21 CONS Z -1.72 | OUT 0.277 (CAL 0.269) STAT +-0.176 CAL Z -2.65 | A_x MID +0.250 (noise 0.230)
+   bin 2 n 108 median Mgas500 1.17e+13: MID 0.377 (CAL 0.378) STAT +-0.176 CAL Z -1.62 CONS Z -1.49 | OUT -0.067 (CAL -0.069) STAT +-0.106 CAL Z -10.13 | A_x MID +0.377 (noise 0.157)
+   bin 3 n 109 median Mgas500 2.92e+13: MID 0.031 (CAL 0.031) STAT +-0.104 CAL Z -9.31 CONS Z -8.13 | OUT 0.064 (CAL 0.064) STAT +-0.095 CAL Z -9.81 | A_x MID +0.031 (noise 0.118)
+   MID   CAL : chi2 S0 2.70 S1 1.32 (b -0.366) S2 2.68 (lo 0.123 hi 0.065) | dchi2 S1 1.38 S2 0.02 | preferred S1 | Z_lightest -1.70
+   MID   STAT: chi2 S0 3.00 S1 1.31 (b -0.354) S2 2.86 (lo 0.250 hi 0.121) | dchi2 S1 1.69 S2 0.14 | preferred S1 | Z_lightest -2.27
+   MID   CONS: chi2 S0 0.81 S1 0.32 (b -0.266) S2 0.63 (lo 0.250 hi 0.057) | dchi2 S1 0.49 S2 0.18 | preferred S0 | Z_lightest -1.72
+   OUTER CAL : chi2 S0 2.82 S1 2.37 (b -0.117) S2 0.88 (lo 0.272 hi 0.005) | dchi2 S1 0.45 S2 1.95 | preferred S2 | Z_lightest -4.01
+   OUTER STAT: chi2 S0 2.91 S1 2.38 (b -0.125) S2 0.84 (lo 0.277 hi 0.005) | dchi2 S1 0.53 S2 2.06 | preferred S2 | Z_lightest -4.11
+   OUTER CONS: chi2 S0 1.41 S1 1.41 (b -0.000) S2 0.69 (lo 0.277 hi -0.002) | dchi2 S1 0.00 S2 0.72 | preferred S0 | Z_lightest -2.26
+-- terciles can h0686  [GRADED]
+   bin 1 n 109 median Mgas500 3.30e+12: MID 0.281 (CAL 0.280) STAT +-0.337 CAL Z -1.97 CONS Z -1.56 | OUT 0.269 (CAL 0.261) STAT +-0.176 CAL Z -2.77 | A_x MID +0.281 (noise 0.234)
+   bin 2 n 108 median Mgas500 1.17e+13: MID 0.380 (CAL 0.381) STAT +-0.172 CAL Z -1.60 CONS Z -1.41 | OUT -0.017 (CAL -0.020) STAT +-0.108 CAL Z -9.46 | A_x MID +0.380 (noise 0.160)
+   bin 3 n 109 median Mgas500 2.92e+13: MID 0.090 (CAL 0.090) STAT +-0.106 CAL Z -8.56 CONS Z -6.11 | OUT 0.021 (CAL 0.021) STAT +-0.099 CAL Z -9.85 | A_x MID +0.090 (noise 0.122)
+   MID   CAL : chi2 S0 1.87 S1 0.91 (b -0.322) S2 1.87 (lo 0.131 hi 0.105) | dchi2 S1 0.96 S2 0.00 | preferred S0 | Z_lightest -1.48
+   MID   STAT: chi2 S0 2.15 S1 0.91 (b -0.309) S2 2.05 (lo 0.281 hi 0.171) | dchi2 S1 1.25 S2 0.10 | preferred S1 | Z_lightest -2.13
+   MID   CONS: chi2 S0 0.50 S1 0.20 (b -0.225) S2 0.39 (lo 0.281 hi 0.120) | dchi2 S1 0.30 S2 0.11 | preferred S0 | Z_lightest -1.56
+   OUTER CAL : chi2 S0 1.91 S1 0.91 (b -0.176) S2 0.08 (lo 0.261 hi 0.003) | dchi2 S1 1.00 S2 1.83 | preferred S2 | Z_lightest -4.12
+   OUTER STAT: chi2 S0 2.01 S1 0.91 (b -0.183) S2 0.07 (lo 0.269 hi 0.003) | dchi2 S1 1.10 S2 1.94 | preferred S2 | Z_lightest -4.15
+   OUTER CONS: chi2 S0 0.74 S1 0.67 (b -0.060) S2 0.09 (lo 0.269 hi -0.001) | dchi2 S1 0.07 S2 0.65 | preferred S0 | Z_lightest -2.22
+-- terciles alt h0672  [GRADED]
+   bin 1 n 109 median Mgas500 3.30e+12: MID 0.229 (CAL 0.229) STAT +-0.302 CAL Z -2.49 CONS Z -1.94 | OUT 0.253 (CAL 0.246) STAT +-0.160 CAL Z -2.99 | A_x MID +0.229 (noise 0.210)
+   bin 2 n 108 median Mgas500 1.17e+13: MID 0.345 (CAL 0.346) STAT +-0.161 CAL Z -1.86 CONS Z -1.70 | OUT -0.061 (CAL -0.064) STAT +-0.097 CAL Z -11.01 | A_x MID +0.345 (noise 0.144)
+   bin 3 n 109 median Mgas500 2.92e+13: MID 0.029 (CAL 0.028) STAT +-0.096 CAL Z -10.15 CONS Z -8.87 | OUT 0.058 (CAL 0.059) STAT +-0.087 CAL Z -10.76 | A_x MID +0.029 (noise 0.109)
+   MID   CAL : chi2 S0 2.70 S1 1.32 (b -0.334) S2 2.67 (lo 0.113 hi 0.061) | dchi2 S1 1.38 S2 0.02 | preferred S1 | Z_lightest -1.91
+   MID   STAT: chi2 S0 2.99 S1 1.31 (b -0.323) S2 2.85 (lo 0.229 hi 0.111) | dchi2 S1 1.68 S2 0.14 | preferred S1 | Z_lightest -2.56
+   MID   CONS: chi2 S0 0.81 S1 0.32 (b -0.243) S2 0.63 (lo 0.229 hi 0.052) | dchi2 S1 0.49 S2 0.18 | preferred S0 | Z_lightest -1.94
+   OUTER CAL : chi2 S0 2.82 S1 2.37 (b -0.107) S2 0.88 (lo 0.249 hi 0.005) | dchi2 S1 0.45 S2 1.94 | preferred S2 | Z_lightest -4.53
+   OUTER STAT: chi2 S0 2.91 S1 2.38 (b -0.114) S2 0.84 (lo 0.253 hi 0.004) | dchi2 S1 0.53 S2 2.06 | preferred S2 | Z_lightest -4.65
+   OUTER CONS: chi2 S0 1.41 S1 1.41 (b -0.000) S2 0.69 (lo 0.253 hi -0.002) | dchi2 S1 0.00 S2 0.72 | preferred S0 | Z_lightest -2.55
+-- terciles alt h0686  [GRADED]
+   bin 1 n 109 median Mgas500 3.30e+12: MID 0.257 (CAL 0.256) STAT +-0.308 CAL Z -2.22 CONS Z -1.76 | OUT 0.246 (CAL 0.238) STAT +-0.161 CAL Z -3.13 | A_x MID +0.257 (noise 0.214)
+   bin 2 n 108 median Mgas500 1.17e+13: MID 0.348 (CAL 0.349) STAT +-0.158 CAL Z -1.84 CONS Z -1.62 | OUT -0.016 (CAL -0.018) STAT +-0.099 CAL Z -10.32 | A_x MID +0.348 (noise 0.147)
+   bin 3 n 109 median Mgas500 2.92e+13: MID 0.083 (CAL 0.083) STAT +-0.098 CAL Z -9.38 CONS Z -6.70 | OUT 0.019 (CAL 0.020) STAT +-0.091 CAL Z -10.76 | A_x MID +0.083 (noise 0.112)
+   MID   CAL : chi2 S0 1.87 S1 0.91 (b -0.294) S2 1.86 (lo 0.121 hi 0.097) | dchi2 S1 0.95 S2 0.00 | preferred S0 | Z_lightest -1.67
+   MID   STAT: chi2 S0 2.14 S1 0.91 (b -0.281) S2 2.04 (lo 0.257 hi 0.157) | dchi2 S1 1.23 S2 0.10 | preferred S1 | Z_lightest -2.41
+   MID   CONS: chi2 S0 0.50 S1 0.20 (b -0.205) S2 0.39 (lo 0.257 hi 0.111) | dchi2 S1 0.30 S2 0.11 | preferred S0 | Z_lightest -1.76
+   OUTER CAL : chi2 S0 1.90 S1 0.90 (b -0.161) S2 0.08 (lo 0.239 hi 0.002) | dchi2 S1 1.00 S2 1.82 | preferred S2 | Z_lightest -4.65
+   OUTER STAT: chi2 S0 2.01 S1 0.91 (b -0.168) S2 0.07 (lo 0.246 hi 0.003) | dchi2 S1 1.10 S2 1.94 | preferred S2 | Z_lightest -4.68
+   OUTER CONS: chi2 S0 0.74 S1 0.67 (b -0.055) S2 0.09 (lo 0.246 hi -0.001) | dchi2 S1 0.07 S2 0.65 | preferred S0 | Z_lightest -2.51
+clipped boost, graded binning, CAL: can h0672 MID: dchi2 S1 1.40 S2 0.02 Z1 -1.53  can h0672 OUTER: dchi2 S1 0.43 S2 1.91 Z1 -3.73  can h0686 MID: dchi2 S1 0.97 S2 0.00 Z1 -1.33  can h0686 OUTER: dchi2 S1 0.95 S2 1.78 Z1 -3.80  alt h0672 MID: dchi2 S1 1.39 S2 0.02 Z1 -1.73  alt h0672 OUTER: dchi2 S1 0.43 S2 1.91 Z1 -4.22  alt h0686 MID: dchi2 S1 0.96 S2 0.00 Z1 -1.51  alt h0686 OUTER: dchi2 S1 0.95 S2 1.78 Z1 -4.29
+M500 terciles can h0672 (reported): CAL A_MID 0.26 0.33 0.05 | A_OUT 0.22 -0.07 0.08
+M500 terciles can h0686 (reported): CAL A_MID 0.31 0.34 0.10 | A_OUT 0.22 -0.04 0.05
+M500 terciles alt h0672 (reported): CAL A_MID 0.24 0.31 0.05 | A_OUT 0.20 -0.06 0.07
+M500 terciles alt h0686 (reported): CAL A_MID 0.28 0.31 0.09 | A_OUT 0.20 -0.04 0.04
+C0 terciles can h0672 (reported): A_MID 0.25 0.38 0.03 | A_OUT 0.28 -0.07 0.06
+C0 terciles can h0686 (reported): A_MID 0.29 0.39 0.09 | A_OUT 0.27 -0.02 0.02
+C0 terciles alt h0672 (reported): A_MID 0.23 0.35 0.03 | A_OUT 0.26 -0.06 0.06
+C0 terciles alt h0686 (reported): A_MID 0.26 0.35 0.09 | A_OUT 0.25 -0.02 0.02
+
+V1 core excess (C*, CAL, boost): NOT SIGNIFICANT   Z_MID,CAL [-3.7, -3.08, -4.12, -3.45] (cells ['can|h0672', 'can|h0686', 'alt|h0672', 'alt|h0686'])
+   same rule under STAT: NOT SIGNIFICANT; CONS (X2): NOT SIGNIFICANT; clipped boost: NOT SIGNIFICANT; C0: NOT SIGNIFICANT; LK-T bracket: NOT SIGNIFICANT
+V2 mass trend of A_MID (terciles, CAL): ABSENT; max dchi2 per cell [1.38, 0.96, 1.38, 0.95]; preferred ['S0', 'S1']; lightest bin CONSISTENT WITH A = 1 (Z [-1.7, -1.48, -1.91, -1.67])
+V3 mass trend of A_OUTER (terciles, CAL): ABSENT; max dchi2 per cell [1.95, 1.83, 1.94, 1.82]; preferred ['S2']; lightest bin INCONSISTENT (Z [-4.01, -4.12, -4.53, -4.65])
+K5 PASS peak RSS 0.386 GB < 1 GB
+X7_ANALYSIS COMPLETE: 4/6 checks PASS. [33 s]
