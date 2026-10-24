@@ -1,0 +1,121 @@
+{
+  "schema_version": 2,
+  "claim_id": "CONDJOINT-20261024/PARENT",
+  "repository": {
+    "commit": "54785632d6d3d1cb8aa1a0c32fa4bf74700cf1b4",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/condensate_joint_matching_2026_10_24/parent_check.py",
+    "--output",
+    "reviews/condensate_joint_matching_2026_10_24/parent_run_mutation/result.json",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite-regulator amplitude stationary branch and its unique positive-domain threshold; curvature, gradient coefficient and large-amplitude cubic action",
+    "coefficient_domain": "u=rho_plus^2>0; a=Lambda_c^2>0; Lambda>0; Y=-b<0; stationary branch u>a",
+    "conventions": "Source +---; amplitude gradients neglected in stationary equation; kinetic coefficient is derivative with respect to K_rho only",
+    "inputs": [
+      "arXiv:2009.03003v3 Appendix B equations 63-65",
+      "FROZEN_PARENT_CONTINUATION.md"
+    ],
+    "bounds": {
+      "identity_count": 10
+    },
+    "non_claims": [
+      "No full coupled stability proof",
+      "Threshold itself has zero amplitude gap and cannot justify integrating the amplitude out",
+      "No numerical kappa or scale selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-24T19:54:25.993668+00:00",
+    "runtime_seconds": 0.505295,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 40000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/condensate_joint_matching_2026_10_24/parent_check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/condensate_joint_matching_2026_10_24/parent_check.py",
+      "sha256": "def215ee9914d465c8931a998716ec910df01f65691fbf95f72f451dfd5d9abd",
+      "sha256_after": "def215ee9914d465c8931a998716ec910df01f65691fbf95f72f451dfd5d9abd"
+    }
+  ],
+  "output_directory": "reviews/condensate_joint_matching_2026_10_24/parent_run_mutation",
+  "declared_results": [
+    "reviews/condensate_joint_matching_2026_10_24/parent_run_mutation/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/condensate_joint_matching_2026_10_24/parent_run_mutation/stdout.txt",
+      "sha256": "e55032eb449788299523ef75cc285b64c62b00ff7080a15365079c0101e582c1",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/condensate_joint_matching_2026_10_24/parent_run_mutation/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/condensate_joint_matching_2026_10_24/parent_run_mutation/result.json",
+      "sha256": "e55032eb449788299523ef75cc285b64c62b00ff7080a15365079c0101e582c1",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

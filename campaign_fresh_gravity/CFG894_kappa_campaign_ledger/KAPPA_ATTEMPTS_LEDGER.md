@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (764 rows)
+## Totals (767 rows)
 
 - **537 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 117 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 120 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -963,6 +963,9 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K760 | MICROMED-20261024/PARENT | `reviews/microscopic_medium_2026_10_24` | published vector-condensation higher-energy parent arXiv:1410.2408v2 | - | audit | SOURCE CHECK: equations 31 and 34-41 retain independent vacuum V0 versus response scale mu^2=m_A M_V; not an exact Lambda-medium or MOND completion | freeze:36c2d800d1;continuation:0e132d0606 |
 | K762 | SELFSELECT-20261024/PROMOTE | `reviews/self_tuning_selector_2026_10_24` | remaining cubic response coefficient promoted to rigid or local variable | - | audit | AUDIT: rigid variation without potential enforces integral O3=0; W(b) inserts new potential and average; local positive-gradient model gives b_infinity-Q/(4pi Z r), retaining boundary normalization; not a general no-go | freeze:f458ddcc26 |
 | K764 | LOCALSCREEN-20261024/MATCH | `reviews/local_screening_2026_10_24` | exact classical field rescaling of logarithmic KGB plus trial normalized-clock response | - | audit | REFINEMENT of K761: bare V disappears from full inhomogeneous base action after clock rescaling; h and alpha remain inputs; normalized-clock response operator is invariant separately and its coefficient is not fixed; no quantum or UV matching | freeze:70cf999088 |
+| K765 | CONDJOINT-20261024/RABI | `reviews/condensate_joint_matching_2026_10_24` | ordinary analytic condensate mixing versus normalized phase vacuum interaction | - | audit | SCOPED CLOSURE: stable-mass NR bilinear mixing is degree one in densities and gives p_R=0; phase-only potential gives p=-U but changes microscopic interaction and retains independent amplitude and offset | freeze:fba75ecd27 |
+| K766 | CONDJOINT-20261024/RATIO | `reviews/condensate_joint_matching_2026_10_24` | actual cubic force and conditional common-scale microscopic amplitude ratio | - | audit | CONDITIONAL REDUCTION: a0=q^3/(4pi G C) is field-normalization invariant; C=c3 Lambda and q=cb Lambda/Mpl and epsilon=c0 Lambda^4 cancel Lambda but leave kappa=2sqrt(8pi)cb^3/(c3 sqrt(c0)); amplitudes and absolute scale unselected | freeze:fba75ecd27 |
+| K767 | CONDJOINT-20261024/PARENT | `reviews/condensate_joint_matching_2026_10_24` | two-field superfluid derivative parent arXiv:2009.03003v3 with finite amplitude regulator | - | audit | PARTIAL: amplitude elimination yields MOND cubic on large-amplitude branch; finite regulator has exact threshold x=1+1/sqrt(2) where amplitude gap closes; Lambda and Lambda_c and baryon portal remain inputs; no joint vacuum matching or UV completion | freeze:fba75ecd27;continuation:54785632d6 |
 
 ## LN: Logic / Lean formalisations
 
