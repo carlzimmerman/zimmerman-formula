@@ -117,3 +117,12 @@ No single new field or switch can supply all three. So the theory cannot be clos
 - Clusters over-capture: T2/T3 +1.0 / +1.2 against +0.27, and T1 is predicted EXTRA where none is measured.
 
 **The hard wall is the hosted dwarfs.** Their extra is real: not tides, not binaries (`X20_hosted_dwarf_disequilibrium`). Yet every mechanism that keeps cold mass out of isolated galaxies removes it from these dwarfs too, which is a sign conflict. Isolated SPARC galaxies of every size need none; compact faint dwarfs inside hosts need +0.2 to +0.6 dex. Whatever supplies it must act on hosted faint systems and not on isolated ones, and X19 found no catalogue variable that orders that.
+
+**The dwarf requirement, reframed** (`X24_dwarf_velocity_floor`, 7a79903c3f / 19d31a99d9, a peer lane, post hoc and disclosed; coordinator rerun identical apart from timing; `X24_vacuum_heated_cold` is a different lane).
+- **Being hosted adds nothing.** At matched M★ (log 5.4–6.8), hosted minus field E is +0.04 / +0.02 (Z 0.27 / 0.16). Field dwarfs show the same rise toward low M★ (Spearman −0.73; Leo T +0.41, Phoenix +0.40). X19's field class read NONE only because its members are heavier.
+- **A velocity floor fits most of it.** σ² = σ_iso² + c₀², with c₀ calibrated on the 13 field dwarfs only, gives c₀ = 4.6 [4.0, 5.1] / 4.1 [3.4, 4.7] km/s.
+  - Out of sample on the hosted dwarfs, χ² falls 637 → 217 (canonical) and 559 → 195 (alt).
+  - Bright M31, M31 others and MW classical are reproduced.
+  - The MW ultra-faints are overshot (Z −3.9 / −3.0), and Crater II and Antlia II get worse.
+  - SPARC moves by 0.002 dex.
+- **So the dwarf rows are not a selector problem.** They are a single small-scale velocity constant of about 4–5 km/s, not yet derived. That removes the hosted-dwarf argument against late heating; clusters and growth are unchanged.
