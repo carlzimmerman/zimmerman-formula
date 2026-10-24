@@ -1,0 +1,3 @@
+# Handoff
+
+Frozen before scripts: 4dde973a74. Parent functional_qg_matching_2026_10_24; result scope is conditional algebra plus two primary-source applicability audits. All 15 baseline checks pass; mutation fails exactly bare_conformal_power and vacuum_to_force_ratio. No all-quantum-gravity no-go, numerical kappa, microscopic selection, dynamical health or spherical Yang-Mills solution is claimed. Keep the original paper's planar/short-beat-time stationary approximation distinct from our explicitly conditional isotropic constitutive diagnostic. Source versions pinned in RESULT.md. Independent adversarial review has not been performed. Do not repeat the existing integrable-Weyl audit as a new mechanism.
