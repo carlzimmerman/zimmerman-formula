@@ -141,3 +141,18 @@ Postulates are counted by name (T, C, S, U, plus the self-similar initial condit
 Single thread, `OMP_NUM_THREADS=1 nice -n 15`, < 1 GB RSS, minutes. No downloads. Inputs read-only; AG6C's script is run as
 a copy in a scratch directory. Commits by explicit pathspec, lane directory only. Never pushed. Amendments fix-forward
 in this file, dated, marked pre- or post-result.
+
+## AMENDMENT A1 (2026-10-24; PRE-RESULT for rows 3–6; disclosed: rows 1–2 and checks S1–S6, F3a, Z2a, Z2b, SSa had printed)
+
+- **What happened.** The frozen SSb re-solve (D6's `selfsim` at 3 × τ_max, exec'd verbatim) reached **9.5 GB RSS**
+  (scipy `dense_output=True` stores every step's interpolant over ~10³ orbits) and was killed after 20 min, before any
+  row-3 number. A memory-light 3× test (below) ran > 18 min for ε = 1 alone without finishing.
+- **Change (implementation, not a criterion).** SSb is run by a separate script, `tm1_selfsim_resolve.py`, which execs
+  D6's `selfsim` with one textual change: `dense_output=True` + `sol.sol(t)` → `t_eval=t` + `sol.y` (the same sampled
+  trajectory; t clipped to τ_max for float round-off). It writes `tm1_selfsim_resolve_2x.npz`; the main script loads it.
+- **Change (the convergence lever).** The re-solve uses **2 × τ_max** (600 for ε = 1, nsamp 6e5) instead of 3 ×. The
+  SSb line (≤ 5 % in M(λ) on λ ∈ [0.02, 1]) and its consequences are unchanged. Reason for 2×: at λ ≥ 0.02 the only
+  τ_max effect is whether shells that turned around before τ = 1/τ_max are followed; at τ_max = 300 they sit at λ ≲ 0.003
+  (all bins are at λ ≳ 0.02), so 2× already tests the lever.
+- **If the 2× re-solve does not finish within 30 min or exceeds 1 GB**, row 3 is scored on D6's tables and marked
+  PROVISIONAL (SSb PENDING), and the 3× re-solve is written as an ENQUEUE block in the README.
