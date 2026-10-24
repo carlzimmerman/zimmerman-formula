@@ -1,0 +1,3 @@
+# Handoff
+
+Frozen 0d491d43b2. Analytic source mechanism: diagonalize the AeST static square, retaining rho Phi; scalar inherits a source without covariant shift breaking. Exact small-gradient flux yields a0=Ghat/(gamma G_N), with high-gradient G_N held fixed. Independent constant/Y/Y^(3/2) deformations show that current symmetries do not enforce vacuum, cancellation and amplitude together. Smooth localization preserves high-gradient calibration but does not establish UV completion or full health. Avoid transferring Minkowski perturbative stability to all sourced de Sitter backgrounds. Source versions and scope in RESULT.md. No scripts or independent review. Original goal unresolved.
