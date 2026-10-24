@@ -269,8 +269,8 @@ TILES = [
       "theorem (T3) that passes the tidal dwarfs leaves them dust-free: +2.00/+1.99 dex; STRUCTURAL",
       ["S1", "P1", "U1"], "FAIL", new=True),
     T(2, "Cluster cores (326 eRASS1)", "FAIL",
-      "x1.68-1.85 / x1.54-1.70 the law (F1), Z 4.5-5.5 (X11: the cross-shear offset is noise); but only LARGE sources carry "
-      "it (small: A 1.10-1.24), cause untested (X13); no μ_K fixes it (S4); MOG fails too (X9)",
+      "x1.68-1.85 / x1.54-1.70 the law (F1), Z 4.5-5.5 (X11); only large sources carry it (small: A 1.10-1.24; "
+      "X13 testing); no μ_K fixes it (S4); MOG fails too (X9)",
       ["CFG687", "F1", "S4", "X7", "X9", "X11"],
       "FAIL", new=True),
     # S1 (v3): was grey (old result UNDEC: +0.33 dex over the isolated law, Coma's field not applied)
