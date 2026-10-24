@@ -1,0 +1,70 @@
+M5_equilibrium_law: can the galaxy law be the equilibrium (attractor) of a normally self-gravitating medium?
+
+Frozen criteria: FROZEN_CRITERIA.md (a364a6df13). kappa = 1/2 FITTED. Footings never pooled. Cold energy = medium of
+real rest mass, no particle. Not "theory closed". Nothing here says the data favour the framework.
+Run: OMP_NUM_THREADS=1 nice -n 15 python3 m5_equilibrium_law.py [--mutate]
+mutate=True
+
+=== S1  3D existence: the law's stress (AQUAL minus Newton) balances the phantom on any Phi
+S1 FAIL  value=1.30e+04  line=<=1e-12  [relative residual of div(Pi) - rho_ph grad Phi at 20 random points, quartic Phi, random a0]
+
+=== S2  uniqueness (spherical jets, then 3D jets): the stress cannot respond to rho_c
+  spherical: coefficient of g'' = A_rho * (-g*Derivative(M(g), g) - M(g) + 1)/(4*pi*G)  ->  A_rho = [0]
+  dP_par/dg forced = [g*(-g*Derivative(M(g), g) - M(g) + 1)/(4*pi*G)]  ;  P_perp = A - g h/4piG, d/drho = 0: True
+  3D: third-derivative coefficients force (A_rho, B_rho) = [{A_r: 0, B_r: 0}]; then [{A_s: -chi/(8*pi*G), B3: chi/(4*pi*G), B_s: chi_s/(4*pi*G)}]
+S2 PASS  value=sph True,True,True; 3D True,True  line=all True  [exact-law equilibrium for every baryon profile forces a stress that does not depend on rho_c; unique up to a constant pressure]
+
+=== S3  the spherical balance integrates to mu(g/a0) g = G M_b/r^2 (unique by regularity)
+S3 FAIL  value=(mu(g(r)/a0) - 1)*g(r)**2/(2*pi*G*r)  line=0  [balance == -(g/4piG r^2) [ (r^2 mu g)' - 4piG r^2 rho_b ]  =>  mu g = G M_b/r^2 + C/r^2, C=0]
+
+=== S4  dynamics of a medium held up by a density-blind stress (Cowling, 1D along the field)
+  background (c2=0, T_b' = rho0 g): 0
+  rho-blind: xi_tt = g*Derivative(xi(x), x) + g*xi(x)*Derivative(rho0(x), x)/rho0(x)
+  + c2:      xi_tt = (c2*xi(x)*Derivative(rho0(x), (x, 2)) + 2*c2*Derivative(rho0(x), x)*Derivative(xi(x), x) + g*xi(x)*Derivative(rho0(x), x) + (c2*Derivative(xi(x), (x, 2)) + g*Derivative(xi(x), x))*rho0(x))/rho0(x)
+S4 PASS  value=coef xi'=g, coef xi''(c2 case)=c2  line=g and c2  [principal symbol s^2 = i k g (|Re s| ~ sqrt(kg/2), Hadamard ill-posed); with c2: s^2 = -c2 k^2 + i k g]
+
+=== S5/S6  force on the medium; deep-regime cancellation; linear FRW growth
+S5 PASS  value=(drho_b - mterm - rhobar)/(drho_c + rhobar)  line=-(rhobar - drho_b + mterm)/(rhobar + drho_c)  [per-mass force on the medium = -[(rhobar - drho_b + div(mu grad dPhi)/4piG)/(rhobar + drho_c)] grad dPhi; mu-term O(g/a0)]
+S6 PASS  value=-1  line=-1  [linear order: force per mass = -grad dPhi, so delta'' + 2H delta' = 4piG rhobar delta (dust)]
+
+=== N1  spherical top-hat in EdS: dust vs the deep-regime held medium (S5)
+  dust: linear delta at collapse = None
+  held-in-deep-regime medium: linear delta at collapse = 13.572756130423473
+N1 FAIL  value=None  line=1.686 +- 0.01  [EdS dust control]
+
+=== N1b (reported, added after freezing; not a check)  physical top-hats with the mu-term kept (EdS, H0 67.9)
+  canonical: collapse scale factor (dust = 1.00) by log M: 1e11: 6.84, 1e12: 6.43, 1e13: 5.87, 1e14: 5.12, 1e15: 4.16
+  alt: collapse scale factor (dust = 1.00) by log M: 1e11: 6.92, 1e12: 6.54, 1e13: 6.03, 1e14: 5.33, 1e15: 4.41
+
+=== N2  1D operators on a Dirichlet interval (controls for S4)
+  N=200: max Re s  rho-blind 10.024   +c2=0.05 0.00e+00   Bohm D=0.01 1.444
+  N=400: max Re s  rho-blind 14.160   +c2=0.05 0.00e+00   Bohm D=0.01 1.443
+  N=800: max Re s  rho-blind 20.012   +c2=0.05 0.00e+00   Bohm D=0.01 1.443
+N2 PASS  value=blind 10.02->20.01; stiff 0.0e+00  line=blind grows with N; stiff <= 1e-6  [ill-posed without compressional stiffness; c2 > 0 removes the modal growth on a bounded interval (non-normal: convective growth g/2c remains)]
+
+=== SPARC: own loader; P4a reproduction; P4c ODE; R2 attractor row; (c) BTFR line
+  galaxies loaded: 175
+  canonical: rms 0.06829 dex, median Upsilon 0.73
+  alt: rms 0.06188 dex, median Upsilon 0.59
+P4a FAIL  value=max|drms|=1.4e-02, max|dU|=0.21  line=<=2e-4, equal  [P4 iso_perUps 0.05409/0.05372]
+P4c FAIL  value=1.0e-01 dex  line=<=1e-5  [35 galaxies x 2 footings: ODE from the stress balance == algebraic law]
+  R2 canonical: FAIL  N=175  ln A median 39.5 [16-84: 9.9, 74.2] (eps 0.054: 13.4); delta* median 0.051; frac ln A>10 0.84; t_rel/t_dyn median 5.8, t_rel/t_H 0.05
+       negative-phantom points in 0.00 of galaxies; supply M_c/M_b median 2.7, > 5.36 in 0.09; L*-Bohm growth x t_dyn median 21
+  R2 alt: FAIL  N=175  ln A median 46.5 [16-84: 13.0, 85.6] (eps 0.054: 15.7); delta* median 0.043; frac ln A>10 0.89; t_rel/t_dyn median 6.4, t_rel/t_H 0.05
+       negative-phantom points in 0.00 of galaxies; supply M_c/M_b median 3.2, > 5.36 in 0.16; L*-Bohm growth x t_dyn median 21
+  (c) canonical: universal-bath rms(log Vflat) 0.247 vs BTFR residual rms 0.075 (N=135): FAIL
+  (c) alt: universal-bath rms(log Vflat) 0.247 vs BTFR residual rms 0.073 (N=135): FAIL
+
+=== R3 satellites from Z2's per-system CSV (read-only)
+  canonical ISO: clean N=14, median +0.584 +- 0.084 (Z2: +0.465)
+  canonical MOND: clean N=7, median +0.700 +- 0.089 (Z2: +0.693)
+  alt ISO: clean N=14, median +0.543 +- 0.084 (Z2: +0.424)
+  alt MOND: clean N=8, median +0.688 +- 0.100 (Z2: +0.711)
+Z2a FAIL  value=see above  line=within 0.05 of Z2
+  slope on log x_e at fixed M_V (data): -0.05 +- 0.21
+  slope on log x_e at fixed M_V (MOND): -0.76 +- 0.02
+  slope on log x_e at fixed M_V (V3S): -0.54 +- 0.05
+  slope on log x_e at fixed M_V (ISO): +0.02 +- 0.11
+Z2b PASS  value=MOND -0.76, V3S -0.54, data -0.05  line=-0.76/-0.55/-0.05 +-0.05
+
+checks 6/12; runtime 5 s; peak RSS 0.33 GB

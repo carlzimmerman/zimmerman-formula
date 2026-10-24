@@ -1,0 +1,240 @@
+{
+ "lane": "M5_equilibrium_law",
+ "mutate": true,
+ "checks": {
+  "S1": {
+   "ok": false,
+   "value": "1.30e+04",
+   "threshold": "<=1e-12",
+   "detail": "relative residual of div(Pi) - rho_ph grad Phi at 20 random points, quartic Phi, random a0"
+  },
+  "S2": {
+   "ok": true,
+   "value": "sph True,True,True; 3D True,True",
+   "threshold": "all True",
+   "detail": "exact-law equilibrium for every baryon profile forces a stress that does not depend on rho_c; unique up to a constant pressure"
+  },
+  "S3": {
+   "ok": false,
+   "value": "(mu(g(r)/a0) - 1)*g(r)**2/(2*pi*G*r)",
+   "threshold": "0",
+   "detail": "balance == -(g/4piG r^2) [ (r^2 mu g)' - 4piG r^2 rho_b ]  =>  mu g = G M_b/r^2 + C/r^2, C=0"
+  },
+  "S4": {
+   "ok": true,
+   "value": "coef xi'=g, coef xi''(c2 case)=c2",
+   "threshold": "g and c2",
+   "detail": "principal symbol s^2 = i k g (|Re s| ~ sqrt(kg/2), Hadamard ill-posed); with c2: s^2 = -c2 k^2 + i k g"
+  },
+  "S5": {
+   "ok": true,
+   "value": "(drho_b - mterm - rhobar)/(drho_c + rhobar)",
+   "threshold": "-(rhobar - drho_b + mterm)/(rhobar + drho_c)",
+   "detail": "per-mass force on the medium = -[(rhobar - drho_b + div(mu grad dPhi)/4piG)/(rhobar + drho_c)] grad dPhi; mu-term O(g/a0)"
+  },
+  "S6": {
+   "ok": true,
+   "value": "-1",
+   "threshold": "-1",
+   "detail": "linear order: force per mass = -grad dPhi, so delta'' + 2H delta' = 4piG rhobar delta (dust)"
+  },
+  "N1": {
+   "ok": false,
+   "value": "None",
+   "threshold": "1.686 +- 0.01",
+   "detail": "EdS dust control"
+  },
+  "N2": {
+   "ok": true,
+   "value": "blind 10.02->20.01; stiff 0.0e+00",
+   "threshold": "blind grows with N; stiff <= 1e-6",
+   "detail": "ill-posed without compressional stiffness; c2 > 0 removes the modal growth on a bounded interval (non-normal: convective growth g/2c remains)"
+  },
+  "P4a": {
+   "ok": false,
+   "value": "max|drms|=1.4e-02, max|dU|=0.21",
+   "threshold": "<=2e-4, equal",
+   "detail": "P4 iso_perUps 0.05409/0.05372"
+  },
+  "P4c": {
+   "ok": false,
+   "value": "1.0e-01 dex",
+   "threshold": "<=1e-5",
+   "detail": "35 galaxies x 2 footings: ODE from the stress balance == algebraic law"
+  },
+  "Z2a": {
+   "ok": false,
+   "value": "see above",
+   "threshold": "within 0.05 of Z2",
+   "detail": ""
+  },
+  "Z2b": {
+   "ok": true,
+   "value": "MOND -0.76, V3S -0.54, data -0.05",
+   "threshold": "-0.76/-0.55/-0.05 +-0.05",
+   "detail": ""
+  }
+ },
+ "rows": {
+  "R4_nonlinear": {
+   "delta_c_dust": null,
+   "delta_c_deep": 13.572756130423473,
+   "ratio": null,
+   "N1b_collapse_a_dust_at_1": {
+    "canonical": {
+     "1e11": 6.836683703996331,
+     "1e12": 6.431102081452141,
+     "1e13": 5.873662216830981,
+     "1e14": 5.119935531413823,
+     "1e15": 4.1552819887925185
+    },
+    "alt": {
+     "1e11": 6.918417412855931,
+     "1e12": 6.543530773892134,
+     "1e13": 6.0278548335542625,
+     "1e14": 5.326018300587802,
+     "1e15": 4.410615748844718
+    }
+   }
+  },
+  "N2": {
+   "200": {
+    "blind": 10.024356569004109,
+    "stiff": 0.0,
+    "bohm": 1.4435425070394257
+   },
+   "400": {
+    "blind": 14.159584983731769,
+    "stiff": 0.0,
+    "bohm": 1.443063174414972
+   },
+   "800": {
+    "blind": 20.012419134204517,
+    "stiff": 0.0,
+    "bohm": 1.44294259866847
+   }
+  },
+  "R1_SPARC": {
+   "canonical": {
+    "rms": 0.06828928711098656,
+    "U_median": 0.73,
+    "N": 175
+   },
+   "alt": {
+    "rms": 0.061884575457555775,
+    "U_median": 0.59,
+    "N": 175
+   }
+  },
+  "R2_attractor": {
+   "canonical": {
+    "N": 175,
+    "class_": "FAIL",
+    "frac_attractor": 0.02857142857142857,
+    "frac_lnA_gt10": 0.84,
+    "lnA_median": 39.45037935265916,
+    "lnA_q16_84": [
+     9.947216598259704,
+     74.19505217343246
+    ],
+    "lnA_median_eps054": 13.423687513413142,
+    "dstar_median": 0.05069284379409875,
+    "trel_over_tdyn_median": 5.795888554065793,
+    "trel_over_tH_median": 0.048585662496566186,
+    "frac_gal_with_negative_phantom_pts": 0.0,
+    "neg_pts_frac_mean": 0.0,
+    "supply_median": 2.74496406256882,
+    "frac_supply_gt_5p36": 0.08571428571428572,
+    "bohm_growth_x_tdyn_median": 20.59185754989892,
+    "bohm_frac_gt1": 1.0
+   },
+   "alt": {
+    "N": 175,
+    "class_": "FAIL",
+    "frac_attractor": 0.02857142857142857,
+    "frac_lnA_gt10": 0.8914285714285715,
+    "lnA_median": 46.52720953023791,
+    "lnA_q16_84": [
+     13.01449860893456,
+     85.64123554195463
+    ],
+    "lnA_median_eps054": 15.702289724137595,
+    "dstar_median": 0.042638262537208385,
+    "trel_over_tdyn_median": 6.363458900064623,
+    "trel_over_tH_median": 0.051736585481590734,
+    "frac_gal_with_negative_phantom_pts": 0.0,
+    "neg_pts_frac_mean": 0.0,
+    "supply_median": 3.2396773370134895,
+    "frac_supply_gt_5p36": 0.16,
+    "bohm_growth_x_tdyn_median": 20.509956213155405,
+    "bohm_frac_gt1": 1.0
+   }
+  },
+  "C_btfr": {
+   "canonical": {
+    "N": 135,
+    "rms_logVflat_universal": 0.24715394506336372,
+    "rms_btfr": 0.07527724751273017,
+    "ratio": 3.283248966051361,
+    "cls": "FAIL"
+   },
+   "alt": {
+    "N": 135,
+    "rms_logVflat_universal": 0.24715394506336372,
+    "rms_btfr": 0.073256317464227,
+    "ratio": 3.3738243146614013,
+    "cls": "FAIL"
+   }
+  },
+  "R3_satellites": {
+   "ISO_canonical": {
+    "N": 14,
+    "median": 0.5837724868885166,
+    "boot_sd": 0.08366977181096658,
+    "z": 6.977101457948541
+   },
+   "MOND_canonical": {
+    "N": 7,
+    "median": 0.6998663434892407,
+    "boot_sd": 0.08857736246089622,
+    "z": 7.901187437119806
+   },
+   "ISO_alt": {
+    "N": 14,
+    "median": 0.5432820511364879,
+    "boot_sd": 0.08378171514989356,
+    "z": 6.484494261838683
+   },
+   "MOND_alt": {
+    "N": 8,
+    "median": 0.6882483669892117,
+    "boot_sd": 0.10008937033531085,
+    "z": 6.876338263329071
+   },
+   "slopes": {
+    "data": {
+     "b": -0.050437574924488734,
+     "se": 0.20635731844312266
+    },
+    "MOND": {
+     "b": -0.7614647855885893,
+     "se": 0.023046727816404756
+    },
+    "V3S": {
+     "b": -0.5449568125859178,
+     "se": 0.048199461738575734
+    },
+    "ISO": {
+     "b": 0.017679977890310578,
+     "se": 0.10871727810487666
+    }
+   }
+  }
+ },
+ "theorems": {
+  "S1": "Pi_ij = [chi dPhi_i dPhi_j - K(s) delta_ij]/4piG, K'=chi/2, chi=1-mu: div Pi = rho_ph grad Phi exactly in 3D (AQUAL)",
+  "S2": "Any local stress Pi(rho_c, grad Phi) whose static balance reproduces the law for every baryon distribution is the S1 stress up to a constant pressure; dPi/drho_c = 0 (density-blind)."
+ },
+ "runtime_s": 4.891379356384277,
+ "peak_rss_gb": 0.333824
+}
