@@ -60,3 +60,20 @@ Not tested: the stiff side (γ_L pressure p = γ_Lρ²/2 may regularise positive
 nonlinear 3D self-consistent F[ρ_τ] (only its WKB linear form), the cosmological environment (Hubble flow, other Local
 Group members), the actual AQUAL sign map (QUMOND proxy), BS dust (μ_K → 0), and any completion that would follow a
 crossing.
+
+## AMENDMENT A1 (after run 1 crashed, BEFORE any verdict; run 1 kept as `caustics_RUN1_crash.out`)
+
+Run 1 printed C1 PASS, C0 PASS and two C3 lines (canonical, O1, t_i 3, n_soft 28, det_min 0.377 / 0.336), then crashed
+on an empty soft region. Diagnosis (scratch, disclosed):
+1. **Code defect: wrong null.** `null_x` bracketed from 1e-3 kpc off each mass and found the trivial zero of g_x inside
+   MW's Plummer core: T there was isotropic (GM/ε³ = 56 Gyr⁻²), not traceless. So run 1's two C3 lines describe a
+   region behind MW, not the saddle; they are void. Fix: bracket [p₁ + 3ε, p₂ − 3ε]. At the real null, T is traceless
+   (−0.0119, +0.0060, +0.0060 Gyr⁻² at r = 988 kpc), and the finite-difference phantom matches the deep-MOND analytic
+   form −√a₀ gᵀTg/(8πG|g|^(5/2)) (−1.60e4 vs −1.68e4 M☉/kpc³ at 5 kpc off-axis, converging with the step size).
+2. **C2's wording was a wrong expectation.** Near the null the phantom is positive along the axis and negative
+   transverse. The soft region is a transverse lobe (±40–110 kpc along the axis, 250 to > 400 kpc across) whose
+   boundary passes through the null. C2 ("contains the axis null") is kept as frozen and will be reported as it comes
+   out; it does not gate C3.
+3. In O2 the lobe reaches the box edge at 400 kpc transverse. Elements beyond are not tracked (disclosed truncation;
+   frozen box unchanged).
+Nothing in C3's thresholds, brackets or reading changes.
