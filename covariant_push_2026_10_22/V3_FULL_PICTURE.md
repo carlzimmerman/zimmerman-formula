@@ -105,7 +105,9 @@ NUM:
 - At the Blanchet–Skordis cap, σ₈/σ₈,dust = 0.391 (ODE) and 0.073 (Boltzmann).
 - At the μ_K that isolated galaxies allow (0.03–0.1 Mpc⁻¹), it is 0.003–0.005: v3's khronon is radiation-like until
   z ≈ 35–78. Reaching 0.95 needs μ_K 2.4e3–5.7e4 times larger than galaxies allow (X4).
-- The nonlinear J_x term does not restore it: L1's 128³ and 256³ rungs give ρ_NL −0.05 (indicative; 384³ running).
+- The nonlinear J_x term does not restore it. L1's ladder gives ρ_NL −0.053 at 128³, −0.058 / −0.047 at 256³ and
+  −0.059 / −0.047 at 384³: converged, with KX below LIN. This is indicative; the 512³ production decides, and it is the
+  only rung KiDS can score.
 
 ### 4.3 Hosted systems: the dust has no weight in a host
 
@@ -238,7 +240,7 @@ No such sector is in the record, and no rule-compatible framework in the literat
 | item | what decides it | status |
 |---|---|---|
 | Switched stiffness at the interface and in the statics | X3 (`rebuild_2026_10_22/X3_switched_stiffness`) | **WELL-POSED + STATICS UNCHANGED** (qualifiers in §4.7); 2D/3D evolution and the moving-interface proof remain open |
-| Nonlinear growth (v3's one dynamical escape) | L1 384³ rung, then the 512³ production | 256³: does not restore growth (indicative); 384³ running |
+| Nonlinear growth (v3's one dynamical escape) | L1 512³ production | ladder converged at 256³ / 384³: does not restore growth (ρ_NL ≈ −0.05, indicative); the 384³ LOB-IC pair is running; the 512³ cells are queued |
 | Cluster light/heavy split | per-tercile physics; a selector the theory lacks (CFG939) | data result (X2); no mechanism |
 | Wide binaries, MW in Gaia DR4 | sealed predictions (C6; S3 `SEALED_V3_MW_DR4.json`) | data 2026-12-02 |
 | ALMA U4 / GS4 | sealed, addendum F | data 2026-11-06 / 11-28 |
