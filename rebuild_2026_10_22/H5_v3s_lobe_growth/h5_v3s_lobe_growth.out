@@ -1,0 +1,205 @@
+H5_v3s_lobe_growth: v3s's D.P < 0 lobes -- the khronon velocity relative to the lobe, and the e-folds
+mutate = False; kappa = 1/2 FITTED; footings never pooled; one thread, nice 15
+
+A: the khronon velocity relative to a moving system's lobe (sympy)
+  A1: EL_sigma + [d_t rho_tau + div(rho_tau v_tau)] = 0; EL_phi - [lap phi - K(rho_m + rho_tau)]/K = 0; D_t v_tau + grad(phi - Xi) = [0, 0] (rho_tau = div P - mu_K^2 Xi/K, v_tau = -grad sigma)
+A1 PASS residuals 0, 0, [0, 0] all identically 0
+  A2: x = x' + V t, sigma' = sigma + V.x' + V^2 t/2: Xi' - Xi = 0; v' - (v - V) = [0, 0]. The static branch (v_tau = 0) holds only in the khronon rest frame; in a frame moving at V the same fluid has v' = -V
+A2 PASS Xi' - Xi = 0; v' - (v - V) = [0, 0] identically 0
+  A3: steady linear response, system frame, host background (rhobar > 0, field n), stiffness gamma_L Theta:
+      (i)  d rho_tau - d rho_m / [M(k) - 1 + Theta L*^2 k^2/2 - (k.V)^2/(K rhobar)] = 0
+      (ii) V = 0, Theta = 1: d rho_tau / d rho_m - m/(1 - m + kappa^2 m/2) [D10 Route F kernel] = 0
+      (iii) V -> inf: (k.V)^2 d rho_tau + K rhobar d rho_m = 0; d psi + K d rho_m/k^2 = 0; d v - k d psi/(k.V) = 0
+      => static limit = the screened phantom (lobes from the anisotropic M); flow-through limit = the cold wake of the
+         baryons' Newtonian potential, amplitude proportional to rhobar; crossover V_* = sqrt(K rhobar (M-1) + gamma_L rhobar k^2)/k
+A3 PASS (i) 0, (ii) 0, (iii) 0, 0, 0 all identically 0
+  A4: rho = rho0(X)/det(dx/dX) in Lagrangian continuity D_t rho + rho div v: residual 0 -> the sign of rho_tau is carried along v_tau (before caustics); rho_tau > 0 in, rho_tau > 0 out
+A4 PASS residual 0 identically 0
+  A5: Danby-Camm steady continuity max |div(rho v)| r/(rho_inf V) = 8.25e-15 (200 points, 2 parameter sets); energy |v|^2 = V^2 + 2GM/r to 7.5e-15; rho/rho_inf - 1 - (b-R)^2/[R(2b-R)] = 0
+      numerical Lagrangian (attractive point mass, DOP853 rtol 1e-12, 25 points): max |rho_num/rho_DC - 1| = 1.01e-06, min rho_num/rho_inf = 1.000388
+A5 PASS continuity 8.3e-15; identity 0; Lagrangian dev 1.0e-06, min 1.000388, n 25 <= 1e-9; 0; <= 1e-3 with min >= 1 at >= 20 points
+      reported: NGC 2419 Plummer (GM/(V^2 a) = 6.30e-03 at V = 167 km/s), 84 points at r >= 9 a: rho/rho_inf in [1.00000000, 1.00440781], max |rho_Plummer/rho_DC,point - 1| = 2.8e-03
+
+B0: reproduce the record first
+B0a PASS H4 row S1_MW-M31|canonical|e0|L*21.7: max rel dev 0.0e+00 over 18 fields (N_bounded median 0.0970, max 0.1111) <= 1e-12
+  B0b canonical NGC 2419: min D.P -3.271551e-03 vs X3 -3.271551e-03 (rel 0.0e+00)
+  B0b canonical Pal 3   : min D.P -2.544867e-04 vs X3 -2.544867e-04 (rel 0.0e+00)
+  B0b canonical Pal 4   : min D.P -4.056002e-04 vs X3 -4.056002e-04 (rel 0.0e+00)
+  B0b canonical Pal 14  : min D.P -1.518012e-04 vs X3 -1.518012e-04 (rel 0.0e+00)
+  B0b alt       NGC 2419: min D.P -3.133642e-03 vs X3 -3.133642e-03 (rel 0.0e+00)
+  B0b alt       Pal 3   : min D.P -1.980016e-04 vs X3 -1.980016e-04 (rel 0.0e+00)
+  B0b alt       Pal 4   : min D.P -3.229139e-04 vs X3 -3.229139e-04 (rel 0.0e+00)
+  B0b alt       Pal 14  : min D.P -1.042806e-04 vs X3 -1.042806e-04 (rel 0.0e+00)
+B0b PASS 8 X3 D4 map minima, max rel dev 0.0e+00 <= 1e-6
+B0c PASS 64 rows, max rel dev 0.0e+00 (X3 g_mw: 3.9e-05) <= 1e-9
+B2 PASS uniform sphere R = 100: max path integral / 2R = 1.00038 within 1 %
+B3 PASS uniform slab L = 50.0, turning point at the edge: numeric 19.99550 vs 2 Gamma sqrt(2L/g) 20.00000 within 1 %
+
+B1(a): outer globulars -- v3s switched maps (D10 solver, X3 operator), E_mid MW, Upsilon_V 1.6
+  a canonical NGC 2419           L*  21.7: lobe r 319-1631 pc, deep -6.07e-03 (x 0.077), med -5.7e-05, ell 2073 pc | V 167 km/s: N_TH 102.5 (x_e conv. 117.3), N_ell deep 0.090, N_path 0.048, V_crit 8.05 km/s, N_apo 0.46, N_cum 0.377 (n_enc 7.8) | flow: rho/rho_host min 1.000000, r_cap 0.25 pc vs r_in 319 pc, |dv| <= 0.065 km/s, V_* 0.26 km/s; res 2e-14
+  a canonical NGC 2419           L*  24.0: lobe r 319-1631 pc, deep -6.06e-03 (x 0.078), med -5.7e-05, ell 2071 pc | V 167 km/s: N_TH 102.5 (x_e conv. 117.2), N_ell deep 0.090, N_path 0.048, V_crit 7.98 km/s, N_apo 0.46, N_cum 0.374 (n_enc 7.8) | flow: rho/rho_host min 1.000000, r_cap 0.25 pc vs r_in 319 pc, |dv| <= 0.065 km/s, V_* 0.26 km/s; res 4e-14
+  a canonical NGC 2419           L*  90.0: lobe r 757-1482 pc, deep -3.58e-04 (x 0.099), med -6.5e-05, ell 1664 pc | V 167 km/s: N_TH 28.4 (x_e conv. 28.5), N_ell deep 0.020, N_path 0.021, V_crit 3.45 km/s, N_apo 0.22, N_cum 0.162 (n_enc 7.8) | flow: rho/rho_host min 1.000000, r_cap 0.25 pc vs r_in 757 pc, |dv| <= 0.027 km/s, V_* 0.21 km/s; res 3e-14
+  a canonical Pal 3              L*  21.7: lobe r 202-478 pc, deep -5.91e-04 (x 0.098), med -5.6e-05, ell 563 pc | V 167 km/s: N_TH 36.1 (x_e conv. 36.1), N_ell deep 0.009, N_path 0.007, V_crit 1.22 km/s, N_apo 0.14, N_cum 0.056 (n_enc 7.6) | flow: rho/rho_host min 1.000000, r_cap 0.0064 pc vs r_in 202 pc, |dv| <= 0.003 km/s, V_* 0.07 km/s; res 2e-11
+  a canonical Pal 3              L*  24.0: lobe r 222-478 pc, deep -4.40e-04 (x 0.098), med -6.0e-05, ell 522 pc | V 167 km/s: N_TH 31.2 (x_e conv. 31.2), N_ell deep 0.007, N_path 0.007, V_crit 1.10 km/s, N_apo 0.12, N_cum 0.050 (n_enc 7.6) | flow: rho/rho_host min 1.000000, r_cap 0.0064 pc vs r_in 222 pc, |dv| <= 0.002 km/s, V_* 0.06 km/s; res 4e-11
+  a canonical Pal 3              L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  a canonical Pal 4              L*  21.7: lobe r 192-553 pc, deep -9.16e-04 (x 0.092), med -4.6e-05, ell 684 pc | V 167 km/s: N_TH 43.5 (x_e conv. 43.6), N_ell deep 0.013, N_path 0.010, V_crit 1.69 km/s, N_apo 0.18, N_cum 0.073 (n_enc 7.2) | flow: rho/rho_host min 1.000000, r_cap 0.0091 pc vs r_in 192 pc, |dv| <= 0.004 km/s, V_* 0.08 km/s; res 1e-14
+  a canonical Pal 4              L*  24.0: lobe r 212-553 pc, deep -6.76e-04 (x 0.092), med -4.4e-05, ell 668 pc | V 167 km/s: N_TH 37.4 (x_e conv. 37.5), N_ell deep 0.011, N_path 0.009, V_crit 1.51 km/s, N_apo 0.16, N_cum 0.065 (n_enc 7.2) | flow: rho/rho_host min 1.000000, r_cap 0.0091 pc vs r_in 212 pc, |dv| <= 0.004 km/s, V_* 0.07 km/s; res 2e-14
+  a canonical Pal 4              L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-13
+  a canonical Pal 14             L*  21.7: lobe r 171-304 pc, deep -4.04e-04 (x 0.141), med -8.9e-05, ell 325 pc | V 167 km/s: N_TH 36.2 (x_e conv. 36.3), N_ell deep 0.005, N_path 0.005, V_crit 0.84 km/s, N_apo 0.10, N_cum 0.055 (n_enc 11.0) | flow: rho/rho_host min 1.000000, r_cap 0.0057 pc vs r_in 171 pc, |dv| <= 0.003 km/s, V_* 0.07 km/s; res 8e-13
+  a canonical Pal 14             L*  24.0: lobe r 188-304 pc, deep -2.84e-04 (x 0.141), med -6.7e-05, ell 288 pc | V 167 km/s: N_TH 30.4 (x_e conv. 30.4), N_ell deep 0.004, N_path 0.004, V_crit 0.70 km/s, N_apo 0.08, N_cum 0.046 (n_enc 11.0) | flow: rho/rho_host min 1.000000, r_cap 0.0057 pc vs r_in 188 pc, |dv| <= 0.003 km/s, V_* 0.06 km/s; res 6e-13
+  a canonical Pal 14             L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 4e-11
+  a alt       NGC 2419           L*  22.8: lobe r 319-1631 pc, deep -6.63e-03 (x 0.070), med -6.3e-05, ell 2071 pc | V 174 km/s: N_TH 101.9 (x_e conv. 116.4), N_ell deep 0.086, N_path 0.046, V_crit 7.93 km/s, N_apo 0.44, N_cum 0.372 (n_enc 8.2) | flow: rho/rho_host min 1.000000, r_cap 0.23 pc vs r_in 319 pc, |dv| <= 0.062 km/s, V_* 0.26 km/s; res 3e-14
+  a alt       NGC 2419           L*  24.0: lobe r 319-1631 pc, deep -6.63e-03 (x 0.070), med -6.3e-05, ell 2071 pc | V 174 km/s: N_TH 101.9 (x_e conv. 116.4), N_ell deep 0.086, N_path 0.045, V_crit 7.87 km/s, N_apo 0.44, N_cum 0.368 (n_enc 8.2) | flow: rho/rho_host min 1.000000, r_cap 0.23 pc vs r_in 319 pc, |dv| <= 0.062 km/s, V_* 0.26 km/s; res 2e-14
+  a alt       NGC 2419           L*  90.0: lobe r 833-1482 pc, deep -3.88e-04 (x 0.090), med -5.8e-05, ell 1639 pc | V 174 km/s: N_TH 28.1 (x_e conv. 28.2), N_ell deep 0.019, N_path 0.018, V_crit 3.11 km/s, N_apo 0.19, N_cum 0.146 (n_enc 8.2) | flow: rho/rho_host min 1.000000, r_cap 0.23 pc vs r_in 833 pc, |dv| <= 0.024 km/s, V_* 0.20 km/s; res 1e-11
+  a alt       Pal 3              L*  22.8: lobe r 222-478 pc, deep -4.72e-04 (x 0.088), med -6.6e-05, ell 522 pc | V 174 km/s: N_TH 30.6 (x_e conv. 30.7), N_ell deep 0.006, N_path 0.006, V_crit 1.09 km/s, N_apo 0.12, N_cum 0.050 (n_enc 8.0) | flow: rho/rho_host min 1.000000, r_cap 0.0059 pc vs r_in 222 pc, |dv| <= 0.002 km/s, V_* 0.06 km/s; res 4e-11
+  a alt       Pal 3              L*  24.0: lobe r 222-478 pc, deep -3.90e-04 (x 0.088), med -6.4e-05, ell 514 pc | V 174 km/s: N_TH 27.8 (x_e conv. 27.9), N_ell deep 0.006, N_path 0.006, V_crit 1.01 km/s, N_apo 0.11, N_cum 0.046 (n_enc 8.0) | flow: rho/rho_host min 1.000000, r_cap 0.0059 pc vs r_in 222 pc, |dv| <= 0.002 km/s, V_* 0.06 km/s; res 1e-11
+  a alt       Pal 3              L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-14
+  a alt       Pal 4              L*  22.8: lobe r 212-553 pc, deep -7.42e-04 (x 0.083), med -4.8e-05, ell 667 pc | V 174 km/s: N_TH 37.2 (x_e conv. 37.3), N_ell deep 0.010, N_path 0.009, V_crit 1.50 km/s, N_apo 0.15, N_cum 0.065 (n_enc 7.5) | flow: rho/rho_host min 1.000000, r_cap 0.0083 pc vs r_in 212 pc, |dv| <= 0.003 km/s, V_* 0.07 km/s; res 6e-14
+  a alt       Pal 4              L*  24.0: lobe r 233-553 pc, deep -6.79e-04 (x 0.083), med -4.8e-05, ell 666 pc | V 174 km/s: N_TH 35.6 (x_e conv. 35.7), N_ell deep 0.010, N_path 0.008, V_crit 1.40 km/s, N_apo 0.14, N_cum 0.060 (n_enc 7.5) | flow: rho/rho_host min 1.000000, r_cap 0.0083 pc vs r_in 233 pc, |dv| <= 0.003 km/s, V_* 0.07 km/s; res 1e-11
+  a alt       Pal 4              L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  a alt       Pal 14             L*  22.8: lobe r 207-304 pc, deep -3.08e-04 (x 0.127), med -1.2e-04, ell 284 pc | V 175 km/s: N_TH 30.0 (x_e conv. 30.0), N_ell deep 0.003, N_path 0.004, V_crit 0.69 km/s, N_apo 0.08, N_cum 0.045 (n_enc 11.5) | flow: rho/rho_host min 1.000000, r_cap 0.0052 pc vs r_in 207 pc, |dv| <= 0.002 km/s, V_* 0.06 km/s; res 2e-12
+  a alt       Pal 14             L*  24.0: lobe r 207-304 pc, deep -2.09e-04 (x 0.127), med -6.1e-05, ell 278 pc | V 175 km/s: N_TH 24.7 (x_e conv. 24.7), N_ell deep 0.003, N_path 0.003, V_crit 0.60 km/s, N_apo 0.07, N_cum 0.039 (n_enc 11.5) | flow: rho/rho_host min 1.000000, r_cap 0.0052 pc vs r_in 207 pc, |dv| <= 0.002 km/s, V_* 0.06 km/s; res 7e-12
+  a alt       Pal 14             L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-11
+
+B1(b): MW satellites (S1 inputs, U1 LVD-3D speeds) -- v3s switched maps, E_mid MW
+  b canonical Aquarius II        L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 2e-13
+  b canonical Aquarius II        L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b canonical Bootes I           L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 2e-12
+  b canonical Bootes I           L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b canonical Bootes II          L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b canonical Bootes II          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b canonical Bootes III         L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b canonical Bootes III         L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b canonical Canes Venatici II  L*  21.7: lobe r 304-793 pc, deep -2.56e-04 (x 0.059), med -1.7e-05, ell 931 pc | V 109 km/s: N_TH 18.4 (x_e conv. 18.4), N_ell deep 0.011, N_path 0.009, V_crit 0.97 km/s, N_apo 0.11, N_cum 0.027 (n_enc 3.1) | flow: rho/rho_host min 1.000000, r_cap 0.014 pc vs r_in 304 pc, |dv| <= 0.003 km/s, V_* 0.05 km/s; res 2e-14
+  b canonical Canes Venatici II  L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-13
+  b canonical Carina II          L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b canonical Carina II          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b canonical Carina III         L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 7e-14
+  b canonical Carina III         L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 6e-14
+  b canonical Centaurus I        L*  21.7: lobe r 299-532 pc, deep -1.51e-04 (x 0.084), med -3.6e-05, ell 580 pc | V 158 km/s: N_TH 16.8 (x_e conv. 16.8), N_ell deep 0.004, N_path 0.005, V_crit 0.73 km/s, N_apo 0.08, N_cum 0.029 (n_enc 6.2) | flow: rho/rho_host min 1.000000, r_cap 0.008 pc vs r_in 299 pc, |dv| <= 0.002 km/s, V_* 0.06 km/s; res 5e-13
+  b canonical Centaurus I        L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b canonical Columba I          L*  21.7: lobe r 410-603 pc, deep -2.73e-05 (x 0.051), med -6.4e-06, ell 605 pc | V 240 km/s: N_TH 5.5 (x_e conv. 5.5), N_ell deep 0.001, N_path 0.001, V_crit 0.26 km/s, N_apo 0.04, N_cum 0.006 (n_enc 5.8) | flow: rho/rho_host min 1.000000, r_cap 0.0012 pc vs r_in 410 pc, |dv| <= 0.000 km/s, V_* 0.03 km/s; res 1e-12
+  b canonical Columba I          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 8e-15
+  b canonical Coma Berenices     L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 6e-14
+  b canonical Coma Berenices     L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b canonical Crater II          L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 4e-13
+  b canonical Crater II          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-13
+  b canonical Eridanus II        L*  21.7: lobe r 623-3182 pc, deep -2.52e-04 (x 0.024), med -4.5e-06, ell 4109 pc | V 159 km/s: N_TH 11.6 (x_e conv. 11.8), N_ell deep 0.021, N_path 0.013, V_crit 2.01 km/s, N_apo 0.16, N_cum 0.024 (n_enc 1.9) | flow: rho/rho_host min 1.000000, r_cap 0.041 pc vs r_in 623 pc, |dv| <= 0.005 km/s, V_* 0.07 km/s; res 4e-14
+  b canonical Eridanus II        L*  90.0: lobe r 1626-3182 pc, deep -1.80e-05 (x 0.025), med -3.9e-06, ell 3319 pc | V 159 km/s: N_TH 3.2 (x_e conv. 3.2), N_ell deep 0.005, N_path 0.005, V_crit 0.77 km/s, N_apo 0.07, N_cum 0.009 (n_enc 1.9) | flow: rho/rho_host min 1.000000, r_cap 0.041 pc vs r_in 1626 pc, |dv| <= 0.002 km/s, V_* 0.05 km/s; res 3e-13
+  b canonical Eridanus IV        L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 5e-14
+  b canonical Eridanus IV        L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b canonical Grus I             L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 3e-13
+  b canonical Grus I             L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b canonical Hercules           L*  21.7: lobe r 375-667 pc, deep -6.84e-05 (x 0.076), med -1.9e-05, ell 716 pc | V 207 km/s: N_TH 10.8 (x_e conv. 10.8), N_ell deep 0.003, N_path 0.003, V_crit 0.60 km/s, N_apo 0.06, N_cum 0.021 (n_enc 7.4) | flow: rho/rho_host min 1.000000, r_cap 0.0073 pc vs r_in 375 pc, |dv| <= 0.002 km/s, V_* 0.06 km/s; res 2e-12
+  b canonical Hercules           L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-13
+  b canonical Horologium I       L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b canonical Horologium I       L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b canonical Hydrus I           L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b canonical Hydrus I           L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 7e-14
+  b canonical Leo IV             L*  21.7: lobe r 387-626 pc, deep -4.98e-05 (x 0.063), med -1.1e-05, ell 658 pc | V 134 km/s: N_TH 8.3 (x_e conv. 8.3), N_ell deep 0.003, N_path 0.003, V_crit 0.42 km/s, N_apo 0.05, N_cum 0.012 (n_enc 4.0) | flow: rho/rho_host min 1.000000, r_cap 0.0078 pc vs r_in 387 pc, |dv| <= 0.001 km/s, V_* 0.04 km/s; res 4e-12
+  b canonical Leo IV             L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-14
+  b canonical Leo V              L*  21.7: lobe r 264-626 pc, deep -1.67e-04 (x 0.056), med -1.5e-05, ell 745 pc | V 227 km/s: N_TH 14.4 (x_e conv. 14.4), N_ell deep 0.003, N_path 0.003, V_crit 0.67 km/s, N_apo 0.09, N_cum 0.018 (n_enc 6.0) | flow: rho/rho_host min 1.000000, r_cap 0.0016 pc vs r_in 264 pc, |dv| <= 0.001 km/s, V_* 0.04 km/s; res 2e-12
+  b canonical Leo V              L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 4e-13
+  b canonical Leo VI             L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 8e-14
+  b canonical Leo VI             L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-14
+  b canonical Pegasus III        L*  21.7: lobe r 381-746 pc, deep -4.18e-05 (x 0.045), med -9.2e-06, ell 783 pc | V 445 km/s: N_TH 6.4 (x_e conv. 6.4), N_ell deep 0.001, N_path 0.001, V_crit 0.39 km/s, N_apo 0.05, N_cum 0.008 (n_enc 9.4) | flow: rho/rho_host min 1.000000, r_cap 0.00035 pc vs r_in 381 pc, |dv| <= 0.000 km/s, V_* 0.03 km/s; res 2e-13
+  b canonical Pegasus III        L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-14
+  b canonical Pegasus IV         L*  21.7: lobe r 234-312 pc, deep -4.56e-05 (x 0.108), med -4.0e-05, ell 224 pc | V 107 km/s: N_TH 10.6 (x_e conv. 10.6), N_ell deep 0.002, N_path 0.002, V_crit 0.21 km/s, N_apo 0.03, N_cum 0.011 (n_enc 5.4) | flow: rho/rho_host min 1.000000, r_cap 0.0064 pc vs r_in 234 pc, |dv| <= 0.001 km/s, V_* 0.03 km/s; res 2e-14
+  b canonical Pegasus IV         L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b canonical Pictor II          L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 5e-14
+  b canonical Pictor II          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-13
+  b canonical Pisces II          L*  21.7: lobe r 317-620 pc, deep -7.97e-05 (x 0.052), med -1.6e-05, ell 694 pc | V 642 km/s: N_TH 9.6 (x_e conv. 9.6), N_ell deep 0.001, N_path 0.001, V_crit 0.51 km/s, N_apo 0.07, N_cum 0.013 (n_enc 15.9) | flow: rho/rho_host min 1.000000, r_cap 0.00019 pc vs r_in 317 pc, |dv| <= 0.000 km/s, V_* 0.03 km/s; res 5e-13
+  b canonical Pisces II          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 9e-15
+  b canonical Reticulum II       L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 5e-14
+  b canonical Reticulum II       L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 6e-14
+  b canonical Segue 1            L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 8e-14
+  b canonical Segue 1            L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b canonical Tucana II          L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b canonical Tucana II          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b canonical Tucana IV          L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b canonical Tucana IV          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-10
+  b canonical Tucana V           L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b canonical Tucana V           L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b canonical Ursa Major I       L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 1e-12
+  b canonical Ursa Major I       L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b canonical Ursa Major II      L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b canonical Ursa Major II      L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b canonical Willman 1          L*  21.7: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b canonical Willman 1          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b alt       Aquarius II        L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 2e-13
+  b alt       Aquarius II        L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-14
+  b alt       Bootes I           L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 1e-12
+  b alt       Bootes I           L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Bootes II          L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b alt       Bootes II          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Bootes III         L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Bootes III         L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Canes Venatici II  L*  22.8: lobe r 304-793 pc, deep -2.16e-04 (x 0.054), med -1.9e-05, ell 899 pc | V 109 km/s: N_TH 16.0 (x_e conv. 16.1), N_ell deep 0.009, N_path 0.008, V_crit 0.88 km/s, N_apo 0.10, N_cum 0.025 (n_enc 3.1) | flow: rho/rho_host min 1.000000, r_cap 0.014 pc vs r_in 304 pc, |dv| <= 0.003 km/s, V_* 0.05 km/s; res 2e-12
+  b alt       Canes Venatici II  L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 6e-14
+  b alt       Carina II          L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 5e-14
+  b alt       Carina II          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 7e-14
+  b alt       Carina III         L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 8e-14
+  b alt       Carina III         L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Centaurus I        L*  22.8: lobe r 299-532 pc, deep -1.35e-04 (x 0.076), med -4.1e-05, ell 568 pc | V 158 km/s: N_TH 15.2 (x_e conv. 15.2), N_ell deep 0.004, N_path 0.004, V_crit 0.65 km/s, N_apo 0.07, N_cum 0.025 (n_enc 6.2) | flow: rho/rho_host min 1.000000, r_cap 0.008 pc vs r_in 299 pc, |dv| <= 0.002 km/s, V_* 0.05 km/s; res 2e-14
+  b alt       Centaurus I        L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b alt       Columba I          L*  22.8: lobe r 410-603 pc, deep -2.20e-05 (x 0.046), med -6.4e-06, ell 537 pc | V 240 km/s: N_TH 4.7 (x_e conv. 4.7), N_ell deep 0.001, N_path 0.001, V_crit 0.21 km/s, N_apo 0.03, N_cum 0.005 (n_enc 5.8) | flow: rho/rho_host min 1.000000, r_cap 0.0012 pc vs r_in 410 pc, |dv| <= 0.000 km/s, V_* 0.02 km/s; res 3e-13
+  b alt       Columba I          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 8e-15
+  b alt       Coma Berenices     L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b alt       Coma Berenices     L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Crater II          L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 4e-13
+  b alt       Crater II          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-13
+  b alt       Eridanus II        L*  22.8: lobe r 686-3182 pc, deep -2.25e-04 (x 0.022), med -5.0e-06, ell 4107 pc | V 159 km/s: N_TH 10.4 (x_e conv. 10.7), N_ell deep 0.019, N_path 0.012, V_crit 1.95 km/s, N_apo 0.16, N_cum 0.024 (n_enc 1.9) | flow: rho/rho_host min 1.000000, r_cap 0.041 pc vs r_in 686 pc, |dv| <= 0.005 km/s, V_* 0.07 km/s; res 5e-15
+  b alt       Eridanus II        L*  90.0: lobe r 1789-3182 pc, deep -1.75e-05 (x 0.023), med -3.3e-06, ell 3283 pc | V 159 km/s: N_TH 3.0 (x_e conv. 3.0), N_ell deep 0.004, N_path 0.004, V_crit 0.71 km/s, N_apo 0.06, N_cum 0.009 (n_enc 1.9) | flow: rho/rho_host min 1.000000, r_cap 0.041 pc vs r_in 1789 pc, |dv| <= 0.002 km/s, V_* 0.05 km/s; res 9e-13
+  b alt       Eridanus IV        L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Eridanus IV        L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Grus I             L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 2e-13
+  b alt       Grus I             L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-14
+  b alt       Hercules           L*  22.8: lobe r 413-667 pc, deep -5.83e-05 (x 0.069), med -2.0e-05, ell 680 pc | V 207 km/s: N_TH 9.5 (x_e conv. 9.5), N_ell deep 0.002, N_path 0.003, V_crit 0.55 km/s, N_apo 0.06, N_cum 0.020 (n_enc 7.4) | flow: rho/rho_host min 1.000000, r_cap 0.0073 pc vs r_in 413 pc, |dv| <= 0.002 km/s, V_* 0.06 km/s; res 1e-10
+  b alt       Hercules           L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 8e-14
+  b alt       Horologium I       L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Horologium I       L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Hydrus I           L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 7e-14
+  b alt       Hydrus I           L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 5e-14
+  b alt       Leo IV             L*  22.8: lobe r 387-626 pc, deep -4.40e-05 (x 0.057), med -1.1e-05, ell 609 pc | V 134 km/s: N_TH 7.5 (x_e conv. 7.5), N_ell deep 0.002, N_path 0.003, V_crit 0.37 km/s, N_apo 0.04, N_cum 0.011 (n_enc 4.0) | flow: rho/rho_host min 1.000000, r_cap 0.0078 pc vs r_in 387 pc, |dv| <= 0.001 km/s, V_* 0.04 km/s; res 5e-13
+  b alt       Leo IV             L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-14
+  b alt       Leo V              L*  22.8: lobe r 291-626 pc, deep -1.34e-04 (x 0.051), med -1.7e-05, ell 715 pc | V 227 km/s: N_TH 12.3 (x_e conv. 12.3), N_ell deep 0.003, N_path 0.003, V_crit 0.59 km/s, N_apo 0.07, N_cum 0.016 (n_enc 6.0) | flow: rho/rho_host min 1.000000, r_cap 0.0016 pc vs r_in 291 pc, |dv| <= 0.001 km/s, V_* 0.04 km/s; res 2e-13
+  b alt       Leo V              L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-13
+  b alt       Leo VI             L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 5e-14
+  b alt       Leo VI             L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b alt       Pegasus III        L*  22.8: lobe r 420-746 pc, deep -4.26e-05 (x 0.041), med -9.3e-06, ell 770 pc | V 445 km/s: N_TH 6.2 (x_e conv. 6.2), N_ell deep 0.001, N_path 0.001, V_crit 0.34 km/s, N_apo 0.05, N_cum 0.007 (n_enc 9.4) | flow: rho/rho_host min 1.000000, r_cap 0.00035 pc vs r_in 420 pc, |dv| <= 0.000 km/s, V_* 0.03 km/s; res 1e-12
+  b alt       Pegasus III        L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 9e-15
+  b alt       Pegasus IV         L*  22.8: lobe r 258-284 pc, deep -2.39e-06 (x 0.098), med -2.4e-06, ell 133 pc | V 107 km/s: N_TH 2.3 (x_e conv. 2.3), N_ell deep 0.000, N_path 0.000, V_crit 0.03 km/s, N_apo 0.00, N_cum 0.001 (n_enc 5.4) | flow: rho/rho_host min 1.000000, r_cap 0.0064 pc vs r_in 258 pc, |dv| <= 0.001 km/s, V_* 0.02 km/s; res 1e-14
+  b alt       Pegasus IV         L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b alt       Pictor II          L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 7e-14
+  b alt       Pictor II          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 6e-14
+  b alt       Pisces II          L*  22.8: lobe r 349-620 pc, deep -7.53e-05 (x 0.048), med -1.8e-05, ell 671 pc | V 642 km/s: N_TH 8.9 (x_e conv. 8.9), N_ell deep 0.001, N_path 0.001, V_crit 0.45 km/s, N_apo 0.06, N_cum 0.011 (n_enc 15.9) | flow: rho/rho_host min 1.000000, r_cap 0.00019 pc vs r_in 349 pc, |dv| <= 0.000 km/s, V_* 0.03 km/s; res 1e-14
+  b alt       Pisces II          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 1e-14
+  b alt       Reticulum II       L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b alt       Reticulum II       L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b alt       Segue 1            L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 6e-14
+  b alt       Segue 1            L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b alt       Tucana II          L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Tucana II          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Tucana IV          L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Tucana IV          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 8e-11
+  b alt       Tucana V           L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Tucana V           L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b alt       Ursa Major I       L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 1e-12
+  b alt       Ursa Major I       L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 2e-14
+  b alt       Ursa Major II      L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Ursa Major II      L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 4e-14
+  b alt       Willman 1          L*  22.8: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+  b alt       Willman 1          L*  90.0: no rho_tau < 0 cell (v3s); unswitched none; res 3e-14
+
+B1 / verdicts
+B1 PASS 152 maps x 2 solves, worst residual 1.0e-10; statistics finite True <= 1e-8; finite
+  a_globular   canonical: layer P BENIGN             (max N_path 0.048, max N_cum 0.377, V_crit < V_apo,10: True; 4/4 with a lobe at the floor); layer D: NO NEGATIVE LOBE IN THE FLOW STATE
+  a_globular   alt      : layer P BENIGN             (max N_path 0.046, max N_cum 0.372, V_crit < V_apo,10: True; 4/4 with a lobe at the floor); layer D: NO NEGATIVE LOBE IN THE FLOW STATE
+  => class a_globular: BENIGN (pattern granted); NO NEGATIVE LOBE IN THE FLOW STATE (flow state)
+  b_satellite  canonical: layer P BENIGN             (max N_path 0.013, max N_cum 0.029, V_crit < V_apo,10: True; 10/32 with a lobe at the floor); layer D: NO NEGATIVE LOBE IN THE FLOW STATE
+  b_satellite  alt      : layer P BENIGN             (max N_path 0.012, max N_cum 0.025, V_crit < V_apo,10: True; 10/32 with a lobe at the floor); layer D: NO NEGATIVE LOBE IN THE FLOW STATE
+  => class b_satellite: BENIGN (pattern granted); NO NEGATIVE LOBE IN THE FLOW STATE (flow state)
+  (c) worst case: radial-orbit apocentre max N_apo 0.46 (NGC 2419, canonical); co-moving lobe allowed by the capture law (r_cap >= r_in) for: none; posited co-moving T_H: max N_TH 102.5 (NGC 2419) -> BENIGN (pattern granted); reachability: A4 (negative charge cannot be produced from rho_tau > 0)
+
+run: 125.7 s, peak RSS 0.61 GB, single thread
+H5_V3S_LOBE_GROWTH COMPLETE: 11/11 checks PASS.

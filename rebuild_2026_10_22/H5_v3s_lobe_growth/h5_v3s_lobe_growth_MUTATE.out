@@ -1,0 +1,41 @@
+H5_v3s_lobe_growth: v3s's D.P < 0 lobes -- the khronon velocity relative to the lobe, and the e-folds
+mutate = True; kappa = 1/2 FITTED; footings never pooled; one thread, nice 15
+
+A: the khronon velocity relative to a moving system's lobe (sympy)
+  A1: EL_sigma + [d_t rho_tau + div(rho_tau v_tau)] = 0; EL_phi - [lap phi - K(rho_m + rho_tau)]/K = 0; D_t v_tau + grad(phi - Xi) = [0, 0] (rho_tau = div P - mu_K^2 Xi/K, v_tau = -grad sigma)
+A1 PASS residuals 0, 0, [0, 0] all identically 0
+  A2: x = x' + V t, sigma' = sigma + V.x' + 0: Xi' - Xi = V_x**2/2 + V_z**2/2; v' - (v - V) = [0, 0]. The static branch (v_tau = 0) holds only in the khronon rest frame; in a frame moving at V the same fluid has v' = -V
+A2 FAIL Xi' - Xi = V_x**2/2 + V_z**2/2; v' - (v - V) = [0, 0] identically 0
+  A3: steady linear response, system frame, host background (rhobar > 0, field n), stiffness gamma_L Theta:
+      (i)  d rho_tau - d rho_m / [M(k) - 1 + Theta L*^2 k^2/2 - (k.V)^2/(K rhobar)] = 2*drho_m*(K*rhobar*(-M_L*(c**2 - 1) + M_T*c**2)*(Lstar**2*Theta*k**2 - 2)*(Lstar**2*Theta*c**2*k**2*(1 - c**2)*(-Lstar**2*Theta*k**2 + 2) - 2*c**2*(1 - c**2)*(-Lstar**2*Theta*k**2 + 2) + (-Lstar**2*Theta*c**2*k**2 - 2*M_L + 2*c**2)*(-Lstar**2*Theta*k**2*(1 - c**2) - 2*M_T - 2*c**2 + 2)) + (2*D**2*(M_L*(1 - c**2) + M_T*c**2) - K*Lstar**2*Theta*k**2*rhobar*(M_L*(1 - c**2) + M_T*c**2) - 2*K*M_L*M_T*rhobar + 2*K*rhobar*(M_L*(1 - c**2) + M_T*c**2))*(Lstar**2*Theta*c**2*k**2*(1 - c**2)*(-Lstar**2*Theta*k**2 + 2) - 2*c**2*(1 - c**2)*(-Lstar**2*Theta*k**2 + 2) - c**2*(-Lstar**2*Theta*k**2 + 2)*(Lstar**2*Theta*k**2*(1 - c**2) + 2*M_T + 2*c**2 + (1 - c**2)*(-Lstar**2*Theta*k**2 + 2) - 2) + (-Lstar**2*Theta*c**2*k**2 - 2*M_L + 2*c**2)*(-Lstar**2*Theta*k**2*(1 - c**2) - 2*M_T - 2*c**2 + 2) + (-Lstar**2*Theta*c**2*k**2 - 2*M_L + 2*c**2)*(Lstar**2*Theta*k**2*(1 - c**2) + 2*M_T + 2*c**2 + (1 - c**2)*(-Lstar**2*Theta*k**2 + 2) - 2)))/((Lstar**2*Theta*k**2 - 2)*(Lstar**2*Theta*c**2*k**2*(c**2 - 1)*(Lstar**2*Theta*k**2 - 2) - 2*c**2*(c**2 - 1)*(Lstar**2*Theta*k**2 - 2) + (Lstar**2*Theta*c**2*k**2 + 2*M_L - 2*c**2)*(Lstar**2*Theta*k**2*(1 - c**2) + 2*M_T + 2*c**2 - 2))*(2*D**2*(-M_L*(c**2 - 1) + M_T*c**2) - K*Lstar**2*Theta*k**2*rhobar*(-M_L*(c**2 - 1) + M_T*c**2) - 2*K*M_L*M_T*rhobar + 2*K*rhobar*(-M_L*(c**2 - 1) + M_T*c**2)))
+      (ii) V = 0, Theta = 1: d rho_tau / d rho_m - m/(1 - m + kappa^2 m/2) [D10 Route F kernel] = 0
+      (iii) V -> inf: (k.V)^2 d rho_tau + K rhobar d rho_m = nan; d psi + K d rho_m/k^2 = K*drho_m/k**2; d v - k d psi/(k.V) = n/a (no velocity in the mutated system)
+      => static limit = the screened phantom (lobes from the anisotropic M); flow-through limit = the cold wake of the
+         baryons' Newtonian potential, amplitude proportional to rhobar; crossover V_* = sqrt(K rhobar (M-1) + gamma_L rhobar k^2)/k
+A3 FAIL (i) NONZERO, (ii) 0, (iii) nan, K*drho_m/k**2, n/a (no velocity in the mutated system) all identically 0
+  A4: rho = rho0(X)/det(dx/dX) in Lagrangian continuity D_t rho + rho div v: residual 0 -> the sign of rho_tau is carried along v_tau (before caustics); rho_tau > 0 in, rho_tau > 0 out
+A4 PASS residual 0 identically 0
+  A5: Danby-Camm steady continuity max |div(rho v)| r/(rho_inf V) = 8.25e-15 (200 points, 2 parameter sets); energy |v|^2 = V^2 + 2GM/r to 7.5e-15; rho/rho_inf - 1 - (b-R)^2/[R(2b-R)] = 0
+      numerical Lagrangian (REPULSIVE (mutate) point mass, DOP853 rtol 1e-12, 54 points): max |rho_num/rho_DC - 1| = 1.31e+00, min rho_num/rho_inf = 0.000348
+A5 FAIL continuity 8.3e-15; identity 0; Lagrangian dev 1.3e+00, min 0.000348, n 54 <= 1e-9; 0; <= 1e-3 with min >= 1 at >= 20 points
+      reported: NGC 2419 Plummer (GM/(V^2 a) = 6.30e-03 at V = 167 km/s), 84 points at r >= 9 a: rho/rho_inf in [0.99842374, 1.00000001], max |rho_Plummer/rho_DC,point - 1| = 2.8e-03
+
+B0: reproduce the record first
+B0a PASS H4 row S1_MW-M31|canonical|e0|L*21.7: max rel dev 0.0e+00 over 18 fields (N_bounded median 0.0970, max 0.1111) <= 1e-12
+  B0b canonical NGC 2419: min D.P -3.271551e-03 vs X3 -3.271551e-03 (rel 0.0e+00)
+  B0b canonical Pal 3   : min D.P -2.544867e-04 vs X3 -2.544867e-04 (rel 0.0e+00)
+  B0b canonical Pal 4   : min D.P -4.056002e-04 vs X3 -4.056002e-04 (rel 0.0e+00)
+  B0b canonical Pal 14  : min D.P -1.518012e-04 vs X3 -1.518012e-04 (rel 0.0e+00)
+  B0b alt       NGC 2419: min D.P -3.133642e-03 vs X3 -3.133642e-03 (rel 0.0e+00)
+  B0b alt       Pal 3   : min D.P -1.980016e-04 vs X3 -1.980016e-04 (rel 0.0e+00)
+  B0b alt       Pal 4   : min D.P -3.229139e-04 vs X3 -3.229139e-04 (rel 0.0e+00)
+  B0b alt       Pal 14  : min D.P -1.042806e-04 vs X3 -1.042806e-04 (rel 0.0e+00)
+B0b PASS 8 X3 D4 map minima, max rel dev 0.0e+00 <= 1e-6
+B0c PASS 64 rows, max rel dev 0.0e+00 (X3 g_mw: 3.9e-05) <= 1e-9
+B2 PASS uniform sphere R = 100: max path integral / 2R = 1.00038 within 1 %
+B3 PASS uniform slab L = 50.0, turning point at the edge: numeric 19.99550 vs 2 Gamma sqrt(2L/g) 20.00000 within 1 %
+
+MUTATE: maps and statistics are not rerun (as frozen)
+
+run: 4.2 s, peak RSS 0.48 GB, single thread
+H5_V3S_LOBE_GROWTH COMPLETE: 7/10 checks PASS.

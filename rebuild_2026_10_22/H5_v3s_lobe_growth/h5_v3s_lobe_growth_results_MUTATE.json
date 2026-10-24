@@ -1,0 +1,173 @@
+{
+ "lane": "H5_v3s_lobe_growth",
+ "mutate": true,
+ "frozen": "2cde8548ed",
+ "A": {
+  "A1": {
+   "sigma": "0",
+   "phi": "0",
+   "euler": [
+    "0",
+    "0"
+   ]
+  },
+  "A2": {
+   "dXi": "V_x**2/2 + V_z**2/2",
+   "dv": [
+    "0",
+    "0"
+   ]
+  },
+  "A3": {
+   "i": "2*drho_m*(K*rhobar*(-M_L*(c**2 - 1) + M_T*c**2)*(Lstar**2*Theta*k**2 - 2)*(Lstar**2*Theta*c**2*k**2*(1 - c**2)*(-Lstar**2*Theta*k**2 + 2) - 2*c**2*(1 - c**2)*(-Lstar**2*Theta*k**2 + 2) + (-Lstar**2*Theta*c**2*k**2 - 2*M_L + 2*c**2)*(-Lstar**2*Theta*k**2*(1 - c**2) - 2*M_T - 2*c**2 + 2)) + (2*D**2*(M",
+   "ii": "0",
+   "iii_rho": "nan",
+   "iii_psi": "K*drho_m/k**2",
+   "iii_v": "n/a (no velocity in the mutated system)"
+  },
+  "A4": "0",
+  "A5": {
+   "continuity_max": 8.250348578184441e-15,
+   "energy_max": 7.494005416219807e-15,
+   "identity": "0",
+   "lagrangian_maxdev": 1.3064477620180561,
+   "lagrangian_min": 0.00034780615546257265,
+   "n_points": 54
+  },
+  "A5_plummer_NGC2419": {
+   "GM_over_V2a": 0.006297860467962668,
+   "n": 84,
+   "min": 0.9984237423792165,
+   "max": 1.0000000058657552,
+   "maxdev_vs_point": 0.0027850452141920945
+  }
+ },
+ "B0": {
+  "h4_row": "S1_MW-M31|canonical|e0|L*21.7",
+  "h4_dev": 0.0,
+  "x3_maps": [
+   [
+    "canonical",
+    "NGC 2419",
+    -0.003271550989524157,
+    -0.003271550989524157,
+    0.0
+   ],
+   [
+    "canonical",
+    "Pal 3",
+    -0.000254486729553605,
+    -0.000254486729553605,
+    0.0
+   ],
+   [
+    "canonical",
+    "Pal 4",
+    -0.0004056002365435394,
+    -0.0004056002365435394,
+    0.0
+   ],
+   [
+    "canonical",
+    "Pal 14",
+    -0.00015180122193924887,
+    -0.00015180122193924887,
+    0.0
+   ],
+   [
+    "alt",
+    "NGC 2419",
+    -0.0031336421931867204,
+    -0.0031336421931867204,
+    0.0
+   ],
+   [
+    "alt",
+    "Pal 3",
+    -0.0001980015917003278,
+    -0.0001980015917003278,
+    0.0
+   ],
+   [
+    "alt",
+    "Pal 4",
+    -0.000322913901770218,
+    -0.000322913901770218,
+    0.0
+   ],
+   [
+    "alt",
+    "Pal 14",
+    -0.00010428057323339208,
+    -0.00010428057323339208,
+    0.0
+   ]
+  ],
+  "s1_xe_dev": 0.0,
+  "x3_gmw_vs_s1": 3.875970052025224e-05
+ },
+ "checks": [
+  {
+   "id": "A1",
+   "pass": true,
+   "value": "residuals 0, 0, [0, 0]",
+   "threshold": "all identically 0"
+  },
+  {
+   "id": "A2",
+   "pass": false,
+   "value": "Xi' - Xi = V_x**2/2 + V_z**2/2; v' - (v - V) = [0, 0]",
+   "threshold": "identically 0"
+  },
+  {
+   "id": "A3",
+   "pass": false,
+   "value": "(i) NONZERO, (ii) 0, (iii) nan, K*drho_m/k**2, n/a (no velocity in the mutated system)",
+   "threshold": "all identically 0"
+  },
+  {
+   "id": "A4",
+   "pass": true,
+   "value": "residual 0",
+   "threshold": "identically 0"
+  },
+  {
+   "id": "A5",
+   "pass": false,
+   "value": "continuity 8.3e-15; identity 0; Lagrangian dev 1.3e+00, min 0.000348, n 54",
+   "threshold": "<= 1e-9; 0; <= 1e-3 with min >= 1 at >= 20 points"
+  },
+  {
+   "id": "B0a",
+   "pass": true,
+   "value": "H4 row S1_MW-M31|canonical|e0|L*21.7: max rel dev 0.0e+00 over 18 fields (N_bounded median 0.0970, max 0.1111)",
+   "threshold": "<= 1e-12"
+  },
+  {
+   "id": "B0b",
+   "pass": true,
+   "value": "8 X3 D4 map minima, max rel dev 0.0e+00",
+   "threshold": "<= 1e-6"
+  },
+  {
+   "id": "B0c",
+   "pass": true,
+   "value": "64 rows, max rel dev 0.0e+00 (X3 g_mw: 3.9e-05)",
+   "threshold": "<= 1e-9"
+  },
+  {
+   "id": "B2",
+   "pass": true,
+   "value": "uniform sphere R = 100: max path integral / 2R = 1.00038",
+   "threshold": "within 1 %"
+  },
+  {
+   "id": "B3",
+   "pass": true,
+   "value": "uniform slab L = 50.0, turning point at the edge: numeric 19.99550 vs 2 Gamma sqrt(2L/g) 20.00000",
+   "threshold": "within 1 %"
+  }
+ ],
+ "runtime_s": 4.24165415763855,
+ "peak_rss_GB": 0.4810791015625
+}
