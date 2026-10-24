@@ -37,7 +37,7 @@ One classical complex scalar:
 | D1 | condensed static limit | g μ(g/a₀) = g_N, residual 0. Held dust = the phantom of (ρ_b + ρ_n), so **normal mass sources the law like baryons** |
 | D2 | normal static limit | the isothermal ρ = σ²/2πGr² solves Jeans + Poisson (residual 0); M_n = v_n² r/G |
 | D3 | composite weight (O1 W) | F = (M_b + M_n + M_s)g − M_s\|∇Ξ\| ⇒ **ε_n = 0**: the normal share falls with its host and has weight (ε_s = 1) |
-| D4 | Landau criterion | v_c = min ω/k = L★√(2πGρ̄): 1.16 / 1.22 km/s at ρ 0.1 M☉/pc³ (canonical / alt) |
+| D4 | Landau criterion | v_c = min ω/k = L★√(2πGρ̄): 1.13 / 1.19 km/s at ρ 0.1 M☉/pc³ and 0.36 / 0.38 km/s at 0.01 (canonical / alt) |
 | D5 | unfolding lemma | a multi-stream medium never returns to single-stream: **normal → condensed is impossible** without a dissipative channel |
 
 **Constant count.**
@@ -54,7 +54,7 @@ One classical complex scalar:
 | C-g: g < a₀ | 0 | C outer / N inner | C ✗ | N to z ≈ 90, then C ✗ | satellites, growth (Theorem G) |
 | C-ρ: ρ vs ρ_Λ | 0 (+O(1)) | either sign fails one of disc / early | | | both signs |
 | C-σ: σ < (GMa₀)^¼ | 0 | C | C ✗ (ratio 0.47, unchanged at infall) | C ✗ | satellites, growth |
-| **C-V: Landau V_rel < c_s(L★)** | **0** | **C (0.03 ≪ ~1 km/s)** | **N, bound (released at Δv = v_c ≪ σ)** | **C ✗ (no relative flow on FRW)** | growth; cluster debris is added to the law |
+| **C-V: Landau V_rel < c_s(L★)** | **0** | **C (0.03 ≪ 0.36 km/s)** | **N, bound (released at Δv = v_c ≪ σ)** | **C ✗ (no relative flow on FRW)** | growth; cluster debris is added to the law |
 | C-SX: single-stream | 0 | N ✗ | N | C ✗ | backwards on both |
 | C-λ: coherence | +1 NEW (μ) | C | C ✗ (660 kpc at μ = 1/L★) | C ✗ (fuzzy) | rule, satellites, growth |
 
