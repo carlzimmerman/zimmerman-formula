@@ -1,0 +1,107 @@
+======================================================================================================================
+TM1_tethered_medium: PAPER49's tethered medium scored on the hardest rows   [MUTATE]
+kappa = 1/2 FITTED; footings canonical 9.3603e-11 / alt 1.1312e-10 m/s^2, never pooled; not theory closed
+======================================================================================================================
+sources (sha256/16): paper 3db1d47520b500a7, ag6c 8918d5d28a66e54e, f1 4837ade939d4dc83, x2 52ed15f74e716ad4, x2npz 8d473764e791df67, x2json 81a80fc099e98e30, d6 ef9a10aa0f4dd11a, d6npz d8cbb305d8ac326d, f3 02db36204f619f9c, f3json 5e0df3b412ddcfeb, z2csv f0e356892e75c3cf, z2json 320fb9d7dda4dd63, p4 955298d5486a86b4, p4json d431e48277b4436c
+
+=== S: PAPER49's action, symbolically (sympy) ===
+S1 FAIL K W_rem' = u^2/(a0-u): True; series(W used) = u**2*(a0**2/2 + a0*u/3 + u**2/4)/(K*a0**2) :: series == u^3/(3 a0 K) + u^4/(4 a0^2 K) (no u^2 term)  (W_rem starts at cubic order: no linear tether force about P = 0)
+S2 FAIL Poisson True; P-eq False; rest g_N = g**2/(a0 + g) :: lap Phi = K(rho_b + div P); (grad Phi - K P) - R(u) + gamma lap P = 0; g_N = g^2/(g + a0)  (field equations and the n = 1 rest state)
+S3 FAIL 1D d(force)/dP at P->0 = -K; 3D longitudinal (grad Phi - K P)_L = -I*K*rho_k/k, d/dP_L = 0 :: both == 0  (the tethered medium feels no self-gravity and no linear tether force (D-T on PAPER49's own action))
+S4 PASS K|P| + R = a0 p/(1-p): True; stiffness coefficient Lstar**2/2; lap p = grad div p (curl-free): True :: identical to D10: grad Phi + (Lambda^2/2) grad div p = p/(1-|p|), Lambda = L*  (Z2's V3S and P4's T1 rows are this action's rest state)
+S5 PASS completion kinetic eigenvalues [rho_b0, rho_c0]; BLT [[1,1],[1,0]] det -1 eig [-0.618034, 1.618034] :: completion positive definite; BLT det -1 (Z1 K1)  (PAPER49 + forced kinetic term has no ghost; BLT has one)
+   medium gradient sector: omega^2 = gamma*k**2*rho_c0 >= 0 (gradient-stable); c_s^2 = gamma rho_c = 2 pi G rho_c L*^2
+S6 FAIL growing exponent p = 1.0000 (largest eigenvalue 1.0000) :: 0.610 +- 0.005 (CFG938)  (delta ~ a^p in EdS with the medium feeling only the baryons)
+
+=== ROW 1: growth on FRW (forced minimal completion; F3's growth_ratio, exec'd read-only) ===
+F3a PASS max |dT| = 0.00e+00 over 8 k :: <= 1e-4  (F3's growth_ratio reproduces F3's committed K4 BSK2_floor_1100 transfer)
+   A_c2b_refit  a_i 0.001: delta_m / delta_m(dust) = 0.0747 (k-spread 6.9e-17; scale-free, so sigma8/sigma8,dust = this)
+   A_c2b_refit  a_i 0.0001: delta_m / delta_m(dust) = 0.0409 (k-spread 2.2e-16; scale-free, so sigma8/sigma8,dust = this)
+   B_cfg886_bg  a_i 0.001: delta_m / delta_m(dust) = 0.0773 (k-spread 3.6e-16; scale-free, so sigma8/sigma8,dust = this)
+   B_cfg886_bg  a_i 0.0001: delta_m / delta_m(dust) = 0.0427 (k-spread 6.9e-18; scale-free, so sigma8/sigma8,dust = this)
+   stiffness sound speed today c_s = sqrt(2 pi G rho_c) L*: 0.72 m/s (24 pc), 30.0 m/s (1 kpc): Jeans-like cut only at k ~ 1/L*, far beyond sigma8 scales (not included; it only lowers growth)
+   ROW 1 class: FAIL (min sigma8/sigma8,dust 0.0409 vs line 0.95; healthy True)
+
+=== ROW 2: satellites with real cold mass ===
+   [canonical] clean (C1-C4) N 6 ['Eridanus II', 'Leo IV', 'Leo V', 'Pegasus III', 'Pegasus IV', 'Leo T']: median Delta_V3S +0.936; slope on log x_e | M_V (N 45): V3S prediction -0.545, data -0.050
+   [alt] clean (C1-C4) N 5 ['Eridanus II', 'Leo IV', 'Leo V', 'Pegasus III', 'Leo T']: median Delta_V3S +0.800; slope on log x_e | M_V (N 46): V3S prediction -0.531, data -0.033
+Z2a PASS +0.936 :: +0.900 +- 0.05  (Z2's clean-subset V3S excess reproduced from its per-system CSV (canonical))
+Z2b PASS pred -0.545, data -0.050 :: -0.55 / -0.05 +- 0.05  (Z2's host-field slopes at fixed M_V reproduced (canonical))
+   [canonical] scored excess +0.900 +- 0.213 (clean C1-C4): within 2 sd False; predicted slope -0.54 vs data -0.05 +- 0.19: within 2 sd False -> FAIL
+   [alt] scored excess +1.162 +- 0.150 (C2-C4 only (clean TOO FEW)): within 2 sd False; predicted slope -0.53 vs data -0.05 +- 0.19: within 2 sd False -> FAIL
+   ROW 2 class: FAIL
+
+=== ROW 3: cluster cores, untethered cold energy (postulate U), self-similar infall profile ===
+SSa PASS lambda_sp(eps=1) 0.3612; M(1) [1.000006, 1.00001, 1.000013] :: 0.364 +- 0.01; 1 +- 1e-4  (D6 self-similar tables (Bertschinger caustic, normalisation))
+   SSb: re-solved tables loaded from tm1_selfsim_resolve_2x.npz
+SSb PASS eps 1.0000: max|dM/M| 0.024 (2x conv 0.0066, slope(0.01-0.03) 0.642); eps 0.5000: max|dM/M| 0.011 (2x conv 0.0024, slope(0.01-0.03) 0.912); eps 0.3333: max|dM/M| 0.003 (2x conv 0.0088, slope(0.01-0.03) 0.991) :: <= 5 % on lambda in [0.02, 1] (A1: 2x tau_max)  (self-similar profile converged in tau_max)
+   law (no cold) canonical h0672: ALL MID 1.676+-0.121 OUT 0.950 | T1 1.12/0.50 T2 1.88/0.78 T3 1.89/1.40
+   law (no cold) canonical h0686: ALL MID 1.720+-0.115 OUT 0.949 | T1 1.13/0.53 T2 1.95/0.80 T3 1.93/1.36
+   law (no cold) alt       h0672: ALL MID 1.540+-0.111 OUT 0.870 | T1 1.02/0.46 T2 1.73/0.72 T3 1.74/1.28
+   law (no cold) alt       h0686: ALL MID 1.580+-0.106 OUT 0.869 | T1 1.04/0.49 T2 1.79/0.73 T3 1.77/1.25
+X2a PASS max |dA| 4.44e-16 :: <= 0.005  (my cluster model (law on baryons) reproduces X2's committed C0 tercile table)
+   U0|eps1.0000|canonical|h0672: ALL MID 0.460+-0.032 OUT 0.589+-0.053 | T1 0.43+-0.10/0.44+-0.19 T2 0.54+-0.05/0.49+-0.07 T3 0.42+-0.04/0.71+-0.05 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 1.98e+14]
+   U0|eps1.0000|canonical|h0686: ALL MID 0.477+-0.031 OUT 0.592+-0.049 | T1 0.44+-0.10/0.48+-0.19 T2 0.57+-0.05/0.51+-0.07 T3 0.43+-0.04/0.70+-0.05 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 1.93e+14]
+   U0|eps0.5000|canonical|h0672: ALL MID 0.673+-0.047 OUT 0.745+-0.067 | T1 0.60+-0.15/0.55+-0.24 T2 0.77+-0.07/0.64+-0.09 T3 0.63+-0.06/0.89+-0.06 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 1.17e+14]
+   U0|eps0.5000|canonical|h0686: ALL MID 0.698+-0.045 OUT 0.751+-0.062 | T1 0.62+-0.14/0.59+-0.24 T2 0.81+-0.07/0.66+-0.10 T3 0.65+-0.06/0.87+-0.06 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 1.15e+14]
+   U0|eps0.3333|canonical|h0672: ALL MID 0.874+-0.061 OUT 0.941+-0.085 | T1 0.74+-0.18/0.73+-0.31 T2 1.03+-0.09/0.81+-0.12 T3 0.83+-0.07/1.11+-0.08 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 8.59e+13]
+   U0|eps0.3333|canonical|h0686: ALL MID 0.905+-0.059 OUT 0.948+-0.078 | T1 0.76+-0.17/0.78+-0.31 T2 1.07+-0.09/0.84+-0.12 T3 0.86+-0.07/1.08+-0.08 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 8.42e+13]
+   U1|eps1.0000|canonical|h0672: ALL MID 1.166+-0.084 OUT 1.065+-0.093 | T1 1.58+-0.39/0.89+-0.38 T2 1.46+-0.14/0.95+-0.14 T3 0.91+-0.08/1.20+-0.08 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 4.91e+13, phantom/supply at r_ta 0.75]
+   U1|eps1.0000|canonical|h0686: ALL MID 1.216+-0.082 OUT 1.075+-0.085 | T1 1.64+-0.36/0.96+-0.38 T2 1.54+-0.15/0.98+-0.14 T3 0.94+-0.08/1.17+-0.08 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 4.71e+13, phantom/supply at r_ta 0.75]
+   U1|eps1.0000|alt|h0672      : ALL MID 1.351+-0.099 OUT 1.146+-0.100 | T1 1.87+-0.46/0.93+-0.40 T2 1.76+-0.17/1.04+-0.15 T3 1.03+-0.09/1.28+-0.08 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 3.44e+13, phantom/supply at r_ta 0.82]
+   U1|eps1.0000|alt|h0686      : ALL MID 1.410+-0.097 OUT 1.156+-0.091 | T1 1.92+-0.43/1.00+-0.39 T2 1.86+-0.18/1.07+-0.16 T3 1.07+-0.09/1.26+-0.08 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 3.30e+13, phantom/supply at r_ta 0.83]
+   U1|eps0.5000|canonical|h0672: ALL MID 1.482+-0.106 OUT 1.182+-0.104 | T1 1.74+-0.43/0.92+-0.40 T2 1.80+-0.17/1.05+-0.15 T3 1.23+-0.11/1.36+-0.09 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 2.90e+13, phantom/supply at r_ta 0.75]
+   U1|eps0.5000|canonical|h0686: ALL MID 1.542+-0.103 OUT 1.191+-0.096 | T1 1.80+-0.40/0.99+-0.39 T2 1.89+-0.18/1.08+-0.16 T3 1.27+-0.11/1.33+-0.09 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 2.81e+13, phantom/supply at r_ta 0.75]
+   U1|eps0.5000|alt|h0672      : ALL MID 1.656+-0.120 OUT 1.243+-0.109 | T1 1.93+-0.48/0.94+-0.40 T2 2.07+-0.20/1.12+-0.16 T3 1.35+-0.12/1.43+-0.09 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 2.07e+13, phantom/supply at r_ta 0.82]
+   U1|eps0.5000|alt|h0686      : ALL MID 1.723+-0.117 OUT 1.253+-0.100 | T1 1.98+-0.44/1.01+-0.40 T2 2.18+-0.21/1.15+-0.17 T3 1.40+-0.12/1.41+-0.09 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 1.98e+13, phantom/supply at r_ta 0.83]
+   U1|eps0.3333|canonical|h0672: ALL MID 1.708+-0.122 OUT 1.289+-0.114 | T1 1.83+-0.45/0.96+-0.41 T2 2.06+-0.19/1.14+-0.16 T3 1.46+-0.13/1.52+-0.10 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 2.15e+13, phantom/supply at r_ta 0.75]
+   U1|eps0.3333|canonical|h0686: ALL MID 1.773+-0.118 OUT 1.298+-0.105 | T1 1.88+-0.42/1.03+-0.41 T2 2.16+-0.20/1.17+-0.17 T3 1.51+-0.13/1.48+-0.10 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 2.09e+13, phantom/supply at r_ta 0.75]
+   U1|eps0.3333|alt|h0672      : ALL MID 1.859+-0.133 OUT 1.328+-0.117 | T1 1.96+-0.49/0.95+-0.41 T2 2.29+-0.21/1.18+-0.17 T3 1.58+-0.14/1.57+-0.10 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 1.51e+13, phantom/supply at r_ta 0.82]
+   U1|eps0.3333|alt|h0686      : ALL MID 1.930+-0.129 OUT 1.336+-0.108 | T1 2.01+-0.44/1.02+-0.40 T2 2.40+-0.22/1.22+-0.18 T3 1.63+-0.14/1.54+-0.11 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 1.44e+13, phantom/supply at r_ta 0.83]
+   U2|eps1.0000|canonical|h0672: ALL MID 1.676+-0.121 OUT 0.950+-0.090 | T1 1.12+-0.28/0.50+-0.22 T2 1.88+-0.16/0.78+-0.11 T3 1.89+-0.17/1.40+-0.11 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 0.00e+00, phantom/supply at r_ta 1.81]
+   U2|eps1.0000|canonical|h0686: ALL MID 1.720+-0.115 OUT 0.949+-0.083 | T1 1.13+-0.25/0.53+-0.21 T2 1.95+-0.16/0.80+-0.12 T3 1.93+-0.17/1.36+-0.11 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 0.00e+00, phantom/supply at r_ta 1.82]
+   U2|eps1.0000|alt|h0672      : ALL MID 1.540+-0.111 OUT 0.870+-0.082 | T1 1.02+-0.26/0.46+-0.20 T2 1.73+-0.14/0.72+-0.10 T3 1.74+-0.16/1.28+-0.10 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 0.00e+00, phantom/supply at r_ta 1.99]
+   U2|eps1.0000|alt|h0686      : ALL MID 1.580+-0.106 OUT 0.869+-0.076 | T1 1.04+-0.23/0.49+-0.19 T2 1.79+-0.15/0.73+-0.11 T3 1.77+-0.16/1.25+-0.10 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 0.00e+00, phantom/supply at r_ta 2.00]
+   U2|eps0.5000|canonical|h0672: ALL MID 1.676+-0.121 OUT 0.950+-0.090 | T1 1.12+-0.28/0.50+-0.22 T2 1.88+-0.16/0.78+-0.11 T3 1.89+-0.17/1.40+-0.11 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 0.00e+00, phantom/supply at r_ta 1.81]
+   U2|eps0.5000|canonical|h0686: ALL MID 1.720+-0.115 OUT 0.949+-0.083 | T1 1.13+-0.25/0.53+-0.21 T2 1.95+-0.16/0.80+-0.12 T3 1.93+-0.17/1.36+-0.11 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 0.00e+00, phantom/supply at r_ta 1.82]
+   U2|eps0.5000|alt|h0672      : ALL MID 1.540+-0.111 OUT 0.870+-0.082 | T1 1.02+-0.26/0.46+-0.20 T2 1.73+-0.14/0.72+-0.10 T3 1.74+-0.16/1.28+-0.10 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 0.00e+00, phantom/supply at r_ta 1.99]
+   U2|eps0.5000|alt|h0686      : ALL MID 1.580+-0.106 OUT 0.869+-0.076 | T1 1.04+-0.23/0.49+-0.19 T2 1.79+-0.15/0.73+-0.11 T3 1.77+-0.16/1.25+-0.10 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 0.00e+00, phantom/supply at r_ta 2.00]
+   U2|eps0.3333|canonical|h0672: ALL MID 1.676+-0.121 OUT 0.950+-0.090 | T1 1.12+-0.28/0.50+-0.22 T2 1.88+-0.16/0.78+-0.11 T3 1.89+-0.17/1.40+-0.11 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 0.00e+00, phantom/supply at r_ta 1.81]
+   U2|eps0.3333|canonical|h0686: ALL MID 1.720+-0.115 OUT 0.949+-0.083 | T1 1.13+-0.25/0.53+-0.21 T2 1.95+-0.16/0.80+-0.12 T3 1.93+-0.17/1.36+-0.11 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 0.00e+00, phantom/supply at r_ta 1.82]
+   U2|eps0.3333|alt|h0672      : ALL MID 1.540+-0.111 OUT 0.870+-0.082 | T1 1.02+-0.26/0.46+-0.20 T2 1.73+-0.14/0.72+-0.10 T3 1.74+-0.16/1.28+-0.10 -> fail  [r_ta 6.42 Mpc, M_cold(<0.5) 0.00e+00, phantom/supply at r_ta 1.99]
+   U2|eps0.3333|alt|h0686      : ALL MID 1.580+-0.106 OUT 0.869+-0.076 | T1 1.04+-0.23/0.49+-0.19 T2 1.79+-0.15/0.73+-0.11 T3 1.77+-0.16/1.25+-0.10 -> fail  [r_ta 6.36 Mpc, M_cold(<0.5) 0.00e+00, phantom/supply at r_ta 2.00]
+   reading classes: {'U0|canonical': 'FAILS', 'U1|canonical': 'FAILS', 'U1|alt': 'FAILS', 'U2|canonical': 'FAILS', 'U2|alt': 'FAILS'}
+   ROW 3 class: FAIL (U0 = PAPER49 L52 literally; postulates U and C)
+
+=== ROW 6: SPARC RAR (rest state = n = 1 law; P4's loader and rule) ===
+   [canonical] per-galaxy Upsilon: rms 0.06829 dex, median Upsilon 0.73 -> line PASS; global Upsilon: rms 0.11151 @ 0.77
+   [alt] per-galaxy Upsilon: rms 0.06188 dex, median Upsilon 0.59 -> line PASS; global Upsilon: rms 0.10565 @ 0.72
+P4a FAIL max |d rms| 1.4e-02 (N 175) :: <= 2e-4  (P4's iso_perUps rms reproduced on both footings)
+P4b FAIL max |d rms| 1.1e-02; Upsilon equal False :: <= 1e-4; equal  (CFG695 S2 (global Upsilon) reproduced)
+   ROW 6 class: CONDITIONAL (settling is a postulate; line per footing: [True, True])
+
+=== ROW 4: capacity in isolated galaxies (own supply 5.364 M_b; catchment multiplier reported) ===
+   [canonical] N 175: law phantom > 5.364 M_b in 32 galaxies (f_gal 0.183; f_pts 0.026); data-side 29 (f 0.166); catchment multiplier needed (median/84/95/max) 0.54/1.07/1.37/3.45; R_last/r_M (median/84/95/max) 3.8/6.1/7.6/11.9 -> own reading CONDITIONAL
+   [alt] N 175: law phantom > 5.364 M_b in 39 galaxies (f_gal 0.223; f_pts 0.038); data-side 33 (f 0.189); catchment multiplier needed (median/84/95/max) 0.64/1.24/1.61/3.90; R_last/r_M (median/84/95/max) 4.3/6.9/8.4/13.1 -> own reading FAIL
+   ROW 4 class: CONDITIONAL (own reading FAIL; catchment = postulate C)
+
+=== ROW 5: saddle positivity (AG6C S0.4 run as a copy in a scratch directory) ===
+AGa PASS C(0.2 d) = -0.24012 (h) / -0.24041 (h/2) :: -0.240 +- 0.01  (AG6C's mid-plane phantom density at R = 0.2 d reproduced)
+AGb PASS MW-M31 -89.0, cluster -33.4 (alt -97.9 / -36.7) :: -89 +- 5 / -33 +- 2 (canonical)  (PAPER49's -89x / -33x mean cold density at R = 0.2 d)
+   F1_MW-M31          canonical: min rho_ph -211.3 rhobar_c; AQUAL negative column -1.96, unsuppliable -1.94 Msun/pc^2
+   F1_MW-M31          alt      : min rho_ph -232.2 rhobar_c; AQUAL negative column -2.16, unsuppliable -2.14 Msun/pc^2
+   F2_cluster_pair    canonical: min rho_ph -79.2 rhobar_c; AQUAL negative column -4.78, unsuppliable -4.64 Msun/pc^2
+   F2_cluster_pair    alt      : min rho_ph -87.1 rhobar_c; AQUAL negative column -5.26, unsuppliable -5.11 Msun/pc^2
+   stiffness cannot fill the pancake: (L*/0.05d)^2 at L* = 1 kpc = 6.7e-04 (MW-M31), 1.6e-05 (cluster)
+   ROW 5 class: FAIL (rho_bar + div P < 0 by 98x at the worst fiducial; the law must fail in the saddle band)
+
+=== SUMMARY ===
+   1 growth on FRW         : FAIL
+   2 satellites            : FAIL
+   3 cluster cores (U0)    : FAIL
+   4 capacity              : CONDITIONAL
+   5 saddle positivity     : FAIL
+   6 SPARC RAR             : CONDITIONAL
+   resolves the law-versus-clumping split: False
+
+checks: 10/16 PASS; run time 42 s; peak RSS 0.27 GB
