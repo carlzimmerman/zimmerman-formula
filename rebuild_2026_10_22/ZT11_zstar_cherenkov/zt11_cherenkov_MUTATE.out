@@ -1,0 +1,120 @@
+ZT11_zstar_cherenkov: Cherenkov emission of the khronon/dust pair by stars (Z-T11)
+mutate = True; kappa = 1/2 FITTED; footings never pooled; mu_K removed in Z* (DESIGN section 3)
+
+K1: P3 reproduction (c_pi = sqrt(G/Z), mu_K terms dropped)
+    Eot-Wash (38.6 um)|canonical|24pc        c_pi 1.453738e-04 (P3 1.027950e-04, rel 4.1e-01) = 43.58 km/s
+    planets (1 AU)|canonical|24pc            c_pi 1.405037e-04 (P3 9.935128e-05, rel 4.1e-01) = 42.12 km/s
+    Eot-Wash (38.6 um)|canonical|90pc        c_pi 1.453738e-04 (P3 1.027968e-04, rel 4.1e-01) = 43.58 km/s
+    planets (1 AU)|canonical|90pc            c_pi 1.405037e-04 (P3 9.935316e-05, rel 4.1e-01) = 42.12 km/s
+    Eot-Wash (38.6 um)|alt|24pc              c_pi 1.453738e-04 (P3 1.027950e-04, rel 4.1e-01) = 43.58 km/s
+    planets (1 AU)|alt|24pc                  c_pi 1.405037e-04 (P3 9.935128e-05, rel 4.1e-01) = 42.12 km/s
+    Eot-Wash (38.6 um)|alt|90pc              c_pi 1.453738e-04 (P3 1.027968e-04, rel 4.1e-01) = 43.58 km/s
+    planets (1 AU)|alt|90pc                  c_pi 1.405037e-04 (P3 9.935316e-05, rel 4.1e-01) = 42.12 km/s
+  K1 FAIL: max rel diff 4.14e-01  [want: < 1e-3 for every row (P3: ~1e-4 c)]
+
+K2: linear response of the held medium from X3's PN Lagrangian (3D form restricted to the longitudinal line; mu_K = 0)
+    response delta rho_tau / rho_m = K*rho_0/(K*M*rho_0 - K*rho_0 + gamma_L*k**2*rho_0 - omega**2)
+    minus K rho0/(omega_k^2 - omega^2) with omega_k^2 = K rho0 (M-1) + gamma_L rho0 k^2: 0
+    dispersion omega^2 = rho_0*(K*M - K + gamma_L*k**2); X3 B1-S omega2_P at mu_K = 0, theta = 0: rho_0*(K*M - K + gamma_L*k**2); difference 0
+  K2 PASS: response residual 0; vs X3 0  [want: 0 and 0: forced eq. d2rho/dt2 - c_s^2 lap rho + omega_g^2 rho = K rho0 rho_m; matter couples only via phi]
+
+K3: P3's decoupled pair (G = D.P, Z = k^2/(K M + gamma_L k^2), mu_K = 0) vs K2
+    G k^2/Z - omega^2(K2) - K rho0 = 1.0*rho_0*(K*M + gamma_L*k**2)  (the decoupling limit drops self-gravity only)
+  K3 FAIL: residual 1.0*rho_0*(K*M + gamma_L*k**2)  [want: 0]
+    sound speed c_s^2 = lim omega^2/k^2 = gamma_L*rho_0; gap omega_g^2 = K*rho_0*(M - 1)
+
+K5: coupling of a point mass to the medium (linear statics, omega -> 0)
+    G_eff/G = (L_star**2*k**2 + 2*M)/(L_star**2*k**2 + 2*M - 2); minus (M + L^2k^2/2)/(M - 1 + L^2k^2/2): 0; at M = 1 minus X15 U_N/(K/k^2): 0
+    limits: k L* -> oo: 1 (screened: Newtonian coupling); k -> 0: M/(M - 1)
+  K5 PASS: residuals 0, 0; limits 1, M/(M - 1)  [want: 0, 0; 1 and M/(M-1)]
+
+K4: drag force from the retarded wake (angular delta integral analytic)
+    angular integral = 1/(k**2*v**2) (minus 1/(k^2 v^2): 0); dF/d ln k = K**2*M_star**2*rho_0/(4*pi*v**2) -> with K = 4 pi G minus 4 pi G^2 M^2 rho0/v^2: 0; Gaussian numeric rel err 4.3e-15
+  K4 PASS: 0, 0, 4.3e-15  [want: 0, 0, < 1e-3]
+
+K6: dimensions of t_loss = v^3/(8 pi G^2 M rho lnL)
+    1 (m/s)^3 / (8 pi G^2 * 1 kg * 1 kg/m^3) = 8.932e+18*second
+  K6 PASS: 8.932e+18*second  [want: a pure time]
+
+MW held medium: phantom density rho_dyn - rho_b from S3's cached isolated AQUAL solve (McMillan17)
+    canonical: v_c(R0) 215.341 km/s (record 215.17, rel 7.94e-04); rho_ph(R0, 0) 0.0588 Msun/pc^3 (rho_b 0.1073); x = 1.977
+      R  4.000 kpc: rho_ph 0.1200  v_c 204.21  x 3.610
+      R  6.000 kpc: rho_ph 0.0867  v_c 213.54  x 2.631
+      R  8.122 kpc: rho_ph 0.0588  v_c 215.34  x 1.977
+      R 12.000 kpc: rho_ph 0.0315  v_c 209.17  x 1.262
+      R 16.000 kpc: rho_ph 0.0196  v_c 201.61  x 0.880
+    alt: v_c(R0) 220.550 km/s (record 220.377, rel 7.83e-04); rho_ph(R0, 0) 0.0676 Msun/pc^3 (rho_b 0.1073); x = 1.716
+      R  4.000 kpc: rho_ph 0.1403  v_c 207.40  x 3.081
+      R  6.000 kpc: rho_ph 0.1005  v_c 217.84  x 2.266
+      R  8.122 kpc: rho_ph 0.0676  v_c 220.55  x 1.716
+      R 12.000 kpc: rho_ph 0.0358  v_c 215.44  x 1.108
+      R 16.000 kpc: rho_ph 0.0221  v_c 208.47  x 0.778
+  K7 PASS: v_c(R0) within 1 % of the record and rho_ph(R0) > 0 on both footings  [want: both]
+
+K8: Ostriker cross-check of the k-integral (g = 1)
+  K8 PASS: rel 0.0e+00  [want: < 1e-6]
+
+Loss times t_loss / t_H (envelope = g^2 = (G_eff/G)^2 at M_T = 1 + x, k_max = 1/R_star; owner frame = MW free fall)
+  foot       L* body                    R      v    rho0    c_s   Mach lam_min lnL_env  t/tH env     g1,R*   g1,racc env,rho10
+  canonical  24 Sun                  8.12  230.0  0.0588  1.353  170.0    2.90   32.40 9.257e+05 1.173e+06 1.271e+06 9.257e+04
+  canonical  24 Sun                  8.12  250.0  0.0588  1.353  184.8    3.15   32.59 1.182e+06 1.501e+06 1.615e+06 1.182e+05
+  canonical  24 disc star 1 Msun     4.00  204.2  0.1200  1.932  105.7    1.33   27.92 3.686e+05 4.149e+05 4.556e+05 3.686e+04
+  canonical  24 disc star 20 Msun    4.00  204.2  0.1200  1.932  105.7    1.33   25.53 2.016e+04 2.297e+04 2.626e+04 2.016e+03
+  canonical  24 disc star 1 Msun     6.00  213.5  0.0867  1.643  130.0    1.92   29.81 5.461e+05 6.468e+05 7.065e+05 5.461e+04
+  canonical  24 disc star 20 Msun    6.00  213.5  0.0867  1.643  130.0    1.92   27.42 2.969e+04 3.575e+04 4.060e+04 2.969e+03
+  canonical  24 disc star 1 Msun     8.12  215.3  0.0588  1.353  159.2    2.72   32.25 7.633e+05 9.648e+05 1.052e+06 7.633e+04
+  canonical  24 disc star 20 Msun    8.12  215.3  0.0588  1.353  159.2    2.72   29.86 4.123e+04 5.324e+04 6.030e+04 4.123e+03
+  canonical  24 disc star 1 Msun    12.00  209.2  0.0315  0.991  211.2    4.51   38.31 1.099e+06 1.618e+06 1.765e+06 1.099e+05
+  canonical  24 disc star 20 Msun   12.00  209.2  0.0315  0.991  211.2    4.51   35.92 5.860e+04 8.909e+04 1.009e+05 5.860e+03
+  canonical  24 disc star 1 Msun    16.00  201.6  0.0196  0.782  257.9    6.60   46.80 1.294e+06 2.293e+06 2.506e+06 1.294e+05
+  canonical  24 disc star 20 Msun   16.00  201.6  0.0196  0.782  257.9    6.60   44.40 6.818e+04 1.261e+05 1.430e+05 6.818e+03
+  canonical  90 Sun                  8.12  230.0  0.0588  5.074   45.3    2.90   30.73 9.762e+05 1.173e+06 1.271e+06 9.762e+04
+  canonical  90 Sun                  8.12  250.0  0.0588  5.074   49.3    3.15   30.92 1.246e+06 1.501e+06 1.615e+06 1.246e+05
+  canonical  90 disc star 1 Msun     4.00  204.2  0.1200  7.247   28.2    1.33   27.09 3.799e+05 4.150e+05 4.556e+05 3.799e+04
+  canonical  90 disc star 20 Msun    4.00  204.2  0.1200  7.247   28.2    1.33   24.69 2.084e+04 2.297e+04 2.626e+04 2.084e+03
+  canonical  90 disc star 1 Msun     6.00  213.5  0.0867  6.161   34.7    1.92   28.62 5.689e+05 6.469e+05 7.065e+05 5.689e+04
+  canonical  90 disc star 20 Msun    6.00  213.5  0.0867  6.161   34.7    1.92   26.22 3.105e+04 3.575e+04 4.060e+04 3.105e+03
+  canonical  90 disc star 1 Msun     8.12  215.3  0.0588  5.074   42.4    2.72   30.58 8.051e+05 9.648e+05 1.052e+06 8.051e+04
+  canonical  90 disc star 20 Msun    8.12  215.3  0.0588  5.074   42.4    2.72   28.18 4.368e+04 5.324e+04 6.030e+04 4.368e+03
+  canonical  90 disc star 1 Msun    12.00  209.2  0.0315  3.715   56.3    4.51   35.39 1.189e+06 1.618e+06 1.765e+06 1.189e+05
+  canonical  90 disc star 20 Msun   12.00  209.2  0.0315  3.715   56.3    4.51   32.99 6.379e+04 8.909e+04 1.009e+05 6.379e+03
+  canonical  90 disc star 1 Msun    16.00  201.6  0.0196  2.931   68.8    6.60   42.08 1.439e+06 2.293e+06 2.506e+06 1.439e+05
+  canonical  90 disc star 20 Msun   16.00  201.6  0.0196  2.931   68.8    6.60   39.69 7.628e+04 1.261e+05 1.430e+05 7.628e+03
+  alt        24 Sun                  8.12  230.0  0.0676  1.451  158.5    2.90   33.56 7.775e+05 1.020e+06 1.105e+06 7.775e+04
+  alt        24 Sun                  8.12  250.0  0.0676  1.451  172.3    3.16   33.77 9.923e+05 1.306e+06 1.405e+06 9.923e+04
+  alt        24 disc star 1 Msun     4.00  207.4  0.1403  2.090   99.3    1.36   28.50 3.236e+05 3.715e+05 4.073e+05 3.236e+04
+  alt        24 disc star 20 Msun    4.00  207.4  0.1403  2.090   99.3    1.36   26.10 1.766e+04 2.056e+04 2.347e+04 1.766e+03
+  alt        24 disc star 1 Msun     6.00  217.8  0.1005  1.769  123.2    1.96   30.65 4.865e+05 5.920e+05 6.454e+05 4.865e+04
+  alt        24 disc star 20 Msun    6.00  217.8  0.1005  1.769  123.2    1.96   28.26 2.639e+04 3.271e+04 3.708e+04 2.639e+03
+  alt        24 disc star 1 Msun     8.12  220.5  0.0676  1.451  152.0    2.79   33.45 6.877e+05 9.008e+05 9.799e+05 6.877e+04
+  alt        24 disc star 20 Msun    8.12  220.5  0.0676  1.451  152.0    2.79   31.06 3.704e+04 4.971e+04 5.616e+04 3.704e+03
+  alt        24 disc star 1 Msun    12.00  215.4  0.0358  1.056  204.0    4.65   40.48 9.997e+05 1.553e+06 1.690e+06 9.997e+04
+  alt        24 disc star 20 Msun   12.00  215.4  0.0358  1.056  204.0    4.65   38.09 5.313e+04 8.554e+04 9.659e+04 5.313e+03
+  alt        24 disc star 1 Msun    16.00  208.5  0.0221  0.830  251.1    6.83   50.40 1.177e+06 2.245e+06 2.445e+06 1.177e+05
+  alt        24 disc star 20 Msun   16.00  208.5  0.0221  0.830  251.1    6.83   48.01 6.181e+04 1.234e+05 1.395e+05 6.181e+03
+  alt        90 Sun                  8.12  230.0  0.0676  5.440   42.3    2.90   31.57 8.265e+05 1.020e+06 1.105e+06 8.265e+04
+  alt        90 Sun                  8.12  250.0  0.0676  5.440   46.0    3.16   31.78 1.054e+06 1.306e+06 1.405e+06 1.054e+05
+  alt        90 disc star 1 Msun     4.00  207.4  0.1403  7.836   26.5    1.36   27.50 3.353e+05 3.715e+05 4.074e+05 3.353e+04
+  alt        90 disc star 20 Msun    4.00  207.4  0.1403  7.836   26.5    1.36   25.10 1.837e+04 2.056e+04 2.347e+04 1.837e+03
+  alt        90 disc star 1 Msun     6.00  217.8  0.1005  6.633   32.8    1.96   29.23 5.102e+05 5.920e+05 6.454e+05 5.102e+04
+  alt        90 disc star 20 Msun    6.00  217.8  0.1005  6.633   32.8    1.96   26.83 2.779e+04 3.271e+04 3.708e+04 2.779e+03
+  alt        90 disc star 1 Msun     8.12  220.5  0.0676  5.440   40.5    2.78   31.46 7.312e+05 9.008e+05 9.799e+05 7.312e+04
+  alt        90 disc star 20 Msun    8.12  220.5  0.0676  5.440   40.5    2.78   29.07 3.957e+04 4.971e+04 5.616e+04 3.957e+03
+  alt        90 disc star 1 Msun    12.00  215.4  0.0358  3.960   54.4    4.65   37.02 1.093e+06 1.553e+06 1.690e+06 1.093e+05
+  alt        90 disc star 20 Msun   12.00  215.4  0.0358  3.960   54.4    4.65   34.62 5.844e+04 8.554e+04 9.659e+04 5.844e+03
+  alt        90 disc star 1 Msun    16.00  208.5  0.0221  3.113   67.0    6.83   44.82 1.324e+06 2.245e+06 2.445e+06 1.324e+05
+  alt        90 disc star 20 Msun   16.00  208.5  0.0221  3.113   67.0    6.83   42.43 6.993e+04 1.234e+05 1.395e+05 6.993e+03
+
+Pair speed in the Sun's own neighbourhood (I5)
+    canonical 24 pc: v3s hedgehog c_pi = sqrt(GM/r): 42.12 km/s at 1 AU, 1.353 km/s at r_nl = 969 AU; Z* (R1 cap D.P <= rho_d) c_pi = 1.353 km/s beyond r_nl; c_pi = 230 km/s only inside 3.61 R_sun
+    canonical 90 pc: v3s hedgehog c_pi = sqrt(GM/r): 42.12 km/s at 1 AU, 5.074 km/s at r_nl = 69 AU; Z* (R1 cap D.P <= rho_d) c_pi = 5.074 km/s beyond r_nl; c_pi = 230 km/s only inside 3.61 R_sun
+    alt 24 pc: v3s hedgehog c_pi = sqrt(GM/r): 42.12 km/s at 1 AU, 1.451 km/s at r_nl = 843 AU; Z* (R1 cap D.P <= rho_d) c_pi = 1.451 km/s beyond r_nl; c_pi = 230 km/s only inside 3.61 R_sun
+    alt 90 pc: v3s hedgehog c_pi = sqrt(GM/r): 42.12 km/s at 1 AU, 5.440 km/s at r_nl = 60 AU; Z* (R1 cap D.P <= rho_d) c_pi = 5.440 km/s beyond r_nl; c_pi = 230 km/s only inside 3.61 R_sun
+
+  canonical|24pc  : min t_loss/t_H (envelope) all rows 2.016e+04; Sun 9.257e+05
+  canonical|90pc  : min t_loss/t_H (envelope) all rows 2.084e+04; Sun 9.762e+05
+  alt|24pc        : min t_loss/t_H (envelope) all rows 1.766e+04; Sun 7.775e+05
+  alt|90pc        : min t_loss/t_H (envelope) all rows 1.837e+04; Sun 8.265e+05
+VERDICT (frozen rule): PASS  (min envelope t_loss/t_H 1.766e+04; min g=1, r_acc 2.347e+04)
+Checks: 6/8 PASS; exit 1
+run 0.3 s, peak RSS 0.146 GB
