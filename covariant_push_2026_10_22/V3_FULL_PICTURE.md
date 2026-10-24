@@ -251,13 +251,25 @@ No such sector is in the record, and no rule-compatible framework in the literat
   - **literal v3 with γ_L removed** (velocity screening only) passes Cassini (estimate), the outer globulars (Newton within
     Δχ² 2.47 in all 18 D10 cells), the TDGs/DF2 and the isolated RAR, and fails the satellites and UDGs;
   - **but every moving mass focuses the khronon wind into a line behind it** that a single-stream khronon cannot pass
-    (a caustic; γ_L does not fix it, Mach ≈ 300). Lane X8 reports it as a diagnostic |
+    (a caustic; γ_L does not fix it, Mach ≈ 300). X10 confirms the wake line behind a moving Milky Way-mass galaxy at
+    t_i + 3.9–4.4 Gyr, converged, so velocity screening carries the caustic problem with it |
 | Soft-side caustics in v3s | review `reviews/v3s_soft_side_caustics_2026_10_23/` (b362f12477) | **OPEN: not established, not excluded.** A soft khronon element is a test particle in the difference field Δg_b plus a WKB self term, and its density sign is carried with it, so it never gets γ_L pressure. The frozen reading shell-crosses in 6 of 12 cases (constant-velocity orbit, ~26 kpc from a galaxy, earliest t₀ + 0.64 Gyr), but every crossing element passes through an adiabatic halo region where the frozen-F premise fails. Elements that stay in the valid region never cross (deepest J = 0.35). Deciding it needs a self-consistent khronon-fluid code: Lagrangian flow plus the nonlinear Gauss law ∇·P(∇Ξ) = ρ_τ, axisymmetric **X8** (`rebuild_2026_10_22/X8_soft_side_caustics`, 43eedad42a / 72515e7e75; coordinator rerun of the decisive runs identical) built the self-consistent axisymmetric solver. Frozen verdict **UNDECIDED**: halving the time step moves one fold by 0.221 Gyr against the 0.2 line.
   - All six O2 cases fold on both footings, converged, at t₀ + 0.4 to 2.7 Gyr (none before today). O1 t_i 9 does not fold; four O1 cases are unconverged.
   - The mechanism is an axis collapse (a hoop factor of 0.022), which may be specific to axisymmetry.
   - Self-consistency does not remove the crossing.
   - O1's wake line cannot be separated from the transient caused by starting the khronon at rest.
-  - Still open: non-axisymmetric encounters and a co-moving start |
+  - **X10** (`rebuild_2026_10_22/X10_caustics_comoving`, 8a67b46dd7 / c13d9a15a6; decisive cells reproduced) added a
+    co-moving start: each galaxy's held khronon is Galilean-boosted with it.
+    - **The folds are not a start artefact.** Four of the six O2 cases fold, converged on both footings, 1.1–2.0 Gyr later
+      than in X8 and all after t₀. They are mostly in-plane, at the front of the Milky Way's held halo. X8's dt sensitivity
+      is gone (0.006 Gyr). Verdict UNDECIDED (PARTIAL): t_i 9 is not converged.
+    - **The wake is real in this model.** Behind the Milky Way the khronon wind focuses onto the axis 76–91 kpc downstream at
+      t_i + 3.9–4.4 Gyr, converged and the same on both footings. The upstream side folds only after ~11 Gyr. On the t_i 3
+      orbit this happens before today.
+  - **Reading.** In the axisymmetric model v3s's single-stream khronon develops caustics within a few Gyr behind moving
+    galaxies. What that means for the foliation (multi-stream flow, a global-time breakdown, or new UV physics) is not
+    decided. Still open: non-axisymmetric encounters, a smooth irrotational co-moving start, and back-reaction on the
+    baryons |
 | Cluster light/heavy split | per-tercile physics; a selector the theory lacks (CFG939) | data result (X2); no mechanism |
 | Wide binaries, MW in Gaia DR4 | sealed predictions (C6; S3 `SEALED_V3_MW_DR4.json`) | data 2026-12-02 |
 | ALMA U4 / GS4 | sealed, addendum F | data 2026-11-06 / 11-28 |
