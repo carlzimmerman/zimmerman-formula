@@ -200,3 +200,85 @@ exists. Neither is a data comparison.
 `OMP_NUM_THREADS=1 nice -n 15`, one thread, < 1 GB RSS per process, each run ≤ 30 min with checkpoint/resume (SIGTERM
 checkpoint). At most three such processes at once, and none while `compute_queue/heavyq.py status` shows low free memory.
 The heavy queue and every other lane are not touched. No downloads.
+
+## AMENDMENT A1 (PRE-RESULT: written before any scored validation or production run; development runs disclosed)
+
+The §3 discretisation failed its own validation in development, so the numerical method is replaced. Nothing in §2
+(cases), §4 (checks and pass lines) or §5 (statistic, thresholds, verdict classes) changes, except where items (c), (d)
+and (g) below say so. **This amendment is not blind:** it was written after the development runs listed here, including
+one run of the final method on a production case.
+
+**Development history (scratch copies, outputs not kept; numbers disclosed).**
+1. **§3 as frozen** (node-centred finite volumes, momentum-conserving CIC). The static single mass (V-a1) drifted:
+   max |J − 1| was 1.2e-3 / 1.0e-2 / 0.19 at h = 20 / 10 / 5 over 10 Gyr, growing with resolution. With γ_L = 0 it was
+   exact (1e-10); the stiffness's 1e-5 imbalance only seeded it. A single 1e-3 kpc kick at h = 5 (γ_L = 0) grew the kinetic
+   energy ×85 in 3 Gyr. Diagnosis: the discrete khronon dynamics is not Hamiltonian. The FV hold-law flux, with averaged
+   tangential gradients, is not the gradient of a discrete energy, and the node-gradient + CIC interpolation is not the
+   adjoint of the deposit; near a galaxy centre the physical restoring force ∝ x → 0, so the error wins. One development
+   run of the production script with this method (canonical, O2, t_i 3, h = 20) reported a fold; it is void.
+2. **Q1 finite elements + energy-conserving CIC.** Stable: the kick energy stayed bounded. But particles start on nodes,
+   where the CIC force is one-sided and discontinuous. That drives the grid-Nyquist particle mode, which the deposit
+   cannot see: in the Galilean test (V-a2) neighbouring rings drifted ±5 kpc at h = 10 (|J − 1| = 0.32). **Q1 + a
+   momentum-conserving projected-gradient force:** smooth, but the kick energy grew ×11 in 3 Gyr.
+3. **Q1 + quadratic B-spline (C¹) energy-conserving shapes** (adopted, item (b)): kick energy bounded, static exact
+   (1e-11), Galilean drift ≤ 0.4 kpc over 4 Gyr at h = 10.
+4. **Initial state.** The AQUAL state leaves the switched stiffness unbalanced at ~1e-5; with x → 0 at a galaxy centre the
+   centre khronon drifted slowly (|J − 1| = 1.75e-4 at 4 Gyr, h = 5). Item (e) removes this.
+5. **Memory.** The sparse LU factors of the 9-point Q1 operators reached 0.83 GB (Laplacian) and 2.1 GB (the AQUAL
+   Newton step) at h = 5. Item (f) removes the factors. macOS RSS also counts freed pages kept by the medium malloc zone:
+   1.2–1.6 GB resident while the physical footprint (the heavy queue's measure) was 0.14–0.18 GB. With
+   `MallocMediumZone=0` the largest h = 5 grid runs at 0.31 GB resident and 0.18 GB footprint.
+6. **The axis.** In the B2 ring representation the axis particles (R_q = 0) get ~5 % of their neighbours' mass (6e-5 of the
+   total) after deconvolution, with the sign flipped at many axis nodes. They are passive tracers: with no restoring force
+   they drifted, and that drift was the remaining V-a2 error (|J − 1| = 0.20 at h = 10, all of it on axis labels).
+7. **A development run of the adopted method before items (d) and (g)** (canonical, O2, t_i 3, h = 5, fixed dt, to
+   t = 9.4 Gyr). The positive halo around MW folded within 0.5 Gyr of t_i: the review's v = 0 start kicks each halo
+   against its moving galaxy. The fixed-step leapfrog then blew up numerically in the compressed core.
+8. **The final method in development.**
+   - Validation: V-a1 ≤ 4e-10. V-a2 (outside 2ε) 0.060 / 0.022 / 0.0075 at h = 20 / 10 / 5. V-b rate ratios
+     0.993 / 0.990 / 0.995 / 0.995 (L+ / L− / T+ / T−) at h = 2, converging from 0.88–0.92 at h = 8.
+   - One run on a production case, canonical, O2, t_i 3, h = 10, mostly before item (d):
+     - positive (stiff-side) elements fold on the axis from t ≈ 3.8 Gyr;
+     - soft labels stay at J ≥ 0.93 to t = 12.6 Gyr;
+     - with axis labels still included, the first soft threshold was an axis label at t = 13.3 Gyr, 47 kpc from MW.
+
+**Method (replaces the §3 bullets "Discrete operators", "Initial state", "Khronon fluid", "Integrator", "The Jacobian" and
+"Validated region" where they differ).**
+- (a) **Fields: Q1 finite elements.** Bilinear basis N_n on the same tensor grid, axisymmetric volume element 2πR dR dz,
+  2×2 Gauss quadrature. Weak forms with R_c(u)_n = ∫ c ∇u·∇N_n dV:
+  - hold law R_{1−μ}(Ξ̃) = −K m;
+  - Poisson R_1(φ_τ) = −K m;
+  - AQUAL R_μ(Ξ̃) = R_1(φ_b);
+  - m are the nodal khronon masses.
+  The hold operator is bounded by the Laplacian at every Gauss point (1/(1+x)² ≤ 1/(1+x) ≤ 1), so the discrete
+  restoring force has the continuum sign.
+- (b) **Particles.** One ring particle per interior node, labelled by it. Deposit and force use the quadratic B-spline in
+  index space (3×3 nodes); node −1 beyond the axis is folded onto node 1 (mirror). The acceleration is the gradient of
+  Σ_n (ζ − γ_L ρ₊)_n S_n(x_p): energy-conserving, continuous, and with zero radial component on the axis. The particle
+  masses are the exact deconvolution of the equilibrium nodal masses (separable banded solves), so the deposit at t_i
+  reproduces them (checked to 3e-16).
+- (c) **Soft set.** A label is soft iff the discrete phantom mass at its node is negative, i.e. D·P < 0 at t_i (§3's meaning).
+  Particle signs are not used for this, because deconvolution flips axis particles.
+- (d) **Axis.** Axis labels (R_q = 0) are excluded from every J statistic: the validated region and D-STIFF, D-GRADED,
+  D-WAKE and D-FOLLOW all require R_q > 0. J at R_q = h uses the symmetry-extrapolated axis values (R odd → 0;
+  z even → (4z(h) − z(2h))/3) instead of the tracer positions. V-a1 and V-a2 likewise exclude axis labels.
+- (e) **Initial state.** The exact discrete v3s switched static equilibrium: ∇(χ − φ_b − γ_L ρ₊) = 0, i.e. AQUAL with φ_b
+  replaced by φ_b + γ_L ρ₊(Ξ̃), solved by fixed point (2–4 outer iterations). It reduces to the frozen AQUAL state as
+  γ_L → 0, and differs from it at the ~(L★/h)² level.
+- (f) **Solvers.** These solve the same discrete equations.
+  - The interior Laplacian is exactly separable under 2-point Gauss, A = M_z⊗K_R + K_z⊗M_R. It is solved by fast
+    diagonalisation (dense generalised eigenproblem in z, batched Thomas in R; residual 1e-11, agrees with the LU to
+    9e-13).
+  - The AQUAL Newton step (exact tensor Jacobian μI + (μ_L − μ)ĝĝ) is solved by preconditioned CG, with the
+    diagonally scaled fast Laplacian as the preconditioner. Stop at residual ≤ 1e-12 relative, or stagnation (printed).
+  - The hold law is the frozen Anderson fixed point, written with ring buffers.
+- (g) **Time step.** dt = min(dt₀, 0.15/ω_max(t)), with dt₀ = min(0.02 Gyr, 0.15/ω_max(t_i)) and ω_max(t) taken from the
+  current deposited density and Ξ̃. The floor is dt₀/50.
+  - A new flag **F4** records the first time the floor is reached. It is treated exactly like F1–F3 in §5.
+  - N-dt halves both dt₀ and the 0.15.
+- (h) **Memory.** Every script re-executes itself with `MallocMediumZone=0`. Both the sampled peak physical footprint and
+  ru_maxrss are reported.
+- (i) **R0** executes the review's own loop narrowed to the six runs it needs: its 24-run loop peaked at 1.01 GB RSS.
+
+MUTATE (frozen F) uses the same particles and deposit. Its acceleration is the B2 gradient of
+χ₀ − γ_L ρ₊₀ − φ_b(t), with χ₀ and ρ₊₀ fixed at t_i.
