@@ -245,3 +245,9 @@ With η(k) ≡ 2/(1 + L★²k²/2), which is P integrated out:
 PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 rebuild_2026_10_22/X15_c1_preferred_frame/x15_c1_preferred_frame.py              # exit 0
 PYTHONHASHSEED=0 X15_MUTATE=1 OMP_NUM_THREADS=1 nice -n 15 python3 rebuild_2026_10_22/X15_c1_preferred_frame/x15_c1_preferred_frame.py  # exit 1 by design
 ```
+
+**Coordinator rerun (2026-10-24).** Both commands were rerun in place: main exit 0, MUTATE exit 1. The four output files differ only in timing and RSS lines. Independent hand checks:
+- α₁ = −4η, and the two α₂ forms agree.
+- Both match the Blas–Pujolàs–Sibiryakov khronometric formulas, recalled independently, at α_BPS = η, β_BPS = 0, λ_BPS = β.
+- The large-kL★ series are α₁ ≈ −16/(kL★)² and α₂ ≈ −2/(kL★)² + (16 + 8/β)/(kL★)⁴.
+- The 30 AU residuals reproduce at L★ 21.7 / 22.9 pc: 3.59e-10 / 3.23e-10 and 2.25e-11 / 2.02e-11.

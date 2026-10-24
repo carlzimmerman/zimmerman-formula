@@ -187,6 +187,7 @@ coincide pointwise where D·P ≥ 0, so P3's BH/NS solutions remain solutions.
     by P3's criterion. Whether that matters needs a non-relativistic (dust-like) strong-coupling analysis, which is not
     done here.
 - **E2, Lifshitz regulator β(∇·n)², unswitched v3 + β (JSON `E2`; C5 × H4 superposed, ESTIMATE).**
+  - **Update (X15, 2026-10-24):** the factor B = βc²/(2 + 3β) is exact, not an estimate. X15's unitary-gauge linear system (GR + P sector + switched stiffness + β) has exactly this khronon root, ω² = βk²(M − 1 + Θ L★²k²/2)/(2 + 3β).
   - At β = 1e-9 (C5's estimated upper edge), the worst e-folds equal H4's bounded branch (0.006–0.20), so the γ_L k² growth
     is fully regulated.
   - At β = 1e-15 they are ≤ 0.29. At β = 1e-18 they reach 0.007–8.9.

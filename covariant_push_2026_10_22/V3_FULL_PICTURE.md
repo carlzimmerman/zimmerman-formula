@@ -70,7 +70,7 @@ This is AQUAL, not QUMOND (doors E2, C4). With μ_K → 0 and spherical symmetry
 | SPARC RAR (conditional) | rms 0.054 / 0.054 dex with one Υ per galaxy and the EFE solved for 109; the χ² line fails (63–64 % acceptable) | NUM: P4 |
 | Isolated groups | +0.010 / −0.010 dex | NUM: P4 |
 | Solar System (screened) | inside L★ the Sun's field is a hedgehog GM/L★² r̂ with no quadrupole; all 24 Cassini cells pass, by 4.8e7–5.1e9 | NUM: C6. The unscreened law fails Cassini 2.44–5.19× (E2) |
-| Gravitational waves, binary pulsars | tensor speed c; at most 3.2e-14 of the double pulsar's precision | NUM: C8, P3 |
+| Gravitational waves, binary pulsars | tensor speed c; at most 3.2e-14 of the double pulsar's precision (no scalar channel at β = 0; with the β completion, scalar radiation is not computed, X15) | NUM: C8, P3 |
 | Static black holes, neutron stars | shifts ≤ 2.9e-11; \|ΔR/R\| ≤ 5.3e-28 | NUM: P3 |
 | Tidal dwarfs, DF2/DF4 | dust-free in their host, hence Newtonian (§4.3) | NUM: U1, consistent with T3 |
 | Isolated Local Group dwarfs | +0.06 / +0.02 ± 0.08 dex | NUM: X1 |
@@ -243,7 +243,9 @@ models; S3, X5), and this holds for the whole μ-law family. Joint radial-plus-v
 5. **Three failures are generic to every MOND-type theory:** clusters, the CMB's third peak (z ≈ 1100 is Newtonian, so a₀
    is inert there), and the Milky Way's joint fit.
 6. **The single-stream khronon forms caustics generically** (X14, analytic: any stream crossing a sheet folds at
-   w/(KΣ_b)). Removing them needs a new constant; of nine classes only the β term survives, in a narrow window.
+   w/(KΣ_b)). Removing them needs a new constant; of nine classes only the β term survives, in a narrow window. It
+   passes preferred-frame PPN (X15), but it works only for motion slower than the khronon's new sound speed
+   (160–770 km/s at the top of the window). Whether galaxies are subsonic depends on the khronon's rest frame.
 
 **What a completion would need**, read off the mechanisms (X0 §2, X6): a gravitating cold sector that
 (i) clusters linearly like dust from z ≈ 1100;
@@ -266,7 +268,11 @@ No such sector is in the record, and no rule-compatible framework in the literat
     Δχ² 2.47 in all 18 D10 cells), the TDGs/DF2 and the isolated RAR, and fails the satellites and UDGs;
   - **but every moving mass focuses the khronon wind into a line behind it** that a single-stream khronon cannot pass
     (a caustic; γ_L does not fix it, Mach ≈ 300). X10 confirms the wake line behind a moving Milky Way-mass galaxy at
-    t_i + 3.9–4.4 Gyr, converged, so velocity screening carries the caustic problem with it |
+    t_i + 3.9–4.4 Gyr, converged, so velocity screening carries the caustic problem with it.
+  - **X15 (linear, analytic):** at β = 0 a moving source does not carry its hedgehog. For any k·w ≠ 0 the linear
+    solution is GR with the bare G, and the limits β → 0⁺ and w → 0 do not commute. This is H5's velocity screening at
+    linear order. So A22's a_P = GM/L★² and C8 K8's (w·n̂)² anisotropy hold only for a Sun at rest in the khronon frame;
+    Cassini passes either way. The β term restores the carried hedgehog for motion slower than c_A |
 | Soft-side caustics in v3s | review `reviews/v3s_soft_side_caustics_2026_10_23/` (b362f12477); X8, X10, X12, X14 | **CAUSTICS GENERIC (X14, analytic); no caustic-free completion without a new constant (only β survives).** History: the review left it open, not established and not excluded. A soft khronon element is a test particle in the difference field Δg_b plus a WKB self term, and its density sign is carried with it, so it never gets γ_L pressure. The frozen reading shell-crosses in 6 of 12 cases (constant-velocity orbit, ~26 kpc from a galaxy, earliest t₀ + 0.64 Gyr), but every crossing element passes through an adiabatic halo region where the frozen-F premise fails. Elements that stay in the valid region never cross (deepest J = 0.35). Deciding it needs a self-consistent khronon-fluid code: Lagrangian flow plus the nonlinear Gauss law ∇·P(∇Ξ) = ρ_τ, axisymmetric **X8** (`rebuild_2026_10_22/X8_soft_side_caustics`, 43eedad42a / 72515e7e75; coordinator rerun of the decisive runs identical) built the self-consistent axisymmetric solver. Frozen verdict **UNDECIDED**: halving the time step moves one fold by 0.221 Gyr against the 0.2 line.
   - All six O2 cases fold on both footings, converged, at t₀ + 0.4 to 2.7 Gyr (none before today). O1 t_i 9 does not fold; four O1 cases are unconverged.
   - The mechanism is an axis collapse (a hoop factor of 0.022), which may be specific to axisymmetry.
@@ -294,13 +300,27 @@ No such sector is in the record, and no rule-compatible framework in the literat
       at Mach ≥ 311 / 280, and K(Q) is inert at the fold scale (q_K ≤ 0.017 at μ_K = 0.1 Mpc⁻¹).
     - **(ii) Every caustic-free completion needs a new constant.** Of nine frozen classes only C1 survives: a K²/(□φ)²
       term, the record's β. Its window is β ∈ [2.0e-6, 1.0e-5] at μ_K = 0.1 Mpc⁻¹. It removes the fold only in linear,
-      subsonic flow, and its preferred-frame PPN and galaxy dynamics are not checked. The complex-scalar (Madelung)
+      subsonic flow; X15 (below) checked its preferred-frame PPN. The complex-scalar (Madelung)
       completion needs ρ_τ ≥ 0 and is singular where ρ_τ crosses zero. Adhesion adds no constant but is non-variational, and
       with sign-indefinite charge a sticky merger creates energy.
     - **New structural fact.** The PN hold flux is capped, |KP| < a₀: under the simple μ the phantom acceleration
       g − g_N = a₀x/(1+x) never reaches a₀. Its inverse 𝒰(y) = a₀y/(a₀ − |y|) has 𝒰′ = (1+x)². Negative enclosed charge
       therefore collapses within a free-fall time.
-    - The coordinator checked the cap identity, τ_f, the C9 energy gain and β_max by hand. |
+    - The coordinator checked the cap identity, τ_f, the C9 energy gain and β_max by hand.
+  - **X15** (`rebuild_2026_10_22/X15_c1_preferred_frame`, 87867a70a4 / 1dabb58f50; rerun identical): **C1 SURVIVES PPN**.
+    - In the screened branch, with η(k) = 2/(1 + L★²k²/2), α₁ = −4η and α₂ = η(η(1+2β) − β)/(β(2 − η)). These match
+      Blas–Pujolàs–Sibiryakov's khronometric formulas with α_BPS = η, β_BPS = 0, λ_BPS = β; the coordinator checked
+      that symbolically.
+    - At PPN order (r ≪ L★) α₁ = α₂ = 0 for every β > 0. The residuals at 30 AU, ≤ 3.6e-10 and ≤ 2.3e-11, are set by L★,
+      not β, against bounds 1e-4 and 2.4e-7. The whole X14 window survives on both footings.
+    - **The open condition is galaxy dynamics.** C1 makes the khronon a propagating scalar with sound speed c_A,
+      160–770 km/s at the top of the μ_K = 0.1 window, and its cure needs motion slower than c_A.
+      - Subsonic galaxies shift by ≤ 0.04 dex.
+      - At CMB-dipole speeds galaxy outskirts are supersonic (Mach up to 2.3) and not estimable.
+      - At μ_K = 0.03 the window reaches 1.1e-4 and 369 km/s stays subsonic (Mach ≤ 0.69).
+      - The khronon's rest frame relative to galaxies is not fixed by the record.
+    - Not computed: binary-pulsar scalar radiation from the new mode (it is superluminal and dispersive at Solar-System
+      scales), neutron-star sensitivities, and 2PN. |
 | Cluster light/heavy split | per-tercile physics; a selector the theory lacks (CFG939) | data result (X2); no mechanism |
 | Wide binaries, MW in Gaia DR4 | sealed predictions (C6; S3 `SEALED_V3_MW_DR4.json`) | data 2026-12-02 |
 | ALMA U4 / GS4 | sealed, addendum F | data 2026-11-06 / 11-28 |

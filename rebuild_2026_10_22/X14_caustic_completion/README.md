@@ -142,6 +142,7 @@ Jacobson–Mattingly; ASZ82 Arnold–Shandarin–Zel'dovich; GSS89 Gurbatov–Sa
   - C5's IR-band rate formula is C5's own estimate.
   - Preferred-frame PPN (α₁, α₂) at λ − 1 = β ~ 1e-6, and a khronon sound speed of 100s of km/s in galaxies and in the
     Solar System's Galactic khronon, are **not checked**. Velocity screening, held halos and H5 lobes would all change.
+    - **Update (X15, 2026-10-24, `rebuild_2026_10_22/X15_c1_preferred_frame`, 87867a70a4 / 1dabb58f50; reproduced):** preferred-frame PPN is now checked and the window is unchanged. At PPN order α₁ = α₂ = 0 for every β > 0, and the residuals ≤ 3.6e-10 / 2.3e-11 are set by L★, not by β. The galaxy-dynamics condition stays open: the cure needs motion slower than the khronon sound speed c_A, which is 160–770 km/s at the top of the μ_K = 0.1 window.
   - So C1 is "compatible with the frozen passes at a new constant". It is not a recommended completion.
 - **C2, C6 and C7 are graded from their representatives or from the record.** A full Hořava z = 3 analysis, a Hamiltonian
   count for C6 and AeST's DOF are not done.
