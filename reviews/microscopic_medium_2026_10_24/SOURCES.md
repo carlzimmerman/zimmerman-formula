@@ -1,0 +1,9 @@
+# Primary-source checks, 2026-10-24
+
+1. Celoria, Comelli, Pilo, *Sixth mode in massive gravity*, PRD 98,064016 (2018), DOI 10.1103/PhysRevD.98.064016. Official open PDF read: https://scoap3-prod-backend.s3.cern.ch/media/files/42595/10.1103/PhysRevD.98.064016.pdf . Equations (2.4), (2.7), (2.8) give the nondegenerate medium energy and stability interval. Section V expressly separates degenerate kinetic matrices. Our a,b,gamma derivation is independent algebra consistent with that interval. Not a citation for a universal microscopic no-go.
+
+2. Same authors, *Self-gravitating Lambda-media*, arXiv:1712.04827v2, 12 Apr 2019: https://arxiv.org/pdf/1712.04827 . Equations (3.5)-(3.8) give the solid equation-of-state constraint and internal scaling; (3.13)-(3.14) give the perfect-fluid symmetry; section 4 and (4.5) discuss protected degeneracy. Reference 29 identifies the vector parent. These are EFT constructions, not a fixed MOND amplitude. General-n Ward and explicit strain checks in this packet are our derivations. The paper's arbitrary function U is not assigned a universal numerical normalization.
+
+3. Blas, Sibiryakov, *Completing Lorentz violating massive gravity at high energies*, arXiv:1410.2408v2, 23 Jan 2015: https://arxiv.org/html/1410.2408v2 . Read equations (28)-(41), especially vector mixing and independent V0 in (31), mu^2=m_A M_V in (35), and the adjusted constant in (41). This verifies a specified higher-energy candidate retains a vacuum datum. It is not an exact completion of every Lambda-medium symmetry and does not provide a MOND coefficient. No loop reproduction or global viability claim.
+
+All were read online without downloading complete sources into the repository. An incidental search hit for arXiv:2412.14747 resolves to a different paper and is not used as evidence.

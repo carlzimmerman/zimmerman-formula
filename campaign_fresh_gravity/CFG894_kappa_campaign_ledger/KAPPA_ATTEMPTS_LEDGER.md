@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (756 rows)
+## Totals (760 rows)
 
-- **535 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **536 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **129 produced a number.** 60 produced one determinate value; 69 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -145,7 +145,7 @@ fact.
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 56 | 13 | 14 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 42 | 9 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 64 | 4 | 10 | 50 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 147 | 9 | 7 | 126 | 5 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 148 | 9 | 7 | 127 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 58 | 9 | 12 | 36 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 49 | 2 | 4 | 39 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 112 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 115 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -488,6 +488,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K750 | W4-22/M | `why_4_puzzle/W4_22_gauss_times_loop_model` | Gauss-normalized Newtonian stiffness c^4/(8piG) x 3D one-loop MOND cubic (zero mode, N dof, mass lambda/grad Phi/) x tree vacuum | - | free | TRADE: R = (32pi N^2/9) Y, kappa = 1/(N sqrt Y) pi-free, N = 2 prefactor exactly 128pi/9 = (8pi)^3/(6pi)^2; the 4 relocates to N^2 Y = 4 (Y = 1, N = 2 is H061); Newton-leading at low field, and the MOND-shape cancellation re-glues the pi (xi = pi^3 N T^4/27 eps); signs barred by concavity | f216b048f |
 | K752 | W4-23/M | `why_4_puzzle/W4_23_gauss_law_flux_rescue` | minimal fixed-flux (Gauss-law) medium: inf_x[a x^-n + b t x^(n-2)], t = gN^2, separate vacuum | - | free | TRADE: dimension-fixed deep-MOND exponents (n = 3: g = gN + sqrt(a0 gN)); stable only for the electrostatic sign; for gravity's attractive sign the branch is a maximum (W4-08 tachyon); R = eps/(54 a b^3 K^3), xi = 192 pi a b^3 K^3/eps | 439c6ba1d |
 | K755 | A0SEL-20261024/SCALE | `reviews/a0_selection_2026_10_24` | classical two-scalar scale-invariant vacuum | - | free | TRADE: uniform positive quartic rescaling preserves stationary angle but scales Einstein-frame vacuum; radial modulus and response map remain unfixed | freeze:87e0c60793 |
+| K759 | MICROMED-20261024/LAMBDA | `reviews/microscopic_medium_2026_10_24` | protected Lambda-solid scaling symmetry and nonlinear shape response | - | free | TRADE: symmetry-compatible eta*(Tr B^2/(Tr B)^2-1/n) preserves background and changes shear; its square preserves quadratic data but changes nonlinear response; strain is not identified with MOND acceleration | freeze:36c2d800d1;continuation:0e132d0606 |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -955,6 +956,9 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K751 | W4-22/K0 | `why_4_puzzle/W4_22_gauss_times_loop_model` | CORRECTION of K747: W4-21's three weight shapes | - | audit | CORRECTION: (1,0,0), (-1,1,0), (0,-1,-1) are one class modulo common-factor (1,1,1) and field-rescaling (0,3,2) shifts, which span the kernel of (1,2,-3); only wt R = 1 is invariant | f216b048f |
 | K753 | W4-23/L | `why_4_puzzle/W4_23_gauss_law_flux_rescue` | duality and sign lemma for the Gauss-law route (W4-08 R3) | - | audit | AUDIT: every MOND law is convex in s = g^2 and concave in t = gN^2, so stable s-affine media cannot give ANY MOND interpolation; flux-affine = field-affine at fixed x, so a Gauss-law rewrite of the same attractive mediator does not escape; the escape is an opposite-sign flux sector = QUMOND's indefinite structure (X15, Cassini p58) | 439c6ba1d |
 | K756 | A0SEL-20261024/RESPONSE | `reviews/a0_selection_2026_10_24` | dust-vacuum curvature projector versus preferred-clock cubic response | - | audit | AUDIT: exact dust projector isolates Lambda but material pressure contaminates it; symmetry-allowed cubic clock-acceleration coefficient shifts operational a0 while vanishing on homogeneous background; full covariant health not established | freeze:87e0c60793 |
+| K757 | MICROMED-20261024/HEALTH | `reviews/microscopic_medium_2026_10_24` | common clock-solid medium at exact vacuum stress | - | audit | SCOPE: q^2 K-mu^2 S=(rho+p)/2 forbids positive kinetic and clock-gradient energy on nondegenerate first-derivative branch; derivative mixing cannot repair positive-elastic branch; higher k^4 stabilizer leaves an IR band in isolated example | freeze:36c2d800d1;continuation:0e132d0606 |
+| K758 | MICROMED-20261024/VOLUME | `reviews/microscopic_medium_2026_10_24` | constrained determinant medium U(J) | - | audit | AUDIT: on invertible U-second-derivative-nonzero branch U-prime=C retains integration constant; stress is vacuum-like but no local J response; explicit quadratic example reproduces flux-type freedom | freeze:36c2d800d1;continuation:0e132d0606 |
+| K760 | MICROMED-20261024/PARENT | `reviews/microscopic_medium_2026_10_24` | published vector-condensation higher-energy parent arXiv:1410.2408v2 | - | audit | SOURCE CHECK: equations 31 and 34-41 retain independent vacuum V0 versus response scale mu^2=m_A M_V; not an exact Lambda-medium or MOND completion | freeze:36c2d800d1;continuation:0e132d0606 |
 
 ## LN: Logic / Lean formalisations
 
