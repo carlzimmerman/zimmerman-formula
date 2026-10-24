@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (771 rows)
+## Totals (774 rows)
 
 - **537 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 124 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 127 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -970,6 +970,9 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K769 | RGJOINT-20261024/RATIO | `reviews/rg_joint_selector_2026_10_24` | RG flow versus trajectory-independent MOND matching invariant | - | audit | CONDITIONAL CRITERION: beta log kappa zero is not selection; physical map must annihilate every free-direction projection (-1/2 -1 3); individual amplitudes need not be unique; no microscopic beta system computed | freeze:4020715cf3 |
 | K770 | RGJOINT-20261024/AS | `reviews/rg_joint_selector_2026_10_24` | arXiv:2609.29369v1 gravitational coupling correlation | - | audit | SOURCE AUDIT: Horndeski relation selects CC trajectory within truncation but converged endpoint is negative; positive branch unresolved; nonanalytic MOND operator and baryon portal not matched | freeze:4020715cf3 |
 | K771 | RGJOINT-20261024/IR | `reviews/rg_joint_selector_2026_10_24` | arXiv:2609.29979v1 IR screening plus conditional endpoint closure | - | audit | SOURCE AUDIT: reported vacuum attractor in frozen-G R2 single-mode truncation lacks MOND matching; Lambda=A k^2 with k=xi H and vacuum Einstein equation fixes xi for nonzero H but not H itself | freeze:4020715cf3 |
+| K772 | FUNCQG-20261024/FUNCTIONAL | `reviews/functional_qg_matching_2026_10_24` | arXiv:2302.10989v1 functional kinetic fixed point | - | audit | SOURCE AUDIT: full kinetic-function study treats g externally and lambda=0; no joint vacuum/baryon matching; UV kinetic normalization does not prove physical IR quadratic coefficient or exclude nonuniform MOND limit | freeze:18c33c1688 |
+| K773 | FUNCQG-20261024/FORCE | `reviews/functional_qg_matching_2026_10_24` | quadratic contamination of the sourced cubic force | - | audit | CONDITIONAL RESULT: exact g_phi^2+g_star g_phi=a0 g_N with g_star=qZ/C and a0=q^3/(4pi G C); finite positive g_star restores inverse-square low-gradient force; both invariant under field normalization; finite-domain viability requires suppression not necessarily exact zero | freeze:18c33c1688 |
+| K774 | FUNCQG-20261024/PORTAL | `reviews/functional_qg_matching_2026_10_24` | arXiv:2009.13543v2 predictive scalar-fermion matter portal | - | audit | SOURCE AUDIT: FP3 predicts marginal matter interactions within truncation but retains mass/gravity directions; Higgs/Yukawa portal is not matched to MOND source q or cubic C; free parameter count alone is not a ratio nonselection proof | freeze:18c33c1688 |
 
 ## LN: Logic / Lean formalisations
 
