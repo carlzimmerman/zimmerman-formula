@@ -1,0 +1,3 @@
+# Handoff
+
+Frozen 5b11740a2a. Read limitations before quoting: finite preferred-frame momentum shell; positive K,D,gamma; nonzero background gradient; formal one-loop only. Exact background frequency contains anisotropy 1+mu^2. Delta E=E0+A1 s+A2 s^2, A2=-7 hbar gamma^2 Delta k/(120 pi^2 sqrt(K) D^(3/2)); Delta b=2A2. A1 is also generated and cannot be discarded when discussing low-gradient behavior. Higher-loop expansion nonuniform at s=0 is unresolved. No regulator-independent beta, measured vacuum identification, completed baryon sector or full AeST implication. Polynomial shift fails for cubic-gradient Euler expression; extensions with additional transforming fields not excluded. Goal unresolved. Baseline 12/12; mutation fails five checks. No independent review.
