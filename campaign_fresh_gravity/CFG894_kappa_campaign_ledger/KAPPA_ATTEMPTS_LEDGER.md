@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (767 rows)
+## Totals (771 rows)
 
 - **537 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 120 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 124 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -966,6 +966,10 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K765 | CONDJOINT-20261024/RABI | `reviews/condensate_joint_matching_2026_10_24` | ordinary analytic condensate mixing versus normalized phase vacuum interaction | - | audit | SCOPED CLOSURE: stable-mass NR bilinear mixing is degree one in densities and gives p_R=0; phase-only potential gives p=-U but changes microscopic interaction and retains independent amplitude and offset | freeze:fba75ecd27 |
 | K766 | CONDJOINT-20261024/RATIO | `reviews/condensate_joint_matching_2026_10_24` | actual cubic force and conditional common-scale microscopic amplitude ratio | - | audit | CONDITIONAL REDUCTION: a0=q^3/(4pi G C) is field-normalization invariant; C=c3 Lambda and q=cb Lambda/Mpl and epsilon=c0 Lambda^4 cancel Lambda but leave kappa=2sqrt(8pi)cb^3/(c3 sqrt(c0)); amplitudes and absolute scale unselected | freeze:fba75ecd27 |
 | K767 | CONDJOINT-20261024/PARENT | `reviews/condensate_joint_matching_2026_10_24` | two-field superfluid derivative parent arXiv:2009.03003v3 with finite amplitude regulator | - | audit | PARTIAL: amplitude elimination yields MOND cubic on large-amplitude branch; finite regulator has exact threshold x=1+1/sqrt(2) where amplitude gap closes; Lambda and Lambda_c and baryon portal remain inputs; no joint vacuum matching or UV completion | freeze:fba75ecd27;continuation:54785632d6 |
+| K768 | RGJOINT-20261024/MATTER | `reviews/rg_joint_selector_2026_10_24` | matter-only functional RG vacuum offset | - | audit | SCOPED OBSTRUCTION: field-independent vacuum shift survives exactly on fixed external metric; dimensionless shift has exponent d and free dimensionful coefficient; metric fluctuations excluded | freeze:4020715cf3 |
+| K769 | RGJOINT-20261024/RATIO | `reviews/rg_joint_selector_2026_10_24` | RG flow versus trajectory-independent MOND matching invariant | - | audit | CONDITIONAL CRITERION: beta log kappa zero is not selection; physical map must annihilate every free-direction projection (-1/2 -1 3); individual amplitudes need not be unique; no microscopic beta system computed | freeze:4020715cf3 |
+| K770 | RGJOINT-20261024/AS | `reviews/rg_joint_selector_2026_10_24` | arXiv:2609.29369v1 gravitational coupling correlation | - | audit | SOURCE AUDIT: Horndeski relation selects CC trajectory within truncation but converged endpoint is negative; positive branch unresolved; nonanalytic MOND operator and baryon portal not matched | freeze:4020715cf3 |
+| K771 | RGJOINT-20261024/IR | `reviews/rg_joint_selector_2026_10_24` | arXiv:2609.29979v1 IR screening plus conditional endpoint closure | - | audit | SOURCE AUDIT: reported vacuum attractor in frozen-G R2 single-mode truncation lacks MOND matching; Lambda=A k^2 with k=xi H and vacuum Einstein equation fixes xi for nonzero H but not H itself | freeze:4020715cf3 |
 
 ## LN: Logic / Lean formalisations
 
