@@ -161,3 +161,9 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
   - The literal v3s pins L★ only through a fit at χ²/N ≈ 52. Rescaling its errors widens the upper end to 26.6 / 27.1 pc.
   - Profiling a floor nuisance removes any upper bound up to 90 pc.
   - So the dwarf "upper bound" is the mass shortfall, not screening. L★ stays one-sided: ≥ 21.7 / 22.9 pc.
+
+**Floor form** (`X28_dwarf_floor_form`, 32d4323f88 / dad0c9f1fe, a peer lane, post hoc and disclosed; coordinator rerun identical apart from timing). The core class is **VELOCITY FLOOR** on both footings; the frozen label reads UNDECIDED only because of a [SPARC-COST] tag on canonical.
+- An acceleration floor η·a₀ loses out of sample: χ² 327 / 389 against 217 / 195 for a velocity floor.
+- The field and hosted η values do not overlap.
+- A free power law g_floor ∝ r^{−n} gives n = 0.78 / 0.80, which excludes both 0 and 1.
+- **No reduction:** c₀ is not a₀-scaled and not in the action, so it stays a dimensionful lead.
