@@ -1,0 +1,3 @@
+# Handoff
+
+Read RESULT.md and frozen criteria. New result concerns the physical kinetic/source after scalar-metric diagonalization, unlike earlier free heat-kernel or SUSY audits. K=-2b d(d+1)q^2 A^d B P/F^2 and qE=qB/F. Pure-induced B=0 removes both. In D=4 finite stationary points have U''/K=-4U/(3P), conditional on nonzero K. A healthy positive-vacuum branch is tachyonic in this two-derivative truncation. F>0, wstar>0 and B>0 are essential in the mixed-branch interpretation; b can have either sign. Added operators, massless/critical sectors and alternative portals are not excluded. No independent review or actual coefficient selection. Baseline 14/14; mutation 10/14 with four expected failures.

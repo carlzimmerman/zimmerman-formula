@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (777 rows)
+## Totals (779 rows)
 
 - **537 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 130 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 132 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -976,6 +976,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K775 | SYMGQG-20261024/CONFORMAL | `reviews/symmetry_gauge_matching_2026_10_24` | spatial conformal protection and arXiv:2601.04290v1 | - | audit | CONDITIONAL AUDIT: bare cubic symmetry leaves amplitude and source free; compensator permitting vacuum scale also permits quadratic operator; cited dS proposal has no computed vacuum or matching factor | freeze:4dde973a74 |
 | K776 | SYMGQG-20261024/GAUGE | `reviews/symmetry_gauge_matching_2026_10_24` | arXiv:2502.14686v1 joint gauge coefficient matching | - | audit | SOURCE AUDIT AND CONDITIONAL MATCHING: cancellation sum rule does not fix particle product; vacuum normalization and stationary initial amplitudes remain in physical kappa; no microscopic joint selection | freeze:4dde973a74 |
 | K777 | SYMGQG-20261024/RESIDUAL | `reviews/symmetry_gauge_matching_2026_10_24` | residual linear polarization response | - | audit | CONDITIONAL DIAGNOSTIC: isotropic D=delta g+g^2/a0 has low-gradient g_N/delta; finite MOND requires delta much smaller than g/a0; not a derived spherical Yang-Mills solution | freeze:4dde973a74 |
+| K778 | QMETRIC-20261024/PROTECTION | `reviews/quantum_metric_protection_2026_10_24` | matter-induced metric kinetic and source matching | - | audit | CONDITIONAL OBSTRUCTION: after scalar-metric diagonalization pure-induced gravity removes both quadratic scalar and direct baryon charge; mixed gravity restores both; metricity does not impose additional cancellation counterterm | freeze:09a5823e84 |
+| K779 | QMETRIC-20261024/VACUUM | `reviews/quantum_metric_protection_2026_10_24` | stationary vacuum of minimal two-metric induced action | - | audit | CONDITIONAL OBSTRUCTION: common vacuum coefficient rescaling preserves stationary scalar but changes energy; finite healthy positive-vacuum stationary point has m^2=-4H^2 in two-derivative truncation and is not a stable attractor | freeze:09a5823e84 |
 
 ## LN: Logic / Lean formalisations
 
