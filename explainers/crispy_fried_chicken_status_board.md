@@ -29,10 +29,10 @@ The ½ is **fitted**, not derived; the current measurement is κ = 0.417 ± 0.09
 - **Qualifiers** (stated on the Health tile):
   1. the dust density must be ≥ −D·P inside stiff regions, which holds in the μ_K range S4 allows;
   2. at zero dust the interface is a knife edge, so numerics must be sign-consistent;
-  3. H4's bounded growth remains at saddles (0.006–0.20 e-folds median, ≤ 4.2 deepest). **OPEN for v3s's own D·P < 0 lobes around outer globulars** (X3 D4_maps: −8e-5 to −3.3e-3 M☉/pc³ at 180–1555 pc), raised by the H4/V1 coordinator. Preliminary, with H4's rates(), M − 1 = (1 + x_e)² − 1 and the deepest cell:
-     - under H4's lifetime convention T = ℓ/v (cluster motion through the khronon background, ~2–12 Myr per lobe), N ≲ 0.1, which is benign;
-     - if the khronon fluid co-moves with the lobe, N is 1–6 e-folds per Gyr (up to 86 per Hubble time for NGC 2419).
-     The reading rests on the khronon velocity relative to the lobe. Dwarf-satellite lobes are not computed. V1's −340 to −1800 lobes belong to the unscreened solution and do not apply to v3s (X3 lemma);
+  3. H4's bounded growth remains at saddles (0.006–0.20 e-folds median). **The v3s lobes around outer globulars and satellites are RESOLVED BENIGN** (H5, `rebuild_2026_10_22/H5_v3s_lobe_growth`, 2cde8548ed / 568a6b6709, 11/11, rerun identical):
+     - the PN system is Galilean-covariant, so the lobe pattern rides with the moving system while the host khronon streams through, spending 1–25 Myr in a lobe;
+     - the khronon charge's sign is carried along with the flow, so the stream keeps D·P ≈ ρ̄_host > 0 there, which is the stiff side, with nothing to grow;
+     - granted the static lobe anyway, N ≤ 0.048 (globulars), ≤ 0.013 (satellites) and ≤ 0.46 (pure radial orbit at apocentre);
   4. the D·P < 0 side's strong coupling: RESOLVED BENIGN (review `reviews/v3s_soft_side_strong_coupling_2026_10_23/`, d27e01f42e, 5/5): the soft-side khronon is a dispersionless fluid, ω² = Kρ_τ(M − 1); 'Λ = 0' came from putting c_π = 0 (the k → ∞ limit) into the relativistic scaling. With c_π(k) = ω/k, the strong-coupling length across all 320 H4 region values is 57 m–54 km, so the soft-side EFT holds on astrophysical scales. Open: classical nonlinearity of real khronon flows, ε_cl = k|v|/ω, possibly O(1) in Mpc bulk flows;
   5. 2D/3D evolution and a proof for a moving interface are open.
 

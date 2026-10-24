@@ -188,10 +188,10 @@ switch removed, fails 6 of 12; coordinator rerun: main run identical; the D10 E_
 - **Qualifiers:**
   1. The dust must be ≥ −D·P inside stiff regions, which holds in the μ_K range S4 allows.
   2. At zero dust the interface is a knife edge, so numerics must be sign-consistent.
-  3. H4's bounded growth remains at saddles (0.006–0.20 e-folds median, ≤ 4.2 deepest). **OPEN for v3s's own D·P < 0 lobes around outer globulars** (X3 D4_maps: −8e-5 to −3.3e-3 M☉/pc³ at 180–1555 pc), raised by the H4/V1 coordinator. Preliminary, with H4's rates(), M − 1 = (1 + x_e)² − 1 and the deepest cell:
-     - under H4's lifetime convention T = ℓ/v (cluster motion through the khronon background, ~2–12 Myr per lobe), N ≲ 0.1, which is benign;
-     - if the khronon fluid co-moves with the lobe, N is 1–6 e-folds per Gyr (up to 86 per Hubble time for NGC 2419).
-     The reading rests on the khronon velocity relative to the lobe. Dwarf-satellite lobes are not computed. V1's −340 to −1800 lobes belong to the unscreened solution and do not apply to v3s (X3 lemma).
+  3. H4's bounded growth remains at saddles (0.006–0.20 e-folds median). **The v3s lobes around outer globulars and satellites are RESOLVED BENIGN** (H5, `rebuild_2026_10_22/H5_v3s_lobe_growth`, 2cde8548ed / 568a6b6709, 11/11, rerun identical):
+     - the PN system is Galilean-covariant, so the lobe pattern rides with the moving system while the host khronon streams through, spending 1–25 Myr in a lobe;
+     - the khronon charge's sign is carried along with the flow, so the stream keeps D·P ≈ ρ̄_host > 0 there, which is the stiff side, with nothing to grow;
+     - granted the static lobe anyway, N ≤ 0.048 (globulars), ≤ 0.013 (satellites) and ≤ 0.46 (pure radial orbit at apocentre).
   4. The D·P < 0 side's strong coupling: RESOLVED BENIGN (review `reviews/v3s_soft_side_strong_coupling_2026_10_23/`, d27e01f42e, 5/5): the soft-side khronon is a dispersionless fluid, ω² = Kρ_τ(M − 1); 'Λ = 0' came from putting c_π = 0 (the k → ∞ limit) into the relativistic scaling. With c_π(k) = ω/k, the strong-coupling length across all 320 H4 region values is 57 m–54 km, so the soft-side EFT holds on astrophysical scales. Open: classical nonlinearity of real khronon flows, ε_cl = k|v|/ω, possibly O(1) in Mpc bulk flows.
 - **Not shown:** 2D/3D time evolution; a well-posedness proof for the moving interface.
 
@@ -241,6 +241,7 @@ No such sector is in the record, and no rule-compatible framework in the literat
 |---|---|---|
 | Switched stiffness at the interface and in the statics | X3 (`rebuild_2026_10_22/X3_switched_stiffness`) | **WELL-POSED + STATICS UNCHANGED** (qualifiers in §4.7); 2D/3D evolution and the moving-interface proof remain open |
 | Nonlinear growth (v3's one dynamical escape) | L1 512³ production | ladder converged at 256³ / 384³: does not restore growth (ρ_NL ≈ −0.05, indicative); the 384³ LOB-IC pair is running; the 512³ cells are queued |
+| Dynamical state of moving subsystems | H5 A2–A5; lane O1 (H4/V1 coordinator) | **OPEN.** In the literal single-stream reading, a system moving at V through its host's held khronon is not in the static branch: outside r_cap = 2GM_b/V² (the Sun ≈ 0.03 AU, globulars ≤ 0.25 pc) its interior sees ψ → φ_N. This is the dynamical form of U1's T3 (hosted ⇒ Newtonian). It questions the static AQUAL solutions (D10, S1, X1_hosted_recount) as the dynamical state of hosted systems. It may also make L★ unnecessary (velocity screening plus 'ownership by formation'), which O1 is testing |
 | Cluster light/heavy split | per-tercile physics; a selector the theory lacks (CFG939) | data result (X2); no mechanism |
 | Wide binaries, MW in Gaia DR4 | sealed predictions (C6; S3 `SEALED_V3_MW_DR4.json`) | data 2026-12-02 |
 | ALMA U4 / GS4 | sealed, addendum F | data 2026-11-06 / 11-28 |
