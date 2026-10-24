@@ -265,3 +265,19 @@ all starting inside the fine z range, move), but that is an argument, not a test
 
 Either way the frozen verdicts stay UNDECIDED; a production run would need a new frozen lane (successor) with its own
 V-cm box fixed before any production number.
+
+## AMENDMENT A2 (POST-RESULT: written after A1's runs; diagnostic only, no verdict weight)
+
+**What A1 showed.** A1-loc reruns reproduce the frozen V-cm numbers exactly. A1-box (≥ 300 kpc margin from graded-zone
+labels) changes nothing material: M31 0.0818 / 0.0929, MW 0.0569 / 0.0529 (h 15 / 10). So A1's candidate mechanism is
+**refuted**: the failure is not the test box. The maximum sits on labels 40–60 kpc from the mass (just outside 2ε), mostly on
+a mirror plane (x = 0 or y = 0) at h 10 and on the diagonal at h 15, and at h 10 it rises from ≈ 0.02 (t < 9 Gyr) to 0.093 at
+the end. The frozen verdicts stay UNDECIDED.
+
+**Added diagnostics (declared before they are computed):**
+- **A2-mir.** V-cm M31, canonical, h 10, frozen z range, but the **full domain** in x and y (fine x, y ∈ [−240, 240], graded
+  on both sides; no mirror plane). Reading: if max |J − 1| falls below the frozen h 15 value (0.0819), the mirror planes
+  drive the h 10 growth.
+- **A2-dt.** V-cm M31, canonical, h 10, frozen box, dt₀ and the 0.15 factor halved. Reading: if the late growth disappears
+  (max |J − 1| below 0.0819), the time step drives it.
+Neither changes any frozen number or verdict.
