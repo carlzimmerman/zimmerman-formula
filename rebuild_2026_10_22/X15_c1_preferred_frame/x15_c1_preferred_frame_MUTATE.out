@@ -1,0 +1,54 @@
+X15_c1_preferred_frame  [MUTATE m1-m5]
+==============================================================================================================
+PART S0: reproductions (stop rule)
+  [FAIL] S0-1: a22_checks.py sha ok True, exit 1, 12/13 PASS, alpha1/alpha2 PPN order 0.0/0.0 (A22 --mutate alpha1_forced: m5)   (line: A22's record script reproduces alpha_1 = alpha_2 = 0 at PPN order (13/13))
+  [FAIL] S0-2: beta_min can 1.993547e-06 alt 2.197554e-06; beta_max(0.1) 4.019882e-05, (0.03) 4.469260e-04; max rel diff vs X14 JSON 3.0e+00   (line: X14's C1 window reproduced from its own formulas to 1e-12 (both footings))
+  [FAIL] S0-3: omega^2 roots Theta1 ['beta*k**2*(L**2*k**2 + 2*M_P - 2)/(2*(3*beta - 2))'], Theta0 ['beta*k**2*(M_P - 1)/(3*beta - 2)']; expected beta k^2 (M - 1 + Theta L^2 k^2/2)/(2 + 3 beta)   (line: this lane's unitary-gauge system has exactly X3/X14's khronon root at rho_tau = 0, both sides (residual 0))
+  [FAIL] S0-4: GR system with this source has NO solution (inconsistent linear system)   (line: the extraction gives GR's alpha_1 = alpha_2 = 0 exactly, independent of the gauge function)
+  [PASS] S0-5: static n, psi - A22 eq.8 = [0, 0]; beta = 0 moving source: alpha1(k) = 0, alpha2(k) = 0, U_N = K*M/k**2; PPN order {'alpha1': 0, 'alpha2': 0}   (line: A22 reproduced at beta = 0: static hedgehog Phi = Psi = -GM/r + (GM/L*^2) r; PPN-order alpha_1 = alpha_2 = 0)
+
+PART D (step 1): alpha_1(k), alpha_2(k) of v3s + C1, screened branch (M = 1, Theta = 1)
+  [FAIL] D1: alpha1(k) = 24*beta*(-a**2 - b**2)/(3*a**2*beta - 3*b**2*beta + 4*b**2)  [alpha1 + 4 eta = b**2*(32 - 48*beta)/(3*a**2*beta - 3*b**2*beta + 4*b**2)]   (line: alpha_1(k) derived in closed form (analytic in w))
+  [FAIL] D2: alpha2(k) = nan  [minus eta(eta(1+2b)-b)/(b(2-eta)): nan]; gamma(k) static = 1   (line: alpha_2(k) derived in closed form (analytic in w))
+  [FAIL] X-BPS: leading order: alpha1 - (-4 eta) = -6*a**2*beta/b**2 - 6*beta + 4*eta, alpha2 - eta(eta - beta)/(2 beta) = nan; exact alpha2 - record aether(c13 = 0) = nan   (line: BPS 2011 Eq. 91 (PROVISIONAL) reproduced in the matching limit alpha_BPS = eta, beta_BPS = 0, lambda' = beta)
+  [FAIL] P-A1: lim_(kL*->inf) alpha1 = -24*beta*(a**2 + b**2)/(3*a**2*beta - 3*b**2*beta + 4*b**2)   (line: PPN-order alpha_1 = 0 on the screened branch, all beta > 0)
+  [FAIL] P-A2: lim_(kL*->inf) alpha2 = nan   (line: PPN-order alpha_2 = 0 on the screened branch, all beta > 0)
+  residual coefficients (L k)^(-2m), m = 0..3: alpha1 [-24*beta*(a**2 + b**2)/(3*a**2*beta - 3*b**2*beta + 4*b**2), 0, 0, 0]; alpha2 [nan, 0, 0, 0]
+  canonical mu_0.1: Earth-Moon a1_eq inf a2_eq inf dom 1.5e+20 cS 3.7e+14; 1 AU a1_eq inf a2_eq inf dom 1.0e+15 cS 9.5e+11; 30 AU a1_eq inf a2_eq inf dom 3.3e+13 cS 3.2e+10; binary J1738 a1_eq inf a2_eq inf dom 5.3e+16 cS 8.2e+13; NS radius a1_eq inf a2_eq inf dom 9.0e+21 cS 1.2e+19 (at beta_min)
+  canonical mu_0.03: Earth-Moon a1_eq inf a2_eq inf dom 1.5e+20 cS 3.7e+14; 1 AU a1_eq inf a2_eq inf dom 1.0e+15 cS 9.5e+11; 30 AU a1_eq inf a2_eq inf dom 3.3e+13 cS 3.2e+10; binary J1738 a1_eq inf a2_eq inf dom 5.3e+16 cS 8.2e+13; NS radius a1_eq inf a2_eq inf dom 9.0e+21 cS 1.2e+19 (at beta_min)
+  alt mu_0.1: Earth-Moon a1_eq inf a2_eq inf dom 1.9e+20 cS 4.1e+14; 1 AU a1_eq inf a2_eq inf dom 1.2e+15 cS 1.0e+12; 30 AU a1_eq inf a2_eq inf dom 4.1e+13 cS 3.5e+10; binary J1738 a1_eq inf a2_eq inf dom 6.5e+16 cS 9.1e+13; NS radius a1_eq inf a2_eq inf dom 1.1e+22 cS 1.3e+19 (at beta_min)
+  alt mu_0.03: Earth-Moon a1_eq inf a2_eq inf dom 1.9e+20 cS 4.1e+14; 1 AU a1_eq inf a2_eq inf dom 1.2e+15 cS 1.0e+12; 30 AU a1_eq inf a2_eq inf dom 4.1e+13 cS 3.5e+10; binary J1738 a1_eq inf a2_eq inf dom 6.5e+16 cS 9.1e+13; NS radius a1_eq inf a2_eq inf dom 1.1e+22 cS 1.3e+19 (at beta_min)
+  [PASS] P-LIN: C1 dominance B/(K rho_tau r^2) >= 1e3 and c_S(1/r) >= 1e7 m/s at every test radius, every scored beta, both footings, both mu_K   (line: linearisation valid (C1 dominates the khronon's charge transport; subsonic))
+  [FAIL] P-RES: worst alpha-equivalents over the mu_K = 0.1 windows: canonical mu_0.1 Earth-Moon alpha1 inf (bound 1.0e-04); canonical mu_0.1 1 AU alpha1 inf (bound 1.0e-04); canonical mu_0.1 1 AU alpha2 inf (bound 2.4e-07); canonical mu_0.1 30 AU alpha1 inf (bound 1.0e-04); canonical mu_0.1 30 AU alpha2 inf (bound 2.4e-07); canonical mu_0.1 binary J1738 alpha1_hat inf (bound 2.1e-05); canonical mu_0.1 NS radius alpha2_hat inf (bound 1.6e-09); alt mu_0.1 Earth-Moon alpha1 inf (bound 1.0e-04); alt mu_0.1 1 AU alpha1 inf (bound 1.0e-04); alt mu_0.1 1 AU alpha2 inf (bound 2.4e-07); alt mu_0.1 30 AU alpha1 inf (bound 1.0e-04); alt mu_0.1 30 AU alpha2 inf (bound 2.4e-07); alt mu_0.1 binary J1738 alpha1_hat inf (bound 2.1e-05); alt mu_0.1 NS radius alpha2_hat inf (bound 1.6e-09)   (line: non-PPN residuals below every bound at its test radius across each window, both footings)
+  unscreened (Theta 0, M = M_theta; reported): alpha1 = -8/M_P, alpha2 = (-M_P*beta + 4*beta - 2)/(M_P*beta*(M_P - 1))
+    canonical: alpha1 in [-7.53, -1.51]; alpha2 in [-1.51e+07, -2.17e+03]; alpha2 (w/c)^2 at 70 km/s up to -0.00, at 369 km/s up to -0.00
+    alt: alpha1 in [-7.57, -1.74]; alpha2 in [-1.52e+07, -3.00e+03]; alpha2 (w/c)^2 at 70 km/s up to -0.00, at 369 km/s up to -0.00
+
+PART W (step 2): verdict
+  VERDICT: UNDECIDED (step 0 failed)
+  canonical: surviving window mu_0.1 None (0/41); mu_0.03 None (0/41)
+  alt: surviving window mu_0.1 None (0/41); mu_0.03 None (0/41)
+
+PART T (step 3, reported only): Mach numbers, moving-galaxy rotation curve, Cherenkov
+  canonical beta_min: c_A 75-342 km/s at the fold radii; Mach w 70: 0.20-0.94, w 220: 0.64-2.94, w 369: 1.08-4.93, w 600: 1.76-8.02, w 1000: 2.93-13.37
+  canonical beta_max_0.1: c_A 168-768 km/s at the fold radii; Mach w 70: 0.09-0.42, w 220: 0.29-1.31, w 369: 0.48-2.20, w 600: 0.78-3.57, w 1000: 1.30-5.95
+  canonical beta_max_0.03: c_A 560-2558 km/s at the fold radii; Mach w 70: 0.03-0.13, w 220: 0.09-0.39, w 369: 0.14-0.66, w 600: 0.23-1.07, w 1000: 0.39-1.79
+  alt beta_min: c_A 75-336 km/s at the fold radii; Mach w 70: 0.21-0.94, w 220: 0.65-2.94, w 369: 1.10-4.93, w 600: 1.78-8.02, w 1000: 2.97-13.37
+  alt beta_max_0.1: c_A 160-719 km/s at the fold radii; Mach w 70: 0.10-0.44, w 220: 0.31-1.38, w 369: 0.51-2.31, w 600: 0.83-3.75, w 1000: 1.39-6.25
+  alt beta_max_0.03: c_A 533-2397 km/s at the fold radii; Mach w 70: 0.03-0.13, w 220: 0.09-0.41, w 369: 0.15-0.69, w 600: 0.25-1.13, w 1000: 0.42-1.88
+  [PASS] S3-1: sigma-EL -/+ [d_t rho + div(rho v) + (B/K) lap^2 sigma] = 0; l = 1 indicial (-A*K*p**2 + A*K*p + 2*A*K + B*p**4 - 2*B*p**3 - 5*B*p**2 + 6*B*p)/K; minus [(B/K)p(p-1)(p+2)(p-3) - A(p-2)(p+1)] = 0; dsigma = -w z residual 0   (line: 3b steady equation and indicial polynomial derived from the 3D PN Lagrangian + C1 (residual 0))
+  canonical beta_0: p1 [2.0]; max subsonic dlog10 g nan dex; w with > 0.05 dex somewhere (subsonic) []; w supersonic somewhere [70.0, 220.0, 369.0, 600.0, 1000.0]
+  canonical beta_min: p1 [1.0823, 1.0891, 1.09]; max subsonic dlog10 g 0.023 dex; w with > 0.05 dex somewhere (subsonic) []; w supersonic somewhere [220.0, 369.0, 600.0, 1000.0]
+  canonical beta_max_0.1: p1 [1.0045, 1.0049, 1.005]; max subsonic dlog10 g 0.049 dex; w with > 0.05 dex somewhere (subsonic) []; w supersonic somewhere [600.0, 1000.0]
+  canonical beta_max_0.03: p1 [1.0004, 1.0005]; max subsonic dlog10 g 0.033 dex; w with > 0.05 dex somewhere (subsonic) []; w supersonic somewhere []
+  alt beta_0: p1 [2.0]; max subsonic dlog10 g nan dex; w with > 0.05 dex somewhere (subsonic) []; w supersonic somewhere [70.0, 220.0, 369.0, 600.0, 1000.0]
+  alt beta_min: p1 [1.0833, 1.0891, 1.0898]; max subsonic dlog10 g 0.023 dex; w with > 0.05 dex somewhere (subsonic) []; w supersonic somewhere [220.0, 369.0, 600.0, 1000.0]
+  alt beta_max_0.1: p1 [1.0051, 1.0054, 1.0055]; max subsonic dlog10 g 0.054 dex; w with > 0.05 dex somewhere (subsonic) [369.0]; w supersonic somewhere [600.0, 1000.0]
+  alt beta_max_0.03: p1 [1.0005]; max subsonic dlog10 g 0.037 dex; w with > 0.05 dex somewhere (subsonic) []; w supersonic somewhere []
+  canonical: rho_crit 8.48e-27, cluster phantom (300 kpc) 1.30e-23 kg/m^3; beta_min w 600 cosmic dust <= rho_crit: t_drag/t_H 1.80e+03 (cluster c_A 459 km/s); beta_min w 600 cluster phantom 300 kpc: t_drag/t_H 1.17e+00 (cluster c_A 459 km/s); beta_min w 1000 cosmic dust <= rho_crit: t_drag/t_H 8.35e+03 (cluster c_A 459 km/s); beta_min w 1000 cluster phantom 300 kpc: t_drag/t_H 5.43e+00 (cluster c_A 459 km/s); beta_max_0.1 w 600 cosmic dust <= rho_crit: t_drag/t_H 1.80e+03 (cluster c_A 2063 km/s); beta_max_0.1 w 600 cluster phantom 300 kpc: t_drag/t_H 1.17e+00 (cluster c_A 2063 km/s); beta_max_0.1 w 1000 cosmic dust <= rho_crit: t_drag/t_H 8.35e+03 (cluster c_A 2063 km/s); beta_max_0.1 w 1000 cluster phantom 300 kpc: t_drag/t_H 5.43e+00 (cluster c_A 2063 km/s)
+  alt: rho_crit 8.48e-27, cluster phantom (300 kpc) 1.47e-23 kg/m^3; beta_min w 600 cosmic dust <= rho_crit: t_drag/t_H 1.80e+03 (cluster c_A 449 km/s); beta_min w 600 cluster phantom 300 kpc: t_drag/t_H 1.04e+00 (cluster c_A 449 km/s); beta_min w 1000 cosmic dust <= rho_crit: t_drag/t_H 8.35e+03 (cluster c_A 449 km/s); beta_min w 1000 cluster phantom 300 kpc: t_drag/t_H 4.81e+00 (cluster c_A 449 km/s); beta_max_0.1 w 600 cosmic dust <= rho_crit: t_drag/t_H 1.80e+03 (cluster c_A 1920 km/s); beta_max_0.1 w 600 cluster phantom 300 kpc: t_drag/t_H 1.04e+00 (cluster c_A 1920 km/s); beta_max_0.1 w 1000 cosmic dust <= rho_crit: t_drag/t_H 8.35e+03 (cluster c_A 1920 km/s); beta_max_0.1 w 1000 cluster phantom 300 kpc: t_drag/t_H 4.81e+00 (cluster c_A 1920 km/s)
+
+VERDICT
+  UNDECIDED (step 0 failed)
+  MUTATE: required failures {'S0-1': True, 'S0-2': True, 'S0-3': True, 'S0-4': True, 'P-A1': True}; all failed checks ['D1', 'D2', 'P-A1', 'P-A2', 'P-RES', 'S0-1', 'S0-2', 'S0-3', 'S0-4', 'X-BPS']
+checks 3/13 pass; required failures ['S0-1', 'S0-2', 'S0-3', 'S0-4', 'D1', 'D2', 'X-BPS', 'P-A1', 'P-A2', 'P-RES']; 3 s; peak RSS 0.096 GB
