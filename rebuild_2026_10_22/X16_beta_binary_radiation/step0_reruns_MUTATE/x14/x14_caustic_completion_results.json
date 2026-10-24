@@ -1,0 +1,1012 @@
+{
+ "mutate": false,
+ "checks": [
+  {
+   "id": "R0",
+   "pass": true,
+   "value": "omega^2 - rho0[k^2/chi - K] = 0 (Theta 1), 0 (Theta 0); det degree in omega 2",
+   "line": "X3's B1-S reproduced on both sides (residual 0)",
+   "required": true
+  },
+  {
+   "id": "R1",
+   "pass": true,
+   "value": "sigma-EL + continuity 0; P-EL - [Xi_z - K W'(KP) + d_z((gL/2)F'(s))] 0; D_t v - (Xi_z - phi_z) 0; phi-EL - [phi_zz/K - rho_m - rho_tau] 0",
+   "line": "X3's B2-S identities reproduced from L1, plus Poisson for all charge (residual 0)",
+   "required": true
+  },
+  {
+   "id": "F1a",
+   "pass": true,
+   "value": "u(1-mu(|u|/a0)) - y = 0 (y>0), 0 (y<0)",
+   "line": "U(y) = a0 y/(a0-|y|) inverts the hold flux exactly; flux cap |y| < a0",
+   "required": true
+  },
+  {
+   "id": "F1b",
+   "pass": true,
+   "value": "U'(y) - (1+|U|/a0)^2 = 0 (y>0), 0 (y<0)",
+   "line": "U' = (1+x)^2 = M_L (the longitudinal P mass)",
+   "required": true
+  },
+  {
+   "id": "F1c",
+   "pass": true,
+   "value": "Poisson 0, hold (P_z = rho_tau) 0, D_t S = 0; with Xi_z = U(KP) from the P-EL (F1a) and D_t v = Xi_z - phi_z (R1)",
+   "line": "Gauss-integrated 1D fields satisfy L1's EL equations; khronon column label-invariant",
+   "required": true
+  },
+  {
+   "id": "F1d",
+   "pass": true,
+   "value": "J_tt - [-K rho_b J + K rho_tau0 (M_L - 1)] = 0",
+   "line": "exact Jacobian equation before first crossing (Theta = 0, mu_K = 0)",
+   "required": true
+  },
+  {
+   "id": "F2",
+   "pass": true,
+   "value": "J(tau) = (-K_Sigma*tau + w)/w; fold tau_f = w/K_Sigma, turnaround 2*w/K_Sigma; general J residual 0; charged fold iff omega_p2 <= K_Sigma**2/(2*w**2)",
+   "line": "zero-charge stream folds at tau_f = w/(K Sigma_b) < turnaround for every w, Sigma_b; exact closed form",
+   "required": true
+  },
+  {
+   "id": "F2-soft",
+   "pass": true,
+   "value": "J = J0 + Jdot0 tau - A tau^2/2 has the positive root [Jdot0 + sqrt(Jdot0^2 + 2AJ0)]/A for every J0 > 0, Jdot0",
+   "line": "soft (rho_tau0 < 0) planar labels fold in finite time for every initial datum",
+   "required": true
+  },
+  {
+   "id": "F3",
+   "pass": true,
+   "value": "xi_tt = -K[Sigma_b(q+xi) - Sigma_b(q)] residual 0; J at quarter phases = -t_n*xi_0(q)*Derivative(omega(q), q) + 1",
+   "line": "held planar oscillations phase-mix to J <= 0 by t ~ 1/|xi0 omega'| whenever omega'(q) != 0",
+   "required": true
+  },
+  {
+   "id": "F4a",
+   "pass": true,
+   "value": "spherical hold law residual 0; cycloid r_tt + GM/r^2 = 0; t_ff = sqrt(2)*pi*q**(3/2)/(4*sqrt(G)*sqrt(M_b))",
+   "line": "zero-charge shells reach r = 0 (hoop J -> 0) at t_ff = (pi/2) sqrt(q^3/(2 G M_b))",
+   "required": true
+  },
+  {
+   "id": "F4b",
+   "pass": true,
+   "value": "U(y) - y = -y_n**2/(a_0 - y_n) < 0 for y < 0, so r_tt <= -G M_b/r^2",
+   "line": "negative-charge shells fall at least as fast as Kepler with M_b: r = 0 (or the flux cap, where U -> -inf) within t_ff",
+   "required": true
+  },
+  {
+   "id": "F4c",
+   "pass": true,
+   "value": "U near the wall ~ a_0/2/eps (log-divergent barrier); omega^2 - 2 a0 x^2/r = 0; dln omega^2/dln r = [-4.961, -3.894, -3.1]",
+   "line": "positive charge: wall excludes hoop collapse; held shells phase-mix (domega/dq != 0) -> shell crossing",
+   "required": true
+  },
+  {
+   "id": "F5a",
+   "pass": true,
+   "value": "p''(tau_s): stiffness (gL/2) rho^2: 3*gamma_L/tau_s**4; K(Q) K rho^2/(2 mu^2): 3*K/(mu_K**2*tau_s**4); isothermal c^2 rho: 2*c**2/tau_s**3; Chaplygin -A/rho: 0; Chaplygin work to J = 0: -A/2 (finite)",
+   "line": "stiffness and K(Q) pressures genuinely nonlinear (shock after compression); Chaplygin linearly degenerate but finite at J -> 0 (does not stop the fold)",
+   "required": true
+  },
+  {
+   "id": "F5b",
+   "pass": true,
+   "value": "work = c_0**2*(1 - J_*)/(2*J_*); J_* = c_0**2/(c_0**2 + w**2)",
+   "line": "a gamma = 2 pressure stops the cold fold only at J_* = 1/(1 + Mach^2)",
+   "required": true
+  },
+  {
+   "id": "F5c",
+   "pass": true,
+   "value": "min Mach over fold locations and w: canonical 311, alt 280",
+   "line": "stiffness Mach >= 10 at every fold location, both footings",
+   "required": true
+  },
+  {
+   "id": "F5d",
+   "pass": true,
+   "value": "lim_k->inf omega^2 = K*rho0*(M_theta - 1) (mu_K-independent); K(Q) correction = -K*M_theta**2*mu_K**2*rho0/(M_theta*mu_K**2 + k**2); q_K at mu_K = 0.1 Mpc^-1 (l 11, 156 kpc): canonical 0.0166, alt 0.0165; at the BS cap up to 1.66 / 1.65",
+   "line": "K(Q) is inert at the fold scale for S4-allowed mu_K (q_K < 1), both footings",
+   "required": true
+  },
+  {
+   "id": "C1-R",
+   "pass": true,
+   "value": "EL of -(B/2K) sigma_zz^2 = -B*Derivative(sigma(t, z), (z, 4))/K; omega^2 - (rho + Bk^2/K)(k^2/chi - K) = 0",
+   "line": "C1's PN term reproduces the record form (X3 E2 / C5): rho_tau -> rho_tau + B k^2/K",
+   "required": true
+  },
+  {
+   "id": "C1-P6a",
+   "pass": true,
+   "value": "lim -omega^2 (k->inf): {'Theta1|rho+': '-oo', 'Theta1|rho-': '-oo', 'Theta0|rho+': '-oo', 'Theta0|rho-': '-oo'}",
+   "line": "C1: no Hadamard growth on either side, either sign",
+   "required": true
+  },
+  {
+   "id": "C1-FT",
+   "pass": true,
+   "value": "soft side large-k exponents [2, 2], coefficient positive [True, True] (B > 0)",
+   "line": "C1 adds a positive k^2 (or higher) term on the soft side for both signs",
+   "required": true
+  },
+  {
+   "id": "C2-FT",
+   "pass": true,
+   "value": "large-k exponents [0, 0, 0, 0] (k-independent); sheet kick ratio at k -> 0 = 1",
+   "line": "C2 leaves n = 0 and the codimension-1 sheet fold unchanged (FT-FAIL), as Mukohyama states for codim 1",
+   "required": true
+  },
+  {
+   "id": "C4-FT",
+   "pass": true,
+   "value": "BS25 large-k omega^2 = K*rho0*(M_theta - 1); dRM dust-branch c_s^2 = 1 - Q**2 (-0.210 at Q = 1.1); K' = C1*Q/sqrt(Q**2 - 1)",
+   "line": "C4 cannot act at the fold scale (BS25) and the caustic-free set has c_s^2 < 0 on v3s's dust branch",
+   "required": true
+  },
+  {
+   "id": "C5-P3",
+   "pass": true,
+   "value": "omega^2 = rho0(k^2/chi - K) + nu^2 k^4/4 (residual 0); exponents {'rho+': {'n': 4, 'coef': 'nu**2/4', 'coef_positive': True}, 'rho-': {'n': 4, 'coef': 'nu**2/4', 'coef_positive': True}}; Q_nu(rho = s z) = nu**2/(8*z**2)",
+   "line": "C5 is dispersive (n = 4) but singular at rho_tau = 0 and needs rho_tau >= 0",
+   "required": true
+  },
+  {
+   "id": "C6-FT",
+   "pass": true,
+   "value": "h.curl(n).h = 0 for n_mu = -N d_mu tau with N = X^-1/2: True",
+   "line": "C6's vorticity route is unavailable to the foliation; its acceleration route is v3s itself",
+   "required": true
+  },
+  {
+   "id": "C9",
+   "pass": true,
+   "value": "sticky merger dE = m_1*m_2*(-v_1**2 + 2*v_1*v_2 - v_2**2)/(2*(m_1 + m_2)); m1 = 1, m2 = -0.5, v = +-1: dE = +2.000 (> 0)",
+   "line": "adhesion: zero-scale but ill-defined for v3s's sign-indefinite charge (energy created / v unbounded)",
+   "required": true
+  }
+ ],
+ "R0": {
+  "Theta1": {
+   "omega2": "K*rho0*(K*M_theta*k**2 - K*M_theta*mu_K**2 - K*k**2 + gamma_L*k**4 - gamma_L*k**2*mu_K**2)/(K*M_theta*mu_K**2 + K*k**2 + gamma_L*k**2*mu_K**2)",
+   "expected": "-rho0*(K - k**2/(k**2/(K*M_theta + gamma_L*k**2) + mu_K**2/K))",
+   "residual": "0",
+   "det_degree_in_omega": "2",
+   "n_W2_roots": 1
+  },
+  "Theta0": {
+   "omega2": "K*rho0*(M_theta*k**2 - M_theta*mu_K**2 - k**2)/(M_theta*mu_K**2 + k**2)",
+   "expected": "K*rho0*(M_theta*k**2 - M_theta*mu_K**2 - k**2)/(M_theta*mu_K**2 + k**2)",
+   "residual": "0",
+   "det_degree_in_omega": "2",
+   "n_W2_roots": 1
+  }
+ },
+ "R1": {
+  "continuity": "0",
+  "P_equation": "0",
+  "Euler": "0",
+  "Poisson": "0"
+ },
+ "F1": {
+  "U": "a0 y/(a0 - |y|), |y| < a0",
+  "F1a_residual_pos": "0",
+  "F1a_residual_neg": "0",
+  "F1b_residual": "0",
+  "F1b_residual_neg": "0",
+  "F1c_poisson": "0",
+  "F1c_hold": "0",
+  "F1c_label_invariance": "0",
+  "F1c_label_force": "x_tt = U(K S(q)) - K[Sigma_b(<x) - Sigma_b,tot/2] - K S(q)  (Theta = 0, mu_K = 0)",
+  "F1d_Jdd": "-K*(J*rho_bx(x(q, t_l)) + rho_tau0(q)) + K*rho_tau0(q)*Subs(M_Lq, _xi_1, K*S_l(q))",
+  "F1d_residual": "0",
+  "F1d_equation": "J_tt = -K rho_b(x) J + K rho_tau0(q) (M_L(q) - 1)"
+ },
+ "F2": {
+  "J_post_general_residual": "0",
+  "J_post_general": "tau**2*Derivative(f(x_0), x_0)/2 + tau*(-2*g*(t_c(x_0)**2*Derivative(f(x_0), x_0)/2 + 1)/(V - (-g + f(x_0))*t_c(x_0)) + t_c(x_0)*Derivative(f(x_0), x_0)) + t_c(x_0)**2*Derivative(f(x_0), x_0)/2 + 1",
+  "J_zero_charge": "(-K_Sigma*tau + w)/w",
+  "tau_fold": "w/K_Sigma",
+  "tau_turnaround": "2*w/K_Sigma",
+  "charged_J": "-K_Sigma*tau/w + omega_p2*tau**2/2 + 1",
+  "discriminant": "K_Sigma**2/w**2 - 2*omega_p2",
+  "fold_condition_omega_p2": "omega_p2 <= K_Sigma**2/(2*w**2)",
+  "fold_condition_dimensionless": "omega_p tau_f <= 1/sqrt(2) with tau_f = w/(K Sigma_b) (rho_tau0 > 0); every datum folds if omega_p^2 <= 0 (rho_tau0 <= 0)",
+  "soft_fold_time": "tau_* = [Jdot0 + sqrt(Jdot0^2 + 2 A J0)]/A, A = K|rho_tau0|(M_L - 1) + (sheet term >= 0)"
+ },
+ "F3": {
+  "displacement_residual": "0",
+  "J_linear": "-t_l*xi_0(q)*sin(t_l*omega(q))*Derivative(omega(q), q) + cos(t_l*omega(q))*Derivative(xi_0(q), q) + 1",
+  "J_at_quarter_phases": "-t_n*xi_0(q)*Derivative(omega(q), q) + 1",
+  "fold_bound": "t_* <= 1/|xi0 omega'| + 2 pi/omega (linear theory, omega^2 = K rho_b(q)); Dawson-type"
+ },
+ "F4": {
+  "hold_residual": "0",
+  "shell_force": "G*a_0*m/(r**2*(-G*m/r**2 + a_0)) - G*(M_b + m)/r**2",
+  "F4a_residual": "0",
+  "t_ff": "sqrt(2)*pi*q**(3/2)/(4*sqrt(G)*sqrt(M_b))",
+  "U_minus_y_negative_branch": "-y_n**2/(a_0 - y_n)",
+  "wall_radius": "r_w = sqrt(G m / a0)",
+  "U_times_eps_at_wall": "a_0/2",
+  "held_radial_omega2": "2*a_0*x**2/r",
+  "held_radial_omega2_residual": "0",
+  "dln_omega2_dln_r": "(-5*GM**(3/2) - 12*sqrt(GM)*a_0*r**2 - 5*GM*sqrt(GM + 4*a_0*r**2))/(GM**(3/2) + 4*sqrt(GM)*a_0*r**2 + GM*sqrt(GM + 4*a_0*r**2))",
+  "dln_omega2_dln_r_values_at_r_over_rM_0.1_1_10": [
+   -4.96116135138184,
+   -3.8944271909999157,
+   -3.0998752338877846
+  ]
+ },
+ "F5": {
+  "GNL": {
+   "stiffness (gL/2) rho^2": {
+    "p_tau_tau": "3*gamma_L/tau_s**4",
+    "genuinely_nonlinear": true
+   },
+   "K(Q) K rho^2/(2 mu^2)": {
+    "p_tau_tau": "3*K/(mu_K**2*tau_s**4)",
+    "genuinely_nonlinear": true
+   },
+   "isothermal c^2 rho": {
+    "p_tau_tau": "2*c**2/tau_s**3",
+    "genuinely_nonlinear": true
+   },
+   "Chaplygin -A/rho": {
+    "p_tau_tau": "0",
+    "genuinely_nonlinear": false
+   }
+  },
+  "Chaplygin_work_to_J0_finite": "-A/2",
+  "work_per_mass": "c_0**2*(1 - J_*)/(2*J_*)",
+  "J_star": "c_0**2/(c_0**2 + w**2)",
+  "J_star_residual": "0",
+  "numbers": {
+   "canonical": [
+    {
+     "r_kpc": 11.0,
+     "g_m_s2": 1.221002511841704e-10,
+     "x": 1.3044480538462486,
+     "K_rho_ph_s-2": 2.177230419701243e-31,
+     "rho_ph_kg_m3": 2.5959050652914517e-22,
+     "c0_stiffness_m_s": 220.74307305265364,
+     "M_theta_minus_1_bracket": [
+      1.3044480538462486,
+      4.310480832875763
+     ],
+     "Mach": {
+      "68.75": 311.44805157080117,
+      "74.8": 338.85548010903165
+     },
+     "J_star": {
+      "68.75": 1.0309183885736633e-05,
+      "74.8": 8.70897794009858e-06
+     },
+     "q_K": {
+      "S4_0.1": 0.0025348928592308735,
+      "gal_0.03": 0.000760467857769262,
+      "BS_cap_10": 0.25348928592308734
+     },
+     "rho_d_needed_for_cs_ge_w_at_S4_kg_m3": 7.006264320270501e-29
+    },
+    {
+     "r_kpc": 33.0,
+     "g_m_s2": 3.092424839759363e-11,
+     "x": 0.3303766802088996,
+     "K_rho_ph_s-2": 2.6063848220704095e-32,
+     "rho_ph_kg_m3": 3.1075845259592455e-23,
+     "c0_stiffness_m_s": 76.37551583110488,
+     "M_theta_minus_1_bracket": [
+      0.3303766802088996,
+      0.7699021112436527
+     ],
+     "Mach": {
+      "68.75": 900.1575865233071,
+      "74.8": 979.3714541373581
+     },
+     "J_star": {
+      "68.75": 1.2341341555288923e-06,
+      "74.8": 1.042568656691573e-06
+     },
+     "q_K": {
+      "S4_0.1": 0.004390243044689369,
+      "gal_0.03": 0.0013170729134068106,
+      "BS_cap_10": 0.43902430446893687
+     },
+     "rho_d_needed_for_cs_ge_w_at_S4_kg_m3": 7.006264320270501e-29
+    },
+    {
+     "r_kpc": 73.0,
+     "g_m_s2": 1.2930050413491249e-11,
+     "x": 0.13813713677436887,
+     "K_rho_ph_s-2": 5.369344281608378e-33,
+     "rho_ph_kg_m3": 6.40185250573225e-24,
+     "c0_stiffness_m_s": 34.665343927841235,
+     "M_theta_minus_1_bracket": [
+      0.13813713677436887,
+      0.2953561421049584
+     ],
+     "Mach": {
+      "68.75": 1983.2487496188926,
+      "74.8": 2157.774639585355
+     },
+     "J_star": {
+      "68.75": 2.542409550530021e-07,
+      "74.8": 2.1477698310307174e-07
+     },
+     "q_K": {
+      "S4_0.1": 0.008308401098452893,
+      "gal_0.03": 0.0024925203295358676,
+      "BS_cap_10": 0.8308401098452892
+     },
+     "rho_d_needed_for_cs_ge_w_at_S4_kg_m3": 7.006264320270501e-29
+    },
+    {
+     "r_kpc": 91.0,
+     "g_m_s2": 1.0240698459415462e-11,
+     "x": 0.10940566498312512,
+     "K_rho_ph_s-2": 3.4578609768752395e-33,
+     "rho_ph_kg_m3": 4.122796900006476e-24,
+     "c0_stiffness_m_s": 27.818816623681297,
+     "M_theta_minus_1_bracket": [
+      0.10940566498312512,
+      0.23078092949665005
+     ],
+     "Mach": {
+      "68.75": 2471.348833058386,
+      "74.8": 2688.8275303675237
+     },
+     "J_star": {
+      "68.75": 1.6373134421316132e-07,
+      "74.8": 1.383165180768525e-07
+     },
+     "q_K": {
+      "S4_0.1": 0.01009559155134644,
+      "gal_0.03": 0.0030286774654039316,
+      "BS_cap_10": 1.009559155134644
+     },
+     "rho_d_needed_for_cs_ge_w_at_S4_kg_m3": 7.006264320270501e-29
+    },
+    {
+     "r_kpc": 156.0,
+     "g_m_s2": 5.845968072919717e-12,
+     "x": 0.0624549220956563,
+     "K_rho_ph_s-2": 1.1776787156687767e-33,
+     "rho_ph_kg_m3": 1.4041426739343494e-24,
+     "c0_stiffness_m_s": 16.2348507529413,
+     "M_theta_minus_1_bracket": [
+      0.0624549220956563,
+      0.1288104614852871
+     ],
+     "Mach": {
+      "68.75": 4234.71709387562,
+      "74.8": 4607.372198136674
+     },
+     "J_star": {
+      "68.75": 5.576364731718517e-08,
+      "74.8": 4.710786099009872e-08
+     },
+     "q_K": {
+      "S4_0.1": 0.01657429678469224,
+      "gal_0.03": 0.004972289035407671,
+      "BS_cap_10": 1.6574296784692237
+     },
+     "rho_d_needed_for_cs_ge_w_at_S4_kg_m3": 7.006264320270501e-29
+    }
+   ],
+   "alt": [
+    {
+     "r_kpc": 11.0,
+     "g_m_s2": 1.294925743747524e-10,
+     "x": 1.1447363364104703,
+     "K_rho_ph_s-2": 2.4263161635388197e-31,
+     "rho_ph_kg_m3": 2.892889223820975e-22,
+     "c0_stiffness_m_s": 245.57063925111953,
+     "M_theta_minus_1_bracket": [
+      1.1447363364104703,
+      3.5998939527194063
+     ],
+     "Mach": {
+      "68.75": 279.9601785036546,
+      "74.8": 304.5966742119762
+     },
+     "J_star": {
+      "68.75": 1.2758568083577704e-05,
+      "74.8": 1.077816939384833e-05
+     },
+     "q_K": {
+      "S4_0.1": 0.0023592099700515175,
+      "gal_0.03": 0.000707762991015455,
+      "BS_cap_10": 0.23592099700515165
+     },
+     "rho_d_needed_for_cs_ge_w_at_S4_kg_m3": 7.006264320270501e-29
+    },
+    {
+     "r_kpc": 33.0,
+     "g_m_s2": 3.35626575761456e-11,
+     "x": 0.2966995896052475,
+     "K_rho_ph_s-2": 2.8702363472051364e-32,
+     "rho_ph_kg_m3": 3.422173879655717e-23,
+     "c0_stiffness_m_s": 84.4620416137005,
+     "M_theta_minus_1_bracket": [
+      0.2966995896052475,
+      0.6814298256824173
+     ],
+     "Mach": {
+      "68.75": 813.9751145779564,
+      "74.8": 885.6049246608167
+     },
+     "J_star": {
+      "68.75": 1.509305273423861e-06,
+      "74.8": 1.2750270556993268e-06
+     },
+     "q_K": {
+      "S4_0.1": 0.004279108645697317,
+      "gal_0.03": 0.001283732593709195,
+      "BS_cap_10": 0.42791086456973165
+     },
+     "rho_d_needed_for_cs_ge_w_at_S4_kg_m3": 7.006264320270501e-29
+    },
+    {
+     "r_kpc": 73.0,
+     "g_m_s2": 1.4131542349094041e-11,
+     "x": 0.12492523293046358,
+     "K_rho_ph_s-2": 5.904763407784103e-33,
+     "rho_ph_kg_m3": 7.040231066456295e-24,
+     "c0_stiffness_m_s": 38.30928051073366,
+     "M_theta_minus_1_bracket": [
+      0.12492523293046358,
+      0.2654567796836577
+     ],
+     "Mach": {
+      "68.75": 1794.6043121519167,
+      "74.8": 1952.5294916212854
+     },
+     "J_star": {
+      "68.75": 3.105006053678729e-07,
+      "74.8": 2.6230385989960345e-07
+     },
+     "q_K": {
+      "S4_0.1": 0.008211954200392384,
+      "gal_0.03": 0.002463586260117715,
+      "BS_cap_10": 0.8211954200392383
+     },
+     "rho_d_needed_for_cs_ge_w_at_S4_kg_m3": 7.006264320270501e-29
+    },
+    {
+     "r_kpc": 91.0,
+     "g_m_s2": 1.120518582506004e-11,
+     "x": 0.09905574456382638,
+     "K_rho_ph_s-2": 3.8021841671056686e-33,
+     "rho_ph_kg_m3": 4.533332369990922e-24,
+     "c0_stiffness_m_s": 30.741094047128033,
+     "M_theta_minus_1_bracket": [
+      0.09905574456382638,
+      0.20792352965874678
+     ],
+     "Mach": {
+      "68.75": 2236.420079734375,
+      "74.8": 2433.2250467510003
+     },
+     "J_star": {
+      "68.75": 1.999369889366626e-07,
+      "74.8": 1.6890222475607996e-07
+     },
+     "q_K": {
+      "S4_0.1": 0.01000140727553082,
+      "gal_0.03": 0.003000422182659246,
+      "BS_cap_10": 1.000140727553082
+     },
+     "rho_d_needed_for_cs_ge_w_at_S4_kg_m3": 7.006264320270501e-29
+    },
+    {
+     "r_kpc": 156.0,
+     "g_m_s2": 6.409040489581468e-12,
+     "x": 0.05665700574241043,
+     "K_rho_ph_s-2": 1.294750233762668e-33,
+     "rho_ph_kg_m3": 1.5437266812453412e-24,
+     "c0_stiffness_m_s": 17.93889732326416,
+     "M_theta_minus_1_bracket": [
+      0.05665700574241043,
+      0.11652402778451638
+     ],
+     "Mach": {
+      "68.75": 3832.4540667748383,
+      "74.8": 4169.7100246510245
+     },
+     "J_star": {
+      "68.75": 6.808415529570551e-08,
+      "74.8": 5.7515946028223296e-08
+     },
+     "q_K": {
+      "S4_0.1": 0.016483849289581604,
+      "gal_0.03": 0.004945154786874481,
+      "BS_cap_10": 1.6483849289581602
+     },
+     "rho_d_needed_for_cs_ge_w_at_S4_kg_m3": 7.006264320270501e-29
+    }
+   ]
+  },
+  "Mach_min": {
+   "canonical": 311.44805157080117,
+   "alt": 279.9601785036546
+  },
+  "q_K_max": {
+   "canonical": {
+    "S4_decisive_11_156": 0.01657429678469224,
+    "S4_all": 0.01657429678469224,
+    "cap_all": 1.6574296784692237
+   },
+   "alt": {
+    "S4_decisive_11_156": 0.016483849289581604,
+    "S4_all": 0.016483849289581604,
+    "cap_all": 1.6483849289581602
+   }
+  },
+  "Kq_large_k_limit": "K*rho0*(M_theta - 1)",
+  "Kq_correction": "-K*M_theta**2*mu_K**2*rho0/(M_theta*mu_K**2 + k**2)",
+  "Kq_condition": "K(Q) acts as a pressure (c_s^2 = K rho_d/mu_K^2) only for k^2 <~ M_theta mu_K^2; it can halt a fold of scale l and speed w only if sqrt(M_theta) mu_K l >~ 1 AND K rho_d/mu_K^2 >~ w^2; even then p ~ rho^2 is genuinely nonlinear (shock)"
+ },
+ "classes": {
+  "C1": {
+   "PN_EL_contribution": "-B*Derivative(sigma(t, z), (z, 4))/K",
+   "PN_check_residual": "0",
+   "omega2_Theta1": "(B*K*M_theta*k**4 - B*K*M_theta*k**2*mu_K**2 - B*K*k**4 + B*gamma_L*k**6 - B*gamma_L*k**4*mu_K**2 + K**2*M_theta*k**2*rho0 - K**2*M_theta*mu_K**2*rho0 - K**2*k**2*rho0 + K*gamma_L*k**4*rho0 - K*gamma_L*k**2*mu_K**2*rho0)/(K*M_theta*mu_K**2 + K*k**2 + gamma_L*k**2*mu_K**2)",
+   "omega2_Theta0": "(B*M_theta*k**4 - B*M_theta*k**2*mu_K**2 - B*k**4 + K*M_theta*k**2*rho0 - K*M_theta*mu_K**2*rho0 - K*k**2*rho0)/(M_theta*mu_K**2 + k**2)",
+   "record_form_residual": "0",
+   "exponents": {
+    "Theta1": {
+     "rho+": {
+      "n": 4,
+      "coef": "B*gamma_L/K",
+      "coef_positive": true
+     },
+     "rho-": {
+      "n": 4,
+      "coef": "B*gamma_L/K",
+      "coef_positive": true
+     }
+    },
+    "Theta0": {
+     "rho+": {
+      "n": 2,
+      "coef": "B*dM",
+      "coef_positive": true
+     },
+     "rho-": {
+      "n": 2,
+      "coef": "B*dM",
+      "coef_positive": true
+     }
+    }
+   },
+   "P1": {
+    "EL_on_static": "0",
+    "grade": "PASS"
+   },
+   "P2": {
+    "grade": "PASS",
+    "note": "static operator: C6/X3-D2 screened solution unchanged; moving-Sun / PPN alpha_1,2 not checked"
+   },
+   "P4": {
+    "det_degree_in_omega": "2",
+    "n_W2_roots": 1,
+    "total_DOF": 3,
+    "record": "C5 table: beta > 0, eta = 0 -> 3",
+    "grade": "PASS"
+   },
+   "P5": {
+    "K_first_order_TT": "0",
+    "K2_quadratic_TT": "0",
+    "grade": "PASS"
+   },
+   "P6a_limits_of_minus_omega2": {
+    "Theta1|rho+": "-oo",
+    "Theta1|rho-": "-oo",
+    "Theta0|rho+": "-oo",
+    "Theta0|rho-": "-oo"
+   },
+   "P6c_beta_max": {
+    "mu_0.1": 1.0049250737135537e-05,
+    "mu_0.03": 0.00011167536237177899
+   },
+   "P6b": "no ghost for beta > 0 on the 2+3beta > 0 branch (C5, record)",
+   "P6d": "function of sigma only: both signs of rho_tau and its zero crossing allowed",
+   "P6": {
+    "grade": "PASS-WITH-BOUND"
+   },
+   "FT_soft_side": {
+    "n": [
+     2,
+     2
+    ],
+    "coef_positive": [
+     true,
+     true
+    ],
+    "source": "B > 0"
+   },
+   "FT_window": {
+    "beta_min_conservative(M-1=x)": {
+     "canonical": 1.9935466978219455e-06,
+     "alt": 2.197554215500931e-06
+    },
+    "beta_min_upper_bracket(M-1=x^2+2x)": {
+     "canonical": 9.66587732676122e-07,
+     "alt": 1.0685060696366142e-06
+    },
+    "beta_max": {
+     "mu_0.1": 1.0049250737135537e-05,
+     "mu_0.03": 0.00011167536237177899
+    },
+    "window_nonempty": {
+     "canonical": {
+      "mu_0.1": true,
+      "mu_0.03": true
+     },
+     "alt": {
+      "mu_0.1": true,
+      "mu_0.03": true
+     }
+    },
+    "c_A_at_beta_max_mu0.1_km_s": {
+     "canonical": [
+      767.5075699614332,
+      386.2548676139314,
+      249.7609272346589,
+      222.27426260307237,
+      167.9394043684949
+     ],
+     "alt": [
+      718.9886047369498,
+      366.0393250352974,
+      237.51681285262833,
+      211.49938381260347,
+      159.95435999428295
+     ]
+    }
+   },
+   "FT": {
+    "grade": "COND",
+    "removes_fold": true
+   },
+   "SC": {
+    "new_constants": [
+     "beta (dimensionless; sets the velocity scale c sqrt(beta (M-1)/2))"
+    ],
+    "allowed": "beta_min {'canonical': 1.9935466978219455e-06, 'alt': 2.197554215500931e-06} <= beta <= beta_max {'mu_0.1': 1.0049250737135537e-05, 'mu_0.03': 0.00011167536237177899} (mu_K-dependent upper edge)",
+    "how_fixed": "nothing in v3s fixes beta (no derivation); bounded only; X3 E2: not adopted"
+   }
+  },
+  "C2": {
+   "omega2_Theta0": {
+    "1": "K*rho0*(M_theta*ell_star**2*k**4 + M_theta*k**2 - M_theta*mu_K**2 - k**2)/(M_theta*ell_star**2*k**2*mu_K**2 + M_theta*mu_K**2 + ell_star**2*k**4 + k**2)",
+    "-1": "K*rho0*(M_theta*ell_star**2*k**4 - M_theta*k**2 + M_theta*mu_K**2 + k**2)/(M_theta*ell_star**2*k**2*mu_K**2 - M_theta*mu_K**2 + ell_star**2*k**4 - k**2)"
+   },
+   "exponents_Theta0": {
+    "1": {
+     "rho+": {
+      "n": 0,
+      "coef": "K*r_p*(dM + 1)",
+      "coef_positive": true
+     },
+     "rho-": {
+      "n": 0,
+      "coef": "-K*r_p*(dM + 1)",
+      "coef_positive": false
+     }
+    },
+    "-1": {
+     "rho+": {
+      "n": 0,
+      "coef": "K*r_p*(dM + 1)",
+      "coef_positive": true
+     },
+     "rho-": {
+      "n": 0,
+      "coef": "-K*r_p*(dM + 1)",
+      "coef_positive": false
+     }
+    }
+   },
+   "s=-1_limit_at_k->1/l-": "-oo",
+   "sheet_kick_ratio_k0": "1",
+   "P1": {
+    "grade": "PASS-WITH-BOUND",
+    "note": "modifies Newton/AQUAL at r <~ l_*; unchanged as l_* -> 0"
+   },
+   "P2": {
+    "grade": "PASS-WITH-BOUND"
+   },
+   "P4": {
+    "grade": "PASS",
+    "det_degree_in_omega": "2",
+    "n_W2_roots": 1,
+    "note": "potential terms only, no new time derivatives (HL counting, literature)"
+   },
+   "P5": {
+    "grade": "PASS-WITH-BOUND",
+    "note": "R_ij R^ij-type terms change the tensor dispersion at k ~ 1/l_*; c at k -> 0"
+   },
+   "P6": {
+    "grade_s+1": "PASS",
+    "grade_s-1": "FAIL (pole: omega^2 -> -inf as k -> 1/l for rho > 0)"
+   },
+   "FT": {
+    "grade": "FAIL",
+    "removes_fold": false,
+    "n": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "SC": {
+    "new_constants": [
+     "l_* (UV length) and its coefficient"
+    ],
+    "how_fixed": "nothing in v3s"
+   }
+  },
+  "C3": {
+   "P1": {
+    "grade": "PASS"
+   },
+   "P2": {
+    "grade": "PASS"
+   },
+   "P4": {
+    "grade": "PASS",
+    "DOF": 3
+   },
+   "P5": {
+    "grade": "PASS"
+   },
+   "P6": {
+    "grade": "PASS",
+    "note": "X3 (c_s^2 = (Q-1)/Q >= 0 on Q >= 1, C5)"
+   },
+   "FT": {
+    "grade": "FAIL",
+    "removes_fold": false,
+    "why": "omega^2 -> K rho (M_theta - 1), mu_K-independent, for k^2 >> M_theta mu_K^2 (F5d); q_K < 1 at S4-allowed mu_K; p ~ rho^2 genuinely nonlinear where it acts (F5a)"
+   },
+   "SC": {
+    "new_constants": [],
+    "how_fixed": "mu_K exists (free, <= 0.1 Mpc^-1 by S4)"
+   }
+  },
+  "C4": {
+   "dRM_condition": "c_s^2 = K'/(Q K'') = 1 + alpha X, X = sX Q^2; dust c_s^2(1) = 0",
+   "alpha": "-1/sX",
+   "cs2_on_dust_branch": "1 - Q**2",
+   "K_prime_solution": "Eq(Kp(Q), C1*Q/sqrt(Q**2 - 1))",
+   "BS25_series": "mu_K**2*z**2*(lambda_D*z**2 + 4)/4",
+   "BS25_large_k_limit": "K*rho0*(M_theta - 1)",
+   "P1": {
+    "grade": "PASS",
+    "note": "K''(1) = 2 mu^2: same static mass (X6 X-D10)"
+   },
+   "P2": {
+    "grade": "PASS"
+   },
+   "P4": {
+    "grade": "PASS",
+    "DOF": 3
+   },
+   "P5": {
+    "grade": "PASS"
+   },
+   "P6": {
+    "grade_BS25": "PASS",
+    "grade_dRM_set": "FAIL",
+    "dRM_cs2_at_Q_1.1": -0.2100000000000002
+   },
+   "FT": {
+    "grade": "FAIL",
+    "removes_fold": false,
+    "why": "BS25: inert at k^2 >> M mu^2 (large-k limit mu-independent) and quadratic at lambda z^2 << 1; dRM set: c_s^2 = 1 - Q^2 < 0 on the dust branch (Q > 1), K' ~ Q/sqrt(1-Q^2) singular at the dust point; Babichev 2016: BI forms caustics in the dust regime"
+   },
+   "SC": {
+    "new_constants": [
+     "lambda_D (BS25 P1 = 30, P2 = 1)",
+     "or the Galileon/DBI scale"
+    ],
+    "how_fixed": "published values; not derived"
+   }
+  },
+  "C5": {
+   "omega2_Theta0": "(K*M_theta*k**2*rho0 - K*M_theta*mu_K**2*rho0 - K*k**2*rho0 + M_theta*k**4*mu_K**2*nu**2/4 + k**6*nu**2/4)/(M_theta*mu_K**2 + k**2)",
+   "form_residual": "0",
+   "exponents_Theta0": {
+    "rho+": {
+     "n": 4,
+     "coef": "nu**2/4",
+     "coef_positive": true
+    },
+    "rho-": {
+     "n": 4,
+     "coef": "nu**2/4",
+     "coef_positive": true
+    }
+   },
+   "quantum_potential_for_rho_linear_through_zero": "nu**2/(8*z**2)",
+   "P1": {
+    "grade": "PASS-WITH-BOUND",
+    "note": "static held state gets psi = -Q_nu != const; unchanged as nu -> 0"
+   },
+   "P2": {
+    "grade": "PASS-WITH-BOUND"
+   },
+   "P4": {
+    "grade": "FAIL",
+    "DOF": 4,
+    "PN_n_W2_roots": 1,
+    "PN_det_degree_in_omega": "2",
+    "note": "the non-relativistic PN image has one omega^2 root, but BR17's completion carries two real scalar fields (lambda, phi): 2 scalar + 2 tensor = 4 at all energies (the radial mode is heavy, ~M)"
+   },
+   "P5": {
+    "grade": "PASS"
+   },
+   "P6": {
+    "grade": "FAIL",
+    "note": "rho = |Psi|^2 >= 0: v3s's sign-indefinite charge (soft lobes) is not representable, and Q_nu = nu**2/(8*z**2) diverges where rho_tau crosses zero (the switch interface)"
+   },
+   "variant_dust_only": "complete only rho_d >= 0: inert at mu_K -> 0, the X8/X10 regime (no K(Q) dust there): FT-FAIL",
+   "FT": {
+    "grade": "PASS-LIT",
+    "removes_fold": true
+   },
+   "SC": {
+    "new_constants": [
+     "nu = hbar/m (mass M of BR17)"
+    ],
+    "how_fixed": "nothing in v3s"
+   }
+  },
+  "C6": {
+   "n_dot_n": "-1",
+   "P1": {
+    "grade": "FAIL unless f equals v3s's own J(Y)",
+    "note": "v3s's Y = |grad Xi|^2/c^4 = A.A/c^4 is non-zero on static fields (Xi = phi + C), so any extra acceleration dependence of the constraint function changes the static law mu(x); with f = J it is v3s"
+   },
+   "P4": {
+    "grade": "OPEN (the paper defers the Hamiltonian analysis)"
+   },
+   "FT": {
+    "grade": "FAIL",
+    "removes_fold": false,
+    "why": "the foliation normal's projected curl vanishes identically (vorticity route unavailable to the folding congruence); the acceleration route is v3s's own J(Y), already in F1-F4 and in X8/X10, which fold"
+   },
+   "SC": {
+    "new_constants": [
+     "a free function f"
+    ],
+    "how_fixed": "nothing"
+   }
+  },
+  "C7": {
+   "P4": {
+    "grade": "FAIL",
+    "DOF": "5 (Einstein-aether: 2 tensor + 2 vector + 1 scalar; record C5 'A33 5'); AeST + gamma_L OPEN"
+   },
+   "P5": {
+    "grade": "PASS-WITH-BOUND",
+    "note": "c_T^2 = 1/(1 - c13), |c13| <~ 1e-15 (record DOOR11)"
+   },
+   "P6": {
+    "grade": "FAIL (v4 = AeST + gamma_L: omega = 0 negative-energy band, C5)"
+   },
+   "FT": {
+    "grade": "FAIL",
+    "removes_fold": false,
+    "why": "AeST's cold sector is the scalar's K(Q) Q-mode, a gradient flow like v3s's; Jacobson-Mattingly's simplified aether develops gradient singularities"
+   },
+   "SC": {
+    "new_constants": [
+     "c1..c4 (or K_B, K_2)"
+    ],
+    "how_fixed": "GW170817 and PPN bounds only"
+   }
+  },
+  "C8": {
+   "P4": {
+    "grade": "FAIL",
+    "DOF": "infinite (distribution function) or N per-owner fields"
+   },
+   "P6": {
+    "grade": "FAIL",
+    "note": "a particle-like sector (house rule: no dark-matter particle); O1 K6 (no merging, law floor x = N - 1) and K11 (each label's exterior flow folds)"
+   },
+   "FT": {
+    "grade": "PASS-CONSTRUCT",
+    "removes_fold": true
+   },
+   "SC": {
+    "new_constants": [
+     "field multiplicity / distribution function"
+    ],
+    "how_fixed": "nothing"
+   }
+  },
+  "C9": {
+   "merged_velocity": "(m_1*v_1 + m_2*v_2)/(m_1 + m_2)",
+   "energy_change": "m_1*m_2*(-v_1**2 + 2*v_1*v_2 - v_2**2)/(2*(m_1 + m_2))",
+   "energy_change_residual": "0",
+   "energy_change_m1=1,m2=-0.5": 2.0,
+   "P1": {
+    "grade": "PASS",
+    "note": "smooth static solutions are viscosity solutions"
+   },
+   "P4": {
+    "grade": "FAIL",
+    "note": "non-variational (dissipative): no Hamiltonian, no constraint algebra"
+   },
+   "P5": {
+    "grade": "PASS"
+   },
+   "P6": {
+    "grade": "FAIL",
+    "note": "with sign-indefinite charge the merged velocity diverges as m1 + m2 -> 0 and sticking can create energy (m1 m2 < 0 < m1 + m2)"
+   },
+   "FT": {
+    "grade": "PASS-CONSTRUCT",
+    "removes_fold": true
+   },
+   "SC": {
+    "new_constants": [],
+    "how_fixed": "nu -> 0+ has no scale"
+   }
+  }
+ },
+ "verdict_inputs": {
+  "compatible": {
+   "C1": true,
+   "C2": true,
+   "C3": true,
+   "C4": true,
+   "C5": false,
+   "C6": false,
+   "C7": false,
+   "C8": false,
+   "C9": false
+  },
+  "removes_fold": {
+   "C1": true,
+   "C2": false,
+   "C3": false,
+   "C4": false,
+   "C5": true,
+   "C6": false,
+   "C7": false,
+   "C8": true,
+   "C9": true
+  },
+  "zero_constant": {
+   "C1": false,
+   "C2": false,
+   "C3": true,
+   "C4": false,
+   "C5": false,
+   "C6": false,
+   "C7": false,
+   "C8": false,
+   "C9": true
+  },
+  "qualifying_zero_constant": [],
+  "qualifying_with_scale": [
+   "C1"
+  ]
+ },
+ "verdict_i": "CAUSTICS GENERIC (shown analytically)",
+ "verdict_ii": "EVERY COMPLETION NEEDS A NEW SCALE",
+ "required_failures": [],
+ "n_checks": 24,
+ "n_pass": 24,
+ "runtime_s": 22.825899124145508,
+ "peak_rss_gb": 0.111771648
+}

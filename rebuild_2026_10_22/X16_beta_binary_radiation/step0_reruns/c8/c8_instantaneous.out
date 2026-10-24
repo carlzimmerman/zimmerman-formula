@@ -1,0 +1,39 @@
+== K2 convexity of the leaf functional
+K2 PASS residuals (0,0,0); W(a0-)=oo; min g'=0.0e+00, g''=0.0e+00 all residuals 0, W->oo, g',g''>=0
+== K1 symbol positivity of the linearised leaf operator
+   Schur complement = K(I - xihat xihat) + H_g + gamma xi xi^T : residual zero = True
+K1 PASS 1071 pts; min Schur/min(K,gamma xi^2) = 1; min eig(M)/max(1,xi^2) = 5e-17 >= 1-1e-10 and > 0
+== K3 uniqueness: kernel of the 'affine along a segment' conditions
+K3 PASS det = I*K**2*(xi1**2 + xi2**2 + xi3**2); rank(gamma>0) = 4; rank(gamma=0) = 3 (kernel p = i xi phi/K, then uniqueness rests on strict convexity of g) rank 4 with gamma_L > 0
+== K4 spherical boundary-value problem (a0 = L* = K = 1, point mass)
+   rM/L*=0.3: rel|grad| 1.3e-13,1.2e-13,1.9e-13 (its 30,8,399); guesses diff 8.71e-14; doubling 1.43e-06; max u/a0 0.090120; u(0.01)=0.089789 vs GM/L*^2=0.09; far u/sqrt(a0 gN) at r=100: 0.98174
+   rM/L*=3.0: rel|grad| 4.0e-11,2.0e-11,6.3e-12 (its 51,398,33); guesses diff 3.93e-15; doubling 1.76e-07; max u/a0 1.000000; u(0.01)=0.999988 vs GM/L*^2=9; far u/sqrt(a0 gN) at r=90: 0.98168
+K4 PASS rM_0.3: ok; rM_3.0: ok unique (<1e-6), u<a0, inner limit 2%, far AQUAL 2%, doubling <1e-3
+== K5 3D two-mass solve (convex functional, L-BFGS, two initial guesses)
+   grid 26^3, h=0.222; gradient FD check rel err 6.73e-09
+   L-BFGS: nit=349 E=-8.165663091 |grad| 6.464e-01 -> 4.721e-08 (CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH)
+   L-BFGS: nit=370 E=-8.165663091 |grad| 5.886e+01 -> 5.751e-08 (CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH)
+K5 PASS diff gradPhi 3.65e-08, P 1.37e-07; max u/a0 0.4025; |grad| reduction 7.30e-08 <1e-4, <1e-4, <0.99, <1e-6
+== K6 (by construction) conjugate momenta of N and P vanish at beta = eta = 0
+K6 PASS pi_N = 0, pi_P = 0 both 0 (by construction)  [not scored]
+== K7 binary pulsars (record-transcribed bounds)
+   J0737-3039A/B: a = 8.7884e+08 m; eps(L*=20/24/90 pc) = 2.028e-18, 1.408e-18, 1.001e-19; precision 6.3e-05
+   B1913+16: a = 1.9491e+09 m; eps(L*=20/24/90 pc) = 9.975e-18, 6.927e-18, 4.926e-19; precision 0.0016
+   J1738+0333: a = 1.7307e+09 m; eps(L*=20/24/90 pc) = 7.864e-18, 5.461e-18, 3.884e-19; precision 0.12
+K7 PASS max eps/precision = 3.219e-14 < 1 (UNCONSTRAINED)
+== K8 preferred frame: field of a body moving at w through the leaves
+   leaf metric along w: 1 - w**2; Phi_c anisotropy coefficient of (w.n)^2: -1/2; alpha2-equiv at 1 AU (L*=24) 4.081e-14; delta a_P = 1.83e-22 m/s^2
+K8 PASS coef = -1/2; max ratio to bounds = 2.448e-07 coef -1/2 (sympy); ratios < 1
+== K9 GW170817: tensor mass induced by the P background
+   m_+^2 = -2*K**2*P0**2*a0**2/(K*Abs(P0) - a0)**2 - 4*K*P0*g_b + 3*K*a0**3*Abs(P0)/(K*Abs(P0) - a0)**2 + K*a0*Abs(P0) + 4*a0**2*log(-K*Abs(P0)/a0 + 1)
+   m_x^2 = 4*(-K**2*P0**2*a0 - K*P0*g_b*(K*Abs(P0) - a0) + a0*(K*Abs(P0) - a0)*(K*Abs(P0) + a0*log((-K*Abs(P0) + a0)/a0)))/(K*Abs(P0) - a0)
+   canonical, galactic_g=a0: |m^2| <= 1.093e-50 m^-2, dv/c at 100 Hz <= 1.244e-39
+   canonical, Earth_surface_g: |m^2| <= 4.501e-43 m^-2, dv/c at 100 Hz <= 5.124e-32
+   alt, galactic_g=a0: |m^2| <= 1.593e-50 m^-2, dv/c at 100 Hz <= 1.813e-39
+   alt, Earth_surface_g: |m^2| <= 5.435e-43 m^-2, dv/c at 100 Hz <= 6.186e-32
+K9 PASS max dv/c = 6.186e-32 < 1e-15 (GW170817, record EMPIRICAL_TESTS A6)
+== K10 lensing vs dynamics during time variation (ILLUSTRATIVE, not scored)
+K10 PASS Jupiter P part 9.32e-21; cluster v^2/c^2 1.0e-04, a r/c^2 1.1e-04 estimate only  [not scored]
+VERDICT: WELL-POSED + UNCONSTRAINED
+runtime 75.6 s, peak RSS 0.29 GB
+C8_INSTANTANEOUS COMPLETE: 8/8 checks PASS.
