@@ -68,3 +68,22 @@ Units kpc, Gyr, M☉. Khronon elements carry signed mass (ρ_τ = D·P) and move
 
 Not tested: stiff-side structure below the grid (L★ ≪ h; γ_L is included but inert at h), non-axisymmetric motions,
 the Hubble flow and other Local Group members, a time-dependent outer boundary, BS dust (μ_K → 0), the DBI K.
+
+## AMENDMENT A1 (after the solver tests, BEFORE any production run; `kf_tests.out`)
+
+- **Engine setting changed before any production number:** Gauss-law tolerance 1e-11 → 1e-13 of max |source|. In a 20-step
+  smoke test the equilibrium residual was 1.6e-6 relative, at M31's axis core cell; AQUAL had converged to 6.8e-13. The
+  V3 threshold (1e-6) is unchanged.
+- **V1 FAIL as frozen.** Max error 1.96 % at h = 20 (≤ 3 % ✓), but error(20)/error(10) = 1.88 < 2.5. Diagnosis (scratch,
+  disclosed): the worst error is always at the smallest included radius, next to the axis (r ≈ 2.1h), a region that moves
+  inward with h. At fixed physical location the scheme converges at second order: the potential error goes
+  3.94e-3 → 9.93e-4 → 2.48e-4 (h 20/10/5, ratio 4.0), and the median gradient error 1.07e-3 → 2.7e-4 → 7e-5. The frozen
+  metric was badly designed (resolution-dependent region); it stays FAIL.
+- **V2 FAIL as frozen.** 11.2 % at h = 20, at the axis cell 70 kpc from a Plummer core that is one cell wide (ε = h;
+  sampled M(<60 kpc) is 1.034× analytic). It converges at second order: 2.97 % (h = 10), 0.76 % (h = 5); away from the
+  axis 6.4 / 2.0 / 0.61 %.
+- **Consequence, stated before production:** soft-lobe forces (200–400 kpc from the galaxies) are accurate to < 1 % at
+  h = 20, while halo forces within ~100 kpc of a galaxy carry 5–10 % errors at h = 20 and 2–3 % at h = 10. The frozen
+  verdict already requires h = 10 confirmation. **Added now:** if the h = 20 and h = 10 readings of a rung case differ,
+  that case is also run at h = 5 (dt 0.005; through the compute queue if over ~10 min), and h = 10/5 decide it.
+- V4 PASS (yield exit 75, resume, idempotent re-resume, bit-identical positions).
