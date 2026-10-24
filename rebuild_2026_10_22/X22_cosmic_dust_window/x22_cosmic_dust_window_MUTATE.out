@@ -1,0 +1,127 @@
+X22_cosmic_dust_window [MUTATE m1-m7: control output, not physics]: criteria a2b532e3c6; kappa = 1/2 FITTED; footings never pooled; no particle; not theory closed
+
+== S0-1: L346 bins and bands from its JSON (X4 code) vs X4 F0a
+[FAIL] S0-1: bins [1.101, 1.392, 1.76, 2.225, 2.814, 3.557]; max |band - X4| 3.65e-02; bins 0.00e+00   (line: <= 1e-9)
+
+== S0-2: L319's WDM line (the cut family)
+[FAIL] S0-2: T2_5.3keV(k5 = 4.6199) = 0.9975913433 (X4 0.9951884883)   (line: <= 1e-12 and within 5e-4 of 0.995)
+
+== S0-3 / S0-4: X6's SPARC d2 machinery
+[FAIL] S0-3: canonical: rms 0.054223 U 0.53 (X6 0.054087 0.52); alt: rms 0.054217 U 0.44 (X6 0.053718 0.44); N 175   (line: rms <= 1e-9, same U median)
+[FAIL] S0-4: f_d,max(both) 1.0000000000 (X6 0.0269184113); NGC 3198 at f_c 0.7620: canonical 0.145239 dex; alt 0.142154 dex   (line: <= 1e-9)
+
+== S0-5: X19 class table
+[FAIL] S0-5: Omega_b rho_crit(1+z)^3: z=0 6.662025e-09, z=1100 8.891361e+00 Msun/pc^3 vs X19 band 6.139722e-09 - 8.194278e+00; SPARC rows present   (line: <= 1e-6 relative)
+
+== STEP 1: lambda_forest from the L319 cut family T2 = [1+(alpha k)^(2 nu)]^(-10/nu), nu = 1.12 (n = 2.24, m = 5/nu)
+[PASS] C1: alpha->0 PASS; 1 keV FAIL; class flips at alpha_PASS 0.00753 and alpha_NF 0.04086 Mpc/h   (line: PASS / FAIL / edges consistent)
+  alpha_PASS: alpha = k_c^-1 = 0.00753 Mpc/h; k_hm 84.607 h/Mpc; lambda_hm 0.074 Mpc/h; R_hm(Lagr.) 37.1 kpc/h; M_hm 1.867e+07 Msun/h (2.770e+07 Msun); T2(k=10) 0.987; class PASS
+  alpha_NF: alpha = k_c^-1 = 0.04086 Mpc/h; k_hm 15.590 h/Mpc; lambda_hm 0.403 Mpc/h; R_hm(Lagr.) 201.5 kpc/h; M_hm 2.984e+09 Msun/h (4.428e+09 Msun); T2(k=10) 0.569; class UNDECIDED
+  WDM_5.3keV: alpha = k_c^-1 = 0.00753 Mpc/h; k_hm 84.607 h/Mpc; lambda_hm 0.074 Mpc/h; R_hm(Lagr.) 37.1 kpc/h; M_hm 1.867e+07 Msun/h (2.770e+07 Msun); T2(k=10) 0.987; class PASS
+  lines: strict alpha <= 0.00753, band top <= 0.07462, loose <= 0.04086, bin 0.5 <= 0.12676 Mpc/h; lambda_line = 2pi/k5 = 1.360 Mpc/h; pincer loose yardstick alone allows alpha <= 0.04509
+  => lambda_forest (half-mode at alpha_NF) = 0.403 Mpc/h comoving; Lagrangian M_hm = 4.428e+09 Msun
+
+== STEP 2: the galaxy side (per footing)
+  R_gal: SPARC R_last min/16/50/84/max = 0.71 / 4.96 / 11.27 / 35.57 / 108.31 kpc
+[FAIL] C4: max |closed form / quadrature - 1| = 9.50e-01 (beta 0.3, 1, 2.2; x 0.05, 0.3, 1)   (line: <= 1e-8)
+  canonical: f_max (d2 line, this footing) = 0.15150; rms-only bound 1.00000; law rms 0.0542, U 0.53 (edge 0.50)
+     tolerated M_c(<R_last)/M_b min/16/50/84/max = 0.0061 / 0.0183 / 0.0271 / 0.0406 / 0.0780; R_last/r_ta median 0.033
+     Lagrangian M_L = (Om/Ob) M_b: 3.043e+08 / 5.286e+09 / 4.964e+10 / 5.576e+11 / 3.792e+12 Msun; R_L 0.083 / 0.214 / 0.451 / 1.010 / 1.914 Mpc/h; k_L = pi/R_L 1.64 / 3.11 / 6.97 / 14.71 / 38.06 h/Mpc
+     hydrostatic c_s,need = 220.4 km/s (SPARC at it: rms 0.1100, U 0.51; beta capped in 0 galaxies); c_s,need/V_last median 2.21; gravitational virial heating (beta = 2) leaves median 16.181 of the fair share inside R_last
+  alt: f_max (d2 line, this footing) = 0.02832; rms-only bound 1.00000; law rms 0.0542, U 0.44 (edge 0.44)
+     tolerated M_c(<R_last)/M_b min/16/50/84/max = 0.0011 / 0.0034 / 0.0052 / 0.0077 / 0.0150; R_last/r_ta median 0.034
+     Lagrangian M_L = (Om/Ob) M_b: 3.043e+08 / 4.788e+09 / 4.889e+10 / 5.139e+11 / 3.442e+12 Msun; R_L 0.083 / 0.207 / 0.449 / 0.983 / 1.853 Mpc/h; k_L = pi/R_L 1.70 / 3.20 / 7.00 / 15.19 / 38.06 h/Mpc
+     hydrostatic c_s,need = 256.2 km/s (SPARC at it: rms 0.0547, U 0.44; beta capped in 0 galaxies); c_s,need/V_last median 2.57; gravitational virial heating (beta = 2) leaves median 15.842 of the fair share inside R_last
+[PASS] C5: vector form with fd_i = f equals X6 scalar form at f_max and 1, both footings   (line: exact)
+
+== STEP 3A: frozen comoving cut (gravity only), captured fraction c_i = T2(k_L,i) (window-favourable)
+  canonical alpha_NF: captured T2(k_L) min/16/50/84/max 0.0029 / 0.2902 / 0.7712 / 0.9571 / 0.9896 -> SPARC rms 0.0564, U 0.43 -> d2 FAIL
+     exclusion needs T2 <= f_max = 0.1515: k_excl = 18.4 h/Mpc (4.0 x k5), M_excl = 2.705e+09 Msun; SPARC M_L min/p16/p50 over M_excl = 0.112 / 1.95 / 18.4; fraction of SPARC below M_excl 0.109
+     infall (reported): suppressed galaxies sitting in an M_excl structure get 1 / 1.21 / 1.79 / 4.15 / 4.29 x their fair share inside R_last
+  canonical alpha_PASS: captured T2(k_L) min/16/50/84/max 0.7682 / 0.9683 / 0.9940 / 0.9990 / 0.9998 -> SPARC rms 0.0581, U 0.40 -> d2 FAIL
+     exclusion needs T2 <= f_max = 0.1515: k_excl = 99.7 h/Mpc (21.6 x k5), M_excl = 1.692e+07 Msun; SPARC M_L min/p16/p50 over M_excl = 18 / 312 / 2.93e+03; fraction of SPARC below M_excl 0.000
+  alt alpha_NF: captured T2(k_L) min/16/50/84/max 0.0029 / 0.2676 / 0.7690 / 0.9545 / 0.9888 -> SPARC rms 0.0605, U 0.36 -> d2 FAIL
+     exclusion needs T2 <= f_max = 0.0283: k_excl = 26.8 h/Mpc (5.8 x k5), M_excl = 8.750e+08 Msun; SPARC M_L min/p16/p50 over M_excl = 0.348 / 5.47 / 55.9; fraction of SPARC below M_excl 0.046
+     infall (reported): suppressed galaxies sitting in an M_excl structure get 1.08 / 1.11 / 1.95 / 2.01 / 2.02 x their fair share inside R_last
+  alt alpha_PASS: captured T2(k_L) min/16/50/84/max 0.7682 / 0.9660 / 0.9939 / 0.9989 / 0.9997 -> SPARC rms 0.0629, U 0.34 -> d2 FAIL
+     exclusion needs T2 <= f_max = 0.0283: k_excl = 145.3 h/Mpc (31.4 x k5), M_excl = 5.475e+06 Msun; SPARC M_L min/p16/p50 over M_excl = 55.6 / 875 / 8.93e+03; fraction of SPARC below M_excl 0.000
+  canonical alpha_NF (reported, A3): R_L / R_hm min/16/50/84/max 0.41 / 1.06 / 2.24 / 5.01 / 9.5; M_L / M_hm 0.0687 / 1.19 / 11.2 / 126 / 856; fraction of SPARC with M_L < M_hm 0.143
+  canonical alpha_PASS (reported, A3): R_L / R_hm min/16/50/84/max 2.22 / 5.76 / 12.1 / 27.2 / 51.5; M_L / M_hm 11 / 191 / 1.79e+03 / 2.01e+04 / 1.37e+05; fraction of SPARC with M_L < M_hm 0.000
+  alt alpha_NF (reported, A3): R_L / R_hm min/16/50/84/max 0.41 / 1.03 / 2.23 / 4.88 / 9.19; M_L / M_hm 0.0687 / 1.08 / 11 / 116 / 777; fraction of SPARC with M_L < M_hm 0.149
+  alt alpha_PASS (reported, A3): R_L / R_hm min/16/50/84/max 2.22 / 5.57 / 12.1 / 26.5 / 49.9; M_L / M_hm 11 / 173 / 1.76e+03 / 1.85e+04 / 1.24e+05; fraction of SPARC with M_L < M_hm 0.000
+  Window-A (d2 passes on both footings at alpha_NF): False
+
+== STEP 3B: Jeans cut lambda_J,com ~ a^p, c_s(a) = c_s,need a^(p-1/2); linear two-fluid ODE from a_i = 1e-3
+[FAIL] C2: c_s = 0: delta_m(z=0) 0.610096 vs LCDM integral 0.787089 (|dev| 2.25e-01); T2 identically 1 (0.0e+00)   (line: <= 2e-3; 1e-10)
+[PASS] C3: T2(z = 0) non-increasing in c_s over {0, 10, 100, 300} km/s at every graded k (p = 0.5)   (line: monotone)
+  reported: pincer control, constant c_s = 4 km/s: T2(k = 10, z = 3) = 0.9396 (pincer: 'loses 7%' in its own setup)
+  canonical p = -0.5: c_s(z=3/2/0) = 882 / 661 / 220 km/s; forest FAIL (z3 bins 0.000-0.000, T2(k5) z3/z2 0.000/0.000); R_sigma8 0.0246; T2(z=0) at k 0.1/1/10: 0.000 / 0.000 / 0.000 -> window False
+  canonical p = +0.0: c_s(z=3/2/0) = 441 / 382 / 220 km/s; forest FAIL (z3 bins 0.000-0.000, T2(k5) z3/z2 0.000/0.000); R_sigma8 0.5062; T2(z=0) at k 0.1/1/10: 0.506 / 0.000 / 0.000 -> window False
+  canonical p = +0.5: c_s(z=3/2/0) = 220 / 220 / 220 km/s; forest FAIL (z3 bins 0.001-0.086, T2(k5) z3/z2 0.001/0.000); R_sigma8 0.8834; T2(z=0) at k 0.1/1/10: 0.939 / 0.003 / 0.000 -> window False
+  canonical p = +1.0: c_s(z=3/2/0) = 110 / 127 / 220 km/s; forest FAIL (z3 bins 0.071-0.799, T2(k5) z3/z2 0.007/0.002); R_sigma8 0.9548; T2(z=0) at k 0.1/1/10: 0.979 / 0.102 / 0.002 -> window False
+  canonical p = +1.5: c_s(z=3/2/0) = 55.1 / 73.5 / 220 km/s; forest FAIL (z3 bins 0.726-0.970, T2(k5) z3/z2 0.578/0.261); R_sigma8 0.9768; T2(z=0) at k 0.1/1/10: 0.990 / 0.343 / 0.006 -> window False
+  canonical p = +2.0: c_s(z=3/2/0) = 27.5 / 42.4 / 220 km/s; forest FAIL (z3 bins 0.951-0.995, T2(k5) z3/z2 0.919/0.768); R_sigma8 0.9862; T2(z=0) at k 0.1/1/10: 0.994 / 0.544 / 0.015 -> window False
+  canonical p = +3.0: c_s(z=3/2/0) = 6.89 / 14.1 / 220 km/s; forest UNDECIDED (z3 bins 0.998-1.000, T2(k5) z3/z2 0.997/0.986); R_sigma8 0.9937; T2(z=0) at k 0.1/1/10: 0.997 / 0.765 / 0.023 -> window True
+  canonical p = +4.0: c_s(z=3/2/0) = 1.72 / 4.71 / 220 km/s; forest PASS (z3 bins 1.000-1.000, T2(k5) z3/z2 1.000/0.999); R_sigma8 0.9964; T2(z=0) at k 0.1/1/10: 0.999 / 0.863 / 0.060 -> window True
+  canonical p = +6.0: c_s(z=3/2/0) = 0.108 / 0.524 / 220 km/s; forest PASS (z3 bins 1.000-1.000, T2(k5) z3/z2 1.000/1.000); R_sigma8 0.9984; T2(z=0) at k 0.1/1/10: 0.999 / 0.938 / 0.006 -> window True
+  canonical p = +8.0: c_s(z=3/2/0) = 0.00673 / 0.0582 / 220 km/s; forest PASS (z3 bins 1.000-1.000, T2(k5) z3/z2 1.000/1.000); R_sigma8 0.9991; T2(z=0) at k 0.1/1/10: 1.000 / 0.965 / 0.006 -> window True
+  alt p = -0.5: c_s(z=3/2/0) = 1.02e+03 / 768 / 256 km/s; forest FAIL (z3 bins 0.000-0.000, T2(k5) z3/z2 0.000/0.000); R_sigma8 0.0199; T2(z=0) at k 0.1/1/10: 0.000 / 0.000 / 0.000 -> window False
+  alt p = +0.0: c_s(z=3/2/0) = 512 / 444 / 256 km/s; forest FAIL (z3 bins 0.000-0.000, T2(k5) z3/z2 0.000/0.000); R_sigma8 0.4503; T2(z=0) at k 0.1/1/10: 0.398 / 0.000 / 0.000 -> window False
+  alt p = +0.5: c_s(z=3/2/0) = 256 / 256 / 256 km/s; forest FAIL (z3 bins 0.001-0.035, T2(k5) z3/z2 0.000/0.000); R_sigma8 0.8518; T2(z=0) at k 0.1/1/10: 0.918 / 0.003 / 0.000 -> window False
+  alt p = +1.0: c_s(z=3/2/0) = 128 / 148 / 256 km/s; forest FAIL (z3 bins 0.023-0.738, T2(k5) z3/z2 0.001/0.007); R_sigma8 0.9408; T2(z=0) at k 0.1/1/10: 0.972 / 0.042 / 0.002 -> window False
+  alt p = +1.5: c_s(z=3/2/0) = 64 / 85.4 / 256 km/s; forest FAIL (z3 bins 0.647-0.960, T2(k5) z3/z2 0.473/0.153); R_sigma8 0.9693; T2(z=0) at k 0.1/1/10: 0.986 / 0.228 / 0.007 -> window False
+  alt p = +2.0: c_s(z=3/2/0) = 32 / 49.3 / 256 km/s; forest FAIL (z3 bins 0.935-0.994, T2(k5) z3/z2 0.892/0.698); R_sigma8 0.9816; T2(z=0) at k 0.1/1/10: 0.992 / 0.435 / 0.011 -> window False
+  alt p = +3.0: c_s(z=3/2/0) = 8 / 16.4 / 256 km/s; forest UNDECIDED (z3 bins 0.998-1.000, T2(k5) z3/z2 0.996/0.981); R_sigma8 0.9915; T2(z=0) at k 0.1/1/10: 0.996 / 0.695 / 0.007 -> window True
+  alt p = +4.0: c_s(z=3/2/0) = 2 / 5.48 / 256 km/s; forest PASS (z3 bins 1.000-1.000, T2(k5) z3/z2 1.000/0.999); R_sigma8 0.9952; T2(z=0) at k 0.1/1/10: 0.998 / 0.818 / 0.064 -> window True
+  alt p = +6.0: c_s(z=3/2/0) = 0.125 / 0.609 / 256 km/s; forest PASS (z3 bins 1.000-1.000, T2(k5) z3/z2 1.000/1.000); R_sigma8 0.9979; T2(z=0) at k 0.1/1/10: 0.999 / 0.917 / 0.004 -> window True
+  alt p = +8.0: c_s(z=3/2/0) = 0.00782 / 0.0676 / 256 km/s; forest PASS (z3 bins 1.000-1.000, T2(k5) z3/z2 1.000/1.000); R_sigma8 0.9988; T2(z=0) at k 0.1/1/10: 1.000 / 0.954 / 0.007 -> window True
+  Window-B at p <= 0.5 (EOS only): []; at p > 0.5 (needs late heating): [3.0, 4.0, 6.0, 8.0]
+
+== STEP 3C: environment keys (X19 variables placeable on FRW + delta_b)
+  canonical rho_b   : C [6.14e-09, 8.19]  S [0.000212, 0.00383]  separates False  (physical)
+  canonical x       : C [0, 15.6]  S [0.0253, 0.24]  separates False  (physical)
+  canonical rho_env : C [3.88e-08, 51.8]  S [3.88e-08, 3.88e-08]  separates False  (physical)
+  canonical e       : C [0, 0]  S [0.0343, 0.0595]  separates True  (CONVENTION (background e set to 0))
+  canonical kT      : C [0.000259, 0.000259]  S [0, 0]  separates True  (CONVENTION (SPARC kT set to 0: no X-ray gas))
+  canonical H       : C [0, 0]  S [0, 1]  separates False  (binary)
+  canonical N_orb   : C [0.0234, 0.746]  S [9.3, 35]  separates True  (physical (computed for the cosmic medium))
+  canonical delta_b : C [0, 100]  S [3.45e+04, 6.24e+05]  separates True  (physical (derived))
+     rho_b: the background enters S at z = 84.5 - 31.5 (S hi - lo); N_orb background (z 1100/3/2/0) 0.075 / 0.075 / 0.074 / 0.060, forest max 0.746; delta_b gap S_lo / 100 = 345
+  alt rho_b   : C [6.14e-09, 8.19]  S [0.000208, 0.00368]  separates False  (physical)
+  alt x       : C [0, 15.6]  S [0.0206, 0.185]  separates False  (physical)
+  alt rho_env : C [3.88e-08, 51.8]  S [3.88e-08, 3.88e-08]  separates False  (physical)
+  alt e       : C [0, 0]  S [0.0311, 0.054]  separates True  (CONVENTION (background e set to 0))
+  alt kT      : C [0.000259, 0.000259]  S [0, 0]  separates True  (CONVENTION (SPARC kT set to 0: no X-ray gas))
+  alt H       : C [0, 0]  S [0, 1]  separates False  (binary)
+  alt N_orb   : C [0.0234, 0.746]  S [9.3, 35]  separates True  (physical (computed for the cosmic medium))
+  alt delta_b : C [0, 100]  S [3.39e+04, 5.99e+05]  separates True  (physical (derived))
+     rho_b: the background enters S at z = 83.3 - 31.4 (S hi - lo); N_orb background (z 1100/3/2/0) 0.075 / 0.075 / 0.074 / 0.060, forest max 0.746; delta_b gap S_lo / 100 = 339
+  rho_b key consequence (sharp key at S lo: c_s = c_s,need while the background is above it):
+    canonical: on for z >= 31.5 at 220.4 km/s -> forest FAIL (z3 bins 0.00426-0.673, T2(k5) z3 0.000282); R_sigma8 0.9922
+    alt: on for z >= 31.4 at 256.2 km/s -> forest FAIL (z3 bins 0.000268-0.581, T2(k5) z3 0.00297); R_sigma8 0.9896
+  reported: rms linear peculiar gravity g_rms(z = 0/2/3) = 1.020e-12 / 3.832e-12 / 5.151e-12 m/s^2 = 0.011 / 0.041 / 0.055 a0 (canonical); SPARC e (16-84) 0.034-0.060
+  side effect (canonical) SPARC small            delta_b 8.06e+04-6.24e+05  label NONE    emptied by every separating threshold
+  side effect (canonical) SPARC large            delta_b 3.45e+04-3.96e+05  label NONE    emptied by every separating threshold
+  side effect (canonical) Groups                 delta_b 39.3-151  label NONE    threshold-dependent
+  side effect (canonical) Clusters T1            delta_b 254-1.21e+03  label NONE    threshold-dependent
+  side effect (canonical) Clusters T2            delta_b 1.58e+03-2.57e+03  label EXTRA   threshold-dependent
+  side effect (canonical) Clusters T3            delta_b 2.99e+03-6e+03  label EXTRA   threshold-dependent
+  side effect (canonical) MW disc                delta_b 4.21e+06-4.21e+06  label NONE    emptied by every separating threshold
+  side effect (canonical) LG field               delta_b 5.11e+05-1.74e+06  label NONE    emptied by every separating threshold
+  side effect (canonical) MW classical           delta_b 3.43e+05-2.71e+06  label AMBIG   emptied by every separating threshold
+  side effect (canonical) MW ultra-faint         delta_b 4.65e+04-9.75e+05  label EXTRA   emptied by every separating threshold
+  side effect (canonical) bright M31             delta_b 5.45e+04-4.05e+05  label EXTRA   emptied by every separating threshold
+  side effect (canonical) M31 others             delta_b 2.17e+05-7.71e+05  label EXTRA   emptied by every separating threshold
+  side effect (canonical) Crater II              delta_b 2.27e+03-2.27e+03  label NONE    threshold-dependent
+  side effect (canonical) Antlia II              delta_b 821-821  label AMBIG   threshold-dependent
+  side effect (canonical) Coma UDGs              delta_b 4.41e+04-1.11e+05  label AMBIG   emptied by every separating threshold
+  side effect (canonical) UMa members            delta_b 9.77e+04-1.44e+06  label NONE    emptied by every separating threshold
+  side effect (canonical) TDGs                   delta_b 1.46e+05-3.57e+05  label NONE    emptied by every separating threshold
+  side effect (canonical) DF2/DF4                delta_b 2.05e+05-3e+05  label NONE    emptied by every separating threshold
+  physical keys separating C from S on both footings: ['N_orb', 'delta_b']; convention-only separations (no weight): ['e', 'kT']
+
+VERDICT: UNDECIDED
+  gravity alone (frozen cut, Jeans a^p with p <= 0.5): NO WINDOW: any cold component that passes the forest falls into galaxies
+  non-gravitational routes open: late heating at p = [3.0, 4.0, 6.0, 8.0]; keys ['N_orb', 'delta_b']
+MUTATE: required failures ('S0-1', 'S0-2', 'S0-3', 'S0-4', 'S0-5', 'C2', 'C4'): S0-1 FAILED, S0-2 FAILED, S0-3 FAILED, S0-4 FAILED, S0-5 FAILED, C2 FAILED, C4 FAILED; all failing checks ['S0-1', 'S0-2', 'S0-3', 'S0-4', 'S0-5', 'C4', 'C2']
+checks 3/10 PASS; runtime 12 s; peak RSS 0.10 GB
