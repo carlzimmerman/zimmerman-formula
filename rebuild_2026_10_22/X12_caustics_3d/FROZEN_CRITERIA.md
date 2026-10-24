@@ -237,3 +237,31 @@ physics), neither covers quantum strong coupling, and neither is a data comparis
 `OMP_NUM_THREADS=1 nice -n 15` (plus the single-thread BLAS variables), one thread, < 1 GB RSS per process, each process
 ≤ 30 min of wall time (checkpoint/resume), at most two at once, none while `compute_queue/heavyq.py status` shows low free
 memory. The heavy queue and every other lane are not touched. No downloads.
+
+## AMENDMENT A1 (POST-RESULT: written after R-X10, V-a1 and V-cm were scored; diagnostic only, no verdict weight)
+
+**What has been seen.** R-X10 PASS (all six 2D rows bit-identical to X10's committed values) and V-a1 PASS (max |J − 1|
+≤ 3.6e-11 at every h). **V-cm FAILS as frozen:** MW 0.0574 / 0.0552 (h 15 / 10) passes, but M31 gives 0.0819 / 0.0930,
+both below 0.1 with h 10 > h 15. By §4's stop rule both verdicts are **UNDECIDED (3D NOT VALIDATED: V-cm)**, the W, E,
+b > 0 and N-check runs are not made, and this amendment does not change that.
+
+Seen in the V-cm time series (`runs/vcm_*_canonical_h*.json → series`): at h 10 the error stays ≈ 0.02 until t ≈ 9 Gyr
+(M31) and ≈ 11 Gyr (MW), then rises to the final value; F3 fires in the three MW runs at 11.9–12.6 Gyr (boosted labels near
+the outer z face leave the 5 Mpc box). A candidate mechanism, not yet tested: V-cm boosts *every* label, so labels that start
+in the z-graded zone below the fine zone (spacing hq, hq², …) enter the fine zone behind the statistic region; there the
+particle lattice is coarser than the grid and the deposit is lumpy. The production cases do not do this (only held labels,
+all starting inside the fine z range, move), but that is an argument, not a test.
+
+**Added diagnostics (declared before they are computed; reported in the README with no verdict weight):**
+- **A1-loc.** V-cm M31, canonical, h 15 and h 10, the frozen box, rerun with the label and current position of the
+  maximum |J − 1| recorded at each 0.25 Gyr series point (the run must reproduce the frozen numbers exactly).
+- **A1-box.** V-cm MW and M31, canonical, h 15 and h 10, with the fine z range extended so that no label from outside it
+  comes within 300 kpc of the statistic region during the run: M31 z ∈ [−600, 1260], MW z ∈ [−660, 1680] kpc (x, y, q,
+  B_out, statistic and pass line unchanged). Reading: if both masses then give ≤ 0.1 with h 10 ≤ h 15, the frozen failure
+  is a property of the V-cm test box (graded-zone labels entering the fine zone), not of the solver in the configurations
+  production would use; if not, it is a property of the 3D solver at these resolutions.
+- **MUTATE** (§4) is run as frozen on the frozen V-cm box (h 15 and 10, MW and M31) so that the check's discriminating power
+  is on record.
+
+Either way the frozen verdicts stay UNDECIDED; a production run would need a new frozen lane (successor) with its own
+V-cm box fixed before any production number.
