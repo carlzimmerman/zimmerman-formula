@@ -1,0 +1,50 @@
+X14_caustic_completion  [MUTATE m1-m4]
+==============================================================================================================
+PART R: reproductions of X3 (B1-S linear dispersion, B2-S nonlinear PN identities)
+  X3 B1-S system rebuilt (2.2 s)
+  [PASS] R0: omega^2 - rho0[k^2/chi - K] = 0 (Theta 1), 0 (Theta 0); det degree in omega 2   (line: X3's B1-S reproduced on both sides (residual 0))
+  [PASS] R1: sigma-EL + continuity 0; P-EL - [Xi_z - K W'(KP) + d_z((gL/2)F'(s))] 0; D_t v - (Xi_z - phi_z) 0; phi-EL - [phi_zz/K - rho_m - rho_tau] 0   (line: X3's B2-S identities reproduced from L1, plus Poisson for all charge (residual 0))
+
+PART F (step 3): analytic folds from v3s's own PN equations
+  [PASS] F1a: u(1-mu(|u|/a0)) - y = 0 (y>0), 0 (y<0)   (line: U(y) = a0 y/(a0-|y|) inverts the hold flux exactly; flux cap |y| < a0)
+  [FAIL] F1b: U'(y) - (1+|U|/a0)^2 = 1 - (a_0 + y_p)**2/a_0**2 (y>0), 0 (y<0)   (line: U' = (1+x)^2 = M_L (the longitudinal P mass))
+  [PASS] F1c: Poisson 0, hold (P_z = rho_tau) 0, D_t S = 0; with Xi_z = U(KP) from the P-EL (F1a) and D_t v = Xi_z - phi_z (R1)   (line: Gauss-integrated 1D fields satisfy L1's EL equations; khronon column label-invariant)
+  [PASS] F1d: J_tt - [-K rho_b J + K rho_tau0 (M_L - 1)] = 0   (line: exact Jacobian equation before first crossing (Theta = 0, mu_K = 0))
+  [FAIL] F2: J(tau) = (K_Sigma*tau + w)/w; fold tau_f = None, turnaround 2*w/K_Sigma; general J residual 0; charged fold iff omega_p2 <= K_Sigma**2/(2*w**2)   (line: zero-charge stream folds at tau_f = w/(K Sigma_b) < turnaround for every w, Sigma_b; exact closed form)
+  [PASS] F2-soft: J = J0 + Jdot0 tau - A tau^2/2 has the positive root [Jdot0 + sqrt(Jdot0^2 + 2AJ0)]/A for every J0 > 0, Jdot0   (line: soft (rho_tau0 < 0) planar labels fold in finite time for every initial datum)
+  [PASS] F3: xi_tt = -K[Sigma_b(q+xi) - Sigma_b(q)] residual 0; J at quarter phases = -t_n*xi_0(q)*Derivative(omega(q), q) + 1   (line: held planar oscillations phase-mix to J <= 0 by t ~ 1/|xi0 omega'| whenever omega'(q) != 0)
+  [PASS] F4a: spherical hold law residual 0; cycloid r_tt + GM/r^2 = 0; t_ff = sqrt(2)*pi*q**(3/2)/(4*sqrt(G)*sqrt(M_b))   (line: zero-charge shells reach r = 0 (hoop J -> 0) at t_ff = (pi/2) sqrt(q^3/(2 G M_b)))
+  [PASS] F4b: U(y) - y = -y_n**2/(a_0 - y_n) < 0 for y < 0, so r_tt <= -G M_b/r^2   (line: negative-charge shells fall at least as fast as Kepler with M_b: r = 0 (or the flux cap, where U -> -inf) within t_ff)
+  [PASS] F4c: U near the wall ~ a_0/2/eps (log-divergent barrier); omega^2 - 2 a0 x^2/r = 0; dln omega^2/dln r = [-4.961, -3.894, -3.1]   (line: positive charge: wall excludes hoop collapse; held shells phase-mix (domega/dq != 0) -> shell crossing)
+  [PASS] F5a: p''(tau_s): stiffness (gL/2) rho^2: 3*gamma_L/tau_s**4; K(Q) K rho^2/(2 mu^2): 3*K/(mu_K**2*tau_s**4); isothermal c^2 rho: 2*c**2/tau_s**3; Chaplygin -A/rho: 0; Chaplygin work to J = 0: -A/2 (finite)   (line: stiffness and K(Q) pressures genuinely nonlinear (shock after compression); Chaplygin linearly degenerate but finite at J -> 0 (does not stop the fold))
+  [PASS] F5b: work = c_0**2*(1 - J_*)/(2*J_*); J_* = c_0**2/(c_0**2 + w**2)   (line: a gamma = 2 pressure stops the cold fold only at J_* = 1/(1 + Mach^2))
+  canonical: r 11 kpc x 1.304 c0 220.7 m/s Mach 311 q_K(S4) 0.0025 q_K(cap) 0.25; r 33 kpc x 0.330 c0 76.4 m/s Mach 900 q_K(S4) 0.0044 q_K(cap) 0.44; r 73 kpc x 0.138 c0 34.7 m/s Mach 1983 q_K(S4) 0.0083 q_K(cap) 0.83; r 91 kpc x 0.109 c0 27.8 m/s Mach 2471 q_K(S4) 0.0101 q_K(cap) 1.01; r 156 kpc x 0.062 c0 16.2 m/s Mach 4235 q_K(S4) 0.0166 q_K(cap) 1.66
+  alt: r 11 kpc x 1.145 c0 245.6 m/s Mach 280 q_K(S4) 0.0024 q_K(cap) 0.24; r 33 kpc x 0.297 c0 84.5 m/s Mach 814 q_K(S4) 0.0043 q_K(cap) 0.43; r 73 kpc x 0.125 c0 38.3 m/s Mach 1795 q_K(S4) 0.0082 q_K(cap) 0.82; r 91 kpc x 0.099 c0 30.7 m/s Mach 2236 q_K(S4) 0.0100 q_K(cap) 1.00; r 156 kpc x 0.057 c0 17.9 m/s Mach 3832 q_K(S4) 0.0165 q_K(cap) 1.65
+  [PASS] F5c: min Mach over fold locations and w: canonical 311, alt 280   (line: stiffness Mach >= 10 at every fold location, both footings)
+  [PASS] F5d: lim_k->inf omega^2 = K*rho0*(M_theta - 1) (mu_K-independent); K(Q) correction = -K*M_theta**2*mu_K**2*rho0/(M_theta*mu_K**2 + k**2); q_K at mu_K = 0.1 Mpc^-1 (l 11, 156 kpc): canonical 0.0166, alt 0.0165; at the BS cap up to 1.66 / 1.65   (line: K(Q) is inert at the fold scale for S4-allowed mu_K (q_K < 1), both footings)
+
+PART P (step 2): the frozen completion classes
+  [PASS] C1-R: EL of -(B/2K) sigma_zz^2 = -B*Derivative(sigma(t, z), (z, 4))/K; omega^2 - (rho + Bk^2/K)(k^2/chi - K) = 0   (line: C1's PN term reproduces the record form (X3 E2 / C5): rho_tau -> rho_tau + B k^2/K)
+  [FAIL] C1-P6a: lim -omega^2 (k->inf): {'Theta1|rho+': 'oo', 'Theta1|rho-': 'oo', 'Theta0|rho+': 'oo', 'Theta0|rho-': 'oo'}   (line: C1: no Hadamard growth on either side, either sign)
+  [FAIL] C1-FT: soft side large-k exponents [0, 0], coefficient positive [True, False] (B = 0 (m4))   (line: C1 adds a positive k^2 (or higher) term on the soft side for both signs)
+  C1 window: beta_min {'canonical': 1.9935466978219455e-06, 'alt': 2.197554215500931e-06}, beta_max {'mu_0.1': 1.0049250737135537e-05, 'mu_0.03': 0.00011167536237177899}, non-empty {'canonical': {'mu_0.1': True, 'mu_0.03': True}, 'alt': {'mu_0.1': True, 'mu_0.03': True}}
+  [PASS] C2-FT: large-k exponents [0, 0, 0, 0] (k-independent); sheet kick ratio at k -> 0 = 1   (line: C2 leaves n = 0 and the codimension-1 sheet fold unchanged (FT-FAIL), as Mukohyama states for codim 1)
+  [PASS] C4-FT: BS25 large-k omega^2 = K*rho0*(M_theta - 1); dRM dust-branch c_s^2 = 1 - Q**2 (-0.210 at Q = 1.1); K' = C1*Q/sqrt(Q**2 - 1)   (line: C4 cannot act at the fold scale (BS25) and the caustic-free set has c_s^2 < 0 on v3s's dust branch)
+  [PASS] C5-P3: omega^2 = rho0(k^2/chi - K) + nu^2 k^4/4 (residual 0); exponents {'rho+': {'n': 4, 'coef': 'nu**2/4', 'coef_positive': True}, 'rho-': {'n': 4, 'coef': 'nu**2/4', 'coef_positive': True}}; Q_nu(rho = s z) = nu**2/(8*z**2)   (line: C5 is dispersive (n = 4) but singular at rho_tau = 0 and needs rho_tau >= 0)
+  [PASS] C6-FT: h.curl(n).h = 0 for n_mu = -N d_mu tau with N = X^-1/2: True   (line: C6's vorticity route is unavailable to the foliation; its acceleration route is v3s itself)
+  [PASS] C9: sticky merger dE = m_1*m_2*(-v_1**2 + 2*v_1*v_2 - v_2**2)/(2*(m_1 + m_2)); m1 = 1, m2 = -0.5, v = +-1: dE = +2.000 (> 0)   (line: adhesion: zero-scale but ill-defined for v3s's sign-indefinite charge (energy created / v unbounded))
+
+VERDICTS
+  (i)  UNDECIDED
+  (ii) NO COMPLETION COMPATIBLE WITH v3s's PASSES; qualifying with a new scale: []; zero-constant qualifying: []
+  C1: compatible False, removes fold False (FT FAIL), new constants ['beta (dimensionless; sets the velocity scale c sqrt(beta (M-1)/2))']
+  C2: compatible True, removes fold False (FT FAIL), new constants ['l_* (UV length) and its coefficient']
+  C3: compatible True, removes fold False (FT FAIL), new constants []
+  C4: compatible True, removes fold False (FT FAIL), new constants ['lambda_D (BS25 P1 = 30, P2 = 1)', 'or the Galileon/DBI scale']
+  C5: compatible False, removes fold True (FT PASS-LIT), new constants ['nu = hbar/m (mass M of BR17)']
+  C6: compatible False, removes fold False (FT FAIL), new constants ['a free function f']
+  C7: compatible False, removes fold False (FT FAIL), new constants ['c1..c4 (or K_B, K_2)']
+  C8: compatible False, removes fold True (FT PASS-CONSTRUCT), new constants ['field multiplicity / distribution function']
+  C9: compatible False, removes fold True (FT PASS-CONSTRUCT), new constants []
+  MUTATE: required failures {'F1b': {'mutation': 'm1', 'failed': True}, 'C1-P6a': {'mutation': 'm2', 'failed': True}, 'F2': {'mutation': 'm3', 'failed': True}, 'C1-FT': {'mutation': 'm4', 'failed': True}}
+checks 20/24 pass; required failures ['F1b', 'F2', 'C1-P6a', 'C1-FT']; 23 s; peak RSS 0.112 GB
