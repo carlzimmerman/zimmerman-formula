@@ -1,0 +1,48 @@
+# X14_caustic_completion: literature map (step 1) and the frozen completion classes
+
+Committed with `FROZEN_CRITERIA.md` and `ASSUMPTION_LEDGER.md`, before any script or derivation result. **The class list C1–C9
+below is frozen** (FROZEN_CRITERIA §2): no class is added after step 2 starts.
+
+**Every look-up here is PROVISIONAL.** They were made on 2026-10-24 through a summarising web-fetch tool that returns
+summaries, not verbatim text. Tags: **[abs]** arXiv abstract page; **[html]** the paper's full-text HTML read through the same
+tool (statements about the body are the tool's summary, with short quotes where it gave them); **[sec]** bibliographic
+detail confirmed only from secondary sources (later papers, ADS records); **[mem]** from memory, not looked up;
+**[rec]** a result already in this repository. Nothing was downloaded.
+
+## A. Caustics in pressureless single-stream scalar dust: the theory-level property
+
+| # | statement | source |
+|---|---|---|
+| A1 | An irrotational geodesic congruence with R_ab u^a u^b ≥ 0 focuses: dθ/dτ ≤ −θ²/3, so θ → −∞ within 3/\|θ₀\| of proper time when θ₀ < 0. Gorji states it for mimetic dark matter ("τ_c = τ₀ + 3/\|θ(τ₀)\|", shell crossing). | Gorji 2025, arXiv:2510.23838 [html] ("v2 matches published version"; journal not named); Raychaudhuri 1955, Phys. Rev. 98, 1123 [mem]; Hawking & Ellis 1973 [mem] |
+| A2 | Lagrangian (Zel'dovich) caustics are a generic feature of the evolution of Lagrangian systems. | Arnold, Shandarin & Zel'dovich 1982, Geophys. Astrophys. Fluid Dyn. 20, 111 [sec: ADS record 1982GApFD..20..111A] |
+| A3 | Both the pressureless perfect fluid and k-essence develop caustic singularities in finite time; they belong to one class. | Babichev & Ramazanov 2017, JHEP 08 (2017) 040, arXiv:1704.03367 [abs, html] |
+| A4 | Generic initial data in k-essence end in caustics (worked example on a timelike-gradient cosmological background). Born–Infeld forms caustics because it behaves as dust in some regime. A canonical K(X) ∝ X avoids them in 1+1. | Babichev 2016, JHEP 04 (2016) 129, arXiv:1602.00735 [abs, html] |
+| A5 | Born–Infeld (tachyon) scalars with runaway potentials form caustics (free-streaming Hamilton–Jacobi wavefronts; checked numerically on the full BI equations). | Felder, Kofman & Starobinsky 2002, JHEP 09 (2002) 026, hep-th/0208019 [abs] |
+| A6 | In mimetic dark matter a caustic is a singularity of the mimetic field, so the gravitational construction itself breaks there. | Gorji 2025 [html] |
+| A7 | Projectable Hořava–Lifshitz "dark matter as integration constant" is pressureless dust whose flow is orthogonal to the constant-time hypersurfaces. A caustic of it would make those slices singular. | Mukohyama 2009, JCAP 0909:005, arXiv:0906.5069 [abs, html] |
+| A8 | Sheet-model analogue (cold plasma): oscillations break above kA = 1, and at any amplitude in an inhomogeneous background they phase-mix to trajectory crossing on t ~ π/(2(dω_p/dx)X). | Dawson 1959, Phys. Rev. 113, 383 [sec] |
+| A9 | A cold stream past a moving point mass focuses onto a line behind it (accretion line). | Danby & Camm 1957, MNRAS 117, 50 [sec: citation only, content not read]; in the record: H5 A5, O1 §3(ii), X10 [rec] |
+| A10 | Caustics in khronon / Einstein-aether / khronometric theories: **no paper found** (one search). Blanchet & Skordis 2024 (arXiv:2404.06584 [html]) does not mention caustics; it says the perfect-fluid correspondence is lost beyond linear order. | search [PROVISIONAL]; BS24 [html] |
+| A11 | Compressive data in a genuinely nonlinear characteristic field of a 2×2 hyperbolic system break C¹ smoothness in finite time. | Lax 1964, J. Math. Phys. 5, 611 [sec] |
+
+**Not completions (recorded, not graded).** (a) Gravitational back-reaction "might prevent caustics" (Babichev 2016, left open).
+In v3s, X8 and X10 already solve the khronon self-consistently and fold anyway [rec]. (b) "The caustic is where the EFT
+breaks down": a statement about validity, not a completion.
+
+## B. Proposed completions: the frozen classes
+
+| class | literature | mechanism (as the source states it) | cost (as the source states it) |
+|---|---|---|---|
+| **C1** K² / (□φ)² operator | Chamseddine, Mukhanov & Vikman 2014, JCAP 1406, 017, arXiv:1403.3961 [html]: §8 adds ½γ(□φ)², Eq. 82 c_s² = γ/(2 − 3γ). Capela & Ramazanov 2015, JCAP 04 (2015) 051, arXiv:1412.2051 [abs]: "Modified Dust", higher-derivative terms give a non-zero sound speed; "sketch the possible mechanism which could prevent the appearance of caustic singularities". Arkani-Hamed, Cheng, Luty & Mukohyama 2004, JHEP 0405, 074, hep-th/0312099 [abs]: ghost condensate, ω² ~ k⁴/M². Mukohyama 2009 [html], codimension one: "what prevents caustics with codimension one from forming is deviation of λ from 1". Ramazanov, Arroja, Celoria, Matarrese & Pilo 2016, JHEP 06 (2016) 020, arXiv:1601.05405 [abs]: the IR of projectable HL is mimetic matter. Record: C5 (β), X3 E2. | a sound speed for the dust; in HL, λ ≠ 1 | a new constant (γ, λ − 1, α/M²). **Ghost or gradient instability:** Ijjas, Ripley & Steinhardt 2016, PLB 760, 132, arXiv:1604.08586 [abs] (gradient instabilities); Firouzjahi, Gorji & Mansoori 2017, JCAP 07 (2017) 031, arXiv:1703.02923 [abs] (ghost and gradient, for any higher-derivative function); Takahashi & Kobayashi 2017, JCAP 11 (2017) 038, arXiv:1708.02951 [abs] (gradient or ghost, or strong coupling, in every case examined); Langlois, Mancarella, Noui & Vernizzi 2019, JCAP 02 (2019) 036, arXiv:1802.03394 [html] ("For α̃_L ≠ 0 we have found an instability either in the scalar or in the tensor sector"); Ramazanov et al. 2016 live on the ghost branch with a momentum cutoff. Mukohyama's codimension-one argument assumes λ = 1 is a stable IR fixed point and that λ runs away from 1 near would-be caustics. Record C5: β > 0 with BS dust is unhealthy in an IR band, ω² = −βk²/(2 + 3β) for aH ≪ k ≪ μ_K. |
+| **C2** higher-spatial-curvature (z ≥ 2) potential terms | Mukohyama 2009 [html], higher codimension: "highest order terms (e.g. curvature cubic terms in the case of z=3) generate the strongest restoring force" | repulsive gravity from nonlinear higher-curvature terms near would-be caustics | a UV scale. The source calls it an expectation, not a derivation. It also says higher spatial curvature terms do not help in codimension one |
+| **C3** native K(Q) pressure | BS24 [html]: K(Q) = μ²(Q − 1)². Record C5: c_s² = 𝒦′/(Q𝒦″) = (Q̄ − 1)/Q̄ | the dust's own pressure | none (μ_K is already in v3s, free, ≤ 0.1 Mpc⁻¹ by S4) |
+| **C4** DBI / Born–Infeld kinetic functions; the caustic-free simple-wave set | BS25 (arXiv:2507.00912, via record Q7): K = (2μ²/λ_D)[1 − √(1 − λ_D(Q − 1)²)]. de Rham & Motohashi 2017, PRD 95, 064008, arXiv:1611.05038 [abs, html]: simple SO(p) waves are caustic-free iff c_s² = 1 + αX (pure Galileon α = 0, DBI-Galileon, extreme-relativistic Galileon); flat space only, "for more generic setups and a curved background" caustics can still form. Babichev 2016: BI forms caustics in its dust regime | linear characteristics (the "exceptional" condition) | λ_D (BS25's published sets P1, P2), or the Galileon / DBI scale |
+| **C5** complex-scalar (Madelung / Schrödinger) completion | Babichev & Ramazanov 2017 [html]: S = ∫√−g[(ε/2)(∂λ)² + (λ²/2)(∂φ)² − V(λ)] → canonical complex Ψ, M² = 1/ε; "the collapse time is promoted to complex number"; fluid density ↔ \|Ψ\|² ≥ 0; metric perturbations switched off; phase singularities not discussed. Babichev 2016 appendix: the same sigma model, tentative. Widrow & Kaiser 1993, ApJ 416, L71 [sec]: the Schrödinger method for collisionless matter | interference / complex collapse time | a mass scale M; one extra (radial) field |
+| **C6** imperfect-dark-matter constraint deformation | Gorji 2025 [html]: S ⊃ λ(X f(Y/X², Z/X³) − 1), X_μ = ∇_μX, Y = φ^αX_α, Z = X^αX_α; acceleration and (Landau-frame) vorticity "can prevent caustic singularities" | non-geodesic, possibly vortical energy flow | a free function f. The Raychaudhuri criterion is "a structural indication rather than an explicit proof"; the Hamiltonian analysis is deferred; Ostrogradsky ghost removal "might (or might not)" happen |
+| **C7** vector (aether) promotion | Jacobson & Mattingly 2001, PRD 64, 024028, gr-qc/0007031 [abs] (their simplified aether develops gradient singularities). Gorji 2025: to prevent caustics, "non-vanishing acceleration ... or non-vanishing vorticity is necessary". Record: v4 = AeST + γ_L (C5); Einstein-aether after GW170817, \|c₁₃\| ≲ 1e-15 (record DOOR11, via Oost, Mukohyama & Wang 2018) | a non-hypersurface-orthogonal frame can carry vorticity | c₁ … c₄ (or AeST's K_B, K₂); extra vector DOF |
+| **C8** multi-stream / kinetic continuation | ASZ 1982 [sec]: collisionless matter multi-streams after shell crossing. Record O1: candidate c (mean-flow khronon) and candidate e (per-owner khronons: K6 no merging, K11 caustic) | allow several streams per point | a distribution function or many fields; a particle-like sector |
+| **C9** adhesion / vanishing-viscosity continuation | Gurbatov, Saichev & Shandarin 1989, MNRAS 236, 385 [sec]: Burgers' equation at vanishing viscosity (the adhesion model). Babichev 2016: a phenomenological shock prescription "consistent with energy-momentum conservation, without an underlying theory" | sticky (viscosity-solution) continuation: no multi-streaming, kinks in the potential | no scale in the ν → 0⁺ limit; non-variational |
+
+**C1's PN form in this lane.** The covariant term is −β K² inside the bracket of BS's action (K = ∇_μn^μ ≈ ∇²σ/c at PN order),
+i.e. Hořava λ = 1 + β. The record's dispersion (X3 E2, the superposition of C5 and H4) uses B = βc²/(2 + 3β). The lane's
+PN representative is −(B/(2K))(∇²σ)² (FROZEN_CRITERIA §2).
