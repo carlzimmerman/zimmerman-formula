@@ -3,6 +3,98 @@
  "part": "A5 ladder (convergence only, no verdict)",
  "mutate": true,
  "rungs": {
+  "128": {
+   "S0": {
+    "sigma8_pm": 0.815857822502376,
+    "sigma8_b": 0.815857822502376,
+    "sigma8_tau": 0.815857822502376,
+    "sigma8_lin_box": 0.7531365422651115,
+    "ratio_pm_lin": 1.0832800916134355,
+    "nonconverged": 0,
+    "peak_rss_gb": 1.175994368,
+    "halos": {
+     "n_halos": 297,
+     "classes": {
+      "cluster": 0,
+      "group": 119,
+      "galaxy": 178,
+      "top50": 50,
+      "satellite_1_3Mpc": 0,
+      "field_gt3Mpc": 178
+     },
+     "dust_over_baryon_0p3_1_median": null,
+     "cosmic_tau_over_b": 5.2714658991778345,
+     "cell_Mpc_phys": 1.1394419188659328
+    }
+   },
+   "LIN": {
+    "sigma8_pm": 0.2828325802056084,
+    "sigma8_b": 0.2967635781609535,
+    "sigma8_tau": 0.2802113937969308,
+    "sigma8_lin_box": 0.27237273003852197,
+    "ratio_pm_lin": 1.0384027070757307,
+    "nonconverged": 0,
+    "peak_rss_gb": 1.160085504,
+    "halos": {
+     "n_halos": 0,
+     "classes": {
+      "cluster": 0,
+      "group": 0,
+      "galaxy": 0,
+      "top50": 0
+     },
+     "dust_over_baryon_0p3_1_median": null,
+     "cosmic_tau_over_b": 5.2714658991778345,
+     "cell_Mpc_phys": 1.1394419188659328
+    }
+   },
+   "KX_can": {
+    "sigma8_pm": 0.25274291880582944,
+    "sigma8_b": 0.26657994904624127,
+    "sigma8_tau": 0.25014677992221784,
+    "sigma8_lin_box": 0.27237273003852197,
+    "ratio_pm_lin": 0.9279303356473452,
+    "nonconverged": 0,
+    "peak_rss_gb": 1.477787648,
+    "halos": {
+     "n_halos": 0,
+     "classes": {
+      "cluster": 0,
+      "group": 0,
+      "galaxy": 0,
+      "top50": 0
+     },
+     "dust_over_baryon_0p3_1_median": null,
+     "cosmic_tau_over_b": 5.2714658991778345,
+     "cell_Mpc_phys": 1.1394419188659328
+    }
+   },
+   "rho_NL_can": NaN,
+   "reading_can": "undefined",
+   "KX_alt": {
+    "sigma8_pm": 0.25874254707637284,
+    "sigma8_b": 0.2726452058894488,
+    "sigma8_tau": 0.25613218922221187,
+    "sigma8_lin_box": 0.27237273003852197,
+    "ratio_pm_lin": 0.949957607869843,
+    "nonconverged": 0,
+    "peak_rss_gb": 1.475395584,
+    "halos": {
+     "n_halos": 0,
+     "classes": {
+      "cluster": 0,
+      "group": 0,
+      "galaxy": 0,
+      "top50": 0
+     },
+     "dust_over_baryon_0p3_1_median": null,
+     "cosmic_tau_over_b": 5.2714658991778345,
+     "cell_Mpc_phys": 1.1394419188659328
+    }
+   },
+   "rho_NL_alt": NaN,
+   "reading_alt": "undefined"
+  },
   "256": {
    "S0": {
     "sigma8_pm": 0.8203495513587233,
@@ -235,14 +327,18 @@
   }
  },
  "completed": [
+  "A5_KX_alt_N128_zi199",
   "A5_KX_alt_N256_zi199",
   "A5_KX_alt_N384_zi199",
+  "A5_KX_can_N128_zi199",
   "A5_KX_can_N256_zi199",
   "A5_KX_can_N384_zi199",
   "A5_KX_can_N384_zi199_LOB",
+  "A5_LIN_N128_zi199",
   "A5_LIN_N256_zi199",
   "A5_LIN_N384_zi199",
   "A5_LIN_N384_zi199_LOB",
+  "A5_S0_N128_zi199",
   "A5_S0_N256_zi199",
   "A5_S0_N384_zi199"
  ],
@@ -250,22 +346,22 @@
  "checks": {
   "L1": {
    "ok": true,
-   "value": "10/10 completed ladder cells with every hold call converged",
+   "value": "14/14 completed ladder cells with every hold call converged",
    "threshold": "all"
   },
   "L2": {
    "ok": true,
-   "value": "256: 1.089; 384: 1.090",
+   "value": "128: 1.083; 256: 1.089; 384: 1.090",
    "threshold": "S0 sigma8_PM/sigma8_lin_box in [0.98, 1.15]"
   },
   "L3": {
    "ok": true,
-   "value": "256: 1.047; 384: 1.049",
+   "value": "128: 1.038; 256: 1.047; 384: 1.049",
    "threshold": "LIN sigma8_PM/sigma8_lin_box in [0.98, 1.30]"
   },
   "L4": {
    "ok": false,
-   "value": "256/can: +nan; 256/alt: +nan; 384/can: +nan; 384/alt: +nan; 384/LOB_can: -0.0001",
+   "value": "128/can: +nan; 128/alt: +nan; 256/can: +nan; 256/alt: +nan; 384/can: +nan; 384/alt: +nan; 384/LOB_can: -0.0001",
    "threshold": "rho_NL finite on every completed footing"
   }
  }

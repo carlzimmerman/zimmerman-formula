@@ -105,8 +105,8 @@ NUM:
 - At the Blanchet–Skordis cap, σ₈/σ₈,dust = 0.391 (ODE) and 0.073 (Boltzmann).
 - At the μ_K that isolated galaxies allow (0.03–0.1 Mpc⁻¹), it is 0.003–0.005: v3's khronon is radiation-like until
   z ≈ 35–78. Reaching 0.95 needs μ_K 2.4e3–5.7e4 times larger than galaxies allow (X4).
-- The nonlinear J_x term does not restore it. L1's ladder gives ρ_NL −0.053 at 128³, −0.058 / −0.047 at 256³ and
-  −0.059 / −0.047 at 384³: converged, with KX below LIN. This is indicative; the 512³ production decides, and it is the
+- The nonlinear J_x term does not restore it. L1's A5 ladder gives ρ_NL −0.057 / −0.045 (128³), −0.058 / −0.047 (256³)
+  and −0.059 / −0.047 (384³): monotonically converged, with KX below LIN. This is indicative; the 512³ production decides, and it is the
   only rung KiDS can score. Starting instead from Q6's Boltzmann state (LOB-IC, 384³), σ₈ is only 0.0135, about 1.6 % of the dust limit,
   and the nonlinear term changes nothing (ρ_NL ≈ 0).
 
