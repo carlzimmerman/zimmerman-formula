@@ -152,3 +152,13 @@ convention; no scans. Pathspec commits of this lane only; never push. Any later 
 each labelled PRE-RESULT or POST-RESULT.
 
 ## AMENDMENTS (append-only)
+
+**A1 (PRE-RESULT, implementation; written after synthetic engine tests only, before any SPARC or cluster number of MOG).**
+A development test of the disc engine on Freeman exponential discs sampled at 0.25–10 R_d (40 points) gave a max relative
+g_MOG error of 0.42 % / 0.60 % / 0.48 % (R_d = 1 / 3 / 6 kpc) against the direct 2-D quadrature, i.e. K2 as frozen would
+fail at R_d = 3 kpc. Sampling to 30 R_d brings the agreement to ≤ 6e-5 in δg. The difference is not numerical: it is the
+declared extension rule B6 (g_N ∝ R⁻² beyond the last sample), which for a disc truncated at 10 R_d implies a slightly
+different mass distribution near the edge than the true exponential disc (mass beyond 10 R_d: 5e-4 of the total). So K2,
+which is meant to test the numerics, samples the exponential discs at 0.05–30 R_d (600 points) and is still evaluated at
+R = 0.25–10 R_d with the same 5e-3 line. The truncated-sampling number is printed as diagnostic **D-EXT** (no weight): it
+bounds the effect of rule B6 on a disc at ≲ 0.6 % in g (≲ 0.003 dex), far below P4's 0.110 dex line. Nothing else changes.
