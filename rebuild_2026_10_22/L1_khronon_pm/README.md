@@ -471,6 +471,21 @@ larger host), median dust/baryon 4.06 / 4.08. Scoring note (CFG963, e96c21a87): 
 compared with NCS0 / theory-v2 numbers, use CFG963's score_vs_feedback_control. Reading sentence (A4): every L1 result belongs to "v3 on a dust background
 with a yet-unspecified early K", not to the literal theory.
 
+## A6 DBI-IC set, as it lands (reported only; no verdict weight)
+
+Read by `l1_a6.py`, using the frozen A6 item-5 statistics. The control is A5's S0 at the same N. MUTATE (S0 replaced by the
+set's LIN cell) makes A4 FAIL, as required.
+
+| set @ N | σ₈ LIN (fraction of S0) / KX-can / KX-alt | ρ_NL can / alt | P/P_S0 at k ≈ 0.1 / 0.3 / 1 h/Mpc (LIN) | halos | reading |
+|---|---|---|---|---|---|
+| cap30 @ 256³ (λ_D 30) | 0.201 (0.245) / 0.185 / 0.188 | −0.026 / −0.021 | 0.17 / 0.020 / 0.0017 | none in any cell | does not restore growth |
+| P1 @ 256³ (λ_D 30) | 0.177 (0.216) / 0.112 / 0.127 | −0.102 / −0.078 | 0.13 / 0.016 / 0.0015 | none in any cell | deepens the deficit |
+| cap30, P1 @ 384³ | queued | | | | |
+
+From BS25's BBN-viable DBI state, v3's own nonlinear dynamics form no galaxy-mass halo in a 100 Mpc/h box, so the satellite
+vs field question (A6 item 5) has no halos to answer it at 256³. The linear deficit (0.22–0.25 of the dust limit) matches
+Q7's R_B 0.26–0.32. 6/6 cells converged.
+
 ## Files and commits
 
 **Criteria and amendments**, each committed before the results it governs:
