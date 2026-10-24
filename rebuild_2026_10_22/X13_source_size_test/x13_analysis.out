@@ -1,0 +1,81 @@
+K2 PASS exact-transform injection (g 0.02, 4,000,000 sources): measured response L +0.1858 S -0.1865 vs formula +0.1803 -0.1803; circularised split L +0.0080 S -0.0087 (MC sigma 0.0106; all-sample mean e/g - 1 -0.0003) |meas - formula| < 3 sigma; circularised |R| < 3 sigma
+K3 PASS GLS injection: exact class amplitudes recover (a, beta_s, beta_v) and chi2 0 to 1.1e-14 <= 1e-9
+EFE solve (X2's) canonical noclu: y_e 7.814e-04 iters 371 last change 9.9e-10 [7 s]
+EFE solve (X2's) alt noclu: y_e 6.466e-04 iters 402 last change 9.8e-10 [8 s]
+X7-K1 PASS my replay vs X2 npz: max|diff| D/Dx/DRR/E 0.0e+00; names equal True <= 1e-9 x max|D|
+model predictions C0 and C* built for 4 cells [23 s]
+K1 PASS size2/size4 tangential A (E3) and size2 A, s_boot (X11's draws), s_jk, Z_STAT vs X11's committed JSON: max|diff| 3.6e-15 (56 numbers) <= 1e-9
+
+=== reference: size2 halves, MID, C*, boost (paired bootstrap 2000, key 1300) ===
+  canonical|h0672: A_S 1.204+-0.132  A_L 2.030+-0.191  rho 1.686+-0.219  Delta +0.826+-0.206  | all-source A_MID 1.640 (Z_STAT +5.21)
+  canonical|h0686: A_S 1.235+-0.131  A_L 2.109+-0.192  rho 1.708+-0.220  Delta +0.874+-0.209  | all-source A_MID 1.684 (Z_STAT +5.47)
+  alt|h0672: A_S 1.104+-0.121  A_L 1.862+-0.175  rho 1.686+-0.219  Delta +0.758+-0.189  | all-source A_MID 1.505 (Z_STAT +4.47)
+  alt|h0686: A_S 1.133+-0.120  A_L 1.934+-0.176  rho 1.708+-0.220  Delta +0.801+-0.192  | all-source A_MID 1.545 (Z_STAT +4.74)
+
+=== (a) the size2 split in INNER (0.15-0.46 Mpc) and OUTER (1.42-3.0 Mpc) vs MID (bootstrap key 1301) ===
+  canonical|h0672: INNER A_S 1.139+-0.835 A_L 2.921+-4.647 rho 2.57+-303.41 (vs MID +0.88+-303.41: NOT DECISIVE) | MID A_S 1.204+-0.132 A_L 2.030+-0.191 rho 1.69+-0.22 | OUTER A_S 0.808+-0.112 A_L 1.067+-0.136 rho 1.32+-0.23 (vs MID -0.37+-0.31: NOT DECISIVE)
+  canonical|h0686: INNER A_S 0.967+-0.553 A_L 3.119+-1.347 rho 3.23+-6.02 (vs MID +1.52+-6.03: NOT DECISIVE) | MID A_S 1.235+-0.133 A_L 2.109+-0.192 rho 1.71+-0.22 | OUTER A_S 0.800+-0.104 A_L 1.070+-0.137 rho 1.34+-0.23 (vs MID -0.37+-0.31: NOT DECISIVE)
+  alt|h0672: INNER A_S 1.045+-0.766 A_L 2.686+-4.269 rho 2.57+-304.14 (vs MID +0.88+-304.14: NOT DECISIVE) | MID A_S 1.104+-0.121 A_L 1.862+-0.175 rho 1.69+-0.22 | OUTER A_S 0.740+-0.102 A_L 0.977+-0.125 rho 1.32+-0.23 (vs MID -0.37+-0.31: NOT DECISIVE)
+  alt|h0686: INNER A_S 0.887+-0.508 A_L 2.868+-1.242 rho 3.23+-6.03 (vs MID +1.53+-6.04: NOT DECISIVE) | MID A_S 1.133+-0.122 A_L 1.934+-0.176 rho 1.71+-0.22 | OUTER A_S 0.732+-0.095 A_L 0.980+-0.126 rho 1.34+-0.23 (vs MID -0.37+-0.31: NOT DECISIVE)
+
+=== (b) tangential stack of F1's random points per size2 class (A units; rotated random-mean cross noise, MID) ===
+  canonical|h0672: MID S -0.0002 (Z -0.00) L -0.0065 (Z -0.09) L-S -0.0062 (Z -0.07) | INNER S +0.161+-0.490 L -2.901+-2.816 | OUTER S -0.025+-0.035 L -0.009+-0.052
+  canonical|h0686: MID S -0.0059 (Z -0.11) L -0.0244 (Z -0.35) L-S -0.0184 (Z -0.21) | INNER S +0.448+-0.204 L -3.099+-1.607 | OUTER S -0.011+-0.036 L +0.009+-0.054
+  alt|h0672: MID S -0.0002 (Z -0.00) L -0.0059 (Z -0.09) L-S -0.0057 (Z -0.07) | INNER S +0.148+-0.450 L -2.667+-2.586 | OUTER S -0.023+-0.032 L -0.008+-0.048
+  alt|h0686: MID S -0.0055 (Z -0.11) L -0.0224 (Z -0.35) L-S -0.0169 (Z -0.21) | INNER S +0.411+-0.187 L -2.850+-1.477 | OUTER S -0.010+-0.033 L +0.008+-0.050
+  (b) null PASSES (|Z| < 3 for S, L, L-S in all 4 cells)
+
+=== (c) PSF size and SNR halves inside each size quartile (8 classes each; GLS with bootstrap covariance, key 1303) ===
+  canonical|h0672 res: classes A 1.61 0.97 1.57 0.74 1.77 1.05 -0.34 2.27 | beta_s +0.463 beta_p -3.815 (chi2 14.1/5) | b_V +3.815 x dV +0.657 / Delta_obs +0.826 -> f_res +3.03 (16-84 % +2.12 .. +7.62; not determined) | within-quartile hi-lo -0.65+-0.50 -0.83+-0.62 -0.72+-0.54 +2.60+-1.32
+  canonical|h0672 snr: classes A 0.80 5.17 1.63 1.13 1.40 -3.08 1.80 0.70 | beta_s +1.120 beta_n -0.126 (chi2 16.3/5) | b_V -0.126 x dV +0.160 / Delta_obs +0.826 -> f_snr -0.02 (16-84 % -0.10 .. +0.05; DETERMINED) | within-quartile hi-lo +4.37+-2.38 -0.51+-0.49 -4.48+-1.84 -1.10+-1.34
+  canonical|h0686 res: classes A 1.41 0.68 1.69 0.73 1.70 0.85 2.20 2.21 | beta_s +1.260 beta_p -6.795 (chi2 5.3/5) | b_V +6.795 x dV +0.657 / Delta_obs +0.874 -> f_res +5.11 (16-84 % +3.06 .. +7.84; not determined) | within-quartile hi-lo -0.73+-0.51 -0.96+-0.57 -0.85+-0.62 +0.01+-0.63
+  canonical|h0686 snr: classes A 0.80 5.32 1.55 1.11 1.54 -2.88 2.13 0.72 | beta_s +1.293 beta_n -0.187 (chi2 13.0/5) | b_V -0.187 x dV +0.160 / Delta_obs +0.874 -> f_snr -0.03 (16-84 % -0.11 .. +0.03; DETERMINED) | within-quartile hi-lo +4.52+-2.46 -0.43+-0.49 -4.42+-1.86 -1.41+-1.26
+  alt|h0672 res: classes A 1.48 0.89 1.44 0.68 1.62 0.95 -0.31 2.08 | beta_s +0.420 beta_p -3.478 (chi2 14.2/5) | b_V +3.478 x dV +0.657 / Delta_obs +0.758 -> f_res +3.01 (16-84 % +2.10 .. +7.61; not determined) | within-quartile hi-lo -0.59+-0.46 -0.76+-0.57 -0.67+-0.50 +2.39+-1.21
+  alt|h0672 snr: classes A 0.73 4.75 1.50 1.04 1.28 -2.84 1.65 0.64 | beta_s +1.028 beta_n -0.113 (chi2 16.3/5) | b_V -0.113 x dV +0.160 / Delta_obs +0.758 -> f_snr -0.02 (16-84 % -0.10 .. +0.05; DETERMINED) | within-quartile hi-lo +4.02+-2.18 -0.46+-0.45 -4.12+-1.69 -1.01+-1.23
+  alt|h0686 res: classes A 1.29 0.62 1.55 0.67 1.56 0.78 2.02 2.03 | beta_s +1.156 beta_p -6.235 (chi2 5.3/5) | b_V +6.235 x dV +0.657 / Delta_obs +0.801 -> f_res +5.11 (16-84 % +3.06 .. +7.84; not determined) | within-quartile hi-lo -0.67+-0.46 -0.88+-0.53 -0.78+-0.57 +0.01+-0.58
+  alt|h0686 snr: classes A 0.73 4.88 1.42 1.02 1.41 -2.65 1.96 0.66 | beta_s +1.186 beta_n -0.170 (chi2 13.0/5) | b_V -0.170 x dV +0.160 / Delta_obs +0.801 -> f_snr -0.03 (16-84 % -0.11 .. +0.03; DETERMINED) | within-quartile hi-lo +4.15+-2.26 -0.40+-0.45 -4.06+-1.71 -1.30+-1.16
+
+=== (d) photo-z: per tomographic bin and size half; H_SOM factors (bootstrap key 1304) ===
+  canonical|h0672: H_SOM b_S 0.9461 b_L 0.9433 b_ALL 0.9451 -> ratio 0.9970; Delta_d -0.0049 / Delta_obs -> f_d -0.006 (16-84 % -0.008 .. -0.004; DETERMINED) | naive mean-s_B ratio L/S 0.9849 | cut-bin ww share S/L 0.116/0.122
+    per tomographic bin (MID, h 0.672): t1S: <Z_B> 0.279 <s_B> 5.837e-02 share 0.002; t1L: <Z_B> 0.279 <s_B> 5.814e-02 share 0.003; t2S: <Z_B> 0.423 <s_B> 8.520e-02 share 0.124; t2L: <Z_B> 0.419 <s_B> 8.386e-02 share 0.127; t3S: <Z_B> 0.602 <s_B> 1.008e-01 share 0.324; t3L: <Z_B> 0.608 <s_B> 1.002e-01 share 0.351; t4S: <Z_B> 0.798 <s_B> 1.102e-01 share 0.268; t4L: <Z_B> 0.792 <s_B> 1.093e-01 share 0.233; t5S: <Z_B> 1.024 <s_B> 1.199e-01 share 0.283; t5L: <Z_B> 1.024 <s_B> 1.183e-01 share 0.286
+  canonical|h0686: H_SOM b_S 0.9460 b_L 0.9433 b_ALL 0.9452 -> ratio 0.9971; Delta_d -0.0048 / Delta_obs -> f_d -0.006 (16-84 % -0.008 .. -0.004; DETERMINED) | naive mean-s_B ratio L/S 0.9847 | cut-bin ww share S/L 0.116/0.122
+  alt|h0672: H_SOM b_S 0.9461 b_L 0.9433 b_ALL 0.9452 -> ratio 0.9970; Delta_d -0.0045 / Delta_obs -> f_d -0.006 (16-84 % -0.008 .. -0.004; DETERMINED) | naive mean-s_B ratio L/S 0.9849 | cut-bin ww share S/L 0.116/0.122
+  alt|h0686: H_SOM b_S 0.9461 b_L 0.9434 b_ALL 0.9453 -> ratio 0.9971; Delta_d -0.0044 / Delta_obs -> f_d -0.006 (16-84 % -0.008 .. -0.004; DETERMINED) | naive mean-s_B ratio L/S 0.9847 | cut-bin ww share S/L 0.116/0.122
+  catalogue-wide w-mean Z_B per tomographic bin (S / L): t1 0.222/0.216; t2 0.412/0.406; t3 0.602/0.608; t4 0.797/0.791; t5 1.023/1.023 | w share per bin (S / L): t1 0.084/0.128; t2 0.216/0.214; t3 0.311/0.311; t4 0.210/0.172; t5 0.179/0.175
+
+=== (f) shear-induced size selection: catalogue-predicted response vs measured; circularised-size gate (bootstrap key 1305) ===
+  canonical|h0672: R_S -0.298 R_L +0.326 -> predicted rho 1.890 (measured 1.686+-0.219); Delta_sel +1.024 -> f_sel +1.24 (16-84 % +0.99 .. +1.64; DETERMINED)
+      size4 predicted 0.94 1.40 1.80 2.77 vs measured 0.88+-0.16 1.46+-0.18 1.40+-0.22 2.23+-0.30 | circ2 A 1.482 / 1.672, rho 1.128+-0.145 -> gate PASSED (alt-convention prediction 0.517) | FLUX_RADIUS rho 0.999+-0.136
+  canonical|h0686: R_S -0.297 R_L +0.328 -> predicted rho 1.889 (measured 1.708+-0.220); Delta_sel +1.052 -> f_sel +1.20 (16-84 % +0.97 .. +1.57; DETERMINED)
+      size4 predicted 0.97 1.43 1.84 2.82 vs measured 0.91+-0.16 1.48+-0.18 1.49+-0.22 2.44+-0.27 | circ2 A 1.509 / 1.759, rho 1.166+-0.150 -> gate PASSED (alt-convention prediction 0.516) | FLUX_RADIUS rho 1.043+-0.137
+  alt|h0672: R_S -0.298 R_L +0.326 -> predicted rho 1.890 (measured 1.686+-0.219); Delta_sel +0.939 -> f_sel +1.24 (16-84 % +0.99 .. +1.64; DETERMINED)
+      size4 predicted 0.86 1.28 1.65 2.54 vs measured 0.81+-0.14 1.34+-0.17 1.29+-0.20 2.04+-0.28 | circ2 A 1.359 / 1.533, rho 1.128+-0.145 -> gate PASSED (alt-convention prediction 0.517) | FLUX_RADIUS rho 0.999+-0.136
+  alt|h0686: R_S -0.297 R_L +0.328 -> predicted rho 1.889 (measured 1.708+-0.220); Delta_sel +0.965 -> f_sel +1.20 (16-84 % +0.97 .. +1.57; DETERMINED)
+      size4 predicted 0.89 1.31 1.69 2.58 vs measured 0.83+-0.15 1.36+-0.16 1.37+-0.20 2.24+-0.25 | circ2 A 1.384 / 1.613, rho 1.166+-0.150 -> gate PASSED (alt-convention prediction 0.516) | FLUX_RADIUS rho 1.043+-0.137
+
+=== (e) F2's galaxy lenses, P2's estimator and bins: size2 split ('in' 0.03-0.35 Mpc; 50-patch jackknife) ===
+  'in': A_ALL 1.6749+-0.1031 (1/R template units), A_S 1.3654+-0.1289, A_L 2.0131+-0.1722 -> rho_gal 1.474+-0.192; circ2 rho 1.026+-0.127; predicted selection rho 1.919
+  O1|boost: rho_gal 1.258+-0.186; circ2 rho 0.699+-0.123
+  inO1|boost: rho_gal 1.397+-0.140; circ2 rho 0.904+-0.096
+  in|clip: rho_gal 1.458+-0.188; circ2 rho 1.015+-0.126
+  canonical|h0672: rho_cl 1.686+-0.219 vs rho_gal 1.474+-0.192: diff -0.73 sigma, galaxy vs 1 +2.47 sigma -> E-MATCH
+  canonical|h0686: rho_cl 1.708+-0.220 vs rho_gal 1.474+-0.192: diff -0.80 sigma, galaxy vs 1 +2.47 sigma -> E-MATCH
+  alt|h0672: rho_cl 1.686+-0.219 vs rho_gal 1.474+-0.192: diff -0.73 sigma, galaxy vs 1 +2.47 sigma -> E-MATCH
+  alt|h0686: rho_cl 1.708+-0.220 vs rho_gal 1.474+-0.192: diff -0.80 sigma, galaxy vs 1 +2.47 sigma -> E-MATCH
+  (e) class: E-MATCH
+
+=== decision (frozen §6) ===
+  res: f [3.033, 5.109, 3.015, 5.111] determined [False, False, False, False] -> >= 70 %: False; < 30 %: False
+  snr: f [-0.024, -0.034, -0.024, -0.034] determined [True, True, True, True] -> >= 70 %: False; < 30 %: True
+  d: f [-0.006, -0.006, -0.006, -0.006] determined [True, True, True, True] -> >= 70 %: False; < 30 %: True
+  sel: f [1.24, 1.204, 1.24, 1.204] determined [True, True, True, True] gate True -> >= 70 %: True; < 30 %: False
+VERDICT: SOURCE-SIDE SYSTEMATIC ((e) E-MATCH; mechanisms >= 70 %: ['sel'])
+
+=== correction (frozen §7) and Z_MID on both footings (bootstrap key 1307, X2's 30-patch jackknife) ===
+  canonical|h0672: none A 1.466+-0.113 Z +4.13 | sel A 1.657+-0.138 Z +4.77 | d A 1.551+-0.119 Z +4.61 | res A 1.466+-0.113 Z +4.13 | snr A 1.466+-0.113 Z +4.13 | galaxy A 1.544+-0.132 Z +4.11 | X11 all-source Z_STAT +5.21 (A 1.640)
+  canonical|h0686: none A 1.511+-0.115 Z +4.44 | sel A 1.703+-0.141 Z +4.99 | d A 1.600+-0.122 Z +4.91 | res A 1.511+-0.115 Z +4.44 | snr A 1.511+-0.115 Z +4.44 | galaxy A 1.591+-0.135 Z +4.36 | X11 all-source Z_STAT +5.47 (A 1.684)
+  alt|h0672: none A 1.344+-0.103 Z +3.33 | sel A 1.520+-0.126 Z +4.11 | d A 1.423+-0.110 Z +3.86 | res A 1.344+-0.103 Z +3.33 | snr A 1.344+-0.103 Z +3.33 | galaxy A 1.416+-0.121 Z +3.43 | X11 all-source Z_STAT +4.47 (A 1.505)
+  alt|h0686: none A 1.386+-0.106 Z +3.66 | sel A 1.562+-0.129 Z +4.35 | d A 1.467+-0.112 Z +4.17 | res A 1.386+-0.106 Z +3.66 | snr A 1.386+-0.106 Z +3.66 | galaxy A 1.459+-0.124 Z +3.70 | X11 all-source Z_STAT +4.74 (A 1.545)
+graded correction: sel; Z_MID,corr canonical|h0672 1.657+-0.138 Z +4.77, canonical|h0686 1.703+-0.141 Z +4.99, alt|h0672 1.520+-0.126 Z +4.11, alt|h0686 1.562+-0.129 Z +4.35 -> REAL
+K4 PASS peak RSS 0.875 GB < 1 GB
+X13_ANALYSIS COMPLETE: 5/5 checks PASS. [26 s]

@@ -213,3 +213,22 @@ Splits, edges, bands, thresholds, draws, the decision rule and the correction me
 new edge, no knob scan, no new physics. A pattern outside §5 is reported as an observation, never graded.
 
 ## AMENDMENTS (append-only; each labelled PRE-RESULT or POST-RESULT)
+
+- **A1 (PRE-RESULT, implementation; written before any shear number of this lane).** (i) `x13_extract.py --mutate` stops after
+  X1 and X3 (the edges of a disordered cache are meaningless). (ii) `x13_galaxy.py --mutate` measures the lenses of the
+  first 6 declination rows only; it was the first galaxy run and only has to fail G1. (iii) `x13_measure.py` drops X11's
+  90-degree identity and per-cluster geometry (not used here). (iv) `x13_galaxy.py` gathers sources to 1.19 Mpc × 1.02
+  (the outer edge of bin 11), since bins 0–11 are the ones measured (§4). (v) The step-0 X7 extract exits 1 by its E1, which
+  §1 declares N/A.
+- **A2 (POST-RESULT for K4 only; implementation, no statistic changed).** The first `x13_analysis.py` run was a development
+  run: all inputs were final, but `x13_s0_check.py` had not yet run, so its verdict line read UNDECIDED by the precondition.
+  It failed K4 at 1.79 GB. Changes:
+  - K2's synthetic sources are generated in chunks of 500,000 from one generator. This changed K2's random stream (the
+    development run also drew one zero-width normal). K2 passed in both runs: development L +0.160 / S −0.176, final
+    +0.186 / −0.187, formula ±0.180.
+  - The catalogue-wide Z_B means are read in 2M-row chunks.
+  - Spurious Accelerate-BLAS floating-point warnings in the n(z) matmul are silenced, with an explicit finiteness assertion.
+  A second run failed K4 at 1.005 GB, so K2/K3 (which use no data) now run before the data are loaded, and the rotated
+  random arrays are freed after (b). The final run passes K4 (0.875 GB). Leaf by leaf, every number in
+  `x13_analysis_results.json` is identical across the three runs except `K2_injection`, the precondition-dependent
+  verdict/correction fields of the development run, and runtime/RSS.
