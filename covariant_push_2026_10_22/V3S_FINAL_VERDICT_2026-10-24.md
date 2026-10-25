@@ -157,7 +157,7 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
 **Parameter reduction.**
 - c₀ stays a lead, not adopted.
 - The dwarfs push L★ monotonically to its floor. Together with CFG821 (L★ ≤ 22 pc), that squeezes L★ from a lower bound to a narrow band near 21.7–22.9 pc. The joint frozen bound is not yet computed.
-- **Update** (`X27_joint_lstar_band`, 4bf6612dc5 / b10263968f, a peer lane; coordinator rerun identical apart from timing): **no reduction.**
+- **Update** (`X27_joint_lstar_band`, 4bf6612dc5 / 5977c2445f, a peer lane; coordinator rerun identical apart from timing): **no reduction.**
   - The literal v3s pins L★ only through a fit at χ²/N ≈ 52. Rescaling its errors widens the upper end to 26.6 / 27.1 pc.
   - Profiling a floor nuisance removes any upper bound up to 90 pc.
   - So the dwarf "upper bound" is the mass shortfall, not screening. L★ stays one-sided: ≥ 21.7 / 22.9 pc.
@@ -167,3 +167,12 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
 - The field and hosted η values do not overlap.
 - A free power law g_floor ∝ r^{−n} gives n = 0.78 / 0.80, which excludes both 0 and 1.
 - **No reduction:** c₀ is not a₀-scaled and not in the action, so it stays a dimensionful lead.
+
+**The cold-sector map** (`X26_cold_sector_map`, b10263968f / c9112e3126; coordinator rerun identical apart from timing, pass-mask npz byte-identical, MUTATE exit 1): **ALLOWED ONLY WITH A SEPARATE c₀**, on both footings.
+- Family: c_s² = c_*²(σ/σ_*)^{2r}(ρ/ρ_*)^q h(z).
+- **Dwarfs.** No point among the 18,513 grid points reproduces the dwarf floor. The virial bound (FP3) makes clusters plus dwarfs, against SPARC, linearly inseparable.
+- **The surviving sheet.** With c₀ separate, a thin sheet survives (45 / 37 grid points, about 8e-4 of the grid): c_s in clusters ≈ 556–761 km/s ≈ 1.1–1.5 σ_KT, with weak dependence on σ. Reported MGAS500 bins leave 2 points.
+- **Excluded families:**
+  - virial heating (r = 1), which reverses the KT slope;
+  - universal heating, which passes the KT terciles in a narrow 634–714 km/s window that X23's scan stepped over, but fails the MGAS500 terciles everywhere.
+- Untested on the sheet: the cluster radial profile (X30), late S8 power (X29, a peer lane) and the Bullet Cluster (X32).
