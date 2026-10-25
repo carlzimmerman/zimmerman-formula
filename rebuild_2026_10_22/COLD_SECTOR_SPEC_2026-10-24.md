@@ -95,4 +95,4 @@ state (cold → hot after z ≈ 2), with the cluster terciles fixing the hot tem
 5. **What survives every frozen test in the record is a dust-like (w ≈ 0), collisionless, concentrated **cold dark energy** in clusters**
    (X32's surviving tracer, ZT2B's concentration target), **together with something that keeps it out of isolated galaxies
    today.** That second part is the unsolved piece. Every candidate for it tested on 10-24 fails: a selector (X19),
-   universal heating (X23), the sheet (X26 + X30), vacuum heating (X24b), feedback (X31). This is the precise open problem.
+   universal heating (X23), the sheet (X26 + X30), vacuum heating (X24b), feedback (X31), and orbit-keyed conversion of cold dark energy into dark energy (X37, 10-25: it empties cluster cores and leaves the outskirts over the law). Any depletion rule keyed to orbits, density, temperature or time removes cold dark energy from cluster centres first, where the data want it most. This is the precise open problem.
