@@ -225,3 +225,9 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
 - clustering down to forest scales.
 
 No test here distinguishes it from that component. What the framework adds is the galaxy law, plus the open problem of why isolated galaxies show no extra today.
+
+**Late power against KiDS** (`X29_late_power_shear`, peer lane; 35b3573518 / 1e06cc9946 / 365366ff9b): **SHEET CUT** on both footings, on raw KiDS-1000 ξ±.
+- 23/45 canonical and 15/37 alt points survive.
+- There is a clean edge at T²(k = 1 h/Mpc) ≈ 0.82, which means σ₈ loss ≤ ~1 % and cosmic c_s today ≤ 270–330 km/s.
+- X29 is an independent S8-side cap. The whole sheet is already excluded by X30's OUTER band.
+- **Coordinator rerun:** every number is identical. The committed main `.out` was generated before A1's K0 tolerance change in the committed script, so a rerun of that script grades K0 PASS on identical Δχ² values (−4.3e-5, −2.1e-5). The provenance gap is disclosed here; no result changes.
