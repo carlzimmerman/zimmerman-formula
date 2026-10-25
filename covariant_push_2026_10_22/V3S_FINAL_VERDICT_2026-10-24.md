@@ -231,3 +231,12 @@ No test here distinguishes it from that component. What the framework adds is th
 - There is a clean edge at T²(k = 1 h/Mpc) ≈ 0.82, which means σ₈ loss ≤ ~1 % and cosmic c_s today ≤ 270–330 km/s.
 - X29 is an independent S8-side cap. The whole sheet is already excluded by X30's OUTER band.
 - **Coordinator rerun:** every number is identical. The committed main `.out` was generated before A1's K0 tolerance change in the committed script, so a rerun of that script grades K0 PASS on identical Δχ² values (−4.3e-5, −2.1e-5). The provenance gap is disclosed here; no result changes.
+
+**Is the law fundamental or emergent?** (`X36_efe_discriminator`, d8651cafc3 / 667b97260b / 8d7df6a74d; coordinator rerun identical apart from timing; it reproduces EM1_emergent_dust_law exactly in a scratch copy): **NOT DIAGNOSTIC** on both footings.
+- **Route E** (cold dark energy everywhere, law emergent) ties the law on SPARC at fixed Υ 0.5 (EM1).
+- **X33's large-SPARC e_ext trend** (ρ −0.45) survives nine confound controls.
+- **The law's own EFE predicts almost none of it** (≤ 0.005 dex at e ≈ 0.03–0.06). Route E reaches only a quarter of it.
+- **With per-galaxy Υ the trend vanishes**, so it behaves like an environment-correlated normalisation, not an EFE shape.
+- **Gaia DR4 cannot separate the two readings either.** The MW field barely varies over the binaries, and both predict Newtonian wide binaries (v3s is screened).
+
+So no test in the record yet distinguishes "the law is fundamental" from "the law is how cold dark energy settles around baryons". In route E the a₀–Λ link is a coincidence.
