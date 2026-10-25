@@ -1,0 +1,86 @@
+EFE solve (X2's) canonical noclu [8 s]
+EFE solve (X2's) alt noclu [9 s]
+C* model built for 4 cells [5 s]
+labels: KT>0 106, redMaPPer 83, CFG922 matched 281 (measured 256, BCG>0 190, S_cen/gas 242)
+K1 PASS eRASS1 MGAS500 by NAME vs npz rel 0.0e+00; CFG922 join max|dz| 0.0e+00 (281 joined) <= 1e-12; <= 1e-3
+
+=== STEP 0: reproduce X7 (all, terciles, quintiles; A_CAL, sigma_STAT, CAL dchi2) and X13 (all-source) ===
+  can h0672: all A 1.6403 A_CAL 1.6404 +-0.1230 (Z_STAT +5.21; X7 Z_CAL +2.93); X13 all-source dev 0.0e+00; X13 sel-corrected halves (quoted) 1.657+-0.138 (Z +4.77)
+     quintiles: A_CAL 1.448+-0.591 / 1.238+-0.311 / 1.819+-0.214 / 1.377+-0.287 / 2.193+-0.193  | CAL dchi2 S1 4.72 (X7 4.72) S2 2.91 (X7 2.91)
+     terciles: A_CAL 1.096+-0.314 / 1.852+-0.172 / 1.837+-0.173  | CAL dchi2 S1 2.06 (X7 2.06) S2 4.16 (X7 4.16)
+  can h0686: all A 1.6840 A_CAL 1.6840 +-0.1251 (Z_STAT +5.47; X7 Z_CAL +2.78); X13 all-source dev 1.8e-15; X13 sel-corrected halves (quoted) 1.703+-0.141 (Z +4.99)
+     quintiles: A_CAL 1.479+-0.546 / 1.238+-0.306 / 1.880+-0.208 / 1.434+-0.278 / 2.257+-0.210  | CAL dchi2 S1 4.39 (X7 4.39) S2 3.04 (X7 3.04)
+     terciles: A_CAL 1.113+-0.310 / 1.922+-0.173 / 1.876+-0.184  | CAL dchi2 S1 1.95 (X7 1.95) S2 4.48 (X7 4.48)
+  alt h0672: all A 1.5046 A_CAL 1.5047 +-0.1128 (Z_STAT +4.47; X7 Z_CAL +2.52); X13 all-source dev 0.0e+00; X13 sel-corrected halves (quoted) 1.520+-0.126 (Z +4.11)
+     quintiles: A_CAL 1.323+-0.540 / 1.134+-0.285 / 1.667+-0.196 / 1.264+-0.263 / 2.018+-0.178  | CAL dchi2 S1 4.85 (X7 4.85) S2 2.98 (X7 2.98)
+     terciles: A_CAL 1.002+-0.287 / 1.698+-0.158 / 1.690+-0.159  | CAL dchi2 S1 2.15 (X7 2.15) S2 4.24 (X7 4.24)
+  alt h0686: all A 1.5446 A_CAL 1.5446 +-0.1148 (Z_STAT +4.74; X7 Z_CAL +2.41); X13 all-source dev 0.0e+00; X13 sel-corrected halves (quoted) 1.562+-0.129 (Z +4.35)
+     quintiles: A_CAL 1.351+-0.498 / 1.134+-0.280 / 1.724+-0.191 / 1.316+-0.255 / 2.078+-0.193  | CAL dchi2 S1 4.52 (X7 4.52) S2 3.11 (X7 3.11)
+     terciles: A_CAL 1.018+-0.283 / 1.762+-0.159 / 1.725+-0.169  | CAL dchi2 S1 2.04 (X7 2.04) S2 4.56 (X7 4.56)
+K0 PASS X7 all/tercile/quintile A_CAL and sigma_STAT max|dev| 4.4e-16 (76 numbers); X13 all-source 1.8e-15 <= 1e-9; <= 1e-6
+S0-b (reported, not a check): X7 CAL dchi2 S1/S2 reproduced to max |dev| 0.000 (line 0.05; per-bin sigma_leak approximated) -> OK
+K2 PASS step plant (median step, joint c, b=0) and linear plant (linear b, joint b, c=0) recovered to 7.5e-15 <= 1e-9
+
+=== STEP 2: unbinned tests per variable (C*, CAL, boost; sigma_STAT = max(boot, jk); permutation p) ===
+  V0 MGAS500 (control)    n 326 can h0672: A 1.640 | lin b +0.687+-0.355 (Z +1.94, p_perm 0.004) | med step +0.298+-0.274 (Z +1.09) | joint Z_b +1.81 Z_c -0.91 | scan T 3.10 p 0.014 at q 0.35 (V* 7.92e+12, D +0.811) | Z_b|M +nan
+  V0 MGAS500 (control)    n 326 can h0686: A 1.684 | lin b +0.666+-0.358 (Z +1.86, p_perm 0.005) | med step +0.347+-0.272 (Z +1.28) | joint Z_b +1.66 Z_c -0.60 | scan T 3.22 p 0.013 at q 0.35 (V* 7.92e+12, D +0.859) | Z_b|M +nan
+  V0 MGAS500 (control)    n 326 alt h0672: A 1.505 | lin b +0.638+-0.325 (Z +1.96, p_perm 0.004) | med step +0.279+-0.251 (Z +1.11) | joint Z_b +1.82 Z_c -0.91 | scan T 3.12 p 0.013 at q 0.35 (V* 7.92e+12, D +0.748) | Z_b|M +nan
+  V0 MGAS500 (control)    n 326 alt h0686: A 1.545 | lin b +0.619+-0.328 (Z +1.89, p_perm 0.005) | med step +0.325+-0.249 (Z +1.30) | joint Z_b +1.67 Z_c -0.60 | scan T 3.24 p 0.013 at q 0.35 (V* 7.92e+12, D +0.793) | Z_b|M +nan
+  -> V0 MGAS500 (control): NONE; Spearman with MGAS500 +1.00; max dchi2 per cell [3.75, 3.46, 3.86, 3.56]
+     terciles can h0672: 1.10+-0.32 / 1.85+-0.17 / 1.84+-0.17  (medians 3.3e+12, 1.17e+13, 2.92e+13)  GLS CAL dchi2 S1 1.98 S2 4.10 pref S2
+     terciles can h0686: 1.11+-0.32 / 1.92+-0.17 / 1.88+-0.17  (medians 3.3e+12, 1.17e+13, 2.92e+13)  GLS CAL dchi2 S1 1.82 S2 4.37 pref S2
+     terciles alt h0672: 1.00+-0.29 / 1.70+-0.16 / 1.69+-0.15  (medians 3.3e+12, 1.17e+13, 2.92e+13)  GLS CAL dchi2 S1 2.08 S2 4.18 pref S2
+     terciles alt h0686: 1.02+-0.29 / 1.76+-0.16 / 1.73+-0.16  (medians 3.3e+12, 1.17e+13, 2.92e+13)  GLS CAL dchi2 S1 1.91 S2 4.45 pref S2
+     quintiles can h0672: 1.45+-0.59 / 1.24+-0.31 / 1.82+-0.21 / 1.38+-0.29 / 2.19+-0.20  (medians 1.51e+12, 6.59e+12, 1.16e+13, 1.87e+13, 3.87e+13)  GLS CAL dchi2 S1 4.58 S2 2.86 pref S1
+     quintiles can h0686: 1.48+-0.55 / 1.24+-0.31 / 1.88+-0.21 / 1.43+-0.28 / 2.26+-0.22  (medians 1.51e+12, 6.59e+12, 1.16e+13, 1.87e+13, 3.87e+13)  GLS CAL dchi2 S1 4.18 S2 2.92 pref S1
+     quintiles alt h0672: 1.32+-0.54 / 1.13+-0.29 / 1.67+-0.20 / 1.26+-0.26 / 2.02+-0.18  (medians 1.51e+12, 6.59e+12, 1.16e+13, 1.87e+13, 3.87e+13)  GLS CAL dchi2 S1 4.71 S2 2.93 pref S1
+     quintiles alt h0686: 1.35+-0.50 / 1.13+-0.28 / 1.72+-0.19 / 1.32+-0.26 / 2.08+-0.20  (medians 1.51e+12, 6.59e+12, 1.16e+13, 1.87e+13, 3.87e+13)  GLS CAL dchi2 S1 4.30 S2 2.98 pref S1
+  [23 s, RSS 0.59 GB]
+  V1 KT                   n 106 can h0672: A 1.668 | lin b +2.242+-0.742 (Z +3.02, p_perm 0.006) | med step +0.819+-0.360 (Z +2.28) | joint Z_b +2.00 Z_c -0.20 | scan T 2.80 p 0.028 at q 0.30 (V* 1.33, D +1.182) | Z_b|M +1.71
+  V1 KT                   n 106 can h0686: A 1.755 | lin b +2.380+-0.763 (Z +3.12, p_perm 0.005) | med step +0.878+-0.366 (Z +2.40) | joint Z_b +2.01 Z_c -0.16 | scan T 2.84 p 0.024 at q 0.30 (V* 1.33, D +1.236) | Z_b|M +1.67
+  V1 KT                   n 106 alt h0672: A 1.530 | lin b +2.070+-0.681 (Z +3.04, p_perm 0.006) | med step +0.755+-0.330 (Z +2.29) | joint Z_b +2.01 Z_c -0.21 | scan T 2.80 p 0.028 at q 0.30 (V* 1.33, D +1.086) | Z_b|M +1.71
+  V1 KT                   n 106 alt h0686: A 1.610 | lin b +2.196+-0.700 (Z +3.14, p_perm 0.004) | med step +0.810+-0.335 (Z +2.41) | joint Z_b +2.03 Z_c -0.16 | scan T 2.84 p 0.023 at q 0.30 (V* 1.33, D +1.136) | Z_b|M +1.67
+  -> V1 KT: DETECTED (SHAPE UNRESOLVED); Spearman with MGAS500 +0.58; max dchi2 per cell [9.13, 9.72, 9.24, 9.83]
+     terciles can h0672: 1.10+-0.38 / 1.65+-0.32 / 2.13+-0.25  (medians 1.21, 1.67, 3.1)  GLS CAL dchi2 S1 5.03 S2 3.82 pref S1
+     terciles can h0686: 1.16+-0.39 / 1.76+-0.32 / 2.22+-0.26  (medians 1.21, 1.67, 3.1)  GLS CAL dchi2 S1 4.77 S2 3.82 pref S1
+     terciles alt h0672: 1.00+-0.34 / 1.51+-0.29 / 1.96+-0.23  (medians 1.21, 1.67, 3.1)  GLS CAL dchi2 S1 5.08 S2 3.85 pref S1
+     terciles alt h0686: 1.06+-0.35 / 1.61+-0.30 / 2.04+-0.24  (medians 1.21, 1.67, 3.1)  GLS CAL dchi2 S1 4.82 S2 3.86 pref S1
+  [24 s, RSS 0.59 GB]
+  F1 F_cl                 n 106 can h0672: A 1.598 | lin b -3.030+-1.379 (Z -2.20, p_perm 0.036) | med step -1.110+-0.526 (Z -2.11) | joint Z_b -0.58 Z_c -0.49 | scan T 2.94 p 0.022 at q 0.60 (V* 1.15, D -1.531) | Z_b|M -2.04
+  F1 F_cl                 n 106 can h0686: A 1.654 | lin b -3.253+-1.384 (Z -2.35, p_perm 0.026) | med step -1.176+-0.540 (Z -2.18) | joint Z_b -0.66 Z_c -0.50 | scan T 3.16 p 0.007 at q 0.60 (V* 1.15, D -1.652) | Z_b|M -2.24
+  F1 F_cl                 n 106 alt h0672: A 1.466 | lin b -2.779+-1.265 (Z -2.20, p_perm 0.036) | med step -1.018+-0.482 (Z -2.11) | joint Z_b -0.58 Z_c -0.49 | scan T 2.94 p 0.022 at q 0.60 (V* 1.15, D -1.404) | Z_b|M -2.04
+  F1 F_cl                 n 106 alt h0686: A 1.517 | lin b -2.983+-1.269 (Z -2.35, p_perm 0.026) | med step -1.079+-0.495 (Z -2.18) | joint Z_b -0.66 Z_c -0.51 | scan T 3.16 p 0.007 at q 0.60 (V* 1.15, D -1.515) | Z_b|M -2.24
+  -> F1 F_cl: WEAK; Spearman with MGAS500 -0.01; max dchi2 per cell [4.83, 5.52, 4.83, 5.53]
+     terciles can h0672: 2.25+-0.49 / 1.85+-0.49 / 0.81+-0.41  (medians 0.703, 1.05, 1.6)  GLS CAL dchi2 S1 5.40 S2 2.97 pref S1
+     terciles can h0686: 2.28+-0.51 / 1.99+-0.48 / 0.81+-0.41  (medians 0.703, 1.05, 1.6)  GLS CAL dchi2 S1 5.70 S2 2.63 pref S1
+     terciles alt h0672: 2.06+-0.45 / 1.69+-0.45 / 0.74+-0.38  (medians 0.703, 1.05, 1.6)  GLS CAL dchi2 S1 5.40 S2 2.97 pref S1
+     terciles alt h0686: 2.10+-0.47 / 1.82+-0.44 / 0.74+-0.38  (medians 0.703, 1.05, 1.6)  GLS CAL dchi2 S1 5.70 S2 2.63 pref S1
+  [24 s, RSS 0.59 GB]
+  F2 F_exc                n 106 can h0672: A 1.598 | lin b -1.914+-0.986 (Z -1.94, p_perm 0.055) | med step -0.845+-0.592 (Z -1.43) | joint Z_b -1.04 Z_c -0.29 | scan T 2.17 p 0.158 at q 0.55 (V* 0.332, D -1.127) | Z_b|M -1.90
+  F2 F_exc                n 106 can h0686: A 1.654 | lin b -2.137+-0.964 (Z -2.22, p_perm 0.030) | med step -0.975+-0.584 (Z -1.67) | joint Z_b -1.15 Z_c -0.41 | scan T 2.35 p 0.101 at q 0.55 (V* 0.332, D -1.237) | Z_b|M -2.18
+  F2 F_exc                n 106 alt h0672: A 1.466 | lin b -1.755+-0.904 (Z -1.94, p_perm 0.054) | med step -0.775+-0.544 (Z -1.43) | joint Z_b -1.03 Z_c -0.29 | scan T 2.17 p 0.158 at q 0.55 (V* 0.332, D -1.033) | Z_b|M -1.90
+  F2 F_exc                n 106 alt h0686: A 1.517 | lin b -1.959+-0.884 (Z -2.22, p_perm 0.030) | med step -0.895+-0.536 (Z -1.67) | joint Z_b -1.15 Z_c -0.41 | scan T 2.35 p 0.101 at q 0.55 (V* 0.332, D -1.134) | Z_b|M -2.17
+  -> F2 F_exc: WEAK; Spearman with MGAS500 +0.03; max dchi2 per cell [3.77, 4.91, 3.77, 4.91]
+     terciles can h0672: 1.81+-0.59 / 1.96+-0.48 / 1.05+-0.47  (medians 0.197, 0.296, 0.517)  GLS CAL dchi2 S1 1.48 S2 0.22 pref S1
+     terciles can h0686: 1.93+-0.58 / 1.97+-0.48 / 1.11+-0.46  (medians 0.197, 0.296, 0.517)  GLS CAL dchi2 S1 1.65 S2 0.37 pref S1
+     terciles alt h0672: 1.66+-0.54 / 1.80+-0.44 / 0.96+-0.43  (medians 0.197, 0.296, 0.517)  GLS CAL dchi2 S1 1.48 S2 0.22 pref S1
+     terciles alt h0686: 1.77+-0.53 / 1.81+-0.44 / 1.01+-0.42  (medians 0.197, 0.296, 0.517)  GLS CAL dchi2 S1 1.65 S2 0.37 pref S1
+  [25 s, RSS 0.59 GB]
+
+TREND VERDICT: UNDECIDED   classes: V0 MGAS500 (control): NONE; V1 KT: DETECTED (SHAPE UNRESOLVED); F1 F_cl: WEAK; F2 F_exc: WEAK
+
+=== X31 P2 checks and summary
+K5 PASS X21 V0/V1 cells reproduced: max |dev| 0.0e+00 over 56 numbers <= 1e-9
+K6 FAIL F_cl per cluster vs recomputation from its own KT, M500, R500: max rel dev 2.1e+00 (106 clusters with KT) <= 1e-12
+  F1 (F_cl): MGAS500-tercile medians 1.040 / 1.113 / 1.016 (n [37, 43, 26]); T1 1.040 vs T2+T3 1.065, Mann-Whitney p 0.79; class WEAK; Spearman with MGAS500 -0.01
+     canonical|h0672: lin b -3.030+-1.379 (Z -2.20, p_perm 0.036); median step -1.110 (Z -2.11); joint Z_b -0.58 Z_c -0.49; scan p 0.022; Z_b at fixed MGAS500 -2.04
+     canonical|h0686: lin b -3.253+-1.384 (Z -2.35, p_perm 0.026); median step -1.176 (Z -2.18); joint Z_b -0.66 Z_c -0.50; scan p 0.007; Z_b at fixed MGAS500 -2.24
+     alt|h0672: lin b -2.779+-1.265 (Z -2.20, p_perm 0.036); median step -1.018 (Z -2.11); joint Z_b -0.58 Z_c -0.49; scan p 0.022; Z_b at fixed MGAS500 -2.04
+     alt|h0686: lin b -2.983+-1.269 (Z -2.35, p_perm 0.026); median step -1.079 (Z -2.18); joint Z_b -0.66 Z_c -0.51; scan p 0.007; Z_b at fixed MGAS500 -2.24
+  F2 (F_exc): MGAS500-tercile medians 0.302 / 0.298 / 0.291 (n [37, 43, 26]); T1 0.302 vs T2+T3 0.296, Mann-Whitney p 0.37; class WEAK; Spearman with MGAS500 +0.03
+     canonical|h0672: lin b -1.914+-0.986 (Z -1.94, p_perm 0.055); median step -0.845 (Z -1.43); joint Z_b -1.04 Z_c -0.29; scan p 0.158; Z_b at fixed MGAS500 -1.90
+     canonical|h0686: lin b -2.137+-0.964 (Z -2.22, p_perm 0.030); median step -0.975 (Z -1.67); joint Z_b -1.15 Z_c -0.41; scan p 0.101; Z_b at fixed MGAS500 -2.18
+     alt|h0672: lin b -1.755+-0.904 (Z -1.94, p_perm 0.054); median step -0.775 (Z -1.43); joint Z_b -1.03 Z_c -0.29; scan p 0.158; Z_b at fixed MGAS500 -1.90
+     alt|h0686: lin b -1.959+-0.884 (Z -2.22, p_perm 0.030); median step -0.895 (Z -1.67); joint Z_b -1.15 Z_c -0.41; scan p 0.101; Z_b at fixed MGAS500 -2.17
+K4 PASS peak RSS 0.589 GB < 1 GB
+X31 P2 COMPLETE: 5/6 checks PASS. [25 s]
