@@ -115,5 +115,15 @@ supply.
 
 **Update (X40, 10-25): a fixed core size fails both sides.** SPARC rms is 0.119 at best (r_c ≈ 10 kpc, Υ pinned at 1.20),
 and the clusters come out ×2–4 over. **The core surface density is the right variable:** a₀/(2πG) across galaxies (X38),
-rising to about 2 × a₀/(2πG) in the heaviest clusters. That rise is the one remaining quantified gap. Baryons (X39), a fixed
+rising in the heaviest clusters (the gap was first read as ~×2; X40b below sharpens it). That rise is the one remaining quantified gap. Baryons (X39), a fixed
 length (X40) and orbit depletion (X37) do not produce it.
+
+**Update (X40b, coordinator, b09db13390 / ba368d2ba1, reproduced): no framework-native rule raises the cluster core Σ.**
+- Rule A (Σ set by max(a₀, g_b)) never activates: g_b(r₀) is 0.04–0.07 a₀ in clusters, 98–99.5 % of it gas.
+- Rule B (a₀ at formation) has the right sign but reaches only ×1.34.
+- Reported only: with the galaxies pinned, the cores need Σ ∝ M^0.25–0.30, i.e. **3–5 × a₀/(2πG) in cluster cores**, not ×2.
+- **X38 also fails the groups line,** with σ under-predicted by +0.09–0.10 dex (Z +2.3–2.5), in the same direction as the
+  clusters.
+
+**So the cold dark energy core surface density is a₀/(2πG) across galaxies and climbs as about M^0.25–0.30 from groups to
+clusters.** That climb is the open requirement. The record has no mechanism for it yet.
