@@ -240,3 +240,5 @@ No test here distinguishes it from that component. What the framework adds is th
 - **Gaia DR4 cannot separate the two readings either.** The MW field barely varies over the binaries, and both predict Newtonian wide binaries (v3s is screened).
 
 So no test in the record yet distinguishes "the law is fundamental" from "the law is how cold dark energy settles around baryons". In route E the a₀–Λ link is a coincidence.
+
+**Orbit-keyed conversion** (`X37_orbit_conversion`, peer lane; criteria 204001f8ad; coordinator rerun identical apart from timing): **OC FAILS CLUSTERS** on both footings. Cold dark energy converting to dark energy as exp(−N_orb/N*), with N* set by SPARC alone, empties cluster cores first. It predicts OUTER 1.34–1.67 against 0.66–0.72 measured, and gives the MID slope with KT the wrong sign. General statement: any depletion rule keyed to orbits, density, temperature or time removes cold dark energy from cluster centres first, while the data want it concentrated there.
