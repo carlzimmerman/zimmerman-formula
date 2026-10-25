@@ -1,0 +1,11 @@
+# Continuation handoff
+
+Original goal remains open. Base 69f1f60587; Weyl frozen 2b29534c88; independent fluid frozen e5333eab45. Kappa=1/2 remains FITTED; no numeric ratio selected.
+
+New Weyl test explicitly transforms metric, vector, compensator, MOND scalar and matter. It retains the physical scalar and source via invariant-field gravitational mixing. Its four response/volume operators sigma^(D-p)Y^(p/2), p=0,1,2,3, are separately invariant. Gauge fixing recovers the arbitrary starting action; this compensator lift removes no physical coefficient freedom. At D=4 the physical ratio is g^3 c_N^(3/2)/(c_3 sqrt(c_0)), with f and temporal normalization canceled. This addresses the previous source gap but does not cure amplitude/protection freedom.
+
+Changed route to volume-preserving fluid relabelings. The n-field fluid determinant b scales cubically on uniform isotropic gradients in n=3. Symmetry still permits arbitrary F(b), including fractional powers; extra analyticity is not protection. Even granting linear F=-V-mb, static determinant variation is a boundary term at constant lapse. With nonconstant lapse it gives dust acceleration, and stress is rho=V+mb,p=-V. This is not the earlier n+1-field spacetime-Jacobian medium. No MOND force or fixed vacuum relation results.
+
+Self-review in REVIEW.md; no independent audit, code experiment, full quantum completion or stability certificate. Source versions are pinned in result files. Do not claim a full-field symmetry was found that meets the user's joint requirements: a full-field candidate was constructed and failed.
+
+Open directions require physical restrictions beyond compensator redundancy or the general F(b) relabeling symmetry. A genuine new nonlinear microscopic symmetry must forbid independent invariant deformations or fix their coefficients through additional dynamics/quantization. No concrete untested transformation meeting that requirement is presently supplied. Nonlinear fluid pressure/higher-derivative models remain untested here but cannot be promoted to parameter-free mechanisms without their own matching and state-selection argument. Continue from a specified action or new source result rather than reintroducing these excluded explanations under new names.
