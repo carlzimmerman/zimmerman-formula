@@ -288,3 +288,5 @@ Results:
 - The data pin c_f ≈ 4–4.2: X43's groups line crosses at c_f ≈ 4.2, and X42's cluster-only calibration gives 3.3–4.6.
 - That is the standard formation concentration. Scale-free infall cannot produce it; it needs the structure of the initial peaks.
 - MGAS T3 OUTER should get a data-side check before more rules are built on it.
+
+**Peak-curvature c_f** (`X45_peak_curvature_cf`, peer lane; criteria 1fd8e1238a; POST-HOC exploratory after two post-result amendments; coordinator rerun identical apart from timing): **PK FAILS** in every run on both footings. Spherical collapse of the BBKS peak profile on the record's P(k) gives a near-uniform core with no r₋₂, so c_f falls back to 1.85 and reproduces X44. Reading: c_f ≈ 4 comes from orbit mixing and relaxation, not from spherical peak collapse. The framework-native route is to measure formation-epoch concentrations in the record's own PM runs.
