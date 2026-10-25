@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (791 rows)
+## Totals (793 rows)
 
 - **537 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 144 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 146 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -990,6 +990,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K789 | PARAMRED-20261024/INVARIANTS | `reviews/parameter_reduction_2026_10_24` | physical amplitude sensitivity and fourth-derivative residual | - | audit | CONDITIONAL REDUCTION: leading vacuum ratio depends only on u^3/(v sqrt(e)); fourth-derivative residual scales as mass^-1/2 divided by radius; positivity bounds domains but selects no amplitude or vacuum | freeze:4a154a00e7 |
 | K790 | SOURCESPEC-20261024/PORTAL | `reviews/source_spectral_constraints_2026_10_24` | unitary finite-band scalar-source spectral response | - | audit | CONDITIONAL CONSTRAINT: positive spectral moment induces quadratic response for linear Hermitian portal; independent healthy partners cannot cancel spectral weight; contact terms prevent universal full-beta bound; no-cancellation criterion bounds R symbolically | freeze:13dd783e9e |
 | K791 | SOURCESPEC-20261024/ANALYTIC | `reviews/source_spectral_constraints_2026_10_24` | analytic gradient-energy origin and protection filter | - | audit | RESTRICTED OBSTRUCTION: analytic rotational energy excludes both linear and cubic absolute-gradient terms; regular analytic gapped matching cannot selectively protect first while generating second; nonanalytic and constrained portals remain open; vacuum unselected | freeze:13dd783e9e |
+| K792 | MIXWARD-20261024/CONSTRAINT | `reviews/mixed_source_ward_2026_10_24` | covariant mixed lapse-scalar source and independent Einstein deformation | - | audit | CONDITIONAL OBSTRUCTION: explicit static constraint gives source B/A and stiffness C-B^2/A; allowed Einstein coefficient deformation lifts cancellation while preserving covariance and scalar shift; no loop coefficient or full stability claimed | freeze:5b477f2ae9 |
+| K793 | MIXWARD-20261024/SYMMETRY | `reviews/mixed_source_ward_2026_10_24` | quadratic null gauge candidate and full amplitude matching identities | - | audit | RESTRICTED OBSTRUCTION: static null transformation fails on cubic and source off shell; ordinary linear internal symmetry permits spatial quadratic metric; necessary matching identities written but no symmetry fixes vacuum and force ratio | freeze:5b477f2ae9 |
 
 ## LN: Logic / Lean formalisations
 
