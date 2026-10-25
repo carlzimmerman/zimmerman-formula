@@ -112,3 +112,8 @@ cluster cores by +0.08 against +1.0 needed. It also rebuilds galaxy cusps, which
 without contraction. **Remaining requirement:** cold dark energy cores about 2× denser at cluster masses than a₀/(2πG),
 while staying at a₀/(2πG) in galaxies. That is a mass scaling of the cold sector's own core physics, which baryons cannot
 supply.
+
+**Update (X40, 10-25): a fixed core size fails both sides.** SPARC rms is 0.119 at best (r_c ≈ 10 kpc, Υ pinned at 1.20),
+and the clusters come out ×2–4 over. **The core surface density is the right variable:** a₀/(2πG) across galaxies (X38),
+rising to about 2 × a₀/(2πG) in the heaviest clusters. That rise is the one remaining quantified gap. Baryons (X39), a fixed
+length (X40) and orbit depletion (X37) do not produce it.

@@ -1,0 +1,66 @@
+X40_fixed_core_radius  normal run
+kappa = 1/2 FITTED; footings never pooled; route E (Newtonian, no law force), cold dark energy halos with a fixed core size r_c (SPARC-calibrated); not theory closed
+EM1 and X30 machinery executed read-only [22 s, RSS 0.62 GB]
+Sigma_a0 = a0/(2 pi G): canonical 106.9, alt 129.2 Msun/pc^2 (SECOND_LAW_HUNT: 107 / 129; Li+2020 Burkert median 177, context only)
+K0 EM1 law rms 0.0541 / 0.0537; X30 OUTER / MID 0.7160 / 1.6679: PASS
+K1 Burkert closed form vs quadrature +0.00e+00; solved r0 returns M -1.19e-14: PASS
+K0 X38 SD reproduced: SPARC rms 0.0795 (0.0795); OUTER all pred 0.697 (0.697): PASS
+K1 (with the fixed-r_c normalisation, fair share at r_ta: True): PASS
+
+SPARC calibration (bg A): r_c = 9.730 kpc (rms 0.1193, median U 1.20)
+  grid (r_c kpc: rms / U): 0.50: 0.5395/0.30; 0.75: 0.4891/0.30; 1.13: 0.4285/0.30; 1.71: 0.3579/0.30; 2.57: 0.2798/0.30; 3.87: 0.2019/0.30; 5.83: 0.1409/0.77; 8.78: 0.1194/1.20; 13.23: 0.1278/1.20; 19.92: 0.1498/1.20; 30.00: 0.1742/1.20
+  r_c within drms 0.002: 7.93 - 10.78 kpc; L* (21.7 / 22.9 pc) stated for comparison
+K2 r_c -> 0 approaches a cusp: median U 0.30 (< X38 0.77): PASS
+  SPARC [A_c2b_refit] at r_c 9.73 kpc: rms 0.1193, median U 1.20 -> line FAIL
+  SPARC [B_cfg886_bg] at r_c 9.73 kpc: rms 0.1212, median U 1.20 -> line FAIL
+
+=== [canonical] r_c = 9.730 kpc
+     G-IN-all   meas +1.938+-1.670 pred +23.350 Z -12.82 (X38 Z +0.51) | h0.686 Z -12.94  FAIL
+     G-MID-T1   meas +1.096+-0.375 pred +2.841 Z -4.65 (X38 Z +0.10) | h0.686 Z -4.17  FAIL
+     G-MID-T2   meas +1.650+-0.318 pred +3.333 Z -5.29 (X38 Z +1.80) | h0.686 Z -4.67  FAIL
+     G-MID-T3   meas +2.132+-0.254 pred +4.518 Z -9.39 (X38 Z +4.26) | h0.686 Z -8.43  FAIL
+     G-MID-b    meas +2.242+-0.742 pred +3.970 Z -2.33 (X38 Z +3.07) | h0.686 Z -2.04  FAIL
+     G-OUT-all  meas +0.716+-0.141 pred +1.164 Z -3.18 (X38 Z +0.14) | h0.686 Z -3.19  FAIL
+     G-OUT-T1   meas +0.394+-0.315 pred +0.899 Z -1.60 (X38 Z -0.71) | h0.686 Z -1.58
+     G-OUT-T2   meas +0.622+-0.229 pred +1.079 Z -2.00 (X38 Z -0.26) | h0.686 Z -1.83
+     G-OUT-T3   meas +1.027+-0.219 pred +1.427 Z -1.83 (X38 Z +1.19) | h0.686 Z -1.86
+     G-OUT-b    meas +1.502+-0.641 pred +1.215 Z +0.45 (X38 Z +1.85) | h0.686 Z +0.24
+     G-OUT-Mall meas +0.929+-0.098 pred +1.167 Z -2.43 (X38 Z +2.36) | h0.686 Z -2.36  FAIL
+     G-OUT-M1   meas +0.488+-0.296 pred +0.681 Z -0.65 (X38 Z -0.12) | h0.686 Z -0.53
+     G-OUT-M2   meas +0.762+-0.135 pred +1.060 Z -2.21 (X38 Z +0.49) | h0.686 Z -1.83  FAIL
+     G-OUT-M3   meas +1.369+-0.103 pred +1.585 Z -2.08 (X38 Z +5.36) | h0.686 Z -2.19  FAIL
+     G-IN-Mall  meas +2.279+-1.051 pred +26.810 Z -23.35 (X38 Z +1.18) | h0.686 Z -20.75  FAIL
+  (reported) clusters at r_c 7.93 kpc: fails ['G-IN-all (OVER)', 'G-MID-T1 (OVER)', 'G-MID-T2 (OVER)', 'G-MID-T3 (OVER)', 'G-MID-b (OVER)', 'G-OUT-all (OVER)', 'G-OUT-T2 (OVER)', 'G-OUT-Mall (OVER)', 'G-OUT-M2 (OVER)', 'G-OUT-M3 (OVER)', 'G-IN-Mall (OVER)']
+  (reported) clusters at r_c 10.78 kpc: fails ['G-IN-all (OVER)', 'G-MID-T1 (OVER)', 'G-MID-T2 (OVER)', 'G-MID-T3 (OVER)', 'G-MID-b (OVER)', 'G-OUT-all (OVER)', 'G-OUT-Mall (OVER)', 'G-OUT-M2 (OVER)', 'G-OUT-M3 (OVER)', 'G-IN-Mall (OVER)']
+  VERDICT [canonical]: FC FAILS  (failing: SPARC line, G-IN-all (OVER), G-MID-T1 (OVER), G-MID-T2 (OVER), G-MID-T3 (OVER), G-MID-b (OVER), G-OUT-all (OVER), G-OUT-Mall (OVER), G-OUT-M2 (OVER), G-OUT-M3 (OVER), G-IN-Mall (OVER))   [30 s]
+
+=== [alt] r_c = 9.730 kpc
+     G-IN-all   meas +1.779+-1.533 pred +21.436 Z -12.82 (X38 Z +0.39) | h0.686 Z -12.94  FAIL
+     G-MID-T1   meas +1.004+-0.344 pred +2.602 Z -4.65 (X38 Z -0.12) | h0.686 Z -4.17  FAIL
+     G-MID-T2   meas +1.513+-0.292 pred +3.056 Z -5.29 (X38 Z +1.50) | h0.686 Z -4.66  FAIL
+     G-MID-T3   meas +1.959+-0.234 pred +4.151 Z -9.38 (X38 Z +3.80) | h0.686 Z -8.43  FAIL
+     G-MID-b    meas +2.070+-0.681 pred +3.668 Z -2.35 (X38 Z +2.99) | h0.686 Z -2.06  FAIL
+     G-OUT-all  meas +0.656+-0.129 pred +1.066 Z -3.18 (X38 Z -0.06) | h0.686 Z -3.19  FAIL
+     G-OUT-T1   meas +0.360+-0.288 pred +0.822 Z -1.60 (X38 Z -0.76) | h0.686 Z -1.58
+     G-OUT-T2   meas +0.570+-0.209 pred +0.988 Z -2.00 (X38 Z -0.37) | h0.686 Z -1.83
+     G-OUT-T3   meas +0.941+-0.201 pred +1.308 Z -1.82 (X38 Z +1.02) | h0.686 Z -1.86
+     G-OUT-b    meas +1.381+-0.587 pred +1.121 Z +0.44 (X38 Z +1.78) | h0.686 Z +0.23
+     G-OUT-Mall meas +0.851+-0.090 pred +1.069 Z -2.43 (X38 Z +2.08) | h0.686 Z -2.36  FAIL
+     G-OUT-M1   meas +0.446+-0.270 pred +0.622 Z -0.65 (X38 Z -0.16) | h0.686 Z -0.53
+     G-OUT-M2   meas +0.698+-0.123 pred +0.970 Z -2.21 (X38 Z +0.32) | h0.686 Z -1.83  FAIL
+     G-OUT-M3   meas +1.257+-0.095 pred +1.454 Z -2.08 (X38 Z +4.94) | h0.686 Z -2.18  FAIL
+     G-IN-Mall  meas +2.092+-0.964 pred +24.609 Z -23.35 (X38 Z +0.99) | h0.686 Z -20.75  FAIL
+  (reported) clusters at r_c 7.93 kpc: fails ['G-IN-all (OVER)', 'G-MID-T1 (OVER)', 'G-MID-T2 (OVER)', 'G-MID-T3 (OVER)', 'G-MID-b (OVER)', 'G-OUT-all (OVER)', 'G-OUT-T2 (OVER)', 'G-OUT-Mall (OVER)', 'G-OUT-M2 (OVER)', 'G-OUT-M3 (OVER)', 'G-IN-Mall (OVER)']
+  (reported) clusters at r_c 10.78 kpc: fails ['G-IN-all (OVER)', 'G-MID-T1 (OVER)', 'G-MID-T2 (OVER)', 'G-MID-T3 (OVER)', 'G-MID-b (OVER)', 'G-OUT-all (OVER)', 'G-OUT-Mall (OVER)', 'G-OUT-M2 (OVER)', 'G-OUT-M3 (OVER)', 'G-IN-Mall (OVER)']
+  VERDICT [alt]: FC FAILS  (failing: SPARC line, G-IN-all (OVER), G-MID-T1 (OVER), G-MID-T2 (OVER), G-MID-T3 (OVER), G-MID-b (OVER), G-OUT-all (OVER), G-OUT-Mall (OVER), G-OUT-M2 (OVER), G-OUT-M3 (OVER), G-IN-Mall (OVER))   [37 s]
+
+=== VERDICT (both footings): FC FAILS
+
+=== CHECKS
+  [PASS] K0
+  [PASS] K1
+  [PASS] K0
+  [PASS] K2
+  [PASS] K3
+
+checks 5/5; runtime 37 s; peak RSS 0.63 GB
