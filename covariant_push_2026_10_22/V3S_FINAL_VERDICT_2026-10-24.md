@@ -254,3 +254,5 @@ This is the first model in the record that ties a₀ to the cold dark energy its
 - Blumenthal and Gnedin contraction by the BCG and hot gas move the heavy cluster cores by only about +0.08 (MID T3 1.05 → 1.13 against 2.13).
 - The same physics rebuilds the galaxy cusp and breaks SPARC (median Υ 0.77 → 0.39).
 - X38 therefore stands without contraction. What remains is that cold dark energy cores must be about 2 × denser than a₀/(2πG) at cluster masses while staying at a₀/(2πG) in galaxies. That is a mass scaling of the core physics that baryons cannot supply.
+
+**Fixed core radius** (`X40_fixed_core_radius`, peer lane; criteria b37983a0f7; coordinator rerun identical apart from timing): **FC FAILS** on both footings. A single core size calibrated on SPARC (r_c 9.7 kpc) fails SPARC (rms 0.119 at Υ 1.20) and overshoots clusters ×2–4. So the core's surface density, not its radius, is the right variable: a₀/(2πG) across galaxies, rising about ×2 in the heaviest clusters. That rise is the single remaining quantified gap; `X41_core_surface_density_scaling` tests framework-native rules for it.
