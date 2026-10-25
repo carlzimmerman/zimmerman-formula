@@ -127,3 +127,10 @@ length (X40) and orbit depletion (X37) do not produce it.
 
 **So the cold dark energy core surface density is a₀/(2πG) across galaxies and climbs as about M^0.25–0.30 from groups to
 clusters.** That climb is the open requirement. The record has no mechanism for it yet.
+
+**Update (X41, 10-25): collapse supplies the slope, not the amplitude.** At the EPS (Lacey–Cole) median formation epoch on
+the record's own P(k), the collapsed object's ρr scales as **M^0.23** (10¹³–10¹⁵ M☉). X40b requires M^0.25–0.30. Its
+amplitude is 0.22–0.26 × a₀/(2πG), so max(floor, collapse) is inactive. To reach the cluster cores it needs a multiplier of
+≈ 11–23, which is a core-concentration factor. **Current statement:** cores sit at the floor a₀/(2πG) in galaxies and at
+≈ 10–20 × the collapse ρr (time-scaled) in groups and clusters. The missing piece is the first-principles origin of that
+core-concentration factor.
