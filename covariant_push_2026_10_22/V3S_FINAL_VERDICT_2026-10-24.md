@@ -176,3 +176,8 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
   - virial heating (r = 1), which reverses the KT slope;
   - universal heating, which passes the KT terciles in a narrow 634–714 km/s window that X23's scan stepped over, but fails the MGAS500 terciles everywhere.
 - Untested on the sheet: the cluster radial profile (X30), late S8 power (X29, a peer lane) and the Bullet Cluster (X32).
+
+**The sheet's own cluster profile** (`X30_sheet_cluster_profile`, c6be83f91c / 0f19b6759b; coordinator rerun identical in every number). The input SHA of X26's JSON differs: the lane hashed X26's JSON while the coordinator's X26 rerun had rewritten its timing fields. **PROFILE EXCLUDES THE SHEET** on both footings: all 19 canonical / 16 alt X26 points fail, including the 2 MGAS500 survivors.
+- **Mechanism.** Partial retention at c_s ≈ 1.1–1.5 σ is outskirts-heavy. The cold core is 2–5 × the gas core, with < 5 % of the retained cold mass inside 0.5 Mpc.
+- **Binding band: OUTER.** Fixing MID raises OUTER by about the same factor: predicted 1.42–2.26 against measured 0.66–0.72, Z −5.4 to −11. It fails in every tercile and under X7's full calibrated errors.
+- Within this model family (isothermal, spherical, bounded at turnaround), the last surviving cold-sector door is closed. A centrally concentrated profile is not derived in the record and was not tested.
