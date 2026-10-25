@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "LOCAL_CAPTURE_SEED_REPEAT",
+  "repository": {
+    "commit": "a364a6df13cfb7cfbf311703a66bf7ac9244ff49",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "two_state_mechanism_2026_10_24/local_capture/capture.py",
+    "--flats",
+    ".25",
+    "--betas",
+    "4",
+    "--seeds",
+    "29",
+    "--duration",
+    "4",
+    "--output",
+    "two_state_mechanism_2026_10_24/local_capture/run_seed/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Local finite collision capture and independent 3D T/F transport: conservation, formation, instantaneous free binding and monopole RAR diagnostic",
+    "coefficient_domain": "IEEE double floating point",
+    "conventions": "G=Mb=b=1 internally; no name-dependent dynamics; full transition energy paid by central pair impulse",
+    "inputs": [
+      "All four profiles, f=0,.95, flat=.25, beta=4, seed=29"
+    ],
+    "bounds": {
+      "n_per_component": 32,
+      "quadrature_cells": 256,
+      "duration_initial_dynamical_times": 4,
+      "event_interval": 0.02,
+      "hamiltonian_energy_budget_per_time": 5e-05
+    },
+    "non_claims": [
+      "Not a full 3D polarization theory",
+      "Not observational validation",
+      "Not long-term binding or microscopic cross sections"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy.random.default_rng PCG64",
+    "seed": 29
+  },
+  "run": {
+    "started_at": "2026-10-24T20:17:35.015328+00:00",
+    "runtime_seconds": 67.672094,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 900.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "two_state_mechanism_2026_10_24/local_capture/capture.py",
+    "two_state_mechanism_2026_10_24/local_capture/CONTRACT.md",
+    "two_state_mechanism_2026_10_24/model.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "two_state_mechanism_2026_10_24/local_capture/capture.py",
+      "sha256": "51b6f5fec128f09ff30cb71b8e3172201e80a14576a169af0650d4effe7b3ad8",
+      "sha256_after": "51b6f5fec128f09ff30cb71b8e3172201e80a14576a169af0650d4effe7b3ad8"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/local_capture/CONTRACT.md",
+      "sha256": "a934463601919a72a882b7cb46f48e5ffd93b1cb8a3b1d5cee8e87845f31a869",
+      "sha256_after": "a934463601919a72a882b7cb46f48e5ffd93b1cb8a3b1d5cee8e87845f31a869"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/model.py",
+      "sha256": "af0074513c0b2bcaeef6e8feb4ceb1d07383fefc5f49af78d504f0847fe35917",
+      "sha256_after": "af0074513c0b2bcaeef6e8feb4ceb1d07383fefc5f49af78d504f0847fe35917"
+    }
+  ],
+  "output_directory": "two_state_mechanism_2026_10_24/local_capture/run_seed",
+  "declared_results": [
+    "two_state_mechanism_2026_10_24/local_capture/run_seed/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "two_state_mechanism_2026_10_24/local_capture/run_seed/stdout.txt",
+      "sha256": "fd092a43b595ae9223c7ebf406e23488f9df0a9e6ffff368a88ec1782a2c73fb",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/local_capture/run_seed/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/local_capture/run_seed/results.json",
+      "sha256": "3e29a987e5a0f9ce31cff0f783f1b19b80e6abc769bc23110953c4656230f66b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

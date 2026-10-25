@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "LIVE_ASSEMBLY_PILOT",
+  "repository": {
+    "commit": "adb56b9dc14fbb4559de50809cfcaf07108ee52c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "two_state_mechanism_2026_10_24/live_assembly/assembly.py",
+    "--output",
+    "two_state_mechanism_2026_10_24/live_assembly/run_scan/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Reciprocal collapse-driven assembly conserves energy; test seeded-free live spherical profiles for formation and snapshot retention",
+    "coefficient_domain": "IEEE double floating point",
+    "conventions": "G=Mb=b=1 internally; all phase and gravity forces from common energy; no type flags",
+    "inputs": [
+      "Four numeric profiles crossed with f=0,.3,.95 and alpha=0,.1,.3,1,3"
+    ],
+    "bounds": {
+      "n_per_species": 12,
+      "quadrature_cells": 512,
+      "duration_initial_dynamical_times": 30,
+      "rtol": 2e-07
+    },
+    "non_claims": [
+      "No 3D disk formation",
+      "No microphysics or observational fit",
+      "No asymptotic binding proof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-24T19:51:40.540646+00:00",
+    "runtime_seconds": 360.57141,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 900.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "two_state_mechanism_2026_10_24/live_assembly/assembly.py",
+    "two_state_mechanism_2026_10_24/model.py",
+    "two_state_mechanism_2026_10_24/live_assembly/CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "two_state_mechanism_2026_10_24/live_assembly/assembly.py",
+      "sha256": "bffe6b7be60087913758f3e86975168b1d4645458e63347e5a540630961c0ca8",
+      "sha256_after": "bffe6b7be60087913758f3e86975168b1d4645458e63347e5a540630961c0ca8"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/model.py",
+      "sha256": "af0074513c0b2bcaeef6e8feb4ceb1d07383fefc5f49af78d504f0847fe35917",
+      "sha256_after": "af0074513c0b2bcaeef6e8feb4ceb1d07383fefc5f49af78d504f0847fe35917"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/live_assembly/CONTRACT.md",
+      "sha256": "a5ac0ec8c4ccf69cd890f1c76a85dfdfdb5be29bdaf0f3335099dd6c9b70b84d",
+      "sha256_after": "a5ac0ec8c4ccf69cd890f1c76a85dfdfdb5be29bdaf0f3335099dd6c9b70b84d"
+    }
+  ],
+  "output_directory": "two_state_mechanism_2026_10_24/live_assembly/run_scan",
+  "declared_results": [
+    "two_state_mechanism_2026_10_24/live_assembly/run_scan/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "two_state_mechanism_2026_10_24/live_assembly/run_scan/stdout.txt",
+      "sha256": "efb43402372415d226e27d4776e206825392156dee799b6d047734de6417a9de",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/live_assembly/run_scan/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/live_assembly/run_scan/results.json",
+      "sha256": "1eb3e923903b9b7f4f496783ab7bafb2388944533e9336106c815355a144bf38",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

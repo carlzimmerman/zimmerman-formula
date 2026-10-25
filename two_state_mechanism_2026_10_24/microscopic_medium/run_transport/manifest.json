@@ -1,0 +1,157 @@
+{
+  "schema_version": 2,
+  "claim_id": "MICROSCOPIC_MEDIUM_TRANSPORT_2026_10_24",
+  "repository": {
+    "commit": "547ae0b9b904330ba242ecf3994a8e7229983126",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "two_state_mechanism_2026_10_24/microscopic_medium/experiment.py",
+    "--output",
+    "two_state_mechanism_2026_10_24/microscopic_medium/run_transport/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Coulomb ground-state gaps and dipole weights, diatomic mode coupling, and finite live gravity plus signed-charge transport diagnostics",
+    "coefficient_domain": "IEEE double",
+    "conventions": "G=Mb=b=1, classical softened macroparticles; spectra are separate microscopic diagnostics",
+    "inputs": [
+      "two seeds, three spin fractions, two common preparation states"
+    ],
+    "bounds": {
+      "particles": 36,
+      "duration": 2,
+      "seeds": [
+        17,
+        29
+      ],
+      "spin": [
+        0,
+        0.5,
+        0.9
+      ],
+      "softening": [
+        0.04,
+        0.08,
+        0.16
+      ],
+      "epsilon": 0.1,
+      "eta": 5.364,
+      "lambda": 1,
+      "rtol": [
+        1e-08,
+        1e-10
+      ]
+    },
+    "non_claims": [
+      "No full retarded Maxwell integration",
+      "No derived critical phase",
+      "No quantum or radiative capture evolution",
+      "No converged galaxy formation or RAR fit",
+      "Neutral pair fraction is not positively charged tethered fraction"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng PCG64",
+    "seed": 17
+  },
+  "run": {
+    "started_at": "2026-10-25T00:53:05.583359+00:00",
+    "runtime_seconds": 0.020863,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "two_state_mechanism_2026_10_24/microscopic_medium/run_transport/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "two_state_mechanism_2026_10_24/microscopic_medium/experiment.py",
+    "two_state_mechanism_2026_10_24/microscopic_medium/DESIGN.md",
+    "two_state_mechanism_2026_10_24/microscopic_medium/DERIVATION.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "two_state_mechanism_2026_10_24/microscopic_medium/experiment.py",
+      "sha256": "0690030e93074646e2850c5106515da9f986caf76c6dce448b45aaf6e7b1fdcc",
+      "sha256_after": "0690030e93074646e2850c5106515da9f986caf76c6dce448b45aaf6e7b1fdcc"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/microscopic_medium/DESIGN.md",
+      "sha256": "277b1f67133dbeb23a712dba667a71d7032a3c3263a258d2af68a517598cee27",
+      "sha256_after": "277b1f67133dbeb23a712dba667a71d7032a3c3263a258d2af68a517598cee27"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/microscopic_medium/DERIVATION.md",
+      "sha256": "33d5a72dec88bc1d7cb7b1f1b5ad91c26efceb24c6abd3883f26fcdb3b6d9aa6",
+      "sha256_after": "33d5a72dec88bc1d7cb7b1f1b5ad91c26efceb24c6abd3883f26fcdb3b6d9aa6"
+    }
+  ],
+  "output_directory": "two_state_mechanism_2026_10_24/microscopic_medium/run_transport",
+  "declared_results": [
+    "two_state_mechanism_2026_10_24/microscopic_medium/run_transport/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "two_state_mechanism_2026_10_24/microscopic_medium/run_transport/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/microscopic_medium/run_transport/stderr.txt",
+      "sha256": "b78e96a65e0230f714ab0b2a48cd05f90fb2b51a481f9973555f9c8f40f6218b",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: two_state_mechanism_2026_10_24/microscopic_medium/run_transport/results.json"
+  ]
+}
