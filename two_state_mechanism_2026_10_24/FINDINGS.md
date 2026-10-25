@@ -1,4 +1,4 @@
-# Research findings through physical electric coupling and transport
+# Research findings through self-consistent orbital and quantum transport tests
 
 Start here for the current status. The original top-level README describes the
 initial spherical prototype; later stages below supersede its scope.
@@ -12,6 +12,7 @@ conservation checks and explicitly documented limitations.
 
 | Stage | Finding | Scope / unresolved issue |
 |---|---|---|
+| [Coupled orbital and quantum transport](../two_state_mechanism_2026_10_25/coupled_orbital/README.md) | Self-consistent3D orbital charge/dipole, moving countercharge and elastic energy now share a Hamiltonian. Exact quantized countercharge mode reveals a resonant transfer channel missed by mean field. | No assembly/dissociation channel, charged tether species, live gravity or disk/dwarf/cluster separation. Material parameters remain conditional. |
 | [Physical electric coupling and transport](electric_transport_2026_10_25/README.md) | Opposite-parity orbitals give a physical electric mass, but their complete position operator also drives charge redistribution. Conservative3D elastic propagation exports core energy without deleting it. | No self-consistent screening, orbital cooling, live-gravity assembly or population separation; simpler real-bond modulation lacks the required cubic response. |
 | [State preparation and joint bounds](state_preparation_2026_10_25/README.md) | A controlled gapped thermal start reaches the target source remainder within0.4%; contact interaction feedback and autonomous live-field dynamics tested. Combining current, inventory and Fermi packing rejects the local fundamental-fermion interpretation under explicit hypotheses. | No autonomous formation or population separation. Emergent quasiparticles remain open but need a different physical mass/current mapping and electric operator. |
 | [Nodal medium](nodal_medium_2026_10_25/README.md) | An explicit effective nodal-ring band yields the cold critical response; a slow unitary field ramp preserves the small source remainder to 2.23% in the refined test. | Initial band and filling assumed; no microscopic assembly, live-gravity population separation or derived acceleration scale. Finite temperature and filling remain obstacles. |
@@ -32,6 +33,11 @@ neutral pairs, quantum Jeans instability and charged tethering are distinct
 observables; they must not be relabeled as each other.
 
 ## Latest verification
+
+The coupled-orbital stage has four completed runs with validated provenance:
+19 lattice trajectories,6 quantum benchmark cases and a figure. Independent
+force/continuity checks and timestep refinements are recorded in its
+[audit](../two_state_mechanism_2026_10_25/coupled_orbital/AUDIT.md).
 
 The electric-transport stage has two completed runs and one retained failed
 verification run, with the derivative-step and boundary-polarization correction
