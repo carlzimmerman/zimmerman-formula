@@ -1,0 +1,7 @@
+# Preserved first benchmark execution failure
+
+The original benchmark exited1 in the omit-gauge negative control: its initial array was float64, and bypassing the gauge multiplication left it real before an in-place complex potential kick. NumPy raised UFuncTypeError. This is an input-dtype implementation defect in the deliberate control, not a physical exclusion or accepted benchmark. The script failed before writing its result JSON; no valid benchmark record exists for that first execution.
+
+adaptive_v2 explicitly converts the step input to complex128; benchmark_v2 and galaxy_v2 pin that source. The original source is preserved. A Draco complex-input exploratory pilot using the original producer had been launched in the same orchestration call which returned the benchmark failure, before that failure was inspected. Its source must remain immutable while running. No scientific interpretation is allowed before the corrected analytic benchmark and explicit complex-input v1/v2 equivalence check. Subsequent pilots use only the v2 producer. There was no pre-run runner record for the failed original benchmark; the preserved tool exception and this post-execution account do not invent one.
+
+The corrected analytic benchmark temporarily overlapped the already-running first bounded pilot; this deviated from the intended sequential schedule. Neither was a shared production job or a duplicate experiment. Subsequent galaxy matrix execution waits for both to finish. Per-process RSS is measured; the overlap is not an enforced aggregate-memory certificate.

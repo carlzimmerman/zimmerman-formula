@@ -1,0 +1,15 @@
+# CCT014: adaptive radial Hamilton–Jacobi carrier, bounded experiment
+
+Continue after CCT013's homologous lens carrier fails earlier than the static frame. Preserve that failure, all old producers and inputs. Selectively coupled CCT candidate only, not literal Khronon theory.
+
+Use psi=A exp(iS/eta), with a real radial reference S. It obeys a numerical monotone radial HJ update S_t+S_r²/2+Phi_ref=0 (Godunov Hamiltonian, SSPRK2, CFL<=.35 with substeps). Phi_ref is the monopole of the same cold density, a carrier-conditioning choice, never an additional gravitational force/source. Full Cartesian finite-box Poisson continues to drive physical evolution once. HJ shocks do not remove the complex amplitude or its interference; local carrier phases must be exactly compensated.
+
+For each step predict Snew from old density, use Smid=(Sold+Snew_pred)/2, change A by exp[i(Sold-Smid)/eta], evolve the old conservative finite-volume phase-fitted Hamiltonian at Smid with full physical Phi, then correct Snew using averaged old/new reference potentials and change A by exp[i(Smid-Snew)/eta]. Those two phases implement the time-dependent S_t term. No mass/tag renormalization, clipping, irreversible phase smoothing or added energy receiver. Evolving the reference is not a physical loss channel.
+
+The finite phase-fitted generator is only continuum-gauge covariant in the resolved limit. Explicitly measure physical kinetic-energy jumps at both changes of carrier with density/physical phase held fixed; record signed and accumulated absolute gauge defects. Do not hide them as physical cooling. Record full physical energy and compatible P/J, not the gauge Hamiltonian alone. Compare grid/dt/reference resolution before any retained-core conclusion.
+
+First analytic test: free chirped 3D Gaussian with exact time-dependent carrier, against exact free solution, grid16/24/32/48 refinement and dt controls; omit the phase compensation as a deliberate failure. Independently test HJ constant-gradient/quadratic pre-caustic evolution. Require decreasing analytic errors and tag/continuity/mass residuals below1e-10. Numerical soft bounds, not a proof.
+
+Actual saved incoming D/S/F/Leo physical initial fields, eta1500 pc km/s, identical inventories and assembly family to CCT012. N64/96,B28,stretch3.5,dt.02, radial reference1025 nodes from0 tosqrt(3)B; short dt.01 and radial2049 controls in fresh tags as needed. Requested T6 initially, soft wall budget up to240s per case. Processes sequential and numerical threads1, measured RSS<1GB. No shared production jobs, automations, frozen criteria or publications changed.
+
+Initial mass transfer gate1%; phase occupancy gate5% of density-weighted A edges exceeding pi/3; boundary shell |x|>.8B inventory fraction1e-4; HJ substeps cap128. Interpret physical energy drift and accumulated absolute gauge defect below1%; stop either above5%. Physical mass/tag/continuity tolerance1e-10. Stop and preserve raw output on any gate. Generic early focusing is not a selector, closed-box norm is not bound mass, and no stellar-survival statement is available without resolved evolved stars.
