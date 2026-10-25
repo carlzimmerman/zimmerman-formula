@@ -1,0 +1,19 @@
+# Executable next obligations for Claude
+
+1. Resolve the selected coherent formation branch before interpreting its endpoint. The useful numerical repair is phase centering (`radial_v4.py`), independently tested under a constant-potential gauge mutation. Use the unchanged physical IC, alpha10; obtain a third onset mesh/time pair (ne4096,dt.0003125,T1.25) and then a genuinely resolved longer interval. Register a fresh contract/output tag first; existing outputs are immutable. `run_registered.py CASE` reads CASE_contract.json, launches one bounded job, and verifies fresh output-directory creation. Do not reuse stopped states. The input closure must include actual code, contract notes and source metadata; declare result.json/field.npz/stars.npz. Keep wall<=240s, measuredRSS<750MB and one thread. If bounds prevent completion, retain the coverage obstruction.
+
+2. V2/V3 T8 attempts stopped; V4 only tested onsetT1.25. No run reached the proposed t4 birth/tag checkpoint. A zero tag residual is inactive, not evidence of retained material. Do not infer envelope capture, escaping energy, or a quiet late stellar cohort from these files. Test field settling before introducing a later stellar cohort, with birth/settling selection registered independently of the desired final velocities. Merely moving birth until an attractive snapshot appears is posthoc tuning.
+
+3. Any small-core/large-envelope mechanism needs a dynamical condensed-fraction selector. `VARIATIONAL.md` supplies a dimensional/variational clue, not such a selector. A coherent Hamiltonian cannot erase released binding energy: measure where it goes in the complete field. Resolve outward waves before calculating receiver capacity, physical escape or core retention; reflecting-box transport is not infinity flux. Reuse the bounded positive graph-label convention only with its stated nonunique quantum-label interpretation.
+
+4. Quantify and then evolve reciprocal stellar/baryonic source response. Existing cohorts are full-velocity-DF passive probes in one canonical baryon law, with a fixed Newtonian baryon source for the cold field. `source_backreaction_omitted_estimates` is a finite-sample Newtonian force discrepancy, NOT a live-source nonlinear extra-law solution. Larger radial changes cannot be called a settled observed dwarf even when its equilibrium-profile Jeans sigma briefly matches data. Birth DF monotonicity/moments, orbit work residual, frozen-control drift, numerical refinement and observed stellar profiles all matter.
+
+5. Test the SAME supply/initial-condition selection for Fornax and Leo I. Their failed phase/orbit gates forbid a survival or overboost verdict at the failed endpoints. Use actual selected positions and the complete field, not just a core cut; do not put cold mass into both Newtonian gravity and the baryonic nonlinear term. Sextans has two tracer scales; without its chemical/photometric mixture likelihood, report population ranges rather than inventing mixture membership.
+
+6. Derive the catchment supply and assembly variables from a single physical history model with external data, rather than treating half*5.364*200*formedM, eta1500, vin10 and initial0.1a0 as predictions. Separately derive an action bridge before transferring anything to current v3s/AeST, collisionless X48, or retired SCT-M. Spherical zero-spin tests establish no angular-momentum transport mechanism.
+
+Reproduce existing evidence in a NEW output directory:
+
+    /opt/homebrew/bin/python3 sol61_push/cold_formation_data_2026_10_25/run_registered.py Draco_fine_v4 --tag Draco_fine_v4_reproduction_001
+
+The wrapper uses the existing physical/numerical contract and a new output tag; it refuses to overwrite either old or reproduction results. This is a foreground local command, not a schedule. See the final analysis/audit contracts for exact bounded argv and execution artifacts.
