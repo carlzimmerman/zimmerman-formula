@@ -256,3 +256,11 @@ This is the first model in the record that ties a₀ to the cold dark energy its
 - X38 therefore stands without contraction. What remains is that cold dark energy cores must be about 2 × denser than a₀/(2πG) at cluster masses while staying at a₀/(2πG) in galaxies. That is a mass scaling of the core physics that baryons cannot supply.
 
 **Fixed core radius** (`X40_fixed_core_radius`, peer lane; criteria b37983a0f7; coordinator rerun identical apart from timing): **FC FAILS** on both footings. A single core size calibrated on SPARC (r_c 9.7 kpc) fails SPARC (rms 0.119 at Υ 1.20) and overshoots clusters ×2–4. So the core's surface density, not its radius, is the right variable: a₀/(2πG) across galaxies, rising about ×2 in the heaviest clusters. That rise is the single remaining quantified gap; `X41_core_surface_density_scaling` tests framework-native rules for it.
+
+**Framework-native rules for the cluster core density** (`X40b_core_surface_density_scaling`; it is not X41, because the criteria were committed before the rename; b09db13390 / ba368d2ba1; coordinator rerun identical apart from timing): **NO FRAMEWORK-NATIVE RULE CLOSES IT**, on both footings.
+- **Rule A / A′ (the core set by max(a₀, g_b)) never switches on.** At cluster cores g_b is only 0.04–0.07 a₀ (gas 98–99.5 %). The cores would need 2–5 a₀, so the rule falls 30–100 × short, and every number equals X38's.
+- **Rule B (a₀ at formation, DESI curve)** has the right sign, but its largest possible ratio is 1.34.
+- **Reported only:** with galaxies pinned, the clusters need S ∝ M^0.25–0.30. The cluster cores then sit at 3–5 × a₀/(2πG), so the gap is 3–5 ×, not 2 ×.
+- **New:** X38 also fails the groups line (σ under-predicted, +0.09–0.10 dex, Z +2.3–2.5), in the same direction as the clusters.
+
+**Reading.** Cold dark energy halo cores sit at a₀/(2πG) in galaxies and rise with mass above galaxy scales (S ∝ M^~0.25–0.3). Nothing in the framework supplies that rise. It is the remaining quantified gap.
