@@ -1,0 +1,160 @@
+{
+  "schema_version": 2,
+  "claim_id": "NODAL_BAND_DIPOLE_2026_10_25",
+  "repository": {
+    "commit": "60cd149688df2b2a65895bcabf9cfd8a9cab7b0c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "two_state_mechanism_2026_10_24/nodal_medium_2026_10_25/experiment.py",
+    "--output",
+    "two_state_mechanism_2026_10_24/nodal_medium_2026_10_25/run_band/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Effective nodal-ring Hamiltonian, linear DOS with nonzero dipole weights, finite-temperature/filling response and conditional local-pair speed cap",
+    "coefficient_domain": "IEEE double, quadrature and unitary Bloch evolution",
+    "conventions": "cutoff half-filled band; no claim of self-assembled material",
+    "inputs": [
+      "five Clifford matrices",
+      "nodal-ring low-energy measure",
+      "earlier chi and inventory proxies"
+    ],
+    "bounds": {
+      "DOS_N": [
+        128,
+        256,
+        512
+      ],
+      "dynamic_nodes": [
+        24,
+        48
+      ],
+      "D": [
+        0.1,
+        0.5
+      ],
+      "rtol": [
+        1e-08,
+        1e-11
+      ],
+      "duration": 10,
+      "x": [
+        0.0001,
+        0.001,
+        0.01,
+        0.1
+      ],
+      "epsilon_speed_cap": [
+        0.1,
+        1e-08
+      ]
+    },
+    "non_claims": [
+      "No microscopic band-formation interaction derived",
+      "No interacting many-body thermal critical phase",
+      "No causal relativistic completion",
+      "No galaxy formation or population separation",
+      "Local two-carrier speed bound is not universal for collective media"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T16:08:47.133380+00:00",
+    "runtime_seconds": 0.538452,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "two_state_mechanism_2026_10_24/nodal_medium_2026_10_25/experiment.py",
+    "two_state_mechanism_2026_10_24/nodal_medium_2026_10_25/DERIVATION.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "two_state_mechanism_2026_10_24/nodal_medium_2026_10_25/experiment.py",
+      "sha256": "ee3d60da8ae893a774a4e0c07ded8d0cb389013ffeef00b9d19002951c0a3136",
+      "sha256_after": "ee3d60da8ae893a774a4e0c07ded8d0cb389013ffeef00b9d19002951c0a3136"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/nodal_medium_2026_10_25/DERIVATION.md",
+      "sha256": "63bdb172e0854105a000a3ceba8f3b7d1c46de418456b34c85d45c3cabe05698",
+      "sha256_after": "63bdb172e0854105a000a3ceba8f3b7d1c46de418456b34c85d45c3cabe05698"
+    }
+  ],
+  "output_directory": "two_state_mechanism_2026_10_24/nodal_medium_2026_10_25/run_band",
+  "declared_results": [
+    "two_state_mechanism_2026_10_24/nodal_medium_2026_10_25/run_band/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "two_state_mechanism_2026_10_24/nodal_medium_2026_10_25/run_band/stdout.txt",
+      "sha256": "7f7dfd859951457779bb9ad237a6bb813437f494bdd8f9052e52d547fa189c56",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/nodal_medium_2026_10_25/run_band/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/nodal_medium_2026_10_25/run_band/results.json",
+      "sha256": "859086a0080053d63b05016a0c82c43dfa37b32b035fee1839a72f30c03de9e1",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

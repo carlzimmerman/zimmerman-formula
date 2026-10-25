@@ -1,4 +1,4 @@
-# Research findings through rotating quantum-medium tests
+# Research findings through nodal-medium preparation tests
 
 Start here for the current status. The original top-level README describes the
 initial spherical prototype; later stages below supersede its scope.
@@ -12,6 +12,8 @@ conservation checks and explicitly documented limitations.
 
 | Stage | Finding | Scope / unresolved issue |
 |---|---|---|
+| [Nodal medium](nodal_medium_2026_10_25/README.md) | An explicit effective nodal-ring band yields the cold critical response; a slow unitary field ramp preserves the small source remainder to 2.23% in the refined test. | Initial band and filling assumed; no microscopic assembly, live-gravity population separation or derived acceleration scale. Finite temperature and filling remain obstacles. |
+| [Decisive checks](decisive_checks_2026_10_25/README.md) | Finite-temperature response and conditional mass/response bounds derived; simple contact and degeneracy selectors tested. | Constraints apply to stated realizations, not all quantum media; no full population mechanism established. |
 | [Rotating state](rotating_state/README.md) | Rotation and explicit matter-wave energy transport implemented; equal-state equal-mass carriers stay neutral exactly. Unequal masses produce electric support with and without rotation. | No disk-specific capture; static baryons, periodic boundaries, incomplete spatial convergence and no common-mass four-system resolved comparison. |
 | [Quantum medium](quantum_medium/README.md) | Derived a two-component Bose mean-field dipole spectrum with a physical quantum Jeans scale, explicit mass and oscillator-strength checks. | Coherent state assumed; mean-field approximation; stability ordering does not select disks over both dwarfs and clusters. |
 | [Microscopic medium](microscopic_medium/README.md) | Ground-state Coulomb pairs have a finite dipole gap; the simple acoustic mode is electrically dark. Explicit moving countercharges and their gravity tested. | No critical dipole spectrum; classical homology prevents mass-size separation; some long trajectories unresolved. |
@@ -27,9 +29,16 @@ separation, continuum convergence or observational agreement. Electric support,
 neutral pairs, quantum Jeans instability and charged tethering are distinct
 observables; they must not be relabeled as each other.
 
-## Pre-push verification
+## Latest verification
 
-Fresh validation checked all 90 recorded manifests against the current source:
+All five new manifests in decisive_checks_2026_10_25 and nodal_medium_2026_10_25
+validate against their current inputs. Fresh validator output is in
+[LATEST_VALIDATION.json](LATEST_VALIDATION.json). This validates provenance,
+not the physical interpretation.
+
+## Earlier archive verification
+
+At the preceding archive checkpoint, validation checked all 90 then-recorded manifests against the current source:
 79 completed records validated; 11 historical records did not. All 12 unit tests
 across microscopic_capture, countercharge_action and causal_collective passed.
 The latest successful microscopic-medium, quantum-medium and rotating-state
