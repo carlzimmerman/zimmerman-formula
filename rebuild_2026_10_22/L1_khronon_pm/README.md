@@ -486,6 +486,49 @@ From BS25's BBN-viable DBI state, v3's own nonlinear dynamics form no galaxy-mas
 vs field question (A6 item 5) has no halos to answer it at 256³. The linear deficit (0.22–0.25 of the dust limit) matches
 Q7's R_B 0.26–0.32. 6/6 cells converged.
 
+
+## A5 + A6 results (queue runs, scored 2026-10-25; reported only, never pooled, not a verdict)
+
+Scored by `l1_ladder.py` (→ `l1_ladder.out`, `_results.json`) and by the frozen scorer `l1_score.py --label _A5A6`. Setup:
+μ_K 14.8 (P1: 6.54029) h/Mpc, z_i = 199, L100, NSEED 512, σ₈ at z = 0.
+
+| IC / rung | S0 | LIN | KX-can (ρ_NL) | KX-alt (ρ_NL) |
+|---|---|---|---|---|
+| F3-ODE, 128³ | 0.8159 | 0.2828 | 0.2527 (−0.057) | 0.2587 (−0.045) |
+| F3-ODE, 256³ | 0.8203 | 0.2853 | 0.2540 (−0.058) | 0.2603 (−0.047) |
+| F3-ODE, 384³ | 0.8210 | 0.2858 | 0.2543 (−0.059) | 0.2606 (−0.047) |
+| LOB, 384³ | 0.8210 | 0.0135 | 0.0135 (−0.000) | — |
+| DBI cap-λ30, 256³ / 384³ | 0.820 / 0.821 | 0.2010 / 0.2013 | 0.1848 / 0.1850 (−0.026) | 0.1879 / 0.1882 (−0.021) |
+| DBI P1, 256³ / 384³ | 0.820 / 0.821 | 0.1771 / 0.1774 | 0.1118 / 0.1117 (**−0.102**) | 0.1268 / 0.1269 (−0.078) |
+
+**KX is not LIN.**
+- Every KX run's state hash and σ₈ differ from its LIN: KX/LIN is 0.89–0.92 (ODE), 0.92–0.94 (DBI cap) and 0.63–0.72 (DBI P1).
+- Every hold call converged. The largest per-call iteration count is 26–102, and the largest x is 6–115.
+- The earlier "identical numbers" read must have compared LIN with LIN (or S0) fields. The hashes in `l1_ladder_results.json`
+  settle it.
+
+**Reading (frozen bands, indicative).**
+- Every cell "does not restore growth". DBI P1 KX-can "deepens the deficit" (ρ_NL = −0.10).
+- **Resolution trend.** ρ_NL is flat from 128 to 384, within 0.002. The nonlinear J_x term's effect is set before halo
+  cores matter: x is large at z ~ 200 and in the strongest wells. That effect is to stiffen the khronon, as XD3 predicts.
+- **DBI vs its LIN.** The BBN-consistent DBI ICs start below the ODE ones: LIN/S0 is 0.245 (cap) and 0.216 (P1), against
+  0.348 for the ODE ICs. KX then lowers σ₈ further, by 7–8 % (cap) and 28–37 % (P1).
+
+**KiDS.** At N ≤ 384 (k_hi ≤ 3 h/Mpc) no KiDS point keeps 90 % support, so every pair is NOT DIAGNOSTIC (scorer 4/4 checks,
+CFG596 reproduced). The frozen 512³ cells are still the shear test.
+
+**Halos (z = 0; a 384³ cell is 0.38 Mpc).** No cell reaches 1e14 M_⊙: the cluster class is empty except in S0, whose
+dust-to-baryon ratio is the cosmic 5.27 by construction.
+- **ODE ICs, KX-can 384³:** 20 galaxy-mass halos. Dust/baryon is 4.11 in 0.3–1 Mpc and 4.73 in 1–3 Mpc. Satellites
+  (n = 3): 4.27 / 4.62. Field (n = 17): 4.09 / 4.76.
+- **LIN 384³:** 165 halos. Satellites (n = 26): 4.33 / 4.73. Field (n = 139): 4.14 / 4.85.
+- So the khronon is **under**-represented in halo cores relative to cosmic (×0.78–0.82 in 0.3–1 Mpc). Satellites are only
+  ~3 % richer than field halos.
+- **DBI and LOB cells form no halo** above the 20×-mean peak threshold (σ₈ ≤ 0.20), so they have no halo report.
+- **The owner's question gets a "no" at this resolution:** v3's own dynamics from BBN-consistent ICs puts no extra cold
+  energy into satellites or cores, and in fact less than cosmic. Every result here is "v3 on a dust background with a
+  yet-unspecified early K" (A4), except the DBI cells, whose early K is BS25's.
+
 ## Files and commits
 
 **Criteria and amendments**, each committed before the results it governs:
