@@ -1,0 +1,15 @@
+# CCT-003 self-review
+
+Primary verdict: the combined physical target remains incomplete; tested prescriptions fail specified retention/storage/stationarity gates. Five trajectories are finite exploratory evidence, not an all-wave exclusion. Review is by the authoring agent, not independent.
+
+Model reconstruction: one complex wave field is initialized from a positive mixture of densities with a common smooth phase. No second conserved fluid or label was silently evolved. Envelope fraction changes the initial density only. Total Poisson source and Hamiltonian count this density once, with the standard 1/2 self-potential energy. The Fourier Poisson zero mode is intentionally removed. Absorber differences are counted before/after in M,E,J, not mistaken for conservative evolution. Aperture J changes do not by themselves establish transfer to the envelope; direct outer J is separately checked.
+
+Controls: baseline/f=.2/f=.4, finer f=.2, padded f=.2. Original J-ledger failures are retained. Source envelope.py was unchanged over the sequential runs per runs/RECEIPT.json. Numerical mutation/plane-wave checks from the parent CCT-002 support the unchanged spectral conventions but are not a new independent PDE proof. Transient peak search is reported-only; it does not replace the pre-run T30 gate.
+
+Homology claim reconstruction: fixed eta, fixed dimensionless wave coefficient and mass normalization imply L proportional to 1/M. A COMMON cumulative fraction at a COMMON dimensionless evolutionary stage is monotonic. This produces a pairwise contradiction for the specified older stocks/targets. Different dimensionless ages, shapes, baryonic forcing or physical stocks remove the premise; no claim covers those. This is not a statistical exclusion or a claim about the newer Sextans selection likelihood.
+
+Coupling claim reconstruction: variations of -Phi(rho_b+rho_c)-|grad Phi|^2/(8piG) source both densities once; -rho_b Xi-a0^2 F(z)/(8piG) sources Xi by baryons alone. With F_z=u/(1-u), spherical integration yields y=u^2/(1-u), x=y+u, hence x^2/(1+x)=y. Phi/Xi are separately varied constrained Newtonian potentials. Selective Xi charge is explicitly posited and violates a universal single-metric matter premise; no covariance or composition test is claimed. Old inventory and nonspherical acceleration-law data cannot be inherited. Static radial positivity is not a complete dynamical-health theorem.
+
+The retained-envelope angular-capacity estimate assumes a Newtonian point-source/test-mass escape-speed ceiling. It is optimistic and not a coherent-wave rate calculation. Its radius/energy relation is not transferred to the PDE as an exact stability result.
+
+Residual gaps: binding of the outer wave, isolation of the finite-box result, outward energy-at-infinity flux, a stable final core, a generated common population/assembly model, newer Sextans stock, live stellar heating, baryonic and relativistic coupling. Next route must address nonhomology and a counted energy source, not tune four retentions.

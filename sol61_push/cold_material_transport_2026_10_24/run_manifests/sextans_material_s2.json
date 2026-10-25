@@ -1,0 +1,219 @@
+{
+  "schema_version": 2,
+  "claim_id": "CCT011_sextans_material_s2",
+  "repository": {
+    "commit": "06d9201c2dfa9a7dcfd3939ab61602b45002ba65",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_material_transport_2026_10_24/material_run.py",
+    "--galaxy",
+    "Sextans",
+    "--tag",
+    "sextans_material_s2",
+    "--resume",
+    "sextans_escape_long",
+    "--nr",
+    "1024",
+    "--lmax",
+    "16",
+    "--mmax",
+    "4",
+    "--T",
+    "130",
+    "--dt",
+    ".02",
+    "--gas",
+    "none",
+    "--substeps",
+    "2"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "not recorded by producer; local host is described by the final audit"
+  },
+  "mathematics": {
+    "assertion_tested": "Execute the saved finite assembly or passive material-current diagnostic; record termination and numerical gates, not a physical four-dwarf pass",
+    "coefficient_domain": "complex128 and float64",
+    "conventions": "CCT011 CONTRACT and MATERIAL_PROTOCOL; one cold Poisson source; tags never source gravity",
+    "inputs": [
+      "Pinned source/data files and exact saved parents"
+    ],
+    "bounds": {
+      "substeps": 2,
+      "resume": "sextans_escape_long",
+      "galaxy": "Sextans",
+      "tag": "sextans_material_s2",
+      "nr": 1024,
+      "lmax": 16,
+      "mmax": 4,
+      "dt": 0.02,
+      "T": 130.0,
+      "rmax": 28,
+      "absorb": 16,
+      "gamma": 1,
+      "eta": 1500,
+      "gas": "none",
+      "seed": 0.01
+    },
+    "non_claims": [
+      "No completed physical formation from a stopped pilot",
+      "No validated material survival from current labels",
+      "No complete action/cosmology or v3 bridge"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy PCG64 (mass labels11011; stars1010)",
+    "seed": 11011
+  },
+  "run": {
+    "started_at": "2026-10-25T01:56:39.951972+00:00",
+    "runtime_seconds": 132.76845002174377,
+    "exit_status": 0,
+    "status": "completed",
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    }
+  },
+  "outputs": [
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/runs/sextans_material_s2.json",
+      "sha256": "c3e7aa51592619938668c9f392b86b92b72ee3857743292296871febab90cb21",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/runs/sextans_material_s2_fields.npz",
+      "sha256": "ae950abc311b72ba7d7f6db3646c921cdcd63c0241bc9b508e6b21d09bd4dea0",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/runs/sextans_material_s2_labels.json",
+      "sha256": "0166ebbde4c4567a4287ac1fbaf6e5fb2abd421e94687fe20d68183d16b7dd74",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/runs/sextans_material_s2_labels.npz",
+      "sha256": "371e6ef8cca6464824137342a37be59d21b383be302484a6bae1081038b297a8",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "name": "producer before/after pins",
+      "status": "passed"
+    },
+    {
+      "name": "scientific producer termination",
+      "status": "finished"
+    }
+  ],
+  "result": "finished; this is process execution status, not theory or four-dwarf closure",
+  "residual_risks": [
+    "UTC start is the producer module timestamp; runtime_seconds is the producer internal timed interval, not a full-process wall measurement",
+    "Git revision was sampled at output creation, not necessarily start",
+    "Original argv reconstructed from the commands actually issued in this session; producer stored parsed parameters, not argv",
+    "Output hashes recorded during this reconciliation; raw before/after source hashes were observed by producer",
+    "Threads requested through BLAS/OMP environment; no external hard memory/CPU cap was enforced; RSS is sampled before terminal serialization",
+    "Material labels omit the finite local angular-projection source; assembly pilots stop unresolved; review RESULT"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/material_run.py",
+      "sha256": "3d7deff2b39b1706c53780012143b80e1b65723ceb5f1c0fa7469bd4cc9c947f",
+      "sha256_after": "3d7deff2b39b1706c53780012143b80e1b65723ceb5f1c0fa7469bd4cc9c947f"
+    },
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/material.py",
+      "sha256": "7525aa73d20c86c976a4b02eb1fc5d8076a274db7ab1afdc8d999070023cee28",
+      "sha256_after": "7525aa73d20c86c976a4b02eb1fc5d8076a274db7ab1afdc8d999070023cee28"
+    },
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/field_tools.py",
+      "sha256": "41bbc6d6fbfad660048070d4e5ff2e166d20224c8178d4435cad02a378def544",
+      "sha256_after": "41bbc6d6fbfad660048070d4e5ff2e166d20224c8178d4435cad02a378def544"
+    },
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/angular_half.py",
+      "sha256": "0c44431d76eebfa8f1a1965076d1b68290c20579d7a35278e4f53e8bad8cf9ea",
+      "sha256_after": "0c44431d76eebfa8f1a1965076d1b68290c20579d7a35278e4f53e8bad8cf9ea"
+    },
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/CONTRACT.md",
+      "sha256": "c0746639ba04105d16948ff60c1bc979579a0795c5f0e9d3d243002d98e145ba",
+      "sha256_after": "c0746639ba04105d16948ff60c1bc979579a0795c5f0e9d3d243002d98e145ba"
+    },
+    {
+      "path": "sol61_push/cold_survey_capture_2026_10_24/capture_results.json",
+      "sha256": "a825636e3d59ff6a819fd3b5447037d38a67566374623bd85f8c8c53b32f6487",
+      "sha256_after": "a825636e3d59ff6a819fd3b5447037d38a67566374623bd85f8c8c53b32f6487"
+    },
+    {
+      "path": "sol61_push/cold_data_constraints_2026_10_24/results.json",
+      "sha256": "26795e18cc35c5cfe359f59abd14c71c930a00c8f04d9de482156e5aec3c537d",
+      "sha256_after": "26795e18cc35c5cfe359f59abd14c71c930a00c8f04d9de482156e5aec3c537d"
+    },
+    {
+      "path": "sol61_push/cold_envelope_spectrum_2026_10_24/eta1500_refine.json",
+      "sha256": "e997b33f6bf2dfa532e3c0056b4a2a9e83dedd9a564805c183d85a4d44683033",
+      "sha256_after": "e997b33f6bf2dfa532e3c0056b4a2a9e83dedd9a564805c183d85a4d44683033"
+    },
+    {
+      "path": "sol61_push/cold_envelope_spectrum_2026_10_24/eta1500_refine_Sextans.npz",
+      "sha256": "e13bef2e1ea58dba5b5693311569f4cf3075b07366d10e0b978a42e215eb1d8c",
+      "sha256_after": "e13bef2e1ea58dba5b5693311569f4cf3075b07366d10e0b978a42e215eb1d8c"
+    },
+    {
+      "path": "sol61_push/cold_envelope_formation_2026_10_24/runs/sextans_escape_long.json",
+      "sha256": "c9234de859827e18e34d873286e1763781b82e43a118c7f08b36f58ab9ccfc58",
+      "sha256_after": "c9234de859827e18e34d873286e1763781b82e43a118c7f08b36f58ab9ccfc58"
+    },
+    {
+      "path": "sol61_push/cold_envelope_formation_2026_10_24/runs/sextans_escape_long_fields.npz",
+      "sha256": "90dd0c72a06cb4d2574b3a9e3cf5ee755228789a12240d702c5ea54ab815cfa1",
+      "sha256_after": "90dd0c72a06cb4d2574b3a9e3cf5ee755228789a12240d702c5ea54ab815cfa1"
+    },
+    {
+      "path": "sol61_push/cold_envelope_formation_2026_10_24/collapse.py",
+      "sha256": "f3e2f2c4d836eed64e94435c27da1775123acc1c8ce1f2074b61c0794d67594a",
+      "sha256_after": "f3e2f2c4d836eed64e94435c27da1775123acc1c8ce1f2074b61c0794d67594a"
+    },
+    {
+      "path": "sol61_push/cold_moving_cores_2026_10_24/runs/sextans_track_tracking.json",
+      "sha256": "244862de74d175344cf2e2075ce36dde67eff917279c45b423666f706d6fc3e5",
+      "sha256_after": "244862de74d175344cf2e2075ce36dde67eff917279c45b423666f706d6fc3e5"
+    },
+    {
+      "path": "sol61_push/cold_moving_cores_2026_10_24/runs/sextans_track_tracking.npz",
+      "sha256": "87426b5413289d3abf7251dad18047bcd0aaf7c704650e3975879688303a7b7a",
+      "sha256_after": "87426b5413289d3abf7251dad18047bcd0aaf7c704650e3975879688303a7b7a"
+    }
+  ],
+  "declared_results": [
+    "sol61_push/cold_material_transport_2026_10_24/runs/sextans_material_s2.json",
+    "sol61_push/cold_material_transport_2026_10_24/runs/sextans_material_s2_fields.npz",
+    "sol61_push/cold_material_transport_2026_10_24/runs/sextans_material_s2_labels.json",
+    "sol61_push/cold_material_transport_2026_10_24/runs/sextans_material_s2_labels.npz"
+  ],
+  "recording": {
+    "recorded_at": "2026-10-25T02:15:53.856559+00:00",
+    "builder_sha256": "6fad96532ebe71c21312cefdbe4b19caa0affe0dee1c91fa9c9750781c29afdc"
+  }
+}

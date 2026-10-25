@@ -1,0 +1,3 @@
+# Additional executed commands
+
+use evolve_bounded.py instead of evolve.py for Sextans (same field evolution, chunked diagnostics). Repeat each command with evolve_momentum.py and tags draco_momentum/sextans_momentum for the sink-Pz ledger. Run `stars_advected.py draco_track`, `stars_advected.py sextans_track`, then `analyze.py`. All use OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1. Static-only Draco probe control is `stars.py draco_track`. Force checks: `checks.py`. Final `audit.py OUTPUT` authenticates the saved results; it does not rerun dynamics. Linear momentum closure, live stellar safety, and Fornax/Leo production are explicitly non-passes.

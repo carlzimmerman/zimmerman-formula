@@ -1,0 +1,17 @@
+# CCT-009: coherent collapse toward a supported envelope
+
+Question: can the same coherent CCT wave equation populate high-angular support during collapse and export positive energy and aligned spin, leaving the conditional CCT-006/008 profiles without excess stellar gravity? This is the new selectively coupled CCT candidate, not current v3/AeST/SCT-M. The CCT-008 density-matrix endpoint is a target, not an assumed outcome or a permitted population reset.
+
+Equations i eta psi_t=-eta² lap psi/2+(Phi_c+Phi_g)psi, lap Phi_c=4piG|psi|². eta=1500 pc km/s. Gravity and work count cold mass once. Initial inventory=5.364*200*Mformed, radial length unit=observed stellar half-light radius, incoming radial phase 10km/s, angular l=0,2 plus a disclosed 1% amplitude l=3,m=0 seed to break exact inversion symmetry. Retain pi-rotation symmetry (even m), hence Jx=Jy=0 exactly; evolve nonaxisymmetric m=0,+-2,+-4,... to allow aligned-spin transfer. Nonzero odd-m population is not claimed. All starting clouds are already bound, not newly captured from infinity.
+
+Replace dense angular-matrix exponentials with separable spherical-harmonic/Fourier transforms and a Chebyshev exponential of the projected Hermitian potential. Angular field cutoff L and even |m|<=M; density/potential through 2L, |m|<=2M; exact quartic quadrature ntheta=2L+2,nphi=4M+2. This is a truncated Hamiltonian. Compare low-L to explicit full matrices, normalization/Green energy/torque and timestep refinements. m-cutoff sensitivity remains distinct from l refinement.
+
+Isolated radial Green kernel uses scaled inward/outward recurrences, avoiding high-l overflow at the origin. Weighted radial finite volumes with CN half-steps, midpoint nonlinear potential. Absorber mass/E/J sink changes ledgered explicitly; positive sink energy + outward flux are required before interpreting emission. Prescribed gas, if used, follows CCT-007's contraction/removal and has explicit field work; it is not a complete gas feedback energy model. Source-free controls distinguish intrinsic collapse from imposed gas heating.
+
+Perform a preflight comparison of exact initial Hamiltonian and constructed endpoint energy: absent external work and additional negative-energy remnants, emitting positive energy requires E_initial>=E_final. Failure is a history-specific obstruction, not a no-go for all assemblies. No distribution is assigned by hand after collapse.
+
+Pilot/refine dimensions chosen from measured runtime below1GB/process; one numerical thread. Mass closure<1e-8, E and J closure<1% for interpretation; >5% stops as a numerical failure. Report mode population above l=4 and at the cutoff, central mass/profile mismatch, residual stationarity, target endpoint energy, positive/negative sink energy and full aligned-spin ledger. Gates are conditional on radial/angular/boundary convergence. Do not accept a successful mass/profile gate from an unresolved pilot.
+
+Compare per-dwarf spherical-monopole stellar gravity using the previous actual-position Sextans survey diagnostic and illustrative other-dwarf moment calibrations. Only launch live/passive stellar response after the remnant passes profile and stationarity gates. A failed profile is already a failure of the requested conjunction; no unrun stellar-heating test is called passed.
+
+No heavy shared jobs, frozen criteria, publications, automation, remote repository or other chats are changed. Preserve input/source hashes before/after and initial/final fields. Execute only saved commands described in this packet's run records.

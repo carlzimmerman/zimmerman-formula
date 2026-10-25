@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "claim_id": "CCT011_PHASE_TOY",
+  "repository": {
+    "commit": "06d9201c2dfa9a7dcfd3939ab61602b45002ba65",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "sol61_push/cold_material_transport_2026_10_24/phase_benchmark_v2.py",
+    "sol61_push/cold_material_transport_2026_10_24/phase_benchmark_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "In a 1D periodic mean-subtracted Poisson toy, carrier-factored N64/N128 amplitudes reproduce a direct N1024 high-carrier solution, preserve M/P, and reject the aliased direct N64 momentum",
+    "coefficient_domain": "complex128, float64",
+    "conventions": "exact constant-gradient phase factor, integer carrier128, eta inherited from Fornax; G=.002 is a toy normalization; no galaxy or variable-phase closure",
+    "inputs": [
+      "initial Gaussian width.5 on periodic2pi; carrier128"
+    ],
+    "bounds": {
+      "N": [
+        64,
+        128,
+        512,
+        1024
+      ],
+      "T": 0.3,
+      "dt": 0.001
+    },
+    "non_claims": [
+      "No3D galaxy solver",
+      "No four-dwarf or material-survival closure"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T02:16:25.993835+00:00",
+    "runtime_seconds": 0.148499,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_material_transport_2026_10_24/phase_benchmark_v2.py",
+    "sol61_push/cold_material_transport_2026_10_24/MECHANISM_AUDIT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/phase_benchmark_v2.py",
+      "sha256": "345408893db49dfcd40e3593c643e479943fa8198b4bc61cb8e0c80e32a255a4",
+      "sha256_after": "345408893db49dfcd40e3593c643e479943fa8198b4bc61cb8e0c80e32a255a4"
+    },
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/MECHANISM_AUDIT.md",
+      "sha256": "221fe32059ed194e18ed3ba75fc4ae837c29588295f97d4d7a2bc58106b50d31",
+      "sha256_after": "221fe32059ed194e18ed3ba75fc4ae837c29588295f97d4d7a2bc58106b50d31"
+    }
+  ],
+  "output_directory": "sol61_push/cold_material_transport_2026_10_24/phase_benchmark_001",
+  "declared_results": [
+    "sol61_push/cold_material_transport_2026_10_24/phase_benchmark_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/phase_benchmark_001/stdout.txt",
+      "sha256": "8d2598c7a40ec4a3206925991791e6d70c30a14e338fc8fdb772a1fa35041c6e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/phase_benchmark_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_material_transport_2026_10_24/phase_benchmark_001/result.json",
+      "sha256": "5d1fe8790e692069034c44ff4d6a1f90ca24481a18b5a3db98fd00a2eaab88e0",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
