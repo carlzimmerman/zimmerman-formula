@@ -1,4 +1,4 @@
-# Research findings through nonequilibrium molecular assembly
+# Research findings through photon recycling and collision limits
 
 Start here for the current status. The original top-level README describes the
 initial spherical prototype; later stages below supersede its scope.
@@ -12,6 +12,7 @@ conservation checks and explicitly documented limitations.
 
 | Stage | Finding | Scope / unresolved issue |
 |---|---|---|
+| [Photon recycling and collision limits](../two_state_mechanism_2026_10_25/recycling/README.md) | Explicit photon storage/reabsorption/escape conserves energy and charge. Refined shared-point disk/cluster charged molecular fractions4.16%/13.24%; no target separation. Fast-collision limit gives a conditional55.955% mass cap. | Direct finite collision amplitudes and additional species remain unresolved; homogeneous transport, no gravity or rotating morphology. Previous irreversible kinetic cap does not apply with recycling. |
 | [Nonequilibrium molecular assembly](../two_state_mechanism_2026_10_25/nonequilibrium/README.md) | Refined Coulomb spectrum has23 bound levels; charge/energy-conserving radiative trajectories give best screened disk-proxy molecular mass fraction0.0292%. Conditional kinetic cap4.415% removes density and duration as rescue parameters for this subnetwork. |12 common screened parameter choices, no target success. Opaque regimes need photon recycling; incomplete chemistry, no live gravity or rotating morphology. |
 | [Charged molecular assembly](../two_state_mechanism_2026_10_25/assembly/README.md) | Coulomb parent gives a positively charged molecular bound state, linked radiative channel and local stiffness. Restricted equilibrium mass cap .4869; largest disk-proxy fraction among29 common applicability-passing closed-energy cases is1.24e-6. | Not a unique completion of the old lattice; approximate molecular basis, incomplete chemistry, no reaction trajectories, nodal material or galactic formation. |
 | [Coupled orbital and quantum transport](../two_state_mechanism_2026_10_25/coupled_orbital/README.md) | Self-consistent3D orbital charge/dipole, moving countercharge and elastic energy now share a Hamiltonian. Exact quantized countercharge mode reveals a resonant transfer channel missed by mean field. | No assembly/dissociation channel, charged tether species, live gravity or disk/dwarf/cluster separation. Material parameters remain conditional. |
@@ -35,6 +36,13 @@ neutral pairs, quantum Jeans instability and charged tethering are distinct
 observables; they must not be relabeled as each other.
 
 ## Latest verification
+
+The recycling stage has four completed science runs and two completed figure
+runs (v2 corrects annotation placement only), covering57 trajectories. Photon
+geometry, detailed balance, conservation, independent thin-limit comparison and
+frequency refinement are documented in its
+[audit](../two_state_mechanism_2026_10_25/recycling/AUDIT.md).
+
 
 The nonequilibrium stage records eight completed runs and two retained failed
 implementation runs. Numerical continuum and time refinements, independent box
