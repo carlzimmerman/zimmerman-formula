@@ -1,0 +1,364 @@
+X33_system_atlas  normal run
+kappa = 1/2 FITTED; footings canonical 9.3603e-11 / alt 1.1312e-10, never pooled; descriptive lane
+
+=== BUILD: SPARC (record loader; global Upsilon from CFG695; per-galaxy Upsilon from P4 L* 24 pc)
+  SPARC rows 175; UMa members 28; global U0 {'canonical': 0.6, 'alt': 0.55}
+=== BUILD: groups (Tian+26 BFJR; P4's group_logsig with nu1)
+=== BUILD: clusters (X7 per-cluster arrays; X2's model exec'd read-only exactly as X21; C* MID band, CAL, h0672)
+  clusters 326; KT>0 106; [21 s, RSS 0.23 GB]
+
+=== STEP 0: reproduce the record's headline numbers from the atlas sources (stop rule)
+  [PASS] S0a: canonical: mine 0.05409 vs P4 iso 0.05409 / L24 0.05398; alt: mine 0.05372 vs P4 iso 0.05372 / L24 0.05351 (line: |d iso| <= 1e-4, |d L24| <= 1e-3, N 175)
+  [PASS] S0b: canonical small: N 68/68 mean -0.0482 vs P4 -0.0456; canonical large: N 107/107 mean -0.0475 vs P4 -0.0469; alt small: N 68/68 mean -0.0723 vs P4 -0.0695; alt large: N 107/107 mean -0.0559 vs P4 -0.0552 (line: N equal; |d| <= 0.010 dex)
+  [PASS] S0c: canonical|LG field +0.055/+0.05; canonical|MW classical +0.277/+0.28; canonical|MW ultra-faint +0.625/+0.63; canonical|bright M31 +0.249/+0.25; canonical|M31 others +0.644/+0.64; canonical|Crater II -0.443/-0.44; canonical|Antlia II +0.060/+0.06; alt|LG field +0.017/+0.02; alt|MW classical +0.235/+0.24; alt|MW ultra-faint +0.585/+0.59; alt|bright M31 +0.211/+0.21; alt|M31 others +0.587/+0.59; alt|Crater II -0.478/-0.48; alt|Antlia II +0.024/+0.02 (line: AMENDMENT A1: X1 JSON vs printed, |d| <= 0.005)
+  S0c-plain (REPORTED, A1): plain per-system medians vs X1 printed: canonical|LG field +0.036 (d -0.014); canonical|MW classical +0.243 (d -0.037); canonical|MW ultra-faint +0.596 (d -0.034); canonical|bright M31 +0.220 (d -0.030); canonical|M31 others +0.777 (d +0.137); canonical|Crater II -0.443 (d -0.003); canonical|Antlia II +0.060 (d -0.000); alt|LG field +0.007 (d -0.013); alt|MW classical +0.200 (d -0.040); alt|MW ultra-faint +0.539 (d -0.051); alt|bright M31 +0.185 (d -0.025); alt|M31 others +0.697 (d +0.107); alt|Crater II -0.482 (d -0.002); alt|Antlia II +0.023 (d +0.003)
+  [PASS] S0d: N_KT 106, n [35, 35, 36], edges [1.4, 2.33]; canonical: 1.0963 / 1.6504 / 2.1323 vs X21 1.0963 / 1.6504 / 2.1323; alt: 1.0041 / 1.5133 / 1.9590 vs X21 1.0041 / 1.5133 / 1.9590 (line: 106; 35/35/36; |d| <= 1e-9)
+  [PASS] S0e: canonical: +0.010028 vs P4 +0.010028; alt: -0.010269 vs P4 -0.010270 (line: N 63; |d| <= 1e-6)
+  [PASS] S0f: TDG|canonical -0.6911/-0.6911; TDG|alt -0.7282/-0.7282; DF|canonical -1.9405/-1.9403; DF|alt -2.0284/-2.0283 (line: |d| <= 1e-3)
+  [PASS] S0g: canonical +0.32490/+0.32490; alt +0.28546/+0.28546 (line: |d| <= 1e-9)
+  [PASS] K_rows: {"SPARC": 175, "MW disc": 1, "Groups": 63, "Clusters": 326, "LG dwarfs": 89, "Coma UDGs": 9, "TDGs": 6, "DF2/DF4": 2, "SLUGGS centrals": 4, "Lens stacks": 2} (line: {"SPARC": 175, "MW disc": 1, "Groups": 63, "Clusters": 326, "LG dwarfs": 89, "Coma UDGs": 9, "TDGs": 6, "DF2/DF4": 2, "SLUGGS centrals": 4, "Lens stacks": 2})
+  [PASS] K_ident: 16/16 named rows equal their sources (line: all within 1e-9 (DF2 1e-3: record solver vs algebraic))
+  [PASS] K_size: 0.292 MB, 677 rows (line: < 2 MB)
+
+=== ANALYSIS (both footings, never pooled; bootstrap 1000; BH-FDR q 0.05 + Bonferroni) [21 s]
+
+  [canonical] tests 284; BH threshold p 0.0204; Bonferroni 0.00018; FDR-surviving correlations 56 (within-class 16); misfit tests surviving 60; plant rho +0.637 p 2.6e-21 FDR True
+
+  [alt] tests 285; BH threshold p 0.0211; Bonferroni 0.00018; FDR-surviving correlations 63 (within-class 21); misfit tests surviving 57; plant rho +0.675 p 1.2e-24 FDR True
+  [PASS] K_plant: canonical: rho +0.637 p 2.6e-21; alt: rho +0.675 p 1.2e-24 (line: planted SPARC rho(log Sigma0) survives BH-FDR, both footings)
+  K_null (reported): FDR-surviving within-class correlations [16, 21]
+
+=== [canonical] (a) correlations surviving BH-FDR (|rho| order); flag in brackets
+  Groups                           log V_char       N   63 rho +0.898 +- 0.025 p 2e-23 BONF [shares observable]
+  Groups                           log sigma        N   63 rho +0.898 +- 0.026 p 2e-23 BONF [shares observable]
+  Coma UDGs                        log V_char       N    9 rho +0.817 +- 0.160 p 0.0072 [shares observable]
+  Coma UDGs                        log sigma        N    9 rho +0.817 +- 0.158 p 0.0072 [shares observable]
+  LG dwarfs:MW ultra-faint         log V_char       N   31 rho +0.811 +- 0.070 p 3.1e-08 BONF [shares observable]
+  LG dwarfs:MW ultra-faint         log sigma        N   31 rho +0.811 +- 0.073 p 3.1e-08 BONF [shares observable]
+  LG dwarfs:bright M31             log V_char       N   25 rho +0.667 +- 0.139 p 0.00027 [shares observable]
+  LG dwarfs:bright M31             log sigma        N   25 rho +0.667 +- 0.136 p 0.00027 [shares observable]
+  LG dwarfs                        log M_b          N   89 rho -0.654 +- 0.062 p 3.7e-12 BONF
+  LG dwarfs                        log M_star       N   89 rho -0.654 +- 0.064 p 3.7e-12 BONF
+  LG dwarfs                        log R_char       N   89 rho -0.635 +- 0.064 p 2.4e-11 BONF
+  LG dwarfs                        log R_last       N   89 rho -0.635 +- 0.066 p 2.4e-11 BONF
+  SPARC:small                      log V_char       N   44 rho +0.622 +- 0.102 p 6.6e-06 BONF [shares observable]
+  P_all                            f_gas            N  422 rho +0.472 +- 0.042 p 9.4e-25 BONF
+  SPARC:large                      log e_ext        N   68 rho -0.455 +- 0.106 p 9.8e-05 BONF
+  LG dwarfs:MW ultra-faint         log M_b          N   31 rho -0.451 +- 0.173 p 0.011
+  LG dwarfs:MW ultra-faint         log M_star       N   31 rho -0.451 +- 0.182 p 0.011
+  Groups                           log Sigma_half   N   63 rho +0.449 +- 0.103 p 0.00023
+  SPARC:small                      log Sigma0       N   68 rho +0.438 +- 0.101 p 0.00019
+  SPARC:small                      Q                N   68 rho -0.433 +- 0.106 p 0.00023 [systematic]
+  P_gal                            log M_star       N  285 rho -0.432 +- 0.055 p 2.1e-14 BONF
+  LG dwarfs                        log Sigma_half   N   89 rho -0.427 +- 0.101 p 3.1e-05 BONF
+  LG dwarfs                        log x_char       N   89 rho -0.427 +- 0.106 p 3.1e-05 BONF
+  SPARC:small                      log Sigma_half   N   68 rho +0.417 +- 0.107 p 0.00041
+  SPARC                            Q                N  175 rho -0.403 +- 0.071 p 3.2e-08 BONF [systematic]
+  P_gal                            Q                N  175 rho -0.403 +- 0.075 p 3.2e-08 BONF [systematic]
+  P_gal (class-centred)            Q                N  175 rho -0.403 +- 0.071 p 3.2e-08 BONF [systematic]
+  P_all                            Q                N  175 rho -0.403 +- 0.071 p 3.2e-08 BONF [systematic]
+  P_all (class-centred)            Q                N  175 rho -0.403 +- 0.071 p 3.2e-08 BONF [systematic]
+  SPARC:large                      Q                N  107 rho -0.387 +- 0.085 p 3.9e-05 BONF [systematic]
+  P_gal                            log x_char       N  348 rho -0.380 +- 0.051 p 2.2e-13 BONF
+  Groups                           log x_char       N   63 rho +0.366 +- 0.111 p 0.0032
+  P_all                            log Sigma_half   N  589 rho -0.360 +- 0.037 p 1.8e-19 BONF
+  SPARC:small                      log R_last       N   68 rho +0.347 +- 0.111 p 0.0037
+  LG dwarfs                        log e_ext        N   89 rho +0.324 +- 0.104 p 0.002
+  P_gal                            log R_char       N  348 rho -0.313 +- 0.055 p 2.4e-09 BONF
+  SPARC:small                      morphology T     N   68 rho -0.304 +- 0.133 p 0.012
+  P_gal                            log M_b          N  348 rho -0.290 +- 0.058 p 3.4e-08 BONF
+  P_gal                            log R_last       N  344 rho -0.286 +- 0.058 p 6.7e-08 BONF
+  P_gal                            log Sigma_half   N  348 rho -0.278 +- 0.051 p 1.4e-07 BONF
+  P_all                            log x_char       N  589 rho -0.213 +- 0.044 p 1.7e-07 BONF
+  P_gal                            log sigma        N  167 rho -0.211 +- 0.075 p 0.0061 [shares observable]
+  P_gal                            log e_ext        N  215 rho +0.207 +- 0.073 p 0.0023
+  P_all                            log e_ext        N  215 rho +0.207 +- 0.076 p 0.0023
+  P_all                            log M_b          N  589 rho +0.199 +- 0.045 p 1.1e-06 BONF
+  P_gal                            log V_char       N  304 rho -0.193 +- 0.061 p 0.00072 [shares observable]
+  P_all                            log R_last       N  585 rho +0.185 +- 0.045 p 6.5e-06 BONF
+  P_all                            log R_char       N  589 rho +0.178 +- 0.043 p 1.4e-05 BONF
+  P_all                            log M_star       N  526 rho +0.170 +- 0.048 p 9.2e-05 BONF
+  P_all                            log MGAS500      N  241 rho -0.163 +- 0.065 p 0.011
+  P_all (class-centred)            log MGAS500      N  241 rho -0.163 +- 0.064 p 0.011
+  Clusters                         log R_char       N  312 rho +0.142 +- 0.061 p 0.012
+  P_all (class-centred)            log x_char       N  589 rho -0.138 +- 0.041 p 0.00077
+  Clusters                         log L500         N  312 rho +0.137 +- 0.058 p 0.015
+  P_all (class-centred)            log M_star       N  526 rho -0.110 +- 0.047 p 0.012
+  P_all (class-centred)            log R_char       N  589 rho -0.096 +- 0.045 p 0.02
+  [canonical] misfit vs law-right (Mann-Whitney) surviving BH-FDR:
+  P_all      above f_gas            n 179/63 median misfit +0.833 vs law-right +0.57 (effect +0.37) p 1.3e-29 BONF
+  P_all      above log Sigma_half   n 264/75 median misfit +0.47 vs law-right +1.71 (effect -0.34) p 7.9e-20 BONF
+  P_gal      above log M_star       n 74/59 median misfit +5.6 vs law-right +9.63 (effect -0.40) p 1.7e-15 BONF
+  P_gal      above log x_char       n 96/63 median misfit -2.39 vs law-right -1.21 (effect -0.37) p 2.9e-15 BONF
+  P_gal      above log Sigma_half   n 96/63 median misfit -0.11 vs law-right +1.91 (effect -0.36) p 1.2e-14 BONF
+  P_gal      above log e_ext        n 66/38 median misfit -0.977 vs law-right -1.36 (effect +0.33) p 1.7e-08 BONF
+  P_all      above log e_ext        n 66/38 median misfit -0.977 vs law-right -1.36 (effect +0.33) p 1.7e-08 BONF
+  P_gal      below Q                n 25/51 median misfit +2 vs law-right +1 (effect +0.34) p 1e-07 BONF [systematic]
+  P_all      below Q                n 25/51 median misfit +2 vs law-right +1 (effect +0.34) p 1e-07 BONF [systematic]
+  SPARC      below Q                n 25/51 median misfit +2 vs law-right +1 (effect +0.34) p 1e-07 BONF [systematic]
+  P_gal      below log Sigma_half   n 52/63 median misfit +1.04 vs law-right +1.91 (effect -0.29) p 1.6e-07 BONF
+  P_all      below log Sigma_half   n 72/75 median misfit +0.768 vs law-right +1.71 (effect -0.25) p 1.9e-07 BONF
+  P_gal      above hosted           n 96/63 median misfit +1 vs law-right +0 (effect +0.21) p 3e-07 BONF
+  P_all      above log R_last       n 261/75 median misfit +2.74 vs law-right +1.27 (effect +0.17) p 5.2e-07 BONF
+  P_all      above log x_char       n 264/75 median misfit -1.49 vs law-right -1.21 (effect -0.19) p 6.5e-07 BONF
+  SPARC      below log R_last       n 25/51 median misfit +0.726 vs law-right +1.21 (effect -0.33) p 2.8e-06 BONF
+  P_gal      above log R_last       n 93/63 median misfit -0.361 vs law-right +1.19 (effect -0.22) p 4.2e-06 BONF
+  P_gal      below morphology T     n 25/51 median misfit +10 vs law-right +6 (effect +0.32) p 6e-06 BONF
+  P_all      below morphology T     n 25/51 median misfit +10 vs law-right +6 (effect +0.32) p 6e-06 BONF
+  SPARC      below morphology T     n 25/51 median misfit +10 vs law-right +6 (effect +0.32) p 6e-06 BONF
+  P_gal      above log M_b          n 96/63 median misfit +6.05 vs law-right +9.97 (effect -0.21) p 1.1e-05 BONF
+  P_all      above log M_b          n 264/75 median misfit +12.8 vs law-right +10.2 (effect +0.17) p 1.2e-05 BONF
+  P_all      above log R_char       n 264/75 median misfit +2.85 vs law-right +0.641 (effect +0.16) p 1.4e-05 BONF
+  P_gal      below log M_star       n 38/59 median misfit +8.29 vs law-right +9.63 (effect -0.26) p 1.6e-05 BONF
+  P_gal      below log e_ext        n 27/38 median misfit -1.22 vs law-right -1.36 (effect +0.31) p 2e-05 BONF
+  P_all      below log e_ext        n 27/38 median misfit -1.22 vs law-right -1.36 (effect +0.31) p 2e-05 BONF
+  P_all      below f_gas            n 51/63 median misfit +0.795 vs law-right +0.57 (effect +0.23) p 2.2e-05 BONF
+  SPARC      below log M_b          n 25/51 median misfit +9.24 vs law-right +10 (effect -0.30) p 2.5e-05 BONF
+  LG dwarfs  above log Sigma_half   n 54/8 median misfit -0.199 vs law-right +1.3 (effect -0.41) p 2.8e-05 BONF
+  LG dwarfs  above log x_char       n 54/8 median misfit -2.78 vs law-right -1.28 (effect -0.41) p 2.8e-05 BONF
+  P_gal      below log Sigma0       n 25/51 median misfit +1.75 vs law-right +2.48 (effect -0.29) p 3.8e-05 BONF
+  P_all      below log Sigma0       n 25/51 median misfit +1.75 vs law-right +2.48 (effect -0.29) p 3.8e-05 BONF
+  SPARC      below log Sigma0       n 25/51 median misfit +1.75 vs law-right +2.48 (effect -0.29) p 3.8e-05 BONF
+  P_gal      above log R_char       n 96/63 median misfit -0.444 vs law-right +0.494 (effect -0.19) p 6.4e-05 BONF
+  P_gal      above log V_char       n 89/56 median misfit +1.21 vs law-right +2.11 (effect -0.20) p 7.2e-05 BONF [shares observable]
+  SPARC      below log M_star       n 25/51 median misfit +8.79 vs law-right +9.78 (effect -0.28) p 7.6e-05 BONF
+  P_all      above log M_star       n 242/71 median misfit +12.2 vs law-right +9.86 (effect +0.15) p 0.00015 BONF
+  SPARC      below log V_char       n 11/44 median misfit +1.7 vs law-right +2.13 (effect -0.37) p 0.00016 BONF [shares observable]
+  LG dwarfs  above log M_b          n 54/8 median misfit +4.63 vs law-right +6.96 (effect -0.41) p 0.00023
+  LG dwarfs  above log M_star       n 54/8 median misfit +4.63 vs law-right +6.96 (effect -0.41) p 0.00023
+  SPARC      above log M_b          n 11/51 median misfit +9.12 vs law-right +10 (effect -0.36) p 0.00023
+  LG dwarfs  above hosted           n 54/8 median misfit +1 vs law-right +0.5 (effect +0.22) p 0.00025
+  P_gal      below f_gas            n 31/51 median misfit +0.677 vs law-right +0.386 (effect +0.24) p 0.00036
+  SPARC      below log Sigma_half   n 25/51 median misfit +1.58 vs law-right +2.18 (effect -0.25) p 0.00039
+  P_gal      below log V_char       n 38/56 median misfit +1.76 vs law-right +2.11 (effect -0.21) p 0.00048 [shares observable]
+  SPARC      above log M_star       n 11/51 median misfit +8.84 vs law-right +9.78 (effect -0.34) p 0.0005
+  SPARC      above log R_last       n 11/51 median misfit +0.787 vs law-right +1.21 (effect -0.33) p 0.00077
+  P_gal      below log x_char       n 52/63 median misfit -1.5 vs law-right -1.21 (effect -0.18) p 0.0012
+  SPARC      above log R_char       n 11/51 median misfit +0.0792 vs law-right +0.558 (effect -0.30) p 0.002
+  LG dwarfs  above log R_char       n 54/8 median misfit -0.869 vs law-right -0.467 (effect -0.32) p 0.0022
+  LG dwarfs  above log R_last       n 54/8 median misfit -0.744 vs law-right -0.342 (effect -0.32) p 0.0022
+  SPARC      below log R_char       n 25/51 median misfit +0.31 vs law-right +0.558 (effect -0.20) p 0.0054
+  P_all      below log x_char       n 72/75 median misfit -1.43 vs law-right -1.21 (effect -0.13) p 0.007
+  LG dwarfs  above log e_ext        n 54/8 median misfit -0.977 vs law-right -1.61 (effect +0.28) p 0.0082
+  P_gal      above morphology T     n 11/51 median misfit +10 vs law-right +6 (effect +0.25) p 0.0099
+  P_all      above morphology T     n 11/51 median misfit +10 vs law-right +6 (effect +0.25) p 0.0099
+  SPARC      above morphology T     n 11/51 median misfit +10 vs law-right +6 (effect +0.25) p 0.0099
+  SPARC      below f_gas            n 25/51 median misfit +0.591 vs law-right +0.386 (effect +0.18) p 0.01
+  SPARC      below log e_ext        n 14/30 median misfit -1.3 vs law-right -1.36 (effect +0.23) p 0.015
+  P_all      below log V_char       n 44/60 median misfit +1.84 vs law-right +2.13 (effect -0.14) p 0.016 [shares observable]
+  [canonical] (d) law-right fraction per class (|resid| <= 0.05 dex):
+  SPARC            N  175 median -0.039 law-right 0.291 +- 0.034  >+0.2 0.063  <-0.2 0.143  |Z|<2 0.709
+  MW disc          N    1 median -0.143 law-right 0.000 +- 0.000  >+0.2 0.000  <-0.2 0.000  |Z|<2 0.000
+  Groups           N   63 median +0.071 law-right 0.063 +- 0.031  >+0.2 0.349  <-0.2 0.222  |Z|<2 0.841
+  Clusters         N  241 median +0.373 law-right 0.050 +- 0.014  >+0.2 0.697  <-0.2 0.083  |Z|<2 0.651
+  LG dwarfs        N   89 median +0.298 law-right 0.090 +- 0.029  >+0.2 0.607  <-0.2 0.056  |Z|<2 0.539
+  Coma UDGs        N    9 median +0.314 law-right 0.000 +- 0.000  >+0.2 0.667  <-0.2 0.000  |Z|<2 0.778
+  TDGs             N    6 median -0.687 law-right 0.000 +- 0.000  >+0.2 0.000  <-0.2 1.000  |Z|<2 0.167
+  DF2/DF4          N    2 median -0.843 law-right 0.000 +- 0.000  >+0.2 0.000  <-0.2 1.000  |Z|<2 0.000
+  SLUGGS centrals  N    4 median +0.248 law-right 0.000 +- 0.000  >+0.2 0.750  <-0.2 0.000  |Z|<2 0.250
+  Lens stacks      N    2 median +0.031 law-right 0.000 +- 0.000  >+0.2 0.000  <-0.2 0.000  |Z|<2 0.500
+  [canonical] (d) law-right property ranges (10-90 %) vs all (P_gal):
+  log M_b          n_right  63  law-right [8.52, 11.2]  all [5.04, 11.7]
+  log M_star       n_right  59  law-right [7.84, 11]  all [4.59, 10.9]
+  f_gas            n_right  51  law-right [0.102, 0.748]  all [0.0768, 0.808]
+  log R_char       n_right  63  law-right [-0.169, 0.973]  all [-0.792, 2.68]
+  log R_last       n_right  63  law-right [0.0918, 1.78]  all [-0.668, 2.69]
+  log Sigma_half   n_right  63  law-right [0.533, 2.98]  all [-0.599, 2.74]
+  log Sigma0       n_right  51  law-right [1.63, 3.37]  all [1.55, 3.35]
+  log V_char       n_right  56  law-right [1.54, 2.38]  all [0.929, 2.45] [shares observable]
+  log sigma        n_right  12  law-right [0.634, 2.07]  all [0.551, 2.32] [shares observable]
+  log x_char       n_right  63  law-right [-2.14, -0.734]  all [-2.93, -0.713]
+  log e_ext        n_right  38  law-right [-1.6, -1.2]  all [-1.5, -0.627]
+  hosted           n_right  63  law-right [0, 1]  all [0, 1]
+  morphology T     n_right  51  law-right [2, 9]  all [3, 10]
+  D_Mpc            n_right  51  law-right [4.35, 64.5]  all [4.05, 67.1] [systematic]
+  inc_deg          n_right  51  law-right [34, 88]  all [32, 85] [systematic]
+  Q                n_right  51  law-right [1, 2]  all [1, 2] [systematic]
+  [canonical] (b) binned medians (selected):
+  SPARC|morphology T       edges [3.5, 6.5, 8.5]: n28 -0.063 [-0.080,-0.023] lr 0.25 | n50 -0.034 [-0.051,-0.014] lr 0.38 | n26 -0.009 [-0.023,+0.021] lr 0.38 | n71 -0.069 [-0.085,-0.027] lr 0.21
+  SPARC|log Sigma0         edges [1.751, 2.271, 2.915]: n45 -0.079 [-0.087,-0.054] lr 0.20 | n43 -0.066 [-0.073,-0.023] lr 0.26 | n44 -0.006 [-0.021,+0.008] lr 0.36 | n43 -0.041 [-0.060,-0.024] lr 0.35
+  SPARC|f_gas              edges [0.168, 0.422, 0.65]: n44 -0.063 [-0.078,-0.032] lr 0.30 | n44 -0.039 [-0.051,-0.029] lr 0.39 | n43 -0.023 [-0.054,-0.012] lr 0.23 | n44 -0.026 [-0.077,-0.012] lr 0.25
+  SPARC|log x_char         edges [-1.38, -1.164, -0.895]: n44 -0.031 [-0.057,-0.017] lr 0.27 | n44 -0.016 [-0.030,+0.003] lr 0.32 | n43 -0.006 [-0.039,+0.010] lr 0.35 | n44 -0.076 [-0.093,-0.062] lr 0.23
+  P_gal|log Sigma_half     edges [-0.153, 1.354, 2.108]: n87 +0.172 [+0.112,+0.239] lr 0.05 | n87 +0.169 [+0.109,+0.203] lr 0.07 | n87 -0.023 [-0.037,-0.006] lr 0.30 | n87 -0.039 [-0.058,-0.024] lr 0.31
+  P_gal|log x_char         edges [-2.381, -1.521, -1.133]: n87 +0.269 [+0.243,+0.312] lr 0.06 | n87 +0.111 [+0.089,+0.135] lr 0.09 | n87 -0.017 [-0.030,-0.002] lr 0.30 | n87 -0.056 [-0.071,-0.041] lr 0.28
+  P_gal|log M_b            edges [7.765, 9.484, 11.032]: n87 +0.325 [+0.283,+0.411] lr 0.06 | n87 -0.051 [-0.069,-0.017] lr 0.18 | n87 -0.041 [-0.060,-0.025] lr 0.36 | n87 +0.034 [-0.030,+0.076] lr 0.13
+  Clusters|log x_char      edges [-1.518, -1.313, -1.122]: n61 +0.426 [+0.386,+0.493] lr 0.05 | n60 +0.379 [+0.347,+0.445] lr 0.02 | n60 +0.243 [+0.192,+0.311] lr 0.08 | n60 +0.374 [+0.302,+0.429] lr 0.05
+  [canonical] (c) worst 5 % per class:
+  SPARC            CamB -0.833 (Z -13.8); UGC02455 -0.744 (Z -5.1); F574-2 -0.692 (Z -2.4); UGC07577 -0.681 (Z -8.0); PGC51017 -0.661 (Z -10.7); F563-V1 -0.623 (Z -4.4); UGC04305 -0.554 (Z -3.0); NGC4389 -0.480 (Z -5.7) ... (9 total)
+  Groups           NGC4993 -0.979 (Z -1.5); NGC3311 +0.636 (Z +14.2); NGC3379 +0.622 (Z +3.0); NGC4039 -0.599 (Z -2.0)
+  Clusters         1eRASS J021624.3-290117 -1.881 (Z -0.1); 1eRASS J142859.3+014443 -1.452 (Z -0.1); 1eRASS J135602.9+021042 +1.193 (Z +2.8); 1eRASS J142020.0+003746 +1.139 (Z +2.9); 1eRASS J134525.0+001207 -1.127 (Z -0.1); 1eRASS J004320.6-314053 -1.114 (Z -0.1); 1eRASS J032340.0-324007 +1.093 (Z +5.4); 1eRASS J104224.8-000823 +0.978 (Z +8.6) ... (13 total)
+  LG dwarfs        Carina III +1.343 (Z +2.7); Segue 1 +1.253 (Z +5.7); Willman 1 +1.221 (Z +4.3); Andromeda XXVII +1.217 (Z +5.6); Eridanus IV +1.182 (Z +7.7)
+  Coma UDGs        J130005.40+275333.0 +0.804 (Z +5.7)
+  TDGs             NGC7252NW -0.891 (Z -3.3)
+  DF2/DF4          DF4 -0.943 (Z -2.7)
+  SLUGGS centrals  NGC5846 +0.295 (Z +6.6)
+  Lens stacks      KiDS red lens stack +0.118 (Z +5.7)
+
+=== [alt] (a) correlations surviving BH-FDR (|rho| order); flag in brackets
+  Groups                           log V_char       N   63 rho +0.898 +- 0.025 p 2e-23 BONF [shares observable]
+  Groups                           log sigma        N   63 rho +0.898 +- 0.026 p 2e-23 BONF [shares observable]
+  Coma UDGs                        log V_char       N    9 rho +0.817 +- 0.162 p 0.0072 [shares observable]
+  Coma UDGs                        log sigma        N    9 rho +0.817 +- 0.157 p 0.0072 [shares observable]
+  LG dwarfs:MW ultra-faint         log V_char       N   31 rho +0.803 +- 0.069 p 5.5e-08 BONF [shares observable]
+  LG dwarfs:MW ultra-faint         log sigma        N   31 rho +0.803 +- 0.073 p 5.5e-08 BONF [shares observable]
+  LG dwarfs:bright M31             log V_char       N   25 rho +0.684 +- 0.131 p 0.00016 BONF [shares observable]
+  LG dwarfs:bright M31             log sigma        N   25 rho +0.684 +- 0.133 p 0.00016 BONF [shares observable]
+  LG dwarfs                        log M_b          N   89 rho -0.652 +- 0.062 p 4.5e-12 BONF
+  LG dwarfs                        log M_star       N   89 rho -0.652 +- 0.065 p 4.5e-12 BONF
+  LG dwarfs                        log R_char       N   89 rho -0.633 +- 0.066 p 2.8e-11 BONF
+  LG dwarfs                        log R_last       N   89 rho -0.633 +- 0.062 p 2.8e-11 BONF
+  SPARC:small                      log V_char       N   44 rho +0.630 +- 0.103 p 4.7e-06 BONF [shares observable]
+  LG dwarfs:MW ultra-faint         log M_b          N   31 rho -0.466 +- 0.178 p 0.0082
+  LG dwarfs:MW ultra-faint         log M_star       N   31 rho -0.466 +- 0.165 p 0.0082
+  SPARC:small                      log Sigma0       N   68 rho +0.456 +- 0.104 p 9.4e-05 BONF
+  Groups                           log Sigma_half   N   63 rho +0.449 +- 0.108 p 0.00023
+  P_all                            f_gas            N  422 rho +0.445 +- 0.044 p 6.7e-22 BONF
+  SPARC:small                      Q                N   68 rho -0.442 +- 0.104 p 0.00016 BONF [systematic]
+  SPARC:large                      log e_ext        N   68 rho -0.437 +- 0.110 p 0.0002
+  LG dwarfs                        log Sigma_half   N   89 rho -0.428 +- 0.098 p 2.9e-05 BONF
+  LG dwarfs                        log x_char       N   89 rho -0.428 +- 0.101 p 2.9e-05 BONF
+  SPARC:small                      log Sigma_half   N   68 rho +0.423 +- 0.107 p 0.00032
+  SPARC                            Q                N  175 rho -0.415 +- 0.067 p 1.1e-08 BONF [systematic]
+  P_gal                            Q                N  175 rho -0.415 +- 0.070 p 1.1e-08 BONF [systematic]
+  P_gal (class-centred)            Q                N  175 rho -0.415 +- 0.069 p 1.1e-08 BONF [systematic]
+  P_all                            Q                N  175 rho -0.415 +- 0.071 p 1.1e-08 BONF [systematic]
+  P_all (class-centred)            Q                N  175 rho -0.415 +- 0.070 p 1.1e-08 BONF [systematic]
+  P_gal                            log M_star       N  285 rho -0.390 +- 0.059 p 9.1e-12 BONF
+  SPARC:large                      Q                N  107 rho -0.388 +- 0.091 p 3.6e-05 BONF [systematic]
+  Groups                           log x_char       N   63 rho +0.366 +- 0.109 p 0.0032
+  SPARC:small                      log R_last       N   68 rho +0.341 +- 0.108 p 0.0044
+  P_gal                            log x_char       N  348 rho -0.339 +- 0.051 p 7.9e-11 BONF
+  P_all                            log Sigma_half   N  589 rho -0.335 +- 0.038 p 5.9e-17 BONF
+  LG dwarfs                        log e_ext        N   89 rho +0.327 +- 0.101 p 0.0018
+  SPARC:small                      morphology T     N   68 rho -0.322 +- 0.125 p 0.0074
+  P_gal                            log R_char       N  348 rho -0.308 +- 0.057 p 4.5e-09 BONF
+  P_gal                            log R_last       N  344 rho -0.277 +- 0.059 p 1.9e-07 BONF
+  P_gal                            log M_b          N  348 rho -0.276 +- 0.058 p 1.7e-07 BONF
+  P_gal                            log Sigma_half   N  348 rho -0.234 +- 0.054 p 1e-05 BONF
+  SPARC                            log e_ext        N  109 rho -0.231 +- 0.093 p 0.016
+  P_gal                            log sigma        N  167 rho -0.210 +- 0.074 p 0.0065 [shares observable]
+  P_gal                            log e_ext        N  215 rho +0.198 +- 0.072 p 0.0036
+  P_all                            log e_ext        N  215 rho +0.198 +- 0.072 p 0.0036
+  SPARC                            log Sigma0       N  175 rho +0.196 +- 0.073 p 0.0094
+  P_gal                            log Sigma0       N  175 rho +0.196 +- 0.072 p 0.0094
+  P_gal (class-centred)            log Sigma0       N  175 rho +0.196 +- 0.075 p 0.0094
+  P_all                            log Sigma0       N  175 rho +0.196 +- 0.070 p 0.0094
+  P_all (class-centred)            log Sigma0       N  175 rho +0.196 +- 0.074 p 0.0094
+  P_all                            log M_b          N  589 rho +0.196 +- 0.044 p 1.7e-06 BONF
+  P_all                            log x_char       N  589 rho -0.193 +- 0.041 p 2.4e-06 BONF
+  P_all                            log R_last       N  585 rho +0.179 +- 0.046 p 1.3e-05 BONF
+  P_all                            log R_char       N  589 rho +0.172 +- 0.044 p 2.8e-05 BONF
+  P_gal                            log V_char       N  304 rho -0.170 +- 0.064 p 0.003 [shares observable]
+  P_all                            log M_star       N  526 rho +0.169 +- 0.048 p 9.4e-05 BONF
+  P_all                            log MGAS500      N  241 rho -0.160 +- 0.067 p 0.013
+  P_all (class-centred)            log MGAS500      N  241 rho -0.160 +- 0.066 p 0.013
+  Clusters                         log R_char       N  312 rho +0.144 +- 0.062 p 0.011
+  Clusters                         log L500         N  312 rho +0.139 +- 0.057 p 0.014
+  Clusters                         log M_b          N  312 rho +0.131 +- 0.060 p 0.021
+  [alt] misfit vs law-right (Mann-Whitney) surviving BH-FDR:
+  P_all      above f_gas            n 163/62 median misfit +0.833 vs law-right +0.588 (effect +0.34) p 7e-26 BONF
+  P_all      above log Sigma_half   n 239/75 median misfit +0.455 vs law-right +1.7 (effect -0.31) p 4.1e-16 BONF
+  P_gal      above log M_star       n 65/54 median misfit +5.15 vs law-right +9.63 (effect -0.42) p 1.8e-15 BONF
+  P_gal      above log x_char       n 84/60 median misfit -2.53 vs law-right -1.27 (effect -0.38) p 1.7e-14 BONF
+  P_gal      above log Sigma_half   n 84/60 median misfit -0.12 vs law-right +1.93 (effect -0.36) p 1.8e-13 BONF
+  P_gal      below Q                n 27/47 median misfit +2 vs law-right +1 (effect +0.37) p 3.8e-09 BONF [systematic]
+  P_all      below Q                n 27/47 median misfit +2 vs law-right +1 (effect +0.37) p 3.8e-09 BONF [systematic]
+  SPARC      below Q                n 27/47 median misfit +2 vs law-right +1 (effect +0.37) p 3.8e-09 BONF [systematic]
+  P_gal      above hosted           n 84/60 median misfit +1 vs law-right +0 (effect +0.22) p 1.1e-07 BONF
+  P_gal      below log Sigma_half   n 61/60 median misfit +0.97 vs law-right +1.93 (effect -0.27) p 4.5e-07 BONF
+  P_gal      above log e_ext        n 59/34 median misfit -0.965 vs law-right -1.36 (effect +0.31) p 6.8e-07 BONF
+  P_all      above log e_ext        n 59/34 median misfit -0.965 vs law-right -1.36 (effect +0.31) p 6.8e-07 BONF
+  P_gal      above log R_last       n 82/60 median misfit -0.484 vs law-right +1.21 (effect -0.24) p 1.1e-06 BONF
+  P_gal      above log M_b          n 84/60 median misfit +5.84 vs law-right +10 (effect -0.23) p 1.9e-06 BONF
+  P_gal      below morphology T     n 27/47 median misfit +10 vs law-right +6 (effect +0.33) p 2.6e-06 BONF
+  P_all      below morphology T     n 27/47 median misfit +10 vs law-right +6 (effect +0.33) p 2.6e-06 BONF
+  SPARC      below morphology T     n 27/47 median misfit +10 vs law-right +6 (effect +0.33) p 2.6e-06 BONF
+  P_all      above log x_char       n 239/75 median misfit -1.49 vs law-right -1.26 (effect -0.18) p 3.7e-06 BONF
+  P_all      below log Sigma_half   n 82/75 median misfit +0.731 vs law-right +1.7 (effect -0.21) p 4e-06 BONF
+  P_all      above log R_last       n 237/75 median misfit +2.74 vs law-right +1.36 (effect +0.16) p 4.8e-06 BONF
+  LG dwarfs  above log R_char       n 50/6 median misfit -0.946 vs law-right -0.169 (effect -0.47) p 5.5e-06 BONF
+  LG dwarfs  above log R_last       n 50/6 median misfit -0.821 vs law-right -0.0441 (effect -0.47) p 5.5e-06 BONF
+  SPARC      below log R_last       n 27/47 median misfit +0.726 vs law-right +1.22 (effect -0.32) p 6.9e-06 BONF
+  P_gal      below log Sigma0       n 27/47 median misfit +1.75 vs law-right +2.53 (effect -0.31) p 9e-06 BONF
+  P_all      below log Sigma0       n 27/47 median misfit +1.75 vs law-right +2.53 (effect -0.31) p 9e-06 BONF
+  SPARC      below log Sigma0       n 27/47 median misfit +1.75 vs law-right +2.53 (effect -0.31) p 9e-06 BONF
+  P_gal      above log V_char       n 80/54 median misfit +1.18 vs law-right +2.12 (effect -0.22) p 1.3e-05 BONF [shares observable]
+  P_gal      above log R_char       n 84/60 median misfit -0.587 vs law-right +0.516 (effect -0.21) p 1.5e-05 BONF
+  P_gal      below log M_star       n 43/54 median misfit +8.28 vs law-right +9.63 (effect -0.25) p 1.9e-05 BONF
+  LG dwarfs  above hosted           n 50/6 median misfit +1 vs law-right +0 (effect +0.30) p 2.9e-05 BONF
+  P_all      above log R_char       n 239/75 median misfit +2.85 vs law-right +0.655 (effect +0.15) p 5.3e-05 BONF
+  P_all      above log M_b          n 239/75 median misfit +12.8 vs law-right +10.5 (effect +0.15) p 6.9e-05 BONF
+  SPARC      below log M_b          n 27/47 median misfit +9.24 vs law-right +10 (effect -0.27) p 9.8e-05 BONF
+  P_gal      below log e_ext        n 30/34 median misfit -1.22 vs law-right -1.36 (effect +0.28) p 0.00011 BONF
+  P_all      below log e_ext        n 30/34 median misfit -1.22 vs law-right -1.36 (effect +0.28) p 0.00011 BONF
+  LG dwarfs  above log M_b          n 50/6 median misfit +4.33 vs law-right +7.46 (effect -0.49) p 0.00012 BONF
+  LG dwarfs  above log M_star       n 50/6 median misfit +4.33 vs law-right +7.46 (effect -0.49) p 0.00012 BONF
+  P_all      below f_gas            n 54/62 median misfit +0.814 vs law-right +0.588 (effect +0.20) p 0.00014 BONF
+  SPARC      below log M_star       n 27/47 median misfit +8.79 vs law-right +9.78 (effect -0.26) p 0.00018
+  P_gal      below f_gas            n 33/47 median misfit +0.677 vs law-right +0.386 (effect +0.23) p 0.00039
+  SPARC      below log V_char       n 12/41 median misfit +1.76 vs law-right +2.12 (effect -0.33) p 0.00051 [shares observable]
+  SPARC      below log Sigma_half   n 27/47 median misfit +1.6 vs law-right +2.18 (effect -0.24) p 0.00057
+  P_all      above log M_star       n 220/69 median misfit +12.2 vs law-right +9.94 (effect +0.14) p 0.00057
+  P_gal      below log V_char       n 45/54 median misfit +1.82 vs law-right +2.12 (effect -0.19) p 0.00097 [shares observable]
+  P_gal      below log x_char       n 61/60 median misfit -1.51 vs law-right -1.27 (effect -0.17) p 0.0013
+  SPARC      above log M_b          n 8/47 median misfit +9.25 vs law-right +10 (effect -0.32) p 0.0032
+  LG dwarfs  above log V_char       n 50/6 median misfit +1.01 vs law-right +1.35 (effect -0.36) p 0.0044 [shares observable]
+  LG dwarfs  above log sigma        n 50/6 median misfit +0.769 vs law-right +1.11 (effect -0.36) p 0.0044 [shares observable]
+  SPARC      above log M_star       n 8/47 median misfit +8.88 vs law-right +9.78 (effect -0.30) p 0.0065
+  SPARC      below f_gas            n 27/47 median misfit +0.591 vs law-right +0.386 (effect +0.19) p 0.0083
+  P_all      below log x_char       n 82/75 median misfit -1.46 vs law-right -1.26 (effect -0.12) p 0.0086
+  LG dwarfs  above log Sigma_half   n 50/6 median misfit -0.199 vs law-right +1.3 (effect -0.32) p 0.0087
+  LG dwarfs  above log x_char       n 50/6 median misfit -2.78 vs law-right -1.28 (effect -0.32) p 0.0087
+  P_all      below log V_char       n 52/61 median misfit +1.99 vs law-right +2.17 (effect -0.14) p 0.012 [shares observable]
+  LG dwarfs  above log e_ext        n 50/6 median misfit -0.966 vs law-right -1.84 (effect +0.31) p 0.013
+  SPARC      above log R_last       n 8/47 median misfit +0.948 vs law-right +1.22 (effect -0.27) p 0.015
+  SPARC      below log R_char       n 27/47 median misfit +0.31 vs law-right +0.494 (effect -0.17) p 0.015
+  [alt] (d) law-right fraction per class (|resid| <= 0.05 dex):
+  SPARC            N  175 median -0.052 law-right 0.269 +- 0.033  >+0.2 0.046  <-0.2 0.154  |Z|<2 0.720
+  MW disc          N    1 median -0.164 law-right 0.000 +- 0.000  >+0.2 0.000  <-0.2 0.000  |Z|<2 0.000
+  Groups           N   63 median +0.030 law-right 0.095 +- 0.038  >+0.2 0.302  <-0.2 0.286  |Z|<2 0.841
+  Clusters         N  241 median +0.335 law-right 0.062 +- 0.015  >+0.2 0.643  <-0.2 0.087  |Z|<2 0.668
+  LG dwarfs        N   89 median +0.267 law-right 0.067 +- 0.026  >+0.2 0.562  <-0.2 0.079  |Z|<2 0.528
+  Coma UDGs        N    9 median +0.274 law-right 0.111 +- 0.103  >+0.2 0.556  <-0.2 0.000  |Z|<2 0.778
+  TDGs             N    6 median -0.725 law-right 0.000 +- 0.000  >+0.2 0.000  <-0.2 1.000  |Z|<2 0.167
+  DF2/DF4          N    2 median -0.881 law-right 0.000 +- 0.000  >+0.2 0.000  <-0.2 1.000  |Z|<2 0.000
+  SLUGGS centrals  N    4 median +0.218 law-right 0.000 +- 0.000  >+0.2 0.500  <-0.2 0.250  |Z|<2 0.250
+  Lens stacks      N    2 median -0.008 law-right 0.000 +- 0.000  >+0.2 0.000  <-0.2 0.000  |Z|<2 0.000
+  [alt] (d) law-right property ranges (10-90 %) vs all (P_gal):
+  log M_b          n_right  60  law-right [8.5, 11.3]  all [5.04, 11.7]
+  log M_star       n_right  54  law-right [8.02, 10.9]  all [4.59, 10.9]
+  f_gas            n_right  47  law-right [0.103, 0.742]  all [0.0768, 0.808]
+  log R_char       n_right  60  law-right [0.132, 1.24]  all [-0.792, 2.68]
+  log R_last       n_right  60  law-right [0.635, 1.94]  all [-0.668, 2.69]
+  log Sigma_half   n_right  60  law-right [0.095, 2.86]  all [-0.599, 2.74]
+  log Sigma0       n_right  47  law-right [1.73, 3.2]  all [1.55, 3.35]
+  log V_char       n_right  54  law-right [1.63, 2.39]  all [0.929, 2.45] [shares observable]
+  log sigma        n_right  13  law-right [0.93, 2.25]  all [0.551, 2.32] [shares observable]
+  log x_char       n_right  60  law-right [-2.05, -0.711]  all [-2.93, -0.713]
+  log e_ext        n_right  34  law-right [-1.7, -1.12]  all [-1.5, -0.627]
+  hosted           n_right  60  law-right [0, 1]  all [0, 1]
+  morphology T     n_right  47  law-right [3.6, 9]  all [3, 10]
+  D_Mpc            n_right  47  law-right [4.09, 58]  all [4.05, 67.1] [systematic]
+  inc_deg          n_right  47  law-right [39.6, 86.6]  all [32, 85] [systematic]
+  Q                n_right  47  law-right [1, 2]  all [1, 2] [systematic]
+  [alt] (b) binned medians (selected):
+  SPARC|morphology T       edges [3.5, 6.5, 8.5]: n28 -0.059 [-0.079,-0.036] lr 0.18 | n50 -0.034 [-0.052,-0.024] lr 0.40 | n26 -0.026 [-0.044,+0.001] lr 0.35 | n71 -0.080 [-0.112,-0.055] lr 0.18
+  SPARC|log Sigma0         edges [1.751, 2.271, 2.915]: n45 -0.098 [-0.112,-0.076] lr 0.13 | n43 -0.055 [-0.086,-0.045] lr 0.26 | n44 -0.016 [-0.030,-0.006] lr 0.39 | n43 -0.043 [-0.063,-0.032] lr 0.30
+  SPARC|f_gas              edges [0.168, 0.422, 0.65]: n44 -0.056 [-0.075,-0.034] lr 0.30 | n44 -0.051 [-0.061,-0.031] lr 0.34 | n43 -0.044 [-0.070,-0.029] lr 0.19 | n44 -0.056 [-0.106,-0.046] lr 0.25
+  SPARC|log x_char         edges [-1.38, -1.164, -0.895]: n44 -0.051 [-0.076,-0.044] lr 0.27 | n44 -0.035 [-0.051,-0.015] lr 0.27 | n43 -0.016 [-0.054,+0.001] lr 0.30 | n44 -0.079 [-0.090,-0.064] lr 0.23
+  P_gal|log Sigma_half     edges [-0.153, 1.354, 2.108]: n87 +0.131 [+0.051,+0.190] lr 0.06 | n87 +0.126 [+0.078,+0.166] lr 0.08 | n87 -0.045 [-0.064,-0.029] lr 0.26 | n87 -0.049 [-0.056,-0.035] lr 0.29
+  P_gal|log x_char         edges [-2.381, -1.521, -1.133]: n87 +0.235 [+0.190,+0.274] lr 0.05 | n87 +0.069 [+0.051,+0.100] lr 0.11 | n87 -0.040 [-0.053,-0.018] lr 0.28 | n87 -0.063 [-0.079,-0.052] lr 0.25
+  P_gal|log M_b            edges [7.765, 9.484, 11.032]: n87 +0.304 [+0.243,+0.369] lr 0.03 | n87 -0.069 [-0.081,-0.045] lr 0.18 | n87 -0.050 [-0.071,-0.038] lr 0.34 | n87 +0.015 [-0.052,+0.037] lr 0.13
+  Clusters|log x_char      edges [-1.518, -1.313, -1.122]: n61 +0.387 [+0.347,+0.454] lr 0.05 | n60 +0.341 [+0.309,+0.404] lr 0.05 | n60 +0.206 [+0.155,+0.273] lr 0.12 | n60 +0.338 [+0.266,+0.394] lr 0.03
+  [alt] (c) worst 5 % per class:
+  SPARC            CamB -0.854 (Z -14.1); UGC02455 -0.748 (Z -5.1); F574-2 -0.719 (Z -2.5); UGC07577 -0.704 (Z -8.3); PGC51017 -0.684 (Z -11.1); F563-V1 -0.647 (Z -4.6); UGC04305 -0.572 (Z -3.1); UGC06628 -0.494 (Z -1.1) ... (9 total)
+  Groups           NGC4993 -1.019 (Z -1.5); NGC4039 -0.640 (Z -2.2); NGC5473 -0.635 (Z -1.2); NGC3311 +0.596 (Z +13.3)
+  Clusters         1eRASS J021624.3-290117 -1.919 (Z -0.1); 1eRASS J142859.3+014443 -1.489 (Z -0.1); 1eRASS J134525.0+001207 -1.164 (Z -0.1); 1eRASS J135602.9+021042 +1.156 (Z +2.7); 1eRASS J004320.6-314053 -1.153 (Z -0.1); 1eRASS J142020.0+003746 +1.099 (Z +2.8); 1eRASS J032340.0-324007 +1.054 (Z +5.2); 1eRASS J104224.8-000823 +0.938 (Z +8.2) ... (13 total)
+  LG dwarfs        Carina III +1.297 (Z +2.6); Segue 1 +1.210 (Z +5.7); Andromeda XXVII +1.163 (Z +5.2); Willman 1 +1.158 (Z +3.9); Eridanus IV +1.134 (Z +7.3)
+  Coma UDGs        J130005.40+275333.0 +0.765 (Z +5.4)
+  TDGs             NGC7252NW -0.929 (Z -3.4)
+  DF2/DF4          DF4 -0.981 (Z -2.8)
+  SLUGGS centrals  NGC5846 +0.315 (Z +7.1)
+  Lens stacks      KiDS blue lens stack -0.096 (Z -2.6)
+
+X33_SYSTEM_ATLAS COMPLETE: 11/11 checks PASS  [27 s, RSS 0.29 GB]
