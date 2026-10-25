@@ -134,3 +134,14 @@ amplitude is 0.22–0.26 × a₀/(2πG), so max(floor, collapse) is inactive. To
 ≈ 11–23, which is a core-concentration factor. **Current statement:** cores sit at the floor a₀/(2πG) in galaxies and at
 ≈ 10–20 × the collapse ρr (time-scaled) in groups and clusters. The missing piece is the first-principles origin of that
 core-concentration factor.
+
+## 8. Closest result (X43, 10-25): floor + collapse core
+
+**Σ_core = max(a₀/(2πG), 14.83 Σ_coll(M))**: self-similar infall, a core at r_f/4, Burkert matched by mass, Lacey–Cole
+formation on the record's own P(k). c_f = 4 is EXTERNAL; there are no fitted constants.
+- **Passes:** SPARC (rms 0.073–0.078), the cluster outskirts, **and the heavy cluster cores** (MID T3 Z +4.3 → +0.3; MID
+  slope +3.1 → +1.7; MGAS all OUTER +2.4 → +0.5). 14 of 15 cluster keys pass.
+- **Frozen verdict FAILS on two keys:** groups at Z +2.05 (line 2.0), and the heaviest MGAS tercile's OUTER band at Z +2.41.
+  Both are slightly under-predicted. c_f = 5 (reported, not adopted) passes the groups.
+- The crossover falls at M ≈ 10^12.1–10^12.4 M☉.
+- **Next:** derive c_f from the infall solution itself (first principles). A value of 4–5 would close the groups.
