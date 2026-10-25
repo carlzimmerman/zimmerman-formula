@@ -1,0 +1,118 @@
+DH1_dark_energy_heater  [MUTATE: m1 cooling 2->1, m2 dilution a^-3->a^-2, m3 drive gradient]
+kappa = 1/2 FITTED; footings never pooled; cold dark energy, never a particle; no knob fitted; not theory closed
+
+== Step 0: record read-back ==
+  [FAIL] K0a X22 p = 2 / 3 rows obey c_s ~ a^(p - 1/2) under this lane's Jeans mapping: max |dev| 8.13e-02; c_s,need 190.014 / 201.315 km/s; p=2 forest FAIL, p=3 UNDECIDED  (line: <= 1e-9)
+  [PASS] K0b X26 sigma medians and virial r=1 line: sigma SPARC/KT (70.5, 517.1) / (70.5, 517.1); KT c_s canonical 555.9-736.1, alt 594.6-761.4; virial any = False / False  (line: 70.5 / 517.1 km/s; any = false)
+  [PASS] K0c X29 survivors (finite KiDS dchi2 < 9): 23 / 15; cosmic C0 cap 328.8 / 267.9 km/s  (line: 23 / 15)
+  [PASS] K0d X35 S0-3 CFG689 sqrtX(z* 2.33): (0.9093594712388365, 0.9498279466319299)  (line: 0.9094 / 0.9498)
+
+== K1: derivations (sympy) ==
+  D1 H1 background: u = 2*c2*epsilon/3 * f  (X24b's Q = eps H rho_L c^2 form gives c2*epsilon/3 * f); c_s ~ a^1  =>  X22 p = 1
+  D2 power key S ~ f^n: p = n;  p >= 3 needs n >= 3
+  D3 d2H/dx2 = -E(t)*cos(x) + Derivative(Phi(x, t), (x, 2));  d2H/dxdp = B(t);  d2H/dp2 = A(t)
+     Riccati for M = dp/dx along the sheet: dM/dt = -Hpp M^2 - 2 Hxp M - Hxx. The drive enters only Hpp and Hxp
+     (identity-proportional rescaling); folds (multi-stream, dispersion) are sourced only by Hxx = Phi''.
+  D4 drive heating d(sigma^2)/dt = 2*Gamma*sigma2: proportional to sigma^2 (scale-free)  =>  c_s = A(t) sigma, r = 1
+  D5 v_res = 2*sqrt(D)*sqrt(Gamma_d);  with D <= v_f/k_f:  v <= 2*sqrt(Gamma_d)*sqrt(v_f)/sqrt(k_f)
+  [FAIL] K1 sympy D1-D5: D1 False D2 False D3 False D4 True D5 True  (line: all True)
+
+== K2: 1-D cold sheet under a homogeneous drive (D3 numerically) ==
+  drive only (+ gradient, MUTATE): folds 1846, momentum spread 1.31e+01
+  control (cos well, no drive): folds 2531
+  [FAIL] K2 homogeneous drive keeps the sheet single-stream; a well folds it: drive folds 1846, spread 1.3e+01; control folds 2531  (line: 0, <= 1e-12; > 0)
+
+== Grading H1-H6 per footing (gates G1-G5) ==
+-- canonical --
+  H1: G1 FAIL; G2 FAIL; G3 FAIL; G4 NOT DECISIVE; G5 REDUCES
+      G1: needs eps = 1.06e-07-1.38e-06 (fitted); eps = 1 gives cosmic c_s 279602 km/s
+      G2: c_s ~ a^1.00 (p = 1.00); c_s(z3/z2) 47.50/63.34 vs edge 5.938/12.189; forgiving C_min 91.2: 22.81/30.41; native DE drift (CFG689 sqrtX 0.9093594712388365): 42.58/58.07
+      G3: D3: a spatially uniform per-mass source on a single-stream sheet adds no fine-grained spread; a 'heat' term is not Hamiltonian, i.e. not an action term (H1 is a phenomenological source)
+      G4: bound/cosmic heat factor beta in [1,5]: cosmic C window 91.2-328.8 km/s (open only in this most forgiving reading)
+      G5: background time law identical to X24b D1 (u ~ a^3, p = 2); differs only in spatial key (q = 0 vs -1)
+  H1L: G1 FAIL; G2 PASS; G3 FAIL; G4 FAIL; G5 REDUCES
+      G1: same eps as H1
+      G2: no heating in the linear medium beyond H1's
+      G3: d(rho_DE/rho_m,loc)/dt < 0 during collapse (cooling), = 0 once virialised
+      G4: virialised SPARC gets no heat: c_s = sigma 70.5 < c_s,need 190.0
+      G5: sign structure of X24b's local theta/3 reading
+  H2: G1 FAIL; G2 PASS; G3 FAIL; G4 FAIL; G5 DISTINCT
+      G1: drive rate Gamma_DE needs a coupling beta (knob)
+      G2: cold cosmic sheet stays cold (D3)
+      G3: D3 + D4: only rescales gravitationally generated dispersion; heating ~ sigma^2
+      G4: r = 1: SPARC needs A >= 2.695, KT clusters allow A <= 1.424 (disjoint); X26 virial line any = False
+      G5: multiplicative (r = 1), not X23/X24b's additive heat; lands on X26's excluded virial line
+  H3: G1 FAIL; G2 PASS; G3 FAIL; G4 FAIL; G5 DISTINCT
+      G1: latent specific energy is a knob; natural rho_L c^2/rho_c per mass = 2.58 c^2
+      G2: knob-free DE epochs: z(a''=0) 0.632, z(Omega_L=Omega_m) 0.296, z(a0 = cH/2pi, kappa 1/2) -0.271 (future); a0/(cH0) = 0.1430
+      G3: D3: a homogeneous release cannot create fine-grained dispersion; it can only shift or rescale
+      G4: if released as rescaling: r = 1 (as H2); as bulk shift: no dispersion
+      G5: step in time; still homogeneous
+  H4: G1 FAIL; G2 FAIL; G3 FAIL; G4 FAIL; G5 DISTINCT
+      G1: threshold and latent energy are knobs
+      G2: cosmic medium is already below a0 at z = 2 / 3: x_rms 0.041 / 0.055; the key fires before z = 2
+      G3: trigger region is the whole (uniform) cosmic medium: homogeneous release, D3
+      G4: X22: key x does not separate cosmic medium from SPARC (separates = False; C [0.0, 15.6], S [0.025325873124093668, 0.2403796614894787])
+      G5: acceleration key; with Lambda, a0 is constant, so there is no a0 epoch at all
+  H5: G1 FAIL; G2 PASS; G3 FAIL; G4 FAIL; G5 DISTINCT
+      G1: D (the wave constant) is a knob
+      G2: medium cold at z 2-3 by construction of the bound
+      G3: D5: v <= 2 sqrt(v_f 3H0/k_f) = 31.1 km/s (v_f 12.19, H0/k_f 6.632 km/s, generous) vs need 176.5 (SPARC quadrature) / 204.0 (KT quadrature)
+      G4: factor 5.7 short in SPARC
+      G5: kinetic by construction; bounded by the forest itself
+  H6: G1 FAIL; G2 PASS; G3 FAIL; G4 OPEN; G5 DISTINCT
+      G1: v_k and a correlation length l are knobs
+      G2: step after the trigger
+      G3: needs a stochastic force with l << system; the DE sector's only lengths are c/H0 = 4.45 Gpc (h 0.674, PROVISIONAL) and c^2/a0 = 31.1 Gpc; L* >= 21.7/22.9 pc is one-sided (a knob)
+      G4: v_k window 204.0-328.8 km/s (approx., A9)
+      G5: additive floor; its cluster c_s/sigma_KT lies in X30's failing range
+  inherited: KT c_s/sigma_KT 1.075-1.424: X30 OUTER fails all sheet points; X32 collisionless sigma_1D = c_s EXCLUDED in all 4 combinations (lane UNDECIDED on K4)
+
+-- alt --
+  H1: G1 FAIL; G2 FAIL; G3 FAIL; G4 NOT DECISIVE; G5 REDUCES
+      G1: needs eps = 2.20e-07-9.18e-07 (fitted); eps = 1 gives cosmic c_s 279602 km/s
+      G2: c_s ~ a^1.00 (p = 1.00); c_s(z3/z2) 50.33/67.10 vs edge 6.291/12.914; forgiving C_min 131.2: 32.81/43.74; native DE drift (CFG689 sqrtX 0.9093594712388365): 45.11/61.53
+      G3: D3: a spatially uniform per-mass source on a single-stream sheet adds no fine-grained spread; a 'heat' term is not Hamiltonian, i.e. not an action term (H1 is a phenomenological source)
+      G4: bound/cosmic heat factor beta in [1,5]: cosmic C window 131.2-267.9 km/s (open only in this most forgiving reading)
+      G5: background time law identical to X24b D1 (u ~ a^3, p = 2); differs only in spatial key (q = 0 vs -1)
+  H1L: G1 FAIL; G2 PASS; G3 FAIL; G4 FAIL; G5 REDUCES
+      G1: same eps as H1
+      G2: no heating in the linear medium beyond H1's
+      G3: d(rho_DE/rho_m,loc)/dt < 0 during collapse (cooling), = 0 once virialised
+      G4: virialised SPARC gets no heat: c_s = sigma 70.5 < c_s,need 201.3
+      G5: sign structure of X24b's local theta/3 reading
+  H2: G1 FAIL; G2 PASS; G3 FAIL; G4 FAIL; G5 DISTINCT
+      G1: drive rate Gamma_DE needs a coupling beta (knob)
+      G2: cold cosmic sheet stays cold (D3)
+      G3: D3 + D4: only rescales gravitationally generated dispersion; heating ~ sigma^2
+      G4: r = 1: SPARC needs A >= 2.856, KT clusters allow A <= 1.472 (disjoint); X26 virial line any = False
+      G5: multiplicative (r = 1), not X23/X24b's additive heat; lands on X26's excluded virial line
+  H3: G1 FAIL; G2 PASS; G3 FAIL; G4 FAIL; G5 DISTINCT
+      G1: latent specific energy is a knob; natural rho_L c^2/rho_c per mass = 2.58 c^2
+      G2: knob-free DE epochs: z(a''=0) 0.632, z(Omega_L=Omega_m) 0.296, z(a0 = cH/2pi, kappa 1/2) -0.271 (future); a0/(cH0) = 0.1430
+      G3: D3: a homogeneous release cannot create fine-grained dispersion; it can only shift or rescale
+      G4: if released as rescaling: r = 1 (as H2); as bulk shift: no dispersion
+      G5: step in time; still homogeneous
+  H4: G1 FAIL; G2 FAIL; G3 FAIL; G4 FAIL; G5 DISTINCT
+      G1: threshold and latent energy are knobs
+      G2: cosmic medium is already below a0 at z = 2 / 3: x_rms 0.034 / 0.046; the key fires before z = 2
+      G3: trigger region is the whole (uniform) cosmic medium: homogeneous release, D3
+      G4: X22: key x does not separate cosmic medium from SPARC (separates = False; C [0.0, 15.6], S [0.020644913498892373, 0.1848192642598784])
+      G5: acceleration key; with Lambda, a0 is constant, so there is no a0 epoch at all
+  H5: G1 FAIL; G2 PASS; G3 FAIL; G4 FAIL; G5 DISTINCT
+      G1: D (the wave constant) is a knob
+      G2: medium cold at z 2-3 by construction of the bound
+      G3: D5: v <= 2 sqrt(v_f 3H0/k_f) = 32.1 km/s (v_f 12.91, H0/k_f 6.632 km/s, generous) vs need 188.6 (SPARC quadrature) / 293.4 (KT quadrature)
+      G4: factor 5.9 short in SPARC
+      G5: kinetic by construction; bounded by the forest itself
+  H6: G1 FAIL; G2 PASS; G3 FAIL; G4 FAIL; G5 DISTINCT
+      G1: v_k and a correlation length l are knobs
+      G2: step after the trigger
+      G3: needs a stochastic force with l << system; the DE sector's only lengths are c/H0 = 4.45 Gpc (h 0.674, PROVISIONAL) and c^2/a0 = 25.7 Gpc; L* >= 21.7/22.9 pc is one-sided (a knob)
+      G4: v_k window 293.4-267.9 km/s (approx., A9)
+      G5: additive floor; its cluster c_s/sigma_KT lies in X30's failing range
+  inherited: KT c_s/sigma_KT 1.150-1.472: X30 OUTER fails all sheet points; X32 collisionless sigma_1D = c_s EXCLUDED in all 4 combinations (lane UNDECIDED on K4)
+
+  [PASS] K3 peak RSS: 0.091 GB  (line: < 1 GB)
+
+VERDICT canonical: UNDECIDED (check failure)   alt: UNDECIDED (check failure)
