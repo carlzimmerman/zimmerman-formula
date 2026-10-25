@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "CCT020_CONDITIONAL_ENERGY_VIRIAL_CANDIDATES",
+  "repository": {
+    "commit": "11326029c28f848e0f0ebc8bfc9fdb59cbc75a11",
+    "dirty": true
+  },
+  "command": [
+    "/usr/bin/python3",
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/cold_pre_stellar_settling_2026_10_25/energy_budget.py",
+    "--out",
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/cold_pre_stellar_settling_2026_10_25/energy_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.14.7"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Compare initial energy with stationary complete Plummer candidate energy, bothfootings/beta; independent quadrature/refinement",
+    "coefficient_domain": "complex128 float64",
+    "conventions": "CONTRACT.md; same CCT019 physics, cold gravity once, no early stars or artificial energy sink",
+    "inputs": [
+      "CCT018 selected metadata and fixed source",
+      "same common supply/eta/inflow/acceleration"
+    ],
+    "bounds": {
+      "points": [
+        65536,
+        131072
+      ],
+      "galaxies": [
+        "Draco",
+        "Sextans",
+        "Fornax",
+        "Leo I"
+      ]
+    },
+    "non_claims": [
+      "not all profiles excluded",
+      "not a formation solution",
+      "no stationary or isolation proof",
+      "no finite mass outflow certificate"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "PCG64",
+    "seed": 1025
+  },
+  "run": {
+    "started_at": "2026-10-25T21:25:29.662131+00:00",
+    "runtime_seconds": 0.294385,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 220,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_pre_stellar_settling_2026_10_25/energy_budget.py",
+    "sol61_push/cold_pre_stellar_settling_2026_10_25/ENERGY_CONTRACT.md",
+    "sol61_push/cold_full_envelope_data_2026_10_25/fit_002/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_pre_stellar_settling_2026_10_25/energy_budget.py",
+      "sha256": "e88df22eb2f6e3d3c081c68ec1133e452569ee1e8ff354a76f966029c331b9e7",
+      "sha256_after": "e88df22eb2f6e3d3c081c68ec1133e452569ee1e8ff354a76f966029c331b9e7"
+    },
+    {
+      "path": "sol61_push/cold_pre_stellar_settling_2026_10_25/ENERGY_CONTRACT.md",
+      "sha256": "f226013b1313878f722c204b9178d6c4228de02da9e74e3fbecc227b6ac4692d",
+      "sha256_after": "f226013b1313878f722c204b9178d6c4228de02da9e74e3fbecc227b6ac4692d"
+    },
+    {
+      "path": "sol61_push/cold_full_envelope_data_2026_10_25/fit_002/result.json",
+      "sha256": "7b182fc9ef65dee74601761df68816458a90dec28c730baa27d3e9256f6c2a47",
+      "sha256_after": "7b182fc9ef65dee74601761df68816458a90dec28c730baa27d3e9256f6c2a47"
+    }
+  ],
+  "output_directory": "sol61_push/cold_pre_stellar_settling_2026_10_25/energy_001",
+  "declared_results": [
+    "sol61_push/cold_pre_stellar_settling_2026_10_25/energy_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_pre_stellar_settling_2026_10_25/energy_001/stdout.txt",
+      "sha256": "9ed8b73a93434a6068b90fab09337411b872f90e9070ec641dcd7cc80bcb906f",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_pre_stellar_settling_2026_10_25/energy_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_pre_stellar_settling_2026_10_25/energy_001/result.json",
+      "sha256": "f118de7be33b5dd6afd635a39d00c5d40debac2e569b910bf89e62a13712ef28",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

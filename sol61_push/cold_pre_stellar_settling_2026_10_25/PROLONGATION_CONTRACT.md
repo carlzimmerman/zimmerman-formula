@@ -1,0 +1,5 @@
+# Later Draco refinement screen, before evaluation
+
+The4096-element Draco continuation hits its phase gate at T2.808244; this failed endpoint may not be evolved further. Test only the earlier saved accepted T2.5 state, whose cumulative gates are recorded in progress.json. Nested cubic finite-element prolongation in the reference coordinate onto8192elements, with exact zero boundary values. No amplitude rescaling, no new energy reference, no density-only reconstruction and no carrier refit. Same physical units, fixed baryonic source, eta and carrier.
+
+Check parent raw hashes, exact checkpoint/progress time, and valid prefix. Record mass defect, energy defect relative to original energy scale, potential mismatch, phase gate, and boundary mass on the fine grid. To authorize a subsequent fine continuation require mass defect<=1e-8, energy defect<=1e-4, original cumulative invariant gates and fine instantaneous gates. A passed screen permits a separately registered continuation, not a mesh convergence claim or a repair of the failed coarse endpoint. A failed screen is preserved; do not renormalize it into acceptance.

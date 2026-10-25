@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/cold_pre_stellar_settling_2026_10_25/prolongation.py", line 20, in <module>
+    if __name__=='__main__':main()
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/cold_pre_stellar_settling_2026_10_25/prolongation.py", line 19, in main
+    uinfo=d['units'];meta=json.loads((P.parent/'cold_full_envelope_data_2026_10_25/fit_002/result.json').read_text())['datasets']['Draco'];aa=np.array(meta['tracer_scales_pc'])/uinfo['R_pc'];pb=lambda r:sum(-uinfo['q']/len(aa)/np.sqrt(r*r+b*b) for b in aa);s=Solver(2*d['ne'],eta=uinfo['eta_code'],vin=uinfo['vin_code'],alpha=d['alpha'],pb=pb);old=Solver(d['ne'],eta=uinfo['eta_code'],vin=uinfo['vin_code'],alpha=d['alpha'],pb=pb);z=np.load(par/'field.npz');i=list(z['t']).index(2.5);u=z['u'][i];v=transfer(z['r'],z['w'],u,s,d['ne'],d['alpha']);phi=s.phi(v);M=float(np.vdot(v,v).real);E=s.energy(v,phi);mass_defect=abs(M/np.vdot(u,u).real-1);energy_defect=abs(E-old.energy(u,old.phi(u)))/d['initial']['energy_scale'];gates=dict(mass=abs(M/d['initial']['mass']-1),energy=abs(E-d['initial']['energy'])/d['initial']['energy_scale'],phase=s.phase_bad(v),boundary=float(np.sum(abs(v[s.r>.85*s.R])**2)));limits=dict(mass=1e-8,energy=1e-4,phase=.05,boundary=1e-4);passed=mass_defect<=1e-8 and energy_defect<=1e-4 and all(gates[k]<=t and progress['maxima'][k]<=t for k,t in limits.items());result=dict(scope='valid-prefix nested finite-element prolongation screen only; no renormalization, no energy reset',parent=str(par),checkpoint_time=2.5,old_ne=d['ne'],new_ne=s.ne,mass_defect=mass_defect,energy_defect_over_original_scale=energy_defect,potential_sup_difference=float(np.max(abs(phi-np.interp(s.r,z['r'],z['phi'][i])))),fine_gates=gates,parent_cumulative_gates=progress['maxima'],passes_continuation_screen=passed);(out/'result.json').write_text(json.dumps(result,indent=2));print(json.dumps(result))
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable

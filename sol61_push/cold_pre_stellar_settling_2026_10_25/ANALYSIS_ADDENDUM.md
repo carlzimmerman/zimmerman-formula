@@ -1,0 +1,7 @@
+# Before final analysis: fluctuation binding and continuation coverage
+
+Following ENERGY_SCOPE_CORRECTION.md, for each run's actual saved snapshot interval use trapezoidal time weights. Compute the density-weighted mean profile, its W, weighted mean W, and the weighted self-binding of deviations. Verify mean(W)=W(mean rho)+mean(W(delta rho)). Include averaged scalar virial residual as a diagnostic. This finite sampled identity neither proves continuous-time averaging convergence nor matches the mean profile to a measured target. It is not evidence that stars remain undisturbed. Large negative fluctuation binding must be checked jointly with potential fluctuations.
+
+For comparisons involving continuations, recursively include the exact saved parent trajectory, replacing the duplicate checkpoint with its identical child state. Compare only identical saved times and shared physical parameters. Common carrier phase factors cancel in the physical L2 norm; interpolate the residual envelopes and report unrotated and separately aligned norms. No amplitude renormalization. Explicitly label lineage inclusion and retain raw per-segment coverage. A same-grid method comparison is distinct from mesh/tolerance refinement.
+
+The final audit deduplicates diagnostic times, checks full trailing-window coverage and first qualifying birth, verifies inherited parent history and exact restart field, and verifies all stored hashes. A known numerical gate stop must remain a stop, even when its record passes the integrity audit.
