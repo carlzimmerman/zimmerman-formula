@@ -1,0 +1,223 @@
+X40b_core_surface_density_scaling  normal run
+kappa = 1/2 FITTED; footings never pooled; route E (Newtonian, law emergent); cold dark energy (not matter) Burkert cores, Sigma = s * a0/(2 pi G); not theory closed
+EM1 and X30 machinery executed read-only [21 s, RSS 0.58 GB]
+Sigma_a0 = a0/(2 pi G): canonical 106.9, alt 129.2 Msun/pc^2; Burkert x_pk 0.96340; B(1) 0.50865
+K1 fast compact root vs X38 solve_r0: max |dr0/r0| 6.2e-09 (10 saturated cases), mass return 1.8e-15: PASS
+K2a floor test (g_b = 0, rule A): s* = 1, r0/r0_X38 - 1 = -2.2e-16: ok
+K2a floor test (g_b = 0, rule A-prime): s* = 1, r0/r0_X38 - 1 = -2.2e-16: ok
+CFG922 BCG matched 190 (X39: 190); filled 136 by MGAS500-tercile median
+K4 groups: 63 rows; no-halo integrator vs P4 group_logsig (nu = 1) max |d| 8.9e-16 dex: PASS
+
+=== rule B inputs (M-DEC = a0(z)/a0(0), DESI CPL): z 0 / 0.5 / 1.0 / 1.5 / 2.0 / 3.0 -> 1.0000 / 1.0319 / 0.9889 / 0.9310 / 0.8739 / 0.7750
+  s(SPARC z_f 1.5) 0.9310, s(groups z_f 1.0) 0.9889, s(clusters z_f 0.5) 1.0319; cluster/galaxy 1.1084
+  epoch-free bound on [0, 3]: max/min = 1.3362 (peak at z 0.36); d(a0/a0_0)/dz on [0, 1]: -0.109 .. +0.232
+  rule C pivot: largest SPARC M200 (bg A) = 2.928e+12 Msun
+K0 s = 1 reproduces X38's committed SPARC and 30 cluster preds per footing: max |d| 3.9e-07; Step 0 (scratch rerun of X38) identical: PASS
+  [25 s, RSS 0.59 GB]
+
+=== [canonical] Sigma_a0 106.9 Msun/pc^2   X38 groups (s = 1): mean +0.0973 Z +2.48 ABOVE LAW
+  --- rule A (max(a0, g_b(r0)))
+  SPARC [A_c2b_refit]: rms 0.0795, median U 0.77 -> line PASS  (X38 0.0795@0.77); s* median 1.000, max 1.00, frac s*>1 0.00; median r0 5.17 kpc
+  SPARC [B_cfg886_bg]: rms 0.0792, median U 0.76 -> line PASS  (X38 0.0792@0.76); s* median 1.000, max 1.00, frac s*>1 0.00; median r0 5.32 kpc
+     G-IN-all   meas +1.938+-1.670 pred +1.078 Z +0.51 (X38 Z +0.51) | h0.686 Z +0.54
+     G-MID-T1   meas +1.096+-0.375 pred +1.059 Z +0.10 (X38 Z +0.10) | h0.686 Z +0.28
+     G-MID-T2   meas +1.650+-0.318 pred +1.077 Z +1.80 (X38 Z +1.80) | h0.686 Z +2.13  FAIL
+     G-MID-T3   meas +2.132+-0.254 pred +1.051 Z +4.26 (X38 Z +4.26) | h0.686 Z +4.45  FAIL
+     G-MID-b    meas +2.242+-0.742 pred -0.038 Z +3.07 (X38 Z +3.07) | h0.686 Z +3.15  FAIL
+     G-OUT-all  meas +0.716+-0.141 pred +0.697 Z +0.14 (X38 Z +0.14) | h0.686 Z +0.06
+     G-OUT-T1   meas +0.394+-0.315 pred +0.617 Z -0.71 (X38 Z -0.71) | h0.686 Z -0.74
+     G-OUT-T2   meas +0.622+-0.229 pred +0.682 Z -0.26 (X38 Z -0.26) | h0.686 Z -0.14
+     G-OUT-T3   meas +1.027+-0.219 pred +0.767 Z +1.19 (X38 Z +1.19) | h0.686 Z +0.97
+     G-OUT-b    meas +1.502+-0.641 pred +0.318 Z +1.85 (X38 Z +1.85) | h0.686 Z +1.60
+     G-OUT-Mall meas +0.929+-0.098 pred +0.698 Z +2.36 (X38 Z +2.36) | h0.686 Z +2.53  FAIL
+     G-OUT-M1   meas +0.488+-0.296 pred +0.524 Z -0.12 (X38 Z -0.12) | h0.686 Z +0.02
+     G-OUT-M2   meas +0.762+-0.135 pred +0.696 Z +0.49 (X38 Z +0.49) | h0.686 Z +0.63
+     G-OUT-M3   meas +1.369+-0.103 pred +0.815 Z +5.36 (X38 Z +5.36) | h0.686 Z +4.86  FAIL
+     G-IN-Mall  meas +2.279+-1.051 pred +1.040 Z +1.18 (X38 Z +1.18) | h0.686 Z +0.96
+     cluster s* by KT tercile {'T1': 1.0, 'T2': 1.0, 'T3': 1.0}, all-326 median 1.000, max 1.000; r0 (Mpc) {'T1': 0.2742263899411015, 'T2': 0.3197199673189047, 'T3': 0.43812753211325706}; RUNAWAY sparc/clusters 0/0; SATURATED 0/0
+     groups: mean +0.0973 Z +2.48 tot 0.0392 ABOVE LAW (s* median 1.000); fair-share variant +0.1970 Z +4.47 ABOVE LAW
+     effective scaling: alpha_eff (OLS log s* on log M, SPARC + 326 clusters) +0.0000; s*(KT T3 median) / s*(SPARC median) 1.000
+     (diagnostic) g_b(r0) by KT tercile (median): T1 g_b/a0 0.048, BCG share 0.014, gas share 0.986; T2 g_b/a0 0.055, BCG share 0.010, gas share 0.990; T3 g_b/a0 0.073, BCG share 0.005, gas share 0.995
+     (reported) no BCG: fails ['G-MID-T2 (UNDER)', 'G-MID-T3 (UNDER)', 'G-MID-b (UNDER)', 'G-OUT-Mall (UNDER)', 'G-OUT-M3 (UNDER)']; MID T3 pred 1.051; s* KT {'T1': 1.0, 'T2': 1.0, 'T3': 1.0}
+     RULE A [canonical]: does not close  (failing: G-MID-T2 (UNDER), G-MID-T3 (UNDER), G-MID-b (UNDER), G-OUT-Mall (UNDER), G-OUT-M3 (UNDER)); groups FAIL   [34 s, RSS 0.59 GB]
+  --- rule A-prime (max(a0, g_N,tot(r0)))
+  SPARC [A_c2b_refit]: rms 0.0795, median U 0.77 -> line PASS  (X38 0.0795@0.77); s* median 1.000, max 1.00, frac s*>1 0.00; median r0 5.17 kpc
+  SPARC [B_cfg886_bg]: rms 0.0792, median U 0.76 -> line PASS  (X38 0.0792@0.76); s* median 1.000, max 1.00, frac s*>1 0.00; median r0 5.32 kpc
+     G-IN-all   meas +1.938+-1.670 pred +1.078 Z +0.51 (X38 Z +0.51) | h0.686 Z +0.54
+     G-MID-T1   meas +1.096+-0.375 pred +1.059 Z +0.10 (X38 Z +0.10) | h0.686 Z +0.28
+     G-MID-T2   meas +1.650+-0.318 pred +1.077 Z +1.80 (X38 Z +1.80) | h0.686 Z +2.13  FAIL
+     G-MID-T3   meas +2.132+-0.254 pred +1.051 Z +4.26 (X38 Z +4.26) | h0.686 Z +4.45  FAIL
+     G-MID-b    meas +2.242+-0.742 pred -0.038 Z +3.07 (X38 Z +3.07) | h0.686 Z +3.15  FAIL
+     G-OUT-all  meas +0.716+-0.141 pred +0.697 Z +0.14 (X38 Z +0.14) | h0.686 Z +0.06
+     G-OUT-T1   meas +0.394+-0.315 pred +0.617 Z -0.71 (X38 Z -0.71) | h0.686 Z -0.74
+     G-OUT-T2   meas +0.622+-0.229 pred +0.682 Z -0.26 (X38 Z -0.26) | h0.686 Z -0.14
+     G-OUT-T3   meas +1.027+-0.219 pred +0.767 Z +1.19 (X38 Z +1.19) | h0.686 Z +0.97
+     G-OUT-b    meas +1.502+-0.641 pred +0.318 Z +1.85 (X38 Z +1.85) | h0.686 Z +1.60
+     G-OUT-Mall meas +0.929+-0.098 pred +0.698 Z +2.36 (X38 Z +2.36) | h0.686 Z +2.53  FAIL
+     G-OUT-M1   meas +0.488+-0.296 pred +0.524 Z -0.12 (X38 Z -0.12) | h0.686 Z +0.02
+     G-OUT-M2   meas +0.762+-0.135 pred +0.696 Z +0.49 (X38 Z +0.49) | h0.686 Z +0.63
+     G-OUT-M3   meas +1.369+-0.103 pred +0.815 Z +5.36 (X38 Z +5.36) | h0.686 Z +4.86  FAIL
+     G-IN-Mall  meas +2.279+-1.051 pred +1.040 Z +1.18 (X38 Z +1.18) | h0.686 Z +0.96
+     cluster s* by KT tercile {'T1': 1.0, 'T2': 1.0, 'T3': 1.0}, all-326 median 1.000, max 1.000; r0 (Mpc) {'T1': 0.2742263899411015, 'T2': 0.3197199673189047, 'T3': 0.43812753211325706}; RUNAWAY sparc/clusters 0/0; SATURATED 0/0
+     groups: mean +0.0973 Z +2.48 tot 0.0392 ABOVE LAW (s* median 1.000); fair-share variant +0.1970 Z +4.47 ABOVE LAW
+     effective scaling: alpha_eff (OLS log s* on log M, SPARC + 326 clusters) +0.0000; s*(KT T3 median) / s*(SPARC median) 1.000
+     (diagnostic) g_b(r0) by KT tercile (median): T1 g_b/a0 0.048, BCG share 0.014, gas share 0.986; T2 g_b/a0 0.055, BCG share 0.010, gas share 0.990; T3 g_b/a0 0.073, BCG share 0.005, gas share 0.995
+     (reported) no BCG: fails ['G-MID-T2 (UNDER)', 'G-MID-T3 (UNDER)', 'G-MID-b (UNDER)', 'G-OUT-Mall (UNDER)', 'G-OUT-M3 (UNDER)']; MID T3 pred 1.051; s* KT {'T1': 1.0, 'T2': 1.0, 'T3': 1.0}
+     RULE Ap [canonical]: does not close  (failing: G-MID-T2 (UNDER), G-MID-T3 (UNDER), G-MID-b (UNDER), G-OUT-Mall (UNDER), G-OUT-M3 (UNDER)); groups FAIL   [42 s, RSS 0.59 GB]
+  --- rule B (a0 at formation epoch)
+  SPARC [A_c2b_refit]: rms 0.0827, median U 0.79 -> line PASS  (X38 0.0795@0.77); s* median 0.931, max 0.93, frac s*>1 0.00; median r0 5.41 kpc
+  SPARC [B_cfg886_bg]: rms 0.0824, median U 0.79 -> line PASS  (X38 0.0792@0.76); s* median 0.931, max 0.93, frac s*>1 0.00; median r0 5.57 kpc
+     G-IN-all   meas +1.938+-1.670 pred +1.110 Z +0.50 (X38 Z +0.51) | h0.686 Z +0.51
+     G-MID-T1   meas +1.096+-0.375 pred +1.072 Z +0.06 (X38 Z +0.10) | h0.686 Z +0.24
+     G-MID-T2   meas +1.650+-0.318 pred +1.092 Z +1.76 (X38 Z +1.80) | h0.686 Z +2.08  FAIL
+     G-MID-T3   meas +2.132+-0.254 pred +1.070 Z +4.18 (X38 Z +4.26) | h0.686 Z +4.38  FAIL
+     G-MID-b    meas +2.242+-0.742 pred -0.028 Z +3.06 (X38 Z +3.07) | h0.686 Z +3.13  FAIL
+     G-OUT-all  meas +0.716+-0.141 pred +0.701 Z +0.11 (X38 Z +0.14) | h0.686 Z +0.03
+     G-OUT-T1   meas +0.394+-0.315 pred +0.620 Z -0.72 (X38 Z -0.71) | h0.686 Z -0.75
+     G-OUT-T2   meas +0.622+-0.229 pred +0.686 Z -0.28 (X38 Z -0.26) | h0.686 Z -0.15
+     G-OUT-T3   meas +1.027+-0.219 pred +0.773 Z +1.16 (X38 Z +1.19) | h0.686 Z +0.94
+     G-OUT-b    meas +1.502+-0.641 pred +0.325 Z +1.84 (X38 Z +1.85) | h0.686 Z +1.59
+     G-OUT-Mall meas +0.929+-0.098 pred +0.702 Z +2.32 (X38 Z +2.36) | h0.686 Z +2.48  FAIL
+     G-OUT-M1   meas +0.488+-0.296 pred +0.526 Z -0.13 (X38 Z -0.12) | h0.686 Z +0.01
+     G-OUT-M2   meas +0.762+-0.135 pred +0.700 Z +0.47 (X38 Z +0.49) | h0.686 Z +0.60
+     G-OUT-M3   meas +1.369+-0.103 pred +0.822 Z +5.29 (X38 Z +5.36) | h0.686 Z +4.79  FAIL
+     G-IN-Mall  meas +2.279+-1.051 pred +1.070 Z +1.15 (X38 Z +1.18) | h0.686 Z +0.94
+     cluster s* by KT tercile {'T1': 1.0319451028479467, 'T2': 1.0319451028479467, 'T3': 1.0319451028479467}, all-326 median 1.032, max 1.032; r0 (Mpc) {'T1': 0.2688763651622126, 'T2': 0.31345225330176196, 'T3': 0.4294099244866515}; RUNAWAY sparc/clusters 0/0; SATURATED 0/0
+     groups: mean +0.0977 Z +2.49 tot 0.0392 ABOVE LAW (s* median 0.989); fair-share variant +0.1974 Z +4.48 ABOVE LAW
+     effective scaling: alpha_eff (OLS log s* on log M, SPARC + 326 clusters) +0.0113; s*(KT T3 median) / s*(SPARC median) 1.108
+     RULE B [canonical]: does not close  (failing: G-MID-T2 (UNDER), G-MID-T3 (UNDER), G-MID-b (UNDER), G-OUT-Mall (UNDER), G-OUT-M3 (UNDER)); groups FAIL   [45 s, RSS 0.59 GB]
+  --- (C) reported only, NOT framework-native: s = (M/M_piv)^alpha above the largest SPARC M200; SPARC = X38 exactly
+     alpha 0.00: chi2(15 keys, h0.672)   72.49, fails 5; Z MID-T3 +4.26 MID-b +3.07 OUT-all +0.14 M3 +5.36; s* KT T1/T3 1.00/1.00
+     alpha 0.05: chi2(15 keys, h0.672)   55.61, fails 4; Z MID-T3 +3.61 MID-b +2.89 OUT-all -0.13 M3 +4.74; s* KT T1/T3 1.25/1.30
+     alpha 0.10: chi2(15 keys, h0.672)   41.55, fails 3; Z MID-T3 +2.93 MID-b +2.66 OUT-all -0.38 M3 +4.16; s* KT T1/T3 1.55/1.69
+     alpha 0.15: chi2(15 keys, h0.672)   30.55, fails 3; Z MID-T3 +2.21 MID-b +2.40 OUT-all -0.61 M3 +3.62; s* KT T1/T3 1.94/2.19
+     alpha 0.20: chi2(15 keys, h0.672)   22.87, fails 2; Z MID-T3 +1.47 MID-b +2.12 OUT-all -0.83 M3 +3.12; s* KT T1/T3 2.41/2.85
+     alpha 0.25: chi2(15 keys, h0.672)   18.75, fails 1; Z MID-T3 +0.73 MID-b +1.82 OUT-all -1.03 M3 +2.65; s* KT T1/T3 3.01/3.71
+     alpha 0.30: chi2(15 keys, h0.672)   18.50, fails 1; Z MID-T3 -0.01 MID-b +1.51 OUT-all -1.22 M3 +2.22; s* KT T1/T3 3.75/4.82
+     alpha 0.35: chi2(15 keys, h0.672)   22.46, fails 1; Z MID-T3 -0.74 MID-b +1.20 OUT-all -1.39 M3 +1.82; s* KT T1/T3 4.67/6.26
+     alpha 0.40: chi2(15 keys, h0.672)   31.02, fails 2; Z MID-T3 -1.45 MID-b +0.90 OUT-all -1.55 M3 +1.45; s* KT T1/T3 5.83/8.13
+     alpha 0.45: chi2(15 keys, h0.672)   44.68, fails 4; Z MID-T3 -2.13 MID-b +0.60 OUT-all -1.70 M3 +1.11; s* KT T1/T3 7.26/10.57
+     alpha 0.50: chi2(15 keys, h0.672)   64.00, fails 4; Z MID-T3 -2.78 MID-b +0.32 OUT-all -1.84 M3 +0.79; s* KT T1/T3 9.05/13.73
+     alpha 0.55: chi2(15 keys, h0.672)   89.45, fails 6; Z MID-T3 -3.40 MID-b +0.05 OUT-all -1.97 M3 +0.50; s* KT T1/T3 11.28/17.85
+     alpha 0.60: chi2(15 keys, h0.672)  121.36, fails 6; Z MID-T3 -4.00 MID-b -0.21 OUT-all -2.10 M3 +0.22; s* KT T1/T3 14.06/23.19
+     alpha 0.65: chi2(15 keys, h0.672)  159.82, fails 6; Z MID-T3 -4.56 MID-b -0.46 OUT-all -2.21 M3 -0.03; s* KT T1/T3 17.53/30.14
+     alpha 0.70: chi2(15 keys, h0.672)  204.49, fails 6; Z MID-T3 -5.09 MID-b -0.69 OUT-all -2.32 M3 -0.27; s* KT T1/T3 21.85/39.17
+     alpha 0.75: chi2(15 keys, h0.672)  254.75, fails 6; Z MID-T3 -5.60 MID-b -0.91 OUT-all -2.42 M3 -0.50; s* KT T1/T3 27.23/50.90
+     alpha 0.80: chi2(15 keys, h0.672)  309.77, fails 6; Z MID-T3 -6.08 MID-b -1.11 OUT-all -2.51 M3 -0.71; s* KT T1/T3 33.95/66.14
+     alpha 0.85: chi2(15 keys, h0.672)  368.61, fails 6; Z MID-T3 -6.53 MID-b -1.30 OUT-all -2.60 M3 -0.90; s* KT T1/T3 42.31/85.96
+     alpha 0.90: chi2(15 keys, h0.672)  430.32, fails 6; Z MID-T3 -6.96 MID-b -1.48 OUT-all -2.69 M3 -1.09; s* KT T1/T3 52.74/111.70
+     alpha 0.95: chi2(15 keys, h0.672)  494.02, fails 6; Z MID-T3 -7.37 MID-b -1.65 OUT-all -2.77 M3 -1.26; s* KT T1/T3 65.74/145.17
+     alpha 1.00: chi2(15 keys, h0.672)  558.93, fails 6; Z MID-T3 -7.75 MID-b -1.82 OUT-all -2.84 M3 -1.42; s* KT T1/T3 81.94/188.65
+     (C) alpha_best 0.30 (chi2 18.50, fails ['G-OUT-M3 (UNDER)']; s* T3 4.82); alpha with every key passing: none
+
+=== [alt] Sigma_a0 129.2 Msun/pc^2   X38 groups (s = 1): mean +0.0907 Z +2.29 ABOVE LAW
+  --- rule A (max(a0, g_b(r0)))
+  SPARC [A_c2b_refit]: rms 0.0729, median U 0.60 -> line PASS  (X38 0.0729@0.60); s* median 1.000, max 1.00, frac s*>1 0.00; median r0 4.58 kpc
+  SPARC [B_cfg886_bg]: rms 0.0729, median U 0.60 -> line PASS  (X38 0.0729@0.60); s* median 1.000, max 1.00, frac s*>1 0.00; median r0 4.71 kpc
+     G-IN-all   meas +1.779+-1.533 pred +1.181 Z +0.39 (X38 Z +0.39) | h0.686 Z +0.40
+     G-MID-T1   meas +1.004+-0.344 pred +1.046 Z -0.12 (X38 Z -0.12) | h0.686 Z +0.07
+     G-MID-T2   meas +1.513+-0.292 pred +1.074 Z +1.50 (X38 Z +1.50) | h0.686 Z +1.84
+     G-MID-T3   meas +1.959+-0.234 pred +1.070 Z +3.80 (X38 Z +3.80) | h0.686 Z +4.01  FAIL
+     G-MID-b    meas +2.070+-0.681 pred +0.032 Z +2.99 (X38 Z +2.99) | h0.686 Z +3.07  FAIL
+     G-OUT-all  meas +0.656+-0.129 pred +0.663 Z -0.06 (X38 Z -0.06) | h0.686 Z -0.13
+     G-OUT-T1   meas +0.360+-0.288 pred +0.581 Z -0.76 (X38 Z -0.76) | h0.686 Z -0.79
+     G-OUT-T2   meas +0.570+-0.209 pred +0.646 Z -0.37 (X38 Z -0.37) | h0.686 Z -0.24
+     G-OUT-T3   meas +0.941+-0.201 pred +0.737 Z +1.02 (X38 Z +1.02) | h0.686 Z +0.81
+     G-OUT-b    meas +1.381+-0.587 pred +0.335 Z +1.78 (X38 Z +1.78) | h0.686 Z +1.53
+     G-OUT-Mall meas +0.851+-0.090 pred +0.664 Z +2.08 (X38 Z +2.08) | h0.686 Z +2.23  FAIL
+     G-OUT-M1   meas +0.446+-0.270 pred +0.489 Z -0.16 (X38 Z -0.16) | h0.686 Z -0.02
+     G-OUT-M2   meas +0.698+-0.123 pred +0.658 Z +0.32 (X38 Z +0.32) | h0.686 Z +0.47
+     G-OUT-M3   meas +1.257+-0.095 pred +0.787 Z +4.94 (X38 Z +4.94) | h0.686 Z +4.45  FAIL
+     G-IN-Mall  meas +2.092+-0.964 pred +1.135 Z +0.99 (X38 Z +0.99) | h0.686 Z +0.80
+     cluster s* by KT tercile {'T1': 1.0, 'T2': 1.0, 'T3': 1.0}, all-326 median 1.000, max 1.000; r0 (Mpc) {'T1': 0.24366792873778806, 'T2': 0.2839345217341653, 'T3': 0.3884190147558973}; RUNAWAY sparc/clusters 0/0; SATURATED 0/0
+     groups: mean +0.0907 Z +2.29 tot 0.0396 ABOVE LAW (s* median 1.000); fair-share variant +0.1919 Z +4.32 ABOVE LAW
+     effective scaling: alpha_eff (OLS log s* on log M, SPARC + 326 clusters) +0.0000; s*(KT T3 median) / s*(SPARC median) 1.000
+     (diagnostic) g_b(r0) by KT tercile (median): T1 g_b/a0 0.041, BCG share 0.017, gas share 0.983; T2 g_b/a0 0.048, BCG share 0.012, gas share 0.988; T3 g_b/a0 0.064, BCG share 0.006, gas share 0.994
+     (reported) no BCG: fails ['G-MID-T3 (UNDER)', 'G-MID-b (UNDER)', 'G-OUT-Mall (UNDER)', 'G-OUT-M3 (UNDER)']; MID T3 pred 1.070; s* KT {'T1': 1.0, 'T2': 1.0, 'T3': 1.0}
+     RULE A [alt]: does not close  (failing: G-MID-T3 (UNDER), G-MID-b (UNDER), G-OUT-Mall (UNDER), G-OUT-M3 (UNDER)); groups FAIL   [98 s, RSS 0.59 GB]
+  --- rule A-prime (max(a0, g_N,tot(r0)))
+  SPARC [A_c2b_refit]: rms 0.0730, median U 0.60 -> line PASS  (X38 0.0729@0.60); s* median 1.000, max 1.00, frac s*>1 0.00; median r0 4.58 kpc
+  SPARC [B_cfg886_bg]: rms 0.0729, median U 0.60 -> line PASS  (X38 0.0729@0.60); s* median 1.000, max 1.00, frac s*>1 0.00; median r0 4.71 kpc
+     G-IN-all   meas +1.779+-1.533 pred +1.181 Z +0.39 (X38 Z +0.39) | h0.686 Z +0.40
+     G-MID-T1   meas +1.004+-0.344 pred +1.046 Z -0.12 (X38 Z -0.12) | h0.686 Z +0.07
+     G-MID-T2   meas +1.513+-0.292 pred +1.074 Z +1.50 (X38 Z +1.50) | h0.686 Z +1.84
+     G-MID-T3   meas +1.959+-0.234 pred +1.070 Z +3.80 (X38 Z +3.80) | h0.686 Z +4.01  FAIL
+     G-MID-b    meas +2.070+-0.681 pred +0.032 Z +2.99 (X38 Z +2.99) | h0.686 Z +3.07  FAIL
+     G-OUT-all  meas +0.656+-0.129 pred +0.663 Z -0.06 (X38 Z -0.06) | h0.686 Z -0.13
+     G-OUT-T1   meas +0.360+-0.288 pred +0.581 Z -0.76 (X38 Z -0.76) | h0.686 Z -0.79
+     G-OUT-T2   meas +0.570+-0.209 pred +0.646 Z -0.37 (X38 Z -0.37) | h0.686 Z -0.24
+     G-OUT-T3   meas +0.941+-0.201 pred +0.737 Z +1.02 (X38 Z +1.02) | h0.686 Z +0.81
+     G-OUT-b    meas +1.381+-0.587 pred +0.335 Z +1.78 (X38 Z +1.78) | h0.686 Z +1.53
+     G-OUT-Mall meas +0.851+-0.090 pred +0.664 Z +2.08 (X38 Z +2.08) | h0.686 Z +2.23  FAIL
+     G-OUT-M1   meas +0.446+-0.270 pred +0.489 Z -0.16 (X38 Z -0.16) | h0.686 Z -0.02
+     G-OUT-M2   meas +0.698+-0.123 pred +0.658 Z +0.32 (X38 Z +0.32) | h0.686 Z +0.47
+     G-OUT-M3   meas +1.257+-0.095 pred +0.787 Z +4.94 (X38 Z +4.94) | h0.686 Z +4.45  FAIL
+     G-IN-Mall  meas +2.092+-0.964 pred +1.135 Z +0.99 (X38 Z +0.99) | h0.686 Z +0.80
+     cluster s* by KT tercile {'T1': 1.0, 'T2': 1.0, 'T3': 1.0}, all-326 median 1.000, max 1.000; r0 (Mpc) {'T1': 0.24366792873778806, 'T2': 0.2839345217341653, 'T3': 0.3884190147558973}; RUNAWAY sparc/clusters 0/0; SATURATED 0/0
+     groups: mean +0.0907 Z +2.29 tot 0.0396 ABOVE LAW (s* median 1.000); fair-share variant +0.1919 Z +4.32 ABOVE LAW
+     effective scaling: alpha_eff (OLS log s* on log M, SPARC + 326 clusters) +0.0000; s*(KT T3 median) / s*(SPARC median) 1.000
+     (diagnostic) g_b(r0) by KT tercile (median): T1 g_b/a0 0.041, BCG share 0.017, gas share 0.983; T2 g_b/a0 0.048, BCG share 0.012, gas share 0.988; T3 g_b/a0 0.064, BCG share 0.006, gas share 0.994
+     (reported) no BCG: fails ['G-MID-T3 (UNDER)', 'G-MID-b (UNDER)', 'G-OUT-Mall (UNDER)', 'G-OUT-M3 (UNDER)']; MID T3 pred 1.070; s* KT {'T1': 1.0, 'T2': 1.0, 'T3': 1.0}
+     RULE Ap [alt]: does not close  (failing: G-MID-T3 (UNDER), G-MID-b (UNDER), G-OUT-Mall (UNDER), G-OUT-M3 (UNDER)); groups FAIL   [107 s, RSS 0.59 GB]
+  --- rule B (a0 at formation epoch)
+  SPARC [A_c2b_refit]: rms 0.0751, median U 0.66 -> line PASS  (X38 0.0729@0.60); s* median 0.931, max 0.93, frac s*>1 0.00; median r0 4.79 kpc
+  SPARC [B_cfg886_bg]: rms 0.0749, median U 0.64 -> line PASS  (X38 0.0729@0.60); s* median 0.931, max 0.93, frac s*>1 0.00; median r0 4.93 kpc
+     G-IN-all   meas +1.779+-1.533 pred +1.216 Z +0.37 (X38 Z +0.39) | h0.686 Z +0.38
+     G-MID-T1   meas +1.004+-0.344 pred +1.059 Z -0.16 (X38 Z -0.12) | h0.686 Z +0.03
+     G-MID-T2   meas +1.513+-0.292 pred +1.089 Z +1.45 (X38 Z +1.50) | h0.686 Z +1.79
+     G-MID-T3   meas +1.959+-0.234 pred +1.088 Z +3.73 (X38 Z +3.80) | h0.686 Z +3.94  FAIL
+     G-MID-b    meas +2.070+-0.681 pred +0.043 Z +2.98 (X38 Z +2.99) | h0.686 Z +3.05  FAIL
+     G-OUT-all  meas +0.656+-0.129 pred +0.667 Z -0.09 (X38 Z -0.06) | h0.686 Z -0.16
+     G-OUT-T1   meas +0.360+-0.288 pred +0.584 Z -0.77 (X38 Z -0.76) | h0.686 Z -0.80
+     G-OUT-T2   meas +0.570+-0.209 pred +0.650 Z -0.38 (X38 Z -0.37) | h0.686 Z -0.26
+     G-OUT-T3   meas +0.941+-0.201 pred +0.742 Z +0.99 (X38 Z +1.02) | h0.686 Z +0.79
+     G-OUT-b    meas +1.381+-0.587 pred +0.341 Z +1.77 (X38 Z +1.78) | h0.686 Z +1.52
+     G-OUT-Mall meas +0.851+-0.090 pred +0.668 Z +2.03 (X38 Z +2.08) | h0.686 Z +2.19  FAIL
+     G-OUT-M1   meas +0.446+-0.270 pred +0.490 Z -0.16 (X38 Z -0.16) | h0.686 Z -0.03
+     G-OUT-M2   meas +0.698+-0.123 pred +0.661 Z +0.30 (X38 Z +0.32) | h0.686 Z +0.45
+     G-OUT-M3   meas +1.257+-0.095 pred +0.794 Z +4.88 (X38 Z +4.94) | h0.686 Z +4.39  FAIL
+     G-IN-Mall  meas +2.092+-0.964 pred +1.168 Z +0.96 (X38 Z +0.99) | h0.686 Z +0.77
+     cluster s* by KT tercile {'T1': 1.0319451028479467, 'T2': 1.0319451028479467, 'T3': 1.0319451028479467}, all-326 median 1.032, max 1.032; r0 (Mpc) {'T1': 0.23896202603124264, 'T2': 0.27842685495491853, 'T3': 0.3807823720777299}; RUNAWAY sparc/clusters 0/0; SATURATED 0/0
+     groups: mean +0.0911 Z +2.30 tot 0.0396 ABOVE LAW (s* median 0.989); fair-share variant +0.1922 Z +4.33 ABOVE LAW
+     effective scaling: alpha_eff (OLS log s* on log M, SPARC + 326 clusters) +0.0113; s*(KT T3 median) / s*(SPARC median) 1.108
+     RULE B [alt]: does not close  (failing: G-MID-T3 (UNDER), G-MID-b (UNDER), G-OUT-Mall (UNDER), G-OUT-M3 (UNDER)); groups FAIL   [110 s, RSS 0.60 GB]
+  --- (C) reported only, NOT framework-native: s = (M/M_piv)^alpha above the largest SPARC M200; SPARC = X38 exactly
+     alpha 0.00: chi2(15 keys, h0.672)   60.66, fails 4; Z MID-T3 +3.80 MID-b +2.99 OUT-all -0.06 M3 +4.94; s* KT T1/T3 1.00/1.00
+     alpha 0.05: chi2(15 keys, h0.672)   45.80, fails 3; Z MID-T3 +3.13 MID-b +2.78 OUT-all -0.31 M3 +4.35; s* KT T1/T3 1.25/1.30
+     alpha 0.10: chi2(15 keys, h0.672)   33.92, fails 3; Z MID-T3 +2.43 MID-b +2.53 OUT-all -0.55 M3 +3.80; s* KT T1/T3 1.55/1.69
+     alpha 0.15: chi2(15 keys, h0.672)   25.26, fails 3; Z MID-T3 +1.70 MID-b +2.25 OUT-all -0.77 M3 +3.28; s* KT T1/T3 1.94/2.19
+     alpha 0.20: chi2(15 keys, h0.672)   20.08, fails 2; Z MID-T3 +0.96 MID-b +1.96 OUT-all -0.97 M3 +2.80; s* KT T1/T3 2.41/2.85
+     alpha 0.25: chi2(15 keys, h0.672)   18.67, fails 1; Z MID-T3 +0.22 MID-b +1.65 OUT-all -1.17 M3 +2.36; s* KT T1/T3 3.01/3.71
+     alpha 0.30: chi2(15 keys, h0.672)   21.33, fails 0; Z MID-T3 -0.51 MID-b +1.34 OUT-all -1.34 M3 +1.95; s* KT T1/T3 3.75/4.82
+     alpha 0.35: chi2(15 keys, h0.672)   28.46, fails 2; Z MID-T3 -1.23 MID-b +1.03 OUT-all -1.51 M3 +1.57; s* KT T1/T3 4.67/6.26
+     alpha 0.40: chi2(15 keys, h0.672)   40.51, fails 3; Z MID-T3 -1.91 MID-b +0.73 OUT-all -1.66 M3 +1.22; s* KT T1/T3 5.83/8.13
+     alpha 0.45: chi2(15 keys, h0.672)   58.00, fails 4; Z MID-T3 -2.57 MID-b +0.44 OUT-all -1.80 M3 +0.90; s* KT T1/T3 7.26/10.57
+     alpha 0.50: chi2(15 keys, h0.672)   81.45, fails 5; Z MID-T3 -3.21 MID-b +0.16 OUT-all -1.94 M3 +0.59; s* KT T1/T3 9.05/13.73
+     alpha 0.55: chi2(15 keys, h0.672)  111.28, fails 6; Z MID-T3 -3.81 MID-b -0.11 OUT-all -2.06 M3 +0.31; s* KT T1/T3 11.28/17.85
+     alpha 0.60: chi2(15 keys, h0.672)  147.63, fails 6; Z MID-T3 -4.38 MID-b -0.36 OUT-all -2.18 M3 +0.05; s* KT T1/T3 14.06/23.19
+     alpha 0.65: chi2(15 keys, h0.672)  190.35, fails 6; Z MID-T3 -4.92 MID-b -0.60 OUT-all -2.29 M3 -0.19; s* KT T1/T3 17.53/30.14
+     alpha 0.70: chi2(15 keys, h0.672)  238.91, fails 6; Z MID-T3 -5.44 MID-b -0.82 OUT-all -2.39 M3 -0.42; s* KT T1/T3 21.85/39.17
+     alpha 0.75: chi2(15 keys, h0.672)  292.53, fails 6; Z MID-T3 -5.92 MID-b -1.03 OUT-all -2.49 M3 -0.64; s* KT T1/T3 27.23/50.90
+     alpha 0.80: chi2(15 keys, h0.672)  350.31, fails 6; Z MID-T3 -6.39 MID-b -1.23 OUT-all -2.58 M3 -0.84; s* KT T1/T3 33.95/66.14
+     alpha 0.85: chi2(15 keys, h0.672)  411.27, fails 6; Z MID-T3 -6.82 MID-b -1.42 OUT-all -2.66 M3 -1.03; s* KT T1/T3 42.31/85.96
+     alpha 0.90: chi2(15 keys, h0.672)  474.52, fails 6; Z MID-T3 -7.24 MID-b -1.59 OUT-all -2.74 M3 -1.20; s* KT T1/T3 52.74/111.70
+     alpha 0.95: chi2(15 keys, h0.672)  539.22, fails 6; Z MID-T3 -7.63 MID-b -1.76 OUT-all -2.82 M3 -1.37; s* KT T1/T3 65.74/145.17
+     alpha 1.00: chi2(15 keys, h0.672)  604.66, fails 7; Z MID-T3 -8.00 MID-b -1.92 OUT-all -2.89 M3 -1.53; s* KT T1/T3 81.94/188.65
+     (C) alpha_best 0.25 (chi2 18.67, fails ['G-OUT-M3 (UNDER)']; s* T3 3.71); alpha with every key passing: [0.3]
+
+=== VERDICT (both footings): NO FRAMEWORK-NATIVE RULE CLOSES IT
+  [canonical] groups line: A FAIL (Z +2.48), Ap FAIL (Z +2.48), B FAIL (Z +2.49); X38 ABOVE LAW (Z +2.48)
+  [alt] groups line: A FAIL (Z +2.29), Ap FAIL (Z +2.29), B FAIL (Z +2.30); X38 ABOVE LAW (Z +2.29)
+
+K2 floor: test halo ok True; min s* over graded A / A-prime halos 1 (>= 1): PASS
+K3 fixed point: max |max(1, g/a0) - s*| / s* over halos with s* > 1: 4.1e-15: PASS
+
+=== CHECKS
+  [PASS] K1
+  [PASS] K4
+  [PASS] K0
+  [PASS] K2
+  [PASS] K3
+  [PASS] K5
+
+checks 6/6; runtime 157 s; peak RSS 0.60 GB
