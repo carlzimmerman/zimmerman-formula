@@ -249,3 +249,8 @@ So no test in the record yet distinguishes "the law is fundamental" from "the la
 - **It fails the heaviest cores**, under-predicted: MID T3 Z +4.3 / +3.8; KT slope +3.1 / +3.0. The cores come out too large (0.27–0.44 Mpc).
 
 This is the first model in the record that ties a₀ to the cold dark energy itself. Its constant-surface-density core gives a₀ a role in route E rather than leaving it a coincidence. Open: whether baryonic contraction by the BCG and hot gas shrinks the heavy cores (peer lane X39, gravity only, no new constant).
+
+**Baryonic contraction** (`X39_baryonic_contraction`, peer lane; criteria b75acfc767; coordinator rerun identical apart from timing): **SD + AC FAILS** on both footings.
+- Blumenthal and Gnedin contraction by the BCG and hot gas move the heavy cluster cores by only about +0.08 (MID T3 1.05 → 1.13 against 2.13).
+- The same physics rebuilds the galaxy cusp and breaks SPARC (median Υ 0.77 → 0.39).
+- X38 therefore stands without contraction. What remains is that cold dark energy cores must be about 2 × denser than a₀/(2πG) at cluster masses while staying at a₀/(2πG) in galaxies. That is a mass scaling of the core physics that baryons cannot supply.
