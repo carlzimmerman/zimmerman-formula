@@ -1,0 +1,89 @@
+X47_vacuum_tethered_core_floor  MUTATE run (arctan sign flipped in B)
+kappa = 1/2 FITTED; footings never pooled; route E; cold dark energy = gravitating w~0 field component, not matter; not theory closed
+EM1 machinery executed read-only: 175 SPARC galaxies [6 s, RSS 0.26 GB]
+Sigma_a0 = a0/(2 pi G): canonical 106.88, alt 129.16 Msun/pc^2
+Burkert self-pull at fixed Sigma: g(x) = (a0/2) B(x)/x^2; peak at x_pk 0.00100: g_pk/a0 1999.999968; at r0 B(1)/2 1.825119 (peak/r0 - 1 = +1.09e+03)
+g_T = 1999.999968 a0 = canonical 1.8721e-07, alt 2.2624e-07 m/s^2; zeta = g_T/(c^2 sqrt Lambda) = 199.471137 (canonical footing, Lambda = 32 pi a0^2/c^4 = 1.0904e-52 m^-2; the alt footing's a0 is set by rho_total, so there g_T = 1999.999968 a0_alt)
+S0a X38 SPARC [canonical|A_c2b_refit]: rms 0.29243881 (X38 0.07953734, |d| 2.1e-01); median U 0.30 (X38 0.77)
+S0a X38 SPARC [canonical|B_cfg886_bg]: rms 0.30216356 (X38 0.07924672, |d| 2.2e-01); median U 0.30 (X38 0.76)
+S0a X38 SPARC [alt|A_c2b_refit]: rms 0.31071770 (X38 0.07290960, |d| 2.4e-01); median U 0.30 (X38 0.60)
+S0a X38 SPARC [alt|B_cfg886_bg]: rms 0.32076992 (X38 0.07285189, |d| 2.5e-01); median U 0.30 (X38 0.60)
+K0 (S0a) X38 SPARC reproduced: max |d rms| 2.5e-01: FAIL
+K1 (S0b) B(1)/2 1.825119 vs X40b B(1)/2 0.254325; Burkert closed form vs quadrature +9.10e-01: FAIL
+STEP 0 FAILED -> STOP; verdict UNDECIDED (frozen stop rule)
+
+=== TASK 2a: floor condition 'peak self-pull = g_T' for cored profiles (sympy, PYTHONHASHSEED=0)
+  Burkert            dM/dx = 4 pi x^2 rho: FAIL; x_pk 0.0010; g_pk = 12566.37061 G rho0 r_s; rho0 r_1/4 = 1.000 Sigma_a0 (106.9 / 129.2 Msun/pc^2); Sigma_proj(0) = 1.571 Sigma_a0; M(<r_pk)/(pi r_pk^2) = 3999.9999 Sigma_a0 (identity)
+  pseudo-isothermal  dM/dx = 4 pi x^2 rho: exact; x_pk 1.5150; g_pk = 2.88874 G rho0 r_s; rho0 r_1/4 = 7534.639 Sigma_a0 (805297.1 / 973208.7 Msun/pc^2); Sigma_proj(0) = 13666.323 Sigma_a0; M(<r_pk)/(pi r_pk^2) = 3999.9999 Sigma_a0 (identity)
+  Einasto n=2        dM/dx = 4 pi x^2 rho: exact; x_pk 6.0806; g_pk = 3.24492 G rho0 r_s; rho0 r_1/4 = 7442.456 Sigma_a0 (795444.6 / 961301.9 Msun/pc^2); Sigma_proj(0) = 15490.497 Sigma_a0; M(<r_pk)/(pi r_pk^2) = 3999.9999 Sigma_a0 (identity)
+  Einasto n=3        dM/dx = 4 pi x^2 rho: exact; x_pk 41.9102; g_pk = 8.16502 G rho0 r_s; rho0 r_1/4 = 4100.334 Sigma_a0 (438240.9 / 529618.0 Msun/pc^2); Sigma_proj(0) = 18468.604 Sigma_a0; M(<r_pk)/(pi r_pk^2) = 3999.9999 Sigma_a0 (identity)
+  Einasto n=4        dM/dx = 4 pi x^2 rho: exact; x_pk 402.2182; g_pk = 28.69000 G rho0 r_s; rho0 r_1/4 = 1617.712 Sigma_a0 (172899.9 / 208951.1 Msun/pc^2); Sigma_proj(0) = 21024.251 Sigma_a0; M(<r_pk)/(pi r_pk^2) = 3999.9999 Sigma_a0 (identity)
+K2 sympy dM/dx = 4 pi x^2 rho for all five profiles: FAIL
+  spread of rho0 r_1/4 across shapes: 1.000-7534.639 Sigma_a0 (3.88 dex). For any fixed-shape family g_pk = C G rho0 r_s, so the floor <=> constant Sigma by dimensional analysis: a restatement of X38, not a result.
+
+=== TASK 2b: SPARC, per-galaxy free Sigma (X38's own g(r0) = g_T for every galaxy BY CONSTRUCTION; not a test)
+  [canonical] U_free: constrained 63/175; log10(g(r0)/g_T) median -1.080 [16-84 -1.24, -0.75], half-width 0.24 dex; below -0.30: 0.952; above +0.30: 0.000; within 0.15: 0.000 -> centred False, narrow True
+  [canonical] U_0.50: constrained 56/175; log10(g(r0)/g_T) median -1.060 [16-84 -1.25, -0.76], half-width 0.24 dex; below -0.30: 0.982; above +0.30: 0.000; within 0.15: 0.000 -> centred False, narrow True
+  [canonical] D1 (floor: <= 1/3 of constrained cores below -0.30 dex): FAIL
+  [canonical] D3 (VT-L self-consistency): X38 halo mass inside R_last with g_h < g_T: median 1.0000, min 1.0000 -> FAIL  (analytic: g_T is the halo's own peak, so g_h <= g_T at every radius)
+  [alt] U_free: constrained 58/175; log10(g(r0)/g_T) median -1.130 [16-84 -1.30, -0.75], half-width 0.27 dex; below -0.30: 0.983; above +0.30: 0.000; within 0.15: 0.000 -> centred False, narrow False
+  [alt] U_0.50: constrained 51/175; log10(g(r0)/g_T) median -1.100 [16-84 -1.26, -0.84], half-width 0.21 dex; below -0.30: 1.000; above +0.30: 0.000; within 0.15: 0.000 -> centred False, narrow True
+  [alt] D1 (floor: <= 1/3 of constrained cores below -0.30 dex): FAIL
+  [alt] D3 (VT-L self-consistency): X38 halo mass inside R_last with g_h < g_T: median 1.0000, min 1.0000 -> FAIL  (analytic: g_T is the halo's own peak, so g_h <= g_T at every radius)
+  context PROVISIONAL Gentile+2009 (transcribed in CFG4_galaxy_law.py): <Sigma>(<r0) = 72 (+42/-27) -> g(r0) = pi G <Sigma> = 3.153e-11 [1.97e-11, 4.99e-11] m/s^2 = 0.00 / 0.00 g_T (canonical / alt)
+  context EXTERNAL Li+2020 Burkert fits (record h5_h95_h58.out, F25): rho0 r0 median 176.8 Msun/pc^2 (scatter 0.452 dex) -> g(r0)/g_T = 1.65 / 1.37
+
+=== TASK 3: theorem D-T (CFG941 DERIVATION 1.3)
+  DT1 reproduced: tether force F(u) = g with the law imposed -> [a_0*u/(a_0 - u)] ; equals a0 u/(a0 - u): True
+  linear self-gravity coefficient of a tethered medium: -K*c_2*rho_c + K*rho_c -> 0 at c2 = 1 (D-T), full K rho_c at c2 = 0 (no tether)
+
+=== TASK 4: linear self-acceleration of the cold sector vs g_T
+  EM1 KC (CLASS sigma8 vs F3): A_c2b_refit own 0.82742 vs F3 0.82742; B_cfg886_bg own 0.81715 vs F3 0.81715
+  [A_c2b_refit|canonical] g_T 1.872e-07; largest nu=3 linear g_k/g_T over k 0.01-10, z <= 3: 0.0000 -> G1 FAIL
+     z_cross (nu=1 g_k = g_T, tether OFF above): k 0.01: >3000, k 0.03: >3000, k 0.1: >3000, k 0.3: >3000, k 1.0: >3000, k 3.0: >3000, k 10.0: >3000
+     z_cross (nu=3): k 0.01: >3000, k 0.03: >3000, k 0.1: >3000, k 0.3: >3000, k 1.0: >3000, k 3.0: >3000, k 10.0: >3000
+  [A_c2b_refit|alt] g_T 2.262e-07; largest nu=3 linear g_k/g_T over k 0.01-10, z <= 3: 0.0000 -> G1 FAIL
+     z_cross (nu=1 g_k = g_T, tether OFF above): k 0.01: >3000, k 0.03: >3000, k 0.1: >3000, k 0.3: >3000, k 1.0: >3000, k 3.0: >3000, k 10.0: >3000
+     z_cross (nu=3): k 0.01: >3000, k 0.03: >3000, k 0.1: >3000, k 0.3: >3000, k 1.0: >3000, k 3.0: >3000, k 10.0: >3000
+  [A_c2b_refit] z    0: g_k (m/s^2) 2.93e-13 4.81e-13 4.65e-13 3.23e-13 1.63e-13 7.56e-14 2.96e-14 | cum(k>=0.01) 8.64e-13 | /g_T canon 0.0000 (max k)
+  [A_c2b_refit] z  0.5: g_k (m/s^2) 5.07e-13 8.34e-13 8.05e-13 5.59e-13 2.83e-13 1.31e-13 5.12e-14 | cum(k>=0.01) 1.50e-12 | /g_T canon 0.0000 (max k)
+  [A_c2b_refit] z    1: g_k (m/s^2) 7.12e-13 1.17e-12 1.13e-12 7.85e-13 3.97e-13 1.84e-13 7.18e-14 | cum(k>=0.01) 2.10e-12 | /g_T canon 0.0000 (max k)
+  [A_c2b_refit] z    2: g_k (m/s^2) 1.10e-12 1.81e-12 1.75e-12 1.21e-12 6.14e-13 2.84e-13 1.11e-13 | cum(k>=0.01) 3.25e-12 | /g_T canon 0.0000 (max k)
+  [A_c2b_refit] z    3: g_k (m/s^2) 1.48e-12 2.43e-12 2.35e-12 1.63e-12 8.26e-13 3.82e-13 1.49e-13 | cum(k>=0.01) 4.37e-12 | /g_T canon 0.0000 (max k)
+  [A_c2b_refit] z    5: g_k (m/s^2) 2.23e-12 3.67e-12 3.54e-12 2.46e-12 1.24e-12 5.76e-13 2.25e-13 | cum(k>=0.01) 6.59e-12 | /g_T canon 0.0000 (max k)
+  [A_c2b_refit] z   10: g_k (m/s^2) 4.10e-12 6.74e-12 6.51e-12 4.52e-12 2.29e-12 1.06e-12 4.14e-13 | cum(k>=0.01) 1.21e-11 | /g_T canon 0.0000 (max k)
+  [A_c2b_refit] z   30: g_k (m/s^2) 1.16e-11 1.91e-11 1.84e-11 1.28e-11 6.47e-12 2.99e-12 1.17e-12 | cum(k>=0.01) 3.43e-11 | /g_T canon 0.0001 (max k)
+  [A_c2b_refit] with g_T(z) on M-DEC: largest nu=3 ratio z <= 3: canonical 0.0001, alt 0.0000
+  [A_c2b_refit] cold self-pull at turnaround / g_T(canonical): z 0: 0.000/0.000/0.000/0.000; z 1: 0.000/0.000/0.000/0.000; z 2: 0.000/0.000/0.000/0.000; z 3: 0.000/0.000/0.000/0.000; z 5: 0.000/0.000/0.000/0.000  (M = 1e10/1e11/1e12/1e13 Msun)
+  [B_cfg886_bg|canonical] g_T 1.872e-07; largest nu=3 linear g_k/g_T over k 0.01-10, z <= 3: 0.0000 -> G1 FAIL
+     z_cross (nu=1 g_k = g_T, tether OFF above): k 0.01: >3000, k 0.03: >3000, k 0.1: >3000, k 0.3: >3000, k 1.0: >3000, k 3.0: >3000, k 10.0: >3000
+     z_cross (nu=3): k 0.01: >3000, k 0.03: >3000, k 0.1: >3000, k 0.3: >3000, k 1.0: >3000, k 3.0: >3000, k 10.0: >3000
+  [B_cfg886_bg|alt] g_T 2.262e-07; largest nu=3 linear g_k/g_T over k 0.01-10, z <= 3: 0.0000 -> G1 FAIL
+     z_cross (nu=1 g_k = g_T, tether OFF above): k 0.01: >3000, k 0.03: >3000, k 0.1: >3000, k 0.3: >3000, k 1.0: >3000, k 3.0: >3000, k 10.0: >3000
+     z_cross (nu=3): k 0.01: >3000, k 0.03: >3000, k 0.1: >3000, k 0.3: >3000, k 1.0: >3000, k 3.0: >3000, k 10.0: >3000
+  [B_cfg886_bg] z    0: g_k (m/s^2) 2.90e-13 4.66e-13 4.42e-13 3.05e-13 1.53e-13 7.05e-14 2.75e-14 | cum(k>=0.01) 8.30e-13 | /g_T canon 0.0000 (max k)
+  [B_cfg886_bg] z  0.5: g_k (m/s^2) 5.05e-13 8.12e-13 7.69e-13 5.31e-13 2.66e-13 1.23e-13 4.79e-14 | cum(k>=0.01) 1.44e-12 | /g_T canon 0.0000 (max k)
+  [B_cfg886_bg] z    1: g_k (m/s^2) 7.10e-13 1.14e-12 1.08e-12 7.48e-13 3.75e-13 1.73e-13 6.74e-14 | cum(k>=0.01) 2.03e-12 | /g_T canon 0.0000 (max k)
+  [B_cfg886_bg] z    2: g_k (m/s^2) 1.10e-12 1.77e-12 1.68e-12 1.16e-12 5.81e-13 2.68e-13 1.05e-13 | cum(k>=0.01) 3.15e-12 | /g_T canon 0.0000 (max k)
+  [B_cfg886_bg] z    3: g_k (m/s^2) 1.48e-12 2.38e-12 2.26e-12 1.56e-12 7.82e-13 3.60e-13 1.41e-13 | cum(k>=0.01) 4.24e-12 | /g_T canon 0.0000 (max k)
+  [B_cfg886_bg] z    5: g_k (m/s^2) 2.23e-12 3.59e-12 3.40e-12 2.35e-12 1.18e-12 5.43e-13 2.12e-13 | cum(k>=0.01) 6.39e-12 | /g_T canon 0.0000 (max k)
+  [B_cfg886_bg] z   10: g_k (m/s^2) 4.11e-12 6.61e-12 6.26e-12 4.32e-12 2.17e-12 9.99e-13 3.90e-13 | cum(k>=0.01) 1.18e-11 | /g_T canon 0.0000 (max k)
+  [B_cfg886_bg] z   30: g_k (m/s^2) 1.16e-11 1.87e-11 1.77e-11 1.22e-11 6.13e-12 2.83e-12 1.10e-12 | cum(k>=0.01) 3.33e-11 | /g_T canon 0.0001 (max k)
+  [B_cfg886_bg] with g_T(z) on M-DEC: largest nu=3 ratio z <= 3: canonical 0.0000, alt 0.0000
+  [B_cfg886_bg] cold self-pull at turnaround / g_T(canonical): z 0: 0.000/0.000/0.000/0.000; z 1: 0.000/0.000/0.000/0.000; z 2: 0.000/0.000/0.000/0.000; z 3: 0.000/0.000/0.000/0.000; z 5: 0.000/0.000/0.000/0.000  (M = 1e10/1e11/1e12/1e13 Msun)
+
+=== TASK 5: Sigma_floor(z) = Sigma_a0 a0(z)/a0(0), DESI M-DEC (CFG223), reported only
+  [canonical] z 0: a0 ratio 1.000, rho0 r0 106.9 Msun/pc^2, g_T 1.872e-07; z 0.5: a0 ratio 1.032, rho0 r0 110.3 Msun/pc^2, g_T 1.932e-07; z 1: a0 ratio 0.989, rho0 r0 105.7 Msun/pc^2, g_T 1.851e-07; z 2: a0 ratio 0.874, rho0 r0 93.4 Msun/pc^2, g_T 1.636e-07
+  [alt] z 0: a0 ratio 1.000, rho0 r0 129.2 Msun/pc^2, g_T 2.262e-07; z 0.5: a0 ratio 1.032, rho0 r0 133.3 Msun/pc^2, g_T 2.335e-07; z 1: a0 ratio 0.989, rho0 r0 127.7 Msun/pc^2, g_T 2.237e-07; z 2: a0 ratio 0.874, rho0 r0 112.9 Msun/pc^2, g_T 1.977e-07
+
+=== VERDICT (primary, VT-L): UNDECIDED (step 0)   per footing {'canonical': 'UNDECIDED (step 0)', 'alt': 'UNDECIDED (step 0)'}
+=== VT-O (reported): UNDECIDED (step 0)
+
+=== CHECKS
+  [FAIL] K0
+  [FAIL] K1
+  [FAIL] K2
+  [PASS] K3
+  [PASS] K4
+
+checks 2/5; runtime 18 s; peak RSS 0.60 GB
