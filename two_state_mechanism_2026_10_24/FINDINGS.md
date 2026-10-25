@@ -1,4 +1,4 @@
-# Research findings through charged molecular assembly tests
+# Research findings through nonequilibrium molecular assembly
 
 Start here for the current status. The original top-level README describes the
 initial spherical prototype; later stages below supersede its scope.
@@ -12,6 +12,7 @@ conservation checks and explicitly documented limitations.
 
 | Stage | Finding | Scope / unresolved issue |
 |---|---|---|
+| [Nonequilibrium molecular assembly](../two_state_mechanism_2026_10_25/nonequilibrium/README.md) | Refined Coulomb spectrum has23 bound levels; charge/energy-conserving radiative trajectories give best screened disk-proxy molecular mass fraction0.0292%. Conditional kinetic cap4.415% removes density and duration as rescue parameters for this subnetwork. |12 common screened parameter choices, no target success. Opaque regimes need photon recycling; incomplete chemistry, no live gravity or rotating morphology. |
 | [Charged molecular assembly](../two_state_mechanism_2026_10_25/assembly/README.md) | Coulomb parent gives a positively charged molecular bound state, linked radiative channel and local stiffness. Restricted equilibrium mass cap .4869; largest disk-proxy fraction among29 common applicability-passing closed-energy cases is1.24e-6. | Not a unique completion of the old lattice; approximate molecular basis, incomplete chemistry, no reaction trajectories, nodal material or galactic formation. |
 | [Coupled orbital and quantum transport](../two_state_mechanism_2026_10_25/coupled_orbital/README.md) | Self-consistent3D orbital charge/dipole, moving countercharge and elastic energy now share a Hamiltonian. Exact quantized countercharge mode reveals a resonant transfer channel missed by mean field. | No assembly/dissociation channel, charged tether species, live gravity or disk/dwarf/cluster separation. Material parameters remain conditional. |
 | [Physical electric coupling and transport](electric_transport_2026_10_25/README.md) | Opposite-parity orbitals give a physical electric mass, but their complete position operator also drives charge redistribution. Conservative3D elastic propagation exports core energy without deleting it. | No self-consistent screening, orbital cooling, live-gravity assembly or population separation; simpler real-bond modulation lacks the required cubic response. |
@@ -34,6 +35,12 @@ neutral pairs, quantum Jeans instability and charged tethering are distinct
 observables; they must not be relabeled as each other.
 
 ## Latest verification
+
+The nonequilibrium stage records eight completed runs and two retained failed
+implementation runs. Numerical continuum and time refinements, independent box
+normalization, a continuous-interpolant kinetic bound and provenance validation
+are in its [audit](../two_state_mechanism_2026_10_25/nonequilibrium/AUDIT.md).
+
 
 The charged-assembly stage has four completed, provenance-validated runs:
 bound/continuum spectra, restricted chemistry, applicability-directed extension

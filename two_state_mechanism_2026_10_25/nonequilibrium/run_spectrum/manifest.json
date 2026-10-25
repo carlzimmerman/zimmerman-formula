@@ -1,0 +1,158 @@
+{
+  "schema_version": 2,
+  "claim_id": "COULOMB_CONTINUUM_CONVERGENCE_2026_10_25",
+  "repository": {
+    "commit": "5d3367ed3651795c17b66a47ff2a7bf98bae8d38",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "two_state_mechanism_2026_10_25/nonequilibrium/spectrum.py",
+    "--output",
+    "two_state_mechanism_2026_10_25/nonequilibrium/run_spectrum/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "23-level candidate spectrum and energy-normalized radiative continuum over finite radial, electronic and energy refinements",
+    "coefficient_domain": "Double precision nonrelativistic Born-Oppenheimer Coulomb radial solver",
+    "conventions": "Atomic units mC=hbar=Q²/(4pi epsilon)=1; all nuclear rotational multiplicities without spin exchange projection",
+    "inputs": [
+      "spectrum.py",
+      "KINETICS.md",
+      "run_electronic/results.json"
+    ],
+    "bounds": {
+      "h": [
+        0.04,
+        0.02,
+        0.01
+      ],
+      "matching_R": [
+        400,
+        800
+      ],
+      "energies": [
+        1e-10,
+        2
+      ],
+      "energy_points": [
+        640,
+        1280
+      ],
+      "tail_join": [
+        32,
+        40
+      ]
+    },
+    "non_claims": [
+      "Not exact finite-mass chemistry",
+      "Not full reaction network",
+      "Not galaxy formation",
+      "No resolution proof for arbitrarily narrow resonances"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T20:11:27.738798+00:00",
+    "runtime_seconds": 2.905898,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 3000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "two_state_mechanism_2026_10_25/nonequilibrium/spectrum.py",
+    "two_state_mechanism_2026_10_25/nonequilibrium/KINETICS.md",
+    "two_state_mechanism_2026_10_25/nonequilibrium/run_electronic/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "two_state_mechanism_2026_10_25/nonequilibrium/spectrum.py",
+      "sha256": "6b2194c18713f2cfe37abf8768dbf6f4eb66008a9a3939e546c97aa7f2cd8cdb",
+      "sha256_after": "6b2194c18713f2cfe37abf8768dbf6f4eb66008a9a3939e546c97aa7f2cd8cdb"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_25/nonequilibrium/KINETICS.md",
+      "sha256": "bc5ce9dae259b0dc6e0e8c649302e6739bc1d269d105fe24cf660c94837b5f6b",
+      "sha256_after": "bc5ce9dae259b0dc6e0e8c649302e6739bc1d269d105fe24cf660c94837b5f6b"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_25/nonequilibrium/run_electronic/results.json",
+      "sha256": "ae83dd58601f20693557288485c428e60f8afc975d648f41f867d604f43da336",
+      "sha256_after": "ae83dd58601f20693557288485c428e60f8afc975d648f41f867d604f43da336"
+    }
+  ],
+  "output_directory": "two_state_mechanism_2026_10_25/nonequilibrium/run_spectrum",
+  "declared_results": [
+    "two_state_mechanism_2026_10_25/nonequilibrium/run_spectrum/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "two_state_mechanism_2026_10_25/nonequilibrium/run_spectrum/stdout.txt",
+      "sha256": "80b7a6421bd2d201f00319e05a20e3035a2daba38a3d7f6a76a85eac493e58b6",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_25/nonequilibrium/run_spectrum/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_25/nonequilibrium/run_spectrum/results.json",
+      "sha256": "ef31b9db07b29912ee99e8dea7e752ca748aee4f99d92f058924b8ab3224bffe",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
