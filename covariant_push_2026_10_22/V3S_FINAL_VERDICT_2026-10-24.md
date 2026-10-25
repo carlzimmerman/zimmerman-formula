@@ -197,3 +197,10 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
   - SPARC data quality also correlates (−0.40), a confound.
 - **Where the law is right.** Within ±0.05 dex mostly at high surface density and high x: 29 / 27 % of SPARC overall, ~30 % in the upper half of Σ, 5–9 % in the lower half.
 - **The misfits.** They are diffuse systems at both ends: gas-rich LSB spirals below, faint compact dwarfs above.
+
+**Bullet Cluster** (`X32_bullet_cold_sector`, 57ff3e7df4 / 975ccfbf49 / 547ae0b9b9; coordinator rerun identical apart from timing): **UNDECIDED** on both footings. The stop rule fired: check K4 failed because the main cluster's cold component keeps only 0.3–0.5 % at the low sheet c_s.
+- **The law alone** puts both lensing peaks on the gas, 40–51 kpc from it; the observed peaks are on the galaxies, ~200 kpc away.
+- **Collisionless at the sheet c_s:** EXCLUDED. The main nucleus is disrupted, and its peak falls back toward the gas.
+- **Fluid:** TENSION, dependent on the placement rule.
+- **A CDM-like tracer** with σ near the well's survives (f_ret 0.80–1.02) and lands on the galaxies (reported).
+- **The deciding variable is c_s/σ_well, not fluid versus collisionless.** This agrees with X30: the extra cluster mass behaves like a component as hot as the well itself.
