@@ -150,3 +150,8 @@ formation on the record's own P(k). c_f = 4 is EXTERNAL; there are no fitted con
 5.66), which fails the heavy cores again. The data pin c_f ≈ 4–4.2: the groups pass at 4.2, the clusters need about 4, and
 X42's cluster-only calibration implies 3.3–4.6. That matches the standard simulated formation concentration. **Open
 derivation:** c_f from the initial peak's structure (curvature), not from scale-free infall.
+
+**Update (X45, 10-25, post-hoc): peaks plus spherical collapse do not give c_f either.** The BBKS peak (height and
+curvature) on the record's P(k), collapsed shell by shell, makes the formation object a near-uniform core: slope 0 → −0.6,
+with no r₋₂. c_f ≈ 4 comes from orbit mixing and relaxation, so it needs a **native N-body measurement**: the record's own
+PM S0 runs (CFG596/CFG654) on its own background. That would replace X43's one external number with the record's own.
