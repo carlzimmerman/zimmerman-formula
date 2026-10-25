@@ -216,3 +216,12 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
 - **Timing.** In patched CLASS with an energy-conserving turn-on, the cold component must already be dust by z ≈ 5×10⁴. That is 45 × recombination and 15 × equality. Released at recombination, Δχ² ≈ +4.5×10⁵ and σ₈ ≈ 5 % of ΛCDM.
 - **Relic speed.** Decoupling near z ≈ 1100 would give a forest-allowed floor matching the dwarf c₀. At the epochs the CMB allows, that window is empty on canonical and a sliver on alt, and it overshoots the ultra-faints.
 - **Scale link.** Over 54 trials there is one chance-level match: the proton thermal speed at recombination, 4.95 km/s, against c₀. It has no a₀ and no action, so it is numerology.
+
+**Naming (owner, 2026-10-25).** The cold component in this section is **cold dark energy**: a gravitating w ≈ 0 field component that clumps, paired with dark energy (w ≈ −1). It is not matter and not a particle. "Dust-like" describes only its clustering. ΛCDM remains the name of the external rival model. Committed lane text is not rewritten; where an earlier line in this section says "CDM-like" (e.g. X32's tracer), read "dust-like cold dark energy".
+**Physics, stated plainly.** In every test run here, the cold dark energy that the data require behaves like the cold component of ΛCDM:
+- cold and collisionless from z ≳ 5×10⁴;
+- concentrated in cluster cores;
+- carried with the galaxies through the Bullet collision;
+- clustering down to forest scales.
+
+No test here distinguishes it from that component. What the framework adds is the galaxy law, plus the open problem of why isolated galaxies show no extra today.
