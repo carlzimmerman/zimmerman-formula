@@ -264,3 +264,8 @@ This is the first model in the record that ties a₀ to the cold dark energy its
 - **New:** X38 also fails the groups line (σ under-predicted, +0.09–0.10 dex, Z +2.3–2.5), in the same direction as the clusters.
 
 **Reading.** Cold dark energy halo cores sit at a₀/(2πG) in galaxies and rise with mass above galaxy scales (S ∝ M^~0.25–0.3). Nothing in the framework supplies that rise. It is the remaining quantified gap.
+
+**Collapse floor** (`X41_collapse_floor_sigma`, peer lane; criteria 0ea05957ee; coordinator rerun identical apart from timing): **CF INACTIVE** on both footings; it reduces exactly to X38.
+- The Lacey–Cole EPS collapse ρr on the record's CLASS P(k) scales as M^0.23 over 1e13–1e15 M☉, near the needed M^0.25–0.30.
+- Its amplitude is only 0.22–0.26 × a₀/(2πG). Reaching the cluster cores would need a core-concentration factor of about 11–23.
+- **Requirement now.** Cold dark energy cores sit at the a₀/(2πG) floor in galaxies, and at about 10–20 × the collapse ρr in groups and clusters. The origin of that concentration factor is missing.
