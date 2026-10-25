@@ -1,0 +1,420 @@
+[
+ {
+  "slug": "c0_01_gw_light_speed",
+  "name": "Gravity waves at light speed",
+  "status": "PASS",
+  "data": "No observational data array: the linear spectrum of v3 (beta = eta = 0, BS dust) from C5, the khronon/dust pair speeds from P3's decoupling-limit estimate on 8 declared backgrounds (canonical footing, L* = 24 pc), the tensor speed shift from C8 K9.",
+  "picture": "Left: horizontal log bars of propagation speed in units of c, with c drawn dashed; the two tensor modes sit exactly on 1, the pair's speed per background in grey, red where it exceeds c (capped supermassive holes). Right: log bars of the tensor |dv/c| at 100 Hz against the GW170817 bound 1e-15, and the pair-to-metric mixing.",
+  "why": "With beta = 0 the tensor sector is GR's, so both tensor modes have omega^2/k^2 = 1 exactly on every background tested. Where D.P > 0 the khronon/dust pair also propagates (P3 corrects the earlier 'tensor only' reading): about 1e-4 c in the lab and Solar System, 2.1e-3 c at the double pulsar, but superluminal near capped supermassive holes (6.66 c at M87*, 261 c at Sgr A*). Its mixing with metric waves is at most 2.35e-9, and the induced tensor speed shift is at most 6.19e-32, far below 1e-15. CFG292 (old chassis, also beta = 0) has the same tensor sector.",
+  "numbers": [
+   {
+    "what": "tensor omega^2/k^2 (C4-literal + BS dust, y = 1)",
+    "value": "1.0, 1.0",
+    "file": "covariant_push_2026_10_22/C5_health/c5_health_results.json"
+   },
+   {
+    "what": "pair speed c_pi, Eot-Wash / planets / double pulsar (canonical, 24 pc)",
+    "value": "1.028e-4 / 9.935e-5 / 2.086e-3",
+    "file": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json"
+   },
+   {
+    "what": "pair speed at M87* / Sgr A* (3M, capped)",
+    "value": "6.658 / 260.7",
+    "file": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json"
+   },
+   {
+    "what": "max pair-metric mixing eps (BH) / double pulsar",
+    "value": "2.350e-9 / 2.012e-9",
+    "file": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json"
+   },
+   {
+    "what": "max tensor |dv/c| at 100 Hz (alt, Earth-surface g)",
+    "value": "6.186e-32",
+    "file": "covariant_push_2026_10_22/C8_instantaneous/c8_instantaneous_results.json"
+   }
+  ],
+  "sources": [
+   {
+    "path": "covariant_push_2026_10_22/C5_health/c5_health_results.json",
+    "commit": "f3e7d4d661"
+   },
+   {
+    "path": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json",
+    "commit": "2b067f2813"
+   },
+   {
+    "path": "covariant_push_2026_10_22/C8_instantaneous/c8_instantaneous_results.json",
+    "commit": "aa113a5e96"
+   },
+   {
+    "path": "campaign_fresh_gravity/CFG292_khronon_strong_hyperbolicity/cfg292_khronon_strong_hyperbolicity_results.json",
+    "commit": "918b331834"
+   }
+  ]
+ },
+ {
+  "slug": "c0_02_health",
+  "name": "Health: ghosts, gradients",
+  "status": "COND",
+  "data": "X3's 1D periodic slab (no WKB) growth rate Gamma where rho_tau < 0, for v3 as written and for the v3s switched stiffness; the 320 soft-side strong-coupling lengths from the 10-23 review (H4 region values, both footings). Ghost-freedom of the literal form is C5's linear spectrum.",
+  "picture": "Left: Gamma versus grid points N on log axes; v3 (red squares) doubles with each doubling of N, the switched operator (green, zero dust; gold, dust buffer) stays flat below the analytic rate bound. Right: histogram of log10 of the 320 soft-side strong-coupling lengths with 1 pc drawn dashed.",
+  "why": "v3 as written is Hadamard ill-posed where rho_tau < 0: the slab rate doubles per grid doubling (5.04 to 39.6), H4's UV-unbounded growth. Switching the stiffness off where D.P < 0 gives a rate that converges (1.224744 with zero dust, 1.183214 with a dust buffer) and stays under the bound, with c^2 >= 0 for every state. It is conditional: it needs dust >= -D.P in stiff regions, the zero-dust interface is a knife edge (a scheme that lets stiffness touch a rho_tau < 0 face grows as N^0.497), and 2D/3D evolution is not computed. On the soft side the strong-coupling length is 56.8 m to 5.38e4 m, far below 1 pc, so the effective theory holds there.",
+  "numbers": [
+   {
+    "what": "v3 unswitched slab Gamma, N = 64..512 (gamma_L 1e-3)",
+    "value": "5.036, 9.920, 19.80, 39.61",
+    "file": "rebuild_2026_10_22/X3_switched_stiffness/x3_switched_stiffness_results.json"
+   },
+   {
+    "what": "switched slab Gamma at finest N (zero dust / dust buffer)",
+    "value": "1.224744 / 1.183214",
+    "file": "rebuild_2026_10_22/X3_switched_stiffness/x3_switched_stiffness_results.json"
+   },
+   {
+    "what": "soft-side strong-coupling length range (320 values)",
+    "value": "56.81 m to 5.382e4 m",
+    "file": "reviews/v3s_soft_side_strong_coupling_2026_10_23/soft_side_sc_results.json"
+   },
+   {
+    "what": "C5 C4-literal rows: unstable / ghost modes",
+    "value": "0 / 0",
+    "file": "covariant_push_2026_10_22/C5_health/c5_health_results.json"
+   }
+  ],
+  "sources": [
+   {
+    "path": "rebuild_2026_10_22/X3_switched_stiffness/x3_switched_stiffness_results.json",
+    "commit": "31febd3b70"
+   },
+   {
+    "path": "rebuild_2026_10_22/X3_switched_stiffness/README.md",
+    "commit": "9912051760"
+   },
+   {
+    "path": "reviews/v3s_soft_side_strong_coupling_2026_10_23/soft_side_sc_results.json",
+    "commit": "d27e01f42e"
+   },
+   {
+    "path": "rebuild_2026_10_22/H4_v3_saddle_stability/README.md",
+    "commit": "58bf38dcb3"
+   },
+   {
+    "path": "covariant_push_2026_10_22/C5_health/c5_health_results.json",
+    "commit": "f3e7d4d661"
+   }
+  ]
+ },
+ {
+  "slug": "c0_03_leaf_problem",
+  "name": "Leaf problem well-posed",
+  "status": "COND",
+  "data": "C8's numerical uniqueness checks of the (P, lapse) leaf problem: spherical point-mass solutions at r_M/L* = 0.3 and 3 from two initial guesses and on a doubled domain (K4), and a 26^3 3D two-mass solve from two guesses (K5).",
+  "picture": "Horizontal log bars of the relative difference between independently obtained solutions, each with its frozen pass line as a red tick; all bars sit well left of their ticks.",
+  "why": "On each khronon leaf the P and lapse equations are the Euler-Lagrange equations of one strictly convex functional (K2), with principal symbol bounded below by min(K, gamma_L xi^2) (K1, min ratio 1), so on a bounded domain the solution exists and is unique. The numbers confirm it: two guesses agree to 8.7e-14 and 3.9e-15 in spherical cases and to 3.7e-8 / 1.4e-7 in 3D. v3s's switched functional stays convex with an obstacle-type free boundary (X3 B3-S). It stays conditional because the infinite-volume theorem and the coupled GR + dust system are open.",
+  "numbers": [
+   {
+    "what": "K4 two-guess difference, r_M/L* = 0.3 / 3",
+    "value": "8.714e-14 / 3.927e-15 (line 1e-6)",
+    "file": "covariant_push_2026_10_22/C8_instantaneous/c8_instantaneous_results.json"
+   },
+   {
+    "what": "K4 domain-doubling change, r_M/L* = 0.3 / 3",
+    "value": "1.429e-6 / 1.756e-7 (line 1e-3)",
+    "file": "covariant_push_2026_10_22/C8_instantaneous/c8_instantaneous_results.json"
+   },
+   {
+    "what": "K5 3D two-guess difference, grad Phi / P",
+    "value": "3.650e-8 / 1.371e-7 (line 1e-4)",
+    "file": "covariant_push_2026_10_22/C8_instantaneous/c8_instantaneous_results.json"
+   },
+   {
+    "what": "K1 min Schur / bound",
+    "value": "1.0",
+    "file": "covariant_push_2026_10_22/C8_instantaneous/c8_instantaneous_results.json"
+   }
+  ],
+  "sources": [
+   {
+    "path": "covariant_push_2026_10_22/C8_instantaneous/c8_instantaneous_results.json",
+    "commit": "aa113a5e96"
+   },
+   {
+    "path": "covariant_push_2026_10_22/C8_instantaneous/README.md",
+    "commit": "aa113a5e96"
+   },
+   {
+    "path": "rebuild_2026_10_22/X3_switched_stiffness/x3_switched_stiffness_results.json",
+    "commit": "31febd3b70"
+   },
+   {
+    "path": "rebuild_2026_10_22/H4_v3_saddle_stability/README.md",
+    "commit": "58bf38dcb3"
+   }
+  ]
+ },
+ {
+  "slug": "c0_04_causality",
+  "name": "Causality: criterion A / B",
+  "status": "COND",
+  "data": "C8's illustrative lab signal: the change in P force 1 km away when 1000 kg moves 1 m, at L* = 20, 24, 90 pc; the a0 footings from C6's inputs for scale.",
+  "picture": "Left: schematic of khronon leaves (horizontal lines), a light cone, and the P/lapse response running along the leaf at the same instant of tau. Right: log bars of the signal acceleration against a0 on both footings.",
+  "why": "The P and lapse fields are fixed by an elliptic problem on each leaf, so a moving source changes the P force elsewhere in the same instant of khronon time. Every influence goes forward in tau or stays in a leaf, so criterion B (no paradox, one global time) holds; criterion A (nothing outside the light cone) fails in principle, as a real signal and not a gauge artefact. The size is the qualifier: 1.2e-46 m/s^2 at L* = 24 pc, about 36 orders below a0. No test identified can see it.",
+  "numbers": [
+   {
+    "what": "lab signal, L* = 20 / 24 / 90 pc",
+    "value": "1.752e-46 / 1.217e-46 / 8.654e-48 m/s^2",
+    "file": "covariant_push_2026_10_22/C8_instantaneous/c8_instantaneous_results.json"
+   },
+   {
+    "what": "a0 canonical / alt (as stored)",
+    "value": "9.36e-11 / 1.13e-10 m/s^2",
+    "file": "covariant_push_2026_10_22/C6_literal_cassini/c6_literal_cassini_results.json"
+   }
+  ],
+  "sources": [
+   {
+    "path": "covariant_push_2026_10_22/C8_instantaneous/c8_instantaneous_results.json",
+    "commit": "aa113a5e96"
+   },
+   {
+    "path": "covariant_push_2026_10_22/C8_instantaneous/README.md",
+    "commit": "aa113a5e96"
+   },
+   {
+    "path": "covariant_push_2026_10_22/C6_literal_cassini/c6_literal_cassini_results.json",
+    "commit": "ae428dc252"
+   }
+  ]
+ },
+ {
+  "slug": "c0_05_binary_pulsars",
+  "name": "Binary pulsars + GW170817",
+  "status": "PASS",
+  "data": "C8 K7: the fractional orbit change eps = (a/L*)^2 for J0737-3039A/B, B1913+16 and J1738+0333 at L* = 20/24/90 pc, divided by each system's Pdot_b precision (record transcriptions of Kramer+2021, Weisberg & Huang 2016, Freire+2012, not re-downloaded). C8 K9: tensor speed shift at 100 Hz.",
+  "picture": "Left: grouped log bars of orbit change over Pdot_b precision for the three pulsars and three L*, with 1 (the measurement error) dashed. Right: log bars of tensor |dv/c| on both footings and two background fields against the GW170817 bound 1e-15.",
+  "why": "At beta = eta = 0 there is no propagating non-tensor mode at these scales, so there is no dipole or extra radiation; the instantaneous force does zero work per orbit. The only effect is a conservative orbit change, at most 3.22e-14 of the double pulsar's timing error. The tensor speed shift from the P background is at most 6.19e-32 against 1e-15. P3 adds that the pair-metric mixing at the double pulsar is 2.0e-9, so the leakage stays negligible.",
+  "numbers": [
+   {
+    "what": "worst eps / precision (J0737, L* = 20 pc)",
+    "value": "3.219e-14",
+    "file": "covariant_push_2026_10_22/C8_instantaneous/c8_instantaneous_results.json"
+   },
+   {
+    "what": "J0737 Pdot_b precision used",
+    "value": "6.3e-5",
+    "file": "covariant_push_2026_10_22/C8_instantaneous/c8_instantaneous_results.json"
+   },
+   {
+    "what": "max tensor |dv/c| (alt, Earth-surface g) / canonical",
+    "value": "6.186e-32 / 5.124e-32",
+    "file": "covariant_push_2026_10_22/C8_instantaneous/c8_instantaneous_results.json"
+   },
+   {
+    "what": "double-pulsar mixing eps",
+    "value": "2.012e-9",
+    "file": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json"
+   }
+  ],
+  "sources": [
+   {
+    "path": "covariant_push_2026_10_22/C8_instantaneous/c8_instantaneous_results.json",
+    "commit": "aa113a5e96"
+   },
+   {
+    "path": "covariant_push_2026_10_22/C8_instantaneous/README.md",
+    "commit": "aa113a5e96"
+   },
+   {
+    "path": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json",
+    "commit": "2b067f2813"
+   }
+  ]
+ },
+ {
+  "slug": "c0_06_cassini_screened",
+  "name": "Solar system + Cassini (screened)",
+  "status": "PASS",
+  "data": "C6: the Cassini quadrupole Q2 of the healthy C4-literal screened theory (gamma_F = 0, AQUAL) in a uniform Galactic field, 24 cells = 2 footings x L* 24/50/90 pc x fields E0-E3; inner-planet anomalous accelerations against their bounds.",
+  "picture": "Left: log scatter of Q2 per cell, grouped by L* and coloured by footing, with the Hees 2014 (9e-27) and Park 2026 (5.2e-27) 2-sigma upper lines. Right: bars of anomalous acceleration over bound for Earth, Mars, Saturn at the three L*.",
+  "why": "Inside L* the P field is a hedgehog with no quadrupole at leading order, so Q2 is 1e-34 to 1e-36, between 2.80e7 (Park, worst) and 5.10e9 (Hees, best) below the bounds. The planets see only the hedgehog GM/L*^2; the tightest is Mars at 0.173 of its bound (L* = 24 pc). By the lane's frozen rule the verdict is UNDECIDED because check C2 failed on float rounding (3.8e-11 against a 1e-12 line), not physics; the board reads it as PASS and says so.",
+  "numbers": [
+   {
+    "what": "Q2 range, canonical L* = 24 pc",
+    "value": "1.035e-34 to 1.856e-34 s^-2",
+    "file": "covariant_push_2026_10_22/C6_literal_cassini/c6_literal_cassini_results.json"
+   },
+   {
+    "what": "margin: Park min / Hees min / Hees max",
+    "value": "2.801e7 / 4.848e7 / 5.102e9",
+    "file": "covariant_push_2026_10_22/C6_literal_cassini/c6_literal_cassini_results.json"
+   },
+   {
+    "what": "Mars / Saturn / Earth fraction of bound, L* = 24 pc",
+    "value": "0.1728 / 0.0346 / 0.0278",
+    "file": "covariant_push_2026_10_22/C6_literal_cassini/c6_literal_cassini_results.json"
+   },
+   {
+    "what": "check C2 (frozen FAIL, rounding)",
+    "value": "3.8e-11 vs < 1e-12",
+    "file": "covariant_push_2026_10_22/C6_literal_cassini/c6_literal_cassini_results.json"
+   }
+  ],
+  "sources": [
+   {
+    "path": "covariant_push_2026_10_22/C6_literal_cassini/c6_literal_cassini_results.json",
+    "commit": "ae428dc252"
+   }
+  ]
+ },
+ {
+  "slug": "c0_07_unscreened_cassini",
+  "name": "Unscreened law vs Cassini",
+  "status": "FAIL",
+  "data": "E2: Cassini Q2 of v3's own AQUAL equation (mu = x/(1+x)) with screening switched off (L* = 0), both footings, fields E0-E3, five transition settings y_t (none, 60, 66.38, 77.88, 140), over the Hees 2014 2-sigma upper 9e-27.",
+  "picture": "Points: Q2 / bound per field and footing (dot = no-transition row; faint bar = spread over y_t rows, too small to see), labelled with the min-max over rows; the allowed region below 1 is shaded.",
+  "why": "This is a control, not the theory's claim. Without screening, the Galactic external field leaves a quadrupole at Saturn's orbit 2.44-4.59 times (canonical) and 2.85-5.19 times (alt) the bound in every cell, so the plain law fails Cassini. That failure is why L* > 0 is required; the screened version passes (previous tile).",
+  "numbers": [
+   {
+    "what": "Q2 / Hees, canonical range",
+    "value": "2.444 to 4.593",
+    "file": "doors_push_2026_10_22/E2_field_equation/e2_field_equation_results.json"
+   },
+   {
+    "what": "Q2 / Hees, alt range",
+    "value": "2.850 to 5.185",
+    "file": "doors_push_2026_10_22/E2_field_equation/e2_field_equation_results.json"
+   },
+   {
+    "what": "AQUAL / QUMOND ratio range",
+    "value": "1.230 to 1.489",
+    "file": "doors_push_2026_10_22/E2_field_equation/e2_field_equation_results.json"
+   }
+  ],
+  "sources": [
+   {
+    "path": "doors_push_2026_10_22/E2_field_equation/e2_field_equation_results.json",
+    "commit": "474050bcd8"
+   }
+  ]
+ },
+ {
+  "slug": "c0_08_strong_coupling",
+  "name": "Strong coupling",
+  "status": "COND",
+  "data": "P3 E4: the decoupling-limit loop factor eps = (c_pi k / Lambda)^4 of the worst vertex on each declared background (lab Eot-Wash scale 38.6 um, planets, double pulsar, NS, BH, M87*, galaxy, cosmology) at L* = 20/24/90 pc, both footings.",
+  "picture": "Left: log bars of eps per system (canonical, 24 pc) against the frozen pass line 1e-2. Right: eps at Eot-Wash for the three L* with the margin in k, (1e-2/eps)^(1/4), printed on each bar.",
+  "why": "Everywhere except the lab the pair is extremely weakly coupled (eps below 1e-47). The Eot-Wash 38.6 um scale is the tight spot: eps = 1.31e-3 at L* = 90 pc, a margin of only 1.66 in k (7.6 in eps), the same on both footings. Gravity tests below about 5 um would probe the pair's strong coupling. It is an estimate (decoupling limit, first order in background gradients, O(1) loop factors), so the tile stays conditional.",
+  "numbers": [
+   {
+    "what": "eps at Eot-Wash, L* = 20 / 24 / 90 pc",
+    "value": "6.481e-5 / 9.333e-5 / 1.312e-3",
+    "file": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json"
+   },
+   {
+    "what": "strong-coupling momentum at Eot-Wash, L* = 20 / 90 pc",
+    "value": "2.887e5 / 1.361e5 m^-1",
+    "file": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json"
+   },
+   {
+    "what": "k margin at 90 pc, (1e-2/eps)^(1/4)",
+    "value": "1.66 (computed in the script from the JSON eps)",
+    "file": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json"
+   },
+   {
+    "what": "pass line eps <= 1e-2",
+    "value": "V4",
+    "file": "rebuild_2026_10_22/P3_v3_strong_field/FROZEN_CRITERIA.md"
+   }
+  ],
+  "sources": [
+   {
+    "path": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json",
+    "commit": "2b067f2813"
+   },
+   {
+    "path": "rebuild_2026_10_22/P3_v3_strong_field/FROZEN_CRITERIA.md",
+    "commit": "988eb4940d"
+   }
+  ]
+ },
+ {
+  "slug": "c0_09_matter_conservation",
+  "name": "Matter conservation (G9)",
+  "status": "PASS",
+  "data": "CFG329's symbolic identity checks: relative residuals of the generalised Bianchi identity and the matter identity grad T = 0 at random points, for GR, the plain khronometric theory and the full (old) chassis, plus a deliberately non-covariant power check.",
+  "picture": "Horizontal log bars of relative residual: every covariant case sits at 1e-46 to 1e-48 (floating zero); the non-covariant control (red) is 0.675, showing the test can see a violation.",
+  "why": "grad T = 0 is a Noether-II identity: it holds for any diffeomorphism-invariant action whose matter couples to the metric alone. CFG329 computed it on the older chassis, but the result does not depend on the chassis, and v3 (C4's Khronon parent) is diffeomorphism-invariant with minimally coupled matter, so it carries over. The power check (a coordinate-time term) gives an O(1) residual, so the near-zero values are a real pass, not a blind test.",
+  "numbers": [
+   {
+    "what": "GR control max |div G| (C1)",
+    "value": "1.884e-48",
+    "file": "campaign_fresh_gravity/CFG329_g9_g0_structure/cfg329_g9_g0_results.json"
+   },
+   {
+    "what": "matter identity residual (S1)",
+    "value": "4.357e-47",
+    "file": "campaign_fresh_gravity/CFG329_g9_g0_structure/cfg329_g9_g0_results.json"
+   },
+   {
+    "what": "full chassis Bianchi residual (S2)",
+    "value": "9.273e-47",
+    "file": "campaign_fresh_gravity/CFG329_g9_g0_structure/cfg329_g9_g0_results.json"
+   },
+   {
+    "what": "non-covariant power check (S2 CHK_NONCOV)",
+    "value": "0.675",
+    "file": "campaign_fresh_gravity/CFG329_g9_g0_structure/cfg329_g9_g0_results.json"
+   }
+  ],
+  "sources": [
+   {
+    "path": "campaign_fresh_gravity/CFG329_g9_g0_structure/cfg329_g9_g0_results.json",
+    "commit": "86085d6efa"
+   },
+   {
+    "path": "covariant_push_2026_10_22/C4_khronon_parent/c4_khronon_parent_results.json",
+    "commit": "5f4f845554"
+   }
+  ]
+ },
+ {
+  "slug": "c0_10_black_holes",
+  "name": "Black holes (EHT, LIGO ringdown)",
+  "status": "COND",
+  "data": "P3: regular stationary, non-rotating v3 black-hole exteriors (M87*, Sgr A*, 10 and 63 Msun; both footings; L* 20/24/90 pc; charge c grid), and the largest fractional shift of each strong-field observable over all benchmarks.",
+  "picture": "Horizontal log bars of the worst shift for photon sphere, shadow, ISCO radius and frequency, QNM frequency and damping (green), and the law's effect through M87*'s 100 pc dynamical mass (grey), against the 1e-2 pass line.",
+  "why": "Regular horizons exist only with an infalling (tilted) khronon; on the static foliation the dust stress diverges at the horizon. On the regular members every strong-field shape shift is at most 2.94e-11 and the QNM shifts at most 2.77e-11, far below 1e-2. The largest number, 1.25e-3, is not strong-field: it is the law acting on M87*'s stellar-dynamics mass at 100 pc (illustrative). The tile is conditional because rotating and moving holes are not computed, and the SMBH khronon charge is not fixed.",
+  "numbers": [
+   {
+    "what": "worst r_ph / r_isco / local shadow shift",
+    "value": "2.889e-11 / 2.936e-11 / 2.768e-11 (M87*, alt, 90 pc)",
+    "file": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json"
+   },
+   {
+    "what": "worst QNM f / tau shift",
+    "value": "2.768e-11 / 2.761e-11",
+    "file": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json"
+   },
+   {
+    "what": "dynamical-mass shadow shift",
+    "value": "1.247e-3 (M87*, alt, 20 pc)",
+    "file": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json"
+   },
+   {
+    "what": "pass line",
+    "value": "1e-2 (V1, V2)",
+    "file": "rebuild_2026_10_22/P3_v3_strong_field/FROZEN_CRITERIA.md"
+   }
+  ],
+  "sources": [
+   {
+    "path": "rebuild_2026_10_22/P3_v3_strong_field/p3_v3_strong_field_results.json",
+    "commit": "2b067f2813"
+   },
+   {
+    "path": "rebuild_2026_10_22/P3_v3_strong_field/FROZEN_CRITERIA.md",
+    "commit": "988eb4940d"
+   }
+  ]
+ }
+]

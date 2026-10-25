@@ -1,0 +1,378 @@
+[
+ {
+  "slug": "c3_00_a0z_native_band",
+  "name": "a0(z): native band vs a0 ~ H(z)",
+  "status": "UNDEC",
+  "data": "CFG689 primary mode: DESI DR2 anisotropic BAO (LRG1, LRG2, LRG3+ELG1, ELG2, QSO, Lya) plus BGS D_V, and 1580 Pantheon+ supernovae (zHD > 0.01), on the framework's own sound-horizon ruler (r_d0 = 147.07 Mpc), curvature free. Dark energy is free in six nodes; the law's tracking reading a0(z)/a0(0) = sqrt(rho_DE(z)/rho_DE(0)) is read off at z = 1.0, 1.2, 1.5, 2.33.",
+  "picture": "x: redshift. y: a0(z)/a0(0). Grey bands: the 68% and 95% range of the tracking reading from the expansion data; black points: its median with 68% bars. Red line: v3's own prediction, a constant a0 (ratio 1). Open blue diamonds: the rival a0 proportional to H(z), i.e. E = H/H0 from the same fit. Small grey text under each node: the galaxy-side a0 error that would be needed to split the two at 3 sigma.",
+  "why": "v3's action has a constant a0, so it predicts the flat line, and the flat line lies inside the expansion data's band at every node. The rival sits well above the band (closest gap +0.23 to +0.45 dex), so the expansion side has already separated the two readings (CFG689: DEGENERACY BROKEN). The decision now rests on kinematic a0 measurements of galaxies at those redshifts, and none of the record's samples reaches the needed 0.055 to 0.084 dex (CFG689 grades KURVS, the z~1.2 multi-tracer set and realistic RC100/CRISTAL as CANNOT; only the optimistic RC100/CRISTAL case LEANS). Inherited input: the omega_b and omega_c priors (0.02236, 0.1202) are CMB-fit values; CFG689's B5 brackets without them weaken the separation (PARTLY BROKEN). The ratio is the same on both footings; the absolute a0 is not drawn.",
+  "numbers": [
+   {
+    "what": "tracking a0(z)/a0(0), z 1.0: median 0.913, 68% [0.762, 1.027]",
+    "file": "campaign_fresh_gravity/CFG689_native_ruler_bao/cfg689.json"
+   },
+   {
+    "what": "z 1.5: 0.942 [0.706, 1.115]; z 2.33: 0.909 [0.325, 1.212]",
+    "file": "campaign_fresh_gravity/CFG689_native_ruler_bao/cfg689.json"
+   },
+   {
+    "what": "rival E = H/H0 medians 1.761 / 1.987 / 2.353 / 3.490 at z 1.0 / 1.2 / 1.5 / 2.33",
+    "file": "campaign_fresh_gravity/CFG689_native_ruler_bao/cfg689.json"
+   },
+   {
+    "what": "closest gap +0.227 / +0.272 / +0.316 / +0.453 dex; e_3sigma 0.055 / 0.072 / 0.074 / 0.084 dex",
+    "file": "campaign_fresh_gravity/CFG689_native_ruler_bao/cfg689.json"
+   },
+   {
+    "what": "constant dark energy: dchi2 11.11 for 5 dof, 1.97 sigma, CONSISTENT WITH CONSTANT",
+    "file": "campaign_fresh_gravity/CFG689_native_ruler_bao/cfg689_summary.md"
+   }
+  ],
+  "sources": [
+   {
+    "path": "campaign_fresh_gravity/CFG689_native_ruler_bao/cfg689.json",
+    "commit": "6c064b83a3"
+   },
+   {
+    "path": "campaign_fresh_gravity/CFG689_native_ruler_bao/cfg689_summary.md",
+    "commit": "6c064b83a3"
+   }
+  ]
+ },
+ {
+  "slug": "c3_01_highz_halo_free",
+  "name": "High-z on halo-free inputs",
+  "status": "UNDEC",
+  "data": "CFG303's halo-free high-z points: RC100 sample B (100 galaxies, SED stellar mass from Table 3 col. 6 plus scaling gas, thin disc at R_e) in four redshift quartiles, and the six CRISTAL discs at z ~ 5.26 at R_e and at the outermost data marker. Each point is recomputed by S4's R4 wrapper twice: with the record's kernel nu_mono and with v3's kernel nu_1 = (1 + sqrt(1 + 4/y))/2.",
+  "picture": "x: one column per point (name and median z). y (log): implied s* = a0(z)/a0(0) on the canonical footing, with 68% bars. Grey squares: record kernel; black dots: v3 kernel. Red line: v3's flat a0 (s* = 1). Open blue diamonds: what a0 proportional to H(z) expects at that z. Arrows: no root (the native baryons already meet or exceed the dynamics).",
+  "why": "Swapping in v3's kernel moves s* down by at most about 0.1 dex (RC100 Q3: 0.84 to 0.67), well inside each point's spread, and S4 finds every CFG303 class unchanged. Flat a0 lies inside the 95% interval of every rooted point; the rival's expectation falls outside it at RC100 Q3 and CRISTAL R_out (8.84 against an upper edge of 8.64), and RC100 Q4 has no root under either kernel, which neither law explains. CFG303 reads all of this as calibration-limited: the shifts come from 0.05 to 0.10 dex of baryon mass and geometry acting through a lever of -2.5 to -4.8 dex per dex, so none of it separates flat a0 from a0 proportional to H(z). The velocities are still the authors' fitted V_c (MODEL-OTHER, halo in the fit), and the rival's expectation uses CFG223's flat-Lambda E(z) background, an inherited input. The record kernel's rc100 script failed its reproduction check in 5 of 1,667 leaves (record drift in the MNRAS S5 block, not in these points).",
+  "numbers": [
+   {
+    "what": "RC100 Q1 s* 1.368 (68% [1.247, 1.883]) v3; 1.483 record; H(z) expects 1.598",
+    "file": "rebuild_2026_10_22/S4_v3_muK_clusters/r4_out/cfg303_rc100_cristal_LCDMFREE/nu1/campaign_fresh_gravity__CFG303_lcdm_free_inputs__cfg303_rc100_cristal_LCDMFREE_results.json"
+   },
+   {
+    "what": "RC100 Q2 0.857 v3 / 1.014 record; Q3 0.674 / 0.842; Q4 no root",
+    "file": "rebuild_2026_10_22/S4_v3_muK_clusters/r4_out/cfg303_rc100_cristal_LCDMFREE/{nu1,repro}/..._results.json"
+   },
+   {
+    "what": "CRISTAL R_e 1.761 v3 / 2.014 record; R_out 1.721 [0.321, 4.935] v3 / 1.953 record; H(z) expects 8.84",
+    "file": "rebuild_2026_10_22/S4_v3_muK_clusters/r4_out/cfg303_rc100_cristal_LCDMFREE/nu1/..._results.json"
+   },
+   {
+    "what": "classes unchanged; largest shift up to 0.1 dex (RC100 Q3); R4 checks 18/19",
+    "file": "rebuild_2026_10_22/S4_v3_muK_clusters/README.md"
+   },
+   {
+    "what": "95% upper edges (v3): Q3 2.060 vs H(z) 3.045; CRISTAL R_out 8.641 vs H(z) 8.841; flat inside 95% at every rooted point",
+    "file": "rebuild_2026_10_22/S4_v3_muK_clusters/r4_out/cfg303_rc100_cristal_LCDMFREE/nu1/campaign_fresh_gravity__CFG303_lcdm_free_inputs__cfg303_rc100_cristal_LCDMFREE_results.json"
+   },
+   {
+    "what": "calibration-limited: 0.05-0.10 dex of baryon mass, lever -2.5 to -4.8 dex per dex",
+    "file": "campaign_fresh_gravity/CFG303_lcdm_free_inputs/README.md"
+   }
+  ],
+  "sources": [
+   {
+    "path": "rebuild_2026_10_22/S4_v3_muK_clusters/r4_out/cfg303_rc100_cristal_LCDMFREE/nu1/campaign_fresh_gravity__CFG303_lcdm_free_inputs__cfg303_rc100_cristal_LCDMFREE_results.json",
+    "commit": "330b00686a"
+   },
+   {
+    "path": "rebuild_2026_10_22/S4_v3_muK_clusters/r4_out/cfg303_rc100_cristal_LCDMFREE/repro/campaign_fresh_gravity__CFG303_lcdm_free_inputs__cfg303_rc100_cristal_LCDMFREE_results.json",
+    "commit": "330b00686a"
+   },
+   {
+    "path": "rebuild_2026_10_22/S4_v3_muK_clusters/README.md",
+    "commit": "330b00686a"
+   },
+   {
+    "path": "campaign_fresh_gravity/CFG303_lcdm_free_inputs/README.md",
+    "commit": "2d9bdc1b92"
+   }
+  ]
+ },
+ {
+  "slug": "c3_02_cristal_aless",
+  "name": "CRISTAL z~5 / ALESS 122.1",
+  "status": "UNDEC",
+  "data": "Two stress tests on framework-native inputs. CFG307: ALESS 122.1 (z 2.024) over a 540-cell grid of the record's own choices (gas tracer, radius, pressure term, inclination, M*). CFG308: the CRISTAL z ~ 5 discs over 1,008 cells. Both re-run by S4's R4 wrapper with the record kernel and with v3's nu_1.",
+  "picture": "Left: ALESS 122.1, four horizontal bar pairs (upper grey = record kernel, lower black = v3 kernel): fraction of cells with no root, with flat a0 inside the 95% interval, with flat a0 excluded, with a0 proportional to H(z) excluded. Red ticks: the frozen decision lines (25% triggers for NOT ROBUST; 80% and 50% for a robust exclusion). Right: CRISTAL, fraction of cells excluding H(z) and excluding flat a0, against the frozen 80% line.",
+  "why": "For ALESS 122.1 both NOT ROBUST triggers fire under both kernels: 43.7% of cells have no root and flat a0 sits inside the interval in 33.0% (v3), while flat is excluded in only 23.3% and H(z) in 13.5%, far from the 80% and 50% a robust exclusion needs. For CRISTAL, H(z) is excluded in 59.4% of cells and flat in 24.0% under both kernels, and neither reaches the 80% line, so the point is NOT DISCRIMINATING. v3's kernel changes no class. Neither point is an a0(z) measurement; both are limited by gas and pressure choices.",
+  "numbers": [
+   {
+    "what": "ALESS v3: f_noroot 0.437, f_FLAT_inside 0.330, f_FLAT_excl 0.233, f_Hz_excl 0.135 (record: 0.437, 0.293, 0.270, 0.146)",
+    "file": "rebuild_2026_10_22/S4_v3_muK_clusters/r4_out/cfg307_stress/{nu1,repro}/campaign_fresh_gravity__CFG307_aless122_stress_test__cfg307_stress_results.json"
+   },
+   {
+    "what": "ALESS committed cell s* 8.82 (record) -> 8.42 (v3)",
+    "file": "rebuild_2026_10_22/S4_v3_muK_clusters/r4_out/cfg307_stress/nu1/..._results.json"
+   },
+   {
+    "what": "CRISTAL: H(z) excluded 0.594, flat excluded 0.240, 432 no-root cells, both kernels",
+    "file": "rebuild_2026_10_22/S4_v3_muK_clusters/r4_out/cfg308_cristal_stress/{nu1,repro}/campaign_fresh_gravity__CFG308_cristal_stress_test__cfg308_cristal_stress_results.json"
+   },
+   {
+    "what": "frozen lines: NOT ROBUST if no root > 25% or flat inside > 25%; robust above both needs 80% and 50%",
+    "file": "campaign_fresh_gravity/CFG307_aless122_stress_test/README.md"
+   },
+   {
+    "what": "CRISTAL decision at the 80% line",
+    "file": "campaign_fresh_gravity/CFG308_cristal_stress_test/README.md"
+   }
+  ],
+  "sources": [
+   {
+    "path": "rebuild_2026_10_22/S4_v3_muK_clusters/r4_out/cfg307_stress/nu1/campaign_fresh_gravity__CFG307_aless122_stress_test__cfg307_stress_results.json",
+    "commit": "330b00686a"
+   },
+   {
+    "path": "rebuild_2026_10_22/S4_v3_muK_clusters/r4_out/cfg308_cristal_stress/nu1/campaign_fresh_gravity__CFG308_cristal_stress_test__cfg308_cristal_stress_results.json",
+    "commit": "330b00686a"
+   },
+   {
+    "path": "campaign_fresh_gravity/CFG307_aless122_stress_test/README.md",
+    "commit": "a4a6d3c1ad"
+   },
+   {
+    "path": "campaign_fresh_gravity/CFG308_cristal_stress_test/README.md",
+    "commit": "bc2038fff0"
+   }
+  ]
+ },
+ {
+  "slug": "c3_03_native_cmb",
+  "name": "Native CMB (patched CLASS)",
+  "status": "FAIL",
+  "data": "Q6: v3's linear equations derived from the action and coded into CLASS v3.3.4 (khronon patch), at mu_K = 14.8 to 2542 h/Mpc. Literal v3 (quadratic K) background, and fits on v3's dust background with the literal perturbations (LOB) to raw Planck plik-lite TTTEEE (613 bins) plus low-l TT and EE. Q7: the same with Blanchet-Skordis 2025's DBI K at their parameter sets P1, P2 and at the cap (lambda_D = 1, 30).",
+  "picture": "Left (log-log): the K sector's energy at T = 1 MeV, as an equivalent Delta N_eff, against mu_K; red: literal v3; black squares: DBI K. Green dashed: the BBN requirement Delta N_eff <= 0.5. Right (log-log): chi2 of v3's own best fit against the raw plik-lite spectra, against mu_K; grey dashed: 613, the number of plik-lite bins, as a scale. Dotted vertical line: BS's galaxy cap, 14.8 h/Mpc.",
+  "why": "Literal v3 has no radiation era: its stiff a^-6 term carries 2.6e9 to 7.7e13 Delta N_eff at 1 MeV across the grid, against a requirement of 0.5, and BBN would need mu_K >= 1.84e8 h/Mpc, 1.24e7 times BS's cap. BS25's DBI form fixes BBN (about 4e-6 to 7e-6), but on the spectra themselves v3 inside the galaxy cap stays far from Planck: best-fit chi2_plik 14,323 at the cap (not converged), 937 to 1,319 for the DBI sets, and it only approaches the bin count near mu_K = 2542 h/Mpc (598), which galaxies forbid. The board note quotes Delta chi2 against a LCDM refit; that comparison is not drawn here by the owner rule. Inherited inputs: the fits start from C7's LCDM refit and use the C2 likelihood's tau prior (0.0510 +- 0.0085); a0 does not enter at linear order, so the footings do not enter; omega_K is FITTED. The cap lambda_D = 1 DBI fit did not converge (plik 6,023, low-l TT infinite) and is not drawn in the right panel.",
+  "numbers": [
+   {
+    "what": "literal v3 Delta N_eff,equiv(1 MeV): 7.70e13 (14.8), 6.74e12 (50), 7.49e11 (150), 1.29e11 (361), 1.69e10 (1000), 2.61e9 (2542 h/Mpc)",
+    "file": "rebuild_2026_10_22/Q6_v3_class/q6_native_results.json"
+   },
+   {
+    "what": "BBN needs mu_K >= 1.836e8 h/Mpc (1.24e7 x the BS cap)",
+    "file": "rebuild_2026_10_22/Q6_v3_class/q6_native.out"
+   },
+   {
+    "what": "LOB best-fit chi2_plik: 14323.3, 6162.4, 1700.6, 889.5, 664.1, 598.2 at 14.8 / 50 / 150 / 361 / 1000 / 2542 h/Mpc",
+    "file": "rebuild_2026_10_22/Q6_v3_class/q6_native_results.json"
+   },
+   {
+    "what": "DBI Delta N_eff(1 MeV) 4.26e-6 (P1), 7.20e-6 (P2); best-fit chi2_plik 937.0 (P1), 1227.4 (P2), 1319.4 (cap lambda_D 30)",
+    "file": "rebuild_2026_10_22/Q7_bs25_cosmology/q7_native_results.json"
+   },
+   {
+    "what": "613 plik-lite bins (Jacobian rows J[:613])",
+    "file": "rebuild_2026_10_22/Q6_v3_class/q6_native.py"
+   }
+  ],
+  "sources": [
+   {
+    "path": "rebuild_2026_10_22/Q6_v3_class/q6_native_results.json",
+    "commit": "ed5894d6e1"
+   },
+   {
+    "path": "rebuild_2026_10_22/Q6_v3_class/q6_native.py",
+    "commit": "ed5894d6e1"
+   },
+   {
+    "path": "rebuild_2026_10_22/Q7_bs25_cosmology/q7_native_results.json",
+    "commit": "142d9d8ccd"
+   }
+  ]
+ },
+ {
+  "slug": "c3_04_linear_growth_v3",
+  "name": "Linear growth, v3 Khronon",
+  "status": "FAIL",
+  "data": "Ratio R = sigma8(v3) / sigma8(v3's own dust limit mu_K -> infinity) at fixed parameters, from Q6's full Boltzmann runs (CLASS with the khronon patch, LOB model) at six mu_K, beside F3's growth ODE with the BSK2 hold kernel (start a = 1e-3 and 1e-4), and Q7's Boltzmann runs with BS25's DBI K.",
+  "picture": "x (log): mu_K in h/Mpc; grey shade: the galaxy-allowed range mu_K <= 14.8 h/Mpc (BS cap). y: R. Red: v3 Boltzmann; grey dashed: F3's ODE; black squares: DBI sets. Green dashed line and band: the framework's own requirement, R >= 0.95 (sigma8 within 5% of the dust limit).",
+  "why": "At the BS cap v3 keeps R = 0.073 of its own dust-limit sigma8 (sigma8 0.061), lower than F3's ODE (0.391), and even at mu_K = 2542 h/Mpc R is 0.883, still below 0.95. The cause is v3's J'(0) = -1 hold, which switches Newtonian clustering off on scales k > a mu_K. The DBI K that fixes BBN does not help: R 0.26 to 0.32. The yardstick is v3's own dust limit, not LCDM; that limit is numerically identical to a CDM run, and its parameters are C7's LCDM refit, an inherited input. a0 does not enter at linear order, so both footings give the same numbers. The nonlinear escape is left to L1's run.",
+  "numbers": [
+   {
+    "what": "R_B 0.073 / 0.172 / 0.344 / 0.533 / 0.744 / 0.883 at 14.8 / 50 / 150 / 361 / 1000 / 2542 h/Mpc",
+    "file": "rebuild_2026_10_22/Q6_v3_class/q6_native_results.json"
+   },
+   {
+    "what": "F3 ODE at 14.8 h/Mpc: 0.391 (a_i 1e-3), 0.203 (a_i 1e-4); F3's 95% mu_min 361 / 2542 h/Mpc",
+    "file": "rebuild_2026_10_22/Q6_v3_class/q6_native_results.json; rebuild_2026_10_22/F3_growth_audit/f3_growth_audit.out"
+   },
+   {
+    "what": "DBI R_B: P1 0.259, P2 0.324, cap lambda_D 1 0.287, cap lambda_D 30 0.295",
+    "file": "rebuild_2026_10_22/Q7_bs25_cosmology/q7_native_results.json"
+   }
+  ],
+  "sources": [
+   {
+    "path": "rebuild_2026_10_22/Q6_v3_class/q6_native_results.json",
+    "commit": "ed5894d6e1"
+   },
+   {
+    "path": "rebuild_2026_10_22/Q7_bs25_cosmology/q7_native_results.json",
+    "commit": "142d9d8ccd"
+   },
+   {
+    "path": "rebuild_2026_10_22/F3_growth_audit/f3_growth_audit_results.json",
+    "commit": "059766caa5"
+   },
+   {
+    "path": "rebuild_2026_10_22/M1_trilemma/README.md",
+    "commit": "836cc3661f"
+   }
+  ]
+ },
+ {
+  "slug": "c3_05_alma_u4_gs4",
+  "name": "ALMA U4 (6 Nov), GS4 (28 Nov)",
+  "status": "OPEN",
+  "data": "No data yet. The sealed v3 AQUAL-disc requirement (addendum F, a labelled parallel reading): for each stellar-mass branch and footing, the total gas mass v3 needs to match the sealed or measured rotation. GS4_24110: sealed V_c 206 km/s at R_e = 7.39 kpc, log M* 10.89 (primary) and 10.76. U4_27928: a grid in the V_c to be measured at 2R_e = 8.3 kpc.",
+  "picture": "Left: one row per branch; dots (log M* 10.89) and open squares (10.76) give the required log M_gas for R_g = R_d, blue canonical, orange alt; left-pointing triangles at the edge mean FLOOR (the stars alone already meet the dynamics). Right: required log M_gas against the U4 V_c still to be measured, for three branches and both footings; lines start where FLOOR ends.",
+  "why": "This tile is a prediction sealed before the data, not a result. On release day the plans' frozen rules compare the measured gas and rotation with these numbers, branch by branch and footing by footing. The verdict kernel stays nu_mono, and the v3 reading is scored beside it, never pooled. The harness is ready, but CFG942 expects a total-flux S/N well below 5 at native resolution, so the likeliest outcome on both dates is an upper limit. One disc excludes no model.",
+  "numbers": [
+   {
+    "what": "GS4 log M* 10.89, R_g = R_d, canonical / alt: F-flat 9.77 / 9.10, F-DESI 9.96 / 9.66, BH-k3 9.98 / 9.72; E, E-CCBH, L-fb, R-H FLOOR",
+    "file": "rebuild_2026_10_22/S3_v3_mw_seals/SEALED_V3_ALMA_AQUAL.json"
+   },
+   {
+    "what": "GS4 log M* 10.76: F-flat 10.42 / 10.33, F-DESI 10.46 / 10.39, BH-k3 10.47 / 10.40, E 10.21 / 10.04, E-CCBH 10.22 / 10.06",
+    "file": "rebuild_2026_10_22/S3_v3_mw_seals/SEALED_V3_ALMA_AQUAL.json"
+   },
+   {
+    "what": "seal sha256 b5d65a5e...; verdict kernel nu_mono unchanged",
+    "file": "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-23_ADDENDUM_F.md"
+   },
+   {
+    "what": "S/N expected well below 5; likeliest outcome 'G1 FAIL, upper limit'",
+    "file": "campaign_fresh_gravity/CFG942_alma_scoring_readiness/README.md"
+   }
+  ],
+  "sources": [
+   {
+    "path": "rebuild_2026_10_22/S3_v3_mw_seals/SEALED_V3_ALMA_AQUAL.json",
+    "commit": "90f4d517d6"
+   },
+   {
+    "path": "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-23_ADDENDUM_F.md",
+    "commit": "f6f0ba66a4"
+   },
+   {
+    "path": "campaign_fresh_gravity/CFG942_alma_scoring_readiness/README.md",
+    "commit": "a50a7fcb3f"
+   },
+   {
+    "path": "argon_push/AG4e_n1_alma_seal/SEALED_N1.json",
+    "commit": "b1bb9296db"
+   }
+  ]
+ },
+ {
+  "slug": "c3_06_gaia_dr4_wide_binaries",
+  "name": "Gaia DR4 wide binaries (Dec)",
+  "status": "OPEN",
+  "data": "No data yet. Predictions for the velocity boost gamma_v of 1.5 Msun wide binaries at 20 kAU: v3 with its screening (C6: gamma_v - 1 at stiffness length L* = 24, 50, 90 pc, fields E0-E3, both footings) and the unscreened AQUAL contrast (E2, at the PREREG primary and alt external fields). The DR4 resolution and kill line come from the frozen DR4 plan as summarised in CFG943.",
+  "picture": "Left: gamma_v axis. Green band: +-2 sigma_tot of DR4 around 1 (sigma_tot 0.028 at N 30,000). Red dashed: the kill line 1.084. Grey: the guard zone above 1.23. Black dot: screened v3 (gamma_v - 1 about 8e-6, on top of 1). Open squares: unscreened AQUAL values, canonical blue and alt orange. Right (log): screened v3's gamma_v - 1 against L*, with the DR4 kill line and 1 sigma_tot drawn; canonical and alt lie on top of each other.",
+  "why": "Screened v3 predicts no wide-binary boost DR4 could see: gamma_v - 1 = 8.1e-6 at L* = 24 pc, falling to 5.8e-7 at 90 pc, about four orders of magnitude below DR4's sigma_tot. The unscreened AQUAL equation gives 1.167 (canonical) and 1.199 (alt) at the primary field, well above the kill line, so DR4 will tell the screened and unscreened readings apart if its systematics hold. CFG943 finds the plan READY in its code paths, but with a power gap against a MOND-size boost (44%, 2% and 59% kill rates in three mock classes).",
+  "numbers": [
+   {
+    "what": "screened gamma_v - 1 (canonical, E0-E3): 8.12e-6 to 8.10e-6 (24 pc), 1.876e-6 to 1.873e-6 (50 pc), 5.80e-7 to 5.79e-7 (90 pc)",
+    "file": "covariant_push_2026_10_22/C6_literal_cassini/c6_literal_cassini_results.json"
+   },
+   {
+    "what": "AQUAL gamma_v (anchored): 1.167 / 1.199 at PREREG primary, 1.145 / 1.173 at PREREG alt (canonical / alt)",
+    "file": "doors_push_2026_10_22/E2_field_equation/e2_field_equation_results.json"
+   },
+   {
+    "what": "DR4 sigma_tot 0.028, kill line 1.084, guard zone > 1.23, N 30,000; power gap 44% / 2% / 59%",
+    "file": "campaign_fresh_gravity/CFG943_dr4_readiness/README.md"
+   }
+  ],
+  "sources": [
+   {
+    "path": "covariant_push_2026_10_22/C6_literal_cassini/c6_literal_cassini_results.json",
+    "commit": "ae428dc252"
+   },
+   {
+    "path": "doors_push_2026_10_22/E2_field_equation/e2_field_equation_results.json",
+    "commit": "474050bcd8"
+   },
+   {
+    "path": "campaign_fresh_gravity/CFG943_dr4_readiness/README.md",
+    "commit": "7356bb671d"
+   }
+  ]
+ },
+ {
+  "slug": "c3_07_gaia_dr4_mw",
+  "name": "Gaia DR4 MW predictions",
+  "status": "OPEN",
+  "data": "No DR4 data yet. The v3 sealed Milky Way predictions (S3): AQUAL disc with mu = x/(1+x), the external field solved, McMillan 2017 baryons with the stellar mass scaled by 0.895 to 1.105. Shown: the azimuthal-mean circular speed from 5 to 60 kpc and the new observable P6, the in-plane V_c asymmetry the external field creates.",
+  "picture": "Left: sealed V_c(R) for canonical (blue) and alt (orange), line at the census stellar mass, band over the stellar-mass scale. Right: P6 asymmetry A(R) in percent for both footings; the dashed zero line is what isolated v3 predicts.",
+  "why": "This is a sealed prediction, written before DR4 and kept apart from the old round-rule seal (CFG553, untouched and not drawn). The new handle is P6: with the external field, v3 predicts a V_c asymmetry of about 3% at 20 kpc, 5% at 30 kpc and 8% at 60 kpc, with V_min toward l = 270 degrees, while isolated v3 predicts none. The same lane finds v3's outer slope already SHAPE EXCLUDED against Gaia DR3 (a separate tile), so DR4 decides whether that failure stands. The NFW comparison band in the seal is not drawn.",
+  "numbers": [
+   {
+    "what": "P6 A(R) canonical: 1.8 / 3.0 / 4.1 / 5.2 / 7.1 / 8.2 / 8.2 % at 15 / 20 / 25 / 30 / 40 / 50 / 60 kpc; alt 1.9 / 3.1 / 4.2 / 5.4 / 7.2 / 8.3 / 8.2 %",
+    "file": "rebuild_2026_10_22/S3_v3_mw_seals/SEALED_V3_MW_DR4.json"
+   },
+   {
+    "what": "V_c(20 kpc) 195.5 / 202.7 km/s, V_c(60 kpc) 169.9 / 177.3 km/s (canonical / alt, census stellar mass)",
+    "file": "rebuild_2026_10_22/S3_v3_mw_seals/SEALED_V3_MW_DR4.json"
+   },
+   {
+    "what": "seal sha256 15b7e6ff...; CFG553 untouched; outer slope SHAPE EXCLUDED on DR3",
+    "file": "rebuild_2026_10_22/S3_v3_mw_seals/README.md"
+   }
+  ],
+  "sources": [
+   {
+    "path": "rebuild_2026_10_22/S3_v3_mw_seals/SEALED_V3_MW_DR4.json",
+    "commit": "ec0c57d236"
+   },
+   {
+    "path": "rebuild_2026_10_22/S3_v3_mw_seals/README.md",
+    "commit": "a2e4a36598"
+   }
+  ]
+ },
+ {
+  "slug": "c3_08_owner_wave_a0z",
+  "name": "The owner's wave a0(z) idea",
+  "status": "OPEN",
+  "data": "The owner's idea (2026-10-21): a0(z) oscillates. CFG956 bounds a plain wave a0(z)/a0(0) = A(z)[1 + eps sin(2 pi ln(1+z)/P + phi)]/(1 + eps sin phi) with CFG689's own BAO + Pantheon+ likelihood, for 19 periods P from 0.05 to 3 in ln(1+z), on three backgrounds A(z).",
+  "picture": "x (log): wave period P in ln(1+z). y (log): eps_95, the largest wobble allowed at 95% (Delta chi2 = 3.84, phase profiled); anything below a curve is allowed. Black: wave on CFG689's native background; red: wave on constant rho_DE (v3's flat a0); grey dotted: six free nodes (reported only). Grey band above 1: a0 would touch zero, no bound.",
+  "why": "The expansion data allow a wave of at most about 3 to 8% in a0 for periods up to 1.5 in ln(1+z); longer periods act as a smooth tilt and loosen to 0.35 to 0.42 at P = 3. No branch prefers a wave (branch C has a local hint, Bonferroni not applied), and a bound on a wave is not evidence for one. Nothing above z of about 2.5 is constrained by expansion data. CFG957 finds no wave from the framework's own rates; one needs a new light scalar with two new constants. The bound is on the ratio, so it is the same on both footings. The tile stays open: the board note predates these bounds and the idea has no galaxy-side test yet.",
+  "numbers": [
+   {
+    "what": "branch S eps_95: 0.048 (P 0.05), 0.037 (P 0.5), 0.035 (P 0.6), 0.080 (P 1.5), 0.141 (P 2), 0.353 (P 3)",
+    "file": "campaign_fresh_gravity/CFG956_a0z_wave_bound/cfg956.json"
+   },
+   {
+    "what": "branch C eps_95: 0.032 (P 0.5), 0.066 (P 1.5), 0.147 (P 2), 0.421 (P 3)",
+    "file": "campaign_fresh_gravity/CFG956_a0z_wave_bound/cfg956.json"
+   },
+   {
+    "what": "for every P <= 1.5 the bound is eps <= 0.032-0.08; S: NO WAVE PREFERRED; C: LOCAL HINT",
+    "file": "campaign_fresh_gravity/CFG956_a0z_wave_bound/README.md"
+   },
+   {
+    "what": "a wave needs a light scalar with m about 5-40 H, two new constants",
+    "file": "campaign_fresh_gravity/CFG957_a0z_wave_models_observables/README.md"
+   }
+  ],
+  "sources": [
+   {
+    "path": "campaign_fresh_gravity/CFG956_a0z_wave_bound/cfg956.json",
+    "commit": "aaa000a458"
+   },
+   {
+    "path": "campaign_fresh_gravity/CFG956_a0z_wave_bound/README.md",
+    "commit": "c929d7548a"
+   },
+   {
+    "path": "campaign_fresh_gravity/CFG957_a0z_wave_models_observables/README.md",
+    "commit": "12744bf082"
+   }
+  ]
+ }
+]

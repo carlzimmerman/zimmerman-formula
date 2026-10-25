@@ -1,0 +1,108 @@
+<title>Dark River Tavern Menu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a printed bill of fare on river-slate paper; five courses = the board's five columns; each dish = one tile, plated with its data picture. */
+:root {
+  --paper: #eef2f2; --card: #f8faf9; --ink: #18252b; --muted: #55666e; --rule: #c6d0d2; --brass: #8a6a24;
+  --pass: #2e7d52; --cond: #a57a0c; --undec: #4a6ea3; --fail: #b23a2c; --open: #6f7b84;
+  --display: "Cormorant SC", "Cormorant", Georgia, serif;
+  --body: "Literata", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0f191e; --card: #15232a; --ink: #e3eaec; --muted: #9aabb2; --rule: #2b3c44; --brass: #d0a952;
+  --pass: #5cbf88; --cond: #e0b43c; --undec: #86a8dd; --fail: #ec7a68; --open: #a3afb7; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0f191e; --card: #15232a; --ink: #e3eaec; --muted: #9aabb2; --rule: #2b3c44; --brass: #d0a952;
+  --pass: #5cbf88; --cond: #e0b43c; --undec: #86a8dd; --fail: #ec7a68; --open: #a3afb7; color-scheme: dark }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 40px 64px; display: grid; gap: 48px; }
+.masthead { text-align: center; display: grid; gap: 10px; justify-items: center; border-bottom: 3px double var(--rule); padding-bottom: 28px; }
+.est { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--brass); }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(40px, 7vw, 76px); line-height: 1; margin: 0; letter-spacing: .02em; text-wrap: balance; }
+.tagline { font-style: italic; color: var(--muted); max-width: 60ch; margin: 0; }
+.house { max-width: 72ch; margin: 0 auto; font-size: 14.5px; color: var(--muted); display: grid; gap: 6px; }
+.house b { color: var(--ink); font-weight: 600; }
+.tally { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.chip { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap;
+  border: 1.5px solid currentColor; border-radius: 3px; padding: 3px 8px; background: transparent; }
+.chip.pass { color: var(--pass); } .chip.cond { color: var(--cond); } .chip.undec { color: var(--undec); }
+.chip.fail { color: var(--fail); } .chip.open { color: var(--open); }
+.filter { cursor: pointer; font: inherit; font-family: var(--mono); font-size: 12px; }
+.filter[aria-pressed="true"] { background: currentColor; }
+.filter[aria-pressed="true"], .filter[aria-pressed="true"] b { color: var(--paper); }
+.filter[aria-pressed="true"] { box-shadow: 0 0 0 1.5px var(--ink); }
+.filter:focus-visible, .plate:focus-visible, .close:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+.course { display: grid; gap: 22px; }
+.course-head { text-align: center; display: grid; gap: 2px; }
+.course-head h2 { font-family: var(--display); font-size: 38px; margin: 0; font-weight: 700; color: var(--brass); }
+.course-head h2::before, .course-head h2::after { content: "~"; margin: 0 .5em; color: var(--rule); }
+.course-head p { margin: 0; color: var(--muted); font-style: italic; }
+.dishes { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr)); gap: 28px 36px; }
+.dish { min-width: 0; display: grid; gap: 10px; align-content: start; padding-top: 14px; border-top: 1px solid var(--rule); }
+.dish-head { display: flex; align-items: baseline; gap: 10px; }
+.dish-head h3 { font-family: var(--display); font-size: 25px; line-height: 1.1; margin: 0; font-weight: 700; min-width: 0; text-wrap: balance; }
+.leader { flex: 1; border-bottom: 2px dotted var(--rule); transform: translateY(-5px); min-width: 16px; }
+.board-note { margin: 0; font-size: 14px; color: var(--muted); font-style: italic; }
+.plate { padding: 0; border: 1px solid var(--rule); background: #fff; border-radius: 2px; cursor: zoom-in; display: block; width: 100%; }
+.plate img { display: block; width: 100%; height: auto; }
+.recipe { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; font-size: 15px; }
+.recipe dt { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--brass); padding-top: 4px; }
+.recipe dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .recipe { grid-template-columns: 1fr; } .recipe dd { margin-bottom: 6px; } .dish-head { flex-wrap: wrap; } .leader { display: none; } }
+.src, .lanes, .pending { margin: 0; font-family: var(--mono); font-size: 11.5px; color: var(--muted); overflow-wrap: anywhere; }
+.src code { font-family: inherit; }
+.dish[hidden] { display: none; }
+footer { border-top: 3px double var(--rule); padding-top: 20px; text-align: center; color: var(--muted); font-size: 13.5px; display: grid; gap: 6px; }
+dialog { border: 0; padding: 0; background: transparent; max-width: min(96vw, 1400px); }
+dialog::backdrop { background: rgb(8 14 17 / .82); }
+dialog img { display: block; max-width: 100%; max-height: 88vh; background: #fff; }
+.close { position: absolute; top: 8px; right: 8px; font-family: var(--mono); background: var(--card); color: var(--ink); border: 1px solid var(--rule); padding: 4px 10px; cursor: pointer; }
+@media (prefers-reduced-motion: no-preference) { .dish { transition: opacity .2s; } }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <span class="est">Est. on the Crispy Fried Chicken board · v3s · 23 October 2026</span>
+    <h1>Dark River Tavern Menu</h1>
+    <p class="tagline">Every dish on the board, plated with its data: what was measured, what the theory predicted, and why it passes, fails or waits.</p>
+    <div class="tally" role="group" aria-label="Show only dishes of one kind">{{TALLY}}</div>
+  </header>
+
+  <div class="house">
+    <p><b>House rules.</b> {{N}} dishes, one per board tile, each colour exactly as the board has it. Every number in a picture is read from a committed lane file, named under the dish. κ = ½ is fitted, not derived; the two footings (canonical 9.3603×10⁻¹¹, alternative 1.1312×10⁻¹⁰ m s⁻²) are never pooled. Nothing here says the data favour this theory or any rival, and the theory is not closed.</p>
+    <p><b>No ΛCDM on the stove.</b> No picture uses ΛCDM as the yardstick. Where a lane leaned on a ΛCDM-derived input, the dish says so.</p>
+    <p><b>Which kitchen.</b> This is the 23 October board, scored for v3s. On 25 October you chose a new flagship (the a0 law plus cold dark energy with the core law, PAPER61), and the board has not been redrawn for it.</p>
+  </div>
+
+  {{COURSES}}
+
+  <footer>
+    <p>Built from <code>explainers/make_status_board.py</code> and the lanes it names, by <code>explainers/dark_river_tavern_menu/scripts/</code>.</p>
+    <p>Tap a picture to see it full size. Tap a tally chip to show only that kind of dish.</p>
+  </footer>
+</div>
+
+<dialog id="zoom"><button class="close" type="button" id="zoom-close">Close</button><img id="zoom-img" alt=""></dialog>
+
+<script>
+(function () {
+  const dlg = document.getElementById('zoom'), zimg = document.getElementById('zoom-img');
+  document.querySelectorAll('.plate').forEach(b => b.addEventListener('click', () => {
+    const i = b.querySelector('img'); zimg.src = i.src; zimg.alt = i.alt;
+    if (dlg.showModal) dlg.showModal();
+  }));
+  document.getElementById('zoom-close').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  let active = null;
+  document.querySelectorAll('.filter').forEach(f => f.addEventListener('click', () => {
+    active = active === f.dataset.f ? null : f.dataset.f;
+    document.querySelectorAll('.filter').forEach(g => g.setAttribute('aria-pressed', String(g.dataset.f === active)));
+    document.querySelectorAll('.dish').forEach(d => { d.hidden = !!active && d.dataset.st !== active; });
+    document.querySelectorAll('.course').forEach(c => { c.hidden = ![...c.querySelectorAll('.dish')].some(d => !d.hidden); });
+  }));
+})();
+</script>
