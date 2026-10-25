@@ -304,3 +304,8 @@ Results:
   - Context, PROVISIONAL: Gentile+2009 gives 1.3 / 1.1 g_T.
   - Prediction: Σ_floor(z) ∝ a₀(z) shifts only −0.06 dex by z = 2, too small for the record's z ≈ 2 samples.
 - **Reading.** Whatever tethers cold dark energy must key on bound objects (halos), not on any local invariant. That is the remaining mechanism question.
+
+**Core rise above galaxies** (`X42_core_rise_above_galaxies`, 4a13086d02 / 9caa641111 / 0d7d0d5686; coordinator rerun identical apart from timing): **BOTH FAIL**, on both footings.
+- **H1 (self-similar floor, calibrated on clusters only).** Implied concentration 9–14 × the EPS Σ_coll (12.9 × at the median cluster mass), consistent with X43's η 14.8. α = 1/3 is allowed. It fails the groups out of sample (Z +2.41 / +2.27) and MGAS T3 OUTER.
+- **H2 (baryon retention, f_b/0.0577, no fitted constant).** It improves SPARC (rms 0.0795 → 0.0705) and fails the groups by 0.03 on canonical only. It also fails MGAS T3 OUTER (+2.68).
+- Every rule tried binds on the same two keys, the groups and MGAS T3 OUTER.
