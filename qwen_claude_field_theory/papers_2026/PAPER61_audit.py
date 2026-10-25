@@ -122,6 +122,25 @@ has("KiDS A (CFG829 README)", f"$A={fmt(kv[0], 3)}\\pm{fmt(kv[1], 3)}$")
 m38 = re.search(r"K0 EM1 law rms ([0-9.]+) / ([0-9.]+)", txt("rebuild_2026_10_22", "X38_a0_surface_density_halos", "x38_sd_halos.out"))
 has("EM1 law rms (X38 K0 line)", f"{fmt(float(m38.group(1)), 4)} / {fmt(float(m38.group(2)), 4)}")
 
+
+# ---- G the illustrative figure (MAP1)
+M1o = txt("rebuild_2026_10_22", "MAP1_cosmic_river", "map1_cosmic_river.out")
+mg = re.search(r"slice \|SGZ\|<25, R<160: (\d+) groups; median \|v_pec\| err (\d+) km/s", M1o)
+mh = re.search(r"self-calibrated H \(CF4 distance scale\) = ([0-9.]+)", M1o)
+ms = re.search(r"SPARC placed \d+; in slice (\d+)", M1o); mc_ = re.search(r"in slice (\d+)\s*$", M1o.strip())
+has("MAP1 groups in slice", f"({fmt(int(mg.group(1)), 0)} groups; median per-group velocity error {fmt(int(mg.group(2)), 0)}\\,km")
+has("MAP1 H", f"$H={fmt(float(mh.group(1)), 2)}$")
+has("MAP1 SPARC / clusters in slice", f"the {fmt(int(ms.group(1)), 0)} SPARC galaxies and {fmt(int(mc_.group(1)), 0)} eRASS1 clusters")
+if not MUT:
+    r = subprocess.run(["git", "-C", ROOT, "show", "--name-only", "--format=", "3f9b3ae361"], capture_output=True, text=True)
+    check("G MAP1 commit 3f9b3ae361 adds map1_cosmic_river.json, cited", r.returncode == 0 and "MAP1_cosmic_river/map1_cosmic_river.json" in r.stdout and "3f9b3ae361" in flat)
+    fs = open(os.path.join(HERE, "PAPER61_fig_river.py")).read()
+    check("G figure script reads the MAP1 lane JSON and names its commit", "map1_cosmic_river.json" in fs and "3f9b3ae361" in fs)
+    fp = os.path.join(HERE, "PAPER61_fig_river.pdf"); js = os.path.join(RB, "MAP1_cosmic_river", "map1_cosmic_river.json")
+    check("G figure PDF newer than its script and the MAP1 JSON", os.path.getmtime(fp) >= max(os.path.getmtime(js), os.path.getmtime(os.path.join(HERE, "PAPER61_fig_river.py"))))
+    check("G figure included and captioned 'Illustrative, not evidence'", "\\includegraphics" in flat and "PAPER61_fig_river.pdf" in flat and "\\textbf{Illustrative, not evidence.}" in flat)
+    check("G no number in the paper is computed from the map (stated)", "no number in this paper is computed from this map" in flat)
+
 # ---- C commits
 COMMITS = [("6c064b83a3", "campaign_fresh_gravity/CFG689_native_ruler_bao/"), ("c51d962827", "reviews/matched_clumping_2026_10_24/"),
            ("a9ec701f5b", "rebuild_2026_10_22/X19_selector_rank_test/"), ("d5f2a449d1", "rebuild_2026_10_22/X23_late_heated_cold/"),
@@ -156,7 +175,7 @@ if not MUT:
     bib = open(os.path.join(ROOT, "citations", "REFERENCES.bib"), encoding="utf-8").read()
     for key, cite in (("Lelli2016a", "AJ 152, 157 (2016)"), ("Bulbul2024", "A\\&A 685, A106 (2024)"), ("Eckert2019", "A\\&A 621, A40 (2019)"),
                       ("Brouwer2021", "A\\&A 650, A113 (2021)"), ("DESICollaboration2025c", "PRD 112, 083515 (2025)"), ("Brout2022a", "ApJ 938, 110 (2022)"),
-                      ("Milgrom1983c", "ApJ 270, 365 (1983)"), ("Burkert1995", "ApJ 447, L25 (1995)"), ("Donato2009", "MNRAS 397, 1169 (2009)")):
+                      ("Milgrom1983c", "ApJ 270, 365 (1983)"), ("Burkert1995", "ApJ 447, L25 (1995)"), ("Donato2009", "MNRAS 397, 1169 (2009)"), ("Tully2023", "ApJ 944, 94 (2023)")):
         m_ = re.search(r"@\w+\{" + key + r",(.*?)\n\}", bib, re.S)
         vol, page = re.match(r".*? (\d+), ([A-Z]?\d+)", cite).groups()
         e = m_.group(1) if m_ else ""
