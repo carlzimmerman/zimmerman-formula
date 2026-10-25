@@ -1,0 +1,5 @@
+# Conditional core-rearrangement screen
+
+Post-core_001 follow-up, registered before execution. The fixed clean Draco cut plus positive envelope has a markedly worse conditional velocity fit than the free smooth reference, while a coarse Sextans cut plus envelope can approach that reference. Quantify how much of EACH measured cut SHAPE can be retained centrally, rather than assume every cold mass element must escape.
+
+For D/S, set core density=c times the previous registered cut density, c=0,.05,...,1. Keep TOTAL cold mass fixed to HALF the old hypothetical catchment, placing Mtotal-c Mcut in the fitted positive Plummer envelope; no new force. Beta=-.5,0 and a0 canonical/alt separately. Fit scale/nuisance parameters as before. Retained central coefficient is an inverse profile construction, NOT tagged material retention, a confidence interval, a cooling efficiency or a predicted assembly mechanism. Do not convert DeltaNLL to sigma. At c=0 the result must agree with fit_002 half-supply fit within1e-6 in NLL; c=1 with core_001 within1e-6. Preserve all grid points, no scan extension based on the answer. Cold total mass is constant by identity.

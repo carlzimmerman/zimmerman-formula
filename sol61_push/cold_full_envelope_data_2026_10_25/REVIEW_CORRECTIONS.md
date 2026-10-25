@@ -1,0 +1,7 @@
+# Preserved first fit; corrected likelihood is fit_002 / fit_v2.py
+
+The first fit_001 is preserved as a completed but SUPERSEDED exploratory calculation. Independent code review found that Sextans population components were normalized individually through the velocity window before mixing. With pre-selection photometric/metallicity population weights the correct conditional likelihood is the mixture numerator divided by the weighted mixture acceptance. This matters particularly for very broad, overboosted profiles. Do not use fit_001 as the final evidence. No old input was modified.
+
+fit_v2.py corrects that mixture normalization, reports the selected sample's own constant-dispersion likelihood, and population-weights the reported Sextans rms prediction after velocity selection. The new independent control compares the mixture directly with its analytic numerator/denominator and would reject the old mixture prescription. An independent projected-virial control checks three anisotropies against the analytic complete Plummer value pi G M/(32a).
+
+Positive constant beta=0.5 with a cored Plummer tracer and finite central potential violates the central cusp/anisotropy necessary condition for a nonnegative equilibrium distribution. Its moment curves remain labeled as such and must NOT count as physically viable equilibrium candidates. beta=0 and -0.5 still require a distribution-function/support test; a Jeans moment fit alone is insufficient. Fixed beta values are separate sensitivities, not a posterior.
