@@ -186,3 +186,14 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
 - The heavy clusters that need extra have the *lowest* F (≈ 1). The dwarfs that need extra have F ≈ 5e3–2e4. Crater II has the highest F (5e4) and needs less than the law.
 - Neither direction separates the classes, and F does not order them (Spearman +0.10). Within the dwarfs, mass orders the extra (−0.65) and F does not.
 - No feedback-to-cold-sector coupling is supported.
+
+**System atlas** (`X33_system_atlas`, 53f8f4aaa7 / 72e47a6e41 / 4ce94a0437; coordinator rerun identical apart from timing).
+- **Scope.** 676 objects in one per-object table, descriptive only.
+- **Pooled vs within-class.** Pooled cross-class trends are class placement: a within-class shuffle keeps 15 pooled FDR survivors and zero within-class ones.
+- **Within-class FDR survivors:**
+  - LG dwarfs: the extra rises toward low M★ (ρ −0.65), small r_h (−0.64), low Σ (−0.43) and strong host field (+0.32).
+  - Small SPARC galaxies sit below the law toward low Σ₀ and late type (+0.44, −0.30).
+  - Large SPARC galaxies fall with the external field (−0.46).
+  - SPARC data quality also correlates (−0.40), a confound.
+- **Where the law is right.** Within ±0.05 dex mostly at high surface density and high x: 29 / 27 % of SPARC overall, ~30 % in the upper half of Σ, 5–9 % in the lower half.
+- **The misfits.** They are diffuse systems at both ends: gas-rich LSB spirals below, faint compact dwarfs above.
