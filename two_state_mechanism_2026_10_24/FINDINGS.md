@@ -1,4 +1,4 @@
-# Research findings through self-consistent orbital and quantum transport tests
+# Research findings through charged molecular assembly tests
 
 Start here for the current status. The original top-level README describes the
 initial spherical prototype; later stages below supersede its scope.
@@ -12,6 +12,7 @@ conservation checks and explicitly documented limitations.
 
 | Stage | Finding | Scope / unresolved issue |
 |---|---|---|
+| [Charged molecular assembly](../two_state_mechanism_2026_10_25/assembly/README.md) | Coulomb parent gives a positively charged molecular bound state, linked radiative channel and local stiffness. Restricted equilibrium mass cap .4869; largest disk-proxy fraction among29 common applicability-passing closed-energy cases is1.24e-6. | Not a unique completion of the old lattice; approximate molecular basis, incomplete chemistry, no reaction trajectories, nodal material or galactic formation. |
 | [Coupled orbital and quantum transport](../two_state_mechanism_2026_10_25/coupled_orbital/README.md) | Self-consistent3D orbital charge/dipole, moving countercharge and elastic energy now share a Hamiltonian. Exact quantized countercharge mode reveals a resonant transfer channel missed by mean field. | No assembly/dissociation channel, charged tether species, live gravity or disk/dwarf/cluster separation. Material parameters remain conditional. |
 | [Physical electric coupling and transport](electric_transport_2026_10_25/README.md) | Opposite-parity orbitals give a physical electric mass, but their complete position operator also drives charge redistribution. Conservative3D elastic propagation exports core energy without deleting it. | No self-consistent screening, orbital cooling, live-gravity assembly or population separation; simpler real-bond modulation lacks the required cubic response. |
 | [State preparation and joint bounds](state_preparation_2026_10_25/README.md) | A controlled gapped thermal start reaches the target source remainder within0.4%; contact interaction feedback and autonomous live-field dynamics tested. Combining current, inventory and Fermi packing rejects the local fundamental-fermion interpretation under explicit hypotheses. | No autonomous formation or population separation. Emergent quasiparticles remain open but need a different physical mass/current mapping and electric operator. |
@@ -33,6 +34,11 @@ neutral pairs, quantum Jeans instability and charged tethering are distinct
 observables; they must not be relabeled as each other.
 
 ## Latest verification
+
+The charged-assembly stage has four completed, provenance-validated runs:
+bound/continuum spectra, restricted chemistry, applicability-directed extension
+and rates, and independent thermodynamic checks. See its
+[audit](../two_state_mechanism_2026_10_25/assembly/AUDIT.md).
 
 The coupled-orbital stage has four completed runs with validated provenance:
 19 lattice trajectories,6 quantum benchmark cases and a figure. Independent
