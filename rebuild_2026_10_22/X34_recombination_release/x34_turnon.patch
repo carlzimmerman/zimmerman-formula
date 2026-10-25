@@ -1,0 +1,130 @@
+--- a/source/background.c
++++ b/source/background.c
+@@ -113,6 +113,53 @@
+  */
+ 
+ #include "background.h"
++
++/* ---- X34 turn-on (rebuild_2026_10_22/X34_recombination_release, reading R1) ----
++   rho_cdm(a) = rho_c0 a^-3 S(a), S = 1/(1+exp(-2u)), u = (ln a - ln a_on)/w.
++   Reservoir (w_res = -1): rho_res(a) = rho_c0 * I(ln a), I(x) = int_x^inf e^{-3x'} S'(x') dx'. Energy conserved:
++   d(rho_c + rho_res)/dln a = -3 rho_c. Read once from X34_ZON / X34_WIDTH (unset = off = vanilla). */
++#define X34_NT 40001
++static int x34_init_done = 0, x34_on_flag = 0;
++static double x34_xon = 0., x34_w = 0.05, x34_xmin = 0., x34_xmax = 0., x34_dx = 1., x34_Itot = 0.;
++static double x34_I[X34_NT];
++static double x34_Sfun(double x) { return 1./(1.+exp(-2.*(x-x34_xon)/x34_w)); }
++static double x34_Spfun(double x) { double s = x34_Sfun(x); return 2./x34_w*s*(1.-s); }
++static void x34_setup(void) {
++  const char *z, *w; int i;
++  if (x34_init_done) return;
++  x34_init_done = 1;
++  z = getenv("X34_ZON");
++  if (z == NULL || z[0] == '\0') { x34_on_flag = 0; return; }
++  x34_on_flag = 1;
++  x34_xon = -log(1.+atof(z));
++  w = getenv("X34_WIDTH");
++  if (w != NULL && w[0] != '\0') x34_w = atof(w);
++  x34_xmin = x34_xon - 40.*x34_w; x34_xmax = x34_xon + 40.*x34_w;
++  x34_dx = (x34_xmax - x34_xmin)/(X34_NT - 1);
++  x34_I[X34_NT-1] = 0.;
++  for (i = X34_NT-2; i >= 0; i--) {
++    double xa = x34_xmin + i*x34_dx, xb = xa + x34_dx;
++    x34_I[i] = x34_I[i+1] + 0.5*(exp(-3.*xa)*x34_Spfun(xa) + exp(-3.*xb)*x34_Spfun(xb))*x34_dx;
++  }
++  x34_Itot = x34_I[0];
++}
++int x34_is_on(void) { x34_setup(); return x34_on_flag; }
++/* returns S; sets dlnS/dlna, rho_res/rho_c0 (H0^2 Omega0_cdm units), d(rho_res/rho_c0)/dlna */
++double x34_S(double a, double *dlnS, double *res, double *dres) {
++  double x, s, f; int i;
++  x34_setup();
++  if (!x34_on_flag) { *dlnS = 0.; *res = 0.; *dres = 0.; return 1.; }
++  x = log(a);
++  s = x34_Sfun(x);
++  *dlnS = 2./x34_w/(1.+exp(2.*(x-x34_xon)/x34_w));
++  *dres = -exp(-3.*x)*x34_Spfun(x);
++  if (x <= x34_xmin) *res = x34_Itot;
++  else if (x >= x34_xmax) *res = 0.;
++  else { f = (x - x34_xmin)/x34_dx; i = (int)f; if (i > X34_NT-2) i = X34_NT-2; f -= i;
++         *res = (1.-f)*x34_I[i] + f*x34_I[i+1]; }
++  return s;
++}
++/* ---- end X34 ---- */
+ 
+ /**
+  * Background quantities at given redshift z.
+@@ -436,10 +483,19 @@
+ 
+   /* cdm */
+   if (pba->has_cdm == _TRUE_) {
+-    pvecback[pba->index_bg_rho_cdm] = pba->Omega0_cdm * pow(pba->H0,2) / pow(a,3);
+-    rho_tot += pvecback[pba->index_bg_rho_cdm];
+-    p_tot += 0.;
+-    rho_m += pvecback[pba->index_bg_rho_cdm];
++    {
++      double x34_dl, x34_r, x34_dr, x34_s;
++      x34_s = x34_S(a, &x34_dl, &x34_r, &x34_dr);
++      pvecback[pba->index_bg_rho_cdm] = pba->Omega0_cdm * pow(pba->H0,2) / pow(a,3) * x34_s;
++      rho_tot += pvecback[pba->index_bg_rho_cdm];
++      p_tot += 0.;
++      rho_m += pvecback[pba->index_bg_rho_cdm];
++      if (x34_is_on()) { /* X34 reservoir, w = -1 */
++        rho_tot += pba->Omega0_cdm * pow(pba->H0,2) * x34_r;
++        p_tot -= pba->Omega0_cdm * pow(pba->H0,2) * x34_r;
++        dp_dloga += -pba->Omega0_cdm * pow(pba->H0,2) * x34_dr;
++      }
++    }
+   }
+ 
+   /* idm */
+@@ -821,6 +877,8 @@
+              "Shooting failed, try optimising input_get_guess(). Error message:\n\n%s",
+              pba->shooting_error);
+ 
++  if (x34_is_on() && pba->background_verbose > 0) printf("X34 turn-on ACTIVE (R1)\n");
++
+   /** - assign values to all indices in vectors of background quantities */
+   class_call(background_indices(pba),
+              pba->error_message,
+--- a/source/perturbations.c
++++ b/source/perturbations.c
+@@ -26,6 +26,15 @@
+ 
+ #include "perturbations.h"
+ #include "parallel.h"
++/* X34 (R1 turn-on); perturbations.c is compiled as C++ */
++#ifdef __cplusplus
++extern "C" {
++#endif
++int x34_is_on(void);
++double x34_S(double a, double *dlnS, double *res, double *dres);
++#ifdef __cplusplus
++}
++#endif
+ 
+ 
+ /**
+@@ -722,6 +731,10 @@
+     if (ppt->perturbations_verbose > 0)
+       printf("Computing sources\n");
+   }
++
++  class_test(x34_is_on() && (ppt->gauge != synchronous),
++             ppt->error_message,
++             "X34 turn-on (R1) is implemented in synchronous gauge only");
+ 
+   class_test((ppt->gauge == synchronous) && (pba->has_cdm == _FALSE_),
+              ppt->error_message,
+@@ -9232,6 +9245,11 @@
+ 
+       if (ppt->gauge == synchronous) {
+         dy[pv->index_pt_delta_cdm] = -metric_continuity; /* cdm density */
++        if (x34_is_on()) { /* X34: released matter born homogeneous on synchronous slices (deltaQ = 0) */
++          double x34_dl, x34_r, x34_dr;
++          x34_S(pvecback[pba->index_bg_a], &x34_dl, &x34_r, &x34_dr);
++          dy[pv->index_pt_delta_cdm] -= a_prime_over_a * x34_dl * y[pv->index_pt_delta_cdm];
++        }
+       }
+     }
+ 

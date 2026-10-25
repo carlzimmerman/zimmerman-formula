@@ -1,0 +1,173 @@
+{
+ "lane": "X34_recombination_release",
+ "criteria": "6c5d581400",
+ "date": "2026-10-24",
+ "mutate": true,
+ "checks": {
+  "S0-1_C7_LCDM_chi2": {
+   "pass": true,
+   "required": "PASS",
+   "value": "chi2 1003.475 (plik 582.40, lowTT 24.31, lowEE 396.72) vs C7 1003.475",
+   "threshold": "|diff| <= 2"
+  },
+  "S0-2_C7_sigma8": {
+   "pass": true,
+   "required": "PASS",
+   "value": "sigma8 0.827959 vs C7 0.827958",
+   "threshold": "<= 2e-3"
+  },
+  "S0-3_patched_off_equals_vanilla": {
+   "pass": true,
+   "required": "PASS",
+   "value": "max |dC/C| (TT,EE,pp) 0.00e+00; sigma8 0.827959",
+   "threshold": "<= 1e-4; sigma8 <= 1e-5"
+  },
+  "S0-4_X22_forest_gate": {
+   "pass": true,
+   "required": "PASS",
+   "value": "lambda_hm NF 0.41669, PASS 0.10491 Mpc/h; bins [1.101, 1.392, 1.76, 2.225, 2.814, 3.557]; T2_5.3keV(k5 4.6199) 0.995188; loosest (bin 0.5) lambda 1.2735",
+   "threshold": "<= 1e-6 rel"
+  },
+  "S0-5_X24_c0_and_rows": {
+   "pass": true,
+   "required": "PASS",
+   "value": {
+    "canonical": [
+     4.586999,
+     13
+    ],
+    "alt": [
+     4.051188,
+     13
+    ]
+   },
+   "threshold": "c0 equal to 1e-9; N = 13"
+  },
+  "K1_energy": {
+   "pass": false,
+   "required": "FAIL",
+   "value": "max |d(rho_c+rho_res)/dlna + 3 rho_c| / max 3 rho_c = 4.37e+00 over the turn-on [MUTATE: rho_res dropped]",
+   "threshold": "<= 2e-3"
+  },
+  "K5_turnon_bites": {
+   "pass": false,
+   "required": "FAIL",
+   "value": "TT(810) ratio z_on=1100 / LCDM = 1.0000 [MUTATE: vanilla binary]",
+   "threshold": "|ratio - 1| > 1 %"
+  },
+  "K4_idm_rate": {
+   "pass": true,
+   "required": "PASS",
+   "value": "CLASS S_idm_g dmu_idm_g/(a'/a) at z_d 2500 = 1.0000 (u 7.4392e-02); n_index 0",
+   "threshold": "within 2 %"
+  },
+  "K2_growth": {
+   "pass": false,
+   "required": "FAIL",
+   "value": "Gilbert(sigma0=0)/ODE - 1 at z=3, 0: 1.00e+00 [MUTATE: gravity sign flipped]",
+   "threshold": "<= 1e-3"
+  },
+  "K3_jeans": {
+   "pass": true,
+   "required": "PASS",
+   "value": "T(0.1 h/Mpc) 0.99999; T(10 k_J,d = 413.2 h/Mpc) 8.62e-03",
+   "threshold": "> 0.99 and < 0.1"
+  },
+  "K6_TG": {
+   "pass": true,
+   "required": "PASS",
+   "value": "sigma_min(rho_c0) = sigma0; rho_c0 3.3479e-08 Msun/pc^3",
+   "threshold": "identity"
+  },
+  "K7_a0_lambda": {
+   "pass": false,
+   "required": "FAIL",
+   "value": "a0/(c^2 sqrt(Lambda/32pi)) canonical 0.7045, alt 0.8514 (Lambda 1.0985e-52 m^-2, Omega_L 0.68666) [MUTATE: 16 pi]",
+   "threshold": "canonical within 5 %"
+  }
+ },
+ "note": "kappa = 1/2 FITTED; footings never pooled; cold sector = field mass, never a particle",
+ "binaries": {
+  "vanilla_sha256": "0d77bfa291546e4bce66724454899322e5f4026eb61ae546558da4528237853e",
+  "x34_sha256": "2307a8a707de38c0ce76b59ad2222d312095d856631b067e7100e725add65075",
+  "patch_sha256": "328ac5e3f016b5787ab0f640b3a2870ff08152ae0335a512ef17ddf2ed81420c"
+ },
+ "S0": {
+  "chi2_LCDM": {
+   "plik": 582.4002304613122,
+   "lowTT": 24.310570001113376,
+   "lowEE": 396.7229950146858,
+   "Aprior": 0.040962242645286875,
+   "total": 1003.4747577197567
+  },
+  "sigma8_LCDM": 0.827959,
+  "h": 0.6755190974102295,
+  "z_eq": 3416.539146,
+  "z_rec": 1088.886819,
+  "rs_rec_Mpc": 144.430831,
+  "patched_off_maxdev": 0.0,
+  "peaks_LCDM": {
+   "D1": 56833801.81418252,
+   "D3": 277664625.9032978,
+   "D3_over_D1": 4.885554318733052
+  },
+  "forest": {
+   "alpha_NF": {
+    "k_hm": 15.078800057023631,
+    "lambda_hm": 0.41669000738907663
+   },
+   "alpha_PASS": {
+    "k_hm": 59.89400167306526,
+    "lambda_hm": 0.10490508451041061
+   },
+   "lambda_loose_bin05": 1.273465450558595,
+   "bins": [
+    1.1011791743527353,
+    1.392236126280525,
+    1.7602234735867874,
+    2.225474988386871,
+    2.8136989412164843,
+    3.5573986556197195
+   ],
+   "k5": 4.619902318594772,
+   "T2_53": 0.9951884882977262
+  },
+  "c0": {
+   "canonical": {
+    "c0": 4.586999220610273,
+    "lo": 4.012562664333218,
+    "hi": 5.143490581982875,
+    "c0_rederived": 4.586999220610273,
+    "N_field": 13
+   },
+   "alt": {
+    "c0": 4.0511883335492955,
+    "lo": 3.4093538807186463,
+    "hi": 4.656706722552361,
+    "c0_rederived": 4.0511883335492955,
+    "N_field": 13
+   }
+  }
+ },
+ "machinery": {
+  "growth_dev": 0.9998471336862444,
+  "kJd_hMpc": 41.3165004946607,
+  "T_jeans": [
+   0.9999947156989512,
+   0.008622662727417347
+  ],
+  "K1_violation": 4.374918922372417,
+  "K5_TT810_ratio": 1.0000000829107196,
+  "K4_rate_ratio": 0.9999995681857631,
+  "u_2500": 0.07439185123017537,
+  "Lambda_m2": 1.098495669975235e-52,
+  "a0_over_Lambda_a0": {
+   "canonical": 0.7045050577853744,
+   "alt": 0.8514001916250713
+  }
+ },
+ "verdict": "MUTATE run: checks only",
+ "elapsed_s": 27.5,
+ "peak_rss_GB_python": 0.14,
+ "peak_rss_GB_children": 0.289
+}

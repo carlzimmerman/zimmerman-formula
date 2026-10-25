@@ -1,0 +1,118 @@
+X34_recombination_release normal run; frozen 6c5d581400
+kappa = 1/2 FITTED; footings never pooled; cold sector = gravitating field mass, never a particle; not theory closed
+binaries: vanilla 0d77bfa291546e4b, x34 2307a8a707de38c0, patch 328ac5e3f016b578
+
+== STEP 0 (stop rule)
+S0-1_C7_LCDM_chi2 PASS (required PASS) chi2 1003.475 (plik 582.40, lowTT 24.31, lowEE 396.72) vs C7 1003.475 | |diff| <= 2
+S0-2_C7_sigma8 PASS (required PASS) sigma8 0.827959 vs C7 0.827958 | <= 2e-3
+S0-3_patched_off_equals_vanilla PASS (required PASS) max |dC/C| (TT,EE,pp) 0.00e+00; sigma8 0.827959 | <= 1e-4; sigma8 <= 1e-5
+  LCDM: h 0.67552, z_eq 3416.54, z_rec 1088.887, r_s(rec) 144.431 Mpc, D3/D1 4.8856
+S0-4_X22_forest_gate PASS (required PASS) lambda_hm NF 0.41669, PASS 0.10491 Mpc/h; bins [1.101, 1.392, 1.76, 2.225, 2.814, 3.557]; T2_5.3keV(k5 4.6199) 0.995188; loosest (bin 0.5) lambda 1.2735 | <= 1e-6 rel
+S0-5_X24_c0_and_rows PASS (required PASS) {'canonical': (4.586999, 13), 'alt': (4.051188, 13)} | c0 equal to 1e-9; N = 13
+
+== machinery checks
+K1_energy PASS (required PASS) max |d(rho_c+rho_res)/dlna + 3 rho_c| / max 3 rho_c = 4.58e-05 over the turn-on | <= 2e-3
+K5_turnon_bites PASS (required PASS) TT(810) ratio z_on=1100 / LCDM = 1.4977 | |ratio - 1| > 1 %
+K4_idm_rate PASS (required PASS) CLASS S_idm_g dmu_idm_g/(a'/a) at z_d 2500 = 1.0000 (u 7.4392e-02); n_index 0 | within 2 %
+K2_growth PASS (required PASS) Gilbert(sigma0=0)/ODE - 1 at z=3, 0: 3.50e-06 | <= 1e-3
+K3_jeans PASS (required PASS) T(0.1 h/Mpc) 0.99999; T(10 k_J,d = 413.2 h/Mpc) 8.62e-03 | > 0.99 and < 0.1
+K6_TG PASS (required PASS) sigma_min(rho_c0) = sigma0; rho_c0 3.3479e-08 Msun/pc^3 | identity
+K7_a0_lambda PASS (required PASS) a0/(c^2 sqrt(Lambda/32pi)) canonical 0.9963, alt 1.2041 (Lambda 1.0985e-52 m^-2, Omega_L 0.68666) | canonical within 5 %
+
+== Q1 timing (footing-independent)
+  R1 z=100000: start dchi2 +0.44; final dchi2 +0.44 (refit False, conv True); sigma8 0.8200 (ratio 0.9904); D3/D1 4.8867 (LCDM 4.8856); runs 1 -> PASS 
+    R1 z=50000: it1 steered 589.21 -> 584.47 (step 1.0)
+  R1 z=50000: start dchi2 +6.28; final dchi2 +2.81 (refit True, conv True); sigma8 0.7994 (ratio 0.9655); D3/D1 4.8772 (LCDM 4.8856); runs 15 -> PASS 
+    R1 z=20000: it1 steered 1082.61 -> 658.12 (step 1.0)
+    R1 z=20000: it2 steered 658.12 -> 657.81 (step 1.0)
+    R1 z=20000: it3 steered 657.81 -> 657.77 (step 0.25)
+  R1 z=20000: start dchi2 +499.43; final dchi2 +88.98 (refit True, conv True); sigma8 0.6928 (ratio 0.8367); D3/D1 4.8101 (LCDM 4.8856); runs 13 -> EXCLUDED sigma8 + chi2
+    R1 z=12000: it1 steered 6354.54 -> 1093.11 (step 1.0)
+    R1 z=12000: it2 steered 1093.11 -> 1072.31 (step 1.0)
+    R1 z=12000: it3 steered 1072.31 -> 1072.26 (step 0.25)
+  R1 z=12000: start dchi2 +5770.96; final dchi2 +545.03 (refit True, conv True); sigma8 0.5611 (ratio 0.6777); D3/D1 4.7090 (LCDM 4.8856); runs 13 -> EXCLUDED sigma8 + chi2
+    R1 z=7000: it1 steered 42001.14 -> 3203.06 (step 1.0)
+    R1 z=7000: it2 steered 3203.06 -> 2577.84 (step 1.0)
+    R1 z=7000: it3 steered 2577.84 -> 2576.22 (step 0.5)
+    R1 z=7000: it4 steered 2576.22 -> 2575.91 (step 1.0)
+    R1 z=7000: it5 steered 2575.91 -> 2575.67 (step 0.25)
+    R1 z=7000: it6 steered 2575.67 -> 2575.20 (step 1.0)
+    R1 z=7000: it7 steered 2575.20 -> 2575.16 (step 1.0)
+  R1 z=7000: start dchi2 +41416.62; final dchi2 +2052.02 (refit True, conv True); sigma8 0.3689 (ratio 0.4455); D3/D1 4.8190 (LCDM 4.8856); runs 19 -> EXCLUDED sigma8 + chi2
+    R1 z=4000: it1 steered 378484.46 -> 15284.37 (step 1.0)
+    R1 z=4000: it2 steered 15284.37 -> 9750.66 (step 1.0)
+  R1 z=4000: start dchi2 +377898.50; final dchi2 +9200.23 (refit True, conv True); sigma8 0.1825 (ratio 0.2205); D3/D1 5.3699 (LCDM 4.8856); runs 16 -> EXCLUDED sigma8 + chi2
+    R1 z=2500: it1 steered 274661.69 -> 26772.14 (step 1.0)
+    R1 z=2500: it2 steered 26772.14 -> 17197.67 (step 1.0)
+    R1 z=2500: it3 steered 17197.67 -> 17095.39 (step 0.125)
+  R1 z=2500: start dchi2 +274075.28; final dchi2 +inf (refit True, conv True); sigma8 0.0682 (ratio 0.0824); D3/D1 5.3525 (LCDM 4.8856); runs 20 -> EXCLUDED sigma8 + chi2
+    R1 z=1500: it1 steered 437844.56 -> 32650.62 (step 1.0)
+    R1 z=1500: it2 steered 32650.62 -> 22850.97 (step 0.5)
+    R1 z=1500: it3 steered 22850.97 -> 22688.79 (step 0.03125)
+    R1 z=1500: it4 steered 22688.79 -> 22246.82 (step 0.0625)
+  R1 z=1500: start dchi2 +437259.95; final dchi2 +inf (refit True, conv True); sigma8 0.0387 (ratio 0.0467); D3/D1 4.4018 (LCDM 4.8856); runs 28 -> EXCLUDED sigma8 + chi2
+    R1 z=1100: it1 steered 465628.69 -> 34268.76 (step 1.0)
+    R1 z=1100: it2 steered 34268.76 -> 23678.27 (step 0.5)
+    R1 z=1100: it3 steered 23678.27 -> 20649.40 (step 0.5)
+    R1 z=1100: it4 steered 20649.40 -> 19784.67 (step 0.5)
+    R1 z=1100: it5 steered 19784.67 -> 19539.85 (step 0.5)
+    R1 z=1100: it6 steered 19539.85 -> 19520.04 (step 0.25)
+  R1 z=1100: start dchi2 +465046.34; final dchi2 +inf (refit True, conv True); sigma8 0.0418 (ratio 0.0504); D3/D1 5.0412 (LCDM 4.8856); runs 26 -> EXCLUDED sigma8 + chi2
+  R2 z=100000: start dchi2 +1.35; final dchi2 +1.35 (refit False, conv True); sigma8 0.8128 (ratio 0.9817); D3/D1 4.8865 (LCDM 4.8856); runs 1 -> PASS 
+    R2 z=50000: it1 steered 593.46 -> 586.25 (step 1.0)
+    R2 z=50000: it2 steered 586.25 -> 586.25 (step 0.5)
+  R2 z=50000: start dchi2 +10.59; final dchi2 +3.32 (refit True, conv True); sigma8 0.7802 (ratio 0.9423); D3/D1 4.8888 (LCDM 4.8856); runs 11 -> EXCLUDED sigma8 only
+    R2 z=20000: it1 steered 894.66 -> 634.03 (step 1.0)
+    R2 z=20000: it2 steered 634.03 -> 633.94 (step 1.0)
+    R2 z=20000: it3 steered 633.94 -> 633.89 (step 1.0)
+  R2 z=20000: start dchi2 +311.85; final dchi2 +48.32 (refit True, conv True); sigma8 0.6597 (ratio 0.7968); D3/D1 4.9232 (LCDM 4.8856); runs 11 -> EXCLUDED sigma8 + chi2
+    R2 z=12000: it1 steered 3188.75 -> 913.62 (step 1.0)
+    R2 z=12000: it2 steered 913.62 -> 905.69 (step 1.0)
+    R2 z=12000: it3 steered 905.69 -> 903.18 (step 1.0)
+    R2 z=12000: it4 steered 903.18 -> 903.15 (step 1.0)
+  R2 z=12000: start dchi2 +2606.11; final dchi2 +317.04 (refit True, conv True); sigma8 0.5489 (ratio 0.6630); D3/D1 4.9928 (LCDM 4.8856); runs 12 -> EXCLUDED sigma8 + chi2
+    R2 z=7000: it1 steered 20707.69 -> 3189.29 (step 1.0)
+    R2 z=7000: it2 steered 3189.29 -> 2495.34 (step 1.0)
+    R2 z=7000: it3 steered 2495.34 -> 2444.13 (step 1.0)
+    R2 z=7000: it4 steered 2444.13 -> 2413.89 (step 1.0)
+    R2 z=7000: it5 steered 2413.89 -> 2410.42 (step 0.5)
+  R2 z=7000: start dchi2 +20126.02; final dchi2 +inf (refit True, conv True); sigma8 0.4164 (ratio 0.5029); D3/D1 5.0699 (LCDM 4.8856); runs 20 -> EXCLUDED sigma8 + chi2
+    R2 z=4000: it1 steered 99031.86 -> 27966.05 (step 0.5)
+    R2 z=4000: it2 steered 27966.05 -> 13490.09 (step 0.5)
+    R2 z=4000: it3 steered 13490.09 -> 13036.91 (step 0.0625)
+  R2 z=4000: start dchi2 +98458.75; final dchi2 +inf (refit True, conv True); sigma8 0.2888 (ratio 0.3489); D3/D1 4.3098 (LCDM 4.8856); runs 23 -> EXCLUDED sigma8 + chi2
+    R2 z=2500: it1 steered 228012.48 -> 78316.13 (step 0.5)
+  R2 z=2500: start dchi2 +227491.82; final dchi2 +77797.71 (refit True, conv True); sigma8 0.0690 (ratio 0.0833); D3/D1 2.5549 (LCDM 4.8856); runs 16 -> EXCLUDED sigma8 + chi2
+  R2 z=1500: CLASS FAIL =>perturbations_vector_init(L:4297) :condition (ppw->approx[ppw->index_ap_tca] == (int)tca_off) is true; scalar initial conditions assume tight-coupling approximation turned on
+  R2 z=1100: CLASS FAIL =>perturbations_vector_init(L:4297) :condition (ppw->approx[ppw->index_ap_tca] == (int)tca_off) is true; scalar initial conditions assume tight-coupling approximation turned on
+  R2 sensitivity (TCA trigger raised, reported only) z_d=1100: {'dchi2_start': inf, 'sigma8': 0.13453, 'peaks': {'D1': 19266952.262059133, 'D3': 2627462.3902911143, 'D3_over_D1': 0.13637145899121605}}
+  R2 sensitivity (TCA trigger raised, reported only) z_d=1500: {'dchi2_start': inf, 'sigma8': 0.152329, 'peaks': {'D1': 35348198.62752738, 'D3': 9766633.210968487, 'D3_over_D1': 0.2762979045659976}}
+  R1: z_on,allowed 50000.0; z_on,excl 20000.0; dchi2 crosses 25 at z 39489.67282806605, 4 at z 49368.8402970245; margin 45.45454545454545 -> Q1 EXCLUDED
+  R2: z_on,allowed 100000.0; z_on,excl 50000.0; dchi2 crosses 25 at z 32155.277320101293, 4 at z 49312.945915741424; margin 90.9090909090909 -> Q1 UNDECIDED
+
+== Q2 relic speed
+  rho_c0 3.3479e-08 Msun/pc^3; field-dwarf Delta = rho_1/2/rho_c0: min 1.574e+05, median 1.666e+06, max 4.259e+06; ultra-faints median 6.922e+06
+  z_d 1100: forest sigma0,PASS 2.3167e-02, sigma0,NF 1.0873e-01 (lambda_hm z3 0.355 Mpc/h), sigma0 at lambda_hm = 0.417: 1.2768e-01, sigma0,loose 3.9029e-01 km/s
+  z_d 1500: forest sigma0,PASS 2.0054e-02, sigma0,NF 9.4077e-02 (lambda_hm z3 0.355 Mpc/h), sigma0 at lambda_hm = 0.417: 1.1047e-01, sigma0,loose 3.3785e-01 km/s
+  z_d 3417: forest sigma0,PASS 1.3953e-02, sigma0,NF 6.5455e-02 (lambda_hm z3 0.355 Mpc/h), sigma0 at lambda_hm = 0.417: 7.6863e-02, sigma0,loose 2.3496e-01 km/s
+  z_d 100000: forest sigma0,PASS 4.7403e-03, sigma0,NF 2.2237e-02 (lambda_hm z3 0.355 Mpc/h), sigma0 at lambda_hm = 0.417: 2.6137e-02, sigma0,loose 7.9895e-02 km/s
+  [canonical] z_d 1100: floor sigma0 in [2.475e-02, 9.526e-02] (central 3.869e-02); forest NF <= 1.087e-01 -> intersection [0.024753856912085783, 0.09525716409636692]; strict None; loosest [0.021036594099955157, 0.09519251870906917]; max floor the forest allows (field median) 12.890 km/s
+  [canonical] z_d 1500: floor sigma0 in [2.475e-02, 9.526e-02] (central 3.869e-02); forest NF <= 9.408e-02 -> intersection [0.024753856912085783, 0.09407690381724967]; strict None; loosest [0.021036594099955157, 0.09519251870906917]; max floor the forest allows (field median) 11.153 km/s
+  [canonical] z_d 3417: floor sigma0 in [2.475e-02, 9.526e-02] (central 3.869e-02); forest NF <= 6.546e-02 -> intersection [0.024753856912085783, 0.06545505179377611]; strict None; loosest [0.021036594099955157, 0.09519251870906917]; max floor the forest allows (field median) 7.760 km/s
+  [canonical] z_d 100000: floor sigma0 in [2.475e-02, 9.526e-02] (central 3.869e-02); forest NF <= 2.224e-02 -> intersection None; strict None; loosest [0.021036594099955157, 0.07989523940821307]; max floor the forest allows (field median) 2.636 km/s
+  [canonical] Q2 PASS
+  [alt] z_d 1100: floor sigma0 in [2.103e-02, 8.624e-02] (central 3.417e-02); forest NF <= 1.087e-01 -> intersection [0.021032608132488296, 0.08624195365938012]; strict [0.021032608132488296, 0.02316696997509908]; loosest [0.021036594099955157, 0.09519251870906917]; max floor the forest allows (field median) 12.890 km/s
+  [alt] z_d 1500: floor sigma0 in [2.103e-02, 8.624e-02] (central 3.417e-02); forest NF <= 9.408e-02 -> intersection [0.021032608132488296, 0.08624195365938012]; strict None; loosest [0.021036594099955157, 0.09519251870906917]; max floor the forest allows (field median) 11.153 km/s
+  [alt] z_d 3417: floor sigma0 in [2.103e-02, 8.624e-02] (central 3.417e-02); forest NF <= 6.546e-02 -> intersection [0.021032608132488296, 0.06545505179377611]; strict None; loosest [0.021036594099955157, 0.09519251870906917]; max floor the forest allows (field median) 7.760 km/s
+  [alt] z_d 100000: floor sigma0 in [2.103e-02, 8.624e-02] (central 3.417e-02); forest NF <= 2.224e-02 -> intersection [0.021032608132488296, 0.022237158466931205]; strict None; loosest [0.021036594099955157, 0.07989523940821307]; max floor the forest allows (field median) 2.636 km/s
+  [alt] Q2 PASS
+
+== Q3 scale link
+  [canonical] trials 54; matches 1; expected by chance 0.99
+     MATCH (numerology, not derived): v_p [as is] vs c0: log10 ratio +0.033 (no a0)
+  [alt] trials 54; matches 1; expected by chance 1.01
+     MATCH (numerology, not derived): v_p [as is] vs c0: log10 ratio +0.087 (no a0)
+  base: z_* 1088.89, H_* 5.0630e-14 /s, r_s 144.431 Mpc com (132.52 kpc phys), R_* 0.6209, c_s 135951 km/s, v_p 4.952 km/s, v_e 212.2 km/s, T_* 2970.5 K
+
+VERDICT: RRB REDUCES TO ORDINARY CDM; Q1 R1 EXCLUDED, R2 UNDECIDED; Q2 {'canonical': 'PASS', 'alt': 'PASS'}; Q3 {'canonical': 'UNDECIDED (NUMEROLOGY ONLY)', 'alt': 'UNDECIDED (NUMEROLOGY ONLY)'}
+X34 COMPLETE: 12/12 checks have their required outcome; CLASS runs 254; failed runs 8; elapsed 1262 s

@@ -1,0 +1,22 @@
+X34_recombination_release MUTATE run; frozen 6c5d581400
+kappa = 1/2 FITTED; footings never pooled; cold sector = gravitating field mass, never a particle; not theory closed
+binaries: vanilla 0d77bfa291546e4b, x34 2307a8a707de38c0, patch 328ac5e3f016b578
+
+== STEP 0 (stop rule)
+S0-1_C7_LCDM_chi2 PASS (required PASS) chi2 1003.475 (plik 582.40, lowTT 24.31, lowEE 396.72) vs C7 1003.475 | |diff| <= 2
+S0-2_C7_sigma8 PASS (required PASS) sigma8 0.827959 vs C7 0.827958 | <= 2e-3
+S0-3_patched_off_equals_vanilla PASS (required PASS) max |dC/C| (TT,EE,pp) 0.00e+00; sigma8 0.827959 | <= 1e-4; sigma8 <= 1e-5
+  LCDM: h 0.67552, z_eq 3416.54, z_rec 1088.887, r_s(rec) 144.431 Mpc, D3/D1 4.8856
+S0-4_X22_forest_gate PASS (required PASS) lambda_hm NF 0.41669, PASS 0.10491 Mpc/h; bins [1.101, 1.392, 1.76, 2.225, 2.814, 3.557]; T2_5.3keV(k5 4.6199) 0.995188; loosest (bin 0.5) lambda 1.2735 | <= 1e-6 rel
+S0-5_X24_c0_and_rows PASS (required PASS) {'canonical': (4.586999, 13), 'alt': (4.051188, 13)} | c0 equal to 1e-9; N = 13
+
+== machinery checks
+K1_energy FAIL (required FAIL) max |d(rho_c+rho_res)/dlna + 3 rho_c| / max 3 rho_c = 4.37e+00 over the turn-on [MUTATE: rho_res dropped] | <= 2e-3
+K5_turnon_bites FAIL (required FAIL) TT(810) ratio z_on=1100 / LCDM = 1.0000 [MUTATE: vanilla binary] | |ratio - 1| > 1 %
+K4_idm_rate PASS (required PASS) CLASS S_idm_g dmu_idm_g/(a'/a) at z_d 2500 = 1.0000 (u 7.4392e-02); n_index 0 | within 2 %
+K2_growth FAIL (required FAIL) Gilbert(sigma0=0)/ODE - 1 at z=3, 0: 1.00e+00 [MUTATE: gravity sign flipped] | <= 1e-3
+K3_jeans PASS (required PASS) T(0.1 h/Mpc) 0.99999; T(10 k_J,d = 413.2 h/Mpc) 8.62e-03 | > 0.99 and < 0.1
+K6_TG PASS (required PASS) sigma_min(rho_c0) = sigma0; rho_c0 3.3479e-08 Msun/pc^3 | identity
+K7_a0_lambda FAIL (required FAIL) a0/(c^2 sqrt(Lambda/32pi)) canonical 0.7045, alt 0.8514 (Lambda 1.0985e-52 m^-2, Omega_L 0.68666) [MUTATE: 16 pi] | canonical within 5 %
+
+X34 MUTATE COMPLETE: 12/12 checks have their required outcome; failing as required: ['K1_energy', 'K5_turnon_bites', 'K2_growth', 'K7_a0_lambda']
