@@ -204,3 +204,10 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
 - **Fluid:** TENSION, dependent on the placement rule.
 - **A CDM-like tracer** with σ near the well's survives (f_ret 0.80–1.02) and lands on the galaxies (reported).
 - **The deciding variable is c_s/σ_well, not fluid versus collisionless.** This agrees with X30: the extra cluster mass behaves like a component as hot as the well itself.
+
+**a₀ tracking early dark energy** (`X35_a0_tracks_ede`, 02848d0330 / 0eb84a459a / 90f9391487; coordinator rerun identical apart from timing): **UNDECIDED** (frozen rule).
+- **Magnitude is not the obstacle.** With literature EDE, a₀ at z ≈ 1100 is 1.7e3–7.6e3 × today and the plasma is deep in the law's regime. Today's a₀ is unchanged.
+- **v3s has nothing for a huge a₀ to act on.** With no khronon charge, charge conservation gives ρ_τ ≡ 0 and Ξ ≡ 0, and the potential is GR for any a₀.
+- With Blanchet–Skordis dust, a₀ drops out of the linear kernel.
+- A static AQUAL reading gives a boost in phase with the plasma (G_eff/G 11–29). That makes the first-peak scales Jeans-unstable instead of supplying a steady well.
+- **New caveat for CFG689.** EDE shifts the sound-horizon ruler by about 4 %, so CFG689's native a₀(z) band holds only for a ruler with no EDE.
