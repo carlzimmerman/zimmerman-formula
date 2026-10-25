@@ -15,6 +15,7 @@ The galaxy law (v3s statics) is taken as given; it passes SPARC, isolated groups
 | R3 | Absent from isolated galaxies today | ≤ 0.035 / 0.005 M_b inside R_last (0.20 / 0.03 of the fair share) | X22, X6 |
 | R4 | Present in cluster cores, rising smoothly with KT (no switch) | +0.23 to +0.27 dex at 0.3–1 Mpc (T2/T3), ≈ 0 in T1; known baryons short by ×4–7 | X7, X21 |
 | R5 | Graded extra in dwarfs, the same in hosted and field dwarfs at fixed M★ | +0.2 to +0.6 dex, rising toward low M★ | X20 (requirement lane), X24 |
+| R7 | Late suppression of small-scale power stays small | T²(z = 0, k = 1 h/Mpc) ≥ 0.835, σ₈ loss ≤ 1 %; cosmic c_s today ≲ 270–330 km/s; about half of X26's sheet survives (23/45, 15/37) | X29 (raw KiDS-1000 ξ±) |
 | R6 | Collisionless at cluster-merger speeds | lensing peaks with the galaxies, not the gas (Bullet) | record Bullet reviews (opus_48, 06-19/20) |
 
 R2 and R3 are the crux. The forest demands dust-like clustering on the galaxies' own Lagrangian scales (SPARC M_L/M_hm
@@ -55,7 +56,7 @@ partially, graded by KT) and gone from galaxies. A separate ~4 km/s-scale floor 
 |---|---|---|
 | The heating mechanism (energy ~1e-6 ρ_Λ c², steep in time, p ≥ 3) | there is no action; this is the missing physics | an action term whose heating rate turns on at z ≲ 2. The z ≈ 1–2 timing is suggestive of dark-energy domination (owner: a₀ tracks DE), but untested |
 | R6, collisionless heat | a fluid fails the Bullet | Bullet Cluster lensing with a 600 km/s dispersion component, collisionless vs fluid |
-| Low-z power | heating after z ≈ 2 suppresses small-scale power late: T²(z = 0, k = 1 h/Mpc) = 0.80–0.97 (X22, ungraded) | late-time S8 from KiDS/DES vs the CMB value, at the allowed sheet points. This is a sign-definite prediction (lower S8 at low z) |
+| Low-z power | **graded in X29:** raw KiDS shear keeps only the gentle half of the sheet (T²(k = 1) ≥ 0.835) | the prediction is a ≤ 15 % deficit at k ~ 1 h/Mpc today and none at k ≲ 0.3; the nonlinear (halo) response is still not modelled |
 | Cluster profile | partial retention at c_s ≈ σ sets a core | X7/X21 radial profile of the excess vs the hydrostatic core at the allowed c_s |
 | The dwarf floor's origin | separate constant, r^−0.8 | multi-epoch UFD kinematics; a derivation of the exponent |
 
