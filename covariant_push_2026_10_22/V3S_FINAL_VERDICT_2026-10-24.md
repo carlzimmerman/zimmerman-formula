@@ -269,3 +269,16 @@ This is the first model in the record that ties a₀ to the cold dark energy its
 - The Lacey–Cole EPS collapse ρr on the record's CLASS P(k) scales as M^0.23 over 1e13–1e15 M☉, near the needed M^0.25–0.30.
 - Its amplitude is only 0.22–0.26 × a₀/(2πG). Reaching the cluster cores would need a core-concentration factor of about 11–23.
 - **Requirement now.** Cold dark energy cores sit at the a₀/(2πG) floor in galaxies, and at about 10–20 × the collapse ρr in groups and clusters. The origin of that concentration factor is missing.
+
+**Collapse core floor** (`X43_collapse_core_floor`, peer lane; criteria 00bc1a7950; coordinator rerun identical apart from timing). **CC FAILS [c_f EXTERNAL]** on both footings, on only 2 of 17 keys. The rule is Σ_core = max(a₀/(2πG), η Σ_coll), with no fitted constant:
+- Σ_coll is X41's Lacey–Cole EPS collapse ρr.
+- η = (4/(3B(1))) c_f^{5/4} = 14.8 comes from Bertschinger r^{−9/4} infall with a core at r_f/c_f.
+- c_f = 4 is an external value (Bullock/Zhao).
+
+Results:
+- **SPARC passes:** rms 0.078 / 0.073 at Υ 0.77 / 0.60.
+- **14 of 15 cluster keys pass, including the heavy cores:** MID T3 Z +4.26 → +0.30; MGAS-all OUTER +2.36 → +0.49.
+- **The two failures are slight under-predictions:** groups Z +2.05 (line 2.0) and MGAS T3 OUTER Z +2.41.
+- **Reported only:** c_f = 5 (η 19.6) passes the groups.
+
+**This is the closest complete picture in the record.** The cold dark energy core surface density is a₀/(2πG) in galaxies. Above galaxy scale it is the gravitational-collapse value, raised by a secondary-infall concentration factor. The one external input is c_f, which the peer is deriving from the infall solution (X44).
