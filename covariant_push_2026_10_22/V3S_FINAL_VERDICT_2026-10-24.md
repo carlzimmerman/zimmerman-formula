@@ -181,3 +181,8 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
 - **Mechanism.** Partial retention at c_s ≈ 1.1–1.5 σ is outskirts-heavy. The cold core is 2–5 × the gas core, with < 5 % of the retained cold mass inside 0.5 Mpc.
 - **Binding band: OUTER.** Fixing MID raises OUTER by about the same factor: predicted 1.42–2.26 against measured 0.66–0.72, Z −5.4 to −11. It fails in every tercile and under X7's full calibrated errors.
 - Within this model family (isothermal, spherical, bounded at turnaround), the last surviving cold-sector door is closed. A centrally concentrated profile is not derived in the record and was not tested.
+
+**Feedback energy as the key** (`X31_feedback_energy_selector`, 1aa11f9bcb / 358e3859ed / 5695a61801; coordinator rerun identical apart from timing): **FEEDBACK FAILS** on both footings. F = e_fb/σ² spans five decades and is set mostly by 1/σ².
+- The heavy clusters that need extra have the *lowest* F (≈ 1). The dwarfs that need extra have F ≈ 5e3–2e4. Crater II has the highest F (5e4) and needs less than the law.
+- Neither direction separates the classes, and F does not order them (Spearman +0.10). Within the dwarfs, mass orders the extra (−0.65) and F does not.
+- No feedback-to-cold-sector coupling is supported.
