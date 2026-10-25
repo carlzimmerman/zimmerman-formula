@@ -21,3 +21,7 @@ inside the peak scale. The Dalal et al. construction uses the **unsmoothed** den
 cross-correlation with one W_G. A2 switches the collapse profile to that form. K1's identities stay on the smoothed field,
 where they hold. Two post-result changes have now been made, so **this lane's result is post-hoc and exploratory, not a
 frozen pass**: it can motivate a new frozen lane, nothing more.
+
+## A3 (implementation, after the first commit)
+
+The first `--mutate` run crashed on an empty slope array instead of finishing, and the README wrongly reported it as "fails K1". A guard now returns the fallback when too few shells collapse; the main run never takes that branch. The rerun mutate completes and fails K1 (δ(0) identity −1.2, Laplacian −1.6), exit 1. The main rerun is identical apart from timing.

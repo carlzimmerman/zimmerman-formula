@@ -1,0 +1,40 @@
+X45_peak_curvature_cf  MUTATE run (curvature term sign flipped)
+kappa = 1/2 FITTED; footings never pooled; record P(k) (EM1 CLASS, bg A); BBKS peak statistics + spherical collapse; no simulation calibration; not theory closed
+K3 EM1 sigma8 own vs F3: PASS
+K1 BBKS identities at M 1e12, nu 2: delta(0)/(nu s0) - 1 = -1.2e+00; -lap delta(0)/(x s2) - 1 = -1.6e+00: FAIL
+K2 high-nu limit <x|nu=30> / (gamma nu) = 1.0064: PASS
+  M 1e10.0: z_f 1.33, nu 2.76, <x> 2.71, gamma 0.51 -> c_f,pk 1.85 [no -2 crossing; non-monotone shells 0]
+  M 1e10.5: z_f 1.23, nu 2.84, <x> 2.74, gamma 0.52 -> c_f,pk 1.85 [no -2 crossing; non-monotone shells 0]
+  M 1e11.0: z_f 1.14, nu 2.93, <x> 2.78, gamma 0.54 -> c_f,pk 1.85 [no -2 crossing; non-monotone shells 0]
+  M 1e11.5: z_f 1.04, nu 3.03, <x> 2.82, gamma 0.56 -> c_f,pk 1.85 [no -2 crossing; non-monotone shells 0]
+  M 1e12.0: z_f 0.94, nu 3.14, <x> 2.87, gamma 0.57 -> c_f,pk 1.85 [no -2 crossing; non-monotone shells 0]
+  M 1e12.5: z_f 0.85, nu 3.26, <x> 2.93, gamma 0.59 -> c_f,pk 1.85 [no -2 crossing; non-monotone shells 0]
+  M 1e13.0: z_f 0.75, nu 3.41, <x> 3.00, gamma 0.61 -> c_f,pk 1.85 [no -2 crossing; non-monotone shells 0]
+  M 1e13.5: z_f 0.66, nu 3.59, <x> nan, gamma nan -> c_f,pk 1.85 [too few collapsed shells; non-monotone shells 0]
+  M 1e14.0: z_f 0.56, nu 3.81, <x> nan, gamma nan -> c_f,pk 1.85 [too few collapsed shells; non-monotone shells 0]
+  M 1e14.5: z_f 0.47, nu 4.12, <x> 3.41, gamma 0.67 -> c_f,pk 1.85 [no -2 crossing; non-monotone shells 0]
+  M 1e15.0: z_f 0.39, nu 4.54, <x> 3.69, gamma 0.69 -> c_f,pk 1.85 [no -2 crossing; non-monotone shells 0]
+  M 1e15.5: z_f 0.31, nu 5.19, <x> 4.13, gamma 0.71 -> c_f,pk 1.85 [no -2 crossing; non-monotone shells 0]
+  c_f,pk at 1e13 (groups) 1.85, 1e14 1.85, 1e15 1.85  (data need ~4-4.2, X44)   [13 s]
+K0 constant c_f 4 reproduces X43: max |d groups Z| 0.0e+00: PASS
+
+=== [canonical] c_f,pk(M)
+  SPARC bg A: rms 0.0795, U 0.77, line PASS; groups Z +2.48 ABOVE LAW
+  MID T3 pred 1.396 Z +2.90; MID slope Z +2.49; OUTER all Z -0.36; MGAS T3 OUTER Z +4.08
+  VERDICT [canonical]: PK FAILS: groups (ABOVE LAW, Z +2.48), G-MID-T3 (UNDER), G-MID-b (UNDER), G-OUT-M3 (UNDER)
+
+=== [alt] c_f,pk(M)
+  SPARC bg A: rms 0.0729, U 0.60, line PASS; groups Z +2.29 ABOVE LAW
+  MID T3 pred 1.283 Z +2.89; MID slope Z +2.51; OUTER all Z -0.36; MGAS T3 OUTER Z +4.08
+  VERDICT [alt]: PK FAILS: groups (ABOVE LAW, Z +2.29), G-MID-T3 (UNDER), G-MID-b (UNDER), G-OUT-M3 (UNDER)
+
+=== VERDICT (both footings): PK FAILS: groups (ABOVE LAW, Z +2.48), G-MID-T3 (UNDER), G-MID-b (UNDER), G-OUT-M3 (UNDER)
+
+=== CHECKS
+  [PASS] K3
+  [FAIL] K1
+  [PASS] K2
+  [PASS] K0
+  [PASS] K4
+
+checks 4/5; runtime 105 s; peak RSS 1.07 GB
