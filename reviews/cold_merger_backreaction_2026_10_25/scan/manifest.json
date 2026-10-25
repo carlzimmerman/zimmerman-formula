@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLD_MERGER_RESONANCE_SCAN",
+  "repository": {
+    "commit": "dd767f67fa7a201a8dab59137cde9a11ce154eab",
+    "dirty": true
+  },
+  "command": [
+    "python",
+    "reviews/cold_merger_backreaction_2026_10_25/scan.py",
+    "--output",
+    "reviews/cold_merger_backreaction_2026_10_25/scan"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.13.1"
+      },
+      {
+        "name": "scipy",
+        "version": "1.14.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite monodromy scan and optimized autonomous reservoir control",
+    "coefficient_domain": "float64",
+    "conventions": "dimensionless Einstein time and excitation energy in D units",
+    "inputs": [
+      "fixed candidate",
+      "prior 35 gas shells"
+    ],
+    "bounds": {
+      "T_range": [
+        0.01,
+        2
+      ],
+      "scan_count": 161,
+      "cycles": 100
+    },
+    "non_claims": [
+      "Not a full merger simulation",
+      "No selected orbit or seed",
+      "No galaxy-law proof or trapped fraction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T19:52:36.076281+00:00",
+    "runtime_seconds": 5.118507,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/cold_merger_backreaction_2026_10_25/SCAN_CRITERIA.md",
+    "reviews/cold_merger_backreaction_2026_10_25/scan.py",
+    "reviews/cold_merger_backreaction_2026_10_25/run/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/cold_merger_backreaction_2026_10_25/SCAN_CRITERIA.md",
+      "sha256": "acd357d20a3015c686ec2813c2d02825a93b0d0513ac3760502fc21883bbf791",
+      "sha256_after": "acd357d20a3015c686ec2813c2d02825a93b0d0513ac3760502fc21883bbf791"
+    },
+    {
+      "path": "reviews/cold_merger_backreaction_2026_10_25/scan.py",
+      "sha256": "f9881194df43a21f54e3bd7dc557cd27c94e2b57af0db9f3ff65936ead6f5f96",
+      "sha256_after": "f9881194df43a21f54e3bd7dc557cd27c94e2b57af0db9f3ff65936ead6f5f96"
+    },
+    {
+      "path": "reviews/cold_merger_backreaction_2026_10_25/run/result.json",
+      "sha256": "3e0c9e3fcf1d979838fa8b93987cb943f638c883e1e1040b0c6815bdab932956",
+      "sha256_after": "3e0c9e3fcf1d979838fa8b93987cb943f638c883e1e1040b0c6815bdab932956"
+    }
+  ],
+  "output_directory": "reviews/cold_merger_backreaction_2026_10_25/scan",
+  "declared_results": [
+    "reviews/cold_merger_backreaction_2026_10_25/scan/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/cold_merger_backreaction_2026_10_25/scan/stdout.txt",
+      "sha256": "35cb780ed126f063153b2a4e6e6e8c988023504235fd8818babc453866cbb717",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/cold_merger_backreaction_2026_10_25/scan/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/cold_merger_backreaction_2026_10_25/scan/result.json",
+      "sha256": "d45d6391d482ea4214d704e9a18dd170298e6d6d7bd35bf64493dcb6ac106ff6",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
