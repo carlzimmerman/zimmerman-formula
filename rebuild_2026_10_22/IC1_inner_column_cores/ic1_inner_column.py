@@ -63,7 +63,7 @@ EPS, sigma_coll41 = N41["EPS"], N41["sigma_coll"]
 X41J = json.load(open(os.path.join(REB, "X41_collapse_floor_sigma", "x41_collapse_floor_results.json")))
 P(f"X41 EPS block executed read-only [{time.time() - T0:.0f} s, RSS {rss():.2f} GB]")
 checks = []
-RES = dict(frozen="6e0ea16bc2", amendment="AMENDMENT_A1.md", mutate=MUTATE, Sigma_a0_Msun_pc2=SIG_PC, checks={}, footings={})
+RES = dict(frozen="6e0ea16bc2", amendment=["AMENDMENT_A1.md", "AMENDMENT_A2.md"],mutate=MUTATE, Sigma_a0_Msun_pc2=SIG_PC, checks={}, footings={})
 
 # S0b / K1: X41's sigma_coll_table
 k1d = 0.0
@@ -80,8 +80,11 @@ h_ = lambda x: math.log(1 + x * x) + 2 * math.log(1 + x) - 2 * math.atan(x)
 _kb = minimize_scalar(lambda lx: -h_(math.exp(lx)) / math.exp(2 * lx), bounds=(math.log(0.05), math.log(20)), method="bounded", options={"xatol": 1e-12})
 KB = math.pi * (-_kb.fun)
 mN = lambda x: math.log(1 + x) - x / (1 + x)
-_nf = minimize_scalar(lambda lx: -mN(math.exp(lx)) / math.exp(2 * lx), bounds=(math.log(0.1), math.log(20)), method="bounded", options={"xatol": 1e-12})
-NFWPK = -_nf.fun
+# A2 (post-result, IC2 + K3 only): NFW m(x)/x^2 is maximal at x -> 0, where it tends to 1/2 (g_max = 2 pi G rho_s r_s).
+# The frozen 0.216217 is sup m(x)/x (circular-velocity peak), a transcription error. IC1 never uses this constant.
+NFWPK = 0.5
+_xs = np.geomspace(1e-5, 20, 4000); _mx = np.array([mN(x) / x ** 2 if x > 1e-3 else 0.5 - 2 * x / 3 + 0.75 * x * x for x in _xs])
+NFW_MONO = bool(np.all(np.diff(_mx) < 0)); NFW_LIM = float(_mx[0])
 P(f"w = sqrt(2) erfcinv(1/2) = {W:.6f}{' (MUTATE: used as ' + format(W_USE, '.6f') + ')' if MUTATE else ''}; k_B = pi sup h/x^2 = {KB:.6f}; NFW sup m/x^2 = {NFWPK:.6f}")
 
 def zc_of(tag, M, f):
@@ -140,8 +143,9 @@ for Mt in (1e12, 1e14, 1e15):
     zrows.append(f"M {Mt:.0e}: z_c(f=1e-4..0.5) " + "/".join(f"{z:.3f}" for z in zl) + f" monotone {mono}")
 P("K2 collapse epoch: " + "; ".join(zrows) + f": {'PASS' if k2 else 'FAIL'}"); checks.append(("K2", k2))
 CD1J = json.load(open(os.path.join(REB, "CD1_a0_cored_dwarf_ceiling", "cd1_dwarf_ceiling.json")))
-k3 = abs(KB - 2 * math.pi * CD1J["ceiling_over_a0"]) < 1e-6 and abs(NFWPK - 0.216217) < 1e-5 and abs(KB - math.pi * math.exp(NB["LYMAX"])) < 1e-9
-P(f"K3 shape constants: k_B {KB:.9f} vs 2 pi x CD1 {2 * math.pi * CD1J['ceiling_over_a0']:.9f} vs X40b pi e^LYMAX {math.pi * math.exp(NB['LYMAX']):.9f}; NFW {NFWPK:.6f}: {'PASS' if k3 else 'FAIL'}")
+k3 = abs(KB - 2 * math.pi * CD1J["ceiling_over_a0"]) < 1e-6 and abs(NFW_LIM - 0.5) < 1e-4 and NFW_MONO and abs(KB - math.pi * math.exp(NB["LYMAX"])) < 1e-9
+P(f"K3 shape constants: k_B {KB:.9f} vs 2 pi x CD1 {2 * math.pi * CD1J['ceiling_over_a0']:.9f} vs X40b pi e^LYMAX {math.pi * math.exp(NB['LYMAX']):.9f}; "
+  f"NFW m/x^2 at x 1e-5 {NFW_LIM:.6f} (-> 1/2), monotone decreasing {NFW_MONO} [A2]: {'PASS' if k3 else 'FAIL'}")
 checks.append(("K3", k3))
 d14 = sigma_IC("A_c2b_refit", 1e14); Sig_si = d14["S"] * MSUNE / (3.0857e16) ** 2; r0t = 3.0857e21
 gmax = -minimize_scalar(lambda lr: -GE * math.pi * Sig_si * r0t ** 2 * float(B(math.exp(lr) / r0t)) / math.exp(2 * lr),
