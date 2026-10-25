@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLD_RAPID_ASSEMBLY_20261025",
+  "repository": {
+    "commit": "0afc68e98cc7b68498f304b6e88b0818141e9083",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python",
+    "reviews/cold_rapid_assembly_2026_10_25/check.py",
+    "--output",
+    "reviews/cold_rapid_assembly_2026_10_25/mutation",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Bounded capture, orbital-profile and merger-energy controls test whether rapid dynamics alone supplies a unique normalization and profile.",
+    "coefficient_domain": "float64",
+    "conventions": "dimensionless GM=b=1 for capture; GM=a=1 for orbit controls; selective cold coupling",
+    "inputs": [
+      "previous cluster source and crossing-scale records",
+      "analytic tracer controls"
+    ],
+    "bounds": {
+      "quadrature_N": 200000,
+      "q": [
+        0.25,
+        0.5,
+        0.75,
+        1,
+        1.25,
+        1.5,
+        2
+      ],
+      "eccentricities": [
+        0.2,
+        0.6,
+        0.9
+      ]
+    },
+    "non_claims": [
+      "No self-consistent cluster formation simulation",
+      "No cosmological ensemble or new coupling",
+      "No statistical galaxy fit",
+      "No exclusion of conditional attractors"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T11:15:58.712789+00:00",
+    "runtime_seconds": 0.130887,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "reviews/cold_rapid_assembly_2026_10_25/mutation/result.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/cold_rapid_assembly_2026_10_25/FROZEN_CRITERIA.md",
+    "reviews/cold_rapid_assembly_2026_10_25/check.py",
+    "reviews/cold_wave_relaxation_2026_10_25/run/timescales.csv",
+    "reviews/cold_shell_covariance_2026_10_24/run_selective/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/cold_rapid_assembly_2026_10_25/FROZEN_CRITERIA.md",
+      "sha256": "f012e31fe7e2b611f4947e8f6d1e089aeb6d22163bb20af99c16535972cbf4fa",
+      "sha256_after": "f012e31fe7e2b611f4947e8f6d1e089aeb6d22163bb20af99c16535972cbf4fa"
+    },
+    {
+      "path": "reviews/cold_rapid_assembly_2026_10_25/check.py",
+      "sha256": "01aa9fcb86c73ccc999258fe0fe73f495dfa6a38625f28d42d6278230d348a11",
+      "sha256_after": "01aa9fcb86c73ccc999258fe0fe73f495dfa6a38625f28d42d6278230d348a11"
+    },
+    {
+      "path": "reviews/cold_wave_relaxation_2026_10_25/run/timescales.csv",
+      "sha256": "d52da84010a2d3e7bda96f572e4a14ed2c4956c9d36c00c8a2f0afcf3ee020aa",
+      "sha256_after": "d52da84010a2d3e7bda96f572e4a14ed2c4956c9d36c00c8a2f0afcf3ee020aa"
+    },
+    {
+      "path": "reviews/cold_shell_covariance_2026_10_24/run_selective/result.json",
+      "sha256": "0dfe6d848dd454c9a13ada3d198f9b9058bf15a3bd4ca6193452c605a289ae0e",
+      "sha256_after": "0dfe6d848dd454c9a13ada3d198f9b9058bf15a3bd4ca6193452c605a289ae0e"
+    }
+  ],
+  "output_directory": "reviews/cold_rapid_assembly_2026_10_25/mutation",
+  "declared_results": [
+    "reviews/cold_rapid_assembly_2026_10_25/mutation/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/cold_rapid_assembly_2026_10_25/mutation/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/cold_rapid_assembly_2026_10_25/mutation/stderr.txt",
+      "sha256": "86fb1d2c782413ef9a3f265b1498b3b979a459e15ca97f10126319bcc522ba72",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: reviews/cold_rapid_assembly_2026_10_25/mutation/result.json"
+  ]
+}
