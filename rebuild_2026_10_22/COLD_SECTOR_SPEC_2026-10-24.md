@@ -145,3 +145,8 @@ formation on the record's own P(k). c_f = 4 is EXTERNAL; there are no fitted con
   Both are slightly under-predicted. c_f = 5 (reported, not adopted) passes the groups.
 - The crossover falls at M ≈ 10^12.1–10^12.4 M☉.
 - **Next:** derive c_f from the infall solution itself (first principles). A value of 4–5 would close the groups.
+
+**Update (X44, 10-25): c_f is not derivable from self-similar infall alone.** The timing core gives c_f = 2^{8/9} = 1.85 (η
+5.66), which fails the heavy cores again. The data pin c_f ≈ 4–4.2: the groups pass at 4.2, the clusters need about 4, and
+X42's cluster-only calibration implies 3.3–4.6. That matches the standard simulated formation concentration. **Open
+derivation:** c_f from the initial peak's structure (curvature), not from scale-free infall.
