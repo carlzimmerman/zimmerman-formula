@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""PAPER61 core-note audit: the built PDF must be newer than the TeX and the figure; every quoted number must match the committed
+"""PAPER62 core-note audit: the built PDF must be newer than the TeX and the figure; every quoted number must match the committed
 lane outputs (rebuild_2026_10_22/ P4, U1, X11, X13, X20_hosted_dwarf_disequilibrium, X22, X24, X25, X30, X34, X36, EM1,
 X38-X44, MAP1: *_results.json, else the lane's .out or README; covariant_push_2026_10_22/ C6, C8 and
 V3S_FINAL_VERDICT_2026-10-24.md; rebuild_2026_10_22/COLD_SECTOR_SPEC_2026-10-24.md); every cited commit must exist and
 touch its lane; the figure is regenerated in memory from MAP1's JSON and its counts checked; the PENDING statement (no L1
 production result) must be true at build time; citations must match citations/REFERENCES.bib where present; naming
 rules (cold dark energy; CDM only as LambdaCDM), no forbidden claim, local path or personal name.
-Run: python3 PAPER61_core_audit.py (exit 0 only if all pass).
-     python3 PAPER61_core_audit.py --mutate (perturbs the last digit of every JSON- or .out-formatted number; exit 0 only if
+Run: python3 PAPER62_core_audit.py (exit 0 only if all pass).
+     python3 PAPER62_core_audit.py --mutate (perturbs the last digit of every JSON- or .out-formatted number; exit 0 only if
      every such check then FAILS, i.e. each number check is live).  Read-only."""
 import json, math, os, re, subprocess, sys
 
@@ -16,12 +16,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 RB = os.path.join(ROOT, "rebuild_2026_10_22")
 CV = os.path.join(ROOT, "covariant_push_2026_10_22")
-STEM = "PAPER61_galaxy_law_sets_the_core_2026"
+STEM = "PAPER62_galaxy_law_sets_the_core_2026"
 TEX = os.path.join(HERE, STEM + ".tex")
 PDF = os.path.join(HERE, STEM + ".pdf")
 ZJ = os.path.join(HERE, STEM + ".zenodo.json")
-FIGPY = os.path.join(HERE, "PAPER61_fig_river.py")
-FIGPDF = os.path.join(HERE, "PAPER61_fig_river.pdf")
+FIGPY = os.path.join(HERE, "PAPER62_fig_river.py")
+FIGPDF = os.path.join(HERE, "PAPER62_fig_river.pdf")
 F = 0
 N = 0
 NUM = []
@@ -366,7 +366,7 @@ check("H MAP1 eRASS1 western hemisphere (.out)", "western Galactic hemisphere on
 check("H MAP1 commit adds the lane", "rebuild_2026_10_22/MAP1_cosmic_river/map1_cosmic_river.json" in git("show", "--name-only", "--format=", "3f9b3ae361").stdout and "MAP1 (3f9b3ae361)" in flat)
 check("H figure: illustrative, not evidence (caption)", "Illustrative only: the map is not evidence for the theory." in flat and "it tests nothing" in flat)
 check("H figure: clip at 1000 in script and caption", "CLIP = 1000.0" in open(FIGPY).read() and "clipped at ± 1000" in flat)
-check("H figure: script reads MAP1 JSON only", "map1_cosmic_river.json" in open(FIGPY).read() and "includegraphics[width=0.72\\textwidth]{PAPER61_fig_river.pdf}" in tex)
+check("H figure: script reads MAP1 JSON only", "map1_cosmic_river.json" in open(FIGPY).read() and "includegraphics[width=0.72\\textwidth]{PAPER62_fig_river.pdf}" in tex)
 fld = [[None if v is None else v for v in row] for row in mp["grid"]["field"]]
 check("H figure: field cells 4489 (JSON = .out)", sum(v is not None for row in fld for v in row) == int(re.search(r"cells with data (\d+)", mo).group(1)) == 4489)
 
@@ -424,7 +424,7 @@ check("O related identifiers (PAPER60)", "10.5281/zenodo.23601528" in ids)
 check("O zenodo: working paper, CC-BY, fitted, not closed, external c_f, illustrative map, draft", z["publication_type"] == "workingpaper" and z["license"] == "cc-by-4.0"
       and "fitted" in z["description"] and "not closed" in z["description"] and "external" in z["description"] and "illustrative" in z["description"].lower()
       and json.load(open(ZJ)).get("draft_not_deposited") is True)
-check("O no publish script for PAPER61", not any(f.startswith("PAPER61") and "publish" in f for f in os.listdir(HERE)))
+check("O no publish script for PAPER62", not any(f.startswith("PAPER62") and "publish" in f for f in os.listdir(HERE)))
 
 # ---------------------------------------------------------------- Q. honesty, forbidden, names
 for s in ("fitted", "the theory is not closed", "not peer reviewed", "never pooled", "AI-assisted", "Anthropic's Claude", "not a particle",
@@ -444,7 +444,7 @@ if MUT:
     missed = [n for n, caught in NUM if not caught]
     for n in missed:
         print(f"  [NOT CAUGHT] {n}")
-    print(f"\nPAPER61 core-note audit --mutate: {len(NUM) - len(missed)}/{len(NUM)} perturbed number checks FAIL as required")
+    print(f"\nPAPER62 core-note audit --mutate: {len(NUM) - len(missed)}/{len(NUM)} perturbed number checks FAIL as required")
     sys.exit(1 if missed else 0)
-print(f"\nPAPER61 core-note audit: {N - F}/{N} PASS" + ("" if F == 0 else f", {F} FAIL"))
+print(f"\nPAPER62 core-note audit: {N - F}/{N} PASS" + ("" if F == 0 else f", {F} FAIL"))
 sys.exit(1 if F else 0)
