@@ -1,0 +1,235 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Gravity Tied to Dark Energy: The Acceleration Law, a Cold Dark Energy Sector, and a Core Law from Galaxies to Clusters}}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\sloppy
+\begin{document}
+\begin{center}
+{\Large\bfseries Gravity Tied to Dark Energy:\\ The Acceleration Law, a Cold Dark Energy Sector,\\ and a Core Law from Galaxies to Clusters}\\[6pt]
+{\small Flagship working note (PAPER61), 2026-10-25, v1.0 (draft 1, for the owner's review; not deposited). AI-assisted research programme; not peer reviewed. $\kappa=\tfrac12$ is fitted; the theory is not closed.}
+\end{center}
+
+\begin{abstract}\noindent
+This programme studies gravity in which the galactic acceleration scale is set by dark energy, $a_0=\kappa c\sqrt{G\rho_\Lambda}$ with $\kappa=\tfrac12$ fitted (equivalently $G\rho_\Lambda=4a_0^2$, $\Lambda=32\pi a_0^2/c^4$), and in which the gravitating mass that baryons do not supply is a collisionless \emph{cold dark energy}: a field component with $w\approx0$, paired with dark energy, not a particle. Following the owner's decision of 2026-10-25, this note presents the theory as the acceleration law plus a cold dark energy sector whose halo cores are set by $a_0$. Every result below comes from a lane that froze its criteria before computing and ran a mutation control, on both $a_0$ footings ($9.36\times10^{-11}$ and $1.13\times10^{-10}$\,m\,s$^{-2}$, never pooled; pairs are canonical / alternative).
+\begin{enumerate}
+\item \textbf{The law.} At galaxy scale the law passes:
+\begin{itemize}
+\item the SPARC radial-acceleration relation (rms 0.054\,dex);
+\item MeerKAT's local $a_0$;
+\item isolated-disc weak lensing ($A=1.016\pm0.086$);
+\item a screened Solar System.
+\end{itemize}
+Its $a_0$ tracks dark energy: the native-ruler BAO reconstruction gives $a_0(z)/a_0(0)$ in [0.76, 1.03] at $z=1$ (68\%).
+\item \textbf{The cold sector, closed doors.} Twelve mechanisms that would add, heat, select or redistribute cold dark energy were tested and closed. These include hot-gas tracking (the measured sign is opposite), any dark-energy-keyed heater (a certified no-fold theorem), feedback, baryonic contraction, and member-halo nesting.
+\item \textbf{The cold sector, the core law.}
+\begin{itemize}
+\item \emph{The anchor.} Halos cored at the surface density $\Sigma_{a_0}=a_0/(2\pi G)$ (107 / 129\,M$_\odot$\,pc$^{-2}$) pass SPARC. Their pull is certified never to exceed $\tfrac{9}{32}a_0$ at any radius.
+\item \emph{The law.} With a self-coupled cold dark energy the core law is $\Sigma_0^2=9\sigma^{1+n}/(4\pi GKt)$ (Lean-certified). Anchoring $K$ by $\Sigma_{a_0}$ at the median galaxy and fixing the one exponent on SPARC alone ($q_f=0.892$ / 0.748) improves SPARC to rms 0.0605 / 0.0591.
+\item \emph{Out of sample.} It predicts 14 of 15 cluster cells of 326 eRASS1 clusters that were never fitted. The heavy-core misfit falls from $\sum|Z|=17.61$ to 5.31 (canonical).
+\item \emph{Physics reading.} The implied self-interaction falls with velocity, $n=0.784$ / 0.496.
+\end{itemize}
+\item \textbf{Open.} The same law fails the faint dwarfs (48--65\% exceed their cap). Rate saturation, gravothermal collapse and a self-consistent halo dispersion are each ruled out as the fix. The dwarf excess behaves like a separate small-scale floor. The innermost cluster band is mildly over-predicted. No native CMB or growth computation exists yet for the self-coupled sector.
+\item \textbf{Certified mathematics.} Sixteen theorems (Lean~4 + Mathlib, no \texttt{sorry}, standard axioms only, mutation copies fail to compile) carry the core-law chain from the Burkert mass to the dwarf tests.
+\end{enumerate}
+\end{abstract}
+
+\section{Framework, rules and the owner's decision}
+\begin{itemize}
+\item \textbf{The law.} $a_0=\kappa c\sqrt{G\rho_\Lambda}$; $\kappa=\tfrac12$ is FITTED, not derived. Of 537 derivation attempts on the record, none derives it (the $\kappa$ ledger). Footings: canonical $a_0=9.3603\times10^{-11}$, alternative $1.1312\times10^{-10}$\,m\,s$^{-2}$, never pooled. Status words follow the record: DERIVED, COMPUTED, POSTULATED, FITTED, OPEN, PENDING.
+\item \textbf{The decision.} On 2026-10-25 the owner chose to present the theory as the acceleration law plus a cold dark energy sector whose cores are set by $a_0$ (route E: the cold sector gravitates normally and the galaxy law is emergent from it). The covariant Khronon theory v3s (PAPER58--60) is kept as the covariant attempt: it passes as a galaxy law and fails as a theory of clusters, growth and the early universe (PAPER60).
+\item \textbf{The discipline.} Each lane committed its frozen criteria alone before any script or number, ran a mutation (MUTATE) control, and reported amendments. Lanes live in \texttt{rebuild\_2026\_10\_22/}. Nothing here is evidence for the framework over $\Lambda$CDM or any rival.
+\end{itemize}
+
+\section{The acceleration law}
+The law is the simple MOND relation on baryons, $g_N=g^2/(g+a_0)$, with $a_0$ tied to the dark-energy density. In its own regime of isolated systems it passes:
+\begin{itemize}
+\item \textbf{Rotation curves:} the SPARC radial-acceleration relation, rms 0.054\,dex on both footings (P4; EM1 reproduction 0.0541 / 0.0537).
+\item \textbf{The local scale:} MeerKAT's $a_0$ sits $+0.032$\,dex from SPARC's with the same recipe (PAPER60).
+\item \textbf{Isolated-disc lensing:} KiDS-1000 blue lenses on the law, $A=1.016\pm0.086$ (CFG829; reproduced in HG2 as $1.0165\pm0.0859$).
+\item \textbf{The Solar System:} screened, Cassini passes (PAPER58).
+\item \textbf{$a_0$ tracks dark energy.} With the native sound horizon, DESI BAO plus Pantheon+ reconstruct $\sqrt{X}=a_0(z)/a_0(0)$ in [0.76, 1.03], [0.71, 1.12] and [0.32, 1.21] at $z=1$, 1.5 and 2.33 (68\%). The rival $a_0\propto H(z)$ is far outside these intervals. A constant dark energy is not rejected (1.97$\sigma$, class CONSISTENT WITH CONSTANT; CFG689, 6c064b83a3). The decisive point is $z\approx2.5$ at 0.10\,dex.
+\end{itemize}
+The law does not, by itself, explain the cluster cores, the faint dwarfs or the growth of structure. Those need the cold sector.
+
+\section{What the cold sector must do}
+The committed specification (\texttt{COLD\_SECTOR\_SPEC\_2026-10-24.md}) lists six requirements, R1--R6:
+\begin{itemize}
+\item \textbf{R1} dust-like from recombination at $\Omega_c/\Omega_b=5.364$;
+\item \textbf{R2} clustering like dust down to forest scales through $z\approx2$--3;
+\item \textbf{R3} almost absent from isolated galaxies' inner regions today;
+\item \textbf{R4} present in cluster cores;
+\item \textbf{R5} a graded extra in faint dwarfs;
+\item \textbf{R6} collisionless at merger speeds (the Bullet Cluster).
+\end{itemize}
+The cluster requirement is model-free: at matched baryonic acceleration, seven X-COP clusters sit $+0.416$\,dex above the median SPARC disc (the matched-clumping lane, c51d962827). Their excess is more concentrated than the hot gas.
+
+\begin{table}[t]\centering\small
+\caption{Closed doors for the cold sector. Each lane froze its criteria first; commits are result commits.}\label{tab:closed}
+\begin{tabular}{>{\raggedright\arraybackslash}p{5.2cm}l>{\raggedright\arraybackslash}p{4.6cm}l}
+\toprule
+mechanism & lane & verdict & commit\\
+\midrule
+one selector variable & X19 & no single variable separates & a9ec701f5b\\
+universal late heating & X23 & WRONG AMPLITUDE & d5f2a449d1\\
+vacuum heating $Q=\epsilon H\rho_\Lambda c^2$ & X24b & NO EPS WINDOW & 3492bcbeb4\\
+isothermal partial-retention sheet & X26, X30 & PROFILE EXCLUDES THE SHEET & 0f19b6759b\\
+feedback energy & X31 & FEEDBACK FAILS & 5695a61801\\
+orbit-keyed conversion & X37 & FAILS CLUSTERS & 36b7be3e67\\
+baryonic contraction & X39 & FAILS & 54684fb62f\\
+single-halo $\Sigma$ rules & X40b & NO RULE CLOSES IT & ba368d2ba1\\
+hot gas as selector & HG1, HG2 & UNDERPOWERED; $D=-0.294$, opposite sign & b58968185a\\
+dark-energy-keyed heater & DH1 & OBSTRUCTION & 3870d2c4e8\\
+member-halo nesting & NM1 & NM FAILS & 408e26a409\\
+seven named dwarf floors & DF1 & NONE SURVIVE & 4513c7c324\\
+\end{tabular}
+\end{table}
+
+Two of these closures are theorems (Section~\ref{sec:lean}).
+\begin{itemize}
+\item \textbf{A uniform drive cannot heat.} A spatially uniform drive (anything keyed to dark energy) drops out of the fold source $\partial^2H/\partial x^2=\Phi''$, so it cannot heat a cold stream.
+\item \textbf{The heating windows do not overlap.} If heating per unit mass scales with $\sigma^2$, then $c_s=A\sigma$ with one $A$. SPARC needs $A\ge2.695$ and the clusters allow $A\le1.424$; no $A$ does both.
+\end{itemize}
+HG2 found that at matched $\sigma$, X-ray-bright groups show \emph{less} excess than X-ray-faint ones once their gas is counted: $D=-0.294$\,dex, 95\% interval $[-0.511,-0.076]$.
+
+\section{The core law}
+\subsection{Cores at the $a_0$ surface density}
+In route E the cold dark energy gravitates normally and forms cored (Burkert) halos. X38 (f72216ad98) set the core surface density to
+\[
+\rho_0r_0=\Sigma_{a_0}=\frac{a_0}{2\pi G}=107\ /\ 129\ \mathrm{M_\odot\,pc^{-2}},
+\]
+with no new constant.
+\begin{itemize}
+\item \textbf{SPARC:} passes, rms 0.0795 / 0.0729 at median $\Upsilon$ 0.77 / 0.60.
+\item \textbf{Cluster OUTER bands:} pass. Every earlier added-component model overshot them.
+\item \textbf{Fails:} the cores of the heaviest, hottest clusters.
+\end{itemize}
+The anchor is comparable to the empirical constant core surface densities of disc galaxies (Donato et al.\ 2009); that is context, not a test. A fixed-$\Sigma$ Burkert halo's pull is $G M/r^2=\pi G\Sigma\,\mathrm{Bk}(x)/x^2$ with $x=r/r_0$, so over every core radius it is capped: certified $\le\tfrac{9}{32}a_0$, numerically $0.254484\,a_0$ (LN1). On X1's 89 dwarfs per footing this cap is CONSISTENT: 1.1\% exceed it at $z\ge2$, with median required fraction $S=0.53$ / 0.44 (CD1, 809e61b319).
+
+\subsection{A self-coupled cold dark energy}
+Let the cold dark energy interact with itself, with cross-section per mass $\propto v^{-n}$, and let the core form where rate $\times$ age $=1$ on an isothermal core. Then
+\[
+\Sigma_0^2=\frac{9\,\sigma^{1+n}}{4\pi G K t},\qquad \Sigma_0\propto\sigma^{q}t^{-1/2},\quad q=\frac{1+n}{2}
+\]
+(LN1, theorem T7). Fixing $K$ so that the median SPARC galaxy ($\sigma_{\rm ref}=70.50$\,km\,s$^{-1}$, $V_{\rm last}/\sqrt2$) keeps $\Sigma_{a_0}$ makes $a_0$ set the coupling's normalisation:
+\[
+\Sigma_i=\Sigma_{a_0}\,(\sigma_i/\sigma_{\rm ref})^{q}.
+\]
+At the fixed candidate $q=\tfrac13$, SPARC improves on X38 (rms 0.0686 / 0.0636) and the clusters' failing $\sum|Z|$ falls from 17.61 to 11.40 with no new failure (SC1, d2f4a621d8; frozen class SC PASSES SPARC ONLY).
+
+\subsection{Out of sample: one constant from galaxies predicts the clusters}
+OS1 (frozen 71873e76d3; result a8b817e19e) calibrated $q$ once on SPARC alone and graded clusters and dwarfs at that $q$ with no further freedom (Table~\ref{tab:os1}).
+
+\begin{table}[t]\centering\small
+\caption{OS1, the core law out of sample. Clusters: X38's 15 cells on 326 eRASS1 clusters, both $h$. $Z$ shown at $h=0.672$.}\label{tab:os1}
+\begin{tabular}{lll}
+\toprule
+ & canonical & alternative\\
+\midrule
+$q_f$ (SPARC only) & 0.892 & 0.748\\
+SPARC rms @ median $\Upsilon$ (X38) & 0.0605 @ 0.79 (0.0795) & 0.0591 @ 0.63 (0.0729)\\
+cluster cells passing & 14 of 15 & 14 of 15\\
+failing $\sum|Z|$, X38 $\to$ OS1 & 17.61 $\to$ 5.31 & 14.26 $\to$ 4.40\\
+MID T3 $Z$ (X38 $+4.26$) & $-1.29$ & $-0.89$\\
+OUTER M3 $Z$ (X38 $+5.36$) & $+1.81$ & $+1.99$\\
+INNER M-all $Z$ (the one miss) & $-2.41$ (over) & $-2.06$ (over)\\
+dwarfs at $z\ge2$, median $S$ & 65.2\%, 4.78 (EXCLUDE) & 48.3\%, 2.74 (EXCLUDE)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The frozen class is OS FAILS OUT OF SAMPLE, because the dwarfs fail and one cluster cell over-predicts. The cluster result itself is the strongest on the record: a single constant fixed on galaxies turns X38's five failing cluster cells into passes. The MUTATE control permutes $\sigma$ across the SPARC galaxies before calibrating, and the SPARC gain collapses from 0.0190 to 0.0003\,dex. The gain therefore comes from the real $\sigma$ ordering.
+
+\subsection{Physics reading}
+\begin{itemize}
+\item \textbf{The self-interaction falls with velocity.} $q=(1+n)/2$ gives $n=0.784$ / 0.496 (LN2). The cross-section per mass falls with velocity, the conventional direction for velocity-dependent self-interacting dark sectors.
+\item \textbf{What differs from such a sector.} It differs in two places: the normalisation is fixed by $a_0$, hence by $\Lambda$, and the component is a field paired with dark energy, not a particle species.
+\item \textbf{It never reaches the fluid regime.} With the coupling anchored this way, the Knudsen number is certified to be
+\[
+\mathrm{Kn}=\frac{4}{3\sqrt\pi}\,\frac{2a_0t}{\sigma_{\rm ref}}\Big(\frac{\sigma}{\sigma_{\rm ref}}\Big)^{q-1},
+\]
+which evaluates to 653--1158 (canonical) and 539--2048 (alternative) from 5 to 1000\,km\,s$^{-1}$. The sector is in the long-mean-free-path regime everywhere.
+\end{itemize}
+
+\section{The dwarfs: the open problem}
+Below $\sigma\approx20$\,km\,s$^{-1}$ the core law gives cores too shallow for the faint dwarfs, which need 2--10 times more central pull. DW1 (279b4aa47c / 0dd2bffffa) tested three stated mechanisms:
+\begin{itemize}
+\item \textbf{M1, rate saturation:} RULED OUT ($\mathrm{Kn}\gg1$).
+\item \textbf{M2, gravothermal collapse:} RULED OUT. Under the core law $\Gamma t=1$ in every system, a certified structural statement.
+\item \textbf{M3, the halo's own dispersion:} FAILS. The certified unique solve gives $\sigma_h$ only about twice the stellar $\sigma$; 64.0\% / 40.4\% of dwarfs still exceed the cap.
+\end{itemize}
+Independently:
+\begin{itemize}
+\item \textbf{The floor:} the dwarf extra behaves as a velocity floor of about 4--4.6\,km\,s$^{-1}$ (X24, 19d31a99d9).
+\item \textbf{Its radial form:} $g\propto r^{-0.8}$ (X28, dad0c9f1fe).
+\item \textbf{Its equation of state:} $\Gamma=0.88$ $[0.81,0.94]$, softer than isothermal, which no named equation of state supplies (DF1).
+\end{itemize}
+The dwarf excess needs physics that acts only at small scales; it is the second blank in the theory.
+
+\section{Certified mathematics}\label{sec:lean}
+Two Lean~4 + Mathlib files compile with no \texttt{sorry}, and every theorem depends only on \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. Mutation copies fail to compile. Lean certifies mathematics from stated premises only. It does not certify isothermal cores, the core condition, Burkert halos, the $a_0$ anchor or any measurement.
+\begin{itemize}
+\item \textbf{LN1} (\texttt{ColdSectorCerts.lean}, 667db25771), nine theorems:
+\begin{itemize}
+\item the Burkert mass derivative;
+\item the fixed-$\Sigma$ pull's dependence on $r/r_0$ alone;
+\item $\mathrm{Bk}(x)\le\tfrac{9}{16}x^2$ and $\mathrm{Bk}(1)>\tfrac12$, hence the ceiling $\le\tfrac{9}{32}a_0$;
+\item the no-fold theorem;
+\item the disjoint heating windows;
+\item the distance-free baryonic acceleration;
+\item the core law $\Sigma_0^2=9\sigma^{1+n}/(4\pi GKt)$ and its $q$ window.
+\end{itemize}
+\item \textbf{LN2} (\texttt{CoreLawCerts.lean}, dc2724d299), seven theorems:
+\begin{itemize}
+\item the $q\leftrightarrow n$ map and OS1's $n>0$;
+\item the anchor-free surface-density ratio;
+\item $\Gamma t=1$ and no collapse;
+\item the Knudsen closed form;
+\item the unique halo-dispersion solve for $q<2$.
+\end{itemize}
+\end{itemize}
+
+\section{Predictions and dated tests}
+\begin{itemize}
+\item \textbf{Halo cores are set by dark energy.} A typical disc galaxy ($\sigma\approx70$\,km\,s$^{-1}$) has core surface density $a_0/(2\pi G)$. More generally $\Sigma_0\propto\sigma^{0.75\text{--}0.89}$, with no further freedom. Any new sample of cored rotation curves, groups or clusters with measured $\sigma$ tests this.
+\item \textbf{$a_0$ tracks dark energy} out to $z\approx2.5$ (target 0.10\,dex; CFG689).
+\item \textbf{Sealed predictions on record:} ALMA (2026-11-06, 2026-11-28) and Gaia DR4 (2026-12-02), as filed under PAPER60. Those seals are for the law and v3 readings; the core law adds no sealed file yet.
+\end{itemize}
+
+\section{What is fitted, open, and not claimed}
+\begin{itemize}
+\item \textbf{Fitted:} $\kappa=\tfrac12$; the core-law exponent $q$ (once, on SPARC); the stellar $\Upsilon$; the cold abundance $\Omega_c/\Omega_b=5.364$.
+\item \textbf{Open:}
+\begin{itemize}
+\item the dwarf floor;
+\item the innermost cluster band;
+\item a covariant action for the self-coupled cold dark energy and its origin in the dark-energy sector;
+\item a native CMB and growth computation with the self-coupling (dust-like at early times by R1, not yet computed natively);
+\item the Bullet test of the self-coupled sector (X32's reading for the hot sheet is UNDECIDED).
+\end{itemize}
+\item \textbf{Not claimed:} a derivation of $\kappa$, a closed theory, or evidence over $\Lambda$CDM. In the core law the cold dark energy behaves at large scales like a self-interacting dust. Its distinguishing content is the $a_0$ normalisation and the dark-energy pairing.
+\end{itemize}
+
+\textbf{Disclosures.}
+\begin{itemize}
+\item \textbf{Check-definition amendments:} CD1's A1 (raw versus binary-corrected $\sigma$) and HG1's A1 (distance rescaling of the match radius) were fixed before any graded number.
+\item \textbf{Reporting fix:} DW1's A1 changed reporting code only, with the graded numbers identical.
+\item \textbf{Frozen classes as written:} SC1 is SC PASSES SPARC ONLY, OS1 is OS FAILS OUT OF SAMPLE, and HG2 is UNDERPOWERED (power 0.45 against a 0.50 bar).
+\item \textbf{Not the lane's own verdict:} the X19 row of Table~\ref{tab:closed} summarises that lane's finding that no single variable separates the classes.
+\end{itemize}
+
+\vspace{2pt}\hrule\vspace{2pt}
+{\footnotesize
+Repository lanes: \texttt{rebuild\_2026\_10\_22/} (X19--X40b, CD1, SC1, OS1, DW1, NM1, HG1, HG2, DH1, DF1, LN1, LN2, \texttt{COLD\_SECTOR\_SPEC\_2026-10-24.md}); \texttt{campaign\_fresh\_gravity/CFG689\_native\_ruler\_bao/}; \texttt{reviews/matched\_clumping\_2026\_10\_24/}. Companion notes: PAPER60 (doi:10.5281/zenodo.23601528), PAPER59 (doi:10.5281/zenodo.23585319), PAPER58 v1.1 (doi:10.5281/zenodo.23579379).
+Data: F.~Lelli, S.~S.~McGaugh, J.~M.~Schombert, AJ 152, 157 (2016) (SPARC); E.~Bulbul et al., A\&A 685, A106 (2024) (eRASS1 clusters); D.~Eckert et al., A\&A 621, A40 (2019) (X-COP); M.~M.~Brouwer et al., A\&A 650, A113 (2021) (KiDS-1000 lensing RAR); DESI Collaboration, PRD 112, 083515 (2025) (DR2 BAO); D.~Brout et al., ApJ 938, 110 (2022) (Pantheon+).
+Context: M.~Milgrom, ApJ 270, 365 (1983); A.~Burkert, ApJ 447, L25 (1995); F.~Donato et al., MNRAS 397, 1169 (2009).
+AI assistance: Anthropic's Claude and OpenAI's ChatGPT (lanes, review, drafting).}
+\end{document}

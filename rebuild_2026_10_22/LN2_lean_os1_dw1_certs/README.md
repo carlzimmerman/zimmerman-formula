@@ -27,8 +27,7 @@ Compile: `cd fable_independent_2026/lean_2026 && lake env lean ../../rebuild_202
 ## Reading
 
 - **M1** is now a certified identity, not a numeric claim. With the coupling anchored by a₀ at galaxy scale, Kn depends
-  on σ only through (σ/σ_ref)^(q−1). Evaluated in DW1 at the stated premises, it gives Kn = 653–2048 across the record's
-  systems, deep in the long-mean-free-path regime.
+  on σ only through (σ/σ_ref)^(q−1). Evaluated in DW1 at the stated premises, it gives Kn = 653–1158 (canonical) and 539–2048 (alt) from 5 to 1000 km/s, deep in the long-mean-free-path regime.
 - **M2** is structural. Under this core condition every core has rate × age exactly 1, so collapse cannot distinguish
   dwarfs from anything else.
 - **M3**'s halo-dispersion solve is well posed (unique) for every q < 2, which covers OS1's q_f. DW1's M3 FAILS is
