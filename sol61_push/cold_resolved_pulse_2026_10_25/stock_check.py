@@ -1,0 +1,6 @@
+"""Conditional fitted-profile comparison, not an observational mass exclusion."""
+import hashlib,json,math,pathlib
+P=pathlib.Path(__file__).resolve().parent;ROOT=P.parents[1];a=P/'refined_runs/draco48x80_s01.json';b=ROOT/'sol61_push/cold_survey_capture_2026_10_24/capture_results.json';pins=[a,b,P/'stock_check.py'];before={str(f.relative_to(ROOT)):hashlib.sha256(f.read_bytes()).hexdigest() for f in pins};d=json.loads(a.read_text());m=next(x for x in json.loads(b.read_text())['models'] if x['name']=='Draco');rows=[]
+for r,M in zip(d['final_inventory']['r'],d['final_inventory']['M']):
+ R=r*d['physical']['Runit_pc'];target=m['cold_mass']*R**3/(R*R+m['cold_scale_pc']**2)**1.5;actual=M*d['physical']['Munit_Msun'];rows.append(dict(R_pc=R,trial_aperture_Msun=actual,conditional_Plummer_Msun=target,ratio=actual/target))
+out=dict(scope='comparison with the PRIOR CONDITIONAL Plummer reference, not a new data likelihood, not a hard total-halo mass upper bound or proof of escape',T=d['history'][-1]['t'],conditional_total_cold_Msun=m['cold_mass'],initial_supply_Msun=d['physical']['Munit_Msun'],rows=rows,inputs_before=before,inputs_after={str(f.relative_to(ROOT)):hashlib.sha256(f.read_bytes()).hexdigest() for f in pins});assert out['inputs_before']==out['inputs_after'];(P/'stock_check.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(rows,indent=2))

@@ -1,0 +1,20 @@
+# What the new checks discriminate
+
+CCT015's trapezoid/averaged-gradient shell energy is a diagnostic approximation. Its old frozen residuals remain reproducible, but they conflate transport error with inventory quadrature error. sem_inventory_review.py independently reconstructed the mapped SEM measure and element-local derivatives. inventory.py implements that method without changing any evolution.
+
+For chi=r A in the static radial carrier, integrate |d_r chi+i p chi/eta|^2 within EACH element before summing; averaging element derivatives before squaring loses kinetic energy. Add the same angular eigenvalue quadratic form as the Hamiltonian. Physical radial kinetic energy inside R is the weak chi kinetic integral minus eta^2 integral_Omega |chi(R)|^2/(2R). Add half rhoPhi and +R^2 integral_Omega Phi d_rPhi/(8piG) for the canonical local energy matching the existing surface current. Full-element LGL quadrature reproduces global K/W to roundoff. For a partial element integrate the cardinal interpolant of J times radial density; that partial inventory and the boundary derivative still require convergence.
+
+The independent old-Draco ne256 T0..8 audit changes residual/energy-flux ratios at r2,4,8,12,16 from .085%,.486%,19.90%,321.8%,1606.7% to .495%,.00136%,1.080%,7.879%,25.08%. Thus the previous very large outer ratios were mostly inventory error, while some apparently excellent inner cancellation also changes. This is a correction to diagnostic interpretation, not a retroactive change of frozen criteria or a claim all currents pass. Negative tiny outer flux is not positive escaping cooling even if measured accurately.
+
+A separate analytic support condition explains what the envelope must do. For the conditional Plummer density rho=3M/(4pi b^3)(1+r^2/b^2)^(-5/2), writing psi=sqrt(rho) exp(i theta) gives
+
+    K = K_amp + K_phase
+    K_amp = eta^2/2 integral |grad sqrt(rho)|^2 = 15 eta^2 M/(28 b^2)
+    K_phase = 1/2 integral rho |eta grad theta|^2
+    W_self = -3pi G M^2/(32 b).
+
+Stationary self-virial support needs K=-W_self/2, so K_amp/K_required=80 eta^2/(7pi G M b). This is necessary, not sufficient for a stationary solution. Ignoring baryons/tides, the old conditional profiles require phase kinetic fractions about70.0% Draco,99.74% Sextans,94.46% Fornax,56.4% Leo I. Sextans's phase RMS support speed must be at least17.70km/s. These phase fractions/speeds require the exact instantaneous wave density to equal the smooth Plummer reference. If a fitted profile instead describes a coarse-grained or time-averaged granular field, additional unresolved AMPLITUDE gradients can supply some or all of the extra support. Thus the robust requirement is internal wave support beyond the smooth profile, not a universal lower bound on phase motion in a granular halo. Initial support_screen output used less precise phase-field labels; it is preserved as support_screen_initial.py/json, and the clarified labels are rerun without changing any formula. Low net spin is compatible with phase motion whose angular momenta cancel. Cold does not mean zero gravitationally induced motion.
+
+Collapse must therefore populate a supported, moving wave envelope while controlling core mass AND exporting the initial net spin. A dense peak or positive local energy exchange alone does not show this. A complete virial check of a finite envelope also needs surface stress/flux; do not apply the whole-system scalar virial relation blindly to a shell. Stellar heating/DF and the current literal-action bridge remain separate tests.
+
+For a strictly stationary positive smooth density, a globally single-valued phase with no nodes/vortices and vanishing boundary phase flux obeys div(rho grad theta)=0. Multiplying by theta and integrating gives integral rho |grad theta|^2=0. Therefore a perfectly smooth stationary no-circulation halo cannot use arbitrary phase support. Time-dependent/granular modes, vortices or an open envelope evade this restricted obstruction and must be tested; it is not a no-go for the full cold field.
