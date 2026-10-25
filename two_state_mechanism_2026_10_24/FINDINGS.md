@@ -1,4 +1,4 @@
-# Research findings through nodal-medium preparation tests
+# Research findings through preparation and joint microscopic bounds
 
 Start here for the current status. The original top-level README describes the
 initial spherical prototype; later stages below supersede its scope.
@@ -12,6 +12,7 @@ conservation checks and explicitly documented limitations.
 
 | Stage | Finding | Scope / unresolved issue |
 |---|---|---|
+| [State preparation and joint bounds](state_preparation_2026_10_25/README.md) | A controlled gapped thermal start reaches the target source remainder within0.4%; contact interaction feedback and autonomous live-field dynamics tested. Combining current, inventory and Fermi packing rejects the local fundamental-fermion interpretation under explicit hypotheses. | No autonomous formation or population separation. Emergent quasiparticles remain open but need a different physical mass/current mapping and electric operator. |
 | [Nodal medium](nodal_medium_2026_10_25/README.md) | An explicit effective nodal-ring band yields the cold critical response; a slow unitary field ramp preserves the small source remainder to 2.23% in the refined test. | Initial band and filling assumed; no microscopic assembly, live-gravity population separation or derived acceleration scale. Finite temperature and filling remain obstacles. |
 | [Decisive checks](decisive_checks_2026_10_25/README.md) | Finite-temperature response and conditional mass/response bounds derived; simple contact and degeneracy selectors tested. | Constraints apply to stated realizations, not all quantum media; no full population mechanism established. |
 | [Rotating state](rotating_state/README.md) | Rotation and explicit matter-wave energy transport implemented; equal-state equal-mass carriers stay neutral exactly. Unequal masses produce electric support with and without rotation. | No disk-specific capture; static baryons, periodic boundaries, incomplete spatial convergence and no common-mass four-system resolved comparison. |
@@ -31,7 +32,12 @@ observables; they must not be relabeled as each other.
 
 ## Latest verification
 
-All five new manifests in decisive_checks_2026_10_25 and nodal_medium_2026_10_25
+The state-preparation stage has seven completed runs and one retained failed
+invocation (output-path typo). All eight provenance records validate; only the
+completed records supply numerical findings. See its [validation](state_preparation_2026_10_25/VALIDATION.json)
+and [audit](state_preparation_2026_10_25/AUDIT.md).
+
+At the preceding checkpoint, all five new manifests in decisive_checks_2026_10_25 and nodal_medium_2026_10_25
 validate against their current inputs. Fresh validator output is in
 [LATEST_VALIDATION.json](LATEST_VALIDATION.json). This validates provenance,
 not the physical interpretation.
