@@ -1,0 +1,13 @@
+# Read the binding result as a diagnostic, not an extra requirement
+
+CCT017's independently self-bound cut-window test is STRICTER than the actual four-dwarf objective. A central region can be confined by a larger cold halo even when that region is not self-bound in isolation. Such a configuration may be viable if the complete halo's density/force profile, supply, time evolution and stellar response satisfy the observations. It must not be rejected merely because a cutout has positive isolated energy.
+
+The tests establish high internal motion relative to the cut wave's OWN gravity. They do not establish excessive motion relative to every observationally allowed full-halo potential. Likewise, a fixed ball's canonical-energy gain does not decide the fate of a moving, externally confined material component. The packet does not measure a final retained material mass or fit the complete trial envelope to the survey likelihood.
+
+The earlier ~32-fold excess referred to a PRIOR CONDITIONAL Plummer mass at a specified radius. That reference is not a universal total-halo mass upper bound. An extended envelope must be tested against actual radial survey coverage, projected kinematics, the model's force law and stellar heating; its acceptability cannot be settled from that conditional total alone. The present trial also has a still-evolving central aperture and unresolved long-time transport, so this addendum does not declare its envelope viable.
+
+Accordingly, the statement that the mechanism must remove internal energy applies to the proposed route to an INDEPENDENTLY self-bound whole-window core at its measured density. It is not an established necessity for every envelope-supported halo. Do not impose an added cooling channel merely to make the cutout test pass. First test the allowed complete envelope and retained central mass directly. If that envelope fails the data or survival test, the same binding diagnostics quantify what a revised assembly/receiver route must change.
+
+The common-lambda screen also remains narrow: it rejects the INITIAL WHOLE-WAVE ENERGY-SIGN selector within one carrier family, not all dynamical capture using slower infall. A positive-energy whole wave can leave a bound subset. A static elastic filter can regulate loading without being an absorptive sink; whether that is sufficient depends on the full same-action dynamics and data.
+
+This clarification changes no numerical result, producer, frozen criterion or audit input. Read it alongside RESULT.md, NEXT.md and the main Claude handoff. Existing audited files are intentionally preserved. Priority for continuation: an actual full-envelope profile/retention/stars test, with the self-binding and live-receiver routes treated as distinct hypotheses.
