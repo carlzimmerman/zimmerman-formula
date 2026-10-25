@@ -1,5 +1,16 @@
 # The cold sector: what it must do, in numbers (2026-10-24)
 
+> **STATUS UPDATE (later 10-24): the late-heating answer in §3 is EXCLUDED.** X30_sheet_cluster_profile (c6be83f91c /
+> 0f19b6759b, reproduced by the coordinator) grades every X26 sheet point against the INNER / MID / OUTER cluster bands. All
+> 19 / 16 points fail OUTER (1.42–3 Mpc), on both footings: predicted 1.42–2.26 vs measured 0.72 ± 0.14 / 0.66 ± 0.13, at Z −5.4
+> to −11. Partial retention puts the cold mass at 2–5 × the gas core, so fixing MID overshoots OUTER. The measured OUTER band
+> sits **below** the law while MID sits above it. **The clusters ask for mass moved inward, not mass added.** No component
+> added on top of the law does that; this is X2's V1 made quantitative. X29's shear cap (R7) stands as an independent bound.
+> Also folded by the coordinator since: X31 (feedback-energy selector fails), X32 (Bullet UNDECIDED: a CDM-like tracer
+> survives), X34 (a recombination release reduces to CDM), X35 (a₀ tracking early dark energy, UNDECIDED).
+> **Current answer:** see §6.
+
+
 Assembled from committed lanes only; no new computation. κ = ½ FITTED. Footings canonical / alt, never pooled. Cold energy
 is gravitating field mass, never a particle. Not "theory closed". Nothing here says the data favour the framework.
 
@@ -16,6 +27,7 @@ The galaxy law (v3s statics) is taken as given; it passes SPARC, isolated groups
 | R4 | Present in cluster cores, rising smoothly with KT (no switch) | +0.23 to +0.27 dex at 0.3–1 Mpc (T2/T3), ≈ 0 in T1; known baryons short by ×4–7 | X7, X21 |
 | R5 | Graded extra in dwarfs, the same in hosted and field dwarfs at fixed M★ | +0.2 to +0.6 dex, rising toward low M★ | X20 (requirement lane), X24 |
 | R7 | Late suppression of small-scale power stays small | T²(z = 0, k = 1 h/Mpc) ≥ 0.835, σ₈ loss ≤ 1 %; cosmic c_s today ≲ 270–330 km/s; about half of X26's sheet survives (23/45, 15/37) | X29 (raw KiDS-1000 ξ±) |
+| R4b | Cluster outskirts below the law | OUTER (1.42–3 Mpc) 0.72 ± 0.14 vs MID 1.67 ± 0.19 (KT sample, canonical): the excess is concentrated, and the law overshoots outside | X30, X2 |
 | R6 | Collisionless at cluster-merger speeds | lensing peaks with the galaxies, not the gas (Bullet) | record Bullet reviews (opus_48, 06-19/20) |
 
 R2 and R3 are the crux. The forest demands dust-like clustering on the galaxies' own Lagrangian scales (SPARC M_L/M_hm
@@ -64,3 +76,19 @@ partially, graded by KT) and gone from galaxies. A separate ~4 km/s-scale floor 
 
 It replaces "the missing piece is a selector" (verdict §6). The data do not want a selector. They want a time change of
 state (cold → hot after z ≈ 2), with the cluster terciles fixing the hot temperature. Being hosted plays no role (X24).
+
+## 6. Current answer (after X30)
+
+1. **Added-component routes are closed for clusters.** Hydrostatic or late-heated retention spreads mass outward
+   (X30). Gas, feedback and known baryons are short (X21, X31). Clusters need extra mass at 0.3–1 Mpc *and* less than the
+   law at 1.4–3 Mpc. That is a change in the **shape** of the gravitating profile: more concentrated than the law's
+   phantom, i.e. ZT2B's "selector as a concentration target".
+2. **The cosmic requirement is unchanged.** Dust-like clustering to forest scales through z ≈ 2–3, and almost none inside
+   isolated galaxies today (X22). Recombination release and early-dark-energy tracking either reduce to CDM or stay
+   UNDECIDED (X34, X35).
+3. **Shear caps any late suppression** at T²(k = 1) ≥ 0.835 (X29, R7).
+4. **Dwarfs:** a separate ~4–5 km/s floor scaling as r^−0.8 (X24, X28). It is not in the action (X25).
+5. **What survives every frozen test in the record is a CDM-like, collisionless, concentrated cold component in clusters**
+   (X32's surviving tracer, ZT2B's concentration target), **together with something that keeps it out of isolated galaxies
+   today.** That second part is the unsolved piece. Every candidate for it tested on 10-24 fails: a selector (X19),
+   universal heating (X23), the sheet (X26 + X30), vacuum heating (X24b), feedback (X31). This is the precise open problem.
