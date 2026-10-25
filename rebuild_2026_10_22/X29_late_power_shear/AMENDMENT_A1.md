@@ -16,3 +16,10 @@ Two implementation issues showed up in the main run (`run_main.log`). Neither ch
    - Assumption A is restated: a linear T² that passes through zero overstates the suppression of the nonlinear power, so
      the excluded points are excluded under a model that is harsher than the real nonlinear response. This is disclosed,
      not corrected.
+
+**Provenance note (added 10-25, after the coordinator's rerun):** the committed main `x29_late_power_shear.out` /
+`_results.json` came from the script **as it was before A1's code edit** (the run started before 1e06cc9946). It therefore
+grades K0 against the frozen 1e-10 line (FAIL, 5/6). The committed script carries A1's 1e-3 K0 line, so rerunning it on the
+identical Δχ² values grades K0 PASS (6/6). The coordinator's rerun matches every number. The `_A1FLOOR` and `_MUTATE`
+outputs were produced by the post-A1 script. No graded number differs between the two script versions; only the K0 label
+does.

@@ -30,7 +30,7 @@ not counted as excluded.
 
 ## Checks
 
-- Main run 5/6. K0 failed only at its frozen 1e-10 tolerance: the identity gives Δχ² = −4.3e-5 / −2.1e-5, from the S0
+- Main run 5/6 (its .out predates A1's code edit; the committed script reruns it 6/6 on identical numbers, see A1's provenance note). K0 failed only at its frozen 1e-10 tolerance: the identity gives Δχ² = −4.3e-5 / −2.1e-5, from the S0
   control's own P_grav vs P offset (A1). K1, K2 (NC1x reproduced exactly), K3 (0.27 GB) and K4 (σ₈ ratio ≤ 1 everywhere) pass.
 - Floor rerun (A1) 6/6. It gave the same grades at every point (0 class differences). The artefacts did NOT go away, so
   they are not caused by T² reaching zero. Their cause inside the scorer (strongly suppressed spectra) is not diagnosed
