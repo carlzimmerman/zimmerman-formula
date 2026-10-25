@@ -242,3 +242,10 @@ No test here distinguishes it from that component. What the framework adds is th
 So no test in the record yet distinguishes "the law is fundamental" from "the law is how cold dark energy settles around baryons". In route E the a₀–Λ link is a coincidence.
 
 **Orbit-keyed conversion** (`X37_orbit_conversion`, peer lane; criteria 204001f8ad; coordinator rerun identical apart from timing): **OC FAILS CLUSTERS** on both footings. Cold dark energy converting to dark energy as exp(−N_orb/N*), with N* set by SPARC alone, empties cluster cores first. It predicts OUTER 1.34–1.67 against 0.66–0.72 measured, and gives the MID slope with KT the wrong sign. General statement: any depletion rule keyed to orbits, density, temperature or time removes cold dark energy from cluster centres first, while the data want it concentrated there.
+
+**Cold dark energy halos with surface density set by a₀** (`X38_a0_surface_density_halos`, peer lane; criteria 9cc80516df; coordinator rerun identical apart from timing). This is route E with Burkert-cored halos at ρ₀r₀ = a₀/(2πG) (107 / 129 M☉/pc²). It adds no new constant; the M200 relation is EM1's committed one. Frozen result: **SD PASSES SPARC ONLY**, on both footings.
+- **SPARC passes** at a sensible Υ: rms 0.080 / 0.073, median Υ 0.77 / 0.60. EM1's NFW halos needed Υ 0.36.
+- **The cluster OUTER band passes for the first time:** all-KT Z +0.14 / −0.06, and the terciles and slope pass too.
+- **It fails the heaviest cores**, under-predicted: MID T3 Z +4.3 / +3.8; KT slope +3.1 / +3.0. The cores come out too large (0.27–0.44 Mpc).
+
+This is the first model in the record that ties a₀ to the cold dark energy itself. Its constant-surface-density core gives a₀ a role in route E rather than leaving it a coincidence. Open: whether baryonic contraction by the BCG and hot gas shrinks the heavy cores (peer lane X39, gravity only, no new constant).
