@@ -290,3 +290,17 @@ Results:
 - MGAS T3 OUTER should get a data-side check before more rules are built on it.
 
 **Peak-curvature c_f** (`X45_peak_curvature_cf`, peer lane; criteria 1fd8e1238a; POST-HOC exploratory after two post-result amendments; coordinator rerun identical apart from timing): **PK FAILS** in every run on both footings. Spherical collapse of the BBKS peak profile on the record's P(k) gives a near-uniform core with no r₋₂, so c_f falls back to 1.85 and reproduces X44. Reading: c_f ≈ 4 comes from orbit mixing and relaxation, not from spherical peak collapse. The framework-native route is to measure formation-epoch concentrations in the record's own PM runs.
+
+**The tether: a vacuum-set core floor** (the owner's question; `X47_vacuum_tethered_core_floor`, bafcb4754e / 9feeb722fc; coordinator rerun identical apart from timing). The hypothesis: cold dark energy stays bound only where its own pull exceeds g_T = 0.254 a₀ (2.4e-11 / 2.9e-11 m/s²).
+- **As a local rule: FAILS** (growth and self-consistency).
+  - The linear field's own pull is ≤ 0.02 g_T today, so a local key tethers the linear field and kills growth (the μ-pincer in acceleration form).
+  - A latching key never forms a floor.
+  - A cored halo's own pull is below g_T at the centre and in the envelope.
+- **As a rule about bound objects: CONSISTENT but nonlocal**, with no action.
+  - It must act after virialisation; collapse itself is below threshold.
+  - Theorem D-T does not apply inside self-gravitating cores (premises P1 and P3 fail), but it returns wherever the tether is on.
+- **Data.**
+  - Per-galaxy free Σ fits centre on g_T (median +0.07 / −0.02 dex) with a ±0.32 dex spread: no sharp pile-up.
+  - Context, PROVISIONAL: Gentile+2009 gives 1.3 / 1.1 g_T.
+  - Prediction: Σ_floor(z) ∝ a₀(z) shifts only −0.06 dex by z = 2, too small for the record's z ≈ 2 samples.
+- **Reading.** Whatever tethers cold dark energy must key on bound objects (halos), not on any local invariant. That is the remaining mechanism question.
