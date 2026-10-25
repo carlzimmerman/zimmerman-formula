@@ -31,3 +31,8 @@ Proofreading: complete REPORT.md reviewed. Distinguishes excitation density E,
 pressure P, vacuum 1.6, dimensionless radius x, mass mu and metric factor F.
 Formal zero-vacuum solutions are not presented as physical candidates.
 Review provenance: self-review of this checkpoint continuing e8b0beff16.
+
+Numerical warning disclosure: the diagnostic stderr records RHS overflow warnings
+near the metric cutoff. Every stored numeric terminal value was checked finite.
+Solver event completion and classification convergence support the stated finite
+diagnostic, not accurate horizon continuation. The warning is retained in REPORT.

@@ -144,6 +144,13 @@ These are formal solutions of the diagnostic equations, not viable compact
 objects in the physical model: vacuum gravity has been removed and the surface
 EOS closure issue remains.
 
+The diagnostic solver emitted overflow warnings in RHS evaluations near the
+metric cutoff. All stored terminal quantities are finite, every solve reports
+successful event termination, and classification agrees on refinement. These
+warnings limit interpretation of the near-cutoff integration; we do not claim
+a precise horizon location or a regular continuation through it. The independent
+uniform-density checks have no such warnings.
+
 F approaching zero is a failure of this static areal-coordinate integration
 before a fluid surface is reached. It is not proof of dynamical black-hole
 formation. A coordinate equator or another extension may require different
