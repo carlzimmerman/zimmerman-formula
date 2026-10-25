@@ -106,3 +106,9 @@ the heaviest, hottest clusters (MID T3 Z +3.8 to +4.3, MID KT slope +3.0, MGAS T
 more central mass than a fixed Σ gives. Next: baryonic contraction of the core by the BCG and the hot gas (gravity only,
 no new constant). If adopted, a₀ = c²√(Λ/32π) becomes the cold dark energy's core surface density, and the galaxy law
 becomes emergent: an owner decision.
+
+**Update (X39, 10-25): baryonic contraction does not close the gap.** Blumenthal contraction (Gnedin reported) moves the heavy
+cluster cores by +0.08 against +1.0 needed. It also rebuilds galaxy cusps, which breaks SPARC (Υ 0.32–0.39). X38 stands
+without contraction. **Remaining requirement:** cold dark energy cores about 2× denser at cluster masses than a₀/(2πG),
+while staying at a₀/(2πG) in galaxies. That is a mass scaling of the cold sector's own core physics, which baryons cannot
+supply.
