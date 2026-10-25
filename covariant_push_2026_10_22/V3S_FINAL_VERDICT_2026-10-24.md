@@ -211,3 +211,8 @@ The ultra-faint overshoot of the velocity floor is therefore not tidal either.
 - With Blanchet–Skordis dust, a₀ drops out of the linear kernel.
 - A static AQUAL reading gives a boost in phase with the plasma (G_eff/G 11–29). That makes the first-peak scales Jeans-unstable instead of supplying a steady well.
 - **New caveat for CFG689.** EDE shifts the sound-horizon ruler by about 4 %, so CFG689's native a₀(z) band holds only for a ruler with no EDE.
+
+**Recombination as a release boundary** (the owner's idea; `X34_recombination_release`, 6c5d581400 / ab4a3a8e1a). Coordinator rerun identical: the patched CLASS was rebuilt from the same patch (same patch SHA, new binary SHA), and every result line matches apart from elapsed time. **RRB REDUCES TO ORDINARY CDM.**
+- **Timing.** In patched CLASS with an energy-conserving turn-on, the cold component must already be dust by z ≈ 5×10⁴. That is 45 × recombination and 15 × equality. Released at recombination, Δχ² ≈ +4.5×10⁵ and σ₈ ≈ 5 % of ΛCDM.
+- **Relic speed.** Decoupling near z ≈ 1100 would give a forest-allowed floor matching the dwarf c₀. At the epochs the CMB allows, that window is empty on canonical and a sliver on alt, and it overshoots the ultra-faints.
+- **Scale link.** Over 54 trials there is one chance-level match: the proton thermal speed at recombination, 4.95 km/s, against c₀. It has no a₀ and no action, so it is numerology.
