@@ -96,3 +96,13 @@ state (cold → hot after z ≈ 2), with the cluster terciles fixing the hot tem
    (X32's surviving tracer, ZT2B's concentration target), **together with something that keeps it out of isolated galaxies
    today.** That second part is the unsolved piece. Every candidate for it tested on 10-24 fails: a selector (X19),
    universal heating (X23), the sheet (X26 + X30), vacuum heating (X24b), feedback (X31), and orbit-keyed conversion of cold dark energy into dark energy (X37, 10-25: it empties cluster cores and leaves the outskirts over the law). Any depletion rule keyed to orbits, density, temperature or time removes cold dark energy from cluster centres first, where the data want it most. This is the precise open problem.
+
+## 7. Strongest lead so far (X38, 10-25)
+
+**a₀-cored cold dark energy halos** (route E: Newtonian, law emergent), with ρ₀r₀ = a₀/(2πG) = 107 / 129 M☉ pc⁻² and no new
+constant, pass the SPARC line on both footings (rms 0.073–0.080, median Υ 0.60–0.77; EM1's cusps failed at Υ 0.36). They
+also pass the cluster OUTER bands, Z −0.8 to +1.9, which every added-component model overshot. They fail only the cores of
+the heaviest, hottest clusters (MID T3 Z +3.8 to +4.3, MID KT slope +3.0, MGAS T3 OUTER +4.9 to +5.4): those cores need
+more central mass than a fixed Σ gives. Next: baryonic contraction of the core by the BCG and the hot gas (gravity only,
+no new constant). If adopted, a₀ = c²√(Λ/32π) becomes the cold dark energy's core surface density, and the galaxy law
+becomes emergent: an owner decision.
