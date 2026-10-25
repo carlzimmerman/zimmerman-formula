@@ -282,3 +282,9 @@ Results:
 - **Reported only:** c_f = 5 (η 19.6) passes the groups.
 
 **This is the closest complete picture in the record.** The cold dark energy core surface density is a₀/(2πG) in galaxies. Above galaxy scale it is the gravitational-collapse value, raised by a secondary-infall concentration factor. The one external input is c_f, which the peer is deriving from the infall solution (X44).
+
+**Deriving c_f from scale-free infall** (`X44_self_similar_cf`, peer lane; criteria c8dd02f5aa; coordinator rerun identical apart from timing): **SS FAILS** on both footings.
+- Self-similar infall timing gives c_f = 2^{8/9} = 1.85 (η 5.66), which fails four keys: groups, MID T3, MID slope and MGAS T3 OUTER.
+- The data pin c_f ≈ 4–4.2: X43's groups line crosses at c_f ≈ 4.2, and X42's cluster-only calibration gives 3.3–4.6.
+- That is the standard formation concentration. Scale-free infall cannot produce it; it needs the structure of the initial peaks.
+- MGAS T3 OUTER should get a data-side check before more rules are built on it.
