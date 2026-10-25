@@ -34,8 +34,17 @@ log slope over 10¹³–10¹⁵ is 0.242, close to X40b's 0.25–0.30, the same 
 **The native factor is η_IC = Σ_IC / Σ_coll(X41) = 2.11–2.22, not 13.6.** Inside-out shell memory supplies about 2× over the
 virial column, and the cores need about 14×. The densest column comes from large inner fractions (f* = 0.18–0.5, z_c
 0.3–1.3), not from early small progenitors. In this native picture, early small progenitors are not denser in column. The
-c ≈ 7 concentration that would close the gap is therefore not produced by spherical collapse with shell memory. In NFW97 it
-is the simulation-calibrated C (inner density ≈ C ρ_crit(z_c), with C of order 10³), not 18π².
+c ≈ 7 concentration that would close the gap is therefore not produced by shell memory *without post-turnaround
+contraction* (each shell frozen at 18π² ρ_m(z_c)).
+
+**Correction (fixed forward; the graded result is unchanged).** An earlier version of this paragraph and of the closing
+section said that spherical collapse does not supply the concentration and that the rise "has no native origin in the
+record". Both statements were too broad. The peer lane `X43_collapse_core_floor` (00bc1a7950 / bf8cc9e7cf, committed before
+this result) uses Bertschinger self-similar secondary infall. There, shells keep contracting after turnaround (ρ ∝ r^−9/4),
+and the core is placed at r_f/c_f. That gives η = (4 / (3 B(1))) c_f^{5/4} = 14.83 at c_f = 4. It passes SPARC and 14/15
+cluster keys, including the heavy cores (MID T3 Z +4.26 → +0.30), and fails groups (Z +2.05) and MGAS T3 OUTER (+2.41)
+narrowly. c_f = 4 is external there; X44 (c8dd02f5aa) is deriving it. IC1 shows only that the *no-contraction* limit
+(η ≈ 2.1) is far short. The difference between IC1 and X43 is the post-turnaround contraction.
 
 ## Reported only (no verdict weight)
 
@@ -51,11 +60,13 @@ is the simulation-calibrated C (inner density ≈ C ρ_crit(z_c), with C of orde
 
 ## What this closes, and what it leaves
 
-- **Closed:** "the missing cluster-core factor is just ordinary collapse concentration" fails in its native form. Inside-out
-  spherical collapse with shell memory gives η ≈ 2.1, about 6.4× short.
-- **Still open:** the concentration a ΛCDM simulation gives (IC2) is *too much* at every scale once matched by peak
-  acceleration. It is about 2× too much for SPARC and about 3× too much for cluster cores. The needed rise is between the
-  two, and it has no native origin in the record.
+- **Closed:** the no-contraction inside-out limit (shells frozen at 18π² ρ_m(z_c), densest column, peak-acceleration
+  matching) gives η ≈ 2.1, about 6.4× short. Don't re-propose it.
+- **Bracket:** that limit is too little. The ΛCDM-simulation concentration (IC2) is too much at every scale once matched
+  by peak acceleration: about 2× too much for SPARC and about 3× too much for cluster cores. X43's self-similar-infall η
+  = 14.8 sits between the two and nearly passes. The open piece is c_f (X44), not the existence of a native route.
+- **The two stubborn cells:** they are not rule-invariant. IC2's much more concentrated halos move both of them (G-OUT-M3
+  Z +1.04, groups CONSISTENT), and X43's c_f = 5 passes the groups (reported only there).
 - **Not done:** other Burkert matchings (equal column at r₀, equal mass at r₀). These are named, not done. They change Σ_IC
   by an O(1) factor, and a 6× change would be needed.
 
