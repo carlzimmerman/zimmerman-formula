@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLD_DENSE_VERIFICATION",
+  "repository": {
+    "commit": "e8b0beff16456e5832e947117f73eec3ee8ee596",
+    "dirty": true
+  },
+  "command": [
+    "python",
+    "reviews/cold_dense_relativistic_2026_10_25/verify.py",
+    "--output",
+    "reviews/cold_dense_relativistic_2026_10_25/verification"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.13.1"
+      },
+      {
+        "name": "scipy",
+        "version": "1.14.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent derivative convergence and analytic constant-density TOV control",
+    "coefficient_domain": "float64 quadrature and ODE",
+    "conventions": "excitation E,P separated from positive vacuum; perfect-fluid averaging",
+    "inputs": [
+      "unchanged d=0 scalar potential"
+    ],
+    "bounds": {
+      "derivative_steps": [
+        0.001,
+        0.0001,
+        1e-05
+      ],
+      "vacua": [
+        0,
+        1.6
+      ]
+    },
+    "non_claims": [
+      "Not full real-scalar solutions",
+      "No formation or abundance prediction",
+      "No stability claim from sound speed alone"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T20:55:57.266197+00:00",
+    "runtime_seconds": 0.29092,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/cold_dense_relativistic_2026_10_25/verify.py",
+    "reviews/cold_dense_relativistic_2026_10_25/FOLLOWUP.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/cold_dense_relativistic_2026_10_25/verify.py",
+      "sha256": "94eecb5d0d7c1fe006292291486c4d621a22f6331241226fe022513fa3e58762",
+      "sha256_after": "94eecb5d0d7c1fe006292291486c4d621a22f6331241226fe022513fa3e58762"
+    },
+    {
+      "path": "reviews/cold_dense_relativistic_2026_10_25/FOLLOWUP.md",
+      "sha256": "c7a2d235924d5f7537d40c96307ee4a99d319da20d70f0703b46bd5b882d7681",
+      "sha256_after": "c7a2d235924d5f7537d40c96307ee4a99d319da20d70f0703b46bd5b882d7681"
+    }
+  ],
+  "output_directory": "reviews/cold_dense_relativistic_2026_10_25/verification",
+  "declared_results": [
+    "reviews/cold_dense_relativistic_2026_10_25/verification/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/cold_dense_relativistic_2026_10_25/verification/stdout.txt",
+      "sha256": "680de81362e5b32d5552dc251952304be069e8b0e81c906f470a0ac6a10ea1d1",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/cold_dense_relativistic_2026_10_25/verification/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/cold_dense_relativistic_2026_10_25/verification/result.json",
+      "sha256": "680de81362e5b32d5552dc251952304be069e8b0e81c906f470a0ac6a10ea1d1",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
