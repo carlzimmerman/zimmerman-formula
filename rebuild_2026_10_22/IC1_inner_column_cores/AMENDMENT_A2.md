@@ -1,6 +1,6 @@
 # IC1 AMENDMENT A2 (POST-RESULT, disclosed; touches the IC2 comparator and the K3 check only)
 
-**What happened.** The first full run (`ic1_run_INTERRUPTED_preA2.log`, kept unchanged) failed K3. I stopped it while it was
+**What happened.** The first full run (`ic1_run_INTERRUPTED_preA2.out`, kept unchanged) failed K3. I stopped it while it was
 grading IC2. By then it had already printed every IC1 graded line on both footings: Step 0, the Σ_IC table, SPARC,
 clusters, groups, and the per-footing IC1 verdict (IC1 INACTIVE on both). I had believed nothing was graded yet when I
 stopped it. That was wrong, and this amendment is therefore post-result.

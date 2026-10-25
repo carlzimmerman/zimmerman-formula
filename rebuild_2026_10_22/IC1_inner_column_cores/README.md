@@ -61,7 +61,7 @@ is the simulation-calibrated C (inner density ≈ C ρ_crit(z_c), with C of orde
 
 ## Provenance
 
-- `ic1_run_INTERRUPTED_preA2.log`: the first run, stopped during IC2 after a K3 failure. Its 58 IC1 lines are
+- `ic1_run_INTERRUPTED_preA2.out`: the first run, stopped during IC2 after a K3 failure. Its 58 IC1 lines are
   byte-identical to the final `ic1_inner_column.out` once timing is stripped; A2 changed no graded line. See
   `AMENDMENT_A2.md`.
 - `ic1_inner_column.out` / `_results.json`: the final run.
