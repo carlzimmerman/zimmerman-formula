@@ -1,0 +1,11 @@
+# Review and verification scope
+
+Focused independent review preceded canonical execution. Its findings were repaired before sealing: ancestor coverage, mesh-pair identity (both grid sizes are now part of each key), restart/source references, completed-parent guards and failed-transfer assertions. TEST_DEVELOPMENT.json preserves regression evidence for the quadrature and mesh-key controls. A posthoc diagnostic addendum independently reconstructs final energies and original-parent grid/carrier/source references without changing the producers.
+
+Audit001 completed 1140 checks with zero failures and 18 unit controls. It checks original/raw/source closure, invariant gates, first eligible settling window, conditional stellar paths, independent temporal differences, observable pair completeness and sampled mass summaries. Actual stellar birth never occurs, so passing conditional controls is not measured stellar survival. Its closure includes figure001; the corrected figure002 is separately manifest-validated and included in the final integrity audit. Visual QA and the rejected first rendering remain explicit.
+
+The final manifest validator covers all 12 new executions. FINAL_INTEGRITY.json checks their input-before/input-after/current hashes and output hashes. SOURCES.json provides a final file index and direct input closure. Hash integrity proves identity, not physical truth. No new theory completion, late spatial convergence, escaping flux, stellar safety, actual formation deadline or Fornax/Leo I acceptance follows from these checks.
+
+The late-transfer quadrature derivation and proposed full-rank consistent-metric scheme were reviewed as algebra. The latter remains unimplemented and is not a repair silently applied to these runs. Separate real-scalar results at 15b4863c1f are reconciled by related001 only; no bridge to this complex self-gravitating proxy is assumed.
+
+Final independent read-only review of the completed reports against canonical JSON found no material scientific or reporting mismatch. It confirmed endpoint masses/support, counts, settling failures, early refinement coverage, null stellar results and all four check-only preparation records. No late-convergence, four-dwarf, chronology, escape or action-bridge success was inferred.

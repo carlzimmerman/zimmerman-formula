@@ -1,0 +1,24 @@
+{
+  "scope": "development of independent analytic mass-integral diagnostic, no galaxy evolution",
+  "red": {
+    "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 /usr/bin/python3 sol61_push/cold_late_convergence_2026_10_26/test_quadrature.py",
+    "exit": 1,
+    "observed_failure": "ModuleNotFoundError: No module named 'quadrature'"
+  },
+  "green": {
+    "command": "same command after implementation",
+    "exit": 0,
+    "tests": 3,
+    "observed_result": "OK; 3 tests in0.002s"
+  },
+  "mesh_pair_regression": {
+    "red_command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 /usr/bin/python3 sol61_push/cold_late_convergence_2026_10_26/test_comparison_keys.py",
+    "red_exit": 1,
+    "red_observation": "test_two_mesh_pairs_at_same_time_are_distinct failed: 1 != 2",
+    "red_tests": 3,
+    "red_failures": 1,
+    "green_exit": 0,
+    "green_tests": 3,
+    "green_observation": "OK after mesh pair included in comparison identity"
+  }
+}
