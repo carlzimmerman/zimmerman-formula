@@ -1,4 +1,64 @@
-# IB1_inner_band_hse: why the core law over-predicts the INNER cluster band. DIAGNOSTICS ONLY (not graded, no criteria frozen)
+# IB1_inner_band_hse: RESULT HG TRADES (both footings). The gas's hydrostatic mass fixes INNER and every MID cell; OUTER fails in 3 cells, mostly where σ is a tercile fill
+
+Graded under frozen criteria `FROZEN_CRITERIA.md` (0669ca3fc9). Amendment A1 (902e279dfa) is post-result and touches the K1
+check window only; a fix-forward (167d264879) followed it. The graded lines are byte-identical to run 1. Checks pass: K0
+(OS1 reproduced exactly, both footings), K1 (≤ 6.9e-6), K2 (0.56 GB). MUTATE (2 kT on K1's analytic side) fails K1 and
+exits 1. κ = ½ FITTED. Not theory closed. Nothing here says the data favour the framework.
+
+## Result: HG, cluster total mass = 3β σ² r³ / G(r² + r_c²) from each cluster's own gas (no q, c_f or M_fair)
+
+Canonical; alt gives the same Z, because HG's mass does not depend on a₀ and the footing only rescales the C\* units.
+
+| cell | Z h 0.672 / 0.686 | OS1 Z | |
+|---|---|---|---|
+| **G-IN-Mall** | **−0.33 / −0.35** | −2.41 FAIL | **fixed** |
+| G-IN-all | −0.59 / −0.68 | −1.82 | |
+| G-MID-T1 / T2 / T3 / b | −0.07, +0.80, −0.27, +0.19 | −1.72, −1.01, −1.29, +0.85 | all closer to the data |
+| G-OUT-T1 / T2 / T3 / b | −0.99, −1.09, −1.34, +0.44 | −1.11, −1.07, −0.33, +1.09 | pass |
+| G-OUT-Mall / M2 | +0.32, −0.37 | +0.08, −0.78 | pass |
+| **G-OUT-all** (106 KT) | **−2.02 / −2.27** | −1.47 | FAIL (over, marginal) |
+| **G-OUT-M1** | **−2.02 / −2.10** | −0.38 | FAIL (over, marginal) |
+| **G-OUT-M3** | **+5.02 / +4.36** | +1.81 | **FAIL (under)** |
+
+**Class: TRADES on both footings, so the verdict is TRADES.** The inner miss is gone with no fitted constant, and all four
+MID cells move toward the data. Three outer cells that OS1 passed now fail.
+
+Reported (not graded):
+- The truncation choice does not rescue it: at r_ta the same 3 cells fail; at 2.2 R500, G-OUT-all and M3 fail.
+- σ² × 1.15 (non-thermal pressure, context) adds G-OUT-T3.
+- Implied core surface density Σ_HG / Σ_OS1 = 0.37 (0.31–0.47) canonical, 0.41 alt. The core law's cluster cores are
+  about 2.5× too dense by the gas's own measure.
+- Per-bin pred/meas, innermost to outermost: 1.68, 1.21, 0.99, 0.88, 0.86, 0.91, 1.09, 0.90. Under OS1 the same bins ran
+  3.51 down to 0.85. Bin 0 is the null-test-failing bin.
+
+**Not a test (quoted, criteria §1):**
+- Groups keep the core law (GR1 PASS, both footings).
+- SPARC keeps OS1's core law; it was re-run only as K0.
+- What selects HG over the core law is not derived.
+
+## Post-result diagnostic (labelled, not graded; `ib1_post_outer.py` / `.out`, canonical h 0.672)
+
+OUTER pred/meas by MGAS500 tercile, split by where σ comes from:
+
+| tercile | KT clusters (σ from kT) | σ-filled clusters |
+|---|---|---|
+| M1 | 7.96 (n 29; meas A 0.14, noisy) | 1.59 (n 80) |
+| M2 | 1.71 (n 39) | 0.80 (n 69) |
+| M3 | 0.81 (n 38) | **0.52 (n 71)** |
+
+The 220 clusters without kT get OS1/X30's **tercile fill**: one σ per tercile (449 / 507 / 631 km/s). HG's mass scales
+as σ², so a per-tercile constant erases the mass trend inside each tercile. The core law did not feel this, because
+M_fair ∝ M_b followed each cluster's own gas mass. The M3 under-prediction is carried mainly by the filled clusters (0.52 vs
+0.81 for KT).
+
+So the MGAS OUTER fails mostly test the inherited fill, not HG. A next lane would replace the fill with σ predicted from each
+cluster's own Mgas500, using the KT clusters' own σ–Mgas500 relation (raw data, no ΛCDM). That needs its own frozen
+criteria. Two things stand regardless:
+- G-OUT-all (KT only, Z −2.02 / −2.27) is a marginal over-prediction on measured temperatures, with no fill involved;
+- G-OUT-M1's KT subset (n 29) is very noisy.
+
+## Earlier: diagnostics run before the criteria (b963ce381c)
+
 
 Question (owner, 10-26): what makes the core law over-predict the INNER cells ~2× without breaking groups and MGAS T3 OUTER?
 
@@ -60,4 +120,4 @@ owner's call. Before grading it needs:
 - a statement of the inherited conventions: β = 2/3 and r_c = 0.15 R500 (fixed, not fitted), and the ΛCDM-processed
   R500 in r_c.
 
-Run: `PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 ib1_diagnostics.py` (about 1 min, one thread).
+Run: `PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 ib1_diagnostics.py | ib1_hse_halo.py [--mutate] | ib1_post_outer.py` (each under a minute, one thread).
