@@ -309,3 +309,10 @@ Results:
 - **H1 (self-similar floor, calibrated on clusters only).** Implied concentration 9–14 × the EPS Σ_coll (12.9 × at the median cluster mass), consistent with X43's η 14.8. α = 1/3 is allowed. It fails the groups out of sample (Z +2.41 / +2.27) and MGAS T3 OUTER.
 - **H2 (baryon retention, f_b/0.0577, no fitted constant).** It improves SPARC (rms 0.0795 → 0.0705) and fails the groups by 0.03 on canonical only. It also fails MGAS T3 OUTER (+2.68).
 - Every rule tried binds on the same two keys, the groups and MGAS T3 OUTER.
+
+**Native c_f from zoom simulations** (`X48_native_cf_zoom`, a peer lane, owner-approved; criteria 1932858ae8): **UNRESOLVED**. This lane was not rerun by the coordinator, because it is ten multi-hour direct-summation runs.
+- The method is collisionless zooms of constrained peaks, with cold dark energy plus Λ and no a₀ floor.
+- At ng 38 the medians are c_f 10.6 / 5.9 / 11.0 at 1e12 / 1e13 / 1e14 M☉.
+- The frozen resolution check fails: at 1e14 seed 1, ng 38 → 48 moves c_f from 12.68 to 2.59. So ng 38 is not converged and its regrade is not evidence.
+- Reported only: the NFW-form fit gives 4.00 at ng 48, which matches the data-pinned 4–4.2. That is one run with no verdict weight.
+- Resolving it needs ng ≥ 48 for every mass and seed. X43 stands with c_f = 4 as an external input.
