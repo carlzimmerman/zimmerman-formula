@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLD_REAL_FIELD_20261025",
+  "repository": {
+    "commit": "38a418bf889b9dd9ef8caa175ffaed8c26c36b5e",
+    "dirty": true
+  },
+  "command": [
+    "python",
+    "reviews/cold_real_field_2026_10_25/check.py",
+    "--output",
+    "reviews/cold_real_field_2026_10_25/mutation",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.13.1"
+      },
+      {
+        "name": "scipy",
+        "version": "1.14.1"
+      },
+      {
+        "name": "clang++",
+        "version": "Apple clang (system compiler; see environment)"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Spherical full-potential real-field evolution with energy ledger and gravity-scale audit",
+    "coefficient_domain": "C++ double",
+    "conventions": "cell-centred finite volumes; outer sponge; canonical Einstein units",
+    "inputs": [
+      "unchanged scalar action",
+      "prepared Gaussian initial states"
+    ],
+    "bounds": {
+      "cases": 5,
+      "dx": 0.05,
+      "dt": 0.005,
+      "time": 200,
+      "radius": 60
+    },
+    "non_claims": [
+      "No full nonlinear Einstein evolution",
+      "No selected initial state or abundance",
+      "No asymptotic stability claim"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-26T01:03:08.049027+00:00",
+    "runtime_seconds": 1.467706,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "reviews/cold_real_field_2026_10_25/mutation/result.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/cold_real_field_2026_10_25/FROZEN_CRITERIA.md",
+    "reviews/cold_real_field_2026_10_25/check.py",
+    "reviews/cold_real_field_2026_10_25/evolve.cpp"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/cold_real_field_2026_10_25/FROZEN_CRITERIA.md",
+      "sha256": "808d575bb1f6c2b0146ab993466225082aaed54eb94d6f2e63d3294378cc7690",
+      "sha256_after": "808d575bb1f6c2b0146ab993466225082aaed54eb94d6f2e63d3294378cc7690"
+    },
+    {
+      "path": "reviews/cold_real_field_2026_10_25/check.py",
+      "sha256": "305f0fcbb6b8af5be665e7b10452cbd8502affd888ea4233949c569f9bee2d64",
+      "sha256_after": "305f0fcbb6b8af5be665e7b10452cbd8502affd888ea4233949c569f9bee2d64"
+    },
+    {
+      "path": "reviews/cold_real_field_2026_10_25/evolve.cpp",
+      "sha256": "f07a8cffc0477ad5eabc6e0d9fa7b84a202a75bff2035505cb2304b7aa3192d5",
+      "sha256_after": "f07a8cffc0477ad5eabc6e0d9fa7b84a202a75bff2035505cb2304b7aa3192d5"
+    }
+  ],
+  "output_directory": "reviews/cold_real_field_2026_10_25/mutation",
+  "declared_results": [
+    "reviews/cold_real_field_2026_10_25/mutation/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/cold_real_field_2026_10_25/mutation/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/cold_real_field_2026_10_25/mutation/stderr.txt",
+      "sha256": "48855feaea42ebd6520c202dfa0dfb709074da230473cddea316952da82b3e15",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: reviews/cold_real_field_2026_10_25/mutation/result.json"
+  ]
+}
