@@ -71,3 +71,17 @@ changes no measurement rule.
 - **Regrade.** The §3 regrade is run on the ng 48 c_f(M), and labelled as above.
 
 κ = ½ FITTED. Not theory closed.
+
+## AMENDMENT A2 (2026-10-26; committed alone, after the ng 48 batch, before any A2 run)
+
+The A1 grade at ng 48 is ABOVE WINDOW. Per-seed scatter is ×4–6, so the three-seed medians are uncertain by ~×2. A2 adds
+seeds; it changes no measurement rule.
+- **Runs:** seeds 4–9 at each of 10¹², 10¹³, 10¹⁴ M☉, ng = 48. The IC, dynamics, integrator and analysis (§2) are unchanged.
+  That makes 18 new runs, launched directly (single thread, nice 15), resumable as before.
+- **Grade:** §3's window [3.3, 4.6], applied to the median over all nine seeds per mass (seeds 1–9). Reported with it: a
+  bootstrap 68 % interval on each median (10 000 resamples, seed 20261026), and the NFW-form fit median (reported only).
+  The label stays "at ng 48; convergence beyond ng 48 not tested".
+- **Regrade:** X43's rule with the nine-seed c_f(M), as A1.
+- **Stop rule:** none. All 18 are graded when they finish. Seeds that fail to finish are reported, not replaced.
+
+κ = ½ FITTED. Not theory closed.
