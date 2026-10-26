@@ -13,7 +13,11 @@ import numpy as np
 from scipy.optimize import brentq, minimize_scalar
 
 MUTATE = "--mutate" in sys.argv
-TAG = "_MUTATE" if MUTATE else ""
+# AMENDMENT A1 (post-result): --os1 VLAST grades the flagship's OS1 core law, Sigma = Sigma_a0 (sigma/sigma_ref)^q_f,
+# sigma = VLAST/sqrt2 (SC1's SPARC definition: last observed point), sigma_ref 70.50 km/s, q_f 0.892 / 0.748 (OS1, SPARC only)
+OS1 = float(sys.argv[sys.argv.index("--os1") + 1]) if "--os1" in sys.argv else None
+TAG = ("_MUTATE" if MUTATE else "") + (f"_OS1_V{OS1:.0f}" if OS1 else "")
+QF = {"canonical": 0.892, "alt": 0.748}; SREF = 70.50
 HERE = os.path.dirname(os.path.abspath(__file__)); REB = os.path.dirname(HERE)
 OUT = []
 def P(*a):
@@ -27,11 +31,13 @@ EM1 = json.load(open(os.path.join(REB, "EM1_emergent_dust_law", "em1_emergent_re
 F3 = json.load(open(os.path.join(REB, "F3_growth_audit", "f3_growth_audit_results.json")))["K2"]
 R0 = SEAL["inputs"]["R0_kpc"]
 FEET = ("canonical", "alt")
-SIG = {f: X38["Sigma_Msun_pc2"][f] * 1e6 for f in FEET}          # Msun/kpc^2
+SIG0 = {f: X38["Sigma_Msun_pc2"][f] * 1e6 for f in FEET}          # Msun/kpc^2, Sigma_a0
+SIG = {f: SIG0[f] * ((OS1 / math.sqrt(2) / SREF) ** QF[f] if OS1 else 1.0) for f in FEET}
 BGS = {t: dict(a=EM1["rows"][t]["R1"]["a"], b=EM1["rows"][t]["R1"]["b"], h=F3[t]["params"]["h"]) for t in ("A_c2b_refit", "B_cfg886_bg")}
 P("GD1_route_e_mw_dr4", "MUTATE (Sigma x 2)" if MUTATE else "normal run")
 P("route E: Newtonian + cold dark energy Burkert halo, rho0 r0 = a0/(2 pi G); kappa = 1/2 FITTED; footings never pooled; not theory closed")
-P(f"Sigma_a0 canonical {SIG['canonical']/1e6:.1f} / alt {SIG['alt']/1e6:.1f} Msun/pc^2; R0 {R0} kpc")
+P(f"OS1 mode: V_last {OS1} km/s, Sigma/Sigma_a0 = {SIG['canonical']/SIG0['canonical']:.3f} / {SIG['alt']/SIG0['alt']:.3f}" if OS1 else "X38 mode (q = 0)")
+P(f"Sigma canonical {SIG['canonical']/1e6:.1f} / alt {SIG['alt']/1e6:.1f} Msun/pc^2; R0 {R0} kpc")
 
 # ------------------------------------------------------------------ NFW rival (S3) -> baryon-only field
 def nfw(M200, c, h0n=67.7):
@@ -114,7 +120,7 @@ VC_E, VC_E_ERR, KZ_BR, KZ_BR_ERR = 229.053, 4.645, 66.4, 2.2                    
 RES["today"] = dict(cap_g_over_a0=CAP, cap_at_R_over_r0=float(Bx.x))
 P(f"\nSTRUCTURAL: an a0-cored Burkert pulls at most {CAP:.4f} a0 anywhere (at R/r0 = {Bx.x:.3f}), for ANY M200")
 for f in FEET:
-    vcap = math.sqrt(CAP * A0SI[f] * R0 * KPC) / 1e3
+    vcap = math.sqrt(CAP * A0SI[f] * (SIG[f] / SIG0[f]) * R0 * KPC) / 1e3
     rb = RES["rows"]["1.000000"]; vb = math.sqrt(max(rb[f"{f}|A_c2b_refit"]["V8"] ** 2 - 0, 0))
     hb_ = rb[f"{f}|A_c2b_refit"]
     # rotation curve chi2 vs Ou+24 (S3 error model), s = 1, bg A
@@ -139,9 +145,9 @@ for f in FEET:
 hb = RES["rows"]["1.000000"]["canonical|A_c2b_refit"]
 checks.append(("K2_no_saturation", not any(RES["rows"][s][k]["saturated"] for s in RES["rows"] for k in RES["rows"][s] if "|" in k)))
 checks.append(("K3_halo_raises_Kz", hb["Kz_R0_1p1_over_2piG"] > RES["rows"]["1.000000"]["baryon_Kz_R0_1p1"]))
-checks.append(("K4_sigma_matches_X38", abs(SIG["canonical"] / 1e6 - 106.879) < 0.01 and abs(SIG["alt"] / 1e6 - 129.165) < 0.01))
+checks.append(("K4_sigma_matches_X38", abs(SIG0["canonical"] / 1e6 - 106.879) < 0.01 and abs(SIG0["alt"] / 1e6 - 129.165) < 0.01))
 Rs_ = np.linspace(0.1, 300.0, 30000); Sg_ = SIG["canonical"] * (2.0 if MUTATE else 1.0)
-gmax = float(np.max(G * math.pi * Sg_ * hb["r0_kpc"] ** 2 * B(Rs_ / hb["r0_kpc"]) / Rs_ ** 2)) / (2 * math.pi * G * SIG["canonical"])
+gmax = float(np.max(G * math.pi * Sg_ * hb["r0_kpc"] ** 2 * B(Rs_ / hb["r0_kpc"]) / Rs_ ** 2)) / (2 * math.pi * G * SIG["canonical"])   # in units of 2 pi G Sigma
 checks.append(("K5_solved_halo_obeys_cap", gmax <= CAP * (1 + 1e-6)))           # --mutate (Sigma x 2) must FAIL this
 P(f"max over R of g_halo / a0 for the solved MW halo (canonical, s=1): {gmax:.4f} (cap {CAP:.4f})")
 for k, v in checks:

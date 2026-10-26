@@ -1,4 +1,62 @@
-# GD1_route_e_mw_dr4: the flagship's Milky Way, for Gaia DR4. The a₀-cored halo cannot hold the Sun's orbit up
+# GD1_route_e_mw_dr4: the flagship's Milky Way for Gaia DR4. Under OS1 the Sun's orbital speed is 200–210 km/s, 4–6σ below the measurement
+
+> **AMENDMENT A1 (2026-10-26, post-result; correction).** The first run below graded the **X38 core (q = 0, Σ = Σ_a₀)**.
+> The flagship's cold sector is **OS1**: Σ = Σ_a₀ (σ/σ_ref)^q_f, with σ = V_last/√2, σ_ref = 70.50 km/s and
+> q_f = 0.892 / 0.748. The first headline (V_c(R₀) 190 km/s, z −8.5) is therefore **not the flagship's number**. It is
+> kept below, labelled as the q = 0 reading. The flagship's numbers are in A1's tables. Script: `--os1 VLAST`.
+
+## A1. The flagship (OS1) Milky Way
+
+The Milky Way's V_last is bracketed between Ou+24's last point, 172.98 km/s at 27.3 kpc (SC1's literal definition), and
+V_c(R₀) = 229.05 km/s. Then Σ/Σ_a₀ = 1.635 / 1.510 (V_last 173) and 2.100 / 1.863 (V_last 229), for canonical / alt.
+
+| quantity (s = 1, bg A; band = stellar band) | canonical V_last 173 | canonical V_last 229 | alt V_last 173 | alt V_last 229 |
+|---|---|---|---|---|
+| V_c(R₀) [km/s] | **200.3** (192.8–207.6) | **208.0** (200.8–215.0) | **203.5** (196.1–210.7) | **210.5** (203.3–217.4) |
+| z vs Eilers 229.05 ± 4.65 | **−6.2** | **−4.5** | **−5.5** | **−4.0** |
+| K_z(R₀, 1.1)/2πG [M☉ pc⁻²] | 67.4 (62.1–72.6) | 69.3 (64.0–74.6) | 68.2 (62.9–73.4) | 69.9 (64.7–75.2) |
+| z vs Bovy & Rix 66.4 ± 2.2 | +0.4 | +1.3 | +0.8 | +1.6 |
+| V_c(20 kpc) | 194.3 | 205.4 | 199.2 | 208.5 |
+| dlnV/dlnR 15–27.5 | −0.013 | −0.026 | −0.018 | −0.031 |
+| local dark density [GeV cm⁻³] | 0.224 | 0.290 | 0.252 | 0.311 |
+| χ² vs Ou+24 (37 points) | 441 | 194 | 317 | 148 |
+| halo pull cap at R₀ (0.2545 × 2πGΣ) [km/s] | 98.8 | 112.0 | 104.4 | 115.9 |
+| baryons needed at R₀ to reach Eilers | ×1.36 | ×1.27 | ×1.32 | ×1.24 |
+
+The structural cap still holds: a Burkert core pulls at most 0.2545 × 2πGΣ. OS1 raises Σ for the Milky Way, but only to
+1.5–2.1 Σ_a₀. Reaching Eilers with McMillan's baryons needs about 3.5 Σ_a₀, which under OS1 means σ ≈ 290 km/s
+(V_last ≈ 410 km/s). K_z still matches. The miss is the orbital speed alone.
+
+### A1b. The native lift, T7's thermalised core, cannot reach R₀ (`gd1b_thermal_radius.py`)
+
+The core law is LN1's T7: Γt = 1 at the core, with s·v = Kσ^(1−n) and Kt = 9σ_ref^(1+n)/(4πG Σ_a₀²) (no free number;
+t cancels). The native way to deepen a core in a baryon-dominated galaxy is for the thermalised region (Γt ≥ 1) to relax
+isothermally in the **total** potential. Mass inside r₁ is conserved and the halo outside r₁ is untouched, so the halo's
+pull at R₀ can move only if r₁ > R₀.
+
+| case | ρ₀ (OS1 Burkert) | ρ at Γt = 1 [M☉ pc⁻³] | r₁ | Γt at R₀ | V_c(R₀) upper bound | Γt multiplier needed |
+|---|---|---|---|---|---|---|
+| canonical, V_last 173 | 0.0123 | 0.0123 | 0.10 kpc | 0.48 | 200.3 (unchanged) | ×3.1 |
+| alt, V_last 173 | 0.0148 | 0.0153 | 0 (Γt < 1 everywhere) | 0.43 | 203.5 | ×3.3 |
+| canonical, V_last 229 | 0.0187 | 0.0115 | 4.78 kpc | 0.66 | 208.0 | ×2.1 |
+| alt, V_last 229 | 0.0209 | 0.0133 | 4.37 kpc | 0.62 | 210.5 | ×2.1 |
+
+**Reading.** The thermal region is at most 4.8 kpc, inside R₀ = 8.1 kpc, so the self-coupled response cannot change
+V_c(R₀). The "upper bound" assumes all of M(<r₁) is moved inside R₀, which no relaxation does. Even that bound needs
+Γt larger by ×2.1–3.3 than T7 gives, which is one new number (in K or t). It is not native. The other native levers
+in the record are also closed:
+- X43's collapse branch is inactive at lgM200 11.93.
+- The halo's own σ (DW1 M3) lowers Σ.
+- X39 contraction breaks SPARC.
+- An isothermal core shape (IC1) breaks 7 cluster cells.
+
+**No native core rule in the record lifts the Milky Way's halo pull at R₀.** The only open lever is the baryons. X5's
+short-disc corner (R_d 1.9–2.3 kpc, light local column) puts more mass inside R₀ at fixed K_z. That is the corner the law
+(v3) also needs, and route E has not been run there. Checks: K5 (T7 ρ₁ identity) ×4 PASS; `--mutate` FAILS K5.
+
+---
+
+## Original run (X38 core, q = 0): superseded for the flagship, kept for the record
 
 κ = ½ FITTED. Footings never pooled. Route E: gravity Newtonian, the galaxy law emergent from cold dark energy halos
 Burkert-cored at ρ₀r₀ = a₀/(2πG) (X38; X43's collapse branch is inactive below 10^12.1 / 10^12.4 M☉, and the MW halo is
@@ -75,3 +133,5 @@ K_z; K4 Σ equals X38's 106.88 / 129.16; K5 the solved halo obeys the analytic c
 OMP_NUM_THREADS=1 nice -n 15 python3 gd1_route_e_mw.py            # gd1_route_e_mw.out, gd1_route_e_mw_results.json
 OMP_NUM_THREADS=1 nice -n 15 python3 gd1_route_e_mw.py --mutate   # *_MUTATE; K5 FAILS by design
 ```
+
+OS1 runs: `python3 gd1_route_e_mw.py --os1 172.98` and `--os1 229.05`; then `python3 gd1b_thermal_radius.py` (+ `--mutate`).
