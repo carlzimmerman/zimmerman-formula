@@ -323,3 +323,9 @@ Results:
 - **X43 regraded with the native c_f(M)** passes SPARC (0.065), the groups (Z +1.53), every MID key with its slope, OUTER, and MGAS T3 OUTER (+1.80).
 - **It fails one key:** the 326-cluster inner band, G-IN-Mall (predicted 4.81 against 2.28 ± 1.05, Z −2.41 / −2.06, over).
 - **Reading.** This is the closest result in the record with no borrowed number. The only open item is the convergence of the native c_f.
+
+**Dwarfs on route E's a₀ floor** (`X49_dwarfs_route_e_floor`, peer lane; criteria fa308d2c47; coordinator rerun identical apart from timing). The model uses pure a₀-floor Burkert halos with M200 from EM1's SPARC relation extrapolated down; nothing new is fitted, and the result is independent of c_f. **FAIL: MW ultra-faints (UNDER, Z +3.80 / +3.66).**
+- **Four classes are reproduced (|Z| ≤ 1.7):** LG field −0.03, MW classical +0.13, bright M31 +0.18 and M31 others +0.57 dex.
+- **The ultra-faints** want heavier halos than the extrapolated M200 ~5e5 M☉. The fair-share variant does worse.
+- **The dwarf mass trend survives** (ρ −0.64).
+- **Consequence:** the a₀ floor replaces v3s's separate ~4–5 km/s dwarf floor for every class except the ultra-faints.
