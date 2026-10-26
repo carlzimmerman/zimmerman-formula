@@ -1,4 +1,4 @@
-# Research findings through nuclear flux and capture kernels
+# Research findings through the limited capture/nuclear join
 
 Start here for the current status. The original top-level README describes the
 initial spherical prototype; later stages below supersede its scope.
@@ -12,6 +12,7 @@ conservation checks and explicitly documented limitations.
 
 | Stage | Finding | Scope / unresolved issue |
 |---|---|---|
+| [Signed capture map and nuclear join](../two_state_mechanism_2026_10_26/joined_capture/README.md) | Decoded signed Q configurations; exact transfer of old capture kernels into diffuse nuclear bases; fourth-order radial solver and inner-boundary fix; nuclear-threshold Feshbach benchmark preserves source/escape identity. | The executed join freezes electronic geometry and has no dissociation products. Electronic/exterior convergence remains unresolved. No physical DR rates, new photon trajectories, galaxy selection or RAR result. |
 | [Nuclear flux and capture kernels](../two_state_mechanism_2026_10_26/nuclear_flux/README.md) | Actual electronic capture/escape matrices at R2,3,4; outgoing radial nuclear flux with up to266 electronic states; repaired missing atomic product channel and artificial lead interface; derived atomic E1 line and conservative branch ledger. | Full nonlocal nuclear capture kernel and converged DR branching remain unresolved. Neutral scattering probabilities are not DR rates. Zero new physical photon-coupled galaxy runs; large raw grids remain local with hashes/regeneration commands. |
 | [Continuum amplitudes and nuclear couplings](../two_state_mechanism_2026_10_26/continuum/README.md) | Actual fixed-nuclei Coulomb K/S matrices; corrected basis checks and a stable electronic resonance candidate; moving-basis nuclear derivative couplings. Inadequate integral truncation detected and rejected. | No nuclear dissociation flux or physical DR rates. Four-state nuclear projection omits55.7% of ground derivative norm at R2. Zero new physical photon-coupled halo runs; no population-separation claim. |
 | [Two-electron channels and finite-rate interface](../two_state_mechanism_2026_10_25/scattering/README.md) | Correlated Coulomb calculation finds additional neutral/negative-ion bound channels; collision scale fixed by masses and charge; finite DR/photon adapter conserves energy and charge. | Absolute continuum scattering probabilities remain unresolved. Manufactured-rate tests are software evidence only; zero new physical finite-rate halo runs. |
@@ -39,6 +40,11 @@ neutral pairs, quantum Jeans instability and charged tethering are distinct
 observables; they must not be relabeled as each other.
 
 ## Latest verification
+
+The joined-capture stage has19 completed, currently validated manifests. Signed
+Q mapping and the frozen-electronic nuclear kernel pass their finite checks;
+physical DR rates and electronic-basis convergence remain unresolved. See its
+[audit](../two_state_mechanism_2026_10_26/joined_capture/AUDIT.md).
 
 The scattering stage has two completed provenance runs:46 fixed-R electronic
 points plus basis/nuclear checks, and four software tests with one manufactured
