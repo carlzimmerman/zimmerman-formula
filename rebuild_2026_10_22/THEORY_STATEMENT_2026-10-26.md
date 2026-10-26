@@ -37,7 +37,7 @@ Not "theory closed". Nothing here says the data favour the framework. The adopti
 | tidal dwarfs, DF2/DF4 (below the law) | consistent (no halo) | route E |
 | Solar System, GWs, binary pulsars | Newtonian/GR | route E |
 | low-z shear power | the late-heating cap no longer applies (no heating in this model) | X29 |
-| dwarf spheroidals (the ~4 km/s floor, X24) | **not regraded under this model** | open |
+| LG dwarfs, 5 classes (a₀-floor halos, no new constant) | **4 of 5 PASS** (LG field, MW classical, bright M31, M31 others); **MW ultra-faints FAIL** (Z +3.8 / +3.7, under) | X49 |
 
 ## 3. Constants
 
@@ -54,8 +54,9 @@ Not "theory closed". Nothing here says the data favour the framework. The adopti
    This is the theory's one missing piece of physics.
 2. **c_f convergence:** X48 A2 is running, about 14 h wall time.
 3. **The cluster inner band** (Z −2.4) is the one remaining data miss. It is likely tied to c_f's inner value.
-4. **The dwarf spheroidals** are not yet regraded under route E + the floor. Under v3s they needed a separate ~4 km/s floor
-   (X24, X28).
+4. **The MW ultra-faints** (X49) are under-predicted by +0.48 dex. Their halo masses come from extrapolating EM1's SPARC
+   relation far below its range (M200 ≈ 5×10⁵ M☉). The data want more massive halos there. The other four dwarf classes
+   fit with no new constant, which retires v3s's separate ~4 km/s floor.
 
 ## 5. Sharp tests
 
