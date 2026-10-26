@@ -1,0 +1,21 @@
+&rslvin                   ! used by R_SOLVE (see docs/rsolve)
+  name = 'e + H2+ - singlet Ag - K-matrices',
+  mgvn = 0,               ! symmetry
+  stot = 1,               ! spin multiplicity 2*S+1
+  newbut = 0,             ! Buttle correction - 0 in polyatomic codes
+  nerang = 1,          ! number of energy subranges
+  nescat = 100,          ! number of input scattering energies in each subrange
+  einc = 0.1, 0.7,     ! scattering energies - initial energy, energy increment, there can be more subranges
+  ieunit = 2,             ! energy unit - 1 = Ryd, 2 = eV
+  ikform = 'F',           ! formatted/unformatted switch for unit LUKMT = 19 (K-matrix)
+  calcdip   = 1,1,1,   ! do calculate dipoles for given range of ionic states
+  lu_inner_dipoles = 620,
+  lu_pw_dipoles = 140,
+  form_pw_dipoles = 'FORMATTED'
+/
+&bprop                    ! read by subroutine ASYM1 called from R_SOLVE (see docs/rprop-cfasym)
+  igail = 2,            ! match coulomb function without propagating
+  raf = 25,             ! radius at which continued fraction method can be used
+/
+
+
