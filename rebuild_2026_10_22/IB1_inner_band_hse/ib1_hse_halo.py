@@ -42,7 +42,7 @@ for pc in (1, 25, 50, 75, 99):
     i = int(kti[np.argmin(np.abs(kts - np.percentile(kts, pc)))]); pp = L.prep(i, foot0, hk0)
     cl = NX["CL"][i]; h = NX["HV"][hk0]; qd = (float(NX["DM"](cl["z"], h)) / (1 + cl["z"])) / NX["DA_lcdm"](cl["z"])
     _, rho = GAS(cl["Mgas500"] * qd ** 2.5, pp["R500"], "P")
-    sel = (RG >= 0.05) & (RG <= min(2.0 * pp["R500"], 2.9))   # A1: stay inside the gas cut; lr = np.log(RG); dl = np.gradient(np.log(rho), lr)
+    sel = (RG >= 0.05) & (RG <= min(2.0 * pp["R500"], 2.9)); lr = np.log(RG); dl = np.gradient(np.log(rho), lr)   # A1: inside the gas cut
     num = -(sig2(i) * RG * MPC / G) * dl
     ana = m_hg(i, foot0, hk0, s2fac=2.0 if MUTATE else 1.0)[0]
     rel = float(np.max(np.abs(ana[sel] / num[sel] - 1))); k1 &= rel < 1e-5
