@@ -8,8 +8,8 @@ import argparse, contextlib, io, json, math, os, sys
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__)); REB = os.path.dirname(HERE)
-ap = argparse.ArgumentParser(); ap.add_argument("--tag", default=""); a = ap.parse_args(); TAG = f"_{a.tag}" if a.tag else ""
-A = json.load(open(os.path.join(HERE, "x48_analyze_results.json")))
+ap = argparse.ArgumentParser(); ap.add_argument("--tag", default=""); ap.add_argument("--analysis", default="x48_analyze_results.json"); a = ap.parse_args(); TAG = f"_{a.tag}" if a.tag else ""
+A = json.load(open(os.path.join(HERE, a.analysis)))
 tab = {float(k): v for k, v in A["cf_by_mass"].items() if v is not None}
 LM = np.array(sorted(math.log10(m) for m in tab)); CF = np.array([tab[10 ** l] if 10 ** l in tab else tab[min(tab, key=lambda m: abs(math.log10(m) - l))] for l in LM])
 B1 = 3 * math.log(2) - math.pi / 2

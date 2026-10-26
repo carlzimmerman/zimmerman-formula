@@ -56,7 +56,8 @@ def synthetic_nfw(c, N, seed, rvir=1.0):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--runs", default=os.path.join(HERE, "runs")); ap.add_argument("--mutate", action="store_true")
-    a = ap.parse_args(); TAG = "_MUTATE" if a.mutate else ""
+    ap.add_argument("--ng", type=int, default=38)   # A1: select the production grid
+    a = ap.parse_args(); TAG = ("_MUTATE" if a.mutate else "") + ("" if a.ng == 38 else f"_ng{a.ng}")
     P("X48 analysis" + (" [MUTATE: synthetic c = 8]" if a.mutate else "") + "; kappa = 1/2 FITTED; not theory closed")
     # K3 synthetic NFW
     N = 12000; xs = synthetic_nfw(8.0 if a.mutate else 4.0, N, 1); msyn = 1.0 / N
@@ -80,9 +81,18 @@ def main():
           + f"; drift {drift:.1e}; constraint {out['constraint']:.1e}")
     by = {}
     for k, o in R["runs"].items():
-        if o.get("flag") == "ok" and o.get("ng") == 38: by.setdefault(o["M"], []).append(o["cf"])
+        if o.get("flag") == "ok" and o.get("ng") == a.ng: by.setdefault(o["M"], []).append(o["cf"])
     R["cf_by_mass"] = {f"{M:.0e}": (float(np.median(v)) if len(v) >= 2 else None) for M, v in sorted(by.items())}
-    P("c_f by mass (median over seeds, ng 38): " + json.dumps(R["cf_by_mass"]))
+    P(f"c_f by mass (median over seeds, ng {a.ng}): " + json.dumps(R["cf_by_mass"]))
+    if a.ng != 38:                                                           # A1: ng 38 -> ng shift per pair, reported
+        sh = {}
+        for k, o in R["runs"].items():
+            if o.get("ng") == a.ng and o.get("flag") == "ok":
+                k38 = k.replace(f"_ng{a.ng}", "_ng38"); o38 = R["runs"].get(k38, {})
+                if o38.get("flag") == "ok": sh[k] = dict(cf38=o38["cf"], cf=o["cf"], shift=o["cf"] / o38["cf"] - 1, nfw38=o38["c_nfw_fit"], nfw=o["c_nfw_fit"])
+        R["shift_from_ng38"] = sh
+        for k, v in sorted(sh.items()):
+            P(f"  shift {k}: c_f {v['cf38']:.2f} -> {v['cf']:.2f} ({100 * v['shift']:+.0f} %); NFW-fit {v['nfw38']:.2f} -> {v['nfw']:.2f} (reported)")
     json.dump(R, open(os.path.join(HERE, f"x48_analyze_results{TAG}.json"), "w"), indent=1, default=float)
     open(os.path.join(HERE, f"x48_analyze{TAG}.out"), "w").write("\n".join(OUT) + "\n")
     return 0 if k3 else 1
