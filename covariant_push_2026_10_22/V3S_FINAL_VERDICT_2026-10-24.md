@@ -316,3 +316,10 @@ Results:
 - The frozen resolution check fails: at 1e14 seed 1, ng 38 → 48 moves c_f from 12.68 to 2.59. So ng 38 is not converged and its regrade is not evidence.
 - Reported only: the NFW-form fit gives 4.00 at ng 48, which matches the data-pinned 4–4.2. That is one run with no verdict weight.
 - Resolving it needs ng ≥ 48 for every mass and seed. X43 stands with c_f = 4 as an external input.
+
+**X48 at ng 48** (A1 2bfdeb83a9 / acb2bf5277 / 737193f3fa). The simulations were not rerun by the coordinator. The coordinator reran the regrade from the stored ng 48 analysis, and it is identical apart from timing.
+- **Frozen class:** NATIVE c_f ABOVE WINDOW at ng 48; convergence beyond ng 48 is not tested.
+- **Medians:** c_f 7.2 / 7.0 / 5.6 at 1e12 / 1e13 / 1e14 M☉. The per-seed scatter is ×4–6 and the ng 38 → 48 shifts run from −80 % to +48 %, so the medians are uncertain by about ×2.
+- **X43 regraded with the native c_f(M)** passes SPARC (0.065), the groups (Z +1.53), every MID key with its slope, OUTER, and MGAS T3 OUTER (+1.80).
+- **It fails one key:** the 326-cluster inner band, G-IN-Mall (predicted 4.81 against 2.28 ± 1.05, Z −2.41 / −2.06, over).
+- **Reading.** This is the closest result in the record with no borrowed number. The only open item is the convergence of the native c_f.
