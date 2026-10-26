@@ -55,3 +55,19 @@ concentration relation. Not "theory closed". Nothing here may say the data favou
 - **K2:** in every run, momentum drift |Σ m v| / (N m v_rms) < 1e-6 at the end.
 - **K3:** the analysis on a synthetic NFW particle sphere (c = 4, N = 12 000, seed 1) recovers c within 15 %.
 - **MUTATE (analysis):** the synthetic sphere drawn with c = 8; K3's c = 4 recovery must fail.
+
+## AMENDMENT A1 (2026-10-26; committed alone, after the ng 38 batch, before any ng 48 production number)
+
+The ng 38 batch is UNRESOLVED under §3 (10¹⁴ seed 1: c_f 12.68 → 2.59 at ng 48). This amendment adds an ng 48 grid. It
+changes no measurement rule.
+
+- **Runs.** The remaining eight (M, seed) pairs at ng = 48 (N ≈ 24 400), with the same IC, dynamics and integrator as §1.
+  Together with the existing 10¹⁴ seed 1 ng 48 run, that gives nine. All run through `compute_queue` (preemptible, one thread).
+- **Measurement.** §2 is unchanged and applied to the ng 48 snapshots (`x48_analyze.py`, no code change except to select ng).
+- **Verdict.** The §3 window [3.3, 4.6] and the median/UNMEASURED rules are unchanged, with the medians taken at ng 48. The ng 38
+  medians are kept as run, and are not graded again.
+- **Convergence caveat.** No ng > 48 check is in budget. Whatever the class, it is labelled "at ng 48; convergence beyond ng 48
+  not tested". For every pair, the ng 38 → ng 48 shift in c_f is reported. The NFW-form fit stays reported only.
+- **Regrade.** The §3 regrade is run on the ng 48 c_f(M), and labelled as above.
+
+κ = ½ FITTED. Not theory closed.
