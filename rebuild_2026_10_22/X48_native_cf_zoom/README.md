@@ -1,4 +1,4 @@
-# X48_native_cf_zoom: native formation concentrations. Frozen class UNRESOLVED: the resolution check fails; ng 38 is not converged
+# X48_native_cf_zoom: native formation concentrations. A1 class (ng 48): NATIVE c_f ABOVE WINDOW, at ng 48; convergence beyond ng 48 not tested. Regrade: NATIVE-CC FAILS, inner band only
 
 Criteria: `FROZEN_CRITERIA.md` (1932858ae8, committed before any production number). Engine and smoke evidence: df13411b6e,
 `SMOKE_EVIDENCE.md`. Physics: collisionless dust + Λ on the record's background A (route E's cold dark energy without the a₀
@@ -7,7 +7,38 @@ floor), **not v3s**. κ = ½ FITTED. Not "theory closed". Nothing here says the 
 The six runs at 10¹³ and 10¹⁴ M☉ were started directly (single-thread, nice 15, owner 10-25 "keep it cranking"), in the
 same work folders as their queue twins, which are on hold.
 
-## FINAL (all ten runs, 10-25)
+## A1 RESULT (ng 48 grid, 2026-10-26; criteria 1932858ae8 + A1 2bfdeb83a9, implementation acb2bf5277)
+
+All nine ng 48 runs (N = 24 405) completed. They ran directly through `run_direct3.sh` (single thread, nice 15; 838 to 1176 steps).
+Checks: K0 constraint ≤ 9e-16, K2 drift ≤ 4e-15, K3 synthetic c = 4 → 3.84 PASS. The MUTATE run (synthetic c = 8) fails K3 and
+exits with 1, as required.
+
+| M | ng 48 seeds (c_f, −2 crossing) | median | ng 38 median | particles inside r₋₂ |
+|---|---|---|---|---|
+| 10¹² | 3.10, 12.74, 7.17 | 7.2 | 10.6 | 516–2873 |
+| 10¹³ | 2.31, 13.38, 6.97 | 7.0 | 5.9 | 399–4684 |
+| 10¹⁴ | 2.59, 5.62, 9.00 | 5.6 | 11.0 | 702–4358 |
+
+**A1 class: NATIVE c_f ABOVE WINDOW** ([3.3, 4.6] at 10¹³ and 10¹⁴), **at ng 48; convergence beyond ng 48 not tested.**
+
+Reading this as a measurement needs care, and the record has to say so plainly:
+- The per-run ng 38 → 48 shifts run from −80 % to +48 % (table in `x48_analyze_ng48.out`). The 10¹⁴ median moved −49 % and the
+  10¹³ median +18 %.
+- Seed scatter at ng 48 is a factor of 4 to 6 at every mass (2.3–13.4).
+- The −2 crossing c_f is therefore not converged at these particle counts. "Above window" is the frozen class, not a settled
+  native concentration.
+- Reported only: the NFW-form fit has medians 7.1 / 5.6 / 5.05 at 10¹² / 10¹³ / 10¹⁴.
+
+**Regrade (frozen §3, X43 rule with η(M) from the ng 48 medians: η 30.7 / 29.7 / 22.7 vs X43's 14.83).** On both footings:
+SPARC passes (0.065 at Υ 0.64 / 0.066 at 0.53). Groups are CONSISTENT (Z +1.53), MGAS T3 OUTER now passes (Z −0.24), and every
+MID/OUTER cell passes. **The rule FAILS on the INNER band, G-IN-Mall (OVER, Z −2.41)**, the same ~2× inner over-prediction
+that IC1 isolated. Outputs: `x48_regrade_ng48.out`, `x48_regrade_x43copy_ng48.out`.
+
+Reading: a higher c_f clears the two keys that X43 at c_f = 4 failed (groups, MGAS T3 OUTER), but it pushes the inner band over.
+At c_f = 4 the inner band passes and those two keys fail. No single c_f passes all 15 cells. X43 stands with c_f = 4 external.
+The inner band is the binding problem. κ = ½ FITTED. Not theory closed. Nothing here says the data favour the framework.
+
+## FINAL (ng 38 batch, all ten runs, 10-25)
 
 | M | ng 38 seeds (c_f from the −2 crossing) | median | particles inside r₋₂ |
 |---|---|---|---|
