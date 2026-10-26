@@ -1,0 +1,88 @@
+IJ1_isothermal_jeans_halos normal run  (frozen 46979ae8db)
+kappa = 1/2 FITTED; footings never pooled; cold dark energy, not matter; route E outside r1; not theory closed
+machinery loaded (ic1b_lib -> SC1 -> X38 -> EM1/X30; EM1 CLASS backgrounds)  [30 s, RSS 0.63 GB]
+K2 s(v) vs BU1 JSON (10-4700 km/s): max rel 6.7e-16; s(159.1) = 0.1545 / 0.1058 cm^2/g; n = 0.784 / 0.496: PASS
+K0 isothermal solver (M_b = 0) vs IC1 Lane-Emden table: RK4 M(r) max rel 5.2e-08 over xi 1e-2..1e3 (r1/r_c 1000); own (psi, psi') table vs IC1 xi^2 psi' 0.0e+00: PASS
+K4a EM1 Bullock c(1e12) A / B = 11.809 / 11.515 (11.81 / 11.51): PASS
+CFG922 BCG matched 190 (X39 / X40b: 190); filled 136 by MGAS500-tercile median
+GR1 sections executed: its K0d / K0b / K0c K0d PASS, K0b[canonical] PASS, K0b[alt] PASS, K0c PASS
+K4 record reproduction: OS1 cells canonical PASS, GR1 groups canonical PASS, GR1 SLUGGS canonical PASS, OS1 dwarfs canonical PASS, OS1 cells alt PASS, GR1 groups alt PASS, GR1 SLUGGS alt PASS, OS1 dwarfs alt PASS, GR1 K0 sections PASS   [44 s]
+
+=== [canonical] PRIMARY: s(159 km/s) = 0.1545 cm^2/g, n = 0.784
+  [canonical|PRIMARY] SPARC A rms 0.0654 @ U 0.37, B 0.0653 @ 0.36 -> FAILS; at best U: sigma0 med 53.2 km/s, r1 med 2.97 kpc; unconverged 0/15925 lanes   [333 s, RSS 0.84 GB]
+     G-IN-all   meas +1.938+-1.670 pred +5.935 Z -2.39 | h0.686 Z -2.54  FAIL
+     G-MID-T1   meas +1.096+-0.375 pred +3.007 Z -5.09 | h0.686 Z -4.70  FAIL
+     G-MID-T2   meas +1.650+-0.318 pred +3.141 Z -4.69 | h0.686 Z -4.21  FAIL
+     G-MID-T3   meas +2.132+-0.254 pred +3.352 Z -4.80 | h0.686 Z -4.23  FAIL
+     G-MID-b    meas +2.242+-0.742 pred +0.781 Z +1.97 | h0.686 Z +2.07  FAIL
+     G-OUT-all  meas +0.716+-0.141 pred +1.760 Z -7.41 | h0.686 Z -7.48  FAIL
+     G-OUT-T1   meas +0.394+-0.315 pred +1.554 Z -3.68 | h0.686 Z -3.61  FAIL
+     G-OUT-T2   meas +0.622+-0.229 pred +1.711 Z -4.76 | h0.686 Z -4.61  FAIL
+     G-OUT-T3   meas +1.027+-0.219 pred +1.949 Z -4.21 | h0.686 Z -4.19  FAIL
+     G-OUT-b    meas +1.502+-0.641 pred +0.862 Z +1.00 | h0.686 Z +0.76
+     G-OUT-Mall meas +0.929+-0.098 pred +1.766 Z -8.55 | h0.686 Z -8.81  FAIL
+     G-OUT-M1   meas +0.488+-0.296 pred +1.337 Z -2.87 | h0.686 Z -2.88  FAIL
+     G-OUT-M2   meas +0.762+-0.135 pred +1.735 Z -7.22 | h0.686 Z -6.56  FAIL
+     G-OUT-M3   meas +1.369+-0.103 pred +2.079 Z -6.86 | h0.686 Z -6.91  FAIL
+     G-IN-Mall  meas +2.279+-1.051 pred +5.933 Z -3.48 | h0.686 Z -2.99  FAIL
+  [canonical|PRIMARY] clusters -> FAILS; fails ['G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-all', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-Mall', 'G-OUT-M1', 'G-OUT-M2', 'G-OUT-M3', 'G-IN-Mall']; sigma0 by KT tercile {'T1': 331.8269792607228, 'T2': 339.436370222368, 'T3': 363.46903810102447}; r1 (kpc) {'T1': 25.13704169288756, 'T2': 25.887535382215425, 'T3': 27.73555154289523}; unconverged 0/326   [342 s]
+  [canonical|PRIMARY] groups mean +0.0686 Z +1.64 tot 0.0418 -> CONSISTENT -> PASS (OS1/GR1 +0.0767, Z +1.94); sigma0 med 149 km/s; unconverged 0
+  [canonical|PRIMARY] SLUGGS NGC4486 +0.202(+11.7) NGC4365 +0.174(+7.6) NGC4374 +0.106(+1.4) NGC5846 +0.189(+8.5) | mean +0.168 (OS1 +0.127) cleared 1/4 rev 0 -> FAILS   [487 s]
+  [canonical|PRIMARY] dwarfs frac_up 0.607 (OS1 0.652), median S 3.99, frac_over 0.034, CD1 label EXCLUDE -> FAILS; r1/r12 med 0.53; sigma0 med 3.3 km/s
+  [canonical|PRIMARY] targets T-IC False, T-GR False, T-DW False; classes SPARC FAILS, clusters FAILS, groups PASS, SLUGGS FAILS, dwarfs FAILS -> LANE CLASS IJ FAILS   [489 s, RSS 1.04 GB]
+
+=== [alt] PRIMARY: s(159 km/s) = 0.1058 cm^2/g, n = 0.496
+  [alt|PRIMARY] SPARC A rms 0.0657 @ U 0.37, B 0.0656 @ 0.36 -> FAILS; at best U: sigma0 med 50.2 km/s, r1 med 2.15 kpc; unconverged 0/15925 lanes   [779 s, RSS 1.05 GB]
+     G-IN-all   meas +1.779+-1.533 pred +5.448 Z -2.39 | h0.686 Z -2.54  FAIL
+     G-MID-T1   meas +1.004+-0.344 pred +2.754 Z -5.09 | h0.686 Z -4.70  FAIL
+     G-MID-T2   meas +1.513+-0.292 pred +2.880 Z -4.68 | h0.686 Z -4.20  FAIL
+     G-MID-T3   meas +1.959+-0.234 pred +3.080 Z -4.80 | h0.686 Z -4.23  FAIL
+     G-MID-b    meas +2.070+-0.681 pred +0.738 Z +1.96 | h0.686 Z +2.06  FAIL
+     G-OUT-all  meas +0.656+-0.129 pred +1.611 Z -7.40 | h0.686 Z -7.48  FAIL
+     G-OUT-T1   meas +0.360+-0.288 pred +1.421 Z -3.68 | h0.686 Z -3.61  FAIL
+     G-OUT-T2   meas +0.570+-0.209 pred +1.566 Z -4.76 | h0.686 Z -4.61  FAIL
+     G-OUT-T3   meas +0.941+-0.201 pred +1.787 Z -4.20 | h0.686 Z -4.19  FAIL
+     G-OUT-b    meas +1.381+-0.587 pred +0.800 Z +0.99 | h0.686 Z +0.75
+     G-OUT-Mall meas +0.851+-0.090 pred +1.617 Z -8.55 | h0.686 Z -8.81  FAIL
+     G-OUT-M1   meas +0.446+-0.270 pred +1.221 Z -2.87 | h0.686 Z -2.88  FAIL
+     G-OUT-M2   meas +0.698+-0.123 pred +1.587 Z -7.22 | h0.686 Z -6.56  FAIL
+     G-OUT-M3   meas +1.257+-0.095 pred +1.907 Z -6.86 | h0.686 Z -6.90  FAIL
+     G-IN-Mall  meas +2.092+-0.964 pred +5.446 Z -3.48 | h0.686 Z -2.99  FAIL
+  [alt|PRIMARY] clusters -> FAILS; fails ['G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-all', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-Mall', 'G-OUT-M1', 'G-OUT-M2', 'G-OUT-M3', 'G-IN-Mall']; sigma0 by KT tercile {'T1': 341.42456736114616, 'T2': 349.808120425285, 'T3': 379.70884106167875}; r1 (kpc) {'T1': 27.05378714171857, 'T2': 27.956163377293553, 'T3': 30.74386867693677}; unconverged 0/326   [788 s]
+  [alt|PRIMARY] groups mean +0.0686 Z +1.64 tot 0.0418 -> CONSISTENT -> PASS (OS1/GR1 +0.0740, Z +1.85); sigma0 med 143 km/s; unconverged 0
+  [alt|PRIMARY] SLUGGS NGC4486 +0.202(+11.7) NGC4365 +0.174(+7.6) NGC4374 +0.106(+1.4) NGC5846 +0.189(+8.5) | mean +0.168 (OS1 +0.127) cleared 1/4 rev 0 -> FAILS   [931 s]
+  [alt|PRIMARY] dwarfs frac_up 0.607 (OS1 0.483), median S 3.97, frac_over 0.034, CD1 label EXCLUDE -> FAILS; r1/r12 med 0.22; sigma0 med 2.9 km/s
+  [alt|PRIMARY] targets T-IC False, T-GR False, T-DW False; classes SPARC FAILS, clusters FAILS, groups PASS, SLUGGS FAILS, dwarfs FAILS -> LANE CLASS IJ FAILS   [933 s, RSS 1.15 GB]
+
+=== PRIMARY VERDICT: IJ FAILS; per class {'sparc': 'FAILS', 'clusters': 'FAILS', 'groups': 'PASS', 'sluggs': 'FAILS', 'dwarfs': 'FAILS'}
+K1 matching (independent LSODA from the centre, 128 lanes over all classes and footings): max |rel| 8.5e-05: PASS
+K3 unconverged fractions {'canonical': {'sparc': 0.0, 'clusters': 0.0, 'groups': 0.0, 'sluggs': 0.0, 'dwarfs': 0.0}, 'alt': {'sparc': 0.0, 'clusters': 0.0, 'groups': 0.0, 'sluggs': 0.0, 'dwarfs': 0.011235955056179775}}: FAIL
+
+=== REPORTED ONLY (no class weight)
+  [canonical] pure NFW (no core): SPARC A 0.0659 @ U 0.37; cluster fails ['G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-all', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-Mall', 'G-OUT-M1', 'G-OUT-M2', 'G-OUT-M3', 'G-IN-Mall'] (G-IN-Mall Z -3.48); groups +0.0686 Z +1.64; dwarfs frac_up 0.607 medS 3.99 frac_over 0.034   [936 s]
+  [canonical] clusters with OS1's fair-share mass (5.364, LCDM-derived; comparator only): fails ['G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-OUT-all', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-Mall', 'G-OUT-M1', 'G-OUT-M2', 'G-OUT-M3', 'G-IN-Mall']; G-IN-Mall Z -3.14
+  [canonical] clusters without the BCG: fails ['G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-all', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-Mall', 'G-OUT-M1', 'G-OUT-M2', 'G-OUT-M3', 'G-IN-Mall']; G-IN-Mall pred 5.9326 (with BCG 5.9326)
+     dwarfs LG field                 n  13 frac_up 0.31 median S 1.50
+     dwarfs M31 dE                   n   3 frac_up 0.00 median S 1.05
+     dwarfs M31 others               n   5 frac_up 0.60 median S 12.57
+     dwarfs MW classical             n   8 frac_up 0.88 median S 3.11
+     dwarfs MW ultra-faint           n  31 frac_up 0.81 median S 10.11
+     dwarfs bright M31               n  25 frac_up 0.52 median S 2.26
+     dwarfs indiv:Antlia II          n   1 frac_up 1.00 median S 2.33
+     dwarfs indiv:Canes Venatici I   n   1 frac_up 1.00 median S 4.60
+     dwarfs indiv:Crater II          n   1 frac_up 0.00 median S 0.71
+     dwarfs indiv:Sagittarius        n   1 frac_up 0.00 median S 0.72
+  [alt] pure NFW (no core): SPARC A 0.0659 @ U 0.37; cluster fails ['G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-all', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-Mall', 'G-OUT-M1', 'G-OUT-M2', 'G-OUT-M3', 'G-IN-Mall'] (G-IN-Mall Z -3.48); groups +0.0686 Z +1.64; dwarfs frac_up 0.607 medS 3.97 frac_over 0.034   [955 s]
+  [alt] clusters with OS1's fair-share mass (5.364, LCDM-derived; comparator only): fails ['G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-OUT-all', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-Mall', 'G-OUT-M1', 'G-OUT-M2', 'G-OUT-M3', 'G-IN-Mall']; G-IN-Mall Z -3.14
+  [alt] clusters without the BCG: fails ['G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-all', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-Mall', 'G-OUT-M1', 'G-OUT-M2', 'G-OUT-M3', 'G-IN-Mall']; G-IN-Mall pred 5.4456 (with BCG 5.4456)
+     dwarfs LG field                 n  13 frac_up 0.31 median S 1.42
+     dwarfs M31 dE                   n   3 frac_up 0.00 median S 1.06
+     dwarfs M31 others               n   5 frac_up 0.60 median S 12.18
+     dwarfs MW classical             n   8 frac_up 0.88 median S 3.08
+     dwarfs MW ultra-faint           n  31 frac_up 0.81 median S 10.16
+     dwarfs bright M31               n  25 frac_up 0.52 median S 2.24
+     dwarfs indiv:Antlia II          n   1 frac_up 1.00 median S 2.35
+     dwarfs indiv:Canes Venatici I   n   1 frac_up 1.00 median S 4.61
+     dwarfs indiv:Crater II          n   1 frac_up 0.00 median S 0.72
+     dwarfs indiv:Sagittarius        n   1 frac_up 0.00 median S 0.72
+SIGTERM at 5953 s: partial outputs written with _PARTIAL; rerun to resume (SPARC variant cache kept)
