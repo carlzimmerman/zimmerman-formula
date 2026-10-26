@@ -1,4 +1,4 @@
-# X48_native_cf_zoom: native formation concentrations, PROVISIONAL (1e12 seeds and the ng 48 resolution check still running)
+# X48_native_cf_zoom: native formation concentrations. Frozen class UNRESOLVED: the resolution check fails; ng 38 is not converged
 
 Criteria: `FROZEN_CRITERIA.md` (1932858ae8, committed before any production number). Engine and smoke evidence: df13411b6e,
 `SMOKE_EVIDENCE.md`. Physics: collisionless dust + Λ on the record's background A (route E's cold dark energy without the a₀
@@ -6,6 +6,27 @@ floor), **not v3s**. κ = ½ FITTED. Not "theory closed". Nothing here says the 
 
 The six runs at 10¹³ and 10¹⁴ M☉ were started directly (single-thread, nice 15, owner 10-25 "keep it cranking"), in the
 same work folders as their queue twins, which are on hold.
+
+## FINAL (all ten runs, 10-25)
+
+| M | ng 38 seeds (c_f from the −2 crossing) | median | particles inside r₋₂ |
+|---|---|---|---|
+| 10¹² | 10.60, 12.59, 10.19 | 10.6 | 304–468 |
+| 10¹³ | 5.86, 9.02, 5.92 | 5.9 | 447–847 |
+| 10¹⁴ | 12.68, 8.03, 11.01 | 11.0 | 296–554 |
+
+**Resolution check (frozen §3):** for 10¹⁴ M☉, seed 1, ng 38 → 48 (N 12k → 24k), the −2-crossing c_f goes **12.68 → 2.59**
+(−80 %, line ±20 %), with 4 358 particles now inside r₋₂. **Frozen class: UNRESOLVED.** The ng-38 −2-crossing c_f is not
+converged at these particle counts, so the provisional regrade below is not evidence either way.
+
+Reported only (no verdict weight): the NFW-form fit of M(<r) gives 5.90 at ng 38 and **4.00 at ng 48**. The standard
+formation value, and the data's pinned 4–4.2, sit right there. One run, and the NFW form is a fitting shape, not a measured
+crossing.
+
+**What resolves it:** ng ≥ 48 for every mass and seed (about 6–7 h per run at one thread, so ~7 h wall if all nine run in
+parallel), or a faster force solver. Until then X43 stands with c_f = 4 external.
+
+## Provisional c_f at the two masses run first (superseded by the resolution failure above; kept as run)
 
 ## Native c_f (frozen measurement, x48_analyze.py; checks K3 pass, drift ≤ 4e-15, constraints ≤ 1e-15)
 

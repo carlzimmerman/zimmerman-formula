@@ -1,0 +1,11 @@
+# CCT021: finer later-collapse continuation, before execution
+
+Continue the exact accepted CCT020 fine checkpoints: Draco T1.7323274913826532 and Sextans T1.7223998623974754. Same8192elements, local1.25e-8, physical initial/source/coupling parameters and first dynamics-only settling rule. No interpolation, renormalization, energy reset or change of frozen physical criteria. The existing reviewed continue_gated.py enforces raw hashes, exact carrier/grid, source hashes, physicalunits, original invariants and history.
+
+This new explicit foreground segment raises only the computational cap from480 to1800seconds per galaxy, CPU1950/timeout2100seconds, one numerical thread, existing750MB measuredRSS guard. Two galaxies at most concurrently; fixed arrays previously measured below116MB each. No hard address-space cap is claimed. Target remains absoluteT8 or2units post-birth; stop at any original numerical gate. No further segment or automatic job is scheduled. Failed coarse endpoints and failed late mesh transfers are not eligible parents.
+
+Question: does the finer field reach later collapse and then the first stable density window, allowing later passive stars? Birth remains T>=2, one-unit trailing CDF change<=.01total, reference mass and r50 changes<=.05, all valid. No birth means no stellar-survival test. Post-birth truncation cannot be resumed by this cold-only restart.
+
+Test original histories against the same-model existing Fornax/LeoI evidence only after exact equation/source/footing reconciliation. Prior vin/V=.8 trial is a separate failed exploratory branch and cannot serve as the original10km/s history's control. If Draco/Sextans qualify, require actual matched original control history and stellar coverage before any four-dwarf acceptance. Otherwise no joint solution is demonstrated regardless of control coverage.
+
+Finite radial fixed supported baryonic gas/passive later stars only, not v3s/Khronon/AeST or SCT-M, no reciprocal live gas/star formation, spin export, escaping flux at infinity, or cosmological star-formation chronology. Existing fluctuation-binding correction remains in force. Conservation alone is not convergence, stationarity or theory completion.

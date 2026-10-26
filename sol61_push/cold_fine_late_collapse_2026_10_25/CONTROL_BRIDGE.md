@@ -1,0 +1,11 @@
+# Exact scope of the original-history control bridge
+
+The sources, metadata and raw evidence were checked in controls_002. CCT019 formation_v4.py evolves radial_v4.Radial; CCT021 continues kernel_gated.Solver, inheriting the same Radial kinetic construction and the same shell Green self-potential. The continuous cold equation, Gaussian/carrier family, eta1500pc km/s, initial inflow10km/s, half hypothetical catchment, R0 acceleration factor and fixed baryonic Plummer source agree. The recorded unit/source checks are explicit, not inferred from similar titles.
+
+CCT019's passive cohorts advance after the cold step, and do not enter the fixed cold-source RHS. Their early birth therefore does not supply a different cold cooling or capture mechanism. Their response cannot be presented as a later-born stellar test.
+
+Finite numerics differ: older CN gauge prescription, timestep and mesh versus the newer centered-gauge fourth-order composition and adaptive tolerance. Consequently sharing a continuous equation does not establish that their finite later waves agree. Early Fornax base/fine CDF difference atT.5 is .001237 but unrotated wave L2 difference .397883. LeoI atT1.25 has CDF difference .045872 and unrotated wave difference .950024. These are not converged late four-dwarf histories, even where a phase/energy gate passes. The paired moment curves are diagnostic only.
+
+The raw finer original-history projections, canonical beta0, are Fornax14.48km/s atT.5 and52.84km/s atT1.25, versus selected-data12.14km/s; LeoI10.82 and41.71km/s, versus9.03km/s. All available saved times, both beta values and both footings are retained in controls_002/result.json. No favorable snapshot was selected as an acceptance state. Late incomplete coverage and weak whole-wave agreement limit inference; early overconcentration is not proof that no subsequent relaxation can occur.
+
+The vin/V=.8 exploratory initial carrier belongs to a separate energy branch and is not used here as the original-history control. No result is transferred to Khronon/AeST/v3s, SCT-M or a collisionless dust model. A positive four-dwarf formation claim would require contemporaneous original-history control runs with the relevant density, stellar cohorts and conserved transport all numerically supported.

@@ -1,0 +1,1 @@
+The first control-reconciliation execution controls_001 failed on the filename prefix LeoI versus the metadata key Leo I. It produced no science result. controls_v2.py changes only that dataset lookup; controls_002 reruns the whole check. Both sources, wrappers and execution records are retained, with no rewrite of a sealed input.
