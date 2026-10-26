@@ -1,4 +1,4 @@
-# Research findings through continuum scattering and nuclear couplings
+# Research findings through nuclear flux and capture kernels
 
 Start here for the current status. The original top-level README describes the
 initial spherical prototype; later stages below supersede its scope.
@@ -12,6 +12,7 @@ conservation checks and explicitly documented limitations.
 
 | Stage | Finding | Scope / unresolved issue |
 |---|---|---|
+| [Nuclear flux and capture kernels](../two_state_mechanism_2026_10_26/nuclear_flux/README.md) | Actual electronic capture/escape matrices at R2,3,4; outgoing radial nuclear flux with up to266 electronic states; repaired missing atomic product channel and artificial lead interface; derived atomic E1 line and conservative branch ledger. | Full nonlocal nuclear capture kernel and converged DR branching remain unresolved. Neutral scattering probabilities are not DR rates. Zero new physical photon-coupled galaxy runs; large raw grids remain local with hashes/regeneration commands. |
 | [Continuum amplitudes and nuclear couplings](../two_state_mechanism_2026_10_26/continuum/README.md) | Actual fixed-nuclei Coulomb K/S matrices; corrected basis checks and a stable electronic resonance candidate; moving-basis nuclear derivative couplings. Inadequate integral truncation detected and rejected. | No nuclear dissociation flux or physical DR rates. Four-state nuclear projection omits55.7% of ground derivative norm at R2. Zero new physical photon-coupled halo runs; no population-separation claim. |
 | [Two-electron channels and finite-rate interface](../two_state_mechanism_2026_10_25/scattering/README.md) | Correlated Coulomb calculation finds additional neutral/negative-ion bound channels; collision scale fixed by masses and charge; finite DR/photon adapter conserves energy and charge. | Absolute continuum scattering probabilities remain unresolved. Manufactured-rate tests are software evidence only; zero new physical finite-rate halo runs. |
 | [Photon recycling and collision limits](../two_state_mechanism_2026_10_25/recycling/README.md) | Explicit photon storage/reabsorption/escape conserves energy and charge. Refined shared-point disk/cluster charged molecular fractions4.16%/13.24%; no target separation. Fast-collision limit gives a conditional55.955% mass cap. | Direct finite collision amplitudes and additional species remain unresolved; homogeneous transport, no gravity or rotating morphology. Previous irreversible kinetic cap does not apply with recycling. |
