@@ -1,0 +1,58 @@
+CA1_covariant_self_coupling  MUTATE run (n -> n + 0.6)
+kappa = 1/2 FITTED; footings never pooled; cold dark energy = field paired with dark energy (scattering = its excitations on
+the mass shell, CFG723); not theory closed; nothing here says the data favour the framework or LCDM
+K1 Kn(s*(sigma_ref)) vs LN2 closed form: max rel dev 2.2e-16 -> PASS
+K2 thermal average of v^-k returns n_eff = k: max dev 1.1e-16 -> PASS
+K3 Born Yukawa limits: n_eff(v << v*) 0.0000, n_eff(v >> v*) 3.786 -> PASS
+sympy slopes -dln(sigma_T)/dln v: contact 0, Coulomb/Rutherford 4, power-law V = C/r^p: 4/p
+sympy velocity monomials from (G, c, a0, rho_L, t): b = 1 - d, e = a, f = 2*a + d  =>  v = c (a0 t/c)^d (G rho_L t^2)^a
+classical momentum-transfer coefficient A_p (sigma_T = A_p (C/E)^(2/p), repulsive): p=3: 4.0676, p=5: 3.5889, p=6: 3.4928, p=7: 3.4290, p=40: 3.1742  (p -> inf tends to the hard sphere pi = 3.1416)
+
+=== [canonical] a0 9.3603e-11; target n 1.384; s*(sigma_ref) = 0.1545 cm^2/g; E_Lambda = 2.240 meV
+  target Kn at 5/10/20/70.5/1000 km/s: 523 / 598 / 683 / 870 / 1448
+  C0 contact lambda|chi|^4           n_eff SPARC -0.000 clusters -0.000 -> G1 FAIL; Kn min 231 G4 PASS; merger 0.154 cm^2/g G5 PASS 
+  C1a Yukawa range c^2/a0           (9.60e+26 m): Born/small-beta n_eff >= 3.941 for m_chi 1.3e-20 eV .. 1e28 eV (Coulomb limit) -> G1 FAIL; large-beta branch sigma_T/m >= pi lambda^2/m = 1.6e+63 cm^2/g -> G2/G5 FAIL
+  C1a Yukawa range c/sqrt(G rho_L)  (4.80e+26 m): Born/small-beta n_eff >= 3.938 for m_chi 1.3e-20 eV .. 1e28 eV (Coulomb limit) -> G1 FAIL; large-beta branch sigma_T/m >= pi lambda^2/m = 4.1e+62 cm^2/g -> G2/G5 FAIL
+  C1b Born shape: v* meeting G1 on both spans: NONE (v* = m_phi c / m_chi scanned 1-1e5 km/s)
+  C1b classical attractive: beta(sigma_ref) meeting G1: NONE; closest beta 1.26e+03: n_eff +0.579 / +1.322
+  C1b classical repulsive : beta(sigma_ref) meeting G1: NONE; closest beta 316: n_eff +0.959 / +1.378
+  C1b Hulthen s-wave (reported only): 0/1089 grid cells meet G1; with s-wave validity (w <= 1 to 1300 km/s): 0
+  C1b G3: the shape needs one velocity scale (v* or beta_ref) set by m_phi/m_chi and alpha; a0 t/c = 0.1360, so sigma_ref = c (a0t/c)^4.19 (non-integer; numerology) -> G3 FAIL
+  C2 pair exchange p = 3             n_eff SPARC +1.333 clusters +1.333 -> G1 PASS; Kn min 560 G4 PASS; merger 0.00161 cm^2/g G5 PASS 
+      G6 m_chi >= 347 GeV; menu closest -/sqrt(E_L E_Pl): 10^-10.8 of target -> G3 FAIL; m_chi needed at lambda = 1: 1.31 GeV
+  C2 pair exchange p = 5             n_eff SPARC +0.800 clusters +0.800 -> G1 FAIL; Kn min 667 G4 PASS; merger 0.0105 cm^2/g G5 PASS 
+      G6 m_chi >= 556 GeV; menu closest E_Lambda/E_Pl: 10^-8.4 of target -> G3 FAIL; m_chi needed if M = E_Lambda: 1.3e+13 GeV
+  C2 pair exchange p = 6 (reported only) n_eff SPARC +0.667 clusters +0.667 -> G1 FAIL; Kn min 559 G4 PASS; merger 0.0165 cm^2/g G5 PASS 
+      G6 m_chi >= 627 GeV
+  C2 pair exchange p = 7             n_eff SPARC +0.571 clusters +0.571 -> G1 FAIL; Kn min 493 G4 PASS; merger 0.0229 cm^2/g G5 PASS 
+      G6 m_chi >= 685 GeV; menu closest E_Pl/E_Lambda: 10^-1.1 of target -> G3 FAIL; m_chi needed if M = E_Lambda: 4.96e+06 GeV
+  C2 menu powers passing G1: [3]; all integer p with |4/p - n| <= 0.1: [3]
+  C3 condensate: target Kn min 523 >> 1 and Gamma t = 1 (LN2 gamma_t_one) -> no hydrodynamic core: G4 FAIL; contact/phonon scattering n = 0 -> G1 FAIL; CFG723 degenerate needs m <= 143 eV vs C2's classical bound
+  [canonical] candidates passing G1: ['C2 p=3']; G1+G4+G5+G6: ['C2 p=3']; also G3: [] -> CA1 SHAPE ONLY
+
+=== [alt] a0 1.1312e-10; target n 1.096; s*(sigma_ref) = 0.1058 cm^2/g; E_Lambda = 2.463 meV
+  target Kn at 5/10/20/70.5/1000 km/s: 926 / 957 / 990 / 1051 / 1194
+  C0 contact lambda|chi|^4           n_eff SPARC -0.000 clusters -0.000 -> G1 FAIL; Kn min 279 G4 PASS; merger 0.106 cm^2/g G5 PASS 
+  C1a Yukawa range c^2/a0           (7.95e+26 m): Born/small-beta n_eff >= 3.940 for m_chi 1.3e-20 eV .. 1e28 eV (Coulomb limit) -> G1 FAIL; large-beta branch sigma_T/m >= pi lambda^2/m = 1.1e+63 cm^2/g -> G2/G5 FAIL
+  C1a Yukawa range c/sqrt(G rho_L)  (3.97e+26 m): Born/small-beta n_eff >= 3.938 for m_chi 1.3e-20 eV .. 1e28 eV (Coulomb limit) -> G1 FAIL; large-beta branch sigma_T/m >= pi lambda^2/m = 2.8e+62 cm^2/g -> G2/G5 FAIL
+  C1b Born shape: v* meeting G1 on both spans: NONE (v* = m_phi c / m_chi scanned 1-1e5 km/s)
+  C1b classical attractive: beta(sigma_ref) meeting G1: NONE; closest beta 2e+03: n_eff +0.557 / +1.057
+  C1b classical repulsive : beta(sigma_ref) meeting G1: NONE; closest beta 631: n_eff +0.858 / +1.106
+  C1b Hulthen s-wave (reported only): 0/1089 grid cells meet G1; with s-wave validity (w <= 1 to 1300 km/s): 0
+  C1b G3: the shape needs one velocity scale (v* or beta_ref) set by m_phi/m_chi and alpha; a0 t/c = 0.1643, so sigma_ref = c (a0t/c)^4.63 (non-integer; numerology) -> G3 FAIL
+  C2 pair exchange p = 3             n_eff SPARC +1.333 clusters +1.333 -> G1 FAIL; Kn min 676 G4 PASS; merger 0.0011 cm^2/g G5 PASS 
+      G6 m_chi >= 394 GeV; menu closest -/sqrt(E_L E_Pl): 10^-10.7 of target -> G3 FAIL; m_chi needed at lambda = 1: 1.48 GeV
+  C2 pair exchange p = 5             n_eff SPARC +0.800 clusters +0.800 -> G1 FAIL; Kn min 806 G4 PASS; merger 0.00716 cm^2/g G5 PASS 
+      G6 m_chi >= 631 GeV; menu closest E_Lambda/E_Pl: 10^-8.3 of target -> G3 FAIL; m_chi needed if M = E_Lambda: 1.53e+13 GeV
+  C2 pair exchange p = 6 (reported only) n_eff SPARC +0.667 clusters +0.667 -> G1 FAIL; Kn min 676 G4 PASS; merger 0.0113 cm^2/g G5 PASS 
+      G6 m_chi >= 712 GeV
+  C2 pair exchange p = 7             n_eff SPARC +0.571 clusters +0.571 -> G1 FAIL; Kn min 596 G4 PASS; merger 0.0156 cm^2/g G5 PASS 
+      G6 m_chi >= 777 GeV; menu closest E_Pl/E_Lambda: 10^-1.0 of target -> G3 FAIL; m_chi needed if M = E_Lambda: 5.74e+06 GeV
+  C2 menu powers passing G1: []; all integer p with |4/p - n| <= 0.1: [4]
+  C3 condensate: target Kn min 926 >> 1 and Gamma t = 1 (LN2 gamma_t_one) -> no hydrodynamic core: G4 FAIL; contact/phonon scattering n = 0 -> G1 FAIL; CFG723 degenerate needs m <= 143 eV vs C2's classical bound
+  [alt] candidates passing G1: []; G1+G4+G5+G6: []; also G3: [] -> CA1 NONE
+
+LANE CLASS: UNDECIDED (CA1 SHAPE ONLY / CA1 NONE) + CA1 FOOTINGS SPLIT
+  canonical G1: ['C2 p=3']; alt G1: []
+K4 peak RSS 0.11 GB, one thread -> PASS
+MUTATE: C2 selection normal [[5], [7]] -> mutate [[3], []]: BITES
