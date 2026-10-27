@@ -1,0 +1,89 @@
+X55_one_halo_mass_for_both   criteria 32f994b55e
+kappa = 1/2 FITTED; footings never pooled; route E: Newtonian + a0-floor Burkert cold dark energy halos; relation log M200 = a + b (log Mb - 10.5)
+X53 machinery loaded read-only (F2 inventory, CFG805 2h); native factor f 0.9824  [24 s, RSS 0.15 GB]
+  step0.1 X53 [canonical primary] L 71.946 H 202.525 L2H 69.413 H2H 202.525 (committed 71.946 202.525 69.413 202.525)
+  step0.1 X53 [canonical all] L 160.702 H 823.194 L2H 154.343 H2H 583.915 (committed 160.702 823.194 154.343 583.915)
+  step0.1 X53 [alt primary] L 58.935 H 199.243 L2H 54.713 H2H 199.243 (committed 58.935 199.243 54.713 199.243)
+  step0.1 X53 [alt all] L 127.600 H 819.937 L2H 125.082 H2H 580.632 (committed 127.600 819.937 125.082 580.632)
+  K0_X53: PASS  (X53 L/H/L2H/H2H chi2 within 0.05, both ranges, both footings)
+  step0.3 EM1 rerun (x55_step0_em1.py): A_c2b_refit a 11.18 b 0.90 rms 0.06557; B_cfg886_bg a 11.20 b 0.90 rms 0.06546
+  K0_EM1: PASS  (x55_step0_em1_results.json)
+EM1 SPARC machinery loaded read-only: 175 galaxies; law rms 0.0541 / 0.0537  [27 s]
+
+=== [canonical]  a0 9.3603e-11 m/s^2; Sigma_a0 106.9 Msun/pc^2
+  KiDS halo table: no saturation on 8-15
+  lens bin 1: log Mb (M* + cold, native) mean 10.190, 5-95 % 9.75-10.43
+  lens bin 2: log Mb (M* + cold, native) mean 10.595, 5-95 % 10.46-10.70
+  lens bin 3: log Mb (M* + cold, native) mean 10.795, 5-95 % 10.71-10.88
+  lens bin 4: log Mb (M* + cold, native) mean 10.964, 5-95 % 10.89-11.06
+  K_NNLS_matches_X53_fit: PASS  (583.909473 vs 583.909473)
+  K_TAB_canonical: PASS  (table H2H all 583.909 vs X53 stack_H 583.915)
+  step0.2 A1 [primary] best common shift +0.35 chi2 56.95 (A1 +0.35 / 56.96): PASS
+  step0.2 A1 [all] best common shift +0.50 chi2 242.15 (A1 +0.50 / 242.16): PASS
+  step0.4 X38 SPARC row at EM1's relation: rms 0.0795 median U 0.77 saturated 0 (X38 0.0795 / 0.77 / 0): PASS  [2 s]
+  SPARC floor halos saturate (R200 at 200 rho_c0) above log M200 14.65; (a, b) grid nodes with any saturated galaxy 4162 of 30351
+  SPARC best fit (floor): a 11.70 b 0.90: rms 0.0790, median U 0.76, line True, saturated 0; bootstrap sd a 0.035 b 0.046 corr +0.26; boot at grid edge 0.000
+  SPARC log M200 at lens-bin mean Mb (boot 16/50/84): bin1 11.39/11.42/11.45 (w 0.07); bin2 11.75/11.78/11.82 (w 0.08); bin3 11.93/11.96/12.00 (w 0.07); bin4 12.07/12.11/12.16 (w 0.09) -> informative (all <= 0.30 dex): True
+  KiDS best fit (all radii, 2h, c_f 4, truncated): a 12.12 b 0.92: chi2 242.0 / dof 54 -> Birge s_K 4.48; b_eff [0.23, 0.33, 0.59, 0.59]; saturated lens weight per bin [0.0, 0.0, 0.0, 0.0]  [2 s]
+  KiDS log M200 at lens-bin mean Mb (best; profile 68 % Birge): bin1 11.83 [11.73, 11.92]; bin2 12.21 [12.16, 12.25]; bin3 12.39 [12.35, 12.43]; bin4 12.55 [12.50, 12.59]
+  SEPARATION (line-passing nodes): n_sep 4.55 sigma at a 11.86 b 1.02: SPARC rms 0.0821 U 0.77 (n_S 4.46, sat 0); KiDS chi2 350.7 (n_K 4.55, b_eff [0.25, 0.35, 0.63, 0.64], sat weight [0.0, 0.0, 0.0, 0.0])
+     law for comparison: SPARC rms 0.0541 (U 0.52); KiDS L2H all 154.3, L 160.7
+     unrestricted (no line): n_sep 4.55 at a 11.86 b 1.02; unscaled KiDS (s_K 1): n_sep 6.72
+  CLASS [canonical]: CONTRADICTION
+     SPARC at the KiDS best fit: rms 0.0918 U 0.78 sat 0 (n_S 12.21); KiDS at the SPARC best fit: chi2 518.9 (n_K 7.57); saturated lens weight [0.0, 0.0, 0.0, 0.0]
+     regions SPARC {"1sigma": {"a": [11.66, 11.74], "b": [0.84, 0.96], "n_nodes": 27}, "2sigma": {"a": [11.62, 11.78], "b": [0.8, 1.0], "n_nodes": 73}}
+     regions KiDS  {"1sigma": {"a": [12.04, 12.2], "b": [0.7, 1.16], "n_nodes": 116}, "2sigma": {"a": [11.96, 12.24], "b": [0.56, 1.36], "n_nodes": 325}}   (unscaled {"1sigma": {"a": [12.08, 12.14], "b": [0.82, 1.02], "n_nodes": 25}, "2sigma": {"a": [12.06, 12.18], "b": [0.74, 1.1], "n_nodes": 72}})
+     nodes inside 2 sigma with any saturation: SPARC 0, KiDS 0
+  [33 s, RSS 0.79 GB]
+  (reported) lens M* -0.15 dex: KiDS best a 12.24 b 0.96 chi2 229.5 s_K 4.25; n_sep 6.29 -> CONTRADICTION
+  (reported) lens M* +0.15 dex: KiDS best a 12.00 b 0.86 chi2 262.9 s_K 4.87; n_sep 2.72 -> TENSION
+  (reported) primary range R <= 0.31 Mpc (leakage test i): KiDS best a 12.02 b 0.82 chi2 55.7 s_K 2.14; n_sep 3.63 -> CONTRADICTION
+  (reported) untruncated halos (100 R200): KiDS best a 12.10 b 0.92 chi2 180.6 s_K 3.34; n_sep 4.85 -> CONTRADICTION
+  (reported) outer data x 0.64 (F2 GAMA/KiDS; leakage test ii): KiDS best a 12.10 b 0.82 chi2 153.2 s_K 2.84; n_sep 4.97 -> CONTRADICTION
+  (reported) SPARC with X43 rule: best a 11.72 b 0.92 rms 0.0771; n_sep 2.91
+  (reported) restricted overlap: lens log Mb 5-95 % 10.14-11.02; 39 SPARC galaxies; best a 11.70 b 0.82 rms 0.0732 U 0.66; boot sd a 0.11 b 0.37 (edge 0.01); n_sep vs KiDS all 3.07, vs KiDS R<=0.31 2.27
+     SPARC-subset log M200 at lens-bin masses (16/50/84): bin1 11.42/11.44/11.66 vs KiDS 11.83; bin2 11.72/11.79/11.88 vs KiDS 12.21; bin3 11.85/11.94/12.03 vs KiDS 12.39; bin4 11.93/12.04/12.20 vs KiDS 12.55
+  [46 s, RSS 0.94 GB]
+
+=== [alt]  a0 1.1312e-10 m/s^2; Sigma_a0 129.2 Msun/pc^2
+  KiDS halo table: no saturation on 8-15
+  lens bin 1: log Mb (M* + cold, native) mean 10.190, 5-95 % 9.75-10.43
+  lens bin 2: log Mb (M* + cold, native) mean 10.595, 5-95 % 10.46-10.70
+  lens bin 3: log Mb (M* + cold, native) mean 10.795, 5-95 % 10.71-10.88
+  lens bin 4: log Mb (M* + cold, native) mean 10.964, 5-95 % 10.89-11.06
+  K_TAB_alt: PASS  (table H2H all 580.626 vs X53 stack_H 580.632)
+  step0.2 A1 [primary] best common shift +0.35 chi2 67.25 (A1 +0.35 / 67.26): PASS
+  step0.2 A1 [all] best common shift +0.50 chi2 254.92 (A1 +0.50 / 254.93): PASS
+  step0.4 X38 SPARC row at EM1's relation: rms 0.0729 median U 0.60 saturated 0 (X38 0.0729 / 0.6 / 0): PASS  [2 s]
+  SPARC floor halos saturate (R200 at 200 rho_c0) above log M200 14.9; (a, b) grid nodes with any saturated galaxy 2953 of 30351
+  SPARC best fit (floor): a 11.66 b 0.92: rms 0.0728, median U 0.60, line True, saturated 0; bootstrap sd a 0.043 b 0.051 corr +0.47; boot at grid edge 0.000
+  SPARC log M200 at lens-bin mean Mb (boot 16/50/84): bin1 11.33/11.37/11.41 (w 0.08); bin2 11.70/11.74/11.79 (w 0.09); bin3 11.88/11.93/11.98 (w 0.10); bin4 12.03/12.08/12.15 (w 0.12) -> informative (all <= 0.30 dex): True
+  KiDS best fit (all radii, 2h, c_f 4, truncated): a 12.10 b 0.98: chi2 254.0 / dof 54 -> Birge s_K 4.70; b_eff [0.24, 0.33, 0.59, 0.58]; saturated lens weight per bin [0.0, 0.0, 0.0, 0.0]  [2 s]
+  KiDS log M200 at lens-bin mean Mb (best; profile 68 % Birge): bin1 11.80 [11.70, 11.90]; bin2 12.19 [12.14, 12.24]; bin3 12.39 [12.35, 12.43]; bin4 12.56 [12.50, 12.60]
+  SEPARATION (line-passing nodes): n_sep 4.26 sigma at a 11.86 b 1.04: SPARC rms 0.0782 U 0.60 (n_S 4.26, sat 0); KiDS chi2 352.9 (n_K 4.20, b_eff [0.25, 0.35, 0.63, 0.64], sat weight [0.0, 0.0, 0.0, 0.0])
+     law for comparison: SPARC rms 0.0537 (U 0.44); KiDS L2H all 125.1, L 127.6
+     unrestricted (no line): n_sep 4.26 at a 11.86 b 1.04; unscaled KiDS (s_K 1): n_sep 6.15
+  CLASS [alt]: CONTRADICTION
+     SPARC at the KiDS best fit: rms 0.0906 U 0.61 sat 0 (n_S 10.79); KiDS at the SPARC best fit: chi2 548.6 (n_K 7.62); saturated lens weight [0.0, 0.0, 0.0, 0.0]
+     regions SPARC {"1sigma": {"a": [11.6, 11.72], "b": [0.86, 0.98], "n_nodes": 35}, "2sigma": {"a": [11.56, 11.76], "b": [0.8, 1.04], "n_nodes": 95}}
+     regions KiDS  {"1sigma": {"a": [12.02, 12.18], "b": [0.74, 1.22], "n_nodes": 127}, "2sigma": {"a": [11.94, 12.24], "b": [0.6, 1.42], "n_nodes": 344}}   (unscaled {"1sigma": {"a": [12.08, 12.14], "b": [0.86, 1.06], "n_nodes": 25}, "2sigma": {"a": [12.04, 12.16], "b": [0.8, 1.16], "n_nodes": 71}})
+     nodes inside 2 sigma with any saturation: SPARC 0, KiDS 0
+  [52 s, RSS 0.96 GB]
+  (reported) lens M* -0.15 dex: KiDS best a 12.24 b 1.00 chi2 240.3 s_K 4.45; n_sep 5.83 -> CONTRADICTION
+  (reported) lens M* +0.15 dex: KiDS best a 11.98 b 0.92 chi2 276.8 s_K 5.13; n_sep 2.57 -> TENSION
+  (reported) primary range R <= 0.31 Mpc (leakage test i): KiDS best a 12.00 b 0.88 chi2 67.1 s_K 2.58; n_sep 3.14 -> CONTRADICTION
+  (reported) untruncated halos (100 R200): KiDS best a 12.10 b 0.94 chi2 193.9 s_K 3.59; n_sep 4.43 -> CONTRADICTION
+  (reported) outer data x 0.64 (F2 GAMA/KiDS; leakage test ii): KiDS best a 12.08 b 0.88 chi2 166.5 s_K 3.08; n_sep 4.51 -> CONTRADICTION
+  (reported) SPARC with X43 rule: best a 11.66 b 0.92 rms 0.0728; n_sep 4.07
+  (reported) restricted overlap: lens log Mb 5-95 % 10.14-11.02; 39 SPARC galaxies; best a 11.68 b 0.78 rms 0.0670 U 0.63; boot sd a 0.14 b 0.46 (edge 0.06); n_sep vs KiDS all 2.67, vs KiDS R<=0.31 1.87
+     SPARC-subset log M200 at lens-bin masses (16/50/84): bin1 11.38/11.43/11.61 vs KiDS 11.80; bin2 11.68/11.77/11.88 vs KiDS 12.19; bin3 11.81/11.92/12.03 vs KiDS 12.39; bin4 11.89/12.01/12.20 vs KiDS 12.56
+  [65 s, RSS 0.98 GB]
+  K0_A1: PASS  (A1 common shifts reproduced with the table (shift exact, chi2 within 0.2))
+  K0_X38_canonical: PASS
+  K0_X38_alt: PASS
+  K_BOOT_seed_reproducible: PASS  (default_rng(55) twice)
+
+=== VERDICT (both footings, frozen rule): CONTRADICTION
+  K_R_rss_below_1GB: PASS  (0.98 GB)
+
+checks 10/10; runtime 65 s; peak RSS 0.98 GB
