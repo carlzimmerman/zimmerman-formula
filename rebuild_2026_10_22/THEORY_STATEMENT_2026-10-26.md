@@ -54,7 +54,7 @@ Not "theory closed". Nothing here says the data favour the framework. The adopti
    This is the theory's one missing piece of physics.
 2. **c_f convergence:** X48 A2 is running, about 14 h wall time.
 3. **The cluster inner band** (Z −2.4) is the one remaining data miss. It is likely tied to c_f's inner value.
-4. **The MW ultra-faints** (X49) are under-predicted by +0.48 dex. Their halo masses come from extrapolating EM1's SPARC
+4. **The MW ultra-faints** (X49) were under-predicted by +0.48 dex; **X51**: a first-principles cooling-threshold halo mass (atomic, 1.1e8 Msun) brings them to −0.22 (canonical, all five dwarf classes PASS) / −0.32 (alt, UFD overshoot) and removes the dwarf mass trend; the truth lies between the H2 and atomic limits. (Original X49 note:) Their halo masses come from extrapolating EM1's SPARC
    relation far below its range (M200 ≈ 5×10⁵ M☉). The data want more massive halos there. The other four dwarf classes
    fit with no new constant, which retires v3s's separate ~4 km/s floor.
 
