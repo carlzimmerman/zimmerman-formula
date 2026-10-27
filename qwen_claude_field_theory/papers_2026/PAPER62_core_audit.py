@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """PAPER62 core-note audit: the built PDF must be newer than the TeX and the figure; every quoted number must match the committed
 lane outputs (rebuild_2026_10_22/ P4, U1, X11, X13, X20_hosted_dwarf_disequilibrium, X22, X24, X25, X30, X34, X36, EM1,
-X38-X44, MAP1: *_results.json, else the lane's .out or README; covariant_push_2026_10_22/ C6, C8 and
+X38-X45, X47-X49, IC1 (README), MAP1: *_results.json, else the lane's .out or README; covariant_push_2026_10_22/ C6, C8 and
 V3S_FINAL_VERDICT_2026-10-24.md; rebuild_2026_10_22/COLD_SECTOR_SPEC_2026-10-24.md); every cited commit must exist and
 touch its lane; the figure is regenerated in memory from MAP1's JSON and its counts checked; the PENDING statement (no L1
 production result) must be true at build time; citations must match citations/REFERENCES.bib where present; naming
@@ -278,7 +278,7 @@ num("G X40 r_c (JSON)", f"{x40['r_c_kpc']:.2f}", "rc = {} kpc")
 num("G X40 SPARC (JSON)", f"{x40['sparc']['A_c2b_refit']['rms']:.3f} at Υ {x40['sparc']['A_c2b_refit']['U_median']:.2f}", "gives rms {} (fails)")
 check("G X40 verdict FC FAILS, clusters OVER (JSON)", x40["verdict"] == "FC FAILS" and all("OVER" in k for k in x40["footings"]["canonical"]["clusters"]["fails"]))
 rd("G X40b rule A g_b (README)", readme("X40b_core_surface_density_scaling"), "They have 0.04–0.07 a₀", "cluster cores gb is only 0.04-0.07 a0")
-num("G X40b rule B bound (JSON)", f"{x40b['ruleB_inputs']['bound_0_3']:.2f}", "at most a factor {}. With")
+num("G X40b rule B bound (JSON)", f"{x40b['ruleB_inputs']['bound_0_3']:.2f}", "reaches at most a factor {}.")
 num("G X40b alpha best (JSON)", f"{x40b['footings']['canonical']['C']['alpha_best']:.2f} / {x40b['footings']['alt']['C']['alpha_best']:.2f}", "αbest = {}, i.e.")
 rd("G X40b 3-5x (README)", readme("X40b_core_surface_density_scaling"), "cluster cores need roughly 3–5 × a₀/(2πG)", "cores at 3-5 times a0/(2πG)")
 check("G X40b verdict (JSON)", x40b["verdict"] == "NO FRAMEWORK-NATIVE RULE CLOSES IT")
@@ -379,6 +379,148 @@ tracked = git("ls-files", L1D).stdout.split()
 prod = [f for f in tracked if re.search(r"(512|production|_verdict)", f, re.I)]
 check("I L1 512^3 pending: no production result file tracked", prod == [], str(prod))
 
+
+# ---------------------------------------------------------------- K. draft 2: X45, X47, X48, X49 (verdict S8 from X44 on)
+has("K title line draft 2", "Working note, 2026-10-26, v2.0 (draft 2)")
+# X45
+x45 = JS("X45_peak_curvature_cf", "x45_peak_cf_results.json")
+check("K X45 verdict PK FAILS on both footings (JSON)", all(x45["footings"][f]["verdict"].startswith("PK FAILS") for f in ("canonical", "alt")) and "PK FAILS" in flat)
+check("K X45 every c_f falls back to 1.85 (JSON)", all(abs(r["cf"] - 1.85) < 1e-12 and r["flag"] == "no -2 crossing" for r in x45["table"]))
+lgm = [math.log10(r["M"]) for r in x45["table"]]
+num("K X45 mass range (JSON)", f"10{min(lgm):.0f} to 10{max(lgm):.1f}", "at any mass from {} M⊙")
+num("K X45 groups (JSON)", f"{x45['footings']['canonical']['groups']['Z']:+.2f} / {x45['footings']['alt']['groups']['Z']:+.2f}", "the regrade equals X44 (groups Z = {},")
+num("K X45 MGAS T3 OUTER (JSON)", f"{x45['footings']['canonical']['OUT_M3']['Z']:+.2f}", "MGAS T3 OUTER Z = {}):")
+check("K X45 MGAS T3 OUTER equal on both footings (JSON)", f"{x45['footings']['canonical']['OUT_M3']['Z']:.2f}" == f"{x45['footings']['alt']['OUT_M3']['Z']:.2f}")
+rd("K X45 near-uniform core (README)", readme("X45_peak_curvature_cf"), "slope ≈ 0 over 75 % of the shells and only −0.6 at the edge",
+   "The slope is about 0 over 75 % of the shells and only -0.6 at the edge")
+rd("K X45 post hoc (README)", readme("X45_peak_curvature_cf"), "Both are post-result, so this lane's verdict is post-hoc and exploratory",
+   "Two amendments came after the first result, so this verdict is post hoc and exploratory")
+rd("K X45 orbit mixing (README)", readme("X45_peak_curvature_cf"), "come from shell crossing, orbit mixing and mergers", "comes from shell crossing, orbit mixing and relaxation")
+rd("K X45 in the verdict (verdict)", VERD, "c_f ≈ 4 comes from orbit mixing and relaxation, not from spherical peak collapse", "spherical peak collapse (X45) both give 1.85")
+check("K X45 A3 is an implementation fix (commit aa70e22e9d)", "A3 (implementation" in git("show", "-s", "--format=%s", "aa70e22e9d").stdout and "A3, aa70e22e9d, is an implementation fix" in flat)
+# X47
+x47 = JS("X47_vacuum_tethered_core_floor", "x47_vt_floor_results.json")
+gT = x47["g_T"]
+num("K X47 g_T/a0 (JSON)", f"{gT['zeta_over_a0']:.3f}", "core, gT = {} a0 (")
+num("K X47 g_T/a0 abstract (JSON)", f"{gT['zeta_over_a0']:.3f}", "floor (gT = {} a0) fails")
+num("K X47 g_T m/s2 (JSON)", f"{sci(gT['g_T_m_s2']['canonical'], 2)} / {sci(gT['g_T_m_s2']['alt'], 2)}", "a0 ({} m s-2)")
+t0 = x47["task4"]["A_c2b_refit"]["table_m_s2"]["0"]
+num("K X47 linear pull today / g_T (JSON)", f"{max(v for k, v in t0.items() if k != 'cum') / gT['g_T_m_s2']['canonical']:.3f}", "pull today is at most {} gT")
+check("K X47 VT-L FAILS both footings (JSON)", all(v == "VT FAILS AT growth / data" for v in x47["verdict_VT_L_per_footing"].values()) and "As a local rule (VT-L): FAILS" in flat)
+check("K X47 VT-O CONSISTENT NONLOCAL both footings (JSON)", all(v == "VT-O CONSISTENT (NONLOCAL, mechanism open)" for v in x47["verdict_VT_O_per_footing"].values())
+      and "(VT-O): CONSISTENT, but nonlocal" in flat)
+b2 = x47["task2b"]
+check("K X47 D3 self-consistency fails, D1 passes (JSON)", all(not b2[f]["D3_pass"] and b2[f]["D1_pass"] and b2[f]["D3_median_frac_mass_below_gT"] == 1.0 for f in ("canonical", "alt")))
+num("K X47 free-Sigma medians (JSON)", f"{b2['canonical']['U_free']['median_dex']:+.2f} / {b2['alt']['U_free']['median_dex']:+.2f}", "(median {} dex, Υ free)")
+hw = {round(b2[f]["U_free"]["halfwidth_dex"], 2) for f in ("canonical", "alt")}
+check("K X47 half-width equal on both footings (JSON)", len(hw) == 1)
+num("K X47 spread (JSON)", f"{b2['canonical']['U_free']['halfwidth_dex']:.2f}", "spread of ± {} dex")
+num("K X47 fraction below -0.3 dex (JSON)", f"{100 * b2['canonical']['U_free']['frac_below_m030']:.0f}-{100 * b2['alt']['U_free']['frac_below_m030']:.0f}", "Only {} % of galaxies")
+num("K X47 Gentile context (JSON)", f"{x47['context']['Gentile09_over_gT']['canonical']:.2f} / {x47['context']['Gentile09_over_gT']['alt']:.2f}", "(2009) give {} gT")
+rd("K X47 Gentile PROVISIONAL (README)", readme("X47_vacuum_tethered_core_floor"), "`campaign_fresh_gravity/CFG4_galaxy_law.py` (PROVISIONAL)", "(PROVISIONAL transcription)")
+r2 = {f: x47["task5"][f]["2"]["a0_ratio"] for f in ("canonical", "alt")}
+check("K X47 a0(z) ratio same on both footings (JSON)", r2["canonical"] == r2["alt"])
+num("K X47 Sigma_floor(z=2) shift (JSON)", f"{math.log10(r2['canonical']):+.2f}", "shifts by only {} dex at z = 2")
+rd("K X47 cannot test (README)", readme("X47_vacuum_tethered_core_floor"), "The record's high-z samples hold tens, so they **cannot test it as", "hold tens of galaxies and cannot test that as they stand")
+rd("K X47 latching (README)", readme("X47_vacuum_tethered_core_floor"), "A latching threshold never forms a floor.", "A latching key never forms a floor.")
+rd("K X47 every radius but one (README)", readme("X47_vacuum_tethered_core_floor"), "below threshold at\nevery radius but one", "below gT at every radius but one")
+rd("K X47 after virialisation (README)", readme("X47_vacuum_tethered_core_floor"), "VT-O must\nswitch on only after virialisation", "the key must act after virialisation")
+rd("K X47 key on bound objects (README)", readme("X47_vacuum_tethered_core_floor"), "it must key on bound objects, not on any local acceleration, density\nor expansion invariant",
+   "must key on bound objects (halos), not on any local acceleration, density or expansion invariant")
+rd("K X47 no action (README)", readme("X47_vacuum_tethered_core_floor"), "No action is written down", "no action is written for it")
+rd("K X47 restates X38 (README)", readme("X47_vacuum_tethered_core_floor"), "So \"peak self-pull = g_T\" is the same statement as \"Σ = constant\"", "is the same statement as \"Σ = constant\"")
+rd("K X47 owner's question (README)", readme("X47_vacuum_tethered_core_floor"), "The owner's question.", "(X47, the owner's question)")
+# X48
+X48 = "X48_native_cf_zoom"
+a38 = JS(X48, "x48_analyze_results.json")["cf_by_mass"]
+a48j = JS(X48, "x48_analyze_results_ng48.json")
+a48 = a48j["cf_by_mass"]
+mk3 = lambda d: " / ".join(f"{d[k]:.1f}" for k in ("1e+12", "1e+13", "1e+14"))
+num("K X48 ng 38 medians (JSON)", mk3(a38), "Medians {} at 1012")
+num("K X48 ng 48 medians (JSON)", mk3(a48), "Medians {}, against the window [3.3, 4.6]")
+num("K X48 ng 48 medians abstract (JSON)", mk3(a48), "native cf of {} at 1012")
+rd("K X48 window (README)", readme(X48), "([3.3, 4.6] at 10¹³ and 10¹⁴)", "against the window [3.3, 4.6]")
+sh = a48j["shift_from_ng38"]["M1e14_s1_ng48"]
+num("K X48 resolution check 1e14 s1 (JSON)", f"{sh['cf38']:.2f} to {sh['cf']:.2f}", "moves cf from {}. The ng 38")
+cfs48 = [r["cf"] for k, r in a48j["runs"].items() if r["ng"] == 48]
+check("K X48 nine ng 48 runs (JSON)", len(cfs48) == 9 and len(a48j["shift_from_ng38"]) == 9)
+num("K X48 seed scatter range (JSON)", f"{min(cfs48):.1f}-{max(cfs48):.1f}", "a factor 4-6 ({})")
+shv = [v["shift"] for v in a48j["shift_from_ng38"].values()]
+num("K X48 ng 38->48 shift range (JSON)", f"{100 * min(shv):+.0f} % to {100 * max(shv):+.0f} %", "shifts run from {}, so")
+rd("K X48 UNRESOLVED (README)", readme(X48), "Frozen class: UNRESOLVED.", "ng 38: UNRESOLVED.")
+rd("K X48 A1 class (README)", readme(X48), "**A1 class: NATIVE c_f ABOVE WINDOW**", "NATIVE cf ABOVE WINDOW")
+rd("K X48 not converged beyond ng 48 (README)", readme(X48), "at ng 48; convergence beyond ng 48 not tested", "at ng 48; convergence beyond ng 48 is not tested")
+rd("K X48 no single c_f (README)", readme(X48), "No single c_f passes all 15 cells.", "No single cf passes all 15 cluster keys")
+rd("K X48 x2 uncertain (verdict)", VERD, "so the medians are uncertain by about ×2", "so the medians are uncertain by about a factor 2")
+rd("K X48 closest, no borrowed number (verdict)", VERD, "This is the closest result in the record with no borrowed number.", "This is the closest result in the record with no borrowed number")
+ro = outtxt(X48, "x48_regrade_ng48.out")
+et = re.search(r"eta at 1e12/1e13/1e14/1e15: ([0-9.]+), ([0-9.]+), ([0-9.]+)", ro).groups()
+num("K X48 eta (.out)", " / ".join(f"{float(x):.1f}" for x in et), "(η {} against 14.83)")
+rg = JS(X48, "x48_regrade_ng48.json")
+check("K X48 regrade table = ng 48 medians (JSON)", rg["table"]["cf"] == [a48["1e+12"], a48["1e+13"], a48["1e+14"]])
+sp = rg["footings"]
+num("K X48 SPARC (JSON)", f"{sp['canonical']['sparc']['rms']:.4f} at Υ {sp['canonical']['sparc']['U']:.2f} / {sp['alt']['sparc']['rms']:.4f} at {sp['alt']['sparc']['U']:.2f}", "(rms {})")
+check("K X48 groups equal on both footings, CONSISTENT (JSON)", f"{sp['canonical']['groups']['Z']:.2f}" == f"{sp['alt']['groups']['Z']:.2f}" and sp["canonical"]["groups"]["verdict"] == "CONSISTENT")
+num("K X48 groups (JSON)", f"{sp['canonical']['groups']['Z']:+.2f}", "the groups (Z = {}), every MID")
+kc = sp["canonical"]["keys"]
+num("K X48 MGAS T3 OUTER (JSON)", f"{kc['G-OUT-M3']['Z']:+.2f}", "T3 OUTER (Z = {}). It fails one key")
+check("K X48 MGAS T3 OUTER equal on both footings (JSON)", f"{kc['G-OUT-M3']['Z']:.2f}" == f"{sp['alt']['keys']['G-OUT-M3']['Z']:.2f}")
+xc = JS(X48, "x48_regrade_x43copy_ng48_results.json")
+cin = xc["footings"]["canonical"]["clusters"]["cells"]
+num("K X48 inner band (JSON)", f"{cin['h0672']['G-IN-Mall']['pred']:.2f} against {cin['h0672']['G-IN-Mall']['meas']:.2f} ± {cin['h0672']['G-IN-Mall']['s']:.2f}, Z = {cin['h0672']['G-IN-Mall']['Z']:+.2f}; {cin['h0686']['G-IN-Mall']['Z']:+.2f}",
+    "over-predicted ({} in the h = 0.686 cell set)")
+num("K X48 inner band abstract (JSON)", f"{cin['h0672']['G-IN-Mall']['Z']:+.2f}", "which it over-predicts (Z = {}).")
+num("K X48 inner band discussion (JSON)", f"{cin['h0672']['G-IN-Mall']['Z']:+.2f}", "is over-predicted (Z = {}). The native")
+cal = xc["footings"]["alt"]["clusters"]["cells"]
+check("K X48 inner band: footings equal per cell set; -2.41/-2.06 are h 0.672/0.686 (JSON)",
+      all(f"{cin[h]['G-IN-Mall']['Z']:.2f}" == f"{cal[h]['G-IN-Mall']['Z']:.2f}" for h in ("h0672", "h0686"))
+      and f"{cin['h0672']['G-IN-Mall']['Z']:.2f}" == "-2.41" and f"{cin['h0686']['G-IN-Mall']['Z']:.2f}" == "-2.06"
+      and "G-IN-Mall (predicted 4.81 against 2.28 ± 1.05, Z −2.41 / −2.06, over)" in open(VERD, encoding="utf-8").read()
+      and "are the h = 0.672 and h = 0.686 cell sets, not the two footings" in flat)
+check("K X48 14/15, only the inner band fails, both footings (JSON)", all(sum(xc["footings"][f]["clusters"]["ok"].values()) == 14 and xc["footings"][f]["clusters"]["fails"] == ["G-IN-Mall (OVER)"] for f in ("canonical", "alt"))
+      and all(sp[f]["verdict"] == "NATIVE-CC FAILS: G-IN-Mall (OVER)" for f in ("canonical", "alt")))
+num("K X48 table column (JSON)", f"{kc['G-MID-T3']['pred']:.2f}, Z = {kc['G-MID-T3']['Z']:+.2f}", "2.06, Z = +0.30 - 1.40, Z = +2.90 {}")
+num("K X48 table MID slope (JSON)", f"{kc['G-MID-b']['Z']:+.2f}", "+1.70 - +2.49 {}")
+num("K X48 table MGAS (JSON)", f"{kc['G-OUT-M3']['pred']:.2f}, Z = {kc['G-OUT-M3']['Z']:+.2f}", "0.95, Z = +4.07 {}")
+num("K X48 table INNER (JSON)", f"{kc['G-IN-Mall']['pred']:.2f}, Z = {kc['G-IN-Mall']['Z']:+.2f}", "pass pass - - {}")
+num("K X48 table SPARC (JSON)", f"{sp['canonical']['sparc']['rms']:.4f} / {sp['canonical']['sparc']['U']:.2f}", "pass {}")
+check("K X38 and X43 pass the inner band (JSON)", all(x38["footings"][f]["clusters"]["ok"]["G-IN-Mall"] and x43["footings"][f]["clusters"]["ok"]["G-IN-Mall"] for f in ("canonical", "alt")))
+rd("K inner band = all 326 clusters (IC1 README)", readme("IC1_inner_cluster_band"), "G-IN-Mall (INNER band, 0.15–0.46 Mpc, all 326 eRASS1 clusters", "inner band of all 326 clusters")
+rme48 = open(readme(X48), encoding="utf-8").read()
+check("K X48 README's MGAS T3 OUTER -0.24 is G-OUT-T3 (JSON; disclosed)", "MGAS T3 OUTER now passes (Z −0.24)" in rme48 and f"{kc['G-OUT-T3']['Z']:+.2f}" == "-0.24"
+      and "quote MGAS T3 OUTER as Z = -0.24, which is the hottest tercile's OUTER key (G-OUT-T3)" in flat)
+a2msg = git("show", "-s", "--format=%B", "ab49eb27c1").stdout
+check("K X48 A2 = seeds 4-9, 18 runs (commit ab49eb27c1)", "seeds 4-9 at ng 48" in a2msg and "(18 runs)" in a2msg and "Amendment A2 adds seeds 4-9 at ng 48 (18 runs)" in flat)
+a2res = [f for f in git("ls-files", "rebuild_2026_10_22/" + X48).stdout.split() if re.search(r"A2", f) and not f.endswith(".sh")]
+check("K X48 no A2 result tracked (no A2 number used)", a2res == [] and "no A2 number is used here" in flat, str(a2res))
+# X49
+x49 = JS("X49_dwarfs_route_e_floor", "x49_dwarfs_results.json")
+for cls, n in (("LG field", 13), ("MW classical", 8), ("bright M31", 25), ("M31 others", 5), ("MW ultra-faint", 31)):
+    c, a = x49["footings"]["canonical"]["classes"][cls], x49["footings"]["alt"]["classes"][cls]
+    check(f"K X49 {cls} N and reproduced flag (JSON)", c["N"] == a["N"] == n and c["reproduced"] == a["reproduced"] == (cls != "MW ultra-faint") and c["M200"] == a["M200"])
+    num(f"K X49 {cls} row (JSON)", f"{cls} ({n}) {c['median']:+.3f} ({c['Z']:+.2f}) {a['median']:+.3f} ({a['Z']:+.2f}) {sci(c['M200'], 1)}", "{}")
+uc, ua = x49["footings"]["canonical"]["classes"]["MW ultra-faint"], x49["footings"]["alt"]["classes"]["MW ultra-faint"]
+num("K X49 UFD abstract (JSON)", f"{uc['Z']:+.2f} / {ua['Z']:+.2f}", "ultra-faints (Z = {}, under-predicted)")
+check("K X49 verdict (JSON)", x49["verdict"] == "FAIL: MW ultra-faint (UNDER, Z +3.80)" and "FAIL: MW ultra-faint (UNDER)" in flat)
+num("K X49 fair share (JSON)", f"{x49['footings']['canonical']['fair_share']['MW ultra-faint']['Z']:+.1f}", "is worse (Z = {})")
+num("K X49 Spearman (JSON)", f"{x49['footings']['canonical']['spearman_E_logMstar']:.2f} / {x49['footings']['alt']['spearman_E_logMstar']:.2f}", "(Spearman {} with")
+rd("K X49 below crossover (README)", readme("X49_dwarfs_route_e_floor"), "(Σ_coll ≤ 3.8 ≪ 107 M☉ pc⁻²)", "(Σcoll ≤ 3.8 ≪ 107 M⊙")
+rd("K X49 extrapolation (README)", readme("X49_dwarfs_route_e_floor"), "extrapolated\nthree to five decades below its range", "three to five decades below SPARC's range")
+rd("K X49 stripping (README)", readme("X49_dwarfs_route_e_floor"), "tidal stripping of hosted halos. It would lower the predictions, i.e. worsen the ultra-faints",
+   "Tidal stripping is not modelled; it would worsen the ultra-faints")
+rd("K X49 replaces the dwarf floor (verdict)", VERD, "the a₀ floor replaces v3s's separate ~4–5 km/s dwarf floor for every class except the ultra-faints",
+   "the a0 floor replaces v3s's separate dwarf velocity floor c0 for every class except the ultra-faints")
+rd("K X49 native halo-mass relation below 1e8 (README)", readme("X49_dwarfs_route_e_floor"), "a framework-native halo-mass relation that extends below 10⁸ M☉ of baryons", "A framework-native halo-mass relation below 108 M⊙ of baryons")
+check("K X49 independent of c_f (README)", "The result is independent of c_f." in open(readme("X49_dwarfs_route_e_floor"), encoding="utf-8").read() and "independent of cf" in flat)
+check("K frozen hashes in JSON (X45, X47, X49)", x45["frozen"] == "1fd8e1238a" and x47["frozen"] == "bafcb4754e" and x49["frozen"] == "fa308d2c47")
+# verdict folds
+for h, lane in (("f06a515257", "X45"), ("dd767f67fa", "X47"), ("7eced79621", "X48"), ("ffb12cb0b2", "X48"), ("44907a3ecb", "X49")):
+    check(f"K verdict fold {h} ({lane}) touches the verdict, cited", "covariant_push_2026_10_22/V3S_FINAL_VERDICT_2026-10-24.md" in git("show", "--name-only", "--format=", h).stdout
+          and lane in git("show", "-s", "--format=%s", h).stdout and h in flat)
+for s in ("The current picture.", "a0 sets the cold dark energy core floor from dwarfs to large spirals", "The cluster inner band and the convergence of cf",
+          "The ultra-faint halo masses.", "The tether mechanism.", "the native cf is not converged", "the tether has no action"):
+    has(f"K picture '{s}'", s)
+
 # ---------------------------------------------------------------- J. commits cited
 COMMITS = {"P4_v3_galaxy_tiles": ["6c5e6161b9", "6c0249a8bc"], "X11_cross_shear_diagnosis": ["9a105431c9", "c1cd5455a5"], "X13_source_size_test": ["c4e5a5a064", "4eeeceba07"],
            "X21_cluster_switch_anatomy": ["a48f6d5e08", "3aa4f07b58"], "X20_hosted_dwarf_disequilibrium": ["87b6832e84", "bd736c128e"],
@@ -390,6 +532,8 @@ COMMITS = {"P4_v3_galaxy_tiles": ["6c5e6161b9", "6c0249a8bc"], "X11_cross_shear_
            "X36_efe_discriminator": ["d8651cafc3", "8d7df6a74d"], "X38_a0_surface_density_halos": ["9cc80516df", "3e28ca3027"], "X39_baryonic_contraction": ["b75acfc767", "54684fb62f"],
            "X40_fixed_core_radius": ["b37983a0f7", "5dc30a7c1a"], "X40b_core_surface_density_scaling": ["b09db13390", "ba368d2ba1"], "X41_collapse_floor_sigma": ["0ea05957ee", "e9c1b9abe4"],
            "X42_core_rise_above_galaxies": ["4a13086d02", "0d7d0d5686"], "X43_collapse_core_floor": ["00bc1a7950", "bf8cc9e7cf"], "X44_self_similar_cf": ["c8dd02f5aa", "66273956b2"],
+           "X45_peak_curvature_cf": ["1fd8e1238a", "8cb58f4d28", "aa70e22e9d"], "X47_vacuum_tethered_core_floor": ["bafcb4754e", "9feeb722fc"],
+           "X48_native_cf_zoom": ["1932858ae8", "aaf492e8b7", "2bfdeb83a9", "acb2bf5277", "737193f3fa", "ab49eb27c1"], "X49_dwarfs_route_e_floor": ["fa308d2c47", "6e93b02215"],
            "MAP1_cosmic_river": ["3f9b3ae361"]}
 for lane, hs in COMMITS.items():
     for h in hs:
@@ -414,6 +558,8 @@ check("O Cosmicflows-4 Tully 2023 (bib)", "944" in bibentry("Tully2023") and "94
 check("O eRASS1 Bulbul 2024 (bib)", "685" in bibentry("Bulbul2024") and "A106" in bibentry("Bulbul2024") and "A&A 685, A106 (2024)" in flat)
 check("O Bertschinger 1985 (bib)", "58" in bibentry("Bertschinger1985") and "39" in bibentry("Bertschinger1985") and "ApJS 58, 39 (1985)" in flat)
 check("O Fillmore & Goldreich 1984 (bib)", "281" in bibentry("Fillmore1984") and "ApJ 281, 1 (1984)" in flat)
+check("O BBKS 1986 (bib)", "304" in bibentry("Bardeen1986") and "15" in bibentry("Bardeen1986") and "ApJ 304, 15 (1986)" in flat)
+check("O Gentile 2009 (bib)", "461" in bibentry("Gentile2009") and "627" in bibentry("Gentile2009") and "Nature 461, 627 (2009)" in flat)
 check("O Burkert 1995 (bib)", "447" in bibentry("Burkert1995") and "ApJ 447, L25 (1995)" in flat)
 check("O Watkins-Feldman 2015, Lacey-Cole 1993 not in bib (disclosed)", not bibentry("Watkins2015") and not bibentry("Lacey1993") and "are not in the record's bibliography" in flat)
 rme = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
@@ -424,6 +570,8 @@ check("O related identifiers (PAPER60)", "10.5281/zenodo.23601528" in ids)
 check("O zenodo: working paper, CC-BY, fitted, not closed, external c_f, illustrative map, draft", z["publication_type"] == "workingpaper" and z["license"] == "cc-by-4.0"
       and "fitted" in z["description"] and "not closed" in z["description"] and "external" in z["description"] and "illustrative" in z["description"].lower()
       and json.load(open(ZJ)).get("draft_not_deposited") is True)
+check("O zenodo: version 2.0-draft, 2026-10-26, draft 2 content", z["version"] == "2.0-draft" and "2026-10-26" in z["description"] and "DRAFT ONLY, NOT DEPOSITED" in z["description"]
+      and all(s in z["description"] for s in ("7.2 / 7.0 / 5.6", "not converged", "ultra-faint", "object-keyed", "nonlocal")))
 check("O no publish script for PAPER62", not any(f.startswith("PAPER62") and "publish" in f for f in os.listdir(HERE)))
 
 # ---------------------------------------------------------------- Q. honesty, forbidden, names
