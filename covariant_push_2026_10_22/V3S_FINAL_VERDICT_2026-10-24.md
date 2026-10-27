@@ -433,3 +433,5 @@ Deciding observation between M5 and M6: small-scale Lyman-α forest gas power at
 - **Reading:** no formation-epoch key yields the non-monotone pattern (dwarfs retain, L* empty, clusters retain) without an energy input that FE forbids.
 
 **Status of the switch:** mass (X58), acceleration (X60), formation epoch (X59), the local and Yukawa forms and the coherence scale (X57) are all excluded. What remains is M6 (displacement, canonical only; the decider is high-z forest small-scale power) and the unbuilt object-keyed forms: a phase-space key, a retarded nonlocal operator, and a bound-region constraint.
+
+**X58 coordinator rerun:** identical to c3b4f2c7d9 apart from timing (main exit 0, MUTATE exit 1). SW FAILS stands.
