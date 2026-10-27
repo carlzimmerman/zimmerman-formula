@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "claim_id": "C-H-singular-nonlinear-auxiliary-lift",
+  "repository": {
+    "commit": "129311b8ec3856f023c631e78fc61a13f3b0fd39",
+    "dirty": true
+  },
+  "command": "python3 -B qwen_claude_field_theory/closure_2026/g03_nonlinear_lift_2026/nonlinear_lift.py",
+  "environment": {
+    "software": [
+      "3.9.6",
+      "numpy 1.26.2",
+      "scipy 1.11.4",
+      "sympy 1.14.0"
+    ],
+    "hardware": "arm64",
+    "openblas_num_threads": "1"
+  },
+  "mathematics": {
+    "assertion_tested": "Necessary leading nonlinear auxiliary equation; heat range obstruction; bounded spectral stationary solves",
+    "coefficient_domain": "SymPy exact; float64 quadrature/minimization; log-domain spectra",
+    "conventions": "alpha=1 numerically, period2pi, spatial averages, epsilon>0, mean U=0",
+    "inputs": [
+      {
+        "path": "qwen_claude_field_theory/closure_2026/g03_nonlinear_lift_2026/nonlinear_lift.py",
+        "sha256": "8fbf91e22611c3aa609a30f27fb5eec18edd97a904f6dee1530185aedcb83d76"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/g03_nonlinear_lift_2026/test_nonlinear_lift.py",
+        "sha256": "040756beb60e2a496321368a260c5781152c8aaa00f3c0711665b6aa35216294"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/g03_nonlinear_lift_2026/CONTRACT.md",
+        "sha256": "8198979fbc7f93392b74f8b6051a5f38352ffb112747f6df7ab98c39c77e0103"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/g03_nonlinear_lift_2026/REPORT.md",
+        "sha256": "4e4ce0f4121ade8053951242c3dfca06bb20203df640d0d92c639eef5c2dc548"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/two_body_frequency_2026/binary_frequency.py",
+        "sha256": "cfb2009c4b133bc71cfabf7fd671e9206f32caa26e64af30f4f780070fb4484b"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/ACTION.md",
+        "sha256": "18b75c25f8842bdb9ea6be22e8f6bfb4ecf67d34819dbb530772632b97d810ed"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/g03_flrw_scalar_2026/REPORT.md",
+        "sha256": "7e1ecedb3df20d7a9de69bd56f5186b17a9a4ad477779e6d92e3edafeb1e2f88"
+      }
+    ],
+    "bounds": {
+      "widths": [
+        0.2,
+        0.5
+      ],
+      "amplitudes": [
+        0.01,
+        0.0001,
+        1e-06,
+        1e-08
+      ],
+      "modes": [
+        16,
+        32,
+        64
+      ],
+      "nodes": [
+        1024,
+        2048,
+        4096
+      ],
+      "spectral_cutoffs": [
+        15,
+        31,
+        63,
+        127
+      ],
+      "leading_cubic": {
+        "width": 0.5,
+        "modes": [
+          4,
+          8,
+          16,
+          32
+        ],
+        "nodes": 4096
+      },
+      "gradient_check": {
+        "amplitude": 0.003,
+        "width": 0.3,
+        "modes": 6,
+        "nodes": 1024
+      },
+      "spectral_controls": {
+        "widths": [
+          0,
+          0.5
+        ],
+        "cutoffs": [
+          21,
+          41,
+          101,
+          201
+        ]
+      },
+      "coefficient_quadrature": {
+        "n_min": 1,
+        "n_max": 33
+      },
+      "joint_limit_trial": {
+        "width": 0.5,
+        "k": [
+          4,
+          8,
+          12,
+          16,
+          20
+        ],
+        "amplitude": "exp(-width^2*k^2)/k"
+      }
+    },
+    "non_claims": [
+      "no exact nonlinear solutions",
+      "ghost or acausality theorem",
+      "full nonlinear Dirac closure",
+      "new empirical law",
+      "global novelty",
+      "new filter theory validated"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-05T16:20:49.238412+00:00",
+    "runtime_seconds": 0.8275749683380127,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_nonlinear_lift_2026/results.json",
+      "sha256": "1d6ce5ebc9443aacf7cbf2bbf388d8de429321b3d1fd8e5ec92e71ae28a479c6"
+    }
+  ],
+  "checks": [
+    {
+      "name": "exact q first variation and small-field power",
+      "passed": true
+    },
+    {
+      "name": "necessary leading filtered profile is not C2",
+      "passed": true
+    },
+    {
+      "name": "exact flux lower bound gives positive small-lapse convexity margin",
+      "passed": true
+    },
+    {
+      "name": "Fourier coefficients from independent integrals",
+      "passed": true
+    },
+    {
+      "name": "identity-filter Parseval control",
+      "passed": true
+    },
+    {
+      "name": "inverse Gaussian growth contrasts with algebraic control",
+      "passed": true
+    },
+    {
+      "name": "exact lapse-weighted functional gradient",
+      "passed": true
+    },
+    {
+      "name": "fixed-mode amplitude limit uses its own cubic stationary target",
+      "passed": true
+    },
+    {
+      "name": "nonlinear stationary residuals resolved in tested modes",
+      "passed": true
+    },
+    {
+      "name": "small-amplitude cubic energies approach independent relaxed infimum",
+      "passed": true
+    },
+    {
+      "name": "amplitude-normalized auxiliary response grows over resolved range",
+      "passed": true
+    },
+    {
+      "name": "quadrature and spectral refinement agree at fixed amplitude",
+      "passed": true
+    },
+    {
+      "name": "exact trial disproves uniform extrapolation of fixed-k quadratic energy",
+      "passed": true
+    }
+  ],
+  "result": "REGULAR_LIFT_OBSTRUCTED_FULL_THEORY_OPEN",
+  "residual_risks": [
+    "singular response is not itself a proof of physical ill-posedness",
+    "finite stationary solves do not prove continuum convergence"
+  ]
+}

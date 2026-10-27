@@ -1,0 +1,194 @@
+==============================================================================================================================
+A.  ARITHMETIC -- reproduce g06's two Local Group numbers independently before arguing about them
+==============================================================================================================================
+  reproduced  g_B (2MRS r>3 Mpc + UNGC r<3 Mpc, MW and its own satellites removed) = 6.0245e-15 m/s^2 = 0.000064 a_0        [g06 quotes 6.024e-15 / 0.00006]
+  reproduced  g_L (2M++ linear reconstruction, mask 3 < R < 200 Mpc/h)             = 1.1608e-12 m/s^2 = 0.012401 a_0        [g06 quotes 1.161e-12 / 0.01240]
+  reproduced  g_N from inverting g_L through nu(y) y a_0 = g                       = 1.4219e-14 m/s^2 = 0.000152 a_0     [g06 quotes 1.422e-14 / 0.00015]
+  the inversion is the deep-MOND square root: g_N = g^2/a_0 gives 1.4395e-14, i.e. 1.24% from the numeric inversion, so E1's ratio is (g_B a_0)^(1/2)/g_L SQUARED and a factor r in g_N is only sqrt(r) in acceleration
+  [PASS] A1 g06's three Local Group numbers reproduce from the same files with independent code.  If this failed the rest of the audit would be moot   (g_B 6.0245e-15 vs 6.024e-15 (+0.01%), g_L 1.1608e-12 vs 1.161e-12 (-0.02%), g_N,inv 1.4219e-14 vs 1.422e-14 (-0.01%))
+  [PASS] A2 and E1's headline ratio reproduces, so the 'factor 0.42' is arithmetically what g06 says it is   (g_B/g_N,inv = 0.4237 against g06's 0.424; the raw factor is 193 against g06's 193)
+
+==============================================================================================================================
+B.  LIKE-FOR-LIKE -- E1's two sides do not contain the same volume, and one of them is M31
+==============================================================================================================================
+  g_B splits as  |far (2MRS, r > 3.0 Mpc)| = 1.0157e-14  and  |near (UNGC, r < 3.0 Mpc)| = 1.0143e-14
+  they are 145 degrees apart, so they partly CANCEL: |far + near| = 6.0245e-15 is SMALLER than the far term alone.  E1's central number is a cancellation residual, not a sum.
+    the near term, largest contributors      D/Mpc   g_N (m/s^2)  share of |near|
+    MESSIER031                                0.78     8.918e-15             0.88
+    SMC                                       0.16     5.442e-15             0.54
+    MESSIER033                                0.86     9.093e-16             0.09
+    MAFFEI2                                   2.80     5.118e-16             0.05
+    DW1                                       2.80     2.519e-16             0.02
+  g_L's mask starts at R > 3 Mpc/h = 4.45 Mpc, so the 2M++ side contains NOTHING inside 4.45 Mpc -- no M31, no Local Group at all.
+  matched-volume baryonic field (2MRS only, r > 4.45 Mpc, no UNGC term at all) = 1.0157e-14 = 0.000109 a_0, ratio to g_N,inv = 0.714
+  [FAIL] B1 E1 compares like with like.  The claim's central number 6.02e-15 must be the same physical quantity as the reconstruction it is compared to.  It is not: the baryonic side includes M31 at 0.77 Mpc and the whole Local Volume, the 2M++ side is masked to R > 3 Mpc/h and contains neither.  This check asserts the two volumes agree to 20%; it fails, and the direction of the failure is that E1's quoted g_B is a cancellation residual between an included near term and the far term   (g06's g_B = 6.024e-15 (far+near, partly cancelling) against the volume-matched g_B = 1.016e-14: a factor 1.69.  Matched, E1's ratio would be 0.714 rather than 0.424)
+  NOTE, AGAINST MY OWN CASE: the volume-matched number moves E1's ratio TOWARD 1, so this front damages the
+  precision of E1's quoted number without reversing its sign.  It is recorded because the claim quotes
+  6.02e-15 as 'the direct baryonic sum at the Local Group' and that is not what was compared.
+  directions: baryonic (l,b) = (181, +15); 2M++ (l,b) = (268, +40); CMB dipole apex for the Local Group is (l,b) ~ (276, +30) (Kogut et al. 1993)
+  [FAIL] B2 the two fields point the same way.  E1 compares MAGNITUDES only.  Two vectors of similar length pointing 60 degrees apart are not 'the same field seen two ways'.  Asserts 30 degrees   (g06's g_B is 78 degrees from the 2M++ vector; the volume-matched baryonic vector is 6 degrees from it)
+
+==============================================================================================================================
+C.  THE PECULIAR-VELOCITY TIE-BREAK, DONE WITH LINEAR THEORY INSTEAD OF v ~ g t_0
+==============================================================================================================================
+  g06 breaks the tie with v ~ g t_0 and reports 'both routes in the right decade'.  Linear theory fixes the
+  constant exactly: v = 2 f g / (3 H_0 Omega_m), f = Omega_m^0.55 (Peebles 1980; Strauss & Willick 1995).
+      f = Omega_m^0.55 = 0.528, Omega_m = 0.3134, H_0 = 67.4 km/s/Mpc  ->  v = 5.145e+17 s x g   (g06 used t_0 = 4.350e+17 s, -15%)
+    route                                                     g_dyn (m/s^2)  v_pred (km/s)    vs 620
+    2M++ total-matter Newtonian field, used as the dynamics       1.161e-12            597      0.96
+    baryons only, boosted by the kernel: nu(g_B/a0) g_B           7.539e-13            388      0.63
+    ... same, on the volume-matched baryonic field                9.801e-13            504      0.81
+  [FAIL] C1 the peculiar-velocity cross-check does not favour the reconstruction over the baryons.  g06 offers it as support for its reading ('both are in the right decade').  Done with the exact linear-theory constant rather than v ~ g t_0, this asserts the two routes miss the observed 620 km/s by comparable factors.  If it fails, the one piece of DATA g06 brings to E1 points the other way   (2M++ route 597 km/s, off by 4%; baryons-through-the-kernel 388 km/s, off by 37% (volume-matched 504 km/s, 19%).  Carrick+2015 fit beta* = 0.431 to this same dipole with this same field and reproduce it; the baryons-only route needs g_B a factor 2.6 larger to do so)
+  Read plainly: the reconstruction reproduces the Local Group's measured motion to a few per cent -- that is
+  what Carrick+2015 CALIBRATED it to do -- and the baryons-through-the-kernel route falls short by ~1.7x in
+  velocity, i.e. ~3x in g_N.  That is inside g06's admitted completeness bound, so it is not a kill; but it
+  is not support either, and g06 presents it as support.
+
+==============================================================================================================================
+D.  HOW MUCH DOES E1 ACTUALLY CONSTRAIN?  The window is a factor 6.25 wide on g_B
+==============================================================================================================================
+  E1 passes for 0.4 < g_B/g_N,inv < 2.5, i.e. g_B anywhere in [5.687e-15, 3.555e-14] m/s^2 = [0.000061, 0.000380] a_0 -- a factor 6.25, or 0.80 dex.
+  g06 states its baryonic sum is a LOWER bound: 2MRS is magnitude-limited, the zone of avoidance is
+  unmasked, and no selection-function or 1/Vmax weighting is applied.  Three completeness scalings:
+    assumed correction to g_B                      g_B (m/s^2)   E1 ratio  E1 verdict
+    none (g06 as run)                                6.024e-15      0.424        PASS
+    x2 (mild incompleteness)                         1.205e-14      0.847        PASS
+    x3 (g06's own R4 bracket)                        1.807e-14      1.271        PASS
+    x5                                               3.012e-14      2.119        PASS
+    x10                                              6.024e-14      4.237        fail
+    x0.5 (if 2MRS over-counted)                      3.012e-15      0.212        fail
+  [FAIL] D1 E1 is a tight enough test to certify the baryonic sum at the precision the claim needs.  The claim rests on g_B being ~6e-5 a_0 rather than ~1e-2 a_0, but it is quoted as if E1 pinned the number.  This asserts that a threefold completeness correction -- the size g06 itself brackets in R4 -- would be DETECTED by E1   (g_B x3 gives an E1 ratio of 1.271, which is inside E1's [0.4, 2.5] window, so E1 cannot tell the two apart.  E1 admits g_B over 0.80 dex)
+          2MRS shell       N  median K  faintest M_K  sum L_K (1e10)  |g| contribution
+            5-20 Mpc     715      9.32        -17.81          1805.6         5.881e-15
+           20-40 Mpc    1828      9.84        -19.85          7628.2         2.773e-15
+           40-70 Mpc    4852     10.39        -21.45         33777.5         2.827e-15
+          70-100 Mpc    7918     10.76        -22.61         74704.6         1.514e-15
+         100-150 Mpc   12861     11.06        -23.37        185439.8         1.195e-15
+  The faintest galaxy 2MRS still sees at 100-150 Mpc is roughly M_K ~ -24, i.e. several times L*.  The
+  luminosity actually summed there is therefore a small fraction of the luminosity present, and the
+  un-weighted sum used for g_B is an underestimate by an amount this script cannot pin down.  That is not a
+  criticism of g06's honesty -- g06 says so -- it is the reason E1 cannot be load-bearing.
+
+==============================================================================================================================
+E.  THE PREMISE: 'in this framework the actual matter is BARYONS' is retracted by this repository's own
+    STANDING.md, and the retraction is exactly on the scales the external field comes from
+==============================================================================================================================
+      STANDING.md contains YES:  ""No dark matter" is forfeited"
+      STANDING.md contains YES:  "MOND galaxies **plus** a
+   no-particle CDM-like sector"
+      STANDING.md contains YES:  "no-CDM MOND cosmologies fail the forest"
+      STANDING.md contains YES:  "makes MOND irrelevant to linear growth"
+      g06 asserts the premise verbatim: YES  ("In this framework the actual matter is BARYONS.")
+  [FAIL] E-A the premise g06 argues from is the repository's live position.  g06's whole prescription argument is 'in QUMOND the external field is the Newtonian field of the actual matter, and in this framework the actual matter is BARYONS'.  The first clause is right.  This checks the second against STANDING.md, and it fails: STANDING section 5 item 5 records 'No dark matter is forfeited -- the framework HAS a dark sector, the AeST/ghost-condensate Q-mode -- MOND galaxies PLUS a no-particle CDM-like sector'   (STANDING.md carries the forfeit (True) and g06 carries the premise (True); they are contradictory and the claim inherits the contradiction)
+  [FAIL] E-B and if the framework's CDM-like sector did NOT cluster on 10-100 Mpc scales, the contradiction would be harmless -- the external field would still be baryonic.  This checks the repository's own record on that.  It fails: STANDING records the sheet N-body result that no-CDM MOND cosmologies fall 1000-5000x short of the Lyman-alpha forest, and that with the framework's own Hubble floor MOND is a <= 6% correction to linear growth.  A CDM-like component that clusters, in a linear regime where MOND barely matters, is precisely what a 2M++ velocity-field reconstruction measures   (forest clause present: True; linear-growth clause present: True.  Both present means the framework's own committed cosmology sources the 10-100 Mpc Newtonian field with baryons PLUS the Q-mode, which is the total clustering matter the reconstruction returns)
+  
+  CONSEQUENCE, in g06's own currency.  g06's variation table already contains the answer under the label
+  '2M++ field used raw as g_N (wrong, shown)': median boost 2.215 (+0.345 dex), inside the cluster band,
+  against the primary 0.817.  That is g06's own R4b, which g06 marks FAIL and explains as a strawman.  On
+  the repository's own standing it is not a strawman: it is the framework's own dark sector doing what
+  STANDING says it does.  The intermediate case matters too -- a Q-mode that clusters on supercluster
+  scales but is dilute inside a 0.2 Mpc group leaves the INTERNAL field baryonic while raising the EXTERNAL
+  one, and that is exactly the branch R4b computes.
+
+    external field sourced by baryons + Q-mode       e_N (a_0)   nu(e_N)  e_N/x_int, median group
+    Q-mode contributes   0% of the total-matter field     0.00006    125.15                     0.03
+    Q-mode contributes  10% of the total-matter field     0.00130     28.26                     0.69
+    Q-mode contributes  25% of the total-matter field     0.00315     18.33                     1.67
+    Q-mode contributes  50% of the total-matter field     0.00623     13.17                     3.30
+    Q-mode contributes 100% of the total-matter field     0.01240      9.49                     6.56
+  At any Q-mode share above ~10% of the total-matter field the external field exceeds the median group's own
+  internal field and the external-field branch takes over.  The claim needs the share to be essentially ZERO.
+
+==============================================================================================================================
+F.  DOES THE 'RECONSTRUCTION = THE FRAMEWORK'S MOND FIELD' IDENTIFICATION HOLD AWAY FROM THE ORIGIN?
+==============================================================================================================================
+  E1 is evaluated at ONE point.  If the identification is physics it should hold at the 26 group positions
+  too; if it is a coincidence of the local supercluster it will not.  Both fields recomputed at each group.
+    group           |g_B| (m/s^2)   nu(g_B)g_B     |g_2M++|    ratio   angle
+    MESSIER031          1.965e-14    1.366e-12    1.139e-12    1.199      11
+    MESSIER081          1.152e-14    1.044e-12    1.221e-12    0.855      23
+    NGC3368             3.457e-14    1.816e-12    1.304e-12    1.392      31
+    Milky Way           6.398e-15    7.771e-13    1.161e-12    0.669      77
+    NGC5128             1.545e-14    1.210e-12    1.250e-12    0.968      10
+    NGC4258             1.702e-14    1.271e-12    1.438e-12    0.883      21
+    NGC5236             1.116e-14    1.028e-12    1.331e-12    0.772      24
+    NGC4736             1.413e-14    1.157e-12    1.362e-12    0.850       9
+    NGC4594             1.340e-14    1.126e-12    1.419e-12    0.794      25
+    IC0342              1.423e-14    1.161e-12    1.128e-12    1.030      48
+    NGC3412             5.529e-14    2.303e-12    1.312e-12    1.755      57
+    NGC0253             8.011e-15    8.699e-13    1.004e-12    0.866       8
+    NGC3115             1.285e-14    1.103e-12    1.225e-12    0.901      28
+    NGC3627             1.654e-14    1.253e-12    1.343e-12    0.932      23
+    NGC2784             9.468e-15    9.461e-13    1.098e-12    0.862      24
+    NGC6744             9.365e-15    9.410e-13    1.118e-12    0.841      14
+    NGC6946             1.010e-14    9.771e-13    1.192e-12    0.820       9
+    NGC4945             1.458e-14    1.175e-12    1.226e-12    0.959      20
+    MESSIER101          2.312e-14    1.483e-12    1.439e-12    1.030       7
+    NGC0925             5.543e-15    7.230e-13    8.065e-13    0.896      27
+    NGC2903             1.410e-14    1.156e-12    1.261e-12    0.916      20
+    NGC3432             1.514e-14    1.198e-12    1.351e-12    0.887      15
+    NGC3521             1.554e-14    1.214e-12    1.283e-12    0.946      50
+    NGC4631             1.463e-14    1.178e-12    1.472e-12    0.800      26
+    NGC5055             1.165e-14    1.050e-12    1.513e-12    0.694      48
+    NGC5194             1.648e-14    1.250e-12    1.492e-12    0.838      23
+  ratio nu(g_B)g_B / g_2M++ across 26 positions: median 0.885, 16-84% [0.800, 1.030], full range [0.669, 1.755], spread 0.085 dex
+  angle between the two vectors: median 23 deg, range 7 - 77 deg
+  [PASS] F1 the identification 'the reconstruction IS the framework's MOND field' holds away from the Local Group.  E1 tests it at one point; if it is physics rather than a local coincidence the ratio should be near 1 everywhere.  Asserts the 26-position median is within a factor 1.6 of 1 AND the scatter is under 0.2 dex   (median 0.885, scatter 0.085 dex over 26 positions)
+  [PASS] F2 and the two vectors point the same way where the identification is claimed to hold.  Asserts a median angle under 30 degrees   (median angle 23 degrees, range 7 - 77)
+
+==============================================================================================================================
+I.  TWO NAMED DEFECTS IN THE CLAIM'S HEADLINE NUMBER, AND ONE COMMITTED SIBLING THAT CONTRADICTS IT
+==============================================================================================================================
+  I.a  The exclusion rule for a group's OWN members is (name != host) AND (main_disturber != host).  The UNGC
+       lists the SMC's main disturber as the LMC, not the Milky Way (Karachentsev, Makarov & Kaisina 2013),
+       so the SMC survives the filter and is counted as an EXTERNAL perturber of the Milky Way -- at 0.06
+       Mpc.  Its larger companion the LMC, whose main disturber IS the Milky Way, is correctly removed.  The
+       bookkeeping therefore drops the bigger member of the Magellanic pair and keeps the smaller one.
+       SMC: UNGC distance 0.060 Mpc, M_b = 1.02e+09 Msun, contribution 5.442e-15 m/s^2 = 0.90 x the whole quoted g_B of 6.024e-15
+    Milky Way satellites removed by a distance cut   g_B (m/s^2)   e_N (a_0)   E1 ratio
+    exclude UNGC galaxies within 0.0 Mpc of the MW     1.737e-14    0.000186      1.222
+    exclude UNGC galaxies within 0.3 Mpc of the MW     7.215e-15    0.000077      0.507
+    exclude UNGC galaxies within 0.5 Mpc of the MW     7.215e-15    0.000077      0.507
+    exclude UNGC galaxies within 1.0 Mpc of the MW     9.742e-15    0.000104      0.685
+  [FAIL] I1 the group's own members are excluded from its own external field.  The claim's headline number is the Milky Way group's external field; a Milky Way satellite 60 kpc away must not be in it.  This asserts the SMC contributes under 10% of g_B   (the SMC alone contributes 5.442e-15 m/s^2, 90% of the quoted g_B 6.024e-15; removing everything inside 0.3 Mpc of the Milky Way gives g_B = 7.215e-15, a factor 1.20)
+  
+  I.b  The repository already carries a committed, passing script that uses the OPPOSITE prescription for
+       the SAME number.  h81_h82_mw_external_fields.py builds the 2M++ field with the identical code and
+       calls it 'the NEWTONIAN large-scale field at the Local Group', tabulating e_N = 0.01240 canonical /
+       0.01027 alt, and its check 81a is built on that reading.  g06 cites h81 for the reduction but not
+       for the disagreement.  Two committed scripts, one quantity, a factor 193 apart.
+       h81_h82_mw_external_fields.out tabulates LSS e_N = 0.01240 as a NEWTONIAN field: YES
+  [FAIL] I2 the repository is internally consistent about which field enters nu's argument at the Local Group.  A prescription that 'must' hold cannot be contradicted by a committed sibling script that passes its own checks on the opposite reading   (h81_h82 (committed, passing) uses e_N = 0.01240 at the Local Group; g06 (this rung) uses e_N = 0.00006.  Factor 193.  One of the two is wrong and the repository does not say which)
+
+==============================================================================================================================
+G.  BOTH FOOTINGS -- does any of this depend on the choice of a_0?
+==============================================================================================================================
+    footing              a_0    g_B/a_0   g_2M++/a_0     g_N,inv   E1 ratio  v_bary (km/s)
+    canonical      9.360e-11   0.000064      0.01240   1.422e-14      0.424            388
+    alt            1.130e-10   0.000053      0.01027   1.180e-14      0.510            426
+  [PASS] G1 both footings, and the audit's verdicts do not turn on a_0   (E1 ratio 0.424 canonical vs 0.510 alt, -0.081 dex)
+
+==============================================================================================================================
+H.  MUTATION CONTROLS
+==============================================================================================================================
+  [PASS] M1 mutation -- shuffle the 2MRS baryonic masses across sky positions.  The dipole sum must change: if a scrambled catalogue gave the same g_B, the far field would be a property of the sky coverage rather than of where the mass is   (shuffled g_B = 4.564e-14 against the real 6.024e-15, +0.879 dex)
+  [PASS] M2 mutation -- shuffle the 2M++ density cells.  The reconstruction must collapse toward zero; if it did not, the 1.16e-12 would be a normalisation artefact rather than a measurement of where the structure is   (shuffled g_2M++ = 1.342e-14 against the real 1.161e-12, a factor 0.0116)
+  [PASS] M3 mutation -- stop excluding the Milky Way's own satellites from its external field.  The number must move, or the exclusion logic is not doing anything and the 'own group removed' claim is empty   (with no exclusion g_B = 1.737e-14 against 6.024e-15, +0.460 dex)
+  [PASS] M4 mutation -- move the 2M++ inner mask from 3 to 1 Mpc/h.  If the reconstruction's value depended strongly on where its inner hole is cut, comparing it to a baryonic sum that has no such hole would be meaningless even in principle.  Asserts it moves by less than 30%   (mask R > 1 Mpc/h gives 1.177e-12 against 1.161e-12, a factor 1.014)
+
+==============================================================================================================================
+VERDICT SUMMARY
+==============================================================================================================================
+  What survives: the QUMOND half of the claim.  In QUMOND the external-field parameter is the Newtonian
+  field of whatever sources the Newtonian potential -- that half is definitional and correct, and g06's
+  arithmetic reproduces exactly (A1, A2).
+  What does not survive: the identification of 'whatever sources the Newtonian potential' with BARYONS
+  ALONE, on 10-100 Mpc scales, in a framework whose own STANDING.md forfeits 'no dark matter' and records a
+  clustering CDM-like Q-mode plus a linear regime where MOND is a <= 6% correction (E-A, E-B).  On the
+  repository's own standing the 2M++ reconstruction is closer to the right g_N,ext than the baryon sum is,
+  and by g06's own R4b the rung's median boost then moves from 0.817 to 2.215 -- into the cluster band.
+  What is weaker than advertised: E1 itself.  Its two sides are not the same volume (B1), its supporting
+  velocity check runs against it once linear theory replaces v ~ g t_0 (C1), and its pass window admits g_B
+  over 0.80 dex so it cannot certify the number the claim needs (D1).
+
+RESULT: 17 checks, 8 FAIL -> ["B1 E1 compares like with like.  The claim's central number 6.02e-15 must be the same physical quantity as the reconstruction it is compared to.  It is not: the baryonic side includes M31 at 0.77 Mpc and the whole Local Volume, the 2M++ side is masked to R > 3 Mpc/h and contains neither.  This check asserts the two volumes agree to 20%; it fails, and the direction of the failure is that E1's quoted g_B is a cancellation residual between an included near term and the far term", "B2 the two fields point the same way.  E1 compares MAGNITUDES only.  Two vectors of similar length pointing 60 degrees apart are not 'the same field seen two ways'.  Asserts 30 degrees", "C1 the peculiar-velocity cross-check does not favour the reconstruction over the baryons.  g06 offers it as support for its reading ('both are in the right decade').  Done with the exact linear-theory constant rather than v ~ g t_0, this asserts the two routes miss the observed 620 km/s by comparable factors.  If it fails, the one piece of DATA g06 brings to E1 points the other way", 'D1 E1 is a tight enough test to certify the baryonic sum at the precision the claim needs.  The claim rests on g_B being ~6e-5 a_0 rather than ~1e-2 a_0, but it is quoted as if E1 pinned the number.  This asserts that a threefold completeness correction -- the size g06 itself brackets in R4 -- would be DETECTED by E1', "E-A the premise g06 argues from is the repository's live position.  g06's whole prescription argument is 'in QUMOND the external field is the Newtonian field of the actual matter, and in this framework the actual matter is BARYONS'.  The first clause is right.  This checks the second against STANDING.md, and it fails: STANDING section 5 item 5 records 'No dark matter is forfeited -- the framework HAS a dark sector, the AeST/ghost-condensate Q-mode -- MOND galaxies PLUS a no-particle CDM-like sector'", "E-B and if the framework's CDM-like sector did NOT cluster on 10-100 Mpc scales, the contradiction would be harmless -- the external field would still be baryonic.  This checks the repository's own record on that.  It fails: STANDING records the sheet N-body result that no-CDM MOND cosmologies fall 1000-5000x short of the Lyman-alpha forest, and that with the framework's own Hubble floor MOND is a <= 6% correction to linear growth.  A CDM-like component that clusters, in a linear regime where MOND barely matters, is precisely what a 2M++ velocity-field reconstruction measures", "I1 the group's own members are excluded from its own external field.  The claim's headline number is the Milky Way group's external field; a Milky Way satellite 60 kpc away must not be in it.  This asserts the SMC contributes under 10% of g_B", "I2 the repository is internally consistent about which field enters nu's argument at the Local Group.  A prescription that 'must' hold cannot be contradicted by a committed sibling script that passes its own checks on the opposite reading"]   rc=1

@@ -1,0 +1,161 @@
+==============================================================================================================================
+1.  AN INDEPENDENT ROUTE TO THE CENTRAL NUMBER, WITH NO JEANS INTEGRATOR IN IT
+==============================================================================================================================
+  g06 predicts sigma by numerically integrating the isotropic spherical Jeans equation.  A verifier that
+  re-runs that integrator has verified nothing.  So the number is rebuilt here from a CLOSED FORM.
+  
+  DERIVATION.  Massless tracers of density rho(r) in the deep-MOND field of a point mass, g = sqrt(G M a_0)/r
+        == v2/r with v2 = sqrt(G M a_0).  Isotropic Jeans:  rho sigma_r^2 (r) = int_r^inf rho v2/r' dr'.
+        Number-weighted:  <sigma_r^2> = int_0^inf r^2 [int_r^inf rho v2/r' dr'] dr / int_0^inf rho r^2 dr.
+        Swap the order of integration in the numerator:
+              = v2 int_0^inf (rho(r')/r') [int_0^{r'} r^2 dr] dr'  =  v2 int_0^inf (rho(r')/r')(r'^3/3) dr'
+              = (v2/3) int_0^inf rho r'^2 dr'.
+        So <sigma_r^2> = v2/3 EXACTLY, i.e.  3 sigma^2 = sqrt(G M a_0),  for ANY tracer profile rho(r).
+  This is g06's own check J3, re-derived rather than re-run.  It is why the answer barely depends on r_h, on
+  the tracer shape or on the aperture -- and it means the whole measurement reduces to two numbers per group:
+  the gapper dispersion and the summed baryonic mass.
+
+  closed-form median boost                      canonical        alt
+    3 sigma^2 = sqrt(G M_b a_0), point mass, no EFE      0.648      0.590
+    g06 reports (Jeans + distributed mass + EFE)      0.817      0.746
+    g06 isolated branch (no EFE), for comparison      0.706         --
+  [PASS] V1 the central number survives an independent recomputation.  The closed-form point-mass route carries no Jeans integrator, no tracer profile, no aperture and no external field, so if g06's machinery had a normalisation, weighting or units error this would not land near it.  Allowed gap 0.20 dex, which is the size of the two effects the closed form omits (the EFE, +0.06 dex in g06's own bracket, and the satellite/hot mass distributed rather than central)   (closed form 0.648 vs g06's 0.817, a gap of -0.101 dex; alt footing 0.590 vs 0.746, gap -0.102 dex)
+  [PASS] V2 BOTH FOOTINGS GENUINELY ENTER, they are not printed decoratively.  In the deep-MOND limit sigma^2 goes as sqrt(a_0), so the boost must scale EXACTLY as a_0^(-1/2) between the two footings.  If a_0 had been carried as a label rather than used, the two medians would be identical or would move by some other power   (closed form alt/canonical = 0.9101; g06's reported 0.9131; the exact deep-MOND ratio sqrt(9.36/11.3) = 0.9101)
+
+==============================================================================================================================
+2.  IS THE DEEP-MOND LIMIT ACTUALLY APPLICABLE WHERE IT WAS APPLIED?
+==============================================================================================================================
+  The closed form and g06's M2 mutation both assume the deep-MOND branch of the Route A kernel.  The kernel
+  is nu(y) = 1/(1-exp(-sqrt(y))); expanding, nu(y) y = sqrt(y)(1 + sqrt(y)/2 + O(y)), so g = sqrt(g_N a_0)
+  times (1 + sqrt(y)/2 + ...).  The deep limit is good to sqrt(y)/2 in the field, sqrt(y)/4 in sigma^2.
+      y = g_bar/a_0 = 0.00013:  nu(y) y / sqrt(y) = 1.0057, departure from the deep limit 0.6%
+      y = g_bar/a_0 = 0.00189:  nu(y) y / sqrt(y) = 1.0219, departure from the deep limit 2.2%
+      y = g_bar/a_0 = 0.02080:  nu(y) y / sqrt(y) = 1.0738, departure from the deep limit 7.4%
+  [PASS] V3 the sample really is in the deep-MOND regime, so the closed form, the M2 sqrt(a_0) mutation and the sigma^4 = (4/81) G M a_0 validation are all being applied where they hold.  Asserted at the sample's LARGEST acceleration, not its median, because that is the one that could fail   (largest departure 7.4% at the sample's top acceleration y = 0.02080; at the median y = 0.00189 it is 2.2%.  g06's M2 mutation measured 0.5841 against the exact deep-MOND 0.5774, a 1.2% departure, consistent with this)
+
+==============================================================================================================================
+3.  THE MODIFIED-INERTIA / MODIFIED-GRAVITY DISTINCTION -- IS IT USED CORRECTLY?
+==============================================================================================================================
+  g06's CONCLUSION (section 9, point 2) says, verbatim in substance: Milgrom's theorem says only that MI and
+  MG agree for circular deep-MOND orbits and differ otherwise; it fixes no sign and no size for the
+  difference; so this null removes the empirical pattern that motivated the fork, it does not close the fork.
+  That is the correct treatment of MI as a CLASS: no unique prediction, so no refutation from a null.
+  [PASS] V4 the conclusions section does NOT convert a null into a refutation of modified inertia, which is the over-claim this lens was pointed at   (the file states in its own conclusions that MI 'fixes no sign and no size for the difference' and that the null 'does not close the fork')
+  
+  BUT g06's check F1 states the OPPOSITE premise: 'if the modification attaches to the trajectory rather
+  than to the field, EVERY pressure-supported system should sit above the kernel, groups included.'
+  That premise is wrong, and wrong in a way that matters for how much F1's failure is worth:
+    * The deep-MOND limit is invariant under (t, r) -> (LAMBDA t, LAMBDA r) (Milgrom 2009, ApJ 698, 1630).
+    * The M ~ sigma^4 law for a bounded system is a CONSEQUENCE of that scale invariance, not of a choice
+      of formulation (Milgrom 2014, MNRAS 437, 2531, 'MOND laws of galactic dynamics').
+    * So MI and MG formulations share the deep-MOND mass-dispersion law up to an O(1) coefficient that MI
+      AS A CLASS does not fix.  A group's virial dispersion was never going to discriminate them.
+  Net: F1's premise over-claims MI, and section 9's own statement ('agree for circular deep-MOND orbits and
+  differ otherwise') UNDER-states the agreement -- the agreement extends to the deep-MOND virial law.  The
+  two errors point opposite ways and the published conclusion is the conservative one, so the CLAIM under
+  test is untouched; F1's null is simply worth less than section 9 credits it with.
+  [FAIL] V5 (FAILS, AND SHOULD) F1's stated premise is not defensible physics.  This check asserts that g06 nowhere asserts 'EVERY pressure-supported system should sit above the kernel' as a consequence of modified inertia.  It does assert exactly that, inside a check title.  Recorded here so the premise is not inherited   (the phrase appears in g06's check F1; F1 FAILS in g06's own run, so nothing downstream is built on its premise being true -- but the premise should not be quoted as the physics of the fork)
+
+==============================================================================================================================
+4.  THE CUTS THE AUTHOR DID NOT TAKE
+==============================================================================================================================
+  members summed over the 26 groups: 333 -- the number the claim quotes.
+  members that actually carry a Local-Group-frame velocity: 259.  The dispersions, and therefore
+  the entire measurement, rest on those 259, not on 333.
+  groups whose sigma comes from 4 velocities or fewer (g06's per-group table prints N, not N_v, so a reader
+  cannot see this; its +-stat column does correctly use N_v):
+      NGC2784        printed N = 7, velocities actually used = 3
+      NGC6744        printed N = 7, velocities actually used = 4
+      NGC3521        printed N = 5, velocities actually used = 3
+      NGC4631        printed N = 5, velocities actually used = 4
+      NGC5055        printed N = 5, velocities actually used = 4
+      NGC5194        printed N = 5, velocities actually used = 4
+  [FAIL] V6 (FAILS) the quoted sample size is the membership count, not the kinematic sample.  This asserts every group's dispersion rests on at least five velocities, which is the minimum the sample cut was written to guarantee.  It does not: the N >= 5 cut counts members, and velocities are a subset   (velocities per group run 3 - 37; 6 of 26 groups have four or fewer; total velocities 259 against the 333 members quoted)
+  
+  the 26 'groups' are not 26 independent systems:
+      NGC3368 and NGC3412 share 1 member(s): ['NGC3412']
+      NGC5128 and NGC4945 share 2 member(s): ['NGC4945', 'NGC5128']
+  [FAIL] V7 (FAILS) the bootstrap over 26 groups treats them as independent draws.  This asserts no galaxy is a member of two groups.  Two pairs violate it -- one host is simultaneously a satellite of another host, and one pair are each other's satellites -- so the effective sample is smaller than 26 and the bootstrap band is correspondingly a little too narrow   (2 overlapping pairs: NGC3368/NGC3412; NGC5128/NGC4945)
+  
+  distance provenance of the 333 members: TRGB=140, mem=112, TF=19, Cep=15, HB=14, BS=9
+  [FAIL] V8 (FAILS) g06's docstring says the baryon budget is 'a SUM OVER MEASURED GALAXIES, not a scaling relation' and that every galaxy 'has its own distance'.  This asserts fewer than 10% of members carry the catalogue's 'mem' flag, i.e. a distance ASSIGNED from group membership rather than measured.  A 'mem' galaxy's K_s luminosity and HI mass inherit the group distance, so they are not independent measurements   (112 of 333 members (34%) have distance flag 'mem'.  The host carries a median 93% of a group's K light, so M_b barely moves -- the defect is in the wording, not in the number)
+
+  cut                                             N  canonical      alt
+      all 26 groups (g06's primary)              26      0.817    0.746
+      velocities per group >= 6                  15      0.829    0.755
+      velocities per group >= 8                  10      0.881    0.804
+      drop the non-independent group entries     24      0.759    0.693
+  [PASS] V9 the headline is not an artefact of the two sample defects V6 and V7.  Cutting to groups with at least six or at least eight velocities, and dropping the non-independent entries, must leave the median inside the bootstrap band's own factor 1.692 -- otherwise the number is a statement about which groups were let in   (medians 0.759 - 0.881, a factor 1.160, against the bootstrap band's 1.692.  None of the cuts moves the answer anywhere near the cluster rows)
+
+==============================================================================================================================
+5.  HOW HARD DO THE TWO NAMED LEVERS HAVE TO BE PUSHED TO REACH THE CLUSTER BAND?
+==============================================================================================================================
+  g06 names Upsilon_K as its weakest link and R4b names the external field as load-bearing.  Neither was
+  pushed far enough to find the breaking point.  Both are pushed here until the answer reaches the liability
+  table's X-ray group/cluster median of 2.11.
+  
+  In the deep-MOND limit sigma_pred^2 goes as M_b^(1/2), so boost goes as M_b^(-1/2) -- verified on g06's own
+  bracket below.  Reaching 2.11 from 0.817 therefore needs M_b smaller by (2.11/0.817)^2 = 6.7x.
+      Upsilon_K = 0.4: g06 measures 1.011, the M_b^(-1/2) law predicts 1.001 (1.0% apart)
+      Upsilon_K = 0.6: g06 measures 0.817, the M_b^(-1/2) law predicts 0.817 (0.0% apart)
+      Upsilon_K = 1.0: g06 measures 0.621, the M_b^(-1/2) law predicts 0.633 (1.9% apart)
+  [PASS] V10 the stellar M/L cannot carry the answer into the cluster band.  Because the boost goes only as the INVERSE SQUARE ROOT of the baryonic mass, an implausibly small Upsilon_K would be needed.  This asserts the required value is below 0.25, i.e. outside anything the K band admits for an old population (Bell & de Jong 2001 give 0.6-0.9; Bell et al. 2003 give ~0.7)   (reaching 2.11 needs Upsilon_K = 0.090, against the 0.4-1.0 bracket g06 carries and the 0.6 it adopts.  The author's own 'weakest link' moves the answer by 0.21 dex; the gap to the cluster rows is 0.412 dex)
+
+  the external field, pushed past R4's threefold bracket (canonical footing):
+      external field x1     median boost =  0.817   (-0.088 dex)
+      external field x3     median boost =  0.909   (-0.041 dex)
+      external field x8     median boost =  1.007   (+0.003 dex)
+      external field x20    median boost =  1.376   (+0.139 dex)
+      external field x50    median boost =  1.782   (+0.251 dex)
+      external field x100   median boost =  2.247   (+0.352 dex)
+      external field x193   median boost =  2.855   (+0.456 dex)
+  (x193 is the factor by which the raw 2M++ reconstruction exceeds the baryonic sum, i.e. R4b's substitution.)
+  [PASS] V11 R4b's framing -- 'this rung's whole headline rests on E1' and 'if E1's inversion argument is wrong, this rung's answer reverses' -- is too pessimistic, and the verification says so against the author's interest in sounding careful.  This asserts the external field must be wrong by more than a factor 20 before the answer reaches the cluster band.  E1 argues the two routes agree to a factor 2.4   (the boost reaches the cluster median 2.11 only at about x100; at x20 it is still 1.376 and at x3 (R4's own bracket) 0.909.  E1 has a factor ~10 of margin, not none)
+
+==============================================================================================================================
+6.  ONE SURVIVING INSTANCE OF THE REPO'S BUG PATTERN #1 (total mass where enclosed mass belongs)
+==============================================================================================================================
+  g06 lists 'ENCLOSED, NOT TOTAL, MASS' as the fourth of five things that had to be done properly, and the
+  headline acceleration axis does use the enclosed field.  But g['gN_rh'] -- the x_int(r_h) that check E2's
+  e_N/x_int ratio and R4's 'these groups run at e_N/x_int ~ 0.06' are both built on -- uses the TOTAL
+  baryonic mass at r_h.
+      median x_int(total)/x_int(enclosed) = 1.322  (max 1.582)
+      E2 as printed:      median e_N/x_int = 0.061, 1 of 26 externally dominated
+      E2 recomputed:      median e_N/x_int = 0.085, 2 of 26 externally dominated
+  [FAIL] V12 (FAILS) the enclosed-mass discipline g06 claims is not applied to its own external-field diagnostic.  This asserts E2's ratio is unchanged when the enclosed field replaces the total-mass one.  It changes by 40%.  The headline is unaffected -- the diagnostic only supports the choice of branch, and R4 brackets that choice independently -- but the claim 'enclosed, never total' is not true of every number in the file   (printed 0.061 vs recomputed 0.085, a factor 1.39; the count of externally dominated groups goes 1 -> 2 of 26)
+
+==============================================================================================================================
+7.  MUTATION CONTROL ON THIS VERIFIER
+==============================================================================================================================
+  [PASS] W1 mutation -- inflate every group's baryonic mass by 100x in the closed form.  The boost must fall by exactly 10 (M_b^(-1/2)); if it did not, the closed-form route used as the independent check would itself be mis-normalised and V1 would be meaningless   (median boost 0.0648 against 0.6481, ratio 0.10000 vs the exact 0.1)
+  [FAIL] W2 mutation -- shuffle the dispersions across groups in the closed form.  This reproduces g06's own M3 warning independently: the MEDIAN boost is a marginal quantity and largely survives the shuffle, so the median alone is weak evidence about individual systems.  Asserted so the warning is on this file's record too, and it FAILS in the direction that says the median is marginal   (shuffled median 0.754 vs real 0.648, +0.066 dex.  g06's own M4 catalogue scramble moved it only +0.110 dex, barely outside its 0.114 dex bootstrap half-width)
+
+==============================================================================================================================
+8.  VERDICT
+==============================================================================================================================
+  THE CLAIM SURVIVES.  Every number it quotes reproduces from the committed .out, the central value is
+  confirmed by an independent closed-form route (0.648 against 0.817, -0.101 dex, the gap being the EFE and the distributed
+  mass that the closed form omits by construction), the deep-MOND limit is applicable across the whole
+  sample, both a_0 footings genuinely enter (the two medians differ by exactly a_0^(-1/2)), and the
+  modified-inertia / modified-gravity distinction is stated correctly in the conclusions.
+  
+  WHAT IS WRONG BUT DOES NOT OVERTURN IT
+    V6  '333 member galaxies' is the membership count; only 259 carry a velocity, and 6 groups' dispersions
+        rest on four or fewer.  The per-group table prints N, not N_v.  Cutting to N_v >= 8 moves the median
+        to 0.881, so the defect is in the reporting, not in the answer.
+    V7  Two pairs of 'groups' share members, so the bootstrap's 26 independent draws is an overcount.
+        Dropping the non-independent entries gives 0.759 -- and that puts unity OUTSIDE the
+        16-84% band, so the claim's '0.0-1.0 sigma from the prediction' is not stable at the 1-sigma level.
+        It becomes about 1.2 sigma the OTHER way.  The non-discrimination verdict is unchanged either way.
+    V8  The 'sum over measured galaxies' wording overstates: 112 of 333 members carry membership-assigned
+        distances.  The host carries a median 93% of the K light, so M_b is barely affected.
+    V12 One surviving total-for-enclosed substitution, in E2's diagnostic ratio only.
+    V5  F1's premise about modified inertia is not defensible; F1 fails anyway and nothing is built on it.
+  
+  WHAT IS STRONGER THAN THE AUTHOR CLAIMED
+    V11 R4b calls E1 load-bearing and says the answer 'reverses' if E1 is wrong.  It takes a factor ~100 error
+        in the external field to reach the cluster band; E1 argues to a factor 2.4.  The margin is ~10x.
+    V10 The named weakest link, Upsilon_K, would have to be 0.09 to reach the cluster band, because the boost
+        goes only as M_b^(-1/2).  The separation from the X-ray rows is not reachable by any admissible M/L.
+
+RESULT: 14 checks, 6 FAIL -> ["V5 (FAILS, AND SHOULD) F1's stated premise is not defensible physics.  This check asserts that g06 nowhere asserts 'EVERY pressure-supported system should sit above the kernel' as a consequence of modified inertia.  It does assert exactly that, inside a check title.  Recorded here so the premise is not inherited", "V6 (FAILS) the quoted sample size is the membership count, not the kinematic sample.  This asserts every group's dispersion rests on at least five velocities, which is the minimum the sample cut was written to guarantee.  It does not: the N >= 5 cut counts members, and velocities are a subset", "V7 (FAILS) the bootstrap over 26 groups treats them as independent draws.  This asserts no galaxy is a member of two groups.  Two pairs violate it -- one host is simultaneously a satellite of another host, and one pair are each other's satellites -- so the effective sample is smaller than 26 and the bootstrap band is correspondingly a little too narrow", "V8 (FAILS) g06's docstring says the baryon budget is 'a SUM OVER MEASURED GALAXIES, not a scaling relation' and that every galaxy 'has its own distance'.  This asserts fewer than 10% of members carry the catalogue's 'mem' flag, i.e. a distance ASSIGNED from group membership rather than measured.  A 'mem' galaxy's K_s luminosity and HI mass inherit the group distance, so they are not independent measurements", "V12 (FAILS) the enclosed-mass discipline g06 claims is not applied to its own external-field diagnostic.  This asserts E2's ratio is unchanged when the enclosed field replaces the total-mass one.  It changes by 40%.  The headline is unaffected -- the diagnostic only supports the choice of branch, and R4 brackets that choice independently -- but the claim 'enclosed, never total' is not true of every number in the file", "W2 mutation -- shuffle the dispersions across groups in the closed form.  This reproduces g06's own M3 warning independently: the MEDIAN boost is a marginal quantity and largely survives the shuffle, so the median alone is weak evidence about individual systems.  Asserted so the warning is on this file's record too, and it FAILS in the direction that says the median is marginal"]   rc=1

@@ -135,9 +135,12 @@ def main():
         value,residual,extra=response(bkg,k)
         opposite,_,_=response(bkg,-k)
         transfer.append(dict(k=k,real=float(value.real),imag=float(value.imag),residual=residual,
+                             radial_equation_error=float(abs(extra['radial_equation_residual'])/(1+k*k)),
+                             charge_residual=float(abs(extra['charge'])/(1+k*k)),
                              conjugacy_error=float(abs(opposite-value.conjugate()))))
     check('full sourced constraints and reality condition',
-          all(r['residual']<2e-8 and r['conjugacy_error']<2e-8 for r in transfer),transfer)
+          all(r['residual']<2e-8 and r['conjugacy_error']<2e-8
+              and r['radial_equation_error']<2e-8 and r['charge_residual']<2e-8 for r in transfer),transfer)
     # Translation-invariant static coefficients after the background lapse is
     # factored out; time propagation is handled by the full angular equation.
     for length,nsize in ((12.,1024),(12.,2048),(18.,2048),(18.,4096)):
@@ -209,13 +212,14 @@ def main():
     manifest=dict(schema_version=1,claim_id='C-H-cylinder-conserved-source-causal-screen',
         repository=dict(commit=payload['commit'],dirty=bool(subprocess.check_output(['git','status','--porcelain'],text=True))),
         command='python3 '+str((HERE/'g03_retarded_screen.py').relative_to(ROOT)),
-        environment=dict(software=['Python '+sys.version.split()[0],'NumPy '+np.__version__,'SymPy '+sp.__version__],hardware='CPU'),
+        environment=dict(software=['Python '+sys.version.split()[0],'NumPy '+np.__version__,'SymPy '+sp.__version__,'mpmath '+mp.__version__],hardware='CPU'),
         mathematics=dict(assertion_tested='Conserved-source, shift-inclusive radial curvature support on the exact cylinder',
                          coefficient_domain='SymPy exact and complex128 Fourier response',
                          conventions='alpha=1, xi alpha=.2, Lambda/alpha^2=.03, cylindrical R x S^2',
                          inputs=[dict(path=str((HERE/name).relative_to(ROOT)),sha256=hashlib.sha256((HERE/name).read_bytes()).hexdigest())
                                  for name in ('g03_retarded_screen.py','g03_full_variation.py','g03_action_gate.py')],
-                         bounds=dict(box_lengths=[12,18],meshes=[1024,2048,4096],source_support=[-.45,.45]),
+                         bounds=dict(box_lengths=[12,18],meshes=[1024,2048,4096],source_support=[-.45,.45],
+                                     high_precision_digits=[70,90],small_alpha_xi=[1e-8,1e-12]),
                          non_claims=['ordinary-matter source realization','original compact-domain no-go','generic DOF count','PPN']),
         randomness=dict(used=False,generator='',seed=None),
         run=dict(started_at=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime(start)),runtime_seconds=time.time()-start,exit_status=int(bool(failures))),

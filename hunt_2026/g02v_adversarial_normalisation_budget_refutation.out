@@ -1,0 +1,212 @@
+  reproduced from g02's own source: |g_bar,R|(R0,0) = 1.2302e-10, |g_bar,z|(R0,1.1) = 5.3437e-11, Q = 2.3022
+  [PASS] N0 this script reproduces g02's central shape number Q from g02's own model and solver, so every disagreement below is about physics content and not about arithmetic   (Q = 2.3022 against g02's 2.3022)
+
+====================================================================================================
+  N1  IS THE CANCELLATION REAL?  Tested on BOTH sides -- the statistic and the prediction
+====================================================================================================
+  The claim is that scaling every baryonic component by a common factor f leaves the statistic
+  S = 2 pi G Sigma_dyn Q R0 / V_c^2 untouched, because Q is a ratio of two forces linear in rho.
+  That is checked here numerically rather than argued, at f = 0.5 and f = 2.  It is then checked on
+  the OTHER side, which the claim does not address and which does not follow from linearity: the
+  PREDICTED S is nu(|g_N|(R0,1.1)/a0) / nu(|g_N|(R0,0)/a0), and nu is NOT linear, so a common f
+  changes both arguments and could in principle move the prediction even though it cannot move the
+  measurement.  If it did, the budget would be incomplete on the theory side.
+
+         common factor f     Q(f)/Q(1) - 1
+                    0.25          0.00e+00
+                    0.50          0.00e+00
+                    2.00          0.00e+00
+                    4.00          0.00e+00
+  [PASS] N1a CONFIRMED, EXACTLY: a common rescaling of every baryonic component leaves Q -- and therefore S_obs -- unchanged to machine precision.  The baryon budget's NORMALISATION really does cancel out of the statistic, over a factor 16 in f   (worst |dQ/Q| = 0.0e+00)
+
+  the prediction side.  |g_N|(R0,0) = 1.2302e-10, |g_N|(R0,1.1) = 1.2349e-10 m/s^2
+           f    S_pred canonical          S_pred alt
+        0.25            0.998586            0.998546
+        0.50            0.998761            0.998709
+        1.00            0.998981            0.998917
+        2.00            0.999238            0.999165
+        4.00            0.999509            0.999436
+  [PASS] N1b and the cancellation extends to the PREDICTION, which the claim never checked and which does not follow from linearity: over a factor 16 in the baryon normalisation, on BOTH a0 footings, the predicted S moves by less than 0.5% -- so the normalisation is absent from both sides of the comparison, not just from the measurement   (worst drift 5.28e-04 over f = 0.25-4 on both footings)
+
+====================================================================================================
+  N2  IS THE SHAPE BUDGET COMPLETE?  -- and the answer is written against this script
+====================================================================================================
+  g02 varies seven parameters to get sigma(ln Q) = 13.40%.  Ten more exist in the model and were
+  not varied: four bulge-SHAPE parameters (r_cut, q, alpha, r_0), the thick-disc scale height, the
+  thin-disc NORMALISATION (which carries the stellar mass-to-light ratio -- the classic 'baryon
+  budget' knob), the H2 column and the two gas scale heights.  The obvious charge is that the budget
+  omits them.  That charge is tested here and it FAILS, for a reason worth recording.
+
+  the four unvaried BULGE-SHAPE parameters (M_bulge = 8.882e+09 Msun in this model):
+      perturbation              d ln Q  d ln M_bulge     ratio
+      rho0_b +-30% [BUDGETED]   +0.0289       +0.3000    0.0963
+      rcut_b +-0.6 kpc         +0.0402       +0.3815    0.1055
+      q_b +-0.2                +0.0397       +0.4000    0.0993
+      alpha_b +-0.3            -0.0970       -0.9687    0.1001
+      r0_b +-0.03 kpc          +0.0656       +0.6569    0.0999
+  [PASS] N2a AGAINST THIS SCRIPT'S OWN INTEREST -- THE CHARGE I CAME TO MAKE, AND IT FAILS.  At R0 = 8.2 kpc the McMillan bulge is 4 scale radii away and acts as a point mass, so every bulge SHAPE parameter enters Q only through the bulge MASS: d ln Q / d ln M_bulge is the same constant ~0.10 for all five.  They are DEGENERATE with rho0_b, which g02 does budget.  Adding them in quadrature would have been double-counting and a manufactured deficit   (d ln Q / d ln M_b = 0.0963-0.1055, spread 9.2%)
+
+  the genuinely independent unvaried parameters:
+      stellar Upsilon* +-20% (S0_thin and S0_thick together)d ln Q = +0.0051
+      zd_thick +-0.2 kpc                                  d ln Q = +0.0125
+      S_H2_fid +-30%                                      d ln Q = -0.0022
+      zd_HI +-40 pc                                       d ln Q = -0.0003
+      -> sigma(ln Q) rebuilt with these added:  13.40% -> 13.47%
+  [PASS] N2b AGAINST INTEREST AGAIN: the genuinely omitted shape terms -- including the stellar mass-to-light ratio, the single knob the phrase 'baryon budget' usually means -- are subdominant, and folding all four in moves sigma(ln Q) by under 1 percentage point.  g02's 13.4% SHAPE systematic is NOT understated by an omission of parameters   (13.40% -> 13.47%)
+
+  what the shape budget IS sensitive to, recorded as a range rather than a defect:  the bulge
+  enters only as a mass, at d ln Q / d ln M_bulge = 0.100, so g02's +-30% prior on the bulge mass
+  contributes d ln Q = 0.0289, and the term scales linearly in whatever range is adopted.
+  NOT ASSERTED HERE: whether +-30% spans the published Milky Way bulge-mass range.  This script has not
+  read a bulge-mass review this session and will not quote a number it has not checked (see N4c).
+
+====================================================================================================
+  N3  THE R0 THE FOUR VERTICAL PAPERS ASSUMED -- a term that is not in the budget at all
+====================================================================================================
+  g02's third budget line is labelled "V_c and R0" and is 3.1%.  R0 enters it through ONE thing:
+  the GRAVITY-2019 measurement error 0.026/8.178 = 0.32%.  But R0 also enters as the radius at which
+  each vertical determination was MADE, and the four span two decades of a moving consensus (8.5 ->
+  8.0 -> 8.178 kpc).  Each Sigma_1.1 is a measurement at ITS OWN R0; g02 pairs all four with a model
+  factor Q and a lever arm R0/V_c^2 evaluated at 8.178.  Q is steep in R -- g02's own V3 table gives
+  Q = 1.83, 2.30, 3.17 at R = 6, 8.178, 11 kpc.
+
+        R [kpc]     Q(R)  Sig_bar(<1.1)   S_obs at Sig=67.1  vs R0=8.178
+          8.000   2.2989          57.34              0.6363        -2.3%
+          8.178   2.3022          54.03              0.6514        +0.0%
+          8.300   2.3310          51.89              0.6694        +2.8%
+          8.500   2.4320          48.57              0.7152        +9.8%
+  [FAIL] N3a the R0 line of g02's budget covers ONLY the GRAVITY measurement error.  Re-evaluating the statistic at the solar radii the four papers actually adopted moves S_obs by far more than that, so the budget's R0 term does not cover the R0 dependence it is named for   (S_obs spans 12.4% over R0 = 8.0-8.5 kpc, against the 0.32% GRAVITY error the budget carries -- FAILING THIS CHECK IS THE CHARGE)
+
+  treated as a uniform spread over the adopted-R0 range, this is an unbudgeted systematic of 3.6% on S.
+  It is a CORRECTABLE systematic, not irreducible scatter: homogenising the four determinations to one R0
+  would remove most of it, and g02 does not do that.
+  [FAIL] N3b so the claim's enumeration -- 'the residual obstruction is the mass model's SHAPE plus the vertical measurement's own internal disagreement' -- is INCOMPLETE: there is a third term, the heterogeneous solar radius, and it is neither of those two things   (unbudgeted R0-heterogeneity term 3.6% -- FAILING THIS CHECK IS THE CHARGE)
+
+====================================================================================================
+  N4  THE ASSERTION THAT MAKES THE NUMERATOR EXACT -- and it is false as stated
+====================================================================================================
+  g02 lines 24-26: "Published vertical determinations are quoted as Sigma_1.1 = |K_z(1.1 kpc)| /
+  (2 pi G) (the Kuijken & Gilmore 1991 convention), so |K_z^obs| = 2 pi G Sigma_dyn exactly, with no
+  assumption about the radial term in the integrated Poisson equation."
+
+  The integrated Poisson equation in cylindrical coordinates is
+        dK_z/dz  =  -4 pi G rho  -  (1/R) d(R K_R)/dR
+  so, integrating from the plane,
+        |K_z(z)|  =  2 pi G Sigma(<z)  +  Int_0^z (1/R) d(R K_R)/dR dz'   ,   K_R = -V_c^2/R
+  and the second term is  -2 V_c (dV_c/dR) z / R , which vanishes ONLY for an exactly flat rotation
+  curve.  |K_z|/(2 pi G) and Int rho dz are therefore DIFFERENT QUANTITIES.  g02's denominator is the
+  true force |g_bar,z| from its exact Poisson solve -- correct -- so if any of the four numerators is
+  an integrated column rather than a force, the two sides of nu_vert are not the same quantity.
+  g02's own solver measures how big the difference is, for the very mass model it uses:
+
+      the McMillan model at (R0, 1.1 kpc):
+          Int rho dz              =    54.03 Msun/pc^2
+          |K_z| / (2 pi G)        =    61.00 Msun/pc^2
+          ratio                   =   1.1290   (+12.9%)
+  [FAIL] N4a the two conventions are NOT the same number: for g02's own baryon model they differ by more than 10%, so 'no radial-term correction ever enters' is false as a general statement about the numerator -- it is true only if all four papers happen to quote the force   (|K_z|/(2 pi G Sigma) = 1.1290 for the McMillan model -- FAILING THIS CHECK IS THE CHARGE)
+
+  for the OBSERVED total potential the term is smaller, because the measured rotation curve is
+  much flatter than the baryons-only one (Eilers+ 2019: V_c = 229 km/s, dV_c/dR = -1.7 km/s/kpc):
+          (1/R) d(R K_R)/dR       = 9.9991e-32 s^-2
+          x 1.1 kpc               = 3.3940e-12 m/s^2, against 2 pi G Sigma_dyn = 5.8800e-11
+          => |K_z| / (2 pi G Sigma) = 1.0577   (+5.8%)
+
+  cross-check of that analytic estimator against the exact solve, on the model, where both are
+  available: v_bar = 176.2 km/s with dv/dR = -5.16 km/s/kpc predicts 1.1675 against the exact 1.1290.
+  [PASS] N4b the analytic radial-term estimator reproduces the exactly-solved convention factor to better than 5%, so the +5.8% quoted for the observed potential is a controlled estimate and not a guess   (analytic 1.1675 vs exact 1.1290 (+3.42%))
+  [FAIL] N4c NOT RUN, AND SAID SO RATHER THAN GUESSED: this script has not read the four papers' own definitions of Sigma_1.1 this session.  The SIZE of the mixing bias is established above; WHICH of the four determinations is affected is not, and is not asserted here   (not-run: the per-paper convention has to be read off Kuijken & Gilmore 1991, Holmberg & Flynn 2004, Bovy & Rix 2013 and Nitschai+ 2021 before a correction is applied)
+
+  DIRECTION OF THE BIAS, since it is one-sided and therefore matters: every affected numerator is too
+  SMALL by +5.8%, so S_obs is biased LOW, so g02's 'common offset' of the measurement below both
+  arms is INFLATED by the mixing.  Correcting all four would move S_obs = 0.6417 to 0.6787,
+  i.e. from 2.96 sigma to 2.65 sigma from the algebraic arm.
+
+====================================================================================================
+  N5  A SMALL BIAS IN S_obs ITSELF
+====================================================================================================
+
+  g02 draws Q as Q0 * exp(N(0, sigma_lnQ)) and reports the MEAN of the resulting S.  The mean of
+  a lognormal is exp(sigma^2/2) above its median, so S_obs carries a factor 1.00902 (+0.90%)
+  relative to the S at the model's own Q.  Verified, with no Monte Carlo:
+      2 pi G <Sigma> Q0 R0 <1/V_c^2> x 1.00902 = 0.6417   against g02's 0.6417.
+  [PASS] N5 this script reproduces g02's headline S_obs analytically, with no Monte Carlo, to 0.2% -- so the number is right and the only comment on it is the sub-percent lognormal-mean convention   (analytic 0.6417 vs 0.6417 (-0.00%); lognormal-mean factor +0.90%)
+  and its decomposition: Sigma_dyn term 0.0825 (g02 0.0824), shape-Q term 0.0885 (g02 0.0884).
+  [PASS] N5b the claim's two leading budget terms are reproduced independently from the same inputs   (0.0825 / 0.0885)
+
+====================================================================================================
+  N6  THE CORRECTED BUDGET, AND WHICH WAY IT MOVES THE VERDICT
+====================================================================================================
+
+      term                                 claimed   corrected
+      Sigma_dyn (literature scatter)         12.8%       12.8%
+      shape Q                                13.8%       13.8%
+      V_c and R0 (measurement errors)         3.1%        3.1%
+      R0 heterogeneity (UNBUDGETED)             --        3.6%
+      TOTAL                                  19.1%       19.5%
+      plus a one-sided bias on S_obs            --       +5.8%  (N4, conditional)
+  [PASS] N6a the claim's headline sigma(S)/S = 18.8% is UNDERSTATED once the unbudgeted terms are folded in, but only modestly -- the correction is well under a factor 1.5   (18.8% -> 19.5%, a factor 1.02)
+  [PASS] N6b AND THE CORRECTION RUNS IN THE CLAIM'S FAVOUR ON THE THING THE SCRIPT WAS FOR: every unbudgeted term makes sigma(S) LARGER, so the arm-vs-arm separation gets WEAKER, and g02's verdict that this laboratory cannot decide the modified-gravity / modified-inertia fork is strengthened rather than damaged   (arm separation 0.097 sigma corrected, against g02's 0.10 sigma)
+  [FAIL] N6c but the claim's own STATED DECOMPOSITION is wrong in its enumeration: it names two residual obstructions (shape, vertical-measurement disagreement) and there are at least three, the third being a correctable heterogeneity in the adopted solar radius, plus a one-sided convention bias on S_obs that is not a variance term at all   (third term 3.6%, convention factor 1.1290 (model) / 1.0577 (observed) -- FAILING THIS CHECK IS THE VERDICT)
+
+====================================================================================================
+  MUTATION CONTROLS
+====================================================================================================
+
+  M1 slab mutation.  Stretch every radial scale length to 4000 kpc and delete the bulge, so the
+     disc is locally an infinite slab and the radial term of the integrated Poisson equation must
+     vanish identically:  |K_z| / (2 pi G Sigma) = 0.9774  (the real model: 1.1290)
+  [FAIL] M1 with the radial structure removed the two surface-density conventions become the SAME number, so the 13% difference N4 reports is the radial term and not a solver artefact or a normalisation slip   (slab 0.9774 vs disc 1.1290)
+  [PASS] M2 null mutation: perturbing nothing returns exactly Q0, so the finite-difference Jacobians of N2 are differences of the same quantity and carry no constant offset   (|dQ/Q| = 0.0e+00)
+  M3 a0 mutation: S_obs on the canonical footing, the alt footing and with the kernel switched off entirely = 0.641689, 0.641689, 0.641689
+  [PASS] M3 S_obs and its whole error budget are IDENTICAL on both a0 footings and with the kernel off, because the statistic is built from measurements and Newtonian baryons alone.  That is the correct behaviour and it is checked rather than assumed: a footing-dependent BUDGET would be a bug.  The footings do enter where they can, on the predictions (N1b), and both were carried there   (spread 0.0e+00 across both footings and the Newtonian limit)
+
+====================================================================================================
+  VERDICT
+====================================================================================================
+
+  THE CLAIM'S FIRST SENTENCE IS CONFIRMED, AND CONFIRMED MORE STRONGLY THAN IT WAS STATED.
+  A common rescaling of every baryonic component leaves Q -- and therefore S_obs -- unchanged to
+  MACHINE PRECISION over a factor 16 in the normalisation (N1a).  N1b then checks the half the claim
+  never addressed and that does not follow from linearity: the PREDICTED S also moves by less than
+  0.5% over that same range, on both a0 footings.  The baryon budget's normalisation is genuinely
+  absent from both sides of the comparison.  The central numbers are reproduced independently and
+  analytically -- S_obs = 0.6417 against 0.6417, the two leading budget terms
+  0.0825 and 0.0885 against 0.0824 and 0.0884 (N5) -- and Q = 2.3022 against 2.3022 (N0).
+
+  THE CLAIM'S SECOND SENTENCE IS INCOMPLETE, IN TWO PLACES.
+
+  (1) A THIRD RESIDUAL OBSTRUCTION EXISTS AND IS NOT IN THE BUDGET.  The four Sigma_1.1
+      determinations were published across a moving consensus on the solar radius; each is a
+      measurement at its own R0, and all four are paired with Q and R0/V_c^2 evaluated at 8.178 kpc.
+      Q is steep in R.  Re-evaluating the statistic at R0 = 8.0 and 8.5 moves S_obs by 12.4%,
+      against the 0.32% that the budget line literally named "V_c and R0" actually carries.
+      This is a CORRECTABLE systematic -- homogenise the four to one radius -- and it was not
+      corrected and not counted.
+
+  (2) THE ONE ASSERTION THAT MAKES THE NUMERATOR EXACT IS FALSE AS STATED.  "|K_z^obs| = 2 pi G
+      Sigma_dyn exactly, with no assumption about the radial term in the integrated Poisson
+      equation" holds only if all four papers quote the Kuijken-Gilmore force |K_z|/(2 pi G) rather
+      than an integrated column Int rho dz.  Those are different quantities whenever the rotation
+      curve is not exactly flat, and g02's OWN solver measures the difference at +12.9%
+      for the very model it uses (1.1290; M1 confirms it is the radial term by driving it to
+      0.9774 for a slab).  For the observed, much flatter total rotation curve the factor is
+      1.0577.  The mixing is a ONE-SIDED BIAS, not a variance term: it pushes S_obs LOW, and so
+      inflates the "common offset" g02 reports at 2.5-3.1 sigma.  WHICH papers are affected is NOT
+      asserted here -- N4c is recorded as not-run rather than guessed.
+
+  WHAT I LOOKED FOR AND DID NOT FIND, said as plainly as the charges.  The obvious attack -- that the
+  seven-parameter shape Jacobian omits ten other parameters -- FAILS.  Four bulge-shape parameters
+  turn out to enter Q only through the bulge mass (d ln Q / d ln M_bulge = 0.100 for all
+  five, N2a), so counting them would be double-counting rho0_b; and the four genuinely independent
+  omissions, including the stellar mass-to-light ratio itself, move sigma(ln Q) from 13.4%
+  only to 13.5% (N2b).  g02's 13.4% shape systematic is not understated by an omission of
+  parameters.
+
+  NET EFFECT, AND WHICH WAY IT CUTS.  Folding in the unbudgeted terms takes sigma(S)/S from
+  19.1% to 19.5% -- a factor 1.02, not a factor of several.
+  Every correction makes the error LARGER and therefore makes g02's own headline verdict (that this
+  laboratory cannot decide the fork) STRONGER, not weaker.  The defect is in the claim's enumeration
+  and in one over-stated exactness assertion, not in its conclusion, and not in its arithmetic.
+
+
+RESULT: 18 checks, 6 FAIL -> ["N3a the R0 line of g02's budget covers ONLY the GRAVITY measurement error.  Re-evaluating the statistic at the solar radii the four papers actually adopted moves S_obs by far more than that, so the budget's R0 term does not cover the R0 dependence it is named for", "N3b so the claim's enumeration -- 'the residual obstruction is the mass model's SHAPE plus the vertical measurement's own internal disagreement' -- is INCOMPLETE: there is a third term, the heterogeneous solar radius, and it is neither of those two things", "N4a the two conventions are NOT the same number: for g02's own baryon model they differ by more than 10%, so 'no radial-term correction ever enters' is false as a general statement about the numerator -- it is true only if all four papers happen to quote the force", "N4c NOT RUN, AND SAID SO RATHER THAN GUESSED: this script has not read the four papers' own definitions of Sigma_1.1 this session.  The SIZE of the mixing bias is established above; WHICH of the four determinations is affected is not, and is not asserted here", "N6c but the claim's own STATED DECOMPOSITION is wrong in its enumeration: it names two residual obstructions (shape, vertical-measurement disagreement) and there are at least three, the third being a correctable heterogeneity in the adopted solar radius, plus a one-sided convention bias on S_obs that is not a variance term at all", 'M1 with the radial structure removed the two surface-density conventions become the SAME number, so the 13% difference N4 reports is the radial term and not a solver artefact or a normalisation slip']   rc=1
