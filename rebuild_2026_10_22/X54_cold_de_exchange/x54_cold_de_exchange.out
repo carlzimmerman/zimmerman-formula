@@ -1,0 +1,102 @@
+X54_cold_de_exchange normal run; frozen 04200bb449
+kappa = 1/2 FITTED; footings never pooled; cold dark energy = gravitating field component, never a particle; not theory closed; the cosmological fit contains no a0
+binaries: vanilla 0d77bfa291546e4b, x54 debac46162c38fd5, patch d66bbc988cfac90d
+SN DES5: 1820 DES-SN5YR Dovekie (CFG684 loader)
+SN PP: 1580 Pantheon+ non-calibrators, zHD > 0.01
+SN U3: 22 Union3 nodes (CFG684 loader)
+
+== STEP 0 (stop rule)
+S0-1_C7_LCDM_chi2 PASS (required PASS) chi2 1003.475 (plik 582.40, lowTT 24.31, lowEE 396.72) vs C7 1003.475 | |diff| <= 2
+S0-2_CFG681_BAO_SN PASS (required PASS) BAO chi2 10.5515 Om 0.29703; BAO+PP chi2 1400.143 Om 0.30390 | (10.5515, 0.2970), (1400.143, 0.3039)
+S0-3_DESI_chain_w0wa PASS (required PASS) desy5 w -0.7521 wa -0.8611 | margestats -0.752, -0.86
+  DESI chains (w, wa, sd): {'desy5': (-0.7520679982018754, -0.8611043418200024, 0.057206253775028505, 0.22127931535586), 'pantheonplus': (-0.8379669735933118, -0.6165883622459394, 0.05516687715036528, 0.20755677965382843), 'union3': (-0.6668729291848666, -1.0852710298213986, 0.08848340882567489, 0.2932977885337551)}
+
+== machinery checks
+K2_xi0_equals_vanilla PASS (required PASS) max |dC/C| 0.00e+00; sigma8 0.827959 vs 0.827959 | <= 1e-4; <= 1e-5
+K1_background_identity_sign PASS (required PASS) {'C': {'xi': 0.01, 'rel_err_rate': 1.9010622052256787e-07, 'rel_err_total': 0.0012058258188921253}, 'D': {'xi': 0.3, 'rel_err_rate': 2.3180585023481744e-10, 'rel_err_total': 0.00012089853612421675}} | <= 2e-3 each
+K3_perturbation_growth PASS (required PASS) {'xi': 0.05, 'k_1_over_Mpc': 0.0338, 'class_growth': 8.542836599372784, 'ode_growth': 8.543207950189988, 'rel_err': 4.346737424265612e-05, 'class_growth_xi0': 8.582837156367326, 'ode_growth_xi0': 8.583173906586014, 'rel_err_xi0': 3.9233763914459097e-05, 'dilution_effect': 0.07360472567889431, 'total_effect_vs_xi0': 0.0046605284786123136} | rel err <= 3e-3 and effect >= 1 %
+K4_distances_vs_analytic PASS (required PASS) max rel dev D_M, H at BAO z: 2.57e-09 | <= 1e-4
+
+== profiles (graded chi2 = plik + lowTT + lowEE + Aprior + BAO + SN)
+REANALYSE: refits reused from results_run1.json (no new profile fits)
+
+  [C DES5] xi_hat -0.00122; dchi2(xi=0) 1.079; 95% [-0.00349, +0.00110] (closed True; unconverged/failed inside []) -> EXCHANGE EXCLUDED BEYOND [-0.0035, +0.0011]
+    F_made best -0.0086, ends -0.0247 / +0.0077 (CFG253 convention 0.03)
+    sqrtX(2.33) best 0.9974, 95% range [0.9926, 1.0024] vs CFG689 flat+theta* (0.68, 1.04) -> CONSISTENT; curvature-free (0.34, 1.21); reaches 0.909: False
+    a0(2.33) best: canonical 9.3357e-11, alt 1.1282e-10 m/s^2
+    S8 xi=0 0.8229, best 0.8313, ends 0.8474 / 0.8158
+    w_eff best: {'z': [0.0, 0.5, 1.0, 2.0], 'w_intrinsic': [-1.0001459728608348, -1.0004930739595266, -1.0011699702272006, -1.0039616210227047], 'w_apparent': [-0.9999988969743723, -0.9994007088960496, -0.9975740022349034, -0.9871198942438753], 'cpl_w0': -1.004292185527145, 'cpl_wa': 0.018419961349598033}
+
+  [C PP] xi_hat -0.00133; dchi2(xi=0) 1.247; 95% [-0.00363, +0.00102] (closed True; unconverged/failed inside []) -> EXCHANGE EXCLUDED BEYOND [-0.0036, +0.0010]
+    F_made best -0.0094, ends -0.0257 / +0.0071 (CFG253 convention 0.03)
+    sqrtX(2.33) best 0.9971, 95% range [0.9924, 1.0022] vs CFG689 flat+theta* (0.68, 1.05) -> CONSISTENT; curvature-free (0.32, 1.21); reaches 0.909: False
+    a0(2.33) best: canonical 9.3336e-11, alt 1.1280e-10 m/s^2
+    S8 xi=0 0.8227, best 0.8316, ends 0.8474 / 0.8158
+    w_eff best: {'z': [0.0, 0.5, 1.0, 2.0], 'w_intrinsic': [-1.0001584654257527, -1.0005353115286801, -1.001270305414222, -1.0043025839514954], 'w_apparent': [-0.9999988025756563, -0.9993494203746494, -0.9973665989937265, -0.9860276646571956], 'cpl_w0': -1.004658325099718, 'cpl_wa': 0.019990589981637018}
+
+  [C U3] xi_hat -0.00141; dchi2(xi=0) 1.389; 95% [-0.00370, +0.00095] (closed True; unconverged/failed inside []) -> EXCHANGE EXCLUDED BEYOND [-0.0037, +0.0009]
+    F_made best -0.0099, ends -0.0262 / +0.0066 (CFG253 convention 0.03)
+    sqrtX(2.33) best 0.9970, 95% range [0.9922, 1.0021] vs CFG689 flat+theta* (0.69, 1.07) -> CONSISTENT; curvature-free (0.42, 1.26); reaches 0.909: False
+    a0(2.33) best: canonical 9.3321e-11, alt 1.1278e-10 m/s^2
+    S8 xi=0 0.8223, best 0.8315, ends 0.8472 / 0.8159
+    w_eff best: {'z': [0.0, 0.5, 1.0, 2.0], 'w_intrinsic': [-1.0001674844444186, -1.0005658089472906, -1.0013427632014933, -1.004548933640556], 'w_apparent': [-0.9999987344243901, -0.9993123924961888, -0.9972168849352746, -0.9852401026489588], 'cpl_w0': -1.0049225439723848, 'cpl_wa': 0.021123945303958603}
+
+  [D DES5] xi_hat +0.11008; dchi2(xi=0) 2.758; 95% [-0.01972, +0.20000] (closed False; unconverged/failed inside []) -> UNDECIDED
+    F_made best +0.0902, ends -0.0186 / +0.1503 (CFG253 convention 0.03)
+    sqrtX(2.33) best 1.0685, 95% range [0.9882, 1.1278] vs CFG689 flat+theta* (0.68, 1.04) -> TENSION; curvature-free (0.34, 1.21); reaches 0.909: False
+    a0(2.33) best: canonical 1.0001e-10, alt 1.2086e-10 m/s^2
+    S8 xi=0 0.8229, best 0.7976, ends 0.8286 / 0.7797
+    w_eff best: {'z': [0.0, 0.5, 1.0, 2.0], 'w_intrinsic': [-0.9633066666666666, -0.9633066666666666, -0.9633066666666666, -0.9633066666666666], 'w_apparent': [-1.0002759395768157, -1.0927251404970377, -1.3231977949102287, -7.890822111208611], 'cpl_w0': -0.5587867000693926, 'cpl_wa': -2.234910308339644}
+
+  [D PP] xi_hat +0.09918; dchi2(xi=0) 1.936; 95% [-0.04104, +0.20000] (closed False; unconverged/failed inside []) -> UNDECIDED
+    F_made best +0.0823, ends -0.0397 / +0.1502 (CFG253 convention 0.03)
+    sqrtX(2.33) best 1.0615, 95% range [0.9756, 1.1278] vs CFG689 flat+theta* (0.68, 1.05) -> TENSION; curvature-free (0.32, 1.21); reaches 0.909: False
+    a0(2.33) best: canonical 9.9357e-11, alt 1.2007e-10 m/s^2
+    S8 xi=0 0.8227, best 0.7997, ends 0.8341 / 0.7799
+    w_eff best: {'z': [0.0, 0.5, 1.0, 2.0], 'w_intrinsic': [-0.96694, -0.96694, -0.96694, -0.96694], 'w_apparent': [-1.0002486117939122, -1.0830198099001838, -1.2839675766966774, -4.846801797902268], 'cpl_w0': -0.6095445734274825, 'cpl_wa': -1.9492204312635883}
+
+  [D U3] xi_hat +0.11740; dchi2(xi=0) 1.861; 95% [-0.05244, +0.20000] (closed False; unconverged/failed inside []) -> UNDECIDED
+    F_made best +0.0955, ends -0.0516 / +0.1499 (CFG253 convention 0.03)
+    sqrtX(2.33) best 1.0732, 95% range [0.9690, 1.1278] vs CFG689 flat+theta* (0.69, 1.07) -> TENSION; curvature-free (0.42, 1.26); reaches 0.909: False
+    a0(2.33) best: canonical 1.0045e-10, alt 1.2140e-10 m/s^2
+    S8 xi=0 0.8223, best 0.7966, ends 0.8364 / 0.7811
+    w_eff best: {'z': [0.0, 0.5, 1.0, 2.0], 'w_intrinsic': [-0.9608666666666666, -0.9608666666666666, -0.9608666666666666, -0.9608666666666666], 'w_apparent': [-1.0002942923742206, -1.0993115482875737, -1.3506781024544854, -13.503282368194656], 'cpl_w0': -0.5258236536853489, 'cpl_wa': -2.427584572344216}
+
+== POST-HOC S1 (reported only): M-D upper side, xi = 0.3, 0.4 seeded from the xi = 0.2 refit
+  S1 D DES5 xi=+0.3000: chi2 2657.803 (cmb 1011.80, bao 13.63, sn 1632.37); H0 66.35, omega_c 0.14620, S8 0.7616; conv True
+  S1 D DES5 xi=+0.4000: CLASS FAIL =>input_fzero_ridder(L:1124) :error; root must be bracketed in zriddr.
+
+  [D DES5] xi_hat +0.11086; dchi2(xi=0) 2.761; 95% [-0.01968, +0.23956] (closed True; unconverged/failed inside []) -> EXCHANGE ALLOWED (bound xi in [-0.0197, +0.2396])
+    F_made best +0.0908, ends -0.0185 / +0.1737 (CFG253 convention 0.03)
+    sqrtX(2.33) best 1.0690, 95% range [0.9882, 1.1550] vs CFG689 flat+theta* (0.68, 1.04) -> TENSION; curvature-free (0.34, 1.21); reaches 0.909: False
+    a0(2.33) best: canonical 1.0006e-10, alt 1.2092e-10 m/s^2
+    S8 xi=0 0.8229, best 0.7975, ends 0.8286 / 0.7726
+    w_eff best: {'z': [0.0, 0.5, 1.0, 2.0], 'w_intrinsic': [-0.963045, -0.963045, -0.963045, -0.963045], 'w_apparent': [-1.0002779077172372, -1.0934288107441006, -1.32609997597622, -8.26092418184108], 'cpl_w0': -0.5552014038596217, 'cpl_wa': -2.2555795112646564}
+  S1 D PP xi=+0.3000: chi2 2412.811 (cmb 1011.44, bao 13.95, sn 1387.43); H0 66.32, omega_c 0.14623, S8 0.7626; conv True
+  S1 D PP xi=+0.4000: CLASS FAIL =>input_fzero_ridder(L:1124) :error; root must be bracketed in zriddr.
+
+  [D PP] xi_hat +0.09903; dchi2(xi=0) 1.936; 95% [-0.04103, +0.23592] (closed True; unconverged/failed inside []) -> EXCHANGE ALLOWED (bound xi in [-0.0410, +0.2359])
+    F_made best +0.0821, ends -0.0397 / +0.1714 (CFG253 convention 0.03)
+    sqrtX(2.33) best 1.0614, 95% range [0.9756, 1.1525] vs CFG689 flat+theta* (0.68, 1.05) -> TENSION; curvature-free (0.32, 1.21); reaches 0.909: False
+    a0(2.33) best: canonical 9.9348e-11, alt 1.2006e-10 m/s^2
+    S8 xi=0 0.8227, best 0.7997, ends 0.8341 / 0.7737
+    w_eff best: {'z': [0.0, 0.5, 1.0, 2.0], 'w_intrinsic': [-0.9669916666666667, -0.9669916666666667, -0.9669916666666667, -0.9669916666666667], 'w_apparent': [-1.0002482231950394, -1.0828826723289258, -1.2834236996618624, -4.820119138961596], 'cpl_w0': -0.6102756687545989, 'cpl_wa': -1.9451929756107713}
+  S1 D U3 xi=+0.3000: chi2 1048.403 (cmb 1010.72, bao 14.78, sn 22.91); H0 66.25, omega_c 0.14632, S8 0.7654; conv True
+  S1 D U3 xi=+0.4000: CLASS FAIL =>input_fzero_ridder(L:1124) :error; root must be bracketed in zriddr.
+
+  [D U3] xi_hat +0.11768; dchi2(xi=0) 1.862; 95% [-0.05240, +0.27877] (closed True; unconverged/failed inside []) -> EXCHANGE ALLOWED (bound xi in [-0.0524, +0.2788])
+    F_made best +0.0957, ends -0.0516 / +0.1942 (CFG253 convention 0.03)
+    sqrtX(2.33) best 1.0733, 95% range [0.9690, 1.1826] vs CFG689 flat+theta* (0.69, 1.07) -> TENSION; curvature-free (0.42, 1.26); reaches 0.909: False
+    a0(2.33) best: canonical 1.0047e-10, alt 1.2142e-10 m/s^2
+    S8 xi=0 0.8223, best 0.7965, ends 0.8364 / 0.7687
+    w_eff best: {'z': [0.0, 0.5, 1.0, 2.0], 'w_intrinsic': [-0.9607749999999999, -0.960775, -0.9607749999999999, -0.9607749999999999], 'w_apparent': [-1.0002949818664943, -1.0995600750237173, -1.351729027602218, -13.871849721593321], 'cpl_w0': -0.52460967955125, 'cpl_wa': -2.4348018063148}
+
+== VERDICT (primary M-C, DES-SN5YR): EXCHANGE EXCLUDED BEYOND [-0.0035, +0.0011]; a0 secondary: CONSISTENT
+  C_DES5: EXCHANGE EXCLUDED BEYOND [-0.0035, +0.0011]; dchi2(xi=0) 1.079; xi_hat -0.00122; 95% [-0.0034908000000000005, 0.0010991999999999998]; a0: CONSISTENT
+  C_PP: EXCHANGE EXCLUDED BEYOND [-0.0036, +0.0010]; dchi2(xi=0) 1.247; xi_hat -0.00133; 95% [-0.0036308, 0.0010152]; a0: CONSISTENT
+  C_U3: EXCHANGE EXCLUDED BEYOND [-0.0037, +0.0009]; dchi2(xi=0) 1.389; xi_hat -0.00141; 95% [-0.003702, 0.0009487999999999996]; a0: CONSISTENT
+  D_DES5: UNDECIDED; dchi2(xi=0) 2.758; xi_hat +0.11008; 95% [-0.01971999999999996, 0.2]; a0: TENSION
+  D_PP: UNDECIDED; dchi2(xi=0) 1.936; xi_hat +0.09918; 95% [-0.04103999999999999, 0.2]; a0: TENSION
+  D_U3: UNDECIDED; dchi2(xi=0) 1.861; xi_hat +0.11740; 95% [-0.05243999999999999, 0.2]; a0: TENSION
+checks: 7/7 have their required outcome; CLASS runs 60
+done in 293 s

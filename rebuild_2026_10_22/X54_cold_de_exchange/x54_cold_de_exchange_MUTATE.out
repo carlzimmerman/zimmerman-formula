@@ -1,0 +1,19 @@
+X54_cold_de_exchange MUTATE run; frozen 04200bb449
+kappa = 1/2 FITTED; footings never pooled; cold dark energy = gravitating field component, never a particle; not theory closed; the cosmological fit contains no a0
+binaries: vanilla 0d77bfa291546e4b, x54 debac46162c38fd5, patch d66bbc988cfac90d
+SN DES5: 1820 DES-SN5YR Dovekie (CFG684 loader)
+SN PP: 1580 Pantheon+ non-calibrators, zHD > 0.01
+SN U3: 22 Union3 nodes (CFG684 loader)
+
+== STEP 0 (stop rule)
+S0-1_C7_LCDM_chi2 PASS (required PASS) chi2 1003.475 (plik 582.40, lowTT 24.31, lowEE 396.72) vs C7 1003.475 | |diff| <= 2
+S0-2_CFG681_BAO_SN PASS (required PASS) BAO chi2 10.5515 Om 0.29703; BAO+PP chi2 1400.143 Om 0.30390 | (10.5515, 0.2970), (1400.143, 0.3039)
+S0-3_DESI_chain_w0wa PASS (required PASS) desy5 w -0.7521 wa -0.8611 | margestats -0.752, -0.86
+  DESI chains (w, wa, sd): {'desy5': (-0.7520679982018754, -0.8611043418200024, 0.057206253775028505, 0.22127931535586), 'pantheonplus': (-0.8379669735933118, -0.6165883622459394, 0.05516687715036528, 0.20755677965382843), 'union3': (-0.6668729291848666, -1.0852710298213986, 0.08848340882567489, 0.2932977885337551)}
+
+== machinery checks
+K2_xi0_equals_vanilla PASS (required PASS) max |dC/C| 0.00e+00; sigma8 0.827959 vs 0.827959 | <= 1e-4; <= 1e-5
+K1_background_identity_sign FAIL (required FAIL) {'C': {'xi': 0.01, 'rel_err_rate': 2.000000188287231, 'rel_err_total': 0.0012138983870024795}, 'D': {'xi': 0.3, 'rel_err_rate': 1.998425761872917, 'rel_err_total': 0.001456415626529934}} | <= 2e-3 each
+K3_perturbation_growth FAIL (required FAIL) {'xi': 0.05, 'k_1_over_Mpc': 0.0338, 'class_growth': 8.29958324054449, 'ode_growth': 7.347410826614876, 'rel_err': 0.12959291870280532, 'class_growth_xi0': 8.582837156367326, 'ode_growth_xi0': 8.583173906586014, 'rel_err_xi0': 3.9233763914459097e-05, 'dilution_effect': 0.07652860979207066, 'total_effect_vs_xi0': 0.03300236398085443} | rel err <= 3e-3 and effect >= 1 %
+
+X54 MUTATE COMPLETE: 6/6 checks have their required outcome; failing as required: ['K1_background_identity_sign', 'K3_perturbation_growth']

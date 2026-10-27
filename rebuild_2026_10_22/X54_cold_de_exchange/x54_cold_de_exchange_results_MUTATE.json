@@ -1,0 +1,140 @@
+{
+ "lane": "X54_cold_de_exchange",
+ "criteria": "04200bb449",
+ "date": "2026-10-26",
+ "mutate": true,
+ "checks": {
+  "S0-1_C7_LCDM_chi2": {
+   "pass": true,
+   "required": "PASS",
+   "value": "chi2 1003.475 (plik 582.40, lowTT 24.31, lowEE 396.72) vs C7 1003.475",
+   "threshold": "|diff| <= 2"
+  },
+  "S0-2_CFG681_BAO_SN": {
+   "pass": true,
+   "required": "PASS",
+   "value": "BAO chi2 10.5515 Om 0.29703; BAO+PP chi2 1400.143 Om 0.30390",
+   "threshold": "(10.5515, 0.2970), (1400.143, 0.3039)"
+  },
+  "S0-3_DESI_chain_w0wa": {
+   "pass": true,
+   "required": "PASS",
+   "value": "desy5 w -0.7521 wa -0.8611",
+   "threshold": "margestats -0.752, -0.86"
+  },
+  "K2_xi0_equals_vanilla": {
+   "pass": true,
+   "required": "PASS",
+   "value": "max |dC/C| 0.00e+00; sigma8 0.827959 vs 0.827959",
+   "threshold": "<= 1e-4; <= 1e-5"
+  },
+  "K1_background_identity_sign": {
+   "pass": false,
+   "required": "FAIL",
+   "value": {
+    "C": {
+     "xi": 0.01,
+     "rel_err_rate": 2.000000188287231,
+     "rel_err_total": 0.0012138983870024795
+    },
+    "D": {
+     "xi": 0.3,
+     "rel_err_rate": 1.998425761872917,
+     "rel_err_total": 0.001456415626529934
+    }
+   },
+   "threshold": "<= 2e-3 each"
+  },
+  "K3_perturbation_growth": {
+   "pass": false,
+   "required": "FAIL",
+   "value": {
+    "xi": 0.05,
+    "k_1_over_Mpc": 0.0338,
+    "class_growth": 8.29958324054449,
+    "ode_growth": 7.347410826614876,
+    "rel_err": 0.12959291870280532,
+    "class_growth_xi0": 8.582837156367326,
+    "ode_growth_xi0": 8.583173906586014,
+    "rel_err_xi0": 3.9233763914459097e-05,
+    "dilution_effect": 0.07652860979207066,
+    "total_effect_vs_xi0": 0.03300236398085443
+   },
+   "threshold": "rel err <= 3e-3 and effect >= 1 %"
+  }
+ },
+ "note": "kappa = 1/2 FITTED; footings never pooled; cold dark energy = gravitating field component, never a particle",
+ "binaries": {
+  "vanilla_sha256": "0d77bfa291546e4bce66724454899322e5f4026eb61ae546558da4528237853e",
+  "x54_sha256": "debac46162c38fd54fd86df15e5efe0fff03f9621d1b12ca4c70cc0f8bd49eea",
+  "patch_sha256": "d66bbc988cfac90dfb747143564fbbd7fef3670217cda47d1cff94d5efd15789"
+ },
+ "S0": {
+  "chi2_C7": {
+   "plik": 582.4002304613122,
+   "lowTT": 24.310570001113376,
+   "lowEE": 396.7229950146858,
+   "Aprior": 0.040962242645286875,
+   "cmb": 1003.4747577197567
+  },
+  "sigma8_C7": 0.827959,
+  "rd_C7_start": 147.011385,
+  "CFG681": [
+   10.551486913152539,
+   0.2970268821716309,
+   1400.1427308936827,
+   0.3039044952392578
+  ],
+  "DESI_chains_w_wa_sd": {
+   "desy5": [
+    -0.7520679982018754,
+    -0.8611043418200024,
+    0.057206253775028505,
+    0.22127931535586
+   ],
+   "pantheonplus": [
+    -0.8379669735933118,
+    -0.6165883622459394,
+    0.05516687715036528,
+    0.20755677965382843
+   ],
+   "union3": [
+    -0.6668729291848666,
+    -1.0852710298213986,
+    0.08848340882567489,
+    0.2932977885337551
+   ]
+  }
+ },
+ "K": {
+  "K1": {
+   "C": {
+    "xi": 0.01,
+    "rel_err_rate": 2.000000188287231,
+    "rel_err_total": 0.0012138983870024795
+   },
+   "D": {
+    "xi": 0.3,
+    "rel_err_rate": 1.998425761872917,
+    "rel_err_total": 0.001456415626529934
+   }
+  },
+  "K2": 0.0,
+  "K3": {
+   "xi": 0.05,
+   "k_1_over_Mpc": 0.0338,
+   "class_growth": 8.29958324054449,
+   "ode_growth": 7.347410826614876,
+   "rel_err": 0.12959291870280532,
+   "class_growth_xi0": 8.582837156367326,
+   "ode_growth_xi0": 8.583173906586014,
+   "rel_err_xi0": 3.9233763914459097e-05,
+   "dilution_effect": 0.07652860979207066,
+   "total_effect_vs_xi0": 0.03300236398085443
+  }
+ },
+ "verdict": "MUTATE run: checks only",
+ "elapsed_s": 15.3,
+ "peak_rss_GB_python": 0.573,
+ "peak_rss_GB_children": 0.291
+}
