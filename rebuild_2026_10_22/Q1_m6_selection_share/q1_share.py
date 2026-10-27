@@ -318,7 +318,10 @@ def verdict(f, qlo, qhi):
     elif all(refs):
         v = "BUDGET DOES NOT BIND"
     else:
-        v = "MIXED: " + ", ".join(k for k, c in out.items() if c["ref_ok"]) + " within budget at eps_ref"
+        over = [k for k, c in out.items() if not c["min_ok"]]
+        within = [k for k, c in out.items() if c["ref_ok"]]
+        v = "MIXED: " + "; ".join(s for s in (", ".join(over) + " over budget at full retention" if over else "",
+                                              ", ".join(within) + " within budget at eps_ref" if within else "") if s)
     return v, out
 
 
