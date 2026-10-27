@@ -28,7 +28,15 @@ The class is FRAGILE: V-kcut flips it to the other NOT DIAGNOSTIC sub-class.
 K1, S0 (checksums, tables, P1D1's M6, Gaussian field and units, patch fraction), K2, K3 and K4 are vacuous because G1
 fails. K5 (mean baryon conservation) and K6 (0.78 GB) pass.
 
-The MUTATE twin is running; its result and the rerun follow in a later commit.
+**MUTATE twin (`P1D2_MUTATE=1`): exit 1.**
+
+- It fails S0c (m3: the P1D1 target × 1.01), as required.
+- **It does not fail K5 (m1).** Patch gas at δ_b,in = −1.5 is clipped to zero density. That shifts ⟨Δ⟩ by only +0.6 %,
+  inside K5's Poisson tolerance of 0.8 %, so the anti-density control does not break mean conservation detectably. This
+  is a twin-design miss, disclosed and not repaired post hoc.
+- m2 (the uncorrected data column) runs.
+
+**Rerun-identical:** pending.
 
 ## What this means
 
