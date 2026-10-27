@@ -393,3 +393,9 @@ Results:
 - **Other quantities.** w_eff stays within 0.01 of −1, so it cannot give DESI's w0wa. a₀ barely moves (√X(2.33) ≈ 0.997), short of CFG689's 0.91. S8 ≈ 0.82–0.83.
 - **The Q = ξHρ_DE form is UNDECIDED** (reported). It makes about 9 % at best fit, and its a₀(z) is in TENSION with CFG689.
 - **Reading.** Cold dark energy does not trade appreciable energy with dark energy, and it is present today at its full cosmic amount. Together with X53, X55 and X56, the remaining unknown is what keeps a full-strength cold component out of galaxies (and mostly out of cluster outskirts) without heating or converting it: an object-keyed, non-gravitational exclusion.
+
+**The switch at high redshift** (`X61_switch_at_high_z`, 0b35616410 / 83aa8b4d24; coordinator rerun identical apart from timing): **NOT DIAGNOSTIC** on both footings.
+- **Crossover mass M_× (log M200).** It falls fast with z: 12.09 / 10.91 / 10.38 / 9.91 / 9.50 at z = 0 / 1 / 1.5 / 2 / 2.5 (canonical, M-DEC); alt is ~0.3 dex higher.
+- **Why it is not diagnostic.** Every disc in the record at z ≥ 1 (KURVS, KMOS3D, SINS, RC100) lies above M_×. So the switch predicts them all to carry collapse cores, and there is no below-M_× comparison group.
+- **Reported only.** Route E's predicted outer excess (+0.04–0.08 dex) is far smaller than KURVS's +0.39 offset, which is dominated by pressure and gas uncertainties of ~0.3 dex each. That offset is not evidence for the switch.
+- **A real test needs** dwarf-mass discs (M_b ≲ 10^9) at z ≳ 1.5, i.e. JWST/NIRSpec IFU kinematics of lensed discs, at a precision of ~0.02–0.04 dex.
