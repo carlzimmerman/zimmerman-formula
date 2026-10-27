@@ -384,3 +384,12 @@ Results:
 - **Clusters:** the law over-predicts the outskirts at 1.4–3 Mpc (1.00–1.05 against a measured 0.66–0.72).
 - **SPARC:** median Υ drops below the line.
 - **Reading:** galaxies want the law's tail and clusters forbid it. Any surviving structure needs an object-keyed switch near X43's crossover mass (~10¹²–10¹³ M☉), the same object-keyed requirement as X47.
+
+**Exchange between cold dark energy and dark energy** (`X54_cold_de_exchange`, 04200bb449 / e47b633c82).
+- **Coordinator rerun.** The coordinator redid all fits from scratch; the committed output is a re-analysis of the saved fits. All 297 graded result leaves are identical.
+- **Verdict: EXCHANGE EXCLUDED BEYOND ξ ∈ [−0.0035, +0.0011]** (95 %, Q = ξHρ_c, DES-SN5YR; Pantheon+ and Union3 agree). There are no ΛCDM-derived inputs. No exchange is preferred: Δχ² ≈ 1, and the slight lean is toward cold → DE.
+- **Why it is so tight.** The CMB fixes the cold density at recombination, while BAO and SN fix Ω_m today.
+- **Produced fraction.** At most −2.5 % to +0.8 % of today's cold dark energy was made or lost since recombination. This is a likelihood statement, not CFG253's convention.
+- **Other quantities.** w_eff stays within 0.01 of −1, so it cannot give DESI's w0wa. a₀ barely moves (√X(2.33) ≈ 0.997), short of CFG689's 0.91. S8 ≈ 0.82–0.83.
+- **The Q = ξHρ_DE form is UNDECIDED** (reported). It makes about 9 % at best fit, and its a₀(z) is in TENSION with CFG689.
+- **Reading.** Cold dark energy does not trade appreciable energy with dark energy, and it is present today at its full cosmic amount. Together with X53, X55 and X56, the remaining unknown is what keeps a full-strength cold component out of galaxies (and mostly out of cluster outskirts) without heating or converting it: an object-keyed, non-gravitational exclusion.
