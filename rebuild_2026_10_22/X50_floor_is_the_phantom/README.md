@@ -95,6 +95,25 @@ literal constant.
 inside r₁₂, so the ultra-faints get worse (Z +5.2 / +4.9). The dwarfs are deep (g_N/a₀ ≈ 0.001–0.014), where Q ≈ √y falls
 below the floor's c_B. The phantom does not supply the heavier UFD halos that X49 lacked.
 
+### Against `X51_dwarf_cooling_floor`'s M200 (reported only; coordinator request; criteria unchanged)
+
+The peer lane `X51_dwarf_cooling_floor` (f029a8c37b) sets M200 = max(EM1 extrapolation, M_cool), with the atomic-cooling
+mass M_cool = 1.1314e8 M☉ recomputed here from X51's formula; it matches X51's UFD M200. X51's floor-halo medians are
+reproduced to the printed digits. The phantom prediction does not change; only the floor halo it is compared with does.
+
+| class | canonical floor (X51) E (Z) | M_ph/M_floor,X51(<r₁₂) | alt floor (X51) E (Z) | M_ph/M_floor,X51 |
+|---|---|---|---|---|
+| MW ultra-faint | −0.218 (−1.91) | **0.162** | −0.316 (−2.78) | **0.140** |
+| bright M31 | −0.080 (−0.73) | 0.356 | −0.096 (−0.87) | 0.370 |
+| M31 others | +0.029 (+0.09) | 0.179 | −0.035 (−0.10) | 0.164 |
+| MW classical | +0.017 (+0.24) | 0.479 | −0.028 (−0.42) | 0.462 |
+| LG field | −0.054 (−0.88) | 0.725 | −0.098 (−1.56) | 0.751 |
+
+**UFD answer against X51's M200: PHANTOM NOT HEAVIER**, on both footings, and by much more. With the cooling-floor mass,
+the floor halo holds 6–7 × the phantom's mass inside r₁₂ for the ultra-faints. That floor halo fits them on canonical, and
+overshoots them on alt. The phantom stays at Z +5.2 / +4.9. So the gap between "law fundamental" and "floor halo" widens in the dwarfs
+once the dwarf halo-mass trend is fixed by the cooling floor.
+
 ## Clusters (reported only)
 
 At X40b's committed cluster-core baryon pull, the phantom's pull-equivalent Σ is below the floor:
