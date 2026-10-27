@@ -329,3 +329,5 @@ Results:
 - **The ultra-faints** want heavier halos than the extrapolated M200 ~5e5 M☉. The fair-share variant does worse.
 - **The dwarf mass trend survives** (ρ −0.64).
 - **Consequence:** the a₀ floor replaces v3s's separate ~4–5 km/s dwarf floor for every class except the ultra-faints.
+
+**Correction (fix forward) to the X48 ng 48 entry above.** The inner-band values "Z −2.41 / −2.06" are the h = 0.672 and h = 0.686 cluster cell sets, not the two footings; both footings give −2.41 in the main set. X48's README and 737193f3fa label G-OUT-T3 (Z −0.24) as "MGAS T3 OUTER". The MGAS T3 OUTER key (G-OUT-M3) is +1.80, as stated above. Found while auditing PAPER62 draft 2 (85fd7a6912).
