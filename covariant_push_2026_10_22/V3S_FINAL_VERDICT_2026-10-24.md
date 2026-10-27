@@ -340,3 +340,14 @@ Results:
 - **Reported only:** the H₂-cooling limit leaves the M31 faint dwarfs high, so the truth lies between the H₂ and atomic limits.
 - **Crater II** sits at −0.97 (stripping is not modelled).
 - **Reading:** under route E, with the a₀ floor and a cooling-set minimum halo mass, the dwarfs need no dwarf-specific constant.
+
+**Is the floor the law's own phantom?** (`X50_floor_is_the_phantom`, 4d3134a014 / da6f3136a7 / eb7ff8ba03; coordinator rerun identical apart from timing): **PF FAILS** on both footings.
+- **The bound.** The phantom's pull is bounded exactly, g_ph/a₀ = 1/ν < 1. Its central column has no cap: S(y) grows as ln y. a₀/(2πG) is its scale, not a cap.
+- **The profile.** The phantom is never cored: a 1/r cusp for a point mass, central slope −½ to −1 for cored baryons.
+- **SPARC.**
+  - The phantom sits +0.26 / +0.21 dex above the floor in peak pull and is heavier at R_last in about 90 % of galaxies. Its shape rms is 0.18 / 0.17 dex.
+  - It tracks the baryons' surface density (ρ +0.74).
+  - It correlates +0.60 with the free per-galaxy Σ fits, so part of X47's ±0.32 dex spread is real, but it overshoots.
+- **Dwarfs.** The phantom makes the MW ultra-faints worse (Z +5.2 / +4.9).
+- **Clusters.** It falls 3–6 × short of X43's need, consistent with the cluster excess coming from collapse.
+- **Reading.** No regime gives the phantom a constant floor: it sits above the floor in galaxies and below it in dwarfs and cluster cores. So the tether is not "cold dark energy fills the law's phantom"; that would reproduce the law, not X38. The tether mechanism stays open (object-keyed, X47).
