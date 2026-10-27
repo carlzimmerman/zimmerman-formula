@@ -85,3 +85,29 @@ seeds; it changes no measurement rule.
 - **Stop rule:** none. All 18 are graded when they finish. Seeds that fail to finish are reported, not replaced.
 
 κ = ½ FITTED. Not theory closed.
+
+## AMENDMENT A3 (2026-10-27; committed alone, after the A2 grade, before any ng 64 run; owner request)
+
+At ng 48, A2 is ABOVE WINDOW (c_f 11.63 at 10¹²). In 5 of the 9 10¹² seeds, r₋₂ ≈ 0.0095 Mpc, only 1.6–1.9 × r_conv.
+r_conv (0.005–0.006 Mpc) is set by the 200-particle radius, not by 3ε (0.004 Mpc). **A3 asks whether resolution is
+inflating c_f.**
+
+- **Runs:** seeds 1–9 at M = 10¹², **ng = 64** (N ≈ 57 850). IC, dynamics, ε = 0.01 r_f (unchanged, so 3ε stays at
+  0.004 Mpc), integrator and analysis (§2) are unchanged.
+  - Launched directly: single thread, nice 15, preemptible (SIGTERM → checkpoint → exit 75, `--resume`).
+  - Expected r_conv ≈ max(3ε, r₂₀₀) ≈ 0.004 Mpc.
+- **Grades (10¹² only):**
+  1. **Window:** the nine-seed ng 64 median against [3.3, 4.6] (IN / ABOVE / BELOW WINDOW).
+  2. **Resolution:**
+     - **CONVERGED** if |median(ng 64) / median(ng 48) − 1| ≤ 0.20;
+     - otherwise **RESOLUTION-DEPENDENT**, with the sign.
+     - Per seed, r₋₂/r_conv is reported at both ng. If the ng 48 runs at r₋₂ ≈ 1.6–1.9 r_conv move inward with r_conv,
+       that is reported as **TRACKS r_conv**.
+- **Reported:**
+  - bootstrap 68 % on the median (10 000 resamples, seed 20261026);
+  - NFW-fit median;
+  - X43's regrade with the 10¹² entry replaced by the ng 64 median (10¹³ and 10¹⁴ stay at A2), labelled reported-only,
+    because the masses would sit at mixed resolution.
+- **Stop rule:** none. Seeds that do not finish are reported, not replaced. Convergence beyond ng 64 is not tested.
+
+κ = ½ FITTED. Not theory closed.
