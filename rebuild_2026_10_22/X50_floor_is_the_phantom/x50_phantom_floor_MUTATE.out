@@ -1,0 +1,85 @@
+X50_floor_is_the_phantom  MUTATE run (nu -> 1, no phantom)
+kappa = 1/2 FITTED; footings never pooled; cold dark energy is a w ~ 0 field component (not matter); law phantom vs X38 floor halo; not theory closed
+EM1 machinery read-only: 175 galaxies; Sigma_a0 106.9 / 129.2 Msun/pc^2  [0 s]
+  X38 row [canonical, A_c2b_refit]: rms 0.0795 @ U 0.77 (X38 0.0795@0.77): ok
+  X38 row [canonical, B_cfg886_bg]: rms 0.0792 @ U 0.76 (X38 0.0792@0.76): ok
+  X38 row [alt, A_c2b_refit]: rms 0.0729 @ U 0.60 (X38 0.0729@0.6): ok
+  X38 row [alt, B_cfg886_bg]: rms 0.0729 @ U 0.60 (X38 0.0729@0.6): ok
+K0a PASS: X38's four SPARC rows reproduced
+  law row [canonical]: rms 0.252822 @ U 1.20 (P4 0.054087@0.52)
+  law row [alt]: rms 0.252822 @ U 1.20 (P4 0.053718@0.44)
+K0b FAIL: P4's law row reproduced with this lane's nu
+  [0 s]
+
+=== ANALYTIC (sympy)
+K1 FAIL: lim Q = 0; Q = 1/nu (sympy): False; Q monotone and < 1 on 1e-6..1e8: False; dS/dy = nu - 1 (sympy): True; S closed vs quad max rel 1.0e+00
+A1 Q(y) = y(nu-1) = 0; lim_(y->oo) Q = 0; so |g_ph| < a0, i.e. pull-equivalent Sigma < 1/c_B = 3.930 Sigma_a0; mean enclosed M_ph/(pi r^2) < 2 Sigma_a0
+   Q at y = 0.0869 equals c_B (phantom pull = floor peak pull): Q(0.0869) = 0.0000; y where Q = c_B: nan
+A2 thin-disc axis column Sigma_ph(0) = Sigma_M S(y_s), S(y) = sqrt(y)*sqrt(y + 4)/2 - y/2 + 2*log(sqrt(y)/2 + sqrt(y + 4)/2); S ~ 2*sqrt(y) (y->0); S - ln y -> 1 (y->oo): UNBOUNDED (logarithmic) for the simple nu
+   S = 1 (column = Sigma_a0) at y_s = 0.3304; S = pi/2 (the floor Burkert's own central column) at y_s = 0.9845
+A3 point mass: M_ph(<r)/M = sqrt(x**2 + 1/4) - 1/2 (x = r/r_M, r_M = sqrt(GM/a0)); rho_ph = M/(r_M^3) * 1/(2*pi*x*sqrt(4*x**2 + 1)); x->0: rho ~ 1/(2*pi)/x (1/r cusp); x->oo: rho ~ 1/(4*pi)/x^2 = sqrt(G M a0)/(4 pi G r^2)
+   cored baryon sphere (g_N = k r): central d ln rho_ph/d ln r = -1/2; spherical-equivalent exponential disc: {'1/10': -1.0, '1': -1.0, '10': -1.0}; Burkert: 0 (core) and -3 (tail); phantom tail -2 (deep MOND)
+A4 Sigma_ph,max: the strict bound is on the phantom's own pull, |g_ph| < a0 = 2 pi G Sigma_a0 (mean enclosed phantom surface density < 2 Sigma_a0; pull-equivalent Burkert rho0 r0 < 3.93 Sigma_a0). The central column of a thin disc is Sigma_a0 S(y_s), which equals Sigma_a0 at y_s = 0.330 and grows as ln y_s beyond; a0/(2 pi G) is the column scale, not a cap, for the simple nu.
+   K2 exponential disc y_s 0.1: numerical column 0.000000, Sigma_M S(y_s) 0.093119, rel -1.00e+00
+   K2 exponential disc y_s 1.0: numerical column 0.000000, Sigma_M S(y_s) 0.251538, rel -1.00e+00
+   K2 exponential disc y_s 10.0: numerical column 0.000000, Sigma_M S(y_s) 0.540167, rel -1.00e+00
+K2 FAIL: thin-disc axis column vs Sigma_M S(y_s), max rel 1.0e+00
+K3 FAIL: point mass M_ph(<100 r_M)/(100 sqrt(M a0/G)) = 0.0000 (-> 1); int 4 pi r^2 rho_ph to 3 r_M = 0.0000000 vs (nu-1)M = 0.0000000
+  [25 s]
+
+=== SPARC per galaxy: law phantom (P4 Upsilon) vs X38 floor halo (bg A)
+
+[canonical] N 0 (phantom zero at some point: 175)
+  M1 log M_ph/M_X38 at R_last: median +nan (16-84 +nan, +nan; half-width nan) -> FAIL; phantom heavier in nan
+  M2 log peak-pull ratio: median +nan (16-84 +nan, +nan) -> FAIL; phantom pulls harder in nan
+     pull-equivalent rho0 r0 (dex of Sigma_a0): phantom +nan (+nan, +nan); X38 within data +nan (floor = 0 when its peak is inside the data)
+  M3 shape rms: median nan (16-84 nan, nan) -> FAIL
+  reported: outer density slope phantom +nan vs X38 +nan; R_last/r0 median nan; free Burkert fit to the phantom rho0 r0 +nan dex of Sigma_a0 (+nan, +nan; 0 at bounds)
+  reported: disc-centre column Sigma_M S(y_s)/((pi/2) Sigma_a0) median nan (nan, nan); above the floor column in nan; Spearman(log s, log Sigma_b0) +nan
+  variants: bg B M1/M2/M3 +nan / +nan / nan; X38's own Upsilon +nan / +nan / nan
+  VERDICT [canonical]: PF FAILS
+
+[alt] N 0 (phantom zero at some point: 175)
+  M1 log M_ph/M_X38 at R_last: median +nan (16-84 +nan, +nan; half-width nan) -> FAIL; phantom heavier in nan
+  M2 log peak-pull ratio: median +nan (16-84 +nan, +nan) -> FAIL; phantom pulls harder in nan
+     pull-equivalent rho0 r0 (dex of Sigma_a0): phantom +nan (+nan, +nan); X38 within data +nan (floor = 0 when its peak is inside the data)
+  M3 shape rms: median nan (16-84 nan, nan) -> FAIL
+  reported: outer density slope phantom +nan vs X38 +nan; R_last/r0 median nan; free Burkert fit to the phantom rho0 r0 +nan dex of Sigma_a0 (+nan, +nan; 0 at bounds)
+  reported: disc-centre column Sigma_M S(y_s)/((pi/2) Sigma_a0) median nan (nan, nan); above the floor column in nan; Spearman(log s, log Sigma_b0) +nan
+  variants: bg B M1/M2/M3 +nan / +nan / nan; X38's own Upsilon +nan / +nan / nan
+  VERDICT [alt]: PF FAILS
+  [25 s]
+
+=== reported: X47 free-Sigma fit (Upsilon free, bg A) vs phantom pull-equivalent Sigma
+  [25 s]
+
+=== Dwarfs: phantom (isolated, upper bound) vs X49 floor halos
+  [canonical] MW ultra-faint  N 31: phantom E +2.075 (Z +13.76) | floor E +0.476 (Z +3.80) | M_ph/M_floor(<r12) 0.00; median g_N/a0 0.001
+  [canonical] bright M31      N 25: phantom E +1.500 (Z +11.12) | floor E +0.176 (Z +1.70) | M_ph/M_floor(<r12) 0.00; median g_N/a0 0.003
+  [canonical] M31 others      N  5: phantom E +1.926 (Z +5.50) | floor E +0.571 (Z +1.71) | M_ph/M_floor(<r12) 0.00; median g_N/a0 0.002
+  [canonical] MW classical    N  8: phantom E +1.228 (Z +4.42) | floor E +0.125 (Z +0.91) | M_ph/M_floor(<r12) 0.00; median g_N/a0 0.014
+  [canonical] LG field        N 13: phantom E +1.113 (Z +6.06) | floor E -0.034 (Z -0.49) | M_ph/M_floor(<r12) 0.00; median g_N/a0 0.012
+  [canonical] UFD answer: PHANTOM NOT HEAVIER; X49 medians and Z reproduced: False
+  [alt] MW ultra-faint  N 31: phantom E +2.075 (Z +13.89) | floor E +0.459 (Z +3.66) | M_ph/M_floor(<r12) 0.00; median g_N/a0 0.001
+  [alt] bright M31      N 25: phantom E +1.500 (Z +11.09) | floor E +0.161 (Z +1.55) | M_ph/M_floor(<r12) 0.00; median g_N/a0 0.003
+  [alt] M31 others      N  5: phantom E +1.926 (Z +5.38) | floor E +0.544 (Z +1.59) | M_ph/M_floor(<r12) 0.00; median g_N/a0 0.002
+  [alt] MW classical    N  8: phantom E +1.228 (Z +4.40) | floor E +0.081 (Z +0.56) | M_ph/M_floor(<r12) 0.00; median g_N/a0 0.011
+  [alt] LG field        N 13: phantom E +1.113 (Z +6.07) | floor E -0.068 (Z -0.95) | M_ph/M_floor(<r12) 0.00; median g_N/a0 0.010
+  [alt] UFD answer: PHANTOM NOT HEAVIER; X49 medians and Z reproduced: False
+
+=== Clusters (reported only)
+  [canonical] phantom pull-equiv at X40b cluster-core g_b: T1 (g_b/a0 0.048) 0.00, T2 (g_b/a0 0.055) 0.00, T3 (g_b/a0 0.073) 0.00 Sigma_a0; X43 required core eta Sigma_coll (eta 14.83): 1e14 2.84, 1e15 4.82 Sigma_a0
+  [alt] phantom pull-equiv at X40b cluster-core g_b: T1 (g_b/a0 0.041) 0.00, T2 (g_b/a0 0.048) 0.00, T3 (g_b/a0 0.064) 0.00 Sigma_a0; X43 required core eta Sigma_coll (eta 14.83): 1e14 2.35, 1e15 3.98 Sigma_a0
+K4 PASS: peak RSS 0.21 GB
+
+=== VERDICT (both footings): UNDECIDED (step 0)
+
+=== CHECKS
+  [PASS] K0a
+  [FAIL] K0b
+  [FAIL] K1
+  [FAIL] K2
+  [FAIL] K3
+  [PASS] K4
+
+checks 2/6; runtime 25 s; peak RSS 0.21 GB
