@@ -77,10 +77,29 @@ K5 FAIL).
 - **No BCG:** G-IN-Mall prediction identical to 4 decimals. A 6e10 M☉ BCG cannot reach a 25 kpc core's effect at ≥ 150 kpc.
 - **Dwarfs by class** (canonical, median S): MW ultra-faints 10.1, MW classicals 3.1, bright M31 2.3, LG field 1.5. EM1's
   relation extrapolated to M★ ~ 10⁵–10⁷ gives halos far too light. That is the M200(M★) input, not the core.
-- **Variant** (s amplitude once on SPARC, n kept): **still running** (A2; one child process per SPARC evaluation; about 10 min
-  each at large amplitude). So far the SPARC A rms is flat to noisy, 0.0644–0.0674 at Υ 0.37–0.44, for log₁₀ A from −2 to
-  +1.3. No amplitude reaches the Υ ≥ 0.50 leg yet. The variant result will be added to this README and committed when it
-  lands. It is reported only, never class-setting.
+- **Variant** (s amplitude once on SPARC, n kept; A2; `ij1_isothermal_jeans_VARIANT.out`, `_results_VARIANT.json`,
+  `ij1_variant_sparc_cache.json`). Reported only, never class-setting.
+
+  | | canonical | alt |
+  |---|---|---|
+  | log₁₀ A_f (SPARC A rms) | **+1.50** (0.0626 @ Υ 0.44) | **+1.90** (0.0625 @ Υ 0.45) |
+  | s(159 km/s) | 4.9 cm²/g | 8.4 cm²/g |
+  | BU1 bound margins at A_f | Bullet ×2.6; **Harvey ×0.41, Sagunski ×0.50 (violated)** | **Bullet ×0.64, Harvey ×0.14, Sagunski ×0.14 (all violated)** |
+  | SPARC line | FAILS (Υ 0.44 / B 0.43) | FAILS (Υ 0.45 / B 0.43) |
+  | SPARC lanes unconverged (graded as pure NFW) | **5353 / 15925 (34 %)** | **8656 / 15925 (54 %)** |
+  | clusters | 14 fail (r₁ ≈ 0.5–0.7 Mpc, σ₀ 630–790 km/s) | 12 fail; INNER bands now pass (G-IN-Mall −1.96 / −1.67) |
+  | groups / SLUGGS / dwarfs | PASS / +0.168 FAILS / frac_up 0.60 FAILS | PASS / +0.168 FAILS / 0.60 FAILS |
+  | variant lane class | IJ FAILS | IJ PARTIAL (T-IC only) → UNDECIDED |
+
+  Reading:
+  - The calibration curve is flat to noisy below log₁₀ A ≈ 1.3, with a shallow minimum near the top of the grid.
+  - At A_f a large share of the SPARC lanes have no converged cored branch (big cores against a baryon-dominated
+    centre), so the variant's SPARC rms is partly a pure-NFW number. K3's 1 % bar is far exceeded. **The variant SPARC
+    calibration is not reliable.**
+  - Even taken at face value, it needs a self-coupling 30–80× BU1's and breaks the merger bounds BU1 passed. It still
+    fails SPARC's Υ leg, the cluster MID/OUTER bands, SLUGGS and the dwarfs.
+  - Large cores do flatten the cluster INNER band (alt), as IC1's reading wanted. The outer NFW still over-predicts MID and
+    OUTER ≈ 2×.
 
 ## What it means
 
@@ -115,9 +134,10 @@ K5 FAIL).
 | `ij1_isothermal_jeans.out`, `_results.json` | PRIMARY + reported + checks |
 | `ij1_isothermal_jeans_MUTATE.out`, `_results_MUTATE.json` | control |
 | `ij1_isothermal_jeans_A1rerun_STOPPED.out` | A1 rerun log (stopped during the variant; A2) |
-| `ij1_variant_sparc_cache.json` | variant SPARC evaluations so far |
+| `ij1_isothermal_jeans_VARIANT.out`, `_results_VARIANT.json` | reported variant (A2) |
+| `ij1_variant_sparc_cache.json` | variant SPARC calibration curve (both footings) |
 | `ij1_x30_machinery*.log` | X30 machinery logs (gitignored, local only) |
 
     PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 ij1_isothermal_jeans.py            # ~15 min, exit 1 (K3, K5 fail)
     PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 ij1_isothermal_jeans.py --mutate   # ~2 min, exit 0 (tooth does not bite)
-    PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 ij1_isothermal_jeans.py --variant  # hours (reported only)
+    PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 ij1_isothermal_jeans.py --variant  # ~8 h, exit 1 (K5; reported only)
