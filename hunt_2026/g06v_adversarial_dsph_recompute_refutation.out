@@ -1,0 +1,173 @@
+==============================================================================================================================
+0.  AN INDEPENDENT IMPLEMENTATION OF g06's DWARF-SPHEROIDAL PREDICTION
+==============================================================================================================================
+  Re-coded from the physics, not copied from g06: a different radial grid (linear-in-u = ln r, Simpson),
+  a different integration of the Jeans tail, and closed-form cross-checks in both limits.
+  independently recomputed baryonic LSS field at the Local Group: g_B = 6.0245e-15 m/s^2 = 0.000064 a_0   (g06 printed 6.024e-15 = 0.00006 a_0)
+  [PASS] V0 the external LSS baryonic field is reproduced, so any disagreement below is about the dwarf-spheroidal prescription and not about the field this file inherited   (this file 6.0245e-15 vs g06 6.024e-15, ratio 1.0001; it is 0.42% of the Milky Way's field at 76 kpc, i.e. irrelevant to the dwarfs)
+
+==============================================================================================================================
+1.  ANALYTIC CROSS-CHECKS OF THE INDEPENDENT SOLVER, IN BOTH LIMITS THAT MATTER HERE
+==============================================================================================================================
+  [PASS] A1 the independent Jeans quadrature reproduces the isolated deep-MOND virial sigma^4 = (4/81) G M a_0 for Draco's baryons.  This is g06's own J2, re-derived on a different grid and a different quadrature rule   (independent solver 3.690 km/s vs Milgrom 1994 analytic 3.652 km/s, ratio 1.0103  (g06 reported 3.690 vs 3.652, ratio 1.0104))
+  [PASS] A2 in the external-field-dominated limit the field is quasi-Newtonian with a CONSTANT boost nu(e_N)(1+L(e_N)/3), so the Plummer virial sigma^2 = nu_eff pi G M/(32 a) must be recovered.  Draco is the object that drives g06's median, and this is the closed form that tells us why   (solver 1.940 km/s vs closed form 1.978 km/s (nu_eff = 7.212 at e_N = 0.01547); the residual difference is the internal field inside nu's argument at small r, which the closed form drops)
+
+==============================================================================================================================
+2.  THE EIGHT NUMBERS, RE-DERIVED.  DOES THE ARITHMETIC HOLD?
+==============================================================================================================================
+    dwarf           x_int(rh)       e_N  e_N/x_int  sig_pred  dex(this)  dex(g06)    diff
+    Draco             0.00249   0.01554       6.25      1.94     +1.343    +1.343  +0.000
+    Sculptor          0.01203   0.01215       1.01      4.71     +0.581    +0.581  +0.000
+    Fornax            0.03574   0.00420       0.12     12.34     -0.046    -0.046  +0.000
+    Carina            0.00255   0.00817       3.21      2.38     +0.885    +0.885  -0.000
+    Sextans           0.00038   0.01215      31.83      1.45     +1.474    +1.474  -0.000
+    Leo I             0.03657   0.00145       0.04      7.68     +0.157    +0.157  +0.000
+    Leo II            0.01001   0.00171       0.17      4.28     +0.376    +0.376  +0.000
+    Ursa Minor        0.00371   0.01554       4.19      2.12     +1.302    +1.302  -0.000
+  independent median +0.733 dex (scatter 0.542); g06 printed +0.733 (scatter 0.542)
+  [PASS] V1 THE ARITHMETIC IS RIGHT.  Every one of the eight dex values, and the median, reproduce on an independent implementation.  If this failed, everything downstream would be moot; it does not fail, so the attack has to be on the PRESCRIPTION and the STATISTICS, not on the code   (largest per-object disagreement 0.0005 dex (Ursa Minor); median +0.7330 vs g06 +0.733)
+
+  BOTH FOOTINGS -- g06 computes the alt-footing dwarf array (its dres['alt']) and then never uses it;
+  only dres['canonical'] reaches the median, check F2, check F3 and conclusion 3.  Here is the missing half:
+      canonical a_0 = 9.36e-11: median +0.733 dex
+      alt       a_0 = 1.13e-10: median +0.695 dex     (difference -0.038 dex)
+  [PASS] V2 the dwarf-spheroidal claim is quoted on ONE footing.  The repo's standing rule is both, always.  This check asserts the two footings agree well enough that the omission is harmless.  It is a bookkeeping objection, not a physics one -- but the published number must carry the second footing   (canonical +0.733, alt +0.695, difference -0.038 dex; g06 never prints the alt column at all)
+
+==============================================================================================================================
+3.  THE QUOTED 3.50 SIGMA.  THE STANDARD ERROR OF A MEDIAN IS NOT sigma/sqrt(n)
+==============================================================================================================================
+  g06 line 643:   se_new = sqrt( std(log10 dcan, ddof=1)^2 / 8  +  0.175^2 / 105 )
+  and line 642:   sep_new = MEDIAN(log10 dcan) - 0.013.
+  The estimator in the numerator is a MEDIAN of eight points; the error in the denominator is the standard
+  error of a MEAN.  For a gaussian the median's asymptotic standard error is larger by sqrt(pi/2) = 1.2533,
+  and at n = 8 with this much skew the asymptotic value is itself optimistic, so the honest number is a
+  bootstrap.  f09's own A1 carries the same mis-specification, so this is not a new sin -- but the claim
+  under audit is the one that puts a 3-sigma-plus label on it.
+      separation                                        +0.720 dex
+      g06's standard error (SE of a MEAN)               0.206   ->  3.50 sigma (g06 printed 0.206 -> 3.50)
+      asymptotic SE of a MEDIAN, x sqrt(pi/2)           0.258   ->  2.79 sigma
+      BOOTSTRAP SE of the median of the eight dwarfs    0.332   ->  2.17 sigma (200000 resamples)
+      bootstrap 16-84 band on the dwarf median          [+0.376, +1.114];  2.5-97.5 [+0.157, +1.343]
+  [FAIL] V3 (THE HEADLINE FAILS) the quoted 3.50 sigma does not survive an honest error on a median of eight points. This check asserts the claim's own strength label -- that the recomputed dwarf-spheroidal separation clears three sigma -- and it fails on the bootstrap.  The separation is real in sign and the sign test is clean; the LABEL is what is wrong   (bootstrap gives 2.17 sigma, not 3.50; the mis-specified SE-of-a-mean inflates the significance by a factor 1.62.  Distribution-free: 7 of 8 dwarfs sit above the control, one-sided sign-test p = 0.0352, which is the number that should be quoted alongside it)
+  [PASS] V3b and the direction of the effect survives anyway.  An adversary must not overclaim either: the eight dwarfs really do sit above the rotating control, and this check records that the bootstrap 2.5th percentile of their median is still positive   (bootstrap 2.5th percentile of the dwarf median +0.157 dex against the control +0.013)
+
+==============================================================================================================================
+4.  ATTRIBUTION.  THE CLAIM NAMES TWO CAUSES.  WHICH ONE ACTUALLY CARRIES THE +0.505 dex?
+==============================================================================================================================
+  f09's currency was  log10( g_obs / g_pred ),  g_obs = 3 sigma^2/R_e,  g_pred = max( sqrt(g_N a_0), nu(g_ext/a_0) g_N ),
+                      g_N = G M_total / R_e^2   and   g_ext = v_c(MW)^2 / D  with v_c = 200 km/s.
+  g06's currency is   log10( (sigma_obs/sigma_pred)^2 )  from a Jeans solve with M(<r), r_1/2 = (4/3)R_e,
+                      and g_ext = G M_b(MW) / D^2 (Newtonian, baryonic).
+  Those differ in FOUR places, not two.  Turned on one at a time from the f09 end:
+  [PASS] V4 f09's published dwarf median is reproduced from its own formula, so the two ends of the comparison are both under this file's control   (recomputed f09 median +0.2279 dex vs its published +0.228)
+
+    rung                                                                median dex    delta
+    f09 as published (3 sigma^2/R_e, M_total, max-branch, v_c^2/D field)      +0.228 
+    + Jeans/self-gravitating virial, TOTAL mass, R_e undeprojected, isolated      +0.185   -0.043
+    + ENCLOSED mass M(<r) instead of total                                  +0.385   +0.201
+    + Wolf+2010 deprojection r_1/2 = (4/3) R_e                              +0.390   +0.005
+    + QUMOND external field (Newtonian, baryonic) -- g06 AS PUBLISHED       +0.733   +0.343
+  so of the +0.505 dex total shift:
+      virial-coefficient / estimator change (3 sigma^2 = sqrt(GMa0) point-mass tracer relation replaced by
+        the self-gravitating Milgrom-1994 sigma^4 = (4/81) G M a_0)              -0.043 dex
+      enclosed instead of total mass                                            +0.201 dex
+      Wolf+2010 deprojection of R_e                                             +0.005 dex
+      THE EXTERNAL FIELD                                                        +0.343 dex
+  [PASS] V5 (AGAINST MY OWN INTEREST AS THE ADVERSARY -- THIS HALF OF THE ATTRIBUTION IS CORRECT) the claim says the move is caused by the external field AND by 'the ENCLOSED rather than the total mass'.  Splitting the ladder, the enclosed-mass switch really is a material share.  What it physically IS, is a change of virial coefficient: with the total mass sitting at the centre the dwarf is a POINT mass, for which the deep-MOND tracer relation is 3 sigma^2 = sqrt(G M a_0) (g06's own J3, and f09's formula); with M(<r) the dwarf is self-gravitating and Milgrom 1994's sigma^4 = (4/81) G M a_0 applies, smaller by exactly 3/2 in sigma^2, i.e. log10(3/2) = 0.176 dex.  This check asserts enclosed-vs-total is a material share of the shift   (enclosed-vs-total contributes +0.201 dex of the +0.505 dex total (40%), against the pure deep-MOND expectation log10(3/2) = +0.176; the branch/estimator rung contributes -0.043, the Wolf deprojection +0.005, and the external field +0.343)
+  [FAIL] V6 THE EXTERNAL FIELD IS THE LEVER, and it is a lever applied to ONE ARM of the comparison.  More than half the shift comes from switching on the QUMOND external field of the Milky Way -- a correction that exists only because these eight objects are SATELLITES of a 6e10 Msun host at 76-254 kpc.  The rotating control (+0.013 dex, N=105, f09's pointwise RAR residual) has no external field in it at all, was not recomputed, and cannot be: it is a different estimator on different data.  This check asserts the shift is NOT dominated by the one ingredient the control does not share   (external field +0.343 dex of +0.505 total = 68%; median e_N/x_int over the eight dwarfs = 2.11, against g06's own groups at 0.06)
+
+==============================================================================================================================
+5.  DOES THE 'PRESSURE-SUPPORT' RESIDUAL TRACK PRESSURE SUPPORT, OR TRACK THE MILKY WAY?
+==============================================================================================================================
+  Bug pattern #5 in this repo: a residual whose sign tracks a branch of the author's own prescription.  If
+  the external field carries the shift, the recomputed dwarf residual should be a function of DISTANCE FROM
+  THE GALAXY, which has nothing to do with whether an orbit is circular.  Tested against a permutation null.
+      log10(boost) vs log10(D_MW):   slope -2.139 dex/dex, r = -0.790, permutation p = 0.0248
+      log10(boost) vs log10(M_star): r = -0.858   (for reference, not a null)
+      the two nearest dwarfs (76 kpc) are +1.343 and +1.302;
+      the two farthest (233, 254 kpc) are +0.376 and +0.157
+  [FAIL] V7 (THE PRESCRIPTION-TRACKING CHECK, AND IT FAILS) the recomputed dwarf residual must not be explained by distance from the Milky Way, because distance from the Milky Way is a property of the EXTERNAL-FIELD BRANCH, not of pressure support.  It is.  The correlation is strong and beats a permutation null, and turning the external field off -- which is exactly how the rotating control is treated -- collapses the median   (slope -2.139 dex per dex of distance, r = -0.790, permutation p = 0.0248; with the external field off the dwarf median falls from +0.733 to +0.390 dex, i.e. the separation from the control falls from +0.720 to +0.377 dex)
+
+  5b.  THE CLEANEST FORM OF THE SAME OBJECTION: split the eight on e_N/x_int, which is the ONE axis
+       that separates them from the rotating control.  The control galaxies are internal-field dominated by
+       construction (they have rotation curves), so only the internal-field-dominated dwarfs are being asked
+       a comparable question.
+    dwarf           e_N/x_int      dex   regime
+    Leo I                0.04   +0.157   internal-field dominated (comparable to the control)
+    Fornax               0.12   -0.046   internal-field dominated (comparable to the control)
+    Leo II               0.17   +0.376   internal-field dominated (comparable to the control)
+    Sculptor             1.01   +0.581   EXTERNAL-field dominated
+    Carina               3.21   +0.885   EXTERNAL-field dominated
+    Ursa Minor           4.19   +1.302   EXTERNAL-field dominated
+    Draco                6.25   +1.343   EXTERNAL-field dominated
+    Sextans             31.83   +1.474   EXTERNAL-field dominated
+      internal-field-dominated dwarfs (N = 3): median +0.157 dex
+      external-field-dominated dwarfs (N = 5): median +1.302 dex
+      f09's published median, whole sample:                +0.228 dex
+  [FAIL] V9 (THE DECISIVE ONE) the recomputed +0.733 dex must not live entirely in the half of the sample that the rotating control cannot be matched to.  Split the eight dwarfs at e_N/x_int = 1: the internal-field-dominated half is dynamically the same KIND of system as the control and the external-field-dominated half is not.  This check asserts the two halves agree to within the bootstrap error on the median.  They do not: the part that is comparable to the control sits at or below where f09 published, and the entire 'strengthening' is carried by the dwarfs whose dynamics are set by the Milky Way's external field   (internal-field-dominated half +0.157 dex (vs f09's published +0.228 for the whole sample), external-field-dominated half +1.302 dex, a gap of +1.144 dex against a bootstrap SE of 0.331.  So the comparable half moves f09's number by -0.071 dex, not by +0.505)
+
+==============================================================================================================================
+6.  UNBRACKETED KNOBS INSIDE THE DWARF NUMBER
+==============================================================================================================================
+  g06 brackets f_hot, Upsilon_K, the tracer profile, the aperture and the external field for its GROUPS.
+  For the dwarfs it brackets nothing.  Three knobs are hard-coded and each moves the headline:
+      Milky Way baryons 5.0e10 (stars only)                median = +0.706 dex
+      Milky Way baryons 6.0e10 (g06's value)               median = +0.733 dex
+      Milky Way baryons 9.0e10 (BHG16 upper, +hot halo)    median = +0.797 dex
+      aperture r <= 1.5 r_1/2 (kinematic samples are finite) median = +0.659 dex
+      aperture r <= 3 r_1/2                                median = +0.704 dex
+      aperture r -> infinity (g06's choice)                median = +0.733 dex
+      no Wolf deprojection (f09's radius)                  median = +0.643 dex
+  [PASS] V8 the dwarf number's unbracketed knobs must move it by less than the bootstrap error on it, or they belong in the quoted uncertainty.  They do not: the Milky Way baryonic mass and the aperture each move the median by a comparable amount to the bootstrap error, and neither appears anywhere in g06's stated uncertainty   (M_b(MW) 5e10 -> 9e10 moves the median +0.091 dex; aperture 1.5 r_1/2 -> infinity moves it +0.074 dex; the bootstrap SE on the dwarf median alone is 0.331 dex.  g06 uses an INFINITE aperture for the dwarfs and a FINITE one (r_max) for its groups -- the two arms of its own check F3)
+
+==============================================================================================================================
+7.  MUTATION CONTROLS
+==============================================================================================================================
+  [PASS] M1 mutation -- kernel off (nu = 1).  The dwarf boosts must explode to the famous dwarf-spheroidal mass-to-light ratios; if they did not, this pipeline would not be measuring gravity   (Newtonian median +1.621 dex = boost 42, against the framework's +0.733 dex = 5.4)
+  [FAIL] M2 mutation -- shuffle the eight measured dispersions across the eight dwarfs.  The marginals are kept and only the pairing of each dwarf's own baryons and radius with its own kinematics is destroyed.  The median must move, or the result is a property of the marginal distributions alone.  It BARELY moves -- which is a real warning about a median of eight and is recorded as a failure rather than buried   (shuffled median +0.843 +- 0.078 against the real +0.733; shift +0.110 dex against a bootstrap SE of 0.331)
+  [FAIL] M3 mutation -- move every dwarf to 500 kpc, weakening the Milky Way's external field while keeping every other number (mass, radius, dispersion) exactly as observed.  Nothing about pressure support has changed.  If the recomputed residual is a statement about pressure support the median must be unchanged; if it is a statement about the external field it must collapse.  This check asserts it is unchanged, and it fails   (at D = 500 kpc for all eight the median falls from +0.733 to +0.444 dex, and with the external field removed entirely (branch='isolated') to +0.390 dex -- a collapse of -0.343 dex, 48% of the whole claimed separation, driven by a coordinate the control has no analogue for)
+
+==============================================================================================================================
+8.  VERDICT ON THE CLAIM
+==============================================================================================================================
+  REPRODUCES: the eight dex values and the median +0.733 are arithmetically correct (V1), the
+  analytic limits check out (A1, A2), and f09's published +0.228 is reproduced from f09's own formula (V4).
+  The DIRECTION of the claim survives: 7 of 8 dwarfs sit above the control, sign-test p = 0.0352,
+  and even the bootstrap 2.5th percentile of the dwarf median, +0.157, is positive.
+
+  ALSO SURVIVES, and it has to be said plainly because it is the half of the claim that is against the
+  author's own interest: the enclosed-mass fix is real and correctly signed (+0.201 dex, V5 PASSES).
+  f09 put the dwarf's TOTAL mass at the centre, which makes it a point mass, for which 3 sigma^2 = sqrt(G M a_0);
+  a self-gravitating dwarf obeys Milgrom 1994's sigma^4 = (4/81) G M a_0, smaller by 3/2 in sigma^2 =
+  0.176 dex.  So 'f09's dwarf spheroidal number should not be quoted at its published value'
+  is CORRECT, and the direction of the correction is correct.
+
+  WHAT DOES NOT SURVIVE:
+    1. THE STRENGTH LABEL.  '3.50 sigma' uses the standard error of a MEAN on a MEDIAN of eight.  The
+       bootstrap gives 2.17 sigma and the asymptotic median SE gives 2.79.  The
+       claim must not be quoted at 3.50 sigma; the honest labels are ~2.2 sigma or the
+       distribution-free sign test, p = 0.035. (V3 FAILS)
+    2. THE COMPARISON IS CONFOUNDED.  68% of the +0.505 dex shift is the Milky Way's external field,
+       applied to the dwarf arm only.  The residual correlates with distance from the Galaxy at
+       r = -0.79 (permutation p = 0.0248); at D = 500 kpc the median is +0.444 and with
+       the field off +0.390.  Split at e_N/x_int = 1, the 3 internal-field-dominated
+       dwarfs -- the only ones dynamically comparable to a rotating control -- sit at +0.157 dex,
+       BELOW f09's published +0.228; the 5 external-field-dominated ones sit at
+       +1.302.  The whole 'strengthening' is the satellite/field axis, not the pressure/rotation
+       axis. (V6, V7, V9 FAIL)
+    3. ONE FOOTING.  g06 computes the alt-footing dwarf array and discards it; the alt median is +0.695 dex.
+       Harmless numerically (-0.038 dex) but the standing rule is both, always. (V2 passes)
+    4. THE MEDIAN OF EIGHT IS NEARLY A MARGINAL.  Shuffling the eight observed dispersions across the eight
+       dwarfs moves the median only +0.110 dex, well inside the bootstrap
+       SE of 0.331: the number is carried by how small sigma_pred is across the sample, not by any
+       object-by-object pairing. (M2 FAILS)
+
+  NET: the recomputed +0.733 dex is arithmetically correct and the enclosed-mass half of its stated cause is
+  correct.  But it is NOT a 3.50-sigma strengthening of f09's fork.  It is ~2.2 sigma on an honest error, and
+  two thirds of the movement is an external-field correction applied to satellites and to nothing else in the
+  comparison.  The author's own weakest link (F3, the 0.82 dex disagreement with the groups) is therefore
+  UNDERSTATED rather than overstated: the groups run at e_N/x_int ~ 0.06 and the dwarfs at a median of ~2,
+  so the two pressure-supported populations are not being asked the same question, and the internal-field
+  half of the dwarfs agrees with the groups far better than the sample median does.
+
+RESULT: 16 checks, 6 FAIL -> ["V3 (THE HEADLINE FAILS) the quoted 3.50 sigma does not survive an honest error on a median of eight points. This check asserts the claim's own strength label -- that the recomputed dwarf-spheroidal separation clears three sigma -- and it fails on the bootstrap.  The separation is real in sign and the sign test is clean; the LABEL is what is wrong", "V6 THE EXTERNAL FIELD IS THE LEVER, and it is a lever applied to ONE ARM of the comparison.  More than half the shift comes from switching on the QUMOND external field of the Milky Way -- a correction that exists only because these eight objects are SATELLITES of a 6e10 Msun host at 76-254 kpc.  The rotating control (+0.013 dex, N=105, f09's pointwise RAR residual) has no external field in it at all, was not recomputed, and cannot be: it is a different estimator on different data.  This check asserts the shift is NOT dominated by the one ingredient the control does not share", 'V7 (THE PRESCRIPTION-TRACKING CHECK, AND IT FAILS) the recomputed dwarf residual must not be explained by distance from the Milky Way, because distance from the Milky Way is a property of the EXTERNAL-FIELD BRANCH, not of pressure support.  It is.  The correlation is strong and beats a permutation null, and turning the external field off -- which is exactly how the rotating control is treated -- collapses the median', "V9 (THE DECISIVE ONE) the recomputed +0.733 dex must not live entirely in the half of the sample that the rotating control cannot be matched to.  Split the eight dwarfs at e_N/x_int = 1: the internal-field-dominated half is dynamically the same KIND of system as the control and the external-field-dominated half is not.  This check asserts the two halves agree to within the bootstrap error on the median.  They do not: the part that is comparable to the control sits at or below where f09 published, and the entire 'strengthening' is carried by the dwarfs whose dynamics are set by the Milky Way's external field", "M2 mutation -- shuffle the eight measured dispersions across the eight dwarfs.  The marginals are kept and only the pairing of each dwarf's own baryons and radius with its own kinematics is destroyed.  The median must move, or the result is a property of the marginal distributions alone.  It BARELY moves -- which is a real warning about a median of eight and is recorded as a failure rather than buried", "M3 mutation -- move every dwarf to 500 kpc, weakening the Milky Way's external field while keeping every other number (mass, radius, dispersion) exactly as observed.  Nothing about pressure support has changed.  If the recomputed residual is a statement about pressure support the median must be unchanged; if it is a statement about the external field it must collapse.  This check asserts it is unchanged, and it fails"]   rc=1

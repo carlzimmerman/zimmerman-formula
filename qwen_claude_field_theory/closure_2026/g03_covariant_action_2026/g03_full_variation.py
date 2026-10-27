@@ -237,8 +237,6 @@ def cylinder_linear(bkg,k,u,n,zeta=1,conserved_source=False,quadrature_stress=Fa
         exx -=2*(1j*a*k-a*a)*zeta
     deps=-dH/2
     charge=deps+2*(bkg['eps']+bkg['Pperp'])*zeta
-    if conserved_source:
-        charge -=2*(k*k+a*a)*zeta
     return np.array([eu,eN]),dict(radial_equation_residual=exx,delta_eps=deps,charge=charge,
                                 delta_Pperp=.5*dL,delta_Pparallel=dPxx)
 
@@ -291,11 +289,13 @@ def main():
             matrix=np.column_stack([eU-e0,eN-e0])
             u,n=np.linalg.solve(matrix,-e0)
             residual,extra=cylinder_linear(bkg,k,u,n)
+            _,quad_extra=cylinder_linear(bkg,k,u,n,quadrature_stress=True)
             singular=np.linalg.svd(matrix,compute_uv=False)
             row=dict(y=bkg['y'],k=k,condition_number=float(singular[0]/singular[-1]),
                      normalized_constraint_residual=float(np.linalg.norm(residual)/(1+np.linalg.norm(e0))),
                      normalized_radial_residual=float(abs(extra['radial_equation_residual'])/(1+k*k)),
                      normalized_charge_error=float(abs(extra['charge']-2*(k*k+bkg['a']**2))/(1+k*k)),
+                     heat_moment_quadrature_error=float(abs(extra['delta_Pperp']-quad_extra['delta_Pperp'])/(1+k*k)),
                      charge_real=float(extra['charge'].real),charge_imag=float(extra['charge'].imag),
                      lapse_response=[float(n.real),float(n.imag)],U_response=[float(u.real),float(u.imag)])
             rows.append(row)
@@ -304,8 +304,9 @@ def main():
           dict(cases=len(rows),max_constraint_residual=max(r['normalized_constraint_residual'] for r in rows),
                largest_condition_number=max(r['condition_number'] for r in rows)))
     check('independent radial equation includes heat stress',
-          all(r['normalized_radial_residual']<2e-9 for r in rows),
-          dict(max_residual=max(r['normalized_radial_residual'] for r in rows)))
+          all(r['normalized_radial_residual']<2e-9 and r['heat_moment_quadrature_error']<2e-9 for r in rows),
+          dict(max_residual=max(r['normalized_radial_residual'] for r in rows),
+               heat_moment_quadrature_error=max(r['heat_moment_quadrature_error'] for r in rows)))
     check('gauge-invariant conserved scalar charge',
           all(r['normalized_charge_error']<2e-9 for r in rows),
           'delta C = delta epsilon + 2(epsilon+Pperp) zeta = 2(k^2+a^2) zeta; dot C=0')

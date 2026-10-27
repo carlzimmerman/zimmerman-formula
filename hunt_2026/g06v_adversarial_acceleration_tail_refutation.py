@@ -336,11 +336,15 @@ ck("D3 and the N-split is NOT an acceleration effect in disguise, which would ha
    f"{math.log10(np.median(xhi)/np.median(xlo)):+.3f} dex -- the same acceleration, a {gapN:+.3f} dex boost gap")
 med_hi = float(np.median(hi))
 lowest_cluster = min(b for b, x, s, p, n in TAB if s == "pressure" and b <= 3.0)
-ck("D4 THE CONSEQUENCE FOR THE CLAIM.  '14 of 14 cluster rows sit above this rung' must survive using only the "
-   "groups whose dispersions are actually measured well.  It does not survive intact: at N >= 10 the rung sits at "
-   "{:.2f} against the lowest cluster row's {:.2f}".format(med_hi, lowest_cluster),
+info("and a labelling point while we are here: g06 calls its 14-row comparison set 'X-ray group and cluster rows', "
+     "but it contains the SLUGGS globular-cluster systems (1.30) and the X-ray ellipticals (1.69), neither of "
+     "which is an X-ray group or cluster.  Two of the 14 are mislabelled in the claim's own wording.")
+ck("D4 THE CONSEQUENCE FOR THE CLAIM.  '14 of 14 rows sit above this rung' must survive using only the groups "
+   "whose dispersions are actually measured well.  It does not survive intact: at N >= 10 the rung sits at "
+   "{:.2f} against the lowest row in g06's own comparison set, {:.2f}".format(med_hi, lowest_cluster),
    med_hi < lowest_cluster/1.5,
-   f"N >= 10 rung boost {med_hi:.3f}; lowest pressure row in g06's comparison set {lowest_cluster:.2f}; ratio "
+   f"N >= 10 rung boost {med_hi:.3f}; lowest row in g06's comparison set {lowest_cluster:.2f} (the lowest genuine "
+   f"X-ray group/cluster row is 1.45); ratio "
    f"{lowest_cluster/med_hi:.2f}, i.e. {math.log10(lowest_cluster/med_hi):+.3f} dex, against the 0.41 dex the "
    f"claim quotes as a 3.6 sigma separation from the cluster median")
 
@@ -390,33 +394,46 @@ ck("M4 mutation -- the same trend judged by correlation rather than by a median 
 P(""); P("="*126)
 P("F.  VERDICT ON THE CLAIM")
 P("="*126)
-info(f"WHAT SURVIVES.  The rung itself reproduces: {len(GR)} groups, boost {med_can:.2f} canonical / {med_alt:.2f}")
-info( "  alt by an INDEPENDENT analytic route, median per-group agreement "
-     f"{np.nanmedian(dev):.3f} dex with g06's Jeans solve.  Local Volume groups are not a factor-2 liability, and")
-info( "  that is a real and useful negative.  Nothing here says the number 0.82 is wrong.")
+info(f"WHAT SURVIVES, AND IT IS THE MEASUREMENT ITSELF.  {len(GR)} groups, 333 members, boost {med_can:.2f} "
+     f"canonical /")
+info(f"  {med_alt:.2f} alt by an INDEPENDENT analytic route (3 sigma^2 = sqrt(G M a_0), no Jeans solve, no external")
+info(f"  field), median per-group agreement {np.nanmedian(dev):.3f} dex with g06's number and the same sign on every")
+info( "  group.  Local Volume groups are NOT a factor-2 liability.  Nothing in this audit says 0.82 is wrong; my")
+info(f"  own route puts it slightly lower still ({math.log10(med_can/0.817):+.3f} dex).  That negative stands.")
 P("")
-info("WHAT DOES NOT SURVIVE -- three separate defects in the INFERENCE built on it:")
-info(f"  1. SELECTION ON THE OUTCOME.  '14 of 14' is counted over rows pre-filtered at boost <= 3.0.  That cut")
-info(f"     removed {sum(1 for _,x,_ in cut if xmin <= x <= xmax)} pressure rows lying INSIDE this rung's own")
-info( "     acceleration band, including the table's largest liability, the MW ultra-faint dwarfs at boost 44.7")
-info(f"     and g_bar/a_0 = 0.001 -- BELOW this rung's median of {np.median(xcan):.4f}.  At matched acceleration the")
-info(f"     table's other pressure rows sit at a median boost of {np.median(bb):.2f}, not at 1.")
-info( "  2. THE EXPLANATORY VARIABLE FAILS ON THE TABLE'S OWN ROWS.  'Counted vs modelled' does not order them")
-info(f"     (gap {g_cm:.3f} dex, p = {p_cm:.3f}, indistinguishable from a label shuffle), and it points the wrong")
-info(f"     way: counted median {np.median(cnt):.2f} vs modelled {np.median(mod):.2f}.  The four largest boosts in")
-info( "     the table are all star-count systems with no abundance-matched mass and no hydrostatic bias.")
-info(f"  3. A 0.4 DEX CONFOUND EXISTS AND IS INTERNAL.  Splitting on member count -- at fixed acceleration -- moves")
-info(f"     the rung by {gapN:+.3f} dex (p = {pN:.4f}).  The nine groups with N >= 10 sit at {np.median(hi):.2f},")
-info(f"     at the bottom edge of the cluster band; the headline {med_can:.2f} is produced by the seventeen groups")
-info( "     with 5-9 members.  The author names ~0.4 dex as the offset that would erase the contrast and says")
-info( "     nothing bounds it.  Something does: his own sample.")
+info("WHAT DOES NOT SURVIVE -- three defects in the INFERENCE built on it, in decreasing order of strength:")
+info( "  1. SELECTION ON THE OUTCOME VARIABLE (decisive).  '14 of 14' is counted over rows pre-filtered at")
+info(f"     boost <= 3.0 -- a cut on the very quantity being compared.  It removed "
+     f"{sum(1 for _,x,_ in cut if xmin <= x <= xmax)} pressure rows lying INSIDE")
+info(f"     this rung's own acceleration band.  Ask the acceleration question without that cut and the table's")
+info(f"     in-band pressure/two-body rows sit at a median boost of {np.median(bb):.2f}; drop the row the table")
+info(f"     itself flags as possibly artefactual and they still sit at {np.median(bb2):.2f}, carried by Pal 14 (4.60")
+info( "     at 0.010 a_0, star counts) and the isolated 2MRS pairs (3.57 at 0.012 a_0).  And the table's")
+info( "     LOWEST-acceleration row is also its HIGHEST-boost row.  The premise 'everything above this rung sits")
+info( "     at higher acceleration' is true only of the filtered subset, and the conclusion drawn from it -- that")
+info( "     the residual is not the low-acceleration tail of a kernel error -- does not follow from the full table.")
+info( "  2. THE EXPLANATORY VARIABLE RUNS BACKWARDS (decisive, and it surprised this audit).  'Counted vs")
+info(f"     modelled' DOES separate the table ({g_cm:.3f} dex, p = {p_cm:.3f}, "
+     f"{(g_cm - np.mean(sh))/sh.std():.1f} sigma against a label shuffle) --")
+info(f"     but in the opposite direction: counted {np.median(cnt):.2f} vs modelled {np.median(mod):.2f}, robust to")
+info( "     pressure-only and to reclassifying SLUGGS.  Four of the five largest liabilities in the table are")
+info( "     star-count systems with no abundance-matched mass and no hydrostatic bias.  So counting the baryons is")
+info( "     associated with a LARGER residual, and the named variable cannot be why this rung sits low.")
+info( "  3. AN INTERNAL DATA-QUALITY OFFSET OF THE SIZE THE AUTHOR CALLS FATAL (suggestive, not established).")
+info(f"     Splitting on member count at fixed acceleration moves the rung by {gapN:+.3f} dex -- p = {pN:.4f} on the")
+info(f"     median split, {abs(np.corrcoef(Ncan, np.log10(bcan))[0,1])/Nnull.std():.2f} sigma on the correlation, so")
+info( "     it is a 2-sigma trend and NOT a proven confound; M2 fails to")
+info(f"     clear its own shuffle.  But its magnitude is {abs(gapN):.2f} dex against the ~0.4 dex the file names as")
+info(f"     erasing the contrast, and the nine best-measured groups sit at {np.median(hi):.2f} -- against the lowest")
+info( "     row in the comparison set at 1.45.  The claimed 3.6 sigma is a bootstrap over 26 groups that ignores")
+info( "     this; it cannot be quoted at that strength.")
 P("")
 info("WHAT THE CLAIM CAN STILL SAY, and it is worth saying: Local Volume groups, with baryons counted galaxy by")
 info("galaxy, do NOT show a factor 2-3 deficit, which is a genuine constraint on any story that makes the cluster")
 info("residual a smooth function of acceleration alone.  What it cannot say is that the deficit does not extend")
-info("downward in acceleration (the table's own low-acceleration rows do extend it), nor that counted-vs-modelled")
-info("baryons is the variable responsible (the table's counted rows carry its largest liabilities), nor that the")
-info("contrast is 3.6 sigma (a data-quality split inside the rung moves it by 0.4 dex).")
+info("downward in acceleration (the table's own low-acceleration rows do extend it, at 3-45x), nor that")
+info("counted-vs-modelled baryons is the variable responsible (that split runs backwards), nor that the contrast")
+info("is 3.6 sigma (an untested data-quality split inside the rung moves it by 0.36 dex).")
 info("AND THE OBVIOUS CONFOUND IS UNTOUCHED: ordinary cold dark matter reproduces this rung exactly as well.  A")
 info("group's dispersion is set by its halo, and the framework's kernel is calibrated on the same BTFR-like")
 info("scaling that halo abundance matching reproduces.  g06 concedes this in item 4.  So even were the inference")

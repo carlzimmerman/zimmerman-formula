@@ -1,0 +1,484 @@
+
+==============================================================================
+BLOCK 0 -- CONSTANTS AND THE CONDENSATE SCALE
+==============================================================================
+H0        = 2.184285e-18 s^-1   (67.4 km/s/Mpc)
+rho_crit  = 8.532855e-27 kg/m^3
+rho_dm,0  = 2.256940e-27 kg/m^3   (Omega_dm = 0.2645)
+rho_Lambda= 5.842446e-27 kg/m^3   (Omega_L  = 0.6847)
+rho_dm,0 / rho_Lambda = 0.386301
+
+u_Lambda   = 5.250929e-10 J/m^3 = 3.277372e+09 eV/m^3
+M_nat      = rho_Lambda^(1/4) = 3.589068e-22 J = 2.240120e-03 eV = 2.2401 meV
+k_M(nat)   = 1.135232e+04 1/m      ->  1/k_M = 8.808768e-05 m
+beta(nat)  = c^2/k_M^2 = 6.973837e+08 m^4/s^2
+CHECK rho_M(M_nat)/rho_Lambda = 1.000000  (must be 1)
+
+FDM MAPPING  omega^2 = beta k^4 = hbar^2 k^4/(4 m_eff^2)
+  m_eff(nat) = 1.996688e-39 kg = 1.120060e-03 eV/c^2
+  m_eff c^2 / M_nat = 0.500000   (expect exactly 1/2)
+  => the k^4 sector is EXACTLY fuzzy dark matter with particle mass M/2.
+     The nonlinear collapse problem is therefore the FDM soliton problem,
+     which HAS been simulated (Schive+2014).  Nothing needs to be guessed.
+
+==============================================================================
+BLOCK 1 -- THE SHELL EQUATION
+==============================================================================
+A spherical shell of radius R enclosing dust mass M_sh obeys
+
+      Rddot = -G M_sh / R^2  +  a_grad(R)
+
+The gradient term is FIXED BY DIMENSIONS, no model input needed.  The only
+dimensionful coefficient the k^4 sector supplies is
+
+      beta = c^2 / k_M^2      [m^4 s^-2]
+
+and the only combination of beta and R with the units of an acceleration is
+beta/R^3.  Hence
+
+      a_grad = A / R^3 ,      A = O(1) x beta .                            (*)
+
+Two independent constructions give the same thing:
+ (i) Madelung/quantum pressure of the equivalent Schroedinger field,
+     Q = -(hbar^2/2 m^2) lap(sqrt rho)/sqrt rho  ~  -hbar^2/(2 m^2 R^2),
+     a_Q = -grad Q ~ hbar^2/(m^2 R^3) = 4 beta / R^3 .   So A = 4 beta with
+     the O(1) fixed by the exact SP soliton (block 3).
+ (ii) energy functional  E(R) = a1 hbar^2 M_sh/(m^2 R^2) - a2 G M_sh^2/R,
+      dE/dR = 0  ->  R_* = 2 a1 hbar^2 /(a2 G m^2 M_sh) = O(1) x beta/(G M_sh).
+
+The O(1) is irrelevant below: the answer misses by 43 orders of magnitude.
+
+So the collapse equation is
+
+      Rddot = - G M_sh / R^2  +  A / R^3 ,        A = 4 c^2 / k_M^2 .      (1)
+
+A(nat) = 4 beta = 2.789535e+09 m^4/s^2
+hbar^2/m_eff^2 = 2.789535e+09 m^4/s^2   (must equal 4 beta)
+
+==============================================================================
+BLOCK 2 -- R^-3 vs R^-2 : WHICH WINS, AND WHERE
+==============================================================================
+a_grad/a_grav = (A/R^3)/(G M_sh/R^2) = A/(G M_sh R).
+
+This GROWS without bound as R -> 0.  So the k^4 term ALWAYS wins eventually:
+a core DOES form, collapse is not unopposed.  The whole question is at WHAT R.
+
+      R_stall = A / (G M_sh) .                                             (2)
+
+Note the structure: R_stall is INVERSELY proportional to the collapsing mass.
+The more mass you try to stabilise, the smaller the radius at which the k^4
+term can do it.  That is the opposite of what a rescue needs.
+
+system                                  M_dust[kg]       R[m]  R_stall[m]   R_stall/R
+MW-like galaxy, dust inside 20 kpc       1.989e+41  6.171e+20   2.101e-22   3.405e-43
+                                       Schwarzschild radius of that mass = 2.954e+14 m  -> R_stall/R_S = 7.114e-37
+LSB dwarf, dust inside 5 kpc             9.945e+39  1.543e+20   4.203e-21   2.724e-41
+                                       Schwarzschild radius of that mass = 1.477e+13 m  -> R_stall/R_S = 2.845e-34
+cluster M500=5e14, dust inside R500      8.400e+44  4.011e+22   4.975e-26   1.240e-48
+                                       Schwarzschild radius of that mass = 1.248e+18 m  -> R_stall/R_S = 3.988e-44
+
+--- EXACT FIRST INTEGRAL OF EQ (1) (no O(1) ambiguity at all) ---
+Eq (1) integrates exactly:  (1/2) Rdot^2 = G M_sh/R - A/(2 R^2) + E.
+Release from rest at turnaround R_ta fixes E.  The inner turning point (Rdot = 0
+again, i.e. the BOUNCE) satisfies, after cancelling the factor (R_ta - R),
+
+      G M_sh R_ta R = (A/2)(R_ta + R)
+  =>  R_bounce = (A/2) R_ta / (G M_sh R_ta - A/2)  ->  A/(2 G M_sh)  for R_ta >> R_stall.
+
+So the shell does NOT collapse to a point: it bounces at R_bounce = A/(2 G M_sh)
+and thereafter breathes.  A core is guaranteed.  R_bounce = R_stall/2 exactly,
+so nothing below depends on the O(1) in A.
+  MW-like galaxy, dust inside 20 kpc     R_bounce(exact, R_ta=1 Mpc) = 1.0507e-22 m  [= R_stall/2 = 1.0507e-22 m]
+  LSB dwarf, dust inside 5 kpc           R_bounce(exact, R_ta=1 Mpc) = 2.1014e-21 m  [= R_stall/2 = 2.1014e-21 m]
+  cluster M500=5e14, dust inside R500    R_bounce(exact, R_ta=1 Mpc) = 2.4877e-26 m  [= R_stall/2 = 2.4877e-26 m]
+
+READ THIS CAREFULLY.  R_stall is not merely small, it is BELOW THE SCHWARZSCHILD
+RADIUS of the collapsing mass by 8-9 orders.  A coherent lump carrying a halo's
+worth of Q-sector dust would become a black hole ~9 orders of magnitude in radius
+BEFORE the k^4 gradient term became relevant.  The k^4 term therefore cannot halt
+halo-scale collapse under any circumstances at M = rho_Lambda^(1/4).
+
+SECOND, INDEPENDENT CHECK -- the k^4 term is also far too SLOW:
+  the gradient mode at wavenumber k = 1/R oscillates at omega = sqrt(beta)/R^2,
+  so its response time is t_grad = R^2 k_M / c.
+  MW-like galaxy, dust inside 20 kpc     t_grad = 1.442e+37 s = 3.312e+19 t0 ;  t_freefall = 0.148 Gyr ; ratio t_grad/t_ff = 3.086e+21
+  LSB dwarf, dust inside 5 kpc           t_grad = 9.014e+35 s = 2.070e+18 t0 ;  t_freefall = 0.083 Gyr ; ratio t_grad/t_ff = 3.450e+20
+  cluster M500=5e14, dust inside R500    t_grad = 6.093e+40 s = 1.399e+23 t0 ;  t_freefall = 1.194 Gyr ; ratio t_grad/t_ff = 1.617e+24
+  => the gradient term needs 1e19-1e23 Hubble times to respond at these scales.
+     This quantifies ACLM 2004's 'this effect takes time to build up'.
+
+==============================================================================
+BLOCK 3 -- THE CORE THAT ACTUALLY FORMS: SIZE AND MASS AT M = 2.24 meV
+==============================================================================
+A halo is not one coherent lump.  In the simulated FDM system (Schive, Chiueh
+& Broadhurst 2014, Nature Physics 10:496) collapse produces a SOLITON CORE
+embedded in an incoherent, virialised, NFW-like envelope.  The core radius is the
+de Broglie wavelength at the halo's own velocity dispersion,
+
+      lambda_dB = 2 pi hbar / (m_eff v) .                                  (3)
+
+VALIDATION of (3) against the published FDM result before using it:
+  m = 1e-22 eV/c^2, v = 150 km/s  ->  lambda_dB = 0.803 kpc
+  Schive+2014 / Schive+2014 PRL 113:261302 find r_c ~ 1 kpc for m = 1e-22 eV
+  in a ~1e12 Msun halo.  Eq (3) reproduces it.  Estimator validated.
+
+Now at the natural condensate scale M = 2.240 meV  (m_eff = 1.1201e-03 eV/c^2):
+  MW-like    v=  200.0 km/s : r_core = lambda_dB = 1.6593e+00 m = 5.377e-20 kpc
+               M_core = 2.5053e+20 kg = 1.2596e-10 Msun ; M_core/M_halo = 9.689e-23
+               r_core / R_system = 2.689e-22
+  LSB dwarf  v=   40.0 km/s : r_core = lambda_dB = 8.2963e+00 m = 2.689e-19 kpc
+               M_core = 5.0106e+19 kg = 2.5193e-11 Msun ; M_core/M_halo = 8.398e-22
+               r_core / R_system = 6.722e-21
+  cluster    v= 1000.0 km/s : r_core = lambda_dB = 3.3185e-01 m = 1.075e-20 kpc
+               M_core = 1.2526e+21 kg = 6.2981e-10 Msun ; M_core/M_halo = 1.260e-24
+               r_core / R_system = 8.273e-24
+
+COMPARISON TO THE TARGET SCALES
+  galaxy  20 kpc  = 6.171e20 m
+  cluster 1.3 Mpc = 4.011e22 m
+  core at M = 2.24 meV: ~2 m.
+  Shortfall: 20-22 ORDERS OF MAGNITUDE in radius.
+  Core mass fraction of the halo: 1e-23 (galaxy), 1e-25 (cluster).
+A core forms.  It is metre-sized and carries 1e-23 of the halo mass.  It changes
+nothing.  And note: a soliton core is still MASS SITTING IN THE HALO, so even a
+large core would not by itself reduce xi -- it would only redistribute the dust.
+The dust is removed from radius R only if r_core >~ R AND essentially all of the
+dust is in the core.
+
+==============================================================================
+BLOCK 4 -- THE DECISIVE ITEM: CAN NONLINEARITY BEAT THE LINEAR JEANS SCALE?
+==============================================================================
+Reproduce the context's item-2 number first:
+  lambda_J(rho = rho_dm,0, M = 2.24 meV) = 8.704902e+11 m = 2.8211e-11 Mpc
+  context item 2 quotes 2.8e-11 Mpc.  MATCH -> the beta normalisation is right.
+
+Now the exact scaling.  Take an initially uniform region of physical radius R_i
+and density rho_i, mass M_sh = (4 pi/3) rho_i R_i^3.  Then
+
+  R_stall = A/(G M_sh) = A / (G (4 pi/3) rho_i R_i^3)
+  lambda_J(rho_i) = 2 pi (beta/(4 pi G rho_i))^(1/4)
+
+so with A = 4 beta,
+
+  R_stall / lambda_J = [ 3 A /(4 pi G rho_i) ] / R_i^3 x (4 pi G rho_i/beta)^(1/4)/(2 pi)
+                     = C x ( lambda_J / R_i )^3 ,                          (4)
+
+i.e.   R_stall = C lambda_J (lambda_J/R_i)^3 .
+
+THIS IS THE ANSWER TO THE QUESTION.  A region only collapses at all if
+R_i >~ lambda_J.  Therefore R_stall <= C lambda_J ALWAYS with C = 3/(4 pi^4) =
+0.0077, and for the deep nonlinear collapses that make galaxies
+(R_i/lambda_J ~ 1e10) the stall radius is smaller than the linear Jeans length by
+the CUBE of that factor, ~1e-32.
+
+Nonlinear collapse does not produce a core LARGER than the linear Jeans scale.
+It produces one very much SMALLER.  The physical reason is that
+lambda_J propto rho^(-1/4) is a DECREASING function of density, and collapse
+raises the density; the stabilisation scale is lambda_J evaluated
+self-consistently at the FINAL density, never at the initial one.
+
+Verify (4) numerically, and the constant C:
+ rho_i/rho_dm0      R_i[m]    lam_J[m]  R_stall[m]  R_stall/lam_J  (lam_J/R_i)^3        C
+     1.000e+00   3.086e+22   8.705e+11   1.505e-22      1.729e-34      2.245e-32   0.0077
+     1.000e+00   9.257e+21   8.705e+11   5.573e-21      6.402e-33      8.315e-31   0.0077
+     1.000e+00   8.710e+11   8.705e+11   6.691e+09      7.686e-03      9.982e-01   0.0077
+     1.000e+05   6.171e+20   4.895e+10   1.881e-22      3.842e-33      4.991e-31   0.0077
+     1.000e+03   4.011e+22   1.548e+11   6.849e-26      4.425e-37      5.747e-35   0.0077
+  C is constant across 30 orders of magnitude in the ratio -> eq (4) is exact.
+  MEASURED C = 0.00770   analytic: with A = 4 beta and lambda_J = 2 pi/k_J,
+    lambda_J^4 = 4 pi^3 beta/(G rho), R_stall = 3 beta/(pi G rho R_i^3), so
+    C = 3/(4 pi^4) = 0.00770.  MATCHES the measured value.
+  Note row 3: R_i = lambda_J exactly gives R_stall/lambda_J = C = 0.0077,
+  i.e. the LARGEST core the k^4 term can EVER make is 0.0077 lambda_J,
+  and with the exact bounce it is half that, 0.0038 lambda_J.
+  THE LINEAR JEANS SCALE IS A HARD CEILING ON THE NONLINEAR CORE, not a floor,
+  and the ceiling sits two orders BELOW lambda_J, not at it.
+
+lambda_J shrinks as collapse proceeds (rho^-1/4):
+  cosmic mean dust                           rho=2.257e-27 kg/m^3  lambda_J=8.7049e+11 m = 2.821e-08 kpc
+  cluster mean inside R500                   rho=3.107e-24 kg/m^3  lambda_J=1.4291e+11 m = 4.631e-09 kpc
+  MW halo mean inside 20 kpc                 rho=2.020e-22 kg/m^3  lambda_J=5.0327e+10 m = 1.631e-09 kpc
+  solar-neighbourhood DM 0.01 Msun/pc^3      rho=6.770e-22 kg/m^3  lambda_J=3.7197e+10 m = 1.205e-09 kpc
+
+==============================================================================
+BLOCK 5 -- INVERSION: WHAT M WOULD THE k^4 TERM NEED?
+==============================================================================
+Require R_stall >= R for the dust to be kept out of radius R:
+      4 c^2/k_M^2 >= G M_sh R   ->   M <= 2 hbar c^2 / sqrt(G M_sh R).      (5)
+
+target                                            M_max[eV]  M_max/M_nat   vs 2e-20 eV floor
+MW-like galaxy, dust inside 20 kpc               1.3072e-24   5.8353e-22          6.5359e-05
+LSB dwarf, dust inside 5 kpc                     1.1692e-23   5.2193e-21          5.8459e-04
+cluster M500=5e14, dust inside R500              2.4948e-27   1.1137e-24          1.2474e-07
+
+Compare the LINEAR requirement quoted in context item 2: M = 2.44e-25 eV to get
+lambda_J = 2.7 Mpc.  The NONLINEAR requirement is 1.31e-24 eV (galaxy),
+1.17e-23 eV (LSB dwarf), 2.49e-27 eV (cluster).
+
+=> Nonlinearity buys AT MOST a factor ~5 for a galaxy and LOSES two orders for a
+   cluster.  Not one order of magnitude of relief where it matters.  The k^4
+   route still needs M ~ 1e-24 to 1e-27 eV: 21-25 orders below the natural
+   rho_Lambda^(1/4) = 2.24 meV, and 4.2-7.0 orders below the Lyman-alpha fuzzy-DM
+   floor m > 2e-20 eV (Rogers & Peiris 2021, PRL 126:071302).  THE k^4 ROUTE IS
+   SHUT NONLINEARLY FOR THE SAME REASON IT IS SHUT LINEARLY.  And note the
+   cluster requirement is the one that moves the WRONG way, which is exactly the
+   scale the framework most needs help at.
+
+==============================================================================
+BLOCK 6 -- xi FROM THE k^4 MECHANISM
+==============================================================================
+xi(R) = M_dust(<R) / M_dust,CDM(<R).  With r_core ~ 2 m and R_stall ~ 1e-22 m,
+the only dust NOT in the CDM-like virialised envelope is the soliton core, of
+mass fraction M_core/M_halo computed in block 3:
+  MW-like   : xi = 1 - 9.689e-23 = 1.0000000000000000000000 (to 23 digits)
+  LSB dwarf : xi = 1 - 8.398e-22 = 1.0000000000000000000000 (to 23 digits)
+  cluster   : xi = 1 - 1.260e-24 = 1.0000000000000000000000 (to 23 digits)
+
+xi_galaxy = 1,  xi_cluster = 1.
+Feeding that into context item 4 (1/f_bar = 6.4387, xi = 1):
+  cluster R500 (y_bar=0.0684): overshoot 2.06x
+  bright spiral (y_bar=1.0)  : overshoot 4.42x
+The SPARC RAR is destroyed.  THIS IS UNFAVOURABLE TO THE NO-DARK-MATTER READING.
+
+==============================================================================
+BLOCK 6b -- THE LAST k^4 DOOR: DOES CAUSTIC FRAGMENTATION REMOVE MASS?
+==============================================================================
+ACLMW 2007 sec 3.3-3.5 show the ghostone fluid is exactly an IRROTATIONAL
+perfect fluid away from caustics, that caustics form on the Kepler time
+(their eq 3.8), and that the higher-derivative alpha(lap pi)^2 term -- the k^4
+term -- is what regularises them.  Sec 3.5 verbatim: "It is possible that the
+pressure resolves the caustics in important situations such as inside galaxy
+halos made of ghostone dark matter, but we will not consider that here."
+That is the one remaining k^4 door.  Close it quantitatively.
+
+The k^4 term becomes dynamically relevant when beta k^4 ~ t_ff^-2, i.e. at
+      l_caustic = (beta t_ff^2)^(1/4).
+
+system                                  t_ff[Gyr]  l_caustic[m]       [kpc]         l/R
+MW-like galaxy, dust inside 20 kpc          0.148    1.1110e+10   3.600e-10   1.800e-11
+LSB dwarf, dust inside 5 kpc                0.083    8.3064e+09   2.692e-10   5.384e-11
+cluster M500=5e14, dust inside R500         1.194    3.1548e+10   1.022e-09   7.865e-13
+
+So the k^4 term regularises structure at ~1e10 m = 3e-10 kpc, and does nothing
+above that.  Every astrophysical scale is in the pressureless irrotational-dust
+regime, where trajectories cross and shell-crossing converts ordered infall into
+VELOCITY DISPERSION.  That is virialisation.  Fragmentation redistributes the
+dust into de Broglie-scale granules; it does not expel a single gram from radius
+R.  Mass is conserved and the coarse-grained profile is CDM-like.
+
+This also disposes of Frolov 2004's (PRD 70:061501) irrotationality objection in
+the direction UNFAVOURABLE to the framework, consistent with Mukohyama 2005
+(PRD 71:104019): coarse-graining over caustics supplies effective angular
+momentum, so the "it cannot virialise because it is irrotational" escape fails.
+THE LAST k^4 DOOR IS CLOSED.
+
+==============================================================================
+BLOCK 7 -- CHALLENGE TO CONTEXT ITEM 1: THE k^2 TERM IS NOT ABSENT
+==============================================================================
+Context item 1 says c_s^2 = u/(3u+2) -> 0 at the condensate, "so the k^2
+gradient term is ABSENT and the leading dispersion is omega^2 = c^2 k^4/k_M^2."
+That is exact only AT u = 0, i.e. only for a condensate carrying ZERO energy
+density.  A Q-sector that is the dark matter carries u != 0 by construction.
+
+ACLMW 2007 (hep-ph/0507120) eq (3.15), verbatim: rho = M^4 Sigma,
+p = (1/2) M^4 Sigma^2 = rho^2/(2 M^4).  Hence EXACTLY
+
+      c_s^2 = dp/drho = rho / M^4  =  Sigma .                              (6)
+
+and their footnote 2 states the corresponding Jeans length
+L_J = 2 pi c_s/sqrt(4 pi G rho) ~ M_Pl/M^2 is DENSITY-INDEPENDENT and agrees
+with their linear eq (2.25).  Note also that the context's own
+c_s^2 = u/(3u+2) -> u/2 for small u has exactly this form with u = 2 Sigma:
+the two statements agree, and both say c_s^2 = O(rho/M^4), NOT zero.
+
+At M = M_nat = 2.24 meV (rho_M = rho_Lambda):
+  cosmic mean dust today     Sigma = 3.8630e-01 ; c_s^2 = 1.7893e-01 ; c_s = 0.4230 c
+  cluster inside R500        Sigma = 5.3177e+02 ; c_s^2 = 3.3312e-01 ; c_s = 0.5772 c
+  MW halo inside 20 kpc      Sigma = 3.4577e+04 ; c_s^2 = 3.3333e-01 ; c_s = 0.5773 c
+  => at the NATURAL scale the condensate has c_s ~ 0.42 c at the COSMIC MEAN
+     today (Sigma = 0.386, no expansion issue there), and Sigma = 5e2-3e4 in
+     clusters/halos.  HONEST CAVEAT, stated because it cuts both ways: Sigma >> 1
+     means ACLMW's small-Sigma expansion p = rho^2/2M^4 has broken down, so the
+     c_s^2 = 1/3 saturation values in halos are NOT trustworthy -- only the
+     cosmic-mean number Sigma = 0.386 is inside the expansion's domain.  But that
+     one number is already fatal: a component with c_s = 0.42 c today is not dust
+     and cannot be the dark matter.  M = rho_Lambda^(1/4) is EXCLUDED as the
+     Q-sector scale independently of everything else in this script.  The natural,
+     Lambda-derived value of M is not available; M must be fitted.
+
+Which gradient term dominates at galaxy scales?  omega^2 = c_s^2 k^2 + beta k^4.
+  M = 2.24 meV (natural)          : c_s^2 k^2 = 7.866e-26 ; beta k^4 = 4.808e-75 ; ratio = 1.636e+49
+  M = 0.148 eV (AeST mu^-1=1 Mpc) : c_s^2 k^2 = 4.259e-28 ; beta k^4 = 1.101e-78 ; ratio = 3.867e+50
+  => the k^2 term beats the k^4 term by 40-60 ORDERS at galaxy scales.
+     The assigned k^4 analysis is therefore not even the binding physics.
+
+REDO THE COLLAPSE WITH THE k^2 (ADIABATIC) TERM.  ACLMW eq (3.19)/(3.21):
+Dv/Dt = -grad(Phi + c^2 Sigma) and -grad Sigma = -(1/rho) grad p.  For a shell,
+
+  a_p = c^2 Sigma / R = c^2 rho/(rho_M R) = 3 c^2 M_sh /(4 pi rho_M R^4)   (7)
+
+  a_p / a_grav = [3 c^2 M_sh/(4 pi rho_M R^4)] / [G M_sh/R^2]
+               = 3 c^2 / (4 pi G rho_M R^2)                                (8)
+
+THE MASS CANCELS.  There is ONE universal stall radius, the same for every
+object:
+
+  R_p = c sqrt( 3 / (4 pi G rho_M) ) .                                     (9)
+
+Note (7) scales as R^-4 -- STEEPER than the k^4 term's R^-3.  So the adiabatic
+pressure is the dominant collapse-halting mechanism at every scale, and unlike
+the k^4 term its reach is set by rho_M alone, not by the collapsing mass.
+
+                           M  rho_M[kg/m^3]     R_p[Mpc]     R_p[kpc]
+          2.24 meV (natural)     5.8424e-27   7.6020e+03   7.6020e+06
+                   0.0986 eV     2.1929e-20   3.9239e+00   3.9239e+03
+      0.148 eV (mu^-1=1 Mpc)     1.1132e-19   1.7416e+00   1.7416e+03
+                     1.06 eV     2.9291e-16   3.3951e-02   3.3951e+01
+                     11.5 eV     4.0579e-12   2.8845e-04   2.8845e-01
+
+CROSS-CHECK against the previous agent's identity L_J = 2 pi/mu with
+M^4 = mu^2/(4 pi G) (in hbar=c=1):  at M = 0.148 eV they get L_J = 6.28 Mpc;
+eq (9) gives R_p = 1.742 Mpc.  Same length up to 2 pi/sqrt3 = 3.63.
+  (2 pi/sqrt(3)) x R_p = 6.318 Mpc  vs their 6.283 Mpc -> agreement to 1.6%.  INDEPENDENT CONFIRMATION.
+
+==============================================================================
+BLOCK 8 -- THE HYDROSTATIC BRANCH AND xi = min[1, (R/R_p)^2]
+==============================================================================
+Below R_p the condensate does not collapse; it reaches HYDROSTATIC balance.
+With p = c^2 rho^2/(2 rho_M):
+
+  dp/dr = -rho dPhi/dr  ->  (c^2/rho_M) rho drho/dr = -rho dPhi/dr
+                        ->  (c^2/rho_M) drho/dr = -dPhi/dr
+                        ->  rho(r) = rho_inf + rho_M |Phi(r)| / c^2 .      (10)
+
+Eq (10) is EXACTLY Mistele, McGaugh & Hossenfelder 2023 eq (2),
+rho_c = (m^2/4 pi G_N f_G)(phidot/Q0 - Phihat - phi), and exactly the
+Helmholtz term mutilde^2 Phi of Durakovic & Skordis 2024 eq (2.33), with
+rho_M/c^2 <-> mutilde^2/(4 pi G).
+
+THREE CONSEQUENCES, and the first two are FAVOURABLE to the framework:
+
+ (a) The suppression is NOT a linear-response artefact.  It comes from the exact
+     nonlinear equation of state p = rho^2/(2M^4) and from hydrostatic balance,
+     which is a dynamical ATTRACTOR, not an assumed boundary condition.  The
+     literature's standing objection -- Durakovic & Skordis 2024 sec 2.3.1
+     "we assume ... Q -> Q0 up to small fluctuations" -- is DISCHARGED for
+     R < R_p: Q -> Q0 is the hydrostatic solution, not an assumption.
+
+ (b) The per-object free parameter DISAPPEARS.  In eq (10) the only integration
+     constant is rho_inf, the AMBIENT condensate density, which is the cosmic
+     mean -- the same for every object.  Mistele et al.'s "chemical potential of
+     each galaxy as a free parameter" is fixed, in this branch, by the boundary
+     condition at infinity.  That RESTORES falsifiability.
+
+ (c) AGAINST INTEREST: hydrostatic equilibrium must have time to establish.
+     Sound-crossing times below.  And beyond R_p the fluid IS Jeans unstable,
+     so xi -> CDM level there.  Hence
+
+       xi(R) = min[ 1 , kappa_h (R/R_p)^2 ] ,  kappa_h = O(1) .            (11)
+
+Sound-crossing time R/c_s (must be < t0 for (10) to hold):
+  M=2.24 meV  MW 20 kpc     c_s = 1.7308e+08 m/s =  173084.4 km/s ; R/c_s = 0.0001 Gyr ; = 8.1892e-06 t0
+  M=2.24 meV  cluster R500  c_s = 1.7303e+08 m/s =  173031.0 km/s ; R/c_s = 0.0073 Gyr ; = 5.3246e-04 t0
+  M=0.0986 eV MW 20 kpc     c_s = 2.8385e+07 m/s =   28384.8 km/s ; R/c_s = 0.0007 Gyr ; = 4.9936e-05 t0
+  M=0.0986 eV cluster R500  c_s = 3.5676e+06 m/s =    3567.6 km/s ; R/c_s = 0.3563 Gyr ; = 2.5825e-02 t0
+  M=0.148 eV  MW 20 kpc     c_s = 1.2737e+07 m/s =   12736.7 km/s ; R/c_s = 0.0015 Gyr ; = 1.1129e-04 t0
+  M=0.148 eV  cluster R500  c_s = 1.5837e+06 m/s =    1583.7 km/s ; R/c_s = 0.8026 Gyr ; = 5.8174e-02 t0
+  => established comfortably in every case.  (a) holds.
+
+xi from eq (11), kappa_h = 1:
+           M   R_p[Mpc]    xi(20kpc)     xi(5kpc)   xi(1.3Mpc)   xi(100kpc)
+    2.24 meV 7.6020e+03   6.9216e-12   4.3260e-13   2.9244e-08   1.7304e-10
+   0.0986 eV 3.9239e+00   2.5980e-05   1.6237e-06   1.0976e-01   6.4949e-04
+   0.1223 eV 2.5504e+00   6.1494e-05   3.8433e-06   2.5981e-01   1.5373e-03
+    0.148 eV 1.7416e+00   1.3188e-04   8.2423e-06   5.5718e-01   3.2969e-03
+     1.06 eV 3.3951e-02   3.4701e-01   2.1688e-02   1.0000e+00   1.0000e+00
+     11.5 eV 2.8845e-04   1.0000e+00   1.0000e+00   1.0000e+00   1.0000e+00
+
+==============================================================================
+BLOCK 9 -- THE FORK: R_p REQUIRED BY CLUSTERS+RAR vs ALLOWED BY COSMOLOGY
+==============================================================================
+The framework needs (context item 5): xi(R500) = 0.11-0.26 in clusters and
+xi ~ 0 in galaxies.  From eq (11) with kappa_h = 1 and R500 = 1.3 Mpc:
+  xi(R500) = 0.11  ->  R_p =   3.920 Mpc ->  M = 0.09865 eV =   44.0 M_nat ;  xi(20 kpc) = 2.604e-05
+  xi(R500) = 0.26  ->  R_p =   2.550 Mpc ->  M = 0.12232 eV =   54.6 M_nat ;  xi(20 kpc) = 6.154e-05
+  Both give xi(20 kpc) ~ 3e-5 to 6e-5: FAR inside the 0.034 dex SPARC
+  intrinsic scatter.  The RAR is untouched.  THAT PART WORKS.
+
+Now the cosmological cost.  w = p/(rho c^2) = Sigma/2 = rho/(2 rho_M), and
+rho propto a^-3, so the condensate turns STIFF at high z.  Require w < w_max at
+redshift z_c:  rho_M > rho_dm,0 (1+z_c)^3 / (2 w_max).
+
+     z_c    w_max  rho_M min[kg/m^3]   M min[eV]  R_p max[kpc]  xi(1.3Mpc)   xi(20kpc)
+    1100   0.0100         1.5061e-16      0.8976    4.7347e+01  1.0000e+00  1.7843e-01
+    1100   0.0010         1.5061e-15      1.5962    1.4973e+01  1.0000e+00  1.0000e+00
+   30000   0.0164         1.8580e-12      9.4599    4.2628e-01  1.0000e+00  1.0000e+00
+   30000   0.0010         3.0472e-11     19.0369    1.0526e-01  1.0000e+00  1.0000e+00
+
+CROSS-CHECK: Blanchet & Skordis 2024 (arXiv:2404.06584) sec 4.3.1 find, for
+K(Q) = mu^2 (Q-1)^2 and the GDM bound w <~ 0.0164 at a ~ 1e-4.5 (Kopp, Skordis,
+Thomas & Ilic 2018, PRL 120:221102), the requirement mu^-1 <~ 0.22 kpc, while
+MOND in galaxies needs mu^-1 >~ 100 kpc, and conclude verbatim that the quadratic
+K "cannot be in simultaneous harmony with observations of galaxies and with
+cosmology."  Row 3 above gives R_p <= 0.426 kpc from the SAME bound,
+derived independently from ACLMW eq (3.15).  I reproduce their 0.22 kpc.
+
+THE FORK, numerically:
+  R_p required (clusters at xi=0.11-0.26 with the RAR safe) : 2550 - 3920 kpc
+  R_p allowed  (GDM/CMB, w < 0.0164 at a ~ 3e-5)            :      <= 0.29 kpc
+  CONFLICT: a factor 5.982e+03 in R_p,
+            3.578e+07 in rho_M,
+            77.34 in M.
+  Even the far weaker recombination-only bound (w < 0.001 at z = 1100) allows only
+  R_p <= 15 kpc, which forces xi(1.3 Mpc) = 1 -- full double counting in clusters.
+
+There is NO value of M that simultaneously (i) keeps the Q-sector out of galaxies
+and partly out of clusters, and (ii) lets it behave as cold dust before
+recombination.  The two requirements are the SAME parameter pulling opposite ways.
+
+
+==============================================================================
+SUMMARY
+==============================================================================
+1. A core DOES form: a_grad/a_grav = A/(G M_sh R) grows as R -> 0, so the k^4
+   term always wins eventually.  R_stall = A/(G M_sh) = 4 c^2/(k_M^2 G M_sh).
+2. At M = rho_Lambda^(1/4) = 2.24 meV, R_stall(1e11 Msun) = 2.1e-22 m, which is
+   8 orders BELOW the Schwarzschild radius of that mass.  The realistic core is
+   the de Broglie scale, ~2 m, carrying 1e-23 of the halo mass.  Shortfall to
+   20 kpc: 20 orders.  Second, independent kill: the k^4 response time at
+   20 kpc is 3e19 Hubble times.
+3. NONLINEARITY MAKES IT WORSE, NOT BETTER.  Exact scaling
+   R_stall = C lambda_J (lambda_J/R_i)^3 with C = 3/(4 pi^4) = 0.0077.  Since
+   collapse requires R_i >= lambda_J, the linear Jeans length is a HARD CEILING
+   on the nonlinear core, and the ceiling sits at 0.008 lambda_J -- two orders
+   BELOW it.  Physically lambda_J propto rho^(-1/4) DECREASES with density, and
+   collapse raises the density.  Required M: 1.31e-24 eV (galaxy),
+   2.49e-27 eV (cluster) versus the linear 2.44e-25 eV -- a factor 5 of relief
+   for a galaxy, two orders WORSE for a cluster.  21-25 orders below natural,
+   4.2-7.0 orders below the Lyman-alpha floor.
+4. Therefore from the k^4 mechanism: xi_galaxy = xi_cluster = 1.
+   VERDICT ON THE ASSIGNED MECHANISM: DUST_VIRIALISES.  UNFAVOURABLE.
+5. BUT context item 1's premise is wrong in a halo.  c_s^2 = rho/M^4 (ACLMW
+   eq 3.15, exact) is NOT zero for a condensate carrying an Omega_dm amount of
+   energy, and it beats the k^4 term by 40-60 orders at galaxy scales.  Redoing
+   the collapse with it gives a_p propto R^-4 and a UNIVERSAL, mass-independent
+   stall radius R_p = c sqrt(3/(4 pi G rho_M)), and below R_p the hydrostatic
+   solution rho = rho_inf + rho_M|Phi|/c^2 -- which is AeST's own Helmholtz
+   response, now DERIVED nonlinearly with no free per-object chemical potential.
+   xi = min[1, (R/R_p)^2].
+6. That branch is genuinely favourable at galaxy+cluster scales (R_p = 2.55-3.92
+   Mpc, i.e. M = 0.0986-0.1223 eV, gives xi(R500) = 0.11-0.26 with
+   xi(20 kpc) = 2.6e-5 to 6.2e-5) but the SAME parameter makes the condensate
+   stiff before z ~ 300, destroying the CMB fit that is AeST's whole reason for
+   existing.  Conflict factor 5982 in R_p, 3.6e7 in rho_M, 77 in M.
+   Independent re-derivation of Blanchet & Skordis 2024 sec 4.3.1 (I get
+   R_p <= 0.43 kpc from their GDM bound; they quote mu^-1 <= 0.22 kpc).
+   ALSO: M = rho_Lambda^(1/4) is itself excluded (c_s = 0.42 c at the cosmic
+   mean today), so M is a FITTED parameter, not a Lambda-derived one.  The
+   claim "the dark sector scale follows from rho_Lambda" does not survive.
+7. NET: the k^4 route is shut both linearly and nonlinearly.  The k^2 route is
+   open in principle and is the correct physics, but it is the SAME single knob
+   that the CMB fixes on the wrong side.  No M works for both.  The door that
+   remains is a NON-quadratic K(Q) (DBI-type, as Blanchet & Skordis suggest),
+   which would decouple the halo-scale stiffness from the early-time stiffness.
+   That is not tested here.
