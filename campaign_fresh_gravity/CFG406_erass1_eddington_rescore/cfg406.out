@@ -1,0 +1,135 @@
+CFG406 Eddington re-score of CFG687 T2 (Part A) and X43's cluster keys (Part B)
+==============================================================================================================
+alpha (CFG816 committed) = 2.0291
+
+PART A: CFG687 T2 (318 clusters; data stack from cfg687_percluster.npz; law() verbatim; bins on observed Mgas500)
+
+CONTROLS (A)
+  [PASS] K1 E0 reproduces stored PL/PN (<= 1e-9 rel), s_law 0.47, s_N 0.84, s_obs 0.90 +- 0.21, T2 FOLLOWS NEWTON (canonical): max rel 0.0e+00; s_law 0.4658, s_N 0.8361, s_obs 0.8958 +- 0.2093, T2 FOLLOWS NEWTON
+  [PASS] K2 CFG816's matching code verbatim reproduces its printed per-tercile median sigma and M_true/M_obs (CFG816 stored no per-cluster sigma): sigma 0.786 / 0.291 / 0.158; corr 0.286 / 0.843 / 0.950
+  E0  canonical: s_obs 0.90 +- 0.21 | s_law 0.466  s_N 0.836  ds +0.430 -> FOLLOWS NEWTON | A_OUTER by observed tercile 0.57+-0.20 / 0.96+-0.12 / 1.38+-0.15
+  E0  alt      : s_obs 0.90 +- 0.21 | s_law 0.463  s_N 0.836  ds +0.432 -> FOLLOWS NEWTON | A_OUTER by observed tercile 0.52+-0.19 / 0.88+-0.11 / 1.27+-0.13
+  Eh  canonical: s_obs 0.90 +- 0.21 | s_law 0.577  s_N 0.967  ds +0.318 -> NOT DECIDED | A_OUTER by observed tercile 0.73+-0.27 / 1.03+-0.13 / 1.40+-0.15
+  Eh  alt      : s_obs 0.90 +- 0.21 | s_law 0.575  s_N 0.967  ds +0.321 -> NOT DECIDED | A_OUTER by observed tercile 0.66+-0.24 / 0.95+-0.12 / 1.29+-0.14
+  E1  canonical: s_obs 0.90 +- 0.21 | s_law 0.634  s_N 1.027  ds +0.262 -> NOT DECIDED | A_OUTER by observed tercile 0.83+-0.31 / 1.09+-0.14 / 1.43+-0.15
+  E1  alt      : s_obs 0.90 +- 0.21 | s_law 0.632  s_N 1.027  ds +0.264 -> NOT DECIDED | A_OUTER by observed tercile 0.76+-0.28 / 0.99+-0.13 / 1.31+-0.14
+  [PASS] K3 null interpolation within 0.2% of direct law() at E1 (every cluster and bin, both footings): max rel 3.27e-05
+
+NULL (sigma permuted, 200 draws, E1)
+  canonical: |ds_E1| 0.262 vs null |ds| pct 5/16/50/84/95 = 0.379 / 0.405 / 0.435 / 0.474 / 0.499; frac of null <= |ds_E1|: 0.000
+  alt: |ds_E1| 0.264 vs null |ds| pct 5/16/50/84/95 = 0.382 / 0.407 / 0.438 / 0.476 / 0.501; frac of null <= |ds_E1|: 0.000
+  -> E1 SPECIAL: True
+
+PART A READING (frozen): SELECTION PARTLY (E1 not FOLLOWS THE LAW on both footings)   [50 s]
+
+PART B: X43 cluster keys (326 clusters via X30/X7), injection after X30's CL; groups key out of scope
+  name match to erass1_main.tsv: 326/326 (fallback by position not needed)
+  X43 child E0: rc 0 [84 s]
+  X43 child Eh: rc 0 [84 s]
+  X43 child E1: rc 0 [83 s]
+
+CONTROLS (B)
+  [PASS] names: all 326 X7/X30 clusters matched to the catalogue with valid bounds; no injection misses: 326/326; misses [0, 0, 0]
+  [PASS] K4 E0 through the injection reproduces every committed X43 cluster cell (meas, s, pred, Z; both footings, both h cells) to <= 1e-9: max |diff| 0.00e+00
+  [FAIL] K5 X30 in-run KT/M_terc measured A and s under E1 equal E0 x R (<= 1e-6); failure marks the stored-X7 keys APPROXIMATE: max rel dev A 2.22e-16, s 4.99e-02
+  E0 canonical: cluster fails ['G-OUT-M3 (UNDER)'] | groups Z +2.05 (unchanged, out of scope)
+       G-IN-all   h0672 meas +1.938+-1.670 pred +3.575 Z -0.98 | h0686 Z -1.04
+       G-MID-T1   h0672 meas +1.096+-0.375 pred +1.623 Z -1.41 | h0686 Z -1.14
+       G-MID-T2   h0672 meas +1.650+-0.318 pred +1.779 Z -0.41 | h0686 Z +0.01
+       G-MID-T3   h0672 meas +2.132+-0.254 pred +2.057 Z +0.30 | h0686 Z +0.69
+       G-MID-b    h0672 meas +2.242+-0.742 pred +0.977 Z +1.70 | h0686 Z +1.82
+       G-OUT-all  h0672 meas +0.716+-0.141 pred +0.878 Z -1.15 | h0686 Z -1.20
+       G-OUT-T1   h0672 meas +0.394+-0.315 pred +0.724 Z -1.05 | h0686 Z -1.06
+       G-OUT-T2   h0672 meas +0.622+-0.229 pred +0.835 Z -0.93 | h0686 Z -0.79
+       G-OUT-T3   h0672 meas +1.027+-0.219 pred +1.025 Z +0.01 | h0686 Z -0.14
+       G-OUT-b    h0672 meas +1.502+-0.641 pred +0.675 Z +1.29 | h0686 Z +1.06
+       G-OUT-Mall h0672 meas +0.929+-0.098 pred +0.881 Z +0.49 | h0686 Z +0.62
+       G-OUT-M1   h0672 meas +0.488+-0.296 pred +0.581 Z -0.31 | h0686 Z -0.18
+       G-OUT-M2   h0672 meas +0.762+-0.135 pred +0.836 Z -0.54 | h0686 Z -0.31
+       G-OUT-M3   h0672 meas +1.369+-0.103 pred +1.120 Z +2.41 | h0686 Z +2.07  FAIL
+       G-IN-Mall  h0672 meas +2.279+-1.051 pred +3.517 Z -1.18 | h0686 Z -1.01
+  E0 alt      : cluster fails ['G-OUT-M3 (UNDER)'] | groups Z +2.05 (unchanged, out of scope)
+       G-IN-all   h0672 meas +1.779+-1.533 pred +3.282 Z -0.98 | h0686 Z -1.04
+       G-MID-T1   h0672 meas +1.004+-0.344 pred +1.487 Z -1.41 | h0686 Z -1.14
+       G-MID-T2   h0672 meas +1.513+-0.292 pred +1.631 Z -0.40 | h0686 Z +0.01
+       G-MID-T3   h0672 meas +1.959+-0.234 pred +1.890 Z +0.30 | h0686 Z +0.69
+       G-MID-b    h0672 meas +2.070+-0.681 pred +0.909 Z +1.70 | h0686 Z +1.82
+       G-OUT-all  h0672 meas +0.656+-0.129 pred +0.804 Z -1.15 | h0686 Z -1.20
+       G-OUT-T1   h0672 meas +0.360+-0.288 pred +0.662 Z -1.05 | h0686 Z -1.06
+       G-OUT-T2   h0672 meas +0.570+-0.209 pred +0.764 Z -0.93 | h0686 Z -0.79
+       G-OUT-T3   h0672 meas +0.941+-0.201 pred +0.940 Z +0.01 | h0686 Z -0.14
+       G-OUT-b    h0672 meas +1.381+-0.587 pred +0.623 Z +1.29 | h0686 Z +1.06
+       G-OUT-Mall h0672 meas +0.851+-0.090 pred +0.807 Z +0.49 | h0686 Z +0.62
+       G-OUT-M1   h0672 meas +0.446+-0.270 pred +0.531 Z -0.31 | h0686 Z -0.18
+       G-OUT-M2   h0672 meas +0.698+-0.123 pred +0.765 Z -0.54 | h0686 Z -0.31
+       G-OUT-M3   h0672 meas +1.257+-0.095 pred +1.028 Z +2.41 | h0686 Z +2.07  FAIL
+       G-IN-Mall  h0672 meas +2.092+-0.964 pred +3.228 Z -1.18 | h0686 Z -1.01
+  Eh canonical: cluster fails ['G-OUT-M3 (UNDER)'] | groups Z +2.05 (unchanged, out of scope)
+       G-IN-all   h0672 meas +2.038+-1.756 pred +3.600 Z -0.89 | h0686 Z -0.94
+       G-MID-T1   h0672 meas +1.204+-0.418 pred +1.607 Z -0.96 | h0686 Z -0.72
+       G-MID-T2   h0672 meas +1.743+-0.342 pred +1.779 Z -0.10 | h0686 Z +0.29
+       G-MID-T3   h0672 meas +2.185+-0.257 pred +2.049 Z +0.53 | h0686 Z +0.93
+       G-MID-b    h0672 meas +2.111+-0.820 pred +1.002 Z +1.35 | h0686 Z +1.46
+       G-OUT-all  h0672 meas +0.757+-0.149 pred +0.877 Z -0.81 | h0686 Z -0.86
+       G-OUT-T1   h0672 meas +0.434+-0.348 pred +0.714 Z -0.80 | h0686 Z -0.82
+       G-OUT-T2   h0672 meas +0.661+-0.241 pred +0.837 Z -0.73 | h0686 Z -0.59
+       G-OUT-T3   h0672 meas +1.049+-0.224 pred +1.018 Z +0.14 | h0686 Z -0.01
+       G-OUT-b    h0672 meas +1.483+-0.704 pred +0.690 Z +1.13 | h0686 Z +0.90
+       G-OUT-Mall h0672 meas +1.021+-0.108 pred +0.885 Z +1.26 | h0686 Z +1.42  [APPROX]
+       G-OUT-M1   h0672 meas +0.639+-0.387 pred +0.569 Z +0.18 | h0686 Z +0.34  [APPROX]
+       G-OUT-M2   h0672 meas +0.815+-0.144 pred +0.811 Z +0.03 | h0686 Z +0.22  [APPROX]
+       G-OUT-M3   h0672 meas +1.394+-0.105 pred +1.112 Z +2.67 | h0686 Z +2.32  FAIL  [APPROX]
+       G-IN-Mall  h0672 meas +2.496+-1.151 pred +3.548 Z -0.91 | h0686 Z -0.80
+  Eh alt      : cluster fails ['G-OUT-M3 (UNDER)'] | groups Z +2.05 (unchanged, out of scope)
+       G-IN-all   h0672 meas +1.871+-1.612 pred +3.304 Z -0.89 | h0686 Z -0.94
+       G-MID-T1   h0672 meas +1.103+-0.383 pred +1.472 Z -0.96 | h0686 Z -0.72
+       G-MID-T2   h0672 meas +1.598+-0.314 pred +1.631 Z -0.10 | h0686 Z +0.29
+       G-MID-T3   h0672 meas +2.008+-0.236 pred +1.883 Z +0.53 | h0686 Z +0.93
+       G-MID-b    h0672 meas +1.950+-0.752 pred +0.933 Z +1.35 | h0686 Z +1.46
+       G-OUT-all  h0672 meas +0.693+-0.136 pred +0.803 Z -0.81 | h0686 Z -0.86
+       G-OUT-T1   h0672 meas +0.397+-0.319 pred +0.652 Z -0.80 | h0686 Z -0.82
+       G-OUT-T2   h0672 meas +0.605+-0.221 pred +0.766 Z -0.73 | h0686 Z -0.59
+       G-OUT-T3   h0672 meas +0.962+-0.206 pred +0.934 Z +0.14 | h0686 Z -0.01
+       G-OUT-b    h0672 meas +1.364+-0.645 pred +0.638 Z +1.13 | h0686 Z +0.90
+       G-OUT-Mall h0672 meas +0.935+-0.099 pred +0.811 Z +1.26 | h0686 Z +1.42  [APPROX]
+       G-OUT-M1   h0672 meas +0.583+-0.353 pred +0.520 Z +0.18 | h0686 Z +0.34  [APPROX]
+       G-OUT-M2   h0672 meas +0.745+-0.132 pred +0.742 Z +0.03 | h0686 Z +0.22  [APPROX]
+       G-OUT-M3   h0672 meas +1.279+-0.097 pred +1.020 Z +2.67 | h0686 Z +2.32  FAIL  [APPROX]
+       G-IN-Mall  h0672 meas +2.291+-1.057 pred +3.256 Z -0.91 | h0686 Z -0.80
+  E1 canonical: cluster fails ['G-OUT-M3 (UNDER)'] | groups Z +2.05 (unchanged, out of scope)
+       G-IN-all   h0672 meas +2.120+-1.827 pred +3.616 Z -0.82 | h0686 Z -0.86
+       G-MID-T1   h0672 meas +1.283+-0.452 pred +1.596 Z -0.69 | h0686 Z -0.46
+       G-MID-T2   h0672 meas +1.808+-0.358 pred +1.779 Z +0.08 | h0686 Z +0.47
+       G-MID-T3   h0672 meas +2.234+-0.261 pred +2.043 Z +0.73 | h0686 Z +1.13
+       G-MID-b    h0672 meas +2.024+-0.878 pred +1.017 Z +1.15 | h0686 Z +1.25
+       G-OUT-all  h0672 meas +0.784+-0.154 pred +0.873 Z -0.58 | h0686 Z -0.63
+       G-OUT-T1   h0672 meas +0.462+-0.372 pred +0.703 Z -0.65 | h0686 Z -0.68
+       G-OUT-T2   h0672 meas +0.684+-0.248 pred +0.834 Z -0.61 | h0686 Z -0.47
+       G-OUT-T3   h0672 meas +1.070+-0.228 pred +1.013 Z +0.25 | h0686 Z +0.09
+       G-OUT-b    h0672 meas +1.475+-0.746 pred +0.704 Z +1.03 | h0686 Z +0.81
+       G-OUT-Mall h0672 meas +1.076+-0.113 pred +0.885 Z +1.69 | h0686 Z +1.86  [APPROX]
+       G-OUT-M1   h0672 meas +0.731+-0.442 pred +0.564 Z +0.38 | h0686 Z +0.55  [APPROX]
+       G-OUT-M2   h0672 meas +0.855+-0.151 pred +0.796 Z +0.39 | h0686 Z +0.56  [APPROX]
+       G-OUT-M3   h0672 meas +1.416+-0.107 pred +1.105 Z +2.91 | h0686 Z +2.54  FAIL  [APPROX]
+       G-IN-Mall  h0672 meas +2.637+-1.217 pred +3.572 Z -0.77 | h0686 Z -0.68
+  E1 alt      : cluster fails ['G-OUT-M3 (UNDER)'] | groups Z +2.05 (unchanged, out of scope)
+       G-IN-all   h0672 meas +1.946+-1.677 pred +3.318 Z -0.82 | h0686 Z -0.86
+       G-MID-T1   h0672 meas +1.175+-0.414 pred +1.461 Z -0.69 | h0686 Z -0.46
+       G-MID-T2   h0672 meas +1.657+-0.328 pred +1.631 Z +0.08 | h0686 Z +0.47
+       G-MID-T3   h0672 meas +2.052+-0.240 pred +1.877 Z +0.73 | h0686 Z +1.13
+       G-MID-b    h0672 meas +1.871+-0.806 pred +0.946 Z +1.15 | h0686 Z +1.25
+       G-OUT-all  h0672 meas +0.718+-0.141 pred +0.799 Z -0.58 | h0686 Z -0.63
+       G-OUT-T1   h0672 meas +0.422+-0.340 pred +0.643 Z -0.65 | h0686 Z -0.68
+       G-OUT-T2   h0672 meas +0.626+-0.227 pred +0.764 Z -0.61 | h0686 Z -0.47
+       G-OUT-T3   h0672 meas +0.981+-0.209 pred +0.929 Z +0.25 | h0686 Z +0.09
+       G-OUT-b    h0672 meas +1.357+-0.683 pred +0.650 Z +1.03 | h0686 Z +0.81
+       G-OUT-Mall h0672 meas +0.986+-0.104 pred +0.810 Z +1.69 | h0686 Z +1.86  [APPROX]
+       G-OUT-M1   h0672 meas +0.667+-0.404 pred +0.515 Z +0.38 | h0686 Z +0.55  [APPROX]
+       G-OUT-M2   h0672 meas +0.782+-0.138 pred +0.728 Z +0.39 | h0686 Z +0.56  [APPROX]
+       G-OUT-M3   h0672 meas +1.299+-0.098 pred +1.014 Z +2.91 | h0686 Z +2.54  FAIL  [APPROX]
+       G-IN-Mall  h0672 meas +2.420+-1.117 pred +3.278 Z -0.77 | h0686 Z -0.68
+
+PART B READING (frozen, E1): canonical X43 HOLDS | alt X43 HOLDS   (X43 committed fails: {'canonical': ['G-OUT-M3'], 'alt': ['G-OUT-M3']})
+
+PART A READING (frozen): SELECTION PARTLY (E1 not FOLLOWS THE LAW on both footings)
+controls A 3/3, B 2/3; runtime 300 s
