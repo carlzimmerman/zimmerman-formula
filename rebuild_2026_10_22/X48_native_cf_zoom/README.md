@@ -96,3 +96,31 @@ Caveats, to be graded when the batch lands:
 - These are isolated spheres: no external tides or late mergers, both of which lower concentration.
 - Particle counts inside r₋₂ are modest (300–850); the ng = 48 run tests this.
 - c_f rises with mass, the opposite of the usual trend. The likely cause is the constrained mean-curvature peak at high ν.
+
+## AMENDMENT A2 result (2026-10-27): ABOVE WINDOW at nine seeds; the X43 regrade now FAILS the SPARC line
+
+All 18 A2 runs finished, so every mass has 9 seeds at ng 48. Files: `x48_analyze_ng48_A2.out`, `x48_grade_A2.*` and
+`x48_regrade_A2.*`. The committed 3-seed `*_ng48` files are unchanged, because X53, X56 and X58 read them. The analysis
+only gained a `--tag` output option.
+
+| M200 | c_f, nine-seed median (68 % bootstrap) | NFW-fit median (reported) | grade |
+|---|---|---|---|
+| 10¹² | **11.63** (8.37–12.74) | 7.10 | ABOVE WINDOW |
+| 10¹³ | **8.22** (6.97–11.23) | 5.60 | ABOVE WINDOW |
+| 10¹⁴ | **7.31** (7.13–9.00) | 5.40 | ABOVE WINDOW |
+
+**Frozen verdict: ABOVE WINDOW** (window [3.3, 4.6]), at ng 48. Convergence beyond ng 48 is not tested.
+
+**Regrade (X43 rule, nine-seed c_f; η = 56 / 37 / 31):**
+- **SPARC line FAILS:** rms 0.0774, median Υ 0.31 / 0.30.
+- Groups pass: Z +1.33.
+- Clusters fail G-IN-all, G-MID-T1 and G-IN-Mall (all OVER), on both footings.
+- The 3-seed pass (`x48_regrade_ng48`) does not survive more seeds.
+
+**Caveats (reported, not graded):**
+- Per-seed c_f spans 2.3–22.7.
+- In 8 of 27 runs r₋₂ sits at the smallest resolved radius, ≈ 0.010 (M/10¹²)^{1/3} Mpc. Those c_f values are
+  resolution-limited and probably biased high. The NFW-fit medians (5.4–7.1) are lower but also above the window.
+- A higher-resolution grid (ng ≥ 64) is the test of whether native c_f falls into the window. This lane does not run it.
+
+κ = ½ FITTED. Not theory closed.

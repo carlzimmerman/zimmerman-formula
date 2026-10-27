@@ -57,7 +57,8 @@ def synthetic_nfw(c, N, seed, rvir=1.0):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--runs", default=os.path.join(HERE, "runs")); ap.add_argument("--mutate", action="store_true")
     ap.add_argument("--ng", type=int, default=38)   # A1: select the production grid
-    a = ap.parse_args(); TAG = ("_MUTATE" if a.mutate else "") + ("" if a.ng == 38 else f"_ng{a.ng}")
+    ap.add_argument("--tag", default="")             # A2: distinct output name (the 3-seed ng48 files stay as committed)
+    a = ap.parse_args(); TAG = ("_MUTATE" if a.mutate else "") + ("" if a.ng == 38 else f"_ng{a.ng}") + (f"_{a.tag}" if a.tag else "")
     P("X48 analysis" + (" [MUTATE: synthetic c = 8]" if a.mutate else "") + "; kappa = 1/2 FITTED; not theory closed")
     # K3 synthetic NFW
     N = 12000; xs = synthetic_nfw(8.0 if a.mutate else 4.0, N, 1); msyn = 1.0 / N
