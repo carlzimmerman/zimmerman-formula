@@ -399,3 +399,16 @@ Results:
 - **Why it is not diagnostic.** Every disc in the record at z ≥ 1 (KURVS, KMOS3D, SINS, RC100) lies above M_×. So the switch predicts them all to carry collapse cores, and there is no below-M_× comparison group.
 - **Reported only.** Route E's predicted outer excess (+0.04–0.08 dex) is far smaller than KURVS's +0.39 offset, which is dominated by pressure and gas uncertainties of ~0.3 dex each. That offset is not evidence for the switch.
 - **A real test needs** dwarf-mass discs (M_b ≲ 10^9) at z ≳ 1.5, i.e. JWST/NIRSpec IFU kinematics of lensed discs, at a precision of ~0.02–0.04 dex.
+
+**What keeps cold dark energy out of galaxies?** (`X57_exclusion_mechanism`, 6cadf4f9b0 / 436ff03cb9; coordinator rerun identical apart from timing). **UNDECIDED.** Four classes are excluded on both footings:
+- **M1, cold dark energy feels GR only.** Its own self-gravity still collapses it into galaxies: ≥ 0.54 of the fair share against ≤ 0.20 / 0.03 allowed.
+- **M2, baryon–cold Yukawa repulsion.** The forest allows β ≤ 0.04–6.6 depending on range; galaxies need β ≥ 1. The windows never intersect.
+- **M3, repulsion by the law's field.** It either kills linear growth or becomes object-keyed, and cluster cores sit in SPARC's x range, so they would empty too.
+- **M4, coherence / wave scale.** The forest-allowed scale clears only 33 % of SPARC galaxies.
+
+The two that remain:
+- **M6, displacement** (galaxies form in cold dark energy deficits). NOT DECIDABLE on canonical; EXCLUDED on alt by the cluster-outskirts line. Depleted patches must hold ≤ 5–6 % of cosmic baryons.
+- **M5, an object-keyed switch.** Reported only, since X58 tests it operationally. No action has been derived. The forms left untested are a phase-space key, a retarded nonlocal operator, and a bound-region constraint.
+
+The law acting on cluster baryons fails X30's OUTER line (Z −2.0 / −2.7). That is thin on canonical; a reported-only diagnostic says it fails on both footings.
+Deciding observation between M5 and M6: small-scale Lyman-α forest gas power at z ≈ 4–5.5. M6 predicts an excess growing toward high z; M5 predicts none.
