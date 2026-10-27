@@ -59,7 +59,7 @@ FGPA forward model, with the patches inserted in real space.
   - K3 and K4 are vacuous, because G1 fails. Peak RSS 0.18 GB.
 - **Rerun.** Identical apart from timing: one JSON leaf (K6 elapsed).
 - **MUTATE (`P1D1_MUTATE=1`): exit 1.**
-  - It fails S0e (m3) and K3 (m1, sign flipped: Asimov 9.0 but planted Δχ²₀ 7.59), as required.
+  - It fails S0e (m3) and K3 (m1, sign flipped: Asimov 10.39, so K3 is live, but planted Δχ²₀ 7.59), as required.
   - m2 uses the uncorrected column.
 
 ## Files
