@@ -44,4 +44,4 @@ halo. Otherwise use the law on the baryons, with no halo.
    object-keyed switch is excluded. Any surviving key must separate the dwarfs from L* galaxies by something other than
    mass, for example environment (most graded dwarfs are satellites) or formation epoch.
 
-Graded lines: `x58_switch.out` / `_results.json`.
+Graded lines: `x58_law_floor.out` / `x58_law_floor_results.json` (the output name was inherited from X56; script `x58_switch.py`).
