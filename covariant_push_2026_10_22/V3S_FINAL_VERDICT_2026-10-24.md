@@ -331,3 +331,12 @@ Results:
 - **Consequence:** the a₀ floor replaces v3s's separate ~4–5 km/s dwarf floor for every class except the ultra-faints.
 
 **Correction (fix forward) to the X48 ng 48 entry above.** The inner-band values "Z −2.41 / −2.06" are the h = 0.672 and h = 0.686 cluster cell sets, not the two footings; both footings give −2.41 in the main set. X48's README and 737193f3fa label G-OUT-T3 (Z −0.24) as "MGAS T3 OUTER". The MGAS T3 OUTER key (G-OUT-M3) is +1.80, as stated above. Found while auditing PAPER62 draft 2 (85fd7a6912).
+
+**Dwarf halo masses from a cooling threshold** (`X51_dwarf_cooling_floor`, peer lane; criteria f029a8c37b; coordinator rerun identical apart from timing): **UNDECIDED**.
+- **Rule:** M200 = max(EM1 extrapolation, atomic-cooling mass at T_vir 10⁴ K, z 8) = 1.13e8 M☉. This lifts 65 of 82 dwarfs.
+- **Canonical:** all five dwarf classes pass.
+- **Alt:** the MW ultra-faints overshoot (Z −2.77).
+- **The dwarf mass trend** of X19/X20/X24 disappears (ρ −0.64 → +0.13 / +0.18). It came from halo masses extrapolated too low.
+- **Reported only:** the H₂-cooling limit leaves the M31 faint dwarfs high, so the truth lies between the H₂ and atomic limits.
+- **Crater II** sits at −0.97 (stripping is not modelled).
+- **Reading:** under route E, with the a₀ floor and a cooling-set minimum halo mass, the dwarfs need no dwarf-specific constant.
