@@ -368,3 +368,13 @@ Results:
   - The two-halo template inherits ΛCDM initial conditions.
   - No model fits in absolute terms (p(L) 4e-11 / 9e-7).
 - **The c_f choice is negligible:** Δχ² moves +3 to +7.
+
+**One halo mass for rotation curves and lensing?** (`X55_one_halo_mass_for_both`, 32f994b55e / d24c31fc52; coordinator rerun identical apart from timing): **CONTRADICTION** on both footings.
+- **The gap.** Route E's halo relation, log M200 = a + b(log M_b − 10.5), that fits SPARC (a ≈ 11.7, b ≈ 0.9) sits about 0.4 dex below the one the KiDS isolated lenses want (a ≈ 12.1). They are separated by 4.6σ (canonical) and 4.3σ (alt), even with Birge-scaled KiDS errors. No relation fits both.
+- **SPARC is informative.** Its M200 at the lens masses is pinned to 0.07–0.12 dex, so the gap is not "SPARC can't tell". No galaxy and no lens bin saturates.
+- **Systematics checked:**
+  - isolation-leakage scaling: 5.0 / 4.5σ;
+  - inner radii only: 3.6 / 3.1σ;
+  - lens M★ −0.15 dex: 6.3 / 5.8σ;
+  - lens M★ +0.15 dex: 2.7 / 2.6σ, which is the only shift that moves them toward each other.
+- **What this means.** Route E (cold dark energy halos with the law emergent) cannot fit galaxy dynamics and galaxy lensing with one halo population. The fundamental law fits both: SPARC rms 0.054 and KiDS χ² 154 / 125. Together with X53, this test prefers the fundamental-law reading for galaxies; nothing broader.
