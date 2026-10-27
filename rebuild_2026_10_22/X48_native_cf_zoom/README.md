@@ -1,5 +1,15 @@
 # X48_native_cf_zoom: native formation concentrations. A1 class (ng 48): NATIVE c_f ABOVE WINDOW, at ng 48; convergence beyond ng 48 not tested. Regrade: NATIVE-CC FAILS, inner band only
 
+> **Correction note (10-26, fix-forward; found by the PAPER62 draft-2 audit 85fd7a6912):**
+> 1. The ng 48 summary line below says "MGAS T3 OUTER now passes (Z −0.24)". −0.24 is **G-OUT-T3** (the KT T3 OUTER band),
+>    not MGAS T3 OUTER. The MGAS T3 OUTER key (**G-OUT-M3**) is **Z +1.80** (canonical h 0.672). It still passes, so the
+>    class is unchanged; the label was wrong.
+> 2. "Z −2.41 / −2.06" for G-IN-Mall are the **h 0.672 / h 0.686 cells** on each footing, not canonical / alt. The two
+>    footings give the same values (−2.41 at h 0.672, −2.06 at h 0.686).
+> Numbers in the committed JSON (`x48_regrade_x43copy_ng48_results.json`) are unaffected. Result commit 737193f3fa's message
+> carries the same slip; it is corrected here, not rewritten.
+
+
 Criteria: `FROZEN_CRITERIA.md` (1932858ae8, committed before any production number). Engine and smoke evidence: df13411b6e,
 `SMOKE_EVIDENCE.md`. Physics: collisionless dust + Λ on the record's background A (route E's cold dark energy without the a₀
 floor), **not v3s**. κ = ½ FITTED. Not "theory closed". Nothing here says the data favour the framework.
