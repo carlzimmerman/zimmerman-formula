@@ -20,3 +20,15 @@
    and shared. This is exact.
 
 Gates, thresholds, model physics and variants are unchanged.
+
+## A2 (committed before the restart): memory cap and warm starts (code only)
+
+The first launch reached 0.97 GB RSS during the primary configuration's K3/K4 planted scans and was stopped with
+SIGTERM. The checkpoint held no completed configuration. Its primary-config lines remain at the top of
+`p1d2_m6_fgpa.out`, which is opened in append mode.
+
+- **Fixes, all code only:**
+  - Patch cache capped at 8 entries and g-field cache at 16.
+  - Mocks freed after each configuration.
+  - Planted (K3/K4) μ scans warm-start from the null best fit, as the data scans already do.
+- **Unchanged:** model, gates, thresholds and variants. The restart recomputes the primary from scratch.
