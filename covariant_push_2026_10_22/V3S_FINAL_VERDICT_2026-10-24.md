@@ -441,3 +441,12 @@ Deciding observation between M5 and M6: small-scale Lyman-α forest gas power at
 - **Record gates.** The graded forest gates do not exclude it: they bite mainly on suppression, and the L346 bins stay within [0.8, 1.2].
 - **Reported only.** The record's L347 P1D line (|R − 1| ≤ 0.10 at z = 3) is exceeded at 0.12, a hint that existing z ≈ 3 P1D data may already constrain M6.
 - **Deciding data, not on disk; each needs an owner-approved download.** HIRES/MIKE P1D (Viel+2013) and HIRES/UVES (Boera+2019) at z 4.2–5.4; eBOSS/DESI P1D to z ≈ 4.4–4.6. At PROVISIONAL precisions the peak is about 4σ (high-resolution) to 10σ (eBOSS/DESI) per bin.
+
+**Oblique object keys** (`X64_oblique_object_keys`, ea43d24f22 / 21fb0605c4; coordinator rerun identical apart from timing): **NO OBLIQUE KEY** on both footings.
+- **The test.** It asked whether any combined object variable separates RETAIN {dwarfs, groups, clusters} from EXCLUDED {L* lenses, SPARC large, MW disc}. The candidates were phase-space density ρ/σ³, the virial ratio, crossing and relaxation times, dynamical age, (1/ν)Σ_b/Σ_a₀, and v_esc/v_c at r_a₀. None does.
+- **The test had power.** 2.5 % of random relabellings are separable.
+- **Why they fail.** The phase-space and timescale keys are monotone with scale, so the L* systems fall between the dwarfs and the clusters, as X58's mass ordering already showed. The bound-region key v_esc/v_c comes closest (overlap 0.69 dex) but misplaces the lenses and SPARC large.
+
+**Switch status after X57–X64.** Every key built from object properties alone is excluded: mass, acceleration (local, smoothed, hysteretic), formation epoch, environment-free oblique combinations, repulsions and a coherence scale. The environment key is under test in the peer's X62_environment_keyed_switch.
+
+**Still standing:** M6, displacement of baryons from cold dark energy in the initial conditions. It predicts a +0.26–0.39 high-z forest excess, and deciding it needs P1D data, an owner-approved download.
