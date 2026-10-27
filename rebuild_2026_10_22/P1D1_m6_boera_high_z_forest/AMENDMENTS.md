@@ -16,3 +16,16 @@ is stricter than importing, because it is a second implementation checked agains
 
 - X22's f_max and R_L are read from X22's committed JSON, as X63 does.
 - Gates, thresholds, model, variants and checks are unchanged.
+
+## A2 (committed alone, after a Step-0 STOP, before any grading): inherited-background shape parameters
+
+The first run stopped at S0e: 4/8 items. F_b,max(z = 3) came out 0.06018 against 0.06038, and max S 0.2617 against 0.2614.
+The run output is kept as `p1d1_m6_boera_STOP_preA2.out` / `.json`.
+
+- **Cause.** A re-implementation error. X57 (L410–417) and X63 (L83–84) build the BBKS shape and σ₈ normalisation with
+  Ω_m 0.315, Ω_b 0.0493 and h 0.674. Their D(z) and E(z) use Ω_m = 0.0493 × 6.364 = 0.31375. The first script used one
+  Ω_m for both.
+- **Fix.** The background class takes separate shape parameters. INHERITED uses X57's two values. NATIVE uses the same
+  L1 values in both places, as frozen.
+- **Unchanged.** Gates, thresholds, model, variants and checks. The table values had been parsed at Step 0, but no fit or
+  grade was run.
