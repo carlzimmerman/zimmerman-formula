@@ -65,11 +65,13 @@ XD = {}
 for n in NAMES:
     hm = fits.open(os.path.join(XC, n, f"{n}_hydro_mass.fits"))[1].data
     fg = fits.open(os.path.join(XC, n, f"{n}_fgas_profile.fits"))[1].data
-    ms = fits.open(os.path.join(XC, n, f"{n}_mstar.fits"))[2].data
+    msf = os.path.join(XC, n, f"{n}_mstar.fits")                                       # A1: only 7 of 12 clusters have stars
+    ms = fits.open(msf)[2].data if os.path.exists(msf) else None
     XD[n] = dict(z=J5[n]["z"], R500=J5[n]["R500"], R200=J5[n]["R200"], M500=J5[n]["M500"],
                  r_h=np.array(hm["RADIUS"], float) / 1e3, M_f=np.array(hm["M_FORW"], float), eM_f=np.array(hm["EM_FORW"], float), M_nfw_h=np.array(hm["M_NFW"], float),
                  x_g=np.array(fg["RADIUS"], float), M_g=np.array(fg["MGAS"], float), M_nfw_g=np.array(fg["M_NFW"], float),
-                 r_s=np.array(ms["RADIUS"], float) / 1e3, M_s=np.array(ms["MSTAR"], float))
+                 r_s=None if ms is None else np.array(ms["RADIUS"], float) / 1e3, M_s=None if ms is None else np.array(ms["MSTAR"], float))
+STARS7 = [n for n in NAMES if XD[n]["M_s"] is not None]
 P(f"  X-COP clusters with profile files: {len(NAMES)} ({', '.join(NAMES)}); in table without files: {sorted(set(J5) - set(NAMES))}")
 k3 = {n: lli(1.0, d["x_g"], d["M_nfw_g"]) / lli(d["R500"], d["r_h"], d["M_nfw_h"]) - 1 for n, d in XD.items()}
 K("K3 units: fgas M_NFW at R/R500 = 1 vs hydro M_NFW at JSON R500 within 1.5% (all 12; CFG450 U2)", all(abs(v) <= 0.015 for v in k3.values()),
@@ -105,6 +107,8 @@ def baryons(n, hk, recipe):
     sh = rho_g / float(np.interp(rl, RG, rho_g)) * rho_l; out = RG > rl
     dm = 4 * math.pi * (RG * MPC946) ** 2 * sh; cum = np.r_[0, np.cumsum(0.5 * (dm[1:] + dm[:-1]) * np.diff(RG * MPC946))]
     Mgm[out] = mg[-1] + (cum[out] - float(np.interp(rl, RG, cum)))
+    if d["M_s"] is None:                                                                # A1 fallback: X43's stellar fraction on measured gas
+        return Mgm * 1.20, q
     rs = d["r_s"] * q; msv = d["M_s"] * q ** 2 * MSUN; sl = rs[-1]
     Ms = np.exp(np.interp(np.log(RG), np.log(rs), np.log(msv)))
     Ms[RG < rs[0]] = msv[0] * (RG[RG < rs[0]] / rs[0]) ** 3
@@ -121,13 +125,13 @@ def predict(n, foot, hk, variant):
 def radii(n, q, lo=1.0, hi=None):
     d = XD[n]; R5 = d["R500"] * q; top = (d["R200"] / d["R500"]) if hi is None else hi
     return R5 * top ** (np.arange(5) / 4) if hi is None else R5 * np.exp(np.linspace(math.log(lo), math.log(hi), 5))
-def deltas(variant, b, pair=None, inner=False):
+def deltas(variant, b, pair=None, inner=False, names=None):
     """Delta_i per cluster (mean over the 5 radii) for each footing x h cell; pair maps HSE cluster -> prediction cluster (MUTATE)."""
-    res = {}
+    res = {}; names = NAMES if names is None else names
     for foot in FEET:
         for hk in HKS:
             Di, rows, chi = [], {}, 0.0
-            for n in NAMES:
+            for n in names:
                 pn = n if pair is None else pair[n]
                 Mx, _ = predict(pn, foot, hk, variant); d = XD[n]; z = d["z"]; q = (float(DM(z, HV[hk])) / (1 + z)) / DA_lcdm(z)
                 rk = radii(n, q, 0.3, 0.7) if inner else radii(n, q)
@@ -136,7 +140,7 @@ def deltas(variant, b, pair=None, inner=False):
                 dk = np.log10(Mh / (1 - b) / Mp); Di.append(float(dk.mean())); rows[n] = dict(dk=dk.tolist(), q=q, R200_over_R500=d["R200"] / d["R500"])
                 chi += float(np.sum((np.log10(Mh / Mp) / (eh / Mh / math.log(10))) ** 2))
             Di = np.array(Di); mean, se = float(Di.mean()), float(Di.std(ddof=1) / math.sqrt(len(Di)))
-            res[f"{foot}|{hk}"] = dict(mean=mean, se=se, Z=mean / se, rms=float(Di.std(ddof=1)), Di=dict(zip(NAMES, Di.tolist())), rows=rows, chi2_b0=chi)
+            res[f"{foot}|{hk}"] = dict(mean=mean, se=se, Z=mean / se, rms=float(Di.std(ddof=1)), Di=dict(zip(names, Di.tolist())), rows=rows, chi2_b0=chi, N=len(names))
     return res
 
 if MUT:
@@ -151,6 +155,7 @@ if MUT:
 R = {}
 for var in ("PRIMARY", "V-NAT", "V-MEAS"):
     R[var] = {b: deltas(var, b) for b in (0.0, 0.3)}
+R["V-MEAS-7"] = {b: deltas("V-MEAS", b, names=STARS7) for b in (0.0, 0.3)}               # A1
 R["V-INNER"] = {0.0: deltas("PRIMARY", 0.0, inner=True)}
 
 def classify(rv):
@@ -161,18 +166,18 @@ def classify(rv):
     u = set(cls.values()); return (u.pop() if len(u) == 1 else "MIXED"), cls
 P("\nRESULTS (Delta = log10[M_HSE/(1-b)/M_X43], mean over [R500, R200]; se = cluster scatter / sqrt(12))")
 SUMM = {}
-for var in ("PRIMARY", "V-NAT", "V-MEAS"):
+for var in ("PRIMARY", "V-NAT", "V-MEAS", "V-MEAS-7"):
     overall, cls = classify(R[var]); SUMM[var] = dict(overall=overall, cells=cls)
     P(f"  {var}: {overall}")
     for c in R[var][0.0]:
         a, b3 = R[var][0.0][c], R[var][0.3][c]; bstar = 1 - 10 ** a["mean"] if a["mean"] < 0 else None
         P(f"    {c:16s} b=0: {a['mean']:+.3f} +- {a['se']:.3f} (Z {a['Z']:+.2f}, rms {a['rms']:.3f}) | b=0.3: {b3['mean']:+.3f} +- {b3['se']:.3f} -> {cls[c]}"
-          + (f" | b* {bstar:.3f}" if bstar is not None else "") + f" | chi2(b=0) {a['chi2_b0']:.0f}/60")
+          + (f" | b* {bstar:.3f}" if bstar is not None else "") + f" | chi2(b=0) {a['chi2_b0']:.0f}/{5 * a['N']}")
 P("  per cluster Delta_i (PRIMARY, canonical|h0672, b = 0): " + ", ".join(f"{n} {v:+.3f}" for n, v in R["PRIMARY"][0.0]["canonical|h0672"]["Di"].items()))
 P("  Delta at R200 alone (PRIMARY, canonical|h0672, b = 0): " + ", ".join(f"{n} {R['PRIMARY'][0.0]['canonical|h0672']['rows'][n]['dk'][-1]:+.3f}" for n in NAMES))
 vi = R["V-INNER"][0.0]["canonical|h0672"]; P(f"  V-INNER (0.3-0.7 R500, reported): canonical|h0672 {vi['mean']:+.3f} +- {vi['se']:.3f}")
 P(f"  KiDS link (reported, not graded): X43 short by +0.087 dex in projected Delta Sigma at 1.42-3 Mpc (G-OUT-M3); X-COP PRIMARY b=0 canonical|h0672 {R['PRIMARY'][0.0]['canonical|h0672']['mean']:+.3f} dex in 3-D M(<r)")
-flips = [v for v in ("V-NAT", "V-MEAS") if SUMM[v]["overall"] != SUMM["PRIMARY"]["overall"]]
+flips = [v for v in ("V-NAT", "V-MEAS", "V-MEAS-7") if SUMM[v]["overall"] != SUMM["PRIMARY"]["overall"]]
 valid = all(c["pass"] for c in CONTROLS)
 reading = "INVALID (a control failed)" if not valid else SUMM["PRIMARY"]["overall"]
 P(f"\nREADING (frozen, PRIMARY): {reading}" + (f"   [class changes in: {', '.join(flips)}]" if flips else "   [no variant changes the class]"))
