@@ -450,3 +450,13 @@ Deciding observation between M5 and M6: small-scale Lyman-α forest gas power at
 **Switch status after X57–X64.** Every key built from object properties alone is excluded: mass, acceleration (local, smoothed, hysteretic), formation epoch, environment-free oblique combinations, repulsions and a coherence scale. The environment key is under test in the peer's X62_environment_keyed_switch.
 
 **Still standing:** M6, displacement of baryons from cold dark energy in the initial conditions. It predicts a +0.26–0.39 high-z forest excess, and deciding it needs P1D data, an owner-approved download.
+
+**Environment-keyed switch** (`X62_environment_keyed_switch`, peer lane; 8c7768d26d / cfc8f2c3cf; coordinator rerun identical apart from timing): **ENV FAILS** on both footings.
+- **The rule.** Satellites and systems above the crossover carry route-E halos; isolated systems below it follow the law.
+- **Dwarfs are repaired.** On canonical all five classes pass; alt keeps X51's ultra-faint overshoot.
+- **Leo T and Phoenix**, two isolated dwarfs, sit +0.41 / +0.40 dex above the law individually.
+- **No c_f passes every line.**
+  - A2 (high c_f) fails SPARC, three cluster keys and lensing.
+  - The 3-seed table fails G-IN-Mall and lensing.
+  - c_f = 4 fails groups, G-OUT-M3, SPARC (alt) and lensing (canonical).
+- **Reading.** The limiting piece is now the group and cluster halo core rule, not which systems hold cold dark energy. One concentration cannot satisfy groups, cluster cores, cluster outskirts and lensing together (consistent with IB1).
