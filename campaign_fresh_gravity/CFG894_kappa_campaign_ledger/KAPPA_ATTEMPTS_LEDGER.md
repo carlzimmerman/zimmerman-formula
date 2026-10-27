@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (802 rows)
+## Totals (803 rows)
 
 - **537 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 155 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 156 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -1001,6 +1001,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K800 | PROTECTUNEQUAL-20261027/STRING | `reviews/protected_unequal_spectra_2026_10_27` | modular unequal-spectrum protection and heterotic vacuum | - | audit | SOURCE AUDIT: modular consistency protects regulated mass supertraces without pairing but no gradient-response identity is supplied; explicit flux-free SO16xSO16 leading dilaton potential has no finite stationary positive vacuum; MOND matching absent | freeze:435025a363 |
 | K801 | UNEQUAL-AUDIT-20261027 | `reviews/protected_unequal_spectra_2026_10_27/AUDIT_REWORK.md` | adversarial audit of K796-K800 physical interpretation | - | audit | RESTRICTION: four-node subtracted continuum determinant vanishes; retained cubic is cutoff boundary term not universal microscopic prediction; formal IR result and restricted lemmas survive; joint model remains incomplete | audited:89d81635b7 |
 | K802 | ACTIONFIRST-20261027/MEASURE | `reviews/action_first_measure_test_2026_10_27` | fixed-branch original-action deformation of two-measure kinetic coupling | - | audit | REFINEMENT OF L32 S7: scale symmetry allows bphi change at fixed positive M=0 vacuum and Einstein coupling; canonical U B/Z^2 varies despite shared-constraint identity; response is quadratic/quartic not MOND; no new candidate | freeze:4aea352e6b |
+| K803 | ACTIONFIRST-20261027/EXTENSION | `reviews/action_first_measure_test_2026_10_27/ADDITIONAL_PRINCIPLES.md` | analytic screen of coefficient restrictions and singular boundary in K802 | - | audit | RESTRICTION: regular coefficient restrictions and finite polynomial limits cannot yield a MOND cubic; generic D=0 forces degenerate Einstein metric; exceptional rank-loss sector unanalysed; no qualifying added principle found | base:7537f63951 |
 
 ## LN: Logic / Lean formalisations
 

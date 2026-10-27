@@ -1,5 +1,7 @@
 # Action-first test: a coefficient identity without normalization selection
 
+> **Continuation:** [Additional-principle screen](ADDITIONAL_PRINCIPLES.md) finds that coefficient restrictions cannot create the missing cubic. At D=0, the nonexceptional constraint forces a degenerate Einstein metric; exceptional rank-loss sectors remain unanalysed. Retire this action from the active normalization search absent explicit new physical structure.
+
 **Failed candidate. No new microscopic MOND mechanism found.** The explicit
 scale-invariant two-measure action has a real relation among vacuum and kinetic
 coefficients, but a symmetry-preserving coupling deformation changes the
