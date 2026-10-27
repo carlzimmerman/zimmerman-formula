@@ -84,7 +84,7 @@ g1 = J("GC1_group_cluster_core_rule/gc1_two_halo_results.json")
 fr = g1["verdicts"]["canonical"]["term_fraction_h0672"]
 check("GC1 max |term share| = 1.3%", round(100 * max(abs(v) for k, v in fr.items() if k != "G-IN-Mall"), 1) == 1.3 and "1.3\\,\\%" in TEX)
 num("GC1 M3 term share", abs(fr["G-OUT-M3"]), "{:.3f}", "G-OUT-M3 by {}")
-num("GC1 native M3 Z", g1["runs"]["R4_nat_no2h"]["canonical"]["M3"][0]["Z"], "{:+.2f}", "($" + "{}" + "$)")
+num("GC1 native M3 Z", g1["runs"]["R4_nat_no2h"]["canonical"]["M3"][0]["Z"], "{:+.2f}", "G-OUT-M3 is ${}$.")
 check("GC1 verdict NOT REPAIRED", all(v["R4_class"] == "NOT REPAIRED" for v in g1["verdicts"].values()) and "NOT REPAIRED" in TEX)
 check("GC1 bias median 4.1", round(g1["bias_range"][1], 1) == 4.1 and "median $b=4.1$" in TEX)
 # X43 c_f 4 M3
@@ -117,11 +117,34 @@ p4 = J("P1D4_m6_native_3d_forest/p1d4_m6_3d_results.json")
 check("P1D4 null chi2 1864/690", round(p4["footings"]["canonical"]["primary"]["G0"]["chi2"]) == 1864 and p4["footings"]["canonical"]["primary"]["G0"]["dof"] == 690 and "1864/690" in TEX)
 hz = p4["footings"]["canonical"]["variants"]["V-hiz"]["G0"]
 check("P1D4 hiz 433/327", round(hz["chi2"]) == 433 and hz["dof"] == 327 and "433/327" in TEX)
+
+# GC2 / GC3 / GS1 (cluster budget)
+g2 = J("GC2_turnaround_baryon_budget/gc2_budget_results.json")
+num("GC2 R4 nat_ext M3", g2["runs"]["R4_nat_ext"]["canonical"]["cells"]["h0672"]["G-OUT-M3"]["Z"], "{:+.2f}", "$Z=" + "{}" + "$)")
+g3 = J("GC3_infall_halo_outskirts/gc3_infall_results.json")
+num("GC3 RX48 infall IN-Mall", g3["runs"]["RX48_inf_nat"]["canonical"]["cells"]["h0672"]["G-IN-Mall"]["Z"], "{:+.2f}", "(G-IN-Mall ${}$")
+num("GC3 RX48 Burkert IN-Mall", g3["runs"]["RX48_burk_nat"]["canonical"]["cells"]["h0672"]["G-IN-Mall"]["Z"], "{:+.2f}", "from ${}$)")
+num("GC3 R4 infall M3", g3["runs"]["R4_inf_nat"]["canonical"]["cells"]["h0672"]["G-OUT-M3"]["Z"], "{:+.2f}", "(G-OUT-M3 ${}$)")
+gs = J("GS1_measured_gas_outskirts/gs1_gas_slope_results.json")
+num("GS1 s_meas", gs["slope"]["s_meas"], "{:.3f}", "$s={}$ (bootstrap")
+num("GS1 s16", gs["slope"]["s16"], "{:.3f}", "range {}--")
+num("GS1 s84", gs["slope"]["s84"], "{:.3f}", "--{};")
+check("GS1 11 clusters", len(gs["slope"]["per_cluster"]) == 11 and "11 clusters" in TEX)
+r4 = gs["runs"]["R4_meas"]
+check("GS1 R4 all 15 keys pass both footings", all(not r4[f]["fails"] for f in ("canonical", "alt")) and "all 15 cluster keys at $c_f=4$ on both footings" in TEX)
+num("GS1 R4 M3", r4["canonical"]["cells"]["h0672"]["G-OUT-M3"]["Z"], "{:+.2f}", "(G-OUT-M3 $Z={}$)")
+num("GS1 R4 groups Z", r4["canonical"]["groups"]["Z"], "{:+.2f}", "($Z={}$)")
+check("GS1 verdict MEASURED SLOPE FAILS", all(v["class"] == "MEASURED SLOPE FAILS" for v in gs["verdicts"].values()) and "MEASURED SLOPE FAILS" in TEX)
+x48 = json.load(open(os.path.join(RB, "X48_native_cf_zoom", "x48_analyze_results_ng48.json")))["cf_by_mass"]
+cfs = [x48[k] for k in sorted(x48, key=float) if x48[k] is not None]
+check("X48 native c_f 7.2/7.0/5.6", [round(v, 1) for v in cfs[:3]] == [7.2, 7.0, 5.6] and "(7.2 / 7.0 / 5.6 at" in TEX, str([round(v, 2) for v in cfs]))
 # commits
 for c, lane in (("ef5a07c251", "CF1_cf_window_map"), ("e370b35e1c", "CF1_cf_window_map"), ("d1da6b8185", "GC1_group_cluster_core_rule"),
                 ("09280e4b66", "GC1_group_cluster_core_rule"), ("3a2f5ca3a0", "M6N1_minimum_patch_need"), ("3ab6a1bf44", "M6N1_minimum_patch_need"),
                 ("8f6e3db4bc", "P1D1_m6_boera_high_z_forest"), ("d50412913d", "P1D3_m6_desi_dr1_growth"), ("d89e0f9469", "P1D2_m6_lognormal_fgpa_forest"),
-                ("f05be7280b", "P1D4_m6_native_3d_forest")):
+                ("f05be7280b", "P1D4_m6_native_3d_forest"), ("3db544593b", "GC2_turnaround_baryon_budget"), ("8f1554e920", "GC2_turnaround_baryon_budget"),
+                ("50c3953710", "GC3_infall_halo_outskirts"), ("5726142b8a", "GC3_infall_halo_outskirts"), ("17064b9844", "GS1_measured_gas_outskirts"),
+                ("01f6dd977d", "GS1_measured_gas_outskirts")):
     try:
         files = subprocess.run(["git", "-C", ROOT, "show", "--name-only", "--format=", c], capture_output=True, text=True, check=True).stdout
         check(f"commit {c} touches {lane}", lane in files and c in TEX)
@@ -143,7 +166,8 @@ check("no 'theory closed' claim", not re.search(r"(?<!not )theory (is )?closed",
 check("no favour claim", "favour the framework" not in TEX.replace("not evidence for the framework", ""))
 check("no local path / personal name", not re.search(r"/Users/|carl|Zimmerman", TEX))
 zj = json.load(open(os.path.join(HERE, STEM + ".zenodo.json")))
-check("zenodo json marked draft, not deposited", zj.get("draft_not_deposited") is True)
+check("zenodo metadata v1.0, kappa fitted and no-favour statements present", zj["metadata"]["version"] == "1.0" and "kappa = 1/2 is fitted" in zj["metadata"]["description"]
+      and "not evidence for the framework" in zj["metadata"]["description"] and "CDM" not in zj["metadata"]["description"].replace("LambdaCDM", ""))
 if MUT:
     print(f"MUTATE: {NUMF}/{NUMN} number checks failed (all must)")
     sys.exit(0 if NUMF == NUMN else 1)
