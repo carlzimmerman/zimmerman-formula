@@ -351,3 +351,5 @@ Results:
 - **Dwarfs.** The phantom makes the MW ultra-faints worse (Z +5.2 / +4.9).
 - **Clusters.** It falls 3–6 × short of X43's need, consistent with the cluster excess coming from collapse.
 - **Reading.** No regime gives the phantom a constant floor: it sits above the floor in galaxies and below it in dwarfs and cluster cores. So the tether is not "cold dark energy fills the law's phantom"; that would reproduce the law, not X38. The tether mechanism stays open (object-keyed, X47).
+
+**X50 rerun note and addition (5140a1e4bb).** The coordinator's first X50 rerun ran while the lane was still writing its step-5 addition, so it differed. A clean rerun against 5140a1e4bb matches apart from timing. The addition compares the phantom with X51's cooling-floor M200. The phantom then reaches only 0.14–0.16 of the floor halo's mass inside r₁₂ for the MW ultra-faints (0.18–0.75 for the other classes), so the phantom-to-floor gap widens in dwarfs. PF FAILS is unchanged.
