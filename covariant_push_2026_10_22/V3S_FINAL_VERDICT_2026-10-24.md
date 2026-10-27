@@ -355,3 +355,16 @@ Results:
 **X50 rerun note and addition (5140a1e4bb).** The coordinator's first X50 rerun ran while the lane was still writing its step-5 addition, so it differed. A clean rerun against 5140a1e4bb matches apart from timing. The addition compares the phantom with X51's cooling-floor M200. The phantom then reaches only 0.14–0.16 of the floor halo's mass inside r₁₂ for the MW ultra-faints (0.18–0.75 for the other classes), so the phantom-to-floor gap widens in dwarfs. PF FAILS is unchanged.
 
 **Dwarf tidal truncation** (`X52_dwarf_tidal_truncation`, peer lane; 80a632b41e; coordinator rerun identical apart from timing): truncation at the current host distance has no effect. X51's UNDECIDED stands unchanged (canonical: all five dwarf classes pass; alt: ultra-faints overshoot).
+
+**Outer lensing: law vs route-E halos** (`X53_outer_lensing_law_vs_halos`, 61b837fcd4 / 64af8eb1cf / 80c678bd57; coordinator rerun identical apart from timing). **OUTER LENSING DISCRIMINATES: LAW** on both footings, on Brouwer+21 KiDS-1000 isolated lenses. This test prefers the fundamental-law reading over route E's halos, nothing broader.
+- **Graded Δχ²** (two-halo term in both models, all radii): +430 (canonical), +456 (alt). Within R ≤ 0.31 Mpc: +133 / +145.
+- **Mostly a halo-mass problem.** EM1's SPARC-based M200 is 0.35–0.5 dex too low for these lenses, a tension inside route E between its SPARC halos and its lensing halos.
+- **Profiling the mass (post-result diagnostic):**
+  - with log M200 free, the law still wins at all radii: +84 to +130 for truncated halos, +23 to +71 for untruncated;
+  - inside 0.31 Mpc the two models tie;
+  - the R200 edge alone costs ~60 in χ².
+- **Caveats.**
+  - Isolation leakage could carry the outer part of the preference: F2 finds the outer signal tracks environment.
+  - The two-halo template inherits ΛCDM initial conditions.
+  - No model fits in absolute terms (p(L) 4e-11 / 9e-7).
+- **The c_f choice is negligible:** Δχ² moves +3 to +7.
