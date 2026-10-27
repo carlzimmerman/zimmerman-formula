@@ -425,3 +425,11 @@ Deciding observation between M5 and M6: small-scale Lyman-α forest gas power at
 - Coordinator rerun of X58 pending.
 
 **Note (fix forward).** The coordinator's reply that cited c0c90a8425 for the X61 fold was wrong. The X61 fold is f299b5f2ba; c0c90a8425 is X60's criteria commit.
+
+**Formation-epoch switch** (`X59_formation_epoch_switch`, 6c7210abf1 / 19ca1d6368 / 8a9a12b286 (A2) / 0535bf56de; coordinator rerun identical apart from timing): **FE FAILS** on both footings, in every c_f × a₀(z) variant. The frozen class is early capture. The coordinator's post-hoc band gate (A2) also fails, on dwarfs and L*.
+- **Dwarfs collapse too late on EPS** (z_c ≈ 1.3–1.7) and fall 3–10× short of the threshold. They retain only if their collapse epoch is X51's cooling epoch, z = 8.
+- **L* galaxies** are themselves excluded at c_f = 4. But they inherit 58–97 % of their mass from progenitors that kept cold dark energy, which is 4–35× the X22 tolerance. With native c_f they are retained outright.
+- **The tension:** every c_f that keeps forest-scale clustering at z ≈ 2 also captures most of a galaxy's progenitors.
+- **Reading:** no formation-epoch key yields the non-monotone pattern (dwarfs retain, L* empty, clusters retain) without an energy input that FE forbids.
+
+**Status of the switch:** mass (X58), acceleration (X60), formation epoch (X59), the local and Yukawa forms and the coherence scale (X57) are all excluded. What remains is M6 (displacement, canonical only; the decider is high-z forest small-scale power) and the unbuilt object-keyed forms: a phase-space key, a retarded nonlocal operator, and a bound-region constraint.
