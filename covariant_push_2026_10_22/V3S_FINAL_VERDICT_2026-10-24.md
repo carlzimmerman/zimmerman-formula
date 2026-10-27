@@ -412,3 +412,16 @@ The two that remain:
 
 The law acting on cluster baryons fails X30's OUTER line (Z −2.0 / −2.7). That is thin on canonical; a reported-only diagnostic says it fails on both footings.
 Deciding observation between M5 and M6: small-scale Lyman-α forest gas power at z ≈ 4–5.5. M6 predicts an excess growing toward high z; M5 predicts none.
+
+**Cold dark energy as a phase of dark energy, keyed by acceleration** (`X60_acceleration_dependent_cold_sector`, c0c90a8425 / ae5857761d (A1) / 2de8d55af6; coordinator rerun identical apart from timing): **AN EXCLUDED** on both footings and both backgrounds. Every escape fails:
+- **Smoothed or object keys.** The growth window is empty for every R_k from 0.01 to 30 Mpc/h: an object's smoothed key always contains its environment's.
+- **Hysteresis converts 0.31 / 0.37 of the cold sector,** 12–15× X54's budget.
+- **Phase coexistence fails conservation (R0).** A w = −1 phase carries no energy flux.
+- **Gate R5 fails.** Acceleration keys rise monotonically with mass, or form an inverted U, so they cannot give the required pattern: dwarfs retain, L* galaxies empty, clusters retain.
+
+**Peer lanes.**
+- **X58_object_keyed_switch** (9964127dfd / c3b4f2c7d9): **SW FAILS** on both footings. A pure mass switch cannot work, because the required retention is non-monotone in mass.
+- **X48 A2** (c218c10add): nine-seed native c_f = 11.6 / 8.2 / 7.3, ABOVE WINDOW. The X43 rule with these values fails SPARC (Υ 0.31) and three cluster keys. r₋₂ is resolution-limited in 8 of the 27 runs.
+- Coordinator rerun of X58 pending.
+
+**Note (fix forward).** The coordinator's reply that cited c0c90a8425 for the X61 fold was wrong. The X61 fold is f299b5f2ba; c0c90a8425 is X60's criteria commit.
