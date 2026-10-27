@@ -58,3 +58,11 @@
 
 ## Files
 `FROZEN_CRITERIA.md`, `AMENDMENT_A1.md`, `cfg407_xcop_outer.py` (run plainly; `MUTATE=1` for the reversed pairing), `cfg407.out`, `cfg407_results.json` (every Δ_ik, Δ_i, se, χ², q and coverage), `cfg407_MUTATE.out`, `cfg407_results_MUTATE.json`. The X30 machinery log is redirected here (gitignored).
+
+## Correction (2026-10-27, from CFG408; fixes the post-hoc note in "Reading" item 3 forward)
+The post-hoc attribution above ("the flip comes almost entirely from stars") is **wrong in size**. CFG408 swaps only the stars (X43's gas recipe, measured f★) and isolates their share. On the 7 clusters with stellar files (canonical; h 0.672 / 0.686):
+- f★ = 0.20 gives −0.035 / −0.027 dex.
+- Measured stars only gives +0.009 / +0.017.
+- Measured gas and stars (V-MEAS-7) gives +0.068 / +0.077.
+
+**Stars are ~42 % of the shift, and X-COP's measured gas (lower than the β-model at large radius) is ~58 %.** The comparison of the 7 clusters with star files against the 5 without, used above, confounded the two. The frozen reading (CONSISTENT) is unaffected.
