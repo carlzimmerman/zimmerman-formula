@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (796 rows)
+## Totals (798 rows)
 
 - **537 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 149 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 151 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -995,6 +995,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K794 | FULLWEYL-20261024/SOURCE | `reviews/explicit_weyl_source_2026_10_24` | explicit full-field local Weyl lift retaining mixed scalar source | - | audit | CONSTRUCTED CANDIDATE FAILS SELECTION: metric-vector-compensator-scalar-matter transformation leaves four response and volume operators separately invariant; source survives but gauge fixing recovers arbitrary original coefficients | freeze:2b29534c88 |
 | K795 | FULLWEYL-20261024/FLUID | `reviews/explicit_weyl_source_2026_10_24/FLUID_RESULT.md` | volume-preserving fluid relabeling and apparent cubic determinant response | - | audit | RESTRICTED OBSTRUCTION: relabeling permits arbitrary F(b); even granting linear density its static determinant has no bulk stiffness at constant lapse and covariant stress is dust plus vacuum with independent coefficients; no MOND selection | freeze:e5333eab45 |
 | K796 | IRJOINT-20261026/FULL | `reviews/microscopic_ir_matching_2026_10_26` | full-infrared one-loop determinant of stabilized cubic-gradient EFT | - | audit | CONDITIONAL CONSTRAINT: positive s^(5/2) term absent from finite-shell Taylor expansion; fractional spectral cancellation required for this mode class; fluctuation expansion also nonuniform at zero gradient; no physical replacement force or vacuum selection | freeze:ac5e89d73f |
+| K797 | CANCELJOINT-20261027/SPECTRA | `reviews/microscopic_cancellation_2026_10_27` | unequal-spectrum cancellation of three response moments | - | audit | CONDITIONAL CONSTRUCTION: four positive-response nodes admit signed weights cancelling M1 M2 M5/2 with positive cutoff constant and cubic; one-side-single-node case forces full pairing; no protective action or vacuum normalization | freeze:55a75b0759 |
+| K798 | CANCELJOINT-20261027/SPECTATOR | `reviews/microscopic_cancellation_2026_10_27` | local two-field detailed-balance spectator with gradient coupling | - | audit | SCOPED CLOSURE: periodic-cell relaxation yields constant plus quadratic and quartic response; positive auxiliary background splits zero-momentum spectra; massive spectator variant relaxes all homogeneous energy to zero | freeze:55a75b0759 |
 
 ## LN: Logic / Lean formalisations
 
