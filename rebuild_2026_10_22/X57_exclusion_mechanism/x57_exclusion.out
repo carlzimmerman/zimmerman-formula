@@ -1,0 +1,64 @@
+X57_exclusion_mechanism: criteria 6cadf4f9b0; kappa = 1/2 FITTED; footings never pooled; no particle; not theory closed
+
+== STEP 0: record numbers (stop rule)
+  [canonical] X22 f_max 0.1965; tolerated Mc/Mb median 0.0354; X53 dchi2(H2H-L2H) +429.57; X55 n_sep 4.55; law-alone G-OUT-all h0672 meas 0.716+-0.141 pred 0.999 Z -2.01; h0686 meas 0.700+-0.140 pred 0.999 Z -2.14; law-alone MID T3 Z +4.46; X40b g_b(r0)/a0 T1-T3 0.048/0.055/0.073; SPARC x(R_last) 0.025-0.240
+  [alt] X22 f_max 0.0269; tolerated Mc/Mb median 0.0049; X53 dchi2(H2H-L2H) +455.55; X55 n_sep 4.26; law-alone G-OUT-all h0672 meas 0.656+-0.129 pred 0.999 Z -2.66; h0686 meas 0.641+-0.128 pred 0.999 Z -2.80; law-alone MID T3 Z +4.11; X40b g_b(r0)/a0 T1-T3 0.041/0.048/0.064; SPARC x(R_last) 0.021-0.185
+  X22 alpha_NF 0.02991 Mpc/h, lambda_hm 0.4167 Mpc/h, M_hm 4.894e+09; capture median 0.7603; virial content 0.5405; R_last/V_last medians 11.27 kpc / 99.7 km/s; grms z2/z3 3.832e-12/5.151e-12 m/s2
+  X34 z_on allowed 50000, excluded 20000; X54 int95 C_DES5 [-0.0035, +0.0011]; C_PP [-0.0036, +0.0010]; C_U3 [-0.0037, +0.0009]; CFG681 Om BAO 0.2970, BAO+PP 0.3039
+  X43 MID T3 Z +0.30, groups Z +2.05; X47 ['VT FAILS AT growth / data', 'VT-O CONSISTENT (NONLOCAL, mechanism open)']; X32 dust-like tracer f_ret 0.80-1.02
+
+== K1: beta = 0 ODE vs X22 C2
+  [PASS] K1: delta_m(z=0) 0.787089 (X22 C2 0.787089; LCDM-integral form 0.787089); max |T_b - 1| at beta 0 0.0e+00 | <= 1e-5; <= 1e-10
+
+== K4: sympy (PYTHONHASHSEED=0) Yukawa kernel limits
+  [PASS] K4: k lambda << 1: Phi_Y -> 4*pi*G*beta*lambda**2*rho (i.e. the repulsive potential +4 pi G beta lambda^2 rho_b enters cold dark energy's energy); k lambda >> 1: ratio to Newton -> -beta | exact (sympy)
+
+== M1 sector-dependent coupling (cold dark energy feels GR only)
+  [canonical] content inside R_last >= 0.5405 of fair share (X22 virial-heated; frozen-cut capture 0.7603) vs f_max 0.1965: x2.8 over -> R3 FAIL; cold collapses on its own Lagrangian scales (X22 A3 M_L/M_hm median 9.5)
+  [alt] content inside R_last >= 0.5405 of fair share (X22 virial-heated; frozen-cut capture 0.7603) vs f_max 0.0269: x20.1 over -> R3 FAIL; cold collapses on its own Lagrangian scales (X22 A3 M_L/M_hm median 9.5)
+
+== M2 repulsive baryon <-> cold dark energy Yukawa (beta, lambda physical)
+  [PASS] K2: beta 1, lambda 10 Mpc, k5, z 3: T_b = 0.0339 | < 1 (repulsion lowers baryon clustering)
+  coarse FAIL-onset monotone in beta at lambda 1e-3..1 Mpc: True
+  [canonical] R1 x R3 (median R_last 11.27 kpc, mu 0.0354): max_lambda beta_max^R1/beta_min^R3 = 0.049 at lambda 1.33e-02 Mpc (beta_max 0.064, beta_min 1.31) -> FAIL; R1 x R3b (1 Mpc): max ratio 0.0363 at lambda 1.00e+01 -> FAIL; assembly (reported) max ratio 0.00797
+  [alt] R1 x R3 (median R_last 11.27 kpc, mu 0.0049): max_lambda beta_max^R1/beta_min^R3 = 0.0505 at lambda 1.33e-02 Mpc (beta_max 0.064, beta_min 1.27) -> FAIL; R1 x R3b (1 Mpc): max ratio 0.0363 at lambda 1.00e+01 -> FAIL; assembly (reported) max ratio 0.00797
+  beta_max^R1(lambda) [gas forest not FAIL]: 1e-04:6.62, 3e-04:0.899, 1e-03:0.25, 3e-03:0.12, 1e-02:0.0715, 3e-02:0.0483, 1e-01:0.0394, 3e-01:0.0368, 1e+00:0.0365, 3e+00:0.0365, 1e+01:0.0365
+
+== M3 repulsion from the law's own field (phantom), sign s = +1 (outward)
+  [canonical] (L) linear phantom / cold self-gravity Q(z=2) 2.23, Q(z=3) 1.91 -> R1 FAIL; (V) R6 FAIL; R4: cluster x_b(r0) 0.048-0.073 inside SPARC x(R_last) 0.025-0.240: True -> FAIL; object scale r* = 5.364 sqrt(G M_b/a0) = 17.7 kpc (median M_b 7.34e+09)
+  [alt] (L) linear phantom / cold self-gravity Q(z=2) 2.46, Q(z=3) 2.11 -> R1 FAIL; (V) R6 FAIL; R4: cluster x_b(r0) 0.041-0.064 inside SPARC x(R_last) 0.021-0.185: True -> FAIL; object scale r* = 5.364 sqrt(G M_b/a0) = 16.1 kpc (median M_b 7.34e+09)
+
+== M4 wave / coherence scale (field-energy parameter nu_w, kpc km/s)
+  [PASS] K3: T2(k5, z=3) at nu_w 0/0.1/0.2/0.4 = 1.00000/1.00000/1.00000/1.00000 | non-increasing
+  R1: nu_w,max (delta_m forest not FAIL) = 97.34 kpc km/s (3.004e+24 m^2/s)
+  R3: SPARC N 175: median r_w/R_last 0.523; fraction with r_w >= R_last 0.326 -> FAIL; nu_need (median R_last V_last / 2 pi) 186 = x1.91 nu_w,max
+  R4: r_w at sigma 1000 km/s = 0.000612 Mpc vs core 0.27 Mpc -> PASS; sign: r_w = 2 pi nu_w / V: shrinks with mass (largest cores in the smallest objects)
+
+== M6 displacement (compensated anticorrelated patches)
+  [PASS] K5: canonical: closed 0.188319 brute 0.188319; alt: closed 0.160782 brute 0.160781 | <= 1e-5
+  [canonical] delta_c,in -0.804 -> delta_b,in +4.31; positivity f_V <= 0.188 (all baryons in patches at the bound); sigma^2_ad(R_L 0.442 Mpc/h, z 0) 10.60; isocurvature var >= 3.50 F_b; forest F_b,max z3 0.060 / z2 0.106 -> R1 ND
+  [alt] delta_c,in -0.973 -> delta_b,in +5.22; positivity f_V <= 0.161 (all baryons in patches at the bound); sigma^2_ad(R_L 0.442 Mpc/h, z 0) 10.60; isocurvature var >= 4.38 F_b; forest F_b,max z3 0.048 / z2 0.084 -> R1 ND
+  CMB (X34 vanilla CLASS, C7 params): max |dC_l^TT/C_l| l 2-2500: compensated (f_bi = omega_c/omega_b, c_cdi_bi = -1) 7.37e-06; uncompensated control 2.03e+00 -> ND (linear CMB blind)
+
+== R4b common line: the law on cluster baryons vs X30 OUTER (coordinator)
+  [canonical] law alone G-OUT-all Z -2.01 / -2.14 (pred 0.999); evacuated-region bound D = 3.771e+12/1.167e+13 = 0.323 vs needed drop 0.284 -> R4b ND (evacuated-region bound not excluding)
+  [alt] law alone G-OUT-all Z -2.66 / -2.80 (pred 0.999); evacuated-region bound D = 3.771e+12/1.167e+13 = 0.323 vs needed drop 0.344 -> R4b FAIL
+  reported only: a uniform evacuated 3 Mpc sphere gives dSigma(2 Mpc) = 0.089 of M_hole/(pi R^2); and only classes that empty cluster outskirts below the cosmic mean can use it (M1 and M4 do not)
+
+== CLASS VERDICTS (frozen order R1, R3, R3b, R4, R4b, R6)
+  [canonical] M1: CLASS 1 EXCLUDED BY R3 (content >= 0.541 vs f_max 0.196); all failing lines ['R3']; excluded without R4b: True
+  [canonical] M2: CLASS 2 EXCLUDED BY R1xR3 (max beta_max^R1/beta_min^R3 0.049 at lambda 1.3e-02 Mpc); all failing lines ['R1xR3', 'R1xR3b']; excluded without R4b: True
+  [canonical] M3: CLASS 3 EXCLUDED BY R1 (Q 2.23-1.91 (reading L); reading V: R6 FAIL); all failing lines ['R1', 'R4']; excluded without R4b: True
+  [canonical] M4: CLASS 4 EXCLUDED BY R3 (r_w/R_last median 0.523; nu_need/nu_max 1.91); all failing lines ['R3']; excluded without R4b: True
+  [canonical] M6: NOT DECIDABLE WITH RECORD DATA (R1, CMB, R4b); all failing lines []; excluded without R4b: False
+  [alt] M1: CLASS 1 EXCLUDED BY R3 (content >= 0.541 vs f_max 0.027); all failing lines ['R3', 'R4b']; excluded without R4b: True
+  [alt] M2: CLASS 2 EXCLUDED BY R1xR3 (max beta_max^R1/beta_min^R3 0.0505 at lambda 1.3e-02 Mpc); all failing lines ['R1xR3', 'R1xR3b', 'R4b']; excluded without R4b: True
+  [alt] M3: CLASS 3 EXCLUDED BY R1 (Q 2.46-2.11 (reading L); reading V: R6 FAIL); all failing lines ['R1', 'R4', 'R4b']; excluded without R4b: True
+  [alt] M4: CLASS 4 EXCLUDED BY R3 (r_w/R_last median 0.523; nu_need/nu_max 1.91); all failing lines ['R3', 'R4b']; excluded without R4b: True
+  [alt] M6: CLASS 6 EXCLUDED BY R4b; all failing lines ['R4b']; excluded without R4b: False
+
+=== OVERALL (frozen rule): UNDECIDED; excluded without R4b on both footings: {'M1': True, 'M2': True, 'M3': True, 'M4': True, 'M6': False}
+    M5 (object-keyed, nonlocal): REPORTED ONLY (see README; X58_object_keyed_switch runs it operationally)
+  [PASS] K0: 23/23 step-0 items exact; M2 FAIL-onset monotone True | all
+  [PASS] K6: peak RSS (self + children) 0.265 GB; OMP_NUM_THREADS 1 | < 1 GB, 1 thread
+checks 7/7; 18.4 s; RSS 0.265 GB
