@@ -1,0 +1,91 @@
+{
+  "claim_id": "FSP-005-NEUTRAL-TWO-LOOP-V2",
+  "mathematics": {
+    "assertion_tested": "Quartic Wick coefficient; exact flat mass-retuning and spatial-stress algebra; S3 finite-part coincident propagator versus explicitly tail-bounded spectral subtraction; differentiated Gaussian determinant; independent Poisson winding heat integrals; both matching paths' even-curvature expansions.",
+    "coefficient_domain": "Exact rational symbolic expressions and 70/95-digit mpmath evaluations",
+    "conventions": "RAW_DERIVATION_v1.md: canonical minimal massive scalar on closed S3, W=-log Z, lambda=-m^2/kappa for cosine, all modes retained, tau_s=(1/L)partial_V W; same local finite-part subtraction in all diagrams.",
+    "inputs": [
+      "Parent exact S3 Gaussian mode sum, used as an internally proved dependency and checked by orthogonal representations here",
+      "No physical QCD matching parameter, alpha or cosmic-scale fit"
+    ],
+    "bounds": {
+      "x_mR": [
+        1.05,
+        1.25,
+        2,
+        3,
+        5,
+        10,
+        20,
+        30
+      ],
+      "m": [
+        0.5,
+        1,
+        2.5
+      ],
+      "dps": [
+        70,
+        95
+      ],
+      "spectral_N": 256,
+      "spectral_tail_last_k": 40,
+      "heat_cases_q_R_k": [
+        [
+          0.4,
+          1,
+          1
+        ],
+        [
+          0.7,
+          1.3,
+          1
+        ],
+        [
+          1.2,
+          0.8,
+          2
+        ],
+        [
+          2,
+          1,
+          1
+        ]
+      ],
+      "identity_tolerance": "1e-50 scaled; spectral discrepancy must additionally fit explicit geometric tail plus 1e-65 roundoff",
+      "asymptotic_series_through_z": 4,
+      "hurwitz_tail_method": "Explicit 50-term Euler--Maclaurin with Bernoulli remainder bound; geometric tail uses integral-test upper bound; avoids library absolute tolerance on tiny tails"
+    },
+    "non_claims": [
+      "Does not prove full-QCD or all-order absence of a linear curvature-scale term",
+      "Does not determine microscopic curved fugacity, hard gravity terms or alpha",
+      "Flat-pole and fixed-Lagrangian paths differ; no curvature counterterm is inferred from flat mass matching",
+      "Numerical checks are not interval arithmetic; analytic series and tail proof provide the separate structural argument",
+      "Supersedes v1 implementation roundoff assumption only; failed original and diagnostic preserved"
+    ]
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_closure/neutral_interactions/check_two_loop_v2.py",
+    "fine_structure_puzzle/qcd_closure/neutral_interactions/RAW_DERIVATION_v1.md",
+    "fine_structure_puzzle/qcd_completion/closed_dual_qcd/DERIVATION.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "SymPy",
+      "version": "1.14.0"
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

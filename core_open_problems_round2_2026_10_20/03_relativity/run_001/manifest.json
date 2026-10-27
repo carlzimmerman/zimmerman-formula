@@ -1,0 +1,125 @@
+{
+  "schema_version": 2,
+  "claim_id": "P3_ROUND2_DESITTER_AND_OBLIQUE_PRINCIPAL",
+  "repository": {
+    "commit": "bd9d142db3b45921189924b6b54837eb42537559",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "checks.py",
+    "--output",
+    "run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.13.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact de Sitter background and beta stress, direct real-mode ADM scalar expansion, full nonzero-k lapse/shift/auxiliary elimination, positive reduced Q/V and energy identity, homogeneous constraints, late-time indicial controls, arbitrary-angle static principal Schur reduction/rank locus, direct cubic amplitude-envelope algebra.",
+    "coefficient_domain": "Exact symbolic rational/surd expressions over positive K,beta,eta,gamma,H,p,a0; no sampled empirical data.",
+    "conventions": "c=1; signature (-+++); physical spatial covector P; expanding pure bare-Lambda background with S1 a0²=Lambda/(32pi); p=k/a; integrations by parts retain a³ and p-dot=-Hp.",
+    "inputs": [
+      "Explicit candidate ADM action and perturbation definitions embedded in checks.py; raw_derivation.md states the mathematical interpretation."
+    ],
+    "bounds": {
+      "deSitter": "All positive symbolic coefficients and k>0 on exact expanding P=0 de Sitter; separately calculated k=0 homogeneous quadratic sector.",
+      "oblique": "Arbitrary P components and nonzero wavevector on frozen static clock-aligned backgrounds, high-frequency principal limit only.",
+      "cubic": "Envelope bound for one direct W cubic term, not complete reduced cubic action."
+    },
+    "non_claims": [
+      "No S3 bridge",
+      "No nonlinear/global stability",
+      "No full strong-coupling cutoff",
+      "No evolving polarized-background theorem",
+      "No low-frequency halo spectrum",
+      "No PPN data pass"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-21T01:26:15.163656+00:00",
+    "runtime_seconds": 1.401168,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "checks.py",
+      "sha256": "ac85902c4e45018a39d0e2d24c9e15051a7aba51524d7028a606dd3d7dc163bc",
+      "sha256_after": "ac85902c4e45018a39d0e2d24c9e15051a7aba51524d7028a606dd3d7dc163bc"
+    }
+  ],
+  "output_directory": "run_001",
+  "declared_results": [
+    "run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "run_001/stdout.txt",
+      "sha256": "f72f431f21b4b82fd9aaaa521f332a7045e811469deb264f258886841691e0d2",
+      "kind": "log"
+    },
+    {
+      "path": "run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "run_001/results.json",
+      "sha256": "b826fb9f27489c27332471408d26c549882d5ae734b6ea6e2511471cc68a468d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,476 @@
+\section{Manifolds with singularities}\label{sec6}
+All results on the heat kernel expansion formulated in the
+previous sections are valid on
+smooth manifolds only. If there are boundaries, they also
+have to be smooth. As well, any singularities in the potential
+term or in the field strength are strictly speaking forbidden.
+However, many physical models deal with singular backgrounds.
+Even if such backgrounds may be represented through certain limiting
+procedures from smooth configurations, the heat kernel coefficients
+are not given by limits of their ``smooth'' values. The most visible
+manifestation of failure of the smooth field approximation is that $a_k$
+with sufficiently large $k$ are divergent. Usually, the presence of
+singularities changes even the structure of the heat kernel
+kernel expansion as compared to the smooth case. 
+
+%%%%%%%%%%
+\subsection{Non-integrable potentials}\label{s6sinpot}
+According to (\ref{divWLam}) divergences in the effective action
+are defined by {\it integrated} heat kernel coefficients.
+Although the formulae (\ref{a0nobou}) - (\ref{a6nobou}) for 
+the {\it localised} heat kernel coefficients are valid on
+non-compact manifolds (provided the smearing function $f$
+falls off sufficiently fast), transition to the integrated
+heat kernel is not that straightforward. Already the coefficient
+$a_0(D)=a_0(1,D)$, which is proportional to the volume,
+is divergent. This divergence is usually removed by replacing
+$\det (D)$ in (\ref{pathdet}) by
+\begin{equation}
+\det (D)/\det (D_0) \,,\label{referdet}
+\end{equation}
+where the operator $D_0=-\partial^2+m^2$ describes a free particle
+propagation in an ``empty'' space. It is argued that since $D_0$ does
+not depend on ``essential'' variables division by $\det (D_0)$ does not
+change physical predictions of the theory. In all subsequent formulae
+the heat kernel $K(t;x,y;D)$ is then replaced by the subtracted
+heat kernel
+\begin{equation}
+K_{\rm sub} (t;x,y)=K(t;x,y;D)-K(t;x,y;D_0) \,.
+\label{Ksub}
+\end{equation}
+In flat space the coefficient $a_0$ corresponding to $K_{\rm sub}$
+is identically zero\footnote{On a curved manifold the subtraction
+procedure is more subtle. On has to define a reference metric which
+differs from the physical one on a compact submanifold.}. If the field
+strength $\Omega_{\mu\nu}$ and the (subtracted) potential $E+m^2$ 
+have a compact support or decay sufficiently fast at the infinity,
+the small $t$ asymptotic expansion of $K_{\rm sub}(t;x,x)$ is
+integrable on the whole $M$. If not, the very structure of the
+global heat kernel may be changed.
+
+As an example of non-integrable potentials consider the harmonic
+oscillator in one dimension. The Schr\"{o}dinger operator reads
+\begin{equation}
+D=-\partial_x^2 +\nu^2 x^2 \,.\label{harmos}
+\end{equation}
+If we consider the problem on the whole real axis, $M=\mathbb{R}$,
+the potential term is not integrable. Already the expression
+(\ref{a2nobou}) for $a_2(1,D)$ diverges. Therefore, analytic expressions
+of sec.\ \ref{sec4} cannot be used in this case. However, the
+(integrated) heat kernel can be easily calculated. Eigenvalues of the
+operator (\ref{harmos}) are contained in almost any textbook on quantum
+mechanics:
+\begin{equation}
+\lambda_j=\nu (2j+1),\qquad j=0,1,2,\dots \label{harmspec}
+\end{equation}
+
+The integrated heat kernel reads
+\begin{equation}
+K(t;D)=\sum_{j=0}^\infty e^{-t\nu (2j+1)} =
+\frac 12 [\sinh (\nu t)]^{-1} \,.\label{harmheat}
+\end{equation}
+As $t\to 0$ it behaves like $1/t$ while for smooth rapidly decaying
+potentials in one dimension the leading singularity in the heat kernel
+is $1/\sqrt{t}$. This statement may be generalised to higher dimensions.
+If $D=-\partial^2 +P_{\mu\nu}x^\mu x^\nu$ with a non-degenerate 
+matrix $P_{\mu\nu}$ on $M=\mathbb{R}^n$, the leading
+term in $K(t;D)$ is $(2t)^{-n} (\det P)^{-1/2}$ \cite{Avramidi:1995ik}.
+
+\subsection{Conical singularities}\label{s6consin}
+Conical space is defined as $M=[0,1]\times N$ where $N$ is an
+$n-1$-dimensional manifold called the base. The metric of the
+cone has the form
+\begin{equation}
+(ds)^2=dr^2 +r^2 d\Omega^2 \,,\label{conmetr}
+\end{equation}
+where $r\in [0,1]$ and $d\Omega^2$ is the line element on the
+base $N$. This metric is, in general, singular at $r=0$. However, if we 
+take the unit sphere $S^{n-1}=N$ with standard round metric,
+the singularity disappears and we obtain the $n$-dimensional unit ball
+(\ref{ballmetric}). If a manifold has singular points where
+the metric can be approximated by (\ref{conmetr}) we say that this
+manifold has conical singularities. 
+
+Conical singularities appear in many physical applications.
+First of all, with $N=S^1$ the metric (\ref{conmetr}) is the Euclidean
+version of the Rindler metric. Conical singularities appear in
+classical solutions of the Einstein equations 
+\cite{Sokolov:1977,Frolov:1987dz,Barriola:1989hx}
+and in the supermembrane theory 
+\cite{Vassilevich:1991vy}. Gravitational field of a point mass in 
+three dimensional gravity is a conical space 
+\cite{Deser:1984tn,Deser:1988qn}. There are evidences \cite{Schleich:1993bs}
+that ``conifolds'' dominate the path integral for quantum gravity in
+topological sectors.
+
+Sommerfeld \cite{Sommerfeld:1894}
+was probably the first to consider the heat kernel in the presence
+of conical singularities. The mathematical theory of the heat kernel
+asymptotics with conical singularities was developed almost 100 years
+later \cite{Cheeger:1983,Bruening:1984,Bruening:1987}. There two peculiar
+features of these asymptotics. First, the heat kernel expansion
+contains in general both integer and half-integer powers of $t$ even
+without boundaries. Second, a non-standard $\ln t$ term may be contained in
+the asymptotic series\footnote{The present author is not aware of
+any simple example where the $\ln t$ terms actually appear.}.
+
+On a manifold with conical singularities no closed analytical expression
+for the heat kernel coefficients is available. However, usually it is
+possible to disentangle contributions of the singularities from the
+smooth part. For example, if $N=S^1$, $d\Omega^2=d\varphi^2$ with
+$\varphi \in [0,\alpha ]$ only $a_2$ receives a contribution from the
+tip of the cone:
+\begin{equation}
+a_2({\rm tip})=\frac{4\pi^2 -\alpha^2}{24\pi \alpha} \,.\label{a2tip}
+\end{equation} 
+
+In many particular cases of conical singularities
+a very detailed analysis of the heat kernel
+expansion has been performed 
+\cite{Dowker:1977zj,Dowker:1989pp,Chang:1993fu,Dowker:1994jv,
+Fursaev:1994qk,Fursaev:1994in,Cognola:1994qg,Cognola:1994ps,
+Fursaev:1995ef,Bordag:1996fw,DeNardo:1997kp,Shtykov:1995fe,
+Dowker:1998sc,BezerradeMello:2000mb}. One-loop computations on
+general orbifolds were considered recently in 
+\cite{GrootNibbelink:2003gd}.
+%%%%%%%
+\subsection{Domain walls and brane world}\label{s6dom}
+Delta function is an example of an extremely sharp background potential.
+Let us consider a manifold $M$ and a submanifold $\Sigma$ of the
+dimension $n-1$. Let
+\begin{equation}
+D[\dvxi ]=D+\dvxi \delta_\Sigma \,.\label{singop}
+\end{equation}
+$D$ is an operator of Laplace type (\ref{laplaceb}). 
+Let $h$ be
+the determinant of the induced metric on $\Sigma$. Then $\delta_\Sigma$ is a
+delta function defined such that
+\begin{equation}
+\int_M dx\sqrt{g} \delta_\Sigma f(x) =\int_\Sigma dx \sqrt{h}
+f(x) \,.\label{deltaSig}
+\end{equation}
+
+The spectral problem
+for $D[\dvxi ]$ on $M$ as it stands is ill-defined 
+owing to the discontinuities (or
+singularities) on $\Sigma$. It should be replaced by a pair of spectral
+problems on the two sides
+$M^\pm$ of
+$\Sigma$ together with suitable matching conditions on $\Sigma$. In order to
+find such matching conditions, we 
+consider an eigenfunction $\phi_\lambda$ of the operator 
+(\ref{singop}):
+\begin{equation}
+D[v]\phi_\lambda =\lambda \phi_\lambda \,.
+\label{eigen}
+\end{equation}
+Let us choose the coordinate system such that $e_n$ is a unit normal
+to $\Sigma$ and $x^n=0$ on $\Sigma$.
+It is clear that $\phi_\lambda$ must be continuous on $\Sigma$:
+\begin{equation}
+\phi\vert_{x^n=+0}=\phi\vert_{x^n=-0} \,.\label{mc1}
+\end{equation}
+Otherwise, the second normal derivative of $\phi_\lambda$ would create
+a $\delta'$ singularity on $\Sigma$ which is absent on the right
+hand side of (\ref{eigen}). Let us integrate (\ref{eigen}) over
+a small cylinder $\mathcal{C}=C^{n-1}\times [-\epsilon ,+\epsilon]$
+\begin{equation}
+\int_{\mathcal{C}} d^nx\sqrt{g} \left( -\nabla_n^2 \phi_\lambda
+-\left[ \nabla_a^2 \phi_\lambda +(E+\lambda)\phi_\lambda \right]\right)
++\int_C d^{n-1}x\sqrt h \dvxi\phi_\lambda =0\,. \label{intcyl}
+\end{equation} 
+We now take the limit as $\epsilon\to 0$. Since the expression in the
+square brackets in (\ref{intcyl}) is bounded, the contribution
+that this term makes vanishes in the limit. We obtain
+\begin{equation}
+0=\int_C d^{n-1}x\sqrt h \left( -\nabla_n \phi_\lambda\vert_{x^n=+0}
++\nabla_n \phi_\lambda\vert_{x^n=-0} +\dvxi\phi_\lambda \right)\,.
+\label{int2cyl}
+\end{equation}
+Since $C$ and $\lambda$ are arbitrary, we conclude that a proper
+matching condition for the normal derivatives is
+\begin{equation}
+-\nabla_n \phi \vert_{x^n=+0}
++\nabla_n \phi \vert_{x^n=-0} +\dvxi\phi =0 \,.\label{dermatch}
+\end{equation}
+
+Physically this problem corresponds to two domains separated by a
+penetrable membrane $\Sigma$ (a domain wall). In many cases penetrable
+membranes are better models of physical boundaries then just boundary
+conditions which are imposed on each side of $\Sigma$ independently
+and thus exclude any interaction between the domains
+\cite{Jaekel:1992bn,Actor:1995vc}. $\delta$-potentials
+are being used in quantum mechanics \cite{Albeverio:1988}
+where one studies the Schr\"{o}dinger equation (which is
+nothing else than the imaginary time heat equation).
+The Casimir energy calculations have been performed e.g. in
+\cite{Scandurra:1998xa}.
+In the formal limit
+$\dvxi\to\infty$ one obtains Dirichlet boundary conditions 
+on $\Sigma$, although the heat kernel coefficients are divergent in this
+limit (see below).
+
+Further generalisations are suggested by the brane world scenario
+\cite{Randall:1999ee,Randall:1999vf} which assumes that our world
+is a four dimensional membrane in a five dimensional space\footnote{
+A similar scenario was proposed earlier in \cite{Rubakov:1983bb},
+see \cite{Rubakov:2001kp} for a review.}. According to the Israel
+junction condition \cite{Israel:1966rt} the metric in such models
+cannot be smooth on $\Sigma$. Typical form of the metric near 
+$\Sigma$ is 
+\begin{equation}
+(ds)^2=(dx^n)^2 + e^{-\alpha |x^n|} (ds_{n-1})^2, \label{branemetr}
+\end{equation}
+where $\alpha$ is a constant and where $(ds_{n-1})$ is a line element
+on the $(n-1)$-dimensional hypersurface $\Sigma$. Due to the presence of the
+absolute value of the $n$-th coordinate in (\ref{branemetr}), the normal
+derivative of the metric jumps on $\Sigma$.
+One can think of two smooth manifolds
+$M^+$ and $M^-$ glued together along their common boundary $\Sigma$.
+Neither Riemann tensor, nor matrix potential $E$ must be continuous
+on $\Sigma$. Also, the extrinsic curvatures $L_{ab}^+$ and $L_{ab}^-$
+of $\Sigma$ considered as a submanifold in $M^+$ and in $M^-$ 
+respectively are, in general,
+different. All geometric quantities referring to $M^-$ (respectively,
+$M^-$) and their limiting values on $\Sigma$ will be supplied by
+a superscript ``$+$'' (respectively, ``$-$'').  
+
+For the case at hand there is still an asymptotic expansion (\ref{asymptotex})
+for the heat kernel. The heat kernel coefficients can be decomposed as
+\begin{equation}
+a_k(f,D[\dvxi ])=a_k^+(f,D) + a_k^-(f,D)^- +a_k^\Sigma (f,D,\dvxi )\,,
+\label{apmSigma}
+\end{equation}
+where $a_k^\pm (f,D)$ are known volume contributions corresponding
+to $M^\pm$ (cf. (\ref{a0nobou}) - (\ref{a6nobou})). The coefficients
+$a_k^\Sigma$ are given by integrals over $\Sigma$ of some local
+invariants. Note, that 
+\begin{equation}
+\tilde\omega_a=\nabla_a^+-\nabla_a^- \label{tiloma}
+\end{equation}
+being a difference of two connection is a (pseudo-) vector with respect to
+all space-time and gauge symmetries. Therefore, $\tilde\omega_a$ can be
+used for constructing the surface invariants.
+
+To make the formulae more symmetric we introduce {\it two} inward pointing
+unit normals $\nu^+$ and $\nu^-$ to $\Sigma$ in $M^+$ and $M^-$ respectively.
+We do not suppose that the smearing function $f$ is smooth on $\Sigma$
+(therefore, there is no relation between $f_{;\nu^+}$ and $f_{;\nu^-}$),
+but we assume continuity of $f$: $f^+=f^-=f$ on $\Sigma$.  
+
+The surface invariants can be constructed from $L_{ab}^\pm$,
+$R_{ijkl}^\pm$, $E^\pm$, $\dvxi$, $\tilde\omega_a$ and their
+derivatives. This gives much more invariants than we usually have
+for a boundary value problem. There are, however, some properties
+of $a_k^\Sigma$ which simplify the calculations considerably.
+First of all, $a_k^\Sigma$ must be invariant with respect to
+interchanging the roles of $M^+$ and $M^-$. Also, $a_k^\Sigma$
+must vanish when the singularity disappears. The first property
+excludes, for example, the term $f(E^+-E^-)$ which changes sign
+under $M^+\leftrightarrow M^-$. The second requirement excludes
+the invariant $f(E^++E^-)$ because it survives even if there is no
+singularity on $\Sigma$. These simple arguments show that $a_3^\Sigma$
+does not contain $E^\pm$ even though such terms are allowed on dimensional
+grounds. It is also very helpful that in some particular cases the
+problem in question can be reduces to a sum of Dirichlet and Robin
+boundary value problems \cite{Bordag:1999ed,Gilkey:2001mj}.
+
+The coefficients $a_k^\Sigma$, $k=0,1,2,3$, read
+\begin{eqnarray}
+&&a_0^\Sigma(f,D,\dvxi)=0.\nonumber\\
+&&a_1^\Sigma(f,D,\dvxi)=0.\nonumber\\
+&&a_2^\Sigma(f,D,\dvxi)=
+     (4\pi)^{-n/2}\frac16\int_\Sigma d^{n-1}x\sqrt{h}
+       \ptr \{2f(L_{aa}^++L_{aa}^-)-6f\dvxi\}.\label{asig03}\\
+&&a_3^\Sigma(f,D,\dvxi)=(4\pi)^{(1-n)/2}\frac1{384}
+\int_\Sigma d^{n-1}x\sqrt{h}
+\ptr\left\{\frac32f(L_{aa}^+L_{bb}^+
++L_{aa}^-L_{bb}^-\right.  \nonumber\\
+&&\qquad +2L_{aa}^+L_{bb}^-)
+    +3f(L_{ab}^+L_{ab}^++L_{ab}^-L_{ab}^-+2L_{ab}^+L_{ab}^-)
+\nonumber\\
+&&\qquad    +9(L_{aa}^++L_{aa}^-)(f_{;\nu^+}^++f_{;\nu^-}^-)
++48f\dvxi^2+24f\tilde\omega_a\tilde\omega_a \nonumber\\
+&&\qquad \left.   -24f(L_{aa}^++L_{aa}^-)\dvxi
+    -24(f_{;\nu^+}^++f_{;\nu^-}^-)\dvxi\right\}.\nonumber
+\end{eqnarray}
+The coefficients $a_4^\Sigma$ and $a_5^\Sigma$ are too long to be
+presented here in full generality. Therefore, we restrict ourselves to 
+the case of smooth geometry ($R_{ijkl}^+=R^-_{ijkl}$, $L_{ab}^+=-L_{ab}^-$),
+smooth connection ($\tilde\omega_a=0$), and smooth smearing function
+($f_{;\nu^+}=-f_{;\nu^-}=f_{;n}$). In other words, the only singularity comes
+from the surface potential $\dvxi$.
+\begin{eqnarray}
+&&a_4^\Sigma (f,D,\dvxi)=(4\pi )^{-n/2}
+\int_\Sigma d^{n-1}x\sqrt{h}\ptr\left\{ -\frac 16 f\dvxi^3 -\frac 1{6}
+fR \dvxi -fE\dvxi \right. \nonumber \\
+&&\qquad \left. -\frac 16 f\dvxi_{:aa} +\frac 16 f_{;n}\dvxi L_{aa} 
+-\frac 16 f_{;nn}\dvxi
+\right\} \nonumber \\
+&&a_5^\Sigma (f,D)= (4\pi )^{-(n-1)/2} \int_\Sigma d^{n-1}x\sqrt{h}\ptr
+\left\{\frac 1{64} f\dvxi^4 +\frac 1{48} fR \dvxi^2
+ \right. \label{asig45}\\
+&&\qquad +\frac 1{192}R_{nn}\dvxi^2 +\frac 18 f\dvxi^2 E 
+-\frac 1{256} f\dvxi^2 L_{aa}L_{bb} 
++\frac 1{128}f\dvxi^2 L_{ab}L_{ab}  \nonumber \\
+&&\qquad \left. +\frac 1{24}f\dvxi_{:aa}\dvxi
++\frac 5{192} f\dvxi_{:a}\dvxi_{:a} -\frac 5{384}f_{;n} \dvxi^2L_{aa}
++\frac 1{64}f_{;nn}\dvxi^2 \right\}
+\nonumber
+\end{eqnarray}
+The heat kernel coefficients for $\Sigma =S^{n-1}\subset\mathbb{R}^n$
+and $\dvxi =const.$ were calculated in \cite{Bordag:1998vs}.
+Generic $\Sigma$ with arbitrary $\dvxi$ was considered in
+\cite{Bordag:1999ed}. Moss \cite{Moss:2000gv} added a non-smooth
+connection (see also \cite{Drozdov:2002um}).
+Calculations on a particular brane-world background can be found
+in \cite{Nojiri:2000bz}.
+The heat kernel coefficients in the general setting
+described here were calculated in \cite{Gilkey:2001mj}. This latter
+paper also considered renormalization of the brane-world scenario
+and predicted a non-standard Higgs potential on the brane.
+Related calculations in 
+wormhole models were done in 
+\cite{Khusnutdinov:2002qb,Khusnutdinov:2003ii}. The $\zeta$
+function for brane-world geometries with matching conditions
+(\ref{mc1}), (\ref{dermatch}) was considered recently in
+\cite{Elizalde:2002dd,Moss:2003zk} 
+(where one can find some further references).
+
+It is very well known \cite{Albeverio:1988}
+that the conditions (\ref{mc1}),
+(\ref{dermatch}) (which we call {\it transmittal}) are not the most
+general matching conditions which can be defined on a surface. 
+In general, boundary values of a function and of its' normal
+derivatives are related by a $2\times 2$ {\it transfer} matrix:
+\begin{equation}
+0=
+     \left(\begin{array}{cc}
+          \nabla_{\nu^+}^++S^{++},\qquad&S^{+-}\\
+          S^{-+},\qquad&\nabla_{\nu^-}^-+S^{--}\end{array}\right)
+      \left(\begin{array}{l}\phi^+\\\phi^-\end{array}\right)
+\bigg|_\Sigma\,.\label{BBT}
+\end{equation} 
+Note, that the transfer conditions (\ref{BBT}) do not assume
+identification of $\phi^+$ and $\phi^-$ on $\Sigma$. In other
+words, there is no ad hoc relation between the restrictions
+of the vector bundles $V^+|_\Sigma$ and $V^-|_\Sigma$. We can even
+consider the situation when we have ${\rm dim}V^+\ne{\rm dim}V^-$,
+i.e. the fields on $M^-$ and $M^-$ can have different structures
+with respect to space-time and internal symmetries. $S^{\pm\pm}$
+are some matrix valued functions on $\Sigma$ (one can even consider
+the case when they are differential operators). It is clear from
+the notations on which spaces they act. For example,
+$S^{+-}: V^-|_\Sigma\to V^+|_\Sigma$.
+
+The matching conditions (\ref{BBT}) arise in heat transfer problems
+\cite{Carslaw:1986}, some problems of quantum mechanics 
+\cite{Grosche:1994uv}, and in conformal field theory
+\cite{Bachas:2001vj}. In a formal limiting case 
+$S^{++}-S^{-+}=S^{--}-S^{+-} \to \infty$ while 
+$\dvxi =2(S^{++}+S^{+-})$ is kept finite one arrives at transmittal
+boundary conditions (\ref{mc1}), (\ref{dermatch}). The heat kernel
+coefficients are divergent in this limit.
+
+In a particular case of spherical $\Sigma$ the heat kernel
+expansion with transfer boundary conditions was evaluated in 
+\cite{Bordag:2001ta}. General expressions for $a_k$ with
+$k=0,1,2,3,4$ were obtained in \cite{Gilkey:2002nv}.
+Somewhat surprisingly, the calculations for (\ref{BBT})
+are easier than for the singular particular case (\ref{mc1}),
+(\ref{dermatch}).
+
+We should note that not all singular limiting cases of
+(\ref{BBT}) are described by the transmittal conditions
+(\ref{mc1}), (\ref{dermatch}). The heat kernel expansion
+for a generalisation of transmittal condition is known
+in the spherically symmetric case only \cite{Bordag:2001ta}.  
+Very little is known about the heat kernel if the transfer
+matrix contains differential operators on $\Sigma$ (conformal
+walls of ref.\ \cite{Bachas:2001vj} belong to this class
+of problems).
+
+The case when the singular potential is located on a surface
+of co-dimension larger than one (i.e. when 
+${\rm dim}\Sigma <n-1$) is rather complicated. Even a careful
+translation of this problem to the operator language
+was done only in 1960's \cite{Berezin:1961}. Direct calculations
+show \cite{Albeverio:1994,Solodukhin:1997xn} that
+the heat kernel asymptotics may contain very unusual $(\ln t)^{-1}$
+terms. More references can be found in \cite{Camblong:2001um}.
+%%%%%%
+\subsection{Non-smooth boundaries}\label{s6nsbou}
+Rectangular region in a plane is probably the simplest
+manifold with boundaries as far as eigenvalues of the Laplacian  
+are concerned. However, the formulae (\ref{a0bou}) - 
+(\ref{a4bou}) are not valid for this case because of the presence
+of corners. The heat kernel expansion on manifolds
+with piecewise smooth boundaries was considered by Kac in his
+famous paper \cite{Kac:1966}. He demonstrated that for a 
+region in $\mathbb{R}^2$ each corner with the inside
+facing angle $\alpha$ contributes 
+\begin{equation}
+a_2({\rm corner})= \frac {\pi^2 -\alpha^2}{24\pi\alpha}
+\label{a2Kac}
+\end{equation}
+to the coefficient $a_2$ while $a_0$ and $a_1$ are still defined
+by their ``smooth'' expressions.
+
+The formula (\ref{a2Kac}) looks similar to the contribution of a
+conical singularity (\ref{a2tip}). The reason for this similarity
+is that the cone can be obtained from the wedge by gluing the sides
+together and imposing the periodicity conditions.
+
+The study of boundary discontinuities was continued by Apps and
+Dowker who calculated the coefficients $a_3$ \cite{Dowker:1995sp}
+and $a_4$ \cite{Apps:1998zr} for piecewise smooth boundaries.
+We also refer to \cite{Aurell:1994} where functional determinants
+on simplicial complexes were analysed, and to
+\cite{Dowker:2000fs} where divergences in the Casimir energy
+found in \cite{Nesterenko:2000eb} were attributed to non-smoothness
+of the boundaries. A recent study \cite{Nesterenko:2002ng}
+should also be mentioned.
+
+When the angle $\alpha$ goes to $0$ we obtain a cusp. In this limit
+(\ref{a2Kac}) is divergent. Presence of the cusp is an essential
+singularity which modifies {\it powers} of the proper
+time $t$ which appear in the asymptotic expansion of the heat
+kernel \cite{Stewartson:1971}.
+%%%%%%%%%
+\subsection{Dielectric bodies}\label{s6diel}
+Calculations of the Casimir energy of a dielectric body 
+have attracted much attention and created many controversial
+results. A (rather large) literature on this subject is reviewed
+in \cite{Bordag:2001qi,Milton:2001yy}. Quantum field theory formulation
+of this problem is known for a long time already (cf. 
+\cite{Schwinger:1979pa,Milton:1980yx,Candelas:1982qw}). However, the
+heat kernel analysis of divergences in the Casimir energy in
+dielectric is a relatively new subject. 
+
+Wave propagation with variable speed of light $c(x)$
+is described by the operator $D=-c(x)^2 \nabla^2 +\dots$,
+where we neglected the lower order terms. In a dielectric medium
+$c$ is expressed in terms of the dielectric permittivity $\varepsilon$
+and of the magnetic permeability $\mu$:
+$c(x)^2=1/(\varepsilon (x)\mu (x))$. 
+For a smooth distribution of $\varepsilon$ and $\mu$
+the operator $D$
+is a particular case of curved space Laplacian with
+an effective metric defined by $c(x)$. The heat kernel
+coefficients can be calculated in the standard way \cite{Bordag:1998fh}.
+
+Consider now a dielectric body bounded by $\Sigma$. Typically, 
+$c(x)$ (and the effective metric!) jumps on $\Sigma$.
+This singularity is much stronger than the one considered
+in sec.\ \ref{s6dom}. Thus the geometric interpretation of this
+problem is very difficult. Very little is known about the heat kernel
+expansion in a dielectric body of an arbitrary shape.
+There are calculations for a dielectric ball 
+\cite{Bordag:1998vs} and for a dielectric cylinder \cite{Bordag:2001zj}.
+These calculations exhibit a puzzling property of the heat kernel
+expansion in dielectrics in dilute approximation ($\varepsilon \sim 1$):
+for a dielectric body the Casimir energy
+in the ultra violet limit behaves 
+better than for the ``smooth'' case.
+The heat kernel expansion for a frequency dependent $\varepsilon$
+was considered in refs.\ \cite{Falomir:2001uv,Bordag:2001fq}.

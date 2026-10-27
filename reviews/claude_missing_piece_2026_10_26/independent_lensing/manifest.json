@@ -1,0 +1,180 @@
+{
+  "schema_version": 2,
+  "claim_id": "X53_INDEPENDENT_STATISTIC_AUDIT",
+  "repository": {
+    "commit": "ac5e89d73fe46fbdd5d2719c6ff2320dafadef4b",
+    "dirty": false
+  },
+  "command": [
+    "python3",
+    "/tmp/x53_lensing_audit_20261026/audit.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Reconstruct X53 chi-square and nonnegative two-halo fits from released covariance and saved model predictions, independently of production scoring code. Quantify reported mass/edge decomposition.",
+    "coefficient_domain": "IEEE754 double",
+    "conventions": "B21 K-corrected covariance; native factor (0.679/0.70)*1.0128; four bins; nonnegative per-bin amplitudes",
+    "inputs": [
+      "Four 15-point profiles and 60x60 covariance",
+      "Saved X53 predictions and A1 reported chi-square values"
+    ],
+    "bounds": {
+      "n_bins": 4,
+      "n_radii": 15,
+      "fit_ranges": [
+        "R_B21<=0.31 Mpc",
+        "all"
+      ]
+    },
+    "non_claims": [
+      "Does not rerun or independently validate halo construction, catalogue weighting, or the astrophysical model.",
+      "Template inferred from saved H2H predictions; not an independent construction.",
+      "Mass normalization and boundary components are conditional diagnostics, not unique causal decomposition."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-27T01:33:49.480604+00:00",
+    "runtime_seconds": 0.3030059337615967,
+    "exit_status": 0,
+    "status": "completed",
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    }
+  },
+  "outputs": [
+    {
+      "path": "private/tmp/x53_lensing_audit_20261026/result.json",
+      "sha256": "11786135c05a5478be39d67d3ad82844bc002ddff1abf59d26baf43e8d9b0180",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "name": "independent_chi_square",
+      "passed": true
+    },
+    {
+      "name": "native_data_values",
+      "passed": true
+    }
+  ],
+  "result": "Finite scoring assertion verified to 1e-8 absolute chi-square. No complete production rerun.",
+  "residual_risks": [
+    "Live repository; inputs hashed before and after",
+    "Outside bounded runner; no explicit hard resource limits"
+  ],
+  "input_artifacts": [
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/X53_outer_lensing_law_vs_halos/x53_outer_lensing.py",
+      "sha256": "a992312c611cae35289a5bbc88921e0cd05a1d129691f04deab3c816cb4f12ec",
+      "sha256_after": "a992312c611cae35289a5bbc88921e0cd05a1d129691f04deab3c816cb4f12ec"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/X53_outer_lensing_law_vs_halos/x53_diag_A1.py",
+      "sha256": "b37479088f507e235a6cc19e80fa596ba5346a5a621b96512bc90d91d21d73ec",
+      "sha256_after": "b37479088f507e235a6cc19e80fa596ba5346a5a621b96512bc90d91d21d73ec"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/X53_outer_lensing_law_vs_halos/x53_outer_lensing_results.json",
+      "sha256": "ad8cf0132e9074424b319258a296f2dfac3f9a07d75b5915337e3595da3c4896",
+      "sha256_after": "ad8cf0132e9074424b319258a296f2dfac3f9a07d75b5915337e3595da3c4896"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/X53_outer_lensing_law_vs_halos/x53_diag_A1_results.json",
+      "sha256": "3fcf482fdbacc3316ae526868cdecfcddfb9293983fc40e927a3c4414b3b7818",
+      "sha256_after": "3fcf482fdbacc3316ae526868cdecfcddfb9293983fc40e927a3c4414b3b7818"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/EM1_emergent_dust_law/em1_emergent.py",
+      "sha256": "036c278baba1cbce69d4a452533d938932c7a8698dfb86f8760510fae54efa3c",
+      "sha256_after": "036c278baba1cbce69d4a452533d938932c7a8698dfb86f8760510fae54efa3c"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/EM1_emergent_dust_law/em1_emergent_results.json",
+      "sha256": "495c86686b8c9a0ff80dd1914aba827d409b2165c87740bdcc6894d0de6aafde",
+      "sha256_after": "495c86686b8c9a0ff80dd1914aba827d409b2165c87740bdcc6894d0de6aafde"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/EM1_emergent_dust_law/em1_emergent_results_UPS05.json",
+      "sha256": "4283b055ee6bd4c3f051a7abd429e9651377b106886f7be16c417b75a99f9b1c",
+      "sha256_after": "4283b055ee6bd4c3f051a7abd429e9651377b106886f7be16c417b75a99f9b1c"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/X48_native_cf_zoom/x48_analyze_results_ng48.json",
+      "sha256": "15b07cff0ce85458b933237cefa74a51b6b3aca678ddfd924b2f43e7c5b8c186",
+      "sha256_after": "15b07cff0ce85458b933237cefa74a51b6b3aca678ddfd924b2f43e7c5b8c186"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/X43_collapse_core_floor/x43_collapse_core_results.json",
+      "sha256": "64915421f28fc5c4362e968081a4d997ef3e90cc105273773e366de055eea250",
+      "sha256_after": "64915421f28fc5c4362e968081a4d997ef3e90cc105273773e366de055eea250"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/F2_outer_lensing/f2_aqual.py",
+      "sha256": "7420d7290e63132afbd9684f8a5ec0e77c380a1be6b4cbc12f41e6fee69ea903",
+      "sha256_after": "7420d7290e63132afbd9684f8a5ec0e77c380a1be6b4cbc12f41e6fee69ea903"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/F2_outer_lensing/f2_outer_lensing.py",
+      "sha256": "816a9bb583ec19e012a83d7592cbbe6e142e23a9ec3d8b34aab662590f152ae5",
+      "sha256_after": "816a9bb583ec19e012a83d7592cbbe6e142e23a9ec3d8b34aab662590f152ae5"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/real_research/data/lensing_rar/brouwer2021_rar/Fig-3_Lensing-rotation-curves_Massbins_covmatrix.txt",
+      "sha256": "e2568b34578a4752c4cdc25c23cd38c896ac1c5e0477cce3fe8d7b32e4954445",
+      "sha256_after": "e2568b34578a4752c4cdc25c23cd38c896ac1c5e0477cce3fe8d7b32e4954445"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/real_research/data/lensing_rar/brouwer2021_rar/Fig-3_Lensing-rotation-curves_Massbin-1.txt",
+      "sha256": "cd8171d248a5c660701c2fcfb5f39eea01ae57b5b9ec2bae233e5aef77e7d78e",
+      "sha256_after": "cd8171d248a5c660701c2fcfb5f39eea01ae57b5b9ec2bae233e5aef77e7d78e"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/real_research/data/lensing_rar/brouwer2021_rar/Fig-3_Lensing-rotation-curves_Massbin-2.txt",
+      "sha256": "279d82e4faee34041221b617f0ce9cfc97966c431616c94608b0983e60421ae7",
+      "sha256_after": "279d82e4faee34041221b617f0ce9cfc97966c431616c94608b0983e60421ae7"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/real_research/data/lensing_rar/brouwer2021_rar/Fig-3_Lensing-rotation-curves_Massbin-3.txt",
+      "sha256": "88eca49e85504c1eb6ce11e09edcdda37c0903dd678f2207ed4bca4fa31f7a22",
+      "sha256_after": "88eca49e85504c1eb6ce11e09edcdda37c0903dd678f2207ed4bca4fa31f7a22"
+    },
+    {
+      "path": "Users/carlzimmerman/new_physics/zimmerman-formula/real_research/data/lensing_rar/brouwer2021_rar/Fig-3_Lensing-rotation-curves_Massbin-4.txt",
+      "sha256": "05853565ae193347adff22f8aec58c50f80b2e22866fb9c532137c6f198a79e1",
+      "sha256_after": "05853565ae193347adff22f8aec58c50f80b2e22866fb9c532137c6f198a79e1"
+    },
+    {
+      "path": "private/tmp/x53_lensing_audit_20261026/audit.py",
+      "sha256": "d242c36f053dfd42200324e074f9a8c051f0f99e9fb3cb702d26ecef18a17dc4",
+      "sha256_after": "d242c36f053dfd42200324e074f9a8c051f0f99e9fb3cb702d26ecef18a17dc4"
+    }
+  ],
+  "declared_results": [
+    "private/tmp/x53_lensing_audit_20261026/result.json"
+  ]
+}

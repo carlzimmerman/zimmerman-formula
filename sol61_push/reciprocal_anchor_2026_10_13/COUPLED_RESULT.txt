@@ -1,0 +1,88 @@
+RA-004..010 — coupled reciprocal-reference continuation, 2026-10-13
+Original cold-energy final-mile goal remains OPEN. Base RA-001..003 at Git6d79f6d; actual execution inputs and changing shared Git revisions are in individual manifests. Latest source observation pinned in CLAUDE_CLUE_INPUTS.json. Exclusive write scope this directory. Self-review only; no publication or peer-chat message.
+
+Main result
+Conditional constrained Newtonian carrier/reference stationary profiles exist numerically with the actual finite carrier mass and the conserved reference charge both fixed to the same supplied S. Broad reference distributions approach the intended inner galaxy force. The quadratic EOS supplies a useful explicit current/scalar parent rewrite and positive flat matter Hamiltonian, but its existing positive P stiffness opens a supermetric cone. Softer EOS choices have a restricted local causal window and also yield coupled finite-charge profiles. No EOS, catchment, abundance, formation mechanism or complete clock/metric dynamics has been derived.
+
+1. Coupled radial energy: account for reference and actual mass together
+Use G=a0=Mb_total=1, Mb(r)=min(r^3,1) for a supplied compact baryonic sphere, reference density n=q'/r^2 (radial 4pi absorbed), physical enclosed carrier m, and u=(m-q)/r^2. Both m,q are nondecreasing and approach the supplied S=5.364; 0<=q<=m<=S and 0<=u<1. Then zero net polarization flux at infinity follows from m-q->0. The conditional NR energy is
+  H=integral[-(Mb*m+m^2/2)/r^2+r^2*w_full(u)+r^2*e(n)]dr,
+  w_full=-u-log(1-u).
+The baryon-only constant field term is omitted. This is the expanded FULL convention; using w_rem here would count the cancellation incorrectly. Reference internal energy's explicit gravitational source is higher NR order and omitted in this comparison. Actual cold mass gravitation is already m; do not add q as a separate rest-mass source to it.
+
+At fixed q, carrier variation gives w_full'(u)-(Mb+m)/r^2. Its second derivative is [(1-u)^(-2)-1]/r^2>0. The pointwise minimum under the supply cap is
+  mstar=min(q+root(Mb+q,r),S),
+  root(Q,r)=[sqrt(Q^2+4Q*r^2)-Q]/2.
+It is monotone whenever q and Mb are monotone. Within positive actual-carrier support, g=(Mb+m)/r^2=w_full'(u); outside, m=S and the capped variational derivative is nonpositive. Arbitrary independent-P vacuum variation is not the carrier variation.
+
+Reference variation of the same energy, after eliminating m, gives
+  [e'(n)]'=-w_full'(u).
+This equals ordinary hydrostatic gravity only below the carrier cap. Beyond the finite actual-carrier edge the density obstacle supplies a reaction and the reference sees w_full'(u)<g. This distinction is decisive for finite support.
+
+Correction/qualification to RA-003
+The simple pressure-free compact-anchor formula in the earlier RESULT.txt assumed freely varied constitutive carrier balance across the entire anchor. It cannot be extrapolated through carrier vacuum. A compact reference that reaches q=S while an unconstrained positive-density carrier still obeys m=q+root would require m>S. The earlier compact-density average inequality remains valid under its own hypotheses; it is not the outer boundary condition for these coupled profiles. The reference tail is part of the conserving solution, not discarded mass.
+
+2. Quadratic reference: actual carrier edge plus exponential charge tail
+For e=B n^2/2, q'=r^2 n and B n'=-w_full'(u). In carrier vacuum let d=S-q; then
+  d'=-r^2 n, n'=-d/[B(r^2-d)],
+  d''-2d'/r=d/[B(1-d/r^2)].
+At a finite regular r>0 this system is locally Lipschitz at d=n=0. Uniqueness prevents a nontrivial tail from reaching both zero at a finite radius. The linear decaying asymptotic is d=A(r+sqrtB)exp(-r/sqrtB), n=A exp(-r/sqrtB)/(sqrtB*r). The reference has finite total charge while extending beyond the compact actual carrier.
+For a decaying positive branch with u<=u_edge<1, define k0=1/sqrtB and k1=k0/sqrt(1-u_edge). Normalized F_k(r)=d_edge (r+1/k)/(r_edge+1/k) exp[-k(r-r_edge)] bounds F_k1<=d<=F_k0. Proof: apply L_k=d''-2d'/r-k^2d and the maximum principle with equal edge deficit and zero at infinity. Derivatives at the equal edge bound n_edge between d_edge*k0^2/[r_edge(k0*r_edge+1)] and the corresponding k1 expression. This comparison assumes the decaying branch; it is not global existence proof.
+
+RA-004_v2 solves seven B controls .01,.02,.05,.1,1,10,100. B=.01 initially exceeded the mesh cap from a poor independent seed; continuation through .1,.05,.02 resolves it without changing equations. All failed inputs/logs remain. Carrier edges range from sampled r≈.309 to4.702. Actual support is finite; the reference is not zero there. Mass quadrature and field/reference residuals pass the frozen checks.
+RA-005 repeats B1,100,1000,10000 with different outer radius and tighter tolerance. Maximum reference-profile changes over S are 5.2e-9,7.7e-8,3.4e-8,6.7e-9. At r4 the force ratios to the intended baryon-only law are respectively 1.40451 (already carrier-capped),1.16378,1.01960,1.00208. These are model controls, not data scores. B is an assumed EOS coefficient, with tail scale sqrtB in these units. Broadening it is not a knob-free prediction.
+
+3. Restricted radial energy stability check
+After m minimization, reference potential curvature is
+  C=-(g+1)^2/[r^2*g*(g+2)] below the cap,
+  C=1/[r^2*(1-u)^2] above the cap.
+Thus the quadratic-EOS radial second variation is integral[B(deltaq')^2/r^2+C deltaq^2]dr. On the declared 400/800 interval compact-variation meshes, B1,100,1000,10000 all give positive normalized stiffness Hessians. Independent admissible directional energy differences match the analytic form to relative error<=.00115. This excludes a negative direction only in the specified finite radial spaces. The normalized eigenvalues shrink with mesh size, so they are not a continuum coercivity margin. No nonlinear, nonspherical, clock, metric or carrier-vacuum stability theorem follows.
+
+4. Exact quadratic-reference current/scalar rewrite
+Natural c1 and signature(-+++): K^mu=div B_pol^{mu nu}, Jbar=J-K and divK=0. Quadratic proper-reference energy gives +beta Jbar^2/2 in the covariant matter action. With conserved J enforced by scalar phi, the first-order matter terms are
+  -sqrt(-J^2)+beta*(J-K)^2/2-gradphi dot J-W_full(P).
+Let A=gradphi+beta K be future timelike and mu=sqrt(-A^2). On the active stationary branch mu>1,
+  J=(mu-1)A/(beta*mu),
+  L_eff=p(mu)+beta K^2/2-W_full,
+  p=(mu-1)^2/(2beta).
+Nonnegative dust-density complementarity gives p=0 on the inactive mu<=1 branch in this timelike-A domain. This is branch elimination, not a global Legendre or wellposedness theorem. Scalar variation conserves actual J; Jbar conservation follows from divK=0. The preferred clock in B_pol must still be varied.
+
+The reference-only quadratic-current action, considered alone, dualizes to a canonical massless scalar. RA-006 verifies a compact outgoing scalar pulse with zero total shift charge and positive energy. But that channel is NOT inherited by the combined parent: at physical J=0, phi disappears from the bulk L_eff, Jbar=-K and the remaining field action is beta K^2/2-W_full. The isolated pulse also has spacelike current phases, violating a strictly timelike positive-fluid interpretation. Do not use the reference-only pulse as a derived halo export channel.
+
+5. Local matter Hamiltonian and metric-cone cost
+On flat homogeneous populated rho>0,P0=0, mu0=1+beta*rho, holding the clock fixed and integrating a boundary term,
+  L2=phidot^2/(2beta)+beta*Pdot^2/(2mu0)-gradphi dot Pdot/mu0
+     -rho|gradphi|^2/(2mu0)-curvature*P^2/2.
+Its Hamiltonian is beta*p_phi^2/2+mu0*(p_P+gradphi/mu0)^2/(2beta)+rho|gradphi|^2/(2mu0)+curvature*P^2/2, positive for beta,rho,curvature>0. Bare longitudinal frequencies obey
+  omega^4-[k^2+mu0*curvature/beta]omega^2+rho*curvature*k^2=0.
+Both roots are positive; bare high-frequency speeds are c_metric and0. This is a matter block, not a full Cauchy certificate.
+Restoring positive isotropic P stiffness gamma changes the principal speed polynomial to
+  z^2-[1+mu0*gamma/beta]z+rho*gamma.
+At z=1 it equals -gamma/beta<0; a principal root lies above the metric cone for every gamma>0. Vacuum longitudinal speed squared is 1+gamma/beta and has a gap sqrt(curvature/beta); transverse speed squared is gamma/beta. Therefore the quadratic EOS does not satisfy a metric-causal criterion with the existing stiffness. Preferred-frame theories can choose another causal standard, but none is adopted here. Exact clock/metric constraints and background validity may change the block and are not resolved by this comparison.
+NR profile B and relativistic beta use different normalizations: for energy scaled by V_M^2 and rest energy c^2, beta_norm=(V_M/c)^2 B. No dimensionless B value above is itself a particle speed or a physical mass value.
+
+6. Softer EOS continuation, actually executed
+For general a=E'_rel(n)>0,b=E''_rel(n)>0 and actual density R, define alpha=R*a/n, c_ref^2=n*b/a and delta=n*gamma/a. The fixed-clock frozen principal polynomial is
+  z^2-[c_ref^2+(1+alpha)delta]z+c_ref^2*alpha*delta.
+The n=R specialization has alpha=a. For0<c_ref^2<1, the sufficient and necessary upper-cone condition for this positive two-mode block is
+  delta <=(1-c_ref^2)/[1+alpha*(1-c_ref^2)].
+Proof: its value at1 is nonnegative exactly under that inequality; the sum of roots is then<2, ruling out two roots above1. Positive mass/gradient matrices ensure real nonnegative roots. This is local; it cannot be applied to a halo by setting R=n when they differ.
+E=B n^Gamma/Gamma,4/3<Gamma<2, gives c_ref^2=Gamma-1. Thus softening the EOS leaves a causal window for positive stiffness instead of the quadratic EOS's saturated cone. It introduces an unselected EOS shape and coefficient. No microscopic reason to choose them was found.
+
+RA-009 solves the constrained coupled NR model with Gamma5/3, B1,10,100,1000. Variables h=B n^(2/3), q satisfy q'=r^2(h/B)^(3/2),h'=-w_full'(u). Different outer radii/tolerances give reference-profile changes<=2.5e-6*S; mass and ODE checks pass. At r4, force ratios are1.40451 (capped),1.40451 (capped),1.02680,1.000915 respectively. The last control is about0.0915% above the law. The reference's characteristic catchment grows with B and is very large for that control. None of these values is an empirical gate. Global stiffness has not been restored to these profiles, and no soft-EOS spectrum was computed. The cold at-rest carrier cusp and microscopic actual-vacuum boundary remain assumptions/gaps.
+
+7. Soft tail, export restriction, and unresolved numerical refinement
+The formal small-u power balance gives
+  d~A r^-p, n~pA r^(-p-3), p=(3Gamma-4)/(2-Gamma)>0,
+  A^(2-Gamma)=B(Gamma-1)(p+3)p^(Gamma-1).
+On this formal tail the reference inertia E'/n=r^2/[(Gamma-1)(p+3)p]. Its local gap decreases like1/r and its bare sound speed is sqrt(Gamma-1)c, unlike the quadratic constant-gap comparison. This is an asymptotic balance, not a proved full tail theorem.
+Strictly timelike positive-fluid linear perturbations on a fixed dilute tail have amplitude limited by the background current. The resulting constant-luminosity upper scale r^2*(E'/n)*n^2 decreases as r^[2-2Gamma/(2-Gamma)]->0. Hence a finite stationary linear flux cannot simply be continued to infinity within that interpretation. Nonlinear winds, charge transport, background restructuring or a consistent extension to spacelike reference currents remain untested. This is not a no-go for all export mechanisms.
+Gamma5/3 predicts A576B^3. At finite RA-009 outer radii the measured amplitude differs by16–19%, despite stable inner profiles. RA-010 attempted the improved log-radius Robin boundary: for y=r^3d, linearization has lambda^2-7lambda-6=0 and decayinglambda=(7-sqrt73)/2; n=[3d-lambda(d-A/r^3)]/r^3. The solver exceeded its30000-node cap atB1. A diagnostic seeded from the successful older solution also hit the cap at the stricter tolerance. Logs/failed manifest preserved. Thus the refined nonlinear tail remains NUMERICALLY UNRESOLVED, not a successful asymptotic verification or proof of nonexistence. The earlier profile claims retain their own weaker finite boundary/tolerance scope. A scaled exterior-deficit variable or matched outer solver is the executable next numerical continuation.
+
+8. Claude clues and theory gap
+CFG764 supplies a phenomenological orbital filling clock, not a source or dissipation law derived from these currents. CFG726's merger-memory lane was read while it was in progress; no verdict is borrowed. Its old split T=baryon-only law and F=max(0,C-T) must obey the already-known joint gravity condition R(T/r^2)=(Mb+F)/r^2. The old T gives residual -F/r^2. With total cold profile C fixed, the reciprocal static allocation is instead T=r^2(Mb+C)/(r^2+Mb+C),F=C-T, subject to positive free density and support constraints. This changes the physical split, though total-force/lensing scores based on C can be unchanged. Preservation of a progenitor radial distribution after the potential changes is not a dynamical consequence of mass conservation alone. No live scoring run changed.
+
+9. Evidence and audit verdict
+Successful manifests: run_coupled_v2(62checks),run_review(40),run_tail_export(13),run_dual_parent_v2(18),run_soft_eos(30),run_soft_profiles(34). All validated against current pinned inputs. Failures are retained: initial small-B BVP seed, a SymPy structural-equality assertion in dual_parent (simplified difference0;v2 repairs the assertion only), and strict soft-tail Robin mesh cap. Only the successful runs support their stated finite assertions.
+Self-audit: FULL convention, carrier cap, reference force, mass bookkeeping, scalar/current branch rewrite and local cone algebra pass within declared scope. Quadratic finite radial energy positivity is computational only. Scalar-alone export does not transfer; exact-source invisibility and all-clock/metric healthy completion are not established. Main verdict: CONDITIONAL stationary construction plus restricted matter/cone results; completed cold-energy theory INCOMPLETE.
+Remaining obligations: derive the EOS/catchment and abundance; vary clock and metric on the inhomogeneous nonzero-P background including stiffness; solve actual vacuum/positive-current interfaces; demonstrate formation/export without imposing cold preparation; obtain hot/condensed discrimination and raw observational success. Kappa fitted. No theory-closed claim.

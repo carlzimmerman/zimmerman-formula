@@ -1,0 +1,7 @@
+/Users/carlzimmerman/.matplotlib is not a writable directory
+Matplotlib created a temporary cache directory at /var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/matplotlib-0z2ix365 because there was an issue with the default path (/Users/carlzimmerman/.matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Matplotlib is building the font cache; this may take a moment.
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/boundary_resolution_2026_10_25/report.py", line 9, in <module>
+    r=json.loads((p/source).read_text());states.append(r);rad=np.array(r['r']);logerr=np.log10(np.array(r['g_total'])/r['g_law']);sel=(rad>=1.5)&(rad<=50);allerr=np.r_[logerr[sel],np.interp([1.5,50],rad,logerr)];rows.append(dict(source=source,n=r['n'],spacing_kpc=r['fine_spacing_kpc'],domain_kpc=r['R_kpc'],boundary_kpc=r['interpolated_crossings_kpc'][-1],max_law_error_percent=float(max(abs(10**allerr-1))*100),law_error_at50_percent=float((10**np.interp(50,rad,logerr)-1)*100),density_rebound=r['density_rebound_full'],gap_mass_17_43_Mb=r['gap_mass'],mass_inside50_Mb=5.364-r['mass_outside50'],free_exterior_mass_Mb=r['explicit_exterior_mass'],free_exterior_T_fraction=r['explicit_exterior_T_fraction'],mass_error=r['mass_constraint_error'],density_KKT=r['density_KKT_max'],projected_gradient=r['gradient_max'],hessian=r['hessian']))
+KeyError: 'hessian'

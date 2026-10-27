@@ -1,0 +1,444 @@
+{
+  "schema_version": 2,
+  "claim_id": "MIGHTEE_ALFALFA_COMMON_PROFILES_2026_10_18",
+  "repository": {
+    "commit": "3f141879117156a840df21a26fb67897428c7cfc",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/fashi_mightee_profiles_2026_10_18/compare_profiles.py",
+    "reviews/fashi_mightee_profiles_2026_10_18/run_02"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "pandas",
+        "version": "2.1.3"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "On all 21 previously matched MIGHTEE/FASHI/ALFALFA galaxies, compare actual MIGHTEE and ALFALFA profiles with identical frequency-derived velocity windows and residual baseline treatment; test line-wing, baseline and aperture explanations of the flux difference.",
+    "coefficient_domain": "float64; frequency MHz; Jy spectral density; velocity relative to MIGHTEE frequency c*(nu_center/nu-1), hence same axis for both instruments; report Jy km/s in this relative convention plus Jy Hz.",
+    "conventions": "Integrate native channels by exact overlap of channel frequency-bin edges with common velocity window; no interpolation for flux integrals. Rebin onto common 20 km/s bins only for profile shape plots, preserving overlap integrals. ALFALFA flux is already baseline subtracted: compare residual rebaselining as primary and restoring supplied baseline then fitting same constant/linear rule as sensitivity. MIGHTEE beam arrays handled as CFG302; flag placeholder/invalid beam channels, do not conceal missing coverage.",
+    "inputs": [
+      "17 extracted paired spectra",
+      "21 ALFALFA public FITS spectra",
+      "existing catalogue matches"
+    ],
+    "bounds": {
+      "extract_halfwidth_kms": 2200,
+      "aperture_beam_multipliers": [
+        1.5,
+        2.5
+      ],
+      "line_halfwidth": "max(150,0.5*max(MIGHTEE_W50,ALFALFA_W50)+50) km/s",
+      "window_expansions_kms": [
+        0,
+        100,
+        250
+      ],
+      "baseline_region": "line_halfwidth+350 < abs(v) < 1800 km/s, exclude known other MIGHTEE lines within aperture plus 210 arcsec, with halfwidth=max(150,neighbor_W50/2+100)",
+      "baselines": [
+        "none",
+        "constant clipped median",
+        "linear robust clipped fit"
+      ],
+      "clip_sigma": 3.5,
+      "clip_iterations": 4,
+      "minimum_baseline_channels": 32,
+      "ALFALFA_minimum_weight": 0.5,
+      "line_coverage_minimum": 0.95
+    },
+    "non_claims": [
+      "FAST profiles are unavailable publicly and cannot be reconstructed from catalogue fits",
+      "Cannot measure absolute calibration or undo upstream continuum subtraction from released cubes",
+      "No gravity-law or a0 inference",
+      "No universal correction from this small selected overlap"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy.random.PCG64",
+    "seed": 20261019
+  },
+  "run": {
+    "started_at": "2026-10-19T02:27:29.971557+00:00",
+    "runtime_seconds": 2.90932,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/fashi_mightee_profiles_2026_10_18/compare_profiles.py",
+    "reviews/fashi_mightee_profiles_2026_10_18/extract_profiles.py",
+    "reviews/fashi_mightee_profiles_2026_10_18/contract.json",
+    "reviews/fashi_mightee_flux_2026_10_18/run_02/matched_sources.csv",
+    "data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv",
+    "campaign_fresh_gravity/CFG304_mightee_flux_scale_alfalfa/cfg304_matched_pairs.csv",
+    "campaign_fresh_gravity/CFG302_mightee_cube_raw_widths/cfg302_per_galaxy.csv",
+    "_external_data/hi_profiles_2026_10_18/A005377.fits",
+    "_external_data/hi_profiles_2026_10_18/A005399.fits",
+    "_external_data/hi_profiles_2026_10_18/A190751.fits",
+    "_external_data/hi_profiles_2026_10_18/A191398.fits",
+    "_external_data/hi_profiles_2026_10_18/A191427.fits",
+    "_external_data/hi_profiles_2026_10_18/A191428.fits",
+    "_external_data/hi_profiles_2026_10_18/A191619.fits",
+    "_external_data/hi_profiles_2026_10_18/A191640.fits",
+    "_external_data/hi_profiles_2026_10_18/A191796.fits",
+    "_external_data/hi_profiles_2026_10_18/A193373.fits",
+    "_external_data/hi_profiles_2026_10_18/A201244.fits",
+    "_external_data/hi_profiles_2026_10_18/A201251.fits",
+    "_external_data/hi_profiles_2026_10_18/A201901.fits",
+    "_external_data/hi_profiles_2026_10_18/A204229.fits",
+    "_external_data/hi_profiles_2026_10_18/A204456.fits",
+    "_external_data/hi_profiles_2026_10_18/A204457.fits",
+    "_external_data/hi_profiles_2026_10_18/A204463.fits",
+    "_external_data/hi_profiles_2026_10_18/A204623.fits",
+    "_external_data/hi_profiles_2026_10_18/A204624.fits",
+    "_external_data/hi_profiles_2026_10_18/A204628.fits",
+    "_external_data/hi_profiles_2026_10_18/A208525.fits",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J095635.7+012543.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J095654.6+013159.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J095720.5+015506.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100009.2+024247.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100035.1+011432.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100048.1+011413.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100050.4+012007.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100055.2+022343.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100057.2+030830.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100140.0+031207.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100143.2+024109.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100206.8+011542.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100207.0+030327.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100259.0+022034.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100313.5+015343.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100349.3+021616.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100357.1+022505.npz",
+    "_external_data/hi_profiles_2026_10_18/download_manifest.json",
+    "_external_data/hi_profiles_2026_10_18/extraction_manifest.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/compare_profiles.py",
+      "sha256": "f3ba34bdf2ca1efde836782741c776da2a50445604ea66b3123c7aade92b3183",
+      "sha256_after": "f3ba34bdf2ca1efde836782741c776da2a50445604ea66b3123c7aade92b3183"
+    },
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/extract_profiles.py",
+      "sha256": "20024caafdf21d841d2be9729004c717dba8aeba01c64483abf673f20533ecfa",
+      "sha256_after": "20024caafdf21d841d2be9729004c717dba8aeba01c64483abf673f20533ecfa"
+    },
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/contract.json",
+      "sha256": "495f13516ae6a2edc924aede205b0c3cd55919add81ce132bcd77b5c44c55f72",
+      "sha256_after": "495f13516ae6a2edc924aede205b0c3cd55919add81ce132bcd77b5c44c55f72"
+    },
+    {
+      "path": "reviews/fashi_mightee_flux_2026_10_18/run_02/matched_sources.csv",
+      "sha256": "e6f33d8c4808a6c519574d68b81bf352ee3baab3b2971e5f348fe5717588538f",
+      "sha256_after": "e6f33d8c4808a6c519574d68b81bf352ee3baab3b2971e5f348fe5717588538f"
+    },
+    {
+      "path": "data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv",
+      "sha256": "bcf9e8558bc5644805b9acb288372c17daffac76d8be6c89d7db9843af9fbf23",
+      "sha256_after": "bcf9e8558bc5644805b9acb288372c17daffac76d8be6c89d7db9843af9fbf23"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG304_mightee_flux_scale_alfalfa/cfg304_matched_pairs.csv",
+      "sha256": "297e47894aec828412fab235df39e197060f5804acf81943d5e2dda0127cd0f8",
+      "sha256_after": "297e47894aec828412fab235df39e197060f5804acf81943d5e2dda0127cd0f8"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG302_mightee_cube_raw_widths/cfg302_per_galaxy.csv",
+      "sha256": "e122665fcf000995b897ce289410af613af1c7c319b82c8c7aad75369768d928",
+      "sha256_after": "e122665fcf000995b897ce289410af613af1c7c319b82c8c7aad75369768d928"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A005377.fits",
+      "sha256": "6204ff7bd2a77f3da02107096a4a6a0c774ab87876c4baa369ab8e85ab5fd1e1",
+      "sha256_after": "6204ff7bd2a77f3da02107096a4a6a0c774ab87876c4baa369ab8e85ab5fd1e1"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A005399.fits",
+      "sha256": "ebdf9f25bc076cce967ad1cd28814ce606dbd152f4b63deaca2f55d7c589a538",
+      "sha256_after": "ebdf9f25bc076cce967ad1cd28814ce606dbd152f4b63deaca2f55d7c589a538"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A190751.fits",
+      "sha256": "a2d5a87b0bc97b3e8d1c8f6a782823a8db869b4c48709c77a8a6830e632fbb0c",
+      "sha256_after": "a2d5a87b0bc97b3e8d1c8f6a782823a8db869b4c48709c77a8a6830e632fbb0c"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A191398.fits",
+      "sha256": "6792d156eb9a48c4fed2c7d0769ac84e9ccbfbc7f159f46f6577c8fdf43872a8",
+      "sha256_after": "6792d156eb9a48c4fed2c7d0769ac84e9ccbfbc7f159f46f6577c8fdf43872a8"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A191427.fits",
+      "sha256": "aa42904518bf5a6222774c35891e257710a6b4105fc7501c1cd30c0e42fcdb7c",
+      "sha256_after": "aa42904518bf5a6222774c35891e257710a6b4105fc7501c1cd30c0e42fcdb7c"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A191428.fits",
+      "sha256": "eedbed69213d3a6ac4f1a5be140232c6dcd4cb56f55b8d4e658f7bbd9f75f2ba",
+      "sha256_after": "eedbed69213d3a6ac4f1a5be140232c6dcd4cb56f55b8d4e658f7bbd9f75f2ba"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A191619.fits",
+      "sha256": "92828ad0dc554e74ef6c116d3d2accbeb5400344a7df51a0b77bc0659c5168c3",
+      "sha256_after": "92828ad0dc554e74ef6c116d3d2accbeb5400344a7df51a0b77bc0659c5168c3"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A191640.fits",
+      "sha256": "da400c935e97bf9ef45962f7e6cd0fb13320ad676040ebbc8bc2038a8226e04f",
+      "sha256_after": "da400c935e97bf9ef45962f7e6cd0fb13320ad676040ebbc8bc2038a8226e04f"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A191796.fits",
+      "sha256": "58a0805052d98f45998b1f3ac67cdf99adbcddc30a97db7b45fbbd44291edbe8",
+      "sha256_after": "58a0805052d98f45998b1f3ac67cdf99adbcddc30a97db7b45fbbd44291edbe8"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A193373.fits",
+      "sha256": "a7aae1ceee2b55bcc85eb75d757b96136bc378abbc7ca96ba77ed316fb978372",
+      "sha256_after": "a7aae1ceee2b55bcc85eb75d757b96136bc378abbc7ca96ba77ed316fb978372"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A201244.fits",
+      "sha256": "40a4a829f225d8563acce02f09d9910986540b2084a8c938a243b7b8be2a9f3f",
+      "sha256_after": "40a4a829f225d8563acce02f09d9910986540b2084a8c938a243b7b8be2a9f3f"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A201251.fits",
+      "sha256": "ee9f220b73e2b6a68a2e3f32c0753172229642ec26f8b979ea16fc3838a6534c",
+      "sha256_after": "ee9f220b73e2b6a68a2e3f32c0753172229642ec26f8b979ea16fc3838a6534c"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A201901.fits",
+      "sha256": "4d4a43f31b190400c9c6f0811b0f7ab4f9e857c4d1eef632669f1e1eed04710d",
+      "sha256_after": "4d4a43f31b190400c9c6f0811b0f7ab4f9e857c4d1eef632669f1e1eed04710d"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A204229.fits",
+      "sha256": "ad5f9ee1975dab53c07ffb7b375411adb5ac2d38f9a7868d43771623fb1ad5c7",
+      "sha256_after": "ad5f9ee1975dab53c07ffb7b375411adb5ac2d38f9a7868d43771623fb1ad5c7"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A204456.fits",
+      "sha256": "52189a1953b3ae8ae2771ba8e23127a274ca946276e06e2515f0e9a1e5ea60a6",
+      "sha256_after": "52189a1953b3ae8ae2771ba8e23127a274ca946276e06e2515f0e9a1e5ea60a6"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A204457.fits",
+      "sha256": "4aad8daa172a59d5fb251e9bb841dce9af6a98f244b02fbff2847689463e2d46",
+      "sha256_after": "4aad8daa172a59d5fb251e9bb841dce9af6a98f244b02fbff2847689463e2d46"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A204463.fits",
+      "sha256": "d76111a6ccc2528eef62517cc9d2b169b7066c26c6019dadee6f0f2c650cd3fb",
+      "sha256_after": "d76111a6ccc2528eef62517cc9d2b169b7066c26c6019dadee6f0f2c650cd3fb"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A204623.fits",
+      "sha256": "8d272c8baabf54e5f44c24c4cd74cbb613e9a390281df972e093da5fcfb8b0f4",
+      "sha256_after": "8d272c8baabf54e5f44c24c4cd74cbb613e9a390281df972e093da5fcfb8b0f4"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A204624.fits",
+      "sha256": "8b6683f14504107eeb27d57fa392386304d904a377d8e0c266d72b433fe14afb",
+      "sha256_after": "8b6683f14504107eeb27d57fa392386304d904a377d8e0c266d72b433fe14afb"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A204628.fits",
+      "sha256": "ae34a2ab918546d64e496d987f5fad30737ba57fd3349f987c16d6dfb7ae440e",
+      "sha256_after": "ae34a2ab918546d64e496d987f5fad30737ba57fd3349f987c16d6dfb7ae440e"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/A208525.fits",
+      "sha256": "bd9990d72122c8078f5d9fedfd2934d2c7a6ac8c2bbae8570476eb2a5b10ad5f",
+      "sha256_after": "bd9990d72122c8078f5d9fedfd2934d2c7a6ac8c2bbae8570476eb2a5b10ad5f"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J095635.7+012543.npz",
+      "sha256": "dd33d249522031c772eedc15d5452789b07dcbcbd76e32e21377cd1ea73ef33c",
+      "sha256_after": "dd33d249522031c772eedc15d5452789b07dcbcbd76e32e21377cd1ea73ef33c"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J095654.6+013159.npz",
+      "sha256": "a50ee215613ef72db4f6b39dac5e2e200cb11a5fee90a0dff0837c4407a98c59",
+      "sha256_after": "a50ee215613ef72db4f6b39dac5e2e200cb11a5fee90a0dff0837c4407a98c59"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J095720.5+015506.npz",
+      "sha256": "7667c38a596bdcbc551a5826925dbdd9297a9185d0b8ec0a84ef4280a250fc4d",
+      "sha256_after": "7667c38a596bdcbc551a5826925dbdd9297a9185d0b8ec0a84ef4280a250fc4d"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100009.2+024247.npz",
+      "sha256": "b70dd098ed255c83329b9be5d433408f2233341ed78c8bdb7b595eb4dfee173f",
+      "sha256_after": "b70dd098ed255c83329b9be5d433408f2233341ed78c8bdb7b595eb4dfee173f"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100035.1+011432.npz",
+      "sha256": "e4a10b2c4af386dc1d23d5d81bb22713c2724371dfcf311abff86808d4e2763e",
+      "sha256_after": "e4a10b2c4af386dc1d23d5d81bb22713c2724371dfcf311abff86808d4e2763e"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100048.1+011413.npz",
+      "sha256": "e42dc0edf23093a7d11954db58f8d4a60e33ea7bd7422f26880b13e757b40600",
+      "sha256_after": "e42dc0edf23093a7d11954db58f8d4a60e33ea7bd7422f26880b13e757b40600"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100050.4+012007.npz",
+      "sha256": "48414ec5ecc59ebf896c4230a2d3907102a26b8d51a5940e6a77d41e4ba7717d",
+      "sha256_after": "48414ec5ecc59ebf896c4230a2d3907102a26b8d51a5940e6a77d41e4ba7717d"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100055.2+022343.npz",
+      "sha256": "231dc6e17af0ef3ddc28c621f8ce960e67547c068c6d1f1fb56138df134d0283",
+      "sha256_after": "231dc6e17af0ef3ddc28c621f8ce960e67547c068c6d1f1fb56138df134d0283"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100057.2+030830.npz",
+      "sha256": "59c96dbac3f9e585e870251250981d1d522ba6d52bac7194a5b36c75fb79d6d6",
+      "sha256_after": "59c96dbac3f9e585e870251250981d1d522ba6d52bac7194a5b36c75fb79d6d6"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100140.0+031207.npz",
+      "sha256": "18521cda2c09f4f352e6c4c7ab81f17b30ea1b79afc90134443c12b4d3b3bd39",
+      "sha256_after": "18521cda2c09f4f352e6c4c7ab81f17b30ea1b79afc90134443c12b4d3b3bd39"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100143.2+024109.npz",
+      "sha256": "109b47db8445ab565f73c9074d62c607928856d1a916d9497ab870dc3dbd126b",
+      "sha256_after": "109b47db8445ab565f73c9074d62c607928856d1a916d9497ab870dc3dbd126b"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100206.8+011542.npz",
+      "sha256": "65704e8d34509eebc3e96bf000402fc747dd1c3095391e2c8fd9f3db7ed304d9",
+      "sha256_after": "65704e8d34509eebc3e96bf000402fc747dd1c3095391e2c8fd9f3db7ed304d9"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100207.0+030327.npz",
+      "sha256": "b9a40bd1fd69133d9f9b84a3347a77cd9e2eda454353ca1bb6203af2ebebaf0a",
+      "sha256_after": "b9a40bd1fd69133d9f9b84a3347a77cd9e2eda454353ca1bb6203af2ebebaf0a"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100259.0+022034.npz",
+      "sha256": "b2ce4611ed32ba4a3a6d989f1f252beda0ee1388f18bde68849955026c9006dc",
+      "sha256_after": "b2ce4611ed32ba4a3a6d989f1f252beda0ee1388f18bde68849955026c9006dc"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100313.5+015343.npz",
+      "sha256": "bf89ed7a63de97ea4daca17098a20fb3ec360ea3683730e17d33deaaccb5e3f8",
+      "sha256_after": "bf89ed7a63de97ea4daca17098a20fb3ec360ea3683730e17d33deaaccb5e3f8"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100349.3+021616.npz",
+      "sha256": "a1417ea356c375790346bc2af381c1b82b3db28f91634f19969e08ede7000f70",
+      "sha256_after": "a1417ea356c375790346bc2af381c1b82b3db28f91634f19969e08ede7000f70"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100357.1+022505.npz",
+      "sha256": "2e51d343d33889bb4548f64a039225a117724cc4ecd7bb21dda8ad7f19a5b4a8",
+      "sha256_after": "2e51d343d33889bb4548f64a039225a117724cc4ecd7bb21dda8ad7f19a5b4a8"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/download_manifest.json",
+      "sha256": "455596602c4363b10fb591c21385c3eceae1595ef7eafb3281265031624dc983",
+      "sha256_after": "455596602c4363b10fb591c21385c3eceae1595ef7eafb3281265031624dc983"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/extraction_manifest.json",
+      "sha256": "0f1317dee82ba0681e60565be483da4aaca8632fab76f9f6a8a9a71bc16281dc",
+      "sha256_after": "0f1317dee82ba0681e60565be483da4aaca8632fab76f9f6a8a9a71bc16281dc"
+    }
+  ],
+  "output_directory": "reviews/fashi_mightee_profiles_2026_10_18/run_02",
+  "declared_results": [
+    "reviews/fashi_mightee_profiles_2026_10_18/run_02/results.json",
+    "reviews/fashi_mightee_profiles_2026_10_18/run_02/measurements.csv",
+    "reviews/fashi_mightee_profiles_2026_10_18/run_02/per_galaxy.csv",
+    "reviews/fashi_mightee_profiles_2026_10_18/run_02/profiles.png"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/run_02/stdout.txt",
+      "sha256": "80a26caaf9cc4492c1723e9ca58135f7cfd9b5039f1df29cae5f5b687889cdde",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/run_02/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/run_02/results.json",
+      "sha256": "bfb5084966f4300112a9dee682775e320862352aa826ddac953764cb8f14d057",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/run_02/measurements.csv",
+      "sha256": "83b3330338aed1c9b7c88e9a5f2245952e8d33b327c864b8b5e9ba6c9873308a",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/run_02/per_galaxy.csv",
+      "sha256": "06c94419e507607b46cba0da63e5763bb04912ce832c20b0a72afb05c6859c9d",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/run_02/profiles.png",
+      "sha256": "7f57680754c49a2644c7b76a4e53e400fe88f2e44700922fb7b821122e19be7b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,115 @@
+CURVATURE TRACKING: A CONDITIONAL ESCAPE, WITH AN EXACT FAILURE TEST
+2026-10-15
+
+Outcome
+A classical scalar-tensor model has a nonzero constant-scalar de Sitter
+branch on which Lambda/phi^2 is independent of an additive vacuum offset.
+The branch has positive tensor and scalar kinetic terms and positive scalar
+mass squared. The ratio is lambda/(4xi), still an unconstrained coupling
+ratio. A scalar mass term generally destroys the offset independence.
+This advances the stability and deformation analysis of Route C in
+../puzzle_32pi_dynamic_2026_10_14/RESULT.txt, rather than claiming a new
+scalar-tensor theory. It changes the model from the preceding fixed-background
+elastic medium; it does not inherit that medium's force law.
+
+1. Action and conventions
+Signature -+++, metric connection, four dimensions, natural units:
+ S = integral sqrt(-g) [F(phi) R/2 - (partial phi)^2/2 - V(phi)],
+ F = M^2+xi phi^2,
+ V = E + h phi^2/2 + lambda phi^4/4.
+M,xi,lambda,E>0. h is a mass-squared coefficient (not assumed positive).
+M is the constant coefficient in the action, not automatically the measured
+Planck mass. F at the vacuum determines the tensor normalization.
+No ordinary matter, no additional response sector, no higher derivatives.
+At constant phi and R_mn=Lambda g_mn,
+ Lambda=V/F,                    V'=2 Lambda F'.
+For phi!=0 these imply
+ 4xi Lambda=h+lambda phi^2,
+ (lambda M^2-xi h) phi^2=4xi E-h M^2.
+Define D=lambda M^2-xi h and N=4xi E-h M^2. D>0,N>0 are sufficient
+for the positive nonzero branch phi^2=N/D.
+
+2. Include scalar-metric mixing when testing stability
+Use the nonsingular transformation g_E=(F/M^2) g. The Einstein-frame
+potential and scalar kinetic coefficient are
+ U=M^4 V/F^2,
+ K=M^2/F + (3/2)M^2(F'/F)^2
+  =M^2(F+6xi^2 phi^2)/F^2 >0.
+The stationary equation is
+ U'=M^4 phi [D phi^2+h M^2-4xi E]/F^3.
+At the nonzero stationary point the canonically normalized scalar mass is
+ m_E^2=U''/K=2 M^2 phi^2 D/[F(F+6xi^2 phi^2)] >0.
+The tensor kinetic coefficient F is positive. Thus the classical vacuum
+passes the local linear no-ghost and no-tachyon checks. In the Einstein
+frame its linear scalar obeys the canonical massive wave equation; around
+an expanding de Sitter vacuum, homogeneous perturbations damp for m_E^2>0.
+No global nonlinear stability or observational viability theorem is claimed.
+
+3. Exact tracking in the quartic case
+Set h=0. Then
+ phi_v^2=4xi E/(lambda M^2),
+ Lambda=E/M^2,
+ Lambda/phi_v^2=lambda/(4xi).
+Positive changes of E move the scalar vacuum and curvature together; the
+ratio is exactly unchanged for fixed positive xi,lambda,M.
+This escapes the previous non-selection argument's fixed-response-scale
+assumption. It does NOT keep Lambda small when E is large, and therefore
+does not solve the usual vacuum-energy magnitude problem.
+The desired 32pi requires lambda=128pi xi. Neither stationary equations nor
+stability select that coupling relation.
+
+4. A necessary shape condition, not just a convenient example
+Keep F=M^2+xi phi^2 but allow V=E+W(phi). Suppose a continuously varying
+branch spans an open positive-phi interval as E varies, and demand
+Lambda/phi^2=k throughout that interval. The scalar equation requires
+ W'(phi)=2 k phi^2 F'(phi)=4 k xi phi^3.
+Integrating on that interval forces
+ W(phi)=k xi phi^4+constant.
+Conversely, the quartic family above realizes this ratio on its positive
+branch when k>0. Thus for this F and these branch assumptions, exact tracking
+requires a quartic potential on the sampled interval. This is a local
+functional classification, not a classification of all scalar-tensor models.
+Its integration step is a prose proof, not a Lean theorem in this artifact.
+Every positive k remains possible: tracking itself provides no special 32pi.
+
+5. Mass deformation: explicit robustness test
+For h!=0 on the positive stable branch,
+ Lambda/phi^2=lambda/(4xi)+h/(4xi phi^2),
+ d(Lambda/phi^2)/dE= -h D/(4xi E-h M^2)^2.
+For D>0 this derivative is nonzero whenever h!=0. A mass term is permitted
+by the action's phi->-phi symmetry and diffeomorphism invariance. These
+symmetries alone therefore do not protect exact tracking. This is an allowed
+operator test, not a computed quantum correction or a claim that every UV
+completion generates h. M and E already introduce dimensionful parameters;
+no exact scale symmetry has been supplied.
+Exact example M=xi=1, lambda=4:
+ h=0, E=1 or 2: ratio=1 in both cases.
+ h=1/10, E=1: phi^2=1 and ratio=41/40.
+ h=1/10, E=2: phi^2=79/39 and ratio=3199/3160.
+Both deformed examples still satisfy D>0,N>0 and pass the local mass test.
+Thus breaking the tracking need not introduce an instability.
+
+6. Physical gap and next discriminating question
+phi has acceleration units in natural units, but that is not a derivation
+of a0=phi. An operational matter-force coupling must establish that dictionary.
+Even a0=c phi with constant c would change the target to lambda/(4xi c^2).
+Adding a response sector can also alter the vacuum equations and stability.
+The new concrete requirements are therefore: a mechanism protecting the
+quartic form, an independent determination of lambda/xi, and a matter-response
+matching calculation. Tuning h=0 and lambda=128pi xi is not a prediction.
+
+7. Sources and verification
+The general Einstein-frame formulas were checked against D. I. Kaiser,
+Conformal Transformations with Multiple Scalar Fields, arXiv:1003.1159v2,
+Section II, Eqs. (4),(6),(14),(19),(21)-(24):
+https://arxiv.org/pdf/1003.1159
+Dictionary: their f=F/2, spacetime D=4, conformal reference mass chosen M.
+This source supports the transformation, not the particular tracking result
+or a novelty claim. Search scope: one targeted web search and this primary
+paper; no exhaustive novelty search.
+Eight exact symbolic checks in check.py verify branch algebra, the transformed
+potential derivative, kinetic coefficient, canonical mass and sensitivity.
+Four Lean theorems prove the conditional ratio identity, mass-term departure,
+positivity of the stated mass expression, and the required target coupling.
+Neither the variational field equations nor the conformal transformation are
+formalized in Lean. See run/manifest.json and lean_verification.json.

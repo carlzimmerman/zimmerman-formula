@@ -1,0 +1,15 @@
+# Continuation handoff: DA-20261022
+
+Base: 1b2ced55a4d56b426880aaad8d1d89cf2490812b. Parent checkpoint: core_formation_transport_2026_10_22. Write scope: this directory only; shared repository, no commit/push by this work.
+
+Read RESULT.md and AUDIT.md before using the conclusions. The joint target remains open.
+
+1. Angular route: fixed-L rotating stationary binding theorem gives mu M-E=negative passive terms-4C. Along imposed L(M), replace -4C by (2alpha-4)C. For alpha<=2 there is still no binding-energy mass minimum. Do not claim this excludes differential rotation, tidal angular momentum, kinetic phase space, or supply-limited arrest. Smooth cold circulation is conserved even with time-dependent h.
+2. Numerical route: six spherical homology trials, not rotating equilibria. Edge expands 321.5 to 617.2 pc; stronger expansion worsens dwarf residuals, SPARC mean nearly unchanged; no mass or spin selected. Original sample identity correction from predecessor remains in force.
+3. Driven route: fixed-velocity local branch folds at y=2/3. Reciprocal fixed-p branch satisfies (1-y)(y+q)^2=d and stability 3y+q>2. A weak witness y=.9,q=.01 survives the local curve diagnostic. Strong phase shifts require feedback that is problematic under the declared same-scale flat-disc comparison. Stable modes alone oscillate; no free damping exists.
+4. Export route: derived outgoing massive-wave power, including the curl-source k^3 threshold suppression. Dynamical phase radiation is a possible separate channel, but exactly fixed chi cannot radiate. The coefficients/source history are unselected. No power in watts, escape time or remnant mass was predicted.
+5. Growth: homogeneous chi reduction worsens the inherited response; a late localized drive avoids that particular background shift but its localization must be derived. Rotational dilation slightly reduces late inertial suppression and cannot recover preformation losses.
+
+Next discriminating task: define a finite-chi initial-value collapse/encounter with explicit mass, spin/circulation, baryon state, coefficients and outgoing boundaries. Compute conserved total energy/angular momentum and remnant/ejecta/field flux, and vary supply/spin to test universality. The initial-data/coefficient choice is currently an unresolved physical input, not an inferred best fit. A parameter survey is possible but must remain conditional and include static-profile/growth recalibration. Cluster distribution then needs population transport sourced by those encounter outcomes.
+
+Routes remain open where these premises change. Do not repeat a passive mass-minimum search, use fixed-source driving as free power, infer a capture rate from geometric overlap, or call the homology rows rotating equilibria. Scripts and contracts provide exact bounded commands via computation-audit runner; manifests include all declared inputs. The first failed run is retained to explain the symbolic-check correction. CHECKPOINT_SHA256.json pins final checkpoint artifacts.

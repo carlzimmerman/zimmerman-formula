@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "RECEIVER_CAPACITY_RATE_PORTFOLIO",
+  "repository": {
+    "commit": "eb4f5af3a597b737ad50ac4f8960ba6f5c92a228",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/receiver_dynamics_2026_10_12/capacity_rate.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "A finite scan determines conditional receiver-transfer times across declared capacity and rate families.",
+    "coefficient_domain": "IEEE float64 stiff ODE",
+    "conventions": "A=D=omega=1; H0 dimensionless available energy/cold transfer energy",
+    "inputs": [
+      "sol61_push/receiver_dynamics_2026_10_12/capacity_rate.py",
+      "sol61_push/receiver_dynamics_2026_10_12/CAPACITY_RATE_CONTRACT.txt"
+    ],
+    "bounds": {
+      "H0": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "b_logscan": [
+        0.01,
+        100,
+        25
+      ],
+      "q_stop": 0.9,
+      "energy_tol": 1e-07
+    },
+    "non_claims": [
+      "No universal clock or capacity",
+      "No global minimum theorem",
+      "No actual galaxy or cosmological prediction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T02:12:26.686687+00:00",
+    "runtime_seconds": 21.945684,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/receiver_dynamics_2026_10_12/capacity_rate.py",
+    "sol61_push/receiver_dynamics_2026_10_12/CAPACITY_RATE_CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/capacity_rate.py",
+      "sha256": "1be80c3b4112c0890b2bd0113a811f9935656f77c9103385a0698cda3c5ac77e",
+      "sha256_after": "1be80c3b4112c0890b2bd0113a811f9935656f77c9103385a0698cda3c5ac77e"
+    },
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/CAPACITY_RATE_CONTRACT.txt",
+      "sha256": "6b85d3e0fe3a593b59cf47c61fb619a58673bf1a7562240df62908337219c746",
+      "sha256_after": "6b85d3e0fe3a593b59cf47c61fb619a58673bf1a7562240df62908337219c746"
+    }
+  ],
+  "output_directory": "sol61_push/receiver_dynamics_2026_10_12/capacity_rate_run",
+  "declared_results": [
+    "sol61_push/receiver_dynamics_2026_10_12/capacity_rate_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/capacity_rate_run/stdout.txt",
+      "sha256": "cf51e3f8e495af70640b9f9f5db6b94887d4b3b5e1af4a4e44f07493325998c0",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/capacity_rate_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/capacity_rate_run/results.json",
+      "sha256": "6325fb822caaa872c1d420a68917269a77cbb9d709ff06f98e3899f4395fad27",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

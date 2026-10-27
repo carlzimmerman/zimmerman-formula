@@ -1,0 +1,93 @@
+CE-FM-062 — CFG799 archival null: exact hot/cold transfer obligation
+2026-10-15 UTC. Original theory OPEN. Self-review, bounded synthetic
+source-function audit, not independent reproduction of the archive fits.
+
+SOURCE AND SAVED EVIDENCE
+Result commit cb5ec89cb; current bytes for all 9 .py/.json/.md/.out/.csv
+files match that commit (see archival_null_source_receipt.json for exact
+hashes, count and observed HEAD). No source, frozen criterion, publication,
+archive data or live process changed. Original reduced NPZ/raw FITS were
+not reprocessed. Saved JSON is numerical evidence from the source run,
+not an independent raw observation here. Our run_062 uses one synthetic
+4x1976-channel dataset, no download, negligible memory (<1 GB).
+
+Saved primary fit: -6.6693166 +/- 7.7369221 mK, z=-0.8620116;
+a95=12.7272369 mK; epsilon95(S=50)=1.91150083e-11 under its stated
+conversion/geometry/profile assumptions. Secondary 541.700 GHz z=3.1738,
+a95=31.1423219 mK, not a 5-sigma candidate. 152 prepared spectra,
+150 fitted, 49 observations used. Arithmetic and inverse conversion checked;
+NULL classification preserved. No fresh detection or full-theory exclusion.
+
+NEW EXACT CALIBRATION RESULT (extends CE-FM-058 reference subtraction)
+Write s=N_sky/tS, H and C as load count rates, DeltaJ=JH-JC:
+  T=JC+DeltaJ*(s-C)/(H-C).
+For a line u in count-rate units entering sky/hot/cold with coefficients
+ks, kh, kc (all evaluated at the relevant channel/LO/polarization):
+  T(u)=JC+DeltaJ*[s-C+(ks-kc)u]/[H-C+(kh-kc)u].
+Its derivative at zero is
+  dT/du=G*[ks-kc - (s-C)/(H-C)*(kh-kc)], G=DeltaJ/(H-C).
+This follows by substitution and the quotient rule. It includes changes
+in the gain denominator, not just subtraction of the cold load.
+
+If ks=kh=kc, T(u)=T(0) EXACTLY at all finite u with nonzero H-C.
+Apply the same sky increment to ON and REF: their difference is unchanged,
+so the source L1 timing anchor is also unchanged. Thus the calibration
+has a common additive count-rate null direction invisible to that anchor.
+This is a mathematical counterexample to inferring end-to-end response
+from timing agreement or postcalibration injection alone. It does NOT
+establish that a physical mirror conversion signal has this phase response.
+For conversion upstream of the load switch, a sky-only response can be
+appropriate; it needs an optical/material transfer argument. Signals in
+zero/dark pixels or unequal optical/load coupling add further responses
+not modeled or inferred here.
+
+EXECUTABLE POSITIVE AND NEGATIVE CONTROLS
+Extract ONLY named pure functions/constants via AST from the exact cfg799.py;
+no module main/load or original experiment executed. Actual anchor,
+build_spectra and fit_one functions return:
+  sky-only calibrated transfer:       0.9999999999999185
+  common sky/hot/cold transfer:      -1.035e-13 (zero, float roundoff)
+  ks=1,kh=kc=.99 transfer:            0.0099999999999164
+All preserve the L1 anchor and L1 spectrum. The analytic unequal-load
+derivative passes a central-difference check. Injecting an exact fitted
+Gaussian AFTER calibration has unit fitted transfer and unchanged residual
+error for all these possibilities: it cannot measure physical phase coupling.
+The source MUTATE adds to Tall/Tref after build_spectra; C1 adds a design
+column inside fit_one. Their useful linear-fit controls are retained, but
+neither establishes an end-to-end mirror conversion efficiency.
+41 controls pass; run_062 completed; manifest validates. This is our own
+review, not external certification or a universal detector theorem.
+
+CONCRETE LIMIT AND FAILED IMPLICATION
+Let tau>0 be the positive fitted line-amplitude/power transfer relative to
+the source's ideal sky-only normalization, with the same profile/noise and
+all other source assumptions retained. Then
+  epsilon95(tau)=1.91150083e-11/sqrt(tau) at S=50.
+At tau=.01: 1.9115e-10; at tau=.0001: 1.9115e-9.
+To reach epsilon=4e-9 requires tau>2.28364715e-5 at S=50.
+For tau=0 there is no epsilon constraint from this statistic. Negative or
+shape-changing response requires the appropriate signed/template analysis;
+this positive one-sided conversion cannot simply be reused. Signal-dependent
+noise/anchor/flag changes at very large injection also need testing.
+Therefore 'converter window closed by x200' is a conditional inference,
+not yet an instrument-response-certified exclusion. The saved narrow null
+itself stands. CE-FM-054 carrier mass/population and CE-FM-058 optical
+transfer scope remain open; fixed frequencies do not constrain all masses.
+
+NEXT EXECUTABLE STEP
+Before another archive search, derive or obtain a phase response table for
+primary mirror, relay/receiver, hot/cold surfaces, zero/dark paths, sideband
+and polarization; locate the load switch and conversion surfaces. Predict
+ks,kh,kc and the complete calibration Jacobian at BOTH frequencies. Inject
+that response in Level-0 rows BEFORE dark/hot/cold calibration, rerun anchor,
+mask/flag and noise treatment for at least one already downloaded observation,
+and compare recovered positive projected tau with the threshold above.
+Store raw revision/hash, phase labels, injection placement and response
+assumptions. A sky-only unit injection is a positive control; a common-path
+injection is a required blind-direction control. Do not decide actual
+couplings from this synthetic audit or alter the already frozen search.
+
+Other new work: CFG802-805 outer-lensing remedies are not audited/adopted by
+this checkpoint; next reconcile their raw tables and failed sigma8 control
+against CE-FM-061 stock counting. VC3 angular/metric/formation obligations
+also remain. No claim of theory completion.

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <link rel="stylesheet" type="text/css" media="screen,projection,print"
+href="/applications/Atlas/atlas.css" />
+    <title>S4G P5 README</title>
+
+
+<link rel="stylesheet" type="text/css" media="screen,projection" href="/style.css" />
+<link rel="stylesheet" type="text/css" media="print" href="/print_style.css" />
+<link rel="stylesheet" type="text/css" media="screen,projection" href="/ui.css" />
+<script type="text/javascript" src="/ui_verbose.js"></script>
+
+<!--[if lt IE 7]>
+<style type="text/css" media="screen, projection">
+#irsa-menu li
+{
+float: left;
+height: 1%;
+}
+#irsa-menu a
+{
+height: 1%;
+}
+</style>
+<![endif]-->
+</head>
+<body >
+
+<div id="irsa-banner"   style= "min-width:768px; min-height:95px"></div>
+<script type="text/javascript" language='javascript' src='/frontpage/frontpage.nocache.js'> </script>
+
+<div id="content">
+<!--   #include virtual="/include/sysnotice.html"  -->
+
+
+<div class="webpage">
+<h1>P5 README</h1>
+
+<p>
+  Pipeline 5 makes use of Independent Component Analysis (ICA) to separate
+the IRAC 1 images (3.6um) into two source maps, the first of which is
+identified with the stellar emission (s1), and the other one with dust
+(s2). The user is referred to Querejeta et al. (2014) for details on the
+motivation of the method and its operative details.
+</p><p>
+  We impose two initial cuts on the sample to select only those galaxies
+that are suitable for the application of ICA. Excluded from our pipeline
+are all galaxies with initially low signal-to-noise (below S/N=10) and all
+galaxies with original colors [3.6]-[4.5]&lt;0, indicative of limited dust 
+contamination.
+</p><p>
+  In the companion table (<a href="P5_table.txt">P5_table.txt</a>), the second column indicates whether
+or not ICA was applied, according to the criteria above. '0' indicates that
+the pipeline was run; '1' means that no solution was calculated because 
+the galaxy had [3.6]-[4.5]&lt;0; '2' implies that it was not run due to low S/N;
+'3' means that there was some data problem (e.g. missing P3 information).
+Therefore, a P5/ subdirectory only exists for galaxies which fulfilled those
+conditions. For ease of use, all our maps are cutouts centered on the 
+photometric center identified in P3.
+</p><p>
+For the galaxies with an ICA solution, the following files are provided:
+<ol>
+   <li>XXX.stellar.fits  --- map of the 'cleaned' flux from old stars (s1), 
+which can be effectively converted into a stellar mass map following the 
+details in Querejeta et al. (2014).</li>
+
+   <li>XXX.nonstellar.fits  --- dust emission identified in the IRAC 1 image,
+what is identifies as s2 in the paper, which has been removed from the original 
+image to produce file (1)</li>
+
+   <li>XXX.ICAmask.fits  --- regions in the mask locate pixels excluded from 
+the analysis. The areas with positive integers are inherited from the P4 masks, 
+although note that some P4 regions are removed in our pipeline. Regions labeled 
+with negative integers are associated to our recursive ICA strategy (second ICA 
+iteration). This mask applies to all our pipeline products.</li>
+
+   <li>XXX.colormap.fits  --- the map of [3.6]-[4.5] color for the cleaned 
+stellar light map in file (1). This color map differs from the original color 
+map (obtainable directly from IRAC 1 and IRAC 2) specifically in regions
+corrected with ICA (i.e. where nonstellar map (2) is non-zero). The color in 
+these regions reflects the (constant) stellar color found by ICA. This can be 
+useful, e.g., for assigning an optimal color-dependent M/L to convert the flux
+from (1) into an actual mass map.</li></p>
+
+</div>
+
+</div> <!-- end #content -->
+<div id="irsa-footer" style="position:absolute;left:0;right:0;margin-top:20px">
+<iframe src="/frontpage/footer.html" width="100%" frameborder=0 scrolling=0 seamless=1/>
+</div>  <!-- end #irsa-footer -->
+
+</body>
+</html>
+

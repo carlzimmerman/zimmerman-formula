@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "NEUTRAL-MESSENGER-FERMI-COOLING",
+  "repository": {
+    "commit": "a4a7c247d48055987381107be58062fd2260cbfe",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/neutral_reservoir_statistics_2026_10_13/check.py",
+    "sol61_push/neutral_reservoir_statistics_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Ideal Fermi reservoir dynamic structure factor and slow-impurity energy loss",
+    "coefficient_domain": "SymPy and float64 quadrature",
+    "conventions": "Two equally populated spin states; S(q,w)=2 integral d3k/(2pi)^3 f_k(1-f_k+q)delta(w-energy); g n_imp n_atom interaction",
+    "inputs": [
+      "sol61_push/neutral_reservoir_statistics_2026_10_13/check.py"
+    ],
+    "bounds": {
+      "normalized_bath_masses": [
+        2,
+        10.511
+      ],
+      "normalized_impurity_v": [
+        0.0001,
+        0.001,
+        0.01
+      ],
+      "quadrature_orders": [
+        32,
+        48
+      ],
+      "physical_K_eV": [
+        1e-09,
+        1e-07,
+        1e-05
+      ]
+    },
+    "non_claims": [
+      "No actual neutral messenger atoms or full material model",
+      "No condensate cooling or finite-temperature lifetime"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T01:49:44.254524+00:00",
+    "runtime_seconds": 0.478374,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/neutral_reservoir_statistics_2026_10_13/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/neutral_reservoir_statistics_2026_10_13/check.py",
+      "sha256": "cc1d7f3bd84e0dd3fa4c620ea274272d276a39948b3d3f38856da5ad28bda108",
+      "sha256_after": "cc1d7f3bd84e0dd3fa4c620ea274272d276a39948b3d3f38856da5ad28bda108"
+    }
+  ],
+  "output_directory": "sol61_push/neutral_reservoir_statistics_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/neutral_reservoir_statistics_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/neutral_reservoir_statistics_2026_10_13/run/stdout.txt",
+      "sha256": "8528fd8a6638d04c6633a594747c9baf0318fe09fca3af19b9c9e1a964035d8e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/neutral_reservoir_statistics_2026_10_13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/neutral_reservoir_statistics_2026_10_13/run/results.json",
+      "sha256": "8528fd8a6638d04c6633a594747c9baf0318fe09fca3af19b9c9e1a964035d8e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,121 @@
+CE-FM-081 — resolve the control comparison and isolate the required mass transfers
+2026-10-18 local /19 UTC. Base CE-FM-080; HEAD123fefe43.
+Original theory OPEN. Self-review, not external certification.
+
+1. Failed-control root cause: the analytic identity is not the same model
+CFG822 K1 compares no-free source output against CFG821's uncapped exponential
+kernel, with Mhalf=.5Mb. CFG822 instead uses the rational s kernel, Plummer
+aperture fraction.512 and a retained cold cap5.364Mb. These are separate model
+choices. A false identity between those choices is not a numerical unit fix.
+For Draco, canonical sigma sequence in km/s is:
+ half-mass exponential, uncapped       4.6120483455
+ half-mass rational, uncapped          4.6126727388
+ Plummer rational, uncapped            4.6412414528
+ Plummer rational, retained-capped     4.4446083651
+ saved no-free reconstructed          ~4.4570 (source prints4.46).
+The cap is the dominant shift. The exponential/rational difference is tiny
+for this dwarf, so attributing everything to the estimator would be incorrect.
+The original frozen K1 FAIL remains FAIL; no tolerance or criterion was edited.
+
+A model-matched diagnostic is now implemented in check_matched_dwarf_control.py:
+ M_expected(<r12)/Mb=.512+min[(nu_s(y)-1)*.512,5.364],
+ y=G(.512Mb)/(a0 r12^2).
+Saved core+settled aperture masses reconstructed from the actual sigma and
+free masses agree with this expected no-free sigma within1.66534% canonical
+and1.33123% alt; all22 cases pass the separate2% same-model diagnostic.
+This repairs the COMPARATOR in a separate executable audit, not the frozen
+score or the physical model. The appropriate future test pair is (a) same
+kernel/aperture/cap consistency and (b) separately reported deviation from the
+uncapped law. They must not be collapsed into one relabelled success.
+
+Residual integration normalization is not fully certified
+Source run_system rescales settled/reservoir cold masses by
+s=supply/I.supply_turned while returning I.M_core_g unscaled. derive builds
+core shapes with a predicted turnaround radius and evaluates them on the actual
+turnaround radius. In the continuum interpolation idealization this gives
+ Mc_final(r)=t Mobs(k r),
+ t=Mret_turned/Mobs(total), k=rta_pred/rta_actual.
+Thus residual core-amplitude and size errors need independent inspection even
+when the same-model aperture diagnostic passes. The saved data do not expose
+t or k, so they cannot be recovered uniquely from the1-2% sigma residual.
+Do not claim an exact unit-normalization bug has been patched from these rows.
+A future source execution should record both, compare the full radial core
+against Mobs(r), and refine the turned-mass and radius-anchor fixed points.
+Renormalizing only the final plot would leave the potential used in dynamics
+inconsistent; a real correction requires a consistent solver rerun.
+No live/source simulation was rerun here and no original code was edited.
+
+2. A common normalization cannot solve the dwarf gap
+Let A>=0 multiply ALL saved free aperture profiles, and allow even an
+independently chosen retained settled contribution Si for every galaxy with
+0<=Si<=c=5.364, keeping observed Plummer stellar fraction p=.512.
+For each observed target Di, the necessary interval is
+ max[0,(Di-p-c)/Fi] <= A <= (Di-p)/Fi.
+This gives canonical A>=9.08968 from Sextans but A<=1.074735 from Fornax.
+Alt gives A>=9.006705 and A<=.994712. The intervals are empty. This is an
+algebraic obstruction in the specified fixed-shape family, stronger than merely
+failing a one-parameter fit: it grants each galaxy arbitrary Si within its cap.
+It is not a no-go for different profiles, stellar inputs or transport phases.
+A shared scalar normalization, or a shared increase in source mass with the
+same profiles, cannot be the proposed cure. The concentration change must be
+selective by galaxy; the canonical Sextans/Fornax amplification selectivity
+must be at least8.457599 (the exact bound ratio, not a new parameter).
+
+3. Concrete stock-conserving transfer targets
+At the saved base, infer T=Di*(sigma_model/sigma_obs)^2. The required minimum
+net inward cold transfer in units of total stellar Mb is Delta=Di-T.
+A mass-only constructive redistribution can take positive Delta from outer
+FREE stock. For negative Delta, remove inner free first and then inner settled
+stock. Under the explicit observed stellar aperture convention, canonical:
+ Draco: move18.41970Mb inward, using40.524% of available outer free stock.
+ Sextans: move42.30306Mb inward, using98.686% of outer free stock.
+ Fornax: move1.79254Mb inner free outward AND.62953Mb inner settled outward;
+         the latter is24.63% of its inferred inner settled component.
+ LeoI: move.55446Mb free outward AND.16655Mb settled outward;
+       the latter is10.00% of its inferred inner settled component.
+All four transfers are nonnegative and fit within their category stocks.
+Across all11, AntliaII is still infeasible at the fixed central-value stock;
+this is the prior inventory shortfall, not a new claim of observational exclusion.
+
+This construction demonstrates only a mass-budget path. It does not implement
+energy transport, guarantee equilibrium or preserve the field solution after
+mass moves. In particular, the settled component is tied to the response law:
+releasing it must update the complementary stock, its gravity, constitutive
+response and any boundary stress in ONE action/solver. No negative mass,
+extra phantom force or duplicated cold supply may be used to hide overboosts.
+The populated finite-stock interface problem from CE-FM-079 remains essential.
+
+4. Mechanism decision
+The model must make Draco/Sextans inward transport and Fornax/LeoI outward
+transport emerge from independent halo/formation/orbit conditions under one
+carrier law. A gravothermal phase difference is a candidate from CE-FM-078;
+it is not established for this carrier. In particular the CE-FM-079 dilute
+transport benchmark found too few collisions for an initially extended halo at
+the selected geometric fragment estimate: a compact initial population or a
+newly derived transport kernel remains needed. Repeating the same diffuse
+constant-rate calculation does not advance that bottleneck.
+Next source-ready diagnostic: record t,k and full core-normalization residual;
+compare the same capped rational model; track actual inner/outer free and
+settled stocks plus kinetic/binding energy. Then require the signed transfer
+targets above from a phase-dependent evolution, without fitting a separate
+unmeasured transport efficiency for every dwarf. Heavy runs remain queued.
+
+New Claude evidence
+CFG823 committed a supply-only budget check at ea2da902e, consistent in scale
+with CE-FM-077's prior result. Its use of.5 rather than.512 aperture changes q
+slightly; its M/L4 branch changes an input, not the missing profile mechanism.
+Its README discloses loosening a K1 constants comparison from1e-6 to2.5e-4;
+this audit does not certify that as a pass of its original frozen threshold.
+The wide-binary lane is now officially CFG825 (directory stillCFG816...);
+old aliases must not be mistaken for independent experiments. No new ARGON11
+completed REPORT/results file was found; source STATUS is not live-process
+verification. HEAD and output directories checked again at completion.
+
+Evidence
+run_081:46 checks, all22 same-model controls, convention decomposition and
+empty normalization intervals. run_081b:42 checks, signed mass balances and
+nonnegative stock transfers. Both completed mathbox4 v2 manifests validated
+with current hashes. Stdlib tiny calculations, no large arrays, no heavy run
+or original source execution. All frozen criteria/publications and live queues
+untouched. Goal remains open: a correct comparator and mass-feasible target
+are not a physical dwarf solution.

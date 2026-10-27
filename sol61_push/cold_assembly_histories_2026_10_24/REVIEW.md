@@ -1,0 +1,13 @@
+# CCT-004 self-review
+
+Verdict: controlled finite evidence for nonhomology and tracer response; four-dwarf closure incomplete and tested combined target failed. Author self-review, not independent replication.
+
+Action mapping inspected: cold psi sees only Phi_c+Phi_b; Poisson source in Phi_c is |psi|^2; analytic Phi_b uses .02 stellar and .2 gas masses once; Xi acceleration in tracer force uses only those baryonic masses. Tracers are massless, so their energy and force do not feed back on the source ledger. This is a test-source limit, not a full self-consistent baryonic calculation. Spherical Xi formula follows the parent action; nonspherical cold Phi is interpolated from Fourier gradients. No extra cold-law force is silently added.
+
+Work split reconstructed: H(t)->H(mid) at fixed old psi gives integral rho_old[Phi_b(mid)-Phi_b(t)]; evolve the midpoint Hamiltonian; H(mid)->H(t+dt) gives integral rho_new[Phi_b(t+dt)-Phi_b(mid)]. These are exact changes due to each discrete fixed-state external-potential switch, not a proof that the finite-step source history has converged to continuum time. The absorber ledger follows the second switch. Numerical work/energy closure is checked separately from available physical source energy. Static-density closed-cycle work control and analytic force-gradient controls pass.
+
+Initial cold state is the same density/phase in each base run. Star initial conditions are deterministic but are not a stationary distribution; the paired frozen field is used as a diagnostic. No observational heating significance or gas/SN budget follows from these samples. Padding changes the force grid/boundary; its own frozen tracer control is used. All particles stay inside the declared margin. No time-step or full isolated-boundary convergence theorem was established.
+
+Four-dwarf argument: no common final profile is assumed after different histories. Instead an optimistic library lower bound uses max retained mass, finite retained support in the saved computational domains, absorber onset, common-eta similarity and fixed older stocks. The bound assumes removed material remains outside the onset at the final epoch. A returning-wave calculation could invalidate that premise. Actual gas scale/timing and code a0 are not fitted to the four galaxies. This is a bounded library result, not an uncertainty-aware general physical exclusion.
+
+Preserved failures: early/slow small-box J ledger; every run's mass-retention, stationarity and old-Sextans central-fraction gates; all source/inventory/covariance gaps. The late spin ratio is near the toy threshold and not an independent robust rejection. Claimed positive mechanism is profile response to counted work, not successful selective formation.

@@ -1,0 +1,165 @@
+{
+  "schema_version": 2,
+  "claim_id": "STATE_PREPARE_2026_10_25",
+  "repository": {
+    "commit": "667db25771e05e9daa218d2568809c639b352afa",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "two_state_mechanism_2026_10_24/state_preparation_2026_10_25/prepare.py",
+    "--output",
+    "two_state_mechanism_2026_10_24/state_preparation_2026_10_25/run_prepare/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Quadratic preparation from a gapped thermal band, work accounting, occupation invariant and contact mean-field gap/response",
+    "coefficient_domain": "IEEE double and analytic reductions",
+    "conventions": "Specified effective band, half-filled fermion covariance; no galaxy labels",
+    "inputs": [
+      "DERIVATION.md",
+      "explicit deterministic protocol and initial state"
+    ],
+    "bounds": {
+      "nodes": [
+        96,
+        192
+      ],
+      "time": [
+        100,
+        1000
+      ],
+      "dt": [
+        0.1,
+        0.05
+      ],
+      "initial_temperature": [
+        0,
+        0.1,
+        0.2
+      ],
+      "initial_mass": 1,
+      "final_field": 0.01,
+      "protocols": [
+        "linear",
+        "angular"
+      ],
+      "interaction_lambda": [
+        0,
+        0.99
+      ],
+      "static_x": [
+        0.0001,
+        10000.0
+      ],
+      "gap_lambda": [
+        0.25,
+        3
+      ]
+    },
+    "non_claims": [
+      "No microscopic nodal-band formation",
+      "No population separation or live gravity",
+      "No physical cooling bath or countercharge transport",
+      "Static optimization is not first-principles parameter fixing"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T17:52:23.285045+00:00",
+    "runtime_seconds": 6.790199,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "two_state_mechanism_2026_10_24/state_preparation_2026_10_25/prepare.py",
+    "two_state_mechanism_2026_10_24/state_preparation_2026_10_25/DERIVATION.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "two_state_mechanism_2026_10_24/state_preparation_2026_10_25/prepare.py",
+      "sha256": "fe7ced372f71e9264f7eba04a53756f124c4fed2bba7a7e44a49a8125ad5128f",
+      "sha256_after": "fe7ced372f71e9264f7eba04a53756f124c4fed2bba7a7e44a49a8125ad5128f"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/state_preparation_2026_10_25/DERIVATION.md",
+      "sha256": "124b154c9f57aa755d8e15971697fd869d093628cd66426c4216527ebc17fd7f",
+      "sha256_after": "124b154c9f57aa755d8e15971697fd869d093628cd66426c4216527ebc17fd7f"
+    }
+  ],
+  "output_directory": "two_state_mechanism_2026_10_24/state_preparation_2026_10_25/run_prepare",
+  "declared_results": [
+    "two_state_mechanism_2026_10_24/state_preparation_2026_10_25/run_prepare/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "two_state_mechanism_2026_10_24/state_preparation_2026_10_25/run_prepare/stdout.txt",
+      "sha256": "2faac5dd3aea05901df934bd293bf7dc5afc115d963395ce21acf7c3b33378ec",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/state_preparation_2026_10_25/run_prepare/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/state_preparation_2026_10_25/run_prepare/results.json",
+      "sha256": "90586562e0403d2fb3e24ce31015f0f4d60409fc49b99071a951d212cccba125",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

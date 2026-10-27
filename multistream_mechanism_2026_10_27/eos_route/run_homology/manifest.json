@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "claim_id": "MS27_NONLINEAR_HOMOLOGY",
+  "repository": {
+    "commit": "eee9769579834ae78531ee37adc3970090ac81da",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "multistream_mechanism_2026_10_27/eos_route/homology.py",
+    "multistream_mechanism_2026_10_27/eos_route/run_homology/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Within a mass-conserving homologous logotropic density family with fixed external pressure, derive the exact constrained-energy potential and test finite radius excursions on both sides of equilibrium with an ideal half-line radiation outlet.",
+    "coefficient_domain": "real ODEs; double precision",
+    "conventions": "y=R/R_eq; rho_y(r)=y^-3 rho_eq(r/y); energy in A*V_eq units; collective inertia=1; damping=1; V(y)=-3D/y+y^3(-D-1+3ln y)",
+    "inputs": [
+      "regular logotropic core bounded at density contrast4",
+      "D=volume mean ln(rho/rho_boundary)"
+    ],
+    "bounds": {
+      "initial_radii": [
+        0.8,
+        1.2
+      ],
+      "initial_velocities": [
+        0,
+        0
+      ],
+      "tmax": 100
+    },
+    "non_claims": [
+      "No nonlinear fluid formation",
+      "No microscopic phase or coefficient derived",
+      "No global stability because potential unbounded at R=0"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-27T14:29:19.190204+00:00",
+    "runtime_seconds": 1.152544,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 30000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 15,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "multistream_mechanism_2026_10_27/eos_route/homology.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "multistream_mechanism_2026_10_27/eos_route/homology.py",
+      "sha256": "cf009d7b5d082d5b2656caeb6187ce23cbad7a6c61dc717ec351c53814f4d740",
+      "sha256_after": "cf009d7b5d082d5b2656caeb6187ce23cbad7a6c61dc717ec351c53814f4d740"
+    }
+  ],
+  "output_directory": "multistream_mechanism_2026_10_27/eos_route/run_homology",
+  "declared_results": [
+    "multistream_mechanism_2026_10_27/eos_route/run_homology/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "multistream_mechanism_2026_10_27/eos_route/run_homology/stdout.txt",
+      "sha256": "09c02f34528c4826f7217379f8940353e7da0363bdb4d972b478081ec13c9292",
+      "kind": "log"
+    },
+    {
+      "path": "multistream_mechanism_2026_10_27/eos_route/run_homology/stderr.txt",
+      "sha256": "ff9607725e8374c8d415119d29c7ba4ba818a9daa7a6290acc17c72b012d1218",
+      "kind": "log"
+    },
+    {
+      "path": "multistream_mechanism_2026_10_27/eos_route/run_homology/result.json",
+      "sha256": "09c02f34528c4826f7217379f8940353e7da0363bdb4d972b478081ec13c9292",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

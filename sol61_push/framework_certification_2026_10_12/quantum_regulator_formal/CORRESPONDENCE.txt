@@ -1,0 +1,116 @@
+FRAMEWORK-CERT-QUANTUM-REGULATOR-2026-10-13
+
+Verdict: genuine bounded-operator quadratic-form positivity certified with
+the actual own-framework NR coefficients, including positive cell normalization.
+The formerly unproved quantum positivity implication is now checked, without
+replacing operators by classical field amplitudes. No time invariance claimed.
+
+Import/dependency provenance:
+QuantumEnergy.lean imports NREnergy, an EXACT archived copy of the prior checked
+own coefficient source; that source imports Mathlib. This file therefore imports
+Mathlib PLUS the checked own-framework NREnergy dependency, not Mathlib alone.
+Source/archive SHA-256 3f09ff45acd5b149251aab4b9cc8edb6a57c5cefa55264643b7766833ee2f59b.
+The archive was compiled to build/NREnergy.olean under the existing toolchain;
+dependency_compile.log confirms all 9 standard mathematical axiom lists and exit0.
+PINNED_INPUTS binds both source and compiled dependency. Rebuilding is possible
+from the source, so scientific verification need not trust an opaque binary.
+
+Actual quantum correspondence and typing:
+Source NR_QUANTUM_BOUND.md uses creation-left normal ordering:
+ D=T+integral[delta b†b+c3(b†psi²+psi†²b)+k psi†²psi²].
+Our A=psi² and B=b are arbitrary bounded COMPLEX-linear maps E->F.
+For a fixed-charge regulator, E=H_Q and F=H_(Q-2); A,B lower charge2,
+so neither is falsely assumed to preserve H_Q. A†A,B†B,B†A,A†B are
+well-typed endomorphisms of E. The theorem also covers full truncated spaces.
+E,F are inner-product spaces; adjoint statements use completeness, satisfied
+by finite-dimensional charge sectors. No A/B commutation assumption is used.
+Psi's square itself consists of two successive maps through H_(Q-1); our
+result holds for every such composite A and does not need its CCR to be postulated.
+The actual canonical Fock maps and Hamiltonian construction are identified by
+the source/regulator dictionary, not constructed or proved canonical in Lean.
+This does not weaken the universal implication: all bounded maps A,B satisfy
+it, including those maps once the fixed regulator is specified.
+
+Inner product convention: conjugate-linear in first slot, linear in second.
+Operator energy is Re< v,[delta B†B+c(B†A+A†B)+k A†A]v >.
+This equals delta||Bv||²+2c Re<Bv,Av>+k||Av||² exactly; cross2 is derived
+from both adjoint cross terms, not guessed. Real coefficients are coerced to
+complex scalar multiplication. No AB=BA or field-value substitution is used.
+Any v is allowed; quantum expectation interpretation normally takes ||v||=1.
+The statements are homogeneous quadratic forms and remain true without that
+normalization. They apply to entangled finite-regulator vectors as well.
+
+Seven English theorem correspondences:
+1. quadratic_form_completion: for delta!=0, all real c,k and arbitrary A,B,v,
+   interactionForm equals delta||Bv+(c/delta)Av||²+
+   (k-c²/delta)||Av||². This is a genuine complex Hilbert-space norm identity.
+2. adjoint_form_correspondence: actual explicit adjoint operator has exactly
+   that quadratic form on every vector, derived by the adjoint inner identities.
+3. interaction_nonnegative: delta>0,k-c²/delta>=0 imply positive form.
+4. actual_nr_interaction_nonnegative: m>0,M>2m,rep>=0 imply positivity using
+   DEFINED delta=M-2m,c3=g/(2m sqrt(2M)),k=(g²/(M²-4m²)+rep)/(4m²).
+   The necessary coefficient remainder is DERIVED by imported NREnergy, not
+   assumed as an external operator/coefficient leaf. g any real.
+5. actual_nr_energy_bound: for arbitrary kinetic operator T and vector v with
+   Re <v,Tv> >= 0, total D=T+interactionOperator satisfies 0<=Re<v,Tv><=Re<v,Dv>.
+   Positive kinetic form is an explicit premise; no T eigen-spectrum assumed
+   silently. Self-adjoint kinetic interpretation is part of the physical model.
+6. finite_regulator_form_bound: any finite nonnegative weighted sum of cell
+   forms preserves this bound, using the actual NR coefficients. This is a
+   finite sum of genuine operator forms, not a classical-field integral.
+7. cell_normalized_interaction_nonnegative: for ANY positive volume V and
+   dimensionless cell annihilators A=a²,B=b, coefficients c3/sqrt(V),k/V have
+   remainder (k-c3²/delta)/V>=0. The source's normal-order volume scaling is
+   proved with the actual coefficient source, not transplanted unchanged.
+
+Remaining physical/operator obligations:
+No unbounded continuum operator domain, UV/renormalized quantum theorem,
+relativistic counter-rotating terms, charge-sector construction, physical
+canonical regulator, negative gravitational energy, cosmological work or halo
+selector is inferred. This is exact for the displayed bounded finite-regulator
+Hamiltonian form under its declared NR/normal-ordering correspondence.
+Actual CCR/Fock construction and identification of positive T are regulator
+inputs; all maps and every positive T form are covered by the checked result.
+The source's [H,Q]=0 and D(t)=D(0) under unitary evolution are NOT proved here.
+No conserved initial budget or all-time kinetic bound may be attributed to this
+file unless the evolution/conservation premise is separately checked.
+We certify quadratic-form completion/adjoint correspondence, not a separately
+proved operator-map equality for the completed-square Hamiltonian; the equality
+of both real quadratic forms on every vector is what positivity needs.
+No numerical 26-example audit was repeated or promoted to a universal theorem.
+No MOND/AQUAL/LambdaCDM physical inputs.
+
+Reproduction (existing lake root, paths are absolute; no network/install):
+cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026
+quantum_cert_dir=/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/quantum_regulator_formal
+lake env lean --root="$quantum_cert_dir" -o "$quantum_cert_dir/build/NREnergy.olean" "$quantum_cert_dir/NREnergy.lean"
+LEAN_PATH="$quantum_cert_dir/build" lake env lean "$quantum_cert_dir/QuantumEnergy.lean"
+The dependency and main compiler exited0, no warnings. Main compile.log prints
+all SEVEN axiom lists, exclusively [propext, Classical.choice, Quot.sound].
+No sorryAx/custom physical axioms/native_decide.
+
+FalseUnrestrictedPositivity.lean: expected exit1, goal False. On the complex
+one-dimensional Hilbert space with v=1,A=id,B=-id,delta=c=1,k=0, form=-1.
+This rejects removing the coefficient condition; it is not asserted to match
+the stable carrier's coefficients.
+FalseMissingCross.lean: expected exit1, goal False. On same Hilbert space
+A=B=id,delta=c=k=1,v=1, form 4, not 3. It rejects dropping one adjoint cross
+contribution. These are operator-form controls, not physical population examples.
+Controls repeat the checked main declarations plus an intentionally false claim.
+Compile individually using same LEAN_PATH command and each false source file;
+expected failure must be the final mathematical goal, not missing imports.
+
+Pinned input copies/hashes: PINNED_INPUTS.json and inputs/.
+Existing NR sources/certificates/numerical records and inventory 97 untouched.
+Live HEAD observed 668818d9f6fefccc2ee75c2f47dc7424140cc8f8.
+
+SHA-256 verification artifacts:
+96e0c1049fbab0eaa686330738daf89575b3a1b7fddced4d6c28f211c7a32b81  QuantumEnergy.lean
+3f09ff45acd5b149251aab4b9cc8edb6a57c5cefa55264643b7766833ee2f59b  NREnergy.lean
+3bb5c89b8999b1607cbe227481cae76fb031beb1907bd4e40fefcc76d86a7ed8  compile.log
+5aa23d3103dba72b3f64417a56987b9213ded2f4ea9b4c6917096f81df5be3c2  dependency_compile.log
+c1afca1343442a5227963d5095f78809a31fb9e65de320ea16d47d1b3b92f73a  FalseUnrestrictedPositivity.lean
+a4aec2740db36c7f5a17a1c7358a684de03d22efd0225d3981af007e32bbe4b3  FalseUnrestrictedPositivity.log
+00f16ae622d4406a77dd9bcd5cb19dad6cbc2100ac059c89d2527dd83da952ee  FalseMissingCross.lean
+e523ede436b4c426c791ab31f015f8cdfc27c14a22f9dcf5585d990d10b03014  FalseMissingCross.log
+a8d727754b99c5b88e70f82faf4a874bdb6fc9cb0416a4b53e6d898e7f69642f  PINNED_INPUTS.json

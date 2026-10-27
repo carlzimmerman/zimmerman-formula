@@ -1,0 +1,147 @@
+Independent focused proof audit: finite-stock exterior theorem
+2026-10-18 local. Repository HEAD3c01aa2861bf576f4c2d942251eb9d2f89cae108.
+Reviewer: coupled_cones subagent, separately delegated from source author.
+
+PRIMARY VERDICT: proved as written.
+The verdict concerns only the normalized conditional mathematical theorem in
+section 5 of SCREENING_INVENTORY_OBSTRUCTION.txt, under G>0 and the other
+explicit section 1 conventions. It is not a claim that the identified settled
+mass is an established inertial particle mass or that the original theory is
+impossible. No repair to the source proof was necessary or made.
+
+Audited source, exact SHA-256
+39f99b671342b8b7dc6cfe168e325cd1599fae06e14940b3bf28a1b5e72ce6ed
+ sol61_push/cold_advance_2026_10_18/screening/SCREENING_INVENTORY_OBSTRUCTION.txt
+Definitions cross-checked, not whole reports re-audited:
+57f951cde8f22a1f10dd41c35f93969b631c6a67169f5f9363bfbfb2a791c2cf
+ sol61_push/cold_final_mile_2026_10_13/TWO_POPULATION_RESULT.txt
+120f0929f0f285d06402601918d8251fe314177660cce75c04ab6ee3085b1e81
+ sol61_push/cold_final_mile_2026_10_13/FORCE_LAW_DICTIONARY_RESULT.txt
+The shared tree was dirty. The source is an uncommitted current artifact;
+its file hash, rather than HEAD alone, identifies the statement reviewed.
+
+Claim card
+Let G,a0,h>0. On an unbounded exterior interval [r0,infinity), with r0 chosen
+positive if necessary, let u be C2, 0<=u<a0, and set m=r^2u/G. Assume m'>=0
+and m<=C0<infinity. Suppose nonnegative enclosed free mass Mf and a baryonic
+enclosed mass Mb>=M_*>0 obey the corrected full-W equation at every exterior
+radius:
+
+ -h[u''+2u'/r-2u/r^2]+u^2/(a0-u)=G[Mb(r)+Mf(r)]/r^2.       (A)
+
+Then no such u exists. The conclusion covers noncompact settled tails. It
+assumes neither a limit of m' nor a limit of m'/r^2 at infinity.
+
+Actual source definition
+The source in (A) is Mb+Mf. The polarization/settled quantity m is already
+represented by u in the Poisson flux relation
+
+ g-u=G(Mb+Mf)/r^2.
+
+It is not an independent additional ordinary source in this same equation.
+Adding m to Mb+Mf would silently change the mathematical problem and double
+count the identified polarization charge under this action's dictionary.
+Conversely, equating m to an inertial conserved cold population is a separate
+physical dictionary assumption. The theorem is a conditional consequence of
+that assumption, not a derivation of the carrier's stress or microscopic mass.
+The older cubic law has a different nonlinear residual; this audit is of the
+full-W residual u^2/(a0-u), exactly as requested.
+
+Independent derivation of the mass equation
+From u=Gm/r^2, direct differentiation gives
+
+ u'=G(m'/r^2-2m/r^3),
+ u''=G(m''/r^2-4m'/r^3+6m/r^4),
+ u''+2u'/r-2u/r^2=G(m''-2m'/r)/r^2.
+
+Also
+
+ (r^2/G) u^2/(a0-u)=Gm^2/(a0r^2-Gm).
+
+Thus (A) is exactly
+
+ -h(m''-2m'/r)+N(r)=Mb(r)+Mf(r),
+ N(r)=Gm(r)^2/[a0r^2-Gm(r)].                              (B)
+
+This matches equation (4) of the raw source, including the vector-Laplacian
+-2u/r^2 term and both normalizations. Using a scalar radial Laplacian instead
+would give a different mass equation and would not audit this claim.
+
+Independent decisive implication
+Nonnegative u and G give m>=0. With m<=C0, for all sufficiently large r,
+
+ 0<=N(r)<=GC0^2/(a0r^2-GC0) -> 0.
+
+Choose r1 so that a0r1^2>GC0 and N(r)<=M_*/2 for r>=r1. The right side of
+(B) is at least M_*, so, writing c=M_*/(2h)>0,
+
+ m''-2m'/r <= -c.
+
+The exact derivative identity
+
+ [m'/r^2]'=(m''-2m'/r)/r^2
+
+then gives w'= [m'/r^2]' <=-c/r^2. Since m'>=0, w(R)>=0 for every R. For
+R>r>=r1 integration therefore yields
+
+ w(r)>=w(R)+c(1/r-1/R)>=c(1/r-1/R).
+
+The left side is fixed as R varies. Taking the supremum of the rightmost
+lower bound over R, without assuming convergence of w(R), gives w(r)>=c/r.
+Consequently
+
+ m'(r)>=cr,
+ m(R)>=m(r1)+c(R^2-r1^2)/2.
+
+This contradicts m<=C0. The limit step and sign of the reverse integration
+are correct. The quadratic lower bound is a contradiction under the bounded-m
+hypothesis, not an unconditional asymptotic prediction of (A).
+
+Dependency graph
+Full-W exterior EL equation (assumed model) -> mass substitution (algebra) ->
+N(r)->0 (bounded nonnegative mass) -> negative upper bound for m''-2m'/r
+(positive exterior source) -> integrated nonnegative-w bound (positive
+settled density) -> contradiction with finite total settled mass.
+The carrier dictionary and validity of the exterior equation are assumptions.
+No external theorem or numerical calculation is a load-bearing dependency.
+
+Obligation matrix
+PASSED: exact source/action type, vector radial Laplacian, G/r normalizations.
+PASSED: positive denominator and uniform large-r bound from 0<=m<=C0.
+PASSED: source lower bound Mb+Mf>=M_* and division by positive h.
+PASSED: integration direction, w>=0 use and limit without a derivative limit.
+PASSED: noncompact tails and finite-support special case are included.
+CONDITIONAL PHYSICS: m is an identified positive inertial settled population;
+ the full-W static branch remains valid at every exterior radius.
+OUT OF SCOPE: other sections of the source report, empirical scores, the
+ infinite-supply profile's claimed asymptotics, formation, interfaces and
+ microscopic/metric completion.
+
+Restrictions and strongest safe statement
+Only this unbounded-radius static branch with the stipulated source and
+positive settled-density dictionary is excluded. A finite-radius occupied
+model is not ruled out, but it must specify where equation (A), the dictionary,
+or another explicit hypothesis changes, and account for its interface stress
+and stock. Simply truncating a solution and continuing to impose all the
+same exterior hypotheses cannot evade the contradiction. This audit does not
+assert that changing any named hypothesis supplies a consistent completion.
+No finite upper bound on Mf was needed; nonnegative free mass only strengthens
+the contradiction. Likewise finite total baryonic mass is not used once the
+positive exterior lower bound M_* is assumed; it is a sufficient physical
+scenario for that lower bound, not an extra theorem conclusion.
+
+Remaining gap
+There is no internal proof gap in the audited theorem. The separate physical
+gap is a finite-stock action/interface/phase whose equations cease to obey at
+least one audited hypothesis and whose sources are counted once. That is the
+cheapest next discriminating theoretical obligation; a baryons-only response
+plus a freely added cold reservoir does not resolve it in this same action.
+
+Verification/provenance
+Read the raw section 5 and its section 1 definitions and independently
+re-derived (B) and the integrated inequality above. No old numerical output or
+author conclusion was used as proof. No numerical experiment was needed and
+none was run for this audit. This review is a separate-agent proof audit,
+not external human certification. Author proof retained; no edits to source.
+Proofread self-review: this review only; routine edits none, mathematical-token
+changes none, unresolved notation/prose issues none found.

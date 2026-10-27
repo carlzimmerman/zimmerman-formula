@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "SHELL-EXACT-RAY-ABERRATION",
+  "repository": {
+    "commit": "cda53006d0fae491d774c1bb9a25340ea47c9f41",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/shell_aberration_2026_10_14/check.py",
+    "sol61_push/shell_aberration_2026_10_14/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact Snell ray path optical-length residual after piston/defocus fitting for one cavity side",
+    "coefficient_domain": "Double precision geometric ray tracing and Gauss-Legendre quadrature",
+    "conventions": "Initially flat central wavefront; Gaussian input power weights; meridional sphere intersections; phase-only overlap",
+    "inputs": [
+      "sol61_push/shell_aberration_2026_10_14/check.py",
+      "sol61_push/shell_resonator_2026_10_14/run/results.json",
+      "sol61_push/silica_shell_retention_2026_10_14/run/results.json"
+    ],
+    "bounds": {
+      "quadrature_nodes": [
+        96,
+        192
+      ],
+      "radial_extent_in_waists": 3,
+      "waist_m": 0.002,
+      "half_cavity_length_m": 0.5,
+      "mirror_curvature_radius_m": 0.823214874898129
+    },
+    "non_claims": [
+      "No diffraction eigenmode, actual resonator loss, finesse or total roundtrip wavefront",
+      "Gaussian weights do not include aberrated amplitude redistribution",
+      "No high-power, thermal or material feasibility conclusion"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T05:50:31.716480+00:00",
+    "runtime_seconds": 0.144632,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/shell_aberration_2026_10_14/check.py",
+    "sol61_push/shell_resonator_2026_10_14/run/results.json",
+    "sol61_push/silica_shell_retention_2026_10_14/run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/shell_aberration_2026_10_14/check.py",
+      "sha256": "10bc6413ae29702ad6ec8adfc9b59aeb64efe6f75196b400140f63d5fe5187ef",
+      "sha256_after": "10bc6413ae29702ad6ec8adfc9b59aeb64efe6f75196b400140f63d5fe5187ef"
+    },
+    {
+      "path": "sol61_push/shell_resonator_2026_10_14/run/results.json",
+      "sha256": "6981a9ad7ecbe0040d143fea4f11d6b46b3acb8952753d6387f1305d704f1c93",
+      "sha256_after": "6981a9ad7ecbe0040d143fea4f11d6b46b3acb8952753d6387f1305d704f1c93"
+    },
+    {
+      "path": "sol61_push/silica_shell_retention_2026_10_14/run/results.json",
+      "sha256": "68d7298af7bfc7d950423c4cb3ff2d595876e69918600c3dd88b3d6820c9fdd0",
+      "sha256_after": "68d7298af7bfc7d950423c4cb3ff2d595876e69918600c3dd88b3d6820c9fdd0"
+    }
+  ],
+  "output_directory": "sol61_push/shell_aberration_2026_10_14/run",
+  "declared_results": [
+    "sol61_push/shell_aberration_2026_10_14/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/shell_aberration_2026_10_14/run/stdout.txt",
+      "sha256": "77f689cc7c09d326e9b3e66f43079123368f9184a7b4571784d18f48ae2c6503",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/shell_aberration_2026_10_14/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/shell_aberration_2026_10_14/run/results.json",
+      "sha256": "02cc2efe21520547c659e5f4c74a8d52e6c3af86818ddab73d8065bc6d83fcfb",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "PORTAL-RESPONSE-2026-10-16",
+  "repository": {
+    "commit": "07feacaccdfd86d7106daeb4cdedf27048e502ae",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/closure_particle_bridge_2026_10_16/portal_response_audit.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/portal_response_run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Units, threshold-contact shift, microscopic force ranges and ideal gas occupation at chosen halo inputs",
+    "coefficient_domain": "Binary64 deterministic quadrature",
+    "conventions": "Natural units for density and threshold scattering; SI for lengths; fN=.308 historical input",
+    "inputs": [
+      "sol61_push/closure_particle_bridge_2026_10_16/portal_response_audit.py",
+      "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json"
+    ],
+    "bounds": {
+      "baryon_density_Msun_pc3": [
+        0.001,
+        0.1,
+        1000.0
+      ],
+      "halo_density_GeV_cm3": 0.3,
+      "one_dimensional_velocity_m_s": 150000
+    },
+    "non_claims": [
+      "No collective-medium no-go, empirical bound or galaxy force derivation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-16T14:02:12.634266+00:00",
+    "runtime_seconds": 0.125539,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/closure_particle_bridge_2026_10_16/portal_response_audit.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/portal_response_audit.py",
+      "sha256": "93a5728d393b8636238834ea0aa4b899ed1fb5ce76650ec0e6ae5a8d11c88b74",
+      "sha256_after": "93a5728d393b8636238834ea0aa4b899ed1fb5ce76650ec0e6ae5a8d11c88b74"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json",
+      "sha256": "d1cc9e64296077ce5039eac2a9805ef645bc1fcf91fbe985e45736d84a8f21f2",
+      "sha256_after": "d1cc9e64296077ce5039eac2a9805ef645bc1fcf91fbe985e45736d84a8f21f2"
+    }
+  ],
+  "output_directory": "sol61_push/closure_particle_bridge_2026_10_16/portal_response_run_001",
+  "declared_results": [
+    "sol61_push/closure_particle_bridge_2026_10_16/portal_response_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/portal_response_run_001/stdout.txt",
+      "sha256": "539e0d980f3958460d2ac8bd70b1287549dff34155c7bdeec49ad0e87e0e57f5",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/portal_response_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/portal_response_run_001/results.json",
+      "sha256": "539e0d980f3958460d2ac8bd70b1287549dff34155c7bdeec49ad0e87e0e57f5",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

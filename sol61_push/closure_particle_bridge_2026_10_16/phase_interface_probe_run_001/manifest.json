@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "PHASE-INTERFACE-PROBE-2026-10-16",
+  "repository": {
+    "commit": "62adebea941b17d3be06fab819ead04264744389",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/closure_particle_bridge_2026_10_16/phase_interface_probe.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/phase_interface_probe_run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact sextic planar wall and positive potential; fixed-charge stationary spherical scalar/response phase with finite exterior tail and retained cubic/binding flags",
+    "coefficient_domain": "Exact SymPy algebra plus binary64 scipy collocation and quadrature",
+    "conventions": "m=lambda=g6=1, f0²=.5, omega0²=.75; -+++; N conserved host charge distinct from auxiliaryQ; reciprocal fixed-source Legendre reduction",
+    "inputs": [
+      "sol61_push/closure_particle_bridge_2026_10_16/phase_interface_probe.py"
+    ],
+    "bounds": {
+      "initial_radii": [
+        20,
+        40
+      ],
+      "source_strengths": [
+        0,
+        0.01,
+        0.05
+      ],
+      "refinements": [
+        1,
+        2
+      ],
+      "base_mesh_nodes": 500,
+      "max_nodes": 10000,
+      "quadrature_points": 8001,
+      "solver_tolerance": "2e-6/refinement",
+      "CPU_seconds": 30,
+      "charge_error_gate": 2e-06,
+      "virial_gate": 2e-05,
+      "refinement_gate": 2e-06,
+      "cubic_ratio_flag_gate": 0.1
+    },
+    "non_claims": [
+      "No original carrier matching, abundance, physical formation, full dynamic/metric health, microscopic band closure or novelty certificate"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-16T15:46:27.899216+00:00",
+    "runtime_seconds": 0.662032,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/closure_particle_bridge_2026_10_16/phase_interface_probe.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/phase_interface_probe.py",
+      "sha256": "7e73a5dca1013fb65526a9aecf07f5ef24e763cc16dd75ad52916b6f70bb9668",
+      "sha256_after": "7e73a5dca1013fb65526a9aecf07f5ef24e763cc16dd75ad52916b6f70bb9668"
+    }
+  ],
+  "output_directory": "sol61_push/closure_particle_bridge_2026_10_16/phase_interface_probe_run_001",
+  "declared_results": [
+    "sol61_push/closure_particle_bridge_2026_10_16/phase_interface_probe_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/phase_interface_probe_run_001/stdout.txt",
+      "sha256": "954cf2097e674763c08b0a81498458e227736a5a4d67ad4c6e48cac6188b822b",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/phase_interface_probe_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/phase_interface_probe_run_001/results.json",
+      "sha256": "5a71533a475241df2f640420cd06815013ad58d91ab5dd87f66dadba0e19e217",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

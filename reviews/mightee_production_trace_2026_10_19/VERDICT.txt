@@ -1,0 +1,62 @@
+MIGHTEE DR1 PRODUCTION PROVENANCE TRACE -- 19 OCTOBER 2026
+
+Result
+The actual DR1 execution snapshot and per-pointing PSF/model/residual/kernel products have not been recovered from the public sources examined. The public convolution routine remains a concrete code concern, but its use in these released cubes is not authenticated. This search supplies a reproducible inventory and a targeted, unsent request for the missing evidence; it does not settle the remaining flux discrepancy.
+
+1. Public image archive: complete inventory
+The SARAO S3 listing for repository/10.48479/jkc0-g916/ is explicitly non-truncated and contains 96 objects: 89 FITS image cubes and seven HTML files. The 89-cube count agrees with Appendix C of the release paper. None of the listed objects is a separately named PSF, CLEAN component model, residual, homogenization kernel, per-pointing beam table, production configuration or log. These are final mosaic products: dirty, conv/clean_conv and continuum-subtracted variants, plus the documented maser subcubes.
+The advertised IDIA page likewise links final cubes. Directory URL requests returned 404; that fact is not treated as proof that the individual advertised file links are unavailable. No intermediate-product links were identified on that page.
+Four locally available r1p0 final cubes were inspected through Astropy HDU metadata: each has a primary image and a BEAMS extension containing BMAJ/BMIN/BPA/CHAN/POL, with no hidden model or residual image extension and no production-version cards in the primary header. This HDU result applies to those four files, not every remote file by assumption.
+
+2. Public source repository: both branches and full listed histories
+IanHeywood/mightee-hi exposes main and modular branches, zero tags, zero published releases and zero forks in the API responses inspected.
+Main: 36ddedd55dcce78b2c0d534e8b14e0324bbef681, January 2025; 57 commits returned in the complete listed main history.
+Modular: a584fa87962b1e5e26f3c8ffe2229e3871916ce8, July 2025; 72 commits returned in its listed history.
+The clean/convolve_channels.py file is byte-identical between these branches:
+SHA256 bd466602bb42e9e5848e0c73d6261c243800c9ae60ef5a4bc8407461244ed5fc.
+It constructs target_beam_image but passes fitted_beam_image to the model-convolution call, then writes target beam axes to the output. Its file history dates to August 2023, and it has a hard-coded 0.7 beam factor. The release paper describes that heuristic for robust0.5 and explicitly distinguishes the tapered robust1.0 data. No public run manifest or FITS production identifier binds either branch to the September2024 released r1p0 processing. Absence of a tag does not show the script was unused; equally, existence of a public script does not show it was used unchanged.
+The collaboration repository idia-astro/gps-mightee and its seven public branches were also inspected. Its contents are mainly early-science analysis/tutorial notebooks, diagrams and helpers. No DR1 per-pointing imaging products or authenticated production snapshot were located there. Public repository search and data/software DOI searches identified no separate matching DR1 intermediate-product/code deposit.
+
+3. Public container: actual metadata recovered, no execution
+The oxkat README advertises an Oxford ownCloud download for oxkat-0.41.sif. The share resolves to a 1,619,615,744-byte image. Only its first 262,144 bytes were fetched using a verified HTTP206 range; the full image was not downloaded and no code inside it was run.
+The prefix contains a SIF definition and JSON metadata. The image metadata records an amd64 Debian bullseye build dated Thursday16June2022, with Singularity3.7.0. The recovered build recipe includes an unversioned 'pip3 install pypher'; no custom PyPHER patch appears in the inspected recipe. This does not determine the exact installed package version or exclude later file changes. Other recipe packages include a WSClean v3.1 checkout.
+The public HI README/configuration instead references oxkat-0.42.sif. Thus the public0.41 artifact is useful dependency evidence, not an authenticated DR1 production container. Neither a matching production digest nor a historical PyPHER installation used by the release has been identified.
+The recipe and build metadata are saved as public_container_definition.txt, public_container_metadata.json and container_inspection.json.
+
+4. Registry and local-cache checks
+The DataCite search covered 191 distinct records across both pages, matching the declared total. The relevant HI DOI resolves to the inspected SARAO image release. Other MIGHTEE-labelled datasets/software deposits found are continuum, polarization, catalogues, radio morphology or downstream analyses; none supplies the requested DR1 intermediates. A broad Zenodo API query returned400 and is recorded as such; the successful DataCite search is not presented as proof that every possible unindexed deposit was excluded.
+The sibling local research cache contains the four r1p0 final cubes and earlier small r0p0/r0p5 probes. No additional MIGHTEE-labelled production workspace or intermediate-product directory was found in that root-level check. No private project workspace was accessed.
+
+What this changes scientifically
+It strengthens the provenance warning: the same suspect public convolution routine persists in two branches, but no authenticated production execution or per-pointing products currently permits us to calculate its actual impact on these galaxies. The previous empirical result remains: final image-domain subtraction explains about15% of the summed ALFALFA shortfall in the seven selected matches; central dirty-to-clean_conv brightness is about96%, and those sightline ratios are not total flux corrections. The rest is still unassigned. No new flux correction or normalization factor is inferred from this search.
+Final mosaics and their target BEAMS table do not retain the per-pointing CLEAN/residual decomposition, input PSFs, homogenization-kernel gain or mosaic weights. Those quantities cannot be uniquely reconstructed merely by relabelling or decomposing the final image. Raw archived visibilities provide a route to a new reduction, but are not the missing historical intermediate products.
+
+Prepared next step -- external communication not sent
+PRODUCT_REQUEST.txt is a reviewable request addressed to the reduction contact listed in the FITS headers, Ian Heywood. requested_targets.csv supplies seven exact sky positions, catalogue and nearest native-channel frequencies, explicitly zero-based global/local indices, subcube names and native target beams.
+The requested minimum is: production scripts/config/patches and execution commands; container digest and actual PyPHER implementation; contributing-pointing PSFs, CLEAN models, residuals and kernels for a small representative channel set; fitted input and target beams, primary-beam corrections and mosaic weights; and the exact image-continuum protection masks/configuration. It offers compact normalization/flux-budget tables instead of large images where possible, with three priority targets spanning different behavior.
+Sending this request requires the user's explicit authorization because it sends an external message on the user's behalf. An approval question has been presented. No email, issue, comment or message has been sent, and no response from the team is available.
+
+Files and reproducibility
+release_inventory.csv: all96 listed archive objects with sizes, ETags, dates and URLs
+findings.json: structured public-search outcome and bounded coverage
+source_hashes.json: SHA256 inventory of cached evidence
+inventory_public_evidence.py: rebuild counts and structured findings from cached primary records
+extract_container_metadata.py: reproduce text-only SIF-prefix extraction
+container_inspection.json: source-prefix hash and extraction limits
+PRODUCT_REQUEST.txt / requested_targets.csv: unsent product request and exact targets
+Public responses and downloaded source files are preserved under _external_data/mightee_production_trace_2026_10_19/ with per-batch discovery manifests.
+
+Commands
+python3 reviews/mightee_production_trace_2026_10_19/extract_container_metadata.py
+python3 reviews/mightee_production_trace_2026_10_19/inventory_public_evidence.py
+
+Primary links
+https://archive-gw-1.kat.ac.za/public/repository/10.48479/jkc0-g916/index.html
+https://archive-gw-1.kat.ac.za/public/?prefix=repository/10.48479/jkc0-g916/
+https://gateway.idia.ac.za/pages/mightee-hi-deep-spectral-line-observations-of-the-cosmos-field/
+https://github.com/IanHeywood/mightee-hi
+https://github.com/IanHeywood/mightee-hi/tree/modular
+https://github.com/IanHeywood/oxkat#containers
+https://entangled.physics.ox.ac.uk/index.php/s/jmHRBQyyB6Zm2fj
+https://github.com/idia-astro/gps-mightee
+https://arxiv.org/html/2409.17713v1

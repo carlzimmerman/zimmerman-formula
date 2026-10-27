@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "DYNAMICAL-CLOCK-CONES-2026-10-17",
+  "repository": {
+    "commit": "ac7002034a34eabc2d7a7b1de126ab822707fe86",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/closure_particle_bridge_2026_10_16/dynamical_clock_cones.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/dynamical_clock_cones_run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact dynamical clock/response quadratic mixing and common-cone determinants, finite 60-digit two-mode speed roots",
+    "coefficient_domain": "Exact SymPy and mpmath60digits",
+    "conventions": "M10 charged phase; gamma=Z0=1; physicalclocku=-gradtheta/sqrt(-gradtheta²); staticspacelikegradienty; adiabaticvsconditionalcanonicalprincipal",
+    "inputs": [
+      "sol61_push/closure_particle_bridge_2026_10_16/dynamical_clock_cones.py",
+      "sol61_push/closure_particle_bridge_2026_10_16/mediator_phase_matching_run_002/results.json"
+    ],
+    "bounds": {
+      "epsilon": [
+        1,
+        1e-06
+      ],
+      "gradient_y": [
+        0.001,
+        0.1,
+        1,
+        10,
+        100
+      ],
+      "clock_models": [
+        "adiabatic",
+        "canonical_principal"
+      ],
+      "mpmath_digits": 60,
+      "CPU_seconds": 30
+    },
+    "non_claims": [
+      "No matched UV/full metric/lensing action, allfrequencycausality, nonlinearformationorvacuumselection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-17T17:40:16.113757+00:00",
+    "runtime_seconds": 0.28776,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/closure_particle_bridge_2026_10_16/dynamical_clock_cones.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/mediator_phase_matching_run_002/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/dynamical_clock_cones.py",
+      "sha256": "db98509ee4ebe68cf1313feee6bcc630a708f8277952e33cf607b6a12557a912",
+      "sha256_after": "db98509ee4ebe68cf1313feee6bcc630a708f8277952e33cf607b6a12557a912"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/mediator_phase_matching_run_002/results.json",
+      "sha256": "e2df12078387b810f130932499ea26936df8a65cce75f23bfa9fcbb84f79ad36",
+      "sha256_after": "e2df12078387b810f130932499ea26936df8a65cce75f23bfa9fcbb84f79ad36"
+    }
+  ],
+  "output_directory": "sol61_push/closure_particle_bridge_2026_10_16/dynamical_clock_cones_run_001",
+  "declared_results": [
+    "sol61_push/closure_particle_bridge_2026_10_16/dynamical_clock_cones_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/dynamical_clock_cones_run_001/stdout.txt",
+      "sha256": "423e1b88d0b7d08f95946950ff53073e0c0ca565a3e27e10bac4de853fbf8bd7",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/dynamical_clock_cones_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/dynamical_clock_cones_run_001/results.json",
+      "sha256": "423e1b88d0b7d08f95946950ff53073e0c0ca565a3e27e10bac4de853fbf8bd7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

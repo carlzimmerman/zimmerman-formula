@@ -1,0 +1,88 @@
+CE-FM-075 — mixed-field obstruction to the single-invariant vector repair
+2026-10-17. Original theory OPEN. Self-review, no external certification.
+Base CE-FM-074; ARGON10 source3839aa9b0, live HEAD at start107b2051b.
+
+Result
+A positive Maxwell term does not make the proposed L(F) attachment hyperbolic
+with the matter metric on every background. An explicit parallel electric and
+magnetic field has an imaginary-frequency transverse mode. This is a local
+classical obstruction for unrestricted backgrounds of this single-invariant
+action; it does not exclude a dynamical medium, a restricted phase, or L(F,G).
+No new empirical claim or external theorem is used below.
+
+Derivation
+Use F=(|E|^2-|B|^2)/2, A=L_F, C=L_FF, D=A E, H=A B. Set background E and B
+parallel to z and wave vector k along x. Faraday gives perturbations
+ delta B_y=-k e_z/omega, delta B_z=k e_y/omega,
+ delta F=E e_z-B k e_y/omega.
+Multiplying the two transverse Ampere equations by omega yields the matrix
+ [A omega^2-beta k^2,       -C E B k omega]
+ [-C E B k omega,      alpha omega^2-A k^2],
+where alpha=A+C E^2 and beta=A-C B^2.
+Its determinant factors exactly as
+ A(omega^2-k^2)(alpha omega^2-beta k^2).
+The ordinary mode is luminal; the other has omega^2/k^2=beta/alpha.
+This independently derives both the pure electric result A/(A+C E^2)
+and the missing mixed-field restriction beta>0 (when alpha>0).
+
+Exact counterexample for the proposed repair
+In a=1 units take L_F=epsilon+sqrt(2F)/(1+sqrt(2F)), on its F>0 branch.
+At F=1/2, epsilon=1/10, A=3/5 and C=1/4. Choose E^2=5, B^2=4;
+F remains 1/2 but alpha=37/20, beta=-2/5, so
+ omega_extra^2/k^2=-8/37.
+The negative value is not a small rounding or threshold ambiguity. A Fourier
+perturbation grows with rate sqrt(8/37)|k| in the linearized equations.
+The unbounded high-k growth excludes ordinary well-posed evolution on the
+matter time slices for this unrestricted effective action. An added cutoff
+or higher-derivative term would change the model and must be analyzed.
+
+No common hyperbolicity covector for this example
+The extraordinary quadratic form is proportional to
+ -alpha t_cov^2+beta(p_x^2+p_y^2)+alpha z_cov^2.
+When alpha>0,beta<0 its unique-sign direction is z: a hyperbolicity covector
+requires z_cov^2>t_cov^2+(-beta/alpha)(p_x^2+p_y^2). Matter metric time instead
+requires t_cov^2>z_cov^2+p_x^2+p_y^2. These inequalities contradict each other,
+including the zero transverse component case. Merely checking Gtt<0 without
+tracking the signature would miss this obstruction.
+
+Structural scope and surviving design constraint
+At any fixed F>0 with finite A>0,C>0, the family B^2=t, E^2=t+2F keeps A,C
+fixed but has beta=A-Ct<0 for t>A/C. Thus every finite positive Maxwell
+coefficient in this G-independent repair leaves some such background.
+In the parallel-field frame, a necessary allowed-domain condition is
+ B^2<A/C. In terms of G=E dot B, it is
+ G^2<(A/C)^2+2F A/C (for F>0,A>0,C>0).
+The explicit example has G^2=20 vs allowed boundary204/25=8.16.
+Pure Maxwell C=0 restores the common cone exactly, providing a mutation
+control, but removes the specified nonlinear electric response.
+This is not a universal no-go for nonlinear electrodynamics or cold energy.
+A full L(F,G), extra fields/medium or an invariantly enforced field domain
+can change the determinant and must be checked with the same static law.
+The earlier CE-FM-074 vacuum/energy-tail analysis remains separate and valid.
+
+Execution and failures preserved
+check_vector_mixed_background_v2.py, vector_mixed_background_contract_v2.json,
+run_075_v2/results.json: 17 exact symbolic/rational checks pass; manifest valid.
+Runner wall cap30s, output100000bytes, one conventional library thread; tiny
+symbolic problem, no simulation or arrays. A requested 768MiB address-space
+cap failed in preexec on this host (run_075, launch-failed); no mathematical
+result from it. Retry without it (run_075_retry) exposed a row-normalization
+bug: the second Ampere row had not been multiplied by omega, so its determinant
+was the claimed polynomial divided by omega. v2 multiplies BOTH rows; original
+script and both failure manifests remain untouched and hash-reproducible.
+/usr/bin/time -l also could not read restricted sysctl; no reliable RSS claim.
+The passing run has no enforced memory cap; its finite symbolic workload was
+kept small, below the shared-run budget by design. No live run duplicated.
+
+Source monitoring and next step
+CFG821 has now committed its result atac7002034: its declared dwarf proxy
+upper bound~22pc conflicts with prior globular~24pc lower bound, with a poor
+unscreened absolute fit. This is SOURCE-REPORTED and queued for a separate
+same-template audit; it is not adopted as a physical no-go or a proof of cold
+mass. Frozen criteria/publications and all Claude experiments were untouched.
+Next executable vector step: derive the principal matrix for a specified
+L(F,G) or medium action and determine whether its mixed derivatives remove
+this exact counterexample while preserving the electric response, vacuum
+kinetic term and finite exterior. A restricted-domain route needs dynamical
+preservation of the domain, not just exclusion by hand. Formation, threshold
+matching, attraction/lensing, normalization and native cosmology remain open.

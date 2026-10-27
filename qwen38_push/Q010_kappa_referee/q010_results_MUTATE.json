@@ -1,0 +1,265 @@
+{
+ "lane": "Q010_kappa_referee",
+ "frozen": "0eb0b4d078 (pre-run)",
+ "mode": "MUTATE",
+ "verdict": "UPHELD-QUALIFIED",
+ "gates": {
+  "J1": true,
+  "J2": true,
+  "J3": true,
+  "J4": true,
+  "J5": true,
+  "J5pre": true,
+  "J7": true
+ },
+ "mutations": {
+  "M1": true,
+  "M2": true,
+  "M3": true
+ },
+ "J1": {
+  "sigma65": 119.20795015232943,
+  "sigma11": 132.76294604178352,
+  "kappa_dyn": "1/2"
+ },
+ "J3_battery": {
+  "germ_ratio": [
+   4.0004060857403365,
+   4.0004060857403365
+  ],
+  "Z": [
+   5.7891038731598154,
+   5.789103873159816
+  ],
+  "cH0_a0": [
+   6.994651100718285,
+   6.994651100718285
+  ],
+  "cH0_a0_pred": [
+   6.994296074241326,
+   6.994651100718285
+  ],
+  "Z_vs_register": [
+   5.7891038731598154,
+   5.788810036466141
+  ]
+ },
+ "J5": {
+  "sigma_max_n1": 213.7527438927844,
+  "sigma_max_n2": 106.8763719463922
+ },
+ "audit": [
+  {
+   "link": "rung 5 = equilibrium identification (halo=phantom, coeff 1)",
+   "cite": "deepseek_push/THEORY.md L64",
+   "status": "POSTULATED-CARRIED"
+  },
+  {
+   "link": "rung 4 status pre-GF2 ('honest-postulated')",
+   "cite": "deepseek_push/THEORY.md L87",
+   "status": "POSTULATED->DERIVED-STATIC (GF2/Q001/Q007)"
+  },
+  {
+   "link": "triad identification kappa=sigma^2/v^2=c_s^2 ('fitted')",
+   "cite": "HORIZON-BTFR L58",
+   "status": "IDENTIFICATION-CARRIED"
+  },
+  {
+   "link": "G002 chassis: kappa=1/n from deep-slope reciprocal",
+   "cite": "G002 out L55/L100",
+   "status": "DERIVED-IN-CHASSIS (given one-function family)"
+  },
+  {
+   "link": "GF1 H2: tie empirical, one integer input",
+   "cite": "GF1 out L64",
+   "status": "EMPIRICAL-TIE"
+  },
+  {
+   "link": "GF2 border 3: vacuum coupling out of scope",
+   "cite": "GF2 README L60-61",
+   "status": "OPEN-DOOR (declared)"
+  },
+  {
+   "link": "Q007 Lean: sigma^2=v_flat^2/2 amplitude identity",
+   "cite": "lean/Q007_triad_half.lean",
+   "status": "LEAN-CERTIFIED-TRACK (dynamical face)"
+  },
+  {
+   "link": "Q001 Lean: sigma_Z^2 = c_s^2 constitutive",
+   "cite": "qwen38_push/README.md Q001",
+   "status": "LEAN-CERTIFIED-TRACK (c_s leg of triad)"
+  },
+  {
+   "link": "Q007 py-lane traceback (assert V1) \u2014 lane-state fact",
+   "cite": "Q007_virial_half.out L5",
+   "status": "RECORDED-NOT-REPAIRED (sibling hygiene)"
+  }
+ ],
+ "ledger": [
+  {
+   "sector": "COLD ENERGY",
+   "prop": "collisionless rest-mass medium, displacement P, dt P = -j, div P = rho-rhobar",
+   "status": "POSTULATED",
+   "evidence": "S3 (canonical L26, CFG723)"
+  },
+  {
+   "sector": "COLD ENERGY",
+   "prop": "action S2 (tether W_rem, stiffness gamma=KL*^2/2)",
+   "status": "POSTULATED",
+   "evidence": "S2 (canonical L18-19)"
+  },
+  {
+   "sector": "COLD ENERGY",
+   "prop": "rest state = the law gbar = g^2/(g+a0)",
+   "status": "DERIVED + LEAN",
+   "evidence": "AG4 (f111b2d8d), T1-T3"
+  },
+  {
+   "sector": "COLD ENERGY",
+   "prop": "tether capacity u < a0 (Sigma_max = a0/(pi G) = 213.7 Msun/pc2)",
+   "status": "DERIVED + LEAN",
+   "evidence": "AG4 T5 + Q010 J5"
+  },
+  {
+   "sector": "COLD ENERGY",
+   "prop": "uniqueness of rest state (per radius, ansatz)",
+   "status": "DERIVED + LEAN",
+   "evidence": "AG4 T4"
+  },
+  {
+   "sector": "COLD ENERGY",
+   "prop": "cored settled halo M_ph/Mb = (sqrt(1+4x^2)-1)/2",
+   "status": "DERIVED + LEAN",
+   "evidence": "ARGON02 + AG4 T8"
+  },
+  {
+   "sector": "COLD ENERGY",
+   "prop": "A/r^2 self-source: gamma=2 unique; sigma^2 = C/2",
+   "status": "DERIVED (this lane J1/J2)",
+   "evidence": "GF2 + Q001/Q007 Lean + Q010"
+  },
+  {
+   "sector": "COLD ENERGY",
+   "prop": "supply M_c = 5.364 M_b; edge 5.843 r_M",
+   "status": "MEASURED (CFG511) + derived profile",
+   "evidence": "ARGON02 P1/P3"
+  },
+  {
+   "sector": "COLD ENERGY",
+   "prop": "settle/attractor (deficits fill, surpluses expel)",
+   "status": "NUMERIC/MEASURED",
+   "evidence": "CFG747/748/776"
+  },
+  {
+   "sector": "COLD ENERGY",
+   "prop": "native mass 2.24 meV; sub-mm line 0.55 mm",
+   "status": "DERIVED from constants",
+   "evidence": "ARGON03"
+  },
+  {
+   "sector": "COLD ENERGY",
+   "prop": "aether-like; massive-particle reading excluded (26x)",
+   "status": "DERIVED (kill)",
+   "evidence": "khronon BSK1/BSK2"
+  },
+  {
+   "sector": "COLD ENERGY",
+   "prop": "second (untethered) population on unbinding",
+   "status": "POSTULATED (S4, single-field tension)",
+   "evidence": "S4 canonical L32-38"
+  },
+  {
+   "sector": "COLD ENERGY",
+   "prop": "Omega_c/Omega_b = 5.364",
+   "status": "MEASURED, not derived",
+   "evidence": "S3 canonical L27; open item \u00a73"
+  },
+  {
+   "sector": "COLD ENERGY",
+   "prop": "L* in [5.75pc, >~1kpc]",
+   "status": "BOUNDED, not derived",
+   "evidence": "S2 canonical L19; open item \u00a73"
+  },
+  {
+   "sector": "DARK ENERGY",
+   "prop": "rho_DE enters local dynamics only via a0 (C0-invisible)",
+   "status": "DERIVED (theorem)",
+   "evidence": "ARGON01 N1"
+  },
+  {
+   "sector": "DARK ENERGY",
+   "prop": "a0 tracks COSMIC rho_DE (slope -0.010+/-0.015 vs +0.5 local)",
+   "status": "MEASURED",
+   "evidence": "S1 canonical L13-14"
+  },
+  {
+   "sector": "DARK ENERGY",
+   "prop": "tie rho_DE c^2 = 4 a0^2/G at 0.06%",
+   "status": "EMPIRICAL-TIE",
+   "evidence": "GF1 C1a/H2; registers"
+  },
+  {
+   "sector": "DARK ENERGY",
+   "prop": "zero mode dead: shift moves DE 1:1, |c|<0.02; kappa/a0/RAR invariant",
+   "status": "DERIVED (algebra) + MEASURED pin",
+   "evidence": "G002 V16 + Q010 J5b"
+  },
+  {
+   "sector": "DARK ENERGY",
+   "prop": "w = -1",
+   "status": "DERIVED-IN-CHASSIS (G002 one-function), not from S2",
+   "evidence": "G002 V-line; ledger caveat"
+  },
+  {
+   "sector": "DARK ENERGY",
+   "prop": "a0(z) flat vs DE-tracking",
+   "status": "SEALED TEST (ALMA 2026-11-06/28)",
+   "evidence": "canonical \u00a72"
+  },
+  {
+   "sector": "DARK ENERGY",
+   "prop": "S5: BH-sourced DE branch (a0(z~2)/a0(0)=0.85)",
+   "status": "OPTIONAL BRANCH, FRB-bounded",
+   "evidence": "S5 canonical L40-43"
+  },
+  {
+   "sector": "BRIDGE",
+   "prop": "kappa_dyn = sigma^2/v_flat^2 = 1/2",
+   "status": "DERIVED (3 routes; 2 Lean)",
+   "evidence": "GF2 + Q001 + Q007 + Q010 J1"
+  },
+  {
+   "sector": "BRIDGE",
+   "prop": "kappa_germ = a0/s = 1/n (web; underdetermined by ONE integer)",
+   "status": "DERIVED (exact algebra)",
+   "evidence": "GF1 R1 + Q010 J3"
+  },
+  {
+   "sector": "BRIDGE",
+   "prop": "junction kappa_dyn = kappa_germ (triad)",
+   "status": "IDENTIFICATION-CARRIED via rung 5",
+   "evidence": "THEORY.md L64 + HORIZON-BTFR L58 + Q010 J4"
+  },
+  {
+   "sector": "BRIDGE",
+   "prop": "n = 2 (the integer)",
+   "status": "THEORY: gamma=2 closure (J1/J2) + DATA: 2.000102+/-0.0172 (3 channels)",
+   "evidence": "GF2/GF1/G002 + lockstep falsifier"
+  },
+  {
+   "sector": "BRIDGE",
+   "prop": "transport gamma=2 <=> n=2 shape",
+   "status": "DERIVED conditional on rung 5 (exponent only, not value)",
+   "evidence": "GF1 R3b"
+  }
+ ],
+ "lean_prechecks": {
+  "L3 laplacian": true,
+  "L4 hydrostatic forcing": true,
+  "L5 two-point": true,
+  "L6 germ": true,
+  "L7 capacity cleared": true,
+  "L9 kappa=1/gamma": true
+ },
+ "gate_pass": true
+}

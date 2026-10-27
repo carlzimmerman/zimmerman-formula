@@ -1,0 +1,138 @@
+Independent block-memory and spatial-particle review, 13 October 2026
+
+Primary verdict: conditional on the named finite Hamiltonian and particle-kinetic
+inputs. The block algebra is correct; the completed-event stress identity is
+proved by elementary algebra. The existing executed tests certify their stated
+finite fixtures, not a universal irreversible field-to-kinetic reduction.
+
+1. Exact block derivation
+Let H=[[A,B],[B*,C]] be a finite self-adjoint Hamiltonian. With i u'=Au+Bv
+and i v'=B*u+Cv, variation of constants gives
+v(t)=exp(-iCt)v(0)-i integral_0^t exp[-iC(t-s)]B*u(s)ds.
+Hence i u'=Au+B exp(-iCt)v(0)-i integral_0^t K(t-s)u(s)ds,
+K(t)=B exp(-iCt)B*. This is a causal temporal memory equation including
+backreaction and the initial eliminated-sector amplitude. It is not a derived
+local damping law. Retarded temporal ordering does not prove relativistic
+spatial microcausality of an NR Hamiltonian.
+
+The projected resolvent is [z-A-B(z-C)^(-1)B*]^(-1), where z-C and the
+Schur complement are invertible. At a real eigenvalue of C this particular
+elimination fails, even when the full z-H is invertible. For the root's
+two-level diagnostic [[E0,h],[h,E0]], h>0, the projected full resolvent is
+(z-E0)/[(z-E0)^2-h^2], zero at the bare eliminated pole E0; the full inverse
+exists there. The true eigenvalues are E0+-h. No infinite physical rate follows
+from the isolated self-energy pole. The explicit solution has norm one,
+energy E0 and recurrent source probability. This is a diagnostic, not an
+exclusion of continuum decay.
+
+Using the inner product conjugate-linear in its first argument,
+d||u||^2/dt=2 Im<u,Bv>, d||v||^2/dt=-2 Im<u,Bv>.
+The conserved energy includes 2 Re<u,Bv> as well as the two diagonal forms.
+Projected source/daughter populations or free energies alone do not account
+for all coherence and interaction energy. For Im(z)=eta>0,
+Im Sigma(z)=-eta B[(Re(z)-C)^2+eta^2]^(-1)B* is nonpositive.
+Here eta is a resolvent regulator, not a derived physical width.
+
+The root's checks.py actually checks a rational 3x3 fixture, plus the analytic
+two-level solution and semantic mutations. Its 18 passed assertions agree with
+the raw formulas. The general block statement follows from the reconstruction
+above, rather than extrapolating these fixtures. No actual Q3 matrix, quantum
+bath, scattering asymptotic or local collision kernel is tested in that suite.
+
+2. Actual Q3 interpretation and regulator obligations
+At fixed total charge three, the original psi/b cubic vertex connects the
+one-b/one-psi sector to three-psi states. An initial b_K psi_p can decay into
+the unordered triple {p,q1,q2}, q1+q2=K. Recombining q1,q2 returns the same
+source and daughter: spectator decay/recombination. Recombining p with a new
+daughter leaves the other new daughter and a different source momentum:
+momentum-changing mixed elastic exchange. Distinct returned b+psi occupation,
+not merely three-psi population, is the finite witness of that process.
+Bosonic symmetrization forbids tagging a physically unique spectator particle.
+Off-diagonal Schur terms encode these coherent returns, including quartic
+mixing through C. One full Hamiltonian counts these histories once. Adding an
+independent decay rate and resonant elastic pole to that same evolution would
+need a justified subtraction/kinetic matching prescription.
+
+Completeness requires all fixed-Q3/P Fock states inside the declared species
+cutoff; exact integer rather than modular momentum conservation; ladder
+normalizations; both pair orderings; and every momentum-conserving quartic,
+including pair sums outside the retained source grid. For those outside sums
+the b map is zero, but the psi-pair map and quartic square still exist. A
+completion dropping them would change the regulated Hamiltonian. A positive
+square is a genuine A* A form between charge sectors, not commuting classical
+amplitudes. Fixed-Q/P labels alone make conservation tautological unless the
+vertex construction and complete basis are independently checked.
+
+A finite pure-point spectrum yields coherent oscillatory memory and returns.
+A physical Markov limit additionally needs continuum spectral density,
+initial-state/correlation assumptions, a suitable correlation time and order
+of weak-coupling/large-volume/time limits. Increasing the UV cutoff at fixed
+momentum spacing does not itself densify that spectrum. NR coldness and the
+conditional Gamma/delta bound do not control every detuning: produced daughters
+can lie on the resonant shell. No constant width is inserted into this review.
+
+3. Completed-event stress and current 3D evidence
+For positive daughter energies E1,E2, velocities v1,v2, and a completed event
+with source E=E1+E2, P=E1 v1+E2 v2, direct expansion gives
+Delta T=(E1 E2/E)(v1-v2)(v1-v2)^T.
+Thus every tested forward completed-particle event has PSD spatial kinetic
+stress increment; the inverse has the negative increment. This is rank one
+when velocities differ. It is not the coherent field interaction stress,
+an isotropic pressure law, or a sign theorem for a mixture of forward/inverse
+events. The boosted trace formula in stress_checks.py follows from
+tr(T)=E-m^2/E for each on-shell particle. Its rational algebra and three-axis
+on-shell fixtures agree with the stated 21 checks.
+
+spatial_checks_portable.py really implements seven live populations with
+three-dimensional periodic upwind streaming at v=p/E. For each pair channel
+its stoichiometry has sums q_i C_i=E_i C_i=p_i C_i=0. Therefore its conditional
+continuum model has local particle charge, energy and momentum balances, with
+energy flux sum p_i n_i and momentum flux sum p_i p_i^T n_i/E_i. Periodic
+semidiscrete sums cancel streaming exactly. The five executed cases supply
+actual 3D particle-transport evidence; 'no 3D transport supplied' is now stale.
+
+However equal occupation-cell weights, three equal COM angular weights,
+incoherent Bose-Markov reactions, weak/vacuum Gamma and reciprocal inverse
+normalization are supplied closure premises. They are not derived from the
+full field action in this script. Physical phase-space measures, continuum
+angular convergence, interaction stress during conversion and metric gravity
+remain separate obligations. The inverse case correctly reverses the stress
+change; total rest mass is not conserved, with Delta K=-delta Delta N_source.
+The off case distinguishes streaming from conversion. Sampled nonnegative
+occupations are not a general positivity theorem for DOP853, and entropy
+growth includes upwind diffusion. Two grids provide sensitivity, not proved
+continuum convergence or physical halo closure.
+
+4. Evidence and strongest safe conclusion
+No accepted build or trajectory was rerun. Actual source and stored results
+were inspected; accompanying results.json records current SHA256 pins and
+manifest input/output checks. The failed original spatial launch and successful
+portable output-prefix variant are distinct provenance dispositions. The
+portable run did not enforce the failed memory cap.
+
+The framework now supplies conditional local 3D particle streaming and an
+original-Hamiltonian route to coherent resonant conversion/mixed exchange.
+The earliest physical reduction still missing is a controlled state-dependent
+field/quantum-to-local-kinetic limit, with phase-space/interaction-energy and
+angular normalization and valid memory/coarse-graining hypotheses. This review
+uses no Lambda-CDM or standard MOND input and does not certify whole-theory
+empirical adequacy, originality, gravity or halo selection.
+
+5. Added exact Lean event-stress certificate
+Root's EventStress.lean four actual statements were independently inspected.
+The projection identity assumes nonzero E1,E2,E1+E2; positivity and strictness
+require positive E1,E2, with strictness only in a direction where a/E1 differs
+from b/E2. The final finite-component theorem applies the same identity to
+a=sum z_i p1_i and b=sum z_i p2_i, expanding the source sum exactly. It covers
+every spatial projection, hence PSD in dimension three, under the completed
+particle stress dictionary and source additions. Arbitrary z entries are
+Cartesian projection components, not quadrature integration weights.
+The Lean file does not separately construct a matrix tensor, prove rank,
+derive the mass-shell boost trace, a physical rate or coherent field stress.
+The inverse event negates the jump; a mixed population has no forced net sign.
+The main log has four standard mathematical axiom reports and no warning.
+Both damaged statements fail on goal False: a counter-moving unit pair has
+jump2, and an unrelated source with zero daughters has jump-1/2. These are
+semantic conservation/sign controls. Existing compile/source/manifest hashes
+were inspected without another build. The four proofs are proved as written;
+their physical use is conditional on the explicitly supplied dictionary.

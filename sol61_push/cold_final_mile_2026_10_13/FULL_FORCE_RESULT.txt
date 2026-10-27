@@ -1,0 +1,22 @@
+CE-FM-002: the full saturating shell force now has an admissible, conserving finite implementation.
+
+Primary verdict: implementation and finite assertions verified in the stated local range, conditional on double arithmetic, quadrature and the declared Newtonian carrier identification. This is not a formation result.
+
+Discrete model, G=a0=M_b=1:
+  w(u)=-u^2/2-u-log(1-u), w'(u)=u^2/(1-u), 0<=u<1.
+  E = sum_i dm v_i^2/2 - sum_i dm/r_i + integral_{r_min}^infinity r^2 w(m(<r)/r^2) dr.
+For equal-mass shells sorted by radius, enclosed masses m_i^- and m_i^+=m_i^-+dm are fixed between crossings. Moving a shell changes the adjacent mass step. Differentiating the energy gives exactly
+  a_i = -1/r_i^2 + r_i^2 [w(m_i^+/r_i^2)-w(m_i^-/r_i^2)]/dm.
+Thus the residual is the finite-shell average of R(u), not R evaluated at an arbitrarily chosen shell midpoint. The cubic limit w=u^3/3 recovers CFG747's discrete force. The fixed core/inner boundary are comparison inputs, not derived formation data.
+
+Implemented in check_full_shells.py. Uses stable series evaluation for small u, exact logarithmic expression otherwise. Field-energy integration uses q=1/r and Gauss-Legendre quadrature on each enclosed-mass interval, including the tail to infinity and the core segment. Total particle rest energy and the fixed core's constant self-energy are omitted consistently; this is a Newtonian dynamical energy, not a relativistic stress tensor.
+
+Conditions fixed before execution in full_shell_contract.json:
+N=256, M_core=.2, r_min=.5, outer nominal radius50; u_core=.8<1. Equilibrium shell locations are solved from the discrete zero-force equation, rather than set to m=r. The two short perturbation runs have dt=.004 and .002 and duration20. No inner-wall collision occurs; no saturation violation is permitted. No long simulation, production, observed-data comparison or shared experiment is involved.
+
+Evidence, run_002/results.json and manifest.json:
+12 checks pass. Maximum equilibrium force residual scaled by g_N: 4.61e-12. Largest initial shell u=.910396, so every moving shell is admissible. Direct finite-difference force/energy controls on shells0,12,100,255 have errors4.34e-7 or lower when normalized by g_N. The 128/256-node energy quadratures agree to double precision for this configuration. Short equilibrium displacement stays below1.35e-13; energy error1.78e-15. Tiny displacement run keeps wall margin>.0887; energy error9.58e-12 with fine dt, compared to3.85e-11 with coarse dt. Relative trajectory discrepancy9.69e-7. The manifest is validated against declared inputs.
+
+Analytical result: a full-force finite-shell equilibrium can be implemented with a single consistent energy and without the original saturated fixed core. The validated implementation removes a prerequisite obstacle to further formation tests. It does not remove the exact orbital alternatives or virial restriction established in CE-FM-001.
+
+Next discriminating experiment: choose physically justified, finite-energy infall/AM data and evolve this full force with a core/receiver boundary whose impulse and energy exchanges are separately recorded. Compare mass density, full stress moment and carrier energy/AM budgets, not just m/r averaged over time. Export/anchor and free/tethered phase dynamics remain open inputs.

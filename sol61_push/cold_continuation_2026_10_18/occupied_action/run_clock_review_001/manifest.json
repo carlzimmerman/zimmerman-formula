@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-CONT-CLOCK-INDEPENDENT-REVIEW",
+  "repository": {
+    "commit": "d1e56f6aae262c82c17bbdbda13d329db5de8ffb",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_continuation_2026_10_18/occupied_action/check_clock_review.py",
+    "sol61_push/cold_continuation_2026_10_18/occupied_action/run_clock_review_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent Hessian, Schur, dispersion, gap and high-frequency identities; reconstruction of four saved branch-table rows",
+    "coefficient_domain": "Exact SymPy symbolic algebra; NumPy float64 for four 2x2 eigensystems",
+    "conventions": "Canonical rho=sqrt(2I), signature -+++, X=-(dtheta)^2, epsilon=1 in table",
+    "inputs": [
+      "Canonical potential and saved M=1,10,100,1000 occupied branch rows"
+    ],
+    "bounds": {
+      "saved_branch_rows": 4,
+      "numeric_absolute_tolerance": 2e-07
+    },
+    "non_claims": [
+      "No independent rerun of 1224 spectra",
+      "No group-speed-crossing certification",
+      "No microscopic match of response action"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T02:03:38.038391+00:00",
+    "runtime_seconds": 0.564524,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_continuation_2026_10_18/occupied_action/check_clock_review.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/mediator_phase_matching_run_002/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_continuation_2026_10_18/occupied_action/check_clock_review.py",
+      "sha256": "4ef3555567e5ba8b67602e932c073548461fc4b99e8096054441c82727b6ba9c",
+      "sha256_after": "4ef3555567e5ba8b67602e932c073548461fc4b99e8096054441c82727b6ba9c"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/mediator_phase_matching_run_002/results.json",
+      "sha256": "e2df12078387b810f130932499ea26936df8a65cce75f23bfa9fcbb84f79ad36",
+      "sha256_after": "e2df12078387b810f130932499ea26936df8a65cce75f23bfa9fcbb84f79ad36"
+    }
+  ],
+  "output_directory": "sol61_push/cold_continuation_2026_10_18/occupied_action/run_clock_review_001",
+  "declared_results": [
+    "sol61_push/cold_continuation_2026_10_18/occupied_action/run_clock_review_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_continuation_2026_10_18/occupied_action/run_clock_review_001/stdout.txt",
+      "sha256": "4e31b378c20bf334aca3708a48a46d92713caf37d67a82051f0744404859dc60",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_continuation_2026_10_18/occupied_action/run_clock_review_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_continuation_2026_10_18/occupied_action/run_clock_review_001/results.json",
+      "sha256": "2f9982618f5f216d0538f44e585c7f4cea77dbf1f91bebae89931c02fe7f3485",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

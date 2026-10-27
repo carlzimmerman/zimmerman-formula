@@ -1,0 +1,119 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-N-KERNEL",
+  "repository": {
+    "commit": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/normalization_gate/kernel_regression.py",
+    "--output",
+    "fine_structure_puzzle/normalization_gate/kernel_run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact massless pole projection for 2 fixed positive definite 3x3 kinetic matrices with rank-2 massless kernel; inverse K is rejected for this partial masslessness.",
+    "coefficient_domain": "Q(z), z>0",
+    "conventions": "Euclidean transverse inverse zK+M^2; pole limit z->0+",
+    "inputs": [
+      "K=I3 or [[2,1,1],[1,3,0],[1,0,4]], M^2=diag(0,0,1), q=(1,1,1)"
+    ],
+    "bounds": {
+      "matrix_cases": 2,
+      "field_rank": 3,
+      "massless_rank": 2
+    },
+    "non_claims": [
+      "No universal statement follows from two fixtures alone",
+      "No physical alpha predicted"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T00:49:19.543805+00:00",
+    "runtime_seconds": 0.24632,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": null
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/normalization_gate/kernel_regression.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/normalization_gate/kernel_regression.py",
+      "sha256": "ec42a6d03322326df2385818692ca8789eb0c088cfa3f0236abc2e4e3099c63e",
+      "sha256_after": "ec42a6d03322326df2385818692ca8789eb0c088cfa3f0236abc2e4e3099c63e"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/normalization_gate/kernel_run_001",
+  "declared_results": [
+    "fine_structure_puzzle/normalization_gate/kernel_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/normalization_gate/kernel_run_001/stdout.txt",
+      "sha256": "a44917e5f3e9dc0c2a98aec00423bc39ca355f46cdb8518baa9ba30e88bfc5b7",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/normalization_gate/kernel_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/normalization_gate/kernel_run_001/results.json",
+      "sha256": "c7a2224712ac6c64d2a9adf7d42db3607c25197377bb2577c47414de5bd0b558",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions."
+  ]
+}

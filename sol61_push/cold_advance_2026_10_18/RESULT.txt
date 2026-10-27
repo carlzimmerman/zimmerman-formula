@@ -1,0 +1,195 @@
+Cold energy: finite stock, extended sources and a bounded causal response
+CE-FM-079 / CE-ADV-2026-10-18. 18 October 2026, America/New_York.
+Base: CE-FM-078, HEAD 3c01aa2861bf576f4c2d942251eb9d2f89cae108.
+The pre-existing working tree was dirty. Original physical theory remains OPEN.
+
+The user's request was to advance the theory. This checkpoint resolves concrete
+obligations exposed by CE-FM-078: whether screening can be applied to a counted
+cold stock, what the actual extended-source field predicts, whether the proposed
+fragments can redistribute energy, and what a causal dynamical response costs.
+Success here means new derivations or discriminating calculations with preserved
+assumptions and checks. It does not mean experimental validation or full closure.
+
+1. A finite cold stock requires a real exterior change
+
+The full rational constitutive law and the pure cubic approximation differ.
+Writing u=4piG P_rad, h=L^2/2, b=GMb(<r)/r^2 and f=GMf(<r)/r^2 gives
+
+ -h [u''+2u'/r-2u/r^2] + u^2/(a0-u) = b+f,  0<=u<a0.        (1)
+
+The cubic point-source factor from CFG691 is not an identity for this law or
+an extended Plummer source. In particular, its naive radial multiplication
+has the wrong regular-origin power and residual sign. Equality at a single
+aperture would not fix that equation-level mismatch.
+
+A precise obstruction is now proved: assume (1) holds at every sufficiently
+large radius, identify settled mass m=r^2u/G, require m'>=0 and m<=C0<infinity,
+and retain nonnegative enclosed free mass plus a positive baryonic enclosed
+mass. No solution satisfies all these hypotheses. This includes noncompact
+finite-mass tails and does not assume a limit of the density derivative.
+
+The key mass equation is
+
+ -h(m''-2m'/r) + Gm^2/(a0r^2-Gm) = Mb+Mf.
+
+Bounded m makes the nonlinear term tend to zero. Positive exterior source then
+forces [m'/r^2]'<=-c/r^2 for c>0. Nonnegative m' gives m'>=cr at large r,
+contradicting bounded mass. The apparent quadratic growth is a contradiction
+under the bounded-m assumption, not the predicted unsupplied asymptotic tail.
+
+Consequently, stiffness alone cannot provide a finite physical halo by cutting
+off the usual response. A proposed occupied phase/interface, additional stress
+or changed exterior law must show explicitly which hypothesis changes and how
+stock and boundary terms are conserved. This does not exclude such extensions.
+
+Inventory is also reciprocal: reducing a settled draw t to lambda*t requires
+the complementary stock to change from F to F+(1-lambda)t, or another counted
+category. Its gravity then feeds back into (1). A freely added reservoir and
+an unchanged original response are not a coupled field solution.
+
+Proof/source: screening/SCREENING_INVENTORY_OBSTRUCTION.txt, sections 1-6.
+Separate-agent proof audit: cones/FINITE_STOCK_REVIEW.txt; proved as written
+under its stated mathematical hypotheses. The inertial-mass identification
+and global validity of (1) are physical assumptions, not results of the audit.
+
+2. The extended stellar-source equation has been solved directly
+
+For stars with Plummer scale a, set x=r/a, R=rM/a, d=L^2/(2a^2), U=u/a0.
+The baryons-only static equation is
+
+ -d [U_xx+2U_x/x-2U/x^2] + U^2/(1-U)
+       = R^2 x/(1+x^2)^(3/2).
+
+Regular-origin and isolated large-radius asymptotics define a local benchmark.
+All accepted solutions lie on 0<U<1 and have nonnegative sampled apparent
+density (r^2u)'. The isolated exterior has u~sqrt(GMb*a0)/r and infinite
+apparent mass. It is deliberately not a finite-stock halo, formation model
+or independently justified physical boundary.
+
+Using the same CE-FM-077 stellar inputs and central-value aperture requirements,
+the no-free-mass crossing at r12=4a/3 is:
+
+ object     footing       previous multiplier proxy L   full-W BVP L
+ Fornax     canonical               294.69 pc              258.06 pc
+ Fornax     alt                     341.74 pc              292.28 pc
+ Leo I      canonical                64.01 pc               61.73 pc
+ Leo I      alt                      96.62 pc               86.00 pc
+
+These are exploratory response crossings, not observational bounds or fitted
+physical lengths. The two footings remain separate. Frozen scores are unchanged.
+At L=300 pc, the canonical apparent mass inside r12 is 1.770 Mb for Fornax,
+0.460 Mb for Leo I, 0.425 Mb for Draco and 0.696 Mb for Ursa Minor. Suppression
+therefore removes the local Fornax/Leo I overshoot while making the need for
+an actual concentrated reservoir in dense dwarfs more pronounced. Adding that
+reservoir requires resolving (1), including its free source and physical edge.
+Some small-L unconstrained profiles exceed the retained-share inventory cap;
+those rows are explicitly unsupplied field benchmarks, not admitted stock models.
+
+Verification: 421 BVP/branch/density/integral/refinement checks; independent
+sparse finite-difference Newton solutions at eight aperture points agree within
+2.51e-6 relative error. Forty additional checks include mesh refinement, three
+manufactured exact profiles and a missing-vector-angular-term negative control.
+Doubling the far boundary while tightening tolerance changes crossing masses by
+less than 4.3e-9 relative in the stated runs; this is finite numerical evidence.
+It does not prove all boundary conditions have the same response.
+
+Code/data: extended_source/solve_extended.py and verify_extended.py;
+contracts and completed v2 manifests in extended_source/run_001 and verify_001.
+
+3. Fragment scattering now has a concrete formation discriminator
+
+The ARGON10 geometric fragment estimate is not a derived transport law. Its
+sigma=4pi*Rf^2, mass=mh*Q and leading-log sensitivity convention give, at the
+selected M=100, mh=1 MeV, s=.1 point,
+
+ epsilon<=0.0004285461923,  sigma_geo/(mh Q)<=0.50411206 cm^2/g.
+
+This is conditional on the source's geometry, mass and sensitivity conventions.
+It is not a quantum-protection theorem or an observational cross-section bound.
+Free particles and fragments have different epsilon scaling; a two-fragment
+angular/inelastic collision calculation is still required.
+
+For a deliberately generous fixed comparison, put the complete C0=53.64 Mb
+cold stock in a bound Plummer halo of scale b, and retain Plummer stars with
+scale a=.75 r12. No additional halo stock is introduced. For constant
+monodisperse transport cross section per mass kappa, the pointwise collision
+hazard in the combined Newtonian potential is bounded by
+
+ Gamma <= kappa [3C0/(4pi b^3)] sqrt[8G(C0/b+Mb/a)].
+
+At b=10 r12 and a chosen 10 Gyr comparison time, necessary kappa values for
+even one maximum collision exposure are 44.53, 111.88, 338.69 and 1381.56
+cm^2/g for Draco, Ursa Minor, Canes Venatici I and Sextans respectively.
+At the selected geometric .5041 value the corresponding exposures are only
+.01132, .00451, .00149 and .000365. Even a chosen 10 cm^2/g reference stays
+below one in all four. These are upper bounds in a stationary two-Plummer
+benchmark, not collapse times or exclusions of evolving/cuspy/collective halos.
+
+The next formation calculation must supply initial compactness or another
+energy-redistribution mechanism instead of inserting the desired final density
+into a relaxation estimate. Stars are included in the primary speed bound.
+The earlier cold-only-potential run is preserved and separately labelled.
+Transport run_002 has 329 checks and a completed, validated v2 manifest.
+Details: transport/TRANSPORT_RESULT.txt and check_transport_two_plummer.py.
+
+4. A bounded causal effective response can be constructed explicitly
+
+For a varied timelike clock theta and scalar response phi on a fixed matter
+metric, define X=-dtheta.dtheta>0, u^mu=-d^mu theta/sqrt(X),
+y^2=(g^{mu nu}+u^mu u^nu)d_mu phi d_nu phi, and V=u.dphi.
+Consider the separately proposed effective action
+
+ L=P(X)+(Z0+2gamma*y)V^2/2-gamma*y^3/3,
+ P(X)=kappa*X/2+Delta*(X-X0)^2/(8X0).
+
+The background is theta=sqrt(X0)*t, phi=y*x, with gamma,Z0,X0,y>0.
+The exact necessary and sufficient local conditions for positive quadratic
+derivative energy and all-direction characteristic speeds 0<c^2<=1 are
+
+ kappa > (Z0+gamma*y)y^2/X0,
+ Delta >= gamma*(Z0+gamma*y)y^3/(Z0*X0).
+
+The radial direction is proved to be the worst direction. The new clock
+compressibility Delta can satisfy these conditions on any fixed compact
+nonzero gradient band; increasing only the response temporal coefficient
+cannot cure the canonical Delta=0 obstruction in this class.
+
+An exact example is gamma=Z0=X0=1, kappa=Delta=3, 0<y<=1. At y=1 the radial
+speed squares are (19+-sqrt(217))/36, both strictly between zero and one.
+The added operator and its first derivative vanish at X=X0, preserving the
+background clock stress/current and static cubic response on that branch.
+
+This is a constructive effective-model result with a new independent
+coefficient. It does not derive that coefficient from the actual carrier,
+extend through the degenerate cubic vacuum, control arbitrary gradients,
+prove nonlinear/global causality, or supply a gravitational metric/lensing
+solution. The separate scalar-function rational-W extension in the note is
+also conditional and does not inherit the original polarization/stock action.
+
+Proof: cones/FINITE_CLOCK_STIFFNESS.md. Separate focused proof review:
+screening/FINITE_CLOCK_REVIEW.txt. Root proof_checks/run_001 independently
+verifies thirteen exact symbolic identities with a completed v2 manifest.
+
+5. Handoff and work left open
+
+The original theory has been advanced, not completed. The routes above resolve
+restricted implications; they do not transfer evidence between changed actions.
+
+Highest-priority next step: specify one finite occupied carrier/response action
+with a reciprocal exchange and interface. Derive both field equations, counted
+stock, nonnegative component densities and boundary stress from that same
+candidate, then solve its extended-source response with a populated reservoir.
+The unbounded active full-W branch and the naive multiplier do not supply it.
+
+In parallel, match the clock compressibility to the actual host amplitudes
+before claiming frequencies above their gap, and determine a two-fragment
+transport kernel/population before running formation with independently
+constrained halo/orbit histories. Queued ARGON11 and CFG822 were not launched
+or altered; source-reported queue states are not live-process verification.
+
+These continuations remain OPEN, not exhausted. Microscopic production and
+abundance, energy receivers, stock survival, force normalization and kappa's
+origin, metric/lensing/local gravity, native cosmology and joint empirical
+validation remain required. No manuscript, frozen criterion or publication was
+changed. No other chat was messaged. Source hashes, result hashes, commands,
+software and execution status are retained with the linked evidence.

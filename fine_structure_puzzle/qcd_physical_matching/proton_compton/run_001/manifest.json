@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-006-P-COMPTON-STENCIL",
+  "repository": {
+    "commit": "5c3444b8f60820a4ea78ea1e798ce8429cf2622a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_physical_matching/proton_compton/compute_response.py",
+    "--inputs",
+    "fine_structure_puzzle/qcd_physical_matching/proton_compton/INPUTS.json",
+    "--output",
+    "fine_structure_puzzle/qcd_physical_matching/proton_compton/run_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "For Can et al. Table III middle ensemble, evaluate the native-unit trapezoidal connected proton subtraction stencil exactly; verify determinant charge traces at SU(3).",
+    "coefficient_domain": "Rational arithmetic for source decimals and charge algebra; double precision only for pi normalization check and illustrative diagonal-covariance number.",
+    "conventions": "Canonical alpha=e^2/(4 pi); Can S1 normalization; fractional e^2 response of subtraction window only; physical momenta 2 pi n/(N_L a).",
+    "inputs": [
+      "Six source table rows and aM=0.3860",
+      "N_L=48",
+      "rational quark charges 2/3,-1/3,-1/3"
+    ],
+    "bounds": {
+      "n_squared_min": 10,
+      "n_squared_max": 65,
+      "table_rows": 6,
+      "ensembles": 1
+    },
+    "non_claims": [
+      "Complete physical proton derivative",
+      "Interpolation/continuum/missing-contraction uncertainty bound",
+      "No-input QCD parameter selection",
+      "Vacuum response or alpha derivation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T10:56:39.266917+00:00",
+    "runtime_seconds": 0.044269,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 4096,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_physical_matching/proton_compton/compute_response.py",
+    "fine_structure_puzzle/qcd_physical_matching/proton_compton/INPUTS.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_physical_matching/proton_compton/compute_response.py",
+      "sha256": "8d82a3e91eb7dfdd48127f1dfb3f8759141f4644c77c9e5276e73375836e28ad",
+      "sha256_after": "8d82a3e91eb7dfdd48127f1dfb3f8759141f4644c77c9e5276e73375836e28ad"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_physical_matching/proton_compton/INPUTS.json",
+      "sha256": "6b9a73c8acb4c4420b9134112a738aeb2f84ee37ff6b45c677b75146646740fd",
+      "sha256_after": "6b9a73c8acb4c4420b9134112a738aeb2f84ee37ff6b45c677b75146646740fd"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_physical_matching/proton_compton/run_001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_physical_matching/proton_compton/run_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_physical_matching/proton_compton/run_001/stdout.txt",
+      "sha256": "4b4ddde09e0a3bc56cd87c001b0396e54eb106e54b8f949523f1d2ea721bcd0d",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_physical_matching/proton_compton/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_physical_matching/proton_compton/run_001/result.json",
+      "sha256": "53acf88466095a512f126f90b0a094c2960cdc644cbbcf8948019a7cb583c43f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

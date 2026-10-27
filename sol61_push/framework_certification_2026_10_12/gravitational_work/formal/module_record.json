@@ -1,0 +1,175 @@
+{
+  "namespace": "FrameworkGravitationalWork",
+  "source": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/GravitationalWork.lean",
+  "source_sha256": "3609e5c198b634553e2778fdcf399b3a9cbd0871b8529be7c8e3b7167603657a",
+  "main_log": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/compile.log",
+  "main_log_sha256": "b6243c2af00bb92850fc51846bd94d73cfe4b97878e38c8df070842eab30d883",
+  "theorem_count": 9,
+  "entries": [
+    {
+      "name": "FrameworkGravitationalWork.reciprocal_force",
+      "line": 15,
+      "exact_statement": "theorem reciprocal_force (γ : ℝ) (x y : E) : pairForce γ y x = -pairForce γ x y",
+      "statement_sha256": "e1f85e9fa6482db120e16eee7b028e29af56f6ece3a4ec51c70daab30519dd66",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+      "English_review": "gravitational_work/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkGravitationalWork.potential_symmetric",
+      "line": 22,
+      "exact_statement": "theorem potential_symmetric (γ : ℝ) (x y : E) : pairPotential γ y x = pairPotential γ x y",
+      "statement_sha256": "a251005153b01569458a252cbbfe114b5607eda7838dc121a54d6fd17e9a0815",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+      "English_review": "gravitational_work/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkGravitationalWork.pair_potential_derivative",
+      "line": 27,
+      "exact_statement": "theorem pair_potential_derivative (γ t : ℝ) (x y : ℝ → E) (vx vy : E)\n    (hx : HasDerivAt x vx t) (hy : HasDerivAt y vy t) (hne : x t ≠ y t) :\n    HasDerivAt (fun s => pairPotential γ (x s) (y s))\n      (-inner ℝ (pairForce γ (x t) (y t)) (vx - vy)) t",
+      "statement_sha256": "619b8a52d279bd9a228e57c1a9d6b1c2e4fc79f3314494db25965d3e54b371bb",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+      "English_review": "gravitational_work/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkGravitationalWork.force_directional_action",
+      "line": 52,
+      "exact_statement": "theorem force_directional_action (γ : ℝ) (x y vx vy : E) (hne : x ≠ y) :\n    HasDerivAt (fun s : ℝ => -pairPotential γ (x + s • vx) (y + s • vy))\n      (inner ℝ (pairForce γ x y) vx + inner ℝ (pairForce γ y x) vy) 0",
+      "statement_sha256": "48c8129b971ec189ef049afa157fd5a4de8a29ea1ba66eb0f3808ad0d3724990",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+      "English_review": "gravitational_work/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkGravitationalWork.kinetic_force_power",
+      "line": 66,
+      "exact_statement": "theorem kinetic_force_power (m t : ℝ) (v : ℝ → E) (acc force : E)\n    (hv : HasDerivAt v acc t) (hNewton : m • acc = force) :\n    HasDerivAt (fun s => kinetic m (v s)) (inner ℝ force (v t)) t",
+      "statement_sha256": "389fc1bad43c351899c3108a1e3b91a84c751fddda6928b16255e3ebe281e7ce",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+      "English_review": "gravitational_work/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkGravitationalWork.live_pair_energy",
+      "line": 75,
+      "exact_statement": "theorem live_pair_energy (γ mc mb t : ℝ) (x y vx vy : ℝ → E) (ac ab : E)\n    (hx : HasDerivAt x (vx t) t) (hy : HasDerivAt y (vy t) t)\n    (hvc : HasDerivAt vx ac t) (hvb : HasDerivAt vy ab t) (hne : x t ≠ y t)\n    (hc : mc • ac = pairForce γ (x t) (y t))\n    (hb : mb • ab = pairForce γ (y t) (x t)) :\n    HasDerivAt (fun s => kinetic mc (vx s) + kinetic mb (vy s) + pairPotential γ (x s) (y s)) 0 t",
+      "statement_sha256": "ab338d5edba2c560ad92e180999340b602d511b7cf93b497589e0159e5e6289f",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+      "English_review": "gravitational_work/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkGravitationalWork.cold_cross_ledger",
+      "line": 89,
+      "exact_statement": "theorem cold_cross_ledger (γ mc t : ℝ) (x y vx : ℝ → E) (vy ac : E)\n    (hx : HasDerivAt x (vx t) t) (hy : HasDerivAt y vy t)\n    (hvc : HasDerivAt vx ac t) (hne : x t ≠ y t)\n    (hc : mc • ac = pairForce γ (x t) (y t)) :\n    HasDerivAt (fun s => kinetic mc (vx s) + pairPotential γ (x s) (y s))\n      (inner ℝ (pairForce γ (x t) (y t)) vy) t",
+      "statement_sha256": "a7e237e495700025602f3b6f4ab4ea4bb0a5a19d69ff685fca651de569edb94d",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+      "English_review": "gravitational_work/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkGravitationalWork.finite_cross_counted_once",
+      "line": 103,
+      "exact_statement": "theorem finite_cross_counted_once {ι κ : Type*} (cold : Finset ι) (baryon : Finset κ)\n    (γ : ι → κ → ℝ) (x : ι → E) (y : κ → E) :\n    ((∑ i ∈ cold, ∑ j ∈ baryon, pairPotential (γ i j) (x i) (y j)) +\n      (∑ j ∈ baryon, ∑ i ∈ cold, pairPotential (γ i j) (y j) (x i))) / 2 =\n        ∑ i ∈ cold, ∑ j ∈ baryon, pairPotential (γ i j) (x i) (y j)",
+      "statement_sha256": "1eacf511ea24fd67e22fa2f7017a0ff38c0bf664f1d5f4d7063a3f5127183553",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+      "English_review": "gravitational_work/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkGravitationalWork.finite_cross_derivative",
+      "line": 115,
+      "exact_statement": "theorem finite_cross_derivative {ι κ : Type*} (cold : Finset ι) (baryon : Finset κ)\n    (γ : ι → κ → ℝ) (x : ι → ℝ → E) (y : κ → ℝ → E) (vx : ι → E) (vy : κ → E)\n    (t : ℝ) (hx : ∀ i ∈ cold, HasDerivAt (x i) (vx i) t)\n    (hy : ∀ j ∈ baryon, HasDerivAt (y j) (vy j) t)\n    (hne : ∀ i ∈ cold, ∀ j ∈ baryon, x i t ≠ y j t) :\n    HasDerivAt (fun s => ∑ i ∈ cold, ∑ j ∈ baryon, pairPotential (γ i j) (x i s) (y j s))\n      (∑ i ∈ cold, ∑ j ∈ baryon, -inner ℝ (pairForce (γ i j) (x i t) (y j t)) (vx i - vy j)) t",
+      "statement_sha256": "328e3fbff4617ca60c71b864a841d9cd49d3384902db38490ee36106cf685808",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+      "English_review": "gravitational_work/formal/CORRESPONDENCE.txt"
+    }
+  ],
+  "model_status": "existing supplied Newtonian specialization; no new species/action join, no DE source, no full metric derivation",
+  "checkpoint": "FRAMEWORK-CERT-SHARED-PHASE-2026-10-13",
+  "imports": [
+    "Mathlib"
+  ],
+  "main_exit_code": 0,
+  "PINNED_INPUTS": {
+    "path": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/PINNED_INPUTS.json",
+    "sha256": "b12f15020d30551a537c29462ce5a8a6cfcb3801150083f99d2088973edf90ca"
+  },
+  "correspondence": {
+    "path": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/CORRESPONDENCE.txt",
+    "sha256": "a4249691e70752e90ce972535f4bab97de699db5a130004ddebb4efac3381185"
+  },
+  "independent_review_status": "pending read-only mathematical and physics scope audit",
+  "historical_builds": [
+    {
+      "accepted": false,
+      "source": "gravitational_work/formal/build_history/attempt_01.source.txt",
+      "log": "gravitational_work/formal/build_history/attempt_01.log",
+      "exit_code": 1
+    },
+    {
+      "accepted": false,
+      "source": "gravitational_work/formal/build_history/attempt_02.source.txt",
+      "log": "gravitational_work/formal/build_history/attempt_02.log",
+      "exit_code": 0,
+      "warning": "unused included section variable"
+    }
+  ],
+  "false_controls": [
+    {
+      "source": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/FalseDoubleCross.lean",
+      "source_sha256": "acd1494476ad299d649e6584ad68af199633a117f2f8f22039adc3008878eadc",
+      "log": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/FalseDoubleCross.log",
+      "log_sha256": "8bbdca55c436d8ffc526ca0e73521ee656e051940df599882dea418953a9c2c3",
+      "exit_code": 1,
+      "expected_failure": "final mathematical False; no import/type/syntax failure"
+    },
+    {
+      "source": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/FalseNoReaction.lean",
+      "source_sha256": "68873f42cadbe0358fe12d86d742063beb5532929e44beaf9db7ea51595bc4fa",
+      "log": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/FalseNoReaction.log",
+      "log_sha256": "945ebfb5d8bb9fbe60d63589cb97feab27bba58d8d665cf29829729df07ea144",
+      "exit_code": 1,
+      "expected_failure": "final mathematical False; no import/type/syntax failure"
+    }
+  ]
+}

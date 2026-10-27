@@ -1,0 +1,195 @@
+Focused independent implementation review: whole-core Plummer free edge v4
+19 October 2026 UTC / 18 October America/New_York.
+Reviewer lane: clock_matching. Owner lane: root/free_boundary.
+
+VERDICT: no load-bearing normalization, regular-endpoint, boundary-condition,
+stock, pressure, or tail-energy discrepancy found. The implementation and saved
+finite assertions are consistent with the specified Newtonian conserved-fluid
+comparison model. This is a read-only audit of the physical run, not a BVP
+rerun, a continuum existence certificate, or an external/human certification.
+
+Reviewed files:
+ free_boundary/solve_free_edge_v4.py
+ free_boundary/contract_v4.json
+ free_boundary/run_004/results.json and manifest.json
+ occupied_action/OCCUPIED_ACTION.md, sections 2-3
+ finite_stock_stress/RESULT.txt, sections 1-4
+ CE019/020 FINITE_EDGE_RESULT.txt and CE079 screening obstruction definitions.
+All paths above are relative to sol61_push/cold_continuation_2026_10_18,
+except the historical CE019/020 and CE079 sources named in the run manifest.
+
+1. ODE normalization and regular-singular endpoint: passed
+
+In G=a0=Mb_total=1 units, Plummer enclosed baryonic mass and acceleration are
+ Q(r)=r^3/(r^2+A^2)^(3/2), b(r)=Q/r^2=r/(r^2+A^2)^(3/2).
+With u=r v, m=r^2u=r^3v and r=E x, z=dv/dx,
+ Delta_vector u=r v_rr+4v_r,
+ -H Delta_vector u+u^2/(1-u)=b
+is exactly equivalent to
+ v_x=z,
+ z_x=E^2/H [r v^2/(1-rv)-(r^2+A^2)^(-3/2)]-4z/x.
+The nonsingular part is the implementation's fun; solve_bvp's S[1,1]=-4
+supplies the singular part. Its endpoint condition z(0)=0 is consistent with
+the explicitly listed first boundary condition and leaves v(0) free.
+There is no division by r at the numerical origin and no missing angular
+-2u/r^2 term. The regular local expansion gives
+ v=v0-r^2/(10 H A^3)+O(r^3),
+ z_x(0)=-E^2/(5 H A^3),
+confirming the factor five induced by the regular singular equation.
+
+The logarithmic edge parameter enforces E>0. The linear hydrostatic seed solves
+the R(u)=0 equation exactly and is used only for initialization; all accepted
+rows solve the nonlinear rational R. Its small-r J expansion has the correct
+coefficients through r^9. Thus the seed is not being mistaken for evidence
+that the nonlinear equation is solved.
+
+2. Free edge, density and pressure: passed at the recorded finite scope
+
+The two exterior matching conditions are
+ v(1)=S/E^3, z(1)=-3S/E^3.
+They imply m(E)=S, m'(E)=0, rho(E)=0 and
+ u(E)=S/E^2, u'(E)=-2S/E^3.
+These give C1 matching to u=S/r^2 outside. There is no reflecting wall,
+surface mass, or positive-density jump. The density reconstruction
+ rho=(3v+xz)/(4pi)=m'/(4pi r^2)
+and central limit rho(0)=3v0/(4pi) are correctly normalized.
+
+The code tests positivity at 1601 uniform x samples (excluding the zero edge
+from its strict positivity assertion), and tests monotonicity of the sampled
+mass. These are finite sampling statements, not interval bounds between nodes.
+The 81-point saved sample arrays are a downsample of that checked grid and
+are not the full collocation solution. The code also records solve_bvp RMS
+residuals; the largest over the 90 continuation profiles is 1.9942620211e-6,
+consistent with the declared 2e-6 tolerance. No full-density refinement test,
+independent discretization, or certified continuum error enclosure is present.
+
+The reduced radial energy has effective e=p=2pi H rho^2, so the free material
+surface pressure vanishes with rho. H may combine original field stiffness
+with separately added contact pressure, as in the source action. The effective
+e here is the radial density representation of that combined stiffness; it
+must not be added again on top of the same field gradient energy. Neither the
+code nor the supplied derivation double counts it. Microscopic material EOS
+identification remains conditional on the new conserved-fluid model.
+
+3. Zero-stiffness edge and vacuum chemical inequality: passed
+
+At a smooth taper the necessary inequality is
+ R(S/E^2)<=Q(E)/E^2,
+equivalently Q(E)(E^2-S)-S^2>=0. zero_edge solves precisely the equality on
+E>sqrt(S). The function is strictly increasing there because Q'>0 and Q>0,
+so the equality has a unique root for the positive Plummer source. The accepted
+E>E0 ensures a strictly inward exterior test-material drive at the edge.
+
+For every r>=E the code's force_mass is r^2 times that drive:
+ F_mass(r)=S^2/(r^2-S)-Q(r).
+Its derivative is
+ F_mass'=-2rS^2/(r^2-S)^2-Q'(r)<0.
+Thus the edge sign analytically extends to all exterior radii, not merely the
+500 points between E and 100E. Plummer's noncompact positive baryonic tail
+strengthens this inequality. The exterior is vacuum for the settled material,
+not an exterior freely varied independent polarization EL. This is exactly
+the changed admissibility premise required to escape CE079's obstruction.
+
+4. Integrated field equation and tail energy identity: passed
+
+The regular-singular equation implies
+ (r^4 v_r)'=r^3/H [R(rv)-b(r)].
+The code integrates the right side and compares it with E^3 z(1), which equals
+E^4 v_r(E). Both factors and signs are correct. The largest recorded absolute
+integrated-equation discrepancy over all 94 solves is 5.8146153137e-7, below
+the specified relative/absolute gate. This is a useful orthogonal integral
+consistency check of the computed solution, though it uses the same spline.
+
+The exact identity underlying the two quadratures is
+ r^2 u_r^2+2u^2=m_r^2/r^2-2(m^2/r^3)'.
+For a regular center and finite stock,
+ H/2 int_0^infinity [r^2u_r^2+2u^2]dr
+  =H/2 int_0^E m_r^2/r^2 dr
+  =int_0^E 4pi r^2 (2pi H rho^2)dr.
+For u=S/r^2 the exterior gradient contribution is exactly H S^2/E^3.
+The implementation includes that tail in eg. Without it, the equality would
+fail by the edge term H S^2/E^3, so its inclusion is material rather than a
+cosmetic normalization. The two independently written quadrature integrands
+agree to a largest saved absolute error 1.4311817287e-9 over the 90 continuation
+profiles, within the stated gate. This verifies the global radial identity;
+it does not create material density in the exterior or derive the microscopic
+inertia of the original independent-P action.
+
+5. Coverage and preserved failures: passed, with one clerical correction
+
+The iterator has 3 A values times 3 S values times 10 descending H values:
+90 continuation solves. Its 27 target rows are exactly the Cartesian product
+ A in {.3,1,3}, S in {.1,1,5.364}, H in {.005,.05,.5},
+with no missing or duplicate target. The four additional fine solves are
+refinements of selected target rows, not four new physical parameter cases.
+Eleven checks per solve times 94, plus four edge-refinement checks, gives
+1038 saved passing checks exactly. The count is not 1038 independent cases.
+
+All 94 stock checks pass; maximum absolute stock error is 7.4586958832e-10.
+The four relative edge differences are at most 1.1225709252e-10. This strong
+agreement concerns E at those four parameter triples only; it must not be
+reported as convergence of every profile, density derivative, stability mode,
+or all 27 target solutions.
+
+The actual continuation starts with the source-specific H=5 linear hydrostatic
+seed and descends through 5,2,1,.5,.2,.1,.05,.02,.01,.005. One stale clause in
+contract_v4.json (also copied into manifest mathematics.conventions) says
+"continuation from smaller H preserves positive BVP branch". That direction
+is incorrect; the rest of the contract and implementation specify descending
+H correctly. This is a clerical provenance inconsistency, not an equation or
+gate defect. This review records the actual executed direction rather than
+altering the historical manifest. Any later summary should say high-to-low H.
+
+The saved failure descriptions correctly distinguish initialization failures
+in v1/v2 and amplified boundary mass error in v3 from physical counterexamples.
+v4's bc_tol=1e-11 is explicit and the stock, positivity and physical-branch
+gates remain active. Solver success alone would not have established them.
+
+6. Provenance and finite-versus-universal interpretation
+
+The computation-audit v2 validator was run read-only against current inputs:
+ python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/4.0.0/skills/computation-audit/scripts/validate_manifest.py sol61_push/cold_continuation_2026_10_18/free_boundary/run_004/manifest.json --root /Users/carlzimmerman/new_physics/zimmerman-formula
+Observed: valid evidence record, run.status=completed. Mathematical
+interpretation still requires this review. No free-boundary script was rerun.
+
+The source hashes in the manifest match current bytes:
+ solve_free_edge_v4.py
+ 03e7467a395ded4811448aa7ed0d584ef87d2cbde35c27c111b01673de9e96a4
+ CE019/020 FINITE_EDGE_RESULT.txt
+ 7eaeb46c6dc05ba45895fc7ed8865e25902e49014221cb780a261130f2475626
+ CE079 SCREENING_INVENTORY_OBSTRUCTION.txt
+ 39f99b671342b8b7dc6cfe168e325cd1599fae06e14940b3bf28a1b5e72ce6ed
+ results.json
+ 0dff4253859b3987a1d035ec4f659a7f5f49cb7ad83ec93473f112c43a219685
+The reviewed current contract_v4.json hash is
+ 9f75ce041a67034fdccc6caa623da106fdcf7a66b689a3c6ce8595a2ddb9abb5.
+The contract file was not itself a declared execution_artifact; the manifest
+does preserve its mathematical contract fields, including the stale clause.
+
+The physical run records HEAD d1e56f6aae262c82c17bbdbda13d329db5de8ffb,
+dirty tree, Python3.9.6/NumPy1.26.2/SciPy1.11.4, runtime .880834 s, exit0,
+120 s wall/110 s per-process CPU caps and cooperative numerical thread cap1.
+The command is recorded exactly in manifest.command and the bounded-run
+receipt. These observations establish provenance, not theorems.
+
+Independent read-only result inspection checked the iterator sets, duplicate
+count, check-name frequencies, all saved pass flags, recorded residual/error
+maxima and hashes using Python json/pathlib/hashlib/collections. This adds no
+new dynamics run and no new population data.
+
+Supported outcome: finite smooth free-edge numerical equilibria, to the stated
+solver and sampling tolerances, for a fixed positive Plummer source in the
+new radial conserved-fluid model; algebraic normalization, boundary conditions,
+vacuum sign extension and global density/gradient energy identity pass.
+
+Not established by this script: a continuum existence/uniqueness theorem from
+the sampled profiles alone, all-profile certified density positivity, a full
+mode spectrum or nonlinear free-boundary stability, live baryon/halo exchange,
+physical stock selection or formation, original species matching, relativistic
+causality, metric/lensing or empirical success. The source material's positive
+radial Hessian and material inertia are separate analytic results with their
+own admissibility assumptions; this script does not compute or independently
+certify their spectrum. Original theory remains OPEN.
+
+Proofreading self-review: this new report only; routine corrections none,
+mathematical-token corrections none, no unresolved normalization ambiguity.

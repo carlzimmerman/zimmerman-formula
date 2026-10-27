@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "BRIDGE-CHARGE-RESOLUTION-2026-10-16",
+  "repository": {
+    "commit": "73fcc6a19903e85c205ccfd9ddd5cfebeb217a10",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/closure_particle_bridge_2026_10_16/bridge_charge_resolution.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/bridge_charge_resolution_run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Adaptive radial integral split at occupation edges independently reproduces Gauss fixed-charge bridge and identifies cubic windows",
+    "coefficient_domain": "Binary64 deterministic quadrature",
+    "conventions": "Same specified dimensionless bridge; definitions-only extraction; direct edge root location and adaptive radial integration",
+    "inputs": [
+      "sol61_push/closure_particle_bridge_2026_10_16/bridge_charge_resolution.py",
+      "sol61_push/closure_particle_bridge_2026_10_16/reciprocal_density_bridge.py",
+      "sol61_push/closure_particle_bridge_2026_10_16/reciprocal_density_bridge_run_001/results.json"
+    ],
+    "bounds": {
+      "parent_cases": 9,
+      "edge_scan_points": 257,
+      "relative_charge_comparison_tolerance": 0.003,
+      "relative_charge_balance_tolerance": 1e-07
+    },
+    "non_claims": [
+      "No cold transport or full band nonlocal/dynamical halo closure"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-16T14:18:26.274547+00:00",
+    "runtime_seconds": 0.764353,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 60,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/closure_particle_bridge_2026_10_16/bridge_charge_resolution.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/reciprocal_density_bridge.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/reciprocal_density_bridge_run_001/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/bridge_charge_resolution.py",
+      "sha256": "ee2dec8cd4d2cc04bdada6bc10ebac27395ba9fa03b5e6ecaa81f3403a7135e6",
+      "sha256_after": "ee2dec8cd4d2cc04bdada6bc10ebac27395ba9fa03b5e6ecaa81f3403a7135e6"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/reciprocal_density_bridge.py",
+      "sha256": "3d8e1683b60a84047f678c646fc877411baf1b370c42e09ea3dd06aea6dcd408",
+      "sha256_after": "3d8e1683b60a84047f678c646fc877411baf1b370c42e09ea3dd06aea6dcd408"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/reciprocal_density_bridge_run_001/results.json",
+      "sha256": "f6499d79d4df2884d7f8d6ee5b4f446c5aeeaa094bbceeedcd8760e72acea37f",
+      "sha256_after": "f6499d79d4df2884d7f8d6ee5b4f446c5aeeaa094bbceeedcd8760e72acea37f"
+    }
+  ],
+  "output_directory": "sol61_push/closure_particle_bridge_2026_10_16/bridge_charge_resolution_run_001",
+  "declared_results": [
+    "sol61_push/closure_particle_bridge_2026_10_16/bridge_charge_resolution_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/bridge_charge_resolution_run_001/stdout.txt",
+      "sha256": "e3b0f912cf3bdbf167dad51936ac001fd64a149c86205d4050b3735a7691d1e1",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/bridge_charge_resolution_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/bridge_charge_resolution_run_001/results.json",
+      "sha256": "5a4ef7a21f0e639c5edc6d40149247705c486cc732c586b34724fb9ce0bb34b5",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

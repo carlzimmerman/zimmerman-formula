@@ -1,0 +1,25 @@
+/Users/carlzimmerman/new_physics/zimmerman-formula/boundary_resolution_2026_10_25/fast_complete.py:29: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  if EE<=float(E)+1e-4*alpha*float(g@d)+1e-14:accepted=True;break
+/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/optimize/_optimize.py:404: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  warnings.warn("Values in x were outside bounds during a "
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/physical_completion_2026_10_25/vacuum.py", line 21, in <module>
+    formed=finish(m,v,dest.with_name('formed.json'),initial_iterations=320,newton_iterations=100);out['formed']=formed;out['released_energy_Eunit']=allF['energy']-formed['energy'];dest.write_text(json.dumps(out,indent=2)+'\n');print('FORMED',{k:formed.get(k) for k in ['scaled_law_error_bound_percent','scaled_density_rebound','scaled_boundary_kpc','density_KKT_max','gradient_max','free_exterior_mass','free_exterior_T_fraction','optimizer']},flush=True)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/boundary_resolution_2026_10_25/fast_complete.py", line 9, in finish
+    path=Path(path);r=solve(m,v,path.with_name(path.stem+'_initial.json'),maxiter=initial_iterations) if initial_iterations else m.report(np.r_[np.log(v[:m.n]),v[m.n:]]);initial=r.get('optimizer',{'skipped':True});n=m.n;y=np.r_[np.sqrt(r['mass']),r['v'][n:]];trace=[]
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/gradient_coupling_2026_10_24/coupled_model.py", line 34, in solve
+    op=minimize(fg,y,jac=True,method='SLSQP',bounds=[(1e-6,np.sqrt(RESERVOIR))]*n+[(0,1)]*n,constraints=cons,callback=cb,options=dict(ftol=1e-14,maxiter=maxiter));r=report(op.x);r['optimizer']=dict(success=bool(op.success),message=str(op.message),iterations=int(op.nit));Path(path).write_text(json.dumps(r,indent=2)+'\n');return r
+  File "/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/optimize/_minimize.py", line 719, in minimize
+    res = _minimize_slsqp(fun, x0, args, jac, bounds,
+  File "/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/optimize/_slsqp_py.py", line 438, in _minimize_slsqp
+    callback(np.copy(x))
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/gradient_coupling_2026_10_24/coupled_model.py", line 32, in cb
+    r=report(y);r['iterations']=count[0];Path(path).write_text(json.dumps(r,indent=2)+'\n')
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/gradient_coupling_2026_10_24/coupled_model.py", line 28, in report
+    a=unpack(y);r=m.report(np.r_[np.log(a[:n]),a[n:]]);E,g=m.direct(a);active=a[:n]>1e-7;mu=g[:n]-np.median(g[:n][active]);mu=np.where((~active)&(mu>0),0,mu);r.update(density_KKT_max=float(max(abs(mu))),mass_constraint_error=float(abs(sum(a[:n])-RESERVOIR)),cap_slack_min=float(min(m.cap(a))),ell_kpc=float(np.sqrt(m.ell2)*m.rm));return r
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/physical_completion_2026_10_25/vacuum.py", line 13, in report
+    r=super().report(v);r.update(vacuum_gradient_length_kpc=self.vacuum_length,model='Independent phase carrier with nonzero vacuum gradient, canonical two-component matter kinetic energy, constant phase-volume and mass-splitting energies');return r
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/physical_completion_2026_10_25/physical_model.py", line 23, in report
+    ss=(rad>15*self.scale)&(rad<1.2*R);rho=mass/self.vol.numpy();rr=rho[ss];outside=rad>1.2*R;r.update(scaled_density_rebound=float(max(rr/np.minimum.accumulate(rr))),free_exterior_mass=float(sum(mass[outside])),free_exterior_T_fraction=float(mass[outside]@q[outside]/sum(mass[outside])),scaled_boundary_kpc=R/self.scale)
+ValueError: max() arg is an empty sequence

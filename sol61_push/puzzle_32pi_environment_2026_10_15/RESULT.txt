@@ -1,0 +1,120 @@
+ENVIRONMENTAL BOUNDARY TEST: STRONGER OBSTRUCTION FOR THIS ACTION
+Checkpoint ENVIRONMENT32PI-001, 2026-10-15
+Base revision: 144250cd6cfb843d76c47adc85182004ddde151f
+Parent: ../puzzle_32pi_backreaction_2026_10_15/RESULT.txt
+
+Outcome
+Changing the scalar boundary values does not rescue an exactly flat circular
+speed profile for this particular static scalar-tensor action, on the radial
+branch where physical areal radius increases with Einstein areal radius.
+An exact positive combination of potential and conformal coupling removes
+the parent's assumptions phi>=v, phi>0, and vacuum outer boundary. No scalar
+monotonicity or sign of its radial derivative is required.
+This does not address extended ordinary matter in the exterior, time-dependent
+scalar fields, different potentials/couplings, or radial branches on which
+physical areal radius fails to increase. It does not select 32pi.
+
+1. Action and hypotheses retained
+F=M^2+xi phi^2, V=E+lambda phi^4/4 with M,xi,lambda,E>0.
+Ordinary test matter follows the Jordan metric g_J=A^2 g_E, A=M/sqrt(F).
+The source-free exterior contains only the static real canonical Einstein
+scalar chi and its potential U. Use
+ ds_E^2=-exp(2nu)dt^2+dr^2/N+r^2 dOmega^2, N>0, exp(nu)>0,
+ K=(dchi/dphi)^2=M^2 D/F^2, D=F+6xi^2 phi^2,
+ U=M^4 V/F^2.
+Smooth solutions and a source-free open annulus are assumed. No existence or
+source-matching claim is made. phi may be any real number, including zero.
+Choose the smooth canonical coordinate with dchi/dphi=sqrt(K)>0.
+Define signed coupling f=-M d(log A)/dchi=xi phi/sqrt(D).
+It is no longer assumed that f, Q, or w is nonnegative.
+
+2. The exact quantity whose sign matters
+Use the parent's definitions
+ Q=-exp(nu) r^2 sqrt(N) chi', B=f Q/M,
+ a=r nu', w=r(log A)'=B/[r exp(nu) sqrt(N)],
+ u=r^2 U/M^2, S=-B'/[exp(nu) sqrt(N)].
+Without imposing any boundary sign, the scalar equation implies
+ S=(r^2/M)[f_chi chi'^2+f U_chi/N].
+Consequently the combination appearing in the orbit derivative is
+ T=u/N+S
+  =r^2 f_chi chi'^2/M + r^2 [U+M f U_chi]/(M^2 N).
+It is T, not S separately, that must become sufficiently negative for a
+flat circular-speed profile to be possible. The apparent negative U_chi
+below the vacuum is therefore not by itself an escape.
+
+3. Positivity holds for every real phi
+Direct canonical differentiation gives
+ f_chi=xi M F/D^2>0.
+Moreover, writing z=phi^2>=0,
+ U+M f U_chi = M^4 P/(F^2 D),
+ P=E[M^2+xi(1+2xi)z]
+   +(lambda z^2/4)[M^2(1+4xi)+xi(1+6xi)z].
+Every term is nonnegative and the E M^2 term is strictly positive. Thus
+U+M f U_chi>0 and T>0 everywhere in the assumed static region. This also
+holds at phi=0: no division by f or phi is used.
+This is an exact algebraic property of this action, not an approximation
+about phi near the vacuum.
+
+4. Physical circular speed and sign
+The coupled equations from the parent yield, with dot=d/d(log r),
+ V_c^2=(a+w)/(1+w),
+ dot(V_c^2)=-[(a+w)/N+T(1-a)]/(1+w)^2.
+Assume R_J=A r increases with r: 1+w>0. For a nonzero timelike circular
+orbit, 0<V_c^2<1, which implies a+w>0 and a<1. Therefore
+ dot(V_c^2)<0 and d(V_c^2)/dR_J<0.
+The quantitative bound remains
+ d log(V_c^2)/d log R_J <= -1/[N(1+w)^2] <0.
+No positive-scalar branch, vacuum outer condition, sign of chi', or small
+curvature was needed. The maximum principle from the parent is no longer
+required for this result.
+
+An exactly flat interval is excluded. In weak metric/conformal gradients
+N approximately 1 and |w| much less than 1, the bound is near -1, not 0.
+As before, strict decrease alone does not exclude all approximately flat
+segments when N or w is large. Circular-orbit existence and radial stability
+are separate questions; the inequality holds wherever the required timelike
+orbit exists.
+
+5. Rejected alternative and error record
+The attempted new mechanism was a non-vacuum environment maintaining phi
+below its vacuum value, so that U_chi<0 might produce a growing scalar charge.
+An initial hand reduction omitted a factor of xi in the E-dependent part
+of U+M f U_chi, incorrectly suggesting a sign reversal. The first executable
+symbolic identity rejected that reduction before any integration ran.
+The failed candidate is retained as rejected_candidate.py, not evidence for
+a solution. Correct differentiation in the original phi variables and an
+independent dimensionless reduction agree on the positive polynomial above.
+
+For x=xi phi^2/M^2 and e=4xi^2 E/(lambda M^4),
+ (U+M f U_chi)/U
+ = [e(1+(1+2xi)x)+x^2(1+4xi+(1+6xi)x)]
+   /[(e+x^2)(1+(1+6xi)x)].
+At the proposed example xi=1/10, x=1, e=10, this equals 125/143>0.
+There is no local zero-slope example or numerical IVP result to report.
+This is an algebraic rejection of the proposed mechanism, not evidence of
+instability and not a conclusion from a failed numerical solver.
+
+6. Verification boundary
+check.py passes five exact symbolic checks, including two separate variable
+representations of the decisive potential-feedback combination.
+Environment.lean proves positivity of P for every real phi and positive
+coefficients, the timelike-orbit sign implications, and negativity of the
+stated derivative formula. It does not formalize differential geometry,
+field-equation derivation, source matching or the canonical transformation.
+The parent supplies those written derivations and their primary-source
+checks. No new external theorem or novelty claim is asserted here.
+Evidence: run/manifest.json, lean_build.out, lean_verification.json.
+Self-review: checked phi=0 regularity, signed f and Q, absence of an assumed
+positive w, the required orientation condition 1+w>0, and retained distinction
+between an exact plateau and an approximately flat interval.
+
+7. Research decision
+The boundary-only repair is closed for this action and the stated radial
+branch: modifying environmental scalar values alone does not change the
+positive sign. Extended matter within the annulus changes the lapse source
+and is a different proposed mechanism, not covered by this result. A time-
+dependent stress or a different action could also change the argument.
+The original task still requires a physical response law and a derivation
+of its relation to vacuum energy; neither is provided by this scalar tracker.
+A future repair must explicitly alter the sign combination T or the field
+content, rather than repeat static boundary searches inside this class.

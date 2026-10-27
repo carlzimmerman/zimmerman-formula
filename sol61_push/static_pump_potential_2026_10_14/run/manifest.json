@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "STATIC-PUMP-POTENTIAL-BOUND",
+  "repository": {
+    "commit": "cda53006d0fae491d774c1bb9a25340ea47c9f41",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/static_pump_potential_2026_10_14/check.py",
+    "sol61_push/static_pump_potential_2026_10_14/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Standing-wave field invariant and conditional static potential norm evaluated at the optical benchmark",
+    "coefficient_domain": "Real double precision elementary functions and quadrature",
+    "conventions": "Heaviside-Lorentz natural units; u is time-averaged energy density of each wave; free massive static scalar kernel",
+    "inputs": [
+      "sol61_push/static_pump_potential_2026_10_14/check.py",
+      "sol61_push/silica_shell_retention_2026_10_14/run/results.json",
+      "sol61_push/confined_pair_pulse_2026_10_14/run/results.json"
+    ],
+    "bounds": {
+      "intensity_per_wave_W_m2": 1000000000000.0,
+      "number_cutoffs": [
+        2,
+        10
+      ],
+      "phase_samples_z": [
+        0.1,
+        0.7,
+        1.5
+      ],
+      "phase_samples_t": [
+        0.2,
+        0.9,
+        2.1
+      ]
+    },
+    "non_claims": [
+      "No retarded-response proof or full Maxwell cavity calculation",
+      "Number-cutoff evolution bound does not control omitted occupation sectors",
+      "No stimulated radiative loss bound or independent physical confirmation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T05:42:50.992247+00:00",
+    "runtime_seconds": 0.259975,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/static_pump_potential_2026_10_14/check.py",
+    "sol61_push/silica_shell_retention_2026_10_14/run/results.json",
+    "sol61_push/confined_pair_pulse_2026_10_14/run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/static_pump_potential_2026_10_14/check.py",
+      "sha256": "a5d1c89fd0b59d65abfc55e6e0613df27fe45a5b0f7ade1a593702f5d0b4a302",
+      "sha256_after": "a5d1c89fd0b59d65abfc55e6e0613df27fe45a5b0f7ade1a593702f5d0b4a302"
+    },
+    {
+      "path": "sol61_push/silica_shell_retention_2026_10_14/run/results.json",
+      "sha256": "68d7298af7bfc7d950423c4cb3ff2d595876e69918600c3dd88b3d6820c9fdd0",
+      "sha256_after": "68d7298af7bfc7d950423c4cb3ff2d595876e69918600c3dd88b3d6820c9fdd0"
+    },
+    {
+      "path": "sol61_push/confined_pair_pulse_2026_10_14/run/results.json",
+      "sha256": "0627600c1b4f11bcb274e8b6d1a616835e3f97b6521bca2d8784a48ddc38fc35",
+      "sha256_after": "0627600c1b4f11bcb274e8b6d1a616835e3f97b6521bca2d8784a48ddc38fc35"
+    }
+  ],
+  "output_directory": "sol61_push/static_pump_potential_2026_10_14/run",
+  "declared_results": [
+    "sol61_push/static_pump_potential_2026_10_14/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/static_pump_potential_2026_10_14/run/stdout.txt",
+      "sha256": "61ac0ef269fdc974a52660a53197af4c7c803d9bfc291420c11061e625a50d3a",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/static_pump_potential_2026_10_14/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/static_pump_potential_2026_10_14/run/results.json",
+      "sha256": "36cff44bc33239873e44339fd3196537f2892ccda8e6d18214fc2b8c39b90977",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

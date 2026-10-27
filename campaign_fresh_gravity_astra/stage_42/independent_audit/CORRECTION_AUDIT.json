@@ -1,0 +1,80 @@
+{
+  "task_id": "FGF-055",
+  "run_id": "fgf055_minimal_correction_audit_001",
+  "worker": "/root/fgf055_reviewer",
+  "finished_utc": "2026-10-08T15:18:32.863717+00:00",
+  "outcome": "supports_scoped_claim",
+  "primary_verdict": "proved as written",
+  "verdict_object": "Original frozen DERIVATION with the explicitly preserved author Section 6 replacement, read jointly as a corrected proof; original unamended sentence retains the restriction verdict in the earlier audit.",
+  "exact_claim": "The minimal replacement correctly separates Sf-Sf0=O(e), mf=O(e) throughout I from nv^2=O(e^4), c^2(n-rho)=O(e^2) only on the exterior fluid wedges and hence at A,D. It resolves the sole required scope defect without changing any theorem, hypothesis, domain, equation, or downstream bound. The previously audited bounded cone-survival theorem remains supported in its exact conditional scope.",
+  "input_sha256": {
+    "campaign_fresh_gravity_astra/stage_42/coordinator/AUTHOR_SCOPE_CLARIFICATION.md": "701fd7002edd211b72bf4e9b5892dfc0faef9b26c1fb658ee7edcbd4516350ab",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-055/fgf055_run_001/DERIVATION.md": "289b493bbfba4613cf95f939e343bcdd00f0caf55037d107467c15e525e07b5f",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-055/fgf055_run_001/result.json": "c3d9ca6af3014758ca01ebeafbe1bdf4eb0913250c9e4d64e776067d40119e5c",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-055/fgf055_run_001/FREEZE.json": "89211fbf191fa854f4c9470fe9c4768374f7d98b56f68412d956e7aab866987f",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-055/fgf055_run_001/verify_metadata.py": "13b9d66da80e54d27e5f4184a96077ff382c9a16f6bcec2f19e8d51eae836f0e",
+    "campaign_fresh_gravity_astra/stage_42/independent_audit/INDEPENDENT_DERIVATION.md": "42f9f30c8440cc40095ab4edfb10aebd6f2e5fc4ef736414f06d2bbf4f02a3d9",
+    "campaign_fresh_gravity_astra/stage_42/independent_audit/INDEPENDENT_FREEZE.json": "3eb3a94284106c2e4582d838eeb683436bc4912492361137c33a350577ad5f0f",
+    "campaign_fresh_gravity_astra/stage_42/independent_audit/AUTHOR_COMPARISON_AUDIT.md": "329b9d10a4983dda3fa290aed538d10293e6e586a3e0fdd14bf0ddbf11c484ab",
+    "campaign_fresh_gravity_astra/stage_42/independent_audit/audit_result.json": "35f099f3f6c32afa688ad6625486110d7cd132ae922361b2ed6f84bc168281fb"
+  },
+  "checks": [
+    {
+      "name": "clarification_pin_before_read",
+      "status": "passed",
+      "observed": "701fd7002edd211b72bf4e9b5892dfc0faef9b26c1fb658ee7edcbd4516350ab matched before content read."
+    },
+    {
+      "name": "required_restriction",
+      "status": "passed",
+      "observed": "Replacement explicitly says throughout I only for field quantities and separately on exterior wedges for matter quantities."
+    },
+    {
+      "name": "field_integral",
+      "status": "passed",
+      "observed": "Length(I)=4e and mf=O(e) imply Fm=O(e^2); time integration of O(e) endpoint field stress through O(e) times is O(e^2). No stress is set to zero."
+    },
+    {
+      "name": "initial_packet_control",
+      "status": "passed",
+      "observed": "Clarification acknowledges initial nv^2=O(1) in the core; it introduces no core-fluid-smallness assertion."
+    },
+    {
+      "name": "downstream_invariance",
+      "status": "passed",
+      "observed": "Section 5 already uses endpoint brackets for matter stresses and the full-cone amplitude bound for its bulk integral; no capacity identity, remainder order, or positive moment margin changes."
+    },
+    {
+      "name": "original_author_inventory",
+      "status": "passed",
+      "observed": "Original proof/result/freeze pins unchanged; inspected read-only metadata verifier again passes exact full inventory and source/output hashes."
+    },
+    {
+      "name": "previous_independent_and_audit_artifacts",
+      "status": "passed",
+      "observed": "Independent derivation, independent freeze, author comparison audit, and audit_result hashes all unchanged."
+    }
+  ],
+  "commands": [
+    [
+      "python3",
+      "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-055/fgf055_run_001/verify_metadata.py"
+    ]
+  ],
+  "execution_bounds": {
+    "mathematical_processes": 0,
+    "metadata_only": true,
+    "verifier_previously_inspected": true,
+    "verifier_exit_code": 0
+  },
+  "provenance": {
+    "new_source_read": "Only the specifically authorized, hash-verified AUTHOR_SCOPE_CLARIFICATION.md.",
+    "other_stage42_coordinator_or_refinement_files_read": false,
+    "preservation": "Separate correction audit; no prior proof, freeze, review or author result modified."
+  },
+  "limitations": [
+    "Acceptance concerns the original proof together with this explicit correction; it does not retroactively make the original unqualified sentence true.",
+    "No maximal-germ/endpoint classification, physical calibration, metric/photon/two-DOF, evolving-reference, or coefficient-uniform limit inferred."
+  ],
+  "next_unresolved_implication": "No remaining required correction identified for the precise bounded theorem. Any stronger maximal-domain or physical claim requires separate work."
+}

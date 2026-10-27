@@ -1,0 +1,78 @@
+RELAXING AUXILIARY: GENERATED INTERPOLATION AND A FORCE-DEFICIT OBSTRUCTION
+2026-10-15. Candidate construction in this investigation; literature originality NOT established.
+
+1. Model and assumptions
+Use a fixed preferred time and flat spatial metric, c=1:
+ L = K0 (d_t chi)^2/2 - E(|grad chi|,psi) - q rho chi/M - E0,
+ E(v,psi) = B v^3/psi + h (psi-psi0)^2/2.
+B,h,psi0,q,M are positive. psi>0 is an EXACT algebraic auxiliary, with no derivatives. E0 is independent. This is a scalar force model; no Einstein/aether equations or relativistic matter completion have been supplied. In the force calculation the scalar supplies the entire modeled force, not an extra force added on top of a separate Newtonian force.
+
+2. Elimination generates the transition
+Stationarity gives h(psi-psi0)psi^2=Bv^3. At v>0 the unique positive root is above psi0: the left side is negative below psi0, and its derivative is h psi(3psi-2psi0)>0 above psi0. E diverges as psi tends to zero or infinity, so this root is the global minimum. At v=0 the minimum is psi0.
+Define v0=psi0(h/B)^(1/3), s=psi/psi0 and t=v/v0.
+Then s^2(s-1)=t^3, s>=1.
+The envelope flux is J=dE_eff/dv=3Bv^2/psi.
+Choose K0=3B^(2/3)h^(1/3) and define mu=J/(K0 v)=t/s.
+Eliminating s gives exactly:
+ t = mu/(1-mu^3), 0<=mu<1.
+This function is unique and increasing: dt/dmu=(1+2mu^3)/(1-mu^3)^2>0.
+Its low-gradient limit is mu~t; its high-gradient limit is mu->1.
+
+3. Quadratic stability and characteristic speeds
+The auxiliary stiffness on the branch is E_psipsi=h(3-2/s)>0.
+Eliminating its fluctuation gives the Schur complement
+ E_eff''=E_vv-E_vpsi^2/E_psipsi.
+Writing p=d log J/d log v gives
+ p=(3s-1)/(3s-2)=(2+mu^3)/(1+2mu^3).
+Radial and transverse spatial stiffnesses are K0 mu p and K0 mu.
+With time kinetic K0, on every static finite nonzero gradient background,
+ c_parallel^2=mu(2+mu^3)/(1+2mu^3), c_perp^2=mu.
+The exact identity
+ 1-c_parallel^2=(1-mu)^3(1+mu)/(1+2mu^3)>0
+proves both positive stiffness and speeds strictly between zero and one.
+Intermediate propagation directions interpolate between these two eigenvalues.
+This is a local principal-symbol and quadratic-energy statement, not a global nonlinear stability or full relativistic causality theorem.
+At v=0 the time kinetic remains K0>0 but the spatial quadratic stiffness vanishes. Nonlinear control/regularization at this limit is unresolved.
+
+4. Spherical force and a falsifiable residual
+Outside a spherical source, r^2 J=q Mb/(4 pi M). Define g=q v/M,
+ G_eff=q^2/(4 pi K0 M^2), g_N=G_eff Mb/r^2 and a0=q v0/M.
+Then g mu=g_N and g/a0=mu/(1-mu^3).
+For small g, g^2/a0~g_N: hence g proportional to sqrt(Mb)/r.
+For large g, g/g_N->1. But the absolute residual does NOT vanish:
+ (g-g_N)/a0=t(1-mu)=mu/(1+mu+mu^2) -> 1/3.
+No observational fit or solar-system compatibility is claimed.
+If G is independently defined as 1/(8 pi M^2), matching requires K0=2q^2; this is a calibration, not a derived value.
+
+5. General obstruction discovered by examining that residual
+Consider ANY twice differentiable isotropic reduced energy E_eff(v), v>0,
+with constant positive time kinetic K0, J=E_eff', and a force normalized as above.
+Suppose J(v)/(K0 v)->0 at small v (the deep cubic branch satisfies this).
+Suppose also 0<J'(v)<=K0 for all v>0, i.e. positive radial stiffness and a radial characteristic speed no greater than the chosen unit speed.
+Define D(v)=K0 v-J(v). For some small v_*>0, D(v_*)>0 by the deep-limit hypothesis.
+Since D'=K0-J'>=0, the fundamental theorem of calculus gives
+ D(v)=D(v_*)+integral_[v_*,v](K0-J'(u))du >= D(v_*)>0
+for every v>=v_* (or use the mean value theorem).
+Therefore absolute Newtonian recovery J-K0 v->0 is IMPOSSIBLE under these hypotheses, even when relative recovery J/(K0 v)->1 holds.
+In force variables g-g_N=q D/(M K0), so the absolute force residual cannot tend to zero.
+The explicit candidate realizes a finite positive limit q v0/(3M)=a0/3.
+This elementary conditional obstruction is analytically proved here; its full calculus statement is not formalized in the accompanying Lean file. No novelty claim is made.
+A candidate with a vanishing absolute residual must relax at least one hypothesis: for example, change the constant time-kinetic assumption, permit a speed above one somewhere, or change the single-scalar force identification. This does not itself establish that any such extension works.
+
+6. Do not promote the auxiliary without rechecking
+Adding a finite positive kinetic term to psi makes it a propagating field. At sufficiently high frequency the chi stiffness is unrelaxed:
+ E_vv/K0=2mu.
+Thus the chi characteristic speed exceeds one when mu>1/2. The algebraic-auxiliary result is not a proof for a finite-rate dynamical medium. A dynamical preferred frame would add further modes requiring separate analysis.
+
+7. Original numerical puzzle remains open
+If a future gravitational completion identifies Lambda=E0/M^2, then
+ Lambda/a0^2=E0/[q^2 psi0^2(h/B)^(2/3)].
+The free additive E0 leaves this ratio arbitrary, including after K0=2q^2 normalization. Nothing here selects 32pi, 64pi^2, or 3/128.
+
+8. Verification and literature scope
+check.py: eleven exact SymPy identities; seven illustrative values of mu. Numerical samples are not the proof of universal speed bounds.
+Relaxation.lean: four checked theorems: speed-gap polynomial identity, strict radial speed bounds, residual identity, monotonicity of the auxiliary branch. These formalize algebra only, not the physical action, source law, limits, or general calculus obstruction. Standard Lean axioms only, no sorry.
+The run directory records the reproducible computation and hashes. lean_verification.json records the Lean source hash and exit status.
+A bounded web check found established neighboring medium/potential approaches. Blanchet and Le Tiec, Physical Review D 78, 024031 (2008), explicitly relate a polarization potential to a MOND function and discuss Lambda of order a0^2, not a unique 32pi selection:
+https://www2.iap.fr/users/blanchet/images/PhysRevD.78.024031.pdf
+This rules out presenting the broad medium-to-interpolation idea as newly invented. The exact candidate's originality has not been established by this search. No claim about this week's breakthroughs is supported.

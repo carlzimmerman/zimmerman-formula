@@ -1,0 +1,133 @@
+ANOMALY COMPLETION CHANGES THE KINETIC TEST
+2026-10-14, base cc8dec9c8d92e134e2eded18f5720d07e547ae3f.
+Parent: puzzle_32pi_weyl_cancellation_2026_10_14/RESULT.txt.
+
+Outcome: the required Wess-Zumino derivative term supplies a negative
+contribution absent from the previous toy action. A new necessary health
+condition strongly constrains identifying the canonical scalar itself with
+the acceleration scale. Neither the cancellation nor this condition selects
+32 pi. This is a conditional model result, not a new theorem about all
+anomaly-driven gravity and not a claim of literature novelty.
+
+1. Precisely declared action and conventions
+
+Use signature (-+++), R_deS=12H^2, M the reduced Planck mass, and
+tau=-log(phi/F), phi>0. Set X=(partial tau)^2. Study
+L = M^2 R/2 - (partial phi)^2/2 - U0 exp(phi^2/F^2)
+    - beta [tau E4 + 4 G^{mn} partial_m tau partial_n tau
+             - 4 X box(tau) + 2 X^2] + beta tau C^2.
+Here G^{mn} is the Einstein tensor. beta>0. This includes the complete
+displayed WZ functional but is not claimed to be a complete microscopic EFT:
+nonminimal two-derivative terms and independent invariant operators can occur.
+
+Source: Komargodski-Schwimmer, On Renormalization Group Flows
+in Four Dimensions, arXiv:1107.3987v2, Eq. (2.13), with Appendix A conventions:
+https://arxiv.org/pdf/1107.3987
+The source uses (+---). Under a constant metric sign reversal with the same
+Riemann convention, E4, C^2, G^{mn}, X box(tau), and X^2 are unchanged.
+Thus its displayed WZ coefficients transfer to the convention above.
+Its a includes the loop factor: beta=Delta a/(16 pi^2) in the central-charge
+normalization used in the preceding report. Matching requires the full IR
+spectrum; values assigned below are conditional examples, not established flows.
+
+2. The cancellation survives, but the kinetic term changes
+
+At constant phi all the additional derivative terms and their first variations
+vanish. The exact constant-scalar Einstein branch from the parent survives.
+On de Sitter, G^{mn}=-3H^2 g^{mn}. Consequently the derivative term is
+  -4 beta G^{mn} partial_m tau partial_n tau
+   = +12 beta H^2 (partial delta_phi)^2/phi_v^2
+at quadratic order. Relative to the healthy -1/2 (partial delta_phi)^2,
+this reduces the scalar kinetic coefficient by 24 beta H^2/phi_v^2.
+The X box(tau) and X^2 terms begin at cubic and quartic order respectively.
+The Weyl term vanishes throughout the homogeneous conformally flat sector.
+
+It is essential to include the metric constraint, not stop at the fixed-metric
+kinetic coefficient. In spatially flat gauge let lapse=1+n and v=delta_phi_dot.
+After integration by parts of the Euler term, the terms needed to quadratic
+order, divided by the background scale factor cubed, are
+ -3 M^2 H^2/(1+n) + v^2/[2(1+n)] - (1+n)U(phi)
+ -8 beta v H^3/[phi(1+n)^3]
+ -12 beta H^2 v^2/[phi^2(1+n)^3].
+The exact symbolic Hessian and elimination of n give
+ D = 1 - 24 beta H^2/phi_v^2
+       + 96 beta^2 H^4/(M^2 phi_v^2),
+ N = U'' + 24 beta H^4/phi_v^2
+       - 384 beta^2 H^6/(M^2 phi_v^2).
+The reduced quadratic action is a^3[D delta_phi_dot^2-N delta_phi^2]/2,
+up to a total derivative. The mixed term was integrated with the a^3 weight.
+The homogeneous equation is D(delta_phi_ddot+3H delta_phi_dot)+N delta_phi=0.
+check.py derives both coefficients from this lapse-dependent action; it does
+not merely substitute into the previous scalar equation.
+
+3. New necessary health condition
+
+Write epsilon=F^2/M^2 and z=phi_v^2/F^2. The constant-scalar branch still has
+H^2=M^2 z/(4 beta), U=3M^4 z/(4 beta). Hence
+ D=(epsilon-6+6z)/epsilon,
+ (N/D)/H^2=12(1-z)/(epsilon-6+6z).
+For 0<z<1 the restoring numerator is positive. Positive homogeneous kinetic
+energy requires epsilon>6(1-z). Equality is a degenerate quadratic kinetic
+term and cannot be treated as an ordinary healthy endpoint.
+When D<0, positive N does not save the theory: the kinetic sign is wrong and
+N/D is negative. The stable result from the truncated action cannot simply
+be inherited after anomaly completion. These tests are necessary only;
+inhomogeneous scalar/tensor modes and the higher-derivative cutoff remain open.
+
+4. A sharper physical implication at the proposed coefficient
+
+The declared minimal action retains Lambda/phi_v^2=3/(4 beta epsilon).
+Impose beta=Delta a/(16 pi^2) and the target 32 pi. Then
+ epsilon=3 pi/(8 Delta a),
+ z>1-pi/(16 Delta a).
+Let q=phi_v^2/M^2=epsilon z. The same health test implies
+ q>epsilon-epsilon^2/6.
+
+Conditional examples:
+Delta a=1/4: epsilon=4.712389, z>0.214602, q>1.011287.
+Delta a=3/4: epsilon=1.570796, z>0.738201, q>1.159563.
+Thus these examples require a Planck-scale canonical scalar vacuum, incompatible
+with identifying phi_v directly with a cosmologically tiny acceleration in
+natural units. This is not an exclusion of all Delta a: the bound depends on
+Delta a and on the chosen minimal action and dictionary.
+A strictly positive limiting kinetic coefficient as z tends to zero requires
+Delta a<pi/16. Equality has a vanishing limiting coefficient, although finite
+positive z can still have D>0. For finite z use the exact inequality above.
+
+This is the useful design clue: a conformal order parameter and an observable
+acceleration scale need not be the same variable. A replacement dictionary
+must come from a specified matter/force sector; multiplying by a freely chosen
+tiny constant would merely reintroduce the unexplained normalization.
+
+5. Two adversarial controls
+
+The modified model has healthy homogeneous examples. Choose epsilon=12 and
+z=1/2, with arbitrary beta>0 and tune U0 to the branch equation. Then D=3/4,
+(N/D)/H^2=2/3, but Lambda/phi_v^2=1/(16 beta) varies continuously.
+Health alone therefore does not select the desired coefficient.
+
+Adding a nonminimal term -xi phi^2 R/2 also matters even at the vacuum level.
+Put B=M^2-xi phi^2 and require B>0. Constant fields obey
+U=3BH^2, U'=-12 xi phi H^2+24 beta H^4/phi.
+With the same exponential potential these imply
+Lambda/phi^2 = (3/(4 beta))[M^2/F^2 + xi(2-z)].
+Thus the old amplitude-independent ratio is changed for xi nonzero. The
+conformal value xi=1/6 cannot be inserted while retaining the old formula.
+No general stability calculation for this nonminimal extension is claimed.
+
+6. Verification and live research state
+
+Eleven exact symbolic checks cover the lapse reduction, branch coefficients,
+counterfamily, conditional normalization and nonminimal vacuum equations.
+Five Lean theorems certify algebraic health implications and a rational witness;
+the field-theory derivation is analytically self-reviewed, not formalized in Lean.
+The code, contract, audited run and Lean compiler output accompany this report.
+
+Executed routes: WZ completion gives the new kinetic constraint; anomaly-to-target
+matching exposes a hierarchy conflict in the assigned examples; a nonminimal
+extension changes the vacuum relation rather than automatically repairing it.
+Deferred: a full microscopic action, inhomogeneous spectrum and cutoff, and an
+observable acceleration dictionary. The next useful work is to derive the force
+observable in a specified matter sector with a healthy normalization, then test
+whether its ratio to curvature is predicted. The numeric selection problem
+remains open.

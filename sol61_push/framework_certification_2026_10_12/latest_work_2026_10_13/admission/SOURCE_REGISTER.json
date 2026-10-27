@@ -1,0 +1,311 @@
+{
+  "scope": "latest declared primary set only",
+  "entries": [
+    {
+      "id": "newtonian_action",
+      "disposition": "Explicit Newtonian potential/polarization action, not covariant S_g",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG694_combined_construction/FROZEN_CRITERIA.md",
+        "sha256": "a3fc7e5e6868d6e63a4de85c039d0ab0bbe113130068696a3cfe6d08c7d5155a",
+        "locators": [
+          {
+            "line": 9,
+            "text": "- **Action:** L = \u2212|\u2207\u03a6 \u2212 4\u03c0G P|\u00b2/8\u03c0G \u2212 \u03c1_b\u03a6 \u2212 \u03b2|P|\u00b3/3 \u2212 (\u03b3/2)|\u2207P|\u00b2 + (I/2)|\u1e56|\u00b2."
+          }
+        ]
+      }
+    },
+    {
+      "id": "basin_reading",
+      "disposition": "Own-source isolated basin reading added separately; action boundary dependence unsupplied",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG694_combined_construction/FROZEN_CRITERIA.md",
+        "sha256": "a3fc7e5e6868d6e63a4de85c039d0ab0bbe113130068696a3cfe6d08c7d5155a",
+        "locators": [
+          {
+            "line": 13,
+            "text": "- **Reading (CFG693):** each system's P is solved with its own baryons and isolated boundary conditions on its free-fall"
+          },
+          {
+            "line": 20,
+            "text": "  - **Reading rule (frozen):** if both hold, \"W\u2033(0) = 4\u03c0G\" is restated as \"P has no mass term of its own\". A mass term"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quadratic_square",
+      "disposition": "Actual quadratic equivalence, not independent selection of no extra mass term",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG694_combined_construction/cfg694.py",
+        "sha256": "d0fd62badda971b8475e553b307ea1b42d32cfd91adca925b6f0ab8a5db0b2d3",
+        "locators": [
+          {
+            "line": 44,
+            "text": "L_cfg692 = -gp ** 2 / (8 * sp.pi * Gs) + p * gp - 2 * sp.pi * Gs * p ** 2      # CFG692: -|grad Phi|^2/8piG + P.grad Phi - W_quad"
+          },
+          {
+            "line": 46,
+            "text": "ident = sp.simplify(sp.expand(L_cfg692 - L_D)) == 0"
+          },
+          {
+            "line": 47,
+            "text": "P_(f\"    CFG692 quadratic - (-|grad Phi - P/a|^2/8piG) at a = {a_norm} : {sp.simplify(sp.expand(L_cfg692 - L_D))}\")"
+          }
+        ]
+      }
+    },
+    {
+      "id": "stiff_profile_domain",
+      "disposition": "Isolated extended radial profile; does not solve matching at the finite basin edge",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG694_combined_construction/cfg694.py",
+        "sha256": "d0fd62badda971b8475e553b307ea1b42d32cfd91adca925b6f0ab8a5db0b2d3",
+        "locators": [
+          {
+            "line": 66,
+            "text": "    t = np.linspace(math.log(1e-4), math.log(1e4), 4001)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "node_jump",
+      "disposition": "Explicit reported NODE force cutoff, no full total field equation",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG693_freefall_basins/cfg693.py",
+        "sha256": "5cd2e9d30ea573c01a3d08d7ffe7a6630ec6c7c965eaaf680ad56aa37a9d50a8",
+        "locators": [
+          {
+            "line": 101,
+            "text": "    P(f\"    V_s/V_h = {q}: across r_J the satellite's own (deep: ~all phantom) field V_s^2/r_J drops to 0; that is {q:.0%} of the host's field there\")"
+          }
+        ]
+      }
+    },
+    {
+      "id": "parent_jump",
+      "disposition": "Parent response turns on; smoothing undefined",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG693_freefall_basins/cfg693.py",
+        "sha256": "5cd2e9d30ea573c01a3d08d7ffe7a6630ec6c7c965eaaf680ad56aa37a9d50a8",
+        "locators": [
+          {
+            "line": 103,
+            "text": "P(\"    switches on from 0 at that moment (CFG48's 'jump at every merger'). Persistence weighting (merge-tree depth / node V^2) is the\")"
+          }
+        ]
+      }
+    },
+    {
+      "id": "persistence",
+      "disposition": "Named, not built; no window/action or field derivative",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG693_freefall_basins/cfg693.py",
+        "sha256": "5cd2e9d30ea573c01a3d08d7ffe7a6630ec6c7c965eaaf680ad56aa37a9d50a8",
+        "locators": [
+          {
+            "line": 104,
+            "text": "P(\"    named smoothing; not built here.\")"
+          }
+        ]
+      }
+    },
+    {
+      "id": "total_W695",
+      "disposition": "W includes critical quadratic; square representation needs residual subtraction",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG695_saturating_vacuum/cfg695.py",
+        "sha256": "a3f842e2be45029935353341a0745696767a10afc7f40cfb4a7a08525b6f515e",
+        "locators": [
+          {
+            "line": 43,
+            "text": "W = sp.integrate(Wp, (u, 0, u)) / (4 * sp.pi * G)                     # W as energy density: dW/dP = W'(u), dP = du/4piG"
+          }
+        ]
+      }
+    },
+    {
+      "id": "unit_u",
+      "disposition": "Wp is dW_total/dp in acceleration units, not literal dW_total/du",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG695_saturating_vacuum/cfg695.py",
+        "sha256": "a3f842e2be45029935353341a0745696767a10afc7f40cfb4a7a08525b6f515e",
+        "locators": [
+          {
+            "line": 42,
+            "text": "Wp = u / (1 - u / usat)                                               # W'(u) in acceleration units"
+          }
+        ]
+      }
+    },
+    {
+      "id": "posthoc",
+      "disposition": "Origin post-hoc disclosed; before-score freeze is not prior theory selection",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG695_saturating_vacuum/FROZEN_CRITERIA.md",
+        "sha256": "98e50fd2fa25054f4e2415cb509d2758402b77fe79cf3d76012301a6a1c652a8",
+        "locators": [
+          {
+            "line": 10,
+            "text": "is therefore post-hoc in its origin. It is frozen here before the resummed form is scored on anything."
+          }
+        ]
+      }
+    },
+    {
+      "id": "shape_rule",
+      "disposition": "Saturation functional chosen for law shape; not a derived unique medium",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG695_saturating_vacuum/FROZEN_CRITERIA.md",
+        "sha256": "98e50fd2fa25054f4e2415cb509d2758402b77fe79cf3d76012301a6a1c652a8",
+        "locators": [
+          {
+            "line": 35,
+            "text": "  scores **R0-SHAPED (saturation)**, never PASS: it was chosen because it reproduces a law shape."
+          }
+        ]
+      }
+    },
+    {
+      "id": "new_length",
+      "disposition": "Lstar is declared new universal length; screened point-profile approximation",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG691_stiffness_window/FROZEN_CRITERIA.md",
+        "sha256": "85a962f2d54494fca9e60fb3fb2437c44f4c759227d956f232c01d8975cb209c",
+        "locators": [
+          {
+            "line": 18,
+            "text": "r_M = (GM/a\u2080)^{1/2}. L* is one universal length, the sector's single new constant (CFG679 R1)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "all_baryon",
+      "disposition": "No condensed/hot phase coupling; differs from old A5",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG658_one_action_untested_gates/README.md",
+        "sha256": "11e08d2c078b48eda014ea6444cd640acdfa73bcee9f1da65017c227918e748a",
+        "locators": [
+          {
+            "line": 87,
+            "text": "- **C\\* is sourced by all baryons.** P responds to \u2207\u03a6, and \u03a6 is sourced by all of \u03c1_b. Hot gas therefore polarizes the vacuum"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reservoir",
+      "disposition": "Original material abundance/current not supplied by pure charge construction",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG658_one_action_untested_gates/README.md",
+        "sha256": "11e08d2c078b48eda014ea6444cd640acdfa73bcee9f1da65017c227918e748a",
+        "locators": [
+          {
+            "line": 78,
+            "text": "   - C\\* is a pure field with no cold-energy reservoir. Its prediction is the law on all baryons. That fails X-COP's hydrostatic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "changed_kernel",
+      "disposition": "New nu_s replaces original repaired nu_mono; kernel-swap scope only",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG658_one_action_untested_gates/README.md",
+        "sha256": "11e08d2c078b48eda014ea6444cd640acdfa73bcee9f1da65017c227918e748a",
+        "locators": [
+          {
+            "line": 10,
+            "text": "- **C\\*** is CFG694's action, plus CFG695's saturating vacuum (static law g_N = g\u00b2/(g + a\u2080), i.e. \u03bd_s = \u00bd + \u221a(\u00bc + 1/y)), plus"
+          }
+        ]
+      }
+    },
+    {
+      "id": "remaining_gates",
+      "disposition": "Attractor, basin-as-action, relativistic completion and kappa remain open",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG695_saturating_vacuum/README.md",
+        "sha256": "6682986ac0181c0254d6008c8e272925c788ab0cb0af7d366c1ce200603c7e33",
+        "locators": [
+          {
+            "line": 40,
+            "text": "   - **Open:** the attractor (M1a), the basin reading as an action (B1), the relativistic completion (\u03a6 = \u03a8), and \u03ba fitted."
+          }
+        ]
+      }
+    },
+    {
+      "id": "metric_conditional",
+      "disposition": "Lensing equality conditional on relativistic Phi=Psi, not Newtonian Poisson alone",
+      "citation": {
+        "source": "campaign_fresh_gravity/CFG692_gravitating_polarization/FROZEN_CRITERIA.md",
+        "sha256": "92c3139a146198a57682b1a0ae9ed3644bb334f1a960e2dd27715a064048e322",
+        "locators": [
+          {
+            "line": 34,
+            "text": "    structural; M3a scores CONDITIONAL on the relativistic completion having \u03a6 = \u03a8 for this source, which is not derived here."
+          }
+        ]
+      }
+    },
+    {
+      "id": "finite_C2_matching",
+      "disposition": "Prepared weak matter matching in prescribed finite peaked lapse",
+      "citation": {
+        "source": "sol61_push/c2_static_metric_2026_10_13/finite_patch/RESULT.txt",
+        "sha256": "0496ce8e306ae46437580415fc166f00a1ec3fc72c215937d4eb86ddcf977d0c",
+        "locators": [
+          {
+            "line": 4,
+            "text": "A prepared charged C2 core CAN meet a vacuum exterior on a prescribed finite"
+          }
+        ]
+      }
+    },
+    {
+      "id": "finite_C2_gravity",
+      "disposition": "Toy peak cannot arise from positive-only Newtonian Poisson; S_g unknown",
+      "citation": {
+        "source": "sol61_push/c2_static_metric_2026_10_13/finite_patch/RESULT.txt",
+        "sha256": "0496ce8e306ae46437580415fc166f00a1ec3fc72c215937d4eb86ddcf977d0c",
+        "locators": [
+          {
+            "line": 49,
+            "text": "cannot be sourced solely by positive mass in Newtonian Poisson. It was not"
+          }
+        ]
+      }
+    },
+    {
+      "id": "finite_C2_charge",
+      "disposition": "No Q0-to-core production; no actual cold receiver channel",
+      "citation": {
+        "source": "sol61_push/c2_static_metric_2026_10_13/finite_patch/RESULT.txt",
+        "sha256": "0496ce8e306ae46437580415fc166f00a1ec3fc72c215937d4eb86ddcf977d0c",
+        "locators": [
+          {
+            "line": 28,
+            "text": "The charge is PREPARED:"
+          }
+        ]
+      }
+    },
+    {
+      "id": "finite_C2_review",
+      "disposition": "Independent AI context qualified matter/metric review, not self-gravity adoption",
+      "citation": {
+        "source": "sol61_push/c2_static_metric_2026_10_13/finite_patch/REVIEW.json",
+        "sha256": "50e714428b2e42a38aa75f21cc087fe55c71d187976b7d6c83856b1a2e581049",
+        "locators": [
+          {
+            "line": 36,
+            "text": "  \"scope\": \"Conditional matter/metric consistency only; S_g remains unselected.\""
+          }
+        ]
+      }
+    }
+  ]
+}

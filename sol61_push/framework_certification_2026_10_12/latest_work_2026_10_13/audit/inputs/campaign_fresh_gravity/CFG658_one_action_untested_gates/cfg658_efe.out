@@ -1,0 +1,41 @@
+CFG658 G-EFE (FROZEN_CRITERIA.md, 12c5ab6b3): the one-action construction C* (nu_s law + CFG691 stiffness at L* = 5.75 pc +
+CFG693 free-fall basins) on
+  E1  wide binaries: CFG447's injection into the frozen DR4 pipeline (imported read-only, sha256 checked), same seeds / DR3 numbers;
+      (i) basin only (EFE-blind nu_s, = CFG447's nu_P2 row), (ii) C*: per-pair stiff-screened boost;
+  E2  cluster satellites: CFG478 harness (cm14b parsing), satellite phantom counted only inside its free-fall basin edge r_J;
+  E3  every star a node: CFG694 G3 with the saturating nonlinearity in CFG691's reduced equation.
+MUTATE in the same pass: M-B (basin off -> CFG478 Q1; no stiffness -> CFG447 nu_P2), M-S (eps = 0 -> CFG694 G3 0.0352).
+
+L* = 5.754 pc (CFG691 L*_min, both footings)
+  [PASS] CONTROL cubic profile reproduces CFG691's S table (1e-6): status 0, max |dS| 0.0e+00
+
+== E3  a star's own phantom inside min(r_J, 1.08 pc) at L* (CFG694 G3 statistic), saturating vacuum ==
+  canonical M = 1.0 Msun: eps = r_M/l_gamma = 8.99e-05 (solve_bvp 0); M_ph/M cubic 0.03519 -> saturating 0.03519 (rel -1.6e-08); inner u/a0 4.50e-05
+  canonical M = 0.3 Msun: eps = r_M/l_gamma = 2.70e-05 (solve_bvp 0); M_ph/M cubic 0.03521 -> saturating 0.03521 (rel -2.6e-09); inner u/a0 1.35e-05
+  alt       M = 1.0 Msun: eps = r_M/l_gamma = 7.44e-05 (solve_bvp 0); M_ph/M cubic 0.03519 -> saturating 0.03519 (rel -1.2e-08); inner u/a0 3.72e-05
+  alt       M = 0.3 Msun: eps = r_M/l_gamma = 2.23e-05 (solve_bvp 0); M_ph/M cubic 0.03521 -> saturating 0.03521 (rel -1.9e-09); inner u/a0 1.12e-05
+  [PASS] M-S eps = 0 reproduces CFG694 G3 0.0352 (1e-4): max |d| 8.9e-06
+  E3 verdict (M_ph/M <= 0.155): PASS
+
+== E2  Sifon satellites (CFG478 harness): own phantom only inside the free-fall basin edge r_J ==
+  [PASS] M-B basin off: CFG478 Q1 chi2 reproduced with its own kernels (P2, nu_mono; 0.05): max |d| 0.0e+00
+  canonical nu_s Q1   : chi2   97.1/5 p 2.2e-19 | boost [1.55, 1.55, 1.62, 1.64, 1.69] vs needed [10.5, 20.2, 18.0, 11.6, 10.8]
+  canonical nu_s iso  : chi2    0.6/5 p 0.99 | boost [15.47, 15.87, 15.28, 12.26, 11.52] vs needed [10.5, 20.2, 18.0, 11.6, 10.8]
+  canonical nu_s basin: chi2    0.7/5 p 0.98 | boost [15.47, 15.73, 14.72, 12.26, 11.52] vs needed [10.5, 20.2, 18.0, 11.6, 10.8]
+        r_J/r_bg [1.34, 0.99, 0.96, 1.04, 1.0]; host slope alpha [1.87, 1.87, 1.94, 1.95, 2.0]; r_bg kpc [36, 66, 95, 107, 149]
+  alt       nu_s Q1   : chi2   93.2/5 p 1.4e-18 | boost [1.63, 1.64, 1.71, 1.73, 1.79] vs needed [10.5, 20.2, 18.0, 11.6, 10.8]
+  alt       nu_s iso  : chi2    0.6/5 p 0.99 | boost [16.96, 17.4, 16.74, 13.43, 12.61] vs needed [10.5, 20.2, 18.0, 11.6, 10.8]
+  alt       nu_s basin: chi2    0.6/5 p 0.99 | boost [16.96, 17.4, 16.74, 13.43, 12.61] vs needed [10.5, 20.2, 18.0, 11.6, 10.8]
+        r_J/r_bg [1.4, 1.04, 1.01, 1.09, 1.05]; host slope alpha [1.87, 1.87, 1.94, 1.95, 2.0]; r_bg kpc [36, 66, 95, 107, 149]
+  [PASS] stiffness leaves the satellites unscreened (S >= 0.99 at r_bg; CFG694 G4 re-check): min S 1.000000
+  E2 verdict (basin rule, p > 0.01 both footings): PASS
+
+== E1  wide binaries: CFG447 injections into the frozen DR4 pipeline (read-only) ==
+  [PASS] K2 pipeline sha256 matches CFG447's record: 7c884e0e0a4cb9cb
+  canonical basin_only: gamma_hat median 1.5000 (spread 0.0000) | vs DR3 builder 1.075 +- 0.055: +7.73 sigma (literal +6.12) -> EXCLUDED BY DR3
+  canonical Cstar     : gamma_hat median 1.0162 (spread 0.0464) | vs DR3 builder 1.075 +- 0.055: -0.82 sigma (literal -1.30) -> CONSISTENT
+  alt       basin_only: gamma_hat median 1.5000 (spread 0.0000) | vs DR3 builder 1.0775 +- 0.0512: +8.25 sigma (literal +7.68) -> EXCLUDED BY DR3
+  alt       Cstar     : gamma_hat median 1.0200 (spread 0.0462) | vs DR3 builder 1.0775 +- 0.0512: -0.83 sigma (literal -0.95) -> CONSISTENT
+  C* per-pair anomaly/Newton max over all injected pairs: 8.22e-03
+  [PASS] M-B no stiffness (basin only) reproduces CFG447's nu_P2 rows (median and z, 0.05): max |d| 0.0e+00
+  E1 verdict (C*: basin + stiffness): CONSISTENT

@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "RC_LINEAR_FRAGMENTATION",
+  "repository": {
+    "commit": "5c0669a33dd51dfb1702fa7c89c80347496c2317",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/radiating_collapse_2026_10_22/linear.py",
+    "--output",
+    "sol61_push/radiating_collapse_2026_10_22/linear_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Local longitudinal dispersion and absence of fastest finite k in the stated unpumped branch",
+    "coefficient_domain": "float64",
+    "conventions": "LINEAR_CONTRACT.md",
+    "inputs": [
+      "conditional Gaussian cold seed and finite-chi coefficients"
+    ],
+    "bounds": {
+      "eps": [
+        0.001,
+        0.005,
+        0.02
+      ],
+      "rho0": [
+        0.01,
+        0.1,
+        1
+      ],
+      "k": [
+        0.001,
+        1000
+      ],
+      "grid": 300
+    },
+    "non_claims": [
+      "No 3D rotating solution",
+      "No asymptotic remnant or universal mass",
+      "No baryonic backreaction test"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T00:43:43.632059+00:00",
+    "runtime_seconds": 0.317023,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 250000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/radiating_collapse_2026_10_22/linear.py",
+    "sol61_push/radiating_collapse_2026_10_22/LINEAR_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/linear.py",
+      "sha256": "2e36e6fe6947d4262aeded161c657c5058800ae5600393d47f2c5a000dacf262",
+      "sha256_after": "2e36e6fe6947d4262aeded161c657c5058800ae5600393d47f2c5a000dacf262"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/LINEAR_CONTRACT.md",
+      "sha256": "d48b8d685193d349d0aeeb7d8804721516c610bd6d26ec102b7e87f81a06a56f",
+      "sha256_after": "d48b8d685193d349d0aeeb7d8804721516c610bd6d26ec102b7e87f81a06a56f"
+    }
+  ],
+  "output_directory": "sol61_push/radiating_collapse_2026_10_22/linear_run",
+  "declared_results": [
+    "sol61_push/radiating_collapse_2026_10_22/linear_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/linear_run/stdout.txt",
+      "sha256": "9ef511b27b600615661bb1e132880978c2f42a6341d466dccb4cd3fbd0656a94",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/linear_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/linear_run/result.json",
+      "sha256": "a8a608ad9f9b9352945aa0a2f1638156a7d372b2c564388464c93968d85af3aa",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

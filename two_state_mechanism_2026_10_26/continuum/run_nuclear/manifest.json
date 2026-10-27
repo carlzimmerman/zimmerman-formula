@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "MOVING_BASIS_NUCLEAR_COUPLINGS_2026_10_26",
+  "repository": {
+    "commit": "2bfdeb83a93861f936cc8d943f52ba8581fde2e5",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "two_state_mechanism_2026_10_26/continuum/nuclear.py",
+    "--output",
+    "two_state_mechanism_2026_10_26/continuum/run_nuclear/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "PySCF",
+        "version": "2.11.0"
+      },
+      {
+        "name": "h5py",
+        "version": "3.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "4-state Ag singlet electronic derivative couplings and quantum metric with complete moving-AO overlap; finite-step refinement and omitted derivative norm",
+    "coefficient_domain": "double precision Gaussian-basis full configuration interaction",
+    "conventions": "mC=hbar=Q squared/(4pi epsilon)=1; clamped charge+1 centers; spin1/2 electrons",
+    "inputs": [
+      "aug-cc-pVDZ, 2-electron Coulomb Hamiltonian"
+    ],
+    "bounds": {
+      "R": [
+        1.8,
+        2.0,
+        2.2
+      ],
+      "steps": [
+        0.01,
+        0.005
+      ],
+      "states": 4,
+      "mass_ratio": 100
+    },
+    "non_claims": [
+      "Not continuum-normalized couplings",
+      "Not a closed four-state nuclear Hamiltonian",
+      "No physical DR rates or population separation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-26T16:13:25.572855+00:00",
+    "runtime_seconds": 2.38475,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 3000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "two_state_mechanism_2026_10_26/continuum/nuclear.py",
+    "two_state_mechanism_2026_10_26/continuum/DESIGN.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "two_state_mechanism_2026_10_26/continuum/nuclear.py",
+      "sha256": "fe0d2ef7d072eba7bf3469712c365c7d6f4d4498f89347175e8eb4ab828cd038",
+      "sha256_after": "fe0d2ef7d072eba7bf3469712c365c7d6f4d4498f89347175e8eb4ab828cd038"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_26/continuum/DESIGN.md",
+      "sha256": "f782e5e953b31d845a1129399cd5253d9dd1cbd6878bcdf0ed43fc77fb7fa514",
+      "sha256_after": "f782e5e953b31d845a1129399cd5253d9dd1cbd6878bcdf0ed43fc77fb7fa514"
+    }
+  ],
+  "output_directory": "two_state_mechanism_2026_10_26/continuum/run_nuclear",
+  "declared_results": [
+    "two_state_mechanism_2026_10_26/continuum/run_nuclear/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "two_state_mechanism_2026_10_26/continuum/run_nuclear/stdout.txt",
+      "sha256": "7f4557ba58c51edf9bb3736f9b5e5514b2288ab60fff844999813d3d343e4d72",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_26/continuum/run_nuclear/stderr.txt",
+      "sha256": "9baa5e5cc37e2397478922d30459154c503f64596fd9962f85454c12b7f1565d",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_26/continuum/run_nuclear/results.json",
+      "sha256": "ed84f3866629cf9fb6f81bc309b9e81d9403e99d4d66c3129a7d431db754133c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

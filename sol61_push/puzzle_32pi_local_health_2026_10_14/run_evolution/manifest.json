@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "LOCAL32PI-002",
+  "repository": {
+    "commit": "7e8e5617a1dca50d1307a02748a8604edc5c0c14",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/puzzle_32pi_local_health_2026_10_14/evolve.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Eight homogeneous FRW trajectories with positive restoring potential plus neutral, unstable and refinement controls",
+    "coefficient_domain": "float64 adaptive ODE",
+    "conventions": "c=hbar=1 in symbolic identities, SI in benchmarks; positive M,C,a,b,mu2",
+    "inputs": [
+      "sol61_push/puzzle_32pi_local_health_2026_10_14/evolve.py",
+      "sol61_push/puzzle_32pi_local_health_2026_10_14/check.py"
+    ],
+    "bounds": {
+      "eps": [
+        1e-120,
+        1e-06
+      ],
+      "nu": [
+        1,
+        10
+      ],
+      "initial_x": [
+        0.9,
+        1.1
+      ],
+      "initial_u": 0,
+      "time": [
+        0,
+        30
+      ],
+      "rtol": 1e-09,
+      "atol": 1e-11,
+      "max_step": 0.05,
+      "controls": "nu=0, nu=-1, refinement rtol=1e-11 max_step=.025"
+    },
+    "non_claims": [
+      "No full nonlinear solution or observational exclusion",
+      "No derived value of beta or stabilizer parameters",
+      "No quantum or occupied-polar-sector health certificate"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T17:07:20.455809+00:00",
+    "runtime_seconds": 0.883922,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/puzzle_32pi_local_health_2026_10_14/evolve.py",
+    "sol61_push/puzzle_32pi_local_health_2026_10_14/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/puzzle_32pi_local_health_2026_10_14/evolve.py",
+      "sha256": "787e2a25819769f6855b21115c872bf2c62f2414136e6a51393638b97d747ec5",
+      "sha256_after": "787e2a25819769f6855b21115c872bf2c62f2414136e6a51393638b97d747ec5"
+    },
+    {
+      "path": "sol61_push/puzzle_32pi_local_health_2026_10_14/check.py",
+      "sha256": "1a4504f336ca8836fd6386fba49bef7374c56f41e7e7e474525eeb9c8efe9122",
+      "sha256_after": "1a4504f336ca8836fd6386fba49bef7374c56f41e7e7e474525eeb9c8efe9122"
+    }
+  ],
+  "output_directory": "sol61_push/puzzle_32pi_local_health_2026_10_14/run_evolution",
+  "declared_results": [],
+  "outputs": [
+    {
+      "path": "sol61_push/puzzle_32pi_local_health_2026_10_14/run_evolution/stdout.txt",
+      "sha256": "7d502e0e7e10b7474396c4b0c598595119af48bbe5af429029d0da4893d036b9",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/puzzle_32pi_local_health_2026_10_14/run_evolution/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

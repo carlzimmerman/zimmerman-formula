@@ -1,0 +1,156 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-003-CURVED-PION",
+  "repository": {
+    "commit": "becd424bfe15c44ad599cbc18040c1e1d480a549",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_prediction/coordinator/curved_pion/check_pion.py",
+    "--output",
+    "fine_structure_puzzle/qcd_prediction/coordinator/curved_pion/run_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact S4 massive scalar spectrum yields the stated heat coefficients, charged-pion curvature response and no linear H term in its explicitly subtracted ordinary one-loop determinant; finite heat and UV-finite mass-resolvent comparisons test the implementation",
+    "coefficient_domain": "Positive M with H/M tending to zero; exact rational SymPy coefficients and 65-digit mpmath finite comparisons",
+    "conventions": "One real scalar f=logdet/(2V); round S4 V=8pi2/(3H4); rho=f-H fH/4; charged pair shift Delta=2e2 F2 Z",
+    "inputs": [
+      "Exact spherical scalar spectrum and covariant leading chiral quadratic action in DERIVATION.md",
+      "No experimental alpha, vacuum density or numerical chiral LEC"
+    ],
+    "bounds": {
+      "heat_u": [
+        0.02,
+        0.01,
+        0.005,
+        0.0025
+      ],
+      "heat_modes": 400,
+      "resolvent_M_over_H": [
+        4,
+        8,
+        16,
+        32
+      ],
+      "resolvent_modes": 2000,
+      "mpmath_dps": 65,
+      "heat_absolute_tolerance": "5 u^6",
+      "resolvent_bracket": "positive sum plus conservative n^-3 tail",
+      "H6_estimator_tolerance": "20 (H/M)^2"
+    },
+    "non_claims": [
+      "Not full four-dimensional QCD c_H",
+      "Not a full electromagnetic loop expansion",
+      "Not a numerical alpha prediction",
+      "No certified interval numerics",
+      "No all-theory mass-gap or topology no-go"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T02:06:44.737538+00:00",
+    "runtime_seconds": 0.8777,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_prediction/coordinator/curved_pion/check_pion.py",
+    "fine_structure_puzzle/qcd_prediction/coordinator/curved_pion/DERIVATION.md",
+    "fine_structure_puzzle/qcd_prediction/CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/coordinator/curved_pion/check_pion.py",
+      "sha256": "7d899a4413330c6b300b8e4105a96006fbf69cb7d4b4e1a005f5d5d5df613fb9",
+      "sha256_after": "7d899a4413330c6b300b8e4105a96006fbf69cb7d4b4e1a005f5d5d5df613fb9"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/coordinator/curved_pion/DERIVATION.md",
+      "sha256": "b0b3028571ec737b813ee11a9fe52f518d56e1462a16af54368eea393e3ae96b",
+      "sha256_after": "b0b3028571ec737b813ee11a9fe52f518d56e1462a16af54368eea393e3ae96b"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/CONTRACT.md",
+      "sha256": "d8e4c90391956398d18aaa37d733bca9488f94f8edd44cdd3a9ac77dc21fc127",
+      "sha256_after": "d8e4c90391956398d18aaa37d733bca9488f94f8edd44cdd3a9ac77dc21fc127"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_prediction/coordinator/curved_pion/run_001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_prediction/coordinator/curved_pion/run_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/coordinator/curved_pion/run_001/stdout.txt",
+      "sha256": "487af5d68bf09ea96dff99ed70100b6896a965c5965a9b25ad776d6f751628ab",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/coordinator/curved_pion/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/coordinator/curved_pion/run_001/result.json",
+      "sha256": "3693250ffa3419d84100c25114bfed812058eda130496e5e553a5f2f0796006c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

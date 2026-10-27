@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "claim_id": "CFG853-KINETIC-ENVELOPE-20261019-A",
+  "repository": {
+    "commit": "42b43a572c921d2894ad475a0969a0078c89b286",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cfg853_independent_transport_2026_10_19/kinetic/check_envelope.py",
+    "sol61_push/cfg853_independent_transport_2026_10_19/kinetic/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conditional envelope mass bound, compact-component minimum, slope and truncation inversions, and selfsimilar core-mass scaling for explicitly declared finite grids.",
+    "coefficient_domain": "Deterministic Python binary64 arithmetic; analytic inequalities proved separately in RESULT.txt",
+    "conventions": "3D spherical mass; total remaining cold reservoir normalized to1; R aperture, Rt=kR; continuous finite flat core + power envelope. No delta central component in envelope class.",
+    "inputs": [
+      "old fractions from CE086_v2",
+      "rounded parent relative-binary sensitivity fractions",
+      "alpha2.190 from BSI Table1 as diagnostic slope cap"
+    ],
+    "bounds": {
+      "k": [
+        5,
+        10,
+        20
+      ],
+      "alpha": [
+        0,
+        1,
+        2,
+        2.19,
+        2.208,
+        2.5,
+        2.9
+      ],
+      "rc_over_Rt": [
+        1e-06,
+        0.001,
+        0.01,
+        0.05,
+        0.1,
+        0.2,
+        0.5,
+        0.9,
+        1
+      ],
+      "midpoint_points": 12000,
+      "midpoint_relative_tolerance": 5e-06
+    },
+    "non_claims": [
+      "No microscopic transport or halo dynamics simulated",
+      "Global slope cap is an explicit class hypothesis, not a theorem of BSI",
+      "No novelty or universal no-go",
+      "Parent rounded binary fractions are not reauthenticated observations"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T19:10:01.111501+00:00",
+    "runtime_seconds": 0.001998,
+    "exit_status": 127,
+    "status": "launch-failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": 536870912,
+      "cpu_seconds": 15,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/cfg853_independent_transport_2026_10_19/kinetic/run_001/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cfg853_independent_transport_2026_10_19/kinetic/check_envelope.py",
+    "sol61_push/cfg853_independent_transport_2026_10_19/kinetic/inputs.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cfg853_independent_transport_2026_10_19/kinetic/check_envelope.py",
+      "sha256": "649def5096286f043fc631a21e03df77e35350a013de334330ce926465bbf6cb",
+      "sha256_after": "649def5096286f043fc631a21e03df77e35350a013de334330ce926465bbf6cb"
+    },
+    {
+      "path": "sol61_push/cfg853_independent_transport_2026_10_19/kinetic/inputs.json",
+      "sha256": "7b278393d5ca58789fe1a2a207c68cd4fcfaf9c6d31f9653686f023604017714",
+      "sha256_after": "7b278393d5ca58789fe1a2a207c68cd4fcfaf9c6d31f9653686f023604017714"
+    }
+  ],
+  "output_directory": "sol61_push/cfg853_independent_transport_2026_10_19/kinetic/run_001",
+  "declared_results": [
+    "sol61_push/cfg853_independent_transport_2026_10_19/kinetic/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cfg853_independent_transport_2026_10_19/kinetic/run_001/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cfg853_independent_transport_2026_10_19/kinetic/run_001/stderr.txt",
+      "sha256": "97b04bd17975dace90a0e9603018f34ff5a21665573fae9edb4da19ee21550cd",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run launch-failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: sol61_push/cfg853_independent_transport_2026_10_19/kinetic/run_001/results.json"
+  ]
+}

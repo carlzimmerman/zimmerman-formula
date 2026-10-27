@@ -1,0 +1,128 @@
+MICROSCOPIC DENSITY TEST: A BRANCH AND RESPONSE-SLOPE OBSTRUCTION
+2026-10-14. Base 97f3b0789f81e08f8353b7c82386d52f1c7d790a.
+Parent: puzzle_32pi_source_audit_2026_10_14/RESULT.txt.
+
+Verdict: the tested stable, single-component, local-equilibrium condensate
+cannot produce the desired quadratic source-versus-force response. Its
+positive-X fractional-power action is derivable, but its negative-X MOND
+continuation is not its equilibrium ground state. This closes one concrete
+microscopic route, not all media or modified-gravity theories. The original
+32 pi coefficient-selection problem remains open.
+
+1. Start from a density, not a chosen fractional-power action
+
+Use a nonrelativistic complex condensate with number density n>=0, phase theta,
+mass m>0 and repulsive three-body energy
+ U(n)=g n^3/3+E0, g>0.
+In density-phase variables its local Lagrangian, before neglecting gradients
+of the density, is
+ L=n X-U(n)-(grad n)^2/(8mn),
+ X=theta_dot-m Phi-(grad theta)^2/(2m).
+Here Phi is an externally specified Newtonian potential in this local matching
+test. A homogeneous background theta_dot supplies the chemical potential.
+Density gradients are omitted only for the local equation of state; they
+cannot be omitted near interfaces, vortices or a depleted condensate.
+
+Equilibrium elimination of n requires the global supremum
+ P(X)=sup_{n>=0}[nX-g n^3/3-E0].
+For X>0, n=sqrt(X/g), giving
+ P(X)=2 X^(3/2)/(3sqrt(g))-E0.
+For X<=0 every n>0 lowers nX-g n^3/3, so the maximum is at n=0:
+ P(X)=-E0.
+The n=0 endpoint is a limit of the density-phase description, where the phase
+itself ceases to describe a condensate excitation.
+
+Thus the fractional exponent is explained on the positive branch. The formula
+P(X)=2X sqrt(|X|)/(3sqrt(g))-E0 for negative X is NOT obtained by this density
+minimization. It would have positive n=P_X but negative susceptibility P_XX,
+whereas the actual negative-X ground state is empty. Using that continuation
+as if it had been microscopically derived would be an invalid step.
+
+2. A broader equilibrium restriction
+
+For any density energy U(n), the equilibrium pressure defined as a supremum
+of affine functions nX-U(n) is convex in X wherever finite. At a smooth stable
+branch, n=P_X>0 and susceptibility P_XX>=0. If U is twice differentiable and
+strictly convex there, P_XX=1/U''(n)>0.
+
+The negative fractional-power branch is concave, not convex. There is an exact
+three-point witness, independent of offsets. For P(X)=A X sqrt(-X)-E0 on X<0,
+A>0, take X1=-1, X2=-9, weights 5/8 and 3/8. Their average is -4. The weighted
+pressure is -43A/4-E0, while P(-4)=-8A-E0, exceeding it by 11A/4.
+This violates the convexity inequality. The arithmetic violation is exact;
+the convexity of the supremum follows directly by evaluating every affine
+function at the weighted argument and taking the supremum.
+
+3. Static force response: the decisive condition
+
+Let v=|grad theta|>0, fix the local background chemical potential and Phi,
+and write X=mu_eff-v^2/(2m). The phase current magnitude is
+ J(v)=n(X)v/m.
+On a stable equilibrium branch with n>0,
+ d log J/d log v = 1-v^2 P_XX/(m P_X) <=1.
+This is a local constitutive slope at fixed mu_eff. It is not a claim about
+the total radial derivative along a halo in which Phi or chemical state varies.
+
+With a linear phase coupling to baryons, the phase-mediated acceleration is
+proportional to v, while the integrated baryon source is proportional to J.
+The desired deep-MOND constitutive law requires J proportional to v^2, hence
+d log J/d log v=2. It cannot hold in this stable one-component class.
+The full interpolation tested in the parent would require an even larger
+local slope in its allowed domain. Choosing a different positive chemical
+potential, the strength g, or an energy baseline does not change the inequality.
+
+This result concerns the stipulated phase-mediated response. It does not rule
+out a halo whose ordinary gravitational mass imitates a rotation curve, nor
+does it rule out additional fields, finite-temperature two-fluid states,
+nonlocal density-gradient effects, or nonequilibrium response. Those change
+the assumptions rather than supplying a counterexample to the stated result.
+
+4. Ground-state energy does not fix the cosmological constant
+
+At positive density, pressure is 2g n^3/3-E0 and the internal energy density is
+g n^3/3+E0. Their sum is g n^3>0; including rest-mass energy adds mn>0.
+This is not a vacuum equation of state epsilon+P=0. The condensate's internal
+energy cannot simply be substituted for a cosmological constant.
+Moreover E0 is still independent of the density equation and susceptibility.
+The matter response does not determine its gravitational matching. The
+microscopic model therefore supplies neither the required MOND branch nor a
+predicted vacuum/acceleration ratio of 32 pi.
+
+5. Literature cross-check and an explicit escape condition
+
+Berezhiani and Khoury, Theory of Dark Matter Superfluidity, arXiv:1507.01019v2,
+Sec. 4.1, likewise distinguish a stable positive-X branch without the desired
+MOND regime and an unstable negative-X MOND branch. Sec. 4.2 introduces
+finite-temperature variables F(X,B,Y), including an example extra Y^2 term
+that changes the time kinetic term while preserving the static profile.
+Source: https://arxiv.org/pdf/1507.01019 (Secs. 4.1-4.2, Eqs. 63-65).
+These facts are a cross-check, not a claim that their full microscopic model
+is identical to the simple three-body condensate used here. This obstruction
+is consistent with known work and is not presented as a new discovery.
+
+The concrete escape requires an additional state variable. In the rest frame
+of a normal component, X=Y-v^2/(2m). For an action F(X,Y), the static current
+depends on F_X but the time kinetic coefficient involves
+F_XX+2F_XY+F_YY. Those quantities need not have the one-variable relation above.
+For the phenomenological F=P_-(X)+A Y^2, A>0, the time coefficient is
+P_-''+2A. It can be positive despite P_-''<0. This illustrates which assumption
+must change; it is not a derivation of A or a proof of stability of the normal
+component. A full two-fluid microscopic construction, its mixed modes, and its
+vacuum normalization remain missing. Selecting A by hand repeats the earlier
+matching problem and is not a derivation of 32 pi.
+
+6. Evidence and next discriminating task
+
+Ten exact SymPy checks verify the density elimination, derivatives, static
+slope, convexity witness, equation-of-state sum and baseline invariance.
+Four Lean statements verify the negative-X endpoint inequality, the stable
+response-slope bound, incompatibility with slope two, and the exact convexity
+witness. The microscopic field transformation, functional supremum theorem
+and matter/gravity matching are not formalized in Lean. This is self-review.
+
+The next viable route must specify a second component or other additional
+state variable before claiming a healthy microscopic response. It must derive
+the joint susceptibility matrix and the baryon coupling, retain the normal
+component's perturbations, and compute the total stress. A one-variable
+repulsive density energy is now an explicitly rejected route under the
+conditions above. No new value of the target coefficient has been obtained.

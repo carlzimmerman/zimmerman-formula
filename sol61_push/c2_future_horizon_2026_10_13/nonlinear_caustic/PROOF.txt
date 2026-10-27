@@ -1,0 +1,141 @@
+EXACT OUTGOING VACUUM CAUSTIC CONTROL ON THE SAME SOLVED METRIC
+Conditional on the existing C2 law and explicit Einstein comparison.
+
+Claim. Outgoing orientation, d>=0 and a small initial phase C1 jet do not
+supply a uniform positive classical characteristic lifespan. There are smooth
+local vacuum perturbations approaching the outgoing background in the initial
+norm (theta0 C1,theta_t0 C0), whose smooth projection lifespan tends to zero.
+Their total charge and stress, and hence the solved Einstein metric and its
+constraints, remain EXACTLY unchanged up to the first classical caustic.
+This is not a nonexistence theorem in stronger/weighted data classes or a
+physical ultraviolet-range assertion. It adds no action or regularization.
+
+1. Exact invariant vacuum family
+
+On a compact old static exterior patch r>R and B>0, choose the future branch
+of X=X0. Let Q=sqrt(2X0), p=theta_r. Then
+ theta_t=H(r,p)=N(r)sqrt(Q^2+B(r)p^2),
+ r_dot=-H_p, p_dot=H_r.
+The second pair follows by differentiating theta_t=H and using p=theta_r.
+H is conserved along these autonomous Hamilton characteristics. Moreover
+ H_pp=NBQ^2/(Q^2+Bp^2)^(3/2)>0.
+For p<0 the flow is outgoing. On the chosen patch B decreases outwards;
+an initially outgoing radial constant-norm geodesic cannot turn back there.
+
+X=X0 implies PX=0, shift currentJ=0, and T=rho0g everywhere in the perturbed
+vacuum as long as the phase is classical. Thus these are exact scalar/Einstein
+solutions on the original metric, not a fixed-metric nonzero-source shortcut.
+The matter core is unchanged. Compactly supported vacuum phase perturbations
+add zero charge/stress, so this control belongs to the fixed-total-charge
+comparison missing from the earlier positive transported-density packet.
+
+2. Compact outgoing initial data
+
+Work in dimensionless x=r/R,tau=t/R,hat theta=theta/(QR),p=theta_r/Q.
+Then calH=N sqrt(1+Bp^2). The stationary outgoing p_b=-sqrt(E^2-B)/B.
+Choose a fixed cutoff xi supported in[1.75,2.25], equal1 near x*=2, and put
+ delta hat theta0=-(epsilon/k)xi(x)cos[k(x-2)].
+Its p perturbation is epsilon xi sin[k(x-2)]-(epsilon/k)xi'cos[k(x-2)].
+At the central label its VALUE is zero, while its derivative is epsilon*k
+when xi is constant near2. Thus
+ p0(2)=p_b(2), p0'(2)=p_b'(2)+epsilon*k.
+The phase perturbation is O(epsilon/k) and its spatial first derivative is
+O(epsilon). Set the initial time derivative to calH(x,p0), preserving X0
+exactly and changing it by O(epsilon) because H_p is bounded on the patch.
+
+For the finite diagnostic family, a quintic plateau cutoff has |xi'|<=12.5,
+and the background has |p_b|>=sqrtC*.75*sqrt[(2.25+2)/(3*2.25)]>.059.
+epsilon=.001 and k>=1024 give |delta p|<=.001013, hence ALL initial flow
+in the support remains outgoing. This C2 cutoff supplies regular classical
+data. A fixed smooth cutoff with the same support and plateau also gives the
+asymptotic proof; its finite derivative bound only changes the O(epsilon)
+constant. No numerical wave-grid resolution is used to assert that bound.
+
+The local static initial slice can be extended as a spacelike slice through
+the finite-u future horizon. Outside the support use the outgoing phase-level
+slice, with u'=-1/[E(E+S)] and induced radial metric -dr^2/E^2. On the
+support use T constant, u'=-1/B. Within B>0 both slopes lie in(-2/B,0), so a
+smooth interpolation of slopes remains spacelike; make the static part compact
+away from the horizon. The phase data outside the support equal the old
+future-regular solution. This avoids demanding a stationary clock at the
+bifurcation sphere, which is impossible by HORIZON_PROOF.txt.
+
+3. Uniform projection-fold argument
+
+Let M(tau) be the derivative of the smooth phase-space Hamilton flow with
+respect to its initial position/momentum, evaluated on the central trajectory.
+Its initial value is I, and
+ M_dot=[[-H_xp,-H_pp],[H_xx,H_xp]]M.
+The trace is zero and the canonical symplectic identity gives detM=1.
+The central trajectory's initial VALUES do not depend on epsilon or k;
+therefore M(tau) is the same smooth function for this whole family.
+
+The spatial projection derivative along the initial graph is
+ J=M11+M12[p_b'(2)+A], A=epsilon*k.
+The momentum-label derivative is K=M21+M22[p_b'(2)+A]. Taylor expansion on
+a fixed phase-space neighborhood gives
+ M11=1+O(tau), M12=-H_pp(0)tau+O(tau^2),
+ J=1-H_pp(0)A tau+O(tau)+O(A tau^2).
+The constants here are uniform because the central phase-space values are
+fixed, and the characteristic ODE coefficients are bounded on that neighborhood.
+At tau=2/[H_pp(0)A], J=-1+O(A^-1)<0 for sufficiently largeA. Since J0=1,
+there is a projection fold at an earlier positive time. If any other label
+folds sooner, the first global smooth caustic is even earlier; this argument
+never claims that the central event is the first everywhere.
+
+At J=0, K cannot also vanish, since an invertible M cannot annihilate the
+nonzero initial vector(1,p0'). Thus p_x=K/J blows up, and the flow-velocity
+gradient contains -H_pp K/J. The smooth single-valued classical characteristic
+description loses its invertible projection. The phase-space geodesics themselves
+remain regular; the metric and vacuum stress do not become singular here.
+
+Taking epsilon_n=1/n,k_n=n^2 makes the initial phase and time-derivative jet
+approach the background in(C1,C0), while A=n and the upper lifespan bound
+tends0. This proves the stated lack of a uniform lower lifespan controlled
+only by that jet norm. Hessians/velocity gradients diverge along this sequence;
+the claim does not apply to a bounded C2/velocity-Lipschitz data neighborhood.
+
+4. Finite computations and exact scope
+
+The frozen b1000 background gives H_pp(0)=.970268013989. Central projection
+folds for epsilon=.001 occur at
+ k1024: tau1.086038128889,
+ k2048: tau .522164462620,
+ k4096: tau .256240690353,
+ k8192: tau .126952252615.
+Scaled tau H_pp(0)epsilon k is1.0790,1.0376,1.0184,1.0091, consistent with
+the analytic short-time limit1. The proof supplies the asymptotic statement;
+these float roots only supply bounded evidence for the four cases.
+
+EnergycalH, detM, outward momentum, metric denominator and transverse fold
+tests pass, as does tighter reintegration. Deleting H_pp from the variational
+matrix removes the fold on the same interval; this is an implementation
+control, not an alternative physical action. Saved central trajectories do
+not purport to resolve all oscillations or locate the first fold globally.
+
+5. What remains viable and what is missing
+
+Smooth initial vacuum data with controlled Hessians have a locally invertible
+Hamilton flow for a sufficiently short time, hence a classical vacuum solution.
+That time depends on velocity-gradient and background bounds. The caustic
+control does not contradict such higher-regularity local existence.
+
+Weak/viscosity continuation, regulated effective theories, and full matter-core
+moving-boundary evolution are separate obligations. The original action has
+not supplied a weak-continuation selection or a physical UV cutoff; none is
+invented here. Arbitrarily highk is a continuum theorem control, not an
+assertion that those modes lie in a verified physical EFT domain.
+
+Conditionally, an EXISTING bounded-derivative piecewise characteristic flow
+with nonzero Jacobian and common interface velocity transports quadratic
+vanishing of n=ad sqrt(2X). Since dn/dd atd0 equalsaQ>0, it also preserves
+quadratic vanishing of d and grad d=0 at the material boundary. The irrotational
+acceleration vanishes there, and common geodesic traces preserve matched phase
+and gradient data. This is interface compatibility, not an existence theorem.
+
+The usual physical-vacuum Euler theorem2007.05787 cannot be transferred:
+its equation1.6 assumes cs^2~distance and its setting is Minkowski, whereas
+this core has cs^2~distance^2 and a coupled curved metric. The exact missing
+gate is an admitted derivative-controlled norm, flow-Jacobian bound and
+predictive interface/continuation law. Outwardness and current-sign preservation
+alone establish none of those bounds. Gravity selection and the TOE remain open.

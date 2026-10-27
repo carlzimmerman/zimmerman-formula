@@ -1,0 +1,65 @@
+{
+  "claim_id": "BIASED-NONLINEAR-RESONANCE-CAPTURE",
+  "mathematics": {
+    "assertion_tested": "Exact feedforward ramp and bounded perturbation capture in nonlinear oscillator; equivalence of tracking coordinates; terminal local Jacobian.",
+    "coefficient_domain": "float64 Radau ODE with analytic transformations and eigenvalues",
+    "conventions": "tau=Gamma*t, normalized target amplitude=1, source alpha=-iR, fixed nonlinear coefficient plus fractional error.",
+    "inputs": [
+      "sol61_push/resonance_capture_2026_10_13/check.py",
+      "sol61_push/resonance_capture_2026_10_13/INPUT_RESONANCE.json"
+    ],
+    "bounds": {
+      "C": [
+        26.327893419881722,
+        26327.893419881722
+      ],
+      "bias": [
+        0,
+        0.5
+      ],
+      "fractional_coefficient_errors": [
+        0,
+        1e-06,
+        -1e-06
+      ],
+      "ramp_time": 10,
+      "total_time": 20,
+      "tracking_error_stop": 0.1,
+      "rhs_call_cap": 100000,
+      "rtol": 2e-09,
+      "atol": 1e-11
+    },
+    "non_claims": [
+      "No full Maxwell propagation, noise ensemble or robust-control proof.",
+      "Analytic nominal trajectory does not independently validate numerical integration.",
+      "Third physical C has only local Jacobian analysis, not nonlinear capture test."
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/resonance_capture_2026_10_13/check.py",
+    "sol61_push/resonance_capture_2026_10_13/INPUT_RESONANCE.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "SymPy",
+      "version": "1.14.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

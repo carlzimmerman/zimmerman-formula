@@ -1,0 +1,755 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,longtable,array}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\DE}{\mathrm{DE}}
+\newcommand{\Pl}{\mathrm{Pl}}
+\newcommand{\Mb}{M_b}
+\title{Cold energy, dark energy, and a particle-physics bridge\\
+An equation inventory and three executed closure discriminators}
+\author{Zimmerman programme: research checkpoint CPB-2026-10-16}
+\date{16 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The physical theory remains open. This report separates vacuum stress,
+mass-carrying excitations, and collective response, and records the equations
+needed to connect them. Three routes are executed: a charge-preserving Higgs
+production extension, an exact cold--vacuum exchange consistency relation,
+and an exterior-mass lensing test. The simplest portal extension encounters
+mass-potential and kinetic-evolution obstructions at the adopted benchmark;
+a source-quartic extension repairs the global classical potential exactly;
+the exchange relation supplies a falsifiable joint constraint; positive
+spherical exterior mass cannot increase interior excess tangential shear.
+These are conditional reductions and applications of known mechanisms,
+not a particle discovery, a Standard Model derivation, or global novelty claims.
+\end{abstract}
+
+\section{Target, evidence, and conventions}
+The requested goal is one admitted physical model producing the galactic law,
+its finite mass supply, formation and source selection, the lensing metric,
+and cosmological abundance and perturbations. A predictive effective theory
+may contain measured constants. The stronger goal of deriving every constant
+also requires a mechanism selecting those constants; it is a separate standard.
+Neither standard is met by combining successful tests of different actions.
+
+The baseline is Git revision
+\texttt{370dfb58006e330f210f5e306297e822188e37ba} in a shared dirty checkout.
+Inputs to the calculation are hashed in \texttt{run\_003/manifest.json}.
+The controlling recent work order is
+\path{sol61_push/THEORY_NEXT_STEPS_2026-10-15.md}, including its October 15
+fourth-round successor. The frozen October 14 candidate is preserved.
+Older README and retraction prose describe different stages and do not
+override the dated candidate-specific results.
+
+\textbf{MODEL} denotes a chosen action/state; \textbf{DERIVED} means conditional
+on the displayed hypotheses; \textbf{TARGET} denotes a relation to explain;
+\textbf{OPEN} denotes a missing implication. Equations from distinct models
+below are not silently parts of one action. Microscopic formulas use
+$\hbar=c=k_B=1$, signature $(+---)$; cosmological SI equations explicitly
+use mass-equivalent densities $\rho_i$ and $p_i/c^2$. The weak lensing metric
+uses $(-+++)$ separately. These conventions must be translated in a future
+joined action. $\Phi_c$ below is the complex carrier; $\phi_g$ is gravitational
+potential; $\mathbf P$ is polarization; $p$ is pressure.
+
+The two acceleration footings remain separate:
+\begin{equation}
+ a_{0,\mathrm{can}}=9.3603\,10^{-11}\ \mathrm{m\,s^{-2}},\qquad
+ a_{0,\mathrm{alt}}=1.1312\,10^{-10}\ \mathrm{m\,s^{-2}}.
+\end{equation}
+These are the frozen candidate's values; nearby older documents use slightly
+different rounded values. The alternative total-density footing must not
+be identified with vacuum density in the equations below. The new microscopic
+controls do not choose or combine these galaxy footings.
+
+\section{What cold and dark energy mean}
+Cold energy is energy mostly stored as rest mass, with
+$|p_c|\ll\rho_c c^2$ in the relevant frame. It is not an identified species.
+Dark energy is a component with sufficiently negative pressure to accelerate
+expansion. A constant positive vacuum has
+\begin{equation}
+ \epsilon_v=\rho_v c^2>0,\qquad p_v=-\epsilon_v,\qquad w_v=-1.
+\end{equation}
+A nonrelativistic isotropic distribution instead has, at leading order,
+\begin{equation}
+ \rho_c c^2\simeq mn c^2+\tfrac12 mn\langle v^2\rangle,
+ \qquad p_c\simeq\tfrac13 mn\langle v^2\rangle.
+\end{equation}
+Low mean pressure does not establish a small perturbation sound speed,
+short free-streaming length, correct abundance, or a galactic attractor.
+
+A simple example of one field carrying both roles is the stipulated potential
+\begin{equation}
+ V(\Phi_c)=V_0+m^2|\Phi_c|^2+\lambda|\Phi_c|^4,\quad
+ \Phi_c\simeq e^{-imt}\psi/\sqrt{2m},\quad n=|\psi|^2.
+\end{equation}
+In its dilute rotating, weak-interaction limit,
+\begin{equation}
+ \epsilon\simeq V_0+mn+\frac{\lambda n^2}{4m^2},\qquad
+ p\simeq-V_0+\frac{\lambda n^2}{4m^2}.
+\end{equation}
+Here $mn$ is rest-energy density in natural units. The interaction is
+repulsive for $\lambda>0$. The approximate adiabatic sound speed of the
+nonvacuum part is
+\begin{equation}
+ c_{s,c}^2\simeq
+ \frac{\lambda n/(2m^2)}{m+\lambda n/(2m^2)}.
+\end{equation}
+This illustrates coexistence, not the desired galaxy force. Changing $V_0$
+leaves the flat-space scalar equation unchanged while changing vacuum gravity.
+Thus writing one field does not fix the cold abundance, vacuum magnitude,
+or $a_0$. Previously tested linked-square potentials also have excessive
+pressure/scale-separation problems; their failures are not erased here.
+
+\section{Dark energy, expansion, and the acceleration scale}
+For FLRW geometry,
+\begin{align}
+ H^2&=\frac{8\pi G}{3}\sum_i\rho_i-\frac{k c^2}{a^2},\\
+ \frac{\ddot a}{a}&=-\frac{4\pi G}{3}\sum_i(\rho_i+3p_i/c^2).
+\end{align}
+Vacuum may be written as density on the right or as $\Lambda$ on the left
+of Einstein's equation, once:
+\begin{equation}
+ \rho_v=\frac{\Lambda c^2}{8\pi G},\quad
+ H_\Lambda^2=\frac{\Lambda c^2}{3},\quad
+ a_0=\kappa c\sqrt{G\rho_v}
+ =\kappa c^2\sqrt{\frac{\Lambda}{8\pi}}.
+\label{eq:scale}
+\end{equation}
+The last link is the programme's \textbf{TARGET}, with $\kappa=1/2$ fitted,
+not derived. Consequently
+\begin{equation}
+ a_0^2=\frac{\Lambda c^4}{32\pi},\quad
+ \epsilon_v=\frac{4a_0^2}{G},\quad
+ \frac{a_0}{cH_\Lambda}=\frac{1}{2}\sqrt{\frac{3}{8\pi}}.
+\end{equation}
+These three are algebraic restatements of the adopted coefficient.
+They are not three independent derivations. A constant offset of a response
+potential remains a free vacuum term unless an actual mechanism fixes it.
+
+For separately conserved dark energy,
+\begin{equation}
+ \frac{\rho_\DE(z)}{\rho_{\DE0}}
+ =\exp\!\left[3\int_0^z\frac{1+w(z')}{1+z'}\dd z'\right],\qquad
+ \frac{a_0(z)}{a_0(0)}=\sqrt{\frac{\rho_\DE(z)}{\rho_{\DE0}}}.
+\end{equation}
+For CPL, $w(a)=w_0+w_a(1-a)$,
+\begin{equation}
+ F(z)=(1+z)^{3(1+w_0+w_a)}e^{-3w_a z/(1+z)}.
+\end{equation}
+Constant vacuum gives constant $a_0$. Evolving CPL density, an $H(z)$ law,
+and an event-horizon law are distinct hypotheses. An event-horizon model
+instead requires a specified future expansion history:
+\begin{equation}
+ R_E(a)=ca\int_a^\infty\frac{\dd a'}{a'^2 H(a')},\qquad
+ a_0(a)/a_0(1)=R_E(1)/R_E(a),
+\end{equation}
+when the integral exists. No existing seal is changed here.
+
+\section{The galaxy law and the static polarization construction}
+For spherical baryons,
+\begin{equation}
+ g_b=\frac{G\Mb(<r)}{r^2},\quad y=g_b/a_0,\quad
+ g=\nu(y)g_b,\quad g\sim\sqrt{a_0g_b},\quad V_f^4=G\Mb a_0.
+\end{equation}
+Three distinct interpolations appearing in the corpus are
+\begin{align}
+ \nu_s(y)&=\tfrac12+\sqrt{\tfrac14+1/y},
+ &g_b&=\frac{g^2}{g+a_0},\\
+ \nu_q(y)&=\sqrt{1+1/y},
+ &g^2-g_b^2&=a_0g_b,\\
+ \nu_e(y)&=(1-e^{-\sqrt y})^{-1}.
+\end{align}
+They share a deep limit and differ elsewhere. They must not be called
+equivalent. The October 14 static candidate uses $\nu_s$.
+
+Put $K=4\pi G$, $u=K|\mathbf P|<a_0$, and
+$\gamma=K L_*^2/2$. Its chosen static action density is
+\begin{equation}
+ \mathcal L_{S2}=-\frac{|\nabla\phi_g-K\mathbf P|^2}{2K}
+ -\rho_b\phi_g-W_{\rm rem}(u)-\frac\gamma2|\nabla\mathbf P|^2,
+\end{equation}
+where the critical quadratic part has already been included in the square:
+\begin{equation}
+ W_{\rm rem}(u)=\frac1K\left[-\frac{u^2}{2}-a_0u
+ -a_0^2\ln(1-u/a_0)\right],\qquad
+ K W'_{\rm rem}=\frac{u^2}{a_0-u}.
+\end{equation}
+Variation, before a phase gate is added, gives
+\begin{align}
+ \nabla\cdot(\nabla\phi_g-K\mathbf P)&=K\rho_b,\\
+ \nabla\phi_g-K\mathbf P-KW'_{\rm rem}(u)\widehat{\mathbf P}
+ +\gamma\nabla^2\mathbf P&=0.
+\end{align}
+Outside stiffness-dominated regions, in the spherical aligned branch,
+\begin{equation}
+ g-u=g_b=\frac{u^2}{a_0-u},\qquad
+ u=\frac{a_0g}{a_0+g},\qquad g_b=\frac{g^2}{g+a_0}.
+\end{equation}
+This is \textbf{DERIVED} from a potential chosen to give the law. It does not
+derive that potential from microscopic physics. $L_*$ is a bounded input.
+The static action alone supplies no inertia, collision operator, physical
+clock, or condensed-baryon ownership prescription. A local AQUAL-like
+reduction also cannot by itself establish absence of an external-field effect.
+
+\section{Mass supply, currents, and free matter}
+If $\mathbf P$ is actual cold-mass displacement, the proposed identification is
+\begin{equation}
+ \nabla\cdot\mathbf P=\rho_c-\bar\rho_c,\qquad
+ \dot{\mathbf P}=-\mathbf j_c.
+\end{equation}
+Continuity alone implies only
+$\nabla\cdot(\mathbf j_c+\dot{\mathbf P})=0$.
+For homogeneous positive $\rho_0$, ordinary material kinetic energy requires
+\begin{equation}
+ T\ge\frac{|\mathbf j_c|^2}{2\rho_0},\qquad
+ T_k\ge\frac{|\dot{\delta\rho}_k|^2}{2\rho_0k^2},\qquad
+ I_{\rm mass}=\rho_0^{-1},\quad
+ c_{\rm bare}^2=\gamma\rho_0=2\pi G\rho_0L_*^2.
+\end{equation}
+This reproduces the October 15 mass-response audit. Choosing an independent
+fast response field changes the model; it does not remove mass transport.
+For a localized contrast,
+\begin{equation}
+ \int\delta\rho\,\dd^3x=\oint\mathbf P\cdot\dd\mathbf S.
+\end{equation}
+Zero boundary flux implies compensation, not creation of positive mass
+from an empty isolated domain.
+
+In the zero-stiffness point-baryon $\nu_s$ branch put
+$r_M=\sqrt{G\Mb/a_0}$ and $x=r/r_M$. Then
+\begin{equation}
+ \frac{M_t(<r)}{\Mb}=\frac{\sqrt{1+4x^2}-1}{2},\quad
+ M_t=\frac{r^2(g-g_b)}{G}.
+\end{equation}
+An allocated stock $S_c=\mathcal R\Mb$ therefore gives
+\begin{equation}
+ x\le\sqrt{\mathcal R(\mathcal R+1)}=5.8426446\ldots
+ \quad(\mathcal R=5.364).
+\end{equation}
+The numerical stock is an input inferred in a cosmological model, not a
+derivation or a measured species identity. More generally
+\begin{equation}
+ M_{c,\rm target}=(\nu-1)\Mb,\quad
+ \rho_{c,\rm target}=\frac{1}{4\pi r^2}\frac{\dd M_{c,\rm target}}{\dd r}.
+\end{equation}
+Both enclosed positivity and density positivity must hold.
+The earlier bookkeeping $M_{\rm tot}=\nu\Mb+k M_{\rm hot}$ has fitted
+$k\simeq3$; it is not a physical partition law. The newer work order retains
+the failure of a gas-tracing free pool and requires a counted free population.
+
+For a conditional extension where free mass supplies ordinary source
+$A=g_b+g_f$ to the same responding phase,
+\begin{equation}
+ A=\frac{g^2}{g+a_0},\quad a_{\rm app}=\frac{g(g-g_b)}{g_b},\quad
+ M_f(<r)=\Mb(<r)\frac{a_{\rm app}-a_0}{g+a_0}.
+\end{equation}
+The October 15 inverse diagnostic requires $M_f\ge0$ and $M'_f\ge0$.
+Unchanged exact baryon-only adherence then leaves no such free mass inside
+the radius. A different source/phase assignment requires different equations.
+
+\section{The microscopic cold carrier}
+The independent charge-protected scalar model is
+\begin{align}
+ \mathcal L_c&=|\partial\Phi_c|^2+|\partial X|^2-V_c,\\
+ V_c&=m^2|\Phi_c|^2+4m^2|X|^2+
+ \left|\sqrt{\Delta_c}X+\frac{g_c}{\sqrt{\Delta_c}}\Phi_c^2\right|^2
+ +\lambda_{\rm rep}|\Phi_c|^4,\\
+ M&=2m\sqrt{1+u_*^2},\quad \Delta_c=4m^2u_*^2,
+ \quad\lambda_{\rm tot}=g_c^2/\Delta_c+\lambda_{\rm rep}.
+\end{align}
+Here $m,\Delta_c,\lambda_{\rm rep}>0$ and $g_c$ is real. Its equations are
+\begin{equation}
+ (\Box+m^2)\Phi_c+2g_c X\Phi_c^*
+ +2\lambda_{\rm tot}|\Phi_c|^2\Phi_c=0,\qquad
+ (\Box+M^2)X+g_c\Phi_c^2=0.
+\end{equation}
+The symmetry $(\Phi_c,X)\mapsto(e^{i\theta}\Phi_c,e^{2i\theta}X)$ yields
+\begin{equation}
+ j_Q^\mu=i(\Phi_c^*\partial^\mu\Phi_c-\Phi_c\partial^\mu\Phi_c^*)
+ +2i(X^*\partial^\mu X-X\partial^\mu X^*),\quad \partial_\mu j_Q^\mu=0.
+\end{equation}
+In the isolated classical model $E\ge m|Q|$. This carrier-only bound does
+not automatically include gravity, a portal, or a finite-temperature medium.
+
+At a fixed regulator in the nonrelativistic approximation put
+$\delta=M-2m$, $c_3=g_c/(2m\sqrt{2M})$, $k_c=\lambda_{\rm tot}/(4m^2)$.
+With source annihilator $b$,
+\begin{align}
+ H&=mQ+D_c,\quad Q=\int(\psi^\dagger\psi+2b^\dagger b)\dd^3x,\\
+ D_c&=T+\delta\int\left|b+\frac{c_3}{\delta}\psi^2\right|^2\dd^3x
+ +\left(k_c-\frac{c_3^2}{\delta}\right)\int\psi^{\dagger2}\psi^2\dd^3x,\\
+ k_c-\frac{c_3^2}{\delta}
+ &=\frac{\lambda_{\rm rep}}{4m^2}
+ +\frac{g_c^2}{8m^2M(M+2m)}>0.
+\end{align}
+Thus $0\le\langle T\rangle\le\langle D_c\rangle$. For initially resting
+sources $D_c/(mQ)=\delta/(2m)\simeq u_*^2/2$.
+The regulated homogeneous pressure bound uses
+\begin{equation}
+ r_c^2=\frac{c_3^2}{\delta k_c}<1,\quad
+ b_\pm=\tfrac12(1\pm(1-r_c^2)^{-1/2}),\quad
+ \frac{|p_c|}{\epsilon_c}\le\frac{b_+d}{1+d},\quad
+ d=\frac{\langle D_c\rangle}{m\langle Q\rangle}.
+\end{equation}
+It is not a continuum quantum-field or perturbation theorem.
+
+A resting source decays to two same-charge daughters, with
+\begin{equation}
+ p_*=mu_*,\quad v_*^2=\frac{u_*^2}{1+u_*^2},\quad
+ \frac{p_{\rm free}}{\epsilon_{\rm free}}=\frac{u_*^2}{3(1+u_*^2)},\quad
+ \Gamma_c=\frac{g_c^2}{8\pi M}\sqrt{1-\frac{4m^2}{M^2}}.
+\end{equation}
+At threshold and away from an unresolved resonance,
+\begin{align}
+ \sigma_0&=\frac{\lambda_{\rm rep}^2}{8\pi m^2},\quad
+ x_s=\frac{s-4m^2}{\Delta_c},\quad r_\lambda=\lambda_{\rm rep}\Delta_c/g_c^2,\\
+ \lambda_{\rm eff}&=\frac{g_c^2}{\Delta_c}
+ \left(r_\lambda-\frac{x_s}{1-x_s}\right),\quad
+ \frac{\sigma(s)}{\sigma_0}=\left(\frac{\lambda_{\rm eff}}{\lambda_{\rm rep}}\right)^2
+ \frac{4m^2}{s}.
+\end{align}
+A physical resonance needs a width and inclusive rates without double-counting
+real intermediate $X$. The existing screening example is $m=1$ MeV,
+$u_*=.02$, $r_\lambda=2$, $\sigma_0/m=.3\ \mathrm{cm^2/g}$,
+$g_c\simeq2168$ eV, $\lambda_{\rm tot}\simeq.00881$.
+It is a selected benchmark, not an identified particle.
+
+\section{A distinct microscopic response candidate}
+The separate nodal-fermion model has
+\begin{align}
+ \mathcal L_{\varphi P}&=\frac{Z_\varphi}{2}\dot\varphi^2
+ +\frac{I_P}{2}|\dot{\mathbf P}|^2
+ -\frac C2|\nabla\varphi-\mathbf P/C|^2-q_b\rho_b\varphi,\\
+ H_F&=\frac{k_x^2+k_y^2-k_0^2}{2m_*}\Gamma_1+vk_z\Gamma_2
+ +h\sum_{j=1}^3P_j\Gamma_{j+2},\quad
+ \{\Gamma_i,\Gamma_j\}=2\delta_{ij}.
+\end{align}
+For $N$ occupied negative bands, zero temperature and zero chemical potential,
+let $\Delta_f=h|\mathbf P|$ and $A=Nm_*/(2\pi v)$. With an energy-tube
+cutoff $\Lambda_f$,
+\begin{equation}
+ V_F(\Delta_f)-V_F(0)=-\frac A3
+ [(\Lambda_f^2+\Delta_f^2)^{3/2}-\Lambda_f^3-|\Delta_f|^3].
+\end{equation}
+Subtracting the analytic quadratic term gives leading
+$V_{F,\rm ren}=\beta_3|\mathbf P|^3/3$, $\beta_3=Ah^3>0$.
+The local cubic approximation gives
+\begin{equation}
+ V_\infty^4=\mathcal K\Mb,\qquad
+ \mathcal K=\frac{q_b^3}{4\pi C^3\beta_3}.
+\end{equation}
+The required $\mathcal K=Ga_0$ remains an unfixed calibration.
+In the separately derived gapless spatial regime,
+\begin{equation}
+ \mathbf D/C=\eta|\nabla|\mathbf P,\quad
+ \eta=Nm_*h^2\pi/32,\quad
+ V_\infty^2=\frac{q_b^2\Mb}{2\pi^2 C^2\eta},
+\end{equation}
+so $V^4\propto\Mb^2$, not the target exponent. The crossover is unsolved.
+Finite temperature or occupancy further changes the local response:
+\begin{equation}
+ \partial_{\Delta_f}V_F=2AT\Delta_f\ln[2\cosh(\Delta_f/(2T))],\qquad
+ \left.\partial_{\Delta_f}V_F\right|_{T=0}
+ =A\Delta_f\max(\Delta_f,|\mu|).
+\end{equation}
+For $\Delta_f\ll T$, the leading potential is quadratic. This already-known
+obstruction is not a new route discovered here. Positive homogeneous
+response/absorption does not establish galaxy-age settling or covariant lensing.
+No interaction connects this fermion medium to $\Phi_c,X$ in the current model.
+
+\section{Route A: a Standard Model production bridge, actually screened}
+\textbf{Proposal, not an adopted replacement.} Keep $\Phi_c,X$ as Standard
+Model singlets with their global charges, and introduce
+\begin{equation}
+ \mathcal L_{\rm portal}=-\lambda_{HX}|H_{\rm SM}|^2|X|^2
+ -\lambda_{H\Phi}|H_{\rm SM}|^2|\Phi_c|^2.
+\end{equation}
+This preserves the Standard Model gauge group and the dark $U(1)$. Initially
+take $\lambda_{H\Phi}=0$ to screen the simplest extension. The broken-phase
+channel is $h\to XX^*$ followed by $X\to\Phi_c\Phi_c$ and its conjugate.
+It creates four daughter quanta, two of each sign, with net charge zero.
+No net charge asymmetry is generated. In that neutral state the bound
+$E\ge m|Q|$ supplies no nonzero abundance bound.
+
+Freeze-in is established prior art \cite{hall}; this application supplies
+the missing source interaction rather than deriving the Standard Model.
+For a Maxwell--Boltzmann thermal Higgs bath, negligible inverse reactions,
+radiation domination, constant $g_s,g_\rho$, high enough reheating, unit
+cascade branching, and no number-changing dark reprocessing, integration
+of the decay collision term gives
+\begin{align}
+ \dot n_\Phi+3Hn_\Phi&=4\gamma_{h\to XX^*},\\
+ \gamma_{h\to XX^*}&=\frac{m_h^2T\Gamma_h}{2\pi^2}K_1(m_h/T),\\
+ Y_\Phi&=4\frac{135}{8\pi^3(1.66)g_s\sqrt{g_\rho}}
+ \frac{M_\Pl\Gamma_h}{m_h^2},\\
+ \Gamma_h&=\frac{\lambda_{HX}^2 v_H^2}{16\pi m_h}
+ \sqrt{1-4M^2/m_h^2}.
+\end{align}
+Here $M_\Pl=G^{-1/2}$, $Y_\Phi$ counts particles plus antiparticles, and
+$Y_\Phi=2Y_{X+X^*}$. These assumptions define a production control, not
+a solved dark-sector cosmology. With stipulated $\Omega_c h^2=.12$,
+the illustrative conversion $\Omega_c h^2=2.742\,10^8(m/\mathrm{GeV})Y_\Phi$
+and $m_h=125$ GeV, $v_H=246$ GeV, $g_s=g_\rho=106.75$, the control gives
+\begin{equation}
+ Y_\Phi=4.3764\,10^{-7},\quad
+ \Gamma_h=4.7104\,10^{-19}\ \mathrm{GeV},\quad
+ \lambda_{HX}=2.2115\,10^{-10}.
+\end{equation}
+The coupling is calibrated to abundance; abundance is not derived.
+Assuming total Higgs width $4.1$ MeV gives illustrative branching
+$1.15\,10^{-16}$, not a promised collider signal.
+
+\subsection{First obstacle: physical masses and the scalar potential}
+After electroweak symmetry breaking,
+\begin{equation}
+ M^2=M_0^2+\lambda_{HX}v_H^2/2,\quad
+ m^2=m_0^2+\lambda_{H\Phi}v_H^2/2,\quad
+ \Delta_c=\Delta_0+(\lambda_{HX}-4\lambda_{H\Phi})v_H^2/2.
+\end{equation}
+At the screened point the source shift is $6.6915\,10^{-6}$ GeV$^2$,
+or $4182.2\Delta_c$. Moreover $M_0^2=-2.6899\,10^{-6}$ GeV$^2<0$.
+The original carrier has no $|X|^4$ stabilizer. Holding $H=\Phi_c=0$ and
+sending $|X|\to\infty$ then makes this minimally extended classical
+potential unbounded. Thus this particular positive-portal, fixed-physical-mass
+benchmark is not an admitted complete scalar model as written.
+Forcing $M_0^2\ge0$ bounds
+\begin{equation}
+ \lambda_{HX}\le2M^2/v_H^2\simeq1.3225\,10^{-10},\qquad
+ (\Omega_c h^2)_{\max}\simeq.0429
+\end{equation}
+within the same simplified production calculation.
+The following subsection executes the positive-quartic repair. Thermal
+masses, additional production channels, and changed mass/coupling points
+remain distinct continuations. Setting $\lambda_{H\Phi}=\lambda_{HX}/4$
+removes this tree-level contribution to the gap but is an unprotected
+relation here, not an explanation. The dimensional dark-loop diagnostic
+$g_c^2/(16\pi^2\Delta_c)=1.86\,10^{-5}$ is not a renormalized loop result.
+
+\subsection{An explicit globally stable scalar extension}
+Keep the desired physical masses in $V_c$ and set
+$t=|H_{\rm SM}|^2$, $w_H=t-v_H^2/2$. Specify the new candidate
+\begin{equation}
+ V_{\rm joined}=V_c+\lambda_H w_H^2
+ +\lambda_{HX}w_H|X|^2+\lambda_X|X|^4,
+ \qquad \lambda_H=\frac{m_h^2}{2v_H^2}.
+\end{equation}
+This includes the compensating bare source mass and is gauge invariant.
+Completion of a square gives the exact identity
+\begin{equation}
+ V_{\rm joined}=V_c+
+ \lambda_H\left(w_H+\frac{\lambda_{HX}|X|^2}{2\lambda_H}\right)^2
+ +\left(\lambda_X-\frac{\lambda_{HX}^2}{4\lambda_H}\right)|X|^4.
+\end{equation}
+Therefore $\lambda_X\ge\lambda_{HX}^2/(4\lambda_H)$ suffices for
+$V_{\rm joined}\ge V_c\ge0$ for all scalar configurations, not just
+near the chosen vacuum. The vacuum $X=\Phi_c=0$, $t=v_H^2/2$ is a global
+minimum. For the benchmark the sufficient floor is
+$\lambda_X\ge9.47\,10^{-20}$; choose $\lambda_X=10^{-18}$ as an explicit
+new input. The negative bare source mass at $H=0$ no longer implies an
+unbounded total potential. This is a classical boundedness result, not
+a claim about the early-universe phase or radiative naturalness.
+
+With canonical scalar kinetic terms, the coupled source and Higgs equations
+include, before the additional Standard Model gauge/fermion contributions,
+\begin{align}
+ (\Box+M^2)X+g_c\Phi_c^2+
+ \lambda_{HX}w_H X+2\lambda_X|X|^2X&=0,\\
+ D_\mu D^\mu H_{\rm SM}+
+ (2\lambda_Hw_H+\lambda_{HX}|X|^2)H_{\rm SM}&=0.
+\end{align}
+The daughter equation is unchanged at tree level in this specified
+$\lambda_{H\Phi}=0$ model. Both portal forces come from the same potential;
+the scalar subsystem exchanges energy reciprocally and retains the dark
+$U(1)$. With vacuum energy subtracted, in isolated flat-space classical
+scalar theory, the completed-square lower bound also retains $E\ge m|Q|$:
+the charge-one kinetic/mass terms bound $m|Q_\Phi|$, the charge-two
+$4m^2|X|^2$ terms bound $m|Q_X|$, and all added energy is nonnegative.
+This extension is an admitted classical scalar production candidate, not
+yet the polarization medium or a cosmologically viable theory. The portal
+mass-gap sensitivity, quantum corrections, actual thermal Higgs phase,
+and dark kinetic equations remain to be evaluated.
+
+\subsection{Second obstacle: momentum and dark reprocessing}
+In the rest frame of a Higgs, the source boost is $\gamma_X=m_h/(2M)$.
+For isotropic source decay,
+\begin{equation}
+ E_\Phi=\gamma_X(M/2+\beta_X m u_*\cos\theta),\qquad
+ \langle E_\Phi\rangle=m_h/4.
+\end{equation}
+The benchmark gives $\gamma_X=31243.8$ and daughter energies
+$30.625$--$31.875$ GeV. Rest-frame coldness is not cosmological birth coldness.
+Early redshifting could nevertheless cool these daughters; the boost alone
+does not exclude the model.
+
+For a deliberately collisionless monochromatic control produced at
+$T_p=m_h/3$, visible entropy conservation gives
+\begin{equation}
+ a_p=\frac{T_{\gamma0}}{T_p}(g_{s0}/g_{sp})^{1/3},\quad
+ a_{\rm nr}=a_p(p_p/m),\quad
+ v(a)/c=\frac{a_{\rm nr}}{\sqrt{a^2+a_{\rm nr}^2}}.
+\end{equation}
+Approximating the entire interval as radiation dominated gives the exact
+control integral
+\begin{equation}
+ \lambda_{\rm fs,RD}=\frac{c a_{\rm nr}}{H_0\sqrt{\Omega_r}}
+ \left[\operatorname{asinh}(a_{\rm eq}/a_{\rm nr})
+ -\operatorname{asinh}(a_p/a_{\rm nr})\right].
+\end{equation}
+With the declared standard-cosmology inputs in the script, this is
+$4.3728\,10^{-4}$ Mpc and $p/m=1.9890\,10^{-7}$ at equality.
+These are kinematic controls, not a transfer function or valid small-scale
+structure constraint. The source thermal spectrum and changing degrees of
+freedom are not evolved in this control.
+
+It is also not self-consistent to retain collisionless evolution with the
+adopted cross section. At visible $T=1$ keV, well below the source resonance,
+using the total benchmark number density, isotropic equal-speed control
+$\langle v_{\rm rel}\rangle=4v/3$, and applying the threshold cross section
+to that mixture gives
+\begin{equation}
+ \frac{\Gamma_{22}}H=\frac{Y_\Phi s(T)\sigma_0\langle v_{\rm rel}\rangle}{H(T)}
+ \simeq1374.
+\end{equation}
+The particle/antiparticle channel matrix must be derived; even retaining only
+the same-sign half-density estimate leaves a rate much greater than $H$.
+This rejects the collisionless continuation of this control, not cold
+interacting matter. Momentum-resolved dark collisions, inverse conversions
+and allowed number-changing reactions must replace it. The required equation is
+\begin{equation}
+ (\partial_t-Hp\partial_p)f_i(p,t)
+ =C_i^{\rm SM}+C_i^{1\leftrightarrow2}+C_i^{2\leftrightarrow2}+cdots,
+\end{equation}
+with reciprocal collision integrals and energy/charge conservation.
+The Higgs bridge now has an explicit tree-stable scalar extension. Its
+collisional kinetics and cosmological phase history remain unresolved.
+
+\section{Route B: an exact exchange--acceleration consistency test}
+Define $Q$ in mass-density per time, positive from dark energy into cold
+matter. With conserved baryons, constant $G,c,\kappa$, and the scale link
+in equation~\eqref{eq:scale},
+\begin{align}
+ \dot\rho_c+3H\rho_c&=Q,\\
+ \dot\rho_\DE+3H(1+w)\rho_\DE&=-Q,\\
+ 2\frac{\dd\ln a_0}{\dd\ln a}
+ &=-3(1+w)-\frac{Q}{H\rho_\DE},\\
+ \frac{\dd\ln(\rho_c/\rho_b)}{\dd\ln a}&=\frac{Q}{H\rho_c}.
+\end{align}
+Eliminating $Q$ gives the \textbf{DERIVED} conditional null relation
+\begin{equation}
+ \boxed{2\frac{\dd\ln a_0}{\dd\ln a}+3(1+w)
+ +\frac{\rho_c}{\rho_\DE}
+ \frac{\dd\ln(\rho_c/\rho_b)}{\dd\ln a}=0.}
+\label{eq:null}
+\end{equation}
+Proof: differentiate $a_0^2\propto\rho_\DE$, insert the second continuity
+equation, then substitute the fourth equation. No cosmological solution
+or microscopic choice of $Q$ is required for that algebraic implication.
+The code checks 27 rational cases as controls of the implementation.
+
+For a vacuum-like component $w=-1$, exactly constant $a_0$ forces background
+$Q=0$. A homogeneous net transfer from cold matter into vacuum raises
+$\rho_\DE$ and $a_0$; transfer in the other direction lowers them.
+The interacting-vacuum equations are known \cite{wands}; that source defines
+$Q$ with the opposite sign. Our equation is their continuity system combined
+with this programme's postulated scale link, not a new general cosmology.
+
+Important scope: $Q$ here is a cosmic mean net exchange, not automatically
+the local loss of halo kinetic energy. Halo cooling may deposit energy in
+dark radiation or other excitations instead of vacuum. Spatially local
+exchange, local gravitational work, and cosmological averaging need their own
+covariant model. A constant $T_v^{\mu\nu}=-\epsilon_v g^{\mu\nu}$ has zero
+covariant divergence. A varying vacuum can exchange energy but requires
+$\nabla_\mu T_v^{\mu\nu}=-\nabla^\nu\epsilon_v$ and a compatible receiver.
+For variable $G$ or $\kappa$, equation~\eqref{eq:null} acquires the negative
+terms $-\dd\ln G/\dd\ln a-2\dd\ln\kappa/\dd\ln a$ on its left.
+
+\textbf{Next discriminator:} derive the actual $Q^\mu$ of the proposed
+formation receiver, determine its background average, and evolve abundance
+and $a_0$ together. A measurable inconsistency in equation~\eqref{eq:null}
+would reject the conjunction of the scale link and exchange assumptions,
+not select a particle identity.
+
+\section{Route C: can exterior free mass repair interior lensing?}
+This tests one tempting escape from the inverse free-mass constraint:
+place all additional positive matter outside the region where the baryonic
+law must be preserved. In ordinary spherical weak-field mass lensing,
+\begin{equation}
+ \Sigma(R)=2\int_R^\infty\frac{\rho(r)r\dd r}{\sqrt{r^2-R^2}},\qquad
+ \Delta\Sigma(R)=\frac2{R^2}\int_0^R\Sigma(S)S\dd S-\Sigma(R).
+\end{equation}
+For a thin shell of mass $M_s>0$ and radius $r_s>R$, put
+$x=R/r_s$ and $s_x=\sqrt{1-x^2}$. Direct projection gives
+\begin{align}
+ \Sigma_s&=\frac{M_s}{2\pi r_s^2s_x},\quad
+ M_{\rm proj}(<R)=M_s(1-s_x),\\
+ \Delta\Sigma_s
+ &=\frac{M_s}{\pi r_s^2}
+ \left[\frac{1-s_x}{x^2}-\frac1{2s_x}\right]
+ =-\frac{M_s x^2}{2\pi r_s^2s_x(1+s_x)^2}<0.
+\end{align}
+Newtonian interior acceleration from the shell is zero, but its excess
+tangential shear is negative. Its convergence is positive; these are
+different observables. By positive superposition, every finite nonnegative
+spherical distribution supported at $r\ge r_0$ has
+$\Delta\Sigma_{\rm ext}(R)\le0$ for $0<R<r_0$, whenever the integrals exist.
+It is strictly negative for nonzero exterior mass at finite radii.
+The small-$R$ limit is
+\begin{equation}
+ \Delta\Sigma_s=-\frac{M_sR^2}{8\pi r_s^4}+O(R^4).
+\end{equation}
+That leading expansion was already calculated in
+\path{campaign_fresh_gravity/CFG3_principle.py}, lines 297--302.
+The all-interior sign and positive-superposition application are formal
+corollaries, not an independently novel force law.
+
+The script checks five exact rational shell cases and three positive shell
+mixtures. Therefore placing all repair mass beyond a protected radius cannot
+increase a positive $\Delta\Sigma$ residual inside that radius while leaving
+interior dynamics unchanged. This does not reject repair at larger projected
+radii, nonspherical environments, interpenetrating matter, correlated
+line-of-sight structure, or a different relativistic metric theory.
+The next empirical step remains the measured baryon distribution and
+isolation-selected lens--matter correlation required by the October 15 work
+order. We have not rerun a lensing likelihood or changed an empirical verdict.
+
+\section{Relativity, damping, and what remains to close}
+The necessary joined action has the schematic form
+\begin{equation}
+ S=S_{\rm EH}+S_{\rm SM}+S_c+S_{\rm response}
+ +S_{\rm bridge}+S_{\rm receiver}+S_{\rm counterterms}.
+\end{equation}
+This is an inventory, not a completed action. In a common $c=1$ convention,
+\begin{equation}
+ \nabla_\mu T_i^{\mu\nu}=Q_i^\nu,\qquad \sum_i Q_i^\nu=0,
+ \qquad \nabla_\mu T_{\rm tot}^{\mu\nu}=0.
+\end{equation}
+A portal producing particles supplies neither the MOND constitutive law nor
+its photon metric. In the usual weak-field convention,
+\begin{equation}
+ \dd s^2=-(1+2\Phi_g/c^2)c^2\dd t^2
+ +a^2(1-2\Psi_g/c^2)\dd\mathbf x^2.
+\end{equation}
+Nonrelativistic gravity probes $\Phi_g$ and lensing probes $\Phi_g+\Psi_g$.
+A separately added force on baryons cannot be assumed to bend light.
+No same-action relativistic kinetic/interface proof is supplied here.
+
+The existing Newtonian carrier starting point is
+\begin{equation}
+ \partial_t f+\mathbf v\cdot\nabla_x f
+ -\nabla\Phi_g\cdot\nabla_v f=C[f],\quad
+ \rho_c=m\int f\dd^3v,\quad
+ \nabla^2\Phi_g=4\pi G(\rho_b+\rho_c).
+\end{equation}
+Elastic scattering redistributes energy; it cannot erase the total formation
+energy. Radiation, escaping matter, a reciprocal bath, or phase mixing must
+be distinguished. Conservative phase mixing can yield weak coarse settling
+without strong convergence to a zero-energy resting minimum. No chosen
+relaxation time is promoted to a derived clock.
+
+\begin{longtable}{p{.20\textwidth}p{.36\textwidth}p{.35\textwidth}}
+\toprule Obligation & What exists & First unresolved implication\\\midrule
+\endhead
+O0 source dictionary & Dated candidate equations and input hashes & One common positive-mass, charge and force mapping\\
+O1 reciprocal action & Independent carrier, static and current constructions & Microscopic fields generating the adopted polarization law\\
+O2 metric health & Scoped static hybrid/Einstein branches in prior work & Constrained dynamics, interfaces and lensing for the joined model\\
+O3 formation & Prior finite-stock energy calculations & Actual receiver, rate and basin from independent starts\\
+O4 partition & Tether/free prescription; ownership algorithm & Physical phase variable and reciprocal transition\\
+O5 cosmology & Production control here; inherited cosmology in older tests & Stable potential, collision integrals, native transfer functions\\
+O6 parameters & Fitted $\kappa$, stock, bounded $L_*$ & Mechanism or explicit independently measured input inventory\\
+O7 joint tests & Candidate-specific successes and failures & Same candidate across all domains, both footings\\
+O8 sealed data & Existing unchanged commitments & Verify public availability and execute frozen scoring when available\\
+\bottomrule
+\end{longtable}
+
+The current fourth-round lensing calculation passes its relative criterion
+but fails its absolute criterion: point-source $\chi^2=165.36/52$ nominal
+degrees of freedom; even four fitted baryon radii give $75.73/48$ with
+nominal $p=.006516<.01$. These are recorded diagnostics, not recomputed here.
+They do not become successes by adding a mathematical stability theorem.
+Likewise the prior static Einstein branch does not inherit the hybrid
+model's static positivity theorem or prove dynamical stability.
+
+\section{Research decisions and novelty boundary}
+\textbf{Priority 1: the stabilized production candidate with full dark kinetics.}
+Use the completed-square scalar extension above, determine its thermal
+history, then solve the charged momentum distributions including
+inverse conversion and the correct scattering channels. Success would be
+an admitted potential and reproducible abundance/coldness; the source mass,
+portal and initial history remain inputs unless independently fixed.
+If the original 1-MeV benchmark is retained, use the explicit potential
+repair and replace the failed collisionless continuation. A different mass
+point requires new screening.
+
+\textbf{Priority 2: a physical formation receiver.}
+Derive reciprocal $Q^\mu$ and check energy, charge and momentum; if vacuum
+is the receiver, impose equation~\eqref{eq:null}. If another component is
+the receiver, propagate its perturbations and observational consequences.
+This route remains open because no receiver has been specified by this report.
+
+\textbf{Priority 3: one finite mass model for rotation and lensing.}
+Use measured extended baryons, real-mass positivity, a counted stock,
+the inverse constraint, and the exterior-shell sign. Predict the
+isolation-selected cross-correlation rather than a fitted matter-auto-power
+surrogate. The shell-only interior-repair construction is excluded in its
+stated domain; broader finite population constructions remain open.
+
+Particle production through a Higgs portal is known. Dipolar matter joining
+dark energy, cold cosmological behavior and MOND-like polarization also
+predates this programme \cite{blanchet}. The exchange null relation is a
+formal combination of known continuity with this programme's scale postulate.
+The shell result follows from standard projection, with its leading term
+already in this repository. The contribution of this checkpoint is the
+specific joint screening and its actionable constraints. No claim here is
+certified globally unique or novel.
+
+Literature discovery used targeted arXiv/primary-publisher web searches on
+Higgs freeze-in, decay momenta, dipolar polarization, interacting vacuum,
+and exterior-shell shear, checked on 16 October 2026. Primary full text was
+read for \cite{hall,wands,blanchet}; abstracts of adjacent clockwork and
+two-field portal work were discovery aids only. A cache lookup for
+\texttt{arxiv:0911.1120v2} had no match. No PDF was retained here. This was
+not a complete ADS/INSPIRE citation-graph or global novelty search.
+
+\section{Verification and continuation checkpoint}
+\texttt{checks.py} uses Python 3.9.6 standard library only. The fresh
+\texttt{run\_003} records 56 passing bounded controls, including 27 exact
+exchange identities, five exact shell identities, three shell mixtures,
+two quadratures of the radiation-only distance and nine exact scalar
+completion identities. Exact derivations are
+given above; passing finite cases is not their universal proof.
+The first run preceded the explicit negative-bare-mass check; run 002 added
+that check, and run 003 executes the stable-quartic continuation. Earlier
+runs are retained with their historical input hashes. Use run 003 for the
+current script. Review is self-review, not an independent referee report.
+
+The remaining goal is exactly O1--O7 above, plus the unchanged observational
+commitments as data become available. Next execution starts with the
+stabilized portal's thermal history and charged collision operators, or with a
+specified reciprocal formation receiver. None is currently running in this
+checkpoint. The routes are deferred/open, not exhausted and not marked solved.
+
+\begin{thebibliography}{9}
+\bibitem{hall} L. J. Hall, K. Jedamzik, J. March-Russell and S. M. West,
+\emph{Freeze-In Production of FIMP Dark Matter}, arXiv:0911.1120v2
+(8 December 2009), especially section 6.1, equations (6.6)--(6.10).
+\url{https://arxiv.org/html/0911.1120v2}.
+The decay-yield formula is specialized here with four final daughters.
+
+\bibitem{wands} C. Kaeonikhom, H. Assadullahi, J. Schewtschenko and D. Wands,
+\emph{Observational constraints on interacting vacuum energy with linear
+interactions}, JCAP 01 (2023) 042, arXiv:2210.05363,
+equation (2.7). \url{https://arxiv.org/pdf/2210.05363}.
+The web PDF available on the check date was read; its revision was not pinned
+locally. Only the displayed continuity equations, with reversed $Q$ sign,
+are used, not its observational bounds.
+
+\bibitem{blanchet} L. Blanchet and A. Le Tiec,
+\emph{Model of Dark Matter and Dark Energy Based on Gravitational Polarization},
+Phys. Rev. D 78, 024031 (2008), arXiv:0804.3518v2,
+introduction and action framework.
+\url{https://arxiv.org/html/0804.3518v2}.
+This establishes overlap of the broad mechanism, not the validity of our action.
+\end{thebibliography}
+\end{document}

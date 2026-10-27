@@ -1,0 +1,2243 @@
+                                           Prepared for submission to JHEP                           MITP-26-007, CERN-TH-2026-045
+
+
+
+
+                                           Factorizing the position-space photon propagator in
+                                           QED corrections to lattice QCD correlators
+
+
+
+
+arXiv:2603.13086v1 [hep-lat] 13 Mar 2026
+                                           Dominik Erb,a Harvey B. Meyer,a,b,c and Konstantin Ottnadd
+                                           a
+                                             PRISMA+ Cluster of Excellence & Institut für Kernphysik, Johannes Gutenberg-Universität Mainz,
+                                             D-55099 Mainz, Germany
+                                           b
+                                             Helmholtz Institut Mainz, Staudingerweg 18, D-55128 Mainz, Germany
+                                           c
+                                             Theoretical Physics Department, CERN, 1211 Geneva 23, Switzerland
+                                           d
+                                             Helmholz-Institut für Strahlen- und Kernphysik and Bethe Center for Theoretical Physics, Uni-
+                                             versität Bonn, D-53115 Bonn, Germany
+                                               E-mail: domerb@uni-mainz.de, h.b.meyer@cern.ch,
+                                               ottnad@hiskp.uni-bonn.de
+
+                                           Abstract: Electromagnetic corrections to the n-point functions of lattice QCD can be
+                                           evaluated using a position-space photon propagator defined in infinite volume. Here we ad-
+                                           dress the computational challenge arising from the volume-squared sum over the endpoints
+                                           of the photon propagator. We consider a class of integral representations of the photon
+                                           propagator that lead to a factorization of the two volume-sums, the Fourier representation
+                                           being one instance thereof. An alternative choice is based on expressing the free scalar
+                                           propagator as the autoconvolution of the corresponding five-dimensional propagator. We
+                                           compare the performance of three different choices in the context of electromagnetic cor-
+                                           rections to the hadronic vacuum polarization, on a gauge ensemble of size 483 × 128 with a
+                                           pion mass of 286 MeV. As an outlook, we discuss more generally the factorization of sums
+                                           over internal vertices, taking as an example the hadronic light-by-light contribution to the
+                                           muon (g − 2).
+Contents
+
+1 Introduction                                                                  2
+
+2 Formalism                                                                     3
+  2.1 Handling the photon propagator                                            6
+      2.1.1 Two-point-source method                                             6
+      2.1.2 Factorizing the photon propagator                                   7
+      2.1.3 Fourier method                                                      9
+      2.1.4 5D propagator method                                                9
+
+3 Lattice calculations                                                         10
+  3.1 Lattice setup                                                            10
+  3.2 Bare QED two-loop vacuum polarization contribution at fixed Λ from the
+      lattice                                                                  11
+  3.3 The connected contribution aHVP,38
+                                  µ,(4)  on N451                               14
+  3.4 The disconnected contributions on N451                                   16
+
+4 Methodological aspects and comparison to the literature                      21
+  4.1 Advantages and disadvantages of the methods                              21
+      4.1.1 2PS method                                                         21
+      4.1.2 Fourier method                                                     22
+      4.1.3 5D propagator method                                               23
+  4.2 Computational cost                                                       23
+      4.2.1 2PS method                                                         24
+      4.2.2 Fourier method                                                     24
+      4.2.3 5D propagator method                                               24
+      4.2.4 Equal-cost comparison of the errors                                25
+  4.3 Comparison to the literature                                             26
+  4.4 More general factorizations: the case of aHLbL
+                                                µ                              27
+
+5 Conclusion                                                                   28
+
+A Charge factors                                                               30
+
+B Derivation of the factorization formula for the scalar propagator            31
+  B.1 The continuum case                                                       32
+  B.2 The case of lattice propagators                                          33
+
+C 2PS method without using periodicity                                         34
+
+D Tables                                                                       35
+
+
+
+
+                                      –1–
+1       Introduction
+
+The anomalous magnetic moment of the muon serves as a stringent test of the Standard
+Model (SM) at low energies. Its direct experimental determination reached an absolute
+precision of 14.5 × 10−11 , corresponding to 124 ppb [1–8]. The 2025 White Paper (WP25)
+of the ‘Muon g − 2 Theory Initiative’ [9] provides the SM prediction with an uncertainty of
+62 × 10−11 [10–69]. This prediction is in agreement with the experimental global average.
+However, in order to fully exploit the exquisite experimental precision in ruling out new
+physics models, it is clearly of high interest to reduce the uncertainty of the SM prediction
+to a level comparable to that of the experimental global average.
+     In the WP25, the hadronic vacuum polarization (HVP) contribution is evaluated using
+lattice QCD results1 . This O(α2 ) effect is known to a precision of just under one percent,
+contributing by itself an absolute uncertainty of 61×10−11 [9]. At the subpercent level, not
+only the purely hadronic vacuum polarization, to be defined in a suitable scheme, but also
+the corrections due to isospin-breaking (IB) effects, both electromagnetic and strong IB,
+must be taken into account. While the size of these corrections appears to be quite small,
+their uncertainty is the second largest in the overall error budget of the SM prediction.
+Moreover, the existing evaluations are systematics-dominated [23, 34, 71]. With these
+points in mind, it is clearly of high importance to get a better handle on the corrections
+caused by IB effects.
+     Calculating the leading electromagnetic corrections to lattice QCD correlation func-
+tions means including the coupling of quarks to photons. This can be done either by
+including dynamical photons already at the stage of ensemble generation [72] (see also the
+recent study [73]) or by expanding around isosymmetric QCD and perturbatively calculat-
+ing corrections in the fine structure constant α and in (mu −md ), a method first introduced
+in lattice QCD in 2013 [74]. In the latter class of methods, one can additionally choose
+to include the photon propagators either in a finite volume, QEDL , or already in infinite
+volume, QED∞ . As for the ultraviolet regularization of the photon propagator, it can be
+chosen to stem from the same lattice used for the QCD degrees of freedom, or from a
+different regularization.
+     In our recent publication [75], we used the QED∞ approach with a (doubly) Pauli-
+Villars regulated photon propagator. With this position-space based setup first proposed
+in [76], the photon propagator, which depends on the relative coordinates of two internal
+vertices, entangles the volume-wide sums over these vertices. The most straightforward
+solution to avoid performing a volume-squared sum is to place a point source on one of the
+internal vertices [75]. This works well, but drastically reduces the sampling of the corre-
+sponding vertex. In this paper we present an alternative approach, where the dependence
+on the two internal vertices is factorized, which allows the sum over both of them to be
+carried out at affordable cost. Connected diagrams can thereby be evaluated effectively via
+the technique of sequential propagators, without introducing additional stochastic noise.
+     We derive two different implementations of such a factorization and compare them
+to the method used in our recent publication [75]. Such a task is normally known to
+    1
+        This is a change from the 2020 WP [70], where the dispersive method was used.
+
+
+
+
+                                                    –2–
+be adequately addressed by methods such as the fast-Fourier transform, however, in the
+QED∞ approach, the photon propagator results from a superposition of a continuum of
+momenta, hindering the straightforward application of such methods. The specific factor-
+ization formulae we explore, however, are available both for a photon propagator on the
+infinite lattice or in infinite continuous space – see appendix B.
+     In general, computing hadronic amplitudes that involve electroweak vertices requires
+more advanced forms of factorization if the QCD correlation function is to be summed
+over all but one vertex. Without providing a general solution to this problem, we briefly
+address, as an important application, the hadronic light-by-light contribution to the muon
+(g − 2) along these lines.
+     We start by introducing the covariant coordinate-space method as well as the differ-
+ent implementations of the photon kernel in section 2. In section 3 we first introduce the
+ensembles we use throughout this paper. We then show comparisons between the imple-
+mentations on ensembles where the gauge links are set to unity. The comparison is then
+extended to the previously introduced QCD ensemble for the fully connected diagrams as
+well as the relevant disconnected diagrams. Section 4 compares the three implementations
+by discussing their respective advantages and disadvantages, including their respective
+computational cost. The end of the section shortly compares the results of this work with
+literature values and gives an outlook on a possible factorization in the hadronic light-by-
+light calculation. We conclude in section 5.
+
+2   Formalism
+
+As a starting point and common baseline for comparisons we compute the leading-order
+isospin-violating part of the HVP contribution to aµ as given by the covariant coordinate-
+space (CCS) method [75],
+
+                  e2
+                     Z
+   HVP,38
+  aµ      (Λ) = −          Hλσ (z)δνρ [G(x − y)]Λ jλ3 (z)jνem (y)jρem (x)jσ8 (0) + CT (Λ) , (2.1)
+                   2 z,x,y
+
+where Hλσ (z) is the CCS kernel. It is not uniquely defined, but has multiple versions,
+which differ in their shape, but give the same result for aHVP
+                                                           µ   . In this paper we will focus
+purely on the traceless (’TL’) version of the kernel
+                                                       
+                              TL                  zλ zσ
+                            Hλσ (z) = −δλσ + 4 2 H2 (|z|).                              (2.2)
+                                                  |z|
+
+    Going forward we will drop the ’TL’ superscript. The exact form of the scalar weight
+function H2 can be found in [77] with a rational approximation given in [76]. A version of
+the scalar weight functions, which correspond to the intermediate window version of the
+time-momentum representation, can be found in [78].
+
+
+
+
+                                             –3–
+Figure 1: Feynman diagrams depicting all Wick contractions of the four-point function
+in eq. (2.1).
+
+
+     The second term under the integral, δνρ [G(x−y)]Λ , is the position space representation
+of the doubly Pauli-Villars (PV) regulated photon propagator in Feynman gauge, with [76]
+                                          1              (1)        (1)
+                           [G(x)]Λ =               − 2G √Λ (x) + GΛ (x),                    (2.3)
+                                       4π 2 |x|2          2
+
+                                       mλ Kλ (m|x|)
+                           G(λ)
+                            m (x) =                 .                                       (2.4)
+                                       (2π)λ+1 |x|λ
+                                                                                   (1)
+     It is written with the massive scalar propagator in four dimensions Gm (x), which
+includes the modified Bessel function of second kind, K1 (x). In section 2.1 we show the
+different implementations of the photon propagator with their results compared in section 3.
+     The last part in the integral of eq. (2.1) is the vector four-point function. It includes two
+electromagnetic currents at the internal vertices (em), an isoscalar current at the origin (3)
+and an isovector current at the second external vertex (8). With the quark-flavour triplet
+ψ(x) = (u(x), d(x), s(x))T , we define the corresponding currents
+
+                                  jλ3 (x) = ψ̄ T (x)γλ Q(3) ψ(x),                           (2.5)
+                                   jλ8 (x) = ψ̄ T (x)γλ Q(8) ψ(x),                          (2.6)
+                                jλem (x) = ψ̄ T (x)γλ Q(em) ψ(x).                           (2.7)
+
+The respective charge matrices are given by
+                                                           
+          1/2 0 0                  1/6 0    0        2/3 0  0
+ Q(3) =  0 −1/2 0 , Q(8) =  0 1/6 0  , Q(em) =  0 −1/3 0  . (2.8)
+                                                           
+            0    0 0                 0 0 −1/3         0  0 −1/3
+
+The isovector and isoscalar currents provide a decomposition of the electromagnetic current,
+jλem (x) = jλ3 (x) + jλ8 (x).
+      In addition to the integral, eq. (2.1) also includes a counterterm. In order to obtain
+a physical result when taking the limit Λ → ∞, an additional renormalization condition
+
+
+
+
+                                                   –4–
+complementary to the scale setting procedure in isospin symmetric QCD [79–81] is needed.
+This condition specifies the counterterm and also includes the PV-regulated photon prop-
+agator. In this work, we purely focus on the first term of eq. (2.1) for a few values of Λ
+and do not consider the counterterm.
+     The Wick contractions which contribute to the four point function in eq. (2.1) are
+shown in figure 1. In appendix A we calculate the charge factors of each contraction. The
+PV-regularization of the photon propagator is needed for diagrams (4)a, (4)b and (3+1)a,
+but the other three diagrams (2+2)a, (3+1)b and (2+1+1)b are UV-finite [82], which
+makes it possible to use the unregularized version of the photon propagator in these cases,
+which amounts to taking the limit Λ → ∞ ‘ahead of time’, i.e. without a counterterm.
+     We write the first term of eq. (2.1) for each diagram with only local currents explicitly
+in terms of propagators:
+                                   2 Z
+           HVP,38           D 4 e                                   D
+         aµ,D (Λ) = −fQ ZV                  Hλσ (z)δνρ [G(x − y)]Λ Cρνλσ (x, y, z),     (2.9)
+                                  2 z,x,y
+           (4)a
+       Cρνλσ (x, y, z) = −4 Re⟨Tr[S l (0, x)γρ S l (x, y)γν S l (y, z)γλ S l (z, 0)γσ ]⟩U ,              (2.10)
+           (4)b
+       Cρνλσ (x, y, z) = −2 Re⟨Tr[S l (0, y)γν S l (y, z)γλ S l (z, x)γρ S l (x, 0)γσ ]⟩U ,              (2.11)
+     (2+2)a−ll
+   Cρνλσ          (x, y, z) = 2 Re⟨Tr[S l (0, x)γρ S l (x, 0)γσ ] × Tr[S l (y, z)γλ S l (z, y)γν ]⟩U ,   (2.12)
+    (2+2)a−ls
+  Cρνλσ           (x, y, z) = 2 Re⟨Tr[S l (0, x)γρ S l (x, 0)γσ ] × Tr[S s (y, z)γλ S s (z, y)γν ]⟩U ,   (2.13)
+       (3+1)a
+     Cρνλσ (x, y, z) = 2 Re⟨Tr[S l (0, y)γν S l (y, x)γρ S l (x, 0)γσ ] × Tr[S ∆ (z, z)γλ ]⟩U ,          (2.14)
+       (3+1)b
+     Cρνλσ (x, y, z) = 4 Re⟨Tr[S l (0, y)γν S l (y, z)γλ S l (z, 0)γσ ] × Tr[S ∆ (x, x)γρ ]⟩U ,          (2.15)
+    (2+1+1)b
+   Cρνλσ      (x, y, z) = −2 Re⟨Tr[S l (0, y)γν S l (y, 0)γσ ]×                                          (2.16)
+                                            × Tr[S ∆ (x, x)γρ ] × Tr[S ∆ (z, z)γλ ]⟩U ,
+               ∆           l          s
+              S (x, y) = S (x, y) − S (x, y).                                                            (2.17)
+
+ The charge factors fQD are the ones calculated in appendix A. We used the notation S l (x, y)
+
+for the light quark propagator going from y to x, S s (x, y) for the strange quark propagator
+and S ∆ (x, y) for the difference between the two. The diagrams have an additional factor
+of either 2 or 4. These account for all equivalent Wick contractions contributing to the
+diagrams. There are two effects to consider. For the diagrams (4)a, (4)b, (3+1)a and
+(3+1)b the flow of the fermions can be reversed to give a distinct Wick contraction. The
+second possibility, which applies to diagram (4)a, (2+2)a, (3+1)b and (2+1+1)b, is the
+exchange of the x- and y-vertices, which also gives a distinct Wick contraction.
+     Eqs. (2.14) to (2.16) include a trace over single disconnected quark loops. In the
+combinations they appear here, their real component is always exactly zero. This means
+for the (3+1) diagrams the real part taken at the end consists purely of the product of the
+imaginary parts of the two traces. On the other hand in the case of the (2+1+1)b diagram
+only the imaginary parts of the single loops and only the real part of the two-point loop
+contributes.
+     A calculation of the diagrams in the top row of figure 1 at the SU(3) flavour symmetric
+point was done in [75]. Additionally, the (2+2)a diagram was calculated at the physical
+
+
+
+
+                                                      –5–
+                               (a) (4)a                  (b) (4)b
+
+
+
+
+                  (c) (3+1)a              (d) (3+1)b                (e) (2+1+1)b
+
+Figure 2: The diagrams discussed in this work as one would calculate them with the 2PS
+method. The filled black dots represent the vertices from which the one-to-all propagators
+start, while the unfilled dots represent the vertices which get summed over. Each color is a
+separate propagator. Only diagram (4)b includes a sequential propagator, which goes over
+one of the internal vertices and includes the photon propagator.
+
+
+point with electromagnetic currents instead of the isovector and isoscalar currents in [82].
+In section 3.2 we will first show calculations of the (4)a and (4)b diagrams on ensembles
+where the gauge links are set to unity. In the section after this we show calculations of the
+same diagrams, but on a QCD ensemble with a pion mass of 286 MeV. Lastly, section 3.4
+will show the bottom row of diagrams on the same ensemble. The (2+2)a diagram will not
+be discussed here.
+
+2.1     Handling the photon propagator
+In this section we will examine in detail different representations of the photon propagator
+for our calculations. First, we show a more optimized version of the implementation in [75].
+We then present the general idea of deriving other versions by factorizing the photon
+propagator. This is used to get the two other methods we discuss in this paper.
+
+2.1.1    Two-point-source method
+As the name suggests, in the two-point-source method (2PS) we use two point sources to
+calculate the diagrams, one at the origin and one at the internal vertex y. It starts out
+by using rotational invariance to reduce the integral over the y-vertex in eq. (2.1) to a
+one-dimensional integral
+                                 Z ∞              X
+            aHVP,38
+             µ,em   (Λ) = −π 2 2
+                              e      d|y| |y|3 a8   Hλσ (z) δνρ [G(x − y)]Λ ×      (2.18)
+                                  0             z,x
+
+                                                       × jλ3 (z)jνem (y)jρem (x)jσ8 (0) .
+
+We also wrote the integrals over the remaining two vertices explicitly as sums over the
+lattice positions. We now want to use multiple combinations of origin and y-vertex to
+reconstruct the integral over |y|. First, a starting point, which sits on the center time-
+
+
+
+
+                                            –6–
+slice2 , but has for each configuration a randomly chosen spatial position, is picked. Next, a
+one-to-all propagator starting at this point is calculated and stored. This step gets repeated
+for all points which sit along the diagonal which goes through the starting point and has
+the (x, y, z, t) = (1, 1, 1, 0) direction3 . Since the spatial lengths of our ensembles are always
+equal, the diagonal wraps around on itself. With this setup we can pick each point on the
+diagonal as the origin and all other points as the y-vertex, which increases our statistics.
+In order to save some memory and computing time, only every second point along the
+diagonal is calculated.
+     Figure 2 gives an overview on how the propagators are combined to calculate each
+diagram. The filled dots are the vertices from which the one-to-all propagators start, while
+the unfilled dots are the vertices which get summed over. For all diagrams except (4)b
+the so far mentioned one-to-all propagators and their all-to-one counterparts are sufficient.
+But for this last diagram we also need to calculate a sequential propagator, which starts
+at the origin, goes over the x-vertex, the second internal one, and ends at the z-vertex.
+During the calculation of the sequential propagator the photon propagator needs to be
+incorporated, which makes it impossible to calculate multiple PV-masses at the same time.
+     Since the calculation of the (4)b diagram is by far the biggest time sink, we apply
+two adjustments. First, instead of using each point on the diagonal as an origin, we only
+use four of them. Additionally, we make use of the truncated solver method [83] when
+calculating the sequential propagator. For our usual solves we use a residue of 1 × 10−10
+as the stopping condition. But for the truncated solves this gets relaxed to 1 × 10−4 . The
+resulting speed-up is around a factor of three. To account for potential biases we also do
+an exact solve for the first origin point and use this for a bias correction.
+     The methodology described here works exceptionally well for the (4)a diagram, but the
+additional cost for the (4)b diagram is very high. Reducing this cost is one of the reasons
+why we developed the alternative methods in the next sections.
+
+2.1.2    Factorizing the photon propagator
+The previous methodology set one of the internal vertices on a single point in order to
+avoid the volume-square sum. It is needed, because the photon propagator depends on the
+difference of the two internal vertices. Alternatively, one could also try to disentangle the
+two volume sums. Generally, this could be written as follows
+                                         Z
+                          [G(x − y)]Λ = dξ ϕΛ (ξ)h∗ξ,Λ (x)gξ,Λ (y).                    (2.19)
+
+Inserting this expression into Eq. (2.1), one obtains
+
+                             e2
+                                Z               X
+              HVP,38
+            aµ,em (Λ) = −         dξ ϕΛ (ξ) a12       Hλσ (z)δνρ h∗ξ,Λ (x)gξ,Λ (y)×               (2.20)
+                             2                  z,x,y
+
+                                                          × jλ3 (z)jνem (y)jρem (x)jσ8 (0) .
+   2
+     For an ensemble with (anti)-periodic boundary conditions in time, the time-slice can be chosen arbi-
+trarily.
+   3
+     The setup would work for each diagonal of the form (±1, ±1, ±1, 0).
+
+
+
+
+                                                 –7–
+                               (a) (4)a                (b) (4)b
+
+
+
+
+                  (c) (3+1)a              (d) (3+1)b              (e) (2+1+1)b
+
+Figure 3: The diagrams discussed in this work as one would calculate them with the
+factorization methods. The filled black dots represent the point source from which the
+one-to-all propagators are calculated, while the unfilled dots represent the vertices which
+get summed over. Each color is a separate propagator. If a propagator goes over an unfilled
+dot it is a (double) sequential propagator over that vertex.
+
+
+Such a setup now allows for the summation over both internal vertices as well as one of
+the external ones, at the cost of having an additional integral over the parameter ξ. As
+compared to the 2PS method, the computational strategy changes: The origin is chosen
+in the same way as previously described for the starting point and a one-to-all propagator
+starting from this point is calculated. For the (4)b diagram, a sequential propagator
+starting at the origin, going over the x-vertex and ending at the z-vertex is calculated, as
+well as one going over the y-vertex. These include h∗ξ,Λ (x) and gξ,Λ (y) respectively. The
+disconnected diagrams can be calculated by reusing the propagators from the (4)b diagram.
+The (4)a diagram is now the one needing more computing time. To calculate it, a double
+sequential propagator starting at the origin, going over the x- and y-vertices and ending at
+the z-vertex is necessary. Both h∗ξ,Λ (x) and gξ,Λ (y) are included in this calculation. As in
+the previous section, an overview on how the calculated propagators are put together for
+the different diagrams is given in figure 3.
+     The computation has to be repeated for each choice of the PV-mass and for each value
+of ξ needed for computing the final integral. This makes it not obvious if a method following
+this new approach is computationally more efficient than the 2PS method, especially since
+the latter allows for the optimization of using the diagonal. But the factorization method
+has also two potential optimizations we have not discussed so far. If hξ,Λ = gξ,Λ , only one
+sequential propagator needs to be calculated for the (4)b and the disconnected diagrams,
+because the second one can be obtained by inverting the first one. Additionally, if h and
+g are independent of Λ, multiple PV-masses can be evaluated at the same time, saving
+potentially a lot of computing time.
+     Now, we introduce two different factorizations of the photon propagator which include
+one or both of the discussed optimizations.
+
+
+
+
+                                            –8–
+2.1.3   Fourier method
+Both optimizations are included in our first variation. We use the following setup
+
+                                 ξ := k ∈ R4                                            (2.21)
+                                       1      2        1
+                             ϕΛ (k) = 2 − 2        + 2                                  (2.22)
+                                      k    k + Λ /2 k + Λ2
+                                                2
+
+                           hk,Λ (x) = gk,Λ (x) = eikx                                   (2.23)
+
+    We call it the Fourier method as we revert the photon propagator back to its momentum-
+space representation. Again, we use rotational invariance to reduce the four dimensional
+integral over k to a 1D integral over |k|. k is chosen along the axis (1, 1, 1, 1). For large k
+the step size is of the physical lattice momentum, i.e. 2π/L and 2π/T respectively, with
+the lattice space extend L and time extend T . The integrand is peaked within the first
+few of these steps. To still cover it appropriately we also compute unphysical momenta in
+between these steps.
+
+2.1.4   5D propagator method
+The second variation separately factorizes each of the three scalar propagators contributing
+to the regularized photon propagator,
+                                         Z
+                          Gm (x − y) = dξ ϕm (ξ)h∗ξ,m (x)gξ,m (y)
+                           (1)
+                                                                                      (2.24)
+
+                                     ξ := w ∈ R4                                        (2.25)
+                                ϕm (w) = 4                                              (2.26)
+                               hw,m (x) = gw,m (x) = G(3/2)
+                                                      m     (w − x)                     (2.27)
+                                            m|w − x| + 1 −m|w−x|
+                         G(3/2)
+                          m     (w − x) =                 e      .                      (2.28)
+                                            8π 2 |w − x|3
+                                                    (1)           (1)
+Thus each four-dimensional scalar propagator, G √Λ (x − y), GΛ (x − y) and the massless
+                                                        2
+one, is split into the product of two five dimensional scalar propagators, hence the name
+5D propagator method. A derivation of this factorization is provided in appendix B.
+      The point w can be interpreted as the ’mid-point’ of the photon propagator. As such
+it is not restricted to lattice sites and we can choose arbitrary positions for it. As with the
+previous two methods, we use rotational invariance to reduce the four-dimensional integral
+over w to a 1D integral over |w|. We choose the starting point to be (1/2, 1/2, 1/2, 1/2)
+in lattice units, because this avoids any numerical problems that might arise for w = x or
+w = y. We let w vary in integer steps along the (1, 1, 1, 1) diagonal, but, as for the 2PS
+method, we only compute every second point.
+      Since the three terms of the photon propagator are factorized separately, we cannot
+calculate them together like it is done in the 2PS method. That means we essentially have
+to repeat the calculation three times. But for additional PV-masses this is reduced to
+either two additional calculations, as the m = 0 term is already computed, or even only
+one additional calculation, if the set of PV masses is suitably chosen.
+
+
+
+
+                                             –9–
+                   L     24        32     40     48       56      64     72      80
+                  amµ    0.3     0.225   0.18   0.15     0.13   0.1125   0.1    0.09
+
+Table 1: Parameters of the gluon-less ensembles. For each lattice the time extent is the
+same as L, i.e. they have a volume of L4 .
+
+     Id     β     ( La )3 × Ta    a [fm]   mπ [MeV]        mK [MeV]      mπ L    L[fm]     ẐV
+    N451   3.46   483 × 128      0.07634    286(3)          461(5)       5.3      3.7    0.72645
+
+Table 2: Parameters of N451. The lattice spacing in physical units was extracted from [79].
+The pion and kaon mass values are taken from [27]. The value of the full renormalization
+factor ẐV for the local current is from Ref. [86]. N451 has periodic boundary conditions in
+time.
+
+
+3     Lattice calculations
+
+In this paper we will calculate the leading-order isospin-violating part of hadronic vacuum
+polarization in the muon (g −2), as discussed in [75], in order to compare the three different
+versions of the photon propagator. Similar to the strategy pursued there, we will first
+perform the calculations of the connected contributions on ensembles without the strong
+interaction, i.e. where the gauge field variables U ∈ SU(3)c are set to unity on all lattice
+links. Owing to the use of the Pauli-Villars regulated photon propagator (as opposed to the
+regularization by the finite lattice spacing), we can directly compare the lattice results to
+continuum calculations (see appendix B of [75]). This allows us to accurately compare the
+three versions of the photon propagator. Following this, we will do the same comparison
+on a QCD ensemble with a pion mass of mπ = 286(3) MeV. We finish this section by also
+comparing the disconnected contributions.
+
+3.1    Lattice setup
+Let us first discuss the ensembles we use throughout this paper. For the crosscheck with
+continuum calculations we employ eight L4 ensembles, where the gauge field variables are
+set to unity. They have different lattice spacings, but a constant volume of mµ L = 7.2.
+The lattice spacings are provided in table 1. In order to correct for finite size effects we
+also use one additional ensemble with L = 48 and mµ L = 14.4. It has the same parameters
+as the L = 24 ensemble but with twice the lattice lengths.
+     We perform our lattice QCD calculations on N451, one of the gauge ensembles gener-
+ated by the CLS initiative [84, 85], with dynamical O(a) improved Wilson-Clover up, down
+and strange quarks and the tree-level O(a2 ) improved Lüscher-Weisz gauge action. It has
+periodic boundary conditions in time and a pion mass of mπ = 286(3) MeV. More details
+are shown in table 2.
+     In order to improve future continuum extrapolations, we use two different discretiza-
+
+
+
+
+                                                – 10 –
+                                                                           30
+
+
+                                                                                                                1011 × f (|w|) in 1/fm
+                 8
+
+
+ 1011 × f (|y|) in 1/fm
+                                                                                                                                8
+
+
+                                                             1011 × f (|p|) in fm
+                                               (4)a                                               (4)a                                                    (4)a
+                 6                                                         20                                                   6
+                 4                             (4)b                                               (4)b                                                    (4)b
+                                                                           10                                                   4
+                 2                             (4)a + (4)b                                        (4)a + (4)b                   2                         (4)a + (4)b
+                 0                                                          0                                                   0
+                −2                                                        −10                                                  −2
+                −4                                                                                                             −4
+                −6                                                        −20                                                  −6
+                                                                          −30                                                  −8
+                          0    2   4       6 8     10 12                             0 1 2 3 4 5 6 7                                     0   2   4 6 8           10 12
+                                       |y| in fm                                          |p| in 1/fm                                             |w| in fm
+
+                              (a) 2PS method                                        (b) Fourier method                       (c) 5D propagator method
+
+Figure 4: Final integrands for the different methods with Λ = 3 mµ and the XcYlZc
+discretization on the gluon-less ensemble with L = 64. The lepton in the loop has mass
+mℓ = mµ . We show the (4)a diagram (blue) and the (4)b diagram (orange) separately as
+well as their sum (black).
+
+
+tions for the vector current, the local (l) and the point-split or conserved (c) discretizations
+
+                    jνl (z) = ψ̄(z)γν Qψ(z),                                                                                                                       (3.1)
+                              1h                                                                    i
+                    jνa (z) =     ψ̄(z + aν̂)(γν + 1)Uν† (z) Qψ(z) + ψ̄(z)(γν − 1)Uν (z) Qψ(z + aν̂) ,                                                             (3.2)
+                              2
+                      c       1
+                    jν (z) = jνa (z) + jνa (z − aν̂) .
+                                                     
+                                                                                                                                                                   (3.3)
+                              2
+    Uν (z) is the gauge link in the direction ν associated with site z. No further improve-
+ments of the vector currents are implemented in this paper. To denote the different com-
+binations of local and conserved currents we adopt the notation ‘XdYdZd’ for the different
+discretizations. The ‘d’ is replaced by either an ‘l’ for a local current at the corresponding
+vertex or a ‘c’ for a conserved current. The current at the origin is always a local one.
+    While the conserved vector currents do not need to be renormalized, a renormalization
+factor ẐV is required for the local currents. The renormalized local vector current is
+obtained from jνl,ren (z) = ẐV jνl (z). We extracted ẐV from Ref. [86]; the value is noted in
+table 2.
+
+3.2                       Bare QED two-loop vacuum polarization contribution at fixed Λ from the
+                          lattice
+For this crosscheck we set the lepton mass mℓ appearing in the loop to be equal to the
+muon mass, mℓ = mµ . We use a Pauli-Villars mass of Λ = 3 mµ , which is the same mass
+used for the ‘gluon-less’ crosscheck performed in [75].
+      An example of the final integrand of each method can be seen in figure 4. The ensemble
+is the one with L = 64 and the discretization is XcYlZc. It is important to keep in mind
+that the variables on the horizontal axis are different in the three panels. For the left panel,
+it is the absolute value of the difference between the origin and one of the internal vertices,
+for the middle panel it is the absolute value of the photon momentum, and for the right
+panel it is the absolute value of the difference between the origin and the ‘mid-point’ of
+the photon propagator.
+
+
+
+
+                                                                                         – 11 –
+            −10
+
+            −20                                                                                                XlYlZl
+
+1011 × aHVP,38
+                                                                                                               XcYlZl
+            −30
+        µ,(4)a
+                                                                                                               XcYcZl
+            −40                                                                                                XlYlZc
+                                                                                                               XcYlZc
+            −50                                                                                                XcYcZc
+                     0.0    0.1        0.2    0.3 0.0    0.1        0.2    0.3 0.0    0.1        0.2    0.3
+                               a2 in fm2                    a2 in fm2                    a2 in fm2
+
+                                  (a)                         (b)                          (c)
+
+            30
+                                                                                                               XlYlZl
+
+1011 × aHVP,38
+            25                                                                                                 XcYlZl
+        µ,(4)b
+                                                                                                               XcYcZl
+            20
+                                                                                                               XlYlZc
+            15                                                                                                 XcYlZc
+                                                                                                               XcYcZc
+                 0.0       0.1        0.2    0.3 0.0    0.1        0.2    0.3 0.0    0.1        0.2     0.3
+                              a2 in fm2                    a2 in fm2                    a2 in fm2
+
+                                  (d)                         (e)                          (f)
+
+                                                                                                              XlYlZl
+                 0                                                                                            XcYlZl
+
+
+1011 × aHVP,38
+                                                                                                              XcYcZl
+           −10                                                                                                XlYlZc
+        µ,(4)                                                                                                 XcYlZc
+           −20                                                                                                XcYcZc
+                                                                                                              Cont.
+           −30                                                                                                prediction
+                     0.0    0.1        0.2   0.3 0.0    0.1        0.2    0.3 0.0    0.1        0.2    0.3
+                               a2 in fm2                   a2 in fm2                    a2 in fm2
+
+                                   (g)                         (h)                          (i)
+
+Figure 5: Continuum extrapolation of the (4)a diagram, (a)–(c), (4)b diagram (d)–(f)
+and the sum of them, (4)a + (4)b, (g)–(i), for the ‘gluon-less’ ensembles and Λ = 3 mµ .
+The three windows are the three different implementations of the photon propagator; left
+window 2PS method, middle window Fourier method, right window 5D propagator method.
+The fits are of the form given in eq. (3.4). The dashed lines correspond to fits performed
+directly on the data points, while the solid lines represent the volume-corrected fits. The
+different colors correspond to the different discretizations. For (g)–(i) we also include the
+continuum prediction indicated by a black triangle, which was computed following the
+methodology outlined in Appendix A of [75].
+
+
+     The shape of the integrands of the two diagrams separately is very similar between
+the 2PS and the 5D propagator method, though more visible differences appear in the sum
+of the two. The total integrand of the 5D propagator method is much smoother but also
+slightly more long-ranged. The total integrand of the Fourier method is also smooth, but
+
+
+
+
+                                                                – 12 –
+has a sign change. This sign change does not appear for some of the other discretizations.
+    The continuum extrapolation for the (4)a diagram, (4)b diagram and the sum of the
+two can be seen in figure 5. We perform a fit to the data points with the function
+
+                             ff it (a) = c0 + c1 a + c2 a2 + c3 a3 .                      (3.4)
+
+     The dashed line is the fit directly to the data points, while the solid line includes a
+volume-correction term. We doubled the side lengths of the coarsest lattice and calculated
+the difference between the two volumes. The result is added to the fit to the data points.
+     One can observe that the extrapolations of the 2PS and 5D propagator method look
+very similar, with the latter being a bit more spread out. By comparison the extrapolation
+of the (4)b diagram looks quite different in the Fourier method. Figures 5g to 5i also
+mark the expected continuum result of −7.499 × 10−11 (see Appendix B of [75]) as a black
+triangle. For all three methods the extrapolations meet up at this point. The results of
+these extrapolations are collected in table 3. For the (4)a and (4)b diagrams separately
+the results of the extrapolations can be found in tables 14 to 16 in appendix D.
+     We use the spread of the results from the different discretizations to estimate the error
+of the three different methods. For a conservative estimate we use the mean of the smallest
+and largest results of each method as the central value. The error of this central value is
+then given by half the difference between the smallest and largest results. With this setup
+all results are covered by the error. The central values with their error are shown in figure 6
+for the three methods. They all cover the expected values shown as a black vertical line.
+The spread of the Fourier method is the largest, while the 5D propagator method has the
+smallest spread.
+     We also show an alternative approach, where we take the results of the (4)a diagram
+from the 2PS method and the results of the (4)b diagram from either one of the factorization
+methods. The results of these combinations can be found in table 17 in appendix D. The
+combination with the Fourier method is now much further away from the expected value
+and does not cover it within the error. The two discretizations which were on the higher
+side for the Fourier method are the ones with conserved currents at the y-vertex. Since
+these are not available for the 2PS method, only the discretizations with results smaller
+than the expected value contribute. On the other hand, the combination with the 5D
+propagator method is the closest one to the expected value and has the second smallest
+errors.
+
+                          XlYlZl    XcYlZl     XcYcZl      XlYlZc      XcYlZc   XcYcZc
+            2PS           −7.11     −7.68        -         −7.40       −7.74       -
+           Fourier        −7.93     −8.02      −7.24       −8.11       −8.09     −7.27
+        5D propagator     −7.40     −7.65      −7.54       −7.67       −7.82     −7.58
+
+Table 3: Results of the volume corrected continuum extrapolations in figures 5g to 5i.
+The values are given in units of 10−11 . For Λ = 3 mµ the expected value of the total result
+is −7.499 × 10−11 , as obtained using the methodology outlined in appendix B of [75].
+
+
+
+
+                                             – 13 –
+                                                   2PS
+
+                                                   Fourier
+
+                                                   5D Propagator
+                                                   2PS
+                                                   +Fourier
+                                                   2PS
+                                                   +5D Propagator
+
+                            −8.0      −7.5     −7.0
+                                        11  HVP,38
+                                      10 × aµ,(4)
+
+Figure 6: Central value and error from the results in table 3. The central values are
+obtained by taking the mean of the smallest and largest results. The error is half the
+difference of the same results. The lower two points show a combination of the methods.
+The second to lowest uses the results of the 2PS method for the (4)a diagram and the results
+of the Fourier method for the (4)b diagram. The lowest point uses the 5D propagator
+method instead of the Fourier method.
+
+
+     Since this crosscheck was on gluon-less ensembles, where the results on the ensembles
+are exact, the biggest advantage of the 2PS method, the additional statistics, was not yet
+relevant, but it will be important in the next section.
+
+3.3   The connected contribution aHVP,38
+                                  µ,(4)  on N451
+With the results of the crosscheck from the previous section, the 5D propagator method
+seemed to be the most promising. It reproduced the continuum result the best. Now,
+we want to compare the methods in the context of an ensemble which includes the QCD
+interactions. Figure 7 shows the last integrand of the different methods for the fully
+connected diagrams separately as well as their sum. The PV-mass is set to 16 mµ and the
+discretization is XcYlZl.
+     All three methods show similar errors for the integrand of the (4)b diagram. We can
+compare the 2PS and 5D propagator method in a bit more detail. At small to medium
+distances the error bars are basically the same between the methods, but at large distances
+the error bars of the 2PS method drastically increase. On the other hand the errors of the
+5D propagator method show only a small dependence on the distance. In the case of the
+(4)a diagram the advantage of the 2PS method becomes relevant. The integrand has much
+smaller error bars when compared to the other two methods. This is because of the factor
+48 more statistics of the 2PS method from using the periodicity of the space dimensions,
+see appendix C.
+     For both the 2PS and 5D propagator method we chose a maximum distance of 2 fm,
+beyond which we do not evaluate the integrand. These larger distances are dominated by
+
+
+
+
+                                          – 14 –
+                           2                                                                                                    2
+
+
+
+
+1011 × f2PS(|y|) in 1/fm                                                                              1011 × f5D(|w|) in 1/fm
+                           1                                                                                                    1
+                           0                                                                                                    0
+                 −1                                                                                                   −1
+                 −2                                                                                                   −2
+                 −3                  (4)a                                                                             −3                    (4)a
+                 −4                  (4)b                                                                             −4                    (4)b
+                                     (4)a + (4)b                                                                                            (4)a + (4)b
+                 −5                                                                                                   −5
+                               0.0   0.5     1.0     1.5     2.0                     2.5       3.0                                  0.0    0.5     1.0    1.5 2.0    2.5   3.0   3.5
+                                                   |y| in fm                                                                                             |w| in fm
+
+                                           (a) 2PS method                                                                                 (b) 5D propagator method
+
+                                                                                                                                          (4)a
+                                                                           0.4
+                                                                                                                                          (4)b
+
+
+                                                    1011 × fF(|p|) in fm
+                                                                           0.2                                                            (4)a + (4)b
+
+                                                                           0.0
+
+                                                                  −0.2
+
+                                                                  −0.4
+                                                                                 0         5            10       15                                20
+                                                                                                     |p| in 1/fm
+
+                                                                                       (c) Fourier method
+
+Figure 7: Final integrands of (4)a (blue), (4)b (orange) and the sum of both (gray) on
+N451 for the three different methods. The PV-mass is 16 mµ and the discretization is
+XcYlZl.
+
+
+noise and do mostly contribute to the error. This cutoff is marked by a vertical dashed line
+in figures 7a and 7b. The results of the integrals are written in table 4 and 5. In general, the
+same number of configurations was used across the three methods, except for the Fourier
+method: In the latter case, the discretizations where the current at the z-vertex is local
+use twice as many configurations. This is reflected in the errors of the integrals. Where the
+number of configurations coincides, the errors of the Fourier and 5D propagator method
+
+
+                                       XlYlZl                        XcYlZl                 XcYcZl                                   XlYlZc               XcYlZc       XcYcZc
+           2PS                            -                         −2.12(26)                  -                                         -               −1.95(25)        -
+            5D                       −1.16(1.40)                    −1.24(99)              −1.06(29)                                −0.88(1.37)          −1.01(97)    −0.99(29)
+          Fourier                    −2.41(92)                      −1.96(63)              −0.90(13)                                −3.33(1.31)          −2.50(90)    −0.66(20)
+
+Table 4: Results for the (4)a diagram on N451 for the three different methods. The values
+are given in units of 10−11 .
+
+
+
+
+                                                                                                 – 15 –
+                    XlYlZl    XcYlZl     XcYcZl      XlYlZc     XcYlZc     XcYcZc
+          2PS          -      1.41(10)       -           -      1.21(10)       -
+           5D      1.29(15)   1.27(16)   1.33(17)    1.12(15)   1.10(15)   1.14(16)
+         Fourier   1.62(11)   1.66(11)   1.79(12)    1.49(17)   1.51(17)   1.58(17)
+
+Table 5: Results for the (4)b diagram on N451 for the three different methods. The values
+are given in units of 10−11 .
+
+
+are the same. On the other hand with twice more statistics the error is the expected factor
+   √
+of 2 smaller. For the 2PS method the error of the (4)b diagram is a bit smaller when
+compared to the other methods, but as expected the error of the (4)a diagram is a lot
+smaller.
+     It is interesting to observe that the variation between the methods is generally larger
+than the variation between the discretizations of each method. The cutoff effects seem to
+differ more strongly between the methods than between the different discretizations.
+
+3.4   The disconnected contributions on N451
+In this section we look at the disconnected diagrams, calculated on N451. For the first
+diagram, (3+1)a, we have data for all three methods. The PV-mass is the same as for the
+connected diagrams, Λ = 16 mµ . The final integrands for a discretization of XcYlZl can
+be seen in figure 8. The results from the integral are summarized in table 6. For the 2PS
+and 5D propagator method we imposed a cut of the integral at 2 fm, just as we did for the
+connected diagrams. This cut is mostly motivated by the experience from the connected
+diagrams, but we also gain additional insight from looking at the intermediate window
+versions of the integrands. The latter can be seen in figure 9. The 5D propagator method
+has some points clearly different from zero within error for |w| values that are below the
+2 fm cut. The results using the intermediate window kernel are provided in table 7.
+    The integrand of the Fourier method has some very peculiar behavior. The points
+have large error bars, but they are not scattered in accordance to these errors. If one
+were to ignore the errors, the integrand would look very similar to the integrands of the
+connected contribution in figure 7c. Indeed, the connected contributions also have this kind
+of behavior, but it is less pronounced since the errors are much smaller. The explanation is
+given by the large correlation between the points. From one point to another there is only
+a small variation in p. We could use this observation to calculate fewer momenta, but since
+
+
+                                 XlYlZl        XcYlZl        XcYcZl
+                     2PS       −0.31(22)       0.09(12)          -
+                      5D       0.51(4.74)     −0.49(2.96)   −0.79(1.39)
+                    Fourier   −3.63(8.75)     −2.73(4.45)   −0.16(5.24)
+
+Table 6: Results for the (3+1)a diagram on N451 for the three different methods. The
+values are given in units of 10−11 .
+
+
+
+
+                                            – 16 –
+                                                                                      XlYlZl         XcYlZl                               XcYcZl
+                                                    2PS                             −0.032(24)      0.037(13)                                -
+                                                     5D                              0.89(52)        0.63(32)                            −0.11(12)
+                                                   Fourier                           1.59(94)       0.77(47)                             0.85(54)
+
+Table 7: Results for the (3+1)a diagram on N451 using the intermediate window version
+of the CCS kernel for the three different methods. The values are given in units of 10−11 .
+
+                           1.5                                                                                               4
+
+
+
+1011 × f2PS(|y|) in 1/fm                                                                           1011 × f5D(|w|) in 1/fm
+                           1.0
+                                                                                                                             2
+                           0.5
+                                                                                                                             0
+                           0.0
+                                                                                                                   −2
+                 −0.5
+                                                                                                                   −4
+                 −1.0
+
+                 −1.5                                                                                              −6
+                                 0.0   0.5   1.0     1.5     2.0                      2.5   3.0                                  0.0    0.5   1.0    1.5 2.0    2.5   3.0   3.5
+                                                   |y| in fm                                                                                        |w| in fm
+
+                                         (a) 2PS method                                                                                (b) 5D propagator method
+
+
+                                                                          0.0
+
+
+
+                                                   1011 × fF(|p|) in fm
+                                                                 −0.2
+
+                                                                 −0.4
+
+                                                                 −0.6
+
+                                                                 −0.8
+                                                                                0       5    10       15     20                          25    30
+                                                                                                  |p| in 1/fm
+
+                                                                                       (c) Fourier method
+
+Figure 8: Final integrand of the (3+1)a diagram on N451 for the three different methods.
+The PV-mass is 16 mµ and the discretization is XcYlZl.
+
+
+each PV-mass needs a slightly different coverage of the integrand we used the number of
+momenta shown in these plots.
+    It is clear that for the (3+1)a diagram the 2PS method is the preferred one. It has
+by far the smallest errors, even if one considers the additional statistics from using the
+periodic diagonal. In the full result the error of the 5D propagator method is larger by a
+factor of 20 and the Fourier method is larger again by almost a factor of two. The difference
+becomes much smaller when looking at the intermediate window version of the kernel. But
+
+
+
+
+                                                                                              – 17 –
+                           0.4                                                                                        0.8
+
+
+
+
+1011 × f2PS(|y|) in 1/fm                                                                    1011 × f5D(|w|) in 1/fm
+                           0.3                                                                                        0.6
+
+                                                                                                                      0.4
+                           0.2
+                                                                                                                      0.2
+                           0.1
+                                                                                                                      0.0
+                           0.0
+                                                                                                            −0.2
+                 −0.1
+                                 0.0   0.5   1.0     1.5     2.0              2.5   3.0                                     0.0   0.5   1.0    1.5 2.0    2.5   3.0   3.5
+                                                   |y| in fm                                                                                  |w| in fm
+
+                                         (a) 2PS method                                                                       (b) 5D propagator method
+                                                                 0.14
+                                                                 0.12
+
+
+
+                                                   1011 × fF(|p|) in fm
+                                                                 0.10
+                                                                 0.08
+                                                                 0.06
+                                                                 0.04
+                                                                 0.02
+                                                                 0.00
+
+                                                                          0    5     10       15     20                           25    30
+                                                                                          |p| in 1/fm
+
+                                                                               (c) Fourier method
+
+Figure 9: Final integrand of the (3+1)a diagram on N451 using the intermediate window
+version of the CCS kernel for the three different methods. The PV-mass is 16 mµ and the
+discretization is XcYlZl.
+
+
+the Fourier method has still much larger errors when compared to the other two methods.
+     It is also interesting to look at the sign of the integral. The full result seems to have
+a slight tendency to a negative sign, but this comes mostly from the results of the 5D
+propagator and Fourier methods, where the errors are much larger than the result. On
+the other hand, the intermediate window results show a positive sign, with two exceptions.
+All in all, with our observations here we cannot conclude on a sign or exact value of the
+(3+1)a diagram, but its contribution seems to be one order of magnitude smaller than the
+contributions of the connected diagrams.
+     For the second diagram, (3+1)b, we have data for the full kernel with the 5D propagator
+and the Fourier method. Since it is UV-finite, we present the unregularized results, which
+amounts to taking the limit Λ → ∞. The integrands are shown in figure 10 and the results
+of the integrals are in table 8. The two factorization methods seem much more suited for
+this disconnected diagram, as they have much smaller errors when compared to the (3+1)a
+diagram. Yet the Fourier method has still much larger errors than the 5D propagator
+
+
+
+
+                                                                                      – 18 –
+                          1.0
+                                                                                                           0.15
+
+
+
+1011 × f5D(|w|) in 1/fm                                                             1011 × fF(|p|) in fm
+                          0.5                                                                              0.10
+
+                                                                                                           0.05
+                          0.0
+                                                                                                           0.00
+                −0.5
+                                                                                                  −0.05
+                −1.0
+                                                                                                  −0.10
+                                0.0     0.5     1.0    1.5 2.0    2.5   3.0   3.5                                 0    5    10       15     20   25   30
+                                                      |w| in fm                                                                  |p| in 1/fm
+
+                                      (a) 5D propagator method                                                        (b) Fourier method
+
+Figure 10: Final integrand of the (3+1)b diagram on N451 for the two factorization
+methods. The diagram is UV-finite, so the photon propagator is unregularized. The
+discretization is XcYlZl.
+
+                                                          XlYlZl         XcYlZl                             XlYlZc           XcYlZc
+                                                5D       −0.06(10)      −0.03(10)                          −0.09(10)        −0.06(11)
+                                              Fourier    −0.09(29)      0.00(35)                           −0.34(71)       −3.44(2.57)
+
+Table 8: Results for the (3+1)b diagram on N451 for the two factorization methods. The
+values are given in units of 10−11 .
+
+
+method. For the disconnected diagrams, the suppression of the large distances becomes
+much more important, because the typical value of the disconnected loop does not by itself
+fall off with distance. The Fourier method does not suppress the large distances, but the
+5D propagator method has a suppression of 1/|x|3 . This should explain the difference in
+the errors between the methods for all the disconnected diagrams.
+     The mentioned results of the (3+1)b diagram are zero within error, with a tendency
+for a negative central value. Compared to the connected diagrams, the results are at least
+two orders of magnitude smaller, the same holding true for the errors.
+     The last of the relevant disconnected diagrams is the (2+1+1)b diagram. The results
+we present here were calculated together with the other diagrams. It should be noted
+that that a dedicated study would be able to determine the (2+1+1)b diagram to much
+higher precision, since it only requires the calculation of two-point functions. In the future,
+we will re-use the propagators generated in the 2PS method to achieve this. We use the
+results of this paper to compare the two factorization methods relative to one another.
+The comparison does not include the 2PS method. Figure 2e shows the approach one
+would have to take in the calculation using the 2PS method. Since we want to sum over
+both disconnected loops, the propagators in the two point function would be one-to-one
+propagators, which makes this method unreliable.
+     The (2+1+1)b diagram requires an additional step, which was not necessary for the
+
+
+
+
+                                                                              – 19 –
+                          1.5                                                                             6
+
+
+
+1011 × f5D(|w|) in 1/fm
+                                                                                                          4
+
+
+                                                                                   1011 × fF(|p|) in fm
+                          1.0
+                                                                                                          2
+                          0.5                                                                             0
+                          0.0                                                                    −2
+                                                                                                 −4
+                −0.5
+                                                                                                 −6
+                −1.0                                                                             −8
+                                0.0     0.5    1.0    1.5 2.0    2.5   3.0   3.5                                0       5       10       15     20    25   30
+                                                     |w| in fm                                                                       |p| in 1/fm
+
+                                      (a) 5D propagator method                                                          (b) Fourier method
+                          0.20
+                                                                                                          0.4
+                          0.15
+
+
+
+1011 × f5D(|w|) in 1/fm
+                                                                                                          0.2
+
+
+                                                                                   1011 × fF(|p|) in fm
+                          0.10                                                                            0.0
+
+                          0.05                                                                   −0.2
+                                                                                                 −0.4
+                          0.00
+                                                                                                 −0.6
+                −0.05
+                                                                                                 −0.8
+                −0.10
+                                 0.0     0.5   1.0    1.5 2.0    2.5   3.0   3.5                                    0       5    10       15     20   25   30
+                                                     |w| in fm                                                                        |p| in 1/fm
+
+                (c) 5D propagator method, window kernel                                                       (d) Fourier method, window kernel
+
+Figure 11: Final integrand of the (2+1+1)b diagram on N451 for the two factorization
+methods. The upper plots use the full version of the CCS kernel, while the lower plots use
+the intermediate window version. The diagram is UV-finite, so the photon propagator is
+unregularized. The discretization is XcYlZl.
+
+
+other ones. We have to calculate and subtract the vacuum expectation value (VEV). The
+                                             (2+1+1)b
+VEV can be obtained by slightly modifying Cρνλσ       (x, y, z) in eq. (2.9).
+                           (2+1+1)b−V EV
+                     Cρνλσ                      (x, y, z) = −2 Re⟨Tr[S l (0, y)γν S l (y, 0)γσ ]⟩U ×                                                       (3.5)
+                                                                                   × Re⟨Tr[S ∆ (x, x)γρ ] × Tr[S ∆ (z, z)γλ ]⟩U .
+
+While the VEV of all other diagrams is equal to zero, for the (2+1+1)b diagram the VEV
+is much larger and leads to huge cancellations.
+    Similar to the (3+1)b we present unregularized results using the 5D propagator method
+and the Fourier method, but here we also include the intermediate window versions of the
+CCS kernel. The integrands are shown in figure 11. For the full CCS kernel the results are
+gathered in table 9 and for the intermediate window version the results are in table 10.
+    The diagram has a much larger discrepancy between the two methods, even when
+compared to the other disconnected diagrams. The results of the 5D propagator method
+
+
+
+
+                                                                             – 20 –
+                                           XlYlZl      XcYlZl
+                                 5D      3.50(2.79)    0.34(58)
+                               Fourier     9(42)       −17(29)
+
+Table 9: Results for the (2+1+1)b diagram on N451 for the two factorization methods.
+The values are given in units of 10−11 .
+
+                                           XlYlZl      XcYlZl
+                                 5D       0.12(29)     0.06(6)
+                               Fourier    1.1(4.6)    −7.2(3.1)
+
+Table 10: Results for the (2+1+1)b diagram on N451 using the intermediate window
+version of the CCS kernel for the two factorization methods. The values are given in units
+of 10−11 .
+
+
+are much more precise than the results form the Fourier method. Again, this difference
+comes from the suppression of large distances, which is present in the 5D propagator
+method but missing in the Fourier method. Now, there is also a large difference of the
+error between the two available discretizations. We believe this is due to the large VEV
+of the two-point-quark loop in the case of the XlYlZl discretization, which needs to be
+subtracted.
+
+4     Methodological aspects and comparison to the literature
+
+In this section we first collect the advantages and disadvantages of the different methods.
+We then discuss the computational cost by first calculating the number of inversions of
+the Dirac operator for each method. Thereafter we perform an equal-cost analysis of the
+errors. A comparison of our results with those found in the literature follows. At the end
+of this section, the idea of using factorizations more generally is illustrated on the case of
+the hadronic light-by-light contribution to the muon (g − 2).
+
+4.1     Advantages and disadvantages of the methods
+4.1.1    2PS method
+The 2PS method has a few important advantages, but they can only be fully realized while
+calculating the (4)a diagram. Because of this we will first discuss only the calculation of the
+(4)a diagram and then we will note what changes when also calculating the (4)b diagram.
+     The biggest advantage is the use of the periodic diagonal, which gives an additional
+factor of 48 in statistics in the case of the N451 ensemble. We showed that this is the
+cause of the reduced error of the integral points compared to the results of the other two
+methods. Additionally, since only one-to-all propagators are involved in the calculation,
+multiple PV-masses can be calculated at the same time. It is also possible to access the
+local and conserved currents at the x- and z-vertices at no additional cost, but the vertex
+at the second point source is always a local one. Lastly, from a computational point of view
+
+
+
+
+                                            – 21 –
+this method is very efficient when compared to the factorization methods, since it involves
+only 12 × L/2 inversions of the Dirac operator.
+     The disadvantages come into play when also calculating the (4)b diagram. It involves
+a sequential propagator, which now includes the photon propagator. This drastically re-
+duces the gain from the periodicity of the diagonal, as the sequential propagator has to be
+calculated for each position of the y-vertex. Since the photon propagator is included, cal-
+culating multiple PV-masses now also involves additional inversions of the Dirac operator.
+Similarly, if one wants to have both a conserved and a local current at the x-vertex, twice
+as many sequential propagators have to be calculated.
+     There is also a significant disadvantage, unrelated to the (4)b diagram, that we have
+not yet addressed properly. To use the periodicity we are storing all of the one-to-all
+propagators on the diagonal. Therefore we need a lot of memory for our calculation. This
+scales super-linearly with the spatial extent of the ensembles, because not only does the
+needed memory for each propagator get larger, but the number of stored propagators also
+grows. However, there are ways to get around this limitation, for example by further
+increasing the step size or by not storing all of the propagators and recalculating some.
+     One last minor disadvantage comes from the fact that we do not automatically have
+access to the unregularized version of the photon propagator. For the connected diagrams
+this is not an issue, but some of the disconnected diagrams are UV-finite. This last disad-
+vantage can be completely removed by also including a contraction with the unregularized
+version of the photon propagator during the calculation.
+
+4.1.2   Fourier method
+While the Fourier method has some big advantages, it also comes with significant disad-
+vantages. From the three different methods it has the smallest initial cost, although this
+is not as big of a difference as one might expect it to be, because the integrand changes
+more rapidly, when compared to the integrands of the other two methods. It is also the
+case that you need slightly different coverage for different PV-masses. These two facts
+together increases the number of momenta one needs to cover. The big advantage comes
+into play when doing the last integral. It is possible to adjust the photon propagator in
+this step. That means one can test any PV-mass, has access to the unregularized version
+of the photon propagator and one could even test other regularization schemes.
+     The disadvantage arises from the weight functions for the internal vertices. Since they
+are given by an exponential function with a purely imaginary argument, they do not fall
+off at large distances. The noise from the points at these distances is not suppressed. In
+the calculations we presented, this has little to no effect for the connected diagrams. But
+for the disconnected diagrams, the Fourier method consistently showed much larger errors
+when compared to the other two methods. It may also explain why the Fourier method
+was significantly further away from the expected result in the gluon-less calculation than
+the other two methods.
+
+
+
+
+                                          – 22 –
+4.1.3    5D propagator method
+Of the three methods, the 5D propagator method has the largest initial cost. Since the
+summands of the PV-regulated photon propagator get split separately an additional factor
+of three appears. The methods is also worse on N451 for the (4)a diagram, when compared
+to the 2PS method, as it lacks the option of using the periodicity of the diagonal.
+     For the (4)b diagram the advantages of the 5D propagator method give it an edge. The
+errors also only slightly depend on the distance to the origin. This is because the weight
+function of the internal vertices falls off with at least 1/x3 , suppressing the noise from large
+distances. The suppression also benefits the results of the disconnected diagrams, where
+the 5D propagator method shows consistently smaller errors than the Fourier method.
+Splitting the calculation of the photon propagator also has two advantages. It gives access
+to the unregularized version, which is of interest for the UV-finite subset of the disconnected
+diagrams. Additionally, the cost of further PV-masses is reduced, as the unregularized part
+can be reused from the previous calculations.
+     As a last point, one should keep in mind that the 5D propagator method reproduced the
+expected result in the gluon-less calculation the best, adding confidence in its applicability.
+
+4.2     Computational cost
+In the following, we list the number of inversions of the Dirac operator which are necessary
+for each method. In all three cases one connected diagram depends on the inversions which
+were done for the other connected diagram. In the 2PS method the calculation of the (4)b
+diagram relies on the inversions from the calculation of the (4)a diagram, while for the
+Fourier and 5D propagator method it is the other way around. One can view one diagram
+a generating the base cost of the method and the other diagram being the add-on. We
+get the disconnected diagrams without any additional inversions from the base cost in all
+methods.
+     For each calculation of a propagator we inverted the different spin and color combina-
+tions separately. Thus, for one propagator, twelve inversion of the Dirac operator are nec-
+essary. Another factor that concerns all methods is the possibility of different combinations
+of local and conserved currents. It usually costs more to include additional discretizations.
+If there is a factor which could be reduced by calculating fewer combinations, it will be
+denoted with a d (for discretizations) in the subscript.
+     For readability we use the abbreviation L for the spatial extent of the ensemble, NP V
+for the number of PV-masses and NM for the number of momenta in the Fourier method.
+For the 2PS method there is also the abbreviation NT S for the number of points on the
+diagonal used as an origin when calculating the (4)b diagram. These are the sequential
+propagators for which we use truncated solves. They are faster by about a factor of three
+when compared to the untruncated solves.
+     In the next subsections, we will discuss the concrete numbers for each method. They
+are summarized in table 11, which also includes how many inversions are necessary for one
+PV-mass on the N451 ensemble, where L = 48 and NM = 22.
+
+
+
+
+                                             – 23 –
+    Lastly, we calculated an equal cost comparison of the errors between the methods. It
+can be found in table 12. For a fair comparison, we assumed that three PV-masses are
+calculated with each method.
+
+4.2.1   2PS method
+For calculating the (4)a diagram the 2PS method needs only the point sources on the diag-
+onal, so 12 × L/2 inversions of the Dirac operator. Multiple PV-masses and discretizations
+can be calculated at the same time with no additional cost. On the N451 ensemble 288
+inversions are needed for this diagram.
+     For the (4)b diagram the number of inversions per chosen origin increases by multiple
+factors. Most importantly the sequential propagators have to be calculated for each position
+of the y-vertex, giving a factor of (L/2 − 1) for the number of inversions. Additionally,
+we have a factor of NP V from the inclusion of the photon propagator in the sequential
+propagator, a factor of 4 from the inclusion of the gamma matrix and a factor of 2, if one is
+interested in discretizations where the current at the x-vertex is local as well as conserved.
+The inversions are done for NT S points on the diagonal with less precise solves and one
+time with exact solves to calculate the bias correction.
+     On the N451 ensemble this gives in total for one PV-mass 1104 × 2d exact inversions.
+The number of inversions with truncated solves is 4416 × 2d for NT S = 4. The speedup of
+the truncated solves compared to the exact one is about a factor of three. So the number
+of truncated inversions is equivalent to 1472 × 2d exact inversions.
+
+4.2.2   Fourier method
+In the Fourier method the calculation of the (4)b diagram forms the baseline. It needs one
+inversion for the first one-to-all propagator. The number of inversions for the sequential
+propagators have the factor NM for the momentum which has to be included and a factor
+of 4 from the gamma matrix. There is also an additional factor of 2 from the different
+discretizations. On N451 the base line is given by 1068 × 2d number of inversions.
+    The added-on inversions for the (4)a diagram have the same factors, but instead of the
+factor of 2 for the discretizations it is a factor of 3. So analogous to before the additional
+inversions on N451 are 1056 × 3d .
+    One last thing to keep in mind for the Fourier method is the independence from the
+PV-mass. This means no diagram includes a factor of NP V .
+
+4.2.3   5D propagator method
+The 5D propagator method is very similar to the Fourier method but with two key differ-
+ences. Instead of a factor of NM we have a factor of L/4, because we go up to half the
+spatial extent of the ensemble and only consider every second point. The inversions now
+also depend on the PV-mass, which has two effects. First of all we have the factor of 3,
+since the three terms of the regularized photon propagator have to be calculated separately.
+Secondly, both diagrams have a factor of NP V , because the photon propagator is included
+in the inversions for the sequential and double sequential propagators.
+
+
+
+
+                                           – 24 –
+         Diagram (4)a
+             2PS                             6×L                                288
+            Fourier                      48 × NM × 3d                      1056 × 3d
+        5D Propagator                 36 × L × NP V × 3d                  1728∗ × 3d
+
+         Diagram (4)b
+             2PS               Ex.: 48 × (L/2 − 1) × NP V × 2d           1104∗ × 2d
+                          Tr.: 48/3 × NT S × (L/2 − 1) × NP V × 2d       1472∗ × 2d
+           Fourier                12 × (1 + NM × 4 × 2d )                1068 × 2d
+        5D Propagator          12 × (1 + L × 3 × NP V × 2d )            1740∗ × 2d
+
+Table 11: Number of necessary inversions of the Dirac operator for each method. The
+subscript d marks factors which can be reduced to 1, if less discretizations are calculated.
+Bold font marks the numbers of inversions which are at least necessary, i.e. the calculations
+with normal font rely on the results of the ones with bold font, but not the other way
+around. In each row after the general form there is also the number of inversions necessary
+for the N451 ensemble for one PV-mass. If this number increases for multiple PV-masses it
+is marked by a star. The factor of 1/3 for the truncated inversions accounts for the gained
+speedup.
+
+
+    In total the base line number of inversions for the 5D propagator method on N451 for
+one PV-mass is 1740 × 2d and the additional number of inversions for the (4)a diagram is
+1728 × 3d . For subsequent PV-masses this gets reduced to at least 1164 × 2d and 1152 × 3d
+respectively, because at least the zero mass term only has to be computed once.
+
+4.2.4   Equal-cost comparison of the errors
+Determining the number of inversions of the Dirac operator for each method is useful,
+but for a meaningful comparison we also have to take into account the resulting errors.
+Comparing the calculations of all diagrams between the methods is straightforward. Using
+the core-hours each method needed to compute one configuration, we can calculate the
+time-equivalent number of configurations between the methods. As a reference point we
+used the 250 configurations calculated with the Fourier method for all discretizations where
+the z-vertex is local. The resulting scaled errors can be seen in rows 2, 4 and 6 of table 12.
+For all results in the table, we assumed three PV-masses and the maximum number of
+discretizations are calculated.
+     There are also two further groups for comparisons noted in the table. For the first
+one we compare the errors with equal cost, if only one of the fully connected diagrams is
+calculated. To compute the core hours one would need for one configuration in this setup
+we simply subtracted the time needed for the additional (double) sequential propagators.
+This is only an approximation of the real time it would take, but for our purposes here
+this comparison is sufficient. The scaled errors for this group comparisons are in rows 3, 5
+and 7.
+
+
+
+
+                                           – 25 –
+                            #Configurations     (4)a   (4)b    (3+1)a   (3+1)b    (2+1+1)b
+       Fourier Full              250            0.63    0.11     4.45     0.35        29
+    Fourier (4)b only            373              -    0.091     3.65     0.29        24
+        2PS Full                  51            0.41   0.16      0.19       -          -
+      2PS (4)a only              420            0.15      -     0.066       -          -
+   5D Propagator Full             72            1.31    0.22     3.91     0.14       0.77
+ 5D Propagator (4)b only         105              -    0.18      3.23     0.11       0.64
+   2PS (4)a + 5D (4)b             87            0.32    0.20     0.15     0.12       0.70
+ 2PS (4)a + Fourier (4)b         198            0.21    0.13    0.096     0.40        33
+
+Table 12: Equal-cost comparison between the methods and further combinations under
+the assumption of calculating three PV-masses and the maximum number of discretizations.
+We show the errors for the XcYlZl discretization from all diagrams, scaled to the equal
+cost number of configurations.
+
+
+     The physics application requires that we compute both fully connected diagrams. The
+last two lines account for that by having the scaled errors, if the 2PS method is used for
+the (4)a diagram and one of the factorization methods is used for the (4)b diagram.
+
+4.3   Comparison to the literature
+The current literature on isospin-breaking effects is still sparse, which makes comparisons
+difficult, especially when looking at the disconnected diagrams. The BMW collaboration
+provides a partial breakdown of their results in their 2020 publication [23]. These results
+are renormalized in the BMW scheme, defined by
+
+      mπ = 134.9768(5) MeV,     Mss = 689.89(49) MeV,      w0 = 0.17236(70) fm,       (4.1)
+
+where Mss is the meson with two mass-degenerate quarks with the mass of the strange
+quark and w0 is computed from the gradient-flowed gauge field [87]. Their results are also
+already in the continuum and at physical pion mass. Therefore one has to be careful with
+the comparisons.
+     Table 13 shows their results together with the appropriate combinations of diagrams
+from this work with adjusted charge factors. The factors are different, because they used
+electromagnetic currents at the external vertices. The errors from this work for the first
+two combinations are smaller when compared to their results, but this may change when
+the couterterms are included, the photon regulator is removed and after the continuum
+extrapolation. The combination in the second-to-last line with only the (3+1)b diagram
+leads to the same result for both BMW and this work, but the error of this work is larger.
+Recall that the diagram is UV-finite, so that no counterterms and photon regulators are
+necessary to evaluate it. The results for the (2+1+1)b diagram, which is also UV-finite,
+have central values of opposite signs; but in both cases the error is much larger than the
+value.
+
+
+
+
+                                          – 26 –
+         Diagrams        Charge factors em                BMW-20                    This work
+                                                      (mπ = 135 MeV)             (mπ = 280 MeV)
+        (4)a + (4)b            17/81                –12.3(4.0)stat (3.1)syst       −6.42(2.35)
+      (2+2)a + (3+1)a       25/81 + 7/81            –5.5(1.5)stat (1.0)syst        −6.28(1.27)
+           (3+1)b               7/81                –0.093(86)stat (95)syst        −0.093(343)
+         (2+1+1)b               5/81                 –0.11(24)stat (14)syst          0.38(65)
+
+Table 13: Comparison between the values from [23] and the results of this work scaled
+with the appropriate charge factor. Values are given in units of 10−11 .
+
+
+4.4    More general factorizations: the case of aHLbL
+                                                 µ
+
+The aspect of factorizing sums over vertices in lattice QCD correlation functions is not
+restricted to such vertices directly connected by a photon propagator.
+     We take as an example the hadronic light-by-light scattering in the muon (g − 2).
+Starting from Eqs. (6.1–6.3) in the WP’25 [9], and making use of translation invariance
+and current conservation, we arrive at
+
+                      e6
+                            Z
+          HLbL
+         aµ     =−             d4 x d4 y d4 z zρ ⟨jσ (z) jµ (x) jν (0) jλ (y)⟩          (4.2)
+                    48mµ
+                  Z
+                    d4 u d4 v d4 w G0 (w − x)G0 (u)G0 (y − v) e−ip·(w−v)
+                         n                                                           o
+                      Tr [γρ , γσ ](−ip / + mµ )γµ S(w − u)γν S(u − v)γλ (−ip/ + mµ ) ,
+
+                                                     (2)               (1)
+where p = imµ p̂, p̂ ∈ R4 , p̂2 = 1, S(x) = 2πx/ Gmµ (x) + mµ Gmµ (x) is the muon propagator
+                                           (λ)
+(see Eq. (2.4) for the explicit form of Gm (x)), and G0 (x) = 1/(4π 2 x2 ) the massless scalar
+propagator. Defining the function
+                                       Z
+                           L (p, x) = d4 w G0 (x − w) e−ip·w S(w),
+                              f
+                                                                                         (4.3)
+
+which can be expressed as a one-dimensional integral over a Feynman parameter, we can
+express aHLbL
+         µ    in the following way,
+
+                     e6
+                           Z                Z
+         aHLbL
+          µ    =−               4
+                               d u G0 (u)       d4 x d4 y d4 z zρ ⟨jσ (z) jµ (x) jν (0) jλ (y)⟩   (4.4)
+                    48mµ
+                n                                                                    o
+                              / + mµ )γµ Lf (p, x − u)γν Lf (p, u − y)γλ (−ip/ + mµ ) .
+            × Tr [γρ , γσ ](−ip
+
+It shows that, for fixed u, the weight functions for the vertices x and y factorize (up to
+the Dirac trace, which can be reduced to a trace over 2 × 2 matrices). For the connected
+diagrams contributing to the QCD four-point function of the electromagnetic current, this
+                                              P
+observation allows one to perform the sums ( x,y,z ) over three out of four vertices using
+the technique of sequential propagators. Whether such an approach is superior to the one
+that was pursued in the existing calculations [66, 68, 69, 88], where lattice-wide sums are
+performed only over two of the four vertices but only point sources were needed, remains
+
+
+
+
+                                                – 27 –
+to be seen. We note that averaging over the unit vector p̂, a technique applied in [89],
+is not possible without entangling the integrals over x and y. Thus the integral over u,
+which is to be carried out last, can be reduced to a two-dimensional integral, but not to a
+one-dimensional one.
+
+5   Conclusion
+
+In the context of computing electromagnetic corrections to hadronic vacuum polarization
+in the muon (g − 2) using lattice QCD, we have compared three different implementations
+of the infinite-volume photon propagator with a Pauli-Villars (PV) style regularization.
+The implementations are the two-point-source (2PS) method, and two methods where we
+factorized the dependence on the relative coordinates of the two internal vertices connected
+by a photon propagator. The factorization methods considered are the Fourier method and
+the 5D propagator method. For the comparisons, we used the calculation of the isospin-
+violating part of the hadronic vacuum polarization (HVP), which corresponds to the cross-
+terms in the two-point correlation function of the electromagnetic current jµem , when the
+latter is written as the sum of an isovector (jµ3 ) and an isoscalar (jµ8 ) current. We computed
+the two contributing connected diagrams as well as three of the four disconnected diagrams.
+     The PV regularization enables us to do crosschecks between lattice calculations on
+‘gluon-less’ ensembles and continuum calculations. We obtained results consistent with
+the continuum calculation with all three implementations of the photon propagator. For
+further comparisons, we computed the relevant diagrams on a CLS gauge ensemble (N451)
+with a pion mass of 286 MeV. In all cases the results of the three methods are consistent
+with each other, but there are differences in the errors. Considering only the connected
+diagrams and comparing only the errors, at equal cost the 2PS method is the preferred one
+for the (4)a diagram and the Fourier method is the preferred one for the (4)b diagram.
+     But there are two important points, which promote the 5D propagator method to be
+the preferred one for the (4)b diagram. The first one comes from the gluon-less crosscheck,
+where the Fourier method had the largest spread of all the methods. Additionally, when
+combined with the 2PS method in the hybrid approach, the mean value with its error did
+not cover the predicted value. This is in contrast to the 5D propagator method, which
+had the smallest spread on its own and was the closest one to the predicted value when
+combined with the 2PS method. The other point comes from the disconnected diagrams.
+The Fourier method gives larger errors for them compared to the 5D propagator method,
+likely because it does not suppress the large distances. In contrast, the 5D propagator
+method suppresses the large distances with at least 1/|x|3 , which gives it an advantage
+over the Fourier method in this case. We expect the difference in efficiency between the
+methods to increase as the pion mass is lowered. Note that the 5D-propagator factorization
+formula also applies to a lattice-regularized photon propagator, up to a very short-range
+correction — see appendix B.2.
+     Based on these observations, we will use a hybrid method going forward. The (4)a
+diagram will be computed by the 2PS method and the (4)b diagram will be computed by
+the 5D propagator method. The disconnected diagrams can be calculated at no additional
+
+
+
+
+                                            – 28 –
+cost with both methods, making it possible to choose the method afterward, based on the
+errors. Adopting this approach, we obtain on ensemble N451 a total result of
+                                 (4)a        (4)b     (2+2)a−ll    (3+1)a      (3+1)b
+2 aHVP,38
+   µ,em,N451 (Λ = 16 mµ ) = (−4.24(52) + 2.54(32) − 1.18(22) + 0.09(12) − 0.06(20)) × 10
+                                                                                         −11
+
+                         = −2.85(70) × 10−11 .                                            (5.1)
+
+Note that all diagrams except (3+1)a include an additional factor of two to account for the
+equally sized (3,8) and (8,3) contributions. We also included the light-light contribution of
+the (2+2)a diagram, which was calculated in [82]. The full result of the (2+2)a diagram
+would also include the light-strange contribution, but it is more than an order of magnitude
+smaller than the light-light contribution and vanishes within the error. The two UV-finite
+diagrams, (2+2)a and (3+1)b, use the unregularized version of the photon propagator,
+which amounts to taking the limit Λ → ∞. For the other diagrams, the Pauli-Villars
+mass is set to Λ = 16 mµ . For the results shown here, we used the discretization with a
+conserved current at the x-vertex and local currents everywhere else, since this combination
+is available for all methods and diagrams. Our calculation, though not performed at
+physical quark masses, confirms the extremely small size of the (3+1)-topology diagrams
+relative to the connected diagrams, as found in Ref. [23].
+     The (2+1+1)b diagram is omitted from the total result for now. It is zero within
+error, but the error is of the same size as the one of the (4)a diagram. Its precision in this
+paper was limited by the statistics of the other diagrams. A dedicated study would be able
+to determine it with much smaller errors. In fact, re-using the propagators generated by
+the 2PS method would already give it a factor L/2 more statistics, where L is the spatial
+extend of the ensemble. We will use this optimization in our calculations going forward. It
+should be noted that the charge factor of the (2+1+1)b diagram relative to the connected
+diagrams is enhanced by more than a factor of six in the (3,8) contribution as compared
+to the full HVP contribution.
+     The result in eq. (5.1) is larger by almost a factor of two compared to the appropriate
+intermediate result of our previous publication at the SU(3)f symmetric point. This con-
+firms the growing importance of this contribution when going towards the physical point.
+Still, its size is much smaller than the error of the current experimental determination of aµ ,
+which is 14.5 × 10−11 , and the expected value of the strong isospin-breaking contribution
+at the physical point, which amounts to 30.0(7.5) × 10−11 according to the model estimate
+of [75].
+
+Acknowledgments
+
+H.M. thanks Xu Feng for discussions on the evaluation of the connected diagrams. We ac-
+knowledge the support of Deutsche Forschungsgemeinschaft (DFG, German Research Foun-
+dation) through project HI 2048/1-3 (project No. 399400745), project JRP (No. 458854507)
+of the research unit FOR 5327 “Photon-photon interactions in the Standard Model and
+beyond exploiting the discovery potential from MESA to the LHC”, and through the
+
+
+
+
+                                            – 29 –
+Cluster of Excellence “Precision Physics, Fundamental Interactions and Structure of Mat-
+ter” (PRISMA+ EXC 2118/1) funded within the German Excellence Strategy (project
+ID 39083149). One of the authors (K.O.) has been supported by DFG through project
+HI 2048/1-3 (project No. 399400745). Calculations for this project were partly performed
+on the HPC cluster and “HIMster II” at the Helmholtz-Institut Mainz and “Mogon II” at
+JGU Mainz. The authors gratefully acknowledge the computing time made available to
+them on the high-performance computer ”Mogon NHR Süd-West” at the NHR Center JGU
+Mainz. This center is jointly supported by the Federal Ministry of Research, Technology
+and Space and the state governments participating in the National High-Performance Com-
+puting (NHR) joint funding program (http://www.nhr-verein.de/en/our-partners). We are
+grateful to our colleagues in the CLS initiative for sharing ensembles. All plots were created
+using the matplotlib library [90].
+
+
+
+A    Charge factors
+
+We calculate the relevant charge factors for each diagram of figure 1 in this appendix. The
+charge matrices are defined in eq. (2.8). We will also use the notation Trl and Trs to note
+if a trace only goes over the light sector or the strange quark, respectively. The modified
+traces can be related to the usual trace via
+                                                               
+                                                           100
+                          Trl {Q} = Tr{Q(l) Q}, Q(l) = 0 1 0 ,                      (A.1)
+                                                               
+                                                           000
+                                                               
+                                                           000
+                         Trs {Q} = Tr{Q(s) Q}, Q(s) = 0 0 0 .                       (A.2)
+                                                               
+                                                           001
+
+We first look at the fully connected diagrams, (4)a and (4)b. They have no contribution
+from the strange quark. For both diagrams the charge factor is simply given by
+
+                          (4)a      (4)b                                    1
+                      fQ         = fQ      = Tr{Q(3) Q(em) Q(em) Q(8) } =      .        (A.3)
+                                                                            36
+The (2+2)a diagram has two possible flavor combinations, which result in two possible
+charge factors. In the first one both loops consist only of light quarks, while in the second
+one the loop with the isovector current has a strange quark and the isoscalar current has
+a light quark. Their charge factors are
+
+                      (2+2)a−ll                                      1
+                     fQ            = Trl {Q(3) Q(em) }Trl {Q(em) Q(8) } =
+                                                                        ,               (A.4)
+                                                                     36
+                     (2+2)a−ls                                        1
+                    fQ         = Trl {Q(3) Q(em) }Trs {Q(em) Q(8) } = .                 (A.5)
+                                                                     18
+At the SU(3)f symmetric point, where ml = ms , both charge factors have to be added
+together giving a total charge factor of 1/12.
+
+
+
+
+                                                  – 30 –
+    The (3+1)a and (3+1)b diagrams each have one one-point loop, where the quark can
+either be a light quark or a strange quark. So each of them has two charge factors,
+
+                      (3+1)a−ll                                         1
+                     fQ           = Trl {Q(3) Q(em) Q(em) }Trl {Q(8) } =   ,             (A.6)
+                                                                        18
+                      (3+1)a−ls                                            1
+                     fQ          = Trl {Q(3) Q(em) Q(em) }Trs {Q(8) } = − ,              (A.7)
+                                                                          18
+                       (3+1)b−ll                                        1
+                     fQ          = Trl {Q(3) Q(em) Q(8) }Trl {Q(em) } = ,                (A.8)
+                                                                        36
+                      (3+1)b−ls          (3) (em) (8)          (em)        1
+                     fQ          = Trl {Q Q        Q }Trs {Q        }=− .                (A.9)
+                                                                          36
+The charge factors of the different flavor combinations only differ in the sign. If follows
+directly that at the SU(3)f symmetric point the charge factors are equal to 0.
+     In eq. (2.17) we introduce the notation S ∆ (x, y), which is the difference between the
+light quark propagator and the strange quark propagator, S ∆ (x, y) = S l (x, y)−S s (x, y). It
+already encodes the sign difference we see here. So for our notation the flavor combinations
+of the (3+1) diagrams are combined and each diagram has a single charge factor,
+
+                                            (3+1)a  1
+                                           fQ        = ,                                (A.10)
+                                                    18
+                                            (3+1)b  1
+                                           fQ      = .                                  (A.11)
+                                                    36
+Lastly, the (2+1+1)b diagram has four flavor combinations, but the same observations as
+with the (3+1) diagrams hold true. The four charge factors are
+
+                 (2+1+1)b−lll                                             1
+                fQ              = Trl {Q(3) Q(em) }Trl {Q(em) }Trl {Q(8) } = ,          (A.12)
+                                                                          18
+                (2+1+1)b−lls                                                 1
+               fQ            = Trl {Q(3) Q(em) }Trl {Q(em) }Trs {Q(8) } = − ,           (A.13)
+                                                                            18
+                (2+1+1)b−lsl         (3) (em)         (em)        (8)        1
+               fQ            = Trl {Q Q        }Trs {Q     }Trl {Q } = − ,              (A.14)
+                                                                            18
+                (2+1+1)b−lss                                               1
+               fQ            = Trl {Q(3) Q(em) }Trs {Q(em) }Trs {Q(8) } = .             (A.15)
+                                                                          18
+At the SU(3)f symmetric point they add up to 0 and using the S ∆ (x, y) notation we can
+simplify them to a single charge factor
+
+                                           (2+1+1)b       1
+                                          fQ          =      .                          (A.16)
+                                                          18
+
+B    Derivation of the factorization formula for the scalar propagator
+
+In this appendix, we provide a derivation of the representation of the continuum scalar
+propagator used in section 2.1.4. We also provide the derivation of an analogous result for
+the scalar propagator on an infinitely extended lattice.
+
+
+
+
+                                                – 31 –
+B.1       The continuum case
+In this appendix, we derive the representation (x, y ∈ Rd , d = 2λ + 2)
+                               Z
+               Gm (x − y) = 4 dd w G(λ+1/2)
+                 (λ)
+                                        m      (0, w − y) G(λ+1/2)
+                                                            m      (0, x − w)                          (B.1)
+
+of the scalar propagator in d-dimensional Euclidean space, in which the x and the y de-
+pendence is factorized. By making the change of integration variables w = v + y, the
+representation is equivalent to having a convolution of two (d + 1)-dimensional propaga-
+tors,
+                                 Z
+                G(λ)
+                  m  (x − y) = 4   dd v G(λ+1/2)
+                                         m       (0, v) G(λ+1/2)
+                                                         m       (0, x − y − v).   (B.2)
+
+     We proceed via momentum space and derive a more general result (eq. (B.7) below)
+for the convolution of two unequal-mass propagators. Labelling the Cartesian coordinate
+of the ‘extra dimension’ with index zero, we may start from the mixed representation
+                                  Z ∞
+                                                   dd p      eip·v
+                                                Z
+                 (λ+1/2)              dp0 ip0 b
+               Gm        (b, v) =        e
+                                      2π          (2π)d p20 + p2 + m2
+                                  Z−∞
+                                    ∞
+                                      dp0 ip0 b (λ)
+                                =        e      G√ 2 2 (v)        (b ∈ R, v ∈ Rd ) (B.3)
+                                   −∞ 2π           p0 +m
+
+
+of the (d + 1)-dimensional propagator. Making use of this representation for both propa-
+gators, one easily finds the following result for the Fourier transform,
+                                                                             √        √
+                                                                               2   2     2  2
+                                                                       e−|b|( k +m + k +M )
+          Z         Z
+               d            d(λ+1/2)         (λ+1/2)             −ikz
+      4       d z       d v GM       (b, v) Gm       (b, z − v) e     =p                         .     (B.4)
+                                                                         (k 2 + m2 )(k 2 + M 2 )
+
+Setting b = 0 and inverting the Fourier transform, we have
+
+                                                         dd k         eikz
+         Z                                            Z
+             d   (λ+1/2)         (λ+1/2)
+       4 d v GM          (0, v) Gm       (0, z − v) =                                 . (B.5)
+                                                        (2π)d (k 2 + m2 )(k 2 + M 2 )
+                                                              p
+
+Now noting that
+                                          Z π/2
+                        1 1                                                1
+                        =                         dθ                                               ,   (B.6)
+                                                       k 2 + 21 (M 2 + m2 ) + 12 (M 2 − m2 ) sin θ
+      p
+         2   2   2   2
+       (k + m )(k + M )   π                −π/2
+
+one finds
+
+                                                 1 π/2
+    Z                                             Z
+        d   (λ+1/2)         (λ+1/2)                         (λ)
+   4 d v GM         (0, v) Gm       (0, z − v) =        dθ Gq 1                                 (z).
+                                                 π −π/2       2
+                                                                (M 2 +m2 )+ 21 (M 2 −m2 ) sin θ
+                                                                                                 (B.7)
+                                                                                                (λ)
+In the equal mass case M = m, the right-hand side immediately simplifies to Gm (z),
+which proves eq. (B.2) upon setting z = x − y.
+
+
+
+
+                                                       – 32 –
+B.2   The case of lattice propagators
+We consider propagators on the infinite d-dimensional cubic lattice Λd with lattice spacing
+                   ap
+a. Let p̂µ ≡ a2 sin 2µ and p̂2 ≡ dµ=1 (p̂µ )2 for p ∈ Rd . We recall the expression of the
+                                 P
+
+standard one-dimensional lattice propagator,
+                                      Z π/a
+                                           dp1 eip1 x1
+      Ĝ(−1/2)
+        m      (a, x1 = a · n1 ) ≡              2      2
+                                      −π/a 2π p̂1 + m
+                                                                         |n1 |
+                                           1                 2
+                                    = √                        √                 .                  (B.8)
+                                     m 4 + a2 m2 2 + a2 m2 + am 4 + a2 m2
+Note that the (d + 1)-dimensional propagator is related to the d-dimensional one in an
+analogous way to the continuum case,
+                                           Z π/a
+                                              dp0 ip0 b π/a dd p       eip·v
+                                                       Z
+                  Ĝ(λ+1/2)
+                    m       (b, v) =             e               d 2      2    2
+                                         −π/a 2π        −π/a (2π) p̂0 + p̂ + m
+                                        Z π/a
+                                              dp0 ip0 b (λ)
+                                      =          e     Ĝ√ 2 2 (v).                                 (B.9)
+                                         −π/a 2π          p̂0 +m
+
+
+Labeling the ‘extra-dimension’ coordinate as component zero of the position-space vector,
+we compute the convolution of two (d + 1)-dimensional propagators on the infinite d-
+dimensional lattice,        X (λ+1/2)
+                         ad     ĜM     (b, v) Ĝ(λ+1/2)
+                                                 m       (b, z − v).
+                                    v∈Λd
+
+Similarly to the continuum case, we Fourier-transform the expression,
+                        X X (λ+1/2)
+                     ad   ad     ĜM    (b, v) Ĝ(λ+1/2)
+                                                 m       (b, z − v) e−ik·z
+                            z         v
+                                                                      e−ik·v
+                         Z π/a
+                             dp0 ip0 b d X (λ)+1/2)
+                   =              e    a     ĜM         (b, v)
+                      −π/a 2π              v                    k̂ 2 + p̂20 + m2
+                                                  Z  π/a
+                       (−1/2)
+                                        X                 dq0 iq0 b (λ)
+                   = Ĝ√         (b) ad    e−ik·v              e      Ĝ√ 2 2 (v)                  (B.10)
+                                                   −π/a 2π                  q̂0 +M
+                           2
+                         k̂ +m 2
+                                         v
+                                     Z π/a
+                       (−1/2)              dq0 iq0 b         1
+                   = Ĝ√         (b)           e
+                                      −π/a 2π        k̂ + q̂02 + M 2
+                                                       2
+                           2
+                         k̂ +m 2
+
+                          (−1/2)               (−1/2)
+                   = Ĝ√              (b) Ĝ√               (b).
+                            k̂2 +m2              k̂2 +M 2
+
+The Fourier transform is thus given by the product of two massive one-dimensional lattice
+propagators, in complete analogy with the continuum case.
+    We continue by setting b = 0 and M = m; in that case (see eq. (B.8)),
+                  X X
+               ad    ad    Ĝ(λ+1/2)
+                             m       (b, v) Ĝ(λ+1/2)
+                                              m       (b, z − v) e−ik·z
+                     z          v
+                                                                                  a2
+                                                                                            
+                     1                     1                 1      1
+             =                                          =               −                      .   (B.11)
+                 k̂ 2 + m2 4 + a2 k̂ 2 + a2 m2               4 k̂ 2 + m2 4 + a2 k̂ 2 + a2 m2
+
+
+
+
+                                                        – 33 –
+Thus we recognize the expression for the difference of two momentum-space propagators
+and conclude
+                                                                   (λ)
+            X
+       4 ad    Ĝ(λ+1/2)
+                 m       (0, v) Ĝ(λ+1/2)
+                                  m       (0, z − v) = Ĝ(λ)
+                                                         m (z) − Ĝ√ 2 2
+                                                                         (z).  (B.12)
+                                                                                                          m +4/a
+                                v∈Λd
+
+Setting z = x − y and making the change of summation variable v = w − y, we can factorize
+a lattice propagator, up to a very short-range term,
+                                                               (λ)
+                                        Ĝ(λ)
+                                          m (x − y) = Ĝ√m2 +4/a2 (x − y)                                                  (B.13)
+                                                     X
+                                              + 4 ad    Ĝ(λ+1/2)
+                                                          m       (0, w − y) Ĝ(λ+1/2)
+                                                                               m       (0, x − w).
+                                                        w∈Λd
+
+The first term on the right-hand side vanishes exponentially beyond a distance of a few
+lattice spacings. Therefore its contribution to a correlation function can presumably be
+evaluated with low statistics.
+
+C                   2PS method without using periodicity
+
+
+                         4                                                              1.5
+
+
+1011 × f (|y|) in 1/fm                                                  1011 × f (|y|) in 1/fm
+                         2                                                              1.0
+                                                                                        0.5
+                         0
+                                                                                        0.0
+               −2
+                                   2PS (48)                                            −0.5
+               −4                  2PS (2)                                             −1.0
+               −6                  5D Propagator                                       −1.5
+                             0.0 0.5 1.0 1.5 2.0 2.5 3.0 3.5                                     0.0 0.5 1.0 1.5 2.0 2.5 3.0 3.5
+                                     |w| or |y| in fm                                                    |w| or |y| in fm
+                                       (a) Full scale                                                  (b) Zoomed in
+
+Figure 12: Comparison of the final integrand of diagram (4)a between the 2PS method
+(blue dots), the 2PS method with less statistics (gray triangles) and the 5D propagator
+method (orange squares). The gray triangles are shown with a slight offset to make them
+better distinguishable from the blue dots.
+
+     During the calculation of the (4)a diagram with the 2PS method we were able to use
+the periodicity in space of the ensemble to gain a factor of 48 in statistics. In section 3.3
+we claimed this additional statistics is the reason for the small errors of the 2PS method
+when compared to the other two methods. Here we address this claim.
+     Figure 12 depicts the final integrand of the calculation of the (4)a diagram for both the
+2PS method and the 5D propagator method. The plot is shown two times. Once on the left
+side, with vertical axis at full scale to make comparisons at large distances easier, and once
+
+
+
+
+                                                                     – 34 –
+on the right side, with the vertical axis zoomed in to make comparisons at small distances
+easier. It is important to keep in mind that the horizontal axis is different between the
+two methods, which means comparing them this way is not completely rigorous, but the
+observations from this appendix hold true regardless.
+     The blue dots show the 2PS method at full statistics, using the additional factor of 48.
+They are the same as the blue dots in figure 7a. The gray triangles are the results of the
+2PS method, but with only one of the points on the diagonal used as a source. Because of
+the forward and backward symmetry there is still a factor of two more statistics compared
+to the 5D propagator method, which is noted in the legend of figure 12a. Lastly, the orange
+squares are the results of the 5D propagator method. They are the same as the blue dots
+in figure 7b.
+     We already observed in the main body of the text, that the 2PS method at full statistics
+has generally smaller error bars at the relevant distances below 2 fm. Here, we also see that
+the errors of the 5D propagator method have only a slight dependence on the distance, just
+like one can see it in figure 7a for the (4)b diagram. But the main observation is given by
+the comparison between the 2PS method with reduced statistics and the 5D propagator
+method. Below 1.5 fm the errors of them are around the same size but beyond that point
+the 5D propagator method as an advantage. From this we conclude that the much smaller
+errors of the 2PS method in table 4 truly is from the gain in statistics from using the
+periodicity.
+
+D    Tables
+
+Tables (14, 15, 15, 17) in this appendix summarize our results obtained from ‘gluonless’
+lattices (i.e. all gauge link variables U (µ, x) are set to unity).
+
+                        XlYlZl    XcYlZl    XcYcZl    XlYlZc    XcYlZc    XcYcZc
+            Total       −7.11     −7.68       -       −7.40     −7.74       -
+           2-Loop        28.66     28.36      -        28.56     28.32      -
+         Self-Energy    −35.77    −36.04      -       −35.96    −36.07      -
+
+Table 14: Results of continuum extrapolation on gluonless ensembles for two-point-source
+method with Λ = 3 mµ . The values are given in units of 10−11 .
+
+
+                        XlYlZl    XcYlZl    XcYcZl    XlYlZc    XcYlZc    XcYcZc
+            Total       −7.93     −8.02     −7.24     −8.11     −8.09      −7.27
+           2-Loop        27.95     27.86     27.90     27.88     27.79     27.77
+         Self-Energy    −35.88    −35.88    −35.15    −36.00    −35.88    −35.03
+
+Table 15: Results of continuum extrapolation on gluonless ensembles for Fourier method
+with Λ = 3 mµ . The values are given in units of 10−11 .
+
+
+
+
+                                           – 35 –
+                         XlYlZl    XcYlZl     XcYcZl     XlYlZc    XcYlZc     XcYcZc
+             Total       −7.41     −7.67      −7.58      −7.68     −7.84       −7.61
+            2-Loop        28.48     28.34      28.29      28.39     28.27      28.20
+          Self-Energy    −35.88    −36.01     −35.87     −36.08    −36.11     −35.81
+
+Table 16: Results of continuum extrapolation on gluonless ensembles for 5D propagator
+method with Λ = 3 mµ . The values are given in units of 10−11 .
+
+                                          XlYlZl      XcYlZl   XlYlZc    XcYlZc
+                  2PS + Fourier           −7.82       −8.18    −8.08     −8.28
+               2PS + 5D propagator        −7.29       −7.70    −7.57     −7.80
+
+Table 17: Results of continuum extrapolation on gluonless ensembles for calculating (4)a
+diagram via 2PS method and (4)b diagram via one of the other methods with Λ = 3 mµ .
+The values are given in units of 10−11 .
+
+
+References
+ [1] Muon g − 2 collaboration, Measurement of the Positive Muon Anomalous Magnetic Moment
+     to 127 ppb, Phys. Rev. Lett. 135 (2025) 101802 [2506.03069].
+ [2] Muon g − 2 collaboration, Measurement of the Positive Muon Anomalous Magnetic Moment
+     to 0.20 ppm, Phys. Rev. Lett. 131 (2023) 161802 [2308.06230].
+ [3] Muon g − 2 collaboration, Detailed report on the measurement of the positive muon
+     anomalous magnetic moment to 0.20 ppm, Phys. Rev. D 110 (2024) 032009 [2402.15410].
+ [4] Muon g − 2 collaboration, Measurement of the Positive Muon Anomalous Magnetic Moment
+     to 0.46 ppm, Phys. Rev. Lett. 126 (2021) 141801 [2104.03281].
+ [5] Muon g − 2 collaboration, Measurement of the anomalous precession frequency of the muon
+     in the Fermilab Muon g − 2 Experiment, Phys. Rev. D 103 (2021) 072002 [2104.03247].
+ [6] Muon g − 2 collaboration, Magnetic-field measurement and analysis for the Muon g − 2
+     Experiment at Fermilab, Phys. Rev. A 103 (2021) 042208 [2104.03201].
+ [7] Muon g − 2 collaboration, Beam dynamics corrections to the Run-1 measurement of the
+     muon anomalous magnetic moment at Fermilab, Phys. Rev. Accel. Beams 24 (2021) 044002
+     [2104.03240].
+ [8] Muon g − 2 collaboration, Final Report of the Muon E821 Anomalous Magnetic Moment
+     Measurement at BNL, Phys. Rev. D 73 (2006) 072003 [hep-ex/0602035].
+ [9] R. Aliberti et al., The anomalous magnetic moment of the muon in the Standard Model: an
+     update, 2505.21476.
+[10] T. Aoyama, M. Hayakawa, T. Kinoshita and M. Nio, Complete Tenth-Order QED
+     Contribution to the Muon g − 2, Phys. Rev. Lett. 109 (2012) 111808 [1205.5370].
+[11] S. Volkov, Calculating the five-loop QED contribution to the electron anomalous magnetic
+     moment: Graphs without lepton loops, Phys. Rev. D 100 (2019) 096004 [1909.08015].
+[12] S. Volkov, Calculation of the total 10th order QED contribution to the electron magnetic
+     moment, Phys. Rev. D 110 (2024) 036001 [2404.00649].
+
+
+
+
+                                             – 36 –
+[13] T. Aoyama, M. Hayakawa, A. Hirayama and M. Nio, Verification of the tenth-order QED
+     contribution to the anomalous magnetic moment of the electron from diagrams without
+     fermion loops, Phys. Rev. D 111 (2025) L031902 [2412.06473].
+[14] R.H. Parker, C. Yu, W. Zhong, B. Estey and H. Müller, Measurement of the fine-structure
+     constant as a test of the Standard Model, Science 360 (2018) 191 [1812.04130].
+[15] L. Morel, Z. Yao, P. Cladé and S. Guellati-Khélifa, Determination of the fine-structure
+     constant with an accuracy of 81 parts per trillion, Nature 588 (2020) 61.
+[16] X. Fan, T.G. Myers, B.A.D. Sukra and G. Gabrielse, Measurement of the Electron Magnetic
+     Moment, Phys. Rev. Lett. 130 (2023) 071801 [2209.13084].
+[17] A. Czarnecki, W.J. Marciano and A. Vainshtein, Refinements in electroweak contributions to
+     the muon anomalous magnetic moment, Phys. Rev. D 67 (2003) 073006 [hep-ph/0212229].
+[18] C. Gnendiger, D. Stöckinger and H. Stöckinger-Kim, The electroweak contributions to
+     (g − 2)µ after the Higgs boson mass measurement, Phys. Rev. D 88 (2013) 053005
+     [1306.5546].
+[19] J. Lüdtke, M. Procura and P. Stoffer, Dispersion relations for the hadronic VVA correlator,
+     JHEP 04 (2025) 130 [2410.11946].
+[20] M. Hoferichter, J. Lüdtke, L. Naterop, M. Procura and P. Stoffer, Improved evaluation of the
+     electroweak contribution to muon g − 2, Phys. Rev. Lett. 134 (2025) 201801 [2503.04883].
+[21] RBC, UKQCD collaboration, Calculation of the hadronic vacuum polarization contribution
+     to the muon anomalous magnetic moment, Phys. Rev. Lett. 121 (2018) 022003 [1801.07224].
+[22] ETM collaboration, Electromagnetic and strong isospin-breaking corrections to the muon
+     g − 2 from Lattice QCD+QED, Phys. Rev. D 99 (2019) 114502 [1901.10462].
+[23] S. Borsányi et al., Leading hadronic contribution to the muon magnetic moment from lattice
+     QCD, Nature 593 (2021) 51 [2002.12347].
+[24] C. Lehner and A.S. Meyer, Consistency of hadronic vacuum polarization between lattice QCD
+     and the R-ratio, Phys. Rev. D 101 (2020) 074515 [2003.04177].
+[25] χQCD collaboration, Muon g-2 with overlap valence fermions, Phys. Rev. D 107 (2023)
+     034513 [2204.01280].
+[26] C. Aubin, T. Blum, M. Golterman and S. Peris, Muon anomalous magnetic moment with
+     staggered fermions: Is the lattice spacing small enough?, Phys. Rev. D 106 (2022) 054503
+     [2204.12256].
+[27] M. Cè et al., Window observable for the hadronic vacuum polarization contribution to the
+     muon g − 2 from lattice QCD, Phys. Rev. D 106 (2022) 114502 [2206.06582].
+[28] ETM collaboration, Lattice calculation of the short and intermediate time-distance hadronic
+     vacuum polarization contributions to the muon magnetic moment using twisted-mass
+     fermions, Phys. Rev. D 107 (2023) 074506 [2206.15084].
+[29] RBC, UKQCD collaboration, Update of Euclidean windows of the hadronic vacuum
+     polarization, Phys. Rev. D 108 (2023) 054507 [2301.08696].
+[30] S. Kuberski, M. Cè, G. von Hippel, H.B. Meyer, K. Ottnad, A. Risch et al., Hadronic
+     vacuum polarization in the muon g − 2: the short-distance contribution from lattice QCD,
+     JHEP 03 (2024) 172 [2401.11895].
+
+
+
+
+                                              – 37 –
+[31] A. Boccaletti et al., High precision calculation of the hadronic vacuum polarisation
+     contribution to the muon anomaly, 2407.10913.
+[32] S. Spiegel and C. Lehner, High-precision continuum limit study of the HVP short-distance
+     window, Phys. Rev. D 111 (2025) 114517 [2410.17053].
+[33] RBC, UKQCD collaboration, The long-distance window of the hadronic vacuum
+     polarization for the muon g-2, Phys. Rev. Lett. 134 (2025) 201901 [2410.20590].
+[34] D. Djukanovic, G. von Hippel, S. Kuberski, H.B. Meyer, N. Miller, K. Ottnad et al., The
+     hadronic vacuum polarization contribution to the muon g − 2 at long distances, JHEP 04
+     (2025) 098 [2411.07969].
+[35] ETM collaboration, Strange and charm quark contributions to the muon anomalous
+     magnetic moment in lattice QCD with twisted-mass fermions, Phys. Rev. D 111 (2025)
+     054502 [2411.08852].
+[36] Fermilab Lattice, HPQCD, MILC collaboration, Hadronic vacuum polarization for the
+     muon g-2 from lattice QCD: Complete short and intermediate windows, Phys. Rev. D 111
+     (2025) 094508 [2411.09656].
+[37] A. Bazavov et al., Hadronic vacuum polarization for the muon g − 2 from lattice QCD:
+     Long-distance and full light-quark connected contribution, 2412.18491.
+[38] A. Keshavarzi, D. Nomura and T. Teubner, The g − 2 of charged leptons, α(MZ2 ) and the
+     hyperfine splitting of muonium, Phys. Rev. D 101 (2020) 014029 [1911.00367].
+[39] L. Di Luzio, A. Keshavarzi, A. Masiero and P. Paradisi, Model-Independent Tests of the
+     Hadronic Vacuum Polarization Contribution to the Muon g-2, Phys. Rev. Lett. 134 (2025)
+     011902 [2408.01123].
+[40] A. Kurz, T. Liu, P. Marquard and M. Steinhauser, Hadronic contribution to the muon
+     anomalous magnetic moment to next-to-next-to-leading order, Phys. Lett. B 734 (2014) 144
+     [1403.6400].
+[41] G. Colangelo, M. Hoferichter, M. Procura and P. Stoffer, Dispersion relation for hadronic
+     light-by-light scattering: theoretical foundations, JHEP 09 (2015) 074 [1506.01386].
+[42] P. Masjuan and P. Sánchez-Puertas, Pseudoscalar-pole contribution to the (gµ − 2): a
+     rational approach, Phys. Rev. D 95 (2017) 054026 [1701.05829].
+[43] G. Colangelo, M. Hoferichter, M. Procura and P. Stoffer, Dispersion relation for hadronic
+     light-by-light scattering: two-pion contributions, JHEP 04 (2017) 161 [1702.07347].
+[44] M. Hoferichter, B.-L. Hoid, B. Kubis, S. Leupold and S.P. Schneider, Dispersion relation for
+     hadronic light-by-light scattering: pion pole, JHEP 10 (2018) 141 [1808.04823].
+[45] G. Eichmann, C.S. Fischer, E. Weil and R. Williams, Single pseudoscalar meson pole and
+     pion box contributions to the anomalous magnetic moment of the muon, Phys. Lett. B 797
+     (2019) 134855 [1903.10844].
+[46] J. Bijnens, N. Hermansson-Truedsson and A. Rodrı́guez-Sánchez, Short-distance constraints
+     for the HLbL contribution to the muon anomalous magnetic moment, Phys. Lett. B 798
+     (2019) 134994 [1908.03331].
+[47] J. Leutgeb and A. Rebhan, Axial vector transition form factors in holographic QCD and
+     their contribution to the anomalous magnetic moment of the muon, Phys. Rev. D 101 (2020)
+     114015 [1912.01596].
+
+
+
+
+                                              – 38 –
+[48] L. Cappiello, O. Catà, G. D’Ambrosio, D. Greynat and A. Iyer, Axial-vector and
+     pseudoscalar mesons in the hadronic light-by-light contribution to the muon (g − 2), Phys.
+     Rev. D 102 (2020) 016009 [1912.02779].
+[49] P. Masjuan, P. Roig and P. Sánchez-Puertas, The interplay of transverse degrees of freedom
+     and axial-vector mesons with short-distance constraints in g − 2, J. Phys. G 49 (2022)
+     015002 [2005.11761].
+[50] J. Bijnens, N. Hermansson-Truedsson, L. Laub and A. Rodrı́guez-Sánchez, Short-distance
+     HLbL contributions to the muon anomalous magnetic moment beyond perturbation theory,
+     JHEP 10 (2020) 203 [2008.13487].
+[51] J. Bijnens, N. Hermansson-Truedsson, L. Laub and A. Rodrı́guez-Sánchez, The two-loop
+     perturbative correction to the (g − 2)µ HLbL at short distances, JHEP 04 (2021) 240
+     [2101.09169].
+[52] I. Danilkin, M. Hoferichter and P. Stoffer, A dispersive estimate of scalar contributions to
+     hadronic light-by-light scattering, Phys. Lett. B 820 (2021) 136502 [2105.01666].
+[53] D. Stamen, D. Hariharan, M. Hoferichter, B. Kubis and P. Stoffer, Kaon electromagnetic
+     form factors in dispersion theory, Eur. Phys. J. C 82 (2022) 432 [2202.11106].
+[54] J. Leutgeb, J. Mager and A. Rebhan, Hadronic light-by-light contribution to the muon g − 2
+     from holographic QCD with solved U (1)A problem, Phys. Rev. D 107 (2023) 054021
+     [2211.16562].
+[55] M. Hoferichter, B. Kubis and M. Zanke, Axial-vector transition form factors and
+     e+ e− → f1 π + π − , JHEP 08 (2023) 209 [2307.14413].
+[56] M. Hoferichter, P. Stoffer and M. Zillinger, An optimized basis for hadronic light-by-light
+     scattering, JHEP 04 (2024) 092 [2402.14060].
+[57] E.J. Estrada, S. Gonzàlez-Solı́s, A. Guevara and P. Roig, Improved π 0 , η, η’ transition form
+     factors in resonance chiral theory and their aHLbL
+                                                    µ    contribution, JHEP 12 (2024) 203
+     [2409.10503].
+[58] O. Deineka, I. Danilkin and M. Vanderhaeghen, Dispersive estimate of the a0(980)
+     contribution to (g-2)µ, Phys. Rev. D 111 (2025) 034009 [2410.12894].
+[59] G. Eichmann, C.S. Fischer, T. Haeuser and O. Regenfelder, Axial-vector and scalar
+     contributions to hadronic light-by-light scattering, Eur. Phys. J. C 85 (2025) 445
+     [2411.05652].
+[60] J. Bijnens, N. Hermansson-Truedsson and A. Rodrı́guez-Sánchez, Constraints on the
+     hadronic light-by-light tensor in corner kinematics for the muon g − 2, JHEP 03 (2025) 094
+     [2411.09578].
+[61] M. Hoferichter, P. Stoffer and M. Zillinger, Dispersion relation for hadronic light-by-light
+     scattering: subleading contributions, JHEP 02 (2025) 121 [2412.00178].
+[62] S. Holz, M. Hoferichter, B.-L. Hoid and B. Kubis, Dispersion relation for hadronic
+     light-by-light scattering: η and η ′ poles, JHEP 04 (2025) 147 [2412.16281].
+[63] L. Cappiello, J. Leutgeb, J. Mager and A. Rebhan, Tensor meson transition form factors in
+     holographic QCD and the muon g − 2, JHEP 07 (2025) 033 [2501.09699].
+[64] G. Colangelo, M. Hoferichter, A. Nyffeler, M. Passera and P. Stoffer, Remarks on
+
+
+
+
+                                               – 39 –
+    higher-order hadronic corrections to the muon g − 2, Phys. Lett. B 735 (2014) 90
+    [1403.7512].
+[65] T. Blum, N. Christ, M. Hayakawa, T. Izubuchi, L. Jin, C. Jung et al., The hadronic
+     light-by-light scattering contribution to the muon anomalous magnetic moment from lattice
+     QCD, Phys. Rev. Lett. 124 (2020) 132002 [1911.08123].
+[66] E.-H. Chao, R.J. Hudspith, A. Gérardin, J.R. Green, H.B. Meyer and K. Ottnad, Hadronic
+     light-by-light contribution to (g − 2)µ from lattice QCD: a complete calculation, Eur. Phys. J.
+     C 81 (2021) 651 [2104.02632].
+[67] E.-H. Chao, R.J. Hudspith, A. Gérardin, J.R. Green and H.B. Meyer, The charm-quark
+     contribution to light-by-light scattering in the muon (g − 2) from lattice QCD, Eur. Phys. J.
+     C 82 (2022) 664 [2204.08844].
+[68] RBC, UKQCD collaboration, Hadronic light-by-light contribution to the muon anomaly
+     from lattice QCD with infinite volume QED at physical pion mass, Phys. Rev. D 111 (2025)
+     014501 [2304.04423].
+[69] Z. Fodor, A. Gérardin, L. Lellouch, K.K. Szabó, B.C. Toth and C. Zimmermann, Hadronic
+     light-by-light scattering contribution to the anomalous magnetic moment of the muon at the
+     physical pion mass, Phys. Rev. D 111 (2025) 114509 [2411.11719].
+[70] T. Aoyama et al., The anomalous magnetic moment of the muon in the Standard Model,
+     Phys. Rept. 887 (2020) 1 [2006.04822].
+[71] RBC, UKQCD collaboration, Calculation of the hadronic vacuum polarization contribution
+     to the muon anomalous magnetic moment, Phys. Rev. Lett. 121 (2018) 022003 [1801.07224].
+[72] BMW collaboration, Ab initio calculation of the neutron-proton mass difference, Science
+     347 (2015) 1452 [1406.4088].
+[73] RCstar collaboration, First results on QCD+QED with C∗ boundary conditions, JHEP 03
+     (2023) 012 [2209.13183].
+[74] RM123 collaboration, Leading isospin breaking effects on the lattice, Phys. Rev. D 87 (2013)
+     114505 [1303.4896].
+[75] D. Erb, A. Gérardin, H.B. Meyer, J. Parrino, V. Biloshytskyi and V. Pascalutsa,
+     Isospin-violating vacuum polarization in the muon (g − 2) with SU(3) flavour symmetry
+     from lattice QCD, JHEP 10 (2025) 157 [2505.24344].
+[76] V. Biloshytskyi, E.-H. Chao, A. Gérardin, J.R. Green, F. Hagelstein, H.B. Meyer et al.,
+     Forward light-by-light scattering and electromagnetic correction to hadronic vacuum
+     polarization, JHEP 03 (2023) 194 [2209.02149].
+[77] H.B. Meyer, Lorentz-covariant coordinate-space representation of the leading hadronic
+     contribution to the anomalous magnetic moment of the muon, Eur. Phys. J. C 77 (2017) 616
+     [1706.01139].
+[78] E.-H. Chao, H.B. Meyer and J. Parrino, Coordinate-space calculation of the window
+     observable for the hadronic vacuum polarization contribution to (g-2)µ , Phys. Rev. D 107
+     (2023) 054505 [2211.15581].
+[79] M. Bruno, T. Korzec and S. Schaefer, Setting the scale for the CLS 2 + 1 flavor ensembles,
+     Phys. Rev. D 95 (2017) 074504 [1608.08900].
+
+
+
+
+                                              – 40 –
+[80] B. Strassberger et al., Scale setting for CLS 2+1 simulations, PoS LATTICE2021 (2022)
+     135 [2112.06696].
+[81] RQCD collaboration, Scale setting and the light baryon spectrum in Nf = 2 + 1 QCD with
+     Wilson fermions, JHEP 05 (2023) 035 [2211.03744].
+[82] J. Parrino, V. Biloshytskyi, E.-H. Chao, H.B. Meyer and V. Pascalutsa, Computing the
+     UV-finite electromagnetic corrections to the hadronic vacuum polarization in the muon (g −
+     2) from lattice QCD, JHEP 07 (2025) 201 [2501.03192].
+[83] G.S. Bali, S. Collins and A. Schafer, Effective noise reduction techniques for disconnected
+     loops in Lattice QCD, Comput. Phys. Commun. 181 (2010) 1570 [0910.3970].
+[84] M. Bruno et al., Simulation of QCD with Nf = 2 + 1 flavors of non-perturbatively improved
+     Wilson fermions, JHEP 02 (2015) 043 [1411.3982].
+[85] RQCD collaboration, Lattice simulations with Nf = 2 + 1 improved Wilson fermions at a
+     fixed strange quark mass, Phys. Rev. D 94 (2016) 074501 [1606.09039].
+[86] A. Gérardin, T. Harris and H.B. Meyer, Nonperturbative renormalization and
+     O(a)-improvement of the nonsinglet vector current with Nf = 2 + 1 Wilson fermions and
+     tree-level Symanzik improved gauge action, Phys. Rev. D 99 (2019) 014519.
+[87] BMW collaboration, High-precision scale setting in lattice QCD, JHEP 09 (2012) 010
+     [1203.4469].
+[88] N. Kalntis, G. Kanwar, M. Petschlies, S. Romiti and U. Wenger, HLbL contribution to the
+     muon g-2 using twisted-mass fermions at the physical point, in 42th International Symposium
+     on Lattice Field Theory, 12, 2025 [2512.21155].
+[89] N. Asmussen, E.-H. Chao, A. Gérardin, J.R. Green, R.J. Hudspith, H.B. Meyer et al.,
+     Hadronic light-by-light scattering contribution to the muon g − 2 from lattice QCD:
+     semi-analytical calculation of the QED kernel, JHEP 04 (2023) 040 [2210.12263].
+[90] J.D. Hunter, Matplotlib: A 2d graphics environment, Computing in Science & Engineering 9
+     (2007) 90.
+
+
+
+
+                                              – 41 –
+

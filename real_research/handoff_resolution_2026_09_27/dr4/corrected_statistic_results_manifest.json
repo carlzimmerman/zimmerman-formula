@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "claim_id": "HR01-DR4-corrected_statistic_results",
+  "repository": {
+    "commit": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/handoff_resolution_2026_09_27/dr4/corrected_statistic_audit.py"
+  ],
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "NumPy 1.26.2",
+      "SciPy 1.11.4"
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Correct observed speed-cut definition and compute joint bootstrap/Fisher information with overlapping anchors and profiled calibration.",
+    "coefficient_domain": "IEEE-754 binary64",
+    "conventions": "Natural logarithms of medians, full 9x9 covariance from paired whole-system resampling, finite independent model covariance, local velocity scaling kappa before noise.",
+    "inputs": [
+      {
+        "path": "real_research/cross_thread_review_2026_09_26/XR22_common.py",
+        "sha256": "dc07169d6c51c5ba5d0cb2154920193624004928439d662601bbcd7615ea1b85"
+      },
+      {
+        "path": "real_research/cross_thread_review_2026_09_26/XR22_prereg_statistic.py",
+        "sha256": "b1ec075f1d5b6fecc697a6e6fe2fae2fbe0bf22e094b1a6a6f2de855b134ddd0"
+      },
+      {
+        "path": "real_research/cross_thread_review_2026_09_26/XR22_force_law_results.json",
+        "sha256": "97397fbfef25174e616405b8def456b978a2a3ef528d07597dcbf4c5ead329f1"
+      },
+      {
+        "path": "prep_2026/gaia_dr4_prep/wide_binary_pipeline.py",
+        "sha256": "7c884e0e0a4cb9cb5d6280d558cf64c829974ed14143a90261bd6a6fbf3007c9"
+      },
+      {
+        "path": "real_research/handoff_resolution_2026_09_27/dr4/corrected_statistic_audit.py",
+        "sha256": "049ad599e54156443aa23c5c3a0ea4a8a31a51b1be3f27f684256de6e3959b50"
+      }
+    ],
+    "bounds": {
+      "model_draws": 300000,
+      "model_seed": 2026092713,
+      "mock_draws": 81000,
+      "mock_seed": 2026092813,
+      "mock_keep": 30000,
+      "bootstrap_data": 400,
+      "bootstrap_model": 200,
+      "cap": 6.0,
+      "kappa_log_step": 0.005,
+      "finite_difference": "adjacent xi knot",
+      "proposal_not_frozen": true
+    },
+    "non_claims": [
+      "Uses banked force tables conditionally while full force rerun is active.",
+      "No contamination, self-consistent orbit, real Galactic-direction or mass-ratio force correction.",
+      "Fisher forecast only; no frequentist coverage or detection calibration.",
+      "\u03ba derivative is local at \u03ba_cal=1; window [.95,1.05] not imposed as a stochastic prior.",
+      "Sample objects have no shared-star graph; whole-pair resampling suffices only for this independent mock.",
+      "Limited model population and bootstrap draws cause Monte Carlo forecast variability."
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng (PCG64)",
+    "seed": {
+      "model": 2026092713,
+      "mock": 2026092813,
+      "bootstrap": "literal base seeds plus case index and optional seed offset in source"
+    }
+  },
+  "run": {
+    "started_at": "2026-09-27T20:09:24.695694+00:00",
+    "runtime_seconds": 10.99173617362976,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/dr4/corrected_statistic_results.json",
+      "sha256": "9e8ec843aac420ba674811e2e551c219ea056874effa7b43e83328f58042dfab"
+    }
+  ],
+  "checks": [
+    "Newtonian velocities equal frozen gamma=1 construction within 1e-14.",
+    "Joint covariance positive definite; full inversion without rank truncation.",
+    "Xi-independent prediction-path mutation has zero information.",
+    "Profiling calibration cannot increase information.",
+    "Separate cap counts and exact intersection-versus-symmetric differences reported.",
+    "All recorded input hashes still match."
+  ],
+  "result": "Six prospective covariance/calibration Fisher forecasts complete; observable cap correction zero in this clean sample; nuisance profile degrades near-floor precision.",
+  "residual_risks": [
+    "Uses banked force tables conditionally while full force rerun is active.",
+    "No contamination, self-consistent orbit, real Galactic-direction or mass-ratio force correction.",
+    "Fisher forecast only; no frequentist coverage or detection calibration.",
+    "\u03ba derivative is local at \u03ba_cal=1; window [.95,1.05] not imposed as a stochastic prior.",
+    "Sample objects have no shared-star graph; whole-pair resampling suffices only for this independent mock.",
+    "Limited model population and bootstrap draws cause Monte Carlo forecast variability.",
+    "Proposed audit settings are not frozen.",
+    "Version-1 provenance; source/result hashes supplement its weak schema."
+  ]
+}

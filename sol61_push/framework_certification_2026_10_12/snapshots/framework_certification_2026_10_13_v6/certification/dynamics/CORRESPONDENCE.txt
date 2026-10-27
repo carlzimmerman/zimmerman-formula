@@ -1,0 +1,54 @@
+STATIC EQUILIBRIUM DOES NOT CERTIFY ATTRACTION
+Checkpoint FRAMEWORK-CERT-2026-10-12. Independent bounded review in
+architecture_review/dynamics_review.txt and dynamics_review.json.
+
+Exact mathematical objects
+Real q, target A, total mass B, signed specific transfer cost D and receiver H.
+Declared vector field qdot = -rate*(q-A); other mass derivative = -qdot;
+declared receiver reaction Hdot = -D*qdot. Hence the two mass weights sum to B
+and the energy derivative of D*q+H is zero at each state. No spatial kinetic
+continuity or field stress tensor is supplied by this toy transfer model.
+
+Claim-to-theorem correspondence
+shared_equilibrium: q=A is stationary for every real rate.
+mass_ledger: the two declared component derivatives cancel for every rate.
+energy_ledger: the declared receiver reaction cancels D*qdot for every rate.
+squared_error_rate: the chain-rule expression 2*(q-A)*qdot equals
+  -2*rate*(q-A)^2. Lean certifies this expression, not the chain rule applied
+  to a separately constructed ODE solution.
+positive_rate_decreases: rate>0 and q!=A make the error derivative negative.
+negative_rate_increases: rate<0 and q!=A make it positive.
+admissible_unstable_state: A>0, epsilon>0, A+epsilon<B supply two positive
+  masses in the interior. The negative-rate field shares the target and
+  conserves mass but has positive squared-error derivative there. No assertion
+  that the unstable flow stays in the allowed mass interval forever is made.
+
+Independent analytic witness
+At B=10,A=4,q(0)=5,H(0)=10,D=2,rate=-1:
+q(t)=4+exp(t), H(t)=12-2*exp(t), energy=20 and total mass=10.
+For 0<=t<log(2), both populations and H are strictly positive and error grows.
+This explicit trajectory is an analytic review witness, not formalized here.
+It disproves the inference from static equilibrium plus reciprocal conservation
+to local contraction. It does not refute any fully specified physical theory.
+Even the positive rates 1 and 2 give distinct dynamics with the same target.
+
+Exact finite computation
+check_exact.py performs 32 deterministic checks with Python Fraction arithmetic.
+The dimensional matrix is invertible (determinant -2) and (1,1/2,1/2) solves
+the acceleration-dimension equation. These facts establish uniqueness within
+the specified monomial family, not all functions or the dimensionless constant.
+The coefficient check exhibits half and one; universal coefficient equivalence
+is separately proved by FrameworkVacuumLink.factor_four_iff_half under its
+positive hypotheses. Five rate fixtures demonstrate the universal identities
+proved in Lean. The shared-input chi-square counterexample is an exact scalar
+likelihood model: C=1,d=1,e=1, control=0 or 1 gives Delta=-1 or +1. It does not
+estimate the size of the real cosmological dependence.
+
+Verification
+Seven theorem axiom reports permit only propext, Classical.choice, Quot.sound.
+Three mutations damage the energy reaction, error sign and unstable-rate
+hypothesis; each is rejected. lean_run/results.json and exact_run/results.json
+record actual results; their two v2 manifests validate against current inputs.
+No Lambda-CDM, standard MOND, AQUAL, empirical dataset or new physical axiom is
+imported into the certificates. Mathlib supplies mathematics. There is no
+physical derivation of the toy operator, receiver or target in this file.

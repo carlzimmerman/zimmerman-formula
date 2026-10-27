@@ -1,0 +1,158 @@
+{
+  "schema_version": 2,
+  "claim_id": "HORIZON-R2-2026-10-20",
+  "repository": {
+    "commit": "22766173c1985526eb359f809d85a8196401f0ae",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "core_open_problems_round2_2026_10_20/01_horizon/check_round2.py",
+    "core_open_problems_round2_2026_10_20/01_horizon/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "For the explicitly specified conformal Gaussian bath, verify its retarded/noise separation and mechanical susceptibility; for the regulated nodal-ring Hamiltonian, independently integrate the energy and force, verify the critical coefficient, finite-cutoff and finite-temperature limits, and the independent vacuum-counterterm deformation.",
+    "coefficient_domain": "Symbolic exact real arithmetic; numerical mpmath at 60 decimal digits; no random sampling",
+    "conventions": "K=4*pi*G; P is physical gravitational polarization fixed by P dot grad(Phi); W_full=K P^2/2+W_rem; u=K*P; energy density epsilon=rho*c^2. Detector units hbar=c=kB=1. Nodal expressions restore hbar; numerical tests use dimensionless parameter choices, not measured predictions.",
+    "inputs": [
+      "raw_derivation.md defines the two actions and observables",
+      "frozen_inputs contains documentary predecessors and exact hashes",
+      "five Clifford matrices",
+      "explicit grids recorded in check_round2.py and output"
+    ],
+    "bounds": {
+      "mpmath_decimal_digits": 60,
+      "alpha": [
+        0.2,
+        1,
+        5
+      ],
+      "detector_omega": [
+        0.03,
+        0.4,
+        2
+      ],
+      "gap_over_cutoff": [
+        0.0001,
+        0.03,
+        0.3,
+        1,
+        3,
+        100
+      ],
+      "temperature_over_cutoff": [
+        0.03,
+        0.2,
+        1
+      ],
+      "thermal_gap_over_cutoff": [
+        0.0001,
+        0.03,
+        0.3,
+        1,
+        3
+      ]
+    },
+    "non_claims": [
+      "No derivation of kappa=1/2",
+      "No calculation of a dynamical detector center-of-mass self-force",
+      "No identification of proper worldline acceleration with galaxy coordinate acceleration",
+      "No complete relativistic or self-consistent de Sitter realization of the nodal medium",
+      "No claim that finite numerical samples prove universal identities",
+      "No global exclusion of interacting, nonlocal or nonequilibrium horizon theories"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-21T01:29:06.254835+00:00",
+    "runtime_seconds": 5.155218,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "core_open_problems_round2_2026_10_20/01_horizon/check_round2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "core_open_problems_round2_2026_10_20/01_horizon/check_round2.py",
+      "sha256": "0d7286231b4bdee9d0e5364151104e255c28c37e3f1b64d2d0e5f4d1921a8b28",
+      "sha256_after": "0d7286231b4bdee9d0e5364151104e255c28c37e3f1b64d2d0e5f4d1921a8b28"
+    }
+  ],
+  "output_directory": "core_open_problems_round2_2026_10_20/01_horizon/run_001",
+  "declared_results": [
+    "core_open_problems_round2_2026_10_20/01_horizon/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "core_open_problems_round2_2026_10_20/01_horizon/run_001/stdout.txt",
+      "sha256": "c505ed3cc8ba2d55c5c6dcd34a024f258cf482060e50292fb388a873ad0e9e45",
+      "kind": "log"
+    },
+    {
+      "path": "core_open_problems_round2_2026_10_20/01_horizon/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "core_open_problems_round2_2026_10_20/01_horizon/run_001/results.json",
+      "sha256": "79bea9c1b58168e08cc49059a4898a542dd0a89f903127724a346a7cec58dcd3",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

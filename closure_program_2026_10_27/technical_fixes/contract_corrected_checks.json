@@ -1,0 +1,72 @@
+{
+  "claim_id": "P1D1_SIGN_X48_COMMON_MODES_CORRECTED_2026_10_27",
+  "mathematics": {
+    "assertion_tested": "Independent positive injection rejects the opposite candidate sign; normalized shared Gaussian Fourier modes agree across tested resolutions, satisfy real-field consistency, and have reasonable sampled power/covariance. Actual transformed X48 HR draw/covariance/correction with a fixed synthetic target preserves masked spectral support, uses the full-grid oracle covariance and satisfies the constraints. Opt-in launch dry-run starts no job and preserves existing directories.",
+    "coefficient_domain": "IEEE binary64 real and complex numerical calculations",
+    "conventions": "dk/ng^3 Fourier coefficients with E|dk/ng^3|^2=P(k)/L^3; zero DC and even Nyquist planes; k in inverse Mpc; synthetic fixed-nuisance P1D regression",
+    "inputs": [
+      "Actual historical model_shape/GLS and X48 random-prefix source",
+      "Fixed six-bin positive template; synthetic independent sigma=0.1",
+      "P(k)=1 and 1/(1+k^2), boxes L=3,5,7 and 2pi",
+      "Fixed seeds 0..255 plus 1,3,9,11,19,20",
+      "HR ng=8,L=2pi,P(k)=exp(-k^2/4) interpolated on 1001 log-spaced k nodes; kmax=1.5 and 10; target (height,laplacian)=(1,-2)"
+    ],
+    "bounds": {
+      "shared_ng": [
+        8,
+        12,
+        16
+      ],
+      "roundtrip_ng": [
+        7,
+        8,
+        12
+      ],
+      "covariance_ng": 8,
+      "covariance_seeds": 256,
+      "P1D_mu_range": [
+        0,
+        3
+      ],
+      "HR_ng": 8,
+      "HR_cutoffs": [1.5, 10.0],
+      "HR_normalized_out_of_support_tolerance": 2e-14,
+      "HR_constraint_absolute_tolerance": 3e-14,
+      "tests": 8
+    },
+    "non_claims": [
+      "No physical M6 exclusion or Boera refit",
+      "No validation of flux response",
+      "No post-constraint matching, halo evolution, or continuum convergence"
+    ]
+  },
+  "execution_artifacts": [
+    "closure_program_2026_10_27/technical_fixes/run_corrected_checks.py",
+    "closure_program_2026_10_27/technical_fixes/test_technical_fixes.py",
+    "rebuild_2026_10_22/P1D1_m6_boera_high_z_forest/p1d1_independent_sign_check.py",
+    "rebuild_2026_10_22/P1D1_m6_boera_high_z_forest/p1d1_m6_boera.py",
+    "rebuild_2026_10_22/P1D1_m6_boera_high_z_forest/p1d1_m6_boera_results.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/x48_common_modes.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/x48_zoom_common.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/x48_zoom.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "BLAKE2b physical-mode keys + Box-Muller; historical NumPy default_rng(19) only for defect reproduction",
+    "seed": "0..255; fixed seeds 1,3,9,11,19,20"
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "schema_version": 2,
+  "claim_id": "RC_ENDPOINT_ENERGY",
+  "repository": {
+    "commit": "f2399aaf5e36560237953841025566b53df025f6",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/radiating_collapse_2026_10_22/energy.py",
+    "--output",
+    "sol61_push/radiating_collapse_2026_10_22/energy_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Energy feasibility of specified endpoint profiles after finite-chi field minimization",
+    "coefficient_domain": "float64",
+    "conventions": "ENERGY_CONTRACT.md",
+    "inputs": [
+      "conditional Gaussian cold seed and finite-chi coefficients"
+    ],
+    "bounds": {
+      "mass_ratios": [
+        0.5,
+        1,
+        2,
+        4
+      ],
+      "resolutions": [
+        [
+          256,
+          128
+        ],
+        [
+          512,
+          256
+        ]
+      ],
+      "seed_spins": [
+        0,
+        0.02,
+        0.05
+      ]
+    },
+    "non_claims": [
+      "No 3D rotating solution",
+      "No asymptotic remnant or universal mass",
+      "No baryonic backreaction test"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T00:39:31.086739+00:00",
+    "runtime_seconds": 3.061217,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 250000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/radiating_collapse_2026_10_22/energy_run/result.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/radiating_collapse_2026_10_22/model.py",
+    "sol61_push/radiating_collapse_2026_10_22/energy.py",
+    "sol61_push/radiating_collapse_2026_10_22/ENERGY_CONTRACT.md",
+    "sol61_push/compact_surplus_2026_10_22/checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/model.py",
+      "sha256": "9541819c5b1642a549e692e9808acbbdba75628b4fa4cda7a57d858ca132ca4c",
+      "sha256_after": "9541819c5b1642a549e692e9808acbbdba75628b4fa4cda7a57d858ca132ca4c"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/energy.py",
+      "sha256": "c6787b38cb5666607c7b5643cc6675e8f0e4903ac032e902b2c02f6b0835ed4d",
+      "sha256_after": "c6787b38cb5666607c7b5643cc6675e8f0e4903ac032e902b2c02f6b0835ed4d"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/ENERGY_CONTRACT.md",
+      "sha256": "346cabd3e51e3eb6d458824138ff0c8befaea2784ea84223d0cc73b8be0f6b8c",
+      "sha256_after": "346cabd3e51e3eb6d458824138ff0c8befaea2784ea84223d0cc73b8be0f6b8c"
+    },
+    {
+      "path": "sol61_push/compact_surplus_2026_10_22/checks.py",
+      "sha256": "94df1aac6de19769568af039bb529cdcfdc0f88f6ea74b7987f2c7edbd580a8c",
+      "sha256_after": "94df1aac6de19769568af039bb529cdcfdc0f88f6ea74b7987f2c7edbd580a8c"
+    }
+  ],
+  "output_directory": "sol61_push/radiating_collapse_2026_10_22/energy_run",
+  "declared_results": [
+    "sol61_push/radiating_collapse_2026_10_22/energy_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/energy_run/stdout.txt",
+      "sha256": "86169cadb29229132b267625920fd28617c661fedba1b598aeee9b5731913479",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/energy_run/stderr.txt",
+      "sha256": "e3b4a970e5b85654b580b3ff1a16fb4ddb2f71484125e2dc1aa0a385053104f1",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: sol61_push/radiating_collapse_2026_10_22/energy_run/result.json"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "claim_id": "QCD-S",
+  "mathematics": {
+    "assertion_tested": "Tilted-torus massive spectral kernel agrees with corrected eta/F representation and positive-tail bracket; Gaussian condensate agrees with massive images, has exponentially small fixed-shape response; printed prefactor rejected in tested nonrectangular cases",
+    "coefficient_domain": "Positive real mL and tau0; deterministic finite sums, 50-digit mpmath for F/eta plus binary64 scipy/numpy",
+    "conventions": "Coordinates period L; g=[[|tau|^2,tau1],[tau1,1]], V=L^2 tau0, Schwinger m=e2/sqrt(pi); normalized chiral condensate",
+    "inputs": [
+      "Four declared nondegenerate torus shapes; no measured alpha",
+      "Exact raw action/spectrum and Gaussian source formula in SCHWINGER_CLAIM.md"
+    ],
+    "bounds": {
+      "mL": [
+        4,
+        8,
+        12,
+        24,
+        48
+      ],
+      "small_mL": [
+        0.1,
+        0.03,
+        0.01
+      ],
+      "shapes": [
+        [
+          0,
+          1
+        ],
+        [
+          0.5,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0.3,
+          1.4
+        ]
+      ],
+      "F_n": 1000,
+      "F_tail_terms": 6,
+      "eta_n": 100,
+      "H_n": 300,
+      "image_max_index": 32,
+      "spectral_max_index": 384,
+      "zero_slice_max_index": 20000,
+      "mpmath_dps": 50,
+      "absolute_comparison_tolerance": 3e-13
+    },
+    "non_claims": [
+      "No physical 4D QCD ratio or alpha0 prediction",
+      "No full massive-fermion Schwinger solution",
+      "No interval certification of binary64 arithmetic",
+      "No universal no-go for boundary/global/topological effects"
+    ]
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_prediction/coordinator/schwinger_check.py",
+    "fine_structure_puzzle/qcd_prediction/coordinator/SCHWINGER_CLAIM.md",
+    "fine_structure_puzzle/qcd_prediction/CONTRACT.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

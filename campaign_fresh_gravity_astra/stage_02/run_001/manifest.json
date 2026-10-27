@@ -1,0 +1,162 @@
+{
+  "schema_version": 2,
+  "claim_id": "AFG-004-006",
+  "repository": {
+    "commit": "eccd1c0e59459b5ec1acf2e916fb7a05a7f67971",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "-B",
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity_astra/stage_02/measurement.py",
+    "--out",
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity_astra/stage_02/run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Q geometry/PSF invariant, width-correction row-space obstruction, Gaussian-width scale degeneracy and sixth-moment separation.",
+    "coefficient_domain": "Binary64 with separately written exact proofs.",
+    "conventions": "Dimensionless velocities sqrt(a_reference*r_reference), source B/a_reference, radius/r_reference; Poisson unnormalized raw moments.",
+    "inputs": [
+      "campaign_fresh_gravity_astra/stage_02/measurement.py",
+      "campaign_fresh_gravity_astra/stage_02/run.py",
+      "campaign_fresh_gravity_astra/stage_02/CONTRACT.md"
+    ],
+    "bounds": {
+      "source_grid": [
+        8,
+        8
+      ],
+      "psf_sigmas": [
+        0.05,
+        0.2,
+        0.4,
+        0.7,
+        1.0
+      ],
+      "scales": [
+        1.0,
+        4.565632486304608
+      ],
+      "line_noise": [
+        "gaussian",
+        "symmetric uniform"
+      ],
+      "MC_replicates": 400,
+      "MC_expected_photons": 5000,
+      "derivative_grid": [
+        0.0001,
+        10000.0,
+        101
+      ]
+    },
+    "non_claims": [
+      "No real spectra, empirical instrument calibration, global gravity closure or historical novelty.",
+      "The linear-estimator obstruction is not a no-go for model-based inference."
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy.default_rng / PCG64",
+    "seed": 27092026
+  },
+  "run": {
+    "started_at": "2026-09-27T17:55:58.346832+00:00",
+    "runtime_seconds": 0.564544,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "campaign_fresh_gravity_astra/stage_02/measurement.py",
+    "campaign_fresh_gravity_astra/stage_02/run.py",
+    "campaign_fresh_gravity_astra/stage_02/CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "campaign_fresh_gravity_astra/stage_02/measurement.py",
+      "sha256": "029b59e92adffe3502dc91880831525838d0afc0b22be48ef78b029ead158e91",
+      "sha256_after": "029b59e92adffe3502dc91880831525838d0afc0b22be48ef78b029ead158e91"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/stage_02/run.py",
+      "sha256": "96a9ce82e7d3686d93c1c70115209421e6e145b913d0fde30c85c33362d87224",
+      "sha256_after": "96a9ce82e7d3686d93c1c70115209421e6e145b913d0fde30c85c33362d87224"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/stage_02/CONTRACT.md",
+      "sha256": "b1cfdd48cb951a89ed5e1f197c6ecb6162809de38cb85f3162e25b035e6993ad",
+      "sha256_after": "b1cfdd48cb951a89ed5e1f197c6ecb6162809de38cb85f3162e25b035e6993ad"
+    }
+  ],
+  "output_directory": "campaign_fresh_gravity_astra/stage_02/run_001",
+  "declared_results": [
+    "campaign_fresh_gravity_astra/stage_02/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "campaign_fresh_gravity_astra/stage_02/run_001/stdout.txt",
+      "sha256": "b017f39a7e505dc63142a9fe3472b1a8cd8b342b77c41fb9afa2970340c13f8b",
+      "kind": "log"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/stage_02/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/stage_02/run_001/results.json",
+      "sha256": "b017f39a7e505dc63142a9fe3472b1a8cd8b342b77c41fb9afa2970340c13f8b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

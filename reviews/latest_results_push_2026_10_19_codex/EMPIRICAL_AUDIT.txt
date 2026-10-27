@@ -1,0 +1,80 @@
+INDEPENDENT EMPIRICAL COMPUTATION AUDIT — 2026-10-19
+
+Scope and outcome
+Implementation and finite arithmetic verified for the saved CFG828 29-dwarf snapshot, conditional on the stated law/dispersion conventions and fixed input estimates. No material numerical or indexing error found in discriminate.py, robustness.py, or verify.py. The source packet is a new analysis/re-score of existing observations, not independent new data. The saved bootstrap implementation was audited but its 2,000/1,000-draw loops were not independently rerun. No calibrated significance or physical model preference follows.
+
+Reviewed paths
+Packet: /private/tmp/zimmerman_empirical_host_20261019_gcjfj1az
+Original data/code: /Users/carlzimmerman/new_physics/zimmerman-formula
+Read discriminate.py, robustness.py, verify.py, all three contracts/manifests/results, source_provenance.json, README.md, replay.py, original CFG856/857 scripts/results, and relevant CFG824/827/828 scripts/results and LVD CSVs. No project scientific script was imported or executed. No kinetic-confinement code or unrelated job was run; no shared repository file was changed by this audit.
+
+Contract and coverage
+The finite population is exactly 29 unique CFG828 pressure-supported rows, reproduced as CFG827 row names minus CFG828's seven explicit exclusions. The LVD files have no duplicate names. There are 12 MW, 12 M31, 5 field rows. The forward comparison retains all 29, including near/below-law systems; “untruncated” is relative to the Delta>0.05 cut, not the complete dwarf population. Upstream SFH availability, kinematic availability, and CFG828 exclusions remain. Crater II is absent from this 29-row population.
+Canonical selected decomposition: 25 (10 MW, 10 M31, 5 field), excluding Hercules, Andromeda II, Sagittarius, NGC 147.
+Alt selected decomposition: 23 (9 MW, 9 M31, 5 field), additionally excluding NGC 185 and Fornax.
+Low-g subsets use log10(gbar [m/s^2]) < -11.9: 16 satellites (8+8), or 21 including field. This is a fixed exploratory threshold; it was not prospectively validated here.
+
+Independent reconstruction
+The independent checker reads original CSV/JSON inputs, not saved reconstructed rows. It reproduces M*=Ups_SFH*10^[0.4(4.83-M_V)], r_half=(4/3) projected radius, gbar=GM*/(2r_half^2), g_law=gbar/[1-exp(-sqrt(gbar/a0))], and sigma_law^2=r_half*g_law/(3*10^6), with sigma in km/s. The constants and canonical/alt a0 match original CFG856/857. Original safeguards that floor extremely small gbar/a0 are inactive for these data. Every saved observed sigma equals its original LVD vlos_sigma.
+Max discrepancy in reconstructed Delta or log gbar: 2.220446049250313e-16 dex. Max reconstructed saved row discrepancy: 1.1368683772161603e-13 (dominated by variance units). This checks the factor 3 between LOS variance and inferred circular speed and the pc/kpc/m and m/s/km/s conversions.
+
+Exact decomposition
+Vlaw^2=r_half*g_law=3 sigma_law^2 and Vx^2=3(sigma_obs^2-sigma_law^2)=Vlaw^2(10^Delta-1), so
+log10 Vx=log10 Vlaw + 0.5 log10(10^Delta-1).
+This identity is valid on the selected positive-excess rows. Applying the same linear design to each term gives coefficient-wise equality by linearity of OLS; it supplies no extra independent observational constraint.
+Canonical M31-minus-MW raw mean gaps (dex):
+log Vx  +0.18167997187647822
+log Vlaw +0.19140354269134752
+normalized excess -0.009723570814869326
+log M* +0.7197614866451385; Delta +0.0044957464391297.
+Alt raw gaps: +0.16473945763957643 = +0.1789982967817736 -0.014258839142197027.
+Thus the raw selected-host Vx gap is accounted for algebraically by different law-velocity distributions. This is a sample decomposition, not proof that environment or physical dynamics is irrelevant.
+
+Using exactly CFG857's intercept + log10(r_half/0.3 kpc) + M31-indicator design, the canonical host coefficient is
++0.17536123399960538 = +0.04372520465309922 +0.13163602934650648 dex.
+Alt: +0.16969757866977608 = +0.010975717517375437 +0.1587218611524.
+These coefficients agree with saved outputs within 1e-15 dex; the MW geometric-mean Vx matches CFG856 within 1e-12 km/s. The host coefficient therefore remains after size conditioning even though the raw normalized gap is nearly zero.
+Baseline-coding caveat: CFG857 assigns M31=0 to BOTH MW and field rows. Its +0.175361 is a coefficient relative to pooled MW+field baseline at fixed size, not a pure satellite-only MW/M31 contrast. Restricting the same regression to satellites gives +0.15108431074612072 canonical and +0.12204549289797285 alt. The latest README is being clarified on this point by the main agent.
+Pooled logM slope is also exactly decomposable: canonical +0.08860965133120527 = +0.2637175987323132 -0.17510794740110788. Alt +0.09560708566884818 = +0.2618371664025631 -0.16623008073371484. The apparent flatness of Vx is a cancellation in this selected sample, not independent evidence for universality.
+
+Independent forward fit and score checks
+Objective is equal-object mean squared residual in log10 sigma. Models have one parameter each: additive sigma_pred^2=sigma_law^2+A, A>=0; multiplicative sigma_pred^2=Q*sigma_law^2, Q>=1. Circular extra-speed equivalent of A is sqrt(3A), not sqrt(A). For Q, analytic minimization gives max[1, exp(mean(log sigma_obs^2-log sigma_law^2))], matching the code.
+For A, the audit used an independent derivative-root implementation: scan a 4,097-point log1p grid on [0,max(0,max(sigma_obs^2-sigma_law^2))], refine every sign-changing derivative root by 75 bisections, and compare roots and boundaries. Beyond that upper bound every derivative summand is nonnegative. Each actual fit showed only one root on the grid. This is a finite numeric cross-check, not a universal proof that arbitrary datasets have unimodal loss. It is independent of the packet's golden search. The packet's exact synthetic recovery and 10,001-point objective-grid checks are valid sanity checks, with the latter correctly described as finite rather than optimization proofs.
+
+Reconstructed pooled log-sigma RMSE (dex), additive / multiplicative:
+Canonical:
+24 satellites, MW->M31 and reverse: 0.162770840067 / 0.158959646131
+16 low-g satellites, same host splits: 0.193808093399 / 0.145324100256
+29 rows, leave one object out: 0.127681238918 / 0.154603696659
+21 low-g rows, leave one object out: 0.141950683146 / 0.143189305023
+Alt:
+24 satellites: 0.161105328021 / 0.158168613646
+16 low-g satellites: 0.190467326919 / 0.145344880881
+29 rows LOO: 0.126662770601 / 0.153954170831
+21 low-g rows LOO: 0.139952123427 / 0.143165047983
+All eight reported pooled score pairs agree within 1.13184905892183e-9 dex. Full-sample and host fitted parameters agree within 6.225551203442592e-7 in A units. The tiny differences are harmless floating optimization stopping effects. Pooling combines all held-out object residuals before taking RMSE, as specified; no host/test data enter the training parameter fit. Rankings differ by validation population, so selecting one favorable row of this comparison would be unjustified.
+
+Hercules and robustness
+All 16 single-object deletions in each footing were independently recalculated with refitting; max score difference from packet is 1.0325944266309506e-9 dex.
+Removing Hercules reverses the low-g cross-host ranking:
+canonical additive 0.130416769817 vs multiplicative 0.135294471378;
+alt additive 0.128214863776 vs multiplicative 0.135272871462.
+Hercules sigma_obs=2.25 km/s, saved LVD errors +0.67/-0.61 km/s; sigma_law=2.199922491815 canonical, 2.304964241453 alt; Delta=+0.019550276369/-0.020963348296. It is near/below-law and was excluded by the original positive-excess cut. Its deletion sensitivity is arithmetic evidence of fragility, not grounds to drop it. Measurement uncertainty and membership/binary/aperture treatment must be modeled before a physical interpretation.
+Saved canonical descriptive bootstrap difference additive-minus-multiplicative RMSE is median +0.041788954810, 2.5/97.5% quantiles [-0.079478652348,+0.140305394107], fraction positive 0.748; alt interval [-0.092329855640,+0.132095550912], fraction positive 0.720. Code correctly resamples independently within host and refits both models. These are descriptive empirical resamples, not posterior probabilities, p-values, calibrated new-data significance, or evidence of host generalization across many hosts. Selected-mean and selected-OLS bootstrap SEs condition on the excess selection and fixed input quantities; they do not propagate measurement or law uncertainty. The source's distinction from CFG857's unstratified bootstrap is correct. SEs of the algebraic terms are correlated and cannot be added in quadrature as independent uncertainties.
+
+Provenance and reproducibility
+All three original packet v2 manifests validate with the installed skill validator and report run.status=completed, zero exit, unchanged inputs, no missing/invalid results and no resource truncation. Recorded primary/robustness/verification runtimes are 0.396931/1.314266/0.132445 seconds. Packet inputs are hashed before/after. All eight original data/results SHA256s match source_provenance.json and frozen copies at this audit's before/after observations. PACKET_SHA256.json matched all files at the initial audit observation, before the main agent's explicitly noted README clarification; it should be regenerated after any packet-documentation edit.
+The scratch manifest repository commit is “unavailable”; separate source provenance records original dirty snapshot HEAD bb25c4ddd46bbecfbad2e32c88a9802ac0e55cc2. Audit later observed shared HEAD 62bedfa6b6c363eb17ac4a21c24194d847e76f3b with a dirty repository, but all eight load-bearing hashes stayed equal. Commit drift therefore does not invalidate this frozen calculation. Hash endpoints do not prove absence of transient unrelated concurrent writes.
+Documented full replay command exists in README/replay.py; it creates a fresh directory and runs all three contracts. The full replay/bootstrap was not rerun by this audit. verify.py checks live original paths deliberately, so a future source edit may make that check fail while snapshot arithmetic remains replayable. Upstream SFH M/L formation and published observational analyses were not independently rederived or source-authenticated here. SPARC compatibility was not re-executed in this audit.
+
+Residual limits and conclusion
+No likelihood, selection correction, latent intrinsic-scatter model, radius/M/L uncertainty, per-star velocities, anisotropy, projected-virial validity, binary variability, aperture equivalence, or a causal physical component is tested. Equal object weighting is a stated prediction-score choice, not uncertainty modeling. The fixed post-hoc sample and two hosts cannot establish universal transfer. The exact decomposition and forward/Hercules sensitivity are verified; the scientifically warranted conclusion remains no established model preference. A prospectively specified homogeneous per-star forward analysis retaining near/below-law controls and holding out a host is the next discriminating check.
+
+Independent audit execution record
+The audit's standalone checker completed with exit 0 in approximately 1.80 seconds on Python 3.9.6 / NumPy 1.26.2 / macOS-26.5.2-arm64. No bootstrap/random sampling was used. Numerical-library environment requested one thread. This small read-only checker was run directly, not under the bounded runner; its exact start time, CPU/memory caps and automatic v2 runner manifest were not captured. The packet's three original v2 manifests remain the execution records for the bootstrap experiments. This reporting limitation does not change the independent arithmetic comparisons.
+Command:
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 /private/tmp/latest_results_empirical_audit_checker_2026_10_19.py > /private/tmp/latest_results_empirical_audit_checker_2026_10_19.json
+
+Checker SHA256: 7a661f186b96ab6daac3eba6c6e916c6e1b3f56d4f70d88d60c2f286d6d0bdf6
+Checker result SHA256: dc4746566a783cb53014030d05a50f5452d9fddbde648aac289afc58e7e210c8
+Review generated UTC: 2026-10-19T21:53:40.469047+00:00

@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-SHARED-EQUILIBRIUM-FINITE-2026-10-19",
+  "repository": {
+    "commit": "aa0d1a83d15c1fe2a0c9d32f189bdbbff49dd19a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/shared_state_2026_10_19/equilibrium/check_equilibrium.py",
+    "sol61_push/shared_state_2026_10_19/equilibrium/run_002"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "computation Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Four spherical mixed TF profiles and six fixed-species-mass GP/baryon BVPs satisfy the explicitly coded mass, ODE, boundary, virial and two-box comparisons; the pure scalar TF profile agrees with sin(x)/x.",
+    "coefficient_domain": "IEEE float64 numerical approximation via NumPy/SciPy",
+    "conventions": "Poisson laplacian U=rho_d+rho_b. Full GP and the eta=1 TF seed use K=.5,Kb=.4,h_d=2K rho_d,h_b=(5/2)Kb rho_b^(2/3). Other TF eta values test equation (13) as independent dimensionless ODE parameters, equivalently varying Kb at fixed h_c=1; eta=0 is the pure scalar limit. Radial masses omit common 4pi.",
+    "inputs": [
+      "parameters.json",
+      "coupled spherical hydrostatic and GP/Poisson equations documented in EQUILIBRIUM.md"
+    ],
+    "bounds": {
+      "TF_eta": [
+        0,
+        0.25,
+        1,
+        4
+      ],
+      "GP_tau": [
+        0.2,
+        0.05,
+        0.0125
+      ],
+      "box_radii": [
+        10,
+        14
+      ],
+      "max_bvp_nodes": 7000
+    },
+    "non_claims": [
+      "No certified continuum eigenvalue or global minimum",
+      "No uniqueness, formation, Lyapunov orbital stability, dipole population or universal normalization",
+      "No full relativistic or source-channel state",
+      "No heavy or multidimensional evolution"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T14:47:54.643941+00:00",
+    "runtime_seconds": 0.56671,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/shared_state_2026_10_19/equilibrium/check_equilibrium.py",
+    "sol61_push/shared_state_2026_10_19/equilibrium/parameters.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/shared_state_2026_10_19/equilibrium/check_equilibrium.py",
+      "sha256": "10dd13a06b4c2221ea99b413aae32a0af1f9d9b58ff628333a8b68f44fc5407f",
+      "sha256_after": "10dd13a06b4c2221ea99b413aae32a0af1f9d9b58ff628333a8b68f44fc5407f"
+    },
+    {
+      "path": "sol61_push/shared_state_2026_10_19/equilibrium/parameters.json",
+      "sha256": "9c07a0f023baa674bbf3f55e7db165af80ce8c7be739e9ef9b43ed4088f42fa3",
+      "sha256_after": "9c07a0f023baa674bbf3f55e7db165af80ce8c7be739e9ef9b43ed4088f42fa3"
+    }
+  ],
+  "output_directory": "sol61_push/shared_state_2026_10_19/equilibrium/run_002",
+  "declared_results": [
+    "sol61_push/shared_state_2026_10_19/equilibrium/run_002/results.json",
+    "sol61_push/shared_state_2026_10_19/equilibrium/run_002/profiles.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/shared_state_2026_10_19/equilibrium/run_002/stdout.txt",
+      "sha256": "ece6d7b2216f090b2d69e3f07a4885b16288d5e215cfb48f2d3cf7ee14844ae0",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/shared_state_2026_10_19/equilibrium/run_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/shared_state_2026_10_19/equilibrium/run_002/results.json",
+      "sha256": "60c5810456f95f50ca0c21fbf485a82750b7db32c449e56bea617f7fa3077df3",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/shared_state_2026_10_19/equilibrium/run_002/profiles.json",
+      "sha256": "9af24bea714233fd6428495d6b77c65d01efec510c4961e39825f1598ad2c74c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

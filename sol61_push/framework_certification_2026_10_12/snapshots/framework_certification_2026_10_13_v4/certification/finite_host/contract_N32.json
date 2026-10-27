@@ -1,0 +1,67 @@
+{
+  "claim_id": "FRAMEWORK-NONLOCAL-FINITE-HOST-N32",
+  "mathematics": {
+    "assertion_tested": "Declared finite-host nonlinear incremental satellite response and exact uniform/linear controls, with signed-effective-source accounting",
+    "coefficient_domain": "float64/complex128, finite periodic FFT",
+    "conventions": "See FROZEN_CRITERIA.txt; C=a0=1, same target-in nu table, no cosmology or MOND comparator",
+    "inputs": [
+      "sol61_push/framework_certification_2026_10_12/finite_host/finite_host.py",
+      "sol61_push/framework_certification_2026_10_12/finite_host/FROZEN_CRITERIA.txt",
+      "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+      "sol61_push/nonlocal_response_2026_10_12/contract.json",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+    ],
+    "bounds": {
+      "N": 32,
+      "box": 64,
+      "L": 16,
+      "satellite_mass": 12.566370614359172,
+      "host_mass": 1256.6370614359173,
+      "host_separation": 16,
+      "optimizer_maxiter_per_solve": 500,
+      "solves": 3,
+      "timeout_seconds": 90,
+      "CPU_seconds": 85,
+      "threads": 1
+    },
+    "criteria": {
+      "primary_own_host_metric": 0.05,
+      "poisson_residual": 0.001,
+      "functional_gradient": 0.0001,
+      "matched_grid_fidelity": 0.03,
+      "uniform_invariance": 1e-09
+    },
+    "non_claims": [
+      "No isolated or continuum solution",
+      "No target-free selector/action or real cold-mass current",
+      "No metric or causal dynamics",
+      "No empirical or whole-theory certification"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/framework_certification_2026_10_12/finite_host/finite_host.py",
+    "sol61_push/framework_certification_2026_10_12/finite_host/FROZEN_CRITERIA.txt",
+    "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+    "sol61_push/nonlocal_response_2026_10_12/contract.json",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.13.9"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.14.1"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "numpy.default_rng PCG64",
+    "seed": 359
+  }
+}

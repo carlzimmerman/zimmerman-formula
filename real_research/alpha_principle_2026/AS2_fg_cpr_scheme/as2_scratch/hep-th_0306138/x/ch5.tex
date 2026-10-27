@@ -1,0 +1,623 @@
+\section{Heat kernel expansion on manifolds with boundaries}\label{sec5}
+\subsection{Two particular cases}\label{s5cases}
+We start our analysis of manifolds with boundaries with two simple
+examples. First, let us consider a one-dimensional manifold
+$M=[0,\pi ]$. Let $D=-\partial_x^2$. We consider both Dirichlet
+(\ref{Dirbc}) and Neumann (\ref{Neubc}) boundary conditions (taking
+$S=0$ in (\ref{Neubc}) to simplify the calculations). The eigenfunctions
+of $D$ are:
+\begin{eqnarray}
+{\mbox{Dirichlet:}}& &\ \sin (lx),\ l=1,2,\dots ;\nonumber\\
+{\mbox{Neumann:}}& &\ \cos (lx), \ l=0,1,2,\dots 
+\label{1dimeigen}
+\end{eqnarray}
+The eigenvalues are $l^2$ in both cases, where $l$ is a positive integer
+for Dirichlet boundary conditions, and $l$ is a nonnegative integer for
+Neumann boundary conditions. The heat kernel asymptotics can be calculated
+with the help of the Poisson summation formula (\ref{eq:asPoi}):
+\begin{eqnarray}
+&&K(t,-\partial_x^2,\mathcal{B}^-)=\sum_{l>0} \exp (-tl^2)=
+\frac 12 \left( \sqrt{\frac{\pi}t} -1 \right) 
++\mathcal{O} \left( e^{-1/t} \right)
+\,,\label{1dimDir}\\
+&&K(t,-\partial_x^2,\mathcal{B}^+)=\sum_{l\ge 0} \exp (-tl^2)=
+\frac 12 \left( \sqrt{\frac{\pi}t} +1 \right) 
++\mathcal{O} \left( e^{-1/t} \right)
+\,,\label{1dimNeu}
+\end{eqnarray}
+where for the later use we explicitly mention the boundary operators
+$\mathcal{B}^-$ and $\mathcal{B}^+$ which define Dirichlet (\ref{Dirbc})
+and Neumann (\ref{Neubc}) boundary conditions respectively.
+
+Let us modify a little bit the example above by allowing for a non-zero
+$S$ at one of the components of the boundary:
+\begin{equation}
+\partial_x\phi \vert_{x=0}=0,\qquad
+(\partial_x-S)\phi \vert_{x=\pi}=0 \label{1dimRob}
+\end{equation}
+Note, that at $x=\pi$ the derivative with respect to an {\it inward}
+pointing unit normal is $-\partial_x$. The eigenfunctions  
+\begin{equation}
+\phi_k=\cos (kx) \label{1derob}
+\end{equation}
+satisfy the boundary conditions (\ref{1dimRob}) at $x=0$.
+The spectrum is defined by the condition at $x=\pi$ which reads\footnote{
+For $S>0$ also a negative mode $\cosh (kx)$ appears. Here we take
+$S\le 0$.}:
+\begin{equation}
+-k \sin (k\pi)=S\cos (k\pi) \,.\label{1dspeceq}
+\end{equation}
+In this example we restrict ourselves to the linear order in $S$.
+We suppose that $S$ is small and that the spectrum (\ref{1dimeigen})
+is only slightly
+perturbed: 
+\begin{equation}
+k_l=l+z_l \,.\label{1dpertspec} 
+\end{equation}
+The equation (\ref{1dspeceq}) gives in this approximation
+\begin{eqnarray}
+z_l=-\frac{S}{l\pi}&\qquad\mbox{for}\qquad& l>0\,,\nonumber \\
+z_0^2=-\frac{S}{\pi}&\qquad\mbox{for}\qquad& l=0\,.\label{1dpertsp}
+\end{eqnarray}
+We expand also the heat kernel in a power series in $S$ and use
+(\ref{1dpertsp}) and (\ref{1dimDir}) to obtain:
+\begin{eqnarray}
+K(t,-\partial_x^2,\mathcal{B}^+_S)&=&\sum_{l\ge 0} \exp (-tk_l^2)
+\nonumber\\
+&=&\sum_{l> 0} \exp (-tl^2) \left( 1+\frac{2St}{\pi} \right)
++1+\frac{St}{\pi} +\mathcal{O}(S^2)\nonumber\\
+&=&\frac 12 \left( \sqrt{\frac{\pi}t} +1 \right) +
+S\sqrt{\frac t\pi}  +\mathcal{O}(S^2) \,,\label{1dlinS}
+\end{eqnarray}
+where we also dropped exponentially small terms in $t$.
+
+Our next example is the heat kernel expansion for scalar fields in
+a ball with Dirichlet and Neumann boundary conditions
+\cite{Stewartson:1971,Waechter:1972,Kennedy:1978jp,Moss:1989yf,Bordag:1996gm}.
+The metric of the unit ball in $\mathbb{R}^n$ reads:
+\begin{equation}
+ds^2=dr^2+r^2 d\Omega^2, \quad 0\le r \le 1 , \label{ballmetric}
+\end{equation}
+where $d\Omega^2$ is the metric on unit sphere $S^{n-1}$.
+The scalar Laplace operator has the form
+\begin{equation}
+\Delta \phi =
+\left( \partial^2_r+\frac {n-1}r \partial_r+^{(n-1)}\Delta 
+\right) \phi \,,
+\label{ballLapl}
+\end{equation}
+where $^{(n-1)}\Delta$ is the Laplace operator on $S^{n-1}$.
+The eigenfunctions
+of the operator (\ref{ballLapl}) are well known
+\begin{equation}
+\phi_{l,\lambda }\propto r^{(2-n)/2 } J_{(n-2)/2 +l}
+(r\lambda^{1/2} ) Y_{(l)}(x^a). \label{balleigenf}
+\end{equation}
+$J_p$ are the Bessel functions. The eigenvalues $-\lambda$
+are defined by boundary conditions. $Y_{(l)}(x^i)$ are
+$n$-dimensional scalar spherical harmonics. Their degeneracies
+are
+\begin{equation}
+N_l=\frac {(2l+n-2)(l+n-3)!}{l!(n-2)!} . \label{spherdeg}
+\end{equation}
+
+To proceed further it is convenient to consider the zeta function
+which may be presented through a contour integral 
+\cite{Bordag:1996gm}\footnote{A general discussion of the representation
+of the zeta function by contour integrals can be found in 
+\cite{Kirsten:2003py}.}:
+\begin{equation}
+\zeta (s,D)=\sum_{l=0}^\infty N_l \int_\gamma
+\frac{dk}{2\pi i} k^{-2s} \frac{\partial}{\partial k}
+\Phi_{(n-2)/2 +l} (k) \,,\label{ballzeta}
+\end{equation}
+where $\Phi_\nu$ is a function which has zeros at the spectrum
+$k=\sqrt\lambda$.
+For Dirichlet boundary conditions this function reads:
+\begin{equation}
+\Phi_\nu =k^{-\nu} J_\nu (k) \,.\label{ballPhi}
+\end{equation}
+For Robin boundary condition $\Phi_\nu$ is given by a somewhat
+more complicated combination of the Bessel functions. The contour 
+$\gamma$ runs counterclockwise and encloses all the solutions
+of  $\Phi_\nu =0$ on the positive real axis. Note the presence 
+of $k^{-\nu}$ in (\ref{ballPhi}) which is included to avoid unwanted
+contributions coming from the origin $k=0$.
+
+The next step is to rotate the contour to the imaginary axis and
+to calculate residues of $\Gamma (s)\zeta (s,D)$ (as prescribed
+by (\ref{aRes})). It is interesting to note that the heat kernel
+coefficients are defined by several leading terms in the uniform
+asymptotic expansion of $\Phi_\nu (i\nu z)$ for large $\nu$ and
+fixed $z$. For further details we refer to  \cite{Bordag:1996gm}.
+
+Euclidean ball was frequently used in calculations of the heat kernel
+coefficients and functional determinants. Apart from the papers
+already quoted above also the computations for a scalar field 
+\cite{Dowker:1995sp,Bordag:1996zc,Dowker:1996bh,
+Bordag:1997ma,Nesterenko:1999bb}, spinors 
+\cite{D'Eath:1991td,Kamenshchik:1993vj,Kamenshchik:1994tw,Dowker:1996ny,Dowker:1996sw,Kirsten:1996sy,Elizalde:1998hx,Esposito:2002vz},
+abelian gauge fields 
+\cite{Louko:1988ay,Esposito:1994bv,Esposito:1994xe,Vassilevich:1995we,Vassilevich:1995zn,Dowker:1996ny,Kirsten:1996sy,Esposito:1996hu,Esposito:1996gw,Elizalde:1997zw,Esposito:2000dy,Bernasconi:2003}\footnote{Some of these works consider contributions of the
+so called physical modes only. As explained in \cite{Vassilevich:1995cz}
+complete answer for the effective action and for the scaling behaviour
+must include contributions from ghosts and non-physical modes. This
+applies also to the spherical cap case considered below.}
+should be mentioned.
+A similar technique works also for more complicated
+geometries as, e.g., the spherical cap 
+\cite{Barvinsky:1992tr,Kamenshchik:1992gz,Barvinsky:1992dz,Kamenshchik:1993vj,
+Dowker:1995sp}.
+Note that here we consider local boundary conditions without tangential
+derivatives only. For other types of boundary operators see sec.\
+\ref{s5other}.
+%%%%%%%%%%%%%%%
+\subsection{Dirichlet and Neumann boundary conditions}\label{s5DN}
+Let us now find analytic expressions for the heat kernel coefficients
+in terms of geometric invariants. Here we follow the method of
+Branson and Gilkey \cite{Branson:1990a,Gilkey:1995}. For both 
+Dirichlet and modified Neumann (Robin) boundary conditions the
+heat kernel coefficients are locally computable. This means
+that $a_k$ may be represented as a sum of volume and boundary
+integrals of some local invariants:
+\begin{equation}
+a_k(f,D,\mathcal{B})=\iM f(x) a_k(x,D)
++\sum_{j=0}^{k-1} \idM f^{(j)} a_{k,j}(x,D,\mathcal{B})\,,
+\label{akb-loc}
+\end{equation}
+where $f^{(j)}$ denotes $j$-th normal derivative of the smearing
+function $f$. Note, that we cannot now integrate by parts to remove
+normal derivatives from $f$. This reflects the distributional nature
+of the heat kernel asymptotics.
+
+The volume terms $a_k(x,D)$ are the same as in the previous section
+(see (\ref{a0nobou}) - (\ref{a6nobou})). Here we evaluate the
+boundary terms $a_{k,j}(x,D,\mathcal{B})$. Obviously, the canonical
+mass dimension of $a_{k,j}$ is $k-j-1$. In addition to the usual bulk
+invariants $E$, $R$, etc, $a_{k,j}$ can also contain specific boundary
+quantities as the extrinsic curvature $L_{ab}$ or $S$ (for Robin
+boundary conditions). Note, that $L_{ab}$ and $S$ are defined on the
+boundary only and, therefore, can be differentiated only 
+tangentially\footnote{See sec.\ \ref{s2geo} for more information on
+differential geometry of manifolds with boundary.}. Canonical mass dimension
+of $L_{ab}$ and $S$ is $+1$.
+
+In this section we explicitly calculate the first three heat kernel
+coefficients $a_0$, $a_1$ and $a_2$. Basing on the considerations of the
+preceding paragraph we may write:
+\begin{eqnarray}
+&&a_0(f,D,\mathcal{ B}^\pm)=(4\pi)^{-n/2}\iM {\rm tr}_V(f),\label{a0DN} \\
+&&a_1(f,D,\mathcal{ B}^\pm)=(4\pi)^{-(n-1)/2}\idM \, b_1^\pm
+     {\rm tr}_V ( f), \label{a1DN} \\
+&&a_2(f,D,\mathcal{ B}^\pm)=\frac 16 (4\pi)^{-n/2}\left\{ \iM
+     {\rm tr}_V(6fE+fR) \right. \nonumber \\
+&&\qquad\qquad \left. +\idM {\rm tr}_V(b_2^\pm fL_{ aa}
+     +b_3^\pm f_{ ;n}+b_4^\pm fS)
+     \right\} ,\label{a2DN}
+\end{eqnarray}   
+where $\mathcal{B}^\pm$ denotes either Robin ($\mathcal{B}^+$) or
+Dirichlet ($\mathcal{B}^-$) boundary operator. $b^\pm$ are some
+constants. To keep uniform notations we formally included $S$ also in the
+expression for Dirichlet boundary conditions. It should be assumed
+that $S=0$ for that case.
+
+Since the product 
+formula (\ref{product}) is still valid with obvious modifications
+for the boundary contributions, we can again consider the
+case $M=M_1\times S^1$ and repeat step by step the calculations
+(\ref{77hk}) - (\ref{uIn}) thus arriving to the same conclusion that
+the constants $b^\pm$ do not depend on dimension of the manifold
+(all explicit $n$-dependence of the heat kernel is contained in the power
+of $4\pi$). This property is crucial for our calculations.
+
+The one dimensional examples\footnote{For $M=[0,\pi ]$ the boundary
+integral reduces to a sum of two contributions from $x=0$ and $x=\pi$.}
+(\ref{1dimDir}) and (\ref{1dimNeu}) immediately give
+\begin{equation}
+b_1^+=-b_1^-=\frac 14 \,.\label{b1pm}
+\end{equation}
+Our next example (\ref{1dlinS}) controls linear terms in $S$ and
+gives
+\begin{equation}
+b_4^+=12 \,.\label{b4p}
+\end{equation}
+For Dirichlet boundary conditions we have set $S=0$. Therefore,
+$b_4^-$ plays no role.
+
+To define the constants $b_2^\pm$ and $b_3^\pm$ we use the conformal
+variation equation (\ref{vara}). Variations of $E$ and $R$ are given
+by (\ref{cvar1}). Conformal properties of the second fundamental
+form $L_{ab}$ are dictated by that of the metric:
+\begin{equation}
+\frac d{d\epsilon} \vert_{\epsilon =0} L_{aa}=-fL_{aa} 
+-(n-1)f_{;n} \,.\label{cvarLaa}
+\end{equation}
+We wish to keep the boundary conditions invariant under the conformal
+transformations. This implies that the boundary operators $\mathcal{B}^\pm$
+must transform homogeneously. This property holds automatically for
+Dirichlet boundary conditions (\ref{Dirbc}). In the case of modified
+Neumann boundary conditions conformal transformation of $S$ should
+cancel inhomogeneous term in the connection $\omega_n$. This yields
+\begin{equation}
+\frac d{d\epsilon} \vert_{\epsilon =0}S=-fS+\frac 12 (n-2)f_{;n}\,.
+\label{cvarS}
+\end{equation}
+Next we substitute the variational formulae (\ref{cvar1}), (\ref{cvarLaa})
+and (\ref{cvarS}) in (\ref{vara}) with $k=2$. We collect the
+terms with $f_{;n}$ on the boundary to obtain
+\begin{equation}
+-(n-4)-(n-1)b_2^-=(n-2) b_3^- \label{cvara2b}
+\end{equation}
+for Dirichlet conditions and
+\begin{equation}
+-(n-4)-(n-1)b_2^+ +6(n-2)=(n-2) b_3^+ \label{cvara2N}
+\end{equation}
+for generalised Neumann (Robin) ones. Since the constants $b^\pm$ do
+not depend on $n$ the two equations (\ref{cvara2b}) and (\ref{cvara2N})
+are enough to define these constants:
+\begin{equation}
+b_2^+=b_2^-=2\,,\qquad b_3^+=-b_3^-=3 \,.\label{bpm23}
+\end{equation}
+This completes the calculation of $a_2$. 
+
+The coefficients $a_3$ and $a_4$ can be obtained as particular
+cases of more general formulae of the next subsection.
+%%%%%%%%%%%%%%
+\subsection{Mixed boundary conditions}\label{s5mixed}
+Let us now turn to mixed boundary conditions (\ref{mixbc}) which,
+as we have seen in sections \ref{s3spin} and \ref{s3vect}, are
+natural boundary conditions for spinor and vector fields.  
+These boundary conditions depend on two complementary local
+projectors $\Pi_-$ and $\Pi_+=1-\Pi_-$ which define subsets
+of components of the field satisfying Dirichlet and Robin
+boundary conditions respectively\footnote{Examples of such projectors
+are given by eq.\ (\ref{proBG}) and below eq.\ (\ref{relbc}).}.
+More precisely,
+\begin{equation}
+\Pi_-\phi \oB =0\,,\qquad (\nabla_n+S)\Pi_+\phi \oB =0\,.\label{mixagain}
+\end{equation}
+Consequently, there is one more independent entity (as compared to Robin
+case, for example) on which the heat kernel coefficients for mixed 
+boundary conditions can depend. This makes the calculations somewhat
+more complicated. It is convenient to define
+\begin{equation}
+\chi = \Pi_+-\Pi_- \,.\label{defchi}
+\end{equation}
+
+Calculation of the coefficients $a_k$ up to $k=4$ can be found
+in \cite{Branson:1990a} (see also \cite{Vassilevich:1995we} for
+some corrections). The result reads:
+\begin{eqnarray}
+&&a_0(f,D,\mathcal{ B})=(4\pi)^{-n/2}\iM {\rm tr}_V(f).\label{a0bou} \\
+&&a_1(f,D,\mathcal{ B})={\frac 14}(4\pi)^{-(n-1)/2}\idM
+     {\rm tr}_V (\chi f). \label{a1bou} \\
+&&a_2(f,D,\mathcal{ B})=\frac 16 (4\pi)^{-n/2}\left\{ \iM
+     {\rm tr}_V(6fE+fR) \right. \nonumber \\
+&&\qquad\qquad \left. +\idM {\rm tr}_V(2fL_{ aa}+3 \chi f_{ ;n}+12fS)
+     \right\} .\label{a2bou} \\
+&&a_3(f,D,\mathcal{ B})=\frac 1{384}(4 \pi )^{
+       -(n-1)/2}  \idM \ptr\big\{ f(96 \chi E+16\chi  R \nonumber\\
+&&\qquad\qquad+8f \chi R_{anan} 
+       +(13 \Pi_{+}-7 \Pi_{ -})L_{ aa}L_{ bb}+(2 \Pi_{ +}+10
+      \Pi_{-})L_{ab}L_{ ab}\nonumber\\
+&&\qquad\qquad+96SL_{ aa}
+      +192S^2 
+       -12 \chi_{ :a} \chi_{:a})+f_{ ;n}
+      ((6 \Pi_{ +}+30 \Pi_{ -})L_{
+        aa}\nonumber\\
+&&\qquad\qquad+96S)+24 \chi f_{ ;nn} \}.\label{a3bou}\\
+&&a_4(f,D,\mathcal{ B})=\frac 1{360} (4 \pi )^{
+       -n/2} \big\{ \iM \ptr
+       \{ f(60E_{ ; ii}+60 R E+180E^2 \nonumber \\
+&&\qquad\qquad +30 \Omega_{ij} 
+      \Omega_{ij} +12 R_{;ii}+
+      5 R^2-2R_{ij}R_{ij}+2R_{ijkl}R_{ijkl}) \} \nonumber \\
+&&\qquad\qquad+ \idM \ptr
+      \big\{ f \{ (240 \Pi_{ +}-120 \Pi_{ -})E_{ ;n}\nonumber\\
+&&\qquad\qquad+(42 \Pi_{
+     +}-18 \Pi_{ -}) R_{ ;n} 
+     +24L_{ aa:bb}+0L_{ ab:ab}+120EL_{
+       aa}\nonumber\\ 
+&&\qquad\qquad +20 R L_{ aa}+4R_{ an    an}L_{bb} 
+      -12R_{ an    bn}L_{ ab}+4R_{
+       ab    cb}L_{ ac}\nonumber\\
+&&\qquad\qquad +\frac 1{21} \{ (280 \Pi_{ +}+40 \Pi_{
+-})L_{ aa}L_{ bb}L_{ cc} 
+    +(168 \Pi_{ +}\nonumber\\
+&&\qquad\qquad -264 \Pi_{
+-})L_{ ab}L_{ ab}L_{ cc}+(224 \Pi_{
++}+320 \Pi_{ -})L_{ ab}L_{ bc}L_{ac} \} \nonumber \\
+&&\qquad\qquad +720SE+120S R +0SR_{ an    an}+144SL_{
+aa}L_{ bb}+48SL_{ ab}L_{ ab} \nonumber \\
+ &&\qquad\qquad+480S^2L_{ aa}+480S^{
+3}+120S_{ :aa}+60 \chi  \chi_{ :a} \Omega_{ an}-12 \chi_{ :a} \chi_{
+:a}L_{ bb} \nonumber \\
+&&\qquad\qquad -24 \chi_{ :a} \chi_{
+:b}L_{ ab}-120 \chi_{ :a} \chi_{
+:a}S \} +f_{ ;n}(180 \chi E+30 \chi  R +0R_{
+an an} \nonumber \\
+&&\qquad\qquad +\frac 17 \{ (84 \Pi_{
++}-180 \Pi_{ -})L_{ aa}L_{ bb}+(84 \Pi_{
++}+60 \Pi_{ -})L_{ ab}L_{ ab} \} \nonumber \\
+&&\qquad\qquad +72SL_{ aa}+240S^2-18 \chi_{
+:a} \chi_{ :a})+f_{ ;nn}(24L_{
+aa}+120S) \nonumber \\
+&&\qquad\qquad
+\left. +30 \chi f_{ ;iin}  \big\} \right\} . \label{a4bou}
+\end{eqnarray}
+Dirichlet and modified Neumann (Robin) boundary conditions 
+are recovered when $\Pi_+=0$
+or $\Pi_-=0$ respectively.
+
+The coefficients $a_k$ with $k=0,1,2,3,4$ were calculated
+in  \cite{McKean:1967,Kennedy:1980ar,Smith:1981,Melmed:1988hm,Moss:1989mz,
+Branson:1990a,McAvity:1991we,McAvity:1992rf,Vassilevich:1995we}.
+A different algorithm was suggested in \cite{Cognola:1990kq}.
+For ``pure'' (not mixed) boundary conditions the 
+coefficient $a_5$ was calculated
+by Branson, Gilkey and Vassilevich \cite{Branson:1997cm} for the
+special case of a domain in flat space or of a curved domain with
+totally geodesic boundaries. Kirsten \cite{Kirsten:1997qd} generalised
+these results for arbitrary manifolds and boundaries. Branson, Gilkey,
+Kirsten and Vassilevich \cite{Branson:1999jz} calculated the coefficient
+$a_5$ for mixed boundary conditions.
+%%%%%%%%%%%%%%
+\subsection{Other boundary conditions}\label{s5other}
+From the technical point of view boundary conditions for a Laplace
+type operator are needed to exclude infinite number of negative and
+zero modes and to ensure self-adjontness. In principle, any linear
+relation between the boundary data $\phi\oB$ and $\phi_{;n}\oB$
+is admissible as long as it serves this purpose. Here we consider
+two physically motivated examples of boundary conditions which
+contain tangential derivatives on the boundary. These examples should
+give the reader an idea of what can be expected for a more general 
+boundary value problem.
+%%%%%%%
+\subsubsection{Boundary conditions with tangential derivatives and
+Born--Infeld action from open strings}\label{s5tang}
+The boundary condition
+\begin{equation}
+\left. \left( \nabla_n +\frac 12 ( \nabla_a \Gamma_a + \Gamma_a \nabla_a )
++S \right) \phi\right\oB=0 \label{obliquebc}
+\end{equation}
+is the simplest condition containing both normal and tangential
+derivatives. $\Gamma_a$ and $S$ are some matrix valued functions
+defined on the boundary. Such or similar structures appear in
+open strings (cf. sec.\ \ref{s3string}) and in chiral bags
+(cf. sec.\ \ref{s3spin}). They also describe photons with the
+Chern-Simons interaction term concentrated on the boundary
+\cite{Elizalde:1998ha,Bordag:1999ux}
+and may be relevant for solid state physics applications.
+The conditions (\ref{obliquebc}) appeared in the mathematical
+literature \cite{Grubb:1974,Gilkey:1983}.
+
+Several heat kernel coefficients for the boundary conditions
+(\ref{obliquebc}) (which are called {\it oblique}) have been
+calculated by McAvity and Osborn \cite{McAvity:1991xf} and
+by Dowker and Kirsten \cite{Dowker:1997mn,Dowker:1998hm}.
+Avramidi and Esposito 
+\cite{Avramidi:1998sb,Avramidi:1998sh,Avramidi:1997hy,Avramidi:1998xj}
+lifted some commutativity assumptions and proved a simple
+criterion of strong ellipticity (see below).
+
+Consider a differential operator $Q$, not necessarily of the second order.
+Let is separate the part containing highest derivatives and replace
+$\partial_\mu \to ik_\mu$, like in doing the Fourier transformation.
+In this way we obtain an object $A_Q=a^{\mu\nu\dots\rho}(x)k_\mu k_\nu
+\dots k_\rho$ which is called the leading symbol of $Q$. If the operator
+$Q$ acts on fields with indices (i.e. in a vector bundle), the index structure
+of $Q$ is inherited by $A_Q$. In other words, for fixed $k$ the leading symbol
+$A$ is a matrix valued function (an endomorphism of the vector bundle).
+If $A_Q(x)$ is non-degenerate for all $k\ne 0$, the operator $Q$ is called
+elliptic. For the Dirac operator $Q=\Dir$ the leading symbol is 
+$A_{Q} =\gamma^\mu k_\mu$. Therefore, $\Dir$ is obviously elliptic.
+The Laplace type operators are also elliptic since $A_D=k^2$. 
+Ellipticity means that ``at large momenta'' the operator $Q$ is dominated
+by its' highest derivative part. This is the property which guarantees
+that on a compact manifold  without boundaries Laplace operators have
+at most finite number of negative and zero eigenvalues and which
+ensures existence of the heat kernel. On manifolds with boundaries
+just ellipticity is not enough to ensure nice properties of the spectrum.
+There is an additional requirement, called {\it strong ellipticity},
+which should be satisfied by the boundary operator (see 
+\cite{Gilkey:1995} for details). Dirichlet and Robin boundary conditions
+are always strongly elliptic. Oblique boundary conditions are strongly
+elliptic if and only if $|\Gamma^2|<1$. If this inequality is violated,
+infinite number of negative eigenmodes appears (a simple example can be
+found in Appendix B of \cite{Kummer:2000ae}). Note that the boundary 
+conditions (\ref{obliquebc}) correspond to a symmetric $D$ if 
+the matrices $\Gamma_a$ are anti-hermitian. Therefore, 
+$\Gamma^2=\Gamma_a\Gamma^a$ is typically negative.
+
+Another complication stems from the fact that $\Gamma_a$ is dimensionless.
+Consequently, arbitrary powers of $\Gamma_a$ may enter $a_k$, so that instead
+of the undetermined constants (cf. (\ref{a0DN}) - (\ref{a2DN}))
+one has to deal with undetermined functions of $\Gamma$. The problem
+becomes more tractable if we suppose that $\Gamma_a$'s commute among
+themselves, $[\Gamma_a,\Gamma_b]=0$. For this case, the coefficients
+$a_1$ and $a_2$ have been calculated by McAvity and Osborn 
+\cite{McAvity:1991xf} ($a_0$ is still given by (\ref{a0DN})):
+\begin{eqnarray}
+&&a_1(f,D)=(4\pi )^{-(n-1)/2} \idM \ptr (f\gamma (\Gamma ))\,,
+\label{a1ob}\\
+&&a_2(f,D)=\frac 16 (4\pi)^{-n/2}\left\{ \iM
+     {\rm tr}_V(6fE+fR) \right. \nonumber \\
+&&\qquad\qquad +\idM {\rm tr}_V(b_0(\Gamma) fL_{ aa}
+     +b_1(\Gamma) f_{ ;n}\nonumber\\
+&&\qquad\qquad \left. +b_2(\Gamma) fS+f\sigma (\Gamma) L_{ab}
+     \Gamma_a\Gamma_b )
+     \right\} ,\label{a2ob}
+\end{eqnarray}   
+where
+\begin{eqnarray}
+&&\gamma =\frac 14 \left[ \frac 2{\sqrt{1+\Gamma^2}} -1\right]\,,
+\nonumber\\
+&&b_0=6\left[ \frac 1{1+\Gamma^2}-\frac 1{\sqrt{-\Gamma^2}}
+{\rm artanh} \left( \sqrt{-\Gamma^2} \right) \right]+2\,,\nonumber\\
+&&b_1=\frac 6{\sqrt{-\Gamma^2}} {\rm artanh} \left( \sqrt{-\Gamma^2} \right)
+-3 \,,\label{obliqueconst}\\
+&&b_2=\frac {12}{1+\Gamma^2} \,,\nonumber\\
+&&\sigma = \frac 1{\Gamma^2} (2-b_0) \,.\nonumber
+\end{eqnarray}
+We see, that if $\Gamma^2$ approaches $-1$ the heat kernel blows up
+indicating violation of the strong ellipticity condition.
+
+As an example, let us consider the open string sigma model of sec.\
+\ref{s3string}. To simplify the subsequent calculations we put $B_{AB}=0$.
+In the zeta function regularization divergent part of the effective
+action (\ref{Wzpole}) reads $(1/s)a_2(D)=(1/s)a_2(1,D)$. On general grounds
+we expect that $a_2$ repeats the structure of the classical action
+(\ref{actsigma}):
+\begin{equation}
+a_2=\int_{\partial M}d\tau  \beta_A^{[A]} \partial_\tau \bar X^A +
+\mbox{bulk terms},\label{divstring} 
+\end{equation}
+where $\beta_A^{[A]}$ is a beta 
+function\footnote{In this case the subscript $A$
+is a target space vector index, while the superscript $[A]$ indicates the
+coupling. Here we do not consider other beta functions $\beta^{[G]}$,
+$\beta^{[B]}$ etc.}. We put $L_{ab}=0$ (otherwise we have had to introduce
+a dilaton coupling on the boundary to achieve renormalizability).
+We also suppose that the target space metric $G_{AB}$ is trivial.
+With these simplifying assumptions the beta function can be easily
+calculated from (\ref{divstring}), (\ref{a2ob}), (\ref{obliqueconst}),
+(\ref{bopsigma}):
+\begin{equation}
+\beta^{[A]}_C=-\frac 1{2\pi} (\partial_A F_{BC})
+(1+F^2)^{-1}_{BA} \,.\label{betaAC}
+\end{equation}
+By a lengthy but straightforward calculation one can demonstrate
+that the condition $\beta^{[A]}_C=0$ is equivalent to the
+equations of motion following from the Born-Infeld action on the
+target space:
+\begin{equation}
+\mathcal{L}_{\rm BI}=\int d\bar X \sqrt{\det (1+iF)}=
+\int d\bar X \exp \left( \frac 14 {\rm tr} \ln
+(1+F^2) \right)\,,\label{BIaction}
+\end{equation}
+where $i$ appeared due to our rule of the Euclidean rotation
+for the gauge fields. 
+
+The Born-Infeld action has been derived from the beta functions
+of the open string sigma model in \cite{Abouelsaood:1987gd,Callan:1987bc}
+confirming an earlier work \cite{Fradkin:1985qd} which used different 
+methods. The heat kernel analysis was performed by Osborn 
+\cite{Osborn:1991gm} and then repeated in \cite{Kummer:2000ae}
+for more general couplings. 
+%%%%%%
+\subsubsection{Spectral or Atiyah--Patodi--Singer (APS) boundary conditions}
+\label{s5spec}
+Spectral boundary condition were introduced by Atiyah, Patodi and
+Singer in their study of the Index Theorem 
+\cite{Atiyah:1975jf,Atiyah:1976jg,Atiyah:1980jh}. These boundary conditions
+are {\it global}, i.e. they cannot be defined by using
+local data only.
+
+Consider a Dirac type operator 
+\begin{equation}
+\Dir =i \gamma^\mu \tilde \nabla_\mu +\mathcal{E}\,,\label{gDir}
+\end{equation}
+where $\tilde\nabla$ is a covariant derivative with a compatible
+connection:
+\begin{equation}
+\tilde \nabla_\mu \gamma_\nu =0,\label{compaticon}
+\end{equation}
+i.e., the gamma matrices are covariantly constant. $\mathcal{E}$
+is a zeroth order operator (a matrix valued function). We also 
+suppose that the connection in $\tilde\nabla$ is unitary. This means
+that the connection one-form is represented by an anti-hermitian
+matrix in a suitable basis. We restrict ourselves to the case
+when $\mathcal{E}^\dag =\mathcal{E}$, so that the operator
+$\Dir$ is formally self-adjoint in the bulk. Note, that compatible
+unitary connection is not unique. 
+Consider a first
+order differential operator on the boundary:
+\begin{equation}
+P=\gamma_n \gamma^a \tilde\nabla_a +\frac i2 \left(
+\mathcal{E}\gamma_n -\gamma_n \mathcal{E} \right) +\Theta (x)\,,
+\label{Poper}
+\end{equation}
+where $\Theta (x)$ is a hermitian matrix valued function on $\partial M$.
+The operator $P$ is a self-adjoint operator of Dirac type on the boundary. 
+All functions on $\partial M$ can be decomposed in positive, negative,
+and zero modes of $P$. Let us define $\Pi_-$ as a projector on the
+space spanned by {\it non-negative} eigenspaces of $P$. Then the
+equation
+\begin{equation}
+\Pi_-\phi \oB=0 \label{APSPmin}
+\end{equation}
+defines the APS boundary conditions. 
+
+Of course, relative complexity and non-locality limits physical
+applications of spectral boundary conditions. However, they appeared
+in a number of axial anomaly calculations 
+\cite{Romer:1977qq,Hortacsu:1980kv,Hortacsu:1983iq,
+Ninomiya:1985ge,Niemi:1986ht,Ma:1986qp,
+Forgacs:1987ti,Falomir:1998as}, quantum cosmology \cite{D'Eath:1991sz},
+and in works on the Aharonov-Bohm effect
+\cite{Mishchenko:1992vm,Beneventano:1998ai}.
+In brane models spectral boundary conditions describe T-selfdual
+configurations which may be interpreted as mixtures of D-branes
+and open strings \cite{Vassilevich:2001at}.
+
+General form of the heat kernel expansion for spectral boundary
+conditions was established by
+Grubb and Seeley \cite{GS:1993,GS:1995,GS:1996}:
+\begin{equation}
+K(t,f,D)\simeq \sum_{k=0}^{n-1} a_kt^{(k-n)/2}
++\sum_{j=n}^\infty \left( a'_j \ln t +a''_j \right)
+t^{(j-n)/2} \,.\label{APSasymp}
+\end{equation}
+
+In the contrast to all previous cases the expansion (\ref{APSasymp}) contains
+logarithms of the proper time $t$. Although, such terms appear ``typically''
+\cite{GG98} for pseudo-differential operators, they may lead to rather
+unpleasant physical consequences. As follows from (\ref{heatzeta}),
+non-zero $a'_n$ means that the zeta function has a pole at $s=0$, and,
+therefore, the expression (\ref{Wzren}) for the renormalised
+effective action does not make sense. Fortunately, for the APS
+boundary conditions $a'_n=0$ if $f=1$ near the boundary. 
+Consequently, the integrated
+zeta function is regular at $s=0$ and eq.\ (\ref{Wzren}) still can be
+used. However, all calculations involving localised heat kernel
+coefficients remain problematic. Many logarithmic terms vanish if
+the manifold $M$ has a product structure near $\partial M$.
+In non-product cases strong criteria of ``partial vanishing of
+logarithms'' have been found recently \cite{Grubb:2003ys}.
+
+Another problem with the heat kernel expansion (\ref{APSasymp})
+is that the coefficients may have a more complicated dependence
+on $n$ than just a power\footnote{Let us remind that
+to prove the simple dependence on $n$ we used the product
+formulae (\ref{77hk}), (\ref{eq:asPoi}). We assumed that the
+spectral problem can be ``trivialised'' in one direction.
+In the present case all tangential coordinates enter the operator
+(\ref{Poper}) on equal footings. Therefore, the proof does not go through.}
+ of $(4\pi )$. After this long list of troubles it is not a surprise
+that {\it only} the coefficients $a_k$ with $k<n$ are locally
+computable.
+The coefficient $a_0$ is given by (\ref{a0nobou}).
+$a_1$ and  $a_2$ have been calculated in \cite{Dowker:2000sy}:
+\begin{eqnarray}
+&&a_1=(4\pi )^{(1-n)/2} \frac 14 (\beta (n)-1) \idM \ptr (f)\,,
+\nonumber\\
+&&a_2=(4\pi )^{-n/2}\left[ \iM \ptr \left( f\left(\frac 16 R+E\right) \right)
+\right.\nonumber\\
+&&\qquad\qquad +\idM \ptr \left( f \mathcal{E} +\frac 13 \left( 1-\frac 34 
+\pi \beta (n) \right)L_{aa}f \right. \label{hkAPS} \\
+&&\qquad\qquad \left.\left. -\frac{n-1}{2(n-2)} \left( 1-\frac 12 \pi
+\beta (n)\right) f_{;n} \right) \right] \,,\nonumber
+\end{eqnarray}
+where
+\begin{equation}
+\beta (n)=\Gamma \left (\frac n2 \right) \Gamma \left( \frac 12 \right)^{-1}
+\Gamma \left( \frac{n+1}2 \right)^{-1} \,.\label{betaAPS}
+\end{equation}
+The coefficient  $a_3$ can be found in \cite{Gilkey:2000bc}.
+
+Some string theory applications suggest 
+\cite{Vassilevich:2001at,Vassilevich:2001wf} that spectral boundary conditions
+can be defined directly for a second order differential operator.
+Existence of the asymptotic expansion (\ref{APSasymp}) and vanishing of
+leading logarithms for such problems have been stated in
+\cite{Grubb:2003yr}.

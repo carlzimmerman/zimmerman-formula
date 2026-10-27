@@ -1,0 +1,68 @@
+{
+  "claim_id": "FRAMEWORK-NONLOCAL-FINITE-HOST-FIDELITY",
+  "mathematics": {
+    "assertion_tested": "Apply predeclared 3% matched-point force-fidelity gates and 5% primary own-host threshold to completed N32/N64 outputs; no new optimization",
+    "coefficient_domain": "float64/complex128, finite periodic FFT",
+    "conventions": "See FROZEN_CRITERIA.txt; C=a0=1, same target-in nu table, no cosmology or MOND comparator",
+    "inputs": [
+      "sol61_push/framework_certification_2026_10_12/finite_host/compare_grids.py",
+      "sol61_push/framework_certification_2026_10_12/finite_host/FROZEN_CRITERIA.txt",
+      "sol61_push/framework_certification_2026_10_12/finite_host/run_N32/results.json",
+      "sol61_push/framework_certification_2026_10_12/finite_host/run_N32/fields.npz",
+      "sol61_push/framework_certification_2026_10_12/finite_host/run_N64/results.json",
+      "sol61_push/framework_certification_2026_10_12/finite_host/run_N64/fields.npz"
+    ],
+    "bounds": {
+      "N": [
+        32,
+        64
+      ],
+      "r_min": 4,
+      "r_max": 8,
+      "coarse_sampling_stride": 2,
+      "timeout_seconds": 30,
+      "CPU_seconds": 25,
+      "threads": 1
+    },
+    "criteria": {
+      "primary_own_host_metric": 0.05,
+      "poisson_residual": 0.001,
+      "functional_gradient": 0.0001,
+      "matched_grid_fidelity": 0.03,
+      "uniform_invariance": 1e-09
+    },
+    "non_claims": [
+      "No isolated or continuum solution",
+      "No target-free selector/action or real cold-mass current",
+      "No metric or causal dynamics",
+      "No empirical or whole-theory certification"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/framework_certification_2026_10_12/finite_host/compare_grids.py",
+    "sol61_push/framework_certification_2026_10_12/finite_host/FROZEN_CRITERIA.txt",
+    "sol61_push/framework_certification_2026_10_12/finite_host/run_N32/results.json",
+    "sol61_push/framework_certification_2026_10_12/finite_host/run_N32/fields.npz",
+    "sol61_push/framework_certification_2026_10_12/finite_host/run_N64/results.json",
+    "sol61_push/framework_certification_2026_10_12/finite_host/run_N64/fields.npz"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.13.9"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.14.1"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

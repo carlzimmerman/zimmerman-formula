@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-S-INDEPENDENT-LIFTING-001",
+  "repository": {
+    "commit": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/spectral_route/lifting_check.py",
+    "--output",
+    "fine_structure_puzzle/spectral_route/runs/lifting_review_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Reconstruct stationary point, t-coordinate second derivative, vacuum energy, alpha_SU2 sensitivity and constant-uplift invariance directly from V(t)=M^4 t^p(A+B log t). Seven exact symbolic identities/positivity checks, independently of archive implementation.",
+    "coefficient_domain": "Real symbolic algebra, p>0, M>0, B real nonzero, A real, u real, t=exp(u)>0",
+    "conventions": "Dimensionless t,A,B,p; alpha_SU2=t^2/pi^2 is the report's tree-level dictionary only; fixed B,p,M in partial derivative with respect to A; scalar stability requires positive kinetic metric",
+    "inputs": [
+      "displayed V(t) and domain in archive_audit/REPORT.md"
+    ],
+    "bounds": {
+      "symbolic_checks": 7,
+      "numerical_sampling": false
+    },
+    "non_claims": [
+      "Does not derive the potential from Q3",
+      "Does not check full scalar spectrum",
+      "Does not identify alpha_SU2 with electromagnetic alpha(0)"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T00:51:21.960767+00:00",
+    "runtime_seconds": 0.3719,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 25,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/spectral_route/lifting_check.py",
+    "fine_structure_puzzle/archive_audit/REPORT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/spectral_route/lifting_check.py",
+      "sha256": "f41408d3f47c75b92b12b79de97463b9bcc05fef9f33f836679472eea6b373f1",
+      "sha256_after": "f41408d3f47c75b92b12b79de97463b9bcc05fef9f33f836679472eea6b373f1"
+    },
+    {
+      "path": "fine_structure_puzzle/archive_audit/REPORT.md",
+      "sha256": "0f3c67b7f1e6bbcc8c53da079997677fbeea0334282d053f360e99eece3f752d",
+      "sha256_after": "0f3c67b7f1e6bbcc8c53da079997677fbeea0334282d053f360e99eece3f752d"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/spectral_route/runs/lifting_review_001",
+  "declared_results": [
+    "fine_structure_puzzle/spectral_route/runs/lifting_review_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/spectral_route/runs/lifting_review_001/stdout.txt",
+      "sha256": "40ac2cc5e2055c0e4300e515c80349894da431edc795d8711892c5af1e450d36",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/spectral_route/runs/lifting_review_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/spectral_route/runs/lifting_review_001/results.json",
+      "sha256": "4cad7cb7f58d281bafd9515ab11837ec448bdfb6c10b2bbb166dbefdfca4af8c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

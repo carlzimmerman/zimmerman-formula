@@ -1,0 +1,131 @@
+CE-FM-055 — Passive damping does not stabilize the same negative mode
+2026-10-15. Self-review. Primary verdict: correct only after a stated restriction.
+AG1's corrected conservative isothermal operator is confirmed in its declared
+inner-fixed domain; 'or dissipation' is not an established stability repair.
+
+Target, source revisions and dependencies
+AG1 landed at77036c1ffe91c59666278a157f01d16925608702, criteria c902d2cdd.
+Raw IDEA.md, README.md, scripts, stored main and EB-control outputs and
+G081_results.json are pinned by run_055/manifest.json. The source's repeated
+suggestion of a cutoff 'or a dissipative channel' is the audited implication.
+No AG1 source, historical verdict, publication or frozen criterion was edited.
+New AG3 commits4560f945c/7527066a6 are pre-run criteria/amendment, not adopted
+empirical results; no SPARC or live spectral lane was run here.
+
+Claim card
+For the isothermal spherical surrogate rho0=A/r^2, Phi0'=C/r, P=sigma^2 rho,
+with sigma^2=C/2 and frozen inner mass, independently reconstruct the radial
+operator. Then ask whether an unchanged negative conservative restoring mode
+can become linearly stable solely by adding ordinary passive linear drag.
+Scalar claim: Omega>0, gamma>=0 finite, qddot+gamma qdot-Omega^2 q=0 always
+has an exponentially growing solution. Matrix extension: M positive definite,
+D positive semidefinite, K symmetric with a negative direction, all real
+finite matrices; M qddot+D qdot+K q=0 has a real positive growth exponent.
+This excludes pure passive damping as the repair in this declared class.
+It is not a no-go for all open systems, feedback, modified sources or media.
+
+1. Reconstructing the corrected radial force
+Continuity gives delta_rho=-(r^2 rho0 xi)'/r^2=-rho0 xi'.
+For xi(inner)=0 with frozen enclosed inner mass, Poisson gives
+ delta_g=-C xi/r^2, C=4 pi G A.
+Euler requires ALL three terms
+ rho0 xi_ddot=-(delta_P)'-delta_rho Phi0'-rho0 delta_g.
+Dividing gives
+ xi_ddot=sigma^2 xi''+(C-2 sigma^2)xi'/r+C xi/r^2.
+At closure the drift cancels:
+ xi_ddot=sigma^2 (xi''+2 xi/r^2),
+ xi''+(omega^2/sigma^2+2/r^2)xi=0 for exp(-i omega t).
+Thus AG1's corrected operator survives this reconstruction. If the inner
+interface moves or its mass perturbation is not frozen, the Poisson
+integration constant changes; the displayed expression must be rederived.
+No claim for all boundary pairs is obtained by silently keeping it unchanged.
+
+2. A direct DD negative-direction witness
+On an annulus a<r<b with xi(a)=xi(b)=0, the conservative restoring operator
+is K=sigma^2[-d^2/dr^2-2/r^2]. Its kinetic weight is positive and constant
+because4 pi r^2 rho0=4 pi A. Set L=ln(b/a), k=pi/L and trial
+ xi(r)=sqrt(r) sin(k ln(r/a)).
+The numerator divided by sigma^2 is EXACTLY
+ integral_a^b [(xi')^2-2 xi^2/r^2] dr
+   = pi^2/(2L)-7L/8.
+The denominator integral xi^2 dr is positive. Hence b/a>exp(2pi/sqrt7)
+=10.74908702916351 gives a strictly negative Rayleigh quotient and at least
+one negative restoring eigenvalue on this regular finite DD annulus. The
+zero-frequency log-sine and log-cosine bases also check exactly. This is an
+analytic negative-direction argument, not a finite scan or new galaxy test.
+It agrees with the AG1 DD ladder. The DF threshold and observed widths have
+not been independently re-scored here.
+
+3. Why ordinary damping fails to repair the unstable mode
+Let omega0^2=-Omega^2<0. Adding scalar linear drag while preserving that
+mode gives qddot+gamma qdot-Omega^2 q=0. Its growing exponent is
+ lambda_plus=(sqrt(gamma^2+4 Omega^2)-gamma)/2
+            =2 Omega^2/[sqrt(gamma^2+4 Omega^2)+gamma] >0.
+This is positive for EVERY finite gamma>=0. At large gamma it approaches
+Omega^2/gamma from above. Strong damping can delay growth, not remove it.
+The saddle energy E=(qdot^2-Omega^2 q^2)/2 satisfies
+ Edot=-gamma qdot^2<=0. Energy decreases even while the amplitude grows;
+energy dissipation is not stability when the equilibrium is a saddle.
+
+This does not rely on the damping commuting with the restoring matrix.
+For the finite matrix system, consider the symmetric pencil
+ P(lambda)=lambda^2 M+lambda D+K, lambda>=0.
+At lambda=0 its minimum eigenvalue is negative. At sufficiently large
+lambda its minimum eigenvalue is positive, since M>0 dominates. Continuity
+therefore gives some lambda*>0 and nonzero v with P(lambda*)v=0.
+Then q=v exp(lambda*t) grows. D>=0 expresses passivity; the continuity proof
+also makes clear the finite symmetric-matrix assumptions. An exact2x2
+noncommuting control has M=diag(1,2), K=diag(-1,3), D=[[2,1],[1,2]], all
+required signs, and det P=2lambda^4+6lambda^3+4lambda^2+4lambda-3: negative
+at0 and positive at1. Mixing the modes with positive damping does not rescue
+this control. No infinite-dimensional unbounded-damping theorem is claimed.
+
+For uniform bounded drag on the source's increasingly singular negative
+modes, increasing Omega also increases lambda_plus without bound. Such drag
+does not by itself regularize the singular-center limit. A regular core or
+another changed operator/domain still needs to be specified and checked.
+
+4. Strongest safe consequence and remaining gap
+AG1's omission correction is a substantive result, and its algebraic
+sigma^2=C/2 equilibrium relation is unaffected. The original G081 neutral
+family is not recovered by simply invoking energy export or relaxation.
+A physical dissipative completion could change the EOS, background, mass
+flux, effective stiffness or boundary dynamics. Those are different models
+and can have different spectra; they are not excluded by this calculation.
+The full W_rem/current-frame/stiffness tether medium was NOT the surrogate
+analyzed by AG1 and is not refuted by this fluid instability. Its actual
+occupied state, perturbation forces and reciprocal export channel remain
+missing. A cutoff solution likewise requires a physical core/matching rule,
+not a chosen numerical excision alone. Neither the half coefficient nor a
+static profile proves a dynamical attractor or selects the cosmological kappa.
+
+Obligation matrix
+PASSED: continuity and complete Euler reconstruction; closure operator;
+zero-frequency basis; DD variational numerator; scalar damping exponent and
+energy identity; a noncommuting finite matrix control.
+ANALYTIC: universal scalar positive-growth conclusion and finite symmetric
+matrix continuity argument under the displayed assumptions.
+BOUNDED:17 exact/parameter controls in run_055, completed and manifest validated.
+CONDITIONAL: isothermal closure, occupied equilibrium, inner-mass-fixed BC,
+positive inertia and unchanged restoring operator during added damping.
+NOT ADDRESSED: full medium/metric spectrum, actual dissipative constitutive
+law, moving boundaries, nonlinear end states, empirical annulus widths,
+Ebert-Bonnor literature benchmarks or observational exclusions.
+
+Executable next step
+Supply one reciprocal settling/export law and its counted receiver; solve
+its equilibrium first. Linearize its density, velocity, source, field and
+receiver equations together, retaining -delta_rho gradPhi0 and all background
+variation terms. Calculate the complete eigenvalue pencil with physical
+core/outer conditions. If the only alteration is positive drag on the same
+negative restoring operator, reject it as a stability repair using the
+analytic test above. If it changes the restoring forces or domain, compute
+that changed spectrum explicitly. Do not borrow G081's old neutral family
+or promote a shear fit into that dynamical proof.
+
+Reproduction
+check_passive_damping_scope.py accepts an output JSON path; the reusable
+passive_damping_contract.json plus run_055/manifest.json record exact inputs,
+software and command. The short symbolic run used one cooperative thread
+cap and terminated; no shared live experiment was duplicated. The original
+theory remains OPEN and prior CE050-054 results retain their own scopes.

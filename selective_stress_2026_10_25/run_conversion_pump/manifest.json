@@ -1,0 +1,168 @@
+{
+  "schema_version": 2,
+  "claim_id": "SS-03",
+  "repository": {
+    "commit": "9caa641111d20523ab68a420afc92728e4ac08e2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "selective_stress_2026_10_25/conversion_pump.py",
+    "--output",
+    "selective_stress_2026_10_25/run_conversion_pump/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "An autonomous conversion coordinate can supply energy to a leaky angular mode without a supplied radial oscillation; compare favorable and fast physical escape hierarchies.",
+    "coefficient_domain": "float64",
+    "conventions": "Reduced dimensionless Hamiltonian; q periodic; S=1+sin²(pi q/2); no spatial galaxy",
+    "inputs": [
+      "q0=1e-4, P0=0, chi0=1e-6, p0=0; conversion-potential energy initially"
+    ],
+    "bounds": {
+      "cases": [
+        [
+          0.15,
+          0.005,
+          12000
+        ],
+        [
+          0.25,
+          0.005,
+          12000
+        ],
+        [
+          0.5,
+          0.005,
+          12000
+        ],
+        [
+          1.5,
+          0.005,
+          12000
+        ],
+        [
+          0.25,
+          500,
+          600
+        ],
+        [
+          500,
+          500,
+          600
+        ]
+      ],
+      "rtol": 2e-10,
+      "atol": 2e-13
+    },
+    "non_claims": [
+      "Not spatial galaxy collapse or boundary restoration",
+      "No microscopic derivation of angular inertia or escape rate",
+      "Leaky Fourier truncation is not outgoing continuum transport"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T16:10:09.061674+00:00",
+    "runtime_seconds": 19.506232,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 900.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "selective_stress_2026_10_25/TARGET.md",
+    "selective_stress_2026_10_25/conversion_pump.py",
+    "physical_completion_2026_10_25/launch.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "selective_stress_2026_10_25/TARGET.md",
+      "sha256": "62213e6ca0ace3174ec8b4f0d342656d981112b09ac4111bd54fea6ebe001649",
+      "sha256_after": "62213e6ca0ace3174ec8b4f0d342656d981112b09ac4111bd54fea6ebe001649"
+    },
+    {
+      "path": "selective_stress_2026_10_25/conversion_pump.py",
+      "sha256": "9626ad2f834293060ab7f90300a4e1bf82a21eb7705b4139b61ac0d7f29ccdc2",
+      "sha256_after": "9626ad2f834293060ab7f90300a4e1bf82a21eb7705b4139b61ac0d7f29ccdc2"
+    },
+    {
+      "path": "physical_completion_2026_10_25/launch.py",
+      "sha256": "12a23018ab0ba141e0fd5597cf81767a955c4ac3fdc8863da7670f28fe541038",
+      "sha256_after": "12a23018ab0ba141e0fd5597cf81767a955c4ac3fdc8863da7670f28fe541038"
+    }
+  ],
+  "output_directory": "selective_stress_2026_10_25/run_conversion_pump",
+  "declared_results": [
+    "selective_stress_2026_10_25/run_conversion_pump/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "selective_stress_2026_10_25/run_conversion_pump/stdout.txt",
+      "sha256": "b82b01e275efa0cf0756006c2dceb8ceea0fa0ffa41d24be021ca57e6bc77a6c",
+      "kind": "log"
+    },
+    {
+      "path": "selective_stress_2026_10_25/run_conversion_pump/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "selective_stress_2026_10_25/run_conversion_pump/results.json",
+      "sha256": "bdb97f6154d2b4b2b7602af9e4e666f07c84701003bcf9bb51710dcf39776bb6",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

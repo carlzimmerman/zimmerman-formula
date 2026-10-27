@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/infall_pump_2026_10_25/audit_rotating.py", line 8, in <module>
+    start=time.monotonic();r=m.full_step(a,x,p,c,v,h/m.tdyn);aa,xx,pp,cc,vv,ds,dq,info=r;row={'h_Myr':h,'seconds':time.monotonic()-start,'energy_defect':m.full_energy(aa,xx,pp,cc,vv)+ds-E0,'mass_defect':float(np.sum(abs(aa)**2)-M0),'charge_defect':m.charge(aa,vv)+dq-Q0,**{k:z for k,z in info.items() if not k.startswith('source_')}};rows.append(row);print(row,flush=True)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/infall_pump_2026_10_25/rotating_collocated.py", line 50, in full_step
+    result=super().full_step(a,x,p,chi,pi,dt);result[-1]['max_reference_phase_step']=float(np.max(abs(freq))*abs(dt));return result
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/infall_pump_2026_10_25/rotating_collocated.py", line 27, in full_step
+    aa,xx,pp,cc,vv,ds,dq,info=super().full_step(a,x,p,chi,pi,dt*fraction)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/infall_pump_2026_10_25/rotating_phi.py", line 152, in full_step
+    r=super().full_step(a0,x0,p0,chi0,pi0,dt)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/infall_pump_2026_10_25/rotating_phi.py", line 105, in full_step
+    self.rho_coupling=amp0;self.chi_override=cm0;S0=self.transfer(a0,x0,chi0)[1]
+NameError: name 'cm0' is not defined

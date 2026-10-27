@@ -1,0 +1,7 @@
+import argparse,json
+from pathlib import Path
+import numpy as np
+from derived_inertia_wave import run
+ap=argparse.ArgumentParser();ap.add_argument('--output',required=True);a=ap.parse_args();dest=Path(a.output);inertia=json.loads(Path('selective_stress_2026_10_25/run_spinor_inertia/results.json').read_text());audit=json.loads(Path('selective_stress_2026_10_25/run_inertia_audit/results.json').read_text());b,w=inertia['cases'];g=3*np.sqrt(b['conversion_potential_Eunit']/w['conversion_potential_Eunit']);gap=inertia['converted_mass_Mb']*inertia['alignment_J']/(2*(w['conversion_potential_Eunit']/.25));out={'runs':[],'non_claims':['Whole-release reduced-potential hypothesis, not a mobile-density formation history','The corrected inertia is a fixed-background local audit, not pathwise exact dynamics']}
+for factor in [1.,audit['corrected_over_leading']]:
+ r=run(g=g,h=.0125,dt=.005,duration=200.,Ival=w['prototype_material_inertia_at_D_point25']*factor,gap=gap,exact=True,sample_every=1);r.pop('pulse');z=np.array(r['trace']);ids=np.where(z[:,1]>=.977191)[0];r['first_sampled_heat_threshold_time']=float(z[ids[0],0]) if len(ids) else None;r['meanfield_inertia_factor']=factor;r['threshold_time_Myr']=r['first_sampled_heat_threshold_time']*w['R_over_c_Myr'] if len(ids) else None;out['runs'].append(r);dest.write_text(json.dumps(out,indent=2)+'\n');print({k:v for k,v in r.items() if k!='trace'},flush=True)

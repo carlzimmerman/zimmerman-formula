@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "ORBITAL_ELECTRIC_MASS_TRANSPORT_2026_10_25",
+  "repository": {
+    "commit": "71873e76d3cec512522ba02f186ef85c8614cebe",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "two_state_mechanism_2026_10_24/electric_transport_2026_10_25/orbital.py",
+    "--output",
+    "two_state_mechanism_2026_10_24/electric_transport_2026_10_25/run_orbital/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Physical opposite-parity dipole and complete electric position operator in finite charged slabs",
+    "coefficient_domain": "double precision quadrature and exact harmonic mode evolution",
+    "conventions": "Spinless half-filled open Wilson chain; explicit fixed -1 ion per site; Q1,d.2; no Maxwell feedback",
+    "inputs": [
+      "ORBITAL_ROUTE.md",
+      "orbital.py"
+    ],
+    "bounds": {
+      "sites": [
+        32,
+        64,
+        128
+      ],
+      "fields": [
+        0.01,
+        0.03,
+        0.1
+      ],
+      "full_position": [
+        false,
+        true
+      ],
+      "derivative_step": 1e-06
+    },
+    "non_claims": [
+      "No full material derivation",
+      "No live gravity or Maxwell solver",
+      "No galaxy formation or tether/free fractions",
+      "No general collective-medium no-go"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T18:37:40.936757+00:00",
+    "runtime_seconds": 0.511046,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "two_state_mechanism_2026_10_24/electric_transport_2026_10_25/run_orbital/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "two_state_mechanism_2026_10_24/electric_transport_2026_10_25/orbital.py",
+    "two_state_mechanism_2026_10_24/electric_transport_2026_10_25/ORBITAL_ROUTE.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "two_state_mechanism_2026_10_24/electric_transport_2026_10_25/orbital.py",
+      "sha256": "ee7565a351117b4b9730d36455656eb1f6f2741062576ab6cb662f94335b2fdf",
+      "sha256_after": "ee7565a351117b4b9730d36455656eb1f6f2741062576ab6cb662f94335b2fdf"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/electric_transport_2026_10_25/ORBITAL_ROUTE.md",
+      "sha256": "7a6c0cafae8d12c9b9e9c7bf75f679e917e865730b9eb56047bbe7346787271f",
+      "sha256_after": "7a6c0cafae8d12c9b9e9c7bf75f679e917e865730b9eb56047bbe7346787271f"
+    }
+  ],
+  "output_directory": "two_state_mechanism_2026_10_24/electric_transport_2026_10_25/run_orbital",
+  "declared_results": [
+    "two_state_mechanism_2026_10_24/electric_transport_2026_10_25/run_orbital/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "two_state_mechanism_2026_10_24/electric_transport_2026_10_25/run_orbital/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/electric_transport_2026_10_25/run_orbital/stderr.txt",
+      "sha256": "2128cfdd21b1a7152049bc0bf4735879063be24eb20e2ede33f4f2c7a585e96f",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: two_state_mechanism_2026_10_24/electric_transport_2026_10_25/run_orbital/results.json"
+  ]
+}

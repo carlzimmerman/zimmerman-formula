@@ -1,0 +1,116 @@
+CE-FM-069 — full-sample cluster failure: profile normalization and stack influence
+2026-10-16 UTC. Original theory OPEN. Self-review;60 controls/run_069
+completed/validated. No profile generation, live experiment or full original
+score stage rerun. Source/frozen/publication files unchanged.
+
+NEW EVIDENCE / REVISION
+CFG815 result370dfb58006e330f210f5e306297e822188e37ba follows CFG814's
+76-cluster confirmation with318 eRASS1 and8 ACCEPT systems. Exact current
+source/frozen/results/diagnostic bytes match that commit. Small cached
+per-system predictions, catalogue weights and source files are copied and
+hashed in outskirt_stack_inputs/ and outskirt_stack_source_receipt.json.
+Current cache hashes verify this replay's inputs, not every model-generation
+stage's historical source revision. No external eROSITA paper/slope was
+authenticated here; that input remains provisional.
+
+The new full-sample source verdict is FAIL for both P and F. Preserve it;
+the old subset CONFIRMED label is not general empirical admission. This
+checkpoint independently replays canonical ACCEPT outer amplitudes and
+bootstrap errors from cached predictions/data. It does NOT independently
+rescore the full eRASS1 likelihood/tercile significance or verify all original
+controls. Source reports the middle-tercile deficit and outer overshoot.
+
+NEW PROFILE/APERTURE CONSISTENCY OBLIGATION
+CFG815 f_eff_sys uses numerator Mgas_beta(<3Mpc)+Mcond. For its denominator
+it constructs a NEW profile: beta gas to Rm=min(2.2R500,2.8Mpc), then slope-3
+(and F returns to slope-2 beyond2Rm), integrates it to rta and adds Mcond.
+Since Rm<3Mpc, that modification also changes the profile INSIDE the same
+3Mpc aperture. The old numerator and new denominator are therefore not two
+enclosed masses of a single continuous gas profile. This is implemented as
+frozen; it is a physical dictionary/normalization issue, not a silent regrade
+or an accusation that the script disobeys its declared numerator.
+
+For continuum beta rho=A/(r^2+rc^2), rc=.15R500, write
+ B(r)=r-rc atan(r/rc), M_beta(r)=4pi A B(r),
+ H=Rm^3/(Rm^2+rc^2).
+The continuous slope-3 extension has, for R>=Rm,
+ M_new,P(R)=4pi A [B(Rm)+H ln(R/Rm)].
+For F beyond2Rm replace the last term by
+ H ln2 + H(R-2Rm)/(2Rm).
+These expressions follow by shell integration and agree with direct
+quadrature at five actual catalogue radii for each profile. They audit the
+continuum shapes specified by the source, not its finite gradient/interpolation
+errors or a new fitted gas model.
+
+Across all318 actual R500 values, new gas mass inside3Mpc / old beta mass is:
+ P: min .60380, median .88619, max .99743;
+ F: min .67281, median .88619, max .99743.
+Primary P medians by gas tercile: .81160/.88576/.94947. Thus the mismatch is
+mass-dependent, before any interpretation as selection. This is a GAS mass
+ratio, not an11.4% exact error in the total baryon retention fraction;
+Mcond and re-solving rta also matter. Cached P f_eff is capped at1 in79/106
+light systems (F66/106), while no middle/heavy systems are capped. The cap
+and mismatch must be disentangled before interpreting those fractions as
+observationally inferred depletion or as an intrinsic free-population trend.
+No corrected retention or new profile prediction was substituted.
+
+Simply globally renormalizing the new profile at3Mpc would change its original
+R500 gas normalization. A successor must choose independent measured gas
+anchors/coverage and fit a compatible profile; it cannot keep incompatible
+aperture normalizations by fiat. The extrapolation beyond the measured
+outskirts remains an additional empirical assumption.
+
+ADDITIONAL FAILED CONTROL AND K2 SCOPE
+The saved CFG815 JSON has M0 'plain law reproduces CFG687 PL' FALSE in both
+profiles: max median fractional difference .078835 vs tolerance .01. Cached
+profiles independently reproduce that failure, with per-band values7.47–7.88%.
+It is not correct to summarize every implemented control as passed.
+The new wrapper changes Mcond from fixed fs=.20 to a fitted relation, so
+this old-PL comparator is not demonstrably a matched-baryon control. A
+mismatch need not mean a broken force solver; it needs like-for-like inputs.
+The printed K2 regenerates five fixed-fs eRASS systems for an internal code
+comparison, rather than rechecking all318 eRASS and8 ACCEPT stacked targets
+specified by the frozen K2 wording. Its printed pass does not validate the
+relation-based ALL stack. Neither frozen verdict nor original control altered.
+
+EXACT STACK INFLUENCE (new diagnostic)
+For outer-band per-cluster n_i=sum_j W_ij D_ij and d_i=sum_j W_ij P_ij,
+ A=sum n_i / sum d_i, A_i=n_i/d_i, q_i=d_i/sum d_i,
+ A=sum_i q_i A_i,
+ A_(-i)-A=q_i(A-A_i)/(1-q_i).
+All d_i are positive in these cached comparisons. Thus ratio influence is
+set by MODEL-WEIGHTED denominator shares q_i and residuals, not inverse-
+variance weight alone. All per-system and leave-one-out identities pass.
+
+Two low-z 2PIGG systems have inverse-variance share .43012, as source reports,
+but their q share is .35106 for primary EX and .39187 for ALL. The ratios:
+ primary EX:  A=.42037 +/-.10471; removing BOTH gives .53067;
+ primary ALL: A=1.07215 +/-.26923; removing BOTH gives1.44430;
+ F EX:        A=.32187 +/-.08660; removing BOTH gives .40994.
+These deletions are POST-HOC sensitivity diagnostics, never new frozen
+results or grounds to discard those objects. They confirm mixed residuals
+and the cancellation helping ALL. Removing both groups does not by itself
+make the nominal primary EX amplitude equal1. Bootstrap uncertainty after
+those joint deletions was not calibrated here.
+
+FAILED CAUSAL IMPLICATION
+A nonmonotonic trend of stacked observed/model ratios does not prove no
+smooth retention prescription can work, nor identify a selection effect.
+Stellar calibration, gas-aperture definitions, redshift, covariance and
+heterogeneous radial coverage all enter these ratios. No forward selection
+likelihood or population-conditioned test is supplied by the new diagnostic.
+The model's failure stands; it is not exonerated by proposing sample effects.
+Likewise a76-object aggregate pass with an admitted failed K1 is conditional,
+not a derivation of carrier dynamics or a robust full-population success.
+
+NEXT EXECUTABLE WORK
+First define one gas profile whose R500/3Mpc/r200m/turnaround masses match
+stated measured anchors and uncertainties. Retain or explicitly revise the
+stellar calibration with its scatter/selection. Recompute stock, f_eff and
+exclusion consistently in a separately frozen successor. Use matched-input
+plain-law and ALL controls for the entire target sample. Report per-system
+model-weighted influence and joint cluster likelihood, with mass/redshift/
+coverage diagnostics fixed BEFORE any sample cuts. Only then test selection
+or a smooth retention mechanism. Do not reinterpret post-hoc removals as
+frozen passes. Existing cold-carrier, metric, energy receiver/formation,
+coefficient, optical and native-cosmology obligations remain open.

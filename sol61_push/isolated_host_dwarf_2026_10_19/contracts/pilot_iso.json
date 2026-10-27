@@ -1,0 +1,70 @@
+{
+  "claim_id": "ISO_HOST_DAUGHTER_CARRIER_pilot_iso",
+  "mathematics": {
+    "assertion_tested": "Finite prepared dilute daughter-carrier Boltzmann-Poisson dwarf evolution and E/vector-J closure under declared initial state and numerical scales",
+    "coefficient_domain": "IEEE754 double; softened Newtonian N-body and stochastic finite-support elastic carrier scattering",
+    "conventions": "pc,Msun,Myr; live dwarf stars/cold; optional prescribed static Plummer host; no target-profile forcing or deleted particles",
+    "inputs": [
+      "CONTRACT.md scenario; fixed seed87319; revised .3cm2/g carrier kernel"
+    ],
+    "bounds": {
+      "case": "pilot_iso",
+      "case_arguments": [
+        "--ncold",
+        "256",
+        "--nstar",
+        "32",
+        "--duration",
+        "1000"
+      ],
+      "baseline_Ncold": 2048,
+      "baseline_Nstar": 256,
+      "baseline_dt_Myr": 2,
+      "baseline_duration_Myr": 10000,
+      "softening_pc": 40,
+      "collision_support_pc": 200
+    },
+    "non_claims": [
+      "Not full canonical polarization theory",
+      "Not a production-derived initial state",
+      "No continuum, universal core formation or universal exclusion conclusion",
+      "No live host response, radiative cooling, gas history or cosmological assembly"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/isolated_host_dwarf_2026_10_19/CONTRACT.md",
+    "sol61_push/isolated_host_dwarf_2026_10_19/source_inputs.json",
+    "sol61_push/isolated_host_dwarf_2026_10_19/run_dwarf.py",
+    "sol61_push/isolated_host_dwarf_2026_10_19/dynamics.py",
+    "sol61_push/isolated_host_dwarf_2026_10_19/direct_gravity.c",
+    "sol61_push/isolated_host_dwarf_2026_10_19/direct_gravity.dylib",
+    "sol61_push/isolated_host_dwarf_2026_10_19/launch.py",
+    "sol61_push/isolated_host_dwarf_2026_10_19/test_driver.py",
+    "sol61_push/isolated_host_dwarf_2026_10_19/test_dynamics.py"
+  ],
+  "software": [
+    {
+      "name": "simulation Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "C backend compiler",
+      "version": "Apple clang21.0.0; cc -O3 -dynamiclib; no fast-math/OpenMP"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng PCG64",
+    "seed": 87319,
+    "collision_seed": 1087319,
+    "initial_phasespace_seed": 87319
+  }
+}

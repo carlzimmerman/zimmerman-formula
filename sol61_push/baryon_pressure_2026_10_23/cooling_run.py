@@ -1,0 +1,4 @@
+import argparse,json
+from pathlib import Path
+from hydro_cooling import evolve
+p=argparse.ArgumentParser();p.add_argument('--output');p.add_argument('--n',type=int,default=256);p.add_argument('--amp',type=float,default=.05);p.add_argument('--zend',type=float,default=10);p.add_argument('--ratio',type=float,default=1);p.add_argument('--cfl',type=float,default=.6);a=p.parse_args();r=evolve(n=a.n,amp=a.amp,zend=a.zend,ratio=a.ratio,cfl=a.cfl);r['checks']=[dict(name='endpoint',passed=r['reason']=='endpoint'),dict(name='work_heat',passed=r['max_work_heat_error']<.005,value=r['max_work_heat_error']),dict(name='gas_mass',passed=max(v['gas_mass_error'] for v in r['rows'])<1e-10,value=max(v['gas_mass_error'] for v in r['rows']))];Path(a.output).write_text(json.dumps(r,indent=2,default=lambda x:x.item())+'\n')

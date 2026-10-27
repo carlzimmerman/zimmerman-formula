@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-CONT-FINITE-STOCK-MASS-COORDINATE",
+  "repository": {
+    "commit": "b9f4f4d3b798b8245fb14ca493b9366d3a8027cc",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_continuation_2026_10_18/finite_stock_stress/check.py",
+    "sol61_push/cold_continuation_2026_10_18/finite_stock_stress/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The radial vector-gradient energy equals quadratic fluid internal energy up to the exact endpoint term; the manufactured beta=1,S=1/10,Re=1 equilibrium satisfies the occupied equation and free-edge matching; three mass-preserving dilations agree with the positive material Hessian.",
+    "coefficient_domain": "Exact rational symbolic identities and 60 decimal digit mpmath quadrature",
+    "conventions": "G=a0=1; u=m/r^2, rho=m'/(4pi r^2), R(u)=u^2/(1-u), positive conserved mass labels, prescribed Q",
+    "inputs": [
+      "m=r^3(5-3r^2)/20 for 0<=r<=1 and m=1/10 outside",
+      "Q=r^2 R(u)+(3/2)r^3 inside and Q=68/45 outside",
+      "dilation factors 1 plus/minus epsilon, epsilon in {0.001,0.0005,0.00025}"
+    ],
+    "bounds": {
+      "radius_interior": [
+        0,
+        1
+      ],
+      "tail": "exact finite-stock tail integrated to infinity",
+      "dilation_count": 3,
+      "precision_decimal_digits": 60
+    },
+    "non_claims": [
+      "No physical microscopic carrier identification",
+      "No independent-P vacuum EL",
+      "No live external-source stability",
+      "No general spectrum, nonlinear evolution, formation or empirical fit"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T02:01:40.520839+00:00",
+    "runtime_seconds": 0.556567,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 131072,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/cold_continuation_2026_10_18/finite_stock_stress/run_001/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_continuation_2026_10_18/finite_stock_stress/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_continuation_2026_10_18/finite_stock_stress/check.py",
+      "sha256": "a797c78b0c4660edc691e44c49ed0fb758b600bb219da75d9189a80b2a0b9bc6",
+      "sha256_after": "a797c78b0c4660edc691e44c49ed0fb758b600bb219da75d9189a80b2a0b9bc6"
+    }
+  ],
+  "output_directory": "sol61_push/cold_continuation_2026_10_18/finite_stock_stress/run_001",
+  "declared_results": [
+    "sol61_push/cold_continuation_2026_10_18/finite_stock_stress/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_continuation_2026_10_18/finite_stock_stress/run_001/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_continuation_2026_10_18/finite_stock_stress/run_001/stderr.txt",
+      "sha256": "ce6142b53d447f550364027c21faa4edb1ec941e80ad1eef3f99752210dc84a8",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: sol61_push/cold_continuation_2026_10_18/finite_stock_stress/run_001/results.json"
+  ]
+}

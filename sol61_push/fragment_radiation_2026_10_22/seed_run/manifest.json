@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "FR_LONG_NONRADIAL_SEED",
+  "repository": {
+    "commit": "364a56c2500e64988e9e16e68e71fecba438b0b5",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/fragment_radiation_2026_10_22/run_seed.py",
+    "--mass",
+    "4",
+    "--end",
+    "60",
+    "--output",
+    "sol61_push/fragment_radiation_2026_10_22/seed_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Unconstrained3D particle/field collapse with field-only absorber, mass/aperture/FOF/ejecta/flux diagnostics",
+    "coefficient_domain": "float64",
+    "conventions": "CONTRACT.md",
+    "inputs": [
+      "inherited passive reciprocal action; quiet Gaussian seed"
+    ],
+    "bounds": {
+      "n": 32,
+      "box": 8,
+      "side": 10,
+      "mass_ratio": 4,
+      "dt": 0.003,
+      "end": 60,
+      "seed": "quiet or deterministic mixed azimuthal perturbation amplitude .03ell0"
+    },
+    "non_claims": [
+      "No continuum fragmentation or observational fit"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T02:44:59.747703+00:00",
+    "runtime_seconds": 76.607725,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 480.0,
+    "max_output_bytes": 3000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/fragment_radiation_2026_10_22/model_seed.py",
+    "sol61_push/fragment_radiation_2026_10_22/run_seed.py",
+    "sol61_push/fragment_radiation_2026_10_22/CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/fragment_radiation_2026_10_22/model_seed.py",
+      "sha256": "37e5a4bab6398f4455b5c0a1dde3b88762590fb3eeb918d45ec9be2b253d82bc",
+      "sha256_after": "37e5a4bab6398f4455b5c0a1dde3b88762590fb3eeb918d45ec9be2b253d82bc"
+    },
+    {
+      "path": "sol61_push/fragment_radiation_2026_10_22/run_seed.py",
+      "sha256": "d10bbbf68c740e1cca68ef43bce3d46f7c0f9ffae54389667cc96eed2e1ff87f",
+      "sha256_after": "d10bbbf68c740e1cca68ef43bce3d46f7c0f9ffae54389667cc96eed2e1ff87f"
+    },
+    {
+      "path": "sol61_push/fragment_radiation_2026_10_22/CONTRACT.md",
+      "sha256": "28217b4a9f5b2fbcfb072892796eaa0bd97d6ef3c327090190e92cae97e3bfdc",
+      "sha256_after": "28217b4a9f5b2fbcfb072892796eaa0bd97d6ef3c327090190e92cae97e3bfdc"
+    }
+  ],
+  "output_directory": "sol61_push/fragment_radiation_2026_10_22/seed_run",
+  "declared_results": [
+    "sol61_push/fragment_radiation_2026_10_22/seed_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/fragment_radiation_2026_10_22/seed_run/stdout.txt",
+      "sha256": "0f567f58a2aaf499f0c92046eb271d1761c4e1a2e05a7dcfdaf5d835d4e3ea71",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/fragment_radiation_2026_10_22/seed_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/fragment_radiation_2026_10_22/seed_run/result.json",
+      "sha256": "fd7436ac9bea7ae7f890aaa7fe83771d0a0c0a1566b491e70add96962c076493",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

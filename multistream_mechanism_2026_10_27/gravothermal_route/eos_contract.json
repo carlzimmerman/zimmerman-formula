@@ -1,0 +1,56 @@
+{
+  "claim_id": "INDEPENDENT_LOGOTROPE_PRESSURE_BOUNDARY_REVIEW",
+  "mathematics": {
+    "assertion_tested": "Piecewise-linear variational eigenproblem independently checks logotropic radial pulsation eigenvalue signs at density contrasts 2,4,critical,6, with fixed-external-pressure moving boundary, and mass turning point.",
+    "coefficient_domain": "IEEE754 float64; linear finite elements",
+    "conventions": "P=A ln(rho/rho_ref)+constant; barotropic perturbations deltaP=A/rho deltaRho; radial displacement delta r=r eta; Robin 3eta+xi eta_prime=0 at movable pressure boundary.",
+    "inputs": [
+      "dimensionless equilibrium theta_prime=m/xi^2,m_prime=xi^2/theta",
+      "constant external pressure at moving interface"
+    ],
+    "bounds": {
+      "elements": [
+        200,
+        400,
+        800
+      ],
+      "contrast": [
+        2,
+        4,
+        "critical",
+        6
+      ],
+      "eigenvalues": 3,
+      "shift": -0.5
+    },
+    "non_claims": [
+      "No full halo stability",
+      "No derivation of EOS or its coefficient",
+      "No formation or general nonradial modes"
+    ]
+  },
+  "execution_artifacts": [
+    "multistream_mechanism_2026_10_27/gravothermal_route/eos_independent.py",
+    "multistream_mechanism_2026_10_27/eos_route/diagnostic.py",
+    "multistream_mechanism_2026_10_27/eos_route/run/result.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

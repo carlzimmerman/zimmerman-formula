@@ -1,0 +1,8 @@
+import argparse,json
+from pathlib import Path
+import numpy as np,torch
+from scipy.linalg import null_space
+from compact import Compact
+from joint import T
+ap=argparse.ArgumentParser();ap.add_argument('--output',required=True);a=ap.parse_args();r=json.loads(Path('boundary_resolution_2026_10_25/run_compact/checkpoint_0_0.3.json').read_text());m=Compact(domain=12,beta=2,K=30,charge=0,L=0,eta=3,sigma=.003,eps=.3,h=.5);m.ell2=(3/m.rm)**2;n=m.n;v=np.r_[r['mass'],r['v'][n:]];z=T(v).requires_grad_(True);H=torch.autograd.functional.hessian(lambda a:m.energy(torch.log(a[:n]),a[n:]),z).detach().numpy();im=np.where(v[:n]>1e-7)[0];ix=np.where((v[n:]>1e-6)&(v[n:]<1-1e-6))[0]+n;P0=null_space(np.ones((1,len(im))));P=np.zeros((2*n,len(im)-1));P[im]=P0;X=np.eye(2*n)[:,ix];Z=np.c_[P,X];ev=np.linalg.eigvalsh(Z.T@H@Z);end=np.where((v[n:]<=1e-6)|(v[n:]>=1-1e-6))[0];neg=end[np.diag(H)[n:][end]<-1e-8];rad=np.array(r['r']);q=np.array(r['q']);i=np.where((q[:-1]-.5)*(q[1:]-.5)<0)[0][-1];dr=rad[i+1]-rad[i];hp=np.pi/2*np.sin(np.pi*v[n:]);C=np.zeros(2*n);C[n+i]=dr*(.5-q[i+1])/(q[i+1]-q[i])**2*hp[i];C[n+i+1]=-dr*(.5-q[i])/(q[i+1]-q[i])**2*hp[i+1];cc=C@Z;kk=float(1/(cc@np.linalg.solve(Z.T@H@Z,cc))) if ev[0]>0 else None
+out=dict(n=n,minimum_active_tangent_H=float(ev[0]),minimum_active_material_H=float(np.linalg.eigvalsh(P.T@H@P)[0]),negative_endpoint_radii_kpc=rad[neg].tolist(),endpoint_diagonals=np.diag(H)[n:][neg].tolist(),relaxed_boundary_stiffness_Eunit_per_kpc2=kk,qualification='Finite-grid active Hessian and endpoint diagnostic; no global or nonspherical stability claim.');Path(a.output).write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out,indent=2))

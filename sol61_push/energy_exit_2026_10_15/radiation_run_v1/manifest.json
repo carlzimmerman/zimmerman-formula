@@ -1,0 +1,137 @@
+{
+  "schema_version": 2,
+  "claim_id": "ENERGY-EXIT-RADIATION-2026-10-15",
+  "repository": {
+    "commit": "a5af666eb340b5a7cc376bf8ce788d38ff1adb1b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/energy_exit_2026_10_15/radiation_checks.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conserved-source scalar form factor and conditional radiation timescale",
+    "coefficient_domain": "Exact symbolic algebra and 60-digit quadrature",
+    "conventions": "Explicit candidate comparisons; no S2 halo law imported; wave hbar=m=G=1 except gravity-off control",
+    "inputs": [
+      "radiation_checks.py"
+    ],
+    "bounds": {
+      "small_z_series_order": 6,
+      "quadratures": [
+        0.001,
+        0.01,
+        0.1,
+        1
+      ],
+      "source": "Uniform conserved-mass sphere, prescribed small breathing amplitude"
+    },
+    "non_claims": [
+      "No observed physical identification",
+      "No galaxy law or abundance selection",
+      "No full theory closure",
+      "No universal radiative-cooling impossibility"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T21:08:51.479108+00:00",
+    "runtime_seconds": 0.563706,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 25.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/energy_exit_2026_10_15/radiation_checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/energy_exit_2026_10_15/radiation_checks.py",
+      "sha256": "848f5bda898965b014c1ac2849a44a1beb296baffa591d68be90d267ea64d0d8",
+      "sha256_after": "848f5bda898965b014c1ac2849a44a1beb296baffa591d68be90d267ea64d0d8"
+    }
+  ],
+  "output_directory": "sol61_push/energy_exit_2026_10_15/radiation_run_v1",
+  "declared_results": [
+    "sol61_push/energy_exit_2026_10_15/radiation_run_v1/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/energy_exit_2026_10_15/radiation_run_v1/stdout.txt",
+      "sha256": "cf2c273220852382c752cf9e6e583526411f161c237141a2926e0092d1341139",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/energy_exit_2026_10_15/radiation_run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/energy_exit_2026_10_15/radiation_run_v1/results.json",
+      "sha256": "cf2c273220852382c752cf9e6e583526411f161c237141a2926e0092d1341139",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

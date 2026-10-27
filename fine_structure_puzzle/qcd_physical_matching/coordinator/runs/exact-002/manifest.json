@@ -1,0 +1,120 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP006_FINITE_RADIUS_V2",
+  "repository": {
+    "commit": "5c3444b8f60820a4ea78ea1e798ce8429cf2622a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_physical_matching/coordinator/check_finite_radius_v2.py",
+    "fine_structure_puzzle/qcd_physical_matching/coordinator/runs/exact-002/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact rational moment-system solution, local/log cancellation, analytic-family bias and calibration tangent checks",
+    "coefficient_domain": "Q and symbolic elementary functions in SymPy",
+    "conventions": "round S4; rho=(1-D/4)(W/V); same microscopic parameters at all radii",
+    "inputs": [
+      "radii H,2H,4H,8H,16H; analytic synthetic f and matching family"
+    ],
+    "bounds": {
+      "stress_radii": 4,
+      "partition_radii": 5
+    },
+    "non_claims": [
+      "No QCD path integral evaluated",
+      "No physical ratio or alpha predicted",
+      "No actual continuum/curvature-limit error bound"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T10:56:04.251101+00:00",
+    "runtime_seconds": 0.402157,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 35,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_physical_matching/coordinator/check_finite_radius_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_physical_matching/coordinator/check_finite_radius_v2.py",
+      "sha256": "43d200f8e7973f1075171cf8e253ac04671a5a29607e9250be24cd5ae9ab67a3",
+      "sha256_after": "43d200f8e7973f1075171cf8e253ac04671a5a29607e9250be24cd5ae9ab67a3"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_physical_matching/coordinator/runs/exact-002",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_physical_matching/coordinator/runs/exact-002/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_physical_matching/coordinator/runs/exact-002/stdout.txt",
+      "sha256": "34c6b2960a89fa7b0739d3d6b360cbdc02570fe46021b158046cf994f592afcf",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_physical_matching/coordinator/runs/exact-002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_physical_matching/coordinator/runs/exact-002/result.json",
+      "sha256": "dd028b9bf5b3c96fdbbb8914f99aae02b179edceb39d2ad579b940b89d9abfa6",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

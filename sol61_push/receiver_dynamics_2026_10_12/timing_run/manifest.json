@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "RECEIVER_CLOCK_TEST",
+  "repository": {
+    "commit": "9b2d40d35fa47f74c418f7f836ef02e0c4aafd8c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/receiver_dynamics_2026_10_12/timing.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite ODE timing approaches an epsilon^-2 slow-manifold law for the normalized oscillator receiver.",
+    "coefficient_domain": "IEEE float64 stiff ODE and elementary functions",
+    "conventions": "tau=1, A=D=Gamma=1, H0=4; epsilon=omega tau",
+    "inputs": [
+      "sol61_push/receiver_dynamics_2026_10_12/timing.py",
+      "sol61_push/receiver_dynamics_2026_10_12/TIMING_CONTRACT.txt"
+    ],
+    "bounds": {
+      "epsilon": [
+        0.03,
+        0.01,
+        0.003
+      ],
+      "stop_q": 0.9,
+      "max_t": ".1/epsilon^2",
+      "energy_tolerance": 1e-07,
+      "timing_tolerance_at_smallest_epsilon": 0.02
+    },
+    "non_claims": [
+      "No derived microphysical rate",
+      "No universal cosmological frequency",
+      "Physical conversion is conditional and asymptotic"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T02:08:55.965228+00:00",
+    "runtime_seconds": 0.633843,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/receiver_dynamics_2026_10_12/timing_run/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/receiver_dynamics_2026_10_12/timing.py",
+    "sol61_push/receiver_dynamics_2026_10_12/TIMING_CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/timing.py",
+      "sha256": "84f778de288d8fa66e4f4b7f88ce3ce7aeeb78392c534f476fb341a238385742",
+      "sha256_after": "84f778de288d8fa66e4f4b7f88ce3ce7aeeb78392c534f476fb341a238385742"
+    },
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/TIMING_CONTRACT.txt",
+      "sha256": "748553073619f0f924e846dc4eadee7d35173166048bce1faae15c1bfa8e0d72",
+      "sha256_after": "748553073619f0f924e846dc4eadee7d35173166048bce1faae15c1bfa8e0d72"
+    }
+  ],
+  "output_directory": "sol61_push/receiver_dynamics_2026_10_12/timing_run",
+  "declared_results": [
+    "sol61_push/receiver_dynamics_2026_10_12/timing_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/timing_run/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/timing_run/stderr.txt",
+      "sha256": "a0aa4e27b8d1eb4fe8ab1fc47a39cbc061d19806995a48cc7b1fe13a7e8738d1",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: sol61_push/receiver_dynamics_2026_10_12/timing_run/results.json"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "claim_id": "COLORED-BATH-2026-10-13-TRAJECTORIES",
+  "mathematics": {
+    "assertion_tested": "Bounded nonlinear trajectory crossing fractions and coupled coarse/fine consistency under delayed stationary OU forcing.",
+    "coefficient_domain": "IEEE float64; exact OU endpoint transitions, time-dependent velocity Verlet for the forced Duffing orbit.",
+    "conventions": "Fixed bare-energy cutoff ER=1; initial E=1-sigma; common random paths across amplitudes and resolutions; crossings are diagnostic, not killed or reflected.",
+    "inputs": [
+      "sol61_push/colored_bath_2026_10_13/trajectories.py"
+    ],
+    "bounds": {
+      "paths": 512,
+      "sigma": [
+        0.001,
+        0.003,
+        0.01
+      ],
+      "initial_gap": "equal to sigma",
+      "periods": 10,
+      "steps_per_period": [
+        512,
+        1024
+      ],
+      "seed": 20261013,
+      "stationary_OU_prehistory_periods": 1,
+      "energy_grid_RMS_tolerance": "0.03*sigma",
+      "cross_fraction_grid_tolerance": 0.03,
+      "unforced_energy_error_tolerance": "0.05*sigma"
+    },
+    "non_claims": [
+      "No universal crossing probability, exact stochastic solution, or empirical evidence.",
+      "Wilson intervals omit numerical discretization bias; timestep comparison separately records it.",
+      "No physical moving escape boundary or microscopic selector force is modeled."
+    ]
+  },
+  "software": [
+    {
+      "name": "Python scientific runtime",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "NumPy PCG64 via default_rng",
+    "seed": 20261013
+  },
+  "execution_artifacts": [
+    "sol61_push/colored_bath_2026_10_13/trajectories.py"
+  ]
+}

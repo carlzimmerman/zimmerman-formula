@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "RA-011",
+  "repository": {
+    "commit": "b6637558dccd3004b3693554ce3bfa1fcdf78e71",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/reciprocal_anchor_2026_10_13/check_clock_constraint.py",
+    "sol61_push/reciprocal_anchor_2026_10_13/run_clock_2026_10_14/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Clock-varied metric-frozen nonzero-P current block, on-shell weak-lapse correction, constraint reduction and high-k mode inheritance",
+    "coefficient_domain": "SymPy exact real and rational algebra; floating eigenvalue controls",
+    "conventions": "c=1; conserved Eulerian currents; fixed-clock local/ static comparison",
+    "inputs": [
+      "sol61_push/reciprocal_anchor_2026_10_13/check_clock_constraint.py",
+      "sol61_push/reciprocal_anchor_2026_10_13/CLOCK_CONTRACT_2026_10_14.txt",
+      "sol61_push/reciprocal_anchor_2026_10_13/COUPLED_RESULT.txt"
+    ],
+    "bounds": {
+      "domain": "positive actual R,reference n,h,k,kappa_perp,Kp,gamma;nonparallel k,P",
+      "numeric_k": [
+        "1/10",
+        "1",
+        "10",
+        "100"
+      ],
+      "background": "locally static algebraic g=(Wprime/|P|)P;metric/lapse fixed apart from retained source gradient"
+    },
+    "non_claims": [
+      "No full Einstein/clock characteristic or universal ghost/illposedness verdict",
+      "Parallel orientation differs; no inherited fixed-clock causal certificate",
+      "No halo profile rerun or physical EOS selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T10:57:11.099310+00:00",
+    "runtime_seconds": 1.257157,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/reciprocal_anchor_2026_10_13/check_clock_constraint.py",
+    "sol61_push/reciprocal_anchor_2026_10_13/CLOCK_CONTRACT_2026_10_14.txt",
+    "sol61_push/reciprocal_anchor_2026_10_13/COUPLED_RESULT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/check_clock_constraint.py",
+      "sha256": "2b05d244a9595f8871d77b1491c5cb4160cd20979e5fe446d20998537f2d542a",
+      "sha256_after": "2b05d244a9595f8871d77b1491c5cb4160cd20979e5fe446d20998537f2d542a"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/CLOCK_CONTRACT_2026_10_14.txt",
+      "sha256": "2c05cce6584da204b1d841f301810020b3062d4c51eda7cea1ad1fe7a4130be5",
+      "sha256_after": "2c05cce6584da204b1d841f301810020b3062d4c51eda7cea1ad1fe7a4130be5"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/COUPLED_RESULT.txt",
+      "sha256": "7093271863818c1a7097f063aada6eb870881f8deb7ac442d097f694600bb1f2",
+      "sha256_after": "7093271863818c1a7097f063aada6eb870881f8deb7ac442d097f694600bb1f2"
+    }
+  ],
+  "output_directory": "sol61_push/reciprocal_anchor_2026_10_13/run_clock_2026_10_14",
+  "declared_results": [
+    "sol61_push/reciprocal_anchor_2026_10_13/run_clock_2026_10_14/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run_clock_2026_10_14/stdout.txt",
+      "sha256": "0b6ea67b54bc7902dc629f53744d1d5d79446ffb26b277a0850a6d5bf36ffecc",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run_clock_2026_10_14/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run_clock_2026_10_14/results.json",
+      "sha256": "0b6ea67b54bc7902dc629f53744d1d5d79446ffb26b277a0850a6d5bf36ffecc",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

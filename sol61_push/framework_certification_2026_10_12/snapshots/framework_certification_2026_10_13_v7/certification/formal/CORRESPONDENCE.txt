@@ -1,0 +1,66 @@
+FRAMEWORK-CERT-2026-10-12 / bounded formal audit
+
+Verdict: conditional mathematical implications verified; whole theory NOT certified.
+Logical base named by orchestrator: 8cef73ea7d01e20f1d08f435ad621b739f8eb3cc.
+Live HEAD observed after compile: 2cb58cbbcadf8da28f5b5040e93716312e001ab5.
+Hashes below bind actual read inputs despite concurrent commits.
+
+English correspondence and hypothesis origins:
+1. response_derivative / offset_invisible_to_response: for all real W0, A, B, x,
+   W0 + A*x^2/2 + B*x^3/3 has derivative A*x+B*x^2, independent of W0.
+   The polynomial is a declared test model from POLARIZATION_SELECTOR, not a
+   microscopic action or an assumption imported from the paper mentioned there.
+2. offset_ratio_change: for any reals, at fixed G and a, an offset delta changes
+   G*W0/a^2 by G*delta/a^2. Algebra includes Lean's totalized division at a=0;
+   physical interpretation requires a nonzero a. No metric variation certified.
+3. factor_four_iff_offset: nonzero G and a are mathematical nondegeneracy
+   hypotheses. Ratio four is equivalent to W0=4*a^2/G. This is the exact extra
+   constraint; response derivative invariance cannot supply it.
+4. factor_four_iff_half: positive kappa and G*W0, plus DEFINED
+   a=kappa*sqrt(G*W0), imply ratio four iff kappa=1/2. This translates the
+   framework scale after W0=rho_DE*c^2 and positive c, not a derivation of W0
+   or kappa. Neither units nor a response equation selects kappa here.
+5. coefficient_not_selected: normalized positive kappa choices 1 and 1/2 both
+   satisfy the defined scale, but yield ratios 1 and 4. This refutes selection
+   by the stated scale-family premises alone; not a counterexample to nature.
+6. fixed_response_different_vacuum_ratio: at fixed a=G=1 and arbitrary A,B,x,
+   positive W0=1 and 4 give identical response derivatives, ratios 1 and 4.
+
+No LambdaCDM, AQUAL, standard MOND, GR, or empirical likelihood premises imported.
+Mathlib supplies mathematics only. Formal force polynomial is declared and its
+physical validity remains unproved. The result does not claim all vacuum terms
+are dynamically invisible: constant offsets can matter under metric variation.
+
+Verification:
+Working directory: fable_independent_2026/lean_2026
+Command: lake env lean ABSOLUTE_PATH/formal/VacuumLink.lean
+Exit: 0. compile.log lists axioms of ALL seven theorems:
+[propext, Classical.choice, Quot.sound], with no sorryAx or custom physical axioms.
+Source scan for sorry / axiom / native_decide: no matches.
+FalseFactorFour.lean: EXPECTED FAILURE, exit 1, FalseFactorFour.log goal False.
+FalseOffsetResponse.lean: EXPECTED FAILURE, exit 1, FalseOffsetResponse.log goal False.
+These two intentionally false test files are controls, not certificates.
+Compile controls individually; do not treat their failing build as a source error.
+
+SHA-256 of actual contextual inputs (not Lean proof dependencies):
+e65f31944ba1dcb237f6c1c9ba6b32b7542a2ed360ddf65f170fe18eee647842  sol61_push/gravity_architecture_lean_2026_10_12/Architecture.lean
+e1b8409d0c9aab1ba30d0b40093cbe56cc3636454886389045779601ab0082bb  campaign_fresh_gravity/MECHANISM_JOINT_2026-10-12.md
+82de6e10c11d1c8a4a399b4e0a1d35492dc081265cfeef33b311965cb9e2469e  campaign_fresh_gravity/CFG679_mechanism_contract/FROZEN_CRITERIA.md
+09bfa95eb0309e6d3a760e80552894bacd5cb3b145cf7da1ed41e028fdb09391  campaign_fresh_gravity/CFG679_mechanism_contract/PART2_FROZEN_CRITERIA.md
+9bd3fd471414b848b47235df34ecece70cfd1bbadbd605d259bc57622a2f382d  campaign_fresh_gravity/CFG679_mechanism_contract/PART2_SCORECARD.md
+8c193b86917e63e6b70443a0b1b1bea55bb59b957d9efaba845d7f7425cf9624  sol61_push/cold_production_2026_10_11/POLARIZATION_SELECTOR.md
+81cd73c62a20e6d7110c954a427353eb9d878db37ff73fa5d75a5707f89497ed  sol61_push/cold_production_2026_10_11/POSITIVE_POLARIZATION.md
+d5e880500166fe9671158ab10fe6806f94539ae67a80e8ec8ac8db8ba8a49dc0  fable_independent_2026/lean_2026/ChainCert.lean
+e92f7eca5dc83ecc7ce487512a3b7b9a757ea68975cf35fde40c99b8322c5c56  fable_independent_2026/lean_2026/ChainCert/Dimension.lean
+f3197c8fab07370c46a728b97664851345df23882ffbcfc499c4fc0a7929bd68  fable_independent_2026/lean_2026/ChainCert/CalibrationWall.lean
+8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88  fable_independent_2026/lean_2026/lean-toolchain
+1b4ac169a59c53eb7031b99854f3da253ebbd372ef82b91f2d13c8ae4744acf6  fable_independent_2026/lean_2026/lakefile.toml
+800e795bcb59b3e013641c7f2cea47baf9fc709c632ba3d4be6b9f1e00a1771e  fable_independent_2026/lean_2026/lake-manifest.json
+
+SHA-256 of certificate and verification artifacts:
+3de311ed7927076a67e5b93ca7d5607adbff43e90f360e5f2612c588f82f3d05  VacuumLink.lean
+4e41a37c3622408c90f797169420c5b6e34570b6b36f5d9d0ea73b6ae3642d56  compile.log
+aa5fcd9dc5d25e669e6213a823694dee1338df8d6cebcd59c52c93831f85de72  FalseFactorFour.lean
+d74900b8a9fccae6970d190ca0b3e6aae8d35e1d33f419ac4d16df54b840b7ab  FalseFactorFour.log
+e53a3564e4efd654121c4a336a44da32276555ee62cd3b36b7fc86e81b7cfdaf  FalseOffsetResponse.lean
+633170208a9d79fd8d62f7905ff02ee0d0aef55392513bba5ed496a0fab95d35  FalseOffsetResponse.log

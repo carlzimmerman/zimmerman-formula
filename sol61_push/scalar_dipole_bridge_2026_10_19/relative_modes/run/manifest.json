@@ -1,0 +1,119 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE087-RELATIVE-MODES-2026-10-19",
+  "repository": {
+    "commit": "970c67ce3dcd1c14e3488b9bce45e813ccfe0799",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/scalar_dipole_bridge_2026_10_19/relative_modes/check_relative_modes.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The exact uniform-sphere interaction polynomial obeys its overlap Poisson equation and exterior matching; representative mass pairs obey COM/reduced-inertia identities; Gaussian examples obey the derived infrared source power and overlap curvature, and exhibit or lack the stated 90 percent intermediate band.",
+    "coefficient_domain": "Q for polynomial/mass checks; binary64 for Gaussian examples",
+    "conventions": "Natural units; positive masses; spherical centered profiles; k is nonnegative; G Md Mb=R=1 only in dimensionless polynomial checks",
+    "inputs": [
+      "Mass pairs (1,1), (1/3,1), (2,7), (100,1)",
+      "Gaussian size ratios 1,2,3,10,30,100",
+      "Infrared k sigma_d = 0.1,0.03,0.01,0.003,0.001"
+    ],
+    "bounds": {
+      "max_bisection_iterations": 100,
+      "Gaussian_curvature_relative_tolerance": 1e-05,
+      "max_sampled_size_ratio": 100
+    },
+    "non_claims": [
+      "No proof of a stable material state of the original scalar action",
+      "No GP-Poisson evolution",
+      "No global parameter search",
+      "No nonlinear rational constitutive law or occupied continuum derived"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T13:38:42.593489+00:00",
+    "runtime_seconds": 0.041291,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/scalar_dipole_bridge_2026_10_19/relative_modes/check_relative_modes.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/scalar_dipole_bridge_2026_10_19/relative_modes/check_relative_modes.py",
+      "sha256": "51532fc32b9c11f61108d5ae9c83c239fd2f4c1a166b542fa63e669426e0bb10",
+      "sha256_after": "51532fc32b9c11f61108d5ae9c83c239fd2f4c1a166b542fa63e669426e0bb10"
+    }
+  ],
+  "output_directory": "sol61_push/scalar_dipole_bridge_2026_10_19/relative_modes/run",
+  "declared_results": [
+    "sol61_push/scalar_dipole_bridge_2026_10_19/relative_modes/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/scalar_dipole_bridge_2026_10_19/relative_modes/run/stdout.txt",
+      "sha256": "1cb3bd30256374b95324848d35a393f93bbd2456bed95799733a6ad7bc453d14",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/scalar_dipole_bridge_2026_10_19/relative_modes/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/scalar_dipole_bridge_2026_10_19/relative_modes/run/results.json",
+      "sha256": "60275a580cd5d317109528fc2cc51e8c1269b8239e136c54db254eb3bae47ad0",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

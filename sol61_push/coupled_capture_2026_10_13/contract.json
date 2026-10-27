@@ -1,0 +1,73 @@
+{
+  "claim_id": "COUPLED-CAPTURE-AND-MATTER-PAIR-GAIN",
+  "mathematics": {
+    "assertion_tested": "Combined nonlinear three-mode ramp under beam imbalance, optical antisymmetric gain, and quantum-seeded matter-pair gain.",
+    "coefficient_domain": "float64 Radau ODE, exact matrix-exponential solution of linear moment equations",
+    "conventions": "tau=Gamma*t; number-loss rates; pair modes on shell, phase matched and coherently driven.",
+    "inputs": [
+      "sol61_push/coupled_capture_2026_10_13/check.py",
+      "sol61_push/coupled_capture_2026_10_13/INPUT_RESONANCE.json",
+      "sol61_push/coupled_capture_2026_10_13/INPUT_WIDTHS.json"
+    ],
+    "bounds": {
+      "eta_nonlinear": [
+        1e-12,
+        1e-09
+      ],
+      "eta_gain_only": [
+        1e-06
+      ],
+      "photon_loss_s_inv": [
+        29979245800,
+        1000000.0
+      ],
+      "drive_imbalance": 1e-06,
+      "ramp_time": 10,
+      "total_time": 20,
+      "tracking_error_stop": 0.1,
+      "pair_loss_over_gain": [
+        0,
+        1,
+        1.99,
+        2.01,
+        3,
+        10
+      ],
+      "pair_end_time": 3,
+      "rhs_call_cap": 150000
+    },
+    "non_claims": [
+      "No full spatial propagation, finite-cloud spectrum or confining material.",
+      "Matter gain uses undepleted coherent source; nonlinear saturation not computed.",
+      "Escape length criterion uses a stipulated loss estimate, not boundary conditions."
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/coupled_capture_2026_10_13/check.py",
+    "sol61_push/coupled_capture_2026_10_13/INPUT_RESONANCE.json",
+    "sol61_push/coupled_capture_2026_10_13/INPUT_WIDTHS.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "SymPy",
+      "version": "1.14.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

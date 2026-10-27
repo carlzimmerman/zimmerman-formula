@@ -1,0 +1,1934 @@
+                                                                                                                                                                 DESY 18-033
+
+                                                        Proton and neutron electromagnetic form factors from lattice QCD
+
+                                                                      C. Alexandrou1,2 , S. Bacchio1 , M. Constantinou3 , J. Finkenrath2
+                                                                 K. Hadjiyiannakou2 , K. Jansen4 , G. Koutsou2 , and A. Vaquero Aviles-Casco5
+                                                             1
+                                                               Department of Physics, University of Cyprus, P.O. Box 20537, 1678 Nicosia, Cyprus
+                                                                         2
+                                                                           Computation-based Science and Technology Research Center,
+                                                                          The Cyprus Institute, 20 Kavafi Str., Nicosia 2121, Cyprus
+                                                      3
+                                                        Department of Physics, Temple University, 1925 N. 12th Street, Philadelphia, PA 19122-1801, USA
+                                                                           4
+                                                                             NIC, DESY, Platanenallee 6, D-15738 Zeuthen, Germany
+                                                          5
+                                                            Department of Physics and Astronomy, University of Utah, Salt Lake City, UT 84112, USA
+
+                                                           The electromagnetic form factors of the proton and the neutron are computed within lattice QCD
+                                                        using simulations with quarks masses fixed to their physical values. Both connected and disconnected
+                                                        contributions are computed. We analyze two new ensembles of Nf = 2 and Nf = 2 + 1 + 1 twisted
+                                                        mass clover-improved fermions and determine the proton and neutron form factors, the electric and
+
+
+
+
+arXiv:1812.10311v2 [hep-lat] 27 Aug 2019
+                                                        magnetic radii, and the magnetic moments. We use several values of the sink-source time separation
+                                                        in the range of 1.0 fm to 1.6 fm to ensure ground state identification. Disconnected contributions are
+                                                        calculated to an unprecedented accuracy at the physical point. Although they constitute a small
+                                                        correction, they are non-negligible and contribute up to 15% for the case of the neutron electric
+                                                        charge radius.
+
+                                                        PACS numbers: 11.15.Ha, 12.38.Gc, 24.85.+p, 12.38.Aw, 12.38.-t
+                                                        Keywords: Nucleon structure, Nucleon electromagnetic form factors, Disconnected, Lattice QCD
+
+
+                                                           I.     INTRODUCTION                               a strange and a charm quark (Nf =2+1+1) with masses
+                                                                                                             fixed to their physical value (referred to hereafter as
+                                                                                                             physical point). A clover term is added to the action
+                                              Nucleons, being composite particles, have a non-trivial
+                                                                                                             to suppress isospin breaking effects that come quadrati-
+                                           internal structure that can be probed by measuring their
+                                                                                                             cally with the lattice spacing. Details on the simulation
+                                           electromagnetic form factors. These fundamental quan-
+                                                                                                             can be found in Ref. [5]. We will refer to this ensemble
+                                           tities have been extensively studied both theoretically
+                                                                                                             as cB211.072.64. In addition, we present an analysis of
+                                           and experimentally. However, open issues still persist
+                                                                                                             a twisted mass ensemble of two degenerate light quarks
+                                           and there are on-going experimental efforts to deter-
+                                                                                                             with masses fixed to their physical values (Nf = 2) to as-
+                                           mine them at higher precision and over a wider range of
+                                                                                                             sess finite volume artifacts by comparing to previous re-
+                                           momentum transfers and to describe them theoretically.
+                                                                                                             sults obtained using an Nf = 2 ensemble with a smaller
+                                           The proton electric form factor is extracted to high pre-
+                                                                                                             volume and same pion mass and lattice spacing [6, 7].
+                                           cision from electron proton scattering [1]. Its slope at
+                                                                                                             Comparison between Nf = 2 and Nf = 2+1+1 also sheds
+                                           vanishing momentum transfer squared yields the proton
+                                                                                                             light on any possible unquenching effect of the strange
+                                           charge root mean square (r.m.s) radius. Prior to 2010,
+                                                                                                             and charm quarks. The momentum dependence of the
+                                           the charge r.m.s. radius of the proton was considered
+                                                                                                             form factors is fitted using two Ansätze, namely either
+                                           a well-determined quantity (see Ref. [2] for a recent re-
+                                                                                                             a dipole or the Galster-like parameterization [8] and the
+                                           view). A pioneering experiment using Lamb shifts in
+                                                                                                             model independent z-expansion [9]. The fits allow for the
+                                           muonic hydrogen surprisingly found a value smaller by
+                                                                                                             extraction of the magnetic moment and the electric and
+                                           five standard deviations [3], triggering the so-called pro-
+                                                                                                             magnetic r.m.s radii of the proton and neutron and pro-
+                                           ton radius puzzle. The origin of this discrepancy is not
+                                                                                                             vide a measure of the systematics due to the choice of
+                                           yet understood, and potential systematic uncertainties
+                                                                                                             the fit method.
+                                           related to the analysis methodologies in the two types of
+                                           experiments have not been excluded. Another quantity                 A crucial component of our analysis is the use of hier-
+                                           of interest is the neutron electric form factor [4], which        archical probing [10] combined with deflation of the lower
+                                           is accessed indirectly experimentally through electron-           lying eigenvalues [11] that enables us to calculate the light
+                                           deuteron or electron-helium scattering and therefore re-          quark disconnected contributions to the form factors at
+                                           mains poorly-known. It is of substantial importance to            an unprecedented accuracy at the physical point. This al-
+                                           compute these fundamental quantities from first princi-           lows us to obtain the proton and neutron form factors at
+                                           ples using lattice QCD, which provides an ideal formu-            the physical point without neglecting disconnected con-
+                                           lation for such an investigation and with simulations at          tributions.
+                                           physical values of the QCD parameters.                              The remainder of this paper is organized as follows: In
+                                              Within this work, we compute the proton and neu-               Section II, we describe the nucleon matrix elements re-
+                                           tron electromagnetic form factors including light quark           quired to extract the electromagnetic form factors and in
+                                           disconnected contributions. We use an ensemble of                 Section III we provide details on the lattice QCD tech-
+                                           twisted mass fermions with two degenerate light quarks,           niques employed for the computation of the connected
+                                                                                                                                                        2
+
+and disconnected diagrams. In Section IV, we discuss
+the analysis of the data paying particular attention to
+the identification of the ground state matrix element. In                                    GM (q 2 ) = F1 (q 2 ) + F2 (q 2 ) .                     (4)
+Section V we include an assessment of finite volume and
+unquenching effects using results from the analysis of the              In the isospin limit, where the up and down quarks
+two Nf =2 ensembles. In Section VI, we fit the isovec-                  are degenerate, we consider the isovector combination
+tor and isoscalar form factors to extract the magnetic                  hp|jµu − jµd |pi that gives the difference between the proton
+moments and radii. We compare to other lattice QCD                      and neutron form factors and the isoscalar combination
+studies using simulations close to physical pion masses                 hp|jµu + jµd |pi/3 for the sum of the proton and neutron
+in Section VII [12–15]. Our final results for the proton                form factors. The electric form factor at zero momentum
+and neutron electromagnetic form factors are given in                   yields the nucleon charge, i.e. GpE (0)=1 and GnE (0)=0
+Section VIII. Finally, in Section IX, we summarize our                  which, when using the lattice conserved current, holds
+findings and conclude. For completeness, we summarize                   by symmetry, even prior to gauge averaging. The mag-
+in Appendix A the decomposition of the nucleon matrix                   netic form factor at q 2 =0 gives the magnetic moment,
+elements in terms of the form factors and in Appendix B                 while the radii can be extracted from the slope of the
+we provide a table with the numerical results for the elec-             electric and magnetic form factors as q 2 → 0, namely:
+tric and magnetic form factors as a function of the mo-
+                                                                                                         6 ∂G(q 2 )
+mentum transfer squared.                                                                      hr2 i =                   .                            (5)
+                                                                                                        G(0) ∂q 2 q2 =0
+
+   II.   ELECTROMAGNETIC FORM FACTORS
+                                                                               III.     CALCULATION ON THE LATTICE
+  The nucleon matrix element of the electromagnetic
+current is parameterized in terms of the Dirac (F1 ) and                                  A.     Nucleon matrix element
+Pauli (F2 ) form factors given in Minkowski space by,
+                                    s                                      Extraction of nucleon matrix elements within the lat-
+                                              m2N                       tice QCD formulation requires the evaluation of two- and
+     hN (p0 , s0 )|jµ |N (p, s)i =                        ×
+                                      EN (~  p 0 )EN (~p)               three-point correlation functions in Euclidean space. We
+                                                                        thus give all quantities in Euclidean space from here on.
+                                   iσµν q ν
+                                                    
+     ūN (p0 , s0 ) γµ F1 (q 2 ) +          F2 (q 2 ) uN (p, s) . (1)   We use the standard nucleon interpolating field
+                                    2mN
+N (p, s) is the nucleon state with initial (final) momentum                           JN (~x, t) = abc ua (x)[ub| (x)Cγ5 dc (x)] ,                  (6)
+p (p0 ) and spin s (s0 ), with energy EN (~          p 0 )) and
+                                             p) (EN (~
+               2     µ
+mass mN . q ≡qµ q is the momentum transfer squared                      where u and d are up- and down-quark spinors and
+qµ =(p0µ − pµ ) and uN is the nucleon spinor. The local                 C=γ0 γ2 is the charge conjugation matrix. The two-point
+vector current jµ is given by,                                          function in momentum space is given by
+                                                                                             X 
+                                                                        C(Γ0 , p~; ts , t0 )= Tr Γ0 hJN (ts , ~xs )J¯N (t0 , ~x0 )i e−i(~xs −~x0 )·~p ,
+                    X            X                                                                                                 
+              jµ =      ef jµf =    ef q̄f γµ qf ,           (2)
+                      f              f                                                         ~
+                                                                                               xs
+                                                                                                                                                       (7)
+where qf is the quark field of flavor f and ef its electric             and the three-point function is given by
+charge, and the summation runs over all the quark fla-                                                         X                                     0
+vors. Instead of the local vector current, we instead use                Cµ (Γν , q~, p~ 0 ; ts , tins , t0 )=   ei(~xins −~x0 )·~q e−i(~xs −~x0 )·~p ×
+the symmetrized lattice conserved vector current given                                                      ~
+                                                                                                            xins ,~
+                                                                                                                  xs
+by
+                                                                                          Tr Γν hJN (ts , ~xs )jµ (tins , ~xins )J¯N (t0 , ~x0 )i .(8)
+                                                                                                                                                
+             1
+    jµf (x) = [ q̄f (x + µ̂)Uµ† (x)(1 + γµ )qf (x)                      The initial position and time, x0 , is referred to as the
+             4
+               − q̄f (x)Uµ (x)(1 − γµ )qf (x + µ̂)                      source, the position and time of the current jµ couples
+                                                                        to a quark is denoted by xins and referred to as the in-
+                 + q̄f (x)Uµ† (x − µ̂)(1 + γµ )qf (x − µ̂)              sertion and the final position, xs , as the sink. Γν is a
+                 − q̄f (x − µ̂)Uµ (x − µ̂)(1 − γµ )qf (x) ] ,           projector acting on spin indices, with Γ0 = 21 (1+γ0 ) yield-
+which, unlike the local vector current, does not need                   ing the unpolarized and Γk =Γ0 iγ5 γk the polarized matrix
+renormalization. The electric and magnetic Sachs form                   elements. Inserting complete sets of states in Eq. (8), one
+factors GE (q 2 ) and GM (q 2 ) are alternative Lorentz in-             obtains the nucleon matrix element as well as additional
+variant quantities and are expressed in terms of F1 (q 2 )              matrix elements of higher energy states with the quantum
+and F2 (q 2 ) via the relations,                                        numbers of the nucleon multiplied by overlap terms and
+                                                                        time dependent exponentials. For large enough time sep-
+                                          q2                            arations, the excited state contributions are suppressed
+              GE (q 2 ) = F1 (q 2 ) +         F2 (q 2 ) ,        (3)
+                                         4m2N                           compared to the nucleon ground state and one can then
+                                                                                                                                                 3
+
+extract the desired matrix element. In order to increase
+the overlap with the nucleon state and decrease over-                                                                   j
+lap with excited states we use Gaussian smeared quark
+fields [16, 17] for the construction of the interpolating
+fields:                                                                                                                                 0   0
+                      X
+        a
+      qsmear (t, x) =   F ab (x, y; U (t)) q b (t, y) , (9)
+                            y
+                  F = (1 + αH)n ,
+                         3
+                                [Ui (x)δx,y−ı̂ + Ui† (x − ı̂)δx,y+ı̂ ] .
+                         X
+   H(x, y; U (t)) =                                                                                                    j
+                         i=1
+
+In addition, we apply APE-smearing to the gauge fields
+Uµ entering the hopping matrix H.
+  The Gaussian smearing parameters are optimized us-                                                                                   0    0
+ing the nucleon two-point function. We set α = 0.2 and
+n = 125 [18]. The values are: α = 4.0 and n = 50, 70 and
+90 for β = 3.9, 4.05 and 4.2 respectively. For the APE
+smearing [19] we use 50 iteration steps and αAP E =0.5.                           FIG. 1. Connected (upper panel) and disconnected (lower
+  An optimized ratio [20–22] of the three-point function                          panel) contributions to the nucleon three-point function, with
+over a combination of two-point functions is used to can-                         the source at x0 , the sink at xs and the current insertion (jµ )
+cel time dependent exponentials and overlaps, given by                            at xins .
+
+                                       Cµ (Γν , p~ 0 , p~; ts , tins )
+     Rµ (Γν , p~ 0 , p~; ts , tins ) =                                 ×          where D−1 (xins ; xins ) is the quark propagator that starts
+                                           C(Γ0 , p~ 0 ; ts )
+     s                                                                            and ends at the same point xins and G is an appropri-
+       C(Γ0 , p~; ts − tins )C(Γ0 , p~ 0 ; tins )C(Γ0 , p~ 0 ; ts )               ately chosen γ-structure. For the local vector current,
+                                                                         , (10)
+        C(Γ0 , p~ 0 ; ts − tins )C(Γ0 , p~; tins )C(Γ0 , p~; ts )                 which we use for the disconnected diagram, G = γµ . A
+                                                                                  direct computation of quark loops would need inversions
+where ts and tins are taken to be relative to the source                          from all spatial points on the lattice, making the evalua-
+t0 for simplicity. In the limit of large time separations,                        tion unfeasible for our lattice size. We therefore employ
+(ts −tins )  1 and tins  1, the lowest state dominates                          stochastic techniques to estimate it combined with di-
+and the ratio becomes time independent                                            lution schemes [26] that take into account the sparsity
+                                   t −t   1                                      of the Dirac operator and its decay properties. Namely,
+    Rµ (Γν ; p~ 0 , p~; ts ; tins ) −−
+                                     s
+                                        −−−→ Πµ (Γν ; p~ 0 , p~) .
+                                      −−ins                              (11)     in this work, we employ the hierarchical probing tech-
+                                     tins 1
+                                                                                  nique [10], which provides a partitioning scheme that
+  GE (Q2 ) and GM (Q2 ) are extracted from linear combi-                          eliminates contributions from neighboring points in the
+nations of Πµ (Γν ; p~ 0 , p~) as expressed in Appendix A, with                   trace of Eq. 12 up to a certain coloring distance 2k . Us-
+Q2 ≡ − q 2 the Euclidean momentum transfer squared.                               ing Hadamard vectors as the basis vectors for the par-
+  Contracting the quark fields in Eq. (8) gives rise to two                       titioning, one needs 2d∗(k−1)+1 vectors, where d=4 for
+types of diagrams depicted in Fig. 1, namely the so-called                        a 4-dimensional partitioning. Note that the computa-
+connected and disconnected contributions. In the case of                          tional resources required are proportional to the num-
+the connected diagram, the insertion operator couples to                          ber of Hadamard vectors, and therefore in d=4 dimen-
+a valence quark and an all-to-all propagator arises be-                           sions increase 16-fold each time the probing distance 2k
+tween sink and insertion. We use sequential inversions                            doubles. Contributions entering from points beyond the
+through the sink that require keeping the sink-source                             probing distance are expected to be suppressed due to
+time separation ts , the projector, and the sink momen-                           the exponential decay of the quark propagator and are
+tum p~0 fixed. We perform additional sets of inversions to                        treated with standard noise vectors  √   which suppress all
+compute the three-point function for several values of ts ,                       off-diagonal contributions by 1/ Nr , i.e.
+for both the unpolarized and polarized projectors. We                                                                         
+set p~0 =~0. We use an appropriately tuned multigrid al-                                       1 X                          1
+                                                                                                       |ξr ihξr | = 1 + O √      ,        (13)
+gorithm [23–25] for the efficient inversion of the Dirac                                      Nr r                          Nr
+operator entering in the computation of the connected
+diagram. The disconnected diagram involves the discon-                            where Nr is the size of the stochastic ensemble. Hier-
+nected quark loop correlated with the nucleon two-point                           archical probing has been employed with great success
+correlator. The disconnected quark loop is given by                               in previous studies [27, 28] for an ensemble with a pion
+                     X                                                           mass of 317 MeV. For simulations at the physical point,
+                        Tr D−1 (xins ; xins )G ei~q·~xins ,
+                                                
+      L(tins , q~) =                                        (12)                  it is expected that a larger probing distance is required
+                     ~
+                     xins                                                         since the light quark propagator decays more slowly at
+                                                                                                                               4
+
+smaller quark masses. We avoid the need of increasing             the one determined by including in the fit the first ex-
+the distance by combining hierarchical probing with de-           cited state (two-state fit). The ratio of the nucleon to
+flation of the low modes [11]. Namely, we construct the           pion mass is mN /mπ = 6.74(3) compared to the physi-
+low mode contribution to the light quark loops by com-            cal ratio of 6.8. Therefore, we use directly the average
+puting exactly the 200 smallest eigenvalues and corre-            proton and neutron mass of 0.9389 GeV to set the scale.
+sponding eigenvectors of the squared Dirac operator and           We find a = 0.0801(4) fm. For the pion mass we find
+combine them with the contribution from the remaining             mπ = 0.1393(7) MeV consistent with the average phys-
+modes, which are estimated using hierarchical probing.            ical pion mass. Our current value of the lattice spacing
+Additionally, we employ the one-end trick [29], used in           is an update compared to the one given in Ref. [5] using
+our previous studies [30–33] and fully dilute in spin and         higher statistics where the values are consistent.
+color.                                                               To assess finite volume effects, we use two Nf =2 en-
+                                                                  sembles, which only differ in their volume, namely one
+                                                                  has Lmπ = 2.98 and the other Lmπ =3.97. We will re-
+         B.    Gauge Ensembles and Statistics                     fer to them as the cA2.09.48 and cA2.09.64 ensembles,
+                                                                  respectively. We note that since the pion mass is not
+  For the extraction of the electromagnetic form factors          exactly at the physical value we interpolate to the phys-
+we analyze one Nf =2+1+1 [5] and one Nf = 2 ensem-                ical pion mass using one-loop chiral perturbation theory.
+ble. For both ensembles the quark masses are tuned to             We include a systematic error on the extracted lattice
+their physical values. The fermion action is the twisted          spacing, determined as the difference in the mean value
+mass fermion action with a clover term. Automatic O(a)            obtained using one-loop chiral perturbation theory and
+improvement is achieved by tuning to maximal twist                heavy baryon chiral perturbation theory. This systematic
+[34, 35]. The Nf = 2+1+1 cB211.072.64 ensemble is sim-            error on the lattice spacing appears for the two Nf =2 en-
+ulated using a lattice of size 643 ×128 with Lmπ =3.62 [5],       sembles, while it is absent in the case of the cB211.072.64
+where L is the spatial extent of the lattice. We deter-           ensemble. Results on the form factors for the Nf = 2 en-
+mine the nucleon mass by fitting the effective mass in            semble with Lmπ =2.98 are from Ref. [7] while results for
+the large-time limit where the ground state dominates.            the other two ensembles are reported here for the first
+The final value is chosen within a fit range where the            time. The simulation parameters of all three ensembles
+value extracted is within half a standard deviation from          considered in this work are tabulated in Table I.
+
+
+
+
+TABLE I. Simulation parameters for the Nf =2+1+1 [5] and Nf =2 [36] ensembles used in this work. When two errors are
+given, the first error is statistical and the second is systematic. The systematic in the lattice spacing of the Nf = 2 ensembles
+is obtained as described in the text, while the systematic in the pion mass provided in physical units is propagated from the
+lattice spacing.
+    ensemble       cSW     β    Nf     a [fm]      Vol.      amπ     mπ L    amN     mN /mπ mπ [GeV] L [fm]
+                                                   3
+    cB211.072.64 1.69    1.778 2+1+1 0.0801(4) 64 ×128 0.05658(6) 3.62 0.3813(19) 6.74(3) 0.1393(7) 5.12(3)
+    cA2.09.64    1.57551 2.1 2      0.0938(3)(1) 483 ×96 0.06208(2) 2.98 0.4436(11) 7.15(2) 0.1306(4)(2) 4.50(1)
+    cA2.09.48    1.57551 2.1 2      0.0938(3)(1) 643 ×128 0.06193(7) 3.97 0.4421(25) 7.14(4) 0.1303(4)(2) 6.00(2)
+
+
+
+
+   For the analysis of the cB211.072.64 ensemble we use           the three-point function. We find that the volume is suf-
+750 configurations separated by 4 trajectories. For the           ficiently large so that the data extracted from this large
+connected contributions we evaluate the three-point func-         number of randomly distributed source positions on the
+tion for five sink-source time separations in the range           same configuration is statistically independent. Never-
+0.96 fm to 1.60 fm increasing the number of source posi-          theless, we average over all source positions for each con-
+tions per configuration as we increase the time separation        figuration and take the averaged correlation function as
+so as to keep the statistical error approximately constant.       one statistic in our jackknife error analysis. As men-
+In Table II we give the statistics used in the calculation        tioned in the previous section, for the evaluation of the
+of the connected three-point functions.                           light quark loops we use the first 200 low modes of the
+   For the evaluation of the disconnected contributions           squared Dirac operator to reconstruct exactly part of
+we use Nsrcs = 200 source positions to generate the nu-           the loop. The contribution from the high modes is es-
+cleon two-point functions that are correlated with the            timated stochastically using one noise vector per con-
+quark loop to produce the disconnected contribution to            figuration combining hierarchical probing, one-end trick
+                                                                                                                                       5
+
+                                                                  separations to control statistical error. In Table IV we
+TABLE II. Statistics for the evaluation of the connected three-
+                                                                  summarize the statistics for both Nf = 2 ensembles.
+point functions for the Nf =2+1+1 cB211.072.64 ensemble.
+Columns from left to right are the sink-source time separa-
+tions, the number of configurations analyzed, the number of
+                                                                  TABLE IV. Statistics for the evaluation of the connected
+source positions per configuration chosen randomly and the
+                                                                  three-point functions for the cA2.09.64 and cA2.09.48 ensem-
+total number of measurements for each time separation.
+                                                                  bles. For the latter, for ts /a = 16, 18 the connected three-
+                                                                  point functions have been computed only for the unpolarized
+                   ts /a Ncnfs Nsrcs Nmeas                        projector. The notation is as in Table II.
+                    12 750      4    3000
+                    14 750      6    4500                                       ts /a Ncnfs Nsrcs       Nmeas
+                    16 750 16 12000                                           cA2.09.64: Nf = 2 643 × 128 ensemble
+                    18 750 48 36000                                              12     333 16           5328
+                    20 750 64 48000                                              14     515 16           8240
+                                                                                 16    1040 16          16640
+                                                                               cA2.09.48: Nf = 2 483 × 96 ensemble
+and spin-color dilution. For the hierarchical probing we                      10,12,14 578 16            9248
+use distance eight coloring resulting in 512 Hadamard                            16     530 88          46640
+vectors, which when combined with spin-color dilution
+                                                                                 18     725 88          63800
+leads to 6144 inversions per configuration. We note that
+the next coloring distance would demand 8192 Hadamard
+vectors, resulting in 98304 inversions per configurations
+after combining with spin-color dilution, making such a
+computation more than an order of magnitude more ex-                          C.      Excited states contamination
+pensive.
+   For the computation of the disconnected contributions             Assessment of excited state effects is imperative for
+for Nf = 2 cA2.09.48 ensemble computed previously we              the proper extraction of the desired nucleon matrix el-
+used only the one-end trick and 2250 noise vectors for the        ement. However, ensuring ground state dominance is a
+calculation. Two-point functions were computed for 100            delicate process due to the exponentially increasing sta-
+source positions. More detail can be found in Ref. [6]. in        tistical noise with increasing sink-source separation. We
+Table III we summarize the parameters for the compu-              use four methods to study the effect of excited states and
+tation of the disconnected three-point functions.                 identify the final results based on a critical comparison
+                                                                  among these methods. Only by employing these different
+                                                                  methods can one reach a reliable assessment of excited
+TABLE III. Details on the set-up for the evaluation of the        state contributions and extract the nucleon matrix ele-
+light disconnected diagrams. Ncnfs is the number of config-       ment of interest. The methods employed are as follows:
+urations analyzed, Ndef is the number of low modes we de-
+flate, Nr the number of noise vectors, and NHad the number        Plateau method: In this method we use the ratio
+of Hadamard vectors. Nsc corresponds to spin-color dilution       in Eq. (10) and identify a time-independent window
+and Ninv /conf is the total number of inversions per configu-     (plateau) as we increase ts . The converged plateau value
+ration. Nsrcs is the number of randomly distributed smeared       then yields the desired matrix element.
+point sources per configuration used to obtain the nucleon
+two-point functions and Nmeas the total number of measure-        Two-state method: Within this method we fit the two-
+ments.                                                            and three-point functions considering contributions up to
+                                                                  the first excited state using the expressions
+
+                       Loops            Two-point                      C(~             p)e−E0 (~p)ts + c1 (~
+                                                                         p, ts ) = c0 (~                   p)e−E1 (~p)ts ,           (14)
+   ensemble   Ncnfs Ndef Nr NHad Nsc Ninv /conf Nsrcs Nmeas
+ cB211.072.64 750 200 1      512 12    6144     200 150000              Cµ (Γν , p~ 0 , p~, ts , tins ) =
+  cA2.09.48   2120   - 2250 -     -    2250     100 212000                                            0
+                                                                        Aµ00 (Γν , p~ 0 , p~)e−E0 (~p )(ts −tins )−E0 (~p)tins
+                                                                                                            0
+                                                                        + Aµ01 (Γν , p~ 0 , p~)e−E0 (~p )(ts −tins )−E1 (~p)tins
+   The cA2.09.64 ensemble is used to check for finite vol-                                                  0
+
+ume effects, comparing the connected contributions to                   + Aµ10 (Γν , p~ 0 , p~)e−E1 (~p )(ts −tins )−E0 (~p)tins
+                                                                                                            0
+those of the cA2.09.48 ensemble. For the latter, the setup              + Aµ11 (Γν , p~ 0 , p~)e−E1 (~p )(ts −tins )−E1 (~p)tins .   (15)
+is reported in Ref. [7] and summarized in Table I. For the
+larger lattice size ensemble, we analyze three sink-source        In Eqs. (14) - (15) E0 (~p) and E1 (~
+                                                                                                      p) are the energies of
+time separations in the range of 1.1 fm to 1.5 fm. We             the ground and first excited states with total momentum
+fix the number of source positions per configuration to           p~, respectively. The ground state corresponds to a single
+16 and we use more configurations for the larger time             particle state and therefore one can use the continuum
+                                                                                                                                                                        6
+                                       p
+dispersion relation, E0 (~       p) = p~2 + m2N , with p~ = 2π        L~ n              electric and magnetic form factors. We note that for the
+                                                                  L L                   electric form factor Eq. (A4) leads to much more precise
+with ~n a lattice vector with components ni ∈ (− 2a                 , 2a ].
+The continuum dispersion relation is satisfied for all Q2                               results compared to Eq. (A5) and therefore we use only
+values considered in this work. The first excited state,                                Eq. (A4). In the case of the ratio determining Gu−d      2
+                                                                                                                                           E (Q ),
+on the other hand, can be a two-particle state. We, thus,                               as ts increases, the plateau value decreases with larger de-
+fit simultaneously the two-point functions with momenta                                 viations as Q2 increases. This shows that at larger Q2
+p~ and p~0 and the three-point function involving in total                              values contamination due to excited states is more severe.
+eleven parameters. Note that for non-zero momentum                                      In the case of GM (Q2 ), excited states are suppressed and
+transfer, Aµ01 (Γν , p~ 0 , p~) 6= Aµ10 (Γν , p~ 0 , p~). This allows us                only a small variation with ts is observed.
+to extract the matrix element given by
+                                         Aµ (Γν , p~ 0 , p~)
+                   Πµ (Γν ; p~ 0 , p~) = p00                 .                  (16)                                                       ts/a = 14       ts/a = 18
+                                               p 0 )c0 (~
+                                           c0 (~         p)
+                                                                                                                 1.0                       ts/a = 16       ts/a = 20
+                                                                                                                         Q2 = 0.057 GeV2
+                                                                                       GuE d(Q2)
+Summation method: Summing over tins in the ratio of
+Eq. (10) yields a geometric sum [37, 38] from which we
+obtain,
+                                     s −a
+                                    tX
+                                                                                                                 0.8
+    Rµsum (Γν ; p~ 0 , p~; ts ) =                         0
+                                              Rµ (Γν ; p~ , p~; ts ; tins ) =
+                                                                                                                         Q2 = 0.219 GeV2
+
+                                                                                       Ru0 d( 0; ~q; ts, tins)
+                                    tins =a
+
+                                 c + Πµ (Γν ; p~ 0 , p~)×ts + · · ·             (17)
+                                                                                                                 0.6
+                                                                    0
+where the ground state contribution, Πµ (Γν ; p~ , p~), is ex-
+tracted from the slope of a linear fit with respect to ts .
+The sink-source time separation ts considered in the fit
+                                                                                                                         Q2 = 0.554 GeV2
+should be large enough to suppress higher order contri-                                X
+                                                                                                       ~q ∈ Q2   0.4
+butions.
+Derivative Summation method: Instead of performing a
+linear fit in Eq. (17) to extract the matrix element, one
+can take finite differences to the summed ratio [39] as                                                          0.210           5          0          5               10
+follows
+                                                                                                                                      (tins ts/2)/a
+      dRµsum (Γν ; p~ 0 , p~; ts ) =
+                                                                                        FIG. 2. Ratio yielding the isovector electric form factor. The
+      Rµsum (Γν ; p~ 0 , p~; ts + dts ) − Rµsum (Γν ; p~ 0 , p~; ts )                   sink-source time separations are ts /a=14 (right triangles),
+                                                                                (18)    ts /a=16 (triangles), ts /a=18 (squares) and ts /a=20 (circles).
+                                   dts
+                                                                                        We present the ratio for three Q2 values, namely 0.057, 0.219
+and fit to a constant to extract the desired matrix ele-                                and 0.554 GeV2 , from top to bottom.
+ment.
+                                                                                           We further investigate effects due to excited states by
+                                                                                        employing the summation and two-state fits. In Fig. 4
+        IV.     ANALYSIS OF LATTICE RESULTS                                             we show linear fits to the summed ratio for three different
+                                                                                        values of Q2 . The slope gives the nucleon matrix element.
+ A.      Isovector and connected isoscalar form factors                                 All three momenta follow well the linear behavior, within
+                                                                                        the statistical error, indicating that contributions from
+   The isovector combination gives the difference between                               higher order terms are suppressed. In the right panel of
+the proton and neutron form factors, and in this case,                                  Fig. 4, we demonstrate the plateaus for the derivative
+only the connected diagram contributes since discon-                                    summation method, fitting to a constant to extract the
+nected contributions cancel, up to cut-off effects of O(a2 ).                           matrix element of the ground state. Within statistical
+For the connected diagram we use a frame where the nu-                                  accuracy all three momenta are indeed flat, and are thus
+cleon final momentum is zero, thus q~=−~  p. In Figs. 2 and                             described well by a constant.
+3 we show the ratios defined in Eq. (10) as a function                                     In Fig. 5 we show the results extracted using two-state
+of the sink-source time separation, and for three values                                fits for both electric and magnetic form factors. The data
+of the momentum transfer squared, that is for Q2 =0.057                                 correspond to the ratio of Eq. (10) and the curves are ob-
+GeV2 , Q2 =0.219 GeV2 and Q2 =0.554 GeV2 . In a frame                                   tained by fitting simultaneously the three- and two-point
+where the final momentum of the nucleon p~0 is zero, the                                functions to Eqs. (15) and (14). The gray horizontal
+expressions in Appendix A given by Eqs. (A1) and (A2)                                   band shows the nucleon matrix element value and er-
+reduce to Eqs. (A4,A5), and (A6), giving separately the                                 ror extracted from the two-state fit as in Eq. (16). For
+                                                                                                                                                   7
+
+                                                                                         the electric form factor, the ratio shows a trend towards
+                                                                                         lower values as we increase the sink-source separation,
+                                                        ts/a = 14       ts/a = 18
+                                                                                         with ts /a=20 becoming compatible with the value ex-
+                                                        ts/a = 16       ts/a = 20
+                                5                                                        tracted from the two-state fit. In the case of the mag-
+
+GuM d(Q2)
+                                      Q2 = 0.057 GeV2                                    netic form factor, the value extracted from the two-state
+                                                                                         fit is compatible with the ratio for all time separations
+                                                                                         considered confirming the weak dependence of the ma-
+                                4                                                        trix element on the sink-source time separation observed
+                                                                                         in the plateau method.
+
+   ijk u d
+
+
+
+
+    k Ri
+           ( k; ~q; ts, tins)
+                                      Q2 = 0.219 GeV2
+
+  q
+                                3
+
+2
+X                               2 Q2 = 0.554 GeV2
+                 ~q ∈ Q
+
+
+                                110           5          0          5               10
+                                                   (tins ts/2)/a
+FIG. 3. Ratio yielding the isovector magnetic form factor.
+The notation is the same as in Fig. 2.
+
+
+
+
+   In Fig. 6 we show the extracted values for the matrix                                 will restrict to showing results only from the summation
+element yielding the isovector electromagnetic form fac-                                 method.
+tors. We compare the plateau, summation, derivative                                         In Fig. 7, we present our results for Gu−d       2
+                                                                                                                                      E (Q ) and
+summation and two-state fit methods. For the plateau                                        u−d   2
+                                                                                         GM (Q ) as a function of the momentum transfer
+method we show the value extracted from the constant                                     squared Q2 . We limit the plot to up Q2 =0.5 GeV2 to
+fit for all sink-source separations available. For the other                             make visible the values extracted using the plateau at
+cases we vary the lower fit range, keeping the upper range                               the four largest separations, the summation, and the two-
+fixed to ts /a=20. We seek for the earliest agreement                                    state fit approaches. For the summation and two-state
+between the plateau method and the other three cases.                                    fit we show the values indicated by the filled symbols in
+As already pointed out, the isovector electric form fac-                                 Fig. 6. As can be seen, for the electric form factor effects
+tor shows more severe excited state effects for large Q2 -                               of excited states are small for small values of Q2 but be-
+values and we therefore take the largest time separation                                 come more severe for higher Q2 values, with the extracted
+for the plateau method to fulfill our criterion for agree-                               value decreasing with increasing time separation in line
+ment with the other methods. For the isovector mag-                                      with the observation made in Fig. 2. For GM   u−d
+                                                                                                                                           (Q2 ), ex-
+netic form factor, although excited state effects are mild,                                                                         2
+                                                                                         cited state effects are small for larger Q values whereas
+we still observe a shift to larger values for the smallest                               for smaller Q2 values there is a systematic increase in the
+Q2 and, therefore, we conservatively use the largest time                                values of the form factor with the time separation.
+separation available also in this case. An additional ob-                                   For the extraction of the connected isoscalar form fac-
+servation is that summation and derivative summation                                     tors we follow a similar analysis procedure as in the
+methods produce compatible results with similar accu-                                    isovector case. In Fig. 8 we present the connected con-
+racy, as can be seen in Fig. 6, and thus from now on we                                  tribution to isoscalar electric and magnetic form fac-
+                                                                                                                                                                       8
+
+
+                                         n2q = 1            n2q = 10                                                                         1.0
+                               16        n2q = 4                                                                                             0.8   GuE d(Q2)
+               GuE d(Q2)
+                                                                                                                                             0.6
+                               12
+                                                                                                                                                   R(ts, tins) /dts
+                                                                                                                                             0.4   ¶
+
+
+               R(ts, tins)      8                                                                                                            0.2
+                                                                                                                                             0.0
+               X
+                       tins                                                                                                                     µX
+                                                                                                                                                              tins
+                                4
+                                8                                                                                                            0.5   GuE d(Q2) d
+                GuM d(Q2)                                                                                                                    0.4
+                                6
+                                                                                                                                             0.3
+                                                                                                                                                   R̄(ts, tins) /dts
+                                                                                                                                                   ¶
+
+
+                R̄(ts, tins)
+                                4                                                                                                            0.2
+               X
+                        tins
+                                2                                                                                                            0.1µX
+                                                                                                                                                              tins
+
+                                    12        14          16           18      20           12               14           16         18      0.0   d
+                                                         ts/a                                                      ts/a
+                                            X                                                         X ijk
+FIG. 4. We define R̃(ts , tins ) ≡                 R0u−d (Γ0 ; q~; ts , tins ) and R̄(ts , tins ) ≡                Riu−d (Γk ; q~; ts , tins ). Left panel: the summed
+                                                                                                              qk
+                                           ~∈Q2
+                                           q                                                          ~∈Q
+                                                                                                      q     2
+
+ratio of Eq. (17) as a function of the sink-source time separation for three momenta, namely n2q =1 (blue circles), n2q =4 (green
+squares) and n2q =10 (red triangles) corresponding to Q2 =0.057, 0.219, and 0.554 GeV2 for the isovector electric (top) and
+isovector magnetic (bottom) form factors. The bands are fits to a linear form. Right panel: the derivative of the summed ratio
+as in Eq. (18), using the same notation as that of the left panel. The bands are fits to a constant.
+
+
+tors comparing the plateau, summation and two-state                                      erarchical probing method, combined with deflation of
+fit methods. Excited states have a smaller effect on the                                 the low eigenmodes, provides an accurate determina-
+isoscalar form factors being detectable only for the mag-                                tion of the diagonal of the quark propagator entering
+netic at small values of Q2 where the two-state fit yields                               in the evaluation of the quark loops. It is thus prefer-
+systematically larger values. Given that there is agree-                                 able to use the local vector current for the evaluation of
+ment between the plateau values for the largest time sep-                                the disconnected contributions since the conserved cur-
+aration and the two-state fit we will use the plateau value                              rent includes non-diagonal terms. We therefore need the
+as the final result for the form factors. The deviation                                  renormalization function ZV , which is determined non-
+from the values determined from the two-states fits are                                  perturbatively, in the RI0 -MOM scheme, employing mo-
+then taken as an estimate of the systematic error due to                                 mentum sources. We perform a perturbative subtraction
+excited states. Since we will be using the plateau values                                of O(g 2 a∞ )-terms, as described in Refs. [40, 41], which
+in the case of disconnected since two-state fits are not                                 subtracts the leading cut-off effects leaving only a weak
+stable in that case we do the same for the connected for                                 dependence on the renormalization scale (aµ)2 , as shown
+consistency.                                                                             in Fig. 9. We find a value of ZV =0.728(1) where the er-
+                                                                                         ror is statistical. Alternatively, ZV can be determined at
+                                                                                                                              u−d
+                                                                                         Q2 = 0, by taking the ratio of GE        (0) computed with
+                                                                                                                  u−d
+             B.          Disconnected contributions                                      the local current to GE (0) computed using the lattice
+                                                                                         conserved current. This ratio yields a value of 0.715(3).
+                                                                                         Although this is 2% smaller than ZV as determined from
+  A major component of this work is the evaluation of                                    the vertex function, the difference between them is still
+the disconnected contributions shown diagrammatically                                    an order of magnitude smaller as compared to the statis-
+in Fig. 1 that enter in the evaluation of the isoscalar as                               tical errors for the disconnected contributions. In what
+well as in the proton and neutron form factors.                                          follows we use ZV =0.728(1) to renormalize the matrix
+  The disconnected quark loops are computed using the                                    elements computed using the local current, since this de-
+formalism described in Section III B with the statistics                                 termination has taken into account higher order cut-off
+summarized in Table III. As already discussed, the hi-
+                                                                                                                                        9
+
+                                                                             the disconnected diagrams. Whenever they work they
+                                    ts/a = 16        ts/a = 20               yield large errors and are consistent with the plateau ex-
+
+GuE d(Q2)                  0.75     ts/a = 18                                traction.
+                                                                                In Fig. 10 we present our results for the disconnected
+                           0.70                                              contributions to GE
+                                                                                  2
+                                                                                                   u+d
+                                                                                                       (Q2 ) and Gu+d     2
+                                                                                                                   M (Q ) up to Q =1
+                                                                                                                                       2
+
+                                                                             GeV for three time separations, ts = 0.96, 1.12 and
+
+
+Ru0 d( 0; ~q; ts, tins)
+                           0.65                                              1.28 fm. We can achieve a relative statistical error that
+                                                                             is less than 20% for up to ts =14a∼1.12 fm, which is
+                           0.60                                              unprecedented given that we are using a physical pion
+                                                                             mass ensemble. As we increase the time separation from
+X
+                 ~q ∈ Q2
+                           0.55                                              ts /a=12 to ts /a=14 we observe, for both GE    u+d
+                                                                                                                                 (Q2 ) and
+                            3.6                                                 u+d   2
+                                                                             GM (Q ), that there is a trend for larger values, while
+
+GuM d(Q2)
+                                                                             the results extracted for ts /a=16 are in a very good agree-
+                            3.4                                              ment with those extracted for ta = 14a for most Q2 val-
+                                                                             ues, albeit with larger errors. We, therefore, take as our
+                            3.2                                              final result for the disconnected contribution the value ex-
+
+ ijk u d
+
+
+
+
+qk Ri ( k; ~q; ts, tins)
+                                                                                                                 u+d
+                                                                             tracted using ts /a=14 for both GE      (Q2 ) and Gu+d
+                                                                                                                                 M (Q ).
+                                                                                                                                         2
+
+                                                                             We use the difference between the central value of the
+                            3.0                                              results at ts = 14a and ts = 16a as an estimate of the
+                                                                             systematic error from excited state effects when we quote
+                            2.8                                              quantities that include disconnected contributions.
+                 ~q ∈ Q2
+X
+
+                            2.610               5         0         5   10
+                                                    (tins ts/2)/a              V.   ASSESSMENT OF LATTICE ARTIFACTS
+
+                                                                                We collectively discuss here lattice artifacts that may
+FIG. 5. Ratio yielding the isovector electric (top) and the                  lead to systematic errors. Since we use simulations with
+isovector magnetic (bottom) form factors, for the three largest              physical values of the light quark masses no chiral ex-
+sink-source separations, following the notation of Fig. 2. The               trapolation is needed eliminating one of the biggest un-
+curves show the result of the two-state fit method, while the
+                                                                             certainty present in past lattice QCD computations of
+gray horizontal band is the extracted value of the nucleon
+matrix elements and its error. We show the case for Q2 =0.219
+                                                                             these quantities.
+GeV2 .
+                                                                                • Disconnected contributions: The main novelty of
+                                                                                  this work is the accurate computation of the light
+                                                                                  quarks disconnected contributions using simula-
+effects as compared to the one determined from the ra-                            tions with quark masses tuned to their physical val-
+tio. We note that ZV only enters in the disconnected                              ues. This enables us, for the first time, to eliminate
+three-point function. A more detailed description of the                          this systematic uncertainty in the determination of
+renormalization procedure including other renormaliza-                            the proton and neutron form factors at the physi-
+tion functions will be provided in a future publication.                          cal point. Strange quarks loop contribution is not
+   Disconnected quark loops are evaluated for every time-                         included in this study, but we know from previous
+slice allowing us to compute the three-point function for                         studies [6, 27, 42] that it is much smaller compared
+every combination of ts and tins . As in the case of the                          to the statistical error of the connected contribu-
+connected, we are seeking for a reasonable window in ts                           tion.
+to extract the nucleon matrix elements, where excited
+states are sufficiently suppressed and noise is not pro-                        • Quenching effects: The analysis of the Nf = 2 +
+hibitively large. In contrast to the connected diagram,                           1 + 1 ensemble and two Nf = 2 ensembles allows us
+where we have results only for the case p~ 0 =~0, for the                         to check for unquenching effects due to the strange
+disconnected diagrams we have all sink momenta at no                              and charm quarks. In Figs. 11 and 12 we com-
+additional cost. We analyze, besides p~ 0 =~0, the matrix                         pare results using the Nf =2 cA2.09.48 ensemble to
+element for the six final momenta with p~ 0 = ± 2π L n̂, with                     the Nf =2+1+1 cB211.072.64 ensemble. The re-
+n̂ = x̂, ŷ, or ẑ, i.e. the unit vector in one of the three                      sults are extracted from the plateau method with
+spatial directions. Given that the statistical errors in the                      time separation ts = 1.3 fm for both isovector and
+case of the disconnected diagrams are larger as compared                          isoscalar electric and magnetic form factors. We
+to the connected diagrams, we restrict ourselves in using                         observe consistent results between the two ensem-
+the plateau method for different values of ts in order to                         bles. Therefore, to the accuracy of our data, no
+check for ground state dominance. This is because the                             quenching effects due the strange and charm quarks
+two-state fits are problematic given the larger errors of                         can be detected. This corroborates our previous
+                                                                                                                              10
+
+
+                               Plat.               Summ.              Der. Summ.                    Two-State
+                         0.9
+       GuE d(Q2)
+                         0.7
+       u d( 0; ~q)       0.5
+       0
+      X
+               ~q ∈ Q2   0.3
+                           5
+       GuM d(Q2)
+                          4
+
+          ijk u d
+                          3
+         qk i ( k; ~q)    2
+       2
+      X
+                ~q ∈ Q
+                          1 12         14    16      18    20        12          14           16        18
+                                            ts/a                                      tls/a
+FIG. 6. Results for the matrix element yielding Gu−d
+                                                 E   (upper panel) and Gu−d
+                                                                        M   (lower panel), for Q2 =0.057 GeV, Q2 =0.219 GeV
+      2              2
+and Q =0.554 GeV from top to bottom. In the left column we show the extracted values using the plateau method (blue
+circles) for all five separations analyzed, while in the right panel we show the values extracted using the summation (green
+squares), derivative summation (red upper triangles) and two-state fit (purple left triangles) approaches as we change the lower
+fit range (tls /a) keeping the upper fit range fixed to ts /a=20. The filled circle and band show the value and statistical error
+used to quote our final result, while the other filled symbols show the fit ranges for the two-state fit and summation methods
+that will be used in the figures that follow.
+
+
+      study where we found consistent results when com-                   the plateau and two-state fits.
+      paring an Nf = 2 and an Nf = 2 + 1 + 1 ensemble
+      at a pion mass of about 370 MeV [21].                           • Finite volume effects: For the assessment of finite
+                                                                        volume effects we compare the two Nf =2 physical
+    • Isolation of ground state matrix element: An anal-                point ensembles cA2.09.48 and cA2.09.64 that yield
+      ysis of excited state contributions is carried out by             respectively mπ L ≃ 3 [7] and mπ L ≃ 4. The lat-
+      performing the calculation using several time sep-                tice spacing and pion mass are the same for these
+      arations ts . For the target Nf = 2 + 1 + 1 ensem-                two ensembles. We also use the same time sepa-
+      ble we use five values of ts tabulated in Table II.               ration ts for each observable when comparing be-
+      We probe convergence to the ground state matrix                   tween the two ensembles. The isovector electric and
+      element by demanding that the matrix element ex-                  magnetic form factors extracted using the plateau
+      tracted using the plateau and two-state fits are con-             method are shown in Fig. 13. The results fall on
+      sistent, as explained in detail in Section III C. The             the same curve indicating no significant finite vol-
+      value of ts ∼ 1.6 fm is the largest utilized in this              ume effects between the two volumes of mπ L ≃ 3
+      study and to our knowledge in any other study at                  and mπ L ≃ 4. The same behavior is observed for
+      the physical point. We increase the statistics as ts              the isoscalar form factors shown in Fig. 14. We
+      increases to keep the errors under control so that                would like to stress once more that our statement
+      a meaningful analysis can be performed to isolate                 of detecting no volume effects can only be made
+      the ground state matrix element. For all of our                   within the current accuracy and some residual vol-
+      results we observe agreement between the values                   ume effects can still lead to a systematic effect. One
+      extracted using the plateau and two-state fits. De-               complication as the volume increases is the contam-
+      spite this agreement, residual contamination can                  ination due to higher excited states, since the num-
+      still lead to a systematic error within our current               ber of multi-hadron states allowed increases [43].
+      statistical. We give an estimate of such a system-                Such multi-hadron states are not expected to affect
+      atic error by comparing the values obtained with                  results at larger pion masses but are expected to be
+                                                                                                                                                         11
+
+
+                                                        Plateau ts/a = 14
+            1.0                                         Plateau ts/a = 16                         3.0
+                                                        Plateau ts/a = 18
+            0.8                                         Plateau ts/a = 20                         2.5
+
+
+                                                                            GuE + d(Q2) (Conn.)
+                                                        Summation
+                                                        Two-State                                 2.0
+GuE d(Q2)   0.6
+                                                                                                           Plateau ts/a = 14
+                                                                                                  1.5
+                                                                                                           Plateau ts/a = 16
+            0.4                                                                                            Plateau ts/a = 18
+                                                                                                  1.0      Plateau ts/a = 20
+                                                                                                           Summation
+            0.2                                                                                   0.5      Two-State
+             0.00 0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45                                     0.00 0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45
+                                     Q2 [GeV2]                                                                           Q2 [GeV2]
+            5.0                                                                                   3.0
+                                                     Plateau ts/a = 14
+            4.5                                      Plateau ts/a = 16
+                                                                                                  2.5
+                                                     Plateau ts/a = 18
+            4.0                                      Plateau ts/a = 20
+                                                                                                  2.0
+
+                                                                            GuM+ d(Q2) (Conn.)
+            3.5                                      Summation
+                                                     Two-State
+GuM d(Q2)   3.0                                                                                   1.5
+                                                                                                           Plateau ts/a = 14
+            2.5                                                                                   1.0      Plateau ts/a = 16
+            2.0                                                                                            Plateau ts/a = 18
+                                                                                                           Plateau ts/a = 20
+            1.5                                                                                   0.5      Summation
+                                                                                                           Two-State
+            1.00.00 0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45                                  0.00.00 0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45
+                                     Q2 [GeV2]                                                                             Q2 [GeV2]
+FIG. 7. The isovector electric (upper panel) and magnetic                    FIG. 8. Connected contribution to the isoscalar electric (up-
+(lower panel) form factor as a function of Q2 . We show the                  per panel) and magnetic (lower panel) form factor. The no-
+values extracted from fitting the plateau for the four largest               tation is the same as in Fig. 7.
+ts values, namely ts /a=14 (right triangles), ts /a=16 (trian-
+gles), ts /a=18 (squares) and ts /a=20 (circles), compared to
+the summation method (diamonds) and using two-state fits
+(stars). Results from different methods are slightly shifted to                                     sembles analyzed have the same lattice spacing and
+the right for clarity.
+                                                                                                    so again finite lattice spacings affects cannot be as-
+                                                                                                    sessed. Previous studies done using ensembles with
+                                                                                                    pion mass spanning about 460 MeV to 260 MeV
+              more severe at the physical pion mass. Such effects
+                                                                                                    and three values of the lattice spacings have indeed
+              can be modeled within chiral perturbation theory
+                                                                                                    demonstrated that the O(a2 ) correction is negligi-
+              for the axial form factors [43]. For the electromag-
+                                                                                                    ble [21]. We thus do not expect large systematic
+              netic form factors these effects are not known but
+                                                                                                    cut-off effects on our results. However, an analysis
+              an interplay between volume and excited state ef-
+                                                                                                    of cut-off effects will need to be carried out in the
+              fects may account for the deviations observed be-
+                                                                                                    future when additional ensembles are available.
+              tween lattice QCD data and experimental values.
+            • Finite lattice spacing, a: Since in this work we
+              are using the twisted mass formulation at maxi-                In summary, there maybe a slow convergence as a func-
+              mal twist our results are automatically O(a) im-               tion of the volume in conjunction with residual excited
+              proved without any need to improve the current.                state effects. This may explain the few σ discrepancy ob-
+              This is different from clover fermions where the cur-          served between lattice QCD results and the experimental
+              rent must be improved in order to eliminate oder a             values. In particular, we note that the electric form fac-
+              contributions. Therefore, our results only have cor-           tors has increasing excited state effects for larger values
+              rections of O(a2 ). Continuum extrapolation cannot             of Q2 , whereas for GM these effects are bigger at small
+              be performed given that we have analyzed only one              Q2 . As we will see these are the ranges of momenta where
+              Nf = 2 + 1 + 1 ensemble. The two Nf = 2 en-                    we see discrepancies with the experimental values.
+                                                                                                                                                                                       12
+
+                     0.80            Unsubtracted
+                                                                                                                                                          Nf = 2 (m L ∼ 3)
+                     0.78            O(g20a )-subtracted
+                                                                                                                  1.0                                     Nf = 2 + 1 + 1 (m L ∼ 3.6)
+                     0.76
+ZV                                                                                                                0.8
+                     0.74
+
+                                                                                                      GuE d(Q2)
+                     0.72                                                                                         0.6
+                     0.70 0            1         2          3       4     5        6        7
+                                                                (a )2                                             0.4
+
+    FIG. 9. The renormalization constant ZV as a function                                                         0.2
+    of the renormalization scale squared (aµ)2 before (blue cir-
+    cles) and after (orange squares) performing the subtraction                                                    0.0         0.1         0.2       0.3             0.4               0.5
+    of O(g 2 a∞ )-terms. The dashed line is a linear fit to the latter                                                                       Q2 [GeV2]
+    and the point at (aµ)2 = 0 (black square) is the result of the
+    fit.
+                                                                                                                  4.0
+                                                                                                                                                          Nf = 2 (m L ∼ 3)
+                                                                                                                                                          Nf = 2 + 1 + 1 (m L ∼ 3.6)
+                                                                                                                  3.5
+                           0.05
+                                        Plateau ts/a = 12                                                         3.0
+                                        Plateau ts/a = 14
+                           0.04
+                                                                                                      GuM d(Q2)
+                                        Plateau ts/a = 16
+                                                                                                                  2.5
+
+
+     GuE + d(Q2)(Disc. )
+                           0.03                                                                                   2.0
+                           0.02                                                                                   1.5
+                                                                                                                  1.0.0        0.1         0.2       0.3             0.4               0.5
+                           0.01
+                                                                                                                                             Q2 [GeV2]
+                           0.00.0          0.2             0.4      0.6          0.8            1.0
+                                                                                                      FIG. 11. Comparison of the isovector electric (top panel)
+                                                                                                      and magnetic (lower panel) form factors between the Nf =2
+                                                             Q2 [GeV2]                                cA2.09.48 ensemble [7] (green triangles) and the Nf =2+1+1
+                           0.00                                                                       cB211.072.64 ensemble(red circles). Results are extracted
+                                                                                                      using the plateau method for sink-source time separation
+                           0.02                                                                       ts ≃ 1.3 fm.
+
+                           0.04
+
+
+GuM+ d(Q2)(Disc. )
+                                                                                                           VI.          Q2 -DEPENDENCE OF THE ISOVECTOR
+                           0.06                                                                                         AND ISOSCALAR FORM FACTORS
+                           0.08
+                                                                                                        In this section we discuss the Q2 -dependence of the
+                           0.10                                                                       form factors using standard parameterizations as de-
+                           0.12                                               Plateau ts/a = 12
+                                                                                                      scribed in the next section.
+
+                           0.14                                               Plateau ts/a = 14
+                                                                              Plateau ts/a = 16                   A.      Parameterizations of the Q2 -dependence
+                           0.160.0         0.2             0.4      0.6          0.8            1.0
+                                                             Q2 [GeV2]                                  Assuming vector meson pole dominance for Q2 < 0,
+    FIG. 10. The disconnected contributions to Gu+d        (top) and                                  one expects that for small Q2 > 0 the behavior will
+                                                        E
+    Gu+d  (bottom)  using the plateau method   for t s /a=12 (left tri-                               be dominated by the poles in the time-like region. One
+      M
+    angles), ts /a=14 (right triangles) and ts /a=16 (upright tri-                                    would then expect a dipole form given by [44]
+    angles). Points from closely spaced Q2 have been averaged
+                                                                                                                                                  G(0)
+    for demonstration, and results from different time separations                                                                   G(Q2 ) =         2
+                                                                                                                                                     Q 2
+                                                                                                                                                             ,                    (19)
+    have been slightly shifted to the right for clarity.                                                                                        (1 + M 2)
+
+
+                                                                                                      where M is the mass of the vector meson that parame-
+                                                                                                      terizes the Q2 dependence. The value of the form factor
+                                                                                                                                                                            13
+
+
+                      3.0                                                     Nf = 2
+                                                                                                         1.0                                             Nf = 2 (m L ∼ 3)
+                                                                              Nf = 2+1+1                                                                 Nf = 2 (m L ∼ 4)
+                      2.5
+                                                                                                         0.8
+
+
+GuE + d(Q2) (Conn.)
+                      2.0
+                      1.5                                                                    GuE d(Q2)   0.6
+
+                      1.0                                                                                0.4
+                      0.5                                                                                0.2
+                        0.0           0.1      0.2      0.3             0.4           0.5                 0.0    0.1          0.2       0.3                0.4              0.5
+                                                 Q2 [GeV2]                                                                      Q2 [GeV2]
+                      3.0                                                                                4.0
+                                                                              Nf = 2                                                                     Nf = 2 (m L ∼ 3)
+                                                                              Nf = 2+1+1                                                                 Nf = 2 (m L ∼ 4)
+                      2.5                                                                                3.5
+                      2.0                                                                                3.0
+
+GuM+ d(Q2) (Conn.)
+                      1.5                                                                    GuM d(Q2)   2.5
+                      1.0                                                                                2.0
+                      0.5                                                                                1.5
+                      0.00.0          0.1      0.2      0.3             0.4           0.5                1.0.0   0.1          0.2       0.3                0.4              0.5
+                                                 Q2 [GeV2]                                                                      Q2 [GeV2]
+ FIG. 12. Comparison of the connected contribution to the                                    FIG. 13. The isovector electric (top panel) and magnetic
+ isoscalar electric (top panel) and magnetic (lower panel) form                              (lower panel) form factor for two different physical spatial
+ factors between Nf =2 [7] and Nf =2+1+1 ensembles. The                                      volumes. With green triangles we show the results for the
+ notation is the same as in Fig. 11.                                                         cA2.09.48 with mπ L ≃ 3 [7] and with blue squares the
+                                                                                             cA2.09.64 with mπ L ≃ 4. Results are extracted using the
+                                                                                             plateau method for sink-source separation ts ≃ 1.5 fm for the
+ at zero momentum transfer gives the electric charge in                                      electric and ts ≃ 1.3 fm for the magnetic form factors.
+ the case of the electric form factor and the magnetic mo-
+ ment in the case of the magnetic form factor. Combining
+ Eq. (19) and Eq. (5) one can relate M to the mean square                                      Another fit form, which has been applied recently to
+ radius as                                                                                   experimental data of both electromagnetic and axial form
+                                                                                             factors, is the model independent z-expansion [9]. In this
+                                                        12                                   case, the form factor is expanded in a series given by,
+                                             hr2 i =       .                          (20)
+                                                        M2
+                                                                                                                                    kX
+                                                                                                                                     max
+    The neutron electric form factor and disconnected con-                                                             G(Q2 ) =            ak z k ,                    (23)
+ tributions to the electric form factors are zero for Q2 =0                                                                         k=0
+ and we treat them as special cases, fitting them using the
+ Galster-like parameterization [8, 45], given by                                             where
+                                                                                                                        p                     √
+                                  2       Q2 A                     1                                                        tcut + Q2 −           tcut
+                               G(Q ) =   2                                     ,      (21)                        z=p                         √                        (24)
+                                       4mN + Q2 B (1 +              Q2                                                      tcut   + Q2 +         tcut
+                                                                 0.71GeV2
+                                                                          )2
+
+ with A and B fit parameters. In this case the radius is                                     and tcut is the time-like cut of the form factor. We take
+ given by                                                                                    tcut =4m2π for the isovector combination Gu − Gd and
+                                                                                             tcut =9m2π for the isoscalar combination Gu + Gd [9]. For
+                                                         3A                                  convergence of the truncated series of Eq. (23), the co-
+                                            hr2 i = −        .                        (22)
+                                                        2m2N                                 efficients ak should be bounded in size and convergence
+                                                                                                                                                              14
+
+                                                                                            now on we will use the plateau method at ts /a = 20 to
+                      3.0                                          Nf = 2 (m L ∼ 3)         extract final results on the form factors, r.m.s radii, and
+                                                                   Nf = 2 (m L ∼ 4)         magnetic moment. We will use the results extracted from
+                      2.5                                                                   the two-state fits to estimate the systematic error due to
+                                                                                            excited states.
+
+
+
+GuE + d(Q2) (Conn.)
+                      2.0
+                      1.5                                                                               1.0                                       Plateau
+                                                                                                                                                  Two-State
+                      1.0                                                                               0.8
+                      0.5
+                                                                                            GuE d(Q2)
+                                                                                                        0.6
+                        0.0         0.1       0.2       0.3          0.4              0.5
+                                                Q2 [GeV2]                                               0.4
+                      3.0
+                                                                   Nf = 2 (m L ∼ 3)                     0.2
+                                                                   Nf = 2 (m L ∼ 4)
+                      2.5
+                                                                                                        0.00.0   0.1   0.2    0.3 0.4       0.5       0.6
+                      2.0
+
+GuM+ d(Q2) (Conn.)
+                                                                                                                             Q2 [GeV2]
+                      1.5                                                                   FIG. 15. GE   u−d
+                                                                                                              (Q2 ) from the plateau method for ts /a = 20
+                                                                                            (circles) and two-state fits (stars). The dashed (dotted) curve
+                      1.0                                                                   and corresponding band is a dipole fit to the plateau (two-
+                                                                                            state) fit results, which overlap.
+
+                      0.5
+                      0.00.0                                                                            4.5
+                                    0.1       0.2       0.3          0.4              0.5                                                         Plateau
+                                                Q2 [GeV2]                                               4.0                                       Two-State
+ FIG. 14. The isoscalar electric (top panel) and magnetic
+ (lower panel) form factor for two different physical spatial
+                                                                                                        3.5
+ volumes. The notation is as in Fig. 13.
+                                                                                                        3.0
+                                                                                            GuM d(Q2)   2.5
+ should be demonstrated by increasing kmax . The inter-
+ ested reader is referred to Ref. [6] for details about our                                             2.0
+ procedure. The mean square radius is given by
+                                                        3a1                                             1.5
+                                          hr2 i = −            ,                 (25)
+                                                      2a0 tcut                                          1.0.0    0.1   0.2    0.3 0.4       0.5       0.6
+ while the value of the form factor at zero momentum                                                                         Q2 [GeV2]
+ transfer is G(0)=a0 .                                                                                   u−d
+                                                                                            FIG. 16. GM      (Q2 ) from the plateau method for ts /a = 20
+                                                                                            (circles) and two-state fits (stars). The rest of the notation is
+                               B.    Fits to lattice QCD results                            as in Fig. 15.
+
+                                                                                                                                       u−d
+    We consider first the isovector form factors where only                                    In Figs. 17 and 18, we show fits to GE      (Q2 ) and
+                                                                                             u−d
+ the connected diagram contributes. In Figs. 15 and 16 we                                   GM   (Q2 ), respectively using the dipole form and the
+ show fits using the dipole form, comparing between re-                                     z-expansion of Eq. (23) and compare to experiment.
+ sults from the plateau method at ts /a = 20 and from two-                                  For the z-expansion, we check convergence by increas-
+                 u−d
+ state fits for GE   (Q2 ) and Gu−d     2
+                                  M (Q ), respectively. As                                  ing kmax . The resulting magnetic moment and r.m.s
+ can be seen, fits using the plateau and two-state methods                                  radii are shown in Fig. 19, where we observe conver-
+ are fully consistent and do not show any significant sys-                                  gence for kmax =4. For Gu−d     2
+                                                                                                                      E (Q ), we see from Fig. 17
+ tematic effect on the determination of the Q2 -dependence                                  that the slope of the lattice QCD data is less as com-
+ of the form factors, indicating that excited states are suf-                               pared to the experimental values. Therefore, although
+ ficiently suppressed. Since results are in agreement, from                                 both dipole form and z-expansion describe very well our
+                                                                                                                                                15
+
+ data, shown in separate panels for clarity, they lie con-               Lmπ ≃4 for our two Nf = 2 ensembles may indicate that
+ sistently above the experimental values. A study using                  pion cloud suppression may not be detectable for these
+ a larger volume with a careful examination of excited                   volume sizes requiring larger volumes to unfold. Indeed,
+ state effects is planned to understand the origin of this               preliminary results by PACS using a physical point en-
+ remaining discrepancy. In extracting the r.m.s radius,                  semble with Lmπ ≃7.4 [61] finds a higher value that may
+ we see from Fig. 19 that results obtained from using the                point to a finite volume effect. This would need further
+ dipole fit and z-expansion are compatible, and yield                    investigation to confirm.
+              q
+                  2 iu−d =0.796(19)(12)(12) fm,
+                hrE                                   (26)
+                                                                                    5                                          Dipole
+ where the central value and the statistical error are taken                                                                   Experiment
+ from the dipole fit, the second error is a systematic com-                         4                                          Nf = 2 + 1 + 1
+ puted as the difference in the mean values between dipole
+
+                                                                        GuM d(Q2)
+ and z-expansion for kmax =4 and the third error is the                             3
+ systematic error due to excited states obtained from the
+ difference when fitting the form factor extracted from                             2
+ the plateau and from the two-state fit method. Subse-
+ quent quantities given in the paper will have statistical                          1
+ and systematic errors quoted using the same convention
+ as in Eq. 26.                                                                      0
+                                                                                    5                                          z-expansion
+                                                                                                                               Experiment
+        1.0                                      Dipole                             4                                          Nf = 2 + 1 + 1
+                                                 Experiment
+
+                                                                        GuM d(Q2)
+        0.8                                      Nf = 2 + 1 + 1                     3
+
+GuE d(Q2)
+        0.6                                                                         2
+        0.4                                                                         1
+        0.2                                                                         00.0         0.2       0.4    0.6           0.8             1.0
+        0.0                                                                                                 Q [GeV2]
+                                                                                                              2
+        1.0                                      z-expansion
+                                                                         FIG. 18. The isovector magnetic form factor fitted using a
+                                                 Experiment              dipole form (top) and using the z-expansion (bottom) with
+        0.8                                      Nf = 2 + 1 + 1          the notation of Fig. 17.
+
+
+GuE d(Q2)
+        0.6                                                                 The isovector magnetic moment and mean square mag-
+        0.4                                                              netic radii are shown in Fig. 19. As can be seen, the
+                                                                         mean values extracted for µu−d using the dipole and
+        0.2
+                                                                                                                   2 u−d
+                                                                         z-expansion are compatible, while for hrM   i     the z-
+                                                                         expansion produces a slightly higher mean value, which,
+        0.00.0   0.2        0.4     0.6           0.8             1.0
+                                                                         however, is consistent within errors. Quoting the values
+                                                                         from the dipole fit, we find
+                             Q2 [GeV2]                                                            µu−d = 3.97(15)(2)(5)(10 )               (27)
+ FIG. 17. The isovector electric form factor as a function of Q2                           q
+                                                                                                 2 iu−d = 0.712(27)(87)(5)(1 ) fm .
+                                                                                               hrM                                         (28)
+ (circles). We show fits to our results using a dipole form (top)                                                          0
+ and using the z-expansion (bottom) for kmax =4. Black crosses
+ are experimental results taken from the A1 collaboration [1]            Here we have included a fourth systematic error com-
+ for the proton and from Refs. [4, 46–59] for the neutron.               puted as the difference in the values of µu−d and hrM2 u−d
+                                                                                                                                i
+                                                                                        u−d    2
+                                                                         when fitting GM (Q ) including and excluding the low-
+    For Gu−d
+           M , shown in Fig. 18, we observe that our re-                 est Q2 value from the fit. The error is asymmetric, since
+ sults are in agreement with the experimental values for                 the expectation is that pion cloud effects will increase the
+ Q2 > 0.2 GeV2 , whereas for small Q2 they tend to be                    value of the magnetic form factor. It is also small com-
+ lower. A possible explanation for this discrepancy is that              pared to the systematic error due to excited states. In
+ effects from the pion cloud, expected to be prominent for               what follows we will not include this fourth systematic
+ small momenta [60], are suppressed in our calculation due               error.
+ to our finite volume. The fact that we have seen no vol-                  Before presenting fits to the total isoscalar form factors
+ ume effects when we increase the volume from Lmπ ≃3 to                  we discuss separately the Q2 -dependence of the discon-
+                                                                                                                                                         16
+
+                1.1
+                1.0
+r2E u d [fm2]
+                0.9                                          Dipole                                                     Galster-like parameterization
+                0.8                                          z-expansion
+                0.7                                                                                 0.03
+
+
+                                                                                 GuE + d(Q2) (Disc.)
+                0.6
+                0.5
+®
+
+
+                5.0
+­
+
+                4.6                                                                                 0.02
+u d             4.2
+                3.8
+                3.4                                                                                 0.01
+                1.1
+
+r2M u d [fm2]
+                0.9                                                                                 0.00
+                0.7                                                                                                                      z-expansion
+                0.5
+®
+                0.3                                                                                 0.03
+
+
+                                                                                 GuE + d(Q2) (Disc.)
+                0.1
+                      2   1    0     1    2          3   4   5      6      7
+­
+
+                                              kmax
+ FIG. 19. Results for the isovector charge radius hrE    2 u−d
+                                                           i    ,                                   0.02
+ magnetic moment µu−d and magnetic radius hrM      2 u−d
+                                                     i      from
+ the plateau method using ts /a=20 as extracted from a dipole
+ fit (green square) and z-expansion (red triangles). The lat-                                       0.01
+ ter are shown as a function of kmax . The green band is the
+ statistical error on the value extracted from the dipole fit.
+                                                                                                    0.000.0     0.2   0.4    0.6          0.8            1.0
+ nected contributions. In Fig. 20 we show the discon-
+                                                                                                                       Q [GeV2]
+                                                                                                                         2
+
+ nected contribution to the isoscalar electric form factor                         FIG. 20. Disconnected contributions to the isoscalar electric
+ Gu+d                                                                              form factor (circles) as a function of Q2 . The fits using the
+   E , accompanied by fits to the Galster-like parame-
+ terization and z-expansion. We note that in the case of                           Galster-like parameterization of Eq. (21) and the z-expansion
+                                                                                   for kmax =3 are shown in the upper and lower panels, respec-
+ the z-expansion we take a0 =0, since Gu+d
+                                         E (0)=0 for the                           tively.
+ disconnected contribution. Both parameterizations de-
+ scribe well our results with the z-expansion yielding a
+ larger error for the larger Q2 values.
+    The disconnected contribution to Gu+d      2                                                       0.00
+                                        M (Q ) is shown
+ in Fig. 21. We find that both dipole and z-expansion are
+
+
+
+                                                                               GuM+ d(Q2) (Disc.)
+ in good agreement. In particular, they yield compatible                                               0.04
+ values at zero momentum transfer. Like in the case of
+ the disconnected contribution to Gu+d     2
+                                     E (Q ), for large Q
+                                                         2
+                                                                                                       0.08
+ the dipole fit has a smaller error band as compared to
+ the z-expansion. The values extracted from fitting the
+ disconnected contributions alone are
+                                                                                                       0.12
+                       hrE2 u+d
+                           i    (Disc.) = −0.071(6)(4)(6) fm2 ,         (29)                           0.16                                     Dipole
+                           µu+d
+                                (Disc.) = −0.134(17)(1)(10),            (30)                           0.00
+                         2 u+d
+                      hrM i     (Disc.) = −0.136(30)(2)(12) fm2 ,       (31)
+
+
+
+                                                                               GuM+ d(Q2) (Disc.)
+                                                                                                       0.04
+ where we have not normalized with the value of the form
+ factor at zero momentum transfer, i.e. the radii are ex-
+                             2                                                                         0.08
+ tracted from hr2 i = −6 ∂G(Q
+                          ∂Q2
+                               )
+                                 2
+                                       rather than from
+                                                 Q =0
+ Eq. 5.                                                                                                0.12
+    In Fig. 22 we show the isoscalar form factors when in-
+ cluding and excluding disconnected contributions. Al-                                                 0.16                              z-expansion
+ though the effect is small for both Gu+d          2
+   u+d
+                                             E (Q ) and
+       (Q2 ) there is a systematic shift affecting the pa-
+                                                                                                          0.0   0.2   0.4     0.6         0.8            1.0
+ GM
+ rameters of the fits. This comparison shows that dis-
+                                                                                                                       Q2 [GeV2]
+ connected contributions although small are important to                           FIG. 21. Disconnected contributions to the isoscalar magnetic
+ include and that their omission would result in an un-                            form factor. The notation is the same as in Fig. 20.
+ controlled systematic error comparable to the statistical
+ uncertainty. Such systematics need to be under control
+                                                                                                                                           17
+
+ for precision results required for distinguishing e.g. the
+                                                                                                                          Dipole
+ two experimental determinations of the charge radius of                        3.0                                       Experiment
+ the proton.
+                                                                                2.5                                       Nf = 2 + 1 + 1
+                                                                                2.0
+                                                                      GuE + d(Q2)
+         3.0                                        Connected
+         2.5                                        Total                       1.5
+                                                                                1.0
+         2.0                                                                    0.5
+GuE + d(Q2)
+         1.5                                                                    0.0
+         1.0                                                                                                              z-expansion
+                                                                                3.0                                       Experiment
+         0.5                                                                    2.5                                       Nf = 2 + 1 + 1
+         3.0                                                                    2.0
+         2.5
+                               Q2 [GeV2]                              GuE + d(Q2)
+                                                                                1.5
+         2.0                                                                    1.0
+                                                                                0.5
+GuM+ d(Q2)
+         1.5
+                                                                                0.00.0
+         1.0                                                                             0.2        0.4    0.6             0.8             1.0
+                                                                                                     Q [GeV2]
+                                                                                                       2
+         0.5                                                            FIG. 23. Isoscalar electric form factor (circles) as a function of
+         0.00.0   0.2         0.4     0.6            0.8
+                                                                        Q2 . We combine the connected contribution from the plateau
+                                                                        for ts /a=20 with the disconnected contribution for ts /a=14.
+                               Q [GeV ]
+                                2    2                                  The remaining notation is as in Fig. 17.
+
+ FIG. 22. Comparison of the connected (open circles) and total
+ (filled circles) contributions to the isoscalar electric (top) and
+ magnetic (bottom) form factors. Dipole fits to the connected                   3.0                                       Dipole
+                                                                                                                          Experiment
+ and total contributions are shown with the dotted and dashed
+ curves respectively.                                                           2.5                                       Nf = 2 + 1 + 1
+                                                                                2.0
+    In Figs. 23 and 24 we show the fits of the total isoscalar        GuM+ d(Q2)1.5
+ electric and magnetic form factors using the dipole form
+ and z-expansion. Both fits describe well the data with                         1.0
+ the dipole fit being more precise at larger Q2 , a behavior                    0.5
+ also observed for the isovector form factors. For inter-
+ mediate Q2 values our results are systematically higher                        0.0
+ compared to experiment, which is then reflected in the fit                     3.0                                       z-expansion
+ bands. Since for low Q2 there is agreement, the extracted                                                                Experiment
+ value for the isoscalar magnetic moment agrees with the                        2.5                                       Nf = 2 + 1 + 1
+                                                                                2.0
+                                                                      GuM+ d(Q2)
+ experimental value. On the other hand, the slope of our
+ lattice data is not as steep as in the experimental results,
+ which leads to a smaller value for the corresponding radii.                    1.5
+    In the top panel of Fig. 25 we show the isoscalar electric                  1.0
+ square radius. As can be seen, the z-expansion fit yields
+ values that are within errors for kmax > 1 but with twice                      0.5
+ larger errors than the dipole. In Fig. 25 we also show re-                     0.00.0   0.2        0.4    0.6             0.8             1.0
+ sults for the magnetic moment and the magnetic radius
+ where convergence of the z-expansion is observed already                                            Q [GeV2]
+                                                                                                       2
+ for kmax =2. In general, there is agreement between the
+                                                                        FIG. 24. Isoscalar magnetic form factor. The notation is as
+ results extracted from the dipole and z-expansion. In                  in Fig. 23.
+ what follows we will quote the values determined from
+ the dipole fits and quote as a systematic error the dif-
+ ference between the mean values of the dipole and the
+                                                                                                                                            18
+
+
+                  0.8                                                                     and Lmπ =4 [14]. They analyzed three lattice sep-
+
+r2E u + d [fm2]
+                                                                   Dipole
+                  0.7                                              z-expansion            arations from 0.93 fm to 1.5 fm and they have ex-
+                  0.6                                                                     tracted results using the summation method. A
+                  0.5
+                  0.4                                                                     momentum derivative method has been used to ex-
+®
+­                                                                                         tract the magnetic moment and the electric radius
+                  3.2                                                                     directly from the correlation functions avoiding a
+u+d               3.0                                                                     fitting procedure.
+                  2.8                                                                   • The PACS collaboration analyzed an ensemble
+                  2.6
+                                                                                          of Nf =2+1 stout-smeared clover fermions with
+
+
+r2M u + d [fm2]
+                  1.0                                                                     mπ =146 MeV, a ≃ 0.085 fm and a spatial extend
+                  0.8                                                                     of 8.1 fm or Lmπ ≃ 6 allowing access to relatively
+                  0.6                                                                     small momenta [15, 61]. PACS has computed three-
+                  0.4                                                                     point functions for one sink-source time separation
+®
+
+                                                                                          of 1.27 fm and they used the plateau method to
+                        2     1      0     1    2          3   4   5    6        7
+­
+
+                                                    kmax                                  identify the ground state matrix element.
+ FIG. 25. Results for the isoscalar charge square radius, mag-
+                                                                                        • The χQCD collaboration [62] computed only the
+ netic moment, and magnetic square radius. The notation is
+ as in Fig. 19.
+                                                                                          disconnected contributions to the nucleon electro-
+                                                                                          magnetic form factors using a hybrid action of over-
+                                                                                          lap valence quarks and Nf =2+1 domain wall sea
+ z-expansion fits. We find                                                                quarks produced by RBC/UKQCD. Their analy-
+           q                                                                              sis includes an ensemble with pion mass mπ =
+              hrE2 iu+d = 0.691(9)(7)(14) fm                                (32)          139 MeV, a=0.1141(2) fm and Lmπ =3.86. They
+                                                                                          computed nucleon two-point functions stochasti-
+                                     u+d
+                                    µ      = 2.66(13)(9)(9) and             (33)          cally using Z3 -noise grid sources and disconnected
+                             q
+                                   2 iu+d = 0.695(33)(80)(13) fm .
+                                                                                          quark loops with Z4 -noise grids applying even-odd
+                                 hrM                                        (34)          and time dilution as well as low-mode average.
+ Note that from our definition of the isoscalar combina-                                • Our results obtained using the three ensembles
+ tion, the proton plus neutron magnetic moment is ob-                                     of Table I simulated by the Extended Twisted
+ tained by: µp + µn = µu+d /3.                                                            Mass Collaboration (ETMC). These include the
+                                                                                          two analyses of this work, namely the Nf =2+1+1
+                                                                                          ensemble with mπ =139 MeV, a=0.0801(4)(3) fm
+       VII.                 COMPARISON WITH OTHER STUDIES                                 and Lmπ ≃3.6 and the Nf =2 cA2.09.64 ensem-
+                                                                                          ble with mπ =130(1) MeV, a=0.0938(3)(1) fm and
+    Before we discuss our final results for the proton and                                Lmπ ≃4 as well as our results from Refs. [6, 7],
+ neutron form factors we compare with results by other                                    which were obtained using the Nf =2 cA2.09.48 en-
+ groups using different lattice QCD ensembles and dis-                                    semble with Lmπ ≃3 and same pion mass and lat-
+ cretization schemes. These mainly exist for the isovector                                tice spacing.
+ electromagnetic form factors allowing us to qualitatively
+ assess lattice artifacts. This is useful since most groups                             In Fig. 26 we show a comparison of lattice QCD results
+                                                                                           u−d
+ use a single ensemble and thus infinite volume and con-                             for GE    (Q2 ) up to Q2 =0.5 GeV2 from the analyses men-
+ tinuum extrapolations are lacking. We summarize the                                 tioned above. As can be seen, ETMC and PACS results
+ lattice QCD discretized actions used by different groups                            are in good agreement but systematically higher than
+ for the computation of the electromagnetic form factors,                            the experimental values. LHPC results were obtained
+ restricting ourselves only to published works and results                           using the summation method and in general have larger
+ that were obtained using simulations with pion mass less                            statistical errors making them compatible with both our
+ than 170 MeV:                                                                       results and the experimental values.
+                                                                                        In Fig. 26, we also show the corresponding results for
+                  • LHPC analyzed one ensemble of Nf =2+1 with                       GMu−d
+                                                                                           (Q2 ). The ETMC results of this work are the most
+                    two levels of HEX-smeared clover fermions with                   precise and in good agreement with those obtained from
+                    mπ =149 MeV, lattice spacing a=0.116 fm and                      other studies. We note the very good agreement of lat-
+                    Lmπ =4.21 at three sink-source time separations                  tice QCD results and experiment for Q2 >0.2 GeV2 . As
+                    from 0.93 fm to 1.39 fm [13]. They give as their                 pointed out, the underestimation of lattice QCD results
+                    final results the ones extracted using the summa-                compared to experimental values at smaller Q2 may in-
+                    tion method, which leads to larger statistical errors.           dicate that a larger spatial volume is required to develop
+                    Additionally, they analyzed an Nf =2+1 ensemble                  fully the pion contributions. Although our study using
+                    with two levels of HEX-smeared clover fermions                   two ensembles of Nf = 2 showed no detectable volume
+                    with mπ = 135 MeV, lattice spacing a=0.093 fm                    effects when we increase the spatial extent from 4.5 fm
+                                                                                                                                                     19
+
+
+        1.0                         ETMC NF = 2, Lm = 3                                     0.06
+                                    ETMC NF = 2, Lm = 4
+                                    ETMC NF = 2 + 1 + 1, Lm = 3.6
+        0.8
+
+                                                                      GuE + d(Q2)(Disc. )
+                                    Experiment
+                                                                                            0.04
+GuE d(Q2)
+        0.6
+        0.4                                                                                 0.02
+                 LHPC '14
+                 LHPC '17
+        0.2      PACS '18
+                                                                                            0.00
+        4.5                                                                                 0.05
+        4.0
+
+                                                                      GuM+ d(Q2)(Disc. )
+        3.5                                                                                 0.15
+GuM d(Q2)
+        3.0
+        2.5
+        2.0                                                                                 0.25                   ETMC Nf = 2 + 1 + 1 (m L ∼ 3.6)
+        1.5                                                                                                        ETMC Nf = 2 (m L ∼ 3)
+                                                                                                                    QCD '17
+        1.00.0      0.1     0.2    0.3            0.4           0.5                         0.350.00 0.05 0.10 0.15 0.20 0.25 0.30 0.35
+                             Q [GeV2]
+                               2                                                                                Q2 [GeV2]
+FIG. 26. Comparison of results for Gu−dE  (Q2 ) (upper panel)
+and Gu−d
+       M   (Q 2
+                ) (lower panel) from the N f =2+1+1 twisted               FIG. 27. Comparison of the disconnected contributions to
+                                                                            u+d               u+d
+mass ensemble of this work (red circles), the Nf =2 twisted               GE     (top) and GM      (bottom) from the twisted mass en-
+mass ensemble with mπ L ≃ 4 of this work (blue squares),                  semble using Nf =2+1+1 from this work (circles) compared
+the Nf =2 twisted mass ensemble with mπ L ≃ 3 from Ref. [7]               to the twisted mass ensemble of Nf =2 results of Ref. [6] (up
+(green triangles), LHPC using Nf =2+1 stout-smeared clover                triangles) and the results from the χQCD collaboration (down
+fermions from Ref. [13] (left purple triangles) and Ref. [14]             triangles) from Ref. [62].
+(right yellow triangles) and from PACS using Nf =2+1 stout-
+smeared clover fermions from Ref. [15] (cyan rhombuses).
+                                                                          probing method employed in the current analysis of the
+                                                                          Nf =2+1+1 ensemble.
+                                                                             The proton and neutron form factors can be extracted
+to 6 fm (or equivalently from Lmπ ∼ 3 to Lmπ ∼ 4) the
+                                                                          from the isovector and isoscalar form factors discussed in
+volume dependence could be weak and require a larger
+                                                                          Section VI, using the linear combinations
+volume to manifest itself. The new PACS results may
+indicate such a trend [61]. A conclusion that we can,                                         1 Gu+d (Q2 )
+                                                                                                                        
+                                                                                    p   2                       u−d    2
+however, draw from these lattice QCD studies is that                              G (Q ) =                   +G     (Q ) ,      (35)
+                                                                                              2      3
+there is agreement among them for both the electric and                                          u+d 2                  
+magnetic form factors. Given the different discretization                                     1 G     (Q )
+                                                                                  Gn (Q2 ) =                 − Gu−d (Q2 ) .     (36)
+schemes employed, this agreement indicates that cut-off                                       2      3
+effects are smaller than the statistical errors.                          In Fig. 28, we show lattice QCD results for the proton
+   In Fig. 27 we show a comparison of the disconnected                    electromagnetic form factors. To extract these, one needs
+contributions to Gu+dE   and Gu+d
+                               M    using results obtained                both the isovector and isoscalar combinations. The lat-
+from our Nf = 2 + 1 + 1 and Nf = 2 twisted mass ensem-                    ter includes disconnected contributions, which have only
+bles and from the hybrid action as analyzed by the χQCD                   been computed by ETMC for ensembles with physical
+collaboration [62]. We would like to stress the accuracy                  pion masses. We still provide a comparison with the
+of the results of the current work using the Nf =2+1+1                    lattice results by LHPC which however do not include
+twisted mass ensemble. In our previous evaluation of the                  these disconnected contributions. We use filled symbols
+disconnected contributions for the Nf = 2 twisted mass                    to indicate lattice QCD results that include disconnected
+ensemble we used 2120 configurations with 100 source                      contributions. For both the proton electric and magnetic
+positions for the computation of the two-point functions                  form factors LHPC results are in agreement with ours,
+and 2250 stochastic vectors for the disconnected loops [6].               with the LHPC results exhibiting larger errors due to the
+This is approximately the same number of inversions (and                  usage of the summation method. The accurate ETMC re-
+thus cost) as for the Nf =2+1+1 ensemble (see Table III),                 sults are higher than the experimental values for GpE (Q2 ),
+which demonstrates the effectiveness of the hierarchical                  while for GpM (Q2 ) they are in agreement except for the
+                                                                                                                                             20
+
+                                    ETMC NF = 2, Lm = 3
+      1.0                           ETMC NF = 2, Lm = 4
+                                    ETMC NF = 2 + 1 + 1, Lm = 3.6           0.06
+      0.8
+                                                                            0.04
+GpE(Q2)
+      0.6                                                             GnE(Q2)
+                                                                            0.02
+      0.4
+               LHPC '14
+               Experiment                                                   0.00
+      0.2
+                                                                             0.6
+      3.0                                                                    0.8
+      2.5                                                                    1.0
+                                                                             1.2
+GpM(Q2)
+      2.0                                                             GnM(Q2)1.4
+      1.5                                                                                                    Experiment
+                                                                             1.6                             ETMC NF = 2 + 1 + 1, Lm = 3.6
+      1.0                                                                    1.8                             ETMC NF = 2, Lm = 4
+                                                                                                             ETMC NF = 2, Lm = 3
+      0.50.0      0.1       0.2    0.3            0.4           0.5          2.00.0      0.1       0.2    0.3               0.4          0.5
+                             Q [GeV2]
+                               2                                                                    Q [GeV2]
+                                                                                                      2
+FIG. 28. Comparison of results for GpE (Q2 ) (upper panel)             FIG. 29. Comparison of results for Gn       2         n    2
+                                                                                                              E (Q ) and GM (Q ) us-
+and GpM (Q2 ) (lower panel) from ETMC and LHPC following               ing the Nf =2+1+1 results of this work (red circles), using the
+the notation of Fig. 26. Filled symbols are used for results           Nf =2 results with mπ L ≃ 4 of this work (blue squares), and
+that include disconnected contributions and open symbols for           using the Nf =2 ensemble with mπ L ≃ 3 from Ref. [6] (green
+results without disconnected contributions. Black crosses are          triangles). Filled symbols are used for results that include dis-
+experimental results from the A1 collaboration [1].                    connected contributions and open symbols for results without
+                                                                       disconnected contributions. Crosses are experimental results
+                                                                       taken from Refs. [4, 46–59] for the electric form factor and
+                                                                       from Refs. [63–68] for the magnetic form factor.
+two lowest Q2 values. Unfortunately, LHPC results carry
+large errors and in general are compatible both with our
+values and the experimental ones prohibiting any definite
+conclusions as to the nature of the discrepancy with the               is still a discrepancy with the experiment for small Q2
+experimental values. As discussed volume and residual                  values that needs to be further investigated.
+excited state effects may lead to a slow convergence of                   In Fig. 30, we compare
+                                                                                               p the lattice QCD p     values of the
+the lattice data that can account for the discrepancies                isovector r.m.s radii hrE    2 iu−d , and     2 iu−d finding
+                                                                                                                   hrM
+with the experimental values.                                          agreement among them. As expected by the less steep
+   Results for the neutron electromagnetic form factors                fall-off of the electric isovector form factor, lattice QCD
+are only provided by the ETMC for pion masses below                    results are systematically lower than the experimental
+170 MeV. They are compared to the experimental val-                    values. We note that the ETMC results have errors that
+ues in Fig. 29. We observe that results for the electric               are already the same as the difference between the two
+form factor extracted from the cB211.072.64 ensemble                   experimental determinations showing that the statistical
+that includes disconnected contributions are in agree-                 accuracy required can be achieved. A high-statistics ded-
+ment with the experimental values. This is also true                   icated study to better assess the remaining systematics
+for the cA2.09.48 ensemble that includes disconnected                  can thus yield valuable insights on the r.m.s. charge ra-
+contributions although they carry larger errors. For the               dius from a first principles calculation. In the case of
+                                                                         2 u−d
+cA2.09.64 ensemble, where disconnected contributions                   hrM  i      the errors are larger and lattice QCD results
+have not been included, underestimate the electric neu-                are both in good agreement among them and compatible
+tron form factor. This clearly indicates the significance of           with the PDG value [70].
+including disconnected contributions, especially for this                 In Fig. 31 we show the corresponding quantities for
+quantity, an observation consistent with the conclusion                the proton. Only the ETMC results include disconnected
+reached also in Ref. [62]. For the magnetic form fac-                  contributions, which, although small, have a systematic
+tor, results using the cB211.072.64 twisted mass ensem-                effect. We observe a similar behavior as for the isovector
+ble with disconnected contributions are closer to experi-              case, namely smaller values for the electric and magnetic
+ment as to compared to the Nf = 2 ensembles, but there                 r.m.s radii. LHPC results extracted using the summa-
+                                                                                                                                        21
+
+   ETMC NF = 2 + 1 + 1, Lm = 3.6     ETMC NF = 2, Lm = 3         LHPC '17      ETMC NF = 2 + 1 + 1, Lm = 3.6   ETMC '17           LHPC '14
+   ETMC NF = 2, Lm = 4               LHPC '14                    PACS '18      ETMC NF = 2, Lm = 4
+
+
+
+
+                  H         CODATA      PDG                  PDG                      PDG                      PDG        PDG
+ 0.6q 0.7 0.8 0.9 1.0 0.5   0.7 0.9                 3.8 4.3 4.8 5.3         0.3 ­0.2® 0.1 0.0 0.6 0.7 0.8 0.9 2.2 1.9 1.6
+     ­ ®              q­    ®                              u d                   r2E n [fm2]
+                                                                                               q­    ®
+      rE2 u d [fm] p rM u pd [fm]
+                          2                                                                       r2M n [fm]     p
+                                                                                                                     n
+FIG. 30. Isovector hrE   2 u−d
+                           i   , hrM 2 u−d
+                                       i   and µu−d with lat-                                                  2 n
+                                                                            FIG. 32. Lattice QCD results for hrE i ,         2 n
+                                                                                                                           hrM i and µn .
+tice QCD results following the notation of Fig. 26. The exper-              The notation is as in Fig. 31.
+imental result extracted from muonic hydrogen [3] is shown
+by the vertical dashed-dotted line and from CODATA [69] by
+the dotted vertical line. The PDG value [70] is shown with the                        2 n
+dashed vertical line. The red vertical inner band denotes the               case of hrE i .
+statistical error extracted using the Nf =2+1+1 twisted mass
+ensemble of this work and the outer lighter band is the total
+error adding statistical and systematic errors in quadrature.
+                                                                                    VIII. PROTON AND NEUTRON
+                                                                                 ELECTROMAGNETIC FORM FACTORS
+    ETMC NF = 2 + 1 + 1, Lm = 3.6    ETMC NF = 2, Lm = 3         LHPC '14
+    ETMC NF = 2, Lm = 4
+                                                                              Having compared with other groups and with the
+                                                                            Nf =2 results from ETMC, we collect here our final re-
+                                                                            sults on the proton and neutron form factors using the
+                                                                            Nf =2+1+1 ensemble, which has the most accurate re-
+                                                                            sults at the physical point. In Fig. 33 we show our re-
+                                                                            sults for the proton electric and magnetic form factors
+                                                                            compared to experimental data. As expected from the
+                                                                            behavior observed for the isovector and isoscalar electric
+                                                                            form factors, the proton electric form factor is consis-
+                                                                            tently higher than the experimental results. The proton
+                   CODATA
+                                                                            magnetic form factor agrees with the experiment for all
+            H                         PDG                          PDG
+                                                                            Q2 except the lowest two. This may be due to finite
+    0.7
+    q­ ®
+          0.8 0.9 1.0 0.6
+                       q­
+                          0.7 0.8 0.9 1.8 2.2 2.6 3.0                       volume or residual excited state effects as discussed in
+                             ®                p
+        rE [fm]
+         2 p
+                      p rM [fm]p
+                           2 p                                              Section V.
+FIG. 31. Results for hrE    2 p
+                              i and hrM  2 p
+                                           i using the same                   In Fig. 34 we show our results for the neutron form fac-
+notation as in Fig. 30. Filled symbols denote results that in-              tors. The determination of GnE (Q2 ) directly from lattice
+clude all contributions whereas open symbols are those where                QCD is very promising: we find good agreement with
+disconnected contributions are neglected. The rest of the no-               the experimental values but more importantly, at low
+tation follows that of Fig. 30.                                             Q2 , the errors from lattice QCD are smaller by up to a
+                                                                            factor of four in some cases, allowing for a more precise
+                                                                            description of its Q2 dependence. The lattice QCD de-
+tion method have larger errors and are thus compatible                      termination yields also accurate results for GnM (Q2 ) that
+with both the muonic and electron scattering determina-                     are in agreement with experiment for Q2 >0.2 GeV2 . At
+tions of the r.m.s. radii. For the neutron radii we have                    small Q2 we observe the same discrepancy as that ob-
+only results from ETMC and LHPC. They are displayed                         served for the isovector case. Such an underestimation
+in Fig. 32. ETMC results on the electric r.m.s. radius                      have been seen also for the induced pseudo-scalar form
+are determined at high accuracy and include all contribu-                   factor where leading order chiral perturbation theory can
+tions. Although they are still smaller in magnitude than                    show that is due to multi-hadron state contributions with
+the experimental values, the discrepancy is within one                      pions. Whether this is the explanation also for the neu-
+standard deviation. We note that including disconnected                     tron magnetic form factor remains an open question.
+contributions brings better agreement in particular in the                    Our results for the proton radii and magnetic moment,
+                                                                                                                                              22
+
+
+      1.0                                          Nf = 2 + 1 + 1                   0.10                                     Nf = 2 + 1 + 1
+                                                   Experiment                                                                Experiment
+      0.8                                                                           0.08
+                                                                                    0.06
+GpE(Q2)
+      0.6                                                                 GnE(Q2)   0.04
+      0.4                                                                           0.02
+      0.2                                                                           0.00
+                                                                                     0.2
+      3.0                                                                            0.4
+      2.5                                                                            0.6
+      2.0                                                                            0.8
+GpM(Q2)
+      1.5                                                                 GnM(Q2)    1.0
+      1.0                                                                            1.2
+      0.5                                                                            1.4
+                                                                                     1.6
+      0.00.0        0.2       0.4    0.6           0.8              1.0                0.0     0.2      0.4    0.6            0.8             1.0
+                               Q [GeV2]
+                                 2                                                                       Q [GeV2]
+                                                                                                           2
+ FIG. 33. Proton electric (upper panel) and magnetic (lower                FIG. 34. Neutron electric (upper panel) and magnetic (lower
+ panel) form factors as a function of Q2 . Filled circles show             panel) form factors as a function of Q2 . Filled circles show
+ the lattice QCD results of this work and black crosses are                the lattice QCD results of this work and black crosses are
+ experimental results from the A1 collaboration [1]. The band              experimental results taken from Refs. [4, 46–59] for the case
+ is the fit to our results using Eq. (19).                                 of the electric form factor and from Refs. [63–68] for the case of
+                                                                           the magnetic form factor. The fits to our results use Eq. (21)
+                                                                           for the electric form factor and Eq. (19) for the magnetic form
+                                                                           factors.
+ as extracted from the dipole fit, are
+
+               q
+                     2 ip = 0.742(13)(9)(14) fm,                                      IX.    SUMMARY AND CONCLUSIONS
+                   hrE
+                      µp = 2.43(9)(1)(3)(10 ),                                The nucleon electromagnetic Sachs form factors are
+               q
+                     2 ip = 0.710(26)(80)(6)(2 ) fm.
+                   hrM                                         (37)        computed using an Nf =2+1+1 ensemble of maximally
+                                             0
+                                                                           twisted mass fermions with quark masses tuned to
+                                                                           their physical values as well as an ensemble of Nf =2
+ The corresponding quantities for the neutron using the                    twisted mass fermions simulated at a pion mass of
+ Galster-like parameterization for the electric and the                    130 MeV. Comparing results calculated using Nf =2 and
+ dipole form for the magnetic are                                          Nf =2+1+1 twisted mass ensembles leads to the conclu-
+                                                                           sion that no quenching effects are detected within the
+                     2 n                                                   accuracy of the results that is within a couple of a per-
+                   hrE i = −0.074(16)(16)(8) fm2 ,                         centage.
+                      µn = −1.54(6)(2)(3),                                    A main novelty of this work is the computation to an
+               q
+                     2 in = 0.716(29)(44)(24) fm.
+                   hrM                                         (38)        unprecedented accuracy of the disconnected light quark
+                                                                           contributions, allowing us to extract the individual pro-
+                                                                           ton and neutron electromagnetic form factors. This is
+ As already explained, the first error is statistical, the sec-            accomplished by using state-of-the-art techniques that
+ ond is an estimate of the systematic due to the Ansätz                   combine hierarchical probing and deflation of the lowest
+ chosen for the fit and the third an estimate of excited                   eigen-modes and a large number of randomly distributed
+ state effects. We note here that disconnected contri-                     smeared point sources in order to suppress gauge noise.
+               2 n
+ butions to hrE i are non-negligible. If we were to ne-                    In particular, we find that disconnected contributions to
+                                2 n,conn.
+ glect them we would obtain hrE   i        =−0.063(15) fm2 ,               the neutron electric form factor are non-negligible and
+ namely more than a 15% shift in the mean value, i.e.                      need to be taken into account to bring agreement with
+ comparable to the other quoted systematic errors.                         the experimental values.
+                                                                                                                           23
+
+   Excited states are thoroughly investigated using five           oretical investigation within chiral perturbation theory
+sink-source time separations in the range of [0.96-1.60] fm        can shed light on multi-hadronic contributions. Further-
+allowing the identification of the ground state to good            more, a study on a larger volume will also help to probe
+precision and the determination of a systematic error              adequately volume effects. Thus, further studies are re-
+due to the excited states by comparing results from the            quired to be able to take the infinite volume limit and
+plateau method with the two-state fit method. The sum-             make definite conclusions on the small Q2 behavior of
+mation method is used as a confirmation of the results             the magnetic form factor and on the slope of the elec-
+extracted from the plateau and two-states fits.                    tric form factor. Finite lattice spacing effects, although
+   Our values for the electric and magnetic r.m.s. radii as        are expected to be small, need to also be investigated.
+well as the magnetic moments for the isovector, isoscalar,         Before this program is completed one cannot make fi-
+proton and neutron are collected in Table V. The results           nal statements on the two experimental results for the
+                                                                   proton charge radius. The ETM collaboration is gener-
+                                                                   ating further ensembles in order to enable the investiga-
+TABLE V. Our results for the electromagnetic radii and the         tion of these issues that will require large computational
+magnetic moment using the Nf =2+1+1 ensemble for the
+                                                                   resources.
+isovector combination (p−n), isoscalar (p+n), the proton and
+neutron. The first error is statistical, the second is a system-
+atic due to the fit Ansätz, and the third a systematic due to
+excited states, derived as explained in the text.                                 ACKNOWLEDGMENTS
+             q                 q
+                   2 i [fm]
+                 hrE                 2 i [fm]
+                                   hrM               µ
+                                                                      We would like to thank all members of ETMC for a
+     p − n 0.796(19)(12)(12) 0.712(27)(87)(5) 3.97(15)(2)(5)
+                                                                   very constructive and enjoyable collaboration. M.C. ac-
+     p + n 0.691(9)(7)(14) 0.695(36)(80)(13) 0.89(4)(3)(3)
+                                                                   knowledges financial support by the U.S. National Sci-
+       p 0.742(13)(9)(14) 0.710(26)(80)(6) 2.43(9)(1)(3)
+                 2 i [fm2 ]
+                                                                   ence Foundation under Grant No. PHY-1714407. This
+               hrE                                                 project has received funding from the Horizon 2020 re-
+       n                     0.716(29)(44)(24) -1.54(6)(2)(3)
+           -0.074(16)(16)(8)                                       search and innovation program of the European Commis-
+                                                                   sion under the Marie Sklodowska-Curie grant agreement
+are extracted using the dipole ansätz or the Galster-like         No 642069. S.B. is supported by this program as well
+parameterization and a systematic error on the parame-             as from the project COMPLEMENTARY/0916/0015
+terization used is extracted by comparing with the model           funded by the Cyprus Research Promotion Foundation.
+independent z-expansion. Our result for the proton elec-           The authors gratefully acknowledge the Gauss Centre
+tric r.m.s radius is underestimated due to the slower de-          for Supercomputing e.V. (www.gauss-centre.eu) for fund-
+cay of GpE (Q2 ). Similarly there is an underestimation            ing the project pr74yo by providing computing time on
+of the magnetic moments for the proton and neutron. A              the GCS Supercomputer SuperMUC at Leibniz Super-
+most plausible explanation for these remaining discrepan-          computing Centre (www.lrz.de). Results were obtained
+cies may come from a combination of residual volume and            using Piz Daint at Centro Svizzero di Calcolo Scien-
+multi-hadron contributions. Finite volume effects are in-          tifico (CSCS), via the project with id s702. We thank
+vestigated in this work by comparing two Nf =2 twisted             the staff of CSCS for access to the computational re-
+mass ensembles with pion mass of 130 MeV with the                  sources and for their constant support. This work also
+same lattice spacing but Lmπ ≃3 and Lmπ ≃4. Although               used computational resources from Extreme Science and
+we observe consistent results between these two volumes,           Engineering Discovery Environment (XSEDE), which is
+we cannot exclude finite volume effects that may affect            supported by National Science Foundation grant num-
+the magnetic form factor for small Q2 values as well as            ber TG-PHY170022. This work used computational re-
+the electric form factor. A slow convergence of the results        sources from the John von Neumann-Institute for Com-
+as a function of the volume in combination with effects            puting on the Jureca system at the research center in
+of multi-hadron states maybe difficult to detect. A the-           Jülich, under the project with id ECY00.
+
+
+
+
+ [1] J. C. Bernauer et al. (A1), Phys. Rev. C90, 015206             [6] C. Alexandrou, M. Constantinou, K. Hadjiyiannakou,
+     (2014), arXiv:1307.6227 [nucl-ex].                                 K. Jansen, C. Kallidonis, G. Koutsou, and A. Va-
+ [2] V. Punjabi, C. F. Perdrisat, M. K. Jones, E. J. Brash,             quero Avilés-Casco, Phys. Rev. D97, 094504 (2018),
+     and C. E. Carlson, Eur. Phys. J. A51, 79 (2015),                   arXiv:1801.09581 [hep-lat].
+     arXiv:1503.01452 [nucl-ex].                                    [7] C. Alexandrou, M. Constantinou, K. Hadjiyiannakou,
+ [3] R. Pohl et al., Nature 466, 213 (2010).                            K. Jansen, C. Kallidonis, G. Koutsou, and A. Va-
+ [4] J. Golak, G. Ziemer, H. Kamada, H. Witala, and                     quero Aviles-Casco, Phys. Rev. D96, 034503 (2017),
+     W. Gloeckle, Phys. Rev. C63, 034006 (2001), arXiv:nucl-            arXiv:1706.00469 [hep-lat].
+     th/0008008 [nucl-th].                                          [8] S. Galster, H. Klein, J. Moritz, K. H. Schmidt, D. We-
+ [5] C. Alexandrou et al., (2018), arXiv:1807.00495 [hep-lat].          gener, and J. Bleckwenn, Nucl. Phys. B32, 221 (1971).
+                                                                                                                               24
+
+ [9] R. J. Hill and G. Paz, Phys. Rev. D82, 113005 (2010),        [29] C. McNeile and C. Michael (UKQCD), Phys. Rev. D73,
+     arXiv:1008.4619 [hep-ph].                                         074506 (2006), arXiv:hep-lat/0603007 [hep-lat].
+[10] A. Stathopoulos, J. Laeuchli, and K. Orginos, (2013),        [30] C. Alexandrou, M. Constantinou, V. Drach, K. Had-
+     arXiv:1302.4018 [hep-lat].                                        jiyiannakou, K. Jansen, G. Koutsou, A. Strelchenko, and
+[11] A. S. Gambhir, A. Stathopoulos, and K. Orginos, SIAM              A. Vaquero, Comput. Phys. Commun. 185, 1370 (2014),
+     J. Sci. Comput. 39, A532 (2017), arXiv:1603.05988 [hep-           arXiv:1309.2256 [hep-lat].
+     lat].                                                        [31] C. Alexandrou, M. Constantinou, K. Hadjiyiannakou,
+[12] S. Capitani, M. Della Morte, D. Djukanovic, G. von Hip-           K. Jansen, C. Kallidonis, G. Koutsou, and A. Va-
+     pel, J. Hua, B. Jager, B. Knippschild, H. B. Meyer, T. D.         quero Aviles-Casco, Phys. Rev. D96, 054507 (2017),
+     Rae, and H. Wittig, Phys. Rev. D92, 054511 (2015),                arXiv:1705.03399 [hep-lat].
+     arXiv:1504.04628 [hep-lat].                                  [32] C. Alexandrou et al., Phys. Rev. D95, 114514
+[13] J. R. Green, J. W. Negele, A. V. Pochinsky, S. N. Syrit-          (2017), [Erratum: Phys. Rev.D96,no.9,099906(2017)],
+     syn, M. Engelhardt, and S. Krieg, Phys. Rev. D90,                 arXiv:1703.08788 [hep-lat].
+     074507 (2014), arXiv:1404.4029 [hep-lat].                    [33] C. Alexandrou, M. Constantinou, K. Hadjiyiannakou,
+[14] N. Hasan, J. Green, S. Meinel, M. Engelhardt, S. Krieg,           K. Jansen, C. Kallidonis, G. Koutsou, A. Vaquero Avilés-
+     J. Negele, A. Pochinsky, and S. Syritsyn, Phys. Rev.              Casco, and C. Wiese, Phys. Rev. Lett. 119, 142002
+     D97, 034504 (2018), arXiv:1711.11385 [hep-lat].                   (2017), arXiv:1706.02973 [hep-lat].
+[15] K.-I. Ishikawa, Y. Kuramashi, S. Sasaki, N. Tsukamoto,       [34] R. Frezzotti and G. C. Rossi, JHEP 08, 007 (2004),
+     A. Ukawa, and T. Yamazaki (PACS), Phys. Rev. D98,                 arXiv:hep-lat/0306014 [hep-lat].
+     074510 (2018), arXiv:1807.03974 [hep-lat].                   [35] R. Frezzotti and G. C. Rossi, Lattice hadron physics.
+[16] C. Alexandrou, S. Gusken, F. Jegerlehner, K. Schilling,           Proceedings, 2nd Topical Workshop, LHP 2003, Cairns,
+     and R. Sommer, Nucl. Phys. B414, 815 (1994),                      Australia, July 22-30, 2003, Nucl. Phys. Proc. Suppl.
+     arXiv:hep-lat/9211042 [hep-lat].                                  128, 193 (2004), [,193(2003)], arXiv:hep-lat/0311008
+[17] S. Gusken, Lattice 89 Capri: The 1989 Symposium on                [hep-lat].
+     Lattice Field Theory Capri, Italy, September 18-21, 1989,    [36] A. Abdel-Rehim et al. (ETM), Phys. Rev. D95, 094515
+     Nucl. Phys. Proc. Suppl. 17, 361 (1990).                          (2017), arXiv:1507.05068 [hep-lat].
+[18] C. Alexandrou et al. (European Twisted Mass), Phys.          [37] L. Maiani, G. Martinelli, M. L. Paciello, and B. Taglienti,
+     Rev. D78, 014509 (2008), arXiv:0803.3190 [hep-lat].               Nucl. Phys. B293, 420 (1987).
+[19] M. Albanese et al. (APE), Phys. Lett. B192, 163 (1987).      [38] S. Capitani, M. Della Morte, G. von Hippel, B. Jager,
+[20] C. Alexandrou, M. Constantinou, S. Dinter, V. Drach,              A. Juttner, B. Knippschild, H. B. Meyer, and H. Wittig,
+     K. Jansen, C. Kallidonis, and G. Koutsou, Phys. Rev.              Phys. Rev. D86, 074502 (2012), arXiv:1205.0180 [hep-
+     D88, 014509 (2013), arXiv:1303.5979 [hep-lat].                    lat].
+[21] C. Alexandrou, M. Brinet, J. Carbonell, M. Constanti-        [39] M. J. Savage, P. E. Shanahan, B. C. Tiburzi, M. L. Wag-
+     nou, P. A. Harraud, P. Guichon, K. Jansen, T. Ko-                 man, F. Winter, S. R. Beane, E. Chang, Z. Davoudi,
+     rzec, and M. Papinutto, Phys. Rev. D83, 094502 (2011),            W. Detmold, and K. Orginos, Phys. Rev. Lett. 119,
+     arXiv:1102.2208 [hep-lat].                                        062002 (2017), arXiv:1610.04545 [hep-lat].
+[22] C. Alexandrou, G. Koutsou, J. W. Negele,             and     [40] C. Alexandrou, M. Constantinou, and H. Panagopou-
+     A. Tsapalis, Phys. Rev. D74, 034508 (2006), arXiv:hep-            los (ETM), Phys. Rev. D95, 034505 (2017),
+     lat/0605017 [hep-lat].                                            arXiv:1509.00213 [hep-lat].
+[23] S. Bacchio, C. Alexandrou, and J. Finkerath, Proceed-        [41] C. Alexandrou,        M. Constantinou,       T. Korzec,
+     ings, 35th International Symposium on Lattice Field The-          H. Panagopoulos,        and F. Stylianou, Phys. Rev.
+     ory (Lattice 2017): Granada, Spain, June 18-24, 2017,             D83, 014503 (2011), arXiv:1006.1920 [hep-lat].
+     EPJ Web Conf. 175, 02002 (2018), arXiv:1710.06198            [42] R. S. Sufian, Y.-B. Yang, A. Alexandru, T. Draper,
+     [hep-lat].                                                        J. Liang, and K.-F. Liu, Phys. Rev. Lett. 118, 042001
+[24] S. Bacchio, C. Alexandrou, J. Finkenrath, A. From-                (2017), arXiv:1606.07075 [hep-ph].
+     mer, K. Kahl, and M. Rottmann, Proceedings, 34th In-         [43] O.    Bar,    Phys.     Rev.    D99,     054506    (2019),
+     ternational Symposium on Lattice Field Theory (Lattice            arXiv:1812.09191 [hep-lat].
+     2016): Southampton, UK, July 24-30, 2016, PoS LAT-           [44] C. F. Perdrisat, V. Punjabi, and M. Vanderhaeghen,
+     TICE2016, 259 (2016), arXiv:1611.01034 [hep-lat].                 Prog. Part. Nucl. Phys. 59, 694 (2007), arXiv:hep-
+[25] C. Alexandrou, S. Bacchio, J. Finkenrath, A. Frommer,             ph/0612014 [hep-ph].
+     K. Kahl, and M. Rottmann, Phys. Rev. D94, 114509             [45] W. M. Alberico, S. M. Bilenky, C. Giunti,              and
+     (2016), arXiv:1610.02370 [hep-lat].                               K. M. Graczyk, Phys. Rev. C79, 065204 (2009),
+[26] W. Wilcox, in Numerical challenges in lattice quantum             arXiv:0812.3539 [hep-ph].
+     chromodynamics. Proceedings, Joint Interdisciplinary         [46] J. Becker et al., Eur. Phys. J. A6, 329 (1999).
+     Workshop, Wuppertal, Germany, August 22-24, 1999             [47] T. Eden et al., Phys. Rev. C50, R1749 (1994).
+     (1999) pp. 127–141, arXiv:hep-lat/9911013 [hep-lat].         [48] M. Meyerhoff et al., Phys. Lett. B327, 201 (1994).
+[27] J. Green, S. Meinel, M. Engelhardt, S. Krieg, J. Laeuchli,   [49] I. Passchier et al., Phys. Rev. Lett. 82, 4988 (1999),
+     J. Negele, K. Orginos, A. Pochinsky, and S. Syritsyn,             arXiv:nucl-ex/9907012 [nucl-ex].
+     Phys. Rev. D92, 031501 (2015), arXiv:1505.01803 [hep-        [50] G. Warren et al. (Jefferson Lab E93-026), Phys. Rev.
+     lat].                                                             Lett. 92, 042301 (2004), arXiv:nucl-ex/0308021 [nucl-ex].
+[28] J. Green, N. Hasan, S. Meinel, M. Engelhardt, S. Krieg,      [51] H. Zhu et al. (E93026), Phys. Rev. Lett. 87, 081801
+     J. Laeuchli, J. Negele, K. Orginos, A. Pochinsky,                 (2001), arXiv:nucl-ex/0105001 [nucl-ex].
+     and S. Syritsyn, Phys. Rev. D95, 114502 (2017),              [52] B. Plaster et al. (Jefferson Laboratory E93-038), Phys.
+     arXiv:1703.06703 [hep-lat].                                       Rev. C73, 025205 (2006), arXiv:nucl-ex/0511025 [nucl-
+                                                                                                                                        25
+
+     ex].                                                                    [63] B. Anderson et al. (Jefferson Lab E95-001), Phys. Rev.
+[53] R. Madey et al. (E93-038), Phys. Rev. Lett. 91, 122002                       C75, 034003 (2007), arXiv:nucl-ex/0605006 [nucl-ex].
+     (2003), arXiv:nucl-ex/0308007 [nucl-ex].                                [64] H. Gao et al., Phys. Rev. C50, R546 (1994).
+[54] D. Rohe et al., Phys. Rev. Lett. 83, 4257 (1999).                       [65] H. Anklin et al., Phys. Lett. B336, 313 (1994).
+[55] J. Bermuth et al., Phys. Lett. B564, 199 (2003),                        [66] H. Anklin et al., Phys. Lett. B428, 248 (1998).
+     arXiv:nucl-ex/0303015 [nucl-ex].                                        [67] G. Kubon et al., Phys. Lett. B524, 26 (2002), arXiv:nucl-
+[56] D. I. Glazier et al., Eur. Phys. J. A24, 101 (2005),                         ex/0107016 [nucl-ex].
+     arXiv:nucl-ex/0410026 [nucl-ex].                                        [68] R. Alarcon (BLAST), Proceedings, 3rd International
+[57] C. Herberg et al., Eur. Phys. J. A5, 131 (1999).                             Workshop on From parity violation to hadronic struc-
+[58] R. Schiavilla and I. Sick, Phys. Rev. C64, 041002 (2001),                    ture and more (PAVI 2006): Milos, Greece, May 16-
+     arXiv:nucl-ex/0107004 [nucl-ex].                                             20, 2006, Eur. Phys. J. A32, 477 (2007), [Eur. Phys.
+[59] M. Ostrick et al., Phys. Rev. Lett. 83, 276 (1999).                          J.A32,477(2007)].
+[60] T. Sato, D. Uno, and T. S. H. Lee, Phys. Rev. C67,                      [69] P. J. Mohr, D. B. Newell,           and B. N. Taylor,
+     065201 (2003), arXiv:nucl-th/0303050 [nucl-th].                              Rev. Mod. Phys. 88, 035009 (2016), arXiv:1507.07956
+[61] E. Shintani, K.-I. Ishikawa, Y. Kuramashi, S. Sasaki, and                    [physics.atom-ph].
+     T. Yamazaki, (2018), arXiv:1811.07292 [hep-lat].                        [70] C. Patrignani et al. (Particle Data Group), Chin. Phys.
+[62] R. S. Sufian, Y.-B. Yang, J. Liang, T. Draper, and K.-F.                     C40, 100001 (2016).
+     Liu, Phys. Rev. D96, 114504 (2017), arXiv:1705.05849
+     [hep-lat].
+
+
+
+
+      Appendix A: Expressions relating nucleon vector matrix elements to electromagnetic form factors
+
+  In this Appendix we give a summary of the expressions relating the Sachs form factors GE ≡GE (Q2 ) and
+GM ≡GM (Q2 ) to the ratio of three-point and two-point functions. The expressions are given for a general frame
+                                  p0 ) and initial (final) energy E (E 0 ). All expressions are given in Euclidean space.
+with initial (final) momentum p~ (~
+                                                  −iC GE
+                       Πµ (Γ0 , p~ 0 , p~) =                    (p0µ + pµ ) m (E 0 + E + m) − p0ρ pρ
+                                                                                                    
+                                                      2
+                                               2m(4m + Q )   2
+
+                                                     C GM         
+                                                                    δµ0 4m4 + m2 Q2 + 4m2 p0ρ pρ + Q2 p0ρ pρ
+                                                                                                             
+                                               + 2
+                                                4m (4m2 + Q2 )
+                                               +2im2 p0µ E 0 − E − 2im3 (p0µ + pµ ) − iEQ2 p0µ − iE 0 Q2 pµ
+                                                                 
+                                                                                                           
+                                               −imQ2 (p0µ + pµ ) − 2im2 pµ E 0 − E − 2imp0ρ pρ (p0µ + pµ ) ,
+                                                                                    
+                                                                                                                                     (A1)
+
+
+                                                    −C GE          
+                        Πµ (Γk , p~ 0 , p~) =                        m2 εµk0ρ (p0ρ − pρ ) − i εµkρσ p0ρ pσ E 0 + E
+                                                                                                                   
+                                                        2
+                                                2m(4m + Q )     2
+                                                                                                      
+                                                + εµ0ρσ p0ρ pσ (p0k + pk ) − εµk0ρ p0σ pσ (p0ρ − pρ )
+                                                       C GM           
+                                                − 2          2      2
+                                                                        m εµk0ρ (p0ρ − pρ )(2m2 + Q2 )
+                                                  4m (4m + Q )
+                                                                                        Q2 
+                                                +2im εµkρσ p0ρ pσ 2m + E 0 + E +
+                                                                                        2m                 
+                                                −2m εµ0ρσ p0ρ pσ (p0k + pk ) + 2m εµk0ρ p0σ pσ (p0ρ − pρ ) ,                         (A2)
+
+  where C is a kinematic factor given by
+                                                                            s
+                                                         2m                     E(E(~ p 0 ) + m)
+                                                  C=                                             .                                   (A3)
+                                                         p 0 ) + m)
+                                                     E(E(~                      E(~ 0
+                                                                                  p )(E + m)
+
+  In the case where p~ 0 = ~0 the expressions simplify as follows
+                                                                          E+m
+                                                       Π0 (Γ0 , p~) = C       GE (Q2 ),                                              (A4)
+                                                                           2m
+
+                                                                             pi
+                                                         Πi (Γ0 , p~) = C       GE (Q2 ),                                            (A5)
+                                                                            2m
+                                                                                                                         26
+
+
+
+                                                                  ijk pj
+                                               Πi (Γk , p~) = C           GM (Q2 )                                     (A6)
+                                                                    2m
+and
+                                                           s
+                                                                 2m2
+                                                      C=                .                                              (A7)
+                                                               E(E + m)
+
+
+                        Appendix B: Numerical results for the electromagnetic form factors
+
+
+
+TABLE VI. Results for the electromagnetic form factors using the cB211.072.64 ensemble for the isovector combination GpE,M −
+                       p
+Gn                                        n
+ E,M , for the proton GE,M and neutron GE,M , including the disconnected contributions for the latter two form factors.
+
+
+          Q2 [GeV 2 ]     Gp−n
+                           E   (Q2 )      GpE (Q2 )        Gn   2
+                                                            E (Q )          Gu−d 2
+                                                                             M (Q )      GpM (Q2 )      Gn   2
+                                                                                                         M (Q )
+
+          0.000            0.997(3)       0.998(2)          0.001(1)            NA           NA            NA
+          0.057           0.858(10)       0.874(6)          0.016(5)        3.516(101)    2.156(62)    -1.361(43)
+          0.113           0.752(11)       0.775(8)          0.023(5)         3.105(78)    1.903(48)    -1.202(33)
+          0.167           0.662(14)       0.694(9)          0.032(7)         2.801(80)    1.719(47)    -1.082(35)
+          0.219           0.601(17)      0.631(10)          0.030(8)         2.583(82)    1.580(50)    -1.003(35)
+          0.270           0.534(14)       0.575(9)          0.040(7)         2.430(62)    1.485(38)    -0.945(26)
+          0.320           0.482(16)      0.529(11)          0.046(7)         2.224(70)    1.367(43)    -0.857(29)
+          0.417           0.405(23)      0.450(16)         0.045(10)         1.943(78)    1.200(48)    -0.743(32)
+          0.464           0.374(21)      0.420(15)          0.047(9)         1.789(71)    1.104(44)    -0.684(29)
+          0.510           0.363(25)      0.404(18)         0.041(11)         1.655(69)    1.012(42)    -0.644(31)
+          0.554           0.345(27)      0.385(21)         0.040(11)         1.610(84)    0.994(50)    -0.616(37)
+          0.598           0.310(43)      0.351(33)         0.041(16)        1.472(127)    0.923(79)    -0.549(51)
+          0.642           0.291(33)      0.336(27)         0.045(13)        1.495(109)    0.926(67)    -0.570(44)
+          0.684           0.263(34)      0.308(27)         0.046(13)        1.386(112)    0.866(71)    -0.521(44)
+          0.767           0.239(60)      0.283(48)         0.043(27)        0.893(149)    0.532(90)    -0.361(65)
+          0.807           0.250(39)      0.278(31)         0.028(15)        0.942(101)    0.583(62)    -0.361(43)
+          0.847           0.213(43)      0.249(35)         0.035(16)        1.006(117)    0.605(70)    -0.402(51)
+          0.886           0.158(61)      0.203(51)         0.048(22)        1.028(211)   0.662(135)    -0.367(80)
+          0.925           0.150(58)      0.205(50)         0.056(24)        0.891(190)   0.539(115)    -0.353(79)
+          0.963           0.172(48)      0.200(41)         0.029(18)        0.765(153)    0.461(94)    -0.302(61)
+

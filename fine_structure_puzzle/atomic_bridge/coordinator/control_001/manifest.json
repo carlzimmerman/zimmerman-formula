@@ -1,0 +1,133 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-I-CONTROL",
+  "repository": {
+    "commit": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/atomic_bridge/coordinator/selection_check.py",
+    "--upper-state-control",
+    "--output",
+    "fine_structure_puzzle/atomic_bridge/coordinator/control_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Control substitutes excited upper eigenvalue for ground branch; curvature-sign assertion must fail",
+    "coefficient_domain": "Q(alpha,m_e,m_p,hbar,c), symbolic and 60-digit diagnostics",
+    "conventions": "Leading Coulomb Hamiltonian at fixed masses/composition; a_H reduced-mass Bohr length, a_M framework acceleration",
+    "inputs": [
+      "Positive masses, alpha and constants",
+      "H0=[[0,1],[1,2]], V=diag(-1,2)",
+      "CODATA2022 diagnostic constants and separately stated two framework acceleration footings"
+    ],
+    "bounds": {
+      "two_state_models": 1,
+      "gravity_footings": 2,
+      "decimal_precision": 60
+    },
+    "non_claims": [
+      "No full QED or source quantization",
+      "No alpha or mass prediction",
+      "No independent metrological fit/covariance claim"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T01:04:52.899519+00:00",
+    "runtime_seconds": 0.429075,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": null
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/atomic_bridge/coordinator/selection_check.py",
+    "fine_structure_puzzle/atomic_bridge/coordinator/selection_inputs.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/coordinator/selection_check.py",
+      "sha256": "2f09f5603bb00e3bdeba4395003b8d7d65c166406050f8587efea35b24f28f1c",
+      "sha256_after": "2f09f5603bb00e3bdeba4395003b8d7d65c166406050f8587efea35b24f28f1c"
+    },
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/coordinator/selection_inputs.json",
+      "sha256": "7559f677b5f3c2126b0bddfaacf989bc0ce4f54228c6642b195553e61ecd64c1",
+      "sha256_after": "7559f677b5f3c2126b0bddfaacf989bc0ce4f54228c6642b195553e61ecd64c1"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/atomic_bridge/coordinator/control_001",
+  "declared_results": [
+    "fine_structure_puzzle/atomic_bridge/coordinator/control_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/coordinator/control_001/stdout.txt",
+      "sha256": "ce4d072405bb0770a4e314b23883d7a94411fc6775fb220fabf9c47da406b755",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/coordinator/control_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/coordinator/control_001/results.json",
+      "sha256": "4e7d028c17fc53768d6a1ca07e134fa4c7024ca28e59bddc412da6824dce72f4",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions."
+  ]
+}

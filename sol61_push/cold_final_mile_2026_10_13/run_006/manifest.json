@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-FM-006",
+  "repository": {
+    "commit": "5124ad2884a45b0d930a27c5f3566381d9c9a356",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_final_mile_2026_10_13/check_stationary_flow.py",
+    "sol61_push/cold_final_mile_2026_10_13/run_006/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Actual full saturating stationary cold radial flow IVPs, Bernoulli and residence mass budget on finite annulus",
+    "coefficient_domain": "SymPy exact rational algebra and IEEE double numerical checks",
+    "conventions": "G=a0=M_b=1; u=m(<r)/r^2; outward acceleration positive; core matching conditional",
+    "inputs": [
+      "sol61_push/cold_final_mile_2026_10_13/check_stationary_flow.py",
+      "sol61_push/cold_final_mile_2026_10_13/STATIONARY_FLOW_CONTRACT.txt"
+    ],
+    "bounds": {
+      "radius_min": 2,
+      "radius_max": 50,
+      "radii": 20001,
+      "F": [
+        0.03,
+        0.1,
+        0.3
+      ],
+      "solver": "DOP853",
+      "rtol": 1e-11,
+      "atol": 1e-13,
+      "wall_seconds": 40
+    },
+    "non_claims": [
+      "No formation, smooth DF, relativistic receiver or universal existence claim",
+      "Frozen central mass is a comparison input and its validity is checked against retained mass budget"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T19:20:06.494812+00:00",
+    "runtime_seconds": 0.610036,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_final_mile_2026_10_13/check_stationary_flow.py",
+    "sol61_push/cold_final_mile_2026_10_13/STATIONARY_FLOW_CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/check_stationary_flow.py",
+      "sha256": "d1ca2432a3da558776da0d35ad70af42584a85446d223a2924f3543e84646914",
+      "sha256_after": "d1ca2432a3da558776da0d35ad70af42584a85446d223a2924f3543e84646914"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/STATIONARY_FLOW_CONTRACT.txt",
+      "sha256": "10e94c632875c6369d0444d0f6dd75d535b6738bb724ce9794c94f2875d7ac16",
+      "sha256_after": "10e94c632875c6369d0444d0f6dd75d535b6738bb724ce9794c94f2875d7ac16"
+    }
+  ],
+  "output_directory": "sol61_push/cold_final_mile_2026_10_13/run_006",
+  "declared_results": [
+    "sol61_push/cold_final_mile_2026_10_13/run_006/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_006/stdout.txt",
+      "sha256": "9df4aea6dcdca82f3ff2edc61be7cb75dd8214640d79085d6113cb37379e2f5b",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_006/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_006/results.json",
+      "sha256": "9df4aea6dcdca82f3ff2edc61be7cb75dd8214640d79085d6113cb37379e2f5b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

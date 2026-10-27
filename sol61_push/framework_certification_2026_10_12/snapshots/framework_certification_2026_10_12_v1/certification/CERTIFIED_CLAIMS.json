@@ -1,0 +1,620 @@
+{
+  "checkpoint": "FRAMEWORK-CERT-2026-10-12",
+  "whole_theory_certified": false,
+  "theorem_count": 43,
+  "new_theorem_count": 25,
+  "reproduced_existing_theorems": 18,
+  "physical_premises": "Supplied as explicit hypotheses/definitions; Mathlib axioms are mathematical, not empirical premises. See assumption register and module correspondence.",
+  "module_imports": "Mathlib only; no project cosmology or MOND theory module imported",
+  "modules": [
+    {
+      "namespace": "GravityArchitecture",
+      "source": "sol61_push/gravity_architecture_lean_2026_10_12/Architecture.lean",
+      "source_sha256": "e65f31944ba1dcb237f6c1c9ba6b32b7542a2ed360ddf65f170fe18eee647842",
+      "main_log": "sol61_push/framework_certification_2026_10_12/architecture_review/run/main.log",
+      "main_log_sha256": "d35360e7d5979345a7467bbe7fe277ab005f3bd52c8aba3db03dc45a21b26d90",
+      "theorem_count": 18,
+      "entries": [
+        {
+          "name": "GravityArchitecture.scale_squared",
+          "line": 17,
+          "exact_statement": "theorem scale_squared (κ c G ρ : ℝ) (h : 0 ≤ G * ρ) :\n    accelerationScale κ c G ρ ^ 2 = κ ^ 2 * c ^ 2 * G * ρ",
+          "statement_sha256": "40c7269cbdf7d4bdc2d18cc8d08779fb5fc7ad73a56cfb26787ac013cd887878",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.vacuum_coefficient",
+          "line": 24,
+          "exact_statement": "theorem vacuum_coefficient (κ c G ρ Λ : ℝ) (hc : c ≠ 0)\n    (hρ : 0 ≤ G * ρ) (hΛ : Λ = 8 * Real.pi * G * ρ / c ^ 2) :\n    accelerationScale κ c G ρ ^ 2 = κ ^ 2 * Λ * c ^ 4 / (8 * Real.pi)",
+          "statement_sha256": "29831cad10b14dea9c8b3ead79719784b67428570938d4eb48e86a5c75aaf2ae",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.half_kappa_32pi",
+          "line": 30,
+          "exact_statement": "theorem half_kappa_32pi (c G ρ Λ : ℝ) (hc : c ≠ 0)\n    (hρ : 0 ≤ G * ρ) (hΛ : Λ = 8 * Real.pi * G * ρ / c ^ 2) :\n    accelerationScale (1 / 2) c G ρ ^ 2 = Λ * c ^ 4 / (32 * Real.pi)",
+          "statement_sha256": "194e357db059e8063e1925a37a3d03ebc2ea096e399a1c75790638139bc520db",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.coefficient_family",
+          "line": 37,
+          "exact_statement": "theorem coefficient_family (κ c G ρ : ℝ) (h : 0 ≤ G * ρ) :\n    ∃ a₀ : ℝ, a₀ = accelerationScale κ c G ρ ∧\n      a₀ ^ 2 = κ ^ 2 * c ^ 2 * G * ρ",
+          "statement_sha256": "bb3dddf125e6181e9cc34a3c8b255a836c15fbe435e8e36c0330896642882b48",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.baryonic_quartic",
+          "line": 47,
+          "exact_statement": "theorem baryonic_quartic (G M a₀ r V : ℝ)\n    (hG : 0 < G) (hM : 0 ≤ M) (ha : 0 ≤ a₀) (hr : 0 < r)\n    (horbit : V ^ 2 / r = deepAcceleration G M a₀ r) :\n    V ^ 4 = G * M * a₀",
+          "statement_sha256": "c2f65a4d4e00fa6e2e9d7699a8a522f821fcca064a4ab257ca891ead3627cc74",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.target_mass_unique",
+          "line": 68,
+          "exact_statement": "theorem target_mass_unique (G Mb Mc r ν : ℝ) (hG : G ≠ 0) (hr : r ≠ 0)\n    (hforce : G * (Mb + Mc) / r ^ 2 = ν * (G * Mb / r ^ 2)) :\n    Mc = (ν - 1) * Mb",
+          "statement_sha256": "df59e57a3be5d06ccd0c8707a561419d422a559d6c37071fa9804bbd3e70ed37",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.target_mass_sufficient",
+          "line": 75,
+          "exact_statement": "theorem target_mass_sufficient (G Mb r ν : ℝ) :\n    G * (Mb + (ν - 1) * Mb) / r ^ 2 = ν * (G * Mb / r ^ 2)",
+          "statement_sha256": "ac9091689df7b22c5d8ee449016f9c03c835aa86b8cb6f954546284bfa5aec89",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.target_mass_nonnegative_iff",
+          "line": 80,
+          "exact_statement": "theorem target_mass_nonnegative_iff (Mb ν : ℝ) (hM : 0 < Mb) :\n    0 ≤ (ν - 1) * Mb ↔ 1 ≤ ν",
+          "statement_sha256": "ba6093f58469656ae3b5971cdedf090074feb132fd1faf6c72dd6218868cd36c",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.tail_mass_derivative",
+          "line": 91,
+          "exact_statement": "theorem tail_mass_derivative (A Mb r : ℝ) :\n    HasDerivAt (tailColdMass A Mb) A r",
+          "statement_sha256": "1c700096260b5fb1cd300a397ef0b76c3956c9ee2041c718936c42ea31311eac",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.tail_density",
+          "line": 100,
+          "exact_statement": "theorem tail_density (A Mb r ρ : ℝ) (hr : r ≠ 0)\n    (hmass : 4 * Real.pi * r ^ 2 * ρ = deriv (tailColdMass A Mb) r) :\n    ρ = A / (4 * Real.pi * r ^ 2)",
+          "statement_sha256": "eb24b4dd9fa59cd9871784647648c4e97f1cbbe2a15312130204beb088db03fb",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.supply_radius_bound",
+          "line": 108,
+          "exact_statement": "theorem supply_radius_bound (A Mb S r : ℝ) (hA : 0 < A)\n    (hsupply : tailColdMass A Mb r ≤ S) :\n    r ≤ (S + Mb) / A",
+          "statement_sha256": "b389a629d9a5f581bfc1a4373efb78967818f1f57b13ed5cd3c214b638e57ba5",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.no_finite_supply_for_infinite_tail",
+          "line": 115,
+          "exact_statement": "theorem no_finite_supply_for_infinite_tail (A Mb S : ℝ) (hA : 0 < A) :\n    ¬ (∀ r : ℝ, 0 < r → tailColdMass A Mb r ≤ S)",
+          "statement_sha256": "12d26157297f755b565a308b564387afbec32d2bcad5c1c3bc740a36a7954392",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.nonlensing_residual",
+          "line": 126,
+          "exact_statement": "theorem nonlensing_residual (gb gc gs gd gl : ℝ)\n    (hd : gd = gb + gc + gs) (hl : gl = gb + gc) :\n    gd - gl = gs",
+          "statement_sha256": "2a815ee87e57d997113a65f8dbb3cd94c1d237431cf9f5da0e2146df6d5e686e",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.matched_lensing_forces_zero_extra",
+          "line": 130,
+          "exact_statement": "theorem matched_lensing_forces_zero_extra (gb gc gs gd gl : ℝ)\n    (hd : gd = gb + gc + gs) (hl : gl = gb + gc) (hm : gd = gl) :\n    gs = 0",
+          "statement_sha256": "850bb30e7cf7399f869d0a71376169bd7d6d949f59742153822d52b71e92de28",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.exchange_conserves_total",
+          "line": 135,
+          "exact_statement": "theorem exchange_conserves_total {ι : Type*} (Dc Dr Q : ι → ℝ)\n    (hc : ∀ i, Dc i = Q i) (hr : ∀ i, Dr i = -Q i) :\n    ∀ i, Dc i + Dr i = 0",
+          "statement_sha256": "58c0f0b9846cb8d911d41151c9d6299c14abebe0753d88e2d7bb246902931680",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.passive_vacuum_no_exchange",
+          "line": 143,
+          "exact_statement": "theorem passive_vacuum_no_exchange {ι : Type*} (Dv Q : ι → ℝ)\n    (hzero : ∀ i, Dv i = 0) (hexchange : ∀ i, Dv i = -Q i) :\n    ∀ i, Q i = 0",
+          "statement_sha256": "a57969abe8872f60a6bd1a453f58ef0a07519ae987cbec73288a2a22485e7542",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.response_energy_nonnegative",
+          "line": 152,
+          "exact_statement": "theorem response_energy_nonnegative (C β mismatchSq p : ℝ)\n    (hC : 0 ≤ C) (hβ : 0 ≤ β) (hm : 0 ≤ mismatchSq) (hp : 0 ≤ p) :\n    0 ≤ C / 2 * mismatchSq + β / 3 * p ^ 3",
+          "statement_sha256": "87639e50896dae49bb8b6a94a0045bc5c9699f155e1fa06eae7234c2da96b8af",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.distinct_mass_scalings",
+          "line": 158,
+          "exact_statement": "theorem distinct_mass_scalings (K L M₁ M₂ : ℝ) (hK : 0 < K)\n    (hM₁ : 0 < M₁) (hM₂ : 0 < M₂) (hne : M₁ ≠ M₂)\n    (h₁ : K * M₁ = L * M₁ ^ 2) :\n    K * M₂ ≠ L * M₂ ^ 2",
+          "statement_sha256": "ed2ca279681709ce97c1e08e4425c23f23482a3e6bb31c9f78b1c1a55a4bcf47",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        }
+      ]
+    },
+    {
+      "namespace": "StaticIsNotAttractor",
+      "source": "sol61_push/framework_certification_2026_10_12/dynamics/StaticIsNotAttractor.lean",
+      "source_sha256": "2cfe54508375acb03883b53a9af418ddc9848f7ff966d5bb70ef325e1185ac22",
+      "main_log": "sol61_push/framework_certification_2026_10_12/dynamics/lean_run/main.log",
+      "main_log_sha256": "c224ab6fea02e35399319951f330b20e97f06b449bdd24efab31f80d3cdfd80b",
+      "theorem_count": 7,
+      "entries": [
+        {
+          "name": "StaticIsNotAttractor.shared_equilibrium",
+          "line": 15,
+          "exact_statement": "theorem shared_equilibrium (rate target : ℝ) : transfer rate target target = 0",
+          "statement_sha256": "a659941ff081476bd9ed8bed72f91df2f3929f8eb105a1b00bf1c757cb2e14b0",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        },
+        {
+          "name": "StaticIsNotAttractor.mass_ledger",
+          "line": 20,
+          "exact_statement": "theorem mass_ledger (rate target q : ℝ) :\n    transfer rate target q + (-transfer rate target q) = 0",
+          "statement_sha256": "e9a0c888c399c1b5faad27fb661bd298aee763727af788b3d15a8cadbe89c17c",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        },
+        {
+          "name": "StaticIsNotAttractor.energy_ledger",
+          "line": 24,
+          "exact_statement": "theorem energy_ledger (D rate target q : ℝ) :\n    D * transfer rate target q + (-D * transfer rate target q) = 0",
+          "statement_sha256": "b1d0ebd22c8813f69c0ca3082814da12dde270c7d53faca3fd0ef76040f2b283",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        },
+        {
+          "name": "StaticIsNotAttractor.squared_error_rate",
+          "line": 28,
+          "exact_statement": "theorem squared_error_rate (rate target q : ℝ) :\n    2 * (q - target) * transfer rate target q = -2 * rate * (q - target)^2",
+          "statement_sha256": "a737ebac0e9f500c7fc3cbfc99ddf369fe41907d8b3be3abbbb1f4650d554256",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        },
+        {
+          "name": "StaticIsNotAttractor.positive_rate_decreases",
+          "line": 34,
+          "exact_statement": "theorem positive_rate_decreases (rate target q : ℝ) (hr : 0 < rate)\n    (hne : q ≠ target) : 2 * (q - target) * transfer rate target q < 0",
+          "statement_sha256": "dca5511f6ac1e045906e6f108f9c0ae154b24c93ae7af4348f90badcd9f63316",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        },
+        {
+          "name": "StaticIsNotAttractor.negative_rate_increases",
+          "line": 41,
+          "exact_statement": "theorem negative_rate_increases (rate target q : ℝ) (hr : rate < 0)\n    (hne : q ≠ target) : 0 < 2 * (q - target) * transfer rate target q",
+          "statement_sha256": "f5ff8a4f2c162d9dfa9bf6c2d78ecb277bd491ee2b9cbb039973fc79a6957c4b",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        },
+        {
+          "name": "StaticIsNotAttractor.admissible_unstable_state",
+          "line": 50,
+          "exact_statement": "theorem admissible_unstable_state (B target ε : ℝ)\n    (ht : 0 < target) (he : 0 < ε) (hs : target + ε < B) :\n    0 < target + ε ∧ 0 < B - (target + ε) ∧\n    transfer (-1) target target = 0 ∧\n    transfer (-1) target (target + ε) + (-transfer (-1) target (target + ε)) = 0 ∧\n    0 < 2 * ((target + ε) - target) * transfer (-1) target (target + ε)",
+          "statement_sha256": "f7d9ba4f79bd0aa23270f1d31a6da94f67931fec8390b24ed120bcd96d897867",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkVacuumLink",
+      "source": "sol61_push/framework_certification_2026_10_12/formal/VacuumLink.lean",
+      "source_sha256": "3de311ed7927076a67e5b93ca7d5607adbff43e90f360e5f2612c588f82f3d05",
+      "main_log": "sol61_push/framework_certification_2026_10_12/formal/compile.log",
+      "main_log_sha256": "4e41a37c3622408c90f797169420c5b6e34570b6b36f5d9d0ea73b6ae3642d56",
+      "theorem_count": 7,
+      "entries": [
+        {
+          "name": "FrameworkVacuumLink.response_derivative",
+          "line": 23,
+          "exact_statement": "theorem response_derivative (W0 A B x : ℝ) :\n    HasDerivAt (responsePotential W0 A B) (response A B x) x",
+          "statement_sha256": "a8db910e4356a62f7a978c037478469f1b0afe6b05656e92ce80196df8c170de",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkVacuumLink.offset_invisible_to_response",
+          "line": 38,
+          "exact_statement": "theorem offset_invisible_to_response (W0 δ A B x : ℝ) :\n    deriv (responsePotential (W0 + δ) A B) x =\n      deriv (responsePotential W0 A B) x",
+          "statement_sha256": "5ea578a4a2b682051f978839ac5ae349c8880566c423a8ed7b92e6e2e8ce6922",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkVacuumLink.offset_ratio_change",
+          "line": 45,
+          "exact_statement": "theorem offset_ratio_change (G W0 a δ : ℝ) :\n    ratio G (W0 + δ) a - ratio G W0 a = G * δ / a ^ 2",
+          "statement_sha256": "5654dc19ad9ae86f947b751adfcdef279b602269078a461ec770661d400d258c",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkVacuumLink.factor_four_iff_offset",
+          "line": 51,
+          "exact_statement": "theorem factor_four_iff_offset (G W0 a : ℝ) (hG : G ≠ 0) (ha : a ≠ 0) :\n    ratio G W0 a = 4 ↔ W0 = 4 * a ^ 2 / G",
+          "statement_sha256": "22ea6b8874404f2798b0c70b184e28676e7b042d29a2d0b91c6578b6e6c4a120",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkVacuumLink.factor_four_iff_half",
+          "line": 65,
+          "exact_statement": "theorem factor_four_iff_half (κ G W0 : ℝ) (hκ : 0 < κ) (hGW : 0 < G * W0) :\n    ratio G W0 (scale κ G W0) = 4 ↔ κ = 1 / 2",
+          "statement_sha256": "d12729348b090a0f69f8208bb6755bfcd2001c3e0585d54ef18708baacdc6a5a",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkVacuumLink.coefficient_not_selected",
+          "line": 85,
+          "exact_statement": "theorem coefficient_not_selected :\n    0 < (1 : ℝ) ∧ 0 < (1 / 2 : ℝ) ∧\n    scale 1 1 1 = 1 ∧ scale (1 / 2) 1 1 = 1 / 2 ∧\n    ratio 1 1 (scale 1 1 1) = 1 ∧\n    ratio 1 1 (scale (1 / 2) 1 1) = 4",
+          "statement_sha256": "6ffe3f83efe0a619f977d946235d885cee9af576805827c98bec34e13b250789",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkVacuumLink.fixed_response_different_vacuum_ratio",
+          "line": 94,
+          "exact_statement": "theorem fixed_response_different_vacuum_ratio (A B x : ℝ) :\n    deriv (responsePotential 1 A B) x = deriv (responsePotential 4 A B) x ∧\n    ratio 1 1 1 = 1 ∧ ratio 1 4 1 = 4",
+          "statement_sha256": "8f8223b39499e61a141b7b36abc323c1837b7ab9b7e0d7f943f68e31ef8d85d1",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkEdgePower",
+      "source": "sol61_push/framework_certification_2026_10_12/formal/edge_power/EdgePower.lean",
+      "source_sha256": "68996cef6dc67fef5eeffb510084b8332b734018d7dd76ac48e816cbe1970bfe",
+      "main_log": "sol61_push/framework_certification_2026_10_12/formal/edge_power/compile.log",
+      "main_log_sha256": "1c34f45c0123781304bc50892a0b76deab6cdb7197bfe3b6b8a37163207a9577",
+      "theorem_count": 5,
+      "entries": [
+        {
+          "name": "FrameworkEdgePower.integrand_rpow",
+          "line": 15,
+          "exact_statement": "theorem integrand_rpow (K q : ℝ) (hq : 0 < q) :\n    integrand K q = K * q ^ (-3 / 2 : ℝ)",
+          "statement_sha256": "89d6b81a25b3564b750130700aba6923e4d0d9b06817ca98e5244c243a59d15b",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkEdgePower.primitive_derivative",
+          "line": 23,
+          "exact_statement": "theorem primitive_derivative (K q : ℝ) (hq : 0 < q) :\n    HasDerivAt (primitive K) (integrand K q) q",
+          "statement_sha256": "fea78f4edaa55633cd4d300cf9a74f9c2811fe3c99deb839f90567f49103393b",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkEdgePower.integral_exact",
+          "line": 34,
+          "exact_statement": "theorem integral_exact (K ε Q : ℝ) (hε : 0 < ε) (hεQ : ε ≤ Q) :\n    (∫ q in ε..Q, integrand K q) = truncatedPower K ε Q",
+          "statement_sha256": "b7db4e0d19c6b35b67cee4ad433e5b7c0eb14bca990aca1153c9b957f7031450",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkEdgePower.integral_unbounded",
+          "line": 52,
+          "exact_statement": "theorem integral_unbounded (K Q cap : ℝ) (hK : 0 < K) (hQ : 0 < Q) :\n    ∃ ε : ℝ, 0 < ε ∧ ε < Q ∧ cap < ∫ q in ε..Q, integrand K q",
+          "statement_sha256": "21295a35d49ad2a911121368cd85fadccacecec86efbe6ddaa8addd8c4ebe6af",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkEdgePower.lower_bound_integral_unbounded",
+          "line": 87,
+          "exact_statement": "theorem lower_bound_integral_unbounded (f : ℝ → ℝ) (K Q cap : ℝ)\n    (hK : 0 < K) (hQ : 0 < Q)\n    (hint : ∀ ε : ℝ, 0 < ε → ε < Q → IntervalIntegrable f volume ε Q)\n    (hbound : ∀ q : ℝ, 0 < q → q ≤ Q → integrand K q ≤ f q) :\n    ∃ ε : ℝ, 0 < ε ∧ ε < Q ∧ cap < ∫ q in ε..Q, f q",
+          "statement_sha256": "492fe39c29e47d5454f864ead432c0e50aa149aef9c17df66da1293145251ffc",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkReceiverChannel",
+      "source": "sol61_push/framework_certification_2026_10_12/formal/ReceiverChannel.lean",
+      "source_sha256": "0b0b2f3fba1db0b94874deab450286a6771bf6dce45fd1dd4426f7d77d361342",
+      "main_log": "sol61_push/framework_certification_2026_10_12/formal/receiver_channel/run/main.log",
+      "main_log_sha256": "a83bde3e42014527e9fd88c04c3812d0a013bd6a8cc21fcc70a2911028e3352d",
+      "theorem_count": 6,
+      "entries": [
+        {
+          "name": "FrameworkReceiverChannel.energy_degeneracy",
+          "line": 19,
+          "exact_statement": "theorem energy_degeneracy (D p p1 p2 g1 g2 : ℝ) :\n    D * determinant p1 p2 g1 g2 +\n      p1 * reaction1 D p p2 g2 + p2 * reaction2 D p p1 g1 = 0",
+          "statement_sha256": "993bf48d5c3798194add79b3898165027d0822358f22b9f4594f03ba228f51d4",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverChannel.momentum_degeneracy",
+          "line": 26,
+          "exact_statement": "theorem momentum_degeneracy (D p p1 p2 g1 g2 : ℝ) :\n    determinant p1 p2 g1 g2 * p -\n      g1 * reaction1 D p p2 g2 - g2 * reaction2 D p p1 g1 = 0",
+          "statement_sha256": "2161e386dab267705edb6d7b0c88ce16e16f3e34ff788fc6279316def239b713",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverChannel.collision_mass",
+          "line": 33,
+          "exact_statement": "theorem collision_mass (a : ℝ) : -a-a+a+a=0",
+          "statement_sha256": "baf14833053b796c27dd63ac4e27723cbfc00ada95c603c89df0977e623367db",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverChannel.consumed_boundary_inward",
+          "line": 38,
+          "exact_statement": "theorem consumed_boundary_inward (γ h f2 f3 f4 : ℝ)\n    (hg : 0 ≤ γ) (h3 : 0 ≤ f3) (h4 : 0 ≤ f4) :\n    0 ≤ -flux γ h 0 f2 f3 f4",
+          "statement_sha256": "70319a37c6f983f7967261939457e51e1dfd06912af4a5fe7ff4a31c6a466222",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverChannel.product_boundary_inward",
+          "line": 46,
+          "exact_statement": "theorem product_boundary_inward (γ h f1 f2 f4 : ℝ)\n    (hg : 0 ≤ γ) (h1 : 0 ≤ f1) (h2 : 0 ≤ f2) :\n    0 ≤ flux γ h f1 f2 0 f4",
+          "statement_sha256": "d3859116464adb3e6d42fc3ddb32e617296f27b97b25584aabbfd5e230e08e0e",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverChannel.zero_determinant_freezes",
+          "line": 55,
+          "exact_statement": "theorem zero_determinant_freezes (γ f1 f2 f3 f4 : ℝ) :\n    flux γ 0 f1 f2 f3 f4 = 0",
+          "statement_sha256": "42d60d807c5aeaa58c5a18e58ae41a81a1798f555d213226d1bd1e92a035d16d",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        }
+      ]
+    }
+  ]
+}

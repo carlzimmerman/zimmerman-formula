@@ -1,0 +1,77 @@
+{
+  "claim_id": "POLARIZATION_SOURCE_ASSEMBLY_VERIFICATION",
+  "mathematics": {
+    "assertion_tested": "Verify best screened source-assembly duration by preregistered deterministic selection rule; preserve failures.",
+    "coefficient_domain": "float64 radial finite volumes; velocity Verlet; trapezoidal external work",
+    "conventions": "C=a0=Z=I=1; source rho=normalized exp(-r^2/8) cut at 8; fixed shape times quintic smoothstep lambda(t); source work integral lambda_dot*integral(rho*Phi*r^2 dr)dt. Origin regular; Phi=0 at outer face. No drag. Same CFG596 inverse deficit and exact piecewise-linear potential primitive as prior runs.",
+    "inputs": [
+      "sol61_push/polarization_assembly_2026_10_12/calculate.py",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py",
+      "sol61_push/polarization_assembly_2026_10_12/screen/results.json"
+    ],
+    "bounds": {
+      "selection": "min worst late error in screen/results.json",
+      "runs": [
+        [
+          768,
+          12288,
+          0.01
+        ],
+        [
+          1536,
+          12288,
+          0.02
+        ]
+      ],
+      "end": "selected T+640",
+      "threads": 1,
+      "timeout_seconds": 300
+    },
+    "criteria": {
+      "formation": "RMS fractional force error <=0.10 and attractive force at ALL late samples",
+      "work_balance_normalized_to_abs_final_static_energy": 0.002,
+      "static_residual": 1e-07,
+      "verification": "Preselected rule: refine lowest worst-late-error case, double domain separately; all late force profiles relative L2 change <=0.03 and worst RMS absolute change <=0.03."
+    },
+    "controls": [
+      "discrete static residual",
+      "zero-source null RHS",
+      "discrete integration by parts",
+      "external work balance",
+      "table support",
+      "selected-case refinement and doubled boundary in separate run"
+    ],
+    "non_claims": [
+      "No self-consistent baryon assembly",
+      "No conserved cold matter or metric/lensing",
+      "No physical time unit",
+      "No kappa derivation",
+      "No infinite-time attraction, continuum theorem, or observational fit",
+      "Prescribed assembly can supply/remove energy; it is not free relaxation"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/polarization_assembly_2026_10_12/calculate.py",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py",
+    "sol61_push/polarization_assembly_2026_10_12/screen/results.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.13.9"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.14.1"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

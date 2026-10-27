@@ -1,0 +1,232 @@
+Finite stock: a conserved radial material parent and its pressure
+2026-10-18 local. Lane finite_stock_stress; task checkpoint CE-FM-080.
+Requested task base ea2da902eeddc0a9612e5ef0d393ed6f3c794e37;
+actual read-base HEAD 123fefe43e02bcd44fe919fd11613ec83553bc54.
+Write scope: this directory only. Shared old/current/frozen sources untouched.
+
+PRIMARY VERDICT: conditional on a new Newtonian radial material action.
+The CE019/020 constrained energy does admit an ordinary conserved-displacement
+kinetic parent. Its positive vector stiffness is exactly an ordinary positive
+barotropic internal energy in the radial sector. This is a construction in a
+specified comparison model, not derivation of the original carrier species,
+its original independent-P variational principle, or a covariant completion.
+
+1. Exact density identity; no exterior material is inserted
+
+Use G=a0=1 and retain the CE019/020 normalization
+
+ E[m] = int_0^infinity { r^2 w(u)-Q(r)m/r^2
+                  + beta/2 [r^2 u'^2+2u^2] } dr,
+ u=m/r^2, rho=m'/(4pi r^2), R(u)=u^2/(1-u),
+ w(u)=-u^2/2-u-log(1-u), beta>0.
+
+Q is a prescribed enclosed nonnegative external mass, not another copy of m.
+Assume regular settled center m=O(r^3), finite total m(infinity)=S, and the
+stated finite-energy/sub-saturation domain. Direct differentiation gives
+
+ r^2 u'^2+2u^2 = m'^2/r^2 - 2(m^2/r^3)'.                 (1)
+
+Thus the entire-space stiffness contribution is exactly
+
+ E_beta = beta/2 int m'^2/r^2 dr = int e_beta(rho) d^3x,
+ e_beta(rho)=2pi beta rho^2,
+ p_beta=rho e_beta'-e_beta=2pi beta rho^2 >=0,
+ dp_beta/drho=4pi beta rho >=0.                           (2)
+
+Both endpoint terms vanish for this regular-center finite-stock class.
+On a matched annulus the inner endpoint is a fixed constant only if the
+inner radius and enclosed mass are fixed. A singular settled point mass at
+r=0 is outside this identity's endpoint assumptions. One must not drop that
+endpoint term for a variable core. Although u=S/r^2 has nonzero gradient
+energy in the exterior, the exact integration identity converts the complete
+energy to an interior local density energy; discarding the exterior tail
+before the variation would give a wrong boundary term.
+
+For physical m=r^2u/G, the conventional energy normalization is
+ E_h=(h/(2G)) int [r^2u'^2+2u^2]dr.
+Then e_h=2pi G h rho^2 and dp_h/drho=4pi G h rho. This follows by the
+same identity; beta=h in the normalized equations above. If a gradient
+coefficient is quoted in a differently normalized action, match the actual
+prefactor before using this dimensional translation.
+
+2. A real conserved-displacement action and shell equation
+
+Let a in [0,S] be conserved enclosed settled rest mass. Let Rmat(a,t) be a
+strictly increasing radial material map in the occupied open interval,
+with regular center, no crossings and finite int Rmat_dot^2 da. Its inverse
+defines m_R(r,t). Consider the proposed action
+
+ A = int dt { (1/2) int_0^S Rmat_dot(a,t)^2 da - E[m_R] }. (3)
+
+It conserves the total positive stock identically. Its kinetic energy is
+positive in actual mass coordinates, not a guessed independent-P inertia.
+For a material virtual displacement xi(r)=delta Rmat(m(r)),
+ delta m=-m' xi. The radial energy first variation has bulk coefficient
+
+ F = delta E/delta m = R(u)-Q/r^2-beta Delta_v u,
+ Delta_v u=u''+2u'/r-2u/r^2=4pi rho'.                     (4)
+
+Integration of delta A therefore gives, wherever rho>0,
+
+ Rmat_ddot = F = R(u)-Q/r^2-4pi beta rho'
+           = R(u)-Q/r^2-p_beta'/rho.                     (5)
+
+For beta=0 this reduces exactly to the already recorded CE028/031 one-shell
+equation. Equation (5), the density-energy identity and the edge variation
+are the additional beta>0 result here. No zero-stiffness formation/adiabatic
+claim is imported. For time-independent Q, (3) conserves T+E. A time-varying
+externally imposed Q does work and is not a reciprocal assembly history.
+
+The residual w already includes the settled gravitational self energy once:
+the positive full constitutive field energy -u-log(1-u), minus the Newtonian
+self term u^2/2, leaves w. If Q is held fixed its gravitational cross energy
+is -int Qm/r^2. Making Q live requires its own kinetic/internal energies and
+the complete Newtonian mass energy; this radial fixed-source certificate
+cannot be assigned to a live source by declaration (cf. CE059).
+
+3. Chemical potential, free surface, and exterior reaction
+
+More generally add a local internal energy int e(rho)d^3x to the residual
+zero-stiffness energy E0, with e(0)=0. Write F0=R(u)-Q/r^2 and
+
+ mu0(r)=int_r^infinity F0(s) ds.
+
+Fubini's formula for delta m=int_0^r 4pi s^2 delta rho(s)ds gives
+delta E0=int mu0 delta rho d^3x. Thus
+
+ mu_total=mu0+e'(rho),
+ mu_total'= -F0+e''(rho)rho',
+ mu_total=constant on occupied equilibrium,
+ mu_total>=that constant in admissible vacuum.            (6)
+
+The shell force is -mu_total'; the pressure is p=rho e'-e. Free material
+surface displacement against vacuum gives p(E^-)=0. For (2), this requires
+rho(E^-)=0. Hence a no-surface-mass finite edge obeys
+
+ m(E)=S, m'(E)=0,
+ u(E)=S/E^2, u'(E)=-2S/E^3.                               (7)
+
+There is no reflecting wall or fictitious exterior density. In the original
+gradient variables the same shape variation has edge coefficient
+ -beta m'(E^-)^2/(2E^2) delta E, which also forces (7). The zero density
+edge, rather than a jump of a positive pressure to vacuum, is essential.
+
+The exterior is m=S,rho=0,u=S/r^2. There is no exterior shell EL because
+there is no material there. The vacuum inequality in (6) penalizes adding
+test mass there. It is not a fluid stress with nonzero density outside.
+The *interior* stress (2) is an ordinary positive pressure; the exterior
+constraint reaction is a chemical-potential obstacle, not an additional
+gravitating population. This distinction is the precise escape from the
+global-active-independent-P premise of CE079's finite-stock theorem.
+
+At a tapering edge rho'(E^-)<=0, so occupied equilibrium requires
+
+ R(S/E^2)<=Q(E)/E^2,
+ E^2>=S+S^2/Q(E) when Q(E)>0.                              (8)
+
+The inequality is necessary, not a full edge-selection equation. When Q is
+constant beyond E, it is also sufficient for the exterior chemical potential
+to increase away from its edge value, because r^2 R(S/r^2)=S^2/(r^2-S)
+decreases. Positive nondecreasing Q beyond E only strengthens that conclusion.
+
+4. Positive radial material inertia and Hessian
+
+At an occupied equilibrium F=0, take eta=delta m=-m'xi. The material second
+variation of the energy is
+
+ H[eta]=int { [R'(u)/r^2]eta^2
+          +beta[r^2((eta/r^2)')^2+2eta^2/r^4] } dr >0     (9)
+
+for any nonzero admissible smooth displacement of occupied mass. The extra
+coordinate-curvature term is int F delta^2m; it vanishes because F=0 in the
+occupied region, m'=0 at its edge and exterior variations vanish to first
+order. The endpoint/finite-action conditions are part of this statement.
+No separate free exterior polarization displacement is included in (3).
+
+The quadratic kinetic energy is
+
+ T2=(1/2)int m' xi_dot^2 dr
+   =(1/2)int eta_dot^2/m' dr
+   =(1/2)int [r^4/m'] delta u_dot^2 dr.                   (10)
+
+The weight diverges at a zero-density edge in Eulerian field variables;
+that is the material-inertia weight, not a negative kinetic coefficient.
+Admissibility requires eta/m' have finite material velocity/displacement
+and the integral in (10) be finite. One must not replace it by unweighted
+independent-P inertia. Formally the occupied linear equation is
+
+ eta_tt=-m'{R'(u)eta/r^2-beta Delta_v(eta/r^2)}.            (11)
+
+The positive forms (9),(10) give nonnegative Rayleigh frequency squares on
+this admissible radial linear domain. They do not prove existence of a
+complete mode basis, a uniform gap, free-boundary well-posedness, stability
+against crossings, arbitrary nonspherical dynamics, or relativistic causality.
+The local sound coefficient from the pressure part is 4pi beta rho and
+vanishes at the edge. The original theory's inertia must still be derived.
+
+5. Exact manufactured witness and cheap discriminator
+
+For an independent elementary witness set beta=E=1,S=1/10 and
+
+ m=r^3(5-3r^2)/20, rho=3(1-r^2)/(16pi),  0<=r<=1,
+ m=S,rho=0,                                           r>=1.
+ Q=r^2 R(m/r^2)+(3/2)r^3,                              r<=1,
+ Q=Q(1)=68/45,                                        r>=1.
+
+Then u_max=sqrt(5)/18<1/8; the center is regular, all stock is positive,
+rho vanishes continuously at the edge, u and u' match its finite-stock tail,
+and (5) is identically static inside. The external source is also positive:
+u'>=-1/5 and R'(u)<=15/49 imply
+
+ Q'>= [9/2-3/49]r^2=(435/98)r^2>0.
+
+Outside, r^2 F0=S^2/(r^2-S)-Q<=-3/2<0. The first variation is zero inside
+and F<0 outside. Every admissible competitor of the same stock has m-S<=0
+there. Convexity of E in m gives DE[m_test-m]>=0 and E[m_test]>=E[m].
+Strictness yields uniqueness in the declared radial energy class. This is
+an exact fixed-source free-surface equilibrium/minimum, not a galaxy fit.
+The occupied_action lane uses the same profile with H=.01, a separate new
+EOS, and a smaller still-positive manufactured Q; see the separate review.
+
+The narrow computation checks (1),(4), the witness and one admissible dilation
+Rmat_lambda=lambda Rmat with fixed external Q. Material inertia is exactly
+3/70. The analytic Hessian form has positive gradient part 9/28 and total
+quadrature value .32538722798139218139452199297287494499. Three centered
+finite material dilations with epsilon=.001,.0005,.00025 converge to this
+value; the last error is 2.3459e-8. No spectral or time simulation was run.
+The computation is supplementary: the uniform identities/inequalities above
+establish the mathematical comparison result, not these three samples.
+
+6. Evidence, failures and limits
+
+Own code check.py, contract.json, authoritative run_002/manifest.json:
+25 checks, completed, manifest freshly validated against current inputs.
+Python3.9.6, SymPy1.14.0, mpmath1.3.0, 60-digit quadrature; no randomness.
+The bounded runner imposed 30s wall,20s CPU,131072 output bytes and requested
+one cooperative numerical-library thread. No memory or CPU-affinity bound is
+claimed. Initial launch with --max-cores1 was rejected before run creation
+because CPU affinity limits are unavailable on this platform. run_001 then
+failed on a structural symbolic equality test of equivalent density formulas;
+check_v1.py retains its exact input bytes. The corrected check uses simplify
+of the difference. This was a checking-code issue, not a counterexample.
+Historical run_001's old input hash no longer matches current check.py;
+check_v1.py authenticates the saved failed input. Failed output is retained.
+
+New source review in OCCUPIED_ACTION_REVIEW.txt is independent of that
+lane author's raw derivation but uses the same underlying assistant system;
+neither review nor computation is human/external certification.
+
+Passed: counted radial conserved current; positive material kinetic energy;
+ordinary positive-pressure interpretation of stiffness; natural zero-density
+edge; exact positive-source finite-stock witness; positive radial energy form.
+Conditional: new constrained material action, no crossings, fixed source,
+finite-energy/decay/endpoint domain and actual rho mass identification.
+Not addressed: physical species, stock origin/production, reciprocal free
+exchange, live-core stability, formation/relaxation, full metric/optics,
+causal covariant propagation, abundance or observational scores.
+
+Cheapest next check for any numerical occupied candidate: reconstruct rho,
+check (5) only where rho>0, verify m=S and m'=0 at the free edge, test (8)
+and the exterior chemical-potential inequality, then evaluate (9)/(10) with
+the *same* material inertia. A live-source proposal needs the separate joint
+mass-preserving homology discriminator already exposed by CE059.

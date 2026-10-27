@@ -1,0 +1,13 @@
+# Source and application checks
+
+Checked2026-10-23. Only primary research sources underpin the external physical formulae. This is not a novelty review. No full paper was copied into this artifact directory.
+
+1. S.Naoz and R.Barkana, *Growth of Linear Perturbations before the Era of the First Galaxies*, arXiv:astro-ph/0503196v2, equations2–8 and section3. https://arxiv.org/pdf/astro-ph/0503196 . PDF version header and formulae checked. Electron fraction is per total gas particle; Gamma_C=xe(8.55e-13 yr^-1)a^-4. The local compression/Compton and mean-temperature equations are translated with physical gas velocity and a=A/1101. The project fixes xe and neglects photon perturbations; these are project approximations. The source does not validate this reciprocal-field theory, equal baryon/cold seeds or the chosen cosmological background.
+
+2. S.Naoz, N.Yoshida and R.Barkana, *The nonlinear evolution of baryonic overdensities in the early universe: Initial conditions of numerical simulations*, arXiv:1009.0945v2. https://arxiv.org/abs/1009.0945 . Version/abstract checked: the work compares complete heating, equal-density and uniform-sound-speed initial conditions, and reports materially different gas retention. Used to motivate initial-history sensitivity, not to import its halo mass calibration into this model. No quantitative result from it is used as a pass/fail criterion .
+
+3. D.Galli and F.Palla, *The chemistry of the early Universe*, arXiv:astro-ph/9803315v1, AppendixA eqA7 and the low-density validity statement. https://arxiv.org/pdf/astro-ph/9803315 . PDF version, coefficient polynomial, 10–10000 K range and nH approximately<=100 cm^-3 low-density regime checked. Application: instantaneous cooling estimates for explicitly assumed H2 fractions, and a prescribed molecular-rich source branch. This does not provide the model's actual molecular abundance or a full chemical network. CMB-floor subtraction and activation at z=100 are project sensitivity choices, not claimed exact consequences of that equation.
+
+4. T.Abel et al., *Modelling Primordial Gas in Numerical Cosmology*, arXiv:astro-ph/9608040v1. https://arxiv.org/abs/astro-ph/9608040 . Abstract checked only. Used to identify the missing reaction-network obligation; no fitted rates were imported from an unread table.
+
+Internal input: ../physical_refinement_2026_10_23/{DERIVATION,RESULT,AUDIT,HANDOFF}.md and radial_v2.py, copied unchanged to radial_base.py; ../expanding_polarization_2026_10_23/DERIVATION.md and prior growth results. The current scripts, per-run contracts and manifests identify finite computations. Source equations authenticate the ordinary gas terms only; observational consistency and the parent action remain separate dependencies.

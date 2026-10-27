@@ -1,0 +1,180 @@
+{
+  "schema_version": 2,
+  "claim_id": "DWARF_FROZEN_FINITE_H_C22_HAZARDS_20261020",
+  "repository": {
+    "commit": "431f22bd6fe998759b843d13113762d73356aec6",
+    "dirty": true
+  },
+  "command": [
+    "/usr/bin/python3",
+    "sol61_push/dwarf_core_convergence_2026_10_20/hazard_resolution.py",
+    "--snapshot",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_pilot_gpu8k_iso/final.npz",
+    "--metadata",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_pilot_gpu8k_iso/results.json",
+    "--output",
+    "sol61_push/dwarf_core_convergence_2026_10_20/hazard_run_001/hazards.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "computation Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Enumerate every strict-support unordered cold pair in one completed prepared 8192-carrier 1-Gyr snapshot; evaluate central elastic C22 hazards and reciprocal kinetic-energy/vector-angular-momentum receipts at h=100,50,25,12.5,6.25pc; check particle-hazard sum equals twice pair rate and pair receipts close.",
+    "coefficient_domain": "IEEE754 binary64, deterministic finite pair enumeration; conditional on stored phase-space inputs and the original finite-h central-reflection kernel",
+    "conventions": "pc,Msun,Myr; original revised sigma0/m=.3cm2/g and velocity ratio with u*=.02 and z<.1; frozen self-potential centre and median central bulk from the snapshot's final metadata; cold equal masses; strict0<r<h; no star collisions",
+    "inputs": [
+      "Completed run_pilot_gpu8k_iso final.npz at1000Myr and final recorded centre/bulk",
+      "Original central collision kernel definition dynamics.py",
+      "No random samples, new dynamics, continuum extrapolation, or physical profile criterion"
+    ],
+    "bounds": {
+      "cold_count": 8192,
+      "supports_pc": [
+        100,
+        50,
+        25,
+        12.5,
+        6.25
+      ],
+      "apertures_pc": [
+        50,
+        100,
+        300
+      ],
+      "maximum_candidate_pairs": 5000000,
+      "pair_batch_size": 32768,
+      "relative_closure_tolerance": 1e-12,
+      "wall_cap_seconds": 60,
+      "cpu_cap_seconds": 45,
+      "numerical_threads": 1
+    },
+    "non_claims": [
+      "No evolved density/core or host remnant convergence",
+      "No physical h->0 bias/noise separation from a single finite snapshot",
+      "Kinetic receipts include ordered and random motion, not a local thermal heat flux",
+      "No instantaneous mass flux, gravitational work, radiative loss, or new interaction",
+      "Inverse rate participation is not an independent statistical sample size"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "none; exact finite pair enumeration",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-21T00:38:18.884249+00:00",
+    "runtime_seconds": 0.34623,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/dwarf_core_convergence_2026_10_20/hazard_resolution.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/test_hazard_resolution.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_pilot_gpu8k_iso/final.npz",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_pilot_gpu8k_iso/results.json",
+    "sol61_push/isolated_host_dwarf_2026_10_19/dynamics.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/hazard_resolution.py",
+      "sha256": "a70949c8c52cc491460adba1ff517dd42f3880e24baf6b2548a35cd577efd84b",
+      "sha256_after": "a70949c8c52cc491460adba1ff517dd42f3880e24baf6b2548a35cd577efd84b"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/test_hazard_resolution.py",
+      "sha256": "65d957d7d7d2f546f173c2615bc56b0791c5442cef26c416dfee48dda057325c",
+      "sha256_after": "65d957d7d7d2f546f173c2615bc56b0791c5442cef26c416dfee48dda057325c"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/run_pilot_gpu8k_iso/final.npz",
+      "sha256": "76d7ff56b5a7950f2b688020368b3ae1f6011c9efc4a3dded22e09ee4d5c8e41",
+      "sha256_after": "76d7ff56b5a7950f2b688020368b3ae1f6011c9efc4a3dded22e09ee4d5c8e41"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/run_pilot_gpu8k_iso/results.json",
+      "sha256": "84e9bbb4d8a682d040178e0cf2a87a3297e46211693152f2e54e67e27a36d5e1",
+      "sha256_after": "84e9bbb4d8a682d040178e0cf2a87a3297e46211693152f2e54e67e27a36d5e1"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/dynamics.py",
+      "sha256": "813207ab265471edb4c14ea1e637e05bfcfd3801ad9d0c431ac1ba2267ffd8fc",
+      "sha256_after": "813207ab265471edb4c14ea1e637e05bfcfd3801ad9d0c431ac1ba2267ffd8fc"
+    }
+  ],
+  "output_directory": "sol61_push/dwarf_core_convergence_2026_10_20/hazard_run_001",
+  "declared_results": [
+    "sol61_push/dwarf_core_convergence_2026_10_20/hazard_run_001/hazards.json",
+    "sol61_push/dwarf_core_convergence_2026_10_20/hazard_run_001/hazards.npz"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/hazard_run_001/stdout.txt",
+      "sha256": "d653c3a4bc169473fc1345d149c3fa8ce4a56e1bf6383fcf2311a4c999cf4420",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/hazard_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/hazard_run_001/hazards.json",
+      "sha256": "91fd71793b6b1815269c581436d86a969ea9ba652b3331eb3b56f396994190b7",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/hazard_run_001/hazards.npz",
+      "sha256": "96af1c3eba2952d728d8044b2b489c518d157c63618ee764ec80002443981dfd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

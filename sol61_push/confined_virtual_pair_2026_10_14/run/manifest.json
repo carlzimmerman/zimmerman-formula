@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "CONFINED-VIRTUAL-PAIR-PREPARATION",
+  "repository": {
+    "commit": "cda53006d0fae491d774c1bb9a25340ea47c9f41",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/confined_virtual_pair_2026_10_14/check.py",
+    "sol61_push/confined_virtual_pair_2026_10_14/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Ground-pair optical matrix element and real below-continuum self-energy in a conditional spherical material cavity",
+    "coefficient_domain": "Double precision BVP, radial quadrature and root finding",
+    "conventions": "One ground pair coupled to a free neutral-mediator continuum; natural units; finite barrier extending to infinity; prescribed intracavity optical drive",
+    "inputs": [
+      "sol61_push/confined_virtual_pair_2026_10_14/check.py",
+      "sol61_push/muon_nuclear_matching_2026_10_14/run/results.json"
+    ],
+    "bounds": {
+      "cavity_radius_m": 0.02,
+      "carrier_mass_eV": 1,
+      "mu_eV": 0.002,
+      "g_per_eV": 1e-20,
+      "intensity_W_per_m2": 1000000000000.0,
+      "BVP_tolerances": [
+        1e-09,
+        1e-11
+      ],
+      "radial_quadrature_per_region": 320,
+      "outer_tail_decay_lengths": 25
+    },
+    "non_claims": [
+      "No experimentally admitted model or complete material charge",
+      "No full many-pair kinetics, finite-shell lifetime, photon-loss rate or optical-access geometry",
+      "One-percent time is leading perturbative amplitude, not a verified loading efficiency"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T05:12:43.456422+00:00",
+    "runtime_seconds": 0.593228,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/confined_virtual_pair_2026_10_14/check.py",
+    "sol61_push/muon_nuclear_matching_2026_10_14/run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/confined_virtual_pair_2026_10_14/check.py",
+      "sha256": "206db5b06428b2bcbdd9c301e2c4885721d2eba4b14100be867a96df116ae50d",
+      "sha256_after": "206db5b06428b2bcbdd9c301e2c4885721d2eba4b14100be867a96df116ae50d"
+    },
+    {
+      "path": "sol61_push/muon_nuclear_matching_2026_10_14/run/results.json",
+      "sha256": "f2b1cabf6bd46d1609a2198f43e3a3ba3bfb673ee2850b27e75b2a70c632562a",
+      "sha256_after": "f2b1cabf6bd46d1609a2198f43e3a3ba3bfb673ee2850b27e75b2a70c632562a"
+    }
+  ],
+  "output_directory": "sol61_push/confined_virtual_pair_2026_10_14/run",
+  "declared_results": [
+    "sol61_push/confined_virtual_pair_2026_10_14/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/confined_virtual_pair_2026_10_14/run/stdout.txt",
+      "sha256": "957f0b17b7a2bdbe3b36df97a044bb43676cd8acfeeb325d26c99febbffaa92a",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/confined_virtual_pair_2026_10_14/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/confined_virtual_pair_2026_10_14/run/results.json",
+      "sha256": "0f50a79a359d3fbb98d3e77a5d21be674b4f1b5871fe7a9a4d482a57f6b5723f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

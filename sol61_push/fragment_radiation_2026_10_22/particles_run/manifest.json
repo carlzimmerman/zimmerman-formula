@@ -1,0 +1,159 @@
+{
+  "schema_version": 2,
+  "claim_id": "FR_MASS_PARTITION",
+  "repository": {
+    "commit": "c7d6faf665c5c85e058cda0e971bf0a115033eb9",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/fragment_radiation_2026_10_22/run.py",
+    "--mass",
+    "4",
+    "--side",
+    "15",
+    "--output",
+    "sol61_push/fragment_radiation_2026_10_22/particles_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Unconstrained3D particle/field collapse with field-only absorber, mass/aperture/FOF/ejecta/flux diagnostics",
+    "coefficient_domain": "float64",
+    "conventions": "CONTRACT.md",
+    "inputs": [
+      "inherited passive reciprocal action; quiet Gaussian seed"
+    ],
+    "bounds": {
+      "n": [
+        32,
+        48
+      ],
+      "box": [
+        8,
+        12
+      ],
+      "side": [
+        10,
+        15
+      ],
+      "mass_ratios": [
+        1,
+        2,
+        4
+      ],
+      "dt": [
+        0.003,
+        0.002,
+        0.0015
+      ],
+      "end_max": 18
+    },
+    "non_claims": [
+      "No continuum fragmentation or observational fit"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T02:42:45.333327+00:00",
+    "runtime_seconds": 36.843862,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 480.0,
+    "max_output_bytes": 3000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/fragment_radiation_2026_10_22/model.py",
+    "sol61_push/fragment_radiation_2026_10_22/run.py",
+    "sol61_push/fragment_radiation_2026_10_22/CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/fragment_radiation_2026_10_22/model.py",
+      "sha256": "1c4b10bb91bb99951c98b66d7bb4777127ea474b51df1e0a6da83987805d8e79",
+      "sha256_after": "1c4b10bb91bb99951c98b66d7bb4777127ea474b51df1e0a6da83987805d8e79"
+    },
+    {
+      "path": "sol61_push/fragment_radiation_2026_10_22/run.py",
+      "sha256": "fe6cfe61ee8f3473b597f5285cb4aed844f459c3fbacc554c24969451eed93c1",
+      "sha256_after": "fe6cfe61ee8f3473b597f5285cb4aed844f459c3fbacc554c24969451eed93c1"
+    },
+    {
+      "path": "sol61_push/fragment_radiation_2026_10_22/CONTRACT.md",
+      "sha256": "28217b4a9f5b2fbcfb072892796eaa0bd97d6ef3c327090190e92cae97e3bfdc",
+      "sha256_after": "28217b4a9f5b2fbcfb072892796eaa0bd97d6ef3c327090190e92cae97e3bfdc"
+    }
+  ],
+  "output_directory": "sol61_push/fragment_radiation_2026_10_22/particles_run",
+  "declared_results": [
+    "sol61_push/fragment_radiation_2026_10_22/particles_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/fragment_radiation_2026_10_22/particles_run/stdout.txt",
+      "sha256": "bb1f35e831f4b97f1a16249df3e82a14aaa2ff4e41e534fbab3fa79d87a29fde",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/fragment_radiation_2026_10_22/particles_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/fragment_radiation_2026_10_22/particles_run/result.json",
+      "sha256": "0ddc0bec531b7bc5e873a2897b34e3d5880441a4b04f2ff46a1b082477fabe4c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

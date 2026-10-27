@@ -1,0 +1,431 @@
+{
+  "schema_version": 2,
+  "claim_id": "MIGHTEE_PIPELINE_FLUX_2026_10_19",
+  "repository": {
+    "commit": "9516ee01c79f35c04b7556050669ba77b0c98b99",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/mightee_pipeline_flux_2026_10_19/analyze_stages.py",
+    "reviews/mightee_pipeline_flux_2026_10_19/stage_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "astropy",
+        "version": "6.0.1"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "For the seven previously reliable ALFALFA-code1 galaxies with available r1p0 cube coverage, measure paired fluxes in released clean_conv cubes immediately before and after image-domain continuum subtraction. Test beam-area normalization geometrically and distinguish the documented residual homogenization from unsupported scalar rescaling.",
+    "coefficient_domain": "float64; image Jy/beam, frequency Hz, angular sizes arcsec",
+    "conventions": "Same source coordinates, aperture radius (CFG302 line-window beam median times 1.5), frequency channels, beam area and line windows for pre/post stages. Baseline masks and robust constant/linear residual fits follow the previous profile analysis, with common window halfwidth=max(150,max(MIGHTEE W50,ALFALFA W50)/2+50) km/s; expansions0,100,250. Frequency-bin overlap integrals convert JyHz by c/nu_center. Pre means after visibility-domain continuum subtraction, deconvolution, resolution homogenization and mosaicking but before final image-domain subtraction; it is NOT raw visibilities.",
+    "inputs": [
+      "Seven primary matches from preceding profile comparison",
+      "Public clean_conv r1p0 FITS range cutouts",
+      "Existing clean_conv_contsub local cubes",
+      "Existing ALFALFA spectra and independent catalogue measurements",
+      "Heywood et al 2024 sections3.2-3.6 and table2"
+    ],
+    "bounds": {
+      "population": 7,
+      "extract_halfwidth_kms": 2200,
+      "aperture_beam_multipliers": [
+        1.5
+      ],
+      "download_cap_bytes": 1500000000,
+      "concurrent_range_requests": 8,
+      "network_timeout_seconds_per_request": 60,
+      "maximum_retries": 3,
+      "baseline_minimum_channels": 32,
+      "radial_annuli_in_beams": [
+        [
+          0,
+          0.5
+        ],
+        [
+          0.5,
+          1
+        ],
+        [
+          1,
+          1.5
+        ]
+      ]
+    },
+    "non_claims": [
+      "No raw visibility reprocessing",
+      "Cannot isolate pre-imaging continuum subtraction or calibration from already reduced cube products",
+      "A smoothing simulation is not a reproduction of unpinned historical pipeline code",
+      "No universal flux correction",
+      "No author contact authorized"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T02:46:26.734844+00:00",
+    "runtime_seconds": 3.030129,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/mightee_pipeline_flux_2026_10_19/contract.json",
+    "reviews/mightee_pipeline_flux_2026_10_19/stage_contract.json",
+    "reviews/mightee_pipeline_flux_2026_10_19/fetch_stages.py",
+    "reviews/mightee_pipeline_flux_2026_10_19/analyze_stages.py",
+    "reviews/mightee_pipeline_flux_2026_10_19/independent_stages_check.py",
+    "reviews/fashi_mightee_profiles_2026_10_18/compare_profiles.py",
+    "reviews/fashi_mightee_profiles_2026_10_18/run_02/per_galaxy.csv",
+    "reviews/fashi_mightee_profiles_2026_10_18/run_02/measurements.csv",
+    "data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv",
+    "_external_data/mightee_pipeline_2026_10_19/fetch_summary.json",
+    "_external_data/mightee_pipeline_2026_10_19/MGTH_J095654.6+013159.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J095654.6+013159.npz",
+    "_external_data/mightee_pipeline_2026_10_19/MGTH_J095720.5+015506.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J095720.5+015506.npz",
+    "_external_data/mightee_pipeline_2026_10_19/MGTH_J100035.1+011432.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100035.1+011432.npz",
+    "_external_data/mightee_pipeline_2026_10_19/MGTH_J100048.1+011413.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100048.1+011413.npz",
+    "_external_data/mightee_pipeline_2026_10_19/MGTH_J100050.4+012007.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100050.4+012007.npz",
+    "_external_data/mightee_pipeline_2026_10_19/MGTH_J100140.0+031207.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100140.0+031207.npz",
+    "_external_data/mightee_pipeline_2026_10_19/MGTH_J100143.2+024109.npz",
+    "_external_data/hi_profiles_2026_10_18/MGTH_J100143.2+024109.npz",
+    "_external_data/mightee_pipeline_2026_10_19/source/02_image_channels.py",
+    "_external_data/mightee_pipeline_2026_10_19/source/README.md",
+    "_external_data/mightee_pipeline_2026_10_19/source/all_source_hashes.json",
+    "_external_data/mightee_pipeline_2026_10_19/source/aux__config.json",
+    "_external_data/mightee_pipeline_2026_10_19/source/aux__convolve_chans.py",
+    "_external_data/mightee_pipeline_2026_10_19/source/aux__make_cubes.py",
+    "_external_data/mightee_pipeline_2026_10_19/source/catalogue_paper.html",
+    "_external_data/mightee_pipeline_2026_10_19/source/clean__05_setup_convolutions.py",
+    "_external_data/mightee_pipeline_2026_10_19/source/clean__convolve_channels.py",
+    "_external_data/mightee_pipeline_2026_10_19/source/convolution_history.json",
+    "_external_data/mightee_pipeline_2026_10_19/source/generators.py",
+    "_external_data/mightee_pipeline_2026_10_19/source/imaging_paper.html",
+    "_external_data/mightee_pipeline_2026_10_19/source/manifest.json",
+    "_external_data/mightee_pipeline_2026_10_19/source/mightee_repo_commit.json",
+    "_external_data/mightee_pipeline_2026_10_19/source/oxkat_tools__common_convolutions.py",
+    "_external_data/mightee_pipeline_2026_10_19/source/oxkat_tools__restore_model.py",
+    "_external_data/mightee_pipeline_2026_10_19/source/pypher.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/contract.json",
+      "sha256": "162a6dd170c928edfca971f8c394648ffbcaf6781a0cb43424aaf577f050744d",
+      "sha256_after": "162a6dd170c928edfca971f8c394648ffbcaf6781a0cb43424aaf577f050744d"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/stage_contract.json",
+      "sha256": "766ba0fc33df166210ad78a90ad171046e3a8db77405626e80e3555fcb5ecc9a",
+      "sha256_after": "766ba0fc33df166210ad78a90ad171046e3a8db77405626e80e3555fcb5ecc9a"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/fetch_stages.py",
+      "sha256": "a40172d3722b269cf0bedeacf5efa4932ea2ff3ddb0786b265b9368d296a91e9",
+      "sha256_after": "a40172d3722b269cf0bedeacf5efa4932ea2ff3ddb0786b265b9368d296a91e9"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/analyze_stages.py",
+      "sha256": "283f595c0d1d7598317ec08186c3a4911543853fe809f9d54cf2d1ababe8919c",
+      "sha256_after": "283f595c0d1d7598317ec08186c3a4911543853fe809f9d54cf2d1ababe8919c"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/independent_stages_check.py",
+      "sha256": "b0f7e2c21b8f39e075cb1a3e99f2478bd244a1bffd9c6998e22fc8168064f67a",
+      "sha256_after": "b0f7e2c21b8f39e075cb1a3e99f2478bd244a1bffd9c6998e22fc8168064f67a"
+    },
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/compare_profiles.py",
+      "sha256": "f3ba34bdf2ca1efde836782741c776da2a50445604ea66b3123c7aade92b3183",
+      "sha256_after": "f3ba34bdf2ca1efde836782741c776da2a50445604ea66b3123c7aade92b3183"
+    },
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/run_02/per_galaxy.csv",
+      "sha256": "06c94419e507607b46cba0da63e5763bb04912ce832c20b0a72afb05c6859c9d",
+      "sha256_after": "06c94419e507607b46cba0da63e5763bb04912ce832c20b0a72afb05c6859c9d"
+    },
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/run_02/measurements.csv",
+      "sha256": "83b3330338aed1c9b7c88e9a5f2245952e8d33b327c864b8b5e9ba6c9873308a",
+      "sha256_after": "83b3330338aed1c9b7c88e9a5f2245952e8d33b327c864b8b5e9ba6c9873308a"
+    },
+    {
+      "path": "data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv",
+      "sha256": "bcf9e8558bc5644805b9acb288372c17daffac76d8be6c89d7db9843af9fbf23",
+      "sha256_after": "bcf9e8558bc5644805b9acb288372c17daffac76d8be6c89d7db9843af9fbf23"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/fetch_summary.json",
+      "sha256": "171548e2b235a0e57ca3292cf7205b7d311561aa248f16c6c9fd2f313217df7e",
+      "sha256_after": "171548e2b235a0e57ca3292cf7205b7d311561aa248f16c6c9fd2f313217df7e"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/MGTH_J095654.6+013159.npz",
+      "sha256": "1e7300dc566d5daf9676eeefcdbd185cbf8e7dabcfcc512b1702926d5a90e1d6",
+      "sha256_after": "1e7300dc566d5daf9676eeefcdbd185cbf8e7dabcfcc512b1702926d5a90e1d6"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J095654.6+013159.npz",
+      "sha256": "a50ee215613ef72db4f6b39dac5e2e200cb11a5fee90a0dff0837c4407a98c59",
+      "sha256_after": "a50ee215613ef72db4f6b39dac5e2e200cb11a5fee90a0dff0837c4407a98c59"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/MGTH_J095720.5+015506.npz",
+      "sha256": "a5d670e19c06028060fa6a3fb46c4c4091e9292f5c2c385b5b1616702e9e5151",
+      "sha256_after": "a5d670e19c06028060fa6a3fb46c4c4091e9292f5c2c385b5b1616702e9e5151"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J095720.5+015506.npz",
+      "sha256": "7667c38a596bdcbc551a5826925dbdd9297a9185d0b8ec0a84ef4280a250fc4d",
+      "sha256_after": "7667c38a596bdcbc551a5826925dbdd9297a9185d0b8ec0a84ef4280a250fc4d"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/MGTH_J100035.1+011432.npz",
+      "sha256": "4595251041bd1c00c0acc8fc9afec9ee83fb6d9637f1ee11bc72bdf15238eae5",
+      "sha256_after": "4595251041bd1c00c0acc8fc9afec9ee83fb6d9637f1ee11bc72bdf15238eae5"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100035.1+011432.npz",
+      "sha256": "e4a10b2c4af386dc1d23d5d81bb22713c2724371dfcf311abff86808d4e2763e",
+      "sha256_after": "e4a10b2c4af386dc1d23d5d81bb22713c2724371dfcf311abff86808d4e2763e"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/MGTH_J100048.1+011413.npz",
+      "sha256": "66cac16fbda83a82dfab39ab0fffb13643ae82548acf920561bcf356f2312c1e",
+      "sha256_after": "66cac16fbda83a82dfab39ab0fffb13643ae82548acf920561bcf356f2312c1e"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100048.1+011413.npz",
+      "sha256": "e42dc0edf23093a7d11954db58f8d4a60e33ea7bd7422f26880b13e757b40600",
+      "sha256_after": "e42dc0edf23093a7d11954db58f8d4a60e33ea7bd7422f26880b13e757b40600"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/MGTH_J100050.4+012007.npz",
+      "sha256": "f7244ba76c5e496f30d336f184a7744266325e76f78b78780e63edbd62301e54",
+      "sha256_after": "f7244ba76c5e496f30d336f184a7744266325e76f78b78780e63edbd62301e54"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100050.4+012007.npz",
+      "sha256": "48414ec5ecc59ebf896c4230a2d3907102a26b8d51a5940e6a77d41e4ba7717d",
+      "sha256_after": "48414ec5ecc59ebf896c4230a2d3907102a26b8d51a5940e6a77d41e4ba7717d"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/MGTH_J100140.0+031207.npz",
+      "sha256": "3658fa41ffeaf421041faaef28f0980fd636b96538cd13ebdee1cfca53f3f732",
+      "sha256_after": "3658fa41ffeaf421041faaef28f0980fd636b96538cd13ebdee1cfca53f3f732"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100140.0+031207.npz",
+      "sha256": "18521cda2c09f4f352e6c4c7ab81f17b30ea1b79afc90134443c12b4d3b3bd39",
+      "sha256_after": "18521cda2c09f4f352e6c4c7ab81f17b30ea1b79afc90134443c12b4d3b3bd39"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/MGTH_J100143.2+024109.npz",
+      "sha256": "76819ac2d8a394f9a4482f021e8f71445f806403c925c6923033d6f99ec06e7c",
+      "sha256_after": "76819ac2d8a394f9a4482f021e8f71445f806403c925c6923033d6f99ec06e7c"
+    },
+    {
+      "path": "_external_data/hi_profiles_2026_10_18/MGTH_J100143.2+024109.npz",
+      "sha256": "109b47db8445ab565f73c9074d62c607928856d1a916d9497ab870dc3dbd126b",
+      "sha256_after": "109b47db8445ab565f73c9074d62c607928856d1a916d9497ab870dc3dbd126b"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/02_image_channels.py",
+      "sha256": "3d83f72f2602fa6c14376a727b9948799bf558fc743d9d68d8f540efab6e6e8f",
+      "sha256_after": "3d83f72f2602fa6c14376a727b9948799bf558fc743d9d68d8f540efab6e6e8f"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/README.md",
+      "sha256": "47e9199c37bfa0f1110db8eb64b41ecfeb4a4e21e052b69b9ad9e5494bd19505",
+      "sha256_after": "47e9199c37bfa0f1110db8eb64b41ecfeb4a4e21e052b69b9ad9e5494bd19505"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/all_source_hashes.json",
+      "sha256": "826004c174e96500c476835adfe6e51e441791b957e28b7305009eecf3a7e331",
+      "sha256_after": "826004c174e96500c476835adfe6e51e441791b957e28b7305009eecf3a7e331"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/aux__config.json",
+      "sha256": "6fdef6d24b6f6f89a526235c0b66d83533211df9d137623722bbd779dac8c300",
+      "sha256_after": "6fdef6d24b6f6f89a526235c0b66d83533211df9d137623722bbd779dac8c300"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/aux__convolve_chans.py",
+      "sha256": "975daf5a26d9710998647d7a8377130f79c34fa16b4add30a0d2f64150d28b4a",
+      "sha256_after": "975daf5a26d9710998647d7a8377130f79c34fa16b4add30a0d2f64150d28b4a"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/aux__make_cubes.py",
+      "sha256": "6cad6f7e18ac7b5b4cc44cf26d98a0e11388325214e8bafa172293773e7c3f9c",
+      "sha256_after": "6cad6f7e18ac7b5b4cc44cf26d98a0e11388325214e8bafa172293773e7c3f9c"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/catalogue_paper.html",
+      "sha256": "58f0589ad1b919a142831e0fafe5bfaeda9b8c0434f0d9113889a8037e353708",
+      "sha256_after": "58f0589ad1b919a142831e0fafe5bfaeda9b8c0434f0d9113889a8037e353708"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/clean__05_setup_convolutions.py",
+      "sha256": "703ddb6f127a456c01f46a446a61ecf32b0970aa85a245b09af418ffe8bd3623",
+      "sha256_after": "703ddb6f127a456c01f46a446a61ecf32b0970aa85a245b09af418ffe8bd3623"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/clean__convolve_channels.py",
+      "sha256": "bd466602bb42e9e5848e0c73d6261c243800c9ae60ef5a4bc8407461244ed5fc",
+      "sha256_after": "bd466602bb42e9e5848e0c73d6261c243800c9ae60ef5a4bc8407461244ed5fc"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/convolution_history.json",
+      "sha256": "44b2b1f2557e07ca3c0f0966c08a69224ec47197a40bebf3acd543336449adba",
+      "sha256_after": "44b2b1f2557e07ca3c0f0966c08a69224ec47197a40bebf3acd543336449adba"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/generators.py",
+      "sha256": "d2c6077267e834733b9d704d1fdb91207463dc3d38253087c765f36f47c6e2d2",
+      "sha256_after": "d2c6077267e834733b9d704d1fdb91207463dc3d38253087c765f36f47c6e2d2"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/imaging_paper.html",
+      "sha256": "f2e8c93dc1adae23a45321cca755e69a170e7375efc628571b9c06ff703c5500",
+      "sha256_after": "f2e8c93dc1adae23a45321cca755e69a170e7375efc628571b9c06ff703c5500"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/manifest.json",
+      "sha256": "24dccebd578f745c78db5e3ae99b7b2724cb0e7ccaca617579de0564eee33c3b",
+      "sha256_after": "24dccebd578f745c78db5e3ae99b7b2724cb0e7ccaca617579de0564eee33c3b"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/mightee_repo_commit.json",
+      "sha256": "4e127a8c901b592a28bd7cf6e664c1460764b5aca9fc5bcc0e6001ae17cafc62",
+      "sha256_after": "4e127a8c901b592a28bd7cf6e664c1460764b5aca9fc5bcc0e6001ae17cafc62"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/oxkat_tools__common_convolutions.py",
+      "sha256": "5898a1f9bf9c6e33fb21872fabb9053e7013e8b237fa82e07203a3f6a2e5f9bb",
+      "sha256_after": "5898a1f9bf9c6e33fb21872fabb9053e7013e8b237fa82e07203a3f6a2e5f9bb"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/oxkat_tools__restore_model.py",
+      "sha256": "5420efe674ed8b2d831419db6b0dd2cf4e9b3328a454cc4a0c8a46ee58b1d526",
+      "sha256_after": "5420efe674ed8b2d831419db6b0dd2cf4e9b3328a454cc4a0c8a46ee58b1d526"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/source/pypher.py",
+      "sha256": "a41f36f0b3e457a7abe7c6cef51cc2387031ea77ea885e3dd19bea982809d52b",
+      "sha256_after": "a41f36f0b3e457a7abe7c6cef51cc2387031ea77ea885e3dd19bea982809d52b"
+    }
+  ],
+  "output_directory": "reviews/mightee_pipeline_flux_2026_10_19/stage_run",
+  "declared_results": [
+    "reviews/mightee_pipeline_flux_2026_10_19/stage_run/results.json",
+    "reviews/mightee_pipeline_flux_2026_10_19/stage_run/paired_fluxes.csv",
+    "reviews/mightee_pipeline_flux_2026_10_19/stage_run/stage_measurements.csv",
+    "reviews/mightee_pipeline_flux_2026_10_19/stage_run/pipeline_profiles.png",
+    "reviews/mightee_pipeline_flux_2026_10_19/stage_run/plot_profiles.csv",
+    "reviews/mightee_pipeline_flux_2026_10_19/stage_run/radial_stage_fluxes.csv",
+    "reviews/mightee_pipeline_flux_2026_10_19/stage_run/noise_blocks.csv"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/stage_run/stdout.txt",
+      "sha256": "f61fa183547455725e9f0f8bbbafb7ebf5355212aa72342bec01cb6df79d792d",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/stage_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/stage_run/results.json",
+      "sha256": "f7e2374dff941aeb8f199ac37d46cb719a51e5c7d0bac54210b8eba140b687db",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/stage_run/paired_fluxes.csv",
+      "sha256": "4cab60f6822cf6dfbc9b2f0886813bbefb32227125b9b173f05defaaa93fdb3c",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/stage_run/stage_measurements.csv",
+      "sha256": "89358b2a166196f9140da99b5121e5edd064bb12e1173aadab5ebe0988ef174f",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/stage_run/pipeline_profiles.png",
+      "sha256": "7f6cc2e9afebb3534f142d7d4b2c9dd9fb5abe33958b8cbc6a652b7e9e9d944c",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/stage_run/plot_profiles.csv",
+      "sha256": "37994e1ba6f23097b322f6285c9d460dc858c8af0b095da8ad00317493a78662",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/stage_run/radial_stage_fluxes.csv",
+      "sha256": "8b8bc5cd5877572859efab1f38bae7e187bbc5e78537189392d8b5df34b26585",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/stage_run/noise_blocks.csv",
+      "sha256": "c74a3ce6d61e5ecd1fac23d1f54074f151c8e19531f290272340264170c68a1c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

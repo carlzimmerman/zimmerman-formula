@@ -1,0 +1,76 @@
+FRAMEWORK-CERT-TRANSPORT-2026-10-12: conditional carrier coldness-rate certificate
+
+Verdict: exact consequences of the specified carrier parameters and STIPULATED
+quantum width certified. This is not a derivation of quantum dynamics from a
+classical action, a measured production rate, or a complete selector.
+
+Normalization reviewed before formalization:
+COLD_ENERGY_EQUATIONS.tex lines 15-29,94-101; local_interaction checks.py
+phase-space/width block; ACTION.txt existing chi<->phi+phi interaction.
+Canonical charged action has g real, M^2=4m^2+Delta, Delta>0,
+lambda_total=lambda_rep+g^2/Delta. Vertex amplitude 2g and identical-daughter
+factor 1/2 with invariant phase space give Gamma=g^2*p/(4*pi*M^2).
+On-shell p=sqrt(Delta)/2=M*epsilon/2 gives Gamma=g^2*epsilon/(8*pi*M).
+The local_interaction agent confirmed this normalization and no correction.
+The existing symbolic cold_rate calculation passes 8/8 checks.
+
+Critical status of the width:
+Every formal rate/lifetime theorem ASSUMES the explicit equation hGamma.
+For physical interpretation, canonical perturbative quantization, Bose daughter
+asymptotic states, vacuum on-shell tree amplitude2g, identical-state factor1/2,
+invariant two-body phase space/Golden Rule, and weak dilute vacuum regime are
+required. Medium/coherent/loop corrections are excluded from that formula;
+Markov/coarse-grained use as a kinetic rate needs further dynamical premises.
+Lean does not derive these requirements or prove the classical action supplies
+a irreversible Markov decay. Two-way classical exchange is a separate result.
+Natural units hbar=c=1; tau=1/Gamma only when Gamma>0.
+
+English correspondence / hypotheses:
+* speed_positive: M>0, Delta>0 imply epsilon=sqrt(Delta)/M>0.
+* speed_kinematic: M nonzero, Delta>=0 imply M^2*epsilon^2=Delta.
+* speed_less_than_one: M>0,m>0,Delta>0,Delta=M^2-4m^2 imply epsilon<1.
+* rate_margin: M>0,Delta>0, lambda_total=rep+g^2/Delta and stipulated
+  width give EXACT residual lambda_total*epsilon^3/(8pi)-Gamma/M
+  =rep*epsilon^3/(8pi). No g>0 assumption is needed; g can be any real.
+* coldness_rate_bound: adding rep>=0 yields
+  Gamma/M<=lambda_total*epsilon^3/(8pi), quantified for all real couplings.
+* lifetime_floor: adding Gamma>0 yields
+  M/Gamma>=8pi/(lambda_total*epsilon^3), i.e. M*tau bound in natural units.
+  Positivity of lambda_total is derived inside the proof, not silently assumed.
+* positive_repulsion_strict: rep>0 makes the rate bound strict.
+* zero_repulsion_saturates: rep=0 makes equality exact.
+
+No MOND/AQUAL/LambdaCDM physical premise imported. Mathlib is mathematics only.
+This constraint does not exclude all masses, physical rates, epochs, coherent
+production, or alternative reservoirs. Bounded weak lambda_total entails cubic
+coldness suppression of this declared perturbative rate; a dynamical physical
+coldness limit, receiver coupling, galaxy selector and formation clock are not
+certified. Exact lifetime-floor DIFFERENCE in the symbolic source is not yet a
+Lean theorem; the exact rate residual and lifetime inequality are certified.
+
+Verification:
+Directory: fable_independent_2026/lean_2026
+Command: lake env lean ABSOLUTE_PATH/carrier_rate/CarrierRate.lean
+Exit0, no warnings. compile.log prints all EIGHT theorem axiom dependencies:
+[propext, Classical.choice, Quot.sound]. No sorryAx, custom axiom, native_decide.
+FalseStrictSaturation.lean expected exit1: M=2,Delta=g=1,rep=0,lambda=1,
+epsilon=1/2 and Gamma=1/(32pi) give equality; strict strengthening yields
+identical expression < itself. Valid positive daughter m=sqrt(3)/2 exists.
+FalseZeroWidthLifetime.lean expected exit1: same M=2,Delta=1, g=0,rep=1,
+Gamma=0 shows dropping Gamma>0 permits totalized M/0=0 while the proposed
+floor is positive 64pi. Actual zero-width lifetime interpretation is excluded.
+Controls repeat the certified declarations plus intentionally false claims;
+only CarrierRate.lean is intended to compile successfully.
+
+Pinned input copies and hashes: PINNED_INPUTS.json and inputs/ preserve exact
+actual source bytes despite concurrent commits. Originals were not edited.
+Live HEAD observed34ebaa9153a0ff4ba58cf95b20dedc9099cb42f7.
+
+SHA-256 verification artifacts:
+3dd80bd8d66125667953feefedbf244ef348a6a3e36ae8f4e346401e38fdb445  CarrierRate.lean
+84187236f6c1c45252d0b119651da616e33f48abc34b53c8a08c0cdd9987f537  compile.log
+347cb2fe28868188a9241bd0da1c3b786b555eea5285067ab418a2b2765229ac  FalseStrictSaturation.lean
+9580ca79a7840394c389f2db63a60f10d614a7590d823c98c296dfe0ddcfdfd7  FalseStrictSaturation.log
+921a0c866a63b07661e7f758e30a2d17e71c3cb890580ae94e5e390055cc5c01  FalseZeroWidthLifetime.lean
+554b16782bf4b292ccf361aab2ccccfe0e12837538622a99ef664791506086f1  FalseZeroWidthLifetime.log
+8e02c7b8b7c36f73fafdda4a9f8ff827d861f21e6f2c4c8601ac5909812101cc  PINNED_INPUTS.json

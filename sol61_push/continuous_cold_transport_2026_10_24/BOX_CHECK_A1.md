@@ -1,0 +1,3 @@
+# Reported-only extension, before extended run
+
+First five results fail the spin-ledger 2% gate: ~6.7% residual, despite time-step and grid agreement. Do not regrade those results. Test periodic-image sensitivity with L=32, N=64 at the same dx=0.5 as the base case, same initial physical widths, phase, absorber and duration. This is one padding check, not an isolated-boundary convergence proof. Compare initial mass normalisation, spin residual, radii and removed mass. The zero-mean periodic potential's energy reference changes with box, so positive boundary Hamiltonian removal alone does not certify physical escape energy at infinity. All prior failures preserved. No other simulation settings changed.

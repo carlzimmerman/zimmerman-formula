@@ -1,0 +1,14 @@
+import argparse,json
+from pathlib import Path
+import numpy as np
+from compression import Compression
+from physical_branch import PhysicalFull
+ap=argparse.ArgumentParser();ap.add_argument('--output',required=True);arg=ap.parse_args();m=Compression();s=np.load('nonlinear_transfer_2026_10_25/run_exact_equilibrium/state.npz');a=s['a'].copy();x=s['alpha'].copy();pi=np.zeros(len(m.wr));chi=pi.copy();old=PhysicalFull();static_error=m.energy(a,x,chi,pi)-old.energy(a,x,chi,pi);assert abs(static_error)<1e-12
+rho=abs(a[0])**2/m.vol;scale=m.sigma/max(m.g+2*m.g2*max(rho),1)*.1;chi=scale*np.exp(-(m.wr*m.rm/200)**4);a[0]*=np.exp(.2j*np.sin(m.r));a[1]*=np.exp(-.07j*np.cos(m.r));mu=m.pot(a,x,True)[1];extra,S,bulk,conv,U,rate=m.transfer(a,x,chi);mu[0]+=extra;Ha=(m.kd+mu)*a+m.J*m.alignment(a,x,chi);Ha[0,:-1]+=m.ko*U*a[0,1:];Ha[0,1:]+=m.ko*np.conj(U)*a[0,:-1];Ha[1,:-1]+=m.ko*a[1,1:];Ha[1,1:]+=m.ko*a[1,:-1];d=.1*a*(np.sin(np.arange(m.n))+.3j*np.cos(np.arange(m.n)))[None,:];h=1e-4;fd=(m.energy(a+h*d,x,chi,pi)-m.energy(a-h*d,x,chi,pi))/(2*h);exact=2*np.real(np.sum(np.conj(Ha)*d));err=float(abs(fd-exact)/max(abs(fd),1e-20));assert err<2e-6
+dc=scale*np.cos(m.wr*.3)*np.exp(-(m.wr*m.rm/200)**4);h=1e-3;fdc=(m.energy(a,x,chi+h*dc,pi)-m.energy(a,x,chi-h*dc,pi))/(2*h);ec_exact=sum(S*m.chi_m(dc))+m.c**2*(m.ww@(np.diff(chi)*np.diff(dc)));ec=float(abs(fdc-ec_exact)/max(abs(fdc),1e-20));assert ec<2e-6
+dm=2/m.sigma*np.imag(np.conj(a[0])*Ha[0]);qdot=m.g*sum(dm)+2*m.g2*sum(rho*dm);noether=float(abs(sum(S)-qdot)/max(abs(qdot),1e-20));assert noether<1e-10
+pure=np.array([abs(s['a'][0])*np.exp(.02j*m.r*m.r),np.zeros(m.n)],complex);xx=np.full(m.n,np.pi/2);zero=np.zeros(len(m.wr));_,Sp,Bp,Cp,_,_=m.transfer(pure,xx,zero);assert np.linalg.norm(Bp)>0 and max(abs(Cp))<1e-20
+out={'calibration':m.calibration,'static_energy_identity_error':float(static_error),'complete_material_force_relative_error':err,'complete_scalar_force_relative_error':ec,'semidiscrete_shift_identity_relative_error':noether,'pure_T_compression_source_norm':float(np.linalg.norm(Bp)),'pure_T_conversion_source_norm':float(np.linalg.norm(Cp)),'short_steps':[],'non_claims':['New g2 operator is an EFT hypothesis, not derived microphysics','Matched inertia is a discriminator, not a law fit','No claim that slow compression radiates fast','No formation result from an algebra/short-step audit']}
+for dt_Myr in [.001,.0005,.00025]:
+ a=s['a'].copy();x=s['alpha'].copy();chi=np.zeros(len(m.wr));pi=chi.copy();p=np.zeros(m.n);E0=m.full_energy(a,x,p,chi,pi);Q0=m.charge(a,pi);an,xn,pn,cn,vn,ds,qs,info=m.full_step(a,x,p,chi,pi,dt_Myr/m.tdyn);out['short_steps'].append({'dt_Myr':dt_Myr,'energy_error':float(m.full_energy(an,xn,pn,cn,vn)+ds-E0),'charge_error':float(m.charge(an,vn)+qs-Q0),'iterations':info['iterations'],'fixed_point_error':info['fixed_point_error'],'carrier_root_error':info['carrier_root_residual']});Path(arg.output).write_text(json.dumps(out,indent=2)+'\n')
+print(out,flush=True)

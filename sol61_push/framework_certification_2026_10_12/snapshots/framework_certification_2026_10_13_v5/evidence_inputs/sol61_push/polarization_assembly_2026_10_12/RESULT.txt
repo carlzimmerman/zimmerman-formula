@@ -1,0 +1,160 @@
+SOURCE ASSEMBLY OPENS A FINITE FORMATION ROUTE
+12 October 2026. New evidence within the existing effective polarization model.
+
+The theory is still open. The concrete advance is that the prescribed static
+force profile CAN be formed approximately in a tested, mass-conserving baryon
+assembly history, even when both response fields initially vanish. No drag or
+direct relaxation toward a target was inserted. The strongest run has about
+0.03% late RMS force error, against the existing 10% gate.
+
+This corrects an overly broad reading of the preceding formation failure:
+the abrupt compact-source initial condition failed; the response model does
+not fail every formation history tested. The old result remains valid for
+its stated initial condition and is preserved unchanged.
+
+RESULTS
+-------
+Worst RMS fractional force error on r=2..20, sampled every 10 time units
+during the last 80 of a 640-unit hold after assembly finishes:
+
+  history                                error (%)      10% gate
+  abrupt compact source, zero fields      25.8773         FAIL
+  fixed-shape source growth, T=80          10.6178         FAIL
+  fixed-shape source growth, T=320          3.3750         PASS
+  conserved contraction, prepared fields   0.02497        PASS
+  conserved contraction, ZERO fields       0.02925        PASS
+
+The first two rows are the screening grid. The last three use refined grids.
+The source-growth family was screened before the best case was refined by
+the declared selection rule. The contraction and zero-field controls were
+declared after those preceding results, before their own runs. These are
+sequential exploratory experiments, not an observational preregistration.
+Each family has the same post-assembly holding time, not the same total age.
+
+WHAT CHANGED
+------------
+All runs use the existing exact-kernel effective equations in units
+C=a0=Z=I=1:
+  Phi_tt = div(grad Phi-P) - rho_b(t),
+  P_tt   = grad Phi-P-b(P).
+The potential W has W'=b. The signed inverse-deficit table is extracted by
+AST whitelist from CFG596; the large PM engine is not imported or run.
+The constitutive kernel, response coefficients, final baryon profile and
+force-error threshold were not fitted to the result.
+
+1. The first experiment smoothly increases the fixed compact source with
+   lambda(t)=10s^3-15s^4+6s^5, s=t/T, clipped to [0,1]. It helps substantially,
+   but does not provide a closed mass-conserving baryon flow.
+
+2. The stronger experiment keeps the entire baryon mass fixed. A diffuse
+   cloud contracts homologously, rho(r,t)=a^-3 rho0(r/a), with
+   a=16-15 lambda(t), T=320. The final source is the same exp(-r^2/8) profile,
+   cut at r=8, with integral rho*r^2 dr=1. The initial cloud has radius 128.
+   The continuum velocity v_b=(a_dot/a)r obeys mass continuity, including
+   the moving compact edge. Each sampled mesh density is normalized to
+   exactly unit discrete mass. This is a prescribed moving source; a baryon
+   continuity/momentum solver is not being claimed.
+
+3. Prepared initial fields were then removed as a falsification test. The
+   zero-field run starts with Phi=P=all velocities=0 and diffuse baryons
+   already present. Its initial force error is 100%. The successful final
+   profile is not supplied as an initial field or a relaxation target.
+   Initial diffuse baryons and their prescribed contraction remain inputs.
+
+ENERGY IS ACCOUNTED FOR
+----------------------
+With source energy +rho_b Phi, the exact model identity is
+  dH/dt = integral rho_b,t Phi dV.
+For a conserved source this equals integral rho_b v_b.grad(Phi) dV.
+Thus a contracting baryon source can take energy out of the response field;
+the opposite gravitational work would enter its mechanical energy if its
+own equation were evolved. This is a concrete energy-exchange channel, not
+unexplained field damping. It does not identify the cooling or stresses
+needed to sustain the imposed baryon trajectory.
+
+For the fine zero-field contraction run, initial field Hamiltonian H=0;
+final H=-1.27897152; integrated source work=-1.27897148. The largest sampled
+balance error is 1.006e-8 times |H_final_static|. Dividing by the initial
+energy would be undefined and is not done. Total field-plus-source energy
+is not conserved during prescribed assembly; the recorded external work
+is necessary. After assembly the source is fixed.
+
+The field is NOT globally at rest. The fine zero-field run retains excess
+energy (H-H_final_static)/|H_final_static|=0.65289 at t=960 despite the small
+interior force error. The prepared-field case retains 0.08074. These numbers
+depend on the box and reference static energy. Local force formation does
+not imply global relaxation. No spatial attribution of all residual energy
+or infinite-time attractor is claimed.
+
+VALIDATION
+----------
+Nine simulations in four bounded runs; all grouped numerical controls pass.
+Screen: R=768, N=6144, dt=.02, T=0/80/320, end=T+640.
+Growth verification: T=320; (R,N,dt)=(768,12288,.01) and (1536,12288,.02).
+Each contraction family: T=320, end=960; R=768; (N,dt)=(6144,.02),
+(12288,.01). Fine resolution dr=.0625. All jobs use a cooperative one-thread
+cap, bounded wall/CPU time and the installed Python/NumPy/SciPy runtime.
+
+* Growth: worst late force-profile refinement difference 0.3271% of target
+  L2 norm; doubled-domain interior profiles agree exactly at stored precision.
+* Prepared contraction: worst late refinement difference 0.01028% of target.
+* Zero-field contraction: worst late refinement difference 0.009988% of target;
+  its coarse/fine worst RMS errors are 0.02949% / 0.02925%.
+* Contraction mass error at every time step is <=4.45e-16 in unit-mass units.
+* Initial/final discrete equilibria satisfy the declared residual check;
+  source-free zero RHS, discrete integration by parts and interpolation
+  support checks cover the applicable code paths.
+* Source-work errors pass the 0.2% tolerance by a wide margin. Dropping the
+  work term for the fine growth run would give a 37.31% residual instead
+  of 1.28e-8, so the energy check does distinguish incorrect bookkeeping.
+
+The doubled-domain numerical check was performed for source growth only.
+For contraction, changes start inside r<=128; the continuum principal
+characteristic speeds are 0 and +/-1. A reflected disturbance cannot return
+to r<=20 by t=960 (earliest path 768-128+768-20=1388). This explains the chosen
+box but is not a rigorous error bound for the semidiscrete scheme. Simultaneous
+space/time refinement is a bounded diagnostic, not a convergence theorem;
+the quoted ~0.03% is a computed error, not a certified continuum error bar.
+
+All four manifests validate input/output hashes. Their exact commands,
+versions, actual Git revisions, dirty status, limits and timings are saved.
+The shared checkout advanced during this work; actual input hashes are the
+authoritative execution ancestry. No existing research lane was modified.
+
+INTERPRETATION AND NEXT HANDOFF
+-------------------------------
+Review verdict: computationally verified only in the stated range.
+Review was a separate same-author analytic/code pass, not an independent
+referee or proof certificate. ANALYSIS.txt derives the source-work identity,
+the nonnegative energy gap and the limited slow-switching diagnostic.
+
+This removes one tested dynamical obstacle for the assumed scalar response:
+the model need not miss the law after conserved baryon assembly. It does not
+derive the law. W was inverse-designed from the existing kernel. Nor does it
+identify a cold material carrier, its abundance, physical Z/I or a timescale
+in Gyr. Dimensionless units introduce no new comparison between the two
+physical a0 footings. Kappa remains fitted. No new data fit was performed.
+
+This is the two-field scalar model, NOT the separate constrained Newtonian
+metric-polarization construction. Lensing and stability results cannot be
+combined across those two different actions. EFE/ownership and relativistic
+metric coupling remain separate open or adverse obligations.
+
+Next decisive route: replace prescribed a(t) with a conserved baryon
+continuity/momentum/energy system coupled to this same action, with an explicit
+stress/cooling law and its receiver. First verify total energy exchange with
+the opposite sign in the baryon equation; then test whether assembly and the
+force law arise without driving the source toward a chosen trajectory. That
+physical stress/cooling closure is not specified by the current model. An
+arbitrary drag or schedule would add another assumption rather than resolve
+it. This route remains open at that missing input; no claim of exhaustion.
+
+FILES
+-----
+CONTRACT.txt and *_contract.json: checkpoint, bounds and pre-run criteria.
+calculate.py: growth and refinement; contraction.py: conserved source;
+zero_initial.py: unprepared-field falsification; plot.py: saved-data figure.
+screen/, verify/, contraction/, zero_initial/: raw results, logs, manifests.
+ANALYSIS.txt: derivation; AUDIT.txt: scoped review; assembly_result.png: chart.
+For reproduction use the manifests' argv through the bounded runner with
+fresh output directories; existing evidence must not be overwritten.

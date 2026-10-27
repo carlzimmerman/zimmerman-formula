@@ -1,0 +1,122 @@
+{
+  "schema_version": 2,
+  "claim_id": "HR02-conditional-causal-finite-density",
+  "repository": {
+    "commit": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "dirty": true
+  },
+  "command": [
+    "/Users/carlzimmerman/miniforge3/envs/z2-physics/bin/python",
+    "real_research/handoff_resolution_2026_09_27/constitutive/finite_branch_check.py",
+    "real_research/handoff_resolution_2026_09_27/constitutive/finite_mutate/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.15"
+      },
+      {
+        "name": "Python",
+        "version": "3.11.15"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact pressure, enthalpy-gap monotonicity and boundary identities supporting the stated conditional causal positive-energy fluid branch.",
+    "coefficient_domain": "Exact positive-real symbolic algebra; float64 controls",
+    "conventions": "Unshifted CFG2 pressure; y=GMb/(a0 r^2); rho is mass density",
+    "inputs": [
+      "real_research/handoff_resolution_2026_09_27/constitutive/finite_branch_check.py"
+    ],
+    "bounds": {
+      "symbolic_domain": "Pc,V,ye,c2 positive; y>=ye; c2>V*ye*sqrt(1+ye)/(ye+2)"
+    },
+    "non_claims": [
+      "Not formation or host/boundary selection",
+      "Not gravitational or free-boundary dynamical stability",
+      "Not an exact relativistic P2 mass profile or joint observational pass"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T20:49:57.175004+00:00",
+    "runtime_seconds": 1.014489,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/handoff_resolution_2026_09_27/constitutive/finite_branch_check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/constitutive/finite_branch_check.py",
+      "sha256": "f498c02a763bd5f5de53dbf1ee6af2fb310fba404140658d8cb98880d0d9e2ee",
+      "sha256_after": "f498c02a763bd5f5de53dbf1ee6af2fb310fba404140658d8cb98880d0d9e2ee"
+    }
+  ],
+  "output_directory": "real_research/handoff_resolution_2026_09_27/constitutive/finite_mutate",
+  "declared_results": [
+    "real_research/handoff_resolution_2026_09_27/constitutive/finite_mutate/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/constitutive/finite_mutate/stdout.txt",
+      "sha256": "596b09d9809c5c5300681a6f7739da0d8bef397e0d637ad8e50563891623563f",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/constitutive/finite_mutate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/constitutive/finite_mutate/results.json",
+      "sha256": "b8dd3861f633b4fa565890986924911d5e338a2526d9996503ae20b98d381bf7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "schema_version": 2,
+  "claim_id": "LIVE_COLD_DOMAIN_EXTENSION",
+  "repository": {
+    "commit": "54785632d6d3d1cb8aa1a0c32fa4bf74700cf1b4",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "two_state_mechanism_2026_10_24/live_assembly/wide_infall.py",
+    "two_state_mechanism_2026_10_24/live_assembly/run_wide/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Extend the strongest profile-1 cold history past its inner radial boundary; compare energy accounting and phase at two quadratures",
+    "coefficient_domain": "IEEE double floating point",
+    "conventions": "G=Mb=b=1 internally; all phase and gravity forces from common energy; no type flags",
+    "inputs": [
+      "Profile 1, alpha=3,f=.95,support=.1; inner grid=1e-5 initial minimum radius"
+    ],
+    "bounds": {
+      "n_per_species": 12,
+      "quadrature_cells": [
+        1024,
+        2048
+      ],
+      "duration_initial_dynamical_times": 5,
+      "rtol": 2e-08
+    },
+    "non_claims": [
+      "No 3D disk formation",
+      "No microphysics or observational fit",
+      "No asymptotic binding proof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-24T19:57:11.229554+00:00",
+    "runtime_seconds": 60.010719,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 600.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "two_state_mechanism_2026_10_24/live_assembly/assembly.py",
+    "two_state_mechanism_2026_10_24/model.py",
+    "two_state_mechanism_2026_10_24/live_assembly/CONTRACT.md",
+    "two_state_mechanism_2026_10_24/live_assembly/wide_infall.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "two_state_mechanism_2026_10_24/live_assembly/assembly.py",
+      "sha256": "bffe6b7be60087913758f3e86975168b1d4645458e63347e5a540630961c0ca8",
+      "sha256_after": "bffe6b7be60087913758f3e86975168b1d4645458e63347e5a540630961c0ca8"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/model.py",
+      "sha256": "af0074513c0b2bcaeef6e8feb4ceb1d07383fefc5f49af78d504f0847fe35917",
+      "sha256_after": "af0074513c0b2bcaeef6e8feb4ceb1d07383fefc5f49af78d504f0847fe35917"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/live_assembly/CONTRACT.md",
+      "sha256": "a5ac0ec8c4ccf69cd890f1c76a85dfdfdb5be29bdaf0f3335099dd6c9b70b84d",
+      "sha256_after": "a5ac0ec8c4ccf69cd890f1c76a85dfdfdb5be29bdaf0f3335099dd6c9b70b84d"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/live_assembly/wide_infall.py",
+      "sha256": "f969b9188663f78da5bdefa7b7fcd6fde8d5514aacfec88f3e8535bfcb10d146",
+      "sha256_after": "f969b9188663f78da5bdefa7b7fcd6fde8d5514aacfec88f3e8535bfcb10d146"
+    }
+  ],
+  "output_directory": "two_state_mechanism_2026_10_24/live_assembly/run_wide",
+  "declared_results": [
+    "two_state_mechanism_2026_10_24/live_assembly/run_wide/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "two_state_mechanism_2026_10_24/live_assembly/run_wide/stdout.txt",
+      "sha256": "b49fc43598049c6eaa5b757ff2cdff429f3218af8ff889815293e2e440afe9b9",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/live_assembly/run_wide/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/live_assembly/run_wide/results.json",
+      "sha256": "042233cc6cc9e03c9fa4b0f28f267d03bd57f3164ee88675093bc93ce78d0cd2",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

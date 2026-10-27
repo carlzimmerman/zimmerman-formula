@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "PHOTON-PORTAL-LOSS-DIAGNOSTICS",
+  "repository": {
+    "commit": "cda53006d0fae491d774c1bb9a25340ea47c9f41",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/photon_portal_losses_2026_10_14/check.py",
+    "sol61_push/photon_portal_losses_2026_10_14/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Tree photon-carrier scattering and local vacuum photonic-width estimate at the assigned optical benchmark",
+    "coefficient_domain": "Double precision quadrature and explicit physical polarization sums",
+    "conventions": "Stationary free carrier, Born scattering, independent beam photon flux; nonrelativistic local mediator decay width",
+    "inputs": [
+      "sol61_push/photon_portal_losses_2026_10_14/check.py",
+      "sol61_push/silica_shell_retention_2026_10_14/run/results.json",
+      "sol61_push/confined_pair_pulse_2026_10_14/run/results.json"
+    ],
+    "bounds": {
+      "photon_energy_eV": 1.000000000442908,
+      "temperature_K": 300,
+      "blackbody_dimensionless_energy": [
+        1e-07,
+        100
+      ],
+      "intensity_per_beam_W_m2": 1000000000000.0,
+      "ward_angles": [
+        -1,
+        -0.8,
+        -0.2,
+        0.2,
+        0.8,
+        0.999
+      ]
+    },
+    "non_claims": [
+      "No total photon-induced loss bound, stimulated sideband analysis, cavity density of states or material absorption",
+      "Vacuum-width estimate is not a spontaneous decay measurement",
+      "Recoil ejection is an impulse approximation, not a finite-shell transition calculation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T05:40:11.010060+00:00",
+    "runtime_seconds": 0.360325,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/photon_portal_losses_2026_10_14/check.py",
+    "sol61_push/silica_shell_retention_2026_10_14/run/results.json",
+    "sol61_push/confined_pair_pulse_2026_10_14/run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/photon_portal_losses_2026_10_14/check.py",
+      "sha256": "041bba110e9f3194f5917f483aa10e78a68d411bb9fa9662c01f238d57b3a818",
+      "sha256_after": "041bba110e9f3194f5917f483aa10e78a68d411bb9fa9662c01f238d57b3a818"
+    },
+    {
+      "path": "sol61_push/silica_shell_retention_2026_10_14/run/results.json",
+      "sha256": "68d7298af7bfc7d950423c4cb3ff2d595876e69918600c3dd88b3d6820c9fdd0",
+      "sha256_after": "68d7298af7bfc7d950423c4cb3ff2d595876e69918600c3dd88b3d6820c9fdd0"
+    },
+    {
+      "path": "sol61_push/confined_pair_pulse_2026_10_14/run/results.json",
+      "sha256": "0627600c1b4f11bcb274e8b6d1a616835e3f97b6521bca2d8784a48ddc38fc35",
+      "sha256_after": "0627600c1b4f11bcb274e8b6d1a616835e3f97b6521bca2d8784a48ddc38fc35"
+    }
+  ],
+  "output_directory": "sol61_push/photon_portal_losses_2026_10_14/run",
+  "declared_results": [
+    "sol61_push/photon_portal_losses_2026_10_14/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/photon_portal_losses_2026_10_14/run/stdout.txt",
+      "sha256": "f886ee3d9dca9888f3f63eec551affef91565f432ffe8ef557d9e048c6686576",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/photon_portal_losses_2026_10_14/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/photon_portal_losses_2026_10_14/run/results.json",
+      "sha256": "bf79ba619ad81dcca924a0502d2898d51b8100b998cc569e053595565fd9730f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

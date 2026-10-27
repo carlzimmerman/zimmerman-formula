@@ -1,0 +1,230 @@
+{
+  "schema_version": 2,
+  "claim_id": "UGC08286-DISK-INVERSION-2026-10-20",
+  "repository": {
+    "commit": "60cd0bd3b966a5fff0c5ede25342bed37f4f8a3b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/ugc08286_profile_2026_10_20/invert.py",
+    "--output-dir",
+    "reviews/ugc08286_profile_2026_10_20/inversion_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "Matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "On declared finite axisymmetric annular bases, compute positive finite additive-mass feasibility and minimum mass; invert the fixed simple law to compute the least pointwise stellar M/L ceiling allowing any annular gradient. Compare with independently sourced calibration sensitivity boxes, not claimed observed intrinsic gradient bounds.",
+    "coefficient_domain": "float64, signed elliptic disk kernels, SciPy HiGHS linear programs; numerical primal/dual residual checks",
+    "conventions": "17 SPARC points retained. Signed gas contribution, published unit stellar disk. Vertical exponential h=.196 Rd^.633 at Rd1.05kpc. Primary constant-M/L .5 baseline uses published Vdisk exactly. Gradient models use nonlocal annular kernels for two fixed interpolations of17 inclination-corrected SB samples; full65 projected profile is not deprojected, used only to set an observed photometric extent. No force/template renormalization. Velocity-error boxes, not likelihood confidences; no added .05dex floor. Source masses are inverse variables, not new fitted fundamental parameters.",
+    "inputs": [
+      "All17 primary rotation/gas/star/corrected light samples",
+      "Published disk geometry and errors",
+      "Two inherited a0 footings kept separate",
+      "Independent old-star3.6 Chabrier population calibration approximately0.1dex; declared0.1/0.2dex upper-ceiling sensitivity controls with uncertain clean-to-total-light/extinction bridge"
+    ],
+    "bounds": {
+      "extra_cases": 108,
+      "stellar_ceiling_cases": 432,
+      "extra_supports": "RHI and2RHI, RHI8.07kpc",
+      "extra_radial_steps": "30arcsec beam and1/2,1/4beam at6.5Mpc",
+      "extra_height_factors": [
+        0.5,
+        1,
+        2
+      ],
+      "vertical": "exponential",
+      "light_interpolation": [
+        "linear",
+        "loglinear"
+      ],
+      "light_steps": "1/2,1/4,1/8beam plus all measured radius knots",
+      "light_cut_kpc": 9.17183,
+      "kernel_orders": [
+        96,
+        192
+      ],
+      "velocity_interval_sigma": [
+        0,
+        1,
+        2
+      ],
+      "distance_controls": [
+        "6.5Mpc",
+        "6.5-0.21",
+        "6.5+0.21",
+        "CF4/SPARC0.9100948218084219 diagnostic"
+      ],
+      "sampling": [
+        "all17",
+        "even indices",
+        "odd indices"
+      ]
+    },
+    "non_claims": [
+      "Not a unique 3D density or a mass detection",
+      "No observed covariance or Gaussian significance",
+      "No exact deprojection of full light",
+      "Calibrated M/L box is not an object-specific radial observational confidence bound",
+      "No smoothing/profile-law fit",
+      "No universal positive-mass exclusion outside declared bases/geometries",
+      "Not a coupled nonlinear polarization solution, formation history, release switch or lifetime"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-20T20:31:03.503340+00:00",
+    "runtime_seconds": 15.815251,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 150,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/ugc08286_profile_2026_10_20/invert.py",
+    "reviews/ugc08286_profile_2026_10_20/kernel/disk_kernel.py",
+    "reviews/ugc08286_profile_2026_10_20/data/UGC08286_rotmod.dat",
+    "reviews/ugc08286_profile_2026_10_20/data/UGC08286.dens",
+    "reviews/ugc08286_profile_2026_10_20/stellar/observed_constraints.json",
+    "real_research/derivation_chain_2026/FP0_core_postulates_results.json",
+    "reviews/ugc08286_profile_2026_10_20/data/GEOMETRY.md",
+    "reviews/ugc08286_profile_2026_10_20/stellar/CONSTRAINTS.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/invert.py",
+      "sha256": "398909a283165b66ee51d9422f490c2972b359f2b206eaef05891328502c0d38",
+      "sha256_after": "398909a283165b66ee51d9422f490c2972b359f2b206eaef05891328502c0d38"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/kernel/disk_kernel.py",
+      "sha256": "1e6376b42a6be0e5483ed6ae45356088864cbb16905f354cda1d52c4ca5063c6",
+      "sha256_after": "1e6376b42a6be0e5483ed6ae45356088864cbb16905f354cda1d52c4ca5063c6"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/data/UGC08286_rotmod.dat",
+      "sha256": "8d22e60665ae11d1c8d510cf69ca88e7c132d39490bfb1e259b3972406bac0b6",
+      "sha256_after": "8d22e60665ae11d1c8d510cf69ca88e7c132d39490bfb1e259b3972406bac0b6"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/data/UGC08286.dens",
+      "sha256": "577df358074bae193c8c789f51e873c7cb1b1726e624e6d348700f21e0804e4d",
+      "sha256_after": "577df358074bae193c8c789f51e873c7cb1b1726e624e6d348700f21e0804e4d"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/stellar/observed_constraints.json",
+      "sha256": "477044d08e6960ea6a066a62ee0f020daf8f99ba5af48378ddad6756f5611cc1",
+      "sha256_after": "477044d08e6960ea6a066a62ee0f020daf8f99ba5af48378ddad6756f5611cc1"
+    },
+    {
+      "path": "real_research/derivation_chain_2026/FP0_core_postulates_results.json",
+      "sha256": "d02014ca3243d8b52f192328b1cad23fa8e8d948bf1e3a9d2b999fe4099554bd",
+      "sha256_after": "d02014ca3243d8b52f192328b1cad23fa8e8d948bf1e3a9d2b999fe4099554bd"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/data/GEOMETRY.md",
+      "sha256": "9f1cf60bef14bfdcca1fdbd79f54cecce52e2a6ef20f91940b16c62c9831443b",
+      "sha256_after": "9f1cf60bef14bfdcca1fdbd79f54cecce52e2a6ef20f91940b16c62c9831443b"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/stellar/CONSTRAINTS.md",
+      "sha256": "86a603a9405b31236ce397641b69c97b2d1a8e4834fa07bd5294e785728ef60a",
+      "sha256_after": "86a603a9405b31236ce397641b69c97b2d1a8e4834fa07bd5294e785728ef60a"
+    }
+  ],
+  "output_directory": "reviews/ugc08286_profile_2026_10_20/inversion_run",
+  "declared_results": [
+    "reviews/ugc08286_profile_2026_10_20/inversion_run/results.json",
+    "reviews/ugc08286_profile_2026_10_20/inversion_run/matrices.npz",
+    "reviews/ugc08286_profile_2026_10_20/inversion_run/residual.csv",
+    "reviews/ugc08286_profile_2026_10_20/inversion_run/profile.png"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/inversion_run/stdout.txt",
+      "sha256": "6851ff6aa80bdfc43ac6a507e91ffeb8a34887ddc7ee05cf21d11c17294921ba",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/inversion_run/stderr.txt",
+      "sha256": "cace1071573ef725e762e8856427937617c8c67e5d0784c45c0e854e56a803a8",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/inversion_run/results.json",
+      "sha256": "7f520efc2065a2f606552ef0c43689ddf77cbd3aebf8c313a1915ebb5170f233",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/inversion_run/matrices.npz",
+      "sha256": "a4a2ebac2fcdd5c2496e24adfd28b0714141a012ac792f07845d5a8bca375878",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/inversion_run/residual.csv",
+      "sha256": "828506d7631ff97d450474a9899dbda8a4e1ecaa575188d9ec219fb14b986d87",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/inversion_run/profile.png",
+      "sha256": "60b3db09b330219e13ae3ae63e59f2b3c40b80ba2a89b70d9fc403d708fbafff",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

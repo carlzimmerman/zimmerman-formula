@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "claim_id": "NGC5023-INDEPENDENT-SYNTHETIC-SYMMETRY",
+  "repository": {
+    "commit": "b37b50b1c64632c37923068a2c860a182a7cd65d",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/ngc5023_cube_2026_10_20/audit/independent_controls.py",
+    "--output",
+    "reviews/ngc5023_cube_2026_10_20/audit/synthetic_run001/checks.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Nine finite synthetic checks for central cube symmetry, symmetric odd warp/lag/beam, asymmetric source/mask counterexamples, four-point moment nuisance leakage, interpolation residual and covariance-aware variance.",
+    "coefficient_domain": "binary64 analytic samples; NumPy PCG64 Gaussian Monte Carlo",
+    "conventions": "array order spectral,z,x; central inversion reverses all three axes; dimensionless synthetic sky/velocity units",
+    "inputs": [
+      "Independent analytic synthetic source with odd bending warp and symmetric lag",
+      "Fixed interpolation/filter weights and 100000 Gaussian noise draws"
+    ],
+    "bounds": {
+      "cube_shape": [
+        41,
+        33,
+        49
+      ],
+      "Monte_Carlo_draws": 100000,
+      "variance_relative_tolerance": 0.025,
+      "seed": 502320261020
+    },
+    "non_claims": [
+      "Not an actual HALOGAS cube analysis",
+      "No new gravity, memory or independent replication",
+      "No real-data covariance or significance"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng PCG64",
+    "seed": 502320261020
+  },
+  "run": {
+    "started_at": "2026-10-21T00:12:53.260550+00:00",
+    "runtime_seconds": 1.267811,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/ngc5023_cube_2026_10_20/audit/independent_controls.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/audit/independent_controls.py",
+      "sha256": "fe7ea94ab6fd25164348e00ebde737bef3344d7cf9e0800e1c2f1242c381e6ab",
+      "sha256_after": "fe7ea94ab6fd25164348e00ebde737bef3344d7cf9e0800e1c2f1242c381e6ab"
+    }
+  ],
+  "output_directory": "reviews/ngc5023_cube_2026_10_20/audit/synthetic_run001",
+  "declared_results": [
+    "reviews/ngc5023_cube_2026_10_20/audit/synthetic_run001/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/audit/synthetic_run001/stdout.txt",
+      "sha256": "7bcb091fe5a68b8d61496629c3e7e5c36e770da4b7971eeef3a7128cefb72f9e",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/audit/synthetic_run001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/audit/synthetic_run001/checks.json",
+      "sha256": "06a39ff50d8d36177291ee266d61548ab15af4febfca455a94dfc0d42435be7a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

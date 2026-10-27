@@ -1,0 +1,85 @@
+{
+  "claim_id": "FASHI_MIGHTEE_FLUX_2026_10_18",
+  "mathematics": {
+    "assertion_tested": "On uniquely matched COSMOS sources, determine whether FASHI DR2 integrated HI flux agrees with the MIGHTEE catalogue, the existing extracted cube flux, or ALFALFA; report the original 47-object science sample separately from the 293-object parent catalogue.",
+    "coefficient_domain": "IEEE float64; sky coordinates in degrees, optical recession velocities in km/s, integrated fluxes in Jy km/s",
+    "conventions": "Frequency-derived MIGHTEE optical velocity c*(nu0/nu-1); FASHI v_opt. Nominal MIGHTEE Jy-Hz to Jy-km/s conversion c*nu0/nu^2 (OPT), with c/nu (REST) and c/nu0 (RADIO) reported as sensitivities because FASHI's integration-axis convention is not fully specified. FASHI S_bf and S_sum divided by 1000. No distance rescaling enters the flux ratios.",
+    "inputs": [
+      "Public FASHI DR2 tables 2 and 3 and README",
+      "Existing 293-row MIGHTEE COSMOS catalogue",
+      "Existing 47 science-sample IDs from CFG301 stage A",
+      "Existing CFG302 extracted cube fluxes",
+      "Existing CFG304 ALFALFA matches"
+    ],
+    "bounds": {
+      "match_radius_arcsec": 60,
+      "match_dv_kms": 300,
+      "radius_sensitivities_arcsec": [
+        30,
+        90
+      ],
+      "primary_fashi_min_snr": 10,
+      "clean_confusion_radius_arcsec": 174,
+      "bootstrap_resamples": 10000,
+      "position_shuffles": 200,
+      "seed": 20261018,
+      "minimum_catalogue_pairs_for_scale_assessment": 8,
+      "minimum_cube_pairs_for_scale_assessment": 5
+    },
+    "sample_definition": "Retain all matches in the audit table. Primary reliable set requires FASHI SNR>=10, positive finite fluxes, unique candidates on both sides, and all five existing MIGHTEE quality flags zero. Clean subset additionally excludes a second MIGHTEE or FASHI source within 174 arcsec of FASHI centroid and an overlapping velocity interval (half sum of W50 plus 200 km/s). Report 47-object science-sample subset separately. Cube comparison additionally requires existing CFG302 primary and detected flags.",
+    "summary": "Median log10 flux ratios, object-bootstrap 68% and 95% intervals, robust scatter and paired three-survey comparison. Show direct-sum FASHI flux, velocity conventions, confusion, width consistency and match-radius sensitivities. Do not optimize cuts after seeing ratios.",
+    "decision": "Agreement band is +/-0.10 dex, inherited from the earlier comparison. Call a relative scale discrepant only if its 95% bootstrap interval lies beyond that band with at least 8 catalogue pairs (5 for cube comparisons); call compatible within band only if its 95% interval is contained in the band. Otherwise unresolved. A general resolution also requires direct-sum and clean/convention sensitivities to support the same conclusion; small clean subsets remain a limitation. Bootstrap intervals exclude shared calibration systematics, including the quoted approximately 5% FAST calibration floor.",
+    "non_claims": [
+      "Does not measure a0 or prefer a gravity theory",
+      "Does not establish absolute calibration correctness from pairwise agreement alone",
+      "Does not treat multiple reductions of MIGHTEE as independent telescopes",
+      "Does not treat missing FASHI matches as zero flux or upper limits",
+      "Does not extrapolate the matched sample's correction to all 47 science objects",
+      "No sigma claim based solely on formal individual catalogue errors"
+    ]
+  },
+  "execution_artifacts": [
+    "reviews/fashi_mightee_flux_2026_10_18/compare_fluxes.py",
+    "reviews/fashi_mightee_flux_2026_10_18/contract.json",
+    "_external_data/fashi_dr2_2026_10_18/fashi_dr2.csv",
+    "_external_data/fashi_dr2_2026_10_18/fashi_alfalfa.csv",
+    "_external_data/fashi_dr2_2026_10_18/README.txt",
+    "_external_data/fashi_dr2_2026_10_18/fetch_manifest.json",
+    "data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv",
+    "campaign_fresh_gravity/CFG302_mightee_cube_raw_widths/cfg302_per_galaxy.csv",
+    "campaign_fresh_gravity/CFG304_mightee_flux_scale_alfalfa/cfg304_matched_pairs.csv",
+    "campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_stageA_results.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "pandas",
+      "version": "2.1.3"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.9.4"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "numpy.random.PCG64",
+    "seed": 20261018
+  },
+  "pre_result_disclosures": [
+    "Earlier ALFALFA result and sample cuts were read before defining this contract",
+    "FASHI generic catalogue headers and first rows outside COSMOS were inspected in the preceding scout",
+    "No COSMOS FASHI flux ratio has been inspected for this experiment"
+  ]
+}

@@ -1,0 +1,55 @@
+CE-FM-043 — independent closed-radial-integral check of static Cassini response.
+Base 756d08eaf2e4d9738692e2f31b0e71674516c07d; CFG770 actual code/results/criteria pinned inrun043.
+13 checks completed and manifest validated. Self-review. Maximum relative
+Q2 difference against the stored six cases: 2.0915013514866132e-05.
+No PM/campaign run, publication or frozen criteria modified.
+
+Let a=Aperp>0,b=Aparallel>0,x=cos(theta)^2, q=(Lambda k)^2,
+m_a=(a+q)/(a+1+q), m_b=(b+q)/(b+1+q), S=(1-x)m_a+x m_b.
+Direct symbolic reduction gives
+ 1/S-1=(q+n)/(q^2+Bq+C),
+ B=a+b+1, C=ab+a+(b-a)x, n=b+1-(b-a)x.
+Since C=(1-x)a(b+1)+xb(a+1)>0 and B>0, the two denominator roots
+lambda1,lambda2 are positive (discriminant >=(|b-a|-1)^2).
+Write (q+n)/[(q+lambda1)(q+lambda2)]=c1/(q+lambda1)+c2/(q+lambda2),
+c1+c2=1 and c1lambda2+c2lambda1=n. The common ultraviolet divergence
+in integral kappa^2 anomaly d kappa is independent of angle. Its P2 moment
+vanishes. The finite angle-dependent radial integral is
+ -pi/2 H(x), H=(B+sqrt(C)-n)/sqrt(B+2sqrt(C))
+             =(a+(b-a)x+sqrt(C))/sqrt(B+2sqrt(C)).
+Thus in the exact normalization of CFG770
+ Q2=-GM/(2 Lambda^3) integral[-1,1] P2(c) H(c^2) dc.
+Subtract H(0) inside the angular integral to cancel roundoff exactly.
+Degenerate roots use the continuous formula above; no pole division needed.
+This eliminates radial cutoff/quadrature and directly shows Lambda^-3 scaling.
+For a=b, H=sqrt(a) is constant and Q2=0 exactly. The remaining static response
+is positive elliptic because each m_i>0. Ellipticity is not dynamical health.
+
+Numerical validation: independent64/128-node angular quadrature converges to
+1e-10 relative for all six raw backgrounds. New Q2 agrees within .1percent
+contract tolerance with CFG770's nested finite radial quadrature, with actual
+maximum discrepancy reported above. It confirms the scale/sign of Q2~1e-32
+s^-2 under the supplied uniform-background, point-source, linear-response
+model. This is stronger than reprinting the stored fit but still conditional
+on that static action and its boundary/background approximation. The same
+length Lstar=5.75pc is inherited/calibrated, not derived here.
+
+Scope and new-clue reconciliation:
+CFG770 PASS relative to its supplied Park2026 ceiling is its own gate; this
+receipt does not authenticate that external measurement or its applicability.
+The independent reduction validates the modeled Q2, not all ephemeris gates.
+CFG771 stored NULL PREDICTED uses the same screening plus idealized geometry;
+its LPF noise number is explicitly provisional/from memory, and its M2 tooth
+reads zero stress instead of the frozen 'unbounded region' wording. Do not
+upgrade this into a completed experimental proposal or full noise audit.
+CFG727 hot-gas/free-core criteria and PAPER49 draft are new but no computed
+CFG727 verdict relied on; publication text untouched.
+
+This static one-field action avoids importing a basin rule into the solar
+response. It does not solve the physical reference-current Euler obstruction,
+clock constraints, nonlinear vacuum/current health or hot-source production
+selector identified in earlier checkpoints. F2/F6 remain open; F1-F5 not
+resolved by a tiny Solar System anomaly. No new claim about actual carrier
+radiation speed or causality follows from this static Fourier kernel.
+Next discriminators remain full varied current/frame/metric constraints and
+physical conditioned supply; no reason to duplicate these solar quadratures.

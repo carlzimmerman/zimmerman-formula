@@ -1,0 +1,132 @@
+CE-FM-086 — Can fragments cool and concentrate selectively?
+2026-10-19. Base CE085; original theory OPEN.
+
+Outcome: no demonstrated microscopic orbital cooling. A simple late-time,
+homologous collision-capture route fails a quantified selectivity test; merely
+changing its common velocity dependence does not fix it under the stated
+Maxwellian assumptions. Alternative preparation/density/potential-dependent
+capture routes remain open, not established.
+
+Sources and computation:
+- SFH-corrected stellar inputs and conditional remaining-stock aperture targets:
+  run_084/results.json, except Sextans retains run_077 Upsilon=2 assumption.
+- ARGON11 07546091c pinned files unchanged; existing geometric estimates and
+  global energy drift are not a measured halo capture/cooling cross section.
+- check_fragment_capture_requirements.py, contract fragment_capture_requirements_contract.json,
+  completed run_086_v2:46 assertions. check_maxwellian_capture_selectivity.py,
+  maxwellian_capture_selectivity_contract.json, completed run_086b:66 assertions.
+  Both v2 manifests validated against current inputs;112 finite assertions total.
+- Initial run_086 failed BEFORE launch because macOS rejected RLIMIT_AS512MiB
+  (ValueError: current limit exceeds maximum limit). Preserved, not counted.
+  Completed runs use20s timeout/10s CPU/one numerical-library thread, no hard
+  memory cap. First completed run observed peak RSS14,155,776 bytes (~13.5MiB).
+  No live PDE evolution duplicated; no criteria/publications changed.
+
+1. Mass and encounter requirement (CONDITIONAL idealized model)
+Assume remaining cold stock Mres=(53.64-settled/Mstars)Mstars, initially homogeneous
+inside kR where R=4a/3 and k=5,10,20. Initial enclosed fraction F0=k^-3.
+Assume a static density rho=3Mres/[4pi(kR)^3] over10Gyr, cold velocity dispersion
+like stellar observed sigma, RMS relative speed v=sqrt(6)sigma. A successful
+collision deposits one affected mass element inside R with probability1:
+F(T)=F0+(1-F0)[1-exp(-tau)], tau=rho*(sigma_capture/m)*v*T.
+Targets are the CE084/077 remaining-reservoir fractions required in the aperture;
+this is not a coupled density, gravitational, orbital or depletion evolution.
+RMS speed substitution is the constant-cross-section reference, not a thermal
+average for a velocity-dependent cross section. Initial interior stock counted.
+
+At k=5, required effective CAPTURE cross sections per mass (cm2/g):
+                 target fraction        sigma_cap/m
+Draco               .46930                 4.042
+Sextans             .98854               604.935
+Fornax              .01307                  .03409 (upper addition allowance)
+LeoI                .03451                  .04413 (upper addition allowance)
+No shared constant sigma_cap/m satisfies these central targets. At sigma_cap/m=1,
+Ffinal=.1502,.01529,.1464,.4631 respectively: insufficient Draco/Sextans, excessive
+Fornax/LeoI. The approximately1cm2/g ARGON11 geometric value is NOT sigma_cap.
+For k=10 and20 the common-sigma intervals also do not overlap. Rates may change
+radically during real collapse; this static benchmark is not a universal bound.
+Observational uncertainties were not fitted/marginalized or used to regrade data.
+
+2. Arbitrary common velocity kernel cannot fix the same model
+For independent centered isotropic Maxwellians with one-component dispersion s,
+relative-speed density is p(v|s)=v^2 exp[-v^2/(4s^2)]/(2sqrt(pi)s^3).
+For sd<sf, p(v|sd)/p(v|sf) <= (sf/sd)^3 POINTWISE. Therefore for ANY shared
+nonnegative velocity-only capture kernel sigma_cap(v)*v with finite integrals,
+Gamma_d/Gamma_f <= (rho_d/rho_f)*(sf/sd)^3.
+This analytic inequality is uniform in velocity; the sampled speed checks only
+illustrate it and do not establish its universal quantifier.
+Here sf=Fornax12.1km/s; sd=Draco9.55 or Sextans7.9km/s. At all common k,
+Gamma_Draco/Gamma_Fornax <=2.65369 and Gamma_Sextans/Gamma_Fornax <=.270043.
+At k=5 target optical depths instead require122.092 and870.680, missing by
+46.01 and3224.23 factors respectively. At k=10 the factors are19.61 and1361.17;
+at k=20,18.32 and1269.97. Thus even a narrow resonance in a SHARED velocity-only
+capture kernel cannot supply the desired rate ratios in these Maxwellian,
+common-geometry/duration reservoirs. Satisfying Fornax is already necessary
+before adding LeoI constraints. No inference is made for different cold velocity
+DFs, potential-dependent capture, fragment mass/phase distributions, early dense
+assembly or time-dependent densities. Those hypotheses change the actual test.
+
+3. Energy and angular momentum requirements
+Fixed-Kepler circular contraction from kR to R, with benchmark GM/R=3sigma_obs^2:
+Delta e=(3/2)sigma_obs^2(1-1/k); j_final/j_initial=1/sqrt(k).
+At k=5 Draco must export1.09443e8J/kg (=1.21772e-9 rest energy), Sextans7.4892e7
+J/kg (=8.33286e-10 rest energy), and55.28% of initial specific angular momentum.
+These are conditional orbital benchmarks, not measured halo binding energies:
+an extended evolving halo is not a point potential. Smallness relative to rest
+mass does NOT mean smallness relative to orbital kinetic/binding energy.
+
+A fusion event with positive rest-binding release B obeys K_final=K_initial+B-Eesc
+if other storage/work channels are absent. It cools orbital motion only if
+Eesc>B. Simply radiating the released binding energy does not cool the orbit.
+Momentum is separate: a perfectly inelastic equal-mass merger with a stationary
+bound target has center-of-mass speed v/2. With v^2=v_infinity^2+v_escape^2,
+it is bound only if v_infinity<sqrt(3)*v_escape. This is an ideal local kinematic
+example, not a halo capture prediction. Internal dissipation does not by itself
+remove the pair's center-of-mass motion; torques/angular momentum export also
+need explicit accounting.
+
+For equal fragments at RMS relative speeds sqrt(6)sigma, pair orbital kinetic
+energy/(combined rest energy)=v_rel^2/(8c^2): Draco7.61e-10, Sextans5.21e-10.
+Existing ARGON11 R1 GLOBAL fractional H drift1.55e-7 is ~204/298 times those
+fractions. This is a diagnostic scale comparison, NOT a rigorous numerical
+error floor for a different matched-pair computation. It means existing global
+conservation/coarsening output does not establish dwarf-speed orbital cooling.
+A dedicated paired-baseline/flux calculation needs convergence below its actual
+orbital energy difference, consistent local Hamiltonian and separation of rest
+binding, center-of-mass kinetic energy, internal excitation and outgoing flux.
+The snapshot-gradient energy mismatch from CE083 must not be reused as radiation.
+
+Literature clue, not imported evidence:
+Battye & Sutcliffe, Q-ball Dynamics, https://arxiv.org/abs/hep-th/0003252,
+abstract retrieved2026-10-19: nonlinear interactions include charge transfer and
+fission and depend on evolving phases. Different potentials: no fusion fraction,
+cooling rate or cross section transferred to the actual ARGON mediator model.
+A phase/impact-parameter average is therefore an obligation, not an optional
+replacement by geometrical area. Only abstract/search metadata examined here.
+
+Physical route decisions and executable continuation:
+A. Late diffuse homogeneous capture with common velocity kernel: REFUTED within
+   the stated static Maxwellian/reservoir model. Do not spend effort choosing a
+   universal velocity exponent as a repair for this model.
+B. Early compact assembly / distinct cold DF: OPEN. Must supply actual density-time
+   exposure or nonshared capture enhancement relative to Fornax; benchmark above
+   quantifies the deficit. Sextans' ~99% inventory requirement leaves very little
+   mass-loss margin; its independent stellar M/L remains a prerequisite.
+C. Microscopic dissipative capture: OPEN, not established by fragment fusion.
+   Use actual M100 potential and stationary isolated Q-ball profiles at converged
+   charges from the observed range. Compare isolated and paired evolutions at
+   matched grid/time step; include relative phases0,pi/2,pi, impact parameters and
+   low speeds. Measure incoming/outgoing lump COM energy and charge, rest-energy
+   changes, internal excitations, escaped energy/angular momentum, and boundary
+   absorption losses separately. A measured cooling kernel must pass energy and
+   charge balances before a halo evolution is justified. Existing periodic
+   fragmentation starts from an assumed coherent charged state, not derived
+   cosmological assembly. No such new heavy pair run was launched here.
+D. Corrected stellar-source coupled profile/control: still OPEN, frozen CFG822
+   normalization FAIL not repaired by this calculation. Retained-only Fornax/LeoI
+   corrected baselines remain below observations; full free profiles not re-solved.
+
+Claude monitoring: during this turn new commit5c3444b8f registers CFG799 alternate
+line-search criteria, no statistic or download result. It supplies no dwarf
+fragment-cooling evidence. ARGON11 pinned files remain unchanged. No messages
+sent to other chats; local handoff and checkpoint only. Full theory not complete.

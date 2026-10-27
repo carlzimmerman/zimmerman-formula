@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP004_INDEPENDENT_LOCAL_VECTOR_ASYMPTOTICS",
+  "repository": {
+    "commit": "9516ee01c79f35c04b7556050669ba77b0c98b99",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/check_asymptotic_v1.py",
+    "--operator",
+    "fine_structure_puzzle/qcd_completion/angular_modes/transverse_followup/runs/derive-001/operator.json",
+    "--result",
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/local-001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "For K=0,h=1-1/t, extract exact commuting mass and centrifugal matrices of the actual serialized vector Hessian; calculate charged growing first1/t coefficients and actual mixed-wall leading determinant with an explicit neutralL0 scattering coefficient c0, conditional on named global ranks.",
+    "coefficient_domain": "Exact rational/algebraic SymPy matrices and formal large-t expansion; no numerical ODE integration.",
+    "conventions": "Use immutable derive-001 Cartesian operator, its angular Gram and its7D+3R rows; charged u=e^t/t*(v+(1-C/2)v/t+...); neutral translation(-B6+B8)/t; unspecified regular-connection amplitudes are hypotheses.",
+    "inputs": [
+      "Actual derive-001/operator.json",
+      "Independent translation/gauge benchmarks already saved"
+    ],
+    "bounds": {
+      "charged_channels": 6,
+      "neutral_channels": 4,
+      "asymptotic_orders": [
+        0,
+        -1
+      ],
+      "wall_rows": 10
+    },
+    "non_claims": [
+      "No proof of global charged/neutral connection ranks",
+      "No numerical fit",
+      "No physicalQCD or alpha claim"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T03:04:14.039271+00:00",
+    "runtime_seconds": 2.753297,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 40,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/check_asymptotic_v1.py",
+    "fine_structure_puzzle/qcd_completion/angular_modes/transverse_followup/runs/derive-001/operator.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/check_asymptotic_v1.py",
+      "sha256": "0015c4068da1f6e2f1190dd12949145b4c779f6e6190b6ab729e6c260a628b9c",
+      "sha256_after": "0015c4068da1f6e2f1190dd12949145b4c779f6e6190b6ab729e6c260a628b9c"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/angular_modes/transverse_followup/runs/derive-001/operator.json",
+      "sha256": "4e98fa28d208693d6559c8bf5b2dd4b1c05e4d5b88827c38fb21230ac645f6bd",
+      "sha256_after": "4e98fa28d208693d6559c8bf5b2dd4b1c05e4d5b88827c38fb21230ac645f6bd"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/local-001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/local-001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/local-001/stdout.txt",
+      "sha256": "427dd3191b8da72f275e69360ea24babce2720112bfb8c31bf78c50cf6882d2e",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/local-001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/local-001/result.json",
+      "sha256": "14cbd8aef502bc1bf2bca4ea2d216379ffd35437a40c180a3f4c8f3fde5c6363",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,98 @@
+CE-FM-064 — new KiDS residual clue: what an outer reservoir can repair
+2026-10-15 UTC. Original theory OPEN. Self-review;43 controls/run_064
+completed, manifest validated. No full fit, live hot-gas run, archive run,
+PM rerun, frozen/publication edit or external chat message.
+
+SOURCE AND RECONCILIATION
+Claude's diagnostic commit7c1eae898ec964062a01f9a79f8d7b8af5d5d52b adds
+CFG805 diag_chi2_breakdown.py/.out and a README interpretation; exact bytes
+and revision recorded in outer_shell_source_receipt.json. This diagnostic
+uses the NO-EDGE baseline at fixed logMb10.36/10.83/11.01/11.18, not the
+CFG805 D+2h best-fit profile. Our independent direct aperture calculation
+reproduces total chi2=163.1375 (reported163.1), marginal block chi2
+17.9431/43.1820/45.8797/60.6041, and inner diagonal pulls
+-.7884/-2.4141/-3.7888/-4.4400. The heavier bins do carry the larger residuals.
+
+Full covariance retained. Marginal block scores are NOT additive pieces
+of the full chi2. Schur-complement conditional increments, given the other
+three blocks, are16.7317/40.6432/43.7215/57.8439. Each satisfies
+ chi2_full = chi2_other_marginal + chi2_this_conditional.
+These increments also do not sum to chi2_full. The raw residual shape is
+supported; identifying the entire mixed isolated sample's residual as
+specifically early-type physics requires morphology/hot-gas information.
+No new discovery significance or confidence interval is inferred.
+
+EXACT EXTERNAL-SHELL TRANSFER (new necessary condition)
+Keep the current scalar spherical lensing relation and a fixed baseline.
+A thin spherical shell of mass dM at radius a has, for 0<R<a,
+ y=sqrt(1-(R/a)^2),
+ Sigma(R)=dM/(2 pi a^2 y),
+ M_cyl(<R)=dM(1-y),
+ DeltaSigma_shell/dM = -(1-y)^2/(2 pi R^2 y) = K(R,a) < 0.
+For R>a it is +1/(pi R^2). The ideal shell is singular exactly at R=a;
+no assertion or evaluation at that boundary is used. At R<<a,
+ K=-R^2/(8 pi a^4)+O(R^4/a^6).
+Thus it would be WRONG to say all added positive mass increases the inner
+ESD: a hollow/exterior reservoir decreases it through projection.
+
+Nevertheless the inner response is strongly suppressed. For fixed R<a_min,
+y increases with a and (1-y)^2/y=1/y-2+y decreases with y. Therefore
+ K(R,a_min) <= K(R,a) < 0 for a>=a_min.
+Any nonnegative spherical density supported outside a_min, total mass M_ext,
+is a positive mixture of shells, so
+ DeltaSigma_ext(R) >= M_ext K(R,a_min).
+To lower the fixed baseline by d>0 requires
+ M_ext >= d/|K(R,a_min)|.
+This bound is independent of the exterior radial profile. It does not
+apply to a component extending inside a_min, baseline mass re-fitting,
+redistribution/removal of existing material, nonspherical projections,
+negative density contrasts, or changes to the metric/lensing dictionary.
+A nonnegative nonincreasing projected Sigma instead has DeltaSigma>=0
+and cannot by simple addition lower a fixed inner baseline.
+
+NUMERICAL DIAGNOSTIC, NOT A STATISTICAL EXCLUSION
+At the innermost R=0.03539000Mpc, keeping the diagnostic's masses fixed and
+placing ALL new matter at r>=.2Mpc, the nominal inner deficits require:
+ bin   deficit Msun/pc2   minimum added Msun   /ENTIRE catchment mass
+ 1          5.6532             1.7584e14             120.6
+ 2         23.5040             7.3106e14             169.9
+ 3         39.4141             1.2259e15             231.9
+ 4         46.7405             1.4538e15             233.8
+See results for exact input radius (rounded text above), all numbers and
+support minima .1/.164/.2/.3Mpc. Even .1Mpc demands more than the declared
+entire catchment stock for each nominal residual. The benchmark stock uses
+CE063's unit-translated empirical N at these diagnostic masses, counting
+ALL baryons+cold: (1+5.364)N Mb. It is deliberately generous: allowing that
+whole stock to be added again does NOT describe a mass-conserving model.
+Even this upper allowance supplies only .0469/.1383/.1700/.1999Msun/pc2
+of inner reduction at support>=.2Mpc. The true unused supply is smaller.
+These are nominal pointwise shape diagnostics, not simultaneous lower
+confidence bounds; correlations, mass uncertainties and profiling matter.
+
+FAILED IMPLICATION / PRACTICAL CONSEQUENCE
+An outer-only spherical positive addition within the current census budget
+cannot remove this nominal inner residual at the existing diagnostic masses.
+Adding it may still improve outer lensing. A joint repair must reprofile the
+central baryonic mass, move existing inner mass, extend a physically derived
+component inward, revise the inventory, or justify another lensing response.
+That is a necessary route distinction, not a no-go theorem for cold energy,
+for two-halo structure, or for the live gas experiment. The no-edge baseline
+itself is not a finite stock solution; it is the source's stated diagnostic.
+
+RELATED EXISTING HANDOFF (documentary, not a rerun)
+CFG727 ADDENDUM_PRE_RUN_2026-10-14.md already declares its early-type target4
+a known FAIL, with its current Mh/Mc in{0,.5,1,2} unable to open the free
+component: its stated catchment switch requires Mh>8Mc. It says at best
+PARTIAL; the new diagnostic README's referral to that lane is not evidence
+that the target has been solved. No CFG727 numerical results or live state
+were re-evaluated here. Source hashes/revisions in followup receipt.
+
+EXECUTABLE NEXT STEP
+For any candidate free/hot distribution, record its actual stock and support,
+convolve the exact shell kernel, and compare its inner negative response
+with this bound BEFORE a full fit. Then jointly profile the same four masses
+using full covariance and carry a counted inner/outer redistribution law;
+keep optical/metric and CE063 mass/H0 dictionaries explicit. Obtain lens
+morphology/gas conditioning before assigning the common heavy-bin residual
+to one population. Do not duplicate the live CFG727 experiment or change
+its frozen target/known failure. All CE050--063 obligations remain open.

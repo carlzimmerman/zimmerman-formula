@@ -1,0 +1,179 @@
+{
+  "schema_version": 2,
+  "claim_id": "POLARIZATION_CONSERVED_BARYON_CONTRACTION",
+  "repository": {
+    "commit": "30e0ed6e6491dd8a51f9bcd02e31e8f6397cf3d2",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "sol61_push/polarization_assembly_2026_10_12/contraction.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.14.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "After a verified 3.4% source-ramp result, test fixed-mass homologous contraction with prescribed baryon flow; is target force formed within retained 10% late gate?",
+    "coefficient_domain": "float64 radial finite volumes; velocity Verlet; trapezoidal external work",
+    "conventions": "Same effective model and final compact Gaussian as screen. rho(r,t)=a^-3 rho0(r/a) normalized to exactly unit discrete mass, a=16-15 smoothstep(t/320); initial field is static for diffuse source a=16, with zero velocities. In continuum v_b=a_dot*r/a conserves baryon mass. No baryon momentum equation is solved. Work is sum <(rho_new-rho_old)*(Phi_new+Phi_old)/2,vol>. Regular origin, Phi=0 at R=768; units C=a0=Z=I=1. No drag.",
+    "inputs": [
+      "sol61_push/polarization_assembly_2026_10_12/contraction.py",
+      "sol61_push/polarization_assembly_2026_10_12/calculate.py",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+    ],
+    "bounds": {
+      "runs": [
+        [
+          768,
+          6144,
+          0.02
+        ],
+        [
+          768,
+          12288,
+          0.01
+        ]
+      ],
+      "T": 320,
+      "end": 960,
+      "evaluation_radius": [
+        2,
+        20
+      ],
+      "late_window": [
+        880,
+        960
+      ],
+      "samples_every": 10,
+      "threads": 1,
+      "timeout_seconds": 300
+    },
+    "criteria": {
+      "formation": "RMS fractional force error <=0.10 and attractive force at ALL late samples",
+      "work_balance_normalized_to_abs_final_static_energy": 0.002,
+      "static_residual": 1e-07,
+      "verification": "All late force-profile refinement relative L2 <=0.03; worst late RMS change <=0.03. Domain doubling not repeated for this distinct initial-value problem; initial source lies within r=128, final evaluated r<=20, end=960, and wavefront speed <=1 in these units.",
+      "mass_conservation": 1e-12
+    },
+    "controls": [
+      "initial and final static residuals",
+      "mass conservation every step",
+      "work balance",
+      "table support",
+      "space/time refinement"
+    ],
+    "non_claims": [
+      "No self-consistent baryon assembly",
+      "No conserved cold matter or metric/lensing",
+      "No physical time unit",
+      "No kappa derivation",
+      "No infinite-time attraction, continuum theorem, or observational fit",
+      "Prescribed assembly can supply/remove energy; it is not free relaxation",
+      "Initial diffuse field equilibrium is prepared, not formed",
+      "No outer-boundary numerical replication for contraction; causal separation is analytic continuum diagnostic, not a rigorous discrete error bound"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T00:07:20.102097+00:00",
+    "runtime_seconds": 49.49825,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 300.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 290,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/polarization_assembly_2026_10_12/contraction.py",
+    "sol61_push/polarization_assembly_2026_10_12/calculate.py",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/polarization_assembly_2026_10_12/contraction.py",
+      "sha256": "50ebda107ebb9dd1d2bb59824c660a7e7f9eec0470fbfdefd4152ba15a21bab4",
+      "sha256_after": "50ebda107ebb9dd1d2bb59824c660a7e7f9eec0470fbfdefd4152ba15a21bab4"
+    },
+    {
+      "path": "sol61_push/polarization_assembly_2026_10_12/calculate.py",
+      "sha256": "1bf6ebaa3ec6315bd3a5fc0641224606d9fcf252555b8ac2bcf4b6424d048658",
+      "sha256_after": "1bf6ebaa3ec6315bd3a5fc0641224606d9fcf252555b8ac2bcf4b6424d048658"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py",
+      "sha256": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c",
+      "sha256_after": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c"
+    }
+  ],
+  "output_directory": "sol61_push/polarization_assembly_2026_10_12/contraction",
+  "declared_results": [
+    "sol61_push/polarization_assembly_2026_10_12/contraction/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/polarization_assembly_2026_10_12/contraction/stdout.txt",
+      "sha256": "7ad5cc37e2330ac0f2ac3832cbccca358b11178eb8abb875511ee2ba0391647e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/polarization_assembly_2026_10_12/contraction/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/polarization_assembly_2026_10_12/contraction/results.json",
+      "sha256": "7064cb211672215ac187dcfc9ab1962376bbc44d7034912e87f7a201459a4b50",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

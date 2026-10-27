@@ -1,0 +1,411 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,longtable}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\eq}{\mathrm{eq}}
+\title{Pair conversion changes the cold-carrier abundance\\
+A reciprocal expanding-gas calculation and its limits}
+\author{Zimmerman programme: CPB-PC-2026-10-16}
+\date{16 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The scalar carrier contains a pole-free pair-conversion reaction that must
+be included alongside source decay and inverse decay. Their combination
+changes the eventual daughter count while conserving charge and energy.
+We derive its tree cross section and thermal rate, and execute an expanding
+Maxwell--Boltzmann gas comparison using fast source partial equilibrium.
+One specified initial state nearly doubles its weighted daughter count;
+a hotter comparison fails the preset dilution gate and is retained as such.
+The evolution supplies concrete kinetic evidence, not a primordial production
+history, a relic-density fit or a closed gravitational theory. A pressure-aware
+generalization of the cold--vacuum exchange identity separates internal
+rest-mass conversion from exchange with dark energy.
+\end{abstract}
+
+\section{Exact target and provenance}
+The full user goal remains a physical completion of the theory, a defensible
+particle bridge, and a complete account of cold and dark energy. This
+checkpoint advances the missing collision/abundance calculation. It does
+not replace that goal with a chosen initial-value problem.
+
+The previous goal turn was progress: it established a thermal obstruction,
+a sufficient alternative scalar branch, and a mixed-charge six-point
+threshold amplitude. This turn reads the actual previous records before
+extending the collision system. The checkout remains
+\texttt{370dfb58006e330f210f5e306297e822188e37ba}, with shared dirty state.
+Inputs and software are pinned by
+\texttt{pair\_conversion\_run\_004/manifest.json}. The frozen theory and
+other lanes remain unchanged. This is self-review.
+
+We choose the separately specified $m=2$ MeV family member, not the earlier
+thermally unstable 1-MeV point. It satisfies the previous sufficient
+condition $M_0^2\ge g_c^2/\lambda_{\rm tot}$ within that thermal comparison.
+The choices $u_*=.02$, $r_\lambda=2$ and
+$\sigma_0/m=.3\ \mathrm{cm^2/g}$ remain inputs. The source mass is
+$M=2m\sqrt{1+u_*^2}$, and $g_c,\lambda_{\rm tot}$ are the same derived
+parameter values in the pinned mass-family record. Natural units apply.
+
+\section{A missing reaction and an exact cross section}
+The charge-preserving scalar interaction
+\begin{equation}
+ \mathcal L\supset-g_c(X^*\Phi^2+X\Phi^{*2})
+ -\lambda_{\rm tot}|\Phi|^4
+\end{equation}
+allows
+\begin{equation}
+ \Phi+\Phi^*\ \rightleftarrows\ X+X^*.
+\label{eq:pair}
+\end{equation}
+The cubic vertex is $-2ig_c$. For the forward process, one internal daughter
+joins the two vertices; fixed charges give a single $t$-channel tree:
+\begin{equation}
+ \mathcal M=-\frac{4g_c^2}{t-m^2}.
+\end{equation}
+There is no crossed identical-final graph because $X$ and $X^*$ are distinct.
+This amplitude is not the same as opposite-charge daughter elastic scattering.
+
+At invariant $s\ge4M^2$ put
+$p=\sqrt{s/4-m^2}$, $k=\sqrt{s/4-M^2}$ and
+\begin{equation}
+ t=m^2+M^2-s/2+2pk\cos\theta.
+\end{equation}
+Both initial and final energies are $\sqrt s/2$, so
+$t=-|\mathbf p-\mathbf k|^2\le0$. The internal daughter is never on shell.
+With $A=s/2-M^2$, $B=2pk$,
+\begin{equation}
+ A^2-B^2=M^4+m^2(s-4M^2)>0,\qquad
+ \int_{-1}^1\frac{\dd z}{(A-Bz)^2}=\frac2{A^2-B^2}.
+\end{equation}
+Direct angular integration therefore gives
+\begin{align}
+ \sigma_f(s)&=\frac{g_c^4}{\pi s}
+ \sqrt{\frac{s-4M^2}{s-4m^2}}
+ \frac1{M^4+m^2(s-4M^2)},\\
+ \sigma_r(s)&=\frac{g_c^4}{\pi s}
+ \sqrt{\frac{s-4m^2}{s-4M^2}}
+ \frac1{M^4+m^2(s-4M^2)}.
+\end{align}
+They obey
+$(s-4m^2)\sigma_f=(s-4M^2)\sigma_r$.
+There are no initial/final identical-pair factorials for either direction.
+The reverse cross section diverges kinematically as $1/k$ at its threshold,
+but its physical velocity product has the finite limit
+\begin{equation}
+ (\sigma_r v_{\rm M\o l})_0
+ =\frac{g_c^4}{2\pi M^6}\sqrt{1-m^2/M^2}
+ =9.50486\,10^{-8}\ \mathrm{GeV}^{-2}
+\end{equation}
+for the selected point. Angular quadrature and detailed-balance controls
+check the normalization independently of the closed angular formula.
+
+\section{Why a two-to-two reaction changes the final rest count}
+Use a charge-symmetric state, with per-sign densities $n=n_\Phi=n_{\Phi^*}$
+and $b=n_X=n_{X^*}$. Let $D$ be net source decay rate per sign and $P$
+net forward pair rate. After visible production has ceased,
+\begin{equation}
+ \dot n+3Hn=2D-P,\qquad
+ \dot b+3Hb=-D+P.
+\end{equation}
+The useful weighted count per sign is $w=n+2b$, the daughter count after
+all remaining sources decay. It satisfies
+\begin{equation}
+ \boxed{\dot w+3Hw=P.}
+\end{equation}
+Forward pair conversion consumes one daughter of each sign and creates
+one source of each sign; subsequent decays produce four daughters instead
+of the initial two. The inverse cycle reduces the eventual daughter count.
+The net conserved charge stays zero. Source decay alone conserves $w$;
+the pair channel does not.
+
+For a common Maxwell--Boltzmann kinetic temperature $T_d$, write fugacities
+$z_\Phi,z_X$ relative to zero chemical potential. Detailed balance gives
+\begin{equation}
+ D=\gamma_d^\eq(z_X-z_\Phi^2),\qquad
+ P=\gamma_p^\eq(z_\Phi^2-z_X^2),\qquad
+ \gamma_p^\eq=(n_X^\eq)^2\langle\sigma_r v_{\rm M\o l}\rangle.
+\end{equation}
+Fast source decay/inverse decay imposes $z_X=z_\Phi^2$. Full chemical
+equilibrium would additionally require $z_\Phi=1$; it is not imposed.
+The collision structure, not dimensional analysis or the conserved charge,
+determines whether and when that second equilibrium is approached.
+
+The standard invariant reaction measure and flux definitions are checked
+against De Romeri et al. equations (21)--(25) \cite{rates}. Our use of
+classical distributions is an explicit reduction, not their Bose treatment.
+For equal-mass distinguishable incoming sources the MB thermal average is
+\begin{equation}
+ \langle\sigma_rv_{\rm M\o l}\rangle=
+ \frac{1}{8M^4T_d K_2(M/T_d)^2}
+ \int_{4M^2}^\infty\sigma_r(s)(s-4M^2)\sqrt{s}
+ K_1(\sqrt{s}/T_d)\dd s.
+\end{equation}
+We integrate with $y=(\sqrt s-2M)/T_d$ and exponentially scaled Bessels.
+A generalized Laguerre weight $\sqrt y e^{-y}$ removes the threshold
+square root. Across 25 temperatures in $T_d/m\in[10^{-5},10]$, 64- and
+128-node rates differ by at most $3.45\,10^{-7}$ relative. The nonrelativistic
+limit agrees with the displayed velocity product.
+
+\section{Reciprocal energy closure without a rest-energy cancellation}
+The gas is isolated from the visible sector during this comparison. Its
+total dark energy and pressure satisfy
+\begin{equation}
+ \dot\epsilon_d+3H(\epsilon_d+p_d)=0.
+\end{equation}
+Pair production can increase rest mass only by reducing kinetic energy or
+the other stored dark energy; it supplies no new total energy.
+The thermodynamics uses an ideal quasiparticle equation of state. Interaction
+and virial contributions to that equation of state are not included here.
+
+For numerical stability define $\delta=M-2m$ and the reduced fugacity
+$y=z_\Phi e^{-m/T_d}$. Write
+\begin{align}
+ A&=\frac{m^2T_d}{2\pi^2}e^{m/T_d}K_2(m/T_d),\\
+ B&=\frac{M^2T_d}{2\pi^2}e^{M/T_d}K_2(M/T_d)e^{-\delta/T_d},\\
+ n&=Ay,\quad b=By^2,\quad
+ y=\frac{2w}{A+\sqrt{A^2+8Bw}}.
+\end{align}
+The last expression is the positive quadratic solution and stays well
+conditioned for exponentially small equilibrium densities. With partial
+source equilibrium the pair rate is
+\begin{equation}
+ P=B^2\langle\sigma_rv\rangle y^2
+ [e^{-2m/T_d}-y^2].
+\end{equation}
+It can have either sign along the expanding trajectory.
+
+For $e_i=m_iK_1(m_i/T_d)/K_2(m_i/T_d)+3T_d$, put
+\begin{equation}
+ k_\Phi=e_\Phi-m,\quad k_X=e_X-2m,\quad
+ k=nk_\Phi+bk_X,\quad p=(n+b)T_d.
+\end{equation}
+Here $\epsilon_d=2(mw+k)$ and $p_d=2p$. Subtracting weighted rest energy
+gives the exact moment identity within this closure,
+\begin{equation}
+ \dot k+3H(k+p)=-mP.
+\end{equation}
+If $P>0$, increasing the eventual rest count costs the kinetic/internal
+budget. $P<0$ releases that rest energy into the remaining gas.
+
+Let $c_i=\dd e_i/\dd T_d>0$. At fixed temperature and fixed weighted count,
+respectively,
+\begin{align}
+ k_w&=\frac{nk_\Phi+2bk_X}{n+4b},\\
+ k_T&=nc_\Phi+bc_X+
+ \frac{nb(2k_\Phi-k_X)^2}{(n+4b)T_d^2}>0.
+\end{align}
+With $\ell=\ln a$ the actual two-variable evolution is
+\begin{align}
+ \frac{\dd\ln Y_w}{\dd\ell}&=\frac{P}{Hw},\\
+ \frac{\dd T_d}{\dd\ell}&=
+ \frac{-3p+3nb(k_X-2k_\Phi)/(n+4b)-(P/H)(m+k_w)}{k_T},\qquad
+ Y_w=\frac{2w}{s_{\rm SM}}.
+\end{align}
+No rest-mass term is discarded. In the daughter-only elastic limit these
+equations reduce to fixed $Y_w$ and $T_d\propto a^{-2}$ when nonrelativistic.
+Thus rapid elastic scattering alone need not heat a homogeneous cold gas.
+It changes the distribution and transport; pressure evolution follows its
+energy moment. Number conversion changes that conclusion and is calculated
+here explicitly.
+
+There is also an independent thermodynamic check. The MB entropy density
+per sign is
+\begin{equation}
+ s_d=\frac{k}{T_d}+n+b-w\ln y,\qquad
+ \mu_\Phi=m+T_d\ln y,\quad \mu_X=2\mu_\Phi.
+\end{equation}
+The first law $\dd(mw+k)=T_d\dd s_d+\mu_\Phi\dd w$ and its Euler
+identity give
+\begin{equation}
+ \dot s_d+3Hs_d=-\frac{\mu_\Phi}{T_d}P\ge0.
+\end{equation}
+Indeed $P=\gamma_p^\eq(z_\Phi^2-z_\Phi^4)$ and
+$\mu_\Phi/T_d=\ln z_\Phi$ have opposite signs. Pair-off trajectories
+conserve comoving entropy; pair-on trajectories produce it. This is a
+conditional MB reaction-network entropy statement, not a claim about
+uncomputed quantum kinetics.
+
+\section{The executed expanding-gas comparison}
+The initial visible temperature is 10 MeV and the final visible temperature
+is 1 keV. The background contains a photon/electron ideal gas and three
+massless neutrinos, with instantaneous neutrino decoupling at 2 MeV.
+Electron Fermi integrals are included; visible entropy and the neutrino
+temperature are evolved consistently. This is an inherited radiation
+background, not the framework's native cosmology or precision neutrino
+decoupling calculation. Its 500-row entropy table conserves the declared
+entropy to the checked tolerance.
+
+The specified initial weighted yield is
+\begin{equation}
+ Y_{w,i}=\frac{.12}{2.742\,10^8(m/\mathrm{GeV})}
+ =2.18818\,10^{-7}.
+\end{equation}
+It is the old abundance-calibrated input, not a completed prediction from
+the Higgs era. Initial source densities follow the assumed fast partial
+equilibrium. Three independent initial kinetic temperatures are investigated;
+none is claimed to have been produced by the earlier portal calculation.
+
+\begin{center}
+\begin{tabular}{r r r l}
+\toprule Initial $T_d/m$ & Final $Y_w/Y_{w,i}$ & Final $T_d$ (GeV) & Dilution gate\\\midrule
+.3, pair off & 1 & $5.59317\,10^{-12}$ & met\\
+.3, pair on & 1.03195 & $9.58651\,10^{-12}$ & met\\
+1, pair off & 1 & $4.21977\,10^{-11}$ & met\\
+1, pair on & 1.97924 & $1.67032\,10^{-11}$ & met\\
+3, pair off & 1 & $3.46622\,10^{-10}$ & met\\
+3, pair on & 4.52622 & $3.39091\,10^{-11}$ & failed\\\bottomrule
+\end{tabular}
+\end{center}
+Every number is a result for this reduced initial-value problem. In
+particular, $1.97924$ is not an observed relic excess or a physical Higgs
+production prediction. Turning the pair reaction off keeps the weighted
+count exactly fixed but retains the same expansion/source closure.
+
+The initial-energy ceilings on the yield ratios are 1.57214, 3.36915 and
+9.15433, respectively. They follow from nonnegative pressure and
+$\epsilon_d\ge2mw$: comoving energy cannot increase in the isolated gas.
+The computed yield peaks 1.09428, 2.30842 and 6.02160 remain below those
+ceilings. The subsequent decline is reciprocal reverse conversion and
+freeze-out, rather than arbitrary deletion of mass.
+
+For pair-on runs the independent expansion-work residual
+\begin{equation}
+ \frac{a_f^3\epsilon_{d,f}-\epsilon_{d,i}
+ +\int_0^{\ell_f}3a^3p_d\dd\ell}{\epsilon_{d,i}}
+\end{equation}
+is below $5\,10^{-10}$ in magnitude. The weighted-number collision moment
+is independently integrated as well. The refined $.3$ run has energy and
+number residuals below $7\,10^{-12}$. ODE/rate refinement changes its final
+yield by less than $10^{-9}$ relative. These numerical invariants verify
+the implemented reduced equations, not the completeness of the collision set.
+The pair-on final comoving entropy ratios are 1.12636, 1.62315 and 2.98564.
+Their separately integrated entropy-production balances agree to better
+than $1.4\,10^{-8}$ relative to initial entropy. Pair-off entropy ratios
+equal one within $7\,10^{-10}$.
+
+\section{Validity diagnostics and preserved failures}
+The original script, pinned in failed run 001, required maximum MB
+occupation $y<.02$, source-decay/evolution rate ratio $>10^5$, and a lower
+bound on elastic/evolution rate ratio $>10$. These thresholds are retained.
+The pair-on maximum occupations are .0059944, .0114825 and .0229111.
+The hot case fails the original dilution gate. It remains an approximate
+classical comparison and is not promoted to a result meeting that gate.
+The failure means the declared small-occupation criterion is missed; it is
+not evidence for a condensate or a universal failure of a classical expansion.
+
+All three pair-on runs have elastic lower bounds at least 500 times their
+largest local evolution scale under the chosen normalization, and source
+decay/evolution ratios above $7.5\,10^8$. The elastic bound uses the
+pole-free daughter opposite-charge inequality
+\begin{equation}
+ \sigma_{+-}(s)\ge\frac{(\lambda_{\rm tot}-g_c^2/M^2)^2}{\pi s}.
+\end{equation}
+These are quantitative support for the kinetic and fast-decay reductions,
+not a solution of the full momentum-space collision operator. The
+occupation/evolution checks are sampled on the stored 401-point trajectories;
+no global-in-time certificate is claimed from those samples.
+
+Runs 001 and 002 stopped on the hot-case dilution assertion; run 002 records
+the measured diagnostics before stopping. Run 003 preserves the same
+threshold, exports all computed trajectories and reports the failed scope
+gate separately from numerical execution checks. It does not loosen the
+gate to manufacture a pass. The final authoritative run 004 records
+585 numerical/algebraic controls, including 500 background-entropy checks.
+Run 003 remains the pre-entropy checkpoint. This count is not a
+measure of physical completeness.
+
+\section{What the full reaction system still needs}
+The explicit pair process and source inverse decays already account for
+real intermediate sources in a reaction network. At nonzero daughter
+momenta, parts of the previous six-point amplitude can develop on-shell
+source propagators and overlap those sequential processes. Adding a raw
+finite-width $4\leftrightarrow2$ rate on top would count those histories twice.
+The remaining collision hierarchy needs consistent real-intermediate-state
+subtraction or an off-shell kinetic derivation. The general issue is
+documented by Ala-Mattinen et al. \cite{ris}; their subtraction prescription
+has not been transferred to this multiparticle scalar system here.
+
+The preceding exact zero-incoming-momentum six-point result remains valid:
+its intermediate source invariants lie below the positive-gap source pole.
+It neither supplies the finite-temperature subtracted remainder nor bounds
+it at the warmer initial states evolved in this report. Those omitted
+rates have not been bounded sufficiently to establish the displayed yield
+ratios as predictions of the complete scalar action.
+
+Other remaining obligations are the real Higgs-era source and thermal
+history, the resulting initial distributions, Bose factors and medium
+dispersion/width corrections, and the full kinetic response where timescale
+reductions fail. At sufficiently late nonrelativistic temperatures there
+is no reason to add a fictitious visible-temperature dark thermal mass;
+it must be calculated from the actual states.
+
+\section{Cold energy exchange is not automatically dark-energy exchange}
+Internal conversion here moves energy between particle rest mass and
+kinetic energy while the total dark gas obeys its conservation equation.
+It does not require the vacuum to provide or absorb energy. In a bound
+galaxy, cosmological expansion is not a substitute for a physical local
+formation receiver; the prior halo-settling obligation remains open.
+
+The previous cold--vacuum consistency identity assumed a dust component.
+For a component with nonzero $w_c=p_c/(\rho_cc^2)$, mass-equivalent total
+energy density $\rho_c$, conserved baryons, and $Q$ positive from dark
+energy into that component, the correct equations are
+\begin{align}
+ \dot\rho_c+3H(1+w_c)\rho_c&=Q,\\
+ \dot\rho_{\rm DE}+3H(1+w_{\rm DE})\rho_{\rm DE}&=-Q,\\
+ a_0^2&=\kappa^2c^2G\rho_{\rm DE}.
+\end{align}
+With constant $G,c,\kappa$, elimination of $Q$ gives
+\begin{equation}
+ \boxed{2\frac{\dd\ln a_0}{\dd\ln a}+3(1+w_{\rm DE})
+ +\frac{\rho_c}{\rho_{\rm DE}}
+ \left[\frac{\dd\ln(\rho_c/\rho_b)}{\dd\ln a}+3w_c\right]=0.}
+\end{equation}
+The proof is direct substitution of the two continuity equations after
+differentiating the scale postulate. For this isolated gas, $Q=0$ even
+when its eventual rest count changes. Treating $m$ times that count as
+the entire $\rho_c$ during the warm conversion epoch would falsely infer
+vacuum exchange. The old dust identity is recovered at $w_c=0$.
+This distinction is necessary for a coherent cold/dark-energy story.
+It derives neither the scale postulate nor $\kappa$, and fixes no vacuum
+energy magnitude.
+
+\section{Next route and completion status}
+The executed result changes the next research decision: source production
+cannot be converted into final daughter abundance by multiplying by four
+and stopping. The pair channel, inverse decay and finite-temperature
+irreducible number change must be evolved with reciprocal energy exchange.
+The initial energy distribution can affect the final count substantially.
+
+Next derive the real-intermediate-state-consistent irreducible scalar
+collision kernel and its error relative to the explicitly evolved network.
+Then replace the specified initial states with the stabilized candidate's
+actual Higgs-era production and thermal history, and compute perturbations
+from that same state. A portal recalibration before those steps would hide
+the unresolved abundance mechanism rather than close it.
+
+The galaxy-response action, finite counted halo formation, source partition,
+lensing metric, $\kappa$, independent parameter evidence and common-model
+empirical tests remain unresolved. The unique/novel-path ambition remains
+subject to literature comparison: reaction-network reprocessing and dark
+temperature evolution are known mechanisms. This report establishes their
+specific consequences for the present chosen scalar comparison, not global
+novelty or full closure.
+
+\begin{thebibliography}{9}
+\bibitem{rates} V. De Romeri, D. Karamitros, O. Lebedev and T. Toma,
+\emph{Neutrino dark matter and the Higgs portal: improved freeze-in analysis},
+arXiv:2003.12606v2, equations (21)--(25) and the discussion of thermal masses.
+\url{https://arxiv.org/html/2003.12606v2}.
+Only invariant rate/flux conventions and methodological overlap are used;
+the quoted model's sterile-neutrino results are not imported.
+\bibitem{ris} K. Ala-Mattinen, M. Heikinheimo, K. Kainulainen and K. Tuominen,
+\emph{Anatomy of real intermediate state-subtraction scheme},
+arXiv:2309.16615v2, sections I--III, especially the on-shell overlap in
+the introduction and equations (1)--(4).
+\url{https://arxiv.org/html/2309.16615v2}.
+The source authenticates the double-counting issue; it does not supply a
+completed multiparticle subtraction for this model.
+\end{thebibliography}
+\end{document}

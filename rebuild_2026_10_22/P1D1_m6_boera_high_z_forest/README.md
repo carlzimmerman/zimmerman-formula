@@ -1,5 +1,12 @@
 # P1D1_m6_boera_high_z_forest: does measured z 4.2–5.0 Lyman-α P1D allow X57's M6 at its bound?
 
+**Fix-forward correction (2026-10-27):** read
+[CORRECTION_2026_10_27.md](CORRECTION_2026_10_27.md) and amendment A3 before using
+this lane. Its completed NOT DIAGNOSTIC result stands. The frozen upper-envelope
+interpretation is invalid, and the historical K3 mutation did not independently
+test the sign. A separately planted, unconditional regression is now provided;
+it supplies no observational M6 exclusion or physical baryon-fraction limit.
+
 ## Provenance
 
 - **Criteria and ledger:** `FROZEN_CRITERIA.md` + `ASSUMPTION_LEDGER.md` (8f6e3db4bc), committed alone before any P1D value

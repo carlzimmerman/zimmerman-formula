@@ -1,0 +1,9 @@
+# Source boundary and route history
+
+Internal action and forces: reciprocal_field_2026_10_22/RESULT.md. Static matched profiles: compact_surplus_2026_10_22/checks.py. Prior energy theorem and empirical selections: core_formation_transport_2026_10_22. Prior spin/radiation discrimination: dynamical_arrest_2026_10_22. The older radiative_conversion_2026_10_13/REPORT.md was checked: it uses a distinct photon portal and different carrier action, and is NOT imported into this collapse model.
+
+Primary literature metadata/abstracts checked via web on2026-10-22:
+- F.S. Guzman and L.A. Urena-Lopez, “Evolution of the Schrodinger–Newton system for a self-gravitating scalar field”, arXiv:gr-qc/0404014v2, Phys.Rev.D69,124033(2004), https://arxiv.org/abs/gr-qc/0404014 . Its abstract concerns collapse/cooling in a Schrodinger–Newton scalar-field system. That is a different dynamical theory; its reported settling does not establish universal mass or cooling for the present separately conserved cold-current/phase-field model.
+- M.A. Amin and P. Mocz, “Formation, Gravitational Clustering and Interactions of Non-relativistic Solitons in an Expanding Universe”, arXiv:1902.07261v3, Phys.Rev.D100,063507(2019), https://arxiv.org/abs/1902.07261 . Its abstract attributes rapid soliton formation to attractive self-interactions and studies subsequent gravitational clustering. No equation, instability scale or abundance is transferred to this action.
+
+These are contextual checks only. Full-text theorem transfer, a novelty claim and a comprehensive literature review were not performed; no local PDF cache or source hash is claimed. All load-bearing force, flux, energy and dispersion arguments are derived internally and tested against their own stated equations. Numerical input provenance is in the manifests.

@@ -1,0 +1,136 @@
+Particle charge, mass density and microscopic source exchange
+CE-PARTICLE-CURRENT-2026-10-18. Original physical objective OPEN.
+Task base HEAD3d8900c10d8b778e2756838f2d00779dc43510ab, CE-FM-084.
+The exact source bytes and observed execution HEAD are in run_001/manifest.json.
+This note uses the original Phi/X carrier, not the separately constructed
+charged-host/real-mediator droplet potential.
+
+1. The particle action supplies a conserved charge and two species sources
+
+At the recorded nonrelativistic order take
+
+ H_NR = m Q + int [ |grad psi|²/(2m)+|grad b|²/(2M)
+          +delta b†b +c3(b†psi²+psi†²b)+kc psi†²psi² ] d³x,
+ Q=int(n_psi+2n_b), delta=M-2m,
+ c3=g_c/(2m sqrt(2M)), kc=lambda_tot/(4m²).
+
+The continuum Hamilton equations give, with ordinary number currents
+j_psi=Im(psi*grad psi)/m and j_b=Im(b*grad b)/M,
+
+ n_psi_dot+div j_psi=2R,
+ n_b_dot+div j_b=-R,
+ R=2c3 Im(b psi*²) at classical mean-field level.
+
+The operator version is R=i c3(b†psi²-psi†²b), with the corresponding
+expectation values and regulated local products. Thus
+
+ q=n_psi+2n_b, Jq=j_psi+2j_b,
+ q_dot+div Jq=0.
+
+These are action-derived source/daughter species equations. No chosen
+phenomenological transfer coefficient has been inserted. Source versus
+daughter is not the same distinction as settled versus free material.
+
+For psi=sqrt(n) exp(i theta), b=sqrt(n_b) exp(i(2theta+chi)), the exact NR
+phase kinetic term is -q theta_dot-n_b chi_dot. The conversion energy is
+2c3 n sqrt(n_b) cos chi, and R=+2c3 n sqrt(n_b) sin chi.
+The common phase theta is cyclic; the relative phase chi supplies reversible
+species exchange. Quantum creation from an empty daughter mode requires the
+operator theory; classical psi=0 remains psi=0 without a perturbation.
+
+The kinetic mass M and release energy delta are retained at the recorded NR
+order; no exact Galilean-boost statement or relativistic stress identity is
+being assigned to this finite-order rotating-frame Hamiltonian.
+
+2. What can be identified with a positive gravitating density?
+
+In the antiparticle-free NR sector the summed rest-mass density and flux are
+
+ rho_rest=m n_psi+M n_b=m q+delta n_b,
+ j_rest=m j_psi+M j_b,
+ rho_rest_dot+div j_rest=-delta R.
+
+The rest-mass deficit from a forward conversion is compensated by kinetic
+and interaction energy; it is not a loss of total stress-energy or a vacuum
+energy source. The full relativistic gravitational source also includes
+kinetic, interaction, pressure and binding contributions.
+
+The conserved density m q approximates rho_rest with the exact positive-sector
+pointwise bound
+
+ 0 <= (rho_rest-mq)/rho_rest <= delta/(2m+delta)=delta/M.
+
+At u_*=.02, M=2m sqrt(1+u_*²), this bound is approximately1.9994e-4.
+This small number is a near-threshold positive-charge statement, not a bound
+for a neutral relativistic bath. Equal daughter and antidaughter populations
+have zero net U(1) charge and positive rest energy; no mJ0 identification can
+represent their total mass. The signed current must not become the entire
+positive cold inventory in that state.
+
+A dual representation of this conserved current can supply div P=mq.
+It gives the conserved positive density in this restricted sector, not an
+exact identity for gravitational mass in every state. Separate dual-gauge
+and constitutive-energy obligations are treated in ../density_duality/.
+
+3. Threshold matching must retain the negative-frequency source term
+
+The exact relativistic source propagator at two-daughter threshold decomposes
+as
+
+ 1/(4m²-M²)=[1/(2m-M)-1/(2m+M)]/(2M).
+
+The positive-frequency source-only NR square gives
+
+ lambda_RWA=4m²(kc-c3²/delta)
+            =lambda_rep+g_c²/[2M(M+2m)].
+
+The analytic negative-frequency contribution subtracts precisely the second
+term, so the fully threshold-matched quartic is lambda_rep and the leading
+contact Gross-Pitaevskii coefficient is g_NR=lambda_rep/(2m²), in the
+normalization e_contact=g_NR n²/2.
+
+The earlier CE-FM-082 pressure calculation correctly parameterized its chosen
+regulated NR square by lambda_RWA. That coefficient must not be silently
+relabeled as exact relativistic threshold matching. Both are retained here.
+The difference relative to lambda_min=g_c²/(M²-4m²) is
+
+ (lambda_RWA-lambda_rep)/lambda_min=(M-2m)/(2M)
+                                     =u_*²/4+O(u_*^4).
+
+Relative to lambda_rep it is further divided by r_lambda. At the selected
+u_*=.02,r_lambda=2 benchmark the relative shift is about4.9985e-5. This
+matching correction does not remove the many-orders-of-magnitude contact
+pressure length mismatch found at MeV masses. It does remove a normalization
+ambiguity before deriving actual condensate/free scattering exchange.
+
+4. Bounded independent operator checks
+
+check_current.py constructs all homogeneous Fock states n_psi+2n_b<=16;
+the81-state space contains complete reaction sectors. The Hamiltonian is
+not truncated inside any conserved Q block. Matrix commutators independently
+verify both species sources, Q conservation, rest-mass work, compensating
+interaction work, and the positive-square Hamiltonian identity.
+
+Two phase-coherent superpositions in Q=2 with identical species populations and energy but
+opposite relative phases have opposite exchange sources. A one-way rate
+depending only on those instantaneous densities therefore does not follow
+from this coherent action. A Markov collision term requires additional
+coarse-graining/state assumptions. The scattering route in ../micro_exchange/
+makes its own kinetic assumptions explicit.
+
+Four complete homogeneous Q sectors were evolved at101 times each. Energy,
+charge and the rest-plus-interaction ledger stay constant within the declared
+tolerances, and the density approximation bound holds. The finite-volume
+model is an operator normalization check, not continuum exponential decay,
+irreversible thermalization, capture, halo formation or a measured rate.
+
+Code, contract, parameters, full checks and current source hashes:
+check_current.py, contract.json, run_001/results.json, run_001/manifest.json.
+The bounded run completed. Algebraic identities and current equations above
+are the general derivation; the finite checks are supplementary evidence.
+
+Remaining exact target: obtain positive total mass/current accounting in the
+actual populated state, a gauge-compatible constitutive response from the
+same particles, and a state-resolved bound/free exchange kernel with counted
+energy receivers. The original fixed particle action has not yet supplied
+all three desired macroscopic relations together.

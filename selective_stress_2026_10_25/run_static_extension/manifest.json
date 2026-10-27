@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "claim_id": "SS-11",
+  "repository": {
+    "commit": "e268465fccac27e0f207e839b73d96f7a3c68016",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "selective_stress_2026_10_25/static_extension.py",
+    "--output",
+    "selective_stress_2026_10_25/run_static_extension/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The derivative-current kinetic extension leaves the relaxed static Hessian and restoring boundary stiffness unchanged and adds only positive energy; exact square/Schur identities plus reused PC-16 numerical inputs.",
+    "coefficient_domain": "Exact symbolic algebra; reused float64 benchmark",
+    "conventions": "Mass-constrained active radial static Hessian; shift-symmetric zero gauge mode excluded",
+    "inputs": [
+      "Arbitrary positive H0 and scalar inertia; arbitrary real coupling derivative G"
+    ],
+    "bounds": {
+      "symbolic_block": "one component with arbitrary coefficients; general matrix proof by completing the square in prose"
+    },
+    "non_claims": [
+      "No new static solve",
+      "No basin, nonradial or continuum stability proof",
+      "No repair of existing multi-mass law failures"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T16:29:45.892643+00:00",
+    "runtime_seconds": 0.186815,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "selective_stress_2026_10_25/TARGET.md",
+    "selective_stress_2026_10_25/static_extension.py",
+    "physical_completion_2026_10_25/run_two_field_audit/results.json",
+    "physical_completion_2026_10_25/run_two_field/J_30.0.json",
+    "physical_completion_2026_10_25/launch.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "selective_stress_2026_10_25/TARGET.md",
+      "sha256": "62213e6ca0ace3174ec8b4f0d342656d981112b09ac4111bd54fea6ebe001649",
+      "sha256_after": "62213e6ca0ace3174ec8b4f0d342656d981112b09ac4111bd54fea6ebe001649"
+    },
+    {
+      "path": "selective_stress_2026_10_25/static_extension.py",
+      "sha256": "d98076bd37c3e86353e2e0c2d0ab6b1bd2a650fc4b4339f0275d602ddc5afa0e",
+      "sha256_after": "d98076bd37c3e86353e2e0c2d0ab6b1bd2a650fc4b4339f0275d602ddc5afa0e"
+    },
+    {
+      "path": "physical_completion_2026_10_25/run_two_field_audit/results.json",
+      "sha256": "9b735de50f303ca8dcdbc5543f3c70c79a00bb74e22bbb018e813ac833a0eaf1",
+      "sha256_after": "9b735de50f303ca8dcdbc5543f3c70c79a00bb74e22bbb018e813ac833a0eaf1"
+    },
+    {
+      "path": "physical_completion_2026_10_25/run_two_field/J_30.0.json",
+      "sha256": "9ae58c2532073bfb9fff43cc8c9e37f724a741d51ce8648e657ae0b251789fee",
+      "sha256_after": "9ae58c2532073bfb9fff43cc8c9e37f724a741d51ce8648e657ae0b251789fee"
+    },
+    {
+      "path": "physical_completion_2026_10_25/launch.py",
+      "sha256": "12a23018ab0ba141e0fd5597cf81767a955c4ac3fdc8863da7670f28fe541038",
+      "sha256_after": "12a23018ab0ba141e0fd5597cf81767a955c4ac3fdc8863da7670f28fe541038"
+    }
+  ],
+  "output_directory": "selective_stress_2026_10_25/run_static_extension",
+  "declared_results": [
+    "selective_stress_2026_10_25/run_static_extension/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "selective_stress_2026_10_25/run_static_extension/stdout.txt",
+      "sha256": "36cb86975404434dab245cb226c7b067415db28d0263ec9974736ed6f3c39738",
+      "kind": "log"
+    },
+    {
+      "path": "selective_stress_2026_10_25/run_static_extension/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "selective_stress_2026_10_25/run_static_extension/results.json",
+      "sha256": "fd51eb58248c2f343882479c85839ae0241f73678127a6cdcb62d8bde50e6c19",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

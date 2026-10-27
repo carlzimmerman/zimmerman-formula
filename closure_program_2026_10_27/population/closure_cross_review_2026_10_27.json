@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-27",
+  "role": "Independent scope/implication audit by closure_baseline; no fit rerun or live-job mutation",
+  "inputs": [
+    {
+      "path": "closure_program_2026_10_27/forest_review/RESULT.md",
+      "sha256": "cec8318e4a41958708d4c60640f311b2710a2a0a4ff9b797a7fb73cd09fe3cb3"
+    },
+    {
+      "path": "closure_program_2026_10_27/forest_review/snapshot_record.json",
+      "sha256": "1b0abdb4822a430699382ba95790acc52b837de247cc20d74036b75e8a0ec390"
+    },
+    {
+      "path": "closure_program_2026_10_27/forest_review/p1d2_primary_stdout_snapshot.txt",
+      "sha256": "13f39c79e449130fccf664d1c8c2a19435fa3a2258e52045ba4aa7c14ef29ec4"
+    },
+    {
+      "path": "closure_program_2026_10_27/patch_galaxy_mapping/RESULT.md",
+      "sha256": "6047ae5735329fbafdad4d64d75916af603ad6c9c50e6c93de64cbc8479700bf"
+    },
+    {
+      "path": "closure_program_2026_10_27/patch_galaxy_mapping/run/results.json",
+      "sha256": "614b3b698227532d0675af936560f81976caf285b536fa20c06b1b9279f150ef"
+    },
+    {
+      "path": "rebuild_2026_10_22/P1D1_m6_boera_high_z_forest/p1d1_m6_boera_results.json",
+      "sha256": "9a1cd45eb9d40245d2ebda4b448a068f40717e3f96ab3310ace6138513a5b97d"
+    },
+    {
+      "path": "rebuild_2026_10_22/P1D2_m6_lognormal_fgpa_forest/p1d2_m6_fgpa.py",
+      "sha256": "717580c2ccd70213e2c4b772dd662fdd116c92b02bf1ef13bb13b4a17ed6566b"
+    },
+    {
+      "path": "rebuild_2026_10_22/X38_a0_surface_density_halos/x38_sd_halos.py",
+      "sha256": "7c3b9506ab9a735d1d5761d75947dc124d8cb5291981ba97e741c75b5571f205"
+    },
+    {
+      "path": "rebuild_2026_10_22/SC1_self_coupled_core_law/sc1_core_law.py",
+      "sha256": "dfb8c02052db74b322138255f4fa154f62a5aa4e48c54bf5101007eb493af62c"
+    }
+  ],
+  "forest": {
+    "verdict": "conditional on the named saved artifacts, conclusions supported",
+    "checks": [
+      "P1D1 G0 chi2=137.630918689824/39 and G1=5.58235132004411 match report.",
+      "V-kcut G0 chi2=17.137114584586982/30; mu95=1.262551002152732; G1=8.141016723582002 remains inadequate by frozen gate.",
+      "P1D2 snapshot chi2=95.32/36 p=2.91e-7 and Asimov.44/.16; final verdict explicitly unclaimed.",
+      "P1D2 source220-230 multiplies normalized lognormal density by compensated patch mask, so mask mean conservation does not force density-weighted conservation.",
+      "P1D2 source409-425 implements G0/G1 gates before inference; separate pressure and thermal filtering source181/223/236."
+    ],
+    "advisory": "Independent seeds test Monte Carlo error; physical-response calibration needs controlled physical/hydrodynamic validation in addition. Sent to coordinator."
+  },
+  "mapping": {
+    "verdict": "proved as conditional accounting identities; input astrophysical identification not established",
+    "earlier_independent_algebra_record": "mapping_review.json",
+    "scope_checks": [
+      "Representative effective mass is not guaranteed census total; report says so.",
+      "Inventory ratio is not measured selected-population coverage; report says so.",
+      "Native mass-scaled assignment changes patch sizes, so existing forest response cannot be imported."
+    ]
+  },
+  "profile_source_scope_pending_proof": {
+    "status": "Raw proof not yet available at time of this note",
+    "checks": [
+      "X38 cluster halo_mass112-113 and SC1 grade75-77 use B(min(R,rta)/r0), hence constant enclosed mass outside and positive one-sided Burkert density inside.",
+      "X38 SPARC96-97 and SC1 SPARC61-62 use B(R/r0), without explicit min cutoff.",
+      "X38 frozen criteria35-36 specifies cluster density zero outside rta.",
+      "Source specifies collisionless component; isotropic f(E) completion is an extra restriction, not established by observational fitting."
+    ],
+    "strongest_safe_scope": "A sharp-edge obstruction, if proved, applies to literal cluster profiles under stationary isotropic no-wall collisionless assumptions. It is not a no-go for untruncated galaxy fits, anisotropic halos, smooth tapers, time-dependent inflow or field stresses."
+  }
+}

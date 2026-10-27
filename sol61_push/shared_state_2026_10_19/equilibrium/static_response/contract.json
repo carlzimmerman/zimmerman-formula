@@ -1,0 +1,23 @@
+{
+  "claim_id": "CE-SHARED-GP-BARYON-STATIC-L1-2026-10-19",
+  "mathematics": {
+    "assertion_tested": "Ten linear l=1 stationary-background BVP controls (affine, cubic and q=.1,.3,1 at two tolerances) obey affine cancellation, COM removal, source/energy quadratic work and tolerance comparisons as explicitly asserted in the code.",
+    "coefficient_domain": "IEEE float64 NumPy/SciPy numerical approximation",
+    "conventions": "Existing tau=.05 L=14 GP+gamma5/3 baryon profile, 4piG=1,K=.5,Kb=.4; external U=-E phi(r)cos(theta); deltaf=r*a,v=r*b; phi=3j1(kr)/k, q=kRb. Interior/exterior surface coordinates r=Rb*t*(2-t) and r=Rb+(L-Rb)*t^2 smooth the square-root baryon susceptibility edge; fields and radial derivatives are matched at Rb.",
+    "inputs": ["Pinned run_002 background arrays and stationary scalar/baryon chemical potentials", "Static Euler-Lagrange plus Poisson equations with three outer conditions eliminating exterior total mass dipole"],
+    "bounds": {"sources": ["affine r", "cubic r^3", "q=.1", "q=.3", "q=1"], "tolerances": [0.00002,0.0000002], "max_solver_nodes": 4000, "box_radius": 14},
+    "non_claims": ["No full spectrum, certified continuum minimizer or gap", "No nonlinear saturation or occupied inventory", "No selected mass/EOS/temperature or universal normalization", "No background regeneration or edits to frozen earlier evidence"]
+  },
+  "execution_artifacts": [
+    "sol61_push/shared_state_2026_10_19/equilibrium/static_response/check_static_response.py",
+    "sol61_push/shared_state_2026_10_19/equilibrium/static_response/parameters.json",
+    "sol61_push/shared_state_2026_10_19/equilibrium/run_002/profiles.json",
+    "sol61_push/shared_state_2026_10_19/equilibrium/run_002/results.json"
+  ],
+  "software": [
+    {"name":"computation Python","version":"3.9.6"},
+    {"name":"NumPy","version":"1.26.2"},
+    {"name":"SciPy","version":"1.11.4"}
+  ],
+  "randomness": {"used":false,"generator":"","seed":null}
+}

@@ -1,0 +1,93 @@
+FRAMEWORK-CERT-TRANSPORT-2026-10-12: classical charged-carrier stress
+
+Verdict: exact pointwise classical canonical stress restrictions proved.
+No quantum width/rate assumptions. No imported LCDM/MOND/AQUAL premises.
+No claim about cosmic H, Friedmann evolution, all dark sectors, empirical fit,
+full interacting cosmology or a complete galaxy selector.
+
+Source and normalization dictionary:
+COLD_ENERGY_EQUATIONS.tex lines15-42 declares canonical complex fields,
+charges1,2, positive-square potential and natural units hbar=c=1,(+---).
+Here phi=(r1+i*r2)/sqrt2, chi=(r3+i*r4)/sqrt2; v_i=dot r_i.
+K=sum(v_i^2)/2=|dotphi|^2+|dotchi|^2;
+S=(r1^2+r2^2+4r3^2+4r4^2)/2=|phi|^2+4|chi|^2;
+q=r2v1-r1v2+2r4v3-2r3v4, precisely the source j^0 convention.
+The source-agent carrier_cosmology script uses phi=x+iy with unnormalized
+real coordinates; its x,y,z,w and velocities equal our r_i/sqrt2,v_i/sqrt2.
+The factor/sign dictionary was explicitly confirmed with that agent.
+
+Actual source potential instantiated rather than just guessed a surrogate:
+u=sqrtDelta*chi+(g/sqrtDelta)*phi^2;
+u1=sqrtDelta*r3/sqrt2+(g/sqrtDelta)*(r1^2-r2^2)/2;
+u2=sqrtDelta*r4/sqrt2+(g/sqrtDelta)*r1*r2;
+phiSq=(r1^2+r2^2)/2. Definitions residualReal,residualImag and actualPotential
+use these exact components; actualPotential=m^2*S+u1^2+u2^2+rep*phiSq^2.
+Parent source requires m>0,Delta>0 and rep>=0 (strict rep>0 in the extension).
+The polynomial inequality holds more broadly, so the theorem need not assume
+m or Delta positivity. Only rep>=0 is needed for this mathematical conclusion.
+Complex-variable conversion and the source classical stress/current derivation
+are dictionary-level identifications here, not a formal tensor-calculus proof.
+
+English correspondence / premises:
+1. four_coordinate_squares: for ANY eight real components, product of squared
+   norms minus squared dot product equals sum of six squared pair minors.
+2. four_coordinate_cauchy: nonnegativity of those squares yields Cauchy.
+3. charge_bound: actual weighted vector(r2,-r1,2r4,-2r3) proves q^2<=4SK.
+   There is NO unproved Cauchy assumption in this coordinate-level theorem.
+4. positive_square_potential: rep>=0 gives V>=m^2*S from the exact declared
+   sum-of-squares/quartic form for arbitrary u1,u2,phiSq.
+5. homogeneous_stress_bound: K>=0,q^2<=4SK,V>=m^2S give
+   rho^2-p^2>=m^2q^2 for rho=K+V,p=K-V. Generic scalar hypotheses explicit.
+6. coordinate_stress_bound: proves and supplies those premises from actual
+   amplitudes/velocities and the positive-square form, rep>=0.
+7. actual_carrier_stress_bound: directly instantiates coordinate result with
+   actualPotential and the explicit source residual real/imaginary formulas.
+8. exact_negative_one: positive rho and p/rho=-1 force K=0,q=0, using the
+   charge bound. This is an instantaneous pointwise condition, not persistence
+   on an interval. No claim that a static nonzero point satisfies source EOM.
+9. saturated_pressure_zero: the proved stress bound plus rho^2=m^2q^2
+   forces p=0. Nonzero charge alone does NOT imply this saturation or dust.
+10. isotropic_stress_bound: add B>=0 and S>=0 to the generic premises,
+   rho=K+B+V,p=K-B/3-V. The same charge-stress inequality follows because
+   its difference from homogeneous stress is8KB/3+4BV/3+8B^2/9>=0.
+   B is canonical spatial-gradient energy with an ISOTROPIC stress average;
+   a general anisotropic tensor cannot be replaced by this scalar p.
+11. isotropic_exact_negative_one: positive isotropic rho and exact p/rho=-1
+   with K>=0,B>=0 and charge bound imply K=B=q=0.
+
+Consequences and limits:
+For positive rho, the squared inequality constrains |p/rho| whenever material
+energy remains close to the charge-mass floor. Exact saturation means p0.
+The scalar inequality is machine checked; the equivalent square-root w/eta
+presentation in the cosmology script is not separately formalized here.
+No full field EOM, static critical-point elimination, FLRW dilution, H history,
+physical mean density, classical global energy, or renormalized quantum theory
+is certified. An independently introduced vacuum offset is not derived or
+identified with a charged mode. The source-agent's 25 exact symbolic
+checks have their own scope; this Lean file proves only the listed 11 statements.
+
+Verification:
+Directory fable_independent_2026/lean_2026
+Command lake env lean ABSOLUTE_PATH/carrier_equation_of_state/CarrierStress.lean
+Exit0, no warnings. All ELEVEN printed axiom lists are exclusively
+[propext, Classical.choice, Quot.sound]. No sorryAx/custom axioms/native_decide.
+FalseChargeFactor.lean expected exit1, goal False: r1=1,v2=-1 gives q^2=1,
+S=K=1/2; replacing factor4 by factor2 falsely asserts1<=1/2.
+FalseChargedDust.lean expected exit1, goal False: r1=1,v2=-2,m=Delta=1,
+g=rep=0 gives q=2,K=2,V=1/2,p=3/2. Removing charge-floor saturation cannot
+justify dust. This control uses the rep=0 limiting family allowed by rep>=0.
+Controls repeat the checked source and append false claims; they are intended
+to fail, only CarrierStress.lean is a successfully compiling certificate.
+
+Pinned sources and hashes are in PINNED_INPUTS.json and copied inputs/.
+Live HEAD observed e247616cf58a680f49b98d03c20aae1681b4ff4d. Existing source
+files and all previous certificates were untouched.
+
+SHA-256 verification artifacts:
+c932a60df17e8fa7a7523cd004019d4c5df16166abb70838642dda462812a7d3  CarrierStress.lean
+207e79fc303701e41a1128ec268db78f37b82f0fd91206c60209ef6e8ad2c897  compile.log
+5f92ca285eae118dbf088c2d0898eadff2709be54a2182166ebf32b670c13e0d  FalseChargeFactor.lean
+ca65ed24721804ac25d5c8191b031bd46dd11e0c9023a62f05a74d88ba8efc9e  FalseChargeFactor.log
+7398094d46f556e622cbb2c0b8f27e609c1dd7321df36e8630aa5039c700220e  FalseChargedDust.lean
+f751ffd22b1b0050890a263f746978ce254d20b91ef5640b7fef58726e0e57bc  FalseChargedDust.log
+ae8fc6ffba52bd1c1f648e9e065fe532626823654d1603e0cd4232db32babec2  PINNED_INPUTS.json

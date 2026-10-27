@@ -1,0 +1,143 @@
+CE-FM-056 — Conversion clock, vacuum offset and shear interpretation
+2026-10-15. Self-review of implementation and conditional implications.
+Verdict: CFG780's stored score arithmetic is reproduced, but its background
+is not the stated production history; a physical conversion-branch shear
+verdict remains conditional. CFG781 remains INCONCLUSIVE, not a graded FAIL.
+
+Exact sources and scope
+Result commit3ab3898988415371cec64d09ab4f6c08340d8562; CFG780 frozen criteria
+977f341e1, CFG781 criteria3028fcc80. Raw code, summaries and all eight non-mutant
+rescore JSONs, plus prior conserved-history code, are hashed in run_056.
+Source/statistic names are read from files, not accepted from commit prose.
+No frozen criteria, publication, original code or existing score was edited.
+No raw shear scorer, PM/native job, Method B solver or live AG3 experiment
+was executed. The new CFG654 native-input job/addendum is left to its owner.
+
+1. What survives: the stored-score bookkeeping
+For T1x KiDS IA, unscaled chi2=136.56494705653301 and control=144.26236586416482.
+The implemented primary rescore gives141.22871321334256, an increase of
+4.663766156809544; delta versus control remains-3.033652650822262.
+4.6637661568/7.6974188076=0.6058870218, so 'about60% of the gain lost' is
+arithmetically correct for THIS IMPLEMENTED rescaling. Both quoted classes
+are CONSISTENT in that scorer; primary absolute p=0.01976959413 is a stored
+partial-data statistic, not certification of a completed cosmological model.
+T12's primary increase6.2676942160 and stored TENSION class likewise remain
+source results. Summary chi2 and differences match raw rescore JSONs in all
+eight job/variant combinations. No corrected chi2 or empirical regrade is
+claimed by this audit.
+
+2. Proper-time production versus log-scale integration
+For N=ln a, dN/dt=H, so dt=dN/H=da/(aH). With a comoving production density
+psi(t), converted comoving mass per dN is proportional to psi/H.
+CFG780 defines dt=psi/(a E_ref), calls it 'psi dt per dln a', then integrates
+it using diff(log(AA)). That extra1/a is appropriate to a da integration,
+not to the dln a integration performed. It shifts the normalized source
+history toward earlier epochs even after fixing total mass loss at z=0.
+The predecessor conserved-history source uses j=Xi psi/(rho_ref H_ref E)
+with derivatives in N, consistent with dt=dN/H. Thus this is a mismatch with
+the actual intended MD14 proper-time rate, not merely an alternative variable
+name. A new definition psi_per_log_time could define a different history,
+but would not implement the stated source without an explicit translation.
+
+3. The flatness constant masks a second background mismatch
+The source computes loss=-(B+C)' and integrates V'=loss/a^3, which is the
+correct homogeneous conservation pairing in N. It then adds a CONSTANT
+1-(B+C)(today)-V_generated(today) to every V value. A constant vacuum term
+does not violate that differential conservation equation. But it changes the
+initial condition and therefore the physical background being scored.
+
+Independent small-grid reconstruction using exactly the source's constants,
+endpoint survival .894 and supplied growth equation gives:
+                                  source extra1/a       proper-clock control
+V(z=8)                             -0.51870894           -0.00288979
+V(today)                            0.71951760            0.71951760
+produced vacuum                     1.23822654            0.72240739
+fraction converted by z=1            0.76354748            0.61804840
+g(0)                                1.00985155            1.00945344
+g(0.5)                              1.01671021            1.01499112
+g(1)                                1.01705146            1.01425767
+V is in the source's reference critical-density units. These numbers reproduce
+the supplied primary g nodes within2e-7; the actual differences are about1e-9.
+The source has E(today)=1 by construction and positive E^2 on its grid. Negative
+V is not declared universally impossible: the problem is that V(z=8)=-.519
+is not the stated produced-from-zero vacuum history V=V0 F(a). The offset is
+large relative to its final0.7195 value. Passing E(today)=1 and zero-conversion
+controls cannot detect this changed initial condition.
+
+The proper-clock countercontrol changes ONLY psi/(aE_ref) to psi/E_ref;
+all source normalizations, endpoint loss, grid, growth ODE and flatness-offset
+procedure are retained. It is not a repaired physical cosmology. Its small
+remaining negative initial V reflects that an imposed rounded endpoint loss
+and reference-clock history need not jointly satisfy V_initial=0 and flatness.
+A true reconstruction must use the same conserved source, actual H(a),
+initial vacuum and normalization shooting that define the parent branch.
+Source normalization, history, endpoint loss and initial vacuum are not all
+independent after those conditions are fixed.
+
+An8001-point refinement changes corrected g nodes by less than6e-9 and the
+initial V by3.31e-7. No rescore is applied to this countercontrol. In particular
+both displayed backgrounds give g>1, not the hand-estimated suppression. That
+sign belongs to the chosen flatness/reference/initial-normalization model;
+it is not a universal result about all cold-to-vacuum interactions.
+
+4. Perturbations need the interaction, not just the background
+Even after a consistent background, the standard growth ODE is conditional
+on the perturbation and momentum-transfer closure. For one pressureless stock
+in the leading subhorizon Newtonian comparison, write
+ rho_dot+3H rho=-Q, q=Q/rho, S=deltaQ/rho,
+ delta_dot=-theta+q delta-S,
+ theta_dot+2H theta=-Agrav delta
+assuming no additional momentum-transfer acceleration. Eliminating theta:
+ delta_ddot+(2H-q)delta_dot-(Agrav+q_dot+2Hq)delta
+   =-S_dot-2H S.
+For local per-mass removal with unperturbed rate, deltaQ=Q delta, hence
+S=q delta, and the extra source terms cancel, recovering the ordinary growth
+form. For spatially smooth absolute removal, deltaQ=0, they do not cancel.
+Thus identical background Q(t) does not uniquely specify the growth law.
+Actual baryons plus converting cold stock require the corresponding coupled
+species and transfer equations; a black-hole-biased source is not selected
+by either closure without derivation. A pure vacuum stress also imposes its
+own exchange-gradient constraint already preserved in the earlier source
+audit. This note derives no new healthy interacting perturbation model.
+
+The source explicitly discloses its use of a linear growth multiplier on the
+nonlinear gravitating P(k). Its unchanged scorer also retains the original
+projection/background conventions. These are frozen approximation choices,
+not secretly a fully recomputed interacting-cosmology likelihood. They must
+remain visible when claiming the branch is empirically tolerated. The earlier
+CE046 FRB source-projection concern is also not resolved by calling this the
+'FRB surviving branch'. No new FRB or shear exclusion is assigned here.
+
+5. CFG781: failed placement control is not a scientific rejection
+Its raw JSON verdict field says FAIL, but K2 Method B convergence is0% rather
+than the frozen>=95%. Its committed README correctly labels INCONCLUSIVE.
+Preserve the raw outputs and the failed control; do not count the ungraded
+cluster/shear signs as an exclusion of every free-carrier placement or of the
+full framework. A repair requires a converged placement under the existing
+criteria, or a separately declared model; this pass does not choose one or
+rerun the live lane.
+
+Evidence and obligations
+run_056 completed; manifest validates against all current input/result bytes.
+42 controls: raw score arithmetic, source growth reproduction, zero-conversion
+limit, resolution comparison and symbolic transfer identities. Small background
+ODE controls supplement the analytic source-Jacobian and conservation checks;
+they do not derive the physical production interaction or validate cosmology.
+PASSED: stored chi2 bookkeeping and conditional source-growth implementation.
+FAILED: proper-time/log-a source translation and identification with the
+stated zero-initial-vacuum history.
+CONDITIONAL: interaction perturbations, momentum exchange, nonlinear power
+multiplier and fixed-background shear projection.
+NOT ADDRESSED: native PM formation, full CMB transfer, actual microphysics,
+new likelihood or any revised observational classification.
+
+Executable next steps
+First import/pin one existing self-consistent conserved background, or solve
+one with the intended initial vacuum and actual H, with its source partition
+counted. Test both comoving loss and weighted vacuum gain integrals and their
+initial conditions. Next derive deltaQ and momentum transfer from the same
+interaction and vary all stocks, rather than assume a growth ODE. Only then
+make a separately declared consistent projection/rescore. Keep the existing
+CFG780 scores as a reproducible conditional approximation; do not overwrite
+frozen criteria to hide the changed history. Native NC1x/T2x and AG3 live
+experiments are not duplicated. The original theory remains open.

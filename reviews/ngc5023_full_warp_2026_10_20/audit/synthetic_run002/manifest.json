@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "NGC5023-FULL-WARP-INDEPENDENT-SYNTHETIC-2026-10-20-RIGHT-HANDED",
+  "repository": {
+    "commit": "199ba297e3cd4bbab7d364aa4e3222876c0d9cac",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/ngc5023_full_warp_2026_10_20/audit/synthetic_forward_v2.py",
+    "--output",
+    "reviews/ngc5023_full_warp_2026_10_20/audit/synthetic_run002"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent finite tilted-ring source normalization, right-handed projection, central symmetry under radial warp/lag, asymmetric warp/arm response, elliptical restoring-beam and exact Gaussian channel integration; bounded quadrature refinement.",
+    "coefficient_domain": "float64 deterministic finite arrays and quadrature",
+    "conventions": "East,north,LOS-away; positivemajor receding; source component total flux1; channel/pixel integratedflux before explicitJy/beamconversion. No distance/cosmology/gravitylaw.",
+    "inputs": [
+      "Explicit four-ring synthetic source",
+      "Actual phase contract for scope only"
+    ],
+    "bounds": {
+      "rings": 4,
+      "azimuth_samples": [
+        96,
+        192,
+        384
+      ],
+      "positive_height_quadrature": [
+        8,
+        16,
+        32
+      ],
+      "cube_shape": [
+        70,
+        161,
+        161
+      ],
+      "velocity_dispersion_km_s": 10,
+      "beam_sigma_pixels": [
+        4,
+        2
+      ]
+    },
+    "non_claims": [
+      "No actual cube fit or residual tested",
+      "No actual preferredmodel reconstruction",
+      "No universal quadrature guarantee",
+      "No probabilistic posterior from published visualranges"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-21T00:49:22.821821+00:00",
+    "runtime_seconds": 1.792925,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 100,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/ngc5023_full_warp_2026_10_20/audit/synthetic_forward_v2.py",
+    "reviews/ngc5023_full_warp_2026_10_20/TARGET.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/ngc5023_full_warp_2026_10_20/audit/synthetic_forward_v2.py",
+      "sha256": "1cd1d5d4ade1b235354bfb14eb6c97810bcb8ed30b12f3475c71d45bc31b2640",
+      "sha256_after": "1cd1d5d4ade1b235354bfb14eb6c97810bcb8ed30b12f3475c71d45bc31b2640"
+    },
+    {
+      "path": "reviews/ngc5023_full_warp_2026_10_20/TARGET.md",
+      "sha256": "d7593ea60c0b600393be9fbe44612cbcafd2b2f3f6170ce44df8e02604483b60",
+      "sha256_after": "d7593ea60c0b600393be9fbe44612cbcafd2b2f3f6170ce44df8e02604483b60"
+    }
+  ],
+  "output_directory": "reviews/ngc5023_full_warp_2026_10_20/audit/synthetic_run002",
+  "declared_results": [
+    "reviews/ngc5023_full_warp_2026_10_20/audit/synthetic_run002/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/ngc5023_full_warp_2026_10_20/audit/synthetic_run002/stdout.txt",
+      "sha256": "c4e5533adeed022cce6332c988f6f9a93a50e1589dc68cdc7d011a9356d711bd",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ngc5023_full_warp_2026_10_20/audit/synthetic_run002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ngc5023_full_warp_2026_10_20/audit/synthetic_run002/checks.json",
+      "sha256": "c4e5533adeed022cce6332c988f6f9a93a50e1589dc68cdc7d011a9356d711bd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,516 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,longtable}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\lp}{\lambda_{HX}}
+\newcommand{\lt}{\lambda_{\rm tot}}
+\title{The particle bridge beyond zero-temperature stability\\
+Thermal phases, charge-resolved scattering, and the next kinetic equations}
+\author{Zimmerman programme: CPB-TC-2026-10-16}
+\date{16 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+This continues the explicit scalar Higgs/carrier construction at checkpoint
+CPB-2026-10-16. A leading high-temperature Higgs-bath comparison finds an
+intermediate instability of the source field at the abundance-calibrated
+1-MeV benchmark. An exact sufficient inequality avoids dark condensation in
+the stated class of positive bath-mass comparisons; a separately dated
+mass-family continuation satisfies it. Vacuum tree amplitudes show that the
+portal-produced neutral mixture scatters more strongly than the previous
+one-channel estimate. Time dilation also invalidates a prompt-source-decay
+shortcut in a separate vacuum control. Neither a physical thermal history,
+a relic abundance, the galaxy law, nor full theory closure is established.
+\end{abstract}
+
+\section{Continuation contract and model}
+The previous goal turn was progress: it produced an explicit reciprocal
+scalar potential and identified unresolved thermal/kinetic conditions.
+The actual checkout remains
+\texttt{370dfb58006e330f210f5e306297e822188e37ba}, with shared uncommitted
+work. This continuation reads the actual prior report, its current run 003,
+and the October 15 work order. No frozen theory, seal, prior empirical score,
+or other lane is modified. The new authoritative computation is
+\texttt{thermal\_charge\_run\_002/manifest.json}. This is self-review.
+
+Use $\hbar=c=k_B=1$, $(+---)$, and the same complex scalars $\Phi,X$ with
+charges $1,2$. Write $x=|X|$, $n=|\Phi|^2$, $t=H^\dagger H$, and
+$w_H=t-v_H^2/2$. The previously specified potential is
+\begin{align}
+ V_J={}&m^2|\Phi|^2+M^2|X|^2
+ +g_c(X^*\Phi^2+X\Phi^{*2})+\lt|\Phi|^4\\
+ &+\lambda_Hw_H^2+\lp w_H|X|^2+\lambda_X|X|^4,\nonumber\\
+ M^2={}&4m^2(1+u_*^2),\quad \Delta_c=4m^2u_*^2,\quad
+ \lt=\frac{g_c^2}{\Delta_c}+\lambda_{\rm rep}.
+\end{align}
+The positive-square carrier identity and
+$\lambda_X\ge\lp^2/(4\lambda_H)$ establish the previous global
+zero-temperature bound. They do not prove that the same origin is stable
+at every temperature. In particular,
+\begin{equation}
+ M_0^2=M^2-\lp v_H^2/2
+\end{equation}
+is the source curvature before the Higgs obtains its vacuum expectation value.
+
+The benchmark fixes $m=10^{-3}$ GeV, $u_*=.02$, $r_\lambda=2$,
+$\sigma_0/m=.3\ \mathrm{cm^2/g}$, $\lambda_X=10^{-18}$ and
+$\lp=2.21149\,10^{-10}$. The portal was calibrated in the earlier
+simplified production control to $\Omega_c h^2=.12$; it is not a derived
+abundance. $g_c\simeq2.168\,10^{-6}$ GeV and $\lt\simeq.00881$ follow
+from these stipulated microscopic inputs.
+
+\section{A thermal comparison that does not assume a dark heat bath}
+Assume the Standard Model bath is thermal, initially no populated dark bath,
+and retain only its leading high-temperature real scalar self-energies.
+Specify the comparison free energy
+\begin{equation}
+ V_T=V_J+c_H T^2t+\frac{\lp T^2}{6}x^2,
+ \qquad
+ c_H=\frac{3g_2^2+g_Y^2}{16}+\frac{\lambda_H}{2}+\frac{y_t^2}{4}.
+\label{eq:VT}
+\end{equation}
+We do not insert $\lt T^2$ or $\lambda_XT^2$ as dark thermal masses:
+the dark distributions have not been shown to equilibrate at the visible
+temperature. Those corrections would depend on the actual populated states.
+
+The portal tadpole normalization is independently fixed by
+\begin{equation}
+ \langle H^\dagger H\rangle_T=
+ \frac12\sum_{a=1}^4\langle h_a^2\rangle_T=\frac{T^2}{6}
+\end{equation}
+for four massless real Higgs components with
+$\langle h_a^2\rangle_T=T^2/12$. This is the same normalization as
+Seller, Sz\'ep and Tr\'ocs\'anyi, Appendix C, equations (C.11)--(C.12)
+\cite{seller}: their complex singlet is our $X$, their doublet is our $H$,
+and their quartic mixing coefficient is our $\lp$. Their reverse singlet-bath
+contribution to the Higgs mass is omitted here because there is no assumed
+dark thermal population. The visible-bath diagram remains present even
+when the dark field is out of equilibrium.
+
+With illustrative fixed $g_2=.65$, $g_Y=.36$, $y_t=.94$,
+$\lambda_H=m_h^2/(2v_H^2)$, $m_h=125$ GeV and $v_H=246$ GeV,
+$c_H=.372768$. The comparison Higgs origin changes stability at
+\begin{equation}
+ T_H=\sqrt{\lambda_Hv_H^2/c_H}=144.77\ \mathrm{GeV}.
+\end{equation}
+This is a mean-field control scale, not a new prediction for the physical
+Standard Model crossover. Running, thermal resummation, field-dependent
+thermal integrals, imaginary parts in unstable regions, and non-equilibrium
+dark backreaction have not been solved. High-temperature formulas must not
+be extrapolated to a few GeV as physical decay-threshold predictions.
+Phase and thermal-rate effects in freeze-in are known issues \cite{deromeri}.
+
+\section{Analytic elimination and the baseline instability}
+Minimize over the relative scalar phase so that the cubic term is
+$-2g_cxn$. At each fixed $x\ge0$ the two other invariants minimize exactly at
+\begin{equation}
+ n_*(x)=\max\!\left(\frac{2g_cx-m^2}{2\lt},0\right),\quad
+ t_*(x,T)=\max\!\left(\frac{\lambda_Hv_H^2-c_HT^2-\lp x^2}
+ {2\lambda_H},0\right).
+\label{eq:elim}
+\end{equation}
+Thus the entire minimization of the stipulated homogeneous free energy is
+one-dimensional and piecewise quartic. The boundaries are
+$x=m^2/(2g_c)$ and, when real,
+$x=\sqrt{(\lambda_Hv_H^2-c_HT^2)/\lp}$.
+Interior stationary points obey
+\begin{equation}
+ 4a x^3+2b x+c=0.
+\end{equation}
+For $t_*>0$,
+$a=\lambda_X-\lp^2/(4\lambda_H)$ and
+$b=M^2+\lp[1/6-c_H/(2\lambda_H)]T^2$.
+For $t_*=0$, $a=\lambda_X$ and $b=M_0^2+\lp T^2/6$.
+If $n_*>0$, replace $b$ by $b-g_c^2/\lt$ and set
+$c=g_cm^2/\lt$; otherwise $c=0$.
+Checking all admissible roots, branch boundaries and $x=0$ suffices since
+the quartic coefficients are positive. The implementation enumerates those
+roots and separately checks a logarithmic amplitude grid.
+
+In the unbroken Higgs branch the source's linear curvature is
+\begin{equation}
+ M_T^2=M_0^2+\lp T^2/6.
+\end{equation}
+At the benchmark $M_0^2=-2.68992\,10^{-6}$ GeV$^2$. At $T=200$ GeV,
+\begin{equation}
+ M_T^2=-1.21559\,10^{-6}\ \mathrm{GeV}^2<0.
+\end{equation}
+Both visible Higgs and daughter have positive quadratic curvatures at that
+origin, so this source instability is an actual negative scalar direction
+of the specified comparison, not an artifact of minimizing them out.
+A canonical source fluctuation satisfies, locally,
+\begin{equation}
+ \ddot{\delta X}+3H\dot{\delta X}
+ +(k^2/a^2+M_T^2)\delta X=0.
+\end{equation}
+For long wavelengths $\sqrt{-M_T^2}/H=1.9621\,10^{10}$ with the stated
+radiation-era $H$. The exact classical field at precisely zero remains at
+zero without a seed; the result is linear instability to admitted nonzero
+fluctuations, not spontaneous production proved by a deterministic zero solution.
+
+The stipulated high-temperature source-origin instability occupies
+\begin{equation}
+ T_H<T<\sqrt{-6M_0^2/\lp}=270.15\ \mathrm{GeV}.
+\end{equation}
+The exact lower edge of the full comparison's dark phase can extend below
+$T_H$; it is not asserted here as a physical transition temperature.
+Varying $c_H$ over $.3,.4,.5$ and the source tadpole coefficient over
+$\lp/12,\lp/6,\lp/3$ preserves a nonempty unbroken-Higgs instability
+interval in all nine stipulated cases. This is coefficient sensitivity,
+not a precision resummed calculation.
+
+At 200 GeV the minimized comparison gives
+\begin{equation}
+ |X|=7.79785\,10^5\ \mathrm{GeV},\quad
+ |\Phi|=13.8502\ \mathrm{GeV},\quad H=0,\quad
+ \Delta V_T=-3.69742\,10^5\ \mathrm{GeV}^4.
+\end{equation}
+These are homogeneous mean-field extrema and a free-energy difference,
+not a simulated condensate, a released-energy budget, or a relic yield.
+Both dark amplitudes are nonzero; the vacuum $U(1)$ is broken on that
+comparison branch and the original uncondensed particle spectrum cannot
+be reused there. Whether the universe follows this branch, fragments,
+restores the symmetry or produces acceptable relics is unresolved.
+The earlier zero-temperature positivity proof remains correct. What fails
+is promoting it to an unbroken dilute thermal production history.
+
+\section{A sufficient condition for avoiding the dark phase}
+There is a useful analytic continuation beyond that failed shortcut.
+Suppose $\lp,\lambda_X,\lt>0$, the only dark bath correction is a
+nonnegative source-mass correction, and
+\begin{equation}
+ \boxed{M_0^2\ge g_c^2/\lt.}
+\label{eq:sufficient}
+\end{equation}
+For all $x,n,t\ge0$ the dark part before that bath correction is
+\begin{align}
+ &m^2n+M_0^2x^2-2g_cxn+\lt n^2+\lp tx^2+\lambda_Xx^4\\
+ &\quad=\lt\left(n-\frac{g_cx}{\lt}\right)^2
+ +m^2n+\left(M_0^2-\frac{g_c^2}{\lt}\right)x^2
+ +\lp tx^2+\lambda_Xx^4\ \ge0.\nonumber
+\end{align}
+The relative phase can only raise this minimum. For each Higgs field
+configuration, $X=\Phi=0$ attains the dark minimum. Therefore no lower
+dark-condensed equilibrium exists in this whole specified class, even if
+the visible thermal potential is replaced by an arbitrary bounded function
+of $t$ with an attained minimum. This is a sufficient inequality, not a
+necessary condition, and not a theorem including uncomputed dark thermal
+or quantum corrections.
+
+To execute a changed continuation, hold $u_*,r_\lambda,\sigma_0/m$ and the
+earlier illustrative final abundance fixed while varying $m$. The prescribed
+relations are
+\begin{equation}
+ \lambda_{\rm rep}=\sqrt{8\pi m^3(\sigma_0/m)},\quad
+ g_c^2=\lambda_{\rm rep}\Delta_c/r_\lambda,\quad
+ \lp(m)\propto m^{-1/2}(1-4M^2/m_h^2)^{-1/4}.
+\end{equation}
+The last is abundance calibration within the old decay-yield approximation;
+it is not a cosmologically verified prescription. Substitution into
+equation~\eqref{eq:sufficient} gives the illustrative sufficient floor
+$m\simeq1.22840$ MeV. This number is neither a derived mass nor an observed
+particle bound.
+
+\begin{center}
+\begin{tabular}{r r l}
+\toprule $m$ (MeV) & $M_0^2$ (GeV$^2$) & Condition~\eqref{eq:sufficient}\\\midrule
+0.75 & $-5.47580\,10^{-6}$ & not met\\
+1.00 & $-2.68992\,10^{-6}$ & not met\\
+1.25 & $2.67422\,10^{-7}$ & met\\
+2.00 & $1.12748\,10^{-5}$ & met\\
+10.0 & $3.98044\,10^{-4}$ & met\\\bottomrule
+\end{tabular}
+\end{center}
+The 1.25-, 2- and 10-MeV rows have no lower dark-condensed state at the
+nine tested temperatures; the all-temperature sufficient statement follows
+from the square identity, not that finite grid. These are separately
+specified mass-family candidates, not a rescue declared for the old point.
+They still require thermal rates, full kinetics, empirical tests and the
+connection to gravity. More massive candidates can also change independent
+laboratory/cosmological constraints, which have not been scored here.
+
+\section{The neutral population has two distinct scattering channels}
+The Higgs portal produces $XX^*$ and hence equal positive/negative daughter
+populations in the stated charge-symmetric scenario. The conserved charge
+is a difference, not their total rest mass. The vacuum tree vertices from
+$-\lt|\Phi|^4-g_c(X^*\Phi^2+\mathrm{h.c.})$ are $-4i\lt$ and $-2ig_c$.
+With on-shell external daughters and invariant $s$,
+\begin{align}
+ \mathcal M_{++}(s)&=-4\left[\lt+\frac{g_c^2}{s-M^2}\right],\\
+ \mathcal M_{+-}(u)&=-4\left[\lt+\frac{g_c^2}{u-M^2}\right].
+\end{align}
+Same-charge scattering has an $s$-channel source; the crossed
+particle--antiparticle channel has $u$-channel exchange. There is no
+same-vertex $X$ $t$-channel because it would violate charge assignment.
+These are tree amplitudes; the physical near-pole same-charge channel needs
+a width and inclusive accounting. The crossed channel has no such pole for
+the physical elastic $u\le0$ used here.
+
+For COM momentum $p$, $s=4(m^2+p^2)$ and
+$u=-2p^2(1+\cos\theta)$. For distinguishable opposite-charge daughters,
+\begin{equation}
+ \sigma_{+-}(s)=\frac{1}{2\pi s}\int_{-1}^1
+ \left[\lt-\frac{g_c^2}{M^2+2p^2(1+z)}\right]^2\dd z.
+\end{equation}
+For identical same-charge final particles the $1/2!$ factor instead gives
+\begin{equation}
+ \sigma_{++}(s)=\frac{1}{2\pi s}
+ \left[\lt+\frac{g_c^2}{s-M^2}\right]^2.
+\end{equation}
+At threshold,
+\begin{align}
+ \sigma_{++}(0)&=\frac{\lambda_{\rm rep}^2}{8\pi m^2}\equiv\sigma_0,\\
+ \sigma_{+-}(0)&=\frac{(\lt-g_c^2/M^2)^2}{4\pi m^2},\\
+ \frac{\sigma_{+-}(0)}{\sigma_0}
+ &=2\left[1+\frac{1}{r_\lambda(1+u_*^2)}\right]^2=4.49880056.
+\end{align}
+The threshold rate per test daughter in an equal mixture of total density
+$n_{\rm tot}$ and equal isotropic speed distributions is
+\begin{equation}
+ \Gamma_{\rm el}=\frac{n_{\rm tot}}{2}
+ (\sigma_{++}+\sigma_{+-})\langle v_{\rm rel}\rangle.
+\end{equation}
+It is $2.74940028$ times the old screen $n_{\rm tot}\sigma_0
+\langle v_{\rm rel}\rangle$. Therefore the old 1-keV monochromatic
+collisionless control has $\Gamma_{\rm el}/H\simeq3776.90$, rather than
+1373.72, in the threshold limit. This refines a hypothetical control and
+does not supply the evolved spectrum. These are total collision cross
+sections, not automatically a viscosity or momentum-transfer cross section
+to insert into an empirical halo bound. Angular weighting needs its own
+definition, especially for identical particles.
+
+Nine exact rational threshold identities and numerical angular integrations
+at $p/m=0,.00025,.003,.01,.05$ check normalization and continuity. They do
+not compute the dense-medium inelastic collision operator.
+
+\section{A short resting lifetime does not prove prompt cosmological decay}
+The earlier isolated source lifetime is about $3.52\,10^{-13}$ seconds.
+For a monochromatic Higgs initially at rest, $\gamma_{X,p}=m_h/(2M)$,
+and the production-era decay rate is reduced by that boost. Keeping vacuum
+masses and constant radiation degrees of freedom solely as a separate control,
+\begin{equation}
+ \frac{\Gamma_X}{\gamma_{X,p}H_p}=.0245331\quad(T_p=m_h/3).
+\end{equation}
+This is not prompt on the production Hubble scale. If $r=a/a_p$,
+$u_{X,p}=\sqrt{\gamma_{X,p}^2-1}$ and $H=H_p/r^2$, the survival law is
+\begin{equation}
+ P_X(r)=\exp[-\tau(r)],\qquad
+ \tau(r)=\frac{\Gamma_X}{H_p}\int_1^r
+ \frac{s^2}{\sqrt{s^2+u_{X,p}^2}}\dd s.
+\end{equation}
+Numerical quadrature gives $\tau=1$ at $r=4.97701$ or $T=8.37182$ GeV,
+with the source still highly relativistic. These numbers omit thermal
+mass shifts and dark collisions and are not a physical decay epoch for
+the unstable thermal benchmark.
+While the source is ultrarelativistic, delayed decay approximately preserves
+the mean comoving daughter momentum, since $aE_X$ is approximately constant.
+Thus this delay alone does not overturn the earlier kinematic redshift
+estimate. It does invalidate using a prompt cascade in the rate evolution.
+
+\section{An explicit number-changing amplitude, not just an allowed charge}
+The stronger check is the actual reaction
+\begin{equation}
+ 2\Phi+2\Phi^*\longrightarrow\Phi+\Phi^*.
+\end{equation}
+Take all four incoming particles at rest. Each final particle has energy
+$2m$ and momentum magnitude $\sqrt3m$. In the specified scalar theory,
+with $\lambda_{H\Phi}=0$ at tree level, the complete six-daughter tree
+graphs have three topologies: nine graphs with two daughter quartics,
+18 with a daughter quartic and two cubic source vertices, and nine with
+four cubic source vertices. The source quartic and Higgs portal cannot
+occur in a six-daughter tree at this order: with trivalent/quartic vertices
+$n_3+2n_4=4$, those choices leave too few external daughters or unmatched
+Higgs/source legs. This does not omit them from loops or other processes.
+
+The sum can be reconstructed without a current recursion. In units $m=1$,
+write $d=\Delta_c/m^2$, $L=M^2/m^2+2=6+d$ and $\widehat g=g_c/m$.
+An external same-charge pair has source denominator $-d$ if both are
+incoming or $-L$ if one is a crossed outgoing particle. Daughter triple
+denominators are $8$ or $-4$. For the three topologies the sums of inverse
+propagator products are respectively
+\begin{equation}
+ S_0=-\frac34,\qquad S_2=\frac{3}{2L},\qquad
+ S_4=-\frac{1}{4d^2}+\frac{1}{2dL}-\frac{1}{L^2}.
+\end{equation}
+For $S_0$, four triples give denominator $8$ and five give $-4$.
+For $S_2$, endpoint pairs of invariant $4$ cancel after summing their
+three allowed attachments; the other pairs give the displayed $3/(2L)$.
+For $S_4$, the two endpoint pairs can be incoming/incoming once,
+incoming/crossed in four cases, or crossed/crossed in four cases,
+giving the three displayed terms. The products of vertex factors are
+$16\lt^2$, $16\lt\widehat g^2$, and $16\widehat g^4$, with the
+common amplitude sign $-1$. Restoring units,
+\begin{equation}
+ \mathcal M_{4\to2}=\frac1{m^2}\left[
+ 12\lt^2-\frac{24\lt\widehat g^2}{L}
+ +\widehat g^4\left(\frac4{d^2}-\frac8{dL}+\frac{16}{L^2}\right)
+ \right].
+\end{equation}
+Using $\widehat g^2=\lambda_{\rm rep}d/r_\lambda$ and
+$z=d/L\in(0,1)$ gives a useful universal simplification:
+\begin{equation}
+ \boxed{\mathcal M_{4\to2}
+ =\frac{\lambda_{\rm rep}^2}{m^2}
+ \left[12+\frac{24(1-z)}{r_\lambda}
+ +\frac{16(1-z)^2}{r_\lambda^2}\right].}
+\label{eq:six}
+\end{equation}
+Consequently this vacuum tree amplitude is strictly nonzero for
+$m,\Delta_c,g_c^2,\lambda_{\rm rep}>0$. The bracket is greater than 12.
+This is a statement about the specified tree theory throughout that
+parameter family, not a statement that chemical equilibration occurs.
+It also does not establish the in-medium amplitude near a changing phase.
+
+At $u_*^2=1/2500$, $r_\lambda=2$, its bracket is exactly
+$393885012/14070001\simeq27.9947$. The computation uses exact rational
+momenta and polynomials in $g_c/m$. A labeled off-shell-current recursion
+and a separate direct enumeration of the 36 graph topologies agree at
+12 rational parameter points. Re-rooting the external labels, the analytic
+four-point amplitudes, and the pure-quartic six-point limit supply controls.
+The positive closed form proves nonvanishing; the finite checks only
+verify those implementations. This remains self-review.
+
+For a dilute nonrelativistic uncorrelated gas, the zero-incoming-momentum
+event rate of this one channel is
+\begin{equation}
+ R_{2+2-\to+-}=\frac{\sqrt3\,|\mathcal M_{4\to2}|^2}
+ {1024\pi m^4}n_+^2n_-^2.
+\end{equation}
+The factors are the initial $1/(2!2!)$, four initial measures $1/(2m)$,
+and the distinguishable final two-body phase space $\sqrt3/(16\pi)$.
+Since two particles are lost per event, a symmetric gas of total density
+$n$ has one-channel loss coefficient
+\begin{equation}
+ \Gamma_N\equiv\frac{2R}{n}
+ =\frac{\sqrt3\,|\mathcal M_{4\to2}|^2 n^3}{8192\pi m^4}.
+\end{equation}
+Using the earlier stipulated density in a threshold control gives
+$\Gamma_N/H=1.07\,10^{-28}$ at visible $T=1$ keV and
+$1.24\,10^{-6}$ at 1 MeV. The latter has control $p/m\simeq.35$ and
+cannot be read as a precision threshold rate, especially with the narrow
+source scale $u_*=.02$. Neither number checks relativistic early production,
+inverse gains, other charge channels or medium effects. They show why
+``number change exists'' and ``number change is fast'' must be kept separate.
+
+\section{The kinetic system now required}
+The actual species are $\Phi,\Phi^*,X,X^*$, the visible bath, and any
+coherent phase/response fields. In an uncondensed quasiparticle phase,
+\begin{equation}
+ (\partial_t-Hp\partial_p)f_i=C_i^{\rm portal}
+ +C_i^{1\leftrightarrow2}+C_i^{2\leftrightarrow2}
+ +C_i^{\rm number\ change}.
+\end{equation}
+An isotropic reduction still retains momentum dependence. With
+$\dd\Pi_j=\dd^3p_j/[(2\pi)^32E_j]$, a bosonic elastic term has the form
+\begin{align}
+ C_a(p_1)={}&\frac{1}{2E_1 S_f}\int\dd\Pi_2\dd\Pi_3\dd\Pi_4
+ (2\pi)^4\delta^4(p_1+p_2-p_3-p_4)|\mathcal M|^2\\
+ &\ \times[f_3f_4(1+f_1)(1+f_2)-f_1f_2(1+f_3)(1+f_4)],\nonumber
+\end{align}
+where for the displayed tagged-daughter elastic channels $S_f=2!$ for
+same-charge identical final daughters and $S_f=1$ for opposite-charge
+final daughters. Other processes need their own tagged-species multiplicities.
+The source collision term is
+\begin{align}
+ C_X(p_X)={}&\frac{1}{2E_X\,2!}\int\dd\Pi_1\dd\Pi_2
+ (2\pi)^4\delta^4(p_X-p_1-p_2)\,4g_c^2\\
+ &\ \times[f_1f_2(1+f_X)-f_X(1+f_1)(1+f_2)].\nonumber
+\end{align}
+The tagged daughter gain/loss term has the corresponding factor of two
+relative to this event count. $X^*$ and the negative-charge daughters have
+the conjugate terms. This is how inverse conversion, stimulation and charge
+balance enter; a fixed decay rate without inverse terms is insufficient.
+
+The classical global symmetry conserves
+\begin{equation}
+ q_\Phi=1,\ q_{\Phi^*}=-1,\ q_X=2,\ q_{X^*}=-2,\qquad
+ \sum_i q_i\int\frac{\dd^3p}{(2\pi)^3} C_i=0.
+\end{equation}
+It does not conserve the total number of positive plus negative daughters.
+The preceding section proves a nonzero mixed-charge six-point tree amplitude.
+Its full relativistic/in-medium collision kernel and the other number-changing
+channels have not been calculated, so neither total negligibility nor
+chemical equilibrium may be asserted. In chemical equilibrium this reaction
+imposes $\mu_\Phi+\mu_{\Phi^*}=0$; a charge-symmetric state then has zero
+chemical potential for both. Elastic equilibration alone does not impose that.
+The earlier all-positive charge-energy protection cannot silently be used
+as a conservation theorem for a neutral population's rest abundance.
+In particular, the earlier regulated pressure bound was formulated for the
+positive-charge nonrelativistic sector with $d=\langle D_c\rangle/(m\langle Q\rangle)$.
+For a charge-symmetric cosmological population $Q=0$ this quantity is
+undefined and the bound is not a proof of continued coldness. A new
+particle/antiparticle energy and pressure calculation is required. The
+reaction above conserves total energy by converting some rest mass into
+final kinetic energy; it supplies no energy from nothing.
+
+For fixed masses, the sum of collision energy moments vanishes when every
+participating bath/species is included. If quasiparticle masses depend on
+the thermal/condensate background, each density also has a mass-work term:
+\begin{equation}
+ \dot\epsilon_i+3H(\epsilon_i+p_i)
+ =\int\frac{\dd^3p}{(2\pi)^3}E_i C_i
+ +\int\frac{\dd^3p}{(2\pi)^3}\dot E_i f_i.
+\end{equation}
+Mean-field and bath stresses must supply the reciprocal work without
+double-counting the self-energy. Minima of $V_T$ are not by themselves
+conserved mechanical energy or a production calculation.
+
+This also sharpens the dark-energy question. A thermal scalar free-energy
+offset is not automatically the observed cosmic vacuum. Any proposal that
+net energy enters or leaves that vacuum must derive its $Q^\mu$ and obey
+the previous checkpoint's exchange--acceleration consistency relation.
+No equation here fixes the vacuum magnitude, $\kappa$, or the polarization
+law. A successful production history would close one input to the dark
+mass problem, not the gravitational and lensing completion.
+
+\section{What changed and the next discriminating work}
+The zero-temperature scalar bridge now has a sharper decision tree.
+The original 1-MeV comparison cannot simply start from a thermally stable
+empty dark origin and retain the earlier dilute cascade. Its intermediate
+phase is a possible production route, but it requires its own non-equilibrium
+field/particle calculation. A distinct sufficient-condition mass-family
+route avoids that particular phase problem and can proceed to kinetic
+production, while keeping its parameters explicitly selected.
+
+Next execute the candidate's collision integrals with full charge channels,
+finite-width intermediate states, thermal kinematics and number-changing
+rates. For the symmetric mass-family branch, first verify thermal mass/rate
+corrections and dark reprocessing before recalibrating abundance. For the
+1-MeV phase branch, first derive the condensate and fluctuation evolution,
+including the bath work and the changed spectrum. A stable equilibrium
+table is not a substitute for either calculation.
+
+Computational evidence: 108 bounded controls in the thermal/elastic run, with
+five mass choices and nine temperatures, exact rational threshold identities,
+stationary-root/log-grid comparisons, angular quadrature refinement, and
+a time-dilated decay control. Its run 001 preceded the added decay control and
+retains historical input hashes. The separate number-changing run 002
+adds 120 exact/finite controls, including the independent topology sum;
+its run 001 preceded that independent enumeration. The universal
+sufficient-condition and amplitude derivations are written above; finite checks do not
+prove physical validity. No simulations or external jobs remain running.
+
+Literature scope: primary full text of \cite{seller} and the thermal section
+of \cite{deromeri} inspected on 16 October 2026. A project-cache query for
+the latter had no match. No PDFs retained. Broad singlet phase transitions,
+thermal freeze-in and charge crossing are known; the present result is a
+specific conditional screen for the current scalar construction. No complete
+citation-graph search or global novelty claim is made.
+
+\begin{thebibliography}{9}
+\bibitem{seller} K. Seller, Z. Sz\'ep and Z. Tr\'ocs\'anyi,
+\emph{Real effective potentials for phase transitions in models with extended
+scalar sectors}, JHEP 04 (2023) 096, arXiv:2301.07961v2,
+Appendix C.1, equations (C.11)--(C.12).
+\url{https://arxiv.org/html/2301.07961v2}.
+Only leading visible-bath thermal normalizations and the need to distinguish
+them from a full resummed phase calculation are imported.
+\bibitem{deromeri} V. De Romeri, D. Karamitros, O. Lebedev and T. Toma,
+\emph{Neutrino dark matter and the Higgs portal: improved freeze-in analysis},
+arXiv:2003.12606v2, sections 2.1.1 and 6.2.4 and Appendix A.
+\url{https://arxiv.org/html/2003.12606v2}.
+Its sterile-neutrino model is not identified with this scalar model;
+the source supplies methodological overlap, not our abundance or phase verdict.
+\end{thebibliography}
+\end{document}

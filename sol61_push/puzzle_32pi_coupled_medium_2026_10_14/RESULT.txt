@@ -1,0 +1,139 @@
+DYNAMICAL MEDIUM TEST: A FINITE KINETIC-STABILITY WINDOW
+2026-10-14. Base 26858818dc70efcd09c4e009b0be7dd4ec4950e2.
+Parent: puzzle_32pi_density_micro_2026_10_14/RESULT.txt.
+
+Result: allowing the proposed stabilizing medium to fluctuate gives a stronger
+condition than holding it fixed. The explicit coupled model below has positive
+quadratic energy only in a finite gradient interval. Both small-gradient and
+large-gradient limits fail for fixed finite coefficients. A finite window can
+be useful for a halo, but it does not establish a complete theory or select
+32 pi. This is a phenomenological scalar-elastic-medium test, not a derived
+microscopic normal fluid and not a novelty claim.
+
+1. Fully declared toy action
+
+Use a phase theta and a displacement vector xi for a dynamical elastic medium.
+In a reference rest frame let
+ X=theta_dot-|grad theta|^2/(2m),
+ Y=theta_dot+xi_dot dot grad theta,
+ L=P_-(X)+A Y^2/2+rho |xi_dot|^2/2
+       -rho c_N^2 sum_ij (partial_i xi_j)^2/2 - q rho_b theta - E0,
+ P_-(X)=2 X sqrt(-X)/(3sqrt(g)), X<0.
+m,g,A,rho,c_N,q are positive. rho is a medium inertia coefficient, rho_b the
+external baryonic mass density. This is an explicitly chosen nonrelativistic
+elastic action. It is not asserted to have full Galilean invariance, the
+thermodynamics of a Landau two-fluid system, or a covariant gravitational
+completion. In particular P_- is the phenomenological branch whose simple
+one-density equilibrium derivation failed in the parent.
+
+Choose a constant-gradient static background theta=v x, xi=0, v>0. Then
+X0=-v^2/(2m), Y0=0. This is a local vacuum patch, not a global source solution.
+Put b=sqrt(m/(2g)), B=-P_-''=b/v, n=P_-'=b v/m.
+For perturbations pi=delta theta and eta=delta xi,
+ L2= -B(pi_dot-v partial_x pi/m)^2/2 - n|grad pi|^2/(2m)
+     +A(pi_dot+v eta_dot_x)^2/2+rho |eta_dot|^2/2
+     -rho c_N^2 sum_ij(partial_i eta_j)^2/2.
+The source is linear and contributes no quadratic coefficients in this local
+test. The Hessian of this displayed L2 is checked directly by check.py.
+
+2. Coupled kinetic matrix
+
+The two velocities that mix have the kinetic matrix
+ K=[[A-B, A v], [A v, rho+A v^2]],
+ det K=(A-B)rho-A B v^2.
+The two perpendicular displacement velocities have coefficient rho>0.
+Freezing the medium would test only A>B and miss the second condition.
+With the medium dynamical, positive definiteness requires
+ A>B and rho>A B v^2/(A-B).
+Equivalently, since B=b/v,
+ v^2-(rho/b)v+rho/A<0.
+This determinant inequality itself implies A>B for positive parameters.
+There is a nonempty interval precisely when rho>4b^2/A, and its endpoints are
+ v_-=(rho/(2b))[1-sqrt(1-4b^2/(A rho))],
+ v_+=(rho/(2b))[1+sqrt(1-4b^2/(A rho))].
+Only v_-<v<v_+ has positive kinetic energy. The endpoints have a zero kinetic
+eigenvalue and are not ordinary healthy limits. As v tends to zero, B=b/v
+diverges; any finite A fails. As v grows without bound, the mixing eventually
+makes det K negative. This conclusion assumes constant finite A,rho,b.
+State-dependent coefficients or additional operators can change it, but must
+be specified and tested rather than assumed to repair it.
+
+3. Spatial energy and coupled characteristics
+
+The phase spatial stiffness is b v/m^2 transverse to the background and
+2b v/m^2 parallel to it, both positive. The medium stiffness is rho c_N^2.
+The remaining mixed term is +(b/m) pi_dot partial_x pi. Its contribution
+cancels from the energy expressed in velocities, leaving
+ E2=velocity^T K velocity/2 + positive spatial-gradient energy,
+plus the uncoupled medium polarizations. In canonical momenta the same energy
+is a positive completed square if K is positive. Thus the allowed interval
+has positive local quadratic energy in all directions in this model.
+This is not a global nonlinear stability result: arbitrary gradients can
+leave the interval, and gravity and a cosmological background are absent.
+
+For a wave making angle cosine c with the background gradient, the coupled
+two-by-two characteristic equation is
+ det[K omega^2-2 C omega k-G k^2]=0,
+ C=diag(b c/m,0),
+ G=diag(b v(1+c^2)/m^2, rho c_N^2).
+The two other medium polarizations have speeds +/-c_N. Numerical values below
+use m=1 and a corresponding fixed normalization of displacement coordinates;
+kinetic eigenvalue magnitudes depend on field normalization, their signs do not.
+
+Assigned test: A=rho=100, b=m=1, c_N=0.1. The kinetic interval is
+ 0.0100010002 < v < 99.9899990.
+Six gradients and 101 angle cosines in [-1,1] give real characteristic roots:
+ v=.02: minimum kinetic eigenvalue 49.9202; max sampled |omega/k|=.100057
+ v=.1:  minimum kinetic eigenvalue 84.0873; max sampled |omega/k|=.100498
+ v=.5:  minimum kinetic eigenvalue 59.7096; max sampled |omega/k|=.140956
+ v=1:   minimum kinetic eigenvalue 37.4721; max sampled |omega/k|=.236820
+ v=2:   minimum kinetic eigenvalue 16.7305; max sampled |omega/k|=.516067
+ v=10:  minimum kinetic eigenvalue .881457; max sampled |omega/k|=5.99611
+Controls v=.005 and v=200 each have a negative kinetic eigenvalue.
+In particular positive energy does not ensure speeds below the reference
+light speed. These are phase speeds, not group/front speeds; no causal or
+relativistic viability claim follows from this finite scan.
+
+4. Consequences for a source and the coefficient puzzle
+
+On a static xi=0 branch, Y=0, so the A and rho terms do not change the phase
+source equation. Its outward current is J=b v^2/m^2. For a spherical baryonic
+source of mass M_b, J=q M_b/(4 pi r^2), hence v=C/r with
+ C^2=q M_b m^2/(4 pi b).
+The phase acceleration is u=q v and satisfies u^2=a0 G M_b/r^2 with
+ a0=q^3 m^2/(4 pi b G).
+This static relation is local to the assumed regime and negligible gravitational
+backreaction. It does not demonstrate a global halo solution or lensing.
+
+The coupled kinetic interval maps to
+ C/v_+ < r < C/v_-.
+For universal coefficients its boundaries scale as sqrt(M_b), and its radius
+ratio v_+/v_- is independent of source mass. This is a conditional diagnostic
+of this model, not a new observed relation or an established halo boundary.
+The theory must transition or change before its kinetic matrix becomes singular.
+For fixed coefficients it cannot describe the exact r->infinity deep-force
+limit as an everywhere healthy coupled phase.
+
+Changing E0 changes none of the current, kinetic matrix, or interval. If it
+were the entire cosmological vacuum energy, Lambda=E0/M_Pl^2 with
+M_Pl^2=1/(8 pi G), while a0=2q^3 m^2 M_Pl^2/b. Therefore
+ Lambda/a0^2=E0 b^2/(4 q^6 m^4 M_Pl^6).
+The normal-medium stability conditions do not determine E0 or this ratio.
+The target 32 pi remains an independent condition, not a prediction.
+
+5. Evidence and open obligations
+
+Ten exact symbolic checks cover the Hessian, gradient and mixed coefficients,
+determinant, interval roots and limiting signs. Six times 101 directional
+mode calculations and two out-of-window controls are recorded. Three Lean
+statements certify the determinant identity, the stronger kinetic requirement,
+and exclusion of sufficiently low gradients. They do not formalize the field
+variation, full spectrum or a microscopic completion. This is self-review.
+
+This test advances the finite-temperature escape by keeping the stabilizing
+component dynamical. It shows that merely adding a positive time kinetic term
+is insufficient. A credible continuation requires a microscopic joint state
+that predicts the medium coefficients, the transition at the interval edges,
+and the total stress/vacuum offset. A physically meaningful result would also
+need gravity, lensing, and the medium's full conservation laws. This toy action
+has not supplied those ingredients, and no breakthrough claim is warranted.

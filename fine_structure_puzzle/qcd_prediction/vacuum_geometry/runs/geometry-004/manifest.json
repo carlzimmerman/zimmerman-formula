@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-003-QCD-V-GEOMETRY-001",
+  "repository": {
+    "commit": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/check_geometry_v4.py",
+    "--result",
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/runs/geometry-004/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact symbolic radial-integral, Green-kernel, boundary area/volume and neutral-charge identities; independently quadrature-check BPS normalization integrals at x=1,2,5,10,30",
+    "coefficient_domain": "Exact symbolic expressions over positive real x,kappa,r,R and rational coefficients; mpmath at 70 decimal digits",
+    "conventions": "x=m_W times ball radius; sectional curvature -kappa^2; -Delta Green=delta; Green vanishes at infinity; all self and pair Coulomb terms use the same finite subtraction",
+    "inputs": [
+      "BPS hedgehog H/m_W=coth(x)-1/x and K=x/sinh(x)",
+      "H3 geodesic-ball metric and radial Laplacian",
+      "three arbitrary commuting symbolic charges"
+    ],
+    "bounds": {
+      "quadrature_x": [
+        1,
+        2,
+        5,
+        10,
+        30
+      ],
+      "quadrature_decimal_digits": 70,
+      "residual_tolerance": "1e-55",
+      "symbolic_series_order": 3
+    },
+    "non_claims": [
+      "No full finite-boundary gauge partition function is computed",
+      "No Yang-Mills hyperbolic nonzero-mode determinant is computed",
+      "No physical c_H, proton mass or alpha root is calculated",
+      "A numerical residual does not certify quadrature error"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T01:32:53.227950+00:00",
+    "runtime_seconds": 1.966224,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/check_geometry_v4.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/check_geometry_v4.py",
+      "sha256": "8d40488476c4a50cfe91de2f3424bfbd54afbc07ba050f764ba9a5a7e952fb73",
+      "sha256_after": "8d40488476c4a50cfe91de2f3424bfbd54afbc07ba050f764ba9a5a7e952fb73"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/runs/geometry-004",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/runs/geometry-004/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/runs/geometry-004/stdout.txt",
+      "sha256": "2207d87d1f05fa77c70b468e5ba7ba3098922e75fd2cf23b8da35bcecd03d4a4",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/runs/geometry-004/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/runs/geometry-004/results.json",
+      "sha256": "06ca5d09c44080410df4634e812043e2521aca54e175a964e290958857f5732c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

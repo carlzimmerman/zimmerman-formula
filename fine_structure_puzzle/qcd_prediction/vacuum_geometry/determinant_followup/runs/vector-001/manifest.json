@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-003-QCD-V-DETERMINANT-VECTOR-001",
+  "repository": {
+    "commit": "5b3f8c44053e351e4b2470cd76222eddac584749",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/check_vector.py",
+    "--result",
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/runs/vector-001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact static spherical two-channel BPS Hessian factorization and determinant reduction, with independent matrix ODE checks at x=2,5,8 and origin cutoffs0.001,0.0005; asymptotic diagnostics x=10,20,40",
+    "coefficient_domain": "Exact symbolic rational/sqrt2 expressions; scalar quadrature 60 decimal digits; matrix ODE IEEE double precision",
+    "conventions": "Fixed boundary K,H; real spherical perturbations p=deltaK, v=x delta(H/m)/sqrt2; origin Y~x^2 I; outer Dirichlet; auxiliary free l=1 massive/massless reference",
+    "inputs": [
+      "BPS h=cothx-1/x,K=x/sinhx",
+      "Reduced spherical BPS action and fixed endpoint boundary values"
+    ],
+    "bounds": {
+      "ODE_x": [
+        2,
+        5,
+        8
+      ],
+      "origin_cutoffs": [
+        0.001,
+        0.0005
+      ],
+      "ODE_rtol": 1e-12,
+      "ODE_atol": 1e-14,
+      "relative_comparison_tolerance": "2e-7",
+      "quadrature_digits": 60,
+      "asymptotic_diagnostic_x": [
+        10,
+        20,
+        40
+      ]
+    },
+    "non_claims": [
+      "Only one static real spherical block",
+      "No complete gauge vacuum matching",
+      "No physical c_H or R(alpha)",
+      "Numerical residuals are not certified error intervals"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T01:48:19.592978+00:00",
+    "runtime_seconds": 4.891812,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 55.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/check_vector.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/check_vector.py",
+      "sha256": "74ec5b6a74bfc4cc65401f97b05b7a9a72d85a5f43bba56abb294d52686e8797",
+      "sha256_after": "74ec5b6a74bfc4cc65401f97b05b7a9a72d85a5f43bba56abb294d52686e8797"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/runs/vector-001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/runs/vector-001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/runs/vector-001/stdout.txt",
+      "sha256": "cdca7efc818ac3cad20bfe3a7249caffcfe00aad5708ae64a60d95f667fc55df",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/runs/vector-001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/runs/vector-001/results.json",
+      "sha256": "6e6487f8e6d18b742b4816f8c36f9a0ae131cdb50cb9d3d2604606d8b7768665",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

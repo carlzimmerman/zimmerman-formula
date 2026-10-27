@@ -1,0 +1,59 @@
+FRAMEWORK-CERT-2026-10-12: sharp-edge conditional integral leaf
+
+Verdict: mathematical integral obstruction proved under named hypotheses.
+No physical white noise, Hamiltonian bath, diffusion floor, singular target,
+stationarity, or zero-current premise is introduced as fact about the framework.
+This file closes the integral mathematics omitted by HamiltonianDrift.lean;
+physical applicability remains conditional.
+
+Normalization correspondence to REPORT.md section 4:
+When n(q)=C*T(q)*q^(-1/2), extra energy input per particle D(q)/(2*q)
+gives p(q)=(C*D(q)*T(q)/2)*q^(-3/2). If C*D(q)*T(q)/2 >= K >0 on a
+positive interval, the formal lower-bound theorem applies to p on that interval,
+provided its truncated integrals exist. Establishing that bound for a real or
+framework-derived bath is OUTSIDE this certificate. A lower bound valid only
+near zero uses Q equal to the bound's neighborhood width.
+
+Definitions: integrand K q = K/(q*sqrt(q)); primitive K q = -2*K/sqrt(q);
+truncatedPower K epsilon Q = K*(2/sqrt(epsilon)-2/sqrt(Q)).
+
+Exact theorem correspondence:
+* integrand_rpow: for arbitrary K and strictly positive q, declared integrand
+  is exactly K*q^(-3/2). Negative and zero q have no physical interpretation here.
+* primitive_derivative: for arbitrary K and positive q, the primitive has the
+  stated integrand as its derivative.
+* integral_exact: for arbitrary K, epsilon>0 and epsilon<=Q, the ACTUAL Mathlib
+  real interval integral equals truncatedPower. The interval integrability is
+  proved from continuous integrand on the positive compact interval, and the
+  fundamental theorem of calculus supplies the equality. No integral gap remains.
+* integral_unbounded: for K>0,Q>0 and every real cap, there is 0<epsilon<Q
+  with integral_epsilon^Q integrand > cap. Explicit witness:
+  d=max(cap,0)+2K/sqrt(Q)+1; s=2K/d; epsilon=s^2.
+  Its power is exactly max(cap,0)+1. This theorem uses quantified cap witnesses,
+  rather than an extended-real improper-integral definition or filter limit.
+* lower_bound_integral_unbounded: for K>0,Q>0, any f interval-integrable on
+  every [epsilon,Q] with 0<epsilon<Q, and pointwise f(q)>=integrand K q for
+  0<q<=Q, has unbounded truncated integrals. Interval-integrability and the
+  positive lower bound are explicit hypotheses, not derived bath properties.
+
+Verification:
+Working directory: fable_independent_2026/lean_2026
+Command: lake env lean ABSOLUTE_PATH/formal/edge_power/EdgePower.lean
+Exit 0. compile.log prints axioms of all FIVE theorems, each only
+[propext, Classical.choice, Quot.sound]; no sorryAx, physical custom axioms,
+or native_decide. Mathlib imports supply mathematics, no MOND/LambdaCDM premises.
+FalseBound.lean repeats the checked source and deliberately asserts the K=1
+integral on [1,4] is <=0. The integral actually equals 1. Compiler exit 1;
+FalseBound.log shows goal False. This is an expected-failure control, not a
+certificate or a source intended to build successfully.
+
+SHA-256 of exact read contextual inputs and verified artifacts:
+2349f12b5ada7d48afa3ca2948e3095f82a1b487ad9a176c36487bdb101cdb07  sol61_push/hamiltonian_drift_2026_10_12/REPORT.md
+9c6bb112448d23791c84fcb7ad466a45288739103410de4a2cf63801e7a09bf3  sol61_push/hamiltonian_drift_2026_10_12/HamiltonianDrift.lean
+8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88  fable_independent_2026/lean_2026/lean-toolchain
+1b4ac169a59c53eb7031b99854f3da253ebbd372ef82b91f2d13c8ae4744acf6  fable_independent_2026/lean_2026/lakefile.toml
+800e795bcb59b3e013641c7f2cea47baf9fc709c632ba3d4be6b9f1e00a1771e  fable_independent_2026/lean_2026/lake-manifest.json
+68996cef6dc67fef5eeffb510084b8332b734018d7dd76ac48e816cbe1970bfe  EdgePower.lean
+1c34f45c0123781304bc50892a0b76deab6cdb7197bfe3b6b8a37163207a9577  compile.log
+1875877b0e12bda6bed25a42e8d1108c4e8016dc6b60b8fa947075a88ceb1075  FalseBound.lean
+c1a621b1583462f3c6a8eba442d76fa8fccb43e20fc255a4603fc0cbc4d5c7af  FalseBound.log

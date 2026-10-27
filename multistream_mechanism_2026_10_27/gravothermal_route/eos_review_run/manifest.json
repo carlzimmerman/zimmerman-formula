@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "claim_id": "INDEPENDENT_LOGOTROPE_PRESSURE_BOUNDARY_REVIEW",
+  "repository": {
+    "commit": "d827374e7dadbd1c7a4861c45ec9f02a35c2fa70",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "multistream_mechanism_2026_10_27/gravothermal_route/eos_independent.py",
+    "multistream_mechanism_2026_10_27/gravothermal_route/eos_review_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Piecewise-linear variational eigenproblem independently checks logotropic radial pulsation eigenvalue signs at density contrasts 2,4,critical,6, with fixed-external-pressure moving boundary, and mass turning point.",
+    "coefficient_domain": "IEEE754 float64; linear finite elements",
+    "conventions": "P=A ln(rho/rho_ref)+constant; barotropic perturbations deltaP=A/rho deltaRho; radial displacement delta r=r eta; Robin 3eta+xi eta_prime=0 at movable pressure boundary.",
+    "inputs": [
+      "dimensionless equilibrium theta_prime=m/xi^2,m_prime=xi^2/theta",
+      "constant external pressure at moving interface"
+    ],
+    "bounds": {
+      "elements": [
+        200,
+        400,
+        800
+      ],
+      "contrast": [
+        2,
+        4,
+        "critical",
+        6
+      ],
+      "eigenvalues": 3,
+      "shift": -0.5
+    },
+    "non_claims": [
+      "No full halo stability",
+      "No derivation of EOS or its coefficient",
+      "No formation or general nonradial modes"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-27T14:19:37.374957+00:00",
+    "runtime_seconds": 0.725523,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "multistream_mechanism_2026_10_27/gravothermal_route/eos_independent.py",
+    "multistream_mechanism_2026_10_27/eos_route/diagnostic.py",
+    "multistream_mechanism_2026_10_27/eos_route/run/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "multistream_mechanism_2026_10_27/gravothermal_route/eos_independent.py",
+      "sha256": "848d2ac5d159f3b09dfcd53a7def980a2b613b68355c256777d40e08ee313840",
+      "sha256_after": "848d2ac5d159f3b09dfcd53a7def980a2b613b68355c256777d40e08ee313840"
+    },
+    {
+      "path": "multistream_mechanism_2026_10_27/eos_route/diagnostic.py",
+      "sha256": "c1f63e7f3ac8979f978d30420ddb96d7f7a0756a50a4c85b34f8929f1c690d09",
+      "sha256_after": "c1f63e7f3ac8979f978d30420ddb96d7f7a0756a50a4c85b34f8929f1c690d09"
+    },
+    {
+      "path": "multistream_mechanism_2026_10_27/eos_route/run/result.json",
+      "sha256": "84e674102cbcab50c3f15302658dab763a19e6e72b754343812e02c292718e0d",
+      "sha256_after": "84e674102cbcab50c3f15302658dab763a19e6e72b754343812e02c292718e0d"
+    }
+  ],
+  "output_directory": "multistream_mechanism_2026_10_27/gravothermal_route/eos_review_run",
+  "declared_results": [
+    "multistream_mechanism_2026_10_27/gravothermal_route/eos_review_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "multistream_mechanism_2026_10_27/gravothermal_route/eos_review_run/stdout.txt",
+      "sha256": "c084c98d4ae790c6ae844607ec5fc6df30dd308d3a0f16c43d632dd9117e5d47",
+      "kind": "log"
+    },
+    {
+      "path": "multistream_mechanism_2026_10_27/gravothermal_route/eos_review_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "multistream_mechanism_2026_10_27/gravothermal_route/eos_review_run/result.json",
+      "sha256": "97b47f09ef36e5013e9c0268c56c96e7bb89020c9706d5a94546b6b2fc206e82",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

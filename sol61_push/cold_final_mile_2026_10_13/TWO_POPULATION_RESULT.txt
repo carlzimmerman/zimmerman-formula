@@ -1,0 +1,116 @@
+CE-FM-016/017 — shared gravity changes the tether/free split
+2026-10-13 America/New_York. Base 5f133fc50fcd0716a17ca96da160780ce34ac300;
+dirty shared checkout, exact actual-input hashes in run manifests.
+Primary verdict: CONDITIONAL ON the corrected static action and CFG722's
+identified-carrier dictionary. Original final-mile goal remains unresolved.
+
+1. Derivation from the actual corrected action
+Let K=4piG, u=K|P| and g=radial gradPhi. Neglect stiffness on this branch.
+L=-g^2/(2K)+ug/K-W_full(u)-(rho_b+rho_f)Phi,
+K W_full,u=a0 u/(a0-u).
+Vary BOTH Phi and P. Spherical isolated flux gives
+  g-u=b+f, b=G Mb(<r)/r^2, f=G Mf(<r)/r^2;
+  g=a0 u/(a0-u), hence R(u)=u^2/(a0-u)=b+f.
+Equivalently, the full inward carrier gravity is b+f+u and outward tether
+u+R(u); its net acceleration is -b-f+R(u). It is not -b+R(u).
+The static total force therefore satisfies
+  g^2/(g+a0)=b+f,
+  g=[b+f+sqrt((b+f)^2+4a0(b+f))]/2.
+This is the same law on the combined external source, conditional on remaining
+on this unscreened static branch. Do not independently add a second tethered
+mass source to the auxiliary polarization action: that would double count it.
+The free source is new and independent in this comparison. The microscopic,
+timelike-current parent remains missing, as CE-FM-013 already established.
+
+The recipe u=u_b with R(u_b)=b, followed by adding free force f, leaves net
+tether acceleration -f. It is not equilibrium unless f=0, or additional
+stiffness, stress, velocity support, or an explicit source-selective coupling
+changes the equation. Those possibilities are open and must be derived.
+
+Quantitative controls (not data scores): at b/a0=1e-4 and f/b=1, coupled total
+force is 1.40318 times the additive recipe, and required tether is 1.41129 times
+the baryon-only tether. At f/b=3 those factors are 1.95176 and 1.99003.
+Deep limit at fixed f/b=q: coupled/additive -> sqrt(1+q); high-acceleration
+limit tends to 1. A small fractional force correction in a dense core need not
+remain small in the outer region. No lensing projection or empirical verdict
+is inferred from these accelerations.
+
+2. Exact fixed-enclosed-supply split
+At ONE radius define B=G Mb/(a0 r^2), S=G Mc/(a0 r^2), T=G Mt/(a0 r^2),
+F=G Mf/(a0 r^2), S=T+F. Given total cold enclosed mass Mc and static tether,
+  T^2/(1-T)=B+F=B+S-T;
+  T=(B+S)/(1+B+S), F=S-T.
+The split is unique at that aperture, not a production/partition mechanism.
+F>=0 iff S^2+B S-B>=0, or
+  S >= [sqrt(B^2+4B)-B]/2.
+That is the baryon-only static cold requirement. Supply below it cannot be
+placed entirely in this force-free static state. At finite positive B+S the
+tether T is strictly below its wall 1; no saturation-triggered species-changing
+process is supplied. Both supply and free phase-space distribution remain inputs.
+
+3. Local positivity is a separate obligation
+In units G=a0=1, let M(r)=Mb(r)+Mc(r). The aperture split is
+  Mt=r^2 M/(r^2+M), Mf=Mc-Mt.
+Differentiate BEFORE interpreting it as two densities:
+  Mt'=[r^4(Mb'+Mc')+2r M^2]/(r^2+M)^2;
+  Mf'>=0 iff Mc' M(2r^2+M)>=r^4 Mb'+2r M^2.
+For a point baryonic source, this requires Mc'>=2r M/(2r^2+M).
+Thus nonnegative enclosed Mf alone does not establish a physical free density.
+Exact control outside prescribed compact sources: r=1, Mb=1, Mc=2,
+Mb'=Mc'=0. It gives Mt=3/4, Mf=5/4, but Mf'=-9/8. The aperture passes the
+mass test and fails density positivity. Imposing the zero-stiffness constitutive
+law throughout a finite-support exterior therefore fails this particular
+two-fluid interpretation. A finite edge can instead be a region where that
+constitutive equation ceases to apply; boundary stress/stiffness must be solved.
+This is not an exclusion of all finite halos or all two-population mechanisms.
+
+4. Evidence, reconciliation and adversarial self-review
+run_016_v2:135 symbolic/numerical checks; run_017_v2:22 exact checks, including
+the rational control and 16 annular linear-supply examples. Both completed,
+manifests validated with current pinned inputs. Deterministic, no large run.
+Original016 launch failed in resource-limit preexecution on this Mac. Successful
+retry used CPU/time/thread caps without a hard address-space cap; actual scalar
+work is small, but no enforced 1GB memory certificate is claimed. Original017
+failed an incorrectly chosen aperture-feasibility control, which was corrected
+at a new preserved run; see RADIAL_SPLIT_CORRECTION.txt. Neither failure was
+hidden or relabeled a mathematical success.
+
+Self-review dependency graph:
+corrected action -> P EL + Phi flux -> combined-source residual [passed];
+same residual + supplied total enclosed cold mass -> aperture split [passed];
+aperture split -> positive component densities [failed without slope condition];
+positive profiles -> stationary free distribution [not addressed];
+microscopic action -> this identified inertial carrier [conditional, unresolved];
+formation and exchange -> selected profiles/abundance [not addressed].
+Zero free source recovers the prior law; finite positive source stays below wall;
+the fixed-supply root was independently reduced to a linear equation; total
+force was checked through an independent quadratic inversion. No external
+theorem or new literature claim is required. This is self-review, not Lean
+certification or independent replication.
+
+CFG721's source uses baryonic srcp in L.derive and scores Mcore+Mset+Mres. Its
+frozen phenomenological numbers remain exactly their reported numbers. This
+audit does not assert that its reservoir algorithm is a steady solution of
+the full action. It identifies what is missing before H-OF/H-OF2 scores can be
+called predictions of that action: iterate the free gravity into the tether
+force, conserve finite supply and solve the interface, or derive a different
+carrier/stress branch that justifies retaining its baryon-only template.
+The later Theory_v3 draft explicitly incorporates CE-FM-010's FULL/REM action
+correction; the earlier literal-action mismatch should not be reported as an
+uncorrected current-draft error. Other unresolved dynamics remain unresolved.
+Latest dressed-preparation report also reconciled: its monotone stationary
+photon flux excludes weak conversion alone in its stipulated fixed bath;
+gross excitation replacement is not automatically unavoidable net wasted work.
+
+5. Executable continuation, no permission renewal required
+F3 next: construct positive radial profiles satisfying the slope inequality,
+then determine whether a stationary nonnegative free distribution exists in
+the combined potential and match a finite stiffness/supply interface. Prescribe
+profiles only as feasibility controls; do not infer formation from them.
+F2/F6 next: derive the reciprocal reference support and export in an actual
+inertial carrier action; auxiliary static Phi=Psi does not close this bridge.
+F1 hot/condensed discrimination remains unresolved: ordinary shared gravity
+does not selectively omit free cold mass or pressure-supported baryons.
+F4 raw shear lanes and frozen observational criteria remain their owners' work.
+F5 spectrum/charge selection remains open. Kappa remains fitted; no publication
+or cross-chat message made. All original goal obligations remain active.

@@ -1,0 +1,43 @@
+{
+  "claim_id": "CE-FM090-SHARED-STATIC-L1-SOURCE-2026-10-19",
+  "mathematics": {
+    "assertion_tested": "Closed COM-projected common-profile static l=1 gravitational source kernel agrees with the recorded finite Rayleigh-Ritz calculation at kR=.01,.03,.1,.3,1,3 to relative tolerance1e-6; direct Bessel quadratures at .1,1,3 agree to1e-60 at80decimal digits; coefficient C4=1/(5pi\u00b2)\u22122/105 agrees with q=1e-4 to1e-8.",
+    "coefficient_domain": "80-decimal-digit mpmath floating arithmetic, not interval-certified",
+    "conventions": "Same n=1 TF common-profile state, object volume4piR\u00b3/3, total center of mass projected out; positive static susceptibility to \u2212Jrho; l=1 internal sector only",
+    "inputs": [
+      "run_001/results.json from bounded l=1 Ritz computation",
+      "q=kR=.01,.03,.1,.3,1,3; direct quadrature subset .1,1,3; infrared q=.0001"
+    ],
+    "bounds": {
+      "decimal_digits": 80,
+      "Ritz_relative_tolerance": 1e-06,
+      "direct_quadrature_comparison_tolerance": 1e-60,
+      "infrared_relative_tolerance": 1e-08
+    },
+    "non_claims": [
+      "No interval certification",
+      "No full angular susceptibility: l=0,l=2 and higher channels are not included",
+      "No finite-GP, occupancy, nonlinear saturation or universal normalization result"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/shared_state_2026_10_19/modes/check_static_source.py",
+    "sol61_push/shared_state_2026_10_19/modes/run_001/results.json",
+    "sol61_push/shared_state_2026_10_19/modes/source_pins.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

@@ -1,0 +1,2 @@
+# Deliberate missing-exterior control
+Run energy.py with --omit-exterior. The static solutions and Newtonian gravitational energy are unchanged, but all exterior polarization/mismatch energy is incorrectly dropped. The virial and chemical identities must reject this truncation. Expected exit1/check failures. This documents the same mistaken 'only count the core interior' approximation that would invalidate merger energetics. Do not treat its execution failure as evidence against the original action.

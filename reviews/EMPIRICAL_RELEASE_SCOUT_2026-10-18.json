@@ -1,0 +1,71 @@
+{
+  "report_date": "2026-10-18",
+  "purpose": "Find recent empirical releases and overlooked public products useful for testing the acceleration-vacuum relation and resolving existing measurement systematics",
+  "status": "Data-readiness scout. No new fit, cross-match, empirical preference or significance calculation was performed.",
+  "search_window": "Priority to March 18-October 18, 2026 publications and releases; older available raw products retained when prior project work used only derived tables.",
+  "ranked_candidates": [
+    {
+      "rank": 1,
+      "name": "FAST All Sky HI Survey DR2",
+      "paper": "Chuan-Peng Zhang et al., The FAST All Sky HI Survey DR2: the FASHI Catalog and the HI Mass Function",
+      "paper_first_posted": "2026-06-30",
+      "paper_version_history": "arXiv 2606.31539 v1 June 30; v3 July 10, 2026. Full-text column description inspected in v1; actual September data headers inspected separately.",
+      "data_deposit_publication_date": "2026-09-10",
+      "data_doi": "10.12149/103421",
+      "sources": ["https://arxiv.org/abs/2606.31539", "https://nadc.china-vo.org/res/r103421/", "https://zcp521.github.io/fashi.html"],
+      "sample": "156411 extragalactic HI detections, z < 0.09; 28352 ALFALFA cross-matches in companion table",
+      "public_files": [
+        {"name": "Readme_Tables2-3.txt", "url": "https://nadc.china-vo.org/res/file_upload/download?id=1538186", "bytes": 3479, "bytes_read": 3479, "sha256": "9f4d08b0124f921863a02d52c728d8b69f4b7a24279959a73bad5508298a04b5"},
+        {"name": "Table2_FASHI_DR2_Extragalactic_Hi_Source_Catalog.csv", "url": "https://nadc.china-vo.org/res/file_upload/download?id=1538184", "bytes": 40621972, "bytes_read": 32768, "prefix_sha256": "a802c95510fed11a210b1b7f2a999b06c0f5fdc98f4a2f3c4cd853c16fdf3107"},
+        {"name": "Table3_Cross-matched_catalog_of_FASHI_and_ALFALFA_sources.csv", "url": "https://nadc.china-vo.org/res/file_upload/download?id=1538185", "bytes": 2547132, "bytes_read": 32768, "prefix_sha256": "ade490727f8affc5b817928c5b08ce7ae163960096ae55b486cf8a93fef09b10"}
+      ],
+      "access_checked": "HTTP 206 partial reads succeeded. Full README, catalogue header and first rows verified. No full-catalogue row count independently recomputed.",
+      "verified_columns": ["ra", "dec", "v_opt", "v_opt_err", "freq", "freq_err", "W_50", "W_50_err", "W_20", "W_20_err", "snr", "S_bf", "S_sum", "S_err", "distance", "distance_err", "mass", "mass_err", "completeness", "Vmax"],
+      "project_coverage": "Existing local records mention DR1 and one unresolved tidal-dwarf field; no DR2 ingestion or analysis was located in the searched data_assembly, campaign_fresh_gravity and prep_2026 Markdown records.",
+      "best_next_use": "Cross-match existing MIGHTEE and SPARC targets to obtain a third flux comparison alongside ALFALFA; then assess whether gas-dominated, isolated, well-inclined galaxies can provide a new acceleration normalization sample.",
+      "local_dependency": "campaign_fresh_gravity/CFG304_mightee_flux_scale_alfalfa/README.md reports a -0.195 dex median MIGHTEE-catalogue/ALFALFA flux offset in 15 code-1 matches. A new survey can investigate this systematic; it does not automatically resolve it.",
+      "limitations": ["2.9 arcmin beam: global line widths are not resolved outer rotation speeds", "Requires independent optical inclinations and stellar masses for BTFR use", "HI extraction ellipse is not intrinsic optical morphology", "Distance, confusion, linewidth extraction and selection effects remain", "Raw/reduced cubes are not provided as an unrestricted public reduced-cube release in the paper"]
+    },
+    {
+      "rank": 2,
+      "name": "MUSE-ALMA Haloes multi-tracer kinematics and baryon census",
+      "sources": ["https://arxiv.org/abs/2610.10112", "https://arxiv.org/abs/2610.10113", "https://arxiv.org/abs/2610.10117", "https://doi.org/10.1051/0004-6361/202661175", "https://almascience.eso.org/alma-data/lp/alma-muse/", "https://almascience.eso.org/almadata/lp/alma-muse/"],
+      "recent_publication_dates": "Kinematics journal article published September 30, 2026; data-release, kinematics and baryon-census preprints posted together October 7, 2026. Data-release journal article appeared in April 2026.",
+      "recency_caveat": "Do not call all underlying cubes newly released in October. Public directory listings show February 2026 file modification times; those times alone do not establish first public availability.",
+      "sample": "79 galaxies in parent survey; six galaxies with detailed multi-tracer study at 0.43 < z < 0.83, four classified as discs",
+      "useful_products": ["CO and ionised-gas kinematics in the same galaxies", "HST morphology and stellar masses", "Molecular-gas constraints", "Stellar kinematics for a subset", "Public naturally and Briggs-weighted CO FITS cubes, masks and primary-beam products"],
+      "access_checked": "ALMA public portal and actual per-field file listing fetched successfully; Q0454-220 directory lists 15 and 60 km/s cubes and README. Large FITS cubes were not downloaded.",
+      "table_checks": "Inspected kinematics Tables 1-3 in arXiv HTML: galaxy properties, fitted kinematic/mass parameters with asymmetric uncertainties, and stellar dynamical estimates are present.",
+      "project_coverage": "No matching titles, arXiv identifiers, Barfety author or MUSE-ALMA Haloes ingestion found in searched local Markdown records.",
+      "best_next_use": "Calibrate tracer-dependent pressure-support corrections by fitting CO and ionised-gas data to a shared gravitational potential, with baryonic masses constrained independently of the kinematic decomposition.",
+      "limitations": ["Four modelled discs, not a large precision sample", "Most kinematics probe approximately 1-2 effective radii, not guaranteed asymptotic flat velocities", "Reported Vcirc, fitted baryonic masses and dark matter fractions are coupled model outputs; do not treat them as independent raw measurements", "Atomic HI masses are inferred using optical/absorber relations or surface-density assumptions, not spatially resolved 21cm measurements", "CO-to-H2 conversion, stellar masses, inclination and environmental selection remain systematic uncertainties"]
+    },
+    {
+      "rank": 3,
+      "name": "MHONGOOSE full-depth data cubes rather than profile catalogue alone",
+      "sources": ["https://mhongoose.astron.nl/Public-Data-Release.html", "https://mhongoose.astron.nl/Home.html"],
+      "release_status": "Official page lists deep releases 1, 2 and 3 and states they jointly contain all sample galaxies. Exact first-publication date of release 3 was not authenticated.",
+      "verified_products": "55-hour-per-galaxy full-depth cubes and moment maps, 1.4 km/s channel spacing, multiple angular resolutions",
+      "project_coverage": "CFG540 examined Veronese 2026 radial HI profiles for 16 galaxies. Its conclusion that no rotation curves were available applies to that catalogue; the public cubes are a separate opportunity.",
+      "best_next_use": "Recover independent outer HI kinematics and baryonic gas profiles beyond conventional detection thresholds, selecting regular discs without SPARC overlap.",
+      "limitations": ["Not a verified new post-March release date", "Cubes require new tilted-ring modelling and quality checks", "Deep diffuse HI may be warped or non-circular and cannot automatically extend equilibrium rotation curves", "Stellar photometry, distances and inclinations still required", "Large cube transfers not performed"]
+    }
+  ],
+  "secondary_candidate": {
+    "name": "Zhou et al., An HI study of a large sample of ultra-diffuse galaxies",
+    "source": "https://arxiv.org/abs/2608.24225",
+    "posted": "2026-08-25",
+    "sample": "112 ultra-diffuse plus 48 low-surface-brightness HI-detected galaxies; 168 non-detections used for stacking",
+    "potential_use": "Gas-rich, low-surface-density stress test of normalization and sample universality",
+    "checked": "Primary full HTML including BTFR methodology and machine-readable table statement; full numerical supplement access not verified",
+    "limitations": ["Based on FASHI DR1/ALFALFA, not an independent third survey", "Unresolved W20 and optical inclination are uncertain velocity proxies", "Reported offsets are a challenge to assess, not positive evidence for the project", "Overlap with existing UDG samples must be checked before treating objects as independent"]
+  },
+  "deprioritized": [
+    {"name": "KiDS-Legacy", "reason": "Useful public shapes, covariance and redshift products, but first release predates requested recent window; project already uses KiDS extensively."},
+    {"name": "WALLABY Pilot DR2", "reason": "Already ingested; official release September 2024, despite 2026 papers describing it."},
+    {"name": "BIG-SPARC", "reason": "No newly downloadable release authenticated in this search."},
+    {"name": "eROSITA DR2", "reason": "New catalogue release verified, but catalogue-only products do not directly provide the independent resolved gas and mass profiles most needed here."},
+    {"name": "Repackaged SPARC and multi-survey corpora", "reason": "New packaging does not create independent measurements; use original survey products."}
+  ],
+  "search_scope_and_limits": "Primary survey portals, arXiv, journal releases and public repository listings, cross-checked against local inventories and selected existing lane reports. Local coverage search was bounded to relevant data_assembly, campaign_fresh_gravity and prep_2026 records; absence of a match is not proof that no other chat ever considered a source. No authors contacted, full survey catalogues or large cubes downloaded, or new empirical claims fitted."
+}

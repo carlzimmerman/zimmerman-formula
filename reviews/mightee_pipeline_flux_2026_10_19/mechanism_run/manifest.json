@@ -1,0 +1,154 @@
+{
+  "schema_version": 2,
+  "claim_id": "MIGHTEE_PIPELINE_FLUX_2026_10_19",
+  "repository": {
+    "commit": "d35ad36ab4e7fdfeb697d5068852851b5ba32279",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/mightee_pipeline_flux_2026_10_19/mechanism_controls.py",
+    "reviews/mightee_pipeline_flux_2026_10_19/mechanism_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "astropy",
+        "version": "6.0.1"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "For the seven previously reliable ALFALFA-code1 galaxies with available r1p0 cube coverage, measure paired fluxes in released clean_conv cubes immediately before and after image-domain continuum subtraction. Test beam-area normalization geometrically and distinguish the documented residual homogenization from unsupported scalar rescaling.",
+    "coefficient_domain": "float64; image Jy/beam, frequency Hz, angular sizes arcsec",
+    "conventions": "Same source coordinates, aperture radius (CFG302 line-window beam median times 1.5), frequency channels, beam area and line windows for pre/post stages. Baseline masks and robust constant/linear residual fits follow the previous profile analysis, with common window halfwidth=max(150,max(MIGHTEE W50,ALFALFA W50)/2+50) km/s; expansions0,100,250. Frequency-bin overlap integrals convert JyHz by c/nu_center. Pre means after visibility-domain continuum subtraction, deconvolution, resolution homogenization and mosaicking but before final image-domain subtraction; it is NOT raw visibilities.",
+    "inputs": [
+      "Seven primary matches from preceding profile comparison",
+      "Public clean_conv r1p0 FITS range cutouts",
+      "Existing clean_conv_contsub local cubes",
+      "Existing ALFALFA spectra and independent catalogue measurements",
+      "Heywood et al 2024 sections3.2-3.6 and table2"
+    ],
+    "bounds": {
+      "population": 7,
+      "extract_halfwidth_kms": 2200,
+      "aperture_beam_multipliers": [
+        1.5
+      ],
+      "download_cap_bytes": 1500000000,
+      "concurrent_range_requests": 8,
+      "network_timeout_seconds_per_request": 60,
+      "maximum_retries": 3,
+      "baseline_minimum_channels": 32,
+      "toy_control": "Gaussian beam50->75arcsec, clean fractions0,.25,.5,.75,1; 31-channel filter on noiseless profiles width5,15,25,35,55,85 channels. Not production-code reproduction."
+    },
+    "non_claims": [
+      "No raw visibility reprocessing",
+      "Cannot isolate pre-imaging continuum subtraction or calibration from already reduced cube products",
+      "A smoothing simulation is not a reproduction of unpinned historical pipeline code",
+      "No universal flux correction",
+      "No author contact authorized"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T02:37:26.075235+00:00",
+    "runtime_seconds": 0.624767,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/mightee_pipeline_flux_2026_10_19/mechanism_controls.py",
+    "reviews/mightee_pipeline_flux_2026_10_19/mechanism_contract.json",
+    "reviews/mightee_pipeline_flux_2026_10_19/contract.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/mechanism_controls.py",
+      "sha256": "273285534dbd9981797a818b22a8572af852f0ca9d89be5ac55b470908e89497",
+      "sha256_after": "273285534dbd9981797a818b22a8572af852f0ca9d89be5ac55b470908e89497"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/mechanism_contract.json",
+      "sha256": "61d88ea1a1c0676215e7a24ff0c732d4110d7ab7f63ca4eb91624a79ee8d1a97",
+      "sha256_after": "61d88ea1a1c0676215e7a24ff0c732d4110d7ab7f63ca4eb91624a79ee8d1a97"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/contract.json",
+      "sha256": "162a6dd170c928edfca971f8c394648ffbcaf6781a0cb43424aaf577f050744d",
+      "sha256_after": "162a6dd170c928edfca971f8c394648ffbcaf6781a0cb43424aaf577f050744d"
+    }
+  ],
+  "output_directory": "reviews/mightee_pipeline_flux_2026_10_19/mechanism_run",
+  "declared_results": [
+    "reviews/mightee_pipeline_flux_2026_10_19/mechanism_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/mechanism_run/stdout.txt",
+      "sha256": "acdebf7b05887b6419bc6abadbddc009d17c548bd5be23046a18dc79db902bd2",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/mechanism_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/mechanism_run/results.json",
+      "sha256": "9c40a57532bf7e12e7f78cce89347ac068c3ad360ba24deac6a9e91517a2dbfa",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

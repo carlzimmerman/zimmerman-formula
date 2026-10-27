@@ -1,0 +1,132 @@
+CE-FM-023..027 — nonlinear escape witness, with failed long-time controls retained
+2026-10-13. Original cold-energy theory goal ACTIVE and incomplete.
+Primary verdict: conditional finite nonlinear escape witness in the specified
+radial carrier model; no general formation/selection or final cold halo proved.
+Base364fc9c73d2fda45a921d74c0c53ec1ce2d4f197. Actual artifacts/input hashes
+and successful/failed statuses are recorded per run. Self-review only.
+
+1. Actual experiment and assumptions
+Use G=a0=Mb1, total enclosed carrier supply5. Prescribe a fixed matched core
+at radius2 with massm0(2)=(sqrt17-1)/2. There are64 equal mobile packets of
+massdm=(5-core)/64. The full residual potential w(u)=-u^2/2-u-log(1-u)
+and exact rank-averaged force are the energy-consistent CE-FM-002 discretization:
+  a_i=-1/r_i^2+[w(m_hi/r_i^2)-w(m_lo/r_i^2)]/[(m_hi-m_lo)/r_i^2].
+Every force evaluation sorts the current radii. Packet identities remain
+attached to velocities, while enclosed mass ranks change at crossings.
+The field energy integrates every radial interval and the tail toinfinity.
+No mass is deleted, absorbed or reflected; no velocity damping is inserted.
+Core contact or saturationwall contact raises a validity failure.
+
+Initial radii are the exact finite-packet equilibrium, checked independently
+against energy derivatives. Give only packets40..47 initial outward velocity.8,
+in unitsVf. These initially lie inside unperturbed outer packets and must cross
+them to get out. This is a deliberately prepared localized excitation, not a
+cosmological formation initial state or a spontaneous heating mechanism.
+Injected kinetic energy is.1375378875 in Mb Vf^2 units. The supplied core and
+initial equilibrium remain inputs; the test does not derive the basin anchor.
+
+2. What failed, and why it is not a result to conceal
+Run023 with Verletdt.004/.002 tot200 preserves energy within1.3e-6/.51e-6
+but fails the declared.01 absolute label-radius convergence. Original output
+was not persisted before the assertion; run023_v2 repeats the same calculation
+while retaining raw trajectories BEFORE the unchanged assertion. It fails too:
+label-radius difference1.43005, sorted-radius difference.127948. Sorting does
+not rescue the required trajectory convergence. Both observe the same outward
+IDs40..47, but the t200 retained dynamics is UNVERIFIED. The ordering-change
+counts2228/2216 count differing entries in successive permutations, not distinct
+physical collision events. No exact event count is claimed from this diagnostic.
+
+Run024 tries adaptiveDOP853 rtol1e-8/1e-10 tot200. It hits its75CPU-second
+cap before returning a completed result. Its terminal status is resource-limit;
+there is no live process or retained adaptive trajectory to interpret. It is
+not a physical instability or a completed convergence test. The t200 step is
+deferred pending event-aware crossing integration or better numerical resources.
+
+3. Verified first-crossing checkpoint, rather than relabeling t200
+Run026 keeps the same force, packets, core and kick but tests only t20, with
+adaptiveDOP853 rtol1e-7/1e-9 and stricter.001 radius-agreement criterion.
+All10 checks pass. Actual maximum radius difference7.58328e-6; maximum full
+energy errors9.1212e-8/3.55485e-9. No contact or saturation domain failure
+occurred. Solver evaluations16916/41216 show why long crossing evolution is
+costly. This is a shorter first-crossing witness, not satisfaction of the
+failedt200 control or a substitute for the original theory goal.
+
+4. Conservative escape comparison, not a distance threshold
+Sincew'=R>=0 for0<=u<1, every rank-averaged residual is nonnegative. Thus
+every radial packet acceleration obeys a>=-Q/r^2 withQ1 here.
+For outward motion define e_K=v^2/2-Q/r. Along each continuous trajectory,
+  de_K/dt=v(a+Q/r^2)>=0.
+Ifv>0 ande_K>0, a future turnaround would havee_K=-Q/r<0, a contradiction.
+Also v>=sqrt(2e_K_initial), so r grows unbounded. Crossings do not invalidate
+the comparison as long as the full force remains admissible and the prescribed
+external source remains fixed. There are no artificial impulses at crossings.
+Consequently these are CONDITIONAL escape certificates, requiring valid future
+model evolution; they are not numerical integration toinfinity or a theorem
+about a completed relativistic theory.
+
+At t20 in both verified runs, packets40..47 meet this certificate, minimum
+specific margin.1751024. Their mass is.4298058984, about8.60% of the total
+initial cold supply, not a fitted loss fraction or a universal retained value.
+Their outward current is an actual evolution of the prepared kick; no shell
+was removed to enforce this number.
+
+The residual also has an upper bound R_average<=R(S/r^2), S5. Once a
+certified packet lies at r^2>S, its remaining outward work is at most
+  integral_r^infinity R(S/x^2)dx
+  <=S^2/[3r^3(1-S/r^2)].
+Therefore its limiting specific kinetic energy lies between e_K now and that
+value plus this positive tail bound. The estimate allows changing mass ranks,
+because every enclosed mass remains<=S. It does not freeze the outgoing field.
+
+Run027 applies this proof to the VERIFIED t20 data and computes the exact
+finite-packet ground minimum for the remaining56 packets with the same dm
+and fixed core. Seven controls pass. Escaping kinetic energy bounds are
+.07889735..07942123, remaining ground energy-.58164401, and the remainder's
+allocated excess above that ground is.00158574..00210962. Numerical energy
+error3.6e-9 is much smaller than this interval's positive lower endpoint.
+Thus escape of THIS subset does not bring the remainder exactly to its minimum.
+Other packets could later escape; that is not bounded here. The remainder may
+also keep oscillating/mixing. Energy above ground is not itself an observational
+RAR error, and no stationary warm distribution or late-time profile is claimed.
+
+Run025 is the earlier same certificate applied to FAILEDt200 fixed-step raw
+data. It passes its bookkeeping controls but cannot upgrade those trajectories.
+Its tighter tail bounds are retained as provisional comparison evidence only;
+run027's verified shorter input is the evidence used for the escape witness.
+
+5. New Claude clue reconciled
+Current CFG761 output states T1PASS,T2OPEN,overallOPEN: the conservative
+threshold factorx_e,min.71 leaves the alt1e9Msun,y.1 corner open (margin.97).
+Thus CFG760's claim that its independent-P radiation pincer closes every case
+must not be propagated unchanged into the present live status. These are its
+raw outputs, not independently replicated here, and they retain their separate
+independent-P/infinite-background assumptions from CE-FM-021. The present
+carrier escape route is distinct and no duplicate CFG761 run was launched.
+Its mutated run was observed through a log, not a verified process handle;
+no claim of live or completed status is made here for that run.
+The separate optical resonance-capture report remains conditional external-drive
+preparation of a hypothetical dense condensate, not this physical gravity carrier.
+
+6. Review and remaining goal obligations
+Dependencies: full residual/rank energy [verified conditional model]; exact
+prepared initial equilibrium/kick [supplied]; short adaptive evolution [finite
+verified evidence]; force comparison escape [internal conditional proof];
+remainder energy bound [verified bookkeeping on short input]; future full
+domain validity, arbitrary formation, final cold profile, nonradial/angular
+momentum transport, changing baryons and covariant reciprocal parent [open].
+No old frozen criterion was modified, no simulation was deleted, no message
+sent to another chat and no publication/final-theory declaration made.
+
+Next substantive routes
+F2 evaporation: derive event-aware crossing evolution at longer times and
+initial families that arise from actual assembly, tracking escaped supply and
+changed ground energy. Do not use this outward kick as a formation mechanism.
+F2 adiabatic carrier assembly: in mass coordinates, point-source equilibrium
+r(s,Q)=sqrt(s+s^2/Q). Its motion under slow baryonic growth can potentially
+avoid large initial heating rather than export it. Derive actual inertial
+tracking and baryonic work, retaining an explicit initially prepared cold state
+and measuring departures. This is a new carrier calculation, separate from
+CFG659's independent-P adiabatic result; it is not yet executed here.
+F6 reciprocal parent/anchor remains a shared bottleneck; F1 phase-dependent
+source,F3 free population formation,F4 rawdata andF5 mass/abundance remain open.
+Kappa remains fitted. Original full objective ACTIVE, not complete.

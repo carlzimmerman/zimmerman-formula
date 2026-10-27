@@ -1,0 +1,60 @@
+CLOCK FOLLOW-UP DF-002 — 2026-10-15
+Parent DF-001; same action and background, now impose the clock representation
+before variation: u_a=-partial_a T/sqrt(-partial T.partial T), T=t+tau.
+This is a distinct, hypersurface-orthogonal theory, not merely a gauge choice.
+Original coefficient-selection objective remains unresolved.
+
+RESULT
+Removing the independent transverse vector does not remove the instability
+in this particular sigma-model lift. Nonzero wave vectors with a component
+along the scalar background gradient have a finite unstable band.
+
+Derivation
+To first order u^i=-partial_i tau; the exact normalization gives u^0=1+
+|grad tau|^2/2+O(perturbation^3). No linear tau_dot term remains in u^0.
+Since the background scalar has zero time derivative, higher-order corrections
+to u do not affect the quadratic scalar/vector mixing below.
+For chi=v z_coordinate+pi, let A=K_N eta, S=K_N mu, R=K_N F, d=A-S.
+Substitution in the quadratic action, with all scalar gradient directions,
+gives
+ L2=A pi_dot^2/2-[S |grad_perp pi|^2+R pi_z^2]/2
+   +B[|grad tau_dot|^2-sum_ij(tau_ij)^2]/2
+   -d v tau_z pi_dot +d v^2 tau_z^2/2.
+These statements are restricted to linear perturbations about T=t; they do
+not count nonlinear higher-derivative degrees of freedom of the clock action.
+
+For k>0, define c=k_z/k and C=S(1-c^2)+R c^2>0. The determinant, divided
+by the nonzero overall k^2 factor, is
+ D_clock=(A w-C k^2)(B w-B k^2+d v^2 c^2)-d^2 v^2 c^2 w,
+ w=omega^2.
+Its constant term is C k^2(B k^2-d v^2 c^2). Therefore for A>S>0 and c!=0,
+ 0<k^2<d v^2 c^2/B
+ gives one negative real w root. At exactly c=0, the mixing and induced
+negative mass vanish and the two displayed modes decouple. For c!=0,
+the nonzero root tends to -d S v^2 c^2/(AB) as k tends to zero, but the
+strictly k=0 clock mode is degenerate and must not be inferred by dividing
+its determinant by k^2. The finite band, not the k=0 limit, proves growth.
+
+Exact witness
+K_N=B=v=1, v0=4/3, A=9/8, S=3/5, R=123/125, k=1/2, c=1.
+The exact polynomial printed in run/stdout.txt has negative constant term
+and positive leading coefficient. This is an explicit finite-wavelength
+counterexample to stability of this clock completion.
+
+Self-review
+Passed: clock unit constraint expansion; substitution into quadratic action;
+Fourier symbol including mixed time/space term; nonzero k restriction;
+negative constant term and positive leading coefficient imply opposite-sign
+real roots. Six exact symbolic checks corroborate determinant reduction,
+limits, band, perpendicular decoupling, and the rational witness. This is
+not a full formal Lean derivation; the sibling TiltBound.lean formalizes
+only the vector-case algebra, not this extension. No independent audit.
+
+Decision
+DF-001's proposed clock escape has now been tested and fails for this same
+minimal sigma-model action. This does not exclude other clock operators,
+metric constraints, or actual finite/inhomogeneous backgrounds. A useful
+next test requires changing the action or solving a finite-background
+spectral problem, not simply relabeling the preferred vector as a clock.
+Larger B can delay growth but no physical value or timescale is selected.
+Neither this calculation nor its parent links a0 to the arbitrary E0.

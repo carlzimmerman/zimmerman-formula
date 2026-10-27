@@ -1,0 +1,46 @@
+FRAMEWORK-CERT-TRANSPORT-2026-10-12 / independent classical stress review
+
+Primary verdict: PROVED AS WRITTEN for the eleven conditional coordinate-level Lean statements. The supplied stress/current dictionary is independently checked, but is not formal Lean tensor geometry. The cosmology interpretation is correct only within its stated homogeneous material and free/weak constant-H restrictions; no universal cosmological exclusion follows.
+
+1. Actual coordinate normalization and charge
+
+With phi=(r1+i r2)/sqrt2, chi=(r3+i r4)/sqrt2 and vi=dot ri, K=sum vi^2/2 equals |dotphi|^2+|dotchi|^2. S=(r1^2+r2^2+4r3^2+4r4^2)/2 equals |phi|^2+4|chi|^2. The supplied current i(phi* dotphi-phi dotphi*)+2i(chi* dotchi-chi dotchi*) is exactly q=r2v1-r1v2+2r4v3-2r3v4. Its sign is positive for positive-frequency phi proportional exp(-i omega t).
+
+The weighted vector a=(r2,-r1,2r4,-2r3) has squared norm2S; velocity vector has squared norm2K. The four-coordinate Lagrange identity gives product norms minus squared dot product as the sum of six squared pair minors. Hence q^2<=4SK. The coordinate proof supplies its own Cauchy inequality; it does not assume a missing physical Cauchy leaf. The cosmology code uses unnormalized phi=x+iy,chi=z+iw, so its real coordinates and velocities equal r/sqrt2,v/sqrt2. Its q=2a.dot(v) and extra factor4 before the six minors are consistent with that dictionary.
+
+2. Actual potential, not a substituted surrogate
+
+For the physical Delta>0 source action, u=sqrtDelta chi+(g/sqrtDelta)phi^2 has
+ u_real=sqrtDelta r3/sqrt2+(g/sqrtDelta)(r1^2-r2^2)/2,
+ u_imag=sqrtDelta r4/sqrt2+(g/sqrtDelta)r1r2.
+phiSq=(r1^2+r2^2)/2. Thus actualPotential=m^2 S+u_real^2+u_imag^2+rep phiSq^2 is precisely the original positive-square carrier potential. rep>=0 implies V>=m^2S. The polynomial inequality remains algebraically true with broader m,Delta binders in Lean; interpreting the residuals as the original physical action retains m>0,Delta>0. Totalized division/square root at nonphysical Delta does not establish additional physical models. Complex/tensor conversion remains a verified dictionary, not a formal complex-action or stress-tensor theorem.
+
+3. Homogeneous stress, saturation and exact negative-one pressure
+
+rho=K+V,p=K-V give rho^2-p^2=4KV. Multiply q^2<=4SK by m^2>=0 and V>=m^2S by4K>=0 to get m^2q^2<=4KV. This reconstructs the critical implication and all coordinate instantiations. For actual nonnegative K,S,V, m>0,rho>0, it also implies rho>=m|q| and |p/rho|<=sqrt(1-(m|q|/rho)^2). Defining eta=1-m|q|/rho in[0,1] gives |w|<=sqrt(2eta-eta^2). This square-root presentation is independently reconstructed, not separately claimed as a Lean theorem.
+
+If rho^2=m^2q^2, the stress inequality forces p^2<=0, hence p=0. Nonzero charge alone does not imply saturation or dust. Conversely, exact p/rho=-1 at positive rho gives rho+p=2K=0 and then q=0 from the charge bound. This is an instantaneous condition; it does not say a nonzero resting field persists as a solution.
+
+For canonical spatial-gradient energy B>=0 and the isotropic/trace-average scalar pressure p=K-B/3-V, rho=K+B+V, the difference from the homogeneous squared stress is8KB/3+4BV/3+8B^2/9>=0. Here S>=0 and V>=m^2S establish V>=0. The same charge/stress bound follows. Exact w=-1 now gives2K+2B/3=0, so K=B=q=0. The scalar pressure is an isotropic/trace-average dictionary; this does not replace a general anisotropic tensor with a perfect fluid.
+
+4. Actual cosmology checks and their restricted implication
+
+I inspected carrier_cosmology/checks.py, its original 25 passing checks, exact result and frozen assumptions rather than repeating the run. Unnormalized real-coordinate EOM correctly use half the potential derivative. Under stipulated minimal homogeneous FLRW coupling they give rhodot+3H(rho+p)=0 and qdot+3Hq=0 with the full interaction potential retained. Proper charge density dilutes; a^3q is conserved. No Friedmann background is solved.
+
+Persistent exact homogeneous w=-1 forces constant fields. Static chi=-g phi^2/M^2 gives lambda_eff=rep+4g^2m^2/(Delta M^2)>=0 and phi[m^2+2lambda_eff|phi|^2]=0. With m,Delta>0, only phi=chi=0 remains and the supplied material V there is zero. This rules out a persistent positive exact-w=-1 state of this particular homogeneous canonical material action without an added offset. A one-instant negative-pressure rest snapshot is not excluded. An added constant offset is a different energy input, does not select its own value or supply exchange.
+
+For the separately declared origin free/weak branch, imposed constant H>0 gives mass-mu exponents solving s^2+3Hs+mu^2=0. The potential has no origin linear mixing. If m>=H, which is only a necessary coarse screen for claimed fast daughter dust, M^2-9H^2/4=Delta+4(m^2-H^2)+7H^2/4>0. Thus the same source cannot satisfy an overdamped M<=3H/2 branch at that epoch; approximate DE would require an even slower M/H. This conditional hierarchy implication is correct.
+
+The complex circular free solution exp(-3Ht/2-i Omega t), Omega^2=mu^2-9H^2/4, has K=V and exact dust pressure when mu>3H/2. It demonstrates that free canonical complex dust is possible. A nonzero daughter-only field with chi=0 is not an exact g!=0 interacting solution, because the chi equation contains g phi^2. Source-only phi=0 is consistent and exact zero classical daughters remain zero. The slow real branch is uncharged and has w=-sqrt(1-4mu^2/(9H^2)); it approaches-1 only at small mu/H and positive massive state cannot make it exactly-1. These are imposed-background/free-branch calculations, not general nonlinear or time-dependent-background theorems.
+
+Nothing here excludes arbitrary nonlinear collective modes, large unprotected energy states, an independent vacuum sector, nonminimal couplings or all observed cosmology. A small-eta conclusion must first establish actual state rho/q. The total material inequality cannot be assigned to an arbitrarily separated chi-only interaction stress. No empirical data, Lambda-CDM background or MOND assumption is used to fill those gaps.
+
+5. Logs, controls and provenance
+
+The actual CarrierStress source hash is c932a60df17e8fa7a7523cd004019d4c5df16166abb70838642dda462812a7d3. All eleven axiom reports cover the theorem set and match the source's explicit print order; the actual-carrier theorem is printed last although declared earlier. Every report is standard-only, with no errors/warnings. Input snapshots match all declared hashes. No builds or accepted trajectories were repeated.
+
+Factor-two control is genuinely false: r1=1,v2=-1,others0 gives q^2=1 and S=K=1/2, whereas factor2 would bound it by1/2. The charged-dust control is genuinely false: r1=1,v2=-2,m=Delta=1,g=rep=0 gives q=2,K=2,V=1/2,rho=5/2,p=3/2. Its nonzero charge does not supply saturation. Both logs reject the intended false claims.
+
+Exact source/action/code/log hashes, observed HEAD, pin checks, hypotheses and constructive receiver update are in stress_review.json. The separate LOCAL_RECEIVER_ADDENDUM.txt records why the newly added two-independent-real-field receiver is not refuted by the old single-mode obstruction. This audit wrote only transport_audit outputs.
+
+Strongest safe statement: the actual declared carrier coordinates obey exact classical charge/stress restrictions, and the supplied homogeneous weak same-epoch chi-as-DE/daughter-dust identification fails under its named hierarchy. The separate two-local-field prototype supplies a new pointwise conservation ingredient under constructed assumptions. Neither result identifies the physical fields, derives their common action/microcoupling or closes the theory.

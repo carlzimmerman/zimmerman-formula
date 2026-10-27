@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-ADV-EXTENDED-VERIFY-2026-10-18",
+  "repository": {
+    "commit": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_advance_2026_10_18/extended_source/verify_extended.py",
+    "sol61_push/cold_advance_2026_10_18/extended_source/verify_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent sparse finite-difference Newton solver compared to eight BVP aperture values; three manufactured exact solutions and missing-angular-term negative control",
+    "coefficient_domain": "binary64 SciPy solve_bvp and brentq, explicit tolerances",
+    "conventions": "G=6.674e-11, MS=1.989e30, PC=3.0857e16 inherited from CE-FM-077; r12=4a/3; U=u/a0; R=rM/a; d=L^2/(2a^2); full rational W, not pure cubic",
+    "inputs": [
+      "sol61_push/cold_advance_2026_10_18/extended_source/verify_extended.py",
+      "sol61_push/cold_advance_2026_10_18/extended_source/run_001/results.json",
+      "sol61_push/cold_final_mile_2026_10_13/run_077/results.json"
+    ],
+    "bounds": {
+      "log_mesh_nodes": [
+        2401,
+        4801
+      ],
+      "Newton_iterations_max": 80,
+      "independent_comparisons": 8,
+      "manufactured_d": [
+        0.01,
+        1,
+        100
+      ],
+      "relative_comparison_gate": 5e-05
+    },
+    "non_claims": [
+      "No finite cold inventory or physical halo boundary",
+      "No empirical likelihood or new length bound",
+      "No formation, covariant dynamics or empirical theory closure"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T01:29:46.108440+00:00",
+    "runtime_seconds": 0.342969,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 40,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_advance_2026_10_18/extended_source/verify_extended.py",
+    "sol61_push/cold_advance_2026_10_18/extended_source/run_001/results.json",
+    "sol61_push/cold_final_mile_2026_10_13/run_077/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_advance_2026_10_18/extended_source/verify_extended.py",
+      "sha256": "002598670d156648adff091c0674c502764486809bbe32e97cef4423f72f8e7a",
+      "sha256_after": "002598670d156648adff091c0674c502764486809bbe32e97cef4423f72f8e7a"
+    },
+    {
+      "path": "sol61_push/cold_advance_2026_10_18/extended_source/run_001/results.json",
+      "sha256": "9b8f4d516f9cdf9a1d37e3fbca64fe36ab57ff7a1112ab6dfd9fff71a8a3d301",
+      "sha256_after": "9b8f4d516f9cdf9a1d37e3fbca64fe36ab57ff7a1112ab6dfd9fff71a8a3d301"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_077/results.json",
+      "sha256": "1c7aa98f7449c635c1dfefcfa613e692f16ff23ecf5a74219495dcc144e68425",
+      "sha256_after": "1c7aa98f7449c635c1dfefcfa613e692f16ff23ecf5a74219495dcc144e68425"
+    }
+  ],
+  "output_directory": "sol61_push/cold_advance_2026_10_18/extended_source/verify_001",
+  "declared_results": [
+    "sol61_push/cold_advance_2026_10_18/extended_source/verify_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_advance_2026_10_18/extended_source/verify_001/stdout.txt",
+      "sha256": "eeed40f94ae7f4b906923bd5acdc8c53ba4762a28fb18186a215434a54fcf4f1",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_advance_2026_10_18/extended_source/verify_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_advance_2026_10_18/extended_source/verify_001/results.json",
+      "sha256": "eeed40f94ae7f4b906923bd5acdc8c53ba4762a28fb18186a215434a54fcf4f1",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

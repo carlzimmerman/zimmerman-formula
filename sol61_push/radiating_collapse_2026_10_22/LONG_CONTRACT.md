@@ -1,0 +1,4 @@
+# Longer and radiation-flux checks
+Same Hamiltonian as model.py; model_flux.py only adds the net energy flux across fixed r=6. For the polarization/mismatch sector the radial flux is h*w_dot; for the phase field it is -d*z_dot*grad z. Integrate both with trapezoidal time quadrature. Net flux at finite radius can include near-field energy redistribution; it is not automatically asymptotic radiation.
+
+Baseline mass1/spin.02 repeats for 30 time units with standard and larger box at identical dr; compare flux at the same radius, not absorbed energy at different absorber radii. Fine-grid repeat N512/shell256/dt.0005. Stronger phase lambda100/gap.2 at masses .5,1,2,4, spin.02 to t120. Add a fine-grid repeat of mass1 strong phase to t60. Record domain failures separately. Same 1% run energy criterion but physical conclusions use actual error relative to signal. Total cap 240 seconds, single thread. No new force, damping or parameter fitting.

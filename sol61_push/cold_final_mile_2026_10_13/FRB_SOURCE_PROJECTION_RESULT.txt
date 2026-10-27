@@ -1,0 +1,65 @@
+CE-FM-046 — FRB scalar-amplitude summary is not a full evolving-source likelihood test.
+Base 300d71f6bfff88e07cb2f118207d26fd6ba41ace; actual CFG779 code/results/criteria and CFG632 helper pinned
+in run_046. Fourteen arithmetic/exact-surrogate checks completed, manifest
+validated. Self-review, no likelihood rerun or external data/PDF replication.
+
+CFG779 committed e1cde1cf0 reports constant B=1.064,[1.010,1.122] and scalar
+classes P0 CONSISTENT, P1/P2 EXCLUDED. Stored Z arithmetic and classes match
+its rule exactly for both footings. K2 and mocked constant-amplitude injection
+are evidence for that constant-amplitude fitting path, not varying histories.
+
+Load-bearing transfer that fails without another reduction:
+Code fits loglike_B with mean_i=B*meanF_i and one constant B. For P1/P2 it
+computes sightline B_i(z_i), takes their sample median, and divides the distance
+from log(median B_i) to the fitted lnB by one posterior16/84percentile width.
+It does NOT fit loglike with candidate means_i=B_i*meanF_i. Consequently the
+quoted7.8/16.6 sigma are conditional scalar-summary distances, not independently
+calibrated likelihood ratios or tail significances for the full evolving source.
+This does not show the actual candidate would pass or reverse its classification.
+It isolates the unverified implication; frozen labels must remain preserved.
+
+Exact counterexample to the general median projection:
+In a Gaussian surrogate with unit variance, base means a_i and true means
+y_i=a_i B_i, the best constant amplitude is
+ B_hat=sum(a_i y_i)/sum(a_i^2)=sum(a_i^2 B_i)/sum(a_i^2),
+not the sample median of B_i. Take a=(1,100),B=(.45,.70): weighted projection
+140009/200020=.699975..., median23/40=.575. The correct varying model has
+zero residual, while the median scalar surrogate has chi2=10001/64=156.265625.
+This is a structural counterexample using a different likelihood, not a mock
+of the actual FRB host/scatter distribution and not a new observational gate.
+Actual marginal likelihood can have still different weights and skewness.
+
+An additional mean-model consistency check is needed: CFG779 B_pred uses
+weight(1+z)/E(z) while the inherited mean includes the census diffuse-electron
+history. The correct depletion-to-mean ratio is
+ B_i=int_0^zi s_b(z) f_d(z) chi_e(z)(1+z)/H(z) dz
+     /int_0^zi f_d(z) chi_e(z)(1+z)/H(z) dz
+with consistent H and ionization conventions, or the fully recomputed means
+for each candidate background/gas model. Omitting a varying f_d cancels only
+if it is constant or an approximation is separately bounded. This receipt
+does not authenticate the Chabrier cache or quantify the resulting correction.
+The main amplitude also depends on assumed baryon density,h,host box and gas
+census; a fixed5percent floor is an estimate, not a fitted universal systematic.
+No global empirical source exclusion is established by this receipt.
+
+Cold-only conversion:
+The post-hoc alternative keeps baryons and therefore evades this particular
+mean-depletion test. It does not follow uniquely from it or derive a local
+conversion mechanism. The existing separate bh_followthrough program already
+computes cold survival .89387 and present global cold/baryon ratio4.7947 from
+an initial5.364 for the same supplied history. Do not duplicate that calculation
+or silently keep a fixed late halo supply factor5.364 after depletion; mapping
+cosmological stocks into host capture remains needed. Local vacuum transfer
+requires spatial momentum/gradient accounting there and CE044's ledger.
+
+Next executable source decision:
+Use each candidate redshift-dependent mean directly in the EXISTING likelihood,
+with the same host priors/support, and marginalise scatter; compare log evidence
+or preregistered model statistic, not just median B_i. Include the actual mean
+weighting and state background/gas assumptions. This would be a separate bounded
+reanalysis, not a repair of frozen outputs. None launched while shared lanes
+are active; CFG779 advertises up to1.5GB, above this task's current limit.
+CFG780 growth and CFG781/727 scoring lanes are queued; no duplication or
+uncommitted score adopted. F1-F6 remain unresolved, kappa fitted, no publication
+or cross-chat message. This is a substantive applicability obstruction, not a
+claim that the entire FRB result is false.

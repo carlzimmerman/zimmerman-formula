@@ -1,0 +1,168 @@
+{
+  "namespace": "FrameworkMetricResponse",
+  "source": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/MetricResponse.lean",
+  "source_sha256": "10ef7aa6e9afc451ea8557d867c9d2f133f39e49d6ea3d97294a05a4300e9108",
+  "main_log": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/compile.log",
+  "main_log_sha256": "028b98953df0cfff6f2e8132427d1b63de5bac4766838d7b0d239cc244575609",
+  "theorem_count": 9,
+  "entries": [
+    {
+      "name": "FrameworkMetricResponse.null_optical_dictionary",
+      "line": 17,
+      "exact_statement": "theorem null_optical_dictionary (\u03a6 \u03a8 e dt dl : \u211d)\n    (ht : 0 < temporal \u03a6 e) (hs : 0 \u2264 spatial \u03a8 e)\n    (hnull : temporal \u03a6 e * dt ^ 2 = spatial \u03a8 e * dl ^ 2) :\n    dt ^ 2 = (opticalIndex \u03a6 \u03a8 e * dl) ^ 2",
+      "statement_sha256": "2e0e98f34e48d16b272fa8146d9d383c9db25ef5dc54dae17fcb75d984247745",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked local action response under declared weakmetric admission",
+      "English_review": "metric_action_admission/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkMetricResponse.actual_optical_derivative",
+      "line": 27,
+      "exact_statement": "theorem actual_optical_derivative (\u03a6 \u03a8 : \u211d) :\n    HasDerivAt (opticalIndex \u03a6 \u03a8) (-\u03a6 - \u03a8) 0",
+      "statement_sha256": "9d9757e435215c3360c2bccbff5ff4c3435936ccbc2d8e534751727112014d94",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked local action response under declared weakmetric admission",
+      "English_review": "metric_action_admission/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkMetricResponse.actual_fermat_derivative",
+      "line": 38,
+      "exact_statement": "theorem actual_fermat_derivative (\u03a6 \u03a8 slope : \u211d) :\n    HasDerivAt (fermatDensity \u03a6 \u03a8 slope) ((-\u03a6 - \u03a8) * Real.sqrt (1 + slope ^ 2)) 0",
+      "statement_sha256": "f2a899e027103a5e7543ef0ef796bfb10eeb6b55824a4034fa14c56886f27236",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked local action response under declared weakmetric admission",
+      "English_review": "metric_action_admission/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkMetricResponse.actual_worldline_derivative",
+      "line": 43,
+      "exact_statement": "theorem actual_worldline_derivative (m \u03a6 \u03a8 speed : \u211d) (hv : speed ^ 2 < 1) :\n    HasDerivAt (worldlineDensity m \u03a6 \u03a8 speed)\n      (-m * (\u03a6 + \u03a8 * speed ^ 2) / Real.sqrt (1 - speed ^ 2)) 0",
+      "statement_sha256": "b159c677da8999d8f5c0ba9a51447ff0ea459e02866c4729102f3dbd666db52d",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked local action response under declared weakmetric admission",
+      "English_review": "metric_action_admission/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkMetricResponse.actual_rest_worldline_derivative",
+      "line": 58,
+      "exact_statement": "theorem actual_rest_worldline_derivative (m \u03a6 \u03a8 : \u211d) :\n    HasDerivAt (worldlineDensity m \u03a6 \u03a8 0) (-m * \u03a6) 0",
+      "statement_sha256": "f66d290d55b21d73849ab35ffd7b0cc1dbc03fc46edbad7c4e7b0d65832475a0",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked local action response under declared weakmetric admission",
+      "English_review": "metric_action_admission/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkMetricResponse.optical_profile_gradient",
+      "line": 63,
+      "exact_statement": "theorem optical_profile_gradient (\u03a6 \u03a8 : \u211d \u2192 \u211d) (x d\u03a6 d\u03a8 : \u211d)\n    (h\u03a6 : HasDerivAt \u03a6 d\u03a6 x) (h\u03a8 : HasDerivAt \u03a8 d\u03a8 x) :\n    HasDerivAt (fun y => deriv (opticalIndex (\u03a6 y) (\u03a8 y)) 0) (-d\u03a6 - d\u03a8) x",
+      "statement_sha256": "ba53d2edc760a41d33aa6faa46a188cfe5b93aeb3d87882bdf7047c682781cb6",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked local action response under declared weakmetric admission",
+      "English_review": "metric_action_admission/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkMetricResponse.rest_worldline_profile_gradient",
+      "line": 73,
+      "exact_statement": "theorem rest_worldline_profile_gradient (m : \u211d) (\u03a6 \u03a8 : \u211d \u2192 \u211d) (x d\u03a6 : \u211d)\n    (h\u03a6 : HasDerivAt \u03a6 d\u03a6 x) :\n    HasDerivAt (fun y => deriv (worldlineDensity m (\u03a6 y) (\u03a8 y) 0) 0) (-m * d\u03a6) x",
+      "statement_sha256": "714b92dca79d4cc669c238b9e0a5f88f3368f2840d18224f17cce69a3129d9ee",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked local action response under declared weakmetric admission",
+      "English_review": "metric_action_admission/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkMetricResponse.integrated_optical_response",
+      "line": 84,
+      "exact_statement": "theorem integrated_optical_response {\u03a9 : Type*} [MeasurableSpace \u03a9] (\u03bc : Measure \u03a9)\n    (\u03a6 : \u03a9 \u2192 \u211d) (s : \u211d) (h\u03a6 : Integrable \u03a6 \u03bc) :\n    (\u222b x, deriv (opticalIndex (\u03a6 x) (s * \u03a6 x)) 0 \u2202\u03bc) = -(1 + s) * (\u222b x, \u03a6 x \u2202\u03bc)",
+      "statement_sha256": "5195ff1a7c3e8c8a11bb78cba88f182649e815baf6a40948cb683c85bd59b483",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked local action response under declared weakmetric admission",
+      "English_review": "metric_action_admission/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkMetricResponse.same_cold_different_optics",
+      "line": 96,
+      "exact_statement": "theorem same_cold_different_optics (m : \u211d) (\u03a6 : \u211d \u2192 \u211d) (x d\u03a6 : \u211d)\n    (h\u03a6 : HasDerivAt \u03a6 d\u03a6 x) (hd : d\u03a6 \u2260 0) :\n    deriv (fun y => deriv (worldlineDensity m (\u03a6 y) 0 0) 0) x =\n      deriv (fun y => deriv (worldlineDensity m (\u03a6 y) (\u03a6 y) 0) 0) x \u2227\n    deriv (fun y => deriv (opticalIndex (\u03a6 y) 0) 0) x \u2260\n      deriv (fun y => deriv (opticalIndex (\u03a6 y) (\u03a6 y)) 0) x",
+      "statement_sha256": "1c170c78f00b4ad9f85f9bbb4f53ab9afd325ef6da349b638f40b18df6769b65",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked local action response under declared weakmetric admission",
+      "English_review": "metric_action_admission/formal/CORRESPONDENCE.txt"
+    }
+  ],
+  "model_status": "prospective diagnostic isotropic metric matter response; unspecified gravity action; diagnostic alternatives not certified full covariant theories",
+  "checkpoint": "FRAMEWORK-CERT-MINIMAL-METRIC-2026-10-13",
+  "imports": [
+    "Mathlib"
+  ],
+  "main_exit_code": 0,
+  "PINNED_INPUTS": {
+    "path": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/PINNED_INPUTS.json",
+    "sha256": "0de65e13f8b22272f97019e51c27767fb2fda92d6c3622c8d5cc79f38cdd21d2"
+  },
+  "correspondence": {
+    "path": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/CORRESPONDENCE.txt",
+    "sha256": "5fa8eec6f331687e3a6415c9945a33b87a993beb88719cf2318b0f056e27747d"
+  },
+  "independent_review_status": "pending frozen metadata review; nine theorem bodies independently reviewed",
+  "historical_builds": [
+    {
+      "accepted": false,
+      "source": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/build_history/attempt_01.source.txt",
+      "log": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/build_history/attempt_01.log",
+      "exit_code": 1
+    }
+  ],
+  "false_controls": [
+    {
+      "source": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/FalseOpticalSelection.lean",
+      "source_sha256": "a2d970bcb254e909056148b33a4c365d0538d97af2f71b42b255ae74f637b86d",
+      "log": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/FalseOpticalSelection.log",
+      "log_sha256": "ebf4a1f036cd1e7d66e1f3533dca6c0c11e2fa75a06f0514f5d67fb03a1b3706",
+      "exit_code": 1,
+      "expected_failure": "final mathematical False; no import/type/syntax failure"
+    },
+    {
+      "source": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/FalseMovingPsiAbsent.lean",
+      "source_sha256": "cecc3cf13c1cc90df70d82da79af7571a25cbd4c0a2bcd8b017e650e761b8a13",
+      "log": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/FalseMovingPsiAbsent.log",
+      "log_sha256": "ba50d129320c9260c0cb6c2f3d929e971d06852942e20714d44d3b8e6d7b1148",
+      "exit_code": 1,
+      "expected_failure": "final mathematical False; no import/type/syntax failure"
+    }
+  ]
+}

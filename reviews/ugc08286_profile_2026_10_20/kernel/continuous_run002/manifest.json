@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "claim_id": "UGC08286_CONTINUOUS_EXPONENTIAL_DISK_CONTROL",
+  "repository": {
+    "commit": "1eb877c0dcbdee2bd29f068bbb35a86de4283029",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/ugc08286_profile_2026_10_20/kernel/continuous_exponential_control.py",
+    "--output",
+    "reviews/ugc08286_profile_2026_10_20/kernel/continuous_run002/checks.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "At the six listed benchmark radii the continuous uniform-disk boundary superposition for Sigma=exp(-R/Rd), Rd=1 kpc, agrees with the published Freeman I0K0-I1K1 formula to relative tolerance 1e-7; the calculation separates continuous-kernel accuracy from a sharp annular step-function approximation.",
+    "coefficient_domain": "IEEE-754 binary64 with scipy special functions and deterministic QUADPACK integration",
+    "conventions": "G=4.30091e-6 kpc (km/s)^2/Msun; Sigma0=1 Msun/kpc^2. V2(R)=integral_0^A da exp(-a)*V2_uniform_disk_per_Sigma(R,a) plus analytically bounded omitted outer-disk superposition. a and R in kpc; A=40 kpc. No fitted parameter.",
+    "inputs": [
+      "radii [0.173,0.573,1.133,2.173,4.133,7.733] kpc",
+      "Bovy textbook equations pinned in SOURCES.json",
+      "annular kernel benchmark code and source conventions"
+    ],
+    "bounds": {
+      "radii_count": 6,
+      "support_kpc": 40,
+      "timeout_seconds": 60,
+      "cpu_seconds": 45,
+      "threads": 1,
+      "nominal_working_memory_bytes": 50000000,
+      "memory_hard_cap_enforced": false,
+      "affinity_enforced": false
+    },
+    "non_claims": [
+      "Not an observational mass profile or stellar-population constraint",
+      "No interval certification of binary64 numerical errors",
+      "Sharp annular density discretization has separate convergence limitations"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-20T20:27:40.478053+00:00",
+    "runtime_seconds": 0.402179,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/ugc08286_profile_2026_10_20/kernel/disk_kernel.py",
+    "reviews/ugc08286_profile_2026_10_20/kernel/continuous_exponential_control.py",
+    "reviews/ugc08286_profile_2026_10_20/kernel/SOURCES.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/kernel/disk_kernel.py",
+      "sha256": "1e6376b42a6be0e5483ed6ae45356088864cbb16905f354cda1d52c4ca5063c6",
+      "sha256_after": "1e6376b42a6be0e5483ed6ae45356088864cbb16905f354cda1d52c4ca5063c6"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/kernel/continuous_exponential_control.py",
+      "sha256": "992d15a0d01868a7ba59d1713d30c960033086c6e9b31886f90727476b514f93",
+      "sha256_after": "992d15a0d01868a7ba59d1713d30c960033086c6e9b31886f90727476b514f93"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/kernel/SOURCES.json",
+      "sha256": "0243b04fbbec0338690548e351007fd0bee905a785f392160099995dec5ba1fc",
+      "sha256_after": "0243b04fbbec0338690548e351007fd0bee905a785f392160099995dec5ba1fc"
+    }
+  ],
+  "output_directory": "reviews/ugc08286_profile_2026_10_20/kernel/continuous_run002",
+  "declared_results": [
+    "reviews/ugc08286_profile_2026_10_20/kernel/continuous_run002/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/kernel/continuous_run002/stdout.txt",
+      "sha256": "7deba28cb854b89bc53e00f543bdf4c151d341b2abb34ca5c0f5c559592c9be6",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/kernel/continuous_run002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/kernel/continuous_run002/checks.json",
+      "sha256": "0e5a752240451fb5b1d554e611ecfba46bcb3315baf39d9366b0c0f541e686e5",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

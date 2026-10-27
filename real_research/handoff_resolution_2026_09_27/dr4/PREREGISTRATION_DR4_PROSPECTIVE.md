@@ -1,0 +1,1429 @@
+# GAIA DR4 PRE-REGISTRATION FREEZE
+## de Sitter-Unruh modified-inertia program — the two banked DR4 pipelines
+**Frozen: 2026-07-16. Confrontation target: Gaia DR4 (~Dec 2026).**
+
+---
+
+### Purpose and freeze mechanism
+
+Gaia DR4 will be confronted by exactly two pre-built pipelines in this directory.
+Every analysis choice either pipeline makes — cuts, estimator, binning, error
+model, statistic, decision bands — is frozen in this document BEFORE the data
+exist. Nothing in the tables below may be changed after DR4 lands. The freeze is
+enforced by SHA-256 hashes of the pipeline files (this directory is not a git
+repository; the hashes are the mechanism). Any change after this date must be
+recorded as a dated, clearly-labeled **POST-HOC AMENDMENT** appendix at the
+bottom of this file — the original frozen choice is never edited, and any
+post-hoc amendment must state what the frozen analysis returned first.
+
+**Framework statement (own terms, not the standard-MOND lens):** modified
+INERTIA with horizon-derived a0 = cH_Lambda/Z and the framework's own
+dS-Unruh interpolation g_obs = sqrt(g_bar^2 + g_bar*a0), i.e.
+nu(y) = sqrt(1 + 1/y). Both a0 footings are carried everywhere a0 enters
+(working-rule 4): **canonical a0 = 9.36e-11 m/s^2** (rho_DE / cH_Lambda) and
+**alt a0 = 1.13e-10 m/s^2** (rho_total / cH0).
+
+**Honesty rules binding on the confrontation write-up:** no
+"validates/proves/confirms" language — outcomes are stated as
+consistent/disfavored-at-k-sigma/killed per the pre-declared bands below; the
+gamma = 1.137 value is the modified-GRAVITY number and is never presented as
+the framework-MI target (which is ~1.09, band 1.05–1.10); the s^TX margin is
+~1.5x (the "~9.6x" figure is a superseded looser-bound corner and must not be
+cited); s^TX outcomes are preferred-frame/Lorentz-violation verdicts,
+MOND-family-shared, never MI-vs-MG verdicts.
+
+### Freeze manifest (SHA-256)
+
+| file | role | sha256 |
+|---|---|---|
+| `prep_2026/gaia_dr4_prep/wide_binary_pipeline.py` | FROZEN analysis pipeline, Door 4A | `669fecc4b42b0f0a23c263715d45c3a56cca112af70fccdc4ed95696d53bb4ff` |
+| `prep_2026/gaia_dr4_prep/stx_dipole_template.py` | FROZEN analysis pipeline, Door 4B | `09cf51aef657292412ba0d647744b4470a0dcf58e6e192ba92475fe9930d506b` |
+| `zimmerman-formula/real_research/reviews/wb_dr4_prereg_framework_curve.py` | banked theory-target script (read-only, frozen repo) | `6b8fad626067e076219f56309144b7d56c1050f129601b2d73f3286911ac3798` |
+| `zimmerman-formula/real_research/reviews/stx_target.py` | banked s^TX prediction (read-only, frozen repo) | `1451b7810e48674f3d8759c484aee3bfd7b874836ca0e810de56d289bfab6987` |
+| `zimmerman-formula/real_research/reviews/stx_inpop_recipe.py` | banked s^TX physics + kill ledger (read-only, frozen repo) | `8227bea52b9aa070769b767070cbd0146709c8cafab42432448d4cacd7b7aab1` |
+
+Reproduction commands (both must exit 0):
+`python3 wide_binary_pipeline.py --dry-run` and `python3 stx_dipole_template.py`.
+Frozen RNG seed for both: **20261216**.
+
+---
+
+## SECTION 1 — Wide-binary gamma test (Door 4A)
+
+### 1.1 Hypotheses and frozen theory targets
+
+The observable is **gamma_v**, the deep-regime velocity-boost asymptote
+(v_rms / v_rms,Newton). **Convention warning (frozen):** Chae-style
+gravity-boost gamma = G_eff/G_N is the SQUARE of gamma_v. Published
+force-boost numbers must be square-rooted before comparison
+(e.g. Chae et al. 2026, arXiv:2601.21728: force gamma 1.600 (+0.171/−0.141)
+= velocity gamma_v ≈ 1.26). All targets below are gamma_v.
+
+> ### ⚠️ AMENDMENT 1 — 2026-07-27, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **The original table below had a scoring defect: it listed γ_v = 1.000 as the *Newtonian rival* only.
+> On the framework's own committed action, 1.000 in the 2–30 kAU window is ALSO the framework's
+> prediction.** As frozen, a Newtonian DR4 result would have been recorded as a kill of the framework
+> when it may be a confirmation — and could not have been claimed afterwards without being post-hoc.
+> This amendment fixes that, and it is entered *before* DR4 rather than after.
+>
+> **Why.** The framework carries a response gate `G(ω) = 1/(1 + iω/ω_c)` with
+> ω_c ∈ [1.782, 2.211]×10⁻¹⁴ rad/s. A wide binary's *orbital* frequency at 10 kAU is
+> Ω = 2.44×10⁻¹³ rad/s — **11× above the entire committed ω_c window** — so the gate is SHUT and the
+> boost is suppressed by Re G ≈ 0.005–0.008.
+> The question of whether the kernel senses the acceleration *magnitude* (constant on a circular orbit
+> → gate open → 1.09 stands) or the orbital *frequency* (→ gate shut → 1.000) is now **SETTLED from the
+> committed action**, not left open: `S_matter = −½∫√−g ρ_m [s uᵘ K(□_u/a₀²) u_μ]` with
+> `□_u f = uᵃ∇_a(uᵇ∇_b f)`, and on a circular orbit **□_u u_μ = −Ω² u_μ identically** (sympy residual
+> zero, `real_research/reviews/mi_dcac_branch_settled_2026.py`, 5/5). So K's argument is
+> z = −(Ωc/a₀)² — a frequency. The acceleration magnitude, though genuinely constant, never enters the
+> operator. **The gated (AC) branch is the framework's branch.**
+>
+> | amended hypothesis | γ_v target, 2–30 kAU | basis |
+> |---|---|---|
+> | Newtonian | 1.000 exactly | — |
+> | **framework-MI, GATED (the framework's prediction)** | **1.0004–1.0006**, i.e. <0.04σ from Newton | `mi_wb_gate_fork_2026.py` (11/11), all four footing × ω_c-edge combinations |
+> | framework-MI, ungated (superseded — retained for the record) | band 1.05–1.10, point 1.09 | the original row below |
+>
+> **So a Newtonian DR4 result in 2–30 kAU CONFIRMS the framework's gated branch and does NOT falsify
+> it.** Conversely, a detection of γ_v ≈ 1.09 in that window would falsify the gated branch and revive
+> the ungated one. Both outcomes are informative; neither is a free pass.
+>
+> **Where the framework IS falsifiable — the discriminating window moves outward.** The gate opens at
+> r_gate = (GM/ω_c²)^(1/3), which exceeds the MOND radius r_M = √(GM/a₀) for every mass (ratio
+> 4.54–7.76). Between them is a **dead zone**: sub-a₀ but gate-shut, hence Newtonian, running ~10 → ~50–60
+> kAU for 1.5 M☉. Beyond r_gate the boost switches on as
+> **γ_v − 1 ≃ ½[ν(y_ext) − 1](ω_c²/GM)s³** — exponent **exactly 3**, derived not fitted, amplitude fixed
+> by ω_c, the measured pair mass and the Galactic field, with **zero free parameters**
+> (`mi_wb_cubic_rise_2026.py`, 10/10). An n-pole gate would give s^(3n), so the measured log-slope
+> returns the pole count as n = p/3 (`mi_wb_exponent_pipeline_2026.py`, 6/6). Every published
+> contaminant channel rises as s^(1/2) instead. **FROZEN PREDICTION: p = 3.**
+>
+> **Pre-registered falsifiers of the gated branch**, any one of which kills it: (i) no excess beyond
+> ~50 kAU in a contamination-controlled sample; (ii) an excess whose log-slope is inconsistent with 3;
+> (iii) a knee that does not move as M^(1/3); (iv) an amplitude inconsistent with ω_c²/GM on both
+> footings and both window edges; (v) γ_v ≈ 1.09 detected *inside* 30 kAU.
+>
+> **Power, and the honest limitation.** The shape test needs ~2000 clean pairs per separation bin for
+> ~5σ separation of p = 3 from p = 0.5 (~400 gives only ~2.3σ). El-Badry, Rix & Heintz 2021 has, at
+> d < 200 pc, only 436/270/155/60/24/3 clean pairs across the 30→236 kAU bins — **364 total beyond 50
+> kAU**. So **this test cannot be run on DR3**; it requires DR4's astrometry and sample
+> (`mi_wb_dr3_feasibility_2026.py`, 5/5). That is precisely why this amendment is entered now.
+>
+> **Unchanged by this amendment:** the a₀-degeneracy flag below still holds in full — DR4 γ_v constrains
+> the ν+EFE+gate prescription, **not** the value a₀ = 9.36×10⁻¹¹, and no outcome may be reported as
+> measuring a₀ or Z. a₀'s value, Z, s = −1 and ω_c remain POSTULATED. ω_c in particular is anchored by
+> no independent argument and is the framework's most exposed quantity.
+>
+> **Still open, and newly sharpened:** on the frequency axis |K| = 1 exactly, so K contributes pure
+> phase there and the entire magnitude suppression rests on the separate gate. Giving the gate the same
+> frequency argument as K is now *consistent* rather than assumed — but the K/gate division of labour is
+> underived. This amendment does not close that.
+
+| hypothesis | frozen gamma_v target | source |
+|---|---|---|
+| Newtonian | 1.000 exactly | — |
+| **framework-MI** (per-star MI-EFE prescription) | **band 1.05–1.10, point target 1.09** (dynamical asymptote 1.1015, observable-diluted edge 1.0508) — ⚠️ **SUPERSEDED for 2–30 kAU by Amendment 1: this is the UNGATED number** | banked `wb_dr4_prereg_framework_curve.py` (asserts 1.095 < asy < 1.105), rerun 2026-07-16, exit 0 |
+| framework-as-MG (AQUAL-EFE point-field, framework nu) | 1.137 (computed 1.1389) | same banked script (asserts \|asy − 1.137\| < 0.005) |
+| conventional-MOND benchmark | 1.33 (dynamic-range injection only; Milgrom a0 + literature-scale EFE asymptote — NOT a framework number) | pipeline injection ladder |
+
+Frozen flags carried with the targets:
+- **Prescription flag** (banked, verbatim honored): the per-star MI-EFE law is
+  a prescription, not a completion — the band 1.05–1.10 is a
+  prescription+observable bracket, not a theorem.
+- **a0-degeneracy** (computed in the banked script): Milgrom-a0 MI asymptote
+  1.134 ≈ framework-a0 MG 1.139. A 22% a0 shift moves gamma_v by 3.3%.
+  **DR4 gamma_v constrains the nu+EFE prescription, NOT the value
+  a0 = 9.36e-11.** No outcome below may be reported as measuring a0.
+- **External field (frozen both ways):** primary g_ext,obs = 1.778e-10 m/s^2
+  (= 1.9 a0_can, McMillan-2017-class solar neighborhood; the value the banked
+  targets are computed at). Alt convention g_ext = Vc^2/R0 = 2.078e-10
+  (Vc = 229 km/s, R0 = 8.178 kpc, per the repo Saad-Ting confrontation
+  script). Higher g_ext → more EFE Newtonization → LOWER MI and MG asymptotes.
+  Both g_ext values are frozen now; targets are quoted at the primary and the
+  alt is reported alongside by mechanically rerunning the banked script — no
+  new freedom at confrontation time.
+- **Both a0 footings:** binning and y_extN run both ways always
+  (canonical y_extN = 1.4647; alt y_extN = 1.1513). Gate-measured recovery
+  spread between footings ≤ 0.005 in gamma — the footing is non-diagnostic
+  here; canonical decides, alt is always reported.
+
+
+> ### ⚠️ AMENDMENT 2 — 2026-07-30, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **(a) What changed.** Section 1.1 carries a frozen flag on its own MI target: *"the per-star MI-EFE
+> law is a PRESCRIPTION, not a completion — the band 1.05–1.10 is a prescription+observable bracket,
+> not a theorem."* As of 2026-07-30 that is no longer true. The EFE is **derived** from Theorem B
+> (⟨□_u⟩_u = +|a|², exact on every timelike worldline): the closure's argument is the squared magnitude
+> of the **total** four-acceleration, so the external field enters in **quadrature with a vector cross
+> term** and no multiplying phase function θ(ω_ex/ω_in) is available. Published as Theorem 5 of
+> *Structural Theorems for de Sitter–Unruh Modified Inertia*, DOI 10.5281/zenodo.21707845.
+>
+> **(b) THE FROZEN TARGET SURVIVES — no number is being moved.** Re-deriving γ_v from the derived law
+> at the frozen g_ext values gives an orientation-averaged **γ_v = 1.0799**, which lies inside the
+> frozen band (1.05–1.10) and sits **0.0101** from the frozen point target 1.09. The full nonlinear
+> two-body solve agrees with the linear-response derivation to 0.0014 in γ_v. This amendment therefore
+> **adds** information rather than shifting a target after the fact, which is the only honest form a
+> pre-data amendment can take.
+>
+> **(c) One flag is discharged, one is NOT.** The *prescription flag* above is discharged: the law is
+> now a theorem within the first-moment closure family. The **a0-degeneracy flag is untouched** and
+> still binding — no DR4 outcome may be reported as measuring a₀ = 9.36e-11.
+>
+> **(d) NEW PHYSICS THE FROZEN PIPELINE AVERAGES AWAY: the EFE is ANISOTROPIC.** Because the cross term
+> is a vector, the response to the internal field is a **tensor**, with eigenvalues
+> γ²∥ = d(νg)/dg|_g_ext (separation along g_ext) and γ²⊥ = ν(g_ext) (perpendicular). At the frozen
+> primary g_ext = 1.778e-10 and canonical a₀:
+>
+> | orientation | derived γ_v |
+> |---|---|
+> | separation ∥ g_ext (toward/away from Galactic centre) | **1.0112** |
+> | separation ⊥ g_ext | **1.1115** |
+> | isotropic average (what the frozen scalar fit measures) | **1.0799** |
+>
+> The spread is **0.1004 in γ_v = 3.6× the frozen σ_tot = 0.028**, and it exceeds σ_tot on *every*
+> footing and g_ext convention (0.0888–0.1158, i.e. 3.2–4.1 σ_tot). The frozen §1.3 estimator fits a
+> single scalar γ_v and averages this away.
+>
+> **(e) ADDED STATISTIC (pre-registered here, before data).** Alongside — never substituted for — the
+> frozen scalar fit, run an **orientation-resolved** fit: bin pairs by the angle between the projected
+> relative-separation vector and the Galactic-centre direction, and fit γ_v per bin using the otherwise
+> unchanged frozen estimator, cuts, error model and strictness ladder.
+>
+> **(f) SIGN PRE-DECLARED, so the new statistic cannot be read post-hoc.** **Perpendicular pairs must
+> show the LARGER boost.** A measured anisotropy of the opposite sense at ≥3σ falsifies the derived EFE
+> **independently of the aggregate γ_v**, and must be reported as such. A null anisotropy at the
+> frozen allowances is *not* a kill, because (h) below shows the observable spread is diluted.
+>
+> **(g) This does NOT rescue MI-vs-MG.** The derived average sits +0.0571 from the frozen MG target
+> 1.137, still inside the pre-declared "MI-vs-MG is NOT decided in this zone" band. The §1.5 forecast
+> that MI-vs-MG is **likely undecidable in DR4** stands unamended.
+
+> ### ⚠️ AMENDMENT 3 — 2026-07-30, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **(a) WHAT CHANGED, AND IT IS A THEORY CHANGE, NOT A REINTERPRETATION.** The framework has adopted an
+> **α ≥ 2** interpolation, replacing ν(y) = √(1+1/y) (α = 1). Reason, computed in
+> `real_research/reviews/mi_disformal_tail_freedom_2026.py` and
+> `real_research/reviews/mi_alpha2_migration_2026.py`: the α = 1 tail forces a constant sunward
+> anomaly a₀/2 that is **1279× the Earth 2σ ephemeris bound** (Sereno & Jetzer 2006 Table 1 through
+> their Eq. 9) and drives the disformal lensing construction's own B < 1 premise past **257×** across
+> Mercury→Saturn — while buying **+0.0033 dex** on 175 SPARC galaxies (0.10 σ_int), which the data
+> cannot resolve. **Crucially, a₀'s derivation does not depend on α = 1:** the α = 2 kernel
+> K = √(z/(1+z)) satisfies every premise that derivation uses — Herglotz–Nevanlinna positivity,
+> passivity sup K = 1, the unit sum rule ∫dμ/|t| = K(∞) − K(0) = 1, the horizon floor — and its spectral
+> measure ρ(s) = (1/π)√(s/(1−s)) on 0 < s < 1 is *simpler* than the α = 1 measure (single region,
+> compact support, finite mass 1/2, no additive constant), verified against the closed form to 1e-14
+> over eight decades. So a₀ = cH_Λ/Z is unaffected. What is withdrawn is the word **exact**.
+>
+> **(b) THE FROZEN γ_v TARGETS MOVE. This is the amendment.** Re-deriving through Amendment 2's own
+> quadrature-EFE construction (machinery reproduced against Amendment 2's α = 1 numbers to 0.0008)
+> with the α = 2 kernel:
+>
+> | quantity | frozen (α = 1) | **amended (α = 2)** |
+> |---|---|---|
+> | framework-MI, orientation-averaged, primary g_ext / canonical a₀ | 1.0799 (point target 1.09, band 1.05–1.10) | **1.0246** |
+> | framework-MI, full range over both footings × both g_ext | — | **1.0182 – 1.0350** |
+> | framework-as-MG (scalar μ(a_ex/a₀)) | 1.137 | **1.0473 – 1.0885** |
+> | γ_v ∥ g_ext (primary/canonical) | 1.0112 | **0.9669 — sub-Newtonian** |
+> | γ_v ⊥ g_ext (primary/canonical) | 1.1115 | **1.0523** |
+>
+> The MI prediction now sits **below the frozen band's lower edge (1.05) on every footing/g_ext
+> combination**, and moves by 0.0553 = **2.9σ** at the frozen DR4 error model (σ(γ_v) = 0.0191,
+> N = 30,000). **The frozen band 1.05–1.10 and point target 1.09 are hereby superseded** by the range
+> in the table. Everything else in §1.3 — the estimator, the frozen cuts, the error model, the
+> strictness ladder, the NSS screen — is **unchanged**.
+>
+> **(c) THE PRE-DECLARED ANISOTROPY SIGN IS PRESERVED AND STRENGTHENED.** Amendment 2 (f) pre-declared
+> that **perpendicular pairs must show the larger boost**. Under α = 2 that still holds, and more
+> sharply: the parallel direction goes **sub-Newtonian** (γ_v ∥ = 0.962–0.972 on all four combinations)
+> while perpendicular stays above 1. So Amendment 2's falsifier is not weakened — a measured anisotropy
+> of the opposite sense at ≥3σ still kills the derived EFE independently of the aggregate γ_v.
+>
+> **(d) WHY THIS AMENDMENT IS LEGITIMATE AND ONE PROPOSED EARLIER THE SAME DAY WAS NOT.** Earlier on
+> 2026-07-30 a Milgrom-2022 θ(0)-driven amendment was drafted and then **withdrawn**: it rested on a
+> multiplying phase function θ(ω_ex/ω_in) that this framework provably cannot use (the kernel is exactly
+> unimodular on the oscillatory branch, and Theorem B forces quadrature rather than Milgrom's linear
+> a_in + θa_ex — as Amendment 2 (a) already stated). That was a change of *analysis* on an inapplicable
+> basis, and amending a frozen target for it would have been illegitimate. **This** amendment is a change
+> of *theory*, made by the owner, declared before data, with its cost computed and its losses stated. The
+> distinction is the whole point of pre-registration and is recorded here deliberately.
+>
+> **(e) WHAT THIS AMENDMENT DOES NOT DO.** It does not touch the a₀-degeneracy flag, which remains
+> binding: no DR4 outcome may be reported as measuring a₀ = 9.36e-11. It does not change §1.5's forecast
+> that MI-vs-MG is likely undecidable in DR4 — under α = 2 the MI (1.0246) and as-MG (1.0631, primary/
+> canonical) values separate by 0.0385 = 2.0σ, still inside the pre-declared undecidable zone. And it
+> does not migrate the 267 other corpus scripts still computing on the α = 1 kernel; their numbers are
+> α = 1 results until re-derived.
+
+>
+> **(h) Scope, stated so the added statistic is not oversold.** The eigenvalue calculation is
+> equal-mass and deep-regime, and the observable angle is a **projection**. Unequal mass ratios and
+> projection both **dilute** the anisotropy, so 0.1004 is an **upper bound** on what DR4 can see, not a
+> forecast. The dilution factor is not computed here and must not be assumed to be unity at scoring.
+>
+> **(i) Prior art, credited.** An anisotropic effective gravity in an external field is a **known**
+> feature of MOND-type EFE treatments (Milgrom; Banik & Zhao and others have discussed it for wide
+> binaries). Novelty here is confined to (i) its **derivation** from this framework's action rather
+> than prescription, and (ii) the specific frozen numbers above.
+>
+> **(j) Related tightening, recorded for completeness.** The off-circular closure ambiguity — directly
+> relevant because wide binaries are eccentric — was narrowed from ~570% to **7.9%** on 2026-07-30
+> (`real_research/reviews/mi_offcircular_closure_collapse_2026.py`, published in DOI
+> 10.5281/zenodo.21702746). This removes a named liability on the WB prediction but changes no frozen
+> target. The residual weighting freedom within the first-moment family remains open, and is now
+> testable via dispersion-supported systems at ~1.2–1.9σ on archival data (Prop 7 of the same paper).
+>
+> **(k) Verification.** All numbers in this amendment are produced by
+> `prep_2026/gaia_dr4_prep/amendment2_derived_efe.py` (exit 0, 6 internal checks, output committed
+> alongside as `.out`). Nothing in Sections 1.1–1.6 above is edited; this block is additive.
+
+
+> ### ⚠️ AMENDMENT 4 — 2026-07-31, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **This is an ARITHMETIC CORRECTION to Amendments 2 and 3, not a change of theory.** It was found by
+> adversarial audit of this document, and it runs *against* the framework. Verified by
+> `real_research/reviews/mi_prereg_gext_argument_audit_2026.py` (exit 0, 16 structural checks, output
+> committed alongside as `.out`).
+>
+> **(a) WHAT THE FROZEN ANALYSIS RETURNED FIRST.** Amendment 2 (α = 1): γ_v ∥ = 1.0112, γ_v ⊥ = 1.1115,
+> orientation-averaged 1.0799. Amendment 3 (α = 2): γ_v ∥ = 0.9669, γ_v ⊥ = 1.0523, orientation-averaged
+> 1.0246, full range 1.0182–1.0350.
+>
+> **(b) THE DEFECT.** The framework's interpolation is defined with the **Newtonian** argument,
+> a = ν(y)·g_bar with y = g_bar/a₀. Both amendments instead evaluate ν and d(νg)/dg at
+> **g_ext,obs / a₀ = 1.8996** — the *observed* ratio. This is demonstrated, not asserted: feeding the
+> observed ratio reproduces the frozen table to **3.3e-5** (Amendment 3) and **7.9e-4** (Amendment 2),
+> while the closure-inverted Newtonian argument misses it by **1.1e-2** and **2.8e-2** — a 330×
+> discrimination. §1.1 of this document *already publishes the correct quantity* (`y_extN`), and §3's
+> gate shape uses it; the amendments bypassed it. **This is the same bug class STANDING §5.1 records
+> from the Lyman-α forest chain**, where a response kernel evaluated at the Newtonian instead of the
+> observed argument inflated every significance by 1.9–5.6×.
+>
+> **(c) A SECOND, INDEPENDENT DEFECT.** §1.1's `canonical y_extN = 1.4647; alt y_extN = 1.1513` are the
+> **α = 1** closure inversions of g_ext,obs (confirmed to 4.3e-4 / 3.2e-4). Under the **α = 2** kernel in
+> force since 2026-07-30 the inversions are **1.6809** and **1.3280**. Those published `y_extN` values
+> are therefore **stale** with respect to Amendment 3's own kernel, independently of (b).
+>
+> **(d) THE CORRECTED TARGETS. These supersede the Amendment 3 table.**
+>
+> | quantity | Amendment 3 (as frozen) | **Amendment 4 (corrected)** |
+> |---|---|---|
+> | framework-MI, orientation-averaged, primary g_ext / canonical a₀ | 1.0246 | **1.0310** |
+> | framework-MI, full range over both footings × both g_ext | 1.0182 – 1.0350 | **1.0218 – 1.0472** |
+> | γ_v ∥ g_ext (primary/canonical) | 0.9669 | **0.9636 — still sub-Newtonian** |
+> | γ_v ⊥ g_ext (primary/canonical) | 1.0523 | **1.0631** |
+> | `y_extN` fed to ν (canonical / alt), α = 2 | 1.4647 / 1.1513 (α = 1 values) | **1.6809 / 1.3280** |
+>
+> **(e) BOTH OF AMENDMENT 3's CONCLUSIONS SURVIVE — computed, not hoped.** (i) The MI prediction still
+> sits **below the frozen band's lower edge 1.05 on all 4/4** footing × g_ext combinations (corrected
+> range 1.0218–1.0472). (ii) γ_v ∥ stays **sub-Newtonian on all 4/4** (0.9592–0.9688), so Amendment 2 (f)
+> and Amendment 3 (c)'s pre-declared anisotropy sign is intact. The correction moves the
+> orientation-averaged γ_v by 3.6e-3 to 2.9e-2 — **88× to 716×** the 4.1e-5 accuracy at which the frozen
+> table reproduces, so the defect is real; but far too small to flip any pre-registered PASS/FAIL.
+>
+> **(f) THE ERROR RAN AGAINST THE FRAMEWORK, and that is recorded deliberately.** On every footing and
+> both kernels the as-frozen numbers are **more Newtonian** than the corrected ones (|γ−1| = 0.0246 vs
+> 0.0310 at α = 2 primary/canonical). The defect was making this framework's wide-binary prediction look
+> *closer* to Newton — i.e. *less* detectable — than its own kernel implies. It manufactured a deficit,
+> not a win.
+>
+> **(g) THE UPPER EDGE IS BREACHED, AND THE SURVIVING MARGIN IS THIN.** Independently reproduced by
+> `real_research/reviews/mi_dragged_frame_consolidation_2026.py` (100 checks, 6 mutation controls all
+> killed, exit 0), which identifies the convention rather than assuming it: mutating to the *consistent*
+> convention returns 1.030988. Two consequences beyond (d)–(e):
+> - The worst corner goes 1.0350 → **1.047199**, **breaching Amendment 3's own frozen upper edge by
+>   0.0122 = 0.639 σ_fit.** That range endpoint is superseded by the (d) table.
+> - Amendment 3's decisive conclusion ("MI below 1.05 on every combination") survives, but its **worst
+>   margin is cut 5.36×: 0.786 σ_fit → 0.147 σ_fit.** It is now a *thin* pass, not a comfortable one, and
+>   must be reported that way at scoring.
+>
+> **(h) TWO FURTHER DEFECTS, found in the same audit and NOT corrected here — reported so they are on the
+> record before DR4.** (i) **Amendment 1's gated row is stale under α = 2**: it carries 1.0004–1.0006,
+> where the α = 2 kernel implies **1.00012–1.00020**. (ii) **Amendments 2 and 3 use mismatched
+> orientation-averaging conventions** — no single fixed convention reproduces both frozen averages, missing
+> one of them by 6.4e-4 to 1.2e-3 (the frozen document itself declares 0.0008). (iii) Two sub-1e-3
+> provenance wrinkles: §1.1's `y_extN = 1.4647` comes from rounding g_ext/a₀ to exactly 1.9, and its
+> `alt y_extN = 1.1513` implies a₀_alt = 1.1298e-10 rather than the mandated 1.13e-10. None of (i)–(iii)
+> moves a verdict; all three are owed a correction.
+>
+> **(i) SCOPE — what is NOT corrected here, so this block is not read as complete.** Only the
+> framework-MI eigenvalues are recomputed. Amendment 3's **framework-as-MG row (1.0473–1.0885)** uses a
+> scalar μ(a_ex/a₀) prescription that plausibly carries the *same* argument error and is **not corrected**;
+> the **§2 s^TX Door-4B** numbers were not examined at all. Neither may be assumed sound because the MI
+> row has been fixed. Both are owed a separate audit.
+>
+> **(j) A FALSIFIABILITY TRAP IS FLAGGED BUT NOT RESOLVED, and resolving it is the owner's call.** The
+> **gate branch** (knee 43–72 kAU, slope p = 3) and the **frame branch** (knee 532–603 kAU, beyond any
+> bound pair) between them cover **both outcomes** of the frozen >50 kAU shape test, and both predict
+> Newton in 2–30 kAU at γ_v − 1 ≈ 1.0–1.5e-6 — 17 883× below the frozen lower edge 1.0182. **A test that
+> cannot fail is not a test.** One branch must be committed to in the open before DR4 lands, or the shape
+> test struck. This amendment does **not** make that choice.
+>
+> **(h) WHAT THIS AMENDMENT DOES NOT DO.** It does not touch the a₀-degeneracy flag: no DR4 outcome may
+> be reported as measuring a₀ = 9.36e-11. It does not change the estimator, the frozen cuts, the error
+> model, the strictness ladder, or the NSS screen. It does not change κ = 1/2, which remains **fitted,
+> not derived**. And it does not alter the standing rule that a confirmation of a frozen prediction is
+> scored as a **kill** where the pre-registration says so.
+
+> ### 🚨 AMENDMENT 5 — 2026-08-02, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **§2's s^TX AMPLITUDE IS BUILT ON THE RETIRED α = 1 KERNEL AND COLLAPSES BY SIX ORDERS OF MAGNITUDE.
+> A TEST THIS DOCUMENT DECLARED LIVE AND FALSIFIABLE IS NOT.** This is the amendment with the largest
+> consequence of any filed so far, and it is filed against interest.
+>
+> **THE DEFECT.** §2 builds the boost dipole from `S → a₀/(2|g_orb|)`, the deep-Newtonian tail of the
+> **α = 1** closure. Symbolically the two kernels differ in FORM, not in coefficient: α = 1 gives
+> x − y → ½, a **constant** offset a₀/2, so A₁ = a₀/2g; α = 2 gives x − y → 1/(2y), a **decaying**
+> offset, so A₂ = a₀²/2g². Hence
+>
+> $$A_2/A_1 \;=\; a_0/g \;=\; 1.45\times10^{-6}\ \text{ at Saturn.}$$
+>
+> The α ≥ 2 kernel has been in force since 2026-07-30 (Amendment 3), because the α = 1 tail implies a
+> constant sunward anomaly a₀/2 at **1279× the Earth 2σ ephemeris bound**. So the kernel that §2's
+> amplitude assumes is the one this document already retired.
+>
+> **THE NUMBERS.** |s^TX| falls **8.68e-10 → 1.258e-15** (canonical) and **1.048e-9 → 1.834e-15** (alt).
+> The pre-registered margin goes from a live **1.50× / 1.24×** to **1.03e6× / 7.09e5×**. Reproducing the
+> frozen 1.50×/1.24× exactly confirms the normalisation is this document's own, not the auditor's.
+>
+> **THE SIGN IS UNCHANGED.** The collapse factor a₀/g is positive, so the pre-declared **NEGATIVE** sign
+> survives intact. Only the amplitude dies. No post-hoc sign freedom is created or claimed.
+>
+> **WHAT THIS COSTS, STATED PLAINLY.** Amendment 4 moved numbers without flipping any pre-registered
+> outcome. **This one flips an outcome: a test declared LIVE and FALSIFIABLE becomes untestable.** The
+> α ≥ 2 switch cured the 1278× ephemeris liability for 0.0033 dex on SPARC — and it also destroyed the
+> s^TX front as a falsifier. **That cost was not priced when the switch was made.** Combined with the
+> separate finding that a locally-dragged frame flips the s^TX sign, the s^TX front is **doubly
+> compromised**, and the α = 2 one binds because α = 2 is in force.
+>
+> **SCORING CONSEQUENCE.** §2's DETECT / KILL / WRONG-SIGN-KILL bands are **VOID under α = 2**. No DR4
+> s^TX result may be scored against them. The front reverts to NO-VERDICT by construction, not by data.
+> The **direction** lock (Planck apex, component ratios 0.208:−0.971:−0.120) and the **negative sign**
+> lock are unaffected and remain frozen.
+>
+> **WHAT IS NOT CHANGED.** Not the wide-binary sections. Not the estimator, cuts, error model, strictness
+> ladder or NSS screen. Not the a₀-degeneracy flag: no DR4 outcome may be reported as measuring
+> a₀ = 9.36e-11. Not κ = ½, which remains **fitted, not derived**.
+>
+> Source: `real_research/reviews/mi_stx_alpha2_collapse_2026.py` (10 checks, exit 0, both footings).
+> Author-verified from scratch: every adversarial verifier and the critic died on a spend limit, so
+> nothing here rests on an unrefuted subagent claim.
+
+> ### 🚨 AMENDMENT 7 — 2026-08-02, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **AMENDMENT 6 REGISTERED A TARGET THIS DOCUMENT HAD ALREADY SUPERSEDED, AND THE 3σ REQUIREMENT IT INVOKES
+> IS UNREACHABLE AT ANY SAMPLE SIZE.** Two defects, both internal to this document. Filed with one half
+> helping the framework (its predicted signal is 55% larger than registered) and the other half hurting it
+> (that larger signal still cannot reach 3σ).
+>
+> **(a) THE SUPERSEDED TARGET.** Amendment 4(d) (2026-07-31) states verbatim *"These supersede the Amendment
+> 3 table"* and gives the in-force ungated α=2 target as **γ_v = 1.0310, full range 1.0218–1.0472**.
+> Amendment 6 (2026-08-02) then registered the row *"framework-MI, UNGATED (the framework's prediction under
+> α = 2) … ≈ 1.02"* — which is Amendment 3's 1.0246 rounded, the value 4(d) had retired. **Amendment 6
+> reached back past the amendment that corrected it.** The registered 1.02 lies *below the entire in-force
+> range*; in the observable (γ_v − 1) it is **55% low at the point value and 136% low at the worst frozen
+> corner**.
+>
+> Why 4(d) is the one in force, verified rather than asserted: the framework's law is a = ν(y)·g_bar with the
+> **Newtonian** argument y = g_bar/a₀, and under α=2 the closure inversion of y_extN = 1.6809 returns
+> g_obs/a₀ = **1.8996 to 1.3e-5** — so the frozen 1.8996 is the kernel's *output*, and Amendments 2–3 fed ν
+> its own output and double-boosted. Independent cross-check on the same inversion: the cubic law's amplitude
+> prefactor ½[ν(y_extN) − 1] = **0.0651** under α=2.
+>
+> **(b) CORRECTED REGISTRATION.**
+>
+> | amended hypothesis | γ_v target, 2–30 kAU |
+> |---|---|
+> | Newtonian | 1.000 exactly |
+> | **framework-MI, UNGATED under α = 2 — IN FORCE (Amendment 4(d))** | **1.0310, range 1.0218–1.0472** |
+> | ~~framework-MI, UNGATED "≈ 1.02"~~ (Amendment 6 — **superseded value, corrected here**) | — |
+> | framework-MI, ungated under the retired α = 1 | band 1.05–1.10, point 1.09 |
+> | framework-MI, GATED (Amendment 1 — basis withdrawn) | 1.0004–1.0006 |
+>
+> **(c) THE 3σ REQUIREMENT IS UNREACHABLE — this is the part that cuts against the framework.** The frozen
+> error model is σ_tot = √(σ_fit² + 0.02²) with σ_sys = 0.02 **irreducible**. At the in-force signal
+> γ_v − 1 = 0.0310, Newton-vs-MI gives **z = 1.12 σ_tot at N = 30,000** and ceilings at **z = 1.55 as
+> N → ∞** (1.09–2.36 across the four frozen footing × g_ext corners). **Not one corner reaches 3σ at any
+> sample size.** Amendment 6's *"γ_v ≈ 1.02 is a real risk taken in advance"* therefore is not implementable
+> in this document's scoring machinery as written: declaring the risk does not create the power to resolve it.
+>
+> **(d) §1.5's "expected DECIDABLE" IS WITHDRAWN AS STALE.** Its *"3 sigma needs N ≳ 12,200 — expected
+> DECIDABLE"* is **α=1, statistical-only** arithmetic that no amendment revisited. Redone statistical-only at
+> the in-force signal it is **N ~ 102,500** (a factor 8.4); with σ_sys included it is unreachable at any N.
+>
+> **(e) THE LABEL TRAP — a scorer must not report a single label.** A measured γ̂ = 1.000 sits **1.12 σ_tot**
+> from the in-force MI target, so under this document's own |z| < 2 rule it would score as *"CONSISTENT WITH
+> framework-MI"* — the **opposite** label from the "evidence AGAINST" Amendment 6 intends. **Required: report
+> the raw γ̂ with σ_fit, and both distances (to 1.000 and to 1.0310), never a single verdict word.**
+>
+> **(f) WHAT STANDS.** Amendment 6's withdrawal of the Amendment 1 hedge **stands**: a Newtonian 2–30 kAU
+> result remains evidence *against* the framework's wide-binary prediction and **must not be re-hedged after
+> DR4 lands** — subject to (c), which bounds how strong that evidence can be. Also unchanged: §2 per
+> Amendment 5, the estimator, the 16-row cut table, the error model itself, the strictness ladder, the NSS
+> screen, the a₀-degeneracy flag, and **κ = ½ fitted, not derived**. No measurement moves.
+>
+> **(g) ONE CORRECTION TO AMENDMENT 6's OWN SCOPE.** Amendment 6 reported the falsifiability trap as narrowed
+> from 2 routes to 1. It is **still 2**: the registered 1.0004–1.0006 was computed from the hybrid
+> S(|a|/a₀)×L(ω/ω_c) form — this corpus's own committed completion shape — not from the amplitude-free
+> reading Amendment 6 refutes, so the hybrid gate branch survives alongside the locally-dragged frame branch.
+>
+> **SOURCE:** `real_research/reviews/mi_amendment7_wb_target_conflict_2026.py` (7 checks, exit 0, both
+> footings, no `check(True)`).
+>
+> ### 🚨 AMENDMENT 6 — 2026-08-02, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **AMENDMENT 1's BASIS IS WITHDRAWN, AND THE WIDE-BINARY BRANCH INVERTS. The registered γ_v target of
+> 1.0004–1.0006 is not the framework's prediction; the UNGATED value is.** Filed against interest,
+> because it removes a hedge this document created for the framework's benefit.
+>
+> **WHAT AMENDMENT 1 DID.** It cited `mi_dcac_branch_settled_2026.py` by name as having SETTLED the
+> DC/AC branch "from the committed action", on the strength of "□_u u_μ = −Ω² u_μ identically (sympy
+> residual zero)", and on that basis registered **γ_v = 1.0004–1.0006, <0.04σ from Newton**, declaring
+> that "a Newtonian DR4 result in 2–30 kAU CONFIRMS the framework's gated branch and does NOT falsify it."
+>
+> **WHY THAT BASIS FAILS — three defects, increasing in seriousness.**
+> **(i)** The eigenvector identity is **FALSE AS STATED.** It was verified on a two-component *spatial*
+> vector; the time leg was never formed. On the actual 4-velocity □_u annihilates u⁰ (eigenvalue **0**)
+> while the spatial legs give **−(γΩ)²**, so u_μ is **not** an eigenvector. A mutation control reproduces
+> the false PASS by deleting the time leg, isolating the defect exactly.
+> **(ii)** Pulling K out of the contraction as K(z)(u·u) = −K(z) requires a genuine eigenvector. The
+> correct block value is **+γ²v²K(z)** — opposite SIGN and suppressed by (v/c)², a factor **6.75e11** at
+> the wide-binary scale this was written to decide.
+> **(iii) DECISIVELY, THE STRATEGY FAILS.** Selecting the branch by reading □_u off the action selects the
+> reading in which the action's modification is **amplitude-free** — |K| → 1 at every real system, on both
+> kernels and both footings, against a law requiring μ_fw(1) = 0.618. That is the reading in which the
+> framework has **no rotation curves at all**. A wide-binary prediction cannot be settled by the reading
+> that deletes the galaxy phenomenology.
+>
+> **AND IT INVERTS, without needing ω_c at all.** A one-pole low-pass **passes DC with unit gain**
+> whatever ω_c is, and |a| is **exactly constant** on a circular orbit (the Jul 27 script verified that
+> itself). So Amendment 1's Re G = 0.005–0.008 suppression **does not apply** on the branch the
+> framework's phenomenology actually uses, and γ_v reverts to the **UNGATED** value.
+>
+> | amended hypothesis | γ_v target, 2–30 kAU |
+> |---|---|
+> | Newtonian | 1.000 exactly |
+> | **framework-MI, UNGATED (the framework's prediction under α = 2)** | **≈ 1.02** |
+> | framework-MI, ungated under the retired α = 1 | band 1.05–1.10, point 1.09 |
+> | framework-MI, GATED (Amendment 1 — **basis withdrawn**) | 1.0004–1.0006 |
+>
+> **SCORING CONSEQUENCE, AND IT CUTS AGAINST THE FRAMEWORK.** Amendment 1 existed to stop a Newtonian DR4
+> result being scored as a kill. **That hedge is withdrawn.** A Newtonian result in 2–30 kAU is once again
+> evidence AGAINST the framework's wide-binary prediction, and γ_v ≈ 1.02 is a real risk taken in advance.
+> **This must not be re-hedged after DR4 lands.**
+>
+> **ONE THING IT DOES NOT DO, stated so this is not read as more than it is.** Withdrawing the gate branch
+> removes only **ONE** of this document's two routes to a Newtonian reading. The **locally-dragged FRAME**
+> branch reaches γ_v − 1 ≈ 1.0–1.5 × 10⁻⁶ independently, with **no gate involved** (17 878× below the
+> frozen undragged lower edge 0.0182). What remains of that branch is a single ajar door —
+> **screening + differential drag**. So the falsifiability trap is **NARROWED from two branches to one,
+> NOT resolved**, and committing to one branch in the open remains owed.
+>
+> **ALSO WITHDRAWN.** The **DEAD ZONE** prediction (r_gate/r_M = 4.54–7.76, the ~10→50–60 kAU window for
+> 1.5 M☉) was AC-conditional and goes with the branch. And ω_c is not a forced ingredient of the
+> framework: on the magnitude branch K's own argument already separates the Earth (|a|/a₀ ~ 10⁷) from a
+> galactic orbit (~1), which is ordinary MOND logic needing no gate. Read with §1's "ω_c is a free
+> parameter", the gate is **neither forced nor anchored**.
+>
+> **WHAT IS NOT CHANGED.** Not §2 (see Amendment 5). Not the estimator, frozen cuts, error model,
+> strictness ladder or NSS screen. Not the 16-row cut table. Not the a₀-degeneracy flag. Not κ = ½,
+> **fitted, not derived**. And no measurement moves: the SPARC RAR at 0.108 dex, the a₀-line and the flat
+> curves are measurements against a LAW and are untouched.
+>
+> Sources: `real_research/reviews/mi_dcac_branch_verdict_withdrawn_2026.py` (29 checks, exit 0, both
+> footings, mutation control isolating the defect), building on `mi_action_eom_vs_rar_2026.py` and
+> `mi_dcac_split_settled_2026.py`. The superseded file carries a WITHDRAWN notice at its head.
+
+
+### 1.2 Frozen DR4 cut list
+
+The DR4 catalog fed to the pipeline (`--catalog`, columns
+`sep_kAU, v_perp_kms, M1_msun, M2_msun, d_pc`) MUST be built with exactly
+these cuts. This table is mirrored in the code (`FROZEN_DR4_CUTS`).
+
+| # | cut | frozen value | a-priori ground |
+|---|---|---|---|
+| 1 | Galactic latitude | \|b\| > 15 deg | Banik et al. 2024 (MNRAS 527, 4573) §2.1 — crowding/extinction |
+| 2 | magnitude | G < 17 both components | Banik+24 §2.1; astrometric error model validity; MS mass calibration |
+| 3 | distance | d < 250 pc (parallax > 4 mas) | Banik+24 §2.1 |
+| 4 | parallax S/N | ≥ 40 both components | distance error < 2.5% → vtilde error < 4%, subdominant to the 5% mass error; non-binding for most of the G<17, d<250 pc DR4 sample (guards tails only) |
+| 5 | parallax consistency | \|d1 − d2\| < min(4 sigma, 8 pc) | Banik+24 §2.1 |
+| 6 | projected separation | 2 < s < 30 kAU | Banik+24; the MOND radius r_M(1 Msun) ≈ 7 kAU sits inside the window (deep-regime leverage); > 30 kAU = chance-alignment + Galactic-tide regime |
+| 7 | RUWE | < 1.4 both | Gaia DPAC single-star threshold (Lindegren 2018 TN; Lindegren+21); RUWE inflation traces unresolved companions (Belokurov+20, MNRAS 496, 1922) — a direct contamination screen |
+| 8 | ipd_frac_multi_peak | ≤ 2 both | Banik+24 §2.4.3 — resolved blends |
+| 9 | extinction | A_V < 0.5 | Banik+24 §2.4.1 |
+| 10 | total mass | 0.464 < M_tot < 4.31 Msun | validity range of the Banik+24 eq.6 cubic M_G→M (M_G in [0.6, 11.1]); outside it the inversion is non-physical |
+| 11 | RV consistency | reject \|dRV\| > max(3 sigma_dRV, 3 v_c(s_proj)) where both components carry DR4 RVs | Banik+24 §2.4.5 (his own screen; ~3.5% loss at DR3) — hierarchical triples induce km/s-scale dRV vs ≤ ~1.4 km/s orbital ceiling at s ≥ 2 kAU, M_tot ≤ 4.31 |
+| 12 | **NSS screen (NEW, DR4-enabled)** | reject pairs where either component has ANY DR4 non-single-star solution (astrometric orbit, acceleration, or spectroscopic orbit) | DR4's 66-month epoch astrometry is the designed detector for exactly the undetected inner companions that inflate gamma — the direct cut on the contamination axis that DR3 lacked |
+| 13 | resolved-triple search | no co-moving third Gaia source (parallax within 3 sigma, PM within 5 sigma of the pair) with G < 20 within projected 30 kAU of either component | Banik+24 faint-companion search analog (his m_G < 20 depth) |
+| 14 | chance alignment | R_chance_align < 0.01 (El-Badry-style statistic recomputed on DR4) | El-Badry, Rix & Heintz 2021 (MNRAS 506, 2269): the > 99%-bound-probability subsample threshold (their own highest-confidence class); Chae 2023 (ApJ 952, 128) §2.1 uses the same value |
+| 15 | vtilde error | sigma(vtilde) ≤ 0.1 max(1, vtilde/2) | Banik+24 eq.10 — bounds deep-bin noise inflation (D1-type diagnostic) |
+| 16 | vtilde cap | **NONE at catalog level**; the estimator's symmetric cap vtilde < 6.0 applies identically to data and forward model | symmetry between data and model MC (Banik's catalog-level vtilde ≤ 5 is NOT adopted for DR4; it appears only in the DR3-era dry-run transcription, and an asymmetric catalog cap the model does not share would bias the medians) |
+
+**Frozen strictness ladder** (each run alongside the primary, never substituted
+for it): RUWE 1.4 → 1.2; R_chance 0.01 → 0.001; separation 2–30 → 3–20 kAU;
+RV-screened subsample only; NSS screen OFF (as a contamination probe — the
+off/on shift measures the contamination the screen removes).
+
+### 1.3 Frozen estimator and statistic (exactly as coded)
+
+- Observable per pair: vtilde = v_perp / sqrt(G M_tot / s_proj).
+- Binning: median(vtilde) in 8 bins of log10(y_proj), y_proj = g_N(s_proj)/a0,
+  frozen edges **[−1.5, −1.1, −0.8, −0.5, −0.2, 0.1, 0.5, 1.0, 2.2]**;
+  bins with < 80 pairs dropped; symmetric outlier cap vtilde < 6.0;
+  per-bin errors: 200-resample bootstrap of the median.
+- Forward model: Newtonian Kepler population MC (3,000,000-pair master, sized
+  so its finite-MC error is subdominant; that error is bootstrapped at a
+  reference gamma and propagated — ignoring it produces a ±1–2% pseudo-bias,
+  found and fixed at the gate), thermal f(e) = 2e primary, DR4 noise
+  (§1.4), 5% Gaussian mass scatter, masses via the Banik+24 eq.6 cubic.
+- Fit: 1-parameter profile chi2 for the deep asymptote gamma_inf over the
+  frozen grid **0.90 to 1.50, step 0.0025**, with the EFE-saturated transition
+  shape gamma(y) = 1 + (gamma_inf − 1) · y_extN/(y_extN + y),
+  y_extN = framework-inverted external field (primary g_ext §1.1).
+- Nuisance: one multiplicative kappa (eccentricity-calibration mismatch),
+  **anchored** as a Gaussian prior on the high-acceleration bins
+  (log10 y ≥ 0.5, boost ≈ 1 for every gamma on the grid) and profiled
+  analytically over the deep bins. (A fully-free kappa is degenerate with
+  gamma and biases it low by ~0.01–0.05 — found and fixed at the gate.)
+  **Frozen kappa acceptance window: [0.95, 1.05].** kappa outside the window
+  = eccentricity/anchor calibration mismatch → the verdict is downgraded to
+  "systematic-limited" (§1.5), never re-tuned.
+- 1-sigma from delta-chi2 ≤ 1; the quoted sigma(gamma) is
+  **max(profile sigma, independent-realization rms)** (the pipeline's own
+  conservative rule).
+- Shape caveat (frozen): injection and recovery share the transition shape by
+  construction — the gate certifies ASYMPTOTE RECOVERY, not shape
+  discrimination. The confrontation must also overlay the banked exact
+  framework curve (`wb_dr4_prereg_framework_curve.py`); shape
+  mis-specification is a flagged systematic, not a tunable.
+
+### 1.4 Frozen error model
+
+DR3 per-star sigma_pm, sigma_plx vs G interpolated from Lindegren et al. 2021
+(A&A 649, A2) grid as tabulated in the code; DR4 scaling frozen at
+**sigma_pm × (66/34)^−1.5 = 0.372** and **sigma_plx × (66/34)^−0.5 = 0.718**
+(nominal mission scaling; flagged APPROX). Mass calibration error: 5% Gaussian
+per pair (Banik+24 quote ~5.5%, §2.3.3). If DR4's published per-source errors
+differ from this model, the pipeline uses the PUBLISHED DR4 errors and the
+model-MC noise is regenerated from them — that is a mechanical substitution,
+not a re-tune, and is recorded in the amendment appendix.
+
+### 1.5 Pre-declared decision bands
+
+Let gamma_hat, sigma_fit be the pipeline output on the frozen-cut DR4 catalog
+(canonical footing decides; alt footing reported). Frozen total error:
+
+- **sigma_sys = 0.02** (frozen allowance), covering: eccentricity-model
+  mismatch ±0.015 (gate-measured flat-vs-thermal shift −0.015; the
+  Hwang+22-preferred SUPERTHERMAL population lies beyond thermal on the same
+  axis and is covered at the same magnitude with opposite sign — flagged),
+  a0-footing spread ≤ 0.005, residual shape/g_ext dependence.
+- **sigma_tot = sqrt(sigma_fit^2 + 0.02^2)**.
+
+Verdict rule (frozen): z_H = (gamma_hat − gamma_H)/sigma_tot for each
+hypothesis H in {1.00, 1.09 [band 1.05–1.10], 1.137, 1.33}.
+"**Consistent with H**" requires |z_H| < 2; "**H disfavored**" requires
+|z_H| > 3; "**supports H over H'**" requires BOTH |z_H| < 2 AND |z_H'| > 3.
+
+Expected DR4 numbers (from the gate, N = 30,000 assumed; if DR4 yields a
+different N after the frozen cuts, sigma_fit scales as sqrt(30000/N) —
+mechanical, no freedom): sigma_fit ≈ 0.019, sigma_tot ≈ 0.028. Illustrative
+band edges at sigma_tot = 0.028:
+
+| gamma_hat lands in | pre-declared reading |
+|---|---|
+| ≤ 1.007 | supports Newtonian over framework-MI (MI disfavored > 3 sigma); a Newton-side verdict is contamination-ROBUST (contamination only pushes gamma UP) |
+| 1.007 – 1.083 | no hypothesis separation at the frozen thresholds — report as undecided with the z-table |
+| 1.083 – 1.145 | non-Newtonian at ≥ 3 sigma AND framework-MI-compatible; **MI-vs-MG is NOT decided in this zone** (1.137 lies inside it); requires the ladder-stability + kappa-window + contamination tests to pass, else "systematic-limited" |
+| 1.145 – 1.20 | MG-side; MI disfavored per z; same ladder requirements |
+| > 1.20 | **contamination-guard zone**: above every EFE-saturated target, approaching the no-EFE benchmark — pre-declared reading is "contamination-dominated or EFE-shape failure", NO hypothesis verdict permitted (this is where the DR3 dry run landed, §1.6) |
+
+Separation forecasts (frozen, statistical at N = 30k): Newton vs MI 1.09 at
+3 sigma needs N ≳ 12,200 — expected DECIDABLE. MI 1.09 vs MG 1.137 at 3 sigma
+needs N ≈ 45,000 statistically AND sigma_sys < 0.01 — pre-declared as
+**likely UNDECIDABLE in DR4 at the frozen allowances**; no post-hoc shrinking
+of sigma_sys may be used to claim it. MOND benchmark 1.33 separates from all
+others at > 7 sigma.
+
+Stability requirements for any non-Newtonian verdict (frozen): every
+strictness-ladder variant (§1.2) must shift gamma_hat by < 1 sigma_fit; kappa
+within [0.95, 1.05]; the NSS-off contamination probe must move gamma_hat
+TOWARD the verdict value when the screen is turned ON. Any failure →
+"systematic-limited, no verdict" — that outcome is reported, not repaired.
+
+### 1.6 Contamination axis: mitigation plan and the DR3 dry run read honestly
+
+**The axis:** undetected close companions (hierarchical triples) add orbital
+velocity to v_perp and inflate gamma — contamination biases HIGH, mimicking a
+boost, never a deficit. This is the known interpretation axis of the entire
+wide-binary literature (Chae 2023 models hidden companions probabilistically;
+Banik+24 rejects them by screens; their opposite conclusions — force-boost
+detection vs Newtonian at 19 sigma — trace to exactly these choices).
+
+**How the frozen cuts bound it:** four independent screens attack it — RUWE
+< 1.4 (astrometric-wobble tracer, Belokurov+20), the DR4 NSS screen (direct
+66-month orbit/acceleration detection — the qualitatively new DR4 handle),
+the RV screen (km/s-scale dRV from inner companions vs ≤ 1.4 km/s orbital
+ceiling), and the resolved-triple search to G < 20. The NSS-off ladder rung
+measures removed contamination directly, and the asymmetric verdict rule
+(§1.5) makes the Newton-side reading contamination-robust while holding any
+boost-side reading to the stability tests.
+
+**DR3 dry run (2026-07-16, El-Badry+21 eDR3 catalog, Banik-like cuts,
+10,624 pairs): gamma = 1.205 ± 0.035 (canonical), 1.2025 ± 0.0337 (alt).**
+Honest reading, frozen: this value lands in the pre-declared
+contamination-guard zone (> 1.20) and is **consistent-with-contamination**:
+the dry-run sample is LOOSER than Banik's 8,611 (three of his screens are not
+implementable from the eDR3-era catalog: the chi2/nu cut beyond the RUWE
+substitute, the faint-companion search, and the RV triple screen — each
+removes triples, so their absence biases gamma HIGH by construction). The
+repo's own banked audits quantify the degeneracy: a Newtonian population
+needs f_triple ≈ 0.19–0.20 to absorb the deep-bin excess
+(`wb_threshold_audit`), and the deep-bin medians sit ~2–3 sigma above the
+calibrated Newtonian MC while the MOND upper bound overshoots them by 6–22
+sigma (`wb_deprojection_mc`). **The dry run is a pipeline shakeout — machine
+works, real data in, plausible-magnitude output — and is NOT evidence for any
+hypothesis, including the framework's.** It is also not evidence against:
+1.205 with no triple screens is exactly what either a Newtonian or an MI
+population plus known contamination would produce. The DR4 run with cuts
+11–13 active is what adjudicates.
+
+### 1.7 Gate and dry-run record (rerun after the freeze edits, 2026-07-16)
+
+`python3 wide_binary_pipeline.py --dry-run` → **exit 0, GATE VERDICT: PASS.**
+Synthetic-injection gate (N = 30,000, DR4 noise, no hard-coded passes):
+inject 1.00 → recover 0.9850 ± 0.0137 (canonical) / 0.9900 ± 0.0125 (alt);
+inject 1.09 → 1.0950 ± 0.0137 / 1.0925 ± 0.0150;
+inject 1.33 → 1.3450 ± 0.0212 / 1.3375 ± 0.0212 — all within
+max(2 sigma, 0.02). Spread check (8 catalogs @ 1.09): mean 1.0881,
+rms 0.0191. Eccentricity bracket: flat-e truth under thermal-e model shifts
+gamma by −0.0150 (flagged systematic, §1.5). DR3 dry run: §1.6 numbers,
+802 deep pairs (y < 0.3, canonical).
+
+
+> ### 🚨 AMENDMENT 8 — 2026-08-03, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **THE FRAMEWORK HAS CHANGED ITS KERNEL, AND THE WIDE-BINARY TARGET MOVES BY A FACTOR 5.10 IN THE
+> OBSERVABLE.** The two ranges do not overlap, so this is an amendment-grade move and not a rounding drift.
+> Filed with the halves separated: the target move and the enforceability gain HELP the framework; three
+> withdrawals, two new declared risks and one refused headline HURT it.
+>
+> **(a) WHY THE KERNEL CHANGED.** The framework's power-law kernels fail the solar system. α=1 forces a
+> constant a₀/2 sunward anomaly at 1279× the Earth/Mars bound with no external-field relief; α=2 softens it to
+> a 1/g tail, which therefore binds at the *lowest*-acceleration body — the Sun, whose Jupiter-driven reflex
+> sits at only ≈2233 a₀ — leaving 8.5× (canonical) / 12.4× (alt) the Mars ranging budget after a full
+> Levenberg–Marquardt ephemeris fit. **"Route A" replaces the power-law approach to Newton with an exponential
+> one:** ν(y) = 1/(1 − e^−√y), y = g_bar/a₀. At the Sun that suppresses the anomaly by 3.3×10¹³ and the
+> departure is exponentially small *in the action* (fractional 2.7×10⁻²² at the Sun). The kernel has a
+> Bekenstein–Milgrom field theory whose free function is derived in closed parametric form and proved convex,
+> elliptic, ghost-free, subluminal, with positive phantom density and an exact BTFR.
+>
+> **(b) THE NEW IN-FORCE TARGET.** γ_v = **1.1582**, full range **1.1311–1.1964** on the radial-average
+> convention; **1.1339–1.2007** on the magnitude-average convention. Both are carried, because §1.1's frozen
+> headline 1.1015 was produced by the *magnitude* convention and the two must not be silently interchanged.
+> This supersedes Amendment 4(d)'s and Amendment 7's γ_v = 1.0310 (range 1.0218–1.0472). In the observable,
+> (γ_v − 1) goes 0.0310 → 0.1582. **Route A's entire range sits above the whole α=2 range.**
+>
+> **(c) THE GAIN IS REAL, NOT AN ARTEFACT — VERIFIED RATHER THAN ASSUMED.** The obvious worry is that an
+> exponential kernel is simply closer to Newtonian and the front has lost diagnostic power. It is the
+> opposite. At the wide-binary external field x_ext = 1.89929 the closure inversions give ν(y_extN) =
+> **1.47342 (Route A)** against 1.13014 (α=2), 1.29733 (α=1) and 1.52651 (Milgrom "simple"). Route A is
+> *farther* from Newtonian at wide-binary accelerations than either retired kernel, sitting just inside
+> "simple". Its Newtonian collapse happens at *large* y — ν−1 = 3.7×10⁻⁴⁴ at y = 10⁴ against α=2's
+> 5.0×10⁻⁹ — which is the ephemeris regime, not this one.
+>
+> **(d) STANDS AND STRENGTHENS: a Newtonian 2–30 kAU result remains evidence AGAINST, and now enforceably
+> so.** A measured γ̂ = 1.000 sits **4.74–7.10 σ_tot** from the Route A target at the frozen N = 30,000, above
+> 3 even at the worst corner, where α=2 gave only 0.79. Amendment 6's un-hedged rule — a Newtonian result is
+> evidence against and must not be re-hedged after DR4 — therefore becomes *enforceable* rather than merely
+> declared. This number is untouched by (g) below: under a Newtonian truth the estimator's shape bias is
+> identically zero, because γ_inf = 1 fits exactly.
+>
+> **(e) WITHDRAWN — Amendment 4(e)(ii).** Its claim that *"γ_v∥ stays sub-Newtonian on all 4/4
+> (0.9592–0.9688)"* is **Route-A-false**: γ_∥ is **super-Newtonian on 4/4 corners (1.0235–1.0598)**. That
+> claim was α=2-specific and is withdrawn rather than quietly re-scoped. It does **not** touch (f): the
+> *sign* of the anisotropy is unaffected.
+>
+> **(f) UNCHANGED AND STRONGER: the pre-registered anisotropy falsifier.** Perpendicular pairs still show the
+> larger boost on 4/4 corners (worst margin 0.1577), so Amendment 2(f)/3(c)'s falsifier — an opposite-sense
+> anisotropy at >3σ — is intact and is in fact *stronger* under Route A (spread 0.1758 against α=2's 0.0994).
+>
+> **(g) REFUSED AS A HEADLINE: "3σ reachable / §1.5's expected DECIDABLE restorable".** This is registered as
+> **CONDITIONAL, pending the frozen Monte Carlo**, not as a result. On the frozen document's *literal
+> absolute* error model the infinite-N ceiling rises from Amendment 7's 1.55σ to **6.55–9.82σ** and 3σ needs
+> N ≈ 4,597–10,321, below the assumed 30,000. But two readings break it. (i) Folding this front's own newly
+> identified shape systematic (+0.0373) into σ_sys in quadrature drops the ceiling to **3.10–4.64σ** and
+> pushes the worst-corner N to **93,122 — above the frozen N = 30,000**. (ii) Under a *fully proportional*
+> σ_sys reading the ceiling is 4.50σ and is **exactly kernel-invariant: Route A earns zero improvement**,
+> because a systematic calibrated at an injected excess cancels the signal exactly. Amendment 7's 1.55σ cap
+> was itself an artefact of treating a signal-calibrated systematic as absolute. **§1.5 is therefore NOT
+> restored by this amendment.**
+>
+> **(h) NEW DECLARED RISK — the nuisance-κ window FAILS under Route A.** Under Route A truth the pipeline's
+> nuisance κ lands at **1.0575–1.0959, outside the frozen pre-declared window κ ∈ [0.95, 1.05]**, whose
+> declared consequence is *"systematic-limited, no verdict — that outcome is reported, not repaired."* The
+> mechanism is σ-independent: the anchor bins are built on the premise that the boost is ≈1 for all γ on the
+> grid, but Route A's true boost at the anchor centres is 1.1006 (y = 5.62) and 1.0058 (y = 39.8). α=2 passes
+> both σ treatments, α=1 fails one, **Route A fails both.** This is registered now, in advance, as a live
+> route to a no-verdict outcome.
+>
+> **(i) NEW DECLARED RISK — the contamination guard is ALREADY breached on one corner.** On the *magnitude*
+> convention — the one §1.1's headline used — the alt-footing / primary-g_ext corner predicts **1.20069, i.e.
+> 0.00069 ABOVE** the frozen >1.20 no-verdict edge, not 0.0036 below it as the radial convention alone
+> suggests. On that corner **a genuine framework detection is pre-declared UNSCOREABLE.** Quoting the margin
+> on one orientation convention only would have truncated this cost at its convenient end.
+>
+> **(j) CORRECTED IN THE SOURCE AND NOT CARRIED FORWARD.** A claimed *new, Route-A-caused* estimator
+> systematic is **withdrawn**: substituting Route A's own y_E into the frozen shape gives bias +0.0405, which
+> is *larger* than the frozen α=1 y_E's +0.0373 — so the α=1 hard-coding slightly *helps* — and the sign
+> reverses under the pipeline's actual fitting routine (−0.0416 flat, −0.0891 count-weighted; negative in all
+> six treatments across all three kernels). The relative bias is **identical across kernels (23% / 24% /
+> 23%)**, so it is a pre-existing functional-form defect of the rational shape y_E/(y_E+y), which cannot
+> represent a curve flat to y ≈ 1 then falling exponentially. It is neither new nor Route-A-caused. **A
+> one-sided systematic registered in the wrong direction is worse than none registered**, which is why it is
+> withdrawn rather than filed.
+>
+> **(k) SCORING — Amendment 7(e) REAFFIRMED, and it already covers the collision.** The framework's own Route
+> A prediction 1.1582 falls in the bin pre-declared *"MG-side; MI disfavored per z"*, and the frozen MG target
+> 1.137 now lies **inside** Route A's framework-MI range, only 0.77 σ_tot from the point value. A scorer
+> executing the frozen table on a measurement at the framework's own prediction could therefore record the
+> framework as disfavored, and cannot distinguish the framework's prediction from the row this document
+> forbids presenting as the framework's. Amendment 7(e)'s requirement already forbids the single-label reading
+> the collision depends on and is **reaffirmed without weakening**: report the raw γ̂ with σ_fit and BOTH
+> distances — to 1.000 and to 1.1582 — never a single verdict word.
+>
+> **(l) THE TRAP STAYS AT 2 ROUTES, and the fork becomes more decidable.** The hybrid gate S×L branch survives
+> Route A, so there remain two independent routes to a Newtonian reading, not one. Route A makes the gate's
+> amplitude *exactly* the kernel's Newtonian residual, S = 1 − μ = e^−√y — a structural simplification
+> available in neither power-law kernel. At 10 kAU the gated prediction is 1.00064–1.00117, observationally
+> Newtonian, under both gating conventions. But the two branches are now **8.2–10.2 σ_fit apart against 1.6 at
+> α=2**, so whichever branch DR4 picks, it picks it harder. **New sharpening, cutting both ways:** the gated
+> branch is no longer flat-Newtonian across the frozen window — it predicts an internal rise reaching
+> 1.56 σ_fit by 30 kAU while staying 0.001 σ_fit at 2 kAU, making the gated branch falsifiable *within* the
+> frozen window.
+>
+> **(m) THE a₀-DEGENERACY FLAG SURVIVES AND MUST NOT BE LOOSENED — and its price rises.** In relative terms
+> the sensitivity is nearly kernel-invariant (a 28% a₀ change moves (γ_v − 1) by 33% under Route A against 32%
+> at α=1), but in absolute measurable terms it grows from **1.15 to 1.87 σ_tot**. A DR4 measurement is
+> therefore *more* a₀-sensitive than before. This is still not permission to report a DR4 result as measuring
+> a₀ = 9.36e-11.
+>
+> **UNCHANGED.** §2 remains void per Amendment 5. The estimator, the 16-row cut table, the error model itself,
+> the strictness ladder, the NSS screen and the frozen N = 30,000 are untouched. κ = ½ remains **fitted, not
+> derived** — and note that the SPARC κ-discrimination this corpus reported at 2.2σ does *not* survive the
+> kernel change on Route A's own kernel (it flips to 0.66σ the other way), though three of four transition
+> shapes including the shape-free deep limit still lean κ = ½, none at 3σ. No measurement moves.
+>
+> Source: `real_research/reviews/mi_route_a_wb_gamma_v_2026.py` (26 checks, exit 0, both footings) on the
+> single kernel definition in `real_research/reviews/mi_route_a_kernel.py` (6 checks, exit 0). Adversarially
+> verified from scratch by an independent re-derivation (brentq closure inversion, scipy.quad, Richardson
+> extrapolation, a₀ re-derived from H₀ and Ω_Λ), which reproduced every corner to five decimals and forced
+> items (g), (h), (i) and (j) of this amendment. Two tautological check conjuncts, one variable-reassignment
+> bug that printed a falling a₀ price where a rising one belongs, and four stale docstring numbers were fixed
+> in the source on 2026-08-03 before this amendment was filed.
+
+> ### 🚨 AMENDMENT 9 — 2026-08-09, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **THE FRAMEWORK'S OPERATIVE ARM CHANGES FROM MODIFIED INERTIA TO MODIFIED GRAVITY, AND THE
+> WIDE-BINARY TARGET MOVES WITH IT.** The ranges do not overlap, so this is amendment-grade. Filed with
+> the halves separated, and with the one scoring defect it creates repaired in the open rather than
+> left for a scorer to discover.
+>
+> **(a) WHY THE ARM CHANGED — a 21σ exclusion, not a preference.** Modified inertia requires the metric
+> to stay baryon-sourced, and photons have no rest mass to modify. It therefore predicts
+> M_dyn/M_lens = 1/f_bar ≈ 6.44 in clusters against an observed 1.0–1.3: **≈21.2σ**, and 4.2σ even on a
+> fivefold-inflated systematic. All three rescue routes are closed: the enhancement cannot sit in both
+> the metric and the inertia (doing both gives a = ν²g_bar); the Randers–Finsler null cone degenerates
+> at μ = ½ with Euclidean signature below, unavoidably for any interpolation reaching deep MOND; and
+> Bekenstein–Milgrom's point-particle limit is memoryless. **MI-as-fundamental is closed. This is a
+> NARROWING, not a refutation — a₀ = κc√(Gρ_Λ) is arm-independent and survives intact.**
+>
+> **(b) SUPERSEDED / AMENDED TO.** Amendment 8's in-force γ_v = 1.1582 (range 1.1311–1.1964 radial /
+> 1.1339–1.2007 magnitude) is the **modified-inertia** value and is superseded. The modified-gravity
+> arm predicts, for an AQUAL-type external-field effect where the boost is isotropic and no orientation
+> average is needed, **γ_v = √ν(y_extN) = 1.2139 (canonical footing) / 1.2592 (alt footing)**.
+> **REGISTERED AS PROVISIONAL.** The superseded number came from a full nonlinear per-star EFE solve
+> validated against an independent linear-response tensor calculation to 2.9×10⁻⁵; this replacement is
+> the **point-field isotropic asymptote only**, and it reproduces the corpus's independently recorded
+> perpendicular eigenvalue to 10⁻⁴ but is NOT the same grade of calculation. **A full nonlinear
+> AQUAL-EFE solve is OWED, and until it exists this target carries provisional status.** Filing it at
+> parity with the number it replaces would overstate it.
+>
+> **(c) THE >1.20 NO-VERDICT EDGE IS RE-DERIVED FROM ITS OWN DEFINITION, NOT MOVED FOR CONVENIENCE.**
+> As frozen, that row reads "above every EFE-saturated target, approaching the no-EFE benchmark". Both
+> clauses are constructive, and the first is now **factually false**: the MG EFE-saturated target
+> reaches 1.2592. The edge was originally placed essentially AT the top of the then-current
+> EFE-saturated range (1.20 against a top target of 1.20069, with the 0.00069 overshoot filed as
+> Amendment 8 declared risk (d)). **Applying that same construction to the current range moves the edge
+> to 1.26**, just above 1.2592, leaving 1.26–1.33 as the contamination-guard zone bounded above by the
+> unchanged no-EFE / full-MOND benchmark 1.33. Rows below 1.145 are untouched; the row "1.145 – 1.20"
+> reads "1.145 – 1.26" and ">1.20" reads ">1.26".
+> **NEW DECLARED RISK, and it is the cost of this repair: the band 1.20–1.26 becomes SCOREABLE where it
+> was previously unscoreable, and the DR3 dry run's 1.205 sits inside it.** That dry run remains
+> excluded on its own independent grounds — §1.6's looser cuts and absent triple screens — and NOT on
+> the strength of the edge; a scorer must not read this move as retroactively converting it into
+> evidence. Had the edge been left at 1.20 the framework's own prediction would have been pre-declared
+> unscoreable, which is the same class of defect Amendment 1 fixed, Amendment 7 re-found and Amendment
+> 8 called the most important thing to repair. This is its fourth occurrence and it is repaired here.
+>
+> **(d) FOR the framework.** (i) The new range is **disjoint** from the superseded one and the
+> separation is 2.68σ at the frozen N, so **DR4 can now distinguish the two arms** — which the MI-only
+> reading could not do. (ii) The directional external-field test flips from kill-switch to **expected
+> signal**: pure MI predicted *exactly zero* aligned rotation-curve asymmetry, AQUAL-class theories
+> predict 1–4% with a definite sign, and the corpus's first firing of that test gave Â = +2.95 at
+> p = 0.029 **with the AQUAL-class sign**. A measurement that was evidence against the superseded arm
+> is evidence for the new one, and it required no new data. (iii) Amendment 8's enforceability gain
+> survives: a Newtonian 2–30 kAU result remains evidence against, and more strongly.
+>
+> **(e) AGAINST the framework.** (a) The provenance mismatch of (b) — provisional, not parity.
+> (b) The scoring repair of (c) carries a real cost, declared there. (c) **The Cassini quadrupole
+> tension (3–15σ RAR-versus-Q₂) is INHERITED by the modified-gravity arm and was NOT carried by
+> modified inertia.** (d) **a₀ = (2/3)c·m²/g and the ζ-pole no-go do NOT transfer** — a
+> Bekenstein–Milgrom theory has no memory kernel and no first moment; two headline results of the MI
+> programme are gone. (e) The g⁻² Lorentz-violation prediction is **gone in pure Bekenstein–Milgrom**,
+> which has no preferred frame; it survives only under an AeST-type completion, so which completion is
+> adopted decides whether the framework keeps that prediction. (f) **Clusters are unchanged**: the
+> residual is a kernel property and the cosmic-baryon-budget wall stands.
+>
+> **(f) UNCHANGED.** The estimator; the 16-row frozen cut table; the error model; the strictness
+> ladder; the NSS screen; the frozen N = 30,000; both a₀ footings; §2 void per Amendment 5; **Amendment
+> 7(e)'s reporting rule — raw γ̂ with σ_fit and both distances, never a single verdict word — REAFFIRMED
+> WITHOUT WEAKENING**; the κ-window declared risk from Amendment 8(c); the a₀-degeneracy flag; and
+> **κ = ½ FITTED, NOT DERIVED**. No measurement moves. Decision-table rows below 1.145 are untouched.
+>
+> **SOURCES.** `real_research/reviews/mi_lensing_axis_2026.py` (24 checks, exit 0);
+> `mi_finsler_null_cone_2026.py` (23, exit 0); `mi_point_particle_limit_2026.py` (19, exit 0);
+> `mi_mg_arm_standing_2026.py` (18, exit 0). The arm switch was forced by the lensing script, which was
+> written to test the MI arm and killed it.
+
+> ### 🚨 AMENDMENT 10 — 2026-08-13, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **THE OWED FULL NONLINEAR AQUAL-EFE SOLVE NOW EXISTS, AND IT MOVES THE WIDE-BINARY TARGET
+> DOWN — by less than its own first unverified draft claimed.**  Amendment 9(b) registered
+> γ_v = 1.2139 / 1.2592 as PROVISIONAL: "the point-field isotropic asymptote only ... A full
+> nonlinear AQUAL-EFE solve is OWED, and until it exists this target carries provisional
+> status."  The solve exists (`prep_2026/gaia_dr4_prep/aqual_efe_full_solve_2026.py`,
+> 18 checks, exit 0) and survived THREE adversarial verification rounds before this filing:
+> round 1 attacked the solver mathematics (all six items CONFIRMED — an independent 288³ FFT
+> solve of the linearized PDE to 1–2%, a direct 3D-quadrature Poisson check to ≤0.16%, a
+> Gauss-flux integral constraint at 7×10⁻⁴); round 2 attacked the first draft of THIS
+> amendment and REFUTED its registered floor, and the corrections are now COMPUTED PARTS of
+> the committed script (the two-body benchmark, the corrected grade, the 6-seed battery), not
+> referee notes.  The provisional status of 9(b) is DISCHARGED.  This filing is
+> amendment-grade by the document's own criterion: the new band and the registered point do
+> not overlap (gaps 1.7–2.8σ_fit canonical / 1.7–3.6σ_fit alt at the frozen-N σ_fit = 0.019;
+> band-top + 1σ sits below the registered point on both footings).
+>
+> **(a) WHY THE REGISTERED NUMBER FALLS — the isotropy premise was false.**  9(b) declared
+> the boost enters "for an AQUAL-type external-field effect where the boost is isotropic and
+> no orientation average is needed" and took γ_v = √ν(y_extN).  Solving the PDE (one-field
+> AQUAL — the framework's own quasi-static limit — with the QUMOND formulation as a fork
+> agreeing to 0.005): the point-mass response in the external field is ANISOTROPIC,
+> B_par = ν(y_extN) = 1.4732 along the external field and B_perp = ν/√(1+L₀) = 1.2598 across
+> it (L₀ = 0.3674, canonical).  **The registered 1.2139 is the square root of the LARGEST
+> eigenvalue used as if isotropic.**  Every defensible orientation treatment gives strictly
+> less; nothing recovers it.  (Two structure notes, recorded: the anisotropy ORIENTATION
+> FLIPS in the transition zone — the computed flip sits at r = 1.96 r_M, INSIDE the frozen
+> 2–30 kAU window — so "parallel is the big axis" holds at saturation only; the standing
+> anisotropy-sign rule is arm-updated in (d2) below.  And the QUMOND sphere-average identity
+> ν₀(1+L/3) ≡ (dx/dy + 2ν₀)/3 equals the superseded MI orientation average exactly, which is
+> why MI-era numbers track ~1.158; the QUMOND fork agrees with AQUAL to 0.005 at the
+> recovered-γ̂ level — the profile-level spread is ~0.016, subsumed in the band grade.)
+>
+> **(b) AMENDED TO — a COMPUTED BAND, graded by the exact two-body benchmark.**  The solve's
+> boost tables were injected into a MIRRORED re-implementation of the frozen pipeline's
+> population MC (orientation geometry retained; the master population and estimator are the
+> pipeline's literal functions) and fitted with the frozen isotropic estimator (`model_medians` + `fit_gamma`, untouched).  The dominant
+> systematic is the two-body COMPOSITION of the relative force where the internal
+> acceleration is high: the committed benchmark (PART C2: closed-form deep limit plus
+> finite-y quadrature, control error 0.2% at y = 1 and 0.1% at y = 10) shows BOTH standard
+> conventions overshoot the exact anchor-bin force — per-star by ~3–8× in excess, total-mass
+> by a computed f_tm(y) = 1.41–1.74 — so the truth-recovery sits at or above the total-mass
+> end, and the registered band is:
+>
+> | footing | total-mass (BAND FLOOR) | benchmark-corrected (BAND TOP) |
+> |---|---|---|
+> | canonical | **1.1614 ± 0.0175** (6-seed centre 1.1610, rms 0.0117) | **1.1814 ± 0.0150** (centre 1.1847, rms 0.0148) |
+> | alt | **1.1917 ± 0.0175** (centre 1.2025, rms 0.0083) | **1.2267 ± 0.0200** (centre 1.2288, rms 0.0058) |
+>
+> The registered 1.2139/1.2592 is overstated by 0.032–0.052 canonical / 0.032–0.067 alt.
+> The per-star composition (1.1139 canonical / 1.1217 alt; battery centres 1.1093/1.1325) is
+> a DIAGNOSTIC ONLY — it is exact in the deep bins but its anchor-bin excess is refuted 3–8×
+> by the benchmark; its first-draft use as a registered floor was itself caught by this
+> filing's verification and is recorded here as the cautionary case.  Declared residual
+> grade: base-seed anchors carry ±0.01-grade seed/rng-call-order sensitivity (the battery
+> centres are the robust quantities and are committed); the EFE-PRESENT exact two-body anchor
+> solve does not exist and is the declared unlock that pins the band top.  Amendment 7(e)'s
+> reporting rule is REAFFIRMED and extended: report the raw γ̂ with σ_fit and its distances to
+> ALL FOUR band anchors, never a single verdict word.
+>
+> **(c) WITHDRAWN: Amendment 9's FOR-item (i).**  "The new range is disjoint ... the
+> separation is 2.68σ at the frozen N, so DR4 can now distinguish the two arms" is FALSE
+> under the full solve.  The canonical band sits 0.003–0.023 ABOVE the superseded MI 1.1582 —
+> 0.17–1.22σ_fit, and INSIDE the superseded MI magnitude range (1.1339–1.2007).  **DR4
+> separates the framework from Newton; it does NOT attribute the arm.**  (Distance
+> conventions used here and throughout: σ_fit = 0.019 per §1.5 at the frozen N; σ_tot =
+> 0.028; the DR3-dry-run σ = 0.0350 at N = 10,624 is labelled wherever used.)  Amendment 9's
+> FOR-items (ii) and (iii) stand: the directional EFE expected signal (Â = +2.95, p = 0.029,
+> AQUAL-class sign) is if anything sharpened by the solved anisotropy, and a Newtonian result
+> remains evidence against — see (f).
+>
+> **(d) THE NO-VERDICT EDGE, RE-DERIVED BY THE AMENDMENT-9 CONSTRUCTION — 1.26 → 1.23.**
+> Amendment 9(c)'s construction (the edge just above the top EFE-saturated target, rounded to
+> 0.01; Amendment 8's earlier edge sat marginally BELOW its top corner, the 1.20069 breach
+> filed as its declared risk) applied to the new top anchor 1.2267 gives **edge = 1.23**.
+> Rows: "1.145 – 1.26" reads "1.145 – 1.23"; ">1.26" reads ">1.23"; the contamination-guard
+> zone is 1.23–1.33, bounded above by the unchanged no-EFE/full-MOND benchmark 1.33.
+> Amendment 9(c)'s declared risk PERSISTS IN NARROWED FORM: the band 1.20–1.23 remains
+> scoreable and the DR3 dry run's 1.205 (frozen §1.6 value) still sits inside it — still
+> excluded on §1.6's own independent grounds, and a scorer must still not read it as
+> evidence.  Row labels carrying arm attributions ("MG-side; MI disfavored per z") are void per
+> (c): rows between 1.083 and 1.23 read **framework-band, arm NOT decided**.  Rows below
+> 1.083 untouched.
+> **DECLARED RISK — the corner class, fifth occurrence, declared not repaired (following the
+> Amendment 8 precedent):** the alt band-top anchor 1.2267 (battery centre 1.2288) sits
+> 0.0033 (centre: 0.0012) below the edge.  P(γ̂ > 1.23 | a true framework outcome at the alt
+> top) ≈ **43–49%** across the σ conventions — roughly ONE IN TWO true alt-top outcomes lands
+> in the guard zone, unscoreable.  This is declared, not repaired: moving to an
+> edge-at-target+kσ construction would be a RULE CHANGE and is NOT adopted.  The canonical
+> band is unaffected (its top 1.1814 sits 2.6σ_fit below the edge).
+>
+> **(d2) THE ANISOTROPY-SIGN FALSIFIER (Amendment 2(f)) — ARM-UPDATED, NOT SUSPENDED.**
+> Amendment 2(f) (preserved by 3(c), reaffirmed by 8(f)) registers: "Perpendicular pairs must
+> show the LARGER boost.  A measured anisotropy of the opposite sense at ≥3σ falsifies the
+> derived EFE independently of the aggregate γ_v."  That sign was MI-arm-derived (the MI
+> tensor is perpendicular-dominant everywhere).  The MG solve gives a RADIUS-DEPENDENT sign:
+> parallel-dominant at saturation (B_par = 1.4732 > B_perp = 1.2598), perpendicular-dominant
+> in the transition zone, with the computed flip at r = 1.96 r_M — inside the window.  The
+> SAMPLE-LEVEL sign, computed by the committed script's projected-angle split under both
+> registered grades and both footings (check E5): **PERPENDICULAR-DOMINANT, magnitude +0.0013
+> to +0.0046 in boost units** — the frozen rule's SENSE is CONFIRMED for the MG arm, at a
+> smaller magnitude than the MI-era expectation.  Therefore: (i) the 2(f) falsifier is
+> RETAINED as a SAMPLE-LEVEL rule with its registered sense unchanged; (ii) its magnitude
+> calibration is arm-updated to the computed range; (iii) the radius-resolved flip is
+> REGISTERED AS AN MG-ARM PREDICTION: under framework truth the widest pairs (r ≳ 2 r_M) are
+> EXPECTED to show parallel-dominance, and a radius-resolved parallel excess in the wide bins
+> must NOT be scored as the 2(f) kill, which applies to the sample-level statistic only.
+> This is an update of an existing frozen rule, filed in the open with its computed basis —
+> not an acquisition of sign freedom.
+>
+> **(e) THE κ-WINDOW RISK — RESOLVED BY ATTRIBUTION, window unchanged.**  On clean full-solve
+> mocks at the frozen N, the pipeline's nuisance κ trips the frozen window [0.95, 1.05] in
+> **12 of 12** battery fits under the per-star composition (κ = 1.054–1.089, overlapping Amendment
+> 8's pre-registered 1.0575–1.0959 danger band — printed clause 8(h), cited as "8(c)" in
+> Amendment 9(f); see (g)) and in **0 of 12** under the registered band grades (total-mass κ
+> = 1.008–1.035; benchmark-corrected 0.990–1.020).  **The κ trip is a per-star-composition
+> artifact, and the framework's registered grades predict NO trip on the real sky.**  The
+> window is NOT moved.  The pre-registered interpretation: if DR4 returns γ̂ in the framework
+> band WITH κ outside [0.95, 1.05], the frozen verdict remains "systematic-limited, no
+> verdict", and the scorer must read it as evidence of a GENUINE systematic (or of the
+> refuted per-star force grade) — NOT as expected framework behaviour.  The first draft of
+> this amendment had pre-registered the opposite reading; its own verification refuted that
+> as a laundering pathway, and the correction is recorded here deliberately.
+>
+> **(f) FALSIFIABILITY RESTATED — it STRENGTHENS.**  Newton 1.000 sits **8.5σ_fit /
+> 5.8σ_tot** below the canonical band floor 1.1614 (battery centre 1.1610), and further below
+> the alt floor.  Amendment 8's un-hedged rule survives strengthened: a Newtonian 2–30 kAU
+> result is evidence against at ≳5.8σ_tot (the superseded MI-era figure was 4.74–7.10σ_tot;
+> the new floor sits comfortably inside that range's demand).  AGAINST, carried openly:
+> (i) arm attribution is lost (c).  (ii) The alt-corner scoreability risk of (d) — roughly
+> half of true alt-top outcomes land unscoreable.  (iii) Dry-run consistency, both labels:
+> against the frozen §1.6 value 1.205 ± 0.035 the canonical band sits 0.7–1.2σ (dry-run σ);
+> against the stage52 post-Amendment-9 re-run value 1.2075 (committed,
+> `nbody_2026/stage52_open_doors_audit_cycle_2026.py` — a DIFFERENT number than the frozen
+> 1.205, labelled here) it sits 0.7–1.3σ.  The dry run is COMPATIBLE with the band; it
+> remains non-scoring per §1.6 and contamination biases it high.  (iv) Grade items NOT
+> discharged, all five carried openly: the EFE-present exact two-body anchor solve (the
+> band-top unlock); self-consistent modified-orbit integration (the pipeline's own declared
+> upgrade path); the real-sky external-field geometry (the solve used isotropic ê per
+> system); star–star cross-talk inside μ (second order at saturation, not included); and the
+> tangential force component (reported, not injected — no tangential term exists in the
+> declared boost shape).  The band of (b) is the declared carrier of that residual
+> uncertainty.
+>
+> **(g) FOR THE RECORD.**  The Amendment 8 clause printed as **8(h)** (κ-window) is cited as
+> "8(c)" in Amendment 9(f), and the clause printed as **8(i)** (the 1.20069 corner) is cited
+> as "8(d)" in Amendment 9(c).  No frozen text is edited; this note is the correction.
+> POST-FILING CODE RETARGET, recorded here so the reference is not dangling: in
+> `wide_binary_pipeline.py` — GAMMA_TARGET 1.2139 → 1.1614 and GAMMA_TARGET_ALT 1.2592 →
+> 1.1917 (the band FLOORS), new companions GAMMA_TARGET_TOP = 1.1814 / GAMMA_TARGET_ALT_TOP
+> = 1.2267, NOVERDICT_EDGE 1.26 → 1.23, the stale "2.68 sigma" comment at its single
+> occurrence corrected, `report_7e` extended to print distances to all four anchors, and a
+> note added that the `anisotropy_split` diagnostic's frozen ANISO_EIG constants embed the
+> superseded MI orientation (the diagnostic stays NON-SCORING; the arm-updated sign rule is
+> (d2)); `report_7e`'s printed risk-lettering strings corrected ("Amdt 8 risk (c)/(d)" →
+> the printed clauses 8(h)/8(i)).  The evidence script pins REGISTERED_A9 = 1.2139/1.2592
+> internally so the retarget cannot shift its debias control (regression-pinned, check E3).
+> The readiness audit is updated in the same commit: its NOVERDICT_EDGE assertion moves to
+> 1.23 (its only hard breakage), its dry-run-risk narrative is re-dated as a historical
+> observation at the old edge, and its tail verdict drops the superseded
+> "gamma_perp = sqrt(nu) = 1.2139" line; then re-run green.
+>
+> **(h) UNCHANGED.**  The estimator; the 16-row frozen cut table; the error model; the
+> strictness ladder; the NSS screen; the frozen N = 30,000; both a₀ footings; §2 void per
+> Amendment 5; Amendment 7(e)'s reporting rule (extended in (b), not weakened); the κ-window
+> [0.95, 1.05] itself; the a₀-degeneracy flag; the no-EFE/full-MOND benchmark 1.33; and
+> κ = ½ FITTED, NOT DERIVED.  No measurement moves.  Rows below 1.083 untouched.
+>
+> **SOURCES.**  `prep_2026/gaia_dr4_prep/aqual_efe_full_solve_2026.py` (18 checks, exit 0:
+> solver gates V1–V4 — Newtonian control, isolated-MOND limit 0.1–0.5%, analytic saturation
+> tensor 0.4–0.5%, half-resolution 0.17%; benchmark gates C2a–C2c; estimator parts D/E with
+> the committed 6-seed battery; regression pin E3; the computed orientation flip E4 and
+> sample-level sign E5).  Verification: round 1, three adversarial referees 2026-08-13
+> (solver mathematics — the referee's own check script is committed alongside as
+> `aqual_efe_referee_round1_2026.py`; its headline figures — 288³ FFT 1–2%, 3D quadrature
+> ≤0.16%, Gauss flux 7×10⁻⁴ — are that artifact's; observable mapping; registration
+> consequences); round 2, a four-lane adversarial workflow on this amendment's first draft,
+> which REFUTED the original floor and κ-signature clauses — both corrections are COMPUTED
+> parts of the committed script and clauses (b)/(e) above; round 3, a fresh referee on the
+> revised text whose two blocking findings (evidence-commit discipline; the 2(f) sign rule)
+> produced the pre-filing evidence commit and clause (d2).  The registered y_extN provenance (closure inversion of the observed
+> g_ext under the Route A kernel) is reproduced in PART A of the same script to 5×10⁻⁴ (the
+> residual is the pipeline's a₀ rounding).
+
+
+> ### 🚨 AMENDMENT 11 — 2026-09-06, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **THE PROGRAM NOW CARRIES TWO MUTUALLY EXCLUSIVE WIDE-BINARY PREDICTIONS, AND ONLY ONE OF THEM
+> WAS REGISTERED. THIS AMENDMENT REGISTERS THE SECOND, STATES WHY THE TWO CANNOT BOTH HOLD, AND
+> FIXES THE DECISION RULE BETWEEN THEM BEFORE THE DATA EXIST.**  It adds; it moves nothing.
+>
+> **(a) Arm A — registered already, unchanged.**  Amendment 10's computed band from the full
+> nonlinear AQUAL-EFE solve of the frozen kernel taken as modified gravity with no coherence
+> length: canonical **1.1614–1.1814**, alt **1.1917–1.2267**; no-verdict edge 1.23; Newton 1.000;
+> σ_fit = 0.019 at the frozen N = 30,000, σ_tot = 0.028.  Every clause of Amendment 10 stands.
+>
+> **(b) Arm B — registered here for the first time.**  The covariant candidate action of the
+> closure program (`qwen_claude_field_theory/closure_2026/THE_ACTION_2026-09-05.md`: a
+> khronometric clock, a dynamical MOND scalar, and the coherence operator ξ²|∇⊥V|² inside the
+> kernel; ν_RAR carried and saturated at its maximum, THE_ACTION §3) passes the static
+> Solar-System gates only with a coherence length at or above a floor set by the Cassini
+> quadrupole and the Saturn monopole (`g03d_exact_fourth_order_solar.py`): **ξ ≥ 0.10 pc
+> canonical / 0.15 pc alt** for the carried kernel (0.07 / 0.10 pc for the superseded exponential
+> carrier).  Evaluated with THE SAME frozen estimator as Arm A — the orientation-averaged force
+> boost over 3–30 kAU turned into γ_v by the registered pipeline's estimator
+> (`g03y_gammav_corrected_floors.py`, 0 FAIL; its control Z0 reproduces the earlier published
+> g03h numbers to 0.002 at both footings) — the candidate returns, AT THE FLOORS:
+>
+> | kernel | footing | ξ at the floor | γ_v (estimator error) |
+> |---|---|---|---|
+> | ν_RAR carried (in force) | canonical | 0.10 pc | **1.0450 ± 0.0037** |
+> | ν_RAR carried (in force) | alt | 0.15 pc | **1.0300 ± 0.0037** |
+> | exponential carrier (superseded, record only) | canonical | 0.07 pc | 1.0375 ± 0.0037 |
+> | exponential carrier (superseded, record only) | alt | 0.10 pc | 1.0275 ± 0.0037 |
+>
+> The quoted error is the estimator's model-side error; the measurement error is the frozen
+> σ_fit / σ_tot.  γ_v DECREASES monotonically as ξ grows above its floor (g03y check Z2: the
+> coherence length lowers the boost; the carried kernel raises it, and the two compete), so the
+> registered numbers are **CEILINGS**: Arm B predicts **1.000 < γ_v ≤ 1.0450 (canonical) /
+> ≤ 1.0300 (alt)**, the ceiling being the prediction at the Cassini-minimal length.  The
+> numbers 1.032 / 1.040 quoted in the closure documents on 2026-09-05 were computed at the old
+> floors 0.03 / 0.05 pc; they are SUPERSEDED and must not be scored.  The candidate's
+> anisotropy sign-flip radius moves to 36–77 kAU at the corrected floors (g03y Z4), outside
+> DR4's usable 4–30 kAU range: Amendment 2(f)'s sample-level sign rule remains an Arm-A rule
+> and is NOT a test of Arm B.
+>
+> **(c) Why both are registered and why they are exclusive.**  Arm A's kernel as strict
+> AQUAL-EFE fails the Cassini quadrupole gate by 4–5× (roadmap gate G01, two independent
+> solvers agreeing to 0.05%).  The same kernel carried by a scalar with the coherence length
+> that passes Cassini IS Arm B, and that length is exactly what lowers the boost from the band
+> to the ceiling.  The two numbers cannot both be true.  Arm A is the frozen program's
+> phenomenological prediction; Arm B is the prediction of the covariant candidate that passes
+> the Solar System.  The program states in advance that it does not get to choose after the
+> data arrive: whichever arm DR4 kills is dead, and if DR4 lands between them both are.
+>
+> **(d) Decision rule — readings ADDED to the section-1 table (existing rows unchanged).**
+> Distances in σ_tot = 0.028 (the table's convention), with σ_fit = 0.019 in brackets; A's
+> canonical floor 1.1614, B's canonical ceiling 1.0450 (alt: 1.1917 / 1.0300, same logic,
+> shifted).  "Falsified" = > 3σ_tot on the wrong side of the arm's edge.
+>
+> | γ̂ lands in | Arm A | Arm B | added reading |
+> |---|---|---|---|
+> | ≤ 1.007 | falsified (≥ 5.5σ_tot below floor) | consistent only as its Newtonian limit (ξ far above the floor) | Arm A dead; Arm B alive but unconfirmed; the implied ξ is reported from g03y's monotone map, no verdict word |
+> | 1.007 – 1.056 | falsified (≥ 3.8σ_tot) | consistent (within 2σ_tot of the ceiling or below it) | **the arm question is decided for B**; B-vs-Newton is NOT decidable at the frozen error model (see (e)) |
+> | 1.056 – 1.084 | disfavored (2.8–3.8σ_tot) | consistent | Newton disfavored at 2–3σ_tot; B favoured over Newton only at that level |
+> | 1.084 – 1.101 | 2.2–2.8σ_tot below floor | within 2σ_tot of the ceiling | **arm NOT decided** (the existing row's "framework-band" reading stands) |
+> | 1.101 – 1.129 | within 2.2σ_tot of the floor | disfavored (2–3σ_tot above the ceiling) | leaning A; not a B kill |
+> | ≥ 1.129 | per Amendment 10 rows | **falsified** (> 3σ_tot above the ceiling; ≥ 4.4σ_fit) | the covariant candidate is dead; Arm A's kernel stands with its unsolved Solar-System problem |
+> | > 1.23 | no-verdict edge (Amdt 10) | falsified regardless | unchanged for A |
+>
+> **(e) Falsifiability, stated against interest.**  At the frozen error model DR4 SEPARATES
+> THE ARMS — ceiling to floor is 0.116 = 4.2σ_tot (6.1σ_fit) — but it CANNOT separate Arm B
+> from Newton beyond 1.6σ_tot (2.4σ_fit) even if the truth sits at B's ceiling, and not at all
+> if ξ is above its floor.  A Newtonian DR4 result therefore falsifies Arm A and leaves Arm B
+> alive.  Arm B is, as a wide-binary prediction, one-sided: DR4 can kill it from above
+> (γ̂ ≥ 1.129) and cannot confirm it.  Confirming B at 3σ_tot needs σ_tot ≤ 0.015 at the
+> ceiling (about four times the frozen N at unchanged systematics, or DR5), or a different
+> observable.  This is recorded so that a Newtonian result is never later described as a
+> success of the covariant candidate: it is the survival of an untested ceiling.
+>
+> **(f) Variant B′ — recorded, NOT registered as a number.**  The four-form promotion of a₀
+> (`kappa_closure/k04_four_form_promotion_consistency.py`, a relayed construction audited
+> 2026-09-06) makes a₀ environmental, a₀_loc = a₀(1 − g_N/155a₀), which depresses the boost at
+> the innermost separations: Δγ_v = −0.019 / −0.015 (canonical / alt) at 2 kAU for a 1.5 M☉
+> pair, −0.008 / −0.006 at 3 kAU, under 0.003 at 5 kAU and beyond.  The registered estimator
+> averages 3–30 kAU, so B′'s effect on the registered number is below the estimator's own
+> error.  It is listed so that a radius-dependent depression of the boost below 4 kAU is
+> interpretable, not so that it can be scored.
+>
+> **(g) Unchanged.**  Everything in Arm A; the estimator; the 16-row frozen cut table; the
+> error model; the strictness ladder; the NSS screen; the frozen N = 30,000; both a₀ footings;
+> the κ window [0.95, 1.05]; the a₀-degeneracy flag; the no-verdict edge 1.23; the no-EFE
+> benchmark 1.33.  Amendment 7(e)'s reporting rule is EXTENDED, not weakened: the raw γ̂ with
+> σ_fit and its distances to Arm A's four anchors AND to Arm B's two ceilings (1.0450 /
+> 1.0300), never a verdict word.  **κ = ½ FITTED, NOT DERIVED** — and now shown underivable by
+> the candidate action itself (`kappa_closure/k01–k04`: the primitive's constant is a zero
+> mode of the field equations; the Λ-free repair has the wrong sign and is 220× too small; the
+> sequestering-type global average misses by five orders; the four-form extension fixes the
+> sign and makes the seesaw form structural but leaves the coefficient as a free coupling
+> ratio Z/β² = 8).
+>
+> **(h) Provenance.**  `qwen_claude_field_theory/closure_2026/g03y_gammav_corrected_floors.py`
+> (numbers, monotonicity, control), `g03d_exact_fourth_order_solar.py` (floors),
+> `THE_ACTION_2026-09-05.md` §3 (kernel), `hunt_2026/g01*`/roadmap gate G01 (Arm A's Cassini
+> failure), `kappa_closure/k04` (B′).  In the same commit: `wide_binary_pipeline.py` gains
+> `GAMMA_B_CEIL = 1.0450` / `GAMMA_B_CEIL_ALT = 1.0300` and `report_7e` prints the distances
+> to them; no registered number of Arm A moved; the readiness audit re-run.
+
+> ### 🚨 AMENDMENT 12 — 2026-09-09, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **AMENDMENT 11(b) REGISTERED ARM B AT A COHERENCE LENGTH THAT IS WRONG FOR THE STRUCTURE
+> AMENDMENT 11(b) NAMES. THIS AMENDMENT CORRECTS THE LENGTH, THE ARM B PREDICTION AND THE
+> KILL THRESHOLD, DECLARES WHICH STRUCTURE IS IN FORCE, AND STATES AGAINST INTEREST THAT ARM B
+> IS NOT A TESTABLE ARM.**  It adds; it moves nothing already registered, and **Arm A is
+> untouched.**
+>
+> **(a) The defect.**  Amendment 11(b) cited ξ ≥ 0.10 pc canonical / 0.15 pc alt from
+> `g03d_exact_fourth_order_solar.py`.  The error is one of **scope, not arithmetic**: the
+> machinery that produced that floor **never evaluates the fourth-order coherence operator on
+> the point mass at all**.  `g02_filtered_efe.py` and `g03x` (the floor's actual source) contain
+> no fourth-order operator; `g03d` and `g03g` do, but apply it to a field whose source is
+> suppressed by 9.3e-7 at Saturn.  Quantified: three screening laws share the observable and the
+> ξ-scaling and differ in normalisation by **1 : 262 : 5.37e5**, and the factor to the deposited
+> paper's formula is *exactly* g_N(Saturn)/(2Ca₀) — the paper suppresses the **saturated
+> residual**, the equation suppresses the **Newtonian source**.
+>
+> **(b) The corrected coherence length.**  Solving the registered structure's own scalar
+> equation drives the scalar gradient onto the **biharmonic cone**, giving an enclosed
+> phantom-mass fraction of exactly **r²/(2ξ²)** — kernel-free, a₀-free and mass-free.  The
+> Pitjev–Pitjeva Saturn phantom-mass bound then forces
+>
+> > **ξ ≥ 4.00 pc** (Saturn gate), or **ξ ≥ 1.38 pc** on the sunward gate alone, **identical on
+> > both footings.**
+>
+> Reproduced three independent ways — an exact symbolic Green's function verified for arbitrary
+> background stiffness, a 3-D FFT solve, and a Newton boundary-value solve in a different
+> variable.  **Robust to a realistic source**: six mass models from a point through a polytropic
+> Sun to the planets, interstellar medium and local Oort density reproduce the law to **0.24%**,
+> and **every departure RAISES the phantom mass**.  **Independent of any kernel continuation**:
+> no solve reaches even half the boost ceiling.
+>
+> **(c) Corrected Arm B prediction — evaluated with the SAME frozen estimator Amendment 11
+> registers** (control: it reproduces both published numbers, `g03g` 1.0325/1.0400 and `g03y`
+> 1.0450/1.0300).
+>
+> | | canonical | alt |
+> |---|---|---|
+> | Amendment 11(b) as registered | 1.0450 | 1.0300 |
+> | **corrected, at ξ ≥ 4.00 pc (Saturn gate)** | **1.0000 ± 0.0025** | **1.0000 ± 0.0025** |
+> | corrected, at ξ ≥ 1.38 pc (sunward gate only) | 1.0025 ± 0.0037 | 1.0025 ± 0.0037 |
+>
+> γ_force = 1 + r²/(2ξ²): mass-free, orientation-free, external-field-free and a₀-free.  The
+> boost at 20 kAU is **2.876e-4** against the registered ceiling's 9.2e-2, a factor **320**.
+>
+> **The registered ceilings are NOT falsified — the corrected value stays below them.**  They are
+> **vacuous**: 320× too loose, excluding nothing.  **Stated against interest: this makes Arm B
+> WEAKER than registered, not stronger.**  There is **no coherence length inside the registered
+> structure that both passes the Solar System and returns 1.0450** — that needs ξ = 0.226 pc,
+> excluded by **313×** on the Saturn phantom mass.
+>
+> **(d) Corrected decision rule — the operative change.**  Amendment 11(d)'s kill-from-above
+> threshold moves:
+>
+> > **≥ 1.129 → ≥ 1.084.**
+>
+> **As registered, a DR4 result in [1.084, 1.129] would kill Arm B and the table would not say
+> so.**  Amendment 11(d)'s row "1.007–1.056 → decided for B" is also wrong at the supported ξ,
+> since the corrected prediction is 1.0000 and that interval no longer contains it.  **Every
+> other row of the section-1 table, and every Arm A reading, is unchanged.**
+>
+> **(e) Structure declaration — CARRIER, decided 2026-09-09.**  The deposited paper
+> (DOI 10.5281/zenodo.22667688) and `THE_ACTION_2026-09-05.md` both display the coherence
+> operator **inside** the MOND function with a **carrier** source, and Amendment 11(b) names that
+> structure verbatim.  The registered γ_v was nonetheless computed by a solver using the
+> **outside** placement **and** an **AQUAL** source; those placements give floors of **4 pc and
+> 585 pc** and are not interchangeable.  **The programme is hereby declared to be the CARRIER
+> reading**, so the ambiguity cannot be resolved after the data.
+>
+> **(f) What is NOT corrected.**  **Arm A is untouched** — its band (1.1614–1.1814 /
+> 1.1917–1.2267) comes from the frozen kernel taken as modified gravity with **no** coherence
+> length, so nothing above bears on it.  Every clause of Amendments 10 and 11(a) stands.  The
+> estimator, the cut table, the error model, the frozen N, both footings, and the no-verdict edge
+> 1.23 are unchanged.  **κ = ½ remains FITTED, not derived.**  No measurement moves.
+>
+> **(g) Declared cost, against interest.**  Arm B was already the arm DR4 cannot confirm over
+> Newton.  At the corrected ξ it becomes **indistinguishable from Newton by this estimator**.
+> Combined with the separate finding that the frozen σ_sys = 0.020 caps Arm B at **2.25σ
+> canonical / 1.50σ alt at INFINITE N**, **Arm B is not a testable arm of this preregistration**,
+> and this amendment says so rather than leaving it to be discovered after the data.
+>
+> **(h) Provenance.**  `fable_independent_2026/L47_xi_collision.py` (31 checks, 13 FAIL, all 10
+> controls pass; the three independent solves, the realistic-source robustness, the corrected
+> estimator readings and the placement conflict), corroborating
+> `fable_independent_2026/L30_saturated_branch.py` (23 checks, all 7 controls pass; 54 exact
+> solves each matching an analytic interior prediction to 1%).  Filed on the owner's explicit
+> instruction; the draft that preceded it is retained at `AMENDMENT12_DRAFT_NOT_FILED.md`.
+>
+
+---
+
+## SECTION 2 — s^TX SME boost-dipole template (Door 4B, Front A)
+
+### 2.1 Frozen prediction, direction convention, and current standing
+
+- Prediction (banked, not re-derived): per-body
+  s^{Tj} = (a0 / 2|g_orb|) gamma^2 beta_cmb n_hat_j; Saturn channel
+  **|s^TX| = 8.68e-10 (canonical a0)**; a0 enters linearly →
+  **alt footing 8.68e-10 × (1.13/0.936) = 1.048e-9**.
+- **Frozen direction convention:** n_hat = the Planck 2018 CMB dipole apex,
+  galactic (l, b) = (264.021°, 48.253°) = equatorial (J2000)
+  RA 167.94°, Dec −6.94°. Locked equatorial component ratios
+  **s^TY : s^TX : s^TZ = 0.208 : −0.971 : −0.120** (code-asserted against the
+  IAU rotation to < 5e-3). The predicted **s^TX is NEGATIVE** (n_X < 0 with a
+  positive per-body amplitude). Template sign frozen: alpha > 0 IS the
+  framework sign; there is no post-hoc sign freedom.
+- **Frozen reading fork:** primary = P (per-body, amplitude ∝ 1/g_orb — the
+  ledger's own formula); U (universal single s^TX) always cross-fit. The
+  noise-free P-signal-vs-U-template overlap in this channel is alpha_U =
+  +0.0047 — the readings are nearly orthogonal; verdicts are quoted per
+  reading, never mixed.
+- **Current standing (frozen, correct margin):** tightest published bound =
+  the COMBINED multi-planet fit s^TX = (−0.2 ± 1.3)e-9 (Hees et al. 2016,
+  arXiv:1610.04682 Table 9; Kostelecky–Russell Data Tables v19 Table D50).
+  The canonical prediction sits **0.67 sigma INSIDE the bar with the
+  predicted negative sign** — margin **1.50x canonical / 1.24x alt**. LIVE:
+  neither comfortably safe nor excluded, and the sign agreement is not a
+  detection. **The "~9.6x margin" figure is superseded** (it was the
+  Saturn-amplitude vs INPOP-only 8.3e-9 looser-bound corner; banked
+  correction 2026-06-21) and must not be cited.
+- **Interpretation guard (frozen):** any preferred-frame MG host
+  (AeST/khronometric-class) induces a comparable s^TX. Every outcome below is
+  a preferred-frame/Lorentz-violation verdict, MOND-family-SHARED — **never**
+  an MI-vs-MG verdict.
+
+### 2.2 Frozen statistic
+
+GLS amplitude fit of the locked-direction template:
+alpha_hat = ⟨T_perp, d⟩ / ⟨T_perp, T_perp⟩, sigma_a = sigma_NP/sqrt(⟨T_perp,T_perp⟩),
+where T is the Earth–Saturn range perturbation from numerical integration
+(DOP853, rtol 3e-12) of BOTH bodies carrying their per-body s (H15 eq. 3
+boost term; Hees, Bailey et al., PRD 92, 064049 (2015)), and T_perp, d are
+projected orthogonal to the frozen absorption basis: 6 Saturn ICs + 6 EMB ICs
++ GM_sun + range bias + linear drift (finite-difference partials; the banked
+"conservative" level — a real INPOP/DE global refit absorbs more, so all
+sensitivities quoted here are upper limits AT THIS ABSORPTION LEVEL, flagged).
+Template linearity is gate-verified (two independent scalings, < 1%
+required). Normalization: **alpha = 1 ⟺ |s^TX| = 8.68e-10 (canonical)**;
+**alpha = 1.207 ⟺ |s^TX| = 1.048e-9 (alt footing)**.
+
+### 2.3 Pre-declared decision bands (mirrored verbatim in the code output)
+
+| outcome | frozen condition |
+|---|---|
+| DETECT (canonical) | alpha_hat ≥ 3 sigma_a AND \|alpha_hat − 1\| ≤ 2 sigma_a |
+| DETECT (alt) | alpha_hat ≥ 3 sigma_a AND \|alpha_hat − 1.207\| ≤ 2 sigma_a |
+| KILL (canonical) | \|alpha_hat\| < 2 sigma_a with sigma_a ≤ 0.50, i.e. sigma(s^TX) ≤ 4.34e-10; 3-sigma kill at sigma_a ≤ 0.33 (sigma(s^TX) ≤ 2.89e-10) |
+| KILL (alt) | \|alpha_hat\| < 2 sigma_a with sigma_a ≤ 0.604 (sigma(s^TX) ≤ 5.24e-10) |
+| WRONG-SIGN KILL | alpha_hat ≤ −3 sigma_a (direction- and sign-locked template) |
+| NO VERDICT | any sigma_a too large to exclude either 0 or the prediction — the present standing |
+
+A detection claim additionally requires the U-reading cross-fit to be
+reported and the P/U discrimination stated; a canonical-vs-alt footing
+discrimination requires the two DETECT windows to be disjoint at the achieved
+sigma_a (they overlap for sigma_a > ~0.05 — pre-declared as unlikely to be
+separable; the footings differ by 0.207 in alpha).
+
+### 2.4 Honest sensitivity statement (frozen — no sensitivity claims beyond it)
+
+This single Cassini–Saturn direct-range channel (623 normal points,
+2004.0–2017.7, Di Ruscio et al. 2020, A&A 640, A7; sigma_NP = 6 m mid value,
+3/15 m sensitivity rows, flagged approx) reaches sigma(s^TX) ≈ 1.5e-7 at the
+conservative absorption level — **~2 orders short of the prediction**
+(detection significance ~0.006 sigma; prediction-vs-bound separation ~0.003
+sigma). It cannot alone detect 8.68e-10, nor separate it from a
+bound-saturating 1.3e-9. This matches the banked recipe (Saturn sigma_A =
+4.5e-8; the strong per-body channel is Mars, sigma_A = 3.44e-9; the published
+1.3e-9 bound is the combined multi-planet secular fit). **The frozen
+deliverable is the gated fixed-direction template machinery** — locked
+direction, locked ratios, locked statistic, locked bands — ready to ingest
+DR4-era ephemeris residual series (INPOP/DE refits absorbing Gaia DR4
+asteroid/SSO astrometry) via `fit_amplitude()`. The decision, when it comes,
+lives in the multi-planet combined fit evaluated against §2.3 exactly as
+frozen.
+
+### 2.5 Gate record (rerun after the freeze edits, 2026-07-16)
+
+`python3 stx_dipole_template.py` → **exit 0, GATE VERDICT: PASS** (linearity
+7.4e-5 rel. dev.; injection alpha = 1, null, and high-S/N alpha = 2000
+recovered within tolerance at sigma_NP = 3/6/15 m over 500 noise
+realizations each; empirical/analytic sigma ratios 1.057/0.985/1.002).
+Template raw p2p 6.770e-2 m per unit alpha; after conservative absorption RMS
+1.390e-3 m per unit alpha (94.3% absorbed). Locked ratios verified against
+the Planck-apex rotation to 1.1e-3.
+
+---
+
+## Amendment protocol
+
+Nothing above changes. Post-DR4, the only permitted additions are dated
+**POST-HOC AMENDMENT** entries below this line, each stating (a) what the
+frozen analysis returned first, (b) what is being added and why, (c) that the
+addition is exploratory and carries no pre-registered evidential weight.
+
+*(no amendments)*
+
+
+### AMENDMENT 13 — PROPOSED 2026-09-27; NOT FILED. READ BEFORE SCORING.
+
+**Scope and parameter accounting.** This addition corrects the recorded four-form variant and specifies a separate, conditional heat-filter test. It does not replace the historical Arm A or Arm B record. The program's κ = 1/2 remains **fitted, not derived**, with Z = 5.7888. The estimator's nuisance calibration is denoted κ_cal below, to distinguish it from the fitted physical κ. The two physical a₀ footings are 9.360324825027975×10⁻¹¹ and 1.1312035414413022×10⁻¹⁰ m s⁻². The canonical footing decides; the alternative is a mandatory sensitivity report. No DR4 result measures a₀ independently of its force-law and external-field assumptions.
+
+**13(a) Correction to Amendment 11(f): four-form variant B′.** Amendment 11(f) recorded B′ without registering a number. Its small-separation shifts are not physical predictions of a stable solution. For k04's saturated kernel and coupling Z_four-form/β² = 8, eliminating the nondynamical four-form at fixed conserved flux Π produces a scalar force that folds at g_N/a₀ = 2.385081513 for K_B = 0 (2.402858081 for K_B = 0.25). The force decreases until switch-off at 155.2337 a₀ (177.410 for K_B = 0.25). The slaved longitudinal coefficient C_L,eff = (∂g_N/∂g_φ)_Π is negative in this band; it is −238.62 on the saturated K_B = 0 branch. The static scalar equation loses ellipticity there. In the chain root's stated quadratic kinetic form at λ = 1, the unstable mode has ω²/(ck)² ≈ −0.857. This numerical rate is conditional on that kinetic form; the negative scalar stiffness is the more general obstruction.
+
+F6 tested Π/q, a secant flux stiffness that is positive for the convex kernel. It did not test the tangent coefficient of the slaved scalar. F6 supports uniqueness of the flux root, not stability of the coupled construction. Therefore the −0.019/−0.015 shifts at 2 kAU in Amendment 11(f) must not be used to interpret data as evidence for B′. F3's low-acceleration RAR rows below the fold survive this objection; its rows in the unstable band remain values of an unstable static solution. F1–F2 are unaffected. The isolated one-solar-mass switched-off radius is about 639 AU on the canonical footing and 581 AU on the alternative, rather than the quoted 205 AU; unstable shells extend to about 5154 and 4689 AU. Planets in the inner core do not cure the missing stable exterior. No replacement state or nonlinear endpoint is claimed.
+
+The optional “tied alt” test in XR31 changes κ to 0.6043 and has fold 2.322851252 and switch-off 106.289. It is a diagnostic convention check, **not** this amendment's alternative a₀ footing with κ = 1/2. The baseline dimensionless k04 fold is common to both fixed-κ footings.
+
+Evidence: `kappa_closure/k04_F6_CORRECTION_2026-09-27.md`; XR31 code, outputs and control runs in `real_research/cross_thread_review_2026_09_26/`; independent rerun records in `real_research/handoff_resolution_2026_09_27/dr4/`. XR31's mutation replaces the slaved force by its running maximum and fails the fold and instability checks while retaining the algebraic controls. The correction concerns this variant, not every possible four-form action.
+
+**13(b)(i) The heat-filter law and its scope.** The additional test is named **H**, not a reinterpretation of Arm B. H uses the local, quasistatic two-field law
+
+    g = g_N + S∇φ,
+    ∇·[μ_s(|∇φ|/a₀)∇φ] = 4πG Sρ,
+    μ_s(x) = x/(1 − 2x),  0 ≤ x < 1/2,
+    S = exp(ξ²∇²/2).
+
+The displayed g uses XR22's outward potential-gradient convention; the attractive acceleration is −g. Both source and output filters are required. The uniform Galactic scalar background is obtained by P2 inversion of the **observed** external field. The registered primary observed field remains 1.778×10⁻¹⁰ m s⁻²; alternative-field runs are sensitivity results and cannot replace it after seeing the data. The exact implemented field is 1.9×9.36×10⁻¹¹ = 1.7784×10⁻¹⁰ m s⁻². The legacy estimator and its anchor continue to bin with their frozen rounded a₀ values, 9.36×10⁻¹¹ and 1.13×10⁻¹⁰ m s⁻²; those binning constants are distinguished from the force-law footings above. ξ is an additional free phenomenological length, with the chain's numerical floor 0.024281419855163956 pc canonical / 0.026832267367263626 pc alternative and declared scanned upper limit 100 pc. A bound reaching 100 pc is censored at the scan limit, not evidence for a finite upper bound. These floors inherit the chain's Solar-System calculation and are not re-established by the binary calculation.
+
+H is a conditional effective-law test. It is not a proof of one covariant action, well-posed global evolution or a derived value of ξ. XR22 solves equal-mass static pairs, interpolates the radial force and rescales velocities on an unchanged orbital population. It does not evolve self-consistent orbits or hidden triples. REG clips to 1–2 M☉ and 3–30 kAU and reconstructs separation using noisy observed mass. PHYS uses true simulated mass/separation/field angle over its wider table and is the primary physical forecast; it still shares the fixed-orbit approximation. REG is a mandatory legacy comparison. The difference is a modelling check, not an additional fitted parameter.
+
+**13(b)(ii) Frozen scalar summary, conditional forecasts and scoring.** Through the frozen estimator the banked PHYS forecast is 1.0725 at the canonical floor and 1.0900 at the alternative floor. It decreases over the computed ξ grid to 1.0000 at ξ ≥ 0.3 pc to the estimator's 0.0025 grid resolution. This is a computed grid envelope, not an analytic proof of a continuous global ceiling. At ξ = 0.05 pc PHYS gives 1.0400/1.0525; at 0.10 pc it gives 1.0125/1.0150. The REG floor values agree; away from the floor its discrepancy can reach 0.005. Before using the envelope as a hard exclusion, the completed reproduction and interpolation/forward-model gates below must pass and any model allowance must be frozen before confrontation.
+
+Use the actual frozen σ_tot = sqrt(σ_fit² + 0.020²), the frozen κ_cal window [0.95,1.05], strictness ladder, NSS screen and contamination/no-verdict rules. At illustrative σ_tot = 0.028 the upper exclusion boundaries are 1.1565 and 1.1740: γ̂ − γ_H,max > 3σ_tot excludes the conditional banked envelope from above. Do not replace the formula by rounded boundaries at a different sample size. With σ_fit exactly 0.019, σ_tot is 0.0275862 rather than exactly 0.028. A significantly sub-Newtonian result also conflicts with this banked envelope; “only from above” means that a Newtonian result cannot exclude it, not that arbitrarily small γ̂ is allowed. Statistical agreement with H is neither confirmation of H over all alternatives nor validation of its action.
+
+For γ̂ = 1.000 and the illustrative 0.028 uncertainty, the banked interpolation gives two-sigma exclusions ξ < 0.0356520 pc / 0.0474633 pc. They are conditional lower bounds, not ξ detections. The existing raw-γ̂ reporting rule is extended by reporting distances to H's two stated envelope edges, with model assumptions, both footings and the full ξ profile. No failed arm is revived by relabeling it H.
+
+**13(b)(iii) Separation-resolved observable and proposed inference contract.** The following choices are proposed in advance; they require executable validation before any inferential use. The 100-system minimum and 2,000-resample/realization choices below are new proposed design settings, not previously frozen constants or already validated thresholds.
+
+1. Apply the existing frozen 16-row catalog cuts. Use seven half-open projected separation bins with edges [2,3,5,7,10,15,20,30] kAU. Keep the frozen outer-boundary convention. Use the dimensionless transverse speed ṽ = v_perp/sqrt(G M_obs/s_proj), frozen mass calibration and published per-source DR4 errors as allowed by the existing noise rule. Apply ṽ < 6 separately and symmetrically to observed and simulated samples. There is **no intersection with an unobserved counterfactual Newtonian pair's cut**. Never remove a bin or move an edge because it disagrees. A bin with fewer than 100 systems makes the seven-bin ξ inference unavailable; publish the medians and counts without merging bins.
+2. Publish the seven medians m_j and counts n_j. Fit the vector of log medians, d_j = ln m_j, directly to the log model medians t_j(ξ,κ_cal). A ratio to a separately simulated Newtonian median may be displayed, but is not an extra independent measurement. κ_cal rescales simulated orbital velocities **before adding astrometric noise**. This is an explicit proposed convention for the new statistic; the frozen scalar estimator instead scales its predicted medians analytically and remains unchanged. The local covariance audit checked that alternative median-scaling convention too (about a 1% floor-error change). Its high-acceleration calibration sample uses log10(g_proj/a₀) ≥ 0.5 and the frozen [0.95,1.05] acceptance window. Because that sample overlaps the separation bins, its covariance with d_j must be included by joint resampling; it must not be counted twice as an independent prior. The physical κ is fixed at its accepted fitted value 1/2.
+3. Use the PHYS force table with exact double filtering, the frozen population generator and thermal eccentricities as the reference model. Keep common random numbers across ξ when forming predictions, but use independent populations for injection/recovery. Account for finite model Monte Carlo covariance; reuse of the same random sample is not independent evidence. Equal-mass tables, fixed Keplerian orbits and isotropic per-pair external-field directions are explicitly conditional approximations until their bias tests pass. Tabulate both footings independently. Primary ξ knots are the corresponding floor, 0.03,0.04,0.05,0.07,0.10,0.15,0.20,0.30,0.50,1,2,3,10,30,100 pc; add the exactly Newtonian template as a distinct limiting model. Interpolate predicted log medians linearly in ln ξ; validate at geometric midpoints. Do not interpolate the rounded γ̂ values to fit the resolved statistic.
+4. Construct the joint data covariance by 2,000 bootstrap resamples of connected components of shared Gaia source IDs, with seed 2026092713. Resample the anchor statistic and all seven medians together. Propagate the independent model covariance through the same summaries. Freeze the nuisance model and the separation-dependent systematic covariance before confrontation; the scalar allowance σ_sys(γ̂)=0.020 is **not** a per-bin covariance prescription and must not be copied onto the seven diagonal entries without a new justification. The quantitative residual-triple model and its externally calibrated bounds are an outstanding ingredient, not a parameter that may be tuned to the DR4 result.
+5. After those missing ingredients have been fixed and validated, profile the joint quadratic statistic (data minus prediction)^T C⁻¹(data minus prediction), including the jointly resampled anchor and registered nuisance terms, over κ_cal and the separately frozen contamination nuisances. Report the complete profile and the best point, including boundary points. Calibrate 68% and 95% profile confidence sets from independent injections at every ξ knot and at the Newtonian boundary, at N=30,000 and the actual selected N. Use at least 2,000 independent realizations per validation point and a documented fixed seed family 2026092713000 + realization index. A nominal χ²-one-degree-of-freedom threshold is only a diagnostic; it is not automatically valid at the floor, Newtonian limit or a non-identifiable ξ. The two footings are not two independent discoveries.
+6. A claimed finite ξ measurement requires a calibrated 95% interval separated from both the Newtonian limit and the lower floor, agreement under the frozen cut ladder, acceptable calibration and goodness of fit, and a pre-data quantified triple/systematic model. At a floor contact report a boundary interval; at a Newtonian/100-pc contact report a lower bound. If the model/covariance, orbit, mass-ratio, directional-field, interpolation, coverage or contamination gates have not been completed before data confrontation, report the seven medians and a **conditional exploratory ξ profile**, with no significance or measurement claim. No retrospective tuning may turn that profile into a preregistered detection.
+
+**Forecast honesty.** XR22's stored seven-bin Fisher calculation uses N = 30,000, 100 per-bin bootstrap draws with seed 5, fixed population/calibration, common synthetic pairs in numerator and Newtonian denominator, the intersection cut described above, and adjacent-knot finite differences in ln ξ. It assumes independent bin errors and omits nuisance marginalization, correlated systematics, hidden triples, orbital refitting and boundary coverage. Its floor values are σ(ln ξ) = 0.204595 / 0.158483; at 0.05 pc 0.226531 / 0.173312; at 0.10 pc 0.536963 / 0.443773. These are conditional statistical sensitivities, **not promised DR4 precision** and not errors for the proposed observable after the cut correction. The 0.15 alt shorthand is less accurate than 0.16 at the actual floor. The fact that 5–30 kAU contains most of this conditional information does not remove a separation-dependent contamination degeneracy.
+
+**Executed covariance check (prospective, not frozen).** A separate bounded audit now uses observable speed caps, seven separation medians plus two overlapping anchor medians, whole-pair joint bootstraps and an independent finite-model covariance. Across three independent 30,000-pair mock catalogs, with 300,000 model draws per run, profiling κ_cal gives floor σ(ln ξ) = 0.349–0.372 canonical / 0.260–0.275 alternative. At .05 pc the ranges are .309–.333 / .240–.254; at .10 pc .731–.818 / .520–.628. No pair in these clean samples fails one speed cap but passes its counterpart, so correcting the counterfactual intersection has no numerical effect here. The strong covariance with the anchor, rather than the cut, changes this forecast. Restoring the original 1,500,000-draw model and seed reproduces the banked bin ratios to 4.44×10⁻¹⁶, while giving profiled floor uncertainties .309/.235 for the same empirical mock covariance, or .337/.260 when the paired model covariance is rescaled to its expected 30,000-pair size. These variations expose finite-model and covariance-estimation uncertainty; no one result is selected as guaranteed precision. These new 400-data/200-model-bootstrap runs are sensitivity checks, not the proposed 2,000-realization coverage validation; all orbit, triples and systematic caveats remain. See `real_research/handoff_resolution_2026_09_27/dr4/CORRECTED_STATISTIC_AUDIT.md` and hashed raw results.
+
+**Evidence and filing gate.** Source code and banked results are identified by the hashes in the accompanying DR4 audit. XR31's controls are independently rerun. Full XR22 force-law and estimator main/mutation reruns, numerical comparisons and immutable input hashes must be completed before labeling its numbers independently reproduced. The known edit to XR22_common.py during the original lane-1 run has no preserved pre-edit hash in its single-commit history; a fresh run checks current-source reproducibility, not historical byte provenance. The proposed ξ inference remains conditional until the enumerated preregistration choices and gates have been completed. Filing consists of an append-only addition to the frozen record and a dated hash receipt; this local draft is neither filing nor authorization to silently alter a frozen pipeline.

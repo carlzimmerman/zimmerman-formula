@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "BP_LINEAR_QUASISTATIC",
+  "repository": {
+    "commit": "0a43187beae5a92951341b2e518e7a080ea9ab59",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/baryon_pressure_2026_10_23/linear_quasi.py",
+    "--output",
+    "sol61_push/baryon_pressure_2026_10_23/linear_quasi/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Quasistatic longitudinal polarization, coupled density and temperature transfer; not full dynamical-field growth",
+    "coefficient_domain": "float64",
+    "conventions": "CONTRACT.md",
+    "inputs": [
+      "Compensated radial sine seed; prescribed neutral-gas Compton thermal history"
+    ],
+    "bounds": {
+      "k_Mpc": [
+        0.1,
+        1,
+        24.7651418
+      ],
+      "zi": 1100,
+      "zend": 0,
+      "amplitude": 1e-08,
+      "xe": 0.0002,
+      "tolerance": 1e-08
+    },
+    "non_claims": [
+      "Not shock hydrodynamics or chemistry",
+      "Not primordial initial conditions or a bound core"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T16:41:30.402389+00:00",
+    "runtime_seconds": 1.291591,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/baryon_pressure_2026_10_23/CONTRACT.md",
+    "sol61_push/baryon_pressure_2026_10_23/thermal.py",
+    "sol61_push/baryon_pressure_2026_10_23/linear_quasi.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/baryon_pressure_2026_10_23/CONTRACT.md",
+      "sha256": "ec2a7b29eed2a25d54199d16d5abfc47337c6e4002cbe4f5217c54507b3b5acd",
+      "sha256_after": "ec2a7b29eed2a25d54199d16d5abfc47337c6e4002cbe4f5217c54507b3b5acd"
+    },
+    {
+      "path": "sol61_push/baryon_pressure_2026_10_23/thermal.py",
+      "sha256": "cf2ae62ef51ff79bd59802eb55d29e1be075edbc4f254cb2f242e48b1985e7ec",
+      "sha256_after": "cf2ae62ef51ff79bd59802eb55d29e1be075edbc4f254cb2f242e48b1985e7ec"
+    },
+    {
+      "path": "sol61_push/baryon_pressure_2026_10_23/linear_quasi.py",
+      "sha256": "fe4477141b4242806367585bd86904f5bb5c4c7460f4d7a273f336c1efb255a9",
+      "sha256_after": "fe4477141b4242806367585bd86904f5bb5c4c7460f4d7a273f336c1efb255a9"
+    }
+  ],
+  "output_directory": "sol61_push/baryon_pressure_2026_10_23/linear_quasi",
+  "declared_results": [
+    "sol61_push/baryon_pressure_2026_10_23/linear_quasi/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/baryon_pressure_2026_10_23/linear_quasi/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/baryon_pressure_2026_10_23/linear_quasi/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/baryon_pressure_2026_10_23/linear_quasi/result.json",
+      "sha256": "9532f11b34d81fca5243a5bc0cf5d0d84bee706fea3ad9e1474b3791fe65af37",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

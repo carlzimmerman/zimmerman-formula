@@ -1,0 +1,137 @@
+CE-FM-028..031 — slow source growth preserves preparation; sparse shells hid folds
+2026-10-13. Original goal remains ACTIVE, incomplete.
+Primary verdict: conditional one-shell adiabatic tracking is real, but the
+tested shortcut does not establish formation of a full cold carrier halo.
+Self-review found a decisive applicability failure in several continuations.
+Base364fc9c73; newer Claude commit6d79f6dbd reconciled separately below.
+
+1. Correct inertial equation, energy and supplied initial state
+G=a0=finalMb1, zero stiffness, spherical radial laminar carrier. With conserved
+enclosed mass label s, the exact no-crossing acceleration is
+  rddot=-Q(t)/r^2+s^2/[r^2(r^2-s)], r>sqrt(s).
+Its equilibrium is r_eq(s,Q)=sqrt(s+s^2/Q), and its specific effective
+potential is
+  U=-(Q+s)/r+sqrt(s) atanh(sqrt(s)/r).
+These satisfy -U_r=acceleration. At equilibrium,
+  omega^2=2Q^2/[s^2 r_eq]>0;
+  dr_eq/dQ=-s^2/[2Q^2 r_eq].
+The source is prescribed: Q grows.25to1 by quintic smoothstep on duration T,
+then is held fixed. Source work obeys exactly
+  d(v^2/2+U)/dt=-Qdot/r.
+This accounts external source work; it does NOT derive baryonic backreaction
+or a self-consistent assembly history. No mass is created or velocity damped.
+Initial radii are the Q.25 equilibrium, either exactly at rest or multiplied
+by1.02 with zero initial velocity. That supplies a specially prepared initial
+profile; neither it nor its cosmological origin is derived here.
+
+2. One-shell evidence and the actual time scale
+Run028 at labels1,2,5,10 andT20/100/500/2000 passes45 numerical/algebra checks.
+Slow prescribed growth reduces excitation of an initially at-rest shell, while
+the2% displaced comparison retains its initial small-oscillation action in
+the sufficiently slow regime. Very small final cold energies below work-error
+or floating-point floors are not precise measurements of zero heating.
+Label10 is an additional mathematical stress case: it exceeds a total supply5
+and cannot be silently assigned to that finite-supply halo.
+
+Time unit t_M=r_M/Vf=(G Mb)^(1/4)/a0^(3/4). T2000 corresponds40.20Gyr at
+Mb1e9 canonical,225.99Gyr atMb1e12 canonical; alt34.88/196.11Gyr. These
+are conversions of the stipulated ramp, not empirical assembly histories.
+Thus a large dimensionless adiabatic duration is not automatically a viable
+galactic formation time on either footing.
+
+Run029 separately uses stipulated1/5/13.8Gyr ramps, labels1/2/5 and both
+footings forMb1e9..1e12. It passes77 checks of its point trajectories, work
+identity and frozen-potential turning roots. AtMb1e11 and13.8Gyr, formal
+outerlabel5 radius excursions are23.10%/19.17%; atMb1e12 they are42.93%/
+36.39%. THESE ARE NOT VERIFIED WHOLE-CARRIER ENDPOINT PROFILES: the dense
+fold audit below exposes a limitation absent from the sparse-ordering check.
+The numerical root values remain conditional one-shell calculations; any
+translation into an observational failure or formation certificate is withdrawn.
+The1/5/13.8Gyr windows are declared inputs, not externally measured histories.
+
+3. Why slow driving is not phase-independent cooling
+Write a homogeneous linear perturbation of a driven one-shell trajectory as
+  d/dt(delta r,delta v)=A(t)(delta r,delta v),
+  A=[[0,1],[partial a/partial r,0]].
+For the fundamental matrix M withM(0)=identity, traceA0 gives d(detM)/dt0,
+so detM1. Normalize with positive initial/final reference frequencies:
+  B=diag(sqrtomega_f,1/sqrtomega_f) M
+     diag(1/sqrtomega_i,sqrtomega_i), detB1.
+An isotropic initial phase circle has mean quadratic reference action ratio
+trace(Btranspose B)/2. Its two positive squared singular values have product1,
+so their arithmetic mean is at least1. Some perturbation direction cannot
+contract. This is a direct internal linear-algebra argument, not a numerical
+count or a claim that every individual initial phase heats.
+Run030 checks actual point-trajectory monodromies atlabels1/2/5,T500/2000:
+29 checks, determinant errors below1e-7. In the slow inner controls the action
+ratio is near1. The final reference action is a defined quadratic diagnostic,
+not the full nonlinear warm-distribution energy. Phase-coherent cancellation
+can cool one selected phase, and coupled crossing/escaping systems are outside
+this one-shell proof. Where the full background folds, its post-fold point
+trajectory cannot be promoted to a physical whole-medium monodromy.
+
+4. Critical self-audit: sparse ordering did not establish laminar evolution
+Checking only r(s1)<r(s2)<r(s5) does not prove dr/ds>0 between them. The
+fixed enclosed-label force ceases to represent a collisionless medium once
+neighboring labels cross. To audit that assumption, run031 integrates
+  zeta=partial r/partial s,
+  zetaddot=a_r zeta+a_s,
+  a_s=s(2r^2-s)/[r^2(r^2-s)^2]>0,
+with the exact initial derivative of r_eq, at48 labels geometrically covering
+1..5. It TERMINATES at the first sampled zeta0, rather than continuing the
+same force through a fold. Max step.25, DOP853tol1e-10;21 checks completed.
+
+First sampled folds, cold/warm respectively:
+  T20: t12.6723/12.5427, label1;
+  T100: t52.3415(label2.1241)/53.6329(label2.2747);
+  T500: t295.541(label4.6690)/134.331(label1);
+  T2000 cold: none observed through2051.989, final minzeta.83147;
+  T2000 warm: t150.218,label1.
+These are sampled first detections; they do not prove no earlier fold at an
+unsampled label, or anywhere outside1..5. They show actual folds in several
+tested families. Every observed fold occurs while the source is still growing.
+Hence the corresponding later no-crossing outputs of028 are formal independent
+shell continuations, not valid full-medium formation evidence. Physical runs029
+have not been individually given the same dense Jacobian audit, so their
+endpoint/profile interpretations remain unverified rather than assumed valid.
+Their passing sparse-order checks are insufficient. No historical file/output
+was rewritten to hide this impact; manifests preserve all raw calculations.
+
+The slow prepared-cold T2000 control survives this limited density-label audit,
+but its long time, prescribed source and initially inserted equilibrium remain
+precisely the missing formation inputs. A2% preparation error folds even there.
+This is not a universal exclusion of adiabatic assembly; smoother/different
+histories, a closer preassembled state, nonzero stiffness, crossings and a
+reciprocal extended-baryon model remain distinct continuations. Preparing most
+of the halo first and growing Q only slightly would be maintenance of a cold
+halo, not an explanation of its original formation.
+
+5. Evidence, reconciliation and real next decisions
+Runs028/029/030/031 completed and manifests validated. There are172 checks in
+total, but their successes do not certify the claimed physical route:031
+records its failed laminar prerequisite as scientific evidence. All review is
+self-review, no independent replication or Lean certification. No own process
+remains live, no publication/data verdict or cross-chat message made.
+Latest Claude6d79f6dbd commits CFG760/761 results and retains CFG761 overallOPEN
+with the alt dwarf corner; it does not close the physical carrier/field bridge.
+CFG721 has newer progress logs, not a checked final scoring artifact here;
+no duplicate scoring simulation or live-process assertion is made.
+Optical coupled-capture/outgoing-pair transport is a separate hypothetical
+portal/condensate lane with its own missing selective confinement, not a
+derived gravity carrier or an answer to this preparation problem.
+
+Next F2 continuation: use fixed-total extended baryon redistribution rather
+than changing a point-source mass, and derive moving enclosed-rank evolution
+at caustics with an energy/work ledger. Baryonic mass-growth history alone
+cannot be treated as reciprocity. Keep initial cold preparation separate from
+dynamical generation, and require full label validity before using profiles.
+Next shared F2/F6 route: an explicit covariant current-plus-field parent whose
+static repulsive self-force produces the residual without a frozen reference.
+A nonlinear gauge-field comparison is a plausible new route: Gauss flux tied
+to actual conserved carrier charge, critical charge/mass self-gravity cancellation,
+and energy Wfull fixed by the desired constitutive relation. This has NOT been
+derived/adopted here; requires source verification, characteristic health,
+cosmological neutrality, basin/EFE and species/input honesty before any claim.
+It changes microscopic content and must be labeled a comparison construction.
+F1sourcephase,F3freeformation,F4rawshear,F5massabundance and fullF6 remain open.
+Kappa fitted, original theory objective ACTIVE.

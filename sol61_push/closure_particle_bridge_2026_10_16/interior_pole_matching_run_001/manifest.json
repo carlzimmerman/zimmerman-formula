@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "INTERIOR-POLE-MATCHING-2026-10-16",
+  "repository": {
+    "commit": "bd5dbb23a2fa98f11f4bd9c13f1ef29970a06458",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/closure_particle_bridge_2026_10_16/interior_pole_matching.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/interior_pole_matching_run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Positive real-state cut weight and smooth real-profile one-pole error inequality, plus physical width/window separation diagnostic",
+    "coefficient_domain": "Binary64 quadrature; analytic inequality derived separately",
+    "conventions": "D=s-M^2, a=M Gamma; L=1,R=1 benchmark,w=exp(-D),W=sqrt(aL); real background amplitude; symmetric interior window",
+    "inputs": [
+      "sol61_push/closure_particle_bridge_2026_10_16/interior_pole_matching.py",
+      "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json"
+    ],
+    "bounds": {
+      "a_over_L": [
+        0.01,
+        0.0001,
+        1e-06,
+        1e-08,
+        "physical M Gamma/(gap/4)"
+      ],
+      "B_times_L_over_R": [
+        0,
+        0.5,
+        -0.5,
+        3
+      ],
+      "independent_direct_window_case": 0.01
+    },
+    "non_claims": [
+      "No actual thermal derivative constants or boundary/double-pole patches",
+      "Not full RIS subtraction or abundance calculation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-16T13:44:46.215327+00:00",
+    "runtime_seconds": 0.206291,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/closure_particle_bridge_2026_10_16/interior_pole_matching.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/interior_pole_matching.py",
+      "sha256": "85048e92f2b19af99066d7c494b38bef90b103635be41376d2b910ad1202eb1f",
+      "sha256_after": "85048e92f2b19af99066d7c494b38bef90b103635be41376d2b910ad1202eb1f"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json",
+      "sha256": "d1cc9e64296077ce5039eac2a9805ef645bc1fcf91fbe985e45736d84a8f21f2",
+      "sha256_after": "d1cc9e64296077ce5039eac2a9805ef645bc1fcf91fbe985e45736d84a8f21f2"
+    }
+  ],
+  "output_directory": "sol61_push/closure_particle_bridge_2026_10_16/interior_pole_matching_run_001",
+  "declared_results": [
+    "sol61_push/closure_particle_bridge_2026_10_16/interior_pole_matching_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/interior_pole_matching_run_001/stdout.txt",
+      "sha256": "6d6e8ec59be5055ef8ea8b41a8f98488ba30bf98f2e86d28320c375e39568748",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/interior_pole_matching_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/interior_pole_matching_run_001/results.json",
+      "sha256": "8c736f99adb8a8d3fa499b50b05557120829af13b707daaf3cf2dc7dc046cb0f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

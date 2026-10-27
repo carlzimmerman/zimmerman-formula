@@ -1,0 +1,119 @@
+WT-07  what time structure do the framework's axioms force?
+  criteria ed636472e; kappa = 1/2 FITTED; Z = 5.7888; footings never pooled; not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2
+
+==================== K CONTROLS ====================
+  [FAIL] K3_identity_and_lemma: Milne residual Piecewise((Derivative(f(tau, rho, theta), theta)/(tau**2*tan(theta)*sinh(rho)**2), Eq(sin(theta), 0)), (0, True)), (projected-only residual Piecewise((-(3.0*tau*Derivative(f(tau, rho, theta), tau) - 1.0*Derivative(f(tau, rho, theta), theta)/(tan(theta)*sinh(rho)**2))/tau**2, Eq(sin(theta), 0)), (-3.0*Derivative(f(tau, rho, theta), tau)/tau, True)); K = 3/tau); Bianchi I residual 0 (K = Derivative(a3(t), t)/a3(t) + Derivative(a2(t), t)/a2(t) + Derivative(a1(t), t)/a1(t)); tilted perturbed FRW O(eps) residual 0; intrinsic Laplacian of f(T): O(1) 0, O(eps) 0; projected operator on f(T) at O(1): -3*Derivative(a(t), t)*Derivative(chib(t), t)/a(t); (n.d)^2 f(T) = Derivative(chib(t), (t, 2)) != 0 => b = 0
+  [PASS] K2_static_reduction: static slices: K_T = 0 (so intrinsic = projected = CFG938's D^2 for any chi); NGC 3198 (N = 43) max|g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (line 1e-12)
+  [PASS] K6_torus_solvability: exact nbar: k=0 residual 4.0e-18, max|Lap chi - S| 1.1e-16; nbar x 1.01: k=0 equation fails by 4.000000e-03 = K_m 0.01 nbar (4.000000e-03), no solution; curved torus int sqrt(h) Lap_h chi = -2.8e-15
+  [PASS] K5_khronon_toy: decoupled dT entry -A_kh*c_k2*k**4 - A_kh*k**2*sigma**2; sigma^2 = [-c_k2*k**2]; with alpha_c -> -alpha_c: sigma^2 = 1.895e+7*k**2 > 0 (real sigma ~ k)
+  [PASS] K7_leaf_gradient_form_equivalent: det(leaf-gradient form)/det(lambda form) = k**2 (sigma-free, nonzero)
+
+==================== S THEOREMS ====================
+  S4: leaf gradient D_mu f(T) to O(eps): [[0, 0], [0, 0], [0, 0], [0, 0]] (all zero: True); 4-gradient d_mu f(T) at O(1): [Derivative(chib(t), t), 0, 0, 0]
+      => a leaf-gradient condition D_i(Lap chi - K_m n_Sigma) = 0 admits an integration 'constant' c(T) on each leaf;
+         a 4-gradient condition d_mu(...) = 0 admits only a spacetime constant (as HT's Lambda_0).
+  S5 (AS206 conformal case, 3D): delta Lap = -2 s Lap + grad s . grad: residual 0 -> True
+  S3: K rho_c0 = 1.5 Omega_c H0^2 = 1.8925e-36 s^-2; without subtraction u = K rho_c r/3 from an arbitrary centre reaches
+      the W_full wall at r_wall = 3 a0/(K rho_c0): canonical 4.809 Gpc, alt 5.811 Gpc
+
+==================== CANDIDATES ON FRW (frozen-coefficient WKB; units |H| = 1, c = 1) ====================
+
+  C938: fields ['xi', 'eta', 'dchi', 'dlam', 'Phi']
+    EL[xi  ]: ['-K_m*sigma*(K_m*h**2 - K_m*h*sigma + 2*K_m*h_d + 18*h**4 + 9*h**3*sigma)/(9*h**3)', '0', '-I*K_m*k*(h*sigma - h_d)/(3*h**2)', '-I*K_m*k', '-I*K_m*k']
+    EL[eta ]: ['0', '-K_m*sigma*(K_m*h**2 - K_m*h*sigma + 2*K_m*h_d + 18*h**4 + 9*h**3*sigma)/(9*h**3)', '0', '0', '0']
+    EL[dchi]: ['-I*K_m*k*sigma/(3*h)', '0', '-k**2*(L_s**2*k**2 + 2)/2', '9*h**2 + 3*h*sigma + 3*h_d - k**2', '0']
+    EL[dlam]: ['I*K_m*k', '0', '-3*h*sigma - k**2', '0', '-K_m*(5*h + sigma)/h']
+    EL[Phi ]: ['I*K_m*k', '0', '0', '-K_m*(5*h**2 - h*sigma + h_d)/h**2', 'K_m - k**2']
+    sigma-polynomial degree 5
+  C938   : G-INT FAIL (sigma in chi/lambda rows: {'dlam': True, 'dchi': True}); G-HAD ILL-POSED (grav-on labels ['ILL-POSED'], grav-off ['ILL-POSED']); max Re sigma/|H| at k = 1e10: 2.437e+15 .. 6.479e+18
+           G-NOGHOST PASS: kinetic Hessian eigenvalues (z=0, 24 pc, H>0) k=1e4 ['3.792e-01', '3.792e-01']; k=1e10 ['3.792e-01', '3.792e-01']
+
+  P1: fields ['xi', 'eta', 'dchi', 'dlam', 'Phi']
+    EL[xi  ]: ['-K_m*sigma*(-4*K_m + 9*h**2)*(2*h + sigma)/(9*h**2)', '0', '-I*K_m*k*(3*h + 2*sigma)/(3*h)', '-I*K_m*k', '-I*K_m*k']
+    EL[eta ]: ['0', '-K_m*sigma*(-4*K_m + 9*h**2)*(2*h + sigma)/(9*h**2)', '0', '0', '0']
+    EL[dchi]: ['-2*I*K_m*k*sigma/(3*h)', '0', '-k**2*(L_s**2*k**2 + 2)/2', '-3*h*sigma - k**2 - sigma**2', '0']
+    EL[dlam]: ['I*K_m*k', '0', '-3*h*sigma - k**2 - sigma**2', '0', '-K_m*(15*h + 8*sigma)/(3*h)']
+    EL[Phi ]: ['I*K_m*k', '0', '0', '-K_m*(3*h - 8*sigma)/(3*h)', 'K_m - k**2']
+    sigma-polynomial degree 7
+  P1     : G-INT FAIL (sigma in chi/lambda rows: {'dlam': True, 'dchi': True}); G-HAD UNRESOLVED (grav-on labels ['ILL-POSED', 'UNRESOLVED'], grav-off ['WELL-POSED']); max Re sigma/|H| at k = 1e10: 1.374e+01 .. 4.727e+04
+           G-NOGHOST FAIL: kinetic Hessian eigenvalues (z=0, 24 pc, H>0) k=1e4 ['-1.000e+00', '3.267e-01', '3.267e-01', '1.000e+00']; k=1e10 ['-1.000e+00', '3.267e-01', '3.267e-01', '1.000e+00']
+
+  F0: fields ['xi', 'eta', 'dchi', 'dlam', 'Phi']
+    EL[xi  ]: ['-K_m*sigma*(2*h + sigma)', '0', '0', '-I*K_m*k', '-I*K_m*k']
+    EL[eta ]: ['0', '-K_m*sigma*(2*h + sigma)', '0', '0', '0']
+    EL[dchi]: ['0', '0', '-k**2*(L_s**2*k**2 + 2)/2', '-k**2', '0']
+    EL[dlam]: ['I*K_m*k', '0', '-k**2', '0', '-3*K_m']
+    EL[Phi ]: ['I*K_m*k', '0', '0', '-3*K_m', 'K_m - k**2']
+    sigma-polynomial degree 3
+  F0     : G-INT PASS (sigma in chi/lambda rows: {'dlam': False, 'dchi': False}); G-HAD WELL-POSED (grav-on labels ['WELL-POSED'], grav-off ['WELL-POSED']); max Re sigma/|H| at k = 1e10: -1.000e+00 .. 2.000e+00
+           G-NOGHOST PASS: kinetic Hessian eigenvalues (z=0, 24 pc, H>0) k=1e4 ['3.967e-01', '3.967e-01']; k=1e10 ['3.967e-01', '3.967e-01']
+
+  F1: fields ['xi', 'dchi', 'dlam', 'dT', 'ell', 'Phi']
+    EL[xi  ]: ['-K_m*sigma*(2*h + sigma)', '0', '-I*K_m*k', '0', '5*h + sigma', '-I*K_m*k']
+    EL[dchi]: ['0', '-k**2*(L_s**2*k**2 + 2)/2', '-k**2', '0', '0', '0']
+    EL[dlam]: ['I*K_m*k', '-k**2', '0', '-3*K_m*h', '0', '-3*K_m']
+    EL[dT  ]: ['0', '0', '-3*K_m*h', '0', 'I*k', '0']
+    EL[ell ]: ['-sigma', '0', '0', '-I*k', '0', '0']
+    EL[Phi ]: ['I*K_m*k', '0', '-3*K_m', '0', '0', 'K_m - k**2']
+    sigma-polynomial degree 2
+  F1     : G-INT PASS (sigma in chi/lambda rows: {'dlam': False, 'dchi': False}); G-HAD WELL-POSED (grav-on labels ['WELL-POSED'], grav-off ['WELL-POSED']); max Re sigma/|H| at k = 1e10: -1.000e+00 .. 1.000e+00
+           G-NOGHOST PASS: kinetic Hessian eigenvalues (z=0, 24 pc, H>0) k=1e4 ['3.967e-01']; k=1e10 ['3.967e-01']
+
+  F1p: fields ['xi', 'eta', 'dchi', 'dlam', 'dT', 'ell', 'Phi']
+    EL[xi  ]: ['-K_m*sigma*(2*h + sigma)', '0', '0', '-I*K_m*k', '0', '0', '-I*K_m*k']
+    EL[eta ]: ['0', '-K_m*sigma*(2*h + sigma)', '0', '0', '0', '0', '0']
+    EL[dchi]: ['0', '0', '-k**2*(L_s**2*k**2 + 2)/2', '-k**2', '0', '0', '0']
+    EL[dlam]: ['I*K_m*k', '0', '-k**2', '0', '-3*K_m*h', '0', '-3*K_m']
+    EL[dT  ]: ['0', '0', '0', '-3*K_m*h', '0', '-3*h - sigma', '0']
+    EL[ell ]: ['0', '0', '0', '0', 'sigma', '0', '-1']
+    EL[Phi ]: ['I*K_m*k', '0', '0', '-3*K_m', '0', '-1', 'K_m - k**2']
+    sigma-polynomial degree 5
+  F1p    : G-INT PASS (sigma in chi/lambda rows: {'dlam': False, 'dchi': False}); G-HAD WELL-POSED (grav-on labels ['WELL-POSED'], grav-off ['WELL-POSED']); max Re sigma/|H| at k = 1e10: 1.190e-20 .. 3.000e+00
+           G-NOGHOST PASS: kinetic Hessian eigenvalues (z=0, 24 pc, H>0) k=1e4 ['3.967e-01', '3.967e-01']; k=1e10 ['3.967e-01', '3.967e-01']
+
+  F2: fields ['xi', 'eta', 'dchi', 'dlam', 'dT', 'nu', 'Phi']
+    EL[xi  ]: ['-K_m*sigma*(2*h + sigma)', '0', '0', '-I*K_m*k', '0', '0', '-I*K_m*k']
+    EL[eta ]: ['0', '-K_m*sigma*(2*h + sigma)', '0', '0', '0', '0', '0']
+    EL[dchi]: ['0', '0', '-k**2*(L_s**2*k**2 + 2)/2', '-k**2', '0', '0', '0']
+    EL[dlam]: ['I*K_m*k', '0', '-k**2', '0', '-3*K_m*h', '0', '-3*K_m']
+    EL[dT  ]: ['0', '0', '0', '-3*K_m*h', '0', 'k**2', '0']
+    EL[nu  ]: ['0', '0', '0', '0', 'k**2', '0', '-3*(h + sigma)']
+    EL[Phi ]: ['I*K_m*k', '0', '0', '-3*K_m', '0', '3*(2*h + sigma)', 'K_m - k**2']
+    sigma-polynomial degree 5
+  F2     : G-INT PASS (sigma in chi/lambda rows: {'dlam': False, 'dchi': False}); G-HAD UNRESOLVED (grav-on labels ['ILL-POSED'], grav-off ['WELL-POSED']); max Re sigma/|H| at k = 1e10: 2.707e+34 .. 7.339e+37
+           G-NOGHOST PASS: kinetic Hessian eigenvalues (z=0, 24 pc, H>0) k=1e4 ['3.967e-01', '3.967e-01']; k=1e10 ['3.967e-01', '3.967e-01']
+
+  F3_lo (F3): fields ['xi', 'eta', 'dchi', 'dlam', 'dT', 'Phi']
+    EL[xi  ]: ['-K_m*sigma*(2*h + sigma)', '0', '0', '-I*K_m*k', '0', '-I*K_m*k']
+    EL[eta ]: ['0', '-K_m*sigma*(2*h + sigma)', '0', '0', '0', '0']
+    EL[dchi]: ['0', '0', '-k**2*(L_s**2*k**2 + 2)/2', '-k**2', '0', '0']
+    EL[dlam]: ['I*K_m*k', '0', '-k**2', '0', '-3*K_m*h', '-3*K_m']
+    EL[dT  ]: ['0', '0', '0', '-3*K_m*h', '-A_kh*k**2*(c_k2*k**2 + h*sigma + sigma**2)', 'A_kh*k**2*(h + sigma)']
+    EL[Phi ]: ['I*K_m*k', '0', '0', '-3*K_m', '-A_kh*k**2*sigma', 'A_kh*k**2 + K_m - k**2']
+    sigma-polynomial degree 5
+  F3_lo  : G-INT PASS (sigma in chi/lambda rows: {'dlam': False, 'dchi': False}); G-HAD WELL-POSED (grav-on labels ['WELL-POSED'], grav-off ['WELL-POSED']); max Re sigma/|H| at k = 1e10: -5.000e-01 .. 2.000e+00
+           G-NOGHOST PASS: kinetic Hessian eigenvalues (z=0, 24 pc, H>0) k=1e4 ['9.620e-06', '3.967e-01', '3.967e-01']; k=1e10 ['3.967e-01', '3.967e-01', '9.620e+06']
+  F3_hi  : G-INT PASS (sigma in chi/lambda rows: {'dlam': False, 'dchi': False}); G-HAD WELL-POSED (grav-on labels ['WELL-POSED'], grav-off ['WELL-POSED']); max Re sigma/|H| at k = 1e10: -5.000e-01 .. 2.000e+00
+           G-NOGHOST PASS: kinetic Hessian eigenvalues (z=0, 24 pc, H>0) k=1e4 ['3.200e-01', '3.967e-01', '3.967e-01']; k=1e10 ['3.967e-01', '3.967e-01', '3.200e+11']
+
+  F3b_hi (F3b): fields ['xi', 'eta', 'dchi', 'dlam', 'dT', 'nu', 'Phi']
+    EL[xi  ]: ['-K_m*sigma*(2*h + sigma)', '0', '0', '-I*K_m*k', '0', '0', '-I*K_m*k']
+    EL[eta ]: ['0', '-K_m*sigma*(2*h + sigma)', '0', '0', '0', '0', '0']
+    EL[dchi]: ['0', '0', '-k**2*(L_s**2*k**2 + 2)/2', '-k**2', '0', '0', '0']
+    EL[dlam]: ['I*K_m*k', '0', '-k**2', '0', '-3*K_m*h', '0', '-3*K_m']
+    EL[dT  ]: ['0', '0', '0', '-3*K_m*h', '-A_kh*k**2*sigma*(h + sigma)', 'k**2', 'A_kh*k**2*(h + sigma)']
+    EL[nu  ]: ['0', '0', '0', '0', 'k**2', '0', '-3*(h + sigma)']
+    EL[Phi ]: ['I*K_m*k', '0', '0', '-3*K_m', '-A_kh*k**2*sigma', '3*(2*h + sigma)', 'A_kh*k**2 + K_m - k**2']
+    sigma-polynomial degree 7
+  F3b_hi : G-INT PASS (sigma in chi/lambda rows: {'dlam': False, 'dchi': False}); G-HAD UNRESOLVED (grav-on labels ['ILL-POSED'], grav-off ['WELL-POSED']); max Re sigma/|H| at k = 1e10: 7.677e+11 .. 7.677e+11
+           G-NOGHOST PASS: kinetic Hessian eigenvalues (z=0, 24 pc, H>0) k=1e4 ['3.200e-01', '3.967e-01', '3.967e-01']; k=1e10 ['3.967e-01', '3.967e-01', '3.200e+11']
+  F3b_lo : G-INT PASS (sigma in chi/lambda rows: {'dlam': False, 'dchi': False}); G-HAD UNRESOLVED (grav-on labels ['ILL-POSED'], grav-off ['WELL-POSED']); max Re sigma/|H| at k = 1e10: 3.412e+13 .. 3.412e+13
+           G-NOGHOST PASS: kinetic Hessian eigenvalues (z=0, 24 pc, H>0) k=1e4 ['8.200e-08', '3.967e-01', '3.967e-01']; k=1e10 ['3.967e-01', '3.967e-01', '8.200e+04']
+  [FAIL] K1_CFG938_reproduced: chi row -3*h*sigma - k**2 (forward-parabolic for H>0), lambda row 9*h**2 + 3*h*sigma + 3*h_d - k**2 (backward); max Re sigma/(k^2/3|H|) at k=1e10: 0.000073 .. 1.000000; slope 1.0000 .. 2.0000; G-HAD ILL-POSED; 1/H in coefficients (no H = 0 background): True
+  [FAIL] K4_gravity_on_off_agree: {'C938': True, 'P1': False, 'F0': True, 'F1': True, 'F1p': True, 'F2': False, 'F3_lo': True, 'F3_hi': True, 'F3b_hi': False, 'F3b_lo': False}
+
+  G-NBAR: intrinsic + subtraction, chibar = const: background constraint = 0; CFG938 with chibar' = -K_m/(3 a^2 a'): 0 (needs 1/H: no background at H = 0)
+  G-T: Euler-Lagrange expression of the leaf position in F0 (not varied there): E_T = -3*K_m*h*dlam(0, x)
+       => for a prior-geometry foliation, nabla_mu T^{mu 0} = -E_T != 0 wherever H dlam != 0 (energy-momentum not conserved);
+          F1/F1'/F2/F3/F3b vary dT (lock, CMC multiplier or khronon), C938/P1 have no separate foliation: structural PASS.

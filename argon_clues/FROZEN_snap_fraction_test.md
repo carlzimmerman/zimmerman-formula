@@ -1,0 +1,4 @@
+# Frozen criteria (before snap_fraction_test.py was run)
+Claim tested: free (u=0) cold mass per M_b in a merger-relaxed cluster = f_free(x) R0 f_hot, f_free(x) = 1 - W_rem/(u W_rem'), x = u/a0 from x^2/(1-x) = y = g_b/a0 of the cluster (CFG624 G2 / audit rows at r = 1000 kpc), R0 in {4.80, 5.364}, f_hot,cl in {0.85, 0.95}. Measured: resid_Mb (CFG624, nu_mono) per cluster, both footings, never pooled.
+Pass: median |log10(pred/obs)| <= 0.10 dex (below the 0.15 dex systematic) in both footings for at least one (R0, f_hot); AND Spearman(pred, obs) > 0 with p < 0.1.
+Fail otherwise. Mutation: n=1 harmonic tether (f = 1/2 constant) must give Spearman undefined/0 and a different median. Disclosed: the 0.60-0.75 bracket in the pasted criterion was set from the observed k/R0 (post hoc); this test uses per-cluster values instead.

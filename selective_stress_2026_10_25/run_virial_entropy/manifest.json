@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "SS-12",
+  "repository": {
+    "commit": "e268465fccac27e0f207e839b73d96f7a3c68016",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "selective_stress_2026_10_25/virial_entropy.py",
+    "--output",
+    "selective_stress_2026_10_25/run_virial_entropy/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Solve gamma5/3 F hydrostatic halo with its entropy fixed by total mass and a 200-critical mean virial density in the known Plummer baryon potential.",
+    "coefficient_domain": "float64 BVP and quadrature",
+    "conventions": "Spherical mass integral absorbs4pi; H0=67.4 km/s/Mpc from prior census convention; total dark ratio5.364",
+    "inputs": [
+      "Mb=6e10 scale² Msun; b=3 scale kpc; a0=9.3603e-11 SI"
+    ],
+    "bounds": {
+      "scales": [
+        0.5,
+        1,
+        2
+      ],
+      "BVP_tolerance": 2e-07,
+      "max_nodes": 10000
+    },
+    "non_claims": [
+      "A virialized hydrostatic reference, not a cosmological formation solution",
+      "Classical EOS before quantum edge correction",
+      "Subsequent entropy conservation requires negligible irreversible F heating"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T16:33:01.568107+00:00",
+    "runtime_seconds": 0.316775,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "selective_stress_2026_10_25/TARGET.md",
+    "selective_stress_2026_10_25/virial_entropy.py",
+    "rebuild_2026_10_22/ZT6_zstar_sparc_supply/FROZEN_CRITERIA.md",
+    "physical_completion_2026_10_25/launch.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "selective_stress_2026_10_25/TARGET.md",
+      "sha256": "62213e6ca0ace3174ec8b4f0d342656d981112b09ac4111bd54fea6ebe001649",
+      "sha256_after": "62213e6ca0ace3174ec8b4f0d342656d981112b09ac4111bd54fea6ebe001649"
+    },
+    {
+      "path": "selective_stress_2026_10_25/virial_entropy.py",
+      "sha256": "edfc8159fa81d3d8b10118a24c0ca7c354919b7fca83374d9b24790aff34c6ac",
+      "sha256_after": "edfc8159fa81d3d8b10118a24c0ca7c354919b7fca83374d9b24790aff34c6ac"
+    },
+    {
+      "path": "rebuild_2026_10_22/ZT6_zstar_sparc_supply/FROZEN_CRITERIA.md",
+      "sha256": "db29024d86f1e51c871802df254686d40a41a18fa122248d1694787973d024da",
+      "sha256_after": "db29024d86f1e51c871802df254686d40a41a18fa122248d1694787973d024da"
+    },
+    {
+      "path": "physical_completion_2026_10_25/launch.py",
+      "sha256": "12a23018ab0ba141e0fd5597cf81767a955c4ac3fdc8863da7670f28fe541038",
+      "sha256_after": "12a23018ab0ba141e0fd5597cf81767a955c4ac3fdc8863da7670f28fe541038"
+    }
+  ],
+  "output_directory": "selective_stress_2026_10_25/run_virial_entropy",
+  "declared_results": [
+    "selective_stress_2026_10_25/run_virial_entropy/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "selective_stress_2026_10_25/run_virial_entropy/stdout.txt",
+      "sha256": "837ac53260df278c687bea8eaf73ca17b25bbaa172da7bfaa4528715d1bbdc45",
+      "kind": "log"
+    },
+    {
+      "path": "selective_stress_2026_10_25/run_virial_entropy/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "selective_stress_2026_10_25/run_virial_entropy/results.json",
+      "sha256": "9da9ede0e01d1744c1cd69be8ef4057c347c904d4aaec91ec70cb0751e3399f5",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

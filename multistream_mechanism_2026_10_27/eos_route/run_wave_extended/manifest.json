@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "claim_id": "MS27_RECIPROCAL_MODE_WAVE_EXTENDED",
+  "repository": {
+    "commit": "7e786c30a796b82bf2c8267799306f8d1d699bc7",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "multistream_mechanism_2026_10_27/eos_route/wave_outlet.py",
+    "multistream_mechanism_2026_10_27/eos_route/run_wave_extended/result.json",
+    "--open-outlet"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Continue the reciprocal finite-source wave diagnostic to t=350 using an outgoing radial-wave impedance at R=90 and an explicit exported-energy ledger. Retain the original 95 percent mode-energy-transfer criterion, which the t=70 run missed.",
+    "coefficient_domain": "real linear ODEs on a finite radial grid; double precision",
+    "conventions": "u=r chi; wave Hamiltonian is the canonical u energy, including its spherical surface-term convention; outgoing impedance dissipates 4pi u_t(R)^2 into a declared external wave reservoir; modal mass=frequency=wave speed=1",
+    "inputs": [
+      "same core profile, mode, source shape and g=1 coupling as the short-time diagnostic",
+      "g=0 control"
+    ],
+    "bounds": {
+      "outer_radius": 90,
+      "source_radius": 1,
+      "tmax": 350,
+      "coarse_dx": 0.05,
+      "coarse_dt": 0.025,
+      "fine_dx": 0.025,
+      "fine_dt": 0.0125
+    },
+    "non_claims": [
+      "No perfectly transparent discrete boundary claim; require refinement",
+      "No nonlinear formation or microscopic coefficient",
+      "No inference of full dark energy conversion",
+      "Does not upgrade t=70 failed criterion"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-27T14:20:16.981859+00:00",
+    "runtime_seconds": 4.20796,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 55,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "multistream_mechanism_2026_10_27/eos_route/wave_outlet.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "multistream_mechanism_2026_10_27/eos_route/wave_outlet.py",
+      "sha256": "de2101f88a2a825841410b5f907f016ee9a44cbfa89ca71544def82d69ef97b0",
+      "sha256_after": "de2101f88a2a825841410b5f907f016ee9a44cbfa89ca71544def82d69ef97b0"
+    }
+  ],
+  "output_directory": "multistream_mechanism_2026_10_27/eos_route/run_wave_extended",
+  "declared_results": [
+    "multistream_mechanism_2026_10_27/eos_route/run_wave_extended/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "multistream_mechanism_2026_10_27/eos_route/run_wave_extended/stdout.txt",
+      "sha256": "83c538fe5d3ecd99987f655ea0ec1885573de277f78f6f933009bb673f5d3c44",
+      "kind": "log"
+    },
+    {
+      "path": "multistream_mechanism_2026_10_27/eos_route/run_wave_extended/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "multistream_mechanism_2026_10_27/eos_route/run_wave_extended/result.json",
+      "sha256": "12b046f53e599ff64132cf9d41c258592d4ea9d1bb44ee32927785c9d076fe00",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

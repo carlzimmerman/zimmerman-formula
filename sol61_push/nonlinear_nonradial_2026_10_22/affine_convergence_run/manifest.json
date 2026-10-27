@@ -1,0 +1,158 @@
+{
+  "schema_version": 2,
+  "claim_id": "NS_AFFINE_BOUNCE_CONVERGENCE",
+  "repository": {
+    "commit": "b3fbb9ed9d0aa74efb53153ad5bcdf55169ae8fc",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/nonlinear_nonradial_2026_10_22/affine_convergence.py",
+    "--output",
+    "sol61_push/nonlinear_nonradial_2026_10_22/affine_convergence_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Restricted triaxial Gaussian collapse with exact nonlinear quasistatic polarization, isolated analytic gravity, conserved mass and spin",
+    "coefficient_domain": "symbolic reals and float64",
+    "conventions": "CONTRACT.md",
+    "inputs": [
+      "inherited ell0 and canonical mass; declared sheet parameters"
+    ],
+    "bounds": {
+      "mass_ratios": [
+        4
+      ],
+      "spin": [
+        0.02
+      ],
+      "grid_dt": [
+        [
+          40,
+          0.05
+        ],
+        [
+          48,
+          0.1
+        ]
+      ],
+      "box": 6,
+      "end": 12,
+      "min_axis_cells": 1.5
+    },
+    "non_claims": [
+      "No fragmentation degrees of freedom",
+      "No radiation or live phase or baryons",
+      "No selected remnant mass",
+      "Finite grid orientation approximation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T02:19:11.172734+00:00",
+    "runtime_seconds": 192.713867,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/nonlinear_nonradial_2026_10_22/field.py",
+    "sol61_push/nonlinear_nonradial_2026_10_22/isolated.py",
+    "sol61_push/nonlinear_nonradial_2026_10_22/affine_convergence.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/field.py",
+      "sha256": "2bf1eb51ba1cbc24cd5ceaabbb24780bcf6a6c665e54d55da4053fa58952bca0",
+      "sha256_after": "2bf1eb51ba1cbc24cd5ceaabbb24780bcf6a6c665e54d55da4053fa58952bca0"
+    },
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/isolated.py",
+      "sha256": "daefe6bd0e16430201b25bd0f3f0850a2891d4a72d945e166294d65b6bc5fdeb",
+      "sha256_after": "daefe6bd0e16430201b25bd0f3f0850a2891d4a72d945e166294d65b6bc5fdeb"
+    },
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/affine_convergence.py",
+      "sha256": "72dcc6ca15c2751981787d7f317cc001142d3b8193de396f3593a0b7aaff61aa",
+      "sha256_after": "72dcc6ca15c2751981787d7f317cc001142d3b8193de396f3593a0b7aaff61aa"
+    }
+  ],
+  "output_directory": "sol61_push/nonlinear_nonradial_2026_10_22/affine_convergence_run",
+  "declared_results": [
+    "sol61_push/nonlinear_nonradial_2026_10_22/affine_convergence_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/affine_convergence_run/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/affine_convergence_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/affine_convergence_run/result.json",
+      "sha256": "58fb570584452b9b34c742a9dce6868f3faa72574f825fa78354a668fb930665",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

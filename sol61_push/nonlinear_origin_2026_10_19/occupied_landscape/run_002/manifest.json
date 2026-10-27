@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-NONLINEAR-ORIGIN-OCCUPIED-LANDSCAPE-CONTROLS",
+  "repository": {
+    "commit": "e54c33252909e38a529a69f7adac265e37b54cb4",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/nonlinear_origin_2026_10_19/occupied_landscape/check_landscape.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite checks of Poisson mutual pair normalization, variable-dipole pushforward, fixed-level Coulomb WKB action, COM-complete finite-k source, and Bogoliubov dipole E^5 spectral coefficient/detailed balance.",
+    "coefficient_domain": "Real double precision; analytic assertions independently derived in LANDSCAPE.md.",
+    "conventions": "hbar=c_light=k_B=1. c in bath equations is sound speed. r is host-center separation. Omega is a TLS energy gap.",
+    "inputs": [
+      "Declared dimensionless parameters embedded in check_landscape.py; no target fitting or observational parameters."
+    ],
+    "bounds": {
+      "pair_density_n": 0.037,
+      "pushforward_x": [
+        0.2,
+        1,
+        3,
+        7,
+        12
+      ],
+      "WKB_r": [
+        12,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000
+      ],
+      "finite_k": [
+        0.02,
+        0.01,
+        0.005,
+        0.0025
+      ],
+      "bath_E": [
+        0.01,
+        0.003,
+        0.001,
+        0.0003
+      ]
+    },
+    "non_claims": [
+      "No full gravitational spectrum, actual baryon phase, actual single occupation, capture rate, halo abundance, bath existence, universal normalization, or exact target law is computed.",
+      "Quadrature tolerance estimates are not interval proof certificates.",
+      "The exact exponential-barrier diagnostic is not asserted as the full two-center Coulomb splitting."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T17:48:27.943281+00:00",
+    "runtime_seconds": 0.241457,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/nonlinear_origin_2026_10_19/occupied_landscape/check_landscape.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/nonlinear_origin_2026_10_19/occupied_landscape/check_landscape.py",
+      "sha256": "9a8968ca248a2189a18c816db3f056a52268f113521065865bb4ed9a6f5f223f",
+      "sha256_after": "9a8968ca248a2189a18c816db3f056a52268f113521065865bb4ed9a6f5f223f"
+    }
+  ],
+  "output_directory": "sol61_push/nonlinear_origin_2026_10_19/occupied_landscape/run_002",
+  "declared_results": [
+    "sol61_push/nonlinear_origin_2026_10_19/occupied_landscape/run_002/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/nonlinear_origin_2026_10_19/occupied_landscape/run_002/stdout.txt",
+      "sha256": "49d3022243397b383fef39d6c36a72517da13b4224b2872b7bee3956d4c70d57",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlinear_origin_2026_10_19/occupied_landscape/run_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlinear_origin_2026_10_19/occupied_landscape/run_002/results.json",
+      "sha256": "b8eb26fe2e979a1dbe49d02f633177657ca5171607a5bdedd0116e33a59995fd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

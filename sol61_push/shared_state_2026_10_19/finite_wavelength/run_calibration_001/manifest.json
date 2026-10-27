@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-SHARED-PHYSICAL-MAP-2026-10-19",
+  "repository": {
+    "commit": "219d4d5dc689b31c67077d74870eef524d16a105",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/shared_state_2026_10_19/finite_wavelength/check_calibration.py",
+    "--output",
+    "sol61_push/shared_state_2026_10_19/finite_wavelength/run_calibration_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Declared SI mapping of one formal mixed TF equilibrium at original 1MeV scalar benchmark; regime ratios and exact one-mode-per-host target mass moment.",
+    "coefficient_domain": "Binary64 declared SI inputs and quadrature, no physical measurement uncertainty claim.",
+    "conventions": "4piGdim=1,Kdim=.5,Kbdim=.4. Baryon closure is ideal spin2 nonrelativistic fermion gas, not a derivation of real nuclear/EM matter. TF constants copied from the stationary ODE control; mass integrals there omit 4pi.",
+    "inputs": [
+      "Executed script and exact equilibrium derivation plus packet target."
+    ],
+    "bounds": {
+      "mass_moment_cutoffs": [
+        1,
+        2,
+        10,
+        100
+      ],
+      "wall_seconds": 30,
+      "cpu_seconds": 20,
+      "threads": 1
+    },
+    "non_claims": [
+      "No exact finite-GP physical benchmark solution or surface error.",
+      "No chemical/weak-interaction stability of ideal baryons.",
+      "No selected inventories, occupied spectrum or nonlinear saturation."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T14:51:20.433939+00:00",
+    "runtime_seconds": 0.374292,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/shared_state_2026_10_19/finite_wavelength/check_calibration.py",
+    "sol61_push/shared_state_2026_10_19/equilibrium/EQUILIBRIUM.md",
+    "sol61_push/shared_state_2026_10_19/TARGET.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/shared_state_2026_10_19/finite_wavelength/check_calibration.py",
+      "sha256": "0601be1cc15eb8eedf74c2110c30c70babdee517738ad80a7d471105983c4fce",
+      "sha256_after": "0601be1cc15eb8eedf74c2110c30c70babdee517738ad80a7d471105983c4fce"
+    },
+    {
+      "path": "sol61_push/shared_state_2026_10_19/equilibrium/EQUILIBRIUM.md",
+      "sha256": "a3808c4fba729e3d705689bffd821ecf6f3f2b68b73b2fd92e4cb02499b08351",
+      "sha256_after": "a3808c4fba729e3d705689bffd821ecf6f3f2b68b73b2fd92e4cb02499b08351"
+    },
+    {
+      "path": "sol61_push/shared_state_2026_10_19/TARGET.json",
+      "sha256": "28cc1eb581cec75bb3b728e47d922a1468da754c2be8cc66bbc1087f4fe84a7f",
+      "sha256_after": "28cc1eb581cec75bb3b728e47d922a1468da754c2be8cc66bbc1087f4fe84a7f"
+    }
+  ],
+  "output_directory": "sol61_push/shared_state_2026_10_19/finite_wavelength/run_calibration_001",
+  "declared_results": [
+    "sol61_push/shared_state_2026_10_19/finite_wavelength/run_calibration_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/shared_state_2026_10_19/finite_wavelength/run_calibration_001/stdout.txt",
+      "sha256": "67879fc66bd9c33704a71e3a560bd077572580bc83a5d7c4524047a94be4872f",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/shared_state_2026_10_19/finite_wavelength/run_calibration_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/shared_state_2026_10_19/finite_wavelength/run_calibration_001/results.json",
+      "sha256": "378c34b46f39dfcd42d8e91dfa3bad52c48e01f0ff2a7d6e01f50a8bc4fa0223",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

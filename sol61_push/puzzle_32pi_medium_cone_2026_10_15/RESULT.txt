@@ -1,0 +1,105 @@
+ALL-DIRECTION CHARACTERISTIC BOUND FOR THE COUPLED MEDIUM
+Date: 2026-10-15
+Status: conditional analytic result for the previously declared toy action.
+Base checkout observed: fdd6693f3e003fc72bf6d550ec26599eabc8931b.
+Parent: ../puzzle_32pi_coupled_medium_2026_10_14/RESULT.txt
+
+1. What is proved
+For the constant-gradient quadratic system of the parent calculation, an
+all-direction bound on characteristic normal speeds reduces to one scalar
+inequality. This replaces a finite angle scan with an analytic test. Units
+set the comparison speed to 1; the underlying elastic toy theory is
+nonrelativistic. This is not a statement about a relativistic UV completion,
+group velocities of individual branches, or nonlinear/global stability.
+
+Let v,A,b,m,rho > 0 and 0 < cN < 1. Write c for the cosine of the angle
+between wavevector and background gradient. The coupled pencil is
+ Q(s,c) = K s^2 - 2 C(c) s - G(c),
+ K = [[A-b/v, A v], [A v, rho+A v^2]],
+ C = diag(b c/m, 0),
+ G = diag(b v(1+c^2)/m^2, rho cN^2).
+The other two polarizations have speeds +/- cN.
+
+For K positive definite and G positive definite, all pencil roots are real.
+Indeed, for any nonzero complex null vector u, multiplying by its conjugate
+transpose gives k s^2 - 2 d s - g = 0 with k=u*Ku>0, g=u*Gu>0 and
+real d=u*Cu. Its discriminant is strictly positive.
+
+The following is necessary and sufficient for every root to lie in [-1,1]:
+ Q(1,c) >= 0 and Q(-1,c) >= 0 (positive semidefinite).
+Sufficiency: apply the scalar endpoint inequalities k-2d-g>=0 and
+k+2d-g>=0 to the same null vector. For s>1,
+ k s^2-2 d s-g = s(k-2d-g)+k s(s-1)+g(s-1)>0,
+a contradiction. Replace s by -s and d by -d for s<-1.
+Necessity: if Q(1,c) has a negative direction, its least eigenvalue is
+negative. For sufficiently large positive s, Q(s,c) is positive definite
+because K is. Continuity gives a singular Q at s>1. The negative endpoint
+is identical with s -> -s. This matrix-continuity argument is written here,
+not formalized in Lean.
+
+2. Eliminate the angle analytically
+Q(-1,c)=Q(1,-c). Off-diagonal and lower diagonal entries of Q(1,c) are
+independent of c, while
+ Q11(1,c)-Q11(1,1) = b(1-c)[2m+v(1+c)]/m^2 >= 0
+for -1<=c<=1. Hence the worst endpoint is c=1, s=1.
+Set r=rho(1-cN^2)>0. Its lower diagonal is r+A v^2>0.
+The Schur complement gives the single exact criterion
+ A-b/v-2b/m-2b v/m^2 - A^2 v^2/(r+A v^2) >= 0.       (*)
+Moreover (*) itself implies K positive definite, since
+ K=Q(1,1)+2C(1)+G(1),
+and the last two terms sum to a positive definite diagonal matrix.
+Thus no extra kinetic-positivity assumption is needed when applying (*).
+Equality permits a characteristic speed exactly 1; strict inequality gives
+a strict bound. K remains strictly positive at these cone endpoints.
+
+3. Previous numerical example, now with exact bounds
+A=rho=100, b=m=1, cN=1/10. Multiplication of the endpoint determinant
+by positive v gives
+ p(v)=-200v^4-200v^3-298v^2+9702v-99.
+Criterion (*) is exactly p(v)>=0 for v>0.
+p''(v)=-2400v^2-1200v-596<0 on v>=0. Since p(0)<0, p(1)>0,
+and p(v)->-infinity, there are exactly two positive roots; the admissible
+set is the closed interval between them.
+
+Root isolation with exact rational endpoints:
+ 72533/7105990 < v_low < 2101/205833,
+ 1797083/558975 < v_high < 5839585/1816378.
+Numerically:
+ v_low  ~= 0.0102073039791,
+ v_high ~= 3.21496131312.
+These numbers use the parent's fixed parameter normalization and are not
+measured physical accelerations. Positive-energy window alone was about
+(0.0100010002,99.9899990). Both ends become stricter under the speed test.
+For example v=0.0101 has positive kinetic energy but maximum sampled phase
+speed about 2.05113; v=3.3 gives 1.03920; v=10 gives 5.99611.
+
+For the parent's ideal static branch v=Csrc/r, the local admissible radial
+band becomes Csrc/v_high <= r <= Csrc/v_low, with width ratio about 315.
+This is only a local-background diagnostic along that ideal branch; it
+neither constructs nor matches a global spherical solution.
+
+4. Verification and limits
+check.py verifies five symbolic identities, isolates roots with exact
+rational arithmetic, and cross-checks eigenvalues at nine gradients over
+401 angles. The numerical grid is not used as proof of the angular bound.
+The run/manifest.json records inputs, hashes, environment and execution.
+Cone.lean formalizes the angular numerator inequality, positive and negative
+scalar root bounds, and negativity of the displayed second derivative.
+It does not formalize the matrix reduction, spectral continuity, root
+isolation, variational physics, or PDE well-posedness.
+
+Development notes: an initial SymPy assertion compared factored and expanded
+expressions structurally; it was repaired to compare their expanded
+zero difference. An initial Lean invocation used the wrong relative output
+directory; the final source and verification use absolute paths. Neither
+preflight problem altered the derivation.
+
+5. Relation to the original 32pi / 3/128 question
+This is an admissibility condition, not a coefficient selection rule.
+E0 remains an independent additive constant in the action. Changing E0
+changes the putative cosmological constant while leaving K,C,G and (*)
+unchanged. Consequently the present speed and stability tests cannot select
+Lambda/a0^2=32pi, nor the equivalent round-S4 quantity a0^4 Omega=3/128.
+The next physical gap is a microscopic matching/protection mechanism for
+the response coefficients and vacuum energy, or an independent dynamical
+constraint relating them. Saturating (*) by hand does not supply that gap.

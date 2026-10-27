@@ -1,5 +1,20 @@
 # v3s: final verdict (2026-10-24)
 
+**Successor-lane audit correction, 2026-10-27.** The historical v3s verdict and
+later successor tests have different scopes. X53's lensing preference is relative;
+the tested models fail absolute goodness of fit. X57's common R4b exclusion is
+not established for unrestricted nonnegative profiles and compares a possible
+repair with the central measurement rather than the acceptance-band edge.
+X64 tests specified scalar thresholds. The executed
+[R4b/C6R corrections](../closure_program_2026_10_27/gate_fixes/README.md)
+leave M6 **NOT DECIDABLE on both footings**. Corrected C6R still fails the primary
+labels but separates the pre-existing reported strict-need labels; this is a
+profile-dependent empirical split, not a derived mechanism. These corrections
+and the population-versus-forest calculation are tracked in
+[`closure_program_2026_10_27/RESULTS.md`](../closure_program_2026_10_27/RESULTS.md).
+P1D1 is now **NOT DIAGNOSTIC**: no physical M6 population limit follows from that
+fit. Statements below about data still needing download record an earlier stage.
+
 This document closes the v3s investigation. The theory is frozen as stated below. Every thread now has a final status: it
 passes, it fails with a named mechanism, or it waits on dated data. No further lanes are opened on the v3s family unless a
 new forced kernel appears; data due on fixed dates (§5) is scored against the sealed predictions as it arrives.
@@ -100,7 +115,10 @@ C1 cures a health problem. It does not touch the mechanism in §3. Every test th
 - a switch between about 4e12 and 1e13 M☉ of cluster baryons (the cluster mass trend itself is only marginal, X7);
 - a cosmic dust.
 
-No single new field or switch can supply all three. So the theory cannot be closed by adding one ingredient, and that rules out the whole one-selector family at once.
+No tested single-variable or axis-aligned-pair threshold supplies all three under
+these definitions. This does not rule out the whole family of possible fields,
+nonlinear selectors or dynamical histories; a universal exclusion would require
+a specified admissible family and a coverage argument.
 
 ## 8. The three requirements, examined one by one (X20–X22, 2026-10-24; every coordinator rerun identical apart from timing)
 
@@ -420,7 +438,7 @@ Deciding observation between M5 and M6: small-scale Lyman-α forest gas power at
 - **Gate R5 fails.** Acceleration keys rise monotonically with mass, or form an inverted U, so they cannot give the required pattern: dwarfs retain, L* galaxies empty, clusters retain.
 
 **Peer lanes.**
-- **X58_object_keyed_switch** (9964127dfd / c3b4f2c7d9): **SW FAILS** on both footings. A pure mass switch cannot work, because the required retention is non-monotone in mass.
+- **X58_object_keyed_switch** (9964127dfd / c3b4f2c7d9): **SW FAILS** on both footings. The tested one-crossover mass switch fails because the stipulated retention pattern is non-monotone in mass.
 - **X48 A2** (c218c10add): nine-seed native c_f = 11.6 / 8.2 / 7.3, ABOVE WINDOW. The X43 rule with these values fails SPARC (Υ 0.31) and three cluster keys. r₋₂ is resolution-limited in 8 of the 27 runs.
 - Coordinator rerun of X58 pending.
 
@@ -444,19 +462,27 @@ Deciding observation between M5 and M6: small-scale Lyman-α forest gas power at
 
 **Oblique object keys** (`X64_oblique_object_keys`, ea43d24f22 / 21fb0605c4; coordinator rerun identical apart from timing): **NO OBLIQUE KEY** on both footings.
 - **The test.** It asked whether any combined object variable separates RETAIN {dwarfs, groups, clusters} from EXCLUDED {L* lenses, SPARC large, MW disc}. The candidates were phase-space density ρ/σ³, the virial ratio, crossing and relaxation times, dynamical age, (1/ν)Σ_b/Σ_a₀, and v_esc/v_c at r_a₀. None does.
-- **The test had power.** 2.5 % of random relabellings are separable.
+- **Null relabelling statistic.** 3 of 120 random relabellings are separable. This is not a power calculation under a specified physical alternative.
 - **Why they fail.** The phase-space and timescale keys are monotone with scale, so the L* systems fall between the dwarfs and the clusters, as X58's mass ordering already showed. The bound-region key v_esc/v_c comes closest (overlap 0.69 dex) but misplaces the lenses and SPARC large.
 
-**Switch status after X57–X64.** Every key built from object properties alone is excluded: mass, acceleration (local, smoothed, hysteretic), formation epoch, environment-free oblique combinations, repulsions and a coherence scale. The environment key is under test in the peer's X62_environment_keyed_switch.
+**Switch status after X57–X64.** The specified mass-threshold, acceleration,
+formation-epoch, oblique-scalar, repulsion and coherence prescriptions fail their
+recorded tests, subject to the correction above. These tests do not exhaust
+object-property selectors or history-dependent dynamics. X62's tested environment
+rule is evaluated below together with its halo prescription.
 
-**Still standing:** M6, displacement of baryons from cold dark energy in the initial conditions. It predicts a +0.26–0.39 high-z forest excess, and deciding it needs P1D data, an owner-approved download.
+**M6 remains unresolved:** displacement of baryons from cold dark energy in the
+initial conditions. Its bound-saturating linear gas proxy gives a +0.26–0.39
+high-z excess. This is not a guaranteed physical flux signal or a minimum
+amplitude. P1D1's completed fit is NOT DIAGNOSTIC; closure also needs the minimum
+depleted-patch population required by galaxies and a validated flux response.
 
 **Environment-keyed switch** (`X62_environment_keyed_switch`, peer lane; 8c7768d26d / cfc8f2c3cf; coordinator rerun identical apart from timing): **ENV FAILS** on both footings.
 - **The rule.** Satellites and systems above the crossover carry route-E halos; isolated systems below it follow the law.
 - **Dwarfs are repaired.** On canonical all five classes pass; alt keeps X51's ultra-faint overshoot.
 - **Leo T and Phoenix**, two isolated dwarfs, sit +0.41 / +0.40 dex above the law individually.
-- **No c_f passes every line.**
+- **No tested c_f prescription passes every line.**
   - A2 (high c_f) fails SPARC, three cluster keys and lensing.
   - The 3-seed table fails G-IN-Mall and lensing.
   - c_f = 4 fails groups, G-OUT-M3, SPARC (alt) and lensing (canonical).
-- **Reading.** The limiting piece is now the group and cluster halo core rule, not which systems hold cold dark energy. One concentration cannot satisfy groups, cluster cores, cluster outskirts and lensing together (consistent with IB1).
+- **Reading.** The limiting piece in this package is the group and cluster halo core rule. None of the three tested concentration prescriptions satisfies groups, cluster cores, cluster outskirts and lensing together (consistent with IB1). This is not a proof over every concentration or halo-profile family.

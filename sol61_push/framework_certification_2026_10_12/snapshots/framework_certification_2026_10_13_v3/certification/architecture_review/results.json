@@ -1,0 +1,293 @@
+{
+  "claim_id": "FRAMEWORK-CERT-2026-10-12/ARCHITECTURE-REVIEW",
+  "primary_verdict": "proved as written",
+  "normalized_claim": "All 18 explicitly conditional Architecture real-algebra/calculus statements follow under their exact binders.",
+  "whole_theory_certified": false,
+  "framework_only_status": "Conditional only; no ChainCert imports in Architecture, but physical inputs are not framework-derived in this package.",
+  "source_sha256": "e65f31944ba1dcb237f6c1c9ba6b32b7542a2ed360ddf65f170fe18eee647842",
+  "claim_cards": [
+    {
+      "name": "scale_squared",
+      "line": 17,
+      "exact_statement": "theorem scale_squared (\u03ba c G \u03c1 : \u211d) (h : 0 \u2264 G * \u03c1) :\n    accelerationScale \u03ba c G \u03c1 ^ 2 = \u03ba ^ 2 * c ^ 2 * G * \u03c1",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "Definition a0=\u03ba c sqrt(G\u03c1); G\u03c1\u22650",
+      "critical_implication": "Square product and sqrt; no selected \u03ba",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "vacuum_coefficient",
+      "line": 24,
+      "exact_statement": "theorem vacuum_coefficient (\u03ba c G \u03c1 \u039b : \u211d) (hc : c \u2260 0)\n    (h\u03c1 : 0 \u2264 G * \u03c1) (h\u039b : \u039b = 8 * Real.pi * G * \u03c1 / c ^ 2) :\n    accelerationScale \u03ba c G \u03c1 ^ 2 = \u03ba ^ 2 * \u039b * c ^ 4 / (8 * Real.pi)",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "Previous result; c\u22600; \u039b=8\u03c0G\u03c1/c\u00b2",
+      "critical_implication": "Cancel denominators; vacuum equation is an input",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "half_kappa_32pi",
+      "line": 30,
+      "exact_statement": "theorem half_kappa_32pi (c G \u03c1 \u039b : \u211d) (hc : c \u2260 0)\n    (h\u03c1 : 0 \u2264 G * \u03c1) (h\u039b : \u039b = 8 * Real.pi * G * \u03c1 / c ^ 2) :\n    accelerationScale (1 / 2) c G \u03c1 ^ 2 = \u039b * c ^ 4 / (32 * Real.pi)",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "Previous result; \u03ba fixed to 1/2",
+      "critical_implication": "Substitute, no derivation of 1/2",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "coefficient_family",
+      "line": 37,
+      "exact_statement": "theorem coefficient_family (\u03ba c G \u03c1 : \u211d) (h : 0 \u2264 G * \u03c1) :\n    \u2203 a\u2080 : \u211d, a\u2080 = accelerationScale \u03ba c G \u03c1 \u2227\n      a\u2080 ^ 2 = \u03ba ^ 2 * c ^ 2 * G * \u03c1",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "Definition; arbitrary real \u03ba; G\u03c1\u22650",
+      "critical_implication": "Witness a0 is definition; shows freedom within stated family",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "baryonic_quartic",
+      "line": 47,
+      "exact_statement": "theorem baryonic_quartic (G M a\u2080 r V : \u211d)\n    (hG : 0 < G) (hM : 0 \u2264 M) (ha : 0 \u2264 a\u2080) (hr : 0 < r)\n    (horbit : V ^ 2 / r = deepAcceleration G M a\u2080 r) :\n    V ^ 4 = G * M * a\u2080",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "G>0,M\u22650,a0\u22650,r>0; V\u00b2/r=sqrt(a0 GM/r\u00b2)",
+      "critical_implication": "Square orbit law, cancel positive radius; deep law assumed",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "target_mass_unique",
+      "line": 68,
+      "exact_statement": "theorem target_mass_unique (G Mb Mc r \u03bd : \u211d) (hG : G \u2260 0) (hr : r \u2260 0)\n    (hforce : G * (Mb + Mc) / r ^ 2 = \u03bd * (G * Mb / r ^ 2)) :\n    Mc = (\u03bd - 1) * Mb",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "G\u22600,r\u22600; G(Mb+Mc)/r\u00b2=\u03bdGMb/r\u00b2",
+      "critical_implication": "Cancel, solve Mc; no halo mechanism",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "target_mass_sufficient",
+      "line": 75,
+      "exact_statement": "theorem target_mass_sufficient (G Mb r \u03bd : \u211d) :\n    G * (Mb + (\u03bd - 1) * Mb) / r ^ 2 = \u03bd * (G * Mb / r ^ 2)",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "Arbitrary reals; target Mc=(\u03bd\u22121)Mb",
+      "critical_implication": "Polynomial identity, even zero denominators under Lean convention",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "target_mass_nonnegative_iff",
+      "line": 80,
+      "exact_statement": "theorem target_mass_nonnegative_iff (Mb \u03bd : \u211d) (hM : 0 < Mb) :\n    0 \u2264 (\u03bd - 1) * Mb \u2194 1 \u2264 \u03bd",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "Mb>0",
+      "critical_implication": "Divide by positive Mb; enclosed mass only",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "tail_mass_derivative",
+      "line": 91,
+      "exact_statement": "theorem tail_mass_derivative (A Mb r : \u211d) :\n    HasDerivAt (tailColdMass A Mb) A r",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "Definition tailColdMass=A r\u2212Mb",
+      "critical_implication": "Derivative of affine map; all real r",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "tail_density",
+      "line": 100,
+      "exact_statement": "theorem tail_density (A Mb r \u03c1 : \u211d) (hr : r \u2260 0)\n    (hmass : 4 * Real.pi * r ^ 2 * \u03c1 = deriv (tailColdMass A Mb) r) :\n    \u03c1 = A / (4 * Real.pi * r ^ 2)",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "r\u22600; 4\u03c0r\u00b2\u03c1=deriv(tailColdMass A Mb) r",
+      "critical_implication": "Previous derivative, solve; spherical geometry equation assumed",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "supply_radius_bound",
+      "line": 108,
+      "exact_statement": "theorem supply_radius_bound (A Mb S r : \u211d) (hA : 0 < A)\n    (hsupply : tailColdMass A Mb r \u2264 S) :\n    r \u2264 (S + Mb) / A",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "A>0; tailColdMass A Mb r\u2264S",
+      "critical_implication": "Solve linear inequality; no positivity S,Mb,r needed algebraically",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "no_finite_supply_for_infinite_tail",
+      "line": 115,
+      "exact_statement": "theorem no_finite_supply_for_infinite_tail (A Mb S : \u211d) (hA : 0 < A) :\n    \u00ac (\u2200 r : \u211d, 0 < r \u2192 tailColdMass A Mb r \u2264 S)",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "A>0; fixed real Mb,S",
+      "critical_implication": "Previous bound; witness max((S+Mb)/A,0)+1 violates it",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "nonlensing_residual",
+      "line": 126,
+      "exact_statement": "theorem nonlensing_residual (gb gc gs gd gl : \u211d)\n    (hd : gd = gb + gc + gs) (hl : gl = gb + gc) :\n    gd - gl = gs",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "gd=gb+gc+gs; gl=gb+gc",
+      "critical_implication": "Subtract equalities; no lensing model derived",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "matched_lensing_forces_zero_extra",
+      "line": 130,
+      "exact_statement": "theorem matched_lensing_forces_zero_extra (gb gc gs gd gl : \u211d)\n    (hd : gd = gb + gc + gs) (hl : gl = gb + gc) (hm : gd = gl) :\n    gs = 0",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "Previous equations; gd=gl",
+      "critical_implication": "Residual vanishes implies gs=0; no empirical equality",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "exchange_conserves_total",
+      "line": 135,
+      "exact_statement": "theorem exchange_conserves_total {\u03b9 : Type*} (Dc Dr Q : \u03b9 \u2192 \u211d)\n    (hc : \u2200 i, Dc i = Q i) (hr : \u2200 i, Dr i = -Q i) :\n    \u2200 i, Dc i + Dr i = 0",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "\u03b9 arbitrary type; Dc(i)=Q(i), Dr(i)=\u2212Q(i)",
+      "critical_implication": "Pointwise cancellation; not divergence/tensor theorem",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "passive_vacuum_no_exchange",
+      "line": 143,
+      "exact_statement": "theorem passive_vacuum_no_exchange {\u03b9 : Type*} (Dv Q : \u03b9 \u2192 \u211d)\n    (hzero : \u2200 i, Dv i = 0) (hexchange : \u2200 i, Dv i = -Q i) :\n    \u2200 i, Q i = 0",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "\u03b9 arbitrary; Dv(i)=0, Dv(i)=\u2212Q(i)",
+      "critical_implication": "Q=0 pointwise; vacuum divergence assumed",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "response_energy_nonnegative",
+      "line": 152,
+      "exact_statement": "theorem response_energy_nonnegative (C \u03b2 mismatchSq p : \u211d)\n    (hC : 0 \u2264 C) (h\u03b2 : 0 \u2264 \u03b2) (hm : 0 \u2264 mismatchSq) (hp : 0 \u2264 p) :\n    0 \u2264 C / 2 * mismatchSq + \u03b2 / 3 * p ^ 3",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "C,\u03b2,mismatchSq,p\u22650",
+      "critical_implication": "Nonnegative arithmetic expression, no stability criterion",
+      "english_correspondence": "passed within README stated conditional scope"
+    },
+    {
+      "name": "distinct_mass_scalings",
+      "line": 158,
+      "exact_statement": "theorem distinct_mass_scalings (K L M\u2081 M\u2082 : \u211d) (hK : 0 < K)\n    (hM\u2081 : 0 < M\u2081) (hM\u2082 : 0 < M\u2082) (hne : M\u2081 \u2260 M\u2082)\n    (h\u2081 : K * M\u2081 = L * M\u2081 ^ 2) :\n    K * M\u2082 \u2260 L * M\u2082 ^ 2",
+      "verdict": "proved as written",
+      "hypotheses_and_dependencies": "K>0,M1>0,M2>0,M1\u2260M2; KM1=LM1\u00b2",
+      "critical_implication": "Nonzero M,L cancel; second equality contradicts distinct masses",
+      "english_correspondence": "passed within README stated conditional scope"
+    }
+  ],
+  "obligations": {
+    "kernel_compilation": "passed",
+    "allowed_axioms": "passed",
+    "no_admissions_or_new_axioms": "passed",
+    "README_English_correspondence": "passed",
+    "concrete_nonvacuity_witnesses": "passed",
+    "three_false_statement_controls": "passed",
+    "physical_premise_derivation": "not addressed",
+    "empirical_likelihoods": "out of scope",
+    "universal_physical_stability": "not addressed"
+  },
+  "controls": {
+    "original_driver_cases": [
+      {
+        "case": "main",
+        "argv": [
+          "lake",
+          "env",
+          "lean",
+          "-j",
+          "1",
+          "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/gravity_architecture_lean_2026_10_12/Architecture.lean"
+        ],
+        "exit_status": 0,
+        "expected_exit_status": 0,
+        "passed": true,
+        "source_sha256": "e65f31944ba1dcb237f6c1c9ba6b32b7542a2ed360ddf65f170fe18eee647842"
+      },
+      {
+        "case": "wrong_coefficient",
+        "argv": [
+          "lake",
+          "env",
+          "lean",
+          "-j",
+          "1",
+          "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/architecture_review/run/wrong_coefficient.lean"
+        ],
+        "exit_status": 1,
+        "expected_exit_status": 1,
+        "passed": true,
+        "source_sha256": "056d04347a89eb319d23d557292a353b12f1885446cd595172a1209c149ccb84"
+      },
+      {
+        "case": "wrong_derivative",
+        "argv": [
+          "lake",
+          "env",
+          "lean",
+          "-j",
+          "1",
+          "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/architecture_review/run/wrong_derivative.lean"
+        ],
+        "exit_status": 1,
+        "expected_exit_status": 1,
+        "passed": true,
+        "source_sha256": "58f2b6da9526b69d1c4d7c908b38d57f7bfda91870dcbdffbe53a5911bcb46b9"
+      },
+      {
+        "case": "missing_supply_premise",
+        "argv": [
+          "lake",
+          "env",
+          "lean",
+          "-j",
+          "1",
+          "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/architecture_review/run/missing_supply_premise.lean"
+        ],
+        "exit_status": 1,
+        "expected_exit_status": 1,
+        "passed": true,
+        "source_sha256": "b57016f86ed6fdd57ef5f69631e26d04dc0296ab035d040d777fdac84b1da439"
+      }
+    ],
+    "concrete_false_conclusions": "witness_controls.lean certifies counterexamples at unit parameters to all three damaged statements",
+    "witness_compile_exit_status": 0
+  },
+  "vacuity_notes": [
+    "No inconsistent real hypotheses discovered; concrete positive unit witnesses for scale, orbit and tail equations.",
+    "Exchange on empty index type is vacuous; nonempty type with Q=1,Dc=1,Dr=\u22121 satisfies conservation.",
+    "Some physically inadmissible negative/zero parameter cases remain valid algebra; physical interpretation must add admissibility."
+  ],
+  "chaincert_exclusions": [
+    {
+      "locator": "ChainCert/Chain.lean:32",
+      "premise": "hflat: all redshifts rhoLambda(z)=rhoLambda(0)",
+      "action": "derive from framework dynamics or exclude flat-redshift consequences"
+    },
+    {
+      "locator": "ChainCert/Theory.lean:50",
+      "premise": "h\u03ba_fit: \u03ba=1/2",
+      "action": "derive a framework selection principle or label independent postulate"
+    },
+    {
+      "locator": "ChainCert/Theory.lean:54",
+      "premise": "h\u03bd_deep; declared MOND-type kernel limit",
+      "action": "derive receiver/selector response from framework rather than assume standard MOND law"
+    },
+    {
+      "locator": "ChainCert/Theory.lean:106",
+      "premise": "flat-FRW density equation and declared Planck intervals",
+      "action": "exclude A0Numeric empirical normalization from framework-only certificate"
+    },
+    {
+      "locator": "ChainCert/Theory.lean:97",
+      "premise": "flat-background E(z)=sqrt(\u03a9m(1+z)^3+\u03a9\u039b)",
+      "action": "keep rival-model comparison separately from framework derivation"
+    },
+    {
+      "locator": "ChainCert/Theory.lean:60",
+      "premise": "ownership law hown",
+      "action": "derive from committed framework action or retain as unproved postulate"
+    },
+    {
+      "locator": "ChainCert/Theory.lean:64",
+      "premise": "positive fitted \u03a9c and declared hcold max bookkeeping",
+      "action": "derive cold abundance/capture law in framework; bookkeeping alone is insufficient"
+    }
+  ],
+  "remaining_gap": "A framework-derived action/dynamics and admissible physical solutions must entail the scale coefficient, force law, halo selector, metric lensing and consistent exchange; this package only proves consequences once those relations are supplied.",
+  "strongest_safe_statement": "Conditional exact mathematical certificates are reproducible; whole physical theory and ownership/priority guarantees are not certified."
+}

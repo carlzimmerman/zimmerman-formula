@@ -1,0 +1,211 @@
+{
+  "namespace": "FrameworkNonsphericalFlux",
+  "source": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/FullFlux.lean",
+  "source_sha256": "ec3fd73dd4ef2b244b2b5fe2a629cc2b274dc5de31dc473c39577e1ee9c7c618",
+  "main_log": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/compile.log",
+  "main_log_sha256": "039ea56777a143c6c463188df637ed4a02be62364a1da1ee9bc661330ebb1b9a",
+  "theorem_count": 10,
+  "entries": [
+    {
+      "name": "FrameworkNonsphericalFlux.continuous_mul_vanishing",
+      "line": 31,
+      "exact_statement": "theorem continuous_mul_vanishing (c f : \u211d \u2192 \u211d) (d x : \u211d)\n    (hc : ContinuousAt c x) (hf : HasDerivAt f d x) (hz : f x = 0) :\n    HasDerivAt (fun t => c t * f t) (c x * d) x",
+      "statement_sha256": "b6312da57f8ded913a2aaabafe30a9a40c86097036da397eafaefadab5cc7d4b",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked actual source/norm/flux calculus; physical admission limits explicit",
+      "English_review": "nonspherical_flux/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkNonsphericalFlux.actual_field_slices",
+      "line": 42,
+      "exact_statement": "theorem actual_field_slices (M a y : \u211d) (ha : 0 < a) :\n    (fun x => gx M a x y 0) = fieldXSlice M a y \u2227\n    (\u2200 t, gx M a 0 t 0 = 0 \u2227 gy M a 0 t 0 = midField M a t \u2227 gz M a 0 t 0 = 0 \u2227\n      fieldNorm M a 0 t 0 = |midField M a t|) \u2227\n    (fun z => gz M a 0 y z) = fieldZSlice M a y",
+      "statement_sha256": "b2498f1ec07d955ec4bd965a03d46012c6a484a83b97b3d034c83aa18eb42f1a",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked actual source/norm/flux calculus; physical admission limits explicit",
+      "English_review": "nonspherical_flux/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkNonsphericalFlux.actual_potential_coordinate_derivatives",
+      "line": 67,
+      "exact_statement": "theorem actual_potential_coordinate_derivatives (M a y : \u211d) (ha : 0 < a) (hy : 0 < y) :\n    HasDerivAt (fun x => potential M a x y 0) (gx M a 0 y 0) 0 \u2227\n    HasDerivAt (fun t => potential M a 0 t 0) (gy M a 0 y 0) y \u2227\n    HasDerivAt (fun z => potential M a 0 y z) (gz M a 0 y 0) 0",
+      "statement_sha256": "973fa20454882364290d6ef24a34881eced5283ea307a926bbecf11b0ca097ef",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked actual source/norm/flux calculus; physical admission limits explicit",
+      "English_review": "nonspherical_flux/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkNonsphericalFlux.actual_norm_continuous",
+      "line": 105,
+      "exact_statement": "theorem actual_norm_continuous (M a : \u211d) (x y z : \u211d \u2192 \u211d) (t : \u211d)\n    (hx : ContinuousAt x t) (hy : ContinuousAt y t) (hz : ContinuousAt z t)\n    (hm : rMinus a (x t) (y t) (z t) \u2260 0) (hp : rPlus a (x t) (y t) (z t) \u2260 0) :\n    ContinuousAt (fun u => fieldNorm M a (x u) (y u) (z u)) t",
+      "statement_sha256": "1bb06cb26f3224656361c118ec2296e79ab026e6df08cf8f33a63d63492e2302",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked actual source/norm/flux calculus; physical admission limits explicit",
+      "English_review": "nonspherical_flux/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkNonsphericalFlux.actual_transverse_weight",
+      "line": 125,
+      "exact_statement": "theorem actual_transverse_weight (M a : \u211d) (hM : 0 < M) (ha : 0 < a) :\n    weight M a (midField M a (a / 4)) 0 (a / 4) 0 = nu 1 - 1 \u2227\n    ContinuousAt (fun x => weight M a (midField M a (a / 4)) x (a / 4) 0) 0 \u2227\n    ContinuousAt (fun z => weight M a (midField M a (a / 4)) 0 (a / 4) z) 0",
+      "statement_sha256": "ffcf80cb7007b20916c389d326a87872d5c4c1f6ad7585fc3971dd38c7dd5d4a",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked actual source/norm/flux calculus; physical admission limits explicit",
+      "English_review": "nonspherical_flux/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkNonsphericalFlux.actual_transverse_flux_derivatives",
+      "line": 151,
+      "exact_statement": "theorem actual_transverse_flux_derivatives (M a : \u211d) (hM : 0 < M) (ha : 0 < a) :\n    HasDerivAt (fun x => fluxX M a (midField M a (a / 4)) x (a / 4) 0)\n      ((nu 1 - 1) * deriv (fieldXSlice M a (a / 4)) 0) 0 \u2227\n    HasDerivAt (fun z => fluxZ M a (midField M a (a / 4)) 0 (a / 4) z)\n      ((nu 1 - 1) * deriv (fieldZSlice M a (a / 4)) 0) 0",
+      "statement_sha256": "c03882e2e484d5ec7d127b0ad58c80eaebd4b26c11b1c6eb3c7563fb07dcd885",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked actual source/norm/flux calculus; physical admission limits explicit",
+      "English_review": "nonspherical_flux/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkNonsphericalFlux.actual_y_flux_derivative",
+      "line": 173,
+      "exact_statement": "theorem actual_y_flux_derivative (M a : \u211d) (hM : 0 < M) (ha : 0 < a) :\n    HasDerivAt (fun y => fluxY M a (midField M a (a / 4)) 0 y 0)\n      (nuSlope 1 * midSlope M a (a / 4) + (nu 1 - 1) * midSlope M a (a / 4)) (a / 4)",
+      "statement_sha256": "643994b69f688e12f78401717c0f75f45bc8f561d7f8d0a1fcec2b9d9092d5f9",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked actual source/norm/flux calculus; physical admission limits explicit",
+      "English_review": "nonspherical_flux/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkNonsphericalFlux.actual_full_target_identity",
+      "line": 185,
+      "exact_statement": "theorem actual_full_target_identity (M a G : \u211d) (hM : 0 < M) (ha : 0 < a) :\n    target M a G = localTarget M a G",
+      "statement_sha256": "2ce2e94c753944285ca0e8913590b0a196596b91d0e8fd2ec841df03ff7b9405",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked actual source/norm/flux calculus; physical admission limits explicit",
+      "English_review": "nonspherical_flux/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkNonsphericalFlux.actual_full_target_negative",
+      "line": 197,
+      "exact_statement": "theorem actual_full_target_negative (M a G : \u211d) (hM : 0 < M) (ha : 0 < a) (hG : 0 < G) :\n    target M a G < 0",
+      "statement_sha256": "2153e020cb0a0fed9d737e4e9821de0e704cb18b6ed7ad673c14b7f2896a05c7",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked actual source/norm/flux calculus; physical admission limits explicit",
+      "English_review": "nonspherical_flux/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkNonsphericalFlux.arbitrary_fixed_scale_witness",
+      "line": 204,
+      "exact_statement": "theorem arbitrary_fixed_scale_witness (a a0 G : \u211d) (ha : 0 < a) (ha0 : 0 < a0) (hG : 0 < G) :\n    \u2203 M : \u211d, 0 < M \u2227 midField M a (a / 4) = a0 \u2227\n      (deriv (fun x => fluxX M a a0 x (a / 4) 0) 0 +\n       deriv (fun y => fluxY M a a0 0 y 0) (a / 4) +\n       deriv (fun z => fluxZ M a a0 0 (a / 4) z) 0) / (4 * Real.pi * G) < 0",
+      "statement_sha256": "50c50a548d336d5c7dca532fc657713438ad2a1f5fc0edb92b10784cd59be565",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked actual source/norm/flux calculus; physical admission limits explicit",
+      "English_review": "nonspherical_flux/formal/CORRESPONDENCE.txt"
+    }
+  ],
+  "model_status": "kernel checked actual 3D Euclidean-norm weighted source flux; raw target meaning/host applicability remains conditional, no framework closure",
+  "checkpoint": "FRAMEWORK-CERT-NONSPHERICAL-2026-10-13",
+  "imports": [
+    "Mathlib",
+    "Nonspherical (checked own source dependency)"
+  ],
+  "main_exit_code": 0,
+  "own_source_dependency": {
+    "path": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/Nonspherical.lean",
+    "sha256": "93325e1824f0a6ddb346010a2670b2003b9d38bcbc7e12fc2dd669ba6a6544cb",
+    "original_checked_module": "FrameworkNonspherical",
+    "reproduction": "nonspherical_flux/formal/REPRODUCE.txt"
+  },
+  "PINNED_INPUTS": {
+    "path": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/PINNED_INPUTS.json",
+    "sha256": "8cd746df36291e80203e824e765cae1fa3633855bb5b17253138d0f042ffaadb"
+  },
+  "correspondence": {
+    "path": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/CORRESPONDENCE.txt",
+    "sha256": "d9505d13218f823b13e524aa093df67aa8cf2d2f8092fc43cee9fd1244587fb6"
+  },
+  "independent_review_status": "ten theorem bodies independently reconstructed; final frozen metadata audit pending",
+  "historical_builds": [
+    {
+      "accepted": false,
+      "source": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/build_history/attempt_01.source.txt",
+      "log": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/build_history/attempt_01.log",
+      "exit_code": 1
+    },
+    {
+      "accepted": false,
+      "source": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/build_history/attempt_02.source.txt",
+      "log": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/build_history/attempt_02.log",
+      "exit_code": 1
+    }
+  ],
+  "prior_accepted_checkpoints": [
+    {
+      "source": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/build_history/accepted_eight.source.txt",
+      "log": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/build_history/accepted_eight.log",
+      "exit_code": 0,
+      "theorem_count": 8,
+      "final": false
+    },
+    {
+      "source": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/build_history/accepted_nine.source.txt",
+      "log": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/build_history/accepted_nine.log",
+      "exit_code": 0,
+      "theorem_count": 9,
+      "final": false
+    }
+  ],
+  "false_controls": [
+    {
+      "source": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/FalseKernelIncreasing.lean",
+      "source_sha256": "2518bb55f29c22454f5565b85a2c475a07fcc7875956f91b0b07b33ee844c288",
+      "log": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/FalseKernelIncreasing.log",
+      "log_sha256": "95817648a14be2cc0c3201e147fa422e07c854a699a257abea0a3012ad2145be",
+      "exit_code": 1,
+      "expected_failure": "final mathematical False; no import/type/syntax failure"
+    },
+    {
+      "source": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/FalseActualTargetNonnegative.lean",
+      "source_sha256": "3b6ea608a913a47bb582122dce9b02e34219086173dc58b20abcf512845a60e4",
+      "log": "sol61_push/framework_certification_2026_10_12/nonspherical_flux/formal/FalseActualTargetNonnegative.log",
+      "log_sha256": "55959e19eba8b371f8acbfd44a72f2b586b44d71ea064671d4ae2421d97f7e6a",
+      "exit_code": 1,
+      "expected_failure": "final mathematical False; no import/type/syntax failure"
+    }
+  ],
+  "ambient_context": "Real scalar coordinates; actual Euclidean sqrt(gx\u00b2+gy\u00b2+gz\u00b2), fixed a0 during differentiation, source M=G*m_b; exact complete source/hypotheses recorded."
+}

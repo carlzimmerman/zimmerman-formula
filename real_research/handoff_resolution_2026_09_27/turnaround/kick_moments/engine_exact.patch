@@ -1,0 +1,47 @@
+--- /Users/carlzimmerman/new_physics/zimmerman-formula/real_research/handoff_resolution_2026_09_27/collapse/engine_constant_j_force_refresh.py
++++ engine_exact.py
+@@ -24,6 +24,7 @@
+ import math, time
+ import numpy as np
+ import CFG5_common as C
++from exact_moments import kick_moments
+ 
+ GK = C.GK
+ H0 = 0.1 * C.H_LITTLE                     # km/s/kpc
+@@ -119,7 +120,7 @@
+ 
+ 
+ def run(SIG, M0, a0_cap, trigger=True, cooling=True, vk=600.0, Nc=600, fR=0.02, seed=1, eta=0.03, rsoft=0.2, nb=24,
+-        fgal=None):
++        fgal=None, trigger_cadence=5):
+     """one collapse; a0_cap is the a0 inside the cap (0 -> P_c = 0: every coherent crossing converts)."""
+     rng = np.random.default_rng(seed)
+     qm, dL, m, Rf = initial_profile(SIG, M0, Nc)
+@@ -203,7 +204,7 @@
+                     gal_R.append(max(fR * r_ta[i], rsoft)); gal_M.append(mc)
+                 M[i] -= mc
+                 kind[i] = 3
+-        if trigger and nstep % 5 == 0:
++        if trigger and nstep % trigger_cadence == 0:
+             dk = np.where(alive & ((kind == 0) | (kind == 2)))[0]
+             o = np.argsort(R[dk]); di_ = dk[o]
+             Rs = R[di_]; Ms = M[di_]; Vs = V[di_]; Vt2 = (J[di_] / Rs) ** 2
+@@ -217,17 +218,8 @@
+             coh = (kind[di_] == 0) & ((phase[di_] == 1) | (phase[di_] == 2))
+             fire = di_[coh & (Pd > Pc)]
+             if len(fire):
+-                nh = rng.normal(size=(len(fire), 64, 3)); nh /= np.linalg.norm(nh, axis=2)[:, :, None]
+                 vt = J[fire] / R[fire]
+-                vvec = np.stack([V[fire], vt, np.zeros(len(fire))], 1)
+-                w = vvec[:, None, :] + vk * nh
+-                Ek = 0.5 * np.sum(w ** 2, axis=2) + phi[fire][:, None]
+-                esc = Ek > 0
+-                fe = esc.mean(1)
+-                bound = ~esc
+-                nbnd = np.maximum(bound.sum(1), 1)
+-                vr2 = np.where(bound, w[:, :, 0] ** 2, 0).sum(1) / nbnd
+-                vt2 = np.where(bound, w[:, :, 1] ** 2 + w[:, :, 2] ** 2, 0).sum(1) / nbnd
++                fe, vr2, vt2 = kick_moments(V[fire], vt, phi[fire], vk)
+                 budget["converted"] += float(M[fire].sum()); budget["escaped"] += float((fe * M[fire]).sum())
+                 budget["recaptured"] += float(((1 - fe) * M[fire]).sum()); budget["fired_shells"] += len(fire)
+                 M[fire] *= (1 - fe)

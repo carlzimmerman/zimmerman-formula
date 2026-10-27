@@ -1,0 +1,95 @@
+{
+  "checks": [
+    {
+      "name": "normal/polarization antisymmetric current expansion",
+      "passed": true,
+      "detail": "Matrix([[Px + epsilon**2*(-Px*vx**2/2 + Px*vy**2/2 + Px*vz**2/2 - Py*vx*vy - Pz*vx*vz)], [Py + epsilon**2*(-Px*vx*vy + Py*vx**2/2 - Py*vy**2/2 + Py*vz**2/2 - Pz*vy*vz)], [Pz + epsilon**2*(-Px*vx*vz - Py*vy*vz + Pz*vx**2/2 + Pz*vy**2/2 - Pz*vz**2/2)]])"
+    },
+    {
+      "name": "polarization norm clock correction",
+      "passed": true,
+      "detail": "Px**2 + Py**2 + Pz**2 - epsilon**2*(Px*vx + Py*vy + Pz*vz)**2"
+    },
+    {
+      "name": "onshell clock potential transverse to background",
+      "passed": true,
+      "detail": "Px**2*kappa_perp*vy**2/2 + Px**2*kappa_perp*vz**2/2 - Px*Py*kappa_perp*vx*vy - Px*Pz*kappa_perp*vx*vz + Py**2*kappa_perp*vx**2/2 + Py**2*kappa_perp*vz**2/2 - Py*Pz*kappa_perp*vy*vz + Pz**2*kappa_perp*vx**2/2 + Pz**2*kappa_perp*vy**2/2"
+    },
+    {
+      "name": "clock spatial current operator transverse",
+      "passed": true,
+      "detail": "Matrix([[Px*(-kx**2 - ky**2 - kz**2) + kx*(Px*kx + Py*ky + Pz*kz)], [Py*(-kx**2 - ky**2 - kz**2) + ky*(Px*kx + Py*ky + Pz*kz)], [Pz*(-kx**2 - ky**2 - kz**2) + kz*(Px*kx + Py*ky + Pz*kz)]])"
+    },
+    {
+      "name": "clock operator norm",
+      "passed": true,
+      "detail": "(Px*(-kx**2 - ky**2 - kz**2) + kx*(Px*kx + Py*ky + Pz*kz))**2 + (Py*(-kx**2 - ky**2 - kz**2) + ky*(Px*kx + Py*ky + Pz*kz))**2 + (Pz*(-kx**2 - ky**2 - kz**2) + kz*(Px*kx + Py*ky + Pz*kz))**2"
+    },
+    {
+      "name": "clock constraint reduction",
+      "passed": true,
+      "detail": "(-Pdot + etadot*n)/(Pperp*(R*kappa_perp + k**2))"
+    },
+    {
+      "name": "zero conserved reference momentum inertia",
+      "passed": true,
+      "detail": "1/(R + k**2/kappa_perp + n**2/h)"
+    },
+    {
+      "name": "clock-reduced matter kinetic positive",
+      "passed": true,
+      "detail": "Matrix([[R*kappa_perp**2*n**2/(R*kappa_perp + k**2)**2 + h + k**2*kappa_perp*n**2/(R*kappa_perp + k**2)**2, -R*kappa_perp**2*n/(R*kappa_perp + k**2)**2 - k**2*kappa_perp*n/(R*kappa_perp + k**2)**2], [-R*kappa_perp**2*n/(R*kappa_perp + k**2)**2 - k**2*kappa_perp*n/(R*kappa_perp + k**2)**2, R*kappa_perp**2/(R*kappa_perp + k**2)**2 + k**2*kappa_perp/(R*kappa_perp + k**2)**2]])"
+    },
+    {
+      "name": "positive constrained matter Hamiltonian",
+      "passed": true,
+      "detail": "p**2*(Kp + gamma*k**2)/2 + p_P**2*(R + k**2/kappa_perp)/2 + (n*p_P + p_eta)**2/(2*h)"
+    },
+    {
+      "name": "quartic high wave number frequency",
+      "passed": true,
+      "detail": "(Kp + gamma*k**2)*(R + k**2/kappa_perp + n**2/h)"
+    },
+    {
+      "name": "stiffness-free comparison speed",
+      "passed": true,
+      "detail": "gamma0 comparison, not screened theory"
+    },
+    {
+      "name": "parallel angle is a different clock block",
+      "passed": true,
+      "detail": "(R*(etadot**2*h - p**2*(Kp + gamma*k**2)) + (Pdot - etadot*n)**2)/(2*R)"
+    }
+  ],
+  "clock_solution": "(-Pdot + etadot*n)/(Pperp*(R*kappa_perp + k**2))",
+  "reduced_inertia": "1/(R + k**2/kappa_perp + n**2/h)",
+  "reduced_Hamiltonian": "p**2*(Kp + gamma*k**2)/2 + p_P**2*(R + k**2/kappa_perp)/2 + (n*p_P + p_eta)**2/(2*h)",
+  "frequency_squared": "(Kp + gamma*k**2)*(R + k**2/kappa_perp + n**2/h)",
+  "controls": [
+    {
+      "k": "1/10",
+      "Ieff": "100/201",
+      "omega_squared": "201201/100000",
+      "omega_squared_over_k_squared": "201201/1000"
+    },
+    {
+      "k": "1",
+      "Ieff": "1/3",
+      "omega_squared": "33/10",
+      "omega_squared_over_k_squared": "33/10"
+    },
+    {
+      "k": "10",
+      "Ieff": "1/102",
+      "omega_squared": "1122",
+      "omega_squared_over_k_squared": "561/50"
+    },
+    {
+      "k": "100",
+      "Ieff": "1/10002",
+      "omega_squared": "10012002",
+      "omega_squared_over_k_squared": "5006001/5000"
+    }
+  ],
+  "scope": "Clock-varied but metric-frozen local nonzero-P matter comparison; not a fully reduced Einstein/current/clock system."
+}

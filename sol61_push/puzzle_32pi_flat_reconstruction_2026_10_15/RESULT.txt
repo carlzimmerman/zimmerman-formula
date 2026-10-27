@@ -1,0 +1,161 @@
+FLAT PROFILE RECONSTRUCTION AND ITS RADIAL INSTABILITY TEST
+Checkpoint FLATRECONSTRUCTION32PI-001, 2026-10-15
+Base revision: 7e6b3dd73fa4b0e8200affaf5a3382334331dac3
+Parent: ../puzzle_32pi_broken_potential_2026_10_15/RESULT.txt
+
+NEW RESULT
+A nonzero scalar gradient permits inverse reconstruction of a static solution
+with constant physical circular speed across an annulus of radius ratio20.
+This goes beyond the previous single turning point. The potential is chosen
+by the reconstruction, not the parent's quartic potential and not a prediction.
+The reconstructed potential is concave along the sampled profile and the
+constrained radial perturbation quadratic form is negative. We therefore
+have a new failure mechanism to test: a flat canonical-scalar force profile
+can exist locally but carry a growing radial mode.
+
+Separately, in the weak-field, constant-coupling, scalar-force-dominated limit,
+the logarithmic profile implies EXACTLY U_chichi=-2/r^2. An explicit Dirichlet
+trial perturbation has negative quadratic form for log(r2/r1)>2pi/sqrt(7),
+i.e. a radius ratio exceeding approximately10.7491. This limit calculation
+is analytic; the full reconstructed annulus calculation is numerical with
+symbolic constraint checks. Neither is a universal no-go for modified gravity.
+
+1. What is changed and what is prescribed
+Retain F=1+phi^2, xi=M=1, canonical Einstein scalar chi and Jordan metric
+A^2 g_E, A=1/sqrt(1+phi^2). Replace the assigned quartic V by a potential
+reconstructed along one monotone profile. Choose a desired circular speed
+squared k=1e-6. This choice imposes the flatness to explore its consistency;
+it does not derive k, a0, a source-mass relation or the number32pi.
+The exterior annulus has no ordinary matter. No regular baryonic interior,
+large-radius boundary, or globally defined potential extension is supplied.
+
+2. Exact inverse-reconstruction equations
+Use ds_E^2=-exp(2nu)dt^2+dr^2/N+r^2dOmega^2 and write
+ x=phi^2, n=1-N, a=r nu', w=r(log A)', u=r^2 U,
+ f^2=x/(1+7x), w=(k-a)/(1-k).
+This last identity enforces the physical matter-frame circular speed
+ V_c^2=(a+w)/(1+w)=k exactly.
+The Einstein radial constraint and the evolution equations give
+ u=n-2Na+Nw^2/(2f^2),
+ dot(x)=-2(1+x)w,
+ dot(n)=-2Na+Nw^2/f^2,
+ dot(a)=-[(1-u)a+u]/N,
+ dot(nu)=a,
+where dot denotes d/dlog(r).
+Reconstruct U=u/r^2. Define chi_dot=-w/f. The scalar equation requires
+ G=r^2 U_chi=N[chi_ddot+(1+a+N_dot/(2N))chi_dot].
+Direct differentiation of the reconstructed potential verifies
+ (u_dot-2u)/chi_dot=G identically, not just at sampled points.
+Also r^2 U_chichi=(G_dot-2G)/chi_dot.
+Monotone x and nonzero w let U be defined as a single-valued function of chi
+on the sampled interval. They do not supply a global extension.
+
+3. Actual finite reconstruction
+Initial r=1, x=.5, a=1e-10, u=1e-12; w=(k-a)/(1-k).
+N is fixed by the radial constraint,
+ N=(1-u)/(1+2a-w^2/(2f^2)).
+Integration runs from r=1 to20, with two tolerance/step settings and801 samples.
+It preserves x>0, N>0, w>0 and U>0 at the checked points. Results:
+ physical Jordan radius span approximately20.00005992,
+ maximum |N-1| approximately7.43e-10,
+ minimum U approximately1.00e-12,
+ r^2 U_chichi between approximately-2.00019169 and-1.99854480.
+Two ODE settings differ in state by at most approximately5.0e-16 at samples.
+This is strong numerical consistency for a deliberately constructed local
+annulus, not a certified global solution or an observational fit.
+
+4. Analytic reason for the negative curvature
+In a weak metric with nearly constant nonzero coupling magnitude f, a
+scalar-dominated constant V_c^2=k requires
+ chi'= -C/r, C=M k/f,
+ chi=chi0-C log(r/r0).
+The flat static canonical equation chi''+2chi'/r=U_chi then fixes
+ U_chi=-C/r^2,
+ U_chichi=-2/r^2.
+Integrating along the profile gives
+ U(chi)=U0-C^2/(2r0^2) exp[2(chi-chi0)/C].
+U0 can keep U positive over a finite interval, but cannot change its second
+derivative. Thus positive potential energy by itself does not protect the
+radial profile from instability. The exact reconstructed solution above
+closely realizes this limit. Varying f, appreciable tensor contribution,
+noncanonical kinetics, matter, or time dependence can change this reduction.
+
+5. A trial-function instability criterion in the analytic limit
+Perturb the canonical scalar and set psi=r delta_chi. On a finite shell
+r1<r<r2 with Dirichlet delta_chi=0 at both ends, the radial quadratic form
+(up to an overall positive angular factor) is
+ Q=integral[psi'^2-2psi^2/r^2]dr.
+Choose psi=sqrt(r) sin(pi log(r/r1)/L), L=log(r2/r1).
+A direct exact integration gives
+ Q=pi^2/(2L)-7L/8.
+It is strictly negative if 4pi^2<7L^2. With positive kinetic weight, a negative
+Rayleigh trial form on the regular finite interval implies a negative squared
+frequency, hence a growing radial mode for this linearized problem.
+The radius ratio exp(2pi/sqrt(7)) approximately10.749087 is a sufficient
+negative-trial threshold, not a universal astrophysical instability scale.
+No conclusion here applies to all modified kinetic or time-dependent theories.
+
+6. Include the gravitational perturbation constraints
+The previous test alone would hold the metric fixed. To audit that loophole,
+perturb the full static Einstein-scalar system in areal-radius gauge:
+ chi -> chi+eta(t,r), N -> N+deltaN, nu -> nu+deltaNu.
+For a time-dependent mode the tr Einstein equation gives
+ deltaN=-r N chi' eta/M^2.
+The radial Einstein equation gives
+ deltaNu'=(r^2 U/M^2-1)deltaN/(2rN^2)
+           +r chi' eta'/(2M^2)-r U_chi eta/(2M^2 N).
+The linear Hamiltonian constraint is satisfied by deltaN above using the
+background equations; this is checked symbolically in check.py.
+The lapse combination reduces to
+ deltaNu'+(deltaN/N)'/2
+ =[(1-r^2 U/M^2)chi'-r U_chi]eta/(M^2 N).
+Substituting into the perturbed scalar equation yields
+ exp(-2nu) eta_tt-N[eta''+(2/r+nu'+N'/2N)eta']+V_eff eta=0,
+ V_eff=U_chichi+[2r chi' U_chi-(1-r^2 U/M^2)chi'^2]/M^2.
+This accounts for constrained radial metric perturbations, rather than simply
+assuming the metric response is small. It addresses this radial sector only.
+The growing-mode momentum constraint has no independent time-independent
+integration component; that component is not the instability tested here.
+
+Multiplying the equation by exp(nu)r^2/sqrt(N) gives positive kinetic weight
+W_t=exp(-nu)r^2/sqrt(N) and the quadratic form
+ Q_full=integral exp(nu)sqrt(N)r^2[eta'^2+(V_eff/N)eta^2]dr.
+Use eta=r^-1/2 sin(pi log(r)/log20) on the reconstructed annulus.
+Numerical quadrature gives
+ Q_fixed_metric approximately-0.9738731013996,
+ Q_full approximately-0.9738731013861.
+The maximum correction to r^2 U_chichi from the eliminated metric constraints
+is about9.04e-12. The sign survives the full radial correction by a wide
+numerical margin. A801/401-point quadrature comparison is recorded in stdout.
+This numerical sign is not interval-arithmetic certification. The exact
+negative form in section5 is a separate analytic limiting statement.
+The boundary conditions are scalar Dirichlet conditions on this finite annulus;
+eta=0 implies deltaN=0 there. The lapse is determined by its constraint and
+a time-normalization choice. No globally matched material boundary has been
+constructed. Smooth compact approximations to the trial function have the
+same negative sign when their corrections are sufficiently small.
+
+7. What the new calculation does and does not establish
+We now have more than a single stationary-speed point: a local constant-speed
+inverse reconstruction and an explicit stability obstruction for that example.
+This gives a discriminating design condition for the next proposal: it must
+produce the radial force profile while changing the constrained perturbation
+operator enough to avoid the negative direction, not merely adjust an additive
+vacuum constant. Noncanonical response or time-dependent stresses are possible
+new hypotheses; they have not been shown to work here.
+No32pi prediction, microscopic potential selection, source-mass scaling,
+global boundary matching, observed galaxy fit or full-theory completion.
+The prescribed flat profile is an engineering test, not a prediction.
+
+8. Verification status
+Eight exact symbolic identities check background reconstruction, the analytic
+log profile, trial integration and the linearized gravitational constraints.
+Three Lean lemmas verify the Rayleigh algebra, its negative sign under the
+span inequality, and the sign of -2/r^2. They do not formalize differential
+geometry, the spectral theorem, numerical integration or the full stability
+argument. The actual numerical run and its bounds are in contract.json and
+run/manifest.json. Compiler verification is in lean_verification.json.
+The starting spherical Einstein equations and conformal dictionary are sourced
+in the parent backreaction and curvature-tracking reports; all additional
+identities here are explicitly derived and checked. No novelty survey or
+independent external review has been performed. This is self-reviewed work.

@@ -1,0 +1,189 @@
+from pathlib import Path
+import json,hashlib
+h=Path(__file__).resolve().parent;r=json.loads((h/'run/results.json').read_text());m=json.loads((h/'run/manifest.json').read_text());inv=json.loads((h/'INPUTS.json').read_text())
+report=f'''CARRIER / DE IDENTIFICATION: THE SUPPLIED WEAK CHARGED BRANCH DOES NOT UNIFY THEM
+Checkpoint FRAMEWORK-CERT-TRANSPORT-2026-10-12, 12 October 2026.
+Primary verdict: correct only after a stated restriction.
+Restriction: exact homogeneous canonical material stress and charge statements
+hold for the actual positive-square action; the parent/daughter timing comparison
+is a free/weak origin-branch diagnostic on imposed constant H>0. It is not a
+predicted expansion history, empirical exclusion or a universal nonlinear no-go.
+
+Physical decision
+-----------------
+The current massive chi source cannot also be identified as a DE-like receiver
+while its phi daughters occupy the fast, weak/dilute cold-dust branch at the SAME
+epoch. Both supplied vacuum masses are fast when the daughters are fast:
+M>2m. A parent slow/overdamped mode requires M<=3H/2, whereas even the coarse
+necessary daughter condition m>=H gives M>2H>3H/2. True adiabatic dust m>>H
+makes the incompatibility stronger. No allowed weak-branch interaction provides
+an exception: the trilinear/quartic have no linear mixing at the zero-field origin.
+The actual nonlinear interaction was retained in the separate exact stress and
+charge statements; those strengthen the failure of a charge-protected DE reading.
+
+A genuine source/daughter interaction exists, but chi is massive charged matter.
+It can store/exchange energy without being dark energy. The previous local
+conversion result therefore does not close the named DE-receiver identification.
+This screen yields a physical branch restriction, not merely additional identities.
+
+Supplied action and what H means
+-------------------------------
+Canonical complex phi and chi have charges1 and2, signature+---, hbar=c=1,
+ V=m²|phi|²+M²|chi|²+g(chi*phi²+chi(phi*)²)+lambda_tot|phi|⁴,
+ M²=4m²+Delta, Delta>0, lambda_tot=lambda_rep+g²/Delta,
+ m>0, lambda_rep>=0, real g.
+Equivalently V=m² S+U+lambda_rep|phi|⁴, with
+ S=|phi|²+4|chi|², U=|sqrtDelta chi+(g/sqrtDelta)phi²|²>=0.
+These are actual existing assumptions, pinned in INPUTS.json and the manifest.
+Minimal FLRW coupling is the previously proposed geometry assumption, not a new
+cosmological fit. Here a(t)=exp(Ht), H>0 is strictly an IMPOSED diagnostic. No
+Omega, Planck transfer, standard MOND law or observational parameter is imported.
+The background is not solved from field stress with a Friedmann equation.
+
+Exact stress and U1: even interaction stress does not evade the charged bound
+--------------------------------------------------------------------------
+For homogeneous fields define
+ K=|dotphi|²+|dotchi|², rho=K+V, p=K-V,
+ q=i(phi*dotphi-phi dotphi*)+2i(chi*dotchi-chi dotchi*).
+The actual full EOM, including trilinear/quartic interaction storage, give
+ dotrho+3H(rho+p)=0, dotq+3Hq=0.
+Thus conserved charge is a³q, rather than constant proper charge density q.
+No quantum, Bose bath, particle-width or Golden Rule assumption enters here.
+
+The useful new discriminator is exact:
+ q²<=4 S K, V>=m² S,
+ rho²-p²-m²q²=4K(V-m² S)+m²(4SK-q²)>=0.
+The computation expresses the second term as six nonnegative real squares.
+For phi=x+iy, chi=z+iw and velocities(u,v,s,t), use
+ A=(y,-x,2w,-2z), B=(u,v,s,t), q=2A.B,
+ 4SK-q²=4 sum_(i<j)(A_i B_j-A_j B_i)².
+This preserves the supplied sign convention, which gives positive q for
+phi=A exp(-i omega t) with omega>0.
+
+For rho>0 the inequality implies rho>=m|q| and
+ |p/rho|<=sqrt(1-(m|q|/rho)²).
+If eta=1-m|q|/rho in[0,1], then
+ |w|<=sqrt(2eta-eta²).
+A protected cold-charge state rho close to m|q| therefore has small pressure
+magnitude and cannot be DE-like. This restriction includes the EXISTING nonlinear
+positive-square potential; it is not obtained by discarding its interaction
+stress. It applies to total homogeneous MATERIAL stress. Assigning selected
+pieces of V_int to a putative chi-only DE component would change the bookkeeping
+and does not supply a separate physical DE stress equation.
+The inequality does not exclude a high-energy unprotected/uncharged state; eta
+must be established for the actual state before invoking its small-pressure limit.
+
+Exact w=-1 is not a charged energy reservoir
+-------------------------------------------
+rho+p=2K. At any instant exact w=-1 with positive rho implies dotphi=dotchi=0
+and q=0. Such instantaneous rest data can exist; persistence over an interval
+also requires the static EOM, not merely an initial negative-pressure snapshot.
+Eliminating chi at a static critical point gives
+ chi=-g phi²/M²,
+ V_eff=m²|phi|²+lambda_eff|phi|⁴,
+ lambda_eff=lambda_rep+4g²m²/(Delta M²)>=0
+ (strict if g!=0 or lambda_rep>0),
+ 0=phi[m²+2lambda_eff|phi|²].
+The only static critical point is phi=chi=0, where the SUPPLIED material V=0.
+Consequently this canonical action alone provides no persistent exact w=-1
+positive-energy homogeneous material state. A separately postulated positive
+constant offset could yield positive vacuum stress at that origin, but does not
+change either field force, select its value or make it an exchanging receiver.
+No such offset has been added or called derived in this experiment.
+
+Weak/dilute branch and the parent/daughter mass mismatch
+-------------------------------------------------------
+Linearize the homogeneous EOM at phi=chi=0. Since the conversion is cubic in the
+potential and quartic forces are higher order, the leading equations are
+ ddotphi+3H dotphi+m²phi=0,
+ ddotchi+3H dotchi+M²chi=0.
+Neglecting the interactions for this branch is a weak-amplitude/weak-coupling
+approximation. Production, depletion, finite-density mass shifts and nonlinear
+collective modes are not proved to remain weak by these equations.
+For a field mass mu, constant-H exponents satisfy
+ s²+3Hs+mu²=0, s=-3H/2 +/-sqrt(9H²/4-mu²).
+An overdamped parent needs M<=3H/2. Being merely overdamped is not sufficient
+for DE-like pressure: the slow branch needs the stronger M<<H.
+At m>=H the exact mass margin is
+ M²-9H²/4=Delta+4(m²-H²)+7H²/4>0.
+This is a general inequality, without a chosen cosmological H or mass scan.
+The condition m>=H is only NECESSARY for the claimed fast/dust regime, not a
+sufficient dust criterion; a field at m=H itself is not oscillatory here.
+
+Tested useful exception: complex circular modes really can be dust
+----------------------------------------------------------------
+For mu>3H/2, the FREE diagnostic has the exact complex circular eigenmode
+ f=A exp(-3Ht/2-i Omega t), Omega²=mu²-9H²/4.
+It yields K=mu²|f|², V=mu²|f|², p=0,
+ rho=2mu²A² exp(-3Ht), q=2Omega A² exp(-3Ht)
+(for charge1; source weighted charge has the appropriate factor2).
+Thus fast complex fields can be exact dust on this imposed constant-H free
+background; the problem is not that homogeneous canonical dust is unavailable.
+A daughter-only nonzero solution with chi=0 is NOT a solution of the full g!=0
+action, because the source equation contains g phi². Its circular dust mode is a
+leading free/weak branch, not an exact interacting formation result.
+Source-only phi=0 circular chi is an actual classical background; exact zero
+classical daughters stay zero. Producing daughters needs a seed or the separate
+operational quantum assumptions established as conditional in local_interaction/.
+In the same fast hierarchy the chi source is oscillatory/matter-like, not slow DE.
+
+For a pure overdamped slow mode f=A exp(-sigma t),
+ sigma=(3H-sqrt(9H²-4mu²))/2,
+ w=(sigma²-mu²)/(sigma²+mu²)=2sigma/(3H)-1
+   =-sqrt(1-4mu²/(9H²)).
+It has q=0 and rho+p=2sigma²|f|²>0 at positive mu. Exact w=-1 needs the mass0
+limit or zero energy; the supplied source has M>2m>0. An approximately DE-like
+slow uncharged field could occur if mu/H is tiny, but that is precisely the
+branch incompatible with the supplied fast daughter hierarchy at the same H.
+
+Scope and the mathematical inputs needed to reopen identification
+----------------------------------------------------------------
+This does not prove a universal no-go for nonlinear collective modes,
+interaction-dominated coherent states, gradients, nonminimal derivative terms
+or an independent DE sector. The exact homogeneous bound restricts the charged
+protected TOTAL state; it does not classify every possible split into sectors.
+To reopen within the existing action, supply an actual interacting background
+solution, its stress/charge budget and full coupled Hessian/characteristics,
+showing a slow healthy energy-receiving mode while the daughter distribution is
+cold. If that proposal uses a large unprotected potential state, its eta/rho/q
+must be recorded; the small-surplus bound cannot be transferred to it.
+No such exception was supplied or constructed by the present weak origin branch.
+To use a different kinetic term or field, supply that new action and derive its
+charge, stress and transfer; those are different framework assumptions.
+To call a separate DE offset or sector predicted, derive its value and receiver
+coupling instead of inserting a positive constant. A bare offset has no exchange.
+
+For a time-varying imposed H(t), the free rescaling f=a^(-3/2)u obeys
+ ddotu+[mu²-9H²/4-(3/2)dotH]u=0.
+This direct transformation explains why the exact constant-H characteristic
+threshold must not be claimed as an arbitrary-expansion theorem. A derived
+background/receiver/gravity solution is needed for a actual cosmological history.
+No imported Lambda-CDM expansion has been used to fill that missing equation.
+
+Execution and review
+--------------------
+{len(r['checks'])} exact symbolic checks pass; no numerical trajectories or parameter scan.
+Run status {m['run']['status']}, runtime {m['run']['runtime_seconds']:.6f} seconds, schema-v2
+manifest; Git {m['repository']['commit']}, dirty={m['repository']['dirty']}.
+Wall120/CPU110-second cap, one process/cooperative thread. The manifest validator
+returned 'valid evidence record; mathematical interpretation requires review'.
+Input/output hashes, original-source snapshots, software and actual argv are
+recorded. Source after hashes match before hashes. Only carrier_cosmology/ was
+written by this agent; prior action, transport and assumptions artifacts remain
+unchanged. A same-team Lean agent is formalizing the exact stress/charge algebra;
+this report does not claim that formalization has already completed.
+This is a bounded mathematical/mechanism audit, not an independent human referee
+or identification of the dark substance.
+
+Strongest safe conclusion
+-------------------------
+The supplied cold charged branch and a chi-as-DE receiver identification are
+physically incompatible under this declared homogeneous weak hierarchy. Exact
+classical stress also shows that charge-protected material remains low-pressure
+and cannot sustain exact DE stress; the supplied static potential has no positive
+vacuum state. Keep the valid local matter conversion ingredient, but do not call
+it a DE receiver. The receiver/background/selector chain remains incomplete at
+those actual equations, rather than at an unspecified final numerical test.
+'''
+(h/'RESULT.txt').write_text(report)
+verify={'checkpoint':inv['checkpoint'],'exact_symbolic_checks':len(r['checks']),'all_checks_pass':r['all_passed'],'v2_manifest_validated':True,'physical_branch_rejected':'same weak canonical chi-DE plus fast phi-dust epoch','stronger_exact_material_bound':'rho²-p²>=m²q² in homogeneous positive-square action','not_claimed':'universal nonlinear no-go or predicted cosmology','report_sha256':hashlib.sha256(report.encode()).hexdigest()};(h/'verification.json').write_text(json.dumps(verify,indent=2)+'\n');print(json.dumps(verify))

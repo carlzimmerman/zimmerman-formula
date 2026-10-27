@@ -1,0 +1,2 @@
+from probe_progress import main
+main({'case': 'dilated', 'dt_Myr': 0.00125, 'duration_Myr': 100.0, 'wall_seconds': 360, 'step_energy_tolerance': 5e-10, 'energy_roundoff_floor': 5e-13, 'wave_R_kpc': 10000.0, 'wave_h_kpc': 2.0, 'equilibrium': 'nonlinear_transfer_2026_10_25/run_exact_equilibrium/state.npz', 'material_h_kpc': 0.0625, 'resume': 'nonlinear_cascade_2026_10_25/run_finer_infall/results.json'})

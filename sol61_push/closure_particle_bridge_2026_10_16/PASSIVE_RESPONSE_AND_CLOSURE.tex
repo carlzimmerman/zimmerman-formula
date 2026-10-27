@@ -1,0 +1,291 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref}
+\newcommand{\dd}{\mathrm d}
+\title{Finite-time collective response and soft particle matching}
+\author{Zimmerman programme: CPB-PR-2026-10-16}
+\date{16 October 2026}
+\begin{document}
+\maketitle
+\section{The question and existing obstructions}
+The preceding checkpoint found a tiny direct Higgs-induced response at
+chosen galactic densities. Could a stable medium nevertheless amplify it
+through near-critical susceptibility? This report supplies a finite-time
+test of that proposal, and calculates a previously omitted soft-Higgs loop
+contribution to the daughter coupling. Neither supplies a completed galaxy
+mechanism or a microscopic origin for the vacuum energy.
+
+Earlier project work already derives the protected carrier's dilute coherent
+phase pressure proportional to the square of its chemical-potential variable,
+and shows why simply assigning it a MOND phonon is unjustified. A separate
+barotropic-pressure argument already excludes using a single density-only
+equation of state to support different exactly flat speeds over overlapping
+density intervals. These results are retained, not rediscovered here.
+The superfluid dark-matter route is also established literature:
+Ref.~\cite{pr:superfluid} explicitly assumes its phonon action and a baryon
+coupling; it does not derive those ingredients from this scalar carrier.
+
+\section{A finite-time bound for a stable quadratic sector}
+Consider physical coordinates $q$ with constant real positive-definite
+kinetic matrix $M$ and positive-semidefinite stiffness $K$:
+\begin{equation}
+ L={1\over2}\dot q^TM\dot q-{1\over2}q^TKq
+                +J(t)b^Tq,\qquad q(0)=\dot q(0)=0.
+ \label{pr:system}
+\end{equation}
+Let $U$ orthogonally diagonalize $M^{-1/2}KM^{-1/2}$, with eigenvalues
+$\Omega_j^2\geq0$. For a unit constant source the reciprocal observable
+$b^Tq$ has step response
+\begin{equation}
+ R_b(t)=\sum_j f_j{1-\cos(\Omega_jt)\over\Omega_j^2},\qquad
+ f_j=\bigl(U_j^TM^{-1/2}b\bigr)^2\geq0,\quad
+ \sum_j f_j=b^TM^{-1}b.
+ \label{pr:step}
+\end{equation}
+The zero-frequency summand is defined by its limit $f_jt^2/2$.
+Since $0\leq1-\cos x\leq x^2/2$,
+\begin{equation}
+ 0\leq R_b(t)\leq {t^2\over2}b^TM^{-1}b.
+ \label{pr:bound}
+\end{equation}
+This proves the bound for arbitrary finite dimension, rather than inferring
+it from numerical sampling. The static susceptibility, when it exists, is
+$\chi_b(0)=b^TK^{-1}b=\sum_j f_j/\Omega_j^2$. It can diverge as a
+mode softens while the finite-time bound remains unchanged.
+Reaching a fraction $f>0$ of that static response requires
+\begin{equation}
+ t\geq\sqrt{{2f\chi_b(0)\over b^TM^{-1}b}}.
+ \label{pr:minimumtime}
+\end{equation}
+This is necessary, not sufficient, and does not establish settling.
+Undamped modes may overshoot their static response and need never settle.
+
+The result also has a useful cross-observable version. For an observable
+$a^Tq$ and any source satisfying $|J(s)|\leq J_{\max}$ on $0\leq s\leq t$,
+the retarded mode kernel is $\sin(\Omega_j(t-s))/\Omega_j$.
+Its absolute value is at most $t-s$. Cauchy--Schwarz on the mode
+coefficients therefore gives
+\begin{equation}
+ |a^Tq(t)|\leq {J_{\max}t^2\over2}
+       \sqrt{(a^TM^{-1}a)(b^TM^{-1}b)}.
+ \label{pr:cross}
+\end{equation}
+This proof does not require reciprocal positive spectral weights for the
+cross response. A regulated positive oscillator bath can be included among
+the coordinates before elimination. A continuum extension requires finite
+inertial sums and control of its limit; an unregulated effective kernel
+does not automatically meet these hypotheses.
+
+The theorem assumes zero perturbation initial data, a fixed stable
+quadratic expansion, canonical second-order dynamics and a bounded source.
+Preloaded excitations, a changing background, nonlinear phase transitions,
+active gain or unstable modes are not covered. Their energy source and
+evolution must instead be calculated. Neither a universal halo exclusion
+nor a new general theorem of mathematical physics is claimed.
+
+\section{Application to the existing scalar--polarization construction}
+For a single real Fourier component, use the previously proposed static
+energy and bare kinetic matrices
+\begin{equation}
+ K_k=\begin{pmatrix}Ck^2&-k\\-k&C^{-1}+\Pi_k\end{pmatrix},\qquad
+ M=\begin{pmatrix}Z_\varphi&0\\0&I_P\end{pmatrix},\qquad
+ C,Z_\varphi,I_P>0,\quad k>0,\quad\Pi_k>0.
+\end{equation}
+The determinant is $Ck^2\Pi_k>0$. A source on $\varphi$ has
+\begin{equation}
+ \chi_{\varphi\varphi}(0,k)
+ ={C^{-1}+\Pi_k\over Ck^2\Pi_k}
+ ={1\over Ck^2}+{1\over C^2k^2\Pi_k},\qquad
+ R_{\varphi\varphi}(t,k)\leq {t^2\over2Z_\varphi}.
+ \label{pr:twofield}
+\end{equation}
+Reducing $\Pi_k$ increases the static response but does not remove the
+necessary time in Eq.~\eqref{pr:minimumtime}. For the dimensionless example
+$C=Z_\varphi=I_P=k=1$, $\Pi_k=10^{-6}$, the static susceptibility is
+$1000001$, while the exact step response at $t=10$ is only $25.25115$.
+Reaching half the static value cannot occur before $t=1000.0005$ by the
+bound. These are dimensionless controls, not galaxy times in years.
+
+This two-coordinate numerical example freezes $\Pi_k$ as an instantaneous
+stiffness. The actual nodal-fermion construction has a frequency-dependent
+retarded kernel, positive absorption and induced inertia. Its earlier
+positive-bath representation allows the theorem to be applied to a
+regulated full quadratic realization when the stated positivity and finite
+inertial-sum assumptions hold. The frozen two-coordinate curve is not
+promoted to that fermionic medium's actual formation history.
+
+The prior isotropic gapless branch has $\Pi_k\simeq\eta k$ statically
+and $\Omega_{\rm slow}^2\simeq C^2\eta k^3/Z_\varphi$ at small $k$.
+The static susceptibility scales as $k^{-3}$ in that regime; its response
+time grows correspondingly as $k^{-3/2}$ at least. Actual damping and
+settling are further requirements. None of the unfixed dimensional kinetic
+coefficients has been calibrated by the dimensionless calculation here.
+
+There is a dimensional necessary condition if this same bare scalar sector
+is required to have propagation speed $C/Z_\varphi\leq c^2$. Define its
+static enhancement over its own uncoupled scalar response by
+$\mathcal A=Ck^2\chi_{\varphi\varphi}(0,k)
+=1+(C\Pi_k)^{-1}$. Equations~\eqref{pr:minimumtime} and
+\eqref{pr:twofield}, with $L=1/k$, imply
+\begin{equation}
+ t\geq {L\over c}\sqrt{2f\mathcal A},\qquad
+ \mathcal A\leq {1\over2f}\left({ct\over L}\right)^2
+ \quad\hbox{if fraction $f$ is reached by time $t$}.
+ \label{pr:causalbound}
+\end{equation}
+For half-response in 10 Gyr at $L=1$ kpc, the necessary enhancement ceiling
+is about $9.4\,10^{12}$. A putative $10^{47}$ enhancement in this same
+channel would take at least $1.03\,10^{27}$ years to reach half-response
+under these assumptions. This does not identify the earlier contact shift
+with $\mathcal A$; matching their source and observable is still required.
+It closes the specific shortcut of freely increasing static susceptibility
+while retaining arbitrarily fast, initially unperturbed subluminal response.
+It does not exclude a nonlinear or preloaded state, or a different source
+normalization. The additional bare-speed assumption is not proved for the
+current preferred-frame band model or for an unspecified ultraviolet theory.
+
+The deterministic run checks 48 two-field parameter combinations and six
+three-coordinate cross responses. Generalized-eigenmode responses agree
+with independently integrated ODEs in the latter cases. The resulting 648
+controls test implementations and examples; the displayed inequalities are
+proved by the spectral argument above.
+
+\section{A normal-gas comparison with an explicit time normalization}
+As a separate controlled surrogate, take a homogeneous mean-subtracted
+Newtonian fluid, fixed density $\rho_0$, adiabatic sound speed $c_s$, and
+no expansion. Linear continuity, Euler and Poisson equations give
+\begin{equation}
+ \ddot{\delta\rho_c}+(c_s^2k^2-\omega_J^2)\delta\rho_c
+       =\omega_J^2\delta\rho_b,
+ \qquad \omega_J^2=4\pi G\rho_0.
+\end{equation}
+For $k\geq k_J=\omega_J/c_s$, zero initial perturbation and a constant
+baryon-density Fourier source, define $a=k/k_J$ and $\tau=\omega_Jt$.
+The density ratio is
+\begin{equation}
+ {\delta\rho_c(t)\over\delta\rho_b}
+ ={1-\cos(\sqrt{a^2-1}\,\tau)\over a^2-1}
+ \leq {\tau^2\over2}.
+ \label{pr:gas}
+\end{equation}
+At $a=1$ the limiting equality holds; there is no finite static solution.
+At $a>1$ the static ratio is $(a^2-1)^{-1}$. Below $k_J$ the system is
+Jeans unstable and this stable-mode argument is not applicable.
+
+For the selected comparison $\rho_0=0.3\,\mathrm{GeV\,cm}^{-3}/c^2$
+and one-dimensional dispersion $150\,\mathrm{km\,s}^{-1}$, let
+$c_s^2=(5/3)\sigma_v^2$. Then
+\begin{equation}
+ \omega_J^{-1}=47.3144\,\mathrm{Myr},\qquad
+ k_J^{-1}=9.37049\,\mathrm{kpc},\qquad
+ {1\over2}(\omega_J\,10\,\mathrm{Gyr})^2=22334.9.
+\end{equation}
+Here $k_J^{-1}$ is an inverse wavenumber, not the wavelength $2\pi/k_J$.
+For example $a=1.000001$ has static ratio about $499999.75$ but a
+10-Gyr step ratio about $22169.10$. Critical static response does not
+yield arbitrarily rapid amplification.
+
+This is a linear fluid comparison, not the earlier collisionless Maxwellian
+Volterra calculation, nor a physical finite halo equilibrium. Large density
+contrasts would invalidate linearization; the inequalities can be tested
+with arbitrarily small source amplitudes. These density-response units
+must not be equated to the earlier dimensionless contact shift: connecting
+the contact to the actual source vector $b$ and force observable $a$ is a
+missing matching calculation. The value 22334.9 is therefore not a
+universal bound on the theory's galactic amplification.
+
+\section{The soft-Higgs daughter coupling is not exactly zero}
+The selected scalar action has $g(X^*\Phi^2+X\Phi^{*2})$ and
+$\lambda_{HX}|H|^2|X|^2$ in its potential. Even with a zero daughter
+portal at tree matching, a cubic loop with an internal daughter and source
+produces a finite soft-Higgs vertex. Let the external Higgs momentum vanish
+and the external daughter be on shell, $p^2=m^2$.
+
+The normalization and sign can be checked directly in the Euclidean
+functional integral. Integrating out the quadratic complex $X$ field gives
+the nonlocal action term $-g^2\Phi^{*2}G_X\Phi^2$. Contracting one
+daughter pair gives a quadratic correction $-4g^2G_XG_\Phi$; the factor
+four comes from the two choices at each end. Its mass-squared correction,
+up to an $M$-independent subtraction at fixed other parameters, is
+\begin{equation}
+ \Sigma_{\rm mass}(p^2)={g^2\over4\pi^2}
+ \int_0^1\dd x\,\ln{D(x,p^2)\over\mu_R^2}+\text{constant},\quad
+ D=xM^2+(1-x)m^2-x(1-x)p^2.
+\end{equation}
+The divergent subtraction in the cubic mass diagram does not affect its
+finite derivative with respect to $M^2$. Inserting the soft Higgs through
+$\delta M^2=\lambda_{HX}vh$ therefore gives the leading coefficient
+of $-vh|\Phi|^2$ in the Lagrangian:
+\begin{equation}
+ C_{H\Phi}^{\rm soft,loop}
+ =\lambda_{HX}{g^2\over4\pi^2}
+ \int_0^1{ x\,\dd x\over xM^2+(1-x)^2m^2}>0.
+ \label{pr:loop}
+\end{equation}
+External-leg corrections enter beyond this leading order when the tree
+daughter portal is zero. A symmetry-allowed finite daughter-portal matching
+term can add to this result; the loop contribution alone is not a
+renormalization-condition-independent prediction for the full coupling.
+The statement is that the specified tree zero is not an exact vanishing
+of this perturbative soft vertex.
+This vertex respects the dark global $U(1)$. That symmetry statement alone
+does not extend a classical coldness bound to the full renormalized action.
+
+As an analytic normalization control, at $M=2m$ the integral is
+\begin{equation}
+ {1\over m^2}\int_0^1{x\over(1+x)^2}\dd x
+ ={\ln2-1/2\over m^2}.
+\end{equation}
+Independent quadratures and a mass-derivative check are performed at six
+mass ratios. The selected 2-MeV candidate gives approximately
+\begin{equation}
+ {C_{H\Phi}^{\rm soft,loop}\over\lambda_{HX}}
+ \simeq6.50\,10^{-8},\qquad
+ C_{H\Phi}^{\rm soft,loop}\simeq1.02\,10^{-17}.
+\end{equation}
+With the same slow nonrelativistic nucleon medium as the previous
+checkpoint, $vh=-f_N\rho_b/m_h^2$. Thus this loop contribution gives
+\begin{equation}
+ \delta m_\Phi^2=-C_{H\Phi}^{\rm soft,loop}{f_N\rho_b\over m_h^2}.
+\end{equation}
+At the chosen $0.1\,M_\odot\,\mathrm{pc}^{-3}$ density its magnitude is
+of order $6\,10^{-63}\,\mathrm{GeV}^2$, a fractional daughter
+mass-squared shift of order $1.5\,10^{-57}$. This perturbative soft
+effect does not repair the galaxy-response mechanism. Its smallness is
+not a complete proof about collective effects or a different finite
+matching coupling. Equation~\eqref{pr:loop} also cannot be used as the
+on-shell $125$-GeV Higgs decay form factor: the soft and hard kinematics
+are different. No new freeze-in abundance is inferred from it.
+
+\section{What changed and what remains}
+The static critical construction now has a necessary finite-time response
+condition independent of how small its stiffness is made. The particle
+bridge now includes an explicit leading radiative soft coupling, with its
+normalization, sign and matching caveat. These are constraints on the
+route to closure, not closure itself.
+
+A successful continuation must calculate the physical source vector and
+kinetic normalization of one occupied response state, apply the time bound
+with those units, and solve the nonlinear formation and energy receiver.
+The nodal medium remains a separately postulated occupied sector; the
+protected scalar carrier is not automatically that sector. Their bridge,
+source selection, finite mass supply, actual metric/lensing and cosmological
+tests remain required. The additive vacuum magnitude and the normalization
+of $a_0=\kappa c\sqrt{G\rho_{\rm DE}}$ remain unfixed. Internal scalar
+number-changing reactions still have zero vacuum energy-transfer $Q$.
+
+Evidence is in \texttt{passive\_response\_run\_001} (648 bounded controls)
+and \texttt{soft\_higgs\_matching\_run\_001} (19 controls), with
+\texttt{causal\_response\_run\_001} (three unit controls).
+The mathematical and physical review is self-review. Neither a globally
+novel mechanism nor independent referee
+certification is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{pr:superfluid} L. Berezhiani and J. Khoury,
+Theory of Dark Matter Superfluidity,
+\href{https://arxiv.org/html/1507.01019v2}{arXiv:1507.01019v2},
+Sec.~1.3 and Sec.~4. Cited only as established context for a distinct
+phonon construction; no current observational verdict is imported.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,99 @@
+FRAMEWORK-CERT-GHOST-RECEIVER-2026-10-13
+
+Verdict: exact C2 state/closed-local-budget restrictions kernel checked;
+healthy prepared buffer is nonzero, exact-ground supply is zero. Not a
+microscopic coupling, dynamics, reservoir existence or universal no-go.
+
+Primary framework source and dictionary:
+CFG635_one_dark_sector/cfg635.py lines164-210 declares
+ P(X)=-rho_DE+(cc/2)*(X-X0)^2, rho=2X*P_X-P,
+ K=P_X+2X*P_XX and leading deposit/health diagnostics.
+Here a names the source cc>0 curvature (NOT lightspeed or receiver coupling),
+rho0=rho_DE, d=X-X0 and X0>0. The source's symbols X,X0,rho_DE are positive;
+our healthy branch d>=0 guarantees X=X0+d>0. Physical background rho0>0
+is required in the DE-like ratio theorem, but density floor/budget algebra does
+not need it. This is the explicitly declared framework C2 candidate, not a
+physical assumption imported from standard MOND/LambdaCDM.
+
+Actual derivative and polynomial dictionary (all terms retained):
+HasDerivAt P gives P_X=a*(X-X0); its derivative gives P_XX=a.
+Definitions gradient,kinetic,rho,pressure contain these exact formulas and
+rho=2X*gradient-P, K=gradient+2X*a. The state_dictionary theorem derives
+ rho=rho0+a*(2X0*d+3d^2/2), p=-rho0+a*d^2/2,
+ P_X=a*d and K=a*(2X0+3d).
+No coefficient identity is taken as an unexplained premise.
+
+Sign convention: exported here means energy LOST BY THE RECEIVER. This is
+cold-sector import when that energy enters the cold sector. CFG635 calls the
+opposite transfer (cold loses, receiver gains) the cold export side.
+
+Ten English theorem correspondences:
+1. potential_derivatives proves BOTH actual first and second polynomial
+   derivatives. No externally supplied constitutive derivative axiom.
+2. state_dictionary proves the exact rho,p,P_X,K polynomial relations.
+3. healthy_branch: a>0 makes P_X>=0 equivalent to d>=0. This is the local
+   gradient-coefficient condition; it does not prove global gradient stability,
+   higher-gradient regularization, causal propagation or PDE well-posedness.
+4. healthy_density_floor: a>0,X0>0 and that gradient condition imply rho>=rho0.
+5. no_ground_export: the same final local condition and EXPLICIT ledger
+   exported=rho(initial d0)-rho(final d) imply exported<=0.
+   It is not a claim that every reservoir, coupled current or flux lacks capacity.
+6. positive_buffer: a>0,X0>0,d>0 give positive finite excess rho-rho0,
+   strictly positive excess pressure p+rho0, and positive K.
+7. buffered_export_budget: any healthy final state and ledger
+   exported=rho(di)-rho(df) imply exported<=rho(di)-rho0.
+   No initial d sign or dynamics is silently assumed. If di>0, theorem6
+   supplies the positive available local buffer; a trajectory is not supplied.
+8. health_boundary_budget: final df0 exactly yields
+   exported=a*(2X0*di+3di^2/2), conditional on the ledger alone.
+9. deposit_eos: for a>0,X0>0,d>0, the EXACT deposit relation is
+   (p+rho0)/(rho-rho0)=d/(4X0+3d), strictly between 0 and 1/3.
+   Finite deposition is NOT exact dust. Source CFG635's pressureless deposit
+   wording is first-order: dp starts at a*d^2/2 while drho starts at 2aX0d.
+10. de_deviation_bound: a,X0,rho0>0,d>=0,eta>=0, plus declared
+    excess rho-rho0<=eta*rho0 imply 0<=w+1<=4eta/3 with w=p/rho.
+    eta is a hypothesis describing the buffer, not a fitted new action constant.
+    This is a sufficient local protected-DE condition, not an empirical tolerance.
+
+What is and is not excluded:
+An initially exact-ground local cell cannot lose positive finite energy while
+remaining on the declared P_X>=0 branch if the stated density ledger accounts
+for the complete transfer. A positive already prepared buffer can lose energy
+up to its excess above rho0 and reach the marginal gradient boundary.
+This sharpens the source's ground-state direction statement; it does not imply
+zero receiver capacity for every state. Incoming energy, flux, replenishment,
+additional kinetic/gradient storage, coupling interaction energy, backgrounds,
+other P functions or stabilizing terms change the relevant ledger/conditions.
+Any such alternative needs actual equations. No energy-conserving current,
+local carrier coupling, finite rate, depletion time or reachable path is derived.
+The definitions use the declared homogeneous C2 stress dictionary; metric
+variation, full stress tensor, gravity and cosmology are not formalized here.
+No all-theory or all-dark-sector exclusion. No a0, kappa or abundance prediction.
+
+Verification:
+Directory fable_independent_2026/lean_2026
+Command lake env lean ABSOLUTE_PATH/ghost_receiver/formal/GhostReceiver.lean
+Exit0, no warnings. compile.log prints all TEN standard mathematical axiom lists:
+[propext, Classical.choice, Quot.sound]. No sorryAx/custom axioms/native_decide.
+FalseExactDust.lean expected exit1 with goal False: a=X0=rho0=d=1 gives
+dp=1/2, so asserting exact finite dp0 fails. It does not refute the source's
+explicitly first-order series statement.
+FalseZeroBuffer.lean expected exit1 with goal False: same healthy positive
+a=X0=d=1 has excess density 7/2, so asserting every buffer is zero fails.
+Both controls repeat the checked declarations and append false statements;
+only GhostReceiver.lean is intended to compile successfully.
+Compile controls individually with same lake command and each false file path.
+Failure must be semantic final False, not missing dependencies or a type error.
+
+Pinned inputs: PINNED_INPUTS.json and inputs/ preserve actual source bytes.
+Live HEAD observed 668818d9f6fefccc2ee75c2f47dc7424140cc8f8. Existing CFG635
+files/older certificates/goal inventory 108 unchanged.
+
+SHA-256 verification artifacts:
+7ec5d09455e98a02933b342cd4a732bb7e3649138ed1873bcd870c233cfff354  GhostReceiver.lean
+e3199756a99f487c450c27226530c8db16e227daf057d5b763fedb3fa510ddb8  compile.log
+2fd04e37cb3f27792ea4a2ac52149078ef0b0a53dc8efe8e81f8c90f22140082  FalseExactDust.lean
+7492def56696d50fc810787091d53be6b7b2cc11b1bee708cf9c0ea489d58e1c  FalseExactDust.log
+8c5617d126e2d03dcafa8f252102c4fa96d9ceec69681d422c182f1fb4323f5f  FalseZeroBuffer.lean
+5d9dce5b2f9915aee9feaadf333931571cd00922d5509e80991b2c3914c3779d  FalseZeroBuffer.log
+ed731de174deacedc8e1930f973cef1f294b07304fc2164b377b2eebfae1f3bd  PINNED_INPUTS.json

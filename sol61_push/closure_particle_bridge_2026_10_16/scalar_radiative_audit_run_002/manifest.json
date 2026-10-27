@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "SCALAR-RADIATIVE-AUDIT-2026-10-16",
+  "repository": {
+    "commit": "20130054ef4e2cb9ab4d6922d2f86a438e0f723c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/closure_particle_bridge_2026_10_16/scalar_radiative_audit.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/scalar_radiative_audit_run_002"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Scalar-only one-loop CW derivatives, UV operator basis, carrier threshold sensitivity and optical theorem; MS diagnostic and weaker branch",
+    "coefficient_domain": "Binary64 deterministic quadrature",
+    "conventions": "Real canonical fields Phi=(f1+i f2)/sqrt2; complex Phi factor2 in CW; MSbar scale m; tadpole matched to0 for pole comparison; only new mediator loop contributions retained",
+    "inputs": [
+      "sol61_push/closure_particle_bridge_2026_10_16/scalar_radiative_audit.py",
+      "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge_run_001/results.json"
+    ],
+    "bounds": {
+      "original_mediator_mass_over_m": [
+        3,
+        5,
+        10,
+        100
+      ],
+      "original_a_over_mass": 0.02,
+      "weaker_selected_a_GeV": 0.0001,
+      "pole_mass_fractional_loop_gate": 0.1,
+      "vacuum_reference_energy_GeV": 2.25e-12,
+      "independent_Gauss_nodes": 512,
+      "independent_quadrature_tolerance": 1e-10
+    },
+    "non_claims": [
+      "No full one-loop beta system, mass-scheme-independent exclusion, full matter/metric vacuum prediction or theory closure"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-16T14:52:10.556343+00:00",
+    "runtime_seconds": 0.512985,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/closure_particle_bridge_2026_10_16/scalar_radiative_audit.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge_run_001/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/scalar_radiative_audit.py",
+      "sha256": "e63b543e0691f1e8da4f9e939a98c68ed5b8cbe3bce79015dbf471ab0ef9dac2",
+      "sha256_after": "e63b543e0691f1e8da4f9e939a98c68ed5b8cbe3bce79015dbf471ab0ef9dac2"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge_run_001/results.json",
+      "sha256": "7bcab9ec6dfc79cd68b03dbaa4b670247f014695f35ad7dc3dfa095c4112a76b",
+      "sha256_after": "7bcab9ec6dfc79cd68b03dbaa4b670247f014695f35ad7dc3dfa095c4112a76b"
+    }
+  ],
+  "output_directory": "sol61_push/closure_particle_bridge_2026_10_16/scalar_radiative_audit_run_002",
+  "declared_results": [
+    "sol61_push/closure_particle_bridge_2026_10_16/scalar_radiative_audit_run_002/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/scalar_radiative_audit_run_002/stdout.txt",
+      "sha256": "cb3b7bef0185c191fe76ae26e7fb6d80ac5b9069654faf1daa08108036cdce38",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/scalar_radiative_audit_run_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/scalar_radiative_audit_run_002/results.json",
+      "sha256": "56dfa2542fe65091ee6e1d84a34425131ffc8b2b7733af7589ccb8b5dc1802bc",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

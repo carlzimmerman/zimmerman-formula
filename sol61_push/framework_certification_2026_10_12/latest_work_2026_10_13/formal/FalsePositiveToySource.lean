@@ -1,0 +1,207 @@
+import Mathlib
+
+/-! Latest prescribed-lapse finite C2 patch: actual pointwise invariant/current
+construction and diagnostic lapse-source sign, not a coupled gravity solution. -/
+noncomputable section
+namespace FrameworkFinitePatch
+
+def P (a X0 rho0 X : ℝ) : ℝ := -rho0 + a / 2 * (X - X0) ^ 2
+def PX (a X0 X : ℝ) : ℝ := a * (X - X0)
+def rho (a X0 rho0 X : ℝ) : ℝ := 2 * X * PX a X0 X - P a X0 rho0 X
+def invariant (omega N A s : ℝ) : ℝ := (omega ^ 2 / N ^ 2 - s ^ 2 / A ^ 2) / 2
+def frequency (X0 Nstar : ℝ) : ℝ := Real.sqrt (2 * X0) * Nstar
+def exteriorGradient (X0 Nstar N A : ℝ) : ℝ :=
+  Real.sqrt (2 * X0) * A * Real.sqrt (Nstar ^ 2 / N ^ 2 - 1)
+def radialFlux (a X0 omega N A r s : ℝ) : ℝ :=
+  -N * r ^ 2 * PX a X0 (invariant omega N A s) * s / A
+
+def reducedDensity (a X0 rho0 omega N A r s : ℝ) : ℝ :=
+  N * A * r ^ 2 * P a X0 rho0 (invariant omega N A s)
+
+/-- Actual derivative of the supplied radial P(X) action density gives the Noether flux. -/
+theorem actual_reduced_action_current (a X0 rho0 omega N A r s : ℝ) (hA : A ≠ 0) :
+    HasDerivAt (reducedDensity a X0 rho0 omega N A r)
+      (radialFlux a X0 omega N A r s) s := by
+  have hi : HasDerivAt (invariant omega N A) (-s / A ^ 2) s := by
+    have h := ((hasDerivAt_const s (omega ^ 2 / N ^ 2)).sub
+      (((hasDerivAt_id s).pow 2).div_const (A ^ 2))).div_const 2
+    apply h.congr_deriv
+    dsimp
+    ring
+  have hp : HasDerivAt (P a X0 rho0) (PX a X0 (invariant omega N A s)) (invariant omega N A s) := by
+    have h := ((((hasDerivAt_id (invariant omega N A s)).sub_const X0).pow 2).const_mul (a / 2)).const_add (-rho0)
+    apply h.congr_deriv
+    dsimp [PX]
+    ring
+  have h := (hp.comp s hi).const_mul (N * A * r ^ 2)
+  apply h.congr_deriv
+  dsimp [radialFlux]
+  field_simp
+
+/-- Actual rest core invariant and healthy branch from the lapse maximum condition. -/
+theorem actual_core_invariant (X0 Nstar N A : ℝ) (hX : 0 < X0)
+    (hN : 0 < N) (hNs : 0 < Nstar) (hmax : N ≤ Nstar) :
+    invariant (frequency X0 Nstar) N A 0 = X0 * Nstar ^ 2 / N ^ 2 ∧
+    X0 ≤ invariant (frequency X0 Nstar) N A 0 := by
+  have hs := Real.sq_sqrt (by positivity : 0 ≤ 2 * X0)
+  have he : invariant (frequency X0 Nstar) N A 0 = X0 * Nstar ^ 2 / N ^ 2 := by
+    dsimp [invariant, frequency]
+    rw [mul_pow, hs]
+    field_simp
+    norm_num
+  refine ⟨he, ?_⟩
+  rw [he]
+  apply (le_div_iff₀ (sq_pos_of_pos hN)).mpr
+  have hsq : N ^ 2 ≤ Nstar ^ 2 := by nlinarith
+  exact mul_le_mul_of_nonneg_left hsq hX.le
+
+/-- Actual exterior vacuum invariant holds for either phase-gradient orientation. -/
+theorem actual_exterior_vacuum (X0 Nstar N A sign : ℝ) (hX : 0 < X0)
+    (hN : 0 < N) (hNs : 0 < Nstar) (hA : 0 < A) (hmax : N ≤ Nstar)
+    (horient : sign ^ 2 = 1) :
+    invariant (frequency X0 Nstar) N A (sign * exteriorGradient X0 Nstar N A) = X0 := by
+  have hS : 0 ≤ Nstar ^ 2 / N ^ 2 - 1 := by
+    apply sub_nonneg.mpr
+    apply (le_div_iff₀ (sq_pos_of_pos hN)).mpr
+    nlinarith
+  have hs1 := Real.sq_sqrt (by positivity : 0 ≤ 2 * X0)
+  have hs2 := Real.sq_sqrt hS
+  dsimp [invariant, frequency, exteriorGradient]
+  simp only [mul_pow, horient, one_mul, hs1, hs2]
+  field_simp
+  ring
+
+/-- Vacuum exterior carries zero PX-weighted phase flow and exact vacuum stress. -/
+theorem exterior_current_and_stress (a X0 rho0 Nstar N A sign r : ℝ) (hX : 0 < X0)
+    (hN : 0 < N) (hNs : 0 < Nstar) (hA : 0 < A) (hmax : N ≤ Nstar)
+    (horient : sign ^ 2 = 1) :
+    let s := sign * exteriorGradient X0 Nstar N A
+    let X := invariant (frequency X0 Nstar) N A s
+    PX a X0 X * s = 0 ∧ radialFlux a X0 (frequency X0 Nstar) N A r s = 0 ∧
+      P a X0 rho0 X = -rho0 ∧ rho a X0 rho0 X = rho0 := by
+  have hv := actual_exterior_vacuum X0 Nstar N A sign hX hN hNs hA hmax horient
+  dsimp
+  simp [hv, PX, radialFlux, P, rho]
+
+/-- At the maximum edge the gradient meets the core zero gradient, for either sign. -/
+theorem actual_edge_matching (a X0 rho0 Nstar A sign : ℝ) (hX : 0 < X0)
+    (hNs : 0 < Nstar) :
+    sign * exteriorGradient X0 Nstar Nstar A = 0 ∧
+    invariant (frequency X0 Nstar) Nstar A 0 = X0 ∧
+    P a X0 rho0 (invariant (frequency X0 Nstar) Nstar A 0) = -rho0 ∧
+    rho a X0 rho0 (invariant (frequency X0 Nstar) Nstar A 0) = rho0 := by
+  have hg : sign * exteriorGradient X0 Nstar Nstar A = 0 := by
+    simp [exteriorGradient, div_self (pow_ne_zero 2 hNs.ne')]
+  have hi := (actual_core_invariant X0 Nstar Nstar A hX hNs hNs le_rfl).1
+  have he : invariant (frequency X0 Nstar) Nstar A 0 = X0 := by
+    rw [hi]
+    field_simp
+  refine ⟨hg, he, ?_, ?_⟩ <;> simp [he, P, rho, PX]
+
+def patchGradient (X0 Nstar R sign : ℝ) (N A : ℝ → ℝ) (r : ℝ) : ℝ :=
+  if r ≤ R then 0 else sign * exteriorGradient X0 Nstar (N r) (A r)
+def patchCurrent (a X0 Nstar R sign : ℝ) (N A : ℝ → ℝ) (r : ℝ) : ℝ :=
+  -(PX a X0 (invariant (frequency X0 Nstar) (N r) (A r)
+    (patchGradient X0 Nstar R sign N A r)) * patchGradient X0 Nstar R sign N A r) / (A r) ^ 2
+def patchFlux (a X0 Nstar R sign : ℝ) (N A : ℝ → ℝ) (r : ℝ) : ℝ :=
+  radialFlux a X0 (frequency X0 Nstar) (N r) (A r) r (patchGradient X0 Nstar R sign N A r)
+
+/-- The actual piecewise Noether flux is identically zero, and hence has actual derivative zero.
+No named conservation or constant-flux premise substitutes for the construction. -/
+theorem actual_patch_noether_flux (a X0 Nstar R sign : ℝ) (N A : ℝ → ℝ)
+    (hX : 0 < X0) (hNs : 0 < Nstar) (horient : sign ^ 2 = 1)
+    (hN : ∀ r, 0 < N r) (hA : ∀ r, 0 < A r) (hmax : ∀ r, N r ≤ Nstar) :
+    ∀ r, patchCurrent a X0 Nstar R sign N A r = 0 ∧
+      HasDerivAt (patchCurrent a X0 Nstar R sign N A) 0 r ∧
+      patchFlux a X0 Nstar R sign N A r = 0 ∧
+      HasDerivAt (patchFlux a X0 Nstar R sign N A) 0 r := by
+  have hj : ∀ r, patchCurrent a X0 Nstar R sign N A r = 0 := by
+    intro r
+    by_cases hi : r ≤ R
+    · simp [patchCurrent, patchGradient, hi]
+    · have hx := (exterior_current_and_stress a X0 0 Nstar (N r) (A r) sign r
+        hX (hN r) hNs (hA r) (hmax r) horient).1
+      dsimp [patchCurrent]
+      rw [show patchGradient X0 Nstar R sign N A r =
+        sign * exteriorGradient X0 Nstar (N r) (A r) by simp [patchGradient, hi], hx]
+      simp
+  have hej : patchCurrent a X0 Nstar R sign N A = fun _ => 0 := funext hj
+  have hz : ∀ r, patchFlux a X0 Nstar R sign N A r = 0 := by
+    intro r
+    by_cases hi : r ≤ R
+    · simp [patchFlux, patchGradient, hi, radialFlux]
+    · dsimp [patchFlux]
+      rw [show patchGradient X0 Nstar R sign N A r =
+        sign * exteriorGradient X0 Nstar (N r) (A r) by simp [patchGradient, hi]]
+      exact (exterior_current_and_stress a X0 0 Nstar (N r) (A r) sign r
+        hX (hN r) hNs (hA r) (hmax r) horient).2.1
+  have he : patchFlux a X0 Nstar R sign N A = fun _ => 0 := funext hz
+  intro r
+  refine ⟨hj r, ?_, hz r, ?_⟩
+  · rw [hej]
+    exact hasDerivAt_const r 0
+  · rw [he]
+    exact hasDerivAt_const r 0
+
+def toyLogLapse (h r : ℝ) : ℝ := -h * (1 - r ^ 2) ^ 2
+def toyLapse (h r : ℝ) : ℝ := Real.exp (toyLogLapse h r)
+def radialLaplacian (h r : ℝ) : ℝ :=
+  deriv (deriv (toyLogLapse h)) r + 2 / r * deriv (toyLogLapse h) r
+
+/-- True first and second derivatives of the actual diagnostic log lapse. -/
+theorem actual_toy_derivatives (h r : ℝ) :
+    HasDerivAt (toyLogLapse h) (4 * h * r * (1 - r ^ 2)) r ∧
+    HasDerivAt (deriv (toyLogLapse h)) (4 * h * (1 - 3 * r ^ 2)) r := by
+  have hfirst : ∀ r, HasDerivAt (toyLogLapse h) (4 * h * r * (1 - r ^ 2)) r := by
+    intro r
+    have h := (((hasDerivAt_const r 1).sub ((hasDerivAt_id r).pow 2)).pow 2).const_mul (-h)
+    apply h.congr_deriv
+    dsimp
+    ring
+  refine ⟨hfirst r, ?_⟩
+  have he : deriv (toyLogLapse h) = fun r => 4 * h * r * (1 - r ^ 2) :=
+    funext (fun r => (hfirst r).deriv)
+  rw [he]
+  have h := ((hasDerivAt_id r).const_mul (4 * h)).mul
+    ((hasDerivAt_const r 1).sub ((hasDerivAt_id r).pow 2))
+  apply h.congr_deriv
+  dsimp
+  ring
+
+/-- The prescribed positive lapse has its maximum at r1; this is not a metric equation. -/
+theorem actual_toy_lapse_maximum (h : ℝ) (hh : 0 ≤ h) :
+    (∀ r, 0 < toyLapse h r ∧ toyLapse h r ≤ 1) ∧ toyLapse h 1 = 1 ∧
+    HasDerivAt (toyLapse h) 0 1 := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro r
+    refine ⟨Real.exp_pos _, ?_⟩
+    apply Real.exp_le_one_iff.mpr
+    dsimp [toyLogLapse]
+    nlinarith [sq_nonneg (1 - r ^ 2)]
+  · norm_num [toyLapse, toyLogLapse]
+  · apply ((actual_toy_derivatives h 1).1.exp).congr_deriv
+    norm_num
+
+/-- Actual radial derivative operator gives a negative Poisson-source sign at the edge. -/
+theorem actual_toy_laplacian_and_edge_sign (h : ℝ) (hh : 0 < h) :
+    (∀ r, r ≠ 0 → radialLaplacian h r = 12 * h - 20 * h * r ^ 2) ∧
+      radialLaplacian h 1 = -8 * h ∧ radialLaplacian h 1 < 0 := by
+  have he : ∀ r, r ≠ 0 → radialLaplacian h r = 12 * h - 20 * h * r ^ 2 := by
+    intro r hr
+    unfold radialLaplacian
+    rw [(actual_toy_derivatives h r).2.deriv, (actual_toy_derivatives h r).1.deriv]
+    field_simp
+    ring
+  refine ⟨he, ?_, ?_⟩
+  · rw [he 1 (by norm_num)]
+    ring
+  · rw [he 1 (by norm_num)]
+    nlinarith
+
+end FrameworkFinitePatch
+
+open FrameworkFinitePatch
+-- The prescribed toy lapse does not give a nonnegative Newtonian log-lapse source at its edge.
+example : 0 ≤ radialLaplacian 1 1 := by
+  rw [(actual_toy_laplacian_and_edge_sign 1 (by norm_num)).2.1]
+  norm_num

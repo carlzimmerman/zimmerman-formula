@@ -1,0 +1,143 @@
+import Mathlib
+
+/-! Supplied low-y kernel and exact two-positive-source midplane calculus.
+No AQUAL/removed Eq9, scalar/vector completion, or clipping law is assumed. -/
+noncomputable section
+namespace FrameworkNonspherical
+
+def nu (y : ℝ) : ℝ := 1 / (1 - Real.exp (-Real.sqrt y))
+def nuSlope (y : ℝ) : ℝ :=
+  -Real.exp (-Real.sqrt y) / (2 * Real.sqrt y * (1 - Real.exp (-Real.sqrt y)) ^ 2)
+
+theorem actual_nu_derivative (y : ℝ) (hy : 0 < y) : HasDerivAt nu (nuSlope y) y := by
+  have hs : 0 < Real.sqrt y := Real.sqrt_pos.mpr hy
+  have he : Real.exp (-Real.sqrt y) < 1 := Real.exp_lt_one_iff.mpr (by linarith)
+  have hn : 1 - Real.exp (-Real.sqrt y) ≠ 0 := by linarith
+  have hd := (hasDerivAt_const y 1).sub ((Real.hasDerivAt_sqrt hy.ne').neg.exp)
+  have h := (hasDerivAt_const y 1).div hd hn
+  apply h.congr_deriv
+  dsimp [nuSlope]
+  field_simp
+  ring
+
+theorem actual_nu_slope_negative (y : ℝ) (hy : 0 < y) : nuSlope y < 0 := by
+  have hs : 0 < Real.sqrt y := Real.sqrt_pos.mpr hy
+  have he : Real.exp (-Real.sqrt y) < 1 := Real.exp_lt_one_iff.mpr (by linarith)
+  have hd : 0 < 2 * Real.sqrt y * (1 - Real.exp (-Real.sqrt y)) ^ 2 := by positivity
+  exact div_neg_of_neg_of_pos (neg_neg_of_pos (Real.exp_pos _)) hd
+
+/-- GM is absorbed into M; two sources at ±a on x axis, evaluate y-axis. -/
+def midField (M a y : ℝ) : ℝ := 2 * M * y / Real.sqrt (a ^ 2 + y ^ 2) ^ 3
+def midSlope (M a y : ℝ) : ℝ := 2 * M * (a ^ 2 - 2 * y ^ 2) / Real.sqrt (a ^ 2 + y ^ 2) ^ 5
+
+theorem actual_midfield_derivative (M a y : ℝ) (ha : 0 < a) :
+    HasDerivAt (midField M a) (midSlope M a y) y := by
+  have hS : 0 < a ^ 2 + y ^ 2 := by nlinarith [sq_nonneg y]
+  have hr : 0 < Real.sqrt (a ^ 2 + y ^ 2) := Real.sqrt_pos.mpr hS
+  have hs := (((hasDerivAt_id y).pow 2).const_add (a ^ 2)).sqrt hS.ne'
+  have hn := (hasDerivAt_id y).const_mul (2 * M)
+  have h := hn.div (hs.pow 3) (pow_ne_zero _ hr.ne')
+  apply h.congr_deriv
+  dsimp [midSlope]
+  have hsq := Real.sq_sqrt hS.le
+  have halg : a ^ 2 - 2 * y ^ 2 = Real.sqrt (a ^ 2 + y ^ 2) ^ 2 - 3 * y ^ 2 := by linarith
+  rw [halg]
+  field_simp
+
+theorem midpoint_quarter_positive (M a : ℝ) (hM : 0 < M) (ha : 0 < a) :
+    0 < midField M a (a / 4) ∧ 0 < midSlope M a (a / 4) := by
+  have hS : 0 < a ^ 2 + (a / 4) ^ 2 := by positivity
+  have hr : 0 < Real.sqrt (a ^ 2 + (a / 4) ^ 2) := Real.sqrt_pos.mpr hS
+  have hb : 0 < a ^ 2 - 2 * (a / 4) ^ 2 := by nlinarith [sq_pos_of_pos ha]
+  constructor
+  · unfold midField
+    positivity
+  · unfold midSlope
+    positivity
+
+def midPotential (M a y : ℝ) : ℝ := -2 * M / Real.sqrt (a ^ 2 + y ^ 2)
+
+theorem actual_midpotential_derivative (M a y : ℝ) (ha : 0 < a) :
+    HasDerivAt (midPotential M a) (midField M a y) y := by
+  have hS : 0 < a ^ 2 + y ^ 2 := by nlinarith [sq_nonneg y]
+  have hr : 0 < Real.sqrt (a ^ 2 + y ^ 2) := Real.sqrt_pos.mpr hS
+  have hs := (((hasDerivAt_id y).pow 2).const_add (a ^ 2)).sqrt hS.ne'
+  have h := (hasDerivAt_const y (-2 * M)).div hs hr.ne'
+  apply h.congr_deriv
+  dsimp [midField]
+  field_simp
+  ring
+
+def fieldXSlice (M a y t : ℝ) : ℝ := midField (M / 2) y (t - a) + midField (M / 2) y (t + a)
+def fieldZSlice (M a y t : ℝ) : ℝ := midField M (Real.sqrt (a ^ 2 + y ^ 2)) t
+
+theorem actual_transverse_field_derivatives (M a y : ℝ) (ha : 0 < a) (hy : 0 < y) :
+    HasDerivAt (fieldXSlice M a y)
+      (2 * M * (y ^ 2 - 2 * a ^ 2) / Real.sqrt (a ^ 2 + y ^ 2) ^ 5) 0 ∧
+    HasDerivAt (fieldZSlice M a y) (2 * M / Real.sqrt (a ^ 2 + y ^ 2) ^ 3) 0 := by
+  have hm := (actual_midfield_derivative (M / 2) y (0 - a) hy).comp 0 ((hasDerivAt_id (0 : ℝ)).sub_const a)
+  have hp := (actual_midfield_derivative (M / 2) y (0 + a) hy).comp 0 ((hasDerivAt_id (0 : ℝ)).add_const a)
+  have hS : 0 < a ^ 2 + y ^ 2 := by positivity
+  have hr : 0 < Real.sqrt (a ^ 2 + y ^ 2) := Real.sqrt_pos.mpr hS
+  constructor
+  · apply (hm.add hp).congr_deriv
+    dsimp [midSlope]
+    norm_num
+    rw [add_comm (y ^ 2) (a ^ 2)]
+    ring
+  · apply (actual_midfield_derivative M (Real.sqrt (a ^ 2 + y ^ 2)) 0 hr).congr_deriv
+    dsimp [midSlope]
+    norm_num [Real.sqrt_sq_eq_abs, abs_of_pos hr]
+    field_simp
+
+theorem actual_vacuum_field_trace (M a y : ℝ) (ha : 0 < a) (hy : 0 < y) :
+    deriv (fieldXSlice M a y) 0 + deriv (midField M a) y + deriv (fieldZSlice M a y) 0 = 0 := by
+  rw [(actual_transverse_field_derivatives M a y ha hy).1.deriv,
+    (actual_midfield_derivative M a y ha).deriv,
+    (actual_transverse_field_derivatives M a y ha hy).2.deriv]
+  have hS : 0 < a ^ 2 + y ^ 2 := by positivity
+  have hr : 0 < Real.sqrt (a ^ 2 + y ^ 2) := Real.sqrt_pos.mpr hS
+  have hsq := Real.sq_sqrt hS.le
+  dsimp [midSlope]
+  field_simp
+  rw [hsq]
+  ring
+
+/-- Exact local vacuum target coefficient using the now-derived midplane slope.
+The correspondence to full divergence still needs the transverse norm chain rule. -/
+def localTarget (M a G : ℝ) : ℝ := nuSlope 1 * midSlope M a (a / 4) / (4 * Real.pi * G)
+
+theorem actual_local_target_negative (M a G : ℝ) (hM : 0 < M) (ha : 0 < a) (hG : 0 < G) :
+    localTarget M a G < 0 := by
+  unfold localTarget
+  exact div_neg_of_neg_of_pos
+    (mul_neg_of_neg_of_pos (actual_nu_slope_negative 1 (by norm_num))
+      (midpoint_quarter_positive M a hM ha).2) (by positivity)
+
+def weightedMidField (M a a0 y : ℝ) : ℝ := (nu (midField M a y / a0) - 1) * midField M a y
+
+theorem actual_weighted_midfield_derivative (M a : ℝ) (hM : 0 < M) (ha : 0 < a) :
+    HasDerivAt (weightedMidField M a (midField M a (a / 4)))
+      (nuSlope 1 * midSlope M a (a / 4) + (nu 1 - 1) * midSlope M a (a / 4)) (a / 4) := by
+  have hg := (midpoint_quarter_positive M a hM ha).1
+  have hm := actual_midfield_derivative M a (a / 4) ha
+  have hq := hm.div_const (midField M a (a / 4))
+  have hn := (actual_nu_derivative (midField M a (a / 4) / midField M a (a / 4))
+    (by simp [hg.ne'])).comp (a / 4) hq
+  have h := (hn.sub_const 1).mul hm
+  apply h.congr_deriv
+  simp only [div_self hg.ne']
+  field_simp
+
+end FrameworkNonspherical
+#print axioms FrameworkNonspherical.actual_nu_derivative
+#print axioms FrameworkNonspherical.actual_nu_slope_negative
+#print axioms FrameworkNonspherical.actual_midfield_derivative
+#print axioms FrameworkNonspherical.midpoint_quarter_positive
+
+#print axioms FrameworkNonspherical.actual_midpotential_derivative
+#print axioms FrameworkNonspherical.actual_transverse_field_derivatives
+#print axioms FrameworkNonspherical.actual_vacuum_field_trace
+#print axioms FrameworkNonspherical.actual_local_target_negative
+
+#print axioms FrameworkNonspherical.actual_weighted_midfield_derivative

@@ -1,0 +1,78 @@
+{
+  "claim_id": "CPB-PAIR-CONVERSION-2026-10-16",
+  "mathematics": {
+    "assertion_tested": "Pole-free pair conversion cross section, MB thermal reverse rates, and common-kinetic/fast-decay partial-equilibrium gas evolution with reciprocal number and energy in an expanding prescribed radiation background; scope-gate failures retained as scientific results, initial energy ceiling checked; independent comoving entropy-production identity and nonnegative affinity-rate product",
+    "coefficient_domain": "Exact rational denominator controls plus IEEE754 binary64 SciPy quadrature/ODE",
+    "conventions": "m=2MeV separately specified branch; counts w=nPhi+2nX per charge sign; pair P positive PhiPhi*->XX*; source partial equilibrium zX=zPhi^2; classical MB; no portal injection during evolved interval",
+    "inputs": [
+      "sol61_push/closure_particle_bridge_2026_10_16/pair_conversion_closure.py",
+      "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json"
+    ],
+    "bounds": {
+      "angular_s_over_4M2": [
+        1.0001,
+        1.1,
+        2,
+        10,
+        100
+      ],
+      "thermal_quadratures": [
+        64,
+        128
+      ],
+      "thermal_rate_T_over_m_minmax": [
+        1e-05,
+        10
+      ],
+      "thermal_rate_points": 25,
+      "initial_Tdark_over_m": [
+        0.3,
+        1,
+        3
+      ],
+      "Tvisible_GeV_minmax": [
+        1e-06,
+        0.01
+      ],
+      "background_table_points": 500,
+      "neutrino_decoupling_GeV": 0.002,
+      "electron_quadrature": 192,
+      "ODE": "Radau rtol2e-7, refined2e-9; max loga step .12",
+      "output_samples_per_run": 401,
+      "scope_gates_pinned_in_first_script": {
+        "maximum_MB_occupation": 0.02,
+        "minimum_source_decay_over_evolution": 100000.0,
+        "minimum_elastic_lower_over_evolution": 10
+      }
+    },
+    "non_claims": [
+      "Not full production or full momentum evolution",
+      "MB/kinetic/source-equilibrium closures remain scoped asymptotic assumptions",
+      "No full quantum/thermal masses or complete RIS-subtracted multiparticle hierarchy",
+      "No observed abundance, coldness, theory closure or novelty established"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/closure_particle_bridge_2026_10_16/pair_conversion_closure.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

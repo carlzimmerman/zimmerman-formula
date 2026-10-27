@@ -1,0 +1,273 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref}
+\newcommand{\dd}{\mathrm d}
+\title{Source-assisted evolution and the missing galaxy bridge}
+\author{Zimmerman programme: CPB-AG-2026-10-16}
+\date{16 October 2026}
+\begin{document}
+\maketitle
+\section{What this checkpoint establishes}
+The physical theory is open. This checkpoint evolves the previously derived
+pole-free source-assisted channel in the same expanding gas used for the pair
+comparison. It also tests whether the chosen Higgs production portal could
+itself supply the baryon-dependent galaxy response. The latter test finds
+an extremely small direct local effect in this particular candidate. It
+does not exclude a separate collective state or ordinary gravitating halos.
+All calculations below are conditional on the selected 2-MeV scalar model;
+they do not replace the frozen theory or fix its parameter origins.
+
+\section{The enlarged reciprocal collision term}
+Use $m=0.002\,\mathrm{GeV}$, $M=0.004000799920016\,\mathrm{GeV}$,
+$g=7.29225381605\,10^{-6}\,\mathrm{GeV}$,
+$\lambda_{\rm rep}=0.0166178017868$ and
+$\lambda_{\rm tot}=0.0249267026802$. Let $n$ and $b$ denote the
+per-sign daughter and source densities, and $w=n+2b$. Fast
+$X\leftrightarrow\Phi\Phi$ and its conjugate imply
+$z_X=z_\Phi^2$, not $z_\Phi=1$. The two conjugate pole-free reactions
+\begin{equation}
+ X+\Phi+\Phi^*\leftrightarrow 2\Phi,
+ \qquad X^*+\Phi+\Phi^*\leftrightarrow 2\Phi^*
+\end{equation}
+each change the total weighted count by one per forward event. A forward
+pair event changes it by two. Therefore the per-sign source in
+$\dot w+3Hw=P$ is
+\begin{equation}
+ P=(\gamma_{2,\rm eq}+2\gamma_{3,\rm eq})(z_\Phi^2-z_\Phi^4).
+ \label{ag:collision}
+\end{equation}
+The factor of two on the three-body density includes the conjugate channel
+and the per-sign convention; no raw resonant six-point rate is added.
+
+For numerical evaluation let $y=z_\Phi e^{-m/T_d}$ and
+\begin{align}
+ A&={m^2T_d\over2\pi^2}e^{m/T_d}K_2(m/T_d),\\
+ B&={M^2T_d\over2\pi^2}e^{M/T_d}K_2(M/T_d)
+       e^{-(M-2m)/T_d},\\
+ n&=Ay,\quad b=By^2,\qquad
+ y={2w\over A+\sqrt{A^2+8Bw}}.
+\end{align}
+If $K_{3,0}$ is the previously derived threshold event coefficient and
+$h(\theta)=\gamma_{3,\rm eq}e^{4m/T_d}/(K_{3,0}BA^2)$,
+then the cancellation-safe form is
+\begin{equation}
+ P=\left[B^2\langle\sigma_{XX^*\to\Phi\Phi^*}v\rangle
+             +2K_{3,0}BA^2h(T_d/m)\right]
+             y^2(e^{-2m/T_d}-y^2).
+ \label{ag:scaled}
+\end{equation}
+In particular one must not absorb the second term into an effective
+pair cross section proportional to $1/B$ at arbitrarily low temperature.
+
+The thermal table has 47 points over $10^{-4}\leq T_d/m\leq3$,
+including seven prior refined anchors; its nested coarse grid has 27 points.
+Logarithmic PCHIP interpolation preserves positive rates. Below the table,
+$h=\exp[(T_d/m)/10^{-4}\,\ln h(10^{-4})]$ tends to one. Replacing
+that tail by one is a separate tested control. The earlier table run
+calculated all points but failed JSON serialization of a NumPy Boolean;
+the corrected run preserves the same mathematical calculation. This is
+a numerical quadrature table, not a rigorous error enclosure.
+
+\section{Energy, abundance and entropy}
+Define $k_i=e_i-q_i m$, where $q_\Phi=1,q_X=2$ and
+$e_i=m_iK_1(m_i/T_d)/K_2(m_i/T_d)+3T_d$.
+Then $k=nk_\Phi+bk_X$, $p=(n+b)T_d$, and the total energy density
+is $\epsilon=2(mw+k)$. With
+\begin{align}
+ k_w&={nk_\Phi+2bk_X\over n+4b},\\
+ k_T&=nC_{V,\Phi}+bC_{V,X}
+       +{nb(2k_\Phi-k_X)^2\over(n+4b)T_d^2}>0,
+\end{align}
+the evolution equations are
+\begin{align}
+ {\dd\ln Y\over\dd\ln a}&={P\over Hw},\\
+ {\dd T_d\over\dd\ln a}&={-3p+3nb(k_X-2k_\Phi)/(n+4b)
+                      -(P/H)(m+k_w)\over k_T}.
+\end{align}
+The per-sign entropy density satisfies
+\begin{equation}
+ s={k\over T_d}+n+b-w\ln y,\qquad
+ \dot s+3Hs=-\left({m\over T_d}+\ln y\right)P\geq0.
+\end{equation}
+The number moment, expansion-work energy identity, and entropy production
+are integrated independently as numerical controls.
+
+Initial visible temperature is 10 MeV, final visible temperature is 1 keV.
+The background is the specified ideal photon/electron gas with three
+massless neutrinos decoupling instantaneously at 2 MeV. Initial weighted
+yield $Y_i=0.12/(2.742\,10^8m)=2.18818\,10^{-7}$ is prescribed,
+as is the initial dark temperature. Neither comes from a solved production
+history. The outputs are:
+\begin{center}
+\begin{tabular}{rrrrr}
+\toprule
+$T_{d,i}/m$ & Pair-only $Y_f/Y_i$ & Enlarged $Y_f/Y_i$ & $\max y$ & MB gate\\
+\midrule
+0.3 & 1.031953 & 1.027186 & 0.006587 & pass\\
+1.0 & 1.979244 & 1.958101 & 0.012369 & pass\\
+3.0 & 4.526224 & 4.493585 & 0.024112 & fail\\
+\bottomrule
+\end{tabular}
+\end{center}
+The retained dilution gate is $y<0.02$. A numerical solver success does
+not override its failure for the hottest state. For the three enlarged
+trajectories the sampled elastic/evolution ratio exceeds 499 and the
+source-decay/evolution ratio exceeds $6.7\,10^7$. These are sampled
+timescale diagnostics, not a full momentum-space kinetic proof.
+
+The nested temperature-grid change in final yield is below
+$1.8\,10^{-5}$ fractionally in these comparisons. The $T_{d,i}/m=0.3$
+joint ODE/pair-rate refinement changes final yield by less than $10^{-8}$;
+the low-temperature-tail control changes it below $10^{-12}$. The run
+contains 618 bounded controls, including 500 inherited background rows.
+These controls do not bound omitted physical channels.
+The added channel raises the peak count but reduces the eventual count
+slightly: the reversible reaction alters the thermal and chemical history.
+Its large instantaneous coefficient alone did not determine the final
+abundance. Source-pole-containing assisted reactions, irreducible
+six-point remainders, in-medium and Bose corrections remain absent.
+
+\section{Why a production portal is not yet the galaxy bridge}
+The tree-level Higgs portal is
+$-\lambda_{HX}|H|^2|X|^2$, with
+$\lambda_{HX}=1.56375810276\,10^{-10}$. At the chosen matching scale
+$\lambda_{H\Phi}=0$ is an input, not an established all-orders property.
+Writing $H=(0,(v+h)/\sqrt2)$, a slowly varying, nonrelativistic nucleon
+medium has the Higgs source $-f_N\rho_b h/v$, where $\rho_b$ here is
+rest-energy density in natural units. We use the historical benchmark
+$f_N=0.308(18)$ from Ref.~\cite{ag:hoferichter}, not a claim to the latest
+determination. At tree level and wavelengths much longer than $m_h^{-1}$,
+\begin{equation}
+ h\simeq-{f_N\rho_b\over v m_h^2},\qquad
+ \delta M_X^2=\lambda_{HX}vh
+            \simeq-{\lambda_{HX}f_N\rho_b\over m_h^2}.
+ \label{ag:higgsresponse}
+\end{equation}
+This first changes the source mass and its exchange contact; it does not
+linearly source a daughter field. The threshold same-charge contact is
+\begin{align}
+ \lambda_{\rm eff}(\rho_b)&=\lambda_{\rm tot}
+                    -{g^2\over\Delta+\delta M_X^2},
+       \qquad \Delta=M^2-4m^2,\\
+ {\delta\lambda_{\rm eff}\over\lambda_{\rm rep}}
+   &= {g^2\delta M_X^2\over
+            \lambda_{\rm rep}\Delta(\Delta+\delta M_X^2)}
+     \simeq {\delta M_X^2\over r_\lambda\Delta},
+       \qquad r_\lambda=2.
+\end{align}
+For the chosen comparison density $0.1\,M_\odot\,\mathrm{pc}^{-3}$,
+\begin{align}
+ \rho_b&=2.91714\,10^{-41}\,\mathrm{GeV}^4,\\
+ \delta M_X^2&=-8.99204\,10^{-56}\,\mathrm{GeV}^2,\\
+ {\delta\lambda_{\rm eff}\over\lambda_{\rm rep}}
+   &=-7.02503\,10^{-48}.
+\end{align}
+Even the chosen dense comparison $10^3\,M_\odot\,\mathrm{pc}^{-3}$
+gives a fractional contact shift only $-7.02503\,10^{-44}$.
+This excludes identifying this direct perturbative local contact response
+with an order-one galactic response at these inputs. A putative collective
+amplification would require an independently derived susceptibility, its
+stable operating range and its relaxation time; naming a medium does not
+supply that derivation. The required inverse local shift is of order
+$10^{47}$ at the middle comparison density, if amplification of this
+particular contact is the intended mechanism.
+
+The nongravitational microscopic Compton lengths are
+\begin{equation}
+ {\hbar c\over m_h}=1.579\,10^{-18}\,\mathrm m,\qquad
+ {\hbar c\over m}=9.866\,10^{-14}\,\mathrm m.
+\end{equation}
+A new linear Yukawa mediator reaching 1 kpc would require
+$m_{\rm med}c^2\lesssim6.395\,10^{-27}\,\mathrm{eV}$ by the
+range criterion. This statement concerns massive microscopic exchange;
+it does not remove the long-range metric field or constrain a derived
+gapless collective mode by its constituent mass.
+
+On the empty dark-vacuum branch $X=\Phi=0$, the dark classical equations
+have no linear baryonic source from this quadratic portal. With ordinary
+Einstein gravity and a vacuum constant, the spherical weak-field solution
+has acceleration
+\begin{equation}
+ g_r=-{GM_b\over r^2}+{\Lambda c^2 r\over3}.
+\end{equation}
+It does not yield $|g|\simeq\sqrt{GM_ba_0}/r$. This is a statement
+about this empty branch, not a theorem forbidding occupied halos,
+different curvature couplings or a collective phase.
+
+\section{A condensate cannot simply be assumed for this halo gas}
+As a separate ideal-gas comparison choose total rest-energy density
+$0.3\,\mathrm{GeV\,cm}^{-3}$, an equal neutral mixture, and
+one-dimensional velocity dispersion $\sigma_v=150\,\mathrm{km\,s}^{-1}$.
+If these are equilibrium particles with $T=m\sigma_v^2$,
+\begin{equation}
+ n_\Phi={\rho_{\rm halo}\over2m},\qquad
+ \lambda_T={\sqrt{2\pi}\hbar\over m\sigma_v},\qquad
+ n_\Phi\lambda_T^3=9.05709\,10^{-21}.
+\end{equation}
+The ideal three-dimensional Bose critical occupation is
+$\zeta(3/2)=2.61238$. With those fixed density and velocity inputs the
+mass giving this occupation would be about $15.35\,\mathrm{eV}$,
+because the occupation scales as $m^{-4}$. This is neither an observational
+mass bound nor a condensate formation prediction. It shows that the chosen
+MeV equilibrium halo gas cannot be assigned a Bose-condensate phonon
+without an additional physical state or a different history. Non-equilibrium
+condensates, a separate light component and a noncondensed response medium
+need their own equations rather than this ideal-gas assumption.
+
+\section{The next discriminating routes}
+The viable work now branches at a concrete physical distinction.
+First, close the particle abundance as a particle problem: match the
+source-containing cuts and finite thermal endpoint profiles, then evolve
+the actual Higgs-production initial state with reciprocal energy flow.
+This can establish whether the stable MeV carrier is viable cold matter;
+it cannot by itself establish the galaxy law.
+
+Second, derive a response state from an action and compute its retarded
+baryon-to-force susceptibility. Its static limit must give the galaxy
+law, its temporal poles must show stable relaxation, and its metric stress
+must give lensing. Equations~\eqref{ag:higgsresponse} and the occupation
+test make a direct Higgs contact and an assumed MeV condensate poor
+identifications for that state. A distinct collective sector is an open
+route, with additional parameters counted explicitly. No novel or unique
+mechanism has yet been demonstrated.
+
+Third, make any vacuum link pass the pressure-aware exchange identity.
+For constant $G,c,\kappa$, conserved baryons and $a_0=\kappa c
+\sqrt{G\rho_{\rm DE}}$, use energy-equivalent densities and
+$p_i=w_i\rho_i c^2$:
+\begin{align}
+ \dot\rho_c+3H(1+w_c)\rho_c&=Q,\\
+ \dot\rho_{\rm DE}+3H(1+w_{\rm DE})\rho_{\rm DE}&=-Q,\\
+ 2{\dd\ln a_0\over\dd\ln a}+3(1+w_{\rm DE})
+ +{\rho_c\over\rho_{\rm DE}}
+ \left[{\dd\ln(\rho_c/\rho_b)\over\dd\ln a}+3w_c\right]&=0.
+\end{align}
+Here $\rho_c$ includes the carrier's total rest and kinetic energy.
+The reactions above conserve that total internally and have $Q=0$;
+their changing weighted count is not conversion into vacuum energy.
+For a constant vacuum, $w_{\rm DE}=-1$, $\rho_{\rm DE}$ and $a_0$
+are constant. The additive vacuum term and fitted $\kappa$ remain
+unexplained in the scalar model. A single action that fixes them, produces
+the carrier, selects the response phase and satisfies metric/cosmological
+tests remains the actual closure target.
+
+\section{Evidence and limitations}
+The deterministic scripts and input-hashed manifests are in
+\texttt{source\_assisted\_rate\_table\_run\_002},
+\texttt{assisted\_abundance\_run\_001}, and
+\texttt{portal\_response\_run\_001}. There are respectively 47, 618
+and 9 bounded controls. Self-review verifies the reaction-count convention,
+contact-shift sign, density units and conditional scope. It does not supply
+independent referee certification or global novelty. Historical report
+sections retain their previous scope; this checkpoint supersedes their
+request to run the pole-free source-assisted evolution.
+
+\begin{thebibliography}{9}
+\bibitem{ag:hoferichter} M. Hoferichter, P. Klos, J. Men\'endez and
+A. Schwenk, Improved limits for Higgs-portal dark matter from LHC searches,
+Phys. Rev. Lett. 119 (2017) 181803,
+\href{https://arxiv.org/abs/1708.02245v2}{arXiv:1708.02245v2}.
+The abstract authenticates the quoted $f_N$ benchmark; the local-medium
+reduction above is derived here with its stated approximations.
+\end{thebibliography}
+\end{document}

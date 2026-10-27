@@ -1,0 +1,91 @@
+LOCAL CRITICAL-BRANCH EXISTENCE — CONDITIONAL MATHEMATICAL PROOF
+Applies only to the explicit C2 constitutive law and Einstein comparison in
+DERIVATION.txt. This does not prove those physical postulates.
+
+Claim. There is epsilon*>0 such that, for 0<epsilon<epsilon*, the
+dimensionless equations in DERIVATION.txt have a regular-center solution
+with a free critical edge Y, u>0 on [0,Y), u(Y)=u_y(Y)=0 and B>=1/2.
+The parameters (uc,Y) are unique in a neighborhood of their weak-limit pair.
+They supply the stated static weak phase/metric solution by the vacuum join.
+There is no global uniqueness claim or explicit bound on epsilon*.
+
+1. Regular center and smooth parameter dependence.
+
+Write w(y)=y^3 v(y). With rho_bar(u)=1+2u+3epsilon u^2/2,
+ p_bar(u)=-1+epsilon u^2/2,
+ v_u(s)=int_0^1 t^2 rho_bar(u(st))dt.
+Then the regular equations are equivalent to the Volterra fixed point
+ u(y)=uc-int_0^y (1+epsilon u(s))s[v_u(s)+p_bar(u(s))]/
+                    [2(1-epsilon s^2 v_u(s)/2)] ds.
+Choose a bounded C0 ball about the constant uc0 function, a small neighborhood
+of uc0, and |epsilon| small. On a sufficiently short fixed [0,L], all
+denominators are >=1/2. Polynomial coefficients and their derivatives are
+uniformly bounded there. The integral factor s gives an O(L^2) displacement
+from uc and an O(L^2) uniform Lipschitz constant for the map. Taking L small
+makes it preserve the ball and contract strictly, uniformly in the parameters.
+
+The map is smooth on that denominator-bounded Banach neighborhood. Since
+||DT||<1, I-DT has inverse sum_(j>=0)(DT)^j. The Banach implicit function
+theorem (or smooth contraction dependence) gives smooth dependence of the
+unique fixed point on (epsilon,uc). Differentiating the Volterra expression
+in y gives u_y=O(y), v bounded, w=O(y^3), and the center series stated in the
+derivation. Evaluation at L>0 supplies smoothly dependent initial data for
+the ordinary nonsingular ODE. Standard ODE dependence extends through a
+fixed interval containing Y0, since the epsilon=0 solution is bounded there
+and B=1. Shrinking the parameter neighborhood ensures continuation and a
+denominator bounded away from zero. Algebraic extension across u=0 is used
+only to define the endpoint map, not as an admitted physical exterior.
+
+2. Nondegenerate endpoint map.
+
+At epsilon=0,
+ u(y;uc)=1+(uc-1)sin(y)/y,
+ w=y^3-2y^2u_y.
+Let Y0 be the first negative sinc minimum, with tanY0=Y0 and
+Y0 in (pi,3pi/2), and uc0=1-1/sincY0. Its endpoint has u=u_y=0.
+The weak ODE u_yy+2u_y/y+u=1 gives u_yy(Y0)=1.
+For F(epsilon,uc,Y)=(u(Y),u_y(Y)),
+ D_(uc,Y)F(0,uc0,Y0)=diag(sincY0,1).
+Because sincY0<0, this matrix is invertible. The ordinary parameter IFT gives
+a smooth nearby critical branch (uc(epsilon),Y(epsilon)), locally unique.
+On B>0, the exact u_y equation shows F=0 is equivalent to u(Y)=0,w(Y)=Y^3.
+
+3. Positivity and metric admission.
+
+The weak solution is positive before its first minimum, because sinc(y) is
+strictly decreasing between 0 and Y0. It therefore has a positive margin on
+any closed subinterval separated from Y0. Smooth dependence preserves this
+compact interior margin. Closeness alone is insufficient at the double zero.
+At every nearby critical endpoint, differentiating the exact ODE gives
+ u_yy(Y)=1/[1-epsilon Y^2/2]>0.
+Smooth C2 dependence on the fixed endpoint neighborhood makes u_yy>0 on a
+uniform neighborhood of that endpoint. Since u(Y)=u_y(Y)=0, Taylor's integral
+formula gives u(y)>0 immediately inside Y. This overlaps the compact interior
+argument and proves u>0 throughout [0,Y).
+
+w/y=y^2 v extends continuously to zero at the center and is uniformly bounded
+on the continuation interval. Shrinking epsilon* ensures B=1-epsilon w/(2y)
+>=1/2 there, also BR=1-epsilon Y^2/2>0. Thus N=(1+epsilon u)^(-1/2) is real,
+positive, and the interior has PX>0 and positive local time kinetic coefficient.
+
+4. Exterior and weak join.
+
+Mass at the edge fixes the exterior B and N shown in DERIVATION.txt. In the
+outer static patch B decreases from its positive maximum at R. Taking the
+square root of psi'^2 there yields real psi', continuous to zero at the edge,
+and choosing psi(R)=0 matches theta. Because u=u_y=0 at the edge, rho,p,J
+match with their first derivatives to the exact vacuum. The Einstein equations
+hold on each side; continuity of metric first derivatives avoids a delta
+curvature shell. J^r is identically zero, so its distributional divergence
+has no delta source. This supplies a C1 phase / weak field solution.
+
+It does NOT supply a globally C2 phase: the outside psi'' limit is generally
+nonzero while it vanishes inside. Nor does it certify a nondegenerate vacuum
+principal symbol or any perturbative/UV/horizon stability. The weak join and
+the degenerate effective field theory's physical admission are separate claims.
+
+Independent read-only audit by plan_selector approved the contraction,
+Jacobian and the explicit edge-positivity argument. This is an AI-assisted
+mathematical proof, not a human referee certificate. The finite b=100,1000,10000
+shoots remain tolerance-dependent evidence: no explicit epsilon* from this
+argument establishes a rigorous error-certified root at any of those values.

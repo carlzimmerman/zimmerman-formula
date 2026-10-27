@@ -1,0 +1,128 @@
+{
+  "date": "2026-10-27",
+  "primary_verdict": "proved as written",
+  "claim_card": {
+    "objects": "Stationary spherical component with ordinary measurable nonnegative isotropic distribution f(E), E=psi-v^2/2, f(E)=0 for E<=0; continuous finite relative potential near a finite outer boundary, psi>0 inside and psi->0 at boundary; density finite at some interior psi0>0.",
+    "conclusion": "rho(psi)=o(sqrt(psi)) and therefore rho->0. A finite positive one-sided density at a jump to vacuum is incompatible. Literal X38/SC1 truncated cluster Burkert profiles have that jump and cannot realize this specified equilibrium.",
+    "coefficient_domain": "Real nonnegative functions and Lebesgue integrals; ordinary function f, not a distribution; finite positive Sigma,r0,rt in application.",
+    "no_additional_hypotheses_used": [
+      "No nonzero boundary gravity",
+      "No self-gravity-only assumption",
+      "No finite global fmax",
+      "No numerical fit or finite scan"
+    ],
+    "excluded_from_conclusion": [
+      "Untruncated SPARC fitting functions",
+      "Anisotropic distributions",
+      "Time-dependent matter/field transport",
+      "Collisional fluids with different stress/boundary equations",
+      "Reflecting or confining walls",
+      "All M6 or cold-sector mechanisms",
+      "Existence/stability of any tapered replacement"
+    ]
+  },
+  "dependency_graph": [
+    {
+      "node": "Velocity-space integral",
+      "type": "internal change of variables",
+      "depends_on": [
+        "isotropy",
+        "energy cutoff"
+      ],
+      "result": "4pi sqrt2 integral_0^psi f(E)sqrt(psi-E)dE"
+    },
+    {
+      "node": "Local integrability",
+      "type": "internal inequality",
+      "depends_on": [
+        "nonnegative f",
+        "finite rho(psi0)"
+      ],
+      "result": "sqrt(psi0-E)>=sqrt(psi0/2) on [0,psi0/2] implies f integrable there."
+    },
+    {
+      "node": "Vanishing boundary density",
+      "type": "internal limit",
+      "depends_on": [
+        "velocity integral",
+        "local integrability"
+      ],
+      "result": "rho<=4pi sqrt(2psi)integral_0^psi f=o(sqrt(psi))."
+    },
+    {
+      "node": "Positive finite profile edge",
+      "type": "source definition plus differentiation",
+      "depends_on": [
+        "actual X38/SC1 cluster min cutoff",
+        "finite positive profile parameters"
+      ],
+      "result": "rho(rt-)=(Sigma/r0)/[(1+rt/r0)(1+(rt/r0)^2)]>0, while exterior density0."
+    },
+    {
+      "node": "Obstruction",
+      "type": "contradiction",
+      "depends_on": [
+        "vanishing boundary density",
+        "positive finite edge"
+      ],
+      "result": "No realization under stated isotropic no-wall hypotheses."
+    }
+  ],
+  "obligation_matrix": {
+    "velocity_jacobian_and_coefficient": "passed",
+    "positive_f_local_integrability": "passed",
+    "absolute_continuity_limit": "passed",
+    "bounded_f_O_psi_3over2": "passed",
+    "continuous_f_constant_8pi_sqrt2_over3": "passed",
+    "E_power_beta_integral_p_gt_minus1": "passed",
+    "zero_boundary_force_caveat": "passed",
+    "Burkert_derivative_and_edge_sign": "passed",
+    "cluster_only_application": "passed",
+    "source_formula_numerical_gradient_is_not_DF": "passed",
+    "arbitrary_taper_sufficiency": "not asserted; global DF remains open",
+    "formation_and_stability": "out of scope",
+    "supporting_numeric_fixture": "not load-bearing; not audited in this proof gate"
+  },
+  "corroborative_external_source": {
+    "url": "https://arxiv.org/html/2301.03873v1",
+    "version": "arXiv:2301.03873v1,10January2023",
+    "title": "Self-consistent dynamical models with a finite extent \u2013 II. Radially truncated models",
+    "locator": "section2.1 equations2\u20136 and abstract; section2.2 discusses tangential exception",
+    "verification": "Primary version opened and relevant passages inspected; no dependency on external theorem needed for self-contained proof."
+  },
+  "small_case_and_boundary_checks": [
+    "Constant positive f gives rho=(8pi sqrt2/3)f psi^(3/2), consistent with limit.",
+    "Integrable f~E^p for -1<p<0 still gives positive exponent p+3/2>1/2. Nonintegrable f near0 yields infinite density at every positive psi, not a finite jump.",
+    "At g_t=0, radial power translation may fail but continuity psi->0 leaves theorem intact.",
+    "B prime(x)=4x^2/[(1+x)(1+x^2)] yields the stated positive density; M continuous at rt means no surface mass delta."
+  ],
+  "strongest_safe_statement": "Literal hard-truncated cluster profiles have no ordinary nonnegative isotropic stationary no-wall collisionless realization. Their empirical shear use can remain a declared boundary convention; this does not establish or exclude other dynamical profiles.",
+  "remaining_obligation": "For any replacement, declare potential/DF/boundary and verify global positivity and Poisson consistency, then repeat common-profile observational fit. Anisotropic alternatives require separate analysis.",
+  "review_provenance": "Independent reviewer /root/closure_baseline did not author or execute proof implementation; reconstructed cutoff implication from definitions before reading saved proof, then checked exact text and source application. Same-model multi-agent review is not independent empirical validation.",
+  "reviewed_snapshot": {
+    "path": "closure_program_2026_10_27/population/profile_proof_reviewed_snapshot.md",
+    "sha256": "60ddec247de343032fc1f51e1b35263b293e863068b0119005e69805c63698f4"
+  },
+  "inputs": [
+    {
+      "path": "closure_program_2026_10_27/profile_admissibility/RESULT.md",
+      "sha256": "60ddec247de343032fc1f51e1b35263b293e863068b0119005e69805c63698f4"
+    },
+    {
+      "path": "rebuild_2026_10_22/X38_a0_surface_density_halos/x38_sd_halos.py",
+      "sha256": "7c3b9506ab9a735d1d5761d75947dc124d8cb5291981ba97e741c75b5571f205"
+    },
+    {
+      "path": "rebuild_2026_10_22/X38_a0_surface_density_halos/FROZEN_CRITERIA.md",
+      "sha256": "7c6c923ebc754f9a62af0f09b0ca318452a14f5e6bc424f41022ef457bc38395"
+    },
+    {
+      "path": "rebuild_2026_10_22/SC1_self_coupled_core_law/sc1_core_law.py",
+      "sha256": "dfb8c02052db74b322138255f4fa154f62a5aa4e48c54bf5101007eb493af62c"
+    },
+    {
+      "path": "rebuild_2026_10_22/SC1_self_coupled_core_law/FROZEN_CRITERIA.md",
+      "sha256": "c9f48b52f763bef4f2ea6fac1380aa17db2d856b9e9daea845b404e8604e204d"
+    }
+  ]
+}

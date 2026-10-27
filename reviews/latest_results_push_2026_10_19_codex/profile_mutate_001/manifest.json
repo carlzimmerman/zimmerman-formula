@@ -1,0 +1,124 @@
+{
+  "schema_version": 2,
+  "claim_id": "LRP-PROFILE-1",
+  "repository": {
+    "commit": "bb25c4ddd46bbecfbad2e32c88a9802ac0e55cc2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/latest_results_push_2026_10_19_codex/check_profile.py",
+    "--mutate",
+    "--output",
+    "reviews/latest_results_push_2026_10_19_codex/profile_mutate_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The analytic Plummer/isotropic extra-force projection agrees with direct and compact-domain quadrature at nine stated radii, has whole-tracer value 1/3, and agrees with center, R=a and asymptotic checks",
+    "coefficient_domain": "IEEE double precision, adaptive numerical quadrature; not interval-certified",
+    "conventions": "Plummer scale a=1, inward extra acceleration g_x=V_x^2/r, V_x^2=1, isotropic incremental Jeans stress, no outer pressure term",
+    "inputs": [
+      "dimensionless radii 0, .01, .1, .25, .5, 1, 2, 5, 10",
+      "asymptotic probe R/a=100000"
+    ],
+    "bounds": {
+      "projection_absolute_tolerance": 2e-08,
+      "whole_tracer_tolerance": 2e-09
+    },
+    "non_claims": [
+      "No observational fit or exclusion",
+      "No anisotropy-independent radial-profile theorem",
+      "No physical finite mass completion",
+      "No confinement simulation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T21:49:45.220515+00:00",
+    "runtime_seconds": 0.401432,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 25.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/latest_results_push_2026_10_19_codex/check_profile.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/latest_results_push_2026_10_19_codex/check_profile.py",
+      "sha256": "94b762fb6565da16e591247218c1f96254ca392c82326d977202781866fdd2a9",
+      "sha256_after": "94b762fb6565da16e591247218c1f96254ca392c82326d977202781866fdd2a9"
+    }
+  ],
+  "output_directory": "reviews/latest_results_push_2026_10_19_codex/profile_mutate_001",
+  "declared_results": [
+    "reviews/latest_results_push_2026_10_19_codex/profile_mutate_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/latest_results_push_2026_10_19_codex/profile_mutate_001/stdout.txt",
+      "sha256": "10af68ac1501b273e341317eff4aa4db958fb5452287cc024dba2f3a6e728102",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/latest_results_push_2026_10_19_codex/profile_mutate_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/latest_results_push_2026_10_19_codex/profile_mutate_001/result.json",
+      "sha256": "b8f35927df8dd9c4facda5e2deba6ac7f924125a9795dee72c9ffa8e3c4fd3eb",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

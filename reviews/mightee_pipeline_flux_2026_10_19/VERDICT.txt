@@ -1,0 +1,71 @@
+MIGHTEE PIPELINE FLUX INVESTIGATION -- 2026-10-19 UTC
+
+Outcome
+Final image-domain continuum subtraction measurably reduces the line-window flux in these seven galaxies, but accounts for only a minority of their ALFALFA shortfall. Direct earlier-stage tests do not support a large global beam-area or homogenization attenuation as the main cause. The remaining discrepancy cannot be assigned uniquely from the released products. No correction to catalogue or science fluxes has been applied.
+
+Measured stage comparison
+Seven previously reliable ALFALFA-code1 matches, including four original science-sample galaxies, were retained without a fresh cube-detection threshold. Downloaded879,749,760 reserved bytes (including retries) of clean_conv cutouts plus small dirty-cube sightlines, safely below the1.5GB cap; raw HTTP range logs record every successful response's SHA256, Content-Range, URL, UTC and ETag. The pre/post celestial and frequency grids and full beam axes were verified identical. Source centres, apertures, line windows, neighbour exclusions and broad robust residual baseline rules were held common.
+'Before' means the released clean_conv image, which ALREADY includes visibility-domain continuum subtraction, flagging, imaging/deconvolution, beam homogenization and mosaicking. It is not a raw observation. 'After' means clean_conv_contsub, immediately following final image-domain subtraction.
+
+Median per-galaxy ratios:
+  Before / after final subtraction                 1.20505
+  Before / ALFALFA                                 0.49233
+  After / ALFALFA                                  0.43290
+  Fraction of before flux removed                  0.17016 (range0.03409-0.36071)
+  Four original science galaxies before / ALFALFA   0.47426
+  Four original science galaxies after / ALFALFA    0.40103
+
+The sum of before-minus-after line flux is14.59% of the sum of ALFALFA-minus-after deficits. Thus most of the summed benchmark discrepancy precedes this final subtraction. This is a measured reduction in line-window signal after common broad baseline fits; not every removed voxel is certified astrophysical HI. Per-galaxy deficit fractions can exceed100% when the initial shortfall is small or calibration/noise differs (one object does). Individual formal errors were not propagated and these seven selected overlaps do not calibrate a universal correction.
+Constant-baseline pre/after median is1.1771 rather than1.2051 for linear fits. Widening the common window by250km/s each side gives1.2101 (constant) or1.2858 (linear); final subtraction remains a contributing stage, not a complete repair. Raw no-additional-baseline variants are stored, but already-reduced pre cubes can retain broad residual backgrounds.
+
+Where final subtraction acts
+Exploratory spatial annuli show94.65% of the summed removed component lies at radii above0.5 restoring-beam FWHM (roughly37-38arcsec), within the1.5-FWHM extraction aperture. The bright central half-beam annulus is almost unchanged in the aggregate. This is consistent with pixelwise sigma-clipping masks protecting bright cores while low-surface-brightness emission is treated as background. Exact historical masks and image-subtraction source code have not been recovered, so this is a mechanism-consistent localization rather than an exact rerun.
+Median32-channel noise-block variance/(32*single-channel variance) changes from1.224 before to0.338 after, confirming the expected long-range spectral noise suppression. These small-sample block statistics are descriptive, not independent flux uncertainties.
+The final subtraction also narrows some source maps. For example, a simple Gaussian fit to MGTH_J100140.0+031207 changes from77.9x68.6arcsec before to50.9x46.1arcsec after, versus a74.9arcsec header beam. Galaxy-map fits are noise-, background- and morphology-sensitive, so these are exploratory effective profile shapes, not calibrated PSF measurements.
+
+Continuum path documented in primary sources
+Heywood et al2024 sections3.2-3.6 separate two continuum stages. The visibility-domain stage subtracts a smooth, frequency-interpolated sky model after self-calibration, followed by additional flagging. The image-domain stage uses iterated2.3sigma masking, morphological erosion/dilation and interpolation, then31-channel median and31-channel first-order Savitzky-Golay filters for L2. At our frequencies this spans about175-185km/s, comparable to HI widths, so the protection mask matters. The public unsubtracted cubes allow the latter stage to be tested directly; the former cannot be undone from these images.
+
+Beam tests
+The exact Gaussian area conversion used in our extraction agrees with the catalogue paper's equation4: pixel_area divided by pi*bmaj*bmin/(4ln2). The40arcsec uv taper does not specify the final restoring beam, which is about75arcsec here. Beam-table values and actual profile maps support this scale: before-subtraction geometric-mean fitted source FWHM/header FWHM has median1.005, range0.977-1.070 over seven galaxies. Since galaxies may be extended and dirty PSFs non-Gaussian, this is a consistency check, not a complete beam calibration.
+A separate earlier-stage test sampled all native line channels and every sixth off-line channel in identical central3x3-pixel sightlines of dirty, clean_conv and clean_conv_contsub cubes. All dirty image headers declare Jy/beam and their spatial/frequency grids match. Clean_conv/dirty central integrated brightness has median0.96183; constant-baseline sensitivity gives0.95957. Six of seven are slightly dimmer, but the range and different PSFs do not reveal a factor-of-two central attenuation. These are sightline brightness ratios, not total source fluxes; extended emission, PSF shoulders and deconvolution limit the inference. They weaken a large uniform homogenization-scale error, without excluding subtle residual normalization errors.
+
+Public code lead, tested and constrained
+A public mightee-hi convolution script constructs a target restoring beam but then passes fitted_beam_image to the model convolution while labelling the output with the target beam. The related oxkat utility uses target_beam_image in that call. Both inspected scripts also lack an explicit Gaussian beam-area conversion after the current PyPHER CLI's unit-sum-kernel residual convolution.
+Controlled Gaussian calculations demonstrate that an unconverted50->75arcsec smoothing can return0.44444 of the flux when divided by the target area. Correctly normalized controls recover1.0, for five clean/residual mixture fractions. This is a conditional mathematical failure mode, not a measurement of actual production input beams and not a verified cause of this data deficit.
+The public mightee-hi branch has a hard-coded0.7 factor associated with robust0.5-style processing, while our cubes are robust1.0. File history dates to2023; the public repository head is January2025, and the release is September2024. No exact production commit, per-pointing PSFs, kernels or model/residual split is identified in the released FITS metadata. The direct dirty-stage brightness result is near unity. These limitations prevent attributing the release discrepancy to the code lead. Full detail and exact source-line references: BEAM_CODE_AUDIT.txt.
+
+What remains unresolved
+Most of the ALFALFA comparison shortfall predates the final image-domain subtraction. Central dirty-to-clean_conv sightlines show no large additional brightness loss, but their different PSFs prevent proving that the entire integrated-flux shortfall already exists in dirty cubes. Candidate remaining explanations include loss before image formation, residual-component normalization, interferometric spatial response and uncatalogued diffuse emission, calibration and differences in single-dish blending/flux scale. The central test is particularly limited for low-surface-brightness extended residuals. The present evidence does not select among these. FASHI spectra are still needed for a channel-level three-instrument benchmark; catalogue flux disagreement means ALFALFA cannot simply be assumed to define the true scale for every object.
+The next decisive pipeline evidence would be the actual production settings and per-pointing dirty PSFs, CLEAN model/residual images and homogenization kernels for these galaxies, or a controlled line injection before visibility subtraction and imaging. Post-image injections cannot validate those earlier stages. No authors have been contacted, no raw-visibility rerun attempted, and no blanket multiplicative correction inferred.
+
+Validation and provenance
+stage_run/manifest.json, dirty_run/manifest.json and mechanism_run/manifest.json: completed and validated against current hash-pinned inputs.
+All seven final post spectra reproduce the preceding aperture spectra to better than1e-12Jy. Synthetic line/sloped-baseline recovery and native/rebinned integral conservation pass. An independent pixel summation, closed-form regression and scalar channel integration reproduce all14 stage fluxes with maximum absolute difference6.7e-16Jy km/s; neighbour exclusion uses the common mask helper. See independent_verification.json.
+External local full post cubes were not freshly rehashed during extraction; the preceding source manifest supplies historical download hashes and path/stat records. All downloaded range data are hash logged, and extracted paired arrays are freshly pinned by the stage manifest. Preliminary one/four-object readings are retained as preliminary*.json and superseded by the complete seven-object runs.
+
+Result files
+stage_run/paired_fluxes.csv: primary source-by-source fluxes and attributable fractions
+stage_run/stage_measurements.csv: window and residual baseline sensitivities
+stage_run/radial_stage_fluxes.csv: spatial localization of removed signal
+stage_run/noise_blocks.csv: noise-filter diagnostics
+stage_run/results.json: full result and Gaussian geometry checks
+stage_run/pipeline_profiles.png: all seven profile comparisons
+science_pipeline_profiles.png: compact four-object science figure, visually checked
+figure_verification.json: figure/input hashes
+dirty_run/central_brightness.csv: earlier-stage sightline checks
+BEAM_CODE_AUDIT.txt: public code discrepancy, analytic mechanism and production caveats
+audit_summary.json: concise numerical verdict
+contract.json, stage_contract.json, dirty_contract.json, mechanism_contract.json: scope and disclosures
+
+Reproduction
+Existing local data: MPLCONFIGDIR=/private/tmp/hi_profile_mpl OPENBLAS_NUM_THREADS=1 python3 reviews/mightee_pipeline_flux_2026_10_19/analyze_stages.py OUTPUT_DIRECTORY
+Dirty sightlines: MPLCONFIGDIR=/private/tmp/hi_profile_mpl python3 reviews/mightee_pipeline_flux_2026_10_19/analyze_dirty_centres.py OUTPUT_DIRECTORY
+Runner-recorded exact execution commands, hashes and bounds are in each manifest; use a new output directory for another provenance run.
+
+Primary sources
+Pipeline paper: https://arxiv.org/html/2409.17713v1
+Catalogue extraction: https://arxiv.org/html/2605.28731v1
+Public stage products: https://archive-gw-1.kat.ac.za/public/repository/10.48479/jkc0-g916/index.html
+Pinned mightee-hi script: https://github.com/IanHeywood/mightee-hi/blob/36ddedd55dcce78b2c0d534e8b14e0324bbef681/clean/convolve_channels.py
+Pinned related oxkat utility: https://github.com/IanHeywood/oxkat/blob/421d14c5a8a0babc2af9d8bb10179be9e94fec9a/tools/common_convolutions.py

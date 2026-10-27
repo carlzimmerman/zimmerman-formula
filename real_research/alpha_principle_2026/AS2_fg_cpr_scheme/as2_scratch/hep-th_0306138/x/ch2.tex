@@ -1,0 +1,443 @@
+\section{Spectral functions: heat kernel, zeta function, resolvent}
+\label{sec2}
+\subsection{Differential geometry and the operators of Laplace type}
+\label{s2geo} 
+Let $M$ be a smooth compact Riemannian manifold\footnote{This simply
+means that we assume that there is a positive definite metric
+tensor $g_{\mu\nu}$ on $M$.}
+of dimension $n$ with smooth boundary $\partial M$.
+We shall also consider the case when the boundary
+$\partial M$ is empty. Let $V$ be a vector 
+bundle\footnote{Many physicists strongly dislike vector bundles.
+Nevertheless, there are two good reasons for using the fibre
+bundles in this paper (in parallel with more familiar notations of matrix-valued
+functions, gauge fields, etc). 
+First, our simplifying comments and
+examples may help the reader to understand mathematical
+literature on the subject. Second, one of the main ideas of this
+report is to reveal some universal structures behind the heat
+kernel expansion. In particular, we shall see that there is not
+much difference between different spins and symmetry groups.
+The vector bundle language seems to be the most adequate language
+to achieve this goal. The reader may consult the excellent review paper 
+by Eguchi, Gilkey and Hanson \cite{Eguchi:1980jx}.
+} over $M$. This means that there is a vector space
+attached to each point of the manifold. For example, this
+could be a representation space of a gauge group or of the
+space-time symmetry group.
+Sections of $V$ are smooth functions bearing
+a discrete index which could correspond to internal
+or spin degrees of freedom. 
+
+We study differential
+operators on $V$. We restrict ourselves to second order
+operators of the Laplace type. Locally such operators can
+be represented as:
+\begin{equation}
+D=-(g^{\mu\nu}\partial_\mu\partial_\nu 
++a^\sigma\partial_\sigma +b) \label{D1}
+\end{equation}
+where $g^{\mu\nu}$ is the inverse metric tensor on $M$;
+$a^\sigma$ and $b$ are matrix valued functions on $M$.
+There is a unique connection on $V$ and a unique 
+endomorphism $E$ of $V$ (another matrix valued function)
+so that
+\begin{equation}D=-(g^{\mu\nu}\nabla_\mu\nabla_\nu +E)\, ,
+\label{laplaceb}\end{equation}
+where the covariant derivative $\nabla =\nabla^{[R]} +\omega$
+contains both Riemann $\nabla^{[R]}$ and ``gauge'' (bundle) $\omega$
+parts.
+We may express:
+\begin{eqnarray}
+    &&\omega_\delta=\frac 12 g_{\nu\delta}(a^\nu+g^{\mu\sigma}\Gamma_{\mu
+    \sigma}{}^{\nu }I_{V}) \quad{\rm and}\label{oab}\\
+    &&E=b-g^{\nu \mu}(
+    \partial_\mu\omega_\nu+\omega_\nu\omega_\mu
+     -\omega_\sigma\Gamma_{\nu\mu}{}^\sigma)\,, \label{Eab}
+\end{eqnarray}
+where
+\begin{equation}
+\Gamma_{\nu\mu}{}^\sigma =g^{\sigma\rho} \frac 12 \left(
+\partial_\mu g_{\nu\rho}+\partial_\nu g_{\mu\rho} -
+\partial_\rho g_{\mu\nu} \right) \label{Christ}
+\end{equation}
+is the Christoffel symbol. 
+$I_{V}$ is the unit operator on $V$. 
+
+It is important to understand how general the notion of the Laplace
+type operator is. The most obvious restriction on $D$ is that it is
+of second order, i.e. it contains second derivatives, but does not
+contain higher derivative parts. In this paper we shall also consider
+first order operators (Dirac operators, for example). Second, the
+operator $D$ is a {\it partial differential operator}. This excludes
+negative or fractional powers of the derivatives. The operators containing
+such structures are called {\it pseudo-differential operators}.
+More information on spectral theory for these operators can be found
+in \cite{Seeley:1968,Grubb:1996,Grubb:2002}. 
+Third, the operator (\ref{D1}) has a
+scalar principal part. This means that the second derivatives in
+(\ref{D1}) are contracted with the metric, and the internal index structure
+of the second derivative term is trivial. Such operators are also
+called {\it minimal}. Non-minimal operators will be briefly
+considered in sec\ \ref{s4nonmin}.
+
+We can define local invariants associated with $\omega$
+and $g$. Let 
+\begin{equation}
+{R^\mu}_{\nu\rho\sigma}=\partial_\sigma \Gamma_{\nu\rho}^\mu -
+\partial_\rho \Gamma_{\nu\sigma}^\mu +
+\Gamma_{\nu\rho}^\lambda \Gamma_{\lambda\sigma}^\mu -
+\Gamma_{\nu\sigma}^\lambda \Gamma_{\lambda\rho}^\mu 
+\label{Riemann}
+\end{equation}
+be the Riemann curvature tensor, let $R_{\mu\nu}:={R^\sigma}_{\mu\nu\sigma}$
+be the Ricci tensor, and let $R:=R^\mu_\mu$ be the scalar
+curvature. 
+With our sign
+conventions, $R =2$ on the unit sphere $S^2$ in the Euclidean
+space. 
+Let
+Roman indices $i$, $j$, $k$, and $l$ range from 1 through
+the dimension $n$ of the manifold and index a local orthonormal frame
+(vielbein) $\{ e_1,...,e_n\}$ for the tangent space of the manifold.
+In components we have: $e_j^\mu e_k^\nu g_{\mu\nu}=\delta_{jk}$,
+$e_j^\mu e_k^\nu \delta^{jk}=g^{\mu\nu}$. The inverse vielbein
+is defined by the relation $e_\mu^j e^\mu_k=\delta_k^j$. These two
+objects, $e_\mu^k$ and $e^\nu_j$, will be used to transform 
+``curved'' indices ($\mu$, $\nu$, $\rho$) to ``flat'' ones
+($i$, $j$, $k$) and back. In Euclidean space there is no distinction
+between upper and lower flat indices.
+
+As usual, the Riemann part of the covariant derivatives contains the
+Christoffel connection so that
+\begin{equation}
+\nabla_\mu^{[R]}v_\nu = \partial_\mu v_\nu -\Gamma_{\mu\nu}^\rho v_\rho
+\label{riemcov}
+\end{equation}
+for an arbitrary vector $v_\nu$. To extend this derivative to the objects
+with flat indices one has to use the spin-connection $\sigma_\mu$:
+\begin{equation}
+\nabla_\mu v^j = \partial_\mu v^j +\sigma_\mu^{jk}v_k \,.\label{spinder}
+\end{equation}
+The condition $\nabla_\mu e_\nu^k=0$ yields
+\begin{equation}
+\sigma_\mu^{kl}=e_l^\nu \Gamma_{\mu\nu}^\rho e_\rho^k -
+e^\nu_l \partial_\mu e_\nu^k \,.\label{spincon}
+\end{equation} 
+
+Let $\Omega_{\mu\nu}$ be the field strength of the connection
+$\omega$:
+\begin{equation}
+\Omega_{\mu\nu}=\partial_\mu\omega_\nu - \partial_\nu\omega_\mu
++\omega_\mu\omega_\nu -\omega_\nu\omega_\mu \, .
+\label{Omega}
+\end{equation}
+The covariant derivative $\nabla$ acts on both space-time and internal
+indices. For example,
+\begin{equation}
+\nabla_\rho \Omega_{\mu\nu}=\partial_\rho \Omega_{\mu\nu}
+-\Gamma_{\rho\mu}^\sigma \Omega_{\sigma\nu}
+-\Gamma_{\rho\nu}^\sigma \Omega_{\mu\sigma}
++[\omega_\rho ,\Omega_{\mu\nu}] \,.
+\end{equation}
+
+If the boundary $\partial M$ is non-empty we have more invariants.
+Let $e_n$ be inward pointing unit vector field. Let Roman indices $a$, $b$,
+$c$ and $d$ range from 1 to $n-1$ and index a local orthonormal frame
+for the tangent bundle of $\partial M$. Let $L_{ab}:=\Gamma^n_{ab}$
+be the second fundamental form (extrinsic curvature) of the boundary.
+We use the Levi-Civita (spin) connections and
+the connection $\omega$ to covariantly differentiate tensors of all types. Let
+\lq ;\rq\ denote multiple covariant differentiation with respect to 
+the Levi-Civita connection of $M$ and let
+\lq:\rq\ denote multiple tangential covariant differentiation 
+on the boundary with respect to the
+Levi-Civita connection of the boundary; the difference
+ between `;' and `:' is measured by the second
+fundamental form. Thus, for example, $E_{;a}=E_{:a}$ since 
+there are no tangential indices in $E$ to be
+differentiated. On the other hand, 
+$E_{;ab}\ne E_{:ab}$ since the index $a$ is also being
+differentiated. More precisely $E_{;ab}=E_{:ab}-L_{ab}E_{;n}$.
+Since $L$ is only defined on the boundary, this
+tensor can only be differentiated tangentially.
+
+Consider an example of the circle $S^1$ in the plane $\mathbb{R}^2$.
+The line element has the form
+\begin{equation}
+(ds)^2 = (dr)^2 +r^2 (d\theta)^2 \,,\label{lineS2}
+\end{equation}
+where $0\le r<\infty$, $0\le \theta <2\pi$. Then $g_{\mu\nu}=
+{\rm diag} (1,r^2)$. $S^1$ is defined by the condition $r=r_0$.
+We may choose $e_\theta^1=r$, $e_r^2=-1$
+(the minus sign appears because $e^2$ is an {\it inward}
+pointing unit vector for the disk with the boundary $S^1$).
+Then the second fundamental form of $S^1$ is
+\begin{equation}
+L_{11}=\left.
+e_r^2 e_1^\theta e_1^\theta \Gamma_{\theta\theta}^r\right|_{r=r_0}=
+\frac 1{r_0} \,.\label{LonS1}
+\end{equation}
+In general, on $S^{n-1}$ considered as a boundary of the ball in
+$\mathbb{R}^n$ the extrinsic curvature is $L_{ab}=\frac 1{r_0} \delta_{ab}$.
+
+If the boundary $\partial M$ is non-empty, one has to
+define boundary conditions for the field $\phi$. A convenient
+way to write them down is:
+\begin{equation}
+\mathcal{B}\,\phi =0 \label{boucon}
+\end{equation}
+where $\mathcal{B}$ is called the boundary operator. 
+In general, the operator $\mathcal{B}$ calculates a linear combination
+of the boundary data for any given function $\phi$. If $D$ is of Laplace
+type, the boundary data include value of the function at the
+boundary and value of it's first normal derivative.
+The most frequently used
+choices are the Dirichlet and Neumann boundary operators
+which we denote $\mathcal{B}^-$ and $\mathcal{B}^+$ respectively:
+\begin{eqnarray}
+&&\mathcal{B}^-\phi =\phi\vert_{\partial M} \, ,\label{Dirbc} \\
+&&\mathcal{B}^+\phi =(\phi_{;n}+S\phi )\vert_{\partial M} \, ,
+\label{Neubc}
+\end{eqnarray}
+where $S$ is a matrix valued function defined on $\partial M$.
+The boundary conditions (\ref{Neubc}) are also
+called Robin or generalised Neumann. In some literature they
+are called mixed boundary conditions. We shall not use this latter
+terminology. The name ``mixed'' is reserved for another type
+of boundary conditions. Let $\Pi^-$ and $\Pi^+$ be two
+complementary projectors defined on $V\oB$, $(\Pi^\pm)^2=\Pi^\pm$,
+$\Pi^++\Pi^-=I$.
+There is a decomposition
+$ V|_{\partial M}=V_N\oplus V_D$, where $V_{N,D}
+=\Pi^\pm V|_{\partial M}$. Decompose also 
+$\phi=\phi^N\oplus\phi^D$ and set
+\begin{equation}
+\mathcal{B}\phi:=\phi^D\oplus(\phi^N_{;n}+S\phi^N)
+\oB \, .
+\label{mixbc}
+\end{equation}
+The matrix valued function (endomorphism) $S$ acts on $V_N$ only, 
+$S=\Pi^+S=S\Pi^+$. In other words, we define Dirichlet boundary
+conditions on $V_D$ and generalised Neumann boundary conditions on $V_N$.
+For obvious reason the boundary conditions (\ref{mixbc})
+will be called mixed. In  sec. \ref{sec3} we shall see that natural
+boundary conditions for spinor and vector fields are of this type.
+%%%%%%%%%%
+\subsection{Spectral functions}\label{s2spec}
+For the boundary conditions considered in this section as well
+as on manifolds without a boundary the operator 
+$\exp (-tD)$ with positive $t$ is trace class on the space
+of square integrable functions $L^2(V)$. This means that for
+an auxiliary smooth function $f$ on $M$ 
+\begin{equation}
+K(t,f,D)={\rm Tr}_{L^2}(f\exp (-tD)) 
+\label{heatTr}
+\end{equation}
+is well defined. We also write
+\begin{equation}
+K(t,f,D)=\int_M d^nx \sqrt{g} \ptr K(t;x,x;D) f(x) \,,\label{KxxD}
+\end{equation}
+where $K(t;x,x;D)$ is an $y\to x$ limit of the fundamental
+solution
+$K(t;x,y;D)$ of the heat equation (\ref{heateq})
+with the initial condition (\ref{inicon}).
+If there is a boundary, the kernel $K(t;x,y;D)$ should also
+satisfy some boundary conditions $\mathcal{B}_xK(t;x,y;D)=0$
+in one of the arguments. We stress that $K(t;x,y;D)$ is a matrix
+in the internal indices. $\ptr$ denotes the trace over these indices.
+
+Let $D$ be self-adjoint. This implies that in a suitable basis in the
+internal space the matrix $\omega_\mu$ is anti-hermitian and $E$ is
+hermitian. Let $\{ \phi_\lambda \}$ be a complete basis of orthonormal
+eigenfunctions of the operator $D$ corresponding to the eigenvalues
+$\{\lambda\}$. Then
+\begin{equation}
+K(t;x,y;D)=\sum_\lambda \phi^\dag_\lambda (x)\phi_\lambda (y)
+e^{-t\lambda} \,.\label{hkeigen}
+\end{equation}
+
+We shall almost exclusively work either on manifolds without boundaries, or
+on manifolds with boundaries with the fields subject to local boundary
+conditions (\ref{Dirbc}), (\ref{Neubc}), or (\ref{mixbc}). In all these
+cases there is
+an asymptotic expansion as $t\downarrow 0$ 
+\cite{Seeley:1966,Seeley:1969,Greiner:1971}\footnote{These papers contain
+also a method allowing to calculate the coefficients of the expansion.
+The method is, however, too complicated to use it on practice.
+}:
+\begin{equation}
+{\rm Tr}_{L^2} (f\exp (-tD)) 
+\cong\sum_{k\ge0}t^{(k-n)/2}a_k(f,D)\,.
+\label{asymptotex}
+\end{equation}
+This expansion is valid for almost all boundary conditions appearing
+in applications to physics. There are, however, some exceptions which
+will be discussed in sec.\ \ref{s5other}.
+
+The coefficients $a_k$ and the coefficients $b_k$ introduced in the
+previous section (cf. (\ref{sHKexp})) are related by the equation
+($m=0$ for the simplicity):
+\begin{equation}
+a_k(f,D)=(4\pi )^{-n/2} \iM b_k(x,x)f(x) \,.\label{akbk}
+\end{equation}
+Note, that the definition (\ref{sHKexp}) is valid on flat manifolds
+without boundary only (although generalisations to other cases
+are possible).
+
+The key property of the heat kernel coefficients $a_k$ is that
+they are locally computable in most of the cases. This means that
+they can be expressed in term of the volume and boundary integrals
+of local invariants. 
+
+For a positive operator $D$ one can define the zeta function
+\cite{Mina,Seeley:1968}
+by the equation:
+\begin{equation}
+\zeta (s,f,D)= {\rm Tr}_{L^2} (f\, D^{-s}) \,.\label{defzeta}
+\end{equation}
+The zeta function is related to the heat kernel by the integral
+transformation
+\begin{equation}
+\zeta (s,f,D)=\Gamma (s)^{-1}\int\limits_0^\infty dt\, t^{s-1}
+K(t,f,D) \,.\label{zetaheat}
+\end{equation}
+This relation can be inverted,
+\begin{equation}
+K(t,f,D)=\frac 1{2\pi i}\oint ds\, t^{-s}\Gamma(s)\zeta (s,f,D)\,,
+\label{heatzeta}
+\end{equation}
+where the integration contour encircles all poles of the integrand.
+Residues at the poles can be related to the heat kernel coefficients:
+\begin{equation}
+a_k(f,D)={\rm Res}_{s=(n-k)/2} \left( \Gamma(s)\zeta (s,f,D) \right)\,.
+\label{aRes}
+\end{equation}
+In particular,
+\begin{equation}
+a_n(f,D)= \zeta (0,f,D) \,.\label{anz0}
+\end{equation}
+
+Zeta-functions can be used to regularize the effective action
+\cite{Dowker:1976tf,Hawking:1977ja}. The regularization is achieved
+by shifting the power of $t$ in (\ref{WKtD}):
+\begin{equation}
+W_s=-\frac 12 \tilde\mu^{2s}\int_0^\infty \frac {dt}{t^{1-s}} 
+K(t,D) \,,\label{Wzreg}
+\end{equation}
+where $\tilde\mu$ is a constant of the dimension of mass introduced to keep
+proper dimension of the effective action. The regularization is removed
+in the limit $s\to 0$. Eq.\ (\ref{Wzreg}) can be considered as a
+definition of the regularized effective action without any reference to (\ref{WKtD}).
+One can also rewrite (\ref{Wzreg}) in terms of the zeta function:
+\begin{equation}
+W_s=-\frac 12 \tilde\mu^{2s} \Gamma(s)\zeta (s,D) \,,
+\label{WzGam}
+\end{equation}  
+where $\zeta (s,D):=\zeta (s,1,D)$.
+
+The gamma function has a simple pole at $s=0$:
+\begin{equation}
+\Gamma (s)=\frac 1s -\gamma_E +\mathcal{O}(s)\,,\label{Gammas}
+\end{equation}
+where $\gamma_E$ is the Euler constant. The regularized effective action
+(\ref{WzGam}) has also a pole at $s=0$:
+\begin{equation}
+W_s=-\frac 12 \left( \frac 1s -\gamma_E +\ln \tilde\mu^2 \right)
+\zeta (0,D) - \frac 12 \zeta'(0,D) \,.\label{Wzpole}
+\end{equation}
+According to (\ref{anz0}) the divergent term in the zeta function 
+regularization is proportional to $a_n(D)$ (cf. (\ref{divWLam}) for another
+regularization scheme). The pole term in (\ref{Wzpole}) has to be removed
+by the renormalization. The remaining part of $W_s$ at $s=0$ is the 
+renormalised effective action:
+\begin{equation}
+W^{\rm ren}= -\frac 12 \zeta'(0,D)-\frac 12 \ln (\mu^2 )
+\zeta (0,D) \,,\label{Wzren}
+\end{equation}
+where we have introduced a rescaled parameter 
+$\mu^2=e^{-\gamma_E}\tilde\mu^2$. In this approach $\mu^2$ describes the
+renormalization ambiguity which must be fixed by a suitable
+normalisation condition. Let us remind that here we are working on a
+compact manifold. On non-compact manifolds $\zeta (s,D)$ may have divergent
+contributions proportional to the volume. Such divergences are usually
+removed by the subtraction of a ``reference'' heat kernel (see sec.\
+\ref{s6sinpot}).
+
+Together with (\ref{defW}) equation (\ref{Wzren}) yields a definition
+of the functional determinant for a positive elliptic second order
+operator which is frequently used in mathematics:
+\begin{equation}
+\ln \det (D)=-\zeta'(0,D) -\ln (\mu^2) \zeta (0,D) \,.\label{detzeta}
+\end{equation}
+
+Note, that the definitions (\ref{defzeta}), (\ref{detzeta})
+are valid for positive operators
+only. Elliptic 2nd order differential operators have at most finite number
+of zero and negative modes\footnote{On manifolds with boundaries one has to
+require {\it strong ellipticity} of the boundary value problem (cf.\
+sec.\ \ref{s5other}).} which must be treated separately. However, one 
+can extend the definition of the zeta function to operators with negative
+modes:
+\begin{equation}
+\zeta (s,D)=\sum |\lambda |^{-s} \,,\label{zetaneg}
+\end{equation}
+where the sum extends over all non-zero eigenvalues $\lambda$.
+One can also define another spectral function in a similar way:
+\begin{equation}
+\eta (s,D)=\sum {\rm sign}\, (\lambda ) |\lambda |^{-s} \,.\label{etadef}
+\end{equation}
+This function is especially useful in spectral theory of Dirac type
+operators where $\eta (0,\Dir )$ measures asymmetry of the spectrum.
+
+Another function which is frequently used especially in the mathematical
+literature is the {\it resolvent} (or, more precisely, its' powers):
+\begin{equation}
+{\rm R}^l(z):=(D+z^2)^{-l} \,.\label{resolvent}
+\end{equation}
+If $D$ is on operator of Laplace type subject to ``good''
+boundary conditions\footnote{A more precise meaning of this 
+restriction will be explained in sec. \ref{s5other}.}
+ and if $l$ sufficiently large ($l>n/2$)
+there is a full asymptotic expansion
+\begin{equation}
+{\rm Tr} ({\rm R}^l(z))=\sum_k 
+\frac{\Gamma \left( l+\frac{k-n}2 \right)}{\Gamma (l)}
+a_k(D) z^{-2l+n-k} \label{asresol}
+\end{equation} 
+as $z\to \infty$. The coefficients $a_k$ are the same as in the
+heat kernel expansion (\ref{asymptotex}).
+%%%%%%
+\subsection{Lorentzian signature}\label{s2Lorentz}
+Locality of the heat kernel coefficients in the Euclidean domain
+can be easily understood by examining the free heat kernel
+(\ref{simplestHK}). For small $t$ the first term in the exponential
+strongly suppresses non-local contributions. For Lorentzian 
+metrics the squared distance function $(x-y)^2$ is no longer
+positive definite. Therefore, the simple arguments given above
+do not work. A partial solution to this problem is to consider
+the ``Schr\"{o}dinger'' equation
+\begin{equation}
+\left( i\partial_\tau -D \right) \tilde K(\tau;x,y;D)=0
+\label{Schr}
+\end{equation}
+for the kernel $\tilde K$ instead of the heat conduction
+equation (\ref{heateq}). Then $\tilde K$ oscillates at large
+distances. However, even though non-local contributions
+to $\tilde K$ oscillate furiously as $\tau\to 0$ they are
+not small. Consequently, local asymptotic series do not
+exist in many cases. A discussion on this point
+can be found in chapter 9 of \cite{Fulling:1989nb}.
+
+Of course, the heat kernel expansion can be used also
+on Lorentzian manifolds at least for the renormalization
+theory where non-local terms are of less importance.
+Counterterms are still defined by the same heat kernel
+coefficients with the same functional dependence on
+the Lorentzian metric. Explicit definitions with the imaginary
+``proper time'' $\tau$ can be found in 
+\cite{DeWitt:1965,Birrell:1982ix}. One should note that some
+background fields receive an imaginary phase when being
+continued to the Euclidean domain (cf. secs.\ \ref{s3string}
+and \ref{s3spin}).
+

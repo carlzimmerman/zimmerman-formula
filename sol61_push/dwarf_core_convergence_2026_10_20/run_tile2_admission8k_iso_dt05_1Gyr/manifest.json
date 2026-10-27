@@ -1,0 +1,505 @@
+{
+  "schema_version": 2,
+  "claim_id": "DWARF_FIXED_STATE_tile2_admission8k_iso_dt05_1Gyr",
+  "repository": {
+    "commit": "726716bac6a337a172ce4395ddc3fcfe3fcc639f",
+    "dirty": true
+  },
+  "command": [
+    "nice",
+    "-n",
+    "19",
+    "env",
+    "FAST_GRAVITY_LIBRARY=/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/fast_gravity.dylib",
+    "METAL_GRAVITY_LIBRARY=/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/metal_gravity.dylib",
+    "TILE2_GRAVITY_LIBRARY=/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/tile2_build_run_001/tile2_gravity.dylib",
+    "/usr/bin/python3",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_refined.py",
+    "--output",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr",
+    "--initial",
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/initial_reference_old8k/initial.npz",
+    "--ncold",
+    "8192",
+    "--seed",
+    "87319",
+    "--eps",
+    "10",
+    "--h",
+    "25",
+    "--dt",
+    "0.5",
+    "--duration",
+    "1000",
+    "--record-interval",
+    "10",
+    "--threads",
+    "4",
+    "--backend",
+    "tile2",
+    "--collision-method",
+    "ctmc"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.12.11"
+      },
+      {
+        "name": "launcherPython",
+        "version": "3.9.6"
+      },
+      {
+        "name": "launcherNumpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "launcherScipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "simulationPython",
+        "version": "/usr/bin/python3; actual worker versions recorded at runtime"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite common-initial-state full3D Plummer/H4/CTMC refinement with profile, remnant and E/vectorJ/host-work ledgers",
+    "coefficient_domain": "Separately declared FP32-interaction candidate: force L2<5e-7, per-particle max<2e-6, phi max/U<5e-7; not inherited DS1e-11 admission",
+    "conventions": "pc,Msun,Myr; fixed saved phase-space arrays, no velocity renormalization; no inserted core or imposed dynamical symmetry; analytic fixed host; all particles retained",
+    "inputs": [
+      "REFINED_NUMERICAL_BUDGET.md",
+      [
+        "--initial",
+        "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/initial_reference_old8k/initial.npz",
+        "--ncold",
+        "8192",
+        "--seed",
+        "87319",
+        "--eps",
+        "10",
+        "--h",
+        "25",
+        "--dt",
+        "0.5",
+        "--duration",
+        "1000",
+        "--record-interval",
+        "10",
+        "--threads",
+        "4",
+        "--backend",
+        "tile2",
+        "--collision-method",
+        "ctmc"
+      ]
+    ],
+    "bounds": {
+      "argv": [
+        "--initial",
+        "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/initial_reference_old8k/initial.npz",
+        "--ncold",
+        "8192",
+        "--seed",
+        "87319",
+        "--eps",
+        "10",
+        "--h",
+        "25",
+        "--dt",
+        "0.5",
+        "--duration",
+        "1000",
+        "--record-interval",
+        "10",
+        "--threads",
+        "4",
+        "--backend",
+        "tile2",
+        "--collision-method",
+        "ctmc"
+      ],
+      "requested_argv": [
+        "--initial",
+        "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/initial_reference_old8k/initial.npz",
+        "--ncold",
+        "8192",
+        "--seed",
+        "87319",
+        "--eps",
+        "10",
+        "--h",
+        "25",
+        "--dt",
+        "0.5",
+        "--duration",
+        "1000",
+        "--record-interval",
+        "10",
+        "--threads",
+        "4",
+        "--backend",
+        "tile2",
+        "--collision-method",
+        "ctmc"
+      ],
+      "wall_seconds": 240,
+      "max_CPU_threads": 4,
+      "ncold": 8192,
+      "loaded_total_particles": 9216,
+      "initial_seed": 87319,
+      "collision_seed": 1087319,
+      "initial_relative_state_sha256": "b090c6ff60cf3917cd2e992a0836e948e0e1af7fa03bfaa76c061e3e002cd8b9",
+      "dt_Myr": 0.5,
+      "softening_pc": 10.0,
+      "collision_support_pc": 25.0,
+      "selected_backend": "tile2",
+      "precision_check_gravity_calls": [
+        1,
+        2,
+        100,
+        1000,
+        6000,
+        30000,
+        60000,
+        120000,
+        240000
+      ],
+      "full_CPU_reference_N_limit": 32768
+    },
+    "non_claims": [
+      "Finite completion is not physical convergence",
+      "Candidate force budget is separate from DS admission and does not certify accumulated trajectory error",
+      "No source-derived initial state, response-field dynamics, imposed cold core or live host absorption",
+      "Conditional count intervals exclude temporal, ensemble, centring and model uncertainty",
+      "Instantaneous self-boundness does not guarantee tidal survival"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "PCG64 frozen-position central-pair CTMC; initial phases loaded from saved bytes",
+    "seed": 1087319
+  },
+  "run": {
+    "started_at": "2026-10-21T01:11:58.313657+00:00",
+    "runtime_seconds": 67.334807,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 2097152,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 1200,
+      "max_cores": null,
+      "max_threads": 4
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/dwarf_core_convergence_2026_10_20/CONTRACT.md",
+    "sol61_push/dwarf_core_convergence_2026_10_20/SAMPLER_AND_PRECISION.md",
+    "sol61_push/dwarf_core_convergence_2026_10_20/REFINED_NUMERICAL_BUDGET.md",
+    "sol61_push/dwarf_core_convergence_2026_10_20/evolution.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_resolution.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_production.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/refined_initial.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/refined_core.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_refined.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/launch_refined.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/test_refined_runner.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/test_refined_initial.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/profile_diagnostics.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/test_profile_diagnostics.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/null_scatter.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/test_null_scatter.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/fast_gravity.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/fast_gravity.c",
+    "sol61_push/dwarf_core_convergence_2026_10_20/test_fast_gravity.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/test_evolution.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/test_resolution_driver.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/metal_gravity.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/metal_gravity.mm",
+    "sol61_push/dwarf_core_convergence_2026_10_20/test_metal_gravity.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/tile2_gravity.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/tile2_gravity.mm",
+    "sol61_push/dwarf_core_convergence_2026_10_20/test_tile2_gravity.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/fast_gravity.dylib",
+    "sol61_push/dwarf_core_convergence_2026_10_20/metal_gravity.dylib",
+    "sol61_push/dwarf_core_convergence_2026_10_20/tile2_build_run_001/tile2_gravity.dylib",
+    "sol61_push/isolated_host_dwarf_2026_10_19/dynamics.py",
+    "sol61_push/isolated_host_dwarf_2026_10_19/direct_gravity.c",
+    "sol61_push/isolated_host_dwarf_2026_10_19/direct_gravity.dylib",
+    "sol61_push/isolated_host_dwarf_2026_10_19/remnant.py",
+    "sol61_push/isolated_host_dwarf_2026_10_19/CONTRACT.md",
+    "sol61_push/isolated_host_dwarf_2026_10_19/source_inputs.json",
+    "sol61_push/cold_production_2026_10_11/MASTER_COLD_ENERGY_EQUATIONS.md",
+    "sol61_push/dwarf_core_convergence_2026_10_20/initial_reference_old8k/initial.npz",
+    "sol61_push/dwarf_core_convergence_2026_10_20/initial_reference_old8k/initial_metadata.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/CONTRACT.md",
+      "sha256": "1b9029a020af2c482075de1c0cac7a8e468cc5bde7c63d447bc538babb2777e1",
+      "sha256_after": "1b9029a020af2c482075de1c0cac7a8e468cc5bde7c63d447bc538babb2777e1"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/SAMPLER_AND_PRECISION.md",
+      "sha256": "121e643f72216a06251e5b806c822781f7e4ecc54547ae3485d140dc1c9e3b7a",
+      "sha256_after": "121e643f72216a06251e5b806c822781f7e4ecc54547ae3485d140dc1c9e3b7a"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/REFINED_NUMERICAL_BUDGET.md",
+      "sha256": "b148d6048634f05e7aaddd8f79ab38c9d3a0aa3ab3b3ada9f29ae855d6929222",
+      "sha256_after": "b148d6048634f05e7aaddd8f79ab38c9d3a0aa3ab3b3ada9f29ae855d6929222"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/evolution.py",
+      "sha256": "40710b5b5233fa0b48816793d25929d69add4d8ca433de6d46e8dae86463e1da",
+      "sha256_after": "40710b5b5233fa0b48816793d25929d69add4d8ca433de6d46e8dae86463e1da"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/run_resolution.py",
+      "sha256": "e13233e8b73db3c401cbf000ab8f7bb708edc4ba38120a38ada8594b685bec30",
+      "sha256_after": "e13233e8b73db3c401cbf000ab8f7bb708edc4ba38120a38ada8594b685bec30"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/run_production.py",
+      "sha256": "89d8f8f53bbed204417a2697176f71182bc8f6be1fcdc99daea1f34f48a42d41",
+      "sha256_after": "89d8f8f53bbed204417a2697176f71182bc8f6be1fcdc99daea1f34f48a42d41"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/refined_initial.py",
+      "sha256": "e9e87f942bf7f27fa4289e647c92cb9fd3664a98fdef8461cee85ca7a3e5745d",
+      "sha256_after": "e9e87f942bf7f27fa4289e647c92cb9fd3664a98fdef8461cee85ca7a3e5745d"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/refined_core.py",
+      "sha256": "a8b395e6586a0f3c6c352d7749a1b626c6517011bda59b48b69807e0901478e9",
+      "sha256_after": "a8b395e6586a0f3c6c352d7749a1b626c6517011bda59b48b69807e0901478e9"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/run_refined.py",
+      "sha256": "18f2386c800d34dfffc14528188cf75783127e522b28c7a3e869f111deeb9d47",
+      "sha256_after": "18f2386c800d34dfffc14528188cf75783127e522b28c7a3e869f111deeb9d47"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/launch_refined.py",
+      "sha256": "933b2e1e34b8d5c887a4c7a9b71a16857e2cb4fec4d6f6908fa10339073756b7",
+      "sha256_after": "933b2e1e34b8d5c887a4c7a9b71a16857e2cb4fec4d6f6908fa10339073756b7"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/test_refined_runner.py",
+      "sha256": "53d885c3b33fe1e323a4d7c66d359626f4a9f0557e2a897cfecb808dbdec8c45",
+      "sha256_after": "53d885c3b33fe1e323a4d7c66d359626f4a9f0557e2a897cfecb808dbdec8c45"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/test_refined_initial.py",
+      "sha256": "fa6435d95eb965d1b746421f4203b52f07eae8890c36f7d261296627bf200843",
+      "sha256_after": "fa6435d95eb965d1b746421f4203b52f07eae8890c36f7d261296627bf200843"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/profile_diagnostics.py",
+      "sha256": "a2bfa7d13979b29c64c587e1643daf43f49163274ef772972a20431da45f16ac",
+      "sha256_after": "a2bfa7d13979b29c64c587e1643daf43f49163274ef772972a20431da45f16ac"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/test_profile_diagnostics.py",
+      "sha256": "1fa6c1f6d772aeb8afb041f32a00311bf3f219b0b3c89eb99f74dec6fc335046",
+      "sha256_after": "1fa6c1f6d772aeb8afb041f32a00311bf3f219b0b3c89eb99f74dec6fc335046"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/null_scatter.py",
+      "sha256": "2f218304d97d065da7c449d72aff07a0fa061dfab73d72a84bdc75ce1ddb154a",
+      "sha256_after": "2f218304d97d065da7c449d72aff07a0fa061dfab73d72a84bdc75ce1ddb154a"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/test_null_scatter.py",
+      "sha256": "d137d3a75500164641a0d41f6c4f88abea92de483d4c76c5071aa59afc8092e8",
+      "sha256_after": "d137d3a75500164641a0d41f6c4f88abea92de483d4c76c5071aa59afc8092e8"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/fast_gravity.py",
+      "sha256": "f8db9be78ece384f0ac23ab4cccda28bf37cf6c09dfb9f226a47f9d73f220fed",
+      "sha256_after": "f8db9be78ece384f0ac23ab4cccda28bf37cf6c09dfb9f226a47f9d73f220fed"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/fast_gravity.c",
+      "sha256": "8b8f9cffa331cb1d958127bb72bede82be829b8d5ac5950504f9de53b09a11a5",
+      "sha256_after": "8b8f9cffa331cb1d958127bb72bede82be829b8d5ac5950504f9de53b09a11a5"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/test_fast_gravity.py",
+      "sha256": "849cc4e84f1b65e281f3ae046551a53502e457559b28f747c136eb50644ae233",
+      "sha256_after": "849cc4e84f1b65e281f3ae046551a53502e457559b28f747c136eb50644ae233"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/test_evolution.py",
+      "sha256": "5803545aeaea4c900861941c9ca2301b980c5fe0211aac0605351d54ced9045f",
+      "sha256_after": "5803545aeaea4c900861941c9ca2301b980c5fe0211aac0605351d54ced9045f"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/test_resolution_driver.py",
+      "sha256": "e63b69d98c25c1048d1317a5b47d9d068989e4ee7d5d44c1d60cb1671eb14342",
+      "sha256_after": "e63b69d98c25c1048d1317a5b47d9d068989e4ee7d5d44c1d60cb1671eb14342"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/metal_gravity.py",
+      "sha256": "f5fb6e489941cc51dbb874258077a934e8b7e9d50777548931fe912fd4eb4d18",
+      "sha256_after": "f5fb6e489941cc51dbb874258077a934e8b7e9d50777548931fe912fd4eb4d18"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/metal_gravity.mm",
+      "sha256": "eb1d12c9c92b83078576d68ba3c947cdfee7c239da6160a811c649c6837243e5",
+      "sha256_after": "eb1d12c9c92b83078576d68ba3c947cdfee7c239da6160a811c649c6837243e5"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/test_metal_gravity.py",
+      "sha256": "61f06de7cf358438b28d8c840f6fb5c1660c075e3db2d1103f4a62653fcc0231",
+      "sha256_after": "61f06de7cf358438b28d8c840f6fb5c1660c075e3db2d1103f4a62653fcc0231"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/tile2_gravity.py",
+      "sha256": "56df08ae01717c118beb4b393a35c29ec4c64d677e67a8eb9532d79d500a1edd",
+      "sha256_after": "56df08ae01717c118beb4b393a35c29ec4c64d677e67a8eb9532d79d500a1edd"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/tile2_gravity.mm",
+      "sha256": "0484ce90ce23b1e63f068c983152c3a95c2cfdbd2bad2e7959f198e1cabe3bc8",
+      "sha256_after": "0484ce90ce23b1e63f068c983152c3a95c2cfdbd2bad2e7959f198e1cabe3bc8"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/test_tile2_gravity.py",
+      "sha256": "bdb649421155b0687906b11f44eed5db44de5b6b70a5ee2c1e1526cdecf9cfdd",
+      "sha256_after": "bdb649421155b0687906b11f44eed5db44de5b6b70a5ee2c1e1526cdecf9cfdd"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/fast_gravity.dylib",
+      "sha256": "edcdeae084bba94aed253409f5747867eb595904254b03df47e7a9076d8d008a",
+      "sha256_after": "edcdeae084bba94aed253409f5747867eb595904254b03df47e7a9076d8d008a"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/metal_gravity.dylib",
+      "sha256": "0712c0333b5fcc496344d9e75d701b7a9805310a92472c6b84b83a0b2c693dd2",
+      "sha256_after": "0712c0333b5fcc496344d9e75d701b7a9805310a92472c6b84b83a0b2c693dd2"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/tile2_build_run_001/tile2_gravity.dylib",
+      "sha256": "02803f57d27b51011809cec25b270cb965a653287c998b31c1b4b6e13bf465b2",
+      "sha256_after": "02803f57d27b51011809cec25b270cb965a653287c998b31c1b4b6e13bf465b2"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/dynamics.py",
+      "sha256": "813207ab265471edb4c14ea1e637e05bfcfd3801ad9d0c431ac1ba2267ffd8fc",
+      "sha256_after": "813207ab265471edb4c14ea1e637e05bfcfd3801ad9d0c431ac1ba2267ffd8fc"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/direct_gravity.c",
+      "sha256": "87847d5e8bae76941d11c3faa30a3c8032ae50f1b433e89e9e180523451b4943",
+      "sha256_after": "87847d5e8bae76941d11c3faa30a3c8032ae50f1b433e89e9e180523451b4943"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/direct_gravity.dylib",
+      "sha256": "828f6a2e8688e6c497bbd593bd46e178693b48eb5708b9b4ace2635235cfb4af",
+      "sha256_after": "828f6a2e8688e6c497bbd593bd46e178693b48eb5708b9b4ace2635235cfb4af"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/remnant.py",
+      "sha256": "935c7c8636d89c5abce120337a022bc66decae6a46bdd47f47fe09a98706b13f",
+      "sha256_after": "935c7c8636d89c5abce120337a022bc66decae6a46bdd47f47fe09a98706b13f"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/CONTRACT.md",
+      "sha256": "6f84c9fbd490151c838ba8283a0acfc9f76886bfd9cfec236a7376a793dd8390",
+      "sha256_after": "6f84c9fbd490151c838ba8283a0acfc9f76886bfd9cfec236a7376a793dd8390"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/source_inputs.json",
+      "sha256": "649c60ffd231c727a3499d080476d54b59f9e737daf4c87390d1894bb0acc009",
+      "sha256_after": "649c60ffd231c727a3499d080476d54b59f9e737daf4c87390d1894bb0acc009"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/MASTER_COLD_ENERGY_EQUATIONS.md",
+      "sha256": "bb1bdd8ebabe871b8d9996fe7e5aba4dd8d11d272cd4bad90a2da0816068b15e",
+      "sha256_after": "bb1bdd8ebabe871b8d9996fe7e5aba4dd8d11d272cd4bad90a2da0816068b15e"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/initial_reference_old8k/initial.npz",
+      "sha256": "5844fce4ddcd67405a5cad1578a88f439eeebfa0c9b807ce8b43014c165361d3",
+      "sha256_after": "5844fce4ddcd67405a5cad1578a88f439eeebfa0c9b807ce8b43014c165361d3"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/initial_reference_old8k/initial_metadata.json",
+      "sha256": "cc34bf681137bf6164149f64f9622d57d0c29a7355b465d1f1146b2757f26490",
+      "sha256_after": "cc34bf681137bf6164149f64f9622d57d0c29a7355b465d1f1146b2757f26490"
+    }
+  ],
+  "output_directory": "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr",
+  "declared_results": [
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr/initial.npz",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr/final.npz",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr/trajectory.npz",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr/results.json",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr/precision_checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr/stdout.txt",
+      "sha256": "2ec849c9395820897328915ef6eb50f3c729cb8ae559f9ab39dc00e5a5699e2e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr/initial.npz",
+      "sha256": "5222c661701c92ea4b112f5616be8afe80278e3bd955cbfbc58374783182c789",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr/final.npz",
+      "sha256": "2c0abbb0742fb9e630fd5dbe4e69491e695314598e714e31f7c80c1ed1a48ffd",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr/trajectory.npz",
+      "sha256": "c4824e3050300b1e7d29b74bf636d08d1660ce1f3747736c9efb265e521ebe84",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr/results.json",
+      "sha256": "4b8f683103163d34481a115002344c1de901a3b1bc9f27f58eb05a22d19eae96",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/dwarf_core_convergence_2026_10_20/run_tile2_admission8k_iso_dt05_1Gyr/precision_checks.json",
+      "sha256": "daf5cb30ec78fe9140efd70880a3da482cf63699e791521fbca6179b5444ce4c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

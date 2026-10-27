@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "RA-003",
+  "repository": {
+    "commit": "6d79f6dbde3e6c6ab2e36655f590df14d78d01a5",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/reciprocal_anchor_2026_10_13/check_budget.py",
+    "sol61_push/reciprocal_anchor_2026_10_13/run_budget/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Compact hydrostatic reference monotonicity and necessary conserved mass/source radius budget",
+    "coefficient_domain": "SymPy exact real and rational algebra; floating eigenvalue controls",
+    "conventions": "c=1; conserved Eulerian currents; fixed-clock local/ static comparison",
+    "inputs": [
+      "sol61_push/reciprocal_anchor_2026_10_13/check_budget.py",
+      "sol61_push/reciprocal_anchor_2026_10_13/BUDGET_CONTRACT.txt",
+      "sol61_push/reciprocal_anchor_2026_10_13/CONTRACT.txt"
+    ],
+    "bounds": {
+      "EOS": "epsilon*n+b*n^2/2 with positive epsilon,b",
+      "geometry": "connected spherical support; lapse increasing radially; free surface p=0",
+      "stipulated_delta": [
+        "1/100",
+        "1/10",
+        "1/2"
+      ],
+      "input_Q_over_Mb": "1341/250"
+    },
+    "non_claims": [
+      "No global solution, measured tolerance, empirical exclusion, or selected catchment/EOS",
+      "The density-average inequality uses monotonicity as a stated analytic hypothesis"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T01:01:52.297421+00:00",
+    "runtime_seconds": 0.296355,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/reciprocal_anchor_2026_10_13/check_budget.py",
+    "sol61_push/reciprocal_anchor_2026_10_13/BUDGET_CONTRACT.txt",
+    "sol61_push/reciprocal_anchor_2026_10_13/CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/check_budget.py",
+      "sha256": "1d5cfb62bbeedfc166115cf4f18289fe661b2d158ce3cf24e3eaef98df19ec45",
+      "sha256_after": "1d5cfb62bbeedfc166115cf4f18289fe661b2d158ce3cf24e3eaef98df19ec45"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/BUDGET_CONTRACT.txt",
+      "sha256": "8995d0e37668ed3b00d3ae59e89ac2fed3dbe921c7890709a94e61dc5fec2b77",
+      "sha256_after": "8995d0e37668ed3b00d3ae59e89ac2fed3dbe921c7890709a94e61dc5fec2b77"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/CONTRACT.txt",
+      "sha256": "94e81d70e174b99fcdf2942559b7dba2e51020bbaec415bbb08004a7f62e2366",
+      "sha256_after": "94e81d70e174b99fcdf2942559b7dba2e51020bbaec415bbb08004a7f62e2366"
+    }
+  ],
+  "output_directory": "sol61_push/reciprocal_anchor_2026_10_13/run_budget",
+  "declared_results": [
+    "sol61_push/reciprocal_anchor_2026_10_13/run_budget/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run_budget/stdout.txt",
+      "sha256": "0b39e79d46696e4c792ca482750d18dc94bccb86c6728ac8acf58a2222bd2b8e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run_budget/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run_budget/results.json",
+      "sha256": "0b39e79d46696e4c792ca482750d18dc94bccb86c6728ac8acf58a2222bd2b8e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,37 @@
+FASHI DR2 versus MIGHTEE COSMOS flux calibration
+2026-10-18 America/New_York
+
+The cross-match is complete. The flux-scale discrepancy remains unresolved under the pre-result criteria. FAST does not support applying one universal ALFALFA-derived flux correction to the full science sample.
+
+Scope and matching
+The public FASHI catalogue contains 156411 sources; all rows were downloaded and counted. The MIGHTEE parent has 293 objects, including the original 47-object science sample. Matching used 60 arcsec and 300 km/s, with one-to-one assignment and ambiguous candidates excluded from the reliable subset. There are 78 matches, including 21 science objects. Forty parent matches and 15 science matches pass reliability cuts; 37 and 14 respectively also pass the neighbour-confusion check. Three science objects exceed FASHI DR2's redshift limit. Median separation is 15.0 arcsec and median velocity difference 6.3 km/s. All 21 available FASHI/ALFALFA identifier links agree.
+
+Flux ratios, nominal OPT conversion, FAST busy-function flux
+Original science sample, MIGHTEE catalogue / FAST: N=15, ratio 1.237, 95% object-bootstrap interval 1.042-1.631, median +0.0923 dex
+Original science sample, extracted cube / FAST: N=10, ratio 0.674, 95% object-bootstrap interval 0.398-0.844, median -0.1716 dex
+Reliable parent, MIGHTEE catalogue / FAST: N=40, ratio 1.147, 95% object-bootstrap interval 0.991-1.438, median +0.0597 dex
+Reliable parent, extracted cube / FAST: N=19, ratio 0.706, 95% object-bootstrap interval 0.533-0.808, median -0.1512 dex
+Medians above use different availability subsets; the paired comparison below uses identical objects.
+
+Same-object checks
+On the 19 reliable objects with extracted cube detections, median catalogue/FAST is 1.237 and cube/FAST is 0.706. FAST sits between the two MIGHTEE reductions. Their median absolute deviations from FAST are nearly identical: 0.155 and 0.151 dex. This descriptive check does not select either reduction.
+On ten reliable parent objects with ALFALFA code-1 detections, median MIGHTEE/ALFALFA is 0.641, while ALFALFA/FAST is 1.246. Only four of these objects belong to the original science sample, too few for its pre-specified three-survey scale assessment.
+
+Robustness
+Changing the matching radius to 30 or 90 arcsec, using directly summed FAST fluxes, and removing catalogued neighbours do not establish a unique calibration. OPT, REST and RADIO conversions give original-science catalogue/FAST medians 1.237, 1.183 and 1.132. Catalogue/cube disagreement is therefore not settled by a velocity-axis conversion. Bootstrap intervals omit shared calibration floors and selection effects. A ratio-versus-FAST-SNR trend is descriptive only because FAST flux enters both quantities.
+
+Interpretation and next discriminating check
+The earlier MIGHTEE deficit relative to ALFALFA is reproduced on the common galaxies, but FAST does not establish that ALFALFA supplies the correct universal adjustment. Compare matched spectral profiles using common apertures, line windows and baseline subtraction before selecting a scale or rerunning a0. Catalogue medians cannot by themselves distinguish masking, baseline losses, profile extraction, confusion or absolute calibration.
+
+Verification and provenance
+Run 02 completed and its computation manifest passed validation. All 13 implementation controls passed, and a separate standard-library implementation reproduced matching, primary sample membership, flux conversion and medians. The first run failed at report serialization; the numerical results JSON is byte-identical to run 02. No selection rules or scientific calculation changed. No a0 measurement or gravity-model preference is claimed.
+
+Files
+run_02/results.json: all bootstrap intervals and sensitivity results
+run_02/matched_sources.csv: per-object fluxes, ratios, flags and matching diagnostics
+run_02/coverage.csv: every parent object and match/coverage status
+run_02/flux_comparison.png: comparison plot
+run_02/manifest.json: input/output hashes, environment and execution provenance
+independent_check.py and independent_verification.json: independent computational checks
+contract.json: criteria specified before COSMOS FAST ratios
+Sources: https://nadc.china-vo.org/res/r103421/ ; https://arxiv.org/abs/2606.31539

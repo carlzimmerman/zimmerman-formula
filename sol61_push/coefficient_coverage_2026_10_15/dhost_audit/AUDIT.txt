@@ -1,0 +1,48 @@
+DHOST EXCLUSION AUDIT — 2026-10-15
+Primary verdict: incomplete, with the smallest missing implication identified.
+This audits the June17 pure-slip no-go and the related channel-count exclusion. It does not assert a viable DHOST theory, observational fit, or numerical coefficient selection. Self-review only. Historical files are unchanged; inputs.json pins inspected sources.
+
+1. The failed implication
+The historical script defines its target as deltaPhi=0 with deltaPsi nonzero: ordinary matter should retain its Newtonian potential while light responds differently. Its Section2 then replaces this with G_Phi=0, so that matter does not source the TOTAL temporal potential at all. This is not the stated target. For the same source and boundary reference, deltaPhi=Phi-Phi_N=0 means Phi=Phi_N and G_Phi=G_N, not zero.
+The relation Psi=(1+alpha_H)Phi at alpha_T=0 implies
+ deltaPsi=alpha_H Phi_N when deltaPhi=0.
+Thus the algebra used in the old proof does not by itself exclude a nonzero spatial-potential modification with unchanged temporal potential. If delta was intended as a cosmological perturbation rather than a change from Newtonian gravity, the no-go tests a different target: zero temporal gravity, not Newtonian temporal gravity.
+
+2. External-source verification (bounded)
+Langlois et al., arXiv:1703.03797v2, Section3.2, Eqs3.12,3.15-16 concern TOTAL linear static potentials, with Newton normalization given by the coefficient of the Poisson equation. Eq2.16 supplies class-I degeneracy. This is not a nonlinear MOND theorem.
+https://arxiv.org/html/1703.03797v2
+Creminelli et al., arXiv:1809.03484v2, Section5 includes both Eq71 and the more general Eq72 with C(phi,X); footnote4 permits nonzero alpha_H,beta1 related by alpha_H=-2beta1. Its stated applicability also depends on EFT validity at the observed frequencies. The June verdict's reduction to Eq71 alone is not an exhaustive treatment of the paper's DHOST class.
+https://arxiv.org/html/1809.03484v2
+Checked via primary HTML on2026-10-15. v3 HTML fetch failed; no content or result inferred from that failure. No full literature novelty survey or cached paper copy claimed.
+
+3. Exact coefficient counterexample to the algebraic inference
+Set beta1=b, alpha_L=alpha_T=0, alpha_H=-2b,
+ beta2=-6b^2, beta3=-2b[2(1-2b)+b]=-4b+6b^2.
+The static Poisson bracket is
+ A=(1+alpha_H)^2-beta3/2=(1-b)^2.
+For b!=1, choose the positive tensor coefficient M^2=M_ref^2/(1-b)^2.
+Then M^2 A=M_ref^2, preserving the static Poisson normalization.
+Choose the Poisson regime with no retained mass term and common isolated-source boundary conditions. At the level of these reduced coefficient equations,
+ Phi=Phi_N, Psi=(1-2b)Phi_N.
+For the explicit rational witness b=-1/4:
+ alpha_H=1/2, beta2=-3/8, beta3=11/8, M^2=(16/25)M_ref^2,
+ deltaPhi=0, deltaPsi=Phi_N/2.
+This satisfies the displayed static, degeneracy, and nondecay COEFFICIENT relations. It is an algebraic countermodel to the inference, not a constructed action and background satisfying all field equations. Changing M^2 is allowed in this diagnostic family; no claim that the bare tensor coefficient is independently measured and fixed to M_ref^2 is made. With that extra restriction the result must be reassessed.
+
+4. Why this is not a recovered physical solution
+Degeneracy removes an extra mode; it does not ensure positive kinetic and gradient coefficients of all remaining modes. No scalar stability, background admission, covariant coefficient realization, or source matching has been supplied for the rational witness. Nonzero metric slip is not by itself Cassini-safe: light and matter are both tested. The historical conflation of pure-slip and Cassini-safe should not be retained.
+For constant coefficients a linear static response scales as source mass M/r^2. The desired deep-MOND force scales as sqrt(M)/r. Therefore this witness cannot reproduce the universal deep-MOND force or its lensing counterpart. A nonlinear, background-dependent source solution is essential. This scaling obstruction is to the fixed-coefficient linear construction, not every nonlinear DHOST theory.
+Neither beta1 nor the amplitude cp in the channel-count argument is selected. Repairing this proof gap does not derive kappa=1/2 or Lambda/a0^2=32pi.
+
+5. Related null-cone argument
+K_AUDIT_loophole1_closure.py actually verifies conformal potential-shift identities. It does not prove that an observed speed agreement on a particular background implies equality of complete characteristic cones on every admissible background, or identify the tensor principal metric with every metric symbol used in the action. A conformal factor C(phi,X) is also more general than the function of phi alone used in its cancellation argument. These missing hypotheses prevent treating its print statements as a coupling-independent theorem. This is a logical scope audit, not a new observational counterexample.
+
+6. Parallel flux-route reconciliation
+The October6 deferred quantum-flux selector has an October14 successor:
+ sol61_push/puzzle_32pi_flux_sectors_2026_10_14/RESULT.txt.
+It already tests integer sectors, relative Euclidean action and compensating weights. In that stated model vacuum shifts preserve fixed-sector equations but shift relative actions by d times the volume difference. Compensation leaves arbitrary sector weights. A physical state/measure and source coupling remain unspecified. Do not rerun uniform or exponential weight choices as new ideas. This audit read the successor; its32 symbolic checks and15 Lean statements were NOT freshly rebuilt here.
+
+7. Verification and next discriminator
+check.py: nine exact symbolic identities, computation manifest validated separately. Increment.lean: four algebraic lemmas, no physics formalization. Compiler evidence is in lean_build.out/lean_verification.json.
+The exact old implication is refuted at the algebraic level; the broad physical no-go is therefore INCOMPLETE, not disproved by a healthy physical counterexample.
+Next viable step: start from a specific covariant Eq72-class action with stated matter coupling and background, derive the effective coefficients and scalar signs, and test the nonlinear source scaling. If the proposal only changes constant slip, the mass-scaling test already rejects it as a universal MOND completion. The action and nonlinear response must be specified before a parameter scan.

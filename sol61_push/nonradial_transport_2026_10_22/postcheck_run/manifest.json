@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "NT_POSTCHECK",
+  "repository": {
+    "commit": "0a3296d55b26d166bd34e440365e26bfb9f7e2e9",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/nonradial_transport_2026_10_22/postcheck.py",
+    "--output",
+    "sol61_push/nonradial_transport_2026_10_22/postcheck_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Axisymmetric eigenvalue check, three tighter shearing waves, units, torque interpretation gates, compensated Fourier bound",
+    "coefficient_domain": "symbolic reals and float64",
+    "conventions": "CONTRACT.md",
+    "inputs": [
+      "inherited ell0 and canonical mass; declared sheet parameters"
+    ],
+    "bounds": {
+      "swing_repeats": 3,
+      "k_Mpc_inverse": [
+        0.1,
+        1.0
+      ]
+    },
+    "non_claims": [
+      "No nonlinear remnant",
+      "No equilibrium sheet thickness",
+      "No derived surface density or baryonic response"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T01:51:15.330382+00:00",
+    "runtime_seconds": 0.509922,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 250000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/nonradial_transport_2026_10_22/postcheck.py",
+    "sol61_push/nonradial_transport_2026_10_22/sheet_run/result.json",
+    "sol61_push/nonradial_transport_2026_10_22/transport_run/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/nonradial_transport_2026_10_22/postcheck.py",
+      "sha256": "f18d48a7a3997f93ea1c6c400bdc60b648d1e72f93304e867b279fcecd8cae31",
+      "sha256_after": "f18d48a7a3997f93ea1c6c400bdc60b648d1e72f93304e867b279fcecd8cae31"
+    },
+    {
+      "path": "sol61_push/nonradial_transport_2026_10_22/sheet_run/result.json",
+      "sha256": "d52f999d1c47a26004fa379410ed4586fe0ebfcabd3491fa17bbb9435f2007ff",
+      "sha256_after": "d52f999d1c47a26004fa379410ed4586fe0ebfcabd3491fa17bbb9435f2007ff"
+    },
+    {
+      "path": "sol61_push/nonradial_transport_2026_10_22/transport_run/result.json",
+      "sha256": "bb90f9903b3176bcc39504b34b85caecc0399dd2e16cfee73a1304174aba612e",
+      "sha256_after": "bb90f9903b3176bcc39504b34b85caecc0399dd2e16cfee73a1304174aba612e"
+    }
+  ],
+  "output_directory": "sol61_push/nonradial_transport_2026_10_22/postcheck_run",
+  "declared_results": [
+    "sol61_push/nonradial_transport_2026_10_22/postcheck_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/nonradial_transport_2026_10_22/postcheck_run/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonradial_transport_2026_10_22/postcheck_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonradial_transport_2026_10_22/postcheck_run/result.json",
+      "sha256": "998160658d527e37e06647adb40d602818463cae20fd54b26a3efe22d405ff05",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

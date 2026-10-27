@@ -1,0 +1,106 @@
+Bounded independent audit: scalar contact pressure to occupied-fluid length
+2026-10-18 local. Parent requested review only; no source edits or full rerun.
+
+PRIMARY VERDICT: conditional on the specified dilute pure-charge contact EOS.
+The factors of 2,4pi,G, hbar and c in the displayed contact matching and
+check_contact_scale.py are correct. This matches a pressure coefficient;
+it does not derive the rational W, rho=divP current constraint, any exchange
+law, a finite occupied background, or physical carrier mass/abundance.
+
+Exact natural-unit derivation, hbar=c=1
+Take the assumed leading homogeneous mean-field contact energy
+ e= lambda_NR n^2/(4m^2), rho=mn.
+Then
+ e=lambda_NR rho^2/(4m^4)=kappa rho^2/2,
+ kappa=lambda_NR/(2m^4),
+ p=rho de/drho-e=kappa rho^2/2.
+
+The separately derived physical radial stiffness identity is
+ E_H=(H/(2G)) int[r^2u'^2+2u^2]dr
+    =int 2pi G H rho^2 d^3x,
+with u=Gm_enclosed/r^2 and regular-center/finite-stock endpoint terms zero.
+Equating the *internal-energy density*, rather than its derivative or twice
+its pressure, gives
+ 2pi G H_contact=kappa/2,
+ H_contact=kappa/(4piG)=lambda_NR/(8piGm^4),
+ L_contact^2=2H_contact=lambda_NR/(4piGm^4).
+These are exactly the reviewed formulas. If an independent field stiffness h
+also remains present, the total longitudinal coefficient is h+H_contact;
+the scalar contact term alone is not the complete L unless h=0.
+
+Natural dimensions provide a separate check:
+ [n]=E^3, [m]=E, [rho]=[e]=E^4, [lambda_NR]=1,
+ [kappa]=E^-4, [G]=E^-2, [H]=[L^2]=E^-2.
+
+SI restoration and independent conversion
+Here rho_SI is rest mass per volume, m_kg is the particle rest mass in kg,
+and e_SI is energy per volume. Then
+ kappa_SI=lambda_NR hbar^3/(2m_kg^4 c),
+ [kappa_SI]=m^5/(kg s^2),
+ H_SI=kappa_SI/(4piG_SI),
+ L_SI^2=lambda_NR hbar^3/(4piG_SI m_kg^4 c).
+
+If particle mass is entered as its rest energy in GeV, the reviewed code uses
+ G_GeV^-2=G_SI (1GeV_J)^2/(hbar c^5),
+ (1GeV^-1)_metres=hbar c/(1GeV_J).
+Both conversions are correct. The c^5 in the first is needed because the
+mass input is energy, not kg. No reduced-Planck-mass/8pi substitution occurs.
+Using its stored constants, an independently evaluated direct SI formula at
+ m c^2=1MeV, lambda_NR=1 gives
+ m_kg=1.7826619216278976e-30,
+ kappa_SI=193687606.4707262 m^5/(kg s^2),
+ L=2.2024576936326953e-8 pc.
+The saved natural-unit row is2.202457693632695e-8pc (binary64 agreement).
+
+Microscopic coefficient scope
+The pinned MASTER source lines101–117 have
+ kc=lambda_tot/(4m^2), c3=g_c/(2m sqrt(2M)), delta=M-2m,
+and the positive source-eliminated contact coefficient
+ kc-c3^2/delta.
+Consequently, when the source is consistently integrated out in the
+low-frequency/low-momentum, dilute expansion,
+ lambda_NR=4m^2(kc-c3^2/delta)
+ =lambda_rep+g_c^2/[2M(M+2m)] >0
+under that source's parameter hypotheses. Replacing this by lambda_tot
+without specifying the source state/elimination would be unwarranted.
+Finite source occupation contributes conserved charge and rest mass; rho=mn
+is the leading one-species effective description, not an exact identity for
+arbitrary two-field states. Likewise normal-ordered psi-dagger-squared psi-
+squared has expectation n^2 only in the stated mean-field/coherent closure;
+arbitrary correlations or mixed charge populations can change the EOS.
+
+The benchmark lambda_NR<=1 is a chosen weak-contact regime. The saved
+mass ceilings at fixed L follow only within that regime and this phase:
+L scales as sqrt(lambda_NR)/m^2, so m<=m_at_lambda1. They are not a universal
+unitarity, scattering, experimental or all-phase mass constraint. Inverting
+to huge lambda_NR for MeV particles is an exclusion of that weak-contact
+explanation of the chosen length, not certification of a strong-coupling
+EOS or an allowed alternate particle model. Other stiffness, fragments,
+correlations, quantum-pressure gradients and relativistic/in-medium terms
+require their own comparison. None is supplied by this coefficient match.
+
+Checks and provenance
+Read the raw code, contract and saved44-check results; independently derived
+normalization, dimensions and one direct SI benchmark. Reviewed all code loops:
+15 mass/coupling rows each have inverse and mass-scaling checks; four target
+lengths have one unit-coupling check and two mass inversion checks; two unit
+conversion ranges give44 checks total. These loops are finite controls, not
+a universal mathematical or physical proof. The inverse/scaling checks share
+the same length function; the analytic/SI checks above are the independent
+normalization control. Saved run_001 manifest freshly validates against current
+inputs (run.status=completed). Source dynamics and experiment were not rerun.
+
+Pinned SHA256:
+ec4668fe9c59b0e9825da5c782c7ec3660b8687933bdd7979eb9648b6a3e581e
+ sol61_push/cold_continuation_2026_10_18/contact_matching/check_contact_scale.py
+a60a13a123d6b8398d0a194a1c4c66fa070fbd46b67f7b1d3c2ff41c716dca0b
+ sol61_push/cold_continuation_2026_10_18/contact_matching/run_001/results.json
+bfb6a3e555d88b9375ca54b0b21fe09fbaaabde542d2284b717adf57a99c6251
+ sol61_push/cold_continuation_2026_10_18/contact_matching/contract.json
+c81b4a3136d433a2b7a0bf06ec87f61389b8e5a73da6c7603a6b264dda0bbe43
+ sol61_push/cold_production_2026_10_11/MASTER_COLD_ENERGY_EQUATIONS.md
+
+Source is a dirty-tree artifact identified by hash; root may subsequently
+change HEAD. Review is separately delegated analytic self-system review,
+not independent human or experimental certification. No external source or
+unverified literature theorem was needed for these coefficient/unit checks.

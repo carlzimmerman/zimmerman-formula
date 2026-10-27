@@ -1,0 +1,125 @@
+{
+  "schema_version": 2,
+  "claim_id": "NONLINEAR-ACTIVATION-2026-10-15",
+  "repository": {
+    "commit": "a553a4a663d393f29ec5da69c8cae68c164bb5b0",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/nonlinear_activation_2026_10_15/checks.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Numerical Floquet growth and damping for four assigned oscillator modulations and one quality factor; finite size gradient scale",
+    "coefficient_domain": "Double precision ODE integration and matrix eigenvalues",
+    "conventions": "omega0=1, pump=2, amplitude growth; Q=omega0/(2kappa)",
+    "inputs": [
+      "h in [0,0.001,0.002,0.02]",
+      "Q=1000",
+      "one pump period pi"
+    ],
+    "bounds": {
+      "relative_tolerance": 1e-12,
+      "absolute_tolerance": 1e-14,
+      "examples": 4
+    },
+    "non_claims": [
+      "No physical portal realization",
+      "No nonlinear saturation solution",
+      "No thrust or useful dark density"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T22:38:19.023517+00:00",
+    "runtime_seconds": 0.240255,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/nonlinear_activation_2026_10_15/checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/nonlinear_activation_2026_10_15/checks.py",
+      "sha256": "9f1867200868f0272ea7ffbff18d17333016a0a5b0e7631758a01d79b5fb8903",
+      "sha256_after": "9f1867200868f0272ea7ffbff18d17333016a0a5b0e7631758a01d79b5fb8903"
+    }
+  ],
+  "output_directory": "sol61_push/nonlinear_activation_2026_10_15/run_v1",
+  "declared_results": [
+    "sol61_push/nonlinear_activation_2026_10_15/run_v1/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/nonlinear_activation_2026_10_15/run_v1/stdout.txt",
+      "sha256": "af88c7695ae7ebb4d7684f33673053bd063b9c09406b8bcc72ee177250160db7",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlinear_activation_2026_10_15/run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlinear_activation_2026_10_15/run_v1/results.json",
+      "sha256": "af88c7695ae7ebb4d7684f33673053bd063b9c09406b8bcc72ee177250160db7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

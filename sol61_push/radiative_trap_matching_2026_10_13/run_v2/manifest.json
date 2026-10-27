@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "claim_id": "PHOTON-PORTAL-RADIATIVE-MATCHING",
+  "repository": {
+    "commit": "6d79f6dbde3e6c6ab2e36655f590df14d78d01a5",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/radiative_trap_matching_2026_10_13/check.py",
+    "sol61_push/radiative_trap_matching_2026_10_13/run_v2/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Background-field coupling expansion, logarithmic bubble divergence, finite on-shell bubble and explicit scale cancellation under chosen matching condition.",
+    "coefficient_domain": "Exact SymPy coupling algebra and float64 quadrature",
+    "conventions": "L contains -g O - zeta O F^2/(4 Lambda^3) and -C_phi |phi|^2 F^2; diagnostic MS-bar soft-field bubble with C_phi(Lambda)=0.",
+    "inputs": [
+      "sol61_push/radiative_trap_matching_2026_10_13/check.py",
+      "sol61_push/radiative_trap_matching_2026_10_13/INPUT_CARRIER_ACTION.tex"
+    ],
+    "bounds": {
+      "cutoff_over_light_mass": [
+        2,
+        10,
+        100,
+        1000
+      ],
+      "matching_scales": [
+        "m",
+        "M",
+        "Lambda"
+      ],
+      "field_over_cutoff_squared": [
+        0.01,
+        0.1,
+        1
+      ],
+      "m_eV": 1000000.0,
+      "M_eV": 2000005,
+      "Lambda_over_M": 10
+    },
+    "non_claims": [
+      "Finite matching coefficient is not predicted by the old action.",
+      "No ultraviolet completion, full operator basis or physical electromagnetic trap.",
+      "Field estimate at order-one cutoff ratio is not controlled."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T01:05:04.247714+00:00",
+    "runtime_seconds": 0.666301,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/radiative_trap_matching_2026_10_13/check.py",
+    "sol61_push/radiative_trap_matching_2026_10_13/INPUT_CARRIER_ACTION.tex"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/radiative_trap_matching_2026_10_13/check.py",
+      "sha256": "13930ca2a38a7cdbf91aebf8594e7d2229c857c1196c5357050952b24a29e7df",
+      "sha256_after": "13930ca2a38a7cdbf91aebf8594e7d2229c857c1196c5357050952b24a29e7df"
+    },
+    {
+      "path": "sol61_push/radiative_trap_matching_2026_10_13/INPUT_CARRIER_ACTION.tex",
+      "sha256": "f1046138aaa7f03f1fd3ee44b4c0cad8768e73b879fc2154296791010c6929f3",
+      "sha256_after": "f1046138aaa7f03f1fd3ee44b4c0cad8768e73b879fc2154296791010c6929f3"
+    }
+  ],
+  "output_directory": "sol61_push/radiative_trap_matching_2026_10_13/run_v2",
+  "declared_results": [
+    "sol61_push/radiative_trap_matching_2026_10_13/run_v2/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/radiative_trap_matching_2026_10_13/run_v2/stdout.txt",
+      "sha256": "d3eb1f9b71b5f4e475eab568d5c3142b1e59aa601442113ef5a680f7eb901f14",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/radiative_trap_matching_2026_10_13/run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/radiative_trap_matching_2026_10_13/run_v2/results.json",
+      "sha256": "d3eb1f9b71b5f4e475eab568d5c3142b1e59aa601442113ef5a680f7eb901f14",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

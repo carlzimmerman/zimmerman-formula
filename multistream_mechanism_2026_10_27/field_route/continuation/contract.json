@@ -1,0 +1,14 @@
+{
+  "claim_id": "FIELD_ROUTE_MEDIATOR_CONSTITUTIVE_CONTINUATION",
+  "mathematics": {
+    "assertion_tested": "Minimizing W=K/(1+a*y)+m_squared*y/2+lambda*y^2/4 at fixed canonical kinetic density gives a power-law high-density affine-family pressure, not a logarithmic EOS; scalar branch stability does not guarantee reduced positive compressibility.",
+    "coefficient_domain": "Positive real parameters; exact rational symbolic identities and IEEE double precision finite checks",
+    "conventions": "y=chi^2>=0; K is canonical random kinetic density. Density pressure is derived only along canonical affine dilation x->b*x,p->p/b, for which K=k*rho^(5/3) at fixed k. Scalar is minimized locally and gradients, dynamics, and gravity are omitted.",
+    "inputs": ["W(K,y)=K/(1+a*y)+m_squared*y/2+lambda*y^2/4", "a=m_squared=1; lambda in {0.1,0.5,1,3}", "K in {0.25,1,10,100}; large-K checks through 1e12"],
+    "bounds": {"finite_parameter_points": 16, "relative_difference_step": 0.00001, "relative_pressure_tolerance": 0.00000002, "absolute_compressibility_tolerance": 0.00000002, "relative_minimizer_tolerance": 0.0000002, "timeout_seconds": 10},
+    "non_claims": ["Not a universal density-only EOS", "Not a halo or cosmological evolution", "Not a full coupled stability theorem", "Not a Lambda normalization derivation", "Not exclusion of a short-range fitted logotropic approximation"]
+  },
+  "execution_artifacts": ["multistream_mechanism_2026_10_27/field_route/continuation/check_constitutive.py"],
+  "software": [{"name": "Python", "version": "3.9.6"}, {"name": "SciPy", "version": "1.11.4"}, {"name": "SymPy", "version": "1.14.0"}],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

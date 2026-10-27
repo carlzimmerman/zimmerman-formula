@@ -1,0 +1,85 @@
+{
+  "claim_id": "FRAMEWORK-CERT-TRANSPORT-2026-10-12",
+  "primary_verdict": "incomplete, with the smallest missing implication",
+  "normalized_target": "Conditional global smooth kinetic assembly passes; same-action causal local receiver completion is not supplied.",
+  "observed_git_head": "34ebaa9153a0ff4ba58cf95b20dedc9099cb42f7",
+  "requested_framework_base": "8cef73ea7d01e20f1d08f435ad621b739f8eb3cc",
+  "referenced_kinetic_criteria": [
+    "147e0bed9af231b46deaf610012661f498931d3c",
+    "b1e38a6c865a6010f6b8cf1361f82a3ac69672f5"
+  ],
+  "source_sha256": {
+    "sol61_push/kinetic_receiver_lift_2026_10_12/DERIVATION.txt": "4a4f6d906f9306249db4582c51764fe4050ae0097e3d2942f5c79de8e3248025",
+    "sol61_push/kinetic_receiver_lift_2026_10_12/FROZEN_CRITERIA.txt": "ca213695aefcdca8e5579899e76345daaaa9c2329283ae9041aebd7bab157f16",
+    "sol61_push/kinetic_receiver_lift_2026_10_12/INPUTS.json": "fd2a8e0d5facf6c6e25d89f98337529a553c37f5e4b8fd4326919c55fb3f237a",
+    "sol61_push/kinetic_receiver_lift_2026_10_12/HANDOFF.txt": "1a2f92f850483642c443088bdc575f04e8c4c769f4b704227a03f477603c7534",
+    "sol61_push/cold_production_2026_10_11/MASTER_COLD_ENERGY_EQUATIONS.md": "7d979156c2591513a545101e46111cf79989254ef0c1ac4c9b660ba4e0c6b825",
+    "sol61_push/microscopic_carrier_2026_10_10/REPORT.md": "389dc7dc4740ea7cb268e78b0a4e6bd8ae738370556a7898239ecee34ee7038a"
+  },
+  "review_time_utc": "2026-10-13T03:01:44.464460+00:00",
+  "review_method": "Independent analytic reconstruction and explicit local-source counterexample; no repeated trajectories, Lean execution or external theorem reliance.",
+  "locator": "DERIVATION.txt section6 lines138-175",
+  "signed_derivation": {
+    "mass": "Integral b_xi dv=0 pointwise in x; hence rho_c,t + d_x j_c=0, j_c=integral v f dv. Live baryons satisfy the same continuity.",
+    "kinetic_work": "Tdot=-integral j_total Phi_x dx + integral D_xi J_xi dx dmu.",
+    "potential_work": "Fixed symmetric K gives Wdot=<Phi,rho_t>=-integral Phi d_x j_total=+integral Phi_x j_total.",
+    "receiver_energy": "Pi dot r_xi=-D_xi h; canonical energy derivative cancels; E_Rdot=-integral D_xi Gamma h^2 R_xi.",
+    "matter_momentum": "P_mdot=-integral rho Phi_x dx+integral p_xi J_xi dx dmu.",
+    "self_force": "For even periodic kernel k, I=double_integral rho(x) kprime(x-y) rho(y) dxdy=-I under x/y swap; thus I=0. Singular kernels require compatible regularization or a functional translation-variation proof.",
+    "receiver_momentum": "P_R=-Pi dot Gphi; common frequency and antisymmetric G cancel canonical derivative; g dot r=p_xi h yields P_Rdot=-integral p_xi J_xi."
+  },
+  "hypotheses": [
+    "Fixed periodic geometry; velocity boundary traces compatible with mass/momentum/energy integration by parts.",
+    "Time differentiability/interchange, finite velocity moments and finite absolute collision/source integrals permitting Fubini.",
+    "Fixed symmetric translation-invariant K with potential/source regularity; singular-kernel treatment specified.",
+    "Nonnegative consistently normalized channel measure and Gamma; occupation evaluation and collision density/weak formulation well-defined.",
+    "Actual receiver gradients Pi and -Gphi and constant common Omega=c|k|; extra interactions alter contractions.",
+    "Continuum positivity/well-posedness and microscopic reversal symmetries remain separate obligations."
+  ],
+  "local_source_counterexample": {
+    "claim_refuted": "Global mode contractions imply pointwise canonical scalar reaction balance without interaction stress.",
+    "domain": "Periodic [0,2pi], e1=cos(x)/sqrt(pi), e2=sin(x)/sqrt(pi), k=c=1.",
+    "state": "phi=Pi=(1,0), g=(0,-1), h=1.",
+    "collision": "D=1,p=0, Gamma R=a(x)>=0 smooth bump on proper patch U, A=integral a>0.",
+    "global_forcing": "r=(-1,0), s=(-A,0).",
+    "local_fields": "psi=pi_field=cos(x)/sqrt(pi), psi_x=-sin(x)/sqrt(pi), S_mode=-A cos(x)/sqrt(pi).",
+    "matter_sources": "q_c=a(x), m_c=0.",
+    "receiver_energy_source": "pi_field S_mode=-A cos(x)^2/pi, spread outside U and unequal to -a(x).",
+    "receiver_momentum_source": "-psi_x S_mode=-A sin(x)cos(x)/pi, generally nonzero despite m_c=0.",
+    "global_integrals": "Receiver energy integral -A and momentum integral0; original global ledgers hold.",
+    "regular_instantaneous_realization": "Use velocity quadruples (-u,u,-sqrt(u^2+1),sqrt(u^2+1)) with smooth compact positive u measure; D=1,p=0. Choose smooth f(v) positive near incoming velocity supports and zero near outgoing supports; choose compact spatial Gamma. Normalize to a. No global PDE solution or physical microscopic mechanism claimed.",
+    "relation_to_author_claim": "Not a contradiction of section6, which explicitly disclaims local stress/action proof."
+  },
+  "single_local_scalar_compatibility": "For canonical source S, energy pi_field S=-q_c and momentum psi_x S=m_c require psi_x q_c+pi_field m_c=0 pointwise. General declared channel transfers need not satisfy this. Derived interaction stress or other receivers can modify the condition.",
+  "carrier_comparison": {
+    "direct_link": "No common parent carrier action is linked in section6 or INPUTS.json.",
+    "master_carrier": "Complex massive daughter/source positive-square carrier Lagrangian contains no displayed massless two-mode receiver interaction or derived Gamma/dmu.",
+    "microscopic_carrier": "Contact Bose-field Hamiltonian with gravity has no receiver coupling; a controlled kinetic approximation is required. Retained contact mean field changes streaming force/stress; energy-changing local collisions need another coupled sector.",
+    "external_citations": "Not authenticated or used as theorem leaves in this bounded source audit.",
+    "master_later_sections": "Supplement C explicitly calls its metric equation bookkeeping rather than derived interaction stress; it separately demands div T_c=Q and div T_receiver=-Q. Supplement E identifies the collision-selector equation as unresolved. These statements corroborate, rather than close, the same-action source gap."
+  },
+  "obligations": {
+    "genuine_velocity_current": "passed conditional",
+    "gravitational_work_signs": "passed conditional",
+    "global_self_force": "passed conditional",
+    "integrated_receiver_exchange": "passed conditional",
+    "physical_collision_measure": "not addressed",
+    "local_receiver_stress": "incomplete",
+    "same_parent_action": "not addressed",
+    "causality": "not addressed",
+    "continuum_positivity_health": "not addressed",
+    "halo_selector": "out of scope"
+  },
+  "smallest_missing_implication": "One specified carrier-receiver interaction must yield a local or explicitly retarded spatial source and reciprocal energy-momentum stress with the same collision measure/rate before its Fourier projection is identified with the declared mode reaction.",
+  "strongest_safe_statement": "Genuine velocity-moment continuity and formal global smooth conservation; not yet a local causal same-action kinetic completion.",
+  "next_check": "Pin an independently motivated common action; derive source/Noether currents and controlled collision measure, then test local compatibility or its derived interaction-stress replacement before trajectories.",
+  "source_sha256_after_review": {
+    "sol61_push/kinetic_receiver_lift_2026_10_12/DERIVATION.txt": "4a4f6d906f9306249db4582c51764fe4050ae0097e3d2942f5c79de8e3248025",
+    "sol61_push/kinetic_receiver_lift_2026_10_12/FROZEN_CRITERIA.txt": "ca213695aefcdca8e5579899e76345daaaa9c2329283ae9041aebd7bab157f16",
+    "sol61_push/kinetic_receiver_lift_2026_10_12/INPUTS.json": "fd2a8e0d5facf6c6e25d89f98337529a553c37f5e4b8fd4326919c55fb3f237a",
+    "sol61_push/kinetic_receiver_lift_2026_10_12/HANDOFF.txt": "1a2f92f850483642c443088bdc575f04e8c4c769f4b704227a03f477603c7534",
+    "sol61_push/cold_production_2026_10_11/MASTER_COLD_ENERGY_EQUATIONS.md": "7d979156c2591513a545101e46111cf79989254ef0c1ac4c9b660ba4e0c6b825",
+    "sol61_push/microscopic_carrier_2026_10_10/REPORT.md": "389dc7dc4740ea7cb268e78b0a4e6bd8ae738370556a7898239ecee34ee7038a"
+  },
+  "inputs_unchanged_during_review": true
+}

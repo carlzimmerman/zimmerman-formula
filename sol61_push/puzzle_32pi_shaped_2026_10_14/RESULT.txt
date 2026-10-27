@@ -1,0 +1,177 @@
+SHAPED32PI-001 — a constructive repair beyond the quadratic stabilizer
+2026-10-14; base HEAD 7e8e5617a1dca50d1307a02748a8604edc5c0c14.
+Original goal: derive the 32pi² coefficient and a consistent physical model.
+Status: OPEN. New result: an explicit positive potential preserves the selected
+vacuum, permits arbitrarily large local restoring mass, and guarantees positive
+scalar/tensor speeds for EVERY initial-at-rest x>0 in the specified vacuum class.
+Six nonlinear trajectories were also tested; four relax, two move away.
+This supersedes no earlier evidence; it changes the potential deliberately.
+
+1. Contract and three executed routes
+
+Parent: ../puzzle_32pi_local_health_2026_10_14/RESULT.txt.
+Keep the original canonical scalar-Euler action and f(a)=-3M²/(16Ca²),
+M,C,b>0, c=hbar=1, no ordinary matter or polarization P. Set
+ Hstar²=2Cb²/3, x=a/b>0, eps=b²/M²>0, tau=Hstar*t,
+ U=V/(M²Hstar²), F=f Hstar²/M²=-1/(8x²).
+The former quadratic U=3x²+(eps+6)nu(x-1)²/2 failed strong-stiffness tests.
+
+Route A: replace that shape while preserving U(1)=3,U'(1)=6. First gate:
+prove both principal propagation coefficients positive at rest, then evolve.
+Route B: falsify global attraction by finding every positive stationary branch
+and checking starts on both sides. Health and attraction are separate gates.
+Route C: determine whether these health conditions select C. Check C dependence
+before mistaking a healthy chosen coefficient for a derived one.
+Only this directory is a write scope. No new agents, shared status edits or
+source-paper claims of novelty. Earlier week-specific source claims are not
+assumed; the perturbation formulas below come from the pinned 2023 version.
+
+2. General initial-rest theorem (not restricted to a chosen potential)
+
+Use any differentiable U(x)>0. At u=x'=0 the Friedmann constraint gives h²=U/3.
+The existing two homogeneous equations give
+ eps u'-24 Fx h² h'=-U'+24 Fx h^4,
+ 8 Fx h² u'+2 h'=0,             Fx=1/(4x³).
+Define
+ q=3x³U'/U²,   w=[(2/3)U²]/[eps x^6+(2/3)U²],  0<w<=1.
+The tensor kinetic coefficient is Q_T=1. Exact elimination gives
+ c_T²=F_T=1+w(2-q),
+ c_s²=1-w²(2-q).
+Scalar kinetic is eps+(2/3)U²/x^6>0. Consequently 1<q<3 is a
+sufficient simultaneous positivity condition at all eps>=0 (including the
+formal eps=0 limit). At eps=0 it is also necessary. This is a theorem
+about initial-at-rest states, NOT a theorem for evolving u!=0 states.
+The finite-eps scalar formula matters: c_s²=2-c_T² only when eps=0.
+check.py verifies these identities directly by eliminating both equations.
+
+3. An explicit strong but shaped restoring potential
+
+For ANY n>=1 choose
+ t=tanh(4n log x),  A=1/(16n),  v=1-A t²,
+ U_n(x)=3x²/v.
+This is an additional model choice, not a derived microscopic interaction.
+Since -1<t<1, 15/16<=v<=1. Thus U_n is positive and nonsingular on x>0.
+The added potential U_n-3x² is nonnegative and vanishes only at x=1.
+ U_n(1)=3, U_n'(1)=6, U_n''(1)=6+6n.
+The chosen vacuum and its coefficient are preserved. The scalar mass is
+ m_eff²/Hstar²=6n/(eps+6)>0,
+which can be made arbitrarily large. At eps=1e-6 it differs from n by a
+relative 1.67e-7; comparisons with the old nu=n model have this small change.
+
+Differentiating t gives x t'=4n(1-t²), and therefore
+ q=2v-xv'=2-t²/(8n)+t(1-t²)/2.
+Using t²<=1 and -1<=t(1-t²)<=1 gives the conservative exact bounds
+ 11/8<=q<=5/2.
+These imply, for EVERY x>0, n>=1, eps>=0 at initial rest,
+ c_T²>=1/2,      c_s²>=3/8.
+This explicitly defeats the inference that strong restoring mass necessarily
+causes the earlier initial gradient failure. The quadratic SHAPE caused that
+failure; it is not a no-go for all stabilizers. Arbitrary initial velocity,
+later times, matter, nonlinear spatial health and ultraviolet behavior are
+not covered by these inequalities.
+
+4. Nonlinear evolution: constructive success and retained failures
+
+Same canonical scalar-Euler FRW equations and perturbation dictionary as the
+parent, with U_n replacing the old potential. Fixed eps=1e-6; tau=0..100;
+solve_ivp rtol=1e-9, atol=1e-11, max_step=.025. Starts at u=0,h=sqrt(U_n/3).
+All six integrations reach tau=100 and all sampled kinetic and gradient
+coefficients are positive. Maximum relative Friedmann residual <1.2e-11.
+
+ n    x0       final x       min F_T    min c_s²   result
+ 10   .9       1.0000000000   .88476     .97424    relaxes
+ 10   1.01     1.0000000000   .83972     .92843    relaxes
+ 10   1.1      1.4253429311   .99999     .98850    moves away
+100   .99      1.0000000000   .76534     .84353    relaxes
+100   1.001    1.0000000000   .83768     .88032    relaxes
+100   1.01     1.0305082923   .9999999    .99945    moves away
+
+At n=10,x0=.9 this is a constructive improvement over the old strong quadratic
+choice, which had both scalar and tensor gradient failures. Tighter tolerance
+1e-11 and step .0125 reproduces relaxation and the positive margins; the
+minimum F_T changes by about 8e-5, far from zero.
+All raw outputs, including moving-away cases, are in run/stdout.txt.
+The evolution is finite sampled evidence; no between-sample or all-time proof.
+Speeds differ from one, and some scalar speeds exceed one. No observational
+or causality pass follows from their positivity. n=100 is not Solar System
+mass screening: its range is still of order a tenth of the Hubble length.
+
+5. Exact extra branch explains the restricted attraction
+
+At constant x,h, stationarity requires q=2. Here it factorizes as
+ q-2=t[4n(1-t²)-t]/(8n).
+Besides t=0 (x=1), there is exactly one additional root with |t|<1:
+ tstar=(sqrt(1+64n²)-1)/(8n),
+ xstar=exp(atanh(tstar)/(4n))>1.
+The other quadratic root is below -1 and cannot be a tanh value.
+ xstar(10)=1.0654957256; xstar(100)=1.0092648546.
+For 1<x<xstar, q>2 and initial-rest acceleration points downward; for
+x>xstar, q<2 and it points upward. The two moving-away tests start above
+xstar. This sign test does not by itself prove the complete phase-space basin.
+As n grows, xstar-1 is asymptotic to log(16n)/(8n), narrowing the right side.
+
+There is a general obstruction to demanding a globally inward initial-rest
+force in this fixed inverse-square f class. If a C1 positive U on [1,infinity)
+satisfies U(1)=3 and q(x)>2 for ALL x>1, set Y=1/U. Then
+ Y'=-q/(3x³)<-2/(3x³).
+Integrating on any interval [1,X0] yields some positive deficit d:
+ Y(X0)=1/(3X0²)-d. Continuing the inequality gives
+ Y(X)<=1/(3X²)-d for all X>=X0,
+which becomes negative at finite X, contradicting U>0. Thus a globally
+positive potential cannot have strictly inward at-rest acceleration everywhere
+above this vacuum. This is a self-reviewed calculus argument, not Lean-
+formalized here. It does NOT rule out all global attractors with more complex
+trajectories or different f, fields or couplings.
+
+6. Why this still cannot select 32pi²
+
+For any C>0, F=-1/(8x²) is the same function after rescaling by Hstar.
+Our chosen physical potential is V_C=M²(2Cb²/3)U_n(a/b). Thus the dimensionless
+background, kinetic coefficients and speed checks are identical for every C.
+C rescales physical time/mass units and sets Lambda/b²=2C; these dimensionless
+vacuum health tests cannot uniquely select C=16pi, equivalently Aarea Lambda
+=32pi² under the earlier Aarea=pi/b² convention. This is an explicit family
+of alternative coefficients, not merely failure to notice the desired value.
+A microscopic matching condition or an additional dimensional physical
+constraint must break this freedom. The new potential introduces n and b;
+neither is a coefficient-selection mechanism. Vacuum shifts are not protected.
+
+7. Verification, provenance, and limitations
+
+Eight exact SymPy identities and six prescribed ODE cases plus one tolerance
+refinement: run/manifest.json. The runner pins source, base inputs, software,
+command and output hashes; manifest validation succeeded.
+Shaped32Pi.lean proves the polynomial shape bounds, propagation lower bounds,
+vacuum value, positive local mass, C cancellation and conditional extra root.
+The tanh derivative, geometric field equations and perturbation dictionary
+are outside Lean and explicitly supplied above. Compiler evidence is in
+lean_build.out and lean_verification.json. No axiom asserts physical viability.
+
+Source dictionary: Tsujikawa, arXiv:2212.10022v2, section II, Eqs2.9-2.10,
+2.14-2.16 in the PDF; phi=a, xi=f, eta=1, zero matter. These supply the
+scalar/tensor principal coefficients for the canonical scalar-Euler action.
+https://arxiv.org/abs/2212.10022v2
+https://arxiv.org/html/2212.10022v2
+Rechecked 2026-10-14. The version is dated 8 February 2023; the HTML rendering
+has a later displayed date that is not evidence for a new theorem this week.
+All potential design, inequalities and scoped no-go arguments here are our
+calculations. No global novelty search, independent referee, full spatial
+metric/scalar/P solution or microscopic completion is claimed.
+
+8. Current decision / executable handoff
+
+Retain U_n as a stronger CONSTRUCTIVE vacuum-sector candidate than the simple
+quadratic stabilizer. Initial-rest health is analytic; evolving health and
+attraction are only verified in the specified finite cases. Preserve the
+second branch and the right-side escape as actual restrictions.
+
+The potential-shape route remains open: velocity-dependent basins, occupied
+matter and the spatial principal symbol have not been resolved. Repeating
+more resting homogeneous points cannot settle those obligations. Next work
+must derive the spherical metric/scalar equations with a specified common P
+coupling and test whether a regular exterior approaches x=1 without loss of
+hyperbolicity. The repository's P-only stiffness pass cannot supply that
+coupling. Its choice is a new physical input, not a theorem forced by these
+calculations. Coefficient selection remains a distinct open route requiring
+an independently justified microscopic matching condition. No such input is
+currently identified, so no claim of solved new physics or programme closure.

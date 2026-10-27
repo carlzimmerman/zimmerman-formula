@@ -1,0 +1,126 @@
+{
+  "schema_version": 2,
+  "claim_id": "CFG853-TRANSPORT-RECEIVER-BOUNDS",
+  "repository": {
+    "commit": "42b43a572c921d2894ad475a0969a0078c89b286",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cfg853_independent_transport_2026_10_19/transport/receiver_bounds.py",
+    "sol61_push/cfg853_independent_transport_2026_10_19/transport/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Evaluate stated conditional Sextans receiver benchmark and check positive-root equality, Q=0 and zero-J limits for lambda .01,.03,.05 and core ordered kinetic fractions 0,.5,1",
+    "coefficient_domain": "Python binary64 arithmetic",
+    "conventions": "G in pc (km/s)^2/Msun; mechanical energies exclude rest energy; spherical pure-Newtonian uniform endpoints",
+    "inputs": [
+      "M=2.53958e7Msun, q=.9885403, Ri=5*647.853pc, Rc=25.21pc"
+    ],
+    "bounds": {
+      "lambda": [
+        0.01,
+        0.03,
+        0.05
+      ],
+      "eta": [
+        0,
+        0.5,
+        1
+      ],
+      "relative_tolerance": 2e-14
+    },
+    "non_claims": [
+      "No transport or trajectory evolved",
+      "No microscopic scattering or radiation kernel computed",
+      "No native initial spins inferred",
+      "No four-dwarf fit"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T19:11:07.756414+00:00",
+    "runtime_seconds": 0.07717,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cfg853_independent_transport_2026_10_19/transport/receiver_bounds.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cfg853_independent_transport_2026_10_19/transport/receiver_bounds.py",
+      "sha256": "de868401f9d183ccde8b45a733723a5f521f81234e43623517a6f44246f4cf16",
+      "sha256_after": "de868401f9d183ccde8b45a733723a5f521f81234e43623517a6f44246f4cf16"
+    }
+  ],
+  "output_directory": "sol61_push/cfg853_independent_transport_2026_10_19/transport/run_001",
+  "declared_results": [
+    "sol61_push/cfg853_independent_transport_2026_10_19/transport/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cfg853_independent_transport_2026_10_19/transport/run_001/stdout.txt",
+      "sha256": "8a20dac432eb2b20c09075783b5590281c59eb7a4246fc4f14dadf90ccc993c9",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cfg853_independent_transport_2026_10_19/transport/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cfg853_independent_transport_2026_10_19/transport/run_001/results.json",
+      "sha256": "8a20dac432eb2b20c09075783b5590281c59eb7a4246fc4f14dadf90ccc993c9",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

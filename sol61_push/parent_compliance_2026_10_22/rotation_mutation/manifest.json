@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "PARENT_COMPLIANCE_ROTATIONAL_DRIVE_20261022",
+  "repository": {
+    "commit": "41f824ffb25f729b6081434b01ceaefb9e8568cd",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/parent_compliance_2026_10_22/rotation_checks.py",
+    "--output",
+    "sol61_push/parent_compliance_2026_10_22/rotation_mutation/result.json",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Routh reduction, positive finite-dimensional inertia, exact positive-root isolation and stable minima in three dimensionless examples.",
+    "coefficient_domain": "Symbolic real positive coefficients and float64 illustrative benchmarks",
+    "conventions": "K=4piG; density mismatch C-divP; positive gravitational acceleration gradient; EdS local diagnostic",
+    "inputs": [
+      "contract conventions; no observational data"
+    ],
+    "bounds": {
+      "J": [
+        0,
+        1,
+        3
+      ],
+      "e": 0.1,
+      "I0_b_mu_chi0_Mchi": 1
+    },
+    "non_claims": [
+      "No covariant parent",
+      "No complete excess mechanism",
+      "No likelihood comparison"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-22T19:19:01.502892+00:00",
+    "runtime_seconds": 0.616501,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 200000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 40,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/parent_compliance_2026_10_22/rotation_checks.py",
+    "sol61_push/parent_compliance_2026_10_22/ROTATION_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/parent_compliance_2026_10_22/rotation_checks.py",
+      "sha256": "794dfa4ebccceb7c5b1f7333ec5b6894af9b5f9f0bd0c8d6d5bc97a0fedaf1ab",
+      "sha256_after": "794dfa4ebccceb7c5b1f7333ec5b6894af9b5f9f0bd0c8d6d5bc97a0fedaf1ab"
+    },
+    {
+      "path": "sol61_push/parent_compliance_2026_10_22/ROTATION_CONTRACT.md",
+      "sha256": "51e7893b96899c6ea2a8b4c2f84fa94fcf7cd36eef2318a629bd3a8d79a4ad97",
+      "sha256_after": "51e7893b96899c6ea2a8b4c2f84fa94fcf7cd36eef2318a629bd3a8d79a4ad97"
+    }
+  ],
+  "output_directory": "sol61_push/parent_compliance_2026_10_22/rotation_mutation",
+  "declared_results": [
+    "sol61_push/parent_compliance_2026_10_22/rotation_mutation/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/parent_compliance_2026_10_22/rotation_mutation/stdout.txt",
+      "sha256": "1076e46299fac28fb5ccfc19dcf37acf1c1a724d013aaead76f7b16b0bd7f644",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/parent_compliance_2026_10_22/rotation_mutation/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/parent_compliance_2026_10_22/rotation_mutation/result.json",
+      "sha256": "3e2a22a2f67c902188845be7de1071c7b23650d408ac735176f9ff9457d88500",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

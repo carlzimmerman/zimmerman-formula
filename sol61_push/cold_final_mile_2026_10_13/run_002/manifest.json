@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-FM-002",
+  "repository": {
+    "commit": "560af1dffb99a2721f52e8b605a1138dbb779c84",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_final_mile_2026_10_13/check_full_shells.py",
+    "sol61_push/cold_final_mile_2026_10_13/run_002/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact full saturating finite-shell force from discrete field energy; admissible equilibrium and short perturbed trajectory conservation and resolution",
+    "coefficient_domain": "SymPy exact rational algebra and IEEE double numerical checks",
+    "conventions": "G=a0=M_b=1; u=m(<r)/r^2; outward acceleration positive; core matching conditional",
+    "inputs": [
+      "sol61_push/cold_final_mile_2026_10_13/check_full_shells.py",
+      "sol61_push/cold_final_mile_2026_10_13/RESULTS.txt"
+    ],
+    "bounds": {
+      "N": 256,
+      "core": 0.2,
+      "Rmin": 0.5,
+      "Rmax": 50,
+      "Tend": 20,
+      "dt": [
+        0.004,
+        0.002
+      ],
+      "quadrature_nodes": [
+        128,
+        256
+      ],
+      "max_wall_clock_seconds": 50
+    },
+    "non_claims": [
+      "No halo formation, cosmological abundance, empirical fit, nonspherical stability or proof of microscopic carrier coupling",
+      "Fixed core and inner boundary remain external inputs; no inner-wall collisions permitted in this run"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T19:04:22.539610+00:00",
+    "runtime_seconds": 3.109878,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 50.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_final_mile_2026_10_13/check_full_shells.py",
+    "sol61_push/cold_final_mile_2026_10_13/RESULTS.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/check_full_shells.py",
+      "sha256": "61b2ca7b25bc84d7f871a777e61a5157cbc34664e89d9ee495dce90c11c569fc",
+      "sha256_after": "61b2ca7b25bc84d7f871a777e61a5157cbc34664e89d9ee495dce90c11c569fc"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/RESULTS.txt",
+      "sha256": "bcd5c4c0a4e3c3dc9cff3570d9022e296f9e5b12f137a1d224e6f957e41697df",
+      "sha256_after": "bcd5c4c0a4e3c3dc9cff3570d9022e296f9e5b12f137a1d224e6f957e41697df"
+    }
+  ],
+  "output_directory": "sol61_push/cold_final_mile_2026_10_13/run_002",
+  "declared_results": [
+    "sol61_push/cold_final_mile_2026_10_13/run_002/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_002/stdout.txt",
+      "sha256": "55ab0bb85ef3e92dda776117b465508d16548e42848a4faad8d70123e1ff5f0f",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_002/results.json",
+      "sha256": "55ab0bb85ef3e92dda776117b465508d16548e42848a4faad8d70123e1ff5f0f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

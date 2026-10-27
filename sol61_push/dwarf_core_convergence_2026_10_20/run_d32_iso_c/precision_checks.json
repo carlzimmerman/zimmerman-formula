@@ -1,0 +1,79 @@
+{
+  "backend": {
+    "device": "Apple M4 Max",
+    "precision": "explicit double-single FP32 pairs; safe math",
+    "abi_version": 2,
+    "algorithm_version": "raw3f-coordinates/full-TwoSum-subtraction/ds-force-v2",
+    "newton_corrections": 1,
+    "tile_threads": 128,
+    "library": "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/metal_gravity.dylib",
+    "library_sha256": "0712c0333b5fcc496344d9e75d701b7a9805310a92472c6b84b83a0b2c693dd2",
+    "coordinate_encoding": "raw binary64 positions split into3 FP32 residual components; third added after pair subtraction",
+    "rsqrt_variant": "one FMA-expanded Newton correction",
+    "gravity": "all ordered off-diagonal pairs in full3D, no tree",
+    "guarantee": "empirical accuracy gate required; no native FP64 or bitwise CPU identity",
+    "selected_backend": "metal",
+    "admission_budget": {
+      "name": "existing_DS_same_state_budget",
+      "force_relative_L2": 1e-11,
+      "phi_relative_L2": 1e-11,
+      "potential_energy_relative": 1e-11,
+      "scope": "independent full native CPU checks only when supplied total N<=32768"
+    }
+  },
+  "scheduled_gravity_calls": [
+    1,
+    2,
+    100,
+    1000,
+    6000,
+    30000,
+    60000,
+    120000,
+    240000
+  ],
+  "cpu_reference_total_particle_limit": 32768,
+  "evolved_state_precision_checks": [
+    {
+      "gravity_call": 1,
+      "N": 36864,
+      "reference": null,
+      "selected_backend": "metal",
+      "passed": null,
+      "skipped_reason": "full CPU bound exceeded; no independent same-state comparison made"
+    },
+    {
+      "gravity_call": 2,
+      "N": 36864,
+      "reference": null,
+      "selected_backend": "metal",
+      "passed": null,
+      "skipped_reason": "full CPU bound exceeded; no independent same-state comparison made"
+    },
+    {
+      "gravity_call": 100,
+      "N": 36864,
+      "reference": null,
+      "selected_backend": "metal",
+      "passed": null,
+      "skipped_reason": "full CPU bound exceeded; no independent same-state comparison made"
+    },
+    {
+      "gravity_call": 1000,
+      "N": 36864,
+      "reference": null,
+      "selected_backend": "metal",
+      "passed": null,
+      "skipped_reason": "full CPU bound exceeded; no independent same-state comparison made"
+    },
+    {
+      "gravity_call": 6000,
+      "N": 36864,
+      "reference": null,
+      "selected_backend": "metal",
+      "passed": null,
+      "skipped_reason": "full CPU bound exceeded; no independent same-state comparison made"
+    }
+  ],
+  "convention": "gravity calls include instantaneous-unbinding diagnostics; N is recorded for every comparison"
+}

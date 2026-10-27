@@ -1,0 +1,137 @@
+{
+  "claim_id": "FSP-Q-002",
+  "assertion_tested": "Exact threshold and Jacobian identities in declared RG and leading matching truncations",
+  "checks": [
+    {
+      "name": "sequential_thresholds_equal_closed_form",
+      "pass": true
+    },
+    {
+      "name": "threshold_telescoping_invariant",
+      "pass": true
+    },
+    {
+      "name": "threshold_scaling_dimension_one",
+      "pass": true
+    },
+    {
+      "name": "pure_QCD_vacuum_plus_mp_rank_one",
+      "pass": true
+    },
+    {
+      "name": "including_charge_and_electron_output_rank_three",
+      "pass": true
+    },
+    {
+      "name": "vacuum_and_mp_leave_EM_integration_constant",
+      "pass": true
+    },
+    {
+      "name": "EM_integration_constant_changes_inverse_alpha0",
+      "pass": true
+    },
+    {
+      "name": "vacuum_and_mp_leave_electron_Yukawa",
+      "pass": true
+    },
+    {
+      "name": "electron_parameter_changes_log_me",
+      "pass": true
+    },
+    {
+      "name": "electron_threshold_response_in_inverse_alpha0",
+      "pass": true
+    },
+    {
+      "name": "hadron_compensation_minor",
+      "pass": true
+    },
+    {
+      "name": "EM_sensitive_hadron_vacuum_null_direction",
+      "pass": true
+    },
+    {
+      "name": "null_direction_really_changes_alpha",
+      "pass": true
+    },
+    {
+      "name": "implicit_curve_tangent_matches_elimination",
+      "pass": true
+    },
+    {
+      "name": "known_quark_mass_can_restore_local_rank",
+      "pass": true
+    },
+    {
+      "name": "zero_EM_limit_exposes_selector_loss",
+      "pass": true
+    }
+  ],
+  "thresholds": {
+    "b_n": {
+      "3": "9",
+      "4": "25/3",
+      "5": "23/3",
+      "6": "7"
+    },
+    "log_Lambda3": "7*log_Lambda6/9 + 2*log_mb/27 + 2*log_mc/27 + 2*log_mt/27",
+    "log_Lambda3_UV": "-2*pi*inverse_alpha_s_M/9 + 7*log_M/9 + 2*log_mb/27 + 2*log_mc/27 + 2*log_mt/27",
+    "inverse_alpha0": "inverse_alpha_M + other_matching_remainder + 2*(log_M - log_mb)/(9*pi) + 8*(log_M - log_mc)/(9*pi) + 8*(log_M - log_mt)/(9*pi) + (2*log_M - 2*log_me)/(3*pi)"
+  },
+  "pure_QCD": {
+    "parameter_order": [
+      "inverse_alpha_s_M",
+      "log_mc",
+      "log_mb",
+      "log_mt",
+      "inverse_alpha_M",
+      "log_me"
+    ],
+    "Jacobian": "Matrix([[-2*pi/3, 2/9, 2/9, 2/9, 0, 0], [-2*pi/9, 2/27, 2/27, 2/27, 0, 0], [0, -8/(9*pi), -2/(9*pi), -8/(9*pi), 1, -2/(3*pi)], [0, 0, 0, 0, 0, 1]])",
+    "rank_H_mp": 1,
+    "rank_all_outputs": 3,
+    "EM_null_vector_fixed_H_mp": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "1",
+      "0"
+    ],
+    "electron_null_vector_fixed_H_mp": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "1"
+    ]
+  },
+  "EM_sensitive_chiral_matching": {
+    "H": "Lambda**2*d*q*(alpha*v + 1)",
+    "mp": "Lambda*(C0 + alpha*cg) + cq*q",
+    "parameter_order": [
+      "Lambda",
+      "q",
+      "alpha"
+    ],
+    "Jacobian": "Matrix([[2*Lambda*d*q*(alpha*v + 1), Lambda**2*d*(alpha*v + 1), Lambda**2*d*q*v], [C0 + alpha*cg, cq, Lambda*cg]])",
+    "compensation_minor": "Lambda*d*(alpha*v + 1)*(-C0*Lambda - Lambda*alpha*cg + 2*cq*q)",
+    "null_tangent_delta_alpha_1": [
+      "-Lambda*(-Lambda*alpha*cg*v - Lambda*cg + cq*q*v)/((alpha*v + 1)*(-C0*Lambda - Lambda*alpha*cg + 2*cq*q))",
+      "Lambda*q*(C0*v - alpha*cg*v - 2*cg)/((alpha*v + 1)*(-C0*Lambda - Lambda*alpha*cg + 2*cq*q))",
+      "1"
+    ],
+    "known_q_selector_determinant": "-Lambda**2*d*q*(C0*v - alpha*cg*v - 2*cg)",
+    "regular_domain": "Lambda,q,d>0; 1+v*alpha !=0; C0+cg*alpha\u22122*cq*q/Lambda !=0; truncation corrections small"
+  },
+  "interpretation": "Vacuum/proton matching leaves an alpha-varying curve if light-quark mass is not independently selected; with independent quark mass and fully calculated matching coefficients, alpha may be locally identifiable.",
+  "non_claims": [
+    "No numerical alpha prediction",
+    "No proof of the QCD topological cosmological term",
+    "No all-orders SM exclusion",
+    "No lattice coefficient calculation",
+    "No electron Yukawa selection",
+    "No nonperturbative light-quark QED threshold approximation"
+  ]
+}

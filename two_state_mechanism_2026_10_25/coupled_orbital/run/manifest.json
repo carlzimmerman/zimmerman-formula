@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "claim_id": "SELFCONSISTENT_ORBITAL_2026_10_25",
+  "repository": {
+    "commit": "c8dd02f5aa49e6c86785879b1933ff57339b3ff8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "two_state_mechanism_2026_10_25/coupled_orbital/solver.py",
+    "--output",
+    "two_state_mechanism_2026_10_25/coupled_orbital/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Hamiltonian orbital polarization, monopole charge, ionic countercharge and elastic energy exchange; common-coefficient initial-state probes",
+    "coefficient_domain": "Complex128, float64; mean-field electrostatic lattice dynamics",
+    "conventions": "periodic3D lattice, half filling, linear ionic charge deposition, central polarization derivative, nondimensional units",
+    "inputs": [
+      "DERIVATION.md",
+      "solver.py"
+    ],
+    "bounds": {
+      "sizes": [
+        4,
+        6
+      ],
+      "temperature": [
+        0.05,
+        0.2,
+        0.8
+      ],
+      "rotation": [
+        0,
+        0.05,
+        0.15
+      ],
+      "dt": [
+        0.02,
+        0.01,
+        0.005
+      ],
+      "time": 6,
+      "cases": 14
+    },
+    "non_claims": [
+      "No causal Maxwell or live gravity",
+      "No disk formation or free/tether fractions",
+      "No continuum convergence",
+      "No microscopic material assembly or spontaneous phonon emission"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T19:16:00.244044+00:00",
+    "runtime_seconds": 21.682239,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "two_state_mechanism_2026_10_25/coupled_orbital/solver.py",
+    "two_state_mechanism_2026_10_25/coupled_orbital/DERIVATION.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "two_state_mechanism_2026_10_25/coupled_orbital/solver.py",
+      "sha256": "25375366ebd8358b448c24666bd33b84fa9f5db3987cd34edeb944c0dfd5f3fe",
+      "sha256_after": "25375366ebd8358b448c24666bd33b84fa9f5db3987cd34edeb944c0dfd5f3fe"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_25/coupled_orbital/DERIVATION.md",
+      "sha256": "007e17278fe202611424fcec87771d510149ab4e2ce2bb4ab202aa39c3e60604",
+      "sha256_after": "007e17278fe202611424fcec87771d510149ab4e2ce2bb4ab202aa39c3e60604"
+    }
+  ],
+  "output_directory": "two_state_mechanism_2026_10_25/coupled_orbital/run",
+  "declared_results": [
+    "two_state_mechanism_2026_10_25/coupled_orbital/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "two_state_mechanism_2026_10_25/coupled_orbital/run/stdout.txt",
+      "sha256": "8cce5e2cf7142c456bfff055c8e7fe63678958fcc17a7d16468c1eef1efb9aeb",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_25/coupled_orbital/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_25/coupled_orbital/run/results.json",
+      "sha256": "9324f4d32cf22e2014db8134130188b20c694218990543c2276085f35604e2e0",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

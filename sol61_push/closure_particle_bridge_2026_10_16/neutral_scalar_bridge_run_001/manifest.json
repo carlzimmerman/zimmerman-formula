@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "claim_id": "NEUTRAL-SCALAR-BRIDGE-2026-10-16",
+  "repository": {
+    "commit": "b2c378de84a2e10560f9eea72e4da29bee1bfb79",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge_run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Explicit charge-even mediator matching to Phi with completed-square potential, NR density coefficients, and vacuum tree amplitude/width consequences",
+    "coefficient_domain": "Binary64 deterministic quadrature",
+    "conventions": "I=|Phi|^2; q signed fermion density; mediator mass mSigma; a sigma I+b sigma q; chosen extra quartic a^2/(2mSigma^2); uR=2*zetaI^2/(2 lambda_rep); leading tree and canonical-density approximation",
+    "inputs": [
+      "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge.py",
+      "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json"
+    ],
+    "bounds": {
+      "mediator_mass_over_m": [
+        3,
+        5,
+        10,
+        100
+      ],
+      "a_over_mediator_mass": 0.02,
+      "b": -0.01,
+      "CM_speeds": [
+        0,
+        0.1,
+        0.5
+      ],
+      "CM_scattering_angle": 0.7
+    },
+    "non_claims": [
+      "No regulated fermion UV bound, neutral-mixture EOS, radiative protection, populated-mediator production, galaxy or vacuum closure"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-16T14:33:51.634722+00:00",
+    "runtime_seconds": 0.345427,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge.py",
+      "sha256": "5cb19a85f543f831e9ae4a05de85caea84a6d275f0e0d951eeeceae56249bde6",
+      "sha256_after": "5cb19a85f543f831e9ae4a05de85caea84a6d275f0e0d951eeeceae56249bde6"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json",
+      "sha256": "d1cc9e64296077ce5039eac2a9805ef645bc1fcf91fbe985e45736d84a8f21f2",
+      "sha256_after": "d1cc9e64296077ce5039eac2a9805ef645bc1fcf91fbe985e45736d84a8f21f2"
+    }
+  ],
+  "output_directory": "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge_run_001",
+  "declared_results": [
+    "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge_run_001/stdout.txt",
+      "sha256": "17b1f5714521bcc5ad5055ced067512251a39817057503b7e55d890745b919f3",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge_run_001/results.json",
+      "sha256": "7bcab9ec6dfc79cd68b03dbaa4b670247f014695f35ad7dc3dfa095c4112a76b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

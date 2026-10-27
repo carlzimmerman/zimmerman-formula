@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "M6_PATCH_GALAXY_ANCESTRY",
+  "repository": {
+    "commit": "b28f9b2bcb996e178b55fc56a44e9282a606584e",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "closure_program_2026_10_27/patch_galaxy_mapping/compute_mapping.py",
+    "--output",
+    "closure_program_2026_10_27/patch_galaxy_mapping/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conditional one-patch/one-descendant accounting using the actual fixed representative radius and X22 median effective baryon mass, with a separately labelled mass-scaled identity.",
+    "coefficient_domain": "real floating point",
+    "conventions": "comoving Mpc, Msun; distinct mass-weighted and count-weighted coverage; no calibrated forest bound",
+    "inputs": [
+      "capacity_run/results.json",
+      "population/run/results.json",
+      "X22 saved results"
+    ],
+    "bounds": {
+      "footings": [
+        "canonical",
+        "alt"
+      ],
+      "representative_objects": 1
+    },
+    "non_claims": [
+      "No measured epsilon or isolated fraction",
+      "No observed coverage fraction from a single representative mass",
+      "No new forest flux calculation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-27T15:14:28.296636+00:00",
+    "runtime_seconds": 0.098686,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 30000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "closure_program_2026_10_27/patch_galaxy_mapping/compute_mapping.py",
+    "closure_program_2026_10_27/capacity_run/results.json",
+    "closure_program_2026_10_27/population/run/results.json",
+    "rebuild_2026_10_22/X22_cosmic_dust_window/x22_cosmic_dust_window_results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "closure_program_2026_10_27/patch_galaxy_mapping/compute_mapping.py",
+      "sha256": "297f1bc775358e76e9d97656e744bd2be222206ba54e166e628734e96c2c51c0",
+      "sha256_after": "297f1bc775358e76e9d97656e744bd2be222206ba54e166e628734e96c2c51c0"
+    },
+    {
+      "path": "closure_program_2026_10_27/capacity_run/results.json",
+      "sha256": "7c9bddc3a7ce6167b7cab221375c12e496a7b4384dd97010d90604f2e3cd68ee",
+      "sha256_after": "7c9bddc3a7ce6167b7cab221375c12e496a7b4384dd97010d90604f2e3cd68ee"
+    },
+    {
+      "path": "closure_program_2026_10_27/population/run/results.json",
+      "sha256": "0131d5da47e442c92dfd716fda8b5d036b0808940079fc8e0dd62d2445746323",
+      "sha256_after": "0131d5da47e442c92dfd716fda8b5d036b0808940079fc8e0dd62d2445746323"
+    },
+    {
+      "path": "rebuild_2026_10_22/X22_cosmic_dust_window/x22_cosmic_dust_window_results.json",
+      "sha256": "9b51c494b3ff5551397acb0c9b7dcfc6e141928676e0c94df9b07fa244fa0de7",
+      "sha256_after": "9b51c494b3ff5551397acb0c9b7dcfc6e141928676e0c94df9b07fa244fa0de7"
+    }
+  ],
+  "output_directory": "closure_program_2026_10_27/patch_galaxy_mapping/run",
+  "declared_results": [
+    "closure_program_2026_10_27/patch_galaxy_mapping/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "closure_program_2026_10_27/patch_galaxy_mapping/run/stdout.txt",
+      "sha256": "614b3b698227532d0675af936560f81976caf285b536fa20c06b1b9279f150ef",
+      "kind": "log"
+    },
+    {
+      "path": "closure_program_2026_10_27/patch_galaxy_mapping/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "closure_program_2026_10_27/patch_galaxy_mapping/run/results.json",
+      "sha256": "614b3b698227532d0675af936560f81976caf285b536fa20c06b1b9279f150ef",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

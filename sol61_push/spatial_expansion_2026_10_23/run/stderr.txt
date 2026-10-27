@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/spatial_expansion_2026_10_23/run.py", line 4, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--output');p.add_argument('--n',type=int,default=8);p.add_argument('--amp',type=float,default=.001);p.add_argument('--zi',type=float,default=1100);p.add_argument('--zend',type=float,default=10);p.add_argument('--cfl',type=float,default=.6);a=p.parse_args();r=evolve(a.n,a.amp,a.zi,a.zend,a.cfl);r['checks']=[dict(name='reaches_target',passed=r['reason']=='endpoint'),dict(name='static_residual',passed=max(r['initial_residuals'])<1e-5,value=max(r['initial_residuals'])),dict(name='work_balance',passed=r['max_work_error']<.01,value=r['max_work_error'])];Path(a.output).write_text(json.dumps(r,indent=2)+'\n')
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable

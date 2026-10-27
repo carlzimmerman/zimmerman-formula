@@ -1,0 +1,69 @@
+{
+  "claim_id": "HARD_EDGE_ISOTROPIC_PROFILE_OBSTRUCTION_2026_10_27",
+  "date": "2026-10-27",
+  "claim": "Literal finite-positive-edge cluster Burkert profiles in X38/SC1 cannot be regular nonnegative isotropic collisionless equilibria confined to r<=rt without a wall, under the continuous binding-potential and cutoff assumptions stated in RESULT.md.",
+  "status": "proved as written; independent proof gate passed",
+  "proof_file": "closure_program_2026_10_27/profile_admissibility/RESULT.md",
+  "proof_sha256": "60ddec247de343032fc1f51e1b35263b293e863068b0119005e69805c63698f4",
+  "method": "Direct nonnegative velocity integral; finite interior density implies integrability near cutoff, hence rho=o(sqrt(Psi)).",
+  "smallest_blocked_implication": "An empirically truncated positive-density cluster halo is not thereby a regular no-wall isotropic collisionless equilibrium.",
+  "scope": [
+    "Cluster truncation only; galaxy SPARC functions in these scripts are not hard-truncated at R200",
+    "Burkert density is implemented in both X38 and SC1; SC1 isothermal motivation does not alter its density formula",
+    "No nonzero boundary-force hypothesis except optional radial-power translation",
+    "Analytic boundary theorem is independent of numerical scans and catalog fitting"
+  ],
+  "independent_review": {
+    "reviewer": "closure_baseline",
+    "artifact": "closure_program_2026_10_27/population/profile_proof_review.json",
+    "artifact_sha256": "02f7372b9f8c3ff6773e43c23543ebf1a2ecfa2980621a2c9d58edef4ebbf132",
+    "reviewed_proof_sha256": "60ddec247de343032fc1f51e1b35263b293e863068b0119005e69805c63698f4",
+    "review_scope": "Proof, hypotheses, formula coefficient, Burkert derivative, source application and conclusion scope; supporting numeric computation not reviewed by this gate"
+  },
+  "supporting_computation": {
+    "manifest": "closure_program_2026_10_27/profile_admissibility/run_PROFILE_001/manifest.json",
+    "manifest_sha256": "568627d609ced64bb52be37006bf2a5c075c0f65627140339286abfbecdb3af0",
+    "results": "closure_program_2026_10_27/profile_admissibility/run_PROFILE_001/profile_checks.json",
+    "results_sha256": "ed6dadad2f43f99daf17560028cc21a0393363bb566373566a8a788c78bb4413",
+    "status": "completed; manifest validated against current inputs",
+    "ruling": "Bounded supporting diagnostics only. Actual historical functions extracted by AST; executable scripts not imported.",
+    "saved_root_summary": "12 positive X38 cluster tercile medians, range0.2388139973..0.4381275321 Mpc; no paired per-object truncation radii saved",
+    "fixture_edge_density_kg_m3": 2.669588623052206e-25,
+    "fixture_mass_relative_error": -1.1879386363489175e-14,
+    "velocity_integral_checks": 12,
+    "velocity_integral_max_relative_error": 2.405853294362714e-13,
+    "author_self_review": "pass; not certified interval arithmetic"
+  },
+  "constructive_local_witness": "For f(E)=A E^p, A>0,p>-1,E>0 and zero below cutoff, rho=4pi sqrt2 A B(p+1,3/2) Psi^(p+3/2); positive local velocity distribution and vanishing edge, not a self-consistent halo or fit.",
+  "primary_source": {
+    "author": "Maarten Baes",
+    "title": "Self-consistent dynamical models with a finite extent \u2013 II. Radially truncated models",
+    "version": "arXiv:2301.03873v1, 2023-01-10",
+    "url": "https://arxiv.org/html/2301.03873v1",
+    "verified_scope": "Section2.1 sharp-edge ergodic obstruction; section2.2 discusses anisotropic exceptions. Corroboration, not a dependency of the direct proof.",
+    "full_text_cached": false
+  },
+  "source_sha256": {
+    "closure_program_2026_10_27/profile_admissibility/check_profiles.py": "74032700919590685c2da4cdc141875f62096003e4179d7efe048ecc9543315e",
+    "rebuild_2026_10_22/X38_a0_surface_density_halos/x38_sd_halos.py": "7c3b9506ab9a735d1d5761d75947dc124d8cb5291981ba97e741c75b5571f205",
+    "rebuild_2026_10_22/X38_a0_surface_density_halos/x38_sd_halos_results.json": "24a5a914cff9dc00260aee1f41ac58fff9985eee795b7074541ac9645d7957d7",
+    "rebuild_2026_10_22/X38_a0_surface_density_halos/FROZEN_CRITERIA.md": "7c6c923ebc754f9a62af0f09b0ca318452a14f5e6bc424f41022ef457bc38395",
+    "rebuild_2026_10_22/SC1_self_coupled_core_law/sc1_core_law.py": "dfb8c02052db74b322138255f4fa154f62a5aa4e48c54bf5101007eb493af62c",
+    "rebuild_2026_10_22/SC1_self_coupled_core_law/sc1_core_law_results.json": "a5f3964540be2b3b1536ffb3d1dd8962ff3a53c9f94ac93b1575330e93821387",
+    "rebuild_2026_10_22/SC1_self_coupled_core_law/FROZEN_CRITERIA.md": "c9f48b52f763bef4f2ea6fac1380aa17db2d856b9e9daea845b404e8604e204d",
+    "rebuild_2026_10_22/EM1_emergent_dust_law/em1_emergent.py": "036c278baba1cbce69d4a452533d938932c7a8698dfb86f8760510fae54efa3c"
+  },
+  "git_head_at_record": "4c20e2c9c5cbaf601d902693fe548e823d682b9b",
+  "remaining_obligations": [
+    "Specify a replacement density/DF with compatible potential-space boundary",
+    "Establish nonnegative global DF and Poisson/combined-potential consistency",
+    "Recompute normalization and exact lensing for the changed boundary and test common-profile observational gates",
+    "Formation, stability, transport and conservation remain separate requirements"
+  ],
+  "non_claims": [
+    "No exclusion of anisotropic, non-equilibrium, wall-confined or different fluid models",
+    "No full M6 or universal-halo exclusion",
+    "No fitted smooth-boundary success or complete theory",
+    "No actual halo convergence certification"
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "schema_version": 2,
+  "claim_id": "reference_polarization_uniform_field_cancellation_and_tail_cost",
+  "repository": {
+    "commit": "6207c18614c2b69b5a642ccb5655985a671b27ad",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/metric_polarization_2026_10_12/reference_check.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "A convex two-polarization model cancels a uniform background in co-shifted equilibria, but its spherical sum mode forbids a decaying isolated solution. Finite-boundary profiles quantify the retained MOND window.",
+    "coefficient_domain": "Exact sympy identities and binary64 scipy boundary value solves",
+    "conventions": "Dimensionless Plummer force f=x/(1+x^2)^(3/2); vector radial Laplacian L u=u''+2u'/x-2u/x^2; eps=.01, reference stiffness K; regular inner Robin and zero outer fields",
+    "inputs": [
+      "sol61_push/metric_polarization_2026_10_12/reference_check.py"
+    ],
+    "bounds": {
+      "eps": 0.01,
+      "K": [
+        1,
+        10,
+        100,
+        1000
+      ],
+      "domains": [
+        [
+          0.0001,
+          300
+        ],
+        [
+          5e-05,
+          600
+        ]
+      ],
+      "bvp_tolerance": 1e-07,
+      "max_nodes": 30000,
+      "evaluation_radii": [
+        3,
+        10,
+        30,
+        100
+      ],
+      "integral_identity_tolerance": 1e-05,
+      "profile_reconstruction_tolerance": 1e-11
+    },
+    "non_claims": [
+      "No selection of a reference from cosmological initial conditions",
+      "No proof of relativistic lensing",
+      "No stability of live matter",
+      "No empirical fit",
+      "Finite boundaries are physical assumptions, not derived halo edges",
+      "No global novelty claim"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T00:06:33.513396+00:00",
+    "runtime_seconds": 1.166432,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 30000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/metric_polarization_2026_10_12/reference_check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/metric_polarization_2026_10_12/reference_check.py",
+      "sha256": "ccd3eb056875a546f6886c9aad79d7851b3caebb2aec14d2efc7fb2379129f84",
+      "sha256_after": "ccd3eb056875a546f6886c9aad79d7851b3caebb2aec14d2efc7fb2379129f84"
+    }
+  ],
+  "output_directory": "sol61_push/metric_polarization_2026_10_12/reference_run",
+  "declared_results": [
+    "sol61_push/metric_polarization_2026_10_12/reference_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/metric_polarization_2026_10_12/reference_run/stdout.txt",
+      "sha256": "fae6e698931f99b9438062222629267184b3c30272afffbdd1136c2a446be383",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/metric_polarization_2026_10_12/reference_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/metric_polarization_2026_10_12/reference_run/results.json",
+      "sha256": "fae6e698931f99b9438062222629267184b3c30272afffbdd1136c2a446be383",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

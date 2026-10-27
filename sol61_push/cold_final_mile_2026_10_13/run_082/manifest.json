@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-FM-082",
+  "repository": {
+    "commit": "becd424bfe15c44ad599cbc18040c1e1d480a549",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_final_mile_2026_10_13/check_feedback_transport_cycle.py",
+    "sol61_push/cold_final_mile_2026_10_13/run_082/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact gas-cycle orbital heating, independent KDK integration with energy-work balance and slow-cycle null control",
+    "coefficient_domain": "Python deterministic float64 and exact Kepler derivation",
+    "conventions": "Initial unit G=M0=R=j=1; external central gas mass9zetaMb,zeta=.1 illustrative; Tslow100 dimensionless; instant mass removal",
+    "inputs": [
+      "sol61_push/cold_final_mile_2026_10_13/check_feedback_transport_cycle.py",
+      "sol61_push/cold_final_mile_2026_10_13/run_077/results.json",
+      "sol61_push/cold_final_mile_2026_10_13/run_080/results.json",
+      "sol61_push/cold_final_mile_2026_10_13/feedback_transport_literature.json"
+    ],
+    "bounds": {
+      "galaxies": 4,
+      "stepsizes": [
+        0.005,
+        0.01
+      ],
+      "Tslow": 100,
+      "halo_simulation": false
+    },
+    "non_claims": [
+      "No physical gas history or supernova budget derived",
+      "No compact cold formation or steady halo fit",
+      "No source frozen score or queue change"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T02:05:41.604777+00:00",
+    "runtime_seconds": 0.235483,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/cold_final_mile_2026_10_13/run_082/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_final_mile_2026_10_13/check_feedback_transport_cycle.py",
+    "sol61_push/cold_final_mile_2026_10_13/run_077/results.json",
+    "sol61_push/cold_final_mile_2026_10_13/run_080/results.json",
+    "sol61_push/cold_final_mile_2026_10_13/feedback_transport_literature.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/check_feedback_transport_cycle.py",
+      "sha256": "928d37b7a072e2bba841f8efa0b0c564f2675cff0f75fcc966369a1ef819579e",
+      "sha256_after": "928d37b7a072e2bba841f8efa0b0c564f2675cff0f75fcc966369a1ef819579e"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_077/results.json",
+      "sha256": "1c7aa98f7449c635c1dfefcfa613e692f16ff23ecf5a74219495dcc144e68425",
+      "sha256_after": "1c7aa98f7449c635c1dfefcfa613e692f16ff23ecf5a74219495dcc144e68425"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_080/results.json",
+      "sha256": "b2a80bf0765892ea7c5a76bd32fdb1c6ddfe2a322997fbcaf0f9d8cbafb3cc4c",
+      "sha256_after": "b2a80bf0765892ea7c5a76bd32fdb1c6ddfe2a322997fbcaf0f9d8cbafb3cc4c"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/feedback_transport_literature.json",
+      "sha256": "aec725bf8e2a29e4f7e999fbdcef749e62dc848fc596a00f0c17dcb62adc2b76",
+      "sha256_after": "aec725bf8e2a29e4f7e999fbdcef749e62dc848fc596a00f0c17dcb62adc2b76"
+    }
+  ],
+  "output_directory": "sol61_push/cold_final_mile_2026_10_13/run_082",
+  "declared_results": [
+    "sol61_push/cold_final_mile_2026_10_13/run_082/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_082/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_082/stderr.txt",
+      "sha256": "dd3a685eb39a77b08caad65f1cbdb782de0a3a93f6d86d276fc20265f8025b9a",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: sol61_push/cold_final_mile_2026_10_13/run_082/results.json"
+  ]
+}

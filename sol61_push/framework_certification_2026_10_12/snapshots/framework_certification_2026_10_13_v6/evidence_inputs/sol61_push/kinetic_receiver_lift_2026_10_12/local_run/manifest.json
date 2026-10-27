@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "LOCAL_TWO_FIELD_KINETIC_RECEIVER",
+  "repository": {
+    "commit": "34ebaa9153a0ff4ba58cf95b20dedc9099cb42f7",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/kinetic_receiver_lift_2026_10_12/local_checks.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Distinct local two-field/discrete-velocity prototype has local source/flux identities, regular principal speeds, and bounded spatial diagnostics.",
+    "coefficient_domain": "Exact real polynomial algebra plus IEEE float64 PDE semidiscretization",
+    "conventions": "1D periodic box 2pi, c=1, four mass-per-length velocity populations, two local canonical fields, gamma=.1 diagnostic only",
+    "inputs": [
+      "sol61_push/kinetic_receiver_lift_2026_10_12/LOCAL_CRITERIA.txt",
+      "sol61_push/kinetic_receiver_lift_2026_10_12/local_checks.py"
+    ],
+    "bounds": {
+      "N": [
+        64,
+        128
+      ],
+      "t": [
+        0,
+        2
+      ],
+      "samples": 201,
+      "cases": 6,
+      "invariant_tolerance": 1e-07,
+      "positivity_tolerance": 1e-08,
+      "WKB_k": [
+        10,
+        1000,
+        100000
+      ],
+      "frozen_growth_roundoff_tolerance": 1e-07
+    },
+    "non_claims": [
+      "No parent action or microscopic coefficient",
+      "No gravity or halo selector",
+      "No global continuum existence or 3D theory"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T03:03:53.326899+00:00",
+    "runtime_seconds": 1.045594,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/kinetic_receiver_lift_2026_10_12/LOCAL_CRITERIA.txt",
+    "sol61_push/kinetic_receiver_lift_2026_10_12/local_checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/kinetic_receiver_lift_2026_10_12/LOCAL_CRITERIA.txt",
+      "sha256": "7277e93b00bc221db2a1459f2b894e5107cb0ffda6b200addbd9aa747a008362",
+      "sha256_after": "7277e93b00bc221db2a1459f2b894e5107cb0ffda6b200addbd9aa747a008362"
+    },
+    {
+      "path": "sol61_push/kinetic_receiver_lift_2026_10_12/local_checks.py",
+      "sha256": "50ec84281238f439d539e07d9ee14b82e3a96e3ce3f2aba9e128cd2de6a2f501",
+      "sha256_after": "50ec84281238f439d539e07d9ee14b82e3a96e3ce3f2aba9e128cd2de6a2f501"
+    }
+  ],
+  "output_directory": "sol61_push/kinetic_receiver_lift_2026_10_12/local_run",
+  "declared_results": [
+    "sol61_push/kinetic_receiver_lift_2026_10_12/local_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/kinetic_receiver_lift_2026_10_12/local_run/stdout.txt",
+      "sha256": "0ecd14735f5d3806c3146e5c98b03c1451966304cdb56d68f1d4df93decd75fa",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/kinetic_receiver_lift_2026_10_12/local_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/kinetic_receiver_lift_2026_10_12/local_run/results.json",
+      "sha256": "0ecd14735f5d3806c3146e5c98b03c1451966304cdb56d68f1d4df93decd75fa",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

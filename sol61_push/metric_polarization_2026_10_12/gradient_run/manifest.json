@@ -1,0 +1,119 @@
+{
+  "schema_version": 2,
+  "claim_id": "nonlinear_reference_gradient_tail_and_mass_scaling",
+  "repository": {
+    "commit": "90c0618be7073cb080ae467e88465008d1c0ed94",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/metric_polarization_2026_10_12/gradient_gate.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Reference gradient power 3/2 admits R=C/r under GM/r^2 forcing, but requires C proportional to M^2; monomial first-gradient energies cannot simultaneously preserve radius and sqrt(M) field scaling with nonzero net derivative degree.",
+    "coefficient_domain": "Exact sympy rational powers on positive real branch",
+    "conventions": "Frobenius norm of gradient of vector R=C rhat/r; gradient energy lambda/p times norm^p",
+    "inputs": [
+      "sol61_push/metric_polarization_2026_10_12/gradient_gate.py"
+    ],
+    "bounds": {
+      "p": "3/2",
+      "branch": "r,C,lambda,GM positive",
+      "homogeneity_family": "R^m (grad R)^n, nonvanishing Euler-Lagrange term, fixed coefficients"
+    },
+    "non_claims": [
+      "Not arbitrary gradient invariants or nonlocal actions",
+      "Not causal relativistic completion",
+      "Not a physical selection of lambda"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T00:09:52.257265+00:00",
+    "runtime_seconds": 0.399126,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 5000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/metric_polarization_2026_10_12/gradient_gate.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/metric_polarization_2026_10_12/gradient_gate.py",
+      "sha256": "c59badbce60d5a2addea336a8d51ffe3af1c099cd3cab721c830b0acbcbfb01b",
+      "sha256_after": "c59badbce60d5a2addea336a8d51ffe3af1c099cd3cab721c830b0acbcbfb01b"
+    }
+  ],
+  "output_directory": "sol61_push/metric_polarization_2026_10_12/gradient_run",
+  "declared_results": [
+    "sol61_push/metric_polarization_2026_10_12/gradient_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/metric_polarization_2026_10_12/gradient_run/stdout.txt",
+      "sha256": "ebf84bc0d1d354fcdd28051ee92ea9b38cc19520b88e56fa1022a263242cb58e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/metric_polarization_2026_10_12/gradient_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/metric_polarization_2026_10_12/gradient_run/results.json",
+      "sha256": "ebf84bc0d1d354fcdd28051ee92ea9b38cc19520b88e56fa1022a263242cb58e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

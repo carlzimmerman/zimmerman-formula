@@ -1,0 +1,10 @@
+# Continuation from MEDIUM-R2-A
+
+Original selection problem remains open. Keep both routes open with these concrete conditions:
+
+1. **Stochastic physical-source bridge.** Specify real slot states, pump reservoir, and observable that couples to a gravitational vector, then derive its transition rates. Required success: h=n gbar/b must follow from that Hamiltonian/reservoir in the zero-source limit, not be assigned. Include orientation, energy conservation and hidden entropy production. The current count-chain detailed balance does not settle those. Check whether the required j² death rate including self term actually follows. If only j(j−1) follows, redo the absorbing-state analysis; δ0 is no longer globally attracting.
+2. **Gapless vector bridge and dimension.** Identify spatial vector mass order (not merely an internal three-component label) and a physical density of states proportional to energy in a bulk medium. Specify η and λ. Success: derive the −g·u/K coupling and the susceptibility tuning. Ordinary three-dimensional linear dispersion fails the cubic criterion.
+3. **Constrained quantum capacity.** Supply one equilibrium quantum Hamiltonian whose zero-temperature constrained energy has both the gapless cubic and a finite-amplitude logarithmic divergence. Calculate its next coefficients before solving a full field model. The present determinant's quartic sign fails; a thermal Langevin attachment cannot provide an exact zero-temperature mechanism. A new interaction must generate positive quartic and nonzero fifth order as well as the endpoint residue, with parameters selected independently.
+4. **Discriminator once an observable exists.** The Markov chain predicts crossover gbar~b/(nN²) and Fano (1−x)/(2−x) in the macroscopic regime; the fermion route predicts thermal crossover λu~T. Map a measured variable to these quantities before using observations. Neither currently constrains n.
+
+Deferred because the physical medium is unspecified, not because every possible medium is excluded. Existing executable already verifies the finite pieces; enlarging N or another saturation curve alone does not address the missing implications.

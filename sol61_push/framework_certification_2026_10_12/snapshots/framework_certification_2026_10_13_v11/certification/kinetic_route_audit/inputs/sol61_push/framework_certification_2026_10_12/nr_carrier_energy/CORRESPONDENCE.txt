@@ -1,0 +1,91 @@
+FRAMEWORK-CERT-NR-CARRIER-2026-10-12: supplied NR cold-energy ledger
+
+Verdict: coefficient identity, commutative real-coordinate square completion,
+and finite positive-weight energy bounds certified. Regulated operator
+positivity, conservation and NR approximation validity are not formalized.
+No new fields, target law, profile selector, cosmological model or quantum width.
+
+Exact source dictionary:
+COLD_ENERGY_EQUATIONS.tex section2, lines43-68, hbar=c=1:
+delta=M-2m, Delta=M^2-4m^2, c3=g/(2m*sqrt(2M)),
+k=(g^2/Delta+lambda_rep)/(4m^2). Definitions delta,c3,quartic,remainder
+in NREnergy.lean contain these formulas, not presumed coefficient identities.
+Hypotheses m>0,M>2m imply M>0,delta>0,Delta>0 and all relevant denominators
+nonzero. g is arbitrary REAL, including zero and negative values.
+lambda_rep>=0 suffices for nonnegativity; source extension lambda_rep>0 gives
+strict positivity. If lambda_rep=g=0 the remainder is zero, not strictly positive.
+
+Exact scalar field correspondence:
+psi=x+i*y, b=u+i*v, hence psi^2=(x^2-y^2)+i*(2xy),
+|psi|^4=(x^2+y^2)^2, b*psi^2+psi*^2*b=2[u(x^2-y^2)+v(2xy)].
+density is precisely delta|b|^2+c3(b*psi^2+psi*^2*b)+k|psi|^4.
+completedDensity is delta|b+(c3/delta)psi^2|^2+
+(k-c3^2/delta)|psi|^4 in these real coordinates. This dictionary uses the
+NR field convention directly; the earlier relativistic sqrt2 convention is
+not transplanted into the NR coefficients.
+
+English correspondence / hypotheses:
+1. c3_squared: for M>=0, squaring the DEFINED c3 gives g^2/(8m^2 M).
+   Lean uses totalized division at zero; physical interpretation uses m>0,M>0.
+2. coefficient_identity: m>0,M>2m imply the actual derived identity
+   k-c3^2/delta=lambda_rep/(4m^2)+g^2/[8m^2 M(M+2m)].
+3. remainder_nonnegative: add lambda_rep>=0; the coefficient is nonnegative.
+4. remainder_strict: add lambda_rep>0; the coefficient is strictly positive.
+5. exact_square_completion: for nonzero delta, raw coordinate density equals
+   completedDensity, without assuming the coefficient identity as a premise.
+   Six/norm-square polynomial algebra is purely commutative real mathematics.
+6. density_nonnegative: combine actual coefficient identity, m>0,M>2m,
+   lambda_rep>=0 and completion to prove density>=0 for all real amplitudes.
+7. finite_energy_bounds: on ANY finite index set with nonnegative weights and
+   T>=0, D=T+sum weights*density satisfies 0<=T<=D. T positivity is an explicit
+   premise in this theorem; the two following theorems derive it for gradient sums.
+8. gradient_nonnegative: a^2/(2m)+b^2/(2M)>=0 when m,M>0. This is one real
+   gradient component for psi,b. Sum over real/imaginary and spatial directions
+   supplies actual scalar-field kinetic gradient energy.
+9. finite_gradient_energy_nonnegative: any finite weighted sum of those actual
+   gradient terms is nonnegative when m,M>0 and weights>=0. Combined with theorem 7,
+   it gives the supplied finite-coordinate nongravitating cold-energy ledger.
+
+Approximation/operator limits retained explicitly:
+The parent uses a leading positive-charge NR approximation; when it applies,
+H=mQ+D. These proofs do not establish the approximation, generate a seed,
+prove a quantum operator domain, or show a regulator is a UV completion.
+Real-coordinate square completion does not prove a noncommuting normal-ordered
+operator identity. The source's operator A-dagger-A positivity requires a
+finite regulator, consistent normal ordering and domains/boundaries; those are
+separate unformalized leaves. No claim here proves quantum expectation-value
+D>=T, time conservation of Q,D, NR field EOM, global continuum dynamics, or
+stability with gravitational self-energy. Gravity contributes a negative
+energy term and cannot be omitted when applying a kinetic bound to halo collapse.
+Finite weights and gradient sums have explicit positivity conditions and do
+not certify spatial convergence, actual quadrature accuracy or a continuum limit.
+
+Verification:
+Directory fable_independent_2026/lean_2026
+Main command: lake env lean ABSOLUTE_PATH/nr_carrier_energy/NREnergy.lean
+Exit0, no warnings. compile.log prints all NINE theorem axiom dependencies:
+[propext, Classical.choice, Quot.sound]. No sorryAx, custom axioms, native_decide.
+FalseZeroRemainder.lean expected exit1, goal False: mathematical tuple
+m=1,M=8,g=8,rep=0 has c3=1,delta=6,k=4/15,remainder=1/10;
+asserting rep=0 makes the remainder zero is false.
+FalseDeletedCross.lean expected exit1, goal False: same tuple with psi=b=1
+has density=6+2+4/15. Deleting the interaction cross term drops 2 and is false.
+These normalization fixtures are algebra checks, not asserted NR-physical regimes.
+Both false source files repeat the checked declarations plus a false claim;
+they must fail. Only NREnergy.lean is intended to compile successfully.
+Reproduce each false control individually using the same lake command with
+its file path; exit1 must contain its specific final unsolved False goal,
+not a missing dependency or syntax/type error.
+
+Pinned input copies and hashes: PINNED_INPUTS.json, inputs/. Existing source
+and all previous certificates/inventories untouched. Actual live HEAD observed
+668818d9f6fefccc2ee75c2f47dc7424140cc8f8; copies bind exact source bytes.
+
+SHA-256 verification artifacts:
+3f09ff45acd5b149251aab4b9cc8edb6a57c5cefa55264643b7766833ee2f59b  NREnergy.lean
+5aa23d3103dba72b3f64417a56987b9213ded2f4ea9b4c6917096f81df5be3c2  compile.log
+82a7a9c9ea063b2a8b4d6eb83d9fdd7561a6ff539fcff4a59a485def0ac7c568  FalseZeroRemainder.lean
+e1d3361ba2b325853faa59e573918902db34be0368bd971e8828e49923aa77d7  FalseZeroRemainder.log
+8c53ac509539a3b729c2fa01767b8011d5eaa0600267701793f9b9d1ab65c5b5  FalseDeletedCross.lean
+515906358586aef374594a4e65578c0d464b2c066760dd5876ecb896e9424efb  FalseDeletedCross.log
+9b733b9857f614de5647b4fcd951364cd2a2cb9f7798f16da4a57b2a5c332d40  PINNED_INPUTS.json

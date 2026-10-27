@@ -1,0 +1,40 @@
+Normalized claim and verdict: PROVED AS WRITTEN. The 18 explicitly conditional real-algebra/calculus statements in Architecture.lean follow from their exact binders. This verdict concerns this bounded mathematical package only. Whole-theory certification is incomplete: the package does not derive its physical premises from the framework.
+
+Method and provenance
+Independent bounded audit by a subagent, using mathbox proof-audit and computation-audit. No external physics theorem is used to justify these conditional algebraic implications. Existing Mathlib is the mathematical library. Actual HEAD bda75b58338be007725483f6866525133d0c280d differs from assigned base 8cef73ea7d01e20f1d08f435ad621b739f8eb3cc; the four target package files have no diff against that assigned base. The workspace has extensive unrelated dirty state. Before/after source hashes agree. See provenance.json, results.json, run/*.log and runner.patch.
+
+Original verify.py requires output inside its own source package, incompatible with assigned review-only write scope. The preserved adapted runner anchors HERE to the original package and changes only the output-directory guard/message; proof source and verification algorithm are untouched. Original source/run are untouched. Original verification used Python 3.9.6, installed Lean 4.34.0-rc2, Mathlib pinned in existing manifest, one Lean worker and a 180-second per-case timeout. No random or floating-point mathematical inference.
+
+Verification results
+All 18 original statements compiled with exit 0, no warnings/errors, and every axiom report restricted to propext, Classical.choice, Quot.sound. All three damaged files rejected with exit 1 and error diagnostics. Axioms are mathematical foundations; physical premises may appear as ordinary hypotheses or definitions and consequently will not appear in #print axioms. This distinction is essential.
+The derivative mutation initially fails at a change tactic and the supply mutation at unfold. Compiler rejection alone does not establish that the altered statement is false. The extra witness_controls.lean therefore proves concrete counterexamples: at c=G=rho=1,Lambda=8pi the 16pi formula differs from a0²=1/4; the derivative of r is 1, not 2; A=1,Mb=S=0,r=1 satisfies S>=0 yet violates the proposed radius bound. It also checks positive unit orbit/tail/spherical-density instances and the distinct-mass scaling counterexample M1=1,M2=2. Extra file compiled exit 0. A first attempt used a relative source path from the Lake cwd and failed before constructing any file; corrected with absolute paths, failed attempt log preserved.
+
+Dependency graph
+Scale definition + sqrt identity -> scale_squared -> vacuum equation -> vacuum_coefficient -> supplied κ=1/2 -> half_kappa_32pi.
+Definition itself -> coefficient_family. It is not a physical no-go against an added selector.
+Deep-law definition + circular-orbit equation + positivity -> baryonic_quartic. There is no action -> deep-law link.
+Spherical force equation -> target_mass_unique; polynomial identity -> target_mass_sufficient; Mb>0 -> nonnegative target iff ν>=1.
+Affine tail definition -> tail_mass_derivative; supplied spherical-density equation -> tail_density. Supplied finite supply -> radius bound -> explicit violating radius -> no infinite exact tail.
+Supplied additive lensing/dynamics equations -> residual -> exact matched forces imply zero extra.
+Supplied component equations -> sum cancellation; supplied zero vacuum divergence -> passive vacuum has Q=0.
+Nonnegative coefficients/amplitude -> nonnegative response expression; not Hamiltonian/coercivity/well-posedness stability.
+Two exact mass laws + distinct positive masses -> cannot both agree with universal positive K.
+Exact statements, locators, hypotheses, critical implications and per-claim verdicts are in results.json claim_cards.
+
+Admissibility and vacuity
+No inconsistency in the stated real hypotheses found. Positive unit witnesses show the core scale/orbit/tail equations are satisfiable. Component exchange also has nontrivial admissible example Q=1,Dc=1,Dr=-1 on a nonempty index type. Universals over an empty index type are vacuous but do not compromise their valid pointwise algebraic statements. Target-mass sufficiency is true even at r=0 because Lean division is total; it must not be interpreted physically there. Several statements allow negative masses/supplies/radii, and the coefficient family includes negative κ; these broaden valid algebra but need restrictions for a physical realization. Nonnegative enclosed mass is weaker than nonnegative local density. The cubic response-energy theorem restricts p>=0, treating mismatchSq as an independent nonnegative real; it is not a universal field-energy theorem. The infinite-tail result excludes maintaining precisely A r-Mb for all positive r with fixed finite supply, not all finite halos or exchange histories. README and contract state these material limitations accurately.
+
+Framework-only certificate exclusions
+Architecture imports Mathlib alone and does not import ChainCert. That avoids an implicit CandidateB bundle, but does not itself derive physical premises. In ChainCert, named fields and definitions carry externally inspired/fitted content without extra axioms:
+* ChainPremises.hflat assumes constant positive vacuum density over redshift (w=-1 interpretation).
+* CandidateB.hκ_fit assumes κ=1/2, explicitly fitted, not selected.
+* hν_deep assumes the MOND-type deep scaling; ν is declared, while nuMono and nuBeta are chosen kernel families. A formal limit proof for a selected family does not derive that family dynamically.
+* Theory.a0_numeric assumes flat-FRW rhoLambda=3H0²OmegaLambda/(8piG), declared Planck-style H0/OmegaLambda intervals and the fitted κ. These cannot provide model-independent observational normalization.
+* Efun and rival_separates encode the flat-background rival expansion formula; retain as a separately labelled comparison only.
+* hown is a postulated hierarchy/ownership rule. hcold is a postulated max-bookkeeping law; Omega_c is fitted. No physical capture or abundance derivation follows merely from those fields.
+* CandidateB.nonempty_fin2 proves consistency of unit-free declared premises using an explicitly chosen MOND-type kernel. It does not construct a solution of a covariant framework action or validate observed cosmology.
+A framework-only certificate should state a framework premise registry, import only proven mathematical lemmas, and prove translation from framework action/dynamics/solution admissibility to each consumed physical relation. If any relation is allowed as an independent framework postulate, label it as such and certify only its consequences. Do not blindly import CandidateB.predictions or A0Numeric as closed theory results.
+
+Exact remaining gap and cheapest next check
+The package stops at the force, vacuum-normalization, spherical-geometry and component-exchange premises. A committed framework action/dynamics must produce an admissible solution with a galaxy selector and metric lensing, and derive κ if κ is claimed predicted. Identify that single authoritative action and its source locators, then expose and certify its implication to the force law without kernel/FRW inputs. Until that implication exists, adding conditional Lean lemmas cannot certify the requested whole theory.
+Strongest safe statement: these 18 mathematical implications are kernel-checked from their stated premises. They do not establish empirical adequacy, physical uniqueness, universal stability, research priority, or that no future work remains.

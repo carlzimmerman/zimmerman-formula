@@ -1,0 +1,168 @@
+{
+  "schema_version": 2,
+  "claim_id": "RADIATIVE-CONVERSION-2026-10-13",
+  "repository": {
+    "commit": "408e5e785c833c6538c17a71d2cc0b5419a246d2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/radiative_conversion_2026_10_13/check.py",
+    "sol61_push/radiative_conversion_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Nine homogeneous two-field trajectories conserve Q and D; direct quadrature agrees with near-threshold spectrum normalization and refines with recoil; five polarization sums match the invariant result.",
+    "coefficient_domain": "Float64 and complex128; DOP853 integration, Gauss-Legendre quadrature and SciPy special functions.",
+    "conventions": "Natural units, distinct complex scalar species; identical daughter and photon symmetry factors; hypothetical dimension-seven portal. No source elimination in homogeneous evolution.",
+    "inputs": [
+      "sol61_push/radiative_conversion_2026_10_13/check.py",
+      "sol61_push/radiative_conversion_2026_10_13/INPUT_CARRIER_ACTION.tex"
+    ],
+    "bounds": {
+      "carrier_c_k": [
+        [
+          0.2,
+          0.1
+        ],
+        [
+          0.3,
+          0.2
+        ],
+        [
+          0.5,
+          0.35
+        ]
+      ],
+      "seeds": [
+        0,
+        0.001,
+        0.01
+      ],
+      "time": [
+        0,
+        100
+      ],
+      "samples": 4001,
+      "quadrature_orders": [
+        64,
+        128
+      ],
+      "delta_over_m": [
+        0,
+        1e-05,
+        0.0004,
+        0.01
+      ],
+      "photon_gap_eV": [
+        3,
+        5,
+        8,
+        399.960008
+      ]
+    },
+    "non_claims": [
+      "No measured carrier or portal coupling.",
+      "No spatial gravity or photon backreaction in homogeneous simulations.",
+      "No universal numerical convergence proof or optical-safety conclusion."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T16:42:02.263458+00:00",
+    "runtime_seconds": 0.906273,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/radiative_conversion_2026_10_13/check.py",
+    "sol61_push/radiative_conversion_2026_10_13/INPUT_CARRIER_ACTION.tex"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/radiative_conversion_2026_10_13/check.py",
+      "sha256": "31d327d5f21bb05c351448ac0c54ce5ebaabaa29d3c86989940942faa6deab80",
+      "sha256_after": "31d327d5f21bb05c351448ac0c54ce5ebaabaa29d3c86989940942faa6deab80"
+    },
+    {
+      "path": "sol61_push/radiative_conversion_2026_10_13/INPUT_CARRIER_ACTION.tex",
+      "sha256": "f1046138aaa7f03f1fd3ee44b4c0cad8768e73b879fc2154296791010c6929f3",
+      "sha256_after": "f1046138aaa7f03f1fd3ee44b4c0cad8768e73b879fc2154296791010c6929f3"
+    }
+  ],
+  "output_directory": "sol61_push/radiative_conversion_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/radiative_conversion_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/radiative_conversion_2026_10_13/run/stdout.txt",
+      "sha256": "947807c73cfd1f6a01656abfc7dad602bbb52ba5db812facb131e3ff931a21f0",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/radiative_conversion_2026_10_13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/radiative_conversion_2026_10_13/run/results.json",
+      "sha256": "947807c73cfd1f6a01656abfc7dad602bbb52ba5db812facb131e3ff931a21f0",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

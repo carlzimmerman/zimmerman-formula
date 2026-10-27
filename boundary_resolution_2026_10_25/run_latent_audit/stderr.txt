@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/boundary_resolution_2026_10_25/latent_audit.py", line 18, in <module>
+    x=T(np.zeros(n)).requires_grad_(True);z=T(np.log(r['mass']));HF=torch.autograd.functional.hessian(lambda xx:m.energy(z,xx),x).detach().numpy();rho=np.array(r['mass'])/m.vol.numpy();expected=np.pi**2/2*m.vol.numpy()*(B-rho*(eps+2.5*m.K*rho**(2/3)));phaseerr=float(max(abs(np.diag(HF)-expected))/max(1,max(abs(expected))));offdiag=float(max(abs(HF-np.diag(np.diag(HF)))).max());outer=np.array(r['r'])>1.2*r['interpolated_crossings_kpc'][-1]
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()

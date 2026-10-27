@@ -1,0 +1,60 @@
+{
+  "claim_id": "CE-FM090-SHARED-COMMON-PROFILE-MODES-2026-10-19",
+  "mathematics": {
+    "assertion_tested": "Three exact rational energy/kinematic split controls and deterministic finite-dimensional l=1 Rayleigh-Ritz controls of the closed common-profile two-fluid n=1 TF state: relative positive gaps, total translation null direction, positive total internal modes, zero positive-total-mode integrated mass dipoles, and finite-k physical source strengths. Exact common-profile cancellation itself is proved analytically, not inferred from numerical controls.",
+    "coefficient_domain": "Exact Q for three split controls; binary64 Gauss-Legendre quadrature and symmetric generalized eigenproblems for radial controls",
+    "conventions": "x=r/R in [0,1]; f=sin(pi x)/(pi x); angular Y_10 unit norm; frequency squared in GM/R^3; total Poisson exterior decays at infinity; TF fluid limit with baryon p_b=K_b rho_b^2 closure",
+    "inputs": [
+      "Kd,Kb=(1,1),(1/3,7/2),(11,2/7), exact rational signed density and velocity controls",
+      "relative radial basis sizes N=6,10,14,18 and total N=6,10,14; u_j=x P_j^(0,3/2)(2x^2-1)",
+      "Gauss-Legendre quadrature orders 128 and comparison 192 at N=14",
+      "finite kR=0.01,0.03,0.1,0.3,1,3 for total l=1 internal modes"
+    ],
+    "bounds": {
+      "max_basis_size": 18,
+      "max_quadrature_order": 192,
+      "relative_mass_matrix_tolerance": 2e-11,
+      "sum_rule_tolerance": 2e-10,
+      "total_translation_stiffness_tolerance": 5e-09,
+      "total_stiffness_symmetry_tolerance": 5e-08,
+      "total_internal_dipole_tolerance": 5e-10,
+      "quadrature_low_eigenvalue_tolerance": 1e-08
+    },
+    "non_claims": [
+      "No certified eigenvalue enclosures or global mode completeness from finite Ritz matrices",
+      "No baryon EOS or composition ratio derived from the particle action",
+      "No finite-GP convergence, surface-layer control, finite-temperature stability or production occupation",
+      "No universal source cancellation for unequal profiles or all shared states",
+      "No local occupied saturating dipole inventory, rational constitutive law or universal a0 or normalization"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/shared_state_2026_10_19/modes/check_shared_modes.py",
+    "sol61_push/shared_state_2026_10_19/modes/source_pins.json",
+    "sol61_push/scalar_dipole_bridge_2026_10_19/RESULT.txt",
+    "sol61_push/scalar_dipole_bridge_2026_10_19/relative_modes/RELATIVE_MODES.md",
+    "sol61_push/scalar_dipole_bridge_2026_10_19/sum_rules/SUM_RULES.md",
+    "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/VIRIAL_NORMALIZATION.md",
+    "sol61_push/particle_derivation_2026_10_18/micro_response/DERIVATION.md",
+    "sol61_push/particle_derivation_2026_10_18/micro_response/EXCHANGE_REVIEW.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

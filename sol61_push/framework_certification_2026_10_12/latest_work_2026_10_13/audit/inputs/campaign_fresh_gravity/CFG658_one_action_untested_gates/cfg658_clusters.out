@@ -1,0 +1,47 @@
+CFG658 G-CL (FROZEN_CRITERIA.md, 12c5ab6b3): clusters and groups under the one-action construction's law
+nu_s = 1/2 + sqrt(1/4 + 1/y) (g_N = g^2/(g + a0)).  Harnesses exec'd read-only; the only change is the kernel.
+  CL1  CFG686: raw KiDS-1000 shear around 8 ACCEPT clusters (stored stacks) vs law_dsigma from Chandra gas (all 18 brackets + Newton,
+       same bootstrap seed and key order); CFG686's own verdict rule.
+  CL2  X-COP: CFG4 cluster_table (eta at 1000 kpc) and CFG634 T3 cells (B = all baryons, HCB = condensed; R0 / RI / RNc4; headline
+       and inner band 200-420 kpc), CFG634 t3_label.
+  CL3  CFG652: eFEDS groups x raw KiDS-1000, models from cfg658_cl3_models.py (x1), CFG652's score code and frozen rule.
+MUTATE (M-K) in the same pass: the harness kernel reproduces each recorded table.
+
+== CL1  CFG686: raw KiDS-1000 shear around 8 ACCEPT clusters vs the law on each cluster's own Chandra gas ==
+  [PASS] M-K CFG686: nu_mono reproduces the stored predictions (1e-9 rel) and the A table incl. bootstrap sigma (1e-9): pred max rel 0.0e+00; A max |d| 0.0e+00
+  canonical nu_s : INNER 2.68+-1.46  MID 1.69+-0.35  OUTER 1.02+-0.24  -> LAW SUFFICES   (nu_mono: INNER 2.70  MID 1.70  OUTER 1.02 -> LAW SUFFICES)
+  alt       nu_s : INNER 2.49+-1.29  MID 1.56+-0.33  OUTER 0.94+-0.24  -> LAW SUFFICES   (nu_mono: INNER 2.51  MID 1.57  OUTER 0.94 -> LAW SUFFICES)
+  newton: INNER 6.86+-4.29  MID 5.03+-1.02  OUTER 3.52+-0.91;  nu_s across 18 brackets: {'CORE EXCESS': 4, 'LAW SUFFICES': 14}
+
+== CL2  X-COP (record's corrected audit rows): CFG4 cluster_table and CFG634 T3 cells ==
+  CFG4 canonical nu_mono: eta(1000 kpc) 1.820; residual beyond the law 3.09 M_b; law's phantom 2.76 M_b; identity/measured 0.946
+  CFG4 canonical nu_s   : eta(1000 kpc) 1.813; residual beyond the law 3.08 M_b; law's phantom 2.78 M_b; identity/measured 0.946
+  CFG4 alt       nu_mono: eta(1000 kpc) 1.679; residual beyond the law 2.75 M_b; law's phantom 3.08 M_b; identity/measured 0.946
+  CFG4 alt       nu_s   : eta(1000 kpc) 1.673; residual beyond the law 2.74 M_b; law's phantom 3.10 M_b; identity/measured 0.946
+  [PASS] M-K CFG4: nu_mono reproduces eta 1.820 / 1.679 (1e-6): max |d| 0.0e+00
+  CFG634 T3 nu_mono B|R0     : eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 -> FAIL
+  CFG634 T3 nu_mono HCB|R0   : eta headline 3.973+-0.116 / 3.805+-0.113 -> FAIL     | inner 200-420 5.201 / 4.983 -> FAIL
+  CFG634 T3 nu_mono B|RI     : eta headline 1.057+-0.031 / 1.057+-0.031 -> PASS     | inner 200-420 1.535 / 1.535 -> FAIL
+  CFG634 T3 nu_mono HCB|RI   : eta headline 1.057+-0.031 / 1.057+-0.031 -> PASS     | inner 200-420 1.535 / 1.535 -> FAIL
+  CFG634 T3 nu_mono B|RNc4   : eta headline 1.082+-0.057 / 1.115+-0.060 -> PASS     | inner 200-420 1.460 / 1.583 -> FAIL
+  CFG634 T3 nu_mono HCB|RNc4 : eta headline 0.895+-0.043 / 0.898+-0.043 -> PASS     | inner 200-420 0.890 / 0.897 -> PASS
+  CFG634 T3 nu_s    B|R0     : eta headline 1.813+-0.066 / 1.673+-0.062 -> FAIL     | inner 200-420 3.146 / 2.914 -> FAIL
+  CFG634 T3 nu_s    HCB|R0   : eta headline 3.972+-0.116 / 3.805+-0.113 -> FAIL     | inner 200-420 5.200 / 4.982 -> FAIL
+  CFG634 T3 nu_s    B|RI     : eta headline 1.057+-0.031 / 1.057+-0.031 -> PASS     | inner 200-420 1.535 / 1.535 -> FAIL
+  CFG634 T3 nu_s    HCB|RI   : eta headline 1.057+-0.031 / 1.057+-0.031 -> PASS     | inner 200-420 1.535 / 1.535 -> FAIL
+  CFG634 T3 nu_s    B|RNc4   : eta headline 1.082+-0.057 / 1.115+-0.060 -> PASS     | inner 200-420 1.462 / 1.583 -> FAIL
+  CFG634 T3 nu_s    HCB|RNc4 : eta headline 0.895+-0.043 / 0.898+-0.043 -> PASS     | inner 200-420 0.890 / 0.897 -> PASS
+  [PASS] M-K CFG634 T3: nu_mono reproduces the recorded headline and inner-band eta for all six cells (1e-6): max |d| 0.0e+00
+  C* as built (law on all baryons, pure field, no reservoir = B|R0): headline FAIL, inner FAIL -> FAIL
+
+== CL3  CFG652: 131 eFEDS groups x raw KiDS-1000 (x1 primary; (a) condensed source, (b) all baryons) ==
+  [PASS] M-K CFG652 model recompute with the stored kernel equals the stored models (5 groups, 1e-9; cfg658_cl3_models.py): max rel 0.0e+00
+  R (kpc)        53      78     115     169     248     363     533     783
+  obs         100.5   126.2    87.8    56.6   133.4    72.1    70.9    43.5
+  canonical nu_s (a): chi2 22.5/8 p 0.00415  A_out +0.158 +- 0.077   model  293.2  298.2  210.4  157.9   97.0   61.4   41.8   26.4   (stored kernel chi2 22.9)
+  canonical nu_s (b): chi2 28.7/8 p 0.000365  A_out +0.425 +- 0.065   model   54.4   35.8   27.5   26.5   25.2   24.7   23.3   22.0   (stored kernel chi2 28.7)
+  canonical nu_s: dchi2(b-a) +6.2 -> BOTH EXCLUDED
+  alt       nu_s (a): chi2 23.5/8 p 0.00278  A_out +0.165 +- 0.078   model  319.5  291.9  206.4  157.3   95.8   60.4   41.0   26.0   (stored kernel chi2 22.3)
+  alt       nu_s (b): chi2 25.1/8 p 0.00149  A_out +0.386 +- 0.066   model   58.7   38.8   30.2   28.9   27.5   26.9   25.5   24.3   (stored kernel chi2 25.2)
+  alt       nu_s: dchi2(b-a) +1.6 -> BOTH EXCLUDED
+  [PASS] M-K CFG652: the stored models reproduce the recorded x1 chi2 (a, b; both footings) to 0.01: max |d| 0.0e+00

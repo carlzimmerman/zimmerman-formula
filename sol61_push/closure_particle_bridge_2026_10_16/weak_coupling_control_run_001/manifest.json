@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "WEAK-COUPLING-CONTROL-2026-10-16",
+  "repository": {
+    "commit": "b7b3ba9a76ff9850cf000e5ee1c8ef8a5827bc03",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/closure_particle_bridge_2026_10_16/weak_coupling_control.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/weak_coupling_control_run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact epsilon scaling of classical potential/Hessian and one-loop sensitivity, with inventory tradeoff",
+    "coefficient_domain": "Exact symbolic algebra plus binary64 symmetric real-time generator eigenvalues",
+    "conventions": "MS, one-loop canonical scalar Hessian, B=M²; backgrounds charged omega at actual mediator stationary branch; static W=beta p³/3, Lorentz scalar response minimal completion",
+    "inputs": [
+      "sol61_push/closure_particle_bridge_2026_10_16/weak_coupling_control.py",
+      "sol61_push/closure_particle_bridge_2026_10_16/four_gap_audit_run_003/results.json"
+    ],
+    "bounds": {
+      "M_over_m": 100,
+      "epsilon": [
+        1,
+        0.001,
+        1e-06
+      ],
+      "diagnostic_log_interval": 1,
+      "relative_sensitivity_flag_gate": 0.01,
+      "CPU_seconds": 30
+    },
+    "non_claims": [
+      "No finite threshold/full one-loop vacuum proof, derived charged initial condition, nonlinear formation, general covariant response completion or dark energy normalization"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-16T21:31:47.069967+00:00",
+    "runtime_seconds": 0.293693,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/closure_particle_bridge_2026_10_16/weak_coupling_control.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/four_gap_audit_run_003/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/weak_coupling_control.py",
+      "sha256": "9370cf4e9dcebe12a54fb3dd86b577c1a120309b3670c1fe493991de7a67958d",
+      "sha256_after": "9370cf4e9dcebe12a54fb3dd86b577c1a120309b3670c1fe493991de7a67958d"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/four_gap_audit_run_003/results.json",
+      "sha256": "1ffbb18cbd0693d599d33f0215be4b69895ebf2d27b76c12754f20ef2022bcf1",
+      "sha256_after": "1ffbb18cbd0693d599d33f0215be4b69895ebf2d27b76c12754f20ef2022bcf1"
+    }
+  ],
+  "output_directory": "sol61_push/closure_particle_bridge_2026_10_16/weak_coupling_control_run_001",
+  "declared_results": [
+    "sol61_push/closure_particle_bridge_2026_10_16/weak_coupling_control_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/weak_coupling_control_run_001/stdout.txt",
+      "sha256": "d65bab0bc3aa27ab6bd8c37d14f01fe6b427d7dd2eabb89d5e9fb7a8c0b5898b",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/weak_coupling_control_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/weak_coupling_control_run_001/results.json",
+      "sha256": "d65bab0bc3aa27ab6bd8c37d14f01fe6b427d7dd2eabb89d5e9fb7a8c0b5898b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

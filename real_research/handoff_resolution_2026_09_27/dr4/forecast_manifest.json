@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "claim_id": "HR01-DR4-XR22-FISHER-ALGEBRA",
+  "repository": {
+    "commit": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/handoff_resolution_2026_09_27/dr4/forecast_audit.py"
+  ],
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "NumPy 1.26.2",
+      "SciPy 1.11.4"
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Reconstruct saved seven-bin Fisher information; quantify loss on profiling one common amplitude and a hypothetical rank-one covariance.",
+    "coefficient_domain": "IEEE-754 binary64",
+    "conventions": "Fixed saved ratio and bootstrap errors; d/d ln xi by adjacent saved knots; no new solver or population simulation.",
+    "inputs": [
+      {
+        "path": "real_research/cross_thread_review_2026_09_26/XR22_prereg_statistic_results.json",
+        "sha256": "9922db6f945a8103e7ee533e0876ee3a744299d1a26a4ee1b1e39f6bc00c6339"
+      },
+      {
+        "path": "real_research/handoff_resolution_2026_09_27/dr4/forecast_audit.py",
+        "sha256": "e1cc760318804bf5b5eadf36f7ed9c0014c972b39fe04bc26d84c4857fb6ad8e"
+      }
+    ],
+    "bounds": {
+      "footings": [
+        "canonical",
+        "alt"
+      ],
+      "xi_min": "footing floor",
+      "xi_max_pc": 0.1,
+      "next_derivative_knot_max_pc": 0.15,
+      "projected_bins_kAU": [
+        2,
+        3,
+        5,
+        7,
+        10,
+        15,
+        20,
+        30
+      ],
+      "N": 30000
+    },
+    "non_claims": [
+      "No self-consistent orbit or contamination modelling.",
+      "No calibrated confidence interval or detection forecast with nuisances.",
+      "The 2-percent correlated covariance is a sensitivity scenario, not the frozen gamma allowance."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "none; reads stored seeded bootstrap results",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T20:03:50.893926+00:00",
+    "runtime_seconds": 0.0883030891418457,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/dr4/forecast_audit_results.json",
+      "sha256": "31b6b52c3ad046c7a76e565adb5ccda53076d499ee28871ffc4c912a10a6725d"
+    }
+  ],
+  "checks": [
+    "All reconstructed source Fisher values agree within 1e-10 relative/absolute tolerance.",
+    "Common-amplitude profiling cannot add information.",
+    "xi-independent mutation has zero Fisher information."
+  ],
+  "result": "Conditional algebraic forecast reproduced for 12 stored neighboring-knot pairs; floor fixed-calibration sigma .204595/.158483, free-amplitude .333840/.263921.",
+  "residual_risks": [
+    "Uses existing force/prediction tables; not independent end-to-end force reproduction.",
+    "Finite-difference/local-Fisher and stored bootstrap approximation.",
+    "Version-1 manifest; raw run records supplement source hashes and resource settings."
+  ]
+}

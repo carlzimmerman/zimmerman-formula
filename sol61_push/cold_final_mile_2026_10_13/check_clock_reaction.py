@@ -1,0 +1,41 @@
+import json, sys
+import sympy as s
+r,t,A,b,R=s.symbols('r t A beta R', positive=True)
+g=b/r
+z=g*t
+reservoir=s.exp(-z)
+intermediate=z*s.exp(-z)
+cold=1-(1+z)*s.exp(-z)
+checks=[]
+def check(name, expr):
+    residual=s.simplify(expr)
+    assert residual==0, (name,str(residual))
+    checks.append({'name':name,'residual':str(residual)})
+check('reservoir equation',s.diff(reservoir,t)+g*reservoir)
+check('intermediate equation',s.diff(intermediate,t)-g*(reservoir-intermediate))
+check('cold equation',s.diff(cold,t)-g*intermediate)
+check('local mass conservation',reservoir+intermediate+cold-1)
+check('initial cold',cold.subs(t,0))
+check('initial intermediate',intermediate.subs(t,0))
+check('initial reservoir',reservoir.subs(t,0)-1)
+M=A*r*(1-s.exp(-z))
+check('enclosed mass derivative matches local network',s.diff(M,r)-A*cold)
+check('zero inner mass',s.limit(M,r,0,dir='+'))
+check('infinite outer cold mass',s.limit(M,r,s.oo)-A*b*t)
+check('finite cutoff mass',M.subs(r,R)-A*R*(1-s.exp(-b*t/R)))
+check('finite cutoff production',s.diff(M.subs(r,R),t)-A*b*s.exp(-b*t/R))
+check('finite supply old time',s.limit(M.subs(r,R),t,s.oo)-A*R)
+check('late local cold',s.limit(cold,t,s.oo)-1)
+check('cold far tail',s.limit(r**2*cold,r,s.oo)-(b*t)**2/2)
+check('one stage far tail',s.limit(r*(1-s.exp(-z)),r,s.oo)-b*t)
+check('intermediate far tail',s.limit(r*intermediate,r,s.oo)-b*t)
+check('one stage total production divergent integrand',s.limit(r*A*g*s.exp(-z),r,s.oo)-A*b)
+y=s.symbols('y',positive=True)
+check('positive cold derivative',s.diff(1-(1+y)*s.exp(-y),y)-y*s.exp(-y))
+check('reaction matrix characteristic',s.Matrix([[-g,0,0],[g,-g,0],[0,g,0]]).charpoly().as_expr().subs(s.Symbol('lambda'),y)-y*(y+g)**2)
+# Distinct gamma rates have two eigenvalues; equal rates are an additional premise.
+h=s.symbols('h',positive=True)
+unequal=1-(h*s.exp(-g*t)-g*s.exp(-h*t))/(h-g)
+check('equal rate limit',s.limit(unequal,h,g)-cold)
+check('nonzero initial curvature',s.diff(cold,t,2).subs(t,0)-g**2)
+json.dump({'claim_id':'CE-FM-038','checks':checks,'count':len(checks),'status':'exact identities passed','limits':'Prescribed two-state conversion plus cold state; no microscopic rate, momentum, rest-energy or Einstein completion.'},open(sys.argv[1],'w'),indent=2)

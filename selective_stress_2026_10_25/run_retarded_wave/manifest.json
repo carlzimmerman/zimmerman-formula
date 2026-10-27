@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "SS-08",
+  "repository": {
+    "commit": "e268465fccac27e0f207e839b73d96f7a3c68016",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "selective_stress_2026_10_25/retarded_wave.py",
+    "--output",
+    "selective_stress_2026_10_25/run_retarded_wave/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Test fast propagation with reciprocal induced inertia retained; enlarge the domain into the true wave zone instead of placing absorption in the quasi-static near field.",
+    "coefficient_domain": "float64 finite volume, discrete-gradient matter, implicit midpoint scalar",
+    "conventions": "Radial volume absorbs 4pi; scalar speed/source radius/conversion inverse frequency of order unity; passive outer sponge",
+    "inputs": [
+      "q0=1e-4, P0=0; chi=v=0; D=.25; N=sin²(pi q/2); compact smooth source h proportional to (1-r²)^2"
+    ],
+    "bounds": {
+      "coupling": 500,
+      "c": 500,
+      "domain": 12000,
+      "inner_h": 0.05,
+      "outer_geometric_cells": 400,
+      "dt": 0.04,
+      "duration": 2000,
+      "absorber_start": 6000
+    },
+    "non_claims": [
+      "No mobile galaxy density or moving boundary",
+      "Sub-luminal scalar propagation is a changed dynamical hypothesis",
+      "No microscopic origin of g or speed",
+      "Sponge approximate outgoing transport"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T16:22:42.868400+00:00",
+    "runtime_seconds": 3.134693,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 900.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "selective_stress_2026_10_25/TARGET.md",
+    "selective_stress_2026_10_25/retarded_wave.py",
+    "physical_completion_2026_10_25/launch.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "selective_stress_2026_10_25/TARGET.md",
+      "sha256": "62213e6ca0ace3174ec8b4f0d342656d981112b09ac4111bd54fea6ebe001649",
+      "sha256_after": "62213e6ca0ace3174ec8b4f0d342656d981112b09ac4111bd54fea6ebe001649"
+    },
+    {
+      "path": "selective_stress_2026_10_25/retarded_wave.py",
+      "sha256": "386290358a6c92dec3a853d646aecf8703ef0d518c20017e5accb7e9e7e23627",
+      "sha256_after": "386290358a6c92dec3a853d646aecf8703ef0d518c20017e5accb7e9e7e23627"
+    },
+    {
+      "path": "physical_completion_2026_10_25/launch.py",
+      "sha256": "12a23018ab0ba141e0fd5597cf81767a955c4ac3fdc8863da7670f28fe541038",
+      "sha256_after": "12a23018ab0ba141e0fd5597cf81767a955c4ac3fdc8863da7670f28fe541038"
+    }
+  ],
+  "output_directory": "selective_stress_2026_10_25/run_retarded_wave",
+  "declared_results": [
+    "selective_stress_2026_10_25/run_retarded_wave/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "selective_stress_2026_10_25/run_retarded_wave/stdout.txt",
+      "sha256": "1a0eb1ee5564e9bd50c29ed8dd744a084928631219a07650fea05e2936e86253",
+      "kind": "log"
+    },
+    {
+      "path": "selective_stress_2026_10_25/run_retarded_wave/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "selective_stress_2026_10_25/run_retarded_wave/results.json",
+      "sha256": "3073804fe0b320a37f2f20fef39a84c8533b43c9a0acfeb18b5429a535071335",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

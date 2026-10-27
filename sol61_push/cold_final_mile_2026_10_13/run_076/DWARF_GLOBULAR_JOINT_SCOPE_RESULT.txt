@@ -1,0 +1,69 @@
+CE-FM-076 — shared-stiffness proxy audit, 2026-10-19 UTC
+Original theory OPEN. Self-review; no external certification.
+Base CE-FM-075. Source HEAD3c01aa286 (full hash in execution_receipt.json).
+
+Independent replay
+A standalone Python standard-library implementation reads the frozen data,
+implements the declared Wolf estimator, log-interpolated screening, nu law,
+0.15dex folded mass uncertainty and the two footings/EFE branches. No source
+script was executed and no original outputs were edited. All four CFG821
+unscreened chi-squares and grid upper bounds reproduce within1e-8.
+Canonical isolated: chi2_unscreened58.3883571036; grid upper21.8058971627pc.
+The comparison GC primary excludes Pal3 and uses its source mass/light1.6;
+dwarf sample has11 objects and source mass/light2.0. These assumptions remain
+inputs, not derived particle properties. 18 controls passed, including flat
+zero-screen controls with their own attainable minimum.
+
+New joint conditional profile (exploratory, no frozen gate replacement)
+A shared L grid of2000 log points from.01 to100000pc sums the primary three-GC
+chi-square and11-dwarf chi-square. The two minima are not estimated by checking
+whether individual intervals intersect. Canonical isolated-law result:
+ L_grid_best30.4959467807pc;
+ chi2_total66.9194422252 = dwarf64.5869496695 + GC2.33249255570;
+ Delta from separately profiled minima8.05214724914.
+Alt isolated: best29.2909438762pc, total60.1766397097, Delta7.93019844540.
+Canonical EFE bracket: best19.1047153046pc,total168.934852824,Delta9.56774292143.
+Alt EFE bracket: best18.7991004528pc,total154.639519573,Delta10.3287102103.
+These are bounded grid profiles, not certified continuous minima, calibrated
+coverage, or a Gaussian significance claim. The 24pc/22pc interval mismatch is
+reproduced as a source-relative diagnostic. It does not mean that no shared
+parameter can be evaluated: a compromise exists, but it retains a poor dwarf
+absolute fit. The source's failed branch is not repaired by renaming the fit.
+
+What drives the canonical isolated mismatch
+Draco sigma_obs/sigma_unscreened2.07066 contributes17.36546chi2;
+UrsaMinor1.93458 contributes14.25072;
+CanesVenaticiI1.73089 contributes9.20836;
+Sextans1.79598 contributes6.02559.
+Screening alone lowers these predictions further. This isolates why varying
+only stiffness cannot remove those positive residuals at fixed mass model.
+It does not prove that cold mass is the unique explanation. A signed source,
+actual cold inventory/profile, host/environment, equilibrium, binaries and
+uncertainty model must be checked before a particle or population claim.
+Some systems are below the unscreened prediction (e.g. CraterII); a common
+positive boost cannot be assumed to repair every object. Source p values use
+10degrees of freedom with no explicit common parameter fitted at L=0; this
+audit replays chi-square and does not certify the probability model or p value.
+
+Provenance and resources
+check.py, results.json and execution_receipt.json preserve code, actual source
+hashes before/after, result hash, Python version, HEAD, grid bounds and runtime.
+Execution completed in~0.18seconds of calculation, sequential stdlib loops,
+no large arrays, no live particle/PDE/1024^3 experiment. This is a custom
+execution receipt, not a mathbox-v2 validated manifest. No hard memory cap was
+enforced. Source files were unchanged. Scientific interpretations are limited
+by the deliberately approximate kinematic/screening likelihood.
+
+Other new clues and deferred work
+ARGON11's latest STATUS says owner chose leave queued; no completed nonlinear
+fragmentation result was found or adopted. Live chain/waiters left untouched.
+New T15/T16/T17 accounting correction commits and CFG453 pointers are material
+new source records, but their full dependencies are not certified by this
+kinematic audit. Do not reuse old reservoir-complement/misdefined deficit
+claims as fresh evidence. CFG816 pair-table conversion is preparation, not a
+new executed DR3 physics verdict. Source documents/frozen criteria unchanged.
+Next: reconcile corrected CFG453 census units with any proposed same-galaxy
+cold source profile, then evaluate its positive/negative residual effects on
+these individual dwarfs and the GC controls with independently constrained
+nuisance values. No mass population, normalization, vector health, formation,
+metric/optics, or native cosmology obligation is closed here.

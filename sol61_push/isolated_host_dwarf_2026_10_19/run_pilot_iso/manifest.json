@@ -1,0 +1,214 @@
+{
+  "schema_version": 2,
+  "claim_id": "ISO_HOST_DAUGHTER_CARRIER_pilot_iso",
+  "repository": {
+    "commit": "d646067d68e0f68d5bffade36f5b4c8eba7e0190",
+    "dirty": true
+  },
+  "command": [
+    "nice",
+    "-n",
+    "19",
+    "/usr/bin/python3",
+    "sol61_push/isolated_host_dwarf_2026_10_19/run_dwarf.py",
+    "--output",
+    "sol61_push/isolated_host_dwarf_2026_10_19/run_pilot_iso",
+    "--ncold",
+    "256",
+    "--nstar",
+    "32",
+    "--duration",
+    "1000"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.12.11"
+      },
+      {
+        "name": "simulation Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "C backend compiler",
+        "version": "Apple clang21.0.0; cc -O3 -dynamiclib; no fast-math/OpenMP"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite prepared dilute daughter-carrier Boltzmann-Poisson dwarf evolution and E/vector-J closure under declared initial state and numerical scales",
+    "coefficient_domain": "IEEE754 double; softened Newtonian N-body and stochastic finite-support elastic carrier scattering",
+    "conventions": "pc,Msun,Myr; live dwarf stars/cold; optional prescribed static Plummer host; no target-profile forcing or deleted particles",
+    "inputs": [
+      "CONTRACT.md scenario; fixed seed87319; revised .3cm2/g carrier kernel"
+    ],
+    "bounds": {
+      "case": "pilot_iso",
+      "case_arguments": [
+        "--ncold",
+        "256",
+        "--nstar",
+        "32",
+        "--duration",
+        "1000"
+      ],
+      "baseline_Ncold": 2048,
+      "baseline_Nstar": 256,
+      "baseline_dt_Myr": 2,
+      "baseline_duration_Myr": 10000,
+      "softening_pc": 40,
+      "collision_support_pc": 200
+    },
+    "non_claims": [
+      "Not full canonical polarization theory",
+      "Not a production-derived initial state",
+      "No continuum, universal core formation or universal exclusion conclusion",
+      "No live host response, radiative cooling, gas history or cosmological assembly"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng PCG64",
+    "seed": 87319,
+    "collision_seed": 1087319,
+    "initial_phasespace_seed": 87319
+  },
+  "run": {
+    "started_at": "2026-10-20T01:58:31.624537+00:00",
+    "runtime_seconds": 0.565259,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 1800.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 1750,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/isolated_host_dwarf_2026_10_19/CONTRACT.md",
+    "sol61_push/isolated_host_dwarf_2026_10_19/source_inputs.json",
+    "sol61_push/isolated_host_dwarf_2026_10_19/run_dwarf.py",
+    "sol61_push/isolated_host_dwarf_2026_10_19/dynamics.py",
+    "sol61_push/isolated_host_dwarf_2026_10_19/direct_gravity.c",
+    "sol61_push/isolated_host_dwarf_2026_10_19/direct_gravity.dylib",
+    "sol61_push/isolated_host_dwarf_2026_10_19/launch.py",
+    "sol61_push/isolated_host_dwarf_2026_10_19/test_driver.py",
+    "sol61_push/isolated_host_dwarf_2026_10_19/test_dynamics.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/CONTRACT.md",
+      "sha256": "c1d1e7708d4bb0a21e44be91d7578da89d7f3852df4839051c02a40f4a65d552",
+      "sha256_after": "c1d1e7708d4bb0a21e44be91d7578da89d7f3852df4839051c02a40f4a65d552"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/source_inputs.json",
+      "sha256": "649c60ffd231c727a3499d080476d54b59f9e737daf4c87390d1894bb0acc009",
+      "sha256_after": "649c60ffd231c727a3499d080476d54b59f9e737daf4c87390d1894bb0acc009"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/run_dwarf.py",
+      "sha256": "e25a43e7fd2ac5d609c4716a80af250691cea50b6b961e8ab0ba651ef2e08b4d",
+      "sha256_after": "e25a43e7fd2ac5d609c4716a80af250691cea50b6b961e8ab0ba651ef2e08b4d"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/dynamics.py",
+      "sha256": "813207ab265471edb4c14ea1e637e05bfcfd3801ad9d0c431ac1ba2267ffd8fc",
+      "sha256_after": "813207ab265471edb4c14ea1e637e05bfcfd3801ad9d0c431ac1ba2267ffd8fc"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/direct_gravity.c",
+      "sha256": "87847d5e8bae76941d11c3faa30a3c8032ae50f1b433e89e9e180523451b4943",
+      "sha256_after": "87847d5e8bae76941d11c3faa30a3c8032ae50f1b433e89e9e180523451b4943"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/direct_gravity.dylib",
+      "sha256": "828f6a2e8688e6c497bbd593bd46e178693b48eb5708b9b4ace2635235cfb4af",
+      "sha256_after": "828f6a2e8688e6c497bbd593bd46e178693b48eb5708b9b4ace2635235cfb4af"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/launch.py",
+      "sha256": "0e463af81a79d3833708933f2bf72834a189683c9833c5a0b7c960a15758bfb1",
+      "sha256_after": "0e463af81a79d3833708933f2bf72834a189683c9833c5a0b7c960a15758bfb1"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/test_driver.py",
+      "sha256": "a3dec77f467887f169ba2ef64012cd1c85a2815746129acdbda1eb0b9e3879dd",
+      "sha256_after": "a3dec77f467887f169ba2ef64012cd1c85a2815746129acdbda1eb0b9e3879dd"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/test_dynamics.py",
+      "sha256": "b5e5812221d2362e2a8a849aaa0c9652fbf210941972a7554ad2214036e69e4a",
+      "sha256_after": "b5e5812221d2362e2a8a849aaa0c9652fbf210941972a7554ad2214036e69e4a"
+    }
+  ],
+  "output_directory": "sol61_push/isolated_host_dwarf_2026_10_19/run_pilot_iso",
+  "declared_results": [
+    "sol61_push/isolated_host_dwarf_2026_10_19/run_pilot_iso/results.json",
+    "sol61_push/isolated_host_dwarf_2026_10_19/run_pilot_iso/initial.npz",
+    "sol61_push/isolated_host_dwarf_2026_10_19/run_pilot_iso/final.npz"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/run_pilot_iso/stdout.txt",
+      "sha256": "3b60c32cd674bcddb971a1aa264d4e66d55d36639dfe6d5fc62a195aa15a57f2",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/run_pilot_iso/stderr.txt",
+      "sha256": "1ae2ce53f6c4a3265acd385e7e4a21d827a2b5594337d0d9ae68b92a856b30dc",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/run_pilot_iso/results.json",
+      "sha256": "dee81f4db8cba684ef8b434af7bacf9f6e23e00550f3e8eeb319899ff17b74d6",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/run_pilot_iso/initial.npz",
+      "sha256": "2ec9e2cbd8c05d3cec65b349941644feb9c592ea89c5f480b11db93351b7698b",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/isolated_host_dwarf_2026_10_19/run_pilot_iso/final.npz",
+      "sha256": "618732d05bda87663ef8082ab14d4b6bb7ac931525051f5811fe93eb0c806e19",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

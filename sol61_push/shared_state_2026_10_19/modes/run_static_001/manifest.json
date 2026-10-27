@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-FM090-SHARED-STATIC-L1-SOURCE-2026-10-19",
+  "repository": {
+    "commit": "aa0d1a83d15c1fe2a0c9d32f189bdbbff49dd19a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/shared_state_2026_10_19/modes/check_static_source.py",
+    "--input",
+    "sol61_push/shared_state_2026_10_19/modes/run_001/results.json",
+    "--result",
+    "sol61_push/shared_state_2026_10_19/modes/run_static_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Closed COM-projected common-profile static l=1 gravitational source kernel agrees with the recorded finite Rayleigh-Ritz calculation at kR=.01,.03,.1,.3,1,3 to relative tolerance1e-6; direct Bessel quadratures at .1,1,3 agree to1e-60 at80decimal digits; coefficient C4=1/(5pi²)−2/105 agrees with q=1e-4 to1e-8.",
+    "coefficient_domain": "80-decimal-digit mpmath floating arithmetic, not interval-certified",
+    "conventions": "Same n=1 TF common-profile state, object volume4piR³/3, total center of mass projected out; positive static susceptibility to −Jrho; l=1 internal sector only",
+    "inputs": [
+      "run_001/results.json from bounded l=1 Ritz computation",
+      "q=kR=.01,.03,.1,.3,1,3; direct quadrature subset .1,1,3; infrared q=.0001"
+    ],
+    "bounds": {
+      "decimal_digits": 80,
+      "Ritz_relative_tolerance": 1e-06,
+      "direct_quadrature_comparison_tolerance": 1e-60,
+      "infrared_relative_tolerance": 1e-08
+    },
+    "non_claims": [
+      "No interval certification",
+      "No full angular susceptibility: l=0,l=2 and higher channels are not included",
+      "No finite-GP, occupancy, nonlinear saturation or universal normalization result"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T14:45:03.300316+00:00",
+    "runtime_seconds": 0.563932,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/shared_state_2026_10_19/modes/check_static_source.py",
+    "sol61_push/shared_state_2026_10_19/modes/run_001/results.json",
+    "sol61_push/shared_state_2026_10_19/modes/source_pins.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/shared_state_2026_10_19/modes/check_static_source.py",
+      "sha256": "b5d03036cb2ceb884f48af255471cc66153aa10ce3dc5ffa8d09da15028dc19b",
+      "sha256_after": "b5d03036cb2ceb884f48af255471cc66153aa10ce3dc5ffa8d09da15028dc19b"
+    },
+    {
+      "path": "sol61_push/shared_state_2026_10_19/modes/run_001/results.json",
+      "sha256": "2715b5536fa0bc4de8f091c3df4e8bfeb89c0f95f44b4ce9c5a022ad633920dd",
+      "sha256_after": "2715b5536fa0bc4de8f091c3df4e8bfeb89c0f95f44b4ce9c5a022ad633920dd"
+    },
+    {
+      "path": "sol61_push/shared_state_2026_10_19/modes/source_pins.json",
+      "sha256": "d0e072d3e550e1ccf96d8c500d82ac5d7c9b1c1e0f82f02f6bf19b6cf82802f8",
+      "sha256_after": "d0e072d3e550e1ccf96d8c500d82ac5d7c9b1c1e0f82f02f6bf19b6cf82802f8"
+    }
+  ],
+  "output_directory": "sol61_push/shared_state_2026_10_19/modes/run_static_001",
+  "declared_results": [
+    "sol61_push/shared_state_2026_10_19/modes/run_static_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/shared_state_2026_10_19/modes/run_static_001/stdout.txt",
+      "sha256": "707e3aac2d96896ca92353efd2daa265b6b015b8f9cd6885c5bd12b84ee35aca",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/shared_state_2026_10_19/modes/run_static_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/shared_state_2026_10_19/modes/run_static_001/results.json",
+      "sha256": "d5620503743025e0851fe73ccccd2a6c322416c4e2c81a8f92ebdc91a17304e8",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

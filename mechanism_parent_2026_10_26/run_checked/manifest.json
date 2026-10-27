@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "LOCAL_TRACKING_PARENT_20261026_CHECKED",
+  "repository": {
+    "commit": "15b4863c1f074151700d397aea70675b800debd1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "mechanism_parent_2026_10_26/check_parent_checked.py",
+    "--output",
+    "mechanism_parent_2026_10_26/run_checked/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact elimination and determinant identities; positive-energy longitudinal spectra in a finite parameter grid; static mediator energy convergence; reversible zero-chi-field response of one linear mode.",
+    "coefficient_domain": "symbolic rational expressions and IEEE float64/complex128",
+    "conventions": "c=1, metric (-,+,+,+), cs variable means sound speed squared; w=n=M=1 in spectrum tests",
+    "inputs": [
+      "DERIVATION.md",
+      "cs_squared in [0.001,0.1,0.6]; D in [0.01,0.1,0.9(1-cs_squared),1-cs_squared,1.2(1-cs_squared)]; h in [0,0.2,2,10]"
+    ],
+    "bounds": {
+      "wavenumbers": "41 log-spaced k from 0.01 to 100",
+      "static_grid_sizes": [
+        64,
+        128,
+        256,
+        512
+      ],
+      "linear_evolution_time": 100
+    },
+    "non_claims": [
+      "No microscopic coefficient prediction",
+      "No nonlinear or arbitrary-background stability",
+      "No full CC matching",
+      "No radiation escape or galaxy formation",
+      "No quantum UV completion"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-26T16:23:04.402010+00:00",
+    "runtime_seconds": 1.517241,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "mechanism_parent_2026_10_26/check_parent_checked.py",
+    "mechanism_parent_2026_10_26/DERIVATION.md",
+    "mechanism_parent_2026_10_26/TARGET.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "mechanism_parent_2026_10_26/check_parent_checked.py",
+      "sha256": "04b7f7267de4988031fb18669a505ea918d28e4568455b1bdafe2e091fc5b8a6",
+      "sha256_after": "04b7f7267de4988031fb18669a505ea918d28e4568455b1bdafe2e091fc5b8a6"
+    },
+    {
+      "path": "mechanism_parent_2026_10_26/DERIVATION.md",
+      "sha256": "1bb8fd9d035171fe2bd1194b12481c20a786946afcbf9843a1ac67f4bca38e61",
+      "sha256_after": "1bb8fd9d035171fe2bd1194b12481c20a786946afcbf9843a1ac67f4bca38e61"
+    },
+    {
+      "path": "mechanism_parent_2026_10_26/TARGET.md",
+      "sha256": "9c8ce22262f7142650b9f98ab1a59438c860ebb7b974f357dcbbb96a58367104",
+      "sha256_after": "9c8ce22262f7142650b9f98ab1a59438c860ebb7b974f357dcbbb96a58367104"
+    }
+  ],
+  "output_directory": "mechanism_parent_2026_10_26/run_checked",
+  "declared_results": [
+    "mechanism_parent_2026_10_26/run_checked/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "mechanism_parent_2026_10_26/run_checked/stdout.txt",
+      "sha256": "1cc70e98ae043dabe2205bea61c308b9091b161206b5c87f3469ce7839d6847f",
+      "kind": "log"
+    },
+    {
+      "path": "mechanism_parent_2026_10_26/run_checked/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "mechanism_parent_2026_10_26/run_checked/result.json",
+      "sha256": "e6ff35ee3a65091071bb64c9747b8a60831ea368f682e7ca8e823be11742859d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "schema_version": 2,
+  "claim_id": "FINITE_AGE_RADIATIVE_SUBNETWORK_2026_10_25",
+  "repository": {
+    "commit": "5d3367ed3651795c17b66a47ff2a7bf98bae8d38",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "two_state_mechanism_2026_10_25/nonequilibrium/kinetics.py",
+    "--spectrum",
+    "two_state_mechanism_2026_10_25/nonequilibrium/run_refine/results.json",
+    "--output",
+    "two_state_mechanism_2026_10_25/nonequilibrium/run_kinetics/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conservative finite-age optically thin radiative subnetwork over four continuous mass-radius profiles with shared microscopic parameters",
+    "coefficient_domain": "Double precision nonrelativistic Born-Oppenheimer Coulomb radial solver",
+    "conventions": "Atomic units mC=hbar=Q²/(4pi epsilon)=1; all nuclear rotational multiplicities without spin exchange projection",
+    "inputs": [
+      "kinetics.py",
+      "KINETICS.md",
+      "run_spectrum/results.json",
+      "run_refine/results.json"
+    ],
+    "bounds": {
+      "mass_ratio": 100,
+      "alpha": [
+        0.1,
+        0.15,
+        0.2
+      ],
+      "light_mass_eV": [
+        1,
+        1000000.0
+      ],
+      "mass_points": 13,
+      "age_Gyr": 10,
+      "temperature_table": [
+        1e-08,
+        0.3
+      ],
+      "target": "disk molecular mass >=.8 and each other <=.2"
+    },
+    "non_claims": [
+      "No full chemical network",
+      "No gravity or rotation evolution",
+      "No exact continuous-parameter bound from a finite rate table",
+      "Opacity gate is finite sampled spectrum",
+      "Not successful tethered disks or acceleration law"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T20:13:41.985726+00:00",
+    "runtime_seconds": 0.025454,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 3000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "two_state_mechanism_2026_10_25/nonequilibrium/run_kinetics/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "two_state_mechanism_2026_10_25/nonequilibrium/kinetics.py",
+    "two_state_mechanism_2026_10_25/nonequilibrium/KINETICS.md",
+    "two_state_mechanism_2026_10_25/nonequilibrium/run_spectrum/results.json",
+    "two_state_mechanism_2026_10_25/nonequilibrium/run_refine/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "two_state_mechanism_2026_10_25/nonequilibrium/kinetics.py",
+      "sha256": "be1bbb4e27f6ae1f85d494f5e69dc1d33941d712744fadcbf2ecc2aca4308e68",
+      "sha256_after": "be1bbb4e27f6ae1f85d494f5e69dc1d33941d712744fadcbf2ecc2aca4308e68"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_25/nonequilibrium/KINETICS.md",
+      "sha256": "bc5ce9dae259b0dc6e0e8c649302e6739bc1d269d105fe24cf660c94837b5f6b",
+      "sha256_after": "bc5ce9dae259b0dc6e0e8c649302e6739bc1d269d105fe24cf660c94837b5f6b"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_25/nonequilibrium/run_spectrum/results.json",
+      "sha256": "ef31b9db07b29912ee99e8dea7e752ca748aee4f99d92f058924b8ab3224bffe",
+      "sha256_after": "ef31b9db07b29912ee99e8dea7e752ca748aee4f99d92f058924b8ab3224bffe"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_25/nonequilibrium/run_refine/results.json",
+      "sha256": "6238ded1fae611cdec0dcbb12cb3896f263ae3a2a451717c459b5d3f224aba13",
+      "sha256_after": "6238ded1fae611cdec0dcbb12cb3896f263ae3a2a451717c459b5d3f224aba13"
+    }
+  ],
+  "output_directory": "two_state_mechanism_2026_10_25/nonequilibrium/run_kinetics",
+  "declared_results": [
+    "two_state_mechanism_2026_10_25/nonequilibrium/run_kinetics/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "two_state_mechanism_2026_10_25/nonequilibrium/run_kinetics/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_25/nonequilibrium/run_kinetics/stderr.txt",
+      "sha256": "044c0b8436bb75885bfef0f7cbc00d71f1a99f5e0e85be6e49f1725b3a03f10b",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: two_state_mechanism_2026_10_25/nonequilibrium/run_kinetics/results.json"
+  ]
+}

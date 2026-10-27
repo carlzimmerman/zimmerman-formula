@@ -1,0 +1,165 @@
+import Mathlib
+
+/-! Prospective minimal metric realization of existing C2 polynomial, not an
+unspecified gravity action or Einstein/Friedmann solution. Independent lapse
+and spatial potentials; actual sqrt/inverse action derivatives and canonical
+clock dictionary. Genuine arbitrary-measure zero-charge integral restriction;
+charge conservation, healthy/future orientation and closed flux remain explicit
+physical inputs, not a PDE theorem. No receiver deposition asserted. -/
+noncomputable section
+open MeasureTheory
+namespace FrameworkMinimalMetric
+
+def temporal (Φ e : ℝ) : ℝ := 2 * Φ * e + 1
+def spatial (Ψ e : ℝ) : ℝ := (-2 * Ψ) * e + 1
+def metricVolume (Φ Ψ e : ℝ) : ℝ := Real.sqrt (temporal Φ e * spatial Ψ e ^ 3)
+def Xmetric (u S Φ Ψ e : ℝ) : ℝ := (u ^ 2 / temporal Φ e - S / spatial Ψ e) / 2
+def Xflat (u S : ℝ) : ℝ := (u ^ 2 - S) / 2
+def P (a X0 ρ0 X : ℝ) : ℝ := -ρ0 + a / 2 * (X - X0) ^ 2
+def PX (a X0 X : ℝ) : ℝ := a * (X - X0)
+def matterDensity (a X0 ρ0 u S Φ Ψ e : ℝ) : ℝ :=
+  metricVolume Φ Ψ e * P a X0 ρ0 (Xmetric u S Φ Ψ e)
+def T00 (a X0 ρ0 u S : ℝ) : ℝ := PX a X0 (Xflat u S) * u ^ 2 - P a X0 ρ0 (Xflat u S)
+def spatialTrace (a X0 ρ0 u S : ℝ) : ℝ := PX a X0 (Xflat u S) * S + 3 * P a X0 ρ0 (Xflat u S)
+def rho (a X0 ρ0 X : ℝ) : ℝ := 2 * X * PX a X0 X - P a X0 ρ0 X
+
+theorem polynomial_derivative (a X0 ρ0 X : ℝ) : HasDerivAt (P a X0 ρ0) (PX a X0 X) X := by
+  have h := ((((hasDerivAt_id X).sub_const X0).pow 2).const_mul (a / 2)).const_add (-ρ0)
+  apply h.congr_deriv
+  dsimp [PX]
+  ring
+
+/-- Actual determinant square-root derivative at the weak-metric base point. -/
+theorem determinant_derivative (Φ Ψ : ℝ) : HasDerivAt (metricVolume Φ Ψ) (Φ - 3 * Ψ) 0 := by
+  have ht : HasDerivAt (temporal Φ) (2 * Φ) 0 := by
+    have h := ((hasDerivAt_id (0 : ℝ)).const_mul (2 * Φ)).add_const 1
+    exact h.congr_deriv (by ring)
+  have hs : HasDerivAt (spatial Ψ) (-2 * Ψ) 0 := by
+    have h := ((hasDerivAt_id (0 : ℝ)).const_mul (-2 * Ψ)).add_const 1
+    exact h.congr_deriv (by ring)
+  have h := (ht.mul (hs.pow 3)).sqrt (by norm_num [temporal, spatial])
+  apply h.congr_deriv
+  norm_num [temporal, spatial]
+  ring
+
+/-- Actual inverse-metric invariant derivative; Phi and Psi remain independent. -/
+theorem invariant_derivative (u S Φ Ψ : ℝ) :
+    HasDerivAt (Xmetric u S Φ Ψ) (-Φ * u ^ 2 - Ψ * S) 0 := by
+  have ht : HasDerivAt (temporal Φ) (2 * Φ) 0 := by
+    have h := ((hasDerivAt_id (0 : ℝ)).const_mul (2 * Φ)).add_const 1
+    exact h.congr_deriv (by ring)
+  have hs : HasDerivAt (spatial Ψ) (-2 * Ψ) 0 := by
+    have h := ((hasDerivAt_id (0 : ℝ)).const_mul (-2 * Ψ)).add_const 1
+    exact h.congr_deriv (by ring)
+  have h1 := (hasDerivAt_const (0 : ℝ) (u ^ 2)).div ht (by norm_num [temporal])
+  have h2 := (hasDerivAt_const (0 : ℝ) S).div hs (by norm_num [spatial])
+  have h := (h1.sub h2).div_const 2
+  apply h.congr_deriv
+  norm_num [temporal, spatial]
+  ring
+
+/-- Differentiate actual sqrt(-g)P(X), including determinant and inverse coefficients. -/
+theorem actual_metric_stress_derivative (a X0 ρ0 u S Φ Ψ : ℝ) :
+    HasDerivAt (matterDensity a X0 ρ0 u S Φ Ψ)
+      (-Φ * T00 a X0 ρ0 u S - Ψ * spatialTrace a X0 ρ0 u S) 0 := by
+  have hp := (polynomial_derivative a X0 ρ0 (Xmetric u S Φ Ψ 0)).comp 0
+    (invariant_derivative u S Φ Ψ)
+  have h := (determinant_derivative Φ Ψ).mul hp
+  apply h.congr_deriv
+  norm_num [temporal, spatial, metricVolume, Xmetric, Xflat, T00, spatialTrace, PX, P]
+  ring
+
+/-- Homogeneous stress coefficient and exact critical-point canonical stress. -/
+theorem homogeneous_dictionary (a X0 ρ0 u : ℝ) :
+    T00 a X0 ρ0 u 0 = rho a X0 ρ0 (u ^ 2 / 2) ∧
+    spatialTrace a X0 ρ0 u 0 = 3 * P a X0 ρ0 (u ^ 2 / 2) ∧
+    rho a X0 ρ0 X0 = ρ0 ∧ P a X0 ρ0 X0 = -ρ0 := by
+  unfold T00 rho spatialTrace Xflat PX P
+  constructor
+  · ring
+  constructor
+  · ring
+  constructor <;> ring
+
+def properX (N v : ℝ) : ℝ := v ^ 2 / (2 * N ^ 2)
+def homogeneousL (a X0 ρ0 N V v : ℝ) : ℝ := N * V * P a X0 ρ0 (properX N v)
+def momentum (a X0 N V v : ℝ) : ℝ := V * PX a X0 (properX N v) * v / N
+
+theorem canonical_momentum (a X0 ρ0 N V v : ℝ) (hN : N ≠ 0) :
+    HasDerivAt (homogeneousL a X0 ρ0 N V) (momentum a X0 N V v) v := by
+  have hx := ((hasDerivAt_id v).pow 2).div_const (2 * N ^ 2)
+  have hp := (polynomial_derivative a X0 ρ0 (properX N v)).comp v hx
+  have h := hp.const_mul (N * V)
+  apply h.congr_deriv
+  dsimp [momentum, properX]
+  field_simp
+  ring
+
+/-- Actual canonical Legendre transform; coordinate Hamiltonian is lapse times proper-volume energy. -/
+theorem canonical_hamiltonian (a X0 ρ0 N V v : ℝ) (hN : N ≠ 0) :
+    momentum a X0 N V v * v - homogeneousL a X0 ρ0 N V v =
+      N * V * rho a X0 ρ0 (properX N v) := by
+  unfold momentum homogeneousL rho properX
+  field_simp
+
+/-- Exact critical state carries zero shift momentum and unchanged proper energy density. -/
+theorem exact_vacuum_clock (a X0 ρ0 N V v : ℝ) (hN : N ≠ 0) (hX : properX N v = X0) :
+    momentum a X0 N V v = 0 ∧ rho a X0 ρ0 (properX N v) = ρ0 ∧
+      (momentum a X0 N V v * v - homogeneousL a X0 ρ0 N V v) / N = V * ρ0 := by
+  have hp : momentum a X0 N V v = 0 := by unfold momentum; rw [hX]; simp [PX]
+  refine ⟨hp, ?_, ?_⟩
+  · rw [hX]
+    simp [rho, PX, P]
+  · rw [canonical_hamiltonian a X0 ρ0 N V v hN, hX]
+    have hr : rho a X0 ρ0 X0 = ρ0 := by simp [rho, PX, P]
+    rw [hr]
+    field_simp
+
+def properCharge (a X0 X : ℝ) : ℝ := PX a X0 X * Real.sqrt (2 * X)
+
+/-- Healthy future weight prevents cancellations of proper critical-state charge. -/
+theorem healthy_charge_zero_iff (a X0 X w : ℝ) (ha : 0 < a) (hX0 : 0 < X0)
+    (hX : X0 ≤ X) (hw : 0 < w) : w * properCharge a X0 X = 0 ↔ X = X0 := by
+  have hXp : 0 < X := lt_of_lt_of_le hX0 hX
+  have hs : 0 < Real.sqrt (2 * X) := by positivity
+  constructor
+  · intro hz
+    have hn := (mul_eq_zero.mp hz).resolve_left hw.ne'
+    unfold properCharge PX at hn
+    have hd := (mul_eq_zero.mp hn).resolve_right hs.ne'
+    have hx := (mul_eq_zero.mp hd).resolve_left ha.ne'
+    linarith
+  · intro hx
+    rw [hx]
+    simp [properCharge, PX]
+
+/-- Actual arbitrary-measure integral, not a finite-quadrature substitute. Conservation
+of Q and source-free/closed-flow admission are physical leaves supplied separately. -/
+theorem zero_integrated_charge_ground {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
+    (X w : Ω → ℝ) (a X0 ρ0 : ℝ) (ha : 0 < a) (hX0 : 0 < X0)
+    (hhealth : ∀ᵐ z ∂μ, X0 ≤ X z) (hfuture : ∀ᵐ z ∂μ, 0 < w z)
+    (hint : Integrable (fun z => w z * properCharge a X0 (X z)) μ)
+    (hQ : (∫ z, w z * properCharge a X0 (X z) ∂μ) = 0) :
+    ∀ᵐ z ∂μ, X z = X0 ∧ rho a X0 ρ0 (X z) = ρ0 := by
+  have hnonneg : 0 ≤ᵐ[μ] (fun z => w z * properCharge a X0 (X z)) := by
+    filter_upwards [hhealth, hfuture] with z hX hw
+    unfold properCharge PX
+    exact mul_nonneg hw.le (mul_nonneg (mul_nonneg ha.le (sub_nonneg.mpr hX)) (Real.sqrt_nonneg _))
+  have hzero := (integral_eq_zero_iff_of_nonneg_ae hnonneg hint).mp hQ
+  filter_upwards [hhealth, hfuture, hzero] with z hX hw hz
+  have hg := (healthy_charge_zero_iff a X0 (X z) (w z) ha hX0 hX hw).mp hz
+  refine ⟨hg, ?_⟩
+  rw [hg]
+  simp [rho, PX, P]
+
+end FrameworkMinimalMetric
+#print axioms FrameworkMinimalMetric.polynomial_derivative
+#print axioms FrameworkMinimalMetric.determinant_derivative
+#print axioms FrameworkMinimalMetric.invariant_derivative
+#print axioms FrameworkMinimalMetric.actual_metric_stress_derivative
+#print axioms FrameworkMinimalMetric.homogeneous_dictionary
+#print axioms FrameworkMinimalMetric.canonical_momentum
+#print axioms FrameworkMinimalMetric.canonical_hamiltonian
+#print axioms FrameworkMinimalMetric.exact_vacuum_clock
+#print axioms FrameworkMinimalMetric.healthy_charge_zero_iff
+#print axioms FrameworkMinimalMetric.zero_integrated_charge_ground

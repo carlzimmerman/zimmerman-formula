@@ -1,0 +1,411 @@
+\section{Introduction} \label{sec1}
+It was noted by Fock \cite{Fock:1937} in 1937 that it is convenient
+to represent Green functions as integrals over an auxiliary
+coordinate (the so-called ``proper time'') of a kernel satisfying
+the heat equation. Later on Schwinger \cite{Schwinger:1951} recognised 
+that this representations makes many issues related to renormalization
+and gauge invariance in external fields
+more transparent. These two works introduced the
+heat kernel to quantum theory. DeWitt made the heat kernel one of the
+main tools of his manifestly covariant approach 
+\cite{DeWitt:1965,Dewitt:1967yk,Dewitt:1967ub,Dewitt:1967uc}
+to quantum field theory and quantum gravity which became dominant 
+for many years. 
+
+Heat kernel is a classical subject in mathematics 
+\cite{Hadamard:1932}\footnote{A historical survey of 
+the mathematical literature on the heat kernel expansion
+can be found in \cite{Gilkey:1995}.}.
+Asymptotics of the heat kernel are closely related to the eigenvalue
+asymptotics  found by H.~Weyl \cite{Weyl:1912,Weyl:1915} 
+and studied further in \cite{Mina,MinaPle}. The problem, as it was
+formulated by Kac \cite{Kac:1966}, reads: ``Can one hear the shape of
+a drum?''. In other words, this is the problem of recovering geometry
+of a manifold from the spectrum of a natural differential operator.
+Heat kernel coefficients proved very useful in this context.
+On the other hand, the heat kernel is also an adequate tool
+to study the index theorem of Atiyah and Singer 
+\cite{Atiyah:1963a,Gilkey:1973,AtiyahBP:1973}.
+
+By about 1990 the heat kernel expansion on manifolds without boundaries
+or with boundaries and simplest local boundary conditions on them
+was well understood. Also, the heat kernel became a standard tool
+in calculations of the vacuum polarisation, the Casimir effect, and
+in study of quantum anomalies. Later on, progress in theoretical
+physics, especially in string theory and related areas, and parallel
+developments in mathematics made this field highly specialised.
+New results on non-standard boundary conditions (as, e.g., containing
+tangential derivatives on the boundary or non-localities) or on
+non-standard geometries (domain walls) were scattered in large
+amounts of physical and mathematical literature. The aim of this
+report is to present a unifying approach to the heat kernel expansion
+and to supply the reader with a ``user-friendly'' guide to
+the field. The main idea which we shall pursue is the universality of
+the heat kernel. A single calculation (though, sometimes, quite
+involved) may help in a large variety of applications regardless
+of such details as spin, gauge group, etc. As well, just a single
+universal object in fact describes counterterms, anomalies,
+some asymptotics of the effective action, and much more.
+
+To illustrate the use of the heat kernel in quantum field theory
+let us
+consider the generating functional for the Green functions of the 
+field $\phi$ in the path integral representation
+\begin{equation}
+Z[J]=\int \mathcal{D} \phi \exp (-\mathcal{L}(\phi,J)) \ . \label{pathint}
+\end{equation}
+The heat kernel methods are almost exclusively
+used for the one-loop calculations. In this approximation it is enough
+to expand the action $\mathcal{L}$ to up to the quadratic order in quantum 
+fluctuations $\phi$.
+\begin{equation}
+\mathcal{L}=\mathcal{L}_{\rm cl} + \langle \phi ,J \rangle +
+\langle \phi, D\phi \rangle \,,\label{actquad}
+\end{equation}
+where $\mathcal{L}_{\rm cl}$ is the action on a classical background,
+$\langle .,.\rangle$ denotes an inner product on the space of quantum
+fields. Usually, this inner product is just an integral over the underlying
+space. For real one-component scalar fields it reads
+\begin{equation}
+\langle \phi_1, \phi_2 \rangle =\int d^n x \sqrt{g} \phi_1(x)\phi_2(x)
+\,.\label{inprosca}
+\end{equation}
+The linear term in (\ref{actquad}) contains in general contributions
+from the external sources of the field $\phi$ and from the first 
+variation of the classical action. If the background satisfies 
+classical equation of motion for the field $\phi$, the latter part
+of the linear term vanishes, though the former one (external sources)
+should be kept arbitrary if one wishes to study correlation functions
+of $\phi$. We stress that the background and quantum fields may be of
+completely different nature. For example, it is a meaningful problem
+to consider pure quantum scalar fields on the background of pure
+classical gravity. $D$ is a differential operator. After a suitable 
+number of integrations by part it is always possible to convert the
+quadratic part of the action to the form given in (\ref{actquad}).
+We postpone discussion of possible boundary terms to the next
+sections. In the simplest case of quantum scalar field on the background
+of a classical geometry
+$D$ is a Laplacian with a mass term:
+\begin{equation}
+D=D_0:=-\nabla_\mu\nabla^\mu +m^2 \,.\label{simplestD}
+\end{equation}
+Just this simple example is enough to illustrate the material of this
+section. Note, that in this case $J$ has no contribution from
+the first variation of the classical action since gravity is not
+quantised.
+
+
+The path integral measure is defined by:
+\begin{equation}
+1=\int \mathcal{D} \phi \exp (-\langle\phi ,\phi \rangle) \ . \label{measure}
+\end{equation}
+Strictly speaking the right hand side of (\ref{measure}) is divergent.
+The essence of the condition (\ref{measure}) is that
+this divergence does not depend on external sources and on the
+background geometry and, therefore, may be absorbed in an irrelevant
+normalisation constant. 
+The Gaussian integral (\ref{pathint}) can be evaluated giving
+\begin{equation}
+Z[J]=e^{-\mathcal{L}_{\rm cl}}
+{\det }^{-\frac 12} (D) \exp \left( \frac 14 J D^{-1} J \right)
+ \, . \label{pathdet}
+\end{equation}
+
+We stress that the equation (\ref{pathdet}) is true only if
+the operator $D$ is self-adjoint. This means that $D$ is 
+symmetric or formally self-adjoint with respect to the
+scalar product $\langle .,.\rangle$:
+\begin{equation}
+\langle \phi_1,D\phi_2 \rangle =
+\langle D\phi_1,\phi_2 \rangle \label{def-sym-op}
+\end{equation}
+for any $\phi_1$, $\phi_2$, and that the domains of definition
+of $D$ and its adjoint coincide. We will not care about the
+second requirement since it involves mathematical machinery
+\cite{ReedSimon}
+going beyond the scope of the present report. The first requirement
+(\ref{def-sym-op}) poses important restrictions on admissible
+boundary conditions.
+
+To become convinced that (\ref{def-sym-op}) is really necessary,
+one can calculate a finite-dimensional Gaussian integral
+with 
+\begin{equation}
+D=\left( \begin{array}{cc} a & b \\ c& d \end{array} \right)
+\end{equation}
+and $a$, $b$, $c$ and $d$ being real constants first by completing the
+squares in the exponent, and then compare the result with
+$\det D$ (of course, one should remember a factor
+of $\pi$). The two results coincide if $b=c$.
+
+Let us return to the generating functional (\ref{pathdet}).
+To analyse the two multiplies on the right hand side of
+(\ref{pathdet}) which depend on the operator $D$ it is
+convenient to introduce the heat kernel
+\begin{equation}
+K(t;x,y;D)=\langle x| \exp (-tD) | y\rangle \,.
+\label{hkmatrel}
+\end{equation}
+This somewhat formal expression means that $K(t;x,y;D)$ should
+satisfy the heat conduction equation 
+\begin{equation}
+(\partial_t+D_x) K(t;x,y;D)=0 \label{heateq}
+\end{equation}
+with the initial condition
+\begin{equation}
+K(0;x,y;D)=\delta (x,y)\,.\label{inicon}
+\end{equation}
+
+For $D=D_0$ (\ref{simplestD}) on a flat manifold $M=\mathbb{R}^n$ 
+the heat kernel reads:
+\begin{equation}
+K(t;x,y;D_0)= (4\pi t)^{-n/2} \exp\left(
+-\frac{ (x-y)^2}{4t} -tm^2 \right) \,.\label{simplestHK}
+\end{equation}
+The equations (\ref{heateq}) and (\ref{inicon}) can be checked
+straightforwardly. Let us consider a more general operator $D$
+which contains also a potential term or a gauge field. Then
+(\ref{simplestHK}) still describes the leading singularity
+ in the heat kernel as $t\to 0$. The subleading terms have a
+form of the power-law corrections\footnote{
+On a curved space even the leading term must be modified
+(cf sec.\ \ref{s4iter}). On manifolds with boundaries also half-integer
+powers of $t$ appear in the expansion, and, consequently,
+$b_{2j+1}\ne 0$.}:
+\begin{equation}
+K(t;x,y;D)=K(t;x,y;D_0) \left( 1 +tb_2(x,y)+t^2b_4(x,y)+\dots
+\right) \,.\label{sHKexp}
+\end{equation}
+The coefficients $b_k(x,y)$ are regular in the limit $y\to x$.
+They are called the heat kernel coefficients\footnote{We shall
+mostly use the coefficients $a_k$ which differ from $b_k$ by a
+normalisation factor.}. At coinciding arguments $b_k(x,x)$ 
+are local polynomials of background fields and their derivatives.
+
+The propagator $D^{-1}(x,y)$ can be defined through the heat kernel
+by the integral representation
+\begin{equation}
+D^{-1}(x,y)=\int_0^\infty dt\, K(t;x,y;D)\,,
+\label{proptoHK}
+\end{equation}
+which follows from (\ref{hkmatrel}) if we suppose that the heat kernel
+vanishes sufficiently fast as $t\to \infty$. We can formally integrate
+the expansion (\ref{sHKexp}) to obtain
+\begin{equation}
+D^{-1}(x,y) \simeq 2(4\pi )^{-n/2} \sum_{j=0}
+\left( \frac{ |x-y|}{2m} \right)^{-\frac 12 n+j+1}
+K_{-\frac 12 n+j+1} (|x-y|m)b_{2j}(x,y) \,,\label{DBessel}
+\end{equation} 
+where $b_0=1$. By examining the behaviour of the Bessel function
+$K_\nu (z)$ for small argument $z$ \cite{Gradshteyn:2000}
+we conclude that the singularities in the propagator at
+coinciding points are described by the first several heat kernel
+coefficients $b_k$.
+
+Let us consider the part of the generating functional (\ref{pathdet})
+which contains $\det (D)$. The functional 
+\begin{equation}
+W=\frac 12 \ln \det (D) \label{defW}
+\end{equation}
+is called the one-loop effective action. It describes the quantum 
+effects due to the background fields in the one-loop approximation
+of quantum fields theory. To relate $W$ to the heat kernel we shall
+use the arguments of \cite{Birrell:1982ix}. 
+
+For each positive eigenvalue $\lambda$ of the operator $D$ we may write
+an identity
+\begin{equation}
+\ln \lambda =-\int_0^\infty \frac {dt}t e^{-t\lambda}\,.
+\label{lnlam}
+\end{equation}
+This identity is ``correct'' up to an infinite constant, which does
+not depend on $\lambda$ and, therefore, may be ignored in what 
+follows\footnote{To ``prove'' this statement one has to differentiate
+both sides of eq.\ (\ref{lnlam}) with respect to $\lambda$.
+}. Now we use $\ln\det (D)={\rm Tr}\ln (D)$ and extend
+(\ref{lnlam}) to the whole operator $D$ to obtain 
+\begin{equation}
+W=-\frac 12 \int_0^\infty \frac {dt}t K(t,D) \,,\label{WKtD}
+\end{equation}
+where
+\begin{equation}
+K(t,D)={\rm Tr}\left( e^{-tD} \right)=\int d^nx \sqrt{g} K(t;x,x;D)
+\,.\label{KtDdef}
+\end{equation}
+
+Here we have only presented some heuristic arguments in favour of
+eq.\ (\ref{WKtD}). A more rigorous treatment of functional determinants
+can be found in sec.\ \ref{s2spec}.
+
+The integral in (\ref{WKtD}) may be divergent at both limits.
+Divergences at $t=\infty$ are caused by zero or negative eigenvalues
+of $D$. These are the infra red divergences. They will not be discussed
+in this section. We simply suppose that the mass $m$ is sufficiently
+large to make the integral (\ref{WKtD}) convergent at the upper limit.
+Divergences at the lower limit cannot be removed in such a way.
+Let us introduce a cut off at $t=\Lambda^{-2}$.
+\begin{equation}
+W_\Lambda = -\frac 12 \int_{\Lambda^{-2}}^\infty \frac {dt}t K(t,D)
+\,.\label{WLamreg}
+\end{equation}
+It is now easy to calculate the part of $W_\Lambda$ which
+diverges in the limit $\Lambda\to\infty$:
+\begin{eqnarray}
+&&W_\Lambda^{\rm div} =-(4\pi )^{-n/2} \int d^n x \sqrt{g} \left[
+\sum_{2(j+l)<n} \Lambda^{n-2j-2l} b_{2j}(x,x)
+\frac{(-m^2)^l l!}{n-2j-2l} \right. \nonumber\\
+&&\qquad\qquad\qquad \left.+ \sum_{2(j+l)=n} \ln (\Lambda) 
+(-m^2)^l l!\, b_{2j}(x,x) +\mathcal{O}(\Lambda^0) \right]\,.
+\label{divWLam}
+\end{eqnarray}
+We see that the ultra violet divergences in the one-loop effective
+action are defined by the heat kernel coefficients $b_{k}(x,x)$
+with $k\le n$.
+
+On non-compact manifolds the integral of $b_0(x,x)$ is divergent.
+This divergence is removed by subtracting a ``reference'' heat
+kernel (see sec.\ \ref{s6sinpot}).
+
+Contributions from higher heat kernel coefficients $b_k$, $k>n$
+to the effective action are not divergent and can be easily
+calculated yielding in the limit $\Lambda\to\infty$
+\begin{equation}
+-\frac 12 (4\pi )^{-n/2} m^n \int d^nx \sqrt{g}
+\sum_{2j>n} \frac{b_{2j}(x,x)}{m^{2j}} \Gamma (2j-n)\,.
+\label{largemass}
+\end{equation}
+This is nothing else than the large mass expansion of the effective
+action. This expansion is valid for relatively weak and slowly varying
+background fields.
+
+We have seen that the heat kernel expansion 
+describes
+\begin{itemize}
+\item short-distance behaviour of the propagator;
+\item one-loop divergences and counterterms;
+\item $1/m$ expansion of the effective action.
+\end{itemize}
+We shall see below that heat kernel provides a natural framework
+for studying 
+\begin{itemize}
+\item quantum anomalies (sec.\ \ref{sec7});
+\item various perturbative expansions of the effective action
+(sec. \ref{sec8});
+\item selected non-perturbative relations for the effective
+action (sec.\ \ref{sec9}).
+\end{itemize}
+
+Of course, in all these applications the heat kernel methods have
+to compete with other techniques. The main advantage of the heat
+kernel is that it delivers necessary information in terms of just
+few geometric invariants. This method does not make distinctions 
+between different spins, gauge groups, etc. Even dependence of the
+space-time dimensionality is in most cases trivial. Therefore, on
+one hand, just a single calculation serves then in many applications.
+On the other hand, calculations in simple particular cases give
+valuable information on the general structure of the heat kernel.
+This property is especially useful when one deals with complicated
+geometries (like in the presence of boundaries or singularities).
+During the last decade, many models which lead to such complicated
+geometries were very actively studied in theoretical physics.
+The Dirichlet branes and the brane world scenario are the most 
+popular but not the only examples.
+
+We have to mention also the limitations of the heat kernel
+formalism. It works less effectively in the presence of spinorial
+background fields, i.e. when there is mixing between bosonic
+and fermionic quantum fields. This problem is probably of the
+technical nature, so that the corresponding formalism may be
+developed some time in the future. A more serious drawback is
+that the heat kernel expansion is not applicable beyond the
+one-loop approximation. It is not clear whether necessary
+generalisations to higher loop could be achieved at all.  
+
+It is not possible to write a review paper on heat kernel which
+would be complete in all respects, especially in the bibliography.
+A more comprehensive treatment of many mathematical problems related
+to the heat kernel expansion can be found in 
+\cite{Gilkey:1995,Kirsten:2001wz}. The book by Kirsten \cite{Kirsten:2001wz}
+considers also specific physical applications as the Casimir energy and
+the Bose--Einstein condensation. The recent review paper 
+\cite{Bordag:2001qi} is devoted to the Casimir effect
+(see also \cite{Milton:2001yy}). The monographs
+by Birrell and Davies \cite{Birrell:1982ix} and Fulling 
+\cite{Fulling:1989nb} remain standard sources on quantum field theory
+in curved space. Quantization of gauge theories is explained in
+\cite{Faddeev:1980be}. 
+In  \cite{Buchbinder:1992rb,Esposito:1997wt,Esposito:1997mw,
+Avramidi:2000bm,Esposito:2001rx}
+the heat kernel expansion is treated from the point of view of quantum
+gravity and quantum cosmology. Useful information about properties of
+the zeta function can be found in \cite{Elizalde:1995zk}.
+One may also consult \cite{EORBZ}. The DeWitt approach to the heat kernel
+and its' generalisations are described in \cite{Barvinsky:1985an}.
+The path integral point of view on the heat kernel can be found
+in \cite{Roepstorff:1994ga}.
+
+Our primary goal is local formulae for the heat kernel coefficients.
+Therefore, in some cases global aspects will be somewhat neglected.
+
+This report is organised as follows. The next section contains
+necessary preliminary information on spectral geometry and
+differential geometry. There we define main geometric characteristics
+of the manifold and of the boundary. We discuss the zeta function
+(which defines the effective action) and the resolvent (which is
+a generalisation of the propagator). We relate the asymptotics of these
+functions to the heat kernel coefficients. Through this report we
+work on Euclidean manifolds. A short remark on the
+analytical continuation to the Lorentzian signature is given at the
+end of section \ref{sec2}.
+In  section \ref{sec3} we consider
+the most widely used models of quantum field theory and open bosonic
+strings. The one-loop dynamics in each of these models is defined by
+a second order differential operator which depends on an effective
+connection and on a matrix-valued potential. The connection and
+the potential serve as a basis of an invariant description of all
+that models in the language of spectral geometry. These quantities
+are written down explicitly for each model. We also define suitable
+boundary conditions. In section \ref{sec4} we consider the heat kernel
+expansion on manifolds without boundary. We introduce a simple and
+very powerful method and illustrate it by calculating several leading
+terms in the heat kernel expansion. We also briefly discuss some other
+methods and non-minimal operators. Section \ref{sec5} is devoted to 
+manifolds with boundary. The heat kernel expansion for standard
+Dirichlet, Neumann, and mixed boundary conditions is considered in some
+detail. We also describe less known oblique and spectral boundary   
+conditions (these are the ones which contain tangential derivatives
+on the boundary or non-local projectors). We discuss loss of the
+so-called strong ellipticity for oblique boundary conditions which
+corresponds to the critical value of the electric field in string 
+physics. With the example of spectral boundary conditions we
+illustrate appearance of non-standard ($\ln t$) asymptotics in the
+heat kernel. The results of sections \ref{sec4} and \ref{sec5}
+are valid on smooth manifolds with smooth potentials and gauge field.
+In section \ref{sec6} we consider the case when either the 
+background fields or the manifold itself have singularities.
+In particular, conical and domain wall singularities are considered.
+
+Sections \ref{sec7} - \ref{sec9} are devoted to applications.
+In section \ref{sec7} we relate conformal and chiral anomalies
+to certain heat kernel coefficients and re-derive the anomalies
+in several particular models. This is a very spectacular but also 
+rather well known application of the heat kernel expansion.
+In section \ref{sec8} we go beyond
+the power series in the proper time $t$. We consider mainly two
+particular cases. The first one is the case when derivatives are more important
+than the potentials (so that we sum up leading non-localities).
+The second one is the so-called low energy expansion which neglects
+derivatives of the background fields starting with certain order
+(but treats all powers of background potentials and curvatures 
+exactly). In that section we also review some results on the heat
+kernel on homogeneous spaces where spectrum of relevant operators
+may be found exactly. In section \ref{sec9} we consider two examples
+when the heat kernel can be used to obtain exact results for the
+effective action. The first one is the famous Polyakov action.
+The second example is exact relations between the effective actions
+in dual theories. In this section (in contrast to section \ref{sec8})
+we don't have to neglect derivatives or powers of
+the background fields. Section \ref{sec10} contains concluding
+remarks.
+
+

@@ -1,0 +1,126 @@
+CE-FM-063 — outer-lensing catchment supply: unit dictionary and stock scope
+2026-10-15 UTC. Original theory OPEN. Self-review, not external certification.
+67 controls, run_063 completed and manifest validated. No original fit or PM
+rerun, no source/frozen/publication changes, no external messages. Bounded
+root/quadrature calculations only, no large mesh or live experiment duplicated.
+
+PROVENANCE / REPRODUCED ADVANCE
+Exact source bytes match CFG803 result856892748, CFG804 result67774ce37,
+CFG805 resulta7f0d45f8 (receipt records hashes and HEAD). CFG416 source and
+criteria, current CFG650 measure_pk, data and full covariance also recorded.
+CFG805's small actual external T1x JSON input (197411bytes) is copied as
+T1x_CFG805_snapshot_source.json with original path/hash in the receipt.
+This copy is input evidence, not a simulation or a native-IC replacement.
+
+At the ORIGINAL reported CFG804 fitted masses, direct aperture integration
+independent of its cumulative Sigma grid gives the following chi2_D:
+                         stored     direct, same snapped N
+ canonical primary       83.6296       83.6189
+ canonical all          311.8228      311.7162
+ alt primary             78.2091       78.1995
+ alt all                327.5749      327.5447
+Thus the relative inner-range rescue by larger catchment stock is numerically
+supported within the same empirical retention/profile/point-source model.
+This does not replace the frozen verdict or establish good absolute fits:
+canonical primary nominal p_D=1.8994e-7, all p_D=3.4766e-37 in the saved run.
+Masses are profiled (four nuisance masses); N is fixed by the assumed census
+rule once those masses are chosen. The retention curve is an input, not an
+action-level derivation or direct measurement for each stacked lens.
+
+NEW UNIT TRANSLATION
+CFG416 FROZEN_CRITERIA explicitly defines f_ret thresholds in Msun/h.
+Its cfg416_pm.py x_supply computes Mta in Msun/h, calls fret_of(log10 Mta),
+then divides the retained baryon mass by .674 to obtain physical Msun.
+CFG804 instead uses physical lens masses in Msun (Gpc, pc and acceleration)
+and calls the identical numerical rule with log10(Mta_physical/Msun).
+Those dictionaries differ. The omission is invisible in the low-mass flat
+f_ret=.10 control, so K1 logMb=10.5 cannot detect it.
+
+Let q=log10(Mta_physical/Msun). For a retention function F tabulated in
+Msun/h, the translated equation is
+  Mb = f_b Mta_physical F(q+log10 h),  N=1/F(q+log10 h).
+CFG804 solves the same equation with h=1. Our dictionary calculation uses
+h=.6736 carried by CFG805/T1x. This is a controlled unit translation, not
+an observational re-calibration of F. B21 h70=1 radii/photometric masses and
+any adopted physical-H0 changes must also be treated consistently before
+new empirical fits. Msun/h and Msun do not become identical at h70=1.
+
+At canonical PRIMARY ORIGINAL masses, unsnapped values are:
+ bin logMb       N(source) N(translated)  edge_source -> edge_translated kpc
+ 1   10.38       10.0000     10.0000          323.56 -> 323.56
+ 2   10.78        8.8268     10.0000          453.20 -> 512.81
+ 3   10.91        7.3510      9.3849          439.27 -> 559.31
+ 4   11.12        5.6181      6.9815          429.17 -> 531.64
+The translated root is unique here: M F(log10(hM)) is continuous strictly
+increasing for M>0 because F>0 and nondecreasing. Lowering h at fixed
+physical Mb weakly lowers F and increases N. Seven root/domain controls
+cross-check the source solution at h=1 and budget identities after translation.
+
+FIXED-MASS CONSEQUENCES, NO REOPTIMIZATION OR NEW GRADE
+CFG804 snaps N to a .25 grid; isolate that numerical change from units:
+                    direct continuous source N -> translated continuous N
+ canonical primary          83.7304 -> 84.7175
+ canonical all             314.4198 -> 265.3532
+ alt primary                78.3330 -> 79.4371
+ alt all                   330.4040 -> 282.4873
+These scores are at the SAME source D masses, not new minima or a prediction
+of reprofiled CFG805. The large outer fit problem remains. The +11.0625
+CFG805 result cannot be assigned to the translated model without rebuilding
+its exclusion radii and redoing its profiles; it hardcodes CFG804 old edges.
+Do not silently revise the frozen outcomes or replace them with these checks.
+
+FINITE INVENTORY AND BARYON PHASE OBLIGATION
+For the adopted spherical law Mc(<x)/Mb=(sqrt(1+4x^2)-1)/2, integrating to
+x_edge=sqrt[(s N)(1+s N)] gives EXACTLY Mc=s N Mb, s=5.364. Independent
+aperture integration respects this and the exterior point-mass tail.
+Increasing N genuinely changes the available mass relative to CE-FM-061's
+N=1 ceiling; this is not a redistribution of the same stock.
+However Mta=(1+s)N Mb includes N Mb of catchment baryons. The model's
+central baryon point accounts for Mb; the other (N-1)Mb requires a spatial
+inventory. At translated primary bins 2-4 it is 9.0,8.3849,5.9815 Mb.
+It can be outside the modeled region or diffuse; this calculation does not
+choose where, how it lenses/sources the medium, or whether catchments overlap.
+The F1 phase/source problem and F3 unique mass allocation/free dynamics remain.
+Nor does a budget establish that the live medium settles into this exact law.
+
+CFG805 STATISTIC / CONTROL SCOPE
+Saved chi2 arithmetic and nominal p-values reconcile. All-radii D+2h170.6631,
+B+2h159.6006, delta+11.0625, nominal p_D1.4990e-14: still NARROWED, not
+closed even on its own gate. Four fitted bias coefficients supplement masses.
+K2 FAIL is preserved: reduced-P trapz sigma8=.754300274 vs stored .779142976,
+a 3.1885% mismatch. MUTATE and inherited IC caveats are preserved in results.
+No independent two-halo projection or matter simulation was run here.
+
+The proposed missing-sub-fundamental-mode explanation does not reconcile
+these two statistics: CFG650 measure_pk sums W8(k)^2 times per-mode power
+ON THE SAME finite box before bin reduction, with the zero mode removed.
+CFG805 integrates bin-mean P at bin-mean k. L=100Mpc/h gives fundamental
+k_f=.062831853h/Mpc; the reported first .080182391 is a SHELL MEAN, not
+k_f. The first shell contains six |n|=1 and twelve |n|=sqrt(2) modes;
+its mean is k_f(6+12sqrt(2))/18, matching that first k. No mode below k_f
+is present in the stored sigma8 either. Binning/quadrature, the first-shell
+endpoint and within-bin P versus W8 weighting must be reconciled first.
+A missing-mode effect common to both measurements may affect physical
+predictions but is not an explanation of their difference by itself.
+A free b absorbs a PURE scalar template normalization exactly (checked),
+but not an arbitrary radial-shape error after exclusion/projection.
+
+Exploratory small-shell diagnostic preserved in catchment_shell_diagnostic.json:
+using the first20 exact shell counts with P and W at shell means gives
+sigma8~.77194, closer but still not the mode sum. This is an approximation,
+not a repaired K2, template, fit or independent convergence test.
+
+NEXT EXECUTABLE WORK
+1. Carry the Msun/h dictionary, an explicit consistent H0/data scaling and
+   an unsnapped retention root into a NEW separately frozen diagnostic;
+   derive exclusion from each trial mass instead of hardcoding old edges.
+2. Preserve per-shell sums of P_mode W8^2 (and counts) from an already
+   available measurement, or a bounded saved field, to reconcile K2; do
+   not invent sub-fundamental modes as a fix. Recheck xi/projection shape
+   with resolved bin treatment before calling free-b normalization sufficient.
+3. Count missing baryons, cold stock and neighboring catchments once; use
+   the actual isolated-lens/matter cross-correlation if available. P_grav
+   auto-spectrum times fitted bias is a conditional template, not a derived
+   free-population transport law, hot/condensed response or lensing metric.
+CE-FM-050--062 obligations persist, including VC3 angular/metric/formation
+and the optical calibration response. No full-theory completion claim.

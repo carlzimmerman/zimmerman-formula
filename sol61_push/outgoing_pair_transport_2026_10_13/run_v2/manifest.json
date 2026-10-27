@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "OUTGOING-PAIR-TRANSPORT-THRESHOLD",
+  "repository": {
+    "commit": "364fc9c73d2fda45a921d74c0c53ec1ce2d4f197",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/outgoing_pair_transport_2026_10_13/check.py",
+    "sol61_push/outgoing_pair_transport_2026_10_13/run_v2/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Analytic outgoing-mode growth exponent versus upwind eigenvalues and boundary integration; scattering commutator and physical chord criterion.",
+    "coefficient_domain": "float64 sparse eigenvalues, scalar roots, ODE integration",
+    "conventions": "L=v=1, constant real pair gain, two opposite rays, no incoming coherent amplitudes and no reflected waves. Shift-invert near the analytic root, with positive-eigenvector and residual checks for the discretized generator.",
+    "inputs": [
+      "sol61_push/outgoing_pair_transport_2026_10_13/check.py",
+      "sol61_push/outgoing_pair_transport_2026_10_13/INPUT_PAIR_GAIN.json"
+    ],
+    "bounds": {
+      "gain_length": [
+        0.5,
+        1.1,
+        1.4,
+        1.5707963267948966,
+        1.8,
+        2,
+        3
+      ],
+      "grid_sizes": [
+        80,
+        160,
+        320
+      ],
+      "ARPACK_iterations": 2000,
+      "eigen_tolerance": 1e-10,
+      "boundary_rtol": 1e-11
+    },
+    "non_claims": [
+      "Not a full three-dimensional condensate boundary problem.",
+      "Open boundaries are stipulated; no interface transmission or confinement derived.",
+      "Per-frequency output occupation is not integrated power."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T00:40:36.448517+00:00",
+    "runtime_seconds": 0.523743,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/outgoing_pair_transport_2026_10_13/check.py",
+    "sol61_push/outgoing_pair_transport_2026_10_13/INPUT_PAIR_GAIN.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/outgoing_pair_transport_2026_10_13/check.py",
+      "sha256": "8ae8fd9783e2513d52bb91364476105ce6aa44744c1f358543b94af0481626de",
+      "sha256_after": "8ae8fd9783e2513d52bb91364476105ce6aa44744c1f358543b94af0481626de"
+    },
+    {
+      "path": "sol61_push/outgoing_pair_transport_2026_10_13/INPUT_PAIR_GAIN.json",
+      "sha256": "8aa0dd88bacd90ac2020b9f980830a3b12a33df1dd0d439761b02e0cc97fab5a",
+      "sha256_after": "8aa0dd88bacd90ac2020b9f980830a3b12a33df1dd0d439761b02e0cc97fab5a"
+    }
+  ],
+  "output_directory": "sol61_push/outgoing_pair_transport_2026_10_13/run_v2",
+  "declared_results": [
+    "sol61_push/outgoing_pair_transport_2026_10_13/run_v2/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/outgoing_pair_transport_2026_10_13/run_v2/stdout.txt",
+      "sha256": "849c0902446d09cd0d91ced746b986829ea5dfa518ff87f34fb8c6acec420e67",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/outgoing_pair_transport_2026_10_13/run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/outgoing_pair_transport_2026_10_13/run_v2/results.json",
+      "sha256": "59bfcd212d810bdf1566d4ce8d0036893b046ece5922bac069f43e5a062d6d81",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

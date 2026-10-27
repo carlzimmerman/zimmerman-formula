@@ -1,0 +1,4 @@
+# Spatial convergence escalation
+The 256-to-512 grid repeat changed the instantaneous inner empirical CDF by .219 of total mass, despite small energy error. Time-averaged mass at r=1 also changed by .142 of total mass. Therefore precise inner profiles and their observational summaries are NOT converged. Energy conservation alone is insufficient.
+
+Escalate baseline mass1/spin.02 to N1024,512 shells,dt.00025,t30; baseline mass4/spin.02 to N512,256 shells,dt.0005,t30; strong-phase mass4 lambda100/gap.2/spin.02 to N512,256 shells,dt.0005,t120. Same spatial regulator soft=dr. Compare bulk mass retention, inner CDF/time averages, radiation and energy. Cap 240 seconds. Preserve inconclusive inner-profile status if differences remain material. No tolerance is weakened to call the profile converged.

@@ -1,0 +1,165 @@
+{
+  "schema_version": 2,
+  "claim_id": "SS-07",
+  "repository": {
+    "commit": "e268465fccac27e0f207e839b73d96f7a3c68016",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "selective_stress_2026_10_25/reciprocal_refine.py",
+    "--output",
+    "selective_stress_2026_10_25/run_reciprocal_refine/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Refine space, time and absorption domain of reciprocal autonomous conversion radiation; compare threshold time, energy/charge conservation and exterior drive.",
+    "coefficient_domain": "float64 finite volume, discrete-gradient matter, implicit midpoint scalar",
+    "conventions": "Radial volume absorbs 4pi; scalar speed/source radius/conversion inverse frequency of order unity; passive outer sponge",
+    "inputs": [
+      "q0=1e-4, P0=0; chi=v=0; D=.25; N=sin²(pi q/2); compact smooth source h proportional to (1-r²)^2"
+    ],
+    "bounds": {
+      "coupling": 1,
+      "cases": [
+        [
+          0.1,
+          0.04,
+          24
+        ],
+        [
+          0.05,
+          0.02,
+          24
+        ],
+        [
+          0.025,
+          0.01,
+          24
+        ],
+        [
+          0.05,
+          0.02,
+          36
+        ]
+      ],
+      "duration": 200
+    },
+    "non_claims": [
+      "No mobile galaxy density or moving boundary",
+      "Sub-luminal scalar propagation is a changed dynamical hypothesis",
+      "No microscopic origin of g or speed",
+      "Sponge approximate outgoing transport"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T16:21:47.572667+00:00",
+    "runtime_seconds": 3.344664,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 900.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "selective_stress_2026_10_25/TARGET.md",
+    "selective_stress_2026_10_25/reciprocal_wave.py",
+    "physical_completion_2026_10_25/launch.py",
+    "selective_stress_2026_10_25/reciprocal_refine.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "selective_stress_2026_10_25/TARGET.md",
+      "sha256": "62213e6ca0ace3174ec8b4f0d342656d981112b09ac4111bd54fea6ebe001649",
+      "sha256_after": "62213e6ca0ace3174ec8b4f0d342656d981112b09ac4111bd54fea6ebe001649"
+    },
+    {
+      "path": "selective_stress_2026_10_25/reciprocal_wave.py",
+      "sha256": "abc8800434dbe10a710be97eef3ad83d94c1435fb17b938c9bab36020ee13ee0",
+      "sha256_after": "abc8800434dbe10a710be97eef3ad83d94c1435fb17b938c9bab36020ee13ee0"
+    },
+    {
+      "path": "physical_completion_2026_10_25/launch.py",
+      "sha256": "12a23018ab0ba141e0fd5597cf81767a955c4ac3fdc8863da7670f28fe541038",
+      "sha256_after": "12a23018ab0ba141e0fd5597cf81767a955c4ac3fdc8863da7670f28fe541038"
+    },
+    {
+      "path": "selective_stress_2026_10_25/reciprocal_refine.py",
+      "sha256": "0e3c7247b9d96ccd722a8d36a273840cb18c46c456fa1b4ccd0b0fb91dcc1886",
+      "sha256_after": "0e3c7247b9d96ccd722a8d36a273840cb18c46c456fa1b4ccd0b0fb91dcc1886"
+    }
+  ],
+  "output_directory": "selective_stress_2026_10_25/run_reciprocal_refine",
+  "declared_results": [
+    "selective_stress_2026_10_25/run_reciprocal_refine/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "selective_stress_2026_10_25/run_reciprocal_refine/stdout.txt",
+      "sha256": "2f4f31a041ebbd9c306461e2ffe1fe04b19167cff6dd88b8b0af2af9dee07d50",
+      "kind": "log"
+    },
+    {
+      "path": "selective_stress_2026_10_25/run_reciprocal_refine/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "selective_stress_2026_10_25/run_reciprocal_refine/results.json",
+      "sha256": "384cb6e8f4b7a475fc4ee502de7498f30fed716902f09637844396b224419e4b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

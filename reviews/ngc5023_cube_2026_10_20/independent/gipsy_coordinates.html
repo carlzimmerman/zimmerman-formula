@@ -1,0 +1,205 @@
+<HTML>
+<HEAD>
+<TITLE>Coordinate System</TITLE>
+</HEAD>
+<BODY>
+<H1><IMG SRC="../logos/Programlogo.gif" ALIGN=MIDDLE ALT="">
+Coordinate System
+</H1>
+<HR>
+<H2>Introduction</H2>
+The GIPSY coordinate system is implemented in terms of a collection of
+mostly FITS-compatible GDS descriptor items. For each axis in a set
+there exists such a collection of descriptors.
+<P>
+The following keywords are used (<i>i</i> is the number of the axis):
+<DL>
+<DT>NAXIS<i>i</i>
+<DD>the number of pixels along the axis
+
+<DT>CTYPE<i>i</i>
+<DD>the name of the axis.
+    The axis name is uniquely related to the physical coordinates of the
+    pixels along the axis. This name consists of several parts,
+    separated by hyphens. The first part denotes the real axis name:
+    the physical coordinate system.
+    The second part is the type of projection (meaning that
+    there are more ways to go from grid position to physical coordinates).
+    At the moment only projections for spatial axes (like RA and DEC) and
+    spectral axes (FREQ) are defined.
+
+<DT>CRPIX<i>i</i>
+<DD>the location of the reference pixel on the axis in file coordinates.
+    The grid position of the reference pixel is always zero.
+    For this position the physical coordinate is precisely defined in
+    CRVAL<i>i</i>, and therefore we call this position the projection centre.
+
+<DT>CRVAL<i>i</i>
+<DD>holds the physical coordinate at the reference pixel location in
+    some units.  The units are defined in the non-standard FITS
+    descriptor CUNIT<i>i</i>.
+
+<DT>CUNIT<i>i</i>
+<DD>holds the units of the physical coordinate at the reference pixel
+    location, i.e. the units of CRVAL<i>i</i>.
+    When this descriptor item is not defined, the standard FITS units will 
+    be assumed.
+
+<DT>CDELT<i>i</i>
+<DD>holds the pixel separation in units specified in CUNIT<i>i</i> along
+    the axis. Note that CDELT<i>i</i> may be negative.
+
+<DT>CROTA<i>i</i>
+<DD>holds the rotation angle in degrees of the
+    actual axis from the stated coordinate type in CTYPE<i>i</i>.  This
+    descriptor makes only sense for spatial axes.  In GIPSY it is assumed  
+    that the spatial latitude axis carries the rotation information.
+</DL>
+
+The descriptors above are called the <em>primary</em> axis descriptors, and they
+relate grid positions to physical coordinates as defined in CTYPE<i>i</i>.
+The GIPSY coordinate system also recognizes <em>secondary</em> axis descriptors,
+which relate grid positions to a different type of physical units. At
+the moment a secondary axis is only used for the FREQ primary axis to
+relate frequencies to velocities. Secondary descriptors are similar to
+primary axis descriptor, except that they all start with <b>D</b> instead of
+<b>C</b>.
+
+<H2>Accessing coordinate information</H2>
+In order to read coordinate information from a set, the programmer has the
+choice between reading the descriptor items directly using one of the GDS
+read routines, or, in the case of items NAXIS<i>i</i>, CTYPE<i>i</i>
+and CRPIX<i>i</i>, calling one of the special routines
+<A HREF="../sub/gdsc_size.dc2">GDSC_SIZE</A>,
+<A HREF="../sub/gdsc_name.dc2">GDSC_NAME</A> or
+<A HREF="../sub/gdsc_origin.dc2">GDSC_ORIGIN</A>.
+<P>
+When writing, the items NAXIS<i>i</i>, CTYPE<i>i</i> and CRPIX<i>i</i>
+may <strong>never</strong> be modified using GDS write routines.
+This may only be done using the routine
+<A HREF="../sub/gds_extend.dc2">GDS_EXTEND</A>.
+This is because this information is referenced so frequently that it
+has to be maintained separately for efficiency reasons.
+
+<H2>Coordinate Types</H2>
+GIPSY supports the following coordinate types:
+<UL>
+<LI>Equatorial sky coordinates: RA, DEC
+<LI>Galactic sky coordinates: GLON, GLAT
+<LI>Ecliptic sky coordinates: ELON, ELAT
+<LI>Supergalactic sky coordinates: SLON, SLAT
+<LI>Spectral frequency coordinates, equidistant in frequency: FREQ
+<LI>Spectral velocity coordinates, equidistant in velocity: VELO
+</UL>
+
+<H3>Sky Coordinates</H3>
+There following five <strong>sky systems</strong> are implemented:
+<OL>
+<LI>Equatorial (1950.0)
+<LI>Galactic
+<LI>Ecliptic (1950.0)
+<LI>Supergalactic
+<LI>Equatorial (2000.0)
+</OL>
+Function <A HREF="../sub/skyco.dc2">SKYCO</A> can be used to
+transform from one sky system to another.
+<P>
+For sky systems the rotation angle of the sky plane with
+respect to the axes is stored in CROTA<i>n</i>, where <i>n</i> is the number
+of the latitude axis. The epoch of the coordinate system in stored in the FITS
+descriptor EPOCH.
+<P>
+There following <strong>projection systems</strong> are implemented:
+<OL>
+<LI>Aitoff Equal Area projection, AIT
+<LI>Equivalent Cylindrical projection, CYL
+<LI>Flat projection, FLT
+<LI>Gnomonic projection, TAN
+<LI>Orthographic projection, SIN
+<LI>Rectangular projection, ARC
+<LI>Transversal projection, GLS
+<LI>North Celestial Pole projection, NCP
+<LI>Stereographic projection, STG
+<LI>Mercator projection, MER
+</OL>
+The projection of sky coordinates onto grids is done with function
+<A HREF="../sub/proco.dc2">PROCO</A>;
+transformation of equatorial coordinates from one epoch to another are
+done with subroutine <A HREF="../sub/epoco.dc2">EPOCO</A>.
+
+<H3>Spectral Coordinates</H3>
+Spectral coordinates have axis names FREQ or VELO.
+The transformation from frequency to velocity is not straightforward, since
+the frequencies are usually the observed frequencies.  For this reason a
+secondary axis is introduced in GIPSY.  This axis holds the velocity at
+the reference pixel in descriptor DRVAL<i>i</i>.  The velocity of a certain
+grid position <i>g</i> along the FREQ axis can now be obtained with the
+following formulae:
+<P>
+V(radio)   = DRVAL<i>i</i> - <i>g</i>.CDELT<i>i</i>.c / f0
+<BR>
+V(optical) = DRVAL<i>i</i> + (1 / (CRVAL<i>i</i> + g.CDELT<i>i</i>) -
+             1 / CRVAL<i>i</i>).f0.c
+<P>
+Where c is the speed of light and f0 the rest frequency of the spectral line.
+GIPSY uses for the grid separation in velocity the following:
+<P>
+DDELT<i>i</i>(radio) = -CDELT<i>i</i>.c / f0
+<BR>
+DDELT<i>i</i>(optical) ~= -CDELT<i>i</i>. c/f0 . (f0)^2/(CRVAL<i>i</i>)^2
+<P>
+The rest frequency is stored in descriptor FREQ0 in units of Hz.
+<P>
+The different <strong>velocity systems</strong> are encoded in the following
+way:
+<PRE>
+VELSYS  CTYPEi     Meaning
+------  ---------  -----------------------------
+  1     FREQ-OHEL  Optical definition w.r.t. SUN
+  1     FREQ-OLSR  Optical definition w.r.t. LSR
+  2     FREQ-RHEL  Radio definition, w.r.t. SUN
+  2     FREQ-RLSR  Radio definition, w.r.t. LSR
+</PRE>
+The function <A HREF="../sub/velpro.dc2">VELPRO</A> does the
+velocity - grid transformations.
+
+<H3>Other Coordinates</H3>
+Other coordinate axes, with their CTYPE's, are listed in the table below:
+<UL>
+<LI>Inverse Wavelength, INVLAM
+<LI>Wavelength, LAMBDA
+<LI>Logarithmic Wavelength, LOGLAM
+<LI>Parameter axis, PARAM
+<LI>Polarisation, POLN
+<LI>Time, TIME
+</UL>
+For these axes there are no special routines available yet, so
+conversion from grid <i>g</i> to physical coordinate <i>p</i> goes in the
+standard FITS way:
+<P>
+<i>p</i> = CRVAL<i>i</i> + <i>g</i> . CDELT<i>i</i>
+<BR>                          
+<i>g</i> = <i>p</i> - CRVAL<i>i</i> / CDELT<i>i</i>
+
+<H2>General Coordinate Transformations</H2>
+The routine which does the general coordinate transformations is called
+<A HREF="../sub/cotrans.dc2">COTRANS</A>.  This routine converts grids into
+the physical coordinates as stated by the CTYPE's and vice versa.  The
+function <A HREF="../sub/axunit.dc2">AXUNIT</A> returns the units of the
+physical values input/output to/by COTRANS.
+<P>
+For determining the axis type, the function
+<A HREF="../sub/axtype.dc2">AXTYPE</A> can be used.
+Note that natural units are usually <b>S.I.</b> units.
+In GIPSY the routines involved in coordinate transformations use these
+units! In case other units are stated in CUNIT<i>i</i> or BUNIT<i>i</i> the
+conversion factor can be obtained with function
+<A HREF="../sub/factor.dc2">FACTOR</A>.
+
+<H2>Hidden Axes</H2>
+<strong>Documentation not yet available.</strong>
+<HR>
+<A HREF="index.html"><IMG SRC="../logos/programlogo.gif" ALT="Programming"></A>
+<A HREF="../index.html"><IMG SRC="../logos/gipsylogo.gif" ALT="GIPSY"></A>
+</BODY>
+</HTML>

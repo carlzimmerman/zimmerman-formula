@@ -1,0 +1,115 @@
+OPERATIONAL FORCE TEST OF THE CURVATURE-TRACKING MODEL
+2026-10-15
+Base checkout observed: 5c06d239febe644b9f485477b4c2f93390a23b3e
+Parent: ../puzzle_32pi_curvature_tracking_2026_10_15/RESULT.txt
+
+Outcome
+With ordinary matter minimally coupled to the Jordan metric, the proposed
+tracking scalar produces an attractive Yukawa correction in the local,
+linear, weak-source limit. Its enhancement is less than one third of the
+tensor force. More decisively, the source-induced force falls at least as
+fast as inverse square throughout this approximation. It does not produce
+the desired inverse-radius low-acceleration force in that regime. Thus the
+identification of the vacuum field with the operational a0 is not established.
+This is not a nonlinear or all-matter-couplings impossibility theorem.
+
+1. Declared extension and approximation
+Add S_m[g_J, matter] to the parent's action, with canonical scalar kinetic
+term, F=M^2+xi phi^2 and V=E+lambda phi^4/4. Use its positive constant-field
+de Sitter vacuum, M,xi,lambda,E>0. Write z=phi_v^2.
+Linearize about that vacuum, use an unscreened weak point source with small
+scalar excursion, and work on scales r much smaller than H^-1 so that local
+static flat-space propagation is a valid leading approximation. The source
+acceleration below excludes the homogeneous de Sitter acceleration.
+The results describe leading linear source response, not exact force bounds
+including post-Newtonian corrections, finite-source effects or cosmological
+curvature corrections.
+
+2. Matter coupling after diagonalizing scalar-gravity mixing
+The Einstein metric is g_E=(F/M^2)g_J. Thus matter sees A(phi)^2 g_E with
+ A=M/sqrt(F),
+ (dchi/dphi)^2=K=M^2(F+6xi^2 phi^2)/F^2.
+The dimensionless canonical coupling is alpha=M d(log A)/dchi, hence
+ alpha^2=xi^2 z/[F+6xi^2 z].
+The scalar-to-tensor potential coefficient is
+ B=2alpha^2=2xi^2 z/[F+6xi^2 z].
+It satisfies
+ 0<B<1/3,
+ 1/3-B=F/[3(F+6xi^2 z)]>0.
+This includes the scalar-metric mixing; treating phi as already canonical
+would give the wrong coupling.
+
+3. Local scalar equation and source force
+At leading order in the Einstein frame the perturbation obeys
+ (nabla^2-m_E^2) delta chi = alpha rho_E/M,
+with decaying point-source solution
+ delta chi = -alpha M_b,E exp(-m_E r_E)/(4pi M r_E).
+The matter potential contribution is alpha delta chi/M. Adding the tensor
+potential gives -G_tensor M_b/r times [1+B exp(-m_s r)].
+In Jordan local physical units,
+ G_tensor=1/(8pi F_v), m_s=sqrt(F_v)/M times m_E,
+ r_E=sqrt(F_v)/M times r_J.
+Thus m_E r_E=m_s r_J, and the same dimensionless force expression holds:
+ g_source(r)=G_tensor M_b/r^2 [1+B(1+m_s r)exp(-m_s r)].
+G_tensor is the tensor coefficient, not a claim that a locally measured
+Cavendish constant excludes the scalar contribution.
+
+For x=m_s r>=0 define y=(1+x)exp(-x). Since y(0)=1 and
+y'=-x exp(-x)<=0, one has 0<y<=1. Consequently
+ 1<=g_source/g_tensor<4/3.
+The exact logarithmic slope of the leading source expression is
+ d log g_source/d log r
+ = -2 - B x^2 exp(-x)/[1+B(1+x)exp(-x)] <= -2.
+By contrast, the target low-acceleration law g=sqrt(G M_b a0)/r has slope
+-1 and source-mass scaling sqrt(M_b). Our linear expression is proportional
+to M_b and has the wrong radial slope, independently of the numerical
+choice of lambda/xi. Calibration of Newton's constant cannot change either
+of those exponents. The Yukawa range alone therefore cannot define the
+required universal MOND-like acceleration threshold.
+These slope statements apply only where the stated local linear expansion
+is valid; no extrapolation to distances near the de Sitter horizon is made.
+
+4. A further exact relation in the tracking vacuum
+From the parent calculation,
+ m_E^2=2lambda M^4 z/[F(F+6xi^2 z)],
+ H_E^2=M^2 lambda z/(12xi F).
+Therefore
+ m_E^2/H_E^2=24xi M^2/[F+6xi^2 z],
+ m_E^2/H_E^2 + 12(1+6xi)B = 24xi.
+Scalar range and force strength cannot be adjusted independently at fixed
+xi within this particular vacuum family. This does not impose an empirical
+constraint here, and xi itself remains free. If the scalar range is of
+horizon size, the static Yukawa crossover is outside the local approximation;
+its short-distance limit still gives an inverse-square source force.
+
+5. Research decision
+The quartic curvature tracker can hold Lambda/phi_v^2 constant but, with
+this simplest matter coupling, fails to supply the desired force law in
+its controlled weak-source regime. Setting lambda=128pi xi cannot repair
+that mismatch. A nonlinear regime, extra response field, or different matter
+coupling would be a materially new mechanism requiring its own matching
+and stability calculation. No such repair is established in this artifact.
+Do not report the tracking field as an experimentally defined a0.
+
+6. Source check and verification boundaries
+The general scalar-tensor Yukawa potential and force were checked against
+Constraining the attractive fifth force in the general free scalar-tensor
+gravity with solar system experiments, EPJC (2024), Section 5.1,
+Eqs. (37),(41)-(43):
+https://link.springer.com/article/10.1140/epjc/s10052-024-12723-8
+Their Yukawa coefficient alpha corresponds to our B, not our alpha. Their
+mass formulas assume their stated background; our de Sitter canonical mass
+comes from the parent derivation, followed by the local approximation above.
+The source supports the standard local force form, not a global de Sitter
+Green function. Search scope: one targeted search and this primary paper;
+no novelty claim. The conformal transformation source remains the parent's
+Kaiser reference.
+
+check.py verifies seven exact symbolic identities: canonical coupling,
+strength margin, mass/Hubble ratio, coupling-mass relation, differentiated
+potential, radial logarithmic slope and Yukawa-factor derivative.
+Force.lean proves the algebraic one-third bound, enhancement bound and
+slope inequality conditional on the stated formulas and signs. It does not
+formalize the field equations, Green function, conformal transformation,
+or validity of the perturbative physical approximation.
+Evidence: run/manifest.json, lean_build.out and lean_verification.json.

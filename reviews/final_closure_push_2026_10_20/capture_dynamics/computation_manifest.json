@@ -1,0 +1,237 @@
+{
+  "schema_version": 2,
+  "claim_id": "capture-dynamics-2026-10-20-bounded-checks",
+  "repository": {
+    "commit": "f659e6d8e1ee4cf2b756f091aff56b018da1fb1e",
+    "dirty": true
+  },
+  "command": [
+    "env",
+    "OMP_NUM_THREADS=1",
+    "OPENBLAS_NUM_THREADS=1",
+    "MKL_NUM_THREADS=1",
+    "python3",
+    "reviews/final_closure_push_2026_10_20/capture_dynamics/check_capture.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit; observed peak RSS 42778624 bytes"
+  },
+  "mathematics": {
+    "assertion_tested": "The original one-cell LR-c map identifies two distinct states; exact rational history retains a historical cap; 303 finite-site reaction states obey the dissipation identity; two scalar Hill-orbit discretizations conserve energy within 1e-6 over 8 normalized time units; eight PH1-derived rate examples obey the sequential formula.",
+    "coefficient_domain": "Rational oracle; IEEE binary64 numerical checks",
+    "conventions": "Cold labels are CFG915 t (alpha_t=0) and f (alpha_f>0), not canonical tether nomenclature. Hill model has Omega=rJ=1, a=1/2, vertical invariant subspace. Rate model is post-hoc, no recapture, one-way release and exponential drain.",
+    "inputs": [
+      "CFG916 capture method body",
+      "CFG916 PH1 residual tolerances and median drain clocks"
+    ],
+    "bounds": {
+      "projection_states": 2,
+      "reaction_interior_states": 303,
+      "hill_duration": 8.0,
+      "hill_dt": [
+        0.001,
+        0.0005
+      ],
+      "rate_cases": 8
+    },
+    "non_claims": [
+      "No existing experiment rerun or classifier changed",
+      "No universal orbit stability from numerical integration",
+      "No fitted rate, measured release age, physical bath, or full carrier action derived",
+      "No global physical impossibility of capture/release"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "none",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-20T15:20:42.471236+00:00",
+    "runtime_seconds": 0.07695079099999999,
+    "exit_status": 0,
+    "status": "completed",
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": 1,
+      "max_threads": 1
+    }
+  },
+  "outputs": [
+    {
+      "path": "reviews/final_closure_push_2026_10_20/capture_dynamics/checks.json",
+      "sha256": "5fe8b28995a212f5191bd380754c1ef7151c89de3806d918526f9352c2748ba9",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "name": "literal_LRc_noninjective_capture",
+      "status": "pass",
+      "states": 2
+    },
+    {
+      "name": "rational_independent_capture_oracle_and_history",
+      "status": "pass"
+    },
+    {
+      "name": "finite_reaction_equilibria_and_entropy_identity",
+      "status": "pass",
+      "interior_states": 303,
+      "max_dissipation_identity_abs_residual": 2.842170943040401e-14
+    },
+    {
+      "name": "Hill_vertical_orbit_energy_and_refinement",
+      "status": "pass",
+      "runs": [
+        {
+          "dt": 0.001,
+          "duration": 8.0,
+          "max_energy_abs_error": 1.3443468560581096e-10,
+          "max_abs_z": 1.499999963272143,
+          "sample_fraction_outside_rJ": 0.630375,
+          "zero_crossings": 4
+        },
+        {
+          "dt": 0.0005,
+          "duration": 8.0,
+          "max_energy_abs_error": 8.445688592928491e-12,
+          "max_abs_z": 1.4999999978229261,
+          "sample_fraction_outside_rJ": 0.6304375,
+          "zero_crossings": 4
+        }
+      ]
+    },
+    {
+      "name": "sequential_release_drain_exact_formula",
+      "status": "pass",
+      "cases": 8
+    },
+    {
+      "name": "source_hashes_unchanged",
+      "status": "pass"
+    }
+  ],
+  "result": "implementation and finite assertion verified in the stated range",
+  "residual_risks": [
+    "Analytic proofs in RESULT.md are self-reviewed, not independently certified",
+    "The Hill counterexample is in the circular-orbit Hill approximation, not a Bullet reconstruction",
+    "Rate times inherit CFG916 PH1's linear median-clock approximation"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/THEORY_NEXT_STEPS_2026-10-15.md",
+      "sha256": "dbfa96b69ce80f5d3670ea070a1392558946ff42fe8015f89b3e1f6dbc23af02",
+      "sha256_after": "dbfa96b69ce80f5d3670ea070a1392558946ff42fe8015f89b3e1f6dbc23af02"
+    },
+    {
+      "path": "campaign_fresh_gravity/THEORY_CANONICAL_2026-10-14.md",
+      "sha256": "30aa143ee1d8d2179e68d66a0b9f9e5d9437e69e5598b04a76b0d5770c649019",
+      "sha256_after": "30aa143ee1d8d2179e68d66a0b9f9e5d9437e69e5598b04a76b0d5770c649019"
+    },
+    {
+      "path": "campaign_fresh_gravity/THEORY_CANONICAL_2026-10-16.md",
+      "sha256": "95244038c557a351845d020acff2548098eb429b45945e4586bf183b1e227bc2",
+      "sha256_after": "95244038c557a351845d020acff2548098eb429b45945e4586bf183b1e227bc2"
+    },
+    {
+      "path": "campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md",
+      "sha256": "5def18e304e8078ed37d28cf40e4c40a6dc110820f8813f550780c39b5e2448f",
+      "sha256_after": "5def18e304e8078ed37d28cf40e4c40a6dc110820f8813f550780c39b5e2448f"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG913_mobility_law_feasibility/README.md",
+      "sha256": "f2c4a11b208e4e6ea643dd8adf02ee01b636fd27cb2bcafe6ba391c74a74916f",
+      "sha256_after": "f2c4a11b208e4e6ea643dd8adf02ee01b636fd27cb2bcafe6ba391c74a74916f"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG913_mobility_law_feasibility/FROZEN_CRITERIA.md",
+      "sha256": "9b9f443e4c714ebda39d85ddb2f3733fa3d5a1dafa1d7ea8aa359fbf1f232917",
+      "sha256_after": "9b9f443e4c714ebda39d85ddb2f3733fa3d5a1dafa1d7ea8aa359fbf1f232917"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG913_mobility_law_feasibility/cfg913.py",
+      "sha256": "9434604a60c9f03bf0da061d5988085213e212f759bb637c768ab662850df855",
+      "sha256_after": "9434604a60c9f03bf0da061d5988085213e212f759bb637c768ab662850df855"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG913_mobility_law_feasibility/cfg913_results.json",
+      "sha256": "7e2ce0f40abd882dba1570db68f29e4e59ef2840b916194637888b369dbca9d0",
+      "sha256_after": "7e2ce0f40abd882dba1570db68f29e4e59ef2840b916194637888b369dbca9d0"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG915_population_label_mobility/README.md",
+      "sha256": "2406ed4aa32c27eaa4c568a0adff1057fb81f0fe8ba600dfc98775806b0f266d",
+      "sha256_after": "2406ed4aa32c27eaa4c568a0adff1057fb81f0fe8ba600dfc98775806b0f266d"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG915_population_label_mobility/FROZEN_CRITERIA.md",
+      "sha256": "f34f7c42db8883d762b9597ee799563a38a7c31b3b8075ebc1da4130327f2c38",
+      "sha256_after": "f34f7c42db8883d762b9597ee799563a38a7c31b3b8075ebc1da4130327f2c38"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG915_population_label_mobility/cfg915.py",
+      "sha256": "6e67568db8ae127403c9780d536f339a05adf820ff4b38ac8443d1b286f55ddf",
+      "sha256_after": "6e67568db8ae127403c9780d536f339a05adf820ff4b38ac8443d1b286f55ddf"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG915_population_label_mobility/cfg915_results.json",
+      "sha256": "f6131b4db73131655656ce51028aad5afd771b1ecfe285c4011f3e2ea6916883",
+      "sha256_after": "f6131b4db73131655656ce51028aad5afd771b1ecfe285c4011f3e2ea6916883"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG916_lock_and_release/README.md",
+      "sha256": "133aaf105934335da8e7aaa374e02dd29765a199b23f80fdeccb4ec9a899910a",
+      "sha256_after": "133aaf105934335da8e7aaa374e02dd29765a199b23f80fdeccb4ec9a899910a"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG916_lock_and_release/FROZEN_CRITERIA.md",
+      "sha256": "efc4ed6b66ba4609ce1e9da14b78318e7b0dd7f6fbbc900d2aa58c1464e564e6",
+      "sha256_after": "efc4ed6b66ba4609ce1e9da14b78318e7b0dd7f6fbbc900d2aa58c1464e564e6"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG916_lock_and_release/cfg916.py",
+      "sha256": "035903d529472575ae54ae51f7acaac5fea402420468f655f2a85bbcec36e317",
+      "sha256_after": "035903d529472575ae54ae51f7acaac5fea402420468f655f2a85bbcec36e317"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG916_lock_and_release/cfg916_results.json",
+      "sha256": "6eb1bc0fa1b84ee28db626c18176e97c3cd6e7d02197cd2ae2af7b726f3509a8",
+      "sha256_after": "6eb1bc0fa1b84ee28db626c18176e97c3cd6e7d02197cd2ae2af7b726f3509a8"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG888_clump_self_gravity_from_action/README.md",
+      "sha256": "b8085cd1702980ab98dd3ab3116fc6c9ecf31900a453afc365880eea064d1436",
+      "sha256_after": "b8085cd1702980ab98dd3ab3116fc6c9ecf31900a453afc365880eea064d1436"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG638_cold_energy_fluid_equations/README.md",
+      "sha256": "31aa3683769a65f7ed10c5af5843b5694f61b8bb803796ee203b5e5d5a95794f",
+      "sha256_after": "31aa3683769a65f7ed10c5af5843b5694f61b8bb803796ee203b5e5d5a95794f"
+    },
+    {
+      "path": "reviews/final_closure_push_2026_10_20/capture_dynamics/check_capture.py",
+      "sha256": "fd04e991a3fdc15db6f358fc2074dbc50a8537e28636735ef0281ebf38352072",
+      "sha256_after": "fd04e991a3fdc15db6f358fc2074dbc50a8537e28636735ef0281ebf38352072"
+    },
+    {
+      "path": "reviews/final_closure_push_2026_10_20/capture_dynamics/source_hashes.json",
+      "sha256": "a514599d97cea8793b788b30d7f646e884cace39e7cf54ea6d77974fc35f14a5",
+      "sha256_after": "a514599d97cea8793b788b30d7f646e884cace39e7cf54ea6d77974fc35f14a5"
+    }
+  ],
+  "declared_results": [
+    "reviews/final_closure_push_2026_10_20/capture_dynamics/checks.json"
+  ]
+}

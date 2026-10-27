@@ -1,0 +1,182 @@
+import Mathlib
+
+/-! Prospective shared-phase action, NOT adopted framework. Own new-model
+assumptions and physical identification remain subject to independent admission.
+Exact action expansion, canonical quadratic Legendre transform, dispersion
+algebra and declared homogeneous stress; no gravity or nonlinear stability claim.
+-/
+noncomputable section
+namespace FrameworkSharedPhase
+
+def B (R u a X0 : ℝ) : ℝ := R ^ 2 + a * (u ^ 2 / 2 - X0)
+def K (R u a X0 : ℝ) : ℝ := B R u a X0 + a * u ^ 2
+def C (R u : ℝ) : ℝ := 2 * R * u
+def massSq (m u : ℝ) : ℝ := m ^ 2 - u ^ 2
+
+def quadraticL (μ K B C σ σdot σgrad ηdot ηgrad : ℝ) : ℝ :=
+  (σdot ^ 2 - σgrad ^ 2 - μ * σ ^ 2 + K * ηdot ^ 2 - B * ηgrad ^ 2) / 2 + C * σ * ηdot
+
+def originalL (R u a X0 ρ0 m f e σ σdot σgrad ηdot ηgrad : ℝ) : ℝ :=
+  let r := R + e * σ
+  let X := ((u + e * ηdot) ^ 2 - (e * ηgrad) ^ 2) / 2
+  ((e * σdot) ^ 2 - (e * σgrad) ^ 2) / 2 + r ^ 2 * X - ρ0 + a / 2 * (X - X0) ^ 2 - m ^ 2 / 2 * (r - f) ^ 2
+
+def hamiltonian (μ K B C σ pσ σgrad peta ηgrad : ℝ) : ℝ :=
+  pσ ^ 2 / 2 + (peta - C * σ) ^ 2 / (2 * K) + μ * σ ^ 2 / 2 + σgrad ^ 2 / 2 + B * ηgrad ^ 2 / 2
+
+def dispersion (K B C μ wave s : ℝ) : ℝ :=
+  (s - (wave ^ 2 + μ)) * (K * s - B * wave ^ 2) - C ^ 2 * s
+
+def discriminant (K B C μ wave : ℝ) : ℝ :=
+  (K * (wave ^ 2 + μ) + B * wave ^ 2 + C ^ 2) ^ 2 - 4 * K * B * wave ^ 2 * (wave ^ 2 + μ)
+
+def backgroundPressure (R u a X0 ρ0 m f : ℝ) : ℝ :=
+  R ^ 2 * u ^ 2 / 2 - ρ0 + a / 2 * (u ^ 2 / 2 - X0) ^ 2 - m ^ 2 / 2 * (R - f) ^ 2
+
+def backgroundRho (R u a X0 ρ0 m f : ℝ) : ℝ :=
+  R ^ 2 * u ^ 2 / 2 + u ^ 2 * a * (u ^ 2 / 2 - X0) + ρ0 -
+    a / 2 * (u ^ 2 / 2 - X0) ^ 2 + m ^ 2 / 2 * (R - f) ^ 2
+
+/-- Exact polynomial Taylor identity; radial background relation must cancel its linear term. -/
+theorem full_action_expansion (R u a X0 ρ0 m f e σ σdot σgrad ηdot ηgrad : ℝ) :
+    originalL R u a X0 ρ0 m f e σ σdot σgrad ηdot ηgrad =
+      originalL R u a X0 ρ0 m f 0 σ σdot σgrad ηdot ηgrad +
+      e * ((m ^ 2 * f - massSq m u * R) * σ + B R u a X0 * u * ηdot) +
+      e ^ 2 * quadraticL (massSq m u) (K R u a X0) (B R u a X0) (C R u) σ σdot σgrad ηdot ηgrad +
+      e ^ 3 * (σ ^ 2 * u * ηdot + R * σ * (ηdot ^ 2 - ηgrad ^ 2) +
+        a * u * ηdot * (ηdot ^ 2 - ηgrad ^ 2) / 2) +
+      e ^ 4 * (σ ^ 2 * (ηdot ^ 2 - ηgrad ^ 2) / 2 + a * (ηdot ^ 2 - ηgrad ^ 2) ^ 2 / 8) := by
+  unfold originalL quadraticL massSq K B C
+  ring
+
+/-- Derivatives of the actual quadratic L, not prescribed canonical momenta. -/
+theorem canonical_momenta (μ K B C σ σdot σgrad ηdot ηgrad : ℝ) :
+    HasDerivAt (fun v => quadraticL μ K B C σ v σgrad ηdot ηgrad) σdot σdot ∧
+    HasDerivAt (fun v => quadraticL μ K B C σ σdot σgrad v ηgrad) (K * ηdot + C * σ) ηdot := by
+  constructor
+  · have h := ((hasDerivAt_id σdot).pow 2).div_const 2
+    have hc := h.add_const ((-σgrad ^ 2 - μ * σ ^ 2 + K * ηdot ^ 2 - B * ηgrad ^ 2) / 2 + C * σ * ηdot)
+    have hf : (fun v : ℝ => v ^ 2 / 2 +
+        ((-σgrad ^ 2 - μ * σ ^ 2 + K * ηdot ^ 2 - B * ηgrad ^ 2) / 2 + C * σ * ηdot)) =
+        (fun v => quadraticL μ K B C σ v σgrad ηdot ηgrad) := by
+      funext v
+      unfold quadraticL
+      ring
+    dsimp at hc
+    rw [hf] at hc
+    exact hc.congr_deriv (by ring)
+  · have h2 := (((hasDerivAt_id ηdot).pow 2).const_mul K).div_const 2
+    have hl := (hasDerivAt_id ηdot).const_mul (C * σ)
+    have h := (h2.add hl).add_const ((σdot ^ 2 - σgrad ^ 2 - μ * σ ^ 2 - B * ηgrad ^ 2) / 2)
+    have hf : (fun v : ℝ => K * v ^ 2 / 2 + (C * σ) * v +
+        ((σdot ^ 2 - σgrad ^ 2 - μ * σ ^ 2 - B * ηgrad ^ 2) / 2)) =
+        (fun v => quadraticL μ K B C σ σdot σgrad v ηgrad) := by
+      funext v
+      unfold quadraticL
+      ring
+    dsimp at h
+    rw [hf] at h
+    exact h.congr_deriv (by ring)
+
+/-- Actual quadratic Legendre transform after solving peta=K ηdot+Cσ. -/
+theorem legendre_transform (μ K B C σ pσ σgrad peta ηgrad : ℝ) (hK : K ≠ 0) :
+    pσ ^ 2 + peta * ((peta - C * σ) / K) -
+      quadraticL μ K B C σ pσ σgrad ((peta - C * σ) / K) ηgrad =
+        hamiltonian μ K B C σ pσ σgrad peta ηgrad := by
+  unfold quadraticL hamiltonian
+  field_simp
+  ring
+
+theorem rotating_hamiltonian_nonnegative (μ K B C σ pσ σgrad peta ηgrad : ℝ)
+    (hμ : 0 ≤ μ) (hK : 0 < K) (hB : 0 ≤ B) :
+    0 ≤ hamiltonian μ K B C σ pσ σgrad peta ηgrad := by
+  unfold hamiltonian
+  positivity
+
+/-- The determinant polynomial and its exact discriminant square decomposition. -/
+theorem dispersion_dictionary (K B C μ wave s : ℝ) :
+    dispersion K B C μ wave s = K * s ^ 2 -
+      (K * (wave ^ 2 + μ) + B * wave ^ 2 + C ^ 2) * s + B * wave ^ 2 * (wave ^ 2 + μ) ∧
+    discriminant K B C μ wave = (K * (wave ^ 2 + μ) - B * wave ^ 2) ^ 2 +
+      2 * C ^ 2 * (K * (wave ^ 2 + μ) + B * wave ^ 2) + C ^ 4 := by
+  unfold dispersion discriminant
+  constructor <;> ring
+
+theorem dispersion_discriminant_nonnegative (K B C μ wave : ℝ)
+    (hK : 0 ≤ K) (hB : 0 ≤ B) (hμ : 0 ≤ μ) : 0 ≤ discriminant K B C μ wave := by
+  rw [(dispersion_dictionary K B C μ wave 0).2]
+  positivity
+
+/-- All real frequency-squared roots are nonnegative on the stated healthy branch.
+The variable s is arbitrary real, so this does not assume s=omega²>=0. -/
+theorem no_negative_squared_frequency (K B C μ wave s : ℝ)
+    (hK : 0 < K) (hB : 0 ≤ B) (hμ : 0 < μ)
+    (hroot : dispersion K B C μ wave s = 0) : 0 ≤ s := by
+  by_contra hn
+  have hs : s < 0 := lt_of_not_ge hn
+  let H := K * (wave ^ 2 + μ) + B * wave ^ 2 + C ^ 2
+  let J := B * wave ^ 2 * (wave ^ 2 + μ)
+  have hH : 0 < H := by dsimp [H]; positivity
+  have hJ : 0 ≤ J := by dsimp [J]; positivity
+  have hquadratic : 0 ≤ K * s ^ 2 := by positivity
+  have hmiddle : 0 < -H * s := mul_pos_of_neg_of_neg (neg_neg_of_pos hH) hs
+  rw [(dispersion_dictionary K B C μ wave s).1] at hroot
+  change K * s ^ 2 - H * s + J = 0 at hroot
+  nlinarith
+
+/-- B=0 retains an exactly zero frequency branch at every wavevector. -/
+theorem zero_gradient_boundary_roots (K C μ wave s : ℝ) (hK : K ≠ 0) :
+    dispersion K 0 C μ wave s = 0 ↔ s = 0 ∨ s = wave ^ 2 + μ + C ^ 2 / K := by
+  have he : dispersion K 0 C μ wave s = s * (K * s - K * (wave ^ 2 + μ) - C ^ 2) := by
+    unfold dispersion
+    ring
+  rw [he, mul_eq_zero]
+  constructor
+  · rintro (hz | hz)
+    · exact Or.inl hz
+    · right
+      field_simp
+      nlinarith [hz]
+  · rintro (hz | hz)
+    · exact Or.inl hz
+    · right
+      rw [hz]
+      field_simp
+      ring
+
+/-- Original prospective homogeneous stress, distinct from rotating H-uQ positivity. -/
+theorem background_enthalpy (R u a X0 ρ0 m f : ℝ) :
+    backgroundRho R u a X0 ρ0 m f + backgroundPressure R u a X0 ρ0 m f = u ^ 2 * B R u a X0 := by
+  unfold backgroundRho backgroundPressure B
+  ring
+
+/-- At the pure P_X=0 point, a nonzero shared radial amplitude prevents exact total w=-1. -/
+theorem pure_ghost_point_not_total_de (R u a X0 ρ0 m f : ℝ) (hR : R ≠ 0) (hu : u ≠ 0)
+    (hghost : u ^ 2 / 2 = X0) (hrho : 0 < backgroundRho R u a X0 ρ0 m f) :
+    0 < backgroundPressure R u a X0 ρ0 m f / backgroundRho R u a X0 ρ0 m f + 1 := by
+  have he := background_enthalpy R u a X0 ρ0 m f
+  have hb : B R u a X0 = R ^ 2 := by unfold B; rw [hghost]; ring
+  rw [hb] at he
+  have hp : 0 < u ^ 2 * R ^ 2 := mul_pos (sq_pos_of_ne_zero hu) (sq_pos_of_ne_zero hR)
+  have heq : backgroundPressure R u a X0 ρ0 m f / backgroundRho R u a X0 ρ0 m f + 1 =
+      (backgroundPressure R u a X0 ρ0 m f + backgroundRho R u a X0 ρ0 m f) /
+        backgroundRho R u a X0 ρ0 m f := by field_simp
+  rw [heq]
+  apply div_pos _ hrho
+  nlinarith [he]
+
+end FrameworkSharedPhase
+#print axioms FrameworkSharedPhase.full_action_expansion
+#print axioms FrameworkSharedPhase.canonical_momenta
+#print axioms FrameworkSharedPhase.legendre_transform
+#print axioms FrameworkSharedPhase.rotating_hamiltonian_nonnegative
+#print axioms FrameworkSharedPhase.dispersion_dictionary
+#print axioms FrameworkSharedPhase.dispersion_discriminant_nonnegative
+#print axioms FrameworkSharedPhase.no_negative_squared_frequency
+#print axioms FrameworkSharedPhase.zero_gradient_boundary_roots
+#print axioms FrameworkSharedPhase.background_enthalpy
+#print axioms FrameworkSharedPhase.pure_ghost_point_not_total_de
+
+/- EXPECTED FAILURE: B=0 has an exact zero-frequency root even at nonzero wave. -/
+example : FrameworkSharedPhase.dispersion 1 0 1 1 2 0 ≠ 0 := by
+  norm_num [FrameworkSharedPhase.dispersion]

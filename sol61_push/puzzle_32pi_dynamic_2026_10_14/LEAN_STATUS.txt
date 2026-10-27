@@ -1,0 +1,53 @@
+Lean formalization of the curvature-bridge result — 2026-10-14
+
+Source: Dynamic32Pi.lean
+Environment: existing fable_independent_2026/lean_2026 Lake project;
+Lean 4.34.0-rc2, mathlib v4.34.0-rc2. No dependencies installed or modified.
+
+13 theorem declarations compile successfully (exit 0). Every printed axiom
+set is exactly [propext, Classical.choice, Quot.sound]. No sorry, admit,
+custom axiom, native_decide or unsafe proof shortcut is used in the source.
+The compiler reports style/implicit-variable linter warnings, not errors.
+
+Claim map:
+ residual_factor: substitution of H^2=2Ca^2/3 into the scalar residual.
+ stationary_iff: positive finite branch iff 1+(16/3)beta C=0.
+ calibrated_stationary: every nonzero C admits beta=-3/(16C).
+ curvature_ratio: the assumed stationary relation implies Lambda/a^2=-3/(8beta).
+ target_iff: the desired ratio is equivalent to beta=-3/(256pi).
+ alternative_branch: C=M=a=1 is stationary with a ratio different from 32pi.
+ reduced_kinetic: supplied constraint-elimination expression equals 1+6M^2/a^2.
+ kinetic_positive: this reduced coefficient is positive.
+ reduced_friction: supplied friction/H expression is three times that coefficient.
+ reduced_mass_zero: supplied coupled restoring expression vanishes.
+ neutral_constant_mode: every constant perturbation solves the reduced ODE,
+   with actual Mathlib derivatives (not formal derivative placeholders).
+ shift_factor: exact residual after an independently added vacuum constant.
+ positive_shift_obstruction: that residual is strictly negative for positive
+   C,M,a,Delta, hence it cannot be a stationary vacuum of the assumed equations.
+
+Formal boundary:
+The source defines the already-derived FRW expressions as model inputs.
+It does not derive their variational/geometric provenance in Lean. It also
+does not formalize a microscopic medium, measured Newton constant, equality
+of the scalar with observed MOND a0, full inhomogeneous health, quantum
+corrections, or a physical horizon. The abstract ratio result cannot be
+promoted to a proof that nature selects 32pi. The alternative-branch theorem
+formally exhibits this non-uniqueness within the admitted algebraic model.
+The general reciprocal-function identity and local polar potential calculus
+remain the symbolic results of RESULT.txt, not additional Lean theorems.
+
+Reproduction from the repository root:
+ cd fable_independent_2026/lean_2026
+ lake env lean ../../sol61_push/puzzle_32pi_dynamic_2026_10_14/Dynamic32Pi.lean
+
+Negative control:
+ Dynamic32Pi_MUTATE.lean changes only the target equality from 32pi to 16pi
+ and reverses the strict sign in positive_shift_obstruction. This intentionally
+ invalid source is separate from the accepted certificate. Its compiler log
+ is lean_mutate.out; the accepted source's log is lean_build.out.
+
+Verification metadata and hashes are in lean_verification.json.
+The original 32pi^2 physics puzzle remains OPEN; this formalization is complete
+for the 13 declared mathematical claims above. Self-review, no independent
+agent referee.

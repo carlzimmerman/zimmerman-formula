@@ -1,0 +1,14 @@
+/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/optimize/_optimize.py:404: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  warnings.warn("Values in x were outside bounds during a "
+/Users/carlzimmerman/new_physics/zimmerman-formula/boundary_resolution_2026_10_25/fast_complete.py:19: RuntimeWarning: invalid value encountered in matmul
+  aa=T(y).requires_grad_(True);E=energy(aa);g=torch.autograd.grad(E,aa)[0].detach().numpy();H=torch.autograd.functional.hessian(energy,aa).detach().numpy();HH=Z.T@H@Z;gg=Z.T@g;scale=1/np.sqrt(np.maximum(abs(np.diag(HH)),1e-8));HS=scale[:,None]*HH*scale[None,:];mine=float(np.linalg.eigvalsh(HS)[0]);shift=(-mine+.01) if mine<=0 else 0;d=-Z@(scale*np.linalg.solve(HS+shift*np.eye(len(gg)),scale*gg));d[:n][(v[:n]<=4e-12)&(d[:n]<0)]=0;d[n:][(y[n:]<=1e-12)&(d[n:]<0)]=0;d[n:][(y[n:]>=1-1e-12)&(d[n:]>0)]=0;alpha=1.
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/boundary_resolution_2026_10_25/latent.py", line 24, in <module>
+    assert max(err)<1e-6;out['checks'].append(err);r=finish(m,v,dest.with_name(f'base_{B}.json'),initial_iterations=200,newton_iterations=70);out['runs'].append(r);dest.write_text(json.dumps(out,indent=2)+'\n');print({k:r[k] for k in ['phase_volume_cost','law_endpoint_error_dex','density_KKT_max','gradient_max','mass_outside50','density_rebound_full','explicit_exterior_mass','explicit_exterior_T_fraction','interpolated_crossings_kpc','optimizer']},flush=True)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/boundary_resolution_2026_10_25/fast_complete.py", line 19, in finish
+    aa=T(y).requires_grad_(True);E=energy(aa);g=torch.autograd.grad(E,aa)[0].detach().numpy();H=torch.autograd.functional.hessian(energy,aa).detach().numpy();HH=Z.T@H@Z;gg=Z.T@g;scale=1/np.sqrt(np.maximum(abs(np.diag(HH)),1e-8));HS=scale[:,None]*HH*scale[None,:];mine=float(np.linalg.eigvalsh(HS)[0]);shift=(-mine+.01) if mine<=0 else 0;d=-Z@(scale*np.linalg.solve(HS+shift*np.eye(len(gg)),scale*gg));d[:n][(v[:n]<=4e-12)&(d[:n]<0)]=0;d[n:][(y[n:]<=1e-12)&(d[n:]<0)]=0;d[n:][(y[n:]>=1-1e-12)&(d[n:]>0)]=0;alpha=1.
+  File "/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/numpy/linalg/linalg.py", line 1181, in eigvalsh
+    w = gufunc(a, signature=signature, extobj=extobj)
+  File "/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/numpy/linalg/linalg.py", line 118, in _raise_linalgerror_eigenvalues_nonconvergence
+    raise LinAlgError("Eigenvalues did not converge")
+numpy.linalg.LinAlgError: Eigenvalues did not converge

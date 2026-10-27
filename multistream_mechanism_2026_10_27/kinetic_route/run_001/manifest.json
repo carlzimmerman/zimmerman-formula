@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "KINETIC_MULTISTREAM_VALVE_20261027",
+  "repository": {
+    "commit": "d827374e7dadbd1c7a4861c45ec9f02a35c2fa70",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "multistream_mechanism_2026_10_27/kinetic_route/check_kinetic.py",
+    "multistream_mechanism_2026_10_27/kinetic_route/run_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact finite collision-channel invariants, entropy sign, a gate-off nonzero heat-flux counterexample, and specified two-reservoir negative-heat-capacity trajectories",
+    "coefficient_domain": "exact rational beam/collision moments; float64 entropy and ODE values",
+    "conventions": "mass-weighted velocity distribution; specific temperature T=sigma_1D^2; core capacity -1, envelope capacity b; P/P_star=(T/T_star)^4 for a fixed-mass homologous self-gravitating core",
+    "inputs": [
+      "two declared elastic channels",
+      "explicit eight-beam distribution",
+      "four specified two-zone initial states and one heat impulse"
+    ],
+    "bounds": {
+      "ode_tau_max": 200,
+      "collapse_temperature_stop": 10,
+      "ode_rtol": 1e-10,
+      "ode_atol": 1e-12
+    },
+    "non_claims": [
+      "No field action, observational fit, Burkert formation or derived threshold coefficient",
+      "No general nonlinear kinetic stability theorem",
+      "The two-zone reduction is not a halo simulation",
+      "The effective kinetic distribution requires an unbuilt field-to-stream bridge"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-27T14:18:23.292892+00:00",
+    "runtime_seconds": 0.513387,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "multistream_mechanism_2026_10_27/kinetic_route/check_kinetic.py",
+    "multistream_mechanism_2026_10_27/kinetic_route/DERIVATION.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "multistream_mechanism_2026_10_27/kinetic_route/check_kinetic.py",
+      "sha256": "7cece4909a3bec58c18f1f889ab1352e736d054f17194c55ddb463d4f8912abc",
+      "sha256_after": "7cece4909a3bec58c18f1f889ab1352e736d054f17194c55ddb463d4f8912abc"
+    },
+    {
+      "path": "multistream_mechanism_2026_10_27/kinetic_route/DERIVATION.md",
+      "sha256": "262023ed73daa9d094f1f46ac62147681430004e4189641ad3b0402be80f75e1",
+      "sha256_after": "262023ed73daa9d094f1f46ac62147681430004e4189641ad3b0402be80f75e1"
+    }
+  ],
+  "output_directory": "multistream_mechanism_2026_10_27/kinetic_route/run_001",
+  "declared_results": [
+    "multistream_mechanism_2026_10_27/kinetic_route/run_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "multistream_mechanism_2026_10_27/kinetic_route/run_001/stdout.txt",
+      "sha256": "56a4e5310dbb631096c0b9f7e3241471248cf4d5689c4b7cde2a5c75a3f08431",
+      "kind": "log"
+    },
+    {
+      "path": "multistream_mechanism_2026_10_27/kinetic_route/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "multistream_mechanism_2026_10_27/kinetic_route/run_001/result.json",
+      "sha256": "56a4e5310dbb631096c0b9f7e3241471248cf4d5689c4b7cde2a5c75a3f08431",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

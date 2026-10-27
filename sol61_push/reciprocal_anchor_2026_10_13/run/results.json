@@ -1,0 +1,180 @@
+{
+  "checks": [
+    {
+      "name": "reference kinetic from covariant energy",
+      "passed": true,
+      "detail": "j**2*Subs(Derivative(E(_xi_1), _xi_1), _xi_1, n)/(2*n)"
+    },
+    {
+      "name": "positive Hessian determinant",
+      "passed": true,
+      "detail": "Matrix([[h + n**2/R, -n/R], [-n/R, 1/R]])"
+    },
+    {
+      "name": "reduced carrier inertia",
+      "passed": true,
+      "detail": "Pdot**2*h/(2*(R*h + n**2))"
+    },
+    {
+      "name": "dust limit removes reduced carrier inertia",
+      "passed": true,
+      "detail": "Free reference velocity cancels current; not fixed-anchor inertia"
+    },
+    {
+      "name": "displacement kinetic determinant",
+      "passed": true,
+      "detail": "Matrix([[a*n + n, n], [n, n]])"
+    },
+    {
+      "name": "frozen nongravitating frequency trace",
+      "passed": true,
+      "detail": "b*k**2*n/a + n*w*(a + 1)/a"
+    },
+    {
+      "name": "frozen nongravitating frequency product",
+      "passed": true,
+      "detail": "b*k**2*n**2*w/a"
+    },
+    {
+      "name": "static constrained reference gradient",
+      "passed": true,
+      "detail": "(Derivative(E(n(x)), n(x)) + 1)*Derivative(N(x), x) + N(x)*Derivative(E(n(x)), (n(x), 2))*Derivative(n(x), x)"
+    },
+    {
+      "name": "reference pressure differential",
+      "passed": true,
+      "detail": "n*Derivative(E(n), n) - E(n)"
+    },
+    {
+      "name": "static lapse source derivative",
+      "passed": true,
+      "detail": "Derivative(E(n), n) + 1"
+    },
+    {
+      "name": "explicit hydrostatic first integral",
+      "passed": true,
+      "detail": "(-epsilon - 1 + (b*n0 + epsilon + 1)/N)/b"
+    },
+    {
+      "name": "reference clustering increment",
+      "passed": true,
+      "detail": "-(N - 1)*(b*n0 + epsilon + 1)/(N*b)"
+    },
+    {
+      "name": "source increment factored",
+      "passed": true,
+      "detail": "-(N - 1)*(N + 1)*(b*n0 + epsilon + 1)**2/(2*N**2*b)"
+    },
+    {
+      "name": "pressure supports total carrier acceleration",
+      "passed": true,
+      "detail": "p=b n^2/2; n b grad n=-n(1+Eprime) grad ln N"
+    },
+    {
+      "name": "dust energy cannot support static lapse",
+      "passed": true,
+      "detail": "grad[N(1+epsilon)]=0 implies grad N=0"
+    },
+    {
+      "name": "background subtraction retains positive susceptibility",
+      "passed": true,
+      "detail": "(b*n0 + epsilon + 1)**2/b"
+    },
+    {
+      "name": "conditional Newtonian tail nonintegrability",
+      "passed": true,
+      "detail": "r**2*(2*pi*M*b**2*n0**2 + 4*pi*M*b*epsilon*n0 + 4*pi*M*b*n0 + 2*pi*M*epsilon**2 + 4*pi*M*epsilon + 2*pi*M)/b"
+    },
+    {
+      "name": "positive density/source N=999/1000",
+      "passed": true,
+      "detail": "(14/24975, 391804/623750625)"
+    },
+    {
+      "name": "positive density/source N=99/100",
+      "passed": true,
+      "detail": "(14/2475, 39004/6125625)"
+    },
+    {
+      "name": "positive density/source N=9/10",
+      "passed": true,
+      "detail": "(14/225, 3724/50625)"
+    },
+    {
+      "name": "positive displacement block a=1/1000",
+      "passed": true,
+      "detail": "[0.0004998750000078125, 2.0005001249999923]"
+    },
+    {
+      "name": "positive displacement block a=1/10",
+      "passed": true,
+      "detail": "[0.048750780274960714, 2.0512492197250394]"
+    },
+    {
+      "name": "positive displacement block a=1",
+      "passed": true,
+      "detail": "[0.38196601125010515, 2.618033988749895]"
+    },
+    {
+      "name": "positive displacement block a=10",
+      "passed": true,
+      "detail": "[0.9009804864072152, 11.099019513592784]"
+    }
+  ],
+  "kinetic_hessian": "Matrix([[h + n**2/R, -n/R], [-n/R, 1/R]])",
+  "reduced_L": "Pdot**2*h/(2*(R*h + n**2))",
+  "hydrostatic_density": "(-epsilon - 1 + (b*n0 + epsilon + 1)/N)/b",
+  "source_increment": "-(N - 1)*(N + 1)*(b*n0 + epsilon + 1)**2/(2*N**2*b)",
+  "hydrostatic_controls": [
+    {
+      "N": "999/1000",
+      "density_increment": "14/24975",
+      "source_increment": "391804/623750625"
+    },
+    {
+      "N": "99/100",
+      "density_increment": "14/2475",
+      "source_increment": "39004/6125625"
+    },
+    {
+      "N": "9/10",
+      "density_increment": "14/225",
+      "source_increment": "3724/50625"
+    }
+  ],
+  "inertia_controls": [
+    {
+      "Eprime": "1/1000",
+      "eigenvalues": [
+        0.0004998750000078125,
+        2.0005001249999923
+      ],
+      "reduced_I_over_fixed_I": "1/1001"
+    },
+    {
+      "Eprime": "1/10",
+      "eigenvalues": [
+        0.048750780274960714,
+        2.0512492197250394
+      ],
+      "reduced_I_over_fixed_I": "1/11"
+    },
+    {
+      "Eprime": "1",
+      "eigenvalues": [
+        0.38196601125010515,
+        2.618033988749895
+      ],
+      "reduced_I_over_fixed_I": "1/2"
+    },
+    {
+      "Eprime": "10",
+      "eigenvalues": [
+        0.9009804864072152,
+        11.099019513592784
+      ],
+      "reduced_I_over_fixed_I": "10/11"
+    }
+  ],
+  "scope": "Fixed-clock local current/reference EOS comparison and static lapse variation; gravity/clock/full metric stability excluded."
+}

@@ -1,0 +1,22 @@
+--- original/verify.py
++++ review/verify_review.py
+@@ -7,7 +7,7 @@
+ import subprocess
+ import sys
+ 
+-HERE = Path(__file__).resolve().parent
++HERE = Path('/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/gravity_architecture_lean_2026_10_12')
+ ROOT = HERE.parents[1]
+ LAKE = ROOT / "fable_independent_2026/lean_2026"
+ SOURCE = HERE / "Architecture.lean"
+@@ -16,8 +16,8 @@
+ 
+ def main():
+     out = Path(sys.argv[1]).resolve()
+-    if not out.is_relative_to(HERE) or not out.is_dir():
+-        raise ValueError("Output must be an existing run directory below this package")
++    if not out.is_relative_to(Path('/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/architecture_review')) or not out.is_dir():
++        raise ValueError("Output must be an existing run directory below the independent review scope")
+     source = SOURCE.read_text()
+     if re.search(r"\b(sorry|admit|native_decide|implemented_by)\b", source):
+         raise ValueError("Unadmitted proof source required")

@@ -1,0 +1,64 @@
+{
+  "task": "FGF055 coordinator moment refinement narrow audit",
+  "reviewer": "/root/fgf055_refinement_audit",
+  "primary_verdict": "conditional on a named input",
+  "conditional_refinement_valid": true,
+  "internal_defects_found": [],
+  "scope": "Exact variable-mass, pressure and capacity signs; mass-defect force split; O(epsilon^4) time-integrated dynamical remainder; retained full field momentum and energy boundary terms.",
+  "named_input": "Actual positive classical full-system slab through T=Btime epsilon/V with fixed V>0, smooth compatible hydrostatic background, n<=Nbar, |g-g0|<=Cg epsilon, and endpoint |v|<=Cv epsilon^2, |n-rho|<=Cn epsilon^2, uniformly in epsilon.",
+  "pins": [
+    {
+      "role": "target",
+      "path": "campaign_fresh_gravity_astra/stage_42/coordinator/ROOT_MOMENT_REFINEMENT.md",
+      "sha256": "f76e4eb4d3c173fec403d7fcdf54bd6deacf920b63d02d3d13bb27f3258eccf0",
+      "verified_before_read": true
+    },
+    {
+      "role": "task",
+      "path": "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/tasks/FGF-055.md",
+      "sha256": "a06015358472e6f8b4b0c90ec8a88a433687e58f01acb468e04e1ce393369346",
+      "verified_before_read": true
+    },
+    {
+      "role": "actual equations and local balance definitions, sections 2, 6, 7",
+      "path": "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-054/fgf054_run_001/DERIVATION.md",
+      "sha256": "947d5fa84514f1bba8bedc96da98f9b2049ec56ea2e08cc1f3bde7c4724b3a09",
+      "verified_before_read": true
+    }
+  ],
+  "obligations": {
+    "variable_mass_and_capacity_signs": "passed",
+    "hydrostatic_pressure_subtraction": "passed",
+    "exact_mass_defect_split": "passed",
+    "integrated_dynamical_error_order": "passed conditionally: O(epsilon^4)",
+    "full_field_momentum_stress": "passed: boundary stress retained",
+    "full_field_energy_flux": "passed: both p B_Q and Jwk retained",
+    "stationary_total_momentum_conservation": "correctly not asserted",
+    "actual_field_source_and_exterior_bounds": "not addressed; conditional inputs",
+    "existence_restart_maximal_domain": "out of scope",
+    "initial_packet_constant_and_strict_threshold": "passed: 16/15 and Btime>15/2; equality undecided"
+  },
+  "remaining_gaps": [
+    "Parent actual density and O(epsilon) field bound on a contained full-speed cone is not proved by this note or audit.",
+    "Parent O(epsilon^2) exterior endpoint fluid bounds for the same solutions and horizon are not proved by this note or audit.",
+    "No new existence, lower-time, restart or maximal-domain theorem is supplied."
+  ],
+  "strongest_safe_statement": "Every classical slab satisfying the named uniform hypotheses obeys the exact capacity identity and has O(epsilon^4) dynamical remainder. For fixed Btime>15/2, sufficiently small epsilon excludes survival through T under those hypotheses.",
+  "independence": {
+    "separate_reviewer": true,
+    "coordinator_credited_author_preview": true,
+    "coordinator_blind_derivation_claim": false,
+    "new_FGF055_author_proof_read": false,
+    "other_reviewer_proof_read": false,
+    "FGF054_local_equations_used_without_importing_stationary_collars": true
+  },
+  "exclusions": [
+    "No uniform limit in infinite field speeds",
+    "No evolving reference history",
+    "No physical metric/photon/two-DOF, criterion B, empirical or novelty claim",
+    "No assertion that FGF055 as a whole is proved"
+  ],
+  "mathematical_executable_computations": 0,
+  "verification": "Analytic re-derivation and full self-proofreading; administrative SHA256 pin verification and JSON syntax validation only.",
+  "writes_confined_to": "campaign_fresh_gravity_astra/stage_42/refinement_audit/"
+}

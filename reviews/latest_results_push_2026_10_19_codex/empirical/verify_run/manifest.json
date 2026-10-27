@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "EMPIRICAL_HOST_SCALE_VERIFY_20261019",
+  "repository": {
+    "commit": "unavailable",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "verify.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Verify exact-model synthetic parameter recovery; compare every reported full/sample host additive fit against 10001-point log1p grid; original repository inputs retain snapshotted hashes.",
+    "coefficient_domain": "IEEE 754 float64",
+    "conventions": "Same fit objective, orthogonal grid sanity check, exact hand-constructible synthetic data.",
+    "inputs": [
+      "Saved code and initial result; original repository data hashes declared in source_provenance.json."
+    ],
+    "bounds": {
+      "grid_points": 10001,
+      "synthetic_tolerance_parameter": 2e-06,
+      "grid_loss_tolerance": 1e-13
+    },
+    "non_claims": [
+      "A dense finite grid is not a general optimization proof.",
+      "Source hash equality is checked at observed endpoints, not a proof of no transient writes by other agents."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T21:49:39.170641+00:00",
+    "runtime_seconds": 0.132445,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 15.0,
+    "max_output_bytes": 131072,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "verify.py",
+    "discriminate.py",
+    "run/result.json",
+    "source_provenance.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "verify.py",
+      "sha256": "dabe2c9ff08f40a184cb30e5823541791d7b8c7583830b21a623c1d66780a699",
+      "sha256_after": "dabe2c9ff08f40a184cb30e5823541791d7b8c7583830b21a623c1d66780a699"
+    },
+    {
+      "path": "discriminate.py",
+      "sha256": "4c7cebf5440c0f09b1715da9a231c432779d813830b55e1ce01a47498a6e298a",
+      "sha256_after": "4c7cebf5440c0f09b1715da9a231c432779d813830b55e1ce01a47498a6e298a"
+    },
+    {
+      "path": "run/result.json",
+      "sha256": "824da265984b0cfa3eeed0d95161d54459f65b4199917b87fe4d8dc356e1b484",
+      "sha256_after": "824da265984b0cfa3eeed0d95161d54459f65b4199917b87fe4d8dc356e1b484"
+    },
+    {
+      "path": "source_provenance.json",
+      "sha256": "5c52ba7ff0cbd72f4c38d89c27fd5c01fff8dd89ba213b10cc7fdb71e0ebadf4",
+      "sha256_after": "5c52ba7ff0cbd72f4c38d89c27fd5c01fff8dd89ba213b10cc7fdb71e0ebadf4"
+    }
+  ],
+  "output_directory": "verify_run",
+  "declared_results": [
+    "verify_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "verify_run/stdout.txt",
+      "sha256": "20adc5b27cbe99feda6db16dcec0a218c20da664f4e2962c564f99e32c314735",
+      "kind": "log"
+    },
+    {
+      "path": "verify_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "verify_run/result.json",
+      "sha256": "20adc5b27cbe99feda6db16dcec0a218c20da664f4e2962c564f99e32c314735",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

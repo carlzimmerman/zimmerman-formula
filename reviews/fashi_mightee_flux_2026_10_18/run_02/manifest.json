@@ -1,0 +1,250 @@
+{
+  "schema_version": 2,
+  "claim_id": "FASHI_MIGHTEE_FLUX_2026_10_18",
+  "repository": {
+    "commit": "b9f4f4d3b798b8245fb14ca493b9366d3a8027cc",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "reviews/fashi_mightee_flux_2026_10_18/compare_fluxes.py",
+    "--output",
+    "reviews/fashi_mightee_flux_2026_10_18/run_02"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "pandas",
+        "version": "2.1.3"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "On uniquely matched COSMOS sources, determine whether FASHI DR2 integrated HI flux agrees with the MIGHTEE catalogue, the existing extracted cube flux, or ALFALFA; report the original 47-object science sample separately from the 293-object parent catalogue.",
+    "coefficient_domain": "IEEE float64; sky coordinates in degrees, optical recession velocities in km/s, integrated fluxes in Jy km/s",
+    "conventions": "Frequency-derived MIGHTEE optical velocity c*(nu0/nu-1); FASHI v_opt. Nominal MIGHTEE Jy-Hz to Jy-km/s conversion c*nu0/nu^2 (OPT), with c/nu (REST) and c/nu0 (RADIO) reported as sensitivities because FASHI's integration-axis convention is not fully specified. FASHI S_bf and S_sum divided by 1000. No distance rescaling enters the flux ratios.",
+    "inputs": [
+      "Public FASHI DR2 tables 2 and 3 and README",
+      "Existing 293-row MIGHTEE COSMOS catalogue",
+      "Existing 47 science-sample IDs from CFG301 stage A",
+      "Existing CFG302 extracted cube fluxes",
+      "Existing CFG304 ALFALFA matches"
+    ],
+    "bounds": {
+      "match_radius_arcsec": 60,
+      "match_dv_kms": 300,
+      "radius_sensitivities_arcsec": [
+        30,
+        90
+      ],
+      "primary_fashi_min_snr": 10,
+      "clean_confusion_radius_arcsec": 174,
+      "bootstrap_resamples": 10000,
+      "position_shuffles": 200,
+      "seed": 20261018,
+      "minimum_catalogue_pairs_for_scale_assessment": 8,
+      "minimum_cube_pairs_for_scale_assessment": 5
+    },
+    "sample_definition": "Retain all matches in the audit table. Primary reliable set requires FASHI SNR>=10, positive finite fluxes, unique candidates on both sides, and all five existing MIGHTEE quality flags zero. Clean subset additionally excludes a second MIGHTEE or FASHI source within 174 arcsec of FASHI centroid and an overlapping velocity interval (half sum of W50 plus 200 km/s). Report 47-object science-sample subset separately. Cube comparison additionally requires existing CFG302 primary and detected flags.",
+    "summary": "Median log10 flux ratios, object-bootstrap 68% and 95% intervals, robust scatter and paired three-survey comparison. Show direct-sum FASHI flux, velocity conventions, confusion, width consistency and match-radius sensitivities. Do not optimize cuts after seeing ratios.",
+    "decision": "Agreement band is +/-0.10 dex, inherited from the earlier comparison. Call a relative scale discrepant only if its 95% bootstrap interval lies beyond that band with at least 8 catalogue pairs (5 for cube comparisons); call compatible within band only if its 95% interval is contained in the band. Otherwise unresolved. A general resolution also requires direct-sum and clean/convention sensitivities to support the same conclusion; small clean subsets remain a limitation. Bootstrap intervals exclude shared calibration systematics, including the quoted approximately 5% FAST calibration floor.",
+    "non_claims": [
+      "Does not measure a0 or prefer a gravity theory",
+      "Does not establish absolute calibration correctness from pairwise agreement alone",
+      "Does not treat multiple reductions of MIGHTEE as independent telescopes",
+      "Does not treat missing FASHI matches as zero flux or upper limits",
+      "Does not extrapolate the matched sample's correction to all 47 science objects",
+      "No sigma claim based solely on formal individual catalogue errors"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy.random.PCG64",
+    "seed": 20261018
+  },
+  "run": {
+    "started_at": "2026-10-19T01:59:50.991098+00:00",
+    "runtime_seconds": 4.873365,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 90,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/fashi_mightee_flux_2026_10_18/compare_fluxes.py",
+    "reviews/fashi_mightee_flux_2026_10_18/contract.json",
+    "_external_data/fashi_dr2_2026_10_18/fashi_dr2.csv",
+    "_external_data/fashi_dr2_2026_10_18/fashi_alfalfa.csv",
+    "_external_data/fashi_dr2_2026_10_18/README.txt",
+    "_external_data/fashi_dr2_2026_10_18/fetch_manifest.json",
+    "data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv",
+    "campaign_fresh_gravity/CFG302_mightee_cube_raw_widths/cfg302_per_galaxy.csv",
+    "campaign_fresh_gravity/CFG304_mightee_flux_scale_alfalfa/cfg304_matched_pairs.csv",
+    "campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_stageA_results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/fashi_mightee_flux_2026_10_18/compare_fluxes.py",
+      "sha256": "58738ac2abaebcf721a7fa24e3c2d0e51396096a425b9673fb8c7d9cd6323b36",
+      "sha256_after": "58738ac2abaebcf721a7fa24e3c2d0e51396096a425b9673fb8c7d9cd6323b36"
+    },
+    {
+      "path": "reviews/fashi_mightee_flux_2026_10_18/contract.json",
+      "sha256": "baa71f9714c598a6d9dd0a5e1ac9ea50a17fc7bb1d28eedd5383eb12ae7f4f73",
+      "sha256_after": "baa71f9714c598a6d9dd0a5e1ac9ea50a17fc7bb1d28eedd5383eb12ae7f4f73"
+    },
+    {
+      "path": "_external_data/fashi_dr2_2026_10_18/fashi_dr2.csv",
+      "sha256": "9c612acac23776b99630f72330f818ca01b6e76517d0107a7872b056b703db4a",
+      "sha256_after": "9c612acac23776b99630f72330f818ca01b6e76517d0107a7872b056b703db4a"
+    },
+    {
+      "path": "_external_data/fashi_dr2_2026_10_18/fashi_alfalfa.csv",
+      "sha256": "eab413cf007256c94450393987dc15dd7f471a1aefec569e96817e2ecaa8d61f",
+      "sha256_after": "eab413cf007256c94450393987dc15dd7f471a1aefec569e96817e2ecaa8d61f"
+    },
+    {
+      "path": "_external_data/fashi_dr2_2026_10_18/README.txt",
+      "sha256": "9f4d08b0124f921863a02d52c728d8b69f4b7a24279959a73bad5508298a04b5",
+      "sha256_after": "9f4d08b0124f921863a02d52c728d8b69f4b7a24279959a73bad5508298a04b5"
+    },
+    {
+      "path": "_external_data/fashi_dr2_2026_10_18/fetch_manifest.json",
+      "sha256": "9d469a4adc80e35f9bd9968d93b66ca57e1282957b6eb4f41a743a935f812c9c",
+      "sha256_after": "9d469a4adc80e35f9bd9968d93b66ca57e1282957b6eb4f41a743a935f812c9c"
+    },
+    {
+      "path": "data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv",
+      "sha256": "bcf9e8558bc5644805b9acb288372c17daffac76d8be6c89d7db9843af9fbf23",
+      "sha256_after": "bcf9e8558bc5644805b9acb288372c17daffac76d8be6c89d7db9843af9fbf23"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG302_mightee_cube_raw_widths/cfg302_per_galaxy.csv",
+      "sha256": "e122665fcf000995b897ce289410af613af1c7c319b82c8c7aad75369768d928",
+      "sha256_after": "e122665fcf000995b897ce289410af613af1c7c319b82c8c7aad75369768d928"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG304_mightee_flux_scale_alfalfa/cfg304_matched_pairs.csv",
+      "sha256": "297e47894aec828412fab235df39e197060f5804acf81943d5e2dda0127cd0f8",
+      "sha256_after": "297e47894aec828412fab235df39e197060f5804acf81943d5e2dda0127cd0f8"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_stageA_results.json",
+      "sha256": "b70790f2a615c8264350a57e7aaf6abbafbd3e95d3b14cd762f08b87ddf71e6d",
+      "sha256_after": "b70790f2a615c8264350a57e7aaf6abbafbd3e95d3b14cd762f08b87ddf71e6d"
+    }
+  ],
+  "output_directory": "reviews/fashi_mightee_flux_2026_10_18/run_02",
+  "declared_results": [
+    "reviews/fashi_mightee_flux_2026_10_18/run_02/results.json",
+    "reviews/fashi_mightee_flux_2026_10_18/run_02/matched_sources.csv",
+    "reviews/fashi_mightee_flux_2026_10_18/run_02/all_candidates.csv",
+    "reviews/fashi_mightee_flux_2026_10_18/run_02/coverage.csv",
+    "reviews/fashi_mightee_flux_2026_10_18/run_02/matches_radius_30.csv",
+    "reviews/fashi_mightee_flux_2026_10_18/run_02/matches_radius_90.csv",
+    "reviews/fashi_mightee_flux_2026_10_18/run_02/report.txt",
+    "reviews/fashi_mightee_flux_2026_10_18/run_02/flux_comparison.png"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/fashi_mightee_flux_2026_10_18/run_02/stdout.txt",
+      "sha256": "2a6977e2cd58c03cfc090482b7e0b35fcb7e6d5941314e789333818ca395742f",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/fashi_mightee_flux_2026_10_18/run_02/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/fashi_mightee_flux_2026_10_18/run_02/results.json",
+      "sha256": "7374063b21ccd1702fbfd7dd8551be9123820f842df008b0fdc3fa05c1115187",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/fashi_mightee_flux_2026_10_18/run_02/matched_sources.csv",
+      "sha256": "e6f33d8c4808a6c519574d68b81bf352ee3baab3b2971e5f348fe5717588538f",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/fashi_mightee_flux_2026_10_18/run_02/all_candidates.csv",
+      "sha256": "1513629342925c62d57c0929781d3aa38fe659d69e2902a085ccc9612e00bbb5",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/fashi_mightee_flux_2026_10_18/run_02/coverage.csv",
+      "sha256": "98ca173092ad914e7c00a7f0e68f196acf7f1ae75d4a32300cc6ddb3553aeaf2",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/fashi_mightee_flux_2026_10_18/run_02/matches_radius_30.csv",
+      "sha256": "7a3b111c1a0fb52fc751d7a26df6f01f42e8c1ed2db22e460e7f280705092080",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/fashi_mightee_flux_2026_10_18/run_02/matches_radius_90.csv",
+      "sha256": "35af5da350dde2d9bd5a8e7b84ac1b1fdf932559c85b81b7817bf1b6cda4bebd",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/fashi_mightee_flux_2026_10_18/run_02/report.txt",
+      "sha256": "3a205bf9428a0bec4bf0e411f0807162d8a4f805e6d61a8654dda499b8ced5d5",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/fashi_mightee_flux_2026_10_18/run_02/flux_comparison.png",
+      "sha256": "7f84dbb8ad450cec4294236e11191669800381ffcca10cf03dafce3f04e3a008",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

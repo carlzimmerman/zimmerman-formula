@@ -1,0 +1,93 @@
+CE-FM-060 — Exact static stiffness residual and AG4 scope
+2026-10-15. Self-review. Primary verdict: the law-form algebra is consistent
+in its zero-gradient spherical reduction; the reported all-corners1.09%
+stiffness statement is false even for its own static residual statistic.
+No finite-stiffness solution, observational regrade or dynamic stability
+conclusion is established by this check.
+
+Sources and positive reconciliation
+AG4 result f111b2d8d, frozen criteria93e579ec1 and amendment c80cdb5fd. Its
+raw action derivation retains the radial vector Laplacian and explicitly
+takes gamma=0 for the algebraic force-law step. That agrees with CE057:
+n=1 gives canonical g_b=g^2/(g+a0); n=2 is a different half-capacity theory.
+The Lean file explicitly conditions its theorems on that algebraic rest
+equation and excludes the physical variational/finite-gamma premises.
+This pass reads that source and output but does not rerun or independently
+certify the Lean toolchain. Algebraic uniqueness is not a uniqueness theorem
+for every boundary solution of the full gradient action.
+The reported G4 gate remains FAILED, and gate_pass remains false. No
+criterion, publication, proof, original code or past result was modified.
+
+Exact statistic being tested
+Set x=r/rM, ell=Lstar/rM and U=u/a0. The zero-gradient point-baryon profile is
+ U0(x)=2/[1+sqrt(1+4x^2)], with U0^2/(1-U0)=1/x^2.
+For P=P(r) rhat, the radial vector Laplacian contains
+ U0''+2U0'/x-2U0/x^2, including its angular-basis contribution.
+From gamma=K Lstar^2/2, the relative magnitude of the OMITTED static term,
+evaluated on this trial profile, is
+ R(x,ell)=(ell^2/2)|U0''+2U0'/x-2U0/x^2|/(1/x^2)
+         =ell^2 (1+8x^2)/(1+4x^2)^(3/2).
+The displayed expression is exact; the vector Laplacian is negative for x>0.
+Its derivative is
+ dR/dx=4ell^2 x(1-8x^2)/(1+4x^2)^(5/2).
+Thus its global maximum is at x=1/sqrt8:
+ R_max=(4sqrt6/9)ell^2=1.0886621...ell^2,
+with R->ell^2 at the origin and R~ell^2/x at large radius.
+A sufficient ALL-RADII condition for this STATISTIC to be below1% is
+ ell<sqrt[.01/(4sqrt6/9)] (about0.09584).
+This is a residual criterion, not a field-solution error estimate.
+
+Mismatch between prose and raw data
+The code samples only200 points with0.001<=x<=10^1.7, about50.1.
+Its four stored max ratios at r>=10r_s, with r_s/rM=ell^2, are:
+ Lstar[pc]  rM[kpc]  ell       recorded max residual
+ 5.75       10      .000575   3.59937e-7
+ 1000       10      .1        .01088657
+ 5.75        1      .00575    3.59937e-5
+ 1000        1      1         .09636364
+All four sampled maxima reproduce from the exact closed form. The last is
+9.636%, not<=1.09%. Moreover the continuous domain includes x=10 exactly,
+where R(10,1)=.09975070118, about9.975%. A sparse grid starting just above
+10 misses that boundary value; its maximum is not an all-radius bound.
+The source's floor-Lstar statement (<=.004% in its two small-ell corners)
+is consistent with these numbers. Its all-corners statement is not.
+
+For ell=1 the1% threshold is strictly between99 and100rM. Exact positive
+squared comparisons prove R(99,1)>.01 and R(100,1)<.01; monotonicity for
+x>1/sqrt8 then fixes the single outer crossing. The finite source grid never
+reaches it, so its r_1pct is NaN. The code compares NaN<=3, obtains False,
+and prints 'no intrusion on the AG3 annulus regime'. NaN here means no
+certified crossing in the sampled range, not that stiffness is negligible
+in that regime. In fact R(1,1)=.8049845 and R(3,1)=.3243548 on the same
+trial profile. These are large static force residuals, NOT80%/32% measured
+field errors or eigenvalue corrections. The actual gradient solution was
+never calculated by that statistic.
+
+Smallest missing implication
+A force-equation residual evaluated on a zero-gradient trial solution does
+not by itself bound the distance to the finite-gradient solution. One needs
+a specified source/core/outer boundary problem and an inverse/comparison
+estimate for its nonlinear operator. A static residual bound also does not
+bound the perturbation operator or exclude stiffness effects on modes: those
+require variation of the same occupied action and physical boundaries.
+This leaves AG2's full-medium spectrum obligation open. The core/supply/
+metric issues in CE053/059 are not supplied by algebraic n=1 uniqueness.
+Likewise no data comparison between n=1 and n=2 is resolved by this exact
+law-form derivation. The source itself records that empirical counterweight.
+
+Evidence and next work
+run_060 completed and manifest validated:13 exact/arithmetic controls,
+including vector-Laplacian reduction, limits, maximum, exact counterexample,
+outer threshold bracket and the four stored sampled maxima. Source and
+Lean/output bytes are pinned; no actual Lean run or live astrophysical
+experiment was repeated. CFG799 script/result/fetch changes are uncommitted
+live work in the checked state and are not adopted as a final archival limit.
+
+Keep the canonical law as the current frozen target; a law change needs its
+own dated model and predictions. For each proposed Lstar/rM, first use the
+exact R expression to state the domain of the zero-gradient approximation.
+For ell~1, solve the finite-gradient core/edge boundary problem rather than
+carry the small-ell approximation into galaxy dynamics. Derive the complete
+quadratic operator on that solution before any stability verdict. The
+finite-support advance and the live-core negative-homology discriminator
+remain available; no full theory completion is claimed.

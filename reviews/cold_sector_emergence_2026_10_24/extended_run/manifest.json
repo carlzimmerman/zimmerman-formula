@@ -1,0 +1,124 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLD-20261024-Plummer-curvature-screen",
+  "repository": {
+    "commit": "f747c7a9730b78f5958ad26fea58f21576add8e3",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/cold_sector_emergence_2026_10_24/extended_checks.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Evaluate halo density, radial derivative, and potential curvature at 27217 Plummer mass/radius pairs",
+    "coefficient_domain": "IEEE double values of symbolic derivatives",
+    "conventions": "G=a0=Plummer radius=1; A=baryonic mass; g=sqrt(b^2+b), halo field g-b; positive outward potential gradient",
+    "inputs": [
+      "Plummer baryonic mass profile A r^3/(1+r^2)^(3/2)"
+    ],
+    "bounds": {
+      "A_min": 0.0001,
+      "A_max": 10000,
+      "A_count": 17,
+      "r_min": 0.0001,
+      "r_max": 10000,
+      "r_count": 1601
+    },
+    "non_claims": [
+      "No universal positivity proof or dynamical stability result; no finite-mass completion or mechanism"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-24T17:11:00.247693+00:00",
+    "runtime_seconds": 0.436619,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 50000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/cold_sector_emergence_2026_10_24/extended_checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/cold_sector_emergence_2026_10_24/extended_checks.py",
+      "sha256": "93c5b112ee036176da58975d4ac870020f9978fc11c3856fb5c4524a142aea13",
+      "sha256_after": "93c5b112ee036176da58975d4ac870020f9978fc11c3856fb5c4524a142aea13"
+    }
+  ],
+  "output_directory": "reviews/cold_sector_emergence_2026_10_24/extended_run",
+  "declared_results": [
+    "reviews/cold_sector_emergence_2026_10_24/extended_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/cold_sector_emergence_2026_10_24/extended_run/stdout.txt",
+      "sha256": "1beabb674dd1c28ab96e9f2ab792f8c69d0a3fdaca1e9d3e523d98fb490fe542",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/cold_sector_emergence_2026_10_24/extended_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/cold_sector_emergence_2026_10_24/extended_run/result.json",
+      "sha256": "1beabb674dd1c28ab96e9f2ab792f8c69d0a3fdaca1e9d3e523d98fb490fe542",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

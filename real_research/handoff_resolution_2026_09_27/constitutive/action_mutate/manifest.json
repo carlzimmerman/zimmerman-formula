@@ -1,0 +1,121 @@
+{
+  "schema_version": 2,
+  "claim_id": "HR02-conserved-current-action",
+  "repository": {
+    "commit": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "dirty": true
+  },
+  "command": [
+    "/Users/carlzimmerman/miniforge3/envs/z2-physics/bin/python",
+    "real_research/handoff_resolution_2026_09_27/constitutive/current_action_check.py",
+    "real_research/handoff_resolution_2026_09_27/constitutive/action_mutate/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.15"
+      },
+      {
+        "name": "Python",
+        "version": "3.11.15"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact pressure and enthalpy identities of the stated material-label fluid action.",
+    "coefficient_domain": "Exact positive-real symbolic algebra; float64 controls",
+    "conventions": "Unshifted CFG2 pressure; y=GMb/(a0 r^2); rho is mass density",
+    "inputs": [
+      "real_research/handoff_resolution_2026_09_27/constitutive/current_action_check.py"
+    ],
+    "bounds": {
+      "symbolic_domain": "y,V,Pc,Pe,E0,c2 positive"
+    },
+    "non_claims": [
+      "Not a derivation of the host material label",
+      "Not a healthy all-density relativistic completion"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T20:37:51.319907+00:00",
+    "runtime_seconds": 0.380034,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/handoff_resolution_2026_09_27/constitutive/current_action_check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/constitutive/current_action_check.py",
+      "sha256": "489abf3b07b7fae45754d4883d5e7790e9df367c1361239f724a6cdc10ecc285",
+      "sha256_after": "489abf3b07b7fae45754d4883d5e7790e9df367c1361239f724a6cdc10ecc285"
+    }
+  ],
+  "output_directory": "real_research/handoff_resolution_2026_09_27/constitutive/action_mutate",
+  "declared_results": [
+    "real_research/handoff_resolution_2026_09_27/constitutive/action_mutate/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/constitutive/action_mutate/stdout.txt",
+      "sha256": "16f2460e761c5b0c683cedfdb3f83157f4392f213066b2e9ba76737ba042e75a",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/constitutive/action_mutate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/constitutive/action_mutate/results.json",
+      "sha256": "f16430b8cf542c22816409a2e50e041429499dae5ba17f6e72dc5e03ca5ea3d3",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

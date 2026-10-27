@@ -1,0 +1,82 @@
+Analytic source-work diagnostic — 12 October 2026
+
+Scope: the existing radial effective two-field response model, positive
+constitutive slope, fixed outer Phi=0, regular origin, units C=a0=Z=I=1.
+This is a derivation within an assumed model, not a microscopic theory.
+
+Let D=grad Phi-P and W'(P)=b(P), with the signed radial P convention.
+H = integral [Phi_t^2/2 + rho(t) Phi] r^2 dr
+  + integral [P_t^2/2 + D^2/2 + W(P)] r^2 dr.
+The equations Phi_tt=div D-rho and P_tt=D-b(P) imply
+ dH/dt = integral rho_t Phi r^2 dr
+when boundary power vanishes. The staggered discretisation preserves the
+integration-by-parts identity with cell volumes and face dual volumes;
+its continuous-time energy identity is the identical finite-dimensional one.
+Velocity Verlet and numerical work quadrature introduce the checked error.
+
+For rho=lambda(t) rho0, this becomes Hdot=lambda_dot <rho0,Phi>.
+The quintic ramp used here is lambda=10s^3-15s^4+6s^5, s=t/T on [0,1].
+It has zero first and second derivatives at both ends. A sudden source
+starts with H=0; Phi=0 makes its instantaneous source-coupling work zero.
+A gradual source can remove interaction energy; its work cannot be omitted.
+
+Let Phi_s,P_s be the static solution for the instantaneous source and let
+D_s=grad Phi_s-P_s=b(P_s), div D_s=rho. Expanding the energy and using
+stationarity gives the exact identity
+ H-H_s = integral [Phi_t^2/2 + P_t^2/2 + (D-D_s)^2/2
+                 + W(P)-W(P_s)-b(P_s)(P-P_s)] r^2 dr >= 0.
+In discrete form the Phi terms use cell volumes and P,D terms face weights.
+The inequality uses convexity of W. It assumes the fields stay in the
+interpolant support where its force and primitive agree. That is checked.
+This is a global energy statement; excess energy can remain outside the
+force-evaluation window even when the interior agrees with the target.
+The derivative relative to the instantaneous minimum is
+ d(H-H_s)/dt = integral rho_t (Phi-Phi_s) r^2 dr.
+Consequently ramping is a driving protocol, not a theorem of attraction.
+
+For comparison, a single linear mode x_tt+omega^2 x=f lambda(t), omega>0,
+initially at rest at lambda=0, has residual oscillation amplitude
+ |f|/omega^2 * |integral_0^T lambda_dot exp(i omega t)dt|
+after the ramp. This follows by integrating the forced-oscillator Green
+function by parts. Since lambda_dot is nonnegative and integrates to one,
+the filter modulus is <=1. Twice integrating by parts makes it the
+Fourier transform of lambda triple-dot divided by (i omega)^2; one more
+integration, including endpoint terms, gives O((omega T)^(-3)) for this
+quintic ramp. The filter tends to one as omega T tends to zero.
+Thus slow switching suppresses modes only relative to their own periods.
+The model's vacuum null branch prevents a uniform spectral-gap argument.
+This diagnostic is not a proof for the nonlinear inhomogeneous calculation.
+
+Continuity qualification: lambda(t) times a fixed compact baryon profile
+is a prescribed source, not a closed baryon flow. Conserved spherical
+assembly would require rho_t + r^(-2) d_r(r^2 rho v)=0, hence
+ rho v = -lambda_dot M0(<r)/(4 pi r^2) in conventional mass units.
+Outside a sharply compact profile rho=0 but the required flux is nonzero.
+An exterior reservoir/inflow must be supplied; the numerical ramp does not
+supply it. This is why a passing ramp test alone cannot establish formation
+from a complete matter action. A fixed-mass homologous contraction gives
+a cleaner next test: rho(r,t)=a(t)^(-3) rho0(r/a(t)), v=(a_dot/a)r,
+which satisfies continuity including the advected compact edge. Its driving
+still needs an external force or a baryon equation, but it creates no mass.
+
+Self-review: signs checked by the equations and discrete adjoint identity;
+energy gap assumes a stationary solution with the same boundary data;
+convexity is not convergence; zero-frequency modes are excluded only from
+the single-oscillator formula, not silently from the field theory.
+No external theorem is invoked, and no novelty claim is made.
+
+For a conserved compact source the same work has a mechanical meaning:
+ integral rho_t Phi dV = integral rho v_b dot grad Phi dV,
+using continuity and vanishing surface mass flux at the fixed outer wall.
+For homologous contraction v_b points inward and grad Phi outward, so this
+power is negative for an attractive field. The field can lose energy to
+baryon motion. If baryons obeyed their own equation with force -grad Phi,
+the gravitational part of their kinetic-energy change would be the opposite
+power. Holding a prescribed slow trajectory still requires accounting for
+baryon stresses, cooling or external control. No such equation is supplied.
+This identifies a possible receiver for this protocol, not its microphysics.
+
+The two-field scalar model simulated here is NOT the constrained metric
+polarization model in metric_polarization_2026_10_12/REPORT.md. Their positive
+fixed-source energy arguments do not permit combining one model's dynamics
+with the other's gravitational coupling. No lensing claim transfers here.

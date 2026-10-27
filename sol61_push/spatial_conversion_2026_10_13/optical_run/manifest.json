@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "SPATIAL-CONVERSION-OPTICAL-BUDGET",
+  "repository": {
+    "commit": "3bbc31da7ddba71f7d8ca84804b781efeff5f26b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/spatial_conversion_2026_10_13/optical_budget.py",
+    "sol61_push/spatial_conversion_2026_10_13/optical_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Evaluate the derived leading radiative width per source mass and check cutoff sixth-power scaling at three masses.",
+    "coefficient_domain": "Float64 with SciPy gamma and incomplete beta functions.",
+    "conventions": "Natural-unit width converted to SI; hypothetical zeta=1, gap 5 eV; 400-700 nm band.",
+    "inputs": [
+      "sol61_push/spatial_conversion_2026_10_13/optical_budget.py",
+      "sol61_push/radiative_conversion_2026_10_13/REPORT.md"
+    ],
+    "bounds": {
+      "mass_eV": [
+        1000,
+        12500,
+        1000000
+      ],
+      "cutoff_over_M": [
+        1,
+        10
+      ],
+      "max_rms_v_over_c": [
+        0.01,
+        0.001
+      ]
+    },
+    "non_claims": [
+      "Lambda=M is not a controlled effective expansion.",
+      "No experimentally admitted mass/coupling range or predicted absolute brightness.",
+      "Cold speed cutoffs are illustrative, not inferred user requirements."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T17:23:49.894673+00:00",
+    "runtime_seconds": 0.188236,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/spatial_conversion_2026_10_13/optical_run/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/spatial_conversion_2026_10_13/optical_budget.py",
+    "sol61_push/radiative_conversion_2026_10_13/REPORT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/spatial_conversion_2026_10_13/optical_budget.py",
+      "sha256": "28916169da7e55bae572ced4eea24f743548543612d736a7c9522f818f1ba720",
+      "sha256_after": "28916169da7e55bae572ced4eea24f743548543612d736a7c9522f818f1ba720"
+    },
+    {
+      "path": "sol61_push/radiative_conversion_2026_10_13/REPORT.md",
+      "sha256": "e54ba50e87553d24411f56da0dc6d9460c7b4ca5a44862e95bf38b6747c65992",
+      "sha256_after": "e54ba50e87553d24411f56da0dc6d9460c7b4ca5a44862e95bf38b6747c65992"
+    }
+  ],
+  "output_directory": "sol61_push/spatial_conversion_2026_10_13/optical_run",
+  "declared_results": [
+    "sol61_push/spatial_conversion_2026_10_13/optical_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/spatial_conversion_2026_10_13/optical_run/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/spatial_conversion_2026_10_13/optical_run/stderr.txt",
+      "sha256": "0b95cc14a990761b0ac634f7c0c51ced7f220c7b0d696bba85407ae39c8d8525",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: sol61_push/spatial_conversion_2026_10_13/optical_run/results.json"
+  ]
+}

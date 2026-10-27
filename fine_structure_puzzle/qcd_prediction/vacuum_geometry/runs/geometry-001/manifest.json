@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-003-QCD-V-GEOMETRY-001",
+  "repository": {
+    "commit": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/check_geometry.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact symbolic radial-integral, Green-kernel, boundary area/volume and neutral-charge identities; independently quadrature-check BPS normalization integrals at x=1,2,5,10,30",
+    "coefficient_domain": "Exact symbolic expressions over positive real x,kappa,r,R and rational coefficients; mpmath at 70 decimal digits",
+    "conventions": "x=m_W times ball radius; sectional curvature -kappa^2; -Delta Green=delta; Green vanishes at infinity; all self and pair Coulomb terms use the same finite subtraction",
+    "inputs": [
+      "BPS hedgehog H/m_W=coth(x)-1/x and K=x/sinh(x)",
+      "H3 geodesic-ball metric and radial Laplacian",
+      "three arbitrary commuting symbolic charges"
+    ],
+    "bounds": {
+      "quadrature_x": [
+        1,
+        2,
+        5,
+        10,
+        30
+      ],
+      "quadrature_decimal_digits": 70,
+      "residual_tolerance": "1e-55",
+      "symbolic_series_order": 3
+    },
+    "non_claims": [
+      "No full finite-boundary gauge partition function is computed",
+      "No Yang-Mills hyperbolic nonzero-mode determinant is computed",
+      "No physical c_H, proton mass or alpha root is calculated",
+      "A numerical residual does not certify quadrature error"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T01:28:48.345578+00:00",
+    "runtime_seconds": 0.497563,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "fine_structure_puzzle/qcd_prediction/vacuum_geometry/runs/geometry-001/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/check_geometry.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/check_geometry.py",
+      "sha256": "219b637cea7df488b81664920cf3aa6fffd458c6c41b4eed34e37510f604a128",
+      "sha256_after": "219b637cea7df488b81664920cf3aa6fffd458c6c41b4eed34e37510f604a128"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/runs/geometry-001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/runs/geometry-001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/runs/geometry-001/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/runs/geometry-001/stderr.txt",
+      "sha256": "843086752de4f6b8b59d24ef58e52642551dd4a103192f64d2b6d80294eb17b7",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: fine_structure_puzzle/qcd_prediction/vacuum_geometry/runs/geometry-001/results.json"
+  ]
+}

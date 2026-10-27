@@ -1,0 +1,3 @@
+# Source scope
+
+Checked 2026-10-13: G. Delannoy, S. G. Murdoch, V. Boyer, V. Josse, P. Bouyer and A. Aspect, Understanding the production of dual BEC with sympathetic cooling, quant-ph/0101130v2, 5 February 2001 (PDF rendering also lists a 2018 typesetting date). Official PDF https://arxiv.org/pdf/quant-ph/0101130 opened. Used only for the established concept of heat transfer through overlapping species and the need for an externally cooled bath. Atomic experiments do not validate this hypothetical charged-messenger model. The zero-temperature stationary-target energy-transfer formula is derived independently here and must not be confused with that paper's finite-temperature thermalization coefficient. No broad novelty or viability search; no local PDF retained.

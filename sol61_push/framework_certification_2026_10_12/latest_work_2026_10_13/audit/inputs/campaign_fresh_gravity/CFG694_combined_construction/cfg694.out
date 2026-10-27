@@ -1,0 +1,55 @@
+CFG694: the three pieces together - one action (critical gravitating polarization + SI cubic + stiffness) + free-fall basins.
+
+Criteria: FROZEN_CRITERIA.md (committed alone, 08c12aea1). G1 sympy; G2 reading; G3/G4/G6 numbers on CFG691's universal profile;
+G5/G5b raw SPARC on the CFG4 statistic (CFG690 copy, control = CFG690 T3).
+kappa = 1/2 FITTED; footings never pooled; the cold energy's mass is required; no particle species; not "theory closed".
+
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg694.py      (CFG694_MUTATE=1; exit 1 iff all three teeth bite)
+
+G1  quadratic part of the action, one Cartesian component (the identity is per component)
+    CFG692 quadratic - (-|grad Phi - P/a|^2/8piG) at a = 1/(4*pi*G) : 0
+    EL(P): Piecewise((gamma*lapP + gradPhi, Eq(P, 0)), (-4*pi*G*P - P**3*beta/Abs(P) + gamma*lapP + gradPhi, True)) = 0   <=>  astra's grad phi - P/a = beta|P|P - gamma lap P with a = 1/4piG: True
+  [PASS] G1 criticality == 'P has no mass term' (one action; astra's sector with phi = Phi, a = 1/4piG): identity True; EL match True
+    reading rule: R0's criticality item REMOVED
+
+profile (CFG691 equation): solve_bvp status 0
+  [PASS] CONTROL profile reproduces CFG691's S table: max |dS| 0.0e+00
+
+G2  Solar System: CFG691 L*_min = 5.754 pc (both footings) carries over: True
+
+G3  a star's own phantom inside min(r_J, 1.08 pc), at L* = L*_min; line 0.155 (McKee+2015 0.013/0.084)
+    canonical M = 1.0 Msun: r_J 1.74 pc, r_b 1.08 pc, M_ph/M = 0.0352
+    canonical M = 0.3 Msun: r_J 1.17 pc, r_b 1.08 pc, M_ph/M = 0.0352
+    alt       M = 1.0 Msun: r_J 1.74 pc, r_b 1.08 pc, M_ph/M = 0.0352
+    alt       M = 0.3 Msun: r_J 1.17 pc, r_b 1.08 pc, M_ph/M = 0.0352
+  [PASS] G3 stars carry no halos (M_ph/M <= 0.155): max 0.0352
+
+G4  Sifon satellites unscreened at their apertures
+    canonical M_b 1e9.5 Msun, r_bg 36 kpc: l_gamma 0.00763 pc, S = 1.00000
+    canonical M_b 1e9.5 Msun, r_bg 149 kpc: l_gamma 0.00763 pc, S = 1.00000
+    canonical M_b 1e11.0 Msun, r_bg 36 kpc: l_gamma 0.00136 pc, S = 1.00000
+    canonical M_b 1e11.0 Msun, r_bg 149 kpc: l_gamma 0.00136 pc, S = 1.00000
+    alt       M_b 1e9.5 Msun, r_bg 36 kpc: l_gamma 0.00839 pc, S = 1.00000
+    alt       M_b 1e9.5 Msun, r_bg 149 kpc: l_gamma 0.00839 pc, S = 1.00000
+    alt       M_b 1e11.0 Msun, r_bg 36 kpc: l_gamma 0.00149 pc, S = 1.00000
+    alt       M_b 1e11.0 Msun, r_bg 149 kpc: l_gamma 0.00149 pc, S = 1.00000
+  [PASS] G4 satellites unscreened (S >= 0.99): min S 1.00000
+
+G5  raw SPARC (CFG4 statistic): w^2 + c4 w^3 = y, g/a0 = y + w; c4 = 0 is CFG690
+  [PASS] CONTROL c4 = 0 reproduces CFG690 T3: 
+    c4 =      0: canonical 0.1012 @ U 0.46; alt 0.1007 @ U 0.42
+    c4 =    0.1: canonical 0.1008 @ U 0.47; alt 0.1004 @ U 0.43
+    c4 =    0.3: canonical 0.1008 @ U 0.49; alt 0.1001 @ U 0.45
+    c4 =      1: canonical 0.1020 @ U 0.54; alt 0.1003 @ U 0.50
+    c4 =      3: canonical 0.1079 @ U 0.62; alt 0.1036 @ U 0.58
+    c4 =     10: canonical 0.1224 @ U 0.71; alt 0.1149 @ U 0.67
+    c4 =     30: canonical 0.1450 @ U 0.82; alt 0.1358 @ U 0.78
+    c4 =    100: canonical 0.1705 @ U 0.91; alt 0.1616 @ U 0.88
+    smallest c4 passing H2 on both footings: 1: canonical 0.1020 @ 0.54; alt 0.1003 @ 0.50  => REQUIRES A SECOND CONSTANT
+    C2 (c4 = 0, the construction as built): FAIL (Upsilon band), inherited from CFG690
+
+G6  (reported) predictions at L* = L*_min
+    canonical wide binaries 2 Msun at 1e3/3e3/1e4 AU: anomaly/Newton 7.1e-07 / 6.4e-06 / 7.1e-05 (Newtonian)
+    alt       wide binaries 2 Msun at 1e3/3e3/1e4 AU: anomaly/Newton 7.1e-07 / 6.4e-06 / 7.1e-05 (Newtonian)
+
+VERDICT: COMBINED CONSTRUCTION CONSISTENT; C2 FAIL (Upsilon band); G5b smallest passing c4 = 1.0

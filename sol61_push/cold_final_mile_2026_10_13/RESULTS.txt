@@ -1,0 +1,99 @@
+CE-FM-001 — cold-energy selector, full-force audit and exact orbital alternatives
+2026-10-13. Self-review by Codex; no independent replication or theorem-prover certificate.
+
+Primary verdict: INCOMPLETE, with the smallest missing implication being formation of the force-free cold profile from justified carrier phase-space data. The conditional stationary profile is derived. Universal collisionless selection is refuted in the stated spherical, measure-valued annular class. The stated action and the full theory are not refuted.
+
+Target and ancestry
+Start: Git 50a0e209f3d34297e6907fe2714e6e04074fb946, dirty shared checkout. Actual run revision and file hashes are pinned in run_001/manifest.json. Claude's later CFG749 result and final-mile handoff were read afterward and are identified separately below. Nothing in Claude's live lanes was modified. Own scope is this directory, below the requested ~1 GB memory constraint.
+
+Dependencies
+  CFG694/695 proposed Newtonian action + CFG722 carrier/displacement identification
+    -> exact cancellation of carrier self-gravity (conditional model assumption)
+    -> outward residual R(u)=u^2/(a0-u), u=G M_c(<r)/r^2
+    -> static carrier at rest: R(u)=g_N
+    -> spherical baryon force g=g_N+u, g_N=g^2/(g+a0).
+  A formation claim additionally requires kinetic initial data, transport and exchange, basin anchor and time evolution. The algebraic inversion does not supply these.
+
+Route A: surrogate discrepancy, executed
+G=a0=M_b=1; x=r/r_M. Full static mass:
+  M_0(x)=(sqrt(1+4x^2)-1)/2.
+Cubic radial model in CFG747/748/749 instead has M_c(x)=x, because it substitutes R(u)=u^2. No observed halo profile is inserted into those evolutions, but the chosen force functional already encodes the deep-law minimum. This is a valid model experiment, not derivation of that functional from microscopic physics.
+
+At x=2,5,10,20,50 the cubic mass exceeds the full static mass by 28.08%, 10.50%, 5.12%, 2.53%, 1.00%. Inserting the cubic profile into the full force leaves outward acceleration g_N/(x-1), which is g_N at x=2. The small reported inner cubic-profile error cannot be transferred to the full saturating theory.
+
+Domain problem: CFG747/748/749 use a fixed cold core M_core=.5 at r_min=.5, hence u/a0=M_core/r_min^2=2 immediately outside the core. That exceeds the full model's u<a0 wall even before adding moving shells. The toy cubic model has no such wall, so its own run is not invalidated; a full-force rerun must change the inner matching data as well as the force.
+
+Route B: exact orbital alternatives, executed
+Choose 0<=alpha<1 and give each carrier circular orbit tangential speed
+  v_t^2=alpha G M_b/r, L^2=alpha G M_b r.
+Use randomly oriented planes, so the ensemble is spherical and has no net rotation. Circular radial balance requires
+  -g_N + R(u) + v_t^2/r=0,
+  R(u_alpha)=(1-alpha)g_N,
+  u_alpha=[sqrt(q^2+4a0 q)-q]/2, q=(1-alpha)g_N,
+  M_alpha(r)=r^2 u_alpha/G.
+All expressions are the full saturating force, not a cubic approximation. On any finite annulus the density is positive, u_alpha<a0, and the annulus can be matched to a prescribed core of mass M_alpha(r_inner); truncate the carrier outside a finite r_outer. This is a velocity-space measure supported on circular orbits, not a smooth distribution function or a cosmological assembly result. A fixed baryonic point source and conditional basin anchor remain assumptions.
+
+For positivity write M_alpha^2=k[r^2-G M_alpha/a0] with positive constant k=(1-alpha)M_b a0/G (or use units G=a0=M_b=1: M^2=(1-alpha)(r^2-M)); differentiate to obtain M'>0. Outside the outer population spherical enclosed mass stays fixed; interior orbits are unchanged.
+
+Deep limit:
+  M_alpha/M_0 -> sqrt(1-alpha).
+At alpha=.6 and r=20 r_M, full ratio is .638292; deep ratio .632456. This is a non-law stationary halo despite cold nonrelativistic orbital motion and exact conservative dynamics. Arbitrary initial-state convergence to the law cannot follow from the collisionless selector.
+
+Spherical laminar shell stability: linearize at fixed enclosed mass and each shell's fixed L, before substituting equilibrium. The radial frequency satisfies
+  omega_r^2=(g_N/r)[2(1-alpha)(2a0-u)/(a0-u)-2+3alpha]
+           =(g_N/r)[2-alpha+2(1-alpha)u/(a0-u)]>0.
+This supports radial perturbations that preserve shell ordering. It does not establish nonspherical collective stability, finite-width phase-space stability or global continuation after crossings. Do not label this a globally stable halo.
+
+CFG749 predictor correction
+In the cubic circular subcase,
+  (M_c/r)^2=1-v_t^2/(r g_N),
+not 1-v_t^2/v_c,law^2. In its units r g_N=1/r while v_c,law^2=1+1/r. The correct local ratio is therefore (r+1) times the ratio used in cfg749.py. alpha=.6,r=20 gives true .632456 and recorded predictor .985611. This counterexample is exactly stationary, so no infall pressure or averaging ambiguity supplies the discrepancy.
+
+Do not retrofit this circular formula to general CFG749 trajectories: a time-dependent radial stress/streaming term remains. Nor is a radial-bin mean an exact pointwise moment. Empty bins in the CFG749 output contain NaN and the current max(0,1-NaN) turns them into zero predictions; these are missing diagnostics, not measured zero speeds.
+
+Later evidence: CFG749 publication f81c24a80 reports evacuation for its particular uniform initial states with tangential speed .3 or .6 times the baryonic law speed. The numerical outcome is not reversed by this correction. Its broader phrase 'orbiting cold energy is unbound' needs restriction: the low-speed circular family above is bound/stationary. Positive total energy of a many-body initial state alone also does not prove every particle escapes. Report its actually tested state family and evacuated radii.
+
+Stress and virial: why at-rest algebra is not a warm equilibrium theorem
+Let p_r=rho<v_r^2>, p_t=rho<v_theta^2>=rho<v_phi^2> in a stationary spherical nonstreaming state. The first Vlasov moment is
+  dp_r/dr + 2(p_r-p_t)/r = rho[-g_N+R(u)].
+The same moment equation follows by integrating the specified carrier Vlasov equation against v; no gravitational Poisson theorem is needed. On the exact law the right side vanishes. Locally, this permits radial stress p_r proportional to r^-2 with p_t=0; this explains why radial-orbit local agreement alone does not force vanishing dispersion.
+
+For a finite isolated stationary carrier with vanishing surface stress and no flux, multiply the tensor equation by position and integrate:
+  2K= integral rho r[g_N-R(u)] dV.
+If the full law holds on the entire carrier support, K=0. A nonzero radial stress construction must pay boundary stress/flux somewhere, or depart from the law somewhere. The reflecting inner wall in CFG747/748/749 supplies an external boundary impulse and must be included in such a global balance. This conditional virial statement is not an exclusion of finite-time, open, pressure-supported or externally confined halos.
+
+Surviving statement and quantitative obligation
+The exact law is the force-free at-rest member of a larger equilibrium family. In the deep circular family, a mass-profile tolerance delta requires alpha<=2delta-delta^2. Five-percent mass tolerance means v_t^2<=.0975 G M_b/r, considerably smaller than .0975 times the law speed squared at large radius. The full saturating version for k=M_alpha/M_0 is
+  alpha=1-k^2(a0-u0)/(a0-k u0).
+This is a necessary preparation/transport requirement for this family, not a population bound or an observational scatter inference.
+
+Route C: imperfect criticality comparison, executed
+Explicitly modify the model by leaving inward self-gravity epsilon u:
+  R(u)=g_N+epsilon u.
+Then
+  (1+epsilon)u^2+(g_N-epsilon a0)u-a0 g_N=0.
+epsilon>0 gives u->epsilon a0/(1+epsilon) as g_N->0; epsilon<0 gives u~g_N/|epsilon|. Thus the deep 1/r extra force is structurally tied to exact criticality. At x=1000 a 1% detuning gives mass ratios 10.0040 or .09907 relative to the declared exact theory. These are sensitivity examples in a different action, not proof of physical detuning. CFG694 chooses exact cancellation and claims no independent P mass term; a derivation or symmetry protecting that relation in the carrier completion is not supplied here.
+
+Obligation matrix
+  Full static inversion: passed, conditional on proposed action/identification.
+  Cubic/full numerical correspondence near r_M: failed at the quoted small-error level.
+  CFG749 circular predictor normalization: failed, explicit counterexample.
+  Exact non-law stationary orbital family: derived in stated measure-valued annular class, self-reviewed.
+  Spherical no-crossing shell stability: passed symbolically; nonspherical stability not addressed.
+  Complete finite isolated law with nonzero kinetic energy: refuted under stated zero-boundary-stress assumptions by virial.
+  Derived basin anchor/export and phase rule: not addressed by these algebra checks; open.
+  Carrier mass/abundance origin, lensing metric, cosmological and empirical completion: open.
+
+Evidence
+check_dynamics.py, computation_contract.json, CONTRACT.txt; run_001/results.json and manifest.json. 32 deterministic checks passed, including two explicit false-predictor/omitted-force rejection controls. Symbolic shell-frequency identities are exact; numerical residuals ~1e-15 to 2.4e-14 over the declared grid. The run is completed and the version-2 provenance manifest validated against current inputs; passing checks do not certify physical applicability.
+
+Literature check (context, not a theorem leaf)
+Mamon & Boue, Kinematic deprojection and mass inversion of spherical systems of known velocity anisotropy, arXiv:0906.4971v3, 5 October 2009, published MNRAS 401,2433 (2010), https://arxiv.org/pdf/0906.4971. Checked primary PDF page 2 equations (1)-(3): stationary nonstreaming tensor stress and spherical anisotropy definitions. Dictionary: their -grad Phi replaced by this model's -g_N+R(u); tracer rho replaced by carrier mass density; p_t is each tangential component. The moment identity transfers for a velocity-independent central force; their Newtonian gravitational mass inversion and their stability/empirical results do not transfer. Exact-source cache lookup was a miss, primary PDF authenticated online, not retained locally. Search scope was a bounded Vlasov/Jeans context search, no novelty claim.
+
+Next executable checks
+  1. Derive and implement full saturating finite-shell force from the same discrete energy, use admissible core, then check equilibrium, force/energy correspondence and boundary virial before any long formation run.
+  2. Test restricted initial carrier distributions with justified kinetic/AM budgets; avoid merely repeating at-rest uniform infall. Exact circular family and virial identity are controls.
+  3. Derive reciprocal energy/AM transfer or a physically prepared low-dispersion source. Without that input arbitrary slow, anchored cold matter is chosen rather than predicted.
+  4. Continue F1/F3/F5/F6 on distinct owned scopes; Claude's F3/F4 runs are not duplicated.
+
+Nothing in this checkpoint completes the user's original theory or establishes an empirical detection.

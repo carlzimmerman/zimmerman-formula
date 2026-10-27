@@ -1,0 +1,136 @@
+{
+  "base": "v11frozen",
+  "read_only_audit": true,
+  "no_new_computation_run": true,
+  "formal_completion_status": "newfullfluxmodule pending; notclaimedcompiled",
+  "records": [
+    {
+      "id": "mass",
+      "dictionary": "M_Lean=mu=G*m_b",
+      "obligation": "Each positive physicalsource m_b; two total2m_b; divided4piG converts potentialmass to actualdensity",
+      "status": "physicaldictionary"
+    },
+    {
+      "id": "geometry",
+      "dictionary": "a>0, p=(0,a/4,0)",
+      "obligation": "Supportradius<=a/8 ensures exterioropenpatch; hostclassification conditional",
+      "status": "physicaldomain"
+    },
+    {
+      "id": "potential",
+      "dictionary": "Phi=-mu/rplus-mu/rminus",
+      "obligation": "Actual Newtonian exterior potential, signg=gradPhi physicalacceleration=-g",
+      "status": "analytic"
+    },
+    {
+      "id": "gx",
+      "dictionary": "mu[(x-a)/rplus\u00b3+(x+a)/rminus\u00b3]",
+      "obligation": "True partialxPhi; existingfieldXSlice onlypartialcoordinate slice",
+      "status": "analytic"
+    },
+    {
+      "id": "gy",
+      "dictionary": "mu*y[rplus^-3+rminus^-3]",
+      "obligation": "True partialyPhi; midField onyaxis",
+      "status": "analytic"
+    },
+    {
+      "id": "gz",
+      "dictionary": "mu*z[rplus^-3+rminus^-3]",
+      "obligation": "True partialzPhi; existingfieldZSlice onzaxisthroughp",
+      "status": "analytic"
+    },
+    {
+      "id": "norm",
+      "dictionary": "sqrt(gX\u00b2+gY\u00b2+gZ\u00b2)",
+      "obligation": "Euclidean not builtinPi supnorm; positiveatp implies smoothlocally",
+      "status": "analytic/newformal"
+    },
+    {
+      "id": "x_slice",
+      "dictionary": "(gx(t,y0,0),gy(t,y0,0),0)",
+      "obligation": "Othergycomponentnonzero essential; normderivative0",
+      "status": "analytic/newformal"
+    },
+    {
+      "id": "y_slice",
+      "dictionary": "(0,midField(mu,a,t),0)",
+      "obligation": "Normabs(midField); positivitylocallyaroundy0 essential",
+      "status": "analytic/newformal"
+    },
+    {
+      "id": "z_slice",
+      "dictionary": "(0,gy(0,y0,t),gz(0,y0,t))",
+      "obligation": "Othergycomponentnonzero essential; normderivative0",
+      "status": "analytic/newformal"
+    },
+    {
+      "id": "hessian",
+      "dictionary": "Hxx,Hyy,Hzz fromactualfieldpartialderivatives",
+      "obligation": "Tracezero verifiedoldformal; mixedcomponents0 directlyfromsource",
+      "status": "analytic/existingformal"
+    },
+    {
+      "id": "normalization",
+      "dictionary": "a0=midField(mu,a,a/4)>0",
+      "obligation": "Witnessstate canbecreatedforanyfixedA1a0 via positive masschoice, notfit",
+      "status": "analytic/physicaldomain"
+    },
+    {
+      "id": "kernel",
+      "dictionary": "nu(Y)=1/(1-exp(-sqrtY))",
+      "obligation": "Analyticlowbranchcontains1; exacttableknot notC1",
+      "status": "existingformal/physicalbranch"
+    },
+    {
+      "id": "weight_xz",
+      "dictionary": "nu(N/a0)-1 atp; Nx/Nzderivative0",
+      "obligation": "Derivativeweightzero andcomponentzero; fluxpartial=wHxx/zz",
+      "status": "analytic/newformal"
+    },
+    {
+      "id": "weight_y",
+      "dictionary": "weightderivative=nuSlope1*Hyy/a0",
+      "obligation": "Multipliesgy=a0; weightedderivative=nuSlope1Hyy+wHyy",
+      "status": "analytic/existingyformal"
+    },
+    {
+      "id": "full_div",
+      "dictionary": "sumcoordinateweightedpartials=nuSlope1*midSlope",
+      "obligation": "Actualfullnorm/partialdefinition needed; notjustnamedcoefficient",
+      "status": "analytic/newformal"
+    },
+    {
+      "id": "density",
+      "dictionary": "full_div/(4piG)=localTarget(mu,a,G)<0",
+      "obligation": "G>0 andslope>0; currentcoefficient signprovedoldformal",
+      "status": "analytic/existingcoefficientformal"
+    },
+    {
+      "id": "table",
+      "dictionary": "FP1/CFG650Y1 left/rightderivativesdiffer",
+      "obligation": "Boundednegativeonesidedevidence, no uniqueclassicaldivatnode",
+      "status": "existingnumericalevidence"
+    },
+    {
+      "id": "admission",
+      "dictionary": "scalar/sphericalA2 vsliteralvector; rawtargetactual vsdiagnostic",
+      "obligation": "Domain/equationchoice mustcome fromframework, notmorehelperproofs",
+      "status": "unresolvedphysics"
+    },
+    {
+      "id": "scale_coordinate_constancy",
+      "dictionary": "a0 fixed throughoutcoordinatepartialderivatives; normalizedonlyatp",
+      "obligation": "Do not resetscalea0(x)=N(x); localvariableDEbridge wouldmodifyfluxderivative and requireupdatedframeworkequations",
+      "status": "declaredfixedfooting domain"
+    }
+  ],
+  "missing_math_hypotheses_if_dictionary_observed": "none beyond stated mu,a,G>0, exterioranalyticbranch, fixedscalar a0=b and Euclideannorm; newfullfluxformalproof pending",
+  "physical_obligations": [
+    "compactsource Newtonian exterior mapping",
+    "onehostactiveeligibility",
+    "nonnegativecold interpretation vs signeddiagnostic",
+    "explicitnonsphericalforce/target action/domain"
+  ],
+  "normalization_not_fit": "anyfixeda0>0 choosemu=a0*a\u00b2*17sqrt17/32"
+}

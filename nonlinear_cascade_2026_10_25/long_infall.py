@@ -1,0 +1,2 @@
+from budget_progress import main
+main({'case': 'dilated', 'dt_Myr': 0.0025, 'duration_Myr': 200.0, 'wall_seconds': 900, 'step_energy_tolerance': 1e-09, 'energy_roundoff_floor': 5e-12, 'wave_R_kpc': 10000.0, 'wave_h_kpc': 2.0, 'equilibrium': 'nonlinear_transfer_2026_10_25/run_exact_equilibrium/state.npz', 'material_h_kpc': 0.125, 'resume': 'nonlinear_cascade_2026_10_25/run_probe_infall/results.json', 'global_energy_limit': 3e-06})

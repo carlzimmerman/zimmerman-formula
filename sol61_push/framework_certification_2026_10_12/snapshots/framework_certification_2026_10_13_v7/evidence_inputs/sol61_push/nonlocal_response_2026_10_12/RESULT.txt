@@ -1,0 +1,154 @@
+NONLOCAL RESPONSE: A CONDITIONAL EXIT FROM THE LOCAL EXTERNAL-FIELD OBSTRUCTION
+2026-10-12 research continuation; self-audited, not independently reviewed.
+
+Outcome
+-------
+A variational, spatially nonlocal response can be exactly insensitive to an
+added uniform gravitational gradient without becoming Newtonian at all scales.
+In one periodic Gaussian-source experiment it differs by 8.3933% in radial-force
+L2 from the local-response comparator; matched-point grid refinement changes
+the filtered force by 0.6682%. This evades the earlier LOCAL-action obstruction.
+It does NOT establish an isolated galaxy fit, observed accuracy, cold matter,
+or a complete theory. The kernel is inverse-designed from the existing force
+law, and the filter length is an extra undetermined input.
+
+Construction and exact variation
+--------------------------------
+Let C=4 pi G, q=grad Phi, and B(g) be the baryonic acceleration required by the
+existing repaired monotone response at total acceleration g. Assume
+0 <= B'(g) <= 1 and 0 <= B(g)/g <= 1. Define
+
+  ec'(g) = [B(g)-g]/C, ec(0)=0,
+  P_L(k) = H(k) = 1-exp(-k^2 L^2/2),
+  E[Phi] = integral [q^2/(2C) + ec(|P_L q|) + rho_b Phi] d^3x.
+
+P_L acts componentwise, is self-adjoint, is a contraction, and annihilates
+constants. With z=P_L q, stationarity gives
+
+  div {q/C + P_L[ec'(|z|) z/|z|]} = rho_b.
+
+The OUTER P_L is required by variation. Dropping it destroys this derivation.
+The response is continuous at z=0 using its limiting vector value.
+For q -> q+a with constant a, z is unchanged and div(a)=0. Thus the internal
+equation is exactly invariant under a uniform external gradient. This statement
+concerns the equation with an affine boundary component, not a finite total
+energy for a uniform field on all of R^3. Curved external fields remain coupled.
+
+Convexity, not a completed causal theory
+--------------------------------------
+The eigenvalues of Hessian ec(|z|) are (B'-1)/C in the radial direction and
+(B/g-1)/C in transverse directions, lying in [-1/C,0]. Therefore
+
+  delta^2 E >= [||delta q||^2 - ||P_L delta q||^2]/C >= 0.
+
+This is a conditional convexity proof for the static functional. It does not
+prove uniform coercivity as arbitrarily high frequencies are admitted. Adding
+a positive time-kinetic term would give nonnegative linear stiffness, but the
+instantaneous spatial filter is not thereby made relativistically causal.
+No mass transport, metric lensing, or physical formation time is derived here.
+
+Computational contract and controls
+-----------------------------------
+calculate.py uses the actual CFG596 repaired monotone deficit table, not CFG597's
+plain exponential kernel. C=a0=1, box=64, Gaussian width=2 and positive mass=4pi,
+with its mean density subtracted. This is a periodic density contrast problem.
+Discrete gradient and divergence are FFT adjoints. Nyquist derivatives are zero;
+the omitted source fraction is 9.1915e-4 at N32 and 3.4193e-10 at N64.
+Poisson residuals are explicitly projected onto represented modes.
+
+N32 filter L       force L2 discrepancy from comparator
+4                 88.2536%
+8                 46.9751%
+16                 8.5738%
+
+Follow-up declared after seeing N32 results, with a 3% refinement gate:
+N64, L16 discrepancy: 8.3933%; matched N32/N64 force difference: 0.6682%.
+Comparator matched-grid difference: 0.6960%.
+All recorded functional-gradient, stationary-residual and uniform-gradient
+invariance checks pass. N64 projected relative residuals are 4.388e-7 (L16)
+and 2.463e-7 (comparator). Force comparison region is 4 <= r <= 12.
+The reported raw energy sums omit cell volume; multiply by dx^3 before comparing
+energies across resolutions. Forces and optimizer stationarity are unaffected.
+
+IMPORTANT COMPARATOR LIMIT: the code label 'local' means H=1 on represented
+nonzero modes, H=0 on zero modes. It subtracts the global mean gradient. At zero
+mean gradient it supplies the ordinary local-response comparison, but its
+external-field test is NOT the external-field test of the original local action.
+Consequently its passing invariance check cannot refute the previous local no-go.
+
+Finite box and physical scale are unresolved. L16 is a quarter of this box;
+periodic images and the compensating background can matter. A follow-up doubles
+box64/N32 to box128/N64 at fixed dx2 and L16: matched central filtered forces
+change 0.13493%, versus 0.61749% for the comparator, both passing the declared
+5% gate. In the larger box the discrepancy from the comparator is 9.0863%.
+This bounds one box change; it is not an infinite-domain proof. The 8.4% result is
+not an error bar or agreement with the isolated algebraic formula. Two grids
+test discretization, not the isolated-boundary limit. Three lengths were explored;
+none is a predicted physical length. No global novelty claim is made.
+
+What scale separation would cost
+--------------------------------
+As a CONSTANT-COEFFICIENT diagnostic only, take an ec curvature -(1-b)/C with
+0<b<1. A Fourier mode then has stiffness
+
+  K(k) = [1-(1-b) H(k)^2]/C.
+
+The local comparator stiffness is b/C. Keeping the inverse-stiffness response
+within a fractional suppression epsilon requires
+
+  1-H^2 <= epsilon b / [(1-epsilon)(1-b)].
+
+For b=.01 and epsilon=.1 this requires k_g L >= 3.8692. Requiring the filter
+amplitude of an environmental mode H(k_e)<=.1 requires k_e L<=.45904.
+Together these require k_g/k_e >= 8.4287. This illustrates an actual restriction:
+one fixed length cannot strongly separate overlapping environmental and internal
+spectra. It is not a theorem about the spatially varying nonlinear solution or
+a measured environmental-force suppression. Gaussian filtering of a uniform
+field is much weaker evidence than full own-host independence in a real group.
+
+Cold-mass accounting
+--------------------
+Define p(z)=[|z|-B(|z|)] z/(C|z|). The equation reads
+
+  div q/C = rho_b + rho_eff,  rho_eff = div P_L p.
+
+In a periodic box, integral rho_eff=0 exactly. A nonzero continuous rho_eff
+therefore has both signs. It describes a density CONTRAST, and cannot by itself
+be an everywhere nonnegative additional mass density on this box. This does
+not exclude a real medium with a positive background; that background, its
+conserved current, and its sourcing must be supplied separately. On R^3 a
+zero-total-effective-mass conclusion additionally requires vanishing boundary
+flux; periodic cancellation alone does not prove it for an isolated system.
+
+Physical interpretation and next discriminant
+---------------------------------------------
+Candidate interpretation: a collective response to the departure of a field
+from its spatially smoothed environment. This is a proposed effective mechanism,
+not an identified substance. It preserves reciprocity through a single energy.
+It removes one obstruction at the price of a nonlocal length and still lacks
+the independent mass required by the project.
+
+One fixed-L box doubling now passes as recorded above. Before escalating this
+to galaxy claims, add a displaced finite source and measure internal-force
+changes. That discriminates realistic environmental coupling. A physical completion must derive the filtering from dynamical fields
+and give a conserved cold-mass current with metric lensing. Relabeling rho_eff
+as cold energy would not provide either.
+
+Neither kappa=1/2 nor 32pi^2 is derived. The coefficient identity under the
+existing mass-density convention remains Lambda c^4/a0^2=8pi/kappa^2=32pi.
+
+Reproduction
+------------
+run/manifest.json and refinement_run/manifest.json record actual commands,
+input hashes, software, dirty Git base, resource limits, logs and result hashes.
+contract.json and refinement_contract.json record the pre-run finite assertions.
+The first refinement.py and boundary.py wrappers accidentally overwrote the
+original run/results.json while executing the original calculation. That file
+was recovered BYTE-FOR-BYTE from run/stdout.txt and verified against its original
+manifest SHA256. The original wrappers are preserved as provenance; use the
+_checked.py wrappers for safe output isolation. refinement_checked repeats the
+refinement with that correction. boundary_checked.py is supplied but not run.
+Some original logs contain NumPy matmul floating-point warnings at the gradient
+directional check; recorded check values are finite and pass. These warnings
+are retained, not silently removed. All source and raw evidence are preserved. Numerical success does not authenticate a
+microscopic interpretation.

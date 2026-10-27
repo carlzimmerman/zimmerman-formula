@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "SS-05",
+  "repository": {
+    "commit": "9caa641111d20523ab68a420afc92728e4ac08e2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "selective_stress_2026_10_25/direct_radiation.py",
+    "--output",
+    "selective_stress_2026_10_25/run_direct_radiation/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Reciprocal derivative coupling g N(q) chi_dot h(x) sources massless radiation without a static force, but its positive induced inertia bounds slow compact-source radiation efficiency. Verify exact sphere normalization, static self-kernel, coupling optimum and retarded imaginary kernel.",
+    "coefficient_domain": "exact rational symbolic algebra plus float64 quadrature",
+    "conventions": "3D Green function 1/(4pi r); c explicit; source normalized to unity; tau=1/omega, not period",
+    "inputs": [
+      "Uniform source sphere of radius R; general compact positive spherical source bound proved separately"
+    ],
+    "bounds": {
+      "omega_R_over_c": [
+        1e-05,
+        0.0001,
+        0.001,
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        1.0,
+        3.0,
+        10.0
+      ],
+      "physical_R_kpc": 56.36,
+      "inverse_angular_frequency_Myr": 100
+    },
+    "non_claims": [
+      "Low-frequency harmonic bound only",
+      "Does not exclude burst radiation, other couplings or slower characteristic speeds",
+      "No galaxy formation simulation or measured collapse timescale"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T16:16:36.705069+00:00",
+    "runtime_seconds": 0.489995,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "selective_stress_2026_10_25/TARGET.md",
+    "selective_stress_2026_10_25/direct_radiation.py",
+    "physical_completion_2026_10_25/launch.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "selective_stress_2026_10_25/TARGET.md",
+      "sha256": "62213e6ca0ace3174ec8b4f0d342656d981112b09ac4111bd54fea6ebe001649",
+      "sha256_after": "62213e6ca0ace3174ec8b4f0d342656d981112b09ac4111bd54fea6ebe001649"
+    },
+    {
+      "path": "selective_stress_2026_10_25/direct_radiation.py",
+      "sha256": "eb7c60a8aaaa7bdb7bb6ed974b55e77cfcc49400c31d5d9962a0c3cb5896baee",
+      "sha256_after": "eb7c60a8aaaa7bdb7bb6ed974b55e77cfcc49400c31d5d9962a0c3cb5896baee"
+    },
+    {
+      "path": "physical_completion_2026_10_25/launch.py",
+      "sha256": "12a23018ab0ba141e0fd5597cf81767a955c4ac3fdc8863da7670f28fe541038",
+      "sha256_after": "12a23018ab0ba141e0fd5597cf81767a955c4ac3fdc8863da7670f28fe541038"
+    }
+  ],
+  "output_directory": "selective_stress_2026_10_25/run_direct_radiation",
+  "declared_results": [
+    "selective_stress_2026_10_25/run_direct_radiation/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "selective_stress_2026_10_25/run_direct_radiation/stdout.txt",
+      "sha256": "095e959f62179f6baf7790e671ef4072ee3190cea3c80abeda1da60554bbd01a",
+      "kind": "log"
+    },
+    {
+      "path": "selective_stress_2026_10_25/run_direct_radiation/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "selective_stress_2026_10_25/run_direct_radiation/results.json",
+      "sha256": "7804bd13175f89e78cc4acad029af8de7f597a2b33935552dc8c4c4f034aeb7a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

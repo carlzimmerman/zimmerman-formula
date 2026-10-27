@@ -1,0 +1,23 @@
+&input
+  megul = 70,  ! input from module CONGEN
+  nfte  = 80,  ! Hamiltonian scratch file
+  nfti  = 16,  ! molecular integrals
+  icidg = 1,   ! 0 - do not diagonalize for parallel, 1 - do diagonalise Hamiltonian matrix for serial
+  iexpc = 1,   ! prototype CI expansion flag - 1 for scattering calculation
+  icitg = 1,   ! CI target flag - 1 = perform CI target contraction
+  idiag = 2,   ! matrix element evaluation flag - 2 = do not evaluate pure target integrals
+  nftg = 26,   ! CI target vectors switch - 0 = use scattering wavefunctions to generated (phase corrected) target wavefunctions
+  ntgsym = 6,  ! number of target state symmetries (>1 in CAS calculations)
+  mcont = 0,1,2,4,5,6,   ! lambda value ('symmetry') of the continuum orbitals associated with each target state
+  notgt = 230,138,138,137,138,138,  ! number of continuum orbitals associated with each target symmetry
+  numtgt = 5,2,2,5,2,2,  ! number of target states for each symmetries
+  ntgtf = 1,1,1,1,1,2,2,3,3,4,4,4,4,4,5,5,6,6,  ! set number, on unit NFTG, which contains the required target state
+  ntgts = 1,2,3,4,5,1,2,1,2,1,2,3,4,5,1,2,1,2,  ! sequence number of the state within the set specified by NTGTF to be used as the target state
+/
+&cinorn
+  name = 'H2+ CI calculation - singlet Ag',
+  igh = 1,      ! force dense diagonalization
+  nftw = 250,   ! output file with eigenpairs
+  NPFLG(1) = 0, ! no Hamiltonian matrix elements printed
+  NPFLG(2) = 0, ! print lowest 20 eigenvalues only
+/

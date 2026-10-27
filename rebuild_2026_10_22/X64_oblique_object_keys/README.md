@@ -1,4 +1,19 @@
-# X64_oblique_object_keys: no combined object variable separates the retaining classes from L* galaxies; on every candidate L* sits between the dwarfs and the clusters
+# X64_oblique_object_keys: historical scalar-key test and corrected C6R
+
+**Post-result correction, 2026-10-27:** [A2](AMENDMENT_A2.md) replaces the
+mixed-radius C6 by an explicit same-radius binding/circular-speed proxy.
+The eight tested scalar candidates still do not separate the primary labels.
+However, C6R **does separate the pre-existing reported G labels** on both
+footings (gaps 0.2494/0.2546 dex); the historical “all variants give none” claim
+below is superseded. Its primary failure is an exact point-mass tie between
+retaining Groups and excluded SPARC/MW under the adopted profile conventions.
+The family null-relabelling frequency changes from 3/120 to 2/120; it is not
+statistical power. These results do not exclude arbitrary object-property or
+history-dependent keys. The text below preserves the historical result;
+[current results and provenance](../../closure_program_2026_10_27/gate_fixes/README.md)
+are separate artifacts.
+
+## Historical frozen-run report
 
 Criteria: `FROZEN_CRITERIA.md` + `ASSUMPTION_LEDGER.md` (ea43d24f22, committed alone; X63 id was taken, so X64).
 `AMENDMENT_A1.md` covers implementation fixes in the step-0 and K3 check code only, made after the first run. κ = ½

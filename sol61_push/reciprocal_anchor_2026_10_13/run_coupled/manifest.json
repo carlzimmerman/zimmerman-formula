@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "claim_id": "RA-004",
+  "repository": {
+    "commit": "ba35a0aae1d0c5b98ec6e2f10d314618ebf14743",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/reciprocal_anchor_2026_10_13/check_coupled.py",
+    "sol61_push/reciprocal_anchor_2026_10_13/run_coupled/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conditional finite-supply physical carrier/reference EOS coupled radial stationary profiles, constrained carrier forces and mass accounting",
+    "coefficient_domain": "Exact SymPy local variation and tail identities; SciPy solve_bvp float64",
+    "conventions": "c=1; conserved Eulerian currents; fixed-clock local/ static comparison",
+    "inputs": [
+      "sol61_push/reciprocal_anchor_2026_10_13/check_coupled.py",
+      "sol61_push/reciprocal_anchor_2026_10_13/COUPLED_CONTRACT.txt",
+      "sol61_push/cold_final_mile_2026_10_13/ACTION_CORRECTION.txt"
+    ],
+    "bounds": {
+      "B": [
+        0.01,
+        0.1,
+        1,
+        10,
+        100
+      ],
+      "S": 5.364,
+      "baryon_profile": "min(r^3,1)",
+      "rmin": 1e-05,
+      "Rout": "max(50,15sqrtB)",
+      "tol": 2e-06,
+      "max_nodes": 20000,
+      "verification_nodes": 4000,
+      "mass_tolerance": 0.0002,
+      "ODE_residual": 2e-05
+    },
+    "non_claims": [
+      "No full covariant completion or smooth actual-vacuum boundary",
+      "No microscopic EOS, finite-stiffness prediction, generic formation, stability or empirical verdict"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T01:07:55.443618+00:00",
+    "runtime_seconds": 1.046247,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 100,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/reciprocal_anchor_2026_10_13/run_coupled/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/reciprocal_anchor_2026_10_13/check_coupled.py",
+    "sol61_push/reciprocal_anchor_2026_10_13/COUPLED_CONTRACT.txt",
+    "sol61_push/cold_final_mile_2026_10_13/ACTION_CORRECTION.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/check_coupled.py",
+      "sha256": "50fe7f1c16add93d8cb15cdaa81efb955c83b17b5579eb792ff931ce9cf18a2e",
+      "sha256_after": "50fe7f1c16add93d8cb15cdaa81efb955c83b17b5579eb792ff931ce9cf18a2e"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/COUPLED_CONTRACT.txt",
+      "sha256": "ce0a6ab3afc2778679b6ecb78062e1bd2f6ec83ace66358abcb4d19683d182ee",
+      "sha256_after": "ce0a6ab3afc2778679b6ecb78062e1bd2f6ec83ace66358abcb4d19683d182ee"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/ACTION_CORRECTION.txt",
+      "sha256": "86841a2646a59441bf71922cb5c5852f8d93f4f1a3292ee4b97705fdcd4a9e09",
+      "sha256_after": "86841a2646a59441bf71922cb5c5852f8d93f4f1a3292ee4b97705fdcd4a9e09"
+    }
+  ],
+  "output_directory": "sol61_push/reciprocal_anchor_2026_10_13/run_coupled",
+  "declared_results": [
+    "sol61_push/reciprocal_anchor_2026_10_13/run_coupled/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run_coupled/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run_coupled/stderr.txt",
+      "sha256": "ec54e2cdfece49c9748e5317389044efb68405527a264abe945c40457718077b",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: sol61_push/reciprocal_anchor_2026_10_13/run_coupled/results.json"
+  ]
+}

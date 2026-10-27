@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-CFG925-ENDPOINT-PROJECTION-2026-10-20",
+  "repository": {
+    "commit": "unavailable",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "audit.py",
+    "run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Project fixed canonical B0/G1/C/phiK1/lambda1 CFG918 endpoints, with prior guarded Fn/Leo receivers, into isotropic Plummer projected Re and global stellar LOS second moments.",
+    "coefficient_domain": "double; adaptive quadrature with analytic Plummer checks and independent global mass-shell reconstruction",
+    "conventions": "Exploratory new diagnostic prompted by CFG925, not its reproduction or frozen regrade. Source mass partitions held fixed. Static spherical shells and exact source Newtonian mass profile, no modified-law reapplication.",
+    "inputs": [
+      "Pinned CFG918 results",
+      "Prior validated guarded Fn/Leo snapshots",
+      "CFG925 source interpretation only"
+    ],
+    "bounds": {
+      "systems": [
+        "Draco",
+        "Sextans",
+        "Fornax",
+        "Leo I"
+      ],
+      "apertures": [
+        "Re",
+        "global"
+      ],
+      "beta": 0,
+      "profile": "104pc cored mass plus source stars/tether/receiver shells"
+    },
+    "non_claims": [
+      "No observed member-aperture likelihood",
+      "No new core mass fit or four-dwarf dynamics",
+      "No uncertainty exclusion",
+      "No change to thermal collision bound inputs",
+      "No supply or E/J mechanism"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-20T19:01:06.602913+00:00",
+    "runtime_seconds": 0.924514,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "run_001/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "audit.py",
+    "inputs/cfg918_results.json",
+    "inputs/guard_results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "audit.py",
+      "sha256": "2e6dcc6fa31bb6771847c3bbd85912141bcc355b60d82d82ec38f1f29662d5db",
+      "sha256_after": "2e6dcc6fa31bb6771847c3bbd85912141bcc355b60d82d82ec38f1f29662d5db"
+    },
+    {
+      "path": "inputs/cfg918_results.json",
+      "sha256": "04ce8bc8b7f7af7e2635b1505de73e8d5b8dc53e4ed580dc029f199b683a69ef",
+      "sha256_after": "04ce8bc8b7f7af7e2635b1505de73e8d5b8dc53e4ed580dc029f199b683a69ef"
+    },
+    {
+      "path": "inputs/guard_results.json",
+      "sha256": "ff44decbb6a9aade9b1ec4bf9f38e218edd9f519e53029827c1670b92e93babc",
+      "sha256_after": "ff44decbb6a9aade9b1ec4bf9f38e218edd9f519e53029827c1670b92e93babc"
+    }
+  ],
+  "output_directory": "run_001",
+  "declared_results": [
+    "run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "run_001/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "run_001/stderr.txt",
+      "sha256": "e3e46497b0c0d88b93f2480e9d2d69f9ae95d0704516018719bc9351ed907270",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: run_001/results.json"
+  ]
+}

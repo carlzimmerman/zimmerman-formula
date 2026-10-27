@@ -1,0 +1,176 @@
+{
+  "schema_version": 2,
+  "claim_id": "FRAMEWORK-NONLOCAL-FINITE-HOST-N64",
+  "repository": {
+    "commit": "34ebaa9153a0ff4ba58cf95b20dedc9099cb42f7",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "sol61_push/framework_certification_2026_10_12/finite_host/finite_host.py",
+    "64",
+    "sol61_push/framework_certification_2026_10_12/finite_host/run_N64"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.14.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Declared finite-host nonlinear incremental satellite response and exact uniform/linear controls, with signed-effective-source accounting",
+    "coefficient_domain": "float64/complex128, finite periodic FFT",
+    "conventions": "See FROZEN_CRITERIA.txt; C=a0=1, same target-in nu table, no cosmology or MOND comparator",
+    "inputs": [
+      "sol61_push/framework_certification_2026_10_12/finite_host/finite_host.py",
+      "sol61_push/framework_certification_2026_10_12/finite_host/FROZEN_CRITERIA.txt",
+      "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+      "sol61_push/nonlocal_response_2026_10_12/contract.json",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+    ],
+    "bounds": {
+      "N": 64,
+      "box": 64,
+      "L": 16,
+      "satellite_mass": 12.566370614359172,
+      "host_mass": 1256.6370614359173,
+      "host_separation": 16,
+      "optimizer_maxiter_per_solve": 500,
+      "solves": 3,
+      "timeout_seconds": 90,
+      "CPU_seconds": 85,
+      "threads": 1
+    },
+    "criteria": {
+      "primary_own_host_metric": 0.05,
+      "poisson_residual": 0.001,
+      "functional_gradient": 0.0001,
+      "matched_grid_fidelity": 0.03,
+      "uniform_invariance": 1e-09
+    },
+    "non_claims": [
+      "No isolated or continuum solution",
+      "No target-free selector/action or real cold-mass current",
+      "No metric or causal dynamics",
+      "No empirical or whole-theory certification"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy.default_rng PCG64",
+    "seed": 359
+  },
+  "run": {
+    "started_at": "2026-10-13T02:48:08.889317+00:00",
+    "runtime_seconds": 36.876097,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 85,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/framework_certification_2026_10_12/finite_host/finite_host.py",
+    "sol61_push/framework_certification_2026_10_12/finite_host/FROZEN_CRITERIA.txt",
+    "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+    "sol61_push/nonlocal_response_2026_10_12/contract.json",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/framework_certification_2026_10_12/finite_host/finite_host.py",
+      "sha256": "a0f83ed3348ea6c4da50943e5b3bd5996ebfa21b60e732bf326ce0f7b04b8d69",
+      "sha256_after": "a0f83ed3348ea6c4da50943e5b3bd5996ebfa21b60e732bf326ce0f7b04b8d69"
+    },
+    {
+      "path": "sol61_push/framework_certification_2026_10_12/finite_host/FROZEN_CRITERIA.txt",
+      "sha256": "2389da12c50f1942e226da9a0ef2b758e925b9efac07f9949d571f109157dd05",
+      "sha256_after": "2389da12c50f1942e226da9a0ef2b758e925b9efac07f9949d571f109157dd05"
+    },
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+      "sha256": "9d8fc3f58355d8571c050d13c70b25f4a355780d256d2c67e2208de98b9b8f3c",
+      "sha256_after": "9d8fc3f58355d8571c050d13c70b25f4a355780d256d2c67e2208de98b9b8f3c"
+    },
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/contract.json",
+      "sha256": "dea4695ef1a20a19b6516aa6eb74dc15170c228714cd8476a1263d9788b38288",
+      "sha256_after": "dea4695ef1a20a19b6516aa6eb74dc15170c228714cd8476a1263d9788b38288"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py",
+      "sha256": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c",
+      "sha256_after": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c"
+    }
+  ],
+  "output_directory": "sol61_push/framework_certification_2026_10_12/finite_host/run_N64",
+  "declared_results": [
+    "sol61_push/framework_certification_2026_10_12/finite_host/run_N64/results.json",
+    "sol61_push/framework_certification_2026_10_12/finite_host/run_N64/fields.npz"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/framework_certification_2026_10_12/finite_host/run_N64/stdout.txt",
+      "sha256": "249cb227192622dfeaee62634fdc2628d96158e1fb879be1758523731354c02a",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/framework_certification_2026_10_12/finite_host/run_N64/stderr.txt",
+      "sha256": "5ecea5660ff598a2dc2ccb73328e25d50bf61ca390d6060df5368b9a06870826",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/framework_certification_2026_10_12/finite_host/run_N64/results.json",
+      "sha256": "3759862c1ef023e3fa70a141946e7eacf012d184eee0d505fef3e4f740d03656",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/framework_certification_2026_10_12/finite_host/run_N64/fields.npz",
+      "sha256": "6e0e59d0c54ab1b4df0d33ba1b0c941d0b7f6acbaa19ace2b4c8c2c1492cd49a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

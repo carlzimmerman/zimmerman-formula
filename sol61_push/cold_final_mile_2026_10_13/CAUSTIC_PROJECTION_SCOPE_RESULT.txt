@@ -1,0 +1,97 @@
+CE-FM-071 — caustic-radius rejection: case attribution and nonlocal lensing
+2026-10-16 UTC. Original theory OPEN. Self-review;34 controls/run_071
+completed/validated. No infall simulation, model generation or lensing fit
+rerun; the source's cluster stop and all failed scores remain recorded.
+
+NEW SOURCES
+CFG8172979cbad2, CFG81873fcc6a19, CFG819c403d4db8 exact source/result bytes
+match commits (caustic_projection_source_receipt.json). CFG819 reports
+representative steepest-slope radii .17 and .43Mpc with free half-mass radii
+2.08/1.90Mpc, then rejects a splashback remedy before any lensing score.
+Those raw derivative profiles/orbit arrays were NOT regenerated here.
+Source numerical caustic robustness is therefore not independently certified.
+
+CASE CAPTURE DOES NOT IDENTIFY THE PRIMARY
+CFG818 CASES execute in order:
+ s/canonical/EX, s/alt/EX, mono/canonical/EX, mono/alt/EX, s/canonical/ALL.
+Its derive_ex temporarily installs InfallSnap; ALL calls the original
+L.derive after restoration. CFG819 replaces InfallSnap with a Probe whose
+final_profile overwrites one untagged cap['I']; then calls cluster_runs for
+ALL cases and reads that one slot. The underlying derive invokes
+I.final_profile unconditionally after its shooting loop (library source
+separately hashed in caustic_library_receipt.json).
+Consequently the captured EX object is the LAST EX, mono/alt, not the
+primary s/canonical. The later ALL call does not use that Probe. This is a
+source control-flow finding, not a claim that the reported radii were made
+up or that the true primary radii necessarily differ greatly. The primary
+caustic claim has not been established by this untagged capture. Store
+kernel, footing, variant and actual mass inputs alongside each profile.
+
+RADIUS ALONE DOES NOT FALSIFY A LENSING REMEDY
+For spherical scalar lensing,
+ DeltaSigma(R)=M_cyl(<R)/(pi R^2)-Sigma(R).
+A shell of mass M at a<R has Sigma(R)=0 and M_cyl(<R)=M, hence
+ DeltaSigma_shell(R)=M/(pi R^2)>0.
+This remains EXACT for any finite-width positive shell fully inside R.
+Thus 'the 3D caustic is inside the MID band' does NOT imply 'it cannot
+contribute to the MID-band lensing signal.' Enclosed mass lenses there.
+The nonlocal kernel was already derived in CE064; this checkpoint applies
+it to the newly reported caustic-radius argument.
+
+Use the actual source's8 logarithmic band edges .15 to3Mpc. MID indices3–5
+span 0.46129–1.41861Mpc (exact values in run results), with centers
+.55628/.80895/1.17638Mpc. The source nominal .48–1.24 interval is not exactly
+those bin edges; both reported caustics nevertheless lie below MID here.
+For a finite layer centered at .17 OR .43Mpc with5% fractional half-width,
+all its mass is interior to each MID center. Per10^13Msun its ESD is
+ 10.2865 /4.8642 /2.3001 Msun/pc^2.
+The two caustic radii give the same exterior tail for equal enclosed mass.
+A mass-conserving GEOMETRIC countercontrol moves that mass from a positive
+layer at1.9–2.1Mpc into either inner layer. The MID ESD increases by
+ 10.2949 /4.8838 /2.3529 Msun/pc^2.
+No extra stock is added. This is a counterexample to a radius-only geometric
+inference, NOT an admitted formation mechanism or an empirical halo fit.
+The10^13Msun normalization is illustrative, not an inferred caustic mass.
+
+Inside a shell its ESD is negative, and near/beyond it can strongly affect
+INNER bins as well. Therefore changing the distribution may worsen other
+points. Actual caustic mass, width, background profile and matched baryonic
+response decide that question; a radius and steepest log slope do not.
+The reported half-mass radius near2Mpc also warns that a sharp inner feature
+need not contain much mass. No sufficient mass or full simultaneous repair
+is demonstrated by these countercontrols.
+
+WHAT REMAINS UNTESTED
+CFG819's scalar slope minimum is estimated from a differentiated sampled
+profile with zero-density values floored before logarithms. It reports very
+steep slopes and acknowledges sampling-edge risk, but has no stored resolution
+comparison establishing radius robustness here. A slope minimum alone is
+not an orbit-tagged first-apocentre identification. CFG818's two spot checks
+of actual snapshot/phase-mixed ESD are more relevant than a radius-only
+argument but still do not constitute its frozen318+8 full-sample score.
+Do not turn either bounded diagnostic into a universal splashback no-go.
+We preserve the official source reading and stop; this audit only limits
+what it establishes.
+
+CFG817 SCOPE (source-reconciled, not independently likelihood-fitted here)
+Its frozen Mobs-only result is itself declared unphysical, and its small
+corrections use a POST-FREEZE count-conditioned branch. A count-only selection
+factor cancels on conditioning on observed counts under that assumed model;
+that does not authenticate the independent mass/count-noise likelihood or
+exclude all selection/calibration effects. The source explicitly admits
+both estimates use the same photons. Accordingly its 'selection excluded'
+summary is broader than this approximate post-hoc diagnostic supports.
+The earlier full-sample model FAIL remains; it is not exonerated by proposing
+selection, nor made a universal physical deficit by this one likelihood.
+CE069 aperture normalization and CE070 specificity caveats still apply.
+
+EXECUTABLE NEXT STEP, WITHOUT A NEW VARIANT SCAN
+If this caustic claim is used again, first extract/store existing per-case
+profiles with explicit primary kernel/footing tags and caustic mass/width,
+then project THAT existing fixed profile with full covariance and all INNER,
+MID, OUTER points. Do not choose a new shell radius/amplitude after seeing
+scores. A tagged diagnostic using the existing case can be sufficient to
+assess this particular inference; no new free parameters or pipeline campaign
+is justified by the present counterexample. Keep the source's declared stop,
+failed original scores and unresolved physical dynamics/energy budgets.
+No frozen/publication/chat changes or new whole-theory completion claim.

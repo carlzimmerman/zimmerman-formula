@@ -1,0 +1,181 @@
+{
+  "schema_version": 2,
+  "claim_id": "NGC5023-ACTUAL-CUBE-INDEPENDENT-RECONSTRUCTION",
+  "repository": {
+    "commit": "99963e8f1219ad6e635b514baf7d507f8693b49a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/ngc5023_cube_2026_10_20/audit/check_actual.py",
+    "--output",
+    "reviews/ngc5023_cube_2026_10_20/audit/actual_run001/checks.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independently reconstruct saved candidate differences, blank means/scatters and global noise-subtracted squared asymmetry for HR/LR/WHISP; reconstruct the frozen paired candidate directly from raw FITS without importing production modules.",
+    "coefficient_domain": "binary64 WCS/projection/convolution/interpolation, native float32/scaled-int16 images",
+    "conventions": "Native FITS 1-based CRPIX; optical velocity and NCP north projection; fixed40arcsec circular beam; Jy/arcsec2 before bin integration; candidate x160arcsec,z60arcsec,u37.08km/s and its exact inverse.",
+    "inputs": [
+      "Three actual primary cubes",
+      "Frozen HALOGAS-HR-selected candidate and discovery/replication result records"
+    ],
+    "bounds": {
+      "datasets": [
+        "HR",
+        "LR",
+        "WHISP"
+      ],
+      "candidate_voxels_per_side": 600,
+      "candidate_flux_absolute_tolerance_Jy_km_s": 2e-06,
+      "saved_scalar_absolute_tolerance": 1e-06
+    },
+    "non_claims": [
+      "No formal discovery probability or Gaussian-tail significance",
+      "No full independent reprocessing of every nuisance grid case",
+      "No fitted asymmetric warp/spiral model or exact matched LSF",
+      "No new gravity or memory signature"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-21T00:30:08.091746+00:00",
+    "runtime_seconds": 0.744253,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/ngc5023_cube_2026_10_20/audit/check_actual.py",
+    "reviews/ngc5023_cube_2026_10_20/data/NGC5023-HR-cube.fits",
+    "reviews/ngc5023_cube_2026_10_20/data/NGC5023-LR-cube.fits",
+    "reviews/ngc5023_cube_2026_10_20/independent/UGC_08286cl_WHISP.fits",
+    "reviews/ngc5023_cube_2026_10_20/discovery_run001/results.json",
+    "reviews/ngc5023_cube_2026_10_20/discovery_run001/arrays.npz",
+    "reviews/ngc5023_cube_2026_10_20/replication_run001/results.json",
+    "reviews/ngc5023_cube_2026_10_20/replication_run001/arrays.npz",
+    "reviews/ngc5023_cube_2026_10_20/discovery_run001/candidate.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/audit/check_actual.py",
+      "sha256": "4fa92fb4e3fd97c121ed1def7feb7a787451b8306950a3cf8c8316d81c72996a",
+      "sha256_after": "4fa92fb4e3fd97c121ed1def7feb7a787451b8306950a3cf8c8316d81c72996a"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/data/NGC5023-HR-cube.fits",
+      "sha256": "3174b25fee1285095ee0ae9bed4aeff3a8c114dd818905f1e92d184850207b41",
+      "sha256_after": "3174b25fee1285095ee0ae9bed4aeff3a8c114dd818905f1e92d184850207b41"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/data/NGC5023-LR-cube.fits",
+      "sha256": "0e0574154df6b954c20522813816a47f2ac73b3e1336e3a5472f1e419c81a158",
+      "sha256_after": "0e0574154df6b954c20522813816a47f2ac73b3e1336e3a5472f1e419c81a158"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/independent/UGC_08286cl_WHISP.fits",
+      "sha256": "1455c27c290a5ce0951dc2461df8d2c8958615b6c5a646ae735829a941af147d",
+      "sha256_after": "1455c27c290a5ce0951dc2461df8d2c8958615b6c5a646ae735829a941af147d"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/discovery_run001/results.json",
+      "sha256": "218b323dd50220c0f401fd61a1ef42f1866b14170a3e32da4b4302ae54063656",
+      "sha256_after": "218b323dd50220c0f401fd61a1ef42f1866b14170a3e32da4b4302ae54063656"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/discovery_run001/arrays.npz",
+      "sha256": "3b20607a8f00cd096d9d4f4edba8b4fb605341f11a6caf1a67476d1c65af8f59",
+      "sha256_after": "3b20607a8f00cd096d9d4f4edba8b4fb605341f11a6caf1a67476d1c65af8f59"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/replication_run001/results.json",
+      "sha256": "9c8fd742ad7ccf766aefde7eace627f974a50770e92c616d6b6c2221d903e6c9",
+      "sha256_after": "9c8fd742ad7ccf766aefde7eace627f974a50770e92c616d6b6c2221d903e6c9"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/replication_run001/arrays.npz",
+      "sha256": "19118819235916abeb611be099785f98ab8c20b092b65b968235a97d8c9eb5d9",
+      "sha256_after": "19118819235916abeb611be099785f98ab8c20b092b65b968235a97d8c9eb5d9"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/discovery_run001/candidate.json",
+      "sha256": "0e676a3066f8ca8f87309567b3dedc6885d3fa439ff03fada7aacd7046facf02",
+      "sha256_after": "0e676a3066f8ca8f87309567b3dedc6885d3fa439ff03fada7aacd7046facf02"
+    }
+  ],
+  "output_directory": "reviews/ngc5023_cube_2026_10_20/audit/actual_run001",
+  "declared_results": [
+    "reviews/ngc5023_cube_2026_10_20/audit/actual_run001/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/audit/actual_run001/stdout.txt",
+      "sha256": "ccce12b9deec98c8ee8fe3bf557467485eae0a0b0ff3fdadd933635d836942f6",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/audit/actual_run001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/audit/actual_run001/checks.json",
+      "sha256": "e8714b9119ab56035ba5d62d8cb9d123b5fadce7c9a75de26633056c9a0fb4ce",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

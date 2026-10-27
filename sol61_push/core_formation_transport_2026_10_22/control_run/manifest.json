@@ -1,0 +1,159 @@
+{
+  "schema_version": 2,
+  "claim_id": "CORE_ENERGY_EXTERIOR_OMISSION_CONTROL",
+  "repository": {
+    "commit": "b0ea16ecf19c98fd5b3ea049c4c192a7fc6715b3",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/core_formation_transport_2026_10_22/energy.py",
+    "--omit-exterior",
+    "--output",
+    "sol61_push/core_formation_transport_2026_10_22/control_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Expected failure of static energy identities when exterior field energy is deliberately omitted",
+    "coefficient_domain": "Exact symbolic real positive coefficients and float64 ODE diagnostics",
+    "conventions": "CONTRACT.md; isolated mean density zero; allow finite density jump and integrable central cusp",
+    "inputs": [
+      "Declared benchmark constants and dimensionless central values"
+    ],
+    "bounds": {
+      "sc": [
+        0.03,
+        0.1,
+        0.3,
+        1,
+        3,
+        10
+      ],
+      "lambda": [
+        0,
+        1
+      ],
+      "canonical_sc": 0.14820358643718212
+    },
+    "non_claims": [
+      "No covariant completion",
+      "No observed galaxy fit",
+      "No lensing likelihood"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-22T22:13:42.824457+00:00",
+    "runtime_seconds": 1.600914,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 250000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 55,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/core_formation_transport_2026_10_22/energy.py",
+    "sol61_push/core_formation_transport_2026_10_22/CONTRACT.md",
+    "sol61_push/compact_surplus_2026_10_22/checks.py",
+    "sol61_push/core_formation_transport_2026_10_22/CONTROL.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/core_formation_transport_2026_10_22/energy.py",
+      "sha256": "74ce89d5e7078efb9088465d92d5269dfca577178d5c874844c8c46e9b4d1d9e",
+      "sha256_after": "74ce89d5e7078efb9088465d92d5269dfca577178d5c874844c8c46e9b4d1d9e"
+    },
+    {
+      "path": "sol61_push/core_formation_transport_2026_10_22/CONTRACT.md",
+      "sha256": "b375f42d71ef250c471c9b13272f4edccd01a70b8852426fd1393e632579014c",
+      "sha256_after": "b375f42d71ef250c471c9b13272f4edccd01a70b8852426fd1393e632579014c"
+    },
+    {
+      "path": "sol61_push/compact_surplus_2026_10_22/checks.py",
+      "sha256": "94df1aac6de19769568af039bb529cdcfdc0f88f6ea74b7987f2c7edbd580a8c",
+      "sha256_after": "94df1aac6de19769568af039bb529cdcfdc0f88f6ea74b7987f2c7edbd580a8c"
+    },
+    {
+      "path": "sol61_push/core_formation_transport_2026_10_22/CONTROL.md",
+      "sha256": "0b534f9ffbfe9b20555e3bab1a1eac7fbc6a223ef2cc4a8d975082d139147bbd",
+      "sha256_after": "0b534f9ffbfe9b20555e3bab1a1eac7fbc6a223ef2cc4a8d975082d139147bbd"
+    }
+  ],
+  "output_directory": "sol61_push/core_formation_transport_2026_10_22/control_run",
+  "declared_results": [
+    "sol61_push/core_formation_transport_2026_10_22/control_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/core_formation_transport_2026_10_22/control_run/stdout.txt",
+      "sha256": "462a055ae3351e153016c0bf01cc3fd4e28252fb119586ab0bec393c6ebe7880",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/core_formation_transport_2026_10_22/control_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/core_formation_transport_2026_10_22/control_run/result.json",
+      "sha256": "3ba3e4cc21a6fafb143220b4bfa897f697dcc2c8e53ad9d3f4d2b902ecfaa237",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,116 @@
+CRITICAL32PI-001 — change the question to a critical amplitude ratio
+2026-10-14. New research direction; original physics goal remains OPEN.
+
+Previous work reconstructed a local statistical response but could not fix
+its absolute vacuum offset. The new angle is criticality: ask whether energy
+and response are controlled by one scaling function whose amplitude ratios
+are independent of normalization. This is a mechanism class, not a claim that
+our vacuum belongs to a known universality class.
+
+1. A precise, normalization-independent target
+
+For the corrected potential the physical matching requirement is
+ R_vac=epsilon_Lambda W3²/W2³=64pi.
+W2,W3 are derivatives with respect to the SAME polarization variable at its
+vacuum. If a critical effective potential takes the scaling form
+ W(P)=B Psi(P/D),
+then W2=B Psi2/D², W3=B Psi3/D³. If its relevant energy is B Psi0, the ratio is
+ R=Psi0 Psi3²/Psi2³.
+Both B and D cancel. Critical exponents alone do not determine this ratio:
+the actual scaling function, operator dictionary and state are required.
+Cancellation under rescaling alone also does not prove RG universality.
+
+A phase-energy difference can remove a shared additive background, but total
+gravitating vacuum energy cannot be silently replaced by that difference.
+For epsilon_total=epsilon_background+Delta epsilon the extra contribution is
+ epsilon_background W3²/W2³.
+Thus this route has TWO distinct obligations: a critical response ratio and a
+principle tying its energy to the total gravitational source. This is a more
+restrictive, testable question than hunting for appearances of32pi².
+
+2. A concrete non-topological source of pi²
+
+Consider a leading-large-N, three-dimensional O(N) scalar composite model.
+Conventions: per-component density; g rho³/6 interaction; renormalized rho
+relative to its critical value; disordered branch; scalar mass m>=0. No
+identification of rho or m with the MOND polarization is assumed.
+
+We independently evaluate the UV-subtracted real-scalar Gaussian determinant:
+ J(m;L)=1/(4pi²) int_0^L k²[log(1+m²/k²)-m²/k²] dk.
+Then
+ dJ/dm=-m² atan(L/m)/(2pi²) -> -m²/(4pi),
+ J(m;infinity)=-m³/(12pi), J(0)=0.
+The subtraction fixes a reference and a relevant counterterm; it does not
+fix gravity's absolute cosmological term. The leading auxiliary potential is
+ Vaux=g rho³/6-m²rho/2+J(m).
+The m saddle gives rho=-m/(4pi) on the disordered branch (rho here is a
+renormalized composite, not an unrenormalized positive squared field).
+Eliminating rho yields
+ V(m)=m³/(24pi) [1-g/(16pi²)].
+The independent rho saddle gives m²=g rho². Thus a nonzero mass at vanishing
+relevant deformations requires
+ g_c=16pi².
+This derives a pi²-containing critical coupling from a momentum integral;
+it is not topology or a number selected by fitting the target. Its numerical
+value is convention dependent through the normalization of g. Crucially,
+V(m)=0 for EVERY m at g=g_c: the critical branch does not fix a mass or supply
+positive vacuum energy. Writing32pi²=2g_c would add an unexplained dictionary.
+
+3. Move off the flat point and test an actual amplitude ratio
+
+Set delta=1-g/g_c>0 and add a relevant deformation -t m/(8pi), t>0:
+ E(m)=delta m³/(24pi)-t m/(8pi).
+Its stable positive stationary point satisfies t=delta m0². The endpoint
+m=0 has E=0; the stationary energy is negative. Define the positive
+condensation depth Delta epsilon=E(0)-E(m0)=delta m0³/(12pi).
+This is an energy difference from an endpoint, NOT a pair of proved physical
+vacua and NOT the observed positive dark energy.
+At the stationary point,
+ E''=delta m0/(4pi)>0, E'''=delta/(4pi),
+ Delta epsilon (E''')²/(E'')³=1/3.
+The ratio is exactly independent of delta,m0, component multiplicity, and
+common energy/field normalizations. Even granting the most favorable mapping
+of this depth and composite response onto the physical target, it gives1/3,
+not64pi (a factor192pi apart). An arbitrary background would tune the result,
+but would forfeit the amplitude-ratio selection mechanism.
+
+This is a constructive calculation of a parameter-independent ratio, not a
+universal no-go. The first model does not match. Finite-N corrections, another
+operator, a different critical theory or dimension are different hypotheses;
+none is a justified numerical correction to the result computed here.
+
+4. Source scope and approximation
+
+Primary paper: Bardeen, Moshe and Bander, Phys.Rev.Lett.52,1188 (1984),
+DOI10.1103/PhysRevLett.52.1188. Publisher abstract verifies the large-N
+scale-breaking setting and composite dilaton; full article requires access.
+https://doi.org/10.1103/PhysRevLett.52.1188
+A literature locator was Moshe/Zinn-Justin, hep-th/0306133v1, sections10.2-10.3,
+Eq10.18 and PDF pages166-169, whose normalization agrees with the calculation.
+https://arxiv.org/abs/hep-th/0306133v1
+Exact formulas used here are reconstructed explicitly above; reliance is on
+the stated leading-large-N effective action, not an uninspected finite-N
+result. No source implies a relation to MOND or total gravitational vacuum.
+Search was targeted to critical amplitude ratios and3D large-N potentials,
+not a survey proving novelty or excluding other critical theories.
+
+5. Verification and current decision
+
+check.py verifies11 exact identities/limits: subtracted loop, stationary
+coupling, flat branch, deformation, condensation depth, invariant ratio,
+normalization cancellation and sensitivity to a vacuum background.
+run/manifest.json pins actual code, inputs, Git revision, versions and outputs.
+Critical32Pi.lean proves four conditional algebraic statements: critical
+flatness, nonzero-mass coupling selection, the1/3 ratio and rescaling
+cancellation. The large-N path integral, operator identification and gravity
+mapping are not Lean-formalized. Build and hashes: lean_build.out,
+lean_verification.json. Self-review only.
+
+Retain the QUESTION: is the required64pi a universal amplitude ratio of a
+nonanalytic critical polarization sector? Discard the numerical shortcut
+'2 times g_c equals32pi²'. This first composite model selects the wrong ratio
+and has no demonstrated polarization dictionary. A future candidate must
+identify its polarization operator before evaluating the ratio, and must
+independently justify its contribution to total vacuum stress. Otherwise a
+new field normalization or vacuum subtraction simply conceals the old fit.
+The route is open, but this tested model is not a solution.

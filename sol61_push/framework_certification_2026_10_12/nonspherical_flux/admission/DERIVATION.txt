@@ -1,0 +1,95 @@
+FULL THREE-COMPONENT NORM-WEIGHTED FLUX: SOURCE / MATH / INTERFACE ADMISSION
+2026-10-13; base frozen v11. Read-only mathematical audit, no new computation run.
+13 exact source snapshots/hashes PINNED_INPUTS.json. Accepted42 kernel/geometry and27 independent vector checks NOT rerun or newly counted. Existing nine-theorem formal module contains local coefficient/coordinate derivatives; full norm-flux correspondence is the next separate formal task and is not presumed completed here.
+
+1. Complete physical/formal dictionary and domain.
+Physical source mass m_b>0, G>0, separation a>0. Formal parameter M in existing Nonspherical.lean means mu=G*m_b, NOT physicalmass and NOT the sum of the two bodies. Each body has physicalmass m_b, two-source total2m_b.
+Sources centered(a,0,0),(-a,0,0), spherically symmetric nonnegative condensed density, compact radius r_s<=a/8. Within declared same host/catchment. Neither hosteligibility nor bound/condensed classification is certified by the local mathematical proof. Applicability to the active framework law is a separate domain assumption.
+Exterior point p=(0,y0,0), y0=a/4. Both distances R0=sqrt(a²+y0²)>r_s. An open neighborhood is exterior to both compact supports. Ordinary Newtonian exterior potential -Gm_b/r for a spherical compact source is the supplied source convention/standard shell implication, not a new density species or metric action; shell theorem/matter realization is not newly Lean-certified by the old nine lemmas.
+Physical acceleration=-g, g=gradPhi. Thus divg=+4piG rho_b; do not mix with PM accelerationfield convention whose phantom sign is -div.
+Phi=-mu/rplus-mu/rminus,
+rplus=sqrt((x-a)²+y²+z²), rminus=sqrt((x+a)²+y²+z²).
+All inverse roots are smooth in exterior neighborhood; mu,a,G positive. Full normN=|g| positive at p, hence positive in a smaller neighborhood. Analytic own lowbranch applies near N/a0=1, within actual spliceYS>1. Formula at all positiveY in Lean is mathematical extension, not asserting unchanged repairedtail.
+
+2. Differentiate complete potential, not just y-axis.
+gX=mu[(x-a)/rplus³+(x+a)/rminus³],
+gY=mu*y[rplus^-3+rminus^-3],
+gZ=mu*z[rplus^-3+rminus^-3].
+These are actual partialx/y/z derivatives of Phi: derivative(-mu/sqrtD)=mu*(coordinate displacement)/D^(3/2).
+At p, gX=gZ=0, gY=b=2mu*y0/R0³>0.
+H=Jacobian(g)=Hessian(Phi), actual symmetric matrix. At x=z0:
+Hxx=2mu(y0²-2a²)/R0^5,
+Hyy=s=2mu(a²-2y0²)/R0^5,
+Hzz=2mu/R0³,
+Hxy=Hyx=Hxz=Hzx=Hyz=Hzy=0.
+Trace=2mu[(y0²-2a²)+(a²-2y0²)+(a²+y0²)]/R0^5=0. No independently assumed vacuumtrace or transversezero leaf.
+At y0=a/4:
+ b=32mu/(17sqrt17 a²),
+ Hxx=-3968mu/(289sqrt17 a³),
+ s=1792mu/(289sqrt17 a³)>0,
+ Hzz=2176mu/(289sqrt17 a³).
+Their numerators sumzero.
+
+3. Every coordinate slice and fullnorm.
+Freeze y0 and define coordinate paths X(t)=(t,y0,0), Y(t)=(0,t,0), Z(t)=(0,y0,t).
+Potential slices:
+PhiX(t)=-mu/sqrt((t-a)²+y0²)-mu/sqrt((t+a)²+y0²),
+PhiY(t)=-2mu/sqrt(a²+t²)=existing midPotential,
+PhiZ(t)=-2mu/sqrt(a²+y0²+t²).
+Their derivatives are respective gX(X(t)),gY(Y(t)),gZ(Z(t)).
+Full vector slices, not just their differentiated coordinatecomponent:
+X: (mu[(t-a)/RX+³+(t+a)/RX-³], mu*y0[RX+^-3+RX-^-3], 0);
+Y: (0,2mu*t/(a²+t²)^(3/2),0);
+Z: (0,2mu*y0/(a²+y0²+t²)^(3/2),2mu*t/(a²+y0²+t²)^(3/2)).
+RX±=sqrt((t∓a)²+y0²).
+Existing fieldXSlice matches X firstcomponent via two midField(mu/2,y0,t±a); existing fieldZSlice matches Z thirdcomponent using midField(mu,sqrt(a²+y0²),t). Existing midField is Y middlecomponent. The OTHER components must be present in each norm; replacing fullnorm by |gXSlice| or |gZSlice| would be false, since both vanish at p while N(p)=b>0.
+Define Nx=sqrt(gX(X)²+gY(X)²+gZ(X)²), analog Ny,Nz. This is Euclidean norm; a Lean Fin3->Real default Pi/sup norm must not be substituted. Use explicit square-root sum or EuclideanSpace and prove its dictionary. N_i at evaluationpoint=b; square-root derivative numerator is dot(g,sliceDerivative)/N.
+Actual derivatives:
+Nx'(0)=0 because gX0 and (gY(X))'(0)=0 (source±a terms cancel);
+Ny'(y0)=s because gY=b>0 and remainingcomponents identicallyzero;
+Nz'(0)=0 because gZ0 and (gY(Z))'(0)=0.
+Y norm is ABS(midField) globally, not midField globally. At positive y0, smooth local positivity justifies equality in a neighborhood or direct sqrt(gY²) chain rule. A missing local-sign argument here would be a real correspondence gap.
+
+4. Kernel normalizing a fixed frameworkscale, not fitting it.
+Existing nu(Y)=1/[1-exp(-sqrtY)], nuSlope(Y)=-exp(-sqrtY)/[2sqrtY(1-exp(-sqrtY))²].
+At Y1 nuSlope1<0 exactly. a0=b>0 gives N(p)/a0=1.
+During coordinate differentiation a0 is a spatially fixed scalar parameter, not a pointwise function reset to N(x). Setting a0=N(p) doesnot imply a0(x)=N(x) or derivativea0=derivativeN. This is the supplied local fixed-footing law reading. If a future actual local-DE scale a0(x) is introduced, its gradient contributes an extra target term and this fixed-parameter proof must not be reused unchanged. At p, a variable-scale extra term is -nuSlope1*(partial_y a0), giving nuSlope1*(s-partial_y a0) beforedivision4piG; no variable-scale repair is assumed.
+This is a state-witness normalization. For ANY independently supplied positive A1 scale a0 and any a>0, choose mu=a0*a²*17sqrt17/32 (physicalm_b=mu/G>0). It doesnot add a physicalconstant, select kappa, derivea0 or calibrate data/hostmasses. It demonstrates one positive-source regime; no all-system fit or selector follows.
+
+5. Define the actual full flux and actual coordinate divergence.
+V(Xvec)=[nu(N(Xvec)/a0)-1]g(Xvec).
+For the scalarcoordinate function whose derivative defines each divergence term:
+Fx(t)=[nu(Nx(t)/a0)-1]gX(X(t)),
+Fy(t)=[nu(Ny(t)/a0)-1]gY(Y(t)),
+Fz(t)=[nu(Nz(t)/a0)-1]gZ(Z(t)).
+At p, w=nu1-1. Product/chain rules give
+Fx'(0)=w*Hxx,
+Fy'(y0)=nuSlope1*s+w*s,
+Fz'(0)=w*Hzz.
+x/z weight derivatives are zero because their normderivatives0; even continuity+zero component makes their extra factor vanish. Both arguments can be checked, never assume x/z weights globallyconstant.
+In y term, weightderivative=nuSlope1*s/a0 multipliedgY=b=a0, so normalization cancels. Without this cancellation, coefficient localTarget would be unjustified.
+Actual divV(p)=Fx'(0)+Fy'(y0)+Fz'(0)
+=nuSlope1*s+w*(Hxx+Hyy+Hzz)=nuSlope1*s.
+Dividepositive4piG:
+rhoPH(p)=nuSlope1*midSlope(mu,a,a/4)/(4piG)
+=existing localTarget(mu,a,G)<0.
+This is full three-coordinate divergence correspondence, not merely naming its desired coefficient. The new fullflux Lean module must prove these derivative definitions with actual fullnorm and actual sourcegradient. Old coefficient theorem alone was correctly insufficient. This audit supplies exact interface, not a claim the new code already compiled.
+
+6. Analytic versus numeric kernel at1.
+Continuous ownkernel uses exact smooth lowbranch here; existing sourceYS2.3374>1 and continuity give a neighborhood within it. Accepted implementedtable42run tested both adjacent slopes of FP1/CFG650. At1 the log-interpolation slopes differ, so no unique classical ypartial/full divergence exists at that knot for literaltablekernel; both one-sided targets are negative. Tables provide bounded piecewise/weak/a.e evidence, not the HasDerivAt theorem for smooth analyticnu. x/z transverse first derivatives still have zero normchange, but y term retains the knot issue. Do not silently swap numericaltable and analyticfunction.
+
+7. What the prospective formal completion closes / cannot close.
+It closes the remaining mathematical source-to-fullnorm-flux coefficient/sign correspondence for the displayed smooth analyticbranch and specified exterior sourcegeometry. It doesnot prove compactsource shell theorem, hostgate eligibility, coldparticles exist, mass/currentdynamics implement negative target, scalarA2 impliesvectorA2, or rawA5 is actualmaterial.
+Scalar/spherical A2 remains unrefuted. Literal vector interpretation has separate accepted27/42curl witnesses. Nonnegative absoluteadditionalcold density cannot equal negative rawtarget here IF this geometry lies in its active domain. Signeddiagnostic/contrast is not itself prohibited; actualpositivebaseline and forcemapping need specification.
+
+8. Admission closure diagnosis after fullflux Lean — do not substitute more helpers for missing theory input.
+Existing currentprimary evidence already distinguishes choices:
+(a) A2 only scalar/spherical and A5 only diagnostic: fullnonspherical force/potential equation remains unspecified.
+(b) Raw Eq2 as exact actualadditionalcold target with generalactivepositiveclumps: localnonnegative equality impossible for witness; excludegeometry by explicitdomainrestriction or change targetequation, not by a proofhelper.
+(c) Clip/round Eq2 target: alreadyproposed positivebookkeeping alternatives, but not the unchanged rawEq2. Specify replacementformula and actual force from A7, including hostcentre/partition, condensedsource and boundarydata.
+(d) Restore nonlinearfield Eq9: currentlyexcludedbyreconciliation5; cannot silently use it as closure. It changes general3D algebraicrelation and brings recorded noEFE conflict.
+For choice(c), explicit shared ledger should be
+rho_c_actual>=0 and divg_actual=4piG(rho_d+rho_hot+rho_c_actual+otherdeclaredrealmass);
+targetT[rho_d,host] must be given, e.g. raw signedfunctional versus clip or roundfunctional, and A2 must specify which domain/operator it predicts. Equality to the original vectornu gN is not automatically retained when Tchanges. No new T is adopted here.
+Concrete missing framework question: “For a nonspherical active host with two condensed clumps, is Eq2 the actualcold density or only a signeddiagnostic? If the actualtarget is clipped or round, what exact replacementfunctional, hostcentre/partition and forceequation defines it, and is A2 scalar/spherical only or literalvector?”
+That answer is mathematical/physical input required to resolve the framework contract, not optional technical proof labor. Further certificates of the same displayed identity cannot select this domain/equation choice. No whole-theory refutation or empirical conclusion follows from our conditional local proof.

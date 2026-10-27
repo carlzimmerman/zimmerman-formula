@@ -1,0 +1,160 @@
+EXACT BACKREACTION TEST OF THE QUARTIC CURVATURE TRACKER
+Checkpoint BACKREACTION32PI-001, 2026-10-15
+Base Git revision: 7ababab3ece1cdd36786736e7ea1cdd049ba48d0
+Parent: ../puzzle_32pi_nonlinear_tracking_2026_10_15/RESULT.txt
+
+Result and scope
+For the specified static, positive-field, source-free exterior of the
+quartic curvature tracker, the coupled Einstein-scalar equations imply that
+the physical matter-frame circular speed strictly decreases with areal radius
+wherever a timelike circular orbit exists. No weak-field approximation is
+used. This rules out an exactly flat rotation curve on that branch. In the
+weak-metric and weak-conformal-gradient limit the bound approaches the
+Keplerian slope, ruling out a nearly flat curve in that controlled limit.
+Strict monotonicity alone does not exclude every approximately flat segment
+in a strongly curved or strongly conformally varying solution.
+No source-matched solution, universal modified-gravity impossibility theorem,
+or coefficient selection is claimed. The original 32pi target is unresolved.
+
+1. Model and hypotheses
+The Jordan action is F(phi)R_J/2 - (partial phi)^2/2 - V(phi), with
+ F=M^2+xi phi^2,
+ V=E+lambda phi^4/4,
+ M,xi,lambda,E>0,
+ E=lambda M^2 v^2/(4xi), v>0.
+Matter is minimally coupled to g_J. In a source-free annulus there is only
+the scalar stress. In the Einstein frame g_E=(F/M^2)g_J,
+ A=M/sqrt(F), g_J=A^2 g_E,
+ dchi/dphi=sqrt(K)>0,
+ K=M^2(F+6xi^2 phi^2)/F^2,
+ U=M^4 V/F^2>0.
+Use the exact static spherical metric
+ ds_E^2=-exp(2nu(r))dt^2+dr^2/N(r)+r^2 dOmega^2,
+where N>0 and exp(nu)>0 on the closed annulus r_in<=r<=R, r_in>0.
+Assume a smooth strictly positive scalar solution, phi(r_in)>=v and phi(R)=v.
+This is a boundary-value hypothesis, not proof of source or cosmological
+matching. In particular, a Dirichlet vacuum value at R is NOT a claim that
+the field is smoothly constant outside R; that would impose extra data.
+
+2. Curved scalar equation preserves the charge sign
+The exact scalar equation is
+ [exp(nu) r^2 sqrt(N) chi']'=exp(nu) r^2 U_chi/sqrt(N).
+The potential obeys
+ U_phi=lambda M^6 phi(phi^2-v^2)/F^3.
+The maximum-principle argument from the parent still applies: at an interior
+minimum with 0<phi<v the scalar equation demands N chi''=U_chi<0, a
+contradiction. Thus phi>=v. Define
+ Q=-exp(nu) r^2 sqrt(N) chi'.
+The outer minimum implies chi'(R)<=0. The scalar equation and U_chi>=0 then
+give Q>=0, Q'<=0 and phi'<=0 throughout the annulus.
+Define the positive coupling magnitude
+ f=-M d(log A)/dchi=xi phi/sqrt(F+6xi^2 phi^2).
+Since df/dphi>0, f'(r)<=0. Therefore B=f Q/M>=0 and B'<=0.
+Here B is a radial flux product, not the constant Yukawa coefficient used
+in the earlier linear-force report.
+
+3. Include the scalar's exact gravitational stress
+The canonical static scalar has
+ rho=N chi'^2/2+U,
+ p_r=N chi'^2/2-U,
+ p_t=-N chi'^2/2-U.
+The Einstein equations, normalized by M^2, give
+ N'=(1-N)/r-r rho/M^2,
+ nu'=(1-N)/(2rN)+r p_r/(2M^2 N).
+Their lapse-divergence consequence is
+ [r^2 exp(nu) sqrt(N) nu']'
+   =exp(nu) r^2 (rho+p_r+2p_t)/(2M^2 sqrt(N))
+   =-exp(nu) r^2 U/(M^2 sqrt(N)).
+The scalar gradient contributions cancel in rho+p_r+2p_t. They still
+contribute to N and must not be omitted from the metric equations.
+
+4. Reduce to physical circular-orbit quantities
+Let
+ a=r nu',
+ w=r(log A)'=B/[r exp(nu) sqrt(N)]>=0,
+ u=r^2 U/M^2>=0,
+ D=1+r nu'+r N'/(2N)=(1-u)/N,
+ S=-B'/[exp(nu) sqrt(N)]>=0.
+A dot below means d/d(log r), not a time derivative. The exact equations are
+ dot(a)=-D a-u/N,
+ dot(w)=-D w-S.
+The physical Jordan areal radius is R_J=A r and
+ d(log R_J)/d(log r)=1+w>0.
+For a circular geodesic, the speed measured by a static Jordan observer is
+ V_c^2=(a+w)/(1+w).
+This follows directly from the temporal and angular metric coefficients:
+V_c^2=(d log(A^2 exp(2nu))/dr)/(d log(A^2 r^2)/dr).
+A nonzero timelike circular orbit requires 0<V_c^2<1, hence a+w>0 and a<1.
+This does not assert that every radius admits a circular orbit, or that such
+an orbit is radially stable.
+
+5. Cancellation giving the exact obstruction
+Differentiate the orbit expression and substitute the equations above:
+ dot(V_c^2)=[-D(a+w)-(u/N)(1+w)-S(1-a)]/(1+w)^2.
+Substituting D=(1-u)/N cancels the potentially adverse potential term:
+ dot(V_c^2)=-[(a+w)/N+(u/N+S)(1-a)]/(1+w)^2 <0.
+Every term in the square bracket is nonnegative and its first term is
+strictly positive. No assumption u<1 is required. Since R_J increases with r,
+the physical circular speed is strictly decreasing with physical radius.
+More quantitatively,
+ d log(V_c^2)/d log R_J
+ = -1/[N(1+w)^2]
+   -(u/N+S)(1-a)/[(a+w)(1+w)^2]
+ <= -1/[N(1+w)^2] <0.
+When N is close to 1 and w is small, the upper bound is close to -1,
+whereas a flat rotation curve has logarithmic slope 0.
+This includes the full scalar stress and metric response; it does not reuse
+the fixed-Minkowski force formula outside that formula's validity range.
+
+6. Independent checks and adversarial self-review
+- Einstein components agree with the sourced static anisotropic equations.
+- The lapse-divergence identity was checked from all three independent
+  Einstein tensor components, not merely assumed from the radial equations.
+- For Schwarzschild-de Sitter, N=1-2mu/r-H^2 r^2 and exp(nu)=sqrt(N), the
+  lapse flux is mu-H^2 r^3 and its derivative is -3H^2 r^2, exactly matching
+  U=3M^2 H^2. The zero-H limit also gives the Schwarzschild circular-speed
+  derivative with the expected sign.
+- The potentially dangerous a<0 case is allowed: the proof only needs
+  a+w>0 and a<1, which follow from a timelike circular orbit.
+- Large positive u does not invalidate the sign after the cancellation.
+- A horizon, phi crossing zero, ordinary exterior matter, alternate boundary
+  values or time dependence is outside the proof.
+- The proof is conditional on existence; it does not manufacture a solution
+  by choosing the metric and scalar independently.
+- This was self-review, not independent external refereeing. No novelty claim.
+
+7. Evidence boundary
+check.py verifies nine exact symbolic identities, including the lapse
+identity, active density, metric-weight identity, both derivative forms,
+physical logarithmic slope, and Schwarzschild-de Sitter benchmarks.
+Backreaction.lean verifies the timelike-orbit implication a<1, the key
+cancellation, strict negativity of the derivative formula, and the physical
+logarithmic slope inequality. It does not formalize the Einstein equations,
+canonical transformation, boundary-value maximum principle, or geodesics.
+The derivation connecting those physical ingredients is written above.
+Evidence: run/manifest.json, lean_build.out, lean_verification.json.
+
+Primary source used to check the starting spherical Einstein equations:
+S. Thirukkanesh et al., Anisotropic generalization of well-known solutions
+describing relativistic self-gravitating fluid systems: an algorithm,
+EPJC 78,31 (2018), Section 2, Eqs. (1)-(5).
+https://link.springer.com/article/10.1140/epjc/s10052-018-5526-5
+Dictionary: their exp(-2lambda)=our N; their units set M^2=1; their
+rho,p_r,p_t correspond to our physical stresses divided by M^2.
+This source supports the Einstein components, not the new conditional
+comparison argument. Search scope: one targeted search plus this primary
+source; no exhaustive literature or novelty survey.
+
+8. Current decision and remaining routes
+The proposed escape 'include backreaction in the same positive-branch static
+quartic tracker with these boundaries' cannot yield an exactly flat curve.
+Its weak-metric regime also fails the near-flat target. This removes the
+last explicitly proposed approximation loophole for that scoped construction.
+The broader program remains open: alternate exterior matter/response fields,
+non-vacuum environment, time dependence, different scalar branches and
+strong-field approximately flat segments were not excluded. Each requires
+new equations or boundary data, and none currently selects lambda/xi.
+Next discriminating work should supply a concrete response mechanism or
+boundary condition that changes a sign used above, then test its health and
+source matching. Repeating parameter scans within the proved class cannot
+produce an exactly flat interval.

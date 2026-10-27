@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "SCALAR-DENSITY-RESPONSE-2026-10-16",
+  "repository": {
+    "commit": "b2c378de84a2e10560f9eea72e4da29bee1bfb79",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/closure_particle_bridge_2026_10_16/scalar_density_response.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/scalar_density_response_run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Neutral gapped patch density response: direct interband, closed and Feynman normalization; Ward zero; absorption; conservative scalar static RPA bound",
+    "coefficient_domain": "Binary64 deterministic quadrature",
+    "conventions": "Zero T and chemical potential; positive chi to chemical source; axial energy momentumQ; nodal DOSA; leading continuum patch; RPA density repulsion",
+    "inputs": [
+      "sol61_push/closure_particle_bridge_2026_10_16/scalar_density_response.py",
+      "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge_run_001/results.json"
+    ],
+    "bounds": {
+      "direct_cases": 6,
+      "radial_nodes": [
+        192,
+        384
+      ],
+      "angle_nodes": [
+        384,
+        768
+      ],
+      "relative_direct_refinement_tolerance": 2e-05,
+      "absorption_cases": 3,
+      "chi_static_scan": [
+        1e-12,
+        1000000000000.0
+      ],
+      "chi_static_nodes": 25
+    },
+    "non_claims": [
+      "No full nonlocal isotropic/doped/thermal band, cold dynamical susceptibility, actual damping time or global stability/closure"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-16T14:36:11.796845+00:00",
+    "runtime_seconds": 0.286066,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/closure_particle_bridge_2026_10_16/scalar_density_response.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge_run_001/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/scalar_density_response.py",
+      "sha256": "3e5bf38c520988a3d26c3bd9672201de401d1092f8be14279c3459c375b045d7",
+      "sha256_after": "3e5bf38c520988a3d26c3bd9672201de401d1092f8be14279c3459c375b045d7"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/neutral_scalar_bridge_run_001/results.json",
+      "sha256": "7bcab9ec6dfc79cd68b03dbaa4b670247f014695f35ad7dc3dfa095c4112a76b",
+      "sha256_after": "7bcab9ec6dfc79cd68b03dbaa4b670247f014695f35ad7dc3dfa095c4112a76b"
+    }
+  ],
+  "output_directory": "sol61_push/closure_particle_bridge_2026_10_16/scalar_density_response_run_001",
+  "declared_results": [
+    "sol61_push/closure_particle_bridge_2026_10_16/scalar_density_response_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/scalar_density_response_run_001/stdout.txt",
+      "sha256": "ce705004c1d9ff2fc29b3461809d5ef4bd89643997ddffec95ddf52b42a643e0",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/scalar_density_response_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/scalar_density_response_run_001/results.json",
+      "sha256": "3b0a797413147666dce938a292659b92176e30269b11f0d9e0ebca9ff2a4d733",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOURCE-BATH-THRESHOLD-COMPATIBILITY",
+  "repository": {
+    "commit": "63b0bc1127247f4f61cb4c3c02db989130dea3b6",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/source_bath_compatibility_2026_10_13/check.py",
+    "sol61_push/source_bath_compatibility_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Common static bath potential shifts pair threshold and relative wall; source spectrum folded against running-width line",
+    "coefficient_domain": "Float64 quadrature and root solving",
+    "conventions": "Natural energies in eV, SI cross section and luminosity, fixed R pole and fixed vacuum couplings",
+    "inputs": [
+      "sol61_push/source_bath_compatibility_2026_10_13/check.py"
+    ],
+    "bounds": {
+      "bath_density_fractions": [
+        0,
+        0.1,
+        0.25,
+        0.5,
+        0.52,
+        0.6,
+        1.0
+      ],
+      "beam_rms_eV": 1e-10,
+      "gaussian_cutoff_sigma": 12
+    },
+    "non_claims": [
+      "No full material, R self-energy, actual gamma source, or stable inventory"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T02:01:17.676390+00:00",
+    "runtime_seconds": 0.362919,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/source_bath_compatibility_2026_10_13/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/source_bath_compatibility_2026_10_13/check.py",
+      "sha256": "26b23a9164424927ba51c20fa028181799be2a7253cab58261a28aae7bae1320",
+      "sha256_after": "26b23a9164424927ba51c20fa028181799be2a7253cab58261a28aae7bae1320"
+    }
+  ],
+  "output_directory": "sol61_push/source_bath_compatibility_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/source_bath_compatibility_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/source_bath_compatibility_2026_10_13/run/stdout.txt",
+      "sha256": "d6e2f39f3be54b55da133af9d4027848712113fe92825a1ae90236ae8ed81955",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/source_bath_compatibility_2026_10_13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/source_bath_compatibility_2026_10_13/run/results.json",
+      "sha256": "d6e2f39f3be54b55da133af9d4027848712113fe92825a1ae90236ae8ed81955",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

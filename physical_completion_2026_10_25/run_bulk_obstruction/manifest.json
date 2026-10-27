@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "PC-28",
+  "repository": {
+    "commit": "32fca884da31642e5435be9b60a9b6ee5bca61d0",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "physical_completion_2026_10_25/bulk_obstruction.py",
+    "--output",
+    "physical_completion_2026_10_25/run_bulk_obstruction/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "torch",
+        "version": "2.8.0"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact symbolic point-source pure-T obstruction to retaining an exact bulk law with canonical material stiffness; formal leading correction and exact sign of residual.",
+    "coefficient_domain": "Exact symbolic positive real r,kappa",
+    "conventions": "Spherical dimensionless Mb,a0,rM; independent constant C=.95; gamma5/3 F closure",
+    "inputs": [
+      "Large-disk Plummer baryons; no imposed dark density"
+    ],
+    "bounds": {
+      "range": "r>0; interior pure T only"
+    },
+    "non_claims": [
+      "Not a no-go for new bulk forces or observationally small deviations",
+      "No global asymptotic existence claim"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-25T15:35:21.629002+00:00",
+    "runtime_seconds": 0.361859,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "physical_completion_2026_10_25/bulk_obstruction.py",
+    "physical_completion_2026_10_25/run_units/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "physical_completion_2026_10_25/bulk_obstruction.py",
+      "sha256": "6ac312e7a702833f938610f9d49ebbcf0bc3db78ea71beb4d1b865ed4f66c3e8",
+      "sha256_after": "6ac312e7a702833f938610f9d49ebbcf0bc3db78ea71beb4d1b865ed4f66c3e8"
+    },
+    {
+      "path": "physical_completion_2026_10_25/run_units/results.json",
+      "sha256": "13e9a6ca0df7458996fbd4854b2ff47e9ae29ab1ead78adf48555e5bd2926e81",
+      "sha256_after": "13e9a6ca0df7458996fbd4854b2ff47e9ae29ab1ead78adf48555e5bd2926e81"
+    }
+  ],
+  "output_directory": "physical_completion_2026_10_25/run_bulk_obstruction",
+  "declared_results": [
+    "physical_completion_2026_10_25/run_bulk_obstruction/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "physical_completion_2026_10_25/run_bulk_obstruction/stdout.txt",
+      "sha256": "cee2351bbdfeb0c775fa3b61ebef93372b9c27f917180a51774cf6a4b28688f7",
+      "kind": "log"
+    },
+    {
+      "path": "physical_completion_2026_10_25/run_bulk_obstruction/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "physical_completion_2026_10_25/run_bulk_obstruction/results.json",
+      "sha256": "cee2351bbdfeb0c775fa3b61ebef93372b9c27f917180a51774cf6a4b28688f7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

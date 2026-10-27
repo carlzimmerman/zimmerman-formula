@@ -1,0 +1,109 @@
+COUPLED32PI: exact relaxation and the remaining vacuum input
+2026-10-14. Original physical prediction of 32 pi^2: NOT established.
+Base HEAD: 25f2c4548476889a9dd373c9fafeb89e55c9600a.
+Exclusive write scope: this directory. Self-review, no independent reviewer.
+
+Target contract
+Derive the total gravitating vacuum normalization, without inserting the
+desired constant, while reproducing the corrected local response law.
+In the existing conventions K=4 pi G, x=u/a and W=(a^2/K)L,
+L=C-x-log(1-x). The two derivative fingerprints are R=4C and S=3/2.
+The target R=64 pi requires C=16 pi. If this is the total vacuum energy,
+Lambda=2 C a^2, and the constructed area pi/a^2 gives area*Lambda=2 pi C.
+These gravitational and area identifications are premises retained from the
+previous program; the area is not established to be a physical horizon.
+
+1. Executed route: coupled fields can repair the shape
+Take k,M>0, b nonzero, real g, and arbitrary real E. Define
+ W_E(x)=E+k x^2/2+b x^3/6+b^2 x^4/(16k),
+ V_E(x,y)=W_E(x)+(M/2)(y+g x^2/(2M))^2.
+At fixed x, the unique minimizing hidden field is y*=-g x^2/(2M).
+The relaxed potential is exactly W_E. Its origin derivatives are
+ W2=k, W3=b, W4=3 b^2/(2k),
+so S=W4 W2/W3^2=3/2 exactly. The fixed-y quartic derivative instead is
+3 b^2/(2k)+3g^2/M: relaxation really changes the response shape.
+This leaves R=E b^2/k^3 completely arbitrary.
+
+This is a globally stable static example, not just a stationary expansion:
+ W_E-E=x^2[(b x+4k/3)^2/(16k)+7k/18]>=0.
+Equality requires x=0; the auxiliary square then requires y=0. The vacuum
+Hessian is diag(k,M), positive definite. E changes neither fact.
+Thus the earlier positive-mixture obstruction does not extend to arbitrary
+coupled fields. But overcoming that obstruction does not select the energy.
+The selected quartic was engineered to match S; it is not a microscopic
+derivation of that value. This polynomial only matches low derivatives.
+
+2. Executed route: exact full-response construction, not a Taylor fit
+For x<1 and M>0, define
+ U_C(x,y)=C-x-log(1-x)+(M/2)(y+g x^2)^2.
+Its unique fixed-x minimizer is y*=-g x^2; eliminating y gives the exact
+logarithmic potential L_C(x)=C-x-log(1-x).
+ L'_C=x/(1-x), L''_C=1/(1-x)^2,
+ L_C(0)=C, L2=1, L3=2, L4=6.
+For the physical interval 0<=x<1, the response rises from zero to infinity.
+Returning to u=a x gives g_response=a x/(1-x)=a u/(a-u).
+Here g_response is the acceleration, distinct from auxiliary coupling g.
+
+The global minimum on x<1 is (0,0), with value C: L'_C is negative for
+x<0 and positive for 0<x<1, and the square is nonnegative. On the relaxed
+valley, writing h(x)=g x^2, the Hessian is
+ [[L''+M h'^2, M h'],[M h',M]],
+whose determinant is M/(1-x)^2>0 and trace is positive. This establishes
+static local stability on that valley, not a covariant perturbation analysis.
+
+Every member has the SAME complete response and S=3/2, yet R=4C.
+C=16 pi and C=8 pi are both positive, statically stable choices. They yield
+area*Lambda=32 pi^2 and 16 pi^2 respectively under the retained dictionary.
+Consequently these local-response and static-stability premises cannot imply
+the desired coefficient. The logarithmic potential was prescribed, so this
+construction is a counterfamily to inference, not a new microscopic theory.
+
+3. Executed route: the shift survives elimination
+For any potential V(x,y), adding a field-independent c preserves all
+fixed-x minimizers: V(x,y*)<=V(x,y) iff V(x,y*)+c<=V(x,y)+c.
+Whenever a minimum exists, the minimized potential shifts by c exactly.
+There is no assumption about the number of hidden fields in this statement.
+For a convergent finite-dimensional integral with fixed beta>0 and measure,
+ Z_c(x)=integral exp[-beta(V(x,y)+c)]dy=exp[-beta c] Z_0(x).
+Thus -log Z_c/beta=-log Z_0/beta+c, with all x derivatives unchanged.
+In the explicit quadratic auxiliary model, its integral supplies only an
+x-independent Gaussian factor. This is not a calculation of a dynamical
+field theory's path integral; kinetic terms and regulators need their own
+analysis. The constant-factor identity requires no perturbative expansion.
+
+A constant in the matter potential is not invisible to gravity. In the
+action term -integral sqrt(-g) V, adding c adds -c integral sqrt(-g),
+and the stress contribution is -c g_{mu nu}. So the family members are
+different gravitational theories, even when their nongravitational local
+response agrees. The counterexample does NOT say gravity cannot measure
+vacuum energy or that every specified UV theory allows arbitrary shifts.
+It says the response data used here do not determine that gravitational term.
+
+Decision and handoff
+The coupled-field shape route was executed successfully as an engineered
+static construction. The claim that this alone determines 32 pi^2 fails.
+Prescribing C=16 pi would reproduce the target but would assume its answer.
+The conditional non-identifiability result is complete; the physical goal
+remains open. It cannot be closed honestly by more algebra on these premises.
+
+To reopen physical selection requires an additional specified mechanism that
+fixes or forbids the additive gravitational vacuum term, together with its
+physical source dictionary and boundary/renormalization prescription. A
+fully specified UV action or a derived gravitational boundary condition could
+provide such an input; neither has been supplied or derived in this work.
+No universal impossibility theorem for those mechanisms is claimed. They are
+deferred open routes, not exhausted or validated candidates. The discriminating
+check is whether two different C values remain allowed by that new mechanism.
+
+Evidence and exact formalization scope
+check.py: 20 exact SymPy identities for elimination, derivatives, positivity
+certificate, response, and coefficient comparison; run/manifest.json pins
+inputs, command, software, logs, revision and hashes. No sampling or fitting.
+Coupled32Pi.lean: ten theorems, covering the normalized polynomial k=b=M=g=1,
+its static minimum and relaxation, an arbitrary-type constant-shift minimizer
+equivalence, and algebraic coefficient matching/nonmatching. Formalization
+does not include differentiating the logarithm, Gaussian integration,
+gravitational variation, or a physical microscopic completion.
+Compiler results are in lean_build.out and lean_verification.json.
+All equations here are direct derivations; no new literature breakthrough is
+asserted. Earlier source-dependent routes remain in their original records.

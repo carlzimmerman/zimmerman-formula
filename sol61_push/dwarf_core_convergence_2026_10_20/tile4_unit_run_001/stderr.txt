@@ -1,0 +1,29 @@
+test_actual_evolved_snapshot_and_per_particle_phi_against_CPU (test_tile4_gravity.Tile4Tests) ... ok
+test_actual_unequal_species_host_endpoint_against_CPU (test_tile4_gravity.Tile4Tests) ... FAIL
+test_close_remnant_far_first_tail_nonzero_offset_and_translation (test_tile4_gravity.Tile4Tests) ... ok
+test_many_source_tiles_accumulate_and_keep_vector_invariants (test_tile4_gravity.Tile4Tests) ... ok
+test_pair_force_is_antisymmetric_for_unequal_true_masses (test_tile4_gravity.Tile4Tests) ... ok
+test_raw3f_encoding_and_declared_separate_precision_budget (test_tile4_gravity.Tile4Tests) ... ok
+test_regression_Gaussian32768_max_error (test_tile4_gravity.Tile4Tests) ... ok
+test_unequal_mass_non_tilemultiple_coincident_distinct_sources (test_tile4_gravity.Tile4Tests) ... ok
+
+======================================================================
+FAIL: test_actual_unequal_species_host_endpoint_against_CPU (test_tile4_gravity.Tile4Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/test_tile4_gravity.py", line 72, in test_actual_unequal_species_host_endpoint_against_CPU
+    self.compare(state['x'],state['m'],10.)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/test_tile4_gravity.py", line 23, in compare
+    self.assertLess(np.max(np.linalg.norm(a-b,axis=1)/np.maximum(np.linalg.norm(b,axis=1),1.e-100)),2.e-6)
+AssertionError: 5.633193833622905e-06 not less than 2e-06
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.674s
+
+FAILED (failures=1)
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/verify_tile4.py", line 30, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--output',required=True);main(p.parse_args().output)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/verify_tile4.py", line 27, in main
+    if not result.wasSuccessful():raise AssertionError('tile4 fixed-gate tests failed')
+AssertionError: tile4 fixed-gate tests failed

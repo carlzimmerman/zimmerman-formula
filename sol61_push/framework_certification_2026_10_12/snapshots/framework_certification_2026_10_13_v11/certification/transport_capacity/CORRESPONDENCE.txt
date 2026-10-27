@@ -1,0 +1,75 @@
+FRAMEWORK-CERT-TRANSPORT-2026-10-12: two-amplitude receiver capacity
+
+Verdict: necessary mathematical energy/momentum restrictions certified for the
+DECLARED mode. No physical receiver or selector certified.
+
+Definitions match kinetic_receiver_lift DERIVATION section 2:
+omega=c*abs(k); E=(p1^2+p2^2+omega^2*(x1^2+x2^2))/2;
+P=-k*(p1*x2-p2*x1). Unit/geometry normalization is exactly the declared
+one-real-Fourier-wavevector sine/cosine amplitude model. Statements quantify
+all real amplitudes and wavevectors, including k=0. Receiver floor requires
+c>=0. These are declared framework receiver assumptions, not external
+MOND/LambdaCDM/AQUAL premises or evidence for receiver existence.
+
+English correspondence / explicit premises:
+1. omega_squared: omega^2=c^2*k^2 for arbitrary real c,k.
+2. energy_momentum_squares: E^2-c^2*P^2 equals
+   (|Pi|^2-omega^2*|phi|^2)^2/4+omega^2*(Pi dot phi)^2, exactly.
+   All coordinates real; no positivity of k or amplitudes required.
+3. energy_nonnegative: the DECLARED positive quadratic energy is nonnegative.
+4. receiver_floor: c>=0 gives E>=c*abs(P). Proof uses the actual quadratic
+   energy and exact sum of squares; no capacity axiom is assumed.
+5. accessible_transfer: for arbitrary final-mode coordinates, c>=0, and
+   EXPLICIT energy ledger E_final=E0-Delta plus momentum ledger
+   P_final=P0-p_b*q, one necessarily has E0-Delta>=c*abs(P0-p_b*q).
+   Delta may be state-dependent actual total matter-energy difference.
+6. recoil_budget: P0=0, Delta=D*q and q>=0 imply
+   E0>=(D+c*abs(p_b))*q. This assumes a constant channel cost D;
+   it is not transferable to spatial paths where D(q) varies.
+7. necessary_capacity_ratio: with D>0, qeq>0 and the stated accessibility
+   inequality at qeq, E0/(D*qeq)>=1+c*abs(p_b)/D. General D,p_b,c;
+   c positivity is physically appropriate but not needed for this algebraic
+   implication because the accessibility inequality itself is a hypothesis.
+8. slow_recoil_ratio: for ALL epsilon>0, qeq>0, with declared
+   c=1, D=2*epsilon^2, p_b=-2*epsilon, reaching qeq needs
+   E0/(D*qeq)>=1+1/epsilon. This is not confined to numeric grid.
+9. slow_recoil_fraction: for ALL epsilon>0, q>=0, qeq>0, and initial
+   E0=r*D*qeq, accessibility requires q/qeq<=r*epsilon/(1+epsilon).
+   r is arbitrary real; impossible negative-budget cases fail the hypothesis.
+
+Physical and mathematical limits:
+Energy/momentum ledgers are hypotheses. Their finite-channel derivation and
+continuum applicability are not formalized by this certificate. The bound is
+necessary, not sufficient reachability; inactive h=0 modes need not transfer
+energy even when they pass a budget. A constant vacuum offset is not identified
+with E0. Actual microcoupling, spatial reciprocal stress, collision measure,
+causality, continuum well-posedness, profile selection and physical rate remain
+open. Extra baryon recoil or modes change which momentum enters this receiver.
+The constant-D slow-recoil example is local; variable gravity costs must use
+the general Delta version. This is not a universal dark-sector exclusion.
+
+Verification:
+Directory: fable_independent_2026/lean_2026
+Command: lake env lean ABSOLUTE_PATH/transport_capacity/ReceiverCapacity.lean
+Compiler exit 0, no warnings. compile.log prints axioms of all NINE theorems:
+[propext, Classical.choice, Quot.sound]. No sorryAx, custom axioms, native_decide.
+FalseStrictFloor.lean: expected exit 1, goal False. Traveling/circular fixture
+E=abs(P)=1 refutes replacing the general non-strict floor by a strict one.
+FalseRecoilBudget.lean: expected exit 1, goal False. epsilon=1/1000, ratio 4
+and qeq=1/2 cannot satisfy the recoil floor (1/1000 <= 3/1000000 is false).
+Controls repeat the checked declarations and append an intentionally false claim;
+only ReceiverCapacity.lean is intended to compile successfully.
+
+Pinned sources:
+PINNED_INPUTS.json binds exact bytes of copied contextual inputs; originals were
+not edited. Actual live HEAD observed 34ebaa9153a0ff4ba58cf95b20dedc9099cb42f7.
+No proof statement relies on concurrent Git HEAD stability.
+
+SHA-256 verification artifacts:
+9dcbfe37ff1e198800a5e684a617dca8015105ab1f379f655e9ea3264f038903  ReceiverCapacity.lean
+a55912a30f21421892010786fc7984204bd528fd6c28c0ea5ab98e31dd3d8749  compile.log
+47ec62d503cc92b3451058db2b726d8c2853028c227c82d8683d05ec5809757c  FalseStrictFloor.lean
+87f456b6d0791dfd094d476c130c7737b920b427e582631003742bb827cec69a  FalseStrictFloor.log
+4e7d945c3f95d539ca5248a7f7b656541e7d71da8d579cf88e7e947d668c1c4c  FalseRecoilBudget.lean
+b573786ccab8cff5fd8a921cffd7954689a9bf0d04a91be549cbe17990347ea3  FalseRecoilBudget.log
+e3c490a8c022ffef81bc8c11d4532f055113c8882ada95ab9e1425632ec94198  PINNED_INPUTS.json

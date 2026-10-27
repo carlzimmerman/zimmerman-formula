@@ -1,0 +1,133 @@
+{
+  "schema_version": 2,
+  "claim_id": "JOINTSELECTOR32PI-002-v2",
+  "repository": {
+    "commit": "7dab23c5806535e8b75b17566450a558d308f2af",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/puzzle_32pi_joint_selector_2026_10_14/trajectories_v2.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite nonlinear homogeneous trajectories around logarithmic-GB exponential-potential equilibria",
+    "coefficient_domain": "Float64 adaptive ODE",
+    "conventions": "y=a/a_star, time=H_vac*t, eps=F^2/M_Pl^2=1; exact Friedmann initial data at rest",
+    "inputs": [
+      "sol61_push/puzzle_32pi_joint_selector_2026_10_14/trajectories_v2.py"
+    ],
+    "bounds": {
+      "z": [
+        1e-12,
+        0.1,
+        0.5,
+        0.9,
+        1.5
+      ],
+      "initial_y": [
+        0.98,
+        1.02
+      ],
+      "time": 60,
+      "rtol": 1e-11,
+      "atol": 1e-13,
+      "max_step": 0.05,
+      "diagnostic_samples": 5001,
+      "refinement_rtol": 3e-12,
+      "stops": "y=.2 or3, h=.05, or vanishing principal health coefficient",
+      "revision_reason": "Initial runaway trajectory exceeded fixed 1e-6 absolute Friedmann residual; tighten integration tolerance without changing acceptance criterion."
+    },
+    "non_claims": [
+      "No universal attraction basin",
+      "No sourced or matter-era analysis",
+      "No proof of interpolation law or measured G",
+      "No UV or quantum stability"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T19:49:53.725662+00:00",
+    "runtime_seconds": 3.072074,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/puzzle_32pi_joint_selector_2026_10_14/trajectories_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/puzzle_32pi_joint_selector_2026_10_14/trajectories_v2.py",
+      "sha256": "801996d0ee701e6f07e117adfee29d7a6f1c965d583ace50da56a371aca2d467",
+      "sha256_after": "801996d0ee701e6f07e117adfee29d7a6f1c965d583ace50da56a371aca2d467"
+    }
+  ],
+  "output_directory": "sol61_push/puzzle_32pi_joint_selector_2026_10_14/run_trajectories_v2",
+  "declared_results": [],
+  "outputs": [
+    {
+      "path": "sol61_push/puzzle_32pi_joint_selector_2026_10_14/run_trajectories_v2/stdout.txt",
+      "sha256": "b0ccca77e43b04d560832fd35c09d6860af4e27b1c6fee07bfbc823d3a4f9a83",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/puzzle_32pi_joint_selector_2026_10_14/run_trajectories_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

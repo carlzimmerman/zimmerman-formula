@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOURCE_ASSISTED_THERMAL-2026-10-16",
+  "repository": {
+    "commit": "bd5dbb23a2fa98f11f4bd9c13f1ef29970a06458",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/closure_particle_bridge_2026_10_16/source_assisted_thermal.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/source_assisted_thermal_run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Pole-free X+Phi+Phi*->Phi+Phi common-MB thermal reaction density and comparison to pair channel",
+    "coefficient_domain": "IEEE754 binary64 NumPy/SciPy deterministic nested quadrature",
+    "conventions": "Final identical factor 1/2, initial species distinct; gamma scaled by exp(4m/T); m=2MeV, vacuum tree, narrow source",
+    "inputs": [
+      "sol61_push/closure_particle_bridge_2026_10_16/source_assisted_thermal.py",
+      "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json"
+    ],
+    "bounds": {
+      "T_dark_over_m": [
+        0.003,
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        1,
+        3
+      ],
+      "coarse_E_Dalitz_cos_phi": [
+        24,
+        12,
+        6,
+        12
+      ],
+      "fine_E_Dalitz_cos_phi": [
+        40,
+        20,
+        10,
+        20
+      ],
+      "quadrature_agreement_gate": 0.02,
+      "NR_normalization_gate": 0.04
+    },
+    "non_claims": [
+      "Not an analytic quadrature error bound",
+      "No other pole-containing source-assisted channels, full matching, production history, abundance or global novelty"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-16T13:37:46.172571+00:00",
+    "runtime_seconds": 0.261242,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/closure_particle_bridge_2026_10_16/source_assisted_thermal_run_001/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/closure_particle_bridge_2026_10_16/source_assisted_thermal.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/source_assisted_thermal.py",
+      "sha256": "dbe5d88d6065070c5f5a1c53395fa379294eaaa499eeea43047a884ae95de512",
+      "sha256_after": "dbe5d88d6065070c5f5a1c53395fa379294eaaa499eeea43047a884ae95de512"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json",
+      "sha256": "d1cc9e64296077ce5039eac2a9805ef645bc1fcf91fbe985e45736d84a8f21f2",
+      "sha256_after": "d1cc9e64296077ce5039eac2a9805ef645bc1fcf91fbe985e45736d84a8f21f2"
+    }
+  ],
+  "output_directory": "sol61_push/closure_particle_bridge_2026_10_16/source_assisted_thermal_run_001",
+  "declared_results": [
+    "sol61_push/closure_particle_bridge_2026_10_16/source_assisted_thermal_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/source_assisted_thermal_run_001/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/source_assisted_thermal_run_001/stderr.txt",
+      "sha256": "1c800b9fcfb1e1ba0ab9df3041e3d7de33b28df4a235bab905b42dfcea1254ed",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: sol61_push/closure_particle_bridge_2026_10_16/source_assisted_thermal_run_001/results.json"
+  ]
+}

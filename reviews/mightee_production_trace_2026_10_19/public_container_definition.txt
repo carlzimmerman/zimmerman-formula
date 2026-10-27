@@ -1,0 +1,138 @@
+Bootstrap: docker
+From: debian:bullseye
+
+
+%environment
+   export SRC=/usr/local/src
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/:/usr/local/idg/lib/
+   export PATH=/casa/casa-release-5.8.0-109.el7/bin:$SRC/Montage/bin:$PATH
+
+
+%post
+   echo "*        -   memlock     unlimited" > /etc/security/limits.conf   
+   export DEBIAN_FRONTEND=noninteractive
+   export J=16
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/:/usr/local/idg/lib/
+   apt-get update
+   apt-get install -y htop nano mc \
+    git \
+    wget \
+    rsync \
+    python3-pip \
+    libfftw3-dev \
+    python3-numpy \
+    libfreetype6-dev \
+    libpng-dev \
+    pkg-config \
+    python3-dev \
+    libboost-all-dev \
+    libcfitsio-dev \
+    wcslib-dev \
+    libatlas-base-dev \
+    liblapack-dev \
+    python3-tk \
+    libreadline6-dev \
+    liblog4cplus-dev \
+    libhdf5-dev \
+    libncurses5-dev \
+    libssl-dev \
+    flex \
+    bison \
+    libbison-dev \
+    python3-matplotlib \
+    python3-numexpr \
+    python3-astropy \
+    python3-cpuinfo \
+    python3-future \
+    python3-lxml \
+    python3-pandas \
+    python3-psutil \
+    python3-pyfftw python3-pymysql python3-scipy \
+    python3-requests python3-deap \
+    python3-sshtunnel \
+    python3-ruamel.yaml python3-ephem \
+    ipython3 \
+    libgsl-dev \
+    libgtkmm-3.0-dev \
+    libcfitsio-bin libxml2-dev libarmadillo-dev libsigc++-2.0-dev liblua5.3-dev    
+   update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
+   apt-get install -y casacore-dev casacore-tools python3-casacore cmake curl
+   apt-get install -y python3-astlib python3-ipdb python3-nose python3-metaconfig jq util-linux bsdmainutils
+
+   apt-get install -y ffmpeg
+
+   pip3 install pybind11
+   pip3 install dask codex_africanus ephem Polygon3 pyfits pyregion terminal pyephem ptyprocess timeout-decorator 
+   pip3 install --ignore-installed numpy==1.19.5
+   pip3 install reproject 
+   export SRC=/usr/local/src
+
+   pip3 install git+https://github.com/lofar-astron/PyBDSF.git
+   pip3 install scipy==1.5.4
+   pip3 install git+https://github.com/ratt-ru/CubiCal.git
+   pip3 install git+https://github.com/ratt-ru/owlcat.git
+   pip3 install git+https://github.com/ratt-ru/shadeMS.git
+   pip3 install git+https://github.com/ratt-ru/ragavi.git 
+   pip3 install git+https://github.com/ratt-ru/tricolour.git
+   pip3 install git+https://github.com/ska-sa/katbeam.git
+   pip3 install scikit-ued
+   pip3 install pypher
+
+   # dysco
+   cd $SRC
+   git clone https://github.com/aroffringa/dysco.git
+   cd dysco
+   git checkout 3fd7a5fd17f3d09db89ad7827c9bdc4febf66eff
+   mkdir build
+   cd build
+   cmake ../
+   make -j $J
+   make install
+   cp $SRC/dysco/build/decompress /usr/local/bin/decompress
+
+   pip3 install -U tables prettytable==2.5.0 pylru emcee astropy_healpix sharedarray
+   pip3 install pyavm
+   pip3 install imageio==2.14.1
+   pip3 install aplpy
+
+   # wsclean
+   cd $SRC
+   git clone -b v3.1 https://gitlab.com/aroffringa/wsclean.git
+   cd wsclean
+   mkdir -p build
+   cd build
+   cmake .. -DCMAKE_PREFIX_PATH=/usr/local/idg
+   make -j $J
+   make install
+
+   # DDFacet
+   cd $SRC
+   git clone -b v0.6.0 https://github.com/saopicc/DDFacet.git
+   cd DDFacet
+   python setup.py install
+
+   # killMS  
+   cd $SRC
+   git clone -b v3.0.1 https://github.com/saopicc/killMS.git
+   cd killMS
+   python setup.py install
+
+   # casa
+   mkdir /casa
+   wget https://casa.nrao.edu/download/distro/casa/release/el7/casa-release-5.8.0-109.el7.tar.gz
+   tar -C /casa -xzvf casa-release-5.8.0-109.el7.tar.gz
+   export PATH=/casa/casa-release-5.8.0-109.el7/bin:$PATH
+   rm casa-release-5.8.0-109.el7.tar.gz
+
+   # Montage
+   apt-get -y install montage
+   # pip3 install montage-wrapper
+
+   pip3 list --format=columns
+
+   pip3 cache purge
+   apt-get -y autoremove
+   rm -rf /var/lib/apt/lists/*
+  
+   bash -c "rm -rf /usr/local/src/{idg,wsclean,PyBDSF,DDFacet,dysco,killMS}/" 
+

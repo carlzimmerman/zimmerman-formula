@@ -1,0 +1,64 @@
+CE-FM-005/006/007 — open radial flow, its retained-mass obstruction and a conserving comparison receiver
+Primary verdict: conditional near-law stationary-flow construction on a finite annulus, not formation or selection. Receiver accounting prerequisite repaired for a declared comparison model. Physical capture/anchor/metric remains open.
+
+Open flow differs from the closed-halo virial case
+For a pressureless inward radial stream of positive speed v and constant mass flux F,
+  M'(r)=F/v(r),
+  v dv/dr = -G M_N/r^2 + R(u), u=G M(r)/r^2,
+  R(u)=u^2/(a0-u).
+The incoming surface stress/flux is essential: the zero-surface-stress virial obstruction in CE-FM-003 does not apply. This stream is a singular cold velocity distribution, not an ordinary bounded-f halo. These equations still require the conditional carrier/displacement identification and a spherical Newtonian background; they do not generate initial conditions or the capture radius.
+
+In the deep cubic limit M=A r and constant v solve the equations when A=sqrt(M_N a0/G); continuity then demands F=A v. Thus a nonzero streaming state can hold the deep profile, but its inflow conditions must satisfy that relation. It is not a prediction of arbitrary boundary flux.
+
+Full saturating correction, G=a0=M_N=1
+Eliminate v to obtain
+  R(M/r^2)-1/r^2 + F^2 M''/(M')^3=0.
+The force-free mass M0=(sqrt(1+4r^2)-1)/2 has M0''>0 and cannot be an exact finite-F solution. A formal small-flux branch is
+  M=M0+F^2 mu+O(F^4),
+  mu=-r^2 M0''/[R'(u0)(M0')^3]
+    =-1/[4r R'(u0)]
+    =-(sqrt(1+4r^2)-1)^2/[16r sqrt(1+4r^2)].
+mu<0 and tends to-1/8 at large r. Thus the leading full-law correction is a negative, approximately constant enclosed-mass offset F^2/8 in the outer deep regime, not a changed leading flat-curve coefficient. This is a formal expansion on a compact positive-radius interval; convergence or uniformity at r=0/infinity is not proved.
+
+CE-FM-005 finite/symbolic evidence
+Leading coefficient derived exactly, quartic stationary residual checked over r2..50 and F(.015,.03,.05,.1,.15,.3). Halving F .03 to .015 changes the residual by16.00057.16 checks pass. This confirms the implemented expansion and does not prove existence or formation.
+
+CE-FM-006 actual finite-annulus stationary solutions
+Integrated the full stationary ODE with DOP853, rtol1e-11/atol1e-13, r2..50, F(.03,.1,.3). Initial M and v at r2 are chosen from the above near-law branch: the law is an explicit boundary comparison input, so these runs do NOT independently select its normalization. All stay within0<u<1 and have positive inward speed. The independently tracked Bernoulli quantity v^2/2-1/r-I (I'=R) drifts by less than1.82e-12. Maximum relative departure from M0 is .0000426,.000473,.004261. Fifteen checks pass, including residence-flux integration. Existence is numerical and local to this tested annulus; smooth DF and nonspherical/time-dependent stability remain unproved.
+
+Central mass growth invalidates a sustained fixed-source black-hole reading
+For a receiver retaining all incoming mass, dot M_N=F. Its growth time is M_N/F. One replacement/residence time for annular carrier mass Delta M is Delta M/F, so
+  T_growth/T_residence=M_N/Delta M,
+  captured mass during one replacement=Delta M.
+Reducing F does not change this mass cost or timescale ratio. In the numerical annulus Delta M is47.94 times the fixed source mass, at every tested F. A receiver would change that source enormously during one traversal; it cannot remain the fixed background used by the constructed stationary state. This does not forbid brief flow episodes, selective low-mass removal, exported/radiated rest energy, or full evolving solutions.
+
+Using CFG750's declared upper target mass increase .01 M_b only as its hypothesis test budget, at r20 the full-law cold amount19.506 M_b allows processing at most .000513 of it through a mass-retaining central receiver. This is a budget comparison, not an observational theorem, and it does not show that a small captured subset cannot remove large kinetic energy. That requires the actual energy/angular-momentum distribution and capture rate.
+
+Conditional saturation flux aperture bound
+If a steady inward stream exists on(r_s,2r_s), has speed v<=v_max and nonnegative enclosed tethered mass at r_s, then
+  M(R)>=F(R-r_s)/v_max,
+  M(R)<a0 R^2/G,
+  F<=(a0 v_max/G) R^2/(R-r_s).
+The strongest bound available in that interval is F<=4 a0 v_max r_s/G at R=2r_s, since the excess over4r_s is(R-2r_s)^2/(R-r_s). The geometry is checked exactly. No black-hole horizon substitution is made: validity of the Newtonian capacity relation near a relativistic horizon is part of the missing metric completion. Finite annuli that do not include2r_s use the infimum over their actual radius domain.
+
+CE-FM-007 concrete receiver correction
+conservative_receiver.py supports variable mass packets, exact cubic or quadrature full saturating field energy, and an actually empty remaining halo. It solves the following stated particle/receiver/radiation energy model at a capture event. Let d be captured packet rest mass; E_before is pre-capture Newtonian modeled carrier energy; E_ref is post-removal carrier energy with central receiver increased by d; B=G sum_retained dm/r. For additional receiver mass correction x, E_after=E_ref-B x. Conservation of particle/receiver rest energy plus modeled Newtonian energy and prescribed exported radiation yields
+  x=(E_before-E_ref-E_radiated)/(c^2-B),
+  Delta M_receiver=d+x.
+This is a complete algebraic solution for that declared instantaneous budget, not a physical capture or radiation law. It requires the weak-gravity denominator c^2>B and nonnegative receiver increment. c^2 and radiation are stated inputs. Fixed baryon/source self-energy, baryon-receiver interaction, anisotropic recoil/spin and covariant metric dynamics are excluded; the update cannot be called a complete physical action.
+
+Tests use three variable packets .004,.04,.2 at radii.1,.5,.8; first packet enters the nominal subpercent mass range and is below the full saturation wall. Cubic/full and two c^2 values, prescribed radiation0/.001, then capture of all remaining packets. Twenty-six checks pass, including modeled energy conservation, finite target resolution, full-wall rejection and empty-state handling. The smaller packet size is a numerical choice, not a predicted mass-loading scale. This module is ready for a NEW comparison run with disclosed criteria, but no live Claude run is patched here.
+
+Receiver energy transferred in the continuous small-packet limit
+For innermost capture at r_s, the modeled receiver's nonrest specific gain includes
+  v_s^2/2-G M_N/r_s + G integral_retained dM/r + integral_{r_s}^infinity R(u)dr.
+The last two terms are exactly the central-binding and polarization terms missing from CFG750's swallowed_E tally. Finite packets use the total field-energy difference rather than this derivative approximation. Neither expression derives the capture condition or predicts emitted radiation.
+
+Latest raw Claude clues, not a published final verdict
+CFG750 A log reports an IndexError in the final energy call when no shells remain; no A JSON exists. This is terminal failure evidence for its report path and implies an empty live-shell array at that call, not a measured capture history. Current B JSON reports M_bh32.433875, E0-.992635 and final-plus-swallowed energy-907.50357. The sink-off K1 JSON has m/r .02499,.04997,.11993 at r2,5,10 and its energy changes-.992635 to+.085494. These violate the declared control targets as recorded; the B mass is also far beyond the target. The exact CE-FM-004 sink defect explains an accounting failure mechanism, but its fixture does not quantify this entire run's integration error.
+Further parsing issue: history keys are'2000.0', while the late-growth lookup asks'2000'. The reported zero late-growth fraction is therefore a fallback artifact. For raw B, the actual fraction from reported masses is about .03236, so this particular correction still satisfies its20% test. Do not use a zero fallback as physical self-limiting evidence.
+
+Next route
+An actually useful sink test must specify physical capture/loss-cone transport and receiver export or retained-mass dynamics, then evolve the full tether with appropriate mass refinement and boundaries. The pure sustained full-halo-throughflow interpretation is blocked by retained mass, not by energy arithmetic. Selective capture of a small high-energy subset remains open; its discrimination is the energy and angular-momentum removed per retained mass, compared with the preparation deficit. Prefer that test over repeating the same massive uniform shell conveyor.
+
+Reproducibility: run_005,run_006,run_007 manifests and results; all validated against declared inputs. Every argument/result here is self-reviewed; no independent certificate or physical final theory is claimed.

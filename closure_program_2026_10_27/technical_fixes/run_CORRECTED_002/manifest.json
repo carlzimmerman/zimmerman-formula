@@ -1,0 +1,199 @@
+{
+  "schema_version": 2,
+  "claim_id": "P1D1_SIGN_X48_COMMON_MODES_CORRECTED_2026_10_27",
+  "repository": {
+    "commit": "b28f9b2bcb996e178b55fc56a44e9282a606584e",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "closure_program_2026_10_27/technical_fixes/run_corrected_checks.py",
+    "--output-dir",
+    "closure_program_2026_10_27/technical_fixes/run_CORRECTED_002"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent positive injection rejects the opposite candidate sign; normalized shared Gaussian Fourier modes agree across tested resolutions, satisfy real-field consistency, and have reasonable sampled power/covariance. Actual transformed X48 HR draw/covariance/correction with a fixed synthetic target preserves masked spectral support, uses the full-grid oracle covariance and satisfies the constraints. Opt-in launch dry-run starts no job and preserves existing directories.",
+    "coefficient_domain": "IEEE binary64 real and complex numerical calculations",
+    "conventions": "dk/ng^3 Fourier coefficients with E|dk/ng^3|^2=P(k)/L^3; zero DC and even Nyquist planes; k in inverse Mpc; synthetic fixed-nuisance P1D regression",
+    "inputs": [
+      "Actual historical model_shape/GLS and X48 random-prefix source",
+      "Fixed six-bin positive template; synthetic independent sigma=0.1",
+      "P(k)=1 and 1/(1+k^2), boxes L=3,5,7 and 2pi",
+      "Fixed seeds 0..255 plus 1,3,9,11,19,20",
+      "HR ng=8,L=2pi,P(k)=exp(-k^2/4) interpolated on 1001 log-spaced k nodes; kmax=1.5 and 10; target (height,laplacian)=(1,-2)"
+    ],
+    "bounds": {
+      "shared_ng": [
+        8,
+        12,
+        16
+      ],
+      "roundtrip_ng": [
+        7,
+        8,
+        12
+      ],
+      "covariance_ng": 8,
+      "covariance_seeds": 256,
+      "P1D_mu_range": [
+        0,
+        3
+      ],
+      "HR_ng": 8,
+      "HR_cutoffs": [
+        1.5,
+        10.0
+      ],
+      "HR_normalized_out_of_support_tolerance": 2e-14,
+      "HR_constraint_absolute_tolerance": 3e-14,
+      "tests": 8
+    },
+    "non_claims": [
+      "No physical M6 exclusion or Boera refit",
+      "No validation of flux response",
+      "No post-constraint matching, halo evolution, or continuum convergence"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "BLAKE2b physical-mode keys + Box-Muller; historical NumPy default_rng(19) only for defect reproduction",
+    "seed": "0..255; fixed seeds 1,3,9,11,19,20"
+  },
+  "run": {
+    "started_at": "2026-10-27T15:22:36.099426+00:00",
+    "runtime_seconds": 1.162156,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "closure_program_2026_10_27/technical_fixes/run_corrected_checks.py",
+    "closure_program_2026_10_27/technical_fixes/test_technical_fixes.py",
+    "rebuild_2026_10_22/P1D1_m6_boera_high_z_forest/p1d1_independent_sign_check.py",
+    "rebuild_2026_10_22/P1D1_m6_boera_high_z_forest/p1d1_m6_boera.py",
+    "rebuild_2026_10_22/P1D1_m6_boera_high_z_forest/p1d1_m6_boera_results.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/x48_common_modes.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/x48_zoom_common.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/x48_zoom.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "closure_program_2026_10_27/technical_fixes/run_corrected_checks.py",
+      "sha256": "6a4406a5df62532a4cceda61a053095f3f3cbf7aa02d51f96f2cd80b4ea26c61",
+      "sha256_after": "6a4406a5df62532a4cceda61a053095f3f3cbf7aa02d51f96f2cd80b4ea26c61"
+    },
+    {
+      "path": "closure_program_2026_10_27/technical_fixes/test_technical_fixes.py",
+      "sha256": "8aaa5426a8415379699450f8f5130d06f815ba077ba49f6de62d955cc01897d4",
+      "sha256_after": "8aaa5426a8415379699450f8f5130d06f815ba077ba49f6de62d955cc01897d4"
+    },
+    {
+      "path": "rebuild_2026_10_22/P1D1_m6_boera_high_z_forest/p1d1_independent_sign_check.py",
+      "sha256": "039e97c97ecd4563ad49f5552b2e81b28b664154517b48ded11daaba848ab5e1",
+      "sha256_after": "039e97c97ecd4563ad49f5552b2e81b28b664154517b48ded11daaba848ab5e1"
+    },
+    {
+      "path": "rebuild_2026_10_22/P1D1_m6_boera_high_z_forest/p1d1_m6_boera.py",
+      "sha256": "d89e246789c6fc327c3161f2034c336210f6784ba1af72c82513e6383e14c631",
+      "sha256_after": "d89e246789c6fc327c3161f2034c336210f6784ba1af72c82513e6383e14c631"
+    },
+    {
+      "path": "rebuild_2026_10_22/P1D1_m6_boera_high_z_forest/p1d1_m6_boera_results.json",
+      "sha256": "9a1cd45eb9d40245d2ebda4b448a068f40717e3f96ab3310ace6138513a5b97d",
+      "sha256_after": "9a1cd45eb9d40245d2ebda4b448a068f40717e3f96ab3310ace6138513a5b97d"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/x48_common_modes.py",
+      "sha256": "49a1db95d489cb716907b4de8979c9208a5c6c372690736fd81fd8660fee9321",
+      "sha256_after": "49a1db95d489cb716907b4de8979c9208a5c6c372690736fd81fd8660fee9321"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/x48_zoom_common.py",
+      "sha256": "c304f147d6e80291df167de8490a53003111521b1f2f3ca71c756dcd56d1c014",
+      "sha256_after": "c304f147d6e80291df167de8490a53003111521b1f2f3ca71c756dcd56d1c014"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/x48_zoom.py",
+      "sha256": "bf0c4f746752c322a29299c5da46243bb2664f0a866bdc0f1c9105d5dc7ee710",
+      "sha256_after": "bf0c4f746752c322a29299c5da46243bb2664f0a866bdc0f1c9105d5dc7ee710"
+    }
+  ],
+  "output_directory": "closure_program_2026_10_27/technical_fixes/run_CORRECTED_002",
+  "declared_results": [
+    "closure_program_2026_10_27/technical_fixes/run_CORRECTED_002/corrected_checks_results.json",
+    "closure_program_2026_10_27/technical_fixes/run_CORRECTED_002/p1d1_sign_CORRECTED.json"
+  ],
+  "outputs": [
+    {
+      "path": "closure_program_2026_10_27/technical_fixes/run_CORRECTED_002/stdout.txt",
+      "sha256": "355dee3b34810599e1d7027dd25c6824777d512da7ba0fb6a3dbbb01889c3c53",
+      "kind": "log"
+    },
+    {
+      "path": "closure_program_2026_10_27/technical_fixes/run_CORRECTED_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "closure_program_2026_10_27/technical_fixes/run_CORRECTED_002/corrected_checks_results.json",
+      "sha256": "0b0a3c9a57cd5e7514a6e110cb576a93ec13268278247b926489fec33d878dbe",
+      "kind": "result"
+    },
+    {
+      "path": "closure_program_2026_10_27/technical_fixes/run_CORRECTED_002/p1d1_sign_CORRECTED.json",
+      "sha256": "29efb6ec57bd5f2d56e843011777e9c23e3dc7f7531bf79ffe056f7d5df1f445",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-CFG925-C-PROFILE-STOCK-2026-10-20",
+  "repository": {
+    "commit": "unavailable",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "profile_stock.py",
+    "run_003/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conditional whole-Plummer C-profile core mass minimum and optimistic all-free-stock ceiling, with all receivers outside R.",
+    "coefficient_domain": "double; adaptive quadrature with analytic Plummer checks and independent global mass-shell reconstruction",
+    "conventions": "Reported diagnostic after run_002; holds source C profile and baseline fixed, uses positive monotone global mass-shell kernel. No aperture inference or E/J evolution.",
+    "inputs": [
+      "Pinned CFG918 results",
+      "Prior validated guarded Fn/Leo snapshots",
+      "CFG925 source interpretation only"
+    ],
+    "bounds": {
+      "systems": [
+        "Draco",
+        "Sextans",
+        "Fornax",
+        "Leo I"
+      ],
+      "apertures": [
+        "Re",
+        "global"
+      ],
+      "beta": 0,
+      "profile": "104pc cored mass plus source stars/tether/receiver shells"
+    },
+    "non_claims": [
+      "No observed member-aperture likelihood",
+      "No new core mass fit or four-dwarf dynamics",
+      "No uncertainty exclusion",
+      "No change to thermal collision bound inputs",
+      "No supply or E/J mechanism"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-20T19:03:17.572905+00:00",
+    "runtime_seconds": 0.048461,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 15,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "profile_stock.py",
+    "inputs/cfg918_results.json",
+    "run_002/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "profile_stock.py",
+      "sha256": "cff5ab0b555e995e5973f3b60dc962907b55ca12235388f83394dca516496036",
+      "sha256_after": "cff5ab0b555e995e5973f3b60dc962907b55ca12235388f83394dca516496036"
+    },
+    {
+      "path": "inputs/cfg918_results.json",
+      "sha256": "04ce8bc8b7f7af7e2635b1505de73e8d5b8dc53e4ed580dc029f199b683a69ef",
+      "sha256_after": "04ce8bc8b7f7af7e2635b1505de73e8d5b8dc53e4ed580dc029f199b683a69ef"
+    },
+    {
+      "path": "run_002/results.json",
+      "sha256": "6e048912ed9ee9390a5a0783122d0b14298038059c79ad94804ce2cd92af4a97",
+      "sha256_after": "6e048912ed9ee9390a5a0783122d0b14298038059c79ad94804ce2cd92af4a97"
+    }
+  ],
+  "output_directory": "run_003",
+  "declared_results": [
+    "run_003/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "run_003/stdout.txt",
+      "sha256": "0e71011963f2d407e5daa10bf80baaa39257a05e4e81f1f48203e35e97c3ba7c",
+      "kind": "log"
+    },
+    {
+      "path": "run_003/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "run_003/results.json",
+      "sha256": "0e71011963f2d407e5daa10bf80baaa39257a05e4e81f1f48203e35e97c3ba7c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

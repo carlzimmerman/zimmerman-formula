@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLORED-BATH-2026-10-13-TRAJECTORIES",
+  "repository": {
+    "commit": "45cd126e7489ec6703c9c6650cbbeda227f28f13",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/colored_bath_2026_10_13/trajectories.py",
+    "sol61_push/colored_bath_2026_10_13/trajectory_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python scientific runtime",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Bounded nonlinear trajectory crossing fractions and coupled coarse/fine consistency under delayed stationary OU forcing.",
+    "coefficient_domain": "IEEE float64; exact OU endpoint transitions, time-dependent velocity Verlet for the forced Duffing orbit.",
+    "conventions": "Fixed bare-energy cutoff ER=1; initial E=1-sigma; common random paths across amplitudes and resolutions; crossings are diagnostic, not killed or reflected.",
+    "inputs": [
+      "sol61_push/colored_bath_2026_10_13/trajectories.py"
+    ],
+    "bounds": {
+      "paths": 512,
+      "sigma": [
+        0.001,
+        0.003,
+        0.01
+      ],
+      "initial_gap": "equal to sigma",
+      "periods": 10,
+      "steps_per_period": [
+        512,
+        1024
+      ],
+      "seed": 20261013,
+      "stationary_OU_prehistory_periods": 1,
+      "energy_grid_RMS_tolerance": "0.03*sigma",
+      "cross_fraction_grid_tolerance": 0.03,
+      "unforced_energy_error_tolerance": "0.05*sigma"
+    },
+    "non_claims": [
+      "No universal crossing probability, exact stochastic solution, or empirical evidence.",
+      "Wilson intervals omit numerical discretization bias; timestep comparison separately records it.",
+      "No physical moving escape boundary or microscopic selector force is modeled."
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy PCG64 via default_rng",
+    "seed": 20261013
+  },
+  "run": {
+    "started_at": "2026-10-13T11:03:50.090622+00:00",
+    "runtime_seconds": 1.644171,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/colored_bath_2026_10_13/trajectories.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/colored_bath_2026_10_13/trajectories.py",
+      "sha256": "f1c28c9ec00077b87429a91c7f57b7f3a37044119af9ddfab696da5df74cc4cf",
+      "sha256_after": "f1c28c9ec00077b87429a91c7f57b7f3a37044119af9ddfab696da5df74cc4cf"
+    }
+  ],
+  "output_directory": "sol61_push/colored_bath_2026_10_13/trajectory_run",
+  "declared_results": [
+    "sol61_push/colored_bath_2026_10_13/trajectory_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/colored_bath_2026_10_13/trajectory_run/stdout.txt",
+      "sha256": "d4306797d7123970b0c0541acdb2cab977e333f9256925fc74cf342b8ee8578f",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/colored_bath_2026_10_13/trajectory_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/colored_bath_2026_10_13/trajectory_run/results.json",
+      "sha256": "d4306797d7123970b0c0541acdb2cab977e333f9256925fc74cf342b8ee8578f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

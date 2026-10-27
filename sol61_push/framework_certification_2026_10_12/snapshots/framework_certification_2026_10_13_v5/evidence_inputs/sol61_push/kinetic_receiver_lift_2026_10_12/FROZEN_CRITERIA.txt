@@ -1,0 +1,95 @@
+FINITE KINETIC RECEIVER LIFT — FROZEN BEFORE COMPUTATION
+12 October 2026. Source checkpoint: receiver plan commit
+63321a23bd251f6ecf804eea626330495c5a7614.
+Inspected shared main: 8cef73ea7d01e20f1d08f435ad621b739f8eb3cc.
+Scope owner: this chat; framework_certification_2026_10_12 is a separate scope.
+
+Objective: steps 1–3 of NEXT_STEPS.txt, with a restricted local collision
+completion and an explicit test of the spatial-current obligation. No claim of
+a target-free halo selector, covariant action, fitted timing or completed theory.
+
+STATE AND ENERGY
+Cold f_alpha are nonnegative cell/velocity-bin mass weights, not particle counts.
+Baryon B_beta are mass weights. Fixed-bin specific kinetic energies are
+t_alpha=|v_alpha|^2/2 and t_b,beta=|u_beta|^2/2. With symmetric gravitational
+energy kernel K, density map C and total mass source rho=C_c f+C_b B,
+ E_total=t_c dot f+t_b dot B+rho^T K rho/2+E_R.
+This fixes the gravitational half factor and both matter derivatives. A fixed
+baryon state is only a collision diagnostic: full gravitational streaming and
+baryon reaction are separate unproved obligations. Boundary terms must be stated.
+
+Receiver: a real massless scalar Fourier mode on a declared periodic 1D domain,
+represented by two canonically normalized amplitudes phi and conjugate Pi.
+G=k[[0,1],[-1,0]], k!=0; Omega=c|k| from this diagnostic wave Hamiltonian;
+ E_R=(|Pi|^2+Omega^2|phi|^2)/2,
+ P_R=-Pi dot G phi.
+These are mode integrals, not a local stress-tensor derivation. Scalar field is
+a named receiver, not an identified new dark-particle species. k is geometry,
+not a fitted universal constant. Mode normalization must be fixed with units.
+
+DECLARED LOCAL COLLISION CHANNEL
+Four equal-weight velocity bins at one position; b=(-1,-1,+1,+1).
+Mass increment sum b=0; cold momentum increment p_b=sum v_alpha b_alpha.
+D=b dot grad_f E_total is the FULL instantaneous energy derivative.
+Let g=G phi, h=Pi_2 g_1-Pi_1 g_2,
+ r=(D g_2+Pi_2 p_b, -D g_1-Pi_1 p_b),
+ w=(h b, 0_phi, r).
+Proposed dissipative bracket M=gamma Lambda(a,bp) w w^T, with
+a=f_1 f_2, bp=f_3 f_4, Lambda the logarithmic mean.
+S=-sum f_alpha[log(f_alpha/f_ref)-1]; f_ref is a reference unit, not a target.
+At positive occupations, w dot grad S=h log(a/bp). Use the polynomial closure
+ fdot=gamma h^2 b (a-bp),
+ Pi_dot_diss=gamma h r (a-bp),
+ phi_dot=Pi, Pi_dot_H=-Omega^2 phi.
+gamma>=0 is an unknown constitutive coefficient. gamma=.05 in dimensionless
+diagnostic runs is not a selected physical value. Its origin remains open.
+This closure contains no MOND target, endpoint A, target temperature or profile.
+Do not treat Boltzmann-form monotonicity as a derived microscopic collision law.
+
+EXACT CHECKS
+E derivatives include the cold and baryon gravitational terms; D changes with
+state where density changes. No old constant-D capacity theorem is assumed.
+Check w dot grad E=0, w dot grad N_c=0, w dot grad P_total=0;
+M symmetry/PSD in the open orthant; canonical receiver energy/P conservation;
+Sdot=gamma h^2(a-bp)log(a/bp)>=0 in the open orthant; regular polynomial
+boundary closure and inward-pointing occupation derivatives on every f_i=0.
+Check physical dimensions. Check zero receiver seed and exact traveling-wave
+states separately; a momentum-bearing wave is not necessarily an energy source.
+Derive the receiver energy lower bound at fixed physical momentum, with units.
+
+SYMBOLIC MUTATIONS
+Delete the receiver energy reaction: energy identity must fail.
+Delete p_b recoil from r with p_b!=0: momentum identity must fail.
+Reverse dissipative sign: entropy monotonicity must fail at an interior fixture.
+The previous constant-mobility quadratic-entropy lift must fail positivity at
+v=(-1,0,1), b=(1,-2,1), f=(0,1,3), Pi_scalar=1.
+An algebraic spatial transfer at v=0 must fail kinetic continuity: two cells,
+f=(2,1), b=(-1,1), active drift, but velocity-moment current j=0.
+These controls identify missing guarantees, not a general exclusion of all lifts.
+
+NUMERICAL CASES (ONE MODE, Omega=k=c=1, gamma=.05)
+1. Import: v=(-1,1,-2,2), f=(2,2,1,1), H_R0=3, Pi0=0,
+   phi0=(sqrt(6),0). Test cold energy gain and reciprocal receiver loss.
+2. Export: same velocities, f=(1,1,2,2), same initial receiver.
+3. Recoil: v=(0,1,-2,1), f=(2,2,1,1), same initial receiver.
+4. Empty product bins: v=(-1,1,-2,2), f=(1,1,0,0), same receiver.
+5. Zero receiver seed: case 1 with phi=Pi=0; collision stays stationary.
+6. Exact traveling wave: case 1 with phi=(1,0), Pi=(0,1); retain inactive
+   exchange if predicted by the operator. Do not claim activation for this state.
+Integrate t=0..100, DOP853, rtol=2e-10, atol=2e-12, 2001 diagnostic times.
+Require relative energy error <=1e-7 (scale max(1,|E0|)); absolute mass and
+momentum errors <=1e-7; f_i>=-1e-8; entropy nondecreasing to 1e-8 in sampled
+times. Empty product bins must become positive; zero seed remains exactly fixed;
+traveling-wave exchange increment <=1e-7. No physical rate conversion.
+
+RESOURCE AND ADMISSION
+Local symbolic/numerical checks only: <=60 s wall, <=45 s CPU, one numerical
+thread, no PM run or survey fit. Numerical controls do not prove continuum
+well-posedness. Freeze code/input hashes and record any failed assertion.
+
+Success labels: exact finite identities; bounded numerical cases; physical
+assumptions; missing spatial/current/action/microphysics/selector obligations.
+Do not give this a CFG679 mechanism PASS. The operator's shape and gamma remain
+constitutive choices; one parent action and local stress reactions are unproved.
+If collision conservation succeeds but spatial kinetic continuity fails, retain
+the collision component and isolate the separate transport problem.

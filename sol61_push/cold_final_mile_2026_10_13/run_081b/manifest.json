@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-FM-081B",
+  "repository": {
+    "commit": "123fefe43e02bcd44fe919fd11613ec83553bc54",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_final_mile_2026_10_13/check_minimum_dwarf_mass_transfers.py",
+    "sol61_push/cold_final_mile_2026_10_13/run_081b/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Minimum signed mass transfers meeting saved dwarf aperture targets while preserving counted stock",
+    "coefficient_domain": "Python float64",
+    "conventions": "Wolf inferred base from saved profiles; observed stellar fraction.512; total stock53.64Mb; source free_frac defines global free stock",
+    "inputs": [
+      "sol61_push/cold_final_mile_2026_10_13/check_minimum_dwarf_mass_transfers.py",
+      "sol61_push/cold_final_mile_2026_10_13/run_080/results.json",
+      "campaign_fresh_gravity/CFG822_hex_dsph/cfg822_results.json"
+    ],
+    "bounds": {
+      "dwarfs": 11,
+      "footings": 2
+    },
+    "non_claims": [
+      "No transport dynamics or equilibrium",
+      "No new source solution or frozen grade",
+      "No energy budget closed"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T01:58:23.043270+00:00",
+    "runtime_seconds": 0.040701,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_final_mile_2026_10_13/check_minimum_dwarf_mass_transfers.py",
+    "sol61_push/cold_final_mile_2026_10_13/run_080/results.json",
+    "campaign_fresh_gravity/CFG822_hex_dsph/cfg822_results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/check_minimum_dwarf_mass_transfers.py",
+      "sha256": "128ccc211209a745a65c6fb7b0f8a71047eb86126d3e28390ae209a81e4f0a34",
+      "sha256_after": "128ccc211209a745a65c6fb7b0f8a71047eb86126d3e28390ae209a81e4f0a34"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_080/results.json",
+      "sha256": "b2a80bf0765892ea7c5a76bd32fdb1c6ddfe2a322997fbcaf0f9d8cbafb3cc4c",
+      "sha256_after": "b2a80bf0765892ea7c5a76bd32fdb1c6ddfe2a322997fbcaf0f9d8cbafb3cc4c"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG822_hex_dsph/cfg822_results.json",
+      "sha256": "82cf421196215193d31233daa992dda441dfbc7f7c8df1cb1bc84257ff6f4b79",
+      "sha256_after": "82cf421196215193d31233daa992dda441dfbc7f7c8df1cb1bc84257ff6f4b79"
+    }
+  ],
+  "output_directory": "sol61_push/cold_final_mile_2026_10_13/run_081b",
+  "declared_results": [
+    "sol61_push/cold_final_mile_2026_10_13/run_081b/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_081b/stdout.txt",
+      "sha256": "28f38506c42f2319cd0d9612e5d9dc015a1abed2dfc945d2f9165037e9210263",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_081b/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_081b/results.json",
+      "sha256": "cb4b4b97e852689e016435b392d145229d2b7ae50ec042b60420af46c709a86a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

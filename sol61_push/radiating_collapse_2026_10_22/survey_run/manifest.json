@@ -1,0 +1,161 @@
+{
+  "schema_version": 2,
+  "claim_id": "RC_COLLAPSE_SURVEY",
+  "repository": {
+    "commit": "e3333cb274b939be9c94636eadc52d3356d05c03",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/radiating_collapse_2026_10_22/survey.py",
+    "--output",
+    "sol61_push/radiating_collapse_2026_10_22/survey_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "12 collapse seeds, three numerical refinements, four phase sensitivities and frozen-source control",
+    "coefficient_domain": "float64",
+    "conventions": "CONTRACT.md",
+    "inputs": [
+      "conditional Gaussian cold seed and finite-chi coefficients"
+    ],
+    "bounds": {
+      "mass_ratio": [
+        0.5,
+        1,
+        2,
+        4
+      ],
+      "spin": [
+        0,
+        0.02,
+        0.05
+      ],
+      "lambda_sensitivity": [
+        10,
+        100
+      ],
+      "gap_sensitivity": [
+        0.5,
+        0.2
+      ],
+      "baseline_time": 30,
+      "phase_time": 60
+    },
+    "non_claims": [
+      "No 3D rotating solution",
+      "No asymptotic remnant or universal mass",
+      "No baryonic backreaction test"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T00:37:45.330191+00:00",
+    "runtime_seconds": 97.905079,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 250000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/radiating_collapse_2026_10_22/model.py",
+    "sol61_push/radiating_collapse_2026_10_22/survey.py",
+    "sol61_push/radiating_collapse_2026_10_22/CONTRACT.md",
+    "sol61_push/radiating_collapse_2026_10_22/SURVEY_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/model.py",
+      "sha256": "9541819c5b1642a549e692e9808acbbdba75628b4fa4cda7a57d858ca132ca4c",
+      "sha256_after": "9541819c5b1642a549e692e9808acbbdba75628b4fa4cda7a57d858ca132ca4c"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/survey.py",
+      "sha256": "8838cd5ab570eae75aff06b944bd64c97fb433ff8454b35f31482db7a98ac80c",
+      "sha256_after": "8838cd5ab570eae75aff06b944bd64c97fb433ff8454b35f31482db7a98ac80c"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/CONTRACT.md",
+      "sha256": "61500e677ae8402ca3d67add9eb1889d3f8f9b4d2ebf29bae5b9a064123335aa",
+      "sha256_after": "61500e677ae8402ca3d67add9eb1889d3f8f9b4d2ebf29bae5b9a064123335aa"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/SURVEY_CONTRACT.md",
+      "sha256": "ff41c78d907a92cace1ac5b77a03e08e97f58f810c4c729eed58ce90a74793c2",
+      "sha256_after": "ff41c78d907a92cace1ac5b77a03e08e97f58f810c4c729eed58ce90a74793c2"
+    }
+  ],
+  "output_directory": "sol61_push/radiating_collapse_2026_10_22/survey_run",
+  "declared_results": [
+    "sol61_push/radiating_collapse_2026_10_22/survey_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/survey_run/stdout.txt",
+      "sha256": "3e897bc8398dfc6b92cee8a362f54add0ab76a19cba86d5542182efc8ad5250e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/survey_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/survey_run/result.json",
+      "sha256": "403aeb4b4744011a9b218a944db127c46db337711dc6b92a6ab98988689a125d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

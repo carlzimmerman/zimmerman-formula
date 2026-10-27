@@ -1,0 +1,179 @@
+{
+  "namespace": "FrameworkSharedPhase",
+  "source": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/SharedPhase.lean",
+  "source_sha256": "5cc2b70172cc215d19d5f7a117ddae9105a477eadca920185a363a05388eb86d",
+  "main_log": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/compile.log",
+  "main_log_sha256": "d423728b9654fcafead29ab0bdb3a031602107d89498929d95c63ec512b48898",
+  "theorem_count": 10,
+  "entries": [
+    {
+      "name": "FrameworkSharedPhase.full_action_expansion",
+      "line": 41,
+      "exact_statement": "theorem full_action_expansion (R u a X0 ρ0 m f e σ σdot σgrad ηdot ηgrad : ℝ) :\n    originalL R u a X0 ρ0 m f e σ σdot σgrad ηdot ηgrad =\n      originalL R u a X0 ρ0 m f 0 σ σdot σgrad ηdot ηgrad +\n      e * ((m ^ 2 * f - massSq m u * R) * σ + B R u a X0 * u * ηdot) +\n      e ^ 2 * quadraticL (massSq m u) (K R u a X0) (B R u a X0) (C R u) σ σdot σgrad ηdot ηgrad +\n      e ^ 3 * (σ ^ 2 * u * ηdot + R * σ * (ηdot ^ 2 - ηgrad ^ 2) +\n        a * u * ηdot * (ηdot ^ 2 - ηgrad ^ 2) / 2) +\n      e ^ 4 * (σ ^ 2 * (ηdot ^ 2 - ηgrad ^ 2) / 2 + a * (ηdot ^ 2 - ηgrad ^ 2) ^ 2 / 8)",
+      "statement_sha256": "33bc2499436d32b88a08204fe2006412cf4df987fab37438c72b2a86617cdb33",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+      "English_review": "shared_phase/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkSharedPhase.canonical_momenta",
+      "line": 53,
+      "exact_statement": "theorem canonical_momenta (μ K B C σ σdot σgrad ηdot ηgrad : ℝ) :\n    HasDerivAt (fun v => quadraticL μ K B C σ v σgrad ηdot ηgrad) σdot σdot ∧\n    HasDerivAt (fun v => quadraticL μ K B C σ σdot σgrad v ηgrad) (K * ηdot + C * σ) ηdot",
+      "statement_sha256": "1d60f4131cbb2f8b37f9d9dbb896d54a94a07fb6efb9b8588a3b19db560eca50",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+      "English_review": "shared_phase/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkSharedPhase.legendre_transform",
+      "line": 82,
+      "exact_statement": "theorem legendre_transform (μ K B C σ pσ σgrad peta ηgrad : ℝ) (hK : K ≠ 0) :\n    pσ ^ 2 + peta * ((peta - C * σ) / K) -\n      quadraticL μ K B C σ pσ σgrad ((peta - C * σ) / K) ηgrad =\n        hamiltonian μ K B C σ pσ σgrad peta ηgrad",
+      "statement_sha256": "967970500a64a0ff2d789305715256b84d692520f629f5ce98ecaaae2060e8e9",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+      "English_review": "shared_phase/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkSharedPhase.rotating_hamiltonian_nonnegative",
+      "line": 90,
+      "exact_statement": "theorem rotating_hamiltonian_nonnegative (μ K B C σ pσ σgrad peta ηgrad : ℝ)\n    (hμ : 0 ≤ μ) (hK : 0 < K) (hB : 0 ≤ B) :\n    0 ≤ hamiltonian μ K B C σ pσ σgrad peta ηgrad",
+      "statement_sha256": "72b08c35232f12742236d0302d0b617d9eba32483a51b56e93a748821b7eb048",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+      "English_review": "shared_phase/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkSharedPhase.dispersion_dictionary",
+      "line": 97,
+      "exact_statement": "theorem dispersion_dictionary (K B C μ wave s : ℝ) :\n    dispersion K B C μ wave s = K * s ^ 2 -\n      (K * (wave ^ 2 + μ) + B * wave ^ 2 + C ^ 2) * s + B * wave ^ 2 * (wave ^ 2 + μ) ∧\n    discriminant K B C μ wave = (K * (wave ^ 2 + μ) - B * wave ^ 2) ^ 2 +\n      2 * C ^ 2 * (K * (wave ^ 2 + μ) + B * wave ^ 2) + C ^ 4",
+      "statement_sha256": "a340d3c563e106fdae18d08c69dadecde77958489672f1984e5b4c18cfb11bd0",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+      "English_review": "shared_phase/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkSharedPhase.dispersion_discriminant_nonnegative",
+      "line": 105,
+      "exact_statement": "theorem dispersion_discriminant_nonnegative (K B C μ wave : ℝ)\n    (hK : 0 ≤ K) (hB : 0 ≤ B) (hμ : 0 ≤ μ) : 0 ≤ discriminant K B C μ wave",
+      "statement_sha256": "412404f9bb108b1d0ba5266cffd05b2188515759bfd52b9bde973d96f8431c28",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+      "English_review": "shared_phase/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkSharedPhase.no_negative_squared_frequency",
+      "line": 112,
+      "exact_statement": "theorem no_negative_squared_frequency (K B C μ wave s : ℝ)\n    (hK : 0 < K) (hB : 0 ≤ B) (hμ : 0 < μ)\n    (hroot : dispersion K B C μ wave s = 0) : 0 ≤ s",
+      "statement_sha256": "3df0205738117babb38743963b7ea756c2092c6144ef0e361b537820ca5c163b",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+      "English_review": "shared_phase/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkSharedPhase.zero_gradient_boundary_roots",
+      "line": 128,
+      "exact_statement": "theorem zero_gradient_boundary_roots (K C μ wave s : ℝ) (hK : K ≠ 0) :\n    dispersion K 0 C μ wave s = 0 ↔ s = 0 ∨ s = wave ^ 2 + μ + C ^ 2 / K",
+      "statement_sha256": "fc3f0da4dbd35a4e02e63123486b963a86e85509c84a0311030217363ceb429a",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+      "English_review": "shared_phase/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkSharedPhase.background_enthalpy",
+      "line": 148,
+      "exact_statement": "theorem background_enthalpy (R u a X0 ρ0 m f : ℝ) :\n    backgroundRho R u a X0 ρ0 m f + backgroundPressure R u a X0 ρ0 m f = u ^ 2 * B R u a X0",
+      "statement_sha256": "323f184b9e264b3f81249533028fac399a3e828b844a854cccf4fc28db10ffbf",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+      "English_review": "shared_phase/formal/CORRESPONDENCE.txt"
+    },
+    {
+      "name": "FrameworkSharedPhase.pure_ghost_point_not_total_de",
+      "line": 154,
+      "exact_statement": "theorem pure_ghost_point_not_total_de (R u a X0 ρ0 m f : ℝ) (hR : R ≠ 0) (hu : u ≠ 0)\n    (hghost : u ^ 2 / 2 = X0) (hrho : 0 < backgroundRho R u a X0 ρ0 m f) :\n    0 < backgroundPressure R u a X0 ρ0 m f / backgroundRho R u a X0 ρ0 m f + 1",
+      "statement_sha256": "8fa26f2aa7ae831818576604d23e9d7eee61c425d9eeef05e93d45bc8e067c30",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+      "English_review": "shared_phase/formal/CORRESPONDENCE.txt"
+    }
+  ],
+  "model_status": "prospective new join NOT adopted; NOT established from original nine postulates",
+  "checkpoint": "FRAMEWORK-CERT-RECEIVER-2026-10-13",
+  "imports": [
+    "Mathlib"
+  ],
+  "main_exit_code": 0,
+  "PINNED_INPUTS": {
+    "path": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/PINNED_INPUTS.json",
+    "sha256": "47ccef72ab6b09b998d5c895dbc3b90957732a09beb8ff605d8637600b4fdd5c"
+  },
+  "correspondence": {
+    "path": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/CORRESPONDENCE.txt",
+    "sha256": "01d532a7a33a22806dddf4e7cb5909a12dce90b93b65e99384b9d34f52fc9fa6"
+  },
+  "independent_review_status": "pending read-only mathematical and physical admission audit",
+  "historical_build": {
+    "accepted": false,
+    "source": "shared_phase/formal/build_history/attempt_01.source.txt",
+    "log": "shared_phase/formal/build_history/attempt_01.log",
+    "exit_code": 1
+  },
+  "false_controls": [
+    {
+      "source": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/FalseUnmixedGap.lean",
+      "source_sha256": "56c7ae24926eea6c84c4332b45fe49b7154ba24b0c9b2697a143daedcccd03f4",
+      "log": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/FalseUnmixedGap.log",
+      "log_sha256": "6fffe5f4e949e9228b6faff8eeb1ebf14c182f28a284bc7ddaa6e3e8a7c24cce",
+      "exit_code": 1,
+      "expected_failure": "final unsolved False; no import/type/syntax error"
+    },
+    {
+      "source": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/FalseBoundaryNoZero.lean",
+      "source_sha256": "dc8fa027d97437c339a3f3226172fa665549768633ce083468ee9b35606b21ac",
+      "log": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/FalseBoundaryNoZero.log",
+      "log_sha256": "e0405a74f98dd2ade554ab3997f5634aa412084af8af4c53a5d24d1f51512160",
+      "exit_code": 1,
+      "expected_failure": "final unsolved False; no import/type/syntax error"
+    }
+  ]
+}

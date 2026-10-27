@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLD-20261024-Plummer-exact-positivity",
+  "repository": {
+    "commit": "f747c7a9730b78f5958ad26fea58f21576add8e3",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/cold_sector_emergence_2026_10_24/plummer_certificate.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact reconstruction of a bivariate polynomial in the tensor Bernstein basis and nonnegativity of every rational coefficient; density factor cross-check from spherical Poisson",
+    "coefficient_domain": "Q[z,q] exact",
+    "conventions": "z=r^2/(1+r^2), q=sqrt(b/(1+b)), 0<z,q<1; G=a0=Plummer radius=1",
+    "inputs": [
+      "symbolic Plummer square-root-law cold density"
+    ],
+    "bounds": {
+      "z_degree": 3,
+      "q_degree": 5,
+      "coefficient_count": 24
+    },
+    "non_claims": [
+      "Algebra requires the analytic derivation and Abel boundary argument in RESULT.md; no attractor, stability, finite halo, or scale-selection result"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-24T17:12:14.754750+00:00",
+    "runtime_seconds": 0.609925,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 50000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/cold_sector_emergence_2026_10_24/plummer_certificate.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/cold_sector_emergence_2026_10_24/plummer_certificate.py",
+      "sha256": "e96a88f477b9944e13cca0daedd3c3fd5ef6dab3e00d7f72e4085b7d9d1d160e",
+      "sha256_after": "e96a88f477b9944e13cca0daedd3c3fd5ef6dab3e00d7f72e4085b7d9d1d160e"
+    }
+  ],
+  "output_directory": "reviews/cold_sector_emergence_2026_10_24/certificate_run",
+  "declared_results": [
+    "reviews/cold_sector_emergence_2026_10_24/certificate_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/cold_sector_emergence_2026_10_24/certificate_run/stdout.txt",
+      "sha256": "0eb2625e7ed73e1b1070aad98a34ea4b7fa058c4c9ae2a5b7295e85dd1af5c51",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/cold_sector_emergence_2026_10_24/certificate_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/cold_sector_emergence_2026_10_24/certificate_run/result.json",
+      "sha256": "0eb2625e7ed73e1b1070aad98a34ea4b7fa058c4c9ae2a5b7295e85dd1af5c51",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

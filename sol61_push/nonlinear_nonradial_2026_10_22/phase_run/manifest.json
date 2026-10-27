@@ -1,0 +1,155 @@
+{
+  "schema_version": 2,
+  "claim_id": "NS_RELAXED_PHASE",
+  "repository": {
+    "commit": "9921a5172a5e9f2da981505a1596decd5adc44ef",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/nonlinear_nonradial_2026_10_22/phase.py",
+    "--output",
+    "sol61_push/nonlinear_nonradial_2026_10_22/phase_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Joint quasistatic nonlinear polarization and gradient-bearing phase via exact nonlocal quartic dual",
+    "coefficient_domain": "symbolic reals and float64",
+    "conventions": "CONTRACT.md",
+    "inputs": [
+      "inherited ell0 and canonical mass; declared sheet parameters"
+    ],
+    "bounds": {
+      "n_box": [
+        [
+          32,
+          8
+        ],
+        [
+          64,
+          16
+        ]
+      ],
+      "mass_ratios": [
+        1,
+        4
+      ],
+      "R": [
+        0.3,
+        0.6
+      ],
+      "lambda": [
+        1,
+        100
+      ],
+      "gap": 0.2
+    },
+    "non_claims": [
+      "No finite-inertia phase evolution or radiation",
+      "No nonlinear remnant or fits",
+      "Finite periodic box"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T02:14:37.244075+00:00",
+    "runtime_seconds": 4.45452,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 250000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/nonlinear_nonradial_2026_10_22/field.py",
+    "sol61_push/nonlinear_nonradial_2026_10_22/phase.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/field.py",
+      "sha256": "2bf1eb51ba1cbc24cd5ceaabbb24780bcf6a6c665e54d55da4053fa58952bca0",
+      "sha256_after": "2bf1eb51ba1cbc24cd5ceaabbb24780bcf6a6c665e54d55da4053fa58952bca0"
+    },
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/phase.py",
+      "sha256": "2f7c83882e4bcb82ceeee575484f1a046cb91a51215e777c50a365fe27f11dfd",
+      "sha256_after": "2f7c83882e4bcb82ceeee575484f1a046cb91a51215e777c50a365fe27f11dfd"
+    }
+  ],
+  "output_directory": "sol61_push/nonlinear_nonradial_2026_10_22/phase_run",
+  "declared_results": [
+    "sol61_push/nonlinear_nonradial_2026_10_22/phase_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/phase_run/stdout.txt",
+      "sha256": "a7a3771840b5116d7fa4d99ee10b4e45cf4f561780625ba583adc61d7839e2ae",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/phase_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/phase_run/result.json",
+      "sha256": "87b801e1f631a1ccb443df7d5e39d49e3e602a37b61561881351108e5c572bd4",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

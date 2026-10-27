@@ -1,0 +1,137 @@
+CE-FM-019/020 — fixed supply gives a constrained carrier edge
+2026-10-13. Primary verdict: CONDITIONAL ON the specified Newtonian carrier
+energy and admissible mass variations. Original cold-energy theory remains OPEN.
+This is self-reviewed mathematics, not a healthy covariant carrier derivation.
+
+1. Which variation is physical?
+CE-FM-016..018 imposed a freely varied zero-stiffness constitutive equation.
+It cannot hold everywhere outside compact carrier support while both component
+densities remain positive. That observation remains correct in its scope.
+But a carrier displacement and an independent vacuum field do NOT have the
+same admissible variations. An enclosed carrier mass m(r) must be nondecreasing,
+nonnegative and limited by its total supply S. Outside its support, m'=0.
+An arbitrary local variation of P that would make m'<0 is not a carrier state.
+Therefore enforcing the independent-P Euler equation everywhere cannot be
+used to reject a finite-supply constrained carrier equilibrium.
+
+2. Effective energy, assumptions and theorem
+In G=a0=1 units take the conditional effective radial energy, after exact
+tethered-self-gravity quadratic cancellation,
+  E[m]=integral_0^infinity [r^2 w(m/r^2)-Q(r)m/r^2]dr,
+  w(u)=-u^2/2-u-log(1-u), 0<=u<1,
+  Q(r)=Mb(r)+Mf(r), prescribed nonnegative nondecreasing external mass.
+The external gravitational energy is integral Phi_ext dm. Integrating by parts
+with Phi_ext(infinity)=0 gives -integral Q m/r^2 dr; endpoint constants do not
+affect variations. This counts the tethered mass once, uses residual w rather
+than full W, and keeps free gravity in Q. Q's own distribution and orbital
+energy are held fixed in this variation, not claimed to be selected by it.
+For a rigorous conditional statement, require admissible finite-energy m with
+fixed total S, m'>=0, 0<=m<=S, u<1; Q has finite positive total. On a matched
+annulus the prescribed inner mass is the unconstrained root at its inner end.
+The point-source center can instead be treated as a formal limit; no physical
+regularity or quantum admissibility at a point mass is asserted.
+
+For each r define the positive unconstrained root
+  m0^2=Q(r)[r^2-m0],
+  m0=[sqrt(Q^2+4Q r^2)-Q]/2.
+Where Q>0 it satisfies 0<m0<r^2 and
+  m0'=[Q'(r)(r^2-m0)+2rQ]/[2m0+Q]>=0.
+Its outer growth is unbounded for finite positive Q(infinity). Thus
+  m_star(r)=min(m0(r),S)
+is admissible, reaches a finite edge Re, and has exactly the supplied total.
+At fixed r the integrand e_r(m) is strictly convex for m>0:
+  de_r/dm=R(m/r^2)-Q/r^2,
+  d2e_r/dm2=R'(m/r^2)/r^2,
+  R(u)=u^2/(1-u), R'(u)=u(2-u)/(1-u)^2>0.
+Below the edge, derivative at m_star is zero. Above the edge, m_star=S<m0,
+so derivative is negative and every admissible test m obeys m-S<=0.
+Consequently de_r(m_star)(m-m_star)>=0 everywhere. Convexity gives
+  e_r(m)-e_r(m_star)>=de_r(m_star)(m-m_star)>=0.
+Integrate to prove E[m]>=E[m_star]. Strict convexity gives uniqueness up to
+sets of zero radial measure within this admissible class. This proof does not
+come from optimizer success and does not assume global unconstrained P EL.
+
+For external point mass Q the edge is exactly
+  Re^2=S+S^2/Q in these units,
+  Re^2=(G/a0)(S+S^2/Q) when S,Q denote dimensional masses.
+Q includes free cold mass when it lies wholly inside the edge. For distributed
+free material use Q(Re) and solve the implicit equation; no omission of free
+gravity is allowed. Q=Mb alone recovers the previous conditional finite-supply
+radius. It is not a new observation, new mass origin or selected cosmic supply.
+
+Beyond Re the virtual test-carrier acceleration -Q/r^2+R(S/r^2) is inward.
+The support ends without a reflecting wall or negative-density compensating
+shell in this conditional effective model. The potential for moving a carrier
+shell is flat inside and increases outside, rather than obeying force-free
+balance throughout vacuum. At-rest singular phase-space preparation and lack
+of dissipation are still the earlier CE-FM-003/F2 issues.
+
+3. Existing stiffness term, finite numerical evidence
+With beta=gamma/(4piG), the radial vector gradient contribution, in the same
+normalization, is
+  E_beta=E+beta/2 integral[r^2(u')^2+2u^2]dr, u=m/r^2.
+Varying in a region with positive carrier density yields
+  R(u)-Q/r^2-beta[u''+2u'/r-2u/r^2]=0.
+Mass positivity and supply constraints remain at vacuum/support boundaries;
+they cannot be dropped by solving this differential equation everywhere.
+The gradient term is a positive quadratic and preserves convexity in m.
+For a supplied tail m=S, u=S/r^2 has radial vector Laplacian zero. The tail
+stiffness energy beyond Rout is beta S^2/Rout^3, a fixed endpoint constant.
+This identifies the existing field stiffness term in the conditional radial
+carrier energy; it does not derive the microscopic current/reference parent.
+
+Run020 uses Q1, S2, r2..20, fixed inner core m0(2), beta0,.01,.1,1 and81/161
+log-spaced nodes. The energy uses trapezoidal potential quadrature and midpoint
+positive gradient differences; SLSQP uses analytic gradients and explicit
+nondecreasing masses. NNLS fits nonnegative active constraint multipliers as
+an orthogonal KKT check. All54 checks passed: feasibility, KKT residual<1e-6,
+finite-difference gradient agreement and mass discrepancies<=.005 across meshes.
+First plateau nodes on the fine mesh: beta0 at2.48188 (exact zero-beta edge
+sqrt6=2.44949 lies between nodes), beta.01 at2.55435, beta.1 at2.78471, beta1
+at3.60811. These are grid diagnostics, not precise continuum edge predictions.
+Both meshes have positive densities and fixed finite supply. The result
+establishes finite optimization feasibility and stationary constrained profiles,
+not a continuum convergence theorem or a galaxy score on either footing.
+
+Run019_v2 adds105 symbolic/quadrature checks for the zero-stiffness proof and
+five radius-dilated controls. Initial019 failed because compressed controls at
+rmin.5 crossed the saturation wall. The corrected controls retain all dilation
+factors but use rmin2, where the full admissible supply has u<=.5. Original
+failure/code/contract retained; see FINITE_SUPPLY_CORRECTION.txt. Compressed
+factors.5 and.8 both hit the supply cap immediately and are the same profile
+on that annulus, so they are not two independent physical counterexamples.
+Run019_v2 and020 manifests validate with current inputs. No hard memory bound
+is claimed; actual small arrays, hard wall-clock/CPU and cooperative thread
+limits are recorded.
+
+4. Review boundary and research state
+Dependencies: corrected residual energy [conditional carrier model]; prescribed
+positive external Q and fixed S [inputs]; convexity/cap/monotonicity argument
+[passed, internal proof]; finite stiff profiles [verified only on stated grids];
+freely varied vacuum P equivalence [not asserted]; physical current/reference
+action, formation/export, hot discrimination, abundance and full metric [open].
+The new result removes a finite-support objection for constrained carrier
+variations. It does not repair the naive covariant parent from CE-FM-013, and
+does not turn equilibrium existence into collisionless relaxation.
+
+Newest source reconciliation
+CFG760 at364fc9c73: README preserves failedG1/K2/K3, with G2/G3 WKB closure
+and close dwarf case deferred to its CFG761 exact-threshold lane. No own
+duplicate Green-function run or observational rescoring launched. Its infinite
+law-background potential2|v0|/s uses v0->1 at arbitrarily large radius. A finite
+supply carrier has a different outer background/support, so applying that
+barrier to the physical carrier requires a separate field/carrier comparison.
+This is a source-applicability question, not a reversal of its frozen numbers.
+The new optical drive/three-mode reports remain separate hypothetical portal
+models, with external energy, fixed dense condensate, missing confinement and
+no derivation of the gravity carrier. Their progress cannot close F2 by analogy.
+
+Next actionable route
+Specify what polarization degrees of freedom propagate outside finite carrier
+support in a reciprocal parent. For an independent-P comparison, calculate the
+finite-supply background barrier rather than assuming the infinite law tail;
+keep distinct from Claude's CFG761 infinite-background exact-threshold test.
+For actual carrier displacement, derive the weighted inertia and boundary
+conditions from the conserved current before importing independent-P radiation.
+This targets the remaining F2/F6 bridge. F1/F3 formation, F4 raw shear and F5
+mass/abundance remain open, kappa fitted. Original goal ACTIVE, not complete.

@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-FM-022",
+  "repository": {
+    "commit": "364fc9c73d2fda45a921d74c0c53ec1ce2d4f197",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_final_mile_2026_10_13/check_evaporation.py",
+    "sol61_push/cold_final_mile_2026_10_13/run_022/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Test-shell finite-edge escape barrier and finite mass-loss ground energy cost",
+    "coefficient_domain": "SymPy exact algebra and float64 Gauss quadrature",
+    "conventions": "Dimensionless accelerations in a0 units; positive radial gradients; negligible stiffness; given free profile",
+    "inputs": [
+      "sol61_push/cold_final_mile_2026_10_13/check_evaporation.py",
+      "sol61_push/cold_final_mile_2026_10_13/EVAPORATION_CONTRACT.txt",
+      "sol61_push/cold_final_mile_2026_10_13/FINITE_EDGE_RESULT.txt"
+    ],
+    "bounds": {
+      "Q": 1,
+      "S": [
+        0.2,
+        1,
+        2,
+        5,
+        10,
+        100
+      ],
+      "escaped_fraction": [
+        0.01,
+        0.1,
+        0.5
+      ],
+      "minimumcore": 0.05,
+      "quadraturetol": 1e-12
+    },
+    "non_claims": [
+      "No rate, redistribution mechanism, halo formation, efficient evaporation or final mass selection",
+      "Point external source and zero stiffness only"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T00:31:59.373354+00:00",
+    "runtime_seconds": 1.043331,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/cold_final_mile_2026_10_13/run_022/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_final_mile_2026_10_13/check_evaporation.py",
+    "sol61_push/cold_final_mile_2026_10_13/EVAPORATION_CONTRACT.txt",
+    "sol61_push/cold_final_mile_2026_10_13/FINITE_EDGE_RESULT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/check_evaporation.py",
+      "sha256": "677ec3872726d198e1bd09b97ce5b3ee78f89ddb61007dce1decf3259d254372",
+      "sha256_after": "677ec3872726d198e1bd09b97ce5b3ee78f89ddb61007dce1decf3259d254372"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/EVAPORATION_CONTRACT.txt",
+      "sha256": "edab842e286e423baf0f2e1af6f41da5478067e921e8777405464c429b84a699",
+      "sha256_after": "edab842e286e423baf0f2e1af6f41da5478067e921e8777405464c429b84a699"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/FINITE_EDGE_RESULT.txt",
+      "sha256": "7eaeb46c6dc05ba45895fc7ed8865e25902e49014221cb780a261130f2475626",
+      "sha256_after": "7eaeb46c6dc05ba45895fc7ed8865e25902e49014221cb780a261130f2475626"
+    }
+  ],
+  "output_directory": "sol61_push/cold_final_mile_2026_10_13/run_022",
+  "declared_results": [
+    "sol61_push/cold_final_mile_2026_10_13/run_022/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_022/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_022/stderr.txt",
+      "sha256": "01a164f3b11252787a73c16ea514c7e5d45c2ca9facc974dd7d46ce6d2f80f10",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: sol61_push/cold_final_mile_2026_10_13/run_022/results.json"
+  ]
+}

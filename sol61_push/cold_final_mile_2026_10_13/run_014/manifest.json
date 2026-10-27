@@ -1,0 +1,137 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-FM-014",
+  "repository": {
+    "commit": "5124ad2884a45b0d930a27c5f3566381d9c9a356",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_final_mile_2026_10_13/check_dipole_kinetic.py",
+    "sol61_push/cold_final_mile_2026_10_13/run_014/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Current/dipole derivativecoupling NRtransversevelocity Hessian, canonical inversion, small negative energy direction and hypothetical addedkineticthreshold",
+    "coefficient_domain": "SymPy exact rational algebra and IEEE double numerical checks",
+    "conventions": "G=a0=M_b=1; u=m(<r)/r^2; outward acceleration positive; core matching conditional",
+    "inputs": [
+      "sol61_push/cold_final_mile_2026_10_13/check_dipole_kinetic.py",
+      "sol61_push/cold_final_mile_2026_10_13/DIPOLE_KINETIC_CONTRACT.txt",
+      "PrimaryBlanchet-LeTiec0901.3114v2 Eq3.3, actualPDFcheckedonline"
+    ],
+    "bounds": {
+      "symbolic_domain": "sigma,curvature positive; transverseFourierk!=0 locally homogeneous comparison",
+      "additional_kappa": [
+        0,
+        0.5,
+        1,
+        2
+      ]
+    },
+    "non_claims": [
+      "No fullcovariantDirac, gravity, or quantumvacuum no-go",
+      "Added term not derived or adopted",
+      "No empirical population or dampingexclusion",
+      "This source is not the same as identifiedcurrentparent"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T20:10:18.653660+00:00",
+    "runtime_seconds": 0.451707,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_final_mile_2026_10_13/check_dipole_kinetic.py",
+    "sol61_push/cold_final_mile_2026_10_13/DIPOLE_KINETIC_CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/check_dipole_kinetic.py",
+      "sha256": "d083ca190456f95038c572fb0ee76b1270446e8a56349b43b3309fc713be2bbf",
+      "sha256_after": "d083ca190456f95038c572fb0ee76b1270446e8a56349b43b3309fc713be2bbf"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/DIPOLE_KINETIC_CONTRACT.txt",
+      "sha256": "a1eee4823c341b5d3df8f4d96bf497763cf5e4804bbe39b69700f7510835b8d4",
+      "sha256_after": "a1eee4823c341b5d3df8f4d96bf497763cf5e4804bbe39b69700f7510835b8d4"
+    }
+  ],
+  "output_directory": "sol61_push/cold_final_mile_2026_10_13/run_014",
+  "declared_results": [
+    "sol61_push/cold_final_mile_2026_10_13/run_014/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_014/stdout.txt",
+      "sha256": "03835c4ebbfaeafa0b442dae401de63752c4534de8a83d6a54ebb061a5570565",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_014/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_014/results.json",
+      "sha256": "03835c4ebbfaeafa0b442dae401de63752c4534de8a83d6a54ebb061a5570565",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLD-MUON-SEMICOMPTON",
+  "repository": {
+    "commit": "cda53006d0fae491d774c1bb9a25340ea47c9f41",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_muon_compton_2026_10_14/check.py",
+    "sol61_push/cold_muon_compton_2026_10_14/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Tree muon scalar photoproduction with laboratory cold acceptance and decay-limited target inventory",
+    "coefficient_domain": "Double precision Dirac traces and quadrature, 65-decimal literature controls",
+    "conventions": "Free muon at rest, unpolarized photon and muon, both s/u tree diagrams, Gaussian photon spectrum",
+    "inputs": [
+      "sol61_push/cold_muon_compton_2026_10_14/check.py",
+      "sol61_push/lab_cold_photon_acceptance_2026_10_13/run/results.json",
+      "sol61_push/ordinary_lepton_source_2026_10_13/run/results.json"
+    ],
+    "bounds": {
+      "GL_orders": [
+        16,
+        32
+      ],
+      "massless_photon_over_mmu": [
+        0.01,
+        0.1,
+        1.0
+      ],
+      "Kcut_eV": 1e-08,
+      "muon_delivery_per_s": 100000000.0,
+      "photon_flux_per_s": 100000000.0,
+      "beam_area_m2": 1e-06
+    },
+    "non_claims": [
+      "No real stopped target, full field theory viability or laboratory manufacture"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T04:10:32.582536+00:00",
+    "runtime_seconds": 0.643817,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_muon_compton_2026_10_14/check.py",
+    "sol61_push/lab_cold_photon_acceptance_2026_10_13/run/results.json",
+    "sol61_push/ordinary_lepton_source_2026_10_13/run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_muon_compton_2026_10_14/check.py",
+      "sha256": "fa5d43fcb3ea12bfa53f8bd7dcd88360d8d8ff42c881c43d9c733791f4b5a6bd",
+      "sha256_after": "fa5d43fcb3ea12bfa53f8bd7dcd88360d8d8ff42c881c43d9c733791f4b5a6bd"
+    },
+    {
+      "path": "sol61_push/lab_cold_photon_acceptance_2026_10_13/run/results.json",
+      "sha256": "9a8b5d2caf62a9bb0ac265e817547247165a1246a6687718a8ea25ef2dd59857",
+      "sha256_after": "9a8b5d2caf62a9bb0ac265e817547247165a1246a6687718a8ea25ef2dd59857"
+    },
+    {
+      "path": "sol61_push/ordinary_lepton_source_2026_10_13/run/results.json",
+      "sha256": "a613564e0f30d6b5023925a3d954f12920e18e75c7e37060f451b2a0e881c9f3",
+      "sha256_after": "a613564e0f30d6b5023925a3d954f12920e18e75c7e37060f451b2a0e881c9f3"
+    }
+  ],
+  "output_directory": "sol61_push/cold_muon_compton_2026_10_14/run",
+  "declared_results": [
+    "sol61_push/cold_muon_compton_2026_10_14/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_muon_compton_2026_10_14/run/stdout.txt",
+      "sha256": "f2197e8b91cd28639556578cc91a1a161e23d21a376299ac11c94950bed13478",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_muon_compton_2026_10_14/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_muon_compton_2026_10_14/run/results.json",
+      "sha256": "f2197e8b91cd28639556578cc91a1a161e23d21a376299ac11c94950bed13478",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

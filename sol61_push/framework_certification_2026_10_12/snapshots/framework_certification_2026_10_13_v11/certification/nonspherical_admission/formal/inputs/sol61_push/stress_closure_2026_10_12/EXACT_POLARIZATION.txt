@@ -1,0 +1,102 @@
+Exact-kernel polarization: a conditional positive-energy extension
+2026-10-12. Continuation of FIELD_ORIGIN.txt and the earlier
+cold_production_2026_10_11/POSITIVE_POLARIZATION.md (read only).
+Analytical construction and self-review. No simulation or novelty claim.
+
+Question: replace the earlier cubic toy response with the exact prescribed
+kernel while retaining a nonnegative source-free energy and local linear
+stability at nonzero background field. This is an effective construction,
+not a derivation of that kernel from microscopic physics.
+
+Assumptions
+-----------
+Let g=F(b), b=B(g)=F^{-1}(g), C=4*pi*G. On the smooth branch require
+ B(0)=0, 0<B(g)<g, 0<B'(g)<1 for g>0.
+The repaired monotone-deficit kernel is intended to have F'>1; the
+construction applies on its smooth branches satisfying these inequalities,
+not automatically to numerical interpolation knots or arbitrary kernels.
+Assume the integrals below converge and the branch includes zero.
+
+Define the magnitude of an internal vector field P through
+ p(g)=[g-B(g)]/C.
+Since p'=(1-B')/C>0 this relation has a unique inverse g=g(p).
+Define U(0)=0 and U'(p)=g(p), equivalently
+ U(p(g))=g*p(g)-int_0^g p(s) ds.
+
+Let q=grad Phi. The source-free energy density is
+ E = Z/2*(dot Phi)^2 + I/2*|dot P|^2 + V(q,P),
+ V(q,P)=|q|^2/(2C)+U(|P|)-P.dot(q), Z,I>0.                 (1)
+Z and I are new, UNDETERMINED response coefficients, with the dimensions
+needed in (1). Positivity does not determine their values or physical origin.
+They are not claimed to be allowed knob-free predictions of the project.
+
+Static response: exact, within the constitutive branch
+-----------------------------------------------------
+Minimising V over P gives U'(p) P/p=q, so P=p(g) q/g.
+Then V_min(g)=g^2/(2C)-int_0^g p(s)ds=int_0^g B(s)ds/C.
+With source coupling +rho_b Phi in the stationary functional,
+ div(q/C-P)=rho_b, i.e. div[(B(g)/g)grad Phi]=C rho_b.
+Thus the prescribed spherical law is recovered exactly, with the central
+flux condition of FIELD_ORIGIN.txt. General 3D predictions are this field
+equation, not the spherical algebraic rule or the project's round/no-EFE rule.
+
+Energy and linear stability: analytic check
+-------------------------------------------
+U'(p)>0, U''(p)=C/(1-B')>C. Its transverse vector Hessian eigenvalue is
+ U'/p=C*g/(g-B)>C. Hence the block Hessian of V in (q,P) has q block I_3/C
+and cross block -I_3; its Schur complement is Hess(U)-C*I_3, positive
+on a nonzero background. Equivalently, the reduced q Hessian has radial
+B'/C and transverse B/(C*g), both positive.
+Also V(q,P)>=V_min(|q|)>=0 wherever the global constitutive minimisation
+is defined, because B>=0. With Z,I>0, source-free kinetic energies are positive.
+
+On a uniform nonzero background, substitute delta q=i*k*delta Phi.
+The positive quadratic form above plus positive kinetic terms implies
+nonnegative squared mode frequencies for the frozen-coefficient linear
+system. This covers all wave directions, not just a sampled k grid.
+At k=0, the constant Phi mode is unconstrained; no restoring force is claimed.
+At vacuum g=0 in the deep branch B~g^2/a0, the Schur complement becomes
+degenerate. There is no uniform stability/coercivity estimate there.
+No nonlinear/global well-posedness or relativistic causality theorem follows.
+
+Dynamics and physical reading
+----------------------------
+The nonrelativistic action with L=kinetic-V-rho_b Phi gives
+ Z*ddot Phi=div(q/C-P)-rho_b,
+ I*ddot P=q-U'(|P|)P/|P|.
+The internal vector responds to the force-potential gradient and changes
+the flux sourcing that potential. Both fields store energy and exchange it
+reversibly. This is a concrete conservative RESPONSE model, not viscosity.
+It has no intrinsic relaxation: it can oscillate. Outgoing waves can export
+energy only with specified boundary conditions; they are not automatically
+a cosmological vacuum receiver. Coupled dynamical baryons must be included
+for a closed sourced energy budget. Frozen external sources are not a free bath.
+
+What has advanced, and what has not
+----------------------------------
+The earlier cubic toy admitted a positive energy but only a particular
+approximate force law. Here the exact inverse kernel determines U and an
+analytic Hessian criterion proves local source-free mode stability on the
+nonzero branch. This answers a limited effective-model existence question.
+It does NOT derive the kernel: U was inverse-designed from it.
+
+There is still no independent conserved cold monopole mass, cosmic abundance,
+microphysical identity for P, predicted Z/I, autonomous settling, relativistic
+lensing prescription, or joint observation fit. Adding an independent mass
+source changes the equilibrium and requires a further derivation. Ordinary
+positive-mass molecules do not automatically realise this P coupling (see
+the earlier POLARIZATION_SELECTOR.md dipole-cancellation argument).
+An additive vacuum offset does not affect U', the field response or a0;
+therefore this construction cannot fix kappa=1/2 or tie a0 to that offset.
+
+Relation to existing literature
+------------------------------
+Polarizable dark-medium proposals already exist (Blanchet and Le Tiec,
+https://arxiv.org/abs/0804.3518 ; https://arxiv.org/abs/0901.3114).
+Their existence supplies context, not validation of (1). This calculation
+does not identify this two-field action with their covariant fluid action.
+No novelty or current observational-viability assertion is made.
+
+Next discriminator: identify P, Z and I in the existing carrier's action,
+or demonstrate why its symmetries exclude that coupling. Until then this
+is a conditional effective candidate, not the physical nature of cold energy.

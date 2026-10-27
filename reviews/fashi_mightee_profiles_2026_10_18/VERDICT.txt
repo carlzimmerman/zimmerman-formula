@@ -1,0 +1,56 @@
+COMMON-WINDOW MIGHTEE / ALFALFA SPECTRAL COMPARISON
+2026-10-18 follow-up to the FASHI DR2 cross-match
+
+Finding
+The released MIGHTEE r1p0 aperture spectra remain substantially fainter than ALFALFA after common windows and residual baseline fits. The deficit is present inside the line, including its central channels. These data do not identify an upstream instrumental/reduction cause, or establish an absolute flux calibration.
+
+Actual population
+All 21 previous triple-survey matches have downloaded ALFALFA spectra. Four are outside the downloaded MIGHTEE cubes' 1290-1396 MHz frequency coverage. Of 17 extracted MIGHTEE positions, one has unusable spatial pixels (MGTH_J095635.7+012543). There are 16 usable paired profiles: 11 previously reliable matches, of which seven have ALFALFA code 1; four of those seven belong to the original science sample. No fresh MIGHTEE detection cut was imposed. All 21 positions are retained in the full figure, with missing coverage explicit.
+
+Primary numerical result (seven reliable ALFALFA-code1 objects)
+Median MIGHTEE/ALFALFA = 0.432900 (galaxy bootstrap 95% interval 0.328045-0.625061). This interval includes object-to-object variation only, not shared calibration or full per-channel noise propagation. It is not a sigma significance claim.
+Original science sample (four code1 objects): median 0.401034, bootstrap 95% interval 0.243633-0.515605.
+Without residual rebaselining: 0.417572.
+Constant residual baseline: 0.415827.
+Linear residual baseline, aperture radius 2.5 rather than 1.5 beam FWHM: 0.539384. Median paired aperture flux growth is only 1.03216; median ratios can change more because object ranks change. Individual aperture recovery is heterogeneous, particularly MGTH_J100035.1+011432 (0.736 to 1.211 Jy km/s). Large apertures also increase noise and can include neighbouring emission.
+Extend both line windows by 250 km/s at each edge, keeping the same baseline: median ratio 0.333764. The MIGHTEE added-wing flux has mixed signs and does not recover the deficit.
+Restore ALFALFA's supplied subtracted polynomial, then refit a linear baseline: median MIGHTEE/ALFALFA 0.471468. This does not undo earlier upstream reductions or reconstruct raw telescope voltages.
+
+Where the deficit appears
+In the exploratory central-channel diagnostic, |v| <= MIGHTEE W50/4, median MIGHTEE/ALFALFA is 0.384645. That central region contains 45.9% of the SUMMED line-flux deficit across the seven objects. Thus the mismatch extends into the core and is not just unintegrated faint outer wings. Do not interpret this summed fraction as the median fraction per object.
+Median absolute change to MIGHTEE flux from the linear residual baseline is 0.439% of its corrected flux. A baseline offset in the released cube is insufficient to restore the missing emission under the tested models.
+ALFALFA common-window integrals divided by its independent published catalogue flux have median 0.9571, range 0.844-1.129. The public spectra therefore approximately recover their catalogue scale, with non-negligible object scatter. The ALFALFA velocity/frequency relation matches optical heliocentric velocity to <0.003 km/s; the MIGHTEE headers do not declare SPECSYS, so a complete frame-provenance check remains unavailable. Broad-window tests make a small frame offset inadequate to explain this large deficit.
+On these same seven objects, the MIGHTEE catalogue/common ALFALFA profile ratio has median 0.7064, while extracted MIGHTEE/catalogue is 0.6128. These are distinct paired medians; do not multiply them as an identity or transfer either factor to all science galaxies.
+
+Methods and controls
+Windows use common frequency boundaries about the MIGHTEE centre: halfwidth max(150, max(MIGHTEE W50, ALFALFA W50)/2+50) km/s. Native channel frequency-bin overlaps are integrated exactly, then converted from Jy Hz using c/nu_center to a common local-velocity equivalent Jy km/s. This avoids mixing catalogue optical/rest/radio conventions. Plots use flux-conserving 20 km/s bins; no interpolated centres enter flux integrals.
+Off-line fits use the same exclusion windows and known-neighbour masks for both instruments, with iterative 3.5-MAD clipping. ALFALFA masked sentinel values and weights below 0.5 are excluded. Primary ALFALFA data are already baseline subtracted; restored-baseline sensitivity is separately reported.
+Native MIGHTEE beam areas follow CFG302, including explicit handling of the first cube's inconsistent beam unit label. Aperture radii use beam medians inside the original line window. Frequency grids and Jy/beam headers were checked. One source's first exploratory extraction used a full-range beam median, changing its flux by 0.012%; the final extraction reproduces all 14 prior overlapping narrow-window fluxes to <1e-6 relative tolerance.
+Synthetic sloped baseline and line recovery, and native/rebinned integral conservation controls pass. An independent scalar channel integrator and closed-form robust linear regression reproduce all 14 primary fluxes for seven galaxies with maximum absolute difference 6.7e-16 Jy km/s.
+
+Limits and next discrimination
+FASHI's official release provides catalogue fluxes; one-dimensional spectra are request-only. No FAST channel-profile comparison has been made, and no authors have been contacted. A decisive three-instrument comparison needs those actual 21 FAST spectra, their masks and extraction definitions. Four local MIGHTEE spectra above the downloaded frequency coverage also remain unavailable.
+The results disfavor ordinary integration-window truncation and a simple residual constant/linear baseline as the sole explanation in the covered subset. Aperture enlargement partly helps some galaxies but leaves an aggregate deficit. Remaining possibilities include upstream continuum subtraction/spectral response, imaging/cleaning and beam-residual normalization, spatial filtering, extraction differences and single-dish confusion. This comparison cannot select among these uniquely. Do not label the missing flux as physically resolved out or apply a universal correction.
+
+Provenance
+run_02/manifest.json: completed, validated against current inputs.
+run_01 is exploratory and superseded; its old reproduction control flagged the small aperture-definition difference described above. Later extraction/code inputs differ, so run_01 is historical, not current evidence.
+Input cubes were not rehashed during extraction: external source paths, sizes, mtimes and FITS headers are in the extraction manifest, with historical download-hash reference. The 17 extracted NPZ arrays and 21 ALFALFA FITS files are freshly hash-pinned in run_02.
+
+Files
+contract.json: rules, prior-result disclosure and coverage amendments
+extract_profiles.py: reusable FITS/cube extraction
+compare_profiles.py: numerical comparison and full figure
+run_02/per_galaxy.csv: paired fluxes, core/wing/baseline diagnostics
+run_02/measurements.csv: all aperture, window and baseline variants
+run_02/results.json: subgroup summaries and controls
+run_02/profiles.png: all 21 positions
+science_profiles.png: four original science/code1 galaxies
+independent_check.py and independent_verification.json: independent primary checks
+figure_verification.json: compact figure integrity and hashes
+
+Primary public sources
+https://cdsarc.cds.unistra.fr/ftp/J/ApJ/861/49/sp/
+https://cdsarc.cds.unistra.fr/viz-bin/ReadMe/J/ApJ/861/49?format=html&tex=true
+https://zcp521.github.io/fashi.html
+https://nadc.china-vo.org/res/r103421/

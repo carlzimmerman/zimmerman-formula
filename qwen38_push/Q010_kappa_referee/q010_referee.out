@@ -1,0 +1,112 @@
+====================================================================================================
+Q010 — kappa=1/2 referee (FROZEN 0eb0b4d078) — independent re-derivation + junction audit
+registers (runtime): a0=9.3619e-11, Omega_L=0.685, Z=5.788810036466141, n_germ=2.000102 +/- 0.017235; MUTATE=False
+====================================================================================================
+
+J1 closure: lap(C ln r) = C/r**2 [exact True]; Poisson coeff C/(4 pi G) [True]; hydrostatics sigma^2 = C/2 [True]; kappa_dyn = 1/2 [True]
+   controls: sigma(6.5e10) = 119.21 km/s (register 119.2); sigma(1e11) = 132.76 (register 132.76) -> PASS
+J2 uniqueness: defect(gamma=2, C tied) = 0 [identically zero]; defect(gamma!=2) non-identical [True]; two-point: 2^-gamma=1/4 solved by gamma=2 [True], strictly monotone [True] -> PASS
+   NOTE (form vs content): GF2's printed closed form -4 pi G A (2-gamma) r^(1-gamma) is a
+   flux-tied grouping; this re-derivation verifies the iff CONTENT (zero for all r iff gamma=2),
+   which is what the uniqueness lemma claims. Recorded, not replicated term-by-term.
+
+J3 web: kappa=a0/s=1/n [True]; Z^2=n^2 8pi/3 [True]; Omega_L identity [True]; boundary identity [True]
+   germ_ratio      : got 4.000406 vs register 4.000406
+   Z               : got 5.789104 vs register 5.789104
+   cH0_a0          : got 6.994651 vs register 6.994651
+   cH0_a0_pred     : got 6.994296 vs register 6.994651
+   Z_vs_register   : got 5.789104 vs register 5.788810
+   -> PASS
+
+J4 junction audit (every link, citation verified verbatim at runtime):
+   [POSTULATED-CARRIED                          ] rung 5 = equilibrium identification (halo=phantom, coeff 1)
+      cite: deepseek_push/THEORY.md L64 :: **The equilibrium identification** (rung 5) — halo = phantom, coefficient 1,
+   [POSTULATED->DERIVED-STATIC (GF2/Q001/Q007)  ] rung 4 status pre-GF2 ('honest-postulated')
+      cite: deepseek_push/THEORY.md L87 :: temperature's dynamical origin (rung 4) is honest-postulated (PAPER29, K001 N-body).
+   [IDENTIFICATION-CARRIED                      ] triad identification kappa=sigma^2/v^2=c_s^2 ('fitted')
+      cite: HORIZON-BTFR L58 :: kappa = \sigma^2/v_{\rm flat}^2 = c_s^2 = 1/2$; the coefficient $1/2$ is $\kappa$, fitted);
+   [DERIVED-IN-CHASSIS (given one-function family)] G002 chassis: kappa=1/n from deep-slope reciprocal
+      cite: G002 out L55/L100 :: kappa = 1/n = 1/2                            -- from the same integer SPARC measured
+   [EMPIRICAL-TIE                               ] GF1 H2: tie empirical, one integer input
+      cite: GF1 out L64 :: the tie is NOT derivable in-lane: it is an empirical closure at 0.06%-class footing; the reduction preserves e
+   [OPEN-DOOR (declared)                        ] GF2 border 3: vacuum coupling out of scope
+      cite: GF2 README L60-61 :: OUT of scope here; committed temperature-ladder machinery (G132/G151/G163), cited, not re-run.
+   [LEAN-CERTIFIED-TRACK (dynamical face)       ] Q007 Lean: sigma^2=v_flat^2/2 amplitude identity
+      cite: lean/Q007_triad_half.lean :: coefficient and the temperature coefficient are ONE identity
+   [LEAN-CERTIFIED-TRACK (c_s leg of triad)     ] Q001 Lean: sigma_Z^2 = c_s^2 constitutive
+      cite: qwen38_push/README.md Q001 :: σ_Z² ≡ c_s² ≡ P/ρ_ph
+   [RECORDED-NOT-REPAIRED (sibling hygiene)     ] Q007 py-lane traceback (assert V1) — lane-state fact
+      cite: Q007_virial_half.out L5 :: density coefficient inconsistent with linear mass law
+
+J5 capacity-DE: Sigma_max = a0/(pi G) = kappa c sqrt(rho_DE/G)/pi  [exact True]
+   kappa=1/2: 213.8 Msun/pc^2 (PAPER49's 214 anchor); kappa=1/4 (n=4-cap a0/2): 106.9
+   zero-mode: derivative-quantities shift-invariant, f(0) moves 1:1 [exact True] -> PASS
+
+J5-pre Lean statement prechecks: {'L3 laplacian': True, 'L4 hydrostatic forcing': True, 'L5 two-point': True, 'L6 germ': True, 'L7 capacity cleared': True, 'L9 kappa=1/gamma': True}
+
+====================================================================================================
+VERDICT (pre-registered vocabulary): UPHELD-QUALIFIED
+  Register line (proposal to conductor): kappa = 1/2: DERIVED as the closure coefficient
+  of the dynamical face — three independent routes (GF2 closure algebra; Q001 constitutive
+  EOS, Lean; Q007 amplitude identity, Lean) — germ face tied by the exact kappa=1/n web;
+  cross-face identification = rung 5 (carried postulate, cited); value anchored
+  empirically at 0.06% (n_germ = 2.000102 +/- 0.0172, three channels + lockstep falsifier).
+  The single door to UPHELD-FULL: derive rung 5 from S2 + relativistic completion.
+  gates: {'J1': True, 'J2': True, 'J3': True, 'J4': True, 'J5': True, 'J5pre': True}
+Q010 MAIN COMPLETE: PASS
+
+ASSUMPTION LEDGER — cold energy / dark energy (status + evidence):
+   [COLD ENERGY] POSTULATED                                           collisionless rest-mass medium, displacement P, dt P = -j, div P = rho-rhobar
+                 evidence: S3 (canonical L26, CFG723)
+   [COLD ENERGY] POSTULATED                                           action S2 (tether W_rem, stiffness gamma=KL*^2/2)
+                 evidence: S2 (canonical L18-19)
+   [COLD ENERGY] DERIVED + LEAN                                       rest state = the law gbar = g^2/(g+a0)
+                 evidence: AG4 (f111b2d8d), T1-T3
+   [COLD ENERGY] DERIVED + LEAN                                       tether capacity u < a0 (Sigma_max = a0/(pi G) = 213.7 Msun/pc2)
+                 evidence: AG4 T5 + Q010 J5
+   [COLD ENERGY] DERIVED + LEAN                                       uniqueness of rest state (per radius, ansatz)
+                 evidence: AG4 T4
+   [COLD ENERGY] DERIVED + LEAN                                       cored settled halo M_ph/Mb = (sqrt(1+4x^2)-1)/2
+                 evidence: ARGON02 + AG4 T8
+   [COLD ENERGY] DERIVED (this lane J1/J2)                            A/r^2 self-source: gamma=2 unique; sigma^2 = C/2
+                 evidence: GF2 + Q001/Q007 Lean + Q010
+   [COLD ENERGY] MEASURED (CFG511) + derived profile                  supply M_c = 5.364 M_b; edge 5.843 r_M
+                 evidence: ARGON02 P1/P3
+   [COLD ENERGY] NUMERIC/MEASURED                                     settle/attractor (deficits fill, surpluses expel)
+                 evidence: CFG747/748/776
+   [COLD ENERGY] DERIVED from constants                               native mass 2.24 meV; sub-mm line 0.55 mm
+                 evidence: ARGON03
+   [COLD ENERGY] DERIVED (kill)                                       aether-like; massive-particle reading excluded (26x)
+                 evidence: khronon BSK1/BSK2
+   [COLD ENERGY] POSTULATED (S4, single-field tension)                second (untethered) population on unbinding
+                 evidence: S4 canonical L32-38
+   [COLD ENERGY] MEASURED, not derived                                Omega_c/Omega_b = 5.364
+                 evidence: S3 canonical L27; open item §3
+   [COLD ENERGY] BOUNDED, not derived                                 L* in [5.75pc, >~1kpc]
+                 evidence: S2 canonical L19; open item §3
+   [DARK ENERGY] DERIVED (theorem)                                    rho_DE enters local dynamics only via a0 (C0-invisible)
+                 evidence: ARGON01 N1
+   [DARK ENERGY] MEASURED                                             a0 tracks COSMIC rho_DE (slope -0.010+/-0.015 vs +0.5 local)
+                 evidence: S1 canonical L13-14
+   [DARK ENERGY] EMPIRICAL-TIE                                        tie rho_DE c^2 = 4 a0^2/G at 0.06%
+                 evidence: GF1 C1a/H2; registers
+   [DARK ENERGY] DERIVED (algebra) + MEASURED pin                     zero mode dead: shift moves DE 1:1, |c|<0.02; kappa/a0/RAR invariant
+                 evidence: G002 V16 + Q010 J5b
+   [DARK ENERGY] DERIVED-IN-CHASSIS (G002 one-function), not from S2  w = -1
+                 evidence: G002 V-line; ledger caveat
+   [DARK ENERGY] SEALED TEST (ALMA 2026-11-06/28)                     a0(z) flat vs DE-tracking
+                 evidence: canonical §2
+   [DARK ENERGY] OPTIONAL BRANCH, FRB-bounded                         S5: BH-sourced DE branch (a0(z~2)/a0(0)=0.85)
+                 evidence: S5 canonical L40-43
+   [BRIDGE     ] DERIVED (3 routes; 2 Lean)                           kappa_dyn = sigma^2/v_flat^2 = 1/2
+                 evidence: GF2 + Q001 + Q007 + Q010 J1
+   [BRIDGE     ] DERIVED (exact algebra)                              kappa_germ = a0/s = 1/n (web; underdetermined by ONE integer)
+                 evidence: GF1 R1 + Q010 J3
+   [BRIDGE     ] IDENTIFICATION-CARRIED via rung 5                    junction kappa_dyn = kappa_germ (triad)
+                 evidence: THEORY.md L64 + HORIZON-BTFR L58 + Q010 J4
+   [BRIDGE     ] THEORY: gamma=2 closure (J1/J2) + DATA: 2.000102+/-0.0172 (3 channels) n = 2 (the integer)
+                 evidence: GF2/GF1/G002 + lockstep falsifier
+   [BRIDGE     ] DERIVED conditional on rung 5 (exponent only, not value) transport gamma=2 <=> n=2 shape
+                 evidence: GF1 R3b
+
+results -> q010_results.json

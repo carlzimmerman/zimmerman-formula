@@ -1,0 +1,40 @@
+CE-FM-003: collisionless preparation has a nonzero kinetic floor for bounded phase density
+Primary verdict: conditional analytical obstruction to exact force-free settling for smooth bounded phase-density data, plus numerical necessary conditions for near-law states. Self-review; not a general cold-energy no-go.
+
+Mass phase-space distribution f satisfies rho(x)=integral f(x,v)d^3v, f>=0, f<=F<infinity. The specified smooth velocity-independent conservative Vlasov flow preserves this upper bound, since phase-space divergence is zero and f is constant on characteristics. Coarse averaging cannot increase the same bound. Spherical forces also preserve each particle's individual angular momentum. Escape can remove particles but cannot lower a retained particle's angular momentum without an added torque.
+
+Elementary velocity-ball inequality, proved without a literature leaf:
+Let v_*=(3rho/(4piF))^(1/3) and f_*=F 1_{|v|<v_*}. At fixed rho both f and f_* have the same integral. Therefore
+ integral (v^2-v_*^2)(f-f_*)d^3v>=0:
+ inside the ball both factors are nonpositive; outside both are nonnegative.
+Cancel the equal-mass term to obtain
+ tau(x)=(1/2)integral v^2 f d^3v >= C F^(-2/3)rho^(5/3),
+ C=(3/10)(3/(4pi))^(2/3),
+ K>=C F^(-2/3)integral rho^(5/3)d^3x.
+It holds for ordinary bounded functions in velocity space with the stated finite moments. It does not apply to a delta-sheet cold distribution, a condensate wavefunction or an externally cooled collision operator without an appropriate distribution bound.
+
+Combine with the CE-FM-001 stationary virial identity for a finite isolated carrier with zero surface stress/flux:
+ 2K=integral rho r[g_N-R(u)]dV.
+Exact force-free law R(u)=g_N on all occupied points gives K=0. Nonzero mass with finite F gives K>0 by the inequality. Hence a smooth bounded collisionless carrier cannot form that exact finite stationary law under these assumptions. This does not exclude approximate agreement, open boundary flux, cosmological time dependence, primordial singular sheets or additional reciprocal cooling. It makes a required preparation assumption explicit.
+
+Quantitative necessary preparation in G=a0=M_b=1:
+Take M(r)=k M0(r), 0<k<1, 0<r<R, M0=(sqrt(1+4r^2)-1)/2, rho0=1/[2pi r sqrt(1+4r^2)]. Set u0=M0/r^2. The full saturating virial kinetic budget is
+ K_vir=(k/2)integral_0^R [M0'(r)/r][1-k^2(1-u0)/(1-k u0)]dr.
+The phase-density bound requires
+ F >= [C integral (k rho0)^(5/3)dV / K_vir]^(3/2).
+This is necessary, not sufficient: no positive stationary distribution function or physically justified outer boundary is constructed. Dimensionless F converts with rho_unit/v_unit^3, rho_unit=M_b/r_M^3 and v_unit=(G M_b a0)^(1/4). No cosmological or measured F has been supplied; these tables do not exclude an observed population.
+
+For R=50 the required F is .003026,.010446,.022809,.047166,.220016 for k=.5,.8,.9,.95,.99. At R=10 corresponding F=.003733,.011584,.023470,.045459,.189384. Finite checks include packed-ball equality and 256/512-node quadrature agreement better than1e-7.
+
+Important failed check and corrected asymptotic
+run_003 failed an anticipated decade-growth ratio>15; preserve that failure, its original script and manifest. Investigation found the ideal point-source central cusp changes the asymptotic. With delta=1-k and small r, 1-u0~r^2, M0'/r~2, and the virial deficit factor~delta/(delta+r^2). Thus
+ K_vir ~ (pi/2)sqrt(delta),
+ F_required ~ constant delta^(-3/4).
+The region away from the central boundary layer contributes lower-order terms. A fixed finite inner cutoff would change this scaling and requires explicit boundary stress; it cannot inherit the point-source exponent.
+The corrected run_003_v2 tests this independently derived coefficient at delta1e-5 to2%, and the decade exponent between delta1e-4 and1e-5 to3%. It passes43 checks. The failed run is not retrospectively passed. PHASE_SPACE_CORRECTION.txt records the correction; both scripts remain. The corrected manifest has been validated against its inputs.
+
+Practical continuation
+The carrier-source bridge must predict an initial F and angular-momentum distribution, or derive reciprocal cooling/torques. Merely assuming an anchored, nearly at-rest medium leaves this preparation unproved. The existing two-field quantum production bound is a possible input but is not automatically a classical phase-density bound or a halo formation result. Its source charge, production epoch and gravity/expansion work remain necessary inputs.
+
+Claude clue reconciliation
+New commit1fe157726 certifies CFG724 formula algebra, potential derivatives, asymptotic mass and a clock-family inequality. Read its correspondence table and raw theorem locators. It adds conditional mathematical evidence for the static formulas; it does not certify the phase-space preparation, kinetic selector, basin anchor, energy export or cosmological abundance used here. No contradiction is implied by the new local obstruction.

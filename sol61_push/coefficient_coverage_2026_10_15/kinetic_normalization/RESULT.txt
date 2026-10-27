@@ -1,0 +1,104 @@
+KINETIC NORMALIZATION ESCAPE — 2026-10-15
+Status: explicit fixed-frame scalar construction; not a gravity completion.
+
+Research decision
+The constant high-acceleration force offset found in the relaxing-auxiliary
+model is avoidable if time kinetic normalization is allowed to exceed the
+asymptotic Newtonian spatial normalization. This respects the old conditional
+no-go theorem: it changes an assumption, rather than disproving that theorem.
+The interpolation used here is known, and no global novelty is claimed.
+
+1. Explicit action and conventions
+Fix flat spacetime and a preferred inertial frame, reference light speed c=1.
+Let K_N,v0,q,M>0, eta=9/8, v=|grad chi|, t=v/v0, and
+ L = K_N eta (dot chi)^2/2 - E(v) - q rho chi/M - E0,
+ E(v) = K_N v0^2 [t sqrt(1+t^2) - asinh(t)]/2.
+The matter source is prescribed; the frame has no dynamical degrees of freedom.
+The scalar models the entire nonrelativistic force potential q chi/M; it is
+not an extra force added on top of a separate Newtonian field.
+
+E'(v)=J(v)=K_N v mu(t), mu(t)=t/sqrt(1+t^2).
+Field equation: K_N eta ddot chi - div[ K_N mu grad chi ] = -q rho/M.
+Static equation: div[ K_N mu grad chi ] = q rho/M.
+E(0)=0, E' >=0. The source-free Hamiltonian density, after subtracting E0,
+is K_N eta (dot chi)^2/2+E(v)>=0. This does not assert positivity for the
+source-coupled system or prove nonlinear global regularity.
+
+2. Exact local scalar characteristic bound
+For a background with v>0, the spatial Hessian of E has eigenvalues
+ K_N mu(t) (twice), K_N F(t),
+ F(t)=t(t^2+2)/(1+t^2)^(3/2).
+The time Hessian is K_N eta, with no mixed time-space block. Thus the frozen
+principal symbol has squared speeds mu/eta and F/eta, including on
+nonstationary scalar backgrounds. The frame and metric remain fixed.
+F'(t)=(2-t^2)/(1+t^2)^(5/2), hence
+ max F = F(sqrt(2)) = 4 sqrt(6)/9 = sqrt(32/27).
+It suffices to choose eta >= sqrt(32/27) for non-superluminal propagation;
+strict inequality gives strict subluminality at every v>0.
+The minimum increase over equal normalization is approximately 8.866%.
+Our convenient eta=9/8 is a freely chosen parameter, not selected physics.
+
+Independent exact algebra check with x=t^2:
+ 32(1+x)^3 - 27x(x+2)^2 = (x-2)^2(5x+8) >= 0 for x>=0.
+Also 32/27 < (9/8)^2. Positivity of mu,F for t>0 turns these squared
+bounds into the speed bounds. Lean proves the polynomial and rational
+inequalities; the action differentiation and principal-symbol interpretation
+are documented analytical reductions, not fully formalized in Lean.
+
+At v=0 the spatial quadratic form vanishes. Time kinetic remains positive,
+but strict spatial hyperbolicity is lost: this is not a uniform stability
+proof through zero-gradient regions. At high gradient both squared speeds
+tend to 8/9, not 1. This slower scalar cone is the explicit tradeoff.
+
+3. Force law and exact high-acceleration recovery
+Outside a positive spherical mass M_b, the integrated flux is
+ r^2 J = q M_b/(4 pi M).
+Define g=qv/M, a0=qv0/M, G_N=q^2/(4 pi K_N M^2), g_N=G_N M_b/r^2.
+Then g mu(g/a0)=g_N, with unique positive solution
+ g^2 = [g_N^2 + sqrt(g_N^4+4g_N^2 a0^2)]/2.
+Deep acceleration: g/sqrt(a0 g_N) -> 1 as g_N/a0 -> 0.
+High acceleration: g-g_N = a0^2/(2g_N)+O(a0^4/g_N^3) -> 0.
+Thus the previous constant a0/3 offset is absent in this model. This is a
+spherical isolated-source result, not a general algebraic solution for disks
+or an external-field calculation.
+
+The old obstruction used D=K_N v-J and J'<=K_N, implying D'>=0.
+Here the characteristic condition is only J'<=eta K_N. Indeed F>1 in
+part of the transition, so D can decrease to zero while scalar waves remain
+slower than the reference light speed. The deficit eta K_N v-J remains
+nondecreasing but is not the deficit relative to the measured Newtonian law.
+This distinction between the two coefficients is the mechanism.
+
+4. Relation to existing physics and limits
+The standard MOND mu=x/sqrt(1+x^2) is explicitly given in Zhao & Famaey,
+Refining MOND interpolating function and TeVeS Lagrangian, arXiv
+astro-ph/0512425v3, Eq. (6), https://arxiv.org/html/astro-ph/0512425.
+Their Eq. (2) and discussion of Eq. (4) distinguish total force from an
+additional TeVeS scalar force. We cannot automatically insert this scalar
+as an additive TeVeS component: that changes the force relation and can
+produce a multivalued scalar interpolation. No current observational
+assessment is inferred from that historical paper.
+
+The work here establishes a construction and an exact coefficient bound,
+not a new MOND interpolation or an observationally viable theory. The
+preferred frame is imposed. Lensing, matter dynamics, tensor modes,
+cosmological equations, radiative stability, external-field constraints,
+and the dynamics that generate a preferred frame are not supplied.
+E0 is arbitrary and drops out of the scalar equation. a0 is also an input.
+Consequently this does not select Lambda/a0^2=32 pi, or 3/128. The 32 in
+32/27 is a property of this chosen interpolation's maximum and provides
+no connection to the target vacuum coefficient.
+
+5. Evidence and next discriminating step
+check.py: 15 passing exact SymPy identities/limits/inequalities. No sampling.
+KineticBound.lean: 5 compiled algebraic theorems; no sorryAx. Usual Mathlib
+axioms propext, Classical.choice, Quot.sound are printed in lean_build.out.
+run/manifest.json records bounded-run provenance; lean_verification.json
+records the successful Lean invocation and hashes. An initial invocation
+used the wrong relative source destination and failed before source creation;
+the corrected absolute-path invocation is the verified one.
+
+The next substantive test is a dynamical preferred-frame completion with
+its coupled constraints and characteristic matrix, while retaining the total
+force normalization above. A stable fixed-frame scalar alone cannot answer
+that question. Vacuum-scale selection remains a separate unsolved problem.

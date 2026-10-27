@@ -1,0 +1,189 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP008_CONDITIONAL_GLOBAL_WALL_STATE",
+  "repository": {
+    "commit": "15c0894c1f3338954ebceffd7aa5a3de58115729",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_global_kernel/global_state/check_wall.py",
+    "fine_structure_puzzle/qcd_global_kernel/global_state/run_001/RESULTS.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact symbolic stress/charge, finite-sector covariance, multiplicity, entropy, critical and latitude-area identities; 72 fixed dimensionless partition-derivative cases at each of 60 and 90 digits, with four derivative comparisons per case and precision stability.",
+    "coefficient_domain": "SymPy exact symbolic expressions over rational constants and pi; mpmath arbitrary precision numerical derivatives",
+    "conventions": "W=-logZ; SAME curved-background Z0; V=8pi^2/(3H^4); rho=-H*d_H W/(4V); u=e^2; sigma(u) independent of H in metric derivatives; positive wall weights",
+    "inputs": [
+      "INPUTS.json dimensionless fixture; symbolic sigma(u), log kappa(H,u); declared partition model only"
+    ],
+    "bounds": {
+      "sigma0": [
+        "1/5",
+        "1"
+      ],
+      "kappa0": [
+        "1/3",
+        "2"
+      ],
+      "nu0": [
+        -2,
+        0,
+        3
+      ],
+      "h": [
+        "1",
+        "1/2",
+        "1/4"
+      ],
+      "u": [
+        "0",
+        "1/7"
+      ],
+      "sigma(u)": "sigma0*(1+u+u^2/5)",
+      "log_kappa(h,u)": "log(kappa0)+(nu0+u/3)*log(h)+u/5",
+      "cases": 72,
+      "decimal_precisions": [
+        60,
+        90
+      ],
+      "relative_tolerances": [
+        "1e-40",
+        "1e-65"
+      ],
+      "precision_stability_relative_tolerance": "1e-45"
+    },
+    "non_claims": [
+      "No microscopic or physical theta=0 QCD wall sector/tension/measure",
+      "No evaluation of bulk Z0 or full physical A_rho, R(alpha), proton mass or alpha selection",
+      "Finite grid does not establish an asymptotic limit; universal result uses separately stated analytic bound",
+      "No interval certificate for numerical derivatives",
+      "No inference from theta=pi or axion walls; no all-QCD no-go",
+      "No empirical input, alpha/target fit, author message, install, lattice job or Git mutation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T13:50:54.424776+00:00",
+    "runtime_seconds": 0.727453,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_global_kernel/global_state/check_wall.py",
+    "fine_structure_puzzle/qcd_global_kernel/global_state/DERIVATION.md",
+    "fine_structure_puzzle/qcd_global_kernel/global_state/REPORT.md",
+    "fine_structure_puzzle/qcd_global_kernel/global_state/INPUTS.json",
+    "fine_structure_puzzle/qcd_global_kernel/global_state/SOURCE_RECEIPTS.json",
+    "fine_structure_puzzle/qcd_global_kernel/global_state/REPRODUCE.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/global_state/check_wall.py",
+      "sha256": "c5a2ca6bbbefe5c2e82e1c04a5b484b933165abc933a433cafb91239912442e2",
+      "sha256_after": "c5a2ca6bbbefe5c2e82e1c04a5b484b933165abc933a433cafb91239912442e2"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/global_state/DERIVATION.md",
+      "sha256": "17c203c0ea0d86df883f5b73a969dbba4c74cdbdb9cfbdd2857dc3e7b9de39b6",
+      "sha256_after": "17c203c0ea0d86df883f5b73a969dbba4c74cdbdb9cfbdd2857dc3e7b9de39b6"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/global_state/REPORT.md",
+      "sha256": "f6e02a55276ab4cbf6820517c9c1b61d127028d6e341cb588a5bf95d9d44ea65",
+      "sha256_after": "f6e02a55276ab4cbf6820517c9c1b61d127028d6e341cb588a5bf95d9d44ea65"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/global_state/INPUTS.json",
+      "sha256": "0bdac5694a0d9207f039d81d34a2f15507ce571730ab45eaf894dc6203578d6d",
+      "sha256_after": "0bdac5694a0d9207f039d81d34a2f15507ce571730ab45eaf894dc6203578d6d"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/global_state/SOURCE_RECEIPTS.json",
+      "sha256": "18d093aa001d6eeb9e30856ed175ee3ed35cdb113c085a623f8de0d344d20b0b",
+      "sha256_after": "18d093aa001d6eeb9e30856ed175ee3ed35cdb113c085a623f8de0d344d20b0b"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/global_state/REPRODUCE.md",
+      "sha256": "3bbff3e313b2033c942d249d7489df5b71b3f2194368d86947fd756b1502c231",
+      "sha256_after": "3bbff3e313b2033c942d249d7489df5b71b3f2194368d86947fd756b1502c231"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_global_kernel/global_state/run_001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_global_kernel/global_state/run_001/RESULTS.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/global_state/run_001/stdout.txt",
+      "sha256": "10a6717a588bcf5e85f1fd9f8e69c58410bae67a95bc349544daf8676362ee9f",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/global_state/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/global_state/run_001/RESULTS.json",
+      "sha256": "f13482a1899626970e4b05f39ba77a4f2d3890e4d54c5ad91893a7aa93277230",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

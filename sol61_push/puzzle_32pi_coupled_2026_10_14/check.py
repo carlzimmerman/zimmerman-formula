@@ -1,0 +1,32 @@
+import sympy as s,json
+x,y,C,E,k,b,M,g=s.symbols('x y C E k b M g',real=True)
+checks=[]
+def ck(name,expr):
+ assert s.simplify(expr)==0,(name,expr)
+ checks.append(name)
+W=E+k*x**2/2+b*x**3/6+b**2*x**4/(16*k)
+V=W+M*(y+g*x**2/(2*M))**2/2
+ymin=-g*x**2/(2*M)
+ck('hidden_stationary',s.diff(V,y).subs(y,ymin))
+ck('exact_relaxed_polynomial',V.subs(y,ymin)-W)
+ck('polynomial_global_minimum_certificate',W-E-x**2*((b*x+4*k/3)**2/(16*k)+7*k/18))
+ck('quadratic',s.diff(W,x,2).subs(x,0)-k)
+ck('cubic',s.diff(W,x,3).subs(x,0)-b)
+ck('quartic',s.diff(W,x,4).subs(x,0)-3*b**2/(2*k))
+ck('relaxed_shape',s.diff(W,x,4).subs(x,0)*k/b**2-s.Rational(3,2))
+ck('energy_ratio',W.subs(x,0)*b**2/k**3-E*b**2/k**3)
+ck('bare_quartic',s.diff(V,x,4).subs({x:0,y:0})-3*b**2/(2*k)-3*g**2/M)
+L=C-x-s.log(1-x)
+U=L+M*(y+g*x**2)**2/2
+ck('log_hidden_stationary',s.diff(U,y).subs(y,-g*x**2))
+ck('log_exact_relaxation',U.subs(y,-g*x**2)-L)
+ck('full_response',s.diff(L,x)-x/(1-x))
+ck('log_second',s.diff(L,x,2).subs(x,0)-1)
+ck('log_third',s.diff(L,x,3).subs(x,0)-2)
+ck('log_fourth',s.diff(L,x,4).subs(x,0)-6)
+ck('log_shape',s.diff(L,x,4).subs(x,0)*s.diff(L,x,2).subs(x,0)/s.diff(L,x,3).subs(x,0)**2-s.Rational(3,2))
+ck('log_energy_ratio',L.subs(x,0)*4-4*C)
+ck('force_independent_of_C',s.diff(L,x,C))
+ck('area_target',2*s.pi*(16*s.pi)-32*s.pi**2)
+ck('different_area',2*s.pi*(8*s.pi)-16*s.pi**2)
+print(json.dumps({'checks':checks,'count':len(checks),'scope':'Exact static elimination and derivatives; k,M>0,b nonzero for polynomial ratios; x<1,M>0 for logarithmic model. No microscopic selection or dynamical gravity proof.'},indent=2))

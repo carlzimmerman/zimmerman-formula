@@ -1,0 +1,26 @@
+# Focused self-review of FSP-H-001
+
+Reviewed 2026-10-19. Primary verdict: **conditional on named input**. This is the author's self-review, supplemented by the coordinator's independent derivation of the critical normalization, exact screened kernel, bounded remainder, fixed-l gaps and finite-source factor; it is not a fresh independent audit of every argument. The frozen S2 action and current computation are pinned by run003/manifest.json.
+
+Claim card: with fixed positive electron/proton masses, standard electromagnetic coupling, standard inertial kinetic energy, and the candidate reciprocal microscopic quadratic response of frozen S2, the short-distance extra pair potential is +G me mp r/Lstar² plus a constant and higher-order/background terms. In the stated perturbative hydrogen problem, the corresponding 1s-to-2s frequency shift is 9G me mp a/(2h Lstar²). For any admitted stable atomic/medium minimum whose only explicit alpha dependence is the attractive Coulomb term, the minimum energy is strictly decreasing in alpha.
+
+Dependency graph: frozen action -> variation and Gauss constraint -> medium Green kernel -> reciprocal cross term -> pair Hamiltonian -> normalized radial moments -> level shift and size susceptibility. Microscopic current/continuum/quantum assumptions are leaves with no proof in the frozen source. The sign/monotonicity result depends on fixed masses and common state domain; it does not depend on the tiny numerical result. The screened remainder bound additionally depends on a globally isotropic positive A and a bounded central pair potential.
+
+| Obligation | Result | Check |
+|---|---|---|
+| Source quantities and branch | Conditional | rho is continued to ordinary rest-mass source operator; baryon-number-only and expectation-density sources distinguished. Modified inertia not used. |
+| Sign and normalization | Passed algebra; independent coordinator cross-check | P variation, gamma/K=Lstar²/2, vector Delta(rhat)=-2rhat/r² and Fourier 1/k⁴ identity agree. One-half rho Phi retains exactly one pair cross term. |
+| Reduced mass and canonical coordinates | Passed algebra | Symmetric mu; center-of-mass separation; finite proton mass retained in a and energies. |
+| Radial normalization and perturbation | Computationally verified in declared range | Three analytic states; quadrature, two finite-difference meshes, and exact Dalgarno solution. Physical tiny shift obtained by rescaling verified derivative. |
+| Finite source | Passed algebra and finite controls | Piecewise uniform-ball kernel; center regularity and surface force match; 12 independent angular-convolution points. Mass radius not identified as a measured charge radius. |
+| Finite screened kernel | Passed algebra and finite controls | Exact rational expectations checked with direct radial quadrature for z=.1,1,4; physical z evaluated with 100 digits. |
+| Error bound | Conditional analytic argument | For bounded V, use the P/Q eigenvector equations. The Q resolvent distance is at least Delta-2||V|| by spectral norm perturbation, yielding remainder <=||V||²/(Delta-2||V||). Fixed-l sectors avoid Coulomb n=2 degeneracy; C is far below all gaps. |
+| Alpha stationarity | Passed within stated hypotheses | Variational inequality between alpha2>alpha1 proves strict monotonicity for an attained stable minimum on a common admissible domain. Envelope derivative agrees. Mass/vacuum dependence on alpha excluded explicitly, not disproved. |
+| External theorem applicability | Restricted | Milgrom v2 Eq.23 verified only for the deliberately different DML classical control; stiffness and quantum-atom hypotheses do not match. |
+| Quantum/dynamical completion | Not addressed | No carrier action, microscopic cutoff, noise/retardation or joint field quantization has been supplied. Therefore no unconditional atomic prediction of frozen theory. |
+
+Boundary and adversarial checks: swapping masses preserves the reduced mass and pair coefficient; setting G=0 turns off gravity; doubling Lstar quarters the shift; a scalar-Laplacian mutation leaves a normalized source residual near one, while the Cartesian vector derivative satisfies the source equation; dropping stiffness changes the computed control by 5.4e57. The unphysical pure-linear potential at arbitrarily large r is not used to claim an absolute ionization energy. The fixed isotropic screened extension supplies a separate global bounded example and a scoped error estimate.
+
+Smallest missing implication: microscopic ordinary-matter and medium currents must derive the source operator and transfer function at atomic wave number, with reciprocal energy/momentum accounting. No extra manipulation of atomic observables removes that missing input. A varying gauge coefficient or alpha-dependent masses could evade monotonicity but would be a different bridge requiring independently fixed couplings.
+
+Proofreading self-review covered the new REPORT.md, SOURCES.md and this record: routine correction categories none; mathematical-token changes none; displayed delimiters, locally defined symbols and equation normalizations were inspected. Residual physical and proof restrictions are the ones above. No document build exists or was invented for these Markdown reports.

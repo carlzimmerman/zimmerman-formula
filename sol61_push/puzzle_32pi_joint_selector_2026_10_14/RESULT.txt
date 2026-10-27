@@ -1,0 +1,171 @@
+JOINTSELECTOR32PI — dynamically stable ratio, unselected coupling
+2026-10-14. Original physical 32 pi^2 prediction remains OPEN.
+Base and input hashes: inputs.json. Exclusive writes: this directory.
+Self-review only; no independent review or full physical completion.
+
+Target and distinction from previous work
+Test an action in which a positive scalar scale and de Sitter curvature are
+both varied. A successful selection must predict Lambda/a0^2=32 pi, or
+equivalently a0^4 Vol(S4)=3/128, without inserting that number in a coupling.
+The previous reciprocal-potential/GB construction left a neutral vacuum
+family. The construction here has a restoring homogeneous mode on a lower
+branch and fixes a ratio independent of its potential's overall amplitude.
+It still leaves a free dimensionless coupling, and is not a MOND theory.
+
+1. Declared action and constrained stability calculation
+Use c=hbar=1, signature -+++, M^2=M_Pl^2>0 and a canonical scalar phi>0:
+ S=integral sqrt(-g)[M^2 R/2 -(partial phi)^2/2 -U(phi)+f(phi) E4].
+The proposed identification a0=phi_vac is an explicit hypothesis. No
+covariant polarization/source sector deriving this identification is supplied.
+Take a logarithmic curvature coupling f=beta log(phi/F), beta,F>0.
+This is a chosen classical function, not an anomaly-matched quantum action.
+
+On a constant-scalar, expanding de Sitter solution,
+ 3 M^2 H^2=U, U'=24 H^4 f'.
+Varying the metric constraint along with the scalar equation gives
+ D delta_phi_ddot+3 H D delta_phi_dot+N delta_phi=0,
+ D=1+96 H^4 f'^2/M^2,
+ N=U''-24 H^4 f''-384 H^6 f'^2/M^2.
+The last term is crucial: freezing the curvature misses a possible tachyon.
+It follows by substituting
+ delta_H=(4 H^3 f'/M^2)delta_phi-(4 H^2 f'/M^2)delta_phi_dot
+into the linearized scalar equation. This derivation is checked symbolically.
+
+For any positive U, define p=d log U/d log phi and p_dot=d p/d log phi.
+At a stationary point for the logarithmic f,
+ N=(U/phi^2)(p_dot-p^2).
+For U=lambda phi^p with constant nonzero p, N=-p^2 U/phi^2<0.
+Thus a pure-power potential does not supply a homogeneous stable positive
+vacuum in this class. This closes that candidate, not all scalar potentials.
+
+2. A potential that supplies a restoring branch
+Choose U=U0 exp(phi^2/F^2), U0>0. Let
+ z=phi_vac^2/F^2, epsilon=F^2/M^2, eta=4 beta U0/(3 M^4).
+The two vacuum equations reduce to
+ z exp(-z)=eta, H^2=M^2 z/(4 beta).
+For 0<eta<1/e, there are two positive roots, one below 1 and one above 1.
+The function z exp(-z) increases up to 1 and decreases thereafter, so this
+root count follows analytically, not from a scan. At eta=1/e the roots merge.
+
+At either root,
+ D=1+6z/epsilon,
+ N=4U(1-z)/F^2,
+ m_eff^2/H^2=12(1-z)/(epsilon+6z).
+Therefore 0<z<1 has D>0 and positive restoring mass. Both characteristic
+exponents of the homogeneous equation have negative real part. The z>1
+root has a tachyonic growing mode; z=1 is marginal in this linear test.
+This is a coupled homogeneous result, not a global or sourced stability proof.
+
+The curvature ratio on either stationary branch is
+ R=Lambda/phi_vac^2=3M^2/(4 beta F^2)=3/(4 gamma),
+ gamma=beta F^2/M^2.
+U0 changes which phi_vac and H are selected, but cancels from this ratio.
+Unlike the earlier neutral family at fixed action, the lower root is isolated
+and restoring for fixed parameters. This is a genuine dynamical locking of
+two scales under the stated action and identification.
+
+3. Does stability choose the required value? No
+The desired coefficient is equivalent to
+ gamma=3/(128 pi).
+The associated dimensionless round-sphere volume is
+ phi_vac^4 Vol(S4)=(128/3) pi^2 gamma^2,
+which equals 3/128 only at that chosen gamma.
+
+There is an exact stable counterfamily: fix M,F and any z in (0,1), choose
+ANY gamma>0, and set
+ beta=gamma M^2/F^2,
+ U0=[3M^4/(4 beta)] z exp(-z).
+Every member satisfies the stationary equations and positive homogeneous
+mass test. Gamma=3/(128 pi) gives R=32 pi; gamma=3/(64 pi) gives R=16 pi.
+The dimensionless trajectory equations below do not depend on beta at fixed
+z and epsilon. Consequently the sampled stability behavior does not separate
+those two couplings either. This is not evidence that all gamma give viable
+galactic or quantum theories; those additional obligations remain untested.
+
+The exponential was engineered by solving the desired amplitude-insensitive
+structure: for log f and a constant desired R, the vacuum equations require
+ d log U/d phi=(8 beta R/(3M^2)) phi.
+Integration produces an exponential in phi^2. Its exponent therefore encodes
+the free ratio; its mathematical success is not independent microphysics.
+
+4. Nonlinear homogeneous tests and propagation diagnostics
+Normalize y=phi/phi_vac, h=H/H_vac, tau=H_vac t, u=dy/dtau. The exact
+homogeneous equations are solved as a 2x2 linear system for u',h':
+ [epsilon, -6h^2/y; 2z h^2/y, 2+4z h u/y] [u';h'] =
+ [-3epsilon h u-6y exp(z(y^2-1))+6h^4/y;
+  -epsilon z u^2+2z h^3 u/y+2z h^2 u^2/y^2].
+Initial data u=0 and h=exp[z(y^2-1)/2] satisfy the Friedmann constraint.
+This normalization avoids losing the small-z branch to underflow.
+
+The run uses epsilon=1, z in {10^-12,.1,.5,.9,1.5}, y initially .98 or1.02,
+and tau<=60. All eight lower-branch trials move toward y=h=1. At z=.9 the
+slow restoring mode is not fully relaxed: final y=.9996273 or1.0005452.
+The smaller z cases reach equilibrium to numerical precision. On z=1.5,
+the downward perturbation approaches the other stable branch (y~.645915),
+and the upward perturbation hits the declared y=3 bound at tau~15.23448.
+This is growth, not a claim of a singularity after the integration stop.
+
+At 5001 samples per trajectory the normalized tensor kinetic QT, tensor
+gradient FT, scalar kinetic Ksbar and scalar speed squared remain positive.
+Across the lower-branch samples the smallest scalar speed squared is about
+.97705 and the smallest tensor gradient coefficient about .97060. These are
+bounded sample statements. The code also stops if a coefficient crosses zero.
+No matter fluid, galaxy, compact source, or primordial cosmology is included.
+
+The initial run at rtol=10^-9 failed its fixed absolute Friedmann residual
+threshold 10^-6 on the runaway branch (residual 1.76e-5 while H grew to32).
+That failure and its inputs are preserved. Tightening to rtol=10^-11, without
+changing the threshold, passes all ten cases (largest residual1.12e-7).
+Two cases were refined to3e-12: the stable near-threshold and runaway final
+values agree closely; the runaway residual falls to3.16e-8. No tolerance
+failure was discarded or relabeled as a physical instability.
+
+5. Two further selection/protection tests
+Additive vacuum shifts are not canceled. Replacing U by Uexp+Delta, at a
+new positive stationary point define t=Delta/Uexp. The scalar and metric
+equations imply exactly
+ Lambda/phi^2=[3M^2/(4 beta F^2)]/(1+t).
+A positive offset changes the ratio, provided the new stationary solution
+exists. Independence of multiplicative U0 is not independence of additive
+vacuum energy. Importing sequestering would change these same metric equations
+and must be rederived, not combined with this result as a separate guarantee.
+
+Topological quantization does not fix beta here. Phi>0 is a noncompact
+canonical scalar. Declaring log(phi/F) periodic would identify phi with a
+rescaled value, but both its canonical kinetic term and U0 exp(phi^2/F^2)
+fail that identification. Thus the written action has no such gauge
+periodicity. Adding a compact scalar, a symmetry or an anomaly-matched action
+would be a changed theory. Even an independently quantized beta would still
+need to fix F^2/M^2 and the operational conversion between phi and a0.
+
+The local-source check also remains mandatory: a vacuum constant phi solves
+U'=24H^4 f', whereas a Schwarzschild-de Sitter exterior has an additional
+positive Weyl contribution to E4. Its scalar residual is -beta Weyl^2/phi,
+which is nonzero. The homogeneous vacuum value cannot simply be held fixed
+inside a galaxy while claiming the exact old response law. Screening, force
+normalization and inhomogeneous perturbations are unresolved obligations.
+
+Evidence and next implication
+check.py/run verifies16 symbolic identities. trajectories_v2.py/
+run_trajectories_v2 records ten trajectories and two refinements. The initial
+failed run is retained. JointSelector32Pi.lean contains six conditional
+algebraic theorems for mass signs, target coupling and the offset test; it
+does not formalize the field-theory variation or numerical trajectories.
+Compiler logs and lean_verification.json pin the successful Lean check.
+
+Primary source used for scalar-GB background and short-wavelength diagnostic
+conventions: Tsujikawa, arXiv:2212.10022v2, section II, especially Eqs.2.9–2.16.
+Our canonical coefficient is1, matter is absent, and xi=f. The source supplies
+the general framework, not the chosen exponential/logarithmic functions,
+their MOND interpretation or this coefficient selection. Checked2026-10-14.
+https://arxiv.org/pdf/2212.10022v2
+
+This route succeeds at constructing a locally restoring homogeneous ratio,
+and fails at independently selecting its value or protecting it against
+vacuum offsets. The pure-power candidate and the proposed compactness shortcut
+are closed under their stated assumptions. A microscopic symmetry/action
+fixing gamma and the physical source dictionary remains open and unspecified.
+No verified principle selecting3/128 is produced. A UV completion or a new
+source-coupled action is needed before further evolution of this homogeneous
+toy model could answer the original question; more trajectories alone would
+not resolve that missing implication. No global novelty claim is made.

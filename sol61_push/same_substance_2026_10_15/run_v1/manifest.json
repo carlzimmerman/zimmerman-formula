@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "claim_id": "SAME_SUBSTANCE_2026_10_15",
+  "repository": {
+    "commit": "2968d72cfe6ca580dde906676c73207f95d63b73",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/same_substance_2026_10_15/checks.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Canonical complex field stress, local charged-state modes, full homogeneous KG evolution and one-scale coldness obstruction",
+    "coefficient_domain": "Exact symbolic rational expressions and double precision ODE",
+    "conventions": "hbar=c=1; signature -+++; Psi=(x+i*y)/sqrt(2)",
+    "inputs": [
+      "checks.py"
+    ],
+    "bounds": {
+      "mode_grid_cases": 48,
+      "FLRW": "m=1, lambda=.001, rho_v=.1, Mpl=100; a=1 to 3; t<=1500; rtol=2e-10",
+      "single_scale_density_ratios": [
+        0.4,
+        1,
+        100000
+      ]
+    },
+    "non_claims": [
+      "No universal nonlinear stability",
+      "No MOND matching or abundance selection",
+      "No observational validation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T20:28:25.364331+00:00",
+    "runtime_seconds": 0.950597,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 35,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/same_substance_2026_10_15/checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/same_substance_2026_10_15/checks.py",
+      "sha256": "e8ec0d62ceed0b1a201825637b8612a875c656860e6fc65a9b6db08a1ecd8512",
+      "sha256_after": "e8ec0d62ceed0b1a201825637b8612a875c656860e6fc65a9b6db08a1ecd8512"
+    }
+  ],
+  "output_directory": "sol61_push/same_substance_2026_10_15/run_v1",
+  "declared_results": [
+    "sol61_push/same_substance_2026_10_15/run_v1/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/same_substance_2026_10_15/run_v1/stdout.txt",
+      "sha256": "267348066f59e18352e0727191fc41283c5e4622262054781f68a850ed0ac15e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/same_substance_2026_10_15/run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/same_substance_2026_10_15/run_v1/results.json",
+      "sha256": "267348066f59e18352e0727191fc41283c5e4622262054781f68a850ed0ac15e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

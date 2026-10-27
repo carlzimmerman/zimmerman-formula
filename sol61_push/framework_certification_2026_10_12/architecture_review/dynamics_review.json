@@ -1,0 +1,44 @@
+{
+  "primary_verdict": "proved as written",
+  "target": "Seven StaticIsNotAttractor conditional algebraic statements, plus finite check_exact.py assertion contract.",
+  "formal_derivation": "For qdot=\u2212rate(q\u2212target), rdot=\u2212qdot, Hdot=\u2212D qdot, mass derivative qdot+rdot=0 and energy derivative D qdot+Hdot=0. Error-squared directional derivative is 2(q\u2212target)qdot=\u22122 rate(q\u2212target)^2. A nonzero error has opposing signs for opposing nonzero rate signs, while q=target is equilibrium for all rates.",
+  "local_admissibility": {
+    "B": 10,
+    "target": 4,
+    "q_initial": 5,
+    "H_initial": 10,
+    "D": 2,
+    "rate": -1,
+    "local_solution": "q(t)=4+exp(t), r(t)=6\u2212exp(t), H(t)=12\u22122exp(t)",
+    "interval": "0\u2264t<log 2",
+    "admissibility": "5\u2264q<6; 4<r\u22645; 8<H\u226410. Total mass 10 and energy 20. Error squared exp(2t) grows. These differentiable solution/local positivity calculations are independently reconstructed on paper, not formalized by the Lean file."
+  },
+  "run_results": [
+    {
+      "case": "dynamics_exact",
+      "exit_status": 0,
+      "unchanged_inputs": true
+    },
+    {
+      "case": "dynamics_lean",
+      "exit_status": 0,
+      "unchanged_inputs": true
+    }
+  ],
+  "code_findings": [
+    "Fraction arithmetic contains no floating-point operations; rational sample outputs agree with hand computations.",
+    "unique_monomial_exponents checks one solution; nonzero square-matrix determinant separately supplies the uniqueness inference.",
+    "dimensionless_coefficient sample tests positivity, not dimensional metadata; dimensional freedom follows from declared dimensionlessness.",
+    "factor_four_selects_half_under_positive_scale tests half and one, not universal coefficient uniqueness. Independent real algebra under \u03ba>0 supplies 4\u03ba\u00b2=1 iff \u03ba=1/2.",
+    "Sample loop final positivity variables coincide for every sample because state is reset each iteration.",
+    "Shared residual difference \u0394(s)=e\u00b2+2(s\u2212d)e is sensitive to a shared control: d=e=1 gives \u0394(0)=\u22121 and \u0394(1)=1. This is a scalar counterexample, not a likelihood/data-model verdict."
+  ],
+  "scope_boundaries": [
+    "The Lean squared_error_rate theorem is algebra for a supplied derivative, not HasDerivAt of a trajectory.",
+    "Instantaneous directional contraction is not a general global attraction theorem.",
+    "Unstable linear flow eventually reaches a population/receiver boundary; local positive witness suffices to refute the proposed implication from equilibrium+conservation to attraction.",
+    "Admissible_unstable_state does not include receiver-energy positivity or energy cancellation in its combined conclusion; separate energy_ledger and the explicit positive receiver witness provide the abstract-model extension.",
+    "No claim this transfer law arises from the physical framework action."
+  ],
+  "interpretation": "Valid local countermodel to inference that static equilibrium and reciprocal conservation alone force squared-error contraction. It is not a replacement mechanism or universal physical no-go."
+}

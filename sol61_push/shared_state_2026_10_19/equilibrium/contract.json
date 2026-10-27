@@ -1,0 +1,21 @@
+{
+  "claim_id": "CE-SHARED-EQUILIBRIUM-FINITE-2026-10-19",
+  "mathematics": {
+    "assertion_tested": "Four spherical mixed TF profiles and six fixed-species-mass GP/baryon BVPs satisfy the explicitly coded mass, ODE, boundary, virial and two-box comparisons; the pure scalar TF profile agrees with sin(x)/x.",
+    "coefficient_domain": "IEEE float64 numerical approximation via NumPy/SciPy",
+    "conventions": "Poisson laplacian U=rho_d+rho_b. Full GP and the eta=1 TF seed use K=.5,Kb=.4,h_d=2K rho_d,h_b=(5/2)Kb rho_b^(2/3). Other TF eta values test equation (13) as independent dimensionless ODE parameters, equivalently varying Kb at fixed h_c=1; eta=0 is the pure scalar limit. Radial masses omit common 4pi.",
+    "inputs": ["parameters.json", "coupled spherical hydrostatic and GP/Poisson equations documented in EQUILIBRIUM.md"],
+    "bounds": {"TF_eta": [0,0.25,1,4], "GP_tau": [0.2,0.05,0.0125], "box_radii": [10,14], "max_bvp_nodes": 7000},
+    "non_claims": ["No certified continuum eigenvalue or global minimum", "No uniqueness, formation, Lyapunov orbital stability, dipole population or universal normalization", "No full relativistic or source-channel state", "No heavy or multidimensional evolution"]
+  },
+  "execution_artifacts": [
+    "sol61_push/shared_state_2026_10_19/equilibrium/check_equilibrium.py",
+    "sol61_push/shared_state_2026_10_19/equilibrium/parameters.json"
+  ],
+  "software": [
+    {"name": "computation Python", "version": "3.9.6"},
+    {"name": "NumPy", "version": "1.26.2"},
+    {"name": "SciPy", "version": "1.11.4"}
+  ],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

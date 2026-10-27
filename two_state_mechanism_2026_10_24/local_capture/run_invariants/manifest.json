@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "LOCAL_CAPTURE_INVARIANTS",
+  "repository": {
+    "commit": "a364a6df13cfb7cfbf311703a66bf7ac9244ff49",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "two_state_mechanism_2026_10_24/local_capture/invariants.py",
+    "two_state_mechanism_2026_10_24/local_capture/run_invariants/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Collision reversal including barrier, translation invariance, separate T/F forces and local-moment null calibration",
+    "coefficient_domain": "IEEE double floating point",
+    "conventions": "G=Mb=b=1 internally; no name-dependent dynamics; full transition energy paid by central pair impulse",
+    "inputs": [
+      "Explicit finite pair reaction and 100 Gaussian samples for each of 2 shapes x 2 particle counts x 2 spins"
+    ],
+    "bounds": {
+      "calibration_repetitions": 100,
+      "flat": [
+        1,
+        0.25
+      ],
+      "n": [
+        32,
+        64
+      ],
+      "spin": [
+        0,
+        2
+      ]
+    },
+    "non_claims": [
+      "Not a full 3D polarization theory",
+      "Not observational validation",
+      "Not long-term binding or microscopic cross sections"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy.random.default_rng PCG64",
+    "seed": 238
+  },
+  "run": {
+    "started_at": "2026-10-24T20:16:14.629447+00:00",
+    "runtime_seconds": 0.316251,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "two_state_mechanism_2026_10_24/local_capture/capture.py",
+    "two_state_mechanism_2026_10_24/local_capture/CONTRACT.md",
+    "two_state_mechanism_2026_10_24/model.py",
+    "two_state_mechanism_2026_10_24/local_capture/invariants.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "two_state_mechanism_2026_10_24/local_capture/capture.py",
+      "sha256": "51b6f5fec128f09ff30cb71b8e3172201e80a14576a169af0650d4effe7b3ad8",
+      "sha256_after": "51b6f5fec128f09ff30cb71b8e3172201e80a14576a169af0650d4effe7b3ad8"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/local_capture/CONTRACT.md",
+      "sha256": "a934463601919a72a882b7cb46f48e5ffd93b1cb8a3b1d5cee8e87845f31a869",
+      "sha256_after": "a934463601919a72a882b7cb46f48e5ffd93b1cb8a3b1d5cee8e87845f31a869"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/model.py",
+      "sha256": "af0074513c0b2bcaeef6e8feb4ceb1d07383fefc5f49af78d504f0847fe35917",
+      "sha256_after": "af0074513c0b2bcaeef6e8feb4ceb1d07383fefc5f49af78d504f0847fe35917"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/local_capture/invariants.py",
+      "sha256": "cb34e7fa0563bf9acf5c09a099917e1240f6706362f51e3fc31e0b6408cb2f44",
+      "sha256_after": "cb34e7fa0563bf9acf5c09a099917e1240f6706362f51e3fc31e0b6408cb2f44"
+    }
+  ],
+  "output_directory": "two_state_mechanism_2026_10_24/local_capture/run_invariants",
+  "declared_results": [
+    "two_state_mechanism_2026_10_24/local_capture/run_invariants/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "two_state_mechanism_2026_10_24/local_capture/run_invariants/stdout.txt",
+      "sha256": "66f8bde7770448d16c8dc246d9849c118559d08bc1882c009427bf69f93dc000",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/local_capture/run_invariants/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "two_state_mechanism_2026_10_24/local_capture/run_invariants/results.json",
+      "sha256": "66f8bde7770448d16c8dc246d9849c118559d08bc1882c009427bf69f93dc000",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

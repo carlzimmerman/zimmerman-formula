@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "RECIPROCAL_FIELD_RADIUS_GROWTH_20261022",
+  "repository": {
+    "commit": "77a8b2d4a63d7ab13364949acab5bde41d4f14d3",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/reciprocal_field_2026_10_22/tradeoff.py",
+    "--output",
+    "sol61_push/reciprocal_field_2026_10_22/tradeoff_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Declared EdS amplitude/radius tradeoff at k=.1/Mpc, repeated with two ODE integrators.",
+    "coefficient_domain": "Exact symbolic real positive coefficients and float64 ODE diagnostics",
+    "conventions": "See CONTRACT.md; physical ell versus comoving k; EdS diagnostic",
+    "inputs": [
+      "Declared benchmark constants and dimensionless central values"
+    ],
+    "bounds": {
+      "radii_kpc": [
+        10,
+        100,
+        500
+      ],
+      "retention": [
+        0.99,
+        0.95,
+        0.9
+      ]
+    },
+    "non_claims": [
+      "No covariant completion",
+      "No observed galaxy fit",
+      "No lensing likelihood"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-22T19:55:23.261274+00:00",
+    "runtime_seconds": 0.403205,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 250000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 55,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/reciprocal_field_2026_10_22/tradeoff.py",
+    "sol61_push/reciprocal_field_2026_10_22/TRADEOFF_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/reciprocal_field_2026_10_22/tradeoff.py",
+      "sha256": "462f250d542321c53c4967dd45d89fd9400d27aa60a054107f2b14e296ec2935",
+      "sha256_after": "462f250d542321c53c4967dd45d89fd9400d27aa60a054107f2b14e296ec2935"
+    },
+    {
+      "path": "sol61_push/reciprocal_field_2026_10_22/TRADEOFF_CONTRACT.md",
+      "sha256": "9c4832eec4e0198a28fc83c22772628ce42fd9aee7e8a3fe932c5c2bf0c9a25d",
+      "sha256_after": "9c4832eec4e0198a28fc83c22772628ce42fd9aee7e8a3fe932c5c2bf0c9a25d"
+    }
+  ],
+  "output_directory": "sol61_push/reciprocal_field_2026_10_22/tradeoff_run",
+  "declared_results": [
+    "sol61_push/reciprocal_field_2026_10_22/tradeoff_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/reciprocal_field_2026_10_22/tradeoff_run/stdout.txt",
+      "sha256": "de855de4b007d6b18cf92d097cf53585f45459cb519700ae04dabfa93f3227fd",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_field_2026_10_22/tradeoff_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_field_2026_10_22/tradeoff_run/result.json",
+      "sha256": "c4f99721953fb61cb49de14c2066f3090e0c67f4ca5ff80f5c947fe538ed48bf",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

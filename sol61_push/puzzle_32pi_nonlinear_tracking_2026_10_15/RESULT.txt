@@ -1,0 +1,107 @@
+NONLINEAR EXTERIOR TEST: CAN THE TRACKING SCALAR EVADE THE LINEAR OBSTRUCTION?
+2026-10-15
+Parent: ../puzzle_32pi_tracking_force_2026_10_15/RESULT.txt
+
+Outcome
+Keeping the entire quartic-tracking potential and conformal matter coupling
+does not generate the required inverse-radius scalar force on the specified
+positive-branch exterior. A monotonicity argument replaces linearization.
+This is a conditional result for a scalar boundary-value equation in a flat
+Einstein-frame approximation, not a full nonlinear Einstein-matter solution.
+
+1. Precise setting
+F=M^2+xi phi^2, V=E+lambda phi^4/4, M,xi,lambda,E>0.
+Let v>0 be the tracking vacuum: E=lambda M^2 v^2/(4xi).
+Use the canonical Einstein scalar chi, with dchi/dphi=sqrt(K)>0 and
+ K=M^2(F+6xi^2 phi^2)/F^2,
+ U=M^4 V/F^2, A=M/sqrt(F).
+Consider a smooth strictly positive phi(r) on a source-free finite annulus
+r_in<=r<=R, r_in>0, satisfying the exact nonlinear scalar equation on the
+flat Einstein metric,
+ (r^2 chi')'=r^2 U_chi,
+with phi(r_in)>=v and phi(R)=v. No smallness assumption on phi-v is used
+in this equation. Existence of such a solution is an assumption, not a
+conclusion. Scalar stress must be sufficiently small for the flat metric
+approximation if this equation is to model the coupled gravitational theory.
+No claim of extending the annulus to or beyond a cosmological horizon.
+
+2. Maximum principle and decreasing charge
+The full potential derivative factorizes as
+ U_phi=lambda M^6 phi(phi^2-v^2)/F^3.
+Since dchi/dphi>0, U_chi has the sign of phi-v on the positive branch.
+If phi dipped below v, its interior minimum would have chi'=0, chi''>=0,
+but the field equation would demand chi''=U_chi<0. Contradiction.
+Thus phi>=v throughout the annulus.
+
+Let J=r^2 chi'. Because U_chi>=0, J'>=0.
+The outer boundary is a minimum relative to the interior, so its one-sided
+chi'(R)<=0. Hence J(r)<=J(R)<=0 for all r<=R.
+Define Q=-J. Then Q>=0 and Q'=-r^2 U_chi<=0, while chi'<=0 and phi'<=0.
+This is an integrated boundary argument, not an assumed sign of a numerical
+shooting solution. Constant-vacuum solutions have zero scalar force and
+satisfy the non-strict inequalities trivially.
+
+3. The nonlinear coupling also decreases outward
+The dimensionless coupling magnitude is
+ f=-M d(log A)/dchi=xi phi/sqrt(M^2+xi(1+6xi)phi^2)>0,
+ df/dphi=xi M^2/[M^2+xi(1+6xi)phi^2]^(3/2)>0.
+As phi'<=0, f'(r)<=0. The scalar contribution to the Einstein-coordinate
+logarithmic matter potential is
+ g_phi=d(log A)/dr=f Q/(M r^2)>=0.
+Consequently
+ (r^2 g_phi)'=(f'Q+f Q')/M<=0.
+Equivalently for r2>=r1,
+ r2^2 g_phi(r2)<=r1^2 g_phi(r1).
+Where the force is nonzero, d log g_phi/d log r<=-2.
+This conclusion keeps the full U and A; it does not use a Taylor expansion
+around v. In a weak Einstein metric AND weak conformal potential, physical
+radii differ by an approximately constant factor, so this is also the
+leading scalar acceleration result in the matter frame. Adding a constant
+positive inverse-square tensor term preserves the decreasing envelope at
+that order. It cannot yield the desired g proportional to 1/r.
+The previous linear one-third AMPLITUDE bound is not extended here to
+arbitrary nonlinear source matching.
+
+4. Frame check for large conformal variations
+For large changes in A, simply declaring g_phi to be the Jordan acceleration
+would be invalid. As a separate diagnostic, keep the Einstein metric exactly
+Minkowski and write the conformally related line element
+ ds_J^2=A(r)^2[-dt^2+dr^2+r^2 dOmega^2].
+The matter-frame areal radius is R_J=A r, and w=r A'/A=r g_phi>=0.
+The local circular-geodesic speed, measured by static observers, obeys
+ v_c^2 = w/(1+w).
+This follows from v_c^2=[(A^2)'/(A^2)] [(A^2 r^2)/(A^2 r^2)'].
+Since r^2 g_phi decreases, d log w/d log r<=-1 wherever w>0.
+Also d log R_J/d log r=1+w, giving
+ d log(v_c^2)/d log R_J <= -1/(1+w)^2 <0.
+Thus this conformally flat diagnostic cannot give an exactly flat rotation
+curve. For nonrelativistic circular speeds w<<1 the slope bound is close
+to -1, characteristic of Keplerian v_c^2, not a plateau. Large w can weaken
+that bound only while v_c approaches the speed of light.
+This diagnostic is NOT a self-consistent large-field gravity solution; its
+purpose is to expose and avoid a frame/radius identification error. It does
+not close the fully backreacting strong-field or other-boundary loopholes.
+
+5. What was and was not ruled out
+Ruled out within the declared approximation: obtaining the target exterior
+inverse-radius force merely by taking a large scalar excursion in this
+same positive-branch quartic tracker with the specified boundary data.
+Not ruled out: solutions crossing phi=0, non-vacuum environmental boundaries,
+additional fields, derivative matter couplings, time-dependent profiles, or
+significant metric/scalar-stress backreaction. Those are different problems,
+not demonstrated repairs. The inner boundary value itself has not been
+matched to a finite matter source here.
+The mechanism still does not select lambda/xi or the number 32pi.
+
+6. Verification and provenance
+check.py verifies five exact identities: full potential sign factor,
+coupling derivative, force envelope derivative, logarithmic force slope,
+and conformal circular-speed formula. It does not solve a numerical BVP.
+Nonlinear.lean verifies three supporting algebraic inequalities: the
+potential numerator sign, the envelope derivative sign given its factor
+signs, and the two-radius envelope comparison. The maximum-principle and
+ODE integration arguments above are prose proofs, not Lean formalizations.
+No formal proof of physical approximation validity is claimed.
+See run/manifest.json, lean_build.out and lean_verification.json.
+No new external theorem or novelty claim is used; the action, canonical
+transformation and matter dictionary are those documented in the parent.

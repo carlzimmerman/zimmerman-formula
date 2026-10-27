@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "KINETIC_MOMENTUM_CAPACITY",
+  "repository": {
+    "commit": "9c762dc8d1c2783b91deb880f9c99e3a464e2897",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/kinetic_receiver_lift_2026_10_12/capacity.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Positive-energy massless receiver has momentum energy floor; exact nonrelativistic recoil budget fixtures.",
+    "coefficient_domain": "Exact real polynomial algebra and rational arithmetic",
+    "conventions": "c=1 for dimensionless fixture; f are mass weights, all channel recoil enters receiver",
+    "inputs": [
+      "sol61_push/kinetic_receiver_lift_2026_10_12/CAPACITY_CRITERIA.txt",
+      "sol61_push/kinetic_receiver_lift_2026_10_12/capacity.py"
+    ],
+    "bounds": {
+      "epsilon": [
+        "1/100",
+        "1/1000",
+        "1/10000"
+      ],
+      "capacity_ratios": [
+        1,
+        4,
+        8
+      ],
+      "cases": 9
+    },
+    "non_claims": [
+      "Necessary condition only",
+      "No actual halo capacity or rate",
+      "No exclusion of baryon recoil or momentum-neutral channels"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T02:44:56.755655+00:00",
+    "runtime_seconds": 0.355748,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/kinetic_receiver_lift_2026_10_12/CAPACITY_CRITERIA.txt",
+    "sol61_push/kinetic_receiver_lift_2026_10_12/capacity.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/kinetic_receiver_lift_2026_10_12/CAPACITY_CRITERIA.txt",
+      "sha256": "d9c6c6cb5e2220b7d3fa6b85e51e7cfb51bb53b240c45c0de6bc9b3079a9fa48",
+      "sha256_after": "d9c6c6cb5e2220b7d3fa6b85e51e7cfb51bb53b240c45c0de6bc9b3079a9fa48"
+    },
+    {
+      "path": "sol61_push/kinetic_receiver_lift_2026_10_12/capacity.py",
+      "sha256": "2a7fa838972b94a9d9cbdbd386817296fb019bc06b2fdd5c80ee8be1b7722a2d",
+      "sha256_after": "2a7fa838972b94a9d9cbdbd386817296fb019bc06b2fdd5c80ee8be1b7722a2d"
+    }
+  ],
+  "output_directory": "sol61_push/kinetic_receiver_lift_2026_10_12/capacity_run",
+  "declared_results": [
+    "sol61_push/kinetic_receiver_lift_2026_10_12/capacity_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/kinetic_receiver_lift_2026_10_12/capacity_run/stdout.txt",
+      "sha256": "4a465aedd01dc401805701153a5a2686b9e87e4dd30aaffbd8ca949e01956099",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/kinetic_receiver_lift_2026_10_12/capacity_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/kinetic_receiver_lift_2026_10_12/capacity_run/results.json",
+      "sha256": "4a465aedd01dc401805701153a5a2686b9e87e4dd30aaffbd8ca949e01956099",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

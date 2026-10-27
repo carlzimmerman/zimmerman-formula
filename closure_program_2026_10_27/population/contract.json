@@ -1,0 +1,103 @@
+{
+  "claim_id": "M6-population-conditional-accounting-2026-10-27",
+  "mathematics": {
+    "assertion_tested": "Convert published cosmic stellar/HI/molecular inventories to native cosmology; integrate a finite GSMF and derive conditional selected-population and retained-baryon-efficiency thresholds under the supplied X57 proxy capacities.",
+    "coefficient_domain": "IEEE754 double precision positive densities and numerical quadrature; all mass and volume units physical Msun and comoving Mpc at z=0.",
+    "conventions": "h=H0/100, h70=h/0.7. Chabrier stellar masses. HI helium multiplier1.33 baseline, molecular quoted mass counted once with alternative1.33 sensitivity. q mass fractions and epsilon retention are scenarios, not fitted priors. Exact capacities supplied by coordinator remain conditional.",
+    "inputs": [
+      "closure_program_2026_10_27/population/compute_population.py",
+      "closure_program_2026_10_27/population/inputs.json",
+      "closure_program_2026_10_27/capacity_run/results.json",
+      "data_assembly/alfalfa_sdss_local_control/alfalfa_sdss.csv"
+    ],
+    "bounds": {
+      "physical_log10_stellar_mass": [
+        [
+          8,
+          14
+        ],
+        [
+          9,
+          14
+        ],
+        [
+          10,
+          14
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          8,
+          11.5
+        ]
+      ],
+      "stellar_density_scale": [
+        0.79,
+        1,
+        1.21
+      ],
+      "epsilon": [
+        0.2,
+        0.25,
+        0.3,
+        0.5,
+        0.75,
+        1
+      ],
+      "q_star": [
+        0.04,
+        0.25,
+        0.3,
+        0.5,
+        0.7,
+        0.75,
+        1
+      ],
+      "redshift_geometry_check": [
+        0.02,
+        0.05,
+        0.079,
+        0.1
+      ],
+      "quadrature_relative_tolerance": 1e-10
+    },
+    "non_claims": [
+      "No physical forest constraint",
+      "No measured isolated-selection mass fraction",
+      "No statistical confidence lower bound from a systematic-error sensitivity envelope",
+      "No nonlinear galaxy formation or patch-ancestry demonstration",
+      "No new external source theorem; manually authenticated published data facts"
+    ]
+  },
+  "execution_artifacts": [
+    "closure_program_2026_10_27/population/compute_population.py",
+    "closure_program_2026_10_27/population/inputs.json",
+    "closure_program_2026_10_27/capacity_run/results.json",
+    "data_assembly/alfalfa_sdss_local_control/alfalfa_sdss.csv"
+  ],
+  "software": [
+    {
+      "name": "python",
+      "version": "3.13.9"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.3"
+    },
+    {
+      "name": "scipy",
+      "version": "1.18.1"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "none",
+    "seed": null
+  }
+}

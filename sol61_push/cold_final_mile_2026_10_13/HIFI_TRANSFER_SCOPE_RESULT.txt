@@ -1,0 +1,130 @@
+CE-FM-058 — HIFI archival common-mode transfer must precede sensitivity
+2026-10-15. Self-review; primary instrument documentation checked.
+Primary verdict: INCOMPLETE, with the smallest missing implication identified.
+The recorded hours and radiometer arithmetic agree. Recoverable phase response
+and calibrated common-mode identifiability have not been established. This
+is not a rejection of every possible archival analysis or an empirical null.
+
+Sources and provenance
+CFG798 criteria037431199, result40d8eb9ab, ledger283acbcff. Input CSV, code,
+criteria and result bytes are pinned in run_058/manifest.json. New PAPER52
+publication b54c193ca is not edited or externally discussed by this pass.
+All previously monitored sources are unchanged. No spectra or archive products
+were downloaded, no TAP query repeated, and no live experiments duplicated.
+
+Recorded accounting that survives
+The CSV has95 matches at541.7GHz and52 at595.5GHz. Its integration accounting
+sums to13.1132h and5.7732h, all in TierB, zero TierA. These are reproduced
+FROM THE RECORDED CSV, not independent verification of observation metadata,
+per-channel effective exposure, product availability or actual line sensitivity.
+Every stored radiometer reach cell reproduces with its supplied area, S,
+noise temperature and bandwidth assumptions. Primary541.7GHz reach is
+7.7815706461e-12 for S50 and T_DSB150K. The literal source rule therefore
+produces its FEASIBLE-WITH-REPROCESSING label. The label remains frozen;
+this audit does not secretly redefine its gate or report measured sensitivity.
+
+Primary-source check: processing stage matters
+Shipman et al., arXiv1709.04327v1, sections3.2–3.3:
+https://arxiv.org/html/1709.04327v1
+Reference subtraction is part of Level1 processing. DBS and fastDBS difference
+reference/science phases in doRefSubtract; a dedicated OFF can be removed in
+doOffSubtract. Completed Level1 is already processed in that respect.
+The preceding Level0.5 integrations can be regenerated interactively.
+Therefore 'start with Level1 and stop before doRefSubtract' is not a sufficient
+recovery procedure. Need access before the relevant operations, or a verified
+retained independent product carrying the missing signal. The paper supports
+a route to lower-level recovery; it does not certify this dark-signal response.
+
+ESA reference-product release notes, 2016-10-20, section2.1:
+https://archives.esac.esa.int/hsa/legacy/HPDP/HIFI/HIFI_off_spectra/HIFI_ReferencePositionSpectra_HPDP_ReleaseNotes.pdf
+The OFF archive is processed, mode-dependent material; load-chop and
+frequency-switch reference products can themselves be single differences.
+An OFF label alone does not authenticate unsubtracted raw phase information.
+
+The cited JWST work, arXiv2402.17140v2:
+https://arxiv.org/html/2402.17140v2
+It selects data without background subtraction and models its own optical
+conversion geometry. It does not supply a Herschel/HIFI coupling calibration.
+Thus borrowing its concept does not by itself verify Herschel's S50 value.
+Primary-source facts above are distinguished from the exact analysis below.
+No stellar/CMB limit or absence-of-published-search claim is authenticated here.
+
+Exact information-loss control
+Let y be four calibrated raw phase values in REF,ON,ON,REF order. The simplest
+ABBA difference is D=(-1/2,+1/2,+1/2,-1/2). A line contributing the same
+amplitude A to every phase has response vector a=(1,1,1,1), so D a=0.
+For ANY subsequent linear operation T, T D a=0. Regridding, averaging,
+stacking or more integration cannot reconstruct this discarded component
+from those differences alone. This is a linear-algebra statement about the
+specified equal-response case, not a claim that every real instrument phase
+must have equal response.
+
+If the actual response is (a_ref,a_on,a_on,a_ref), the retained signal is
+(a_on-a_ref)A. The science response must therefore be derived for primary
+mirror, optics/chopper, feed, loads, receiver and actual observing sequence.
+It is not fixed merely by saying the source is target-independent, nor by
+comparing a sky chop angle with an assumed emitted angular width. Different
+phases can have different optical transfer, but that needs a calculation.
+Frequency-switch phases also change LO mapping and need their own frequency
+transfer operator; the ABBA scalar example is not silently applied to all modes.
+
+A line injected AFTER subtraction survives by construction even when its
+physical pre-subtraction counterpart lies in the exact nullspace. That test
+can validate a downstream line finder, not the end-to-end archival sensitivity.
+A useful injection must enter the separate pre-subtraction phases with the
+computed relative amplitudes and spectral/LO mappings, then pass through the
+actual calibration, subtraction and baseline steps. Excluded responses must
+remain failed controls rather than being reintroduced after the filter.
+
+Absolute recovery needs identifiable calibration as well
+With unreferenced phases, source signal and unknown channel response/baseline
+must be distinguishable. If the admissible nuisance model has an arbitrary
+free amplitude in every spectral channel, any narrow line can be absorbed
+into that nuisance space; its amplitude is not identifiable. A restricted,
+calibrated baseline and independent mode/LO/time/phase checks may retain it.
+The source acknowledges strong baselines, but hours alone give no validated
+nuisance projection or false-positive control. This does not prove it is
+impossible; it identifies the next load-bearing analysis.
+
+Quantified transfer target, not an observed response
+Let eta be additional retained POWER fraction relative to the source's S50
+forecast, holding its noise model fixed. Since signal power scales as eps^2,
+ eps_min(eta)=eps_min(1)/sqrt(eta).
+At541.7GHz the source primary reach becomes7.78e-11 for eta=.01,
+7.78e-10 for eta=1e-4, and7.78e-9 for eta=1e-6. To reach the supplied
+4e-9 converter-window threshold at the same assumed noise requires
+ eta > (7.78157e-12/4e-9)^2 =3.78455e-6.
+This is a useful acceptance target for a transfer calculation, not evidence
+that eta has that value. If eta=0 no finite statistical integration restores
+sensitivity. If absolute reprocessing adds noise/systematic floors, they must
+also enter the target. The prior CE054 species/response/mass caveats remain:
+a portal forecast is not by itself a whole-framework detection or null test.
+
+Evidence and obligation matrix
+run_058 completed and manifest validated:45 arithmetic/exact controls.
+PASSED: recorded CSV counts/hours; supplied radiometer cells; equal-phase
+nullspace; unequal-phase transfer; response-fraction reach scaling.
+PRIMARY-SOURCE VERIFIED: reference subtraction occurs in Level1; pre-Level1
+regeneration is documented; OFF products are processed and mode-dependent.
+CONDITIONAL: provisional noise, S50, duty/coverage accounting, assigned mass
+and portal fraction, actual retained phase transfer, calibration/nuisance space.
+NOT ADDRESSED: instrument-specific optics simulation, observation-level
+headers/products, spectrum reprocessing, actual line significance or limit.
+FAILED IMPLICATION: a radiometer reach plus a request to reprocess completed
+Level1 does not establish recoverable sensitivity to a common-mode line.
+
+Concrete next experiment, before any95-observation download/stack
+1. Pick one counted DBS observation and trace its actual product lineage to
+   integrations before both reference and OFF subtraction; verify what is
+   retained/regenerable and keep its product/version/header provenance.
+2. Specify physical phase-transfer vector including receiver/load paths and
+   LO/RF mapping. Keep an identical-phase line as a MUST-CANCEL control.
+3. Inject the signal in those phases and process through the same filters.
+   Measure the retained matched-filter response and baseline covariance.
+4. Compare the recovered eta/noise with the quantified target above; only
+   then justify larger archival extraction or a sensitivity claim. If data
+   products lack the required phase information, record that obstruction.
+This is a small, reviewable protocol, not authorization to download or process
+all products in this heartbeat. The physical carrier identity, actual pole
+mass, occupied halo, export/frame/metric and parameter-selection obligations
+remain open. Frozen/publication files and other chats remain untouched.

@@ -1,0 +1,156 @@
+{
+  "schema_version": 2,
+  "claim_id": "ENERGY-EXIT-WAVE-PARTITIONS-2026-10-15",
+  "repository": {
+    "commit": "a5af666eb340b5a7cc376bf8ce788d38ff1adb1b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/energy_exit_2026_10_15/wave_escape_v2.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Same Hamiltonian runs with post-hoc explicit core/exterior energy partitions, including cross gravity in exterior; all earlier controls retained",
+    "coefficient_domain": "Double precision spherical split-step spectral wave evolution",
+    "conventions": "Explicit candidate comparisons; no S2 halo law imported; wave hbar=m=G=1 except gravity-off control",
+    "inputs": [
+      "wave_escape_v2.py"
+    ],
+    "bounds": {
+      "cases": 4,
+      "N": [
+        2047,
+        4095
+      ],
+      "Rbox": [
+        200,
+        400
+      ],
+      "dt": [
+        0.02,
+        0.01
+      ],
+      "end": 200,
+      "mass": 1,
+      "initial_gaussian_radius": 5,
+      "initial_inward_chirp": 0.03,
+      "G": [
+        1,
+        0
+      ],
+      "post_hoc_partition_radii": [
+        20,
+        50,
+        100
+      ]
+    },
+    "non_claims": [
+      "No observed physical identification",
+      "No galaxy law or abundance selection",
+      "No full theory closure",
+      "No universal radiative-cooling impossibility"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T21:10:29.070124+00:00",
+    "runtime_seconds": 14.722319,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 55.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/energy_exit_2026_10_15/wave_escape_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/energy_exit_2026_10_15/wave_escape_v2.py",
+      "sha256": "40ce9f6f02dda509fe042ca80f5ae712b1ab667abaafd6f940711bd19740c155",
+      "sha256_after": "40ce9f6f02dda509fe042ca80f5ae712b1ab667abaafd6f940711bd19740c155"
+    }
+  ],
+  "output_directory": "sol61_push/energy_exit_2026_10_15/wave_run_v2",
+  "declared_results": [
+    "sol61_push/energy_exit_2026_10_15/wave_run_v2/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/energy_exit_2026_10_15/wave_run_v2/stdout.txt",
+      "sha256": "c4cd43f38cb5eb5ef50865bac1c9c12c1d7831e3559fe30d7470e5d21111f8f4",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/energy_exit_2026_10_15/wave_run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/energy_exit_2026_10_15/wave_run_v2/results.json",
+      "sha256": "f76f0b63b539b54ee773b310979db746da13125ce03414ac424e3e80dc0ca08d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

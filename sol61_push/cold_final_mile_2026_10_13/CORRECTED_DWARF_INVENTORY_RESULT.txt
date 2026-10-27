@@ -1,0 +1,137 @@
+CE-FM-077 — accounting corrections and the dwarf mass gap
+2026-10-18 local / 2026-10-19 UTC. Original theory OPEN.
+Base CE-FM-076, source HEAD3c01aa286; self-review, no external certification.
+
+Answer
+The corrections remove an erroneous group/cluster negative-mass argument and
+leave an inventory-based dwarf route open. They do not close the dwarf mass
+gap. Under the already assumed 10% baryon retention, the total cold stock can
+cover 10/11 central dwarf aperture mass estimates if sufficiently concentrated.
+That concentration is not derived, and the same prescription must avoid adding
+too much mass to dwarfs whose baseline already overpredicts their dispersion.
+Neither changing deficit units nor counting a global stock places it inside a
+stellar aperture. No cold particle, production or normalization is derived.
+
+1. Exact dictionary and raw accounting check
+The corrected definitions are xT=(Mtot-Mb)/Mb and
+xA=(Mtot-Mb-Mphantom)/(5.364 Mb). Thus
+ xT=5.364 xA + Mphantom/Mb.
+They are different quantities. Reading xA as xT loses both the scale factor
+and the phantom contribution, causing the earlier overdraft. No new mass is
+created by repairing the dictionary. The source's kernel/settled contribution
+and free cold stock must be counted once, not added as independent copies.
+An independent stdlib re-read of all20 Lovisari group rows reproduces the
+corrected total deficits10.8452446016/15.9217780023 and baryon fractions
+.0844220719/.0590954503 at bias0/.3, matching CFG453 on both footings.
+This uses CFG453's explicit placeholder group stars=.10 gas mass. The seven
+X-COP cluster FITS reconstructions and their kernel medians were not rerun;
+cluster correction numbers remain source-reported here. Per-object identities
+do not license adding medians of separately distributed quantities.
+
+2. Dwarf inventory with explicit aperture and no double counting
+Use the same11 LVD dwarf entries, total stellar Mb=2 LV, Plummer scale a=rh,
+r12=4a/3. Exact stellar fraction p=Mstar(<r12)/Mb=64/125=.512. This differs
+slightly from CFG821's imposed1/2 convention and is deliberately reported.
+For the declared Wolf estimator set
+ D=Mdyn(<r12)/Mb=3 r12 sigma_obs^2/(G Mb).
+Under source census f=.10 and cosmic ratio c=5.364,
+ catchment baryons=Mb/f=10Mb, total cold=c Mb/f=53.64Mb,
+ expelled-associated cold=c(1/f-1)Mb=48.276Mb.
+All11 implied catchments remain in the source's low-mass census branch.
+The general cold-only inventory condition (expelled baryons outside the stellar
+aperture, no extra phantom force on top of real cold mass) is
+ D-p <= c/f, or f <= c/(D-p).
+It is independent of the footing. It is only a necessary budget condition:
+outer cold mass does not contribute to the enclosed Wolf estimate.
+
+Central-value table (fraction is of ALL cold stock inside r12)
+ name                 D       fraction    maximum retention f
+ Antlia II          59.3223     1.09639       .09121
+ Canes Venatici I    33.5447      .61582       .16238
+ Carina              9.9337      .17565       .56932
+ Crater II          16.7770      .30322       .32979
+ Draco              27.1282      .49620       .20153
+ Fornax              2.4385      .03592      2.78431
+ Leo I               2.0110      .02795      3.57831
+ Leo II              7.3488      .12746       .78458
+ Sculptor            5.0546      .08469      1.18081
+ Sextans            53.5988      .98969       .10104
+ Ursa Minor         30.5409      .55982       .17863
+Values fmax>1 simply mean this necessary budget puts no physical f<=1 limit.
+AntliaII exceeds the declared total cold stock by9.64% at these central inputs.
+At fixed f=.10 its inventory-only threshold is mass/light2.19095 instead of2;
+at fixed mass/light2 its f threshold is.0912085. Both are sensitivities, not
+selected repairs to a frozen criterion. They do not include placement and
+cannot serve as robust exclusion given observational and stellar-mass errors.
+Sextans' near-total concentration is also central-value/estimator dependent.
+
+3. Separate optimistic retained law from free mass
+For a bounded inverse problem use CFG822/809's s kernel nu=.5+sqrt(.25+1/y),
+y=G p Mb/(r12^2 a0), and optimistic fully settled retained draw
+ S=min[(nu-1)p,c] in units of total stellar Mb.
+Free stock is Ftot=c/f-S, including expelled cold AND undrawn retained cold;
+this preserves S+Ftot=c/f. Required signed inner free mass is D-p-S.
+Negative values mean this selected fully settled baseline overpredicts, not
+that a negative cold component exists. Canonical required free fractions:
+ AntliaII1.10710 (insufficient), CVnI.57314, Carina.08405, CraterII.22580,
+ Draco.44022, LeoII.07026, Sculptor.03589, Sextans.98854, UMi.51091.
+Fornax and LeoI have signed required additions-.58825Mb and-.13553Mb:
+positive free mass cannot match their central values on this fixed baseline.
+Suppressing settlement/screening could change that baseline; it is another
+coupled model decision, not a subtraction of positive stock.
+
+The code supplies an executable inverse target for any0<eta<1: a Plummer
+free-mass profile with scale b=r12 sqrt(eta^(-2/3)-1) encloses eta of Ftot.
+Canonical targets: Draco b219.819pc, UMi250.902pc, CVnI291.754pc,
+Sextans56.899pc. These scales are algebraically inferred targets with an
+independent reconstruction check, NOT predicted halos, equilibrium proofs,
+measured cold profiles or a fit with no new parameters. All low-retention
+systems, including globulars, need a physically derived population rule.
+
+4. A simple universal placement ansatz was tested and failed to close the gap
+A separate exploratory grid applies the SAME fraction eta of each galaxy's
+free stock inside its r12, with the above fixed optimistic settled baseline.
+Across10001 points0<=eta<=1:
+ canonical besteta=.1298, chi2=86.60776 (no-free137.99979);
+ alt besteta=.1303, chi2=87.96349 (no-free137.27503).
+It improves its OWN capped s-kernel baseline but leaves large opposite
+residuals: canonical Draco prediction.669 of observed, Sextans.476,
+Fornax1.991, LeoI2.103. This ansatz is not the queued MethodA prediction and
+its chi-square is not to be directly regraded against CFG821's different
+uncapped exponential-kernel baseline. No calibrated p or universal no-go is
+claimed. The surviving route needs derived galaxy-dependent concentration,
+not a single common inner fraction or independent fitted scales per galaxy.
+
+5. Queued source control needs care
+CFG822 is criteria-committed but its script is untracked and no result was
+present. It was READ ONLY; we did not import or run its infall machinery.
+Its K1 spot object is Draco (index4). With observed stars and retained-cold
+cap cMb, its optimistic no-free sigma is at most4.44461km/s, versus CFG821
+4.61205: ratio.963695, already outside the declared2% control tolerance.
+Thus the baryonic1/2 versus.512 convention alone cannot certify K1; the
+retained cap and different kernel matter. This is an analytic bound under
+observed-core normalization; exact source infall/interpolation was not run.
+Do not change frozen K1 to hide it. Report the actual control when queued
+execution occurs; distinguish changed model convention from implementation.
+
+Evidence and resource scope
+check_corrected_dwarf_inventory.py and corrected_dwarf_inventory_contract.json;
+run_077: completed,83 exact/float controls, source hashes unchanged, validated
+mathbox4 v2 manifest. check_common_dwarf_free_fraction.py and its contract;
+run_077b: completed, bounded exploratory two-footing grid, manifest validated.
+All computations use sequential stdlib loops, no simulation or large arrays.
+No hard memory cap; workloads kept tiny. Both execution statuses and source
+hashes were inspected. No source/frozen/publication edits, queued run launch,
+external publication or inter-chat message. Source scripts remain pinned by
+content hash; CFG822 script is explicitly uncommitted preliminary evidence.
+
+Executable next step
+Keep ARGON11/1024^3 chain and CFG822 queued execution undisturbed. On completed
+MethodA output, compare each cumulative Mfree(<r12) directly to these signed
+requirements and the TOTAL stock before scoring sigma. Record census/aperture
+and kernel choices, actual turned/retained normalization, draw and reservoir
+conservation, and the Draco control. Test formation plus MW tidal stripping
+against Draco/UMi/CVnI concentration while preserving Fornax/LeoI and GC
+controls. A successful bookkeeping budget is a prerequisite, not a formation
+mechanism. All vector-health, energy export, metric/optics and cosmology
+obligations remain open.

@@ -29,3 +29,36 @@ The run output is kept as `p1d1_m6_boera_STOP_preA2.out` / `.json`.
   L1 values in both places, as frozen.
 - **Unchanged.** Gates, thresholds, model, variants and checks. The table values had been parsed at Step 0, but no fit or
   grade was run.
+
+## A3 (fix-forward, 2026-10-27; after the completed NOT DIAGNOSTIC result)
+
+The independent closure review found two interpretation/check defects. This
+amendment supersedes the identified claims; the frozen criteria, original fit
+script and all historical fit outputs remain unchanged. It does not alter a
+data gate or revive the inadequate forward model.
+
+1. **Interpretation correction.** Frozen criteria lines 100–101 reverse the
+   upper-envelope implication. Excluding a larger proxy signal does not exclude
+   a weaker physical response at the same patch baryon fraction. A template
+   limit becomes a physical F_b limit only through an independently validated
+   response mapping. X57's F_b,max is a ceiling, not a required population.
+   Closing M6 through this forest comparison additionally needs
+   F_b,required > F_b,allowed on common conventions.
+2. **Check correction.** The original K3 plants through `Sp.predict`, which
+   shares SIGN with the fitted model. Its observed mutation failure does not
+   independently validate the sign. The original primary K3/K4 are vacuous
+   because G1 fails. They remain historical outcomes, not new evidence.
+3. **Fix-forward implementation.** `p1d1_independent_sign_check.py` constructs a
+   positive injection without accepting SIGN or calling the candidate model.
+   It exercises the original script's actual shape and GLS methods, extracted
+   without its top-level side effects, on controlled synthetic spectra. The
+   positive-sign candidate must recover mu=1; the negative-sign candidate must
+   fail against the same injection. The formerly correlated negative injection
+   is also demonstrated to falsely recover. This check is unconditional and
+   uses neither G0 nor G1. Its fixed-nuisance covariance is synthetic; it is
+   only an implementation regression, not observational sensitivity or flux
+   calibration. Use `--output NEW_PATH` (exclusive creation) for named results.
+
+The interpretation and exact scope are in `CORRECTION_2026_10_27.md`. Bounded
+regression/provenance files live in
+`../../closure_program_2026_10_27/technical_fixes/`. No original fit is rerun.

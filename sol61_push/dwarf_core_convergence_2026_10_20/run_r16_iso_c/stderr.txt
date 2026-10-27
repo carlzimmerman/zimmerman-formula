@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/run_refined.py", line 165, in <module>
+    main(parser().parse_args())
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/run_refined.py", line 150, in main
+    core.simulate(args, gravity=checked, backend=metadata, scatter_operator=collision)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/refined_core.py", line 148, in simulate
+    state=h4_step(x,v,args.dt,force,state,receipt if args.host else None)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/evolution.py", line 88, in h4_step
+    state=force(x)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/refined_core.py", line 85, in force
+    aa,U,phi=gravity(xx,m,args.eps);ah,ph=host(xx,enabled=args.host)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/dwarf_core_convergence_2026_10_20/run_refined.py", line 136, in checked
+    raise RuntimeError('Refined force candidate admission failed: '+str(row))
+RuntimeError: Refined force candidate admission failed: {'gravity_call': 100, 'N': 18432, 'reference': 'full_DS_expansion', 'selected_backend': 'tile2', 'force_relative_L2': 4.4695712508705866e-08, 'force_relative_max': 2.41546543047883e-06, 'force_max_absolute_normalized': 1.5563667074011463e-07, 'force_global_normalization': 'maximum reference particle acceleration magnitude', 'phi_relative_L2': 3.7872629420161577e-08, 'phi_relative_max': 6.253060098685476e-08, 'potential_energy_relative': 3.777133675063755e-08, 'passed': False}

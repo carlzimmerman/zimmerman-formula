@@ -1,0 +1,24 @@
+# Self-audit and interpretation gates
+
+Scope: new3D implementation of the previously explicit expanding reduced action, initial minimum/tangent prescription, conservation, refinement and core interpretation. Self-review only. No full covariant or primordial-state certification.
+
+Nine evolution runs completed: weak baseline8³; weak12³; weak half timestep; strong8³,12³,16³; strong half timestep; earlier starts2200 and4400. All reach z10 and remain inside the field guards. Three checks per evolution pass: endpoint, stationary residual and work balance. The1% work gate was declared before execution; observed maximum is1.46e-4, much smaller. Passing energy accounting does not establish density-profile convergence.
+
+Failures retained:
+- Original run failed at JSON serialization of NumPy bool after evolution. run_v2.py only changes serialization, and the failed manifest/logs are preserved.
+- Initial action-force check at displacement step1e-6 failed its1e-5 relative gate (error2.90e-4). Force-step refinement shows errors .0290, .000290, .00000290, .0000000303 as the step shrinks from1e-5 to1e-8. This diagnoses finite-difference truncation near a small net force, not a force-law correction. The original failed check remains false.
+- Spatial convergence of the strong peak fails5% (12³ to16³ change~18%). Initial preparation history fails10% (2200 to4400 change~52%). Core radius fails the four-cell requirement (.223cells at finest endpoint). Bound-core certificate and joint observational preservation are unestablished.
+
+Independent checks: separate mass error3.33e-16; canonical expansion derivative error4.84e-11; initial tangent change under a10-fold difference-step variation6.55e-7 for P and1.27e-5 for chi; homogeneous null force5.17e-26. Strong-step halving changes peak contrast~7.3e-6 fractionally and reduces the work residual by about4, as expected for second-order time discretization. Weak spatial peak changes~1.57%, but that does not certify a late core profile.
+
+Review obligations:
+- Sign and normalization: TSC density/force are paired variationally, forward gradient/backward divergence are adjoint, gravity uses the same lattice Laplacian, physical density and gradients carry A^-3 and A^-1, and field/particle drift integrals use A^-3 and A^-2 respectively. The Hamiltonian work includes mean-density subtraction, gradient energy and expansion.
+- Initial-state proof: positive field energy is strictly convex under the declared finite-grid domain, giving at most one minimizer. A small stationary residual and an initial tangent justify a reproducible low-excitation prescription only. They do not prove primordial production, vacuum selection or adiabatic tracking at high expansion rate.
+- Nonlinear scope: independent particle trajectories remove the affine/single-mode restriction; spatial chi and P are retained. Quiet sinusoidal initial data are still a specific small test family, not a statistically justified primordial spectrum. Resolution and particle noise jointly change between grid runs; the strongest peak is not converged.
+- Binding: periodic perturbation energy is not an isolated binding-energy diagnostic. No32-particle FoF candidate appears in any saved snapshot at the stated link. FoF can miss other objects; snapshot cadence can miss transients. No persistent-bound-core conclusion follows in either direction. No core energy/lensing profile is invented from the absent catalogue.
+- Canonical radius is a reference benchmark. Early physical boxes can be smaller than a fixed-radius object; a cell-count test without box separation and particle count is insufficient. At z10 the finest grid fails even the cell-count test badly. No universal minimum core radius or exclusion is inferred.
+- Earlier starts use dust-reference normalization and different prepared histories. Their disagreement is not a comparison of identical primordial initial conditions. Imposed EdS at those epochs omits radiation, thermal baryon pressure and relativistic initial constraints.
+- No new large-scale growth integration or observational refit occurs here. The previous finite-inertia growth table is cited with its assumptions, not claimed as a spatial simulation result.
+- Full momentum/angular momentum convergence, relativistic constraints, adaptive-interface conservation, multiscale spectrum, isolated collapse/binding and stellar heating remain untested. Periodic Cartesian discretization does not imply exact continuous rotation invariance.
+
+Equation/prose self-review covered DERIVATION.md, RESULT.md and this audit: canonical variable factors, gravity sign, strict convexity scope, mass-label convention, dust-normalized earlier histories, peak contrast versus total density, core-resolution requirement, and negative-energy interpretation. No predecessor artifacts edited.

@@ -1,0 +1,106 @@
+CE-FM-054 — Detector mass, dimensions and rate scope
+2026-10-15. Self-review, not an independent referee or observational audit.
+Verdict: ARGON03's dimensional-exclusion scan is internally inconsistent;
+the meV dimensional scale is correct but its identification with a physical
+carrier mass is conditional. The smaller-coupling stored rate is incorrect.
+
+Sources
+ARGON03 result b67fe1e3bb0fce8fa6e36442cbc1b8328980fd6e, frozen criteria
+144250cd6; ARGON06 result42b240932 and CFG723 original frozen carrier criteria.
+Current source/report/result bytes are pinned in run_054_v2/manifest.json.
+ARGON03 and ARGON06 cooling/CMB bounds remain explicitly PROVISIONAL; this
+pass does not authenticate or rescore any external bound. No new empirical
+pass, exclusion, detector feasibility or framework kill is awarded.
+
+1. Dimensional scan: exact countercheck
+Use mass density rho, and dimensions in order M,L,T:
+ a0=(0,1,-2), G=(-1,3,-2), c=(0,1,-1),
+ hbar=(1,2,-1), rho=(1,-3,0).
+For a monomial a0^a G^g c^v hbar^h rho^d to be a mass, the mass equation is
+ -g+h+d=1, not g+h+d=1 as implemented/commented in ARGON03.
+The script assigns a=4g+4h-3, v=6-10g-9h, d=1-g-h.
+Its resulting dimension is M^(1-2g), with L,T exponents zero. Except g=0,
+these are not masses and cannot be compared numerically with kilograms.
+The corrected exponent family is
+ d=1+g-h, a=-3-2g+4h, v=6+2g-9h.
+A bounded integer scan, even corrected, could not establish the unrestricted
+claim that no dimensionally consistent combination reaches an energy band.
+The source's negative dimensional-search conclusion is therefore not proved.
+This does NOT derive an optical mass; that mass is still an unspecified input.
+
+2. The vacuum scale does not fix the carrier's mass
+With the source's supplied density rho_DE=4a0^2/(G c^2), the quantity
+ m_DE=(rho_DE hbar^3/c^3)^(1/4)
+is dimensionally a mass, m_DE c^2=0.002240117016591203 eV with the displayed
+SI constants. Source value differs by4.36e-7 fraction solely through its
+kg-to-eV conversion constant; no physical discrepancy follows.
+But m_chi=C_m m_DE, with unspecified positive dimensionless C_m, has the same
+dimensions. Dimensional analysis supplies no equation fixing C_m=1, identifying
+chi with a dark photon, or selecting its population. More generally
+ Pi=a0 sqrt(hbar G/c^7) is dimensionless, and
+ m=sqrt(hbar c/G) F(Pi)
+is a dimensionally valid family for arbitrary dimensionless F. The supplied
+rho_DE relation does not make a particular F a dynamical prediction.
+The original CFG723 handoff says the mass VALUE MAY be set by rho_DE (F5);
+a pole mass/spectrum calculation and abundance history are still missing.
+Neither an integer scan nor a fourth-root energy-density scale supplies them.
+
+3. Stored lower-coupling photon rate is 100 times too large
+Under the source's own fixed-density, fixed-mass response, N scales as eps^2.
+The stored values are N(1e-12)=43935358.97297008/day and
+N(1e-14)=439353.5897297008/day. The latter uses division by100.
+Correct division is10000, giving4393.535897297009/day. The same wrong /100
+appears in the print statement. The headline eps=1e-12 rate itself is not
+changed by this correction. ARGON06's separate eps=1e-13 scaling to about
+4.4e5/day is arithmetically consistent; it must not be mistaken for eps=1e-14.
+No actual detection significance follows from a photon count alone.
+
+4. Smallest missing inference in the proposed kill test
+The specified detector model is P=eps^2 f_chi rho_local,E c A C_response,
+where f_chi is the fraction in the assigned species and C_response counts the
+assumed polarization, material conversion, geometry and efficiency. For an
+assigned mass/spectrum a null bounds the product eps^2 f_chi C_response.
+It bounds eps alone only after those inputs have been fixed. A selected
+frequency does not identify an unknown line with the theory's gravitating
+carrier. Conversely, a verified non-gravitational signal from that actual
+carrier would contradict the strict no-signal E6 hypothesis. This latter
+conditional implication survives; an arbitrary 542GHz line or a finite
+sensitivity null is not by itself a complete framework decision.
+The core theory does not require the newly supplied dark-photon portal,
+its coupling, its mass coefficient or its assumed population. A null also
+leaves the zero-coupling limit and other masses untested. These are dependency
+requirements for interpreting the proposed test, not changes to frozen E6.
+No original frozen criterion, publication or portal action was modified.
+
+Evidence and failed attempt
+Sixteen symbolic/arithmetic controls pass in run_054_v2; manifest validated
+against current inputs. The first run_054 failed an energy agreement check
+at1e-8 relative tolerance because the source's kg/eV constant differs by
+4.36e-7. This was a comparison-tolerance failure, not a new physical finding.
+The v1 script is preserved as check_detector_mass_scope_v1.py; the successful
+contract explicitly permits1e-6 for that conversion. Old run hashes refer to
+the pre-edit script; run_054_v2 is authoritative, not the historical run.
+No astrophysical source literature was queried or authenticated in this pass;
+all such claims retain their original provisional labels.
+
+Obligations and next executable work
+PASSED: exact dimensional residual and corrected exponent family; vacuum
+scale arithmetic; coupling-squared rate countercheck; conditional null product.
+FAILED: original dimensionally valid scan interpretation and eps1e-14 rate.
+CONDITIONAL: dark-photon identity, m_chi=m_DE, abundance, material response,
+external constraints and any detector-to-framework attribution.
+NOT ADDRESSED: production, occupied multi-current halo, metric completion,
+actual support/transport action or experimental background likelihood.
+First derive a quadratic carrier action and its pole spectrum, with every
+coefficient counted; then derive the occupied species fraction and photon
+response. Only then select and audit the applicable external likelihoods.
+
+New parallel result queued for next bounded audit
+AG1 commit77036c1ff corrects G081's omitted -delta_rho gradPhi0 term in its
+isothermal-fluid surrogate. Its source explicitly excludes the full tether
+medium. Its static-equilibrium and principal/stability conclusions must keep
+those scopes. In particular, test whether the suggested 'or dissipation'
+actually changes a negative restoring eigenvalue, rather than merely slows
+its growth. No full-fluid or Ebert-Bonnor simulation was duplicated here.
+CE053 finite-edge/projection and CE050-052 obligations remain live. The
+original theory remains open.

@@ -1,0 +1,93 @@
+LOCAL RESPONSE OF THE JOINT SELECTOR — 2026-10-14
+
+Status: new conditional local-response derivations, not a completed physical
+theory or a selection of 32 pi. The scalar-to-acceleration dictionary remains
+an assumption. All quantities below use c=hbar=1 unless SI is specified.
+
+1. Candidate carried forward
+
+S = integral sqrt(-g)[M^2 R/2 - (partial phi)^2/2 - U(phi) + f(phi) E4],
+U = U0 exp(phi^2/F^2), f = beta log(phi/F), beta,F,U0,phi positive.
+The earlier homogeneous calculation gives z=phi_v^2/F^2 in (0,1),
+gamma=beta F^2/M^2, Lambda/phi_v^2=3/(4 gamma), and
+m_eff^2/H^2 = 12(1-z)/(gamma/beta+6z).
+Consequently m_eff^2/H^2 <= 12 beta/gamma. Requiring this squared mass
+ratio to be at least one necessarily requires beta >= gamma/12.
+This is a declared rate criterion, not a precise relaxation-time theorem.
+Target gamma=3/(128 pi) remains an input, not a prediction.
+
+2. Nonlinear, massless, fixed-metric local bound
+
+For a Schwarzschild mass m, E4=48m^2/r^6. Dropping U' and cosmological
+terms, the exact static test-field equation is
+  [r^2(1-2m/r) phi']' = -48 beta m^2/(r^4 phi).
+Set x=r/m, y=m phi/sqrt(beta), q=-x(x-2)y'. On any assumed positive,
+horizon-regular solution with y(X_R)=eps>0 and X_R>=4,
+  q(2)=0, q'=48/(x^4 y), y'= -q/[x(x-2)].
+Thus q increases and y decreases. Write Q=q(X_R). For 3<=x<=4,
+  y(x)<=eps+Q log(3)/2.
+Integrating q' over [3,4] yields
+  Q(eps+kQ)>=I, k=log(3)/2, I=37/108,
+  Q>=qmin=2I/[sqrt(eps^2+4kI)+eps].
+Since y>=eps, Q-q(X)<=16/(eps X^3). For 2<X<X_R,
+  [phi(mX)-phi(mX_R)]/phi(mX_R)
+    >= [qmin-16/(eps X^3)] J/eps,
+  J={log(1-2/X_R)-log(1-2/X)}/2.
+When the right side is negative, positivity supplies the stronger zero bound.
+These inequalities assume existence of the positive regular solution; they
+do not prove existence. Lean formalizes the algebraic inequality steps, not
+the differential equation, integrations, or physical approximations.
+
+A linear control with f'=alpha held fixed is
+  delta phi=2 alpha/(mr)[1+m/r+4m^2/(3r^2)].
+It solves the linearized equation and is horizon regular. Large fractional
+values invalidate linearization; the bound above does not use linearization.
+
+3. Assigned benchmark, and its important limitation
+
+Assign isolated black-hole mass 4e6 solar masses, a0=9.360324825e-11 m/s^2,
+phi_v=a0/c^2, H=sqrt(32 pi/3) phi_v, boundary 100 kpc, test radius 10 kpc.
+At beta=gamma/12 the massless fractional lower bound is about 55146.
+Within this massless model, a fractional difference <=0.1 requires
+beta <=2.04433e-15, implying the homogeneous rate bound <=3.28830e-12.
+
+THIS IS NOT A BOUND ON THE FULL EXPONENTIAL-POTENTIAL THEORY. Even though
+H times outer radius is only 1.86033e-5, a large field excursion can make
+the nonlinear potential important. A small vacuum mass times radius alone
+does not control the potential along a large excursion. Large beta can also
+invalidate the massless approximation directly. The calculation diagnoses
+a tension in an unscreened approximation, not an observational exclusion.
+There is no new observation or fit here, and no realistic galaxy model.
+
+4. Opposite limit: local equilibrium gives a concrete equation
+
+On fixed Schwarzschild-de Sitter, E4=24H^4+48m^2/r^6. If scalar gradients
+are negligible, U'=f'E4. Dividing by the vacuum stationary equation gives
+  z_local exp(z_local) = z_v exp(z_v) [1+2m^2/(H^4 r^6)],
+  z_local = W_0(z_v exp(z_v)[1+2m^2/(H^4 r^6)]),
+  phi_local/phi_v = sqrt(z_local/z_v).
+W_0 denotes the principal real Lambert W branch. Positive input gives one
+positive local algebraic root. This is exact within the stated algebraic
+approximation; it is not a solution of the full spatial equations.
+If both z_v and z_local are small, the ratio becomes
+  sqrt(1+2m^2/(H^4 r^6)).
+The assigned benchmark gives 7.88586 at 10 kpc. Its crossover radius
+r0=(2m^2/H^4)^(1/6)=19.8507 kpc scales as m^(1/3), not sqrt(m).
+Increasing beta alone does not remove this algebraic forcing. The actual
+profile requires matching gradients, horizon conditions, and metric response.
+
+5. What this advances and what remains open
+
+The candidate now has an explicit local-response equation and a conditional
+nonlinear charge bound. Vacuum stability alone is insufficient to establish
+an approximately uniform acceleration scale. The decisive remaining problem
+is a nonlinear, backreacting boundary-value calculation, including the
+physical matter/acceleration coupling. Neither tested limit rules out all
+intermediate solutions. No result here derives gamma=3/(128 pi), protects
+additive vacuum shifts, proves novelty, or establishes new physics.
+
+Verification: check.py verifies seven exact symbolic controls and computes
+the assigned benchmark. The audited run records software, inputs and output.
+LocalSelector.lean contains four conditional real-algebra theorems. Its
+compiler output is retained separately; it must not be read as a formal
+verification of the full physical derivation.

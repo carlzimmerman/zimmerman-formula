@@ -1,0 +1,227 @@
+import Nonspherical
+
+/-! Actual three-component norm-weighted two-source flux at the interior symmetry point.
+Uses checked own kernel/source calculus. No flux-divergence correspondence is assumed. -/
+noncomputable section
+open Filter
+open scoped Topology
+open FrameworkNonspherical
+namespace FrameworkNonsphericalFlux
+
+def rMinus (a x y z : ℝ) : ℝ := Real.sqrt ((x - a) ^ 2 + y ^ 2 + z ^ 2)
+def rPlus (a x y z : ℝ) : ℝ := Real.sqrt ((x + a) ^ 2 + y ^ 2 + z ^ 2)
+def potential (M a x y z : ℝ) : ℝ := -M / rMinus a x y z - M / rPlus a x y z
+def gx (M a x y z : ℝ) : ℝ := M * (x - a) / rMinus a x y z ^ 3 + M * (x + a) / rPlus a x y z ^ 3
+def gy (M a x y z : ℝ) : ℝ := M * y / rMinus a x y z ^ 3 + M * y / rPlus a x y z ^ 3
+def gz (M a x y z : ℝ) : ℝ := M * z / rMinus a x y z ^ 3 + M * z / rPlus a x y z ^ 3
+def fieldNorm (M a x y z : ℝ) : ℝ := Real.sqrt (gx M a x y z ^ 2 + gy M a x y z ^ 2 + gz M a x y z ^ 2)
+def weight (M a a0 x y z : ℝ) : ℝ := nu (fieldNorm M a x y z / a0) - 1
+def fluxX (M a a0 x y z : ℝ) : ℝ := weight M a a0 x y z * gx M a x y z
+def fluxY (M a a0 x y z : ℝ) : ℝ := weight M a a0 x y z * gy M a x y z
+def fluxZ (M a a0 x y z : ℝ) : ℝ := weight M a a0 x y z * gz M a x y z
+
+def target (M a G : ℝ) : ℝ :=
+  let q := a / 4
+  let a0 := midField M a q
+  (deriv (fun x => fluxX M a a0 x q 0) 0 +
+   deriv (fun y => fluxY M a a0 0 y 0) q +
+   deriv (fun z => fluxZ M a a0 0 q z) 0) / (4 * Real.pi * G)
+
+/-- Continuous coefficient times a component vanishing at the differentiation point. -/
+theorem continuous_mul_vanishing (c f : ℝ → ℝ) (d x : ℝ)
+    (hc : ContinuousAt c x) (hf : HasDerivAt f d x) (hz : f x = 0) :
+    HasDerivAt (fun t => c t * f t) (c x * d) x := by
+  apply hasDerivAt_iff_tendsto_slope.mpr
+  have ht := (hc.tendsto.mono_left nhdsWithin_le_nhds).mul hf.tendsto_slope
+  apply ht.congr'
+  filter_upwards [] with t
+  simp only [slope, hz, mul_zero, vsub_eq_sub, sub_zero, smul_eq_mul]
+  ring
+
+/-- The actual full field reduces to the checked scalar slices. -/
+theorem actual_field_slices (M a y : ℝ) (ha : 0 < a) :
+    (fun x => gx M a x y 0) = fieldXSlice M a y ∧
+    (∀ t, gx M a 0 t 0 = 0 ∧ gy M a 0 t 0 = midField M a t ∧ gz M a 0 t 0 = 0 ∧
+      fieldNorm M a 0 t 0 = |midField M a t|) ∧
+    (fun z => gz M a 0 y z) = fieldZSlice M a y := by
+  constructor
+  · funext x
+    dsimp [gx, rMinus, rPlus, fieldXSlice, midField]
+    ring_nf
+  constructor
+  · intro t
+    have hx : gx M a 0 t 0 = 0 := by dsimp [gx, rMinus, rPlus]; ring_nf
+    have hy : gy M a 0 t 0 = midField M a t := by dsimp [gy, rMinus, rPlus, midField]; ring_nf
+    have hz : gz M a 0 t 0 = 0 := by simp [gz]
+    refine ⟨hx, hy, hz, ?_⟩
+    norm_num [fieldNorm, hx, hy, hz, Real.sqrt_sq_eq_abs]
+  · funext z
+    have hs : 0 ≤ a ^ 2 + y ^ 2 := by positivity
+    have hsq := Real.sq_sqrt hs
+    dsimp [gz, rMinus, rPlus, fieldZSlice, midField]
+    rw [hsq]
+    ring_nf
+
+/-- The shared full potential differentiates to the actual field on all three
+coordinate curves through the exterior midplane point; no source-gradient premise. -/
+theorem actual_potential_coordinate_derivatives (M a y : ℝ) (ha : 0 < a) (hy : 0 < y) :
+    HasDerivAt (fun x => potential M a x y 0) (gx M a 0 y 0) 0 ∧
+    HasDerivAt (fun t => potential M a 0 t 0) (gy M a 0 y 0) y ∧
+    HasDerivAt (fun z => potential M a 0 y z) (gz M a 0 y 0) 0 := by
+  have hs := actual_field_slices M a y ha
+  have hv := hs.2.1 y
+  have hxid : (fun x => potential M a x y 0) =
+      fun x => midPotential (M / 2) y (x - a) + midPotential (M / 2) y (x + a) := by
+    funext x
+    dsimp [potential, rMinus, rPlus, midPotential]
+    ring_nf
+  have hyid : (fun t => potential M a 0 t 0) = midPotential M a := by
+    funext t
+    dsimp [potential, rMinus, rPlus, midPotential]
+    ring_nf
+  have hzid : (fun z => potential M a 0 y z) = midPotential M (Real.sqrt (a ^ 2 + y ^ 2)) := by
+    funext z
+    dsimp [potential, rMinus, rPlus, midPotential]
+    rw [Real.sq_sqrt (by positivity : 0 ≤ a ^ 2 + y ^ 2)]
+    ring_nf
+  have hm := (actual_midpotential_derivative (M / 2) y (0 - a) hy).comp 0
+    ((hasDerivAt_id (0 : ℝ)).sub_const a)
+  have hp := (actual_midpotential_derivative (M / 2) y (0 + a) hy).comp 0
+    ((hasDerivAt_id (0 : ℝ)).add_const a)
+  refine ⟨?_, ?_, ?_⟩
+  · rw [hxid]
+    apply (hm.add hp).congr_deriv
+    rw [congrFun hs.1 0]
+    simp [fieldXSlice]
+  · rw [hyid]
+    exact (actual_midpotential_derivative M a y ha).congr_deriv hv.2.1.symm
+  · rw [hzid]
+    have hr : 0 < Real.sqrt (a ^ 2 + y ^ 2) := by positivity
+    apply (actual_midpotential_derivative M (Real.sqrt (a ^ 2 + y ^ 2)) 0 hr).congr_deriv
+    rw [hv.2.2.1]
+    simp [midField]
+
+/-- Actual noncolliding source field norm is continuous along any continuous coordinate path. -/
+theorem actual_norm_continuous (M a : ℝ) (x y z : ℝ → ℝ) (t : ℝ)
+    (hx : ContinuousAt x t) (hy : ContinuousAt y t) (hz : ContinuousAt z t)
+    (hm : rMinus a (x t) (y t) (z t) ≠ 0) (hp : rPlus a (x t) (y t) (z t) ≠ 0) :
+    ContinuousAt (fun u => fieldNorm M a (x u) (y u) (z u)) t := by
+  have hrm : ContinuousAt (fun u => rMinus a (x u) (y u) (z u)) t :=
+    ((((hx.sub_const a).pow 2).add (hy.pow 2)).add (hz.pow 2)).sqrt
+  have hrp : ContinuousAt (fun u => rPlus a (x u) (y u) (z u)) t :=
+    ((((hx.add_const a).pow 2).add (hy.pow 2)).add (hz.pow 2)).sqrt
+  have hcx : ContinuousAt (fun u => gx M a (x u) (y u) (z u)) t :=
+    (((hx.sub_const a).const_mul M).div (hrm.pow 3) (pow_ne_zero _ hm)).add
+      (((hx.add_const a).const_mul M).div (hrp.pow 3) (pow_ne_zero _ hp))
+  have hcy : ContinuousAt (fun u => gy M a (x u) (y u) (z u)) t :=
+    ((hy.const_mul M).div (hrm.pow 3) (pow_ne_zero _ hm)).add
+      ((hy.const_mul M).div (hrp.pow 3) (pow_ne_zero _ hp))
+  have hcz : ContinuousAt (fun u => gz M a (x u) (y u) (z u)) t :=
+    ((hz.const_mul M).div (hrm.pow 3) (pow_ne_zero _ hm)).add
+      ((hz.const_mul M).div (hrp.pow 3) (pow_ne_zero _ hp))
+  exact (((hcx.pow 2).add (hcy.pow 2)).add (hcz.pow 2)).sqrt
+
+/-- The actual normalized norm weight has value nu1-1 and is continuous on x/z slices. -/
+theorem actual_transverse_weight (M a : ℝ) (hM : 0 < M) (ha : 0 < a) :
+    weight M a (midField M a (a / 4)) 0 (a / 4) 0 = nu 1 - 1 ∧
+    ContinuousAt (fun x => weight M a (midField M a (a / 4)) x (a / 4) 0) 0 ∧
+    ContinuousAt (fun z => weight M a (midField M a (a / 4)) 0 (a / 4) z) 0 := by
+  have hg := (midpoint_quarter_positive M a hM ha).1
+  have hn := (actual_field_slices M a (a / 4) ha).2.1 (a / 4)
+  have he : fieldNorm M a 0 (a / 4) 0 / midField M a (a / 4) = 1 := by
+    rw [hn.2.2.2, abs_of_pos hg, div_self hg.ne']
+  have hrm : rMinus a 0 (a / 4) 0 ≠ 0 := by unfold rMinus; positivity
+  have hrp : rPlus a 0 (a / 4) 0 ≠ 0 := by unfold rPlus; positivity
+  have hnx := actual_norm_continuous M a id (fun _ => a / 4) (fun _ => 0) 0
+    continuousAt_id continuousAt_const continuousAt_const hrm hrp
+  have hnz := actual_norm_continuous M a (fun _ => 0) (fun _ => a / 4) id 0
+    continuousAt_const continuousAt_const continuousAt_id hrm hrp
+  have hc : ContinuousAt nu (fieldNorm M a 0 (a / 4) 0 / midField M a (a / 4)) := by
+    rw [he]
+    exact (actual_nu_derivative 1 (by norm_num)).continuousAt
+  refine ⟨?_, ?_, ?_⟩
+  · unfold weight
+    rw [he]
+  · have hq : ContinuousAt (fun x => fieldNorm M a x (a / 4) 0 / midField M a (a / 4)) 0 := hnx.div_const _
+    exact (hc.comp' (f := fun x => fieldNorm M a x (a / 4) 0 / midField M a (a / 4)) hq).sub_const 1
+  · have hq : ContinuousAt (fun z => fieldNorm M a 0 (a / 4) z / midField M a (a / 4)) 0 := hnz.div_const _
+    exact (hc.comp' (f := fun z => fieldNorm M a 0 (a / 4) z / midField M a (a / 4)) hq).sub_const 1
+
+/-- Actual x/z flux partial derivatives, without assuming differentiability of the weight. -/
+theorem actual_transverse_flux_derivatives (M a : ℝ) (hM : 0 < M) (ha : 0 < a) :
+    HasDerivAt (fun x => fluxX M a (midField M a (a / 4)) x (a / 4) 0)
+      ((nu 1 - 1) * deriv (fieldXSlice M a (a / 4)) 0) 0 ∧
+    HasDerivAt (fun z => fluxZ M a (midField M a (a / 4)) 0 (a / 4) z)
+      ((nu 1 - 1) * deriv (fieldZSlice M a (a / 4)) 0) 0 := by
+  have hd := actual_transverse_field_derivatives M a (a / 4) ha (by positivity)
+  have hs := actual_field_slices M a (a / 4) ha
+  have hw := actual_transverse_weight M a hM ha
+  have hv := hs.2.1 (a / 4)
+  constructor
+  · have hx : HasDerivAt (fun x => gx M a x (a / 4) 0) (deriv (fieldXSlice M a (a / 4)) 0) 0 := by
+      rw [hs.1]
+      exact hd.1.differentiableAt.hasDerivAt
+    have h := continuous_mul_vanishing _ _ _ 0 hw.2.1 hx hv.1
+    exact h.congr_deriv (by rw [hw.1])
+  · have hz : HasDerivAt (fun z => gz M a 0 (a / 4) z) (deriv (fieldZSlice M a (a / 4)) 0) 0 := by
+      rw [hs.2.2]
+      exact hd.2.differentiableAt.hasDerivAt
+    have h := continuous_mul_vanishing _ _ _ 0 hw.2.2 hz hv.2.2.1
+    exact h.congr_deriv (by rw [hw.1])
+
+/-- Actual y flux uses |midField| globally and equals positive midField only locally. -/
+theorem actual_y_flux_derivative (M a : ℝ) (hM : 0 < M) (ha : 0 < a) :
+    HasDerivAt (fun y => fluxY M a (midField M a (a / 4)) 0 y 0)
+      (nuSlope 1 * midSlope M a (a / 4) + (nu 1 - 1) * midSlope M a (a / 4)) (a / 4) := by
+  have hg := (midpoint_quarter_positive M a hM ha).1
+  have hm := actual_midfield_derivative M a (a / 4) ha
+  have hpos := hm.continuousAt.tendsto.eventually_const_lt hg
+  apply (actual_weighted_midfield_derivative M a hM ha).congr_of_eventuallyEq
+  filter_upwards [hpos] with y hy
+  have hs := (actual_field_slices M a y ha).2.1 y
+  simp only [fluxY, weight, weightedMidField, hs.2.1, hs.2.2.2, abs_of_pos hy]
+
+/-- Full actual coordinate flux divergence equals the previously checked local coefficient. -/
+theorem actual_full_target_identity (M a G : ℝ) (hM : 0 < M) (ha : 0 < a) :
+    target M a G = localTarget M a G := by
+  have ht := actual_transverse_flux_derivatives M a hM ha
+  have hy := actual_y_flux_derivative M a hM ha
+  have hv := actual_vacuum_field_trace M a (a / 4) ha (by positivity)
+  rw [(actual_midfield_derivative M a (a / 4) ha).deriv] at hv
+  dsimp [target, localTarget]
+  rw [ht.1.deriv, hy.deriv, ht.2.deriv]
+  congr 1
+  linear_combination (nu 1 - 1) * hv
+
+/-- Strict negative raw A5 target for this exact prescribed two-positive-source geometry. -/
+theorem actual_full_target_negative (M a G : ℝ) (hM : 0 < M) (ha : 0 < a) (hG : 0 < G) :
+    target M a G < 0 := by
+  rw [actual_full_target_identity M a G hM ha]
+  exact actual_local_target_negative M a G hM ha hG
+
+/-- For every fixed positive framework scale, rescale only the positive source mass
+and obtain the same actual 3D negative target witness. The scale is not selected by the proof. -/
+theorem arbitrary_fixed_scale_witness (a a0 G : ℝ) (ha : 0 < a) (ha0 : 0 < a0) (hG : 0 < G) :
+    ∃ M : ℝ, 0 < M ∧ midField M a (a / 4) = a0 ∧
+      (deriv (fun x => fluxX M a a0 x (a / 4) 0) 0 +
+       deriv (fun y => fluxY M a a0 0 y 0) (a / 4) +
+       deriv (fun z => fluxZ M a a0 0 (a / 4) z) 0) / (4 * Real.pi * G) < 0 := by
+  let M := a0 * Real.sqrt (a ^ 2 + (a / 4) ^ 2) ^ 3 / (2 * (a / 4))
+  have hq : 0 < a / 4 := by positivity
+  have hr : 0 < Real.sqrt (a ^ 2 + (a / 4) ^ 2) := by positivity
+  have hM : 0 < M := by dsimp [M]; positivity
+  have he : midField M a (a / 4) = a0 := by
+    dsimp [midField, M]
+    field_simp
+  refine ⟨M, hM, he, ?_⟩
+  have hn := actual_full_target_negative M a G hM ha hG
+  simpa only [target, he] using hn
+
+end FrameworkNonsphericalFlux
+
+open FrameworkNonspherical
+-- The actual supplied continuous kernel is strictly decreasing at one.
+example : 0 ≤ deriv nu 1 := by
+  rw [(actual_nu_derivative 1 (by norm_num)).deriv]
+  have hn := actual_nu_slope_negative 1 (by norm_num)
+  rw [iff_false_intro (not_le.mpr hn)]

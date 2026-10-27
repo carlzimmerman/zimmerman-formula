@@ -1,0 +1,364 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,longtable}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\eq}{\mathrm{eq}}
+\title{A missing source-assisted reaction and positive pole matching\\
+The next kinetic obligations of the scalar particle bridge}
+\author{Zimmerman programme: CPB-SA-2026-10-16}
+\date{16 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The previous pair/source abundance evolution omitted a pole-free
+three-to-two reaction already present in the same scalar action.
+We derive its complete tree amplitude and finite-temperature MB reaction
+density. At the selected 2-MeV point and $T_d=m$, its two conjugate channels
+add approximately 4.95 times the earlier pair-conversion coefficient.
+Exact single, double and nested source-pole residues identify the reaction
+network needed before subtracting the six-point remainder. A positive
+one-pole interior matching construction has a proved smooth-profile error
+bound; threshold-boundary and overlapping-pole matching remain unresolved.
+The old abundance curves remain correct for their stated reduced model,
+not verified predictions of the complete scalar theory. Full closure,
+the galaxy-response connection and the vacuum normalization remain open.
+\end{abstract}
+
+\section{Current state and exact scope}
+The previous goal turn made progress by deriving and executing a reduced
+pair-conversion gas model. The current checkout is now
+\texttt{bd5dbb23a2fa98f11f4bd9c13f1ef29970a06458}; its intervening commits
+concern independent empirical lanes. The actual local kinetic files and
+raw results were inspected before continuing. No same-route live job was
+found in this checkpoint, and no earlier simulation was restarted.
+All new computation handles have finished. Frozen model criteria and
+other lanes are unchanged.
+
+Use natural units and the scalar vertex conventions
+\begin{equation}
+ \mathcal L\supset-g(X^*\Phi^2+X\Phi^{*2})-\lambda|\Phi|^4,
+ \quad q_\Phi=1,\quad q_X=2,
+ \quad V_3=-2ig,\quad V_4=-4i\lambda.
+\end{equation}
+Here $\lambda=\lambda_{\rm tot}=\lambda_{\rm rep}+g^2/\Delta$,
+$\Delta=M^2-4m^2>0$. The rate benchmark is the separately specified
+$m=2$ MeV, $u_*=.02$, $r_\lambda=2$ mass-family candidate.
+The equations below do not identify it with the static gravitational
+polarization field. The source is treated as a narrow on-shell quasiparticle;
+medium and Bose corrections are not included.
+
+\section{The single-source cuts require more than a pair reaction}
+The same action permits the two physically distinct crossings
+\begin{align}
+ X+\Phi^*+\Phi^*&\rightleftarrows\Phi+\Phi^*,\label{eq:SAI}\\
+ X+\Phi+\Phi^*&\rightleftarrows\Phi+\Phi.\label{eq:SAJ}
+\end{align}
+Their conjugates are separate charge-related reactions. The first has
+two identical initial daughters; the second has two identical final
+daughters. Each needs one factorial $2!$ in its invariant event rate.
+Neither was included in the prior pair/source evolution.
+
+At the tree-amplitude level, cut an incoming same-charge pair from the
+six-daughter reaction $2\Phi+2\Phi^*\to\Phi+\Phi^*$. With
+$D_+=(p_1+p_2)^2-M^2$,
+\begin{equation}
+ \operatorname*{Res}_{D_+=0}\mathcal M_6=2g\mathcal M_5,
+\end{equation}
+where the right side is the physical source-assisted amplitude in
+equation~\eqref{eq:SAI}. Cutting both incoming same-charge pairs gives
+\begin{equation}
+ \operatorname*{Res}_{D_+=D_-=0}\mathcal M_6
+ =4g^2\mathcal M_{XX^*\to\Phi\Phi^*}.
+\end{equation}
+The nested pole of $\mathcal M_5$ itself has residue
+$2g\mathcal M_{XX^*\to\Phi\Phi^*}$. A single real-source cut of the crossed
+six-daughter reaction $3\Phi+\Phi^*\to2\Phi$ instead gives
+equation~\eqref{eq:SAJ}. These identities follow by removing the cut tree
+propagator and its cubic end vertex, with the stated amplitude sign convention.
+
+The exact checks retain every labeled diagram. There are 36 six-point
+trees and six one-source/four-daughter five-point trees. Single, double,
+nested and crossed residues agree as exact polynomials in $g/m$ at nine
+rational parameter points. External momenta are exactly on shell by using
+rational spatial squared weights, rather than floating square roots.
+The evidence is \texttt{source\_assisted\_matching\_run\_002}; its 72
+exact controls support the implementation. The general factorization
+argument is the tree cut, not a conclusion extrapolated from nine samples.
+This is self-review.
+
+The consequence for subtraction is precise: deleting only the double-source
+pole and donating it to $XX^*\leftrightarrow\Phi\Phi^*$ leaves single-source
+histories unmatched. The source-assisted collision channels must be supplied
+before the residual six-point rate can be called fully matched.
+
+\section{Complete five-point tree amplitude}
+Take all external momenta incoming. Let $Q$ be the charge-two source,
+$p$ the unique positive-charge daughter momentum, and
+$r_0,r_1,r_2$ the three negative-charge daughter momenta. Then
+\begin{equation}
+ Q+p+r_0+r_1+r_2=0.
+\end{equation}
+Three trees have one quartic and one cubic vertex; three have three cubic
+vertices. Summing them gives the compact exact expression
+\begin{equation}
+ \boxed{\mathcal M_5=-8g\sum_{k=0}^2
+ \frac{\lambda+g^2/[(r_i+r_j)^2-M^2]}
+ {(Q+r_k)^2-m^2},\qquad \{i,j,k\}=\{0,1,2\}.}
+\label{eq:SAamp}
+\end{equation}
+For crossing~\eqref{eq:SAI}, one source denominator can be on shell:
+the invariant mass of the two incoming negative daughters can equal $M$.
+Its residue is the previously stated pair-scattering amplitude. A full
+thermal rate for this crossing is therefore not obtained by simply squaring
+the zero-width expression.
+
+\section{The other crossing has no internal real-particle pole}
+For equation~\eqref{eq:SAJ}, let $Q,p,r$ be future-directed incoming
+source, positive daughter and negative daughter; let $k,l$ be the two
+future-directed outgoing positive daughters. In equation~\eqref{eq:SAamp},
+the negative momenta are $r,-k,-l$.
+
+The source denominators obey
+\begin{align}
+ (k+l)^2-M^2&=s-M^2\ge4m(M+m)>0,\\
+ (r-k)^2-M^2&\le-M^2,\qquad
+ (r-l)^2-M^2\le-M^2.
+\end{align}
+For the daughter denominators,
+\begin{equation}
+ (Q+r)^2-m^2\ge M(M+2m)>0.
+\end{equation}
+The vector $K=Q-k=l-(p+r)$ is strictly spacelike. If $K$ were future
+causal, $l=(p+r)+K$ would have mass at least $2m$, impossible. If $K$
+were past causal, $k=Q-K$ would have mass at least $M>m$, also impossible.
+$K=0$ would identify unequal on-shell masses. Thus
+\begin{equation}
+ (Q-k)^2-m^2<-m^2,\qquad (Q-l)^2-m^2<-m^2.
+\end{equation}
+The whole tree is pole-free throughout the physical region. This is a
+uniform kinematic statement, not just a numerical absence of poles.
+
+Since $\lambda>g^2/M^2$, an explicit uniform amplitude bound is
+\begin{equation}
+ |\mathcal M_5|\le C_5\equiv8|g|
+ \left[\frac{\lambda+g^2/[4m(M+m)]}{M(M+2m)}
+ +\frac{2\lambda}{m^2}\right].
+\end{equation}
+It also gives a finite positive analytic bound on the MB reaction density:
+\begin{equation}
+ \gamma_3^\eq\le\frac{C_5^2}{16\pi}I_X I_\Phi^2,
+ \qquad I_i=\int\frac{\dd^3p}{(2\pi)^3 2E_i}e^{-E_i/T_d}
+ =\frac{m_iT_d}{4\pi^2}K_1(m_i/T_d).
+\end{equation}
+The factor $1/(16\pi)$ is the maximal two-body phase space with its
+identical-final $1/2!$. The computed rates respect this bound. It is loose
+and does not replace quadrature-error assessment.
+
+\section{Threshold amplitude and event normalization}
+For all three incoming particles at rest in crossing~\eqref{eq:SAJ},
+the final energies are $(M+2m)/2$. Evaluation of equation~\eqref{eq:SAamp}
+gives
+\begin{equation}
+ \mathcal M_{5,0}=
+ \frac{8g\lambda(M+m)}{Mm(M+2m)}
+ -\frac{2g^3(5M+8m)}{mM^2(M+m)(M+2m)}.
+\end{equation}
+It is nonzero for the target range $2m<M<4m$, $g>0$,
+$\lambda_{\rm rep}>0$. To see the sign, factor out
+$8g/[Mm(M+2m)]$ and substitute
+$\lambda=\lambda_{\rm rep}+g^2/(M^2-4m^2)$.
+The remaining $g^2$ numerator is proportional to
+\begin{equation}
+ -x^3+24x+32=64+(4-x)(x^2+4x-8)>0,\qquad x=M/m\in(2,4).
+\end{equation}
+The $\lambda_{\rm rep}$ part is positive too. This establishes the
+nonvanishing vacuum-tree threshold amplitude on that stated domain.
+
+For a dilute nonrelativistic uncorrelated gas, the forward event rate of
+one crossing~\eqref{eq:SAJ} is
+\begin{equation}
+ R_3=K_{3,0}n_Xn_\Phi n_{\Phi^*},\qquad
+ K_{3,0}=\frac{\sqrt{1-4m^2/(M+2m)^2}\,|\mathcal M_{5,0}|^2}
+ {128\pi M m^2}.
+\end{equation}
+The initial invariant measures give $1/[(2M)(2m)^2]$, and the final phase
+space with the identical factor gives $\beta_f/(16\pi)$. Finite-temperature
+amplitudes cannot be replaced by this threshold coefficient in a warm gas.
+
+\section{A resolved finite-temperature kernel}
+With classical equilibrium distributions and the final $1/2!$ included,
+\begin{align}
+ \gamma_3^\eq(T_d)&=\frac{T_d}{16\pi^3}
+ \int_{(M+2m)^2}^\infty\sqrt{s}K_1(\sqrt{s}/T_d)\mathcal I_5(s)\dd s,\\
+ \mathcal I_5(s)&=\frac{\beta_f}{1024\pi^4s}
+ \int_{4m^2}^{(\sqrt{s}-M)^2}\!
+ \sqrt{\mathcal K(s,M^2,u)}\sqrt{1-4m^2/u}
+ \langle|\mathcal M_5|^2\rangle_{\rm angles}\dd u.
+\end{align}
+Here $\mathcal K$ is the K\"all\'en polynomial, $\beta_f=\sqrt{1-4m^2/s}$,
+and the angular brackets are a normalized average over the initial relative
+polar angle and final polar/relative azimuthal angles. The three-body phase
+space follows by inserting the pair invariant $u$ and two two-body phase
+spaces. The thermal total-momentum integral gives
+$T_d\sqrt{s}K_1(\sqrt{s}/T_d)/(8\pi^3)$; the additional factor $1/2!$
+produces the displayed coefficient. The invariant rate conventions agree
+with the primary-source discussion in \cite{SAthermal}.
+
+The code uses generalized Laguerre quadrature for total kinetic energy,
+Jacobi quadrature for the initial Dalitz invariant, and polar Gaussian and
+periodic azimuthal quadratures. Exponentially scaled Bessels avoid
+underflow in $\widehat\gamma_3=\gamma_3^\eq e^{4m/T_d}$.
+All internal denominators retain their proved physical signs.
+
+The original coarse run failed its 2-percent refinement gate at $T_d=m$.
+A separate resolution experiment found that refining energy/Dalitz nodes
+alone changed the warm values negligibly, while the angular grid mattered.
+The failed run remains intact. The authoritative refined run increases
+angular resolution and retains the original gate. At $T_d=3m$, its two
+last angular grids differ by .261 percent. These differences are finite
+numerical evidence, not rigorous error bars. The low-$T_d/m=.003$ rate
+approaches the threshold-density normalization within 2 percent, with
+remaining finite-temperature corrections retained.
+
+For source partial equilibrium $z_X=z_\Phi^2$ and equal charge populations,
+the two conjugate source-assisted reactions add
+\begin{equation}
+ P_3=2\gamma_3^\eq(z_\Phi^2-z_\Phi^4)
+\end{equation}
+to $\dot w+3Hw$. The earlier pair contribution is
+$P_2=\gamma_2^\eq(z_\Phi^2-z_\Phi^4)$. Consequently their coefficient
+ratio is independent of the shared fugacity in this MB reduction:
+\begin{center}
+\begin{tabular}{r r r}
+\toprule $T_d/m$ & $2\gamma_3^\eq/\gamma_2^\eq$ & $\gamma_3/\gamma_{3,\rm NR}$\\\midrule
+.003 & .0017634 & .98001\\
+.01 & .0096558 & .93529\\
+.03 & .047251 & .82095\\
+.1 & .25802 & .53614\\
+.3 & 1.10193 & .19128\\
+1 & 4.95265 & .016137\\
+3 & 20.7964 & .00039732\\\bottomrule
+\end{tabular}
+\end{center}
+In particular this omitted reaction is not justified as negligible at the
+warmer temperatures used in the prior reduced abundance comparison. Its
+threshold approximation would greatly overestimate the warm reaction.
+These are vacuum-tree, common-MB coefficients; they are not observed rates
+or a new primordial abundance calculation.
+
+The exact residue and new kernel computations also explain why the prior
+yield ratio 1.97924 must remain a result for its pair-only network. No
+updated abundance ratio is asserted until the source-assisted channels,
+remaining subtractions and applicable quantum/medium corrections have
+been treated in the same evolution.
+
+\section{A positive interior pole matching lemma}
+The general real-intermediate-state problem is known \cite{SARIS}. The
+following is a scoped construction for a single pole strictly inside the
+physical integration domain. It is not a completed thermal prescription.
+
+Write $D=s-M^2$, $a=M\Gamma>0$ and
+\begin{equation}
+ \mathcal A(D)=B(D)+\frac{R(D)}{D+ia},\qquad -W\le D\le W.
+\end{equation}
+Assume real $B,R$, nonnegative integration weight $v$, and define
+$F=vR^2\in C^2$, $G=vRB\in C^1$ on the symmetric window. Let
+$|F''|\le F_2$, $|G'|\le G_1$. Keep the full nonnegative squared
+amplitude outside the window. Inside it keep the background $vB^2$ and
+replace the resonant contribution by the positive local pole term
+\begin{equation}
+ \frac{2F(0)}a\arctan(W/a)
+ =\frac{\pi F(0)}a Z_W,\qquad
+ Z_W=\frac2\pi\arctan(W/a)\in(0,1).
+\end{equation}
+Equivalently the scattering amplitude uses the pole propagator only
+outside the window, with the retained real-state spectral weight counted
+separately. All retained squared-amplitude and pole terms are nonnegative.
+
+The difference from the original full window integral is
+\begin{equation}
+ E_W=\int_{-W}^W\frac{F(D)-F(0)}{D^2+a^2}\dd D
+ +2\int_{-W}^W\frac{G(D)D}{D^2+a^2}\dd D.
+\end{equation}
+Odd constant/linear pieces cancel, so Taylor's theorem and the mean-value
+bound prove
+\begin{equation}
+ \boxed{|E_W|\le(F_2+4G_1)[W-a\arctan(W/a)].}
+\end{equation}
+This bounds the omitted regular interference as well as variation of the
+resonant coefficient. If one instead uses the full unweighted pole term
+$\pi F(0)/a$, its additional known difference
+$[\pi-2\arctan(W/a)]F(0)/a$ must be counted. $Z_W$ is a matching
+coefficient of the window, not an independently measured matter fraction.
+
+The numerical benchmark uses $v(D)=e^{-D/L}$ and constant real $R,B$,
+with $W=\sqrt{aL}$. Its exact bound has
+$F_2=R^2 e^{W/L}/L^2$, $G_1=|RB|e^{W/L}/L$.
+Twenty width/background cases satisfy the bound; a direct full-window
+integration supplies an independent control at a moderate width.
+At the selected vacuum source point,
+\begin{equation}
+ \Gamma=1.05750\,10^{-11}\ \mathrm{GeV},\quad
+ a=4.23084\,10^{-14}\ \mathrm{GeV}^2.
+\end{equation}
+Assigning $L=\Delta/4$ solely as a scale diagnostic gives
+$W=8.22760\,10^{-12}$ GeV$^2$,
+$W/a=194.47$, $W/\Delta=.001286$, and $Z_W=.996726$.
+The width/window/threshold-gap hierarchy is available in vacuum; the
+actual thermal $F_2,G_1$ have not been bounded here.
+
+The lemma fails to cover a pole window truncated by a phase-space endpoint,
+complex backgrounds with absorptive interference, and overlapping poles
+without further matching. In particular the upper initial-pair invariant
+can approach $M^2$ near the source-pair threshold. A fixed symmetric window
+cannot simply be used there. Those physical boundary and double-pole
+patches remain open, rather than being hidden in the finite benchmark.
+
+\section{What is established and what remains}
+The current evidence consists of exact source-pole factorization,
+a complete pole-free source-assisted amplitude, a bounded/resolved thermal
+kernel, and the interior matching lemma. It supplies a concrete way to
+advance the previously unspecified collision remainder. It does not supply
+the whole remainder or make the earlier abundance curves complete.
+
+Next add this pole-free kernel to the energy/entropy-conserving evolution,
+with a sufficiently resolved temperature table and its error carried
+through the result. In parallel as mathematical dependencies, match
+crossing~\eqref{eq:SAI} and the six-point remainder using actual thermal
+profile bounds, threshold endpoints and the exact pole residues. Do not
+add an unsubtracted raw six-point rate to an explicit real-source network.
+The additional reaction may change the dilution/source-equilibrium gates;
+their old outcomes cannot be inherited without re-evolving.
+
+This is a collision calculation for chosen massive fields. It neither
+derives the Higgs-era initial state nor identifies the fields with the
+galactic polarization medium. The vacuum offset, $\kappa$, the acceleration
+scale postulate, physical halo settling, finite mass supply, source
+selection, relativistic lensing and native cosmology remain unresolved.
+Internal rest/kinetic conversion still is not automatically transfer to
+dark energy. The pressure-aware exchange identity from the previous
+checkpoint remains the applicable bookkeeping condition.
+
+Novelty boundary: source-assisted number change, tree factorization,
+thermal phase-space integration and real-state matching have established
+prior art. This report gives their explicit application to the current
+carrier and a scoped mathematical error estimate. No global novelty,
+observational identification or independent-referee claim is made.
+
+\begin{thebibliography}{9}
+\bibitem{SAthermal} V. De Romeri et al.,
+\emph{Neutrino dark matter and the Higgs portal: improved freeze-in analysis},
+arXiv:2003.12606v2, invariant reaction measure and flux, equations (21)--(25).
+\url{https://arxiv.org/html/2003.12606v2}.
+The common-MB specialization and five-point phase space here are derived
+for this scalar model; its sterile-neutrino results are not imported.
+\bibitem{SARIS} K. Ala-Mattinen et al.,
+\emph{Anatomy of real intermediate state-subtraction scheme},
+arXiv:2309.16615v2, sections I--V.
+\url{https://arxiv.org/html/2309.16615v2}.
+The primary source was inspected for the on-shell overlap and cut matching
+framework. It does not provide our physical boundary profiles or complete
+multi-source subtraction.
+\end{thebibliography}
+\end{document}

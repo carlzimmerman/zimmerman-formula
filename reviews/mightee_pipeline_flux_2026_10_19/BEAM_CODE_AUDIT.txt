@@ -1,0 +1,25 @@
+PUBLIC BEAM-NORMALIZATION CODE AUDIT -- NOT A PRODUCTION BUG CLAIM
+
+Sources examined without execution:
+https://github.com/IanHeywood/mightee-hi/blob/36ddedd55dcce78b2c0d534e8b14e0324bbef681/clean/convolve_channels.py
+https://github.com/IanHeywood/oxkat/blob/421d14c5a8a0babc2af9d8bb10179be9e94fec9a/tools/common_convolutions.py
+https://github.com/aboucaud/pypher/blob/master/pypher/pypher.py (fetched content hash preserved locally; current master is not a pinned historical production version)
+Heywood et al 2024 section3.4: https://arxiv.org/html/2409.17713v1
+
+What the primary paper says
+Target resolution per channel is set from the maximum fitted major axis among the constituent pointings. Model images are restored with the target beam. Residual images are separately convolved with a PSF homogenization kernel and then added to the model. The paper explicitly recognizes the clean-beam versus dirty-beam distinction. It is therefore incorrect to assume the pipeline simply ignored residual PSFs.
+For robust0.5, fitted axes receive a heuristic0.7 adjustment because Gaussian fits include broad PSF shoulders. The paper says this is unnecessary for the Gaussian-tapered robust1.0 products used in our comparison. A 40arcsec uv taper is not a40arcsec restoring beam: table2 gives74arcsec at band centre. The correct integrated-flux conversion is sum(image)*pixel_area/beam_area. The catalogue paper equation4 uses the same Gaussian area pi*bmaj*bmin/(4ln2) as our extraction.
+
+Concrete discrepancy in a public script
+The mightee-hi script's lines149-157 constructs target_beam_image. Lines171-173 say the model is convolved with the target beam, but the actual call passes fitted_beam_image. Line181 writes the target beam axes to the output header. For different input and target beams, this can label a model restored at one beam with another beam area. The separate oxkat utility uses target_beam_image correctly in its model-convolution call (line271).
+In both inspected scripts, residual convolution is followed by addition without an explicit target/input Gaussian beam-area factor. The current PyPHER CLI independently normalizes source and target PSF arrays by their sums. Its homogenization kernel has unit DC gain in the ideal Gaussian case. Under that convention, smoothing conserves the sum of pixel values, not integrated Jy after a new Jy/beam area denominator is assigned. A conversion factor A_target/A_input is required in the ideal Gaussian residual case. Real interferometric dirty PSFs are not necessarily Gaussian, so this is not a calibrated correction for real residuals.
+
+Controlled numerical example
+For a1Jy point source with input Gaussian FWHM50arcsec and target75arcsec, a unit-sum smoothing kernel followed by division by the target beam area returns(50/75)^2=0.44444Jy. Restoring the model at the fitted50arcsec beam while writing75arcsec in its header yields the same integrated ratio. A target-restored model plus an appropriately area-converted Gaussian residual returns1Jy. These results were verified for five clean fractions in mechanism_run/results.json, with analytic and numerical agreement better than1e-9. The50->75arcsec choice is illustrative, motivated by the scale of the previously observed deficit, not an independently measured production beam pair.
+
+Why this does not establish a release fault
+The mightee-hi script has a hard-coded0.7 factor, matching the robust0.5-style correction, while our data are robust1.0. Its relevant file history ends in August2023, the pinned repository head is January2025, and the data release is September2024. The public README refers to LOW/MID/HIGH processing, whereas the release paper uses L1/L2. FITS headers identify neither an exact production code commit nor per-pointing input beam areas, kernels or the clean/residual split. Thus the historical script is evidence of a possible implementation failure mode, not evidence the released robust1.0 cubes used it.
+To confirm or exclude this explanation, obtain the actual production script and settings, per-pointing PSF/model/residual/kernel products and mosaicking weights for these channels, or repeat imaging/homogenization from calibrated visibilities with an injected source before the suspected stage. A post-image injection cannot test an earlier normalization loss.
+
+Empirical constraint added after the dirty-cube check
+Across seven matched central3x3-pixel sightlines, clean_conv/dirty brightness is0.96183 (constant-baseline variant0.95957). This does not show the factor-of-two attenuation predicted by the illustrative normalization toy. Different PSFs and resolved structure prevent turning the ratio into a total-flux scale, but the proposed homogenization error is weakened as the dominant cause. The code discrepancy must not be promoted to a confirmed explanation.

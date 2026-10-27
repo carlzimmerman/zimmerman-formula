@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "BP_LINEAR_THERMAL",
+  "repository": {
+    "commit": "fc50a038781edea843e62d0d8c315dd07848b4f6",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/baryon_pressure_2026_10_23/linear.py",
+    "--output",
+    "sol61_push/baryon_pressure_2026_10_23/linear/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "First-order coupled mediator and baryon density/temperature growth under fixed residual ionization and imposed EdS",
+    "coefficient_domain": "float64",
+    "conventions": "CONTRACT.md",
+    "inputs": [
+      "Compensated radial sine seed; prescribed neutral-gas Compton thermal history"
+    ],
+    "bounds": {
+      "k_Mpc": [
+        0.1,
+        1,
+        24.7651418
+      ],
+      "zi": 1100,
+      "zend": 0,
+      "amplitude": 1e-08,
+      "xe": 0.0002,
+      "tolerance": 1e-08
+    },
+    "non_claims": [
+      "Not shock hydrodynamics or chemistry",
+      "Not primordial initial conditions or a bound core"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T16:34:08.309025+00:00",
+    "runtime_seconds": 300.013039,
+    "exit_status": -9,
+    "status": "timeout",
+    "timeout_seconds": 300.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/baryon_pressure_2026_10_23/linear/result.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/baryon_pressure_2026_10_23/CONTRACT.md",
+    "sol61_push/baryon_pressure_2026_10_23/thermal.py",
+    "sol61_push/baryon_pressure_2026_10_23/linear.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/baryon_pressure_2026_10_23/CONTRACT.md",
+      "sha256": "ec2a7b29eed2a25d54199d16d5abfc47337c6e4002cbe4f5217c54507b3b5acd",
+      "sha256_after": "ec2a7b29eed2a25d54199d16d5abfc47337c6e4002cbe4f5217c54507b3b5acd"
+    },
+    {
+      "path": "sol61_push/baryon_pressure_2026_10_23/thermal.py",
+      "sha256": "cf2ae62ef51ff79bd59802eb55d29e1be075edbc4f254cb2f242e48b1985e7ec",
+      "sha256_after": "cf2ae62ef51ff79bd59802eb55d29e1be075edbc4f254cb2f242e48b1985e7ec"
+    },
+    {
+      "path": "sol61_push/baryon_pressure_2026_10_23/linear.py",
+      "sha256": "a9a1d866a81ac3b225f1c6856cf4b8f2aa077c5f283ebc3701a224903c08d21a",
+      "sha256_after": "a9a1d866a81ac3b225f1c6856cf4b8f2aa077c5f283ebc3701a224903c08d21a"
+    }
+  ],
+  "output_directory": "sol61_push/baryon_pressure_2026_10_23/linear",
+  "declared_results": [
+    "sol61_push/baryon_pressure_2026_10_23/linear/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/baryon_pressure_2026_10_23/linear/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/baryon_pressure_2026_10_23/linear/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run timeout; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: sol61_push/baryon_pressure_2026_10_23/linear/result.json"
+  ]
+}

@@ -1,0 +1,708 @@
+\section{Heat kernel expansion on manifolds without boundary}
+\label{sec4}
+\subsection{General formulae}\label{s4gen}
+For physicists, the most familiar way to calculate the heat
+kernel coefficients is the DeWitt iterative procedure which
+will be briefly described in sec.\ \ref{s4iter}. Here
+we take a different route following the method of Gilkey.
+Advantages of this method are most clearly seen on manifolds
+with boundaries. However, even if boundaries are absent
+we use the same method for the following reasons:
+(i) this will ensure a smooth transition to more
+complicated material of the next section; (ii) we believe
+that calculations of the coefficients $a_k(f,D)$ are a little
+bit easier even without a boundary.
+We are not going
+to give complete proofs of all statements. Instead,
+we concentrate on main ideas of the method. 
+For the details an interested reader
+can consult the original paper \cite{Gilkey1975}
+and the monographs \cite{Gilkey:1995,Kirsten:2001wz}.
+
+We start with very general properties of the heat
+kernel coefficients. Let us consider 
+a smooth compact Riemannian manifold $M$ without boundary.
+To be able to define functions on $M$ which carry some discrete
+(spin or gauge) indices  we need a vector bundle $V$ over $M$.
+Let $D$ be an operator of Laplace type on $V$, 
+and let $f$ be a smooth function on $M$.
+There is an asymptotic expansion (\ref{asymptotex}) and
+
+\noindent 1) Coefficients with odd index $k$ vanish,
+$a_{2j+1}(f,D)=0$;
+
+\noindent 2) Coefficients $a_{2j}(f,D)$ are locally
+computable in terms of geometric invariants.
+
+Already the existence of the power-law asymptotic expansion (\ref{asymptotex})
+is a non-trivial statement. We postpone the discussion of this 
+property to sec.\ \ref{s5other}.
+
+The second statement above is very
+important. It means that the heat kernel coefficients
+can be expressed as integrals of local invariants:
+\begin{equation}
+a_k(f,D)= \ptr \iM \{ f(x) a_k (x;D) \} 
+=\sum_I \ptr \iM \{ f u^I \mathcal{ A}_k^I(D) \} \,, \label{locinv}
+\end{equation}
+where $\mathcal{ A}_k^I$ are all possible independent invariants 
+of the dimension $k$  constructed
+from $E$, $\Omega$, $R_{\mu\nu\rho\sigma}$ and their derivatives.
+We use usual assignments of the dimensions
+when $E$ has dimension two, any derivative has dimension one, etc.
+ $u^I$ are some constants. For example, if $k=2$ only two 
+independent invariants exist. These are $E$ and $R$.
+Note, that we can
+always integrate by parts to remove all derivatives from $f$.
+The first statement, $a_{2j+1}=0$, is clear now. 
+One cannot construct an
+odd-dimension invariant on a manifold without boundary.
+
+Let us study further relations between the heat kernel coefficients
+which will turn out to generate relations between the constants $u^I$.
+Consider now the case when the manifold $M$ is a direct product
+of two manifolds, $M_1$ and $M_2$, with coordinates $x_1$ and
+$x_2$ respectively,
+and the operator $D$ is a 
+sum of two operators acting independently on $M_1$ and $M_2$,
+$D=D_1\otimes 1 +1\otimes D_2$. This means that the bundle indices
+are also independent. As an example, one can consider the vector Laplacian
+on $M_1\times M_2$.  One can write symbolically
+$\exp (-tD)=\exp (-tD_1)\otimes \exp (-tD_2)$. Next we multiply
+both sides of this equation by $f(x_1,x_2)=f_1(x_1)f_2(x_2)$, take
+the functional trace and perform the asymptotic expansion in $t$
+to get
+\begin{equation}
+a_k(x;D)=\sum_{p+q=k} a_p(x_1;D_1)a_q(x_2;D_2)\,.
+\label{product}
+\end{equation}
+
+The consequences of eq.\ (\ref{product})
+are very far reaching. In particular, eq.\ (\ref{product}) allows to fix
+the dependence of $u^I$ on the dimension of the manifold $M$.
+Consider an even more specialised case when
+one of the manifolds is a one-dimensional circle:  $M_1=S^1$, $0<x_1\le 2\pi$.
+Let us make the simplest choice for $D_1$: 
+$D_1=-\partial_{x_1}^2$. All geometric invariants associated with
+$D$ are defined solely by the $D_2$-part. Moreover, all invariants are
+independent of $x_1$.
+Therefore, by the equation (\ref{locinv}),
+\begin{eqnarray}
+a_k(f(x_2),D)&=&\int_{S^1\times M_2}d^nx\sqrt{g}\sum_I
+\ptr \{f(x_2) u^I_{(n)} 
+\mathcal{ A}^I_k (D) \} \nonumber \\
+&=&2\pi\int_{M_2}d^{n-1}x\sqrt{g}\sum_I
+\ptr \{f(x_2) u^I_{(n)} \mathcal{ A}^I_k (D_2) \}\,.
+\label{77hk}
+\end{eqnarray}
+Here dependence of the constants $u^I_{(n)}$ on the dimension $n$ of
+the manifold is shown explicitly.
+On the other hand, we can use (\ref{product}). Spectrum
+of the operator $D_1$ is known. The eigenvalues are $l^2$,
+$l \in {\mathbb {Z}}$. The heat kernel asymptotics for $D_1$
+can be easily obtained
+by using the Poisson summation formula
+\begin{eqnarray}
+K(t,D_1)&=&\sum_{l\in \mathbb{Z}} \exp (-tl^2)=\sqrt{\frac {\pi}t}
+\sum_{l\in \mathbb{Z}} \exp (-\pi^2 l^2/t) \nonumber\\
+&\simeq& \sqrt{\frac {\pi}t} +\mathcal{O}\left( e^{-1/t} \right)\,.
+\label{eq:asPoi}
+\end{eqnarray}
+Since exponentially small terms have no effect on the heat kernel
+coefficients, the only non-zero coefficient is
+$a_0(1,D_1)=\sqrt{\pi}$. Therefore, we obtain by eq.\ (\ref{product})
+\begin{equation}
+a_k(f(x^2),D)={\sqrt \pi} \int_{M_2}d^{n-1}x\sqrt{g}\sum_I
+\ptr
+ \{f(x^2) u^I_{(n-1)} \mathcal{ A}^I_n (D_2) \} \,.  
+\label{78hk}
+\end{equation}
+There are no restrictions on the 
+operator $D_2$ or on the manifold $M_2$.
+By comparing the equations (\ref{77hk}) and (\ref{78hk})
+we obtain
+\begin{equation}
+u^I_{(n)}=\sqrt{4\pi} u^I_{(n+1)}. \label{uIn}
+\end{equation}
+This proves that the
+constants $u^I$ depend on the dimension
+$n$ only through the overall normalisation factor
+$(4\pi )^{-n/2}$ .
+
+To calculate the heat kernel coefficients we need also
+the following variational equations (see \cite{Gilkey:1995},
+Lemma 4.1.15):
+\begin{eqnarray}
+&&\frac{d}{d\epsilon} \vert_{\epsilon =0} a_k
+(1, e^{-2\epsilon f} D)=(n-k) a_k (f,D)\,,\label{vara} \\
+&&\frac{d}{d\epsilon} \vert_{\epsilon =0} a_k
+(1,D-\epsilon F) =a_{k-2}(F,D)\,,\label{varb} \\
+&&\frac{d}{d\epsilon} \vert_{\epsilon =0} a_{n-2}
+(e^{-2\epsilon f}F,e^{-2\epsilon f} D)=0\,,\label{varc}
+\end{eqnarray}
+where $f$ and $F$ are some smooth functions.
+
+To prove the first property (\ref{vara}) we note that
+\begin{equation}
+\frac{d}{d\epsilon} \vert_{\epsilon =0} {\rm Tr}
+(\exp (-e^{-2\epsilon f}t D))=
+{\rm Tr} (2ftD \exp (-tD)) =-2t\frac {d}{dt}
+{\rm Tr} (f\exp (-tD))
+\nonumber
+\end{equation}
+and expand both sides of this equation in the power series in $t$.
+Eq.
+(\ref{varb}) can be checked in a similar way. To prove (\ref{varc}) consider
+the operator
+\begin{equation}
+D(\epsilon ,\delta )=e^{-2\epsilon f} (D -\delta F)\,.
+\end{equation}
+We use first (\ref{vara}) with $k=n$ to show:
+\begin{equation}
+0=\frac{d}{d\epsilon} \vert_{\epsilon =0} a_{n} (1,
+D(\epsilon ,\delta )). \end{equation}
+Then we vary the equation above with respect to $\delta$:
+\begin{equation}
+0= \frac{d}{d\delta}\vert_{\delta =0}
+\frac{d}{d\epsilon} \vert_{\epsilon =0} a_{n} (1,
+D(\epsilon ,\delta ))=\frac{d}{d\epsilon} \vert_{\epsilon =0}
+\frac{d}{d\delta}\vert_{\delta =0} a_{n} (1,
+D(\epsilon ,\delta ))\,. \end{equation}
+Finally, eq.\ (\ref{varb}) yields (\ref{varc}).
+
+Eq.\ (\ref{varb}) restricts dependence of the heat kernel coefficients
+on the ``potential'' $E$ while (\ref{vara}) and (\ref{varc}) describe
+properties of the heat kernel coefficients under local scale transformations.
+
+To calculate the heat kernel coefficients we adopt the following
+strategy. First we write down a general expression for $a_k$
+containing all invariants $\mathcal{ A}_n^I$ of dimension $k$ with
+arbitrary coefficients $u^I$. The constants $u^I$ are then
+calculated by using the properties derived above. The first three
+coefficients read \cite{Gilkey1975,Gilkey:1995}:
+\begin{eqnarray}
+&&a_{0}(f,D)=(4\pi)^{-n/2}\iM \ptr\{\alpha_0 f\} \label{a0gen} \\
+&&a_2(f,D)
+         =(4\pi)^{-n/2}\frac 16 \iM \ptr\{f(
+\alpha_1E+\alpha_2R)\},\label{a2gen}\\
+&&   a_4(f,D)=(4\pi)^{-n/2}\frac 1{360} \iM \ptr\{f(\alpha_3E_{;kk}
+    +\alpha_4R E+\alpha_5E^2 \nonumber \\
+&&\qquad\qquad
+    +\alpha_6R_{;kk}+\alpha_7R^2+\alpha_8 R_{ij}R_{ij}
+    +\alpha_9 R_{ijkl}R_{ijkl}+\alpha_{10}\Cur_{ ij}\Cur_{ij})\}.
+\label{a4gen}
+\end{eqnarray}
+Instead of the $u^I$ we use rescaled constants $\alpha_I$. By (\ref{uIn})
+the coefficients $\alpha_I$ are true constants, i.e. they do not depend on
+$n$. One can check that indeed no more invariants exist. For example,
+$R_{ij;ij}$ is proportional to $R_{;jj}$ due to the Bianchi identity.
+
+
+The coefficient $\alpha_0$ follows immediately from the
+heat kernel expansion for the ``free'' scalar Laplacian
+on $S^1$ (see eq. (\ref{eq:asPoi})). We obtain
+$\alpha_0=1$. Let us now use (\ref{varb}).
+First take $k=2$. Then
+\begin{equation}
+\frac 16 \iM \ptr \left\{ \alpha_1 F \right\} =
+\iM \ptr \{F\} \,. \label{4140}
+\end{equation}
+This gives $\alpha_1=6$. Take $k=4$ to see
+\begin{equation}
+\frac 1{360}\iM \ptr \{ \alpha_4 FR +2\alpha_5 FE \}
+=\frac 16 \iM \ptr \{ \alpha_1 FE +\alpha_2 FR \}\,.
+\label{4141}
+\end{equation}
+The equation (\ref{4141}) shows that $\alpha_5=180$,
+$\alpha_4=60\alpha_2$. 
+
+To proceed further we need local scale transformations defined in
+(\ref{vara}) and (\ref{varc}). These scale transformations look
+similar to the local Weyl transformations but are not exactly
+the same. The scale transformations in (\ref{vara})
+are designed in such a way that the operator $D$ always transforms
+covariantly. This is not the case of the Weyl transformations of
+an arbitrary operator of Laplace type. For example, the scalar Laplacian
+(\ref{opDscalar}) is conformally covariant for a special value (\ref{confxi})
+of the conformal coupling only.
+Therefore, some of the basic quantities
+are transformed in a somewhat unusual way. The metrics transforms
+as $g_{\mu\nu}\to e^{2\epsilon f}g_{\mu\nu}$ thus defining standard
+conformal properties of the Riemann tensor, the Ricci tensor and the
+scalar curvature. The functions $a^\sigma$ and $b$ in eq. (\ref{D1})
+transform homogeneously. Transformation properties of $\omega_\mu$
+and $E$ are then defined through (\ref{oab}) and (\ref{Eab}).
+One can obtain the following relations 
+\cite{Gilkey1975,Gilkey:1995}
+\begin{eqnarray}
+&&\frac d{d\epsilon} \vert_{\epsilon =0} \sqrt{g}=nf\sqrt{g} \,,
+\nonumber \\
+&&\frac d{d\epsilon} \vert_{\epsilon =0} R_{ijkl}=-2fR_{ijkl}
++\delta_{jl}f_{;ik} +\delta_{;ik}f_{;jl}-\delta_{il}f_{;jk}
+-\delta_{jk}f_{;il} \,,\nonumber \\
+&&\frac d{d\epsilon} \vert_{\epsilon =0} E=-2fE +\frac 12 (n-2)f_{;ii}
+\,,\nonumber \\
+&&\frac d{d\epsilon} \vert_{\epsilon =0} R =-2fR -2(n-1)f_{;ii}
+\,,\nonumber \\
+&&\frac d{d\epsilon} \vert_{\epsilon =0} E_{;kk} =-4fE_{;kk}
+-2f_{;kk}E +\frac 12 (n-2) f_{;iijj} +(n-6)f_{;k}E_{;k}
+\,,\nonumber \\ 
+&&\frac d{d\epsilon} \vert_{\epsilon =0} R E = -4f R E
++\frac 12 (n-2) f_{;ii}R -2(n-1)f_{;ii}E
+\,,\nonumber \\
+%\end{eqnarray}\begin{eqnarray}
+&&\frac d{d\epsilon} \vert_{\epsilon =0} E^2 =-4fE^2 
++(n-2) f_{;ii}E
+\,,\nonumber 
+\end{eqnarray}\begin{eqnarray}
+&&\frac d{d\epsilon} \vert_{\epsilon =0} R_{;kk} =-4fR_{;kk}
+-2f_{;kk}R -2(n-1)f_{;iijj} +(n-6)f_{;i}R_{;i}
+\,,\nonumber \\
+&&\frac d{d\epsilon} \vert_{\epsilon =0} R^2 =-4fR^2
+-4(n-1) f_{;ii} R
+\,,\nonumber \\
+&&\frac d{d\epsilon} \vert_{\epsilon =0} R_{ij}R_{ij} =-4fR_{ij}R_{ij}
+-2f_{;ii}R -2(n-2)f_{;ij}R_{ij}
+\,,\nonumber \\
+&&\frac d{d\epsilon} \vert_{\epsilon =0} R_{ijkl}R_{ijkl} 
+=-4fR_{ijkl}R_{ijkl} -8f_{;ij}R_{ij}
+\,,\nonumber \\
+&&\frac d{d\epsilon} \vert_{\epsilon =0} \Omega^2=-4f\Omega^2
+\label{cvar1}
+\end{eqnarray}
+Let us remind that the indices $i,j,k,l$ are flat, so we can put them all
+down and sum up over the repeated indices by contracting them with the
+Kronecker $\delta$. 
+
+Let us apply (\ref{varc}) to $n=4$.
+\begin{equation}
+\nonumber \frac{d}{d\epsilon} \vert_{\epsilon =0} a_2
+(e^{-2\epsilon f}F,e^{-2\epsilon f} D)=0
+\,. \end{equation}
+By collecting the terms with $\ptr\iM \{ Ff_{;jj} \} $ we obtain
+$\alpha_1=6\alpha_2$ and consequently $\alpha_2=1$ and
+$\alpha_4=60\alpha_2=60$. This completes calculation of $a_2$.
+
+Let $M=M_1\times M_2$ with a product metric and let $D=(-\Delta_1)+
+(-\Delta_2)$ where $\Delta_{1,2}$ are scalar Laplacians on $M_1$ and
+$M_2$ respectively\footnote{More precisely, we assume that in 
+(\ref{opDscalar}) the potential $U=0$, the conformal coupling is minimal
+$\xi=0$, and there is no gauge coupling $G_\mu=0$ on both $M_1$
+and $M_2$.}.
+Eq.\ (\ref{product}) yields
+\begin{eqnarray}
+&&a_4(1,-\Delta_1-\Delta_2)=
+a_4(1,-\Delta_1)a_0(1,-\Delta_2)+
+a_2(1,-\Delta_1)a_2(1,-\Delta_2)+ \nonumber \\
+&&\qquad\qquad\qquad +a_0(1,-\Delta_1)a_4(1,-\Delta_2)
+\label{prod4}
+\end{eqnarray}
+It is clear from (\ref{omEscal}) that $E=0$ and $\Omega =0$. 
+By collecting the terms
+with $R_1R_2$ (where $R_1$ and $R_2$ are scalar curvatures on
+$M_1$ and $M_2$ respectively) we obtain
+$$
+\frac 2{360} \alpha_7 = \left( \frac{\alpha_2}6 \right)^2 \,.
+$$
+Consequently, $\alpha_7=5$. 
+
+Let us apply (\ref{varc}) to $n=6$.
+We obtain with the help of the variational equations (\ref{cvar1})
+\begin{eqnarray}
+&&0=\ptr \iM \{ F( (-2\alpha_3-10\alpha_4+4\alpha_5)f_{;kk}E
+\nonumber\\
+&&\qquad +(2\alpha_3 -10\alpha_6)f_{;iijj}
+\nonumber\\
+&&\qquad +(2\alpha_4-2\alpha_6-20\alpha_7-2\alpha_8 )f_{;ii}R
+\nonumber \\
+&&\qquad +(-8\alpha_8-8\alpha_9 )f_{;ij}R_{ij} )\} \,.
+\label{var1012}
+\end{eqnarray}
+The coefficients in front of independent invariants in (\ref{var1012})
+must be zero. We determine $\alpha_3=60$, $\alpha_6=12$,
+$\alpha_8=-2$ and $\alpha_9=2$.
+
+The most elegant way to calculate the remaining constant $\alpha_{10}$
+is based on the Gauss-Bonnet theorem 
+(see \cite{Gilkey:1995}). We use here a more lengthy way 
+\cite{Nepomechie:1985wt} which
+however works perfectly on flat manifolds without boundary and
+of trivial topology of $\mathbb{R}^n$. 
+Note that $\mathbb{R}^n$ is non-compact.
+To make
+the heat kernel well defined we should suppose certain fall-off
+conditions on the background fields and on the smearing function $f$.
+The basis in the space of the square integrable
+functions is given by the plane waves $\exp (ikx)$.
+Therefore, for $M=\mathbb{R}^n$ with flat metric the heat kernel
+reads:
+\begin{eqnarray}
+&&K(f;t)={\rm Tr}_{L^2} (f\exp (-tD))\nonumber \\
+&&\qquad =\int d^nx \int 
+\frac {d^nk}{(2\pi)^n} e^{-ikx}\ptr \{f(x) \exp (-tD) e^{ikx}\}
+\nonumber \\
+&&\qquad =\int d^nx \int \frac {d^nk}{(2\pi)^n} \ptr\{ f(x) 
+\exp (t((\nabla^\mu +ik^\mu )^2+E))\} \,.
+\label{flathk1}
+\end{eqnarray}
+The following integrals will be useful:
+\begin{eqnarray}
+&&\int \frac {d^nk}{(2\pi)^n} e^{-tk^2} =\frac 1{(4t\pi)^{n/2}}
+\, , \nonumber \\
+&&\int \frac {d^nk}{(2\pi)^{n}}  e^{-tk^2} k^\mu k^\nu
+=\frac 1{(4t\pi)^{n/2}}\frac 1{2t} g^{\mu \nu} , \nonumber \\
+&&\int \frac {d^nk}{(2\pi)^n} e^{-tk^2}  k^\mu k^\nu k^\rho k^\sigma
+=\frac 1{(4t\pi)^{n/2}} \frac 1{4t^2} (g^{\mu\nu}g^{\rho \sigma}+
+g^{\mu\rho}g^{\nu\sigma}+g^{\mu\sigma}g^{\nu\rho} ) .\label{eq:ex2}
+\end{eqnarray}
+Now we isolate $\exp (-tk^2)$ on the right hand side of (\ref{flathk1})
+and expand the rest of the exponent in a power series of $t$.
+\begin{eqnarray}
+K(f;t) &=&\int d^nx \int \frac {d^4k}{(2\pi)^n} e^{-tk^2}
+\ptr \left\{ f(x)\left( 1+t(\nabla^2 +E)
+-\frac {t^2}2 4(k\nabla ) \right. \right. \nonumber \\
+&+& \frac {t^2}2 (\nabla^2 \nabla^2 +\nabla^2 E +E\nabla^2 +E^2)
+\nonumber \\
+&-& \frac {4t^3}6 ((k\nabla )^2E+E(k\nabla )^2 +(k\nabla )E(k\nabla ))
+\nonumber \\
+&-& \frac {4t^3}6
+((k\nabla )^2\nabla^2+\nabla^2(k\nabla )^2 +(k\nabla )\nabla^2(k\nabla ))
+\nonumber \\
+&+&\left. \left. \frac {16t^4}{24} (k\nabla )^4 +\dots \right) \right\}
+\end{eqnarray}
+We use the integrals (\ref{eq:ex2}) to obtain
+\begin{eqnarray}
+K(f;t)&=& \frac 1{(4\pi t )^{n/2}}   \int d^nx 
+  \ptr \left\{ f(x) \left( 1 + t E \right.\right.
+\nonumber\\
+&+&\frac {t^2}2 (\nabla^2 \nabla^2 +\nabla^2 E+E\nabla^2+E^2)
+\nonumber \\
+&-& \frac {t^2}3 (\nabla^2 E +E\nabla^2 +\nabla^\mu E\nabla_\mu )
+\nonumber \\
+&-& \frac {t^2}3 (2 \nabla^2 \nabla^2 +\nabla^\mu \nabla^2 \nabla_\mu )
+\nonumber \\
+&+& \left. \left.
+\frac {t^2}6 (\nabla^\mu \nabla^\nu \nabla_\mu \nabla_\nu
++\nabla^2 \nabla^2+\nabla^\mu \nabla^2 \nabla_\mu )+O(t^3)
+\right) \right\} \,.
+\end{eqnarray}
+All derivatives combine into commutators. Finally we get:
+
+\begin{eqnarray}
+&&K(f;t)=\frac 1{(4\pi t)^{n/2}} \int d^nx \ptr \left\{ f(x)
+\left( 1 +t E \right. \right. \nonumber \\
+&&\qquad\qquad\qquad \left. \left. + t^2 \left(
+\frac 12 E^2 +\frac 16 E_{;\mu\mu}+
+\frac 1{12} \Omega_{\mu \nu}\Omega^{\mu \nu} \right) +O(t^3)\right)
+\right\}\,.
+\label{eq:ex3}
+\end{eqnarray}
+From the equation (\ref{eq:ex3}) we conclude that $\alpha_{10}=30$.
+We have obtained also an independent confirmation for the values 
+of $\alpha_0$, $\alpha_1$, $\alpha_3$ and $\alpha_5$.
+
+The method we used above in eqs. (\ref{flathk1}) - (\ref{eq:ex3})
+can be applied to more general manifolds and operators as well.
+The key ingredient is a convenient basis which should be used
+instead of the plane waves.  
+For the case of a box with (anti-) periodic boundary condition
+such a basis is rather obvious (see  
+\cite{Andrianov:1984fg,Andrianov:1984qj}). On curved manifold
+$M$ one has to use the so-called geodesic waves 
+\cite{Fujikawa:1979ay,Fujikawa:1980eg,Yajima:1988pj,Yajima:1996jk,
+Novozhilov:1991nm}
+although calculations with ordinary plane 
+waves are also possible \cite{Ceresole:1989hn}.
+
+For calculation of the coefficient $a_6$ we refer to
+\cite{Gilkey1975}. The results for the leading heat kernel
+coefficients are summarised in the following equations
+\begin{eqnarray}
+&&a_{0}(f,D)=(4\pi)^{-n/2}\iM \ptr\{f\}. \label{a0nobou}\\
+&&a_2(f,D)
+         =(4\pi)^{-n/2}6^{-1}\iM \ptr\{f(6E+R)\}.\label{a2nobou}\\
+&&   a_4(f,D)=(4\pi)^{-n/2}360^{-1}\iM \ptr\{f(60E_{;kk}
+    +60R E+180E^2 \nonumber \\
+&&\qquad\qquad
+    +12R_{;kk}+5R^2-2 R_{ij}R_{ij}
+    +2 R_{ijkl}R_{ijkl}+30\Cur_{ ij}\Cur_{ij})\}.\label{a4nobou} \\
+&&a_{6}(f,D)=(4\pi)^{-n/2}\iM \ptr\bigl\{ \frac f{7!}(
+    18R_{;ii jj}+17R_{;k}R_{;k}
+    -2R_{ij;k}R_{ ij;k} \nonumber \\
+&&\qquad\qquad -4R_{jk;n}R_{jn;k}
+    +9R_{ij kl;n}R_{ij kl;n}+28RR_{;nn}
+    -8R_{jk}R_{jk;nn} \nonumber \\
+&&\qquad\qquad
+    +24R_{ jk}R_{jn;kn}
+    +12R_{ij kl}R_{ij kl ;nn}
+    +35/9R^{3}
+    -14/3RR_{ij}R_{ij} \nonumber \\
+&&\qquad\qquad
+    +14/3R R_{ijkl}R_{ijkl}
+     -208/9R_{jk}R_{jn}R_{kn}
+     -64/3R_{ ij}R_{kl}R_{ik jl} \nonumber \\
+&&\qquad\qquad
+     -16/3R_{jk}R_{jn l i}R_{kn l i}
+     -44/9R_{ij kn}R_{ij l p}R_{kn l p} \nonumber\\
+&&\qquad\qquad
+     -80/9R_{ij kn}R_{il  kp}R_{jl  np})
+     +360^{-1}f(
+      8\Cur_{ij;k} \Cur_{ij;k}
+     +2\Cur_{ij;j}\Cur_{ ik;k}\nonumber \\
+&&\qquad\qquad
+     +12\Cur_{ij;kk}\Cur_{ij}
+     -12\Cur_{ij}\Cur_{jk}\Cur_{ki}
+     -6R_{ij kn}\Cur_{ij}\Cur_{kn}
+     -4R_{jk}\Cur_{jn}\Cur_{kn}
+\nonumber \\
+&&\qquad\qquad
+       +5R\Cur_{kn}\Cur_{kn}
+     +6E_{;ii jj}+60EE_{;ii}
+      +30E_{;i}E_{;i}
+     +60E^{3}
+\nonumber \\
+&&\qquad\qquad
+     +30E\Cur_{ij}\Cur_{ij}
+     +10R E_{;kk}+4R_{jk}E_{;jk}
+     +12R_{;k}E_{;k}+30EER
+     \nonumber \\
+&&\qquad\qquad
+      +12ER_{;kk}+5ER^2
+     -2ER_{ij}R_{ij}+2ER_{ijkl}R_{ijkl})\}.\label{a6nobou}
+\end{eqnarray}
+
+Everyone who ever attempted calculations of the heat kernel
+coefficients on curved background for arbitrary spin should
+appreciate that the method presented here is a quite
+efficient one. One should also take into account that some
+of the universal constant were indeed calculated twice.
+
+The coefficients $a_0$ -- $a_4$ are contained in 
+\cite{DeWitt:1965,McKean:1967}.
+$a_6$ was first computed by Gilkey \cite{Gilkey1975}.
+The next coefficient $a_8$ has been calculated by Amsterdamski
+{\it et al} \cite{Amsterdamski:1989bt} for the scalar Laplacian
+and by Avramidi \cite{Avramidi:1990ug,Avramidi:1991je} for
+the general operator of Laplace type.
+The coefficient $a_{10}$ has been calculated 
+by van de Ven\cite{vandeVen:1997pf}.
+Higher heat kernel coefficients in flat space were studied in
+\cite{Fliegner:1995zc,Fliegner:1998rk}.
+%%%%%%%%%%%%%%%%
+\subsection{Examples}\label{s4examples}
+Here we consider several simple physical systems in four dimensions
+and calculate the heat kernel coefficient $a_4$ which defines the
+one-loop divergences in the zeta function regularization. 
+%%%%
+\subsubsection{Yang--Mills theory in flat space}\label{s4YM}
+Our first example is pure Yang--Mills theory in flat space. We are 
+interested in the ``total'' heat kernel coefficient $a_4^{\rm tot}$
+defined by (\ref{atot}). Let us start with the first term describing
+contribution from the vector fields. We choose the gauge (\ref{bg-gauge}).
+The only non-vanishing invariants are $E$ and $\Omega$. The coefficient
+$a_4$ is quadratic in these quantities. By using eqs.\ (\ref{EYM})
+and (\ref{OmegaYM}) we obtain:
+\begin{eqnarray}
+&&\ptr \left( E^2\right)=E_{\nu\beta}^{\alpha\rho}E_{\rho\alpha}^{\beta\nu}=
+4 F_{\rho\nu}^\delta F_{\rho\nu}^\gamma K_{\delta\gamma} \,,
+\label{trE2vect} \\
+&&\ptr \left( \Omega_{ij} \Omega_{ij} \right) = 
+-4 F_{\rho\nu}^\delta F_{\rho\nu}^\gamma K_{\delta\gamma} \,,
+\label{trO2vect}
+\end{eqnarray} 
+where 
+\begin{equation}
+K_{\delta\gamma}=c_{\alpha\beta}^{\delta}c_{\alpha\beta}^{\gamma} 
+\label{Killform}
+\end{equation}
+is the Killing form of the gauge algebra.
+
+Let us remind that the indices $i,j,k$ in (\ref{a4nobou}) refer to a local
+orthonormal frame. In flat space they may be identified with the
+vector indices $\mu,\nu,\rho$. In the case of vector fields the trace
+in (\ref{trE2vect}) and (\ref{trO2vect}) is taken over {\it pairs}
+consisting of a gauge index $\alpha$, $\beta$ or $\gamma$ and of a
+vector index $\mu$, $\nu$ or $\rho$.
+
+For the ghost operator we have to put $R=U=0$ in (\ref{omEscal})
+and identify the connection with the background gauge field
+according to (\ref{ghostcon}). Consequently, $E^{[{\rm gh}]}=0$ and
+\begin{equation}
+\ptr \left( \Omega_{ij}^{[{\rm gh}]} \Omega_{ij}^{[{\rm gh}]} \right)=
+-F_{\rho\nu}^\delta F_{\rho\nu}^\gamma K_{\delta\gamma} \,.\label{trO2ghost}
+\end{equation}
+Next we substitute (\ref{trE2vect}), (\ref{trO2vect}) and 
+(\ref{trO2ghost}) in (\ref{a4nobou}) to obtain
+\begin{equation}
+a_4^{[{\rm tot}]}=a_4^{[{\rm vec}]}-2a_4^{[{\rm gh}]}=
+\frac{11}{96\pi^2} \int_M d^4x\, \sqrt{g}\, 
+F_{\rho\nu}^\delta F_{\rho\nu}^\gamma K_{\delta\gamma}\,.
+\label{YMa4}
+\end{equation}
+
+The Yang--Mills gauge group $\mathcal{G}$ has usually a direct product
+structure, $\mathcal{G}=\mathcal{G}_1\times \mathcal{G}_2 \times\dots$,
+so that on each of the irreducible components $\mathcal{G}_i$ the Killing
+form $K$ is proportional to the unit matrix. Therefore, the one-loop
+divergence (\ref{YMa4}) reproduces the structure of the classical action
+with different charges for each $\mathcal{G}_i$. We also recover the
+coefficient $11/3$ which is familiar from computations of
+the Yang--Mills beta functions.
+%%%
+\subsubsection{Free fields in curved space}\label{s4free}
+Consider free quantum fields on a Riemannian manifold without boundaries.
+``Free'' means that we neglect all interactions except for the one
+with the background geometry. The heat kernel coefficients can be
+expressed then in terms of local invariants of the metric.
+In particular,
+\begin{equation}
+a_4(x)=\frac 1{2880\pi^2} \left[
+aC_{\mu\nu\rho\sigma}C^{\mu\nu\rho\sigma} +b\left( R_{\mu\nu}R^{\mu\nu}
+-\frac 13 R^2 \right) +c {R_{;\mu}}^\mu +d R^2 \right]\,,
+\label{a4in4dim}
+\end{equation} 
+where $C_{\mu\nu\rho\sigma}$ is the Weyl tensor,
+\begin{equation}
+C_{\mu\nu\rho\sigma}C^{\mu\nu\rho\sigma}=R_{\mu\nu\rho\sigma}
+R^{\mu\nu\rho\sigma} - 2R_{\mu\nu}R^{\mu\nu} +\frac 13 R^2 \,.
+\label{Weylsquare}
+\end{equation}
+$a$, $b$, $c$ and $d$ are some constants depending on the spin.
+The first two structures in (\ref{a4in4dim}) which appear together
+with $a$ and $b$ are conformally invariant in four dimensions.
+This explains our choice of the basis in the space of invariants.
+
+The constants $a$, $b$, $c$ and $d$ can be evaluated by substituting
+particular expressions for $E$ and $\Omega$ obtained in sec.\ 
+\ref{sec3} in (\ref{a4nobou}). Alternatively, one can use the
+analysis of Christensen and Duff \cite{Christensen:1979md}
+who calculated $a_4$ for arbitrary spin fields (see also
+\cite{Birrell:1982ix}). The results are collected in Table \ref{a4table}.
+Some comments are in order. Spin $1/2$ means 4-component Dirac spinors.
+For spin 1 and spin 2 fields we took into
+account contributions from corresponding ghost fields. Note, that
+vector Yang-Mills fields and vector ghosts for gravity interact
+{\em differently} with the background geometry. The cosmological
+constant is taken to be zero. 
+\begin{table}%\label{a4table}
+\caption{$a_4$ for various spins}
+\begin{tabular}{|l|c|c|c|c|}\hline \label{a4table}
+Spin & $a$ & $b$ & $c$ & $d$ \\ \hline
+$0$ &    $1$ & $1$ & $30\xi -6$ & $90 (\xi -1/6)^2$ \\
+$1/2$&    $-7/2$ & $-11$ & $6$ & $0$ \\
+$1$ &    $-13$  & $62$  & $18$ & $0$ \\
+$2$ &    $212$  & $0$   & $0$  & $717/4$ \\ \hline %\label{a4table}
+\end{tabular}
+\end{table}  
+
+As a physical application of the heat kernel expansion in curved
+space we may mention, for example, the asymptotic conformal invariance
+phenomenon which was studied by using this technique in
+\cite{Buchbinder:1984zx,Buchbinder:1985ba,Buchbinder:1984gj,Buchbinder:1988pm}.
+
+A similar analysis can be performed also in the presence of boundaries
+\cite{Moss:1994jj}.
+%%%%%%%%%%%%%%%%
+\subsection{DeWitt iterative procedure}\label{s4iter}
+The iterative method by DeWitt uses separation of the heat kernel
+with non-coinciding arguments into a leading part (which is non-analytic
+in $t$) and the power-law corrections. For a flat manifold this separation
+has been described in sec.\ \ref{sec1} (cf.\ eqs.\ (\ref{simplestHK})
+and (\ref{sHKexp})). Let us consider a massless scalar field on
+a curved compact Riemannian manifold $M$. The DeWitt ansatz reads
+in this case:
+\begin{equation}
+K(t;x,y;D)=(4\pi t)^{-n/2} \Delta_{VVM}^{1/2}(x,y) \exp 
+\left( -\frac{\sigma(x,y)}{2t} \right) \Xi (t;x,y;D)\,,
+\label{DWansatz}
+\end{equation}
+where $\sigma (x,y)$ is one half the square of the length of
+the geodesic connecting $x$ and $y$. In Cartesian coordinates
+on a flat manifold $\sigma_{\rm flat}(x,y)=\frac 12 (x-y)^2$.
+$\Delta_{VVM}$ is the so called Van Vleck--Morette determinant
+\begin{equation}
+\Delta_{VVM}(x,y) =\frac{\det \left( -\frac{\partial}{\partial x^\mu}
+\frac{\partial}{\partial y^\nu} \sigma (x,y) \right)}{\sqrt{g(x)g(y)}}
+\,.\label{VVMdet}
+\end{equation}
+
+As a consequence of the heat equation (\ref{heateq}) the kernel
+$\Xi$ should satisfy
+\begin{equation}
+\left( \partial_t +t^{-1} (\nabla^\mu \sigma )\nabla_\mu +
+\Delta_{VVM}^{-1/2} D \Delta_{VVM}^{1/2} \right) \Xi =0
+\label{eqforXi}
+\end{equation}
+with the initial condition
+\begin{equation}
+\Xi (0;x,y;D)=1 \,.\label{initXi}
+\end{equation}
+
+The essence of the DeWitt method is to look for a solution of the
+equation (\ref{eqforXi}) in the following form
+\begin{equation}
+\Xi (t;x,y;D) = \sum_{j=0}^\infty t^{j}b_{2j}(x,y;D)\,.
+\label{ansatzforXi}
+\end{equation}
+The initial condition (\ref{initXi}) yields
+\begin{equation}
+b_0=1\,.\label{b0DW}
+\end{equation}
+The recursion relation 
+\begin{equation}
+\left( j +(\nabla^\mu \sigma )\nabla_\mu \right) b_{2j}+
+\Delta_{VVM}^{-1/2} D \Delta_{VVM}^{1/2} b_{2(j-1)}=0\,,
+\label{recursionDW}
+\end{equation}
+which follows from (\ref{eqforXi}) and (\ref{ansatzforXi}),
+allows, in principle, to find the coincidence limits $x=y$
+of higher heat kernel coefficients $b_{2j}$. An important
+ingredient of such calculations is the coincidence limits
+of symmetrized derivatives of the geodesic interval $\sigma (x,y)$
+\cite{Synge:1931,Barvinsky:1985an}. This method becomes
+very cumbersome beyond $a_4$. A refined nonrecursive procedure
+to solve the DeWitt equation (\ref{recursionDW}) was used
+by Avramidi \cite{Avramidi:1991je} to calculate $a_8$
+(see also \cite{Avramidi:2001ns} for a short overview).
+The method of DeWitt can be naturally extended to treat
+coincidence limits of the derivatives of $b_{2j}(x,y;D)$.
+
+The recursion relations can be generalised to the case
+of manifolds with boundaries \cite{McAvity:1991we,McAvity:1992rf}.
+However, for a practical use the functorial methods of sec.\ 
+{\ref{sec5}} seem to be more convenient.
+%%%%%%%%%%%%%%%
+\subsection{Non-minimal operators}\label{s4nonmin}
+Quantisation of gauge theories oftenly leads to second order
+differential operators which are not of the Laplace type.
+For example, by taking $\kappa\ne 1$ in (\ref{Svgf}) 
+one obtains the following operator acting on the gauge field
+fluctuations:
+\begin{equation}
+D^{[{\rm nm}]}_{\mu\nu} =-\Delta g_{\mu\nu} +
+\left( 1-\frac 1\kappa \right) \nabla_\nu\nabla_\mu \,,
+\label{nonminop}
+\end{equation}
+where, for simplicity, we suppose that the manifold $M$ is flat
+($R_{\mu\nu\rho\sigma}=0$) and the gauge group is abelian
+($c_{\alpha\beta}^\gamma=0$). The leading symbol of the operator
+(\ref{nonminop}) (the part with the highest derivatives) has a 
+non-trivial matrix structure. Such operators are called {\it 
+non-minimal}.
+
+In some simple cases (see, e.g., 
+\cite{GBF:1991,Alexandrov:1996gu,Vassilevich:1995bg}) the spectral
+problem for non-minimal operators can be reduced to the Laplacians.
+If the leading part of a non-minimal operator has a form similar to
+(\ref{nonminop}) but the lower order part is more or less 
+arbitrary\footnote{This case covers most of the physical applications.},
+necessary generalisations of the DeWitt technique were suggested by
+Barvinsky and Vilkovisky \cite{Barvinsky:1985an}. The technique was
+further developed in \cite{Gusynin:1991ek,Cho:1995ic}. Complete
+calculation of $a_4$ required extensive use of the computer algebra
+\cite{Gusynin:1997qs}. Most general non-minimal operators were
+considered in \cite{Avramidi:2001tx} where, because of great technical
+complexity, only the first two heat kernel coefficients were analysed.
+Some calculations in various physical systems with non-minimal operators
+can be found in 
+\cite{Fradkin:1982ts,Parker:1984pe,Guendelman:1994ke,Pronin:1997bu}.

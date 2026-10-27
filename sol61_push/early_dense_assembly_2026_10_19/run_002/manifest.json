@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-FM-088B",
+  "repository": {
+    "commit": "cae9f37df33fa8860c3cfa99ad682d366b11ad8b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/early_dense_assembly_2026_10_19/check_density_kernel_bound.py",
+    "sol61_push/early_dense_assembly_2026_10_19/run_002/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent mass reconstruction, unequal-density common-Maxwellian-kernel bound cancellation, survival/aperture limits",
+    "coefficient_domain": "binary64 plus analytic inequality",
+    "conventions": "Same uniform self-gravitating sphere model as CE088, variable density and N_dyn",
+    "inputs": [
+      "CE088 results and original dwarf catalogue and CE086 targets"
+    ],
+    "bounds": {
+      "targets": 2,
+      "guards": 2,
+      "n_density_ratio_samples_per_pair": 4,
+      "Sextans_survival": [
+        1,
+        0.995,
+        0.99,
+        0.98
+      ]
+    },
+    "non_claims": [
+      "Necessary bounds, not a mechanism or data fit"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T12:06:38.068832+00:00",
+    "runtime_seconds": 0.035735,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/early_dense_assembly_2026_10_19/check_density_kernel_bound.py",
+    "sol61_push/early_dense_assembly_2026_10_19/run_001/results.json",
+    "sol61_push/cold_final_mile_2026_10_13/run_086_v2/results.json",
+    "real_research/data/dsph/lvd_dwarf_mw.csv"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/early_dense_assembly_2026_10_19/check_density_kernel_bound.py",
+      "sha256": "3fbe22c8fd19afb9bfe48852944acda21a9126da34c6244ca914aa15d1558e7f",
+      "sha256_after": "3fbe22c8fd19afb9bfe48852944acda21a9126da34c6244ca914aa15d1558e7f"
+    },
+    {
+      "path": "sol61_push/early_dense_assembly_2026_10_19/run_001/results.json",
+      "sha256": "a439812eed5a043c3ad42aaf2aed6c561307ff4a1b3f170d06dc96b36df16702",
+      "sha256_after": "a439812eed5a043c3ad42aaf2aed6c561307ff4a1b3f170d06dc96b36df16702"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_086_v2/results.json",
+      "sha256": "9118fde952a331ab53611b09de8f4a3bfe073c1dc4c1c8d0821189b63ee98896",
+      "sha256_after": "9118fde952a331ab53611b09de8f4a3bfe073c1dc4c1c8d0821189b63ee98896"
+    },
+    {
+      "path": "real_research/data/dsph/lvd_dwarf_mw.csv",
+      "sha256": "6970dea6a1c29f9eeb42f3f894dccf7cfc0483e44ddb51de9fa0ecc90b18fa5f",
+      "sha256_after": "6970dea6a1c29f9eeb42f3f894dccf7cfc0483e44ddb51de9fa0ecc90b18fa5f"
+    }
+  ],
+  "output_directory": "sol61_push/early_dense_assembly_2026_10_19/run_002",
+  "declared_results": [
+    "sol61_push/early_dense_assembly_2026_10_19/run_002/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/early_dense_assembly_2026_10_19/run_002/stdout.txt",
+      "sha256": "6b139aefaf1f28d68d5891e09f5a904b5d1e752125242d7389819b7ad82433d5",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/early_dense_assembly_2026_10_19/run_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/early_dense_assembly_2026_10_19/run_002/results.json",
+      "sha256": "4c173fbc5597473f82a5eb5f2e8b3cd0c0137b206ab3889125a665964ad63bb1",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

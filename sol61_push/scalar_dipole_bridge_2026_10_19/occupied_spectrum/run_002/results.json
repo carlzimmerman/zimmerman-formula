@@ -1,0 +1,375 @@
+{
+  "parameters": {
+    "base_checkpoint": "CE-GRAV-2026-10-19 / CE087",
+    "requested_initial_HEAD": "f4424595259bd1ae40addb890e338f85c4f48eb1",
+    "benchmark": {
+      "m_eV": 1000000,
+      "u_star": 0.02,
+      "g_over_m": 0.002168,
+      "lambda_rep": 0.005875
+    },
+    "smooth_models": [
+      {
+        "name": "above_threshold",
+        "A": 0.03,
+        "cutoff": 1,
+        "nu": 0.2
+      },
+      {
+        "name": "critical_threshold",
+        "A": 0.03,
+        "cutoff": 1,
+        "nu": 0
+      },
+      {
+        "name": "below_threshold",
+        "A": 0.03,
+        "cutoff": 1,
+        "nu": -0.04
+      }
+    ]
+  },
+  "rows": {
+    "benchmark": {
+      "m_eV": 1000000,
+      "M_eV": 2000399.9600079977,
+      "delta_eV": 399.96000799800055,
+      "g_eV": 2168.0,
+      "width_eV": 0.0018694119433205739,
+      "width_over_delta": 4.673997164561311e-06,
+      "NR_threshold_A_sqrt_eV": 1.4879282536772653e-05,
+      "critical_energy_scale_eV": 2.18506180889696e-09
+    },
+    "above_threshold": {
+      "bare_source_excess": 0.24712388980384692,
+      "bound_energy": 0.0,
+      "bound_residue": 0.0,
+      "continuum_probability": 0.9999999999999999,
+      "moments_with_bound": [
+        0.9999999999999999,
+        0.24712388980384686,
+        0.10819410671563073
+      ],
+      "moment_targets": [
+        1,
+        0.24712388980384692,
+        0.10819410671563076
+      ],
+      "quad_errors": [
+        7.317573816869631e-11,
+        7.385529568557786e-11,
+        1.3643507128744268e-10
+      ],
+      "threshold_slope": 0.5000000136815252
+    },
+    "critical_threshold": {
+      "bare_source_excess": 0.047123889803846894,
+      "bound_energy": 0.0,
+      "bound_residue": 0.0,
+      "continuum_probability": 1.0000000000000004,
+      "moments_with_bound": [
+        1.0000000000000004,
+        0.047123889803846894,
+        0.049344550794092
+      ],
+      "moment_targets": [
+        1,
+        0.047123889803846894,
+        0.049344550794092
+      ],
+      "quad_errors": [
+        1.3747106924923015e-12,
+        1.30205226249744e-11,
+        6.7274080345329185e-12
+      ],
+      "threshold_slope": -0.5000001741262312
+    },
+    "below_threshold": {
+      "bare_source_excess": 0.007123889803846893,
+      "bound_energy": -0.027540178817870267,
+      "bound_residue": 0.8480689549074619,
+      "continuum_probability": 0.15193104509248168,
+      "moments_with_bound": [
+        0.9999999999999436,
+        0.007123889803862738,
+        0.047174639609783416
+      ],
+      "moment_targets": [
+        1,
+        0.007123889803846893,
+        0.04717463960978425
+      ],
+      "quad_errors": [
+        1.628553306487901e-12,
+        2.7432677576413873e-12,
+        3.19975722456527e-11
+      ],
+      "threshold_slope": 0.4999998914736501
+    },
+    "tail_slopes": {
+      "NR_intermediate": -1.5015634318693765,
+      "canonical_formal_relativistic": -2.0001641736786704,
+      "running_width_star": -3.00016417367867
+    },
+    "target_moment_cutoffs": [
+      {
+        "L_over_a": 10,
+        "first_moment_over_psat_a": 2.0031857600879808
+      },
+      {
+        "L_over_a": 100,
+        "first_moment_over_psat_a": 4.298392361860901
+      },
+      {
+        "L_over_a": 1000,
+        "first_moment_over_psat_a": 6.600903209541613
+      },
+      {
+        "L_over_a": 10000,
+        "first_moment_over_psat_a": 8.903487560036128
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "canonical J matches on-shell width",
+      "passed": true
+    },
+    {
+      "name": "vertex and phase-space normalization 2.0004",
+      "passed": true
+    },
+    {
+      "name": "vertex and phase-space normalization 2.01",
+      "passed": true
+    },
+    {
+      "name": "vertex and phase-space normalization 3",
+      "passed": true
+    },
+    {
+      "name": "vertex and phase-space normalization 10",
+      "passed": true
+    },
+    {
+      "name": "offshell normalization factor 2.1",
+      "passed": true
+    },
+    {
+      "name": "offshell normalization factor 4",
+      "passed": true
+    },
+    {
+      "name": "offshell normalization factor 20",
+      "passed": true
+    },
+    {
+      "name": "smooth spectral moment above_threshold 0",
+      "passed": true,
+      "observed": -1.1102230246251565e-16,
+      "tolerance": 2e-08
+    },
+    {
+      "name": "smooth spectral moment above_threshold 1",
+      "passed": true,
+      "observed": -5.551115123125783e-17,
+      "tolerance": 2e-08
+    },
+    {
+      "name": "smooth spectral moment above_threshold 2",
+      "passed": true,
+      "observed": -2.7755575615628914e-17,
+      "tolerance": 2e-08
+    },
+    {
+      "name": "smooth self-energy above_threshold -0.02",
+      "passed": true,
+      "observed": 0.0,
+      "tolerance": 1e-10
+    },
+    {
+      "name": "smooth self-energy above_threshold -0.3",
+      "passed": true,
+      "observed": -3.469446951953614e-18,
+      "tolerance": 1e-10
+    },
+    {
+      "name": "smooth self-energy above_threshold -2",
+      "passed": true,
+      "observed": -1.734723475976807e-18,
+      "tolerance": 1e-10
+    },
+    {
+      "name": "actual occupied threshold exponent above_threshold",
+      "passed": true,
+      "observed": 0.5000000136815252,
+      "tolerance": 0.0002
+    },
+    {
+      "name": "smooth spectral moment critical_threshold 0",
+      "passed": true,
+      "observed": 4.440892098500626e-16,
+      "tolerance": 2e-08
+    },
+    {
+      "name": "smooth spectral moment critical_threshold 1",
+      "passed": true,
+      "observed": 0.0,
+      "tolerance": 2e-08
+    },
+    {
+      "name": "smooth spectral moment critical_threshold 2",
+      "passed": true,
+      "observed": 0.0,
+      "tolerance": 2e-08
+    },
+    {
+      "name": "smooth self-energy critical_threshold -0.02",
+      "passed": true,
+      "observed": 0.0,
+      "tolerance": 1e-10
+    },
+    {
+      "name": "smooth self-energy critical_threshold -0.3",
+      "passed": true,
+      "observed": -3.469446951953614e-18,
+      "tolerance": 1e-10
+    },
+    {
+      "name": "smooth self-energy critical_threshold -2",
+      "passed": true,
+      "observed": -1.734723475976807e-18,
+      "tolerance": 1e-10
+    },
+    {
+      "name": "actual occupied threshold exponent critical_threshold",
+      "passed": true,
+      "observed": -0.5000001741262312,
+      "tolerance": 0.0002
+    },
+    {
+      "name": "smooth spectral moment below_threshold 0",
+      "passed": true,
+      "observed": -5.639932965095795e-14,
+      "tolerance": 2e-08
+    },
+    {
+      "name": "smooth spectral moment below_threshold 1",
+      "passed": true,
+      "observed": 1.5844964229572156e-14,
+      "tolerance": 2e-08
+    },
+    {
+      "name": "smooth spectral moment below_threshold 2",
+      "passed": true,
+      "observed": -8.326672684688674e-16,
+      "tolerance": 2e-08
+    },
+    {
+      "name": "smooth self-energy below_threshold -0.02",
+      "passed": true,
+      "observed": 0.0,
+      "tolerance": 1e-10
+    },
+    {
+      "name": "smooth self-energy below_threshold -0.3",
+      "passed": true,
+      "observed": -3.469446951953614e-18,
+      "tolerance": 1e-10
+    },
+    {
+      "name": "smooth self-energy below_threshold -2",
+      "passed": true,
+      "observed": -1.734723475976807e-18,
+      "tolerance": 1e-10
+    },
+    {
+      "name": "actual occupied threshold exponent below_threshold",
+      "passed": true,
+      "observed": 0.4999998914736501,
+      "tolerance": 0.0002
+    },
+    {
+      "name": "NR intermediate occupation tail",
+      "passed": true,
+      "observed": -1.5015634318693765,
+      "tolerance": 0.004
+    },
+    {
+      "name": "formal canonical relativistic star tail",
+      "passed": true,
+      "observed": -2.0001641736786704,
+      "tolerance": 0.001
+    },
+    {
+      "name": "running-width matched star tail differs",
+      "passed": true,
+      "observed": -3.00016417367867,
+      "tolerance": 0.001
+    },
+    {
+      "name": "free Bose occupied threshold mu=-0.5",
+      "passed": true,
+      "observed": 0.49999963244925055,
+      "tolerance": 1e-05
+    },
+    {
+      "name": "free Bose occupied threshold mu=0.0",
+      "passed": true,
+      "observed": -0.5000000723100373,
+      "tolerance": 1e-05
+    },
+    {
+      "name": "Bogoliubov occupied IR qp",
+      "passed": true,
+      "observed": 0.9999999276898722,
+      "tolerance": 1e-05
+    },
+    {
+      "name": "Bogoliubov occupied IR atom_quantum",
+      "passed": true,
+      "observed": 0.9999998553798471,
+      "tolerance": 1e-05
+    },
+    {
+      "name": "Bogoliubov occupied IR atom_thermal",
+      "passed": true,
+      "observed": -7.231005532750594e-08,
+      "tolerance": 1e-05
+    },
+    {
+      "name": "Bogoliubov atom depletion UV power",
+      "passed": true,
+      "observed": -1.4931288123872037,
+      "tolerance": 0.03
+    },
+    {
+      "name": "thermal occupation UV suppression",
+      "passed": true
+    },
+    {
+      "name": "target logarithmic energy-moment increment 100",
+      "passed": true
+    },
+    {
+      "name": "target logarithmic energy-moment increment 1000",
+      "passed": true
+    },
+    {
+      "name": "target logarithmic energy-moment increment 10000",
+      "passed": true
+    }
+  ],
+  "all_pass": true,
+  "software": {
+    "Python": "3.9.6",
+    "numpy": "1.26.2",
+    "scipy": "1.11.4"
+  },
+  "scope": "Occupied source spectral measures and explicit Bose populations; no repeated survival-probability production experiment",
+  "non_claims": [
+    "No physical dipole or mapping Omega/(2d) is supplied",
+    "The smooth NR cutoff is an explicit control model",
+    "No cosmological source state, abundance, thermal history or UV completion is inferred"
+  ]
+}

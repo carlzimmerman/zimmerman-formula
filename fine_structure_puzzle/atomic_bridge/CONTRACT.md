@@ -1,0 +1,15 @@
+# FSP-002: atomic size, baryon mass and the framework
+
+Parent checkpoint: FSP-001. Base Git: 3c01aa2861bf576f4c2d942251eb9d2f89cae108, dirty workspace. User steering on 2026-10-18 America/New_York: pursue the connection between alpha, atomic size, baryonic mass and the programme's novel gravitational/vacuum framework; do not return to loop-formula numerology. Original alpha(0) goal remains open and unchanged.
+
+The new concrete question is whether a derived framework interaction, mass-generation relation or selected vacuum can connect the charge-normalized Maxwell coefficient with electron/nucleon masses, rather than merely rewrite measured atomic dimensions. Distinguish nucleon mass from total baryonic mass in galaxies. Electron mass and charge, reduced mass, nuclear size, QCD scale, particle abundance and macroscopic mass-to-light calibration are different data.
+
+Initial routes, all to be executed:
+- FSP-H / hydrogen: derive the two-body atomic Hamiltonian with the framework's actually stated gravitational interaction; check whether binding energy, reduced mass and inertial/gravitational acceleration admit a physically justified alpha selector. Audit extrapolation to microscopic sources.
+- FSP-Q / qcd_mass: examine QCD-generated baryon mass, trace anomaly and vacuum/acceleration mass scales; test one actual physical mass-generation mechanism and its residual coefficients. Dimensionally allowed coincidences are diagnostics, never a derivation.
+- FSP-B / scalar_bridge: construct the minimal explicit shared-scalar coupling to electromagnetic, electron and QCD sectors; determine whether normalization, stationary vacuum, trace anomaly or equivalence principle can produce a relation that fixes alpha. Derive parameter/rank constraints and look for a concrete viable selector or counterfamily.
+- FSP-I / coordinator: atomic/molecular observables, macroscopic baryonic-mass inference and identifiability; find whether ordinary atomic information adds an independent constraint or encodes alpha in the inputs. Reconcile framework-native versus proposed candidate actions.
+
+Success requires an explicit mechanism, action/charges, independent microscopic inputs and a unique physical alpha with running/matching and uncertainties. A conditional theorem, falsified bridge, mass-scale diagnostic or new test is partial progress. A new candidate must be separately labelled; no change to frozen theory, old research or previous checkpoints. No formula grammar search, arbitrary fitted coefficient, post-hoc power choice or pretending Newton's law applies to all framework versions.
+
+Write scopes: agents own only hydrogen/, qcd_mass/ or scalar_bridge/ as assigned. Coordinator owns coordinator/, reviews/, shared reports/status/checkpoints. Returns must identify parent checkpoint, actual input hashes, primary source versions, exact computations/commands, first unresolved implication and next discriminator. Use bounded computations and independent review for any load-bearing result. Preserve unsuccessful runs and distinguish failed implementations from failed physics. No publication, external messages, git commits, or new automation requested.

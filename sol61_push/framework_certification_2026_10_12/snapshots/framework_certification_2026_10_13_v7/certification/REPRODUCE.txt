@@ -1,0 +1,142 @@
+REPRODUCING THE MATHEMATICAL CHECKPOINT
+
+Use the already installed repository environment:
+/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026
+Lean 4.34.0-rc2 and Mathlib revision 85e3a25e006c35636f0e53b0e9296caca2685bc0.
+Lockfiles are preserved in the checkpoint snapshot. A new machine needs the
+matching Lean/Mathlib dependencies; the archive does not bundle their binaries.
+
+From that Lake directory, compile these five positive source files individually:
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/gravity_architecture_lean_2026_10_12/Architecture.lean
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/dynamics/StaticIsNotAttractor.lean
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/formal/VacuumLink.lean
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/formal/edge_power/EdgePower.lean
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/formal/ReceiverChannel.lean
+
+Every theorem prints its axiom dependencies. Expected positive compilation is
+exit zero without errors or warnings, with only standard mathematical axioms.
+Do NOT compile all .lean files as one passing build: files named FalseBound,
+FalseFactorFour, FalseOffsetResponse and mutated run sources are deliberate
+negative controls. They must fail. Actual controls and results are preserved.
+
+The root-owned dynamics and receiver drivers create fresh-run controls and
+require every axiom report. Pass a new output directory within the driver's
+own package as described by its code; never overwrite the recorded evidence.
+The computation-audit run_experiment.py calls and argv appear in each v2
+manifest, with output bounds and actual source hashes.
+
+The 32 rational checks need only Python 3.11 standard-library fractions:
+python3.11 sol61_push/framework_certification_2026_10_12/dynamics/check_exact.py /private/tmp/framework-exact-results.json
+This output is finite evidence; the universal transfer and coefficient results
+come from their separately checked Lean statements, not the finite samples.
+
+The frozen finite-host experiment has its own contract_N32/contract_N64,
+finite_host.py, compare_grids.py, manifests and README/outcome. Follow those
+recorded inputs. The upstream kernel is inverse-designed from the framework's
+adopted target; a successful calculation would not derive the target.
+
+Snapshot verification
+CHECKPOINT_MANIFEST.json lists every included relative path and SHA256, plus
+sources from outside this certification package copied under evidence_inputs/.
+Snapshot files are frozen copies of the checkpoint, not live symlinks. The
+archive's adjacent .sha256 file checks the complete archive bytes. This detects
+changed content relative to this record; it is not a digital signature or
+third-party timestamp. Existing logs must not be substituted for a fresh run
+if a source, statement, input or dependency changes.
+
+TRANSPORT / CARRIER CONTINUATION
+Compile these additional five positive sources from the same pinned Lake directory:
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/transport_capacity/ReceiverCapacity.lean
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/local_power/LocalPowerCounterexample.lean
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/local_power/ScalarSourceCompatibility.lean
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/carrier_rate/CarrierRate.lean
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/carrier_equation_of_state/CarrierStress.lean
+
+The ten modules contain 79 mathematical implications. Quantum rate, physical
+source dictionaries and stress interpretation remain explicit hypotheses.
+Read each CORRESPONDENCE.txt alongside its exact statement inventory.
+For LocalPowerCounterexample use run_v2/ as positive evidence. The preserved
+run/ source had unused-tactic warnings and failed the strict warning gate.
+For local_interaction use run_reconciled/, classical_run/, cold_rate_run/.
+The original run/ is historical-context evidence: a producer result changed,
+and the new execution reproduces its 31 result bytes without altering old hashes.
+Read RECONCILIATION_REPORT.txt; distinguish 54 distinct assertions from reruns.
+Carrier cosmology has its separate 25-assertion run/; imposed constant H is
+a diagnostic input, not a derived framework expansion history.
+MANIFEST_VALIDATION.json records current freshness, historical dispositions
+and weaker legacy-v1 provenance. Archive paths preserve original manifests;
+an archive relocates files, so replay their declared argv with an explicitly
+chosen project root and matching dependencies rather than assuming live paths.
+
+NR KINETIC CONTINUATION — October 13, 2026
+From the same pinned Lake directory compile the two additional positive files:
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/nr_carrier_energy/NREnergy.lean
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/source_elimination/formal/SourceResponse.lean
+Each reports nine statements; cumulative inventory is 97 in 12 modules.
+Their four false controls must fail for the recorded mathematical conclusions.
+NREnergy is a commutative finite scalar-field ledger, not an operator proof.
+SourceResponse certifies an actual prescribed-drive ODE solution, not damping
+or conservation of its externally driven combined energy.
+source_elimination/run/ records 21 exact response checks with a v2 manifest.
+carrier_kinetic_reduction/run_v2/ records 29 exact local NR/channel checks.
+Its run/ is a preserved failed sign-predicate test; the action and original
+source remain unchanged. V2_REPAIR.txt explains the sequential substitution
+repair. Those suites overlap in some kinematics, so do not count their sum as
+50 independent physical claims. The conditional particle/quantum collision
+interpretation remains distinct from exact classical current algebra.
+kinetic_route_audit/ checks the NR matching error, real-intermediate-state
+overlap, actual detuning and narrow-width hierarchy with explicit source scope.
+
+RESOLVED QUANTUM / SPATIAL CONTINUATION
+From the same pinned Lake directory:
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/event_stress/EventStress.lean
+QuantumEnergy imports an OWN archived checked coefficient dependency. Follow
+quantum_regulator_formal/CORRESPONDENCE.txt to rebuild NREnergy.olean using
+lean --root and -o, then compile QuantumEnergy.lean with its explicit LEAN_PATH.
+Do not omit that dependency or replace it with an arbitrary same-named module.
+Main source hashes, seven reports, dependency-source/binary hashes and both
+semantic false controls are preserved. EventStress has four reports/two controls.
+Cumulative inventory:108 statements in14modules; no percentages inferred.
+
+resolved_q3/run_K1 and run_K2 each test22assertions from the SAME original
+action and preparation at different finite cutoffs. Exact coefficients use
+volume=(2pi/k0)^3, c3/sqrt(volume),k/volume. No Gamma is inserted. Scripts and
+contracts reproduce the68/1192-dimensional completeQ3 fixed-P sectors. The
+same-grid bare-shell restriction is an analytic condition in DERIVATION.txt;
+returned probabilities do not define an on-shell elastic or heat rate.
+block_memory/run/ contains18exact matrix/resonance checks, not a substitute
+for actualQ3 construction. external carrier_spatial_transport evidence is
+copied under evidence_inputs/; exact_run and spatial_run_portable are positive
+records, while spatial_run preserves a pre-execution resource-launch failure.
+The portable script changes only an output prefix; SOURCE_VARIANT documents it.
+Spatial Bose/Markov/cell weights remain explicit premises, not derived rates.
+
+ROLLING RECEIVER CONTINUATION
+From the same pinned Lake directory:
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/ghost_receiver/formal/GhostReceiver.lean
+Ten statements; cumulative118 in15modules. FalseExactDust and FalseZeroBuffer
+must fail their asserted false conclusions. Read formal/CORRESPONDENCE.txt
+and ghost_receiver/verification.json. ghost_receiver/run/ records34exact
+checks; receiver_bridge/run/ records21exactchecks. Contracts freeze only
+the existing C2 field and explicitly declared bridge premises. No H0, Omega
+or standard MOND interpolator is a premise of these new calculations.
+Read SOURCE_CONVENTION_ADDENDUM.txt before comparing covariant source signs.
+Leading scalar health is not full coupled-gravity/EFT health. Pi=0 boundary
+and incoming control-volume flux require distinct admission checks.
+receiver_closure_audit/ independently reconstructs the physical meanings;
+its review is same-team evidence, not an external endorsement.
+
+PROSPECTIVE SHARED-PHASE CONTINUATION
+From the pinned Lake directory:
+lake env lean -j 1 /Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/framework_certification_2026_10_12/shared_phase/formal/SharedPhase.lean
+Ten new implications; cumulative128 in16modules ACROSS declared model records,
+not128 physical conclusions from the original nine frameworkpostulates.
+Read model_status and the independent shared_phase_audit/FORMAL_REVIEW.txt.
+No sorry/customaxioms in acceptedsource; build_history preserves an unaccepted
+draft with parser/tactic errors and error-recovery sorryAx; never use it as
+positive evidence. Two semantic falsecontrols must fail: unmixedgap claim and
+absenceofzero root atB0. PINNED_INPUTS records source snapshots/runtime.
+Exact shared_phase/run35, run_boundary3, shared_phase_fixed_charge/run23
+are separately frozen validated computations; independent_quadratic probe10
+is symbolic, not Lean. Counts overlap. The action omits C1 phasebreaking and
+identifies theta anew: no A3gravity-only/cold matching has been certified.

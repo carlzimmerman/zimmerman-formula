@@ -1,0 +1,66 @@
+{
+  "claim_id": "FALCON_DOUBLE_P0_ORDER3_TIGHT_THETA",
+  "mathematics": {
+    "assertion_tested": "Compare full3D binary64 mutual-cell P0 Plummer force/phi to direct reference at three opening angles and two evolved/dynamic-range geometries, then sample128 direct targets atN65536 and262144; record full-system linear/vector-angular force defects and runtime.",
+    "coefficient_domain": "IEEE754 binary64,approximate Cartesian Taylor tree with compiletimeorder",
+    "conventions": "G=.004498638185693768 pc3/Msun/Myr2; P0Plummer epsilon10pc; allactive; no spherical symmetry or per-backend IC renormalization",
+    "inputs": [
+      "CompletedGPU8k1-Gyr final phase space",
+      "Synthetic full3D dense+far-tail geometry and distortedPlummer/tail timing sets"
+    ],
+    "bounds": {
+      "theta": [
+        0.15,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+      ],
+      "synthetic_N": [
+        262144
+      ],
+      "largeN_reference_targets": 128,
+      "initial_force_L2_target": 1e-05,
+      "wall_cap_seconds": 60,
+      "cpu_cap_seconds": 55,
+      "largeN_theta": [
+        0.15,
+        0.1
+      ]
+    },
+    "non_claims": [
+      "No trajectory,profile,or remnant convergence",
+      "Theta is not a rigorousuniform tolerance",
+      "LargeN references128 targets,not fullN or exactglobalenergy",
+      "NativeFP64 reference roundoff and approximate-force errors are separate budgets"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/dwarf_core_convergence_2026_10_20/pyfalcon_feasibility_2026_10_20/benchmark_falcon.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/pyfalcon_feasibility_2026_10_20/falcon_native.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/pyfalcon_feasibility_2026_10_20/falcon_cabi.cc",
+    "sol61_push/dwarf_core_convergence_2026_10_20/pyfalcon_feasibility_2026_10_20/test_falcon_native.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/fast_gravity.py",
+    "sol61_push/dwarf_core_convergence_2026_10_20/fast_gravity.c",
+    "sol61_push/dwarf_core_convergence_2026_10_20/fast_gravity.dylib",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_pilot_gpu8k_iso/final.npz",
+    "sol61_push/dwarf_core_convergence_2026_10_20/run_pilot_gpu8k_iso/results.json",
+    "sol61_push/dwarf_core_convergence_2026_10_20/vendor/falcon_double_order3_build_001/libfalcon.dylib",
+    "sol61_push/dwarf_core_convergence_2026_10_20/pyfalcon_feasibility_2026_10_20/tight_theta_probe.py"
+  ],
+  "software": [
+    {
+      "name": "computation Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "numpy.default_rng PCG64",
+    "seed": 71505
+  }
+}

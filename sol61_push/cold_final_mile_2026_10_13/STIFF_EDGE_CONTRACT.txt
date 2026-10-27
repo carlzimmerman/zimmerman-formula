@@ -1,0 +1,15 @@
+CE-FM-020: constrained radial finite-supply stiffness comparison.
+Same conditional effective carrier energy as019. Add existing radial vector
+gradient term beta/2 integral[r^2(u')^2+2u^2]dr, beta=gamma/(4piG)>0,
+u=m/r^2. No new interaction is assumed; beta values are dimensionless controls.
+On r2..20, external Q1, total tethered supplyS2, matched inner core=m0(2).
+Endpoint masses fixed. Enclosed mass nondecreasing, bounded between core andS.
+Trapezoidal potential energy plus positive midpoint finite-difference gradient
+energy. Convex finite optimization using SLSQP and analytic gradient. Check
+gradient by finite differences, monotonic feasibility, nonnegative KKT
+multipliers via NNLS and two mesh comparisons. beta0 reproduces analytic cap.
+N81/161; beta0,.01,.1,1. Hard CPU/time and cooperative1thread caps; small arrays.
+Pass: solver success, feasibility1e-8, normalized KKT residual1e-6,
+gradient agreement1e-6, mesh mass discrepancy<=.005. Finite evidence only.
+No physical hierarchy selection, continuum convergence theorem, dynamical
+attraction, physical export or covariant carrier inferred from convex minima.

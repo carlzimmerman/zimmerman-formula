@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "RA-001",
+  "repository": {
+    "commit": "6d79f6dbde3e6c6ab2e36655f590df14d78d01a5",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/reciprocal_anchor_2026_10_13/check_anchor.py",
+    "sol61_push/reciprocal_anchor_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Local reference-fluid kinetic positivity, static reciprocal anchoring and unavoidable lapse-source response for a restricted EOS parent",
+    "coefficient_domain": "SymPy exact real and rational algebra; floating eigenvalue controls",
+    "conventions": "c=1; conserved Eulerian currents; fixed-clock local/ static comparison",
+    "inputs": [
+      "sol61_push/reciprocal_anchor_2026_10_13/check_anchor.py",
+      "sol61_push/reciprocal_anchor_2026_10_13/CONTRACT.txt",
+      "sol61_push/cold_final_mile_2026_10_13/F6_METRIC_AND_CARRIER_RESULT.txt"
+    ],
+    "bounds": {
+      "R,n,h,a,b,w,k": "positive real",
+      "EOS": "epsilon*n+b*n^2/2",
+      "lapse_controls": [
+        "999/1000",
+        "99/100",
+        "9/10"
+      ],
+      "inertia_controls": [
+        "1/1000",
+        "1/10",
+        "1",
+        "10"
+      ]
+    },
+    "non_claims": [
+      "No healthy full covariant parent, physical EOS or unchanged baryon-only galaxy law established",
+      "No all-anchor no-go, astrophysical fit, arbitrary-state formation or source phase selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T00:57:38.596137+00:00",
+    "runtime_seconds": 0.679756,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/reciprocal_anchor_2026_10_13/check_anchor.py",
+    "sol61_push/reciprocal_anchor_2026_10_13/CONTRACT.txt",
+    "sol61_push/cold_final_mile_2026_10_13/F6_METRIC_AND_CARRIER_RESULT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/check_anchor.py",
+      "sha256": "6a73055d77ed81bdeb4b449d0c40f148a0606f8ccd760fa23fce6c58c332d9d3",
+      "sha256_after": "6a73055d77ed81bdeb4b449d0c40f148a0606f8ccd760fa23fce6c58c332d9d3"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/CONTRACT.txt",
+      "sha256": "94e81d70e174b99fcdf2942559b7dba2e51020bbaec415bbb08004a7f62e2366",
+      "sha256_after": "94e81d70e174b99fcdf2942559b7dba2e51020bbaec415bbb08004a7f62e2366"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/F6_METRIC_AND_CARRIER_RESULT.txt",
+      "sha256": "8d66352e8eb4f9e8ebc2967bfbeb83f4e3541bd99a4ae847e88742c5cc315728",
+      "sha256_after": "8d66352e8eb4f9e8ebc2967bfbeb83f4e3541bd99a4ae847e88742c5cc315728"
+    }
+  ],
+  "output_directory": "sol61_push/reciprocal_anchor_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/reciprocal_anchor_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run/stdout.txt",
+      "sha256": "8874165f81244e10df07f67f2df244aba5290f7c9946f583acbc4f516857295b",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run/results.json",
+      "sha256": "fc07a3e3a4f22083cb7596044902ba7d44077c16d5c29ab7a9f73f554809816c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

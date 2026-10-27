@@ -1,0 +1,163 @@
+{
+  "schema_version": 2,
+  "claim_id": "NS_GAUSSIAN_WELLS",
+  "repository": {
+    "commit": "9921a5172a5e9f2da981505a1596decd5adc44ef",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/nonlinear_nonradial_2026_10_22/wells.py",
+    "--output",
+    "sol61_push/nonlinear_nonradial_2026_10_22/wells_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Restricted nonrotating Gaussian energy minima and fission energy costs; nonlinear saturation does not itself certify mass selection",
+    "coefficient_domain": "symbolic reals and float64",
+    "conventions": "CONTRACT.md",
+    "inputs": [
+      "inherited ell0 and canonical mass; declared sheet parameters"
+    ],
+    "bounds": {
+      "mass_ratios": [
+        0.5,
+        1,
+        2,
+        4
+      ],
+      "grid_box": [
+        [
+          48,
+          6
+        ],
+        [
+          64,
+          6
+        ],
+        [
+          64,
+          8
+        ]
+      ],
+      "R_bracket": [
+        0.15,
+        1
+      ]
+    },
+    "non_claims": [
+      "No fragmentation degrees of freedom",
+      "No radiation or live phase or baryons",
+      "No selected remnant mass",
+      "Finite grid orientation approximation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T02:13:12.164912+00:00",
+    "runtime_seconds": 242.544483,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 300.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/nonlinear_nonradial_2026_10_22/field.py",
+    "sol61_push/nonlinear_nonradial_2026_10_22/isolated.py",
+    "sol61_push/nonlinear_nonradial_2026_10_22/wells.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/field.py",
+      "sha256": "2bf1eb51ba1cbc24cd5ceaabbb24780bcf6a6c665e54d55da4053fa58952bca0",
+      "sha256_after": "2bf1eb51ba1cbc24cd5ceaabbb24780bcf6a6c665e54d55da4053fa58952bca0"
+    },
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/isolated.py",
+      "sha256": "daefe6bd0e16430201b25bd0f3f0850a2891d4a72d945e166294d65b6bc5fdeb",
+      "sha256_after": "daefe6bd0e16430201b25bd0f3f0850a2891d4a72d945e166294d65b6bc5fdeb"
+    },
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/wells.py",
+      "sha256": "74a492cd7299cde86403e5c1413338c6524c3bfd150f0f95ecad334283cf9d47",
+      "sha256_after": "74a492cd7299cde86403e5c1413338c6524c3bfd150f0f95ecad334283cf9d47"
+    }
+  ],
+  "output_directory": "sol61_push/nonlinear_nonradial_2026_10_22/wells_run",
+  "declared_results": [
+    "sol61_push/nonlinear_nonradial_2026_10_22/wells_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/wells_run/stdout.txt",
+      "sha256": "26e71d404dee9ad121cc92c204768207a5f743a4b05b34d6cf9e6e01ff98f9a1",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/wells_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlinear_nonradial_2026_10_22/wells_run/result.json",
+      "sha256": "362ebbd7d97189d2a78e567cef964d126f28dfac83b7423fbeea550d0ac95771",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

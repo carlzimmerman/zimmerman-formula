@@ -1,0 +1,237 @@
+Cold energy continued: a conserved material action and a finite free edge
+CE-CONT-2026-10-18. Local date 18 October 2026, America/New_York.
+Assigned base CE-FM-080, HEAD ea2da902eeddc0a9612e5ef0d393ed6f3c794e37;
+CE-FM-079 is the mathematical parent. CE-FM-081's later dwarf mass-transfer
+audit is concurrent evidence and remains unchanged. Individual run manifests
+record actual changing shared HEADs and exact input hashes. Theory remains OPEN.
+
+The main advance is a concrete finite-stock Newtonian material action, with
+reciprocal field/fluid equations and a variational vacuum edge. It is not a
+derivation of the original microscopic carrier, a halo-formation mechanism,
+or a relativistic completion. The particle calculation separately fixes the
+clock's low-energy compressibility and its cutoff; the two results do not
+silently identify different effective actions.
+
+1. Put the mass current into the action
+
+Set K=4piG, u=K|P|, and introduce nonnegative material density rho, velocity
+potential theta, and multiplier lambda. The proposed Newtonian action is
+
+ L = -rho(theta_dot+|grad theta|^2/2)-e(rho)
+     -|grad Phi|^2/(2K)+P.grad Phi-W_full(K|P|)
+     -gamma|grad P|^2/2 -(rho_b+rho_f)Phi
+     +lambda(rho-div P),
+
+ K W_full = -a0*u-a0^2 log(1-u/a0),  0<=u<a0.
+
+Every variable is varied. The resulting equations include
+
+ rho_dot+div(rho v)=0, v=grad theta, rho=div P,
+ Delta Phi=K(rho_b+rho_f+rho),
+ W_P-gamma Delta P=grad Phi+grad lambda,
+ Dv/Dt=grad lambda-grad e'(rho).
+
+The same multiplier appears reciprocally in the material and response
+equations. P.grad Phi equals -rho Phi after the constraint and the stated
+decay integration by parts, so rho is counted only once in gravity. Fixed
+total stock S=int rho is conserved by the current and equals the P flux at
+infinity. The external baryon/free sources are prescribed here; the exact
+witness has no free component. No settled/free conversion is claimed.
+
+For a static state theta=-mu*t, one-sided density variations give
+
+ lambda=e'(rho)-mu inside occupied matter,
+ lambda<=e'(0)-mu in vacuum.
+
+This vacuum inequality is the precise change from CE-FM-079's globally
+freely varied polarization equation. The old restricted exterior theorem
+remains valid for its old premises; the new material action need not obey
+that independent-field equation in an empty region.
+
+2. Pressure supplies a natural finite edge
+
+For e=kappa*rho^2/2, kappa>0, spherical equilibrium gives
+
+ -H Delta_vector u+R(u)=GQ(r)/r^2,
+ R(u)=u^2/(a0-u), H=gamma/K+kappa/K,
+ rho=(u'+2u/r)/K, Q=Mb+Mf.
+
+H is the sum of original response stiffness h=gamma/K and contact-pressure
+stiffness kappa/K; their separate microscopic origins are not supplied.
+The field/interface variation requires [gamma partial_n P+lambda n]=0.
+With positive h, convex e and no surface mass/action, a positive-density
+jump to vacuum is incompatible with this condition and the vacuum inequality.
+The admissible smooth material edge E instead satisfies
+
+ m(E)=S, m'(E)=0, u(E)=GS/E^2, u'(E)=-2GS/E^3,
+ rho(E)=pressure(E)=0.
+
+Outside, m=S and rho=0. The auxiliary multiplier obeys
+ lambda'=R(GS/r^2)-GQ(r)/r^2.
+The necessary taper condition R(GS/E^2)<=GQ(E)/E^2 makes lambda decrease
+outside for nondecreasing Q, so the vacuum inequality holds. There is no
+inserted reflecting wall, missing stock or negative-density shell.
+
+An exact regular example is constructed in occupied_action/OCCUPIED_ACTION.md:
+G=a0=E=1, S=.1, h=.005, kappa=pi/50, H=.01,
+
+ m=r^3(5-3r^2)/20, rho=3(1-r^2)/(16pi), 0<=r<=1,
+ m=.1, rho=0 outside.
+
+Its manufactured baryonic source is positive everywhere in its interior,
+has total mass47/1800, and yields exact bulk, interface and vacuum equations.
+This source is an existence witness, not a measured galaxy or fitted profile.
+
+Eliminating Newtonian self-gravity leaves a convex energy in the constrained
+P,rho variables; its quadratic self-gravity is cancelled exactly once by the
+quadratic part of W_full. Fixed-stock KKT conditions certify the witness as
+a static energy minimum, including nonspherical static variations in the
+specified decay/Helmholtz domain. The baryonic source is held fixed in those
+variations. Its own stress/response or a live-source stability certificate
+is not supplied. Independent review passes the corrected statement; an early
+overstatement about matching the prescribed-source Lagrangian was corrected
+and the review records the changed source hashes.
+
+3. The old gradient energy has ordinary material pressure and inertia
+
+For a regular center and finite stock, the exact entire-space identity is
+
+ r^2 u'^2+2u^2 = G^2 m'^2/r^2-2G^2(m^2/r^3)',
+ (h/(2G))int(r^2u'^2+2u^2)dr = int 2piG*h*rho^2 d^3x.
+
+Thus the longitudinal radial stiffness itself is equivalent to positive
+barotropic energy and pressure e_h=p_h=2piG*h*rho^2. The exterior gradient
+tail must be included before dropping the endpoint term. Adding a separate
+EOS adds its pressure; reinterpreting the same stiffness as pressure must
+not count its energy twice.
+
+A mass-coordinate action T-E with T=int_0^S Rmat_dot(a)^2 da/2 gives a real
+positive material inertia. For eta=delta m its quadratic kinetic weight is
+int eta_dot^2/m' dr/2, not an independently assigned uniform P inertia.
+The radial potential Hessian is positive on admissible smooth material
+displacements with the fixed source. This is a radial energy statement;
+it does not establish free-boundary well-posedness, a spectral gap, formation,
+crossing avoidance, metric causality or live-core stability.
+Derivation and exact checks: finite_stock_stress/RESULT.txt, run_002 (25 checks).
+
+4. Fixed Plummer stars: solve the entire center and unknown outer edge
+
+The manufactured-source loophole was tested by specifying independently
+Q(r)=r^3/(r^2+A^2)^(3/2), in G=a0=Mb_total=1. Put u=r*v and x=r/E.
+The regular singular equation is
+
+ v_xx+4v_x/x = E^2/H [r*v^2/(1-r*v)-(r^2+A^2)^(-3/2)].
+
+The unknown edge E is solved together with v, using
+ v_x(0)=0, v(1)=S/E^3, v_x(1)=-3S/E^3.
+This starts at the actual regular center; no clamped inner core or prescribed
+outer radius is inserted. All stock lies inside the solved edge.
+
+Twenty-seven target cases cover A=.3,1,3; S=.1,1,5.364; H=.005,.05,.5.
+Ninety continuation profiles plus four refined solutions were computed.
+Positive sampled occupied density, 0<=u<1, fixed stock within tolerance, zero edge density,
+the exterior chemical inequality, integrated field equation, and equality
+of complete gradient/tail and local-pressure energies pass their gates.
+
+Example with A=S=1, radii in units rM=sqrt(GMb/a0):
+ H       solved edge E     zero-H cap edge     central density
+ .005     1.67860709          1.61964734          .46893886
+ .05      1.83153020          1.61964734          .24512817
+ .5       2.60095317          1.61964734          .08307870
+
+The density tapers continuously to zero and enclosed mass becomes exactly
+S in the exterior. See free_boundary/FINITE_STOCK_PROFILES.png. Four tighter
+mesh/ODE-tolerance edge comparisons differ by at most1.13e-10 relative.
+These are bounded floating-point results, not a continuum convergence theorem,
+observational fit or proof of every EOS/source/supply combination.
+
+Authoritative code solve_free_edge_v4.py, contract_v4.json, run_004:1038 checks,
+completed validated v2 record. Failed runs001/002 preserve wrong-branch Newton
+initial guesses. A source-specific linear hydrostatic seed and continuation
+resolved them. Run003 preserved an absolute boundary-residual error amplified
+by E^3 into a stock error; run004 tightens bc_tol to1e-11, with unchanged
+physical acceptance gates. The v4 contract retains an obsolete v2 phrase
+'continuation from smaller H'; actual code and explicit continuation bounds
+descend from H5 through2,1,.5,.2,.1,.05,.02,.01,.005. This metadata typo does
+not describe the execution; the contract was preserved rather than rewritten.
+
+5. Match what the particle model actually supplies
+
+For the existing canonical charged-host/real-mediator model, branchwise
+integration of amplitudes gives
+
+ P_X=I/epsilon, P_XX=2I/(epsilon*Aeff),
+ kappa_clock=2I/epsilon, Delta0=4*kappa_clock*X/Aeff,
+ Aeff=Ar-h_mix^2/Bh.
+
+The clock compressibility is therefore fixed by the microscopic branch.
+At M=10, epsilon=1 it is Delta0=28.2248769 and gives the earlier low-energy
+positive matter-cone margin. It need not be inserted as a new independent
+clock coefficient at this order. The response action itself is still unmatched.
+
+Keeping the amplitudes gives an exact frequency kernel, s=k^2-Omega^2:
+
+ Delta(s)=4*kappa_clock*X*(Bh+s)/[(Ar+s)(Bh+s)-h_mix^2].
+
+For |s|<=eta*lambda_min(Hamp), eta<1, its relative error from Delta0 is at
+most eta/(1-eta). Crucially, as mediator ratio M tends to infinity,
+lambda_min(Hamp)->1 and the lowest physical gap squared tends to4 in
+host-mass units. The clock derivative expansion does not extend up to M.
+
+The exact four-field determinant and independent first-order generator agree
+on1224 low-band spectra at the eight declared backgrounds; all sampled group
+speeds in that band stay below one. If the existing response ansatz is instead
+extrapolated beyond its matching regime, the M10,y1 front tends to1.079588c.
+Low-energy matching therefore works in its stated range and does not give an
+all-frequency cure. This is an extrapolation test, not an exclusion of a
+different microscopic response. Primary run001 has3957 checks; the analytic
+matching/kernel/gap claims have a separate review with29 reconstruction checks.
+Details: clock_matching/CLOCK_MATCHING_RESULT.md and
+occupied_action/CLOCK_MATCHING_REVIEW.md.
+
+A second microscopic restriction follows from the dilute scalar contact EOS
+already recorded in the original carrier notes. Define lambda_NR by
+e=lambda_NR*n^2/(4m^2), rho=m*n. Then its contribution to the pressure length is
+
+ kappa_fluid=lambda_NR/(2m^4),
+ L_contact^2=2H_contact=lambda_NR/(4piG*m^4), hbar=c=1.
+
+For a chosen weak-contact regime lambda_NR<=1, L_contact=100pc requires
+m<=14.84eV. At m=1MeV that same length would require lambda_NR=2.06e19;
+at2MeV it would require3.30e20. This does not exclude the whole theory:
+composite fragments, another phase or a separately generated stiffness
+change this matching. It shows why elementary weak MeV contact pressure
+alone cannot be identified with a hundred-pc length. The lambda<=1 regime
+is a chosen benchmark, not a universal unitarity or observational bound.
+Contact matching supplies only a pressure coefficient, not W_full or the
+new local constraint. See contact_matching/run_001 (44 controls).
+For a source-eliminated dilute carrier, lambda_NR denotes
+4m^2(k_c-c_3^2/delta); it is not automatically the bare lambda_tot.
+The separate CONTACT_MATCHING_REVIEW.txt also checks the normalization by
+direct SI conversion, independently of the natural-unit implementation.
+
+6. What remains and the next discriminating work
+
+The finite-stock/interface gap is resolved within an explicit changed
+Newtonian action, and a regular fixed-source numerical family now exists.
+The original physical theory remains open. Nothing here derives the
+constraint rho=div P, full rational W, pressure length and clock-response
+couplings together from the original particles. No cosmic stock, settled/free
+reaction, relaxation, current dwarf fit, metric/lensing or native cosmology
+has been produced. The existing CE-FM-080/081 dwarf and mass-transfer results
+remain relevant and are not regraded by these static witnesses.
+
+Next action: derive or refute a microscopic origin for the constrained
+current and constitutive energy, with a conserved total population and
+reciprocal settled/free exchange. The finite material edge provides explicit
+bulk/edge/energy conditions for that matching. For any live-baryon extension,
+repeat the joint mass-preserving energy test before importing the fixed-source
+minimum. For the clock, match the response derivative structure at the light
+host gap rather than raising only the mediator mass. For particle pressure,
+use a separately declared collective phase if attempting macroscopic lengths.
+These are open continuations, not exhausted or completed research goals.
+
+All new work is in this continuation packet. Old frozen criteria, queued
+ARGON11/CFG822 machinery and manuscript/publication files were not modified;
+no other chat was messaged. Proofs, reviews, exact commands, failed attempts,
+input/output hashes and software/limits are retained in the linked records.

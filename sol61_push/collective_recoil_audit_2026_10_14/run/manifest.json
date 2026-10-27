@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLLECTIVE-RECOIL-COHERENCE-AUDIT",
+  "repository": {
+    "commit": "cda53006d0fae491d774c1bb9a25340ea47c9f41",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/collective_recoil_audit_2026_10_14/check.py",
+    "sol61_push/collective_recoil_audit_2026_10_14/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Thermal harmonic coherent amplitude, finite lattice structure normalization and necessary displacement scale at 2MeV transfer",
+    "coefficient_domain": "80-decimal oscillator sums, double precision scales and finite Fourier transforms",
+    "conventions": "Projected displacement along momentum transfer; f is squared thermal mean amplitude",
+    "inputs": [
+      "sol61_push/collective_recoil_audit_2026_10_14/check.py",
+      "sol61_push/cold_primakoff_target_2026_10_14/run_covariant/results.json"
+    ],
+    "bounds": {
+      "eta": [
+        0.1,
+        1,
+        5
+      ],
+      "thermal_z": [
+        0.1,
+        0.5,
+        0.8
+      ],
+      "number_state_sum_max_n": 600,
+      "phonon_energy_eV": [
+        0.01,
+        0.03,
+        0.1
+      ],
+      "temperature_K": [
+        0,
+        4,
+        300
+      ],
+      "assumed_sites": 1e+23,
+      "finite_lattice_N": [
+        3,
+        17,
+        64
+      ]
+    },
+    "non_claims": [
+      "No measured material spectrum, inclusive scattering yield or universal crystal exclusion"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T04:18:52.979473+00:00",
+    "runtime_seconds": 0.258896,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/collective_recoil_audit_2026_10_14/check.py",
+    "sol61_push/cold_primakoff_target_2026_10_14/run_covariant/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/collective_recoil_audit_2026_10_14/check.py",
+      "sha256": "296d8f5878d955f61e532cce4f425e17d2581bfb56f6e7d10a93f84bb2707393",
+      "sha256_after": "296d8f5878d955f61e532cce4f425e17d2581bfb56f6e7d10a93f84bb2707393"
+    },
+    {
+      "path": "sol61_push/cold_primakoff_target_2026_10_14/run_covariant/results.json",
+      "sha256": "bc92f2b9363aff2d0559a145ec148f66c120f79b4644615e0550fe825ab178e0",
+      "sha256_after": "bc92f2b9363aff2d0559a145ec148f66c120f79b4644615e0550fe825ab178e0"
+    }
+  ],
+  "output_directory": "sol61_push/collective_recoil_audit_2026_10_14/run",
+  "declared_results": [
+    "sol61_push/collective_recoil_audit_2026_10_14/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/collective_recoil_audit_2026_10_14/run/stdout.txt",
+      "sha256": "6d9d9977554322f268121b307a12fe293235c838a2259927be9a323eaabb2e33",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/collective_recoil_audit_2026_10_14/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/collective_recoil_audit_2026_10_14/run/results.json",
+      "sha256": "6d9d9977554322f268121b307a12fe293235c838a2259927be9a323eaabb2e33",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

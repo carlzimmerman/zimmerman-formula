@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "STATIC_GENERAL_J_ANGULAR_V1",
+  "repository": {
+    "commit": "9516ee01c79f35c04b7556050669ba77b0c98b99",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_completion/higher_angular/check_general_j_v1.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact symbolic quaternion/Pauli algebra, generic charged characteristic polynomial, mixed neutral wall determinant, fixed-J inverse-radius coefficients, J2..20 origin multiplicities and finite-cutoff sum; J1 far-field crosscheck against frozen Cartesian operator.",
+    "coefficient_domain": "Q(J,lambda) with exact square roots; SymPy exact algebra",
+    "conventions": "BPS anti-self-dual curvature; monopole q=+/-1; reduced u=r*a; relative nine-Dirichlet three-Robin vector wall; auxiliary unbroken reference",
+    "inputs": [
+      "Symbolic integer J>=2 and lambda>=1",
+      "Integer J=2,...,20 for explicit Clebsch-Gordan counts",
+      "Frozen J1 Cartesian Hessian operator JSON"
+    ],
+    "bounds": {
+      "J_min": 2,
+      "J_max": 20,
+      "symbolic_identities": "generic J and lambda; no numerical ODEs or fits",
+      "timeout_seconds": 45,
+      "max_output_bytes": 1048576
+    },
+    "non_claims": [
+      "Does not independently prove the external whole-space kernel theorem",
+      "Does not prove uniform estimates in J or exchange infinite angular and radial limits",
+      "Does not compute physical QCD matching or a fine-structure root"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T03:15:06.543161+00:00",
+    "runtime_seconds": 0.677387,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_completion/higher_angular/check_general_j_v1.py",
+    "fine_structure_puzzle/qcd_completion/higher_angular/inputs_v1/j1_operator.json",
+    "fine_structure_puzzle/qcd_completion/higher_angular/RAW_DERIVATION_v1.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/higher_angular/check_general_j_v1.py",
+      "sha256": "f0d31fbea3f6f03ef92e1429d2a4b9ac8cfa5396d4e9fce48611eb8c891d86fc",
+      "sha256_after": "f0d31fbea3f6f03ef92e1429d2a4b9ac8cfa5396d4e9fce48611eb8c891d86fc"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/higher_angular/inputs_v1/j1_operator.json",
+      "sha256": "4e98fa28d208693d6559c8bf5b2dd4b1c05e4d5b88827c38fb21230ac645f6bd",
+      "sha256_after": "4e98fa28d208693d6559c8bf5b2dd4b1c05e4d5b88827c38fb21230ac645f6bd"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/higher_angular/RAW_DERIVATION_v1.md",
+      "sha256": "1f50159d159d532aadeafe82d5970c47afd9c69dc7f92da6855964f04311e84e",
+      "sha256_after": "1f50159d159d532aadeafe82d5970c47afd9c69dc7f92da6855964f04311e84e"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_completion/higher_angular/runs/general-j-001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_completion/higher_angular/runs/general-j-001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/higher_angular/runs/general-j-001/stdout.txt",
+      "sha256": "ed9e8ad4820a3cabffabce2dec97db40265cee99885f0268bbf8ccb279dfde0a",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/higher_angular/runs/general-j-001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/higher_angular/runs/general-j-001/results.json",
+      "sha256": "ecabff48d851c40bc43505ab71678f513bf88ba83e0d54da0e8beae3c27c19af",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

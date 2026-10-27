@@ -1,0 +1,101 @@
+Independent operator-form and complete Q3 review, 13 October 2026
+
+Primary verdict: computationally verified only in the stated finite Q3 range;
+the seven universal Hilbert-space implications are proved as written in Lean.
+Physical identification with the normal-ordered NR regulator remains conditional
+on the supplied quantization/truncation dictionary. These are distinct claims.
+
+QuantumEnergy.lean was inspected directly, including every definition, hypothesis
+and proof, final compile.log and both damaged-source logs. No compile rerun was
+needed. Seven axiom reports contain only propext, Classical.choice, Quot.sound.
+The imported NREnergy source is an exact archived copy of the previously checked
+coefficient certificate; its nine dependency reports contain the same axioms.
+There is no new physical axiom, sorryAx, commutation premise, or scalar-field
+substitute for an operator. The two controls fail on goal False after compiling
+the main declarations, rather than on imports. A=B=id gives form4 rather than3
+for delta=c=k=1. A=id,B=-id,delta=c=1,k=0 gives form-1, rejecting positivity
+without the coefficient condition.
+
+The statement is correctly typed for complex bounded maps A,B:E->F, including
+A=psi^2 and B=b as H_Q->H_(Q-2). With the inner product linear in its second
+slot, adjoint identities apply to the explicitly defined operator
+delta B*B+c(B*A+A*B)+k A*A. Its exact form is
+delta||Bv||^2+2c Re<Bv,Av>+k||Av||^2.
+Completing this norm gives delta||Bv+(c/delta)Av||^2+
+(k-c^2/delta)||Av||^2 for delta nonzero. Positivity additionally requires
+delta>0 and the nonnegative leftover. The actual coefficient theorem derives
+these from m>0,M>2m,rep>=0 and the supplied NR coefficients for any real g.
+The kinetic bound assumes the kinetic form is nonnegative on the vector;
+it proves the pointwise form comparison, not evolution/conservation.
+Nonnegative finite weights preserve it, and positive-volume normalization
+c/sqrt(V), k/V gives precisely the leftover/V. These are genuine operator
+quadratic-form results even for entangled vectors. The construction of actual
+canonical Fock maps, continuum unbounded domains, renormalization and unitary
+dynamics are not constructed in this file. Normal-ordering is a model input.
+
+Actual Q3 calculate.py implements a different, concrete finite test. Its grids
+are integer cubes [-K,K]^3, K=1,2, with exact P=(1,0,0), no modular aliases.
+It enumerates all one-b/one-psi states and all unordered three-psi triples:
+18+50=68 and 100+1092=1192 states. The alternative brute triples enumerator
+agrees. At fixed P, each pair-annihilation row is labeled by its remaining
+daughter, so its pair sum is uniquely P-minus-that-momentum. This explains why
+the F matrix uses survivor rows without losing different pair-sum modes.
+An unequal annihilation pair carries factor2; equal pairs have the successive
+sqrt(n)s. Creation has the corresponding factor2 or repeated-mode ladder
+factor. Thus the original ordered cubic and quartic sums are retained. The
+quartic includes all pair sums even outside the source cube. V=gamma F_inside,
+U=kappa F*F, with gamma=c3/(sqrt(Vbox) delta), kappa=k/(Vbox delta).
+The original D/delta is reconstructed as
+T+[I,gamma F_inside]*[I,gamma F_inside]
+ +(kappa-gamma^2) F_inside*F_inside+kappa F_outside*F_outside
+in the proper blocks. This is the exact finite positivity dictionary; keeping
+9/25 outside rows is essential. The Gram reconstruction is an alternative
+algebraic construction using shared ladder data, not independent physics.
+
+The actual Hermitian eigen-evolution retains the quartic mixing and coherent
+interaction ledger. Both runs have 22 recorded checks passing; the norm and
+energy residuals are bounded numerical checks, not continuum proofs. The
+Schur comparison uses z=1.5+0.37i, so it has no bare real-pole ambiguity.
+The prepared b0+psi_(1,0,0) state's D/delta is1.5. Recorded distinct returned
+b/psi probability peaks are 1.1520801706186184e-5 (K1,tau450) and
+1.245899187541894e-5 (K2,tau460). These demonstrate momentum-changing coherent
+return amplitudes produced by the original vertex, beyond spectator decay.
+
+Critical interpretation restriction: the largest channels b_(1,+-1,0) plus
+psi_(0,-+1,0), and the z-axis analogues, have bare D/delta=1+0.499950005+0.5
+approximately1.99995, not the initial1.5. Their probabilities are coherent
+off-shell admixtures under the interaction-inclusive energy ledger. The
+daughter-exchange pathway includes resonant internal three-daughter states,
+but this finite returned probability is not an asymptotic on-shell mixed
+elastic scattering probability, physical cross section, net orbital heat or
+irreversible rate. The full initial Fock vector is not an interacting energy
+eigenvector, so this is not an inconsistency with conservation.
+For example the retained triple {(1,0,0),(0,1,0),(0,-1,0)} has free
+three-daughter D/delta=1.5 exactly. The finite grid deliberately represents
+that bare internal resonance. Quartic mixing and the full cubic block lift
+the actual interacting spectrum; a bare equality is not a physical width.
+Producer's added exact bare-shell classification is also correct: equality
+with the initial state requires 5000|n|^2+10001|P-n|^2=10001. The latter
+integer norm is either at least2 (impossible),1 (forces n=0), or0 (would
+require integer |n|^2=10001/5000). Only the initial branch satisfies it.
+This remains true at larger cutoff on this same grid; enlarging the UV cube
+alone cannot manufacture a distinct bare-on-shell return branch. It is not
+a universal exclusion for continuous momenta or other initial preparations.
+
+The inert-spectator control really computes a reduced-star survival. Its
+'distinct B residual'=0 is literal zero because that control basis contains
+no other B state; it is a structural control, not an independent leakage
+measurement. Conversion-off gives a genuine initial-eigenvector residual.
+No Gamma is matched or damping inserted. Time tau0..4000 has401 samples;
+two UV cutoffs at the same momentum spacing give sensitivity, not a
+large-volume spectral-density limit or continuum convergence. The observed
+distinct-return peak changes about8 percent, not a declared convergence pass.
+
+Dependencies: supplied leading NR coefficients; canonical bosonic finite
+Fock/normal-order convention; complete regulator construction; positive T;
+Hermitian exact evolution; numerical diagonalization and floating tolerances.
+All are explicit. The mathematical positivity and finite original-Hamiltonian
+exchange advance the certificate. A controlled field-to-kinetic or bath limit,
+scattering-state preparation and angular/phase-space matching are still needed
+before the coherent witness yields a local Markov heat kernel. No standard
+MOND or Lambda-CDM input is used or needed for these conclusions.

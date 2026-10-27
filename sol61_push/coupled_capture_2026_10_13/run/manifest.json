@@ -1,0 +1,164 @@
+{
+  "schema_version": 2,
+  "claim_id": "COUPLED-CAPTURE-AND-MATTER-PAIR-GAIN",
+  "repository": {
+    "commit": "364fc9c73d2fda45a921d74c0c53ec1ce2d4f197",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/coupled_capture_2026_10_13/check.py",
+    "sol61_push/coupled_capture_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Combined nonlinear three-mode ramp under beam imbalance, optical antisymmetric gain, and quantum-seeded matter-pair gain.",
+    "coefficient_domain": "float64 Radau ODE, exact matrix-exponential solution of linear moment equations",
+    "conventions": "tau=Gamma*t; number-loss rates; pair modes on shell, phase matched and coherently driven.",
+    "inputs": [
+      "sol61_push/coupled_capture_2026_10_13/check.py",
+      "sol61_push/coupled_capture_2026_10_13/INPUT_RESONANCE.json",
+      "sol61_push/coupled_capture_2026_10_13/INPUT_WIDTHS.json"
+    ],
+    "bounds": {
+      "eta_nonlinear": [
+        1e-12,
+        1e-09
+      ],
+      "eta_gain_only": [
+        1e-06
+      ],
+      "photon_loss_s_inv": [
+        29979245800,
+        1000000.0
+      ],
+      "drive_imbalance": 1e-06,
+      "ramp_time": 10,
+      "total_time": 20,
+      "tracking_error_stop": 0.1,
+      "pair_loss_over_gain": [
+        0,
+        1,
+        1.99,
+        2.01,
+        3,
+        10
+      ],
+      "pair_end_time": 3,
+      "rhs_call_cap": 150000
+    },
+    "non_claims": [
+      "No full spatial propagation, finite-cloud spectrum or confining material.",
+      "Matter gain uses undepleted coherent source; nonlinear saturation not computed.",
+      "Escape length criterion uses a stipulated loss estimate, not boundary conditions."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T00:35:57.321872+00:00",
+    "runtime_seconds": 0.379328,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/coupled_capture_2026_10_13/check.py",
+    "sol61_push/coupled_capture_2026_10_13/INPUT_RESONANCE.json",
+    "sol61_push/coupled_capture_2026_10_13/INPUT_WIDTHS.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/coupled_capture_2026_10_13/check.py",
+      "sha256": "ecb627b921b546321d963003fec2c5f19bc29c0b8e46867eb4b3bf4017423d65",
+      "sha256_after": "ecb627b921b546321d963003fec2c5f19bc29c0b8e46867eb4b3bf4017423d65"
+    },
+    {
+      "path": "sol61_push/coupled_capture_2026_10_13/INPUT_RESONANCE.json",
+      "sha256": "a7236018718395d67fdc2589dd5ddbcdd3a6f073b85219ef0bdaab57664e4dc3",
+      "sha256_after": "a7236018718395d67fdc2589dd5ddbcdd3a6f073b85219ef0bdaab57664e4dc3"
+    },
+    {
+      "path": "sol61_push/coupled_capture_2026_10_13/INPUT_WIDTHS.json",
+      "sha256": "1da54d498d4be1c94abed81a2aaed5e348433d3141d8459773243172e5c3ade9",
+      "sha256_after": "1da54d498d4be1c94abed81a2aaed5e348433d3141d8459773243172e5c3ade9"
+    }
+  ],
+  "output_directory": "sol61_push/coupled_capture_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/coupled_capture_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/coupled_capture_2026_10_13/run/stdout.txt",
+      "sha256": "46dac5f5d7441a32950005d180816d3a2377ac79d3ff6b9d07fce5422929f39f",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/coupled_capture_2026_10_13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/coupled_capture_2026_10_13/run/results.json",
+      "sha256": "8aa0dd88bacd90ac2020b9f980830a3b12a33df1dd0d439761b02e0cc97fab5a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

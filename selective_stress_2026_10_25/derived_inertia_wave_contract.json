@@ -1,0 +1,65 @@
+{
+  "claim_id": "SS-24",
+  "mathematics": {
+    "assertion_tested": "Use the material inertia derived in SS-23 rather than a100Myr prescribed conversion time; test autonomous relativistic outgoing radiation on the measured source profile for binding-only and separately labeled whole-release collective potentials, including the finite-rotation kinetic correction.",
+    "coefficient_domain": "float64 finite volume, discrete-gradient matter, implicit midpoint scalar",
+    "conventions": "Radial volume absorbs 4pi; scalar speed/source radius/conversion inverse frequency of order unity; passive outer sponge",
+    "inputs": [
+      "q0=1e-4, P0=0; chi=v=0; D=.25; N=sin\u00b2(pi q/2); compact smooth source h proportional to (1-r\u00b2)^2"
+    ],
+    "bounds": {
+      "scalar_speed": "c, physical time unit R/c=.183768258Myr",
+      "binding_inertia": 8.8843050915094,
+      "binding_g": 3,
+      "whole_inertia": 4.13466305762703,
+      "whole_g": "3sqrt(Dbinding/Dwhole), same dimensional coupling",
+      "duration": 500,
+      "coarse_h_dt": [
+        0.025,
+        0.01
+      ],
+      "refined_binding_h_dt": [
+        0.0125,
+        0.005
+      ],
+      "kinetics": [
+        "quadratic",
+        "exact constant-rotation dressed-state Hamiltonian"
+      ]
+    },
+    "non_claims": [
+      "Density and boundary fixed; no actual redistribution or formation path",
+      "Binding-only available energy is not the full collapse release",
+      "Whole-release cosine potential is an additional hypothesis",
+      "Large-alignment and adiabatic elimination underlying inertia are conditional, not full spinor integration"
+    ]
+  },
+  "execution_artifacts": [
+    "selective_stress_2026_10_25/TARGET.md",
+    "selective_stress_2026_10_25/halo_source_wave.py",
+    "physical_completion_2026_10_25/run_two_field/J_30.0.json",
+    "physical_completion_2026_10_25/launch.py",
+    "selective_stress_2026_10_25/halo_pulse_record.py",
+    "selective_stress_2026_10_25/derived_inertia_wave.py",
+    "selective_stress_2026_10_25/run_spinor_inertia/results.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

@@ -1,0 +1,30 @@
+DRAFT ONLY -- NOT SENT
+To: Ian Heywood, ian.heywood@physics.ox.ac.uk (contact listed in the DR1 FITS headers)
+Subject: MIGHTEE-HI DR1 COSMOS production provenance and small beam-normalization validation package
+
+Hi Ian,
+
+We are investigating a flux-scale mismatch between the released MIGHTEE-HI DR1 COSMOS cubes, catalogue measurements and matched single-dish data. We would like to check the exact production processing rather than assume the current public scripts represent the release.
+
+For seven reliable ALFALFA code 1 overlaps, identical apertures, native-channel integration windows and broad residual baseline fits give median MIGHTEE/ALFALFA ratios of 0.49 in clean_conv and 0.43 in clean_conv_contsub. Undoing the final image-domain subtraction therefore recovers some signal but does not close the comparison. Central 3×3 dirty/clean_conv sightlines are much closer, with clean_conv/dirty median 0.96. We do not treat these sightline ratios as total-flux corrections or assume ALFALFA is an absolute reference for every galaxy.
+
+Could you identify or share the following for the September 2024 DOI 10.48479/jkc0-g916 release, particularly the L2 robust 1.0 products? Robust 0.5 provenance would also help because the published 293-object catalogue uses that resolution.
+
+1. The actual production homogenization/restoration and mosaicking scripts, local patches, configuration and execution commands, with commit identifiers where available. In particular, which beam was used to restore the CLEAN model, and how were residual/kernel normalizations converted into the target Jy/beam units? The public mightee-hi clean/convolve_channels.py constructs target_beam_image but passes fitted_beam_image in the model convolution. We have not established that this public version was used for the release and are not asserting a release fault.
+
+2. The container identifier or digest and installed PyPHER version/source (including any patches), WSClean version and relevant restore/convolution options. The public oxkat download is 0.41, while the public HI README/config refers to 0.42; this does not identify the build used for DR1.
+
+3. For a small representative subset of channels and contributing pointings: original unhomogenized PSFs, CLEAN component model images, residual images, target-beam images and homogenization kernels, plus their FITS headers, fitted input beam axes and target beam axes. Please identify whether components are before or after primary-beam correction. Mosaicking weights or the primary-beam values at these positions would allow a complete flux budget.
+
+4. The image-domain continuum-subtraction script/configuration and line-protection masks, if retained, for these same source positions. The published 31-channel filtering prescription is useful but does not specify the exact historical run implementation.
+
+The attached requested_targets.csv lists seven sky positions, catalogue and native channel frequencies, explicit zero-based global/local channel indices, and the public subcube names. For a small first pass, three targets span different behavior:
+  MGTH_J100140.0+031207 -- large mismatch and appreciable final-subtraction change
+  MGTH_J100048.1+011413 -- stronger detection, persistent mismatch
+  MGTH_J100050.4+012007 -- near agreement with ALFALFA before final subtraction
+
+For those three, a central line channel, two representative line/horn channels and nearby line-free channels would be a useful initial diagnostic. If the intermediate images are large, a table of input/target beam areas, kernel sums, resulting PSF peaks/areas, component flux sums and local mosaic weights across all seven targets could be a much smaller alternative. PSF cutouts should extend far enough to support the area convention actually used, rather than assuming a truncated Gaussian is sufficient.
+
+Are these products or production logs publicly deposited somewhere we have missed? If they are not retained, identifying that would help distinguish a provenance limitation from a pipeline effect and guide an appropriate injection/re-imaging test.
+
+Thank you.

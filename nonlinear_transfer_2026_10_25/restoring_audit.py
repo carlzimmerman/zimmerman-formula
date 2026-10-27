@@ -1,0 +1,11 @@
+"""Relax density and both phase fields in the actual radial Hessian."""
+import argparse,json
+from pathlib import Path
+import numpy as np,torch
+from scipy.linalg import null_space
+from exact_equilibrium import Exact
+from joint import T
+ap=argparse.ArgumentParser();ap.add_argument('--output',required=True);arg=ap.parse_args();m=Exact(J=30);r=json.loads(Path('nonlinear_transfer_2026_10_25/run_exact_equilibrium/equilibrium.json').read_text());n=m.n;mass=np.array(r['mass']);physical=np.r_[mass,r['v'][n:]];aa=np.r_[np.sqrt(mass),r['v'][n:]];_,gphysical=m.direct(physical);lam=np.median(gphysical[:n][mass>1e-7]);im=np.where((mass>4e-12)|(gphysical[:n]<lam-1e-8))[0];gp=gphysical[n:];phase=aa[n:];ix=np.where(((phase>1e-12)|(gp<0))&((phase<1-1e-12)|(gp>0)))[0]+n;P0=null_space(aa[im][None,:]);P=np.zeros((3*n,len(im)-1));P[im]=P0;Z=np.c_[P,np.eye(3*n)[:,ix]]
+def E(a):return m.energy(torch.log(a[:n]**2),a[n:])
+H=torch.autograd.functional.hessian(E,T(aa)).detach().numpy();HH=Z.T@H@Z;scale=1/np.sqrt(np.maximum(abs(np.diag(HH)),1e-8));HS=scale[:,None]*HH*scale[None,:];sv=np.linalg.eigvalsh(HS);q=np.array(r['q']);rr=np.array(r['r']);cross=np.where((q[:-1]-.5)*(q[1:]-.5)<0)[0];assert len(cross)==1;i=cross[0];dr=rr[i+1]-rr[i];b=np.zeros(3*n);b[2*n+i]=dr*(.5-q[i+1])/(q[i+1]-q[i])**2*(np.pi/2)*np.sin(np.pi*aa[2*n+i]);b[2*n+i+1]=-dr*(.5-q[i])/(q[i+1]-q[i])**2*(np.pi/2)*np.sin(np.pi*aa[2*n+i+1]);bc=Z.T@b;ans=scale*np.linalg.solve(HS,scale*bc);compliance=bc@ans;k=1/compliance
+out={'active_density_cells':len(im),'active_phase_coordinates':len(ix),'constrained_dimension':Z.shape[1],'minimum_scaled_constrained_H_eigenvalue':float(sv[0]),'symmetry_error':float(max(abs(HH-HH.T).ravel())),'boundary_radius_kpc':r['scaled_boundary_kpc'],'relaxed_boundary_stiffness_Eunit_per_kpc2':float(k),'linear_restoring_force':'F_R=-k delta_R after relaxing density and both real phase fields at fixed total mass','compliance_solve_residual':float(np.linalg.norm(HH@ans-bc)/np.linalg.norm(bc)),'non_claims':['Active radial real-amplitude Hessian, not arbitrary phase-space global stability','Finite displacements and time-dependent infall require actual dynamics','Outer inactive cells and continuum limits are not certified by this active restriction']};assert sv[0]>0 and k>0;Path(arg.output).write_text(json.dumps(out,indent=2)+'\n');print(out,flush=True)

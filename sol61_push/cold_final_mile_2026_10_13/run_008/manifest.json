@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-FM-008",
+  "repository": {
+    "commit": "5124ad2884a45b0d930a27c5f3566381d9c9a356",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_final_mile_2026_10_13/check_selective_cooling.py",
+    "sol61_push/cold_final_mile_2026_10_13/run_008/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Equilibrium-relative energy removal at small captures; baseline binding cancellation and optimal frozen Maxwell tail cooling fraction",
+    "coefficient_domain": "SymPy exact rational algebra and IEEE double numerical checks",
+    "conventions": "G=a0=M_b=1; u=m(<r)/r^2; outward acceleration positive; core matching conditional",
+    "inputs": [
+      "sol61_push/cold_final_mile_2026_10_13/check_selective_cooling.py",
+      "sol61_push/cold_final_mile_2026_10_13/SELECTIVE_COOLING_CONTRACT.txt"
+    ],
+    "bounds": {
+      "outer_radius": 50,
+      "strip_start_radius": 2,
+      "capture_mass": [
+        0.01,
+        0.001,
+        0.0001
+      ],
+      "Maxwell_capture_budget": [
+        0.001,
+        0.01,
+        0.05
+      ],
+      "quad_epsabs": 2e-11,
+      "quad_epsrel": 2e-11,
+      "envelope_relative_tolerance": 1e-05
+    },
+    "non_claims": [
+      "Not a universal cooling bound when collective or collisional transport changes the distribution",
+      "No physical loss cone, capture rate or mass origin supplied",
+      "No observational population fit; source/halo comparison remains Newtonian"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T19:29:42.712329+00:00",
+    "runtime_seconds": 0.476559,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_final_mile_2026_10_13/check_selective_cooling.py",
+    "sol61_push/cold_final_mile_2026_10_13/SELECTIVE_COOLING_CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/check_selective_cooling.py",
+      "sha256": "164899afff6fc9ed2b30007dcab21a0a045a3bbe13501ad408fc874d851a461f",
+      "sha256_after": "164899afff6fc9ed2b30007dcab21a0a045a3bbe13501ad408fc874d851a461f"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/SELECTIVE_COOLING_CONTRACT.txt",
+      "sha256": "71f5d23dd79b14f830241c0874c79f53cb5db890402d37f6a9a882b9d6da8415",
+      "sha256_after": "71f5d23dd79b14f830241c0874c79f53cb5db890402d37f6a9a882b9d6da8415"
+    }
+  ],
+  "output_directory": "sol61_push/cold_final_mile_2026_10_13/run_008",
+  "declared_results": [
+    "sol61_push/cold_final_mile_2026_10_13/run_008/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_008/stdout.txt",
+      "sha256": "6777118c30daa75c5326d8b32fa714cf2be17345cbfd58c4360d1e444607e5a1",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_008/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_008/results.json",
+      "sha256": "6777118c30daa75c5326d8b32fa714cf2be17345cbfd58c4360d1e444607e5a1",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

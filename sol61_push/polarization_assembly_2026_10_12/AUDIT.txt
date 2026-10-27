@@ -1,0 +1,49 @@
+SELF-AUDIT AND PROOFREADING — 12 October 2026
+
+Normalized claim: for the specified effective equations, fixed-mass source
+contraction from a=16 to a=1 over 320 dimensionless units, and initially zero
+response fields, the two tested discretisations yield an attractive force
+with <=10% RMS error over r=2..20 at all nine late observations 880..960.
+Primary verdict: computationally verified only in a stated range.
+
+Dependency graph:
+CFG596 kernel -> signed monotone inverse b and primitive W -> energy-adjoint
+radial discretisation -> prescribed source protocol and accounted work ->
+bounded trajectories -> force-profile and refinement tests.
+The analytic energy identity depends on the displayed equations and boundary
+conditions, not an external theorem. The scientific interpretation depends
+on calling this a prescribed source, not closed baryon evolution.
+
+Obligations:
+PASS: source sign, radial cell/face weights, static flux construction, regular
+origin, fixed outer potential, interpolation monotonicity/support, exact
+piecewise primitive, initial-data replacement, mass normalization, source
+work sign, late sample selection, same post-assembly hold, no retuned kernel,
+positive-force test, energy normalization with initially zero H, refinement.
+PASS: zero_initial.py differs from contraction.py only in the announced
+initial-field reset, recomputed initial energy, header and output destination.
+PASS: comparison table reports screening vs refined grids explicitly.
+CONDITIONAL: continuum interpretation depends on bounded discretisation
+errors; no convergence-order or PDE existence theorem was proved.
+NOT ADDRESSED: autonomous baryon momentum/energy, live cold matter, lensing,
+relativistic modes, physical response times and microphysical kernel.
+OUT OF SCOPE: observational preference and novelty in the literature.
+
+Strongest safe statement: there are two finite, checked contraction examples
+(prepared and zero initial fields) that approach the supplied spherical force
+profile locally under a conserved prescribed baryon history, with recorded
+energy transfer. These are not a general attractor or a completed theory.
+
+Proofread: RESULT.txt, ANALYSIS.txt and this review.
+Routine edits: clarified source work versus conservation; continuum continuity
+versus normalized mesh sampling; prepared versus zero initial fields; finite
+local force agreement versus global relaxation.
+Mathematical-token changes during proofreading: none.
+Unresolved physics: specified above; not silently repaired in prose.
+No independent reviewer was used; this is same-author self-review.
+
+Execution summary:
+screen: 3 simulations, 15 passing grouped checks, 30.295 seconds.
+verify: 2 simulations, 14 passing grouped checks, 45.055 seconds.
+contraction: 2 simulations, 12 passing grouped checks, 49.498 seconds.
+zero_initial: 2 simulations, 12 passing grouped checks, 49.317 seconds.

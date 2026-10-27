@@ -1,0 +1,21 @@
+"""CE089D: independent CFG844 saved-score, inventory and common-profile implications."""
+import json,math,sys
+from pathlib import Path
+import numpy as np
+from scipy.stats import spearmanr
+B=Path('campaign_fresh_gravity');S=B/'CFG844_primordial_free_core';r=json.loads((S/'cfg844_results.json').read_text());mu=json.loads((S/'cfg844_results_MUTATE.json').read_text());T=np.load(B/'CFG654_independent_inputs/cfg654_ics_tables_cmb.npz');h,wb,wc=[float(T[x]) for x in ['h','omega_b','omega_c']];rho0=2.775e11*(wb+wc)/1e9;checks=[];rows=[]
+def ck(n,v):
+ checks.append({'name':n,'pass':bool(v)})
+ if not v:raise AssertionError(n)
+mut={x['name']:x for x in mu['rows']}
+for x in r['rows']:
+ n=x['name'];free=.9*wc/(wb+wc)*178*rho0*(1+x['zc'])**3;rv=(3*x['Mcat']/(4*math.pi*(178*rho0*(1+x['zc'])**3)))**(1/3)
+ ck(n+' free-density',math.isclose(free,x['rho_free'],rel_tol=1e-12));ck(n+' virial radius',math.isclose(rv,x['rvir'],rel_tol=1e-12));ck(n+' P',math.isclose(x['P'],x['rho_need']/free,rel_tol=1e-12));ck(n+' mutation',math.isclose(mut[n]['P']/x['P'],(1+x['zc'])**3,rel_tol=1e-12))
+ u=x['r12']/rv;eta=x['P']*u**3;need=x['rho_need']*4*math.pi*x['r12']**3/3;supply=free*4*math.pi*rv**3/3
+ ck(n+' independent free inventory fraction',math.isclose(need/supply,eta,rel_tol=1e-12));rows.append({'name':n,'x_r12_over_rvir':u,'required_free_fraction_inside_aperture':eta,'M_extra_Msun':need,'Mfree_total_Msun':supply,'P':x['P'],'zc':x['zc']})
+x=np.log10([x['rho_free'] for x in r['rows']]);y=np.log10([x['rho_need'] for x in r['rows']]);rho,p=spearmanr(x,y,alternative='greater');slope=np.polyfit(x,y,1)[0];ck('rho replay',abs(rho-r['rho'])<1e-14);ck('p replay',abs(p-r['p'])<1e-14);ck('slope replay',abs(slope-r['slope'])<1e-12);ck('median replay',abs(float(np.median([q['P'] for q in rows]))-r['P_median'])<1e-10);ck('frozen SUPPORTS unchanged',r['cls']=='SUPPORTS')
+massrho=spearmanr([x['Mb'] for x in r['rows']],[x['rho_need'] for x in r['rows']])[0];ck('mass trend identity',abs(massrho+rho)<1e-14)
+breaches=[q for q in rows if q['required_free_fraction_inside_aperture']>1];ck('two saved stock breaches',{q['name'] for q in breaches}=={'Canes Venatici II','Andromeda XI'});ck('Sextans not covered','Sextans' not in {x['name'] for x in r['rows']}|set(r['no_excess']))
+d={q['name']:q for q in rows};L,F,D=[d[n] for n in ['Leo I','Fornax','Draco']];ck('common nonnegative profile obstruction witness',L['x_r12_over_rvir']<F['x_r12_over_rvir'] and L['required_free_fraction_inside_aperture']>F['required_free_fraction_inside_aperture']);ck('common nonincreasing-density witness',D['x_r12_over_rvir']>F['x_r12_over_rvir'] and D['P']>F['P'])
+needratio=next(q for q in r['rows'] if q['name']=='Draco')['rho_need']/next(q for q in r['rows'] if q['name']=='Fornax')['rho_need'];free_ratio=next(q for q in r['rows'] if q['name']=='Draco')['rho_free']/next(q for q in r['rows'] if q['name']=='Fornax')['rho_free']
+out={'claim_id':'CE-FM-089D','n_checks':len(checks),'all_pass':all(x['pass'] for x in checks),'checks':checks,'rows':rows,'inventory_breaches':breaches,'common_profile_witness':{'LeoI':L,'Fornax':F,'Draco':D},'Draco_over_Fornax':{'required_inner_density_ratio':needratio,'collapse_epoch_mean_free_density_ratio':free_ratio,'still_required_inner_profile_factor_ratio':needratio/free_ratio},'rho':float(rho),'p':float(p),'slope':float(slope),'source_class_preserved':r['cls'],'scope':'Replayed saved densities, virial radii, statistics, mutation scaling and exact finite-inventory/profile consequences. Did not rerun native sigma(R), collapse root/growth, raw dwarf kinematics or PM evolution.','non_claims':['Source SUPPORTS gate preserved; not a new observational verdict','No universal profile exclusion after marginalizing observational/mass/assembly scatter','Extra tethered supply or a different catchment requires separate double-counting-free source solve','Sextans absent from this dataset','This source uses full exponential isolated-law baseline, unlike our capped rational retained baseline; numbers cannot be silently substituted']};Path(sys.argv[1]).write_text(json.dumps(out,indent=2)+'\n');print(json.dumps({'checks':len(checks),'stock_breaches':breaches,'density_ratio':out['Draco_over_Fornax'],'profile_witness':out['common_profile_witness']},indent=1))

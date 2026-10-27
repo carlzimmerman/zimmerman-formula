@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "claim_id": "HR01-conditional-EOS",
+  "repository": {
+    "commit": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "dirty": true
+  },
+  "command": [
+    "/Users/carlzimmerman/miniforge3/envs/z2-physics/bin/python",
+    "real_research/handoff_resolution_2026_09_27/constitutive/eos_audit.py",
+    "real_research/handoff_resolution_2026_09_27/constitutive/mutate/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.15"
+      },
+      {
+        "name": "Python",
+        "version": "3.11.15"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conditional point-baryon P2 hydrostatic identities and host dependence of the inferred pressure at fixed dark density.",
+    "coefficient_domain": "Exact positive-real symbolic algebra; float64 controls",
+    "conventions": "Unshifted CFG2 pressure; y=GMb/(a0 r^2); rho is mass density",
+    "inputs": [
+      "real_research/handoff_resolution_2026_09_27/constitutive/eos_audit.py"
+    ],
+    "bounds": {
+      "symbolic_domain": "Mb,a0,G,y positive",
+      "finite_masses_solar": [
+        1000000000.0,
+        100000000000.0
+      ],
+      "finite_rho_kg_m3": 1e-23,
+      "a0_m_s2": [
+        9.3603e-11,
+        1.1312e-10
+      ]
+    },
+    "non_claims": [
+      "Not a no-go for entropy-dependent or baryon-coupled actions",
+      "Not a proof of causal sound propagation or dynamical stability"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T20:29:49.660496+00:00",
+    "runtime_seconds": 0.376181,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/handoff_resolution_2026_09_27/constitutive/eos_audit.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/constitutive/eos_audit.py",
+      "sha256": "ee24db66633042b344b832589c4aa46723b1eda10793e071a6e1085114670ae8",
+      "sha256_after": "ee24db66633042b344b832589c4aa46723b1eda10793e071a6e1085114670ae8"
+    }
+  ],
+  "output_directory": "real_research/handoff_resolution_2026_09_27/constitutive/mutate",
+  "declared_results": [
+    "real_research/handoff_resolution_2026_09_27/constitutive/mutate/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/constitutive/mutate/stdout.txt",
+      "sha256": "53ef74eeb5fa10f5a16030dc5e46e0cc09d82559df85c4aa63446aae58daeddc",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/constitutive/mutate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/constitutive/mutate/results.json",
+      "sha256": "94fdf204d3f2cdbfc3564fa604421fd01267009984cd3ad44fcc89f08713a263",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

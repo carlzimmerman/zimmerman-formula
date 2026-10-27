@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "RA-014",
+  "repository": {
+    "commit": "39364ccf1afbb1ab97033a2debdf97e78707f9e1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/reciprocal_anchor_2026_10_13/check_linear_evolution.py",
+    "sol61_push/reciprocal_anchor_2026_10_13/run_linear_evolution_2026_10_14/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Positive-energy constant-coefficient reduced Fourier branch, explicit evolution and quartic dispersion distinction",
+    "coefficient_domain": "SymPy exact real and rational algebra; floating eigenvalue controls",
+    "conventions": "c=1; conserved Eulerian currents; fixed-clock local/ static comparison",
+    "inputs": [
+      "sol61_push/reciprocal_anchor_2026_10_13/check_linear_evolution.py",
+      "sol61_push/reciprocal_anchor_2026_10_13/LINEAR_EVOLUTION_CONTRACT_2026_10_14.txt",
+      "sol61_push/reciprocal_anchor_2026_10_13/CLOCK_CONTRACT_2026_10_14.txt"
+    ],
+    "bounds": {
+      "domain": "positive C0,C1,K0,gamma;constant coefficients;fixed wave direction",
+      "numeric_k": [
+        0.1,
+        1,
+        10,
+        100
+      ],
+      "time_control": 1.23,
+      "energy_relative_tolerance": 1e-12
+    },
+    "non_claims": [
+      "Not nonlinear/fullrelativistic wellposedness or finite metric-cone propagation",
+      "No physical current/frame cutoff or source interface closure"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T11:06:48.875718+00:00",
+    "runtime_seconds": 0.613289,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/reciprocal_anchor_2026_10_13/check_linear_evolution.py",
+    "sol61_push/reciprocal_anchor_2026_10_13/LINEAR_EVOLUTION_CONTRACT_2026_10_14.txt",
+    "sol61_push/reciprocal_anchor_2026_10_13/CLOCK_CONTRACT_2026_10_14.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/check_linear_evolution.py",
+      "sha256": "f5ca5e64198f0d1da6256eac44c3195b2035c508e7d804c3f338bf79968d666e",
+      "sha256_after": "f5ca5e64198f0d1da6256eac44c3195b2035c508e7d804c3f338bf79968d666e"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/LINEAR_EVOLUTION_CONTRACT_2026_10_14.txt",
+      "sha256": "6e004463bdac75df30aed705466754cad29ab0d24b6b2a4ce074970816c203b3",
+      "sha256_after": "6e004463bdac75df30aed705466754cad29ab0d24b6b2a4ce074970816c203b3"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/CLOCK_CONTRACT_2026_10_14.txt",
+      "sha256": "2c05cce6584da204b1d841f301810020b3062d4c51eda7cea1ad1fe7a4130be5",
+      "sha256_after": "2c05cce6584da204b1d841f301810020b3062d4c51eda7cea1ad1fe7a4130be5"
+    }
+  ],
+  "output_directory": "sol61_push/reciprocal_anchor_2026_10_13/run_linear_evolution_2026_10_14",
+  "declared_results": [
+    "sol61_push/reciprocal_anchor_2026_10_13/run_linear_evolution_2026_10_14/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run_linear_evolution_2026_10_14/stdout.txt",
+      "sha256": "cacd6eb8e0bb978877c13121e0050d6b2624e2d0b42b47d83e4433dfa73fa3fd",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run_linear_evolution_2026_10_14/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_anchor_2026_10_13/run_linear_evolution_2026_10_14/results.json",
+      "sha256": "cacd6eb8e0bb978877c13121e0050d6b2624e2d0b42b47d83e4433dfa73fa3fd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

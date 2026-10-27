@@ -1,0 +1,158 @@
+{
+  "schema_version": 2,
+  "claim_id": "CPB-PAIR-CONVERSION-2026-10-16",
+  "repository": {
+    "commit": "370dfb58006e330f210f5e306297e822188e37ba",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/closure_particle_bridge_2026_10_16/pair_conversion_closure.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/pair_conversion_run_002"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Pole-free pair conversion cross section, MB thermal reverse rates, and common-kinetic/fast-decay partial-equilibrium gas evolution with reciprocal number and energy in an expanding prescribed radiation background",
+    "coefficient_domain": "Exact rational denominator controls plus IEEE754 binary64 SciPy quadrature/ODE",
+    "conventions": "m=2MeV separately specified branch; counts w=nPhi+2nX per charge sign; pair P positive PhiPhi*->XX*; source partial equilibrium zX=zPhi^2; classical MB; no portal injection during evolved interval",
+    "inputs": [
+      "sol61_push/closure_particle_bridge_2026_10_16/pair_conversion_closure.py",
+      "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json"
+    ],
+    "bounds": {
+      "angular_s_over_4M2": [
+        1.0001,
+        1.1,
+        2,
+        10,
+        100
+      ],
+      "thermal_quadratures": [
+        64,
+        128
+      ],
+      "thermal_rate_T_over_m_minmax": [
+        1e-05,
+        10
+      ],
+      "thermal_rate_points": 25,
+      "initial_Tdark_over_m": [
+        0.3,
+        1,
+        3
+      ],
+      "Tvisible_GeV_minmax": [
+        1e-06,
+        0.01
+      ],
+      "background_table_points": 500,
+      "neutrino_decoupling_GeV": 0.002,
+      "electron_quadrature": 192,
+      "ODE": "Radau rtol2e-7, refined2e-9; max loga step .12",
+      "output_samples_per_run": 401
+    },
+    "non_claims": [
+      "Not full production or full momentum evolution",
+      "MB/kinetic/source-equilibrium closures remain scoped asymptotic assumptions",
+      "No full quantum/thermal masses or complete RIS-subtracted multiparticle hierarchy",
+      "No observed abundance, coldness, theory closure or novelty established"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-16T13:14:22.582809+00:00",
+    "runtime_seconds": 0.887058,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/closure_particle_bridge_2026_10_16/pair_conversion_run_002/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/closure_particle_bridge_2026_10_16/pair_conversion_closure.py",
+    "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/pair_conversion_closure.py",
+      "sha256": "7009aa8c4dbad37aa2a48df7c3347fdfc49c69fb732c744f39079ba8475e3e4d",
+      "sha256_after": "7009aa8c4dbad37aa2a48df7c3347fdfc49c69fb732c744f39079ba8475e3e4d"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/thermal_charge_run_002/results.json",
+      "sha256": "d1cc9e64296077ce5039eac2a9805ef645bc1fcf91fbe985e45736d84a8f21f2",
+      "sha256_after": "d1cc9e64296077ce5039eac2a9805ef645bc1fcf91fbe985e45736d84a8f21f2"
+    }
+  ],
+  "output_directory": "sol61_push/closure_particle_bridge_2026_10_16/pair_conversion_run_002",
+  "declared_results": [
+    "sol61_push/closure_particle_bridge_2026_10_16/pair_conversion_run_002/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/pair_conversion_run_002/stdout.txt",
+      "sha256": "7873839ae84362eb0dd7ab761e01f4919962d264aa44f06ce1633d68dfab258c",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_particle_bridge_2026_10_16/pair_conversion_run_002/stderr.txt",
+      "sha256": "855486f61774a558985abc86bc54b9bc623e430c46dda966c4fdc0dc495edc06",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: sol61_push/closure_particle_bridge_2026_10_16/pair_conversion_run_002/results.json"
+  ]
+}

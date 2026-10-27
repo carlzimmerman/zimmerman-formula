@@ -1,0 +1,103 @@
+--- /Users/carlzimmerman/new_physics/zimmerman-formula/real_research/handoff_resolution_2026_09_27/turnaround/kick_moments/engine_exact.py
++++ engine_events.py
+@@ -25,6 +25,7 @@
+ import numpy as np
+ import CFG5_common as C
+ from exact_moments import kick_moments
++from event_step import localize
+ 
+ GK = C.GK
+ H0 = 0.1 * C.H_LITTLE                     # km/s/kpc
+@@ -120,8 +121,10 @@
+ 
+ 
+ def run(SIG, M0, a0_cap, trigger=True, cooling=True, vk=600.0, Nc=600, fR=0.02, seed=1, eta=0.03, rsoft=0.2, nb=24,
+-        fgal=None, trigger_cadence=5):
++        fgal=None, trigger_cadence=1, event_tol=1e-6, max_steps=100000, time_budget=60., late_events=False):
+     """one collapse; a0_cap is the a0 inside the cap (0 -> P_c = 0: every coherent crossing converts)."""
++    if cooling: raise ValueError("Bounded event benchmark implements no-cooling only")
++    if trigger_cadence != 1: raise ValueError("Event benchmark evaluates trigger every accepted step")
+     rng = np.random.default_rng(seed)
+     qm, dL, m, Rf = initial_profile(SIG, M0, Nc)
+     fb = C.F_B
+@@ -149,6 +152,8 @@
+     snaps = []
+     nstep = 0
+     T0 = time.time()
++    events = []
++    initial_mass = float(M.sum())
+ 
+     def enclosed():
+         ia = np.where(alive)[0]
+@@ -173,21 +178,54 @@
+         re2 = R ** 2 + rsoft ** 2
+         return np.where(alive, -GK * Menc * R / re2 ** 1.5 + J ** 2 / np.maximum(R, 1e-6) ** 3 + H0 ** 2 * OL * R, 0.0)
+ 
++    def pressure():
++        dk = np.where(alive & ((kind == 0) | (kind == 2)))[0]
++        order = np.argsort(R[dk]); ii = dk[order]
++        rs=R[ii];ms=M[ii];vs=V[ii];vt2=(J[ii]/rs)**2;n=len(ii)
++        cm=np.r_[0.,np.cumsum(ms)];cmv=np.r_[0.,np.cumsum(ms*vs)]
++        cmv2=np.r_[0.,np.cumsum(ms*(vs**2+vt2))]
++        lo=np.clip(np.arange(n)-nb,0,n-1);hi=np.clip(np.arange(n)+nb,0,n-1)
++        mm=cm[hi+1]-cm[lo];mv=cmv[hi+1]-cmv[lo];mv2=cmv2[hi+1]-cmv2[lo]
++        vol=4*math.pi/3*np.maximum(rs[hi]**3-rs[lo]**3,1e-9)
++        out=np.zeros(N);out[ii]=(mv2-mv**2/np.maximum(mm,1e-30))/(3*vol)
++        return out
++
+     Menc, phi, ids = enclosed()
+     A = accel(Menc)
+     while t < t0:
++        if nstep>=max_steps or time.time()-T0>time_budget:
++            raise RuntimeError(f'event integration budget exhausted: steps={nstep}, events={len(events)}, a={float(a_of_t(t))}')
++
+         live = alive & (M > 0)
+         tdyn = float(np.min(np.sqrt(np.maximum(R[live], rsoft) ** 3 / (GK * np.maximum(Menc[live], 1.0)))))
+         dt = min(eta * tdyn, 0.05 / H0 * 0.01)
+         if t + dt > t0:
+             dt = t0 - t
+-        V += 0.5 * dt * A
+-        R += dt * V
+-        np.maximum(R, 1e-3, out=R)
+-        t += dt
+-        Menc, phi, ids = enclosed()
+-        A = accel(Menc)
+-        V += 0.5 * dt * A
++        oldR=R.copy();oldV=V.copy();oldA=A.copy()
++        coherent=alive & (kind==0) & ((phase==1)|(phase==2))
++        phase_margin=np.where(alive & (phase<3),np.where(phase==1,-oldV,oldV),np.inf)
++        pstart=pressure() if trigger else np.zeros(N)
++        initial_margin=np.r_[phase_margin,np.where(coherent & trigger,Pc-pstart,np.inf)]
++        def propose(h):
++            nonlocal R,V
++            R=np.maximum(oldR+h*(oldV+.5*h*oldA),1e-3)
++            me,ph,ii=enclosed();ac=accel(me);V=oldV+.5*h*(oldA+ac)
++            return (R.copy(),V.copy(),me,ph,ii,ac)
++        def margins(state):
++            nonlocal R,V
++            R,V=state[0],state[1]
++            pm=np.where(alive & (phase<3),np.where(phase==1,-V,V),np.inf)
++            pp=pressure() if trigger else np.zeros(N)
++            return np.r_[pm,np.where(coherent & trigger,Pc-pp,np.inf)]
++        accepted,state,event=localize(propose,margins,initial_margin,dt,relative_tol=event_tol,late=late_events)
++        if accepted<1e-12 and t0-t>1e-12 and not (event and event.get('immediate')):raise RuntimeError('event step below declared minimum')
++        R,V,Menc,phi,ids,A=state
++        t+=accepted
++        if event is not None:
++            event['t']=t;event['a']=float(a_of_t(t));event['proposal_dt']=dt
++            event['phase_residual']=max([abs(V[i]) for i in event['ids'] if i<N] or [0.])
++            event['pressure_relative_excess']=max([-x/max(abs(Pc),1e-300) for i,x in zip(event['ids'],event['end']) if i>=N] or [0.])
++            events.append(event)
+         nstep += 1
+         turn = alive & (phase == 0) & (V < 0)
+         if turn.any():
+@@ -233,7 +271,8 @@
+         if float(a_of_t(t)) > 0.85 and (not snaps or t - snaps[-1][0] > 0.1):
+             snaps.append((t, R.copy(), M.copy(), kind.copy(), np.asarray(gal_R, float), np.asarray(gal_M, float)))
+     return dict(snaps=snaps, budget=budget, dark_init=dark_init, M0=M0, Rf=Rf, nstep=nstep, runtime=time.time() - T0,
+-                galaxy=float(np.sum(gal_M)), fgal=fgal)
++                galaxy=float(np.sum(gal_M)), fgal=fgal, events=events,
++                mass_accounting_relative=(float(M.sum())+float(np.sum(gal_M))+budget["escaped"]-initial_mass)/initial_mass)
+ 
+ 
+ def profiles(res, rgrid):

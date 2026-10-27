@@ -1,0 +1,143 @@
+CE-FM-061 — Lensing edge check and a finite-inventory ceiling
+2026-10-15. Self-review. Primary verdict: the CFG801 tested settled-only
+profile strongly loses its stated comparison; an outer population needs
+counted inventory, not merely a different label or radial redistribution.
+The new critical matter/Maxwell body's radial advance remains separate.
+No whole-theory, all-disk or arbitrary-phase exclusion is claimed.
+
+New physical-model advance, with exact scope
+VC3 commit2968d72cfe6ca580dde906676c73207f95d63b73 now specifies both live
+matter species, actual critical dark charge q/m=sqrt(4piG), a counted moving
+impermeable wall and frame-free Maxwell exterior. Its critical_interface
+proof supplies a small-G contraction and complete radial quadratic form
+including current enthalpy inertia, wall mass/gravity and moving Gauss trace.
+For its chosen Gamma2 EOSs, scales and surface phase it obtains positive
+coefficients Cb>.56,Cc>.45. Reading the explicit equations confirms this is
+a different high-pressure body from the earlier weak neutral/co-Plummer
+comparison; CE059's negative direction does not refute this new candidate.
+Twelve authoritative VC3 computation manifests freshly validate against
+current bytes, excluding failed/stale historical drafts identified in its
+verification_observation.json. Integrity validation is not an independent
+proof of every theorem. This pass reviewed the declared critical-interface
+model and radial form, but did not reconstruct all VC3 proofs or rerun its
+experiments. All angular/interface modes, nonlinear evolution, physical
+wall/phase/EOS selection, full metric and galactic/cosmological identity
+remain open. A pressure-confined radial body is not automatically the
+cold galactic profile or a settling process.
+
+CFG801 sources and independent reproduction
+Criteria0ff46e530, result19e43e6148d063a9cb3dc067b6bf293b4a7b838e. The exact
+code, both-footing results and local four-bin ESD/covariance files are hashed
+in run_061. Both models include a baryonic point mass. The edge model
+correctly retains exterior shear (s+1)Mb/(piR^2), consistent with CE053;
+it does NOT set the lensing signal to zero outside its density edge.
+
+The source tabulates Sigma on700 logarithmic radii and integrates cumulative
+cylinder mass. The independent check instead evaluates each requested
+aperture directly using the shell formula
+ M_cyl(<R)=M(<R)+integral_R^Rmax M'(r)[1-sqrt(1-R^2/r^2)]dr.
+For a sharp edge, Rmax=Re; for the infinite profile, Rmax=infinity.
+The finite Sigma uses a direct nonsingular line-of-sight integral. An
+independent infinite-profile Abel check uses the exact elliptic expression
+ Sigma(x)=K[1/(1+4x^2)]/[pi sqrt(1+4x^2)],
+where K's argument is the elliptic parameter. Include Mb's point-mass ESD.
+These functions are in units Mb/rM^2, with x=R/rM.
+
+Bias-corrected data Y=ESD/(1+Kbias) and covariance corrected by the supplied
+bias-product column reproduce the file conventions. The full60x60 matrix
+is symmetric positive definite; its diagonal standard deviations agree with
+the tabulated bias-corrected errors within1e-4 fraction. This checks parsing
+and internal consistency, not the survey covariance's statistical calibration.
+
+At the source-reported fitted masses, WITHOUT reoptimizing:
+ footing / range       independent edge chi2   no-edge chi2   difference
+ canonical /primary           280.8647             83.8623       +197.0024
+ canonical /all               916.0295            163.1375       +752.8920
+ alt /primary                 313.6531             79.7170       +233.9361
+ alt /all                     968.2725            155.3335       +812.9390
+Largest absolute difference from the source's eight chi2 values is0.128,
+consistent with projection/interpolation differences; the broad comparison
+survives. This is not a new continuous mass optimization or a revised p-value
+calibration. Source's frozen EDGE EXCLUDED class is preserved for its tested
+model and sample. The no-edge alternative also fits poorly in absolute terms;
+beating the edge is not proof of an adequate complete model. The difference
+between these nonnested profiles is not automatically a one-dof Wilks sigma.
+
+Primary observational source check
+Brouwer et al., arXiv2106.11677v1, Fig3, section5.5, AppendixA:
+https://arxiv.org/html/2106.11677v1
+The paper studies mass-binned isolated galaxies, not a certified merger-free
+disk-only population. It cautions about isolation/satellite effects beyond
+0.3h70^-1Mpc. It lists reference mean stars+cold-gas masses10.14,10.57,10.78,
+10.96 and emphasizes baryonic-mass uncertainties. The official KiDS release
+identifies its accompanying ESD profiles:
+https://kids.strw.leidenuniv.nl/sciencedata.php
+Local products were hashed, not downloaded or byte-compared anew to that
+release. The source's zero-knob stellar-only numbers are explicitly provisional
+and differ from these reference baryonic means; do not silently equate them.
+
+The frozen CFG801 primary cutoff .31Mpc includes a .30354Mpc row just beyond
+the paper's .3Mpc caution. All-radii evidence extends much farther. The audit
+retains that original choice and its disclosed limitations; no new cut is
+substituted to rewrite a gate. A clean merger-free/disk-only test and a
+specified S4 distribution are explicitly outside CFG801. Therefore failure
+of the full settled-only model on this mixed sample is not automatically a
+falsification of every narrower original disk prediction. VC3's dependency
+assessment correctly preserves this distinction. No older observational pass
+can be transferred to its different wall body or nonzero-stiffness witness.
+
+Exact finite-stock implication for a proposed rescue
+For an isolated nonnegative lensing mass component with finite total mass,
+ Sigma(R)>=0 and M_cyl(<R)<=M_total. Hence
+ DeltaSigma(R)=M_cyl/(piR^2)-Sigma(R)<=M_total/(piR^2).
+This holds regardless of the radial profile; for a stack it applies with
+the SAME positive lensing weights and weighted total mass. The field-to-lensing
+mass identification and an isolated component are explicit premises.
+With baryonic mass Mb and a total available cold inventory <=sMb,
+ DeltaSigma(R)<=(1+s)Mb/(piR^2).
+Moving that same inventory from settled material into free debris cannot
+exceed this ceiling. Adding debris on top of a settled profile that already
+uses all sMb double counts unless additional counted stock or baryon history
+is specified. Imported debris, depleted/ejected baryons, a different available
+inventory, environment, or changed metric/stress lensing are different
+physical assumptions requiring predictions, not algebraic exceptions.
+
+A pointwise diagnostic is M_total>=piR^2 DeltaSigma. At the .2233Mpc row
+(the outermost supplied row below.3Mpc), nominal data imply minimum total
+masses in bins1–4 approximately
+ [5.5374e11,1.7684e12,1.1668e12,2.7387e12] Msun.
+Using the reference mean baryonic masses above and s=5.364 gives nominal
+minimum/reference-stock ratios [6.3034,7.4790,3.0428,4.7186].
+These are DATA-LEVEL DIAGNOSTICS, not simultaneous confidence bounds or a
+new measured cold-mass claim. The JSON includes diagonal-error lower-point
+diagnostics, but correlations, lens weighting, mass scatter, circumgalactic
+gas and environmental contributions must be treated before statistical or
+population attribution. In particular the paper's reference means need not
+be exactly the same weighting as the lensing stack. This exposes the budget
+needed under stated assumptions, not an unqualified universal exclusion.
+
+Evidence and next work
+Own run_061 completed and manifest validated:21 checks, including covariance
+parsing, elliptic/Abel crosschecks, exact exterior formula and independent
+score calculations. No original scorer, lensing fit optimizer, galaxy
+simulation, radial-body construction or live archive pipeline was rerun.
+No frozen criterion, publication or source file was modified.
+
+PASSED: the new body's evidence records fresh; declared radial versus full
+scope separated; CFG801 projection/score comparison reproduced at source
+masses; finite-inventory ceiling derived analytically.
+CONDITIONAL: field-to-lensing coupling, sample/mass/environment assumptions,
+stacking weights, data covariance calibration and profile-to-population map.
+NOT ADDRESSED: angular/interface health, full metric, wall/phase microphysics,
+actual S4 transport/formation, new fit or statistical exclusion calibration.
+
+Next fix one candidate's TOTAL inventory and its real outer population,
+including baryon history and any imported mass, before optimizing a tail.
+Apply the ceiling first; if the proposed stock cannot provide the required
+lensing, no redistribution rescues that stock under the same assumptions.
+If it survives, derive its actual density, phase/interface and metric lensing
+and compare that same candidate on an appropriate frozen sample. For the
+new joined body, seek the angular/interface mode or energy estimate with all
+matter/wall/gauge variables varied. The positive radial form is a control,
+not completion. Full physical theory, source selection, kappa, abundance,
+native cosmology and irreversible S4 remain open.

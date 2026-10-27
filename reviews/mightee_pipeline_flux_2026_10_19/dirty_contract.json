@@ -1,0 +1,88 @@
+{
+  "claim_id": "MIGHTEE_DIRTY_CENTRAL_BRIGHTNESS_2026_10_19",
+  "mathematics": {
+    "assertion_tested": "Compare seven matched central3x3-pixel sightlines in dirty, clean_conv and clean_conv_contsub cubes over common native line channels and sparse identical off-line baseline anchors. This is central brightness localization, not a total-flux comparison.",
+    "coefficient_domain": "float64; image Jy/beam, frequency Hz, angular sizes arcsec",
+    "conventions": "Same source coordinates, aperture radius (CFG302 line-window beam median times 1.5), frequency channels, beam area and line windows for pre/post stages. Baseline masks and robust constant/linear residual fits follow the previous profile analysis, with common window halfwidth=max(150,max(MIGHTEE W50,ALFALFA W50)/2+50) km/s; expansions0,100,250. Frequency-bin overlap integrals convert JyHz by c/nu_center. Pre means after visibility-domain continuum subtraction, deconvolution, resolution homogenization and mosaicking but before final image-domain subtraction; it is NOT raw visibilities.",
+    "inputs": [
+      "Seven primary matches from preceding profile comparison",
+      "Public clean_conv r1p0 FITS range cutouts",
+      "Existing clean_conv_contsub local cubes",
+      "Existing ALFALFA spectra and independent catalogue measurements",
+      "Heywood et al 2024 sections3.2-3.6 and table2"
+    ],
+    "bounds": {
+      "population": 7,
+      "extract_halfwidth_kms": 2200,
+      "aperture_beam_multipliers": [
+        1.5
+      ],
+      "download_cap_bytes": 1500000000,
+      "concurrent_range_requests": 8,
+      "network_timeout_seconds_per_request": 60,
+      "maximum_retries": 3,
+      "baseline_minimum_channels": 32,
+      "line_channels": "all abs(v)<=primary_halfwidth+100",
+      "baseline_anchors": "abs(v)>halfwidth+350 and abs(v)<1800, every sixth global channel"
+    },
+    "non_claims": [
+      "No raw visibility reprocessing",
+      "Cannot isolate pre-imaging continuum subtraction or calibration from already reduced cube products",
+      "A smoothing simulation is not a reproduction of unpinned historical pipeline code",
+      "No universal flux correction",
+      "No author contact authorized"
+    ]
+  },
+  "disclosure": "All preceding profile flux ratios and pipeline paper descriptions have already been seen. This is an exploratory stage-localization experiment. No pre-subtraction line pixels have been read before this contract. This dirty-stage diagnostic was added after observing the final continuum subtraction accounts for only a minority of the seven-pair deficit. No dirty brightness ratios were inspected before defining this test.",
+  "hypotheses": {
+    "image_continuum": "If final image-domain subtraction is responsible, pre-subtraction line flux after independently fitting a broad residual baseline should be substantially larger and closer to ALFALFA; the paired removed component should contain line-shaped signal.",
+    "simple_beam_area": "To explain a median ratio0.43 solely by a Gaussian beam-area denominator, the actual effective FWHM would need to be about sqrt(0.43) times the header FWHM for an unresolved source. Check local line-map shapes and documented beam conventions. Source extension makes an observed fitted width an upper, not equality, constraint.",
+    "residual_normalization": "Paper explicitly homogenizes residual PSFs separately from model restoration. A missing or incorrect residual scale cannot be claimed from the generic Jy/dirty-beam issue alone; exact PSFs/model/residual products or pinned production code would be required."
+  },
+  "execution_artifacts": [
+    "reviews/mightee_pipeline_flux_2026_10_19/contract.json",
+    "reviews/mightee_pipeline_flux_2026_10_19/dirty_contract.json",
+    "reviews/mightee_pipeline_flux_2026_10_19/fetch_stages.py",
+    "reviews/mightee_pipeline_flux_2026_10_19/fetch_dirty_centres.py",
+    "reviews/mightee_pipeline_flux_2026_10_19/analyze_dirty_centres.py",
+    "reviews/mightee_pipeline_flux_2026_10_19/analyze_stages.py",
+    "reviews/fashi_mightee_profiles_2026_10_18/compare_profiles.py",
+    "reviews/fashi_mightee_profiles_2026_10_18/run_02/per_galaxy.csv",
+    "reviews/fashi_mightee_profiles_2026_10_18/run_02/measurements.csv",
+    "data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J095654.6+013159.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J095720.5+015506.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100035.1+011432.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100048.1+011413.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100050.4+012007.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100140.0+031207.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100143.2+024109.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_header_2.txt",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_header_3.txt",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_fetch_summary.json",
+    "_external_data/mightee_pipeline_2026_10_19/range_manifest.jsonl"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "astropy",
+      "version": "6.0.1"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

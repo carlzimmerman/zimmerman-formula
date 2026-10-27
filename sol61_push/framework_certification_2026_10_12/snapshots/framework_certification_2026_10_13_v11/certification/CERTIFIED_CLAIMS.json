@@ -1,0 +1,2653 @@
+{
+  "checkpoint": "FRAMEWORK-CERT-NONSPHERICAL-2026-10-13",
+  "whole_theory_certified": false,
+  "theorem_count": 168,
+  "new_theorem_count": 141,
+  "reproduced_existing_theorems": 18,
+  "physical_premises": "Supplied as explicit hypotheses/definitions; Mathlib axioms are mathematical, not empirical premises. See assumption register and module correspondence.",
+  "module_imports": "Mathlib; QuantumEnergy additionally imports an exact archived copy of the already checked own NREnergy coefficient module. No project cosmology or MOND theory module imported.",
+  "modules": [
+    {
+      "namespace": "GravityArchitecture",
+      "source": "sol61_push/gravity_architecture_lean_2026_10_12/Architecture.lean",
+      "source_sha256": "e65f31944ba1dcb237f6c1c9ba6b32b7542a2ed360ddf65f170fe18eee647842",
+      "main_log": "sol61_push/framework_certification_2026_10_12/architecture_review/run/main.log",
+      "main_log_sha256": "d35360e7d5979345a7467bbe7fe277ab005f3bd52c8aba3db03dc45a21b26d90",
+      "theorem_count": 18,
+      "entries": [
+        {
+          "name": "GravityArchitecture.scale_squared",
+          "line": 17,
+          "exact_statement": "theorem scale_squared (\u03ba c G \u03c1 : \u211d) (h : 0 \u2264 G * \u03c1) :\n    accelerationScale \u03ba c G \u03c1 ^ 2 = \u03ba ^ 2 * c ^ 2 * G * \u03c1",
+          "statement_sha256": "40c7269cbdf7d4bdc2d18cc8d08779fb5fc7ad73a56cfb26787ac013cd887878",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.vacuum_coefficient",
+          "line": 24,
+          "exact_statement": "theorem vacuum_coefficient (\u03ba c G \u03c1 \u039b : \u211d) (hc : c \u2260 0)\n    (h\u03c1 : 0 \u2264 G * \u03c1) (h\u039b : \u039b = 8 * Real.pi * G * \u03c1 / c ^ 2) :\n    accelerationScale \u03ba c G \u03c1 ^ 2 = \u03ba ^ 2 * \u039b * c ^ 4 / (8 * Real.pi)",
+          "statement_sha256": "29831cad10b14dea9c8b3ead79719784b67428570938d4eb48e86a5c75aaf2ae",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.half_kappa_32pi",
+          "line": 30,
+          "exact_statement": "theorem half_kappa_32pi (c G \u03c1 \u039b : \u211d) (hc : c \u2260 0)\n    (h\u03c1 : 0 \u2264 G * \u03c1) (h\u039b : \u039b = 8 * Real.pi * G * \u03c1 / c ^ 2) :\n    accelerationScale (1 / 2) c G \u03c1 ^ 2 = \u039b * c ^ 4 / (32 * Real.pi)",
+          "statement_sha256": "194e357db059e8063e1925a37a3d03ebc2ea096e399a1c75790638139bc520db",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.coefficient_family",
+          "line": 37,
+          "exact_statement": "theorem coefficient_family (\u03ba c G \u03c1 : \u211d) (h : 0 \u2264 G * \u03c1) :\n    \u2203 a\u2080 : \u211d, a\u2080 = accelerationScale \u03ba c G \u03c1 \u2227\n      a\u2080 ^ 2 = \u03ba ^ 2 * c ^ 2 * G * \u03c1",
+          "statement_sha256": "bb3dddf125e6181e9cc34a3c8b255a836c15fbe435e8e36c0330896642882b48",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.baryonic_quartic",
+          "line": 47,
+          "exact_statement": "theorem baryonic_quartic (G M a\u2080 r V : \u211d)\n    (hG : 0 < G) (hM : 0 \u2264 M) (ha : 0 \u2264 a\u2080) (hr : 0 < r)\n    (horbit : V ^ 2 / r = deepAcceleration G M a\u2080 r) :\n    V ^ 4 = G * M * a\u2080",
+          "statement_sha256": "c2f65a4d4e00fa6e2e9d7699a8a522f821fcca064a4ab257ca891ead3627cc74",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.target_mass_unique",
+          "line": 68,
+          "exact_statement": "theorem target_mass_unique (G Mb Mc r \u03bd : \u211d) (hG : G \u2260 0) (hr : r \u2260 0)\n    (hforce : G * (Mb + Mc) / r ^ 2 = \u03bd * (G * Mb / r ^ 2)) :\n    Mc = (\u03bd - 1) * Mb",
+          "statement_sha256": "df59e57a3be5d06ccd0c8707a561419d422a559d6c37071fa9804bbd3e70ed37",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.target_mass_sufficient",
+          "line": 75,
+          "exact_statement": "theorem target_mass_sufficient (G Mb r \u03bd : \u211d) :\n    G * (Mb + (\u03bd - 1) * Mb) / r ^ 2 = \u03bd * (G * Mb / r ^ 2)",
+          "statement_sha256": "ac9091689df7b22c5d8ee449016f9c03c835aa86b8cb6f954546284bfa5aec89",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.target_mass_nonnegative_iff",
+          "line": 80,
+          "exact_statement": "theorem target_mass_nonnegative_iff (Mb \u03bd : \u211d) (hM : 0 < Mb) :\n    0 \u2264 (\u03bd - 1) * Mb \u2194 1 \u2264 \u03bd",
+          "statement_sha256": "ba6093f58469656ae3b5971cdedf090074feb132fd1faf6c72dd6218868cd36c",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.tail_mass_derivative",
+          "line": 91,
+          "exact_statement": "theorem tail_mass_derivative (A Mb r : \u211d) :\n    HasDerivAt (tailColdMass A Mb) A r",
+          "statement_sha256": "1c700096260b5fb1cd300a397ef0b76c3956c9ee2041c718936c42ea31311eac",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.tail_density",
+          "line": 100,
+          "exact_statement": "theorem tail_density (A Mb r \u03c1 : \u211d) (hr : r \u2260 0)\n    (hmass : 4 * Real.pi * r ^ 2 * \u03c1 = deriv (tailColdMass A Mb) r) :\n    \u03c1 = A / (4 * Real.pi * r ^ 2)",
+          "statement_sha256": "eb24b4dd9fa59cd9871784647648c4e97f1cbbe2a15312130204beb088db03fb",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.supply_radius_bound",
+          "line": 108,
+          "exact_statement": "theorem supply_radius_bound (A Mb S r : \u211d) (hA : 0 < A)\n    (hsupply : tailColdMass A Mb r \u2264 S) :\n    r \u2264 (S + Mb) / A",
+          "statement_sha256": "b389a629d9a5f581bfc1a4373efb78967818f1f57b13ed5cd3c214b638e57ba5",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.no_finite_supply_for_infinite_tail",
+          "line": 115,
+          "exact_statement": "theorem no_finite_supply_for_infinite_tail (A Mb S : \u211d) (hA : 0 < A) :\n    \u00ac (\u2200 r : \u211d, 0 < r \u2192 tailColdMass A Mb r \u2264 S)",
+          "statement_sha256": "12d26157297f755b565a308b564387afbec32d2bcad5c1c3bc740a36a7954392",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.nonlensing_residual",
+          "line": 126,
+          "exact_statement": "theorem nonlensing_residual (gb gc gs gd gl : \u211d)\n    (hd : gd = gb + gc + gs) (hl : gl = gb + gc) :\n    gd - gl = gs",
+          "statement_sha256": "2a815ee87e57d997113a65f8dbb3cd94c1d237431cf9f5da0e2146df6d5e686e",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.matched_lensing_forces_zero_extra",
+          "line": 130,
+          "exact_statement": "theorem matched_lensing_forces_zero_extra (gb gc gs gd gl : \u211d)\n    (hd : gd = gb + gc + gs) (hl : gl = gb + gc) (hm : gd = gl) :\n    gs = 0",
+          "statement_sha256": "850bb30e7cf7399f869d0a71376169bd7d6d949f59742153822d52b71e92de28",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.exchange_conserves_total",
+          "line": 135,
+          "exact_statement": "theorem exchange_conserves_total {\u03b9 : Type*} (Dc Dr Q : \u03b9 \u2192 \u211d)\n    (hc : \u2200 i, Dc i = Q i) (hr : \u2200 i, Dr i = -Q i) :\n    \u2200 i, Dc i + Dr i = 0",
+          "statement_sha256": "58c0f0b9846cb8d911d41151c9d6299c14abebe0753d88e2d7bb246902931680",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.passive_vacuum_no_exchange",
+          "line": 143,
+          "exact_statement": "theorem passive_vacuum_no_exchange {\u03b9 : Type*} (Dv Q : \u03b9 \u2192 \u211d)\n    (hzero : \u2200 i, Dv i = 0) (hexchange : \u2200 i, Dv i = -Q i) :\n    \u2200 i, Q i = 0",
+          "statement_sha256": "a57969abe8872f60a6bd1a453f58ef0a07519ae987cbec73288a2a22485e7542",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.response_energy_nonnegative",
+          "line": 152,
+          "exact_statement": "theorem response_energy_nonnegative (C \u03b2 mismatchSq p : \u211d)\n    (hC : 0 \u2264 C) (h\u03b2 : 0 \u2264 \u03b2) (hm : 0 \u2264 mismatchSq) (hp : 0 \u2264 p) :\n    0 \u2264 C / 2 * mismatchSq + \u03b2 / 3 * p ^ 3",
+          "statement_sha256": "87639e50896dae49bb8b6a94a0045bc5c9699f155e1fa06eae7234c2da96b8af",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        },
+        {
+          "name": "GravityArchitecture.distinct_mass_scalings",
+          "line": 158,
+          "exact_statement": "theorem distinct_mass_scalings (K L M\u2081 M\u2082 : \u211d) (hK : 0 < K)\n    (hM\u2081 : 0 < M\u2081) (hM\u2082 : 0 < M\u2082) (hne : M\u2081 \u2260 M\u2082)\n    (h\u2081 : K * M\u2081 = L * M\u2081 ^ 2) :\n    K * M\u2082 \u2260 L * M\u2082 ^ 2",
+          "statement_sha256": "ed2ca279681709ce97c1e08e4425c23f23482a3e6bb31c9f78b1c1a55a4bcf47",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/results.json"
+        }
+      ]
+    },
+    {
+      "namespace": "StaticIsNotAttractor",
+      "source": "sol61_push/framework_certification_2026_10_12/dynamics/StaticIsNotAttractor.lean",
+      "source_sha256": "2cfe54508375acb03883b53a9af418ddc9848f7ff966d5bb70ef325e1185ac22",
+      "main_log": "sol61_push/framework_certification_2026_10_12/dynamics/lean_run/main.log",
+      "main_log_sha256": "c224ab6fea02e35399319951f330b20e97f06b449bdd24efab31f80d3cdfd80b",
+      "theorem_count": 7,
+      "entries": [
+        {
+          "name": "StaticIsNotAttractor.shared_equilibrium",
+          "line": 15,
+          "exact_statement": "theorem shared_equilibrium (rate target : \u211d) : transfer rate target target = 0",
+          "statement_sha256": "a659941ff081476bd9ed8bed72f91df2f3929f8eb105a1b00bf1c757cb2e14b0",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        },
+        {
+          "name": "StaticIsNotAttractor.mass_ledger",
+          "line": 20,
+          "exact_statement": "theorem mass_ledger (rate target q : \u211d) :\n    transfer rate target q + (-transfer rate target q) = 0",
+          "statement_sha256": "e9a0c888c399c1b5faad27fb661bd298aee763727af788b3d15a8cadbe89c17c",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        },
+        {
+          "name": "StaticIsNotAttractor.energy_ledger",
+          "line": 24,
+          "exact_statement": "theorem energy_ledger (D rate target q : \u211d) :\n    D * transfer rate target q + (-D * transfer rate target q) = 0",
+          "statement_sha256": "b1d0ebd22c8813f69c0ca3082814da12dde270c7d53faca3fd0ef76040f2b283",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        },
+        {
+          "name": "StaticIsNotAttractor.squared_error_rate",
+          "line": 28,
+          "exact_statement": "theorem squared_error_rate (rate target q : \u211d) :\n    2 * (q - target) * transfer rate target q = -2 * rate * (q - target)^2",
+          "statement_sha256": "a737ebac0e9f500c7fc3cbfc99ddf369fe41907d8b3be3abbbb1f4650d554256",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        },
+        {
+          "name": "StaticIsNotAttractor.positive_rate_decreases",
+          "line": 34,
+          "exact_statement": "theorem positive_rate_decreases (rate target q : \u211d) (hr : 0 < rate)\n    (hne : q \u2260 target) : 2 * (q - target) * transfer rate target q < 0",
+          "statement_sha256": "dca5511f6ac1e045906e6f108f9c0ae154b24c93ae7af4348f90badcd9f63316",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        },
+        {
+          "name": "StaticIsNotAttractor.negative_rate_increases",
+          "line": 41,
+          "exact_statement": "theorem negative_rate_increases (rate target q : \u211d) (hr : rate < 0)\n    (hne : q \u2260 target) : 0 < 2 * (q - target) * transfer rate target q",
+          "statement_sha256": "f5ff8a4f2c162d9dfa9bf6c2d78ecb277bd491ee2b9cbb039973fc79a6957c4b",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        },
+        {
+          "name": "StaticIsNotAttractor.admissible_unstable_state",
+          "line": 50,
+          "exact_statement": "theorem admissible_unstable_state (B target \u03b5 : \u211d)\n    (ht : 0 < target) (he : 0 < \u03b5) (hs : target + \u03b5 < B) :\n    0 < target + \u03b5 \u2227 0 < B - (target + \u03b5) \u2227\n    transfer (-1) target target = 0 \u2227\n    transfer (-1) target (target + \u03b5) + (-transfer (-1) target (target + \u03b5)) = 0 \u2227\n    0 < 2 * ((target + \u03b5) - target) * transfer (-1) target (target + \u03b5)",
+          "statement_sha256": "f7d9ba4f79bd0aa23270f1d31a6da94f67931fec8390b24ed120bcd96d897867",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/dynamics_review.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkVacuumLink",
+      "source": "sol61_push/framework_certification_2026_10_12/formal/VacuumLink.lean",
+      "source_sha256": "3de311ed7927076a67e5b93ca7d5607adbff43e90f360e5f2612c588f82f3d05",
+      "main_log": "sol61_push/framework_certification_2026_10_12/formal/compile.log",
+      "main_log_sha256": "4e41a37c3622408c90f797169420c5b6e34570b6b36f5d9d0ea73b6ae3642d56",
+      "theorem_count": 7,
+      "entries": [
+        {
+          "name": "FrameworkVacuumLink.response_derivative",
+          "line": 23,
+          "exact_statement": "theorem response_derivative (W0 A B x : \u211d) :\n    HasDerivAt (responsePotential W0 A B) (response A B x) x",
+          "statement_sha256": "a8db910e4356a62f7a978c037478469f1b0afe6b05656e92ce80196df8c170de",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkVacuumLink.offset_invisible_to_response",
+          "line": 38,
+          "exact_statement": "theorem offset_invisible_to_response (W0 \u03b4 A B x : \u211d) :\n    deriv (responsePotential (W0 + \u03b4) A B) x =\n      deriv (responsePotential W0 A B) x",
+          "statement_sha256": "5ea578a4a2b682051f978839ac5ae349c8880566c423a8ed7b92e6e2e8ce6922",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkVacuumLink.offset_ratio_change",
+          "line": 45,
+          "exact_statement": "theorem offset_ratio_change (G W0 a \u03b4 : \u211d) :\n    ratio G (W0 + \u03b4) a - ratio G W0 a = G * \u03b4 / a ^ 2",
+          "statement_sha256": "5654dc19ad9ae86f947b751adfcdef279b602269078a461ec770661d400d258c",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkVacuumLink.factor_four_iff_offset",
+          "line": 51,
+          "exact_statement": "theorem factor_four_iff_offset (G W0 a : \u211d) (hG : G \u2260 0) (ha : a \u2260 0) :\n    ratio G W0 a = 4 \u2194 W0 = 4 * a ^ 2 / G",
+          "statement_sha256": "22ea6b8874404f2798b0c70b184e28676e7b042d29a2d0b91c6578b6e6c4a120",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkVacuumLink.factor_four_iff_half",
+          "line": 65,
+          "exact_statement": "theorem factor_four_iff_half (\u03ba G W0 : \u211d) (h\u03ba : 0 < \u03ba) (hGW : 0 < G * W0) :\n    ratio G W0 (scale \u03ba G W0) = 4 \u2194 \u03ba = 1 / 2",
+          "statement_sha256": "d12729348b090a0f69f8208bb6755bfcd2001c3e0585d54ef18708baacdc6a5a",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkVacuumLink.coefficient_not_selected",
+          "line": 85,
+          "exact_statement": "theorem coefficient_not_selected :\n    0 < (1 : \u211d) \u2227 0 < (1 / 2 : \u211d) \u2227\n    scale 1 1 1 = 1 \u2227 scale (1 / 2) 1 1 = 1 / 2 \u2227\n    ratio 1 1 (scale 1 1 1) = 1 \u2227\n    ratio 1 1 (scale (1 / 2) 1 1) = 4",
+          "statement_sha256": "6ffe3f83efe0a619f977d946235d885cee9af576805827c98bec34e13b250789",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkVacuumLink.fixed_response_different_vacuum_ratio",
+          "line": 94,
+          "exact_statement": "theorem fixed_response_different_vacuum_ratio (A B x : \u211d) :\n    deriv (responsePotential 1 A B) x = deriv (responsePotential 4 A B) x \u2227\n    ratio 1 1 1 = 1 \u2227 ratio 1 4 1 = 4",
+          "statement_sha256": "8f8223b39499e61a141b7b36abc323c1837b7ab9b7e0d7f943f68e31ef8d85d1",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkEdgePower",
+      "source": "sol61_push/framework_certification_2026_10_12/formal/edge_power/EdgePower.lean",
+      "source_sha256": "68996cef6dc67fef5eeffb510084b8332b734018d7dd76ac48e816cbe1970bfe",
+      "main_log": "sol61_push/framework_certification_2026_10_12/formal/edge_power/compile.log",
+      "main_log_sha256": "1c34f45c0123781304bc50892a0b76deab6cdb7197bfe3b6b8a37163207a9577",
+      "theorem_count": 5,
+      "entries": [
+        {
+          "name": "FrameworkEdgePower.integrand_rpow",
+          "line": 15,
+          "exact_statement": "theorem integrand_rpow (K q : \u211d) (hq : 0 < q) :\n    integrand K q = K * q ^ (-3 / 2 : \u211d)",
+          "statement_sha256": "89d6b81a25b3564b750130700aba6923e4d0d9b06817ca98e5244c243a59d15b",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkEdgePower.primitive_derivative",
+          "line": 23,
+          "exact_statement": "theorem primitive_derivative (K q : \u211d) (hq : 0 < q) :\n    HasDerivAt (primitive K) (integrand K q) q",
+          "statement_sha256": "fea78f4edaa55633cd4d300cf9a74f9c2811fe3c99deb839f90567f49103393b",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkEdgePower.integral_exact",
+          "line": 34,
+          "exact_statement": "theorem integral_exact (K \u03b5 Q : \u211d) (h\u03b5 : 0 < \u03b5) (h\u03b5Q : \u03b5 \u2264 Q) :\n    (\u222b q in \u03b5..Q, integrand K q) = truncatedPower K \u03b5 Q",
+          "statement_sha256": "b7db4e0d19c6b35b67cee4ad433e5b7c0eb14bca990aca1153c9b957f7031450",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkEdgePower.integral_unbounded",
+          "line": 52,
+          "exact_statement": "theorem integral_unbounded (K Q cap : \u211d) (hK : 0 < K) (hQ : 0 < Q) :\n    \u2203 \u03b5 : \u211d, 0 < \u03b5 \u2227 \u03b5 < Q \u2227 cap < \u222b q in \u03b5..Q, integrand K q",
+          "statement_sha256": "21295a35d49ad2a911121368cd85fadccacecec86efbe6ddaa8addd8c4ebe6af",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkEdgePower.lower_bound_integral_unbounded",
+          "line": 87,
+          "exact_statement": "theorem lower_bound_integral_unbounded (f : \u211d \u2192 \u211d) (K Q cap : \u211d)\n    (hK : 0 < K) (hQ : 0 < Q)\n    (hint : \u2200 \u03b5 : \u211d, 0 < \u03b5 \u2192 \u03b5 < Q \u2192 IntervalIntegrable f volume \u03b5 Q)\n    (hbound : \u2200 q : \u211d, 0 < q \u2192 q \u2264 Q \u2192 integrand K q \u2264 f q) :\n    \u2203 \u03b5 : \u211d, 0 < \u03b5 \u2227 \u03b5 < Q \u2227 cap < \u222b q in \u03b5..Q, f q",
+          "statement_sha256": "492fe39c29e47d5454f864ead432c0e50aa149aef9c17df66da1293145251ffc",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkReceiverChannel",
+      "source": "sol61_push/framework_certification_2026_10_12/formal/ReceiverChannel.lean",
+      "source_sha256": "0b0b2f3fba1db0b94874deab450286a6771bf6dce45fd1dd4426f7d77d361342",
+      "main_log": "sol61_push/framework_certification_2026_10_12/formal/receiver_channel/run/main.log",
+      "main_log_sha256": "a83bde3e42014527e9fd88c04c3812d0a013bd6a8cc21fcc70a2911028e3352d",
+      "theorem_count": 6,
+      "entries": [
+        {
+          "name": "FrameworkReceiverChannel.energy_degeneracy",
+          "line": 19,
+          "exact_statement": "theorem energy_degeneracy (D p p1 p2 g1 g2 : \u211d) :\n    D * determinant p1 p2 g1 g2 +\n      p1 * reaction1 D p p2 g2 + p2 * reaction2 D p p1 g1 = 0",
+          "statement_sha256": "993bf48d5c3798194add79b3898165027d0822358f22b9f4594f03ba228f51d4",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverChannel.momentum_degeneracy",
+          "line": 26,
+          "exact_statement": "theorem momentum_degeneracy (D p p1 p2 g1 g2 : \u211d) :\n    determinant p1 p2 g1 g2 * p -\n      g1 * reaction1 D p p2 g2 - g2 * reaction2 D p p1 g1 = 0",
+          "statement_sha256": "2161e386dab267705edb6d7b0c88ce16e16f3e34ff788fc6279316def239b713",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverChannel.collision_mass",
+          "line": 33,
+          "exact_statement": "theorem collision_mass (a : \u211d) : -a-a+a+a=0",
+          "statement_sha256": "baf14833053b796c27dd63ac4e27723cbfc00ada95c603c89df0977e623367db",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverChannel.consumed_boundary_inward",
+          "line": 38,
+          "exact_statement": "theorem consumed_boundary_inward (\u03b3 h f2 f3 f4 : \u211d)\n    (hg : 0 \u2264 \u03b3) (h3 : 0 \u2264 f3) (h4 : 0 \u2264 f4) :\n    0 \u2264 -flux \u03b3 h 0 f2 f3 f4",
+          "statement_sha256": "70319a37c6f983f7967261939457e51e1dfd06912af4a5fe7ff4a31c6a466222",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverChannel.product_boundary_inward",
+          "line": 46,
+          "exact_statement": "theorem product_boundary_inward (\u03b3 h f1 f2 f4 : \u211d)\n    (hg : 0 \u2264 \u03b3) (h1 : 0 \u2264 f1) (h2 : 0 \u2264 f2) :\n    0 \u2264 flux \u03b3 h f1 f2 0 f4",
+          "statement_sha256": "d3859116464adb3e6d42fc3ddb32e617296f27b97b25584aabbfd5e230e08e0e",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverChannel.zero_determinant_freezes",
+          "line": 55,
+          "exact_statement": "theorem zero_determinant_freezes (\u03b3 f1 f2 f3 f4 : \u211d) :\n    flux \u03b3 0 f1 f2 f3 f4 = 0",
+          "statement_sha256": "42d60d807c5aeaa58c5a18e58ae41a81a1798f555d213226d1bd1e92a035d16d",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "architecture_review/new_formal_review.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkReceiverCapacity",
+      "source": "sol61_push/framework_certification_2026_10_12/transport_capacity/ReceiverCapacity.lean",
+      "source_sha256": "9dcbfe37ff1e198800a5e684a617dca8015105ab1f379f655e9ea3264f038903",
+      "main_log": "sol61_push/framework_certification_2026_10_12/transport_capacity/compile.log",
+      "main_log_sha256": "a55912a30f21421892010786fc7984204bd528fd6c28c0ea5ab98e31dd3d8749",
+      "theorem_count": 9,
+      "entries": [
+        {
+          "name": "FrameworkReceiverCapacity.omega_squared",
+          "line": 16,
+          "exact_statement": "theorem omega_squared (c k : \u211d) : omega c k ^ 2 = c ^ 2 * k ^ 2",
+          "statement_sha256": "e8281a74a57e2d9148ddffae0dd2a0b0a2478fb6b25d5ef96d519c0492e6d6be",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverCapacity.energy_momentum_squares",
+          "line": 20,
+          "exact_statement": "theorem energy_momentum_squares (c k p1 p2 x1 x2 : \u211d) :\n    energy c k p1 p2 x1 x2 ^ 2 - c ^ 2 * momentum k p1 p2 x1 x2 ^ 2 =\n      (p1 ^ 2 + p2 ^ 2 - omega c k ^ 2 * (x1 ^ 2 + x2 ^ 2)) ^ 2 / 4 +\n        omega c k ^ 2 * (p1 * x1 + p2 * x2) ^ 2",
+          "statement_sha256": "c79f5d75f8b0cd199cea531f19766a4338c104b1928b22fb612cc1f5aa8ee50e",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverCapacity.energy_nonnegative",
+          "line": 28,
+          "exact_statement": "theorem energy_nonnegative (c k p1 p2 x1 x2 : \u211d) :\n    0 \u2264 energy c k p1 p2 x1 x2",
+          "statement_sha256": "8f9bd8ff3d2e9cac4e788faf408b8b4da72785b4f5b2ebc276f369dd2ec1a43c",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverCapacity.receiver_floor",
+          "line": 31,
+          "exact_statement": "theorem receiver_floor (c k p1 p2 x1 x2 : \u211d) (hc : 0 \u2264 c) :\n    c * |momentum k p1 p2 x1 x2| \u2264 energy c k p1 p2 x1 x2",
+          "statement_sha256": "51841c5ce9eb3c938016edf7411845f812694cc0d3393deb938c3e9c7655e23d",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverCapacity.accessible_transfer",
+          "line": 43,
+          "exact_statement": "theorem accessible_transfer (c k p1 p2 x1 x2 E0 \u0394 P0 pb q : \u211d) (hc : 0 \u2264 c)\n    (hE : energy c k p1 p2 x1 x2 = E0 - \u0394)\n    (hP : momentum k p1 p2 x1 x2 = P0 - pb * q) :\n    c * |P0 - pb * q| \u2264 E0 - \u0394",
+          "statement_sha256": "978157b8d687d0e177b022993c46177876ac6d32156d14618f0ed6804229f495",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverCapacity.recoil_budget",
+          "line": 50,
+          "exact_statement": "theorem recoil_budget (c D pb E0 q : \u211d) (hq : 0 \u2264 q)\n    (haccess : c * |0 - pb * q| \u2264 E0 - D * q) :\n    (D + c * |pb|) * q \u2264 E0",
+          "statement_sha256": "db821278c8fb415d82eb705c488fdbfa060dbfc4476ed6c83ae6fb2eae066b71",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverCapacity.necessary_capacity_ratio",
+          "line": 57,
+          "exact_statement": "theorem necessary_capacity_ratio (c D pb E0 qeq : \u211d) (hD : 0 < D) (hqeq : 0 < qeq)\n    (haccess : c * |0 - pb * qeq| \u2264 E0 - D * qeq) :\n    1 + c * |pb| / D \u2264 E0 / (D * qeq)",
+          "statement_sha256": "0692cf5ba83bc46d5fb897180d30ee4e680f7fa5c5149f20813ee541d56b0d06",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverCapacity.slow_recoil_ratio",
+          "line": 68,
+          "exact_statement": "theorem slow_recoil_ratio (\u03b5 E0 qeq : \u211d) (h\u03b5 : 0 < \u03b5) (hqeq : 0 < qeq)\n    (haccess : |0 - (-2 * \u03b5) * qeq| \u2264 E0 - (2 * \u03b5 ^ 2) * qeq) :\n    1 + 1 / \u03b5 \u2264 E0 / ((2 * \u03b5 ^ 2) * qeq)",
+          "statement_sha256": "4f29b14eac005cad7686865e8fd2fa9d0cd3af35345326777b1be7b51e811d02",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkReceiverCapacity.slow_recoil_fraction",
+          "line": 79,
+          "exact_statement": "theorem slow_recoil_fraction (\u03b5 r q qeq : \u211d) (h\u03b5 : 0 < \u03b5) (hq : 0 \u2264 q)\n    (hqeq : 0 < qeq)\n    (haccess : |0 - (-2 * \u03b5) * q| \u2264 r * (2 * \u03b5 ^ 2) * qeq - (2 * \u03b5 ^ 2) * q) :\n    q / qeq \u2264 r * \u03b5 / (1 + \u03b5)",
+          "statement_sha256": "1fcd27ef47f326291cfddf71c73a70a3ca7ee6f7f80c843c7d69d1099e6aa494",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkLocalPower",
+      "source": "sol61_push/framework_certification_2026_10_12/local_power/LocalPowerCounterexample.lean",
+      "source_sha256": "85c50358455339007e4487b6caa8179fd4ebffe735ae0da80921f1eb6ae42c80",
+      "main_log": "sol61_push/framework_certification_2026_10_12/local_power/run_v2/main.log",
+      "main_log_sha256": "4f46b0ab6743a3656125280d4f5f3f11a971e9c73f31aae2e7e0c8043f7ce474",
+      "theorem_count": 5,
+      "entries": [
+        {
+          "name": "FrameworkLocalPower.cold_power_nonnegative",
+          "line": 17,
+          "exact_statement": "theorem cold_power_nonnegative (A x : \u211d) (hA : 0 \u2264 A) :\n    0 \u2264 coldPower A x",
+          "statement_sha256": "8bd6366a5089732a8f09e7214bba458c468d28636027049ac4bd1278969f254c",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkLocalPower.cold_total",
+          "line": 22,
+          "exact_statement": "theorem cold_total (A : \u211d) :\n    (\u222b x in (0 : \u211d)..2 * Real.pi, coldPower A x) = A",
+          "statement_sha256": "d714d189ce63813cd6440e2e8efb8991ff5c3d2d83646de547a0c064f4f357d9",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkLocalPower.mode_total",
+          "line": 28,
+          "exact_statement": "theorem mode_total (A : \u211d) :\n    (\u222b x in (0 : \u211d)..2 * Real.pi, modePower A x) = -A",
+          "statement_sha256": "6999e34150b404683875b4d838af8b1abd4b8a10b92fd4f5be5ded76988d6f5a",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkLocalPower.integrated_ledger",
+          "line": 34,
+          "exact_statement": "theorem integrated_ledger (A : \u211d) :\n    (\u222b x in (0 : \u211d)..2 * Real.pi, coldPower A x) +\n    (\u222b x in (0 : \u211d)..2 * Real.pi, modePower A x) = 0",
+          "statement_sha256": "375aee5484a61781f918a697c6de1a9162f7fd5722fd1640dc9b04f3cf64fe0b",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkLocalPower.pointwise_ledger_fails",
+          "line": 41,
+          "exact_statement": "theorem pointwise_ledger_fails (A : \u211d) (hA : 0 < A) :\n    coldPower A 0 = 0 \u2227 coldPower A 0 + modePower A 0 < 0",
+          "statement_sha256": "e779ea5b85d28c7d624170420161152bf48ac395db0bf28beffca3362191db96",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkScalarCompatibility",
+      "source": "sol61_push/framework_certification_2026_10_12/local_power/ScalarSourceCompatibility.lean",
+      "source_sha256": "2052b4d6cc8e22a57449aefc0d9a5b922bb41a51466ebd0f2de691880f5e7c9d",
+      "main_log": "sol61_push/framework_certification_2026_10_12/local_power/scalar_compatibility/run/main.log",
+      "main_log_sha256": "c564a143125aa6ce84380b9885f0afc10d691055a52d4123ade19272f20d5b3d",
+      "theorem_count": 3,
+      "entries": [
+        {
+          "name": "FrameworkScalarCompatibility.source_compatibility",
+          "line": 13,
+          "exact_statement": "theorem source_compatibility (pi gradient S q m : \u211d)\n    (hE : pi*S = -q) (hP : gradient*S = m) :\n    gradient*q + pi*m = 0",
+          "statement_sha256": "b613f032c2ce608e4a941b19b865d155b17cfe5019c1ce106ea8d413a0ca8708",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkScalarCompatibility.zero_recoil_requires_flat",
+          "line": 22,
+          "exact_statement": "theorem zero_recoil_requires_flat (pi gradient S q : \u211d)\n    (hq : q \u2260 0) (hE : pi*S = -q) (hP : gradient*S = 0) :\n    gradient=0",
+          "statement_sha256": "bbf491330061c9f284251006eacdf287530beac0512113e24be1836b126aaec7",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        },
+        {
+          "name": "FrameworkScalarCompatibility.no_source_for_unit_heat_zero_recoil",
+          "line": 30,
+          "exact_statement": "theorem no_source_for_unit_heat_zero_recoil :\n    \u00ac \u2203 S : \u211d, (1 : \u211d)*S = -1 \u2227 (1 : \u211d)*S = 0",
+          "statement_sha256": "2b190474eceab83fe1b7fb4e61d0ac5c889ecc6279c8fd3c84879189a7538575",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/supplementary_formal_review.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkCarrierRate",
+      "source": "sol61_push/framework_certification_2026_10_12/carrier_rate/CarrierRate.lean",
+      "source_sha256": "3dd80bd8d66125667953feefedbf244ef348a6a3e36ae8f4e346401e38fdb445",
+      "main_log": "sol61_push/framework_certification_2026_10_12/carrier_rate/compile.log",
+      "main_log_sha256": "84187236f6c1c45252d0b119651da616e33f48abc34b53c8a08c0cdd9987f537",
+      "theorem_count": 8,
+      "entries": [
+        {
+          "name": "FrameworkCarrierRate.speed_positive",
+          "line": 15,
+          "exact_statement": "theorem speed_positive (M \u0394 : \u211d) (hM : 0 < M) (h\u0394 : 0 < \u0394) : 0 < speed M \u0394",
+          "statement_sha256": "11bfa38a082ff12c08eae186c7094faf6eaf3969d978106c482e30c36d1108a6",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/carrier_review.json"
+        },
+        {
+          "name": "FrameworkCarrierRate.speed_kinematic",
+          "line": 19,
+          "exact_statement": "theorem speed_kinematic (M \u0394 : \u211d) (hM : M \u2260 0) (h\u0394 : 0 \u2264 \u0394) :\n    M ^ 2 * speed M \u0394 ^ 2 = \u0394",
+          "statement_sha256": "2da45d21af0491ae4d757068acfcf4049d282582522c95cb32c34ddc40a12f56",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/carrier_review.json"
+        },
+        {
+          "name": "FrameworkCarrierRate.speed_less_than_one",
+          "line": 26,
+          "exact_statement": "theorem speed_less_than_one (M \u0394 m : \u211d) (hM : 0 < M) (hm : 0 < m)\n    (h\u0394 : 0 < \u0394) (hgap : \u0394 = M ^ 2 - 4 * m ^ 2) : speed M \u0394 < 1",
+          "statement_sha256": "8d7f278867e64fe4235c188d7c24d9ae949c14e795063e58662e97b264221fe4",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/carrier_review.json"
+        },
+        {
+          "name": "FrameworkCarrierRate.rate_margin",
+          "line": 34,
+          "exact_statement": "theorem rate_margin (M \u0394 g rep lam \u0393 : \u211d) (hM : 0 < M) (h\u0394 : 0 < \u0394)\n    (hlam : lam = rep + g ^ 2 / \u0394)\n    (h\u0393 : \u0393 = g ^ 2 * speed M \u0394 / (8 * Real.pi * M)) :\n    lam * speed M \u0394 ^ 3 / (8 * Real.pi) - \u0393 / M =\n      rep * speed M \u0394 ^ 3 / (8 * Real.pi)",
+          "statement_sha256": "7eb0d09c68fa1de71b3781d6bb51b0671628574fc4426a2ba4191929c318a7b3",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/carrier_review.json"
+        },
+        {
+          "name": "FrameworkCarrierRate.coldness_rate_bound",
+          "line": 46,
+          "exact_statement": "theorem coldness_rate_bound (M \u0394 g rep lam \u0393 : \u211d) (hM : 0 < M) (h\u0394 : 0 < \u0394)\n    (hrep : 0 \u2264 rep) (hlam : lam = rep + g ^ 2 / \u0394)\n    (h\u0393 : \u0393 = g ^ 2 * speed M \u0394 / (8 * Real.pi * M)) :\n    \u0393 / M \u2264 lam * speed M \u0394 ^ 3 / (8 * Real.pi)",
+          "statement_sha256": "1c995d6cd0a36f354db00e18774a63670d4e9197e74a8a6397a474260c3ab876",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/carrier_review.json"
+        },
+        {
+          "name": "FrameworkCarrierRate.lifetime_floor",
+          "line": 56,
+          "exact_statement": "theorem lifetime_floor (M \u0394 g rep lam \u0393 : \u211d) (hM : 0 < M) (h\u0394 : 0 < \u0394)\n    (hrep : 0 \u2264 rep) (hlam : lam = rep + g ^ 2 / \u0394)\n    (h\u0393 : \u0393 = g ^ 2 * speed M \u0394 / (8 * Real.pi * M)) (h\u0393pos : 0 < \u0393) :\n    8 * Real.pi / (lam * speed M \u0394 ^ 3) \u2264 M / \u0393",
+          "statement_sha256": "60e67bec7c976e4f8ab6f31d09c612a34dbac2c933227d099bd50ffbbe315820",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/carrier_review.json"
+        },
+        {
+          "name": "FrameworkCarrierRate.positive_repulsion_strict",
+          "line": 74,
+          "exact_statement": "theorem positive_repulsion_strict (M \u0394 g rep lam \u0393 : \u211d) (hM : 0 < M) (h\u0394 : 0 < \u0394)\n    (hrep : 0 < rep) (hlam : lam = rep + g ^ 2 / \u0394)\n    (h\u0393 : \u0393 = g ^ 2 * speed M \u0394 / (8 * Real.pi * M)) :\n    \u0393 / M < lam * speed M \u0394 ^ 3 / (8 * Real.pi)",
+          "statement_sha256": "69c17f3a07994d53eec917e2ac21e7c7c3053ba5335b8d8c80d389b17d2bed71",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/carrier_review.json"
+        },
+        {
+          "name": "FrameworkCarrierRate.zero_repulsion_saturates",
+          "line": 84,
+          "exact_statement": "theorem zero_repulsion_saturates (M \u0394 g lam \u0393 : \u211d) (hM : 0 < M) (h\u0394 : 0 < \u0394)\n    (hlam : lam = g ^ 2 / \u0394)\n    (h\u0393 : \u0393 = g ^ 2 * speed M \u0394 / (8 * Real.pi * M)) :\n    \u0393 / M = lam * speed M \u0394 ^ 3 / (8 * Real.pi)",
+          "statement_sha256": "ceaf80b9b04fdcc5a6de3b291f72d636a15bfc3410dd292108ba5f7cdb3ec551",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/carrier_review.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkCarrierStress",
+      "source": "sol61_push/framework_certification_2026_10_12/carrier_equation_of_state/CarrierStress.lean",
+      "source_sha256": "c932a60df17e8fa7a7523cd004019d4c5df16166abb70838642dda462812a7d3",
+      "main_log": "sol61_push/framework_certification_2026_10_12/carrier_equation_of_state/compile.log",
+      "main_log_sha256": "207e79fc303701e41a1128ec268db78f37b82f0fd91206c60209ef6e8ad2c897",
+      "theorem_count": 11,
+      "entries": [
+        {
+          "name": "FrameworkCarrierStress.four_coordinate_squares",
+          "line": 33,
+          "exact_statement": "theorem four_coordinate_squares (a b c d v w x y : \u211d) :\n    (a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2) * (v ^ 2 + w ^ 2 + x ^ 2 + y ^ 2) -\n      (a * v + b * w + c * x + d * y) ^ 2 =\n    (a * w - b * v) ^ 2 + (a * x - c * v) ^ 2 + (a * y - d * v) ^ 2 +\n      (b * x - c * w) ^ 2 + (b * y - d * w) ^ 2 + (c * y - d * x) ^ 2",
+          "statement_sha256": "dc4a4ebce79ef938c1a04787f356f7d9e2352e2f6694330ac9ff7f2e79fbfae6",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/stress_review.json"
+        },
+        {
+          "name": "FrameworkCarrierStress.four_coordinate_cauchy",
+          "line": 39,
+          "exact_statement": "theorem four_coordinate_cauchy (a b c d v w x y : \u211d) :\n    (a * v + b * w + c * x + d * y) ^ 2 \u2264\n      (a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2) * (v ^ 2 + w ^ 2 + x ^ 2 + y ^ 2)",
+          "statement_sha256": "5a0b8036fce068111585c037e4f5e5582ccb39302d0559484fe56e88c0bf9042",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/stress_review.json"
+        },
+        {
+          "name": "FrameworkCarrierStress.charge_bound",
+          "line": 47,
+          "exact_statement": "theorem charge_bound (r1 r2 r3 r4 v1 v2 v3 v4 : \u211d) :\n    charge r1 r2 r3 r4 v1 v2 v3 v4 ^ 2 \u2264\n      4 * amplitude r1 r2 r3 r4 * kinetic v1 v2 v3 v4",
+          "statement_sha256": "26777a57538007972e4cb868c16ce0455e2626641c9cef36de8c85647a016309",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/stress_review.json"
+        },
+        {
+          "name": "FrameworkCarrierStress.positive_square_potential",
+          "line": 53,
+          "exact_statement": "theorem positive_square_potential (m S u1 u2 rep phiSq : \u211d) (hrep : 0 \u2264 rep) :\n    m ^ 2 * S \u2264 potential m S u1 u2 rep phiSq",
+          "statement_sha256": "d26ffe29f98e4ab17704a2576d65bab9519c01571e9fb3a67bc5888288db6865",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/stress_review.json"
+        },
+        {
+          "name": "FrameworkCarrierStress.homogeneous_stress_bound",
+          "line": 60,
+          "exact_statement": "theorem homogeneous_stress_bound (m S K V q : \u211d) (hK : 0 \u2264 K)\n    (hcharge : q ^ 2 \u2264 4 * S * K) (hV : m ^ 2 * S \u2264 V) :\n    m ^ 2 * q ^ 2 \u2264 rho K V ^ 2 - pressure K V ^ 2",
+          "statement_sha256": "987aa49bd6ebde9f8877e82fa733034fe94d0a7659e02eb1b7265664668c6b1d",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/stress_review.json"
+        },
+        {
+          "name": "FrameworkCarrierStress.coordinate_stress_bound",
+          "line": 69,
+          "exact_statement": "theorem coordinate_stress_bound (m r1 r2 r3 r4 v1 v2 v3 v4 u1 u2 rep phiSq : \u211d)\n    (hrep : 0 \u2264 rep) :\n    m ^ 2 * charge r1 r2 r3 r4 v1 v2 v3 v4 ^ 2 \u2264\n      rho (kinetic v1 v2 v3 v4) (potential m (amplitude r1 r2 r3 r4) u1 u2 rep phiSq) ^ 2 -\n      pressure (kinetic v1 v2 v3 v4) (potential m (amplitude r1 r2 r3 r4) u1 u2 rep phiSq) ^ 2",
+          "statement_sha256": "95e9ec007059dfccfc296d955771a180628b293da3e5bf0b3c0415aa26ec29a5",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/stress_review.json"
+        },
+        {
+          "name": "FrameworkCarrierStress.exact_negative_one",
+          "line": 90,
+          "exact_statement": "theorem exact_negative_one (S K V q : \u211d) (hcharge : q ^ 2 \u2264 4 * S * K)\n    (hrho : 0 < rho K V) (hw : pressure K V / rho K V = -1) : K = 0 \u2227 q = 0",
+          "statement_sha256": "1ac0a22b84609ad442d47d789dcd1cd4f6c50cf52a68c80669b1afede5a65863",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/stress_review.json"
+        },
+        {
+          "name": "FrameworkCarrierStress.saturated_pressure_zero",
+          "line": 100,
+          "exact_statement": "theorem saturated_pressure_zero (m S K V q : \u211d) (hK : 0 \u2264 K)\n    (hcharge : q ^ 2 \u2264 4 * S * K) (hV : m ^ 2 * S \u2264 V)\n    (hsat : rho K V ^ 2 = m ^ 2 * q ^ 2) : pressure K V = 0",
+          "statement_sha256": "4173fbe58eb8ae10f9e41cc72f73ad4079dedd118a07538e9f6250f6e27cb09a",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/stress_review.json"
+        },
+        {
+          "name": "FrameworkCarrierStress.isotropic_stress_bound",
+          "line": 107,
+          "exact_statement": "theorem isotropic_stress_bound (m S K B V q : \u211d) (hS : 0 \u2264 S) (hK : 0 \u2264 K)\n    (hB : 0 \u2264 B) (hcharge : q ^ 2 \u2264 4 * S * K) (hV : m ^ 2 * S \u2264 V) :\n    m ^ 2 * q ^ 2 \u2264 gradientRho K B V ^ 2 - isotropicPressure K B V ^ 2",
+          "statement_sha256": "029568d5378900e03ae69b79320d4672114df50c3601edb1dc82ef2b38a4389c",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/stress_review.json"
+        },
+        {
+          "name": "FrameworkCarrierStress.isotropic_exact_negative_one",
+          "line": 121,
+          "exact_statement": "theorem isotropic_exact_negative_one (S K B V q : \u211d) (hK : 0 \u2264 K) (hB : 0 \u2264 B)\n    (hcharge : q ^ 2 \u2264 4 * S * K) (hrho : 0 < gradientRho K B V)\n    (hw : isotropicPressure K B V / gradientRho K B V = -1) : K = 0 \u2227 B = 0 \u2227 q = 0",
+          "statement_sha256": "18494807035ff8e04a81e0322b78208c310cfb13d54eee5c18aa944ed38d27be",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/stress_review.json"
+        },
+        {
+          "name": "FrameworkCarrierStress.actual_carrier_stress_bound",
+          "line": 80,
+          "exact_statement": "theorem actual_carrier_stress_bound (m \u0394 g rep r1 r2 r3 r4 v1 v2 v3 v4 : \u211d)\n    (hrep : 0 \u2264 rep) :\n    m ^ 2 * charge r1 r2 r3 r4 v1 v2 v3 v4 ^ 2 \u2264\n      rho (kinetic v1 v2 v3 v4) (actualPotential m \u0394 g rep r1 r2 r3 r4) ^ 2 -\n      pressure (kinetic v1 v2 v3 v4) (actualPotential m \u0394 g rep r1 r2 r3 r4) ^ 2",
+          "statement_sha256": "f8fb4b448a4c74c68089c41917102bb295693218ac770534e922a0c89e4d4a6c",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "transport_audit/stress_review.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkNREnergy",
+      "source": "sol61_push/framework_certification_2026_10_12/nr_carrier_energy/NREnergy.lean",
+      "source_sha256": "3f09ff45acd5b149251aab4b9cc8edb6a57c5cefa55264643b7766833ee2f59b",
+      "main_log": "sol61_push/framework_certification_2026_10_12/nr_carrier_energy/compile.log",
+      "main_log_sha256": "5aa23d3103dba72b3f64417a56987b9213ded2f4ea9b4c6917096f81df5be3c2",
+      "theorem_count": 9,
+      "entries": [
+        {
+          "name": "FrameworkNREnergy.c3_squared",
+          "line": 17,
+          "exact_statement": "theorem c3_squared (m M g : \u211d) (hM : 0 \u2264 M) :\n    c3 m M g ^ 2 = g ^ 2 / (8 * m ^ 2 * M)",
+          "statement_sha256": "b2e12553adb32dcf1169892493d8aee37dc92352cc7d3618728a6b245ac01994",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkNREnergy.coefficient_identity",
+          "line": 24,
+          "exact_statement": "theorem coefficient_identity (m M g rep : \u211d) (hm : 0 < m) (hM : 2 * m < M) :\n    remainder m M g rep = rep / (4 * m ^ 2) + g ^ 2 / (8 * m ^ 2 * M * (M + 2 * m))",
+          "statement_sha256": "4a9309851bdd51a11001bc2a774f651dc7051f7435f811b6e4f517354716944d",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkNREnergy.remainder_nonnegative",
+          "line": 39,
+          "exact_statement": "theorem remainder_nonnegative (m M g rep : \u211d) (hm : 0 < m) (hM : 2 * m < M)\n    (hrep : 0 \u2264 rep) : 0 \u2264 remainder m M g rep",
+          "statement_sha256": "9b15a661f5ff28e63a64a968ac6f78fdb2ba8259ab41c185b8ff8529f5c7ba41",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkNREnergy.remainder_strict",
+          "line": 45,
+          "exact_statement": "theorem remainder_strict (m M g rep : \u211d) (hm : 0 < m) (hM : 2 * m < M)\n    (hrep : 0 < rep) : 0 < remainder m M g rep",
+          "statement_sha256": "16d5fc0d540d35fca70b421085d6e0f8ff33a0e1f7a8e0ccbbf1a0a69e68f0b3",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkNREnergy.exact_square_completion",
+          "line": 62,
+          "exact_statement": "theorem exact_square_completion (m M g rep x y u v : \u211d) (hd : delta m M \u2260 0) :\n    density m M g rep x y u v = completedDensity m M g rep x y u v",
+          "statement_sha256": "711aa1793971760be4f0f75a3c4ae7212b2bdae5f4b98c3839473c57871e8850",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkNREnergy.density_nonnegative",
+          "line": 68,
+          "exact_statement": "theorem density_nonnegative (m M g rep x y u v : \u211d) (hm : 0 < m)\n    (hM : 2 * m < M) (hrep : 0 \u2264 rep) : 0 \u2264 density m M g rep x y u v",
+          "statement_sha256": "a92cc1b7693a8eab3900300161f1a7e9d8beebd918462e06b749d3c084e7d8f8",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkNREnergy.finite_energy_bounds",
+          "line": 77,
+          "exact_statement": "theorem finite_energy_bounds {\u03b9 : Type*} (s : Finset \u03b9) (m M g rep T : \u211d)\n    (x y u v weights : \u03b9 \u2192 \u211d) (hm : 0 < m) (hM : 2 * m < M) (hrep : 0 \u2264 rep)\n    (hT : 0 \u2264 T) (hw : \u2200 i \u2208 s, 0 \u2264 weights i) :\n    0 \u2264 T \u2227 T \u2264 T + \u2211 i \u2208 s, weights i * density m M g rep (x i) (y i) (u i) (v i)",
+          "statement_sha256": "cce1532173af37527935139b3c2e86e92d2db6a0bcab5af9c205bdd5e1f38f80",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkNREnergy.gradient_nonnegative",
+          "line": 92,
+          "exact_statement": "theorem gradient_nonnegative (m M a b : \u211d) (hm : 0 < m) (hM : 0 < M) :\n    0 \u2264 gradientTerm m M a b",
+          "statement_sha256": "5ee56becd7b82e32a684fbb08c87d0fbeeaab7f06455c19597b612c4d1ec3669",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkNREnergy.finite_gradient_energy_nonnegative",
+          "line": 95,
+          "exact_statement": "theorem finite_gradient_energy_nonnegative {\u03b9 : Type*} (s : Finset \u03b9) (m M : \u211d)\n    (a b weights : \u03b9 \u2192 \u211d) (hm : 0 < m) (hM : 0 < M)\n    (hw : \u2200 i \u2208 s, 0 \u2264 weights i) :\n    0 \u2264 \u2211 i \u2208 s, weights i * gradientTerm m M (a i) (b i)",
+          "statement_sha256": "a7def05a4b787cc31fcd1bd2ca80b00737f6f821cd06d3feb761036077906ad5",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkSourceResponse",
+      "source": "sol61_push/framework_certification_2026_10_12/source_elimination/formal/SourceResponse.lean",
+      "source_sha256": "dc6b9141365af63c0c8f8efeeefd516fb66cf85565f4c6b5c1482c95836dc684",
+      "main_log": "sol61_push/framework_certification_2026_10_12/source_elimination/formal/compile.log",
+      "main_log_sha256": "24cbd30a574820a9f1c72e1856304be7b514e37b0ccf4178da45f1cf2bbe2712",
+      "theorem_count": 9,
+      "entries": [
+        {
+          "name": "FrameworkSourceResponse.real_derivative",
+          "line": 14,
+          "exact_statement": "theorem real_derivative (\u03b4 c F t : \u211d) (h\u03b4 : \u03b4 \u2260 0) :\n    HasDerivAt (realPart \u03b4 c F) (-c * F * Real.sin (\u03b4 * t)) t",
+          "statement_sha256": "19c31dcf0b95beb23e4fdc63b3615f923cd30cb3119336a169a64eabf8672cf3",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkSourceResponse.imag_derivative",
+          "line": 22,
+          "exact_statement": "theorem imag_derivative (\u03b4 c F t : \u211d) (h\u03b4 : \u03b4 \u2260 0) :\n    HasDerivAt (imagPart \u03b4 c F) (-c * F * Real.cos (\u03b4 * t)) t",
+          "statement_sha256": "ce8fb6b4ff196dc03abfbcd66337d0eea02ba30092773948f612680e52ad7c2b",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkSourceResponse.driven_source_ode",
+          "line": 31,
+          "exact_statement": "theorem driven_source_ode (\u03b4 c F t : \u211d) (h\u03b4 : \u03b4 \u2260 0) :\n    -deriv (imagPart \u03b4 c F) t = \u03b4 * realPart \u03b4 c F t + c * F \u2227\n      deriv (realPart \u03b4 c F) t = \u03b4 * imagPart \u03b4 c F t",
+          "statement_sha256": "330f15a3a4345b07a222157bb5b43f5f570a8f7bffea60e3d1bc30ef6f1acfa6",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkSourceResponse.zero_initial_source",
+          "line": 41,
+          "exact_statement": "theorem zero_initial_source (\u03b4 c F : \u211d) : realPart \u03b4 c F 0 = 0 \u2227 imagPart \u03b4 c F 0 = 0",
+          "statement_sha256": "e7ac9e79a644192652184f3bbf91f58e1fbcf1857f1ec00dc20745d9ddd1edce",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkSourceResponse.storage_exact",
+          "line": 44,
+          "exact_statement": "theorem storage_exact (\u03b4 c F t : \u211d) :\n    storage \u03b4 c F t = 2 * c ^ 2 * F ^ 2 / \u03b4 ^ 2 * (1 - Real.cos (\u03b4 * t))",
+          "statement_sha256": "94b131a4d59eeddfbebaadf60043be8600282efb035bcf7e3806f23517e1586a",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkSourceResponse.storage_nonnegative",
+          "line": 56,
+          "exact_statement": "theorem storage_nonnegative (\u03b4 c F t : \u211d) : 0 \u2264 storage \u03b4 c F t",
+          "statement_sha256": "a14575eaea967e47c45faae13405bfa02ba824f81d9b268403912127ac8bc2f4",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkSourceResponse.storage_derivative",
+          "line": 58,
+          "exact_statement": "theorem storage_derivative (\u03b4 c F t : \u211d) (h\u03b4 : \u03b4 \u2260 0) :\n    HasDerivAt (storage \u03b4 c F) (2 * c ^ 2 * F ^ 2 / \u03b4 * Real.sin (\u03b4 * t)) t",
+          "statement_sha256": "2139c4bcbc6b331822d8b543d00c6326ad14552c7a74196ff1e3e0ae9407fafe",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkSourceResponse.opposite_storage_power",
+          "line": 70,
+          "exact_statement": "theorem opposite_storage_power (\u03b4 c F : \u211d) (h\u03b4 : 0 < \u03b4) (hcf : c * F \u2260 0) :\n    0 < deriv (storage \u03b4 c F) (Real.pi / (2 * \u03b4)) \u2227\n      deriv (storage \u03b4 c F) (3 * Real.pi / (2 * \u03b4)) < 0",
+          "statement_sha256": "b9f7bf768999f8fb4375a3bde505c97bba1072ca45919c3319abffb35c95f1c9",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        },
+        {
+          "name": "FrameworkSourceResponse.storage_and_return",
+          "line": 85,
+          "exact_statement": "theorem storage_and_return (\u03b4 c F : \u211d) (h\u03b4 : 0 < \u03b4) (hcf : c * F \u2260 0) :\n    0 < storage \u03b4 c F (Real.pi / \u03b4) \u2227 storage \u03b4 c F (2 * Real.pi / \u03b4) = 0",
+          "statement_sha256": "92b115aeaa3c8816467339745e8966cfc05ff7bdf97ee566e0a047d200a4a412",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "kinetic_route_audit/results.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkQuantumEnergy",
+      "source": "sol61_push/framework_certification_2026_10_12/quantum_regulator_formal/QuantumEnergy.lean",
+      "source_sha256": "96e0c1049fbab0eaa686330738daf89575b3a1b7fddced4d6c28f211c7a32b81",
+      "main_log": "sol61_push/framework_certification_2026_10_12/quantum_regulator_formal/compile.log",
+      "main_log_sha256": "3bb5c89b8999b1607cbe227481cae76fb031beb1907bd4e40fefcc76d86a7ed8",
+      "theorem_count": 7,
+      "entries": [
+        {
+          "name": "FrameworkQuantumEnergy.quadratic_form_completion",
+          "line": 24,
+          "exact_statement": "theorem quadratic_form_completion (\u03b4 c k : \u211d) (A B : E \u2192L[\u2102] F) (v : E) (h\u03b4 : \u03b4 \u2260 0) :\n    interactionForm \u03b4 c k A B v =\n      \u03b4 * \u2016B v + ((c / \u03b4 : \u211d) : \u2102) \u2022 A v\u2016 ^ 2 + (k - c ^ 2 / \u03b4) * \u2016A v\u2016 ^ 2",
+          "statement_sha256": "8301f5300a73692fca92bcebc06b93be35c1830ec4e6efec234b51282ecc764e",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "resolved_resonance_audit/results.json"
+        },
+        {
+          "name": "FrameworkQuantumEnergy.adjoint_form_correspondence",
+          "line": 37,
+          "exact_statement": "theorem adjoint_form_correspondence (\u03b4 c k : \u211d) (A B : E \u2192L[\u2102] F) (v : E) :\n    RCLike.re (inner \u2102 v (interactionOperator \u03b4 c k A B v)) = interactionForm \u03b4 c k A B v",
+          "statement_sha256": "eb631b6a66a8203fa81737fbb0a472ae57f3710b24a6a6d6b1c54df58f11b72b",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "resolved_resonance_audit/results.json"
+        },
+        {
+          "name": "FrameworkQuantumEnergy.interaction_nonnegative",
+          "line": 50,
+          "exact_statement": "theorem interaction_nonnegative (\u03b4 c k : \u211d) (A B : E \u2192L[\u2102] F) (v : E)\n    (h\u03b4 : 0 < \u03b4) (hk : 0 \u2264 k - c ^ 2 / \u03b4) : 0 \u2264 interactionForm \u03b4 c k A B v",
+          "statement_sha256": "7a47e81dcf6f8689d7b37d25bea8fd4e90a69e60f3063bbb26f444e565522e32",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "resolved_resonance_audit/results.json"
+        },
+        {
+          "name": "FrameworkQuantumEnergy.actual_nr_interaction_nonnegative",
+          "line": 57,
+          "exact_statement": "theorem actual_nr_interaction_nonnegative (m M g rep : \u211d) (A B : E \u2192L[\u2102] F) (v : E)\n    (hm : 0 < m) (hM : 2 * m < M) (hrep : 0 \u2264 rep) :\n    0 \u2264 interactionForm (FrameworkNREnergy.delta m M) (FrameworkNREnergy.c3 m M g)\n      (FrameworkNREnergy.quartic m M g rep) A B v",
+          "statement_sha256": "ce9b59ce46633502ec8209f3d2700f654e2309cd1a7029257025d5059ccbca6e",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "resolved_resonance_audit/results.json"
+        },
+        {
+          "name": "FrameworkQuantumEnergy.actual_nr_energy_bound",
+          "line": 66,
+          "exact_statement": "theorem actual_nr_energy_bound (m M g rep : \u211d) (A B : E \u2192L[\u2102] F) (T : E \u2192L[\u2102] E)\n    (v : E) (hm : 0 < m) (hM : 2 * m < M) (hrep : 0 \u2264 rep)\n    (hT : 0 \u2264 RCLike.re (inner \u2102 v (T v))) :\n    0 \u2264 RCLike.re (inner \u2102 v (T v)) \u2227\n      RCLike.re (inner \u2102 v (T v)) \u2264\n        RCLike.re (inner \u2102 v ((T + interactionOperator (FrameworkNREnergy.delta m M)\n          (FrameworkNREnergy.c3 m M g) (FrameworkNREnergy.quartic m M g rep) A B) v))",
+          "statement_sha256": "202cbbf7a139168339a6f5c1bb4b2f04733eac8ecaa5e596ea741364e8f2b082",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "resolved_resonance_audit/results.json"
+        },
+        {
+          "name": "FrameworkQuantumEnergy.finite_regulator_form_bound",
+          "line": 79,
+          "exact_statement": "theorem finite_regulator_form_bound {\u03b9 : Type*} (s : Finset \u03b9) (m M g rep : \u211d)\n    (A B : \u03b9 \u2192 E \u2192L[\u2102] F) (weights : \u03b9 \u2192 \u211d) (T : E \u2192L[\u2102] E) (v : E)\n    (hm : 0 < m) (hM : 2 * m < M) (hrep : 0 \u2264 rep)\n    (hw : \u2200 i \u2208 s, 0 \u2264 weights i) (hT : 0 \u2264 RCLike.re (inner \u2102 v (T v))) :\n    0 \u2264 RCLike.re (inner \u2102 v (T v)) \u2227\n      RCLike.re (inner \u2102 v (T v)) \u2264 RCLike.re (inner \u2102 v (T v)) +\n        \u2211 i \u2208 s, weights i * interactionForm (FrameworkNREnergy.delta m M)\n          (FrameworkNREnergy.c3 m M g) (FrameworkNREnergy.quartic m M g rep) (A i) (B i) v",
+          "statement_sha256": "d0e6d76209ded437fe285dc4cda6dc0b5781686e6847124a16be6bde8eb9abd8",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "resolved_resonance_audit/results.json"
+        },
+        {
+          "name": "FrameworkQuantumEnergy.cell_normalized_interaction_nonnegative",
+          "line": 97,
+          "exact_statement": "theorem cell_normalized_interaction_nonnegative (m M g rep volume : \u211d)\n    (A B : E \u2192L[\u2102] F) (v : E) (hm : 0 < m) (hM : 2 * m < M)\n    (hrep : 0 \u2264 rep) (hvolume : 0 < volume) :\n    0 \u2264 interactionForm (FrameworkNREnergy.delta m M)\n      (FrameworkNREnergy.c3 m M g / Real.sqrt volume)\n      (FrameworkNREnergy.quartic m M g rep / volume) A B v",
+          "statement_sha256": "61ce987abf2d3f6b52a946ba26e850437d4706a61a355d4796a9b6be16c038e8",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "resolved_resonance_audit/results.json"
+        }
+      ],
+      "own_source_dependency": {
+        "path": "sol61_push/framework_certification_2026_10_12/quantum_regulator_formal/NREnergy.lean",
+        "sha256": "3f09ff45acd5b149251aab4b9cc8edb6a57c5cefa55264643b7766833ee2f59b",
+        "original_checked_module": "FrameworkNREnergy",
+        "reproduction": "quantum_regulator_formal/CORRESPONDENCE.txt"
+      },
+      "ambient_context": "E,F arbitrary complete complex inner-product spaces; A,B bounded complex-linear maps E to F. Selected norm-only statements omit completeness. Exact full source and dependency are pinned."
+    },
+    {
+      "namespace": "FrameworkEventStress",
+      "source": "sol61_push/framework_certification_2026_10_12/event_stress/EventStress.lean",
+      "source_sha256": "c9469efb03cdcce312a474df85a36d5ae4c6bb46d855aaf709fdd3c54f656485",
+      "main_log": "sol61_push/framework_certification_2026_10_12/event_stress/run/main.log",
+      "main_log_sha256": "604b977fd2149f3cb949f3496232c6e10661d473feccb045c4a6ddb405ee4826",
+      "theorem_count": 4,
+      "entries": [
+        {
+          "name": "FrameworkEventStress.completed_stress_identity",
+          "line": 11,
+          "exact_statement": "theorem completed_stress_identity (E\u2081 E\u2082 a b : \u211d)\n    (h\u2081 : E\u2081 \u2260 0) (h\u2082 : E\u2082 \u2260 0) (hs : E\u2081 + E\u2082 \u2260 0) :\n    stressJump E\u2081 E\u2082 a b =\n      E\u2081 * E\u2082 / (E\u2081 + E\u2082) * (a / E\u2081 - b / E\u2082) ^ 2",
+          "statement_sha256": "9fea1028d140501a4c6fc900fdfe5e069399778f0f671bf7bb38d89f9b2f04aa",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "resolved_resonance_audit/results.json"
+        },
+        {
+          "name": "FrameworkEventStress.completed_stress_nonnegative",
+          "line": 19,
+          "exact_statement": "theorem completed_stress_nonnegative (E\u2081 E\u2082 a b : \u211d)\n    (h\u2081 : 0 < E\u2081) (h\u2082 : 0 < E\u2082) : 0 \u2264 stressJump E\u2081 E\u2082 a b",
+          "statement_sha256": "d447f82c3ccde12e375fd2c2fa5c19a87a20f216998ec9c44d39e8445447f573",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "resolved_resonance_audit/results.json"
+        },
+        {
+          "name": "FrameworkEventStress.projected_relative_motion_strict",
+          "line": 24,
+          "exact_statement": "theorem projected_relative_motion_strict (E\u2081 E\u2082 a b : \u211d)\n    (h\u2081 : 0 < E\u2081) (h\u2082 : 0 < E\u2082) (hv : a / E\u2081 \u2260 b / E\u2082) :\n    0 < stressJump E\u2081 E\u2082 a b",
+          "statement_sha256": "82ec7bb19f28789eaf17a7e702b192ccbb22debcb4e04c862e907c8a113fcb47",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "resolved_resonance_audit/results.json"
+        },
+        {
+          "name": "FrameworkEventStress.every_spatial_projection_nonnegative",
+          "line": 32,
+          "exact_statement": "theorem every_spatial_projection_nonnegative {\u03b9 : Type*} (s : Finset \u03b9)\n    (E\u2081 E\u2082 : \u211d) (p\u2081 p\u2082 z : \u03b9 \u2192 \u211d) (h\u2081 : 0 < E\u2081) (h\u2082 : 0 < E\u2082) :\n    0 \u2264 (\u2211 i \u2208 s, z i * p\u2081 i) ^ 2 / E\u2081 +\n      (\u2211 i \u2208 s, z i * p\u2082 i) ^ 2 / E\u2082 -\n        (\u2211 i \u2208 s, z i * (p\u2081 i + p\u2082 i)) ^ 2 / (E\u2081 + E\u2082)",
+          "statement_sha256": "2bc40779f1407d6228c7044d8a97e6f96562d719624bce51145612de0ef50291",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "resolved_resonance_audit/results.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkGhostReceiver",
+      "source": "sol61_push/framework_certification_2026_10_12/ghost_receiver/formal/GhostReceiver.lean",
+      "source_sha256": "7ec5d09455e98a02933b342cd4a732bb7e3649138ed1873bcd870c233cfff354",
+      "main_log": "sol61_push/framework_certification_2026_10_12/ghost_receiver/formal/compile.log",
+      "main_log_sha256": "e3199756a99f487c450c27226530c8db16e227daf057d5b763fedb3fa510ddb8",
+      "theorem_count": 10,
+      "entries": [
+        {
+          "name": "FrameworkGhostReceiver.potential_derivatives",
+          "line": 17,
+          "exact_statement": "theorem potential_derivatives (a X0 \u03c10 X : \u211d) :\n    HasDerivAt (P a X0 \u03c10) (gradient a X0 X) X \u2227\n      HasDerivAt (gradient a X0) a X",
+          "statement_sha256": "38aa64444635fa5d82cbd385e9d3817e68d5c981419cbe8804d356f929ff5f39",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "receiver_closure_audit/results.json"
+        },
+        {
+          "name": "FrameworkGhostReceiver.state_dictionary",
+          "line": 31,
+          "exact_statement": "theorem state_dictionary (a X0 \u03c10 d : \u211d) :\n    rho a X0 \u03c10 d = \u03c10 + a * (2 * X0 * d + 3 * d ^ 2 / 2) \u2227\n    pressure a X0 \u03c10 d = -\u03c10 + a * d ^ 2 / 2 \u2227\n    gradient a X0 (X0 + d) = a * d \u2227 kinetic a X0 d = a * (2 * X0 + 3 * d)",
+          "statement_sha256": "c296b762c3485730b5c45289a45a544a5526f34356965cda6f818a78e65de2fa",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "receiver_closure_audit/results.json"
+        },
+        {
+          "name": "FrameworkGhostReceiver.healthy_branch",
+          "line": 43,
+          "exact_statement": "theorem healthy_branch (a X0 d : \u211d) (ha : 0 < a) :\n    0 \u2264 gradient a X0 (X0 + d) \u2194 0 \u2264 d",
+          "statement_sha256": "1d4f5c9904865464b279a62a680b94e576469cde13593d1090a93df8ef8a14b5",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "receiver_closure_audit/results.json"
+        },
+        {
+          "name": "FrameworkGhostReceiver.healthy_density_floor",
+          "line": 53,
+          "exact_statement": "theorem healthy_density_floor (a X0 \u03c10 d : \u211d) (ha : 0 < a) (hX0 : 0 < X0)\n    (hhealth : 0 \u2264 gradient a X0 (X0 + d)) : \u03c10 \u2264 rho a X0 \u03c10 d",
+          "statement_sha256": "dd6c7fedf3e30db89460e55b41cd0c702f94c87c7ffe3c65a3d0eee65e0d3438",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "receiver_closure_audit/results.json"
+        },
+        {
+          "name": "FrameworkGhostReceiver.no_ground_export",
+          "line": 61,
+          "exact_statement": "theorem no_ground_export (a X0 \u03c10 d exported : \u211d) (ha : 0 < a) (hX0 : 0 < X0)\n    (hhealth : 0 \u2264 gradient a X0 (X0 + d))\n    (hledger : exported = rho a X0 \u03c10 0 - rho a X0 \u03c10 d) : exported \u2264 0",
+          "statement_sha256": "455d0912deb0b8a36b4bf18cb55a0ecbb0569aa4a2dbc9513789b9d415120b45",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "receiver_closure_audit/results.json"
+        },
+        {
+          "name": "FrameworkGhostReceiver.positive_buffer",
+          "line": 70,
+          "exact_statement": "theorem positive_buffer (a X0 \u03c10 d : \u211d) (ha : 0 < a) (hX0 : 0 < X0) (hd : 0 < d) :\n    0 < rho a X0 \u03c10 d - \u03c10 \u2227 0 < pressure a X0 \u03c10 d + \u03c10 \u2227 0 < kinetic a X0 d",
+          "statement_sha256": "52cc43e728521097eb2992d9178d396815711a36fc6f80cbb67219b1240c02d2",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "receiver_closure_audit/results.json"
+        },
+        {
+          "name": "FrameworkGhostReceiver.buffered_export_budget",
+          "line": 83,
+          "exact_statement": "theorem buffered_export_budget (a X0 \u03c10 di df exported : \u211d) (ha : 0 < a) (hX0 : 0 < X0)\n    (hfinal : 0 \u2264 gradient a X0 (X0 + df))\n    (hledger : exported = rho a X0 \u03c10 di - rho a X0 \u03c10 df) :\n    exported \u2264 rho a X0 \u03c10 di - \u03c10",
+          "statement_sha256": "03ed8a964abdfcb369bba6f90ffee27838b9d105c56d722f995708abe16c5a6f",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "receiver_closure_audit/results.json"
+        },
+        {
+          "name": "FrameworkGhostReceiver.health_boundary_budget",
+          "line": 91,
+          "exact_statement": "theorem health_boundary_budget (a X0 \u03c10 di exported : \u211d)\n    (hledger : exported = rho a X0 \u03c10 di - rho a X0 \u03c10 0) :\n    exported = a * (2 * X0 * di + 3 * di ^ 2 / 2)",
+          "statement_sha256": "bae6bea40b6415d8e68b89c38c59126a02daa99178e62b93cfde4a9dae355d5e",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "receiver_closure_audit/results.json"
+        },
+        {
+          "name": "FrameworkGhostReceiver.deposit_eos",
+          "line": 98,
+          "exact_statement": "theorem deposit_eos (a X0 \u03c10 d : \u211d) (ha : 0 < a) (hX0 : 0 < X0) (hd : 0 < d) :\n    (pressure a X0 \u03c10 d + \u03c10) / (rho a X0 \u03c10 d - \u03c10) = d / (4 * X0 + 3 * d) \u2227\n      0 < d / (4 * X0 + 3 * d) \u2227 d / (4 * X0 + 3 * d) < 1 / 3",
+          "statement_sha256": "bc657432136e995805be0956a77faf3d508de44a02fbde15cb404aef44cd990d",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "receiver_closure_audit/results.json"
+        },
+        {
+          "name": "FrameworkGhostReceiver.de_deviation_bound",
+          "line": 114,
+          "exact_statement": "theorem de_deviation_bound (a X0 \u03c10 d \u03b7 : \u211d) (ha : 0 < a) (hX0 : 0 < X0)\n    (h\u03c10 : 0 < \u03c10) (hd : 0 \u2264 d) (h\u03b7 : 0 \u2264 \u03b7)\n    (hbuffer : rho a X0 \u03c10 d - \u03c10 \u2264 \u03b7 * \u03c10) :\n    0 \u2264 pressure a X0 \u03c10 d / rho a X0 \u03c10 d + 1 \u2227\n      pressure a X0 \u03c10 d / rho a X0 \u03c10 d + 1 \u2264 4 * \u03b7 / 3",
+          "statement_sha256": "b95b933231591b09a0eb6fbfe45e940ac6ec33c27ced560979e5fc0efb7f9ff7",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication",
+          "English_review": "receiver_closure_audit/results.json"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkSharedPhase",
+      "source": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/SharedPhase.lean",
+      "source_sha256": "5cc2b70172cc215d19d5f7a117ddae9105a477eadca920185a363a05388eb86d",
+      "main_log": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/compile.log",
+      "main_log_sha256": "d423728b9654fcafead29ab0bdb3a031602107d89498929d95c63ec512b48898",
+      "theorem_count": 10,
+      "entries": [
+        {
+          "name": "FrameworkSharedPhase.full_action_expansion",
+          "line": 41,
+          "exact_statement": "theorem full_action_expansion (R u a X0 \u03c10 m f e \u03c3 \u03c3dot \u03c3grad \u03b7dot \u03b7grad : \u211d) :\n    originalL R u a X0 \u03c10 m f e \u03c3 \u03c3dot \u03c3grad \u03b7dot \u03b7grad =\n      originalL R u a X0 \u03c10 m f 0 \u03c3 \u03c3dot \u03c3grad \u03b7dot \u03b7grad +\n      e * ((m ^ 2 * f - massSq m u * R) * \u03c3 + B R u a X0 * u * \u03b7dot) +\n      e ^ 2 * quadraticL (massSq m u) (K R u a X0) (B R u a X0) (C R u) \u03c3 \u03c3dot \u03c3grad \u03b7dot \u03b7grad +\n      e ^ 3 * (\u03c3 ^ 2 * u * \u03b7dot + R * \u03c3 * (\u03b7dot ^ 2 - \u03b7grad ^ 2) +\n        a * u * \u03b7dot * (\u03b7dot ^ 2 - \u03b7grad ^ 2) / 2) +\n      e ^ 4 * (\u03c3 ^ 2 * (\u03b7dot ^ 2 - \u03b7grad ^ 2) / 2 + a * (\u03b7dot ^ 2 - \u03b7grad ^ 2) ^ 2 / 8)",
+          "statement_sha256": "33bc2499436d32b88a08204fe2006412cf4df987fab37438c72b2a86617cdb33",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+          "English_review": "shared_phase_audit/results.json"
+        },
+        {
+          "name": "FrameworkSharedPhase.canonical_momenta",
+          "line": 53,
+          "exact_statement": "theorem canonical_momenta (\u03bc K B C \u03c3 \u03c3dot \u03c3grad \u03b7dot \u03b7grad : \u211d) :\n    HasDerivAt (fun v => quadraticL \u03bc K B C \u03c3 v \u03c3grad \u03b7dot \u03b7grad) \u03c3dot \u03c3dot \u2227\n    HasDerivAt (fun v => quadraticL \u03bc K B C \u03c3 \u03c3dot \u03c3grad v \u03b7grad) (K * \u03b7dot + C * \u03c3) \u03b7dot",
+          "statement_sha256": "1d60f4131cbb2f8b37f9d9dbb896d54a94a07fb6efb9b8588a3b19db560eca50",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+          "English_review": "shared_phase_audit/results.json"
+        },
+        {
+          "name": "FrameworkSharedPhase.legendre_transform",
+          "line": 82,
+          "exact_statement": "theorem legendre_transform (\u03bc K B C \u03c3 p\u03c3 \u03c3grad peta \u03b7grad : \u211d) (hK : K \u2260 0) :\n    p\u03c3 ^ 2 + peta * ((peta - C * \u03c3) / K) -\n      quadraticL \u03bc K B C \u03c3 p\u03c3 \u03c3grad ((peta - C * \u03c3) / K) \u03b7grad =\n        hamiltonian \u03bc K B C \u03c3 p\u03c3 \u03c3grad peta \u03b7grad",
+          "statement_sha256": "967970500a64a0ff2d789305715256b84d692520f629f5ce98ecaaae2060e8e9",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+          "English_review": "shared_phase_audit/results.json"
+        },
+        {
+          "name": "FrameworkSharedPhase.rotating_hamiltonian_nonnegative",
+          "line": 90,
+          "exact_statement": "theorem rotating_hamiltonian_nonnegative (\u03bc K B C \u03c3 p\u03c3 \u03c3grad peta \u03b7grad : \u211d)\n    (h\u03bc : 0 \u2264 \u03bc) (hK : 0 < K) (hB : 0 \u2264 B) :\n    0 \u2264 hamiltonian \u03bc K B C \u03c3 p\u03c3 \u03c3grad peta \u03b7grad",
+          "statement_sha256": "72b08c35232f12742236d0302d0b617d9eba32483a51b56e93a748821b7eb048",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+          "English_review": "shared_phase_audit/results.json"
+        },
+        {
+          "name": "FrameworkSharedPhase.dispersion_dictionary",
+          "line": 97,
+          "exact_statement": "theorem dispersion_dictionary (K B C \u03bc wave s : \u211d) :\n    dispersion K B C \u03bc wave s = K * s ^ 2 -\n      (K * (wave ^ 2 + \u03bc) + B * wave ^ 2 + C ^ 2) * s + B * wave ^ 2 * (wave ^ 2 + \u03bc) \u2227\n    discriminant K B C \u03bc wave = (K * (wave ^ 2 + \u03bc) - B * wave ^ 2) ^ 2 +\n      2 * C ^ 2 * (K * (wave ^ 2 + \u03bc) + B * wave ^ 2) + C ^ 4",
+          "statement_sha256": "a340d3c563e106fdae18d08c69dadecde77958489672f1984e5b4c18cfb11bd0",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+          "English_review": "shared_phase_audit/results.json"
+        },
+        {
+          "name": "FrameworkSharedPhase.dispersion_discriminant_nonnegative",
+          "line": 105,
+          "exact_statement": "theorem dispersion_discriminant_nonnegative (K B C \u03bc wave : \u211d)\n    (hK : 0 \u2264 K) (hB : 0 \u2264 B) (h\u03bc : 0 \u2264 \u03bc) : 0 \u2264 discriminant K B C \u03bc wave",
+          "statement_sha256": "412404f9bb108b1d0ba5266cffd05b2188515759bfd52b9bde973d96f8431c28",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+          "English_review": "shared_phase_audit/results.json"
+        },
+        {
+          "name": "FrameworkSharedPhase.no_negative_squared_frequency",
+          "line": 112,
+          "exact_statement": "theorem no_negative_squared_frequency (K B C \u03bc wave s : \u211d)\n    (hK : 0 < K) (hB : 0 \u2264 B) (h\u03bc : 0 < \u03bc)\n    (hroot : dispersion K B C \u03bc wave s = 0) : 0 \u2264 s",
+          "statement_sha256": "3df0205738117babb38743963b7ea756c2092c6144ef0e361b537820ca5c163b",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+          "English_review": "shared_phase_audit/results.json"
+        },
+        {
+          "name": "FrameworkSharedPhase.zero_gradient_boundary_roots",
+          "line": 128,
+          "exact_statement": "theorem zero_gradient_boundary_roots (K C \u03bc wave s : \u211d) (hK : K \u2260 0) :\n    dispersion K 0 C \u03bc wave s = 0 \u2194 s = 0 \u2228 s = wave ^ 2 + \u03bc + C ^ 2 / K",
+          "statement_sha256": "fc3f0da4dbd35a4e02e63123486b963a86e85509c84a0311030217363ceb429a",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+          "English_review": "shared_phase_audit/results.json"
+        },
+        {
+          "name": "FrameworkSharedPhase.background_enthalpy",
+          "line": 148,
+          "exact_statement": "theorem background_enthalpy (R u a X0 \u03c10 m f : \u211d) :\n    backgroundRho R u a X0 \u03c10 m f + backgroundPressure R u a X0 \u03c10 m f = u ^ 2 * B R u a X0",
+          "statement_sha256": "323f184b9e264b3f81249533028fac399a3e828b844a854cccf4fc28db10ffbf",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+          "English_review": "shared_phase_audit/results.json"
+        },
+        {
+          "name": "FrameworkSharedPhase.pure_ghost_point_not_total_de",
+          "line": 154,
+          "exact_statement": "theorem pure_ghost_point_not_total_de (R u a X0 \u03c10 m f : \u211d) (hR : R \u2260 0) (hu : u \u2260 0)\n    (hghost : u ^ 2 / 2 = X0) (hrho : 0 < backgroundRho R u a X0 \u03c10 m f) :\n    0 < backgroundPressure R u a X0 \u03c10 m f / backgroundRho R u a X0 \u03c10 m f + 1",
+          "statement_sha256": "8fa26f2aa7ae831818576604d23e9d7eee61c425d9eeef05e93d45bc8e067c30",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication for PROSPECTIVE new model",
+          "English_review": "shared_phase_audit/results.json"
+        }
+      ],
+      "model_status": "prospective new join NOT adopted; NOT established from original nine postulates",
+      "checkpoint": "FRAMEWORK-CERT-RECEIVER-2026-10-13",
+      "imports": [
+        "Mathlib"
+      ],
+      "main_exit_code": 0,
+      "PINNED_INPUTS": {
+        "path": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/PINNED_INPUTS.json",
+        "sha256": "47ccef72ab6b09b998d5c895dbc3b90957732a09beb8ff605d8637600b4fdd5c"
+      },
+      "correspondence": {
+        "path": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/CORRESPONDENCE.txt",
+        "sha256": "01d532a7a33a22806dddf4e7cb5909a12dce90b93b65e99384b9d34f52fc9fa6"
+      },
+      "independent_review_status": "completed read-only mathematical and physical admission audit; prospective model only",
+      "historical_build": {
+        "accepted": false,
+        "source": "shared_phase/formal/build_history/attempt_01.source.txt",
+        "log": "shared_phase/formal/build_history/attempt_01.log",
+        "exit_code": 1
+      },
+      "false_controls": [
+        {
+          "source": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/FalseUnmixedGap.lean",
+          "source_sha256": "56c7ae24926eea6c84c4332b45fe49b7154ba24b0c9b2697a143daedcccd03f4",
+          "log": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/FalseUnmixedGap.log",
+          "log_sha256": "6fffe5f4e949e9228b6faff8eeb1ebf14c182f28a284bc7ddaa6e3e8a7c24cce",
+          "exit_code": 1,
+          "expected_failure": "final unsolved False; no import/type/syntax error"
+        },
+        {
+          "source": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/FalseBoundaryNoZero.lean",
+          "source_sha256": "dc8fa027d97437c339a3f3226172fa665549768633ce083468ee9b35606b21ac",
+          "log": "sol61_push/framework_certification_2026_10_12/shared_phase/formal/FalseBoundaryNoZero.log",
+          "log_sha256": "e0405a74f98dd2ade554ab3997f5634aa412084af8af4c53a5d24d1f51512160",
+          "exit_code": 1,
+          "expected_failure": "final unsolved False; no import/type/syntax error"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkGravitationalWork",
+      "source": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/GravitationalWork.lean",
+      "source_sha256": "3609e5c198b634553e2778fdcf399b3a9cbd0871b8529be7c8e3b7167603657a",
+      "main_log": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/compile.log",
+      "main_log_sha256": "b6243c2af00bb92850fc51846bd94d73cfe4b97878e38c8df070842eab30d883",
+      "theorem_count": 9,
+      "entries": [
+        {
+          "name": "FrameworkGravitationalWork.reciprocal_force",
+          "line": 15,
+          "exact_statement": "theorem reciprocal_force (\u03b3 : \u211d) (x y : E) : pairForce \u03b3 y x = -pairForce \u03b3 x y",
+          "statement_sha256": "e1f85e9fa6482db120e16eee7b028e29af56f6ece3a4ec51c70daab30519dd66",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+          "English_review": "gravitational_work_audit/results.json"
+        },
+        {
+          "name": "FrameworkGravitationalWork.potential_symmetric",
+          "line": 22,
+          "exact_statement": "theorem potential_symmetric (\u03b3 : \u211d) (x y : E) : pairPotential \u03b3 y x = pairPotential \u03b3 x y",
+          "statement_sha256": "a251005153b01569458a252cbbfe114b5607eda7838dc121a54d6fd17e9a0815",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+          "English_review": "gravitational_work_audit/results.json"
+        },
+        {
+          "name": "FrameworkGravitationalWork.pair_potential_derivative",
+          "line": 27,
+          "exact_statement": "theorem pair_potential_derivative (\u03b3 t : \u211d) (x y : \u211d \u2192 E) (vx vy : E)\n    (hx : HasDerivAt x vx t) (hy : HasDerivAt y vy t) (hne : x t \u2260 y t) :\n    HasDerivAt (fun s => pairPotential \u03b3 (x s) (y s))\n      (-inner \u211d (pairForce \u03b3 (x t) (y t)) (vx - vy)) t",
+          "statement_sha256": "619b8a52d279bd9a228e57c1a9d6b1c2e4fc79f3314494db25965d3e54b371bb",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+          "English_review": "gravitational_work_audit/results.json"
+        },
+        {
+          "name": "FrameworkGravitationalWork.force_directional_action",
+          "line": 52,
+          "exact_statement": "theorem force_directional_action (\u03b3 : \u211d) (x y vx vy : E) (hne : x \u2260 y) :\n    HasDerivAt (fun s : \u211d => -pairPotential \u03b3 (x + s \u2022 vx) (y + s \u2022 vy))\n      (inner \u211d (pairForce \u03b3 x y) vx + inner \u211d (pairForce \u03b3 y x) vy) 0",
+          "statement_sha256": "48c8129b971ec189ef049afa157fd5a4de8a29ea1ba66eb0f3808ad0d3724990",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+          "English_review": "gravitational_work_audit/results.json"
+        },
+        {
+          "name": "FrameworkGravitationalWork.kinetic_force_power",
+          "line": 66,
+          "exact_statement": "theorem kinetic_force_power (m t : \u211d) (v : \u211d \u2192 E) (acc force : E)\n    (hv : HasDerivAt v acc t) (hNewton : m \u2022 acc = force) :\n    HasDerivAt (fun s => kinetic m (v s)) (inner \u211d force (v t)) t",
+          "statement_sha256": "389fc1bad43c351899c3108a1e3b91a84c751fddda6928b16255e3ebe281e7ce",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+          "English_review": "gravitational_work_audit/results.json"
+        },
+        {
+          "name": "FrameworkGravitationalWork.live_pair_energy",
+          "line": 75,
+          "exact_statement": "theorem live_pair_energy (\u03b3 mc mb t : \u211d) (x y vx vy : \u211d \u2192 E) (ac ab : E)\n    (hx : HasDerivAt x (vx t) t) (hy : HasDerivAt y (vy t) t)\n    (hvc : HasDerivAt vx ac t) (hvb : HasDerivAt vy ab t) (hne : x t \u2260 y t)\n    (hc : mc \u2022 ac = pairForce \u03b3 (x t) (y t))\n    (hb : mb \u2022 ab = pairForce \u03b3 (y t) (x t)) :\n    HasDerivAt (fun s => kinetic mc (vx s) + kinetic mb (vy s) + pairPotential \u03b3 (x s) (y s)) 0 t",
+          "statement_sha256": "ab338d5edba2c560ad92e180999340b602d511b7cf93b497589e0159e5e6289f",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+          "English_review": "gravitational_work_audit/results.json"
+        },
+        {
+          "name": "FrameworkGravitationalWork.cold_cross_ledger",
+          "line": 89,
+          "exact_statement": "theorem cold_cross_ledger (\u03b3 mc t : \u211d) (x y vx : \u211d \u2192 E) (vy ac : E)\n    (hx : HasDerivAt x (vx t) t) (hy : HasDerivAt y vy t)\n    (hvc : HasDerivAt vx ac t) (hne : x t \u2260 y t)\n    (hc : mc \u2022 ac = pairForce \u03b3 (x t) (y t)) :\n    HasDerivAt (fun s => kinetic mc (vx s) + pairPotential \u03b3 (x s) (y s))\n      (inner \u211d (pairForce \u03b3 (x t) (y t)) vy) t",
+          "statement_sha256": "a7e237e495700025602f3b6f4ab4ea4bb0a5a19d69ff685fca651de569edb94d",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+          "English_review": "gravitational_work_audit/results.json"
+        },
+        {
+          "name": "FrameworkGravitationalWork.finite_cross_counted_once",
+          "line": 103,
+          "exact_statement": "theorem finite_cross_counted_once {\u03b9 \u03ba : Type*} (cold : Finset \u03b9) (baryon : Finset \u03ba)\n    (\u03b3 : \u03b9 \u2192 \u03ba \u2192 \u211d) (x : \u03b9 \u2192 E) (y : \u03ba \u2192 E) :\n    ((\u2211 i \u2208 cold, \u2211 j \u2208 baryon, pairPotential (\u03b3 i j) (x i) (y j)) +\n      (\u2211 j \u2208 baryon, \u2211 i \u2208 cold, pairPotential (\u03b3 i j) (y j) (x i))) / 2 =\n        \u2211 i \u2208 cold, \u2211 j \u2208 baryon, pairPotential (\u03b3 i j) (x i) (y j)",
+          "statement_sha256": "1eacf511ea24fd67e22fa2f7017a0ff38c0bf664f1d5f4d7063a3f5127183553",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+          "English_review": "gravitational_work_audit/results.json"
+        },
+        {
+          "name": "FrameworkGravitationalWork.finite_cross_derivative",
+          "line": 115,
+          "exact_statement": "theorem finite_cross_derivative {\u03b9 \u03ba : Type*} (cold : Finset \u03b9) (baryon : Finset \u03ba)\n    (\u03b3 : \u03b9 \u2192 \u03ba \u2192 \u211d) (x : \u03b9 \u2192 \u211d \u2192 E) (y : \u03ba \u2192 \u211d \u2192 E) (vx : \u03b9 \u2192 E) (vy : \u03ba \u2192 E)\n    (t : \u211d) (hx : \u2200 i \u2208 cold, HasDerivAt (x i) (vx i) t)\n    (hy : \u2200 j \u2208 baryon, HasDerivAt (y j) (vy j) t)\n    (hne : \u2200 i \u2208 cold, \u2200 j \u2208 baryon, x i t \u2260 y j t) :\n    HasDerivAt (fun s => \u2211 i \u2208 cold, \u2211 j \u2208 baryon, pairPotential (\u03b3 i j) (x i s) (y j s))\n      (\u2211 i \u2208 cold, \u2211 j \u2208 baryon, -inner \u211d (pairForce (\u03b3 i j) (x i t) (y j t)) (vx i - vy j)) t",
+          "statement_sha256": "328e3fbff4617ca60c71b864a841d9cd49d3384902db38490ee36106cf685808",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication in supplied Newtonian scope",
+          "English_review": "gravitational_work_audit/results.json"
+        }
+      ],
+      "model_status": "existing supplied Newtonian specialization; no new species/action join, no DE source, no full metric derivation",
+      "checkpoint": "FRAMEWORK-CERT-SHARED-PHASE-2026-10-13",
+      "imports": [
+        "Mathlib"
+      ],
+      "main_exit_code": 0,
+      "PINNED_INPUTS": {
+        "path": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/PINNED_INPUTS.json",
+        "sha256": "b12f15020d30551a537c29462ce5a8a6cfcb3801150083f99d2088973edf90ca"
+      },
+      "correspondence": {
+        "path": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/CORRESPONDENCE.txt",
+        "sha256": "a4249691e70752e90ce972535f4bab97de699db5a130004ddebb4efac3381185"
+      },
+      "independent_review_status": "complete read-only mathematical and physical audit; own supplied Newtonian specialization, not receiver completion",
+      "historical_builds": [
+        {
+          "accepted": false,
+          "source": "gravitational_work/formal/build_history/attempt_01.source.txt",
+          "log": "gravitational_work/formal/build_history/attempt_01.log",
+          "exit_code": 1
+        },
+        {
+          "accepted": false,
+          "source": "gravitational_work/formal/build_history/attempt_02.source.txt",
+          "log": "gravitational_work/formal/build_history/attempt_02.log",
+          "exit_code": 0,
+          "warning": "unused included section variable"
+        }
+      ],
+      "false_controls": [
+        {
+          "source": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/FalseDoubleCross.lean",
+          "source_sha256": "acd1494476ad299d649e6584ad68af199633a117f2f8f22039adc3008878eadc",
+          "log": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/FalseDoubleCross.log",
+          "log_sha256": "8bbdca55c436d8ffc526ca0e73521ee656e051940df599882dea418953a9c2c3",
+          "exit_code": 1,
+          "expected_failure": "final mathematical False; no import/type/syntax failure"
+        },
+        {
+          "source": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/FalseNoReaction.lean",
+          "source_sha256": "68873f42cadbe0358fe12d86d742063beb5532929e44beaf9db7ea51595bc4fa",
+          "log": "sol61_push/framework_certification_2026_10_12/gravitational_work/formal/FalseNoReaction.log",
+          "log_sha256": "945ebfb5d8bb9fbe60d63589cb97feab27bba58d8d665cf29829729df07ea144",
+          "exit_code": 1,
+          "expected_failure": "final mathematical False; no import/type/syntax failure"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkMinimalMetric",
+      "source": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/MinimalMetric.lean",
+      "source_sha256": "02afdb49eed2a8a512f9eeac0528a6837fc06a47131c95b9486362e0861e6e92",
+      "main_log": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/compile.log",
+      "main_log_sha256": "dc070cc87c223f996dd4a192101eb2080289b11705c8a3216bf274777fb0442d",
+      "theorem_count": 13,
+      "entries": [
+        {
+          "name": "FrameworkMinimalMetric.polynomial_derivative",
+          "line": 26,
+          "exact_statement": "theorem polynomial_derivative (a X0 \u03c10 X : \u211d) : HasDerivAt (P a X0 \u03c10) (PX a X0 X) X",
+          "statement_sha256": "86cce0305486006c403a36766071c2c2a6c78e4cb181e4583df2c4a0b9d674f2",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication under declared minimal realization",
+          "English_review": "minimal_metric_audit/results.json"
+        },
+        {
+          "name": "FrameworkMinimalMetric.determinant_derivative",
+          "line": 33,
+          "exact_statement": "theorem determinant_derivative (\u03a6 \u03a8 : \u211d) : HasDerivAt (metricVolume \u03a6 \u03a8) (\u03a6 - 3 * \u03a8) 0",
+          "statement_sha256": "eb1bdaf54da622f8c1a165a230f3d834a6d31741563e070a668afdc80dc66664",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication under declared minimal realization",
+          "English_review": "minimal_metric_audit/results.json"
+        },
+        {
+          "name": "FrameworkMinimalMetric.invariant_derivative",
+          "line": 46,
+          "exact_statement": "theorem invariant_derivative (u S \u03a6 \u03a8 : \u211d) :\n    HasDerivAt (Xmetric u S \u03a6 \u03a8) (-\u03a6 * u ^ 2 - \u03a8 * S) 0",
+          "statement_sha256": "d65ee19521f5c5be746fe46ae619e9b75bbab50636479f77a784243f6d9a21ac",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication under declared minimal realization",
+          "English_review": "minimal_metric_audit/results.json"
+        },
+        {
+          "name": "FrameworkMinimalMetric.actual_metric_stress_derivative",
+          "line": 62,
+          "exact_statement": "theorem actual_metric_stress_derivative (a X0 \u03c10 u S \u03a6 \u03a8 : \u211d) :\n    HasDerivAt (matterDensity a X0 \u03c10 u S \u03a6 \u03a8)\n      (-\u03a6 * T00 a X0 \u03c10 u S - \u03a8 * spatialTrace a X0 \u03c10 u S) 0",
+          "statement_sha256": "ad6a97737d302164d34ca589e5420433147c8e92ba682fc01f5489433e313f74",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication under declared minimal realization",
+          "English_review": "minimal_metric_audit/results.json"
+        },
+        {
+          "name": "FrameworkMinimalMetric.homogeneous_dictionary",
+          "line": 73,
+          "exact_statement": "theorem homogeneous_dictionary (a X0 \u03c10 u : \u211d) :\n    T00 a X0 \u03c10 u 0 = rho a X0 \u03c10 (u ^ 2 / 2) \u2227\n    spatialTrace a X0 \u03c10 u 0 = 3 * P a X0 \u03c10 (u ^ 2 / 2) \u2227\n    rho a X0 \u03c10 X0 = \u03c10 \u2227 P a X0 \u03c10 X0 = -\u03c10",
+          "statement_sha256": "db6a3a5e55fd896a6d9b77bb971a769c8fb93c6e3434917b126f9b22c40bdd85",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication under declared minimal realization",
+          "English_review": "minimal_metric_audit/results.json"
+        },
+        {
+          "name": "FrameworkMinimalMetric.canonical_momentum",
+          "line": 88,
+          "exact_statement": "theorem canonical_momentum (a X0 \u03c10 N V v : \u211d) (hN : N \u2260 0) :\n    HasDerivAt (homogeneousL a X0 \u03c10 N V) (momentum a X0 N V v) v",
+          "statement_sha256": "fe2a1e5cf061e33edc550d686080b2ea4015bef64e32dc7001b0ba65c52a406d",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication under declared minimal realization",
+          "English_review": "minimal_metric_audit/results.json"
+        },
+        {
+          "name": "FrameworkMinimalMetric.canonical_hamiltonian",
+          "line": 98,
+          "exact_statement": "theorem canonical_hamiltonian (a X0 \u03c10 N V v : \u211d) (hN : N \u2260 0) :\n    momentum a X0 N V v * v - homogeneousL a X0 \u03c10 N V v =\n      N * V * rho a X0 \u03c10 (properX N v)",
+          "statement_sha256": "68f59a1a4868516e6557dcf501b27692b239185fd7a414145043f9495f86a1b2",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication under declared minimal realization",
+          "English_review": "minimal_metric_audit/results.json"
+        },
+        {
+          "name": "FrameworkMinimalMetric.exact_vacuum_clock",
+          "line": 105,
+          "exact_statement": "theorem exact_vacuum_clock (a X0 \u03c10 N V v : \u211d) (hN : N \u2260 0) (hX : properX N v = X0) :\n    momentum a X0 N V v = 0 \u2227 rho a X0 \u03c10 (properX N v) = \u03c10 \u2227\n      (momentum a X0 N V v * v - homogeneousL a X0 \u03c10 N V v) / N = V * \u03c10",
+          "statement_sha256": "3c986ca1447f0cdcc191c1c7d1d79b1d53cdfb153d994b04471a063794dcfb9f",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication under declared minimal realization",
+          "English_review": "minimal_metric_audit/results.json"
+        },
+        {
+          "name": "FrameworkMinimalMetric.healthy_charge_zero_iff",
+          "line": 120,
+          "exact_statement": "theorem healthy_charge_zero_iff (a X0 X w : \u211d) (ha : 0 < a) (hX0 : 0 < X0)\n    (hX : X0 \u2264 X) (hw : 0 < w) : w * properCharge a X0 X = 0 \u2194 X = X0",
+          "statement_sha256": "403cff1c91e710281cc1adea81a97ae9733f24be09cb66a6b3a6bc8939e779c0",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication under declared minimal realization",
+          "English_review": "minimal_metric_audit/results.json"
+        },
+        {
+          "name": "FrameworkMinimalMetric.zero_integrated_charge_ground",
+          "line": 137,
+          "exact_statement": "theorem zero_integrated_charge_ground {\u03a9 : Type*} [MeasurableSpace \u03a9] (\u03bc : Measure \u03a9)\n    (X w : \u03a9 \u2192 \u211d) (a X0 \u03c10 : \u211d) (ha : 0 < a) (hX0 : 0 < X0)\n    (hhealth : \u2200\u1d50 z \u2202\u03bc, X0 \u2264 X z) (hfuture : \u2200\u1d50 z \u2202\u03bc, 0 < w z)\n    (hint : Integrable (fun z => w z * properCharge a X0 (X z)) \u03bc)\n    (hQ : (\u222b z, w z * properCharge a X0 (X z) \u2202\u03bc) = 0) :\n    \u2200\u1d50 z \u2202\u03bc, X z = X0 \u2227 rho a X0 \u03c10 (X z) = \u03c10",
+          "statement_sha256": "2391fa181cdf3a3af2650ec1824f998c622d3dfc332ef8af0ebcda4201756fb0",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication under declared minimal realization",
+          "English_review": "minimal_metric_audit/results.json"
+        },
+        {
+          "name": "FrameworkMinimalMetric.fixed_charge_support_identity",
+          "line": 157,
+          "exact_statement": "theorem fixed_charge_support_identity (a X0 \u03c10 u v : \u211d) :\n    energyOfClock a X0 \u03c10 u - energyOfClock a X0 \u03c10 v -\n      v * (chargeOfClock a X0 u - chargeOfClock a X0 v) =\n    a / 8 * (u - v) ^ 2 * (3 * u ^ 2 + 2 * u * v + v ^ 2 - 4 * X0)",
+          "statement_sha256": "e60d7e9b22650fde747ab0c59af831bfcaec60212e24c119c7407ea924e7a646",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication under declared minimal realization",
+          "English_review": "minimal_metric_audit/results.json"
+        },
+        {
+          "name": "FrameworkMinimalMetric.healthy_fixed_charge_support",
+          "line": 164,
+          "exact_statement": "theorem healthy_fixed_charge_support (a X0 \u03c10 u v : \u211d) (ha : 0 < a) (hX0 : 0 < X0)\n    (hu : 0 \u2264 u) (hv : 0 \u2264 v) (huX : 2 * X0 \u2264 u ^ 2) (hvX : 2 * X0 \u2264 v ^ 2) :\n    energyOfClock a X0 \u03c10 v + v * (chargeOfClock a X0 u - chargeOfClock a X0 v) \u2264\n      energyOfClock a X0 \u03c10 u",
+          "statement_sha256": "3ec027372a79fba70a2972ca2ba00142c878d50712ab9f3887bb1d8fbf7922f2",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication under declared minimal realization",
+          "English_review": "minimal_metric_audit/results.json"
+        },
+        {
+          "name": "FrameworkMinimalMetric.integrated_fixed_charge_floor",
+          "line": 175,
+          "exact_statement": "theorem integrated_fixed_charge_floor {\u03a9 : Type*} [MeasurableSpace \u03a9] (\u03bc : Measure \u03a9)\n    (u w : \u03a9 \u2192 \u211d) (a X0 \u03c10 v : \u211d) (ha : 0 < a) (hX0 : 0 < X0)\n    (hv : 0 \u2264 v) (hvX : 2 * X0 \u2264 v ^ 2)\n    (hhealthy : \u2200\u1d50 z \u2202\u03bc, 0 \u2264 u z \u2227 2 * X0 \u2264 (u z) ^ 2)\n    (hw : \u2200\u1d50 z \u2202\u03bc, 0 \u2264 w z) (hiw : Integrable w \u03bc)\n    (hiq : Integrable (fun z => w z * chargeOfClock a X0 (u z)) \u03bc)\n    (hie : Integrable (fun z => w z * energyOfClock a X0 \u03c10 (u z)) \u03bc)\n    (hQ : (\u222b z, w z * chargeOfClock a X0 (u z) \u2202\u03bc) =\n      chargeOfClock a X0 v * (\u222b z, w z \u2202\u03bc)) :\n    energyOfClock a X0 \u03c10 v * (\u222b z, w z \u2202\u03bc) \u2264\n      \u222b z, w z * energyOfClock a X0 \u03c10 (u z) \u2202\u03bc",
+          "statement_sha256": "0eec5c6524be7e09899429a9d191d1b49155738b3a82ee2cd77f2b70946eeb4d",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked conditional mathematical implication under declared minimal realization",
+          "English_review": "minimal_metric_audit/results.json"
+        }
+      ],
+      "model_status": "prospective minimal metric realization, unspecified gravity equations; existing C2 polynomial",
+      "checkpoint": "FRAMEWORK-CERT-GRAVITATIONAL-WORK-2026-10-13",
+      "imports": [
+        "Mathlib"
+      ],
+      "main_exit_code": 0,
+      "PINNED_INPUTS": {
+        "path": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/PINNED_INPUTS.json",
+        "sha256": "539e6286428351936b505356937d4ce9f7062ae5f22cf1a9f9eaa4655b117946"
+      },
+      "correspondence": {
+        "path": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/CORRESPONDENCE.txt",
+        "sha256": "6abffb90473bd6c7d292d863b3e36d3fb2f4e9f7df8d6aad8700ac5f93f26c15"
+      },
+      "independent_review_status": "Completed in minimal_metric_audit/results.json; frozen original module metadata retained unchanged",
+      "historical_builds": [
+        {
+          "accepted": false,
+          "source": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/build_history/attempt_01.source.txt",
+          "log": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/build_history/attempt_01.log",
+          "exit_code": 1
+        },
+        {
+          "accepted": false,
+          "source": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/build_history/attempt_02.source.txt",
+          "log": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/build_history/attempt_02.log",
+          "exit_code": 1
+        },
+        {
+          "accepted": false,
+          "source": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/build_history/attempt_03.source.txt",
+          "log": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/build_history/attempt_03.log",
+          "exit_code": 1
+        }
+      ],
+      "false_controls": [
+        {
+          "source": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/FalseOmitVolume.lean",
+          "source_sha256": "1f45e90c3f79c4e2354de38d0fc9ac4dfd0a339c38c4a318ddac302639844d7c",
+          "log": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/FalseOmitVolume.log",
+          "log_sha256": "75a5366fa869acad80e706bd2f929e53d8cd69f5aeef1c4fd1ae1d5dc8263be2",
+          "exit_code": 1,
+          "expected_failure": "final mathematical False; no import/type/syntax failure"
+        },
+        {
+          "source": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/FalseUnhealthyFloor.lean",
+          "source_sha256": "a7084443bace73ebf0abb6ea5535c0337918f2a3f97dcfe61268d290a43ee663",
+          "log": "sol61_push/framework_certification_2026_10_12/minimal_metric_coupling/formal/FalseUnhealthyFloor.log",
+          "log_sha256": "28a7db36537f2b26784610c0110dc80ad39d09c14133bebbc46fa12bf18bab42",
+          "exit_code": 1,
+          "expected_failure": "final mathematical False; no import/type/syntax failure"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkMetricResponse",
+      "source": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/MetricResponse.lean",
+      "source_sha256": "10ef7aa6e9afc451ea8557d867c9d2f133f39e49d6ea3d97294a05a4300e9108",
+      "main_log": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/compile.log",
+      "main_log_sha256": "028b98953df0cfff6f2e8132427d1b63de5bac4766838d7b0d239cc244575609",
+      "theorem_count": 9,
+      "entries": [
+        {
+          "name": "FrameworkMetricResponse.null_optical_dictionary",
+          "line": 17,
+          "exact_statement": "theorem null_optical_dictionary (\u03a6 \u03a8 e dt dl : \u211d)\n    (ht : 0 < temporal \u03a6 e) (hs : 0 \u2264 spatial \u03a8 e)\n    (hnull : temporal \u03a6 e * dt ^ 2 = spatial \u03a8 e * dl ^ 2) :\n    dt ^ 2 = (opticalIndex \u03a6 \u03a8 e * dl) ^ 2",
+          "statement_sha256": "2e0e98f34e48d16b272fa8146d9d383c9db25ef5dc54dae17fcb75d984247745",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked local action response under declared weakmetric admission",
+          "English_review": "metric_uniqueness_audit/results.json"
+        },
+        {
+          "name": "FrameworkMetricResponse.actual_optical_derivative",
+          "line": 27,
+          "exact_statement": "theorem actual_optical_derivative (\u03a6 \u03a8 : \u211d) :\n    HasDerivAt (opticalIndex \u03a6 \u03a8) (-\u03a6 - \u03a8) 0",
+          "statement_sha256": "9d9757e435215c3360c2bccbff5ff4c3435936ccbc2d8e534751727112014d94",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked local action response under declared weakmetric admission",
+          "English_review": "metric_uniqueness_audit/results.json"
+        },
+        {
+          "name": "FrameworkMetricResponse.actual_fermat_derivative",
+          "line": 38,
+          "exact_statement": "theorem actual_fermat_derivative (\u03a6 \u03a8 slope : \u211d) :\n    HasDerivAt (fermatDensity \u03a6 \u03a8 slope) ((-\u03a6 - \u03a8) * Real.sqrt (1 + slope ^ 2)) 0",
+          "statement_sha256": "f2a899e027103a5e7543ef0ef796bfb10eeb6b55824a4034fa14c56886f27236",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked local action response under declared weakmetric admission",
+          "English_review": "metric_uniqueness_audit/results.json"
+        },
+        {
+          "name": "FrameworkMetricResponse.actual_worldline_derivative",
+          "line": 43,
+          "exact_statement": "theorem actual_worldline_derivative (m \u03a6 \u03a8 speed : \u211d) (hv : speed ^ 2 < 1) :\n    HasDerivAt (worldlineDensity m \u03a6 \u03a8 speed)\n      (-m * (\u03a6 + \u03a8 * speed ^ 2) / Real.sqrt (1 - speed ^ 2)) 0",
+          "statement_sha256": "b159c677da8999d8f5c0ba9a51447ff0ea459e02866c4729102f3dbd666db52d",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked local action response under declared weakmetric admission",
+          "English_review": "metric_uniqueness_audit/results.json"
+        },
+        {
+          "name": "FrameworkMetricResponse.actual_rest_worldline_derivative",
+          "line": 58,
+          "exact_statement": "theorem actual_rest_worldline_derivative (m \u03a6 \u03a8 : \u211d) :\n    HasDerivAt (worldlineDensity m \u03a6 \u03a8 0) (-m * \u03a6) 0",
+          "statement_sha256": "f66d290d55b21d73849ab35ffd7b0cc1dbc03fc46edbad7c4e7b0d65832475a0",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked local action response under declared weakmetric admission",
+          "English_review": "metric_uniqueness_audit/results.json"
+        },
+        {
+          "name": "FrameworkMetricResponse.optical_profile_gradient",
+          "line": 63,
+          "exact_statement": "theorem optical_profile_gradient (\u03a6 \u03a8 : \u211d \u2192 \u211d) (x d\u03a6 d\u03a8 : \u211d)\n    (h\u03a6 : HasDerivAt \u03a6 d\u03a6 x) (h\u03a8 : HasDerivAt \u03a8 d\u03a8 x) :\n    HasDerivAt (fun y => deriv (opticalIndex (\u03a6 y) (\u03a8 y)) 0) (-d\u03a6 - d\u03a8) x",
+          "statement_sha256": "ba53d2edc760a41d33aa6faa46a188cfe5b93aeb3d87882bdf7047c682781cb6",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked local action response under declared weakmetric admission",
+          "English_review": "metric_uniqueness_audit/results.json"
+        },
+        {
+          "name": "FrameworkMetricResponse.rest_worldline_profile_gradient",
+          "line": 73,
+          "exact_statement": "theorem rest_worldline_profile_gradient (m : \u211d) (\u03a6 \u03a8 : \u211d \u2192 \u211d) (x d\u03a6 : \u211d)\n    (h\u03a6 : HasDerivAt \u03a6 d\u03a6 x) :\n    HasDerivAt (fun y => deriv (worldlineDensity m (\u03a6 y) (\u03a8 y) 0) 0) (-m * d\u03a6) x",
+          "statement_sha256": "714b92dca79d4cc669c238b9e0a5f88f3368f2840d18224f17cce69a3129d9ee",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked local action response under declared weakmetric admission",
+          "English_review": "metric_uniqueness_audit/results.json"
+        },
+        {
+          "name": "FrameworkMetricResponse.integrated_optical_response",
+          "line": 84,
+          "exact_statement": "theorem integrated_optical_response {\u03a9 : Type*} [MeasurableSpace \u03a9] (\u03bc : Measure \u03a9)\n    (\u03a6 : \u03a9 \u2192 \u211d) (s : \u211d) (h\u03a6 : Integrable \u03a6 \u03bc) :\n    (\u222b x, deriv (opticalIndex (\u03a6 x) (s * \u03a6 x)) 0 \u2202\u03bc) = -(1 + s) * (\u222b x, \u03a6 x \u2202\u03bc)",
+          "statement_sha256": "5195ff1a7c3e8c8a11bb78cba88f182649e815baf6a40948cb683c85bd59b483",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked local action response under declared weakmetric admission",
+          "English_review": "metric_uniqueness_audit/results.json"
+        },
+        {
+          "name": "FrameworkMetricResponse.same_cold_different_optics",
+          "line": 96,
+          "exact_statement": "theorem same_cold_different_optics (m : \u211d) (\u03a6 : \u211d \u2192 \u211d) (x d\u03a6 : \u211d)\n    (h\u03a6 : HasDerivAt \u03a6 d\u03a6 x) (hd : d\u03a6 \u2260 0) :\n    deriv (fun y => deriv (worldlineDensity m (\u03a6 y) 0 0) 0) x =\n      deriv (fun y => deriv (worldlineDensity m (\u03a6 y) (\u03a6 y) 0) 0) x \u2227\n    deriv (fun y => deriv (opticalIndex (\u03a6 y) 0) 0) x \u2260\n      deriv (fun y => deriv (opticalIndex (\u03a6 y) (\u03a6 y)) 0) x",
+          "statement_sha256": "1c170c78f00b4ad9f85f9bbb4f53ab9afd325ef6da349b638f40b18df6769b65",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked local action response under declared weakmetric admission",
+          "English_review": "metric_uniqueness_audit/results.json"
+        }
+      ],
+      "model_status": "prospective diagnostic isotropic metric matter response; unspecified gravity action; diagnostic alternatives not certified full covariant theories",
+      "checkpoint": "FRAMEWORK-CERT-MINIMAL-METRIC-2026-10-13",
+      "imports": [
+        "Mathlib"
+      ],
+      "main_exit_code": 0,
+      "PINNED_INPUTS": {
+        "path": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/PINNED_INPUTS.json",
+        "sha256": "0de65e13f8b22272f97019e51c27767fb2fda92d6c3622c8d5cc79f38cdd21d2"
+      },
+      "correspondence": {
+        "path": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/CORRESPONDENCE.txt",
+        "sha256": "5fa8eec6f331687e3a6415c9945a33b87a993beb88719cf2318b0f056e27747d"
+      },
+      "independent_review_status": "Completed in metric_uniqueness_audit/results.json; full gravity action remains unspecified",
+      "historical_builds": [
+        {
+          "accepted": false,
+          "source": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/build_history/attempt_01.source.txt",
+          "log": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/build_history/attempt_01.log",
+          "exit_code": 1
+        }
+      ],
+      "false_controls": [
+        {
+          "source": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/FalseOpticalSelection.lean",
+          "source_sha256": "a2d970bcb254e909056148b33a4c365d0538d97af2f71b42b255ae74f637b86d",
+          "log": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/FalseOpticalSelection.log",
+          "log_sha256": "ebf4a1f036cd1e7d66e1f3533dca6c0c11e2fa75a06f0514f5d67fb03a1b3706",
+          "exit_code": 1,
+          "expected_failure": "final mathematical False; no import/type/syntax failure"
+        },
+        {
+          "source": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/FalseMovingPsiAbsent.lean",
+          "source_sha256": "cecc3cf13c1cc90df70d82da79af7571a25cbd4c0a2bcd8b017e650e761b8a13",
+          "log": "sol61_push/framework_certification_2026_10_12/metric_action_admission/formal/FalseMovingPsiAbsent.log",
+          "log_sha256": "ba50d129320c9260c0cb6c2f3d929e971d06852942e20714d44d3b8e6d7b1148",
+          "exit_code": 1,
+          "expected_failure": "final mathematical False; no import/type/syntax failure"
+        }
+      ]
+    },
+    {
+      "namespace": "FrameworkNonspherical",
+      "source": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/Nonspherical.lean",
+      "source_sha256": "93325e1824f0a6ddb346010a2670b2003b9d38bcbc7e12fc2dd669ba6a6544cb",
+      "main_log": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/compile.log",
+      "main_log_sha256": "d70c73edec20c19ed26c95c0116918a1342b4a5ade79e728c5a7af7a51a46553",
+      "theorem_count": 9,
+      "entries": [
+        {
+          "name": "FrameworkNonspherical.actual_nu_derivative",
+          "line": 12,
+          "exact_statement": "theorem actual_nu_derivative (y : \u211d) (hy : 0 < y) : HasDerivAt nu (nuSlope y) y",
+          "statement_sha256": "d2f0b09067d5a92ede1d98b9619df122f30547f179532887626ec4699f98351c",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked explicit kernel/source calculus; full target-divergence identification not Lean proved",
+          "English_review": "nonspherical_audit/results.json"
+        },
+        {
+          "name": "FrameworkNonspherical.actual_nu_slope_negative",
+          "line": 23,
+          "exact_statement": "theorem actual_nu_slope_negative (y : \u211d) (hy : 0 < y) : nuSlope y < 0",
+          "statement_sha256": "b73d29db02544bdc50ec2b5117d87641f69c829dc477d7218ba63a2a1a4e9aa8",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked explicit kernel/source calculus; full target-divergence identification not Lean proved",
+          "English_review": "nonspherical_audit/results.json"
+        },
+        {
+          "name": "FrameworkNonspherical.actual_midfield_derivative",
+          "line": 33,
+          "exact_statement": "theorem actual_midfield_derivative (M a y : \u211d) (ha : 0 < a) :\n    HasDerivAt (midField M a) (midSlope M a y) y",
+          "statement_sha256": "644422994ad86a6bcef063f865ca19003cdd792343063320f314635990e25093",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked explicit kernel/source calculus; full target-divergence identification not Lean proved",
+          "English_review": "nonspherical_audit/results.json"
+        },
+        {
+          "name": "FrameworkNonspherical.midpoint_quarter_positive",
+          "line": 47,
+          "exact_statement": "theorem midpoint_quarter_positive (M a : \u211d) (hM : 0 < M) (ha : 0 < a) :\n    0 < midField M a (a / 4) \u2227 0 < midSlope M a (a / 4)",
+          "statement_sha256": "52ca90600cd14a0185673317aa92e11291ab629b8adfb45636f8eb50f25335e1",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked explicit kernel/source calculus; full target-divergence identification not Lean proved",
+          "English_review": "nonspherical_audit/results.json"
+        },
+        {
+          "name": "FrameworkNonspherical.actual_midpotential_derivative",
+          "line": 60,
+          "exact_statement": "theorem actual_midpotential_derivative (M a y : \u211d) (ha : 0 < a) :\n    HasDerivAt (midPotential M a) (midField M a y) y",
+          "statement_sha256": "dc96f3d06824091bcf2339ccf0860335f5bd498f265ba1ca8fcc1c8c5bd4102a",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked explicit kernel/source calculus; full target-divergence identification not Lean proved",
+          "English_review": "nonspherical_audit/results.json"
+        },
+        {
+          "name": "FrameworkNonspherical.actual_transverse_field_derivatives",
+          "line": 74,
+          "exact_statement": "theorem actual_transverse_field_derivatives (M a y : \u211d) (ha : 0 < a) (hy : 0 < y) :\n    HasDerivAt (fieldXSlice M a y)\n      (2 * M * (y ^ 2 - 2 * a ^ 2) / Real.sqrt (a ^ 2 + y ^ 2) ^ 5) 0 \u2227\n    HasDerivAt (fieldZSlice M a y) (2 * M / Real.sqrt (a ^ 2 + y ^ 2) ^ 3) 0",
+          "statement_sha256": "56884c3c37f431ecaeb7b40ed65bee2b11648ccd9fd01dd53f6942629f24d2d6",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked explicit kernel/source calculus; full target-divergence identification not Lean proved",
+          "English_review": "nonspherical_audit/results.json"
+        },
+        {
+          "name": "FrameworkNonspherical.actual_vacuum_field_trace",
+          "line": 93,
+          "exact_statement": "theorem actual_vacuum_field_trace (M a y : \u211d) (ha : 0 < a) (hy : 0 < y) :\n    deriv (fieldXSlice M a y) 0 + deriv (midField M a) y + deriv (fieldZSlice M a y) 0 = 0",
+          "statement_sha256": "7ac1504d5f77c4eddff37bc65c795f80a890ec4f339b27416b0b64b7fc330efb",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked explicit kernel/source calculus; full target-divergence identification not Lean proved",
+          "English_review": "nonspherical_audit/results.json"
+        },
+        {
+          "name": "FrameworkNonspherical.actual_local_target_negative",
+          "line": 110,
+          "exact_statement": "theorem actual_local_target_negative (M a G : \u211d) (hM : 0 < M) (ha : 0 < a) (hG : 0 < G) :\n    localTarget M a G < 0",
+          "statement_sha256": "822147fed36551bd720970c2ac0c658869219f3a0a13e7485bd2efbfd5787d8a",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked explicit kernel/source calculus; full target-divergence identification not Lean proved",
+          "English_review": "nonspherical_audit/results.json"
+        },
+        {
+          "name": "FrameworkNonspherical.actual_weighted_midfield_derivative",
+          "line": 119,
+          "exact_statement": "theorem actual_weighted_midfield_derivative (M a : \u211d) (hM : 0 < M) (ha : 0 < a) :\n    HasDerivAt (weightedMidField M a (midField M a (a / 4)))\n      (nuSlope 1 * midSlope M a (a / 4) + (nu 1 - 1) * midSlope M a (a / 4)) (a / 4)",
+          "statement_sha256": "be9aa2160408d218a2c6eabd0c46b35a33bfa5df250bee278aaff08b7d21d70f",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "status": "kernel-checked explicit kernel/source calculus; full target-divergence identification not Lean proved",
+          "English_review": "nonspherical_audit/results.json"
+        }
+      ],
+      "model_status": "supplied reconciled A2/A5 low-branch calculus and two-source slices; full 3D norm-weighted divergence correspondence remains analytic",
+      "checkpoint": "FRAMEWORK-CERT-METRIC-ACTION-2026-10-13",
+      "imports": [
+        "Mathlib"
+      ],
+      "main_exit_code": 0,
+      "PINNED_INPUTS": {
+        "path": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/PINNED_INPUTS.json",
+        "sha256": "1fb46a8eb94d71b21e23411db7cd818f3c035ff1a87b56495fc130a1df1c9b23"
+      },
+      "correspondence": {
+        "path": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/CORRESPONDENCE.txt",
+        "sha256": "b6a751427cbae725720cbda772d3ea49a23bcd35c043d3039ab46710982a8469"
+      },
+      "independent_review_status": "resolved by frozen nonspherical_audit/results.json; raw producer pending field retained historically",
+      "historical_builds": [
+        {
+          "accepted": false,
+          "source": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/build_history/attempt_01.source.txt",
+          "log": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/build_history/attempt_01.log",
+          "exit_code": 1
+        },
+        {
+          "accepted": false,
+          "source": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/build_history/attempt_02.source.txt",
+          "log": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/build_history/attempt_02.log",
+          "exit_code": 1
+        },
+        {
+          "accepted": false,
+          "source": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/build_history/attempt_03.source.txt",
+          "log": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/build_history/attempt_03.log",
+          "exit_code": 1
+        },
+        {
+          "accepted": false,
+          "source": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/build_history/attempt_04.source.txt",
+          "log": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/build_history/attempt_04.log",
+          "exit_code": 1
+        },
+        {
+          "accepted": false,
+          "source": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/build_history/attempt_05.source.txt",
+          "log": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/build_history/attempt_05.log",
+          "exit_code": 1
+        }
+      ],
+      "false_controls": [
+        {
+          "source": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/FalseNuIncreasing.lean",
+          "source_sha256": "0744953c81a8f533e9181ddcb26883facf11c494c63167b6d6d7c654ac2fb6a8",
+          "log": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/FalseNuIncreasing.log",
+          "log_sha256": "d489214af2ab0d1871f255258511c29c1c4ba71993f3baece59160121aba2f77",
+          "exit_code": 1,
+          "expected_failure": "final mathematical False; no import/type/syntax failure"
+        },
+        {
+          "source": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/FalseEverywhereRising.lean",
+          "source_sha256": "c337ffe446c17bd22b5518418faeb81c24c41deb65786bdea0c6a19a78299697",
+          "log": "sol61_push/framework_certification_2026_10_12/nonspherical_admission/formal/FalseEverywhereRising.log",
+          "log_sha256": "cb47bdaf6e942daf06b8e9aa21a4517df52e8452363211127f2e280d5810ed7c",
+          "exit_code": 1,
+          "expected_failure": "final mathematical False; no import/type/syntax failure"
+        }
+      ]
+    }
+  ],
+  "latest_continuation_theorems": 36,
+  "distinct_false_certificate_sources_rejected": 22,
+  "quantum_rate_leaf": "CarrierRate proves consequences of an explicit perturbative quantum width premise, not its derivation from the classical action.",
+  "count_scope": "168 scoped mathematical statements across original and explicit conditional/prospective models, not168 established physical consequences of the nine postulates. Full3Dweightedflux remains analytic notLean.",
+  "prospective_shared_phase_statements": 10
+}

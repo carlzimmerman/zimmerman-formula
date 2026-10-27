@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "claim_id": "HR01-spectrum-physical-k",
+  "repository": {
+    "commit": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "dirty": true
+  },
+  "command": [
+    "/Users/carlzimmerman/miniforge3/envs/z2-physics/bin/python",
+    "real_research/handoff_resolution_2026_09_27/spectrum/check_transfer.py",
+    "real_research/handoff_resolution_2026_09_27/spectrum/main/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.15"
+      },
+      {
+        "name": "Python",
+        "version": "3.11.15"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "colossus",
+        "version": "1.3.9"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The corrected physical-k EH98 transfer equals the independent Colossus implementation on the declared grid and retains sigma8 normalization.",
+    "coefficient_domain": "IEEE float64",
+    "conventions": "k in Mpc^-1; Colossus receives k/h; fixed sigma8=.811; no refit",
+    "inputs": [
+      "real_research/handoff_resolution_2026_09_27/spectrum/check_transfer.py",
+      "real_research/cross_thread_review_2026_09_26/XR28_common.py"
+    ],
+    "bounds": {
+      "k_min_Mpc_inverse": 1e-05,
+      "k_max_Mpc_inverse": 1000.0,
+      "samples": 3000,
+      "masses_solar": [
+        10000000000000.0,
+        100000000000000.0,
+        1000000000000000.0
+      ],
+      "redshifts": [
+        0.25,
+        0.5,
+        1,
+        2
+      ]
+    },
+    "non_claims": [
+      "Not cluster likelihood evidence",
+      "Not a proof of nonlinear cosmology or a derived mass history"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T20:25:37.144164+00:00",
+    "runtime_seconds": 0.253291,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/handoff_resolution_2026_09_27/spectrum/check_transfer.py",
+    "real_research/cross_thread_review_2026_09_26/XR28_common.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/spectrum/check_transfer.py",
+      "sha256": "1febce74c4c105f007b61144ceb56b75479ad7e59390b139c1c181200da6a6d7",
+      "sha256_after": "1febce74c4c105f007b61144ceb56b75479ad7e59390b139c1c181200da6a6d7"
+    },
+    {
+      "path": "real_research/cross_thread_review_2026_09_26/XR28_common.py",
+      "sha256": "48e3085f5235968f962d6f7a1869de69c3a8292f87cb39fa2b34ef4e50634d4a",
+      "sha256_after": "48e3085f5235968f962d6f7a1869de69c3a8292f87cb39fa2b34ef4e50634d4a"
+    }
+  ],
+  "output_directory": "real_research/handoff_resolution_2026_09_27/spectrum/main",
+  "declared_results": [
+    "real_research/handoff_resolution_2026_09_27/spectrum/main/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/spectrum/main/stdout.txt",
+      "sha256": "aac385b55647038b8c3878d8e9e0a5448b6b860df2678995a4bb5c097dc56c80",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/spectrum/main/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/spectrum/main/results.json",
+      "sha256": "4f392fd8c9d52ea96bd85897111a42932bc1948f046ceff75518f2529903bde3",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

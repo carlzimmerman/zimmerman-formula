@@ -1,0 +1,11 @@
+# FSP-007: missing sea response and curved QCD
+
+Parent FSP-006. TARGET.md and physical R(alpha)=A_rho/m_p^3 are unchanged. Canonical Thomson alpha=e^2/(4 pi); rho(H)-rho(0)=A_rho H+o(H) in a specified common microscopic theory and regular state. No measured-alpha or cosmological target fitting is permitted. Pure-QCD data with declared masses/couplings are admissible conditional inputs, not no-input predictions.
+
+1. sea_lattice owns sea_lattice/: acquire public individual-proton sea/current data or charge-variation coefficients and convolution kernels; execute an actual missing contribution if data suffice. Distinguish electroquenched, p-minus-n, full dynamical and physical calibration choices. The old connected six-point estimator alone cannot provide the sea term.
+2. sea_ope owns sea_ope/: derive the leading sea/gluon short-distance contribution to the full forward Compton response with scalar/twist-two mixing and counterterms. Calculate an alpha-free Wilson coefficient or controlled UV quantity, exposing all matrix-element inputs and scale dependence; do not identify it with the complete sea contribution.
+3. curved_response owns curved_response/: seek actual unconditioned curved-space QCD response, data or a controlled microscopic derivation that advances beyond the previous conditional flat-gap theorem and topology-only identities. Explicitly calculate a new physical contribution and establish the exact bridge/missing assumption. No sphere/torus transfer or contact deletion.
+
+Coordinator owns coordinator/, reviews/, phase synthesis and shared navigation. Base inputs are pinned by content, not a clean Git state. Each worker must save exact inputs, primary source versions/locators, derivation, bounded executable evidence where load bearing, outcome and concrete continuation. Preserve earlier evidence and executed inputs. No dependency installs, large external jobs, messages to authors, publication or Git mutation.
+
+Discriminator: evaluated nonperturbative sea response, controlled Wilson tail/contact contribution, actual curved unconditioned datum, or a precise independent input that prevents their combination. Algebraic rearrangement alone is not an evaluated ratio. Full finite-alpha and H limits remain separate from zero-charge insertion. Fresh independent review is required before treating a candidate as a physical prediction.

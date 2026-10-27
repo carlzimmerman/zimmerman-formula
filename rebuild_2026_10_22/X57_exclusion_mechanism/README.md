@@ -1,5 +1,20 @@
 # X57_exclusion_mechanism: what keeps full-strength cold dark energy out of galaxies without heating or converting it?
 
+**Post-result correction, 2026-10-27:** [A1](CORRECTION_A1.md) supersedes the
+R4b inference below. M6 is **NOT DECIDABLE on both footings**, including alt.
+The corrected two-sigma band-entry bound does not exclude either footing, and
+nonnegative density alone does not establish a shear lower bound. General
+radial profiles remain unresolved; no physical rescue is demonstrated. M1–M4
+retain their independent failing gates. The original results below are retained
+as history; [corrected results and provenance](../../closure_program_2026_10_27/gate_fixes/README.md)
+are separate artifacts.
+The historical forest fraction below is an assumed gas-variance budget, not
+a calibrated flux confidence limit. The
+[population-versus-forest calculation](../../closure_program_2026_10_27/RESULTS.md)
+separates that benchmark from the required galaxy population and its ancestry.
+
+## Historical frozen-run report
+
 Criteria: `FROZEN_CRITERIA.md` + `ASSUMPTION_LEDGER.md` (6cadf4f9b0, committed alone, before any script or number). Two
 coordinator instructions were folded in before the freeze: the R4b line is graded for every class, and M5 is reported only.
 No amendment. κ = ½ FITTED. Footings 9.3603e-11 / 1.1312e-10 m/s², never pooled. Cold dark energy is a gravitating w ≈ 0

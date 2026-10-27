@@ -1,0 +1,77 @@
+FRAMEWORK-CERT-SOURCE-RESPONSE-2026-10-13: actual driven NR source
+
+Verdict: exact prescribed constant-forcing trajectory solves the stated source
+ODE and exhibits reversible source storage. Nine statements kernel checked.
+This is NOT a backreacted isolated solution, damping law, quantum rate,
+microkinetic reduction, continuum propagator or target-free galaxy selector.
+
+Source equation and normalization:
+COLD_ENERGY_EQUATIONS.tex lines65-68 supplies
+ i*b_t=(-laplacian/(2M)+delta)*b+c3*psi^2, delta=M-2m>0.
+At P=0, prescribe psi^2=F, a constant REAL forcing amplitude. Real c in this
+certificate names c3 (g/(2m sqrt(2M))), NOT the speed of light. No new constant
+introduced. c,F can have either sign, or be zero. delta>0 is physical source gap.
+For b=x+i*y, real forcing gives -y'=delta*x+cF and x'=delta*y.
+The declared trajectory with b(0)=0 is
+ x=(cF/delta)[cos(delta*t)-1], y=-(cF/delta)sin(delta*t).
+This matches source_elimination/DERIVATION and the checks.py complex response
+ b=-cF/delta[1-exp(-i*delta*t)]. Source zero condition and homogeneous
+transient are retained, not removed by a quasi-static substitution.
+
+English correspondence / hypotheses:
+1. real_derivative: delta!=0 gives actual HasDerivAt x(-cF*sin(delta*t)).
+2. imag_derivative: delta!=0 gives actual HasDerivAt y(-cF*cos(delta*t)).
+3. driven_source_ode: actual Lean derivatives satisfy BOTH real/imag source
+   equations with the prescribed forcing; coefficient/sign not assumed as a leaf.
+4. zero_initial_source: x(0)=y(0)=0 for all real parameters.
+5. storage_exact: actual x^2+y^2 equals
+   2*c^2*F^2/delta^2*[1-cos(delta*t)], from exact trig identities.
+   Algebra is valid even at totalized delta0; physical solution uses delta>0.
+6. storage_nonnegative: x^2+y^2>=0, no positivity assumption needed.
+7. storage_derivative: delta!=0, actual HasDerivAt storage is
+   2*c^2*F^2/delta*sin(delta*t), not a derivative of an unrelated proxy.
+8. opposite_storage_power: delta>0,cF!=0 give positive derivative at
+   t=pi/(2delta), negative derivative at t=3pi/(2delta).
+9. storage_and_return: same assumptions give strictly positive half-cycle
+   storage at t=pi/delta, exact zero storage after t=2pi/delta.
+
+Interpretation and remaining obligations:
+Source mode rest/excess-storage contribution delta*|b|^2 has these SAME power
+signs since delta>0. Coherent storage returns to zero under prescribed drive;
+this is not an irreversible sink or proof of nonlocal transport closure.
+The imposed forcing may perform work. Combined source/daughter conservation
+cannot be claimed for the externally prescribed trajectory. The full coupled
+psi,b Hamiltonian must retain backreaction and interaction energy separately.
+Damping, dephasing, state preparation and a Markov approximation are not derived.
+This formalization does not cover complex/harmonic forcing, resonance at
+nonzero forcing frequency, spatial propagation, full relativistic dynamics or
+source elimination as an operator. Their symbolic source checks retain separate
+scopes and assumptions; there are 21 checks in the existing frozen run.
+No MOND/AQUAL/LambdaCDM physical premises imported; Mathlib supplies mathematics.
+
+Verification:
+Directory: fable_independent_2026/lean_2026
+Main command: lake env lean ABSOLUTE_PATH/source_elimination/formal/SourceResponse.lean
+Exit0, no warnings. compile.log prints all NINE theorem axiom dependencies:
+[propext, Classical.choice, Quot.sound]. No sorryAx/custom axioms/native_decide.
+FalseMemorySign.lean expected exit1 with goal False: negating both real/imag
+trajectory reverses the forcing; at delta=c=F=1,t0 its real ODE falsely asks
+-1=1. This control reaches actual derivative normalization, not a syntax error.
+FalseNonnegativePower.lean expected exit1, linarith fails with known negative
+three-quarter power and goal False. Source storage power is not nonnegative
+throughout a cycle. Both controls repeat certified declarations plus a false
+claim; only SourceResponse.lean is intended to compile successfully.
+Reproduce controls individually with same lake command and their source paths.
+
+Pinned inputs: PINNED_INPUTS.json and inputs/ bind exact copied source bytes.
+Live HEAD observed 668818d9f6fefccc2ee75c2f47dc7424140cc8f8. Existing root
+source criteria/21 checks/derivation/previous snapshots were not edited.
+
+SHA-256 verification artifacts:
+dc6b9141365af63c0c8f8efeeefd516fb66cf85565f4c6b5c1482c95836dc684  SourceResponse.lean
+24cbd30a574820a9f1c72e1856304be7b514e37b0ccf4178da45f1cf2bbe2712  compile.log
+9fe04850b57a1614f5a079fc88469fce0283722a082f4db0eda5062e86f6ed24  FalseMemorySign.lean
+28addf640b0a6805e24dee03241fe85632b3e4783395f3d5c0e1d1802a9e2988  FalseMemorySign.log
+8dd5a3dbd48426458d1a74bbbc6bf9e74e4ca694fa7430c202315323c8974c37  FalseNonnegativePower.lean
+f9b08df780849b244e53741cb175371ee77d67f99aca0efc044af29d75be193e  FalseNonnegativePower.log
+22abef9f1f8a97a06f939254442ec6eb47e2c4aa79772af07c764cf75c079bc4  PINNED_INPUTS.json

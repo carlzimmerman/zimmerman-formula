@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP004_INDEPENDENT_LOCAL_SECOND_ORDER_WALL_CHECK",
+  "repository": {
+    "commit": "9516ee01c79f35c04b7556050669ba77b0c98b99",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/check_second_order_v2.py",
+    "--operator",
+    "fine_structure_puzzle/qcd_completion/angular_modes/transverse_followup/runs/derive-001/operator.json",
+    "--local-result",
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/local-001/result.json",
+    "--result",
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/second-002/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Check exact charged outer solutions including Ei channel, the neutral companion Wronskian relation, and mixed-wall1/t,1/t2 coefficients by charge/neutral block invariance and finite traces, with arbitrary allowed neutral scattering constants.",
+    "coefficient_domain": "Exact SymPy rational/algebraic matrices and exact Ei derivative identities.",
+    "conventions": "Supersedes computationally expensive v1 whole10x10 expansion; uses [P,PN]=0 and orthonormal neutral4x4 determinant. Same mathematics and conditional global ranks.",
+    "inputs": [
+      "Immutable derive-001 operator.json",
+      "Independent local-001 exact result"
+    ],
+    "bounds": {
+      "channels": 10,
+      "charged_series_order": 2,
+      "largest_symbolic_determinant": 4,
+      "neutral_scattering_parameters": [
+        "gamma",
+        "delta",
+        "eta"
+      ]
+    },
+    "non_claims": [
+      "No global kernel/rank proof",
+      "No higher coefficient from truncated charged polynomial",
+      "No finite ODE or physicalQCD inference"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T03:10:38.205751+00:00",
+    "runtime_seconds": 0.499702,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 40,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/check_second_order_v2.py",
+    "fine_structure_puzzle/qcd_completion/angular_modes/transverse_followup/runs/derive-001/operator.json",
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/local-001/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/check_second_order_v2.py",
+      "sha256": "fad80e2f1c3bbe5d56a9099f7f98b8ab6b4d4edc30f62d6f8630bda844594136",
+      "sha256_after": "fad80e2f1c3bbe5d56a9099f7f98b8ab6b4d4edc30f62d6f8630bda844594136"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/angular_modes/transverse_followup/runs/derive-001/operator.json",
+      "sha256": "4e98fa28d208693d6559c8bf5b2dd4b1c05e4d5b88827c38fb21230ac645f6bd",
+      "sha256_after": "4e98fa28d208693d6559c8bf5b2dd4b1c05e4d5b88827c38fb21230ac645f6bd"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/local-001/result.json",
+      "sha256": "14cbd8aef502bc1bf2bca4ea2d216379ffd35437a40c180a3f4c8f3fde5c6363",
+      "sha256_after": "14cbd8aef502bc1bf2bca4ea2d216379ffd35437a40c180a3f4c8f3fde5c6363"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/second-002",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/second-002/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/second-002/stdout.txt",
+      "sha256": "837208bfa130ec0c52bfc68653fc15aab9056324e573ee9dd088f69a0255f6a5",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/second-002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/second-002/result.json",
+      "sha256": "837208bfa130ec0c52bfc68653fc15aab9056324e573ee9dd088f69a0255f6a5",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

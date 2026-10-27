@@ -1,0 +1,156 @@
+{
+  "schema_version": 2,
+  "claim_id": "LOW-POWER-PREPARATION-TOLERANCES",
+  "repository": {
+    "commit": "cda53006d0fae491d774c1bb9a25340ea47c9f41",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/preparation_tolerances_2026_10_14/check.py",
+    "sol61_push/preparation_tolerances_2026_10_14/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite-time pair probability sensitivity to independent retention, constant detuning and linear drift at the 628W point",
+    "coefficient_domain": "Double precision matrix exponentials, ODE, linear solves and bracketed roots",
+    "conventions": "Common-laser detuning maps to pair angular detuning 4 pi delta nu; fixed drive and Markovian dephasing; orbital-only geometry derivative",
+    "inputs": [
+      "sol61_push/preparation_tolerances_2026_10_14/check.py",
+      "sol61_push/low_power_preparation_2026_10_14/run/results.json",
+      "sol61_push/silica_shell_retention_2026_10_14/run/results.json"
+    ],
+    "bounds": {
+      "lifetimes_s": [
+        100,
+        220.6975,
+        1000,
+        10000,
+        100000,
+        527481.6388663584
+      ],
+      "offsets_Hz": [
+        0,
+        0.0001,
+        0.001,
+        0.01,
+        0.1
+      ],
+      "total_linear_sweeps_Hz": [
+        0,
+        0.001,
+        0.01
+      ],
+      "probability_target": 0.1
+    },
+    "non_claims": [
+      "Retention sweep is not self-consistent barrier uncertainty propagation",
+      "Linewidth and resonance knowledge are assigned, not measured",
+      "Orbital radius diagnostic excludes interaction and material derivatives"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T06:01:14.753598+00:00",
+    "runtime_seconds": 0.66834,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/preparation_tolerances_2026_10_14/check.py",
+    "sol61_push/low_power_preparation_2026_10_14/run/results.json",
+    "sol61_push/silica_shell_retention_2026_10_14/run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/preparation_tolerances_2026_10_14/check.py",
+      "sha256": "e156968504272b7e7934bfff2244dce08601afcfafb46c8147dc716efebee39b",
+      "sha256_after": "e156968504272b7e7934bfff2244dce08601afcfafb46c8147dc716efebee39b"
+    },
+    {
+      "path": "sol61_push/low_power_preparation_2026_10_14/run/results.json",
+      "sha256": "2b2909a99d966195246a3b4f24284ec514aad2005145ca88157e57ca099763a9",
+      "sha256_after": "2b2909a99d966195246a3b4f24284ec514aad2005145ca88157e57ca099763a9"
+    },
+    {
+      "path": "sol61_push/silica_shell_retention_2026_10_14/run/results.json",
+      "sha256": "68d7298af7bfc7d950423c4cb3ff2d595876e69918600c3dd88b3d6820c9fdd0",
+      "sha256_after": "68d7298af7bfc7d950423c4cb3ff2d595876e69918600c3dd88b3d6820c9fdd0"
+    }
+  ],
+  "output_directory": "sol61_push/preparation_tolerances_2026_10_14/run",
+  "declared_results": [
+    "sol61_push/preparation_tolerances_2026_10_14/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/preparation_tolerances_2026_10_14/run/stdout.txt",
+      "sha256": "76035ecd8af2fa6be285739a4a4d0e567e7c465c8751b2f5c0413581ece30fa5",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/preparation_tolerances_2026_10_14/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/preparation_tolerances_2026_10_14/run/results.json",
+      "sha256": "c14348b132a8ed38d17d4393b2bbc88d31e13319883a19e008304de0648871d7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

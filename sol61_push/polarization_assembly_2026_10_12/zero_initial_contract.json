@@ -1,0 +1,89 @@
+{
+  "claim_id": "POLARIZATION_CONTRACTION_ZERO_INITIAL_FIELDS",
+  "mathematics": {
+    "assertion_tested": "After prepared-equilibrium contraction passed with 0.025% error, falsify dependence on that preparation: same diffuse-to-compact conserved source, initially Phi=P=velocities=0.",
+    "coefficient_domain": "float64 radial finite volumes; velocity Verlet; trapezoidal external work",
+    "conventions": "Same effective model and final compact Gaussian as screen. rho(r,t)=a^-3 rho0(r/a) normalized to exactly unit discrete mass, a=16-15 smoothstep(t/320); initial Phi=P=all velocities=0, with diffuse source a=16 already present. In continuum v_b=a_dot*r/a conserves baryon mass. No baryon momentum equation is solved. Work is sum <(rho_new-rho_old)*(Phi_new+Phi_old)/2,vol>. Regular origin, Phi=0 at R=768; units C=a0=Z=I=1. No drag.",
+    "inputs": [
+      "sol61_push/polarization_assembly_2026_10_12/zero_initial.py",
+      "sol61_push/polarization_assembly_2026_10_12/calculate.py",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+    ],
+    "bounds": {
+      "runs": [
+        [
+          768,
+          6144,
+          0.02
+        ],
+        [
+          768,
+          12288,
+          0.01
+        ]
+      ],
+      "T": 320,
+      "end": 960,
+      "evaluation_radius": [
+        2,
+        20
+      ],
+      "late_window": [
+        880,
+        960
+      ],
+      "samples_every": 10,
+      "threads": 1,
+      "timeout_seconds": 300
+    },
+    "criteria": {
+      "formation": "RMS fractional force error <=0.10 and attractive force at ALL late samples",
+      "work_balance_normalized_to_abs_final_static_energy": 0.002,
+      "static_residual": 1e-07,
+      "verification": "All late force-profile refinement relative L2 <=0.03; worst late RMS change <=0.03. Initial response vanishes everywhere; no doubled-domain run for this family. Principal continuum signal speed <=1.",
+      "mass_conservation": 1e-12
+    },
+    "controls": [
+      "initial and final static residuals",
+      "mass conservation every step",
+      "work balance",
+      "table support",
+      "space/time refinement"
+    ],
+    "non_claims": [
+      "No self-consistent baryon assembly",
+      "No conserved cold matter or metric/lensing",
+      "No physical time unit",
+      "No kappa derivation",
+      "No infinite-time attraction, continuum theorem, or observational fit",
+      "Prescribed assembly can supply/remove energy; it is not free relaxation",
+      "No outer-boundary numerical replication for contraction; causal separation is analytic continuum diagnostic, not a rigorous discrete error bound",
+      "Initial diffuse baryons are supplied; their own cosmological origin is not derived",
+      "This is the second initial-condition family, not an exhaustive robustness study"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/polarization_assembly_2026_10_12/zero_initial.py",
+    "sol61_push/polarization_assembly_2026_10_12/calculate.py",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.13.9"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.14.1"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "claim_id": "CE087-SELFGRAV-TF-TIDAL-NORMALIZATION",
+  "mathematics": {
+    "assertion_tested": "At ell=2,3,4 and three listed tolerances, regular n=1 TF radial Helmholtz ODE boundary response agrees with the Bessel solution; direct quadrupole integration agrees with derived C; declared benchmark SI conversions and scale ratios are computed.",
+    "coefficient_domain": "IEEE double precision scipy 1.11.4; analytic derivation in accompanying note",
+    "conventions": "rho=m|psi|\u00b2; Qij=integral rho (xi xj-deltaij r\u00b2/3); Eij=STF Hessian U; Qij=-lambda_T Eij; k=1/L",
+    "inputs": [
+      "m=1 MeV/c\u00b2, lambda_rep=.005875",
+      "ell in [2,3,4], rtol in [1e-9,1e-11,1e-13], x in [1e-5,pi]",
+      "unit constants and comparison lengths exactly listed in inputs.json"
+    ],
+    "bounds": {
+      "ode_count": 9,
+      "quadrature_count": 1,
+      "x_max": "pi",
+      "max_step": 0.05,
+      "rtols": [
+        1e-09,
+        1e-11,
+        1e-13
+      ],
+      "ode_response_abs_error_threshold": 2e-08
+    },
+    "non_claims": [
+      "No all-profile numerical theorem",
+      "No scalar-condensate formation calculation",
+      "No quantum SP profile calculation",
+      "No universal acceleration response or a0 selection",
+      "No relativistic or complete nonperturbative phase classification"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/check_virial.py",
+    "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/inputs.json",
+    "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/source_pins.json",
+    "sol61_push/particle_derivation_2026_10_18/micro_response/DERIVATION.md",
+    "sol61_push/particle_derivation_2026_10_18/micro_response/EXCHANGE_REVIEW.md",
+    "sol61_push/gravity_restoring_2026_10_19/internal_polarization/INTERNAL_POLARIZATION.md",
+    "sol61_push/gravity_restoring_2026_10_19/rational_completion/RATIONAL_COMPLETION.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

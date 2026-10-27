@@ -1,0 +1,134 @@
+COEFFICIENT32PI-001 — exact verdict on the missing coefficient
+2026-10-14. Original physical puzzle UNSOLVED; the proposed implication from
+this week's reduced action, topology and spin-2 normalization is disproved.
+This is not a universal no-go for a future microscopic theory.
+
+The previous turns improved a candidate vacuum model but did not advance
+coefficient selection. This pass targets only that missing implication and
+the strongest claimed solutions. Source and Git hashes are pinned in
+run/manifest.json; this shared checkout can change during work. Exclusive
+write scope: this directory. No other theory files or claims were overwritten.
+
+1. The decisive counterfamily
+
+In c=1 units, K=4piG, let a>0 and 0<=u<a. The corrected recent action uses
+ W_C(u)=a²/K [C-u/a-log(1-u/a)].
+For any real d,
+ W_(C+d)(u)=W_C(u)+d a²/K.
+Therefore every derivative with respect to u is unchanged. In particular
+ g=K W'_C=au/(a-u), g_N=g-u=g²/(a+g),
+ W''_C=a²/[K(a-u)²]>0.
+The force law, convexity, saturation endpoint and its local response
+coefficients cannot distinguish C=16pi from C=8pi. Neither branch has a
+negative vacuum offset; both have C>0.
+
+Even grant the additional matching premise that W_C(0) is the TOTAL vacuum
+energy, with no other bare vacuum term. Then
+ Lambda=8piG W_C(0)=2Ca²,
+ A=pi/a² [a constructed Schwarzschild-equivalent area],
+ A Lambda=2pi C.
+Consequently:
+ C=16pi gives A Lambda=32pi²;
+ C= 8pi gives A Lambda=16pi².
+More generally every positive target q can be realized by C=q/(2pi), with
+the same local constitutive law at fixed a,K. This is an explicit countermodel
+to UNIQUE coefficient selection by these reduced premises, not a numerical
+near-miss or a full cosmological solution with identical expansion history.
+Changing C changes gravity's vacuum stress and cosmological evolution. That
+is exactly the unfixed datum; no claim is made that it is physically invisible.
+The actual-horizon interpretation of A is a further obligation, not used here.
+
+2. Why the spin-2 'solution' does not remove the counterfamily
+
+Read: gemini_pi_puzzle/SPIN2_PROJECTION_DERIVATION.md, sections2-4 and6.
+The computation P_00,00=1/2 in four dimensions is correct. Section4 step2
+asserts a=P_00,00 sqrt(G rho_Lambda). That assertion supplies the missing
+acceleration law; it is not obtained by solving a field equation.
+
+An explicit source calculation in signature(-,+,+,+) makes the problem clear.
+For T=diag(rho,p,p,p), trace reversal gives
+ S00=T00+T/2=(rho+3p)/2.
+Dust gives rho/2; vacuum p=-rho gives -rho. Equivalently the conserved-source
+numerator T:U-(tr T)(tr U)/2 is rho_m²/2 for equal dust sources and
+-rho_m rho_v for dust and vacuum. Reusing the dust-dust half as the vacuum
+response is not a valid source substitution.
+
+The ordinary weak-field normalization also already contains that half:
+ h00=-2Phi, box h00=-16piG S00 imply
+ laplacian Phi=8piG S00=4piG(rho+3p).
+There is no leftover projector half to multiply an acceleration chosen by
+dimensional analysis. For vacuum the local solution is Phi=-Lambda r²/6,
+with radial outward acceleration Lambda r/3. This depends on radius and
+supplies neither the MOND interpolation nor its mass-independent a.
+This is a local weak-field diagnostic, not a globally flat nonzero-Lambda
+solution. The Einstein/spin-2 normalization is common to both C countermodels.
+
+3. Why topology does not remove it
+
+For each positive Lambda, the round Euclidean de Sitter sphere has
+ E4=(8/3)Lambda², Vol=24pi²/Lambda²,
+ integral E4=64pi²=32pi² chi(S4), chi(S4)=2.
+The SAME topological integral holds for both countermodels. It is not an
+equation for the separately constructed area pi/a².
+
+Read: gemini_pi_puzzle/WHY_RH2_LAMBDA_8PI.md, sections2-3.
+Defining R*=1/sqrt(G rho_Lambda) is allowed, but identifying it with a
+Schwarzschild horizon and setting a=1/(2R*) are extra physical premises.
+Likewise K_surface=Lambda/(8pi) is a proposed matching rule, not the
+Gauss-Bonnet theorem. Once assumed it immediately gives the desired answer;
+its appearance in a rewritten equation does not independently justify it.
+
+4. Recent external lead checked, with version limits
+
+Search 2026-10-14 found Christodoulou, Kazanas and Laycock, 'Plausible Sources
+of Dark Energy and Associated Vacuum Properties', Galaxies14(5),90 (2026).
+Published page/PDF access failed. The authenticated author preprint is
+10.20944/preprints202606.1623.v1, posted22June2026, slightly different title.
+Section2 Eqs(3)-(4) assumes u(r)=(a²/G)(r0/r)² and averages a ball of radius r0,
+obtaining <u>=3a²/G. This maps to Lambda/a²=24pi, not32pi. The profile and
+averaging prescription are assumptions; this is not a completion of our
+corrected action. No claim about uninspected final-version equations is made.
+https://www.preprints.org/frontend/manuscript/6d93739261be0e369fb0b69d8cf228e9/download_pub
+https://www.mdpi.com/2075-4434/14/5/90
+
+Our exact integration reproduces that preprint coefficient. Replacing3 by4
+would require changing the profile, normalization or averaging prescription;
+no justified such change was found. Search scope: targeted MOND/coefficient/
+October2026 and graviton-source searches, then the primary preprint. This is
+not an exhaustive literature survey or a claim no future mechanism exists.
+
+5. Lean and reproducibility
+
+CoefficientVerdict.lean checks ten theorems, including the potential shift,
+transfer of ANY existing derivative under that shift, arbitrary positive
+area-product realization, the explicit counterexample and the equivalence
+of the target to C=16pi. It also checks the S4 cancellation, source algebra,
+Newtonian normalization and24pi!=32pi.
+The field equations, vacuum-stress identification and area interpretation are
+explicit physical inputs, not consequences of Lean arithmetic. No theorem
+asserts that a reduced countermodel is a complete viable universe.
+
+check.py:19 exact symbolic identities, including direct first-four-derivative
+comparisons, convexity formula, the MOND relation, source contractions and
+preprint integral. Manifest records actual inputs, versions, command and
+output hashes. Compiler output and hashes: lean_build.out and
+lean_verification.json. Self-review only; no independent referee.
+
+6. What is actually required to solve the physics
+
+A new independently justified equation must fix the absolute vacuum
+normalization while retaining the successful local response. In the present
+notation it must force C=16pi, rather than choose it. Equivalently the
+field-normalization invariant matching is epsilon_Lambda W3²/W2³=64pi
+for derivatives with respect to the polarization amplitude at the vacuum.
+A symmetry, microscopic action or boundary condition must establish that
+matching and explain why allowed vacuum shifts do not destroy it. None of
+the reviewed October action results, spin-2 steps or topological identities
+provides this equation. The shaped-stabilizer family also leaves C free.
+
+Status: the physical coefficient is not derived. The narrower assertion that
+these supplied premises force it is FALSE, with an exact counterfamily.
+This is the reason I cannot honestly provide the requested unconditional
+Lean proof. Adding the desired matching as a hypothesis would certify an
+assumption, not solve the puzzle. Microscopic completion remains open; this
+record neither claims all physics routes exhausted nor invents a missing law.

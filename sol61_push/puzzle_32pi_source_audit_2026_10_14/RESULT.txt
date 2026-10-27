@@ -1,0 +1,224 @@
+SOURCE AND QUANTUM AUDIT OF THE PROPOSED SPATIAL REGULATOR
+2026-10-14. Primary verdict: INCOMPLETE, WITH THE SMALLEST MISSING IMPLICATION
+being protection/matching of the response operators in a dynamical gravitational
+theory. This report is a self-review, not an independent referee report.
+
+The earlier work supplied a formal asymptotic expansion, a fixed-frame vacuum
+dispersion, and elementary Lean checks. Those did not establish a physical
+theory. This checkpoint supplies a finite-domain existence/uniqueness argument,
+source solutions with convergence controls, and an explicit one-loop matching
+test. The classical scalar problem passes the scoped tests. The chosen action
+is not closed under the tested quantum matching step, and 32 pi remains free.
+
+Authoritative inputs and Git ancestry are recorded in checkpoint.json. The
+parent report is puzzle_32pi_spatial_regulator_2026_10_14/RESULT.txt. Earlier
+failed numerical attempts are retained and described in PREFLIGHT_FAILURE.txt.
+
+1. Claim card and assumptions
+
+Action in a prescribed flat rest frame, in units c=hbar=1:
+ L = K chi_dot^2/2 - 2 kappa |grad chi|^3/(3 mu^2)
+     - (Delta chi)^2/(2 S^2) - alpha rho chi/M - lambda mu^4.
+K,kappa,mu,S,alpha,M are positive. rho is a fixed, time-independent source.
+There are two time derivatives and four spatial derivatives. No dynamical
+metric, clock field, matter backreaction, or quantum UV completion is assumed.
+The force dictionary is u=alpha chi'/M, G=1/(8 pi M^2).
+The normalization a0=alpha^3 mu^2/(kappa M) follows only in the leading
+large-radius scalar-force regime. It is not a derivation of the full MOND
+interpolation or of the observed lensing potential.
+
+Dependency chain:
+declared action -> variation and boundary terms -> finite-source equations
+-> source solutions and fluctuation operator -> quantum matching -> physical
+gravity/acceleration dictionary -> absolute coefficient selection.
+The first four links are addressed below under explicit restrictions. The
+quantum matching test produces additional operators. The last two links are
+not established. No earlier step is evidence that they automatically follow.
+
+2. Variational derivation and finite-domain result
+
+On a ball B_R, fix chi=0 at the boundary. The static energy is
+ E[chi]=integral_B [2 kappa |grad chi|^3/(3 mu^2)
+                    +(Delta chi)^2/(2 S^2)+alpha rho chi/M].
+Its first variation gives
+ div[(2 kappa/mu^2)|grad chi| grad chi]-Delta^2 chi/S^2=alpha rho/M.
+Since variations vanish at the boundary but their normal derivatives are
+free, the natural additional boundary condition is Delta chi=0 there.
+This is different from clamping both chi and its normal derivative.
+
+Analytic finite-domain argument, not Lean-formalized:
+Assume rho belongs to L^2(B_R). Use the reflexive graph space
+ V={chi in H_0^1(B_R): grad chi in L^3, Delta chi in L^2}.
+The source term is bounded by a constant times ||grad chi||_3 using the
+Poincare inequality and finite volume. The cubic and quadratic positive
+terms therefore make E coercive in the graph norm. For a minimizing
+sequence, weak subsequences of chi, grad chi, and Delta chi remain compatible
+as distributional derivatives. Norm powers are weakly lower semicontinuous,
+and the linear source term is weakly continuous. Thus a minimizer exists.
+Strict convexity of |grad chi|^3 implies uniqueness: equality for two minimizers
+would force identical gradients, and the zero boundary trace removes their
+constant difference. Rotational symmetry of rho and the ball then makes the
+unique minimizer radial. This proves a weak finite-ball result, not a global
+isolated solution on all of space. Interpreting the natural boundary condition
+pointwise requires sufficient regularity; the variational statement itself
+does not assume that extra regularity.
+
+At a static solution with b=grad chi, the quadratic energy for a perturbation
+eta with zero boundary trace is
+ delta^2 E = integral [ (2 kappa/mu^2)(|b||grad eta|^2
+                         +(b dot grad eta)^2/|b|)
+                        +(Delta eta)^2/S^2 ].
+At b=0 the first bracket is its continuous zero limit. Every term is
+nonnegative. The Laplacian term can vanish for a zero-trace perturbation only
+when eta=0. With K>0 this gives positive linear-mode energy for this fixed-frame,
+fixed-source finite-domain problem. It is not a proof of nonlinear global
+well-posedness, gravitational stability, or stability of a dynamical rest frame.
+
+3. Source computation, including the interior
+
+Let m_s be the asymptotic mass of a smooth Plummer source, C^2=alpha m_s mu^2/
+(8 pi kappa M), and ell=mu^2/(2 kappa S^2 C). Set x=r/ell and
+chi'=(C/ell)h(x). The enclosed mass fraction is
+ m(x)=x^3/(x^2+d^2)^(3/2), where d is the source radius in units ell.
+The source is restricted to the finite computational ball; its enclosed mass
+at the outer boundary is m(L), not exactly one. Integration of the source
+equation, with a regular origin, gives
+ x^2 h|h|-x^2[h''+2h'/x-2h/x^2]=m(x).
+
+The final numerical variable is f=x h. This is order one in the exterior,
+which prevents an absolute solver tolerance from underweighting the far field.
+The equation and natural outer condition are
+ f''=(f|f|-m(x))/x+2f/x^2,  f(L)+L f'(L)=0.
+Regularity implies h=b x-x^3/(10d^3)+b^2 x^4/18+3x^5/(56d^5)+... .
+The computation starts at x0=1e-4 d with this regular Taylor boundary condition;
+one concentrated-source control reduces x0 by a factor ten. chi itself is
+recovered by integration with chi(L)=0; the gradient equation fixes its force.
+
+There are 16 passing Plummer-source solves:
+- d=0.2, 1, 5 and L=50, 200, 800: nine base cases.
+- Two mesh/tolerance refinements, two alternative outer boundaries, two
+  initial-guess changes, and one origin-cutoff reduction.
+Base solver tolerance is 3e-9 with 8001 uniform mesh points plus a logarithmic
+mesh. Refinements use 1e-9 and 16001 uniform points. No 1e-10 success is claimed.
+The alternative outer condition matches the formal asymptotic value
+ f(L)=1-1/L-(1/2+3d^2/4)/L^2.
+
+Independent flux residuals use derivatives of the returned interpolant,
+not substitution of the defining ODE for its second derivative. On 5000
+logarithmic test points plus the source radius, the maximum absolute flux
+error across all cases is 2.58936e-8, normalized to asymptotic source mass one.
+The largest sampled profile change under mesh/tolerance refinement is
+2.675e-13; initial-guess changes give 1.342e-10; the origin-cutoff control gives
+1.122e-14. These differences are diagnostics, not rigorous error bounds.
+
+For d=1, L=200, force divided by its leading C/r value is:
+ x=5:  0.7365650159
+ x=10: 0.8819965606
+ x=20: 0.9461599695
+ x=30: 0.9650936231
+ x=40: 0.9741475226
+The natural L=50 boundary shifts the x=40 ratio to 0.9637147765: a visible
+boundary effect. Increasing L from 200 to 800 leaves these sampled interior
+ratios unchanged to about 8e-12 for d=1. Thus the large-radius trend survives
+source matching and a distant boundary; the asymptotic force is not exact at
+finite radius. This is a dimensionless model test, not a fit to galaxy data.
+
+Earlier uniform-density runs passed a looser flux bound but higher-precision
+attempts encountered convergence and scaling problems. The final quantitative
+claims above use run_source and source_scaled_v2.py only. Successful and failed
+preflights have not been silently substituted for audited evidence.
+
+4. Quantum matching test: explicit new terms
+
+Consider a locally constant gradient v=|grad chi|>0, still in the fixed frame.
+The Gaussian scalar frequencies are
+ omega^2=[p^4/S^2 + a(c) v p^2]/K,
+ a(c)=2 kappa(1+c^2)/mu^2, c=cos(angle to the background gradient).
+Define a sharp spatial momentum shell k_-<p<k_+ within the assumed EFT range.
+The one-loop zero-point energy density is
+ V1(v)=1/2 integral_shell d^3p/(2 pi)^3 omega(p,v).
+This is a stated regulator and quantum approximation, not a physical
+renormalization prescription fixed by the model.
+
+For S^2 a(c) v << k_-^2 uniformly in angle,
+ V1(v)-V1(0)=A v+B v^2+O(v^3),
+ A=kappa S(k_+^3-k_-^3)/(9 pi^2 sqrt(K) mu^2)>0,
+ B=-7 kappa^2 S^3(k_+-k_-)/(30 pi^2 sqrt(K) mu^4)<0.
+The source-free baseline itself is
+ V1(0)=(k_+^5-k_-^5)/(20 pi^2 S sqrt(K)).
+
+Derivation: with b=S^2 a(c)v, the radial integral has primitive
+ I(p,b)=(p^2+b)^(5/2)/5-b(p^2+b)^(3/2)/3.
+Multiply I(k_+,b)-I(k_-,b) by 1/(4 pi^2 S sqrt(K)) and average over c.
+Its linear and quadratic b coefficients are (k_+^3-k_-^3)/6 and
+-(k_+-k_-)/8. The angular averages are
+ <a>=8 kappa/(3mu^2), <a^2>=112 kappa^2/(15mu^4), giving A and B above.
+
+Five symbolic identities verify these steps. Independent nested numerical
+quadrature at 50 decimal digits uses k_-=1/16, k_+=1/8 and K=kappa=mu=S=1.
+For v=1e-6,1e-7,1e-8, it approaches A=1.9239591078e-5 and
+B=-0.001477600595, with a remainder scaling as v^3. These quadratures verify
+the integral, not perturbative viability of that unit-parameter model.
+
+Control of the quantum approximation is separate. At fixed K, extrapolating
+arbitrarily close to v=0 need not be justified. The leading shell variance is
+<|grad delta chi|^2>=S(k_+^3-k_-^3)/(12 pi^2 sqrt(K)). A semiclassical
+background expansion requires its square root to be small compared with v.
+For illustration, K=1e32 and the same other parameters give an RMS gradient
+3.80e-11, below the tested v range, while the largest S^2 a v/k_-^2 is 0.001024.
+The determinant coefficients scale by 1/sqrt(K). This illustrates compatible
+small-parameter conditions; it is not a calculation of all higher loops or a
+physical measurement of K. No claim of exact quantum stability is made.
+
+The resulting |grad chi| and |grad chi|^2 terms are absent from the proposed
+tree action and allowed by its stated symmetries. Their nonzero shell
+contributions demonstrate a need for additional counterterms/matching data.
+A subtraction can change their renormalized coefficients. Consequently these
+numbers do NOT predict an unavoidable physical instability, a universal
+acceleration cutoff, or regulator-independent observables. They DO invalidate
+the claim that the tree action is protected without further work. The signs
+of individual loop terms cannot settle stability of the renormalized theory.
+The finite-momentum background expansion is not a proof about the exact
+v=0 quantum effective action.
+
+5. Absolute normalization and the original target
+
+Even the classical model has Lambda/a0^2=lambda kappa^2/alpha^6 if lambda mu^4
+is assumed to be the total vacuum energy. A constant shift of lambda changes
+this ratio without changing the finite-source equation or its Hessian. The
+one-loop baseline is cutoff dependent and needs vacuum matching; it does not
+supply a preferred physical lambda. A full preferred-frame completion can
+also change the relation between energy density and curvature.
+There is therefore no derivation of Lambda/a0^2=32 pi or of a0^4 Vol(S4)=3/128.
+Replacing this missing relation with a chosen subtraction would be a fit.
+
+6. Audit matrix and strongest safe statement
+
+PASS, conditional on the declared action: variation signs, natural boundary
+conditions, finite-domain convexity/uniqueness argument, positive scalar
+quadratic energy, source matching, and large-radius behavior in tested cases.
+COMPUTATIONALLY VERIFIED ONLY IN STATED RANGE: the 16 source solutions and
+the finite-shell quadratures, with controls and failures documented.
+FAILED as a closed operator set: retaining only the cubic spatial response
+and the fourth-spatial-derivative regulator through the tested one-loop step.
+NOT ADDRESSED: a dynamical clock/medium, its stress and modes, cosmological
+matching, lensing, cutoff matching, the full interpolation, and observations.
+INCOMPLETE: microscopic matching of the couplings and the 32 pi selection.
+
+The strongest justified result is a well-posed variational finite-ball scalar
+model with verified regular numerical source profiles and a specified
+one-loop operator-matching problem. It is not a viable new theory of gravity.
+The next useful step is a microscopic or symmetry argument that fixes the
+generated operators and vacuum normalization; further small algebraic Lean
+lemmas cannot substitute for that missing physical input.
+
+7. Reproduction and formal-proof scope
+
+run_source/manifest.json records source_scaled_v2.py and the source contract.
+run_loop/manifest.json records loop_check_v2.py and the loop contract.
+Both runs are checked with computation-audit's validate_manifest.py.
+plot_results.py renders source_profiles.png from the audited source output.
+Audit.lean contains three sign/energy algebra statements, checked without
+sorryAx. Neither the functional-analytic existence argument nor the one-loop
+functional determinant is formalized in Lean. There is no claim that Lean
+verified the physical model. All current review is self-review.

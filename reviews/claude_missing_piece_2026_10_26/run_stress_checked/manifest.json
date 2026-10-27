@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "CLAUDE_REVIEW_STRESS_20261026",
+  "repository": {
+    "commit": "f17c99a50827d0d283cd5674bf957e5b5641be0c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/claude_missing_piece_2026_10_26/check_stress.py",
+    "reviews/claude_missing_piece_2026_10_26/run_stress_checked/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "For an isotropic self-gravitating Burkert profile with zero outer pressure, compute P0/(G Sigma^2) by two quadratures. Test a dimensionless determinant-of-kinetic-stress diagnostic on four explicit stream sets and finite boosts/rotations.",
+    "coefficient_domain": "real-valued functions approximated by double precision",
+    "conventions": "Sigma=rho0*r0; M=pi*rho0*r0^3*B(r/r0); kinetic pressure is mass-density times velocity covariance; no collisional pressure assumed",
+    "inputs": [
+      "Burkert density 1/((1+x)(1+x^2))",
+      "four explicit equal-weight stream sets in check_stress.py"
+    ],
+    "bounds": {
+      "log_quadrature_min": -16,
+      "log_quadrature_max": 18,
+      "log_grid_points": 40001,
+      "mass_identity_radii": [
+        0.001,
+        0.02,
+        0.3,
+        1,
+        10,
+        100
+      ]
+    },
+    "non_claims": [
+      "Does not derive a dynamical core mechanism, action, floor coefficient or RAR",
+      "Does not assert the diagnostic remains off with finite primordial velocity dispersion",
+      "Does not identify kinetic moments with a microscopic field stress"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-27T01:36:20.818388+00:00",
+    "runtime_seconds": 0.340729,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/claude_missing_piece_2026_10_26/check_stress.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/claude_missing_piece_2026_10_26/check_stress.py",
+      "sha256": "10c26c7191cb1f44c7ddf5ab8f59d622ee4e4c2fd50e286fc547dd5ff28c8a71",
+      "sha256_after": "10c26c7191cb1f44c7ddf5ab8f59d622ee4e4c2fd50e286fc547dd5ff28c8a71"
+    }
+  ],
+  "output_directory": "reviews/claude_missing_piece_2026_10_26/run_stress_checked",
+  "declared_results": [
+    "reviews/claude_missing_piece_2026_10_26/run_stress_checked/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/claude_missing_piece_2026_10_26/run_stress_checked/stdout.txt",
+      "sha256": "22991bf712f9de8662853a38836884a8465873588af959b183e54a2d1c1f9e88",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/claude_missing_piece_2026_10_26/run_stress_checked/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/claude_missing_piece_2026_10_26/run_stress_checked/result.json",
+      "sha256": "a12887ad881364ce25ed8f549f723e95c19aa0e5aa43fe995f2162eb3f17c65a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

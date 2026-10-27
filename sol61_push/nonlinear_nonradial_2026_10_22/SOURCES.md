@@ -1,0 +1,3 @@
+# Internal sources and scope
+
+Predecessor: ../nonradial_transport_2026_10_22/{RESULT.md,HANDOFF.md}. Passive action and parameter conventions: ../radiating_collapse_2026_10_22/model.py. Shape-independent stationary identity checked against ../core_formation_transport_2026_10_22/RESULT.md, section1. These are internal research evidence, not external validation. New dual, Gaussian-gravity integral and finite-difference equations are derived in DERIVATION.md; no external theorem or observational dataset was imported. No novelty claim. No external citation is used to certify the physical adequacy of the action.

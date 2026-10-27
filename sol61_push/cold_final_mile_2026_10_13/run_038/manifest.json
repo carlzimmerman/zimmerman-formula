@@ -1,0 +1,126 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-FM-038",
+  "repository": {
+    "commit": "b6637558dccd3004b3693554ce3bfa1fcdf78e71",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_final_mile_2026_10_13/check_clock_reaction.py",
+    "sol61_push/cold_final_mile_2026_10_13/run_038/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Two successive equal-rate local conversions exactly realize enclosed orbital clock and conserve finite truncated supply; direct one-stage density clock has logarithmically divergent untruncated mass",
+    "coefficient_domain": "Exact SymPy positive real symbols",
+    "conventions": "gamma=beta/r, rho0=A/(4 pi r^2); reservoir to intermediate to cold, all mass counted; cutoff R finite",
+    "inputs": [
+      "sol61_push/cold_final_mile_2026_10_13/check_clock_reaction.py",
+      "sol61_push/cold_final_mile_2026_10_13/ORBITAL_MASS_FRONT_RESULT.txt"
+    ],
+    "bounds": {
+      "domain": "r,t,A,beta,R>0; ideal singular central profile comparison; no core dynamics"
+    },
+    "non_claims": [
+      "Rate beta and equality of rates not derived",
+      "No microscopic action, momentum/energy conservation, cold force balance or cosmology",
+      "Positive reaction fractions do not identify physical carrier states"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T10:56:46.809541+00:00",
+    "runtime_seconds": 0.672768,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_final_mile_2026_10_13/check_clock_reaction.py",
+    "sol61_push/cold_final_mile_2026_10_13/ORBITAL_MASS_FRONT_RESULT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/check_clock_reaction.py",
+      "sha256": "45e0d62ce7a2333102755fd6fb56d1595142ecabce57b8d23f22b3d127628286",
+      "sha256_after": "45e0d62ce7a2333102755fd6fb56d1595142ecabce57b8d23f22b3d127628286"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/ORBITAL_MASS_FRONT_RESULT.txt",
+      "sha256": "d00afc6718e78e482b5cf0ceb1bb3d5982b15d8c1832593f76474a21ca8bf0e2",
+      "sha256_after": "d00afc6718e78e482b5cf0ceb1bb3d5982b15d8c1832593f76474a21ca8bf0e2"
+    }
+  ],
+  "output_directory": "sol61_push/cold_final_mile_2026_10_13/run_038",
+  "declared_results": [
+    "sol61_push/cold_final_mile_2026_10_13/run_038/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_038/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_038/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_final_mile_2026_10_13/run_038/results.json",
+      "sha256": "5ef5d8ccdb1dece001deaf4b976c2d30e9836397388fee1ea825cff7e2ac6dca",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

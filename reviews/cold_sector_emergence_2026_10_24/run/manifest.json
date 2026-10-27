@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLD-20261024-point-halo",
+  "repository": {
+    "commit": "f747c7a9730b78f5958ad26fea58f21576add8e3",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/cold_sector_emergence_2026_10_24/checks.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Six symbolic identities for the square-root point-baryon halo; positive Abel-inversion values at seven energies; velocity-integral density reconstruction at three radii; finite-mass normalization identity at 27 points",
+    "coefficient_domain": "exact symbolic real functions and IEEE double quadrature",
+    "conventions": "G=M_b=a0=1, positive radius, Phi increasing outward, E=v^2/2+Phi; rho is mass density",
+    "inputs": [
+      "analytic point-baryon square-root-law profile"
+    ],
+    "bounds": {
+      "sample_radii": [
+        0.03,
+        0.1,
+        0.3,
+        1,
+        3,
+        10,
+        100
+      ],
+      "reconstruction_radii": [
+        0.1,
+        1,
+        10
+      ],
+      "reconstruction_tolerance": 2e-05,
+      "energy_tail_cutoff": 25
+    },
+    "non_claims": [
+      "No formation dynamics, stability, finite-mass halo completion, extended baryons, cosmological validation, or scale selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-24T17:09:57.962206+00:00",
+    "runtime_seconds": 1.099887,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 50000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/cold_sector_emergence_2026_10_24/checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/cold_sector_emergence_2026_10_24/checks.py",
+      "sha256": "f2a34dcdb3308f45ca33db6e9fe32de79d6c5b5a56848ca5875c45d8f39f4b88",
+      "sha256_after": "f2a34dcdb3308f45ca33db6e9fe32de79d6c5b5a56848ca5875c45d8f39f4b88"
+    }
+  ],
+  "output_directory": "reviews/cold_sector_emergence_2026_10_24/run",
+  "declared_results": [
+    "reviews/cold_sector_emergence_2026_10_24/run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/cold_sector_emergence_2026_10_24/run/stdout.txt",
+      "sha256": "1e75128cec37bc3e5662c824f5471009a48fc0d7cba2f25632883db66602b5ab",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/cold_sector_emergence_2026_10_24/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/cold_sector_emergence_2026_10_24/run/result.json",
+      "sha256": "1e75128cec37bc3e5662c824f5471009a48fc0d7cba2f25632883db66602b5ab",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

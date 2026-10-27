@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "THERMAL-SOURCE-CARRIER-THRESHOLD-SHIFT",
+  "repository": {
+    "commit": "63b0bc1127247f4f61cb4c3c02db989130dea3b6",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/thermal_source_carrier_shift_2026_10_13/check.py",
+    "sol61_push/thermal_source_carrier_shift_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Crossed scalar forward amplitude, leading real thermal-R carrier self-energy at MR=2m and independent quartic sensitivity",
+    "coefficient_domain": "Exact SymPy algebra, SciPy quadrature and Bessel series",
+    "conventions": "Real scalar R, complex phi; natural units; thermal R bath only; nonderivative cubic -mu R|phi|^2",
+    "inputs": [
+      "sol61_push/thermal_source_carrier_shift_2026_10_13/check.py",
+      "sol61_push/ordinary_lepton_source_2026_10_13/run/results.json"
+    ],
+    "bounds": {
+      "T_MeV": [
+        0.1,
+        0.5,
+        1,
+        2,
+        3
+      ],
+      "p_over_T_max": 100,
+      "Bessel_terms": 400,
+      "m_eV": 1000000.0
+    },
+    "non_claims": [
+      "Not the self-consistent source-carrier plasma or a physical-production proof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T03:13:49.549455+00:00",
+    "runtime_seconds": 0.881943,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/thermal_source_carrier_shift_2026_10_13/check.py",
+    "sol61_push/ordinary_lepton_source_2026_10_13/run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/thermal_source_carrier_shift_2026_10_13/check.py",
+      "sha256": "042162a0cacb3ac86a11956ea1058a1bb0461e881a31e8689ef900caf597534c",
+      "sha256_after": "042162a0cacb3ac86a11956ea1058a1bb0461e881a31e8689ef900caf597534c"
+    },
+    {
+      "path": "sol61_push/ordinary_lepton_source_2026_10_13/run/results.json",
+      "sha256": "a613564e0f30d6b5023925a3d954f12920e18e75c7e37060f451b2a0e881c9f3",
+      "sha256_after": "a613564e0f30d6b5023925a3d954f12920e18e75c7e37060f451b2a0e881c9f3"
+    }
+  ],
+  "output_directory": "sol61_push/thermal_source_carrier_shift_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/thermal_source_carrier_shift_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/thermal_source_carrier_shift_2026_10_13/run/stdout.txt",
+      "sha256": "f398b3894703a17897df2c3fe89e799cbcb2bf57ed619bc01809ace50a36f113",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/thermal_source_carrier_shift_2026_10_13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/thermal_source_carrier_shift_2026_10_13/run/results.json",
+      "sha256": "f398b3894703a17897df2c3fe89e799cbcb2bf57ed619bc01809ace50a36f113",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

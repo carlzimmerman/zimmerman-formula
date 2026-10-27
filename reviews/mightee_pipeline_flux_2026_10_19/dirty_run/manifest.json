@@ -1,0 +1,269 @@
+{
+  "schema_version": 2,
+  "claim_id": "MIGHTEE_DIRTY_CENTRAL_BRIGHTNESS_2026_10_19",
+  "repository": {
+    "commit": "9516ee01c79f35c04b7556050669ba77b0c98b99",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/mightee_pipeline_flux_2026_10_19/analyze_dirty_centres.py",
+    "reviews/mightee_pipeline_flux_2026_10_19/dirty_run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "astropy",
+        "version": "6.0.1"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Compare seven matched central3x3-pixel sightlines in dirty, clean_conv and clean_conv_contsub cubes over common native line channels and sparse identical off-line baseline anchors. This is central brightness localization, not a total-flux comparison.",
+    "coefficient_domain": "float64; image Jy/beam, frequency Hz, angular sizes arcsec",
+    "conventions": "Same source coordinates, aperture radius (CFG302 line-window beam median times 1.5), frequency channels, beam area and line windows for pre/post stages. Baseline masks and robust constant/linear residual fits follow the previous profile analysis, with common window halfwidth=max(150,max(MIGHTEE W50,ALFALFA W50)/2+50) km/s; expansions0,100,250. Frequency-bin overlap integrals convert JyHz by c/nu_center. Pre means after visibility-domain continuum subtraction, deconvolution, resolution homogenization and mosaicking but before final image-domain subtraction; it is NOT raw visibilities.",
+    "inputs": [
+      "Seven primary matches from preceding profile comparison",
+      "Public clean_conv r1p0 FITS range cutouts",
+      "Existing clean_conv_contsub local cubes",
+      "Existing ALFALFA spectra and independent catalogue measurements",
+      "Heywood et al 2024 sections3.2-3.6 and table2"
+    ],
+    "bounds": {
+      "population": 7,
+      "extract_halfwidth_kms": 2200,
+      "aperture_beam_multipliers": [
+        1.5
+      ],
+      "download_cap_bytes": 1500000000,
+      "concurrent_range_requests": 8,
+      "network_timeout_seconds_per_request": 60,
+      "maximum_retries": 3,
+      "baseline_minimum_channels": 32,
+      "line_channels": "all abs(v)<=primary_halfwidth+100",
+      "baseline_anchors": "abs(v)>halfwidth+350 and abs(v)<1800, every sixth global channel"
+    },
+    "non_claims": [
+      "No raw visibility reprocessing",
+      "Cannot isolate pre-imaging continuum subtraction or calibration from already reduced cube products",
+      "A smoothing simulation is not a reproduction of unpinned historical pipeline code",
+      "No universal flux correction",
+      "No author contact authorized"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T02:48:52.070037+00:00",
+    "runtime_seconds": 1.18609,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/mightee_pipeline_flux_2026_10_19/contract.json",
+    "reviews/mightee_pipeline_flux_2026_10_19/dirty_contract.json",
+    "reviews/mightee_pipeline_flux_2026_10_19/fetch_stages.py",
+    "reviews/mightee_pipeline_flux_2026_10_19/fetch_dirty_centres.py",
+    "reviews/mightee_pipeline_flux_2026_10_19/analyze_dirty_centres.py",
+    "reviews/mightee_pipeline_flux_2026_10_19/analyze_stages.py",
+    "reviews/fashi_mightee_profiles_2026_10_18/compare_profiles.py",
+    "reviews/fashi_mightee_profiles_2026_10_18/run_02/per_galaxy.csv",
+    "reviews/fashi_mightee_profiles_2026_10_18/run_02/measurements.csv",
+    "data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J095654.6+013159.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J095720.5+015506.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100035.1+011432.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100048.1+011413.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100050.4+012007.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100140.0+031207.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100143.2+024109.npz",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_header_2.txt",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_header_3.txt",
+    "_external_data/mightee_pipeline_2026_10_19/dirty_fetch_summary.json",
+    "_external_data/mightee_pipeline_2026_10_19/range_manifest.jsonl"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/contract.json",
+      "sha256": "162a6dd170c928edfca971f8c394648ffbcaf6781a0cb43424aaf577f050744d",
+      "sha256_after": "162a6dd170c928edfca971f8c394648ffbcaf6781a0cb43424aaf577f050744d"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/dirty_contract.json",
+      "sha256": "c93284d0b80f30a1adab6be9c99f693e527233ccf29de8e3f2289b2336ec69a5",
+      "sha256_after": "c93284d0b80f30a1adab6be9c99f693e527233ccf29de8e3f2289b2336ec69a5"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/fetch_stages.py",
+      "sha256": "a40172d3722b269cf0bedeacf5efa4932ea2ff3ddb0786b265b9368d296a91e9",
+      "sha256_after": "a40172d3722b269cf0bedeacf5efa4932ea2ff3ddb0786b265b9368d296a91e9"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/fetch_dirty_centres.py",
+      "sha256": "9dfedbb2c245116ae4628eb2c74c4fe0de465efd4791e131180b8ad6f9257698",
+      "sha256_after": "9dfedbb2c245116ae4628eb2c74c4fe0de465efd4791e131180b8ad6f9257698"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/analyze_dirty_centres.py",
+      "sha256": "6ab2f5598d276859d262919abb6d4f69e895773fa8bddcdc7919b6b403ed7359",
+      "sha256_after": "6ab2f5598d276859d262919abb6d4f69e895773fa8bddcdc7919b6b403ed7359"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/analyze_stages.py",
+      "sha256": "283f595c0d1d7598317ec08186c3a4911543853fe809f9d54cf2d1ababe8919c",
+      "sha256_after": "283f595c0d1d7598317ec08186c3a4911543853fe809f9d54cf2d1ababe8919c"
+    },
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/compare_profiles.py",
+      "sha256": "f3ba34bdf2ca1efde836782741c776da2a50445604ea66b3123c7aade92b3183",
+      "sha256_after": "f3ba34bdf2ca1efde836782741c776da2a50445604ea66b3123c7aade92b3183"
+    },
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/run_02/per_galaxy.csv",
+      "sha256": "06c94419e507607b46cba0da63e5763bb04912ce832c20b0a72afb05c6859c9d",
+      "sha256_after": "06c94419e507607b46cba0da63e5763bb04912ce832c20b0a72afb05c6859c9d"
+    },
+    {
+      "path": "reviews/fashi_mightee_profiles_2026_10_18/run_02/measurements.csv",
+      "sha256": "83b3330338aed1c9b7c88e9a5f2245952e8d33b327c864b8b5e9ba6c9873308a",
+      "sha256_after": "83b3330338aed1c9b7c88e9a5f2245952e8d33b327c864b8b5e9ba6c9873308a"
+    },
+    {
+      "path": "data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv",
+      "sha256": "bcf9e8558bc5644805b9acb288372c17daffac76d8be6c89d7db9843af9fbf23",
+      "sha256_after": "bcf9e8558bc5644805b9acb288372c17daffac76d8be6c89d7db9843af9fbf23"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J095654.6+013159.npz",
+      "sha256": "4c6a1add1a077f243e6a555fed6970018ab4b033e2f6dfe6080fc2b012983e5e",
+      "sha256_after": "4c6a1add1a077f243e6a555fed6970018ab4b033e2f6dfe6080fc2b012983e5e"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J095720.5+015506.npz",
+      "sha256": "74a96aee60ec9a3416ad22fa67a588488f838b8e9e599793cac0609dac34694a",
+      "sha256_after": "74a96aee60ec9a3416ad22fa67a588488f838b8e9e599793cac0609dac34694a"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100035.1+011432.npz",
+      "sha256": "58ad1ec42dff416e1d0ee2cfb61acb4bed2bd6225c8d6e95339b2e83e3e9bd59",
+      "sha256_after": "58ad1ec42dff416e1d0ee2cfb61acb4bed2bd6225c8d6e95339b2e83e3e9bd59"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100048.1+011413.npz",
+      "sha256": "6e9d28f3e5bd740826c459248139a9b09c928998158ddf08931e5b4693964f21",
+      "sha256_after": "6e9d28f3e5bd740826c459248139a9b09c928998158ddf08931e5b4693964f21"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100050.4+012007.npz",
+      "sha256": "4823464b904ee875231eec8e19f262a4aea18d0edcc5bfff8604f23fe1dc6687",
+      "sha256_after": "4823464b904ee875231eec8e19f262a4aea18d0edcc5bfff8604f23fe1dc6687"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100140.0+031207.npz",
+      "sha256": "d2f6581370b7f0a10069683218b05ffab714c72b57002dabb5869a34abcb8442",
+      "sha256_after": "d2f6581370b7f0a10069683218b05ffab714c72b57002dabb5869a34abcb8442"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/dirty_MGTH_J100143.2+024109.npz",
+      "sha256": "7eb6f1209936d57110aca5aa4146fbc35b140eca762f960a87b36da932cf7830",
+      "sha256_after": "7eb6f1209936d57110aca5aa4146fbc35b140eca762f960a87b36da932cf7830"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/dirty_header_2.txt",
+      "sha256": "c7d8c86720bc0908f0ef9633aa37e09956e86367633443225de51744008875d6",
+      "sha256_after": "c7d8c86720bc0908f0ef9633aa37e09956e86367633443225de51744008875d6"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/dirty_header_3.txt",
+      "sha256": "79309de4ced882f6c2dcd28bf5e3e8cb562a478232cac39fc2877fc805f58fa0",
+      "sha256_after": "79309de4ced882f6c2dcd28bf5e3e8cb562a478232cac39fc2877fc805f58fa0"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/dirty_fetch_summary.json",
+      "sha256": "c2a0c09893c79d90f4f3fcdffbf461397e60d0fe59e04c69f2b17138aba1c1a6",
+      "sha256_after": "c2a0c09893c79d90f4f3fcdffbf461397e60d0fe59e04c69f2b17138aba1c1a6"
+    },
+    {
+      "path": "_external_data/mightee_pipeline_2026_10_19/range_manifest.jsonl",
+      "sha256": "458a39cd19309b7f674d8380a2315463131b6d9cc27c4bf29f6a83afce92a80c",
+      "sha256_after": "458a39cd19309b7f674d8380a2315463131b6d9cc27c4bf29f6a83afce92a80c"
+    }
+  ],
+  "output_directory": "reviews/mightee_pipeline_flux_2026_10_19/dirty_run",
+  "declared_results": [
+    "reviews/mightee_pipeline_flux_2026_10_19/dirty_run/results.json",
+    "reviews/mightee_pipeline_flux_2026_10_19/dirty_run/central_brightness.csv"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/dirty_run/stdout.txt",
+      "sha256": "0f3243357d0a6b521c5927196f81b7200beeacece4e88a952fb948cdee4c2df0",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/dirty_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/dirty_run/results.json",
+      "sha256": "3ab07902b0ca2551d4e684c5aa0b644f1d4831eaf5ebc949f29ed9cfdf38a551",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/mightee_pipeline_flux_2026_10_19/dirty_run/central_brightness.csv",
+      "sha256": "6e688fcb001c1c217b23dec8cacabbff105e20dffd41416e35e5f095e1406853",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

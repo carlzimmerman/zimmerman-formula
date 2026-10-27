@@ -1,0 +1,170 @@
+{
+  "schema_version": 2,
+  "claim_id": "POLARIZATION_SOURCE_ASSEMBLY_VERIFICATION",
+  "repository": {
+    "commit": "44bf95584b4105b8a648a4eaff2573619bdf43c1",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "sol61_push/polarization_assembly_2026_10_12/calculate.py",
+    "verify",
+    "verify"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.14.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Verify best screened source-assembly duration by preregistered deterministic selection rule; preserve failures.",
+    "coefficient_domain": "float64 radial finite volumes; velocity Verlet; trapezoidal external work",
+    "conventions": "C=a0=Z=I=1; source rho=normalized exp(-r^2/8) cut at 8; fixed shape times quintic smoothstep lambda(t); source work integral lambda_dot*integral(rho*Phi*r^2 dr)dt. Origin regular; Phi=0 at outer face. No drag. Same CFG596 inverse deficit and exact piecewise-linear potential primitive as prior runs.",
+    "inputs": [
+      "sol61_push/polarization_assembly_2026_10_12/calculate.py",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py",
+      "sol61_push/polarization_assembly_2026_10_12/screen/results.json"
+    ],
+    "bounds": {
+      "selection": "min worst late error in screen/results.json",
+      "runs": [
+        [
+          768,
+          12288,
+          0.01
+        ],
+        [
+          1536,
+          12288,
+          0.02
+        ]
+      ],
+      "end": "selected T+640",
+      "threads": 1,
+      "timeout_seconds": 300
+    },
+    "criteria": {
+      "formation": "RMS fractional force error <=0.10 and attractive force at ALL late samples",
+      "work_balance_normalized_to_abs_final_static_energy": 0.002,
+      "static_residual": 1e-07,
+      "verification": "Preselected rule: refine lowest worst-late-error case, double domain separately; all late force profiles relative L2 change <=0.03 and worst RMS absolute change <=0.03."
+    },
+    "controls": [
+      "discrete static residual",
+      "zero-source null RHS",
+      "discrete integration by parts",
+      "external work balance",
+      "table support",
+      "selected-case refinement and doubled boundary in separate run"
+    ],
+    "non_claims": [
+      "No self-consistent baryon assembly",
+      "No conserved cold matter or metric/lensing",
+      "No physical time unit",
+      "No kappa derivation",
+      "No infinite-time attraction, continuum theorem, or observational fit",
+      "Prescribed assembly can supply/remove energy; it is not free relaxation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T00:04:40.603792+00:00",
+    "runtime_seconds": 45.055285,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 300.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 290,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/polarization_assembly_2026_10_12/calculate.py",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py",
+    "sol61_push/polarization_assembly_2026_10_12/screen/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/polarization_assembly_2026_10_12/calculate.py",
+      "sha256": "1bf6ebaa3ec6315bd3a5fc0641224606d9fcf252555b8ac2bcf4b6424d048658",
+      "sha256_after": "1bf6ebaa3ec6315bd3a5fc0641224606d9fcf252555b8ac2bcf4b6424d048658"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py",
+      "sha256": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c",
+      "sha256_after": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c"
+    },
+    {
+      "path": "sol61_push/polarization_assembly_2026_10_12/screen/results.json",
+      "sha256": "8f9c887a9f1a2496d874f333031195995c6e2b6f84a7c0df7b5499cd2f424254",
+      "sha256_after": "8f9c887a9f1a2496d874f333031195995c6e2b6f84a7c0df7b5499cd2f424254"
+    }
+  ],
+  "output_directory": "sol61_push/polarization_assembly_2026_10_12/verify",
+  "declared_results": [
+    "sol61_push/polarization_assembly_2026_10_12/verify/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/polarization_assembly_2026_10_12/verify/stdout.txt",
+      "sha256": "63eea70e3b32cda328b39cee5e0ed1e2be33b3dc048d4d3a97c207b5a79fb5ff",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/polarization_assembly_2026_10_12/verify/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/polarization_assembly_2026_10_12/verify/results.json",
+      "sha256": "01b0fb746b5ad95eb8509e6b38ce597d5a5fdd5e3073fef865ccd545b25e736e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

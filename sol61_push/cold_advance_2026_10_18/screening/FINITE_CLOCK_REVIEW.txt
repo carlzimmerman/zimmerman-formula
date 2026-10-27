@@ -1,0 +1,221 @@
+Independent focused review: finite clock stiffness theorem and witness
+2026-10-18 local / 2026-10-19 UTC. Repository root:
+/Users/carlzimmerman/new_physics/zimmerman-formula
+HEAD 3c01aa2861bf576f4c2d942251eb9d2f89cae108.
+Audited input:
+ sol61_push/cold_advance_2026_10_18/cones/FINITE_CLOCK_STIFFNESS.md
+ SHA256 3df08b50aed0affaa4aa083639ad3a3f233ab8290e259f773a3c5042e2ff17a8
+Scope: independent theorem/witness audit of sections 1-5, plus the full-W
+scalar algebra appended as section 9. Sections 6 and 8 are provenance/context.
+Review provenance: separate delegated agent, independent analytic expansion
+of the displayed covariant action. The author's verdict and claimed symbolic
+controls were not adopted as proof. No author source was edited. This review
+is independent within this collaboration, not external certification.
+
+Normalized claim and primary verdict
+PROVED AS WRITTEN at the stated fixed-metric, frozen static-background,
+two-field effective-principal-symbol scope. For gamma,Z0,X0,y>0, the action
+ L=P(X)+A(Y) U^2/2-F(Y), F(Y)=gamma Y^3/3, A(Y)=Z0+2gamma Y,
+with theta=omega t, phi=y x, X0=omega^2, has positive definite quadratic
+derivative energy and 0<c^2<=1 in every propagation direction if and only if
+ kappa>(Z0+gamma y)y^2/X0,
+ Delta>=gamma(Z0+gamma y)y^3/(Z0 X0),
+where kappa=2P_X(X0), Delta=4X0P_XX(X0).
+The rational P(X) witness satisfies these hypotheses. No missing physical
+matching input has thereby been supplied; its microscopic or measured origin
+remains conditional exactly as the note states.
+
+1. Exact conventions, domain and dependency graph
+Signature (-+++); matter metric fixed and flat; c=1; scalar fields real.
+X=-partial theta.partial theta>0,
+u^mu=-partial^mu theta/sqrt(X), h^{mu nu}=g^{mu nu}+u^mu u^nu,
+Y^2=h^{mu nu}partial_mu phi partial_nu phi, U=u.partial phi.
+The background has omega>0, y>0 and U=0. It is crucial that theta is varied.
+All derivative-energy and cone assertions concern fluctuations about that
+background, with kappa and Delta evaluated at the fixed X0.
+
+Dependency graph:
+ covariant definitions -> quadratic expansion -> velocity Hessian/Hamiltonian
+ -> directional principal matrix -> positive-root criterion -> cone endpoint
+ -> all-angle bound -> finite-band monotonicity -> explicit P(X) witness.
+All these leaves were checked by elementary algebra below. No external theorem
+or computation is load-bearing. Historical bridge/vector/literature claims
+in sections 6 and 8 of the author note are not needed for this theorem and
+were not independently reaudited here.
+
+2. Independent quadratic expansion
+Write theta=omega t+pi and phi=y x+chi. Directly from the definitions,
+ X=X0+2omega pi_dot+pi_dot^2-|grad pi|^2,
+ U1=chi_dot-y pi_x/omega.
+Since Y^2=partial phi.partial phi+U^2, its quadratic increment is
+ Y^2=y^2+2y chi_x+|grad chi|^2
+     -2y chi_dot pi_x/omega+y^2 pi_x^2/X0.
+The chi_dot^2 terms cancel. At this background U0=0, so A'(y) first enters
+A(Y)U^2 at cubic order. Expansion of P gives
+ P2=(kappa+Delta)pi_dot^2/2-kappa|grad pi|^2/2.
+
+For arbitrary differentiable F at y>0,
+ F2=F''(y)chi_x^2/2+[F'(y)/(2y)]|grad_perp chi|^2
+    -F'(y)chi_dot pi_x/omega+F'(y)y pi_x^2/(2X0).
+Combining -F2 with A(y)U1^2/2 gives exactly
+ L2=A chi_dot^2/2+B pi_dot^2/2
+    -Cpar chi_x^2/2-Cperp|grad_perp chi|^2/2
+    -kappa|grad pi|^2/2+r pi_x^2/2-d chi_dot pi_x,
+ A=Z0+2gamma y, B=kappa+Delta,
+ Cpar=2gamma y, Cperp=gamma y,
+ q=Z0+gamma y, r=q y^2/X0, d=q y/omega, d^2=q r.
+This checks the factors 2 and 4 in the X convention; there is no hidden 1/2
+inside X.
+
+3. Hamiltonian and principal matrices
+Canonical momenta are p_chi=A chi_dot-d pi_x, p_pi=B pi_dot. Thus
+ H2=A chi_dot^2/2+B pi_dot^2/2
+    +Cpar chi_x^2/2+Cperp|grad_perp chi|^2/2
+    +(kappa-r)pi_x^2/2+kappa|grad_perp pi|^2/2.
+Equivalently its kinetic part is (p_chi+d pi_x)^2/(2A)+p_pi^2/(2B).
+The mixed term does not rescue a negative spatial coefficient. Given the
+stipulated gamma,Z0,y>0, positive derivative energy is precisely
+ B>0 and kappa>r.
+
+For wave direction cosine mu relative to x and t=mu^2 in [0,1], define
+ C=gamma y(1+t), E=kappa-r t.
+The EL equations give the principal matrix, up to the irrelevant shared
+off-diagonal Fourier sign,
+ M(v)=v^2 K+v D-H,
+ K=diag(A,B), H=diag(C,E),
+ D=[[0,d mu],[d mu,0]].
+Hence
+ det M=AB z^2-(AE+BC+d^2t)z+CE, z=v^2.
+This independently reproduces the stated polynomial and confirms the plus
+sign of d^2t in its middle coefficient.
+
+4. Exact cone criterion and angular endpoint
+Assume energy positive so A,B,C,E>0. Put alpha=C/A, beta=E/B and
+rho=d^2t/(AB)>=0. The normalized polynomial is
+ z^2-(alpha+beta+rho)z+alpha beta.
+Its discriminant is (alpha-beta)^2+2rho(alpha+beta)+rho^2>=0;
+its product and sum are positive, so both roots are real and positive.
+Substitution at alpha and beta gives a nonpositive polynomial, proving
+z_plus>=max(alpha,beta), z_minus<=min(alpha,beta).
+
+The exact condition for z_plus<=1 is
+ A-C>=0, B-E>=0, (A-C)(B-E)-d^2t>=0.
+Necessity follows from the root inequalities and det M(1)>=0. For sufficiency,
+these are exactly M(1)>=0. For v>1,
+ d[M(v)/v]/dv=K+H/v^2>0,
+so M(v) is positive definite and has no characteristic root above 1.
+Together with positive roots this proves sufficiency, including equality.
+It also verifies that the matter-timelike covectors v>1 lie in the same
+positive branch of the two-field hyperbolicity cone.
+
+Here A-C=q-gamma y t>=Z0>0 and B-E=Delta+r t. The matter-cone determinant is
+ f(t)=Delta(q-gamma y t)-gamma y r t^2.
+At t=0 cone inclusion forces Delta>=0. Its derivative is then
+ f'(t)=-gamma y Delta-2gamma y r t<=0.
+Thus the all-angle determinant condition is equivalent to f(1)>=0, namely
+ Z0 Delta-gamma y r>=0.
+This is exactly the stated Delta inequality. It is positive and therefore
+also implies B>0 and B-E>0 once kappa>r is imposed. Conversely, positive
+energy forces kappa>r, and the radial cone condition forces the same Delta
+inequality. The iff claim, including its endpoints, follows.
+
+5. Saturation, energy and the word hyperbolic
+At equality in the Delta bound, f(1)=0 and there is a radial luminal mode.
+The principal matrix at the matter cone is semidefinite, while the quadratic
+Hamiltonian remains strictly positive because kappa>r, A>0 and B>0. These
+are different matrices, so this is not an inconsistency.
+Strict Delta inequality makes M(1) positive definite for every direction,
+giving c^2<1. Positive kappa-r excludes a zero-speed spatial boundary.
+
+Strict cone containment and positive energy do NOT assert strict hyperbolicity
+in the technical sense of all characteristic roots being distinct. For example
+gamma=Z0=X0=y=1, kappa=3, Delta=6 satisfies both bounds strictly, but at t=0
+the two positive roots coincide at z=1/3 (the off-diagonal coupling vanishes
+there). The note does not claim distinct roots, so no correction is required.
+Avoid replacing its precise claims by an unqualified statement of strict
+hyperbolicity. This review also does not establish a nonlinear Cauchy theorem.
+
+6. Finite band and explicit P(X) witness
+r(y)=(Z0+gamma y)y^2/X0 is strictly increasing for y>0, as is
+Delta_min(y)=gamma(Z0+gamma y)y^3/(Z0X0). Therefore the endpoint Y controls
+the whole band 0<y<=Y, with the stated strict kappa bound and nonstrict
+Delta bound. Uniform spatial coercivity additionally requires y>=y_min>0:
+Cperp=gamma y tends to zero at y=0. With constant coefficients and fixed X0,
+neither inequality extends to arbitrarily large y. No unbounded-X or U!=0
+background claim follows from this finite-band theorem.
+
+For P(X)=kappa X/2+Delta(X-X0)^2/(8X0),
+ P_X(X0)=kappa/2 and P_XX(X0)=Delta/(4X0).
+The added operator has value and first derivative zero at X0; it changes the
+temporal fluctuation coefficient by Delta while leaving the background P
+stress/current contribution at X0 unchanged. It also vanishes on the stated
+static U=0, X=X0 branch, whose phi equation remains the cubic spatial equation.
+This does not establish the force normalization or matter/lensing dictionary.
+
+For gamma=Z0=X0=1, kappa=3, Delta=3 and 0<y<=1, the largest required r and
+Delta_min are both 2 at y=1. Both inequalities have margin. At the radial
+upper endpoint A=3, B=6, C=2, E=1, d=2, and
+ p(z)=18z^2-19z+2,
+ z_plus/minus=(19+/-sqrt(217))/36.
+Since 0<sqrt(217)<15<19, both roots are positive and
+z_plus<34/36<1. The general endpoint proof, not this single direction or
+endpoint example, establishes the full band and all angles.
+
+7. Meaning and remaining obligation
+The proposed clock is physical in the limited model sense that theta is a
+varied field with its own equation, inertia and mixed response, rather than
+an externally fixed preferred time direction. It is not thereby identified
+with a microscopic host, a measured material clock, or the existing particle
+bridge. The new P_XX coefficient is explicit independent model input.
+Formal covariance of the two-scalar action on a fixed matter metric does not
+solve Einstein backreaction, source normalization, lensing or cosmology.
+The theorem controls its stated effective principal symbol; frequency validity
+and matching above integrated amplitude gaps remain separate. The paper
+states those limits, and this review finds no contrary physical closure claim.
+
+8. Appended full-W scalar comparison (section 9)
+Independently differentiating its primitive gives
+ F'(u)=u^2/(a0-u),
+ F''(u)=u(2a0-u)/(a0-u)^2,
+ Cperp=F'/u=u/(a0-u),
+ J=Cpar-Cperp=a0u/(a0-u)^2>0.
+For A=Z0+Cpar, q=Z0+J and r=q u^2/X0. Substitution into the already derived
+general principal matrix gives
+ f(t)=Delta(q-Jt)-Jr t^2,
+so kappa>r and Delta>=Jr/Z0 are the exact energy/cone conditions. Moreover
+J'=a0(a0+u)/(a0-u)^3>0, proving the endpoint rule on every compact band
+0<u_min<=u<=u_max<a0. The stated wall divergences of the two bounds have
+powers -2 and -4, respectively. These identities and domain claims pass.
+This is a different scalar action with an unspecified source dictionary;
+the author correctly does not transfer original polarization mass or Poisson
+normalization into it. It does not evade the separate finite-stock theorem.
+
+9. Obligation matrix and next check
+PASSED: quadratic covariant expansion, X normalization, Hamiltonian positivity,
+directional matrix, real positive roots, matter-cone criterion, worst-angle
+endpoint, equality treatment, bounded-y construction and rational witness.
+CONDITIONAL: realizing the extra P_XX in the intended material/particle host
+at the claimed frequencies; actual source/gravity/clock interpretation.
+NOT ADDRESSED: nonlinear band preservation, full metric coupling, microscopic
+completion, arbitrary U!=0 backgrounds, or independent historical-run audit.
+
+Smallest remaining physical implication: derive the positive temporal clock
+operator from the matched host, with its frequency range, instead of declaring
+it a new effective coefficient. The cheapest decisive next check is the full
+amplitude/clock/response principal symbol before amplitudes are integrated out.
+No change to the all-angle theorem is needed before that work.
+
+Source/computation checks
+The input SHA256 above and repository HEAD were read directly. The author
+appended section 9 during review: the initial source hash was
+da7013cafa04dc37be4785010fcd4a1bc674f1987a894394f1fe6c476a580707.
+An unchanged-file assertion against that initial hash therefore failed;
+the appended section was then read and audited and the final hash pinned.
+The main quadratic matrices and theorem were unchanged by that append.
+The report's
+algebra was reconstructed by hand from the covariant definitions; the author's
+SymPy command was not rerun and no numerical sample is used as proof. No
+external source leaf was needed. No source, frozen criterion, state ledger or
+live job was changed. Mathematical proofreading self-review covers this new
+review only: routine edits none, mathematical-token changes none, unresolved
+notation/prose issues none found.

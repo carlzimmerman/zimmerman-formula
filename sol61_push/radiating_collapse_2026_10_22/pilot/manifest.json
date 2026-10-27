@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "RC_COLLAPSE_PILOT",
+  "repository": {
+    "commit": "08daade3f873ad4fa6dfbf31b9be950a833d9072",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/radiating_collapse_2026_10_22/run.py",
+    "--output",
+    "sol61_push/radiating_collapse_2026_10_22/pilot/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Variational finite radial collapse force/energy consistency and finite evolution",
+    "coefficient_domain": "float64",
+    "conventions": "CONTRACT.md",
+    "inputs": [
+      "conditional Gaussian cold seed and finite-chi coefficients"
+    ],
+    "bounds": {
+      "n": 256,
+      "shells": 128,
+      "dt": 0.001,
+      "time": 30,
+      "mass_ratio": 1,
+      "spin": 0.02
+    },
+    "non_claims": [
+      "No 3D rotating solution",
+      "No asymptotic remnant or universal mass",
+      "No baryonic backreaction test"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-23T00:35:51.157549+00:00",
+    "runtime_seconds": 4.216391,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 250000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/radiating_collapse_2026_10_22/model.py",
+    "sol61_push/radiating_collapse_2026_10_22/run.py",
+    "sol61_push/radiating_collapse_2026_10_22/CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/model.py",
+      "sha256": "9541819c5b1642a549e692e9808acbbdba75628b4fa4cda7a57d858ca132ca4c",
+      "sha256_after": "9541819c5b1642a549e692e9808acbbdba75628b4fa4cda7a57d858ca132ca4c"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/run.py",
+      "sha256": "53376dd854a29a9873fa19b34c37ff43b13973a756aed8b40cecdb25a71190c6",
+      "sha256_after": "53376dd854a29a9873fa19b34c37ff43b13973a756aed8b40cecdb25a71190c6"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/CONTRACT.md",
+      "sha256": "61500e677ae8402ca3d67add9eb1889d3f8f9b4d2ebf29bae5b9a064123335aa",
+      "sha256_after": "61500e677ae8402ca3d67add9eb1889d3f8f9b4d2ebf29bae5b9a064123335aa"
+    }
+  ],
+  "output_directory": "sol61_push/radiating_collapse_2026_10_22/pilot",
+  "declared_results": [
+    "sol61_push/radiating_collapse_2026_10_22/pilot/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/pilot/stdout.txt",
+      "sha256": "bad776844250b880ef11778e533b7ce274f453f5822f231286daa79599d1b51a",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/pilot/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/radiating_collapse_2026_10_22/pilot/result.json",
+      "sha256": "36622a2d5ec16fc0f13e5905ebc7efbbaa368ea04bc5dee29b4ae13fb21f0827",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

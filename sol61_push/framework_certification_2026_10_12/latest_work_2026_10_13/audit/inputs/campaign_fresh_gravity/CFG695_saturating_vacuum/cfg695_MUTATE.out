@@ -1,0 +1,30 @@
+CFG695: a vacuum whose polarization saturates at a0: W'(u) = u/(1 - u/a0), u = 4 pi G |P|.
+
+Criteria: FROZEN_CRITERIA.md (committed alone, dd0f52abe; origin post-hoc from CFG694 G5b, disclosed). S1 sympy; S2 raw SPARC
+(CFG4 statistic, CFG690 copy; controls); S3 Solar-System carry-over; S4 surface-density bound reported.
+kappa = 1/2 FITTED; footings never pooled; the cold energy's mass is required; no particle species; not "theory closed".
+
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg695.py      (CFG695_MUTATE=1: saturation at 2 a0, nu = 1; exit 1 iff both bite)
+
+S1  structure
+    W(u) = a_0*(2*a_0*log(-2*a_0) - 2*a_0*log(-2*a_0 + u) - u)/(2*pi*G);  series to u^4: u**2/(8*pi*G) + u**3/(24*pi*G*a_0) + u**4/(64*pi*G*a_0**2)  == critical + SI cubic + c4=1 quartic: False
+    u(g) = 2*a_0*g/(2*a_0 + g);  g_N(g) = g**2/(2*a_0 + g);  == g^2/(g + a0): False;  deep coefficient lim g_N/(g^2/a0) = 1/2;  high-field u -> 2*a_0
+    W'' = 16*pi*G*a_0**2/(2*a_0 - u)**2; W'/P = 8*pi*G*a_0/(2*a_0 - u); PD condition max over u/a0 in (1e-4..0.999), all k = 0.999950 (< 1)
+  [FAIL] S1 expansion, resummed law, stability: (a) False (b) False (c) True
+
+S2  raw SPARC, CFG4 statistic: nu_simple = (1 + sqrt(1 + 4/y))/2
+    canonical: saturating vacuum 0.2755 dex @ Upsilon 1.20   (nu_mono 0.1003 @ 0.61; CFG690 cubic 0.1012 @ 0.46)
+    alt      : saturating vacuum 0.2755 dex @ Upsilon 1.20   (nu_mono 0.0991 @ 0.57; CFG690 cubic 0.1007 @ 0.42)
+  [PASS] S2 CONTROLS reproduce CFG4 nu_mono and CFG690 T3: 
+  [FAIL] S2 C2 line (rms <= 0.110, Upsilon 0.50-0.80) on both footings: canonical 0.2755@1.20; alt 0.2755@1.20
+
+S3  Sun's screened inner anomaly GM/L*^2 at L* = 5.75 pc vs a0
+    canonical: u/a0 = 4.50e-05
+    alt      : u/a0 = 3.72e-05
+  [PASS] S3 saturation negligible in the screened Solar System (u/a0 <= 1e-3): 
+
+S4  (reported) u <= a0  =>  M_ph(<r) <= a0 r^2/G  =>  mean phantom surface density <= a0/(pi G) = 2 Sigma_M (Sigma_M = a0/2piG)
+    canonical: Sigma_M = 107 Msun/pc^2; bound a0/(pi G) = 214 Msun/pc^2
+    alt      : Sigma_M = 129 Msun/pc^2; bound a0/(pi G) = 258 Msun/pc^2
+
+MUTATE: {'M1': True, 'M2': True}

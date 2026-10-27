@@ -1,0 +1,175 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE087-SELFGRAV-TF-TIDAL-NORMALIZATION",
+  "repository": {
+    "commit": "970c67ce3dcd1c14e3488b9bce45e813ccfe0799",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/check_virial.py",
+    "--inputs",
+    "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/inputs.json",
+    "--result",
+    "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "At ell=2,3,4 and three listed tolerances, regular n=1 TF radial Helmholtz ODE boundary response agrees with the Bessel solution; direct quadrupole integration agrees with derived C; declared benchmark SI conversions and scale ratios are computed.",
+    "coefficient_domain": "IEEE double precision scipy 1.11.4; analytic derivation in accompanying note",
+    "conventions": "rho=m|psi|²; Qij=integral rho (xi xj-deltaij r²/3); Eij=STF Hessian U; Qij=-lambda_T Eij; k=1/L",
+    "inputs": [
+      "m=1 MeV/c², lambda_rep=.005875",
+      "ell in [2,3,4], rtol in [1e-9,1e-11,1e-13], x in [1e-5,pi]",
+      "unit constants and comparison lengths exactly listed in inputs.json"
+    ],
+    "bounds": {
+      "ode_count": 9,
+      "quadrature_count": 1,
+      "x_max": "pi",
+      "max_step": 0.05,
+      "rtols": [
+        1e-09,
+        1e-11,
+        1e-13
+      ],
+      "ode_response_abs_error_threshold": 2e-08
+    },
+    "non_claims": [
+      "No all-profile numerical theorem",
+      "No scalar-condensate formation calculation",
+      "No quantum SP profile calculation",
+      "No universal acceleration response or a0 selection",
+      "No relativistic or complete nonperturbative phase classification"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T13:38:38.377386+00:00",
+    "runtime_seconds": 1.216356,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/check_virial.py",
+    "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/inputs.json",
+    "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/source_pins.json",
+    "sol61_push/particle_derivation_2026_10_18/micro_response/DERIVATION.md",
+    "sol61_push/particle_derivation_2026_10_18/micro_response/EXCHANGE_REVIEW.md",
+    "sol61_push/gravity_restoring_2026_10_19/internal_polarization/INTERNAL_POLARIZATION.md",
+    "sol61_push/gravity_restoring_2026_10_19/rational_completion/RATIONAL_COMPLETION.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/check_virial.py",
+      "sha256": "a7823f71a9e7db06edd41d963b5ad5d26bdff8069b52b470149a1ed44efee28e",
+      "sha256_after": "a7823f71a9e7db06edd41d963b5ad5d26bdff8069b52b470149a1ed44efee28e"
+    },
+    {
+      "path": "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/inputs.json",
+      "sha256": "792fff5bb61824f8861df513cd709e96f95ec73be755883e2fcf92338b858c05",
+      "sha256_after": "792fff5bb61824f8861df513cd709e96f95ec73be755883e2fcf92338b858c05"
+    },
+    {
+      "path": "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/source_pins.json",
+      "sha256": "02aa749c694bedab238b1d5284a25f532d1a00a563e3ed16a2a84fcbf3df9378",
+      "sha256_after": "02aa749c694bedab238b1d5284a25f532d1a00a563e3ed16a2a84fcbf3df9378"
+    },
+    {
+      "path": "sol61_push/particle_derivation_2026_10_18/micro_response/DERIVATION.md",
+      "sha256": "2ba9a12c97fc2c3d237bbb963b22486ff0ad066fafd3404b6d35063d290423c8",
+      "sha256_after": "2ba9a12c97fc2c3d237bbb963b22486ff0ad066fafd3404b6d35063d290423c8"
+    },
+    {
+      "path": "sol61_push/particle_derivation_2026_10_18/micro_response/EXCHANGE_REVIEW.md",
+      "sha256": "d7f88ecf93e7abc24b7d01877c35ba159a8a59fa4179f5e4d0a73ee8e1c91c01",
+      "sha256_after": "d7f88ecf93e7abc24b7d01877c35ba159a8a59fa4179f5e4d0a73ee8e1c91c01"
+    },
+    {
+      "path": "sol61_push/gravity_restoring_2026_10_19/internal_polarization/INTERNAL_POLARIZATION.md",
+      "sha256": "31272241f40f099ac307cd32593ec425f7c2ee8639307668d39e2495fdcf1b9e",
+      "sha256_after": "31272241f40f099ac307cd32593ec425f7c2ee8639307668d39e2495fdcf1b9e"
+    },
+    {
+      "path": "sol61_push/gravity_restoring_2026_10_19/rational_completion/RATIONAL_COMPLETION.md",
+      "sha256": "4c055419d663114a2831feebab02f704da35c2724bf728db80b8b475595e8367",
+      "sha256_after": "4c055419d663114a2831feebab02f704da35c2724bf728db80b8b475595e8367"
+    }
+  ],
+  "output_directory": "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/run_001",
+  "declared_results": [
+    "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/run_001/stdout.txt",
+      "sha256": "e02220f8357d46bdbd036fb5d187e47820f732911ddbd96d15a2ad1d389ec0cb",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/scalar_dipole_bridge_2026_10_19/virial_normalization/run_001/results.json",
+      "sha256": "5de1359fbdc4fcea79c395e7947c8c17bfe9d4b98444a9bc398413b6756ce2d1",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

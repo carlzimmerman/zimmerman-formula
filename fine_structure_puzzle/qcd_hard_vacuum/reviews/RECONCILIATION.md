@@ -1,0 +1,47 @@
+# FSP-010 independent review reconciliation
+
+**No full physical M_u,A_rho,R(alpha),finite-alpha function or alpha selection result is established.** This reconciliation governs the narrower frozen packages. A valid manifest establishes execution/freshness, and a source theorem supports only its checked implication.
+
+## Hard proton and all-scale review
+
+The [hard review](hard/REVIEW.md) independently derives the cutoff/MSbar quark constant and the all-photon-scale endpoint from unchanged parent definitions before opening new author proofs/code/results. Exact primary archives and PDFs then authenticate all 280 selected source cells across 35 rows. A separate implementation integrates both Compton amplitudes rather than importing the Born closed kernel, reproduces all three nodal stencils and their marginal-error ceilings, and checks fresh Dirac derivative orders n2,n4 and endpoints. Its completed v2 run has 55 checks at 32/48 decimal digits, with stated numerical tolerances rather than interval certificates.
+
+The finite quark 5/2 transfer passes at leading strong order. Scalar/mass/scale calibrations remain imported data. Source ground-state fits, continuum/model averages, current normalization and finite-a nodes are not converted into a no-fit ab initio prediction. Strange/charm dynamical sea is distinguished from absent electromagnetic-current insertions. No covariance is invented; the small disconnected differences do not establish signs or total uncertainties.
+
+The all-scale theorem is accepted using its explicit derivative endpoint conditions. The frozen author's earlier O(s^1/2) wording alone is insufficient: sqrt(s)sin(1/s) is a counterexample to the claimed derivative control. The immediately stated stronger conditions repair the theorem and hold in the control. This localized wording restriction does not invalidate the finite identity or benchmark. Full QCD running, contacts and nonperturbative intermediate scales remain physical leaves.
+
+The [common UV ratio](../coordinator/COMMON_UV_RATIO.md) was proposed after this review's initial pretarget derivation and is labeled posttarget. Its RG signs and quotient rule pass, provided division by beta_s is at a nonzero reference value or a separately controlled limit. Its [companion restriction](../coordinator/COMMON_UV_RATIO_RESTRICTION.md) preserves the candidate's bytes. No physical chiral-limit or curved-coefficient mass derivative is evaluated.
+
+## Closed non-Abelian and charged-sea review
+
+The [global review](global/REPORT.md) first derives the gauge/cube and staggered/photonic critical coefficients from the specified finite actions. Its independent Weyl-Laurent singlet moments, logarithm recurrence and exact rational photon inversions import no author implementation. The 233 exact checks reproduce the K1 series and finite bound, all66 moment pairs through tensor degree10 and two independent49-coordinate tree-gauge covariance controls.
+
+The pure-gauge completeness statement is restricted to connected candidate supports with no singly occupied edge through nine distinct plaquettes on K1. Ordinary connected one-plaquette sets exist, so the unqualified phrase 'all connected supports' in frozen prose is too broad. The actual search allows three-or-more-face junctions and does not impose mod2 closure. The analytic minimal six-face cube argument and the inspected recursion retain possible SU3 triple-link invariants. No independent second cap9 enumerator was run; that finite classification rests on the reviewed author search.
+
+The canonical charged-sea coefficient passes for the declared ambient-phase staggered determinant with matched positive color/photon weights. Direct current/contact controls and global Hodge rank are separate from continuum spin/taste equivalence. The reviewer independently inverts exact rational covariance matrices; n2,n3 formulas in its run are not another fresh cell enumeration. The author cell generation and finite-field ranks are audited within their actual ranges; real cohomology is established analytically, not inferred from finite fields.
+
+Tiny-beta finite partition bounds are rigorous for the specified finite Wilson measure. They are no bounds at physical bare coupling or after continuum/light-mass limits. The polyhedral integer-size family's polynomial stress is not a round-sphere physical stress trajectory. Neither the pure-gauge sector nor the charged heavy-hopping coefficient proves A or A_u zero in physical QCD. Absolute normalization is fixed in each declared regulator, while its physical metric/source matching is still required.
+
+## Finite gluon source transfer
+
+The [third fresh source-first review](gluon/REVIEW.md) independently reconstructs the vector-current threshold from Martin1812.04100v3 before reading the author. The required sequential composition subtracts both the top-QED threshold and the induced top mass contribution with six intermediate active quarks. Published Landau-VEV/tadpole definitions and the source PDF/HTML numbering difference are explicitly distinguished. The critical algebra agrees on the finite gluon and mixed quark operator constants; the final application and pin report is linked in the completed packet.
+
+The heavy-vector to sharp-photon conversion additionally uses a convergent filter-moment argument. Its constant1/t moment vanishes at the displayed orders. A logarithmic density has a nonzero moment, with a sign depending on the high-pass/low-pass convention, so this equality is not admitted for arbitrary higher orders or regulators. Matching and asymptotic contact/remainder hypotheses remain essential.
+
+Canonical gluon matrix elements scale as 1/g_s^2. The next uncalculated gluon Wilson order therefore contributes at the same hadronic order as the displayed mixed-quark term. The separate immutable author addendum governs any broader NLO reading of its title/equations. The matched massless-Nf3 finite subtraction -1/(288pi^2)+O(alpha_s) is a leading chiral Wilson limit, not physical massive QCD or the full hard proton mass. Proton scalar inputs, all-scale currents, higher matching and curved vacuum expectations remain uncalculated.
+
+## Retained failures, freshness and scope
+
+Two actual gluon runs failed at a symbolic logarithmic filter integral on inconsistent complex branches. Their scripts/contracts/manifests are retained with failed status. The corrected third author run uses a frozen real geometric-series derivation. A separate reviewer trace diagnostic also failed because its expected sign for an unspecified positive next coupling increment was wrong; the failed code/input remains, and a new corrected run agrees with dM/dg=-M/beta>0 in the stated chiral control. This is a reviewer diagnostic error, not an author-source coefficient failure. The source-algebra result is not inferred from an unsuccessful execution. Both failed evidence records and successful records are validated with their actual classifications; validity does not mean completion.
+
+All 1535 parent non-navigation artifacts and all six FSP-009 navigation snapshots remain unchanged. [Parent freshness](INPUT_FRESHNESS.json), [final manifest classification](FINAL_MANIFEST_VALIDATION.json), [review-target comparison](REVIEW_TARGET_FRESHNESS.json) and [structural checks](STRUCTURAL_VERIFICATION.json) report their exact mechanical scopes. Shared Git HEAD can change independently; per-file hashes identify the science. No review is broadened by later metadata checks. No source cache is assumed available on another clone.
+
+The earlier eleven-record [mechanical snapshot](MANIFEST_VALIDATION.json) is preserved at its own cutoff before the additional trace runs; the final assessment includes them and their actual statuses.
+
+The independent hard/global audits predate the added gluon result and accurately leave it open at their own cutoff; the later separate gluon audit supplies the finite-order update. This is not a silent revision of those earlier reviews. No Git mutation, author message, installation, external production job, automation or publication was performed. Source discoveries establish only inspected content, with no global novelty or absence claim. The full programme remains open with explicit input conditions in [the route index](../ROUTES.md).
+
+## Current replay after navigation change
+
+The final live handoff update invalidated a declared administrative input of the original hard-proton run. Its original record/code/contract/data/proof/output remain unchanged, and the original reviewer verdict retains its mathematical cutoff. The [new replay](../coordinator/hard_proton_replay/TRANSLATION.md) replaces only that old live-input path with its byte-identical preserved FSP009 snapshot, adds an interpretation note and executes the same numerical code/data. Its result is byte-identical. The [separate replay review](hard/REPLAY_REVIEW.md) audits this identity without rewriting earlier evidence.
+
+The final expanded manifest assessment therefore distinguishes five authoritative completed science executions, one retained completed science predecessor, four completed reviewer executions, three retained failed diagnostics and one retained completed record with stale live administrative input. The earlier eleven-record successful metadata and thirteen-record freshness failure are retained at their own cutoffs. A current replay, rather than updated old hashes or temporary replacement of live navigation, supplies the final execution evidence.

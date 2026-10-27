@@ -1,0 +1,123 @@
+{
+  "schema_version": 2,
+  "claim_id": "TRACKING_PARENT_ESCAPE",
+  "repository": {
+    "commit": "15b4863c1f074151700d397aea70675b800debd1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "mechanism_parent_2026_10_26/check_escape.py",
+    "--output",
+    "mechanism_parent_2026_10_26/run_escape/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Outgoing sphere response agrees with independent boundary matching and quadrature; passive flux identity and A=1 form factor hold in finite grid",
+    "coefficient_domain": "mpmath 70 digit arithmetic",
+    "conventions": "R=1, I_omega=1, c=1, radial measure r^2 dr",
+    "inputs": [
+      "A in [1,2,10,100,1000], 11 internal phases from .001 to8"
+    ],
+    "bounds": {
+      "cases": 55
+    },
+    "non_claims": [
+      "No self-consistent fluid or galaxy solution",
+      "No empirically determined parameters"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-26T16:26:35.164836+00:00",
+    "runtime_seconds": 0.669073,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "mechanism_parent_2026_10_26/run_escape/result.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "mechanism_parent_2026_10_26/check_escape.py",
+    "mechanism_parent_2026_10_26/ESCAPE.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "mechanism_parent_2026_10_26/check_escape.py",
+      "sha256": "532fb3695ead4dd237fd0655645a11cee7905eb6b59b9bedba8d83ceefbfef74",
+      "sha256_after": "532fb3695ead4dd237fd0655645a11cee7905eb6b59b9bedba8d83ceefbfef74"
+    },
+    {
+      "path": "mechanism_parent_2026_10_26/ESCAPE.md",
+      "sha256": "2e60b01ea4de608f6bf09eb22ada0cd0ca47d1e489269f16f593e960495360fe",
+      "sha256_after": "2e60b01ea4de608f6bf09eb22ada0cd0ca47d1e489269f16f593e960495360fe"
+    }
+  ],
+  "output_directory": "mechanism_parent_2026_10_26/run_escape",
+  "declared_results": [
+    "mechanism_parent_2026_10_26/run_escape/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "mechanism_parent_2026_10_26/run_escape/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "mechanism_parent_2026_10_26/run_escape/stderr.txt",
+      "sha256": "6ac2f2d30b935d70e3b36ec57442c1fc2dfa32ade7fdf3fb1b4bef34640cd19c",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: mechanism_parent_2026_10_26/run_escape/result.json"
+  ]
+}

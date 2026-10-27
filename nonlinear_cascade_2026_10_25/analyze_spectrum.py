@@ -1,0 +1,14 @@
+"""Windowed continuum radiation spectrum and spatial support of fast gradients."""
+import argparse,json,sys
+from pathlib import Path
+import numpy as np
+from scipy.linalg import eigh_tridiagonal
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'nonlinear_transfer_2026_10_25'))
+from physical_branch import PhysicalFull
+ap=argparse.ArgumentParser();ap.add_argument('--output',required=True);args=ap.parse_args();m=PhysicalFull();root=Path('nonlinear_cascade_2026_10_25/run_infall');h=np.load(root/'source_history.npz');t=h['times_Myr'];source=h['source_cell'];d=json.loads((root/'results.json').read_text());step=float(np.median(np.diff(t)));assert max(abs(np.diff(t)-step))<1e-7;ev,U=eigh_tridiagonal(m.kd,m.ko);ev=np.maximum(ev,0);a=np.load(root/'state.npz')['a'];high=ev/m.sigma/m.tdyn>=1;ah=(a@U[:,high])@U[:,high].T;eh=.5*m.k*m.w*np.sum(abs(np.diff(ah/np.sqrt(m.vol),axis=1))**2,axis=0);frac=abs(a[0])**2/np.sum(abs(a)**2,axis=0);qface=.5*(frac[1:]+frac[:-1]);regions={'T_bulk':qface>.99,'transition':(qface>=.01)&(qface<=.99),'F_bulk':qface<.01};freq=2*np.pi*np.fft.rfftfreq(len(t),d=step);omega=freq*m.tdyn;rows=[]
+for power in [1,2]:
+ window=np.sin(np.pi*(np.arange(len(t))+.5)/len(t))**(2*power);fft=np.fft.rfft(source*window[:,None],axis=0);form=np.sinc(omega[:,None]*m.r[None,:]/m.c/np.pi);amp=np.sum(fft*form,axis=1);mult=np.ones(len(freq))*2;mult[0]=1
+ if len(t)%2==0:mult[-1]=1
+ energy=step/m.tdyn/len(t)/m.c**3*mult*omega**2*abs(amp)**2;total=float(sum(energy));cum=np.cumsum(energy)/total
+ rows.append({'window':'sin^(%s)'%(2*power),'source_continuum_radiation_proxy':total,'fraction_above_1_per_Myr':float(sum(energy[freq>=1])/total),'fraction_above_0_02_per_Myr':float(sum(energy[freq>=.02])/total),'median_angular_frequency_per_Myr':float(np.interp(.5,cum,freq)),'p90_angular_frequency_per_Myr':float(np.interp(.9,cum,freq))})
+out={'actual_run_status':d['status'],'time_Myr':d['completed_time_Myr'],'material_bands':{k:v for k,v in d['material_spectral'].items() if k!='trace'},'final_high_gradient_energy_by_region':{k:float(sum(eh[v])) for k,v in regions.items()},'final_high_gradient_fraction_by_region':{k:float(sum(eh[v])/sum(eh)) for k,v in regions.items()},'source_spectral_estimates':rows,'actual_far_flux_energy':d['net_far_flux_energy'],'scope':'Material-gradient modes are not normal-mode populations. Region allocation is positive projected-gradient self energy at final state. Source spectrum uses tapered actual nonlinear source and continuum retarded radial form factor; not an exact finite-window spectral decomposition of measured500kpc flux. Different tapers intentionally not energy-normalized.'};Path(args.output).write_text(json.dumps(out,indent=2)+'\n');np.savez_compressed(Path(args.output).with_name('spectrum.npz'),angular_frequency_per_Myr=freq,windowed_energy=energy,radius_kpc=(m.r[1:]+m.r[:-1])/2*m.rm,high_gradient_edge_energy=eh,T_fraction_face=qface);print(out)

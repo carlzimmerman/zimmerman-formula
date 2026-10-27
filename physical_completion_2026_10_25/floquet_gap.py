@@ -1,0 +1,11 @@
+import argparse,json
+from pathlib import Path
+import numpy as np
+from scipy.integrate import solve_ivp
+ap=argparse.ArgumentParser();ap.add_argument('--output',required=True);a=ap.parse_args();u=json.loads(Path('physical_completion_2026_10_25/run_units/results.json').read_text());hbar=6.62607015e-34/(2*np.pi);eV=1.602176634e-19;c=299792458.;kpc=3.085677581491367e19;B=.001;ellv=.01*kpc;omega_v=c*np.pi*np.sqrt(B/2)/ellv;binding=u['per_particle_binding_eV'];ratio=hbar*omega_v/eV/binding;out={'massive_carrier_gap_eV':hbar*omega_v/eV,'binding_per_particle_eV':binding,'gap_over_binding':ratio,'vacuum_decay_length_kpc':ellv/(np.pi*np.sqrt(B/2))/kpc,'minimum_decay_length_to_emit_binding_quantum_kpc':hbar*c/(binding*eV)/kpc,'minimum_vacuum_gradient_length_kpc':.01*ratio,'scope':'Single-particle emission using binding as sole available energy is forbidden at this massive-carrier gap. Collective emission is not excluded. Massless angular modes have no such threshold.','floquet':[]}
+for k,gamma in [(.5,0),(.5,.005),(1.5,.005)]:
+ def rhs(t,z):
+  s=1+.2*np.cos(t);ds=-.2*np.sin(t);A=np.array([[0,1],[-k*k,-2*ds/s-gamma]]);return (A@z.reshape(2,2)).ravel()
+ sol=solve_ivp(rhs,[0,2*np.pi],np.eye(2).ravel(),method='DOP853',rtol=1e-11,atol=1e-13);M=sol.y[:,-1].reshape(2,2);eig=np.linalg.eigvals(M);growth=float(np.log(max(abs(eig)))/(2*np.pi));deterr=abs(np.linalg.det(M)-np.exp(-gamma*2*np.pi));assert deterr<1e-9;out['floquet'].append(dict(k=k,gamma=gamma,exponent_over_radial_frequency=growth,determinant_error=deterr,assumption='Prescribed harmonic radial pump; nonlinear backreaction audited separately in PC-13.'))
+# Exact leading-order transparency identity for outgoing spherical Goldstone waves.
+r=np.linspace(500,1500,1001);phase=.5*(17-r);f=90*np.cos(phase);fp=-45*np.sin(phase);xt=fp/r;xr=-fp/r-f/r**2;lhs=xt*xt-xr*xr;rhs=-2*f*fp/r**3-f*f/r**4;out['spherical_null_gradient_identity_error']=float(max(abs(lhs-rhs)));assert out['spherical_null_gradient_identity_error']<1e-16;out['null_wave_statement']='For a plane outgoing massless phase wave, (partial chi)^2=0 exactly. Spherical waves source the modulus only at subleading1/r^3 and1/r^4 orders; this is asymptotic transparency, not exact finite-radius decoupling.';Path(a.output).write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out,indent=2))

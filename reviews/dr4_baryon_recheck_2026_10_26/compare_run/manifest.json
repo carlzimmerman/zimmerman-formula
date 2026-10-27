@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "DR4_REVISED_BARYONS_HALO_01",
+  "repository": {
+    "commit": "da6f3136a7fc059d9a6e4041d1643c02b1d51726",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/dr4_baryon_recheck_2026_10_26/compare.py",
+    "reviews/dr4_baryon_recheck_2026_10_26/compare_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Fit three positive dark density families to two locally selected revised-baryon v3 force targets, holding baryons fixed",
+    "coefficient_domain": "float64",
+    "conventions": "kpc km/s Msun; equal fractional total-force weights; q is density axis ratio; positive potential gradients",
+    "inputs": [
+      "isolated v3 census cached potentials and Newtonian census baryons"
+    ],
+    "bounds": {
+      "targets": 2,
+      "families": 3,
+      "training": 18,
+      "heldout": 15,
+      "multistarts": 3
+    },
+    "non_claims": [
+      "No joint observational fit",
+      "No broken exponential or bar",
+      "No general viable-baryon exclusion",
+      "No DR4 forecast"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-27T00:48:39.955803+00:00",
+    "runtime_seconds": 4.122207,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/dr4_baryon_recheck_2026_10_26/compare.py",
+    "reviews/dr4_baryon_recheck_2026_10_26/run/results.json",
+    "reviews/dr4_flexible_halo_2026_10_26/fit.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/dr4_baryon_recheck_2026_10_26/compare.py",
+      "sha256": "241093d8b6c143f76882a0de995c1469ed7bc4e8c8271762166f6be85be3da63",
+      "sha256_after": "241093d8b6c143f76882a0de995c1469ed7bc4e8c8271762166f6be85be3da63"
+    },
+    {
+      "path": "reviews/dr4_baryon_recheck_2026_10_26/run/results.json",
+      "sha256": "e07ad344f8f324dc863e27c34a47700f88670f02a99ad993982fe8a70d35be6b",
+      "sha256_after": "e07ad344f8f324dc863e27c34a47700f88670f02a99ad993982fe8a70d35be6b"
+    },
+    {
+      "path": "reviews/dr4_flexible_halo_2026_10_26/fit.py",
+      "sha256": "cb3a970a6c2ad4e82862a7efd2df207615368c3832a7ef6f55ced98515573ffb",
+      "sha256_after": "cb3a970a6c2ad4e82862a7efd2df207615368c3832a7ef6f55ced98515573ffb"
+    }
+  ],
+  "output_directory": "reviews/dr4_baryon_recheck_2026_10_26/compare_run",
+  "declared_results": [
+    "reviews/dr4_baryon_recheck_2026_10_26/compare_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/dr4_baryon_recheck_2026_10_26/compare_run/stdout.txt",
+      "sha256": "30d79408b9420453602b5426b61a2e8400019a2435eaac0d3fe37b9e6f4efcca",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/dr4_baryon_recheck_2026_10_26/compare_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/dr4_baryon_recheck_2026_10_26/compare_run/results.json",
+      "sha256": "de711883b024ccc773a50d82d0f047c9e706152f2732ef38fccc8340e92c47b8",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
