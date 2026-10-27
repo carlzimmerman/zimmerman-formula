@@ -27,6 +27,8 @@ They also report a qualitative effect: dimming removes the **high-velocity value
 
 **Grade: a systematic WARNING, unquantified for slope.** It cannot be used as a correction in any lane. The record entry should read "makes disturbed outskirts invisible and curves look regular; no slope bias measured".
 
+> **CORRECTION (same day, after reading CFG402):** CFG402 already sized the tension (frozen 1d58728ee). The summed DE penalty is 7.99 canonical / 9.63 alt. After the freeze it was shown to be ONE galaxy: **zC 406690** (Δχ²_DE 7.18 alt), while the other five sum to 2.05 / 2.46. **zC 400569's grid-edge a0 costs only Δχ²_DE 0.50**: its a0 → 0 preference is within noise and is not part of the tension. The zC 400569 section below is still correct as a description of its points, but it does not bear on the tension. The relevant galaxy, zC 406690, shows the same pattern: its steep fall (−1.018″ 68.0, −1.207″ 38.1 km/s) is on the approaching side only, beyond the receding side's last point (0.922″), and it has the lowest Table 1 inclination of the six (25°). The pre-registered test is **CFG405** (`campaign_fresh_gravity/CFG405_genzel17_outskirt_robustness/FROZEN_CRITERIA.md`).
+
 ## Where it touches the record: CFG401's zC 400569 (same galaxy as CFG278)
 CFG401 (230413b75c) lists zC 400569 as one of the three "a0 → 0 (grid edge)" discs behind the possible high-z tension. The same galaxy is CFG278's Lelli+2023 disc, where ALMA CO and Hα are nearly flat to ~0.88″ (V_rot mean 254 km/s, SD 21.6).
 
