@@ -22,3 +22,14 @@ All deviations were measured on synthetic fields only.
   of the 5 % line, so the safer stride was chosen.
 - **Disclosure.** Both choices were made after seeing these synthetic S0c numbers. No DESI value entered.
 - **Unchanged:** model, grids, gates, thresholds and variants.
+
+## A2 (committed before the restart): sharded table build (code only)
+
+The serial table build would take about 10 h: no table finished in the first 27 min. The tables are independent per
+(footing, z), so `P1D4_SHARD="i/n"` runs a table-only worker that builds the jobs with index ≡ i (mod n) and exits.
+Five single-thread workers are used, each under 1 GB, in line with the small-job rule while the peer X48 zooms run. The
+main script then reads all 24 tables; it refuses to fit if any table is missing.
+
+- **Ordering.** Job order is canonical z-list first, then alt. An alt table whose canonical μ = 0 slice is not yet on disk
+  is built in full, which yields an identical μ = 0 slice.
+- **Unchanged:** grids, model, gates and fits.
