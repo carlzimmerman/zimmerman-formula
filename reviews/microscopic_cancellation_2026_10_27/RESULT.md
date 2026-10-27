@@ -1,5 +1,7 @@
 # Unequal-spectrum cancellation and an explicit spectator model
 
+> **Audit clarification (2026-10-27):** The four-node fixture is retained as algebra only. Its cutoff cubic vanishes in the continuum subtracted determinant; it is retired as a microscopic candidate. See [adversarial audit](../protected_unequal_spectra_2026_10_27/AUDIT_REWORK.md).
+
 The requested joint microscopic model has not been found. There is a new
 algebraic opening: exact pairing is not necessary to cancel the unwanted loop
 terms while retaining a positive cubic contribution. But the constructed

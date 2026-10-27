@@ -1,5 +1,7 @@
 # Protected unequal spectra: an actual mechanism, but no joint MOND vacuum
 
+> **Audit clarification (2026-10-27):** This is a restricted source-transfer and infrared audit, not a constructed microscopic model. Symbolic pass counts do not validate the missing physical bridges. See [adversarial audit](AUDIT_REWORK.md).
+
 The requested interacting model has not been found. A genuine microscopic
 mechanism exists for protected cancellations without level-by-level pairing:
 modular invariance and tachyon absence in non-supersymmetric strings. This

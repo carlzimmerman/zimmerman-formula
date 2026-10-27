@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (800 rows)
+## Totals (801 rows)
 
 - **537 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 153 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 154 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -999,6 +999,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K798 | CANCELJOINT-20261027/SPECTATOR | `reviews/microscopic_cancellation_2026_10_27` | local two-field detailed-balance spectator with gradient coupling | - | audit | SCOPED CLOSURE: periodic-cell relaxation yields constant plus quadratic and quartic response; positive auxiliary background splits zero-momentum spectra; massive spectator variant relaxes all homogeneous energy to zero | freeze:55a75b0759 |
 | K799 | PROTECTUNEQUAL-20261027/IR | `reviews/protected_unequal_spectra_2026_10_27` | gapped tower versus gapless fractional response | - | audit | CONDITIONAL OBSTRUCTION: finite-cutoff gapped determinant with summable third derivatives has O(s^3) subtracted remainder and cannot cancel s^(5/2); twisted KK diagnostic retains unmatched zero mode; not a general interacting-string theorem | freeze:435025a363 |
 | K800 | PROTECTUNEQUAL-20261027/STRING | `reviews/protected_unequal_spectra_2026_10_27` | modular unequal-spectrum protection and heterotic vacuum | - | audit | SOURCE AUDIT: modular consistency protects regulated mass supertraces without pairing but no gradient-response identity is supplied; explicit flux-free SO16xSO16 leading dilaton potential has no finite stationary positive vacuum; MOND matching absent | freeze:435025a363 |
+| K801 | UNEQUAL-AUDIT-20261027 | `reviews/protected_unequal_spectra_2026_10_27/AUDIT_REWORK.md` | adversarial audit of K796-K800 physical interpretation | - | audit | RESTRICTION: four-node subtracted continuum determinant vanishes; retained cubic is cutoff boundary term not universal microscopic prediction; formal IR result and restricted lemmas survive; joint model remains incomplete | audited:89d81635b7 |
 
 ## LN: Logic / Lean formalisations
 

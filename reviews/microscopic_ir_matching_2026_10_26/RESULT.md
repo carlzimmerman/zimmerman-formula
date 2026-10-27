@@ -1,5 +1,7 @@
 # Common microscopic origin: a new infrared matching requirement
 
+> **Audit clarification (2026-10-27):** The formal one-loop result survives; it is not a physical infrared force prediction. See [adversarial audit](../protected_unequal_spectra_2026_10_27/AUDIT_REWORK.md).
+
 The 32pi puzzle remains open. The inspected OpenAI manuscripts supply no
 identity fixing the positive gravitating vacuum and the two force coefficients.
 The useful additional result here is a formal infrared term missing from the
