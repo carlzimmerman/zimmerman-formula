@@ -3,6 +3,31 @@
 One page, from committed lanes only. κ = ½ FITTED. Footings canonical a₀ = 9.3603e-11 / alt 1.1312e-10 m s⁻², never pooled.
 Not "theory closed". Nothing here says the data favour the framework. The adoption decision (route E, below) is the owner's.
 
+## 0. UPDATE 2026-10-27: route E as stated below no longer passes; read this first
+
+| lane | result |
+|---|---|
+| X53 outer lensing (KiDS isolated lenses) | **the law beats route-E halos**: Δχ² +430 / +456. Halos are too light by 0.35–0.5 dex and end at R200. |
+| X55 one halo mass for SPARC + lensing | **CONTRADICTION**, 4.3 / 4.6σ: route E's SPARC halos are 0.4 dex lighter than its lensing halos. |
+| X48 A2, nine seeds at ng 48 | c_f = 11.6 / 8.2 / 7.3, **ABOVE WINDOW**. The X43 rule with it **fails the SPARC line** (Υ 0.31). Caveat: r₋₂ is resolution-limited in 8/27 runs. |
+| X54 cold DE ↔ DE exchange | **excluded** beyond ξ ∈ [−0.0035, +0.0011]: no conversion. |
+| X56 g = max(law, route E) | **FAILS**: the law's tail over-predicts cluster outskirts. |
+| X58 mass-keyed switch (law below the crossover, halos above) | **FAILS**: the dwarfs need halos, the lensing galaxies need the law, the clusters need halos. The need is non-monotone in mass. |
+| X52 dwarf tides at current distance | no effect |
+
+**Where this leaves the theory.**
+- **The law** (a₀ = c²√(Λ/32π), κ = ½ fitted) is the best single description. It passes SPARC (0.054) and galaxy
+  lensing to 3 Mpc. It fails clusters, which need extra mass, and the ultra-faint dwarfs, which are under-predicted by
+  about 0.6 dex.
+- **Cold dark energy halos** fit clusters and dwarfs. They fail lensing and contradict themselves between dynamics and
+  lensing.
+- **No combination tried so far** (max, mass switch) fits everything.
+- **The open problem:** which property, other than mass, decides whether a system follows the law or carries a halo.
+  Dwarfs are mostly satellites, so environment and formation epoch are candidates. X57, the exclusion mechanism, is
+  running.
+
+The text below is the 10-26 statement, kept for the record.
+
 ## 1. Statement
 
 1. **Λ sets the acceleration scale.** a₀ = κ c √(G ρ_Λ) = c² √(Λ/32π) (κ = ½, fitted).
