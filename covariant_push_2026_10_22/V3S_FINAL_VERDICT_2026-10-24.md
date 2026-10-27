@@ -378,3 +378,9 @@ Results:
   - lens M★ −0.15 dex: 6.3 / 5.8σ;
   - lens M★ +0.15 dex: 2.7 / 2.6σ, which is the only shift that moves them toward each other.
 - **What this means.** Route E (cold dark energy halos with the law emergent) cannot fit galaxy dynamics and galaxy lensing with one halo population. The fundamental law fits both: SPARC rms 0.054 and KiDS χ² 154 / 125. Together with X53, this test prefers the fundamental-law reading for galaxies; nothing broader.
+
+**Law-or-halo hybrid** (`X56_law_floor_structure`, peer lane; f17c99a508 / 526db8a12f). The coordinator reran it: every output matches the committed one apart from timing, including the main run's exit code. Hypothesis: g = max(law on baryons, Newton + route-E halo), with one EM1 halo relation throughout. **LF FAILS** on both footings.
+- **Lensing:** the law branch wins on 98 % of the grid, consistent with X53/X55.
+- **Clusters:** the law over-predicts the outskirts at 1.4–3 Mpc (1.00–1.05 against a measured 0.66–0.72).
+- **SPARC:** median Υ drops below the line.
+- **Reading:** galaxies want the law's tail and clusters forbid it. Any surviving structure needs an object-keyed switch near X43's crossover mass (~10¹²–10¹³ M☉), the same object-keyed requirement as X47.
