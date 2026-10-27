@@ -1,0 +1,57 @@
+Q1_m6_selection_share [MUTATE m1-m2: control output, not physics]: criteria a46adc2f90; kappa = 1/2 FITTED; footings never pooled; no particle; no LCDM input; not theory closed
+
+== STEP 0 (stop rule)
+  sha256: {'G3CGalv10.csv': True, 'G3CFoFGroupv10.csv': True, 'StellarMassesLambdarv20.fits': False, 'closure population': True}
+  M6N1 inputs (3 dp) True: x_min {'canonical': 0.834856631849883, 'alt': 0.9773737994349674}, eps_ref {'canonical': 0.1909939921830611, 'alt': 0.16314392825927496}, F_allowed {'canonical': 0.061324958742990494, 'alt': 0.0489542525569686}, F_inv {'stellar': 0.04698653044779348, 'stars+cold gas': 0.059787411209624386}
+  X58 cf4 crossover True: {'canonical': 12.094530362288355, 'alt': 12.433912486989607}; EM1 R1 (a, b) = (11.18, 0.9) True
+  [FAIL] S0: sha False, M6N1 True, crossover True, R1 True | all
+  crossover in system baryons, log M_b,x: PRIMARY cf4 11.016 / 11.393; NAT-X48 9.613 / 9.977; NAT-A2 8.451 / 8.814
+
+== DATA
+  G3CGal 204110 galaxies, groups in G3CGal 26194, G3CFoFGroup rows 26194; Lambdar matched 183973, with nQ>=3 and finite logmstar 182164
+  [PASS] K1: Lambdar nQ>=3 match fraction 0.9805 of 20107 G3C galaxies in the cuts | >= 0.95
+
+== MEASUREMENT (1/Vmax-weighted stellar-mass share; 0.01 <= z <= 0.10; log M* >= 8.0 native)
+  [PASS] K3[canonical]: partition residual 0.0e+00; 19215 galaxies, needs 3075 | < 1e-12, each once
+
+  [canonical] crossover log M_b,x 11.016:  q_star = 0.0630 +- 0.0029 (jk)  +- 0.0100 (sys)  -> sigma_tot 0.0104
+     systematics (half-diff): SZ z-split 0.0017, SF fluxscale 0.0046, SU unseen x1.25 0.0057, SG gas x1.3 0.0067, SC Hubble law 0.0001; z slices 0.0563 / 0.0597
+     tail t = 0.0152 -> q_full in [0.0621, 0.0773];  2-sigma interval [0.0412, 0.0982]
+     ungrouped share 0.3463 (Alpaslan+2015: 0.30); satellite share 0.2633; n 19215, needs 3075
+     per decade: 8-9: q 0.224, inv 0.032; 9-10: q 0.182, inv 0.141; 10-11: q 0.048, inv 0.632; 11-12: q 0.000, inv 0.196
+  [PASS] K3[alt]: partition residual 0.0e+00; 19215 galaxies, needs 4428 | < 1e-12, each once
+
+  [alt] crossover log M_b,x 11.393:  q_star = 0.1407 +- 0.0057 (jk)  +- 0.0216 (sys)  -> sigma_tot 0.0224
+     systematics (half-diff): SZ z-split 0.0023, SF fluxscale 0.0110, SU unseen x1.25 0.0122, SG gas x1.3 0.0139, SC Hubble law 0.0001; z slices 0.1392 / 0.1346
+     tail t = 0.0152 -> q_full in [0.1386, 0.1538];  2-sigma interval [0.0938, 0.1985]
+     ungrouped share 0.3463 (Alpaslan+2015: 0.30); satellite share 0.2633; n 19215, needs 4428
+     per decade: 8-9: q 0.279, inv 0.032; 9-10: q 0.265, inv 0.141; 10-11: q 0.143, inv 0.632; 11-12: q 0.021, inv 0.196
+  [PASS] K2: Vmax mass fraction >1e9 of >1e8 0.9681 vs closure GSMF 0.9691 | |diff| <= 0.05
+  reported: rho* (log M* >= 8, 180 deg^2) = 1.744e+08 Msun/Mpc^3 vs closure 2.909e+08 (ratio 0.599)
+  [FAIL] K4: canonical [False, True, False, False, False]; alt [False, True, False, False, False] | [T, F, F, F, T] per footing
+
+== VARIANTS (reported, point q; not the graded verdict)
+  [canonical] NAT-X48 0.0033; NAT-A2 0.0000; band +0.5 dex M200 0.1747; band -0.5 dex M200 0.0193; SAT-LOW 0.0630; floor 8.5 0.0611
+  [alt] NAT-X48 0.0069; NAT-A2 0.0005; band +0.5 dex M200 0.2285; band -0.5 dex M200 0.0427; SAT-LOW 0.1407; floor 8.5 0.1392
+
+== M6N1 re-evaluated at the measured q (its formula, its inputs)
+
+  [canonical] q_star 2-sigma [0.0412, 0.0982];  q_crit(eps_ref) stellar 0.2986, stars+cold gas 0.2347
+     q_lo | stellar           q 0.0412: F_need,min 0.00162, F_need(eps_ref) 0.00846 = 0.14 x budget; eps_crit 0.026 vs eps_ref 0.191
+     q_hi | stellar           q 0.0982: F_need,min 0.00385, F_need(eps_ref) 0.02016 = 0.33 x budget; eps_crit 0.063 vs eps_ref 0.191
+     q_lo | stars+cold gas    q 0.0412: F_need,min 0.00206, F_need(eps_ref) 0.01077 = 0.18 x budget; eps_crit 0.034 vs eps_ref 0.191
+     q_hi | stars+cold gas    q 0.2913: F_need,min 0.01454, F_need(eps_ref) 0.07612 = 1.24 x budget; eps_crit 0.237 vs eps_ref 0.191
+     VERDICT [canonical]: MIXED: q_lo | stellar, q_hi | stellar, q_lo | stars+cold gas within budget at eps_ref
+     variant verdicts: NAT-X48: MIXED: q_lo | stellar, q_hi | stellar, q_lo | stars+cold gas within budget at eps_ref; NAT-A2: MIXED: q_lo | stellar, q_hi | stellar, q_lo | stars+cold gas within budget at eps_ref; band +0.5 dex M200: MIXED: q_lo | stellar, q_hi | stellar, q_lo | stars+cold gas within budget at eps_ref; band -0.5 dex M200: MIXED: q_lo | stellar, q_hi | stellar, q_lo | stars+cold gas within budget at eps_ref; SAT-LOW: MIXED: q_lo | stellar, q_hi | stellar, q_lo | stars+cold gas within budget at eps_ref; floor 8.5: MIXED: q_lo | stellar, q_hi | stellar, q_lo | stars+cold gas within budget at eps_ref
+
+  [alt] q_star 2-sigma [0.0938, 0.1985];  q_crit(eps_ref) stellar 0.1739, stars+cold gas 0.1367
+     q_lo | stellar           q 0.0938: F_need,min 0.00431, F_need(eps_ref) 0.02642 = 0.54 x budget; eps_crit 0.088 vs eps_ref 0.163
+     q_hi | stellar           q 0.1985: F_need,min 0.00912, F_need(eps_ref) 0.05588 = 1.14 x budget; eps_crit 0.186 vs eps_ref 0.163
+     q_lo | stars+cold gas    q 0.0938: F_need,min 0.00548, F_need(eps_ref) 0.03361 = 0.69 x budget; eps_crit 0.112 vs eps_ref 0.163
+     q_hi | stars+cold gas    q 0.3701: F_need,min 0.02163, F_need(eps_ref) 0.13257 = 2.71 x budget; eps_crit 0.442 vs eps_ref 0.163
+     VERDICT [alt]: MIXED: q_lo | stellar, q_lo | stars+cold gas within budget at eps_ref
+     variant verdicts: NAT-X48: MIXED: q_lo | stellar, q_hi | stellar, q_lo | stars+cold gas within budget at eps_ref; NAT-A2: MIXED: q_lo | stellar, q_hi | stellar, q_lo | stars+cold gas within budget at eps_ref; band +0.5 dex M200: BUDGET BINDS AT RECORD RETENTION; band -0.5 dex M200: MIXED: q_lo | stellar, q_hi | stellar, q_lo | stars+cold gas within budget at eps_ref; SAT-LOW: MIXED: q_lo | stellar, q_lo | stars+cold gas within budget at eps_ref; floor 8.5: MIXED: q_lo | stellar, q_lo | stars+cold gas within budget at eps_ref
+  [PASS] K5: peak RSS 0.329 GB | < 1 GB
+
+Checks: 5/7 pass [MUTATE: must fail S0 and K4]
+VERDICT: canonical MIXED: q_lo | stellar, q_hi | stellar, q_lo | stars+cold gas within budget at eps_ref | alt MIXED: q_lo | stellar, q_lo | stars+cold gas within budget at eps_ref
