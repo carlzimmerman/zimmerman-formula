@@ -1,0 +1,41 @@
+CFG407 X-COP hydrostatic mass vs X43's route-E total mass over [R500, R200]
+==============================================================================================================
+X43 machinery exec'd read-only up to its final loop [46 s]; eta 14.8286, c_f 4 EXTERNAL
+
+CONTROLS
+  [PASS] K1 X43 machinery live: grade_clusters('canonical') reproduces committed h0672 pred of G-OUT-M3 and G-OUT-all (<= 1e-9): max |diff| 0.0e+00 (G-OUT-M3 pred 1.1201)
+  [PASS] K2 rule identity: single-cluster M_h equals X43's in-loop expression for 3 eRASS1 clusters (<= 1e-12 rel): max rel 0.0e+00
+  X-COP clusters with profile files: 12 (A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, A644, A85, RXC1825, ZW1215); in table without files: ['HydraA']
+  [PASS] K3 units: fgas M_NFW at R/R500 = 1 vs hydro M_NFW at JSON R500 within 1.5% (all 12; CFG450 U2): max |dev| 0.0140
+  [PASS] K4 coverage: MGAS reaches >= 0.95 R200 (short clusters reported and kept, never dropped): short (extrapolated gas flagged): A1644 0.95, A3266 0.69, ZW1215 0.93
+  [PASS] K5 background identity (V-NAT): B_cfg886_bg h and Omega_m equal L1's to 1e-4: h 0.6856427 vs 0.6856427, Om 0.2976016 vs 0.2976016
+  native Omega_c/Omega_b = 5.2715 (criteria 5.2715); V-NAT collapse table: B_cfg886_bg
+
+RESULTS (Delta = log10[M_HSE/(1-b)/M_X43], mean over [R500, R200]; se = cluster scatter / sqrt(12))
+  PRIMARY: CONSISTENT
+    canonical|h0672  b=0: -0.016 +- 0.026 (Z -0.62, rms 0.090) | b=0.3: +0.139 +- 0.026 -> CONSISTENT | b* 0.036 | chi2(b=0) 811/60
+    canonical|h0686  b=0: -0.008 +- 0.026 (Z -0.30, rms 0.090) | b=0.3: +0.147 +- 0.026 -> CONSISTENT | b* 0.018 | chi2(b=0) 735/60
+    alt|h0672        b=0: -0.016 +- 0.026 (Z -0.62, rms 0.090) | b=0.3: +0.139 +- 0.026 -> CONSISTENT | b* 0.036 | chi2(b=0) 811/60
+    alt|h0686        b=0: -0.008 +- 0.026 (Z -0.30, rms 0.090) | b=0.3: +0.147 +- 0.026 -> CONSISTENT | b* 0.018 | chi2(b=0) 735/60
+  V-NAT: CONSISTENT
+    canonical|h0672  b=0: -0.010 +- 0.026 (Z -0.38, rms 0.090) | b=0.3: +0.145 +- 0.026 -> CONSISTENT | b* 0.022 | chi2(b=0) 753/60
+    canonical|h0686  b=0: -0.001 +- 0.026 (Z -0.06, rms 0.090) | b=0.3: +0.153 +- 0.026 -> CONSISTENT | b* 0.003 | chi2(b=0) 693/60
+    alt|h0672        b=0: -0.010 +- 0.026 (Z -0.38, rms 0.090) | b=0.3: +0.145 +- 0.026 -> CONSISTENT | b* 0.022 | chi2(b=0) 753/60
+    alt|h0686        b=0: -0.001 +- 0.026 (Z -0.06, rms 0.090) | b=0.3: +0.153 +- 0.026 -> CONSISTENT | b* 0.003 | chi2(b=0) 693/60
+  V-MEAS: MIXED
+    canonical|h0672  b=0: +0.054 +- 0.029 (Z +1.84, rms 0.101) | b=0.3: +0.209 +- 0.029 -> CONSISTENT | chi2(b=0) 980/60
+    canonical|h0686  b=0: +0.063 +- 0.029 (Z +2.16, rms 0.101) | b=0.3: +0.218 +- 0.029 -> EXCESS CONFIRMED | chi2(b=0) 1058/60
+    alt|h0672        b=0: +0.054 +- 0.029 (Z +1.84, rms 0.101) | b=0.3: +0.209 +- 0.029 -> CONSISTENT | chi2(b=0) 980/60
+    alt|h0686        b=0: +0.063 +- 0.029 (Z +2.16, rms 0.101) | b=0.3: +0.218 +- 0.029 -> EXCESS CONFIRMED | chi2(b=0) 1058/60
+  V-MEAS-7: CONSISTENT
+    canonical|h0672  b=0: +0.068 +- 0.047 (Z +1.44, rms 0.125) | b=0.3: +0.223 +- 0.047 -> CONSISTENT | chi2(b=0) 647/35
+    canonical|h0686  b=0: +0.077 +- 0.047 (Z +1.64, rms 0.125) | b=0.3: +0.232 +- 0.047 -> CONSISTENT | chi2(b=0) 705/35
+    alt|h0672        b=0: +0.068 +- 0.047 (Z +1.44, rms 0.125) | b=0.3: +0.223 +- 0.047 -> CONSISTENT | chi2(b=0) 647/35
+    alt|h0686        b=0: +0.077 +- 0.047 (Z +1.64, rms 0.125) | b=0.3: +0.232 +- 0.047 -> CONSISTENT | chi2(b=0) 705/35
+  per cluster Delta_i (PRIMARY, canonical|h0672, b = 0): A1644 -0.012, A1795 -0.051, A2029 +0.012, A2142 -0.009, A2255 -0.010, A2319 -0.135, A3158 -0.012, A3266 +0.089, A644 -0.181, A85 -0.049, RXC1825 +0.001, ZW1215 +0.165
+  Delta at R200 alone (PRIMARY, canonical|h0672, b = 0): A1644 +0.073, A1795 +0.003, A2029 +0.061, A2142 -0.010, A2255 +0.038, A2319 -0.191, A3158 +0.017, A3266 +0.154, A644 -0.307, A85 -0.014, RXC1825 +0.059, ZW1215 +0.239
+  V-INNER (0.3-0.7 R500, reported): canonical|h0672 -0.048 +- 0.024
+  KiDS link (reported, not graded): X43 short by +0.087 dex in projected Delta Sigma at 1.42-3 Mpc (G-OUT-M3); X-COP PRIMARY b=0 canonical|h0672 -0.016 dex in 3-D M(<r)
+
+READING (frozen, PRIMARY): CONSISTENT   [class changes in: V-MEAS]
+controls 5/5; runtime 49 s
