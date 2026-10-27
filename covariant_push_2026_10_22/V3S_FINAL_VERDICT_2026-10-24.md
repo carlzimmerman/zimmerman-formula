@@ -435,3 +435,9 @@ Deciding observation between M5 and M6: small-scale Lyman-α forest gas power at
 **Status of the switch:** mass (X58), acceleration (X60), formation epoch (X59), the local and Yukawa forms and the coherence scale (X57) are all excluded. What remains is M6 (displacement, canonical only; the decider is high-z forest small-scale power) and the unbuilt object-keyed forms: a phase-space key, a retarded nonlocal operator, and a bound-region constraint.
 
 **X58 coordinator rerun:** identical to c3b4f2c7d9 apart from timing (main exit 0, MUTATE exit 1). SW FAILS stands.
+
+**M6 (displacement) forest prediction** (`X63_displacement_forest_prediction`, ddd98ade21 / 4d8ac76f11 / bb6532e775; coordinator rerun identical apart from timing). **M6 PREDICTION COMPUTED; TESTABLE.** Both footings give identical numbers, by construction.
+- **Predicted signal.** At the forest bound, M6's gas-power excess in the Lyman-α 1D proxy peaks at S = +0.26 / +0.30 / +0.35 / +0.39 at z = 4.2 / 4.6 / 5.0 / 5.4 (k ≈ 0.025 s/km). It grows as 1/D², and is +0.16 at z = 3.
+- **Record gates.** The graded forest gates do not exclude it: they bite mainly on suppression, and the L346 bins stay within [0.8, 1.2].
+- **Reported only.** The record's L347 P1D line (|R − 1| ≤ 0.10 at z = 3) is exceeded at 0.12, a hint that existing z ≈ 3 P1D data may already constrain M6.
+- **Deciding data, not on disk; each needs an owner-approved download.** HIRES/MIKE P1D (Viel+2013) and HIRES/UVES (Boera+2019) at z 4.2–5.4; eBOSS/DESI P1D to z ≈ 4.4–4.6. At PROVISIONAL precisions the peak is about 4σ (high-resolution) to 10σ (eBOSS/DESI) per bin.
