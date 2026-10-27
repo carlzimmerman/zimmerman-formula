@@ -1,4 +1,4 @@
-# IB1_inner_band_hse: RESULT HG TRADES (both footings). The gas's hydrostatic mass fixes INNER and every MID cell; OUTER fails in 3 cells, mostly where σ is a tercile fill
+# IB1_inner_band_hse: HG TRADES (both footings); part 2 RF NOT RESOLVED. The gas's hydrostatic mass fixes INNER and MID, but under-predicts the outskirts of gas-rich clusters (G-OUT-M3 +5) whatever the σ fill
 
 Graded under frozen criteria `FROZEN_CRITERIA.md` (0669ca3fc9). Amendment A1 (902e279dfa) is post-result and touches the K1
 check window only; a fix-forward (167d264879) followed it. The graded lines are byte-identical to run 1. Checks pass: K0
@@ -36,7 +36,42 @@ Reported (not graded):
 - SPARC keeps OS1's core law; it was re-run only as K0.
 - What selects HG over the core law is not derived.
 
-## Post-result diagnostic (labelled, not graded; `ib1_post_outer.py` / `.out`, canonical h 0.672)
+## Part 2, RF: regression σ fill. NOT RESOLVED (both footings)
+
+Criteria `FROZEN_CRITERIA_RF.md` (9e54055970). The 220 clusters without kT take σ from the record's own IC1 D5 fit:
+
+    log σ = 0.9186 + 0.1393 log Mgas500   (n 106, rms 0.091 dex)
+
+The filled σ now spans 381–681 km/s (5–95%), against the tercile fill's three values. Checks K0 (HG reproduced, 0.0), K1
+(slope 0.139) and K2 (0.55 GB) pass. MUTATE (slope −b) fails K1 and exits 1.
+
+| MGAS cell | RF Z h 0.672 / 0.686 | HG-tercile Z |
+|---|---|---|
+| G-IN-Mall | −0.37 / −0.39 | −0.33 |
+| G-OUT-Mall | +0.15 / −0.01 | +0.32 |
+| G-OUT-M1 | −1.95 / **−2.02** | −2.02 |
+| G-OUT-M2 | −0.88 / −0.81 | −0.37 |
+| **G-OUT-M3** | **+5.08 / +4.42** | +5.02 |
+
+**Class: NOT RESOLVED on both footings.** The reported 15-cell class is still TRADES.
+
+The OUTER pred/meas for M3's filled clusters is **0.51** (it was 0.52). **This contradicts the post-result reading above**,
+which said "the MGAS OUTER fails mostly test the inherited fill". That reading is withdrawn. With σ following each cluster's
+own gas mass, the gas-rich clusters' outskirts are still under-predicted by about 2×. That holds for the filled ones (0.51)
+and, less, for the measured-kT ones (0.81).
+
+What stands:
+- HG gets the inner 0.5 Mpc right from the gas alone.
+- But its mass at 1.4–3 Mpc scales with σ², and σ barely tracks gas mass (slope 0.14).
+- The lensing outskirts of high-Mgas500 clusters scale with gas mass. The core law caught that through M_fair ∝ M_b, the
+  ΛCDM 5.364 number.
+
+**The data want a cluster halo whose core follows the gas temperature (HG) and whose outskirts follow the baryon mass.**
+No rule tested so far gives both. A native outskirt normalisation, tied to M_b without 5.364, is the open piece.
+
+Run: `PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 ib1_rf.py [--mutate]` (under a minute).
+
+## Post-result diagnostic of part 1 (labelled, not graded; reading WITHDRAWN by part 2 RF; `ib1_post_outer.py` / `.out`, canonical h 0.672)
 
 OUTER pred/meas by MGAS500 tercile, split by where σ comes from:
 
