@@ -1,0 +1,212 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,array,microtype}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Explicit Strong-Coupling Bounds and Vacuum-Adapted Coercivity for SU(N) Lattice Gauge Hamiltonians},pdfauthor={Carl P. Zimmerman}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\gap}{gap}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+\newcommand{\dd}{\,\mathrm d}
+\numberwithin{equation}{section}
+\setlength{\emergencystretch}{2em}
+\title{Explicit Strong-Coupling Bounds and\\
+Vacuum-Adapted Coercivity for\\
+$\SU(N)$ Lattice Gauge Hamiltonians}
+\author{Carl P. Zimmerman\\[2pt]\small Briar Creek Tech}
+\date{October 28, 2026 \quad Version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give quantitative spectral estimates for finite-lattice $\SU(N)$
+gauge Hamiltonians and identify the additional estimates needed for a
+continuum mass-gap argument. A sector-valued Kirkwood--Thomas expansion
+extends a weak-interaction argument to bounded interactions on at most
+$s$ sites, with constants independent of the local Hilbert-space dimension.
+For a specified normalization of the Kogut--Susskind Hamiltonian in three
+spatial dimensions, this yields a finite-volume gap
+$\Delta_{\mathrm{lat}}\ge 3g^2/16$ whenever $g^2\ge59.9$, uniformly in
+$N\ge2$ and lattice size. We also give a counterexample to an intermediate
+counting assertion in the original Bravyi--DiVincenzo--Loss preprint and
+show that its conservative numerical constant survives the correction.
+For a fixed block in the actual interacting finite-lattice vacuum, a
+Feynman--Kac comparison yields a positive discarded-sector bound uniform
+in the exterior volume. Finally, an exact Schur-complement comparison
+adds inverse-gap costs when the induced coarse inner product is retained.
+The first two spectral estimates are unconditional within their stated
+finite-lattice hypotheses; their iteration into a nonlinear multiscale
+construction is not established. We do not prove continuum Yang--Mills
+existence, a continuum mass gap, or confinement. The accompanying exact
+arithmetic checks certify specified constants and counterexamples, not
+the full analytic arguments.
+\end{abstract}
+
+\section{Introduction and scope}\label{sec:introduction}
+
+The Yang--Mills existence and mass-gap problem asks for a nontrivial
+four-dimensional quantum field theory for every compact simple gauge
+group, together with a strictly positive physical mass gap and the
+required field-theoretic axioms~\cite{JW}. A positive eigenvalue gap for
+one finite regulator is a much weaker assertion. Even a lattice-size
+uniform gap at fixed strong coupling does not by itself control the
+weak bare-coupling trajectory used in a continuum limit.
+
+This paper isolates several finite-regulator results and an exact
+conditional comparison. The principal quantitative result is a
+dimension-independent extension of the creation-operator estimates of
+Bravyi, DiVincenzo and Loss~\cite{BDL}. The extension is applied to a
+Hamiltonian lattice gauge model of Kogut--Susskind type~\cite{KS}.
+Weak-interaction stability of gapped product systems, including systems
+with infinite-dimensional local spaces, is already established in
+Yarotsky's work~\cite{Yarotsky}; the existence of a sufficiently
+strong-coupling lattice gap is not claimed as a new phenomenon here.
+Our emphasis is the explicit sector estimate, the resulting sufficient
+constants, and careful separation of finite-lattice and continuum claims.
+We make no claim that these constants are optimal or that their precise
+form has not appeared elsewhere.
+
+The second result concerns the actual ground-state measure, rather than
+a product reference vacuum. A local Feynman--Kac comparison controls the
+oscillation of the ground function over a fixed block independently of
+the size of its exterior. Product-Haar Poincar\'e comparison then gives
+coercivity on the sector discarded by conditional expectation. The
+heat-kernel ingredient is the compact nonnegative-Ricci case of the
+Li--Yau inequality~\cite{LiYau}. This result holds at every positive
+coupling for a fixed finite block, but its constants do not remain
+uniform when that block becomes an extensive elimination layer.
+
+The final comparison records which operator must be controlled after
+exact elimination. A Schur form alone omits the norm of its graph lift.
+Keeping that norm gives a harmonic gap bound and additive inverse-gap
+costs. We provide counterexamples to two tempting replacements of this
+argument: ignoring the graph norm, and identifying quantum Schur
+elimination with a transformation that preserves quadratic oscillator
+Hamiltonians.
+
+\subsection{What is proved, and what is conditional}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{.25\textwidth}p{.32\textwidth}p{.35\textwidth}@{}}
+\toprule
+Result & Proved scope & Limitation\\
+\midrule
+Explicit strong-coupling stability &
+Finite systems; constants uniform in size and on-site dimension &
+No explicit-threshold infinite-volume construction or zero-spacing limit\\[4pt]
+Gauge-Hamiltonian corollary &
+Specified $\SU(N)$ normalization; all $N\ge2$ at fixed $g^2$ &
+Uniformity is not at fixed 't Hooft coupling\\[4pt]
+Actual-vacuum block coercivity &
+Fixed finite block; all exterior volumes and configurations &
+No uniform whole-layer or iterated coarse-operator estimate\\[4pt]
+Schur gap transfer &
+Exact operators and stated form domains, with their induced metrics &
+Application to successive Yang--Mills scales remains conditional\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Conventions and provenance}
+
+Let $E$ be a finite set of oriented lattice links, with one group variable
+per link, and let $\mathcal P$ be its plaquettes. Haar measure is normalized.
+The kinematic Hilbert space and dimensionless Hamiltonian are
+\begin{align}
+ \mathcal H_E&=L^2(\SU(N)^E,\dd U), \qquad x=g^2>0,\quad N\ge2,\\
+ H_E(x)&=\frac{x}{2}\sum_{\ell\in E}C_\ell+
+          \frac{b_N}{x}\sum_{p\in\mathcal P}(1-T_p),&
+ T_p&=\frac1N\operatorname{Re}\Tr U_p .\label{eq:hamiltonian}
+\end{align}
+The nonnegative Laplace--Beltrami operator $C_\ell=-\Delta_\ell$ uses the
+Casimir normalization
+\begin{equation}
+ C_F=\frac{N^2-1}{2N},\qquad
+ \inf\bigl(\operatorname{spec}C_\ell\setminus\{0\}\bigr)=C_F.
+\end{equation}
+The magnetic coefficient is an explicitly declared parameter.
+The uniform strong-coupling statement assumes $0\le b_N\le2N$;
+the finite-block theorem allows any fixed $b=b_N\ge0$. Changing conventions
+requires transforming this parameter and the energy normalization.
+If $a>0$ is the lattice spacing, physical excitation energies in units
+$\hbar=c=1$ are eigenvalues of $(H_E-E_0)/a$.
+The physical gauge-invariant space is the invariant subspace under the
+local $\SU(N)$ gauge transformations. Both the kinematic space and this
+restriction are specified whenever a gap is asserted.
+
+The arguments assembled here were developed in September 2026 research
+notes. The earlier spectral paper~\cite{Spectral} contains the
+fixed-spacing qualitative strong-coupling application. The later
+quantitative and vacuum-adapted notes are included in the October 5,
+2026 versioned repository archive~\cite{Archive}. The present paper gives
+a standalone exposition, exact supporting certificates, and an explicit
+account of what is still missing. These dates document provenance;
+they are not a claim of priority over other research.
+
+\input{sections/strong_coupling}
+\input{sections/vacuum}
+\input{sections/schur}
+\input{sections/open_and_evidence}
+
+\begin{thebibliography}{9}
+\bibitem{BDL}
+S.~Bravyi, D.~P.~DiVincenzo and D.~Loss,
+\emph{Polynomial-time algorithm for simulation of weakly interacting
+quantum spin systems},
+Commun.\ Math.\ Phys.\ \textbf{284} (2008), 481--507.
+\href{https://doi.org/10.1007/s00220-008-0574-6}{doi:10.1007/s00220-008-0574-6}.
+The counting assertion examined here is in Appendix A, printed p.~25 of
+\href{https://arxiv.org/abs/0707.1894v1}{arXiv:0707.1894v1}.
+
+\bibitem{Yarotsky}
+D.~A.~Yarotsky,
+\emph{Quasi-particles in weak perturbations of non-interacting quantum
+lattice systems},
+\href{https://arxiv.org/abs/math-ph/0411042v1}{arXiv:math-ph/0411042v1} (2004).
+
+\bibitem{KS}
+J.~Kogut and L.~Susskind,
+\emph{Hamiltonian formulation of Wilson's lattice gauge theories},
+Phys.\ Rev.\ D \textbf{11} (1975), 395--408.
+\href{https://doi.org/10.1103/PhysRevD.11.395}{doi:10.1103/PhysRevD.11.395}.
+
+\bibitem{LiYau}
+P.~Li and S.-T.~Yau,
+\emph{On the parabolic kernel of the Schr\"odinger operator},
+Acta Math.\ \textbf{156} (1986), 153--201, Theorem~1.1.
+\href{https://doi.org/10.1007/BF02399203}{doi:10.1007/BF02399203}.
+
+\bibitem{JW}
+A.~Jaffe and E.~Witten,
+\emph{Quantum Yang--Mills theory},
+Clay Mathematics Institute problem description, Section~4.
+\url{https://www.claymath.org/wp-content/uploads/2022/06/yangmills.pdf}.
+
+\bibitem{Spectral}
+C.~P.~Zimmerman,
+\emph{From Scalar Certificates to Spectral Bounds: Radial Pulsations,
+Discrete Hardy Forms, and SU(N) Lattice Gauge Theory}, version~1.0,
+September 22, 2026.
+\href{https://doi.org/10.5281/zenodo.22895866}{doi:10.5281/zenodo.22895866}.
+
+\bibitem{Archive}
+C.~P.~Zimmerman,
+\emph{The Zimmerman Programme}, software and research archive,
+version v9.0.0, October 5, 2026.
+\href{https://doi.org/10.5281/zenodo.23169118}{doi:10.5281/zenodo.23169118}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "claim_id": "CG-MARKOV",
+  "repository": {
+    "commit": "5e79258e6d8d4f796acbbeed43bf39d85fbcdaf2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/yang_mills_layer_2026_10_28/coarse/verify_exact.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The stated four-state reversible Dirichlet form and partition produce exactly S_BC=1/4 and normalized K_BC=5/18, with K eigenvalues 0,4/9,3.",
+    "coefficient_domain": "Q, exact rational arithmetic",
+    "conventions": "Fine weighted mass diag(1/6,1/6,1/3,1/3); coarse coordinates (u_A,u_B,u_C,r) with common mass factor 1/3.",
+    "inputs": [
+      "One connected four-state path with edge energy coefficients 1,1/2,1 and specified partition."
+    ],
+    "bounds": {
+      "fine_states": 4,
+      "retained_groups": 3,
+      "parameter_cases": 1
+    },
+    "non_claims": [
+      "No actual Yang-Mills coercivity or closure theorem is established by this finite check.",
+      "No parameter scan or continuum approximation is performed."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-28T18:29:48.222615+00:00",
+    "runtime_seconds": 0.238442,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 10000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": null
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/yang_mills_layer_2026_10_28/coarse/verify_exact.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/yang_mills_layer_2026_10_28/coarse/verify_exact.py",
+      "sha256": "c129f71df7261b61565aa7d0f6f2bb63866e6a7e1a6ad68e6f3723596ad2e699",
+      "sha256_after": "c129f71df7261b61565aa7d0f6f2bb63866e6a7e1a6ad68e6f3723596ad2e699"
+    }
+  ],
+  "output_directory": "real_research/yang_mills_layer_2026_10_28/coarse/exact_run",
+  "declared_results": [],
+  "outputs": [
+    {
+      "path": "real_research/yang_mills_layer_2026_10_28/coarse/exact_run/stdout.txt",
+      "sha256": "2928d6fd3b95d4db46ddaeb82ec0403416f56bfa2419b24dc68f8688cca38d38",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/yang_mills_layer_2026_10_28/coarse/exact_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions."
+  ]
+}

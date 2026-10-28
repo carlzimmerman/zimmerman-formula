@@ -1,0 +1,1551 @@
+% SOURCE main.tex
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,array,microtype}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Explicit Strong-Coupling Bounds and Vacuum-Adapted Coercivity for SU(N) Lattice Gauge Hamiltonians},pdfauthor={Carl P. Zimmerman}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\gap}{gap}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+\newcommand{\dd}{\,\mathrm d}
+\numberwithin{equation}{section}
+\setlength{\emergencystretch}{2em}
+\title{Explicit Strong-Coupling Bounds and\\
+Vacuum-Adapted Coercivity for\\
+$\SU(N)$ Lattice Gauge Hamiltonians}
+\author{Carl P. Zimmerman\\[2pt]\small Briar Creek Tech}
+\date{October 28, 2026 \quad Version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give quantitative spectral estimates for finite-lattice $\SU(N)$
+gauge Hamiltonians and identify the additional estimates needed for a
+continuum mass-gap argument. A sector-valued Kirkwood--Thomas expansion
+extends a weak-interaction argument to bounded interactions on at most
+$s$ sites, with constants independent of the local Hilbert-space dimension.
+For a specified normalization of the Kogut--Susskind Hamiltonian in three
+spatial dimensions, this yields a finite-volume gap
+$\Delta_{\mathrm{lat}}\ge 3g^2/16$ whenever $g^2\ge59.9$, uniformly in
+$N\ge2$ and lattice size. We also give a counterexample to an intermediate
+counting assertion in the original Bravyi--DiVincenzo--Loss preprint and
+show that its conservative numerical constant survives the correction.
+For a fixed block in the actual interacting finite-lattice vacuum, a
+Feynman--Kac comparison yields a positive discarded-sector bound uniform
+in the exterior volume. Finally, an exact Schur-complement comparison
+adds inverse-gap costs when the induced coarse inner product is retained.
+The first two spectral estimates are unconditional within their stated
+finite-lattice hypotheses; their iteration into a nonlinear multiscale
+construction is not established. We do not prove continuum Yang--Mills
+existence, a continuum mass gap, or confinement. The accompanying exact
+arithmetic checks certify specified constants and counterexamples, not
+the full analytic arguments.
+\end{abstract}
+
+\section{Introduction and scope}\label{sec:introduction}
+
+The Yang--Mills existence and mass-gap problem asks for a nontrivial
+four-dimensional quantum field theory for every compact simple gauge
+group, together with a strictly positive physical mass gap and the
+required field-theoretic axioms~\cite{JW}. A positive eigenvalue gap for
+one finite regulator is a much weaker assertion. Even a lattice-size
+uniform gap at fixed strong coupling does not by itself control the
+weak bare-coupling trajectory used in a continuum limit.
+
+This paper isolates several finite-regulator results and an exact
+conditional comparison. The principal quantitative result is a
+dimension-independent extension of the creation-operator estimates of
+Bravyi, DiVincenzo and Loss~\cite{BDL}. The extension is applied to a
+Hamiltonian lattice gauge model of Kogut--Susskind type~\cite{KS}.
+Weak-interaction stability of gapped product systems, including systems
+with infinite-dimensional local spaces, is already established in
+Yarotsky's work~\cite{Yarotsky}; the existence of a sufficiently
+strong-coupling lattice gap is not claimed as a new phenomenon here.
+Our emphasis is the explicit sector estimate, the resulting sufficient
+constants, and careful separation of finite-lattice and continuum claims.
+We make no claim that these constants are optimal or that their precise
+form has not appeared elsewhere.
+
+The second result concerns the actual ground-state measure, rather than
+a product reference vacuum. A local Feynman--Kac comparison controls the
+oscillation of the ground function over a fixed block independently of
+the size of its exterior. Product-Haar Poincar\'e comparison then gives
+coercivity on the sector discarded by conditional expectation. The
+heat-kernel ingredient is the compact nonnegative-Ricci case of the
+Li--Yau inequality~\cite{LiYau}. This result holds at every positive
+coupling for a fixed finite block, but its constants do not remain
+uniform when that block becomes an extensive elimination layer.
+
+The final comparison records which operator must be controlled after
+exact elimination. A Schur form alone omits the norm of its graph lift.
+Keeping that norm gives a harmonic gap bound and additive inverse-gap
+costs. We provide counterexamples to two tempting replacements of this
+argument: ignoring the graph norm, and identifying quantum Schur
+elimination with a transformation that preserves quadratic oscillator
+Hamiltonians.
+
+\subsection{What is proved, and what is conditional}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{.25\textwidth}p{.32\textwidth}p{.35\textwidth}@{}}
+\toprule
+Result & Proved scope & Limitation\\
+\midrule
+Explicit strong-coupling stability &
+Finite systems; constants uniform in size and on-site dimension &
+No explicit-threshold infinite-volume construction or zero-spacing limit\\[4pt]
+Gauge-Hamiltonian corollary &
+Specified $\SU(N)$ normalization; all $N\ge2$ at fixed $g^2$ &
+Uniformity is not at fixed 't Hooft coupling\\[4pt]
+Actual-vacuum block coercivity &
+Fixed finite block; all exterior volumes and configurations &
+No uniform whole-layer or iterated coarse-operator estimate\\[4pt]
+Schur gap transfer &
+Exact operators and stated form domains, with their induced metrics &
+Application to successive Yang--Mills scales remains conditional\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Conventions and provenance}
+
+Let $E$ be a finite set of oriented lattice links, with one group variable
+per link, and let $\mathcal P$ be its plaquettes. Haar measure is normalized.
+The kinematic Hilbert space and dimensionless Hamiltonian are
+\begin{align}
+ \mathcal H_E&=L^2(\SU(N)^E,\dd U), \qquad x=g^2>0,\quad N\ge2,\\
+ H_E(x)&=\frac{x}{2}\sum_{\ell\in E}C_\ell+
+          \frac{b_N}{x}\sum_{p\in\mathcal P}(1-T_p),&
+ T_p&=\frac1N\operatorname{Re}\Tr U_p .\label{eq:hamiltonian}
+\end{align}
+The nonnegative Laplace--Beltrami operator $C_\ell=-\Delta_\ell$ uses the
+Casimir normalization
+\begin{equation}
+ C_F=\frac{N^2-1}{2N},\qquad
+ \inf\bigl(\operatorname{spec}C_\ell\setminus\{0\}\bigr)=C_F.
+\end{equation}
+The magnetic coefficient is an explicitly declared parameter.
+The uniform strong-coupling statement assumes $0\le b_N\le2N$;
+the finite-block theorem allows any fixed $b=b_N\ge0$. Changing conventions
+requires transforming this parameter and the energy normalization.
+If $a>0$ is the lattice spacing, physical excitation energies in units
+$\hbar=c=1$ are eigenvalues of $(H_E-E_0)/a$.
+The physical gauge-invariant space is the invariant subspace under the
+local $\SU(N)$ gauge transformations. Both the kinematic space and this
+restriction are specified whenever a gap is asserted.
+
+The arguments assembled here were developed in September 2026 research
+notes. The earlier spectral paper~\cite{Spectral} contains the
+fixed-spacing qualitative strong-coupling application. The later
+quantitative and vacuum-adapted notes are included in the October 5,
+2026 versioned repository archive~\cite{Archive}. The present paper gives
+a standalone exposition, exact supporting certificates, and an explicit
+account of what is still missing. These dates document provenance;
+they are not a claim of priority over other research.
+
+\input{sections/strong_coupling}
+\input{sections/vacuum}
+\input{sections/schur}
+\input{sections/open_and_evidence}
+
+\begin{thebibliography}{9}
+\bibitem{BDL}
+S.~Bravyi, D.~P.~DiVincenzo and D.~Loss,
+\emph{Polynomial-time algorithm for simulation of weakly interacting
+quantum spin systems},
+Commun.\ Math.\ Phys.\ \textbf{284} (2008), 481--507.
+\href{https://doi.org/10.1007/s00220-008-0574-6}{doi:10.1007/s00220-008-0574-6}.
+The counting assertion examined here is in Appendix A, printed p.~25 of
+\href{https://arxiv.org/abs/0707.1894v1}{arXiv:0707.1894v1}.
+
+\bibitem{Yarotsky}
+D.~A.~Yarotsky,
+\emph{Quasi-particles in weak perturbations of non-interacting quantum
+lattice systems},
+\href{https://arxiv.org/abs/math-ph/0411042v1}{arXiv:math-ph/0411042v1} (2004).
+
+\bibitem{KS}
+J.~Kogut and L.~Susskind,
+\emph{Hamiltonian formulation of Wilson's lattice gauge theories},
+Phys.\ Rev.\ D \textbf{11} (1975), 395--408.
+\href{https://doi.org/10.1103/PhysRevD.11.395}{doi:10.1103/PhysRevD.11.395}.
+
+\bibitem{LiYau}
+P.~Li and S.-T.~Yau,
+\emph{On the parabolic kernel of the Schr\"odinger operator},
+Acta Math.\ \textbf{156} (1986), 153--201, Theorem~1.1.
+\href{https://doi.org/10.1007/BF02399203}{doi:10.1007/BF02399203}.
+
+\bibitem{JW}
+A.~Jaffe and E.~Witten,
+\emph{Quantum Yang--Mills theory},
+Clay Mathematics Institute problem description, Section~4.
+\url{https://www.claymath.org/wp-content/uploads/2022/06/yangmills.pdf}.
+
+\bibitem{Spectral}
+C.~P.~Zimmerman,
+\emph{From Scalar Certificates to Spectral Bounds: Radial Pulsations,
+Discrete Hardy Forms, and SU(N) Lattice Gauge Theory}, version~1.0,
+September 22, 2026.
+\href{https://doi.org/10.5281/zenodo.22895866}{doi:10.5281/zenodo.22895866}.
+
+\bibitem{Archive}
+C.~P.~Zimmerman,
+\emph{The Zimmerman Programme}, software and research archive,
+version v9.0.0, October 5, 2026.
+\href{https://doi.org/10.5281/zenodo.23169118}{doi:10.5281/zenodo.23169118}.
+\end{thebibliography}
+\end{document}
+
+% SOURCE sections/open_and_evidence.tex
+\section{The remaining Yang--Mills obligations}\label{sec:open}
+
+The results above do not establish the hypotheses of a continuum
+mass-gap theorem. The following are separate missing implications.
+
+\begin{enumerate}
+\item \textbf{Collective nonlinear coercivity.}
+The finite-block bound must be replaced or supplemented by an estimate
+for an entire elimination layer in the actual compact-link vacuum,
+uniform in volume and ultraviolet cutoff. Its validity for each fixed
+block does not imply such a collective bound.
+
+\item \textbf{Control after exact elimination.}
+The estimates must survive the generated interactions, the new vacuum,
+the induced coarse metric and the appropriate form domains.
+The reduced operator has not been identified with another Hamiltonian
+of the bare Wilson form \eqref{eq:hamiltonian}. Substitution of a running
+coupling into the strong-coupling corollary is therefore insufficient.
+
+\item \textbf{A physical terminal gap.}
+At a fixed physical coarse scale, one must control the actual terminal
+operator and its metric. The explicit bound at large bare $g^2$ provides
+a possible comparison target, but no comparison from the actual
+renormalized operator to that target is proved here.
+
+\item \textbf{A nontrivial continuum field theory and spectral transfer.}
+One must construct compatible renormalized observables, their limiting
+correlations and a field theory with the requisite positivity, locality,
+covariance and Yang--Mills short-distance behavior. A positive finite
+physical gap requires an estimate uniform along the relevant limit.
+There must also be a nonzero finite-energy sector: exclusion of spectrum
+from an interval in a vacuum-only Hilbert space would not solve the
+problem posed in~\cite{JW}.
+\end{enumerate}
+
+The scale distinction is especially important. The strong-coupling
+bound is in lattice units. At a fixed admissible $x$, its physical lower
+bound is proportional to $x/a$ and diverges as $a\downarrow0$.
+Along a weak bare-coupling continuum trajectory, $x(a)$ instead tends
+to zero, outside the theorem's certified window. Neither observation
+disproves a continuum mass gap; both prevent an inference of such a
+gap from the fixed-coupling estimate.
+
+There is also a concrete obstruction to treating every configuration
+as a positive quadratic fluctuation problem. On an even periodic
+cubic lattice in spatial dimension at least two, choose central
+$\SU(2)$ links
+\[
+ U_i(z)=(-I)^{\sum_{k<i}z_k}.
+\]
+Every elementary plaquette is $-I$. For a real link field $v$, vary
+$U_i(z;t)=U_i(z)\exp(itv_i(z)\sigma_3/2)$. Then
+\begin{equation}\label{eq:negative-hessian}
+ \left.\frac{\mathrm d^2}{\mathrm dt^2}
+ \frac{b}{x}\sum_p\left(1-\frac{\operatorname{Re}\Tr U_p(t)}2\right)
+ \right|_{t=0}
+ =-\frac{b}{4x}\sum_p|(\mathrm dv)_p|^2 .
+\end{equation}
+A circulation around one square has zero divergence, zero block mean
+in each link component and nonzero curl. At this central background the
+adjoint transports are the identity, so these are also the covariant
+conditions. It is a discarded direction for the corresponding
+componentwise block average and has strictly negative magnetic
+Hessian for $b>0$. Thus an all-background positive-Hessian comparison
+cannot provide the required nonlinear estimate. A negative Hessian of
+the potential does not imply a negative excitation Hamiltonian or a
+small quantum gap. Large-field regions require their own estimates.
+
+The infinite-volume issue is kept distinct from uniformity in finite
+volume. The general stability theorem proved here supplies a common
+finite-volume lower bound. We do not claim in this paper to construct
+the infinite-volume state and its GNS Hamiltonian at the explicit
+threshold $59.9$. The earlier application of Yarotsky's results
+addresses that construction in a sufficiently strong, nonexplicit
+window~\cite{Yarotsky,Spectral}.
+
+\section{Evidence, reproducibility and attribution}\label{sec:evidence}
+
+The supplementary source archive contains the full \LaTeX{} project,
+a standard-library Python verifier, exact arithmetic results, selected
+historical proof notes, and selected Lean source certificates with their
+toolchain manifest. The principal analytic proofs are in this paper.
+The machine checks have the following narrower scope:
+\begin{itemize}
+\item rational upper bounds for the square-root sector constants,
+the majorant supersolution inequalities and safe coupling thresholds;
+\item the finite counting correction and its three-qubit matrix element;
+\item exact finite-dimensional Schur and oscillator arithmetic.
+\end{itemize}
+The Python verifier uses rational arithmetic for its acceptance
+conditions; decimal displays are explanatory only. No random search,
+floating-point eigensolver, or finite sample is used to infer an
+all-volume theorem. The optional Lean certificates concern scalar
+inequalities, finite sets and a finite matrix calculation. They do not
+formalize the analytic stability theorem, the Feynman--Kac construction,
+Li--Yau theory or continuum quantum field theory.
+
+The archive's \path{README.md} gives build and verification commands,
+and \path{MANIFEST.json} records the included files and their SHA-256
+hashes. Historical notes are included for provenance and may retain
+their original notation or approximate threshold displays. The
+statements and safe sufficient thresholds in the present manuscript
+govern this release. In particular, $73.4$, rather than a downward
+rounded $73.3$, is a safe decimal upper rounding of the displayed
+four-spatial-dimensional link threshold when that comparison is used.
+No claim of global novelty is inferred from the absence of an identified
+prior formula.
+
+\subsection*{AI assistance and review status}
+
+OpenAI Codex assisted with source inspection, drafting, mathematical
+consistency checks, exact verification code, typesetting and release
+preparation. Separate AI-assisted readings were used to check the
+mathematical arguments and the scope of the claims. This is not
+independent human peer review, and it does not imply that every
+derivation has been manually checked by the named author. The release
+includes a review record stating the performed checks and their
+limitations. No AI system is listed as an author.
+
+\subsection*{License}
+
+This manuscript and its \LaTeX{} source are licensed under Creative
+Commons Attribution 4.0 International
+(\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}).
+The accompanying repository-derived software and formal proof sources
+retain their GNU Affero General Public License, version 3 or later.
+The manuscript license does not relicense that software.
+
+% SOURCE sections/schur.tex
+\section{Exact elimination and its induced inner product}\label{sec:schur}
+
+The estimates in the preceding sections concern genuine finite-lattice
+operators. To use such estimates along a sequence of scales one also needs
+a comparison between the fine and coarse excitation problems. This section
+proves an abstract comparison; identifying a Yang--Mills renormalization
+scheme satisfying all its hypotheses is a separate problem.
+
+\subsection{A one-step comparison}
+
+Let $\mathcal H=P\oplus Q$ be a finite-dimensional complex Hilbert space.
+Suppose $H\ge0$ has nonzero kernel and block decomposition
+\begin{equation}
+ H=\begin{pmatrix}A&B^*\\B&D\end{pmatrix},
+ \qquad D\ge dI_Q,\quad d>0 .
+\end{equation}
+Energies have already been shifted by the \emph{actual} ground energy.
+Define
+\begin{equation}\label{eq:schur-def}
+ C=D^{-1}B,\quad S=A-B^*D^{-1}B,\quad
+ Jp=(p,-Cp),\quad G=J^*J=I+C^*C,\quad
+ K=G^{-1/2}SG^{-1/2}.
+\end{equation}
+$S$ is a quadratic energy on the retained coordinates, while $G$ is the
+squared norm of their energy-minimizing graph lift. The normalized map
+$U=JG^{-1/2}$ is an isometry.
+
+\begin{proposition}[Metric-normalized Schur gap comparison]\label{prop:schur}
+If $\operatorname{spec}K\subset\{0\}\cup[\gamma,\infty)$ for $\gamma>0$,
+then
+\begin{equation}\label{eq:schur-gap}
+ H\ge\left(\gamma^{-1}+d^{-1}\right)^{-1}
+                (I-\Pi_{\ker H}).
+\end{equation}
+The kernels of $K$ and $H$ have the same dimension. If $K$ has a nonzero
+excited sector, then also $\gap H\le\gap K$.
+\end{proposition}
+
+\begin{proof}
+For $r=q+Cp$, completion of squares gives
+\begin{equation}\label{eq:completion}
+ \langle(p,q),H(p,q)\rangle=\langle p,Sp\rangle+\langle r,Dr\rangle.
+\end{equation}
+Both summands are nonnegative, and hence $\ker H=J\ker S$.
+Decompose $p=p_0+p_\perp$ orthogonally in the $G$ inner product,
+with $p_0\in\ker S$. Since $\ker K=G^{1/2}\ker S$,
+$Jp_\perp\perp\ker H$ and
+\[
+ \|Jp_\perp\|^2\le \gamma^{-1}\langle p,Sp\rangle.
+\]
+The decomposition $(p,q)=Jp_0+Jp_\perp+(0,r)$ therefore implies
+\begin{align*}
+ \operatorname{dist}((p,q),\ker H)
+ &\le \|Jp_\perp\|+\|r\|\\
+ &\le \gamma^{-1/2}\langle p,Sp\rangle^{1/2}
+       +d^{-1/2}\langle r,Dr\rangle^{1/2}.
+\end{align*}
+Squaring and applying scalar Cauchy--Schwarz proves
+\eqref{eq:schur-gap}. The isometry $U$ identifies $\ker K$ with $\ker H$.
+For the upper comparison, minimize the fine Rayleigh quotient over
+$U((\ker K)^\perp)$; on that subspace it equals the coarse Rayleigh quotient.
+\end{proof}
+
+\begin{remark}[Closed-form extension]\label{rem:schur-domain}
+The same proof applies to a closed nonnegative form on $P\oplus Q$
+when $D\ge dI$ is self-adjoint, $C:P\to Q$ is bounded, $s$ is a closed
+nonnegative form, and the fine form has exactly the representation
+\[
+ h[(p,q)]=s[p]+\|D^{1/2}(q+Cp)\|^2
+\]
+on the domain
+\[
+ \{(p,q):p\in\Dom s,\ q+Cp\in\Dom D^{1/2}\}.
+\]
+Here $\Dom s$ denotes the form domain. The coarse operator is the
+self-adjoint operator associated with
+$k[z]=s[G^{-1/2}z]$ on $G^{1/2}\Dom s$, not an unchecked product
+of unbounded operators. The distance argument extends on this domain.
+An application to an unbounded lattice Hamiltonian must verify these
+conditions; a finite-matrix computation does not verify them.
+No extension to unbounded $C$ is asserted.
+\end{remark}
+
+\subsection{Why the metric matters}
+
+For $M\in\mathbb R$ consider
+\begin{equation}
+ H_M=\begin{pmatrix}
+ 0&0&0\\
+ 0&1+M^2&M\\
+ 0&M&1
+ \end{pmatrix},\qquad
+ P=\operatorname{span}\{e_1,e_2\},\quad Q=\operatorname{span}\{e_3\}.
+\end{equation}
+Then $D=1$, $S=\operatorname{diag}(0,1)$ and
+$G=\operatorname{diag}(1,1+M^2)$, whereas
+\begin{equation}
+ \gap H_M=\frac{M^2+2-\sqrt{M^4+4M^2}}2\longrightarrow0
+ \quad\text{as }|M|\longrightarrow\infty .
+\end{equation}
+Thus positive lower bounds for $D$ and the \emph{unweighted} Schur
+operator $S$ give no positive uniform lower bound for the fine gap.
+The correct coarse gap is $(1+M^2)^{-1}$, and
+Proposition~\ref{prop:schur} yields the consistent lower bound
+$(M^2+2)^{-1}$.
+
+\subsection{An additive inverse-gap budget}
+
+\begin{corollary}[Conditional multiscale bound]\label{cor:multiscale}
+Suppose $H_0,\ldots,H_k$ form a sequence of exact metric-normalized
+Schur reductions satisfying Proposition~\ref{prop:schur}, or its
+closed-form extension, in the same physical energy units. At step $j$
+assume the discarded block satisfies $D_j\ge d_jI$ with $d_j>0$.
+If $H_k$ has gap at least $m_*>0$, then
+\begin{equation}\label{eq:budget}
+ \gap H_0\ge
+ \left(m_*^{-1}+\sum_{j=0}^{k-1}d_j^{-1}\right)^{-1}.
+\end{equation}
+\end{corollary}
+\begin{proof}
+Iterate \eqref{eq:schur-gap} backwards from the terminal operator.
+\end{proof}
+
+This avoids a fixed multiplicative loss per scale, but every operator and
+metric in the hypothesis must be the actual one generated by elimination.
+For example, assume \emph{as a model profile}
+$a_r=AL^{-r}$, $x_r=(\sigma+qr)^{-1}$ for $r\ge1$,
+where $A,\sigma>0$, $L>1$ and $q\ge0$. If one could prove
+$d_r\ge cx_r/a_r$ with one $c>0$, then
+\begin{equation}
+ \sum_{r\ge1}d_r^{-1}
+ \le\frac{A}{c}\left(\frac{\sigma}{L-1}
+                   +\frac{qL}{(L-1)^2}\right).
+\end{equation}
+The geometric summation is exact. Neither the assumed trajectory nor
+the nonlinear discarded-sector estimate is established here.
+
+\subsection{Quantum Schur elimination need not preserve quadratic form}
+
+A separate obstruction is that the normalized reduction above is not
+the same operation as integrating a Gaussian coordinate density.
+Let $H=\mathrm d\Gamma(h)$ be the bosonic second quantization of
+\[
+ h=\begin{pmatrix}2&1\\1&2\end{pmatrix}.
+\]
+Retain the subspace spanned by all $|n,0\rangle$, so that the retained
+space contains the true Fock vacuum. Total particle number is preserved
+by $H$ and by all the reduction maps. In the one-particle sector,
+\[
+ S_1=\frac32,\qquad G_1=\frac54,\qquad K_1=\frac65 .
+\]
+In the two-particle sector the fine matrix is
+\[
+ H_2=\begin{pmatrix}
+ 4&\sqrt2&0\\
+ \sqrt2&4&\sqrt2\\
+ 0&\sqrt2&4
+ \end{pmatrix}
+\]
+in the basis $|2,0\rangle,|1,1\rangle,|0,2\rangle$. Direct inversion gives
+\[
+ S_2=\frac{24}{7},\qquad G_2=\frac{58}{49},
+ \qquad K_2=\frac{84}{29}\ne 2K_1.
+\]
+Since $h\ge I$, the normalized graph restriction in the $n$-particle
+sector is bounded below by $nI$. Consequently $K_1$ and $K_2<3$ are
+indeed the first two positive levels. They are not equally spaced.
+The full Fock-space form construction is legitimate: on the discarded
+part of the $n$-particle sector, $D_n\ge nI$ and $\|B_n\|=\sqrt n$,
+so $\|D_n^{-1}B_n\|\le n^{-1/2}$ and the graph operator is bounded.
+This example rules out automatic closure of the oscillator class under
+this quantum elimination. It does not rule out controlling the generated
+operators in a larger class.
+
+% SOURCE sections/strong_coupling.tex
+\section{An explicit finite-volume strong-coupling bound}
+\label{sc:section}
+
+This section gives a quantitative version of stability of a gapped product
+Hamiltonian under bounded local perturbations. The argument follows the
+Kirkwood--Thomas method used by Bravyi, DiVincenzo, and Loss
+\cite{BDL}, with Hilbert-space norms on excitation sectors in place of
+absolute values of qubit coefficients. The existence of a sufficiently
+small perturbative window, including for infinite-dimensional site spaces,
+is established in the literature \cite{Yarotsky}. The purpose here is to
+track constants for the specified Hamiltonian lattice gauge model.
+Neither the method nor the existence of strong-coupling lattice gaps is
+claimed to be new. The derivation and associated records originated in
+the research archive \cite{Archive}; the earlier spectral-bounds paper
+\cite{Spectral} gives the corresponding non-explicit stability application.
+
+\subsection{A finite-system stability criterion}
+
+Let $\mathcal L$ be a nonempty finite set of sites. At each site $u$, let
+$\mathcal H_u$ be a separable Hilbert space and let $h_u$ be a nonnegative
+self-adjoint operator with compact resolvent. Assume that $h_u$ has a
+normalized simple zero eigenvector $\Omega_u$ and that, for a common
+$\Delta>0$,
+\begin{equation}
+ h_u\big|_{\Omega_u^\perp}\ge\Delta.
+ \label{sc:onsite-gap}
+\end{equation}
+The inequality is vacuous if $\mathcal H_u$ is one-dimensional. On
+$\mathcal H=\bigotimes_{u\in\mathcal L}\mathcal H_u$, set
+\begin{equation}
+ H_0=\sum_{u\in\mathcal L}h_u,\qquad
+ V=\sum_{p\in\mathcal P}V_p,\qquad
+ H(\varepsilon)=H_0+\varepsilon V.
+ \label{sc:general-H}
+\end{equation}
+Here $\mathcal P$ is a finite indexed family of nonempty site sets, each
+of cardinality at most an integer $s\ge1$. Each $V_p$ is self-adjoint, supported on
+$p$, and has norm at most $J$. Every site belongs to at most $D$
+members of $\mathcal P$, counted with their multiplicities. We may take
+$D,J>0$; when there is no perturbation the conclusion below is immediate.
+The coupling $\varepsilon$ is real.
+
+Define the dimensionless parameter and positive constants
+\begin{align}
+ \lambda&=\frac{|\varepsilon|DJ}{\Delta},
+ \label{sc:lambda}\\
+ \gamma_0(s)^2&=\sum_{t=1}^{s}\frac{\binom{s-1}{t-1}}{t^2},
+ &\gamma_1(s)^2&=(s+1)^2\sum_{t=0}^{s}
+                        \frac{\binom{s}{t}}{(t+1)^2},
+ \label{sc:gammas}\\
+ \beta_0(s)&=\gamma_0(s),
+ &\beta_k(s)&=2^k\bigl(\gamma_0(s)s^k+
+                         k\gamma_1(s)s^{k-1}\bigr)
+                         \quad(1\le k\le2s),
+ \label{sc:betas}\\
+ q_s(r)&=\sum_{k=0}^{2s}\frac{\beta_k(s)}{k!}r^k.
+ \label{sc:majorant}
+\end{align}
+
+\begin{theorem}[Dimension-independent finite-volume stability]
+\label{sc:stability}
+Suppose there is a number $r>0$ such that
+\begin{equation}
+ \lambda q_s(r)\le r,
+ \qquad 2\lambda q_s'(r)<1.
+ \label{sc:criterion}
+\end{equation}
+Then $H(\varepsilon)$ has a simple ground eigenvalue $E_0$ and
+\begin{equation}
+ \operatorname{spec}H(\varepsilon)
+ \subset\{E_0\}\cup[E_0+\Delta/2,\infty).
+ \label{sc:gap}
+\end{equation}
+The criterion depends on $s,D,J,\Delta$ and $\varepsilon$, but not on
+the number of sites, their Hilbert-space dimensions, or the upper
+onsite spectrum.
+\end{theorem}
+
+We first prove the theorem when all site spaces are finite-dimensional.
+The compact-resolvent extension is proved at the end of this subsection.
+
+For $M\subset\mathcal L$, let
+$\mathcal K_M=\bigotimes_{u\in M}\Omega_u^\perp$ and
+$\Omega_M=\bigotimes_{u\in M}\Omega_u$. The full Hilbert space is the
+orthogonal sum of the sectors
+$\mathcal K_M\otimes\Omega_{\mathcal L\setminus M}$.
+We identify a sector with $\mathcal K_M$, and write $\Pi_M$ for the
+corresponding projection followed by this identification. In particular,
+\begin{equation}
+ \sum_{M\subset\mathcal L}\|\Pi_M\xi\|^2=\|\xi\|^2.
+ \label{sc:orthogonal-sectors}
+\end{equation}
+Let $\Omega=\bigotimes_{u\in\mathcal L}\Omega_u$.
+For $c_M\in\mathcal K_M$, $M\ne\varnothing$, define
+\begin{equation}
+ A[c_M]=|c_M\rangle\langle\Omega_M|\otimes
+                  I_{\mathcal L\setminus M},
+ \qquad
+ C=\sum_{M\ne\varnothing}A[c_M],
+ \qquad
+ \|C\|_1=\max_{u\in\mathcal L}
+                 \sum_{M\ni u}\|c_M\|.
+ \label{sc:creation-norm}
+\end{equation}
+The decomposition of $C$ is unique, as is seen by applying it to $\Omega$.
+We call $C$ a creation operator. The coefficients $c_M$ are vectors,
+including when the excitations within a sector are entangled.
+
+Two such elementary operators commute. If their supports intersect,
+their product in either order is zero: a vacuum bra on an overlapping
+site annihilates an excited factor. If their supports are disjoint,
+they commute by tensor factorization. Consequently all creation operators
+commute, and every product of more than $|\mathcal L|$ elementary creation
+operators vanishes. Their exponentials are therefore finite polynomials.
+Also, $\|A[c_M]\|=\|c_M\|$.
+
+Put $H_0^M=\sum_{u\in M}h_u$ on $\mathcal K_M$. Then
+\begin{equation}
+ H_0^M\ge\Delta|M|,
+ \qquad [H_0,A[c_M]]=A[H_0^M c_M].
+ \label{sc:free-commutator}
+\end{equation}
+Thus a second commutator of $H_0$ with creation operators is zero.
+We use $\operatorname{ad}_C(X)=[C,X]$.
+
+\begin{lemma}[Support and commutator depth]
+\label{sc:support}
+Fix $p\in\mathcal P$ and elementary creation operators
+$A[c_{M_1}],\ldots,A[c_{M_k}]$. Set $N_*=\bigcup_{i=1}^kM_i$ and
+\[
+ X=\operatorname{ad}_{A[c_{M_1}]}\cdots
+                   \operatorname{ad}_{A[c_{M_k}]}(V_p).
+\]
+If $X\ne0$, each $M_i$ intersects $p$. If $\Pi_MX\Omega\ne0$, then
+\begin{equation}
+ N_*\setminus p\subset M\subset N_*\cup p,
+ \qquad M=(N_*\setminus p)\cup T,
+ \quad T\subset p.
+ \label{sc:sector-support}
+\end{equation}
+Moreover, for arbitrary creation operators $C_1,\ldots,C_k$,
+\begin{equation}
+ \operatorname{ad}_{C_1}\cdots\operatorname{ad}_{C_k}(V_p)=0
+ \quad\hbox{if }k>2s.
+ \label{sc:depth}
+\end{equation}
+\end{lemma}
+\begin{proof}
+The commutator maps of commuting creation operators commute. A factor
+whose support misses $p$ can therefore be placed next to $V_p$ and
+annihilates it. Expand a surviving nested commutator into products with
+some elementary operators to the left of $V_p$ and the rest to its right.
+Outside $p$, the operator $V_p$ changes nothing; every site created there
+must remain excited, and a site created twice makes that product zero.
+This proves \eqref{sc:sector-support}. In a nonzero product the creation
+supports on each side of $V_p$ are pairwise disjoint. Since each meets
+$p$, at most $|p|\le s$ can occur on either side. More than $2s$
+factors therefore give zero.
+\end{proof}
+
+\begin{lemma}[Sector norm estimate]
+\label{sc:sector-estimate}
+For $0\le k\le2s$ and creation operators $C_1,\ldots,C_k$, define
+$\mathcal B_k(C_1,\ldots,C_k)$ by its coefficients
+\begin{equation}
+ b_M=(H_0^M)^{-1}\Pi_M
+       \operatorname{ad}_{C_1}\cdots\operatorname{ad}_{C_k}(V)\Omega,
+ \qquad M\ne\varnothing.
+ \label{sc:Bk}
+\end{equation}
+For $k=0$ the commutator product is the identity. Then
+\begin{equation}
+ \|\mathcal B_k(C_1,\ldots,C_k)\|_1
+ \le\frac{DJ}{\Delta}\beta_k(s)
+                      \prod_{i=1}^k\|C_i\|_1.
+ \label{sc:multilinear}
+\end{equation}
+\end{lemma}
+\begin{proof}
+Expand each $C_i$ into its elementary terms, and fix a tuple
+$(M_1,\ldots,M_k,p)$. Denote its commutator by $X$ as above. Its norm
+satisfies
+\begin{equation}
+ \|X\Omega\|\le2^kJ\prod_{i=1}^k\|c^{(i)}_{M_i}\|.
+ \label{sc:tuple-norm}
+\end{equation}
+Only tuples with $M_i\cap p\ne\varnothing$ need be retained.
+Fix a site $u$ when estimating the norm in
+\eqref{sc:creation-norm}. We split the sum into tuples with $u\in p$
+and those with $u\notin p$. In the latter case, a nonzero output
+sector containing $u$ requires $u\in M_j$ for at least one $j$;
+summing over all such $j$ is an upper bound.
+
+If $u\in p$, put $n=|N_*\setminus p|$. A contributing output
+sector has the form \eqref{sc:sector-support} with $u\in T$ and
+$|M|=n+|T|$. Cauchy--Schwarz and
+\eqref{sc:orthogonal-sectors} give
+\begin{align}
+ \sum_{M\ni u}\frac{\|\Pi_MX\Omega\|}{|M|}
+ &\le\left(\sum_{\substack{T\subset p\\u\in T}}
+                     \frac{1}{(n+|T|)^2}\right)^{1/2}\|X\Omega\|
+ \nonumber\\
+ &\le\gamma_0(s)\|X\Omega\|.
+ \label{sc:type-zero}
+\end{align}
+For each fixed $p$ and $i$,
+\begin{equation}
+ \sum_{M_i:M_i\cap p\ne\varnothing}\|c^{(i)}_{M_i}\|
+ \le\sum_{v\in p}\sum_{M_i\ni v}\|c^{(i)}_{M_i}\|
+ \le s\|C_i\|_1.
+ \label{sc:incidence-sum}
+\end{equation}
+There are at most $D$ choices of $p$ containing $u$. After using
+$\|(H_0^M)^{-1}\|\le1/(\Delta|M|)$, the contribution of
+\eqref{sc:type-zero} is bounded by
+\[
+ \frac{DJ}{\Delta}\,2^k\gamma_0(s)s^k
+                     \prod_i\|C_i\|_1.
+\]
+
+Now suppose $u\notin p$ and $u\in M_j$. Then
+$n=|N_*\setminus p|\ge1$ and $|M_j|\le n+s$. Hence
+\begin{align}
+ \sum_M\frac{\|\Pi_MX\Omega\|}{|M|}
+ &\le\left(\sum_{t=0}^{s}\frac{\binom{s}{t}}{(n+t)^2}
+          \right)^{1/2}\|X\Omega\|
+ \nonumber\\
+ &\le\frac{\gamma_1(s)}{|M_j|}\|X\Omega\|.
+ \label{sc:type-j}
+\end{align}
+For the last inequality, each function
+$(n+s)/(n+t)$ is nonincreasing for $n\ge1$, since $t\le s$.
+Thus its square is bounded by $(s+1)^2/(t+1)^2$, and
+\eqref{sc:gammas} applies. This proves the estimate for every $n$;
+no finite enumeration of sector sizes is needed.
+
+For fixed $M_j$, at most $D|M_j|$ members $p$ intersect $M_j$.
+This cancels the denominator $|M_j|$ in \eqref{sc:type-j}.
+Sum the other $k-1$ supports using \eqref{sc:incidence-sum},
+and then sum $M_j\ni u$. For this $j$ the result is bounded by
+\[
+ \frac{DJ}{\Delta}\,2^k\gamma_1(s)s^{k-1}
+                         \prod_i\|C_i\|_1.
+\]
+Adding the $k$ possible choices of $j$ proves
+\eqref{sc:multilinear}. For $k=0$, only the first case occurs,
+with $N_*=\varnothing$, and its bound is $DJ\gamma_0(s)/\Delta$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{sc:stability} in finite dimension]
+For a creation operator $C$, put
+\begin{equation}
+ W(C)=e^CVe^{-C}
+     =\sum_{k=0}^{2s}\frac{1}{k!}\operatorname{ad}_C^k(V).
+ \label{sc:W}
+\end{equation}
+The equality is exact by Lemma~\ref{sc:support}.
+By \eqref{sc:free-commutator}, $e^{-C}\Omega$ is an eigenvector
+of $H(\varepsilon)$ precisely when
+\begin{equation}
+ c_M=\varepsilon(H_0^M)^{-1}\Pi_M W(C)\Omega
+ \quad(M\ne\varnothing).
+ \label{sc:KT}
+\end{equation}
+Its eigenvalue is $E(\varepsilon)=\varepsilon\langle\Omega,W(C)\Omega\rangle$.
+Indeed, conjugating $H$ by $e^C$ gives
+$H_0+[C,H_0]+\varepsilon W(C)$; its nonvacuum components on
+$\Omega$ vanish exactly when \eqref{sc:KT} holds.
+
+Let $F_\varepsilon$ denote the right side of \eqref{sc:KT},
+assembled as a creation operator. Lemma~\ref{sc:sector-estimate} gives
+\begin{equation}
+ \|F_\varepsilon(C)\|_1\le\lambda q_s(\|C\|_1).
+ \label{sc:F-bound}
+\end{equation}
+The same multilinear estimate, applied to the difference of two
+$k$-fold commutators, gives, whenever $\|C\|_1,\|C'\|_1\le r$,
+\begin{equation}
+ \|F_\varepsilon(C)-F_\varepsilon(C')\|_1
+ \le\lambda q_s'(r)\|C-C'\|_1.
+ \label{sc:contraction}
+\end{equation}
+For example, the difference of the $k$-th terms is a sum of $k$
+multilinear terms containing one $C-C'$ and $k-1$ factors bounded
+by $r$. This explains the derivative of $q_s$ in the estimate.
+By \eqref{sc:criterion}, the closed ball of radius $r$ is preserved
+and the contraction factor is less than $1/2$. The Banach fixed-point
+theorem supplies a solution $C$ with $\|C\|_1\le r$. In finite
+volume the space of creation coefficients is complete in
+\eqref{sc:creation-norm}. The vector $e^{-C}\Omega$ is nonzero,
+since its vacuum coefficient is one.
+
+We next prove isolation and simplicity of this eigenvalue. Suppose
+$H\phi=(E+\delta)\phi$ with $|\delta|<\Delta/2$, where $\phi$
+is linearly independent of $e^{-C}\Omega$. There is a unique
+creation operator $B$ and scalar $b_0$ such that
+\[
+ e^C\phi=(B+b_0)\Omega.
+\]
+Here $B\ne0$. The nonvacuum components of the eigenvalue equation
+after conjugation yield
+\begin{equation}
+ b_M=\varepsilon(H_0^M-\delta)^{-1}
+                     \Pi_M[B,W(C)]\Omega.
+ \label{sc:excited-equation}
+\end{equation}
+To verify the sign, note that
+$[H_0+[C,H_0]+\varepsilon W(C),B]
+ =[H_0,B]-\varepsilon[B,W(C)]$.
+The creation part $[C,H_0]$ commutes with $B$.
+Since $|M|\ge1$,
+\begin{equation}
+ \|(H_0^M-\delta)^{-1}\|
+ \le\frac{1}{\Delta|M|-|\delta|}
+ \le\frac{2}{\Delta|M|}.
+ \label{sc:shifted-resolvent}
+\end{equation}
+The proof of Lemma~\ref{sc:sector-estimate} therefore applies with
+an extra factor two. In \eqref{sc:W}, commutation with $B$ increases
+the order by one; orders greater than $2s$ vanish. Consequently
+\begin{align}
+ \|B\|_1
+ &\le2\lambda\sum_{k=0}^{2s-1}
+       \frac{\beta_{k+1}(s)}{k!}\|C\|_1^k\|B\|_1
+ \nonumber\\
+ &\le2\lambda q_s'(r)\|B\|_1<\|B\|_1,
+ \label{sc:gap-contradiction}
+\end{align}
+a contradiction. This includes $\delta=0$, so $E$ is simple.
+
+Finally vary the real parameter from $0$ to $\varepsilon$. The same
+ball and contraction factor work throughout this segment, and
+\eqref{sc:contraction} implies continuous dependence of the fixed
+point on the parameter. Thus $E$ is a continuous simple eigenvalue
+branch, separated by at least $\Delta/2$ from every other eigenvalue.
+At zero it is the ground eigenvalue of $H_0$. Continuity of the
+finite-dimensional eigenvalues prevents a crossing, proving
+\eqref{sc:gap}.
+\end{proof}
+
+\begin{proof}[Extension to compact-resolvent site operators]
+Let $P_{u,R}=\boldsymbol{1}_{[0,R]}(h_u)$ and
+$\mathcal F_R=\bigotimes_u\Ran P_{u,R}$. These are finite-dimensional
+spaces containing the product vacuum. Compress $H$ to $\mathcal F_R$.
+Each onsite gap remains at least $\Delta$, and each compressed
+interaction is supported on the same $p$ and has norm at most $J$.
+The finite-dimensional theorem therefore applies with the same constants.
+
+In a finite system $V$ is bounded. Hence $H$ is self-adjoint on
+$\Dom H_0$, bounded below, and has compact resolvent. The nested
+union of the spaces $\mathcal F_R$ contains all finite linear
+combinations of product eigenvectors of the $h_u$, and is an operator
+core, hence also a form core, for $H_0$ and $H$.
+The min--max principle gives, for each fixed eigenvalue index $j$,
+\[
+ E_j(H|_{\mathcal F_R})\mathbin{\downarrow}E_j(H),
+\]
+where $H|_{\mathcal F_R}$ denotes compression and eigenvalues are
+ordered with multiplicity. If the full space has dimension at least
+two, pass to the limit in
+$E_1(H|_{\mathcal F_R})-E_0(H|_{\mathcal F_R})\ge\Delta/2$.
+The resulting positive difference proves both the asserted gap and
+simplicity. For a one-dimensional full space, the spectral exclusion
+is vacuous and the ground state is simple. No norm of an unbounded
+onsite operator is used in the estimates.
+\end{proof}
+
+\subsection{Explicit rational certificates}
+\label{sc:certificates}
+
+The following choices make the criterion explicit:
+\begin{equation}
+ \lambda_3=0.01790402,\qquad \lambda_4=0.01190829.
+ \label{sc:certified-lambdas}
+\end{equation}
+Every terminating decimal in this subsection denotes an exact rational
+number. To check the inequalities without locating a polynomial root,
+use the following rational upper bounds and witnesses:
+\begin{center}
+\begin{tabular}{c c c c}
+$s$ & $\overline\gamma_0$ & $\overline\gamma_1$ & $r$\\
+\hline
+3 & 1.269295517644 & 5.859465277083 & 0.03911425\\
+4 & 1.464866319271 & 8.597480251020 & 0.02996979
+\end{tabular}
+\end{center}
+The exact squares required by \eqref{sc:gammas} are
+\begin{equation}
+ \begin{array}{c|cc}
+ s&\gamma_0(s)^2&\gamma_1(s)^2\\ \hline
+ 3&29/18&103/3\\
+ 4&103/48&887/12
+ \end{array}.
+ \label{sc:exact-gamma-squares}
+\end{equation}
+Squaring the displayed rational upper bounds verifies
+$\overline\gamma_i^2\ge\gamma_i^2$.
+Let $\overline q_s$ be \eqref{sc:majorant} with these upper bounds
+substituted in \eqref{sc:betas}. Direct rational substitution gives,
+for each of the two rows,
+\begin{equation}
+ r-\lambda_s\overline q_s(r)>\frac{3}{10^8},
+ \qquad
+ 1-2\lambda_s\overline q_s'(r)>\frac{9}{10^7}.
+ \label{sc:rational-slacks}
+\end{equation}
+These are finite rational inequalities, verifiable by clearing
+denominators. Since $q_s$ and $q_s'$ have nonnegative coefficients
+bounded by those of $\overline q_s$, they imply
+\eqref{sc:criterion} for all $0\le\lambda\le\lambda_s$.
+The certificate checks only this arithmetic; the universal operator
+conclusion comes from the preceding proof. It does not follow from
+finite matrix diagonalizations or from sampling interaction operators.
+
+\subsection{Application to the specified $\SU(N)$ lattice Hamiltonian}
+
+Let $d\ge2$ be the spatial dimension, $N\ge2$, $x=g^2>0$, and
+$0\le b_N\le2N$. On a finite collection $E$ of positively oriented
+cubic-lattice links, retain any subset $\mathcal P$ of the usual
+elementary plaquettes whose four links belong to $E$, with no repetitions
+of an anchored plaquette. Reverse
+orientations denote inverses of the positive link variables.
+At lattice spacing one, use
+\begin{equation}
+ H_{\rm lat}(x)=\frac{x}{2}\sum_{l\in E}C_l+
+       \frac{b_N}{x}\sum_{p\in\mathcal P}(1-T_p),
+ \qquad T_p=\frac{\operatorname{Re}\Tr U_p}{N}.
+ \label{sc:KS-H}
+\end{equation}
+The link space is $L^2(\SU(N),\dd U)$ for normalized Haar measure;
+$C_l$ is the positive group Casimir with
+$\Tr(t_at_b)=\delta_{ab}/2$. The physical space is invariant under
+the vertex gauge groups, with no external charges. These conventions
+specify the magnetic normalization explicitly; compare the Hamiltonian
+formulation in \cite{KS}. The bounds below concern the dimensionless
+energies of \eqref{sc:KS-H}.
+
+The least nonzero Casimir is
+\begin{equation}
+ C_F=\frac{N^2-1}{2N}\ge\frac34.
+ \label{sc:CF}
+\end{equation}
+For completeness, write a nonzero dominant highest weight as
+$\Lambda=\omega_i+\nu$, where $\nu$ is dominant and the roots have
+squared length two. The Gram entries
+$(\omega_i,\omega_j)=\min(i,j)(N-\max(i,j))/N$ are positive, so
+$C_2(\Lambda)\ge C_2(\omega_i)$ for
+$C_2(\Lambda)=(\Lambda,\Lambda+2\rho)/2$,
+where $\rho=\sum_{j=1}^{N-1}\omega_j$.
+Since $C_2(\omega_i)=i(N-i)(N+1)/(2N)\ge C_F$, and the
+fundamental representation attains equality, Peter--Weyl decomposition
+proves \eqref{sc:CF} on the entire link space.
+
+Divide \eqref{sc:KS-H} by $s_0=xC_F/2$ and remove its scalar
+magnetic constant. Precisely,
+\begin{equation}
+ \frac{H_{\rm lat}}{s_0}-\varepsilon|\mathcal P|I
+   =\sum_{l\in E}\frac{C_l}{C_F}
+        +\varepsilon\sum_{p\in\mathcal P}(-T_p),
+ \qquad
+ \varepsilon=\frac{2b_N}{x^2C_F}\le\frac{32}{3x^2}.
+ \label{sc:normalization}
+\end{equation}
+The last inequality uses
+$2b_N/C_F\le8N^2/(N^2-1)\le32/3$.
+The normalized onsite gap is $\Delta=1$, $J=1$ because
+$\|T_p\|\le1$, and each plaquette meets $s=4$ link sites.
+Each link belongs to at most $D=2(d-1)$ elementary plaquettes.
+These statements hold for any finite open subgraph, and also for
+the usual periodic directed cubic lattices of side lengths at least
+two, with positive-direction link factors distinguished.
+
+\begin{corollary}[Explicit $N$-uniform finite-volume gauge gap]
+\label{sc:gauge-corollary}
+For the model \eqref{sc:KS-H}, let
+\begin{equation}
+ X_d^{\rm link}
+  =\left(\frac{(32/3)\,2(d-1)}{0.01190829}\right)^{1/2}.
+ \label{sc:X}
+\end{equation}
+If $x\ge X_d^{\rm link}$, the ground state is unique and gauge
+invariant, and both on the full link space and on its physical
+subspace,
+\begin{equation}
+ H_{\rm lat}-E_0\ge\frac{xC_F}{4}\ge\frac{3x}{16}
+ \quad\hbox{on the orthogonal complement of the ground state}.
+ \label{sc:gauge-gap}
+\end{equation}
+In three spatial dimensions the sufficient condition $x\ge59.9$
+implies \eqref{sc:gauge-gap}, for every $N\ge2$ and
+$0\le b_N\le2N$, uniformly over the stated finite volumes.
+\end{corollary}
+\begin{proof}
+Equations \eqref{sc:normalization}--\eqref{sc:X} give
+$\lambda=\varepsilon D\le\lambda_4$.
+Theorem~\ref{sc:stability} and the certificate give a normalized
+gap at least $1/2$. Restoring $s_0$ gives $xC_F/4$; adding back
+the scalar constant changes no gap. All Casimirs and plaquette
+traces commute with the finite product of vertex gauge groups.
+The unique ground line therefore carries a continuous one-dimensional
+representation of a product of $\SU(N)$ groups. Such a representation
+is trivial, so the ground vector is gauge invariant. The physical
+space reduces $H_{\rm lat}$ and contains its ground state;
+restricting the excited-space inequality cannot lower the gap.
+Finally, the exact rational inequality
+$(59.9)^2(0.01190829)>(32/3)\,4$ verifies the stated threshold.
+\end{proof}
+
+For reference, upward-rounded sufficient thresholds using link sites
+are $42.4$, $59.9$, and $73.4$ in spatial dimensions $2$, $3$, and $4$,
+respectively. The exact values from \eqref{sc:X} are approximately
+$42.326$, $59.858$, and $73.310$; these approximations are not used
+as downward-rounded sufficient bounds.
+Alternatively, group the $d$ outgoing positive links at each vertex
+into one site. Each plaquette then meets three sites, and a vertex
+site meets at most $3\binom d2$ plaquettes: for each coordinate pair
+its three possible roles are the lower anchor and its two forward
+neighbors. With $s=3$, $D=3d(d-1)/2$, and $\lambda_3$ from
+\eqref{sc:certified-lambdas}, the sufficient threshold is
+$\bigl((32/3)D/\lambda_3\bigr)^{1/2}$.
+In $d=2$, this permits the slightly smaller upward-rounded value
+$42.3$. Link grouping gives the better displayed bound in $d=3$.
+
+\begin{remark}[Limits of the conclusion]
+\label{sc:scope}
+The uniformity established here is over finite volume and $N$ at
+fixed $x$. The proof does not construct an infinite-volume GNS
+Hamiltonian at the explicit threshold, nor does it prove a continuum
+limit or a positive physical continuum mass. An infinite-volume
+strong-coupling construction with a non-explicit threshold is a
+separate consequence of the stability theorem in \cite{Yarotsky},
+as applied in \cite{Spectral}. A limit with fixed 't~Hooft coupling
+$Nx$ eventually leaves the present window as $N$ increases.
+\end{remark}
+
+\subsection{A counting correction in the cited BDL preprint}
+\label{sc:BDL-correction}
+
+This subsection concerns the exact version
+arXiv:0707.1894v1 of \cite{BDL}, Appendix~A, p.~25, in the
+paragraph preceding its equation~(69). The intermediate inference
+$M_j\subset M\cup\{w\}$, and hence $|M_j|\le2|M|$, does not
+follow from the support conditions stated there. The following
+example also verifies that this is an operator issue, rather than
+only a set-theoretic possibility.
+
+Take three distinct qubit sites $u,v,w$, their vacuum $|000\rangle$,
+and
+\[
+ A=a_u^\dagger a_v^\dagger a_w^\dagger,
+ \qquad V_{vw}=X_vX_w,
+ \qquad a^\dagger=|1\rangle\langle0|,
+ \quad a=|0\rangle\langle1|.
+\]
+Here $X$ interchanges $|0\rangle$ and $|1\rangle$.
+Direct application gives
+\begin{equation}
+ AV_{vw}|000\rangle=0,\qquad
+ V_{vw}A|000\rangle=|100\rangle,\qquad
+ \langle000|a_u[A,V_{vw}]|000\rangle=-1.
+ \label{sc:BDL-counterexample}
+\end{equation}
+Thus a nonzero term has $M_j=\{u,v,w\}$ and $M=\{u\}$.
+It obeys the source's support conditions but violates
+$|M_j|\le2|M|$.
+
+The valid general estimate is
+\begin{equation}
+ M_j\subset M\cup p,\quad |p|\le s,\quad M\ne\varnothing
+ \quad\Longrightarrow\quad
+ |M_j|\le|M|+s\le(s+1)|M|.
+ \label{sc:corrected-count}
+\end{equation}
+For two-body interactions this gives $3|M|$, which is sharp by
+\eqref{sc:BDL-counterexample}. It does not invalidate the conservative
+constant $2^{13}$ in the source's Lemma~3. Repeating its counting
+with the factor three instead of two gives, for the possible
+commutator orders $1\le k\le4$, the coefficient bound
+\begin{equation}
+ k\cdot4\cdot3\cdot2^k2^{k-1}
+        +4\cdot2^k2^k
+ \le7168<8192=2^{13}.
+ \label{sc:BDL-constant-survives}
+\end{equation}
+Higher orders vanish, and the zeroth-order estimate is smaller.
+Accordingly the correction repairs this intermediate counting step
+while preserving that theorem's stated conservative constant.
+No priority claim is made for identifying the correction, and no
+claim about revisions other than the specified source version is
+needed here.
+
+% SOURCE sections/vacuum.tex
+\section{Fixed-block coercivity in the actual vacuum}
+\label{vac:section}
+
+This section proves a lower bound for the energy of fluctuations in a fixed
+finite set of links, conditional on all exterior links, in the actual
+finite-volume ground state.  The constant is independent of the number of
+exterior links.  Its dependence on the number of selected links is explicit
+and does not give a uniform bound for an extensive elimination layer.
+We use a Hamiltonian of Kogut--Susskind type~\cite{KS} with the normalization
+specified below.  The argument is presented in full; the associated research
+record is available in~\cite{Archive}.
+
+\subsection{Finite-volume Hamiltonian and its ground-state form}
+\label{vac:setup}
+
+Let $E$ be a finite set of oriented link representatives of a finite spatial
+graph, let $\mathcal P$ be a finite collection of plaquette terms, and fix
+$N\geq2$, $x>0$, $a>0$, and $b\geq0$.  Put
+$M=\SU(N)^E$ and equip $M$ with normalized product Haar measure $\mathrm dU$.
+For Hermitian generators satisfying
+$\operatorname{Tr}(t_\alpha t_\beta)=\delta_{\alpha\beta}/2$, choose the
+bi-invariant metric for which the corresponding left-invariant vector fields
+$X_\alpha$ are orthonormal.  On link $\ell$, write
+$C_\ell=-\sum_\alpha X_{\ell,\alpha}^2=-\Delta_\ell$.  Consider
+\begin{equation}
+ H=\frac{x}{2}\sum_{\ell\in E}C_\ell+V,
+ \qquad
+ V(U)=\frac b x\sum_{p\in\mathcal P}
+       \left(1-\frac{\operatorname{Re}\operatorname{Tr}U_p}{N}\right).
+ \label{vac:H}
+\end{equation}
+Here $U_p$ is the ordered plaquette holonomy.  Each summand in parentheses
+lies in $[0,2]$.  The operator $H$ is the self-adjoint bounded-potential
+perturbation of the product Laplacian, with operator domain $H^2(M)$ and
+form domain $H^1(M)$.  The parameter $a$ enters the physical energy through
+division by $a$; it has not been absorbed into $H$.
+
+The vertex gauge group acts by
+$U_\ell\mapsto g_{s(\ell)}U_\ell g_{t(\ell)}^{-1}$.  We assume the
+plaquette terms and boundary conditions preserve this action.  Physical
+functions are invariant under this group.  No gauge fixing is used.
+
+\begin{lemma}[Actual vacuum and ground-state transform]
+\label{vac:groundstate}
+The lowest eigenvalue $E_0$ of $H$ is simple.  Its normalized eigenfunction
+$\psi$ can be chosen smooth, strictly positive, and gauge invariant.  Set
+$\mathrm d\mu=\psi^2\,\mathrm dU$.  Multiplication by $\psi$ is a unitary map
+from $L^2(\mu)$ to $L^2(\mathrm dU)$, and the nonnegative self-adjoint operator
+\begin{equation}
+ K=\psi^{-1}(H-E_0)\psi/a
+ \label{vac:K}
+\end{equation}
+has closed quadratic form
+\begin{equation}
+ k[f]=\frac{x}{2a}\int_M
+          \sum_{\ell,\alpha}|X_{\ell,\alpha}f|^2\,\mathrm d\mu,
+ \qquad f\in H^1(M).
+ \label{vac:groundform}
+\end{equation}
+Its kernel is the space of constant functions.  These statements also hold
+after restriction to the gauge-invariant subspaces.
+\end{lemma}
+
+\begin{proof}
+The compact manifold $M$ is connected, whether or not the underlying graph
+is connected.  Its heat kernel is strictly positive at every positive time.
+The Feynman--Kac weight for the bounded real potential $V$ is strictly
+positive, so $\exp(-tH)$ is positivity improving.  Compact resolvent gives a
+lowest eigenfunction.  The absolute-value inequality for the Dirichlet form
+allows a nonnegative minimizer, which is strictly positive by the strong
+maximum principle.  Positivity improvement implies simplicity: a second
+real ground eigenfunction orthogonal to the positive one would change sign,
+contradicting the strict positivity statement.  Elliptic regularity gives
+smoothness.  Gauge transformations commute with $H$ and preserve positivity
+and norm; uniqueness therefore makes $\psi$ gauge invariant.
+
+For smooth complex $f$, integration by parts and $H\psi=E_0\psi$ give
+\begin{equation}
+ \langle\psi f,(H-E_0)\psi f\rangle_{L^2(\mathrm dU)}
+   =\frac{x}{2}\int_M
+       \sum_{\ell,\alpha}|X_{\ell,\alpha}f|^2\psi^2\,\mathrm dU.
+ \label{vac:transformidentity}
+\end{equation}
+Indeed, the terms containing $|f|^2|\nabla\psi|^2$ and the mixed derivatives
+combine, after integration by parts, with $V|\psi f|^2$ to give
+$E_0|\psi f|^2$.  On this fixed finite graph, $\psi$ is smooth and bounded
+away from zero.  Multiplication by $\psi$ and its inverse preserve $H^1(M)$,
+so the identity extends by form closure.  Unitarity follows directly from
+$\mathrm d\mu=\psi^2\mathrm dU$.  The zero-energy functions have zero gradient
+and are constant because $M$ is connected.  Multiplication by $\psi$
+intertwines the gauge actions, which proves the final assertion.
+\end{proof}
+
+In particular, all energy estimates below subtract $E_0$, the actual
+interacting ground energy.  No bound on $E_0$ uniform in volume is assumed.
+The equivalence of weighted and unweighted Sobolev norms just used is needed
+only for each fixed graph; its constants need not be uniform in volume.
+
+\subsection{Conditional projection and finite-block theorem}
+\label{vac:block}
+
+Fix a nonempty subset $B\subseteq E$ with $m=|B|$, and write a configuration
+as $(u,y)\in\SU(N)^B\times\SU(N)^{E\setminus B}$.  Let $p_B$ be the number
+of plaquette terms that involve at least one link in $B$, counting each term
+once.  Define
+\begin{equation}
+ Z(y)=\int\psi(v,y)^2\,\mathrm dv,
+ \qquad
+ \mathrm d\mu_y(u)=\frac{\psi(u,y)^2}{Z(y)}\,\mathrm du,
+ \qquad
+ Pf(u,y)=\int f(v,y)\,\mathrm d\mu_y(v),
+ \label{vac:conditional}
+\end{equation}
+where $\mathrm du$ and $\mathrm dv$ are normalized product Haar measures.
+Thus $P=\mathbb E_\mu[\,\cdot\mid y]$ is an orthogonal projection in
+$L^2(\mu)$ and $P1=1$.  Put $Q=I-P$.
+
+The restriction of the form $k$ to
+$H^1(M)\cap\operatorname{Ran}Q$ is closed and densely defined in
+$\operatorname{Ran}Q$; the density assertion is verified in the proof below.
+Let $D_B$ be its associated self-adjoint operator on that subspace.  Thus
+$D_B$ denotes a form compression.  It does not require the unbounded
+operator product $QKQ$ to be defined on an assumed common operator domain.
+
+Write
+\begin{equation}
+ C_F=\frac{N^2-1}{2N},\qquad n=N^2-1,
+ \qquad
+ \kappa_N(s)=
+ \frac{\max_{u,v\in\SU(N)}k_s(u,v)}
+      {\min_{u,v\in\SU(N)}k_s(u,v)},\quad s>0,
+ \label{vac:constants}
+\end{equation}
+where $k_s$ is the one-link heat kernel of $\exp(-sC)=\exp(s\Delta)$
+relative to normalized Haar measure.  Compactness and strict positivity make
+$\kappa_N(s)$ finite.
+
+\begin{theorem}[Exterior-volume-uniform finite-block coercivity]
+\label{vac:finiteblock}
+For every $s>0$,
+\begin{equation}
+ D_B\ \geq\ d_B(s)I,
+ \qquad
+ d_B(s)=\frac{xC_F}{2a}\,
+       \kappa_N(s)^{-2m}
+       \exp\!\left(-\frac{8sbp_B}{x^2}\right).
+ \label{vac:heatbound}
+\end{equation}
+The bound is independent of the number of links outside $B$ when
+$m,p_B,N,x,b,a$ are fixed.  The projection $P$ commutes with the gauge
+action, so the same bound holds on the gauge-invariant part of
+$\operatorname{Ran}Q$, if that part is nonzero.  If $bp_B=0$, the sharper
+bound
+\begin{equation}
+ D_B\geq\frac{xC_F}{2a}I
+ \label{vac:freebound}
+\end{equation}
+holds.
+\end{theorem}
+
+\begin{proof}
+Split the potential into terms that avoid and meet $B$:
+\begin{equation}
+ V(u,y)=V_{\mathrm{out}}(y)+V_{\mathrm{hit}}(u,y),
+ \qquad
+ 0\leq V_{\mathrm{hit}}\leq W_B:=\frac{2bp_B}{x}.
+ \label{vac:split}
+\end{equation}
+Let $(U_t,Y_t)$ be independent link Brownian motions, with generator
+$(x/2)\Delta$ on each link.  At any time $t>0$, the eigenfunction identity
+and Feynman--Kac formula give
+\begin{equation}
+ e^{-tE_0}\psi(u,y)=
+ \mathbb E_{u,y}\!\left[
+ e^{-\int_0^t V(U_r,Y_r)\,\mathrm dr}\psi(U_t,Y_t)\right].
+ \label{vac:fk}
+\end{equation}
+Remove only $V_{\mathrm{hit}}$ from this expectation and call the result
+$F_t(u,y)$.  Positivity gives
+\begin{equation}
+ e^{-tW_B}F_t(u,y)\leq e^{-tE_0}\psi(u,y)\leq F_t(u,y).
+ \label{vac:fksandwich}
+\end{equation}
+Put $s=xt/2$.  Independence of the link motions and the absence of $u$ from
+$V_{\mathrm{out}}$ imply
+\begin{align}
+ F_t(u,y)&=\int k_s^B(u,v)A_t(y,v)\,\mathrm dv,
+ \label{vac:factorization}\\
+ A_t(y,v)&=\mathbb E_y\!\left[
+       e^{-\int_0^t V_{\mathrm{out}}(Y_r)\,\mathrm dr}
+       \psi(v,Y_t)\right]>0,
+ \notag
+\end{align}
+where $k_s^B$ is the product of the $m$ one-link kernels.  For a fixed $y$,
+the positive factor $A_t(y,v)$ is the same for every initial block
+configuration $u$.  Consequently, for every $u,u',y$,
+\begin{equation}
+ \frac{\psi(u,y)}{\psi(u',y)}
+ \leq e^{tW_B}\frac{F_t(u,y)}{F_t(u',y)}
+ \leq e^{tW_B}\kappa_N(s)^m=:R_B(s).
+ \label{vac:oscillation}
+\end{equation}
+The factor $e^{-tE_0}$ cancels in this same-time ratio.  The exterior
+potential remains inside the common positive expectation in
+\eqref{vac:factorization}; it has not been replaced by a bound depending on
+the number of exterior plaquettes.  This is the source of the asserted
+exterior-volume independence.
+
+We next recall the product Haar Poincar\'e inequality in the chosen metric:
+\begin{equation}
+ \operatorname{Var}_{\mathrm du}(f)
+ \leq\frac1{C_F}\int\sum_{\ell\in B,\alpha}
+                 |X_{\ell,\alpha}f|^2\,\mathrm du.
+ \label{vac:haar}
+\end{equation}
+For completeness, Peter--Weyl decomposition reduces this statement to the
+smallest nonzero Casimir eigenvalue of $\SU(N)$.  With long roots of squared
+length $2$, the Casimir of highest weight $\lambda$ is
+$(\lambda,\lambda+2\rho)/2$.  The fundamental weight $\omega_j$ has Casimir
+$j(N-j)(N+1)/(2N)$.  All pairings of fundamental weights are nonnegative,
+so every nonzero dominant integral weight has Casimir at least the minimum
+of these fundamental values, namely $C_F$.  On a product, the eigenvalues
+add; a nonconstant component therefore has eigenvalue at least $C_F$.
+This proves~\eqref{vac:haar}, including for complex functions by applying
+the real inequality to their real and imaginary parts.
+
+For any positive probability density $w$ relative to product Haar with
+$\max w/\min w\leq R^2$, the minimizing-constant definition of variance and
+\eqref{vac:haar} give
+\begin{align}
+ \operatorname{Var}_{w\mathrm du}(f)
+ &\leq (\max w)\operatorname{Var}_{\mathrm du}(f)\notag\\
+ &\leq\frac{\max w}{C_F}\int|\nabla_Bf|^2\,\mathrm du
+ \leq\frac{R^2}{C_F}\int|\nabla_Bf|^2w\,\mathrm du,
+ \label{vac:densitycomparison}
+\end{align}
+where $|\nabla_Bf|^2=\sum_{\ell\in B,\alpha}|X_{\ell,\alpha}f|^2$.
+No Haar-mean-zero condition is imposed on $f$ in this comparison.
+By~\eqref{vac:oscillation}, the density of $\mu_y$ in
+\eqref{vac:conditional} has maximum-to-minimum ratio at most $R_B(s)^2$.
+Applying~\eqref{vac:densitycomparison} conditionally and integrating over
+the exterior marginal yields
+\begin{equation}
+ \|Qf\|_{L^2(\mu)}^2
+ \leq\frac{R_B(s)^2}{C_F}
+        \int_M|\nabla_Bf|^2\,\mathrm d\mu.
+ \label{vac:conditionalpoincare}
+\end{equation}
+If $f\in\operatorname{Ran}Q$, the exact ground-state form therefore gives
+\begin{equation}
+ k[f]\geq\frac{x}{2a}\int_M|\nabla_Bf|^2\,\mathrm d\mu
+       \geq\frac{xC_F}{2aR_B(s)^2}\|f\|_{L^2(\mu)}^2.
+ \label{vac:discardedform}
+\end{equation}
+Since $t=2s/x$ and $W_B=2bp_B/x$, this is precisely
+\eqref{vac:heatbound}.
+
+To justify the form restriction, observe that $P$ maps smooth functions to
+smooth functions.  On each fixed compact graph it is bounded on $H^1(M)$:
+differentiating its conditional integral in an exterior direction produces
+the conditional derivative of $f$ and a covariance with
+$2\nabla_y\log\psi$.  These coefficients are smooth and bounded, and
+conditional Cauchy--Schwarz gives the required fixed-graph bound.  Derivatives
+in the $B$ directions vanish for $Pf$.  Thus $Q$ is also bounded on
+$H^1(M)$.  If $f\in H^1(M)\cap\operatorname{Ran}Q$, approximate $f$ in
+$H^1$ by smooth $f_j$ and use $Qf_j\to f$.  This proves smooth density in
+the restricted form domain.  Smooth density in $L^2$ and boundedness of $Q$
+also prove that the restriction is densely defined in
+$\operatorname{Ran}Q$.  It is closed because this subspace is closed in
+$L^2(\mu)$ and $k$ is closed.  Inequality~\eqref{vac:discardedform} consequently
+extends to the entire restricted form domain without any uniform derivative
+bound on $\psi$.
+
+For a fixed gauge transformation, the selected and exterior link coordinates
+transform separately.  Both transformations preserve their Haar measures,
+and $\psi$ is invariant.  Changing variables in
+\eqref{vac:conditional} therefore shows that $P$ intertwines the gauge
+action.  The forms and their restrictions are gauge invariant, proving the
+physical-sector assertion.
+
+Finally, if $bp_B=0$, the Hamiltonian splits as a free product Laplacian on
+$B$ plus an exterior operator.  Its positive ground function is constant on
+$B$.  The conditional measures are exactly product Haar, and
+\eqref{vac:haar} gives~\eqref{vac:freebound}.
+\end{proof}
+
+\subsection{An explicit estimate at weak coupling}
+\label{vac:explicit}
+
+Let $D_N$ be the diameter of $\SU(N)$ in the specified Casimir metric.
+The next heat-kernel estimate supplies explicit constants in
+Theorem~\ref{vac:finiteblock}.
+
+\begin{lemma}[Compact heat-kernel ratio]
+\label{vac:heatlemma}
+For every $s>0$,
+\begin{equation}
+ \kappa_N(s)\leq 2^n
+       \exp\!\left(\frac{3D_N^2}{4s}\right),
+ \qquad n=N^2-1.
+ \label{vac:kappabound}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The bi-invariant metric has nonnegative Ricci curvature.  For a positive
+solution of $u_t=\Delta u$ on a compact $n$-dimensional manifold with
+nonnegative Ricci curvature, the Li--Yau estimate~\cite{LiYau} is
+\begin{equation}
+ |\nabla\log u|^2-\partial_t\log u\leq\frac{n}{2t}.
+ \label{vac:liyau}
+\end{equation}
+Here is its compact, boundaryless derivation.  Set $f=\log u$,
+$w=|\nabla f|^2-f_t$, and $\mathcal F=tw$.  The heat equation, Bochner
+identity, and $|\operatorname{Hess}f|^2\geq(\Delta f)^2/n$ imply
+\begin{equation}
+ (\Delta-\partial_t)\mathcal F
+ \geq\frac{2\mathcal F^2}{nt}-\frac{\mathcal F}{t}
+       -2\langle\nabla f,\nabla\mathcal F\rangle.
+ \label{vac:bochnerheat}
+\end{equation}
+For smooth positive initial data, $\mathcal F=0$ at $t=0$.  A positive
+space-time maximum exceeding $n/2$ contradicts~\eqref{vac:bochnerheat}
+and the maximum principle.  This proves~\eqref{vac:liyau}.  For the heat
+kernel, start after a positive time shift and then let that shift tend to
+zero.  Compactness removes boundary and escape issues.
+
+Along a constant-speed minimizing geodesic $\gamma$ between times
+$0<t_1<t_2$, inequality~\eqref{vac:liyau} gives
+\[
+ \frac{\mathrm d}{\mathrm dt}f(\gamma(t),t)
+ \geq-\frac{|\dot\gamma(t)|^2}{4}-\frac{n}{2t}.
+\]
+Integration yields
+\begin{equation}
+ u(z,t_1)\leq u(w,t_2)
+       \left(\frac{t_2}{t_1}\right)^{n/2}
+       \exp\!\left(\frac{\operatorname{dist}(z,w)^2}
+                         {4(t_2-t_1)}\right).
+ \label{vac:harnack}
+\end{equation}
+Apply this to $k_t(v,\cdot)$ between $s$ and $2s$ and integrate the later
+point $w$ against normalized Haar measure.  Total heat-kernel mass one gives
+\begin{equation}
+ \max k_s\leq 2^{n/2}e^{D_N^2/(4s)}.
+ \label{vac:heatupper}
+\end{equation}
+Apply~\eqref{vac:harnack} between $s/2$ and $s$ and integrate the earlier
+point $z$ instead.  The result is
+\begin{equation}
+ \min k_s\geq2^{-n/2}e^{-D_N^2/(2s)}.
+ \label{vac:heatlower}
+\end{equation}
+The two inequalities prove~\eqref{vac:kappabound}.  Normalizing Riemannian
+volume to Haar probability multiplies the heat kernel by a constant and
+does not change the logarithmic differential estimate; its mass in the
+normalized measure is one, as used above.
+\end{proof}
+
+\begin{corollary}[Explicit finite-block lower bound]
+\label{vac:exponential}
+If $bp_B>0$, then
+\begin{equation}
+ D_B\geq\frac{xC_F}{2a}\,2^{-2mn}
+                   e^{-C_B/x}I,
+ \qquad C_B=4D_N\sqrt{3mbp_B}.
+ \label{vac:explicitbound}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Substituting~\eqref{vac:kappabound} into~\eqref{vac:heatbound} gives the
+lower certificate
+\[
+ \frac{xC_F}{2a}\,2^{-2mn}
+ \exp\!\left(-\frac{3mD_N^2}{2s}-\frac{8sbp_B}{x^2}\right).
+\]
+The positive exponent is minimized at
+\[
+ s_* =\frac{xD_N}{4}\sqrt{\frac{3m}{bp_B}},
+ \qquad
+ \frac{3mD_N^2}{2s_*}+\frac{8s_*bp_B}{x^2}
+       =\frac{4D_N\sqrt{3mbp_B}}{x}.
+\]
+This proves~\eqref{vac:explicitbound}.  The case $bp_B=0$ is already covered
+by~\eqref{vac:freebound} and does not require this optimization.
+\end{proof}
+
+The exponential dependence is a rigorous lower certificate, not an
+asymptotic formula for the actual discarded spectrum as $x\downarrow0$.
+In particular, the estimate is not uniform in $m$ or $N$.
+
+\subsection{Conditional scale budget and the remaining limitation}
+\label{vac:budget}
+
+One can quantify the strength of this certificate without asserting a
+renormalization theorem.  Suppose, as an additional hypothesis, that the same
+fixed-block estimate with constants
+$c_0=(C_F/2)2^{-2mn}$ and $C=C_B$ were available for every relevant exact
+coarse operator.  Consider the illustrative scale and coupling sequences
+\begin{equation}
+ a_r=A L^{-r},\qquad x_r=(\sigma+qr)^{-1},\qquad r\geq1,
+ \quad A>0,\ L>1,\ \sigma>0,\ q\geq0.
+ \label{vac:modelscales}
+\end{equation}
+The reciprocal costs of the certified bounds
+$d_r^{\mathrm{cert}}=c_0x_r e^{-C/x_r}/a_r$ then satisfy the exact identity
+\begin{equation}
+ \sum_{r\geq1}\frac1{d_r^{\mathrm{cert}}}
+ =\frac{A}{c_0}e^{C\sigma}
+       \sum_{r\geq1}(\sigma+qr)\rho^r,
+ \qquad \rho=\frac{e^{Cq}}{L}.
+ \label{vac:budgetseries}
+\end{equation}
+This series is finite exactly when $\rho<1$, in which case it equals
+\begin{equation}
+ \frac{A}{c_0}e^{C\sigma}
+ \left(\frac{\sigma\rho}{1-\rho}
+       +\frac{q\rho}{(1-\rho)^2}\right).
+ \label{vac:budgetvalue}
+\end{equation}
+No actual Yang--Mills coupling trajectory, choice of scale factor, or
+stability of the finite-block theorem under exact elimination is proved by
+this calculation.  If $\rho\geq1$, this particular certificate does not
+give a finite upper bound on the inverse-gap cost; the true discarded gaps
+could still give a finite sum.
+
+Theorem~\ref{vac:finiteblock} concerns one fixed finite block in the original
+Hamiltonian~\eqref{vac:H}.  A whole elimination layer generally contains an
+extensive number of links.  If that layer is used as $B$, the factor
+$2^{-2mn}$ deteriorates exponentially in $m$, and $C_B$ grows proportionally
+to $m$ when $p_B$ does.  Eliminating bounded blocks one after another instead
+requires estimates for the successive exact coarse operators and control of
+the number of elimination steps.  Neither follows from the theorem: the
+generated operators have not been shown to retain the form~\eqref{vac:H},
+and conditional bounds for separate blocks do not by themselves provide a
+collective conditional Poincar\'e inequality in an interacting vacuum.
+Thus the proved exterior-volume uniformity leaves open a whole-layer
+estimate for the actual compact-link ground measure that persists under
+exact coarse graining.

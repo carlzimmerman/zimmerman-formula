@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "checkpoint": "YM-LAYER-2026-10-28-C1",
+  "recorded_at": "2026-10-28T18:44:00.509583+00:00",
+  "target_achieved": false,
+  "new_interacting_gap_regime": false,
+  "novelty_claim": false,
+  "published_artifacts_modified": false,
+  "inputs": [
+    {
+      "path": "real_research/papers/yang_mills_bounds_2026/sections/vacuum.tex",
+      "sha256": "45b33bb7448c25ba0323b38478febd63ccc34958271cd1869e5facd09df872e0"
+    },
+    {
+      "path": "real_research/papers/yang_mills_bounds_2026/sections/schur.tex",
+      "sha256": "a1907e99c6174dedd4ab85d00e9f74fc18b4ffec2eff9df0e30b1f0cc6a3f169"
+    },
+    {
+      "path": "real_research/papers/yang_mills_bounds_2026/sections/strong_coupling.tex",
+      "sha256": "0b0e061117164977b6fe6b06eb138205e0da448c7a0be62a3168798db1b69b6b"
+    },
+    {
+      "path": "real_research/reviews/yang_mills_continuum_2026_09_22/layer/PROOF.md",
+      "sha256": "f3c0019709434127acb62a96c5ba6a0c731ebeb36e87bef3aae167bce02b494c"
+    }
+  ],
+  "proofs": {
+    "coarse/PROOF.md": {
+      "path": "coarse/PROOF.md",
+      "sha256": "9b5e3ab243086577f40546d6a7e1aced55d8c53f981f7b19856a685075a5eb05"
+    },
+    "coarse/DOMAIN_EXTENSION.md": {
+      "path": "coarse/DOMAIN_EXTENSION.md",
+      "sha256": "a821a8d084dd6d13dc2ccd43ca5d63a28aed54c9834ca9fb56ff509ca3ad8e5b"
+    },
+    "tensorization/PROOF.md": {
+      "path": "tensorization/PROOF.md",
+      "sha256": "9cb036f17adafcc6dd7cb5b5c2d56007cd5c9541850646453aeb2339cfd9d783"
+    },
+    "obstructions/PROOF.md": {
+      "path": "obstructions/PROOF.md",
+      "sha256": "8bb7e20d713d1d72ee5f9899e0e1abadc783a5f14ff1552b0f5e229ad0dee8c3"
+    },
+    "gauge_star/PROOF.md": {
+      "path": "gauge_star/PROOF.md",
+      "sha256": "4386f33157d9eb717644b93ca3a3f3a0e9765dfee98d43cf4f21d8c9ff972316"
+    }
+  },
+  "reviews": {
+    "audits/COARSE_REVIEW.md": {
+      "path": "audits/COARSE_REVIEW.md",
+      "sha256": "caa8b70e593eac6d1171768ee7271892d127b1eba8139167717fb35ac708a5fd"
+    },
+    "audits/TENSORIZATION_REVIEW.md": {
+      "path": "audits/TENSORIZATION_REVIEW.md",
+      "sha256": "a6237ff927ea47b097a214da5bdbeee156af350aab35b35ca16832bfec0b5ed9"
+    },
+    "audits/OBSTRUCTIONS_REVIEW.md": {
+      "path": "audits/OBSTRUCTIONS_REVIEW.md",
+      "sha256": "73d16dd50fffc659c8225a771bbca5661ee7024e682b2f1593c20ead93bb0d57"
+    },
+    "audits/GAUGE_STAR_REVIEW.md": {
+      "path": "audits/GAUGE_STAR_REVIEW.md",
+      "sha256": "56e2464f89a6326203e54a8ad9c35d63e6b4eacc1ce8aa470a88a23f511bf0ea"
+    }
+  },
+  "claims": [
+    {
+      "id": "P01",
+      "statement": "Original fixed-block actual-vacuum density ratios and conditional gradient Poincare constants survive every coordinate marginal unchanged.",
+      "mathematical_status": "proved",
+      "scope": "Actual finite SU(N) vacuum, fixed original x,a,N,b and block geometry. No nonlinear coarse-holonomy or rescaled-Hamiltonian identification.",
+      "proof": "coarse/PROOF.md#section-3",
+      "review": "audits/COARSE_REVIEW.md",
+      "dependencies": [
+        "published_vacuum_fixed_block"
+      ],
+      "unproved_inputs": []
+    },
+    {
+      "id": "P02",
+      "statement": "Galerkin form compression onto retained-coordinate functions is exactly the gradient form of the marginal.",
+      "mathematical_status": "proved",
+      "scope": "Coordinate compression of a smooth positive weighted product-gradient form; distinct from Schur minimization.",
+      "proof": "coarse/PROOF.md#section-3",
+      "review": "audits/COARSE_REVIEW.md",
+      "dependencies": [
+        "published_vacuum_ground_transform"
+      ],
+      "unproved_inputs": []
+    },
+    {
+      "id": "P03",
+      "statement": "The original minimizing graph is bounded L2 to H1 at each finite compact coordinate split, with norm at most S0/sqrt(lambda)+S1/lambda; one-step exact Schur domain conditions hold. Direct and unnormalized nested coordinate graph corrections are also bounded.",
+      "mathematical_status": "proved",
+      "scope": "Actual vacuum at fixed finite lattice and x>0; no volume- or coupling-uniform bound, and no assertion about all transported normalized-step domains.",
+      "proof": "coarse/DOMAIN_EXTENSION.md",
+      "review": "audits/COARSE_REVIEW.md",
+      "dependencies": [
+        "published_vacuum_ground_transform",
+        "published_vacuum_fixed_block"
+      ],
+      "unproved_inputs": []
+    },
+    {
+      "id": "C01",
+      "statement": "Successive-marginal score influence norm ||R||<=r<1 and block gaps lambda_i>=lambda_* imply D_layer>=x lambda_* (1-r)^2/(2a).",
+      "mathematical_status": "proved_conditional_theorem",
+      "scope": "Uniformity follows only when the hypotheses hold uniformly in volume, layer size and exterior configuration.",
+      "proof": "coarse/PROOF.md#equations-13-16",
+      "review": "audits/COARSE_REVIEW.md",
+      "dependencies": [
+        "P01"
+      ],
+      "unproved_inputs": [
+        "Actual-vacuum successive-marginal score norm r<1 in a new interacting regime"
+      ]
+    },
+    {
+      "id": "C02",
+      "statement": "A uniformly subunit Dobrushin spectral radius q upgrades bounded-block gradient gap lambda0 to D_layer>=x(1-q)lambda0/(2a).",
+      "mathematical_status": "proved_conditional_theorem",
+      "scope": "Equal-sized compact SU(N) link blocks; Wu Theorem 2.1 in its stated measurable-space discrete metric setting.",
+      "proof": "tensorization/PROOF.md#section-2",
+      "review": "audits/TENSORIZATION_REVIEW.md",
+      "dependencies": [
+        "published_vacuum_fixed_block",
+        "Wu_math0611635v1_Theorem2.1"
+      ],
+      "unproved_inputs": [
+        "Actual-vacuum Dobrushin spectral radius uniformly below one"
+      ]
+    },
+    {
+      "id": "C03",
+      "statement": "Positive definiteness of diag(lambda_i)-h_ij for conditional local gaps and mixed log-density Hessian bounds implies the corresponding product gradient gap.",
+      "mathematical_status": "proved_conditional_theorem",
+      "scope": "Finite compact connected boundaryless product manifolds.",
+      "proof": "tensorization/PROOF.md#section-3",
+      "review": "audits/TENSORIZATION_REVIEW.md",
+      "dependencies": [],
+      "unproved_inputs": [
+        "Uniform favorable mixed-Hessian bound for the actual weak-coupling vacuum"
+      ]
+    },
+    {
+      "id": "P04",
+      "statement": "Selected links sharing no bare plaquette are conditionally dependent in the actual two-adjacent-square SU(2) vacuum for all sufficiently small nonzero g=2b/x^2, through a nonzero order-g^2 coefficient.",
+      "mathematical_status": "proved",
+      "scope": "Specified finite SU(2) model near strong coupling; neither large influences nor weak-coupling behavior established.",
+      "proof": "tensorization/PROOF.md#section-5",
+      "review": "audits/TENSORIZATION_REVIEW.md",
+      "dependencies": [],
+      "unproved_inputs": []
+    },
+    {
+      "id": "P05",
+      "statement": "The nth finite-volume log-vacuum perturbation coefficient is supported on connected clusters of at most n plaquettes.",
+      "mathematical_status": "proved_after_scope_restriction",
+      "scope": "Square plaquettes each using four distinct link variables. Formal/finite-volume analytic coefficient statement only.",
+      "proof": "tensorization/PROOF.md#section-6",
+      "review": "audits/TENSORIZATION_REVIEW.md",
+      "dependencies": [],
+      "unproved_inputs": [
+        "Uniform coefficient norms and convergence absent"
+      ]
+    },
+    {
+      "id": "N01",
+      "statement": "Uniform bounded-block conditional gaps alone imply a uniform collective gap.",
+      "mathematical_status": "refuted_general_inference",
+      "scope": "Explicit gauge-invariant SU(2) measures, compact local rotor actual vacua on trees, and local Gaussian actual vacua. These are not Wilson cubic-lattice mass-gap counterexamples.",
+      "proof": "obstructions/PROOF.md#sections-1-2; tensorization/PROOF.md#section-4",
+      "review": "audits/OBSTRUCTIONS_REVIEW.md; audits/TENSORIZATION_REVIEW.md",
+      "dependencies": [],
+      "unproved_inputs": []
+    },
+    {
+      "id": "N02",
+      "statement": "Conditional-expectation Schur reduction automatically preserves the Markov property, before or after metric normalization.",
+      "mathematical_status": "refuted_general_inference",
+      "scope": "Exact four-state reversible example.",
+      "proof": "coarse/PROOF.md#section-4; obstructions/PROOF.md#section-3",
+      "review": "audits/COARSE_REVIEW.md; audits/OBSTRUCTIONS_REVIEW.md",
+      "dependencies": [],
+      "unproved_inputs": []
+    },
+    {
+      "id": "N03",
+      "statement": "An energy-weighted graph bound alone implies L2 closability of the graph map.",
+      "mathematical_status": "refuted_general_inference",
+      "scope": "Abstract boundary-trace closed form. P03 uses additional compact smooth product-gradient structure absent here.",
+      "proof": "coarse/PROOF.md#section-5",
+      "review": "audits/COARSE_REVIEW.md",
+      "dependencies": [],
+      "unproved_inputs": []
+    },
+    {
+      "id": "P06",
+      "statement": "A layer containing a full vertex star has kinematic discarded spectral infimum at most x C_F/(2a); forest coordinate marginals are product Haar.",
+      "mathematical_status": "proved",
+      "scope": "Full independent vertex gauge symmetry, distinct endpoints for the trial link. Charged trial does not bound the physical discarded spectrum from above.",
+      "proof": "gauge_star/PROOF.md",
+      "review": "audits/GAUGE_STAR_REVIEW.md",
+      "dependencies": [
+        "published_vacuum_ground_transform"
+      ],
+      "unproved_inputs": []
+    },
+    {
+      "id": "C04",
+      "statement": "Nested variational forms admit the stated reference-form and additive graph-metric comparisons; the transported normalized construction has the specified discarded bound under its analytic domain hypotheses.",
+      "mathematical_status": "proved_conditional_theorem",
+      "scope": "Finite dimensions unconditionally; compact product form application still retains transported normalized-step domain conditions. No uniform-depth conclusion.",
+      "proof": "coarse/PROOF.md#section-2",
+      "review": "audits/COARSE_REVIEW.md",
+      "dependencies": [
+        "P03"
+      ],
+      "unproved_inputs": [
+        "Useful uniform score/metric estimates",
+        "Remaining transported normalized-step domain details"
+      ]
+    },
+    {
+      "id": "O01",
+      "statement": "A volume- and layer-size-uniform actual Yang--Mills weak-coupling layer bound.",
+      "mathematical_status": "open",
+      "dependencies": [
+        "P01",
+        "C01",
+        "C02",
+        "C03"
+      ],
+      "proof": null,
+      "review": null
+    },
+    {
+      "id": "O02",
+      "statement": "Persistence of useful layer coercivity through an actual exact coarse sequence with a cutoff-uniform physical inverse-gap budget.",
+      "mathematical_status": "open",
+      "dependencies": [
+        "O01",
+        "P03",
+        "C04"
+      ],
+      "proof": null,
+      "review": null
+    },
+    {
+      "id": "O03",
+      "statement": "A nontrivial terminal physical gap, continuum construction and spectral transfer establishing the Yang--Mills mass gap.",
+      "mathematical_status": "open",
+      "dependencies": [
+        "O02"
+      ],
+      "proof": null,
+      "review": null
+    }
+  ],
+  "review_scope": "Fresh separate AI audit agents; not independent human peer review, formal proof-assistant verification, or novelty determination.",
+  "computations": [
+    {
+      "manifest": "coarse/exact_run/manifest.json",
+      "scope": "Single exact four-state Schur construction",
+      "sha256": "bdd274500e49b8b636b379d860c3da73c63e298008631f84e31f2a91a34d86b9"
+    },
+    {
+      "manifest": "obstructions/run001/manifest.json",
+      "scope": "Exact finite algebra: tree depths 0 through 5 (1365 ordered leaf pairs), Gaussian sizes 1 through 20, four-state algebra; analytic proofs carry all-size statements",
+      "sha256": "4e7ecbef9e5dbcef7a92e4c058057559cab4b9a3fb4282391e7059082fc3e423"
+    }
+  ]
+}

@@ -1,0 +1,590 @@
+\section{An explicit finite-volume strong-coupling bound}
+\label{sc:section}
+
+This section gives a quantitative version of stability of a gapped product
+Hamiltonian under bounded local perturbations. The argument follows the
+Kirkwood--Thomas method used by Bravyi, DiVincenzo, and Loss
+\cite{BDL}, with Hilbert-space norms on excitation sectors in place of
+absolute values of qubit coefficients. The existence of a sufficiently
+small perturbative window, including for infinite-dimensional site spaces,
+is established in the literature \cite{Yarotsky}. The purpose here is to
+track constants for the specified Hamiltonian lattice gauge model.
+Neither the method nor the existence of strong-coupling lattice gaps is
+claimed to be new. The derivation and associated records originated in
+the research archive \cite{Archive}; the earlier spectral-bounds paper
+\cite{Spectral} gives the corresponding non-explicit stability application.
+
+\subsection{A finite-system stability criterion}
+
+Let $\mathcal L$ be a nonempty finite set of sites. At each site $u$, let
+$\mathcal H_u$ be a separable Hilbert space and let $h_u$ be a nonnegative
+self-adjoint operator with compact resolvent. Assume that $h_u$ has a
+normalized simple zero eigenvector $\Omega_u$ and that, for a common
+$\Delta>0$,
+\begin{equation}
+ h_u\big|_{\Omega_u^\perp}\ge\Delta.
+ \label{sc:onsite-gap}
+\end{equation}
+The inequality is vacuous if $\mathcal H_u$ is one-dimensional. On
+$\mathcal H=\bigotimes_{u\in\mathcal L}\mathcal H_u$, set
+\begin{equation}
+ H_0=\sum_{u\in\mathcal L}h_u,\qquad
+ V=\sum_{p\in\mathcal P}V_p,\qquad
+ H(\varepsilon)=H_0+\varepsilon V.
+ \label{sc:general-H}
+\end{equation}
+Here $\mathcal P$ is a finite indexed family of nonempty site sets, each
+of cardinality at most an integer $s\ge1$. Each $V_p$ is self-adjoint, supported on
+$p$, and has norm at most $J$. Every site belongs to at most $D$
+members of $\mathcal P$, counted with their multiplicities. We may take
+$D,J>0$; when there is no perturbation the conclusion below is immediate.
+The coupling $\varepsilon$ is real.
+
+Define the dimensionless parameter and positive constants
+\begin{align}
+ \lambda&=\frac{|\varepsilon|DJ}{\Delta},
+ \label{sc:lambda}\\
+ \gamma_0(s)^2&=\sum_{t=1}^{s}\frac{\binom{s-1}{t-1}}{t^2},
+ &\gamma_1(s)^2&=(s+1)^2\sum_{t=0}^{s}
+                        \frac{\binom{s}{t}}{(t+1)^2},
+ \label{sc:gammas}\\
+ \beta_0(s)&=\gamma_0(s),
+ &\beta_k(s)&=2^k\bigl(\gamma_0(s)s^k+
+                         k\gamma_1(s)s^{k-1}\bigr)
+                         \quad(1\le k\le2s),
+ \label{sc:betas}\\
+ q_s(r)&=\sum_{k=0}^{2s}\frac{\beta_k(s)}{k!}r^k.
+ \label{sc:majorant}
+\end{align}
+
+\begin{theorem}[Dimension-independent finite-volume stability]
+\label{sc:stability}
+Suppose there is a number $r>0$ such that
+\begin{equation}
+ \lambda q_s(r)\le r,
+ \qquad 2\lambda q_s'(r)<1.
+ \label{sc:criterion}
+\end{equation}
+Then $H(\varepsilon)$ has a simple ground eigenvalue $E_0$ and
+\begin{equation}
+ \operatorname{spec}H(\varepsilon)
+ \subset\{E_0\}\cup[E_0+\Delta/2,\infty).
+ \label{sc:gap}
+\end{equation}
+The criterion depends on $s,D,J,\Delta$ and $\varepsilon$, but not on
+the number of sites, their Hilbert-space dimensions, or the upper
+onsite spectrum.
+\end{theorem}
+
+We first prove the theorem when all site spaces are finite-dimensional.
+The compact-resolvent extension is proved at the end of this subsection.
+
+For $M\subset\mathcal L$, let
+$\mathcal K_M=\bigotimes_{u\in M}\Omega_u^\perp$ and
+$\Omega_M=\bigotimes_{u\in M}\Omega_u$. The full Hilbert space is the
+orthogonal sum of the sectors
+$\mathcal K_M\otimes\Omega_{\mathcal L\setminus M}$.
+We identify a sector with $\mathcal K_M$, and write $\Pi_M$ for the
+corresponding projection followed by this identification. In particular,
+\begin{equation}
+ \sum_{M\subset\mathcal L}\|\Pi_M\xi\|^2=\|\xi\|^2.
+ \label{sc:orthogonal-sectors}
+\end{equation}
+Let $\Omega=\bigotimes_{u\in\mathcal L}\Omega_u$.
+For $c_M\in\mathcal K_M$, $M\ne\varnothing$, define
+\begin{equation}
+ A[c_M]=|c_M\rangle\langle\Omega_M|\otimes
+                  I_{\mathcal L\setminus M},
+ \qquad
+ C=\sum_{M\ne\varnothing}A[c_M],
+ \qquad
+ \|C\|_1=\max_{u\in\mathcal L}
+                 \sum_{M\ni u}\|c_M\|.
+ \label{sc:creation-norm}
+\end{equation}
+The decomposition of $C$ is unique, as is seen by applying it to $\Omega$.
+We call $C$ a creation operator. The coefficients $c_M$ are vectors,
+including when the excitations within a sector are entangled.
+
+Two such elementary operators commute. If their supports intersect,
+their product in either order is zero: a vacuum bra on an overlapping
+site annihilates an excited factor. If their supports are disjoint,
+they commute by tensor factorization. Consequently all creation operators
+commute, and every product of more than $|\mathcal L|$ elementary creation
+operators vanishes. Their exponentials are therefore finite polynomials.
+Also, $\|A[c_M]\|=\|c_M\|$.
+
+Put $H_0^M=\sum_{u\in M}h_u$ on $\mathcal K_M$. Then
+\begin{equation}
+ H_0^M\ge\Delta|M|,
+ \qquad [H_0,A[c_M]]=A[H_0^M c_M].
+ \label{sc:free-commutator}
+\end{equation}
+Thus a second commutator of $H_0$ with creation operators is zero.
+We use $\operatorname{ad}_C(X)=[C,X]$.
+
+\begin{lemma}[Support and commutator depth]
+\label{sc:support}
+Fix $p\in\mathcal P$ and elementary creation operators
+$A[c_{M_1}],\ldots,A[c_{M_k}]$. Set $N_*=\bigcup_{i=1}^kM_i$ and
+\[
+ X=\operatorname{ad}_{A[c_{M_1}]}\cdots
+                   \operatorname{ad}_{A[c_{M_k}]}(V_p).
+\]
+If $X\ne0$, each $M_i$ intersects $p$. If $\Pi_MX\Omega\ne0$, then
+\begin{equation}
+ N_*\setminus p\subset M\subset N_*\cup p,
+ \qquad M=(N_*\setminus p)\cup T,
+ \quad T\subset p.
+ \label{sc:sector-support}
+\end{equation}
+Moreover, for arbitrary creation operators $C_1,\ldots,C_k$,
+\begin{equation}
+ \operatorname{ad}_{C_1}\cdots\operatorname{ad}_{C_k}(V_p)=0
+ \quad\hbox{if }k>2s.
+ \label{sc:depth}
+\end{equation}
+\end{lemma}
+\begin{proof}
+The commutator maps of commuting creation operators commute. A factor
+whose support misses $p$ can therefore be placed next to $V_p$ and
+annihilates it. Expand a surviving nested commutator into products with
+some elementary operators to the left of $V_p$ and the rest to its right.
+Outside $p$, the operator $V_p$ changes nothing; every site created there
+must remain excited, and a site created twice makes that product zero.
+This proves \eqref{sc:sector-support}. In a nonzero product the creation
+supports on each side of $V_p$ are pairwise disjoint. Since each meets
+$p$, at most $|p|\le s$ can occur on either side. More than $2s$
+factors therefore give zero.
+\end{proof}
+
+\begin{lemma}[Sector norm estimate]
+\label{sc:sector-estimate}
+For $0\le k\le2s$ and creation operators $C_1,\ldots,C_k$, define
+$\mathcal B_k(C_1,\ldots,C_k)$ by its coefficients
+\begin{equation}
+ b_M=(H_0^M)^{-1}\Pi_M
+       \operatorname{ad}_{C_1}\cdots\operatorname{ad}_{C_k}(V)\Omega,
+ \qquad M\ne\varnothing.
+ \label{sc:Bk}
+\end{equation}
+For $k=0$ the commutator product is the identity. Then
+\begin{equation}
+ \|\mathcal B_k(C_1,\ldots,C_k)\|_1
+ \le\frac{DJ}{\Delta}\beta_k(s)
+                      \prod_{i=1}^k\|C_i\|_1.
+ \label{sc:multilinear}
+\end{equation}
+\end{lemma}
+\begin{proof}
+Expand each $C_i$ into its elementary terms, and fix a tuple
+$(M_1,\ldots,M_k,p)$. Denote its commutator by $X$ as above. Its norm
+satisfies
+\begin{equation}
+ \|X\Omega\|\le2^kJ\prod_{i=1}^k\|c^{(i)}_{M_i}\|.
+ \label{sc:tuple-norm}
+\end{equation}
+Only tuples with $M_i\cap p\ne\varnothing$ need be retained.
+Fix a site $u$ when estimating the norm in
+\eqref{sc:creation-norm}. We split the sum into tuples with $u\in p$
+and those with $u\notin p$. In the latter case, a nonzero output
+sector containing $u$ requires $u\in M_j$ for at least one $j$;
+summing over all such $j$ is an upper bound.
+
+If $u\in p$, put $n=|N_*\setminus p|$. A contributing output
+sector has the form \eqref{sc:sector-support} with $u\in T$ and
+$|M|=n+|T|$. Cauchy--Schwarz and
+\eqref{sc:orthogonal-sectors} give
+\begin{align}
+ \sum_{M\ni u}\frac{\|\Pi_MX\Omega\|}{|M|}
+ &\le\left(\sum_{\substack{T\subset p\\u\in T}}
+                     \frac{1}{(n+|T|)^2}\right)^{1/2}\|X\Omega\|
+ \nonumber\\
+ &\le\gamma_0(s)\|X\Omega\|.
+ \label{sc:type-zero}
+\end{align}
+For each fixed $p$ and $i$,
+\begin{equation}
+ \sum_{M_i:M_i\cap p\ne\varnothing}\|c^{(i)}_{M_i}\|
+ \le\sum_{v\in p}\sum_{M_i\ni v}\|c^{(i)}_{M_i}\|
+ \le s\|C_i\|_1.
+ \label{sc:incidence-sum}
+\end{equation}
+There are at most $D$ choices of $p$ containing $u$. After using
+$\|(H_0^M)^{-1}\|\le1/(\Delta|M|)$, the contribution of
+\eqref{sc:type-zero} is bounded by
+\[
+ \frac{DJ}{\Delta}\,2^k\gamma_0(s)s^k
+                     \prod_i\|C_i\|_1.
+\]
+
+Now suppose $u\notin p$ and $u\in M_j$. Then
+$n=|N_*\setminus p|\ge1$ and $|M_j|\le n+s$. Hence
+\begin{align}
+ \sum_M\frac{\|\Pi_MX\Omega\|}{|M|}
+ &\le\left(\sum_{t=0}^{s}\frac{\binom{s}{t}}{(n+t)^2}
+          \right)^{1/2}\|X\Omega\|
+ \nonumber\\
+ &\le\frac{\gamma_1(s)}{|M_j|}\|X\Omega\|.
+ \label{sc:type-j}
+\end{align}
+For the last inequality, each function
+$(n+s)/(n+t)$ is nonincreasing for $n\ge1$, since $t\le s$.
+Thus its square is bounded by $(s+1)^2/(t+1)^2$, and
+\eqref{sc:gammas} applies. This proves the estimate for every $n$;
+no finite enumeration of sector sizes is needed.
+
+For fixed $M_j$, at most $D|M_j|$ members $p$ intersect $M_j$.
+This cancels the denominator $|M_j|$ in \eqref{sc:type-j}.
+Sum the other $k-1$ supports using \eqref{sc:incidence-sum},
+and then sum $M_j\ni u$. For this $j$ the result is bounded by
+\[
+ \frac{DJ}{\Delta}\,2^k\gamma_1(s)s^{k-1}
+                         \prod_i\|C_i\|_1.
+\]
+Adding the $k$ possible choices of $j$ proves
+\eqref{sc:multilinear}. For $k=0$, only the first case occurs,
+with $N_*=\varnothing$, and its bound is $DJ\gamma_0(s)/\Delta$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{sc:stability} in finite dimension]
+For a creation operator $C$, put
+\begin{equation}
+ W(C)=e^CVe^{-C}
+     =\sum_{k=0}^{2s}\frac{1}{k!}\operatorname{ad}_C^k(V).
+ \label{sc:W}
+\end{equation}
+The equality is exact by Lemma~\ref{sc:support}.
+By \eqref{sc:free-commutator}, $e^{-C}\Omega$ is an eigenvector
+of $H(\varepsilon)$ precisely when
+\begin{equation}
+ c_M=\varepsilon(H_0^M)^{-1}\Pi_M W(C)\Omega
+ \quad(M\ne\varnothing).
+ \label{sc:KT}
+\end{equation}
+Its eigenvalue is $E(\varepsilon)=\varepsilon\langle\Omega,W(C)\Omega\rangle$.
+Indeed, conjugating $H$ by $e^C$ gives
+$H_0+[C,H_0]+\varepsilon W(C)$; its nonvacuum components on
+$\Omega$ vanish exactly when \eqref{sc:KT} holds.
+
+Let $F_\varepsilon$ denote the right side of \eqref{sc:KT},
+assembled as a creation operator. Lemma~\ref{sc:sector-estimate} gives
+\begin{equation}
+ \|F_\varepsilon(C)\|_1\le\lambda q_s(\|C\|_1).
+ \label{sc:F-bound}
+\end{equation}
+The same multilinear estimate, applied to the difference of two
+$k$-fold commutators, gives, whenever $\|C\|_1,\|C'\|_1\le r$,
+\begin{equation}
+ \|F_\varepsilon(C)-F_\varepsilon(C')\|_1
+ \le\lambda q_s'(r)\|C-C'\|_1.
+ \label{sc:contraction}
+\end{equation}
+For example, the difference of the $k$-th terms is a sum of $k$
+multilinear terms containing one $C-C'$ and $k-1$ factors bounded
+by $r$. This explains the derivative of $q_s$ in the estimate.
+By \eqref{sc:criterion}, the closed ball of radius $r$ is preserved
+and the contraction factor is less than $1/2$. The Banach fixed-point
+theorem supplies a solution $C$ with $\|C\|_1\le r$. In finite
+volume the space of creation coefficients is complete in
+\eqref{sc:creation-norm}. The vector $e^{-C}\Omega$ is nonzero,
+since its vacuum coefficient is one.
+
+We next prove isolation and simplicity of this eigenvalue. Suppose
+$H\phi=(E+\delta)\phi$ with $|\delta|<\Delta/2$, where $\phi$
+is linearly independent of $e^{-C}\Omega$. There is a unique
+creation operator $B$ and scalar $b_0$ such that
+\[
+ e^C\phi=(B+b_0)\Omega.
+\]
+Here $B\ne0$. The nonvacuum components of the eigenvalue equation
+after conjugation yield
+\begin{equation}
+ b_M=\varepsilon(H_0^M-\delta)^{-1}
+                     \Pi_M[B,W(C)]\Omega.
+ \label{sc:excited-equation}
+\end{equation}
+To verify the sign, note that
+$[H_0+[C,H_0]+\varepsilon W(C),B]
+ =[H_0,B]-\varepsilon[B,W(C)]$.
+The creation part $[C,H_0]$ commutes with $B$.
+Since $|M|\ge1$,
+\begin{equation}
+ \|(H_0^M-\delta)^{-1}\|
+ \le\frac{1}{\Delta|M|-|\delta|}
+ \le\frac{2}{\Delta|M|}.
+ \label{sc:shifted-resolvent}
+\end{equation}
+The proof of Lemma~\ref{sc:sector-estimate} therefore applies with
+an extra factor two. In \eqref{sc:W}, commutation with $B$ increases
+the order by one; orders greater than $2s$ vanish. Consequently
+\begin{align}
+ \|B\|_1
+ &\le2\lambda\sum_{k=0}^{2s-1}
+       \frac{\beta_{k+1}(s)}{k!}\|C\|_1^k\|B\|_1
+ \nonumber\\
+ &\le2\lambda q_s'(r)\|B\|_1<\|B\|_1,
+ \label{sc:gap-contradiction}
+\end{align}
+a contradiction. This includes $\delta=0$, so $E$ is simple.
+
+Finally vary the real parameter from $0$ to $\varepsilon$. The same
+ball and contraction factor work throughout this segment, and
+\eqref{sc:contraction} implies continuous dependence of the fixed
+point on the parameter. Thus $E$ is a continuous simple eigenvalue
+branch, separated by at least $\Delta/2$ from every other eigenvalue.
+At zero it is the ground eigenvalue of $H_0$. Continuity of the
+finite-dimensional eigenvalues prevents a crossing, proving
+\eqref{sc:gap}.
+\end{proof}
+
+\begin{proof}[Extension to compact-resolvent site operators]
+Let $P_{u,R}=\boldsymbol{1}_{[0,R]}(h_u)$ and
+$\mathcal F_R=\bigotimes_u\Ran P_{u,R}$. These are finite-dimensional
+spaces containing the product vacuum. Compress $H$ to $\mathcal F_R$.
+Each onsite gap remains at least $\Delta$, and each compressed
+interaction is supported on the same $p$ and has norm at most $J$.
+The finite-dimensional theorem therefore applies with the same constants.
+
+In a finite system $V$ is bounded. Hence $H$ is self-adjoint on
+$\Dom H_0$, bounded below, and has compact resolvent. The nested
+union of the spaces $\mathcal F_R$ contains all finite linear
+combinations of product eigenvectors of the $h_u$, and is an operator
+core, hence also a form core, for $H_0$ and $H$.
+The min--max principle gives, for each fixed eigenvalue index $j$,
+\[
+ E_j(H|_{\mathcal F_R})\mathbin{\downarrow}E_j(H),
+\]
+where $H|_{\mathcal F_R}$ denotes compression and eigenvalues are
+ordered with multiplicity. If the full space has dimension at least
+two, pass to the limit in
+$E_1(H|_{\mathcal F_R})-E_0(H|_{\mathcal F_R})\ge\Delta/2$.
+The resulting positive difference proves both the asserted gap and
+simplicity. For a one-dimensional full space, the spectral exclusion
+is vacuous and the ground state is simple. No norm of an unbounded
+onsite operator is used in the estimates.
+\end{proof}
+
+\subsection{Explicit rational certificates}
+\label{sc:certificates}
+
+The following choices make the criterion explicit:
+\begin{equation}
+ \lambda_3=0.01790402,\qquad \lambda_4=0.01190829.
+ \label{sc:certified-lambdas}
+\end{equation}
+Every terminating decimal in this subsection denotes an exact rational
+number. To check the inequalities without locating a polynomial root,
+use the following rational upper bounds and witnesses:
+\begin{center}
+\begin{tabular}{c c c c}
+$s$ & $\overline\gamma_0$ & $\overline\gamma_1$ & $r$\\
+\hline
+3 & 1.269295517644 & 5.859465277083 & 0.03911425\\
+4 & 1.464866319271 & 8.597480251020 & 0.02996979
+\end{tabular}
+\end{center}
+The exact squares required by \eqref{sc:gammas} are
+\begin{equation}
+ \begin{array}{c|cc}
+ s&\gamma_0(s)^2&\gamma_1(s)^2\\ \hline
+ 3&29/18&103/3\\
+ 4&103/48&887/12
+ \end{array}.
+ \label{sc:exact-gamma-squares}
+\end{equation}
+Squaring the displayed rational upper bounds verifies
+$\overline\gamma_i^2\ge\gamma_i^2$.
+Let $\overline q_s$ be \eqref{sc:majorant} with these upper bounds
+substituted in \eqref{sc:betas}. Direct rational substitution gives,
+for each of the two rows,
+\begin{equation}
+ r-\lambda_s\overline q_s(r)>\frac{3}{10^8},
+ \qquad
+ 1-2\lambda_s\overline q_s'(r)>\frac{9}{10^7}.
+ \label{sc:rational-slacks}
+\end{equation}
+These are finite rational inequalities, verifiable by clearing
+denominators. Since $q_s$ and $q_s'$ have nonnegative coefficients
+bounded by those of $\overline q_s$, they imply
+\eqref{sc:criterion} for all $0\le\lambda\le\lambda_s$.
+The certificate checks only this arithmetic; the universal operator
+conclusion comes from the preceding proof. It does not follow from
+finite matrix diagonalizations or from sampling interaction operators.
+
+\subsection{Application to the specified $\SU(N)$ lattice Hamiltonian}
+
+Let $d\ge2$ be the spatial dimension, $N\ge2$, $x=g^2>0$, and
+$0\le b_N\le2N$. On a finite collection $E$ of positively oriented
+cubic-lattice links, retain any subset $\mathcal P$ of the usual
+elementary plaquettes whose four links belong to $E$, with no repetitions
+of an anchored plaquette. Reverse
+orientations denote inverses of the positive link variables.
+At lattice spacing one, use
+\begin{equation}
+ H_{\rm lat}(x)=\frac{x}{2}\sum_{l\in E}C_l+
+       \frac{b_N}{x}\sum_{p\in\mathcal P}(1-T_p),
+ \qquad T_p=\frac{\operatorname{Re}\Tr U_p}{N}.
+ \label{sc:KS-H}
+\end{equation}
+The link space is $L^2(\SU(N),\dd U)$ for normalized Haar measure;
+$C_l$ is the positive group Casimir with
+$\Tr(t_at_b)=\delta_{ab}/2$. The physical space is invariant under
+the vertex gauge groups, with no external charges. These conventions
+specify the magnetic normalization explicitly; compare the Hamiltonian
+formulation in \cite{KS}. The bounds below concern the dimensionless
+energies of \eqref{sc:KS-H}.
+
+The least nonzero Casimir is
+\begin{equation}
+ C_F=\frac{N^2-1}{2N}\ge\frac34.
+ \label{sc:CF}
+\end{equation}
+For completeness, write a nonzero dominant highest weight as
+$\Lambda=\omega_i+\nu$, where $\nu$ is dominant and the roots have
+squared length two. The Gram entries
+$(\omega_i,\omega_j)=\min(i,j)(N-\max(i,j))/N$ are positive, so
+$C_2(\Lambda)\ge C_2(\omega_i)$ for
+$C_2(\Lambda)=(\Lambda,\Lambda+2\rho)/2$,
+where $\rho=\sum_{j=1}^{N-1}\omega_j$.
+Since $C_2(\omega_i)=i(N-i)(N+1)/(2N)\ge C_F$, and the
+fundamental representation attains equality, Peter--Weyl decomposition
+proves \eqref{sc:CF} on the entire link space.
+
+Divide \eqref{sc:KS-H} by $s_0=xC_F/2$ and remove its scalar
+magnetic constant. Precisely,
+\begin{equation}
+ \frac{H_{\rm lat}}{s_0}-\varepsilon|\mathcal P|I
+   =\sum_{l\in E}\frac{C_l}{C_F}
+        +\varepsilon\sum_{p\in\mathcal P}(-T_p),
+ \qquad
+ \varepsilon=\frac{2b_N}{x^2C_F}\le\frac{32}{3x^2}.
+ \label{sc:normalization}
+\end{equation}
+The last inequality uses
+$2b_N/C_F\le8N^2/(N^2-1)\le32/3$.
+The normalized onsite gap is $\Delta=1$, $J=1$ because
+$\|T_p\|\le1$, and each plaquette meets $s=4$ link sites.
+Each link belongs to at most $D=2(d-1)$ elementary plaquettes.
+These statements hold for any finite open subgraph, and also for
+the usual periodic directed cubic lattices of side lengths at least
+two, with positive-direction link factors distinguished.
+
+\begin{corollary}[Explicit $N$-uniform finite-volume gauge gap]
+\label{sc:gauge-corollary}
+For the model \eqref{sc:KS-H}, let
+\begin{equation}
+ X_d^{\rm link}
+  =\left(\frac{(32/3)\,2(d-1)}{0.01190829}\right)^{1/2}.
+ \label{sc:X}
+\end{equation}
+If $x\ge X_d^{\rm link}$, the ground state is unique and gauge
+invariant, and both on the full link space and on its physical
+subspace,
+\begin{equation}
+ H_{\rm lat}-E_0\ge\frac{xC_F}{4}\ge\frac{3x}{16}
+ \quad\hbox{on the orthogonal complement of the ground state}.
+ \label{sc:gauge-gap}
+\end{equation}
+In three spatial dimensions the sufficient condition $x\ge59.9$
+implies \eqref{sc:gauge-gap}, for every $N\ge2$ and
+$0\le b_N\le2N$, uniformly over the stated finite volumes.
+\end{corollary}
+\begin{proof}
+Equations \eqref{sc:normalization}--\eqref{sc:X} give
+$\lambda=\varepsilon D\le\lambda_4$.
+Theorem~\ref{sc:stability} and the certificate give a normalized
+gap at least $1/2$. Restoring $s_0$ gives $xC_F/4$; adding back
+the scalar constant changes no gap. All Casimirs and plaquette
+traces commute with the finite product of vertex gauge groups.
+The unique ground line therefore carries a continuous one-dimensional
+representation of a product of $\SU(N)$ groups. Such a representation
+is trivial, so the ground vector is gauge invariant. The physical
+space reduces $H_{\rm lat}$ and contains its ground state;
+restricting the excited-space inequality cannot lower the gap.
+Finally, the exact rational inequality
+$(59.9)^2(0.01190829)>(32/3)\,4$ verifies the stated threshold.
+\end{proof}
+
+For reference, upward-rounded sufficient thresholds using link sites
+are $42.4$, $59.9$, and $73.4$ in spatial dimensions $2$, $3$, and $4$,
+respectively. The exact values from \eqref{sc:X} are approximately
+$42.326$, $59.858$, and $73.310$; these approximations are not used
+as downward-rounded sufficient bounds.
+Alternatively, group the $d$ outgoing positive links at each vertex
+into one site. Each plaquette then meets three sites, and a vertex
+site meets at most $3\binom d2$ plaquettes: for each coordinate pair
+its three possible roles are the lower anchor and its two forward
+neighbors. With $s=3$, $D=3d(d-1)/2$, and $\lambda_3$ from
+\eqref{sc:certified-lambdas}, the sufficient threshold is
+$\bigl((32/3)D/\lambda_3\bigr)^{1/2}$.
+In $d=2$, this permits the slightly smaller upward-rounded value
+$42.3$. Link grouping gives the better displayed bound in $d=3$.
+
+\begin{remark}[Limits of the conclusion]
+\label{sc:scope}
+The uniformity established here is over finite volume and $N$ at
+fixed $x$. The proof does not construct an infinite-volume GNS
+Hamiltonian at the explicit threshold, nor does it prove a continuum
+limit or a positive physical continuum mass. An infinite-volume
+strong-coupling construction with a non-explicit threshold is a
+separate consequence of the stability theorem in \cite{Yarotsky},
+as applied in \cite{Spectral}. A limit with fixed 't~Hooft coupling
+$Nx$ eventually leaves the present window as $N$ increases.
+\end{remark}
+
+\subsection{A counting correction in the cited BDL preprint}
+\label{sc:BDL-correction}
+
+This subsection concerns the exact version
+arXiv:0707.1894v1 of \cite{BDL}, Appendix~A, p.~25, in the
+paragraph preceding its equation~(69). The intermediate inference
+$M_j\subset M\cup\{w\}$, and hence $|M_j|\le2|M|$, does not
+follow from the support conditions stated there. The following
+example also verifies that this is an operator issue, rather than
+only a set-theoretic possibility.
+
+Take three distinct qubit sites $u,v,w$, their vacuum $|000\rangle$,
+and
+\[
+ A=a_u^\dagger a_v^\dagger a_w^\dagger,
+ \qquad V_{vw}=X_vX_w,
+ \qquad a^\dagger=|1\rangle\langle0|,
+ \quad a=|0\rangle\langle1|.
+\]
+Here $X$ interchanges $|0\rangle$ and $|1\rangle$.
+Direct application gives
+\begin{equation}
+ AV_{vw}|000\rangle=0,\qquad
+ V_{vw}A|000\rangle=|100\rangle,\qquad
+ \langle000|a_u[A,V_{vw}]|000\rangle=-1.
+ \label{sc:BDL-counterexample}
+\end{equation}
+Thus a nonzero term has $M_j=\{u,v,w\}$ and $M=\{u\}$.
+It obeys the source's support conditions but violates
+$|M_j|\le2|M|$.
+
+The valid general estimate is
+\begin{equation}
+ M_j\subset M\cup p,\quad |p|\le s,\quad M\ne\varnothing
+ \quad\Longrightarrow\quad
+ |M_j|\le|M|+s\le(s+1)|M|.
+ \label{sc:corrected-count}
+\end{equation}
+For two-body interactions this gives $3|M|$, which is sharp by
+\eqref{sc:BDL-counterexample}. It does not invalidate the conservative
+constant $2^{13}$ in the source's Lemma~3. Repeating its counting
+with the factor three instead of two gives, for the possible
+commutator orders $1\le k\le4$, the coefficient bound
+\begin{equation}
+ k\cdot4\cdot3\cdot2^k2^{k-1}
+        +4\cdot2^k2^k
+ \le7168<8192=2^{13}.
+ \label{sc:BDL-constant-survives}
+\end{equation}
+Higher orders vanish, and the zeroth-order estimate is smaller.
+Accordingly the correction repairs this intermediate counting step
+while preserving that theorem's stated conservative constant.
+No priority claim is made for identifying the correction, and no
+claim about revisions other than the specified source version is
+needed here.

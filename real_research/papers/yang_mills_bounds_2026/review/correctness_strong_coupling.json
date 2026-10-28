@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "pass_id": "correctness-strong-coupling",
+  "lanes": [
+    "correctness",
+    "adversarial"
+  ],
+  "issues": [],
+  "source_files_sha256": {
+    "main.tex": "a9a81df5d70fd504c8a9dc0f9241e3ba2db8595d1f3e27bb4531a767936f3206",
+    "sections/strong_coupling.tex": "0b0e061117164977b6fe6b06eb138205e0da448c7a0be62a3168798db1b69b6b"
+  },
+  "manuscript_sha256": null,
+  "manuscript_hash_note": "No preparation manifest supplied; exact main and section bytes are pinned separately. The two hashes were checked before and after review and were unchanged.",
+  "contract_sha256": {
+    "review-protocol.md": "a9ea88eba2049d8c944711d7f777a2874343c3a3edf2663e9e36443976fa6def",
+    "reviewers/correctness.md": "1de34877fcf90ae05fac943bdad3e16814f806a774d33e7b24e807019284c66f",
+    "reviewers/adversarial.md": "fa07c0c35a6a3c4606e3cad08241195b85d6c53ae4131173386fda8c2e17ed47"
+  },
+  "coverage": {
+    "scope": "All of main.tex as context and all 590 lines of sections/strong_coupling.tex for correctness and adversarial review.",
+    "status": "complete",
+    "unit_ids": [],
+    "unit_id_note": "Manual source locators; no prepared units manifest was supplied.",
+    "executor": "delegated agent /root/ym_release_correctness",
+    "method": "Independent proof reconstruction, admissible edge-case checks, and independent exact arithmetic. No manuscript edits.",
+    "model_assignment": {
+      "assignment_source": null,
+      "requested_model": null,
+      "requested_reasoning": null,
+      "actual_model": null,
+      "actual_reasoning": null,
+      "fallback_reason": null
+    },
+    "execution_settings_note": "Inherited host defaults; actual settings were not exposed.",
+    "context": [
+      "main.tex",
+      "sections/strong_coupling.tex",
+      "real_research/ym1_bdl_extension_2026/DERIVATION.md",
+      "verification/README.md",
+      "verification/verify_release.py"
+    ],
+    "independence_note": "The mathematical core was initially reconstructed from the new manuscript before reading DERIVATION.md. That provenance note contains historical review verdicts; none was used as evidence for this pass. No findings from concurrent reviewers were supplied.",
+    "unreviewed_scopes": [
+      "Analytic proofs in sections/vacuum.tex and sections/schur.tex are outside this pass.",
+      "No fresh authentication of the external BDL, Yarotsky, Kogut--Susskind or other cited papers was performed. The coordinator reports previous exact-version BDL authentication and will attach its evidence.",
+      "No infinite-volume construction or continuum result was attempted or inferred."
+    ]
+  },
+  "checks": [
+    {
+      "id": "SC-C01",
+      "location": "sections/strong_coupling.tex:82-158",
+      "kind": "independent derivation",
+      "result": "valid under the stated finite-dimensional hypotheses",
+      "details": "For overlapping supports, a partial vacuum bra annihilates every vector in the tensor excitation subspace, including entangled vectors. Thus elementary creations commute and overlapping products vanish. Commuting adjoint maps move a support disjoint from p to the innermost commutator. In each surviving expanded word, created sites outside p remain excited and supports on either side of V_p are disjoint. At most |p| creations fit on each side, giving depth 2s and the exact output-sector form."
+    },
+    {
+      "id": "SC-C02",
+      "location": "sections/strong_coupling.tex:161-247",
+      "kind": "independent derivation",
+      "result": "valid; constants independent of sector dimension",
+      "details": "Apply the triangle inequality only across input tuples, and Cauchy--Schwarz over mutually orthogonal output sectors within each tuple. If u lies in p, n>=0 and |p|<=s yield gamma0. If u lies outside p but in M_j, n>=1 and |M_j|<=n+s imply |M_j|/(n+t)<=(s+1)/(t+1). Summing the D|M_j| possible interactions cancels the inverse |M_j| factor. Each remaining support costs s times its per-site norm; summing the k choices of j yields beta_k=2^k(gamma0*s^k+k*gamma1*s^(k-1)). k=0 uses only the first case."
+    },
+    {
+      "id": "SC-C03",
+      "location": "sections/strong_coupling.tex:250-291",
+      "kind": "independent derivation",
+      "result": "valid",
+      "details": "The BCH expansion is a finite exact polynomial. Since [C,H0]Omega has sector -H0^M c_M, the displayed KT equation has the correct sign. The multilinear estimate gives both the self-map bound and Lipschitz constant lambda*q_s prime(r)<1/2. The finite family of coefficient spaces is complete; e^(-C)Omega has vacuum coefficient one."
+    },
+    {
+      "id": "SC-C04",
+      "location": "sections/strong_coupling.tex:293-338",
+      "kind": "independent derivation",
+      "result": "valid",
+      "details": "Write e^C phi=(B+b0)Omega. Subtracting the ground equation produces [H0,B]Omega-epsilon[B,W(C)]Omega=delta B Omega after nonvacuum projection. The term [C,H0] commutes with B. For |delta|<Delta/2, the inverse is bounded by 2/(Delta|M|), so the sector estimate yields ||B||_1<=2 lambda q_s prime(r)||B||_1<||B||_1. This excludes delta=0 multiplicity and every eigenvalue within Delta/2. The uniform contraction on the real segment gives a continuous simple branch from the unperturbed ground eigenvalue; finite-dimensional eigenvalue continuity excludes a ground-state crossing."
+    },
+    {
+      "id": "SC-C05",
+      "location": "sections/strong_coupling.tex:341-365",
+      "kind": "independent derivation and boundary check",
+      "result": "valid",
+      "details": "Finite tensor products of nonnegative compact-resolvent operators have a product eigenbasis and compact resolvent. Spectral cutoff tensor spaces preserve interaction support and do not increase interaction norms. Their nested union is an operator and form core because the perturbation is bounded. For sufficiently large cutoff the first two Ritz values exist when the full dimension is at least two, and each converges by min--max. Their positive uniform difference passes to the limit and forces simplicity. The manuscript separately treats a one-dimensional full space. No uniform control of the cutoff-dependent creation operators is required."
+    },
+    {
+      "id": "SC-C06",
+      "location": "sections/strong_coupling.tex:368-410",
+      "kind": "executed exact arithmetic",
+      "command": "Independent inline Python 3 using fractions.Fraction and math.comb/factorial; no imports or execution of the supplied verification script, and no writes.",
+      "inputs": {
+        "s3": {
+          "lambda": "0.01790402",
+          "r": "0.03911425",
+          "gamma0_upper": "1.269295517644",
+          "gamma1_upper": "5.859465277083"
+        },
+        "s4": {
+          "lambda": "0.01190829",
+          "r": "0.02996979",
+          "gamma0_upper": "1.464866319271",
+          "gamma1_upper": "8.597480251020"
+        }
+      },
+      "result": "All displayed exact squares, upward bounds, and both strict slack claims pass.",
+      "evidence": {
+        "gamma_squares_s3": [
+          "29/18",
+          "103/3"
+        ],
+        "gamma_squares_s4": [
+          "103/48",
+          "887/12"
+        ],
+        "s3_majorant_slack_between": [
+          "35049/1000000000000",
+          "701/20000000000"
+        ],
+        "s3_derivative_slack_between": [
+          "964997/1000000000000",
+          "482499/500000000000"
+        ],
+        "s4_majorant_slack_between": [
+          "32749/1000000000000",
+          "131/4000000000"
+        ],
+        "s4_derivative_slack_between": [
+          "297129/250000000000",
+          "1188517/1000000000000"
+        ]
+      }
+    },
+    {
+      "id": "SC-C07",
+      "location": "sections/strong_coupling.tex:415-533",
+      "kind": "independent derivation and exact arithmetic",
+      "result": "valid for the stated geometry and normalization",
+      "details": "Dominant highest weights have a nonzero fundamental-weight coefficient; subtracting that fundamental weight leaves a dominant weight. Positivity of the A_(N-1) fundamental-weight Gram matrix proves C2(Lambda)>=C2(omega_i)>=C_F, including N=2. The uniform coefficient is 2b_N/C_F<=8N^2/(N^2-1)<=32/3. Four link factors per plaquette and two incident plaquettes per coordinate plane give s=4,D=2(d-1); side lengths >=2 and distinguished positive-direction link factors exclude small-torus identifications. The scale factor x C_F/2 converts the normalized gap 1/2 into x C_F/4. The unique ground line carries a continuous character of a product of SU(N) groups, which is trivial. Restricting the excitation inequality to the physical subspace therefore preserves the gap. Vertex grouping has three distinct sites and D=3 binomial(d,2).",
+      "arithmetic_evidence": {
+        "d3_threshold_slack_x_squared_times_lambda_minus_128_over_3": "1811908087/30000000000",
+        "d2_link_42_4_safe": true,
+        "d4_link_73_4_safe": true,
+        "d2_vertex_42_3_safe": true,
+        "stated_three_decimal_threshold_approximations_checked_by_exact_squared_brackets": true
+      }
+    },
+    {
+      "id": "SC-C08",
+      "location": "sections/strong_coupling.tex:536-590",
+      "kind": "direct operator and combinatorial derivation, plus exact arithmetic",
+      "result": "internal correction and retained constant valid; external attribution is coordinator-authenticated",
+      "details": "For Omega=|000>, V_vw Omega=|011>, so A V_vw Omega=0. A Omega=|111> and V_vw A Omega=|100>, giving the displayed vacuum-lowering matrix element -1. M_j={u,v,w} and M={u} satisfy the manuscript support lemma and attain |M_j|=3|M|. In general M_j subset M union p gives |M_j|<=|M|+s<=(s+1)|M| for nonempty M. With the corrected factor three, the coefficients k*4*3*2^k*2^(k-1)+4*2^k*2^k for k=1,2,3,4 are [40,256,1408,7168], all below 8192. The actual wording/version of the original source was not independently retrieved in this pass."
+    },
+    {
+      "id": "SC-C09",
+      "location": "sections/strong_coupling.tex:19-41,60-76,524-533; main.tex:34-80,100-119",
+      "kind": "adversarial boundary and scope review",
+      "result": "No counterexample or scope inconsistency found.",
+      "details": "Checked epsilon=0, either sign of real epsilon, empty perturbation family, one-dimensional local/full factors, scalar interactions, variable support sizes <=s, repeated interactions accounted for in D, and the equality allowed in the closed-ball condition. The strict derivative condition is maintained. The result is a finite-volume spectral inequality with constants independent of dimensions/volume; it does not claim convergence of infinite-volume ground states, a GNS Hamiltonian at the explicit threshold, a continuum limit, or uniformity at fixed Nx. The main abstract and scope table preserve those restrictions."
+    }
+  ],
+  "specialist_obligations": [],
+  "conclusion": "No correctness or adversarial issue found in the reviewed strong-coupling proof. This is a bounded independent review, not a certificate of all manuscript claims or novelty."
+}

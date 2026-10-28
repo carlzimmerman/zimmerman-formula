@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "pass_id": "correctness-vacuum-schur",
+  "issues": [],
+  "manuscript_sha256": null,
+  "manuscript_sha256_note": "Scoped manual review of four authoritative source files; no prepared full-manuscript manifest was supplied. Exact file hashes below were rechecked after review and are unchanged.",
+  "source_files_sha256": {
+    "main.tex": "a9a81df5d70fd504c8a9dc0f9241e3ba2db8595d1f3e27bb4531a767936f3206",
+    "sections/vacuum.tex": "45b33bb7448c25ba0323b38478febd63ccc34958271cd1869e5facd09df872e0",
+    "sections/schur.tex": "a1907e99c6174dedd4ab85d00e9f74fc18b4ffec2eff9df0e30b1f0cc6a3f169",
+    "sections/open_and_evidence.tex": "57b7839c768e933f15395501128abf6f711eb0153f79502022bccf119db70d5c"
+  },
+  "contract_sha256": {
+    "SKILL.md": "aabaf34132e9b92c0456897128b29bf4dae1c0bc8d11c1d39da60a1face44802",
+    "references/review-protocol.md": "a9ea88eba2049d8c944711d7f777a2874343c3a3edf2663e9e36443976fa6def",
+    "references/output-contract.md": "b28619a165ac58215a3fe4d3dd44dafd6be7e8dd33481859e28d7d10fbc239b8",
+    "references/reviewers/correctness.md": "1de34877fcf90ae05fac943bdad3e16814f806a774d33e7b24e807019284c66f",
+    "references/reviewers/adversarial.md": "fa07c0c35a6a3c4606e3cad08241195b85d6c53ae4131173386fda8c2e17ed47"
+  },
+  "coverage": [
+    {
+      "pass_id": "correctness-vacuum-schur",
+      "lanes": [
+        "correctness",
+        "adversarial"
+      ],
+      "scope": "Full main.tex as context; all vacuum.tex, schur.tex and open_and_evidence.tex, with mathematical focus on actual-vacuum finite-block coercivity, normalized Schur comparison, oscillator nonclosure and negative-Hessian witness.",
+      "unit_ids": [],
+      "context": [
+        {
+          "path": "main.tex",
+          "sha256": "a9a81df5d70fd504c8a9dc0f9241e3ba2db8595d1f3e27bb4531a767936f3206"
+        },
+        {
+          "path": "sections/vacuum.tex",
+          "sha256": "45b33bb7448c25ba0323b38478febd63ccc34958271cd1869e5facd09df872e0"
+        },
+        {
+          "path": "sections/schur.tex",
+          "sha256": "a1907e99c6174dedd4ab85d00e9f74fc18b4ffec2eff9df0e30b1f0cc6a3f169"
+        },
+        {
+          "path": "sections/open_and_evidence.tex",
+          "sha256": "57b7839c768e933f15395501128abf6f711eb0153f79502022bccf119db70d5c"
+        }
+      ],
+      "executor": "/root/ym_release_vacuum_review",
+      "method": "independent delegated proof rederivation; no previous verdicts or findings supplied",
+      "status": "complete",
+      "model_assignment": {
+        "assignment_source": null,
+        "requested_model": null,
+        "requested_reasoning": null,
+        "actual_model": null,
+        "actual_reasoning": null,
+        "fallback_reason": null
+      },
+      "notes": "Host default model/reasoning inherited; actual execution settings are not exposed. No manuscript edits. Parent requested this direct JSON path rather than a passes subdirectory."
+    }
+  ],
+  "checks": [
+    {
+      "id": "VAC-01",
+      "locations": [
+        "main.tex:124-149",
+        "sections/vacuum.tex:13-97"
+      ],
+      "method": "Independent proof rederivation",
+      "result": "The compact connected product SU(N)^E with smooth bounded real V has compact resolvent and a strictly positive simple ground function. Gauge equivariance and simplicity force invariance. The ground-state transform cancels the potential and all mixed terms to give x/(2a) times the weighted gradient form. Smooth positive psi and psi inverse preserve H^1 on each fixed graph; no volume-uniform Sobolev equivalence is used."
+    },
+    {
+      "id": "VAC-02",
+      "locations": [
+        "sections/vacuum.tex:102-284"
+      ],
+      "method": "Independent proof rederivation and parameter audit",
+      "result": "After removing only V_hit, the conditional expectation factors into the block heat kernel and a common positive exterior weight. Since 0 <= V_hit <= 2 b p_B/x, the same-time ground-function ratio is at most exp(4 s b p_B/x^2) kappa_N(s)^m. Squaring it bounds the conditional density ratio. The minimizing-constant variance comparison costs exactly this density ratio, producing d_B(s)=x C_F/(2a) kappa_N(s)^(-2m) exp(-8 s b p_B/x^2). No exterior-volume-dependent energy or potential bound is introduced."
+    },
+    {
+      "id": "VAC-03",
+      "locations": [
+        "sections/vacuum.tex:209-225"
+      ],
+      "method": "Independent Casimir normalization and root-weight check",
+      "result": "For orthonormal fields corresponding to i t_alpha with Tr(t_alpha t_beta)=delta_alpha_beta/2, the fundamental Casimir is (N^2-1)/(2N). In the conventional root inner product with long roots squared 2, C(lambda)=(lambda,lambda+2rho)/2. The fundamental-weight pairings min(i,j)(N-max(i,j))/N are nonnegative. For any nonzero dominant integral lambda, subtracting one present fundamental weight leaves a dominant nonnegative combination, so C(lambda) is at least a fundamental Casimir. Their minimum is C_F. Product spectra add, leaving the same first nonzero eigenvalue."
+    },
+    {
+      "id": "VAC-04",
+      "locations": [
+        "sections/vacuum.tex:118-123",
+        "sections/vacuum.tex:258-284"
+      ],
+      "method": "Independent domain and gauge-action audit",
+      "result": "The conditional density is smooth positive on the fixed compact product. Differentiating P gives conditional derivatives plus covariance with 2 grad_y log psi, hence a fixed-graph H^1 bound. Q of smooth approximants proves both form-domain core density and density in Ran Q. The restricted form is closed because Ran Q is L^2 closed. Gauge transformations act separately on selected/exterior link variables and preserve both Haar and psi, so P commutes with gauge action. The b p_B=0 case splits exactly into a free block Laplacian and exterior Hamiltonian."
+    },
+    {
+      "id": "VAC-05",
+      "locations": [
+        "sections/vacuum.tex:290-387"
+      ],
+      "method": "Independent Bochner, Harnack, normalization and optimization derivations",
+      "result": "For f=log u, w=|grad f|^2-f_t=-Delta f and F=t w, Bochner gives (Delta-d_t)F >= 2F^2/(n t)-F/t-2 grad f dot grad F. The compact maximum principle yields F<=n/2; positive time shift justifies heat-kernel initial data. Integration along a constant-speed minimizing geodesic yields the stated Harnack factor. Integrating later points for times s,2s gives max k_s <= 2^(n/2) exp(D_N^2/(4s)); integrating earlier points for s/2,s gives min k_s >= 2^(-n/2) exp(-D_N^2/(2s)). Haar probability normalization preserves the logarithmic estimate and unit mass. The resulting ratio is 2^n exp(3D_N^2/(4s)). Minimizing A/s+B s with A=3mD_N^2/2 and B=8bp_B/x^2 gives s_*=xD_N sqrt(3m/(bp_B))/4 and minimum 4D_N sqrt(3mbp_B)/x."
+    },
+    {
+      "id": "VAC-06",
+      "locations": [
+        "sections/vacuum.tex:393-440"
+      ],
+      "method": "Independent quantifier and series audit",
+      "result": "The exterior-volume uniformity explicitly fixes m,p_B,N,x,b,a. The model reciprocal-cost series is exactly (A/c0) exp(C sigma) sum_{r>=1}(sigma+q r)(exp(Cq)/L)^r; since sigma>0 and q>=0 it is finite exactly when rho<1. The manuscript correctly keeps this certificate and any iterated/coarse-operator application conditional; it does not claim whole-layer uniformity."
+    },
+    {
+      "id": "SCHUR-01",
+      "locations": [
+        "sections/schur.tex:11-62"
+      ],
+      "method": "Independent matrix/form proof rederivation",
+      "result": "Completion of squares gives h=s+<r,Dr>, r=q+Cp, and ker H=J ker S. The G-orthogonal decomposition of p maps under J to the fine kernel decomposition. The triangle inequality and weighted scalar Cauchy-Schwarz yield dist(v,ker H)^2 <= (gamma^(-1)+d^(-1)) h[v]. J G^(-1/2) is isometric and sends ker K onto ker H, so restricting the fine Rayleigh quotient to its excited graph space proves gap H <= gap K when the latter has excitations. Multiple zero modes and K=0 are admissible and do not invalidate the lower estimate."
+    },
+    {
+      "id": "SCHUR-02",
+      "locations": [
+        "sections/schur.tex:64-82"
+      ],
+      "method": "Independent closed-form extension audit",
+      "result": "Bounded C makes G bounded positive and boundedly invertible. Thus k[z]=s[G^(-1/2)z] on G^(1/2) Dom s is a closed form by equivalence of form norms. The exactly specified fine domain is carried by the bounded triangular change (p,q)->(p,q+Cp) to the direct-sum form domain, so completion and the distance argument remain valid. No unchecked unbounded operator product is used, and application to the lattice Hamiltonian is explicitly conditional on these hypotheses."
+    },
+    {
+      "id": "SCHUR-03",
+      "locations": [
+        "sections/schur.tex:84-136"
+      ],
+      "method": "Independent eigenvalue and recursion derivations",
+      "result": "For H_M, the excited 2x2 block has determinant 1 and trace M^2+2, giving the displayed smaller eigenvalue and its decay to zero. G=diag(1,1+M^2), K has positive eigenvalue 1/(1+M^2), and the harmonic certificate is 1/(M^2+2). Backward iteration of the one-step inverse-gap estimate gives exactly the stated sum. The model profile summations use sum r/L^r=L/(L-1)^2 and sum 1/L^r=1/(L-1)."
+    },
+    {
+      "id": "SCHUR-04",
+      "locations": [
+        "sections/schur.tex:138-173"
+      ],
+      "method": "Independent finite-sector and full-Fock derivation plus exact rational arithmetic",
+      "result": "In the one-particle sector C1=1/2, S1=3/2, G1=5/4, K1=6/5. In the two-particle sector D2 inverse applied to B2 gives C2=(2sqrt(2)/7,-1/7), hence S2=24/7, G2=58/49, K2=84/29. Exact fractions confirm K1<K2<3 and K2 != 2K1. Since h>=I, every normalized graph vector in the n-particle sector has energy >=n; thus these are the first two positive levels. In sector n, B_n couples only to |n-1,1> with norm sqrt(n), and D_n>=n, so ||D_n^-1 B_n||<=n^-1/2. Their direct sum is bounded, and summing the nonnegative completed-sector forms gives the stated full-Fock form construction. Unequal first two excitation spacings refute one-mode quadratic oscillator closure in the retained Fock representation."
+    },
+    {
+      "id": "OPEN-01",
+      "locations": [
+        "sections/open_and_evidence.tex:44-67"
+      ],
+      "method": "Independent central-background and lattice-circulation derivation plus bounded finite probes",
+      "result": "For i<j, translating z by e_i flips U_j(z) while the other central factors cancel, giving -I plaquette holonomy; even periods ensure this remains true across the boundary. Since all perturbations lie in the sigma_3 subgroup, U_p(t)=-exp(i t (dv)_p sigma_3/2), so 1-ReTr(U_p(t))/2=1+cos(t(dv)_p/2) and the second derivative is -(dv)_p^2/4. A single-square oriented circulation has coefficients +1,+1,-1,-1, zero discrete divergence, zero sum in each component for a block containing it, and curl 4 on that square. Central adjoint transports are identity. Exact periodic side lengths 2,4,6 were checked separately; their curl-square sums were 24,20,20. These finite checks supplement the general algebra, not establish an all-volume claim."
+    },
+    {
+      "id": "SCOPE-01",
+      "locations": [
+        "main.tex:34-122",
+        "sections/open_and_evidence.tex:1-42",
+        "sections/open_and_evidence.tex:69-118"
+      ],
+      "method": "Read against assigned mathematical scope",
+      "result": "The main text distinguishes finite-block coercivity, conditional exact multiscale comparisons, and unproved continuum obligations. No claim in the assigned vacuum/Schur material silently promotes its constants to whole-layer, infinite-volume or continuum conclusions. The evidence section appropriately limits exact arithmetic to finite certificates."
+    }
+  ],
+  "commands_and_results": [
+    {
+      "command": "Read complete numbered main.tex, vacuum.tex, schur.tex, open_and_evidence.tex; read referee skill/protocol/output contract/correctness and adversarial lane contracts; search for applicable AGENTS.md.",
+      "result": "All assigned source read. No applicable AGENTS.md found in ancestor checks."
+    },
+    {
+      "command": "Standard-library Python Fraction check of both oscillator sectors; exact integer periodic 2D central-link/circulation checks for side lengths 2,4,6.",
+      "result": "All assertions passed. Exact oscillator values: 3/2,5/4,6/5,24/7,58/49,84/29. Negative-Hessian probes: all plaquette signs -1, all divergences 0, component sums [0,0], curl-square sums 24,20,20."
+    },
+    {
+      "command": "SHA-256 hashes of all four assigned source files before and after review.",
+      "result": "Unchanged."
+    }
+  ],
+  "unreviewed_scopes": [
+    "Strong-coupling analytic proof in sections/strong_coupling.tex (separately assigned by coordinator).",
+    "External cited source text and bibliographic attribution: the Li-Yau inequality was independently derived from the manuscript Bochner argument, but the cited Theorem 1.1 locator was not source-verified.",
+    "Repository verifier, Lean certificates, archived historical notes, build/render/layout and archive/license completeness.",
+    "Novelty or priority claims beyond manuscript-internal scope calibration."
+  ],
+  "specialist_obligations": [],
+  "conclusion": "No worked-through correctness or adversarial issue was found in the assigned scope. This is an AI-assisted independent mathematical review, not a proof certificate or a whole-manuscript correctness/novelty verdict."
+}

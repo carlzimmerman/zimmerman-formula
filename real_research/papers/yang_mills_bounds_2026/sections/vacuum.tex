@@ -1,0 +1,440 @@
+\section{Fixed-block coercivity in the actual vacuum}
+\label{vac:section}
+
+This section proves a lower bound for the energy of fluctuations in a fixed
+finite set of links, conditional on all exterior links, in the actual
+finite-volume ground state.  The constant is independent of the number of
+exterior links.  Its dependence on the number of selected links is explicit
+and does not give a uniform bound for an extensive elimination layer.
+We use a Hamiltonian of Kogut--Susskind type~\cite{KS} with the normalization
+specified below.  The argument is presented in full; the associated research
+record is available in~\cite{Archive}.
+
+\subsection{Finite-volume Hamiltonian and its ground-state form}
+\label{vac:setup}
+
+Let $E$ be a finite set of oriented link representatives of a finite spatial
+graph, let $\mathcal P$ be a finite collection of plaquette terms, and fix
+$N\geq2$, $x>0$, $a>0$, and $b\geq0$.  Put
+$M=\SU(N)^E$ and equip $M$ with normalized product Haar measure $\mathrm dU$.
+For Hermitian generators satisfying
+$\operatorname{Tr}(t_\alpha t_\beta)=\delta_{\alpha\beta}/2$, choose the
+bi-invariant metric for which the corresponding left-invariant vector fields
+$X_\alpha$ are orthonormal.  On link $\ell$, write
+$C_\ell=-\sum_\alpha X_{\ell,\alpha}^2=-\Delta_\ell$.  Consider
+\begin{equation}
+ H=\frac{x}{2}\sum_{\ell\in E}C_\ell+V,
+ \qquad
+ V(U)=\frac b x\sum_{p\in\mathcal P}
+       \left(1-\frac{\operatorname{Re}\operatorname{Tr}U_p}{N}\right).
+ \label{vac:H}
+\end{equation}
+Here $U_p$ is the ordered plaquette holonomy.  Each summand in parentheses
+lies in $[0,2]$.  The operator $H$ is the self-adjoint bounded-potential
+perturbation of the product Laplacian, with operator domain $H^2(M)$ and
+form domain $H^1(M)$.  The parameter $a$ enters the physical energy through
+division by $a$; it has not been absorbed into $H$.
+
+The vertex gauge group acts by
+$U_\ell\mapsto g_{s(\ell)}U_\ell g_{t(\ell)}^{-1}$.  We assume the
+plaquette terms and boundary conditions preserve this action.  Physical
+functions are invariant under this group.  No gauge fixing is used.
+
+\begin{lemma}[Actual vacuum and ground-state transform]
+\label{vac:groundstate}
+The lowest eigenvalue $E_0$ of $H$ is simple.  Its normalized eigenfunction
+$\psi$ can be chosen smooth, strictly positive, and gauge invariant.  Set
+$\mathrm d\mu=\psi^2\,\mathrm dU$.  Multiplication by $\psi$ is a unitary map
+from $L^2(\mu)$ to $L^2(\mathrm dU)$, and the nonnegative self-adjoint operator
+\begin{equation}
+ K=\psi^{-1}(H-E_0)\psi/a
+ \label{vac:K}
+\end{equation}
+has closed quadratic form
+\begin{equation}
+ k[f]=\frac{x}{2a}\int_M
+          \sum_{\ell,\alpha}|X_{\ell,\alpha}f|^2\,\mathrm d\mu,
+ \qquad f\in H^1(M).
+ \label{vac:groundform}
+\end{equation}
+Its kernel is the space of constant functions.  These statements also hold
+after restriction to the gauge-invariant subspaces.
+\end{lemma}
+
+\begin{proof}
+The compact manifold $M$ is connected, whether or not the underlying graph
+is connected.  Its heat kernel is strictly positive at every positive time.
+The Feynman--Kac weight for the bounded real potential $V$ is strictly
+positive, so $\exp(-tH)$ is positivity improving.  Compact resolvent gives a
+lowest eigenfunction.  The absolute-value inequality for the Dirichlet form
+allows a nonnegative minimizer, which is strictly positive by the strong
+maximum principle.  Positivity improvement implies simplicity: a second
+real ground eigenfunction orthogonal to the positive one would change sign,
+contradicting the strict positivity statement.  Elliptic regularity gives
+smoothness.  Gauge transformations commute with $H$ and preserve positivity
+and norm; uniqueness therefore makes $\psi$ gauge invariant.
+
+For smooth complex $f$, integration by parts and $H\psi=E_0\psi$ give
+\begin{equation}
+ \langle\psi f,(H-E_0)\psi f\rangle_{L^2(\mathrm dU)}
+   =\frac{x}{2}\int_M
+       \sum_{\ell,\alpha}|X_{\ell,\alpha}f|^2\psi^2\,\mathrm dU.
+ \label{vac:transformidentity}
+\end{equation}
+Indeed, the terms containing $|f|^2|\nabla\psi|^2$ and the mixed derivatives
+combine, after integration by parts, with $V|\psi f|^2$ to give
+$E_0|\psi f|^2$.  On this fixed finite graph, $\psi$ is smooth and bounded
+away from zero.  Multiplication by $\psi$ and its inverse preserve $H^1(M)$,
+so the identity extends by form closure.  Unitarity follows directly from
+$\mathrm d\mu=\psi^2\mathrm dU$.  The zero-energy functions have zero gradient
+and are constant because $M$ is connected.  Multiplication by $\psi$
+intertwines the gauge actions, which proves the final assertion.
+\end{proof}
+
+In particular, all energy estimates below subtract $E_0$, the actual
+interacting ground energy.  No bound on $E_0$ uniform in volume is assumed.
+The equivalence of weighted and unweighted Sobolev norms just used is needed
+only for each fixed graph; its constants need not be uniform in volume.
+
+\subsection{Conditional projection and finite-block theorem}
+\label{vac:block}
+
+Fix a nonempty subset $B\subseteq E$ with $m=|B|$, and write a configuration
+as $(u,y)\in\SU(N)^B\times\SU(N)^{E\setminus B}$.  Let $p_B$ be the number
+of plaquette terms that involve at least one link in $B$, counting each term
+once.  Define
+\begin{equation}
+ Z(y)=\int\psi(v,y)^2\,\mathrm dv,
+ \qquad
+ \mathrm d\mu_y(u)=\frac{\psi(u,y)^2}{Z(y)}\,\mathrm du,
+ \qquad
+ Pf(u,y)=\int f(v,y)\,\mathrm d\mu_y(v),
+ \label{vac:conditional}
+\end{equation}
+where $\mathrm du$ and $\mathrm dv$ are normalized product Haar measures.
+Thus $P=\mathbb E_\mu[\,\cdot\mid y]$ is an orthogonal projection in
+$L^2(\mu)$ and $P1=1$.  Put $Q=I-P$.
+
+The restriction of the form $k$ to
+$H^1(M)\cap\operatorname{Ran}Q$ is closed and densely defined in
+$\operatorname{Ran}Q$; the density assertion is verified in the proof below.
+Let $D_B$ be its associated self-adjoint operator on that subspace.  Thus
+$D_B$ denotes a form compression.  It does not require the unbounded
+operator product $QKQ$ to be defined on an assumed common operator domain.
+
+Write
+\begin{equation}
+ C_F=\frac{N^2-1}{2N},\qquad n=N^2-1,
+ \qquad
+ \kappa_N(s)=
+ \frac{\max_{u,v\in\SU(N)}k_s(u,v)}
+      {\min_{u,v\in\SU(N)}k_s(u,v)},\quad s>0,
+ \label{vac:constants}
+\end{equation}
+where $k_s$ is the one-link heat kernel of $\exp(-sC)=\exp(s\Delta)$
+relative to normalized Haar measure.  Compactness and strict positivity make
+$\kappa_N(s)$ finite.
+
+\begin{theorem}[Exterior-volume-uniform finite-block coercivity]
+\label{vac:finiteblock}
+For every $s>0$,
+\begin{equation}
+ D_B\ \geq\ d_B(s)I,
+ \qquad
+ d_B(s)=\frac{xC_F}{2a}\,
+       \kappa_N(s)^{-2m}
+       \exp\!\left(-\frac{8sbp_B}{x^2}\right).
+ \label{vac:heatbound}
+\end{equation}
+The bound is independent of the number of links outside $B$ when
+$m,p_B,N,x,b,a$ are fixed.  The projection $P$ commutes with the gauge
+action, so the same bound holds on the gauge-invariant part of
+$\operatorname{Ran}Q$, if that part is nonzero.  If $bp_B=0$, the sharper
+bound
+\begin{equation}
+ D_B\geq\frac{xC_F}{2a}I
+ \label{vac:freebound}
+\end{equation}
+holds.
+\end{theorem}
+
+\begin{proof}
+Split the potential into terms that avoid and meet $B$:
+\begin{equation}
+ V(u,y)=V_{\mathrm{out}}(y)+V_{\mathrm{hit}}(u,y),
+ \qquad
+ 0\leq V_{\mathrm{hit}}\leq W_B:=\frac{2bp_B}{x}.
+ \label{vac:split}
+\end{equation}
+Let $(U_t,Y_t)$ be independent link Brownian motions, with generator
+$(x/2)\Delta$ on each link.  At any time $t>0$, the eigenfunction identity
+and Feynman--Kac formula give
+\begin{equation}
+ e^{-tE_0}\psi(u,y)=
+ \mathbb E_{u,y}\!\left[
+ e^{-\int_0^t V(U_r,Y_r)\,\mathrm dr}\psi(U_t,Y_t)\right].
+ \label{vac:fk}
+\end{equation}
+Remove only $V_{\mathrm{hit}}$ from this expectation and call the result
+$F_t(u,y)$.  Positivity gives
+\begin{equation}
+ e^{-tW_B}F_t(u,y)\leq e^{-tE_0}\psi(u,y)\leq F_t(u,y).
+ \label{vac:fksandwich}
+\end{equation}
+Put $s=xt/2$.  Independence of the link motions and the absence of $u$ from
+$V_{\mathrm{out}}$ imply
+\begin{align}
+ F_t(u,y)&=\int k_s^B(u,v)A_t(y,v)\,\mathrm dv,
+ \label{vac:factorization}\\
+ A_t(y,v)&=\mathbb E_y\!\left[
+       e^{-\int_0^t V_{\mathrm{out}}(Y_r)\,\mathrm dr}
+       \psi(v,Y_t)\right]>0,
+ \notag
+\end{align}
+where $k_s^B$ is the product of the $m$ one-link kernels.  For a fixed $y$,
+the positive factor $A_t(y,v)$ is the same for every initial block
+configuration $u$.  Consequently, for every $u,u',y$,
+\begin{equation}
+ \frac{\psi(u,y)}{\psi(u',y)}
+ \leq e^{tW_B}\frac{F_t(u,y)}{F_t(u',y)}
+ \leq e^{tW_B}\kappa_N(s)^m=:R_B(s).
+ \label{vac:oscillation}
+\end{equation}
+The factor $e^{-tE_0}$ cancels in this same-time ratio.  The exterior
+potential remains inside the common positive expectation in
+\eqref{vac:factorization}; it has not been replaced by a bound depending on
+the number of exterior plaquettes.  This is the source of the asserted
+exterior-volume independence.
+
+We next recall the product Haar Poincar\'e inequality in the chosen metric:
+\begin{equation}
+ \operatorname{Var}_{\mathrm du}(f)
+ \leq\frac1{C_F}\int\sum_{\ell\in B,\alpha}
+                 |X_{\ell,\alpha}f|^2\,\mathrm du.
+ \label{vac:haar}
+\end{equation}
+For completeness, Peter--Weyl decomposition reduces this statement to the
+smallest nonzero Casimir eigenvalue of $\SU(N)$.  With long roots of squared
+length $2$, the Casimir of highest weight $\lambda$ is
+$(\lambda,\lambda+2\rho)/2$.  The fundamental weight $\omega_j$ has Casimir
+$j(N-j)(N+1)/(2N)$.  All pairings of fundamental weights are nonnegative,
+so every nonzero dominant integral weight has Casimir at least the minimum
+of these fundamental values, namely $C_F$.  On a product, the eigenvalues
+add; a nonconstant component therefore has eigenvalue at least $C_F$.
+This proves~\eqref{vac:haar}, including for complex functions by applying
+the real inequality to their real and imaginary parts.
+
+For any positive probability density $w$ relative to product Haar with
+$\max w/\min w\leq R^2$, the minimizing-constant definition of variance and
+\eqref{vac:haar} give
+\begin{align}
+ \operatorname{Var}_{w\mathrm du}(f)
+ &\leq (\max w)\operatorname{Var}_{\mathrm du}(f)\notag\\
+ &\leq\frac{\max w}{C_F}\int|\nabla_Bf|^2\,\mathrm du
+ \leq\frac{R^2}{C_F}\int|\nabla_Bf|^2w\,\mathrm du,
+ \label{vac:densitycomparison}
+\end{align}
+where $|\nabla_Bf|^2=\sum_{\ell\in B,\alpha}|X_{\ell,\alpha}f|^2$.
+No Haar-mean-zero condition is imposed on $f$ in this comparison.
+By~\eqref{vac:oscillation}, the density of $\mu_y$ in
+\eqref{vac:conditional} has maximum-to-minimum ratio at most $R_B(s)^2$.
+Applying~\eqref{vac:densitycomparison} conditionally and integrating over
+the exterior marginal yields
+\begin{equation}
+ \|Qf\|_{L^2(\mu)}^2
+ \leq\frac{R_B(s)^2}{C_F}
+        \int_M|\nabla_Bf|^2\,\mathrm d\mu.
+ \label{vac:conditionalpoincare}
+\end{equation}
+If $f\in\operatorname{Ran}Q$, the exact ground-state form therefore gives
+\begin{equation}
+ k[f]\geq\frac{x}{2a}\int_M|\nabla_Bf|^2\,\mathrm d\mu
+       \geq\frac{xC_F}{2aR_B(s)^2}\|f\|_{L^2(\mu)}^2.
+ \label{vac:discardedform}
+\end{equation}
+Since $t=2s/x$ and $W_B=2bp_B/x$, this is precisely
+\eqref{vac:heatbound}.
+
+To justify the form restriction, observe that $P$ maps smooth functions to
+smooth functions.  On each fixed compact graph it is bounded on $H^1(M)$:
+differentiating its conditional integral in an exterior direction produces
+the conditional derivative of $f$ and a covariance with
+$2\nabla_y\log\psi$.  These coefficients are smooth and bounded, and
+conditional Cauchy--Schwarz gives the required fixed-graph bound.  Derivatives
+in the $B$ directions vanish for $Pf$.  Thus $Q$ is also bounded on
+$H^1(M)$.  If $f\in H^1(M)\cap\operatorname{Ran}Q$, approximate $f$ in
+$H^1$ by smooth $f_j$ and use $Qf_j\to f$.  This proves smooth density in
+the restricted form domain.  Smooth density in $L^2$ and boundedness of $Q$
+also prove that the restriction is densely defined in
+$\operatorname{Ran}Q$.  It is closed because this subspace is closed in
+$L^2(\mu)$ and $k$ is closed.  Inequality~\eqref{vac:discardedform} consequently
+extends to the entire restricted form domain without any uniform derivative
+bound on $\psi$.
+
+For a fixed gauge transformation, the selected and exterior link coordinates
+transform separately.  Both transformations preserve their Haar measures,
+and $\psi$ is invariant.  Changing variables in
+\eqref{vac:conditional} therefore shows that $P$ intertwines the gauge
+action.  The forms and their restrictions are gauge invariant, proving the
+physical-sector assertion.
+
+Finally, if $bp_B=0$, the Hamiltonian splits as a free product Laplacian on
+$B$ plus an exterior operator.  Its positive ground function is constant on
+$B$.  The conditional measures are exactly product Haar, and
+\eqref{vac:haar} gives~\eqref{vac:freebound}.
+\end{proof}
+
+\subsection{An explicit estimate at weak coupling}
+\label{vac:explicit}
+
+Let $D_N$ be the diameter of $\SU(N)$ in the specified Casimir metric.
+The next heat-kernel estimate supplies explicit constants in
+Theorem~\ref{vac:finiteblock}.
+
+\begin{lemma}[Compact heat-kernel ratio]
+\label{vac:heatlemma}
+For every $s>0$,
+\begin{equation}
+ \kappa_N(s)\leq 2^n
+       \exp\!\left(\frac{3D_N^2}{4s}\right),
+ \qquad n=N^2-1.
+ \label{vac:kappabound}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The bi-invariant metric has nonnegative Ricci curvature.  For a positive
+solution of $u_t=\Delta u$ on a compact $n$-dimensional manifold with
+nonnegative Ricci curvature, the Li--Yau estimate~\cite{LiYau} is
+\begin{equation}
+ |\nabla\log u|^2-\partial_t\log u\leq\frac{n}{2t}.
+ \label{vac:liyau}
+\end{equation}
+Here is its compact, boundaryless derivation.  Set $f=\log u$,
+$w=|\nabla f|^2-f_t$, and $\mathcal F=tw$.  The heat equation, Bochner
+identity, and $|\operatorname{Hess}f|^2\geq(\Delta f)^2/n$ imply
+\begin{equation}
+ (\Delta-\partial_t)\mathcal F
+ \geq\frac{2\mathcal F^2}{nt}-\frac{\mathcal F}{t}
+       -2\langle\nabla f,\nabla\mathcal F\rangle.
+ \label{vac:bochnerheat}
+\end{equation}
+For smooth positive initial data, $\mathcal F=0$ at $t=0$.  A positive
+space-time maximum exceeding $n/2$ contradicts~\eqref{vac:bochnerheat}
+and the maximum principle.  This proves~\eqref{vac:liyau}.  For the heat
+kernel, start after a positive time shift and then let that shift tend to
+zero.  Compactness removes boundary and escape issues.
+
+Along a constant-speed minimizing geodesic $\gamma$ between times
+$0<t_1<t_2$, inequality~\eqref{vac:liyau} gives
+\[
+ \frac{\mathrm d}{\mathrm dt}f(\gamma(t),t)
+ \geq-\frac{|\dot\gamma(t)|^2}{4}-\frac{n}{2t}.
+\]
+Integration yields
+\begin{equation}
+ u(z,t_1)\leq u(w,t_2)
+       \left(\frac{t_2}{t_1}\right)^{n/2}
+       \exp\!\left(\frac{\operatorname{dist}(z,w)^2}
+                         {4(t_2-t_1)}\right).
+ \label{vac:harnack}
+\end{equation}
+Apply this to $k_t(v,\cdot)$ between $s$ and $2s$ and integrate the later
+point $w$ against normalized Haar measure.  Total heat-kernel mass one gives
+\begin{equation}
+ \max k_s\leq 2^{n/2}e^{D_N^2/(4s)}.
+ \label{vac:heatupper}
+\end{equation}
+Apply~\eqref{vac:harnack} between $s/2$ and $s$ and integrate the earlier
+point $z$ instead.  The result is
+\begin{equation}
+ \min k_s\geq2^{-n/2}e^{-D_N^2/(2s)}.
+ \label{vac:heatlower}
+\end{equation}
+The two inequalities prove~\eqref{vac:kappabound}.  Normalizing Riemannian
+volume to Haar probability multiplies the heat kernel by a constant and
+does not change the logarithmic differential estimate; its mass in the
+normalized measure is one, as used above.
+\end{proof}
+
+\begin{corollary}[Explicit finite-block lower bound]
+\label{vac:exponential}
+If $bp_B>0$, then
+\begin{equation}
+ D_B\geq\frac{xC_F}{2a}\,2^{-2mn}
+                   e^{-C_B/x}I,
+ \qquad C_B=4D_N\sqrt{3mbp_B}.
+ \label{vac:explicitbound}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Substituting~\eqref{vac:kappabound} into~\eqref{vac:heatbound} gives the
+lower certificate
+\[
+ \frac{xC_F}{2a}\,2^{-2mn}
+ \exp\!\left(-\frac{3mD_N^2}{2s}-\frac{8sbp_B}{x^2}\right).
+\]
+The positive exponent is minimized at
+\[
+ s_* =\frac{xD_N}{4}\sqrt{\frac{3m}{bp_B}},
+ \qquad
+ \frac{3mD_N^2}{2s_*}+\frac{8s_*bp_B}{x^2}
+       =\frac{4D_N\sqrt{3mbp_B}}{x}.
+\]
+This proves~\eqref{vac:explicitbound}.  The case $bp_B=0$ is already covered
+by~\eqref{vac:freebound} and does not require this optimization.
+\end{proof}
+
+The exponential dependence is a rigorous lower certificate, not an
+asymptotic formula for the actual discarded spectrum as $x\downarrow0$.
+In particular, the estimate is not uniform in $m$ or $N$.
+
+\subsection{Conditional scale budget and the remaining limitation}
+\label{vac:budget}
+
+One can quantify the strength of this certificate without asserting a
+renormalization theorem.  Suppose, as an additional hypothesis, that the same
+fixed-block estimate with constants
+$c_0=(C_F/2)2^{-2mn}$ and $C=C_B$ were available for every relevant exact
+coarse operator.  Consider the illustrative scale and coupling sequences
+\begin{equation}
+ a_r=A L^{-r},\qquad x_r=(\sigma+qr)^{-1},\qquad r\geq1,
+ \quad A>0,\ L>1,\ \sigma>0,\ q\geq0.
+ \label{vac:modelscales}
+\end{equation}
+The reciprocal costs of the certified bounds
+$d_r^{\mathrm{cert}}=c_0x_r e^{-C/x_r}/a_r$ then satisfy the exact identity
+\begin{equation}
+ \sum_{r\geq1}\frac1{d_r^{\mathrm{cert}}}
+ =\frac{A}{c_0}e^{C\sigma}
+       \sum_{r\geq1}(\sigma+qr)\rho^r,
+ \qquad \rho=\frac{e^{Cq}}{L}.
+ \label{vac:budgetseries}
+\end{equation}
+This series is finite exactly when $\rho<1$, in which case it equals
+\begin{equation}
+ \frac{A}{c_0}e^{C\sigma}
+ \left(\frac{\sigma\rho}{1-\rho}
+       +\frac{q\rho}{(1-\rho)^2}\right).
+ \label{vac:budgetvalue}
+\end{equation}
+No actual Yang--Mills coupling trajectory, choice of scale factor, or
+stability of the finite-block theorem under exact elimination is proved by
+this calculation.  If $\rho\geq1$, this particular certificate does not
+give a finite upper bound on the inverse-gap cost; the true discarded gaps
+could still give a finite sum.
+
+Theorem~\ref{vac:finiteblock} concerns one fixed finite block in the original
+Hamiltonian~\eqref{vac:H}.  A whole elimination layer generally contains an
+extensive number of links.  If that layer is used as $B$, the factor
+$2^{-2mn}$ deteriorates exponentially in $m$, and $C_B$ grows proportionally
+to $m$ when $p_B$ does.  Eliminating bounded blocks one after another instead
+requires estimates for the successive exact coarse operators and control of
+the number of elimination steps.  Neither follows from the theorem: the
+generated operators have not been shown to retain the form~\eqref{vac:H},
+and conditional bounds for separate blocks do not by themselves provide a
+collective conditional Poincar\'e inequality in an interacting vacuum.
+Thus the proved exterior-volume uniformity leaves open a whole-layer
+estimate for the actual compact-link ground measure that persists under
+exact coarse graining.
