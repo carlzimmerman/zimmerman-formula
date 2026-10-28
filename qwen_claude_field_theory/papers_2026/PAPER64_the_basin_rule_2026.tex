@@ -1,0 +1,107 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={The Basin Rule}}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\sloppy
+\begin{document}
+\begin{center}
+{\Large\bfseries The Basin Rule: One Surface-Density Condition for Where Cold Dark Energy Condenses,\\ with Sealed Lensing Predictions and Audited Failures}\\[6pt]
+{\small Working note, 2026-10-28, v1.0. AI-assisted research programme; not peer reviewed. $\kappa=\tfrac12$ is fitted; the theory is not closed.}
+\end{center}
+
+\begin{abstract}\noindent
+This note follows PAPER63 (DOI 10.5281/zenodo.23708507), which asked where cold dark energy switches on. The programme studies a galaxy law $g_N=g^2/(g+a_0)$, with $a_0=\kappa c\sqrt{G\rho_{\rm DE}}$ and $\kappa=\tfrac12$ fitted. It adds a gravitating $w\approx0$ field component called \emph{cold dark energy}; this is not matter and not a particle.
+
+We report frozen, reproduced calculations. Each was pre-registered and committed before its numbers, run with a mutation twin, and rerun to byte identity. Together they reduce the switch to one condition. A system carries a cored cold dark energy halo iff the collapse surface density of the \emph{gravitational basin} it belongs to beats the galaxy floor:
+\[
+\eta(L)\,\Sigma_{\rm coll}(M_{\rm basin})>a_0/2\pi G .
+\]
+The same $\max(a_0/2\pi G,\ \eta\Sigma_{\rm coll})$ sets the halo core. The threshold mass is therefore not a separate number: it follows from the concentration level $L$.
+
+On the canonical footing this rule passes every graded calibration line:
+\begin{itemize}
+\item SPARC;
+\item 63 groups;
+\item 15 cluster lensing keys;
+\item five Local Group dwarf classes;
+\item KiDS isolated-lens lensing;
+\item the Milky Way.
+\end{itemize}
+Random settings in the explored box pass 10 times in 24.
+
+An X-ray-bright group ``wrong sign'' is withdrawn as an estimator artefact. A held-out elliptical failure becomes a hot-gas prediction. IC~1613 remains a genuine two-tracer failure.
+
+Two lensing predictions are sealed by content hash. The second is unique to the basin rule: at fixed stellar mass, a central in a massive basin should lens about half as strongly at 0.3~Mpc as an isolated one.
+
+A candidate field equation keys condensation on the expansion of the matter flow. This is not evidence for the framework over $\Lambda$CDM.
+\end{abstract}
+
+\section{The four equations}
+The four equations, as graded (canonical footing $a_0=9.3603\times10^{-11}$\,m\,s$^{-2}$; footings never pooled):
+
+(1) $a_0=\kappa c\sqrt{G\rho_{\rm DE}}$.
+
+(2) $g=\nu(g_N/a_0)\,g_N$, with $\nu(y)=\tfrac12+\sqrt{\tfrac14+1/y}$.
+
+(3) $\Sigma_{\rm core}=\max(a_0/2\pi G,\ \eta(L)\Sigma_{\rm coll})$, with $\eta=\tfrac{4}{3B(1)}L^{5/4}$ and $B(1)=3\ln2-\pi/2$. A halo exists iff the second term wins on $M_{\rm basin}$. The concentration $c_f(M)=L\,c_{\rm nat}(M)/c_{\rm nat}(10^{14})$ follows the framework's own zoom slope.
+
+(4) The halo holds the native fair share ($\Omega_c/\Omega_b=5.2715$, from BAO+BBN with no CMB) of the measured baryons, out to the turnaround radius.
+
+A \emph{basin} is the region inside the zero-velocity surface a system belongs to. For the Local Group it is measured from the radial-velocity zero crossing in the Updated Nearby Galaxy Catalog: $R_0=794.7\pm151.5$\,kpc, with $\log M_{\rm basin}=12.392$.
+
+\section{Results (each a frozen lane; commit IDs in the repository)}
+\begin{tabular}{@{}p{0.27\linewidth}p{0.68\linewidth}@{}}\toprule
+Lane & Frozen verdict and key numbers \\ \midrule
+BS1 basin switch & Canonical: \textbf{resolves the Milky Way contradiction} while keeping every calibration line. The mass switch had needed $T<10^{11.9}$ for the MW but $T>10^{12.15}$ for lensing. The CL3 one-number variant ($L=3.75$, $T=10^{12.236}$) passes every canonical line. \\
+LEE1 look-elsewhere & \textbf{BROAD}: 10/24 random $(T,L)$ draws pass every canonical line (0.417; 68\% CP [0.303, 0.539]); alt 0/24. The passing band is $L\approx3.64$--$4.17$ with $T\gtrsim10^{12.19}$. The box was not blind. \\
+FM1 forward model & HG2 bins groups on $\sigma$, i.e. on the observed pull. Forward-modelled with the data's own scatter (0.356 dex), the base picture gives $D=-0.492$ against a measured $-0.362$ ($q=0.934$): \textbf{conditioning explains the sign}. A planted $+0.4$ dex bright-group excess still gives $D<0$, so the statistic is not diagnostic. The ``wrong sign'' is \textbf{withdrawn}. \\
+SG1 SLUGGS & The IMF lever is at its dynamical bound ($M_\star/M_{\rm JAM}=0.87$--$0.95$). Measured X-ray gas alone takes the class mean from $+0.152$ to $+0.105$ (M87 closes). Gas extrapolated beyond the measured edges passes at $-0.002$: \textbf{a prediction} for deeper X-ray data. \\
+BC1 X-COP cores & The stellar profiles already carry the BCG. BCG$\times2$ moves the 0.1\,$R_{500}$ miss only from $+0.193$ to $+0.168$. The shape failure is the cluster halo's shape, not the baryons. \\
+RT1 / EF1 IC 1613 & HI rotation (LITTLE THINGS) gives $E=-0.593$ ($Z=-7.90$), matching the stellar-$\sigma$ tracer ($-0.535$). The LG basin's external field shifts it by $\le0.0035$ dex. \textbf{Genuine failure.} \\
+TH1 flow basins & Basins from measured velocity zero crossings reproduce BS1's flags for all 67 Local Volume SPARC galaxies (a weak test). The MW's halo requires MW+M31 baryons $\gtrsim1.5\times10^{11}M_\odot$. \\ \bottomrule
+\end{tabular}
+
+\section{Sealed predictions}
+\textbf{SP1} (isolated lenses, sha256 \texttt{09cf7da6\ldots04bf}). Above $\log M_\star\approx11.21$, the outer $\Delta\Sigma$ of isolated centrals drops below the law's, with $S_{\rm step}=0.47$.
+
+\textbf{SP2} (the basin step, sha256 \texttt{75b5fcdb\ldots8b3d}). At fixed $M_\star$ below the own-mass switch, a central in a basin above $T$ carries a cored halo truncated at $R_{200}$. An isolated central follows the law. The predicted ratio of their own $\Delta\Sigma$ at 0.3\,Mpc, averaged over $\log M_\star$ 10.5--11.0, is $S_{\rm env}=0.484$ (canonical; 0.442 alt). The sign is opposite to halo-model expectations for group centrals.
+
+Both falsifiers are frozen. A KiDS-Legacy or Euclid environment split that isolates the central's own term decides them.
+
+\section{A candidate field equation (not derived, not graded)}
+Every selector keyed on potential depth, $\sigma$ or acceleration has failed in the record, because satellites sit in shallower potentials than the Sun. A pressure fluid is excluded by the Bullet Cluster.
+
+The basin, as measured, is where the coarse-grained expansion $\theta=\nabla\!\cdot\!v$ of the matter flow has turned negative. $\theta$ is native to Khronon/AeST-type actions through $c_2(\nabla_\mu u^\mu)^2$. A candidate order parameter $\chi$ has
+\[
+m^2=m_0^2\big[\Theta(\theta_u)-1+(a_0/2\pi G)/(\eta\Sigma_{\rm coll})\big],
+\]
+which condenses inside turned-around regions exactly when the $\max(\cdot)$ rule's collapse term wins. An oscillating condensate behaves as cold, collisionless matter. The step function and the smoothing scale are posited. Kill tests are listed in the repository.
+
+\section{What is fitted, posited or failing}
+\begin{itemize}
+\item \textbf{Fitted:} $\kappa=\tfrac12$.
+\item \textbf{Located by data:} $L\approx3.75$--4. A native test against converged zooms is frozen and pending.
+\item \textbf{Derived from $L$:} $T$.
+\item \textbf{Posited:} the basin as the unit, i.e. the field equation above.
+\item \textbf{Failing:}
+  \begin{itemize}
+  \item IC~1613;
+  \item the X-COP cluster shape;
+  \item the alternative $a_0$ footing (SPARC and the MW ultra-faints, at every setting).
+  \end{itemize}
+\item \textbf{Prediction-dependent:} SLUGGS (outer hot gas).
+\end{itemize}
+Nothing here says the data favour the framework over $\Lambda$CDM.
+
+\medskip
+{\small AI assistance: Anthropic's Claude (analysis lanes, review, drafting). Data: SPARC; KiDS-1000; eRASS1; X-COP; SLUGGS; UNGC (Karachentsev et al.\ 2013); LITTLE THINGS (Oh et al.\ 2015); 2MRS; Kourkchi \& Tully 2017. All scripts, frozen criteria and results are in the public repository.}
+\end{document}
