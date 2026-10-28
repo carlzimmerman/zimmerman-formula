@@ -1,0 +1,89 @@
+GT1_gas_temperature_halo  MUTATE (sigma^2 doubled on K1 analytic side; K1 must fail)   criteria ef8161361e, amendments 1c28336cbd
+kappa = 1/2 FITTED; footings never pooled (canonical primary); hot systems: M_tot = M_HG inside R_g, k-scaled CL2 profile to the GS1 budget at r_ta; the shared isothermal potential is a POSIT; not theory closed
+BS1 head executed read-only (R0_data 794.7 kpc, LG log M_basin 12.3925) [0 s]
+HG2 sample identity: 190 groups, BRIGHT 14, supported 188; D -0.2940 (HG2 -0.2940); measured 95% [-0.511, -0.076]: PASS
+X-COP sigma sources (A4): A1795 RF fill 695 km/s; A2029 RF fill 759 km/s; A2142 RF fill 775 km/s; A2319 RF fill 778 km/s; A644 eRASS1 KT 7.66 keV; A85 RF fill 722 km/s; ZW1215 eRASS1 KT 3.80 keV
+
+=== STEP 0 (K0)
+  X43 copy (GT off) done [36 s]
+  X53 copies done [229 s]
+  X51 + MW done [242 s]
+K0a_BS1_base PASS  GT off reproduces BS1's committed primary block to 1e-6: grade True , MW True , field dwarfs True ; canonical fails none; alt fails ['SPARC line', 'dwarfs MW ultra-faint (OVER, Z -2.77)']
+K0b_HO1_Dpred PASS  GT off reproduces HO1(b) D_pred +0.2293 / +0.2011 (HO1 +0.229 / +0.201): max |d| 0.0e+00
+K0c_IB1_HG PASS  IB1's configuration (A1) reproduces IB1 HG (tercile) and RF cells, 15 keys x 2 h x 2 footings, pred and Z: max |d| 0.0e+00; G-OUT-M3 Z +5.02 / +4.36; RF fit (a, b) |d| 0.0e+00
+  GT run primary done [347 s]
+  GT run Rg_0.7R500 done [382 s]
+  GT run Rg_rta_half done [417 s]
+  GT run continuity_offset done [451 s]
+  GT run tercile_fill done [486 s]
+  GT run literal_Rg_rta_k_unused done [521 s]
+K1 FAIL  hot systems M_tot(R_g) = M_HG(R_g) (and inner grid): clusters max rel 5.0e-01, BRIGHT groups 5.0e-01 (1e-9); non-hot lines equal base exactly: SPARC + 63 groups True, FAINT g_pred True; cluster profiles logged 1304
+K2 PASS  k > 0 systems reach M_budget at r_ta: clusters max rel 2.2e-16 over 4150 profiles (0 with r_ta beyond the grid, analytic), BRIGHT groups 2.2e-16 (1e-6)
+
+=== [canonical] GT primary (R_g = R500, k-scaled CL2 profile to the GS1 budget, RF sigma fill)
+  cluster keys (h 0.672 | h 0.686): meas, GT pred, Z | Z   [CL2/BS1 Z h0.672 | IB1-HG Z h0.672]
+   G-IN-all   +1.936+-1.668 pred +2.921 Z -0.59 | -0.68  pass   [CL2 -1.06 | IB1 -0.59]
+   G-MID-T1   +1.079+-0.369 pred +1.064 Z +0.04 | +0.18  pass   [CL2 -1.48 | IB1 -0.07]
+   G-MID-T2   +1.618+-0.312 pred +1.335 Z +0.90 | +1.18  pass   [CL2 -0.85 | IB1 +0.80]
+   G-MID-T3   +2.096+-0.251 pred +2.164 Z -0.27 | -0.03  pass   [CL2 -1.17 | IB1 -0.27]
+   G-MID-b    +2.214+-0.733 pred +2.228 Z -0.02 | +0.11  pass   [CL2 +0.62 | IB1 +0.19]
+   G-OUT-all  +0.780+-0.152 pred +0.930 Z -0.98 | -1.07  pass   [CL2 -1.93 | IB1 -2.02]
+   G-OUT-T1   +0.442+-0.353 pred +0.681 Z -0.68 | -0.71  pass   [CL2 -1.03 | IB1 -0.99]
+   G-OUT-T2   +0.682+-0.250 pred +0.836 Z -0.61 | -0.50  pass   [CL2 -1.21 | IB1 -1.09]
+   G-OUT-T3   +1.090+-0.229 pred +1.175 Z -0.37 | -0.54  pass   [CL2 -1.05 | IB1 -1.34]
+   G-OUT-b    +1.533+-0.696 pred +1.046 Z +0.70 | +0.46  pass   [CL2 +0.46 | IB1 +0.44]
+   G-OUT-Mall +0.929+-0.098 pred +0.883 Z +0.48 | +0.50  pass   [CL2 -1.37 | IB1 +0.32]
+   G-OUT-M1   +0.488+-0.296 pred +0.663 Z -0.59 | -0.48  pass   [CL2 -0.35 | IB1 -2.02]
+   G-OUT-M2   +0.762+-0.135 pred +0.863 Z -0.74 | -0.55  pass   [CL2 -1.39 | IB1 -0.37]
+   G-OUT-M3   +1.369+-0.103 pred +1.034 Z +3.25 | +2.72  FAIL   [CL2 -0.76 | IB1 +5.02]
+   G-IN-Mall  +2.277+-1.050 pred +2.671 Z -0.38 | -0.39  pass   [CL2 -1.27 | IB1 -0.33]
+  k (h0.672): median 1.130 [16-84% 0.694-1.242] (KT 1.134, filled 1.130); clamped at k = 0: 33 of 326 (excess M_HG(R_g)/M_budget of clamped: 1.04, 1.07, 1.10, 1.14, 1.15, 1.16, 1.27, 1.28, 1.29, 1.32, 1.32, 1.46, 1.51, 1.52, 1.65, 1.66, 1.68, 1.69, 1.89, 1.94, 1.95, 2.28, 2.40, 3.05, 3.27, 3.36, 3.58, 3.70, 3.89, 4.40, 6.21, 11.65, 26.80); median M_HG(R500)/M_CL2(R500) 0.76; median R500/r_ta 0.131; below switch 2
+  per-bin pred/meas h0.672, bins 0-7: 1.74 1.22 1.01 0.90 0.87 0.87 1.04 0.77   (base: 2.25 1.59 1.41 1.27 1.23 1.20 1.32 0.90)
+  HG2: D_pred +0.090 (BRIGHT 11 / FAINT 105) vs measured 95% [-0.511, -0.076]  (base +0.229)
+    BRIGHT groups: 43296 s 800 r/R500 0.89 k 1.76 dlog g +0.23; 45174 s 300 r/R500 1.33 k 1.29 dlog g +0.08; 41220 s 794 r/R500 3.26 k 0.00 CLAMP dlog g +0.57; 40375 s 224 r/R500 1.12 k 1.56 dlog g +0.13; 42734 s 140 r/R500 0.91 k 3.45 dlog g -0.33; 42797 s 92 r/R500 0.63 k 4.02 dlog g -0.74; 30988 s 163 r/R500 0.41 k 3.38 dlog g -0.94; 31478 s 639 r/R500 1.01 k 1.22 dlog g +0.26; 13418 s 380 r/R500 1.09 k 2.00 dlog g +0.07; 14765 s 242 r/R500 1.13 k 2.74 dlog g -0.10; 46247 s 343 r/R500 0.48 k 2.67 dlog g -0.11; 64192 s 286 r/R500 1.11 k 0.00 CLAMP dlog g +0.20; 28927 s 240 r/R500 1.08 k 0.00 CLAMP dlog g +0.16; 54625 s 212 r/R500 0.39 k 0.34 dlog g -0.03
+  base lines: reproduce BS1 (K0a); non-cluster fails: none; MW cells L1+L2a+L2b 13; field dwarfs (open item, not in C): EXCESS SCATTER: S3, IC 1613 Z -7.62
+  VERDICT [canonical]: GAS-STATE RULE FAILS: clusters (G-OUT-M3 (UNDER)); HG2 D_pred +0.090 (ABOVE [-0.511, -0.076])   (A False, B False, C True)
+
+=== [alt] GT primary (R_g = R500, k-scaled CL2 profile to the GS1 budget, RF sigma fill)
+  cluster keys (h 0.672 | h 0.686): meas, GT pred, Z | Z   [CL2/BS1 Z h0.672 | IB1-HG Z h0.672]
+   G-IN-all   +1.777+-1.531 pred +2.682 Z -0.59 | -0.68  pass   [CL2 -1.06 | IB1 -0.59]
+   G-MID-T1   +0.988+-0.338 pred +0.974 Z +0.04 | +0.18  pass   [CL2 -1.48 | IB1 -0.07]
+   G-MID-T2   +1.483+-0.286 pred +1.225 Z +0.90 | +1.18  pass   [CL2 -0.85 | IB1 +0.80]
+   G-MID-T3   +1.926+-0.230 pred +1.988 Z -0.27 | -0.03  pass   [CL2 -1.17 | IB1 -0.27]
+   G-MID-b    +2.043+-0.672 pred +2.056 Z -0.02 | +0.11  pass   [CL2 +0.61 | IB1 +0.19]
+   G-OUT-all  +0.714+-0.139 pred +0.851 Z -0.98 | -1.07  pass   [CL2 -1.93 | IB1 -2.02]
+   G-OUT-T1   +0.404+-0.323 pred +0.623 Z -0.68 | -0.71  pass   [CL2 -1.03 | IB1 -0.99]
+   G-OUT-T2   +0.624+-0.229 pred +0.764 Z -0.61 | -0.50  pass   [CL2 -1.21 | IB1 -1.09]
+   G-OUT-T3   +0.999+-0.210 pred +1.077 Z -0.37 | -0.54  pass   [CL2 -1.04 | IB1 -1.34]
+   G-OUT-b    +1.409+-0.638 pred +0.963 Z +0.70 | +0.46  pass   [CL2 +0.46 | IB1 +0.44]
+   G-OUT-Mall +0.851+-0.090 pred +0.808 Z +0.48 | +0.51  pass   [CL2 -1.37 | IB1 +0.32]
+   G-OUT-M1   +0.446+-0.270 pred +0.605 Z -0.59 | -0.48  pass   [CL2 -0.35 | IB1 -2.02]
+   G-OUT-M2   +0.698+-0.123 pred +0.789 Z -0.74 | -0.54  pass   [CL2 -1.39 | IB1 -0.37]
+   G-OUT-M3   +1.257+-0.095 pred +0.948 Z +3.25 | +2.72  FAIL   [CL2 -0.75 | IB1 +5.02]
+   G-IN-Mall  +2.090+-0.964 pred +2.452 Z -0.38 | -0.39  pass   [CL2 -1.27 | IB1 -0.33]
+  k (h0.672): median 1.130 [16-84% 0.694-1.242] (KT 1.134, filled 1.130); clamped at k = 0: 33 of 326 (excess M_HG(R_g)/M_budget of clamped: 1.04, 1.07, 1.10, 1.14, 1.15, 1.16, 1.27, 1.28, 1.29, 1.32, 1.32, 1.46, 1.51, 1.52, 1.65, 1.66, 1.68, 1.69, 1.89, 1.94, 1.95, 2.28, 2.40, 3.05, 3.27, 3.36, 3.58, 3.70, 3.89, 4.40, 6.21, 11.65, 26.80); median M_HG(R500)/M_CL2(R500) 0.76; median R500/r_ta 0.131; below switch 2
+  per-bin pred/meas h0.672, bins 0-7: 1.74 1.22 1.01 0.90 0.87 0.87 1.04 0.77   (base: 2.25 1.59 1.41 1.27 1.23 1.20 1.32 0.90)
+  HG2: D_pred +0.062 (BRIGHT 11 / FAINT 105) vs measured 95% [-0.511, -0.076]  (base +0.201)
+    BRIGHT groups: 43296 s 800 r/R500 0.89 k 1.76 dlog g +0.23; 45174 s 300 r/R500 1.33 k 1.29 dlog g +0.08; 41220 s 794 r/R500 3.26 k 0.00 CLAMP dlog g +0.57; 40375 s 224 r/R500 1.12 k 1.56 dlog g +0.13; 42734 s 140 r/R500 0.91 k 3.45 dlog g -0.33; 42797 s 92 r/R500 0.63 k 4.02 dlog g -0.74; 30988 s 163 r/R500 0.41 k 3.38 dlog g -0.94; 31478 s 639 r/R500 1.01 k 1.22 dlog g +0.26; 13418 s 380 r/R500 1.09 k 2.00 dlog g +0.07; 14765 s 242 r/R500 1.13 k 2.74 dlog g -0.10; 46247 s 343 r/R500 0.48 k 2.67 dlog g -0.11; 64192 s 286 r/R500 1.11 k 0.00 CLAMP dlog g +0.20; 28927 s 240 r/R500 1.08 k 0.00 CLAMP dlog g +0.16; 54625 s 212 r/R500 0.39 k 0.34 dlog g -0.03
+  base lines: reproduce BS1 (K0a); non-cluster fails: ['SPARC line', 'dwarfs MW ultra-faint (OVER, Z -2.77)']; MW cells L1+L2a+L2b 13; field dwarfs (open item, not in C): EXCESS SCATTER: S3, IC 1613 Z -8.44
+  VERDICT [alt]: GAS-STATE RULE FAILS: clusters (G-OUT-M3 (UNDER)); HG2 D_pred +0.062 (ABOVE [-0.511, -0.076]); base lines (SPARC line, dwarfs MW ultra-faint (OVER, Z -2.77))   (A False, B False, C False)
+
+=== REPORTED VARIANTS (not graded)
+  Rg_0.7R500 [canonical]: cluster fails none; G-OUT-M3 Z +1.88/+1.50, G-IN-Mall -0.39, G-OUT-all -1.21; clamped 22, empty 0; HG2 D_pred +0.075
+  Rg_0.7R500 [alt]: cluster fails none; G-OUT-M3 Z +1.88/+1.50, G-IN-Mall -0.39, G-OUT-all -1.21; clamped 22, empty 0; HG2 D_pred +0.047
+  Rg_rta_half [canonical]: cluster fails ['G-OUT-all (OVER)', 'G-OUT-M1 (OVER)', 'G-OUT-M3 (UNDER)']; G-OUT-M3 Z +4.89/+4.19, G-IN-Mall -0.37, G-OUT-all -1.87; clamped 170, empty 0; HG2 D_pred +0.116
+  Rg_rta_half [alt]: cluster fails ['G-OUT-all (OVER)', 'G-OUT-M1 (OVER)', 'G-OUT-M3 (UNDER)']; G-OUT-M3 Z +4.89/+4.19, G-IN-Mall -0.37, G-OUT-all -1.87; clamped 170, empty 0; HG2 D_pred +0.088
+  continuity_offset [canonical]: cluster fails ['G-OUT-M3 (UNDER)']; G-OUT-M3 Z +4.02/+3.45, G-IN-Mall -0.37, G-OUT-all -0.81; clamped 0, empty 0; HG2 D_pred +0.091
+  continuity_offset [alt]: cluster fails ['G-OUT-M3 (UNDER)']; G-OUT-M3 Z +4.02/+3.45, G-IN-Mall -0.37, G-OUT-all -0.81; clamped 0, empty 0; HG2 D_pred +0.062
+  tercile_fill [canonical]: cluster fails ['G-OUT-M3 (UNDER)']; G-OUT-M3 Z +3.27/+2.74, G-IN-Mall -0.33, G-OUT-all -0.98; clamped 36, empty 0; HG2 D_pred +0.090
+  tercile_fill [alt]: cluster fails ['G-OUT-M3 (UNDER)']; G-OUT-M3 Z +3.27/+2.74, G-IN-Mall -0.33, G-OUT-all -0.98; clamped 36, empty 0; HG2 D_pred +0.062
+  literal_Rg_rta_k_unused [canonical]: cluster fails ['G-OUT-all (OVER)', 'G-OUT-M1 (OVER)', 'G-OUT-M3 (UNDER)']; G-OUT-M3 Z +4.92/+4.23, G-IN-Mall -0.37, G-OUT-all -1.83; clamped 0, empty 326; HG2 D_pred +0.116
+  literal_Rg_rta_k_unused [alt]: cluster fails ['G-OUT-all (OVER)', 'G-OUT-M1 (OVER)', 'G-OUT-M3 (UNDER)']; G-OUT-M3 Z +4.92/+4.23, G-IN-Mall -0.37, G-OUT-all -1.83; clamped 0, empty 326; HG2 D_pred +0.088
+
+K4 X-COP construction residual inside R500 (35 points; reported, not graded): mean +0.295 dex, rms 0.320; per radius 0.1 R500 +0.346, 0.2 R500 +0.264, 0.3 R500 +0.277, 0.5 R500 +0.302, 0.7 R500 +0.287; per cluster A1795 +0.334, A2029 +0.433, A2142 +0.355, A2319 +0.374, A644 +0.054, A85 +0.292, ZW1215 +0.223   [base (HO1): mean -0.002, rms 0.126]
+SLUGGS centrals: NOT A TEST (no X-ray kT on disk; the stellar sigma would make M_HG a Jeans mass of the graded kinematics). Base picture (HO2, unchanged under BS1): canonical FAILS, mean +0.152 dex, 1 of 4 clear; alt FAILS, mean +0.152 dex, 1 of 4 clear
+K3 PASS  peak RSS 0.66 GB (max over processes), one thread
+
+=== VERDICT (frozen; canonical primary): GAS-STATE RULE FAILS: clusters (G-OUT-M3 (UNDER)); HG2 D_pred +0.090 (ABOVE [-0.511, -0.076])
+=== alt (its own): GAS-STATE RULE FAILS: clusters (G-OUT-M3 (UNDER)); HG2 D_pred +0.062 (ABOVE [-0.511, -0.076]); base lines (SPARC line, dwarfs MW ultra-faint (OVER, Z -2.77))
+checks 5/6: K0a_BS1_base PASS, K0b_HO1_Dpred PASS, K0c_IB1_HG PASS, K1 FAIL, K2 PASS, K3 PASS; runtime 521 s
