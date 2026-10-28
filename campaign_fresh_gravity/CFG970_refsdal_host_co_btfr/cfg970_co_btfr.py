@@ -282,12 +282,12 @@ def disc_model(x0, y0, Stot):
         a = np.zeros((NY, NX), np.float32); a[sl] = sb[c]; return a
     return inj, spec_true
 P("\nK3 INJECTIONS")
-used = [(r["cx"], r["cy"]) for r in FS["regs"] if r["area_beams"] * r["nchan"] > 20]
+used = [(r["cx"], r["cy"]) for r in sorted(FS["regs"], key=lambda r: -r["area_beams"] * r["nchan"])[:10]]   # fix after run 3: the 10 largest regions only (disclosed)
 cx0, cy0 = (float(v) for v in W.world_to_pixel_values(H["CRVAL1"], H["CRVAL2"]))
 spots = []
 for ang in range(0, 360, 30):
     x, y = cx0 + 8 / pix_as * math.cos(math.radians(ang)), cy0 + 8 / pix_as * math.sin(math.radians(ang))
-    if PB[int(y), int(x)] < 0.7 or math.hypot(x - kx, y - ky) * pix_as < 5: continue
+    if PB[int(y), int(x)] < 0.7 or math.hypot(x - kx, y - ky) * pix_as < 5 or math.hypot(x - cx0, y - cy0) * pix_as < 5: continue
     if any(math.hypot(x - u, y - v) * pix_as < 5 for u, v in used): continue
     spots.append((x, y))
 k3 = []
@@ -305,7 +305,7 @@ K("K3 three injected discs recovered (S dv within 20%, W50 within 10 km/s)", len
 
 # ---------------------------------------------------------------- S7 moment-0 / spectrum / PV (reported)
 import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
-if prim:
+if prim and not G0.startswith("UPPER"):            # S7 needs a detected line (fix after run 3, disclosed)
     m0 = np.zeros((NY, NX)); m1n = np.zeros((NY, NX))
     for c in range(prim["c0"], prim["c1"] + 1):
         m = full_mask(FS, prim, c)
