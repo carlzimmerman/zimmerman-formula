@@ -1,0 +1,9 @@
+# Frozen scalar MW necessary-bound protocol
+
+Fixed before new bound arithmetic. Use all 175 frozen X5 box cells, canonical and alt on background A, the original source L1 lower speed max(VC_BRIEF-VC_BRIEF_LINE, Eilers central-2 error), and radius R0 from the original P4 machinery. Treat the halo branch as always on, relaxing the LG switch. Fixed M200/R200 and actual native floor units follow HO2/GD2. Reconstruct each cached baryonic Vc squared from validated baseline total Vc squared minus that same baseline halo's radial contribution; verify against all three validated L rows before interpreting any bound. No full chi-square or new model cell is graded.
+
+For every cell obtain relaxed floor-only L=0 speed and test max over all 175 against the frozen L1 lower cut. If maximum already exceeds the cut, the requested max-speed necessary lower bound is L>=0 only; do not invent a positive root. Otherwise solve the scalar monotone envelope root with a bracket justified by existing L<=4 speeds. If no bracket exists, report the tested obstruction without a wide scan. Background B is excluded from the bound; both footings A reported separately. Upper L1 and Kz/L3 are not imposed by this relaxation.
+
+Monotonicity is conditional on the analytic compact Burkert solver convention actually used. Write the scale-order proof; explicitly handle the Sigma floor, compact mass-match root, infeasible-mass saturation at the maximum, and r=R0<R200 for every cell. Numeric witnesses validate implementation and domain; they do not replace the analytic argument. Report radial-projection assumption (spherical halo), finite box coverage, maximum residual, input hashes and possible vacuity.
+
+This is a necessary constraint calculation, not a fitted level, new full-grade candidate or additional rescue challenge. No parameter changes. The gate-confirmed sole-L challenge is separate.

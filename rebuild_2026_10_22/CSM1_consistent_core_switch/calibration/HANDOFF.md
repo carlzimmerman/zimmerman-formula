@@ -1,0 +1,17 @@
+# Calibration handoff — completed
+
+Base checkpoint: `2c6b17d683c1a69a1c95754c255de1cc6f79800a`. Dirty user work was preserved. Writes were confined to this new calibration directory; no commit was made.
+
+Authoritative normal evidence: `run_003_audited` (L=3.75), `run_004_replay` (L=3.9 and4), and `run_008_exact_challenge` (actual-FP0 target L=2.5090648745652686). Their completed schema-v2 manifests validate against the repository root. `run_005_MUTATE` is the valid, expected-failed control: 8,806 of8,806 actual input flags were inverted and detected, with changed profiles. The bounded `columns_final` and `support_final` audits also completed and validate.
+
+`calibration_summary.json` contains full grades for both footings: SPARC in both backgrounds with own and basin selection, 63 groups, all15 cluster keys at both h values, lens chi-square comparisons, crossover diagnostics, and source result/manifest hashes. All three normal grade dictionaries reproduce the uncached pilot exactly. The old raw CL3 baseline reproduces315 R43 leaves and1,964 R53 leaves exactly, including both h values. Original cf4 lensing also reproduces. See `baseline_full_comparison.json`, `audited_rerun_comparison.json`, and `remaining_replay_comparison.json`.
+
+The three prior L values fail lensing on both footings. Canonical chi-square excesses over the law are415.281018,420.306421,423.234303; alt excesses are422.597116,425.782862,430.293059. Every other calibration line passes there. The corrected single-L challenge restores lensing but fails canonical groups at Z=2.621919809193621; alt SPARC fails. No independent T or fitted number was added. These finite cells do not prove that every L fails.
+
+`columns_final/results.json` independently checks71,772 numerical callback records, including repeated calls and2,268 inherited zero-eta controls, plus8,400 SPARC selected-mass records. Maximum positive-column relative error is3.553e-15; floor differences, flag disagreements and selected-mass disagreements are zero. This verifies finite primitives and source consistency while sharing CLASS and reusing the original observational estimators.
+
+`support_final/results.json` counts181,431 positive-weight lenses and362,862 positive interpolation contributions. At L=3.75,321,705 contributions take the halo branch on canonical and266,328 on alt; after actual weights and interpolation coefficients, the halo fractions are96.2927% and86.2766%. At the exact challenge both fractions are zero. Per-bin and unique-node counts and exact/table crossovers are included. These counts use captured actual halo_setup flags, not a threshold approximation or repeated kernel-call count.
+
+Preserved history: `run_002` has disclosed pilot startup-hash and time-bound limits; its normal grades are corroborated by bounded runs003/004. `run_006` preserves the displayed-a0 precision error; `DEFINITION_CORRECTION.md` explains the required same-target correction. `run_007` has changed launcher metadata and is excluded;008 supplies valid provenance. Inherited source K0/K0x38/K_T failures are retained where their old unconditional-profile assumptions are inapplicable. Independent primary and primitive gates pass. A normal-run `actual_mutation_detected=true` is a not-requested sentinel; only005 supplies mutation evidence.
+
+The coordinator owns dwarf/MW integration. Native convergence, physical basin dynamics, EPS physics and a covariant parent remain outside this finite calibration. `README.md` is the component report; `SHA256SUMS` inventories its artifacts.

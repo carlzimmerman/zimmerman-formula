@@ -1,0 +1,86 @@
+{
+  "claim_id": "NATIVE_L_T_CACHED_FINITE_AUDIT",
+  "mathematics": {
+    "assertion_tested": "Reproduce recorded ng48 medians and documented NL1 synthetic benchmark; audit cached fixed-T vs derived-T implication and mass-dependent eta vs eta(L) equality. Independently reproduce CLASS/EPS scalar roots and compare constant eta(L) with S9 mass-dependent eta(c_f(M)).",
+    "coefficient_domain": "IEEE 754 binary64 (numpy/Python math); exact source-string checks",
+    "conventions": "Footings separate; S9 linear interpolation in log10 mass, clamped outside 12-14; eta(c)=4/(3B(1))*c**1.25.",
+    "inputs": [
+      "27 ok ng48 A2 seed records",
+      "3 cached CL3 L settings on each of 2 footings",
+      "6 finite branch examples at M=1e12",
+      "NL1 c=4 synthetic benchmark, 12000 particles, RNG seed 1"
+    ],
+    "bounds": {
+      "ng48_seeds_per_mass": 9,
+      "mass_bins": [
+        1000000000000.0,
+        10000000000000.0,
+        100000000000000.0
+      ],
+      "L": [
+        3.75,
+        3.9,
+        4.0
+      ],
+      "bootstrap_resamples": 2000,
+      "synthetic_N": 12000,
+      "root_L": [
+        3.75,
+        3.9,
+        4.0,
+        7.31
+      ],
+      "root_logM": [
+        9,
+        16
+      ],
+      "root_bracket_grid": 300,
+      "k_samples": 3000,
+      "sigma_mass_samples": 191,
+      "growth_z_samples": 3001
+    },
+    "non_claims": [
+      "No ng64 measurement or astrophysical rerun.",
+      "Scalar EPS reproduction does not validate EPS physics.",
+      "No observational regrade, continuum convergence, covariant completion or theorem verification."
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/INDEPENDENT_PUSH_2026-10-28/native_l_t/audit_native_l_t.py",
+    "rebuild_2026_10_22/INDEPENDENT_PUSH_2026-10-28/native_l_t/FROZEN_CRITERIA.md",
+    "rebuild_2026_10_22/X48_native_cf_zoom/x48_analyze_results_ng48_A2.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/x48_analyze.py",
+    "rebuild_2026_10_22/NL1_native_level_L/nl1_native_level.py",
+    "rebuild_2026_10_22/CL2_native_cf_slope/cl2_native_slope_results.json",
+    "rebuild_2026_10_22/CL3_one_number/cl3_one_number_results.json",
+    "rebuild_2026_10_22/CL3_one_number/cl3_one_number.py",
+    "rebuild_2026_10_22/LEE1_look_elsewhere/lee1.py",
+    "rebuild_2026_10_22/X43_collapse_core_floor/x43_collapse_core_results.json",
+    "rebuild_2026_10_22/THEORY_EQUATIONS_2026-10-28.md",
+    "rebuild_2026_10_22/F3_growth_audit/f3_growth_audit_results.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.13.9"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.14.1"
+    },
+    {
+      "name": "classy",
+      "version": "v3.3.4"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "numpy PCG64",
+    "seed": 20261028,
+    "additional": "Documented synthetic benchmark uses PCG64 seed 1."
+  }
+}
