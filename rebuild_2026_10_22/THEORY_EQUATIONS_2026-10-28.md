@@ -74,8 +74,9 @@ If NL1 passes, the galaxy-to-cluster picture carries **one** fitted number, κ.
   Z ≈ −7.6 to −7.9.
 - **X-COP cluster profiles:** the right mean but the wrong shape (HO1). The gas-temperature core (GT1) fixes 14 of 15
   keys but fails G-OUT-M3.
-- **X-ray-bright groups (HG2 sign):** opposite to every g = F(g_bar) rule. It survives the gas and σ audits (GA1, DY1).
-  **Open and underpowered.**
+- **X-ray-bright groups (HG2 sign): WITHDRAWN as a failure (FM1).** HG2 bins on σ, the observed pull. Forward-
+  modelled the same way, the base picture gives D ≈ −0.49 (measured −0.36), and the statistic cannot see even a
+  +0.4 dex hot-gas excess. NOT DIAGNOSTIC as measured.
 - **SLUGGS ellipticals:** under-predicted by 0.15 dex (HO2). No X-ray kT is on disk to test the gas rule.
 
 ## What is still a posit
