@@ -1,0 +1,138 @@
+BS1_basin_switch  MUTATE (basin flags inverted at source; K1 must fail)   criteria aabf665e07, amendments efc77e8136
+kappa = 1/2 FITTED; footings never pooled (canonical primary); route E (own M200 halo) iff M_basin > 10^T, else the law on baryons; the basin is a POSIT (nonlocal, no action); not theory closed
+EM1 R1 relations: A_c2b_refit a 11.18 b 0.9; B_cfg886_bg a 11.2 b 0.9
+
+=== (a) LG: CFG548 frame f31 2/3, selection 0.6-2.5 Mpc: N 27 (reproduces CFG548's committed sample: PASS)
+  straight-line fit V_r = 89.0 km/s/Mpc (R - R0), rms 42.1 km/s -> R0_data = 794.7 +- 151.5 kpc (bootstrap 400, seed 20261027); NOT CFG548's model-based 830 kpc
+  LG basin (R < R0_data): 70 UNGC rows, 69 with a mass, 1 without KLum (skipped; lower bound); big four inside: ['Milky Way', 'MESSIER031', 'MESSIER033', 'LMC']; log M_basin 12.3925 (big four alone 12.3712) vs T 12.3 -> ROUTE E
+  own log M200 (A): Milky Way 11.880; MESSIER031 12.151; MESSIER033 11.093; LMC 10.709
+  field dwarfs, barycentric R (kpc): Antlia B (not in UNGC); Aquarius 961; Cetus 620; IC 1613 467; Leo A 1023; Leo T 754; NGC 6822 707; Pegasus dIrr 415; Phoenix 659; Sagittarius dIrr 1184; Tucana 1150; UGC 4879 1331; WLM 818
+
+=== (b) SPARC basins: 175 galaxies; 165 with a position, 126 with cz; KT2017 matched 104 (record's matcher 0.05 deg / 350 km/s), Nm >= 2: 63, of which 2 groups lack Dist (kept on CL2 flag, A3); inside R0_data (rule a): []
+
+=== STEP 0 (K0): basin = the system alone (satellites keep CL2's satellite clause)
+  X43 copy done [54 s]
+  X53 copies done [333 s]
+  K0a CL2 S9 L4 committed grade, every leaf (both footings) to 1e-6, fail lists exact: FAIL ['/canonical/verdict', '/canonical/fails', '/canonical/sparc/A_c2b_refit/rms', '/canonical/sparc/A_c2b_refit/U', '/canonical/sparc/B_cfg886_bg/rms']
+    [canonical] dwarfs MW ultra-faint (UNDER, Z +5.22), dwarfs bright M31 (UNDER, Z +2.20), dwarfs M31 others (UNDER, Z +2.29); SPARC A 0.064804, groups Z +1.9930
+    [alt] dwarfs MW ultra-faint (UNDER, Z +4.87), dwarfs M31 others (UNDER, Z +2.12); SPARC A 0.065375, groups Z +1.9798
+  K0b HO3's 13 field residuals (E to 1e-6, Z to CSV precision; Leo T/Phoenix Z to 1e-6; S1-S3): FAIL
+  K0c HO2 MW: box FEASIBLE (WIDE PRIORS ONLY) (canonical A), McMillan K_z 67.2 (z +0.4) -> route E; GD2/GD1 step 0 True/True: FAIL   [353 s]
+
+=== BS1 PRIMARY (canonical primary, alt reported): R0_data 794.7 kpc, LG log M_basin 12.3925 -> ROUTE E (T 12.3)
+  SPARC flags changed law -> route E (bg A): 13; bg B: 13 (same set: True)
+    NGC3917      own lgM200 11.297 -> basin 12.520 (KT2017, Nm 24)
+    NGC3992      own lgM200 12.199 -> basin 12.598 (KT2017, Nm 24)
+    NGC4088      own lgM200 11.909 -> basin 12.436 (KT2017, Nm 17)
+    NGC4100      own lgM200 11.656 -> basin 12.405 (KT2017, Nm 17)
+    NGC4157      own lgM200 11.904 -> basin 12.427 (KT2017, Nm 17)
+    NGC5033      own lgM200 11.942 -> basin 12.321 (KT2017, Nm 20)
+    NGC5907      own lgM200 12.137 -> basin 12.395 (KT2017, Nm 7)
+    NGC5985      own lgM200 12.151 -> basin 12.674 (KT2017, Nm 11)
+    UGC02953     own lgM200 12.211 -> basin 12.552 (KT2017, Nm 15)
+    UGC06917     own lgM200 10.987 -> basin 12.394 (KT2017, Nm 17)
+    UGC06923     own lgM200 10.641 -> basin 12.525 (KT2017, Nm 24)
+    UGC06930     own lgM200 11.129 -> basin 12.403 (KT2017, Nm 17)
+    UGC06983     own lgM200 11.017 -> basin 12.526 (KT2017, Nm 24)
+  multi-member KT2017 groups without Dist (kept on the CL2 flag, A3): 2 galaxies
+  [primary] runs done [419 s]
+
+--- (A) calibration lines, re-graded where flags change
+
+  [canonical] BS1 primary (S9, L 4, T 12.3; basin flags)
+    SPARC [A_c2b_refit]: rms 0.0639, median U 0.64, line PASS; route E in 153/175
+    SPARC [B_cfg886_bg]: rms 0.0641, median U 0.63, line PASS; route E in 153/175
+    groups: mean +0.0645 Z +1.99 -> CONSISTENT
+    clusters: G-IN-all Z -1.06; G-MID-T1 Z -1.48; G-MID-T2 Z -0.85; G-MID-T3 Z -1.17; G-MID-b Z +0.62; G-OUT-all Z -1.93; G-OUT-T1 Z -1.03; G-OUT-T2 Z -1.21; G-OUT-T3 Z -1.05; G-OUT-b Z +0.46; G-OUT-Mall Z -1.37; G-OUT-M1 Z -0.35; G-OUT-M2 Z -1.39; G-OUT-M3 Z -0.76; G-IN-Mall Z -1.27
+    dwarfs: MW ultra-faint +0.592 (Z +5.22); bright M31 +0.227 (Z +2.20); M31 others +0.747 (Z +2.29); MW classical +0.245 (Z +1.69); LG field -0.007 (Z -0.08)
+    lensing: dchi2(ENV2H-L2H) +0.0, dchi2(ENV2H-H2H) -429.0
+    -> fails: dwarfs MW ultra-faint (UNDER, Z +5.22), dwarfs bright M31 (UNDER, Z +2.20), dwarfs M31 others (UNDER, Z +2.29)
+
+  [alt] BS1 primary (S9, L 4, T 12.3; basin flags)
+    SPARC [A_c2b_refit]: rms 0.0640, median U 0.54, line PASS; route E in 153/175
+    SPARC [B_cfg886_bg]: rms 0.0642, median U 0.54, line PASS; route E in 153/175
+    groups: mean +0.0619 Z +1.98 -> CONSISTENT
+    clusters: G-IN-all Z -1.06; G-MID-T1 Z -1.48; G-MID-T2 Z -0.85; G-MID-T3 Z -1.17; G-MID-b Z +0.61; G-OUT-all Z -1.93; G-OUT-T1 Z -1.03; G-OUT-T2 Z -1.21; G-OUT-T3 Z -1.04; G-OUT-b Z +0.46; G-OUT-Mall Z -1.37; G-OUT-M1 Z -0.35; G-OUT-M2 Z -1.39; G-OUT-M3 Z -0.75; G-IN-Mall Z -1.27
+    dwarfs: MW ultra-faint +0.552 (Z +4.87); bright M31 +0.187 (Z +1.81); M31 others +0.707 (Z +2.12); MW classical +0.206 (Z +1.42); LG field -0.058 (Z -0.70)
+    lensing: dchi2(ENV2H-L2H) +0.0, dchi2(ENV2H-H2H) -458.2
+    -> fails: dwarfs MW ultra-faint (UNDER, Z +4.87), dwarfs M31 others (UNDER, Z +2.12)
+
+--- (B) Milky Way (held out): branch from the LG basin
+  [canonical] BS1 primary: X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 216.8 (z -2.6), K_z 92.9 (z +12.0), L1 False L2a False L2b False L3 False
+  [alt] BS1 primary: X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 222.2 (z -1.5), K_z 97.5 (z +14.1), L1 True L2a False L2b False L3 False
+
+--- (C) LG field dwarfs one by one (held out): HO3's rules, branch from (a)
+  [canonical] BS1 primary: field N 13: |Z|>=2 5 (S1 p 1.84e-04 FAIL); median|Z| 0.84 vs 1.24 (PASS); max|Z| 6.75 (S3 p 1.86e-10 FAIL) -> EXCESS SCATTER: S1, S3
+     field per object: Antlia B +0.003+-0.175 (Z +0.02, law); Aquarius -0.054+-0.158 (Z -0.34, law); Cetus +0.046+-0.111 (Z +0.42, halo); IC 1613 -0.535+-0.079 (Z -6.75, halo); Leo A -0.185+-0.077 (Z -2.40, law); Leo T +0.414+-0.154 (Z +2.69, halo); NGC 6822 +0.009+-0.063 (Z +0.14, halo); Pegasus dIrr +0.191+-0.086 (Z +2.24, halo); Phoenix +0.405+-0.074 (Z +5.47, halo); Sagittarius dIrr -0.046+-0.163 (Z -0.28, law); Tucana -0.192+-0.229 (Z -0.84, law); UGC 4879 -0.108+-0.122 (Z -0.88, law); WLM -0.007+-0.108 (Z -0.06, law)
+     satellites N 76: EXCESS SCATTER: S1, S2, S3
+  [alt] BS1 primary: field N 13: |Z|>=2 4 (S1 p 2.20e-03 FAIL); median|Z| 1.07 vs 1.24 (PASS); max|Z| 7.46 (S3 p 1.17e-12 FAIL) -> EXCESS SCATTER: S1, S3
+     field per object: Antlia B -0.043+-0.179 (Z -0.24, law); Aquarius -0.090+-0.163 (Z -0.55, law); Cetus +0.007+-0.108 (Z +0.06, halo); IC 1613 -0.572+-0.077 (Z -7.46, halo); Leo A -0.229+-0.076 (Z -3.01, law); Leo T +0.374+-0.155 (Z +2.41, halo); NGC 6822 -0.028+-0.066 (Z -0.42, halo); Pegasus dIrr +0.152+-0.086 (Z +1.78, halo); Phoenix +0.366+-0.075 (Z +4.88, halo); Sagittarius dIrr -0.098+-0.160 (Z -0.61, law); Tucana -0.244+-0.227 (Z -1.07, law); UGC 4879 -0.161+-0.125 (Z -1.29, law); WLM -0.058+-0.108 (Z -0.53, law)
+     satellites N 76: EXCESS SCATTER: S1, S2, S3
+  [canonical] Leo T +0.414 (Z +2.69, ABOVE PICTURE); Phoenix +0.405 (Z +5.47, ABOVE PICTURE); IC 1613 -0.535 (Z -6.75, BELOW PICTURE)
+  [alt] Leo T +0.374 (Z +2.41, ABOVE PICTURE); Phoenix +0.366 (Z +4.88, ABOVE PICTURE); IC 1613 -0.572 (Z -7.46, BELOW PICTURE)
+  satellites' flag UNCHANGED (LG passes the switch): HO3 satellite grade carried
+
+=== REPORTED VARIANTS (not graded; each with its own lines)
+  [CL3 one number (L 3.75, T 12.2357 / 12.5739)] runs done [486 s]
+  [canonical] CL3 one number (L 3.75, T 12.2357 / 12.5739): X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 216.8 (z -2.6), K_z 92.9 (z +12.0), L1 False L2a False L2b False L3 False
+  [alt] CL3 one number (L 3.75, T 12.2357 / 12.5739): X5 box V+K ONLY; cells passing L1+L2a+L2b: 10, all four: 0; branches {'law': 0, 'route E': 175}; McMillan (route E) V_c 197.9 (z -6.7), K_z 66.7 (z +0.1), L1 False L2a True L2b True L3 False
+  CL3 one number (L 3.75, T 12.2357 / 12.5739): LG lgM 12.3925 (route E: {'canonical': True, 'alt': False}); SPARC flags changed (A, canonical) 19; canonical fails: ['dwarfs MW ultra-faint (UNDER, Z +5.22)', 'dwarfs bright M31 (UNDER, Z +2.20)', 'dwarfs M31 others (UNDER, Z +2.29)']; alt fails: ['dwarfs MW ultra-faint (OVER, Z -2.77)']; field canonical EXCESS SCATTER: S1, S3; MW canonical INFEASIBLE (0 cells L1+L2a+L2b)
+      verdict: canonical BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +5.22), dwarfs bright M31 (UNDER, Z +2.20), dwarfs M31 others (UNDER, Z +2.29), Milky Way (INFEASIBLE), field dwarfs (S1, S3) | alt BASIN SWITCH FAILS: dwarfs MW ultra-faint (OVER, Z -2.77), field dwarfs (S3)
+  (Upsilon_K 0.5: LG flag and L equal an earlier run; MW result reused)
+  [Upsilon_K 0.5] runs done [535 s]
+  [canonical] Upsilon_K 0.5: X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 216.8 (z -2.6), K_z 92.9 (z +12.0), L1 False L2a False L2b False L3 False
+  [alt] Upsilon_K 0.5: X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 222.2 (z -1.5), K_z 97.5 (z +14.1), L1 True L2a False L2b False L3 False
+  Upsilon_K 0.5: LG lgM 12.3906 (route E: {'canonical': True, 'alt': True}); SPARC flags changed (A, canonical) 12; canonical fails: ['dwarfs MW ultra-faint (UNDER, Z +5.22)', 'dwarfs bright M31 (UNDER, Z +2.20)', 'dwarfs M31 others (UNDER, Z +2.29)']; alt fails: ['dwarfs MW ultra-faint (UNDER, Z +4.87)', 'dwarfs M31 others (UNDER, Z +2.12)']; field canonical EXCESS SCATTER: S1, S3; MW canonical INFEASIBLE (0 cells L1+L2a+L2b)
+      verdict: canonical BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +5.22), dwarfs bright M31 (UNDER, Z +2.20), dwarfs M31 others (UNDER, Z +2.29), Milky Way (INFEASIBLE), field dwarfs (S1, S3) | alt BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +4.87), dwarfs M31 others (UNDER, Z +2.12), Milky Way (INFEASIBLE), field dwarfs (S1, S3)
+  (Upsilon_K 0.8: LG flag and L equal an earlier run; MW result reused)
+  [Upsilon_K 0.8] runs done [589 s]
+  [canonical] Upsilon_K 0.8: X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 216.8 (z -2.6), K_z 92.9 (z +12.0), L1 False L2a False L2b False L3 False
+  [alt] Upsilon_K 0.8: X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 222.2 (z -1.5), K_z 97.5 (z +14.1), L1 True L2a False L2b False L3 False
+  Upsilon_K 0.8: LG lgM 12.4013 (route E: {'canonical': True, 'alt': True}); SPARC flags changed (A, canonical) 20; canonical fails: ['dwarfs MW ultra-faint (UNDER, Z +5.22)', 'dwarfs bright M31 (UNDER, Z +2.20)', 'dwarfs M31 others (UNDER, Z +2.29)']; alt fails: ['dwarfs MW ultra-faint (UNDER, Z +4.87)', 'dwarfs M31 others (UNDER, Z +2.12)']; field canonical EXCESS SCATTER: S1, S3; MW canonical INFEASIBLE (0 cells L1+L2a+L2b)
+      verdict: canonical BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +5.22), dwarfs bright M31 (UNDER, Z +2.20), dwarfs M31 others (UNDER, Z +2.29), Milky Way (INFEASIBLE), field dwarfs (S1, S3) | alt BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +4.87), dwarfs M31 others (UNDER, Z +2.12), Milky Way (INFEASIBLE), field dwarfs (S1, S3)
+  (summed-baryon M_basin: SPARC flag set equals an earlier run; X43 result reused)
+  (summed-baryon M_basin: LG flag and L equal an earlier run; MW result reused)
+  [summed-baryon M_basin] runs done [590 s]
+  [canonical] summed-baryon M_basin: X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 216.8 (z -2.6), K_z 92.9 (z +12.0), L1 False L2a False L2b False L3 False
+  [alt] summed-baryon M_basin: X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 222.2 (z -1.5), K_z 97.5 (z +14.1), L1 True L2a False L2b False L3 False
+  summed-baryon M_basin: LG lgM 12.3457 (route E: {'canonical': True, 'alt': True}); SPARC flags changed (A, canonical) 12; canonical fails: ['dwarfs MW ultra-faint (UNDER, Z +5.22)', 'dwarfs bright M31 (UNDER, Z +2.20)', 'dwarfs M31 others (UNDER, Z +2.29)']; alt fails: ['dwarfs MW ultra-faint (UNDER, Z +4.87)', 'dwarfs M31 others (UNDER, Z +2.12)']; field canonical EXCESS SCATTER: S1, S3; MW canonical INFEASIBLE (0 cells L1+L2a+L2b)
+      verdict: canonical BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +5.22), dwarfs bright M31 (UNDER, Z +2.20), dwarfs M31 others (UNDER, Z +2.29), Milky Way (INFEASIBLE), field dwarfs (S1, S3) | alt BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +4.87), dwarfs M31 others (UNDER, Z +2.12), Milky Way (INFEASIBLE), field dwarfs (S1, S3)
+  (literal all-Ks self term (A2 variant): SPARC flag set equals an earlier run; X43 result reused)
+  (literal all-Ks self term (A2 variant): LG flag and L equal an earlier run; MW result reused)
+  [literal all-Ks self term (A2 variant)] runs done [590 s]
+  [canonical] literal all-Ks self term (A2 variant): X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 216.8 (z -2.6), K_z 92.9 (z +12.0), L1 False L2a False L2b False L3 False
+  [alt] literal all-Ks self term (A2 variant): X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 222.2 (z -1.5), K_z 97.5 (z +14.1), L1 True L2a False L2b False L3 False
+  literal all-Ks self term (A2 variant): LG lgM 12.3925 (route E: {'canonical': True, 'alt': True}); SPARC flags changed (A, canonical) 12; canonical fails: ['dwarfs MW ultra-faint (UNDER, Z +5.22)', 'dwarfs bright M31 (UNDER, Z +2.20)', 'dwarfs M31 others (UNDER, Z +2.29)']; alt fails: ['dwarfs MW ultra-faint (UNDER, Z +4.87)', 'dwarfs M31 others (UNDER, Z +2.12)']; field canonical EXCESS SCATTER: S1, S3; MW canonical INFEASIBLE (0 cells L1+L2a+L2b)
+      verdict: canonical BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +5.22), dwarfs bright M31 (UNDER, Z +2.20), dwarfs M31 others (UNDER, Z +2.29), Milky Way (INFEASIBLE), field dwarfs (S1, S3) | alt BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +4.87), dwarfs M31 others (UNDER, Z +2.12), Milky Way (INFEASIBLE), field dwarfs (S1, S3)
+  (groups without Dist take the SPARC distance: SPARC flag set equals an earlier run; X43 result reused)
+  (groups without Dist take the SPARC distance: LG flag and L equal an earlier run; MW result reused)
+  [groups without Dist take the SPARC distance] runs done [591 s]
+  [canonical] groups without Dist take the SPARC distance: X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 216.8 (z -2.6), K_z 92.9 (z +12.0), L1 False L2a False L2b False L3 False
+  [alt] groups without Dist take the SPARC distance: X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 222.2 (z -1.5), K_z 97.5 (z +14.1), L1 True L2a False L2b False L3 False
+  groups without Dist take the SPARC distance: LG lgM 12.3925 (route E: {'canonical': True, 'alt': True}); SPARC flags changed (A, canonical) 13; canonical fails: ['dwarfs MW ultra-faint (UNDER, Z +5.22)', 'dwarfs bright M31 (UNDER, Z +2.20)', 'dwarfs M31 others (UNDER, Z +2.29)']; alt fails: ['dwarfs MW ultra-faint (UNDER, Z +4.87)', 'dwarfs M31 others (UNDER, Z +2.12)']; field canonical EXCESS SCATTER: S1, S3; MW canonical INFEASIBLE (0 cells L1+L2a+L2b)
+      verdict: canonical BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +5.22), dwarfs bright M31 (UNDER, Z +2.20), dwarfs M31 others (UNDER, Z +2.29), Milky Way (INFEASIBLE), field dwarfs (S1, S3) | alt BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +4.87), dwarfs M31 others (UNDER, Z +2.12), Milky Way (INFEASIBLE), field dwarfs (S1, S3)
+  (R0_data - 1 sigma (643 kpc): SPARC flag set equals an earlier run; X43 result reused)
+  (R0_data - 1 sigma (643 kpc): LG flag and L equal an earlier run; MW result reused)
+  [R0_data - 1 sigma (643 kpc)] runs done [591 s]
+  [canonical] R0_data - 1 sigma (643 kpc): X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 216.8 (z -2.6), K_z 92.9 (z +12.0), L1 False L2a False L2b False L3 False
+  [alt] R0_data - 1 sigma (643 kpc): X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 222.2 (z -1.5), K_z 97.5 (z +14.1), L1 True L2a False L2b False L3 False
+  R0_data - 1 sigma (643 kpc): LG lgM 12.3918 (route E: {'canonical': True, 'alt': True}); SPARC flags changed (A, canonical) 13; canonical fails: ['dwarfs MW ultra-faint (UNDER, Z +5.22)', 'dwarfs bright M31 (UNDER, Z +2.20)', 'dwarfs M31 others (UNDER, Z +2.29)']; alt fails: ['dwarfs MW ultra-faint (UNDER, Z +4.87)', 'dwarfs M31 others (UNDER, Z +2.12)']; field canonical EXCESS SCATTER: S3; MW canonical INFEASIBLE (0 cells L1+L2a+L2b)
+      verdict: canonical BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +5.22), dwarfs bright M31 (UNDER, Z +2.20), dwarfs M31 others (UNDER, Z +2.29), Milky Way (INFEASIBLE), field dwarfs (S3) | alt BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +4.87), dwarfs M31 others (UNDER, Z +2.12), Milky Way (INFEASIBLE), field dwarfs (S3)
+  (R0_data + 1 sigma (946 kpc): LG flag and L equal an earlier run; MW result reused)
+  [R0_data + 1 sigma (946 kpc)] runs done [645 s]
+  [canonical] R0_data + 1 sigma (946 kpc): X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 216.8 (z -2.6), K_z 92.9 (z +12.0), L1 False L2a False L2b False L3 False
+  [alt] R0_data + 1 sigma (946 kpc): X5 box INFEASIBLE; cells passing L1+L2a+L2b: 0, all four: 0; branches {'law': 175, 'route E': 0}; McMillan (law) V_c 222.2 (z -1.5), K_z 97.5 (z +14.1), L1 True L2a False L2b False L3 False
+  R0_data + 1 sigma (946 kpc): LG lgM 12.3927 (route E: {'canonical': True, 'alt': True}); SPARC flags changed (A, canonical) 14; canonical fails: ['dwarfs MW ultra-faint (UNDER, Z +5.22)', 'dwarfs bright M31 (UNDER, Z +2.20)', 'dwarfs M31 others (UNDER, Z +2.29)']; alt fails: ['dwarfs MW ultra-faint (UNDER, Z +4.87)', 'dwarfs M31 others (UNDER, Z +2.12)']; field canonical EXCESS SCATTER: S1, S3; MW canonical INFEASIBLE (0 cells L1+L2a+L2b)
+      verdict: canonical BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +5.22), dwarfs bright M31 (UNDER, Z +2.20), dwarfs M31 others (UNDER, Z +2.29), Milky Way (INFEASIBLE), field dwarfs (S1, S3) | alt BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +4.87), dwarfs M31 others (UNDER, Z +2.12), Milky Way (INFEASIBLE), field dwarfs (S1, S3)
+  (Antlia B at NGC 3109's position: SPARC flag set equals an earlier run; X43 result reused)
+  [Antlia B at NGC 3109's position] runs done [646 s]
+  Antlia B at NGC 3109's position: LG lgM 12.3925 (route E: {'canonical': True, 'alt': True}); SPARC flags changed (A, canonical) 13; canonical fails: ['dwarfs MW ultra-faint (UNDER, Z +5.22)', 'dwarfs bright M31 (UNDER, Z +2.20)', 'dwarfs M31 others (UNDER, Z +2.29)']; alt fails: ['dwarfs MW ultra-faint (UNDER, Z +4.87)', 'dwarfs M31 others (UNDER, Z +2.12)']; field canonical EXCESS SCATTER: S1, S3
+  field-dwarf LG membership (R < R0): R0-1s: Cetus, IC 1613, Pegasus dIrr; R0: Cetus, IC 1613, Leo T, NGC 6822, Pegasus dIrr, Phoenix; R0+1s: Cetus, IC 1613, Leo T, NGC 6822, Pegasus dIrr, Phoenix, WLM
+
+=== VERDICT (frozen; canonical primary, alt reported with its own)
+  [canonical] BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +5.22), dwarfs bright M31 (UNDER, Z +2.20), dwarfs M31 others (UNDER, Z +2.29), Milky Way (INFEASIBLE), field dwarfs (S1, S3)   (A False, B False, C False)
+  [alt] BASIN SWITCH FAILS: dwarfs MW ultra-faint (UNDER, Z +4.87), dwarfs M31 others (UNDER, Z +2.12), Milky Way (INFEASIBLE), field dwarfs (S1, S3)   (A False, B False, C False)
+K1 every system's branch equals its basin flag (independent recomputation): 25096 violations in 25096 decisions; own M200 max rel dev 0.0e+00: FAIL
+K2 R0_data from CFG548's committed selection and seed 20261027; KT2017 matches 104 (Nm>=2: 63): PASS
+
+checks 2/6: K0a_CL2_grade FAIL, K0b_HO3_field FAIL, K0c_HO2_MW FAIL, K1_branch_equals_basin_flag FAIL, K2_reproducible_inputs PASS, K3_rss PASS; runtime 646 s; peak RSS 0.71 GB (max over processes)
