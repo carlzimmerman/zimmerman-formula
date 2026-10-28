@@ -71,3 +71,11 @@ Archive queries (`query_log.jsonl`, every call logged):
 
 ## Files
 `build_parents.py` → `parents.csv`, `selected.csv`. `query_archives.py` → `archive_coverage.json`, `query_log.jsonl`. `raw/` holds the fetched e-prints (logged).
+
+## 8. ALMA product sizes for the SN Refsdal host (DataLink metadata, 2026-10-27; nothing downloaded)
+- **2013.1.00582.S** (MOUS uid://A001/X12b/Xa; targeted; band 4; CO(3-2) at z 1.491 = 138.82 GHz inside the 138.35–139.29 GHz narrow-channel window; 0.36″; 1542 s; 0.95 mJy/beam @ 10 km/s; public since 2016-09-24).
+  - The pipeline produced one CO(3-2) cube per lensed image, A1.1–A1.4: each `.image.fits` / `.pbcor.fits` is 614.7 MB, plus `.flux.fits.gz` 258 MB. There are matching CS(7-6) cubes, and continuum images of 2.5 MB.
+  - Product tarball 11.9 GB; auxiliary 5.9 GB; raw ASDM 3 × ~32 GB.
+- **2017.1.00822.S** (MOUS uid://A001/X12c4/X318; band-3 cluster mosaic, 178″ field; CO(2-1) at 92.55 GHz in spw27; 0.82″; 500 s; 1.3 mJy/beam @ 10 km/s).
+  - The spw27 cube alone is 15.9 GB; product tarball 96.2 GB. **Not recommended:** shallow chance coverage.
+- **Minimal useful download:** the A1.4 CO(3-2) pbcor cube (615 MB), optionally with its beam and continuum (+0.26 GB). All four images come to ~3.5 GB. Disk free at the time was 13 GB.
