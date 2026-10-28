@@ -1,3 +1,18 @@
+# CORRECTION (2026-10-27, after the owner asked "are you sure?"): the non-detection is NOT a meaningful result
+
+Three errors in this lane, fixed forward. The sections below are kept as written.
+
+1. **The redshift I froze (z = 1.4906) was not the galaxy's systemic value.** Di Teodoro+2018 measure **z = 1.4888 ± 0.0011** from the MUSE [OII] doublet; Kelly+15 give 1.489, and Smith+09 gave 1.491. The delivered cube is centred on z ≈ 1.491 (RESTFRQ 138.818 GHz, LSRK). Relative to z = 1.4888 it covers only **+15 … +513 km/s**, so **the systemic velocity and the whole blue half of the line are outside the delivered cube**, and every integration window here was centred ~220 km/s off the line.
+   - Labelled post-hoc: the in-band red wing (+15 … +60 km/s) shows nothing. KLASS r = 1″: +0.025 ± 0.061; pointing centre r = 1″: +0.037 ± 0.052 Jy km/s.
+   - **"No CO detected" and "too shallow" are therefore not established.** This cube mostly does not contain the line.
+2. **Wrong pointing.** All four pointings (A1.1–A1.4) share one MOUS, and I took the first target name returned (A1.4). **Pointing A1.1 is centred on the KLASS-1501 position (0.2″)**; A1.4 is 10.7″ away. The claim that A1.4 "matched the KLASS position" was wrong. All four delivered CO cubes are the same size, so they very likely share the same narrow velocity window, and the A1.1 cube would probably have the same coverage problem.
+3. **Error bars about 15–20 % too small.** Adjacent channels are correlated (r = 0.17), and sums of ≥ 5 channels have 1.13–1.14× the assumed noise. The upper limit 0.90 Jy km/s becomes ≈ 1.07, and the post-hoc S/N values shrink by ~1.2.
+
+**What stands:**
+- The K2 failure (the noise expectation was mis-derived).
+- The lane is INVALID as frozen.
+- **The delivered ALMA products cannot measure this galaxy's CO(3-2) at its systemic redshift.** The full spectral window (138.35–139.29 GHz) does cover the line (138.941 GHz), so a measurement needs re-imaging from the calibrated visibilities (raw ASDMs ~96 GB, CASA) or a reprocessed product.
+
 # CFG970: SN Refsdal host CO(3-2) from ALMA 2013.1.00582.S (A1.4). INVALID as frozen; CO not detected; the archival cube is too shallow to test the law's gas need
 
 **Read first.**
