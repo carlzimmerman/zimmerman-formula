@@ -72,8 +72,9 @@ If NL1 passes, the galaxy-to-cluster picture carries **one** fitted number, κ.
 
 - **IC 1613:** the law over-predicts about 4×. The stellar σ (HO3) and the HI rotation (RT1, 66c45c5082) agree, at
   Z ≈ −7.6 to −7.9.
-- **X-COP cluster profiles:** the right mean but the wrong shape (HO1). The gas-temperature core (GT1) fixes 14 of 15
-  keys but fails G-OUT-M3.
+- **X-COP cluster profiles:** the right mean but the wrong shape (HO1). It is not missing BCG stars (BC1: the profiles
+  already carry the BCG, and ×2 moves the core miss only from +0.19 to +0.17), so the halo shape is wrong for clusters.
+  The gas-temperature core (GT1) fixes 14 of 15 lensing keys but fails G-OUT-M3.
 - **X-ray-bright groups (HG2 sign): WITHDRAWN as a failure (FM1).** HG2 bins on σ, the observed pull. Forward-
   modelled the same way, the base picture gives D ≈ −0.49 (measured −0.36), and the statistic cannot see even a
   +0.4 dex hot-gas excess. NOT DIAGNOSTIC as measured.
