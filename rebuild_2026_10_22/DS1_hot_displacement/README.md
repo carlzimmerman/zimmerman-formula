@@ -16,8 +16,9 @@ particle. Not "theory closed". Nothing here says the data favour the framework.
 
 The cluster numbers are CL2's committed law-only run (`x62_x43copy_law_a2`).
 
-**The base lines (C)** are untouched by the PRIMARY scope, so BS1's committed grade stands. The BS1 rerun identity is
-recorded below.
+**The base lines (C)** are untouched by the PRIMARY scope, so BS1's committed grade stands. A BS1 rerun
+(2026-10-28) gives every results JSON byte-identical to the committed files; only the timing lines in the `.out` files
+differ.
 
 ## The finding
 
