@@ -1,0 +1,74 @@
+X43_collapse_core_floor  normal run  [c_f EXTERNAL]
+kappa = 1/2 FITTED; footings never pooled; route E (Newtonian, no law force), core Sigma = max(a0/(2 pi G), eta x EPS collapse Sigma), eta from self-similar infall, c_f = 4 EXTERNAL; not theory closed
+EM1 and X30 machinery executed read-only [38 s, RSS 0.67 GB]
+Sigma_a0 = a0/(2 pi G): canonical 106.9, alt 129.2 Msun/pc^2 (SECOND_LAW_HUNT: 107 / 129; Li+2020 Burkert median 177, context only)
+K0 EM1 law rms 0.0541 / 0.0537; X30 OUTER / MID 0.7801 / 1.6387: FAIL
+K1 Burkert closed form vs quadrature +0.00e+00; solved r0 returns M -1.19e-14: PASS
+K2 EM1 sigma8 own vs F3: A_c2b_refit 0.82742/0.82742, B_cfg886_bg 0.81715/0.81715: PASS
+K1 EPS: M 1e12 -> z_f 0.944, D(z_f) 0.6227 (in (0,1]: True), equation residual 0.00e+00: PASS
+K1 eta = 14.8286 (14.83: True); Burkert vs infall mass at r0 = r_f/c_f: +0.00e+00 (True)
+Sigma_coll table (bg A): M 1e11: 3.8 Msun/pc^2 (z_f 1.14); M 1e12: 6.8 Msun/pc^2 (z_f 0.94); M 1e13: 11.9 Msun/pc^2 (z_f 0.75); M 1e14: 20.5 Msun/pc^2 (z_f 0.56); M 1e15: 34.7 Msun/pc^2 (z_f 0.39)
+  log slope dlnSigma_coll/dlnM over 1e13-1e15: 0.232 (X40b requires 0.25-0.30)
+K2b X41 table reproduced (1e12 -> 6.84, X41 6.8): PASS
+  crossover eta Sigma_coll = Sigma_a0 [canonical]: M = 10^12.09 Msun
+  crossover eta Sigma_coll = Sigma_a0 [alt]: M = 10^12.43 Msun
+K0 rule forced to Sigma_a0 reproduces X38: SPARC 0.0541 (0.0795), OUTER 0.999 (0.697): FAIL
+K4 groups: 63 rows; no-halo integrator vs P4 (nu = 1) max |d| 8.9e-16 dex: PASS
+  X38 groups (eta = 0) canonical: mean +0.0837 Z +2.74 (X40b: +0.097, +2.48)
+
+=== [canonical] Sigma_a0 106.9 Msun/pc^2
+  SPARC [A_c2b_refit]: rms 0.0563, median U 0.53, line PASS; rule active in 9/175 galaxies
+  SPARC [B_cfg886_bg]: rms 0.0567, median U 0.53, line PASS; rule active in 9/175 galaxies
+  groups (63, P4 estimator): mean +0.0631 Z +1.94 -> CONSISTENT; rule active in 55/63 (X38: mean +0.097, Z +2.48)
+  clusters: rule active in 650/652 cluster-cells; Sigma_coll/Sigma_a0 median 0.266, max 0.496
+     G-IN-all   meas +1.936+-1.668 pred +3.856 Z -1.15
+     G-MID-T1   meas +1.079+-0.369 pred +1.647 Z -1.54
+     G-MID-T2   meas +1.618+-0.312 pred +1.912 Z -0.94
+     G-MID-T3   meas +2.096+-0.251 pred +2.438 Z -1.37
+     G-MID-b    meas +2.214+-0.733 pred +1.829 Z +0.53
+     G-OUT-all  meas +0.780+-0.152 pred +1.082 Z -1.98
+     G-OUT-T1   meas +0.442+-0.353 pred +0.810 Z -1.04
+     G-OUT-T2   meas +0.682+-0.250 pred +0.991 Z -1.23
+     G-OUT-T3   meas +1.090+-0.229 pred +1.342 Z -1.10
+     G-OUT-b    meas +1.533+-0.696 pred +1.232 Z +0.43
+     G-OUT-Mall meas +0.929+-0.098 pred +1.071 Z -1.45
+     G-OUT-M1   meas +0.488+-0.296 pred +0.594 Z -0.36
+     G-OUT-M2   meas +0.762+-0.135 pred +0.955 Z -1.43
+     G-OUT-M3   meas +1.369+-0.103 pred +1.461 Z -0.89
+     G-IN-Mall  meas +2.277+-1.050 pred +3.766 Z -1.42
+  VERDICT [canonical]: CC PASSES [c_f EXTERNAL]   [44 s, RSS 0.68 GB]
+
+=== [alt] Sigma_a0 129.2 Msun/pc^2
+  SPARC [A_c2b_refit]: rms 0.0552, median U 0.44, line FAIL; rule active in 9/175 galaxies
+  SPARC [B_cfg886_bg]: rms 0.0556, median U 0.44, line FAIL; rule active in 9/175 galaxies
+  groups (63, P4 estimator): mean +0.0605 Z +1.93 -> CONSISTENT; rule active in 55/63 (X38: mean +0.097, Z +2.48)
+  clusters: rule active in 650/652 cluster-cells; Sigma_coll/Sigma_a0 median 0.220, max 0.411
+     G-IN-all   meas +1.777+-1.531 pred +3.540 Z -1.15
+     G-MID-T1   meas +0.988+-0.338 pred +1.509 Z -1.54
+     G-MID-T2   meas +1.483+-0.286 pred +1.753 Z -0.94
+     G-MID-T3   meas +1.926+-0.230 pred +2.240 Z -1.36
+     G-MID-b    meas +2.043+-0.672 pred +1.692 Z +0.52
+     G-OUT-all  meas +0.714+-0.139 pred +0.991 Z -1.98
+     G-OUT-T1   meas +0.404+-0.323 pred +0.741 Z -1.04
+     G-OUT-T2   meas +0.624+-0.229 pred +0.906 Z -1.23
+     G-OUT-T3   meas +0.999+-0.210 pred +1.230 Z -1.10
+     G-OUT-b    meas +1.409+-0.638 pred +1.135 Z +0.43
+     G-OUT-Mall meas +0.851+-0.090 pred +0.980 Z -1.45
+     G-OUT-M1   meas +0.446+-0.270 pred +0.543 Z -0.36
+     G-OUT-M2   meas +0.698+-0.123 pred +0.873 Z -1.42
+     G-OUT-M3   meas +1.257+-0.095 pred +1.340 Z -0.88
+     G-IN-Mall  meas +2.090+-0.964 pred +3.457 Z -1.42
+  VERDICT [alt]: CC FAILS [c_f EXTERNAL]  (failing: SPARC line)   [48 s, RSS 0.68 GB]
+
+=== VERDICT (both footings): UNDECIDED (footings disagree: {'canonical': 'CC PASSES [c_f EXTERNAL]', 'alt': 'CC FAILS [c_f EXTERNAL]'})
+
+=== CHECKS
+  [FAIL] K0
+  [PASS] K1
+  [PASS] K2
+  [PASS] K2b
+  [FAIL] K0x38
+  [PASS] K4
+  [PASS] K3
+
+checks 5/7; runtime 48 s; peak RSS 0.68 GB
