@@ -1,6 +1,6 @@
 # So what is T and L, exactly?
 
-*Plain-language explainer, 2026-10-27. κ = ½ is fitted; the theory is not closed. Nothing here says the data favour the
+*Plain-language explainer, 2026-10-27; updated the same night with CL2, CL3 and the held-out tests. κ = ½ is fitted; the theory is not closed. Nothing here says the data favour the
 framework over ΛCDM.*
 
 ## The picture in one paragraph
@@ -59,16 +59,30 @@ the same value the record has carried since X43.
 | lane | what is set | result (canonical footing) |
 |---|---|---|
 | CL1 | T and one constant c_f | everything passes except one line, at 0.1–0.2σ |
-| CL2 | T = 10^12.3, L = 4 with the native slope | **every graded line passes**: SPARC, groups, all 15 cluster lensing keys, the Local Group dwarfs, KiDS lensing (verdict pending the robustness shapes) |
-| CL3 | T computed *from* L (the crossover at L) | **running**: if it passes, one number does both jobs |
+| CL2 | T = 10^12.3; L = 4 with the native slope | **every graded line passes** at L = 4 with the steeper native slopes; the NFW-fit slope fails (FRAGILE) |
+| CL3 | T computed *from* L (the crossover at L) | **every graded line passes** at L = 3.75 and 3.9, so one number does both jobs |
 
 The cluster halo budget behind these lanes uses no free choice. It is the fair share of cold dark energy for the gas
 X-COP actually measures, out to the turnaround radius (GS1).
 
+## Then we tested it on data it had never seen, and it failed
+
+| held-out test | result |
+|---|---|
+| Local Group dwarfs one by one (HO3) | fails: about 0.25 dex of extra scatter; Leo T and Phoenix sit above the law |
+| SLUGGS central ellipticals (HO2) | fails: still under-predicted, 1 of 4 clears |
+| the Milky Way (HO2) | fails: it needs a halo, which would need T below 10^11.9, while lensing needs T above 10^12.15 |
+| X-COP clusters one by one (HO1) | fails: the mean is right, the shape wrong (cores too light, outskirts too heavy) |
+| hot-gas groups (HO1) | fails: the predicted sign is opposite to the data |
+
+So T and L, as a sharp mass switch plus one concentration level, **describe** the lines they were built from. They are
+not yet the mechanism. The failures point the same way: a switch keyed on environment or gas state rather than mass, and
+a different halo shape.
+
 ## The honest scorecard
 
-- **Located by data, not derived:** T ≈ 10^12.3 M☉ and L ≈ 4. If CL3 passes, this becomes one number (L), with T following
-  from it.
+- **Located by data, not derived:** L ≈ 3.75–3.9, with T following from it through the crossover (CL3). This holds only
+  for the steeper native slope.
 - **Native:** the mass slope of concentration (from zooms), the cluster gas budget (measured), the core floor a₀/(2πG),
   and the background (BAO + BBN, no CMB).
 - **Still open:**
