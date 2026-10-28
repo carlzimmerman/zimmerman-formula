@@ -79,3 +79,16 @@ Archive queries (`query_log.jsonl`, every call logged):
 - **2017.1.00822.S** (MOUS uid://A001/X12c4/X318; band-3 cluster mosaic, 178″ field; CO(2-1) at 92.55 GHz in spw27; 0.82″; 500 s; 1.3 mJy/beam @ 10 km/s).
   - The spw27 cube alone is 15.9 GB; product tarball 96.2 GB. **Not recommended:** shallow chance coverage.
 - **Minimal useful download:** the A1.4 CO(3-2) pbcor cube (615 MB), optionally with its beam and continuum (+0.26 GB). All four images come to ~3.5 GB. Disk free at the time was 13 GB.
+
+## 9. Downloaded (owner-approved 2026-10-27): A1.4 pointing of 2013.1.00582.S, outside the repo
+Location: `new_physics/_external_data/alma_2013.1.00582.S_A1.4/` (not in git). Fetched with `../fetch_logged.py`; sha256 and sizes are in `../FETCH_MANIFEST_2026-10-01.jsonl`. Every file matched its advertised size; 0.876 GB in total.
+
+| file | size | header check |
+|---|---|---|
+| `…MACS1149_A1.4_CO_v_0_3_2_image.pbcor.fits` | 614.7 MB | 784² × 250 ch; 0.080″ pixels; beam 0.44″ × 0.35″ (PA −7°); 2.00 km/s channels, 138.703–138.934 GHz; CO(3-2) at z 1.4906 (138.840 GHz) **inside** |
+| `…MACS1149_A1.4_CO_v_0_3_2_image.flux.fits.gz` | 258.1 MB | the same grid (primary-beam response) |
+| `…calibrated_final_cont_A1.4_image.pbcor.fits` / `.flux.fits.gz` | 2.5 / 1.0 MB | 151 GHz continuum; beam 0.40″ × 0.32″ |
+
+- The KLASS position of MACS1149-1501 lies ~11″ from the pointing centre, inside the 63″ field and the band-4 primary beam.
+- **Caveat before any curve:** the cube spans only ±250 km/s around 138.818 GHz, against a published V_max of 208–227 km/s. Clipping at the curve's edges must be checked.
+- The fetch-manifest labels came out truncated ("…A1.4-4_image…"); this is cosmetic, and the file names and sha256 are exact.
