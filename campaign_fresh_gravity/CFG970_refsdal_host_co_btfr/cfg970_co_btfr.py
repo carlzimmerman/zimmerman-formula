@@ -9,7 +9,8 @@ for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "VECLIB
     os.environ[_v] = "1"
 import sys, json, math, gzip, hashlib, resource, time, numpy as np
 from astropy.io import fits
-from astropy.wcs import WCS
+from astropy.wcs import WCS, FITSFixedWarning
+import warnings; warnings.filterwarnings("ignore", category=FITSFixedWarning)
 from scipy import ndimage
 from scipy.interpolate import PchipInterpolator
 
@@ -61,7 +62,7 @@ with gzip.open(F_PB, "rb") as g:
 PB = np.where(np.isfinite(PB), PB, 0.0)
 cube = fits.open(F_CUBE, memmap=True)[0].data                       # (1, NC, NY, NX), big-endian float32, memory-mapped
 yy, xx = np.mgrid[0:NY, 0:NX]
-kx, ky = W.world_to_pixel_values(*KLASS)
+kx, ky = (float(v) for v in W.world_to_pixel_values(*KLASS))
 P(f"  beam {bmaj:.2f}x{bmin:.2f}\" ({beam_pix:.1f} px), dv {dv:.3f} km/s, velocity range {vel.min():+.1f} .. {vel.max():+.1f} km/s; "
   f"KLASS position at pixel ({kx:.1f}, {ky:.1f}), PB there {PB[int(round(ky)), int(round(kx))]:.3f}")
 rng_m = np.random.default_rng(9701); PERM = rng_m.permutation(NC) if MUT else np.arange(NC)
@@ -281,7 +282,7 @@ def disc_model(x0, y0, Stot):
     return inj, spec_true
 P("\nK3 INJECTIONS")
 used = [(r["cx"], r["cy"]) for r in FS["regs"] if r["area_beams"] * r["nchan"] > 20]
-cx0, cy0 = W.world_to_pixel_values(H["CRVAL1"], H["CRVAL2"])
+cx0, cy0 = (float(v) for v in W.world_to_pixel_values(H["CRVAL1"], H["CRVAL2"]))
 spots = []
 for ang in range(0, 360, 30):
     x, y = cx0 + 8 / pix_as * math.cos(math.radians(ang)), cy0 + 8 / pix_as * math.sin(math.radians(ang))
