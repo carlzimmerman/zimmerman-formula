@@ -78,7 +78,9 @@ If NL1 passes, the galaxy-to-cluster picture carries **one** fitted number, κ.
 - **X-ray-bright groups (HG2 sign): WITHDRAWN as a failure (FM1).** HG2 bins on σ, the observed pull. Forward-
   modelled the same way, the base picture gives D ≈ −0.49 (measured −0.36), and the statistic cannot see even a
   +0.4 dex hot-gas excess. NOT DIAGNOSTIC as measured.
-- **SLUGGS ellipticals:** under-predicted by 0.15 dex (HO2). No X-ray kT is on disk to test the gas rule.
+- **SLUGGS ellipticals:** the IMF is already at its dynamical bound (SG1). Measured hot gas brings +0.15 to +0.105
+  (M87 closes); gas extrapolated beyond the measured X-ray edges PASSES (−0.002, 3/4). **A prediction:** deeper X-ray
+  data must find that gas.
 
 ## What is still a posit
 
