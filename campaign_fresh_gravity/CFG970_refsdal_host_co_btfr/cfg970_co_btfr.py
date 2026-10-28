@@ -198,7 +198,7 @@ else:
     P(f"\nS2 FLUX  G0: {G0}  S dv = {M['Sdv']:.4f} +- {M['eSdv']:.4f} Jy km/s (S/N {M['SN']:.1f}); 2\" aperture variant {M['Sap']:.4f} +- {M['eSap']:.4f}; footprint {M['foot_beams']:.1f} beams")
 
 # ---------------------------------------------------------------- S3 edge clipping, S4 widths
-if M:
+if M and not G0.startswith("UPPER"):            # S3/S4 apply to a detected line only (criteria silent; fixed after run 2, disclosed)
     spec, ss = M["spec"], M["sig_spec"]
     eL, eH = spec[:10].sum(), spec[-10:].sum(); se = ss * math.sqrt(10)
     rng = np.random.default_rng(970); Wb, We = widths(spec, ss, rng, 200)
@@ -214,12 +214,13 @@ if M:
     P(f"S4 WIDTHS: W50 {Wb['W50'][0]:.1f} +- {We['W50']:.1f} km/s, W20 {Wb['W20'][0]:.1f} +- {We['W20']:.1f} km/s; V_CO = W50/(2 sin i) at i 25/35/45: "
       + " / ".join(f"{v:.0f}" for v in VCO.values()) + f" km/s{' (LOWER BOUNDS)' if S3 != 'CLEAN' else ''}; blue/red asymmetry {asym:.2f}{' LOPSIDED' if asym >= 1.5 else ''}")
 else:
-    S3, Wb, We, VCO, asym = "n/a", {}, {}, {}, None
+    S3, Wb, We, VCO, asym = "n/a (no detected line)", {}, {}, {}, None
+    P(f"\nS3/S4: n/a (G0 {G0})")
 
 # ---------------------------------------------------------------- S5 gas mass, S6 BTFR via mu*
-g = {}
 T6 = open(os.path.join(LANES, "CFG686_cluster_shear_vs_law", "cfg686_shear.py")).read()
-exec(T6[T6.index("# ---- distances from raw DESI DR2 BAO"):T6.index("# ---- clusters:")], {"np": np, "PchipInterpolator": PchipInterpolator}, g)
+g = {"np": np, "PchipInterpolator": PchipInterpolator}
+exec(T6[T6.index("# ---- distances from raw DESI DR2 BAO"):T6.index("# ---- clusters:")], g)   # one namespace (fix after run 2)
 DL = float(g["DM"](Z)) * (1 + Z)
 zz = np.linspace(0, Z, 4000); DL70 = (1 + Z) * np.trapz(1 / np.sqrt(0.3 * (1 + zz) ** 3 + 0.7), zz) * C_KMS / 70.0
 nu_ghz = NU0 / 1e9
