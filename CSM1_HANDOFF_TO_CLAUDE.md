@@ -150,3 +150,21 @@ coefficients and signed-dot rounding still need separate treatment. The local
 full-score bound remains conditional; no certified L exclusion or global
 obstruction is claimed. Native inventory remains5of9; no new native final or
 NL1 aggregate result was present at this check.
+
+
+Signed arithmetic checkpoint: signed_dot_002_cached encloses7440 signed
+projection dot bounds and directed stacking/residual/score arithmetic for an
+explicit anchored fixed-coefficient map. Its lower score569.5321678519074
+is corroborated by an exact-rational stored-box floor569.5321678519072.
+All8 run controls and31 exact-dyadic/review controls pass. This improves the
+arithmetic evidence; it does not certify the original likelihood or real-L
+interval. Q=P@W construction, physical coefficients, branches and continuum
+coverage remain outside the certificate. Preserved NumPy status warnings have
+finite saved coefficients, explicitly checked by review.
+
+Next structural route in DUAL_ROUTE.md uses an exactly template-orthogonal
+covariance dual witness to remove approximate whitening/projector dependence.
+It is prospective, adds no physical fitted parameter, and retains projection
+and column/branch/continuum obligations. The uncached initial attempt remains
+bounded and unpublished while incomplete; its NPZ-loading issue is documented.
+Native finals remain5of9, with no new aggregate NL1 output at this check.

@@ -65,3 +65,8 @@ fixed-coefficient coordinates. The old padding contains every enclosure.
 Next freeze signed projection/stack/whitening dot enclosures with explicit
 coefficient scope and numerical error budget; continuum column/branch and
 coefficient-construction obligations remain before any full-score certificate.
+
+Signed fixed-map dot/stack score enclosures completed: signed_dot_002_cached.
+Original likelihood remains uncertified. Next DUAL_ROUTE.md eliminates the
+approximate nuisance/whitening map with an exact covariance dual witness;
+projection/column/branch/continuum assumptions remain explicit.
