@@ -301,3 +301,16 @@ validation are complete failures and are not repeated. Next freeze runnable
 criteria/resources for GROUP_MESH_009_ROUTE.md tiles16[2.78,2.79] and17[2.79,2.80].
 Continuous feasibility/robust derivedL remains OPEN. See GROUP_MESH_008_REVIEW.md
 and group_mesh_008_union.json for scope and reproducible evidence.
+
+
+Fixed group_mesh_009 completes tiles16[2.78,2.79] and17[2.79,2.80]; both
+necessarily fail unchanged absZ<2 in analytic fixed-native-EPS/quadrature scope.
+All2batch+16run/13independent70digit review controls per tile and6exact
+coverage/hash/mutation controls pass. Gap-free direct group failure extends
+to L[2.62,2.80], Zlower>=2.2150633084. Inventory19of89reviewed,70pending; all
+holes and historical immutable evidence remain. No derivative extrapolation,
+physical fit or global/original floating claim. Next freeze runnable criteria/
+resources/input inventory for GROUP_MESH_010_ROUTE.md tiles18[2.80,2.81] and
+19[2.81,2.82]. Corrected native point and legacy NL1 failures are complete,
+not rerun; robust derivedL and continuous feasibility stay OPEN. See
+GROUP_MESH_009_REVIEW.md and group_mesh_009_union.json.
