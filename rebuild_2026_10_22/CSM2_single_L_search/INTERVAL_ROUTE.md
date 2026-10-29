@@ -87,3 +87,16 @@ mass arrays. Conditional dual lower remains569.5338648476735. Next address
 nonlinear mass construction, original catalogue interpolation/stacking and
 column/branch/continuum coverage. Implementation/IEEE assumptions remain
 explicit; no full real-L certificate is claimed.
+
+
+Catalogue stacking checkpoint: catalogue_001 bounds original per-lens
+interpolation/weighted normalization against the saved map for all181431
+lenses. Exact ideal weight L1 discrepancy<=1.914797023e-15; derived maximum
+stack error2.607694418e-7. All29 run+16 exact-review controls pass. The unchanged
+exact dual lower after this budget is569.5338626102013, above feasible-law
+upper+9=163.34346325076024. Floating-status warnings are preserved; returned
+stress values and all output bounds are finite. Implementation/covered-mass
+assumptions remain, so this is not a real-L exclusion. Next close original
+nonlinear mass/column/branch/continuum membership under NONLINEAR_DOMAIN_ROUTE.md.
+Native finals remain5of9; source/copy hashes agree and pending checkpoints are
+recent. No new seed set or aggregate NL1 grade is published.

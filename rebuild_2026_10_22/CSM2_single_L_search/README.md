@@ -228,3 +228,16 @@ Nonlinear mass construction, original catalogue interpolation/stacking and
 column/branch/continuum coverage remain open. No real-L/global exclusion yet.
 See SOURCE_FORWARD_REVIEW.md and the licensed cached implementation sources.
 Native completion remains5of9; the four pending checkpoints are recent.
+
+
+Catalogue stacking checkpoint: catalogue_001 bounds original per-lens
+interpolation/weighted normalization against the saved map for all181431
+lenses. Exact ideal weight L1 discrepancy<=1.914797023e-15; derived maximum
+stack error2.607694418e-7. All29 run+16 exact-review controls pass. The unchanged
+exact dual lower after this budget is569.5338626102013, above feasible-law
+upper+9=163.34346325076024. Floating-status warnings are preserved; returned
+stress values and all output bounds are finite. Implementation/covered-mass
+assumptions remain, so this is not a real-L exclusion. Next close original
+nonlinear mass/column/branch/continuum membership under NONLINEAR_DOMAIN_ROUTE.md.
+Native finals remain5of9; source/copy hashes agree and pending checkpoints are
+recent. No new seed set or aggregate NL1 grade is published.
