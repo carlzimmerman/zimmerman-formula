@@ -1,0 +1,115 @@
+X70_smooth_core_shape  normal run  [c_f EXTERNAL]
+kappa = 1/2 FITTED; footings never pooled; route E (Newtonian, no law force), core Sigma = max(a0/(2 pi G), eta x EPS collapse Sigma), eta from self-similar infall, c_f = 4 EXTERNAL; not theory closed
+EM1 and X30 machinery executed read-only [43 s, RSS 0.55 GB]
+Sigma_a0 = a0/(2 pi G): canonical 106.9, alt 129.2 Msun/pc^2 (SECOND_LAW_HUNT: 107 / 129; Li+2020 Burkert median 177, context only)
+K0 EM1 law rms 0.0541 / 0.0537; X30 OUTER / MID 0.7762 / 1.8128: FAIL
+K1 Burkert closed form vs quadrature +0.00e+00; solved r0 returns M -1.19e-14: PASS
+K2 EM1 sigma8 own vs F3: A_c2b_refit 0.82742/0.82742, B_cfg886_bg 0.81715/0.81715: PASS
+K1 EPS: M 1e12 -> z_f 0.944, D(z_f) 0.6227 (in (0,1]: True), equation residual 0.00e+00: PASS
+K1 eta = 14.8286 (14.83: True); Burkert vs infall mass at r0 = r_f/c_f: +0.00e+00 (True)
+Sigma_coll table (bg A): M 1e11: 3.8 Msun/pc^2 (z_f 1.14); M 1e12: 6.8 Msun/pc^2 (z_f 0.94); M 1e13: 11.9 Msun/pc^2 (z_f 0.75); M 1e14: 20.5 Msun/pc^2 (z_f 0.56); M 1e15: 34.7 Msun/pc^2 (z_f 0.39)
+  log slope dlnSigma_coll/dlnM over 1e13-1e15: 0.232 (X40b requires 0.25-0.30)
+K2b X41 table reproduced (1e12 -> 6.84, X41 6.8): PASS
+  crossover eta Sigma_coll = Sigma_a0 [canonical]: M = 10^12.09 Msun
+  crossover eta Sigma_coll = Sigma_a0 [alt]: M = 10^12.43 Msun
+K0 rule forced to Sigma_a0 reproduces X38: SPARC 0.0795 (0.0795), OUTER 0.679 (0.697): FAIL
+K4 groups: 63 rows; no-halo integrator vs P4 (nu = 1) max |d| 8.9e-16 dex: PASS
+K0x43 Burkert shape reproduces X43 (SPARC, groups, all cluster preds, both footings): max |d| 0.0e+00: PASS
+K1 smooth shape: B_S vs quadrature +2.2e-16; solved r0 mass -7.4e-15; B_S(1) 0.69707; eta_S 10.8203: PASS
+  X38 groups (eta = 0) canonical: mean +0.0973 Z +2.48 (X40b: +0.097, +2.48)
+
+=== [canonical] Sigma_a0 106.9 Msun/pc^2
+  SPARC [A_c2b_refit]: rms 0.0713, median U 0.56, line PASS; rule active in 0/175 galaxies
+  SPARC [B_cfg886_bg]: rms 0.0720, median U 0.55, line PASS; rule active in 0/175 galaxies
+  groups (63, P4 estimator): mean +0.0793 Z +1.94 -> CONSISTENT; rule active in 40/63 (X38: mean +0.097, Z +2.48)
+  clusters: rule active in 649/652 cluster-cells; Sigma_coll/Sigma_a0 median 0.254, max 0.397
+     G-IN-all   meas +2.114+-1.822 pred +3.813 Z -0.93
+     G-MID-T1   meas +1.189+-0.407 pred +1.684 Z -1.22
+     G-MID-T2   meas +1.793+-0.346 pred +1.857 Z -0.19
+     G-MID-T3   meas +2.322+-0.277 pred +2.169 Z +0.55
+     G-MID-b    meas +2.457+-0.806 pred +1.094 Z +1.69
+     G-OUT-all  meas +0.776+-0.153 pred +0.875 Z -0.64
+     G-OUT-T1   meas +0.427+-0.342 pred +0.715 Z -0.84
+     G-OUT-T2   meas +0.674+-0.248 pred +0.829 Z -0.62
+     G-OUT-T3   meas +1.114+-0.238 pred +1.029 Z +0.36
+     G-OUT-b    meas +1.635+-0.696 pred +0.707 Z +1.33
+     G-OUT-Mall meas +0.929+-0.098 pred +0.878 Z +0.53
+     G-OUT-M1   meas +0.488+-0.296 pred +0.568 Z -0.27
+     G-OUT-M2   meas +0.762+-0.135 pred +0.828 Z -0.48
+     G-OUT-M3   meas +1.369+-0.103 pred +1.128 Z +2.33  FAIL
+     G-IN-Mall  meas +2.488+-1.147 pred +3.732 Z -1.08
+     vs X43 G-IN-all   Z -0.98 -> -0.93
+     vs X43 G-MID-T1   Z -1.41 -> -1.22
+     vs X43 G-MID-T2   Z -0.41 -> -0.19
+     vs X43 G-MID-T3   Z +0.30 -> +0.55
+     vs X43 G-MID-b    Z +1.70 -> +1.69
+     vs X43 G-OUT-all  Z -1.15 -> -0.64
+     vs X43 G-OUT-T1   Z -1.05 -> -0.84
+     vs X43 G-OUT-T2   Z -0.93 -> -0.62
+     vs X43 G-OUT-T3   Z +0.01 -> +0.36
+     vs X43 G-OUT-b    Z +1.29 -> +1.33
+     vs X43 G-OUT-Mall Z +0.49 -> +0.53
+     vs X43 G-OUT-M1   Z -0.31 -> -0.27
+     vs X43 G-OUT-M2   Z -0.54 -> -0.48
+     vs X43 G-OUT-M3   Z +2.41 -> +2.33
+     vs X43 G-IN-Mall  Z -1.18 -> -1.08
+  vs X43 groups Z +2.05 -> +1.94
+  VERDICT [canonical]: SC FAILS [c_f EXTERNAL]  (failing: G-OUT-M3 (UNDER))   [50 s, RSS 0.55 GB]
+
+=== [alt] Sigma_a0 129.2 Msun/pc^2
+  SPARC [A_c2b_refit]: rms 0.0717, median U 0.47, line FAIL; rule active in 0/175 galaxies
+  SPARC [B_cfg886_bg]: rms 0.0731, median U 0.47, line FAIL; rule active in 0/175 galaxies
+  groups (63, P4 estimator): mean +0.0759 Z +1.88 -> CONSISTENT; rule active in 12/63 (X38: mean +0.097, Z +2.48)
+  clusters: rule active in 640/652 cluster-cells; Sigma_coll/Sigma_a0 median 0.210, max 0.329
+     G-IN-all   meas +1.939+-1.671 pred +3.499 Z -0.93
+     G-MID-T1   meas +1.089+-0.372 pred +1.542 Z -1.22
+     G-MID-T2   meas +1.643+-0.317 pred +1.701 Z -0.19
+     G-MID-T3   meas +2.132+-0.254 pred +1.991 Z +0.55
+     G-MID-b    meas +2.266+-0.739 pred +1.016 Z +1.69
+     G-OUT-all  meas +0.710+-0.140 pred +0.801 Z -0.64
+     G-OUT-T1   meas +0.390+-0.312 pred +0.653 Z -0.84
+     G-OUT-T2   meas +0.617+-0.227 pred +0.758 Z -0.62
+     G-OUT-T3   meas +1.021+-0.219 pred +0.943 Z +0.36
+     G-OUT-b    meas +1.501+-0.638 pred +0.652 Z +1.33
+     G-OUT-Mall meas +0.851+-0.090 pred +0.803 Z +0.53
+     G-OUT-M1   meas +0.446+-0.270 pred +0.519 Z -0.27
+     G-OUT-M2   meas +0.698+-0.123 pred +0.757 Z -0.48
+     G-OUT-M3   meas +1.257+-0.095 pred +1.035 Z +2.34  FAIL
+     G-IN-Mall  meas +2.282+-1.052 pred +3.423 Z -1.08
+     vs X43 G-IN-all   Z -0.98 -> -0.93
+     vs X43 G-MID-T1   Z -1.41 -> -1.22
+     vs X43 G-MID-T2   Z -0.40 -> -0.19
+     vs X43 G-MID-T3   Z +0.30 -> +0.55
+     vs X43 G-MID-b    Z +1.70 -> +1.69
+     vs X43 G-OUT-all  Z -1.15 -> -0.64
+     vs X43 G-OUT-T1   Z -1.05 -> -0.84
+     vs X43 G-OUT-T2   Z -0.93 -> -0.62
+     vs X43 G-OUT-T3   Z +0.01 -> +0.36
+     vs X43 G-OUT-b    Z +1.29 -> +1.33
+     vs X43 G-OUT-Mall Z +0.49 -> +0.53
+     vs X43 G-OUT-M1   Z -0.31 -> -0.27
+     vs X43 G-OUT-M2   Z -0.54 -> -0.48
+     vs X43 G-OUT-M3   Z +2.41 -> +2.34
+     vs X43 G-IN-Mall  Z -1.18 -> -1.08
+  vs X43 groups Z +2.05 -> +1.88
+  VERDICT [alt]: SC FAILS [c_f EXTERNAL]  (failing: SPARC line, G-OUT-M3 (UNDER))   [54 s, RSS 0.55 GB]
+
+=== VERDICT (both footings): SC FAILS [c_f EXTERNAL]
+
+=== CHECKS
+  [FAIL] K0
+  [PASS] K1
+  [PASS] K2
+  [PASS] K2b
+  [FAIL] K0x38
+  [PASS] K4
+  [PASS] K0x43
+  [PASS] K1smooth
+  [PASS] K3
+
+checks 7/9; runtime 54 s; peak RSS 0.55 GB
+f* = 0.034, shape S
+  [canonical h0672] G-OUT-M3 Z +2.33, G-IN-Mall Z -1.08, max |Z| 2.33, fails ['G-OUT-M3']
+  [canonical h0686] G-OUT-M3 Z +2.00, G-IN-Mall Z -0.93, max |Z| 2.00, fails []
+  [alt h0672] G-OUT-M3 Z +2.34, G-IN-Mall Z -1.08, max |Z| 2.34, fails ['G-OUT-M3']
+  [alt h0686] G-OUT-M3 Z +2.00, G-IN-Mall Z -0.93, max |Z| 2.00, fails ['G-OUT-M3']
