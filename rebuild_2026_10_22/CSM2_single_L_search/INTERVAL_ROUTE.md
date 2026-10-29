@@ -81,3 +81,9 @@ Projection/anchor fixed-primitive enclosures completed (projection_anchor_001),
 inflation exact dual lower remains569.5338657853632. Original floating-source
 forward error and column/branch/continuum coverage still need closure; fixed
 primitive tables alone are not a real-L certificate.
+
+source_forward_001 bounds reviewed projection floating evaluation for covered
+mass arrays. Conditional dual lower remains569.5338648476735. Next address
+nonlinear mass construction, original catalogue interpolation/stacking and
+column/branch/continuum coverage. Implementation/IEEE assumptions remain
+explicit; no full real-L certificate is claimed.

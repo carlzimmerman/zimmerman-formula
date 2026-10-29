@@ -202,3 +202,19 @@ primitive tables are not an analytic-transcendental certificate. Next close
 source forward-error bounds using its actual gradient/interpolation/quadrature
 implementation, then the remaining domain obligations. See
 PROJECTION_ANCHOR_REVIEW.md. Native finals remain5of9; no aggregate NL1 output.
+
+
+Source forward-error checkpoint: source_forward_001 derives a positive
+operation-path error bound for the reviewed projection implementation, using
+4930operations and binary64-based roundoff/underflow allowances. Maximum
+native projection error1.535e-7; no padding or fit was selected from the score.
+All11 run controls (including240 stress cases),8 exact-rational review controls
+and4 preparation-premise checks pass. The exact dual lower after this error
+budget remains569.5338648476735 versus feasible-law upper+9=163.34346325076024.
+
+The bound assumes inspected version-matched NumPy/IEEE semantics and covered
+mass inputs, and does not authenticate the installed C binary independently.
+Nonlinear mass construction, original catalogue interpolation/stacking and
+column/branch/continuum coverage remain open. No real-L/global exclusion yet.
+See SOURCE_FORWARD_REVIEW.md and the licensed cached implementation sources.
+Native completion remains5of9; the four pending checkpoints are recent.

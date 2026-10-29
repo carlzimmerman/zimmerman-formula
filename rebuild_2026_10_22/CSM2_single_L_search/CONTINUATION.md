@@ -15,13 +15,13 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. projection_anchor_001 completes432120 fixed-primitive coefficients and
-   baseline boxes containing all60 source anchor values.10 run,16 review,
-   5 exact error-propagation controls pass; inflated conditional dual lower
-   569.5338657853632 remains above exact law upper+9. Next freeze a source
-   forward-error bound after inspecting the actual NumPy gradient/interp and
-   quadrature implementation. Keep column/branch/continuum coverage separate;
-   no real-L/global obstruction yet. Do not rerun completed projection work.
+1. source_forward_001 completes a derived implementation-model projection
+   error bound;11run+8review+4premise checks and240stress cases pass. Error
+   inflation leaves exact conditional lower569.5338648476735. Next freeze
+   original catalogue interpolation/stacking error bounds and nonlinear
+   column/branch/continuum mass-input coverage. Preserve explicit implementation
+   and input-domain assumptions; no real-L/global exclusion yet. Do not rerun
+   completed projection/error calculations as new routes.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
