@@ -263,3 +263,16 @@ originally frozen NL1 point L4.8646, adding no independent T or physical fit.
 Legacy NL1 grades cannot substitute for this test, and estimator robustness
 remains unresolved. Preserve the queued GROUP_MESH_008_ROUTE.md continuation.
 NL1 mutation validation is still monitored without altering active jobs.
+
+
+Native legacy validation phase is complete. NL1_FINAL_VALIDATION_2026-10-29
+captures the finished mutation: exactly K1 rejects A2reference*1.1 while the
+other3controls pass, nine seed measurements are unchanged, and9final audit
+checks pass. The owning committed report records exit1, also confirmed by the
+captured source exit condition (OS wait status not independently observed by
+this capture). Normal main4controls and byte-identical rerun remain verified.
+The frozen verdict is NATIVE LEVEL FAILS at Lnat4.8646,68%[3.831,5.805], not a
+robust derivation or actual corrected CSM1 linked-T verdict. Immutable earlier
+partial-validation snapshots retain their historical statuses. No active job
+was changed or restarted. Priority next stays NATIVE_CORRECTED_POINT_ROUTE.md;
+research/global feasibility remains open, and mesh continuation stays queued.
