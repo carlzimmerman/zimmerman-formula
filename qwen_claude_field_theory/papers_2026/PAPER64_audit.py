@@ -53,7 +53,33 @@ NUMN += 1; NUMF += (s not in TEX)
 if not MUT: check("EF1 max EFE shift (ceil to 1e-4)", s in TEX, f"'{s}'")
 sp2 = J("SP2_sealed_basin_lensing/sp2_predictions.json")["footings"]
 num("SP2 S_env canonical", sp2["canonical"]["S_env"], ".3f"); num("SP2 S_env alt", sp2["alt"]["S_env"], ".3f")
-num("LG 1.5e11 bound is stated", 1.5, ".1f")
+_b = "1.5"; _b = bump(_b) if MUT else _b
+_ok = ("\\gtrsim" + _b + "\\times10^{11}") in TEX; NUMN += 1; NUMF += (not _ok)
+if not MUT: check("LG MW+M31 baryon bound stated in context", _ok, _b)
+# ---- v1.1 additions
+csm = J("CSM1_consistent_core_switch/HANDOFF.json")
+def find(o, key):
+    if isinstance(o, dict):
+        for k, v in o.items():
+            if k == key: return v
+            r = find(v, key)
+            if r is not None: return r
+    if isinstance(o, list):
+        for v in o:
+            r = find(v, key)
+            if r is not None: return r
+    return None
+num("CSM1 lensing delta (L 3.75, canonical)", csm["scientific_rows"][2]["lens_delta_law"], ".3f"); num("CSM1 refit group Z", csm["scientific_rows"][0]["group_Z"], ".3f")
+nl = J("NL1_native_level_L/nl1_native_level_results.json")
+num("NL1 L_nat", nl["L_nat"], ".3f"); num("NL1 L68 lo", nl["L68"][0], ".3f"); num("NL1 L68 hi", nl["L68"][1], ".3f"); num("NL1 c64", nl["c64"], ".2f")
+inn = J("IN1_ic1613_inclination/in1_ic1613_inclination_results.json")["footings"]["canonical"]["q0.6"]["I_both"]
+num("IN1 i lo", inn[0], ".1f"); num("IN1 i hi", inn[1], ".1f")
+gx = J("GX1_infall_shape_measured_budget/gx1_stage_a_results.json")["runs"]
+num("GX1 infall 0.1R500", gx["PRIMARY"]["canonical"]["by_x"]["0.1"], "+.3f"); num("GX1 rsp mean", gx["V_splashback"]["canonical"]["mean"], "+.3f"); num("GX1 rsp rms", gx["V_splashback"]["canonical"]["rms"], ".3f")
+sm = J("SM1_cluster_sample_match/sm1_cluster_sample_match_results.json")
+import numpy as _np
+num("SM1 Mgas offset", abs(float(_np.median([r["dlogMgas500"] for r in sm["matched"]]))), ".3f")
+
 if not MUT:
     for lab, path in (("SP1", "SP1_sealed_lensing_step/sp1_predictions.json"), ("SP2", "SP2_sealed_basin_lensing/sp2_predictions.json")):
         h = hashlib.sha256(open(os.path.join(RB, path), "rb").read()).hexdigest()
