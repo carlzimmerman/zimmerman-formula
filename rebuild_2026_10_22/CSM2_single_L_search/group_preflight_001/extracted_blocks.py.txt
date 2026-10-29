@@ -1,0 +1,170 @@
+# ORIGINAL EM1 CONSTANTS/BACKGROUNDS
+G, MSUN, KPC_S, MPC = 6.67430e-11, 1.98847e30, 3.0857e19, 3.0857e22
+LM = np.round(np.arange(8.0, 14.0001, 0.02), 2)
+F3 = json.load(open(os.path.join(os.path.dirname(HERE), "F3_growth_audit", "f3_growth_audit_results.json")))["K2"]
+BGS = {}
+for tag in ("A_c2b_refit", "B_cfg886_bg"):
+    p = F3[tag]["params"]
+    c = Class(); c.set({"omega_b": p["omega_b"], "omega_cdm": p["omega_cdm"], "h": p["h"], "ln10^{10}A_s": p["lnAs"], "n_s": p["n_s"],
+                        "tau_reio": p["tau"], "N_ur": 3.044, "output": "mPk", "P_k_max_h/Mpc": 200.0, "z_max_pk": 10.0})
+    c.compute()
+    h = p["h"]; k = np.logspace(-4, math.log10(150.0), 3000)                    # h/Mpc
+    Pk = np.array([c.pk_lin(kk * h, 0.0) for kk in k]) * h ** 3
+    Om = (p["omega_b"] + p["omega_cdm"]) / h ** 2 + c.Omega_nu
+    rhom = Om * 2.775e11 * h ** 2                                                # Msun / Mpc^3
+    def sigma(M, k=k, Pk=Pk, rhom=rhom, h=h):
+        R = (3 * M / (4 * math.pi * rhom)) ** (1 / 3) * h                         # Mpc/h
+        x = np.outer(np.atleast_1d(R), k); W = 3 * (np.sin(x) - x * np.cos(x)) / x ** 3
+        return np.sqrt(np.trapz(k ** 3 * Pk * W ** 2 / (2 * math.pi ** 2), np.log(k), axis=1))
+    s8 = float(np.sqrt(np.trapz(k ** 3 * Pk * (3 * (np.sin(8 * k) - 8 * k * np.cos(8 * k)) / (8 * k) ** 3) ** 2 / (2 * math.pi ** 2), np.log(k))))
+    zg = np.linspace(0, 30, 3001); Dg = np.array([c.scale_independent_growth_factor(z) for z in zg]); Dg /= Dg[0]
+    H0 = 100 * h * 1e3 / MPC
+    def rhoc(z, c=c, H0=H0):
+        Hz = c.Hubble(z) * 299792458.0 / MPC if z > 0 else H0                       # CLASS Hubble in 1/Mpc
+        return 3 * Hz ** 2 / (8 * math.pi * G)
+    def cB(lM, z=0.0, sigma=sigma, zg=zg, Dg=Dg):
+        """Bullock+01: c = K (1+z_c)/(1+z), sigma(F M) D(z_c) = 1.686, K = 4, F = 0.01."""
+        s0 = sigma(0.01 * 10 ** np.atleast_1d(lM))
+        Dt = np.clip(1.686 / s0, Dg[-1], 1.0)
+        zc = np.interp(-Dt, -Dg, zg)
+        return 4.0 * (1 + zc) / (1 + z)
+    BGS[tag] = dict(c=c, h=h, s8=s8, s8_F3=F3[tag]["sigma8"], rhoc=rhoc, cB=cB, fb=p["omega_b"] / (p["omega_b"] + p["omega_cdm"]),
+                    cgrid=cB(LM))
+okc = all(abs(BGS[t]["s8"] - BGS[t]["s8_F3"]) <= 1e-3 for t in BGS)
+check("KC", okc, "; ".join(f"{t} own {BGS[t]['s8']:.5f} vs F3 {BGS[t]['s8_F3']:.5f}" for t in BGS))
+for t in BGS:
+    P(f"  {t}: Bullock c(M200) at 1e10/1e11/1e12/1e13 = " + ", ".join(f"{BGS[t]['cB'](lm)[0]:.2f}" for lm in (10, 11, 12, 13)) + f"; f_b {BGS[t]['fb']:.4f}")
+
+
+# ORIGINAL X43 EPS
+DC, OMEGA, DELTA = 1.686, 0.974, 18 * math.pi ** 2
+B1 = 3 * math.log(2) - math.pi / 2; CF = 4.0; GAM = 1.5 if MUTATE else 2.25
+def eta_of(cf, gam=None): return 4.0 / (3.0 * B1) * cf ** ((GAM if gam is None else gam) - 1.0)
+ETA = eta_of(CF)
+PC2 = (3.0857e16) ** 2
+EPS = {}
+for tag, bg in BGSE.items():
+    cc = bg["c"]; h = bg["h"]; Om = float(cc.Omega_m()); rhom0 = Om * 2.775e11 * h ** 2              # Msun / Mpc^3
+    zg = np.linspace(0, 30, 3001); Dg = np.array([cc.scale_independent_growth_factor(z) for z in zg]); Dg /= Dg[0]
+    lMg = np.linspace(7.0, 16.5, 191); sigf = bg["cB"].__defaults__[1]                                      # EM1 stores sigma(M) as cB's default argument
+    s2 = np.array([float(sigf(10 ** l)[0]) ** 2 for l in lMg])
+    EPS[tag] = dict(rhom0=rhom0, zg=zg, Dg=Dg, lMg=lMg, s2=s2, h=h, s8=bg["s8"], s8F3=bg["s8_F3"])
+def zform(tag, M):
+    e = EPS[tag]; s2 = lambda l: float(np.interp(l, e["lMg"], e["s2"]))
+    S = math.sqrt(max(s2(math.log10(M / 2)) - s2(math.log10(M)), 0.0)); Df = DC / (DC + OMEGA * S)
+    if Df >= 1.0: return 0.0, Df
+    return float(np.interp(-Df, -e["Dg"], e["zg"])), Df
+def sigma_coll(tag, M):
+    """Msun/pc^2: Delta rho_m(z_f) r_f for the half-mass object (frozen convention)."""
+    zf, Df = zform(tag, M); e = EPS[tag]; rho = DELTA * e["rhom0"] * (1 + zf) ** 3          # Msun/Mpc^3
+    rf = (3 * (M / 2) / (4 * math.pi * rho)) ** (1 / 3)                                      # Mpc
+    return rho * rf / 1e12, zf, Df                                                          # Msun/Mpc^2 -> Msun/pc^2
+# ORIGINAL CL3/P4/X43 DEFINITIONS
+def _new(): return dict(n=0, viol=0, law=0)
+
+def nu(y): return 0.5 + np.sqrt(0.25 + 1.0 / y)
+
+def _combine(law, rE, key, above):
+    if MODE["m"] == "off": return rE
+    if MODE["m"] == "law": return law
+    use_rE = (not above) if MUTATE else above                                       # MUTATE: the flag inverted
+    out = rE if use_rE else law
+    exp = rE if above else law                                                      # the branch the flag selects
+    s = STAT.setdefault(key, _new()); tol = 1e-12 * np.maximum(np.abs(exp), 1e-300)
+    s["n"] += 1; s["viol"] += int(np.any(np.abs(out - exp) > tol)); s["law"] += int(not above)
+    return out
+
+def LF_G(gb, gh, a0, key="g", above=False):
+    """pull: gb = baryonic Newtonian pull (any units, a0 in the same units), gh = halo pull."""
+    gb = np.asarray(gb, float); gh = np.broadcast_to(np.asarray(gh, float), np.broadcast(gb, np.asarray(gh)).shape)
+    gbb = np.broadcast_to(gb, gh.shape); pos = gbb > 0
+    law = np.where(pos, nu(np.where(pos, gbb, 1.0) / a0) * gbb, gbb)
+    return _combine(law, gbb + gh, key, bool(above))
+G540, MSUN540, KPC540 = 6.674e-11, 1.989e30, 3.0857e19
+HERN_RE = 1.8153
+XG = np.logspace(-5, 5, 3000); LXG = np.log(XG)
+RHO_H = 1.0 / (2 * np.pi * XG * (1 + XG) ** 3); M_H = XG ** 2 / (1 + XG) ** 2
+
+
+def sig2_hern(a0d, nu, aperture=None):
+    """LOS sigma^2 (units GM/a), Hernquist, isolated spherical law g = nu(gN/a0d) gN; aperture None = whole system, else R < aperture (a)."""
+    gN = M_H / XG ** 2; g = nu(gN / a0d) * gN
+    if aperture is None:
+        return float(np.trapz(4 * np.pi * XG ** 2 * RHO_H * XG * g * XG, LXG) / 3.0)
+    fI = RHO_H * g * XG
+    cum = np.concatenate([[0.0], np.cumsum(0.5 * (fI[1:] + fI[:-1]) * np.diff(LXG))])
+    Pr = np.maximum(cum[-1] - cum, 1e-300)                                  # rho sigma_r^2 (beta = 0)
+    Rg = np.logspace(-4, np.log10(aperture), 160)
+    tmax = np.arccosh(XG[-1] / Rg); u = np.linspace(0, 1, 700)
+    T = tmax[:, None] * u[None, :]; rr = Rg[:, None] * np.cosh(T); lr = np.log(rr)
+    Pi = np.exp(np.interp(lr, LXG, np.log(Pr))); rhoi = np.exp(np.interp(lr, LXG, np.log(RHO_H)))
+    w = rr * tmax[:, None]
+    Ssp = 2 * np.trapz(Pi * w, u, axis=1); Sg = 2 * np.trapz(rhoi * w, u, axis=1)
+    lR = np.log(Rg)
+    return float(np.trapz(Ssp * Rg ** 2, lR) / np.trapz(Sg * Rg ** 2, lR))
+
+
+def group_logsig(o, a0, nu, kfac=1.0, aperture=False, dlM=0.0, consts=(G540, MSUN540, KPC540)):
+    Gc, Mc, Kc = consts
+    GM = Gc * 10 ** (o["lM"] + dlM) * Mc; a = o["Re"] / kfac * Kc / HERN_RE
+    s2 = sig2_hern(a0 * a * a / GM, nu, (o["Re"] / kfac * Kc / a) if aperture else None) * GM / a
+    return 0.5 * math.log10(s2) - 3.0
+
+
+def class_stats(d, s):
+    d = np.asarray(d); n = len(d); m = float(d.mean()); se = float(d.std(ddof=1) / math.sqrt(n))
+    sys_ = float(np.mean(s) * 0.10); tot = math.hypot(se, sys_); Z = m / tot
+    v = "NOT DIAGNOSTIC" if tot > 0.045 else ("CONSISTENT" if abs(Z) < 2 else ("ABOVE LAW" if Z >= 2 else "BELOW LAW"))
+    return dict(N=n, mean=m, se=se, sys=sys_, tot=tot, Z=Z, verdict=v, median=float(np.median(d)))
+
+
+def group_run(groups, a0, nu, **kw):
+    d, s = [], []
+    for o in groups:
+        ls = group_logsig(o, a0, nu, **kw)
+        sp = (group_logsig(o, a0, nu, dlM=0.01, **kw) - group_logsig(o, a0, nu, dlM=-0.01, **kw)) / 0.02
+        d.append(o["ls"] - ls); s.append(sp)
+    return class_stats(d, s), d, s
+
+
+
+def B(x):
+    x = np.asarray(x, float)
+    return np.log1p(x * x) + 2 * np.log1p(x) - 2 * np.arctan(x)
+
+def solve_r0(Mtot, Rout, Sig):
+    """A1: compact root (r0 <= r0_pk); if Mtot > M_max(R) the halo is SATURATED at r0_pk (counted)."""
+    lm = lambda lr: math.log(math.pi * Sig * math.exp(2 * lr) * float(B(Rout / math.exp(lr))))
+    from scipy.optimize import minimize_scalar
+    pk = minimize_scalar(lambda lr: -lm(lr), bounds=(math.log(Rout * 1e-6), math.log(Rout * 1e3)), method="bounded", options={"xatol": 1e-10})
+    lpk = float(pk.x)
+    if lm(lpk) < math.log(Mtot):
+        SAT["n"] += 1; return math.exp(lpk)
+    return math.exp(brentq(lambda lr: lm(lr) - math.log(Mtot), math.log(Rout * 1e-7), lpk, xtol=1e-14))
+
+def sig_core(f, tag, M, rule=True):
+    s = SIG[f]
+    if not rule: return s, False
+    sc = (ETA_FUN(M) if (ETA_FUN is not None and ETA_USE["v"] == ETA) else ETA_USE["v"]) * sigma_coll(tag, M)[0] * MSUNE / PC2
+    return CORE_RECORD(f, tag, M, sc, s)
+
+def group_logsig(o, foot, dlM=0.0, halo=True, ret_a=False):
+    lMb = o["lM"] + dlM; Mb = 10 ** lMb * MS540; a = o["Re"] * KP540 / HERN_RE
+    bg = BGS["A_c2b_refit"]; rc = 3 * (100 * bg["h"] * 1e3 / MPCE) ** 2 / (8 * math.pi * G540)
+    M200 = 10 ** (bg["a"] + bg["b"] * (lMb - 10)) * MS540; R200 = (3 * M200 / (4 * math.pi * 200 * rc)) ** (1 / 3)
+    gN = M_H / XG ** 2; act = False
+    if halo:
+        sc, act = sig_core(foot, "A_c2b_refit", M200 / MSUNE)
+        r0 = solve_r0(M200, R200, sc); rr = XG * a
+        Mh = math.pi * sc * r0 ** 2 * B(np.minimum(rr, R200) / r0); gN = LF_G(gN, Mh / Mb / XG ** 2, A0[foot] / (G540 * Mb / a ** 2), "groups" if dlM == 0.0 else "groups_d", act)
+    s2 = float(np.trapz(4 * np.pi * XG ** 2 * RHO_H * XG * gN * XG, LXG) / 3.0) * G540 * Mb / a
+    v = 0.5 * math.log10(s2) - 3.0
+    return (v, act) if ret_a else v
+
+def grade_groups(foot):
+    d, sl, na = [], [], 0
+    for o in GROUPS:
+        v, a_ = group_logsig(o, foot, ret_a=True); na += a_
+        sp = (group_logsig(o, foot, 0.01) - group_logsig(o, foot, -0.01)) / 0.02
+        d.append(o["ls"] - v); sl.append(sp)
+    st = NSG["class_stats"](d, sl); st["PASS"] = st["verdict"] == "CONSISTENT"; st["n_active"] = int(na); return st

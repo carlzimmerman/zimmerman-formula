@@ -15,13 +15,13 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. comparator_001 completes all127 analytic comparator nodes;11run+9review
-   controls. Fixed feasible-candidate upper154.34346325076598 remains below
-   hybrid lower569.5338626095037 minus9 in the local registered analytic-grid
-   scope. Original floating solver/libm continuum and globalL remain open.
-   Next freeze GROUP_INTERVAL_PREFLIGHT_ROUTE.md: actual189group-cell native
-   quadrature/event/statistic reconciliation, then separately frozen interval
-   bounds. Do not assume monotonic Z or continuity across law/halo switches.
+1. group_preflight_001 reconciles189cells and actual statistic (14run+9review).
+   group_interval_001 has9run+9review controls and encloses Z>=2.00347780276
+   on[3.5,3.5001] in registered analytic fixed-EPS/quadrature scope. No globalL
+   or original floating certificate. Next freeze GROUP_DERIVATIVE_ROUTE.md:
+   compact-mass velocity derivatives, actual changing variance/slope statistic,
+   selected independent differentiation, then a separately frozen regional
+   derivative/cover test. Keep all switch discontinuities explicit.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -114,3 +114,18 @@ continuum and globalL remain unresolved; no unqualified exclusion is claimed.
 Next GROUP_INTERVAL_PREFLIGHT_ROUTE.md targets actual189group cells and the
 changing variance/slope denominator, rather than assuming monotonic group Z.
 Native inventory remains7of9, pending4and6.
+
+
+Group preflight and first interval complete. Actual189cells/63groups reproduce
+savedL3.5 Z2.003748352852046;14run+9review controls validate the positive native
+quadrature and changing statistic. X53 coarse-column substitution differs by
+up to0.258278% and is rejected. The separately frozen group_interval_001 has
+9run+9review controls,378directed root signs and18independent70digit endpoint
+velocities. Z is enclosed in[2.00347780276279,2.00398877201976] throughout
+[3.5,3.5001], so the original absZ<2 necessary cut fails in the registered
+analytic fixed-EPS/quadrature scope. No monotonicZ assumption or added fit.
+Rounded source endpoints miss the narrow analytic boxes by at most4.885e-15dex;
+this is recorded, not padded away. Original floating/globalL certification
+remains open. Next GROUP_DERIVATIVE_ROUTE.md targets the actual statistic's
+velocity/variance/slope derivatives and regional coverage with branch jumps.
+Native completion remains7of9; pending4and6.
