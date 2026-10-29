@@ -111,3 +111,28 @@ inflating c_f.**
 - **Stop rule:** none. Seeds that do not finish are reported, not replaced. Convergence beyond ng 64 is not tested.
 
 κ = ½ FITTED. Not theory closed.
+
+## AMENDMENT A4 (2026-10-29; committed alone, after the A3 grade, before any A4 run; owner request)
+
+A3 found c_f at 10¹² is RESOLUTION-DEPENDENT: it falls from 11.63 at ng 48 to 7.74 at ng 64. The reported regrade with
+only 10¹² at ng 64 passes SPARC and the groups. The clusters still fail three keys at ng 48 c_f (G-IN-all, G-MID-T1 and
+G-IN-Mall, all OVER). **A4 measures 10¹³ and 10¹⁴ at the same resolution.**
+
+- **Runs:** seeds 1–9 at M = 10¹³ and 10¹⁴, **ng = 64**: 18 runs. IC, dynamics, ε = 0.01 r_f, integrator and analysis are
+  unchanged from A3.
+  - Launched directly, all 18 concurrently: single thread each, nice 15, preemptible (SIGTERM → checkpoint → exit 75,
+    `--resume`).
+  - At 10¹³ and 10¹⁴, ε and r_f scale with M^{1/3}, so r_conv scales the same way as at 10¹².
+- **Grades, per mass, as A3:**
+  - window [3.3, 4.6];
+  - resolution against A2's ng 48 median (CONVERGED if within 20 %, else RESOLUTION-DEPENDENT with the sign);
+  - per-seed r₋₂/r_conv at both ng, and whether it TRACKS r_conv;
+  - bootstrap 68 % (10 000 resamples, seed 20261026);
+  - NFW-fit median.
+- **Regrade (graded): X43's rule with the all-ng-64 table**, A3's 10¹² median and A4's 10¹³ / 10¹⁴ medians, on both
+  footings, through `x48_regrade.py` unchanged.
+  - Verdict labels: **NATIVE-CC PASSES** or **NATIVE-CC FAILS: <lines>**, as in the A1 / A2 regrades.
+  - Labelled "at ng 64; convergence beyond ng 64 not tested".
+- **Stop rule:** none. Seeds that do not finish are reported, not replaced.
+
+κ = ½ FITTED. Not theory closed.
