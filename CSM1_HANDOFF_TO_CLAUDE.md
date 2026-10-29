@@ -327,3 +327,18 @@ Prior local results stand. Next GROUP_SUBDIVISION_ROUTE.md requires a separately
 frozen two-tile preflight of the fixed .01 uniform mesh, preserving all pending
 and inconclusive coverage holes. No new physical fit or original floating/global
 certificate. Native finals remain7of9;4and6 pending.
+
+
+Fixed group mesh checkpoint: tiles0[2.62,2.63] and1[2.63,2.64] directly fail
+absZ<2 throughout in the registered analytic native EPS/quadrature scope,
+with Z lower2.284559831278903 and2.280304225351651. Both16run+13review sets
+and2batch controls pass. Their Z derivatives are negative, but no sign is
+extrapolated. GROUP_MESH_INVENTORY.json marks3of89tiles reviewed (including
+prior tile88),86pending; whole-region/global/original floating scope remains
+open. Next GROUP_MESH_CONTINUATION.md targets fixed tiles2and3 under new
+frozen runnable criteria, with all holes retained.
+Native final seed4 is now validated/copied: primary L_proxy9.1112209981,
+c_f14.4959394876,995particles inside first crossing,1180steps. Inventory8of9
+passes72completion checks; measurement_006_eight passes5controls and exactly
+reproduces prior seven. Only6pending. No robust derivedL, ensemble or corrected
+linked-T pass; the documented estimator instability remains unresolved.

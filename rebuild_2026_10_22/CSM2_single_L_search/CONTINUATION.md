@@ -15,12 +15,11 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. Whole-region group_regional_001 is complete (16run+13review controls).
-   All189 cells stay halo on[2.62,3.5001], but whole-box Z and Z' bounds are
-   INCONCLUSIVE. Do not extrapolate the earlier local negative derivative.
-   Next GROUP_SUBDIVISION_ROUTE.md: separately freeze the first two tiles of
-   a fixed .01 uniform mesh, retaining all untested/inconclusive coverage holes
-   and the unchanged physical model, statistic, cuts and source scope.
+1. Fixed mesh tiles0and1 directly fail absZ<2; both16run+13review controls
+   pass. Only3of89tiles are covered, including prior local tile88;86pending.
+   Next GROUP_MESH_CONTINUATION.md: freeze runnable criteria for fixed tiles2
+   and3[2.64,2.65],[2.65,2.66], preserve the uniform mesh and every hole.
+   Original floating/globalL scope remains open. Native finals8of9;6pending.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -151,3 +150,18 @@ Prior local results stand. Next GROUP_SUBDIVISION_ROUTE.md requires a separately
 frozen two-tile preflight of the fixed .01 uniform mesh, preserving all pending
 and inconclusive coverage holes. No new physical fit or original floating/global
 certificate. Native finals remain7of9;4and6 pending.
+
+
+Fixed group mesh checkpoint: tiles0[2.62,2.63] and1[2.63,2.64] directly fail
+absZ<2 throughout in the registered analytic native EPS/quadrature scope,
+with Z lower2.284559831278903 and2.280304225351651. Both16run+13review sets
+and2batch controls pass. Their Z derivatives are negative, but no sign is
+extrapolated. GROUP_MESH_INVENTORY.json marks3of89tiles reviewed (including
+prior tile88),86pending; whole-region/global/original floating scope remains
+open. Next GROUP_MESH_CONTINUATION.md targets fixed tiles2and3 under new
+frozen runnable criteria, with all holes retained.
+Native final seed4 is now validated/copied: primary L_proxy9.1112209981,
+c_f14.4959394876,995particles inside first crossing,1180steps. Inventory8of9
+passes72completion checks; measurement_006_eight passes5controls and exactly
+reproduces prior seven. Only6pending. No robust derivedL, ensemble or corrected
+linked-T pass; the documented estimator instability remains unresolved.

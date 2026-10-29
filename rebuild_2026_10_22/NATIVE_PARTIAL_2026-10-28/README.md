@@ -89,3 +89,13 @@ reproduces all prior five results exactly. All seven primary flags are ok;
 this does not establish robust derived L or a corrected linked-T pass. The
 first-crossing/binning instability already demonstrated is retained. No
 completion-order ensemble summary or alternative estimator is substituted.
+
+
+Seed4 completion: final snapshot/done/log copies pass72 total completion
+checks across eight seeds. Unchanged primary c_f14.4959394876,
+L_proxy9.1112209981,995particles inside the selected first crossing;1180steps.
+measurement_006_eight passes5controls and reproduces all prior seven results
+exactly. Only seed6 remains pending. Eight ok flags or individual high/near4
+proxies establish no robust derivedL, ensemble result or corrected linked-T
+pass. The first-crossing/binning instability and original fixed-T grade scope
+remain explicit; no alternate estimator or fitted number was introduced.
