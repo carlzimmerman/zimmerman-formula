@@ -241,3 +241,17 @@ assumptions remain, so this is not a real-L exclusion. Next close original
 nonlinear mass/column/branch/continuum membership under NONLINEAR_DOMAIN_ROUTE.md.
 Native finals remain5of9; source/copy hashes agree and pending checkpoints are
 recent. No new seed set or aggregate NL1 grade is published.
+
+
+Original-input nonlinear checkpoint: nonlinear_001 rebuilds coefficients from
+EM1/F3/X43/A2 inputs rather than saved M,R,Sigma. All127 branches and124 compact
+root brackets pass, but new mass enclosures extend outside351824of446524 old
+endpoint coordinates (max0.000929490Msun). Independently,102of620 high-precision
+point masses miss an old box; all620 are in the new boxes. Analytic law vectors
+also differ from saved rounded vectors (max24.199471Msun). These are numerical
+input-domain differences, not observational failures or new physical fits.
+137run+8review controls pass. The earlier569.5338626102013 lower is conditional
+on old boxes and has NOT been extended to these original-input enclosures.
+Next propagate new signed-delta/law/envelope budgets under
+NONLINEAR_PROPAGATION_ROUTE.md. Original floating solver/libm/continuum behavior
+remains open; no real-L/global exclusion. Native completion remains5of9.

@@ -15,12 +15,13 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. catalogue_001 completes original catalogue map error bounds under reviewed
-   implementation and covered-input assumptions;29run+16review controls pass.
-   Exact conditional dual lower569.5338626102013. Next freeze and execute
-   NONLINEAR_DOMAIN_ROUTE.md for original mass/column/branch/continuum membership,
-   rather than freezing another intermediate coefficient layer. Preserve
-   conditional/inconclusive outcomes. No real-L/global exclusion yet.
+1. nonlinear_001 reconstructs original-input analytic coefficients and endpoint
+   masses. All127branches/124roots pass, but old endpoint boxes are too narrow;
+   102of620 independent high-precision point checks miss an old box. New boxes
+   contain all620.137run+8review controls pass. Next freeze and execute
+   NONLINEAR_PROPAGATION_ROUTE.md: new signed-delta/law/envelope corrections
+   through the unchanged dual. The old569.5338626102013 bound has not yet been
+   propagated to this scope. Floating solver/libm/continuum obligations remain.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -55,3 +56,17 @@ assumptions remain, so this is not a real-L exclusion. Next close original
 nonlinear mass/column/branch/continuum membership under NONLINEAR_DOMAIN_ROUTE.md.
 Native finals remain5of9; source/copy hashes agree and pending checkpoints are
 recent. No new seed set or aggregate NL1 grade is published.
+
+
+Original-input nonlinear checkpoint: nonlinear_001 rebuilds coefficients from
+EM1/F3/X43/A2 inputs rather than saved M,R,Sigma. All127 branches and124 compact
+root brackets pass, but new mass enclosures extend outside351824of446524 old
+endpoint coordinates (max0.000929490Msun). Independently,102of620 high-precision
+point masses miss an old box; all620 are in the new boxes. Analytic law vectors
+also differ from saved rounded vectors (max24.199471Msun). These are numerical
+input-domain differences, not observational failures or new physical fits.
+137run+8review controls pass. The earlier569.5338626102013 lower is conditional
+on old boxes and has NOT been extended to these original-input enclosures.
+Next propagate new signed-delta/law/envelope budgets under
+NONLINEAR_PROPAGATION_ROUTE.md. Original floating solver/libm/continuum behavior
+remains open; no real-L/global exclusion. Native completion remains5of9.
