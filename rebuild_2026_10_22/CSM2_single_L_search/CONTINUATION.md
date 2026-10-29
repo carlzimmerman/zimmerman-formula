@@ -15,13 +15,11 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. nonlinear_001 reconstructs original-input analytic coefficients and endpoint
-   masses. All127branches/124roots pass, but old endpoint boxes are too narrow;
-   102of620 independent high-precision point checks miss an old box. New boxes
-   contain all620.137run+8review controls pass. Next freeze and execute
-   NONLINEAR_PROPAGATION_ROUTE.md: new signed-delta/law/envelope corrections
-   through the unchanged dual. The old569.5338626102013 bound has not yet been
-   propagated to this scope. Floating solver/libm/continuum obligations remain.
+1. domain_propagation_001 plus exact exhaustive review carries original-input
+   halo/law perturbations through the unchanged dual;15run+9review controls.
+   Reviewed conditional lower569.5338626095037. Next freeze the scope/solver
+   bridge under SOURCE_SOLVER_BRIDGE_ROUTE.md; audit comparator interpretation
+   and original libm/compact-root solver behavior. No real-L/global claim.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -70,3 +68,21 @@ on old boxes and has NOT been extended to these original-input enclosures.
 Next propagate new signed-delta/law/envelope budgets under
 NONLINEAR_PROPAGATION_ROUTE.md. Original floating solver/libm/continuum behavior
 remains open; no real-L/global exclusion. Native completion remains5of9.
+
+
+Original-input domain propagation is complete: new halo delta and65 law
+profiles are covered by derived relative perturbation3.257642253e-15 and
+envelope scale1.0000000000000033. Exact review strengthens the main budget to
+cover exported outward arrays. All15run+9review controls pass, including
+exhaustive223262halo/234065law checks and325independent70digit law values.
+The reviewed conditional dual lower569.5338626095037 remains above
+163.34346325076024. This now includes the original-input analytic correction;
+original floating solver/libm and likelihood interpretation still need the
+SOURCE_SOLVER_BRIDGE_ROUTE.md audit. No real-L/global exclusion yet.
+
+Native seeds2and5 completed and are published with snapshot/done/final-log
+integrity. Inventory7of9; only4and6 pending. Unchanged primary L proxies:
+seed2=5.8050015757 (2885inside),seed5=6.2966399752 (1340inside).
+measurement_005_seven passes5controls and reproduces prior five exactly.
+Seven primary ok flags do not establish robust derived L, a convergence
+claim or a corrected linked-T pass; binning instability remains unresolved.

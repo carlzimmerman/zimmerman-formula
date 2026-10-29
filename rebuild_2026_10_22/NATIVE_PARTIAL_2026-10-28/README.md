@@ -14,8 +14,9 @@ requires at least seven valid measurements before grading; it has not produced
 a result at this checkpoint. Snapshot `meta.L` is the simulation box length,
 not the inferred concentration level `L_nat`.
 
-Current published inventory: **5 of 9**, seeds **1, 3, 7, 8 and 9**. Four runs
-remain pending. The five-seed primary extension is in measurement_004_five/;
+Current published inventory: **7 of 9**, seeds **1, 2, 3, 5, 7, 8 and 9**.
+Seeds4and6 remain pending. The seven-seed primary extension is in
+measurement_005_seven/;
 no aggregate NL1 grade is asserted.
 
 Publication checks verify seed/grid/mass identity, finite position/velocity
@@ -78,3 +79,13 @@ Seed9 completion: primary c_f15.0898076731, L_proxy9.4844885801, ok;
 601particles inside its first selected crossing. measurement_004_five/
 passes5controls and reproduces all prior four measurements exactly. The high
 primary value is not an ensemble estimate or evidence of estimator robustness.
+
+
+New completions2and5: final snapshot/done/log copies pass63 total completion
+checks across seven seeds. Seed2 primary c_f9.2357491476, L_proxy5.8050015757,
+2885particles inside the selected crossing; seed5 c_f10.0179451332,
+L_proxy6.2966399752,1340particles. measurement_005_seven passes5controls and
+reproduces all prior five results exactly. All seven primary flags are ok;
+this does not establish robust derived L or a corrected linked-T pass. The
+first-crossing/binning instability already demonstrated is retained. No
+completion-order ensemble summary or alternative estimator is substituted.
