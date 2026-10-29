@@ -173,3 +173,15 @@ this is recorded, not padded away. Original floating/globalL certification
 remains open. Next GROUP_DERIVATIVE_ROUTE.md targets the actual statistic's
 velocity/variance/slope derivatives and regional coverage with branch jumps.
 Native completion remains7of9; pending4and6.
+
+
+Local group derivative checkpoint: group_derivative_001 passes8run+8review
+controls. On[3.5,3.5001], all189 velocity derivatives and the full changing
+variance/systematic-slope statistic give Z' in[-.302567149462260,-.301119418216813].
+Nine70-digit normalized-root/Richardson controls and full statistic recomposition
+agree. This is local analytic fixed-EPS/quadrature scope only; the earlier
+Z lower2.00347780276279 still fails absZ<2. No regional/global monotonicity,
+original floating certificate or new physical fit. Next GROUP_REGIONAL_ROUTE.md
+requires a separately frozen whole-region[2.62,3.5001] branch/derivative attempt,
+retaining inconclusive bounds and all coverage holes. Native finals remain7of9,
+with4and6 unfinished.

@@ -15,13 +15,11 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. group_preflight_001 reconciles189cells and actual statistic (14run+9review).
-   group_interval_001 has9run+9review controls and encloses Z>=2.00347780276
-   on[3.5,3.5001] in registered analytic fixed-EPS/quadrature scope. No globalL
-   or original floating certificate. Next freeze GROUP_DERIVATIVE_ROUTE.md:
-   compact-mass velocity derivatives, actual changing variance/slope statistic,
-   selected independent differentiation, then a separately frozen regional
-   derivative/cover test. Keep all switch discontinuities explicit.
+1. Local group derivative preflight is complete (8run+8review controls),
+   Z' in[-.302567149462260,-.301119418216813] on[3.5,3.5001]. No broader sign.
+   Next GROUP_REGIONAL_ROUTE.md: separately freeze a whole-region branch/root/
+   derivative experiment on[2.62,3.5001]. Keep inconclusive bounds, switches,
+   actual changing statistic and original floating scope explicit.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -129,3 +127,15 @@ this is recorded, not padded away. Original floating/globalL certification
 remains open. Next GROUP_DERIVATIVE_ROUTE.md targets the actual statistic's
 velocity/variance/slope derivatives and regional coverage with branch jumps.
 Native completion remains7of9; pending4and6.
+
+
+Local group derivative checkpoint: group_derivative_001 passes8run+8review
+controls. On[3.5,3.5001], all189 velocity derivatives and the full changing
+variance/systematic-slope statistic give Z' in[-.302567149462260,-.301119418216813].
+Nine70-digit normalized-root/Richardson controls and full statistic recomposition
+agree. This is local analytic fixed-EPS/quadrature scope only; the earlier
+Z lower2.00347780276279 still fails absZ<2. No regional/global monotonicity,
+original floating certificate or new physical fit. Next GROUP_REGIONAL_ROUTE.md
+requires a separately frozen whole-region[2.62,3.5001] branch/derivative attempt,
+retaining inconclusive bounds and all coverage holes. Native finals remain7of9,
+with4and6 unfinished.
