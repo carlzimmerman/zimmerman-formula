@@ -105,3 +105,23 @@ agrees to1.26e-12. This is floating-point preflight evidence, not rigorous
 outward-rounded interval arithmetic. Reproduce with
 `python3 launch_native_matrix.py NEW_OUTPUT_DIRECTORY` using the scientific
 Python environment recorded in the manifest. Do not overwrite completed runs.
+
+
+Checkpoint 2026-10-29 01:52 UTC: seed1 is complete and published with final
+snapshot/done/log integrity checks. The inventory is now4of9 (1,3,7,8); five
+remain pending. Unchanged primary measurements give seed1 c_f=6.095116807,
+L_proxy=3.831000832, estimator flag ok. Prior3/7/8 values reproduce exactly;
+five extension controls pass. This is one primary measurement near4, not a
+robust ensemble-derived L: the previously demonstrated estimator instability
+remains unresolved. No full NL1 or corrected linked-T pass is claimed.
+
+The first local structural interval test is complete: canonical L in
+[3.75,3.751],127positive-weight nodes,62active halo nodes, no switch event or
+saturation. Conditional numerical score lower bound569.531694 exceeds the
+unchanged cut163.343463; direct endpoint/midpoint free scores569.624481,
+569.626543,569.628607 lie above it. Source stack reproduces to1.33e-15 relative
+max norm; all139 run controls and8 algebraic/pinned-column review controls
+pass. This is a useful local numerical enclosure, not a certified exclusion:
+binary64 root comparisons and prescribed padding lack outward-rounded error
+certification. It provides no global continuous-L obstruction or passing
+witness. See CSM2 interval_001/ and interval_review.json for limitations.

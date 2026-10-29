@@ -14,9 +14,9 @@ requires at least seven valid measurements before grading; it has not produced
 a result at this checkpoint. Snapshot `meta.L` is the simulation box length,
 not the inferred concentration level `L_nat`.
 
-Current published inventory: **3 of 9**, seeds **3, 7 and 8**. Six runs remain
-pending. Preliminary measurements of all three are below; no aggregate NL1
-grade is asserted.
+Current published inventory: **4 of 9**, seeds **1, 3, 7 and 8**. Five runs
+remain pending. The four-seed primary extension is in measurement_003_four/;
+no aggregate NL1 grade is asserted.
 
 Publication checks verify seed/grid/mass identity, finite position/velocity
 arrays, particle count/mass, agreement of final snapshot metadata with the
@@ -56,7 +56,7 @@ reliable confidence interval. Do not call this L derived or a full NL1 result.
 The separately reported NFW profile fits remain diagnostics, not replacements
 for the predeclared primary estimator. No observational harness was run here.
 
-`measurement_002_three/results.json` preserves the current three-seed
+`measurement_002_three/results.json` preserves the earlier three-seed
 diagnostics; its bounded manifest pins source, snapshots and criteria. All five
 implementation controls pass: original synthetic c=4 benchmark, rejection of
 synthetic c=8 as nominal c=4, A2 reference values, exact reproduction of the
@@ -67,3 +67,9 @@ document this unchanged-method extension. The criteria precede the new numbers.
 The initial two-seed evidence remains unchanged in `measurement_001/`, with
 `measure_completed.py`, `measurement_contract.json` and
 `MEASUREMENT_CRITERIA.md`; its four original controls still pass.
+
+Seed1 completed with1043 steps and57777 particles. Its unchanged primary
+c_f=6.0951168067 and L_proxy=3.8310008318 are in measurement_003_four/.
+Five extension controls pass, including exact prior3/7/8 reproduction. This
+single primary value near4 is not evidence of ensemble convergence or a
+robust derived L; the demonstrated binning instability remains unresolved.

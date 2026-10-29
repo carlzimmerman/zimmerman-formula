@@ -46,3 +46,10 @@ requires separate adversarial proof review and reproducible numeric evidence.
 Completed native-matrix preflight:32/32 controls, independent normal-equation
 review10/10. Proceed under INTERVAL_001_CRITERIA.md; no interval arithmetic
 has yet been executed. Preserve conditional versus certified bounds.
+
+interval_001 is complete (139 controls;8 review controls). Conditional lower
+score569.531694>163.343463 on[3.75,3.751]; this is NOT a certified interval
+exclusion. Next: establish justified outward-rounded root/mass and signed-dot
+error bounds for this local test before any covering claim. If certification
+is inconclusive, preserve that outcome and freeze a separate broader branch-
+event inventory experiment; do not turn floating padding into a theorem.

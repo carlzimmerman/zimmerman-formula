@@ -15,11 +15,11 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. Native-matrix/free-nuisance preflight is complete (native_matrix_001,32/32;
-   algebraic review10/10). Implement and run the separately frozen local
-   INTERVAL_001_CRITERIA.md experiment. Validate actual mass-root enclosures
-   and branch events; preserve conditional/inconclusive outcomes. No interval
-   exclusion is yet established.
+1. Local interval_001 is complete:139 controls and8 review controls; a
+   conditional numerical lower bound569.531694 exceeds163.343463 for
+   canonical[3.75,3.751]. This is NOT a certified interval exclusion. Next
+   freeze a root/mass/signed-dot rounding-certification experiment. Justify
+   enclosures before any covering claim; preserve inconclusive certification.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -35,3 +35,6 @@ diagnostic does not prescribe a new crossing rule or disprove the physical
 model. User authorizes bounded discriminating work and pushing verified
 checkpoints; publish completed evidence separately from active outputs and
 preserve unrelated staged/dirty work.
+
+Native inventory now4of9 (1,3,7,8). Seed1 primary L_proxy3.831000832;
+measurement_003_four passes5controls. Five pending; robustness unresolved.
