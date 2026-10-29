@@ -276,3 +276,15 @@ robust derivation or actual corrected CSM1 linked-T verdict. Immutable earlier
 partial-validation snapshots retain their historical statuses. No active job
 was changed or restarted. Priority next stays NATIVE_CORRECTED_POINT_ROUTE.md;
 research/global feasibility remains open, and mesh continuation stays queued.
+
+
+The actual corrected CSM1 native-point test is now complete at exactly frozen
+L=4.8646 (NATIVE_CORRECTED_POINT_REVIEW.md). Canonical SPARC/groups pass but
+G-MID-T3,G-OUT-all,G-IN-Mall overpredict and lens delta-law+435.9582717514
+fails the +9 cut, on both own/basin calibration. Alt lens delta-law+461.8035053955
+also fails; alt own SPARC fails.52independent review controls and all actual
+column/selector checks pass; historical X43 K0/K0x38 source failures are explicitly
+retained, separate from passing audited replay controls. No added fit or
+independent T. This rejects that point, not every L, and does not resolve native
+estimator robustness. Legacy NL1 validation is complete. Next resume separately
+frozen GROUP_MESH_008_ROUTE.md tiles14and15; research target remains OPEN.
