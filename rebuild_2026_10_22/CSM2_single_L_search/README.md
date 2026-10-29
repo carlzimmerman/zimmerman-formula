@@ -352,3 +352,13 @@ c_f14.4959394876,995particles inside first crossing,1180steps. Inventory8of9
 passes72completion checks; measurement_006_eight passes5controls and exactly
 reproduces prior seven. Only6pending. No robust derivedL, ensemble or corrected
 linked-T pass; the documented estimator instability remains unresolved.
+
+
+Fixed mesh continuation: group_mesh_002 completes tiles2[2.64,2.65] and3
+[2.65,2.66]. Both directly fail absZ<2 across their entire registered analytic
+fixed native EPS/quadrature domains;16run+13review controls per tile plus2batch
+controls pass. Exact enclosures and source hashes are in GROUP_MESH_002_REVIEW.md
+and results. Inventory now5of89tiles reviewed,84pending. Derivative signs are
+not extrapolated, original floating/globalL remains unresolved, and no new
+physical fit was added. Next GROUP_MESH_003_ROUTE.md requires runnable criteria
+for fixed tiles4[2.66,2.67] and5[2.67,2.68]. Native finals remain8of9;6pending.

@@ -15,11 +15,12 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. Fixed mesh tiles0and1 directly fail absZ<2; both16run+13review controls
-   pass. Only3of89tiles are covered, including prior local tile88;86pending.
-   Next GROUP_MESH_CONTINUATION.md: freeze runnable criteria for fixed tiles2
-   and3[2.64,2.65],[2.65,2.66], preserve the uniform mesh and every hole.
-   Original floating/globalL scope remains open. Native finals8of9;6pending.
+1. Mesh tiles0..3 and prior final tile88 directly fail absZ<2 in registered
+   analytic scope. Latest group_mesh_002 passes16run+13review per tile plus2
+   batch controls. Inventory5of89tiles reviewed,84pending. Next freeze runnable
+   criteria for GROUP_MESH_003_ROUTE.md: fixed tiles4and5[2.66,2.67],[2.67,2.68].
+   No extrapolated signs, missing-tile coverage or original floating/global claim.
+   Native finals8of9;6pending. Preserve the demonstrated estimator instability.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -165,3 +166,13 @@ c_f14.4959394876,995particles inside first crossing,1180steps. Inventory8of9
 passes72completion checks; measurement_006_eight passes5controls and exactly
 reproduces prior seven. Only6pending. No robust derivedL, ensemble or corrected
 linked-T pass; the documented estimator instability remains unresolved.
+
+
+Fixed mesh continuation: group_mesh_002 completes tiles2[2.64,2.65] and3
+[2.65,2.66]. Both directly fail absZ<2 across their entire registered analytic
+fixed native EPS/quadrature domains;16run+13review controls per tile plus2batch
+controls pass. Exact enclosures and source hashes are in GROUP_MESH_002_REVIEW.md
+and results. Inventory now5of89tiles reviewed,84pending. Derivative signs are
+not extrapolated, original floating/globalL remains unresolved, and no new
+physical fit was added. Next GROUP_MESH_003_ROUTE.md requires runnable criteria
+for fixed tiles4[2.66,2.67] and5[2.67,2.68]. Native finals remain8of9;6pending.
