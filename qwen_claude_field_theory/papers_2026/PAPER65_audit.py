@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """PAPER65 (DRAFT) audit: every quoted number must match the committed lane outputs (rebuild_2026_10_22/ X66, X68, X69,
-X70_smooth_core_shape, X71); naming rules (cold dark energy; CDM only inside LambdaCDM); no local path; draft banner present.
+X70_smooth_core_shape, X71, X73); naming rules (cold dark energy; CDM only inside LambdaCDM); no local path; draft banner present.
 Run: python3 PAPER65_audit.py (exit 0 only if all pass).
      python3 PAPER65_audit.py --mutate (perturbs every JSON-derived number; exit 0 only if every number check then FAILS)."""
 import json, math, os, re, sys
@@ -59,6 +59,16 @@ num("X66 R_G 1e9 canonical", pick(M=1e9, mode="G", footing="canonical", j=0.1, N
 s68 = J("X68_split_scale_halo/x68_split_scale_results.json")["footings"]["canonical"]["reported"]["S_log"]
 num("X68 heaviest-to-target median (groups)", s68["groups"]["Mlim_over_M_median"], ".1f", "{}--5.5$\\times$")
 num("X68 heaviest-to-target median (SPARC)", s68["sparc"]["Mlim_over_M_median"], ".1f", "2.5--{}$\\times$")
+
+# X73 all measured (canonical, primary slope)
+def x73(fs, sl="2.7774"): return J(f"X73_smooth_core_all_measured/x73_results_fs{fs}_S_nat_s{sl}.json")["footings"]["canonical"]
+num("X73 G-OUT-M3 Z f*=0.034", x73("0.034")["clusters"]["cells"]["h0672"]["G-OUT-M3"]["Z"], "+.2f", "G-OUT-M3 $Z={}$ ($f_\\star=0.034$)")
+num("X73 G-OUT-M3 Z f*=0.0615", x73("0.0615")["clusters"]["cells"]["h0672"]["G-OUT-M3"]["Z"], "+.2f", "and ${}$ ($f_\\star=0.0615$); groups")
+num("X73 groups Z", x73("0.034")["groups"]["Z"], "+.2f", "groups $Z={}$; SPARC")
+num("X73 SPARC rms", x73("0.034")["sparc"]["A_c2b_refit"]["rms"], ".4f", "SPARC rms {}.")
+num("X73 s16 worst G-OUT-M3", min(c["G-OUT-M3"]["Z"] for c in x73("0.0615", "2.6756")["clusters"]["cells"].values()), "+.2f", "reaches $Z={}$ (over")
+num("X73 s84 G-OUT-M3 h0672", x73("0.034", "3.0711")["clusters"]["cells"]["h0672"]["G-OUT-M3"]["Z"], "+.2f", "at the 84th, ${}$.")
+num("X73 G-OUT-all at f*=0.20", x73("0.2")["clusters"]["cells"]["h0672"]["G-OUT-all"]["Z"], "+.2f", "(G-OUT-all $Z={}$)")
 
 # naming / hygiene
 body = re.sub(r"\\Lambda\s*\{?\\rm\s*CDM\}?|\$\\Lambda\$CDM|\\LambdaCDM", "", TEX)
