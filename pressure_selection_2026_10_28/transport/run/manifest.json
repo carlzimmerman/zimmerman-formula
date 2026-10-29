@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "PN28_FOURIER_TRANSPORT_OBSTRUCTION",
+  "repository": {
+    "commit": "7954d48377463cafcae3e8dbb09454134aef384f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "pressure_selection_2026_10_28/transport/check_transport.py",
+    "pressure_selection_2026_10_28/transport/run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "On six MC27 spherical compact equilibria, independently integrate the required Q=0 heat flux, compare its sign and pole with nonnegative Fourier conductivity, and quantify the minimum cooling power under prescribed homologous compression.",
+    "coefficient_domain": "Double precision ODE/quadrature; exact analytic sign identities supplied in DERIVATION.md",
+    "conventions": "A=Delta_m=4*pi*G=1; theta=-1 for compression and +1 for expansion; isotropic kinetic second moment; no direct Q when deriving required flux; exterior EOS fixed to MC27 only for the conditional full-halo integral.",
+    "inputs": [
+      "MC27 R(x)=1/x below 1 and (3-x)^2/4 above 1 to 3; P(x)=-ln(x)+2/3 below 1 and (3-x)^3/12 above 1; xc in {0.03,0.1,0.2,0.249,0.5,0.8}"
+    ],
+    "bounds": {
+      "maximum_radius": 1000,
+      "central_potentials": [
+        0.03,
+        0.1,
+        0.2,
+        0.249,
+        0.5,
+        0.8
+      ],
+      "primary_rtol": 2e-10,
+      "primary_atol": 2e-12,
+      "max_step": 0.05,
+      "tight_rtol": 2e-12,
+      "tight_atol": 2e-14,
+      "tight_centers": [
+        0.03,
+        0.249,
+        0.8
+      ]
+    },
+    "non_claims": [
+      "No full kinetic PDE or transport evolution",
+      "No conductivity or radiation microphysics is derived",
+      "No universal obstruction to nonlocal or anisotropic transport",
+      "No selection of pressure amplitude or central density"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-28T17:38:25.782454+00:00",
+    "runtime_seconds": 1.097079,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 40,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "pressure_selection_2026_10_28/transport/check_transport.py",
+    "multistream_constitutive_2026_10_27/kinetic_closure/DERIVATION.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "pressure_selection_2026_10_28/transport/check_transport.py",
+      "sha256": "6b7a35289115ef63a733ae163a8338439b4a2b1d5b8d248b6e1f01c284f9d325",
+      "sha256_after": "6b7a35289115ef63a733ae163a8338439b4a2b1d5b8d248b6e1f01c284f9d325"
+    },
+    {
+      "path": "multistream_constitutive_2026_10_27/kinetic_closure/DERIVATION.md",
+      "sha256": "e725b42331f21faf392fb913e39ffa242586519246fd48c656528f5471339ab6",
+      "sha256_after": "e725b42331f21faf392fb913e39ffa242586519246fd48c656528f5471339ab6"
+    }
+  ],
+  "output_directory": "pressure_selection_2026_10_28/transport/run",
+  "declared_results": [
+    "pressure_selection_2026_10_28/transport/run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "pressure_selection_2026_10_28/transport/run/stdout.txt",
+      "sha256": "798a32380a6f05b10bb2182cccfc5f4d7764ccf9f8924059a6cc1e39579fa1de",
+      "kind": "log"
+    },
+    {
+      "path": "pressure_selection_2026_10_28/transport/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "pressure_selection_2026_10_28/transport/run/result.json",
+      "sha256": "5ce3ba52ace783aee22cbe82cbf50c461da816e383d2e2fe86069af11304453d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

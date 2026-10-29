@@ -1,0 +1,91 @@
+{
+  "claim_id": "VR28_RATIO",
+  "mathematics": {
+    "assertion_tested": "Exact symbolic identities for the conditional scaling/vacuum family; 20 independent minimized-energy pressure derivatives; 15 finite quarter-density core integrations, five asymptotic comparison equations, independent mass/enthalpy quadratures, and three tolerance refinements.",
+    "coefficient_domain": "Symbolic real algebra with stated positive parameters; float64 ODE, roots, quadrature and finite differences.",
+    "conventions": "B=U_ss(0)/9; delta>0 gives V_sector=B/delta; delta=0 is the subtracted PN28 limit. rho_star=1 for pressure checks, k=3/2 and B=1. Core radius unit uses D_c=B y_c^(-delta). No additive constant fixed by computation.",
+    "inputs": [
+      "DERIVATION.md exact model and positive domains",
+      "PN28 frozen EOS and reduced core comparison"
+    ],
+    "bounds": {
+      "delta": [
+        0,
+        0.001,
+        0.01,
+        0.1,
+        1
+      ],
+      "y_c": [
+        10,
+        1000,
+        1000000
+      ],
+      "K_over_B": [
+        0.01,
+        1,
+        1000,
+        1000000
+      ],
+      "central_start": 1e-06,
+      "maximum_core_radius": 50,
+      "core_rtol": 1e-10,
+      "core_atol": 1e-12,
+      "reference_rtol": 2e-12,
+      "reference_atol": 2e-13,
+      "refinement_delta": [
+        0,
+        0.1,
+        1
+      ],
+      "refinement_y_c": 1000000,
+      "refinement_rtol": 2e-12,
+      "refinement_atol": 2e-14,
+      "pressure_fd_relative_step": 0.0002,
+      "pressure_scaled_tolerance": 1e-06,
+      "density_tolerance": 1e-08,
+      "mass_quadrature_tolerance": 1e-07,
+      "enthalpy_quadrature_tolerance": 1e-08,
+      "quarter_event_tolerance": 1e-10,
+      "high_density_coefficient_tolerance": 1e-05,
+      "repeat_change_tolerance": 5e-08,
+      "prior_xi_absolute_tolerance": 2e-08
+    },
+    "non_claims": [
+      "No physical derivation of delta or offset",
+      "No independent-agent review",
+      "No global infinite-density gradient validity",
+      "No finite-gradient new-family halos or stability/formation",
+      "No selection from matching old target",
+      "No worldwide novelty"
+    ]
+  },
+  "execution_artifacts": [
+    "vacuum_ratio_2026_10_28/check_ratio.py",
+    "vacuum_ratio_2026_10_28/DERIVATION.md",
+    "pressure_selection_2026_10_28/dispersion_coupling/EOS.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "SymPy",
+      "version": "1.14.0"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

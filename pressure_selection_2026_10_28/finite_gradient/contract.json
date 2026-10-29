@@ -1,0 +1,86 @@
+{
+  "claim_id": "PN28_GRAD",
+  "mathematics": {
+    "assertion_tested": "Six finite-gradient spherical static boundary solutions, independent mass/scalar integrals, radial stress force balance, virial identity, and two tighter/longer-domain repetitions; finite departure from the auxiliary local core column.",
+    "coefficient_domain": "Real variational algebra; float64 adaptive ODE, collocation BVP and quadrature",
+    "conventions": "r in ell=sqrt(5B/(8piG rho_star^2)); n=psi_+^(3/2) exp(3s); Delta psi=-n; epsilon Delta s=exp(3s)(1-psi_+^(5/2))-1; epsilon=C_s/(3B ell^2); static exterior pi_s=0,u=0 continuation; rho alone sources Newtonian gravity; constant V gravity omitted.",
+    "inputs": [
+      "Conditional energy k rho^(5/3) exp(-2s)+V+B(exp(3s)-3s-1)+C_s|grad s|^2/2+rho Phi/2",
+      "Frozen PN28-DISP canonical waterbag normalization and local EOS",
+      "Frozen auxiliary PN28-HALO derivation"
+    ],
+    "bounds": {
+      "central_psi": [
+        0.8,
+        0.95,
+        0.99
+      ],
+      "epsilon": [
+        0.0001,
+        0.01
+      ],
+      "case_count": 6,
+      "refinement_cases": [
+        [
+          0.99,
+          0.0001
+        ],
+        [
+          0.99,
+          0.01
+        ]
+      ],
+      "maximum_auxiliary_radius": 30,
+      "auxiliary_rtol": 2e-10,
+      "bvp_tolerance": 1e-06,
+      "refinement_tolerance": 2e-07,
+      "maximum_bvp_nodes": 20000,
+      "outer_radius": "max(R_aux+12sqrt(epsilon/3),1.15 R_aux); refine by +max(6sqrt(epsilon/3),.25 R_aux)",
+      "boundary_condition": "s_prime+(sqrt(3/epsilon)+1/L)s=0 at L, center psi=psi_c and both first derivatives zero",
+      "mass_relative_tolerance": 2e-05,
+      "scalar_integral_relative_tolerance": 2e-05,
+      "force_balance_scaled_absolute_tolerance": 0.0005,
+      "virial_scaled_absolute_tolerance": 2e-05,
+      "domain_and_tolerance_relative_change": 5e-05,
+      "scalar_far_boundary_absolute_max": 1e-06,
+      "runtime_caps_seconds": {
+        "wall": 180,
+        "cpu": 150
+      },
+      "max_threads": 1
+    },
+    "non_claims": [
+      "No all-parameter existence/uniqueness theorem",
+      "No formation or full PDE/kinetic stability proof",
+      "No dynamically invariant isotropic fluid closure",
+      "No well-posed general parent continuation through vacuum",
+      "No microscopic B/V or canonical phase-space occupancy selection",
+      "No observation fit or high-concentration uniform auxiliary approximation"
+    ]
+  },
+  "execution_artifacts": [
+    "pressure_selection_2026_10_28/finite_gradient/check_gradient.py",
+    "pressure_selection_2026_10_28/dispersion_coupling/EOS.md",
+    "pressure_selection_2026_10_28/dispersion_coupling/REPORT.md",
+    "pressure_selection_2026_10_28/halo/DERIVATION.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

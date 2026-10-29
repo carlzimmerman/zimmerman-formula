@@ -1,0 +1,34 @@
+{
+  "claim_id": "PN28_RES",
+  "mathematics": {
+    "assertion_tested": "Ten exact symbolic reservoir, total-energy and sound-response identities; six finite compression/expansion ODE trajectories with independent pressure-work quadrature; three positive-reservoir amplitude freedoms and four MC27 core signs",
+    "coefficient_domain": "Real symbolic arithmetic plus IEEE float64 quadrature/ODE checks",
+    "conventions": "Positive Q heats random kinetic energy; p=A log(rho/rho_ref); K=3p/2; reservoir pressure=w e; constant-w local reservoir; fixed-C acoustic perturbation",
+    "inputs": ["DERIVATION.md hypotheses and explicit equations", "MC27 exact-log inner kinetic equilibrium"],
+    "bounds": {
+      "w": [-1, 0, 0.3333333333333333],
+      "theta": [-0.2, 0.2],
+      "t_interval": [0, 5],
+      "ODE_samples_each": 41,
+      "ODE_relative_tolerance": 2e-11,
+      "comparison_tolerance": 1e-8,
+      "amplitude_examples": [0.25, 1, 4],
+      "core_x_examples": [0.01, 0.05, 0.1, 0.25]
+    },
+    "non_claims": ["No universal fluid or kinetic stability theorem", "No microscopic source derivation", "No vacuum coefficient selection", "No cosmological data analysis"]
+  },
+  "execution_artifacts": [
+    "pressure_selection_2026_10_28/reservoir/check_reservoir.py",
+    "pressure_selection_2026_10_28/reservoir/DERIVATION.md",
+    "pressure_selection_2026_10_28/INPUTS.json",
+    "multistream_constitutive_2026_10_27/kinetic_closure/DERIVATION.md",
+    "reviews/one_shot_closure_2026_10_28/mechanism/REPORT.md"
+  ],
+  "software": [
+    {"name": "Python", "version": "3.9.6"},
+    {"name": "SymPy", "version": "1.14.0"},
+    {"name": "NumPy", "version": "1.26.2"},
+    {"name": "SciPy", "version": "1.11.4"}
+  ],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

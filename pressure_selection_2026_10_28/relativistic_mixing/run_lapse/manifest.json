@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "PN28_RELATIVISTIC_LAPSE_DISCRIMINATOR",
+  "repository": {
+    "commit": "7954d48377463cafcae3e8dbb09454134aef384f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "pressure_selection_2026_10_28/relativistic_mixing/check_lapse_extension.py",
+    "pressure_selection_2026_10_28/relativistic_mixing/run_lapse/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite-box global phase-level normalization, ultrarelativistic n~N^-3 and P~N^-4 scaling, Killing-energy moment, and hydrostatic identity at fixed fugacities.",
+    "coefficient_domain": "Positive real variables; exact SymPy algebra and IEEE double-precision quadrature",
+    "conventions": "Homogeneous dilute number-phase distribution; canonical d^3p measure; kinetic energy sqrt(m^2 c^4+p^2 c^2)-mc^2. Numerics use m=c=1. A_mix=C/beta is not presumed a spatial EOS coefficient.",
+    "inputs": [
+      "Two proper-volume cells with lapses 0.8,1.2 and volumes 1,2",
+      "Same finite phase-level gamma=C/eta",
+      "Static mass-shell Hamiltonian H=N*sqrt(m^2 c^4+p^2 c^2)"
+    ],
+    "bounds": {
+      "phase_z_intervals": [
+        [
+          1e-10,
+          1e-06
+        ],
+        [
+          0.01,
+          100
+        ]
+      ],
+      "lapse_nodes": [
+        0.8,
+        1.2
+      ],
+      "hydrostatic_log_step": 0.0001
+    },
+    "non_claims": [
+      "No universal EOS or self-gravitating equilibrium",
+      "No vacuum-to-kinetic transfer identity",
+      "No physical selection of phase span",
+      "No normalization selection from finite numerical sampling"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-28T17:44:23.105115+00:00",
+    "runtime_seconds": 1.05271,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "pressure_selection_2026_10_28/relativistic_mixing/check_lapse_extension.py",
+    "pressure_selection_2026_10_28/relativistic_mixing/check_relativistic_mixing.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "pressure_selection_2026_10_28/relativistic_mixing/check_lapse_extension.py",
+      "sha256": "87300e3c13f24179bb6ad7109936440e76f07913aea4d12b90c8103f33f8649e",
+      "sha256_after": "87300e3c13f24179bb6ad7109936440e76f07913aea4d12b90c8103f33f8649e"
+    },
+    {
+      "path": "pressure_selection_2026_10_28/relativistic_mixing/check_relativistic_mixing.py",
+      "sha256": "b14e23c1e8639581553fa2256ed8c7a744b00abe22941e971462a7243df969eb",
+      "sha256_after": "b14e23c1e8639581553fa2256ed8c7a744b00abe22941e971462a7243df969eb"
+    }
+  ],
+  "output_directory": "pressure_selection_2026_10_28/relativistic_mixing/run_lapse",
+  "declared_results": [
+    "pressure_selection_2026_10_28/relativistic_mixing/run_lapse/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "pressure_selection_2026_10_28/relativistic_mixing/run_lapse/stdout.txt",
+      "sha256": "78bcffab28f64c7625b4f1a808af418add7aaca45c02df18c5e51fab11620ebc",
+      "kind": "log"
+    },
+    {
+      "path": "pressure_selection_2026_10_28/relativistic_mixing/run_lapse/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "pressure_selection_2026_10_28/relativistic_mixing/run_lapse/result.json",
+      "sha256": "78bcffab28f64c7625b4f1a808af418add7aaca45c02df18c5e51fab11620ebc",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

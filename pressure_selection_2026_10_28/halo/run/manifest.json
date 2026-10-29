@@ -1,0 +1,158 @@
+{
+  "schema_version": 2,
+  "claim_id": "PN28_HALO",
+  "repository": {
+    "commit": "7954d48377463cafcae3e8dbb09454134aef384f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "pressure_selection_2026_10_28/halo/check_halo.py",
+    "pressure_selection_2026_10_28/halo/run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact EOS/enthalpy identities and seven regular reduced hydrostatic halos; independent density-mass quadrature; three tighter-tolerance repetitions; finite approach to independently integrated logotropic core coefficient",
+    "coefficient_domain": "Symbolic real arithmetic; float64 adaptive ODE and quadrature",
+    "conventions": "rho=rho_star psi^(3/2)/(1-psi^(5/2)); length=sqrt(5B/(8piG rho_star²)); no scalar gradients, baryons or vacuum gravity",
+    "inputs": [
+      "Frozen PN28-DISP total excess pressure EOS",
+      "Newtonian spherical hydrostatic equations"
+    ],
+    "bounds": {
+      "central_psi": [
+        0.2,
+        0.5,
+        0.8,
+        0.95,
+        0.99,
+        0.999,
+        0.9999
+      ],
+      "maximum_radius": 30,
+      "relative_tolerance": 2e-10,
+      "refinement_relative_tolerance": 2e-12,
+      "refinement_central_psi": [
+        0.2,
+        0.95,
+        0.9999
+      ],
+      "comparison_tolerance": 2e-06
+    },
+    "non_claims": [
+      "No full finite-gradient scalar solution",
+      "No microscopic state selection",
+      "No proof by finite sampling",
+      "No observational likelihood"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-28T17:48:33.437117+00:00",
+    "runtime_seconds": 0.726345,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "pressure_selection_2026_10_28/halo/check_halo.py",
+    "pressure_selection_2026_10_28/halo/DERIVATION.md",
+    "pressure_selection_2026_10_28/dispersion_coupling/EOS.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "pressure_selection_2026_10_28/halo/check_halo.py",
+      "sha256": "9860d709f815bf7c88b1ce230348ea9698028811698abecc3a7f933feabcd14b",
+      "sha256_after": "9860d709f815bf7c88b1ce230348ea9698028811698abecc3a7f933feabcd14b"
+    },
+    {
+      "path": "pressure_selection_2026_10_28/halo/DERIVATION.md",
+      "sha256": "aa79f50d4b78ce204a805f4962e53b87778ed7a17d8ec5e30a7be3bea529991a",
+      "sha256_after": "aa79f50d4b78ce204a805f4962e53b87778ed7a17d8ec5e30a7be3bea529991a"
+    },
+    {
+      "path": "pressure_selection_2026_10_28/dispersion_coupling/EOS.md",
+      "sha256": "05f919345cb73c8b96e3f07d5fdb421ae8ee1d24a01e177abc9551aab4092274",
+      "sha256_after": "05f919345cb73c8b96e3f07d5fdb421ae8ee1d24a01e177abc9551aab4092274"
+    }
+  ],
+  "output_directory": "pressure_selection_2026_10_28/halo/run",
+  "declared_results": [
+    "pressure_selection_2026_10_28/halo/run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "pressure_selection_2026_10_28/halo/run/stdout.txt",
+      "sha256": "fba1f55c6017f79e3a16df30a033b81258addb5f7182c0cd68e7daf5eb183f21",
+      "kind": "log"
+    },
+    {
+      "path": "pressure_selection_2026_10_28/halo/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "pressure_selection_2026_10_28/halo/run/result.json",
+      "sha256": "5c0eb316fd0862dbd3a76e422dce9874b68acfb3bf6c0f4940a19b62d5482410",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

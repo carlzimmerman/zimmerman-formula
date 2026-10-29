@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "claim_id": "FOUNDATIONS_KERNEL_DICTIONARY_2026_10_28",
+  "repository": {
+    "commit": "36b861cb7414dde9e39bdc2e9653facb620b1b01",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/one_shot_closure_2026_10_28/foundations/check_foundations.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "13 exact symbolic algebra/derivative identities for positive real variables and 2001-point agreement of P4 pure law functions",
+    "coefficient_domain": "R, exact SymPy expressions; float64 for actual P4 functions",
+    "conventions": "x=g/a0, y=gN/a0; spherical isolated limit, muK=0; geometric acceleration a0/c^2 in covariant kernel",
+    "inputs": [
+      "Positive real x,e,b,k,alpha,a,L",
+      "y grid from 1e-10 to 1e10 with 2001 logarithmic points"
+    ],
+    "bounds": {
+      "grid_min": 1e-10,
+      "grid_max": 10000000000.0,
+      "count": 2001
+    },
+    "non_claims": [
+      "No full PDE well-posedness",
+      "No empirical fit recomputation",
+      "No proof from sampled grid",
+      "No derivation of kappa=1/2"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-28T15:59:49.639057+00:00",
+    "runtime_seconds": 0.663907,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/one_shot_closure_2026_10_28/foundations/check_foundations.py",
+    "rebuild_2026_10_22/P4_v3_galaxy_tiles/p4_solver.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/one_shot_closure_2026_10_28/foundations/check_foundations.py",
+      "sha256": "11c1f8686626d6bcf0cd183720abd9a1fdbb0d09ad2d992b956c8a7cd47633d8",
+      "sha256_after": "11c1f8686626d6bcf0cd183720abd9a1fdbb0d09ad2d992b956c8a7cd47633d8"
+    },
+    {
+      "path": "rebuild_2026_10_22/P4_v3_galaxy_tiles/p4_solver.py",
+      "sha256": "c7eea83dffd651a5d065829e8fcd1561d054c713e1eecba8aa8144021386dadd",
+      "sha256_after": "c7eea83dffd651a5d065829e8fcd1561d054c713e1eecba8aa8144021386dadd"
+    }
+  ],
+  "output_directory": "reviews/one_shot_closure_2026_10_28/foundations/run_001",
+  "declared_results": [
+    "reviews/one_shot_closure_2026_10_28/foundations/run_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/one_shot_closure_2026_10_28/foundations/run_001/stdout.txt",
+      "sha256": "c098d494b091ae708182b5e0a1876b393d487f44aec4b652f783b9744b064374",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/one_shot_closure_2026_10_28/foundations/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/one_shot_closure_2026_10_28/foundations/run_001/result.json",
+      "sha256": "c098d494b091ae708182b5e0a1876b393d487f44aec4b652f783b9744b064374",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "claim_id": "PN28_DISPERSION_METRIC_ESCAPE",
+  "mathematics": {
+    "assertion_tested": "Exact local Legendre/EOS identities; seven independent scalar minimum and full-energy pressure checks; four homogeneous scalar/outlet random-energy transfers; 30 finite-frequency modes of the stated waterbag hydrodynamic closure; nine fixed-vacuum potential deformations.",
+    "coefficient_domain": "Exact SymPy identities and double-precision finite scalar/ODE checks",
+    "conventions": "Z=exp(2s), U-V=B[exp(3s)-3s-1], K canonical random kinetic density, E_rel=K/Z. Fixed-level isotropic canonical waterbag K=k rho^(5/3). Homogeneous trajectories B=F^2=1, gamma=0.6, s(0)=sdot(0)=0. Modes have B=0.1, rho_*=F^2=1, scalar speed squared 0.64, no gravity.",
+    "inputs": [
+      "Explicit model and state in EOS.md; dynamics derived in REPORT.md"
+    ],
+    "bounds": {
+      "K_over_B_equilibrium": [
+        0.001,
+        0.01,
+        0.1,
+        1,
+        10,
+        100,
+        10000
+      ],
+      "K_trajectory": [
+        0.03,
+        0.3,
+        3,
+        30
+      ],
+      "time": [
+        0,
+        120
+      ],
+      "max_step": 0.04,
+      "rtol": 2e-11,
+      "atol": 2e-13,
+      "mode_y": [
+        1.001,
+        1.1,
+        2,
+        10,
+        100
+      ],
+      "wave_numbers": [
+        0,
+        0.001,
+        0.03,
+        0.3,
+        3,
+        30
+      ],
+      "deformation_epsilon": [
+        0.01,
+        0.1,
+        1
+      ],
+      "deformation_K": [
+        10000,
+        100000000,
+        1000000000000
+      ]
+    },
+    "non_claims": [
+      "No A/V selection or acceleration-target fit",
+      "No full kinetic, gravitational, or cosmological dynamics",
+      "No microscopic derivation of the potential, waterbag, or three-dimensional outlet"
+    ]
+  },
+  "execution_artifacts": [
+    "pressure_selection_2026_10_28/dispersion_coupling/check_dispersion_checked.py",
+    "pressure_selection_2026_10_28/dispersion_coupling/EOS.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "SymPy",
+      "version": "1.14.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

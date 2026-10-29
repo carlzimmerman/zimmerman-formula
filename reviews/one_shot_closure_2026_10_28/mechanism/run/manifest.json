@@ -1,0 +1,163 @@
+{
+  "schema_version": 2,
+  "claim_id": "ONE_SHOT_KINETIC_CURRENT_COMPOSITION",
+  "repository": {
+    "commit": "36b861cb7414dde9e39bdc2e9653facb620b1b01",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/one_shot_closure_2026_10_28/mechanism/check_composition.py",
+    "reviews/one_shot_closure_2026_10_28/mechanism/run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact canonical-scaling and force-trace algebra, six compact-inner stiffness samples, and six negative-energy damped canonical-homology trajectories with a reciprocal outgoing-energy ledger.",
+    "coefficient_domain": "Exact rational/symbolic identities; double-precision ODE trajectories",
+    "conventions": "Mass-weighted nonrelativistic streams; Lorentz force E+v cross B. Reduced K0=1/2, W0=-1, I0=1, damping gamma=0.4. Newtonian self-gravity; no local Lambda force.",
+    "inputs": [
+      "Algebra and collective-coordinate model derived in REPORT.md"
+    ],
+    "bounds": {
+      "time": [
+        0,
+        160
+      ],
+      "relative_tolerance": 2e-11,
+      "absolute_tolerance": 2e-13,
+      "maximum_step": 0.1,
+      "initial_radius_speed": [
+        [
+          0.55,
+          0
+        ],
+        [
+          0.8,
+          0
+        ],
+        [
+          1.2,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          0.8,
+          0.4
+        ],
+        [
+          2,
+          -0.25
+        ]
+      ],
+      "inner_x": [
+        0.03,
+        0.1,
+        0.249,
+        0.25,
+        0.5,
+        1
+      ]
+    },
+    "non_claims": [
+      "No full Vlasov/mediator evolution or halo-formation theorem",
+      "No vacuum coefficient, initial-state, or central-density selection",
+      "No universal no-go for relative-velocity couplings or nonlocal heat flux"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-28T16:06:30.078089+00:00",
+    "runtime_seconds": 1.055464,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 15,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/one_shot_closure_2026_10_28/mechanism/check_composition.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/one_shot_closure_2026_10_28/mechanism/check_composition.py",
+      "sha256": "d313b6fe65abdf8af39ddfd57fae0765cf4cf7c0e504e29cc23740069b9a6fea",
+      "sha256_after": "d313b6fe65abdf8af39ddfd57fae0765cf4cf7c0e504e29cc23740069b9a6fea"
+    }
+  ],
+  "output_directory": "reviews/one_shot_closure_2026_10_28/mechanism/run",
+  "declared_results": [
+    "reviews/one_shot_closure_2026_10_28/mechanism/run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/one_shot_closure_2026_10_28/mechanism/run/stdout.txt",
+      "sha256": "53f2ccde2382b8f6caafc12c9615c1378c04438fe449d13668924638f7556655",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/one_shot_closure_2026_10_28/mechanism/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/one_shot_closure_2026_10_28/mechanism/run/result.json",
+      "sha256": "53f2ccde2382b8f6caafc12c9615c1378c04438fe449d13668924638f7556655",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "PN28_RELATIVISTIC_PHASE_MIXING",
+  "repository": {
+    "commit": "7954d48377463cafcae3e8dbb09454134aef384f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "pressure_selection_2026_10_28/relativistic_mixing/check_relativistic_mixing.py",
+    "pressure_selection_2026_10_28/relativistic_mixing/run_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact kinetic pressure-energy identity and finite numerical checks of relativistic partition, level moments, broad-level mixture normalization, NR/UR tails, and conditional near-match control.",
+    "coefficient_domain": "Positive real variables; exact SymPy algebra and IEEE double-precision quadrature",
+    "conventions": "Homogeneous dilute number-phase distribution; canonical d^3p measure; kinetic energy sqrt(m^2 c^4+p^2 c^2)-mc^2. Numerics use m=c=1. A_mix=C/beta is not presumed a spatial EOS coefficient.",
+    "inputs": [
+      "gamma(eta)=C/eta over finite positive interval",
+      "lnR=1/0.00353241107337 for conditional control only"
+    ],
+    "bounds": {
+      "level_z": [
+        1e-08,
+        0.0001,
+        0.1,
+        1,
+        10,
+        1000.0,
+        100000000.0
+      ],
+      "mixture_z_range": [
+        1e-120,
+        1000000000000.0
+      ],
+      "momentum_tail_samples": 6,
+      "illustrative_density_contrasts": [
+        1000.0,
+        1000000.0,
+        1000000000.0
+      ]
+    },
+    "non_claims": [
+      "No universal EOS or self-gravitating equilibrium",
+      "No vacuum-to-kinetic transfer identity",
+      "No physical selection of phase span",
+      "No normalization selection from finite numerical sampling"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-28T17:39:19.269398+00:00",
+    "runtime_seconds": 0.877554,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "pressure_selection_2026_10_28/relativistic_mixing/check_relativistic_mixing.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "pressure_selection_2026_10_28/relativistic_mixing/check_relativistic_mixing.py",
+      "sha256": "b14e23c1e8639581553fa2256ed8c7a744b00abe22941e971462a7243df969eb",
+      "sha256_after": "b14e23c1e8639581553fa2256ed8c7a744b00abe22941e971462a7243df969eb"
+    }
+  ],
+  "output_directory": "pressure_selection_2026_10_28/relativistic_mixing/run_001",
+  "declared_results": [
+    "pressure_selection_2026_10_28/relativistic_mixing/run_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "pressure_selection_2026_10_28/relativistic_mixing/run_001/stdout.txt",
+      "sha256": "7291f7b2ef29a22a5dea67cf158e457e670fff84e2dcc46fda3a962d1af09dc7",
+      "kind": "log"
+    },
+    {
+      "path": "pressure_selection_2026_10_28/relativistic_mixing/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "pressure_selection_2026_10_28/relativistic_mixing/run_001/result.json",
+      "sha256": "7291f7b2ef29a22a5dea67cf158e457e670fff84e2dcc46fda3a962d1af09dc7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

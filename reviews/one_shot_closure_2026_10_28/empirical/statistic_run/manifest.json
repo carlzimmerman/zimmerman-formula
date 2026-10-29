@@ -1,0 +1,123 @@
+{
+  "schema_version": 2,
+  "claim_id": "EMPIRICAL-HG2-UNIVERSAL-SIGN",
+  "repository": {
+    "commit": "36b861cb7414dde9e39bdc2e9653facb620b1b01",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/one_shot_closure_2026_10_28/empirical/check_statistic.py",
+    "reviews/one_shot_closure_2026_10_28/empirical/statistic_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Reproduce the stored HG2 D and test finite positive strictly increasing power laws F_q(gbar)=A*gbar^q for a counterexample to the claim that every one-variable rule predicts nonnegative D.",
+    "coefficient_domain": "IEEE double precision, Python float; tolerance 1e-12",
+    "conventions": "D is the min-arm-count weighted mean of BRIGHT-minus-FAINT within-bin median residuals; bins floor(log10(sigma)/0.1). Stored delta identifies reference log acceleration. Only 188 supported stored rows are used.",
+    "inputs": [
+      "HG2 stored group records and measured delta; q in {0.01,0.1,0.25,0.5,1.0}"
+    ],
+    "bounds": {
+      "q_count": 5,
+      "source_groups": 190,
+      "supported_groups": 188
+    },
+    "non_claims": [
+      "No physical model or observational best fit is proposed.",
+      "Does not rerun the source pipelines or validate the source catalogue construction.",
+      "Does not change the failures of the particular CL2, BS1, GT1, or DS1 models."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-28T15:56:32.361014+00:00",
+    "runtime_seconds": 0.043906,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/one_shot_closure_2026_10_28/empirical/check_statistic.py",
+    "rebuild_2026_10_22/HG2_kids_lowg_hot_gas/hg2_kids_lowg_hot_gas.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/one_shot_closure_2026_10_28/empirical/check_statistic.py",
+      "sha256": "9d258b38e7ea615f07180d1c148ba7c4e692e7a9de67c609e8d52b5293815067",
+      "sha256_after": "9d258b38e7ea615f07180d1c148ba7c4e692e7a9de67c609e8d52b5293815067"
+    },
+    {
+      "path": "rebuild_2026_10_22/HG2_kids_lowg_hot_gas/hg2_kids_lowg_hot_gas.json",
+      "sha256": "375803f81841e6ce2178cd8cce86465024d2b5aeb9aaa89126f7f4d642f62156",
+      "sha256_after": "375803f81841e6ce2178cd8cce86465024d2b5aeb9aaa89126f7f4d642f62156"
+    }
+  ],
+  "output_directory": "reviews/one_shot_closure_2026_10_28/empirical/statistic_run",
+  "declared_results": [
+    "reviews/one_shot_closure_2026_10_28/empirical/statistic_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/one_shot_closure_2026_10_28/empirical/statistic_run/stdout.txt",
+      "sha256": "15600e5c0f6f3c8815a0a1b2e0e913da534c7445fe8ba7a077ea30ff309393fe",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/one_shot_closure_2026_10_28/empirical/statistic_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/one_shot_closure_2026_10_28/empirical/statistic_run/result.json",
+      "sha256": "929ea9b775af48748ea33589f44cb16fd3671340ddaa6445da69db5438be5925",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

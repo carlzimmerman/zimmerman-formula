@@ -1,0 +1,218 @@
+Empirical audit, 28 October 2026
+
+Outcome: the inspected branches do not jointly satisfy the empirical criteria.
+The strongest surviving positive statement is that a selected canonical
+phenomenological model passes its calibration summaries. Its held-out failures
+remain. Two interpretive corrections are needed: the hot-group statistic does
+not exclude every one-variable acceleration law, and FD1's new prose misstates
+the size of its rotation correction.
+
+Scope and provenance
+
+Requested base: 44fd23a71c9888d9ea204c0ee832805829f9c090.
+First observed HEAD: ae0b838549839e35adfc494f93f82e1509d62d7a.
+Final source snapshot: 36b861cb7414dde9e39bdc2e9653facb620b1b01.
+FD1's criteria existed at the requested base; its amendment and completed
+results arrived during this review. They are therefore distinguished from
+base-revision evidence. The working tree was already substantially dirty.
+
+The audit inspected the READMEs, primary scripts and decisive saved results of
+CL1/CL2/CL3, LEE1, HO1/HO2/HO3, BS1, HG2, GT1, DS1/GA1/DY1, and FD1, together
+with HG1's statistic, X43's cluster grader, and the dwarf input tables. Exact
+SHA256 values for 85 selected inputs are in input_hashes.json. This is an
+inspection snapshot, not the full transitive dependency closure of every
+historical run. No source result, script, or criterion was overwritten. No
+long-running source experiment was duplicated, and no new catalogue was fetched.
+
+Historical run status: AUDITED, NOT EXECUTED. The source lanes document their
+own commands, reproduction checks and mutation controls; their reported reruns
+were not independently repeated here. New execution is confined to the
+independent HG2 statistic calculation below, with a valid v2 manifest.
+
+1. Joint consistency is absent, despite the calibration pass
+
+- CL1: direct inspection of cl1_combined_results.json gives 0/12 passing grid
+  points on either footing. The tension is groups versus cluster outskirts.
+- CL2: cl2_native_slope_results.json gives two canonical passes among nine
+  configurations: S9_L4 and S3_L4. SN has none; the alternate footing has none.
+  The S9 pass has groups Z=+1.993 and G-OUT-all about -1.93, so a small change
+  in criteria, inputs, or modelling can cross the pass boundary.
+- CL3: cl3_one_number_results.json gives canonical passes at L=3.75 and 3.9,
+  but not 4.0; alternate has none. Its stipulated T(L) relation reduces the
+  number of fitted scalar settings. It does not derive the shape, gas-budget
+  prescription or activation physics. In particular, T_of uses the constant
+  concentration level L, whereas the profile uses the mass-dependent S9 shape
+  (cl3_one_number.py:277 and :119). This is exactly the frozen prescription,
+  not an implementation error, but it must not be presented as the actual
+  mass-dependent S9 core-floor crossing derived from field dynamics.
+- HO1: X-COP has mean residual about -0.002 dex but rms 0.126, above the frozen
+  0.10 limit. The residual changes from +0.19 dex in the core to -0.12 near
+  0.7 R500: too little central acceleration and too much farther out. The
+  actual grade is at ho1_heldout.py:162-179; README.md:37 gives the result.
+- HO2: SLUGGS still has mean residual +0.152 dex and only 1/4 cleared under
+  the graded baryon treatment (README.md:23). A reported hot-gas extrapolation
+  changes this substantially, so it is a model/input-sensitive failure, not
+  an exclusion of all halo theories. The mass-only switch's Milky Way has no
+  passing cells among its 175 tested baryon cells (README.md:27-29).
+- HO3: canonical satellites have 21/76 objects beyond 2 formal errors, with
+  fitted additional scatter about 0.27 dex; field dwarfs about 0.22 dex
+  (README.md:20-33). This explicitly defeats inferring object-level agreement
+  from five class medians. The S1 binomial upper-tail and S3 maximum-tail
+  formulas in ho3_dwarf_individuals.py:91-98 have the correct orientation.
+- BS1: its canonical success label requires calibration A and MW B even when
+  field C fails; the code explicitly distinguishes this from BASIN SWITCH
+  HOLDS (bs1_basin_switch.py:599-610). Only wide MW priors give feasibility:
+  short disc R_d=1.93 kpc, with the published McMillan point still failing the
+  circular-speed line. The LG mass margin is 0.09 dex. Satellite flags remain
+  unchanged, so HO3's satellite scatter persists; field S3 still fails.
+  See README.md:26-38 and :57-59. This is a targeted repair, not joint closure.
+- GT1: its frozen primary fails G-OUT-M3, Z=+3.25/+2.72, and the hot-group
+  comparison, D_pred=+0.090 canonical. A predeclared R_g=0.7 R500 variant
+  clears the cluster summaries but still fails the group comparison.
+  Its X-COP construction residual is about +0.295 dex with rms 0.320 and is
+  explicitly ungraded, with most temperatures filled from a regression.
+  See GT1 README.md:24-28, :138-148 and :186-210. No GT1 configuration shown
+  here simultaneously passes the held-out suite.
+
+The alternate footing's SPARC and ultra-faint failures are recurring, not
+independent replications each time the same saved summaries are carried forward.
+Likewise the 15 cluster keys overlap and reuse data; counting all keys is not a
+global goodness-of-fit probability. The code's pass predicates are descriptive
+acceptance rules. They are not evidence ratios against a competing theory.
+
+2. A universal hot-group sign exclusion is false
+
+High-priority claim-scope correction:
+  DS1_hot_displacement/README.md:29-36;
+  GA1_group_gas_audit/README.md:59-60;
+  DY1_group_dynamics_audit/README.md:47-48.
+
+These passages move from several tested models predicting positive D to an
+assertion about every g_pred=F(g_bar). The latter assertion is false.
+
+HG1's statistic is correctly oriented: in 0.1-dex sigma bins it computes the
+BRIGHT-minus-FAINT difference of median residuals, then averages those with
+weights min(n_B,n_F) (hg1_hot_gas_selector.py:130-142). The residual is relative
+to a rising KiDS reference. Thus increasing absolute g_pred does not imply an
+increasing residual. No sign inversion was found in HG2, HO1, DS1, GA1 or DY1.
+
+Independent finite result (statistic_run/result.json):
+  Source groups: 190; supported: 188; shared bins: 11 BRIGHT and 105 FAINT.
+  Independently reproduced D_measured = -0.2939826776809691 exactly to 1e-12.
+  F(g)=A*g^0.1 gives D_pred = -0.21127935425469407.
+  F(g)=A*g^0.01 gives D_pred = -0.2866506371691509.
+Both F are positive and strictly increasing. A is selected so that F>=g_bar
+on every supported sample row (within 5e-15 floating error). Their D values
+are inside HG2's stored [-0.511,-0.076] interval. This is a finite mathematical
+counterexample to the universal sign assertion, not a proposed physical fit.
+
+An exact structural explanation also follows. Set
+  F(g)=g_ref(g)*(g/g_*)^(-epsilon).
+Then its residual is -epsilon*log10(g/g_*). Affine equivariance of each median
+gives D_pred=-epsilon*D(log10 g_bar). On these stored rows,
+  D(log10 g_bar)=0.8684996586756988.
+Therefore any epsilon>0 produces negative D. This identity does not guarantee
+monotonicity of that particular F, but the power-law examples above do.
+
+The correction does not change the failures of the tested CL2, GT1, or DS1
+rules. Suggested replacement: "Every explicitly tested rule in these lanes
+predicts the wrong sign on these inputs. No general exclusion of F(g_bar)
+has been established."
+
+3. HG2 is an open model-dependent tension, not a precision exclusion
+
+HG2's frozen classification remains UNDERPOWERED: power 0.448 against 0.50,
+11 shared-bin bright groups, measured D=-0.294 with interval [-0.511,-0.076]
+(HG2 README.md:17-35). Its planted +0.30 control shifts D by exactly +0.30;
+the failed expected class is a control-design mistake, not failure to respond.
+The power calculation simulates a planted positive effect with group scatter
+and a fixed reference. It does not license a stronger astrophysical exclusion
+just because the observed sign is negative.
+
+GA1's audited gas model gives D=-0.362 versus +0.306 predicted (canonical),
+and DY1's member-velocity calculation gives -0.373 versus +0.326. The sign
+survives these specified checks. It does not follow that gas masses or dynamics
+are universally "sound": GA1 replaces gas estimates by a finite scaling fit;
+DY1 checks catalogue dispersions on substantially the same memberships. The
+geometry of 3*sigma^2/r, membership systematics, covariance of shared sources,
+and the difference between lensing and dynamical estimators remain open.
+
+The HO1/GA1/DY1 frozen rule compares a point D_pred with a confidence interval
+for D_meas. Both quantities depend on the same estimated reference curve and
+on noisy group inputs, while prediction uncertainty is not propagated. For a
+formal model-rejection significance, jointly resample data and prediction and
+evaluate their paired discrepancy. Also, D(x-y) need not equal D(x)-D(y), since
+medians are nonlinear. No formal global significance is certified here.
+
+4. FD1: frozen result survives, while the physical test remains inadequate
+
+At 36b861cb7414dde9e39bdc2e9653facb620b1b01, FD1's completed primary gives
+IC 1613 E=-0.3054129528 dex, Z=-3.854726681 canonical, versus the earlier
+-0.5351615 dex and about -6.75. The improvement is about 43%, so it correctly
+misses the frozen at-least-half reduction criterion. Field S1/S2/S3 all fail.
+The alternate result is E=-0.3431475851, Z=-4.468870301. These are faithful
+statements about the declared inputs and old error model, not robust physical
+exclusion significances. FD1 is a law-branch test and does not regrade BS1's
+halo branch (FROZEN_CRITERIA.md, section 2).
+
+The script changes stellar mass, inner gas assignment and kinetic terms while
+retaining sdMC[Newton] as s (fd1_field_dwarf_audit.py:64-72). It neither
+propagates the new quantities' errors nor resolves whether global HI rotation
+belongs at the stellar half-light radius. The README now acknowledges the
+rotation approximation. Source-specific kinematic validation is being handled
+by the coordinator; no external literature was independently authenticated in
+this sub-audit.
+
+Concrete numeric prose correction: FD1 README.md:31 says the 13 km/s rotation
+term adds +0.06 dex. It actually adds
+  log10(1 + 13^2/(3*10.8^2)) = +0.1711316437 dex.
+The stored primary minus M+G and K-only minus baseline agree with this. The
+main table is consistent; this is an explanatory-text error. The mass-only
+step shifts E by +0.23256 dex. Adding gas after that shifts E by -0.173946 dex,
+whereas adding gas to the old mass alone shifts E by -0.08272 dex. Mixing the
+standalone and sequential changes is not a valid additive decomposition.
+
+The FD1 mutation stops on log10 of negative kinetic energy for a strong
+rotator after printing the deliberately failed K0; the README discloses this.
+It is not a completed mutation-output verification. K1 is set True in source
+(line 84) while match/miss details are printed; it is not an independent
+assertion of catalogue correctness.
+
+5. LEE1 is local parameter-volume accounting, not a trials correction
+
+The stored 24 seeded draws give 10 canonical passes and zero alternate passes.
+The source computes the 68% Clopper-Pearson interval correctly for those draws,
+about [0.303,0.539]. "BROAD" is its frozen p_hat>=0.40 class; the interval
+straddles that threshold, so the class is not strongly determined by 24 draws.
+The box and fixed S9/budget prescription were chosen after locating passes
+(LEE1 README.md:84-92). This is useful local robustness information, not a
+global look-elsewhere correction, Bayes factor, or null-model p-value. The
+historical 4/48 configuration count is a dependent adaptive search record;
+its printed binomial confidence interval has no sampling interpretation
+without a population and sampling design. The README correctly avoids using
+that census as the final model's pass rate.
+
+Reproduction details for the new finite check
+
+Code: check_statistic.py; contract: statistic_contract.json.
+Manifest: statistic_run/manifest.json; run.status=completed, exit=0.
+Validation: installed mathbox validate_manifest.py, with project --root,
+reported "valid evidence record (run status: completed)".
+The runner records Python 3.9.6, observed hardware, argv, timing, exact
+before/after input hashes and output hashes. Wall cap 30 s, CPU cap 10 s,
+one conventional numerical-library thread; no randomness. The script uses
+only Python's standard library and reconstructs the stored reference from
+log10(g_obs)-stored_delta. This checks the statistic independently of HG1's
+function implementation, but relies on the stored catalogue and residuals.
+No field equation, cosmological evolution, joint observational likelihood,
+or viable replacement gravity model is claimed.
+
+Remaining work required for any joint empirical claim
+
+Freeze one fully specified model including its environmental branch,
+individual halo distribution, gas profile and estimator treatment; propagate
+the associated measurement and model uncertainties; then evaluate all the
+previously failed held-out systems together. A pass on selected summary
+statistics, or a repair that leaves another failed branch unchanged, cannot
+finish that task. The present record supports a phenomenological target and
+several informative failures, not an empirically closed theory.

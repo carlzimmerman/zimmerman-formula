@@ -1,0 +1,30 @@
+{
+  "claim_id": "PN28_HALO",
+  "mathematics": {
+    "assertion_tested": "Exact EOS/enthalpy identities and seven regular reduced hydrostatic halos; independent density-mass quadrature; three tighter-tolerance repetitions; finite approach to independently integrated logotropic core coefficient",
+    "coefficient_domain": "Symbolic real arithmetic; float64 adaptive ODE and quadrature",
+    "conventions": "rho=rho_star psi^(3/2)/(1-psi^(5/2)); length=sqrt(5B/(8piG rho_star²)); no scalar gradients, baryons or vacuum gravity",
+    "inputs": ["Frozen PN28-DISP total excess pressure EOS", "Newtonian spherical hydrostatic equations"],
+    "bounds": {
+      "central_psi": [0.2,0.5,0.8,0.95,0.99,0.999,0.9999],
+      "maximum_radius": 30,
+      "relative_tolerance": 2e-10,
+      "refinement_relative_tolerance": 2e-12,
+      "refinement_central_psi": [0.2,0.95,0.9999],
+      "comparison_tolerance": 2e-6
+    },
+    "non_claims": ["No full finite-gradient scalar solution", "No microscopic state selection", "No proof by finite sampling", "No observational likelihood"]
+  },
+  "execution_artifacts": [
+    "pressure_selection_2026_10_28/halo/check_halo.py",
+    "pressure_selection_2026_10_28/halo/DERIVATION.md",
+    "pressure_selection_2026_10_28/dispersion_coupling/EOS.md"
+  ],
+  "software": [
+    {"name": "Python", "version": "3.9.6"},
+    {"name": "SymPy", "version": "1.14.0"},
+    {"name": "NumPy", "version": "1.26.2"},
+    {"name": "SciPy", "version": "1.11.4"}
+  ],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

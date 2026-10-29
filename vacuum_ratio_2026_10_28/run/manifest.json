@@ -1,0 +1,183 @@
+{
+  "schema_version": 2,
+  "claim_id": "VR28_RATIO",
+  "repository": {
+    "commit": "1180f5e8a4dae9b0513a6e40e453c58b19760a40",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "vacuum_ratio_2026_10_28/check_ratio.py",
+    "vacuum_ratio_2026_10_28/run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact symbolic identities for the conditional scaling/vacuum family; 20 independent minimized-energy pressure derivatives; 15 finite quarter-density core integrations, five asymptotic comparison equations, independent mass/enthalpy quadratures, and three tolerance refinements.",
+    "coefficient_domain": "Symbolic real algebra with stated positive parameters; float64 ODE, roots, quadrature and finite differences.",
+    "conventions": "B=U_ss(0)/9; delta>0 gives V_sector=B/delta; delta=0 is the subtracted PN28 limit. rho_star=1 for pressure checks, k=3/2 and B=1. Core radius unit uses D_c=B y_c^(-delta). No additive constant fixed by computation.",
+    "inputs": [
+      "DERIVATION.md exact model and positive domains",
+      "PN28 frozen EOS and reduced core comparison"
+    ],
+    "bounds": {
+      "delta": [
+        0,
+        0.001,
+        0.01,
+        0.1,
+        1
+      ],
+      "y_c": [
+        10,
+        1000,
+        1000000
+      ],
+      "K_over_B": [
+        0.01,
+        1,
+        1000,
+        1000000
+      ],
+      "central_start": 1e-06,
+      "maximum_core_radius": 50,
+      "core_rtol": 1e-10,
+      "core_atol": 1e-12,
+      "reference_rtol": 2e-12,
+      "reference_atol": 2e-13,
+      "refinement_delta": [
+        0,
+        0.1,
+        1
+      ],
+      "refinement_y_c": 1000000,
+      "refinement_rtol": 2e-12,
+      "refinement_atol": 2e-14,
+      "pressure_fd_relative_step": 0.0002,
+      "pressure_scaled_tolerance": 1e-06,
+      "density_tolerance": 1e-08,
+      "mass_quadrature_tolerance": 1e-07,
+      "enthalpy_quadrature_tolerance": 1e-08,
+      "quarter_event_tolerance": 1e-10,
+      "high_density_coefficient_tolerance": 1e-05,
+      "repeat_change_tolerance": 5e-08,
+      "prior_xi_absolute_tolerance": 2e-08
+    },
+    "non_claims": [
+      "No physical derivation of delta or offset",
+      "No independent-agent review",
+      "No global infinite-density gradient validity",
+      "No finite-gradient new-family halos or stability/formation",
+      "No selection from matching old target",
+      "No worldwide novelty"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-28T18:31:17.157515+00:00",
+    "runtime_seconds": 1.915548,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 60,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "vacuum_ratio_2026_10_28/check_ratio.py",
+    "vacuum_ratio_2026_10_28/DERIVATION.md",
+    "pressure_selection_2026_10_28/dispersion_coupling/EOS.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "vacuum_ratio_2026_10_28/check_ratio.py",
+      "sha256": "fe5ea56f0bd68289c2387fb95c585b6e4f5e1d20ecd3743f18c4a923f8d76737",
+      "sha256_after": "fe5ea56f0bd68289c2387fb95c585b6e4f5e1d20ecd3743f18c4a923f8d76737"
+    },
+    {
+      "path": "vacuum_ratio_2026_10_28/DERIVATION.md",
+      "sha256": "cd3e91ae687883d59345e3e402ef1a9ed2d0c61cdbeca16142ee5dda313af602",
+      "sha256_after": "cd3e91ae687883d59345e3e402ef1a9ed2d0c61cdbeca16142ee5dda313af602"
+    },
+    {
+      "path": "pressure_selection_2026_10_28/dispersion_coupling/EOS.md",
+      "sha256": "05f919345cb73c8b96e3f07d5fdb421ae8ee1d24a01e177abc9551aab4092274",
+      "sha256_after": "05f919345cb73c8b96e3f07d5fdb421ae8ee1d24a01e177abc9551aab4092274"
+    }
+  ],
+  "output_directory": "vacuum_ratio_2026_10_28/run",
+  "declared_results": [
+    "vacuum_ratio_2026_10_28/run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "vacuum_ratio_2026_10_28/run/stdout.txt",
+      "sha256": "f39525e46d7ede922e9045ab98405a78dac8f39ced4ec29d969b7ca9681a30ca",
+      "kind": "log"
+    },
+    {
+      "path": "vacuum_ratio_2026_10_28/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "vacuum_ratio_2026_10_28/run/result.json",
+      "sha256": "d7fe20d57702d6cc86d080fe49e8023c475464170f4d1db1cec2fd1ada7ec17c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

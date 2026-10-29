@@ -1,0 +1,43 @@
+--- REPORT.md design c4046a7d
++++ REPORT.md execution 6deea173
+@@ -52,6 +52,10 @@
+     rho=sum rho_b,    u=sum rho_b v_b/rho,
+     w_b=v_b-u,        K_v=(1/2)sum rho_b |w_b|^2.
+ 
++This local action is defined where total rho>0. Its mean velocity and canonical
++Hamiltonian need an exterior prescription at rho=0; a finite EOS edge alone
++does not supply a well-posed vacuum-crossing dynamical extension.
++
+ Let `s` be a real dimensionless scalar, `F^2>0`, and `c_s>0` its propagation
+ speed relative to the mean medium. Here `c_s` names the scalar propagation
+ speed, not the reduced matter sound speed. Take the action density
+@@ -138,6 +142,13 @@
+ Anisotropy is not erased by homogeneous rescaling; a separate isotropization
+ mechanism would still be needed for general initial data.
+ 
++`STATIC_WATERBAG.md` separately derives the stationary canonical Hamiltonian
++and the coupled finite-gradient kinetic/scalar/Poisson equations. At zero
++mean current and zero scalar momentum, `h=p^2/(2Z)+Phi`; a global one-level
++`f=f_* 1_(h<mu)` is stationary. Its extension into empty space is explicitly
++limited to a declared zero-mean static continuation, not a general completion
++of the action's vacuum dynamics.
++
+ ## 3. A positive outgoing realization actually exports random energy
+ 
+ Equations (4)-(5) by themselves exchange energy reversibly. To test a genuine
+@@ -217,6 +228,15 @@
+ 
+     P_total+V=B ln(rho/rho_*)+o(1),
+     dP_total/dln rho -> B.                                     (10)
++
++The corresponding energy expansion is also explicit:
++
++    W_min-V=(5B/(2rho_*))rho-B ln(rho/rho_*)-B+o(1).
++
++Its first term is pressure-invisible and linear in density. After retaining
++that term, the remaining asymptotic energy is precisely the logotropic fluid
++energy form. Dropping it before applying the positive-elimination theorem
++would incorrectly exclude this construction.
+ 
+ No exact finite logarithmic interval is asserted. The parallel halo route must
+ use (8), not substitute the old exact-log core formula at finite central
