@@ -1,0 +1,33 @@
+X70_soft_floor_x0  normal run  [c_f EXTERNAL; F chosen, not derived]
+kappa = 1/2 FITTED; footings never pooled; route E (Newtonian), core Sigma = max(Sigma_M F(X0), eta Sigma_coll), eta 14.83 not refit; not theory closed
+X68 machinery executed read-only [60 s, RSS 0.69 GB]
+K0 F == 1 reproduces X43's SPARC rms (both footings, both backgrounds): max |d| 0.0e+00: PASS
+K1 F(1e4) 1.000000, F(0.33) 0.7971; Freeman disc g vs Hankel quadrature (0.3-5 R_d): PASS
+
+=== [canonical] a0 9.360e-11, Sigma_M 106.9 Msun/pc^2
+  X0 (U = 0.50): median 0.294, p10 0.059, p90 10.800; F < 0.794 in 93/175 = 53.1% -> G1 FAIL (< 15%)
+  SPARC [A_c2b_refit]: hard 0.0782 -> soft 0.0954 (line FAIL, U median 1.18); k = 3.93 variant 0.0958
+  SPARC [B_cfg886_bg]: hard 0.0782 -> soft 0.0952 (line FAIL, U median 1.18); k = 3.93 variant 0.0957
+  G2 (rms <= 0.08 both backgrounds): FAIL
+  shifted galaxies (bg A): per-galaxy rms better in 28/93; median change +0.0563 dex; worst 5: UGC06667 +0.470, F583-1 +0.461, UGC07608 +0.410, UGC00731 +0.403, F565-V2 +0.379
+  VERDICT [canonical]: SOFT FLOOR FAILS  (failing: G1 53.1% shifted, G2 rms 0.0954/0.0952)
+  IC 1613 (M200 10^9.33; X0 lo 0.018 F 0.071, hi 0.051 F 0.200): hard|32 E -0.279; hard|36 E -0.369; soft lo X0|32 E +0.316; soft lo X0|36 E +0.226; soft hi X0|32 E +0.033; soft hi X0|36 E -0.057 -> NOT RESCUED (|E| <= 0.15)
+
+=== [alt] a0 1.131e-10, Sigma_M 129.2 Msun/pc^2
+  X0 (U = 0.50): median 0.243, p10 0.048, p90 8.937; F < 0.794 in 96/175 = 54.9% -> G1 FAIL (< 15%)
+  SPARC [A_c2b_refit]: hard 0.0729 -> soft 0.0895 (line FAIL, U median 1.09); k = 3.93 variant 0.0900
+  SPARC [B_cfg886_bg]: hard 0.0728 -> soft 0.0892 (line FAIL, U median 1.09); k = 3.93 variant 0.0897
+  G2 (rms <= 0.08 both backgrounds): FAIL
+  shifted galaxies (bg A): per-galaxy rms better in 37/96; median change +0.0505 dex; worst 5: UGC06667 +0.515, F583-1 +0.460, UGC07608 +0.438, UGC00731 +0.403, F565-V2 +0.396
+  VERDICT [alt]: SOFT FLOOR FAILS  (failing: G1 54.9% shifted, G2 rms 0.0895/0.0892)
+  IC 1613 (M200 10^9.33; X0 lo 0.015 F 0.059, hi 0.042 F 0.166): hard|32 E -0.304; hard|36 E -0.394; soft lo X0|32 E +0.315; soft lo X0|36 E +0.225; soft hi X0|32 E +0.031; soft hi X0|36 E -0.059 -> NOT RESCUED (|E| <= 0.15)
+
+=== VERDICT (both footings): SOFT FLOOR FAILS [c_f EXTERNAL; F chosen]
+=== IC 1613: NOT RESCUED
+
+=== CHECKS
+  [PASS] K0
+  [PASS] K1
+  [PASS] K2
+
+checks 3/3; runtime 61 s; peak RSS 0.69 GB

@@ -1,0 +1,119 @@
+X69_split_vs_cored_nfw  normal run  [c_f EXTERNAL; S = Sigma_core/Sigma_M ties r_s to a0]
+kappa = 1/2 FITTED; footings never pooled; route E (Newtonian), core Sigma = max(a0/(2 pi G), eta Sigma_coll), eta 14.83 not refit; not theory closed
+X68 machinery executed read-only [68 s, RSS 0.36 GB]; its checks: K0 EM1 law rms 0.0541 / 0.0537; X30 OUTER / MID 0.7160 / 1.6679: PASS; K1 Burkert closed form vs quadrature +0.00e+00; solved r0 returns M -1.19e-14: PASS; K2 EM1 sigma8 own vs F3: A_c2b_refit 0.82742/0.82742, B_cfg886_bg 0.81715/0.81715: PASS; K1 EPS: M 1e12 -> z_f 0.944, D(z_f) 0.6227 (in (0,1]: True), equation residual 0.00e+00: PASS; K1 eta = 14.8286 (14.83: True); Burkert vs infall mass at r0 = r_f/c_f: +0.00e+00 (True); K2b X41 table reproduced (1e12 -> 6.84, X41 6.8): PASS; K0 rule forced to Sigma_a0 reproduces X38: SPARC 0.0795 (0.0795), OUTER 0.697 (0.697): PASS; K4 groups: 63 rows; no-halo integrator vs P4 (nu = 1) max |d| 8.9e-16 dex: PASS; K0x43 split off reproduces X43 (SPARC rms, groups Z, all cluster preds, both footings): max |d| 0.00e+00: PASS; K1 split M(r) vs quadrature (S = 1, 3, 10) and S = 1 == Burkert: PASS; K2 solved r_c returns mass -2.1e-14 (S = 1.00): PASS
+K1 T1A S = 1: closed form vs quadrature +0.0e+00
+K1 T1A S = 3: closed form vs quadrature -2.2e-16
+K1 T1A S = 10: closed form vs quadrature +0.0e+00
+K1 T1B S = 1: closed form vs quadrature +0.0e+00
+K1 T1B S = 3: closed form vs quadrature -4.4e-16
+K1 T1B S = 10: closed form vs quadrature +6.7e-16
+K1 T1A at S = 1 vs X43 Burkert +0.0e+00; T1B S = 1+2e-4 vs S = 1 branch +3.3e-04 (continuity, O(1e-4) expected)
+K2 T1A_split_burkert: solved r_c 46.8 kpc returns the mass -7.8e-16
+K2 T1B_cored_nfw: solved r_c 78.4 kpc returns the mass -2.0e-14
+HO1 machinery executed read-only [171 s, RSS 0.40 GB]
+K0 HO1(a) reproduced with CL2's rule (mean -0.002, rms 0.126): [canonical] -0.0022/0.1258, [alt] -0.0022/0.1258: PASS
+
+=== [canonical] Sigma_M 106.9 Msun/pc^2
+  X43 Burkert baseline: X-COP by_x 0.1:+0.193, 0.2:+0.029, 0.3:-0.034, 0.5:-0.082, 0.7:-0.117, 1:-0.160; mean -0.029 rms 0.134
+  baseline cluster preds vs X43 committed: max |d| 0.0e+00
+  --- T1A_split_burkert
+    S: sparc median 1.0, p90 1.01, fallbacks 0/350; groups median 1.45, p90 1.84, fallbacks 0/189; clusters median 3.9, p90 4.91, fallbacks 0/652; xcop median 6.32, p90 7.23, fallbacks 0/42
+    SPARC (reported): [A_c2b_refit] rms 0.0776 line PASS, [B_cfg886_bg] rms 0.0777 line PASS; groups (reported) Z +1.83 CONSISTENT (X43 +2.05)
+    X-COP by_x 0.1:-0.242, 0.2:-0.297, 0.3:-0.292, 0.5:-0.265, 0.7:-0.259, 1:-0.268; 0.1-0.7 + 1.0 mean -0.270 rms 0.279
+     G-IN-all   meas +1.938+-1.670 pred +5.806 Z -2.32  (X43 -0.98)  FAIL
+     G-MID-T1   meas +1.096+-0.375 pred +1.917 Z -2.19  (X43 -1.41)  FAIL
+     G-MID-T2   meas +1.650+-0.318 pred +2.146 Z -1.56  (X43 -0.41)
+     G-MID-T3   meas +2.132+-0.254 pred +2.604 Z -1.86  (X43 +0.30)
+     G-MID-b    meas +2.242+-0.742 pred +1.577 Z +0.90  (X43 +1.70)
+     G-OUT-all  meas +0.716+-0.141 pred +0.958 Z -1.71  (X43 -1.15)
+     G-OUT-T1   meas +0.394+-0.315 pred +0.774 Z -1.20  (X43 -1.05)
+     G-OUT-T2   meas +0.622+-0.229 pred +0.903 Z -1.23  (X43 -0.93)
+     G-OUT-T3   meas +1.027+-0.219 pred +1.135 Z -0.50  (X43 +0.01)
+     G-OUT-b    meas +1.502+-0.641 pred +0.819 Z +1.07  (X43 +1.29)
+     G-OUT-Mall meas +0.929+-0.098 pred +0.961 Z -0.32  (X43 +0.49)
+     G-OUT-M1   meas +0.488+-0.296 pred +0.610 Z -0.41  (X43 -0.31)
+     G-OUT-M2   meas +0.762+-0.135 pred +0.899 Z -1.01  (X43 -0.54)
+     G-OUT-M3   meas +1.369+-0.103 pred +1.249 Z +1.17  (X43 +2.41)
+     G-IN-Mall  meas +2.279+-1.051 pred +5.872 Z -3.42  (X43 -1.18)  FAIL
+    GATES G1 FAIL | G2 FAIL | G3 FAIL -> T1A_split_burkert FAILS  (failing: G1 X-COP R500 -0.268 (halo heavy); G2 G-MID-T1 (OVER); G3 G-IN-all (OVER); G3 G-IN-Mall (OVER); G3 X-COP inner -0.270 vs X43 +0.111)
+  --- T1B_cored_nfw
+    S: sparc median 1.0, p90 1.01, fallbacks 0/350; groups median 1.45, p90 1.84, fallbacks 0/189; clusters median 3.9, p90 4.91, fallbacks 0/652; xcop median 6.32, p90 7.23, fallbacks 0/42
+    SPARC (reported): [A_c2b_refit] rms 0.1143 line FAIL, [B_cfg886_bg] rms 0.1139 line FAIL; groups (reported) Z +2.51 ABOVE LAW (X43 +2.05)
+    X-COP by_x 0.1:-0.077, 0.2:-0.090, 0.3:-0.079, 0.5:-0.070, 0.7:-0.088, 1:-0.126; 0.1-0.7 + 1.0 mean -0.088 rms 0.111
+     G-IN-all   meas +1.938+-1.670 pred +3.454 Z -0.91  (X43 -0.98)
+     G-MID-T1   meas +1.096+-0.375 pred +1.443 Z -0.92  (X43 -1.41)
+     G-MID-T2   meas +1.650+-0.318 pred +1.586 Z +0.20  (X43 -0.41)
+     G-MID-T3   meas +2.132+-0.254 pred +1.854 Z +1.10  (X43 +0.30)
+     G-MID-b    meas +2.242+-0.742 pred +0.935 Z +1.76  (X43 +1.70)
+     G-OUT-all  meas +0.716+-0.141 pred +0.823 Z -0.76  (X43 -1.15)
+     G-OUT-T1   meas +0.394+-0.315 pred +0.683 Z -0.91  (X43 -1.05)
+     G-OUT-T2   meas +0.622+-0.229 pred +0.783 Z -0.70  (X43 -0.93)
+     G-OUT-T3   meas +1.027+-0.219 pred +0.957 Z +0.32  (X43 +0.01)
+     G-OUT-b    meas +1.502+-0.641 pred +0.616 Z +1.38  (X43 +1.29)
+     G-OUT-Mall meas +0.929+-0.098 pred +0.826 Z +1.05  (X43 +0.49)
+     G-OUT-M1   meas +0.488+-0.296 pred +0.552 Z -0.22  (X43 -0.31)
+     G-OUT-M2   meas +0.762+-0.135 pred +0.785 Z -0.16  (X43 -0.54)
+     G-OUT-M3   meas +1.369+-0.103 pred +1.044 Z +3.14  (X43 +2.41)  FAIL
+     G-IN-Mall  meas +2.279+-1.051 pred +3.476 Z -1.14  (X43 -1.18)
+    GATES G1 FAIL | G2 FAIL | G3 PASS -> T1B_cored_nfw FAILS  (failing: G1 X-COP R500 -0.126 (halo heavy); G2 G-OUT-M3 (UNDER))
+  [187 s, RSS 0.40 GB]
+
+=== [alt] Sigma_M 129.2 Msun/pc^2
+  X43 Burkert baseline: X-COP by_x 0.1:+0.193, 0.2:+0.029, 0.3:-0.034, 0.5:-0.082, 0.7:-0.117, 1:-0.160; mean -0.029 rms 0.134
+  baseline cluster preds vs X43 committed: max |d| 0.0e+00
+  --- T1A_split_burkert
+    S: sparc median 1.0, p90 1.0, fallbacks 0/350; groups median 1.2, p90 1.52, fallbacks 0/189; clusters median 3.22, p90 4.06, fallbacks 0/652; xcop median 5.23, p90 5.98, fallbacks 0/42
+    SPARC (reported): [A_c2b_refit] rms 0.0729 line PASS, [B_cfg886_bg] rms 0.0728 line PASS; groups (reported) Z +1.91 CONSISTENT (X43 +2.05)
+    X-COP by_x 0.1:-0.212, 0.2:-0.278, 0.3:-0.278, 0.5:-0.255, 0.7:-0.252, 1:-0.262; 0.1-0.7 + 1.0 mean -0.256 rms 0.266
+     G-IN-all   meas +1.779+-1.533 pred +5.106 Z -2.17  (X43 -0.98)  FAIL
+     G-MID-T1   meas +1.004+-0.344 pred +1.729 Z -2.11  (X43 -1.41)  FAIL
+     G-MID-T2   meas +1.513+-0.292 pred +1.936 Z -1.45  (X43 -0.40)
+     G-MID-T3   meas +1.959+-0.234 pred +2.351 Z -1.68  (X43 +0.30)
+     G-MID-b    meas +2.070+-0.681 pred +1.429 Z +0.94  (X43 +1.70)
+     G-OUT-all  meas +0.656+-0.129 pred +0.871 Z -1.67  (X43 -1.15)
+     G-OUT-T1   meas +0.360+-0.288 pred +0.703 Z -1.19  (X43 -1.05)
+     G-OUT-T2   meas +0.570+-0.209 pred +0.822 Z -1.20  (X43 -0.93)
+     G-OUT-T3   meas +0.941+-0.201 pred +1.034 Z -0.46  (X43 +0.01)
+     G-OUT-b    meas +1.381+-0.587 pred +0.749 Z +1.08  (X43 +1.29)
+     G-OUT-Mall meas +0.851+-0.090 pred +0.874 Z -0.26  (X43 +0.49)
+     G-OUT-M1   meas +0.446+-0.270 pred +0.554 Z -0.40  (X43 -0.31)
+     G-OUT-M2   meas +0.698+-0.123 pred +0.818 Z -0.97  (X43 -0.54)
+     G-OUT-M3   meas +1.257+-0.095 pred +1.137 Z +1.26  (X43 +2.41)
+     G-IN-Mall  meas +2.092+-0.964 pred +5.151 Z -3.17  (X43 -1.18)  FAIL
+    GATES G1 FAIL | G2 FAIL | G3 FAIL -> T1A_split_burkert FAILS  (failing: G1 X-COP R500 -0.262 (halo heavy); G2 G-MID-T1 (OVER); G3 G-IN-all (OVER); G3 G-IN-Mall (OVER); G3 X-COP inner -0.245 vs X43 +0.111)
+  --- T1B_cored_nfw
+    S: sparc median 1.0, p90 1.0, fallbacks 0/350; groups median 1.2, p90 1.52, fallbacks 0/189; clusters median 3.22, p90 4.06, fallbacks 0/652; xcop median 5.23, p90 5.98, fallbacks 0/42
+    SPARC (reported): [A_c2b_refit] rms 0.1061 line FAIL, [B_cfg886_bg] rms 0.1053 line FAIL; groups (reported) Z +2.60 ABOVE LAW (X43 +2.05)
+    X-COP by_x 0.1:-0.045, 0.2:-0.069, 0.3:-0.063, 0.5:-0.059, 0.7:-0.080, 1:-0.119; 0.1-0.7 + 1.0 mean -0.072 rms 0.100
+     G-IN-all   meas +1.779+-1.533 pred +3.021 Z -0.81  (X43 -0.98)
+     G-MID-T1   meas +1.004+-0.344 pred +1.298 Z -0.86  (X43 -1.41)
+     G-MID-T2   meas +1.513+-0.292 pred +1.427 Z +0.29  (X43 -0.40)
+     G-MID-T3   meas +1.959+-0.234 pred +1.669 Z +1.24  (X43 +0.30)
+     G-MID-b    meas +2.070+-0.681 pred +0.845 Z +1.80  (X43 +1.70)
+     G-OUT-all  meas +0.656+-0.129 pred +0.747 Z -0.71  (X43 -1.15)
+     G-OUT-T1   meas +0.360+-0.288 pred +0.620 Z -0.90  (X43 -1.05)
+     G-OUT-T2   meas +0.570+-0.209 pred +0.711 Z -0.68  (X43 -0.93)
+     G-OUT-T3   meas +0.941+-0.201 pred +0.870 Z +0.35  (X43 +0.01)
+     G-OUT-b    meas +1.381+-0.587 pred +0.562 Z +1.39  (X43 +1.29)
+     G-OUT-Mall meas +0.851+-0.090 pred +0.750 Z +1.12  (X43 +0.49)
+     G-OUT-M1   meas +0.446+-0.270 pred +0.501 Z -0.20  (X43 -0.31)
+     G-OUT-M2   meas +0.698+-0.123 pred +0.713 Z -0.12  (X43 -0.54)
+     G-OUT-M3   meas +1.257+-0.095 pred +0.950 Z +3.23  (X43 +2.41)  FAIL
+     G-IN-Mall  meas +2.092+-0.964 pred +3.033 Z -0.98  (X43 -1.18)
+    GATES G1 FAIL | G2 FAIL | G3 PASS -> T1B_cored_nfw FAILS  (failing: G1 X-COP R500 -0.119 (halo heavy); G2 G-OUT-M3 (UNDER))
+  [203 s, RSS 0.40 GB]
+
+=== VERDICT T1A_split_burkert (both footings): FAILS [c_f EXTERNAL]
+
+=== VERDICT T1B_cored_nfw (both footings): FAILS [c_f EXTERNAL]
+
+=== CHECKS
+  [PASS] K0x68
+  [PASS] K1
+  [PASS] K2
+  [PASS] K0ho1
+  [PASS] K0base_canonical
+  [PASS] K0base_alt
+  [PASS] K3
+
+checks 7/7; runtime 203 s; peak RSS 0.40 GB
