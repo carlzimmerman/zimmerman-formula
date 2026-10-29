@@ -124,3 +124,33 @@ only gained a `--tag` output option.
 - A higher-resolution grid (ng ≥ 64) is the test of whether native c_f falls into the window. This lane does not run it.
 
 κ = ½ FITTED. Not theory closed.
+
+## AMENDMENT A3 result (2026-10-29): ng 64 at 10¹² — RESOLUTION-DEPENDENT (falls 33 %), still ABOVE WINDOW
+
+The criteria are in `FROZEN_CRITERIA.md` A3 (54c45e963e). All nine ng 64 seeds finished (N = 57 777). Files:
+`x48_analyze_ng64_A3.out`, `x48_grade_A3.*`, and `x48_regrade_A3mixed.*` (reported only).
+
+| 10¹² | c_f median (68 % bootstrap) | NFW-fit median |
+|---|---|---|
+| ng 48 (A2) | 11.63 (8.37–12.74) | 7.10 |
+| **ng 64 (A3)** | **7.74** (6.10–9.24) | 7.75 |
+
+**Frozen labels:**
+- **Window:** ABOVE WINDOW ([3.3, 4.6]).
+- **Resolution:** **RESOLUTION-DEPENDENT (falls)**, a median shift of −33 %. Convergence beyond ng 64 is not tested.
+
+**r₋₂ against r_conv:**
+- Five seeds (2, 4, 5, 6, 8) had r₋₂ ≤ 2 r_conv at ng 48. At ng 64, r_conv fell to ≈ 0.004 Mpc (the 3ε floor) and
+  **none of those seeds stays pinned** (r₋₂/r_conv 2.2–7.4). Verdict: DOES NOT TRACK r_conv.
+- Their median fell from 13.08 to 9.24. The other four seeds fell from 6.25 to 4.62.
+- So the pinned ng 48 values were resolution-inflated. At ng 64 the slope crossing is resolved.
+- Caveat: the constrained field is redrawn on each grid, so per-seed shifts mix resolution with realisation.
+
+**Reported regrade** (10¹² at ng 64; 10¹³ and 10¹⁴ still at ng 48):
+- **SPARC line passes again:** 0.0652 @ Υ 0.59 (canonical), 0.0659 @ 0.51 (alt).
+- **Groups pass:** Z +1.41.
+- **Clusters fail:** G-IN-all, G-MID-T1 and G-IN-Mall, all OVER.
+- The cluster masses are still at ng 48, where c_f is probably inflated too. **The test this points to is ng 64 at 10¹³
+  and 10¹⁴.**
+
+κ = ½ FITTED. Not theory closed.
