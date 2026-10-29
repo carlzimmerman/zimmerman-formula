@@ -56,7 +56,9 @@ RES.update(c64=c64, R=R, L_nat=Lnat, L68=L68)
 LS = open(os.path.join(REB_NL, "LEE1_look_elsewhere", "lee1.py")).read()
 LS = LS[:LS.index("# ================= Part B: 24 seeded draws =================")]
 os.environ.pop("LEE1_MUTATE", None)
-NS = {"__file__": os.path.join(HERE_NL, "lee1_ro.py"), "__name__": "lee1_ro"}
+import types
+_mod = types.ModuleType("lee1_ro"); sys.modules["lee1_ro"] = _mod                    # A1: the forked pool pickles _child by module name
+NS = _mod.__dict__; NS.update({"__file__": os.path.join(HERE_NL, "lee1_ro.py")})
 exec(compile(LS, os.path.join(REB_NL, "LEE1_look_elsewhere", "lee1.py"), "exec"), NS)
 chk["K0_lee1"] = all(ok_ for k, ok_ in NS["checks"] if k.startswith(("K0", "K2a", "K2b")))
 Q(f"  K0 LEE1 Step-0 checks: {'PASS' if chk['K0_lee1'] else 'FAIL'}")
