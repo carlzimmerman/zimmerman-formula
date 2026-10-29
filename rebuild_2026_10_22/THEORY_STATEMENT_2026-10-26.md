@@ -1,30 +1,50 @@
 # The theory as it stands (2026-10-26)
 
-One page, from committed lanes only. κ = ½ FITTED. Footings canonical a₀ = 9.3603e-11 / alt 1.1312e-10 m s⁻², never pooled.
+Original summary from committed lanes; the 2026-10-27 corrections link current workspace audit artifacts. κ = ½ FITTED. Footings canonical a₀ = 9.3603e-11 / alt 1.1312e-10 m s⁻², never pooled.
 Not "theory closed". Nothing here says the data favour the framework. The adoption decision (route E, below) is the owner's.
+
+**Audit correction, 2026-10-27.** The selector exclusions below apply to the
+specified tested rules and halo prescriptions. They do not exhaust all possible
+object-property or history-dependent mechanisms. X53 establishes a relative
+lensing preference, not an absolute pass. The executed
+[X57 R4b and X64 C6R corrections](../closure_program_2026_10_27/gate_fixes/README.md)
+leave M6 **NOT DECIDABLE on both footings**. X64's primary labels still do not
+separate among the eight tested keys, but its reported strict-need labels now
+separate under corrected C6R; this profile-dependent split is not a mechanism.
+P1D1 has returned **NOT DIAGNOSTIC**; it supplies no calibrated physical M6
+population limit. The [population calculation](../closure_program_2026_10_27/population/RESULTS.md)
+gives conditional capacities, not a measured required isolated fraction or a
+physical forest limit. A later [M6-specific audit](../closure_program_2026_10_27/m6_decision/RESULTS.md)
+finds a full-cold assignment in all 175 SPARC galaxies satisfying the
+simultaneous numerical RMS and median mass-to-light constraints; the earlier
+common-f cap depends on profiling U before applying the median cut. New
+individual candidates and survey environment masks do not yet measure a
+cosmic population requiring M6. The current closure record is
+[`closure_program_2026_10_27/RESULTS.md`](../closure_program_2026_10_27/RESULTS.md).
 
 ## 0. UPDATE 2026-10-27: route E as stated below no longer passes; read this first
 
 | lane | result |
 |---|---|
 | X53 outer lensing (KiDS isolated lenses) | **the law beats route-E halos**: Δχ² +430 / +456. Halos are too light by 0.35–0.5 dex and end at R200. |
-| X55 one halo mass for SPARC + lensing | **CONTRADICTION**, 4.3 / 4.6σ: route E's SPARC halos are 0.4 dex lighter than its lensing halos. |
+| X55 one halo mass for SPARC + lensing | **Specified relation fails**: SPARC and lensing prefer different masses under its fixed profiles and deterministic no-scatter relation. The contour-contact score is 4.55 / 4.26; it is not a universal halo-exclusion significance. |
 | X48 A2, nine seeds at ng 48 | c_f = 11.6 / 8.2 / 7.3, **ABOVE WINDOW**. The X43 rule with it **fails the SPARC line** (Υ 0.31). Caveat: r₋₂ is resolution-limited in 8/27 runs. |
+| X48 A3, ng 64 at 10¹² (10-29) | c_f 11.6 → **7.7** (−33 %, **RESOLUTION-DEPENDENT**), still above the window. The pinned ng 48 seeds were inflated. With it, SPARC passes again (Υ 0.59 / 0.51); clusters (still at ng 48) fail 3 keys. |
 | X54 cold DE ↔ DE exchange | **excluded** beyond ξ ∈ [−0.0035, +0.0011]: no conversion. |
 | X56 g = max(law, route E) | **FAILS**: the law's tail over-predicts cluster outskirts. |
-| X58 mass-keyed switch (law below the crossover, halos above) | **FAILS**: the dwarfs need halos, the lensing galaxies need the law, the clusters need halos. The need is non-monotone in mass. |
+| X58 one-crossover mass switch (law below the crossover, halos above) | **FAILS** for the adopted class requirements: retain/exclude/retain is non-monotone in mass. More general mass-dependent functions are not covered. |
 | X52 dwarf tides at current distance | no effect |
 
 **Where this leaves the theory.**
-- **The law** (a₀ = c²√(Λ/32π), κ = ½ fitted) is the best single description. It passes SPARC (0.054) and galaxy
-  lensing to 3 Mpc. It fails clusters, which need extra mass, and the ultra-faint dwarfs, which are under-predicted by
+- **The law** (a₀ = c²√(Λ/32π), κ = ½ fitted) has SPARC rms 0.054 and is preferred over the tested route-E halos in galaxy
+  lensing to about 3 Mpc. X53 reports that no tested lensing model fits well in absolute terms. It fails clusters, which need extra mass, and the ultra-faint dwarfs, which are under-predicted by
   about 0.6 dex.
-- **Cold dark energy halos** fit clusters and dwarfs. They fail lensing and contradict themselves between dynamics and
-  lensing.
+- **The tested cold dark energy halo prescriptions** fit some cluster and dwarf tests but fail others. X55 finds a
+  dynamics/lensing mass-relation tension conditional on its profile, scatter and selection assumptions.
 - **No combination tried so far** (max, mass switch) fits everything.
-- **The open problem:** which property, other than mass, decides whether a system follows the law or carries a halo.
-  Dwarfs are mostly satellites, so environment and formation epoch are candidates. X57, the exclusion mechanism, is
-  running.
+- **The open problems:** establish a common admissible mass profile and population relation, determine which systems
+  require exclusion, and derive the dynamics that supplies those properties. X57 is complete; its M6 population
+  requirement and forest-response mapping remain open. A selector alone cannot repair an inconsistent halo prescription.
 
 The text below is the 10-26 statement, kept for the record.
 
