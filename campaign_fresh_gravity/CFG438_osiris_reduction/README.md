@@ -66,7 +66,7 @@ With the cut relaxed to S/N ≥ 3, roughly Law+12's visual cut, and everything e
 - the source may not sit where we assumed, though the object/sky assignment follows the headers.
 
 ## Caveats
-- We used 40 frames, against Law's 52 (their third night is not in this set).
+- We used 40 frames, against Law's 52. Their third night is not in public KOA: a 2026-10-29 TAP query (all OSIRIS frames 2011-08-25 to 08-29, and a cone around BX442 over all of 2011) returns only the 40 science frames we have. The telluric standards HIP 111538 and HIP 16652 (Kn2, 2 s) are in KOA for both nights and already downloaded, but have not been reduced.
 - There was no telluric or flux calibration, and no per-channel sky scaling (Law scaled the subtracted frame per channel). Both lower our S/N relative to theirs.
 - Our V(R) would not be PSF-corrected even where measurable.
 - The cube orientation is taken from the DRP WCS (Keck II era). Parity was not independently verified.
