@@ -288,3 +288,16 @@ retained, separate from passing audited replay controls. No added fit or
 independent T. This rejects that point, not every L, and does not resolve native
 estimator robustness. Legacy NL1 validation is complete. Next resume separately
 frozen GROUP_MESH_008_ROUTE.md tiles14and15; research target remains OPEN.
+
+
+Fixed group_mesh_008 completes tiles14[2.76,2.77] and15[2.77,2.78], both direct
+necessary failures of unchanged absZ<2. All2batch and16run+13independent70digit
+review controls per tile pass. Six exact coverage/hash/mutation controls extend
+gap-free analytic fixed-native-EPS/quadrature group failure to L[2.62,2.78],
+Zlower>=2.2229376199. Inventory17of89reviewed,72pending; all prior hashes and
+coverage holes are preserved. No derivative extrapolation, new fit or global/
+original floating claim. Actual corrected nativeL4.8646 and frozen legacy NL1
+validation are complete failures and are not repeated. Next freeze runnable
+criteria/resources for GROUP_MESH_009_ROUTE.md tiles16[2.78,2.79] and17[2.79,2.80].
+Continuous feasibility/robust derivedL remains OPEN. See GROUP_MESH_008_REVIEW.md
+and group_mesh_008_union.json for scope and reproducible evidence.
