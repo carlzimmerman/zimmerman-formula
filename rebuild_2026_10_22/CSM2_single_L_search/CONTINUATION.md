@@ -15,12 +15,12 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. Mesh tiles0..3 and prior final tile88 directly fail absZ<2 in registered
-   analytic scope. Latest group_mesh_002 passes16run+13review per tile plus2
-   batch controls. Inventory5of89tiles reviewed,84pending. Next freeze runnable
-   criteria for GROUP_MESH_003_ROUTE.md: fixed tiles4and5[2.66,2.67],[2.67,2.68].
+1. Mesh tiles0..5 and prior final tile88 directly fail absZ<2 in registered
+   analytic scope. Latest group_mesh_003 passes16run+13review per tile plus2
+   batch controls. Inventory7of89tiles reviewed,82pending. Next freeze runnable
+   criteria for GROUP_MESH_004_ROUTE.md: fixed tiles6and7[2.68,2.69],[2.69,2.70].
    No extrapolated signs, missing-tile coverage or original floating/global claim.
-   Native finals8of9;6pending. Preserve the demonstrated estimator instability.
+   Native finals9of9; NL1 aggregate/scoring pending. Preserve estimator instability.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -176,3 +176,13 @@ and results. Inventory now5of89tiles reviewed,84pending. Derivative signs are
 not extrapolated, original floating/globalL remains unresolved, and no new
 physical fit was added. Next GROUP_MESH_003_ROUTE.md requires runnable criteria
 for fixed tiles4[2.66,2.67] and5[2.67,2.68]. Native finals remain8of9;6pending.
+
+
+Fixed mesh continuation: group_mesh_003 completes tiles4[2.66,2.67] and5
+[2.67,2.68]. Both directly fail absZ<2 across their entire registered analytic
+fixed native EPS/quadrature domains;16run+13review controls per tile plus2batch
+controls pass. Exact enclosures and source hashes are in GROUP_MESH_003_REVIEW.md
+and results. Inventory now7of89tiles reviewed,82pending. Derivative signs are
+not extrapolated, original floating/globalL remains unresolved, and no new
+physical fit was added. Next GROUP_MESH_004_ROUTE.md requires runnable criteria
+for fixed tiles6[2.68,2.69] and7[2.69,2.70]. Native finals9of9 are validated/copied; final seed6 primary L_proxy4.8646134988. measurement_007_nine passes5controls, exactly reproducing prior eight. NL1 aggregate/scoring pending; no robust derivedL or corrected linked-T pass.

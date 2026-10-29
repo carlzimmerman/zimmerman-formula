@@ -99,3 +99,14 @@ exactly. Only seed6 remains pending. Eight ok flags or individual high/near4
 proxies establish no robust derivedL, ensemble result or corrected linked-T
 pass. The first-crossing/binning instability and original fixed-T grade scope
 remain explicit; no alternate estimator or fitted number was introduced.
+
+
+Final seed6 completion brings the package to9of9; all81snapshot/done/log
+identity, finite-array and stable-copy checks pass. Unchanged primary
+c_f7.7395930714417345, L_proxy4.864613498809303,2641particles inside the
+selected crossing,1200steps. measurement_007_nine passes5controls and exactly
+reproduces all prior eight results. Frozen NL1 aggregate/scoring is pending;
+no robust derivedL, convergence or corrected linked-T pass is established.
+First-crossing/binning instability is retained, and no alternate estimator or
+physical fitted number was introduced. Do not refresh this final inventory
+unless new verifiable source evidence actually changes.

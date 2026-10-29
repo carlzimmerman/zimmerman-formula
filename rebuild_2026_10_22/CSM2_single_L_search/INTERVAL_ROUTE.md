@@ -221,3 +221,13 @@ and results. Inventory now5of89tiles reviewed,84pending. Derivative signs are
 not extrapolated, original floating/globalL remains unresolved, and no new
 physical fit was added. Next GROUP_MESH_003_ROUTE.md requires runnable criteria
 for fixed tiles4[2.66,2.67] and5[2.67,2.68]. Native finals remain8of9;6pending.
+
+
+Fixed mesh continuation: group_mesh_003 completes tiles4[2.66,2.67] and5
+[2.67,2.68]. Both directly fail absZ<2 across their entire registered analytic
+fixed native EPS/quadrature domains;16run+13review controls per tile plus2batch
+controls pass. Exact enclosures and source hashes are in GROUP_MESH_003_REVIEW.md
+and results. Inventory now7of89tiles reviewed,82pending. Derivative signs are
+not extrapolated, original floating/globalL remains unresolved, and no new
+physical fit was added. Next GROUP_MESH_004_ROUTE.md requires runnable criteria
+for fixed tiles6[2.68,2.69] and7[2.69,2.70]. Native finals9of9 are validated/copied; final seed6 primary L_proxy4.8646134988. measurement_007_nine passes5controls, exactly reproducing prior eight. NL1 aggregate/scoring pending; no robust derivedL or corrected linked-T pass.
