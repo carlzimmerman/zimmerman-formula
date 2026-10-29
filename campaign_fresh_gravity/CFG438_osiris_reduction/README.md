@@ -82,3 +82,5 @@ With the cut relaxed to S/N ≥ 3, roughly Law+12's visual cut, and everything e
   - `bx442_MUTATE`;
   - `bx442_DIAG_SN3`;
   - `a1689`.
+
+**Follow-up: CFG438B** (`../CFG438B_telluric_scaled/`). Law's sky scaling, super-dark and telluric were added. The graded run is VOID (the 2 s standards fall below the S/N gate). Sky scaling alone recovers PA 166°, but only 19 spaxels pass. Split-half tests show the per-spaxel errors are understated (about 1.3× in flux), so 52 frames would still give only about 5–11 spaxels. Lane closed.
