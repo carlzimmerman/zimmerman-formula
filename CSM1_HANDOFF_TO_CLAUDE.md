@@ -115,3 +115,22 @@ pass. This is a useful local numerical enclosure, not a certified exclusion:
 binary64 root comparisons and prescribed padding lack outward-rounded error
 certification. It provides no global continuous-L obstruction or passing
 witness. See CSM2 interval_001/ and interval_review.json for limitations.
+
+
+Checkpoint 2026-10-29 02:07 UTC: seed9 is complete; published inventory is
+5of9 (1,3,7,8,9), four pending. Its unchanged primary c_f=15.0898076731,
+L_proxy=9.4844885801, flag ok, first selected crossing has601 particles inside.
+The previous four primary measurements reproduce exactly; five extension
+controls pass. This high primary proxy is not an ensemble level or a robust
+inference; the estimator-instability finding remains material. See native
+measurement_004_five and completed_results.json. No aggregate NL1 result yet.
+
+Root rounding subexperiment root_sign_001 certifies directed signs for all124
+saved compact-root brackets, using50-digit mpmath interval arithmetic with
+saved binary64 M,R,Sigma interpreted exactly. A shifted1% bracket is rejected.
+A70-digit review using outer-mass residuals and a different log expression
+confirms all124 (126review checks); seven run controls pass. This removes one
+scalar sign uncertainty only. It does not certify full mass-vector boxes,
+projection/whitening coefficients, signed dot products or physical coefficient
+construction, and interval_001 remains a conditional local numerical result.
+No continuous-model obstruction or passing witness has been established.

@@ -15,11 +15,13 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. Local interval_001 is complete:139 controls and8 review controls; a
-   conditional numerical lower bound569.531694 exceeds163.343463 for
-   canonical[3.75,3.751]. This is NOT a certified interval exclusion. Next
-   freeze a root/mass/signed-dot rounding-certification experiment. Justify
-   enclosures before any covering claim; preserve inconclusive certification.
+1. root_sign_001 certifies all124 saved scalar compact-root signs with
+   directed50-digit intervals;70-digit outer-mass review confirms them.
+   The local interval_001 remains conditional. Next freeze and execute an
+   outward mass-vector enclosure experiment using these brackets on all3601
+   radii for the62 active nodes at both endpoints. Preserve the exact fixed-
+   coefficient scope and separately account for coefficient construction,
+   signed projection, whitening and dot rounding before any covering claim.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -38,3 +40,6 @@ preserve unrelated staged/dirty work.
 
 Native inventory now4of9 (1,3,7,8). Seed1 primary L_proxy3.831000832;
 measurement_003_four passes5controls. Five pending; robustness unresolved.
+
+Latest native inventory5of9 (1,3,7,8,9), four pending; seed9 primary
+L_proxy9.4844885801. measurement_004_five passes5controls. No aggregate grade.

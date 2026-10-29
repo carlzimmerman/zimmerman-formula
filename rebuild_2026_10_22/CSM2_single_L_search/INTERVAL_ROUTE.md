@@ -53,3 +53,9 @@ exclusion. Next: establish justified outward-rounded root/mass and signed-dot
 error bounds for this local test before any covering claim. If certification
 is inconclusive, preserve that outcome and freeze a separate broader branch-
 event inventory experiment; do not turn floating padding into a theorem.
+
+Scalar root signs are now certified for saved binary64 coefficients
+(root_sign_001,124brackets). Independent70-digit outer-mass review agrees.
+Full local score remains conditional: next outward mass-vector enclosures,
+then coefficient/signed-dot bounds. Do not treat scalar certification as a
+certified interval score or omit the fixed-coefficient scope.
