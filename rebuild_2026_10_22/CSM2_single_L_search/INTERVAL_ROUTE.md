@@ -185,3 +185,14 @@ original floating certificate or new physical fit. Next GROUP_REGIONAL_ROUTE.md
 requires a separately frozen whole-region[2.62,3.5001] branch/derivative attempt,
 retaining inconclusive bounds and all coverage holes. Native finals remain7of9,
 with4and6 unfinished.
+
+
+Whole-region group checkpoint: group_regional_001 completes16run+13review
+controls on the unsplit canonical[2.62,3.5001] domain. All189 branches stay halo
+and378compact-root signs are independently confirmed, but Z in[.8429465086,
+4.9595703846] and Z' in[-293.3285751,233.3162002] are INCONCLUSIVE. The changing
+variance/systematic slope is included. No regional failure or sign is claimed.
+Prior local results stand. Next GROUP_SUBDIVISION_ROUTE.md requires a separately
+frozen two-tile preflight of the fixed .01 uniform mesh, preserving all pending
+and inconclusive coverage holes. No new physical fit or original floating/global
+certificate. Native finals remain7of9;4and6 pending.

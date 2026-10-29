@@ -15,11 +15,12 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. Local group derivative preflight is complete (8run+8review controls),
-   Z' in[-.302567149462260,-.301119418216813] on[3.5,3.5001]. No broader sign.
-   Next GROUP_REGIONAL_ROUTE.md: separately freeze a whole-region branch/root/
-   derivative experiment on[2.62,3.5001]. Keep inconclusive bounds, switches,
-   actual changing statistic and original floating scope explicit.
+1. Whole-region group_regional_001 is complete (16run+13review controls).
+   All189 cells stay halo on[2.62,3.5001], but whole-box Z and Z' bounds are
+   INCONCLUSIVE. Do not extrapolate the earlier local negative derivative.
+   Next GROUP_SUBDIVISION_ROUTE.md: separately freeze the first two tiles of
+   a fixed .01 uniform mesh, retaining all untested/inconclusive coverage holes
+   and the unchanged physical model, statistic, cuts and source scope.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -139,3 +140,14 @@ original floating certificate or new physical fit. Next GROUP_REGIONAL_ROUTE.md
 requires a separately frozen whole-region[2.62,3.5001] branch/derivative attempt,
 retaining inconclusive bounds and all coverage holes. Native finals remain7of9,
 with4and6 unfinished.
+
+
+Whole-region group checkpoint: group_regional_001 completes16run+13review
+controls on the unsplit canonical[2.62,3.5001] domain. All189 branches stay halo
+and378compact-root signs are independently confirmed, but Z in[.8429465086,
+4.9595703846] and Z' in[-293.3285751,233.3162002] are INCONCLUSIVE. The changing
+variance/systematic slope is included. No regional failure or sign is claimed.
+Prior local results stand. Next GROUP_SUBDIVISION_ROUTE.md requires a separately
+frozen two-tile preflight of the fixed .01 uniform mesh, preserving all pending
+and inconclusive coverage holes. No new physical fit or original floating/global
+certificate. Native finals remain7of9;4and6 pending.
