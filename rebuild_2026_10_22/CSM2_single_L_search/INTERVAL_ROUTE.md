@@ -75,3 +75,9 @@ Exact covariance nuisance dual is complete (exact_dual_001). Conditional
 lower569.5338658431842 exceeds exact feasible-law upper+9. No floating Q
 required. Next close native-box membership: source projection coefficient
 construction/anchor consistency, then column/branch/continuum enclosure.
+
+Projection/anchor fixed-primitive enclosures completed (projection_anchor_001),
+432120coefficients,60/60anchor coordinates contained. After derived error
+inflation exact dual lower remains569.5338657853632. Original floating-source
+forward error and column/branch/continuum coverage still need closure; fixed
+primitive tables alone are not a real-L certificate.

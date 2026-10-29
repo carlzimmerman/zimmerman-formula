@@ -15,14 +15,13 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. exact_dual_001 completes exact covariance SPD/nuisance elimination;
-   12 run and18 review controls pass. The conditional lower569.5338658431842
-   exceeds exact law upper+9 for the published native boxes. Next freeze a
-   source projection-coefficient/anchor-consistency enclosure experiment to
-   establish actual model box membership. Keep column/branch/continuum
-   obligations explicit. No real-L or covering obstruction is claimed yet.
-   Initial signed_dot_001 is final: resource-limit(CPU480),506.748wall seconds,
-   no scientific result; its failure evidence is preserved. Never rerun it.
+1. projection_anchor_001 completes432120 fixed-primitive coefficients and
+   baseline boxes containing all60 source anchor values.10 run,16 review,
+   5 exact error-propagation controls pass; inflated conditional dual lower
+   569.5338657853632 remains above exact law upper+9. Next freeze a source
+   forward-error bound after inspecting the actual NumPy gradient/interp and
+   quadrature implementation. Keep column/branch/continuum coverage separate;
+   no real-L/global obstruction yet. Do not rerun completed projection work.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.

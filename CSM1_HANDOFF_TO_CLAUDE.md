@@ -185,3 +185,20 @@ rational certificate. The initial uncached signed-dot attempt ended at CPU480
 (resource-limit,506.748wall seconds,no scientific result); its completed failure
 record is now preserved. Its loading issue was resolved in the already-published
 cached3.726-second run. Native finals remain5of9; no aggregate NL1 output yet.
+
+
+Projection/anchor checkpoint: projection_anchor_001 encloses all432120 fixed-
+source-primitive projection coefficients and extracts all127 positive-weight
+source mass profiles, including65 previously unsaved fixed law profiles.
+All60 source anchor coordinates lie in the resulting baseline boxes. Maximum
+anchor deviation8.354e-9; coefficient row L1 error at most1.217e-24. Ten run,
+16 exact-quadrature review and5 error-propagation controls pass.
+
+The unchanged exact covariance dual, after coefficient/anchor inflation, still
+has conditional lower569.5338657853632 versus exact feasible-law upper+9 of
+163.34346325076024. This is not a real-L exclusion: original floating source
+evaluation errors and column/branch/continuum box coverage remain open. Fixed
+primitive tables are not an analytic-transcendental certificate. Next close
+source forward-error bounds using its actual gradient/interpolation/quadrature
+implementation, then the remaining domain obligations. See
+PROJECTION_ANCHOR_REVIEW.md. Native finals remain5of9; no aggregate NL1 output.
