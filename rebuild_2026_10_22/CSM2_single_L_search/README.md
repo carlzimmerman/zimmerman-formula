@@ -424,3 +424,26 @@ main JSON and final .out, with the same A1 source and8capture/validation checks
 passed. NL1_RERUN_CHECKPOINT_2026-10-29 preserves completed copies and hashes.
 Mutation rejection/exit validation is still pending. Legacy main failure at
 Lnat4.8646 remains distinct from corrected CSM1 linked-T and robustness claims.
+
+
+Fixed mesh continuation: group_mesh_007 completes tiles12[2.74,2.75] and13
+[2.75,2.76]. Both directly fail absZ<2 across their entire registered analytic
+fixed native EPS/quadrature domains;16run+13review controls per tile plus2batch
+controls pass. Exact enclosures and source hashes are in GROUP_MESH_007_REVIEW.md
+and results. Inventory now15of89tiles reviewed,74pending. Derivative signs are
+not extrapolated, original floating/globalL remains unresolved, and no new
+physical fit was added. Next GROUP_MESH_008_ROUTE.md requires runnable criteria
+for fixed tiles14[2.76,2.77] and15[2.77,2.78]. All9native finals and byte-identical legacy NL1 failure rerun are published; mutation validation is pending. Before further mesh batches, prioritize NATIVE_CORRECTED_POINT_ROUTE.md at the originally frozen L4.8646, with separate runnable criteria and unchanged actual CSM1 definition.
+
+
+Exact fourteen-tile reconciliation extends direct necessary group failure to
+canonical analytic fixed-native-EPS/quadrature L[2.62,2.76] without gaps,
+Zlower>=2.2308894268. Six exact coverage/mutation/hash controls pass on an
+immutable input inventory. Total mesh coverage15of89tiles,74pending; no
+global/original floating exclusion or derivative extrapolation.
+Priority next is NATIVE_CORRECTED_POINT_ROUTE.md: separately freeze runnable
+criteria and test the actual same-column corrected CSM1 calibration at the
+originally frozen NL1 point L4.8646, adding no independent T or physical fit.
+Legacy NL1 grades cannot substitute for this test, and estimator robustness
+remains unresolved. Preserve the queued GROUP_MESH_008_ROUTE.md continuation.
+NL1 mutation validation is still monitored without altering active jobs.

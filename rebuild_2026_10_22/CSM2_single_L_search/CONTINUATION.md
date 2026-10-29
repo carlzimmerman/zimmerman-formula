@@ -15,12 +15,14 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. Mesh tiles0..11 and prior final tile88 directly fail absZ<2 in registered
-   analytic scope. Latest group_mesh_006 passes16run+13review per tile plus2
-   batch controls. Inventory13of89tiles reviewed,76pending. Next freeze runnable
-   criteria for GROUP_MESH_007_ROUTE.md: fixed tiles12and13[2.74,2.75],[2.75,2.76].
-   No extrapolated signs, missing-tile coverage or original floating/global claim.
-   All9native finals published; legacy NL1 main failure published with partial validation. Preserve estimator instability and corrected CSM1 scope.
+1. Priority: NATIVE_CORRECTED_POINT_ROUTE.md. Check for matching existing
+   work; then freeze runnable criteria and test actual corrected own/basin
+   CSM1 calibration at the frozen native L4.8646, with no independent T.
+   Legacy fixed-T/CL3 grades do not answer this question. Retain estimator
+   instability and candidate-only interpretation if calibration survives.
+   Mesh0..13 plus prior88 fail necessary group cut;15of89reviewed,74pending.
+   Preserve queued GROUP_MESH_008_ROUTE.md after this point test. Monitor
+   NL1 mutation validation independently without changing active jobs.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -238,3 +240,26 @@ main JSON and final .out, with the same A1 source and8capture/validation checks
 passed. NL1_RERUN_CHECKPOINT_2026-10-29 preserves completed copies and hashes.
 Mutation rejection/exit validation is still pending. Legacy main failure at
 Lnat4.8646 remains distinct from corrected CSM1 linked-T and robustness claims.
+
+
+Fixed mesh continuation: group_mesh_007 completes tiles12[2.74,2.75] and13
+[2.75,2.76]. Both directly fail absZ<2 across their entire registered analytic
+fixed native EPS/quadrature domains;16run+13review controls per tile plus2batch
+controls pass. Exact enclosures and source hashes are in GROUP_MESH_007_REVIEW.md
+and results. Inventory now15of89tiles reviewed,74pending. Derivative signs are
+not extrapolated, original floating/globalL remains unresolved, and no new
+physical fit was added. Next GROUP_MESH_008_ROUTE.md requires runnable criteria
+for fixed tiles14[2.76,2.77] and15[2.77,2.78]. All9native finals and byte-identical legacy NL1 failure rerun are published; mutation validation is pending. Before further mesh batches, prioritize NATIVE_CORRECTED_POINT_ROUTE.md at the originally frozen L4.8646, with separate runnable criteria and unchanged actual CSM1 definition.
+
+
+Exact fourteen-tile reconciliation extends direct necessary group failure to
+canonical analytic fixed-native-EPS/quadrature L[2.62,2.76] without gaps,
+Zlower>=2.2308894268. Six exact coverage/mutation/hash controls pass on an
+immutable input inventory. Total mesh coverage15of89tiles,74pending; no
+global/original floating exclusion or derivative extrapolation.
+Priority next is NATIVE_CORRECTED_POINT_ROUTE.md: separately freeze runnable
+criteria and test the actual same-column corrected CSM1 calibration at the
+originally frozen NL1 point L4.8646, adding no independent T or physical fit.
+Legacy NL1 grades cannot substitute for this test, and estimator robustness
+remains unresolved. Preserve the queued GROUP_MESH_008_ROUTE.md continuation.
+NL1 mutation validation is still monitored without altering active jobs.

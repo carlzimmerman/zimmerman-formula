@@ -261,3 +261,13 @@ and results. Inventory now13of89tiles reviewed,76pending. Derivative signs are
 not extrapolated, original floating/globalL remains unresolved, and no new
 physical fit was added. Next GROUP_MESH_007_ROUTE.md requires runnable criteria
 for fixed tiles12[2.74,2.75] and13[2.75,2.76]. All9native finals and legacy NL1 main failure are published; validation monitoring continues separately, with estimator instability and corrected CSM1 scope kept explicit.
+
+
+Fixed mesh continuation: group_mesh_007 completes tiles12[2.74,2.75] and13
+[2.75,2.76]. Both directly fail absZ<2 across their entire registered analytic
+fixed native EPS/quadrature domains;16run+13review controls per tile plus2batch
+controls pass. Exact enclosures and source hashes are in GROUP_MESH_007_REVIEW.md
+and results. Inventory now15of89tiles reviewed,74pending. Derivative signs are
+not extrapolated, original floating/globalL remains unresolved, and no new
+physical fit was added. Next GROUP_MESH_008_ROUTE.md requires runnable criteria
+for fixed tiles14[2.76,2.77] and15[2.77,2.78]. All9native finals and byte-identical legacy NL1 failure rerun are published; mutation validation is pending. Before further mesh batches, prioritize NATIVE_CORRECTED_POINT_ROUTE.md at the originally frozen L4.8646, with separate runnable criteria and unchanged actual CSM1 definition.
