@@ -78,3 +78,16 @@ Any future floor mechanism should be tested with 3D relaxation, for example on t
 - Still open:
   - c_f from 3D zooms (X48 A4, running);
   - a genuinely new mechanism, which would need a 3D test.
+
+## Addendum (2026-10-29, later)
+
+- **Correlated matter beyond turnaround is closed** (chat check). For 10^14.5 M☉, r_ta ≈ 7 Mpc comoving (Δ = 5.55 on the
+  fair-share mass). The mean-subtracted correlated column outside r_ta is < 1 M☉/pc² at R = 2 Mpc, and a shell outside R
+  gives ΔΣ < 0. It cannot supply G-OUT-M3.
+- **Later lanes:**
+  - X68 (split scale): zero-sum, no root.
+  - X69_soft_floor_sparc: hard floor preferred.
+  - X70_smooth_core_shape: canonical full pass at f★ = 0.20.
+  - X71: measured f★ re-opens G-OUT-M3 at Z ≈ 2.3.
+  - X72: native c_f regrade, frozen and pre-built, waiting on A4.
+- **Pre-registration:** the c_f(M) slope (23095bf23a).
