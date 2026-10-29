@@ -15,13 +15,13 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. solver_scope_001 completes186 finite original solver traces with14run+
-   10review controls. Uniform floating-evaluator bridge remains INCONCLUSIVE;
-   no libm/optimizer continuum guarantee is inferred. Next freeze and execute
-   ANALYTIC_COMPARATOR_ROUTE.md: all127node law comparator reconstruction and
-   exact feasible-candidate score upper in the common analytic numerical-grid
-   scope. Keep the fixed numerical comparator upper and source assumptions
-   distinct; prior conditional lower569.5338626095037 is not upgraded.
+1. comparator_001 completes all127 analytic comparator nodes;11run+9review
+   controls. Fixed feasible-candidate upper154.34346325076598 remains below
+   hybrid lower569.5338626095037 minus9 in the local registered analytic-grid
+   scope. Original floating solver/libm continuum and globalL remain open.
+   Next freeze GROUP_INTERVAL_PREFLIGHT_ROUTE.md: actual189group-cell native
+   quadrature/event/statistic reconciliation, then separately frozen interval
+   bounds. Do not assume monotonic Z or continuity across law/halo switches.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -101,3 +101,16 @@ The fixed numerical law comparator covers all127nodes; the65 hybrid law-node
 correction does not establish an analytic comparator upper. Next freeze
 ANALYTIC_COMPARATOR_ROUTE.md. Prior conditional lower569.5338626095037 is not
 upgraded. No real-L/global exclusion. Native finals remain7of9, pending4and6.
+
+
+All-node analytic comparator checkpoint: comparator_001 reconstructs127nodes
+and457327mass coordinates with exact ideal weights/certified fixed primitives.
+All11run+9review controls pass, including all60 exact signed dots and65
+independent90digit law values. The unchanged feasible-candidate upper is now
+154.34346325076598. Reviewed hybrid lower569.5338626095037 still exceeds
+upper+9=163.34346325076598 within the registered local analytic numerical-grid
+scope on[3.75,3.751]. No new fit or regrade. Original floating solver/libm
+continuum and globalL remain unresolved; no unqualified exclusion is claimed.
+Next GROUP_INTERVAL_PREFLIGHT_ROUTE.md targets actual189group cells and the
+changing variance/slope denominator, rather than assuming monotonic group Z.
+Native inventory remains7of9, pending4and6.

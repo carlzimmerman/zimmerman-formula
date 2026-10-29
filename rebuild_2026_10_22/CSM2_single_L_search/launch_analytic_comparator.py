@@ -1,0 +1,6 @@
+from pathlib import Path
+import subprocess,sys
+r=Path(__file__).resolve().parents[2];p=r/'rebuild_2026_10_22/CSM2_single_L_search';out=p/sys.argv[1];files=[p/'bound_analytic_comparator.py',p/'COMPARATOR_001_CRITERIA.md',p/'comparator_contract.json',p/'projection_anchor_001/x53_on_shpS9_L3.75_corrected_own/x62_x53copy_1.executed.py',p/'projection_anchor_001/projection_primitive_enclosures.npz',p/'catalogue_001/results.json',p/'native_matrix_001/native_matrices.npz',p/'exact_dual_001/certificate.json',p/'domain_propagation_review.json',p.parent/'F2_outer_lensing/f2_outer_lensing.py',p.parent/'CSM1_consistent_core_switch/calibration/run_003_audited/results.json']
+c=[sys.executable,'/Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/4.0.0/skills/computation-audit/scripts/run_experiment.py','--root',str(r),'--contract',str(p/'comparator_contract.json'),'--output',str(out.relative_to(r)),'--result',str((out/'results.json').relative_to(r)),'--timeout','600','--max-cpu-seconds','480','--max-threads','1','--max-output-bytes','1048576']
+for f in files:c+=['--input',str(f.relative_to(r))]
+c+=['--',sys.executable,'-I',str(p/'bound_analytic_comparator.py'),'--output',str(out)];raise SystemExit(subprocess.call(c,cwd=r))
