@@ -37,7 +37,13 @@ The preceding audit and observational recovery are in
 `rebuild_2026_10_22/INDEPENDENT_PUSH_2026-10-28/`. Its current-theory statements
 are dated history; use CSM1 for the corrected-model empirical verdict.
 
-The native ng64/NL1 work was still pending at the recorded observation.
+Native progress update: seeds 3 and 7 of nine have completed. Their verified
+final snapshots, completion markers, final logs and hash inventory are in
+`rebuild_2026_10_22/NATIVE_PARTIAL_2026-10-28/`. This is a partial ensemble,
+not a new L estimate or NL1 grade; the other seven remain pending. Use its
+`completed_results.json` for the exact observation timestamp and seed set.
+
+The native ng64/NL1 aggregate work is still pending at this observation.
 `rebuild_2026_10_22/NL1_native_level_L/` contains its scorer. Verify actual
 complete outputs, seed coverage and uncertainty when they arrive. Its old
 fixed-T primary grade alone cannot establish a corrected linked-T pass;
