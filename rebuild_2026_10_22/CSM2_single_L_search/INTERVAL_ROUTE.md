@@ -1,0 +1,44 @@
+# Structural continuation after the operator preflight
+
+The discrete AQ projection is linear in enclosed mass. `operator_001`
+reproduces 40 original source curves to maximum relative max-norm error
+4.83e-15; the 1%-corrupted twin fails. All 40 individual errors were separately
+checked finite. NumPy emitted matmul floating-status warnings despite finite
+results; stderr is preserved, and later interval code must explicitly check
+finiteness. This test used B21 radius labels; final bounds need actual native R.
+
+Let C be the actual covariance, W its inverse Cholesky whitening map, and T
+the fixed four-column two-halo template. Let P project orthogonally off WT.
+Then, without assuming likelihood monotonicity,
+
+    chi2_constrained(m) >= min_b(real) ||W(y-m-Tb)||^2 = ||PW(y-m)||^2.
+
+The inequality holds because unrestricted amplitudes include the original
+nonnegative allowed amplitudes. On a branch-fixed interval, the compact
+Burkert mass grid is componentwise nondecreasing with Sigma under the scale-
+order argument in CSM1/heldout/MW_BURKERT_MONOTONICITY.md, including saturation
+and constant exterior mass. Source solver bounds and numerical errors still
+need validation over this new domain. The law-branch mass profile is fixed.
+
+Bound each halo mass vector between endpoint vectors, then propagate boxes
+through signed projection, stacking and whitening coefficients. For residual
+coordinate intervals [li,ui], a valid lower score bound is
+
+    chi2_constrained >= sum_i distance(0,[li,ui])^2.
+
+Exclude an L interval only if this lower bound exceeds the unchanged law score
+plus9. Handle every branch event, equality on the law branch, both continuation
+operators and uncertain threshold enclosures. An inconclusive box is subdivided
+or retained, never labeled excluded by interpolating chi2 between points.
+
+Groups can be bounded separately: positive radial weights and the mass-order
+argument bound log-sigma predictions on branch-fixed intervals. Residual and
+finite-difference mass-slope boxes then bound sample standard error and the
+systematic term without group-Z monotonicity. Include activation events at
+all three masses M, M*10^.01 and M*10^-.01.
+
+Next executable step: construct actual native matrices/inventory weights and
+reproduce the free-nuisance score at saved CSM1 points. Then test one specified
+interval with conservative error allowances before attempting a covering
+certificate. This is an open route, not an all-L exclusion. A claimed cover
+requires separate adversarial proof review and reproducible numeric evidence.

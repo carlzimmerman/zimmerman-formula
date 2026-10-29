@@ -62,8 +62,11 @@ from 3.138 to 16.804 (seed 3), and 2.442 to 11.798 (seed 7). Seed 8 stays near
 reconstruction confirms multiple crossings and the first-crossing selection
 mechanism. Original primary results remain unchanged, but their `ok` flags
 alone do not establish a robust L. No alternative crossing was selected to
-match a desired value. CSM2's bounded necessary group/lens grid is running;
-its active outputs are excluded from the completed-audit publication.
+match a desired value. CSM2's bounded necessary group/lens grid is now complete:
+none of15 predeclared levels survives. Groups fail through the sampled L=3.5;
+six tested values3.625--5.0 pass groups but fail lensing by delta-chi2+411--437.
+The finite result is not an all-L theorem. A validated linear-projection
+preflight and `INTERVAL_ROUTE.md` record the next route to interval bounds.
 
 The native ng64/NL1 aggregate work is still pending at this observation.
 `rebuild_2026_10_22/NL1_native_level_L/` contains its scorer. Verify actual

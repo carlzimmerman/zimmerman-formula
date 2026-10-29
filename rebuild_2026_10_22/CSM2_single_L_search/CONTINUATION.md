@@ -7,19 +7,21 @@ Completed: paired-resolution/binning diagnostic and independent crossing
 reconstruction. Estimator instability is demonstrated for seeds 3 and 7;
 seed 8 is stable under the tested binning changes. No replacement is adopted.
 
-Active: `launch.py run_001`, launched once, exec session 39935. Bound: wall
-1800 seconds, CPU 1200 seconds per process, one numerical thread. Partial
-`run_001/results.json` is refreshed per completed cell; `manifest.json` appears
-when finished. Do not launch a duplicate or edit the pinned driver/contract/
-TARGET while it runs. Both CSM1 baseline controls passed before new cells.
+Completed: `launch.py run_001`, launched once, exec session 39935, final status
+completed, runtime 822 seconds, peak RSS0.676 GB, source controls6/6. All15
+levels fail a canonical necessary cut; `reconciliation_001/` independently
+regrades the completed raw data. Do not rerun the same grid as a new route.
+Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. On completion validate manifest/hashes and independently recompute group
-   PASS and lens delta-law from raw source results. Preserve finite failures.
-2. A necessary-test survivor must receive the full CSM1 calibration and heldout
+1. Finish publication verification for this completed checkpoint, then execute
+   the native-matrix/free-nuisance validation in `INTERVAL_ROUTE.md`. Derive a
+   conservative interval bound and test one declared interval before attempting
+   a cover. Preserve inconclusive intervals and branch-event obligations.
+2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
-3. With no survivors, publish the finite result and actual transition regions.
+3. With no finite survivors, retain the finite result and actual transition regions.
    Continue the continuous-L question through interval bounds or a valid
    profile/covariance reduction. Do not assume likelihood/Z monotonicity or
    turn a grid into a theorem.

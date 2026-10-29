@@ -50,11 +50,36 @@ That metadata record is retained in `crossing_001/`. A corrected-description
 contract and fresh `crossing_002/` reproduce its scientific JSON byte for byte;
 the corrected run is authoritative for this diagnostic.
 
-## Active necessary-constraint search
+## Completed necessary-constraint search: no survivor among 15 levels
 
-`run_001/` is an active bounded grid, not a final result. The group-only
-reduction and cached-template lens score reproduced full CSM1 before new cells.
-It grades groups first and lensing where canonical groups pass. Any surviving
-point still needs every remaining full criterion. A failed finite grid cannot
-exclude all real L. The active run directory is excluded from the initial
-completed-audit publication. See `CONTINUATION.md` for pending work.
+`run_001/` completed with 6/6 source controls, peak RSS 0.676 GB and runtime
+822 seconds. Its group-only reduction and lens score reproduced full CSM1
+before new cells. The fixed grid has **no canonical necessary-test survivor**:
+
+- Nine points from the seed-8 proxy L=2.520507 through L=3.5 fail groups.
+  At the endpoints, Z=2.5143 and 2.00375; the unchanged limit is |Z|<2.
+- Six points L=3.625,3.75,3.9,4.0,4.5,5.0 pass groups but fail lensing:
+  delta-chi2 versus the law is +411.09,+415.28,+420.31,+423.23,+432.05,+437.33,
+  against the allowed +9. No other criterion can rescue a failed necessary cut.
+
+`reconciliation_001/scores.csv` has signed values on both footings, and its
+JSON independently checks grades, actual flags and the exact L^(5/4) scaling
+of columns against the validated baseline. The lower observed proxies for
+seeds 3 and 7 are already below the actual canonical LG activation threshold;
+the unchanged fixed UFD class is on its failing law state (Z=5.2166).
+
+This excludes these finite levels only. It does not rule out every real L,
+change the sampling criteria, or establish a robust native estimate. A viable
+point found later must still pass all remaining full criteria. See
+`CONTINUATION.md` and `INTERVAL_ROUTE.md` for the unresolved continuous question.
+
+## Completed structural preflight
+
+The explicit discrete lensing projection operator matches the original on 40
+profile/tail/radius cases to maximum relative max-norm error 4.83e-15. Every
+individual error is finite. A 1%-corrupted operator fails the same check.
+Evidence: `operator_001/` and expected-failed `operator_002_MUTATE/`, with frozen
+criteria and bounded manifests. This verifies a linear map needed to propagate
+interval mass bounds; it is not an L exclusion. `INTERVAL_ROUTE.md` derives
+the proposed lower-score bound and records the remaining native-matrix,
+branch-event, source-solver and numerical-error obligations.
