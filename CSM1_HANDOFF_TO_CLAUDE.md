@@ -37,13 +37,13 @@ The preceding audit and observational recovery are in
 `rebuild_2026_10_22/INDEPENDENT_PUSH_2026-10-28/`. Its current-theory statements
 are dated history; use CSM1 for the corrected-model empirical verdict.
 
-Native progress update: seeds 3 and 7 of nine have completed. Their verified
+Native progress update: seeds 3, 7 and 8 of nine have completed. Their verified
 final snapshots, completion markers, final logs and hash inventory are in
 `rebuild_2026_10_22/NATIVE_PARTIAL_2026-10-28/`. This is a partial ensemble,
-not a new L estimate or NL1 grade; the other seven remain pending. Use its
+not a new ensemble L estimate or NL1 grade; the other six remain pending. Use its
 `completed_results.json` for the exact observation timestamp and seed set.
 
-Preliminary measurements of those two seeds are now in that package's
+Preliminary measurements of seeds 3 and 7 are in that package's
 `measurement_001/results.json`: unchanged primary c_f=3.138159/2.441598 and
 NL1-normalized per-seed L proxies=1.972446/1.534632 (seeds 3/7). Both have
 estimator flag `ok`; synthetic/reference/input-stability controls pass. These

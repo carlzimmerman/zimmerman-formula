@@ -14,6 +14,10 @@ requires at least seven valid measurements before grading; it has not produced
 a result at this checkpoint. Snapshot `meta.L` is the simulation box length,
 not the inferred concentration level `L_nat`.
 
+Current published inventory: **3 of 9**, seeds **3, 7 and 8**. Six runs remain
+pending. The initial two-seed measurements below are unchanged; no measurement
+of seed 8 or aggregate NL1 grade is asserted by this publication update.
+
 Publication checks verify seed/grid/mass identity, finite position/velocity
 arrays, particle count/mass, agreement of final snapshot metadata with the
 completion marker and final log, stable source hashes, and exact copied bytes.
