@@ -15,12 +15,12 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. Mesh tiles0..7 and prior final tile88 directly fail absZ<2 in registered
-   analytic scope. Latest group_mesh_004 passes16run+13review per tile plus2
-   batch controls. Inventory9of89tiles reviewed,80pending. Next freeze runnable
-   criteria for GROUP_MESH_005_ROUTE.md: fixed tiles8and9[2.70,2.71],[2.71,2.72].
+1. Mesh tiles0..9 and prior final tile88 directly fail absZ<2 in registered
+   analytic scope. Latest group_mesh_005 passes16run+13review per tile plus2
+   batch controls. Inventory11of89tiles reviewed,78pending. Next freeze runnable
+   criteria for GROUP_MESH_006_ROUTE.md: fixed tiles10and11[2.72,2.73],[2.73,2.74].
    No extrapolated signs, missing-tile coverage or original floating/global claim.
-   All9native finals published; amended NL1 scoring in progress. Preserve estimator instability.
+   All9native finals published; completed legacy NL1 main fails, with validation partial. Preserve estimator instability and separate corrected CSM1 scope.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -196,3 +196,22 @@ and results. Inventory now9of89tiles reviewed,80pending. Derivative signs are
 not extrapolated, original floating/globalL remains unresolved, and no new
 physical fit was added. Next GROUP_MESH_005_ROUTE.md requires runnable criteria
 for fixed tiles8[2.70,2.71] and9[2.71,2.72]. All9native finals are published; amended NL1 scoring remains in progress. No robust derivedL or corrected linked-T verdict is claimed.
+
+
+Fixed mesh continuation: group_mesh_005 completes tiles8[2.70,2.71] and9
+[2.71,2.72]. Both directly fail absZ<2 across their entire registered analytic
+fixed native EPS/quadrature domains;16run+13review controls per tile plus2batch
+controls pass. Exact enclosures and source hashes are in GROUP_MESH_005_REVIEW.md
+and results. Inventory now11of89tiles reviewed,78pending. Derivative signs are
+not extrapolated, original floating/globalL remains unresolved, and no new
+physical fit was added. Next GROUP_MESH_006_ROUTE.md requires runnable criteria
+for fixed tiles10[2.72,2.73] and11[2.73,2.74]. All9native finals are published. Completed legacy NL1 main reports NATIVE LEVEL FAILS at Lnat4.8646, but validation is partial: rerun/mutation pending; no corrected CSM1 linked-T or robustness claim.
+
+
+Exact mesh coverage reconciliation: all ten reviewed direct-failure tiles0..9
+cover canonical L[2.62,2.72] without gaps in the registered analytic fixed native
+EPS/quadrature model. Six exact reconciliation/mutation/hash controls pass;
+Zlower>=2.2470308604 throughout this union. No derivative extrapolation is
+used. This is a partial-domain necessary failure, not an89tile/global or
+original floating-evaluator obstruction. group_mesh_005_union.json records
+all result/review hashes and common model/source identities.
