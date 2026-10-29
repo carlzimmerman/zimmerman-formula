@@ -43,14 +43,17 @@ final snapshots, completion markers, final logs and hash inventory are in
 not a new ensemble L estimate or NL1 grade; the other six remain pending. Use its
 `completed_results.json` for the exact observation timestamp and seed set.
 
-Preliminary measurements of seeds 3 and 7 are in that package's
-`measurement_001/results.json`: unchanged primary c_f=3.138159/2.441598 and
-NL1-normalized per-seed L proxies=1.972446/1.534632 (seeds 3/7). Both have
-estimator flag `ok`; synthetic/reference/input-stability controls pass. These
-point below L near 4 but do not estimate the full ensemble or establish
-convergence. Completion order is not a representative sample, and the NL1
-mass/resolution-transfer normalization remains conditional. No full NL1 grade
-has been produced by this preliminary measurement.
+Preliminary measurements of seeds 3, 7 and 8 are in that package's
+`measurement_002_three/results.json`: unchanged primary
+c_f=3.138159/2.441598/4.010123 and NL1-normalized per-seed
+L proxies=1.972446/1.534632/2.520507 (seeds 3/7/8). All have estimator flag
+`ok`. Five implementation controls pass, including exact reproduction of the
+previous seed-3/7 results. The initial two-seed evidence remains unchanged in
+`measurement_001/`. Seed 8 is higher than the first two, but all three proxies
+are below L near 4. Its c_f near 4 is not L near 4 under NL1's normalization.
+These do not estimate the full ensemble or establish convergence. Completion
+order is not a representative sample, and the NL1 mass/resolution-transfer
+normalization remains conditional. No full NL1 grade has been produced here.
 
 The native ng64/NL1 aggregate work is still pending at this observation.
 `rebuild_2026_10_22/NL1_native_level_L/` contains its scorer. Verify actual

@@ -15,8 +15,8 @@ a result at this checkpoint. Snapshot `meta.L` is the simulation box length,
 not the inferred concentration level `L_nat`.
 
 Current published inventory: **3 of 9**, seeds **3, 7 and 8**. Six runs remain
-pending. The initial two-seed measurements below are unchanged; no measurement
-of seed 8 or aggregate NL1 grade is asserted by this publication update.
+pending. Preliminary measurements of all three are below; no aggregate NL1
+grade is asserted.
 
 Publication checks verify seed/grid/mass identity, finite position/velocity
 arrays, particle count/mass, agreement of final snapshot metadata with the
@@ -37,7 +37,7 @@ Read the corrected-model result in `../CSM1_consistent_core_switch/README.md`:
 the old fixed-T NL1 primary grade cannot establish a corrected linked-T pass,
 and a native level near 4 would not itself restore the lost lensing pass.
 
-## Preliminary measurements of seeds 3 and 7
+## Preliminary measurements of seeds 3, 7 and 8
 
 The unchanged primary X48 estimator gives:
 
@@ -45,17 +45,25 @@ The unchanged primary X48 estimator gives:
 |---:|---:|---:|---|
 |3|3.138159|1.972446|ok|
 |7|2.441598|1.534632|ok|
+|8|4.010123|2.520507|ok|
 
 These use NL1's existing normalization `L_proxy = 7.31*c_f/11.630199473419035`.
-They point below L near 4, conditional on that resolution-transfer prescription.
-Two early-finishing seeds are not a representative ensemble and supply no
+Seed 8 is higher than 3 and 7, but all three proxies remain below L near 4,
+conditional on that resolution-transfer prescription. The value c_f=4.010
+for seed 8 is not L=4: NL1 normalizes it to the displayed L proxy of 2.521.
+Three early-finishing seeds are not a representative ensemble and supply no
 reliable confidence interval. Do not call this L derived or a full NL1 result.
 The separately reported NFW profile fits remain diagnostics, not replacements
 for the predeclared primary estimator. No observational harness was run here.
 
-`measurement_001/results.json` preserves all estimator diagnostics; its bounded
-manifest pins source, snapshots and criteria. All four implementation controls
-pass, including the original synthetic c=4 benchmark, rejection of c=8 as
-nominal c=4, reference values and stable input hashes. `measure_completed.py`
-and `measurement_contract.json` provide the exact computation. The criteria
-were saved before the two scientific measurements.
+`measurement_002_three/results.json` preserves the current three-seed
+diagnostics; its bounded manifest pins source, snapshots and criteria. All five
+implementation controls pass: original synthetic c=4 benchmark, rejection of
+synthetic c=8 as nominal c=4, A2 reference values, exact reproduction of the
+entire prior results for seeds 3 and 7, and stable input hashes.
+`measure_three.py`, `three_seed_contract.json` and `THREE_SEED_CRITERIA.md`
+document this unchanged-method extension. The criteria precede the new numbers.
+
+The initial two-seed evidence remains unchanged in `measurement_001/`, with
+`measure_completed.py`, `measurement_contract.json` and
+`MEASUREMENT_CRITERIA.md`; its four original controls still pass.
