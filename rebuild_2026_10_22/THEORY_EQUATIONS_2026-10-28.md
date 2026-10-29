@@ -70,8 +70,9 @@ If NL1 passes, the galaxy-to-cluster picture carries **one** fitted number, κ.
 
 ## Known failures (counterexamples, not hidden)
 
-- **IC 1613:** the law over-predicts about 4×. The stellar σ (HO3) and the HI rotation (RT1, 66c45c5082) agree, at
-  Z ≈ −7.6 to −7.9.
+- **IC 1613: consistent if near face-on (IN1).** Both tracers (stellar σ, HI rotation) match the law at one
+  inclination, i ≈ 19–27° (Oh+15 fixed 48°; their own rings span 15–85°), with LITTLE THINGS' stellar mass and a
+  disc estimator. **Prediction:** an independent inclination ≥ 30° keeps it a failure.
 - **X-COP cluster profiles:** the right mean but the wrong shape (HO1). It is not missing BCG stars (BC1: the profiles
   already carry the BCG, and ×2 moves the core miss only from +0.19 to +0.17), so the halo shape is wrong for clusters.
   The gas-temperature core (GT1) fixes 14 of 15 lensing keys but fails G-OUT-M3.
