@@ -1,0 +1,29 @@
+def B(x):
+    x = np.asarray(x, float); return np.log1p(x * x) + 2 * np.log1p(x) - 2 * np.arctan(x)
+
+def solve_r0(Mtot, Rout, Sig):        # X38 A1: compact root; saturation counted
+    lm = lambda lr: math.log(math.pi * Sig * math.exp(2 * lr) * float(B(Rout / math.exp(lr))))
+    pk = minimize_scalar(lambda lr: -lm(lr), bounds=(math.log(Rout * 1e-6), math.log(Rout * 1e3)), method="bounded", options={"xatol": 1e-10})
+    lpk = float(pk.x)
+    if lm(lpk) < math.log(Mtot):
+        SAT["n"] += 1; return math.exp(lpk)
+    return math.exp(brentq(lambda lr: lm(lr) - math.log(Mtot), math.log(Rout * 1e-7), lpk, xtol=1e-14))
+
+def sigma_coll(M):                     # Msun/pc^2; log-log interpolation of X43's committed table, linear extrapolation outside
+    l = math.log10(M)
+    if l < SC_LM[0]:
+        s = (SC_LS[1] - SC_LS[0]) / (SC_LM[1] - SC_LM[0]); return 10 ** (SC_LS[0] + s * (l - SC_LM[0]))
+    if l > SC_LM[-1]:
+        s = (SC_LS[-1] - SC_LS[-2]) / (SC_LM[-1] - SC_LM[-2]); return 10 ** (SC_LS[-1] + s * (l - SC_LM[-1]))
+    return 10 ** float(np.interp(l, SC_LM, SC_LS))
+
+def halo_setup(foot, logMbrel, cfg_h):
+    """M200 [Msun], R200 [pc], r0 [pc], Sigma_core [Msun/pc^2], above-floor flag."""
+    bg = BG[cfg_h["bg"]]
+    lM200 = bg["a"] + bg["b"] * (logMbrel - 10.0); M200 = 10 ** lM200
+    Ez2 = 1.0 if cfg_h["zR200"] is None else OM_NAT * (1 + cfg_h["zR200"]) ** 3 + 1 - OM_NAT
+    rhoc = 2.775e11 * bg["h"] ** 2 * Ez2 / 1e18                                  # Msun/pc^3
+    R200 = (3 * M200 / (4 * math.pi * 200 * rhoc)) ** (1 / 3)
+    sc = eta_of(M200, cfg_h["cf"]) * sigma_coll(M200)
+    Sig = max(SIGA0[foot], sc)
+    return LENS_RECORD(foot, M200, R200, solve_r0(M200, R200, Sig), Sig, sc, SIGA0[foot])

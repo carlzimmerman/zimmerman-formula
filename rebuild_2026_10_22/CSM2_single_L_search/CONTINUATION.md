@@ -15,11 +15,13 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. domain_propagation_001 plus exact exhaustive review carries original-input
-   halo/law perturbations through the unchanged dual;15run+9review controls.
-   Reviewed conditional lower569.5338626095037. Next freeze the scope/solver
-   bridge under SOURCE_SOLVER_BRIDGE_ROUTE.md; audit comparator interpretation
-   and original libm/compact-root solver behavior. No real-L/global claim.
+1. solver_scope_001 completes186 finite original solver traces with14run+
+   10review controls. Uniform floating-evaluator bridge remains INCONCLUSIVE;
+   no libm/optimizer continuum guarantee is inferred. Next freeze and execute
+   ANALYTIC_COMPARATOR_ROUTE.md: all127node law comparator reconstruction and
+   exact feasible-candidate score upper in the common analytic numerical-grid
+   scope. Keep the fixed numerical comparator upper and source assumptions
+   distinct; prior conditional lower569.5338626095037 is not upgraded.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
@@ -86,3 +88,16 @@ seed2=5.8050015757 (2885inside),seed5=6.2966399752 (1340inside).
 measurement_005_seven passes5controls and reproduces prior five exactly.
 Seven primary ok flags do not establish robust derived L, a convergence
 claim or a corrected linked-T pass; binning instability remains unresolved.
+
+
+Original solver/scope audit completed:186 unchanged scalar solves at3 levels,
+14run+10review controls, nine90digit selected root checks. All sampled solves
+converge within nominal mixed log tolerance (max observed log error2.946e-15).
+147callbacks return exact0 with tiny nonzero analytic residual; this is rounding,
+not a demonstrated large error. Finite traces do not prove uniform libm/optimizer
+coverage, so the original floating-evaluator bridge remains INCONCLUSIVE.
+Version-matched source/license and observed binary fingerprints are published.
+The fixed numerical law comparator covers all127nodes; the65 hybrid law-node
+correction does not establish an analytic comparator upper. Next freeze
+ANALYTIC_COMPARATOR_ROUTE.md. Prior conditional lower569.5338626095037 is not
+upgraded. No real-L/global exclusion. Native finals remain7of9, pending4and6.

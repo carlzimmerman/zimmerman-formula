@@ -273,3 +273,16 @@ seed2=5.8050015757 (2885inside),seed5=6.2966399752 (1340inside).
 measurement_005_seven passes5controls and reproduces prior five exactly.
 Seven primary ok flags do not establish robust derived L, a convergence
 claim or a corrected linked-T pass; binning instability remains unresolved.
+
+
+Original solver/scope audit completed:186 unchanged scalar solves at3 levels,
+14run+10review controls, nine90digit selected root checks. All sampled solves
+converge within nominal mixed log tolerance (max observed log error2.946e-15).
+147callbacks return exact0 with tiny nonzero analytic residual; this is rounding,
+not a demonstrated large error. Finite traces do not prove uniform libm/optimizer
+coverage, so the original floating-evaluator bridge remains INCONCLUSIVE.
+Version-matched source/license and observed binary fingerprints are published.
+The fixed numerical law comparator covers all127nodes; the65 hybrid law-node
+correction does not establish an analytic comparator upper. Next freeze
+ANALYTIC_COMPARATOR_ROUTE.md. Prior conditional lower569.5338626095037 is not
+upgraded. No real-L/global exclusion. Native finals remain7of9, pending4and6.
