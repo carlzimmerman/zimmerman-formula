@@ -79,9 +79,9 @@ If NL1 passes, the galaxy-to-cluster picture carries **one** fitted number, κ.
 - **X-ray-bright groups (HG2 sign): WITHDRAWN as a failure (FM1).** HG2 bins on σ, the observed pull. Forward-
   modelled the same way, the base picture gives D ≈ −0.49 (measured −0.36), and the statistic cannot see even a
   +0.4 dex hot-gas excess. NOT DIAGNOSTIC as measured.
-- **SLUGGS ellipticals:** the IMF is already at its dynamical bound (SG1). Measured hot gas brings +0.15 to +0.105
-  (M87 closes); gas extrapolated beyond the measured X-ray edges PASSES (−0.002, 3/4). **A prediction:** deeper X-ray
-  data must find that gas.
+- **SLUGGS ellipticals:** the IMF is at its bound (SG1). Gas extrapolated beyond the measured X-ray edges passes
+  (−0.002, 3/4). **Partly confirmed (XG1):** Chandra Atlas gas around NGC 4374 out to 65 kpc meets the extrapolation
+  (f 1.19). NGC 5846 (atlas stops at 28.6 kpc) and NGC 4365 (not in the atlas) are untested.
 
 ## What is still a posit
 
