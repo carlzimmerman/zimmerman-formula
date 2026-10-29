@@ -15,14 +15,14 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. signed_dot_002_cached completes7440 fixed-map projection dot bounds;
-  8 controls and31 exact-dyadic review controls pass. Original likelihood
-  remains conditional. Next freeze and execute DUAL_ROUTE.md: exact rational
-  covariance LDL and template-orthogonal witness, with fixed coefficients
-  and remaining projection/column/branch/continuum obligations explicit.
-  Initial signed_dot_001 is still under its original wall600/CPU480 bounds;
-  inspect its eventual manifest and preserve the performance failure. Do not
-  restart it or publish incomplete outputs. Cache correction is documented.
+1. exact_dual_001 completes exact covariance SPD/nuisance elimination;
+   12 run and18 review controls pass. The conditional lower569.5338658431842
+   exceeds exact law upper+9 for the published native boxes. Next freeze a
+   source projection-coefficient/anchor-consistency enclosure experiment to
+   establish actual model box membership. Keep column/branch/continuum
+   obligations explicit. No real-L or covering obstruction is claimed yet.
+   Initial signed_dot_001 is final: resource-limit(CPU480),506.748wall seconds,
+   no scientific result; its failure evidence is preserved. Never rerun it.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.

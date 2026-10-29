@@ -70,3 +70,8 @@ Signed fixed-map dot/stack score enclosures completed: signed_dot_002_cached.
 Original likelihood remains uncertified. Next DUAL_ROUTE.md eliminates the
 approximate nuisance/whitening map with an exact covariance dual witness;
 projection/column/branch/continuum assumptions remain explicit.
+
+Exact covariance nuisance dual is complete (exact_dual_001). Conditional
+lower569.5338658431842 exceeds exact feasible-law upper+9. No floating Q
+required. Next close native-box membership: source projection coefficient
+construction/anchor consistency, then column/branch/continuum enclosure.

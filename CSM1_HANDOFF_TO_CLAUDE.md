@@ -168,3 +168,20 @@ It is prospective, adds no physical fitted parameter, and retains projection
 and column/branch/continuum obligations. The uncached initial attempt remains
 bounded and unpublished while incomplete; its NPZ-loading issue is documented.
 Native finals remain5of9, with no new aggregate NL1 output at this check.
+
+
+Exact covariance-dual checkpoint: exact_dual_001 proves SPD of the actual saved
+60x60 covariance by full rational LDL reconstruction, and constructs a witness
+exactly orthogonal to all four nuisance templates. Its exact conditional lower
+score569.5338658431842 exceeds a feasible law upper154.34346325076024 plus9.
+All12 run controls and18 review/law-solve/bit-cap controls pass. This removes
+approximate whitening/projector dependence for the published native boxes;
+the witness is an inequality certificate, not an added physical parameter.
+
+The remaining gap is model membership in those boxes: projection coefficient
+construction, anchor consistency and column/branch/continuum enclosures. No
+real-L/global exclusion is claimed. See EXACT_DUAL_REVIEW.md and the full
+rational certificate. The initial uncached signed-dot attempt ended at CPU480
+(resource-limit,506.748wall seconds,no scientific result); its completed failure
+record is now preserved. Its loading issue was resolved in the already-published
+cached3.726-second run. Native finals remain5of9; no aggregate NL1 output yet.
