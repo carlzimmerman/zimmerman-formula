@@ -56,6 +56,11 @@ num("SP2 S_env canonical", sp2["canonical"]["S_env"], ".3f"); num("SP2 S_env alt
 _b = "1.5"; _b = bump(_b) if MUT else _b
 _ok = ("\\gtrsim" + _b + "\\times10^{11}") in TEX; NUMN += 1; NUMF += (not _ok)
 if not MUT: check("LG MW+M31 baryon bound stated in context", _ok, _b)
+# ---- v1.2 additions
+xg = J("XG1_sluggs_atlas_gas/xg1_atlas_gas_results.json")["galaxies"]["NGC4374"]
+num("XG1 f NGC4374", xg["f"], ".2f"); num("XG1 Rmax NGC4374", xg["Rmax_kpc"], ".0f")
+_m = xg["M_atlas"] / 1e9; num("XG1 M_atlas/1e9", _m, ".2f"); num("XG1 M_extrap/1e9", xg["M_extrap"] / 1e9, ".2f")
+num("XG1 Rmax NGC5846", J("XG1_sluggs_atlas_gas/xg1_atlas_gas_results.json")["galaxies"]["NGC5846"]["Rmax_kpc"], ".1f")
 # ---- v1.1 additions
 csm = J("CSM1_consistent_core_switch/HANDOFF.json")
 def find(o, key):
