@@ -144,3 +144,19 @@ scalar sign uncertainty only. It does not certify full mass-vector boxes,
 projection/whitening coefficients, signed dot products or physical coefficient
 construction, and interval_001 remains a conditional local numerical result.
 No continuous-model obstruction or passing witness has been established.
+
+
+Endpoint mass checkpoint: mass_enclosure_001 covers all446524 coordinates
+(124 endpoint brackets x3601 radii;62 active halo nodes). Directed50-digit
+mass enclosures and outward binary64 conversions pass9 controls. The original
+relative1e-8 plus absolute1e-6Msun padding contains every endpoint enclosure;
+there are zero misses and no enlarged padding. An independent80-digit refined-
+root/normalized-mass review checks496 selected coordinates and passes all127
+review controls. See MASS_ENCLOSURE_REVIEW.md for the short bounding argument.
+
+This certifies fixed-coefficient endpoint mass vectors only. Constructed
+columns/branches, continuum-L enclosures, projection/stacking/whitening
+coefficients and signed-dot rounding still need separate treatment. The local
+full-score bound remains conditional; no certified L exclusion or global
+obstruction is claimed. Native inventory remains5of9; no new native final or
+NL1 aggregate result was present at this check.

@@ -59,3 +59,9 @@ Scalar root signs are now certified for saved binary64 coefficients
 Full local score remains conditional: next outward mass-vector enclosures,
 then coefficient/signed-dot bounds. Do not treat scalar certification as a
 certified interval score or omit the fixed-coefficient scope.
+
+Endpoint mass enclosures complete: mass_enclosure_001 certifies all446524
+fixed-coefficient coordinates. The old padding contains every enclosure.
+Next freeze signed projection/stack/whitening dot enclosures with explicit
+coefficient scope and numerical error budget; continuum column/branch and
+coefficient-construction obligations remain before any full-score certificate.

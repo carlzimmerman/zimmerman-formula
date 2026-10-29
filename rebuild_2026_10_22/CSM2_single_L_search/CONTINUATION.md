@@ -15,13 +15,13 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. root_sign_001 certifies all124 saved scalar compact-root signs with
-   directed50-digit intervals;70-digit outer-mass review confirms them.
-   The local interval_001 remains conditional. Next freeze and execute an
-   outward mass-vector enclosure experiment using these brackets on all3601
-   radii for the62 active nodes at both endpoints. Preserve the exact fixed-
-   coefficient scope and separately account for coefficient construction,
-   signed projection, whitening and dot rounding before any covering claim.
+1. mass_enclosure_001 completes446524 directed endpoint coordinates for
+   fixed saved coefficients. All9 controls and127 review controls pass;
+   original registered padding contains every enclosure. Root signs were
+   already certified. Next freeze signed projection/stacking/whitening dot
+   enclosures, with coefficient scope and error bounds explicit. Separate
+   column/branch/continuum and coefficient-construction obligations remain;
+   do not promote partial certificates to full-score or covering claims.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.
