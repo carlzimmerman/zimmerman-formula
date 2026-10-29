@@ -15,10 +15,11 @@ Native diagnostics and the linear-projection preflight are also complete.
 
 Next actions:
 
-1. Finish publication verification for this completed checkpoint, then execute
-   the native-matrix/free-nuisance validation in `INTERVAL_ROUTE.md`. Derive a
-   conservative interval bound and test one declared interval before attempting
-   a cover. Preserve inconclusive intervals and branch-event obligations.
+1. Native-matrix/free-nuisance preflight is complete (native_matrix_001,32/32;
+   algebraic review10/10). Implement and run the separately frozen local
+   INTERVAL_001_CRITERIA.md experiment. Validate actual mass-root enclosures
+   and branch events; preserve conditional/inconclusive outcomes. No interval
+   exclusion is yet established.
 2. Any future necessary-test survivor must receive full CSM1 calibration/heldout
    grades at that same L. No extra T, changed cut, profile or data repair.
 3. With no finite survivors, retain the finite result and actual transition regions.

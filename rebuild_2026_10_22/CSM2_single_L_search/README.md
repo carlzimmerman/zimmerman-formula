@@ -83,3 +83,25 @@ criteria and bounded manifests. This verifies a linear map needed to propagate
 interval mass bounds; it is not an L exclusion. `INTERVAL_ROUTE.md` derives
 the proposed lower-score bound and records the remaining native-matrix,
 branch-event, source-solver and numerical-error obligations.
+
+
+Native matrix checkpoint: `native_matrix_001/` completes the next structural
+preflight (32/32 controls). Actual native radii, full covariance, four two-halo
+templates and catalogue interpolation weights reproduce saved CSM1 at
+L=3.75,3.9,4.0 on both footings. All181431 lenses reduce to127 positive-weight
+nodes. The native projection identity passes24 cases (max error5.15e-15).
+Free-amplitude projection matches independent least squares; a separate normal-
+equation review agrees to1.26e-12. At alternate L=3.75 the unrestricted first
+amplitude is negative: its lower score547.638 differs from the constrained
+547.679, confirming why the interval route needs an inequality. A1% covariance
+corruption breaks score reproduction. No new model pass or continuous-L
+exclusion is claimed. `INTERVAL_001_CRITERIA.md` now freezes the first local
+interval [3.75,3.751]; implementation and enclosure validation are next.
+
+Runtime caveat: native preflight stderr preserves NumPy matmul status warnings.
+All recorded arrays and errors pass explicit finiteness checks. The separate
+normal-equation review uses einsum rather than matmul, emits no warning and
+agrees to1.26e-12. This is floating-point preflight evidence, not rigorous
+outward-rounded interval arithmetic. Reproduce with
+`python3 launch_native_matrix.py NEW_OUTPUT_DIRECTORY` using the scientific
+Python environment recorded in the manifest. Do not overwrite completed runs.

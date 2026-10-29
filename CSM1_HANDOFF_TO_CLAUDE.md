@@ -81,3 +81,17 @@ inclination correction or hot-gas repair was folded into CSM1.
 The user has authorized pushing completed results as they arrive so Claude
 can retrieve them. Publish verified result packages and a clear handoff;
 keep unrelated dirty work and incomplete simulation dumps out of such commits.
+
+
+Native matrix checkpoint: `native_matrix_001/` completes the next structural
+preflight (32/32 controls). Actual native radii, full covariance, four two-halo
+templates and catalogue interpolation weights reproduce saved CSM1 at
+L=3.75,3.9,4.0 on both footings. All181431 lenses reduce to127 positive-weight
+nodes. The native projection identity passes24 cases (max error5.15e-15).
+Free-amplitude projection matches independent least squares; a separate normal-
+equation review agrees to1.26e-12. At alternate L=3.75 the unrestricted first
+amplitude is negative: its lower score547.638 differs from the constrained
+547.679, confirming why the interval route needs an inequality. A1% covariance
+corruption breaks score reproduction. No new model pass or continuous-L
+exclusion is claimed. `INTERVAL_001_CRITERIA.md` now freezes the first local
+interval [3.75,3.751]; implementation and enclosure validation are next.

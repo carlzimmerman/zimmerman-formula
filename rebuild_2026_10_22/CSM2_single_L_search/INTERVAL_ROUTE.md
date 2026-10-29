@@ -42,3 +42,7 @@ reproduce the free-nuisance score at saved CSM1 points. Then test one specified
 interval with conservative error allowances before attempting a covering
 certificate. This is an open route, not an all-L exclusion. A claimed cover
 requires separate adversarial proof review and reproducible numeric evidence.
+
+Completed native-matrix preflight:32/32 controls, independent normal-equation
+review10/10. Proceed under INTERVAL_001_CRITERIA.md; no interval arithmetic
+has yet been executed. Preserve conditional versus certified bounds.
