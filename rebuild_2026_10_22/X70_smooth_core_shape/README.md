@@ -54,3 +54,8 @@ Files: `FROZEN_CRITERIA.md`, `x70_smooth_core.py`, `.out` / `_results.json`, `_M
 
     PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 x70_smooth_core.py            # ~95 s
     PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 x70_smooth_core.py --mutate   # Burkert: equals X43
+
+**ID note (added 10-29).** A parallel session also used X70 (X70_soft_floor_x0, a different test). Cite this lane by its
+full directory name, X70_smooth_core_shape. The peer's X69_split_vs_cored_nfw found the split and cored-NFW reshapes fail
+X-COP. Its note warns that further profile-shape variants risk becoming a knob scan. X70_smooth_core_shape is one such
+variant, so read it as a lead with that look-elsewhere caveat.

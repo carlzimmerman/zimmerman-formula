@@ -34,3 +34,7 @@ Files: `FROZEN_CRITERIA.md`, `x69_soft_floor.py`, `.out` / `_results.json`, `_MU
 
     PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 x69_soft_floor.py                # ~55 s, exit 0
     X69_MUTATE=1 PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 x69_soft_floor.py
+
+**ID note (added 10-29).** A parallel session used the same lane numbers. X69_split_vs_cored_nfw and X70_soft_floor_x0 are
+its lanes. X70_soft_floor_x0 tests the same soft floor independently and also fails (53–55 % of SPARC shift; rms
+0.078 → 0.095). The two results agree. Cite this lane by its full directory name.
