@@ -2,6 +2,17 @@
 
 **One claim: the galactic acceleration scale is set by the dark-energy density.**
 
+**Checkpoint 2026-10-29 (route E, the owner's 25 October flagship: the a₀ law plus the cold dark energy core law).** This is not a new verdict on v3s, which stays frozen.
+- **The core rule** is ρ₀r₀ = max(a₀/2πG, η Σ_coll). It is empirical: every mechanism tried for the floor is closed (X47, X65–X68, the phantom-halo ceiling, pressure floors, correlated matter beyond r_ta; see [`rebuild_2026_10_22/X65_X67_POSTMORTEM.md`](rebuild_2026_10_22/X65_X67_POSTMORTEM.md)). SPARC prefers the hard floor (X69_soft_floor_sparc: softening it worsens the low-acceleration half by 43–55 %).
+- **Best halo shape.** The smooth core ρ₀/(1+x²)^(3/2), with η re-derived to 10.82 (X70_smooth_core_shape):
+  - canonical footing: passes SPARC, all 15 cluster keys and the 63 groups at the assumed f★ = 0.20;
+  - alt footing: fails the SPARC Υ line (0.47).
+- **With measured stellar fractions** (X71), one key fails: the heavy-cluster outskirts, G-OUT-M3 Z 2.25–2.33.
+- **Pending:** the native-c_f regrade X72 (frozen ba337e221c, pre-built) waits on the X48 A4 zooms. An external c_f(M) slope is pre-registered (23095bf23a).
+- **Draft:** PAPER65 (not deposited; audit 24/24).
+- **Board:** the new [core-law flavor board](explainers/crispy_fried_chicken_flavors.md#core-law-route-e-added-29-october-2026).
+- κ = ½ fitted, c_f external; the theory is not closed.
+
 **Verdict (24 October 2026):** [`covariant_push_2026_10_22/V3S_FINAL_VERDICT_2026-10-24.md`](covariant_push_2026_10_22/V3S_FINAL_VERDICT_2026-10-24.md) is the final verdict on the current theory, v3s, on one page. It covers the frozen action, what passes, what fails with its one mechanism, the status of the caustic completion, and the dated data still to come. As a galaxy-scale law it passes; as a theory of gravity and cosmology it fails at clusters, growth/CMB, the radiation era, hosted dwarfs and the Milky Way disc.
 
 **Start here (23 October 2026):** [`covariant_push_2026_10_22/V3_FULL_PICTURE.md`](covariant_push_2026_10_22/V3_FULL_PICTURE.md) is the whole current theory on one page: the action, its field equations, every pass and fail with its mechanism, and which results are certified in Lean (`fable_independent_2026/lean_2026/V3_PICTURE_2026_10_23.lean`, 23 theorems, 0 sorry). The map of every explanation tried is [`rebuild_2026_10_22/X0_explanation_map/MAP.md`](rebuild_2026_10_22/X0_explanation_map/MAP.md).

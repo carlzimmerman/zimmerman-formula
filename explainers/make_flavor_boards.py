@@ -50,13 +50,17 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 IMG = os.path.join(HERE, "img")
 OUT_BOARD = {"v4": "status_board_v4.png", "canonical": "status_board_canonical_rules.png",
              "plain_mond": "status_board_plain_mond.png", "lcdm": "status_board_lcdm.png",
-             "pmedium": "status_board_pmedium.png", "v3v": "status_board_v3v.png"}
+             "pmedium": "status_board_pmedium.png", "v3v": "status_board_v3v.png",
+             "coreE": "status_board_core_law.png"}
 OUT_GRID = "flavor_comparison_grid.png"
+BOARD_DATE = {"coreE": "29 October 2026"}   # flavors added later carry their own date
 
-FLAVORS = ["v3", "v4", "canonical", "plain_mond", "lcdm", "pmedium", "v3v"]
+FLAVORS = ["v3", "v4", "canonical", "plain_mond", "lcdm", "pmedium", "v3v", "coreE"]
 TITLE = {"v3": "v3", "v4": "v4", "canonical": "canonical rules", "plain_mond": "plain MOND", "lcdm": "ΛCDM",
-         "pmedium": "P-medium (Codex)", "v3v": "v3v (velocity-screened, no γ_L)"}
-GRID_TITLE = dict(TITLE, pmedium="P-medium\n(Codex)", v3v="v3v (velocity-\nscreened, no γ_L)")
+         "pmedium": "P-medium (Codex)", "v3v": "v3v (velocity-screened, no γ_L)",
+         "coreE": "core law (route E)"}
+GRID_TITLE = dict(TITLE, pmedium="P-medium\n(Codex)", v3v="v3v (velocity-\nscreened, no γ_L)",
+                  coreE="core law\n(route E)")
 RECIPES = {
     "v3": msb.RECIPE.split(": ", 1)[1],          # the main board's own recipe line, whatever it currently says
     "v4": "AeST (Skordis–Złośnik) with C1's capped free function (static limit = the law μ = x/(1+x)) plus the same "
@@ -72,6 +76,9 @@ RECIPES = {
                "stiffening scalar χ (Codex's reduced preferred-frame action); ℓ₀ = 0.44 kpc fitted to growth.",
     "v3v": "Literal Blanchet–Skordis Khronon (J_x, BS K(Q) dust) + covector P, with NO γ_L stiffness. Moving subsystems "
            "hold phantom only within 2GM_b/V² (velocity screening). κ fitted; no L★.",
+    "coreE": "Route E (owner's flagship, 10-25): Newtonian gravity on baryons + cold dark energy halos with the smooth core "
+             "ρ₀/(1+x²)^(3/2) at ρ₀r₀ = max(a₀/2πG, η Σ_coll), η re-derived for the shape (10.82 at c_f = 4, EXTERNAL); "
+             "fair share inside r_ta; measured stellar fractions; no law force. κ fitted.",
 }
 PSEUDO = {"newton"}   # the Newtonian / GR limit some lanes compute as a row; never a column of its own
 
@@ -195,6 +202,8 @@ L("H4", {"v3", "v3v"}, R + "H4_v3_saddle_stability/README.md:L11, L71, L81 (the 
 L("H5", {"v3", "v3v"}, R + "H5_v3s_lobe_growth/README.md:L3-L24 (static branch only in the khronon's rest frame)")
 L("Y1", {"pmedium"}, "rebuild_2026_10_22/Y1_pmedium_flavor/README.md:L1-L38 (Codex's XP/SE-20261023 reduced action)")
 L("Q6", {"v3", "lcdm"}, R + "Q6_v3_class/README.md:L21, L131 (ΛCDM refit; DUST = ΛCDM)")
+L("X70", {"coreE"}, R + "X70_smooth_core_shape/README.md:L1-L11 (smooth core, η re-derived, f★ = 0.20)")
+L("X71", {"coreE"}, R + "X71_smooth_core_measured_fstar/README.md:L1-L13 (X70 with measured stellar fractions)")
 
 # ---------------------------------------------------------------------------------------------------------------------
 # What each lane itself concluded: (lane, flavor computed, row) -> (colour, file:line where the lane states it).
@@ -205,6 +214,13 @@ def V(lane, comp, row, st, where):
     VERDICTS[(lane, comp, row)] = (st, where)
 
 
+# core law (route E): X70 (f★ 0.20) and X71 (measured f★); SPARC and groups do not use f★ (X71 README L13)
+V("X70", "coreE", "Rotation curves (SPARC RAR)", "UNDEC", R + "X70_smooth_core_shape/README.md:L9-L12 (canonical "
+  "passes; alt fails the line on Υ 0.47: footings disagree)")
+V("X70", "coreE", "Galaxy groups (BFJR)", "PASS", R + "X70_smooth_core_shape/README.md:L18 (Z +1.94 / +1.88 "
+  "CONSISTENT, both footings)")
+V("X71", "coreE", "Cluster cores (eRASS1 × KiDS)", "FAIL", R + "X71_smooth_core_measured_fstar/README.md:L7-L13 "
+  "(BREAKS: G-OUT-M3 UNDER, Z 2.25 / 2.33)")
 # v4
 V("H3", "v4", "Health: ghosts, gradients", "COND", TV3 + ":L26-L30")
 V("I1", "v4", "Well-posed (leaf / Cauchy problem)", "FAIL", R + "I1_gammaL_causality/README.md:L3-L14")
@@ -371,6 +387,9 @@ VERIFIED_GREEN_F = {
         "coordinator rerun identical; with U1 (54ee83e54e; coordinator rerun: main 15/16, A2 6/6)"),
     ("v3v", "Outer globular clusters"): ("O1", "ecbb964b0e", "coordinator rerun identical"),
     ("v3v", "Local a0 from MeerKAT"): ("P4", "6c0249a8bc", "coordinator rerun 2026-10-23: P4 identical except peak RSS"),
+    ("coreE", "Galaxy groups (BFJR)"): ("X70", "a9b3a43449",
+        "X71's f★ = 0.20 run reproduces X70 (cluster preds max |d| 0, 645c914b14) and X72's K1 reproduces X71's groups Z, "
+        "SPARC rms and cluster preds to 1e-9 (1a60d81204)"),
     ("lcdm", "Native CMB"): ("C2", "5e93769089",
         "the ΛCDM refit is reproduced independently by C7 K1 (README L161: 1003.48 vs C2's 1003.20) and Q6 "
         "(README L21: 1003.47)"),
@@ -623,6 +642,14 @@ CELLS = [
       "decides", ["O1"]),
     C("pmedium", 3, "Linear growth", "PASS",
       "σ₈ / dust limit 0.9991 (from a = 1e-3), 0.967 (1e-4); a WDM-like cutoff at k ~ 1–6 h/Mpc is flagged", ["Y1"]),
+    # ---------------- core law (route E, smooth core): X70 / X71 ----------------
+    C("coreE", 1, "Rotation curves (SPARC RAR)", "UNDEC",
+      "canonical rms 0.071, Υ 0.56: line passes; alt rms 0.072 but Υ 0.47 < 0.50: line fails (footings disagree)",
+      ["X70"]),
+    C("coreE", 1, "Galaxy groups (BFJR)", "PASS", "63 groups, Z +1.94 / +1.88 CONSISTENT (X43 Burkert: +2.05)", ["X70"]),
+    C("coreE", 2, "Cluster cores (326 eRASS1)", "FAIL",
+      "14 of 15 keys pass; heavy-cluster outskirts G-OUT-M3 UNDER, Z 2.25 / 2.33 with measured f★ (all 15 pass at the "
+      "assumed f★ 0.20); native c_f regrade X72 pending A4", ["X71", "X70"]),
 ]
 
 
@@ -746,7 +773,7 @@ def draw_board(f, cells, out):
     top_in, bot_in = 1.70, 1.25
     ax = fig.add_axes([0.012, bot_in / H, 0.976, 1 - (top_in + bot_in) / H])
     ax.set_xlim(0, ncol); ax.set_ylim(-0.25, nmax + 0.65); ax.axis("off")
-    fig.text(0.015, 1 - 0.50 / H, f"Flavor board · {TITLE[f]} · 23 October 2026", fontsize=24, fontweight="bold",
+    fig.text(0.015, 1 - 0.50 / H, f"Flavor board · {TITLE[f]} · {BOARD_DATE.get(f, '23 October 2026')}", fontsize=24, fontweight="bold",
              color="#16201d")
     msb._fit(fig, 0.015, 1 - 0.95 / H, f"Recipe ({TITLE[f]}): {RECIPES[f]}", 12.0, color="#16201d",
              fontstyle="italic")
@@ -801,13 +828,13 @@ def draw_grid(cells, out):
     rows, col_of = grid_rows(cells)
     got = {(c["flavor"], c["row"]): c["st"] for c in all_cells(cells)}
     n = len(rows) + len(COLUMNS)                      # rows + one header line per column group
-    rh, W = 0.25, 16.2
+    rh, W = 0.25, 5.6 + 1.45 * len(FLAVORS) + 0.3     # wide enough for every flavor column
     H = 1.85 + rh * n + 1.0
     fig = plt.figure(figsize=(W, H), dpi=150)
     fig.patch.set_facecolor("#f6f7f5")
     ax = fig.add_axes([0.0, 1.0 / H, 1.0, (H - 1.85 - 1.0) / H])
     ax.set_xlim(0, W); ax.set_ylim(n, 0); ax.axis("off")
-    fig.text(0.02, 1 - 0.45 / H, "Flavor comparison grid · 23 October 2026", fontsize=19, fontweight="bold",
+    fig.text(0.02, 1 - 0.45 / H, "Flavor comparison grid · 23 October 2026 (core-law column 29 October)", fontsize=19, fontweight="bold",
              color="#16201d")
     fig.text(0.02, 1 - 0.85 / H, "Rows = tests (union of the flavor boards' tiles); columns = flavors. v3 is the main "
              "board. Colour = the verdict a committed lane computed for that flavor.", fontsize=9.5, color="#4d5a56")

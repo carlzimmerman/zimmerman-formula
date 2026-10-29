@@ -1,5 +1,15 @@
 # FRIED CHICKEN — the requirements
 
+> **Status note (2026-10-29).** The gates below are the covariant-completion requirements; they are unchanged.
+> - **The owner's current flagship is route E** (25 October): the a₀ law plus the empirical cold dark energy core law
+>   ρ₀r₀ = max(a₀/2πG, η Σ_coll). It is not a covariant completion and does not claim these gates.
+> - **Where route E stands:** the smooth-core halo (X70) passes SPARC, the cluster keys and the groups on the canonical
+>   footing at the assumed f★. With measured f★ (X71), one cluster key fails, at about 2.3σ. The floor itself has no
+>   derived mechanism: every local route is closed (`rebuild_2026_10_22/X65_X67_POSTMORTEM.md`).
+> - **Next:** the X72 native-c_f regrade after the X48 A4 zooms.
+> - **Board:** core-law flavor board (`explainers/crispy_fried_chicken_flavors.md`).
+> - κ = ½ fitted; not theory closed.
+
 > ## ⚠️ WHAT THIS FRAMEWORK IS, LABELLED HONESTLY
 >
 > In the frame-flip configuration that clears nine of these ten rows, **ρ_halo is an
