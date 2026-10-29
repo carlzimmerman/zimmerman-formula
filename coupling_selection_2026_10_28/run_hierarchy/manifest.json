@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "CS28_HIERARCHY",
+  "repository": {
+    "commit": "75410627d17b49250aa0977c73d2d1d63c4a9166",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "coupling_selection_2026_10_28/check_hierarchy.py",
+    "coupling_selection_2026_10_28/run_hierarchy/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact gauge-coupling elimination, rational 7/27 coefficient conditional on vacuum-scale embedding, nonzero ratio drift, tree-modulus slopes, and twelve direct numerical comparisons.",
+    "coefficient_domain": "SymPy rational symbolic algebra; float64 adaptive ODE",
+    "conventions": "MV28 canonical normalization, t=ln(mu); unitarity implication is a proof with external hypotheses, not established by solving a linear system.",
+    "inputs": [
+      "HIERARCHY.md equations (7)-(11)",
+      "MV28 leading-log stiffness and gauge flow"
+    ],
+    "bounds": {
+      "L": [
+        100,
+        300,
+        1000
+      ],
+      "alpha": [
+        0.01,
+        "1/30",
+        0.1,
+        1
+      ],
+      "numeric_relative_tolerance": 2e-15
+    },
+    "non_claims": [
+      "No all-order RG evolution or physical Landau pole",
+      "No classification of boundary or enlarged-theory fixed points",
+      "No full SU6 model",
+      "No numerical prediction of full gravitating B/V"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-29T01:36:19.372588+00:00",
+    "runtime_seconds": 0.503735,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "coupling_selection_2026_10_28/check_hierarchy.py",
+    "coupling_selection_2026_10_28/HIERARCHY.md",
+    "microscopic_vacuum_2026_10_28/INVERTED_HIERARCHY.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "coupling_selection_2026_10_28/check_hierarchy.py",
+      "sha256": "56063eaaa59a4cbe396eabe3a453dcfc0d9d03966eeb0868a8cda7c00e00c43a",
+      "sha256_after": "56063eaaa59a4cbe396eabe3a453dcfc0d9d03966eeb0868a8cda7c00e00c43a"
+    },
+    {
+      "path": "coupling_selection_2026_10_28/HIERARCHY.md",
+      "sha256": "37a52cf9a51091622e34d33fdcc2519691d1d61c8a082b4b29bb59cb1bb43e5b",
+      "sha256_after": "37a52cf9a51091622e34d33fdcc2519691d1d61c8a082b4b29bb59cb1bb43e5b"
+    },
+    {
+      "path": "microscopic_vacuum_2026_10_28/INVERTED_HIERARCHY.md",
+      "sha256": "53c54c4381ccfed3467f6152411f4126ea200aab62e8e96032683709fddc687b",
+      "sha256_after": "53c54c4381ccfed3467f6152411f4126ea200aab62e8e96032683709fddc687b"
+    }
+  ],
+  "output_directory": "coupling_selection_2026_10_28/run_hierarchy",
+  "declared_results": [
+    "coupling_selection_2026_10_28/run_hierarchy/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "coupling_selection_2026_10_28/run_hierarchy/stdout.txt",
+      "sha256": "389bd115081a55755edf1c3c67e077ca04e7942049ab6db4294450a12bd5a64a",
+      "kind": "log"
+    },
+    {
+      "path": "coupling_selection_2026_10_28/run_hierarchy/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "coupling_selection_2026_10_28/run_hierarchy/result.json",
+      "sha256": "389bd115081a55755edf1c3c67e077ca04e7942049ab6db4294450a12bd5a64a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
