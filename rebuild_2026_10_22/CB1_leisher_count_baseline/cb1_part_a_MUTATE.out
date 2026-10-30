@@ -1,0 +1,50 @@
+CB1 Part A  MUTATE  frozen 53735de87f; authors' commit 6d01c315d1. Not a framework test.
+K1 rows 1007; 1/M [0.03369, 0.55540] keV^-1; M [1.80, 29.69] keV; authors' norm bounds [0.03333, 0.55556]
+
+[MUTATE permuted 1/M] A1: sizes train/valid/test (807, 100, 100). In place (public code): SPLIT CHANGES. Copy each call (paper's stated behaviour): SPLIT FIXED
+  Overlap of call 0's test set with later test sets: median 10 of 100, range 5-17; with later TRAIN sets: median 80, range 71-89
+  A2: var(y_test) min 0.01659 median 0.02238 max 0.02646; full sample 0.02281; call 0 0.02150
+  A2: R2 implied by fixed RMSE 0.031: min 0.9421 median 0.9571 max 0.9637; call 0 0.9553. Test sims > 6 keV: 14-33 (call 0 24); > 9.7 keV: 3-20 (call 0 14)
+  A3: snapshot only  R2 0.708 RMSE 0.082: implied var [0.02271, 0.02335]; admitted by 6/51 calls; call 0 False; full-sample var True
+  A3: no features    R2 0.509 RMSE 0.107: implied var [0.02308, 0.02356]; admitted by 5/51 calls; call 0 False; full-sample var False
+  A3: best           R2 0.957 RMSE 0.031: implied var [0.02139, 0.02335]; admitted by 20/51 calls; call 0 True; full-sample var True
+  A3: main branch    R2 0.073 RMSE 0.147: implied var [0.02314, 0.02348]; admitted by 5/51 calls; call 0 False; full-sample var False
+  A3: flattened      R2 0.873 RMSE 0.054: implied var [0.02245, 0.02348]; admitted by 10/51 calls; call 0 False; full-sample var True
+  A3: pruned         R2 0.454 RMSE 0.117: implied var [0.02483, 0.02531]; admitted by 2/51 calls; call 0 False; full-sample var False
+  A3-ApJ: snapshot only   implied var [0.02271, 0.02335]; calls [4, 12, 36, 37, 38, 46]; call 0 False; chance for a random 100-set 0.127
+  A3-ApJ: no features     implied var [0.02308, 0.02356]; calls [16, 21, 36, 38, 46]; call 0 False; chance for a random 100-set 0.092
+  A3-ApJ: best            implied var [0.02139, 0.02335]; calls [0, 2, 3, 4, 5, 12, 13, 17, 20, 22, 28, 34, 36, 37, 38, 40, 41, 46, 48, 49]; call 0 True; chance for a random 100-set 0.384
+  A3-ApJ: main branch     implied var [0.02314, 0.02348]; calls [16, 21, 36, 38, 46]; call 0 False; chance for a random 100-set 0.066
+  A3-ApJ: flattened ApJ   implied var [0.02302, 0.02364]; calls [4, 16, 21, 36, 38, 46]; call 0 False; chance for a random 100-set 0.116
+  A3-ApJ: pruned caption  implied var [0.02290, 0.02337]; calls [4, 16, 36, 38, 46]; call 0 False; chance for a random 100-set 0.091
+  A3-ApJ: pruned text     implied var [0.02483, 0.02531]; calls [1, 33]; call 0 False; chance for a random 100-set 0.043
+  A3-ApJ: six pairs (all but 'pruned text') share var [0.02314, 0.02335]; calls inside [36, 38, 46]; P(six independent splits each fit their own pair) 3.1e-06
+  A3: UNITS CONFIRMED. Calls admitting every pair at once: []
+  A4: share of sims above 6.0 keV 0.258, above 9.7 keV 0.136
+  A4 ASSUMPTION (constant RMSE 0.031): above 6.0 keV: test-set n 24, R2 +0.21; sample R2 +0.35
+  A4 ASSUMPTION (constant RMSE 0.031): above 9.7 keV: test-set n 14, R2 -0.75; sample R2 -1.36
+
+[MUTATE wrong unit, M in keV] A1: sizes train/valid/test (807, 100, 100). In place (public code): SPLIT CHANGES. Copy each call (paper's stated behaviour): SPLIT FIXED
+  Overlap of call 0's test set with later test sets: median 10 of 100, range 5-17; with later TRAIN sets: median 80, range 71-89
+  A2: var(y_test) min 13.24215 median 24.67653 max 46.17065; full sample 25.27272; call 0 20.55836
+  A2: R2 implied by fixed RMSE 0.031: min 0.9999 median 1.0000 max 1.0000; call 0 1.0000. Test sims > 6 keV: 0-0 (call 0 0); > 9.7 keV: 0-0 (call 0 0)
+  A3: snapshot only  R2 0.708 RMSE 0.082: implied var [0.02271, 0.02335]; admitted by 0/51 calls; call 0 False; full-sample var False
+  A3: no features    R2 0.509 RMSE 0.107: implied var [0.02308, 0.02356]; admitted by 0/51 calls; call 0 False; full-sample var False
+  A3: best           R2 0.957 RMSE 0.031: implied var [0.02139, 0.02335]; admitted by 0/51 calls; call 0 False; full-sample var False
+  A3: main branch    R2 0.073 RMSE 0.147: implied var [0.02314, 0.02348]; admitted by 0/51 calls; call 0 False; full-sample var False
+  A3: flattened      R2 0.873 RMSE 0.054: implied var [0.02245, 0.02348]; admitted by 0/51 calls; call 0 False; full-sample var False
+  A3: pruned         R2 0.454 RMSE 0.117: implied var [0.02483, 0.02531]; admitted by 0/51 calls; call 0 False; full-sample var False
+  A3-ApJ: snapshot only   implied var [0.02271, 0.02335]; calls []; call 0 False; chance for a random 100-set 0.000
+  A3-ApJ: no features     implied var [0.02308, 0.02356]; calls []; call 0 False; chance for a random 100-set 0.000
+  A3-ApJ: best            implied var [0.02139, 0.02335]; calls []; call 0 False; chance for a random 100-set 0.000
+  A3-ApJ: main branch     implied var [0.02314, 0.02348]; calls []; call 0 False; chance for a random 100-set 0.000
+  A3-ApJ: flattened ApJ   implied var [0.02302, 0.02364]; calls []; call 0 False; chance for a random 100-set 0.000
+  A3-ApJ: pruned caption  implied var [0.02290, 0.02337]; calls []; call 0 False; chance for a random 100-set 0.000
+  A3-ApJ: pruned text     implied var [0.02483, 0.02531]; calls []; call 0 False; chance for a random 100-set 0.000
+  A3-ApJ: six pairs (all but 'pruned text') share var [0.02314, 0.02335]; calls inside []; P(six independent splits each fit their own pair) 0.0e+00
+  A3: UNITS NOT CONFIRMED. Calls admitting every pair at once: []
+  A4: share of sims above 6.0 keV 0.000, above 9.7 keV 0.000
+  A4 ASSUMPTION (constant RMSE 0.031): above 6.0 keV: test-set n 0, R2 +nan; sample R2 +nan
+  A4 ASSUMPTION (constant RMSE 0.031): above 9.7 keV: test-set n 0, R2 +nan; sample R2 +nan
+
+Permuted target UNITS True (a variance statistic is blind to row order, so this frozen mutation cannot bite; disclosed). Wrong-unit target UNITS False: bite True
