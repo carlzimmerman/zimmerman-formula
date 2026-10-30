@@ -13,3 +13,6 @@
    shuffled A does not centre on zero. Cause: the weighted CAP mean per z bin is not zero, split samples were not re-centred, and v_rec has a non-zero mean, so
    mean CAP × mean v leaks tSZ and CIB through the even-in-v cancellation. **Fix, in both the control and the MW-mass stack, for every sample: remove the weighted CAP mean and the v mean in each z bin of that sample.**
    The control is re-run first and its frozen rule stands: S/N ≥ 4 or the lane ends VOID. The shuffled-A mean is now printed. GH7 centred CAP but not v; its class was void anyway.
+
+5. **R must match the demeaned velocities.** Removing the z-bin mean of v_rec changed T̂ and its errors by about 2.7×, so most of the raw v_rec variance was a coherent radial mode per z shell (the same low-k excess). R is therefore recomputed on z-bin-demeaned
+   v_rec in the mock: R = Cov(v_true, v_dm)/Var(v_dm). R_ctx uses the data's demeaned rms. Control re-run, for the same frozen rule, before the MW-mass stack. The earlier R values (0.921, 0.904) are superseded.
