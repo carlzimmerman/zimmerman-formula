@@ -16,3 +16,5 @@
 
 5. **R must match the demeaned velocities.** Removing the z-bin mean of v_rec changed T̂ and its errors by about 2.7×, so most of the raw v_rec variance was a coherent radial mode per z shell (the same low-k excess). R is therefore recomputed on z-bin-demeaned
    v_rec in the mock: R = Cov(v_true, v_dm)/Var(v_dm). R_ctx uses the data's demeaned rms. Control re-run, for the same frozen rule, before the MW-mass stack. The earlier R values (0.921, 0.904) are superseded.
+
+6. **The frozen β direction is inverted.** The criteria say A scales as β_true/0.44. T̂ does not depend on the true β through the assumed one, and R_true = R β_true/0.44, so **A scales as 0.44/β_true**. Corrected here, after the result; the README uses this form.

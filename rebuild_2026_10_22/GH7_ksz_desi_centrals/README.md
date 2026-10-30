@@ -63,3 +63,5 @@ velocities correlate with true velocities on the sky. The control is the only te
 `FROZEN_CRITERIA.md`, `AMENDMENTS.md`, `gh7_select.py`, `gh7_vel.py`, `gh7_cap.py`, `gh7_gate.py`, `gh7_measure.py`, `gh7_control.py`,
 with `.out` and `.json`. Run in that order with `PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15`; `gh7_control.py` needs GH6's cache. Map and
 work files are in `_external_data/act_dr6_nilc/` and `_external_data/gh7_work/` (not committed); map sha256 e9f8cb7c….
+
+**Forward note (GH8_ksz_velocity_hardened):** about 12 % of the lenses here sit in near-blank map regions, and v_rec has large z-shell means. GH8 fixes both. Use its numbers, not these.
