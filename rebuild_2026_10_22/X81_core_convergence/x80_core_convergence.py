@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""X80_core_convergence (criteria 62ddc553d0): is X77's native eta a resolution artefact?
+"""X81_core_convergence (committed as X80; renamed) (criteria 62ddc553d0): is X77's native eta a resolution artefact?
 T1 same-seed d ln(r0/rvir) / d ln(rconv/rvir), ng 48 -> 64; T2 analytic NFW / Einasto(0.17) cusp fitted with X77's objective.
     python3 x80_core_convergence.py [--mutate]"""
 import glob, json, math, os, sys

@@ -1,4 +1,7 @@
-# X80_core_convergence: FROZEN CRITERIA (committed alone, before any script or number)
+# X81_core_convergence: FROZEN CRITERIA (committed alone, before any script or number)
+
+
+**Lane-ID note.** Committed as X80_core_convergence (62ddc553d0, f876004d25). The peer's X80_low_mass_floor_emergence (5adc9ad92e) took X80 first, so this lane is renamed X81 by `git mv`. History is not rewritten, and the content is unchanged.
 
 **Question.** X77 measured η_native directly on the X48 zoom halos. At 1e12, ng 64 it gives 20.83, just inside the SPARC
 limit of 21.2, after rising 14.5 % from ng 48. X77 fits the smooth core on [r_conv, r_vir], where r_conv = max(3ε,

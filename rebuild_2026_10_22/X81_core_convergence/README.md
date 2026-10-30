@@ -1,4 +1,7 @@
-# X80_core_convergence: frozen verdict UNDECIDED. Reported: the zoom "cores" are NFW cusps seen through the ε cut; without the cut, native η is ×1.22 over the SPARC limit
+# X81_core_convergence: frozen verdict UNDECIDED. Reported: the zoom "cores" are NFW cusps seen through the ε cut; without the cut, native η is ×1.22 over the SPARC limit
+
+
+**Lane-ID note.** Committed as X80_core_convergence (62ddc553d0, f876004d25). The peer's X80_low_mass_floor_emergence (5adc9ad92e) took X80 first, so this lane is renamed X81 by `git mv`. History is not rewritten, and the content is unchanged.
 
 Criteria: `FROZEN_CRITERIA.md` (62ddc553d0), committed before any script or number. Script `x80_core_convergence.py`
 execs X77's `fit()` unchanged (the file's text up to its K2 block). Outputs: `x80.out`, `x80_results.json`, `x80_MUTATE.out`.
