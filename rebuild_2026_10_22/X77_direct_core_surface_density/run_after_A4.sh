@@ -1,6 +1,7 @@
 #!/bin/bash
 # Waits for all 18 A4 seeds, then reruns X77 on every snapshot (incl. ng 64 at 1e13/1e14) and grades the all-ng-64
-# native eta table in X74's grader at both f*. Outputs renamed A4_*; nothing committed automatically.
+# native eta table in X74's grader at both f*. Outputs renamed A4_*; X74's own same-named A4 outputs are held aside and
+# restored around each run. Nothing committed automatically.
 cd "$(dirname "$0")"
 R=../X48_native_cf_zoom/runs
 while [ "$(ls $R/M1e1[34]_s?_ng64/done.json 2>/dev/null | wc -l | tr -d ' ')" -lt 18 ]; do sleep 600; done
@@ -16,7 +17,8 @@ json.dump(t, open("A4_x77_native_table.json", "w"), indent=1); print(t)
 PY
 cd ../X74_all_measured_native_cf
 for fs in 0.034 0.0615; do
+  for f in x74_results_fs${fs}_nat_s2.7774.json x74_fs${fs}_nat_s2.7774.out; do [ -f $f ] && mv $f $f.x77hold; done
   X74_CF=../X77_direct_core_surface_density/A4_x77_native_table.json X73_FSTAR=$fs PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15 python3 x74_native_cf.py > ../X77_direct_core_surface_density/A4_grade_fs$fs.log 2>&1
-  for f in x74_results_fs${fs}_nat_s2.7774.json x74_fs${fs}_nat_s2.7774.out; do mv $f ../X77_direct_core_surface_density/A4grade_$f; done
+  for f in x74_results_fs${fs}_nat_s2.7774.json x74_fs${fs}_nat_s2.7774.out; do mv $f ../X77_direct_core_surface_density/A4grade_$f; [ -f $f.x77hold ] && mv $f.x77hold $f; done
 done
 echo "X77 A4 rerun done $(date)"
