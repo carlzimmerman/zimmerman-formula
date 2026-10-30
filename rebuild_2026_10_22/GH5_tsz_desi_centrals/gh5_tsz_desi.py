@@ -13,7 +13,8 @@ from scipy.spatial import cKDTree
 T0 = time.time()
 MAP = os.environ.get("GH5_MAP", "ComptonY_deproj_cib_1.0_10.7"); TIER = os.environ.get("GH5_TIER", "central")
 MUT = os.environ.get("GH5_MUTATE") == "1"
-TAG = f"_{MAP}_{TIER}" + ("_MUTATE" if MUT else "")
+SEED = int(os.environ.get("GH5_SEED", "303"))                               # != 303: post-freeze null-scatter diagnostic
+TAG = f"_{MAP}_{TIER}" + ("_MUTATE" if MUT else "") + (f"_seed{SEED}" if SEED != 303 else "")
 HERE = os.path.dirname(os.path.abspath(__file__)); REB = os.path.dirname(HERE); REPO = os.path.dirname(REB)
 EXT = os.path.join(os.path.dirname(REPO), "_external_data"); ACT = os.path.join(EXT, "act_dr6_nilc")
 LRD = os.path.join(REPO, "real_research", "data", "lensing_rar")
@@ -95,10 +96,13 @@ else:
     D = np.load(os.path.join(EXT, "gh5_work", "gh5_lenses.npz")); c = D["cen"]
     frac = float(c.mean()); check("K4_central_fraction", 0.6 <= frac <= 0.8, f"{frac:.3f} (Zhang CEN 0.68)")
     ss = D["sfr"] - D["lm"]
-    sel = dict(central=c, clean=D["clean"], iso3=D["iso"], comp08=c & (D["comp"] > 0.8), passive=c & (ss < -11), sf=c & (ss >= -11))[TIER]
+    hi, ngc = D["comp"] > 0.8, (D["ra"] > 90) & (D["ra"] < 280)
+    sel = dict(central=c, clean=D["clean"], iso3=D["iso"], comp08=c & hi, passive=c & (ss < -11), sf=c & (ss >= -11),
+               # post-freeze diagnostics (no verdict weight): where does comp08's negative stack come from?
+               diag_complo=c & ~hi, diag_ngc=c & ngc, diag_sgc=c & ~ngc, diag_hi_ngc=c & hi & ngc, diag_hi_sgc=c & hi & ~ngc, diag_hi_passive=c & hi & (ss < -11))[TIER]
     lm = D["lm"][sel] + 2 * np.log10(0.704 / H_NAT); z, ra, dec = D["z"][sel], D["ra"][sel], D["dec"][sel]
 P(f"GH5  map {MAP}  tier {TIER}{' [MUTATE]' if MUT else ''}: {len(z)} lenses  [{time.time() - T0:.0f} s]")
-rng = np.random.default_rng(303); NRAND = 3
+rng = np.random.default_rng(SEED); NRAND = 3
 rra = np.mod(np.repeat(ra, NRAND) + rng.uniform(-0.5, 0.5, len(ra) * NRAND) / np.cos(np.radians(np.repeat(dec, NRAND))), 360)
 rde = np.clip(np.repeat(dec, NRAND) + rng.uniform(-0.5, 0.5, len(ra) * NRAND), -35.85, 3.85)
 if MUT:
@@ -158,6 +162,11 @@ RES = {"map": MAP, "tier": TIER, "mutate": MUT, "n_lens": int(okL.sum()), "n_ran
        "Y_comp": Yc.tolist(), "err_comp": err.tolist(), "null_chi2": chi0}
 if MUT:
     check("MUTATE_random_lenses_null", stats.chi2.sf(chi0, NC) > 0.01, f"p {stats.chi2.sf(chi0, NC):.3f}")
+    gc = json.load(open(os.path.join(HERE, f"gh5_results_{MAP}_{TIER}.json")))["fits"]; nf = {}
+    for k_ in ("1.0", "1.8", "3.0"):
+        mc = np.array(gc[k_]["model"]); r = Yc - mc; F = float(mc @ Ci @ mc); nf[k_] = dict(A=float(mc @ Ci @ Yc) / F, sA=1 / math.sqrt(F), chi2=float(r @ Ci @ r))
+    RES["null_fits"] = nf; RES["null_dchi2"] = nf["1.0"]["chi2"] - nf["3.0"]["chi2"]
+    P(f"  null stack on the real tier's models: A(k=3) {nf['3.0']['A']:.2f}+-{nf['3.0']['sA']:.2f}, A(k=1) {nf['1.0']['A']:.2f}+-{nf['1.0']['sA']:.2f}, dchi2 k1-k3 {RES['null_dchi2']:+.1f}")
 elif TIER == "kids":
     g4 = json.load(open(os.path.join(REB, "GH4_tsz_two_halo_compensated", f"gh4_results_{MAP}_b34.json")))
     k2 = float(np.max(np.abs(Yc / np.array(g4["Y_comp"]) - 1))); check("K2_reproduces_GH4", k2 < 1e-6, f"max rel diff {k2:.1e}, {okL.sum()} vs {g4['n_lens']} lenses")

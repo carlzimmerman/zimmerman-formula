@@ -83,3 +83,7 @@ Run (~4 min, one thread, peak RSS 1.8 GB):
 
 **Sources:** ACT DR6.02 NILC maps on LAMBDA (https://lambda.gsfc.nasa.gov/product/act/act_dr6.02/act_dr6.02_nilc_info.html);
 Coulton et al. 2024, PRD 109, 063530; Zhang et al. 2024, A&A 690, A267.
+
+**Forward note (GH5_tsz_desi_centrals):** the "deeper measurement" this README called for was partly on disk: 206k DESI centrals
+on the same map find no tSZ detection and A(k=3) = −0.07 ± 0.39, so the lean did not grow. GH5's null test also shows the
+Δχ² rule used here is not a detection test, and that jackknife errors run about 1.4× low.
