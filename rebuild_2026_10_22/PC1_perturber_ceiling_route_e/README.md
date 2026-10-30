@@ -59,3 +59,7 @@ the solver, as X49's K1 does.
   sealed Q limits are law-based and were not edited, so they should not be read as route E's prediction.
 - K2 and an unused line were corrected in the script before the committed run, after the first run. No graded number changed.
 - Lens masses depend on assumed profiles, and perturbers may be line-of-sight objects. Hosted dwarfs are treated as in equilibrium.
+
+## Correction (MF1, 2026-10-30)
+
+The post-hoc M_f window above came from a grid ending at lg 8. MF1's finer grid shows canonical passes all five classes again at lg 8.25, so 6.25–7.00 has no sharp upper edge on canonical. See `../MF1_h2_cooling_floor_mass/README.md`.

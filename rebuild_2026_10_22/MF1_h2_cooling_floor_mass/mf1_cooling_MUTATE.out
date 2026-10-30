@@ -1,0 +1,51 @@
+MF1_h2_cooling_floor_mass  MUTATE (Lambda / 1000)  frozen b612d856a4
+kappa = 1/2 FITTED; route E, floor Burkert halos; NOT blind (window known); not theory closed
+Native background: h 0.6758, Om 0.3129, Ob 0.0488, x0 2.033e-04
+
+=== Chemistry: T_crit(z), virial-density gas
+  z   10: n   0.045 cm^-3, t  708.4 Myr, T_crit 10000.0 K, x_H2 1.18e-03, V 11.63 km/s
+  z   15: n   0.139 cm^-3, t  404.0 Myr, T_crit 10000.0 K, x_H2 2.00e-03, V 11.63 km/s
+  z   25: n   0.596 cm^-3, t  195.1 Myr, T_crit  5559.0 K, x_H2 2.14e-03, V 8.67 km/s
+
+=== [canonical] Sigma 106.9 Msun/pc^2
+  z   10: T_crit 10000.0 K -> r0  191.1 pc -> lg M_f 8.213  in window False;  V200(z) there 21.33 km/s = T 33617 K (reported)
+  z   15: T_crit 10000.0 K -> r0  191.1 pc -> lg M_f 8.213  in window False;  V200(z) there 25.72 km/s = T 48879 K (reported)
+  z   25: T_crit  5559.0 K -> r0  106.2 pc -> lg M_f 7.730  in window False;  V200(z) there 22.63 km/s = T 37833 K (reported)
+  Regrade at M_f(z = 15):
+    MW ultra-faint  N 31: E -0.207 +- 0.116 (Z -1.78) REPRODUCED
+    bright M31      N 25: E -0.192 +- 0.113 (Z -1.70) REPRODUCED
+    M31 others      N  5: E +0.007 +- 0.328 (Z +0.02) REPRODUCED
+    MW classical    N  8: E -0.001 +- 0.064 (Z -0.02) REPRODUCED
+    LG field        N 13: E -0.084 +- 0.061 (Z -1.37) REPRODUCED
+    Spearman(E, lg M*) +0.07 (X49 -0.64); above by >2s: 4, below by >2s: 13; Draco E +0.171
+  Tooth, atomic 1e4 K: lg M_f 8.213; MW ultra- -1.78, bright M3 -1.70, M31 other +0.02, MW classi -0.02, LG field -1.37; all five True
+  VERDICT [canonical]: NOT DIAGNOSTIC
+  Reported: core-density gas (z 15) n 33.1 cm^-3, T 811 K, lg M_f 6.136
+  Reported: a0 x 0.93: lg M_f 8.238
+  Reported: T 1000 K fixed: lg M_f 6.310
+  Reported: T 2000 K fixed: lg M_f 6.885
+  Reported: window edge lg 6.25 corresponds to T 930 K
+  Reported: window edge lg 7.0 corresponds to T 2297 K
+
+=== [alt] Sigma 129.2 Msun/pc^2
+  z   10: T_crit 10000.0 K -> r0  158.1 pc -> lg M_f 8.149  in window False;  V200(z) there 20.30 km/s = T 30440 K (reported)
+  z   15: T_crit 10000.0 K -> r0  158.1 pc -> lg M_f 8.149  in window False;  V200(z) there 24.47 km/s = T 44259 K (reported)
+  z   25: T_crit  5559.0 K -> r0   87.9 pc -> lg M_f 7.665  in window False;  V200(z) there 21.51 km/s = T 34200 K (reported)
+  Regrade at M_f(z = 15):
+    MW ultra-faint  N 31: E -0.299 +- 0.114 (Z -2.62) FAIL
+    bright M31      N 25: E -0.164 +- 0.111 (Z -1.48) REPRODUCED
+    M31 others      N  5: E -0.054 +- 0.333 (Z -0.16) REPRODUCED
+    MW classical    N  8: E -0.061 +- 0.064 (Z -0.96) REPRODUCED
+    LG field        N 13: E -0.110 +- 0.063 (Z -1.76) REPRODUCED
+    Spearman(E, lg M*) +0.15 (X49 -0.64); above by >2s: 4, below by >2s: 17; Draco E +0.122
+  Tooth, atomic 1e4 K: lg M_f 8.149; MW ultra- -2.62, bright M3 -1.48, M31 other -0.16, MW classi -0.96, LG field -1.76; all five False
+  VERDICT [alt]: MISS
+  Reported: core-density gas (z 15) n 57.9 cm^-3, T 678 K, lg M_f 5.918
+  Reported: a0 x 0.93: lg M_f 8.174
+  Reported: T 1000 K fixed: lg M_f 6.242
+  Reported: T 2000 K fixed: lg M_f 6.818
+  Reported: window edge lg 6.25 corresponds to T 1010 K
+  Reported: window edge lg 7.0 corresponds to T 2490 K
+
+Checks: K1 Lambda(1000) PASS, K2 x0 PASS, K3 x_H2 ODE PASS, K4[canonical] PASS, K5[canonical] PASS, K4[alt] PASS, K5[alt] PASS
+MUTATE bite (T_crit up, lg M_f moved > 0.25, both footings): True
