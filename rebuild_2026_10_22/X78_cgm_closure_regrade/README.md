@@ -1,5 +1,7 @@
 # X78_cgm_closure_regrade
 
+> **Superseded in part by GH1_matched_lensing_satellites (10-29).** KiDS lensing around these *same* G09 hosts wants Δ = +0.17 [+0.05, +0.28], not +0.78. The satellite number is a method systematic of this measurement (likely pair weighting toward rich hosts, interlopers, velocity bias), not a halo-mass need. Satellite-based needs/fails in this lane are overstated; the lensing lines stand.
+
 > **Lane-ID collision.** A peer session's `X78_footing_upsilon_floor` holds the X78 id. This lane (04848505f2) is
 > different. Cite it by its full name, `X78_cgm_closure_regrade`.
 

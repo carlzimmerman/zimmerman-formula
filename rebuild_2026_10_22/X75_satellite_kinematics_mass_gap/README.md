@@ -1,5 +1,7 @@
 # X75_satellite_kinematics_mass_gap
 
+> **Superseded in part by GH1_matched_lensing_satellites (10-29).** KiDS lensing around these *same* G09 hosts wants Δ = +0.17 [+0.05, +0.28], not +0.78. The satellite number is a method systematic of this measurement (likely pair weighting toward rich hosts, interlopers, velocity bias), not a halo-mass need. Do not use +0.78 as the route E mass requirement.
+
 **Question.** KiDS lensing (X53, X74_smooth_core_lensing) wants route E's halos 0.30–0.50 dex heavier in M200 than EM1's SPARC relation
 gives. Is the halo mass short, or is it a lens stellar-mass or lensing systematic?
 

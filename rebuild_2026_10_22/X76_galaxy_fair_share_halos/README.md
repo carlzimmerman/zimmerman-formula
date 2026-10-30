@@ -1,5 +1,7 @@
 # X76_galaxy_fair_share_halos
 
+> **Superseded in part by GH1_matched_lensing_satellites (10-29).** KiDS lensing around these *same* G09 hosts wants Δ = +0.17 [+0.05, +0.28], not +0.78. The satellite number is a method systematic of this measurement (likely pair weighting toward rich hosts, interlopers, velocity bias), not a halo-mass need. Satellite-based needs/fails in this lane are overstated; the lensing lines stand.
+
 **Question.** X74_smooth_core_lensing and X75 showed route E's galaxy halos are too light at 50–300 kpc when M200 comes
 from EM1's SPARC relation. Does the clusters' own native rule fix that?
 
