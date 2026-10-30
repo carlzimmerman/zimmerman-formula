@@ -1,4 +1,4 @@
-# X77_footing_upsilon_floor: FROZEN CRITERIA (committed alone, before any script or number)
+# X78_footing_upsilon_floor (was X77_footing_upsilon_floor; renamed for an ID collision with the peer X77_direct_core_surface_density, content unchanged): FROZEN CRITERIA (committed alone, before any script or number)
 
 **Why.** Route E's alt-footing SPARC fail (Υ 0.47 at c_f 4, X73/X74) has the collapse branch active in 0/175 galaxies,
 so it is not route E. The plain a0 law itself gives median Υ 0.44 on alt (EM1 KP / P4: 0.0537 @ 0.44) against 0.52 on
