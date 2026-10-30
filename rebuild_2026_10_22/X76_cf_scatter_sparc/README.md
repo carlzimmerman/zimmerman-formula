@@ -38,3 +38,13 @@ FP2 says the high-c members are lower bounds, so the true scatter would push the
   that, so the c_f 4 pass rests on the external c_f.
 
 κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.
+
+## Definition note (fix-forward, 2026-10-29; affects X72/X74/X76 equally; reported)
+X43/X70's η matches the core at **r₀ = r_f/c_f, where r₀ is the core radius**. X48 measures **c_f = r_vir/r₋₂**. For the smooth core ρ ∝ (1+x²)^{−3/2}, the slope is −3x²/(1+x²), so r₋₂ = √2 r₀. For Burkert, r₋₂ ≈ 1.52 r₀.
+
+- **The consistent native input** to η is therefore √2 × c_f(X48): the median goes from 7.74 to about 10.9, and η rises by 2^{5/8} = 1.54.
+- **The external c_f = 4**, read as r_vir/r_s of a formation-time NFW (r_s = r₋₂), corresponds to a core c of 4√2 = 5.66, not 4.
+- **X74 as frozen plugs X48's number in directly.** The frozen criteria fixed "X48's definition r_vir/r₋₂, unchanged", so X74's grade stands as frozen. On SPARC this makes X74 lenient: canonical median Υ falls monotonically with c (0.56 at 4, 0.51 at 7, 0.48 at 7.74). The consistent mapping fails SPARC harder.
+- **Clusters:** the same √2 raises the cluster c too. The c_f 8 sensitivity (`sens_cf8.log`) already shows six keys going OVER.
+
+None of this changes any frozen grade. It means the native-c_f fail is conservative.
