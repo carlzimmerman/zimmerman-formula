@@ -154,3 +154,21 @@ The criteria are in `FROZEN_CRITERIA.md` A3 (54c45e963e). All nine ng 64 seeds f
   and 10¹⁴.**
 
 κ = ½ FITTED. Not theory closed.
+
+## AMENDMENT A5 (2026-10-29): ng 80 at 10¹², PENDING (pre-built; identity checks pass)
+The criteria are in `FROZEN_CRITERIA.md` A5 (a0cbcc6928), committed before any script. They test whether c_f(10¹²) has converged. That decides X74's canonical SPARC line, which is a knife edge at A3 (it passes at 7.0 and fails at 7.74; see the X74 pre-read).
+
+**Scripts:**
+- `run_direct_A5.sh`: nine seeds, ng 80, ε unchanged.
+- `x48_grade_A5.py`: grades as in A3, plus an [ε-LIMITED] flag.
+- `x48_A5_x74_read.py`: the graded X74 SPARC read at the median and at the bootstrap 16th/84th percentiles, plus MUTATE. Its outputs are named `x74_A5read_*`. X74's own A4 outputs are backed up and restored around each run, which a sentinel test confirms.
+
+**Checks:**
+- **K1:** the grade script run on ng 64 against ng 48 reproduces `x48_grade_A3.json` exactly.
+- **K2:** the X74 read with the table {7.74, 4, 4} reproduces the pre-read P1 SPARC numbers exactly (max |d| = 0).
+
+**Launch:** `watch_A4_then_A5.sh` runs under nohup and checks every 10 min. It waits for X74's post-A4 watcher to log "post-A4 regrades done", then starts A5, then analyses and grades it.
+- Direct summation at N ≈ 113 000 costs about 3.8× ng 64 per step, so expect 5–6 days of wall time and about 3–4 GB per run.
+- If A5 is preempted (exit 75), re-run the watcher; it resumes.
+
+κ = ½ FITTED. Not theory closed.
