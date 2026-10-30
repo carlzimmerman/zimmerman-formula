@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """PAPER65 (DRAFT) audit: every quoted number must match the committed lane outputs (rebuild_2026_10_22/ X66, X68, X69,
-X70_smooth_core_shape, X71, X73); naming rules (cold dark energy; CDM only inside LambdaCDM); no local path; draft banner present.
+X70_smooth_core_shape, X71, X73, X77); naming rules (cold dark energy; CDM only inside LambdaCDM); no local path; draft banner present.
 Run: python3 PAPER65_audit.py (exit 0 only if all pass).
      python3 PAPER65_audit.py --mutate (perturbs every JSON-derived number; exit 0 only if every number check then FAILS)."""
 import json, math, os, re, sys
@@ -69,6 +69,18 @@ num("X73 SPARC rms", x73("0.034")["sparc"]["A_c2b_refit"]["rms"], ".4f", "SPARC 
 num("X73 s16 worst G-OUT-M3", min(c["G-OUT-M3"]["Z"] for c in x73("0.0615", "2.6756")["clusters"]["cells"].values()), "+.2f", "reaches $Z={}$ (over")
 num("X73 s84 G-OUT-M3 h0672", x73("0.034", "3.0711")["clusters"]["cells"]["h0672"]["G-OUT-M3"]["Z"], "+.2f", "at the 84th, ${}$.")
 num("X73 G-OUT-all at f*=0.20", x73("0.2")["clusters"]["cells"]["h0672"]["G-OUT-all"]["Z"], "+.2f", "(G-OUT-all $Z={}$)")
+
+# X77 direct native eta
+x77 = J("X77_direct_core_surface_density/x77_results.json")
+for key, tpl in (("1e+12_ng64", "ng 64 & {} &"), ("1e+13_ng48", "$10^{13}$, ng 48 & {} &"), ("1e+14_ng48", "$10^{14}$, ng 48 & {} &")):
+    num(f"X77 eta median {key}", x77["summary"][key]["eta_med"], ".2f", tpl)
+num("X77 synthetic NFW c=4 eta", x77["nfw4"]["S"]["eta"], ".2f", "$\\eta_{\\rm native}=10.34$".replace("10.34", "{}"))
+num("X77 1e12 resolution shift (%)", 100 * x77["resolution_1e12"], "+.1f", "${}\\%$ from ng 48")
+def g77(fs, hk="h0672"):
+    return J(f"X77_direct_core_surface_density/x77grade_x74_results_fs{fs}_nat_s2.7774.json")["footings"]
+num("X77 grade worst f*=0.034", min(v["Z"] for v in g77("0.034")["canonical"]["clusters"]["cells"]["h0672"].values()), "+.2f", "G-IN-Mall $Z={}$)")
+num("X77 grade G-IN-Mall f*=0.0615", g77("0.0615")["canonical"]["clusters"]["cells"]["h0672"]["G-IN-Mall"]["Z"], "+.2f", "fails at ${}$ (too dense)")
+num("X77 grade alt Upsilon", g77("0.034")["alt"]["sparc"]["A_c2b_refit"]["U_median"], ".2f", "($\\Upsilon={}$)")
 
 # naming / hygiene
 body = re.sub(r"\\Lambda\s*\{?\\rm\s*CDM\}?|\$\\Lambda\$CDM|\\LambdaCDM", "", TEX)
