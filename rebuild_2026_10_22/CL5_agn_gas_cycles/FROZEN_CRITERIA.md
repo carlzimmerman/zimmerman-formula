@@ -71,3 +71,7 @@ f★ 0.034 and 0.0615, canonical and alt.
 Prescribed gas histories at ceilings, spherical, one seed, formed halo at t = 0; no gas physics is simulated. ng 48 cluster η until A4 finishes: if A4 moves them, the needed R moves.
 A reach is existence at that coupling, not a derivation. The mechanism is a new assumption and cannot lower η at 1e13–1e14 without also acting in lower-mass black-hole hosts, which this lane does not test.
 κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework. Cold dark energy is a gravitating field component, never a particle.
+
+## AMENDMENT A1 (before any script or number)
+A 50 Myr out plus 400 Myr back does not fit the N = 40 period of 250 Myr, the error CM1 made in its control. The return ramp in every run is
+now min(400 Myr, period − 50 Myr), so N = 40 returns over 200 Myr; N = 3 and N = 10 are unchanged. Nothing else changes.
