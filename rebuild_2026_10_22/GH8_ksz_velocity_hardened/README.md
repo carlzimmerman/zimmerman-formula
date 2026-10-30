@@ -54,3 +54,5 @@ The class agrees across all three R values. **Read it as a strong lean, not an e
 ## Files
 
 `FROZEN_CRITERIA.md`, `AMENDMENTS.md`, `gh8_vel.py`, `gh8_control.py`, `gh8_mw.py` with `.out` and `.json`. Run in that order after GH6's and GH7's caches, with `PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15`. Work files are in `_external_data/gh8_work/` (not committed).
+
+**Forward note (GH9_cigale_chen_mass_offset):** the offset is measured: CIGALE is about 0.19 dex below the Chen-method masses. The class survives (A(1.8) 0.24 ± 0.19) and is worded "below Zhang-normalised gas at every extent". Limit 1 above is superseded: its 0.2 dex and 0.41 ± 0.30 were a linear rescaling; rebuilt break-even is about +0.27 dex.
