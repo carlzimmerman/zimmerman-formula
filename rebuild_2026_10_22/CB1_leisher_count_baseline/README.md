@@ -9,10 +9,35 @@ paper's numbers. Part A numbers are from `cb1_part_a.out`; synthetic checks from
 | Part | Status |
 |---|---|
 | A: code and parameter-file audit | **Done** |
-| B: count-only baselines | **Pipeline validated on synthetic data only. Not run: needs DREAMS trees** (interest form and Globus sign-in, owner's step) |
-| C: retrain with `u` set to zero | **Not run.** This is the real decider; needs the trees, torch_geometric and heavy CPU; owner's go |
+| B: count-only baselines | **Done on all 1007 real trees** (`cb1_part_b.out`, `cb1_counts.npz`) |
+| C: retrain with `u` set to zero | **Not run.** This is the real decider; needs edges re-fetched, torch_geometric and heavy CPU, and waits on the live zooms |
 
-**So the question "does a count reproduce the GNN?" is NOT answered yet.**
+**So: counts reach the no-feature and snapshot-only rows, and do not reach the best model. Whether the published networks used the count or found the same information in the structure is NOT answered.**
+
+## Part B results
+
+| Paper's row (R² / RMSE) | Baseline | Same test set R² / RMSE | Repeated-split 95 % | Frozen grade |
+|---|---|---|---|---|
+| No features 0.509 / 0.107 | B0 cubic (primary), log N only | 0.426 / 0.116 | 0.438–0.651 | COUNT SUFFICES |
+| | B0 isotonic, log N only | **0.499 / 0.108** | 0.468–0.657 | |
+| Snapshot only 0.708 / 0.082 | B1 ridge (primary), N per snapshot | 0.644 / 0.091 | 0.658–0.809 | COUNT SUFFICES |
+| | B1 gradient boosting | **0.703 / 0.083** | 0.696–0.812 | |
+| Flattened 0.683 / 0.086 | B1 ridge | 0.644 / 0.091 | 0.658–0.809 | COUNT SUFFICES |
+| Best 0.957 / 0.031 | B2 ridge, N and summed M_DM per snapshot | 0.721 / 0.081 | −2.755–0.848 | GRAPH ADDS |
+
+**Read the frozen grade with care.** It uses the repeated-split upper limit, and call 0's test set is harder than average, so it is generous. On the paper's own test set the primary models fall short (0.426, 0.644), and the two non-primary models land within 0.01 (0.499, 0.703). Those two were chosen by the criteria as reported variants, not picked after the fact, but with two tries per row the closeness is suggestive only.
+
+- **The best model is untouched.** R² 0.957 is well above every baseline: its node features carry information that per-snapshot totals do not.
+- **All baselines fail in the cold regime:** R² −6 to −14 above 6 keV and −18 to −48 above 9.7 keV on the test set. The paper's constant-error estimate is not directly comparable.
+- **B3 main branch:** test R² −2.675, not a usable comparison with the paper's 0.073. A cubic on a nearly constant quantity with a few outliers is unstable.
+- N spans 149–8717, median 2697; Spearman with 1/M −0.762.
+- **What this does and does not show:** a single number nearly matches the no-feature model, which fits finding 1. A network can also recover the same information from graph structure, so this does not show `u` produced the 0.509.
+
+## Data step (`cb1_fetch.py`)
+
+Trees read over Globus HTTPS one box at a time and deleted. **K5:** on boxes 0, 3 and 1000 our walk equals the authors' recursion in N and per snapshot. **Mapping:** every box's feedback parameters in its catalog match the table row under the authors' mapping (max difference 5.0e-05, the storage rounding).
+**The DREAMS README's statement that row i is box_i is wrong for `WDM_TNG_MW_SB4.txt`:** the table has the 17 corrupted boxes removed, so rows shift (box 3 is row 1). The authors' code handles this; following the README would mispair trees and parameters.
+MUTATE with permuted targets: `cb1_part_b_MUTATE.out`. `np.polyfit` reproduces the B0 cubic (R² 0.4257, the numpy warnings are harmless).
 
 ## Part A findings
 
