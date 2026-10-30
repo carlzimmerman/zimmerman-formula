@@ -74,3 +74,6 @@ Run:
 
 **Sources:** ACT DR6.02 NILC maps on LAMBDA (https://lambda.gsfc.nasa.gov/product/act/act_dr6.02/act_dr6.02_nilc_info.html);
 Coulton et al. 2024, PRD 109, 063530; Zhang et al. 2024, A&A 690, A267.
+
+**Forward note (GH4_tsz_two_halo_compensated):** the compensated, wider-aperture rerun is again NOT DECIDED (Δχ² +3.9). Its
+two-halo template proved cuspy, so the two-halo caveat above still stands unquantified.
