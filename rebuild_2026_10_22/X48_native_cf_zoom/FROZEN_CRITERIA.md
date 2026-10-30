@@ -136,3 +136,59 @@ G-IN-Mall, all OVER). **A4 measures 10¹³ and 10¹⁴ at the same resolution.**
 - **Stop rule:** none. Seeds that do not finish are reported, not replaced.
 
 κ = ½ FITTED. Not theory closed.
+
+## AMENDMENT A5 (2026-10-29; committed alone, before any A5 script or run, and before any A4 output is opened; owner request)
+
+**Why.** A3 puts c_f(10¹²) at 7.74 at ng 64 (68 % 6.10–9.24), labelled RESOLUTION-DEPENDENT (it fell 33 % from ng 48). The
+X74 pre-read (`../X74_all_measured_native_cf/README.md`, 48f7f817a6) found:
+- X74's canonical SPARC line passes at c_f(10¹²) = 7.0 (Υ 0.51) and fails at 7.74 (Υ 0.48, under the 0.50 floor);
+- the cluster masses do not enter that line.
+
+Route E's SPARC line therefore turns on whether c_f(10¹²) has converged. **A5 measures it at the next resolution.**
+
+### Runs
+- Seeds 1–9 at M = 10¹², **ng = 80** (N ≈ 113 000). IC, dynamics, ε = 0.01 r_f (unchanged, so 3ε stays at 0.004 Mpc),
+  integrator and analysis (§2) are unchanged. This is a one-variable test of particle number at fixed softening.
+- Launched only after A4's 18 runs have finished and the post-A4 X72 and X74 regrades have run. A watcher does this.
+  - All 9 concurrently: single thread each, nice 15, preemptible (SIGTERM → checkpoint → exit 75, `--resume`).
+  - Direct summation: about 3.8× the per-step cost of ng 64. Expected 5–6 days of wall time. Memory about 3–4 GB per run.
+
+### Grades (10¹² only, as A3)
+1. **Window:** the nine-seed ng 80 median against [3.3, 4.6].
+2. **Resolution:**
+   - **CONVERGED** if |median(ng 80) / median(ng 64, A3) − 1| ≤ 0.20;
+   - otherwise **RESOLUTION-DEPENDENT**, with the sign.
+3. **Reported:**
+   - bootstrap 68 % (10 000 resamples, seed 20261026);
+   - NFW-fit median;
+   - per seed, r₋₂/r_conv and r₋₂/(3ε) at ng 64 and ng 80.
+   - If most seeds have r₋₂ ≤ 2 × 3ε at ng 80, the label carries **[ε-LIMITED]**: further particle number cannot settle
+     c_f, and only a smaller ε would.
+   - Note: the constrained field is redrawn on each grid, so per-seed shifts mix resolution with realisation, as in A3.
+
+### X74 SPARC read (graded; the reason for A5)
+- **Configuration:** X74's script, unchanged, with c_f = {10¹²: A5 median, 10¹³ / 10¹⁴: A4 medians}. Canonical footing,
+  slope 2.7774, f★ 0.034 and 0.0615. The verdict is the SPARC line (rms ≤ 0.110 and median Υ in [0.50, 0.80]).
+- **Repeat** with the 10¹² entry set to the A5 bootstrap 16th and 84th percentiles.
+- **Labels:**
+  - **SPARC SETTLED PASS / SETTLED FAIL** if all three agree;
+  - **SPARC KNIFE EDGE** otherwise. The headline is then the median class plus "[KNIFE EDGE]".
+- **Reported:**
+  - the alt footing (it fails at every c_f in the pre-read, on Υ 0.47 at c_f 4);
+  - every cluster key and the groups (A4 cluster masses at ng 64; label "1e12 at ng 80, 1e13/1e14 at ng 64").
+- **Outputs** are renamed `x74_A5read_*`, so X74's own A4 outputs are never overwritten.
+- **MUTATE:** c_f(10¹²) × 2 must move the canonical median Υ by more than 0.01.
+- **If A4 has no table** (failed or missing 10¹³ / 10¹⁴): the X74 read is UNDECIDED, and the A5 grades 1–3 still stand.
+
+### Checks
+- **K1:** the A5 grade script, pointed at ng 64 against ng 48, reproduces `x48_grade_A3.json` (median, bootstrap,
+  resolution label) exactly.
+- **K2:** the X74 read, with the table {7.7395930714417345, 4, 4}, reproduces the committed pre-read P1 SPARC numbers
+  exactly.
+
+### Rules
+- **Stop rule:** none. Seeds that do not finish are reported, not replaced. Convergence beyond ng 80 is not tested.
+- **No retuning after the number:** no new ε, shape, slope or f★ inside A5.
+
+κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework. Cold dark energy
+is a gravitating field component, never a particle.
