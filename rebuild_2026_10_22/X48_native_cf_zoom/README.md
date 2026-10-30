@@ -172,3 +172,30 @@ The criteria are in `FROZEN_CRITERIA.md` A5 (a0cbcc6928), committed before any s
 - If A5 is preempted (exit 75), re-run the watcher; it resumes.
 
 κ = ½ FITTED. Not theory closed.
+
+## First-principles diagnostics FP1/FP2 (2026-10-29; reported, not graded; no A4/A5 number used)
+**FP1 (`x48_fp_mean_peak.py`): the mean peak alone builds no concentration.**
+- **Method:** radial spherical collapse of the mean Hoffman-Ribak peak on the native spectrum. Each shell ends at about ½ its turnaround radius, so r₋₂ sits where d ln δ̄(<q)/d ln q = −2. The ½ cancels, and in EdS this gives r_vir at 18π² exactly.
+- **Result:** the mean profile is flat inside the RG smoothing scale (slope −0.27 at 0.41 q_M), and the −2 point lies outside the halo (q₋₂/q_M = 1.13, 1.23, 1.47 at 10¹², 10¹³, 10¹⁴). So c_f < 1.
+- **What follows:**
+  - Every bit of c_f comes from the random small-scale field.
+  - c_f is an intrinsic halo-to-halo distribution (2.4–15 per seed), not one number.
+  - Each seed at each ng is a different realisation.
+
+**FP2 (`x48_fp_resolution.py`): Power et al. (2003) relaxation and softening at r₋₂, per seed (ng 48 and ng 64, 10¹²).**
+- **Low-c seeds are well resolved:** κ = t_relax/t_H of 3–55, with r₋₂ at 13–43 ε.
+- **Every seed with c_f > 11 is unresolved or marginal:** κ 0.8–1.5, with r₋₂ at 5–7.5 ε.
+- **Both numerical effects can only make the measured c_f too low, so it is a lower bound.** Softening and two-body relaxation only flatten an inner profile, and so only push the slope −2 point outward:
+  - A crossing at a few ε can only come from a true profile steeper than −2 there. So the true r₋₂ is at most the measured one, and the true c_f at least the measured one.
+  - Caveat: estimator artefacts at the innermost bins (near r_conv) are not excluded by this argument.
+- **So resolution cannot lower the native median.** A3's fall from ng 48 to ng 64 is then realisation variance (the field is redrawn on each grid), not convergence.
+- **Pooled median.** Pooling the 18 realisations, with unresolved values treated as lower bounds, gives a median ≥ 8.80. The ng 64 nine-seed median is 7.74, set by seed 6, which is resolved (κ 6.1, r₋₂ at 13 ε).
+- **Sample variance.** 12 of 18 seeds lie above 7.0. If the true median were 7.0, that would happen with probability 0.12.
+
+**Reading for X74 (canonical SPARC passes at c_f(10¹²) ≤ 7.0 and fails at 7.74):**
+- At native c_f, route E's SPARC line fails narrowly, on the stellar-Υ floor. The collapse branch over-masses the cores of bright galaxies.
+- Resolution pushes c_f the wrong way to rescue it. Only sample variance could, at about 12 %.
+- X74 also uses a single median c_f, while FP1 shows c_f is a broad distribution. A per-galaxy scatter in c_f is a model change, and is not tried here.
+- A5 stands as frozen and will test this. FP2 predicts its median will not fall below about 7.
+
+κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.
