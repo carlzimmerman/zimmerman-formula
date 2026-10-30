@@ -8,3 +8,8 @@
 2. **K2 fails:** the mock's P(k) is off by up to 16.7 % at k 0.03–0.3 (limit 10 %) after the two frozen matching iterations. Not re-tuned. R_fm 0.921 and R_cut 0.904 agree; the
    R_cut power law did not lower P at k ≈ 0.002 as intended, so R_cut is a weak test of low-k systematics.
 3. **Memory:** `gh8_vel.py` peaked at 7.1 GB, above the frozen 6 GB, while other zoom jobs were running. They were not disturbed as far as I can see.
+
+4. **Null offset (a real defect; found in the first MW-mass run, which is discarded).** Passive lenses gave A(1.8) 0.47 ± 0.12 yet shuffle p 0.08, and star-forming lenses were opposite in sign with p 0.47. So the
+   shuffled A does not centre on zero. Cause: the weighted CAP mean per z bin is not zero, split samples were not re-centred, and v_rec has a non-zero mean, so
+   mean CAP × mean v leaks tSZ and CIB through the even-in-v cancellation. **Fix, in both the control and the MW-mass stack, for every sample: remove the weighted CAP mean and the v mean in each z bin of that sample.**
+   The control is re-run first and its frozen rule stands: S/N ≥ 4 or the lane ends VOID. The shuffled-A mean is now printed. GH7 centred CAP but not v; its class was void anyway.
