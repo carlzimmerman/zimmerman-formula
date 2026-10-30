@@ -1,13 +1,13 @@
 # X75_satellite_kinematics_mass_gap
 
-**Question.** KiDS lensing (X53/X74) wants route E's halos 0.30–0.50 dex heavier in M200 than EM1's SPARC relation
+**Question.** KiDS lensing (X53, X74_smooth_core_lensing) wants route E's halos 0.30–0.50 dex heavier in M200 than EM1's SPARC relation
 gives. Is the halo mass short, or is it a lens stellar-mass or lensing systematic?
 
 **Method.** An independent probe on different data and a different observable: satellite line-of-sight dispersions
 around GAMA G09 centrals.
 - G3C spectroscopic z and GKV stellar masses, both already on disk.
 - 9,049 hosts and 2,087 satellite pairs at 50–300 kpc.
-- Graded against the same X53 machinery (smooth core, X73/X74) and the isolated law.
+- Graded against the same X53 machinery (smooth core, X73 and X74_smooth_core_lensing) and the isolated law.
 - Criteria were frozen before any velocity was read (e7dfee54b9).
 
 ## Verdict (frozen rule): KINEMATICS REQUIRE A DIFFERENT MASS, both footings

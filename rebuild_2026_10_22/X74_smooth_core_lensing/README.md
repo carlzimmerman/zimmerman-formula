@@ -1,5 +1,9 @@
 # X74_smooth_core_lensing
 
+> **Lane-ID collision.** A peer session's `X74_all_measured_native_cf` (criteria c3e69578c5, 19:02) took the X74 id
+> first. This lane (bc08edb85a, 19:10) is a different lane. Always cite it by its full directory name,
+> `X74_smooth_core_lensing`, never as bare "X74".
+
 **Question.** X73 passed the X43 line set on the canonical footing with the smooth core and every input measured. It did
 not regrade galaxy lensing. Does X70/X73's smooth core change X53's KiDS-1000 isolated-lens grade (Brouwer+21, 4 bins,
 full covariance)?
