@@ -1,4 +1,6 @@
-# CL1_cluster_energy_budget: FROZEN CRITERIA (committed before any script or number)
+# CL4_cluster_energy_budget: FROZEN CRITERIA (committed before any script or number)
+
+Lane-ID note: frozen as CL1_cluster_energy_budget (first commit below), renamed CL4 because CL1_combined_threshold_budget already exists. Criteria unchanged.
 
 **Question.** CE1's converged cusp is too dense in cluster cores (η 17.67 at 1e13, 16.91 at 1e14; limit 14.3, G-IN-Mall).
 BE1 left clusters untested. Is there enough energy, from any named source, to soften them? Budget only: no mechanism.
