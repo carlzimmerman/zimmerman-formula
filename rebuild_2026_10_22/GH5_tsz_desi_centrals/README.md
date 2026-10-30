@@ -90,3 +90,5 @@ Run: `./run_all.sh` (~45 min, one thread, peak RSS 1.8 GB).
 
 **Sources:** ACT DR6.02 NILC (https://lambda.gsfc.nasa.gov/product/act/act_dr6.02/act_dr6.02_nilc_info.html);
 DESI DR1 LSS catalogues and CIGALE VAC (https://data.desi.lbl.gov/doc/releases/dr1/); Zhang et al. 2024, A&A 690, A267.
+
+**Forward note (GH6_frb_dm_cgm):** FRB dispersion measures cannot take over from tSZ yet. The power gate failed (S far below 3), so no DM was read.
