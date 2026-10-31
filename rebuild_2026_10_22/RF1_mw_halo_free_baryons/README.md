@@ -1,5 +1,25 @@
 # RF1_mw_halo_free_baryons: UNDETERMINED, no halo-free bulge mass on disk. Bracket reading: the decider is the disc scale length, not the bulge
 
+> **A1 result (2026-10-31, after the text below was committed; `AMENDMENTS.md`, script 60c9eae3d1). A halo-free bulge mass is now on
+> disk: Valenti+16 (A&A 587 L6), 2.0 ± 0.3 × 10¹⁰ M☉ in stars and remnants from VVV red-clump counts and the Zoccali+00 empirical
+> IMF, no dynamics, no halo, parsed from the paper's text in `_external_data/rf1_valenti2016/` (untracked). The frozen verdict
+> item 2, graded at that mass on the McKee ±2σ × BH&G16 ±2σ box with McKee's gas, background A, PRIMARY V_last:**
+>
+> | rule | verdict | passing cells / 35 | passing R_d | in LN16's R_d tag |
+> |---|---|---|---|---|
+> | OS1 canonical | **FAIL on halo-free baryons** | 0 | none (best D 1.18 at R_d 1.93: K_z 67.6, χ²_Ou 71) | 0 |
+> | OS1 alt | **PASS on halo-free baryons (WIDE PRIORS ONLY)** | 1 | 1.93 kpc | 0 |
+> | Native N (footings coincide) | **PASS on halo-free baryons (WIDE PRIORS ONLY)** | 1 | 1.93 kpc | 0 |
+>
+> Reported, not graded: at +1σ (2.3 × 10¹⁰) OS1 canonical PRIMARY gains one cell at R_d 1.93; at −1σ (1.7) nothing changes;
+> VARIANT V_last 229 passes 2–4 cells at R_d 1.93–2.27 on every footing; background B agrees except native N at +1σ (0 cells).
+> No cell at R_d ≥ 2.6 passes anywhere. So the diagnostic reading below stands: the bulge moves the count, the disc scale
+> length decides. The headline "UNDETERMINED" below is superseded for the bulge input only; the open inputs 2–5 (gas tables,
+> vertical structure, R_d read directly, McKee read directly) remain. Checks 9/9 with K8 (value and sha from disk); MUTATE fails
+> K1–K3 and exits 1. Runtime 107 s, peak RSS 0.43 GB, one thread, nice 15. This is not "the framework passes the Milky Way":
+> it passes only on a disc shorter than the published star-count scale length, on the alt footing and the native rule, and
+> fails on the canonical OS1 rule. κ = ½ FITTED. Not theory closed.
+
 Criteria and ledger 9468ee04b2 (committed alone, before any script or number); script 856ffb2959; no amendment. I expected this
 headline before running, as the criteria disclose. Runtime minutes, peak RSS 0.35 GB, one thread, nice 15. No download.
 
