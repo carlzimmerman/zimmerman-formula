@@ -1,0 +1,48 @@
+ET4 Upsilon trend; kappa = 1/2 FITTED; footings never pooled; not theory closed
+sample 123, below 150 km/s 70
+
+Checks
+K1 s = 0 equals ET2 per galaxy: PASS
+K2 g_bar linear in Upsilon, max rel 6.7e-16: PASS
+K3 planted Upsilon, r0 returned at fixed S: [True, True, True]: PASS
+
+Test 1 real curves with a trend
+ s=0.25       n  70 V 34-147   70.2[54,83]  107.7[89,137]  165.2[130,182] rho +0.527 p 0.0000 floor {'canonical': 'MIXED', 'alt': 'MIXED'}
+   -> SURVIVES; clipped 0
+ s=0.5        n  70 V 34-147   70.2[54,85]  107.7[89,137]  157.5[124,173] rho +0.476 p 0.0001 floor {'canonical': 'MIXED', 'alt': 'MIXED'}
+   -> SURVIVES; clipped 0
+ s=1.0        n  70 V 34-147   71.9[54,87]  107.7[89,137]  124.2[98,137] rho +0.257 p 0.0310 floor {'canonical': 'MIXED', 'alt': 'MIXED'}
+   -> ERASED; clipped 36
+
+Test 2 gas and star groups
+ GAS U=0.5    n  13 V 34-86   52.8[50,70]   65.8[38,125] n=0 rho +0.499 p 0.0827 floor {}
+ STAR U=0.5   n  57 V 34-147   81.0[70,190]  107.7[93,143]  157.5[137,190] rho +0.367 p 0.0062 floor {'canonical': 'MIXED', 'alt': 'MIXED'}
+ GAS U=0.3    n  13 V 34-86   55.4[53,70]   70.3[42,125] n=0 rho +0.470 p 0.1045 floor {}
+ GAS U=0.8    n  13 V 34-86   52.8[50,67]   62.0[36,122] n=0 rho +0.393 p 0.1777 floor {}
+   -> UNDERPOWERED; median f* gas 0.32, star 0.80
+
+Test 3 needed Upsilon at the floor
+ canonical 20-60: needed U 0.69 [0.3, 1.17] at ends 7/12; mse ratio 2.81
+ canonical 60-100: needed U 0.93 [0.54, 1.2] at ends 19/35; mse ratio 2.70
+ canonical 100-150: needed U 0.75 [0.66, 0.89] at ends 6/23; mse ratio 1.21
+   -> OUT ['20-60', '60-100', '100-150']
+ alt       20-60: needed U 1.07 [0.48, 1.2] at ends 8/12; mse ratio 3.04
+ alt       60-100: needed U 0.68 [0.41, 1.2] at ends 21/35; mse ratio 2.00
+ alt       100-150: needed U 0.70 [0.47, 0.8] at ends 6/23; mse ratio 1.14
+   -> OUT ['20-60', '60-100', '100-150']
+
+Test 4 forward
+ can s=0.25   n  70 V 34-147  107.7[103,110]  107.7[108,108]  112.9[108,118] rho +0.484 p 0.0000 floor {'canonical': 'REJECTED', 'alt': 'REJECTED'}
+   -> PARTIAL
+ can s=0.5    n  70 V 34-147  105.2[100,108]  107.7[108,108]  124.2[118,130] rho +0.704 p 0.0000 floor {'canonical': 'REJECTED', 'alt': 'REJECTED'}
+   -> PARTIAL
+ can s=1.0    n  70 V 34-147  102.7[98,108]  107.7[108,108]  150.2[124,157] rho +0.830 p 0.0000 floor {'canonical': 'REJECTED', 'alt': 'REJECTED'}
+   -> PARTIAL
+ alt s=0.25   n  70 V 34-147  124.2[124,127]  130.2[130,130]  136.6[137,137] rho +0.683 p 0.0000 floor {'canonical': 'REJECTED', 'alt': 'REJECTED'}
+   -> PARTIAL
+ alt s=0.5    n  70 V 34-147  124.2[121,127]  130.2[124,130]  150.2[137,157] rho +0.758 p 0.0000 floor {'canonical': 'REJECTED', 'alt': 'MIXED'}
+   -> PARTIAL
+ alt s=1.0    n  70 V 34-147  124.2[118,124]  130.2[124,137]  165.2[150,190] rho +0.869 p 0.0000 floor {'canonical': 'REJECTED', 'alt': 'MIXED'}
+   -> PARTIAL
+
+OVERALL: NOT EXPLAINED BY Y (Y = Upsilon)
