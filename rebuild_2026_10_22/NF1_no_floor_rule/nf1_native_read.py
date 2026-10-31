@@ -2,11 +2,14 @@
 """X80 AMENDMENT A1, reported line 4: the no-floor rule with eta below 1e12 from X80's measured ratios; SPARC line on both backgrounds, LS1's table by V_flat against ET1.
     python3 nf1_native_read.py           # rho10, rho11 from X80's x80_converged.json
     python3 nf1_native_read.py --check   # rho10 = rho11 = 1 must reproduce NF1's N0
+    python3 nf1_native_read.py --rho r10 r11   # a stated what-if, reported as such; not a measurement
 kappa = 1/2 FITTED; footings never pooled; not theory closed."""
 import json, math, os, subprocess, sys
 FHERE = os.path.dirname(os.path.abspath(__file__)); FRB = os.path.dirname(FHERE); CE1 = os.path.join(FRB, "CE1_converged_eta_grade"); SLOPE = "2.7774425603108597"; FS = "0.034"; CHECK = "--check" in sys.argv; OUTL = []
 def Pn(s): print(s, flush=True); OUTL.append(s)
+HYP = "--rho" in sys.argv
 if CHECK: r10, r11, TAGN = 1.0, 1.0, "NF1_NATIVE_CHECK"
+elif HYP: _i = sys.argv.index("--rho"); r10, r11 = float(sys.argv[_i + 1]), float(sys.argv[_i + 2]); TAGN = f"NF1_NATIVE_HYP_{r10:g}_{r11:g}"   # a what-if, never X80's measurement
 else:
     J = json.load(open(os.path.join(FRB, "X80_low_mass_floor_emergence", "x80_converged.json")))
     if "r10" not in J: raise SystemExit(f"NOT YET: {J.get('reading')}")
@@ -22,7 +25,7 @@ for n in names:
         if d.endswith(".json"): o = json.load(open(d)); o["x74"]["cf_src"] = os.path.basename(o["x74"]["cf_src"]); json.dump(o, open(d, "w"), indent=1)
 if not o: raise SystemExit(f"NOT DECIDED: the grader wrote no results (exit {p.returncode}): {p.stderr[-400:]}")
 q = {t: dict(U=v["U_median"], rms=v["rms"], line=v["line"]) for t, v in o["footings"]["canonical"]["sparc"].items()}; ok = all(v["line"] for v in q.values()); lab = "NATIVE N PASSES THE SPARC LINE" if ok else "NATIVE N FAILS THE SPARC LINE"
-Pn(f"NF1 native read: rho10 {r10:.3f}, rho11 {r11:.3f}, table {os.path.basename(TAB)}, f* {FS}; kappa = 1/2 FITTED; not theory closed"); Pn(f"  SPARC U {q['A_c2b_refit']['U']:.2f}/{q['B_cfg886_bg']['U']:.2f} rms {q['A_c2b_refit']['rms']:.4f}/{q['B_cfg886_bg']['rms']:.4f}; groups Z {o['footings']['canonical']['groups']['Z']:+.2f}; failing {o['footings']['canonical']['failing']}"); Pn(f"LABEL (SPARC only): {lab}")
+Pn(("WHAT-IF, NOT A MEASUREMENT. " if HYP else "") + f"NF1 native read: rho10 {r10:.3f}, rho11 {r11:.3f}, table {os.path.basename(TAB)}, f* {FS}; kappa = 1/2 FITTED; not theory closed"); Pn(f"  SPARC U {q['A_c2b_refit']['U']:.2f}/{q['B_cfg886_bg']['U']:.2f} rms {q['A_c2b_refit']['rms']:.4f}/{q['B_cfg886_bg']['rms']:.4f}; groups Z {o['footings']['canonical']['groups']['Z']:+.2f}; failing {o['footings']['canonical']['failing']}"); Pn(f"LABEL (SPARC only): {lab}")
 RES = dict(r10=r10, r11=r11, table=os.path.basename(TAB), sparc=q, label=lab, failing=o["footings"]["canonical"]["failing"])
 if CHECK:
     N0 = json.load(open(os.path.join(FHERE, f"NF1_N0_x74_results_fs{FS}_nat_s2.7774.json")))["footings"]; dk = 0.0
@@ -45,4 +48,4 @@ for lo, hi in ((20, 60), (60, 100), (100, 150), (150, 200), (200, 250), (250, 40
         if d is not None: D.append(d)
     k = f"{lo}-{hi}"; e = ET[k]; Sr = Srule(10 ** e["lgM"]) / (MSUNE / PC2); ins = e["ci"][0] <= Sr <= e["ci"][1]; RES["bins"][k] = dict(n=len(qs), U=float(np.median(U)), dV=float(np.median(D)), S_rule=Sr, ET1=e["med"], ET1_ci=e["ci"], inside=bool(ins))
     Pn(f"  {k}: n {len(qs)} U {np.median(U):.2f} dV {np.median(D):+.1f}; S_rule {Sr:.0f} vs ET1 {e['med']:.0f} [{e['ci'][0]:.0f},{e['ci'][1]:.0f}] {'inside' if ins else 'outside'}")
-tg = "nf1_native_check" if CHECK else "nf1_native_read"; json.dump(RES, open(os.path.join(HERE, f"{tg}.json"), "w"), indent=1, default=float); open(os.path.join(HERE, f"{tg}.out"), "w").write("\n".join(OUTL) + "\n")
+tg = "nf1_native_check" if CHECK else (f"nf1_native_hyp_{r10:g}_{r11:g}" if HYP else "nf1_native_read"); json.dump(RES, open(os.path.join(HERE, f"{tg}.json"), "w"), indent=1, default=float); open(os.path.join(HERE, f"{tg}.out"), "w").write("\n".join(OUTL) + "\n")

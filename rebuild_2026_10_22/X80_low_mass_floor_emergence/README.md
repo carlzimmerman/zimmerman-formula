@@ -40,7 +40,24 @@ Inputs: 134.9 M☉/pc² at 10¹²; z_f = 0.944 / 1.137 / 1.326; Σ_coll from X43
 **Scoring:** a HIT at a mass if the measured ρ₀r₀ lies within ±15 % of the formula, and separately for c_f-equivalent. These
 are the formula's values, not the source's table, whose ρ₀r₀ column (96–101 and 68–76) used a fixed −0.125 dex per decade.
 
+**Same formula as a converged-η ratio (Argon, relayed by the owner 10-30, before any low-mass number; reported, not graded):** ρ₁₁ = (2.137/1.944)^(5/4) = 1.126; ρ₁₀ = 1.251 at the setup smoke's z_f 1.326 (Argon used 1.330, which gives 1.254). HIT at a mass if the measured ratio lies within ±15 %. Argon's ρ₀r₀(10¹⁰) ≈ 70 M☉/pc² is total matter; the cold share SPARC grades is 59.
+
 **Caveats:**
 - The exponent on 1+z_f is assumed.
 - The zooms stop at z_f and measure c_f there, so a factor for concentration growth after formation has no stated basis.
 - A HIT would support the trend, not this reasoning.
+
+## What-ifs at stated ratios (, 10-30; no low-mass zoom exists, so none of this is a measurement)
+
+| ρ₁₀, ρ₁₁ | Υ (A/B) | rms (A/B) | SPARC line | S at V_flat 20–60 / 60–100 / 100–150 (ET1 69, 103, 143) | Υ in those bins |
+|---|---|---|---|---|---|
+| 1, 1 (NF1's N0) | 0.71 / 0.73 | 0.0678 / 0.0688 | pass | 47 / 69 / 94 | 1.20 / 1.10 / 0.84 |
+| 1.1, 1.049 | 0.67 / 0.68 | 0.0672 / 0.0683 | pass | 52 / 73 / 98 | 1.20 / 1.03 / 0.81 |
+| **1.254, 1.126 (Argon's)** | **0.62 / 0.63** | **0.0669 / 0.0679** | **pass** | 59 / 80 / 104 | 0.97 / 0.86 / 0.76 |
+| 1.9, 1.378 | 0.49 / 0.51 | 0.0682 / 0.0693 | **fail, Υ 0.49 on A** | 88 / 105 / 122 | 0.30 / 0.48 / 0.61 |
+
+So the upper cut of 1.9 sits right on the line's edge. The lower cut of 1.1 is not a line failure: the line passes down to ρ = 1. "N SHORT" means S falls below ET1 and ET2's intervals, with Υ above 1 in the smallest galaxies. It doesn't mean a floor is required.
+
+## Can the converged η be tested with a smaller softening? Not at this N (, ; 10¹² only)
+η_conv assumes each halo's NFW continues inside r_conv. On the committed ng 64 snapshots, recomputing r_conv with ε/2 or ε/4 moves the median x_c only from 0.0321 to 0.0296, because the relaxation limit sits just below 3ε. The expected rise in η is 3.4 %, against the 20 % between the cut and the converged value. A5 keeps ε and doesn't reach it either. A direct test needs far more particles than direct summation here allows. This is a rough estimate, since the snapshots evolved at ε. So the converged reads rest on that assumption, and the extrapolation is not closed.
+

@@ -59,6 +59,8 @@ So N0 is short here, and this sample prefers s nearer N2. With the SPARC line (s
 - It predicts X80. The line allows native η(10¹⁰)/η(10¹²) up to about 1.9. ET1 and ET2's medians at the two lowest bins want about 1.5 over N0, their lower bounds about 1.1–1.2. N1 gives 1.53 at 10¹⁰ and 1.24 at 10¹¹. These are converged-cusp η; X80's frozen R(M) uses the ε-cut fit without f_c, so its labels need the cusp fit beside them.
 - **A5 can't settle this; X80 can.** The owner moved X80 ahead of A5 on 10-30 (`../X80_low_mass_floor_emergence/AMENDMENT_A1.md`), and `nf1_native_read.py` grades the rule on X80's measured η when it lands.
 
+**What-ifs at stated ratios** are tabled in `../X80_low_mass_floor_emergence/README.md`: Argon's ρ₁₀ 1.254, ρ₁₁ 1.126 gives Υ 0.62 / 0.63, rms 0.0669 / 0.0679, line pass; 1.9, 1.378 fails at Υ 0.49. None of those is a measurement.
+
 ## What gets worse
 - **Dwarf ceilings.** PC1's cored ceiling M₃D(<r) ≤ 1.599 S r² falls with S. At lg M200 9 under N1 it drops by 0.34 dex: MW ultra-faints (mean −0.275) reach about +0.07, Draco (+0.148) about +0.49, J0946 gets worse. By hand, not graded. A cusp has ceiling 2π S r², 0.59 dex higher, which would cover these. But that's the shape problem again: zooms make cusps, and SPARC's bright galaxies want cores.
 - **The RAR.** With no a₀ in the rule, nothing here explains why rotation curves follow one tight relation with a scale near a₀. The law's rms is still 0.054.
