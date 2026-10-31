@@ -50,3 +50,5 @@ K1 model vs GH7 within 0.3 %; K2 above; K3 N(> 10.5) 1.54M; K4 C_bin positive de
 `FROZEN_CRITERIA.md` (0e685dc0c8), `gh10.py`, `gh10_post.py`, `.out`, `.json`. Data `_external_data/desi_dr2_ksz_zenodo/` (FETCH_LOG with sha256). Paper values came through a fetch summariser; only Table values quoted above (8.23, f_sat, M_h, r) rely on that.
 
 **Sources:** Hadzhiyska et al. 2026, arXiv:2604.19745, data doi:10.5281/zenodo.19160138; Zhang et al. 2024, A&A 690, A267.
+
+**Forward note (GH11_ksz_two_halo_miscentring):** with realistic miscentring A(1.8) is 0.54 ± 0.13, still BELOW, and A(1) rises to 0.75 ± 0.18, no longer below 1. Limit 7 weakens accordingly. Two-halo remains unseparated; my template was unusable.
