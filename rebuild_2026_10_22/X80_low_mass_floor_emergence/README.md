@@ -47,7 +47,7 @@ are the formula's values, not the source's table, whose ρ₀r₀ column (96–1
 - The zooms stop at z_f and measure c_f there, so a factor for concentration growth after formation has no stated basis.
 - A HIT would support the trend, not this reasoning.
 
-## What-ifs at stated ratios (, 10-30; no low-mass zoom exists, so none of this is a measurement)
+## What-ifs at stated ratios (`../NF1_no_floor_rule/nf1_native_read.py --rho`, 10-30; no low-mass zoom exists, so none of this is a measurement)
 
 | ρ₁₀, ρ₁₁ | Υ (A/B) | rms (A/B) | SPARC line | S at V_flat 20–60 / 60–100 / 100–150 (ET1 69, 103, 143) | Υ in those bins |
 |---|---|---|---|---|---|
@@ -58,6 +58,6 @@ are the formula's values, not the source's table, whose ρ₀r₀ column (96–1
 
 So the upper cut of 1.9 sits right on the line's edge. The lower cut of 1.1 is not a line failure: the line passes down to ρ = 1. "N SHORT" means S falls below ET1 and ET2's intervals, with Υ above 1 in the smallest galaxies. It doesn't mean a floor is required.
 
-## Can the converged η be tested with a smaller softening? Not at this N (, ; 10¹² only)
+## Can the converged η be tested with a smaller softening? Not at this N (`eps_reach.py`, `eps_reach.out`; 10¹² only)
 η_conv assumes each halo's NFW continues inside r_conv. On the committed ng 64 snapshots, recomputing r_conv with ε/2 or ε/4 moves the median x_c only from 0.0321 to 0.0296, because the relaxation limit sits just below 3ε. The expected rise in η is 3.4 %, against the 20 % between the cut and the converged value. A5 keeps ε and doesn't reach it either. A direct test needs far more particles than direct summation here allows. This is a rough estimate, since the snapshots evolved at ε. So the converged reads rest on that assumption, and the extrapolation is not closed.
 
