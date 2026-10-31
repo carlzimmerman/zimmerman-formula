@@ -49,8 +49,21 @@ The law stays flat on every cut. Route E stays tilted on all but the smallest bi
 
 A response that depends on the baryons does reduce the tilt, and full contraction leaves −1.4σ. But then the model runs 11 % high on average, the same over-prediction CN1 found as Υ 0.31. LC1 measures what f really is.
 
+**Could the zooms' own scatter supply it?** `hs1_scatter.py`, `hs1_spin.py`. The rule has no scatter in S at fixed mass, and the zooms do: 0.150 dex at 10¹², 0.102 at 10¹³ and 10¹⁴ (X77, ng 48 at the two cluster masses). If lg S ranked with lg SBeff at correlation r, N1 reads:
+| r | slope | mean δ | rms δ |
+|---|---|---|---|
+| 0 | −0.227 ± 0.068 | −0.019 | 0.229 |
+| 0.5 | −0.102 ± 0.066 (−1.6σ) | −0.028 | 0.208 |
+| 1 | +0.032 ± 0.066 (+0.5σ) | −0.034 | 0.202 |
+
+So the size of the scatter is enough at r near 0.9, and rms comes close to the law's 0.195. What's missing is a reason for the ranking. A disc's surface density at fixed mass goes roughly as λ⁻², so I set a line before measuring: this needs ρ(S, λ′) at or below −0.8 at fixed mass. In the 27 ng 64 zooms at z_f: **ρ = −0.453, p 0.018, bootstrap 68 % [−0.62, −0.26]. RANKING NOT NATIVE**, but it has the right sign and is real at that sample size, and low-spin zooms do have higher S. Even taken at full value it gives about half the needed slope, since SBeff doesn't rank perfectly with spin. Limit: these are isolated spheres with no external tidal torque, median λ′ 0.011 where real halos have about 0.035, so their spins are internal asymmetry and may not rank as real ones do.
+
+**Where the tilt lives.** Gas-dominated galaxies (n 31): N1 −0.311 ± 0.112 (−2.8σ), law −0.014 ± 0.114. Star-dominated (n 16): N1 −0.041 ± 0.070, law +0.041 ± 0.053. So Υ can't be the cause: it's in the galaxies where Υ hardly matters. Those are the ones with V_flat at the low end.
+
+**How this reads.** The mass-only rule fails this test and the law passes. That doesn't kill route E's physics: the zooms' scatter, tied to spin, gives up to about half, and contraction goes the same way. Neither is derived for this purpose, and together they'd have to be shown to work without spoiling the SPARC line's normalisation.
+
 ## Checks
 K1 slope against `polyfit` 1e-16. K2 this path against NF1's table: Υ exact, ΔV 0. MUTATE δ + 0.1 x: every slope +0.1 to 8e-17; N1 goes TILTED to FLAT.
 
 ## Limits
-47 galaxies, fixed Υ. All route E versions take M200 from EM1's fitted relation, with no scatter. The rule has no scatter in S at fixed M, and the zooms do. If S at fixed mass ranked with surface brightness, that would supply some of the slope. This test doesn't say how much; that needs the native scatter and a reason for the ranking. Only V_flat 60–150 was looked at, and 2 R_d is about where a cored halo's mass is growing fastest. The law's kernel here is the simple ν.
+47 galaxies, fixed Υ. All route E versions take M200 from EM1's fitted relation, with no scatter. Only V_flat 60–150 was looked at, and 2 R_d is about where a cored halo's mass is growing fastest. The law's kernel here is the simple ν.
