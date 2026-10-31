@@ -1,5 +1,7 @@
 # ZN3_native_shape_at_1e15: Z0 PROFILE PASSES BOTH [GAS-SCALE-DEPENDENT] [MASS-DEFINITION-DEPENDENT]. With native shapes up to the clusters' own mass and no fitted parameter, X-COP and all 15 shear keys pass at both f★ on one gas scale
 
+**Correction, 10-31 evening: the pass doesn't survive the gas measurement.** `../GS4_pointed_gas_offset` measured the offset this pass needs on 45 clusters in the lensing mass range, against published Chandra and XMM gas masses: +0.005 ± 0.017 dex, NO OFFSET, not +0.111. SM1's five clusters don't represent the range. On the measured scale ZN3's class is **X-COP ONLY**: 12 of 15 keys, G-OUT-M3 +4.35 and +4.06. The frozen class below stands as what was graded, on an offset that was later measured to be wrong.
+
 Criteria: `FROZEN_CRITERIA.md` (02aa9f4c97), `AMENDMENT_A1.md` (8dda1c4d63). Chosen after seeing ZN1, disclosed there. `zn3_def.py`, `zn3_grade.py`, `zn3_measure.py`, `zn3.out`, `zn3_results.json`, `zn3_shapes.json`, `zn3_boot.out`, `zn3_MUTATE.out`. κ = ½ FITTED; footings never pooled; not theory closed. Nothing here says the data favour the framework. Clusters only.
 
 | Job | keys | worst | X-COP mean, rms | joint χ²/15, p (jackknife p), worse h |
