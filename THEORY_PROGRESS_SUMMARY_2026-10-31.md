@@ -73,7 +73,10 @@ Build the baryon field from these only: McKee, Parravano & Hollenbach 2015 Σ_b(
 no dynamics; already in the record at `hunt_2026/g02_vertical_vs_planar_frequency_split.py`); star-count disc scale
 lengths (Bland-Hawthorn & Gerhard 2016 review range; Licquia & Newman 2016); HI/H₂ surface densities from the gas
 surveys directly, not McMillan's fit; a bulge/bar mass from photometry or microlensing (label the source class; if
-only made-to-measure values with a dark halo exist, as Portail+17, bracket them and say so). Hold McMillan's vertical
+only made-to-measure values with a dark halo exist, as Portail+17, bracket them and say so). Candidate halo-free bulge
+sources to verify from the papers themselves (LITERATURE-INPUT, PROVISIONAL until read): Kent 1992 (2.4 μm Spacelab
+maps), Dwek et al. 1995 (COBE/DIRBE photometry with an assumed M/L), pre-M2M clump-giant counts; each enters as a row
+with its own M/L assumption stated, never as a single adopted value. Hold McMillan's vertical
 shapes only where the ledger shows they come from star counts. External field: e_N = 0 and a Newtonian LMC + M31
 estimate from their own masses, not the 2M++ reconstruction.
 
