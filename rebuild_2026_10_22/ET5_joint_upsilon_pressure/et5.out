@@ -1,0 +1,71 @@
+ET5 joint; kappa = 1/2 FITTED; footings never pooled; not theory closed
+sample 123
+
+Part 1 real curves
+ s0 p0 b0 n  70   70.2[53,77]  107.7[89,137]  157.5[137,190] rho +0.556 p 0.0000 floor MIXED/MIXED
+ s0 p0 b30 n  64   70.2[50,85]  105.4[83,133]  150.2[124,182] rho +0.547 p 0.0000 floor MIXED/MIXED
+ s0 p8 b0 n  70   77.2[67,96]  112.9[89,137]  165.2[143,190] rho +0.513 p 0.0000 floor MIXED/MIXED
+ s0 p8 b30 n  64   73.6[61,98]  107.8[85,137]  157.5[130,190] rho +0.508 p 0.0000 floor MIXED/MIXED
+ s0 p12 b0 n  70   87.0[77,129]  118.4[93,143]  165.2[143,190] rho +0.462 p 0.0000 floor MIXED/MIXED
+ s0 p12 b30 n  64   89.0[74,143]  112.9[91,143]  143.2[130,190] rho +0.437 p 0.0003 floor MIXED/MIXED
+ s0.25 p0 b0 n  70   70.2[54,83]  107.7[89,137]  165.2[130,182] rho +0.527 p 0.0000 floor MIXED/MIXED
+ s0.25 p0 b30 n  64   70.2[53,85]  102.8[85,133]  150.2[118,173] rho +0.541 p 0.0000 floor MIXED/MIXED
+ s0.25 p8 b0 n  70   79.1[67,96]  112.9[85,137]  165.2[130,190] rho +0.492 p 0.0000 floor MIXED/MIXED
+ s0.25 p8 b30 n  64   77.2[61,98]  107.8[85,137]  157.5[118,173] rho +0.489 p 0.0001 floor MIXED/MIXED
+ s0.25 p12 b0 n  70   89.1[77,132]  118.4[93,143]  173.2[137,190] rho +0.439 p 0.0003 floor MIXED/MIXED
+ s0.25 p12 b30 n  64   93.4[74,143]  115.7[93,143]  150.2[124,182] rho +0.404 p 0.0009 floor MIXED/HOLDS
+ s0.5 p0 b0 n  70   70.2[54,85]  107.7[89,137]  157.5[124,173] rho +0.476 p 0.0001 floor MIXED/MIXED
+ s0.5 p0 b30 n  64   70.2[53,85]  102.8[85,133]  143.2[118,165] rho +0.486 p 0.0001 floor MIXED/MIXED
+ s0.5 p8 b0 n  70   81.1[67,98]  112.9[85,137]  157.5[130,173] rho +0.427 p 0.0003 floor MIXED/MIXED
+ s0.5 p8 b30 n  64   77.2[61,98]  107.8[85,137]  143.2[118,165] rho +0.430 p 0.0004 floor MIXED/MIXED
+ s0.5 p12 b0 n  70   91.2[77,132]  118.4[93,137]  165.2[137,182] rho +0.382 p 0.0014 floor MIXED/MIXED
+ s0.5 p12 b30 n  64   93.4[74,143]  113.0[93,137]  150.2[118,173] rho +0.371 p 0.0027 floor MIXED/HOLDS
+
+K1 equals ET2 per galaxy: PASS
+K2 reproduce ET4 s 0.25, ET3 P12, B30: [True, True, True]: PASS
+VERDICT canonical: NOT RECONCILED
+   reconciled allowed []
+   reconciled beyond []
+   floor contained, allowed []; beyond []
+VERDICT alt: FLOOR CONSISTENT, RISE REMAINS
+   reconciled allowed []
+   reconciled beyond []
+   floor contained, allowed ['s0.25_p12_b30']; beyond ['s0.5_p12_b30']
+
+Part 2 forward
+ can s0.25 p8 b0 n  70   97.9[93,103]  102.7[103,103]  112.9[108,118] rho +0.657 p 0.0000 floor REJECTED/REJECTED
+   -> PARTIAL
+ can s0.25 p8 b30 n  70   89.0[83,100]   97.9[93,98]  107.7[103,113] rho +0.442 p 0.0001 floor REJECTED/REJECTED
+   -> PARTIAL
+ can s0.25 p12 b0 n  70   87.0[75,96]   97.9[98,103]  107.7[103,113] rho +0.612 p 0.0000 floor REJECTED/REJECTED
+   -> PARTIAL
+ can s0.25 p12 b30 n  70   79.1[69,89]   93.4[89,93]  102.7[98,108] rho +0.496 p 0.0001 floor REJECTED/REJECTED
+   -> PARTIAL
+ can s0.5 p8 b0 n  70   97.9[89,103]  102.7[103,108]  118.4[113,124] rho +0.753 p 0.0000 floor MIXED/REJECTED
+   -> PARTIAL
+ can s0.5 p8 b30 n  70   87.0[83,100]   93.4[93,98]  112.9[108,118] rho +0.541 p 0.0000 floor REJECTED/REJECTED
+   -> PARTIAL
+ can s0.5 p12 b0 n  70   87.0[72,96]   97.9[98,103]  118.4[108,124] rho +0.693 p 0.0000 floor REJECTED/REJECTED
+   -> PARTIAL
+ can s0.5 p12 b30 n  70   77.2[67,89]   93.4[89,93]  107.7[103,118] rho +0.592 p 0.0000 floor REJECTED/REJECTED
+   -> PARTIAL
+WORST canonical s 0.25: PARTIAL
+WORST canonical s 0.5: PARTIAL
+ alt s0.25 p8 b0 n  70  118.4[113,130]  124.2[124,130]  130.2[130,137] rho +0.523 p 0.0000 floor REJECTED/MIXED
+   -> PARTIAL
+ alt s0.25 p8 b30 n  70  112.9[100,118]  118.4[113,118]  130.2[124,130] rho +0.409 p 0.0006 floor REJECTED/REJECTED
+   -> PARTIAL
+ alt s0.25 p12 b0 n  70  110.3[93,124]  118.4[118,124]  130.2[124,137] rho +0.579 p 0.0000 floor REJECTED/REJECTED
+   -> PARTIAL
+ alt s0.25 p12 b30 n  70  102.7[83,108]  107.7[108,113]  124.2[118,124] rho +0.439 p 0.0001 floor REJECTED/REJECTED
+   -> PARTIAL
+ alt s0.5 p8 b0 n  70  115.7[113,127]  124.2[124,130]  150.2[137,150] rho +0.710 p 0.0000 floor REJECTED/MIXED
+   -> PARTIAL
+ alt s0.5 p8 b30 n  70  110.3[98,118]  118.4[108,118]  130.2[124,150] rho +0.482 p 0.0000 floor REJECTED/REJECTED
+   -> PARTIAL
+ alt s0.5 p12 b0 n  70  110.3[91,124]  124.2[118,124]  136.6[130,150] rho +0.660 p 0.0000 floor REJECTED/REJECTED
+   -> PARTIAL
+ alt s0.5 p12 b30 n  70  100.3[83,108]  107.7[108,113]  130.2[118,143] rho +0.522 p 0.0000 floor REJECTED/REJECTED
+   -> PARTIAL
+WORST alt s 0.25: PARTIAL
+WORST alt s 0.5: PARTIAL
