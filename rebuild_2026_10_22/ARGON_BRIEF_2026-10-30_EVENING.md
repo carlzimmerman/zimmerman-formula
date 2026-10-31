@@ -2,6 +2,11 @@
 
 This replaces this morning's ARGON_BRIEF_2026-10-30. Every number comes from a lane output on the record. Lane names are given so you can ask for any file. Footing is canonical unless I say alt. Z < 0 means the model is above the data (OVER).
 
+**Update, 10-31 morning; no graded number has changed.**
+- **A4:** 8 of 18 zooms done at 07:10, the last expected mid-afternoon. X80 follows, then A5.
+- **What A4 can do to FC1 (`FC1_cold_share_native_eta/fc1_a4_expect.out`, reported, not a grade):** with η at 10¹³ and 10¹⁴ × g, G-IN-Mall reaches −2 at g ≈ 1.016. The SPARC line stays at Υ 0.50 or above up to g 1.114, so A4 threatens clusters and not the line. At 10¹², ng 48 → 64 moved converged η × 1.114 (68 % 0.84–1.21, two samples of different fields). At that g the rule fails at both f★: G-IN-Mall −2.32, G-MID-T3 −2.08 at f★ 0.034. Below about g 0.999 it would pass at both.
+- **ET3–ET6, landed after this brief was written:** the ×2 rise in S from V_flat 20–60 to 100–150 km/s survives beam, pressure, inclination, distance, quality cuts, a Υ trend, their joint grid and four core shapes. Systematics reach at most about ×1.4 from a flat truth. The flat floor is still not rejected: its grade stays MIXED at the base, and generous corners contain alt's floor. No mechanism is identified. Real per-galaxy beams and 3D modelling are untested.
+
 ## 0. Where it stands
 
 1. **Route E now reaches the grader's edge with no external c_f.** The zooms' surface density is for total matter, and the grader had been applying it to the cold share alone. Converting it (factor f_c = 0.84055, no knob) takes the converged native rule from FAIL to Υ 0.51 / 0.50, all 15 cluster keys, groups (FC1). At f★ 0.0615 it fails by 0.004 in Z. It was found post hoc, after I had seen the required softening.
@@ -185,7 +190,7 @@ Softening needed falls with mass: R ≈ 0.3, 0.4, 0.8, none in clusters.
 | 1.00 | 0.0615 | −2.00 | −1.93 | G-IN-Mall |
 | 1.126 | 0.0615 | −2.42 | −2.35 | G-IN-Mall, G-MID-T3 |
 
-**Room on the high side: about +1.5 % in S.** SPARC's line has about the same room (p84, +2.3 %, gives Υ 0.49).
+**Room on the high side: about +1.5 % in S.** SPARC's line has about the same room at 10¹² (p84, +2.3 %, gives Υ 0.49); moving η at 10¹³ and 10¹⁴ alone leaves it at 0.50 or above up to × 1.114 (`fc1_a4_expect.out`).
 
 ### 4d. NF1: no floor (criteria f95621e30a)
 ET1 and ET2 measured the S SPARC asks for below 150 km/s: 69, 103, 143 with M200, and 70, 108, 158 free (rise ρ +0.60, +0.556). A flat floor reads MIXED. The collapse branch runs parallel to that rise.
