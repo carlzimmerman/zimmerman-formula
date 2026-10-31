@@ -238,7 +238,7 @@ def grade():
     def table(lab, rows, vals, extra=""):
         for m in METH:
             for hv, sel in (("", lambda r: not r["h_blank"] or r["h_used"] == 0.7), (" [blank h = 1]", lambda r: not r["h_blank"] or r["h_used"] == 1.0)):
-                q = [r for r in rows if r["method"] == m and sel(r)]
+                q = [r for r in rows if r["method"] == m and sel(r) and str(r["i"]) in vals]
                 if hv and not any(r["h_blank"] for r in q): continue
                 s = reduce_rows(q, vals, 1.0); s["reading"] = reading(s); CM[f"{lab}|{m}{hv}"] = s
                 if s["N"]: P(f"  {lab} {m}{hv}: clusters {s['N']} rows {s['n_rows']} median {s['median']:+.3f} mean {s['mean']:+.3f} SE {s['SE'] if s['SE'] is None else round(s['SE'], 3)}: {s['reading']}")
@@ -268,7 +268,7 @@ def grade():
     V = {k: v for nm in ALL["ZN3_X_0.034"]["rf"]["xcop"]["canonical"].values() for k, v in nm.items()}
     for nm, rows in I["xcop_rows"].items():
         for r in rows:
-            if r["method"] != "X-ray": P(f"  {nm} {r['method']} {r['ref']} h {r['h_used']}: r {r['r_kpc']:.0f}, M_pub {r['M']:.2e}, model {sum(V[str(r['i'])]):.2e}: {math.log10(r['M'] / sum(V[str(r['i'])])):+.3f}")
+            if r["method"] != "X-ray" and str(r["i"]) in V: P(f"  {nm} {r['method']} {r['ref']} h {r['h_used']}: r {r['r_kpc']:.0f}, M_pub {r['M']:.2e}, model {sum(V[str(r['i'])]):.2e}: {math.log10(r['M'] / sum(V[str(r['i'])])):+.3f}")
     # verdicts
     xf = [KT[f"ZN3_XF_{fs}|canonical"] for fs in ("0.034", "0.0615")]; XFV = "ZN3 KEYS SURVIVE ON THE HSE-FREE GAS SCALE" if all(q["n"] == 15 for q in xf) else "FAILS ON THE HSE-FREE GAS SCALE: " + ", ".join(sorted({k for q in xf for k in q["bad"]}))
     cl = lambda fs: (KT[f"ZN3_X_{fs}|canonical"]["n"] == 15, KT[f"ZN3_X_{fs}|canonical"]["xcop_pass"]); base = cl("0.034"); dep = any(cl(fs) != base for fs in FS)
