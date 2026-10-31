@@ -3,6 +3,8 @@
 # A5 (run_direct_A5.sh), waits for its nine done.json, then runs the A5 analysis, grade and the graded X74 SPARC read
 # (criteria a0cbcc6928). Log: watch_A5.log. If A5 is preempted (exit 75), re-run this script; it resumes.
 cd "$(dirname "$0")"
+# 10-31: A5 (nine ng 80 runs, about 27 core-hours) waits for ZN2's low-mass continuation, which itself waits for LC1. ZN3 runs at the same nice. Stated in the day's report.
+until [ -f ../ZN2_native_profile_sparc_groups/LOW_Z0_DONE ]; do sleep 600; done
 until grep -q "post-A4 regrades done" ../X74_all_measured_native_cf/watch_A4.log 2>/dev/null; do sleep 600; done
 echo "A4 regrades done; launching A5 $(date)"
 n=$(ls runs/M1e12_s?_ng80/done.json 2>/dev/null | wc -l | tr -d ' ')

@@ -1,4 +1,29 @@
-# X80_low_mass_floor_emergence (QUEUED, BEFORE A5; criteria c1c6d82d69, AMENDMENT_A1)
+# X80_low_mass_floor_emergence: FLOOR BY HAND [RESOLUTION-DEPENDENT 10¹¹]. Native collapse doesn't put dwarf cores on a₀/2πG. And version N with the measured low-mass ratios passes SPARC's line with no floor at all
+
+Criteria c1c6d82d69, `AMENDMENT_A1.md`, `AMENDMENT_A2.md`. Ran 10-31 with ZK1's kernel, 24 runs, finished 13:07. `x80_floor.log`, `x80_results.json`, `x80_floor_MUTATE.log`, `x80_converged.out`, `x80_converged.json`, `../NF1_no_floor_rule/nf1_native_read.out`. κ = ½ FITTED; footings never pooled; not theory closed.
+
+## Frozen grade
+| Mass | Grid | ρ₀r₀ (68 %), M☉/pc² | η_S | c-equivalent | R canonical | R alt |
+|---|---|---|---|---|---|---|
+| 10¹⁰ | ng 64 | 44.2 [41.3, 49.5] | 23.19 | 7.36 | **0.414** | 0.342 |
+| 10¹⁰ | ng 48 | 37.3 [23.8, 49.4] | 17.22 | 5.80 | 0.349 | 0.289 |
+| 10¹¹ | ng 64 | 79.1 [75.3, 86.6] | 20.37 | 6.64 | **0.740** | 0.613 |
+| 10¹¹ | ng 48 | 65.0 [37.7, 92.2] | 16.49 | 5.60 | 0.608 | 0.503 |
+| 10¹² | ng 64 | 134.9 [132.5, 145.5] | 20.83 | 6.75 | 1.263 | 1.045 |
+
+R(10¹⁰) is well below the 0.71 line on both footings: **FLOOR BY HAND,** with [RESOLUTION-DEPENDENT 10¹¹] (the shift from ng 48 to ng 64 at 10¹¹ exceeds 20 %). S keeps falling with mass, as Σ_coll does, with no plateau. So a floor at a₀/2πG isn't something native collapse makes. MUTATE ran and moved these, and its own label reads FLOOR BY HAND with resolution flags at both masses.
+
+## Added lines (`AMENDMENT_A1.md`), reported, not graded
+- **Converged η:** 29.26 [27.13, 29.48] at 10¹⁰, 24.34 [24.34, 30.16] at 10¹¹, 25.94 at 10¹². **ρ₁₀ 1.128 [0.967, 1.301], ρ₁₁ 0.938 [0.867, 1.316]:** N IN WINDOW [NOISE-LIMITED]. η is flat with mass within noise, slope 0.026 per dex from 10¹⁰ to 10¹².
+- **Native read of version N** (no floor, these ratios, FC1's rule otherwise, CE1's A4 table): SPARC Υ 0.70 / 0.72, rms 0.0682 / 0.0694, groups Z +1.45. **NATIVE N PASSES THE SPARC LINE.** Cluster keys fail on this path (G-IN-all, G-MID-T3, G-IN-Mall, as FC1 at A4); ZN1's native profile is the cluster read. By V_flat, Υ / ΔV: 20–60 1.20 / −4.3; 60–100 1.14 / −6.6; 100–150 0.86 / −12.1; 150–200 0.54 / −4.2; 200–250 0.58 / −13.9; 250–400 0.74 / −54.7. S falls outside ET1's interval at 60–100, 100–150 and 250–400, so small galaxies run Υ high and the brightest run short. **So the floor isn't required for the line, and doesn't emerge; a₀ out of the cold sector stays the owner's call.**
+
+## Scored
+- **Outside formula (below):** ρ₀r₀ 85 at 10¹¹, measured 79.1 (−7 %): HIT. 53 at 10¹⁰, measured 44.2 (−17 %): MISS, just outside ±15 %. c-equivalent 7.4, 8.1, measured 6.64, 7.36: both HIT.
+- **Argon's converged ratios** ρ₁₀ 1.251–1.254, ρ₁₁ 1.126, measured 1.128, 0.938: HIT at 10¹⁰ (−10 %), MISS at 10¹¹ (−17 %). Argon's window in the 10-31 plan said pass 1.15–1.85, fail below 1.10: 1.128 lies between them.
+- **Argon's smooth-max formula:** c_f 14.26, 9.62, measured 7.36, 6.64: MISS at both masses.
+
+**Status before this run, kept for the record.**
+
 
 **Question.** Does native collapse put cores on a₀/2πG at dwarf masses? If so, the floor of the route E core rule would
 emerge rather than being put in by hand.
