@@ -21,6 +21,9 @@ Pass line for X-COP: |mean| ≤ 0.05, rms ≤ 0.10. FC1's rms was 0.139, MA1's 0
 - **Groups fail under ALL:** Z +3.98, against +1.62.
 - Solved γ: median 1.87 [1.73, 2.00] over 1314 cells. Every cell has a tail.
 
+## A4 landed, 10-31: X-COP PASSES, KEYS BREAK, same class (`nz1_a4.out`, `nz1_a4_results.json`)
+With the zoom's r₀ taken at ng 64: X-COP −0.025, 0.083 at f★ 0.034; −0.031, 0.084 at 0.0615. SPARC on all paths Υ 0.52 / 0.52, rms 0.0686. Groups Z +3.84 on all paths. As graded on X7's old template: G-OUT-M3 +4.90, G-OUT-Mall +2.95, G-MID-T3 +2.00 / +2.40, G-IN-Mall −1.33. It remains the only rule that holds X-COP at ng 64.
+
 ## A4's guide makes X-COP better here
 With η at 10¹³ and 10¹⁴ × 1.1144: X-COP mean +0.017, rms 0.076 (f★ 0.034); +0.012, rms 0.075 (f★ 0.0615). The same keys stay over 2, with G-OUT-M3 +5.02 and +4.93. On the single-tail rules a higher η hurts. On this rule it helps.
 

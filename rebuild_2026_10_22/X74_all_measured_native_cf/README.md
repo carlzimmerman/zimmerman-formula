@@ -1,4 +1,7 @@
-# X74_all_measured_native_cf: PENDING A4 (pre-built; identity checks pass)
+# X74_all_measured_native_cf: BREAKS on both footings at A4. SPARC line and nine cluster keys OVER with r₋₂'s c_f, which X77 later showed is an estimator artefact
+
+**A4 read, 10-31 (`x74_fs*_nat_*`, `watch_A4.log`).** Native c_f 7.74, 8.67, 10.07 at 10¹², 10¹³, 10¹⁴, so η 24.7, 28.5, 34.3. f★ 0.034, canonical: SPARC Υ 0.47 / 0.47, FAIL. G-IN-Mall −5.60. Failing: SPARC line, G-IN-all, G-MID-T1, T2, T3, G-OUT-all, G-OUT-Mall, G-OUT-M3, G-IN-Mall, all OVER. Alt the same, Υ 0.41 / 0.42. Groups Z +1.25. MUTATE c_f × 2 ran as frozen. The G-OUT-M* keys carry the template defect in `../NZ1_zoom_core_radius/nz1_one_template.out`; the class doesn't depend on them. PREREG 23095bf23a's c_f slope: +0.057 (68 % −0.017, +0.144) against +0.077, PASS, level 7.74 against 4.
+
 
 Criteria: `FROZEN_CRITERIA.md` (c3e69578c5), committed before this script and before any A4 number.
 Governing post-A4 regrade of route E: X73's all-measured configuration (smooth core, native Ω_c/Ω_b, measured X-COP gas

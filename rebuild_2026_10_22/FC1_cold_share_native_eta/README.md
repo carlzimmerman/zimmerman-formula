@@ -23,6 +23,8 @@ The grader used that number for the **cold** halo alone and added the baryons on
 
 **Alt: COLD-SHARE FAIL**, on the SPARC line (Υ 0.44), which X78 traces to the law, not to route E. Its cluster and group numbers equal canonical's.
 
+**A4 landed, 10-31: COLD-SHARE FAIL on both footings, and this label stands** (`fc1_a4_run.log`, `FC1_A4_*`). All cluster η now at ng 64: η_conv 25.94, 23.54, 22.10 (× 1.33, × 1.31 over ng 48 at 10¹³, 10¹⁴). At f★ 0.034, canonical: G-IN-Mall −2.89, G-MID-T3 −2.62, G-IN-all also over; SPARC Υ 0.50 / 0.49, so the line now misses on background B by 0.01. At f★ 0.0615: −2.97, −2.87, and G-OUT-M3 as graded. p16's η (× 1.04 over FC1's at 10¹³, lower at 10¹⁴) still passes canonical, worst −1.88 and −1.94. p84 fails. The forecast below said the room was g 1.016, and this is what lay above it.
+
 **Read it as the edge, not a pass.** The result sits on the G-IN-Mall line, and the SPARC line is at 0.50 on background B. A4 replaces the ng 48 cluster masses; `watch_A4_then_FC1.sh` reruns this grade when CE1's A4 tables exist, and A4's label stands if it differs.
 
 **Correction, 10-31:** G-OUT-Mall and G-OUT-M1–M3 in this lane's grades read X7's values on an older template. On the run's own template they are +0.18, +0.09, −0.23, +0.54 at f★ 0.034, h 0.672 (as graded −1.55, −0.30, −1.37, −1.31). No label here changes (`../NZ1_zoom_core_radius/nz1_one_template.out`).

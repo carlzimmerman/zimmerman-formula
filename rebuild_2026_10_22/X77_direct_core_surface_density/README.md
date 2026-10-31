@@ -4,6 +4,8 @@ Criteria: `FROZEN_CRITERIA.md` (21f010353f), committed before any script or numb
 fitted to every finished X48 zoom halo, with X48's own centre, r_vir, fit range and objective. That gives
 η_native = ρ₀r₀/(18π² ρ_m r_vir) = (4/3) a²/B_S(a) directly: no c_f, no r^0.75 infall map.
 
+**A4 read, 10-31 (`A4_x77.out`, `A4_x77_results.json`, `A4grade_*`).** η_S at the ε cut, all ng 64: 20.83, 19.07, 18.93 at 10¹², 10¹³, 10¹⁴ (ng 48: 18.2, 13.79, 14.39). So X77's "lands at the data window at every mass" doesn't survive at the two cluster masses: × 1.33, × 1.32 over the limit 14.3. Graded with this table: SPARC Υ 0.52 / 0.52 passes on canonical, but G-IN-all, G-MID-T3 and G-IN-Mall fail OVER; alt also fails the SPARC line. The earlier pass at f★ 0.034 was at ng 48. `x77.out` and `x77_results.json` keep the pre-A4 numbers; the rerun's copies are `A4_*`.
+
 ## Result (smooth core; nine-seed medians, 68 % bootstrap)
 | mass, grid | η_native | limit (committed lanes) | grade | c_f-equivalent |
 |---|---|---|---|---|

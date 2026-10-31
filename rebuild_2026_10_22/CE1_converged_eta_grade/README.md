@@ -35,6 +35,8 @@ With the resolution cut removed, route E's native collapse branch fails SPARC an
 footings. The knife-edge passes (X77) came from the ε cut. Native cold collapse over-concentrates by about 20–30 % at
 every mass. The only route E configuration that passes is still the external c_f = 4 (η 10.82).
 
+**A4 read, 10-31 (`ce1_a4.out`, `CE1_A4_*`).** Converged η at ng 64: 25.94, 23.54, 22.10 (ng 48: 25.94, 17.67, 16.91), c-equivalents 8.05, 7.45, 7.08. f★ 0.034, median: SC FAILS on both footings; SPARC Υ 0.46 / 0.47 canonical, 0.41 alt; failing SPARC line, G-IN-all, G-MID-T3, G-OUT-Mall, G-OUT-M3 and G-IN-Mall as graded. This is the rule with no cold-share factor; FC1's is in its own lane.
+
 **Post-A4 (automatic, reported):** `watch_A4_then_CE1.sh` waits for X77's A4 rerun, then runs `ce1_grade.py --A4`
 with 10¹³ and 10¹⁴ at ng 64 (outputs CE1_A4_*).
 

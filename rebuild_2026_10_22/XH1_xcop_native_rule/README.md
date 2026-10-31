@@ -38,5 +38,8 @@ The per-cluster table shows log M 15.31–15.69 as S's mass argument: the whole 
 ## Limits
 7 clusters. M_FORW only. Gas tail slope from X-COP's own gas, used by the rule as elsewhere. The cluster η is still ng 48; `xh1_xcop.py --A4` reruns this once CE1's A4 tables exist.
 
+## A4 landed, 10-31: FAIL, worse, and the shear outlier label goes (`xh1_a4.out`, `xh1_a4_results.json`)
+With all cluster η at ng 64 (× 1.33, × 1.31 at 10¹³, 10¹⁴): mean −0.160, rms 0.186 at f★ 0.034; −0.165, 0.191 at 0.0615. By x: −0.025, −0.177, −0.205, −0.197, −0.197. In the disputed band X-COP's model/data is now 1.55, against G-IN-Mall's 1.90, so the frozen label changes from SHEAR BAND OUTLIER to **INNER OVER CONFIRMED.** X-COP and the shear now agree that this rule is too heavy there.
+
 ## Checks
 K0 FC1's cluster predictions |d| 0; K1 CS2's law read |d| 0; K2 1.7e-14; K3 9.5e-8; K4 2.2e-16; RSS 0.66 GB: all pass. MUTATE S × 2 moves the mean by −0.213: bites.

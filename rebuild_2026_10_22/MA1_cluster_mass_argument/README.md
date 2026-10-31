@@ -50,4 +50,6 @@ Still FAIL on rms: mean −0.014, rms 0.136 (f★ 0.034); by x +0.205, +0.013, �
 K0 switch off reproduces FC1 and XH1, |d| 0. K1 SPARC rms and groups Z unchanged, |d| 0. K2 1304 cells, all converged within 7 iterations, R₂₀₀ equation 6.4e-13. K3 pass. MUTATE argument × 2 moves G-IN-Mall by −0.52 (and lands near FC1's −1.95): bites. RSS 0.71 GB.
 
 ## Limits
+**A4 landed, 10-31: MASS ARGUMENT FAIL on both footings, and this label stands** (`ma1_a4.out`, `ma1_a4_results.json`). η at ng 64 sits above the × 1.206 that already failed. f★ 0.034: G-IN-Mall −2.35 / −1.99, G-MID-T3 −2.10 / −1.50. f★ 0.0615: −2.42 / −2.04, −2.33 / −1.72. SPARC Υ 0.50 / 0.49. X-COP −0.107, 0.153, FAIL. So MA1's room is gone at ng 64. BA1's joint reading of MA1 was at ng 48 and doesn't carry over.
+
 Post hoc, disclosed. No parameter, but also no derivation of S, η or κ. Cluster η still ng 48; `ma1_grade.py --A4` reruns this once CE1's A4 tables exist. M₂₀₀ comes from the single-tail profile, which is itself too heavy on X-COP.
