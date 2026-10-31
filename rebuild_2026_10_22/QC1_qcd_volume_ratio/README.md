@@ -15,7 +15,7 @@ Script: `qc1_check.py`; output: `qc1_check.out`, `qc1_results.json`.
 | T6 lifetime | Γ/H = **1.6e19–5.2e19** at zero temperature (X1: 22.6). A gap stops thermal absorption, not decay; lifetime ~1e-24 s. Even the thermal factor is 0.04 at 500 MeV, not 0 | FAIL |
 | T7 delocalisation | Spheres fill 4e-9–1.5e-8 of space, with baryons 960–1470 fm apart | FAIL |
 | T8 Λ scales | (H₀Λ³)^¼ = 1.1e-2 eV, 4.9 × ρ_Λ^¼ (claimed 2.3e-3). √(f m²/M) is 11.6 ×. "ρ_Λ ~ f²m²/M²" is eV², not eV⁴. a_QCD is 5e-57 of a0 | NO MATCH |
-| T9 κ | Σ = c√(Gρ_Λ)/4πG equals a0/2πG at κ = ½, 110.12 M☉/pc² on the native background (106.85 claimed). Restatement: nothing selects 4π, and the a0 law still needs κ | κ FITTED |
+| T9 κ | Σ = c√(Gρ_Λ)/4πG equals a0/2πG at κ = ½, 106.85 M☉/pc² on the record's canonical footing (110.12 on this script's native-background ρ_Λ; the proposal's value is not wrong). Restatement: nothing selects 4π, and the a0 law still needs κ | κ FITTED |
 | T10 core, response | (1+x⁴)^(−3/4) also has ρ′(0) = 0 and r⁻³, so "uniquely" is false. The form is X70's, already chosen by hand. "S fixed" has no equation: G12 asks for a calculation | NOT CLOSED |
 
 **Two exits, both shut.** If the cloud stays on its baryon, it is 1e-8 of space, moves with the baryons through the acoustic era, and
