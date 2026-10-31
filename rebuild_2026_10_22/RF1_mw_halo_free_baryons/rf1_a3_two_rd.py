@@ -45,7 +45,7 @@ ns = L.load_p4(); F = L.Family(ns); PS = ns["S"]; vE, eE = L.eilers_target(ns)
 R0 = ns["R0_MW"]; BR_R, BR_K, BR_E5 = ns["BR_R"], ns["BR_K"], ns["BR_E5"]
 ou = np.loadtxt(os.path.join(L.DATA, "mw_rc_ou2024_table1.tsv"), comments="#", skiprows=14)
 OR, OV = ou[:, 0], ou[:, 1]; OE = np.hypot(0.5 * (ou[:, 2] + ou[:, 3]), np.where(OR <= 22.0, 0.03, 0.15) * OV)
-A0C = 1.2e-10
+A0C = L.A0_SI["canonical"]  # as rf1_mw.py
 GAS_MCM = F.sig_gas_R0 / 1e6; MGAS_MCM = F.gas_mass(); ZT, ZK = ns["ZD_THIN"], ns["ZD_THICK"]
 P(f"RF1 A3 two-scale-length disc {'MUTATE (q = 0, S x 0.5)' if MUT else 'normal run'}  (frozen: AMENDMENTS.md A3; RF1 criteria 9468ee04b2)")
 P(f"McMillan thin share of stellar surface density at R0 (held, labelled): f_thin {F.f_thin:.4f}; gas 13.7 McKee on McMillan forms; M_bb 2.0e10 Valenti+16")
