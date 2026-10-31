@@ -137,7 +137,7 @@ Its diagnosis is half right: the floor does fail the offset line (−0.110) and 
 **My expectation on record:** offset near 0, hit. LITTLE THINGS near +0.13 and narrow, hit in value, wrong to think it might be noise-limited. HS1 near −0.18, hit. S near 29, hit. Ultra-faints NO M200 RESCUES, J0946 EXCEEDS, ultra-faints admitted mostly inside 3ε, all hit. Draco around +0.3 on the cusp: miss, +0.541. I'd used the limit and not the measured mass.
 
 ## How this reads
-The measured collapse S at dwarf masses is short in two separate places. LITTLE THINGS wants more acceleration at R_max. The dwarfs' central masses want far more inside r₁₂ than a core on this S can hold, and a cusp only reaches them at M200 hundreds to thousands of times above EM1's relation. J0946's dark solution fails under every reading here, so route E still needs its luminous solution. This doesn't decide version N against the floor: the floor fails the gas-rich offset and passes LITTLE THINGS, the reverse. a₀ out of the cold sector stays the owner's call.
+The measured collapse S at dwarf masses is short in two separate places. LITTLE THINGS wants more acceleration at R_max. The dwarfs' central masses want far more inside r₁₂ than a core on this S can hold, and a cusp only reaches them at M200 well above EM1's relation: × 5–25 for bright M31 and the LG field, hundreds to thousands for the ultra-faints, the classical dwarfs and Draco. J0946's dark solution fails under every reading here, so route E still needs its luminous solution. This doesn't decide version N against the floor: the floor fails the gas-rich offset and passes LITTLE THINGS, the reverse. a₀ out of the cold sector stays the owner's call.
 
 ## Checks
 All pass.
