@@ -12,6 +12,7 @@
 - **Unchanged:** clusters and groups, where the floor was never active (NF1 K3, ΔZ = 0). Their failures stay.
 
 ## What it costs (native N)
+- **Local Group (found after the decision, RG1):** all five classes UNDER at Z +3.1 to +6.6, where floored halos passed four of five. This is the largest cost and was not known when the decision was made.
 - **LITTLE THINGS:** median E +0.138 / +0.132, short in all 200 seed draws (ND1). The floor had −0.041.
 - **Surface brightness:** tilted, −2.70σ (ND1), where the law is flat.
 - **Υ runs with mass:** 1.20 at 20–60 km/s to 0.54 at 150–200. At Υ 0.50 S_rule is below ET1's interval at 60–150 km/s (and in the 250–400 bin, unchanged by the floor).
@@ -20,7 +21,7 @@
 - **Gas-rich offset improves:** +0.007 on gas ≥ 0.7, where the floor had −0.110, though ND1 calls this a weak pass.
 
 ## Standing of existing work
-Frozen lanes keep the rule they froze; their results are not voided. To regrade on this rule before quoting as route E: X49's Local Group classes (4 of 5 PASS was on floored halos), HO1, HO2, GD1–GD3, anything quoting Υ 0.50 at low mass. Above about lg M 11.5 the floor was inactive, so results there carry over. Drafts PAPER61 and PAPER65 state the floor; both need revising before any deposit. Nothing deposited is changed.
+Frozen lanes keep the rule they froze; their results are not voided. **Regraded in `RG1_native_n_regrade`:** Local Group 4 of 5 → **0 of 5**, all UNDER. Milky Way class unchanged. SLUGGS, X-COP, HG2 fail. **Correction:** this file listed HO1 and HO2's SLUGGS as floor-dependent, and said results above about lg M 11.5 carry over. They were never on the floor, but they use other cores, so they do not carry over automatically; RG1 shows what changes. Drafts PAPER61 and PAPER65 state the floor; both need revising before any deposit. Nothing deposited is changed.
 The status board tiles have not been recomputed for this rule.
 
 κ = ½ FITTED. Not "theory closed". Nothing here says the data favour the framework.
