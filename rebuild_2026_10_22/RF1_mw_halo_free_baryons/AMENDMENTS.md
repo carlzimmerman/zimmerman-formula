@@ -116,3 +116,23 @@ component's short scale length. The Milky Way on halo-free baryons under route E
 where every halo-free prior is pushed about 2σ the same way.** GD1's McMillan verdict keeps its label.
 
 κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.
+
+**A4, 2026-10-31, FROZEN before any number from it.** The thick-disc share at R₀, which A3 held at McMillan's and which
+carried A3's pass, replaced by the star-count value. BH&G16 §5.1.3 (on disk, A2): thick-to-thin local column ratio
+**f_Σ = 12 % ± 4 %** from f_ρ = 4 % ± 2 % and the scale heights, "excludes all papers that do not" separate the components by
+star counts; halo-free. McMillan's share corresponds to f_Σ = 0.357 (thick 26.3 % of the stellar column); the star-count
+value gives thick 10.7 % (7.4–13.8 % at ±1σ).
+
+- **Grid:** A3's 125 cells (Σ_b McKee, R_t 2.38–2.90, R_T 1.6–2.4, M_bb 2.0 × 10¹⁰, McKee gas) × f_Σ ∈ {0.04, 0.08, 0.12,
+  0.16, 0.20} (±2σ in 1σ steps): 625 cells. Thin share of the stellar column at R₀ = 1/(1 + f_Σ). Everything else as A3.
+  Separate script `rf1_a4_thick_share.py`; A3's outputs untouched.
+- **Verdict per rule (bg A, PRIMARY), as A3:** PASS on halo-free baryons (two-scale-length disc, star-count thick share) if any
+  of the 625 cells passes all four lines; FAIL if none does. Reported beside it: the count at f_Σ = 0.12 alone and within ±1σ
+  (0.08–0.16), so a pass that exists only at f_Σ = 0.20 is visible as such.
+- **Checks.** K1: with f_Σ set to McMillan's 0.3574 (f_thin 0.7367) the script reproduces A3's recorded best cell for
+  OS1|canonical|PRIMARY|A and N|canonical|A (read from `rf1_a3_two_rd_results.json`, not typed) to 1e-9 relative. K2: grid
+  mass vs analytic 2e-3 on every cell. K3: RSS < 1 GB. MUTATE as A3 (q = 0, S × 0.5): K1 must FAIL, exit 1.
+- **Expectation on record:** FAIL on every rule at f_Σ ≤ 0.16; a pass, if any, only at f_Σ = 0.20 with R_T 1.6 and Σ_b high,
+  because A3's pass was carried by the short thick disc at 26 % of the column. If the run differs, the run stands.
+
+κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.
