@@ -83,3 +83,8 @@ K1 and K2 (807 / 100 / 100) pass. K3 planted law: truth 0.935, B0 0.945. Null ta
 ## Limits
 
 Trial numbering assumes the public script's order; Optuna runs may have been resumed or split across jobs. Published values were read through a fetch tool, so check them against the PDF before citing them publicly. Nothing here says the paper's conclusion is wrong, or that WDM can't be inferred from these trees.
+
+## Part C status (criteria `PART_C_CRITERIA.md`, b0d11861e9)
+Checks passed, `partc_check.out`: K6 network equals explicit loops on all arms; K7 edge counts equal the verbatim `get_edges` on all 1007 boxes (stronger than the three frozen); K8 resume identical, tested by the same code path with a stop at epoch 3; a real SIGTERM separately exited 75 with a checkpoint; K9 planted log N R2 0.874 at 60 epochs. These are trainer checks, not results.
+Measured: 74 s/epoch at one thread alongside live zooms, peak footprint 2.3 GB (max RSS 8.2 GB). 24 runs × 1000 epochs is 20.5 days at one thread; queued at 8 threads, scaling not measured. Jobs `CB1_C_mutate`, `CB1_C_run`. No result read yet.
+Public `get_edges` keeps one progenitor per descendant (`PART_C_CRITERIA.md` §0): public code does this; the paper says each subhalo is paired with its unique descendant. Not a claim about what produced the published numbers.
