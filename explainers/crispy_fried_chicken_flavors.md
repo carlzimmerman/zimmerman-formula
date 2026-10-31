@@ -248,6 +248,7 @@ The grid has 50 rows.
 
 **Recipe:** Route E, the owner's 25 October flagship: Newtonian gravity on baryons plus cold dark energy halos.
 - **Halo shape:** the smooth core ρ₀/(1+x²)^(3/2).
+- **Owner decision 10-31: floor removed; see `rebuild_2026_10_22/OWNER_DECISION_2026-10-31_NO_FLOOR.md`. Earlier rule:**
 - **Core rule:** ρ₀r₀ = max(a₀/2πG, η Σ_coll), with η re-derived for the shape (10.82 at c_f = 4, EXTERNAL).
 - **Normalization:** fair share inside r_ta.
 - **Stars:** measured stellar fractions.

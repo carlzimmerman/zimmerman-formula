@@ -1,5 +1,7 @@
 # FRIED CHICKEN — the requirements
 
+> **Owner decision 2026-10-31: the a₀ floor is removed from route E's core rule.** Working rule: S_cold = f_c η Σ_coll with native η, no floor; a₀ no longer enters the halos. Native N passes the SPARC line, and falls short on LITTLE THINGS. See `rebuild_2026_10_22/OWNER_DECISION_2026-10-31_NO_FLOOR.md`. Text below that states the floor predates this.
+>
 > **Status note (2026-10-29).** The gates below are the covariant-completion requirements; they are unchanged.
 > - **The owner's current flagship is route E** (25 October): the a₀ law plus the empirical cold dark energy core law
 >   ρ₀r₀ = max(a₀/2πG, η Σ_coll). It is not a covariant completion and does not claim these gates.

@@ -2,6 +2,8 @@
 
 **One claim: the galactic acceleration scale is set by the dark-energy density.**
 
+**Owner decision 2026-10-31: the a₀ floor is removed from route E's core rule.** Working rule: S_cold = f_c η Σ_coll with native η, no floor; a₀ no longer enters the halos. Native N passes the SPARC line, and falls short on LITTLE THINGS. See [`OWNER_DECISION_2026-10-31_NO_FLOOR.md`](rebuild_2026_10_22/OWNER_DECISION_2026-10-31_NO_FLOOR.md). Text below that states the floor predates this.
+
 **Checkpoint 2026-10-29 (route E, the owner's 25 October flagship: the a₀ law plus the cold dark energy core law).** This is not a new verdict on v3s, which stays frozen.
 - **The core rule** is ρ₀r₀ = max(a₀/2πG, η Σ_coll). It is empirical: every mechanism tried for the floor is closed (X47, X65–X68, the phantom-halo ceiling, pressure floors, correlated matter beyond r_ta; see [`rebuild_2026_10_22/X65_X67_POSTMORTEM.md`](rebuild_2026_10_22/X65_X67_POSTMORTEM.md)). SPARC prefers the hard floor (X69_soft_floor_sparc: softening it worsens the low-acceleration half by 43–55 %).
 - **Best halo shape.** The smooth core ρ₀/(1+x²)^(3/2), with η re-derived to 10.82 (X70_smooth_core_shape):

@@ -3,6 +3,8 @@
 Original summary from committed lanes; the 2026-10-27 corrections link current workspace audit artifacts. κ = ½ FITTED. Footings canonical a₀ = 9.3603e-11 / alt 1.1312e-10 m s⁻², never pooled.
 Not "theory closed". Nothing here says the data favour the framework. The adoption decision (route E, below) is the owner's.
 
+**Owner decision 2026-10-31: the a₀ floor is removed from route E's core rule.** Working rule: S_cold = f_c η Σ_coll with native η, no floor; a₀ no longer enters the halos. Native N passes the SPARC line, and falls short on LITTLE THINGS. See `OWNER_DECISION_2026-10-31_NO_FLOOR.md`. Text below that states the floor predates this.
+
 **Audit correction, 2026-10-27.** The selector exclusions below apply to the
 specified tested rules and halo prescriptions. They do not exhaust all possible
 object-property or history-dependent mechanisms. X53 establishes a relative
