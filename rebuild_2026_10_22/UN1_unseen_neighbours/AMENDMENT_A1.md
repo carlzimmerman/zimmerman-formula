@@ -15,3 +15,6 @@ n_ref(z) is the density of reference neighbours at z, as frozen (within 0.5 dex 
 **Added check.** K4: n_cat + missing ≥ φ at every (t, z) and missing = 0 where n_cat ≥ φ. MUTATE: φ × 1.3 raises the term in O1 for both models.
 
 **Reading.** The amended class is a post-result diagnostic with the frozen rule's wording. If it closes, that still needs saying as post hoc. κ = ½ FITTED. Not theory closed.
+
+## A1 note (added before any amended number): a second defect
+`am1_bmf.json`'s `all` is cumulative, n(> M), on AM1's own mass (no hot gas). The frozen run read it as φ, so its weights are wrong in both shape and mass scale, and the "about 20×" in the disclosure above compares a density per dex with a cumulative count: it is an artefact, withdrawn. Both defects are mine and sit in the frozen text's execution. The amended run takes differential φ(t) = Σ 1/V_max per dex, z 0.02–0.30, by AM1's method on P2's `lMb_g`, the mass the neighbour tables are indexed by. The n_ref variants stay.
