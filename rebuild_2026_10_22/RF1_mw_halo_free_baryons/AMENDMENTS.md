@@ -69,3 +69,27 @@ from the papers on disk: `_external_data/rf1_rd_sources/licquia_newman_2016.pdf`
   at 4–5σ; a two-scale-length disc untested.
 
 κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.
+
+**A3, 2026-10-31, FROZEN before any number from it.** The two-scale-length disc A2 named. Separate script `rf1_a3_two_rd.py`;
+`rf1_mw.py` and its outputs are not touched.
+
+- **Cell.** Stars: thin and thick exponential discs with their own radial scale lengths R_t and R_T, McMillan's vertical
+  scale heights and McMillan's thin share of the stellar surface density at R₀ (both held and labelled, as in every RF1 cell);
+  Σ_b at R₀ on McKee's grid (40.3, 43.7, 47.1, 50.5, 53.9); gas McKee 13.7 on McMillan's radial forms; bulge M_bb = 2.0 × 10¹⁰
+  (Valenti+16, A1) on McMillan's shape rescaled.
+- **Grid, from the halo-free star counts read in A2.** R_t ∈ {2.38, 2.51, 2.64, 2.77, 2.90} kpc (LN16 combined 2.64 ± 0.13,
+  ±2σ, with the IR-only 2.51 inside it); R_T ∈ {1.6, 1.8, 2.0, 2.2, 2.4} kpc (BH&G16 thick 2.0 ± 0.2, ±2σ). 125 cells.
+- **Lines, rules, backgrounds, footings:** exactly RF1's (L1, L2a, L2b, L3; OS1 PRIMARY per footing and native N; background
+  A graded, B reported; VARIANT reported).
+- **Verdict per rule:** **PASS on halo-free baryons (two-scale-length disc)** if any of the 125 cells passes all four lines;
+  **FAIL on halo-free baryons (two-scale-length disc)** if none does. Counts per line, best-D cell and the largest v_c(R₀)
+  reached are reported either way.
+- **Checks.** K1: with R_t = R_T = 1.9333 at Σ_b 47.1 the cell reproduces A1's graded cell (N|canonical|A: v_c(R₀)
+  232.0662339084003, K_z(R₀) 68.53649338303407; OS1 canonical PRIMARY 228.90290368882424 / 67.63556402087326) to 1e-9
+  relative. K2: every cell's grid mass agrees with its analytic mass to 2e-3. K3: peak RSS < 1 GB, one thread. MUTATE
+  (`RF1_MUTATE=1`, separate outputs): q = 0 and S × 0.5 as in RF1; K1 must FAIL and the script exit 1.
+- **Expectation on record:** FAIL on every rule. The thick disc holds a minority of the stellar surface density at R₀, so
+  shortening it alone cannot supply what the single 1.93 kpc disc did; the A1 lookup shows nothing passing at R_d ≥ 2.6. If
+  the run differs, the run stands.
+
+κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.
