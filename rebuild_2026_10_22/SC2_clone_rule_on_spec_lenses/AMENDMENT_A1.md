@@ -2,7 +2,7 @@
 
 Written after the frozen runs (eda8433972), before any number from the runs below.
 
-**The frozen comparison stands.** At the frozen counts, per-lens clones change 10 of 40 graded classes. That table is reported as frozen.
+**The frozen comparison stands.** At the frozen counts, per-lens clones change 10 of 20 graded classes. (The first version of this file and commit eda8433972 said 10 of 40. There are 2 footings, 2 samples and 5 lines, so 20.) That table is reported as frozen.
 
 **Why it can't be read as the rule's effect on its own.** The frozen old and new columns each use one random I catalogue, and they differ by more than the rule.
 - I's own noise in Δχ² at the frozen counts is about 5 to 6 on S1 and 3 to 4 on S3 with the covariance held fixed. The jackknife covariance also changes with each catalogue, and its 15 × 15 inverse from 36 patches is noisy.
