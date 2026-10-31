@@ -8,6 +8,8 @@
 - Frozen criteria are committed alone before any number.
 - Not "theory closed".
 
+**Update 2026-10-31.** Section D now carries X48 A4. For the current state of route E, read `ARGON_BRIEF_2026-10-31.md`, which supersedes this brief's status but was written before A4's result.
+
 **Published state:** PAPER64 v1.2, DOI 10.5281/zenodo.23771199 (concept 10.5281/zenodo.23750179).
 
 ## THE PUZZLE (highest priority): what physically switches cold dark energy on?
@@ -103,8 +105,9 @@
 
 | attempt | verdict |
 |---|---|
-| X48 zooms ng 38 / ng 48 / ng 64 | native c falls with mass, but the level is too high |
-| NL1 | L_nat = 4.86 [3.83, 5.81]: fails three cluster keys; not converged |
+| X48 zooms ng 38 / ng 48 (ng 64 at 10¹² only) | native c falls with mass, but the level is too high. Amended 2026-10-31: the fall did not hold at ng 64; see A4 below |
+| **X48 A4, all masses ng 64 (264ee43ecb, criteria fc22ce369d)** | c_f 7.74 / 8.67 / 10.07 at 10¹² / 10¹³ / 10¹⁴, all above the window [3.3, 4.6]. X43's rule on this table: NATIVE-CC FAILS on both footings. SPARC, groups and cluster outskirts pass; clusters fail inside about 1 Mpc, all OVER (G-IN-Mall 7.6 vs 2.3 ± 1.05, Z −5.06). The 68 % ranges overlap and ng 48 → 64 shifts have mixed signs, so no trend with mass is established. Convergence beyond ng 64 not tested |
+| NL1 | L_nat = 4.86 [3.83, 5.81]: fails three cluster keys; not converged. Amended 2026-10-31: L_nat scaled the ng 48 10¹⁴ level (7.31) by the 10¹² ratio, and direct ng 64 at 10¹⁴ gives 10.07, so that scaling does not hold there |
 | CSM2 (other agent) | the first-crossing estimator is binning-sensitive (seed c_f 3 → 17) |
 
 ### E. Dwarfs and single-galaxy failures
