@@ -23,7 +23,23 @@ def rss(): return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / (1e9 if s
 # Candidate halo-free bulge rows: value and M/L must be read from the paper or its TeX on disk. Memory is never a source.
 HALO_FREE_BULGE = []
 BULGE_CANDIDATES = {"Kent 1992": "paper not on disk; value and M/L unread", "Dwek+95": "paper not on disk; value and M/L unread",
-                    "pre-M2M clump-giant counts": "no paper on disk; value and M/L unread"}
+                    "pre-M2M clump-giant counts": "no paper on disk; value and M/L unread",
+                    "Valenti+16 (A1)": "read from disk if _external_data/rf1_valenti2016/valenti2016.txt is present"}
+# A1 (AMENDMENTS.md): Valenti+16 A&A 587 L6, VVV red-clump counts x Zoccali+00 empirical IMF; stars + remnants; no dynamics, no halo.
+# The value is parsed from the paper's extracted text on disk; if the file is absent the row is not usable and the lane reads as before.
+import re as _re
+_VT = os.path.join(os.path.dirname(REB), "_external_data", "rf1_valenti2016", "valenti2016.txt")
+_VT_SHA = "e395606dbf31d4078b46d474a611e94666c65f2512ab3952df82e48ed9f0c74b"
+if os.path.exists(_VT):
+    _txt = open(_VT, encoding="utf-8", errors="replace").read()
+    _m = _re.search(r"\|l\| < 10\s*\S*\s*\)\s*is\s*([0-9.]+)\s*±\s*([0-9.]+)\s*×\s*10\s*10", _txt)
+    if _m:
+        HALO_FREE_BULGE.append(dict(source="Valenti+16 A&A 587 L6 (arXiv:1510.07425)", M_bb=float(_m.group(1)) * 1e10, err=float(_m.group(2)) * 1e10,
+                                    read_from_disk=True, path=os.path.relpath(_VT, os.path.dirname(REB)),
+                                    sha256=hashlib.sha256(open(_VT, "rb").read()).hexdigest(), sha256_expected=_VT_SHA,
+                                    basis="stars + remnants; VVV RC counts scaled to Zoccali+03 LF; Zoccali+00 NICMOS IMF to 0.15 Msun, Salpeter above 1 Msun, -0.3 below; 18% disc decontamination",
+                                    window="|l| < 10 deg, |b| < 9.5 deg, projected, not limited along the line of sight",
+                                    cls="LITERATURE-INPUT, photometric star counts; no dynamics, no halo"))
 
 G = 4.30091e-6; KZU = 2 * math.pi * G * 1e6
 SIG_A0 = {"canonical": 106.879e6, "alt": 129.165e6}; SREF = 70.50
@@ -211,7 +227,30 @@ usable = [r for r in HALO_FREE_BULGE if r.get("read_from_disk")]
 if not usable:
     VERD = {n: "UNDETERMINED: no halo-free bulge mass on disk" for n in ("OS1|canonical", "OS1|alt", "N")}
 else:
-    raise SystemExit("a usable halo-free row needs its grade wired in per FROZEN_CRITERIA section Verdict")
+    # A1: frozen verdict item 2, wired. Box = SIG_B_GRID (McKee +-2 sigma) x RD_GRID (BH&G16 +-2 sigma), McKee gas, bg A graded, PRIMARY graded.
+    row = usable[0]; checks["K8"] = abs(row["M_bb"] / 2.0e10 - 1) < 1e-12 and abs(row["err"] / 0.3e10 - 1) < 1e-12 and row["sha256"] == row["sha256_expected"]
+    P(f"\n=== HALO-FREE BULGE ROW (A1): {row['source']}: M_bb {row['M_bb']:.3g} +- {row['err']:.2g} Msun, read from {row['path']} (sha ok {row['sha256'] == row['sha256_expected']}); {row['cls']}")
+    HF = {}
+    for lab, m in (("graded", row["M_bb"]), ("-1 sigma", row["M_bb"] - row["err"]), ("+1 sigma", row["M_bb"] + row["err"])):
+        hc = [cell(s, m, r) for s in L.SIG_B_GRID for r in L.RD_GRID]
+        gb = grade_box(hc)
+        for k, c in gb.items():
+            rd_pass = sorted({p["R_d"] for p in c["passing"]}); c["R_d_passing"] = rd_pass
+            c["n_pass_Rd_in_LN16"] = sum(1 for p in c["passing"] if L.RD_TAG[0] <= p["R_d"] <= L.RD_TAG[1])
+        HF[lab] = dict(M_bb=m, box=gb)
+        P(f"  [{lab}] M_bb {m:.3g}: 35 cells, McKee gas 13.7")
+        for k, c in gb.items():
+            b = c["best"]
+            P(f"     [{k}] all-4 {c['n_all']}/35 at R_d {[round(x, 2) for x in c['R_d_passing']]}; in LN16 R_d tag {c['n_pass_Rd_in_LN16']}; class {c['cls']}; best D {b['D']:.2f} (Sig_b {b['sig_b']}, R_d {b['R_d']:.2f}: vc {b['vc_R0']:.1f}, Kz {b['K_R0']:.1f}, chi2_Ou {b['chi2_Ou']:.0f})")
+    RES["halo_free_grade"] = HF
+    VERD = {}
+    for name, key in (("OS1|canonical", f"OS1|canonical|PRIMARY|{TA}"), ("OS1|alt", f"OS1|alt|PRIMARY|{TA}"), ("N", f"N|canonical|{TA}")):
+        c = HF["graded"]["box"][key]
+        if c["n_all"] > 0:
+            tag = "inside LN16's R_d tag too" if c["n_pass_Rd_in_LN16"] > 0 else "WIDE PRIORS ONLY: every passing R_d is outside LN16's 2.38-2.90 tag"
+            VERD[name] = f"PASS on halo-free baryons ({tag}; R_d {[round(x, 2) for x in c['R_d_passing']]}; M_bb 2.0e10 Valenti+16)"
+        else:
+            VERD[name] = "FAIL on halo-free baryons (no cell of the McKee x BH&G16 box passes all four lines at M_bb 2.0e10 Valenti+16)"
 RES["verdict"] = VERD; checks["K7"] = rss() < 1.0; RES["checks"] = {k: bool(v) for k, v in checks.items()}
 P(f"\n=== VERDICT: {VERD}")
 P("candidates: " + "; ".join(f"{k}: {v}" for k, v in BULGE_CANDIDATES.items()))
