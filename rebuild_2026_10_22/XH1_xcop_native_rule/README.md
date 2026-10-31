@@ -17,7 +17,8 @@ Comparators from CS2: OS1 rms 0.124 canonical, 0.092 alt; CS2 law 0.205. Both fa
 My reason for running this was that G-IN-Mall, which decides the cluster grade, might be a bad shear band. Half of that survives.
 
 - **Frozen band read: SHEAR BAND OUTLIER.** In 0.15–0.46 Mpc, X-COP has the model over by × 1.23 (f★ 0.034, 14 points) and × 1.24 (f★ 0.0615). G-IN-Mall has it over by × 1.90 and × 1.92. That band also fails its cross-shear null (IC1 D2). So the size of G-IN-Mall's excess is out of line with hydrostatic masses, which is a conflict and not proof of which is biased. X-COP is 7 massive clusters; eRASS1 is 326 lighter ones, in 3D mass against projected shear.
-- **But the over-prediction itself is real.** X-COP's × 1.3–1.44 at 0.3–0.7 R500 matches the shear keys in MID and OUTER (G-MID-T3 × 1.20, G-OUT-all × 1.29). Two independent data sets say the rule is too heavy. I can't blame the band for that.
+- **But the over-prediction is real in MID.** X-COP's × 1.3–1.44 at 0.3–0.7 R500 agrees with G-MID-T1, T2, T3 (× 1.51, 1.18, 1.20). Two independent data sets say the rule is too heavy there, and I can't blame the band for that.
+- **Correction, same day:** this README first said OUTER agreed too. The 106 kT clusters do (G-OUT-all × 1.29), but G-OUT-Mall and G-OUT-M1–M3 had a template defect (`../NZ1_zoom_core_radius/nz1_one_template.out`). On one template all 326 clusters' OUTER is on the data (G-OUT-Mall × 0.98).
 - **A hydrostatic bias can't carry it.** XRISM's non-thermal pressure is a few percent in the cores (0.013 dex for 3 %), and Eckert+19's X-COP median is about 6 % at R500 (0.027 dex). The miss is 0.12–0.16 dex.
 - **The core is too light at x 0.1 (+0.115).** A smooth core is short of mass there, and the zooms make cusps (X81). This is the shape half of the fail.
 

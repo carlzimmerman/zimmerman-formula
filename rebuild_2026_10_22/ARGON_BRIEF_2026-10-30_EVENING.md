@@ -1,5 +1,7 @@
 # Brief for Argon: route E after the final-mile push (2026-10-30, evening)
 
+**Superseded by `ARGON_BRIEF_2026-10-31.md`, which also corrects a defect in four shear keys.**
+
 This replaces this morning's ARGON_BRIEF_2026-10-30. Every number comes from a lane output on the record. Lane names are given so you can ask for any file. Footing is canonical unless I say alt. Z < 0 means the model is above the data (OVER).
 
 **Update, 10-31 morning. Sections below are as of 10-30; three new cluster lanes are listed here.**

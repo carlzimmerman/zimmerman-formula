@@ -25,6 +25,8 @@ The grader used that number for the **cold** halo alone and added the baryons on
 
 **Read it as the edge, not a pass.** The result sits on the G-IN-Mall line, and the SPARC line is at 0.50 on background B. A4 replaces the ng 48 cluster masses; `watch_A4_then_FC1.sh` reruns this grade when CE1's A4 tables exist, and A4's label stands if it differs.
 
+**Correction, 10-31:** G-OUT-Mall and G-OUT-M1–M3 in this lane's grades read X7's values on an older template. On the run's own template they are +0.18, +0.09, −0.23, +0.54 at f★ 0.034, h 0.672 (as graded −1.55, −0.30, −1.37, −1.31). No label here changes (`../NZ1_zoom_core_radius/nz1_one_template.out`).
+
 ## What A4 can do, on record before A4's grade exists (reported, not a grade)
 `fc1_a4_expect.py` → `fc1_a4_expect.out`, `fc1_a4_expect.json`. It reads no A4 snapshot. It grades this rule with η at 10¹³ and 10¹⁴ × g and 10¹² unchanged. g = 1 reproduces the frozen grade at both f★, |d| 0.
 

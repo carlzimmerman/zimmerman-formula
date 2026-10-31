@@ -40,6 +40,9 @@ SPARC is at z = 0, so it's unchanged. This omission was in FC1 and every lane be
 
 I went looking for errors that help. This one hurts, and I only found it by attacking the pass. Others could remain in either direction.
 
+## Template defect, found the same day (post-result; the frozen label stands)
+G-OUT-Mall and G-OUT-M1–M3 read X7's fixed values on an older C\* template. On the run's own template (`../NZ1_zoom_core_radius/nz1_one_template.out`), h 0.672, f★ 0.034, MA1 reads +0.35, +0.10, −0.15, +0.83 (as graded −1.36, −0.28, −1.27, −0.99). No pass or fail changes. z_obs: 14 of 15 at f★ 0.034 (G-IN-Mall only), 13 of 15 at 0.0615. With eRASS1's gas on X-COP's scale (SM1): 8 and 6 of 15, OVER, worst G-MID-T3 −3.26. With z_obs too: 6 and 4 of 15 (`../NZ1_zoom_core_radius/nz1_common_gas.out`). So this rule fits the shear only on eRASS1's own gas scale.
+
 ## X-COP (reported)
 Still FAIL on rms: mean −0.014, rms 0.136 (f★ 0.034); by x +0.205, +0.013, −0.057, −0.102, −0.128. The mean now passes. In the disputed band X-COP has the model at × 1.05. Model M₂₀₀ runs × 1.4–1.6 over X-COP's hydrostatic M₂₀₀ in five of seven clusters. See `../NZ1_zoom_core_radius/` for the shape.
 

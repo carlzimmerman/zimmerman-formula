@@ -29,6 +29,16 @@ With η at 10¹³ and 10¹⁴ × 1.1144: X-COP mean +0.017, rms 0.076 (f★ 0.03
 2. **What's physically missing.** The zooms stop at z_f with M/2 inside r_f. The mass that arrives after z_f has to end up inside R₂₀₀, only about 1.12 r_f. A single power law out to r_ta can't hold it. That's why this rule can't be self-consistent in M, as the criteria disclosed.
 3. **The mutation brackets it.** r₀ × 1.5 gives γ 2.90, keys all pass, SPARC line just fails (0.49), X-COP rms 0.125. r₀ × 1 gives γ 1.87, X-COP passes, keys fail. So the real profile lies between, with γ somewhere between 1.87 and 2.90. Choosing a multiplier in there would be a knob.
 
+## A grader defect, and one gas scale (post-result, reported; the frozen label stands)
+`nz1_one_template.py`, `nz1_gas.py`, `nz1_zobs.py`, `nz1_common_gas.py`.
+
+- **The defect.** G-OUT-Mall and G-OUT-M1–M3 read X7's fixed A_CAL and s_CAL, computed on the C\* template at f★ 0.20 with no tail. Their predictions and the other 11 keys' measured values use the current template. At f★ 0.20, no tail, the two agree to 2e-16; f★ and the tail each move it. Every lane since either changed has compared these four on two templates. At f★ 0.034 with the tail, h 0.672: 1.102, 0.607, 0.910, 1.570 on the run's template, against X7's 0.929, 0.488, 0.762, 1.369.
+- **How I found it.** `nz1_gas.py` failed on exactly two of those keys. `nz1_common_gas.py` then put them on the run's template. Its K line says FAIL: I had expected that step to be the identity at the original gas. That failure is the defect, and I've left the line as it printed.
+- **On one template, original gas:** NZ1 passes 10 of 15 at f★ 0.034 and 11 at 0.0615. G-OUT-M3 +6.14 / +5.73, G-OUT-Mall +4.07 / +4.38, G-OUT-M2 joins.
+- **One gas scale.** eRASS1's Mgas500 runs 0.111 dex below X-COP's for the same five clusters (SM1). X-COP's gate uses X-COP's gas. With eRASS1's raised to match, **NZ1 passes X-COP and 13 of 15 at both f★**: only G-OUT-M3 (+4.18 / +3.87) and G-OUT-Mall (+2.61 / +2.88) at f★ 0.034. G-OUT-M3 predicted 0.931 against 1.362. With S and r_f at z_obs too: 12 of 15, G-OUT-M3 +3.69 / +3.41, G-OUT-Mall +2.30 / +2.56, G-IN-Mall −2.04 / −1.77.
+- **Against the alternative.** MA1 on the same gas scale: 8 and 6 of 15, OVER. So there are two self-consistent pairs: MA1 with eRASS1's gas fits the shear and not X-COP; NZ1 with X-COP's gas fits X-COP and 13 of 15.
+- **Not a pass.** Those runs are CLUSTERS mode. Zoom r₀ on all paths fails groups at Z +3.98. M is a hybrid. SM1's offset comes from five massive clusters, none in the lensing sample.
+
 ## Limits
 Hybrid M. Cluster η at ng 48. S at z = 0 on every path, the omission `../MA1_cluster_mass_argument/ma1_zobs.out` exposes. Below 10¹², η and a clamped until X80. Post hoc, disclosed.
 
