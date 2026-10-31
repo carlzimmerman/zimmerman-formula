@@ -25,7 +25,10 @@
 > grade (`AMENDMENTS.md` A2). **A3 (same day, frozen then run):** on that two-scale-length disc all three rules PASS as frozen, but
 > only at a corner of the halo-free priors: thick disc 1.6 kpc (−2σ), thin 2.38–2.51 (LN16 −2σ to −1σ), Σ_b 50.5–53.9 (+1 to +2σ);
 > canonical OS1 in 1 cell of 125, alt OS1 and native N in 5. No cell with R_T ≥ 2.0 passes. Not excluded; not a pass inside
-> the priors. Thick-disc share at R₀ is McMillan's, held; a halo-free thick fraction is the next open input. κ = ½ FITTED.
+> the priors. **A4 (same day, frozen then run):** with the thick-disc share from star counts (BH&G16 f_Σ 12 ± 4 %, thick ≈ 11 % of
+> the column) in place of McMillan's 26 %, the A3 pass collapses: canonical OS1 0 of 625 cells (FAIL); alt OS1 and native N one
+> cell each, at f_Σ 0.20 (+2σ), R_T 1.6 (−2σ), R_t 2.38 (−2σ), Σ_b 50.5 (+1σ); none at the central or ±1σ share. **Halo-free Milky
+> Way under route E: canonical FAIL; alt and native N not excluded, passing only at a four-way 2σ corner.** κ = ½ FITTED.
 > Not theory closed.
 
 Criteria and ledger 9468ee04b2 (committed alone, before any script or number); script 856ffb2959; no amendment. I expected this

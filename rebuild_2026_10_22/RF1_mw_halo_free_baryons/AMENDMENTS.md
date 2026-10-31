@@ -136,3 +136,25 @@ value gives thick 10.7 % (7.4–13.8 % at ±1σ).
   because A3's pass was carried by the short thick disc at 26 % of the column. If the run differs, the run stands.
 
 κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.
+
+**A4 result, 2026-10-31 (run 1b178a9e45; `rf1_a4_thick_share.out`, `rf1_a4_thick_share_results.json`, MUTATE twins).** As
+expected on record. K1 reproduces A3's best cells to 1e-10 at McMillan's share, K2 1.9e-6 on 625 cells, K3 0.42 GB; MUTATE
+fails K1 and exits 1. Runtime 39 s.
+
+| rule (bg A, PRIMARY) | verdict as frozen | cells / 625 | at f_Σ 0.12 | within ±1σ (0.08–0.16) | where |
+|---|---|---|---|---|---|
+| OS1 canonical | **FAIL on halo-free baryons** | 0 | 0 | 0 | best D 1.28; max v_c(R₀) 227.8 |
+| OS1 alt | PASS as frozen | 1 | 0 | 0 | Σ_b 50.5, R_t 2.38, R_T 1.6, **f_Σ 0.20** |
+| Native N | PASS as frozen | 1 | 0 | 0 | the same single cell |
+
+Reported: VARIANT V_last 229 keeps 5–10 cells including f_Σ 0.08–0.16; background B agrees.
+
+**Reading.** With the thick-disc share taken from star counts, A3's pass collapses to one cell for alt OS1 and native N, and
+that cell has every halo-free input at a 1–2σ edge in the same direction at once: thick share +2σ, thick scale length −2σ,
+thin scale length −2σ, local surface density +1σ. Nothing passes at the central or ±1σ thick share. So on halo-free baryons
+the route E Milky Way verdict is: **canonical OS1 FAIL; alt OS1 and native N not excluded, but passing only at a four-way 2σ
+corner of the star-count priors.** The remaining held McMillan inputs (gas radial forms, vertical scale heights, bulge shape)
+are shapes, not normalisations; the open inputs 2, 3 and 5 of the README stand, and none of them is expected to move a
+corner cell into the priors. GD1's McMillan verdict keeps its label; this lane's own answer is the line above.
+
+κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.
