@@ -1,8 +1,42 @@
+# Instructions for Argon: you write the plan
+
+The report below is the full state of route E. Your job is to work out the shortest honest path from where it stands to one rule that clears every gate in section 0a, or to show that no such path exists. You are writing the plan. Section 9 is my own list, for comparison only: write yours first, then say where you differ and why.
+
+Read sections 0, 0a and N1–N8 first, then work through these in order.
+
+1. **The blocker.** In under ten lines, say what you think is really stopping a full pass, and why.
+2. **Audit.** Walk the chain from zoom to grader and list every bookkeeping error I've missed, in either direction, with its sign and size in S or Z. Three turned up in one day (the mass argument, redshift, a template defect), so assume there are more.
+3. **Predict.** Before ZN1's snapshots exist, give numbers for everything listed in Q2. They get recorded on receipt and scored when ZN1 lands.
+4. **The plan.** At most five lanes, in order. For each one, give:
+   - what it computes, in one sentence;
+   - every input, marked measured, native or assumed;
+   - its pass and fail conditions, fixed before any result;
+   - its cost on the machine in section 8 (16 cores, 64 GB, direct-summation zooms, no hydro code, no new data without the owner's OK);
+   - which gates in 0a it can close, and what a pass would break elsewhere;
+   - what happens next on a pass, and on a fail.
+5. **Triage.** For each gate G1–G14 and each item in 0b, say which it is: reachable by bookkeeping and native computation, needs new physics, fatal, or deferrable with a stated caveat.
+6. **Closure.** For each mechanism in section 6, say what would close it: a derivation, a measurement, or an honest "open".
+7. **Stop conditions.** State the results that would make you drop route E, each version separately, and what you'd compare it with instead.
+8. **The rest.** Answer the other questions in section 10 only where you have something new.
+
+**Rules**
+- No tuned parameter, scanned multiplier or chosen slope. No number back-solved from its target.
+- Nothing from the closed list in section 11 unless you say what's new.
+- No ΛCDM inputs. Published simulations can be cited for sign and size, not used as inputs.
+- κ = ½ is fitted. Call the fluid cold dark energy, never dark matter. Never say "proves", "final theory" or that the data favour the framework.
+- Check every closed form numerically. Scripts must read their inputs, not hard-code targets.
+- Every number you give gets recomputed here, and criteria get frozen before any run, so wrong numbers cost you the argument.
+- "No new idea" and "no such path exists" are acceptable answers. A plan that only looks good is not.
+
+**Format.** Plain text with as little inline LaTeX as you can manage: a long reply of yours arrived scrambled once. If it runs long, split it into numbered parts and say how many there are.
+
+---
+
 # Full report for Argon: route E, what stands, and the path to a full pass (2026-10-31)
 
 This replaces ARGON_BRIEF_2026-10-30_EVENING and stands alone. Every number comes from a lane output on the record. Lane names are given so you can ask for any file. Footing is canonical unless I say alt. Z < 0 means the model is above the data (OVER).
 
-**What I'm asking for.** The owner wants a win and final closure. Give the shortest honest path to one rule that clears every gate in section 0a, or say that none exists and why. Attack the plan in section 9. The questions are in section 10. "No new idea" is a useful answer. Nothing here is theory closed, and I can't accept a pass that comes from moving a line.
+The owner wants a win and final closure. Your instructions are at the top. Nothing here is theory closed, and I can't accept a pass that comes from moving a line.
 
 ## 0. The short version
 
@@ -615,7 +649,7 @@ The cluster and SPARC gates by rule are in section 0a. Version F against N again
 - **PAPER65:** draft only, predates FC1. Nothing deposited.
 - **Data on disk:** SPARC, B21's full release (mass, colour, Sérsic bins), KiDS-1000 sources, KiDS-bright LePhare, GAMA DR4 G3C, DESI DR1 centrals, ACT DR6, X-COP, eRASS1 stacks, LITTLE THINGS, SLUGGS. No SDSS or BOSS spectroscopy on disk. A fetch needs the owner's OK.
 
-## 9. The path as I see it. Attack this list
+## 9. My own list, for comparison only. Write your plan first
 
 | # | Step | Status, cost | Gates it can move | What decides it |
 |---|---|---|---|---|
@@ -682,6 +716,6 @@ For each question:
 4. Frozen pass and fail conditions before any result, both footings where they differ.
 5. What it breaks elsewhere: SPARC, clusters, MW, KiDS, dwarfs.
 
-End with the path: at most five lanes, in order, each with its inputs, frozen pass and fail, cost, and the gates in 0a it can close. Scripts are welcome if they read inputs rather than hard-code targets. Every number you give gets recomputed here.
+The plan itself follows the instructions at the top of this report. Scripts are welcome if they read inputs rather than hard-code targets. Every number you give gets recomputed here.
 
 κ = ½ FITTED. Footings never pooled. Cold dark energy is a gravitating field component, never a particle. Not theory closed. Nothing here says the data favour the framework.
