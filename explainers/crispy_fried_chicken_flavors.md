@@ -16,7 +16,7 @@ Boards: [v4](img/status_board_v4.png) · [canonical rules](img/status_board_cano
 | plain MOND | AQUAL with μ = x/(1+x) on baryons, external-field effect included; no screening, no dust, no cosmology; κ = ½ fitted. |
 | ΛCDM | GR + Λ + cold dark matter particles (6 fitted cosmological parameters; halos from simulations). It has a dark-matter particle, which this framework's owner rules out for the framework itself; a reference only. |
 | P-medium (Codex) | Newtonian Poisson on baryons + a cold particle medium that also feels a saturating polarization P and a stiffening scalar χ (Codex's reduced preferred-frame action); ℓ₀ = 0.44 kpc fitted to growth. |
-| core law (route E) | Route E (the owner's 10-25 flagship): Newtonian gravity on baryons + cold dark energy halos with the smooth core ρ₀/(1+x²)^(3/2) at ρ₀r₀ = max(a₀/2πG, η Σ_coll), η re-derived for the shape (10.82 at c_f = 4, EXTERNAL); fair share inside r_ta; measured stellar fractions; no law force. κ fitted. |
+| core law (route E) | Route E (the owner's 10-25 flagship): Newtonian gravity on baryons + cold dark energy halos with the smooth core ρ₀/(1+x²)^(3/2) at ρ₀r₀ = f_c η Σ_coll with native η, no a₀ floor (owner, 10-31); fair share inside r_ta; no law force. κ fitted in the a₀ law only. |
 | v3v (velocity-screened, no γ_L) | Literal Blanchet–Skordis Khronon (J_x, BS K(Q) dust) + covector P, with NO γ_L stiffness. Moving subsystems hold phantom only within 2GM_b/V² (velocity screening). κ fitted; no L★. |
 
 ΛCDM is a reference column only. It has a dark-matter particle, which this framework's owner rules out for the framework itself.
@@ -45,7 +45,7 @@ The grid has 50 rows.
 | ΛCDM | 1 | 4 | 0 | 0 | 0 | 0 | 45 |
 | P-medium (Codex) | 3 | 2 | 0 | 0 | 0 | 7 | 38 |
 | v3v (velocity-screened, no γ_L) | 3 | 4 | 7 | 0 | 1 | 0 | 35 |
-| core law (route E) | 1 | 0 | 1 | 1 | 0 | 0 | 47 |
+| core law (route E) | 2 | 1 | 1 | 0 | 0 | 0 | 46 |
 
 ## v4
 
@@ -244,28 +244,25 @@ The grid has 50 rows.
 - **v3v (velocity-screened, no γ_L).** Its own cells come from O1 §3 (ecbb964b0e) with H4 and H5. A reused v3 verdict needs a cited line showing γ_L does not enter (the guard requires it). Grey: groups (O1 L112: members DEPEND on whether the group's khronon is held); the strong-field rows (P3's regular holes and strong coupling depend on L★; only the static exterior, P3 L25, is γ_L-free); lensing, SLUGGS, high-z and the rest, which were never shown to be γ_L-free. BBN (Q6, γ_L-free per Q6 L172) has no grid row, because the main board refused that tile. Outer globulars take O1's own class (PASS, PROXY speeds); Cassini is drawn conditional because O1 calls it an estimate.
 - **Canonical rules, CFG960.** It is counted under the canonical rules, as the coordinator classed it; N0 labels it the SCT-M engine (domains, conversion of cold energy into phantom bodies, census baryons; AUDIT L52-L53, L116).
 
-## core law (route E) (added 29 October 2026)
+## core law (route E) (added 29 October 2026; rule changed 31 October)
 
-**Recipe:** Route E, the owner's 25 October flagship: Newtonian gravity on baryons plus cold dark energy halos.
-- **Halo shape:** the smooth core ρ₀/(1+x²)^(3/2).
-- **Owner decision 10-31: floor removed; see `rebuild_2026_10_22/OWNER_DECISION_2026-10-31_NO_FLOOR.md`. Earlier rule:**
-- **Core rule:** ρ₀r₀ = max(a₀/2πG, η Σ_coll), with η re-derived for the shape (10.82 at c_f = 4, EXTERNAL).
+**Recipe:** Route E, the owner's 25 October flagship, without the a₀ floor (owner decision 31 October): Newtonian gravity on baryons plus cold dark energy halos.
+- **Halo shape:** the smooth core ρ₀/(1+x²)^(3/2), chosen by hand. Native zooms make cusps.
+- **Core rule:** ρ₀r₀ = f_c η Σ_coll at every mass, with native η. No a₀ and no footing in the halo. κ remains fitted in the a₀ law.
 - **Normalization:** fair share inside r_ta.
-- **Stars:** measured stellar fractions.
-- **No law force.** κ fitted.
+- **No law force.**
 
 ![core law board](img/status_board_core_law.png)
 
-Only three rows are computed for this flavor; every other row is grey.
+Only four rows are computed for this flavor; every other row is grey. **Results outside these rows:** Local Group 0 of 5 classes (floor had 4 of 5), LITTLE THINGS short by +0.138, Milky Way wide priors only (RG1, ND1).
 
 | row | colour | lane | why |
 |---|---|---|---|
-| Rotation curves (SPARC RAR) | not decidable | X70 (README L9–L12) | canonical passes the line (rms 0.071, Υ 0.56); alt has rms 0.072 but Υ 0.47 < 0.50 — the footings disagree. SPARC does not use f★. |
-| Galaxy groups (BFJR) | pass | X70 (README L18) | 63 groups, Z +1.94 / +1.88 CONSISTENT. Green verified: X71's f★ = 0.20 run reproduces X70 (645c914b14), and X72's K1 reproduces X71's groups Z to 1e-9 (1a60d81204). |
-| Cluster cores (eRASS1 × KiDS) | fails | X71 (README L7–L13) | with measured f★, 14 of 15 keys pass. G-OUT-M3 (heavy-cluster outskirts) is UNDER at Z 2.25 / 2.33. All 15 pass at the assumed f★ = 0.20 (X70). |
+| Rotation curves (SPARC RAR) | pass | NF1, X80, ND1 | native N passes the line, Υ 0.70 / 0.72, rms 0.068. Υ runs 1.20 to 0.54 with V_flat; the law's rms is 0.054. |
+| Galaxy groups (BFJR) | pass | NF1, X80 | 63 groups, Z +1.45. |
+| Cluster cores (eRASS1 × KiDS) | conditional | ZN3, RG1 | the native z = 0 profile passes 15 of 15 on X-COP's gas and 11–12 on eRASS1's own. The S rule over-predicts three keys, and X-COP at −0.186 / 0.214. |
+| Central ellipticals (SLUGGS) | fails | RG1 | mean +0.125, Zc +6.1, 1 of 4 cleared. |
 
-- **Pending:** X72 (frozen ba337e221c), the regrade with native c_f from the X48 A4 zooms.
-- **Closed routes for this flavor's floor:** X47, X65–X68 and the phantom ceiling, in `rebuild_2026_10_22/X65_X67_POSTMORTEM.md`.
 - **Not a main board.** The main board stays v3s. Moving the main board to route E would mean recomputing every tile for it (owner rule 10-23), and that is the owner's call.
 
 ---

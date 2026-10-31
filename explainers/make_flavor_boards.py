@@ -204,6 +204,10 @@ L("Y1", {"pmedium"}, "rebuild_2026_10_22/Y1_pmedium_flavor/README.md:L1-L38 (Cod
 L("Q6", {"v3", "lcdm"}, R + "Q6_v3_class/README.md:L21, L131 (ΛCDM refit; DUST = ΛCDM)")
 L("X70", {"coreE"}, R + "X70_smooth_core_shape/README.md:L1-L11 (smooth core, η re-derived, f★ = 0.20)")
 L("X71", {"coreE"}, R + "X71_smooth_core_measured_fstar/README.md:L1-L13 (X70 with measured stellar fractions)")
+L("NF1", {"coreE"}, R + "NF1_no_floor_rule/README.md:L1-L14 (no floor); nf1_native_read.out (native N)")
+L("ND1", {"coreE"}, R + "ND1_native_dwarfs/README.md:L5-L25 (native N on SPARC, X80's ratios)")
+L("ZN3", {"coreE"}, R + "ZN3_native_shape_at_1e15/README.md:L1-L12 (native z = 0 profile)")
+L("RG1", {"coreE"}, R + "RG1_native_n_regrade/README.md:L1-L20 (native N regrade)")
 
 # ---------------------------------------------------------------------------------------------------------------------
 # What each lane itself concluded: (lane, flavor computed, row) -> (colour, file:line where the lane states it).
@@ -215,12 +219,12 @@ def V(lane, comp, row, st, where):
 
 
 # core law (route E): X70 (f★ 0.20) and X71 (measured f★); SPARC and groups do not use f★ (X71 README L13)
-V("X70", "coreE", "Rotation curves (SPARC RAR)", "UNDEC", R + "X70_smooth_core_shape/README.md:L9-L12 (canonical "
-  "passes; alt fails the line on Υ 0.47: footings disagree)")
-V("X70", "coreE", "Galaxy groups (BFJR)", "PASS", R + "X70_smooth_core_shape/README.md:L18 (Z +1.94 / +1.88 "
-  "CONSISTENT, both footings)")
-V("X71", "coreE", "Cluster cores (eRASS1 × KiDS)", "FAIL", R + "X71_smooth_core_measured_fstar/README.md:L7-L13 "
-  "(BREAKS: G-OUT-M3 UNDER, Z 2.25 / 2.33)")
+V("NF1", "coreE", "Rotation curves (SPARC RAR)", "PASS", R + "X80_low_mass_floor_emergence/README.md:L18 (native N, Υ 0.70 / 0.72; "
+  "no footing in the halo)")
+V("NF1", "coreE", "Galaxy groups (BFJR)", "PASS", R + "X80_low_mass_floor_emergence/README.md:L18 (groups Z +1.45)")
+V("ZN3", "coreE", "Cluster cores (eRASS1 × KiDS)", "COND", R + "ZN3_native_shape_at_1e15/README.md:L1-L12 (15 of 15 on X-COP's gas, "
+  "11-12 on eRASS1's; the S rule itself fails three keys, NF1)")
+V("RG1", "coreE", "Central ellipticals (SLUGGS)", "FAIL", R + "RG1_native_n_regrade/README.md:L1-L14 (+0.125, 1 of 4)")
 # v4
 V("H3", "v4", "Health: ghosts, gradients", "COND", TV3 + ":L26-L30")
 V("I1", "v4", "Well-posed (leaf / Cauchy problem)", "FAIL", R + "I1_gammaL_causality/README.md:L3-L14")
@@ -387,9 +391,8 @@ VERIFIED_GREEN_F = {
         "coordinator rerun identical; with U1 (54ee83e54e; coordinator rerun: main 15/16, A2 6/6)"),
     ("v3v", "Outer globular clusters"): ("O1", "ecbb964b0e", "coordinator rerun identical"),
     ("v3v", "Local a0 from MeerKAT"): ("P4", "6c0249a8bc", "coordinator rerun 2026-10-23: P4 identical except peak RSS"),
-    ("coreE", "Galaxy groups (BFJR)"): ("X70", "a9b3a43449",
-        "X71's f★ = 0.20 run reproduces X70 (cluster preds max |d| 0, 645c914b14) and X72's K1 reproduces X71's groups Z, "
-        "SPARC rms and cluster preds to 1e-9 (1a60d81204)"),
+    ("coreE", "Rotation curves (SPARC RAR)"): ("NF1", "a42ae32a01", "ND1 reruns native N with X80's ratios: Υ 0.70 / 0.72 (73805754b6)"),
+    ("coreE", "Galaxy groups (BFJR)"): ("NF1", "a42ae32a01", "nf1_native_read --check reproduces N0 grader output to 1e-9; K3 ΔZ = 0 for the floor at group masses"),
     ("lcdm", "Native CMB"): ("C2", "5e93769089",
         "the ΛCDM refit is reproduced independently by C7 K1 (README L161: 1003.48 vs C2's 1003.20) and Q6 "
         "(README L21: 1003.47)"),
@@ -643,13 +646,12 @@ CELLS = [
     C("pmedium", 3, "Linear growth", "PASS",
       "σ₈ / dust limit 0.9991 (from a = 1e-3), 0.967 (1e-4); a WDM-like cutoff at k ~ 1–6 h/Mpc is flagged", ["Y1"]),
     # ---------------- core law (route E, smooth core): X70 / X71 ----------------
-    C("coreE", 1, "Rotation curves (SPARC RAR)", "UNDEC",
-      "canonical rms 0.071, Υ 0.56: line passes; alt rms 0.072 but Υ 0.47 < 0.50: line fails (footings disagree)",
-      ["X70"]),
-    C("coreE", 1, "Galaxy groups (BFJR)", "PASS", "63 groups, Z +1.94 / +1.88 CONSISTENT (X43 Burkert: +2.05)", ["X70"]),
-    C("coreE", 2, "Cluster cores (326 eRASS1)", "FAIL",
-      "14 of 15 keys pass; heavy-cluster outskirts G-OUT-M3 UNDER, Z 2.25 / 2.33 with measured f★ (all 15 pass at the "
-      "assumed f★ 0.20); native c_f regrade X72 pending A4", ["X71", "X70"]),
+    C("coreE", 1, "Rotation curves (SPARC RAR)", "PASS",
+      "native N, no floor: line passes, Υ 0.70 / 0.72, rms 0.068; Υ runs 1.20 to 0.54 with V_flat; law's rms 0.054", ["NF1", "ND1"]),
+    C("coreE", 1, "Galaxy groups (BFJR)", "PASS", "63 groups, Z +1.45 on native N", ["NF1"]),
+    C("coreE", 2, "Cluster cores (326 eRASS1)", "COND",
+      "native z = 0 profile: 15 of 15 on X-COP's gas, 11–12 on eRASS1's own; S rule: three keys over, X-COP −0.186 / 0.214", ["ZN3", "RG1"]),
+    C("coreE", 1, "Central ellipticals (SLUGGS)", "FAIL", "mean +0.125, Zc +6.1, 1 of 4", ["RG1"]),
 ]
 
 
