@@ -51,7 +51,7 @@ The owner wants a win and final closure. Your instructions are at the top. Nothi
    - **The current rule fails X-COP on its own** (XH1: mean −0.073, rms 0.139), too heavy from 0.2 to 0.7 R500, which agrees with the shear's MID band. So that part of the over-prediction is real. The all-cluster OUTER band is not over, once the defect is fixed.
 6. **The diagnosis.** The zooms stop at z_f with M/2 collapsed, and every rule guesses where the other half goes: a single r⁻³ tail to a budget, a frozen core with a solved tail, an r⁻⁹ᐟ⁴ tail. Each passes X-COP or the shear, never both. **No zoom on the record has been run past z_f.**
 7. **What's running.** ZN1 (frozen 22d690ccf2, amended b5df0a0a1c before any number, owner's go): six zooms continued to z = 0, one native profile, no fitted parameter, graded on both data sets at each cluster's own z_obs. X80 (24 zooms at 10¹⁰ and 10¹¹) decides whether a floor is needed. A4 (ng 64 at 10¹³ and 10¹⁴) is finishing today.
-8. **Standing since 10-30.** The floor may not be needed on SPARC (NF1), which would take a₀ out of the cold sector: the owner's call. Contraction breaks SPARC (CN1, Υ 0.31). Photometric lensing favours the law by Δχ² +434. On clean spectroscopic lenses it's level, conditional on a red stellar-mass rung (SI2). The Milky Way passes on wide priors only. L★ is −16 km/s (law −12.5). IC 1613 and J0946 fail. Collapse makes cusps while the rule assigns cores.
+8. **Standing since 10-30.** The floor may not be needed on SPARC (NF1), which would take a₀ out of the cold sector: the owner's call. Contraction breaks SPARC (CN1, Υ 0.31). Photometric lensing favours the law by Δχ² +434. On clean spectroscopic lenses SI2 read level, conditional on a red stellar-mass rung, but with the law at y_e = 0; with its field the classes split by footing (UN2, section 4e). The Milky Way passes on wide priors only. L★ is −16 km/s (law −12.5). IC 1613 and J0946 fail. Collapse makes cusps while the rule assigns cores.
 
 ## 0a. What a win means
 
@@ -69,7 +69,7 @@ One rule, with no fitted parameter beyond what it declares, has to clear all of 
 | **G5 Milky Way** | Eilers v_c 229.1 ± 4.6, K_z, Ou+24, measured priors | wide priors only | same path | not run | misses K_z by +4.7–6.6σ (GD2) |
 | **G6 High V_flat** | ΔV at Υ 0.50 near 0 | −16.2 at 200–250, −56.7 at 250–400 | same | −17.1, −53.1 | −12.5, −40.0 |
 | **G7 KiDS photometric lensing** | competitive with the law | LAW by Δχ² +434 | same | not run | γ ≈ 1 fits |
-| **G8 Clean spectroscopic lenses** | S1, S3 | level, conditional on R2 | same | not run | S1 beyond 1.1 Mpc 4.4σ over |
+| **G8 Clean spectroscopic lenses** | S1, S3 | at R2 with the law's field, splits by footing: canonical LAW narrowly (+3.0 / +4.0), alt ROUTE E (−3.2 / −1.9); neither excluded on χ²; S3 not powered (UN2) | same | not run | S1 beyond 1.1 Mpc 1.4–1.9σ over with field, 4.4σ at y_e = 0 (UN2); alt fails SPARC Υ (X78) |
 | **G9 Dwarfs** | LITTLE THINGS, Local Group | median −0.041; IC 1613 −8.6σ | same | not run | median −0.025; IC 1613 −7.9σ |
 | **G10 J0946** | dark perturber under the ceiling | exceeds, R 31 | same | not run | needs a luminous solution |
 | **G11 Core** | a physical origin | chosen by hand; zooms make cusps | same | same | no halo |
@@ -550,6 +550,12 @@ Models on S1, same estimator: law R0 0.953, R2 0.961; route E R0 1.588, R2 1.568
 
 Frozen verdict is NOT DECIDED, on my error: my MUTATE kept the covariance unscaled and failed. Scaled, it passes to 7e-16. K1–K3 pass.
 
+**UN1 and UN2 (faint neighbours, the law's field at R2, group skirts). They revise the y_e = 0 law readings above; SI1's and SI2's frozen classes stand as run.**
+
+- **UN1 (criteria 2950d10ef6, amended f1ad722b18).** Neighbours below r 19.8 down to lg M_b 7.5 add 0.1–0.2 M☉/pc² at 0.4–0.75 Mpc, where the data want about 1–2 more. S1 at R2 (canonical, n_ref catalogue, B 1): route E χ² 22.3 → 21.2 (p 0.132), A_O1 1.89 ± 0.39 → 1.76 ± 0.36, δ +2.28 → +2.10 (falls 0.18; HELPS needs 0.50). Amended reading, post-result: **NO HELP** on S1 at R2, both footings, B 1 and 0.7. The frozen SHORTFALL CLOSES is void: it double-counted catalogued galaxies below MLIM and read cumulative n(> M) as φ. Don't quote the ROUTE E PREFERRED lines in `un1_a1.out`: they use the law at y_e = 0, whose rise comes from linear superposition of faint tails.
+- **UN2 Q1 (criteria aa7f60236b): the law's catalogue field at R2 on S1.** y_e bracketed by catalogue and × 10^0.295, not recomputed. Beyond 1.1 Mpc the law's excess eases from 4.4σ to 1.4–1.9σ, about half of that from the amplitude's larger error. Canonical law χ² 22.7 → 19.3 / 18.4 against route E 22.3: Δχ² +3.0 / +4.0, D 3.64 / 3.36, **LAW PREFERRED**, narrowly. Alt law 29.0 → 25.6 / 24.3 against 22.4: −3.2 / −1.9, **ROUTE E PREFERRED**, and alt fails SPARC's Υ line (FC1, X78). Neither excluded on χ² on canonical (p 0.200 / 0.243, route E 0.099). At R0 with the field: canonical S1 χ² 11.3 (10.4 with faint term) against route E 24.4 (22.4). S3 stays NOT POWERED.
+- **UN2 Q2: group skirts on S1 − S3 at R2.** Route E A_O1, groups of 5 or more at 1–2.5 Mpc: 0.08 ± 0.94 with a skirt (n 1,533), 2.55 ± 0.49 without (n 6,836), −2.33σ. **NOT SKIRT DRIVEN.** Post hoc, unmatched hole, no group halo in any model. S3 is a subset of S1 and differs from it by about 0.7σ; 2.1σ is S1's pull from 1.
+
 ### 4f. Gas: why kSZ no longer decides route E
 GH8/GH9, ACT DR6 × 326k DESI centrals: A(1.8) 0.24 ± 0.19 (D1 masses, CIGALE about 0.19 dex below the Chen-method scale), A(1) 0.39 ± 0.27. No detection (null p 0.21). Control S/N 4.27 after fixes. Break-even +0.27 dex.
 
@@ -589,9 +595,9 @@ The cluster and SPARC gates by rule are in section 0a. Version F against N again
 | Milky Way | wide priors only | same | misses K_z by +4.7–6.6σ on same box (GD2) |
 | KiDS photometric | LAW by +434 | same | γ ≈ 1 fits |
 | Blue lens amplitude | consistent | same | 0.878 |
-| S1 at R0 / R2 | LAW +8.7 / NEITHER −0.3 | same | |
-| S3 at R0 / R2 | NOT POWERED −5.1 / −10.6 | same | |
-| Beyond 1.1 Mpc, clean | consistent | same | 4.4σ over on S1 |
+| S1 at R0 / R2, law with field (UN2) | LAW +13.2 / LAW narrowly +3.0 to +4.0 (alt R0 LAW +12.4, R2 ROUTE E −3.2 to −1.9). At y_e = 0: LAW +8.7 / NEITHER −0.3 | same | χ² 11.3 at R0; 19.3 / 18.4 at R2 canonical (25.6 / 24.3 alt) |
+| S3 at R0 / R2, law with field (UN2) | NOT POWERED −1.8 / −6.6 to −4.9. At y_e = 0: NOT POWERED −5.1 / −10.6 | same | NOT POWERED |
+| Beyond 1.1 Mpc, clean | consistent, weakly: route E's A_O2 on S1 at R2 0.96 ± 1.58 | same | 1.4–1.9σ over on S1 with field (UN2), about half from the larger amplitude error; 4.4σ at y_e = 0 |
 | G09 50–300 kpc | Δ +0.17, χ² 24.8–26.5 | same | 28.3 |
 | Contraction | **breaks SPARC** | **breaks SPARC** | no halo |
 | Cluster net response | room +1.5 % on FC1, about × 1.17 on MA1 at z = 0, none at z_obs; hydro's sign is c +10 % | same | n/a |
@@ -634,9 +640,9 @@ The cluster and SPARC gates by rule are in section 0a. Version F against N again
 5. **No joint statistic.** The 15 keys share clusters and are correlated. Under MA1, 10 of 13 amplitude keys still sit on the OVER side. "All pass" isn't a joint fit, and G-IN-Mall's band fails its own null.
 6. **Two halo-mass rules, half the baryons unaccounted for at L★.**
 7. **What a₀ is, if the floor is absent.** The law's scatter (0.054) still beats every halo rule (0.067), and a halo model doesn't explain why.
-8. **KiDS +434 is unresolved.** It might be environment. Not shown.
-9. **R2 is doing work:** S1's class moves from LAW to NEITHER only near +0.295.
-10. **S1's 2.3σ shortfall at 0.4–1.1 Mpc at R2.** Neighbours fainter than r 19.8 aren't in either model's neighbour term. They count for more in route E, where mass sits in halos. Not computed.
+8. **KiDS +434 is unresolved, and G8 splits by footing once the law has its field.** KiDS might be environment; not shown. On S1 at R2, P2's external field moves canonical from NEITHER (−0.3) to LAW narrowly (+3.0 / +4.0) and alt to ROUTE E (−3.2 / −1.9), neither excluded on χ² (UN2).
+9. **R2 is doing work:** with the law at y_e = 0, S1's class moves from LAW to NEITHER only near +0.295. With its field, S1 at R0 favours the law by Δχ² +13.2 (+12.0 with the faint term), and canonical stays LAW narrowly at R2 (UN1, UN2).
+10. **S1's shortfall at 0.4–1.1 Mpc at R2 stands, with no cause on record:** 2.3σ, 2.1σ with faint neighbours. They add only 0.1–0.2 M☉/pc² (NO HELP, UN1, post-result amendment). On S1 − S3 the excess sits in lenses away from groups of 5 or more (A_O1 2.55 ± 0.49 against 0.08 ± 0.94 near them; NOT SKIRT DRIVEN, UN2; post hoc, unmatched hole, no group halo in any model). Could still be a fluctuation.
 11. **Milky Way, IC 1613, J0946, Draco.**
 12. **What distinguishes version N from "dust with a cored prescription"?** See 0b.
 
