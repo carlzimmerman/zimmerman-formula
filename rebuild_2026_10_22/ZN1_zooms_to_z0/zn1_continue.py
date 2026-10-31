@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""ZN1_zooms_to_z0: continue an X48 zoom from its z_f snapshot to z = 0 with X48's own accel, step rule, softening and background. X48's files are read only.
+"""ZN1_zooms_to_z0: continue an X48 zoom from its z_f snapshot to z = 0 with X48's own step rule, softening and background, and ZK1's verified compiled force sum. X48's files are read only.
 Snapshots at z = 0.5, 0.25, 0 where later than z_f. Preemptible: SIGTERM -> checkpoint, exit 75; --resume continues.
     python3 zn1_continue.py --src X48_RUN_DIR --work DIR [--resume]
     python3 zn1_continue.py --k1 X48_RUN_DIR   # K1: from X48's last checkpoint, reproduce X48's own snap_zf.npz
 kappa = 1/2 FITTED; not theory closed."""
-import argparse, importlib.util, json, math, os, signal, sys, time
+import argparse, json, math, os, signal, sys, time
 import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__)); REB = os.path.dirname(HERE)
-_sp = importlib.util.spec_from_file_location("x48_zoom", os.path.join(REB, "X48_native_cf_zoom", "x48_zoom.py")); X = importlib.util.module_from_spec(_sp); _sp.loader.exec_module(X)
+sys.path.insert(0, os.path.join(REB, "ZK1_fast_force_kernel")); import x48_fast; X = x48_fast.X   # X48's module with ZK1's compiled accel; ZN1 AMENDMENT A2
 GYR = 1 / X.KMS_MPC_TO_GYR; YIELD = X.YIELD_EXIT; STOPS = (0.5, 0.25, 0.0)
 
 def setup(C, meta):
