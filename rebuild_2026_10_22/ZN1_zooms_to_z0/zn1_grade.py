@@ -20,7 +20,7 @@ _a = 'Mh = math.pi * s * r0 ** 2 * float(B(min(rm, rta) / r0)); dd.append('; ass
 _a = 'k2.append(0.0 if sat else'; assert _T1.count(_a) == 1; _T1 = _T1.replace(_a, '_znf = zn1_fn(foot, _TBG, dict(Mb=_mbx, Mfair=Mfair, rta=rta), _XM[nm]["z"]); k2.append(0.0 if sat else')
 '''
     tail = tail.replace(e, PATCH + e)
-    tail = tail.replace('_OUT.update(ma1=_st,', '_g = ZN1_STAT["gam"]; _OUT["zn1"] = dict(cells=ZN1_STAT["cells"], no_tail=ZN1_STAT["no_tail"], no_fs=ZN1_STAT["no_fs"], k4=ZN1_STAT["k4"], gam_med=float(np.median(_g)) if _g else None, gam_p16=float(np.percentile(_g, 16)) if _g else None, gam_p84=float(np.percentile(_g, 84)) if _g else None, m2_over_mta=float(np.median(ZN1_STAT["ratio"])) if ZN1_STAT["ratio"] else None)\n_OUT["M_outer"] = {f"{f_}|{h_}": dict(all=M[f"{f_}|{h_}"]["M_all|OUTER"]["A"], terc=[x_["A"] for x_ in M[f"{f_}|{h_}"]["M_terc|OUTER"]]) for f_ in FEET for h_ in HK}\n_OUT.update(ma1=_st,', 1)
+    tail = tail.replace('_OUT.update(ma1=_st,', '_g = ZN1_STAT["gam"]; _OUT["zn1"] = dict(cells=ZN1_STAT["cells"], no_tail=ZN1_STAT["no_tail"], no_fs=ZN1_STAT["no_fs"], wide=ZN1_STAT.get("wide", 0), k4=ZN1_STAT["k4"], gam_med=float(np.median(_g)) if _g else None, gam_p16=float(np.percentile(_g, 16)) if _g else None, gam_p84=float(np.percentile(_g, 84)) if _g else None, m2_over_mta=float(np.median(ZN1_STAT["ratio"])) if ZN1_STAT["ratio"] else None)\n_OUT["M_outer"] = {f"{f_}|{h_}": dict(all=M[f"{f_}|{h_}"]["M_all|OUTER"]["A"], terc=[x_["A"] for x_ in M[f"{f_}|{h_}"]["M_terc|OUTER"]]) for f_ in FEET for h_ in HK}\n_OUT.update(ma1=_st,', 1)
     if os.environ.get("ZN1_BOOT"):
         _e = 'json.dump(_OUT, open(os.environ["XH1_OUT"], "w"), indent=1, default=float)\nsys.exit(0)'; assert tail.count(_e) == 1; tail = tail.replace(_e, open(os.path.join(HERE, "zn1_boot_tail.py")).read() + _e)
     open(os.path.join(WD, "tail.py"), "w").write(tail)
@@ -54,7 +54,7 @@ def cells(R):
 xok = lambda x: abs(x["mean"]) <= 0.05 and x["rms"] <= 0.10
 def line(lab, R):
     O = cells(R); bad = sorted({k for h in HH for k, v in O[h].items() if abs(v["Z"]) > 2}); x = R["footings"]["canonical"]; z = R["zn1"]; w = max(((k, h, v["Z"]) for h in HH for k, v in O[h].items()), key=lambda t: abs(t[2]))
-    P(f"  {lab}: {15 - len(bad)} of 15 keys, over 2 {bad}, worst {w[0]} {w[1]} {w[2]:+.2f}; X-COP {'PASS' if xok(x) else 'FAIL'} mean {x['mean']:+.3f} rms {x['rms']:.3f} by x " + " ".join(f"{k} {v:+.3f}" for k, v in x["by_x"].items()) + f"; gamma med {z['gam_med']}, no tail {z['no_tail']}, no fair-share R200 {z['no_fs']} of {z['cells']}, M200/M_ta {z['m2_over_mta']}")
+    P(f"  {lab}: {15 - len(bad)} of 15 keys, over 2 {bad}, worst {w[0]} {w[1]} {w[2]:+.2f}; X-COP {'PASS' if xok(x) else 'FAIL'} mean {x['mean']:+.3f} rms {x['rms']:.3f} by x " + " ".join(f"{k} {v:+.3f}" for k, v in x["by_x"].items()) + f"; gamma med {z['gam_med']}, no tail {z['no_tail']}, no fair-share R200 {z['no_fs']}, gamma outside -40 to 60 {z.get('wide', 0)}, of {z['cells']}, M200/M_ta {z['m2_over_mta']}, gamma 16-84 {z['gam_p16']}, {z['gam_p84']}")
     P("     h 0.672: " + "; ".join(f"{k} {v['Z']:+.2f}" for k, v in O["h0672"].items())); P("     h 0.686: " + "; ".join(f"{k} {v['Z']:+.2f}" for k, v in O["h0686"].items())); return bad, xok(x)
 if __name__ == "__main__":
     if "--k3" in sys.argv:

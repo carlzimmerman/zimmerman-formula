@@ -24,7 +24,10 @@ def zn1_fn(foot, tag, pp, z):
     Me = float(Mc(re)); k = np.searchsorted(_ZX, math.log(xe / ZN1_RX)); dln = float((ln[k] - ln[k - 8]) / (_ZX[k] - _ZX[k - 8])); rhoe = Me * dln / (4 * math.pi * re ** 3)
     if Me >= Mf:
         ZN1_STAT["no_tail"] += 1; return lambda r: np.where(np.asarray(r, float) <= re, Mc(r), Me)
-    L = math.log(rta / re); tgt = (Mf - Me) / (4 * math.pi * rhoe * re ** 3); I_ = lambda g: L if abs(3 - g) < 1e-9 else (math.exp((3 - g) * L) - 1) / (3 - g); gam = brentq(lambda g: I_(g) - tgt, -40.0, 60.0, xtol=1e-12); ZN1_STAT["gam"].append(gam)
+    L = math.log(rta / re); tgt = (Mf - Me) / (4 * math.pi * rhoe * re ** 3); I_ = lambda g: L if abs(3 - g) < 1e-9 else (math.expm1(min((3 - g) * L, 700.0))) / (3 - g); _lo, _hi = -40.0, 60.0
+    while I_(_lo) < tgt: _lo = 3 - 2 * (3 - _lo)
+    while I_(_hi) > tgt: _hi = 3 + 2 * (_hi - 3)
+    gam = brentq(lambda g: I_(g) - tgt, _lo, _hi, xtol=1e-9, maxiter=500); ZN1_STAT["gam"].append(gam); ZN1_STAT["wide"] = ZN1_STAT.get("wide", 0) + (1 if not (-40.0 <= gam <= 60.0) else 0)
     def f(r):
         r = np.minimum(np.asarray(r, float), rta); y = np.maximum(r / re, 1.0); t_ = np.log(y) if abs(3 - gam) < 1e-9 else (y ** (3 - gam) - 1) / (3 - gam)
         return np.where(r <= re, Mc(r), Me + 4 * math.pi * rhoe * re ** 3 * t_)

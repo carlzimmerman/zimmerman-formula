@@ -12,3 +12,5 @@
 Everything else in `FROZEN_CRITERIA.md` and `AMENDMENT_A1.md` stands.
 
 κ = ½ FITTED. Not theory closed.
+
+7. **Solver bracket (added before any graded number was read).** The first grade stopped: for a few clusters x_edge R₂₀₀ lies just inside r_ta and M_c(r_ta) = M_fair needs |γ| outside the coded bracket −40 to 60. A root always exists, so the bracket now widens until it holds one. Those cells are counted. The rule is unchanged, and the tail in those cells is a step near r_ta.
