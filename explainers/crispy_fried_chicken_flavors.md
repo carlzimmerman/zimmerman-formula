@@ -15,9 +15,9 @@ Boards: [v4](img/status_board_v4.png) · [canonical rules](img/status_board_cano
 | canonical rules | The pre-covariant framework (THEORY_CANONICAL v2; DSF-21's stiffened action): the law on baryons (QUMOND phantom, ν_mono / algebraic) plus cold-energy rules for settling, catchment supply, round enclosed mass, capture and ownership; κ fitted. |
 | plain MOND | AQUAL with μ = x/(1+x) on baryons, external-field effect included; no screening, no dust, no cosmology; κ = ½ fitted. |
 | ΛCDM | GR + Λ + cold dark matter particles (6 fitted cosmological parameters; halos from simulations). It has a dark-matter particle, which this framework's owner rules out for the framework itself; a reference only. |
-| P-medium (Codex) | 3 | 2 | 0 | 0 | 0 | 7 | 41 |
-| core law (route E) | 2 | 2 | 3 | 0 | 0 | 0 | 46 |
-| v3v (velocity-screened, no γ_L) | 3 | 4 | 7 | 0 | 1 | 0 | 38 |
+| P-medium (Codex) | Newtonian Poisson on baryons + a cold particle medium that also feels a saturating polarization P and a stiffening scalar χ (Codex's reduced preferred-frame action); ℓ₀ = 0.44 kpc fitted to growth. |
+| core law (route E) | Route E (the owner's 10-25 flagship): Newtonian gravity on baryons + cold dark energy halos with the smooth core ρ₀/(1+x²)^(3/2) at ρ₀r₀ = f_c η Σ_coll with native η, no a₀ floor (owner, 10-31); fair share inside r_ta; no law force. κ fitted in the a₀ law only. |
+| v3v (velocity-screened, no γ_L) | Literal Blanchet–Skordis Khronon (J_x, BS K(Q) dust) + covector P, with NO γ_L stiffness. Moving subsystems hold phantom only within 2GM_b/V² (velocity screening). κ fitted; no L★. |
 
 ΛCDM is a reference column only. It has a dark-matter particle, which this framework's owner rules out for the framework itself.
 
@@ -38,14 +38,14 @@ The grid has 50 rows.
 
 | flavor | pass | conditional | fails | not decidable | open | n/c (not computable) | grey (not computed) |
 |---|---|---|---|---|---|---|---|
-| v3 | 7 | 9 | 10 | 5 | 8 | 0 | 11 |
-| v4 | 1 | 1 | 6 | 0 | 1 | 0 | 41 |
-| canonical rules | 6 | 5 | 9 | 7 | 8 | 0 | 15 |
-| plain MOND | 2 | 3 | 8 | 4 | 2 | 0 | 31 |
-| ΛCDM | 1 | 4 | 0 | 0 | 0 | 0 | 45 |
-| P-medium (Codex) | 3 | 2 | 0 | 0 | 0 | 7 | 38 |
-| v3v (velocity-screened, no γ_L) | 3 | 4 | 7 | 0 | 1 | 0 | 35 |
-| core law (route E) | 2 | 1 | 1 | 0 | 0 | 0 | 46 |
+| v3 | 7 | 9 | 10 | 5 | 8 | 0 | 14 |
+| v4 | 1 | 1 | 6 | 0 | 1 | 0 | 44 |
+| canonical rules | 6 | 5 | 9 | 7 | 8 | 0 | 18 |
+| plain MOND | 2 | 3 | 8 | 4 | 2 | 0 | 34 |
+| ΛCDM | 1 | 4 | 0 | 0 | 0 | 0 | 48 |
+| P-medium (Codex) | 3 | 2 | 0 | 0 | 0 | 7 | 41 |
+| v3v (velocity-screened, no γ_L) | 3 | 4 | 7 | 0 | 1 | 0 | 38 |
+| core law (route E) | 2 | 2 | 3 | 0 | 0 | 0 | 46 |
 
 ## v4
 
