@@ -47,5 +47,8 @@ X-COP by x (0.1, 0.2, 0.3, 0.5, 0.7 R₅₀₀): **−0.164, −0.104, −0.055,
 7. **G-IN-Mall** is the key with a failing cross-shear null, and it's the worst key.
 8. **This is clusters only.** ZN2 grades the same profile on SPARC and groups. HS1 and AM1 are galaxy-scale problems this doesn't touch.
 
+## SM1's offset tilted (`zn1_tilt.py`, post-result)
+Offset +0.111 ± 0.0625 (13.38 − lg Mgas500) per dex, about ±0.04 dex between M3 and M1, X-COP's gas. Both signs stay 15 of 15 at both f★: G-OUT-M3 +1.16 and +1.84 at f★ 0.034, worst key −1.70 and +1.84. Argon said ±0.35 on that key, and it's ±0.34. A flat offset isn't the weak point; its overall size is.
+
 ## Checks
 K1 engine |d| 0 (`zn1_k1.out`). K2 sampled NFW: 0.0076 (limit 0.01), R₂₀₀ 0.0041. K3 harness against MA1 |d| 0 (`zn1_k3.out`). K4 N unchanged, R₂₀₀ equation 3.2e-6 on the grader's interpolated profile (the frozen 1e-6 was for the zoom measurement, which is exact). ZK1's K3 stands. MUTATE r × 1.5: X-COP rms +0.038, G-IN-Mall +1.66, BITES. Bootstrap identity draw |d| 0.
