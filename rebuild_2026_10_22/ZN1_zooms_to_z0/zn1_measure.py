@@ -50,4 +50,4 @@ if __name__ == "__main__":
             lm = np.array([q["lnm"] for q in rows]); xe = min(q["x_edge"] for q in rows); RES[M][zs] = dict(n=len(rows), lgM=float(np.median([q["lgM"] for q in rows])), x_edge=xe, lnm=np.median(lm, axis=0).tolist(), seeds=rows, x=XG.tolist())
             md = lambda k: float(np.nanmedian([np.nan if q[k] is None else q[k] for q in rows]))
             P(f"  M {M} z {zs}: n {len(rows)}; lg M200 {RES[M][zs]['lgM']:.3f}, M200/M nominal {md('M_over_nom'):.3f}, R200/r_f {md('r_over_rf'):.3f}, x_edge min {xe:.2f}; c_nfw {md('c_nfw'):.2f}, eta {md('eta'):.2f}, a {md('a'):.2f}; slope past R200 {md('gamma_out'):.2f}; late mass inside r_f {md('late_inside_rf'):.3f}; M(<r)/M(<r, z_f) at r/r_f 0.1, 0.2, 0.5, 1, 1.5: " + ", ".join(f"{float(np.median([q['ratio_rf'][k] for q in rows])):.3f}" for k in range(5)))
-    json.dump(RES, open(os.path.join(HERE, "zn1_shapes.json"), "w")); open(os.path.join(HERE, "zn1_readouts.out"), "w").write("\n".join(OUT) + "\n")
+    RES["x"] = XG.tolist(); json.dump(RES, open(os.path.join(HERE, "zn1_shapes.json"), "w")); open(os.path.join(HERE, "zn1_readouts.out"), "w").write("\n".join(OUT) + "\n")

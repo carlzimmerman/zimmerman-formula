@@ -21,6 +21,8 @@ _a = 'k2.append(0.0 if sat else'; assert _T1.count(_a) == 1; _T1 = _T1.replace(_
 '''
     tail = tail.replace(e, PATCH + e)
     tail = tail.replace('_OUT.update(ma1=_st,', '_g = ZN1_STAT["gam"]; _OUT["zn1"] = dict(cells=ZN1_STAT["cells"], no_tail=ZN1_STAT["no_tail"], no_fs=ZN1_STAT["no_fs"], k4=ZN1_STAT["k4"], gam_med=float(np.median(_g)) if _g else None, gam_p16=float(np.percentile(_g, 16)) if _g else None, gam_p84=float(np.percentile(_g, 84)) if _g else None, m2_over_mta=float(np.median(ZN1_STAT["ratio"])) if ZN1_STAT["ratio"] else None)\n_OUT["M_outer"] = {f"{f_}|{h_}": dict(all=M[f"{f_}|{h_}"]["M_all|OUTER"]["A"], terc=[x_["A"] for x_ in M[f"{f_}|{h_}"]["M_terc|OUTER"]]) for f_ in FEET for h_ in HK}\n_OUT.update(ma1=_st,', 1)
+    if os.environ.get("ZN1_BOOT"):
+        _e = 'json.dump(_OUT, open(os.environ["XH1_OUT"], "w"), indent=1, default=float)\nsys.exit(0)'; assert tail.count(_e) == 1; tail = tail.replace(_e, open(os.path.join(HERE, "zn1_boot_tail.py")).read() + _e)
     open(os.path.join(WD, "tail.py"), "w").write(tail)
     MY = f"""
 sub({L!r}, {('HERE = %r; REB = %r' % (WD, RB))!r})
@@ -35,9 +37,10 @@ sub("sys.exit(0 if (n == len(checks) and x74ok) else 1)", open({os.path.join(WD,
     exec(compile(TX, X74F, "exec"), {"__file__": os.path.join(WD, "x74_native_cf.py"), "__name__": "__main__"})
 TD = tempfile.mkdtemp(); OUT = []
 def P(s): print(s, flush=True); OUT.append(s)
-def run(fs, mode, gas, shapes, rx=1.0, snap="nearest"):
-    tag = f"{fs}_{mode}_{int(gas)}_{rx:g}_{snap}"; WD = os.path.join(TD, tag); os.makedirs(WD); t = os.path.join(CE1, f"CE1_med_fs{fs}_cf_table.json"); o = os.path.join(WD, "o.json"); xf = os.path.join(WD, "x.py"); open(xf, "w").write(GAS if gas else "")
+def run(fs, mode, gas, shapes, rx=1.0, snap="nearest", boot=None):
+    tag = f"{fs}_{mode}_{int(gas)}_{rx:g}_{snap}_{boot[1].replace('/', 'of') if boot else ''}"; WD = os.path.join(TD, tag); os.makedirs(WD); t = os.path.join(CE1, f"CE1_med_fs{fs}_cf_table.json"); o = os.path.join(WD, "o.json"); xf = os.path.join(WD, "x.py"); open(xf, "w").write(GAS if gas else "")
     env = dict(os.environ, FC1_MODE="cold", X74_CF=t, X73_FSTAR=fs, X73_SLOPE=SLOPE, XH1_OUT=o, XH1_SMULT="1", MA1_MODE="m200", MA1_MULT="1", MA1_WD=WD, ZN1_MODE=mode, ZN1_RX=str(rx), ZN1_SNAP=snap, ZN1_SHAPES=shapes, ZN1_XFILE=xf, PYTHONHASHSEED="0", OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", VECLIB_MAXIMUM_THREADS="1"); env.pop("XH1_K0_REF", None)
+    if boot: env.update(ZN1_BOOT=str(boot[0]), ZN1_BOOT_CHUNK=boot[1])
     p = subprocess.run(["nice", "-n", "5", sys.executable, os.path.abspath(__file__), "--worker"], cwd=WD, env=env, capture_output=True, text=True)
     if not os.path.exists(o): raise SystemExit(f"NOT DECIDED: {tag} wrote no result (exit {p.returncode}): {p.stdout[-300:]} {p.stderr[-1200:]}")
     r = json.load(open(o)); shutil.rmtree(WD, ignore_errors=True); return r
@@ -59,6 +62,27 @@ if __name__ == "__main__":
         R = run("0.034", "ma1", False, sh); O = cells(R); J = json.load(open(os.path.join(RB, "NZ1_zoom_core_radius", "nz1_one_template_results.json")))["rules"]["MA1|0.034"]["cells"]; d = max(abs(O[h][k]["pred"] - J[h][k]["pred"]) for h in HH for k in J[h]); e = max(abs(O[h][k]["Z"] - J[h][k]["Z"]) for h in HH for k in J[h]); ok = d <= 1e-9 and e <= 1e-9
         P(f"K3 the harness in MA1's mode reproduces MA1 on one template: preds {d:.1e}, Z {e:.1e}: {'PASS' if ok else 'FAIL'}"); R2 = run("0.034", "fs", True, sh); line("synthetic NFW c 5 at every mass, harness test, not a result", R2); open(os.path.join(HERE, "zn1_k3.out"), "w").write("\n".join(OUT) + "\n"); sys.exit(0 if ok else 1)
     SH = sys.argv[sys.argv.index("--shapes") + 1] if "--shapes" in sys.argv else os.path.join(HERE, "zn1_shapes.json"); MUT = "--mutate" in sys.argv; TAG = "zn1_MUTATE" if MUT else "zn1"
+    if "--bootstrap" in sys.argv:
+        NB = int(sys.argv[sys.argv.index("--bootstrap") + 1]); NW = int(os.environ.get("ZN1_BOOT_WORKERS", "8")); TAG2 = os.environ.get("ZN1_BOOT_TAG", "zn1_boot"); P(f"ZN1 seed bootstrap (A2 item 3): {NB} draws at each mass, median shape, X-COP's gas, both f*; kappa = 1/2 FITTED; not theory closed")
+        JB = [(fs, f"{i}/{NW}") for fs in ("0.034", "0.0615") for i in range(NW)]
+        with ThreadPoolExecutor(2 * NW) as ex: RB_ = list(ex.map(lambda j: (j[0], run(j[0], "fs", True, SH, boot=(NB, j[1]))), JB))
+        DR = {}; kk = 0.0; kx = 0.0
+        for fs, R in RB_:
+            kk = max(kk, R["boot_k"]); kx = max(kx, R["boot_kx"])
+            for b_ in R["boot"]:
+                O = cells(dict(grader=dict(canonical=dict(clusters=dict(cells=b_["cells"]))), M_outer=R["M_outer"])); DR.setdefault(b_["draw"], {})[fs] = (sorted({k for h in HH for k, v in O[h].items() if abs(v["Z"]) > 2}), bool(abs(b_["mean"]) <= 0.05 and b_["rms"] <= 0.10), b_["mean"], b_["rms"], {h: {k: v["Z"] for k, v in O[h].items()} for h in HH})
+        P(f"K identity draw against the full grade: preds {kk:.1e}, X-COP rms {kx:.1e}: {'PASS' if (kk <= 1e-9 and kx <= 1e-9) else 'FAIL'}; seeds per mass {RB_[0][1]['boot_n']}")
+        def cls2(a, b):
+            pa = not a[0] and a[1]; pb = not b[0] and b[1]; xb = a[1] or b[1]; kb = (not a[0]) or (not b[0])
+            return "Z0 PROFILE PASSES BOTH" if pa and pb else "F*-DEPENDENT" if pa or pb else "X-COP ONLY" if xb and not kb else "KEYS ONLY" if kb and not xb else "FAILS BOTH" if not xb and not kb else "NEITHER AT ONE f*: keys and X-COP pass at different f*"
+        CL = [cls2(DR[d]["0.034"], DR[d]["0.0615"]) for d in sorted(DR)]; from collections import Counter; CC = Counter(CL); P("classes over draws: " + ", ".join(f"{k} {v}" for k, v in CC.most_common()))
+        import numpy as np; HL = json.load(open(os.path.join(HERE, "zn1_results.json")))["verdict"] if os.path.exists(os.path.join(HERE, "zn1_results.json")) else None
+        if HL: sh_ = CC.get(HL, 0) / len(CL); P(f"headline class {HL} holds in {sh_:.0%} of draws: " + ("[NOISE-LIMITED]" if sh_ < 0.68 else "not noise-limited"))
+        for fs in ("0.034", "0.0615"):
+            xm = np.array([DR[d][fs][2] for d in sorted(DR)]); xr = np.array([DR[d][fs][3] for d in sorted(DR)]); P(f"  f* {fs}: X-COP mean {np.median(xm):+.3f} [{np.percentile(xm, 16):+.3f}, {np.percentile(xm, 84):+.3f}], rms {np.median(xr):.3f} [{np.percentile(xr, 16):.3f}, {np.percentile(xr, 84):.3f}], X-COP pass in {np.mean([DR[d][fs][1] for d in DR]):.0%}, all 15 keys pass in {np.mean([not DR[d][fs][0] for d in DR]):.0%}")
+            for k in sorted(DR[0][fs][4]["h0672"]):
+                zz = np.array([DR[d][fs][4]["h0672"][k] for d in sorted(DR)]); P(f"    {k} h 0.672: Z {np.median(zz):+.2f} [{np.percentile(zz, 16):+.2f}, {np.percentile(zz, 84):+.2f}]")
+        json.dump(dict(classes=dict(CC), draws={str(d): DR[d] for d in DR}), open(os.path.join(HERE, f"{TAG2}_results.json"), "w"), default=float); open(os.path.join(HERE, f"{TAG2}.out"), "w").write("\n".join(OUT) + "\n"); sys.exit(0 if (kk <= 1e-9 and kx <= 1e-9) else 1)
     P(f"ZN1 grade {TAG}: native z = 0 profile, one template, X-COP's gas scale primary; kappa = 1/2 FITTED; footings never pooled; not theory closed")
     if MUT:
         b = run("0.034", "fs", True, SH); m = run("0.034", "fs", True, SH, rx=1.5); line("base", b); line("shape's r x 1.5", m); dr = m["footings"]["canonical"]["rms"] - b["footings"]["canonical"]["rms"]; dg = cells(m)["h0672"]["G-IN-Mall"]["Z"] - cells(b)["h0672"]["G-IN-Mall"]["Z"]; bites = abs(dr) > 0.01 and abs(dg) > 0.05
