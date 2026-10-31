@@ -7,7 +7,7 @@ This covers Υ alone. Trend family Υ = 0.50 (V_flat / 80)^s; s = 0.25 is the la
 
 - **Test 1, real curves with a trend:** s 0.25 ρ +0.527, SURVIVES. s 0.5 ρ +0.476, SURVIVES. s 1 ρ +0.257, p 0.031, ERASED, but with 36 galaxies clipped at the grid's end, and far beyond the band.
 - **Test 2, Υ-insensitive galaxies: UNDERPOWERED.** Only 13 galaxies have f★ < 0.5 (the frozen minimum is 20), V_flat 34–86. Their ρ +0.499, p 0.083, so it decides nothing. The rest (n 57) rise at ρ +0.367, p 0.0062.
-- **Test 3, needed Υ at the floor: OUT** on all three bins, both footings: canonical 0.69, 0.93, 0.75; alt 1.07, 0.68, 0.70. Weakly constrained: 26–60 % of galaxies in the two lower bins sit at a grid end. Fit is worse than free S by a median ×2.0–3.0 in those bins and ×1.1–1.2 at 100–150.
+- **Test 3, needed Υ at the floor: OUT** on all three bins, both footings: canonical 0.69, 0.93, 0.75; alt 1.07, 0.68, 0.70. Weakly constrained: 54–67 % of galaxies in the two lower bins sit at a grid end, 26 % at 100–150. Fit is worse than free S by a median ×2.0–3.0 in those bins and ×1.1–1.2 at 100–150.
 - **Test 4, forward from a flat floor:** PARTIAL in all six cases, none FAKED.
 
 | Flat truth, fit at Υ 0.50 | 20–60 | 60–100 | 100–150 |
