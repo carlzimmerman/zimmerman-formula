@@ -22,6 +22,11 @@
 
 ## Standing of existing work
 Frozen lanes keep the rule they froze; their results are not voided. **Regraded in `RG1_native_n_regrade`:** Local Group 4 of 5 → **0 of 5**, all UNDER. Milky Way class unchanged. SLUGGS, X-COP, HG2 fail. **Correction:** this file listed HO1 and HO2's SLUGGS as floor-dependent, and said results above about lg M 11.5 carry over. They were never on the floor, but they use other cores, so they do not carry over automatically; RG1 shows what changes. Drafts PAPER61 and PAPER65 state the floor; both need revising before any deposit. Nothing deposited is changed.
-The status board tiles have not been recomputed for this rule.
+The core-law board tiles were recomputed for this rule on 31 October. The main board stays v3s, and PAPER61 and PAPER65 still state the floor.
+
+## Working statement after RG1 and SN1 (not a new owner decision; the floor stays out unless the owner says otherwise)
+- **Clusters:** ZN3's native z = 0 profile, no S or r₀, in place of the S rule. Limits: passes X-COP and 15 of 15 keys on X-COP's gas scale only; 11–12 of 15 on eRASS1's own gas; RF3's HSE-free gas scale fails narrowly at f★ 0.034 (G-OUT-M3 +2.03), and X-COP without HSE is UNDETERMINED; M200 must be fair share inside R200; chosen after ZN1's miss.
+- **The seam:** the same native profile fails SPARC at low mass (ZN2, Upsilon 1.01 / 0.97), so galaxies keep the S rule. Two forms, not one rule.
+- **Below 1e10:** no working rule. SN1: the measured rule is short by more than × 2 on any M200 line. A flat S of about 56–85 with a shallower M200 line fits the classes, post-result, with no mechanism: that is a floor again, about 0.5–0.8 of the a₀ value, and it is not adopted.
 
 κ = ½ FITTED. Not "theory closed". Nothing here says the data favour the framework.
