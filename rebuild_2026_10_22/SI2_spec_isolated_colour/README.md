@@ -47,6 +47,16 @@ Three readings:
 - **Route E's M200 moves with the IMF rung through EM1's relation.** A bottom-heavy IMF adds stellar mass without any obvious reason to add halo mass. EM1 was calibrated on discs at Υ near 0.5. This choice was frozen and it helps route E more than the law.
 - Cold and hot gas stay tied to catalogue M★, as in S2.
 
+**Does the halo have to follow the stars? (`si2_halo_rung.py`, post-result; stars +0.295 in both models, route E's M200 argument moved only by h)**
+
+| h, canonical | S3 Δχ², D, class, χ²(H) p | S1 Δχ², D, class, χ²(H) p | S1 route E A_in, A_O1 |
+|---|---|---|---|
+| 0.295 (frozen R2) | −10.6, 2.77, NOT POWERED, 0.893 | −0.3, 4.63, NEITHER, 0.099 | 0.99 ± 0.14, 1.89 ± 0.39 |
+| 0.123 (halo follows CFG667 only) | −8.8, 3.07, ROUTE E PREFERRED, 0.784 | +0.6, 5.15, NEITHER, 0.077 | 1.13 ± 0.16, 2.39 ± 0.49 |
+| 0 (halo at catalogue M★) | −7.4, 3.27, ROUTE E PREFERRED, 0.684 | +2.7, 5.59, NEITHER, **0.045** | 1.24 ± 0.18, 2.78 ± 0.57 |
+
+So the frozen reading survives at h 0.123 and only just misses at h 0 (S1's p falls below 0.05, which would read MIXED). The class is NEITHER throughout on S1. What grows is the outer shortfall. The reading does not rest on the IMF rung dragging the halo.
+
 ## Checks
 K1 (colour for all 124,428 LePhare matches), K2 (R0, no split reproduces SI1, 0.0), K3 (blue + red = all, 2.1e-15), MUTATE (labels swapped: red R2 χ²(H) 32.20 → 17.71): all PASS.
 
