@@ -18,7 +18,11 @@
 > vertical structure, R_d read directly, McKee read directly) remain. Checks 9/9 with K8 (value and sha from disk); MUTATE fails
 > K1–K3 and exits 1. Runtime 107 s, peak RSS 0.43 GB, one thread, nice 15. This is not "the framework passes the Milky Way":
 > it passes only on a disc shorter than the published star-count scale length, on the alt footing and the native rule, and
-> fails on the canonical OS1 rule. κ = ½ FITTED. Not theory closed.
+> fails on the canonical OS1 rule. **A2 (same day, documentation):** R_d read from the papers. LN16's 29 inputs are all star
+> counts (halo-free): combined 2.64 ± 0.13, IR-only 2.51 (+0.15/−0.13); BH&G16's 2.6 ± 0.5 is the spread of 15 IR papers, and their
+> thick disc is 2.0 ± 0.2. So the passing single-R_d 1.93 disc sits 4–5σ below the halo-free ensemble mean for the thin disc
+> but inside the halo-free thick-disc value; a thin 2.6 / thick 2.0 cell is not in this lane's box and is the next thing to
+> grade (`AMENDMENTS.md` A2). κ = ½ FITTED. Not theory closed.
 
 Criteria and ledger 9468ee04b2 (committed alone, before any script or number); script 856ffb2959; no amendment. I expected this
 headline before running, as the criteria disclose. Runtime minutes, peak RSS 0.35 GB, one thread, nice 15. No download.

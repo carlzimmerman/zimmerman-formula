@@ -37,3 +37,35 @@ OS1 canonical. If the run differs, the run stands.
 
 κ = ½ FITTED. Footings never pooled. Cold dark energy is a gravitating field component, never a particle. Not theory closed.
 Nothing here says the data favour the framework.
+
+**A2, 2026-10-31, after A1's numbers; documentation only, no grade changes.** Open input 4 (R_d read directly) is now read
+from the papers on disk: `_external_data/rf1_rd_sources/licquia_newman_2016.pdf` (arXiv:1607.05281) and
+`bland_hawthorn_gerhard_2016.pdf` (arXiv:1602.07702), with extracted text; untracked.
+
+- **Licquia & Newman 2016, Table 1 and Table 3.** 29 inputs, 15 visible and 14 infrared, every one photometric or star-count
+  (Spacelab, COBE/DIRBE, 2MASS, DENIS, SDSS, SEGUE, GLIMPSE, pencil-beam CCD surveys); no rotation-curve or halo fit among them.
+  Class: LITERATURE-INPUT, halo-free. Bayesian-model-averaged results (Table 4): IR only 2.51 (+0.15/−0.13), visible only
+  2.71 (+0.22/−0.20), combined **2.64 ± 0.13 kpc**; raw ensemble median 2.5 ± 0.2 with interquartile range 1.2 kpc. Single
+  exponential, R₀ = 8.33 assumed where the measurement scales with it (α = 1 for the IR map fits; at RF1's R₀ 8.122 those
+  scale by 0.975). Individual halo-free inputs at or below 2.3 kpc: B06 1.90 (±0.48 assigned), LC&M14 2.00 ± 0.40, P98
+  2.10 ± 0.53, P13 2.12 ± 0.20, R12 2.20, C99 / S02 / K07 2.25, D&S01 2.26 ± 0.22, O96 2.30, L&L00 2.30, M15 2.34 ± 0.48.
+- **Bland-Hawthorn & Gerhard 2016, §5.1.2.** "A statistical analysis of the main papers (15 in all) on this topic leads to
+  R_t = 2.6 ± 0.5 kpc", infrared point-source studies; 2.5 ± 0.4 without GLIMPSE. The ±0.5 is the spread of those papers, not
+  an error on a mean. Their thick disc, chemistry-defined: **R_T = 2.0 ± 0.2 kpc** (§5.2.2). They add that "a short
+  scalelength finds strong support from dynamical studies" (Bovy+12b mono-abundance populations, 2 kpc inner to 3 kpc outer);
+  those are kinematic, not photometric, and are not used here.
+
+**What this says about A1's passing cell (R_d 1.93 for both discs, P4's B3 single-R_d convention).**
+- Against LN16's halo-free ensemble mean: 1.93 is 4.1σ below the IR-only value and 5.4σ below the combined value. Against
+  BH&G16's spread it is 1.3σ low. Both statements are halo-free; they differ because one is an error on a mean and the other
+  a scatter. The frozen LN16 tag (2.38–2.90) stands as the sharper of the two, and A1's PASS is correctly labelled WIDE PRIORS
+  ONLY.
+- A thin disc at 1.93 is not supported by the star-count ensemble; a **thick** disc at 1.93 is inside BH&G16's 2.0 ± 0.2.
+  RF1's grid gives both discs one R_d, so no cell holds thin 2.5–2.6 with thick 2.0, which is what the halo-free star counts
+  actually describe. That cell is the next thing to grade, and it is not in this lane's frozen box (it would be an A3 with
+  its own frozen line, or a lane of its own).
+- GD1's McMillan verdict keeps its label (FAIL against ΛCDM-processed baryons). On halo-free star counts the route E Milky
+  Way verdict is: canonical OS1 FAIL; alt OS1 and native N pass only on a single-R_d disc the star-count ensemble disfavours
+  at 4–5σ; a two-scale-length disc untested.
+
+κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.
