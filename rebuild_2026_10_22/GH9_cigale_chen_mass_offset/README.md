@@ -53,3 +53,5 @@ All PASS: K1 match (median |Δz| 5e-5, 0.07″); K2a model rebuild exact; K2b GH
 `FROZEN_CRITERIA.md` (2c54296d9c), `gh9_match.py`, `gh9_prop.py`, `gh9_counts.py` with `.out` and `.json`. Run in that order after GH8, `PYTHONHASHSEED=0 OMP_NUM_THREADS=1 nice -n 15`. Data: `_external_data/sdss_wisconsin_pca/` (143 MB, whole table, FETCH_LOG with sha256; published checksum not checked).
 
 **Sources:** SDSS Wisconsin PCA (https://www.sdss4.org/dr17/spectro/galaxy_wisconsin/); Chen et al. 2012, MNRAS 421, 314; Zhang et al. 2024, A&A 690, A267; DESI DR1 CIGALE VAC; Driver et al. 2022 (GKV).
+
+**Forward note (GH10_dr2_ksz_published_points):** published DR2 points, independent of this pipeline, give A(1.8) 0.45 ± 0.11 on a differential bin of all galaxies. Same direction, and the misfit there is shape, not total.
