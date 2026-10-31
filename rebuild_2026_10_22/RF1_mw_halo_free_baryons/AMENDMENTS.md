@@ -93,3 +93,26 @@ from the papers on disk: `_external_data/rf1_rd_sources/licquia_newman_2016.pdf`
   the run differs, the run stands.
 
 κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.
+
+**A3 result, 2026-10-31 (run eaec677e99; `rf1_a3_two_rd.out`, `rf1_a3_two_rd_results.json`, MUTATE twins).** Against the
+expectation on record. K1 reproduces A1's cell to 1e-10, K2 1.9e-6, K3 0.38 GB; MUTATE fails K1 and exits 1. Runtime 8 s.
+
+| rule (bg A, PRIMARY) | verdict as frozen | cells / 125 | where |
+|---|---|---|---|
+| OS1 canonical | **PASS on halo-free baryons (two-scale-length disc)** | 1 | Σ_b 50.5, R_t 2.38, R_T 1.6 |
+| OS1 alt | **PASS** | 5 | Σ_b 50.5–53.9, R_t 2.38–2.90, R_T 1.6 (four) and 1.8 (one, at Σ_b 53.9) |
+| Native N | **PASS** | 5 | Σ_b 47.1–53.9, R_t 2.38–2.64, R_T 1.6 (four) and 1.8 (one, at Σ_b 53.9) |
+
+Reported: VARIANT V_last 229 passes 14–20 cells; background B agrees for OS1 and drops native N to 2 cells. No cell passes with
+R_T ≥ 2.0 on any PRIMARY rule, and none with R_t ≥ 2.77 on canonical OS1 or N.
+
+**Reading, as hard as a fail would get.** The pass exists, but it lives at a corner of the halo-free priors: the thick disc at
+its −2σ edge (1.6 against 2.0 ± 0.2), the thin disc at or near LN16's −2σ edge (2.38–2.51 against 2.64 ± 0.13), and Σ_b at +1σ
+to +2σ (50.5–53.9 against 47.1 ± 3.4). Canonical OS1 needs all three at once in one cell. In GD2's language this is FEASIBLE
+on wide priors, not FEASIBLE IN PRIORS, and the frozen A3 line did not distinguish the two, so the verdict word is PASS and
+this paragraph is the qualifier. The thick-disc share at R₀ is McMillan's (f_thin 0.7367), held and labelled; a halo-free
+thick-disc fraction is the next open input, and it moves this result directly because the pass is carried by the thick
+component's short scale length. The Milky Way on halo-free baryons under route E therefore reads: **not excluded; passes only
+where every halo-free prior is pushed about 2σ the same way.** GD1's McMillan verdict keeps its label.
+
+κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.

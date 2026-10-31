@@ -22,7 +22,11 @@
 > counts (halo-free): combined 2.64 ± 0.13, IR-only 2.51 (+0.15/−0.13); BH&G16's 2.6 ± 0.5 is the spread of 15 IR papers, and their
 > thick disc is 2.0 ± 0.2. So the passing single-R_d 1.93 disc sits 4–5σ below the halo-free ensemble mean for the thin disc
 > but inside the halo-free thick-disc value; a thin 2.6 / thick 2.0 cell is not in this lane's box and is the next thing to
-> grade (`AMENDMENTS.md` A2). κ = ½ FITTED. Not theory closed.
+> grade (`AMENDMENTS.md` A2). **A3 (same day, frozen then run):** on that two-scale-length disc all three rules PASS as frozen, but
+> only at a corner of the halo-free priors: thick disc 1.6 kpc (−2σ), thin 2.38–2.51 (LN16 −2σ to −1σ), Σ_b 50.5–53.9 (+1 to +2σ);
+> canonical OS1 in 1 cell of 125, alt OS1 and native N in 5. No cell with R_T ≥ 2.0 passes. Not excluded; not a pass inside
+> the priors. Thick-disc share at R₀ is McMillan's, held; a halo-free thick fraction is the next open input. κ = ½ FITTED.
+> Not theory closed.
 
 Criteria and ledger 9468ee04b2 (committed alone, before any script or number); script 856ffb2959; no amendment. I expected this
 headline before running, as the criteria disclose. Runtime minutes, peak RSS 0.35 GB, one thread, nice 15. No download.
