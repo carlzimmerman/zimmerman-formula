@@ -460,3 +460,7 @@ Deciding observation between M5 and M6: small-scale Lyman-α forest gas power at
   - The 3-seed table fails G-IN-Mall and lensing.
   - c_f = 4 fails groups, G-OUT-M3, SPARC (alt) and lensing (canonical).
 - **Reading.** The limiting piece is now the group and cluster halo core rule, not which systems hold cold dark energy. One concentration cannot satisfy groups, cluster cores, cluster outskirts and lensing together (consistent with IB1).
+
+## Dated addendum, 2026-10-31 (RF5_growth_native_yardstick); earlier text not rewritten
+
+The growth rows of F3, X4 and L1 above are relabelled **"measured against ΛCDM σ₈"**. RF5 regraded the question on raw χ² (plik-lite, DESI DR2 BAO, DES-SN5YR, DES Y3 ξ+ linear-safe, DESI P1D) with a free CPL background and no ΛCDM reference. Verdict on both footings: a window exists at z_on ∈ [3e4, 1e6], forest NOT DIAGNOSTIC, z_on ≤ 4000 UNDETERMINED (not finished). That window is early dust, about 9 z_eq and up, so §234's reading is unchanged by removing the yardstick. The v3s khronon rows at μ_K 0.03 and 0.1 Mpc⁻¹ are UNDETERMINED on this footing (no converged fit), so X4's failure is not regraded here. κ = ½ FITTED; not theory closed.
