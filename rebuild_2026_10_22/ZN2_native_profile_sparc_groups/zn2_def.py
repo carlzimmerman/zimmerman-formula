@@ -2,7 +2,7 @@
 ZN2 = dict(on=not os.environ.get("ZN2_K1"), below=0, n=0, map=os.environ.get("ZN2_MAP", "tot"), rx=float(os.environ.get("ZN2_RX", "1")))
 _Z2J = json.load(open(os.environ["ZN2_SHAPES"])) if not os.environ.get("ZN2_K1") else None
 _Z2X = np.log(np.array(_Z2J["x"])) if _Z2J else None
-_Z2T = sorted(((float(_Z2J[m_]["0.00"]["lgM"]), np.array(_Z2J[m_]["0.00"]["lnm"])) for m_ in ("1e12", "1e13", "1e14")), key=lambda t_: t_[0]) if _Z2J else []
+_Z2T = sorted(((float(_Z2J[m_]["0.00"]["lgM"]), np.array(_Z2J[m_]["0.00"]["lnm"])) for m_ in tuple(os.environ.get("ZN2_TAGS", "1e12,1e13,1e14").split(","))), key=lambda t_: t_[0]) if _Z2J else []
 def zn2_lnm(lg, count):
     T_ = _Z2T
     if lg <= T_[0][0]:

@@ -26,5 +26,24 @@ else:
         _ZO["bins"][f"{_lo}-{_hi}"] = dict(n=len(_U), U=float(np.median(_U)) if _U else None, dV=float(np.median(_D)) if _D else None)
     _tag0 = _Z2T[0][0]; _ab = [_q for _q in GALS if _rows[_q["name"]][2] > _tag0]; _rr = [_rows[_q["name"]][0] for _q in _ab]
     if _rr: _st = pooled([r_[0] for r_ in _rr], [r_[1] for r_ in _rr], [r_[2] for r_ in _rr]); _ZO["above"] = dict(n=len(_ab), rms=_st["rms"], U_median=_st["U_median"])
+if not os.environ.get("ZN2_K1") and os.environ.get("ZN2_TAGS", "").startswith("1e10"):
+    from scipy.stats import spearmanr as _spr
+    _A = json.load(open(os.path.join(REB, "AM1_native_abundance_match", "am1_results.json")))["curve"]; _ALT = dict(fair=lambda q_: NAT_RRAT * 10 ** q_["lMb"], am1=lambda q_: 10 ** float(np.interp(q_["lMb"], _A["lMb"], _A["lM200"]))); _ZO["alt"] = {}
+    for _nm, _fn in _ALT.items():
+        _rr = [fit_one(_q, np.log10(np.maximum(_q["GB"] + (GE * zn2_mass(_fn(_q) * MSUNE, _rc, _q["Rm"], None) / _q["Rm"] ** 2)[:, None], 1e-300))) for _q in GALS]; _st = pooled([r_[0] for r_ in _rr], [r_[1] for r_ in _rr], [r_[2] for r_ in _rr]); _ZO["alt"][_nm] = dict(rms=_st["rms"], U_median=_st["U_median"])
+    _SBe = {}
+    for _l in open(_MRT):
+        _p = _l.split()
+        if len(_p) >= 18:
+            try: _SBe[_p[0]] = float(_p[10])
+            except ValueError: pass
+    _X, _Y = [], []
+    for _q in GALS:
+        _t = _TB.get(_q["name"])
+        if _t is None or not (60 <= _t["vf"] <= 120 and _t["Q"] <= 2 and _t["inc"] >= 30) or _SBe.get(_q["name"], 0) <= 0: continue
+        _gh = _rows[_q["name"]][1]; _Rk = _q["Rm"] / _KP; _ok = _q["OK"][:, _I5]; _R2 = 2 * _t["rd"]
+        if _ok.sum() < 2 or not (_Rk[_ok].min() <= _R2 <= _Rk[_ok].max()): continue
+        _Vm = np.sqrt(np.maximum((_q["GB"][:, _I5] + _gh) * _q["Rm"], 0)) / 1e3; _X.append(math.log10(_SBe[_q["name"]])); _Y.append(float(np.interp(math.log(_R2), np.log(_Rk[_ok]), _Vm[_ok] / _q["Vobs"][_ok] - 1)))
+    _X, _Y = np.array(_X), np.array(_Y); _rg = np.random.default_rng(1); _bs = [float(np.polyfit(_X[k_], _Y[k_], 1)[0]) for k_ in (_rg.integers(0, len(_X), len(_X)) for _ in range(4000))]; _ZO["hs1"] = dict(n=len(_X), b=float(np.polyfit(_X, _Y, 1)[0]), s=float((np.percentile(_bs, 84) - np.percentile(_bs, 16)) / 2), rho=float(_spr(_X, _Y)[0]), mean=float(_Y.mean()), rms=float(np.sqrt(np.mean(_Y ** 2))))
 json.dump(_ZO, open(os.environ["ZN2_OUT"], "w"), indent=1, default=float)
 sys.exit(0)

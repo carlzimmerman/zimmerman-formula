@@ -5,7 +5,7 @@
 kappa = 1/2 FITTED; footings never pooled; not theory closed."""
 import json, os, re, shutil, subprocess, sys, tempfile
 from concurrent.futures import ThreadPoolExecutor
-HERE = os.path.dirname(os.path.abspath(__file__)); RB = os.path.dirname(HERE); SLOPE = "2.7774425603108597"; CE1 = os.path.join(RB, "CE1_converged_eta_grade"); FC1 = os.path.join(RB, "FC1_cold_share_native_eta"); SHAPES = os.path.join(RB, "ZN1_zooms_to_z0", "zn1_shapes.json")
+HERE = os.path.dirname(os.path.abspath(__file__)); RB = os.path.dirname(HERE); SLOPE = "2.7774425603108597"; CE1 = os.path.join(RB, "CE1_converged_eta_grade"); FC1 = os.path.join(RB, "FC1_cold_share_native_eta"); SHAPES = os.environ.get("ZN2_SHAPEFILE", os.path.join(RB, "ZN1_zooms_to_z0", "zn1_shapes.json")); AT = os.environ.get("ZN2_OUTTAG", "zn2")
 if "--worker" in sys.argv:
     WD = os.environ["ZN2_WD"]; X74F = os.path.join(RB, "X74_all_measured_native_cf", "x74_native_cf.py"); TX = open(X74F).read()
     INJ = re.search(r"INJ = r'''(.*?)'''", open(os.path.join(FC1, "fc1_x74.py")).read(), re.S).group(1)
@@ -27,13 +27,15 @@ sub("sys.exit(0 if (n == len(checks) and x74ok) else 1)", open({os.path.join(HER
 TD = tempfile.mkdtemp(); OUT = []
 def P(s): print(s, flush=True); OUT.append(s)
 def run(fs="0.034", shapes=SHAPES, mapn="tot", rx=1.0, k1=False):
-    WD = os.path.join(TD, f"{mapn}_{rx:g}_{int(k1)}"); os.makedirs(WD); o = os.path.join(WD, "o.json"); env = dict(os.environ, FC1_MODE="cold", X74_CF=os.path.join(CE1, f"CE1_med_fs{fs}_cf_table.json"), X73_FSTAR=fs, X73_SLOPE=SLOPE, ZN2_OUT=o, ZN2_WD=WD, ZN2_SHAPES=shapes, ZN2_MAP=mapn, ZN2_RX=str(rx), ZN2_K1="1" if k1 else "", PYTHONHASHSEED="0", OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", VECLIB_MAXIMUM_THREADS="1")
+    WD = os.path.join(TD, f"{mapn}_{rx:g}_{int(k1)}"); os.makedirs(WD); o = os.path.join(WD, "o.json"); env = dict(os.environ, FC1_MODE="cold", X74_CF=os.path.join(CE1, f"CE1_med_fs{fs}_cf_table.json"), X73_FSTAR=fs, X73_SLOPE=SLOPE, ZN2_OUT=o, ZN2_WD=WD, ZN2_SHAPES=shapes, ZN2_MAP=mapn, ZN2_RX=str(rx), ZN2_K1="1" if k1 else "", ZN2_TAGS=os.environ.get("ZN2_TAGS", "1e12,1e13,1e14"), PYTHONHASHSEED="0", OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", VECLIB_MAXIMUM_THREADS="1")
     p = subprocess.run(["nice", "-n", "5", sys.executable, os.path.abspath(__file__), "--worker"], cwd=WD, env=env, capture_output=True, text=True)
     if not os.path.exists(o): raise SystemExit(f"NOT DECIDED: {mapn} wrote no result (exit {p.returncode}): {p.stdout[-400:]} {p.stderr[-1500:]}")
     r = json.load(open(o)); shutil.rmtree(WD, ignore_errors=True); return r
 def ln(lab, R):
     s = R["sparc"]; g = R["groups"]; P(f"  {lab}: " + "; ".join(f"SPARC [{t}] rms {s[t]['rms']:.4f}, median U {s[t]['U_median']:.2f}, line {'PASS' if s[t]['line'] else 'FAIL'}" for t in s) + f"; groups mean {g['mean']:+.4f} Z {g['Z']:+.2f} {g['verdict']}; clamped below the 1e12 tag {R['stat']['below']} of {R['stat']['n']} galaxy evaluations"); 
     if R.get("bins"): P("     by V_flat, U / dV at U 0.50: " + "; ".join(f"{k} (n {v['n']}) {v['U']:.2f}/{v['dV']:+.1f}" for k, v in R["bins"].items()))
+    if R.get("alt"): P("     native shape, other masses: " + "; ".join(f"{k} rms {v['rms']:.4f} U {v['U_median']:.2f}" for k, v in R["alt"].items()))
+    if R.get("hs1"): P(f"     HS1 slope n {R['hs1']['n']}: {R['hs1']['b']:+.4f} +- {R['hs1']['s']:.4f}, rho {R['hs1']['rho']:+.3f}, mean {R['hs1']['mean']:+.3f}, rms {R['hs1']['rms']:.3f}")
     if R.get("above"): P(f"     galaxies above the 1e12 tag only: n {R['above']['n']}, rms {R['above']['rms']:.4f}, median U {R['above']['U_median']:.2f}")
 def cls(R):
     s = R["sparc"]; f = [t for t in s if not s[t]["line"]]; gp = R["groups"]["PASS"]
@@ -44,9 +46,9 @@ def cls(R):
 if __name__ == "__main__":
     if "--k1" in sys.argv:
         R = run(mapn="fc1", k1=True); k = R["k1"]; ok = k["rms"] <= 2e-3 and k["U"] <= 0.01 and k["gZ"] <= 0.05; P(f"K1 FC1's rule as a table through this path, canonical, background A: rms {k['rms']:.1e} (2e-3), median U {k['U']:.3f} (0.01), group Z {k['gZ']:.3f} (0.05): {'PASS' if ok else 'FAIL'}"); open(os.path.join(HERE, "zn2_k1.out"), "w").write("\n".join(OUT) + "\n"); sys.exit(0 if ok else 1)
-    MUT = "--mutate" in sys.argv; TAG = "zn2_MUTATE" if MUT else "zn2"; P(f"ZN2 {TAG}: native z = 0 profile on SPARC and groups; kappa = 1/2 FITTED; not theory closed")
+    MUT = "--mutate" in sys.argv; TAG = AT + "_MUTATE" if MUT else AT; P(f"ZN2 {TAG}: native z = 0 profile on SPARC and groups; kappa = 1/2 FITTED; not theory closed")
     if MUT:
         b = run(); m = run(rx=1.5); ln("base", b); ln("shape's r x 1.5", m); d = m["sparc"]["A_c2b_refit"]["U_median"] - b["sparc"]["A_c2b_refit"]["U_median"]; ok = abs(d) >= 0.02; P(f"MUTATE moves median U by {d:+.2f}: {'BITES' if ok else 'INSENSITIVE, lane UNDECIDED'}"); open(os.path.join(HERE, f"{TAG}.out"), "w").write("\n".join(OUT) + "\n"); sys.exit(0 if ok else 1)
     with ThreadPoolExecutor(2) as ex: A, B = ex.map(lambda mp: run(mapn=mp), ("tot", "fc1"))
     ln("frozen mapping (M_t = M200/f_c, R_t)", A); ln("FC1's normalisation (M200, R200)", B); V, V2 = cls(A), cls(B); tags = (" [LOW-MASS CLAMPED]" if A["stat"]["below"] else "") + ("" if V == V2 else " [NORMALISATION-DEPENDENT]"); P(f"VERDICT: {V}{tags}. FC1's normalisation: {V2}.")
-    json.dump(dict(verdict=V, tags=tags, frozen=A, fc1_norm=B), open(os.path.join(HERE, "zn2_results.json"), "w"), indent=1, default=float); open(os.path.join(HERE, "zn2.out"), "w").write("\n".join(OUT) + "\n")
+    json.dump(dict(verdict=V, tags=tags, frozen=A, fc1_norm=B), open(os.path.join(HERE, f"{TAG}_results.json"), "w"), indent=1, default=float); open(os.path.join(HERE, f"{TAG}.out"), "w").write("\n".join(OUT) + "\n")
