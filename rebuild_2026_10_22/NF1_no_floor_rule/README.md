@@ -11,7 +11,7 @@ Criteria: `FROZEN_CRITERIA.md` (f95621e30a), committed alone before any script o
 | **N1** | s 0.0927 per dex | **0.55 / 0.56** | **0.0670 / 0.0681** | **pass** |
 | N2 | s 0.1668 per dex | 0.47 / 0.48 | 0.0695 / 0.0706 | fail (Υ) |
 
-**LABEL: FLOOR NOT NEEDED** (SPARC only). Canonical and alt coincide exactly (K2), so X78's alt failure no longer applies to route E. Clusters and groups don't change at all (K3, ΔZ = 0): the floor was never active there. Interpolating, the line holds for s up to about 0.13.
+**LABEL: FLOOR NOT NEEDED** (SPARC only). Canonical and alt coincide exactly (K2), so X78's alt failure no longer applies to route E. Clusters and groups don't change at all (K3, ΔZ = 0): the floor was never active there. Interpolating linearly between N1 and N2, the line holds for s up to about 0.14.
 
 ## By V_flat (Υ 0.50; ΔV km/s over 2–4 R_d)
 | V_flat | n | lg M200 | ET1 S need [95 %] | ET2 free S | FC1 floor: S, Υ, ΔV | N0: S, Υ, ΔV | N1: S, Υ, ΔV | N2: S, Υ, ΔV |
@@ -43,7 +43,7 @@ S_rule at lg M200 8 / 9 / 10 / 11: N0 13.8 / 26.0 / 48.1 / 87.4; N1 32.0 / 48.6 
 
 **LITTLE THINGS, independent of SPARC, RT1's single-point recipe, 20 galaxies, median E (negative = over-predicted), rms:**
 law canonical −0.025, 0.345; floor canonical −0.041, 0.353; floor alt −0.055, 0.354; N0 **+0.158**, 0.408; N1 +0.078, 0.365; N2 −0.026, 0.354.
-So N0 is short here, and this sample prefers s nearer N2. With the SPARC line (s ≲ 0.13), the two give a rough window s ≈ 0.09–0.13.
+So N0 is short here, and this sample prefers s nearer N2. With the SPARC line (s ≲ 0.14), the two give a rough window s ≈ 0.09–0.14.
 
 | Local Group | law | floor can | N0 | N1 | N2 |
 |---|---|---|---|---|---|
@@ -56,7 +56,7 @@ So N0 is short here, and this sample prefers s nearer N2. With the SPARC line (s
 
 ## What it changes, if it stands
 - The floor was the only place a₀ entered route E. N0/N1 have no a₀ and no footing in the cold sector. a₀/2πG would just be the collapse S of a roughly 10¹¹ M☉ halo, and a₀ = κc√(Gρ_Λ) would have no role in the cold sector. EM1's T0 already flagged this. **That would change the theory's headline, so it is the owner's call, and this lane changes no standing statement.**
-- It predicts X80. Line-allowed native η(10¹⁰)/η(10¹²) is at most about 1.8, and the low-mass S above wants at least about 1.3. N1 gives 1.53 at 10¹⁰ and 1.24 at 10¹¹. These are converged-cusp η; X80's frozen R(M) uses the ε-cut fit without f_c, so its labels need the cusp fit beside them.
+- It predicts X80. The line allows native η(10¹⁰)/η(10¹²) up to about 1.9. ET1 and ET2's medians at the two lowest bins want about 1.5 over N0, their lower bounds about 1.1–1.2. N1 gives 1.53 at 10¹⁰ and 1.24 at 10¹¹. These are converged-cusp η; X80's frozen R(M) uses the ε-cut fit without f_c, so its labels need the cusp fit beside them.
 - **A5 can't settle this; X80 can.** The queue has A5 first.
 
 ## What gets worse
