@@ -143,14 +143,14 @@ def cparams(p, cell):
     return q
 
 
-def run(name, cell, p, pk=False, cmb=True, zon_off=False, vanilla=False, lcdm_params=None, keep=False):
+def run(name, cell, p, pk=False, cmb=True, zon_off=False, vanilla=False, lcdm_params=None, keep=False, default_start=False):
     d = {"T_cmb": TCMB, "write_parameters": "no", "input_verbose": 1, "background_verbose": 2, "thermodynamics_verbose": 1,
          "fourier_verbose": 1, "overwrite_root": "yes", "write_background": "yes"}
     d.update(lcdm_params if lcdm_params is not None else cparams(p, cell))
     if cmb:
         d.update({"output": "tCl,pCl,lCl", "lensing": "yes", "l_max_scalars": 2508, **HIGH, **START})
     if pk:
-        d.update({"output": "mPk", "P_k_max_h/Mpc": 30.0, "k_per_decade_for_pk": 20, "z_max_pk": 5.0, "z_pk": ", ".join(f"{z:.2f}" for z in ZPK), **START})
+        d.update({"output": "mPk", "P_k_max_h/Mpc": 30.0, "k_per_decade_for_pk": 20, "z_max_pk": 5.0, "z_pk": ", ".join(f"{z:.2f}" for z in ZPK), **({} if default_start else START)})
     wd = os.path.join(WORK, cell["name"])
     os.makedirs(wd, exist_ok=True)
     root = os.path.join(wd, name + "_")
@@ -684,6 +684,22 @@ def mode_khronon():
         print(c["name"], rec.get("status"), (rec.get("chi2") or {}).get("plik"), rec.get("sigma8"), flush=True)
 
 
+def mode_restart(z):
+    """Different-start refit of one cell (coordinator's stall check; not graded; written to cells/RS_*.json)."""
+    L = Lik()
+    c = {"name": f"RS_{z:.0f}", "kind": "R1", "zon": float(z)}
+    p0 = np.array(P_START, float)
+    p0[1] *= 1.03
+    p0[4] += 0.01
+    p0[6], p0[7] = -0.95, -0.2
+    try:
+        rec = fit_cell(L, c, p0, A_START)
+    except Preempted:
+        sys.exit(75)
+    jw(os.path.join(CELLS, c["name"] + ".json"), rec)
+    print(c["name"], rec.get("status"), (rec.get("chi2") or {}).get("plik"), rec.get("converged"), flush=True)
+
+
 def fixed_cut():
     """Scale cut, fixed once at z_on = 1e6's best fit, before any shear chi2 (FROZEN §4)."""
     cp = os.path.join(CELLS, "shear_scale_cut.json")
@@ -708,17 +724,23 @@ def mode_channel(name, do_forest=True):
         return
     outp = os.path.join(CELLS, name + "_channels.json")
     res = json.load(open(outp)) if os.path.exists(outp) else {}
+    res.pop("status", None)
+    res.pop("msg", None)
     if "shear" in res and ("forest" in res or not do_forest):
         return
     c = {"name": name, "kind": r["kind"], "zon": r.get("zon"), "mu": r.get("mu")}
     S, keep, q = fixed_cut()
     p = np.array([r["params"][n] for n in NAMES])
     o = run("pk", c, p, pk=True, cmb=False)
+    if o is None:                                                      # A2: retry at CLASS's default start settings
+        res["pk_retry_default_start"] = True
+        o = run("pk", c, p, pk=True, cmb=False, default_start=True)
     if o is None:
         res["status"] = "PK_FAIL"
         res["msg"] = c.get("class_fail", ["?"])[-1]
         jw(outp, res)
         return
+    res["sigma8"] = o["sigma8"]
     if "shear" not in res:
         res["shear"] = shear_chi2(S, keep, o, r["Omega_m"])
         jw(outp, res)
@@ -821,7 +843,9 @@ def mode_k9():
     if os.path.exists(ck):
         os.remove(ck)
     pr = subprocess.Popen([sys.executable, "-I", os.path.abspath(__file__), "k9child"], env=env)
-    time.sleep(240)
+    t0 = time.time()
+    while not os.path.exists(ck) and pr.poll() is None and time.time() - t0 < 600:
+        time.sleep(1)
     has_before = os.path.exists(ck)
     pr.terminate()
     rc = pr.wait()
@@ -900,6 +924,7 @@ def mode_grade():
         a0a = 0.5 * cc * math.sqrt(6.6743e-11 * rc)
         sx233 = r["sqrtX"].get("2.33")
         row["a0"] = {"canonical": {"a0_0": a0c, "a0_2.33": a0c * sx233 if a0c and sx233 else None}, "alt": {"a0_0": a0a, "a0_2.33": a0a * sx233 if sx233 else None}}
+        row["sigma8"] = ch.get("sigma8", row["sigma8"])
         sh = ch.get("shear")
         if sh:
             row["shear"] = sh
@@ -955,6 +980,7 @@ def mode_grade():
             g["G_S"] = S[n] - Smin <= 25
         w["gates"] = g
         absok = all(v for k, v in g.items() if k != "G_S") and None not in [v for k, v in g.items() if k != "G_S"]
+        absok = absok and bool(w["converged"])                        # an unconverged fit is not graded
         fully = absok and g.get("G_S") is True
         w["abs_pass"], w["window_pass"] = bool(absok), bool(fully)
         if w.get("zon") and absok:
@@ -982,7 +1008,7 @@ def mode_grade():
     kv = {}
     for k in KCELLS:
         w = rows[k]
-        kv[k] = "UNDETERMINED" if w["status"] != "OK" else ("PASSES" if w.get("abs_pass") else "FAILS")
+        kv[k] = "UNDETERMINED" if (w["status"] != "OK" or not w.get("converged")) else ("PASSES" if w.get("abs_pass") else "FAILS")
     RES["verdict_khronon"] = kv
     P("VERDICT canonical:", v)
     P("VERDICT alt:", v)
@@ -992,6 +1018,15 @@ def mode_grade():
         m = {"G_CMB_fails": w.get("p_plik", 1) < 1e-3, "G_SHEAR_fails": (w.get("p_shear", 1) < 1e-3), "K1_fails": not ck.get("K1", {}).get("pass", True)}
         RES["mutate_bites"] = m
         P("MUTATE:", m)
+    rs = {}
+    for f in sorted(os.listdir(CELLS)):
+        if f.startswith("RS_") and f.endswith(".json"):
+            b = json.load(open(os.path.join(CELLS, f)))
+            a = json.load(open(os.path.join(CELLS, "R1_" + f[3:])))
+            tot = lambda r: sum(r["chi2"][k] for k in ("plik", "Aprior", "bao", "sn"))
+            rs[f[:-5]] = {"main": tot(a), "restart": tot(b), "diff": tot(b) - tot(a), "pass": abs(tot(b) - tot(a)) <= 1.0}
+    RES["restart_check"] = rs
+    P("restart check:", rs)
     RES["peak_rss_GB"] = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e9
     jw(os.path.join(HERE, f"rf5_results{TAG}.json"), RES)
     open(os.path.join(HERE, f"rf5{TAG}.out"), "w").write("\n".join(out) + "\n")
@@ -1007,6 +1042,8 @@ if __name__ == "__main__":
         mode_khronon()
     elif mode == "channel":
         mode_channel(sys.argv[2], do_forest=(len(sys.argv) < 4 or sys.argv[3] != "noforest"))
+    elif mode == "restart":
+        mode_restart(float(sys.argv[2]))
     elif mode == "k9":
         mode_k9()
     elif mode == "k9child":
