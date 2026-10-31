@@ -4,7 +4,7 @@ Written after the frozen run (b832059eca) and after A1's run, before any number 
 
 **The frozen result stands.** K_H3 failed, so the verdict is NO VERDICT. Nothing here can change that.
 
-**A1's reading was wrong.** A1 blamed thinly covered sky. Matching I to the lenses on source coverage barely moved anything: lens/I in O2 went from 1.121 to 1.091 on S10 and from 1.392 to 1.350 on S_x300, and every Δχ² moved by less than 8 (`si3_a1.out`). Coverage is not it. Median c is 0.99 for lenses and about 1 for I points.
+**A1's reading was wrong.** A1 blamed thinly covered sky. Matching I to the lenses on source coverage barely moved anything: lens/I in O2 went from 1.121 to 1.091 on S10 and from 1.392 to 1.350 on S_x300, and every Δχ² moved by at most 9.4, and by at most 1.7 on S_strict and S_x300 (`si3_a1.out`). Coverage is not it. Median c is 0.99 for lenses and about 1 for I points.
 
 **The cause is my frozen clone rule.** I drew a lens with replacement, then kept the point only if it passed the veto. The veto's acceptance depends on the clone's z and mass, so the accepted points do not keep the lenses' distribution. They skew to high z and to the massive bins. Mean z in mass bin 1 goes from 0.235 for lenses to 0.269 for I on S10, and from 0.325 to 0.409 on S_x300. The share of points in mass bin 4 goes from 0.249 to 0.324 on S10 and from 0.519 to 0.651 on S_x300.
 
