@@ -53,7 +53,7 @@ OUT_BOARD = {"v4": "status_board_v4.png", "canonical": "status_board_canonical_r
              "pmedium": "status_board_pmedium.png", "v3v": "status_board_v3v.png",
              "coreE": "status_board_core_law.png"}
 OUT_GRID = "flavor_comparison_grid.png"
-BOARD_DATE = {"coreE": "29 October 2026"}   # flavors added later carry their own date
+BOARD_DATE = {"coreE": "31 October 2026"}   # flavors added later carry their own date
 
 FLAVORS = ["v3", "v4", "canonical", "plain_mond", "lcdm", "pmedium", "v3v", "coreE"]
 TITLE = {"v3": "v3", "v4": "v4", "canonical": "canonical rules", "plain_mond": "plain MOND", "lcdm": "ΛCDM",
@@ -76,9 +76,8 @@ RECIPES = {
                "stiffening scalar χ (Codex's reduced preferred-frame action); ℓ₀ = 0.44 kpc fitted to growth.",
     "v3v": "Literal Blanchet–Skordis Khronon (J_x, BS K(Q) dust) + covector P, with NO γ_L stiffness. Moving subsystems "
            "hold phantom only within 2GM_b/V² (velocity screening). κ fitted; no L★.",
-    "coreE": "Route E (owner's flagship, 10-25): Newtonian gravity on baryons + cold dark energy halos with the smooth core "
-             "ρ₀/(1+x²)^(3/2) at ρ₀r₀ = max(a₀/2πG, η Σ_coll), η re-derived for the shape (10.82 at c_f = 4, EXTERNAL); "
-             "fair share inside r_ta; measured stellar fractions; no law force. κ fitted.",
+    "coreE": "Route E (owner's flagship, 10-25), no a₀ floor (owner, 10-31): Newtonian gravity on baryons + cold dark energy halos with the smooth core "
+             "ρ₀/(1+x²)^(3/2) at ρ₀r₀ = f_c η Σ_coll, native η; fair share inside r_ta; no law force. κ fitted in the a₀ law only.",
 }
 PSEUDO = {"newton"}   # the Newtonian / GR limit some lanes compute as a row; never a column of its own
 
@@ -225,6 +224,9 @@ V("NF1", "coreE", "Galaxy groups (BFJR)", "PASS", R + "X80_low_mass_floor_emerge
 V("ZN3", "coreE", "Cluster cores (eRASS1 × KiDS)", "COND", R + "ZN3_native_shape_at_1e15/README.md:L1-L12 (15 of 15 on X-COP's gas, "
   "11-12 on eRASS1's; the S rule itself fails three keys, NF1)")
 V("RG1", "coreE", "Central ellipticals (SLUGGS)", "FAIL", R + "RG1_native_n_regrade/README.md:L1-L14 (+0.125, 1 of 4)")
+V("RG1", "coreE", "Local Group dwarfs (5 classes)", "FAIL", R + "RG1_native_n_regrade/README.md:L9-L21 (0 of 5)")
+V("ND1", "coreE", "LITTLE THINGS dwarfs", "FAIL", R + "ND1_native_dwarfs/README.md:L5-L25 (median E +0.138)")
+V("RG1", "coreE", "Milky Way (X5 box)", "COND", R + "RG1_native_n_regrade/README.md:L9-L14 (wide priors only)")
 # v4
 V("H3", "v4", "Health: ghosts, gradients", "COND", TV3 + ":L26-L30")
 V("I1", "v4", "Well-posed (leaf / Cauchy problem)", "FAIL", R + "I1_gammaL_causality/README.md:L3-L14")
@@ -652,6 +654,9 @@ CELLS = [
     C("coreE", 2, "Cluster cores (326 eRASS1)", "COND",
       "native z = 0 profile: 15 of 15 on X-COP's gas, 11–12 on eRASS1's own; S rule: three keys over, X-COP −0.186 / 0.214", ["ZN3", "RG1"]),
     C("coreE", 1, "Central ellipticals (SLUGGS)", "FAIL", "mean +0.125, Zc +6.1, 1 of 4", ["RG1"]),
+    C("coreE", 1, "Local Group dwarfs (5 classes)", "FAIL", "0 of 5, all under, Z +3.1 to +6.6; S and M200 extrapolated below 1e10; floor had 4 of 5", ["RG1"]),
+    C("coreE", 1, "LITTLE THINGS dwarfs", "FAIL", "median E +0.138, line 0.10, short in all 200 seed draws", ["ND1"]),
+    C("coreE", 1, "Milky Way (X5 box)", "COND", "wide priors only: 7 cells, R_d 1.93–2.27; none inside priors; V_c 202.8 on McMillan", ["RG1"]),
 ]
 
 
@@ -836,7 +841,7 @@ def draw_grid(cells, out):
     fig.patch.set_facecolor("#f6f7f5")
     ax = fig.add_axes([0.0, 1.0 / H, 1.0, (H - 1.85 - 1.0) / H])
     ax.set_xlim(0, W); ax.set_ylim(n, 0); ax.axis("off")
-    fig.text(0.02, 1 - 0.45 / H, "Flavor comparison grid · 23 October 2026 (core-law column 29 October)", fontsize=19, fontweight="bold",
+    fig.text(0.02, 1 - 0.45 / H, "Flavor comparison grid · 23 October 2026 (core-law column 31 October)", fontsize=19, fontweight="bold",
              color="#16201d")
     fig.text(0.02, 1 - 0.85 / H, "Rows = tests (union of the flavor boards' tiles); columns = flavors. v3 is the main "
              "board. Colour = the verdict a committed lane computed for that flavor.", fontsize=9.5, color="#4d5a56")

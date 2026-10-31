@@ -15,9 +15,9 @@ Boards: [v4](img/status_board_v4.png) · [canonical rules](img/status_board_cano
 | canonical rules | The pre-covariant framework (THEORY_CANONICAL v2; DSF-21's stiffened action): the law on baryons (QUMOND phantom, ν_mono / algebraic) plus cold-energy rules for settling, catchment supply, round enclosed mass, capture and ownership; κ fitted. |
 | plain MOND | AQUAL with μ = x/(1+x) on baryons, external-field effect included; no screening, no dust, no cosmology; κ = ½ fitted. |
 | ΛCDM | GR + Λ + cold dark matter particles (6 fitted cosmological parameters; halos from simulations). It has a dark-matter particle, which this framework's owner rules out for the framework itself; a reference only. |
-| P-medium (Codex) | Newtonian Poisson on baryons + a cold particle medium that also feels a saturating polarization P and a stiffening scalar χ (Codex's reduced preferred-frame action); ℓ₀ = 0.44 kpc fitted to growth. |
-| core law (route E) | Route E (the owner's 10-25 flagship): Newtonian gravity on baryons + cold dark energy halos with the smooth core ρ₀/(1+x²)^(3/2) at ρ₀r₀ = f_c η Σ_coll with native η, no a₀ floor (owner, 10-31); fair share inside r_ta; no law force. κ fitted in the a₀ law only. |
-| v3v (velocity-screened, no γ_L) | Literal Blanchet–Skordis Khronon (J_x, BS K(Q) dust) + covector P, with NO γ_L stiffness. Moving subsystems hold phantom only within 2GM_b/V² (velocity screening). κ fitted; no L★. |
+| P-medium (Codex) | 3 | 2 | 0 | 0 | 0 | 7 | 41 |
+| core law (route E) | 2 | 2 | 3 | 0 | 0 | 0 | 46 |
+| v3v (velocity-screened, no γ_L) | 3 | 4 | 7 | 0 | 1 | 0 | 38 |
 
 ΛCDM is a reference column only. It has a dark-matter particle, which this framework's owner rules out for the framework itself.
 
@@ -254,7 +254,7 @@ The grid has 50 rows.
 
 ![core law board](img/status_board_core_law.png)
 
-Only four rows are computed for this flavor; every other row is grey. **Results outside these rows:** Local Group 0 of 5 classes (floor had 4 of 5), LITTLE THINGS short by +0.138, Milky Way wide priors only (RG1, ND1).
+Only seven rows are computed for this flavor; every other row is grey.
 
 | row | colour | lane | why |
 |---|---|---|---|
@@ -262,6 +262,9 @@ Only four rows are computed for this flavor; every other row is grey. **Results 
 | Galaxy groups (BFJR) | pass | NF1, X80 | 63 groups, Z +1.45. |
 | Cluster cores (eRASS1 × KiDS) | conditional | ZN3, RG1 | the native z = 0 profile passes 15 of 15 on X-COP's gas and 11–12 on eRASS1's own. The S rule over-predicts three keys, and X-COP at −0.186 / 0.214. |
 | Central ellipticals (SLUGGS) | fails | RG1 | mean +0.125, Zc +6.1, 1 of 4 cleared. |
+| Local Group dwarfs (5 classes) | fails | RG1 | 0 of 5, all under, Z +3.1 to +6.6. S and M200 are extrapolated below 1e10. The floor had 4 of 5. |
+| LITTLE THINGS dwarfs | fails | ND1 | median E +0.138 against the line 0.10, short in all 200 seed draws. |
+| Milky Way (X5 box) | conditional | RG1 | wide priors only: 7 cells, R_d 1.93–2.27, none inside the priors. V_c 202.8 on McMillan. |
 
 - **Not a main board.** The main board stays v3s. Moving the main board to route E would mean recomputing every tile for it (owner rule 10-23), and that is the owner's call.
 
