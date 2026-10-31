@@ -30,6 +30,7 @@ cosmic population requiring M6. The current closure record is
 | X55 one halo mass for SPARC + lensing | **Specified relation fails**: SPARC and lensing prefer different masses under its fixed profiles and deterministic no-scatter relation. The contour-contact score is 4.55 / 4.26; it is not a universal halo-exclusion significance. |
 | X48 A2, nine seeds at ng 48 | c_f = 11.6 / 8.2 / 7.3, **ABOVE WINDOW**. The X43 rule with it **fails the SPARC line** (Υ 0.31). Caveat: r₋₂ is resolution-limited in 8/27 runs. |
 | X48 A3, ng 64 at 10¹² (10-29) | c_f 11.6 → **7.7** (−33 %, **RESOLUTION-DEPENDENT**), still above the window. The pinned ng 48 seeds were inflated. With it, SPARC passes again (Υ 0.59 / 0.51); clusters (still at ng 48) fail 3 keys. |
+| X48 A4, ng 64 at 10¹³, 10¹⁴ (10-31) | c_f = 7.7 / 8.7 / 10.1, **all above the window**. X43's rule on the all-ng-64 table: SPARC, groups and cluster outskirts pass; **clusters fail inside about 1 Mpc** (G-IN-Mall 7.6 vs 2.3 ± 1.05, Z −5.06, plus G-IN-all and G-MID keys, all OVER). |
 | X54 cold DE ↔ DE exchange | **excluded** beyond ξ ∈ [−0.0035, +0.0011]: no conversion. |
 | X56 g = max(law, route E) | **FAILS**: the law's tail over-predicts cluster outskirts. |
 | X58 one-crossover mass switch (law below the crossover, halos above) | **FAILS** for the adopted class requirements: retain/exclude/retain is non-monotone in mass. More general mass-dependent functions are not covered. |

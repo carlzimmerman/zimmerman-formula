@@ -201,3 +201,31 @@ The criteria are in `FROZEN_CRITERIA.md` A5 (a0cbcc6928), committed before any s
 - A5 stands as frozen and will test this. FP2 predicts its median will not fall below about 7.
 
 κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.
+
+## AMENDMENT A4 result (2026-10-31): ng 64 at 10¹³ and 10¹⁴ — all masses above the window; the core rule fails clusters, and worse than before
+
+The criteria are in `FROZEN_CRITERIA.md` A4 (fc22ce369d). All 18 runs finished. Files: `x48_analyze_ng64_A4.out`, `x48_grade_A4.*`, `x48_regrade_A4.*`.
+
+**Disclosed:** another session's `AMENDMENT_ZK1.md` finished 10¹³ seeds 4 and 6 from their numpy checkpoints with ZK1's compiled kernel (markers `ZK1_SWITCHED`). The swap happened after about 1,080 steps. ICs, softening, step rule and background are unchanged. ZK1's K1–K3 pass (`../ZK1_fast_force_kernel/README.md`). My first analysis, while those two were unfinished, gave 10¹³ = 7.84 on 7 seeds. The numbers below are the nine-seed rerun and replace it.
+
+| M | c_f, ng 48 (A2) | **c_f, ng 64** (68 % bootstrap) | NFW-fit, ng 48 → 64 | window [3.3, 4.6] | resolution |
+|---|---|---|---|---|---|
+| 10¹² (A3) | 11.63 | **7.74** (6.10–9.24) | 7.10 → 7.75 | ABOVE | RESOLUTION-DEPENDENT (falls 33 %) |
+| 10¹³ | 8.22 | **8.67** (7.84–11.22) | 5.60 → 7.15 | ABOVE | CONVERGED (+5 %) |
+| 10¹⁴ | 7.31 | **10.07** (8.44–11.82) | 5.40 → 6.80 | ABOVE | RESOLUTION-DEPENDENT (rises 38 %) |
+
+No mass shows pinning that tracks r_conv. The hoped-for fall at cluster masses did not happen: c_f rises at 10¹⁴. The NFW-fit values also rise, and the ng 48 → 64 shifts have mixed signs, so the ~×1.3 movements look consistent with seed scatter on nine seeds rather than a clear resolution trend. Per-seed shifts mix resolution and realisation.
+
+**Graded regrade (X43 rule, all-ng-64 table; at ng 64, convergence beyond ng 64 not tested): NATIVE-CC FAILS on both footings.**
+
+| line | canonical | alt |
+|---|---|---|
+| SPARC | 0.0654 @ Υ 0.59: PASS | 0.0661 @ 0.50: PASS |
+| groups | Z +1.36: PASS | Z +1.36: PASS |
+| clusters, failing keys | G-IN-all, G-MID-T1, T2, T3, G-IN-Mall (Z −5.06), all OVER | same except G-MID-T2 |
+
+The cluster outskirts pass, including G-OUT-M3 (+0.91). The failure is **too much mass inside about 1 Mpc**: G-IN-Mall predicts 7.6 against a measured 2.3 ± 1.05, where c_f = 4 predicted about 3.5. This is IB1's "cores too dense", now from the native measurement.
+
+**Grader note:** commit b62559a575 reports that G-OUT-Mall and G-OUT-M1..M3 read fixed values from an older template. This regrade uses `x48_regrade.py` unchanged, as frozen, so those four keys carry that defect. None of them is in the failing list above, and the verdict rests on the inner and middle keys.
+
+κ = ½ FITTED. Not theory closed.
