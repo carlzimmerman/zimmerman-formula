@@ -33,7 +33,7 @@ All rows but X-COP's are slope-converted, s = 1.19. Each tercile takes the class
 | −0.012, median − SE | 10, +4.75 | 11, +4.48 | X-COP ONLY |
 | +0.111 (K3, ZN3's own) | 15, +1.46 | 15, −1.33 | passes both |
 
-The worst values are at h 0.672; h 0.686 is 3.61–4.02 for the measured row, and G-MID-T3 and G-OUT-Mall also go over 2. X-COP's own line isn't moved by this offset, since it reads the rule's halo, not the keys' gas. d(M) wasn't run because the tag didn't fire.
+The worst values are at h 0.672; at h 0.686 the measured row's G-OUT-M3 is +4.02, +3.75. G-MID-T3 and G-OUT-Mall also go over 2. The factor applies to eRASS1's gas in the keys, so X-COP's line stays at PASS, mean −0.004, rms 0.076. d(M) wasn't run because the tag didn't fire.
 
 ## How hard I pushed on the low number
 ZN3 needed this high, so a low answer is the disappointing one, and it gets the same audit.
@@ -61,7 +61,7 @@ ZN3 needed this high, so a low answer is the disappointing one, and it gets the 
 3. **eRASS1's M500 and R500 are its own scaling (ΛCDM count fit, WL-calibrated).** The radius everything is read at depends on them. A noise-correlated tilt in d against that M500 is expected and did not appear above 2σ.
 4. **Slope-converted rows use X-COP's massive-cluster slope at every mass.** Only X-COP is a profile read.
 5. **Published Mgas differ in centring, clumping, background and calibration.** Hydrostatic, Y_X and WL-based radii are mixed. Cross-catalogue offsets are small, but a shared bias in all pointed work wouldn't show here.
-6. **Deviations, none tuned, all before matching except the post-result rows marked.** V09 uses only its low-z table (the high-z names give no usable position). S09 uses only rows with a measured r500. Five Abell-style Zwicky aliases and a few others for NED came from my memory; a wrong alias just fails to match on position and z. Z5247 was unresolved.
+6. **Deviations, none tuned, all before matching except the post-result rows marked.** V09 uses only its low-z table (the high-z names give no usable position). S09 uses only rows with a measured r500. Zwicky and RX aliases for NED came from my memory; a wrong alias just fails to match on position and z. Z5247 was unresolved.
 
 ## Checks
 K1 X-COP against SM1 and RF3, max |d| 7e-17, PASS. Other tables on those five: median |difference| 0.039, under 0.05, PASS. K2 0.027, PASS. K3 at +0.111 against ZN3: preds, Z, rms |d| 0, PASS. MUTATE RA + 1°: 0 matches of 181, BITES. MUTATE shuffle: rms 0.177 to 0.627, K1 FAILS, BITES. Its median moves to +0.73, with a fake slope, because a shuffle puts massive clusters' gas on light ones in the mass window: that's the shuffle's artefact, not a surviving offset.
