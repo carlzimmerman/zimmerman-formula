@@ -11,6 +11,7 @@ from torch import nn
 
 HERE = os.path.dirname(os.path.abspath(__file__)); RUNS = os.path.join(HERE, "partc_runs"); STOP = []
 YIELD = int(os.environ.get("HEAVYQ_YIELD_EXIT", "75")); CKE = 25
+DEV = torch.device(os.environ.get("CB1_DEVICE", "cpu"))
 LR, WD, NL, HC, EP, BS = 1.889e-5, 5.139e-7, 4, 128, 1000, 32; PAPER = dict(P=0.509, S=0.708)
 MI, MA = 1 / 30, 1 / 1.8
 ARMS = dict(A=dict(u=True, add=True, tree=False), B=dict(u=False, add=True, tree=False), C=dict(u=False, add=False, tree=False), D=dict(u=False, add=True, tree=True))
@@ -38,13 +39,13 @@ def collate(G, ids, inp, arm):
     e = np.hstack([G[i][key] + o for i, o in zip(ids, off[:-1])]); b = np.repeat(np.arange(len(ids)), ns)
     x = np.ones((N, 1), np.float32) if inp == "P" else np.concatenate([G[i]["sn"] for i in ids])[:, None]
     u = np.log10(ns).astype(np.float32)[:, None] if arm["u"] else np.zeros((len(ids), 1), np.float32)
-    return dict(x=torch.from_numpy(x), e=torch.from_numpy(e), b=torch.from_numpy(b), u=torch.from_numpy(u), ng=len(ids))
+    return dict(x=torch.from_numpy(x).to(DEV), e=torch.from_numpy(e).to(DEV), b=torch.from_numpy(b).to(DEV), u=torch.from_numpy(u).to(DEV), ng=len(ids))
 
 def pool_edges(ea, col, N):
     D = ea.shape[1]; idx = col[:, None].expand(-1, D)
-    add = torch.zeros(N, D).scatter_add(0, idx, ea)
-    mx = torch.zeros(N, D).scatter_reduce(0, idx, ea, "amax", include_self=False)
-    cnt = torch.zeros(N, 1).scatter_add(0, col[:, None], torch.ones(len(col), 1)).clamp(min=1)
+    add = torch.zeros(N, D, device=DEV).scatter_add(0, idx, ea)
+    mx = torch.zeros(N, D, device=DEV).scatter_reduce(0, idx, ea, "amax", include_self=False)
+    cnt = torch.zeros(N, 1, device=DEV).scatter_add(0, col[:, None], torch.ones(len(col), 1, device=DEV)).clamp(min=1)
     return add, mx, add / cnt
 
 class Layer(nn.Module):
@@ -62,12 +63,12 @@ class GNN(nn.Module):
         s.layers = nn.ModuleList([Layer(1, 3, HC, False)] + [Layer(HC, HC, HC, True) for _ in range(NL - 1)])
         s.out = nn.Sequential(nn.Linear(3 * HC + 1, HC), nn.ReLU(), nn.Linear(HC, HC), nn.ReLU(), nn.Linear(HC, HC), nn.ReLU(), nn.Linear(HC, 2))
     def forward(s, d):
-        h, ea = d["x"], torch.ones(d["e"].shape[1], 3)
+        h, ea = d["x"], torch.ones(d["e"].shape[1], 3, device=DEV)
         for l in s.layers: h, ea = l(h, d["e"], ea, d["u"], d["b"])
         idx = d["b"][:, None].expand(-1, h.shape[1]); ng = d["ng"]
-        add = torch.zeros(ng, h.shape[1]).scatter_add(0, idx, h)
-        mean = add / torch.bincount(d["b"], minlength=ng)[:, None]
-        mx = torch.zeros(ng, h.shape[1]).scatter_reduce(0, idx, h, "amax", include_self=False)
+        add = torch.zeros(ng, h.shape[1], device=DEV).scatter_add(0, idx, h)
+        mean = add / torch.zeros(ng, 1, device=DEV).scatter_add(0, d["b"][:, None], torch.ones(h.shape[0], 1, device=DEV))
+        mx = torch.zeros(ng, h.shape[1], device=DEV).scatter_reduce(0, idx, h, "amax", include_self=False)
         return s.out(torch.cat([add if s.add else torch.zeros_like(add), mean, mx, d["u"]], 1))
 
 def lossf(o, y):
@@ -82,11 +83,11 @@ def run_one(G, Y, inp, an, seed, tag, epochs=EP, resume=True, stop_after=None):
     """One run. Returns dict, or None after a yield. Checkpoints every CKE epochs and on SIGTERM."""
     os.makedirs(RUNS, exist_ok=True); nm = f"{inp}_{an}_s{seed}{tag}"; out = os.path.join(RUNS, nm + ".json"); ck = os.path.join(RUNS, nm + ".ckpt")
     if resume and os.path.exists(out): return json.load(open(out))
-    arm = ARMS[an]; tr, va, te = split(); torch.manual_seed(seed); m = GNN(arm["add"])
+    arm = ARMS[an]; tr, va, te = split(); torch.manual_seed(seed); m = GNN(arm["add"]).to(DEV); Y = Y.to(DEV)
     opt = torch.optim.Adam(m.parameters(), lr=LR, weight_decay=WD); sch = torch.optim.lr_scheduler.CyclicLR(opt, base_lr=LR, max_lr=1e-3, cycle_momentum=False, step_size_up=500)
     gen = np.random.default_rng(seed); best, bestv, ep = None, 1e9, 0
     if resume and os.path.exists(ck):
-        c = torch.load(ck, weights_only=False); m.load_state_dict(c["m"]); opt.load_state_dict(c["o"]); sch.load_state_dict(c["s"]); gen.bit_generator.state = c["g"]; best, bestv, ep = c["b"], c["v"], c["e"]; torch.set_rng_state(c["t"])
+        c = torch.load(ck, weights_only=False, map_location=DEV); m.load_state_dict(c["m"]); opt.load_state_dict(c["o"]); sch.load_state_dict(c["s"]); gen.bit_generator.state = c["g"]; best, bestv, ep = c["b"], c["v"], c["e"]; torch.set_rng_state(c["t"])
     vb = batches(va, G, inp, arm, Y); teb = batches(te, G, inp, arm, Y)
     def save(): afile(ck, lambda f: torch.save(dict(m=m.state_dict(), o=opt.state_dict(), s=sch.state_dict(), g=gen.bit_generator.state, b=best, v=bestv, e=ep, t=torch.get_rng_state()), f))
     t0 = time.time()
@@ -101,15 +102,15 @@ def run_one(G, Y, inp, an, seed, tag, epochs=EP, resume=True, stop_after=None):
         ep += 1
         if ep % CKE == 0: save(); print(nm, ep, f"valid {v:.3f} {(time.time() - t0) / max(ep, 1):.1f} s/ep", flush=True)
     m.load_state_dict(best); m.eval()
-    with torch.no_grad(): p = torch.cat([m(d)[:, 0] for d, _ in teb]).numpy()
-    t = Y[te][:, 0].numpy(); P_, T_ = MI + p * (MA - MI), MI + t * (MA - MI)
+    with torch.no_grad(): p = torch.cat([m(d)[:, 0] for d, _ in teb]).cpu().numpy()
+    t = Y[te][:, 0].cpu().numpy(); P_, T_ = MI + p * (MA - MI), MI + t * (MA - MI)
     r = dict(input=inp, arm=an, seed=seed, r2=float(1 - np.sum((T_ - P_) ** 2) / np.sum((T_ - T_.mean()) ** 2)), rmse=float(np.sqrt(np.mean((T_ - P_) ** 2))), best_valid=bestv, weights_sha=_sha(best))
     ajson(out, r)
     if os.path.exists(ck): os.remove(ck)
     return r
 def _sha(sd):
     import hashlib; h = hashlib.sha256()
-    for k in sorted(sd): h.update(sd[k].numpy().tobytes())
+    for k in sorted(sd): h.update(sd[k].cpu().numpy().tobytes())
     return h.hexdigest()
 
 def target(Z):
@@ -149,6 +150,28 @@ def k6():
             ok &= bool(torch.allclose(got, torch.stack(ou), atol=1e-5))
     print("K6 network vs explicit loops, all arms:", "PASS" if ok else "FAIL", flush=True); return ok
 
+def gate(G, Y):
+    """GPU only: forward agrees with CPU, and resume is bit-identical (K8). On failure every run stays on CPU. Returns False after a yield."""
+    global DEV
+    if DEV.type == "cpu": return True
+    f = os.path.join(HERE, "partc_device.json")
+    if os.path.exists(f): DEV = torch.device(json.load(open(f))["device"]); return True
+    gpu, ok, dif = DEV, True, 0.0
+    for an, arm in ARMS.items():
+        ids = [0, 1, 2]; torch.manual_seed(0); m = GNN(arm["add"]); DEV = torch.device("cpu"); d0 = collate(G, ids, "S", arm)
+        with torch.no_grad(): c0 = m(d0)
+        DEV = gpu; m = m.to(gpu); d1 = collate(G, ids, "S", arm)
+        with torch.no_grad(): c1 = m(d1).cpu()
+        dif = max(dif, float(((c0 - c1).abs() / c0.abs().clamp(min=1e-3)).max()))
+    a = run_one(G, Y, "P", "A", 9, "_K8gpu_a", epochs=6)
+    if a is None: return False
+    if run_one(G, Y, "P", "A", 9, "_K8gpu_b", epochs=6, stop_after=3) is None and STOP: return False
+    b = run_one(G, Y, "P", "A", 9, "_K8gpu_b", epochs=6)
+    if b is None: return False
+    same = a["weights_sha"] == b["weights_sha"]; ok = same and dif < 1e-3
+    ajson(f, dict(device=gpu.type if ok else "cpu", forward_max_rel_vs_cpu=dif, resume_identical=same)); DEV = gpu if ok else torch.device("cpu")
+    print("GPU gate: forward max rel", dif, "resume identical", same, "-> device", DEV.type, flush=True); return True
+
 def main():
     for s in (signal.SIGTERM, signal.SIGINT): signal.signal(s, lambda a, b: STOP.append(a))
     torch.set_num_threads(int(os.environ.get("HEAVYQ_THREADS", os.environ.get("OMP_NUM_THREADS", "4"))))
@@ -164,6 +187,7 @@ def main():
         Yp = torch.tensor(((np.log10(Z["n"]) - np.log10(Z["n"]).min()) / np.ptp(np.log10(Z["n"]))).astype(np.float32))[:, None]
         t = time.time(); r = run_one(G, Yp, "P", "A", 9, "_K9", epochs=60, resume=False); print(f"K9 planted log N, 60 epochs R2 {r['r2']:.3f} {'PASS' if r['r2'] > 0.8 else 'FAIL'}; {(time.time() - t) / 60:.1f} s/epoch; threads {torch.get_num_threads()}", flush=True); c &= r["r2"] > 0.8
         return 0 if c else 1
+    if not gate(G, Y): return YIELD
     if mode == "mutate":
         Yp = Y[torch.from_numpy(np.random.default_rng(20261030).permutation(len(Y)))]; r = run_one(G, Yp, "P", "A", 1, "_MUTATE", epochs=200, resume=resume)
         if r is None: return YIELD
