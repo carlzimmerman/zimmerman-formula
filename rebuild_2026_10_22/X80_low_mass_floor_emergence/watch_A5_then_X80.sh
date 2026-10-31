@@ -1,4 +1,5 @@
 #!/bin/bash
+# SUPERSEDED 10-30 by watch_A4_then_X80_then_A5.sh (AMENDMENT_A1.md, owner's decision: X80 before A5). Kept for the record; don't start it.
 # Light watcher (one check every 10 min). Waits until X48's A5 watcher logs "A5 done" (so nothing overlaps A4/A5), then
 # runs run_low_mass.sh, waits for its 24 done.json, then x80_floor.py and its MUTATE. Log: watch_X80.log. Preempted -> re-run.
 cd "$(dirname "$0")"

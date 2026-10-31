@@ -410,15 +410,15 @@ L★ by V_flat at Υ 0.50, ΔV: c_f 4 −34.7; converged −7.8; F/N −16.2; la
 
 ## 8. Compute state
 - **A4:** 18 ng 64 zooms at 10¹³ and 10¹⁴. About 38 h in. t 4.5 / 7.0 Gyr at 10¹³, 5.5 / 8.15 at 10¹⁴. Auto-grades when done: CE1_A4, FC1_A4 (uncommitted), X72, X74. CN1b --A4 is manual.
-- **A5:** nine ng 80 at 10¹², 5–6 days, ε fixed. X81 says this measures the same cut. Next in the queue. Owner's frozen request.
-- **X80:** 24 zooms at 10¹⁰ and 10¹¹, after A5. Now the zooms that decide the floor.
+- **X80:** 24 zooms at 10¹⁰ and 10¹¹, next after A4 and its regrades. **The owner moved it ahead of A5 on 10-30** (X80 AMENDMENT_A1). These are the zooms that decide the floor. The amendment freezes the reading in 4d before any low-mass number exists, and grades the no-floor rule on the measured η.
+- **A5:** nine ng 80 at 10¹², 5–6 days, ε fixed. X81 says this measures the same cut. Now after X80.
 - **PAPER65:** draft only, predates FC1. Nothing deposited.
 - **Data on disk:** SPARC, B21's full release (mass, colour, Sérsic bins), KiDS-1000 sources, KiDS-bright LePhare, GAMA DR4 G3C, DESI DR1 centrals, ACT DR6, X-COP, eRASS1 stacks, LITTLE THINGS, SLUGGS. No SDSS or BOSS spectroscopy on disk. A fetch needs the owner's OK.
 
 ## 9. Steps I would take, ranked. Attack this list
 | # | Step | Cost | Kill or pass |
 |---|---|---|---|
-| 1 | **X80 before A5.** Report X81's converged η beside the frozen R(M). Queue change is the owner's | 24 zooms after A4 | ratio η(10¹⁰)/η(10¹²) above 1.9 breaks N's line; below about 1.1 N is short and something else, maybe a floor, is needed |
+| 1 | **X80 before A5.** Approved and set up. Reports X81's converged η beside the frozen R(M) | 24 zooms after A4 | ratio η(10¹⁰)/η(10¹²) above 1.9 breaks N's line; below about 1.1 N is short and something else, maybe a floor, is needed |
 | 2 | **NR1: two-fluid non-radiative zoom** on X48's seeds, 10¹²–10¹⁴: measure S_cold directly. This tests f_c and the sign at once | needs a hydro code; not in repo | R_c ≥ 1.05 at both cluster masses kills FC1's clusters, native |
 | 3 | **SI3: nested photometric isolation with a hole term**, route E and law, R0 and R2, χ² and slope | hours; small job; data on disk | LAW at D ≥ 5 with route E p < 0.01 at strict isolation and R2 means KiDS's preference isn't environmental |
 | 4 | **GD1: growing-disc potential in a live zoom** at 10¹², gravity only | hours to days per seed at ng 48 | replaces Blumenthal with a number. Net S above about 1.2 needs a real expansion channel |

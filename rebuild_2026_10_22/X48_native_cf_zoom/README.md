@@ -1,5 +1,7 @@
 # X48_native_cf_zoom: native formation concentrations. A1 class (ng 48): NATIVE c_f ABOVE WINDOW, at ng 48; convergence beyond ng 48 not tested. Regrade: NATIVE-CC FAILS, inner band only
 
+> **Queue note (owner's decision, 10-30):** X80's low-mass zooms now run before A5 (`../X80_low_mass_floor_emergence/AMENDMENT_A1.md`). The live watcher is `../X80_low_mass_floor_emergence/watch_A4_then_X80_then_A5.sh`, which starts `watch_A4_then_A5.sh` here after it logs "X80 done". A5's amendment is otherwise unchanged. Don't start `watch_A4_then_A5.sh` by hand before X80 is done.
+
 > **Correction note (10-26, fix-forward; found by the PAPER62 draft-2 audit 85fd7a6912):**
 > 1. The ng 48 summary line below says "MGAS T3 OUTER now passes (Z −0.24)". −0.24 is **G-OUT-T3** (the KT T3 OUTER band),
 >    not MGAS T3 OUTER. The MGAS T3 OUTER key (**G-OUT-M3**) is **Z +1.80** (canonical h 0.672). It still passes, so the

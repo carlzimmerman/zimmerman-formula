@@ -57,7 +57,7 @@ So N0 is short here, and this sample prefers s nearer N2. With the SPARC line (s
 ## What it changes, if it stands
 - The floor was the only place a₀ entered route E. N0/N1 have no a₀ and no footing in the cold sector. a₀/2πG would just be the collapse S of a roughly 10¹¹ M☉ halo, and a₀ = κc√(Gρ_Λ) would have no role in the cold sector. EM1's T0 already flagged this. **That would change the theory's headline, so it is the owner's call, and this lane changes no standing statement.**
 - It predicts X80. The line allows native η(10¹⁰)/η(10¹²) up to about 1.9. ET1 and ET2's medians at the two lowest bins want about 1.5 over N0, their lower bounds about 1.1–1.2. N1 gives 1.53 at 10¹⁰ and 1.24 at 10¹¹. These are converged-cusp η; X80's frozen R(M) uses the ε-cut fit without f_c, so its labels need the cusp fit beside them.
-- **A5 can't settle this; X80 can.** The queue has A5 first.
+- **A5 can't settle this; X80 can.** The owner moved X80 ahead of A5 on 10-30 (`../X80_low_mass_floor_emergence/AMENDMENT_A1.md`), and `nf1_native_read.py` grades the rule on X80's measured η when it lands.
 
 ## What gets worse
 - **Dwarf ceilings.** PC1's cored ceiling M₃D(<r) ≤ 1.599 S r² falls with S. At lg M200 9 under N1 it drops by 0.34 dex: MW ultra-faints (mean −0.275) reach about +0.07, Draco (+0.148) about +0.49, J0946 gets worse. By hand, not graded. A cusp has ceiling 2π S r², 0.59 dex higher, which would cover these. But that's the shape problem again: zooms make cusps, and SPARC's bright galaxies want cores.
