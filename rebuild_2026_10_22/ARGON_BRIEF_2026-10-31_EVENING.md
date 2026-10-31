@@ -187,6 +187,8 @@ Carried from the morning brief, section 11, plus today's additions.
 | **Inclination rescue of IC 1613** | RF2: fails under every halo-free inclination |
 | **Self-coupling as the origin of S's slope** | CR2: the slope is collapse scaling |
 | **A late release (z_on < 10⁴) for the cold component** | RF5: fails on the raw χ² surface |
+| **"Dielectric exclusion" halo: g_c = √(g_b² + a₀ g_b) − g_b, the cold fluid capped at a₀/2 wherever g_b is large** | that is the a₀ law's phantom density written as a halo; it is the law, not a halo rule (CN1's contraction is gone because there is no halo). Closed as phantom tracking / gated AQUAL (X47, X65–67); FC1 dissolves softening of this kind. Clusters fail it as they fail the law |
+| **Fair-share cold envelope at 200–850 kpc tied to the CGM gas, to fill KiDS and S1's outer shortfall** | already the GH2–GH11 programme. X76: fair share on OBSERVED baryons is 0.2–0.3 dex LIGHTER than EM1, not heavier; the lensing need is × 10^0.85–0.90 in baryons (GH1). GH2: route E needs hot gas to 1.82 R_vir to beat the law on KiDS; GH10 on published DESI DR2 × ACT kSZ: A(1.8) 0.448 ± 0.105, measured 2.1e11 against a need of 4.7e11 M☉, BELOW NEED; GH11 with miscentring 0.54 ± 0.13, still BELOW. Not retired (the misfit is shape, 1–3 Mpc unseparated from two-halo, RF4), but not a zero-parameter fill either |
 
 ---
 
