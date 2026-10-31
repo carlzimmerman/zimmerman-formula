@@ -96,7 +96,7 @@ Crossing in version F, canonical: lg M_t = 11.43, lg M_cold = 11.35. Alt: 11.75,
 
 ### 3d. Grader (X74)
 - **SPARC line:** rms ≤ 0.110 and median Υ in [0.50, 0.80] on backgrounds A and B.
-- **Clusters:** 15 keys, |Z| ≤ 2, in h 0.672 and 0.686 cells. IN, MID (0.46–1.42 Mpc by kT tercile and slope), OUT (1.42–3 Mpc by kT and M_gas tercile).
+- **Clusters:** 15 keys, |Z| ≤ 2, in h 0.672 and 0.686 cells. IN (bins near 0.15–0.46 Mpc), MID (by kT tercile and slope), OUT (1.42–3 Mpc, by kT and M_gas tercile). The values below are in the grader's own units.
 - **Groups:** |Z| ≤ 2 on 63 groups.
 - Separate: MW (Eilers v_c 229.1 ± 4.6, K_z, Ou+24), KiDS bins 3–4, lens tests.
 
