@@ -61,7 +61,7 @@ ticks and only guards a factor 2.
 
 - **The stellar mass matters more than the inclination.** IN1's band and its σ pass use LITTLE THINGS' SED M★ 2.88e7. At X1 / LVD's
   1.9e8: **the σ tracer has no consistent inclination at all, on either footing**, and I_HI moves to 14–19.5° (alt 13.5–18.5°). So at that mass it fails at every i
-  on the σ tracer, and more so on HI. Here IN1's mass is the kinder choice; this lane was not asked to choose between them.
+  on the σ tracer, and the HI band sits lower still. Here IN1's mass is the kinder choice; this lane was not asked to choose between them.
 - s ± 0.01 moves I_HI by at most 0.5–1° (19–25.5°, 18–27°).
 - Framing from Taibi+24 (read from TeX; IN2): the HI curve rises unusually slowly, attributed there to holes in the HI, and a value
   near 35° would make IC 1613 a BTFR outlier in their framework too. Context, not a rescue.
