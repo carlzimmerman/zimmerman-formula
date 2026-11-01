@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+"""CP1 verdict from the frozen label. Reads this lane's results and NR3's, reports checks. V_crit 250, n 4 CHOSEN. kappa = 1/2 FITTED; not theory closed."""
+import json, os, sys
+H = os.path.dirname(os.path.abspath(__file__)); RB = os.path.dirname(H); TG = ("A_c2b_refit", "B_cfg886_bg"); L = lambda n: json.load(open(os.path.join(H, n))); M = L("cp1_MEDIAN_results.json"); LO = L("cp1_LOW_results.json"); HI = L("cp1_HIGH_results.json"); MU = L("cp1_MUTATE_results.json"); BL = L("cp1_bl1_results.json"); NR = json.load(open(os.path.join(RB, "NR3_ur1_on_nr2", "nr3_MEDIAN_results.json")))["runs"]["EM1|blum"]; F = L("cp1_field.json"); OUT = []
+def P(s): print(s); OUT.append(s)
+def block(r): s = r["sparc"]; return dict(line=all(s[t]["line"] for t in TG), tilt=all(round(abs(s[t]["tilt"]), 9) <= 0.15 for t in TG), groups=abs(r["groups"]["Z"]) <= 2, lt=all(abs(r["lt"][t]) <= 0.10 for t in TG))
+def row(n, r): s = r["sparc"]; a, b = s[TG[0]], s[TG[1]]; P(f"{n}: U {a['U']:.3f}/{b['U']:.3f} rms {a['rms']:.4f}/{b['rms']:.4f} tilt {a['tilt']:+.3f}/{b['tilt']:+.3f} groups Z {r['groups']['Z']:+.2f} LT {r['lt'][TG[0]]:+.4f}/{r['lt'][TG[1]]:+.4f}; bins {[round(v, 3) for v in a['bins'].values()]} {block(r)}")
+P("CP1, V_crit 250, n 4 CHOSEN; breaks the owner's 10-31 rule on purpose; kappa = 1/2 FITTED; not theory closed")
+h = M["EM1_blum_harness"]; k0 = max(max(abs(h["sparc"][t]["U"] - NR["sparc"][t]["U"]), abs(h["sparc"][t]["rms"] - NR["sparc"][t]["rms"]), abs(h["lt"][t] - NR["lt"][t])) for t in TG); k0p = max(abs(h["keys"]["preds"][a][k] - NR["keys"]["preds"][a][k]) for a in h["keys"]["preds"] for k in h["keys"]["preds"][a])
+z = M["limit_0"]["R1"]; k2 = max(max(abs(z["sparc"][t]["U"] - NR["sparc"][t]["U"]), abs(z["sparc"][t]["rms"] - NR["sparc"][t]["rms"]), abs(z["lt"][t] - NR["lt"][t])) for t in TG); k2g = abs(z["groups"]["Z"] - NR["groups"]["Z"])
+i = M["limit_inf"]["R1"]["sparc"]; k1 = max(abs(i[TG[0]]["rms"] - 0.054087447879939264), abs(i[TG[0]]["U"] - 0.52)); k1a = M["alt_law_limit"][TG[0]]; k1b = max(abs(k1a["rms"] - 0.05371798965550355), abs(k1a["U"] - 0.44))
+mu = abs(MU["MUTATE"]["MUT"]["sparc"][TG[0]]["U"] - MU["MUTATE"]["R1"]["sparc"][TG[0]]["U"]); chk = dict(K0=max(k0, k0p) <= 1e-6, K1=max(k1, k1b) <= 1e-4, K2=max(k2, k2g) <= 1e-6, K3=M["K3"] <= 1e-12, K4=M["K4"] <= 1e-6, K5=BL["K5"] <= 1e-6, MUTATE=mu >= 0.05, primary_same_in_MUTATE_run=abs(MU["MUTATE"]["R1"]["sparc"][TG[0]]["U"] - M["primary"]["R1"]["sparc"][TG[0]]["U"]) == 0)
+P(f"K0 {k0:.1e}, preds {k0p:.1e}; K1 canonical {k1:.1e}, alt {k1b:.1e}; K2 {k2:.1e}, groups {k2g:.1e}; K3 {M['K3']:.1e}; K4 {M['K4']:.1e}, smallest V200 {M['K4_minV200']:.0f} km/s, largest chi_pol {M['K4_maxchi']:.1e}; X-COP V200 min about {M['xcop_V200_min']:.0f}; K5 {BL['K5']:.1e}; MUTATE dU {mu:.2f}; K6 {BL['K6']}"); P(f"checks {chk}"); ok = all(chk.values()) and BL["ok"]
+P("\nForest z = 3, V 150: " + ", ".join(f"{t} Om {v['Om']:.4f} ratio {v['ratio']:.4f} chi_pol {v['chi_pol']:.4f}" for t, v in M["forest"].items())); fp = all(v["chi_pol"] <= 0.03 for v in M["forest"].values())
+P(""); [row(r, M["primary"][r]) for r in ("R1", "R2", "R3")]; row("LOW R1", LO["primary"]["R1"]); row("HIGH R1", HI["primary"]["R1"]); row("law limit", M["limit_inf"]["R1"]); row("V_crit->0", M["limit_0"]["R1"]); row("MUTATE", MU["MUTATE"]["MUT"])
+P(f"alt R1: " + "; ".join(f"{t} U {M['alt'][t]['U']:.3f} rms {M['alt'][t]['rms']:.4f} tilt {M['alt'][t]['tilt']:+.3f} LT {M['alt_lt'][t]:+.4f}" for t in TG)); P(f"cluster row, N + Blumenthal in this harness: keys {h['keys']['n']}/15 bad {h['keys']['bad']} G-IN-Mall {h['keys']['Z']['h0672']['G-IN-Mall']:+.2f}; X-COP {h['xcop']['mean']:+.3f}, {h['xcop']['rms']:.3f} {h['xcop']['PASS']}"); P(f"V_flat fallback objects {M['n_vflat_fallback']}")
+P("\nsensitivity, report only:"); S = M["sens"]; [row(k, v) for k, v in S.items()]
+P("\ncold by V bin (A, canonical): " + json.dumps(M["cold_by_bin"], indent=0)); P(f"total M200 of the sample {M['total_M200']:.3e}; share with chi_pol removed {sum(v['missing_total_over_all_M200'] for v in M['cold_by_bin'].values()) / M['total_M200']:.3f}")
+P(f"\nBL1 blue primary: " + "; ".join(f"{f} A {v['blue']['A']:.3f}+-{v['blue']['sA']:.3f} {v['blue']['cls']} chi2 {v['blue']['chi2']:.2f}" for f, v in BL["rows"]["primary"].items()) + f"; grade {BL['grade']}")
+P(f"field equation chi 1: low g/(g_b/2) {F['low_half_limit']:.6f}, high g/(g_b - a0) {F['high_minus_limit']:.6f}, g/sqrt(g_b a0) at g_b 1e-4 a0 {F['deep_ratio_at_1e_4']:.4f}, residual {F['plummer_residual_max']:.1e}")
+if os.path.exists(os.path.join(H, "cp1_R2MED_results.json")):
+    R2 = L("cp1_R2MED_results.json"); P("\nPOST-RESULT, R2 checked as hard as a fail, not selectable:"); row("R2 MEDIAN", R2["R2"]); row("R2 LOW", L("cp1_R2LOW_results.json")["R2"]); row("R2 HIGH", L("cp1_R2HIGH_results.json")["R2"]); P("R2 alt: " + "; ".join(f"{t} U {R2['alt'][t]['U']:.3f} rms {R2['alt'][t]['rms']:.4f} tilt {R2['alt'][t]['tilt']:+.3f} LT {R2['alt_lt'][t]:+.4f}" for t in TG)); [row("R2 " + k, v) for k, v in R2["sens"].items()]
+K = L("cp1_K4_results.json"); kz = K["K4_by_key"]["h0672"]; P(f"\nK4 diagnosis, same grader, N + Blumenthal path: {K['K4_n_clusters_chi_over_1e3']} of 326 clusters chi_pol > 1e-3; by gas tercile {K['K4_V200_by_massterc']}; largest |dZ| {max(abs(v['Z_on'] - v['Z_off']) for v in kz.values()):.3f}; G-OUT-M3 dZ {abs(kz['G-OUT-M3']['Z_on'] - kz['G-OUT-M3']['Z_off']):.1e}")
+b = block(M["primary"]["R1"]); leg = [k for k, v in b.items() if not v]; tags = []
+if any(block(M["primary"][r]) != b and all(block(M["primary"][r]).values()) != all(b.values()) for r in ("R2", "R3")): tags.append("[READING-DEPENDENT]")
+pl = all(b.values())
+def pass_sparc_only(r): return all(block(r).values())
+if pass_sparc_only(LO["primary"]["R1"]) != pl or pass_sparc_only(HI["primary"]["R1"]) != pl: tags.append("[NOISE-LIMITED]")
+sp = {k: pass_sparc_only(v) for k, v in S.items()}
+if any(v != pl for v in sp.values()): tags.append("[V_crit-DEPENDENT]")
+V = ("GALAXIES PASS AT CHOSEN V_crit, n" if pl else "GALAXIES FAIL " + "+".join(leg)) + "; CLUSTERS X-COP ONLY" + "; FOREST " + ("PASS" if fp else "FAIL") + " " + " ".join(tags); V = V.strip() if ok else "NOT DECIDED (" + V.strip() + ")"; P(f"\nsens passes: {sp}\nVERDICT: {V}")
+json.dump(dict(verdict=V, checks=chk, block=b, sens_pass=sp), open(os.path.join(H, "cp1_results.json"), "w"), indent=1); open(os.path.join(H, "cp1.out"), "w").write("\n".join(OUT) + "\n")
