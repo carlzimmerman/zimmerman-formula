@@ -1,0 +1,7 @@
+# Expanding narrow-resonance endpoint control
+
+Frozen before this follow-up. Preserve the first Floquet run. Its weak chi=.1 endpoints were only 8sqrt(chi)=2.53 Fresnel formation lengths from the crossing, so its finite occupation was never an asymptotic weak-production test. Test the same stipulated harmonic pump at eta0=.001, chi={.02,.1}, endpoints tau=+-K/sqrt(h), K={8,16,32,64}, h=eta0²/chi. Use pump phase zero, and phase pi/2 at K=64. No microscopic amplitude or cosmology is selected.
+
+Use the exact canonical equation y''+[exp(-2h tau)/4-Q''/Q]y=0, Q=exp(3h tau/2)+eta0 cos(tau+phase), complex first-order adiabatic incoming data and the outgoing instantaneous adiabatic number. DOP853 rtol2e-10,atol2e-12,maxstep.8. Preserve raw endpoint/phase dependence. Compare with N_asym=exp(pi chi/2)-1 and its small-chi expansion pi chi/2; do not demand a manufactured match. Controls: Wronskian error<2e-5; |N(K64)-N_asym|/N_asym<.15; phase spread at K64<.15; deviations should be explicitly reported rather than used as a calibrated depletion rate. Relative scaling/formation length and narrow-pump corrections limit interpretation.
+
+One numerical thread, 180wall/170CPU seconds; record actual RSS. Inputs are this contract and new script only; no old result is rewritten. This is a finite linear-response harmonic-state calculation, not native finite-amplitude evolution, nonlinear backreaction, an irreversible halo depletion calculation or a selected cosmological matter solution.

@@ -464,3 +464,49 @@ Deciding observation between M5 and M6: small-scale Lyman-α forest gas power at
 ## Dated addendum, 2026-10-31 (RF5_growth_native_yardstick); earlier text not rewritten
 
 The growth rows of F3, X4 and L1 above are relabelled **"measured against ΛCDM σ₈"**. RF5 regraded the question on raw χ² (plik-lite, DESI DR2 BAO, DES-SN5YR, DES Y3 ξ+ linear-safe, DESI P1D) with a free CPL background and no ΛCDM reference. Verdict on both footings: a window exists at z_on ∈ [3e4, 1e6], forest NOT DIAGNOSTIC, z_on ≤ 4000 UNDETERMINED (not finished). That window is early dust, about 9 z_eq and up, so §234's reading is unchanged by removing the yardstick. The v3s khronon rows at μ_K 0.03 and 0.1 Mpc⁻¹ are UNDETERMINED on this footing (no converged fit), so X4's failure is not regraded here. κ = ½ FITTED; not theory closed.
+
+
+## Dated scoped erratum, 2026-11-01: interpolation law and certificate identity (TP01)
+
+The frozen J_x action in §1, the P4 galaxy solver and the CL3 law branch use
+μ_S(x) = x/(1+x). In the isolated spherical stationary limit with μ_K = 0
+and no screening contribution, their law is
+
+    g_N = g²/(g+a₀), equivalently g² = g_N(g+a₀).
+
+This is law S. It is not the squared-excess line g² = g_N²+a₀g_N (law B).
+Consequently §2's first row and §6's claim of a completed, certified a₀-line
+do not apply to the frozen action. The existing empirical fits retain S and
+their original stated grades; no refit or new physical pass is asserted here.
+
+For g_N > 0, S has 0 < g−g_N < a₀, with limiting excess a₀, whereas B has
+0 < g−g_N < a₀/2, with limiting excess a₀/2. At g_N=a₀, S gives
+g/a₀=(1+√5)/2 and B gives √2. Their log-curvature maxima are at g_N=2a₀
+and g_N=a₀ respectively. Both share the leading deep-limit BTFR.
+
+`EQB_A0LINE_uniqueness` requires a positive ν, squared excess affine for every
+positive y=g_N/a₀, and the stated deep-limit normalization. It proves B under
+those premises and explicitly distinguishes simple ν. `EQB_S1_rar_landmarks`
+and `TOE_BEST_ATTEMPT.newton_recovery` likewise assume B. Their formal
+statements and proofs remain unchanged; they do not certify S.
+
+For the additional aligned scalar ansatz x μ(x+e)=b, x=g_int/a₀>0,
+b=g_bar/a₀ and e≥0, S gives x²+(e−b)x−b(1+e)=0, with exactly one positive
+root when b>0. B instead gives (x²−b²)(x+e)=bx. The B EFE certificate proves
+the latter equivalence and at most one positive root; it does not prove
+root existence, the physical scalar composition, or the full AQUAL EFE.
+P4's external-field boundary solves remain results for their actual S kernel.
+
+The geometric-unit interpretation of §1's J_x must also be explicit: because
+Y=A·A/c⁴, use a_geo=a₀/c² and u=√Y/a_geo in
+J_x=Λ−2a_geo²[u−ln(1+u)]. Writing a₀ there without that convention mixes SI
+acceleration with inverse length. This is a units clarification, not an
+action change.
+
+The corrected current summary is [V3_FULL_PICTURE.md](V3_FULL_PICTURE.md).
+The exact dictionary, certificate hypotheses, isolated adapter and bounded
+checks are in [TP01 law_dictionary/RESULT.md](../reviews/three_priorities_2026_11_01/law_dictionary/RESULT.md).
+This dated erratum supersedes only the conflicting identity/certificate
+claims above. All prior frozen text, later additions, sealed predictions,
+empirical inputs and formal theorem files are preserved. κ=½ remains fitted;
+physical completion and any future adoption of a different kernel remain open.

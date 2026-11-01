@@ -9,6 +9,8 @@ lane links for detail.
 κ = ½ FITTED. Footings 9.3603e-11 / 1.1312e-10 m/s², never pooled. No dark-matter particle. The theory is not closed.
 Nothing here says the data favour the framework.
 
+**Law/certificate correction, 2026-11-01 (TP01).** This action and the existing P4/CL3 solves use the simple-μ law S. The exact squared-excess law B has different bounds, landmarks and scalar external-field algebra. Its EQB certificates remain valid under their own premises; they do not certify S. The corrected [law dictionary](../reviews/three_priorities_2026_11_01/law_dictionary/RESULT.md) records the equations, hypotheses and bounded checks. This correction changes no numerical fit or formal theorem.
+
 **Certification legend.** **LEAN** = a machine-checked theorem (file and name given; `lake env lean <file>` in
 `fable_independent_2026/lean_2026/`, axioms exactly propext, Classical.choice, Quot.sound; each file has a `_MUTATE` twin
 that must fail). **SYMPY** = a symbolic derivation with a committed script. **NUM** = a numerical lane result, reproduced
@@ -25,7 +27,7 @@ by the coordinator. **POSTULATED** = an input, not derived.
 - τ is the preferred foliation (the khronon), A_μ its acceleration, and Y = A·A/c⁴. P is an independent spatial covector
   (n·P = 0). No extra curvature term (β = 0) and no P kinetic term (η = 0); η > 0 is ill-posed at β = 0 (C5). The Codex
   review adds a Hořava half mode for DSF-21's η > 0 branch.
-- **J = J_x = Λ − 2a₀²[y − ln(1 + y)]**, y = √Y/a₀, so 1 + J′ = y/(1 + y). POSTULATED; it lies outside Blanchet–Skordis's
+- **J = J_x = Λ − 2a_geo²[u − ln(1 + u)]**, a_geo = a₀/c², u = √Y/a_geo, so 1 + J′ = u/(1 + u). Here a₀ is the SI acceleration and a_geo has units of inverse length; they coincide numerically only in c = 1 units. POSTULATED; it lies outside Blanchet–Skordis's
   admissible class.
 - **K(Q) = μ_K²(Q − 1)²** is the Blanchet–Skordis dust sector; BS25 also has a DBI form.
 - **The stiffness** γ_L = K L★²/2, L★ ≥ 21.7 / 22.9 pc (outer globulars, D10). POSTULATED; it exists only for Solar-System
@@ -40,11 +42,11 @@ Blanchet–Skordis at μ_K ≤ 14.8 h/Mpc (10 Mpc⁻¹), and by isolated-galaxy 
 
 ## 2. The field equations
 
-**Static limit** (S4 §1; BS24 Eq. 35, re-derived from the action in C4 K1 with residual 0):
+**Static limit** (S4 §1; [BS24 arXiv:2404.06584v1](https://arxiv.org/pdf/2404.06584v1), §III.A.6 Eq. (3.21), p.11; kernel relation §III.A.7 Eq. (3.22), p.12; re-derived from the action in C4 K1 with residual 0):
 
     ∇·[ μ(|∇ψ|/a₀) ∇ψ ] + μ_K² ψ = 4πG ρ_b ,     μ(x) = x/(1 + x),     φ = ψ   (lensing sees the dynamical potential)
 
-This is AQUAL, not QUMOND (doors E2, C4). With μ_K → 0 and spherical symmetry it gives the a₀-line.
+This is AQUAL (doors E2, C4). In the isolated spherical stationary limit with μ_K = 0 and no screening contribution, it gives g_N = g²/(g + a₀), equivalently g² = g_N(g + a₀): the simple-μ law S. It does not give the exact squared-excess line g² = g_N² + a₀g_N (law B).
 
 **Weak-field dynamics** (BS24's post-Newtonian system; L1 FROZEN_CRITERIA §1):
 
@@ -62,9 +64,10 @@ This is AQUAL, not QUMOND (doors E2, C4). With μ_K → 0 and spherical symmetry
 
 | statement | equation | evidence |
 |---|---|---|
-| The law | g_N = g²/(g + a₀), equivalently g² = g_N² + a₀g_N (the a₀-line); deep limit g → √(a₀g_N); Newton recovery g_N ≤ g ≤ g_N + a₀/2 | LEAN: `EQB_S1_rar_landmarks` (slope (2y+1)/(2(y+1)), curvature maximal at g_N = a₀), `TOE_BEST_ATTEMPT.newton_recovery`, `deep_tully_fisher` (v⁴ = GMa₀) |
-| The a₀-line is forced | an affine excess with the deep-MOND normalisation forces slope 1 and intercept 0 | LEAN: `EQB_A0LINE_uniqueness.affine_excess_unique` |
-| The external field | x μ(x + e) = b ⟺ (x² − b²)(x + e) = bx, with a unique root | LEAN: `EQB_S5_efe_cubic.efe_balance_iff_line`, `efe_root_unique` |
+| The law S | g_N = g²/(g + a₀), equivalently g² = g_N(g + a₀); for g_N > 0, 0 < g − g_N < a₀, approaching a₀ at high acceleration; deep limit g → √(a₀g_N) | Existing P4/CL3 simple-μ code; TP01 algebra/adapter. The common deep-limit relation gives v⁴ = GMa₀; `TOE_BEST_ATTEMPT.deep_tully_fisher` assumes that deep relation. |
+| S landmarks | With x = g/a₀ and y = g_N/a₀ = x²/(1+x), log slope = (x+1)/(x+2), log curvature = x(x+1)/(x+2)³; curvature peaks at y = 2; at y = 1, x = (1+√5)/2 | TP01 exact dictionary; the B-law landmarks in `EQB_S1_rar_landmarks` have different premises. |
+| Conditional B-law certificate | If y²(ν(y)² − 1) is affine for every y > 0, ν > 0, and ν(y)√y → 1 as y → 0+, then that excess is y and g² = g_N² + a₀g_N | LEAN: `EQB_A0LINE_uniqueness.affine_excess_unique`; its `simple_nu_not_linear` explicitly separates S from B. This affine premise is not supplied by the action above. |
+| Aligned scalar external-field ansatz for S | x μ_S(x + e) = b ⟺ x² + (e − b)x − b(1+e) = 0; exactly one positive root for b > 0, e ≥ 0 | TP01 algebra/adapter. This scalar ansatz is an additional assumption; P4 uses an external-field boundary condition in the AQUAL solve. `EQB_S5_efe_cubic` proves a different B-kernel cubic, not this S ansatz or the full vector/PDE EFE. |
 | The leaf problem is well posed | the MOND constraint is strictly convex, so its solution is unique | LEAN: `XC2_wellposedness_certificates.strict_convexity`, `XC5_lapse_convexity_certificates.convex_for_monotone_kernel` |
 | The acceleration scale | MeerKAT a₀ is +0.032 dex from SPARC's with the same recipe | NUM: P4 |
 | SPARC RAR (conditional) | rms 0.054 / 0.054 dex with one Υ per galaxy and the EFE solved for 109; the χ² line fails (63–64 % acceptable) | NUM: P4 |
@@ -75,8 +78,7 @@ This is AQUAL, not QUMOND (doors E2, C4). With μ_K → 0 and spherical symmetry
 | Tidal dwarfs, DF2/DF4 | dust-free in their host, hence Newtonian (§4.3) | NUM: U1, consistent with T3 |
 | Isolated Local Group dwarfs | +0.06 / +0.02 ± 0.08 dex | NUM: X1 |
 
-**Why.** The static limit is AQUAL with the simple μ, so wherever a system is isolated and quasi-static, v3 is the
-a₀-line, which is certified.
+**Why.** The static isolated spherical limit with μ_K = 0 and no screening contribution is the simple-μ law S. Its existing numerical solves retain that kernel. B-law certificate conclusions apply only after assuming their distinct squared-excess law; the corrected dictionary does not transfer numerical passes between kernels.
 
 ## 4. What fails, and the one mechanism behind most of it
 
@@ -88,7 +90,7 @@ therefore fixed by kinematics at α ≡ 1; it is not a parameter (X-D1). At Q = 
 dust (X-D2).
 
 LEAN (`V3_PICTURE_2026_10_23`), for static held dust with weight α, (α − 1 + μ(x))x = b:
-- `coupling_one_is_law`: α = 1 is exactly the a₀-line b(1 + x) = x².
+- `coupling_one_is_law`: α = 1 gives exactly the simple-μ balance b(1 + x) = x² (law S).
 - `coupling_floor`: α < 1 forces x > (1 − α)/α, an acceleration floor.
 - `coupling_newtonian`, `coupling_not_deep`: α > 1 forces x < b/(α − 1), so x < √b once b < (α − 1)²; it is never the deep
   law.
@@ -223,7 +225,7 @@ models; S3, X5), and this holds for the whole μ-law family. Joint radial-plus-v
 
 ## 5. The picture
 
-    v3 = [ law field Ξ, certified a₀-line ]  +  [ screening γ_L ]  +  [ ONE dust = the same field Ξ, scale μ_K ]
+    v3 = [ law field Ξ, simple-μ law S ]  +  [ screening γ_L ]  +  [ ONE dust = the same field Ξ, scale μ_K ]
 
 1. **The law works where it was built to work:** isolated, quasi-static systems, and the Solar System once screened.
 2. **Screening → saddles: cured.** γ_L makes negative-ρ_τ regions Hadamard ill-posed. The switched form
@@ -381,11 +383,11 @@ the `_MUTATE` twin fails on all four false claims): `saddle_unbounded`, `saddle_
 `coupling_newtonian`, `coupling_not_deep`, `fall_rate`, `dusty_unit_lags`.
 
 Already in the record, and compiling today:
-- `TOE_BEST_ATTEMPT_2026_10_12`: a₀ forms, Z bounds, Newton recovery, deep Tully–Fisher. 13 theorems.
+- `TOE_BEST_ATTEMPT_2026_10_12`: a₀ forms and Z bounds; `newton_recovery` assumes B (g² = g_N² + a₀g_N), while `deep_tully_fisher` assumes only g² = a₀g_N in the deep regime. 13 theorems. Neither selects the S action kernel.
 - All seven files in this list were recompiled today: exit 0, no errors, no `sorryAx`.
-- `EQB_S1_rar_landmarks`: slopes and curvature.
-- `EQB_A0LINE_uniqueness`.
-- `EQB_S5_efe_cubic`.
+- `EQB_S1_rar_landmarks`: B-law slopes, curvature and anchor, conditional on g² = g_N² + a₀g_N.
+- `EQB_A0LINE_uniqueness`: B-law uniqueness conditional on a positive ν, an affine squared excess for all positive y, and the stated deep-limit normalization; also proves that simple ν is not linear in squared excess.
+- `EQB_S5_efe_cubic`: B-kernel aligned-scalar balance equivalence for x > 0, e ≥ 0, b ≥ 0, and at most one positive cubic root. Positive-root existence and the physical aligned composition are not certified there. No full vector/PDE EFE theorem is claimed.
 - `XC2_wellposedness_certificates` and `XC5_lapse_convexity_certificates`: leaf convexity and uniqueness.
 - `REV_aqual_cone_family`: AQUAL cones.
 - `KAPPA_LOGIC_2026_10_20`: κ = ½ not derivable; the 32π equivalence. Its `p32_iff` had failed on the current toolchain with

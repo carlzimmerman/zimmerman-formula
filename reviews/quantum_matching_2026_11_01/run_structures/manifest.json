@@ -1,0 +1,123 @@
+{
+  "schema_version": 2,
+  "claim_id": "TP02_COORDINATOR_STRUCTURES",
+  "repository": {
+    "commit": "3b2fae101a0d788c19ef94df93a0a599d5c14db1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/quantum_matching_2026_11_01/check_structures.py",
+    "--out",
+    "reviews/quantum_matching_2026_11_01/run_structures/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Symbolically reconstruct the heavy classical Hessian, general angular phase pressure/dispersion and occupied relaxation Legendre identities, with one exact unstable-frequency benchmark.",
+    "coefficient_domain": "Exact rational symbolic functions and positive-real algebra in SymPy.",
+    "conventions": "Raw unnormalized a,b matrix amplitudes; phase kinetic normalization |partial T|^2; frequency squared is polynomial variable y; fixed charge grand Legendre expansion through formal delta^2.",
+    "inputs": [
+      "Raw SU(5) singlet-slice F potential",
+      "Generic positive two-derivative radial and angular coefficients",
+      "Formal perturbative heavy matching"
+    ],
+    "bounds": {
+      "generic_benchmarks": 1,
+      "Legendre_expansion_order": 2
+    },
+    "non_claims": [
+      "No physical parameter grid or pressure roots evaluated",
+      "No finite two-loop or kinetic error bound",
+      "Written branch inequalities remain part of the proof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T18:14:17.389107+00:00",
+    "runtime_seconds": 0.914979,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/quantum_matching_2026_11_01/check_structures.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/quantum_matching_2026_11_01/check_structures.py",
+      "sha256": "1d28be7a329c4b85b003e7cba8f30d8d06773892920b3ec391b01b5135ca8b0c",
+      "sha256_after": "1d28be7a329c4b85b003e7cba8f30d8d06773892920b3ec391b01b5135ca8b0c"
+    }
+  ],
+  "output_directory": "reviews/quantum_matching_2026_11_01/run_structures",
+  "declared_results": [
+    "reviews/quantum_matching_2026_11_01/run_structures/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/quantum_matching_2026_11_01/run_structures/stdout.txt",
+      "sha256": "fd9730601a2fb6cf925b4a32a00a3426bbb0e47bab4e4d416b6036c993b38474",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/quantum_matching_2026_11_01/run_structures/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/quantum_matching_2026_11_01/run_structures/result.json",
+      "sha256": "fd9730601a2fb6cf925b4a32a00a3426bbb0e47bab4e4d416b6036c993b38474",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

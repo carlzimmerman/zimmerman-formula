@@ -1,0 +1,15 @@
+# TP03 current matching, frozen before numerical evaluation
+
+Base shared revision `7b1880de2caded85da4b8c34d84b5dc6c005650e`. Only this directory is writable. Immutable TP01/TP02 supply the canonical component action and tree mass assembly. No small-F Kahler approximation is used.
+
+Compute the actual one-loop coefficient deltaF of (partial theta)^2 for the common R phase of X,B on the SUSY-broken valley, in linear Landau gauge and the declared minimal-subtraction dimensional-reduction component convention. f=1,h=lambda=e,g=sqrt(29/200)e, e=.01,.03, X/X_treeCWmin={1,1.15,1.21,1.3}. Fix Q²=e/31+(e X_treeCWmin)² once for each e; do not differentiate a field-dependent Q in a finite graph. Parameters and renormalized reference fields are unselected trial inputs.
+
+Include the full98-real-scalar determinant with gauge Goldstones, all73Weyls through independently checked representation blocks including broken gaugino mixing, and the broken scalar-vector derivative-current graph. Pure vector masses are common-phase independent; linear Landau ghosts have no background-scalar vertex. Retain the full SV term, not just phase derivatives of Coleman–Weinberg masses. Massless pairs with nonzero current vertex are an IR obstruction, not silently dropped.
+
+Raw formulas are derived in DERIVATION.md. Scalar sum uses unordered eigenpairs and its finite divided difference. Fermion sum uses ordered signed Majorana eigenpairs with the full pseudoscalar phase vertex. SV includes the finite +1/2 from the d-dimensional transverse projector times its pole, before minimal subtraction; this convention is pinned explicitly. No finite field counterterm is fitted. UV scale derivative must match the component-Landau scalar anomalous dimension, not the chiral-superfield gauge coefficient.
+
+Required checks: raw full-matrix phase rotation versus generators, singular-mass representation reconstruction, finite phase Ward/ispectral tests including f=0, analytic scalar/fermion/SV kernels versus independent Feynman-parameter quadrature, commuting scalar zero, one phase-mass Majorana limit, SUSY f=0,g=0 chiral limit, full group UV coefficient, and g=0 SV decoupling. Compare near-degenerate/massless limits without assuming supersymmetric wavefunction cancellation (a SUSY wavefunction can be nonzero). Report finite graph sums, sector breakdown, deltaF/Ftree, eigenvalue/null counts, UV residuals and exact tested range.
+
+The coordinator owns combining this deltaF with the new full finite V2 potential and heavy-displacement terms. Provide a fixed-Q calculate(X,h,lambda,g,f,Q2) interface. Do not double count known heavy geometric deltaF in this graph result. A one-loop coefficient around omega=0 does not calculate all higher-derivative occupied terms, anomaly/IR dynamics, phase-charge lifetime, state selection or gravity.
+
+One numerical thread,240s wall/230s CPU, below1GB where feasible with observed RSS. Use fresh v2 evidence outputs, hashes before/after, software and commands; preserve failures. Independent algebra reviewer checked the raw kernel derivations before code, but numerical implementation still needs fresh code/control review.

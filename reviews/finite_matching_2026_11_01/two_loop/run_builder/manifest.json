@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "FM_BUILDER",
+  "repository": {
+    "commit": "7b1880de2caded85da4b8c34d84b5dc6c005650e",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/finite_matching_2026_11_01/two_loop/check_builder.py",
+    "reviews/finite_matching_2026_11_01/two_loop/run_builder/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Complete component masses/Takagi/real scalar cubic, quartic_iijj and all scalar-Weyl vertices; independent polynomial derivative controls and WZ analytic graph weights.",
+    "coefficient_domain": "float64/complex128 exact polynomial assembly",
+    "conventions": "CONTRACT.md; real q,p normalization and Takagi columns",
+    "inputs": [
+      "reviews/finite_matching_2026_11_01/two_loop/model.py",
+      "reviews/finite_matching_2026_11_01/two_loop/check_builder.py",
+      "reviews/finite_matching_2026_11_01/two_loop/CONTRACT.md",
+      "reviews/three_priorities_2026_11_01/spectrum_pressure/spectrum.py"
+    ],
+    "bounds": {
+      "e": 0.03,
+      "reference_z": 7.367143721278508,
+      "polynomial_direction_step": 0.02,
+      "quartic_pair_step": 0.1
+    },
+    "non_claims": [
+      "No full finite V2 integral until masterfunctions verified"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T19:14:00.511023+00:00",
+    "runtime_seconds": 0.482102,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 170,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "reviews/finite_matching_2026_11_01/two_loop/run_builder/result.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/finite_matching_2026_11_01/two_loop/model.py",
+    "reviews/finite_matching_2026_11_01/two_loop/check_builder.py",
+    "reviews/finite_matching_2026_11_01/two_loop/CONTRACT.md",
+    "reviews/three_priorities_2026_11_01/spectrum_pressure/spectrum.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/finite_matching_2026_11_01/two_loop/model.py",
+      "sha256": "0a405d4bae9e5ca5d5c3ee7144f47384ef82072b2549944f0d4035c2e1c08d37",
+      "sha256_after": "0a405d4bae9e5ca5d5c3ee7144f47384ef82072b2549944f0d4035c2e1c08d37"
+    },
+    {
+      "path": "reviews/finite_matching_2026_11_01/two_loop/check_builder.py",
+      "sha256": "d17aac887b7cc5f6c60c8be1b70012a5648bdf52141023e7fe2243015c937856",
+      "sha256_after": "d17aac887b7cc5f6c60c8be1b70012a5648bdf52141023e7fe2243015c937856"
+    },
+    {
+      "path": "reviews/finite_matching_2026_11_01/two_loop/CONTRACT.md",
+      "sha256": "c292ed32fdca6e26b51593c2184ebb161051b50756f29eec94bd8394d21a1c4b",
+      "sha256_after": "c292ed32fdca6e26b51593c2184ebb161051b50756f29eec94bd8394d21a1c4b"
+    },
+    {
+      "path": "reviews/three_priorities_2026_11_01/spectrum_pressure/spectrum.py",
+      "sha256": "3c35638eb2bf55dcf1b66142e6a5cf826deccfa2cbf4f29344b4d93e996f5ae6",
+      "sha256_after": "3c35638eb2bf55dcf1b66142e6a5cf826deccfa2cbf4f29344b4d93e996f5ae6"
+    }
+  ],
+  "output_directory": "reviews/finite_matching_2026_11_01/two_loop/run_builder",
+  "declared_results": [
+    "reviews/finite_matching_2026_11_01/two_loop/run_builder/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/finite_matching_2026_11_01/two_loop/run_builder/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/finite_matching_2026_11_01/two_loop/run_builder/stderr.txt",
+      "sha256": "a5f250b79fd17052e5d10ea4fe6eb9017f839d83d03680d369896cb39906815e",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: reviews/finite_matching_2026_11_01/two_loop/run_builder/result.json"
+  ]
+}

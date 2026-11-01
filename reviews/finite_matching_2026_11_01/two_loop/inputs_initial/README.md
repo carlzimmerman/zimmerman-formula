@@ -1,0 +1,1 @@
+Exact pre-fix source bytes retained for run_builder, which failed serializing NumPy bool checks. No result or mathematical pass was produced. The live builder subsequently uses spectrum-relative mass clipping and native bool output. Original manifest is unchanged.

@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "claim_id": "TP04_CONDITIONAL_FD_RELIC",
+  "repository": {
+    "commit": "0ae3d11e4d9cce18027222b27ac565fd47373ad9",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/radial_ir_cold_2026_11_01/thermal_state.py",
+    "--out",
+    "reviews/radial_ir_cold_2026_11_01/run_thermal/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Construct a conditional decoupled unpolarized FD relic matching the benchmark cosmic matter density; calculate velocities, free-streaming travel distance, assumed-bath radiation and partial Goldstino survival at four masses and two weak couplings.",
+    "coefficient_domain": "Gauss-Laguerre64/128 quadrature, adaptive background integral, float64 constants.",
+    "conventions": "Two-spin Majorana FD with zero chemical potential, T scaling1/a, benchmark flat Einstein expansion, free relic present before a=1e-15, all stated bath temperatures assumed.",
+    "inputs": [
+      "Verified unit/leading-mass conditions",
+      "Planck2018 benchmark cosmology",
+      "FD occupation formula"
+    ],
+    "bounds": {
+      "masses_GeV": [
+        1e-06,
+        1e-05,
+        0.0001,
+        0.001
+      ],
+      "e": [
+        0.003,
+        0.001
+      ],
+      "Laguerre_orders": [
+        64,
+        128
+      ],
+      "a_min": 1e-15,
+      "bath_heating_factors": [
+        1,
+        2,
+        3
+      ],
+      "cases": 8
+    },
+    "non_claims": [
+      "No production or reheat mechanism",
+      "No total lifetime from partial width",
+      "No observational transfer-function fit",
+      "No gravitational completion or raw-vacuum identification"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T20:42:10.042576+00:00",
+    "runtime_seconds": 0.436431,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 170,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/radial_ir_cold_2026_11_01/thermal_state.py",
+    "reviews/radial_ir_cold_2026_11_01/run_units/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/radial_ir_cold_2026_11_01/thermal_state.py",
+      "sha256": "097713bc920a18c8ae755668afba1e7d7e710c7c5a1f8020c452f4a25eb0f1dc",
+      "sha256_after": "097713bc920a18c8ae755668afba1e7d7e710c7c5a1f8020c452f4a25eb0f1dc"
+    },
+    {
+      "path": "reviews/radial_ir_cold_2026_11_01/run_units/result.json",
+      "sha256": "65f3d7fa49a1b38c13434d86e330e07d09484c403c35a6baa6b3630adb89f599",
+      "sha256_after": "65f3d7fa49a1b38c13434d86e330e07d09484c403c35a6baa6b3630adb89f599"
+    }
+  ],
+  "output_directory": "reviews/radial_ir_cold_2026_11_01/run_thermal",
+  "declared_results": [
+    "reviews/radial_ir_cold_2026_11_01/run_thermal/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/radial_ir_cold_2026_11_01/run_thermal/stdout.txt",
+      "sha256": "e8ac72b1e1a261c7b7f3491c5f437e156a395e46038a4a26e409674863157a22",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/radial_ir_cold_2026_11_01/run_thermal/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/radial_ir_cold_2026_11_01/run_thermal/result.json",
+      "sha256": "5f946d0d5d8bbeab7481444836980a4cd32f5fc3a0b18d3807f26ef5f04f04cd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "schema_version": 2,
+  "claim_id": "TP04_FLOQUET_ENDPOINT",
+  "repository": {
+    "commit": "0ae3d11e4d9cce18027222b27ac565fd47373ad9",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "reviews/radial_ir_cold_2026_11_01/radial/floquet_endpoints.py",
+    "reviews/radial_ir_cold_2026_11_01/radial/run_floquet_endpoints/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite endpoint and pump-phase controls for expanding harmonic narrow resonance",
+    "coefficient_domain": "float64 bounded numerical ODE/optimization",
+    "conventions": "Named local contract; physical scale and matter state unselected",
+    "inputs": [
+      "frozen local contracts and states"
+    ],
+    "bounds": {
+      "eta": 0.001,
+      "chi": [
+        0.02,
+        0.1
+      ],
+      "formation_lengths": [
+        8,
+        16,
+        32,
+        64
+      ]
+    },
+    "non_claims": [
+      "No complete gauge-independent pole or selected cosmology"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T20:48:42.267382+00:00",
+    "runtime_seconds": 12.936365,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 170,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/radial_ir_cold_2026_11_01/radial/FLOQUET_ENDPOINT_CONTRACT.md",
+    "reviews/radial_ir_cold_2026_11_01/radial/floquet_endpoints.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/radial_ir_cold_2026_11_01/radial/FLOQUET_ENDPOINT_CONTRACT.md",
+      "sha256": "17d8fab220d81da3cb862273dd226a98ede5e2a09c8fcba52477afe5df40ff93",
+      "sha256_after": "17d8fab220d81da3cb862273dd226a98ede5e2a09c8fcba52477afe5df40ff93"
+    },
+    {
+      "path": "reviews/radial_ir_cold_2026_11_01/radial/floquet_endpoints.py",
+      "sha256": "d66e115fd32201f79493edc1c7ac8fe0749c37b506d7f157f07d8dd2437060c4",
+      "sha256_after": "d66e115fd32201f79493edc1c7ac8fe0749c37b506d7f157f07d8dd2437060c4"
+    }
+  ],
+  "output_directory": "reviews/radial_ir_cold_2026_11_01/radial/run_floquet_endpoints",
+  "declared_results": [
+    "reviews/radial_ir_cold_2026_11_01/radial/run_floquet_endpoints/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/radial_ir_cold_2026_11_01/radial/run_floquet_endpoints/stdout.txt",
+      "sha256": "1b5bd8711f7af845f707f6a2791af18d4ad3e7724fb727acc7f94e0ac3b772cf",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/radial_ir_cold_2026_11_01/radial/run_floquet_endpoints/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/radial_ir_cold_2026_11_01/radial/run_floquet_endpoints/result.json",
+      "sha256": "1b5bd8711f7af845f707f6a2791af18d4ad3e7724fb727acc7f94e0ac3b772cf",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

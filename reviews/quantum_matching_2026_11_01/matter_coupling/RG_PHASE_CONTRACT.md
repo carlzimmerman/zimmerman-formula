@@ -1,0 +1,9 @@
+# TP02-MC RG phase-current continuation, before execution
+
+Use the frozen/tested `rg_threshold/improved.py` interface, its `evaluate` and `profile`, and immutable TP01 `pressure_scan.py`. Reference parameters: f0=Q0=1, h0=lambda0=e=0.03, inherited g0=sqrt(29/200)e. The reference coordinate is X0, with s=ln(X0/Xmin) and T0=sqrt(31)X0. This retains the RG researcher's actual transported angular F, not a silently canonical replacement.
+
+Cases: fixed eta=1, rg1 eta=1, and rg2log eta={0.5,1,2}; RK4 steps32, 50digit mpmath. The RG-improved angular coefficient is its wavefunction contribution only; finite one-loop angular kinetic matching and finite two-loop U are absent. Trial scheme/scale variation is a sensitivity diagnostic, not a rigorous omitted-order bound.
+
+Locate the connected U minimum using the existing z0=7..8 bracket. At that minimum evaluate Umin; on X0/Xmin={1.0001,1.01,1.05,1.12,1.2,1.3}, and at the first bracketed N=0 boundary above it, calculate a=(lnF)', a', source Us/a, D=Uss+(a-a'/a)Us, N=Uss-(a+a'/a)Us, n=sqrt(4F Us/a), cIR²=N/D, epsilon_ex=Us/a+U-Umin, P_ex=Us/a-(U-Umin), w_ex=P_ex/epsilon_ex. No charge abundance or density is fitted. These are timelike-phase-current, local radial-elimination expressions and do not presume equality of finite radial and angular kinetic coefficients.
+
+Controls: canonical fixed F gives a=2,a'=0 and reproduces the native baseline boundary; direct P(n) finite differences around X/Xmin=1.05 agree with the general-F derivative; repeat the central rg2log interior state at64RKsteps and60digits; all reported charged samples must have Us/a>0 and D>0, otherwise mark the failed branch rather than discard it. Report a and a' explicitly. Preserve unsuccessful runs and v2 input/output provenance. One numerical thread, supported CPU/wall caps, observed RSS, no old input changes.

@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "claim_id": "TP01_COORDINATOR_FINITE_REVIEW",
+  "repository": {
+    "commit": "d2c8868a7719f3308b2fc4b294d199a6e0d53d15",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/three_priorities_2026_11_01/check_reconciliation.py",
+    "--out",
+    "reviews/three_priorities_2026_11_01/run_reconciliation/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Reconstruct the two primary nine-seed permutation counts with integer average ranks, three leave-one-out scores through the PRESS identity, and the paired same-epoch identity.",
+    "coefficient_domain": "Exact integer permutation counts; IEEE float64 QR checks with absolute tolerance 1e-10.",
+    "conventions": "Use all 9! permutations including tied-index multiplicity; two-sided absolute rank covariance; OLS includes intercept.",
+    "inputs": [
+      "The nine seed rows in TP01-SC run_002; no new simulation or sample selection"
+    ],
+    "bounds": {
+      "seeds": 9,
+      "permutations_per_test": 362880,
+      "association_tests": 2,
+      "PRESS_models": 3
+    },
+    "non_claims": [
+      "Does not independently reproduce the particle simulations",
+      "Does not establish a cosmological spin response or a physical SPARC spin mapping"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T17:41:14.065321+00:00",
+    "runtime_seconds": 0.477094,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/three_priorities_2026_11_01/check_reconciliation.py",
+    "reviews/three_priorities_2026_11_01/spin_contraction/run_002/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/three_priorities_2026_11_01/check_reconciliation.py",
+      "sha256": "faa603b0bee1f289cfa2739d21567ed17f2ae205a37e7d495cbf0879e115e715",
+      "sha256_after": "faa603b0bee1f289cfa2739d21567ed17f2ae205a37e7d495cbf0879e115e715"
+    },
+    {
+      "path": "reviews/three_priorities_2026_11_01/spin_contraction/run_002/results.json",
+      "sha256": "020ffb68858860dcaa563353e6e2afd532e961540ee4fcf4443f9549553a0bb3",
+      "sha256_after": "020ffb68858860dcaa563353e6e2afd532e961540ee4fcf4443f9549553a0bb3"
+    }
+  ],
+  "output_directory": "reviews/three_priorities_2026_11_01/run_reconciliation",
+  "declared_results": [
+    "reviews/three_priorities_2026_11_01/run_reconciliation/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/three_priorities_2026_11_01/run_reconciliation/stdout.txt",
+      "sha256": "dd4a374db635cef839a740558bb1ada4ebe700a0cb55cf99bb5cb5dc153b733c",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/three_priorities_2026_11_01/run_reconciliation/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/three_priorities_2026_11_01/run_reconciliation/result.json",
+      "sha256": "dd4a374db635cef839a740558bb1ada4ebe700a0cb55cf99bb5cb5dc153b733c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

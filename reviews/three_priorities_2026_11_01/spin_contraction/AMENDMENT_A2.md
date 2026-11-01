@@ -1,0 +1,3 @@
+# A2: failed forward serialization, before rerun
+
+Run 003 executed both backgrounds and all 175 galaxies but failed serializing a NumPy boolean in the final JSON. It produced no scientific result JSON. The source is preserved as `forward_capacity_run003.py`; its failed manifest/stdout/stderr remain. Convert that gate flag to a native bool. The run also warned when square-rooting nonpositive model accelerations outside/inside masks. Match HS1's original `sqrt(max(g*R,0))` convention; count nonpositive predictions in the existing fit mask explicitly, without dropping them. Fit residuals already use the original max(g,1e-300) convention. No selection, physical parameter, association or acceptance line changes. Run 004 is not blind to the run 003 shell-benchmark output.

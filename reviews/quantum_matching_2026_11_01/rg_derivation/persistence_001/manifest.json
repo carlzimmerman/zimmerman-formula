@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "TP02-CONDITIONAL-PERSISTENCE-BUDGET",
+  "repository": {
+    "commit": "8e7a9650adc0926a127ce06ef336c801015f121b",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "reviews/quantum_matching_2026_11_01/rg_derivation/persistence_budget.py",
+    "--out",
+    "reviews/quantum_matching_2026_11_01/rg_derivation/persistence_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Scale the immutableTP01 baseline derivatives atX/Xmin={1.2,1.3,1.5} exactly by critical-shape homogeneity to equal weakcouplings e={.01,.03,.05,.1}; compute strict derivative-correction budgets that would preserve positive source/radialstability/negativecompressibility",
+    "coefficient_domain": "50digit decimal arithmetic on saved numerical baseline values; no interval claim",
+    "conventions": "f=1,h=lambda=e,g=sqrt(29/200)e; fixedz; baseline derivatives scale(e/.6)^2,treegaps scalee/.6. Potentialcorrection derivative bounds |deltaUs|,|deltaUss|<=C e^4/L^2 are hypothetical, not measured",
+    "inputs": [
+      "immutableTP01run_exact_gap/result.json,negative-compressibilitystates1.2,1.3,1.5",
+      "fourdeclaredweakcouplings"
+    ],
+    "bounds": {
+      "weak_couplings": [
+        0.01,
+        0.03,
+        0.05,
+        0.1
+      ],
+      "state_ratios": [
+        1.2,
+        1.3,
+        1.5
+      ],
+      "cases": 12
+    },
+    "non_claims": [
+      "No actualfinite2loopderivativebound",
+      "No certifiedperturbativeconclusion atanyfinitee",
+      "No newpressurepotentialorrootintegration"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T18:06:10.345970+00:00",
+    "runtime_seconds": 0.088076,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/quantum_matching_2026_11_01/rg_derivation/persistence_budget.py",
+    "reviews/three_priorities_2026_11_01/spectrum_pressure/run_exact_gap/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/quantum_matching_2026_11_01/rg_derivation/persistence_budget.py",
+      "sha256": "478f4beb390216eb14026e3d76d88f0f0889d0582e4402a807122cc41feb647d",
+      "sha256_after": "478f4beb390216eb14026e3d76d88f0f0889d0582e4402a807122cc41feb647d"
+    },
+    {
+      "path": "reviews/three_priorities_2026_11_01/spectrum_pressure/run_exact_gap/result.json",
+      "sha256": "28536bdd0992feb044750d6b47a451bf24b063e373edfeba6c8d074a2cb9864d",
+      "sha256_after": "28536bdd0992feb044750d6b47a451bf24b063e373edfeba6c8d074a2cb9864d"
+    }
+  ],
+  "output_directory": "reviews/quantum_matching_2026_11_01/rg_derivation/persistence_001",
+  "declared_results": [
+    "reviews/quantum_matching_2026_11_01/rg_derivation/persistence_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/quantum_matching_2026_11_01/rg_derivation/persistence_001/stdout.txt",
+      "sha256": "7f9637380c26f0e15c702a080737fabfdf1ef8ff42f841c341ce853306cbc6f0",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/quantum_matching_2026_11_01/rg_derivation/persistence_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/quantum_matching_2026_11_01/rg_derivation/persistence_001/result.json",
+      "sha256": "345263777e01fac2ae86cff9c4126087451668071fe78a263c5c5e0e915175e9",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

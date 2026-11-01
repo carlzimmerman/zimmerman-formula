@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "TP01_DENSITY_REACH",
+  "repository": {
+    "commit": "552b98907e38e5ede6e7bb18dd8e4bb76d4f8de9",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/three_priorities_2026_11_01/spectrum_pressure/density_reach.py",
+    "reviews/three_priorities_2026_11_01/spectrum_pressure/run_density/result.json",
+    "reviews/three_priorities_2026_11_01/spectrum_pressure/run_exact_gap/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Normalized density at full one-loop pressure boundary, with33positive-source radial-stable monotone samples and exact waterbag map; no chosen phase level.",
+    "coefficient_domain": "60digit mpmath direct derivatives",
+    "conventions": "DENSITY_CONTRACT.md; f1h=lambda.6",
+    "inputs": [
+      "reviews/three_priorities_2026_11_01/spectrum_pressure/density_reach.py",
+      "reviews/three_priorities_2026_11_01/spectrum_pressure/pressure_scan.py",
+      "reviews/three_priorities_2026_11_01/spectrum_pressure/DENSITY_CONTRACT.md",
+      "reviews/three_priorities_2026_11_01/spectrum_pressure/run_exact_gap/result.json"
+    ],
+    "bounds": {
+      "interior_samples": 33,
+      "mp_dps": 60
+    },
+    "non_claims": [
+      "No density prediction or all-order result",
+      "No proven log asymptote"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T17:43:42.561396+00:00",
+    "runtime_seconds": 0.408326,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 110,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/three_priorities_2026_11_01/spectrum_pressure/density_reach.py",
+    "reviews/three_priorities_2026_11_01/spectrum_pressure/pressure_scan.py",
+    "reviews/three_priorities_2026_11_01/spectrum_pressure/DENSITY_CONTRACT.md",
+    "reviews/three_priorities_2026_11_01/spectrum_pressure/run_exact_gap/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/three_priorities_2026_11_01/spectrum_pressure/density_reach.py",
+      "sha256": "0a19f0dc6f0c5437916b366d4a52cbb44c986abd98d3f43afdf48b877a9cc390",
+      "sha256_after": "0a19f0dc6f0c5437916b366d4a52cbb44c986abd98d3f43afdf48b877a9cc390"
+    },
+    {
+      "path": "reviews/three_priorities_2026_11_01/spectrum_pressure/pressure_scan.py",
+      "sha256": "ca9770b212e6bccd6f2f3bd53c9ca134fed365ecfec4fb16c81d25f0f73012d2",
+      "sha256_after": "ca9770b212e6bccd6f2f3bd53c9ca134fed365ecfec4fb16c81d25f0f73012d2"
+    },
+    {
+      "path": "reviews/three_priorities_2026_11_01/spectrum_pressure/DENSITY_CONTRACT.md",
+      "sha256": "07465c1587cece0fa49d31a5c13ef6d6e875c6f0eb9b10e8584d96546df13470",
+      "sha256_after": "07465c1587cece0fa49d31a5c13ef6d6e875c6f0eb9b10e8584d96546df13470"
+    },
+    {
+      "path": "reviews/three_priorities_2026_11_01/spectrum_pressure/run_exact_gap/result.json",
+      "sha256": "28536bdd0992feb044750d6b47a451bf24b063e373edfeba6c8d074a2cb9864d",
+      "sha256_after": "28536bdd0992feb044750d6b47a451bf24b063e373edfeba6c8d074a2cb9864d"
+    }
+  ],
+  "output_directory": "reviews/three_priorities_2026_11_01/spectrum_pressure/run_density",
+  "declared_results": [
+    "reviews/three_priorities_2026_11_01/spectrum_pressure/run_density/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/three_priorities_2026_11_01/spectrum_pressure/run_density/stdout.txt",
+      "sha256": "a9f6c3986b3a738f5b0e2457d345799071dcea020c9e3e4e6de5c2fb7cc8bece",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/three_priorities_2026_11_01/spectrum_pressure/run_density/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/three_priorities_2026_11_01/spectrum_pressure/run_density/result.json",
+      "sha256": "f37f30177c25ebac50b40ebec2be79c2d1a7e9408d1f5798bb12da5517d0fa1f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

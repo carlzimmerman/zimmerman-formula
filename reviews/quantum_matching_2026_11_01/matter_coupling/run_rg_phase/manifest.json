@@ -1,0 +1,178 @@
+{
+  "schema_version": 2,
+  "claim_id": "TP02_RG_NATIVE_PHASE",
+  "repository": {
+    "commit": "8e7a9650adc0926a127ce06ef336c801015f121b",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "reviews/quantum_matching_2026_11_01/matter_coupling/rg_phase.py",
+    "reviews/quantum_matching_2026_11_01/matter_coupling/run_rg_phase/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Actual fixed-charge phase-fluid energy on RG U and angular wavefunction F; independent pressure derivative and coldness at weak trial input",
+    "coefficient_domain": "50digit mpmath, 60digit/64RK repeat",
+    "conventions": "RG_PHASE_CONTRACT.md; general F retained, no canonical-s or waterbag substitution",
+    "inputs": [
+      "pinned U,F matched-scale interface",
+      "raw derived phase-charge thermodynamics"
+    ],
+    "bounds": {
+      "e": 0.03,
+      "cases": [
+        {
+          "scheme": "fixed",
+          "eta": 1
+        },
+        {
+          "scheme": "rg1",
+          "eta": 1
+        },
+        {
+          "scheme": "rg2log",
+          "eta": 0.5
+        },
+        {
+          "scheme": "rg2log",
+          "eta": 1
+        },
+        {
+          "scheme": "rg2log",
+          "eta": 2
+        }
+      ],
+      "ratios": [
+        1.0001,
+        1.01,
+        1.05,
+        1.12,
+        1.2,
+        1.3
+      ],
+      "RK_steps": [
+        32,
+        64
+      ]
+    },
+    "non_claims": [
+      "No finite two-loop potential or finite angular kinetic matching",
+      "No exact quantum current or chosen abundance",
+      "No global phase/halo/gravity completion"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T18:06:22.338694+00:00",
+    "runtime_seconds": 54.84104,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 300.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 290,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/quantum_matching_2026_11_01/matter_coupling/RG_PHASE_CONTRACT.md",
+    "reviews/quantum_matching_2026_11_01/matter_coupling/rg_phase.py",
+    "reviews/quantum_matching_2026_11_01/rg_threshold/improved.py",
+    "reviews/quantum_matching_2026_11_01/rg_threshold/INTERFACE_CONTRACT.md",
+    "reviews/three_priorities_2026_11_01/spectrum_pressure/pressure_scan.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/quantum_matching_2026_11_01/matter_coupling/RG_PHASE_CONTRACT.md",
+      "sha256": "20856cbd2eddd8fbe8313fcae13ee14ab3b6fb191740ed2a97f5fa62d381d42b",
+      "sha256_after": "20856cbd2eddd8fbe8313fcae13ee14ab3b6fb191740ed2a97f5fa62d381d42b"
+    },
+    {
+      "path": "reviews/quantum_matching_2026_11_01/matter_coupling/rg_phase.py",
+      "sha256": "757a2eb6bc229e6b68dcc6af1ab5f602584abf4a749da63bf240a83048f0a341",
+      "sha256_after": "757a2eb6bc229e6b68dcc6af1ab5f602584abf4a749da63bf240a83048f0a341"
+    },
+    {
+      "path": "reviews/quantum_matching_2026_11_01/rg_threshold/improved.py",
+      "sha256": "156d9d8e329a2af13ad72703409a7c0dcd9154748b33d53e26f8ca91239677f3",
+      "sha256_after": "156d9d8e329a2af13ad72703409a7c0dcd9154748b33d53e26f8ca91239677f3"
+    },
+    {
+      "path": "reviews/quantum_matching_2026_11_01/rg_threshold/INTERFACE_CONTRACT.md",
+      "sha256": "a462231bfcf0741dfc51cb0dee723ae685c441ca605303ae39987bf84622edf4",
+      "sha256_after": "a462231bfcf0741dfc51cb0dee723ae685c441ca605303ae39987bf84622edf4"
+    },
+    {
+      "path": "reviews/three_priorities_2026_11_01/spectrum_pressure/pressure_scan.py",
+      "sha256": "ca9770b212e6bccd6f2f3bd53c9ca134fed365ecfec4fb16c81d25f0f73012d2",
+      "sha256_after": "ca9770b212e6bccd6f2f3bd53c9ca134fed365ecfec4fb16c81d25f0f73012d2"
+    }
+  ],
+  "output_directory": "reviews/quantum_matching_2026_11_01/matter_coupling/run_rg_phase",
+  "declared_results": [
+    "reviews/quantum_matching_2026_11_01/matter_coupling/run_rg_phase/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/quantum_matching_2026_11_01/matter_coupling/run_rg_phase/stdout.txt",
+      "sha256": "4803d868e4caffc41b4de8c2dc4b204b9fc0dbceff7b2f56c17fd4d5c80dab2f",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/quantum_matching_2026_11_01/matter_coupling/run_rg_phase/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/quantum_matching_2026_11_01/matter_coupling/run_rg_phase/result.json",
+      "sha256": "72bea31a3950990d6ea9cc85dc85cbec3fcf1d968f2ea12860eaec2f484b3b58",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

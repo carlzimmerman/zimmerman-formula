@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "TP02-INDEPENDENT-RG",
+  "repository": {
+    "commit": "c2bed2da878ab9843a5d121f0cf6f0315f08c1d4",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "reviews/quantum_matching_2026_11_01/rg_derivation/check_rg.py",
+    "--out",
+    "reviews/quantum_matching_2026_11_01/rg_derivation/run_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Explicit49-field SU5 Yukawa tensor contractions of Martin-Vaughn1/2-loop gamma and two-loop gauge Yukawa trace at7deterministic coupling triples; exact symbolic reducedCS, field transport and critical-surface drift identities",
+    "coefficient_domain": "Symbolic real rational algebra; finite IEEE754 complex matrices",
+    "conventions": "TrTaTb=deltaab; gaugeTa/sqrt2; Xsinglet plus two adjoints; t=lnQ; gamma=G1/L+G2/L²,L=16pi²; fielddot=−gamma field",
+    "inputs": [
+      "49chiral indices,24HermitianSU5 generators",
+      "coupling triples(1,0,0),(0,1,0),(1,1,0),(1,1,1),(0,1,1),(1,0,1),(.03,.02,.01)"
+    ],
+    "bounds": {
+      "chiral_fields": 49,
+      "gauge_generators": 24,
+      "coupling_triples": 7,
+      "matrix_absolute_tolerance": 2e-10
+    },
+    "non_claims": [
+      "Polynomial coefficient checks atunit coupling are not perturbative physical predictions",
+      "No fullfinite2loop threshold,quantumvalley minimization,pressure root orRGresummation calculated here",
+      "No gravity,portal,IR,state orUVboundary selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T18:00:54.601244+00:00",
+    "runtime_seconds": 0.50916,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 80,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/quantum_matching_2026_11_01/rg_derivation/check_rg.py",
+    "reviews/quantum_matching_2026_11_01/CONTRACT.md",
+    "microscopic_vacuum_2026_10_28/INVERTED_HIERARCHY.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/quantum_matching_2026_11_01/rg_derivation/check_rg.py",
+      "sha256": "93444156bb777bb102c5a31e6ae4ce5b8c18331b3a69ea7a0234c03ab19b1173",
+      "sha256_after": "93444156bb777bb102c5a31e6ae4ce5b8c18331b3a69ea7a0234c03ab19b1173"
+    },
+    {
+      "path": "reviews/quantum_matching_2026_11_01/CONTRACT.md",
+      "sha256": "7ddb1a0dd9f6911588e69dbceb8a74303156eb4a5b48d2ce775aaed8f8e679b9",
+      "sha256_after": "7ddb1a0dd9f6911588e69dbceb8a74303156eb4a5b48d2ce775aaed8f8e679b9"
+    },
+    {
+      "path": "microscopic_vacuum_2026_10_28/INVERTED_HIERARCHY.md",
+      "sha256": "53c54c4381ccfed3467f6152411f4126ea200aab62e8e96032683709fddc687b",
+      "sha256_after": "53c54c4381ccfed3467f6152411f4126ea200aab62e8e96032683709fddc687b"
+    }
+  ],
+  "output_directory": "reviews/quantum_matching_2026_11_01/rg_derivation/run_001",
+  "declared_results": [
+    "reviews/quantum_matching_2026_11_01/rg_derivation/run_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/quantum_matching_2026_11_01/rg_derivation/run_001/stdout.txt",
+      "sha256": "8f6f3df0eae42dc1df58a29a0060b214ceb3cd9a1985dfd56d4ec4660992af9b",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/quantum_matching_2026_11_01/rg_derivation/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/quantum_matching_2026_11_01/rg_derivation/run_001/result.json",
+      "sha256": "72062f9280ef2407b5103da7543818c68674d9445412ed3ca2d75dd49b29905a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
