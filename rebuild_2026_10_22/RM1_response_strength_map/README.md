@@ -26,3 +26,6 @@ Gates: Υ 0.50–0.80 with rms ≤ 0.110; |tilt| ≤ 0.15; groups CONSISTENT; |L
 K1 and K2 true, K3 true. Rerun of the read byte-identical. MUTATE f → 1 − f: K1 FAIL, exit 1, as required.
 
 **[NOISE-LIMITED ANCHOR]:** NR1 PRIMARY only, as frozen. The label text in `rm1.out` says NR2 is unread, which was true when frozen; NR2 has since landed and the criteria require a rerun on it.
+
+## Rerun on NR2 MEDIAN (A1): NO CELL [NOISE-LIMITED: NR2 MEDIAN]
+Same 180 cells, same gates, `rm1n.py`, `rm1n_read.py`, `rm1n.out`, `rm1n_G_results.json`, `rm1n_I_results.json`. None clears; my expectation on record held. With groups, LITTLE THINGS and the mass window passing, on background A: every Υ ≥ 0.50 cell has tilt ≥ +0.32, and every |tilt| ≤ 0.15 cell has Υ ≤ 0.32. The wall is tighter than on NR1 (+0.29, 0.38). Fewest failed: G1.0, δ +0.10, Υ only; bins 0.43, 0.47, 0.40, 0.30, 0.35, 0.45. K1, K2 against NR3 MEDIAN, K3 true. Read rerun byte-identical. Mass-dependent strength is RM2.
