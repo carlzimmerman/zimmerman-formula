@@ -29,3 +29,5 @@ Next: FG1 ledger (another session), then a 5–8 page summary from it for an out
 
 ## Update, later 2026-11-01: T attempts have now run; don't start another set
 `TD1_threshold_derivation` (criteria 7f011a08bc, result 3d29c9e008) ran three pre-registered attempts: T LOCATED, NOT DERIVED. It was frozen about two minutes after the note above, without having read it. **Mismatch:** that note counts only attempts from an action, and only A3 is one. A1 (turned-around mass) and A2 (CFG763's clock on basins) aren't. Whether TD1 fills the cap is the owner's call. Until then, no session starts a further T attempt.
+
+**Owner, 2026-11-01: TD1 fills the cap.** T stays located, not derived. The unification search stops. Left to finish: FG1, PZ1, DR8, the closing ledger. Then the summary for the outside dynamicist and the flagship from the ledger, with the summary read before any deposit. Retiring route E remains the owner's decision.

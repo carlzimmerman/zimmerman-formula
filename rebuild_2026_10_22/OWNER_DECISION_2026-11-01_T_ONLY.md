@@ -8,6 +8,8 @@
 - The dated data are scored as frozen: ALMA 11-06 and 11-28, Gaia DR4 12-02. Nothing waits on them, and one disc excludes no model.
 - No deposit without the owner's go.
 
+**Later the same day: closed.** TD1 returned T LOCATED, NOT DERIVED, and the owner ruled that it fills the three-attempt cap, though only its A3 came from an action. The unification search stops. Only the owner can reopen T, for a new forced kernel that's a₀-free.
+
 **Read with this.** Deriving T would not make the theory pass. PAPER64's split (FG1 C3) is expected to fail the cluster keys and IC 1613 at any T.
 
 κ = ½ FITTED. Cold dark energy is a gravitating field component, never a particle. Not theory closed. Nothing here says the data favour the framework.
