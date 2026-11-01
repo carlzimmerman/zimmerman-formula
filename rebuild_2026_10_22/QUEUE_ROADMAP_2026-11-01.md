@@ -34,3 +34,6 @@ Next: FG1 ledger (another session), then a 5–8 page summary from it for an out
 
 ## For the closing ledger (owner, 2026-11-01)
 Carry `REQUIREMENTS_2026-11-01/REQUIREMENTS_LIST.md` as a section of the ledger and the dynamicist summary; FG1's table supersedes any row it covers. Carry the audit line from `REQUIREMENTS_2026-11-01/FOREST_KILL_AUDIT.md` for the 5–11 eV corner. **For the FG1 session to check:** `x62_x43copy_law_a2.out` and `x62_x43copy_on_shpS9_L7.082_T12.3_B.out` print "K0 rule forced to Sigma_a0 reproduces X38 ... FAIL", with SPARC 0.0541 against 0.0795 in the law run. It may be the harness mode rather than a fault; not resolved here.
+
+## Owner, 2026-11-01: HB1 finishes, and it is the last
+`HB1_barotropic_hydrostatic` opened after the stop. Its criteria are frozen, so it finishes and its result goes in the ledger. **No further mechanism lane opens without the owner's explicit go,** including from outside replies. `M3A1_outer_key_audit` is a data-side audit, not a mechanism lane, and also finishes. Left: FG1, PZ1, DR8, HB1, M3A1, then the closing ledger.
