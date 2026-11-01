@@ -1,11 +1,11 @@
-# AC1 addendum G1, DRAFT for owner approval, written 2026-11-01. NOT FILED, NOT IN FORCE
+# AC1 addendum G1, FILED 2026-11-01 on the owner's approval ("Yes, file it"), PRE-DATA
 
-It takes effect only if the owner approves it and it is committed as `ADDENDUM_G1.md` before any byte of the MOUS is read. Until then the frozen moment-0 G1 decides. FROZEN_CRITERIA.md is not edited. κ = ½ FITTED; one disc excludes no model; not theory closed.
+Committed before any byte of the MOUS has been read. It governs U4_28473 only. The frozen moment-0 G1 is still printed beside it. FROZEN_CRITERIA.md is not edited. κ = ½ FITTED; one disc excludes no model; not theory closed.
 
 ## Why
 At the archive sensitivity a smooth mock disc with the published flux never passes the frozen moment-0 G1 (0 of 7, S/N at most 2.2), because a ±500 km/s moment-0 adds noise across channels where a rotating disc has no line. A velocity-resolved statistic is the standard answer. This choice was made on MOCK cubes only.
 
-## Ruling proposed
+## Ruling
 1. **U4_28473 only.** U4_27928 stays under CFG806 and its addenda.
 2. **G1 becomes G1-3D.** Smooth the continuum-subtracted cube spatially (0.15″ FWHM) and spectrally (100 km/s). Keep connected voxels ≥ 2.5σ containing a peak ≥ 4σ and touching a 0.5″ cylinder at the phase centre within ±500 km/s. Sum the unsmoothed flux. S/N = (S − null mean) / max(null sd, mask-sum noise), null = the same procedure at 200 off-source seeds. Pass at S/N ≥ 5 and z within 0.004 of 2.52455.
 3. **The frozen moment-0 G1 is still printed** beside it, labelled. If the two differ, the report says so.
@@ -27,7 +27,7 @@ Selftest seed plus six power seeds in each row. Few seeds: these are rough rates
 ## Corrections this makes to my own earlier forecast
 PAPER66 v1.0 quotes a rotation-matched 3D S/N of 9.6. That is an ideal matched filter with the true model known. A blind finder on the same disc passes 1 of 7. The paper's number is what it says, but it reads as far more promising than this.
 
-## Alternatives the owner may prefer
+## Alternatives considered, not taken
 - **Keep the frozen G1** and accept "upper limit" as the likely result: cleanest, tests nothing.
 - **Approve this:** scores if the gas is compact or clumpy.
 - **Add imaging from visibilities with a taper:** not done or tested. It needs CASA, and A-U12 ruled out tapers for U4_27928.
