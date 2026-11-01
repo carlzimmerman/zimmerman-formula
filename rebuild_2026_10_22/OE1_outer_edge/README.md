@@ -46,7 +46,7 @@ X-COP +0.013, 0.075 and +0.005, 0.074 and groups +1.62, unchanged in all native 
 - **It describes the same region as DR6's C1 and C3,** so they mustn't be added. rho_model/rho_lin falls to 0.63 at 3 R200, 0.27 at 0.9 r_ta, so nothing out there double counts the linear density, consistent with DR6: filling it doesn't help the band. C2's double count inside about 2.5 R200 stands.
 
 ## The claim of a "vacuum cliff at 1.4-2 R200"
-**Not a vacuum.** There is a real steepening, but density there is 12-24 x the mean. Single-bin slope in 1.4-2 R200, stack: 1e13 3.22, 3.20; 1e14 3.08, 4.53; 1e15 4.38, 4.18; 1e12 3.37, 3.40 (z 0, 0.25). So my frozen line of slope 4 is exceeded in 3 of 8; the steepest bin inside 6 R200 runs x 1.7-3.1 and bins are noisy (any seed to 7.5). Mean slope 1.4-2.4 R200 is 3.2-3.6. The share of shell mass with v_r < 0 goes from about 0.5 inside to 0.8-1.0 at x 2.4-4, so this is the boundary between orbiting and infalling mass. VB1's RS 2.0 run has it as well (4.88 at x 2.43, RS 1.5 6.00), so the sphere's boundary doesn't cause it. Density falls below the mean only from x about 4-5, and 0 % of shells are infalling from x about 6: that is the sphere's vacuum, and it's outside the band.
+**Not a vacuum.** There is a real steepening, but density there is 12-24 x the mean. Single-bin slope in 1.4-2 R200, stack: 1e13 3.22, 3.20; 1e14 3.08, 4.53; 1e15 4.38, 4.18; 1e12 3.37, 3.40 (z 0, 0.25). So my frozen line of slope 4 is exceeded in 3 of 8; the steepest bin inside 6 R200 runs x 1.7-3.1 and bins are noisy (any seed to 7.5). Mean slope 1.4-2.4 R200 is 3.2-3.6. The share of shell mass with v_r < 0 goes from about 0.5 inside to 0.8-1.0 at x 2.4-4, so this is the boundary between orbiting and infalling mass. VB1's RS 2.0 run has it as well (4.88 at x 2.43, RS 1.5 6.00), so the sphere's boundary doesn't cause it. Density falls below the mean only from x about 4-6, and 0 % of shells are infalling from x about 6: that is the sphere's vacuum, and it's outside the band.
 
 So the band does sit on a feature: bin 7 covers x 1.65-2.40 in M3. The fall is measured, not constructed. Physical only with this caveat: **these are isolated spheres.** A cosmological environment could supply a shallower feature; VB1 (RS 2.0 does not) and DR6 (linear two-halo too small) are the only tests of that here. No cosmological box exists in this record.
 
@@ -63,7 +63,7 @@ NOT THE EDGE, E1 near zero: the statistic agrees. E3 might raise the band and br
 1. Median stack at 1e13 ng 64, 1e14, 1e15 ng 80. VB1's nodes are one seed at ng 48, compared with each other.
 2. 5 of 109 spheres reach beyond the 30 Mpc grid; that mass stays flat there and can't touch the band.
 3. Gas is cut at r_ta as in the chain; E1 extends cold mass only. Baryons at 17 % of the bin mean that wouldn't change the reading.
-4. The zooms evolve in vacuum. Mean density isn't subtracted in this path, as in every lane; the band is 2-20 x the mean, so it matters little there.
+4. The zooms evolve in vacuum. Mean density isn't subtracted in this path, as in every lane; the band is about 5-60 x the mean, so it matters little there.
 5. K6 (joint chi^2 reproduces M3A1, 0) was added by me. K3's denominator is the cluster's larger bin; 8 of 652 rows have a bin at the grader's floor. The first K3 and K6 failed for those reasons and for using one f*'s template in R; pieces then used differences of chains, as frozen, because the grader's clip hides negative pieces.
 
 ## Checks
