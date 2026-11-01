@@ -1,0 +1,38 @@
+TD1_threshold_derivation [MUTATE: turnaround at eta = pi/2 - control output]: criteria 7f011a08bc; kappa = 1/2 FITTED, unused; not theory closed
+  [FAIL] K3: delta_ta 0.34081, delta_c 1.68647 | 1.0624, 1.6865 within 0.001
+  [PASS] K1: z_f(1e12) 0.944, z_f(1e12.3) 0.886 | DT1 0.944, 0.886 within 0.005
+  [PASS] K2: A_c2b_refit 0.8275 vs 0.8274; B_cfg886_bg 0.8172 vs 0.8172 | within 0.01
+
+== A1 turned-around mass: sigma(M, z=0) = delta
+  A_c2b_refit: A1 M_ta 15.870; A1b M* 12.861; A1c M_ta f_coll 15.765 (f_coll 0.785); delta_ta x 0.993 15.880
+  B_cfg886_bg: A1 M_ta 15.839; A1b M* 12.779; A1c M_ta f_coll 15.730 (f_coll 0.778); delta_ta x 0.993 15.849
+  primary 15.870, miss from W +3.480 above upper edge; input spread 0.031; label MISS
+  reported, never deciding: A1b in W? False; A1c in W? False
+
+== A2 CFG763's clock: turned around at least tau ago, D(z_ta) = delta_ta / sigma(M), lookback(z_ta) = tau
+  A_c2b_refit: tau 0.72 Gyr -> 15.832, tau 1.2 Gyr -> 15.805, tau 3.47 Gyr -> 15.650
+  B_cfg886_bg: tau 0.72 Gyr -> 15.801, tau 1.2 Gyr -> 15.774, tau 3.47 Gyr -> 15.618
+  primary (1.20 Gyr) 15.805; input spread 0.214; label CHOICE-DEPENDENT
+
+== A3 L = -1/2 (grad chi)^2 - 1/2 xi theta chi^2 - 1/4 lambda chi^4, exact EdS top hat
+  [PASS] K4: I quad 2.396280, grid 2.396280 | within 1e-4
+  (a) N = sqrt(3 xi t_coll / 2 pi) I, I = 2.39628. No M in the integral: M enters only through t_coll.
+  lg M 11.00: sigma 3.083, t_coll   4.96 Gyr, N at xi = H_Lambda 0.882
+  lg M 11.50: sigma 2.671, t_coll   6.21 Gyr, N at xi = H_Lambda 0.988
+  lg M 12.00: sigma 2.286, t_coll   8.00 Gyr, N at xi = H_Lambda 1.121
+  lg M 12.19: sigma 2.146, t_coll   8.89 Gyr, N at xi = H_Lambda 1.182
+  lg M 12.30: sigma 2.067, t_coll   9.48 Gyr, N at xi = H_Lambda 1.220
+  lg M 12.39: sigma 2.004, t_coll  10.01 Gyr, N at xi = H_Lambda 1.254
+  lg M 12.50: sigma 1.927, t_coll  10.72 Gyr, N at xi = H_Lambda 1.298
+  lg M 12.80: sigma 1.726, t_coll  13.17 Gyr, N at xi = H_Lambda 1.438
+  sign: later-collapsing, more massive systems have larger N, so a threshold N0 selects HIGH mass: right direction.
+  (b) numbers: xi, seed chi_0/chi_c (N0 = ln of it), lambda. rho_DE can fix xi's scale at most (H_Lambda = 0.0573 /Gyr). Seed stays free.
+      W needs N0 in 1.182 to 1.254 at xi = H_Lambda: growth of about e^1.22 = x3.38, width 0.072. A seed tuned to within 7.5 %.
+  (c) after virialisation <theta> = 0, so the tachyonic mass goes to zero; with lambda chi^4 alone the field redshifts as w = 1/3 until it dilutes. Not w = 0, so requirement R5 isn't met without a separate mass term, itself a new number.
+  (d) Newtonian pressureless collapse carries no c, and G with H(t) makes no mass, so the only scale is P(k)'s, through sigma(M, z) = number. With c: Hubble mass c^3/(G H_Lambda), lg 23.05, about 10.7 dex away. With hbar, baryon rates or a0 other scales exist; those are outside this attempt.
+  label NO LINK. Missing piece: a seed number, and a term that holds the condensate cold once theta averages to zero.
+  [PASS] K5: peak RSS 0.23 GB | < 1 GB
+
+VERDICT (frozen rule): T LOCATED, NOT DERIVED; A1 MISS, A2 CHOICE-DEPENDENT, A3 NO LINK
+kappa = 1/2 FITTED, unused; T LOCATED; cold dark energy is a gravitating field component, never a particle; not theory closed; nothing here says the data favour the framework.
+FAILED CHECKS: ['K3']
