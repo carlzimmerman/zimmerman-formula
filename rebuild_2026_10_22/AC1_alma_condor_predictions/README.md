@@ -28,6 +28,18 @@ Public cube of the same galaxy: 2021.1.01291.S (Tadaki), spw25, 6.52 GB, sha256 
 - **Archive sensitivity is not the cube's noise:** measured 0.355 mJy/beam per 10 km/s, flat to 120 km/s bins, against the listed 1.30: 3.7 x. Every forecast in this lane uses the listed 0.434 for the Nov 6 unit. Same class of error as CFG970's K2.
 - **MOCK at lower noise, smooth disc, 4 seeds each:** noise/2: G1-3D 4 of 4, moment-0 0 of 4, V_c 418–456 of 430. Noise/3.7: G1-3D 4 of 4, moment-0 4 of 4, V_c 428–445. No line: 0 of 4 at both. So the "likely non-detection" in PAPER66 v1.1 holds only at the listed noise. The real noise of the Nov 6 unit is unknown until release. Radiometer scaling from this cube by exposure gives about 0.17, not a measurement.
 
+## Same-programme noise check (2026-11-01, owner's yes; 2 GB streamed, deleted)
+Public CONDOR unit uid://A001/X3788/Xbfce, UDS17159, spw23, first 30 channels (`ac1_condor_noise.py`, `.out`, `_results.json`). Measured 0.162 mJy/beam per 10 km/s against listed 0.411: 2.54 x. Real beam 0.21″ x 0.16″ against the listed 0.126″. Channel edges may read a little high, so 2.54 may be low.
+
+**MOCK with those two ratios applied to the Nov 6 unit** (noise 0.171, beam 0.109″ x 0.085″, 6 seeds, `ac1_score_power_div2.54_condorbeam*`):
+| disc | moment-0 G1 | G1-3D | fit scored | V_c of 430 |
+|---|---|---|---|---|
+| smooth, R_e 1.56 kpc | 6 of 6 | 6 of 6 | 6 of 6 | 408–444 |
+| compact, R_e 0.8 kpc | 6 of 6 | 6 of 6 | 6 of 6 | 413–438 |
+| no line | 0 of 6 | 0 of 6 | none | |
+
+**This reverses PAPER66 v1.1's "likely non-detection".** Detection and a usable V_c are now the expected outcome, if the Nov 6 unit resembles its sister. That is an inference from one sister unit, not the unit's own noise. Smooth 90 % radii are 3.2–5.1 kpc, so G2 passes there. Hand scaling for U4_27928: aperture noise falls by about 2.54 x 1.5, so S/N about 0.6 at log M_gas 10.51; G1 still fails, Prediction A stands. Sister cube is 31 GB per spw at 0.025″ pixels; at about 0.013″ pixels the Nov 6 cube would be near 115 GB per spw, an estimate.
+
 ## Not done
 No z rule for route N; its reading is an extrapolation. Masses and fluxes keep the authors' reductions. E, E-CCBH, BH-k3 are not recomputed at z 2.52.
 

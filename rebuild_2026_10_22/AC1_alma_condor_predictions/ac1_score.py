@@ -185,7 +185,7 @@ def spec(kind, seed=None):
     if kind == "compact": Reg = 0.8
     if kind == "tension": Vc, nf = 300.0, 1 / 30.0
     vr = math.sqrt(Vc ** 2 - 2 * s0 ** 2 * R_G2 / RDG); vf = vr / (2 / math.pi * math.atan(R_G2 / rt)); dv = 20.0
-    return dict(ra=RA, dec=DEC, nu_line=NU, restfrq=NU_REST, pix=BEAM0 / 3, n=512, beam=(0.070, 0.062, 30.0), dv=dv, vlo=-1560.0, vhi=1560.0, inc=inc, pa=0.5, q_int=math.cos(math.radians(inc)), h=(Reg / 1.678) / KPA, vf=vf, rt=rt, s0=s0, kpa=KPA,
+    return dict(ra=RA, dec=DEC, nu_line=NU, restfrq=NU_REST, pix=BEAM0 / 3, n=512, beam=tuple(x * y for x, y in zip((0.0657, 0.0657), tuple(float(t) for t in opt("--beam-scale", "1.065,0.944").split(",")))) + (30.0,), dv=dv, vlo=-1560.0, vhi=1560.0, inc=inc, pa=0.5, q_int=math.cos(math.radians(inc)), h=(Reg / 1.678) / KPA, vf=vf, rt=rt, s0=s0, kpa=KPA,
                 SdV=F, sigma=SENS * math.sqrt(10 / dv) * nf / float(opt("--noise-div", "1")), seed=(9420 + sum(map(ord, kind))) if seed is None else seed, label=f"AC1 MOCK {kind}", true={"VC_PB": Vc, "SDV": F}), Vc
 def selftest(d):
     os.makedirs(d, exist_ok=True); ok = []; RES = {}; use3 = True
@@ -214,7 +214,7 @@ def selftest(d):
     return all(o for _, o in ok)
 
 def power(d, N):
-    os.makedirs(d, exist_ok=True); T = {"realistic": [], "compact": [], "noise": []}; dv_ = opt("--noise-div", "1"); ptag = "" if dv_ == "1" else f"_div{dv_}"
+    os.makedirs(d, exist_ok=True); T = {"realistic": [], "compact": [], "noise": []}; dv_ = opt("--noise-div", "1"); ptag = "" if dv_ == "1" else f"_div{dv_}" + ("_condorbeam" if "--beam-scale" in _ARGS else "")
     for kind in T:
         for i in range(N):
             sp, Vc = spec(kind, seed=70000 + 97 * i + sum(map(ord, kind))); p = os.path.join(d, f"AC1_MOCK_power_{kind}.fits"); C.write_mock_cube(p, sp)
