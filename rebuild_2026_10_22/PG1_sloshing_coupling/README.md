@@ -12,7 +12,7 @@ Criteria: `FROZEN_CRITERIA.md` (ffe29d775b), committed alone first. `pg1.py`, `p
 
 The text's claim, 150–200 km/s at Υ 0.50 by ε 0.285, misses: 0.40 there, and 0.52 needs ε 1, all of E_SN. Dwarfs still move first: 60–100 km/s is at 1.18 by ε 0.46.
 
-**Why.** The factor's medians by bin are 0.006, 0.014, 0.026, 0.035, 0.023, 0.024. It does favour 150–200, by about 2.5–6 ×, but that's on the native shape, and less than the text's 5.4 × between 20–60 and 150–200 only at one end. It doesn't offset the 4–8 × lower cost of undoing a dwarf. Non-monotonic bin 20–60 at low ε comes from per-galaxy thresholds on 12 systems.
+**Why.** The factor's medians by bin are 0.006, 0.014, 0.026, 0.035, 0.023, 0.024. So the text's relative boost holds, 5.8 × between 20–60 and 150–200 against its 5.4 ×, but the absolute factors are about 4 × smaller than its 0.026 and 0.140, on this native shape. And it only favours 150–200 by 2.5 × over 60–100, where the 35 dwarfs that set the tilt sit. That doesn't offset their lower cost of undoing. Non-monotonic bin 20–60 at low ε comes from per-galaxy thresholds on 12 systems.
 
 **Delivery.** Every ε reaching the line is at least 0.46, about 150 × CM1's gravity-only channel of about 0.3 % of E_SN. Citation of Pontzen & Governato 2012 unverified here.
 
