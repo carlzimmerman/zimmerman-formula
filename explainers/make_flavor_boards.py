@@ -53,7 +53,7 @@ OUT_BOARD = {"v4": "status_board_v4.png", "canonical": "status_board_canonical_r
              "pmedium": "status_board_pmedium.png", "v3v": "status_board_v3v.png",
              "coreE": "status_board_core_law.png"}
 OUT_GRID = "flavor_comparison_grid.png"
-BOARD_DATE = {"coreE": "31 October 2026"}   # flavors added later carry their own date
+BOARD_DATE = {"coreE": "1 November 2026"}   # flavors added later carry their own date
 
 FLAVORS = ["v3", "v4", "canonical", "plain_mond", "lcdm", "pmedium", "v3v", "coreE"]
 TITLE = {"v3": "v3", "v4": "v4", "canonical": "canonical rules", "plain_mond": "plain MOND", "lcdm": "ΛCDM",
@@ -77,7 +77,7 @@ RECIPES = {
     "v3v": "Literal Blanchet–Skordis Khronon (J_x, BS K(Q) dust) + covector P, with NO γ_L stiffness. Moving subsystems "
            "hold phantom only within 2GM_b/V² (velocity screening). κ fitted; no L★.",
     "coreE": "Route E (owner's flagship, 10-25), no a₀ floor (owner, 10-31): Newtonian gravity on baryons + cold dark energy halos with the smooth core "
-             "ρ₀/(1+x²)^(3/2) at ρ₀r₀ = f_c η Σ_coll, native η; fair share inside r_ta; no law force. κ fitted in the a₀ law only.",
+             "ρ₀/(1+x²)^(3/2) at ρ₀r₀ = f_c η Σ_coll, native η; fair share inside r_ta; no law force. κ fitted in the a₀ law only. Fails on measured gas; retiring it is the owner's call.",
 }
 PSEUDO = {"newton"}   # the Newtonian / GR limit some lanes compute as a row; never a column of its own
 
@@ -207,6 +207,10 @@ L("NF1", {"coreE"}, R + "NF1_no_floor_rule/README.md:L1-L14 (no floor); nf1_nati
 L("ND1", {"coreE"}, R + "ND1_native_dwarfs/README.md:L5-L25 (native N on SPARC, X80's ratios)")
 L("ZN3", {"coreE"}, R + "ZN3_native_shape_at_1e15/README.md:L1-L12 (native z = 0 profile)")
 L("RG1", {"coreE"}, R + "RG1_native_n_regrade/README.md:L1-L20 (native N regrade)")
+L("NR2", {"coreE"}, R + "NR2_low_mass_ng80/README.md:L1-L27 (N with all three anchors at ng 80)")
+L("NR3", {"coreE"}, R + "NR3_ur1_on_nr2/README.md:L1-L18 (EM1 off and Blumenthal on NR2's eta)")
+L("ZN4", {"coreE"}, R + "ZN4_cluster_resolution/README.md:L1-L15 (native profile at ng 80, measured gas)")
+L("LC1", {"coreE"}, R + "LC1_live_contraction/README.md:L1-L19 (disc grown live in the zoom)")
 
 # ---------------------------------------------------------------------------------------------------------------------
 # What each lane itself concluded: (lane, flavor computed, row) -> (colour, file:line where the lane states it).
@@ -218,14 +222,14 @@ def V(lane, comp, row, st, where):
 
 
 # core law (route E): X70 (f★ 0.20) and X71 (measured f★); SPARC and groups do not use f★ (X71 README L13)
-V("NF1", "coreE", "Rotation curves (SPARC RAR)", "PASS", R + "X80_low_mass_floor_emergence/README.md:L18 (native N, Υ 0.70 / 0.72; "
-  "no footing in the halo)")
-V("NF1", "coreE", "Galaxy groups (BFJR)", "PASS", R + "X80_low_mass_floor_emergence/README.md:L18 (groups Z +1.45)")
-V("ZN3", "coreE", "Cluster cores (eRASS1 × KiDS)", "COND", R + "ZN3_native_shape_at_1e15/README.md:L1-L12 (15 of 15 on X-COP's gas, "
-  "11-12 on eRASS1's; the S rule itself fails three keys, NF1)")
+V("NR2", "coreE", "Rotation curves (SPARC RAR)", "PASS", R + "NR2_low_mass_ng80/README.md:L1 (ALL-NG80 PASSES [NOISE-LIMITED], Υ 0.75 / 0.76)")
+V("NR3", "coreE", "Galaxy groups (BFJR)", "PASS", R + "NR3_ur1_on_nr2/README.md:L9 (EM1 off, Z +1.47)")
+V("ZN4", "coreE", "Cluster cores (eRASS1 × KiDS)", "FAIL", R + "ZN4_cluster_resolution/README.md:L11 (measured gas +0.005: X-COP ONLY, 12 of 15, G-OUT-M3 +4.41)")
 V("RG1", "coreE", "Central ellipticals (SLUGGS)", "FAIL", R + "RG1_native_n_regrade/README.md:L1-L14 (+0.125, 1 of 4)")
 V("RG1", "coreE", "Local Group dwarfs (5 classes)", "FAIL", R + "RG1_native_n_regrade/README.md:L9-L21 (0 of 5)")
-V("ND1", "coreE", "LITTLE THINGS dwarfs", "FAIL", R + "ND1_native_dwarfs/README.md:L5-L25 (median E +0.138)")
+V("NR3", "coreE", "LITTLE THINGS dwarfs", "FAIL", R + "NR3_ur1_on_nr2/README.md:L9 (EM1 off, +0.153 / +0.147)")
+V("NR3", "coreE", "Upsilon tilt with V_flat", "FAIL", R + "NR3_ur1_on_nr2/README.md:L9 (EM1 off, tilt +0.59)")
+V("LC1", "coreE", "Live disc response", "FAIL", R + "LC1_live_contraction/README.md:L6 (f_Q 0.872, BLUMENTHAL HOLDS); NR3_ur1_on_nr2/README.md:L10 (Υ 0.35 / 0.36 with it)")
 V("RG1", "coreE", "Milky Way (X5 box)", "COND", R + "RG1_native_n_regrade/README.md:L9-L14 (wide priors only)")
 # v4
 V("H3", "v4", "Health: ghosts, gradients", "COND", TV3 + ":L26-L30")
@@ -393,8 +397,7 @@ VERIFIED_GREEN_F = {
         "coordinator rerun identical; with U1 (54ee83e54e; coordinator rerun: main 15/16, A2 6/6)"),
     ("v3v", "Outer globular clusters"): ("O1", "ecbb964b0e", "coordinator rerun identical"),
     ("v3v", "Local a0 from MeerKAT"): ("P4", "6c0249a8bc", "coordinator rerun 2026-10-23: P4 identical except peak RSS"),
-    ("coreE", "Rotation curves (SPARC RAR)"): ("NF1", "a42ae32a01", "ND1 reruns native N with X80's ratios: Υ 0.70 / 0.72 (73805754b6)"),
-    ("coreE", "Galaxy groups (BFJR)"): ("NF1", "a42ae32a01", "nf1_native_read --check reproduces N0 grader output to 1e-9; K3 ΔZ = 0 for the floor at group masses"),
+    ("coreE", "Galaxy groups (BFJR)"): ("NR3", "8621c6f5dd", "NR3 K1 reproduces NR2's run of the same name, |d| 0, by a separate driver; independent audit of 11-01 clean"),
     ("lcdm", "Native CMB"): ("C2", "5e93769089",
         "the ΛCDM refit is reproduced independently by C7 K1 (README L161: 1003.48 vs C2's 1003.20) and Q6 "
         "(README L21: 1003.47)"),
@@ -648,15 +651,17 @@ CELLS = [
     C("pmedium", 3, "Linear growth", "PASS",
       "σ₈ / dust limit 0.9991 (from a = 1e-3), 0.967 (1e-4); a WDM-like cutoff at k ~ 1–6 h/Mpc is flagged", ["Y1"]),
     # ---------------- core law (route E, smooth core): X70 / X71 ----------------
-    C("coreE", 1, "Rotation curves (SPARC RAR)", "PASS",
-      "native N, no floor: line passes, Υ 0.70 / 0.72, rms 0.068; Υ runs 1.20 to 0.54 with V_flat; law's rms 0.054", ["NF1", "ND1"]),
-    C("coreE", 1, "Galaxy groups (BFJR)", "PASS", "63 groups, Z +1.45 on native N", ["NF1"]),
-    C("coreE", 2, "Cluster cores (326 eRASS1)", "COND",
-      "native z = 0 profile: 15 of 15 on X-COP's gas, 11–12 on eRASS1's own; S rule: three keys over, X-COP −0.186 / 0.214", ["ZN3", "RG1"]),
-    C("coreE", 1, "Central ellipticals (SLUGGS)", "FAIL", "mean +0.125, Zc +6.1, 1 of 4", ["RG1"]),
-    C("coreE", 1, "Local Group dwarfs (5 classes)", "FAIL", "0 of 5, all under, Z +3.1 to +6.6; S and M200 extrapolated below 1e10; floor had 4 of 5", ["RG1"]),
-    C("coreE", 1, "LITTLE THINGS dwarfs", "FAIL", "median E +0.138, line 0.10, short in all 200 seed draws", ["ND1"]),
-    C("coreE", 1, "Milky Way (X5 box)", "COND", "wide priors only: 7 cells, R_d 1.93–2.27; none inside priors; V_c 202.8 on McMillan", ["RG1"]),
+    C("coreE", 1, "Rotation curves (SPARC RAR)", "COND",
+      "all anchors at ng 80: line passes at medians, Υ 0.75 / 0.76, rms 0.069, NOISE-LIMITED; 24 of 40 seed draws pass; Υ runs 1.20 to 0.57 with V_flat", ["NR2"]),
+    C("coreE", 1, "Galaxy groups (BFJR)", "PASS", "63 groups, Z +1.47, ng 80 anchors", ["NR3"]),
+    C("coreE", 2, "Cluster cores (326 eRASS1)", "FAIL",
+      "measured gas +0.005: native X-COP passes, 12 of 15, G-OUT-M3 +4.41 / +4.13; 15 of 15 only at +0.111, which GS4 doesn't support", ["ZN4"]),
+    C("coreE", 1, "Upsilon tilt with V_flat", "FAIL", "tilt +0.59 against 0.15; with response +0.17, Υ then 0.35", ["NR3"]),
+    C("coreE", 1, "Live disc response", "FAIL", "live zoom f_Q 0.87 [0.54, 1.07]; Υ 0.35 / 0.36 with response, 150–250 km/s at 0.30, 0.36 at any low-mass η; cusps only, cored test pending", ["LC1", "NR3"]),
+    C("coreE", 1, "Central ellipticals (SLUGGS)", "FAIL", "mean +0.125, Zc +6.1, 1 of 4; not recomputed on NR2", ["RG1"]),
+    C("coreE", 1, "Local Group dwarfs (5 classes)", "FAIL", "0 of 5, all under, Z +3.1 to +6.6; not recomputed on NR2; floor had 4 of 5", ["RG1"]),
+    C("coreE", 1, "LITTLE THINGS dwarfs", "FAIL", "median E +0.153 / +0.147 at ng 80 anchors, line 0.10", ["NR3"]),
+    C("coreE", 1, "Milky Way (X5 box)", "COND", "wide priors only: 7 cells, R_d 1.93–2.27; none inside priors; not recomputed on NR2", ["RG1"]),
 ]
 
 

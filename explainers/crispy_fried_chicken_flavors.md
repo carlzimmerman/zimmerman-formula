@@ -34,18 +34,18 @@ Boards: [v4](img/status_board_v4.png) · [canonical rules](img/status_board_cano
 
 ## Counts
 
-The grid has 50 rows.
+The grid has 52 rows.
 
 | flavor | pass | conditional | fails | not decidable | open | n/c (not computable) | grey (not computed) |
 |---|---|---|---|---|---|---|---|
-| v3 | 7 | 9 | 10 | 5 | 8 | 0 | 14 |
-| v4 | 1 | 1 | 6 | 0 | 1 | 0 | 44 |
-| canonical rules | 6 | 5 | 9 | 7 | 8 | 0 | 18 |
-| plain MOND | 2 | 3 | 8 | 4 | 2 | 0 | 34 |
-| ΛCDM | 1 | 4 | 0 | 0 | 0 | 0 | 48 |
-| P-medium (Codex) | 3 | 2 | 0 | 0 | 0 | 7 | 41 |
-| v3v (velocity-screened, no γ_L) | 3 | 4 | 7 | 0 | 1 | 0 | 38 |
-| core law (route E) | 2 | 2 | 3 | 0 | 0 | 0 | 46 |
+| v3 | 7 | 9 | 10 | 5 | 8 | 0 | 16 |
+| v4 | 1 | 1 | 6 | 0 | 1 | 0 | 46 |
+| canonical rules | 6 | 5 | 9 | 7 | 8 | 0 | 20 |
+| plain MOND | 2 | 3 | 8 | 4 | 2 | 0 | 36 |
+| ΛCDM | 1 | 4 | 0 | 0 | 0 | 0 | 50 |
+| P-medium (Codex) | 3 | 2 | 0 | 0 | 0 | 7 | 43 |
+| v3v (velocity-screened, no γ_L) | 3 | 4 | 7 | 0 | 1 | 0 | 40 |
+| core law (route E) | 1 | 2 | 6 | 0 | 0 | 0 | 46 |
 
 ## v4
 
@@ -244,7 +244,7 @@ The grid has 50 rows.
 - **v3v (velocity-screened, no γ_L).** Its own cells come from O1 §3 (ecbb964b0e) with H4 and H5. A reused v3 verdict needs a cited line showing γ_L does not enter (the guard requires it). Grey: groups (O1 L112: members DEPEND on whether the group's khronon is held); the strong-field rows (P3's regular holes and strong coupling depend on L★; only the static exterior, P3 L25, is γ_L-free); lensing, SLUGGS, high-z and the rest, which were never shown to be γ_L-free. BBN (Q6, γ_L-free per Q6 L172) has no grid row, because the main board refused that tile. Outer globulars take O1's own class (PASS, PROXY speeds); Cassini is drawn conditional because O1 calls it an estimate.
 - **Canonical rules, CFG960.** It is counted under the canonical rules, as the coordinator classed it; N0 labels it the SCT-M engine (domains, conversion of cold energy into phantom bodies, census baryons; AUDIT L52-L53, L116).
 
-## core law (route E) (added 29 October 2026; rule changed 31 October)
+## core law (route E) (added 29 October 2026; rule changed 31 October; recomputed 1 November)
 
 **Recipe:** Route E, the owner's 25 October flagship, without the a₀ floor (owner decision 31 October): Newtonian gravity on baryons plus cold dark energy halos.
 - **Halo shape:** the smooth core ρ₀/(1+x²)^(3/2), chosen by hand. Native zooms make cusps.
@@ -254,7 +254,9 @@ The grid has 50 rows.
 
 ![core law board](img/status_board_core_law.png)
 
-Only seven rows are computed for this flavor; every other row is grey.
+Nine rows are computed for this flavor; every other row is grey.
+
+**1 November.** On measured gas, the cluster tile goes from conditional to fails: ZN4 at GS4's +0.005 reads X-COP ONLY, 12 of 15, G-OUT-M3 +4.41, and +0.111 isn't supported. SPARC goes from pass to conditional: NR2 passes at the medians, Υ 0.75 / 0.76, but it's NOISE-LIMITED and only 24 of 40 seed draws pass (post-result). New tiles: the Υ tilt with V_flat and the live disc response, both failing. LITTLE THINGS is regraded on NR3. SLUGGS, Local Group and Milky Way stay as RG1, not recomputed on NR2. Doors tried on 11-01 (DR1–DR9, CP1) and pending lanes (PZ1, DR8, FG1) aren't on this board: they test other rules, or haven't landed. κ = ½ FITTED. Nothing here says the data favour the framework.
 
 | row | colour | lane | why |
 |---|---|---|---|
