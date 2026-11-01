@@ -12,7 +12,7 @@ K1 dropped Okabe + Martino (width 4.45 % against 3 %, offset −3.3 %), so the g
 | Mahdavi + Okabe + Martino | 78 | +0.042 | 0.028 | NO GAP |
 | **All three** | **81** | **+0.031** | **0.020** | **NO GAP** |
 
-K1's width likely comes from Martino's table giving one r500 per cluster beside two instruments' masses (see `hl2_post.out`). That's my reading; it doesn't restore the source to the grade. The two big samples disagree cluster by cluster, though: on their 19 shared clusters g is −0.022 (Mahdavi) and +0.033 (Okabe + Martino), and M_WL differs by 0.106 dex in the median, a calibration difference flagged by K4.
+I can't explain K1's width. I expected it to come from Martino's one r500 per cluster beside two instruments' masses, but Chandra alone still reads 4.5 % (n 41), and XMM alone reads 25.6 % (n 31), so r500 evidently doesn't follow XMM's mass. The source stays out of the grade. The two big samples disagree cluster by cluster, though: on their 19 shared clusters g is −0.022 (Mahdavi) and +0.033 (Okabe + Martino), and M_WL differs by 0.106 dex in the median, a calibration difference flagged by K4.
 
 ## What this changes
 1. **The 0.12 gap LF1 left doesn't appear as lensing against hydrostatic on the same clusters.** All three samples read about +0.03; 0.12 is over 4 SE from the post-result combined value. So hydrostatic bias of that size isn't what these published pairs show.
