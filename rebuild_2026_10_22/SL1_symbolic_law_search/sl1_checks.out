@@ -1,0 +1,20 @@
+load 0.0 s; SPARC 175; unique graded 123; train 62 holdout 61; I1 0.31158
+  A_c2b_refit: U 0.720 rms 0.06864 vs record 0.720 0.06864
+  B_cfg886_bg: U 0.750 rms 0.06971 vs record 0.750 0.06971
+K1 NR1 PRIMARY on 175: max |d| 0.0e+00: PASS
+K2 U by V_flat inclusive bins, n [13, 35, 23, 25, 18, 10] sum 124, unique 123: max |d| 0.000: PASS
+  h0672 one-template Z: G-IN-all -2.06, G-MID-T1 -1.73, G-MID-T3 -2.62, G-OUT-all -1.69, G-IN-Mall -2.89
+  h0686 one-template Z: G-IN-all -2.14, G-MID-T3 -1.97, G-OUT-all -1.65, G-IN-Mall -2.45
+K3 cluster preds vs NR1 PRIMARY cells, both footings: max |d| 8.9e-16: PASS
+K5 LITTLE THINGS at ND1's rule: +0.1383, max |d| 0.0e+00: PASS
+  LITTLE THINGS at NR1 PRIMARY: +0.1383, +0.1317
+K6 groups Z +1.4675 vs +1.4675, mean |d| 1.4e-17: PASS
+K7 X-COP mean -0.1602 rms 0.1862 (FAIL line): max |d| 0.0e+00: PASS
+baseline train: gate 10.699 g1 0.740 g2 4.905 g3 3.400 g4 1.655; bad ['G-IN-all', 'G-MID-T3', 'G-IN-Mall']; U {'U': 0.775, 'tilt': 0.5199999999999999} S_z [-1.69, -3.53, -4.51, -1.02, -1.86, -2.74]
+  SPARC leaves: q [1.86e+03, 5.58e+03, 3.87e+04], v [5.88e-05, 0.000202, 0.000625], z [1.86, 2.14, 2.45], eta [21.6, 24.5, 29.3], cf [6.95, 7.7, 8.87]
+  LT leaves: q [1.4e+03, 1.56e+04, 1.82e+05], v [2.71e-05, 6.92e-05, 0.000138], z [2.24, 2.41, 2.64], eta [26.9, 29.3, 29.3], cf [8.28, 8.87, 8.87]
+  clusters leaves: q [5.09, 17.1, 151], v [0.000526, 0.0017, 0.00326], z [1.33, 1.46, 1.74], eta [22.1, 22.1, 23.2], cf [7.08, 7.08, 7.38]
+tier1 probe A inv1p(log1p(mul(q,fb))): True, B add(1,mul(xb,inv1p(mul(q,xc)))): True, A='2': False
+speed: A only 2 ms, A+B 4 ms
+MUTATE q_diss scrambled: gate 131.352 -> 129.810: BITES
+CHECKS ALL PASS
