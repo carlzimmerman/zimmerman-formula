@@ -18,7 +18,7 @@ Criteria `FROZEN_CRITERIA.md`, committed alone first (57d3ac6b64). `ac1_predict.
 - In MUTATE, K6 also fails (C 0.736): S3's library reads the same `--mutate` flag and mutates its solver. Harmless to the lane's normal outputs.
 
 ## Scoring harness
-`ac1_score.py`, tested on MOCK only: selftest 10 of 10 (`ac1_score_selftest.out`), seeds at archive noise in `ac1_score_power.out`. Smooth disc: G1-3D passes 1 of 7, moment-0 0 of 7. Compact: 6 of 7. No line: 0 of 7. Quoted V_c errors understate the MOCK scatter. `ADDENDUM_G1_DRAFT.md` is not in force. Not tested on a real pipeline cube; at finer real pixels memory may exceed the 1.06 GB seen here. A cube of tens of GB may not fit: 27 GB free on 2026-11-01. C1 injection starts at the truth, so it flatters recovery.
+`ac1_score.py`, tested on MOCK only: selftest 10 of 10 (`ac1_score_selftest.out`), seeds at archive noise in `ac1_score_power.out`. Smooth disc: G1-3D passes 1 of 7, moment-0 0 of 7. Compact: 6 of 7. No line: 0 of 7. Quoted V_c errors understate the MOCK scatter. `ADDENDUM_G1.md` is filed (owner, 2026-11-01): G1-3D decides on real cubes. Not tested on a real pipeline cube; at finer real pixels memory may exceed the 1.06 GB seen here. A cube of tens of GB may not fit: 27 GB free on 2026-11-01. C1 injection starts at the truth, so it flatters recovery.
 
 ## Not done
 No z rule for route N; its reading is an extrapolation. Masses and fluxes keep the authors' reductions. E, E-CCBH, BH-k3 are not recomputed at z 2.52.

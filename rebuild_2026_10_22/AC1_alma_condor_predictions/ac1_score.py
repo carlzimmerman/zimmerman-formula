@@ -4,7 +4,7 @@
     python3 -B ac1_score.py --cube FILE       # a real or MOCK cube; real runs write ac1_score_RELEASE.out/.json
     python3 -B ac1_score.py --power DIR --n 6     # MOCK seeds at archive noise: detection and fit recovery
     python3 -B ac1_score.py --cube FILE --mutate   # velocity axis +1000 km/s; exit 1 if G1 fails there (the control bites)
-G1 is the frozen moment-0 gate. The 3D statistic always prints; it decides only if ADDENDUM_G1.md is filed here (owner) or, for MOCK cubes, with --test-addendum.
+ADDENDUM_G1.md is filed: G1-3D decides on real cubes; the frozen moment-0 G1 always prints beside it. MOCK cubes use G1-3D only with --test-addendum or --selftest.
 kappa = 1/2 FITTED; footings never pooled; cold dark energy, never a particle; one disc excludes no model; not theory closed."""
 import contextlib, hashlib, io, json, math, os, subprocess, sys
 for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "VECLIB_MAXIMUM_THREADS", "MKL_NUM_THREADS"): os.environ[_v] = "1"
@@ -31,6 +31,8 @@ KERN = dict(PR["KERN"]); KERN["Newton"] = PR["nuN"]; LM200 = (12.0, 12.5, 13.0)
 
 # ---- G1-3D (ADDENDUM_G1): smooth, threshold, grow, compare with the same procedure off source ----
 Q_MIN = 0.2   # moment-0 q at or below q0 is clamped (A-U11): that branch is flagged and not scored
+_pw = json.load(open(os.path.join(HERE, "ac1_score_power_results.json")))["runs"]["compact"]; _vv = [x["Vc"] for x in _pw if x["valid"]]
+MOCK_FRAC = math.sqrt(np.mean([(x / 430.0 - 1) ** 2 for x in _vv]))   # ADDENDUM_G1 rule 6: rms V_c recovery on the committed MOCK seeds; readings use the larger error
 SM_FWHM, SM_DV, THR_HI, THR_LO, SEED_R, MIN_BIN = 0.15, 100.0, 4.0, 2.5, 0.5, 0.02
 def g1_3d(box, rng, vcen=0.0, n=200):
     """box: continuum-subtracted sub-cube. Returns S (Jy km/s) in the 3D mask touching the seed cylinder at the target, the selection-aware S/N and the mask."""
@@ -144,7 +146,7 @@ def measure(path, vshift=0.0, use3d=False, inject=True):
         atb = [n for n, i_, lo, hi in (("V_f", 4, 10.0, 800.0), ("R_t", 5, 0.05, 15.0), ("sigma0", 6, 3.0, 250.0), ("h", 8, 0.01, 3.0)) if p[i_] <= lo * 1.02 or p[i_] >= hi * 0.98]
         valid = not clamped and not atb and spread <= 0.15 and np.isfinite(v["eVc_PB"]) and v["eVc_PB"] / max(v["Vc_PB"], 1.0) <= 0.25 and np.isfinite(v["eVc_P0"]) and v["eVc_P0"] / max(v["Vc_P0"], 1.0) <= 0.25
         fits[nm] = dict(params=p, names=fd0["names"], chi2N=fd0["chi2"] / fd0["nvox"], inc=inc, G2_reached=reached, R90_dep_kpc=Rdep, R_score=Rs, V=v, valid=bool(valid), at_bound=atb, start_spread=spread, inc_clamped=bool(clamped))
-        if valid: branches[f"{nm}|P-B"] = (v["Vc_PB"], v["eVc_PB"], Rs); branches[f"{nm}|P0"] = (v["Vc_P0"], v["eVc_P0"], Rs)
+        if valid: branches[f"{nm}|P-B"] = (v["Vc_PB"], max(v["eVc_PB"], MOCK_FRAC * v["Vc_PB"]), Rs); branches[f"{nm}|P0"] = (v["Vc_P0"], max(v["eVc_P0"], MOCK_FRAC * v["Vc_P0"]), Rs)
         P(f"thin-disc fit [{nm}, i {inc:.1f}]: V_f {p[4]:.0f}, R_t {p[5]:.2f} kpc, sigma0 {p[6]:.0f}, h {p[8]:.3f}\"; G2 {'PASS' if reached else 'FAIL'} (90% flux radius {Rdep:.2f} kpc), at {Rs:.2f} kpc: V_c P-B {v['Vc_PB']:.0f} +- {v['eVc_PB']:.0f}, P0 {v['Vc_P0']:.0f} +- {v['eVc_P0']:.0f}; chi2/N {fits[nm]['chi2N']:.3f}; start spread {spread:.2f}; at bound {atb}; " + ("scored" if valid else "FIT NOT CONSTRAINED: not scored"))
     m["fits"], m["branches"] = fits, branches; m["score"] = {}
     for bn, (V, eV, Rs) in branches.items():
@@ -226,6 +228,7 @@ def main():
     want = "57d3ac6b64"; cur = hashlib.sha256(open(os.path.join(HERE, "FROZEN_CRITERIA.md"), "rb").read()).hexdigest()
     old = hashlib.sha256(subprocess.run(["git", "show", f"{want}:rebuild_2026_10_22/AC1_alma_condor_predictions/FROZEN_CRITERIA.md"], cwd=ROOT, capture_output=True).stdout).hexdigest()
     if cur != old: raise SystemExit("FROZEN_CRITERIA.md differs from its freezing commit")
+    P(f"MOCK V_c error fraction {MOCK_FRAC:.3f}")
     P(f"AC1 scoring harness; criteria {want} unchanged; kappa = 1/2 FITTED; one disc excludes no model; not theory closed")
     if "--selftest" in _ARGS: sys.exit(0 if selftest(opt("--selftest")) else 1)
     if "--power" in _ARGS: power(opt("--power"), int(opt("--n", "6"))); sys.exit(0)
