@@ -1,0 +1,2 @@
+# RM1 amendments
+**A1, before the rerun.** The criteria require a rerun when NR2 lands. Rerun: same 180 cells, same five gates, on NR2 MEDIAN (ρ₁₀, ρ₁₁ from `nr2_results.json`, `NR2_MEDIAN_cf_table.json`). K1 and K2 now compare with NR3 MEDIAN's `EM1|blum` and `EM1|off` rows, since UR2's rows are NR1's. Outputs `rm1n_*`. The label tag stays [NOISE-LIMITED], NR2's band being wide. NR1's outputs are kept. Expectation on record: NO CELL, because NR3 shows the 150–250 km/s bins don't move with low-mass η.
