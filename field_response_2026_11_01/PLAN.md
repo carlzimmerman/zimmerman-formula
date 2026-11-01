@@ -24,23 +24,35 @@ bounded runner. **Spec:** CONTRACT.md and CONTRACT_STATIC.md.
 ## Tasks
 
 - [x] Snapshot inputs and freeze both contracts before new scientific runs.
-- [ ] Derive radial quadratic energy and a positive-inertia linear completion;
+- [x] Derive radial quadratic energy and a positive-inertia linear completion;
   document the vacuum prescription and the fluid-closure assumption.
-- [ ] Write local-Hessian, gravity and source controls before the radial code;
+- [x] Write local-Hessian, gravity and source controls before the radial code;
   demonstrate missing implementation fails, then implement and run controls.
-- [ ] Implement the radial energy screen, refined adverse witnesses, and
+- [x] Implement the radial energy screen, refined adverse witnesses, and
   finite-basis linear behavior where useful. No nonlinear-formation claim.
-- [ ] Implement fixed-dark-mass static continuation with independent integral
+- [x] Implement fixed-dark-mass static continuation with independent integral
   and stress/virial checks, zero-forcing controls and frozen refinements.
-- [ ] Run the two experiments through bounded manifests and inspect every
+- [x] Run the two experiments through bounded manifests and inspect every
   scientific result separately from implementation-control success.
-- [ ] Independent review; fix any material numerical or interpretation defects,
+- [x] Independent review; fix any material numerical or interpretation defects,
   retaining previous runs. Write README, exact reproduction and handoff.
-- [ ] Verify manifests/source dependencies and publish the result-only branch;
-  report verified commit and remote branch with the physical outcome.
+- Publication: verified package is ready for the result-only branch; the final
+  chat records the pushed commit and independently checked remote ref.
 
 Execution ruling: the user approved the proposed experiment and publication;
 no additional design-approval pause is required. This research package uses
 the established per-experiment plan location rather than software-wide docs.
 The static and radial implementations are independent; root coordinates the
 latter, a collaborator the former, and a separate reviewer the mathematics.
+
+## Material execution decisions
+
+The fluid screen found six adverse directions, so an exact canonical kinetic
+shear correction and independent finite-energy test were added before claiming
+a kinetic energy saddle. Three dilute controls distinguish that dense-state
+result from a universal claim about the parent. Smaller static continuation
+steps address solver convergence without changing physical forcing. Three
+completed dilute endpoints received the same necessary energetic screen.
+The full nonlinear kinetic/vacuum completion remains open and is not claimed
+as implemented; the explicit linear completion and accessible energy tests
+are the bounded outcome. No fitted contraction factor or observed a0 was added.

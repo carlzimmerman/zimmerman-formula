@@ -1,0 +1,63 @@
+{
+  "claim_id": "FR01_STATIC",
+  "mathematics": {
+    "assertion_tested": "Six frozen parent baselines and sixty fixed-dark-mass static Plummer response records, including zero-forcing controls, independent mass/scalar/stress/virial checks and four predetermined domain/tolerance refinements. Serialization-only amendment A1 preserves failed nonfinite diagnostics.",
+    "coefficient_domain": "Float64 SciPy collocation BVP, adaptive quadrature and finite differences; no interval certificate",
+    "conventions": "CONTRACT_STATIC.md and STATIC_DERIVATION.md; positive external baryon density; dark mass fixed by total outer slope minus analytic enclosed Plummer mass; same B,k,C_s within each response family",
+    "inputs": [
+      "Frozen PN28 finite-gradient baseline solver",
+      "psi_c in .8,.95,.99; epsilon in .0001,.01",
+      "Weak diffuse mb/M=.05,a/R=.5 and strong compact mb/M=.2,a/R=.1",
+      "Baryon fractions 0,.25,.5,.75,1; scale radius uses unforced matter radius"
+    ],
+    "bounds": {
+      "baseline_cases": 6,
+      "response_records": 60,
+      "refinement_cases": 4,
+      "bvp_tolerance": 1e-06,
+      "refined_tolerance": 2e-07,
+      "maximum_nodes": 20000,
+      "mass_scalar_virial_energy_tolerance": 2e-05,
+      "force_tolerance": 0.0005,
+      "refinement_relative_tolerance": 5e-05,
+      "plummer_control_relative_tolerance": 2e-06,
+      "max_threads": 1,
+      "wall_seconds": 300,
+      "cpu_seconds": 240
+    },
+    "non_claims": [
+      "No dynamical stability or formation",
+      "No general vacuum evolution",
+      "No universal column or B/V selection",
+      "No empirical fit or calibrated dwarf/spiral population",
+      "No proof of nonexistence if continuation fails"
+    ]
+  },
+  "execution_artifacts": [
+    "field_response_2026_11_01/static_response.py",
+    "field_response_2026_11_01/inputs/check_gradient.py",
+    "field_response_2026_11_01/CONTRACT_STATIC.md",
+    "field_response_2026_11_01/STATIC_DERIVATION.md",
+    "field_response_2026_11_01/static_response_v2.py",
+    "field_response_2026_11_01/STATIC_AMENDMENT_A1.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

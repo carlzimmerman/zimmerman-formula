@@ -1,0 +1,84 @@
+{
+  "claim_id": "FR01_ENDPOINT_STABILITY",
+  "mathematics": {
+    "assertion_tested": "Finite radial fluid and canonical kinetic energy screens on the three completed fixed-mass dilute baryon endpoints.",
+    "coefficient_domain": "float64 BVP, Gauss-Legendre quadrature and symmetric generalized eigenvalues",
+    "conventions": "Same PN28 parent; isotropic-fluid curvature and canonical anisotropic kinetic curvature reported separately; trial metric only normalizes energy directions.",
+    "inputs": [
+      "PN28 frozen static source and parent snapshots"
+    ],
+    "bounds": {
+      "psi_c": [
+        0.2,
+        0.4
+      ],
+      "epsilon": [
+        0.01
+      ],
+      "basis_sizes": [
+        4,
+        8,
+        12
+      ],
+      "quadrature": [
+        256,
+        512
+      ],
+      "scalar_bvp_tolerance": [
+        2e-06,
+        3e-07
+      ],
+      "negative_scaled_margin": -1e-05,
+      "max_bvp_nodes": 24000,
+      "endpoints": [
+        [
+          0.2,
+          "weak_diffuse"
+        ],
+        [
+          0.2,
+          "strong_compact"
+        ],
+        [
+          0.4,
+          "weak_diffuse"
+        ]
+      ]
+    },
+    "non_claims": [
+      "No full kinetic stability or eigenmode theorem",
+      "No nonlinear vacuum crossing completion",
+      "No observation mapping"
+    ]
+  },
+  "execution_artifacts": [
+    "field_response_2026_11_01/endpoint_stability.py",
+    "field_response_2026_11_01/endpoint_reconstruction.py",
+    "field_response_2026_11_01/radial_stability_v2.py",
+    "field_response_2026_11_01/kinetic_screen_v2.py",
+    "field_response_2026_11_01/static_dilute.py",
+    "field_response_2026_11_01/static_response.py",
+    "field_response_2026_11_01/inputs/check_gradient.py",
+    "field_response_2026_11_01/static_dilute_run_001/result.json",
+    "field_response_2026_11_01/CONTRACT_ENDPOINT_STABILITY.md"
+  ],
+  "software": [
+    {
+      "name": "python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "schema_version": 2,
+  "claim_id": "FR01_RADIAL",
+  "repository": {
+    "commit": "e5f4a22020b90034b79532e5ead3b7d7e9050e78",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "-I",
+    "field_response_2026_11_01/radial_stability.py",
+    "field_response_2026_11_01/radial_run_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Six existing finite-gradient halos tested for negative fixed-mass radial energy directions in nested 4/8/12-dimensional displacement spaces, independently relaxed scalar BVPs, and doubled quadrature/tighter-tolerance witnesses.",
+    "coefficient_domain": "float64 BVP, Gauss-Legendre quadrature and symmetric generalized eigenvalues",
+    "conventions": "Contract and THEORY_REVIEW; quadratic isotropic-fluid completion with material scalar inertia; positive Ritz signs not continuum stability.",
+    "inputs": [
+      "PN28 frozen static source and parent snapshots"
+    ],
+    "bounds": {
+      "psi_c": [
+        0.8,
+        0.95,
+        0.99
+      ],
+      "epsilon": [
+        0.0001,
+        0.01
+      ],
+      "basis_sizes": [
+        4,
+        8,
+        12
+      ],
+      "quadrature": [
+        256,
+        512
+      ],
+      "scalar_bvp_tolerance": [
+        2e-06,
+        3e-07
+      ],
+      "negative_scaled_margin": -1e-05,
+      "max_bvp_nodes": 24000
+    },
+    "non_claims": [
+      "No nonlinear vacuum-crossing evolution",
+      "No kinetic Vlasov stability conclusion",
+      "No physical galaxy mapping or observed a0",
+      "No universal stability from positive finite Ritz values"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T19:23:52.461392+00:00",
+    "runtime_seconds": 0.142522,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 300.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 240,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "field_response_2026_11_01/radial_run_001/result.json",
+      "field_response_2026_11_01/radial_run_001/profiles.npz"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "field_response_2026_11_01/radial_stability.py",
+    "field_response_2026_11_01/inputs/check_gradient.py",
+    "field_response_2026_11_01/inputs/PARENT.md",
+    "field_response_2026_11_01/inputs/STATIC_GRADIENT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "field_response_2026_11_01/radial_stability.py",
+      "sha256": "c3d312ec7b1ea9c42c9996ed56cc5c489fee2730d01da16b8b01cefa4a38b904",
+      "sha256_after": "c3d312ec7b1ea9c42c9996ed56cc5c489fee2730d01da16b8b01cefa4a38b904"
+    },
+    {
+      "path": "field_response_2026_11_01/inputs/check_gradient.py",
+      "sha256": "1f5cb1020eda2238f65a624a8eebac8a77ec2fb07f22fdfec9bd2dca8c562652",
+      "sha256_after": "1f5cb1020eda2238f65a624a8eebac8a77ec2fb07f22fdfec9bd2dca8c562652"
+    },
+    {
+      "path": "field_response_2026_11_01/inputs/PARENT.md",
+      "sha256": "6deea173491b9c8e4d88b528ac0895faf2c6ec99273aa86c9d6e73d7c7d8537d",
+      "sha256_after": "6deea173491b9c8e4d88b528ac0895faf2c6ec99273aa86c9d6e73d7c7d8537d"
+    },
+    {
+      "path": "field_response_2026_11_01/inputs/STATIC_GRADIENT.md",
+      "sha256": "8b6d501f0ddfa522c5a9cafe6c90592a007bb5b80575bbbf0d302d0135b0d970",
+      "sha256_after": "8b6d501f0ddfa522c5a9cafe6c90592a007bb5b80575bbbf0d302d0135b0d970"
+    }
+  ],
+  "output_directory": "field_response_2026_11_01/radial_run_001",
+  "declared_results": [
+    "field_response_2026_11_01/radial_run_001/result.json",
+    "field_response_2026_11_01/radial_run_001/profiles.npz"
+  ],
+  "outputs": [
+    {
+      "path": "field_response_2026_11_01/radial_run_001/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "field_response_2026_11_01/radial_run_001/stderr.txt",
+      "sha256": "8d07108aac90b503918cf824e1917852971b961276a6ed7f08021fa878893187",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: field_response_2026_11_01/radial_run_001/result.json, field_response_2026_11_01/radial_run_001/profiles.npz"
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "schema_version": 2,
+  "claim_id": "FR01_CANONICAL_FINITE_ENERGY",
+  "repository": {
+    "commit": "4b72281d77edaa60e86416eed993e2151f41f1de",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "field_response_2026_11_01/canonical_energy_check.py",
+    "field_response_2026_11_01/canonical_energy_run_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "For each of the six pre-existing 12-basis canonical kinetic witnesses, direct finite canonical deformations reproduce the independently integrated quadratic curvature and decrease full energy in both signs when the first-variation residual is controlled.",
+    "coefficient_domain": "float64 static and scalar BVPs, Gauss-Legendre quadrature, stable finite energy increments",
+    "conventions": "Q is the second energy derivative, not the t-squared coefficient. r_t=r+t xi(r), p=J^-T p0, s_t(x)=s0(x)+t sigma(x). The scalar domain remains fixed; an asymptotic quadratic exterior tail closes its finite boundary.",
+    "inputs": [
+      "All six refined 12-component vectors from kinetic_run_002/result.json; same frozen PN28 background source"
+    ],
+    "bounds": {
+      "cases": "psi_c in [0.8,0.95,0.99] crossed with epsilon in [0.0001,0.01]",
+      "witness_selection": "last quadrature evaluation, last nested basis, no optimization",
+      "quadrature_counts": [
+        512,
+        1024
+      ],
+      "scalar_bvp_tolerance": 3e-08,
+      "scalar_bvp_node_cap": 30000,
+      "normalized_steps": [
+        0.02,
+        0.01,
+        0.005,
+        0.0025
+      ],
+      "step_normalization": "M=max(1,abs(xi_prime),abs(xi/r),abs(sigma),abs(xi)/min(R,L-R)) sampled on 4097 interior and 4097 scalar points; h=normalized_step/M",
+      "finite_difference_tolerance": "relative to abs(Q), at most 0.001 on the two smallest steps of each quadrature; abs(Q)>1e-7 required",
+      "quadrature_tolerance": "difference of independently integrated Q at 512 and 1024 divided by max(1,abs(Q1024)) below 3e-5",
+      "original_curvature_tolerance": "difference from frozen original witness divided by max(1,abs(Q)) below 3e-5",
+      "stationarity_tolerance": "abs(exact first variation) <= 0.1*abs(Q)*smallest_h",
+      "negative_energy": "both plus and minus direct energy increments must be negative for the two smallest steps, at both quadratures",
+      "admissibility": "all stretches positive and deformed matter radius lies inside L",
+      "wall_seconds": 180,
+      "cpu_seconds": 150,
+      "maximum_log_bytes": 262144
+    },
+    "non_claims": [
+      "No exponential kinetic eigenmode claim",
+      "No new fit or optimized witness",
+      "No all-parameter result",
+      "No full nonlinear vacuum-crossing completion",
+      "Finite differences are not interval-certified"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T19:32:04.898932+00:00",
+    "runtime_seconds": 2.830303,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 150,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "field_response_2026_11_01/canonical_energy_check.py",
+    "field_response_2026_11_01/radial_stability_v2.py",
+    "field_response_2026_11_01/inputs/check_gradient.py",
+    "field_response_2026_11_01/inputs/PARENT.md",
+    "field_response_2026_11_01/inputs/STATIC_GRADIENT.md",
+    "field_response_2026_11_01/kinetic_run_002/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "field_response_2026_11_01/canonical_energy_check.py",
+      "sha256": "21b22db22f7d3cd15c1f7c0e3206157e72c6ab8eeed6bdae0c041009617f8f6d",
+      "sha256_after": "21b22db22f7d3cd15c1f7c0e3206157e72c6ab8eeed6bdae0c041009617f8f6d"
+    },
+    {
+      "path": "field_response_2026_11_01/radial_stability_v2.py",
+      "sha256": "62dcd08272baf83d091956f4db5cf38c5d5fb5ab2f543e1d433ec09d59998fb7",
+      "sha256_after": "62dcd08272baf83d091956f4db5cf38c5d5fb5ab2f543e1d433ec09d59998fb7"
+    },
+    {
+      "path": "field_response_2026_11_01/inputs/check_gradient.py",
+      "sha256": "1f5cb1020eda2238f65a624a8eebac8a77ec2fb07f22fdfec9bd2dca8c562652",
+      "sha256_after": "1f5cb1020eda2238f65a624a8eebac8a77ec2fb07f22fdfec9bd2dca8c562652"
+    },
+    {
+      "path": "field_response_2026_11_01/inputs/PARENT.md",
+      "sha256": "6deea173491b9c8e4d88b528ac0895faf2c6ec99273aa86c9d6e73d7c7d8537d",
+      "sha256_after": "6deea173491b9c8e4d88b528ac0895faf2c6ec99273aa86c9d6e73d7c7d8537d"
+    },
+    {
+      "path": "field_response_2026_11_01/inputs/STATIC_GRADIENT.md",
+      "sha256": "8b6d501f0ddfa522c5a9cafe6c90592a007bb5b80575bbbf0d302d0135b0d970",
+      "sha256_after": "8b6d501f0ddfa522c5a9cafe6c90592a007bb5b80575bbbf0d302d0135b0d970"
+    },
+    {
+      "path": "field_response_2026_11_01/kinetic_run_002/result.json",
+      "sha256": "7889b2e74bf6011d5f002a3999c67439b86dd1f5d076cf2fa6bc740a0920cfc1",
+      "sha256_after": "7889b2e74bf6011d5f002a3999c67439b86dd1f5d076cf2fa6bc740a0920cfc1"
+    }
+  ],
+  "output_directory": "field_response_2026_11_01/canonical_energy_run_001",
+  "declared_results": [
+    "field_response_2026_11_01/canonical_energy_run_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "field_response_2026_11_01/canonical_energy_run_001/stdout.txt",
+      "sha256": "1137404f8ab49b169a9a5cd61c62183a04a8ea588f3dbe862b3e0a9ca0e9c6fa",
+      "kind": "log"
+    },
+    {
+      "path": "field_response_2026_11_01/canonical_energy_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "field_response_2026_11_01/canonical_energy_run_001/result.json",
+      "sha256": "69e1963435ba60b67f4f7c42fd89d6bbca638c9f412f040b10f1792cc1052e2c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

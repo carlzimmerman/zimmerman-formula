@@ -1,0 +1,69 @@
+{
+  "claim_id": "FR01_KINETIC",
+  "mathematics": {
+    "assertion_tested": "Six canonical kinetic radial energy screens with exact anisotropic shear cost, fixed PN28 parent, stretch-factor finite-difference controls and 256/512 quadrature.",
+    "coefficient_domain": "float64 BVP, Gauss-Legendre quadrature and symmetric generalized eigenvalues",
+    "conventions": "Contract and THEORY_REVIEW; quadratic isotropic-fluid completion with material scalar inertia; positive Ritz signs not continuum stability.",
+    "inputs": [
+      "PN28 frozen static source and parent snapshots"
+    ],
+    "bounds": {
+      "psi_c": [
+        0.8,
+        0.95,
+        0.99
+      ],
+      "epsilon": [
+        0.0001,
+        0.01
+      ],
+      "basis_sizes": [
+        4,
+        8,
+        12
+      ],
+      "quadrature": [
+        256,
+        512
+      ],
+      "scalar_bvp_tolerance": [
+        2e-06,
+        3e-07
+      ],
+      "negative_scaled_margin": -1e-05,
+      "max_bvp_nodes": 24000
+    },
+    "non_claims": [
+      "No full kinetic stability or eigenmode theorem",
+      "No nonlinear vacuum crossing completion",
+      "No observation mapping"
+    ]
+  },
+  "execution_artifacts": [
+    "field_response_2026_11_01/kinetic_screen_v2.py",
+    "field_response_2026_11_01/radial_stability_v2.py",
+    "field_response_2026_11_01/inputs/check_gradient.py",
+    "field_response_2026_11_01/inputs/PARENT.md",
+    "field_response_2026_11_01/inputs/STATIC_GRADIENT.md",
+    "field_response_2026_11_01/CONTRACT_KINETIC.md"
+  ],
+  "software": [
+    {
+      "name": "python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

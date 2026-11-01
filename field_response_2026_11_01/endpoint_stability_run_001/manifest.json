@@ -1,0 +1,206 @@
+{
+  "schema_version": 2,
+  "claim_id": "FR01_ENDPOINT_STABILITY",
+  "repository": {
+    "commit": "4b72281d77edaa60e86416eed993e2151f41f1de",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "field_response_2026_11_01/endpoint_stability.py",
+    "field_response_2026_11_01/endpoint_stability_run_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite radial fluid and canonical kinetic energy screens on the three completed fixed-mass dilute baryon endpoints.",
+    "coefficient_domain": "float64 BVP, Gauss-Legendre quadrature and symmetric generalized eigenvalues",
+    "conventions": "Same PN28 parent; isotropic-fluid curvature and canonical anisotropic kinetic curvature reported separately; trial metric only normalizes energy directions.",
+    "inputs": [
+      "PN28 frozen static source and parent snapshots"
+    ],
+    "bounds": {
+      "psi_c": [
+        0.2,
+        0.4
+      ],
+      "epsilon": [
+        0.01
+      ],
+      "basis_sizes": [
+        4,
+        8,
+        12
+      ],
+      "quadrature": [
+        256,
+        512
+      ],
+      "scalar_bvp_tolerance": [
+        2e-06,
+        3e-07
+      ],
+      "negative_scaled_margin": -1e-05,
+      "max_bvp_nodes": 24000,
+      "endpoints": [
+        [
+          0.2,
+          "weak_diffuse"
+        ],
+        [
+          0.2,
+          "strong_compact"
+        ],
+        [
+          0.4,
+          "weak_diffuse"
+        ]
+      ]
+    },
+    "non_claims": [
+      "No full kinetic stability or eigenmode theorem",
+      "No nonlinear vacuum crossing completion",
+      "No observation mapping"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T19:35:18.031222+00:00",
+    "runtime_seconds": 4.356706,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 300.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 240,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "field_response_2026_11_01/endpoint_stability.py",
+    "field_response_2026_11_01/endpoint_reconstruction.py",
+    "field_response_2026_11_01/radial_stability_v2.py",
+    "field_response_2026_11_01/kinetic_screen_v2.py",
+    "field_response_2026_11_01/static_dilute.py",
+    "field_response_2026_11_01/static_response.py",
+    "field_response_2026_11_01/inputs/check_gradient.py",
+    "field_response_2026_11_01/static_dilute_run_001/result.json",
+    "field_response_2026_11_01/CONTRACT_ENDPOINT_STABILITY.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "field_response_2026_11_01/endpoint_stability.py",
+      "sha256": "c4cd9b31064f8875e9947fb6c2e4a6825ae2839b0a76b2ee19adbe70cda08292",
+      "sha256_after": "c4cd9b31064f8875e9947fb6c2e4a6825ae2839b0a76b2ee19adbe70cda08292"
+    },
+    {
+      "path": "field_response_2026_11_01/endpoint_reconstruction.py",
+      "sha256": "345ba91e993057a4322a72e44a7ed32cca340c976d6b7bc24d6e1d279bd5dd65",
+      "sha256_after": "345ba91e993057a4322a72e44a7ed32cca340c976d6b7bc24d6e1d279bd5dd65"
+    },
+    {
+      "path": "field_response_2026_11_01/radial_stability_v2.py",
+      "sha256": "62dcd08272baf83d091956f4db5cf38c5d5fb5ab2f543e1d433ec09d59998fb7",
+      "sha256_after": "62dcd08272baf83d091956f4db5cf38c5d5fb5ab2f543e1d433ec09d59998fb7"
+    },
+    {
+      "path": "field_response_2026_11_01/kinetic_screen_v2.py",
+      "sha256": "eb526da3459a400f28894059cecaf74341c39ef933aac0c4a293c6e772d905f5",
+      "sha256_after": "eb526da3459a400f28894059cecaf74341c39ef933aac0c4a293c6e772d905f5"
+    },
+    {
+      "path": "field_response_2026_11_01/static_dilute.py",
+      "sha256": "8080278061dad1e5ff509f7462912e1255594080948be93b1d715e36b7a046c7",
+      "sha256_after": "8080278061dad1e5ff509f7462912e1255594080948be93b1d715e36b7a046c7"
+    },
+    {
+      "path": "field_response_2026_11_01/static_response.py",
+      "sha256": "51faf8f19b3471a3fb0bd40dc1e76fc47c0697c43d313397bbad124ca682dfa5",
+      "sha256_after": "51faf8f19b3471a3fb0bd40dc1e76fc47c0697c43d313397bbad124ca682dfa5"
+    },
+    {
+      "path": "field_response_2026_11_01/inputs/check_gradient.py",
+      "sha256": "1f5cb1020eda2238f65a624a8eebac8a77ec2fb07f22fdfec9bd2dca8c562652",
+      "sha256_after": "1f5cb1020eda2238f65a624a8eebac8a77ec2fb07f22fdfec9bd2dca8c562652"
+    },
+    {
+      "path": "field_response_2026_11_01/static_dilute_run_001/result.json",
+      "sha256": "fa055839b9fd55d9ea9410c13ac4745a499e02578e0d2e578233be79291dc78c",
+      "sha256_after": "fa055839b9fd55d9ea9410c13ac4745a499e02578e0d2e578233be79291dc78c"
+    },
+    {
+      "path": "field_response_2026_11_01/CONTRACT_ENDPOINT_STABILITY.md",
+      "sha256": "70ac46f7deada01ec130ed29111c2337626a459062d43e7f1094e342f20c215e",
+      "sha256_after": "70ac46f7deada01ec130ed29111c2337626a459062d43e7f1094e342f20c215e"
+    }
+  ],
+  "output_directory": "field_response_2026_11_01/endpoint_stability_run_001",
+  "declared_results": [
+    "field_response_2026_11_01/endpoint_stability_run_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "field_response_2026_11_01/endpoint_stability_run_001/stdout.txt",
+      "sha256": "44f9155fcf599e77a5cf0eef2222b25c8739120f6deb05c309d8675f58441915",
+      "kind": "log"
+    },
+    {
+      "path": "field_response_2026_11_01/endpoint_stability_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "field_response_2026_11_01/endpoint_stability_run_001/result.json",
+      "sha256": "9c45038813b25406f6a00ebb8552b6aef3b81f9ac1dea6ff8bf2fd212b8de37c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
