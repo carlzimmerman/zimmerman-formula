@@ -4,7 +4,7 @@ Criteria `FROZEN_CRITERIA.md`, committed alone first (57d3ac6b64). `ac1_predict.
 
 κ = ½ FITTED. Footings never pooled. One disc excludes no model. Not theory closed. Nothing here says the data favour the framework. These are predictions; no pixel of this MOUS has been read.
 
-**Deposited 2026-11-01 as PAPER66 v1.0, DOI 10.5281/zenodo.23865084, before the release.** **v1.1, DOI 10.5281/zenodo.23867238, corrects the 3D forecast.**
+**Deposited 2026-11-01 as PAPER66 v1.0, DOI 10.5281/zenodo.23865084, before the release.** **v1.1, DOI 10.5281/zenodo.23867238, corrects the 3D forecast.** **v1.2, DOI 10.5281/zenodo.23868979, reverses the detection forecast from measured noise.**
 
 ## Findings
 1. **The release's target is U4_28473 (z 2.52), not U4_27928.** Phase centre offset 0.002″ against 7.361″. CFG570 matched U4_27928 inside the field of view. CFG806 and every seal are unchanged, but the record's wording "U4_27928's ALMA data" should be read as a serendipitous off-axis reading.
