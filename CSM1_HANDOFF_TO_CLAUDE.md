@@ -657,3 +657,16 @@ resources/input inventory for GROUP_MESH_023_ROUTE.md tiles44[3.06,3.07] and
 45[3.07,3.08]. Corrected native point and legacy NL1 failures are complete,
 not rerun; robust derivedL and continuous feasibility stay OPEN. See
 rebuild_2026_10_22/CSM2_single_L_search/GROUP_MESH_022_REVIEW.md and group_mesh_022_union.json.
+
+
+Fixed group_mesh_023 completes tiles44[3.06,3.07] and45[3.07,3.08]; both
+necessarily fail unchanged absZ<2 in analytic fixed-native-EPS/quadrature scope.
+All2batch+16run/13independent70digit review controls per tile and6exact
+coverage/hash/mutation controls pass. Gap-free direct group failure extends
+to L[2.62,3.08], Zlower>=2.1122871602. Inventory47of89reviewed,42pending; all
+holes and historical immutable evidence remain. No derivative extrapolation,
+physical fit or global/original floating claim. Next freeze runnable criteria/
+resources/input inventory for GROUP_MESH_024_ROUTE.md tiles46[3.08,3.09] and
+47[3.09,3.10]. Corrected native point and legacy NL1 failures are complete,
+not rerun; robust derivedL and continuous feasibility stay OPEN. See
+rebuild_2026_10_22/CSM2_single_L_search/GROUP_MESH_023_REVIEW.md and group_mesh_023_union.json.
