@@ -1,0 +1,102 @@
+FG1_final_grade: scorecard, frozen criteria 3b2fae101a. kappa = 1/2 FITTED; T LOCATED; footings never pooled; not theory closed
+
+=== Checks
+K1 C1, C2 read straight from NR3 MEDIAN; line recomputed |d| 0e+00; README row literals missing []: PASS
+K2 LEE1 Step-0 K0a, K0b, K0c, K2a, K2b pass; law rms within 1.8e-05 of EM1 LAW 0.0541 / 0.0537: PASS
+K3 law tail's median Upsilon against the harness's law, max |d| 0.000 (line 0.02): PASS
+K4 12 literals and 5 JSON keys in their source files; missing []: PASS
+K0-diagnosis X43's K0x38 is the law branch in harness mode, K0's X30 half is GS1's tail: off_passes_both True, law_k0x38_is_law True, on_k0x38_is_law True, flag_false_code True, on_x30_is_tail True, other_checks_pass True: PASS
+
+=== Table, canonical primary. C1, C2 have no a0: footings coincide
+
+--- C1 native N, no response
+  S   PASS       U 0.75/0.76, rms 0.0690/0.0701  [NR2]  | no a0, footings coincide
+  Tl  FAIL       +0.59/+0.59  [NR2]
+  LT  FAIL       +0.153/+0.147  [NR2]
+  G   PASS       Z +1.47  [NR2]
+  K   FAIL       12 of 15, over 2: G-MID-T3, G-OUT-M3, G-OUT-Mall; worst G-OUT-M3 +4.41  [READ ZN4]  | f* 0.0615: 12 of 15, G-OUT-M3 +4.13
+  X   PASS       mean +0.013, rms 0.075  [READ ZN4]  | N's smooth core on the NR3 path reads -0.160, 0.186: a different profile, not this cell
+  Ln  FAIL       class LAW, dchi2(H2H-L2H) +434.4, alt +463.5  [READ FC1]  | not on NR2
+  Dw  FAIL       MW ultra-faint +5.02; bright M31 +0.97; M31 others +2.43; MW classical +3.14; LG field +2.76  [READ ND1]  | ND1's primary core row, free M200, z_f
+  MW  FAIL       FEASIBLE (WIDE PRIORS ONLY), 1 cell  [READ UR3]  | UR3's table is NR1 PRIMARY, not NR2. Wide priors only isn't a pass
+  DM  FAIL       r 1.365, Upsilon_K 0.618, target 0.90-1.10  [READ UR3]
+  IC  FAIL       E -0.474 (Z -6.3)  [READ ND1]  | RF2: disfavoured, not excluded; depends on inclination
+
+--- C2 N + Blumenthal response
+  S   FAIL       U 0.35/0.36, rms 0.0670/0.0678  [NR2]  | rms clears; Upsilon doesn't
+  Tl  FAIL       +0.17/+0.18  [NR2]
+  LT  FAIL       +0.116/+0.109  [NR2]
+  G   PASS       Z +1.50  [NR2]
+  K   FAIL       14 of 15, over 2: G-IN-Mall; worst G-IN-Mall -2.05; G-OUT-M3 +0.40  [NR2]  | NR3's row: smooth core + response on eRASS1's gas, one template. ZN4's shape with a response not computed on record
+  X   FAIL       mean -0.097, rms 0.146  [NR2]  | NR3's row and the same line; ZN4's own profile with a response isn't on record
+  Ln  FAIL       class LAW, dchi2(H2H-L2H) +434.4, alt +463.5  [READ FC1]  | not on NR2, no response in FC1
+  Dw  NOT GRADED no lane has it  [no lane on record]
+  MW  FAIL       V+K ONLY, 0 cells  [READ UR3]  | Gnedin, the alternate: FEASIBLE IN PRIORS. UR3's table is NR1 PRIMARY. Its stress test: this weighs inner cold mass, not the response
+  DM  PASS       r 1.071, Upsilon_K 0.287, n 28  [READ UR3]  | Fragile: CFG577's Jeans integral raises r 5-7 %, to about 1.13, outside; Upsilon_K 0.287 is below SPARC's line
+  IC  NOT GRADED no lane has it  [no lane on record]
+
+--- C3 basin split, canonical
+  S   PASS       U 0.52/0.52, rms 0.0627/0.0637  [NR2]  | LEE1 harness at L 7.082 (NR2's 10^14), S9 shape, X43's floor kept: disclosed departure
+  Tl  PASS       +0.02/+0.02  [NR2]  | law on all systems; ignores the 9 of 175 SPARC galaxies above T (5.1 %)
+  LT  PASS       -0.025/-0.025  [NR2]  | law on all systems; ignores the 9 of 175 SPARC galaxies above T (5.1 %)
+  G   PASS       Z +1.39  [NR2]  | LEE1 harness at L 7.082 (NR2's 10^14), S9 shape, X43's floor kept: disclosed departure
+  K   FAIL       12 of 15, over 2: G-MID-T3, G-OUT-M3, G-OUT-Mall; worst G-OUT-M3 +4.41  [READ ZN4]  | the harness's own cluster row isn't this cell
+  X   PASS       mean +0.013, rms 0.075  [READ ZN4]
+  Ln  PASS       ENV2H-L2H +0.0, ENV2H-H2H -461.0  [NR2]  | LEE1 harness at L 7.082 (NR2's 10^14), S9 shape, X43's floor kept: disclosed departure
+  Dw  PASS       MW ultra-faint -1.91; bright M31 -0.73; M31 others +0.09; MW classical +0.24; LG field +0.57  [NR2]  | satellites on route E, flag independent of T and L
+  MW  FAIL       FEASIBLE (WIDE PRIORS ONLY), 13 cells on 3 lines, 3 on all four  [READ BS1, its own L 4.0]  | Wide priors only isn't a pass; R_d 1.93 short disc
+  DM  NOT GRADED r 1.250 (alt 1.212) CFG576, 1.342 CFG577; neither in 0.90-1.10  [READ CFG576/577, numbers only]  | those lanes' own gates failed, frozen INCONCLUSIVE, so no verdict is read from them; the round rule is the law on these discs
+  IC  FAIL       E -0.603 (Z -7.62)  [READ BS1, its own L 4.0]  | RF2's class: FAILS under every halo-free inclination
+
+--- C3 basin split, alt (reported, not pooled)
+  S   FAIL       U 0.44/0.44, rms 0.0618/0.0627  [NR2]  | LEE1 harness at L 7.082 (NR2's 10^14), S9 shape, X43's floor kept: disclosed departure
+  Tl  PASS       -0.02/-0.02  [NR2]  | law on all systems; ignores the 9 of 175 SPARC galaxies above T (5.1 %)
+  LT  PASS       -0.064/-0.064  [NR2]  | law on all systems; ignores the 9 of 175 SPARC galaxies above T (5.1 %)
+  G   PASS       Z +1.37  [NR2]  | LEE1 harness at L 7.082 (NR2's 10^14), S9 shape, X43's floor kept: disclosed departure
+  K   FAIL       12 of 15, over 2: G-MID-T3, G-OUT-M3, G-OUT-Mall; worst G-OUT-M3 +4.41  [READ ZN4]  | the harness's own cluster row isn't this cell
+  X   PASS       mean +0.013, rms 0.075  [READ ZN4]
+  Ln  PASS       ENV2H-L2H +0.0, ENV2H-H2H -490.2  [NR2]  | LEE1 harness at L 7.082 (NR2's 10^14), S9 shape, X43's floor kept: disclosed departure
+  Dw  FAIL       MW ultra-faint -2.77; bright M31 -0.87; M31 others -0.10; MW classical -0.42; LG field +0.08  [NR2]  | satellites on route E, flag independent of T and L
+  MW  FAIL       FEASIBLE (WIDE PRIORS ONLY), 13 cells on 3 lines, 3 on all four  [READ BS1, its own L 4.0]  | Wide priors only isn't a pass; R_d 1.93 short disc
+  DM  NOT GRADED r 1.250 (alt 1.212) CFG576, 1.342 CFG577; neither in 0.90-1.10  [READ CFG576/577, numbers only]  | those lanes' own gates failed, frozen INCONCLUSIVE, so no verdict is read from them; the round rule is the law on these discs
+  IC  FAIL       E -0.648 (Z -8.44)  [READ BS1, its own L 4.0]  | RF2's class: FAILS under every halo-free inclination
+
+--- C4 the law alone, canonical
+  S   PASS       U 0.52/0.52, rms 0.0541/0.0541  [NR2]  | LEE1 harness, mode law
+  Tl  PASS       +0.02/+0.02  [NR2]
+  LT  PASS       -0.025/-0.025  [NR2]
+  G   PASS       Z +0.31  [NR2]  | LEE1 harness, mode law; no eta
+  K   FAIL       9 of 15, over 2 in either h: G-MID-T2, G-MID-T3, G-MID-b, G-OUT-all, G-OUT-b, G-OUT-M3; worst at h 0.672 G-MID-T3 +4.46  [NR2]  | harness template: f* 0.20, no gas tail, older than the measured chain of C1-C3
+  X   NOT GRADED the harness doesn't carry X-COP. CS2's law on record: -0.151, 0.205  [READ HO1, numbers only]
+  Ln  PASS       ENV2H-L2H +0.0, ENV2H-H2H -463.6  [NR2]  | L2H and ENV2H coincide in law mode, so the first number is zero by construction
+  Dw  FAIL       MW ultra-faint +5.22; bright M31 +2.20; M31 others +2.29; MW classical +1.69; LG field +0.57  [NR2]  | plain nu(g_N), no external-field term in X51's path
+  MW  FAIL       FEASIBLE (wide priors only), 7 of 175 cells (alt 4); passing cells K_z +4.7 to +6.6 sigma against Bovy & Rix  [READ X5, not RF1]  | SOURCE SWAP, disclosed: the criteria name RF1, which has no row for the law (only OS1 and native N); X5 is v3's AQUAL. Wide priors only isn't a pass
+  DM  NOT GRADED r 1.250 (alt 1.212) CFG576, 1.342 CFG577; neither in 0.90-1.10  [READ CFG576/577, numbers only]  | those lanes' own gates failed, frozen INCONCLUSIVE, so no verdict is read from them
+  IC  FAIL       E -0.593 (Z -7.9); RF2's class: FAILS under every halo-free inclination  [READ ND1, RF2]  | disfavoured, not excluded
+
+--- C4 the law alone, alt (reported, not pooled)
+  S   FAIL       U 0.44/0.44, rms 0.0537/0.0537  [NR2]  | LEE1 harness, mode law
+  Tl  PASS       -0.02/-0.02  [NR2]
+  LT  PASS       -0.064/-0.064  [NR2]
+  G   PASS       Z -0.31  [NR2]  | LEE1 harness, mode law; no eta
+  K   FAIL       5 of 15, over 2 in either h: G-MID-T2, G-MID-T3, G-MID-b, G-OUT-all, G-OUT-T1, G-OUT-T2, G-OUT-b, G-OUT-M1, G-OUT-M2, G-OUT-M3; worst at h 0.672 G-MID-T3 +4.11  [NR2]  | harness template: f* 0.20, no gas tail, older than the measured chain of C1-C3
+  X   NOT GRADED the harness doesn't carry X-COP. CS2's law on record: -0.151, 0.205  [READ HO1, numbers only]
+  Ln  PASS       ENV2H-L2H +0.0, ENV2H-H2H -492.9  [NR2]  | L2H and ENV2H coincide in law mode, so the first number is zero by construction
+  Dw  FAIL       MW ultra-faint +4.87; bright M31 +1.81; M31 others +2.12; MW classical +1.42; LG field +0.08  [NR2]  | plain nu(g_N), no external-field term in X51's path
+  MW  FAIL       FEASIBLE (wide priors only), 7 of 175 cells (alt 4); passing cells K_z +4.7 to +6.6 sigma against Bovy & Rix  [READ X5, not RF1]  | SOURCE SWAP, disclosed: the criteria name RF1, which has no row for the law (only OS1 and native N); X5 is v3's AQUAL. Wide priors only isn't a pass
+  DM  NOT GRADED r 1.250 (alt 1.212) CFG576, 1.342 CFG577; neither in 0.90-1.10  [READ CFG576/577, numbers only]  | those lanes' own gates failed, frozen INCONCLUSIVE, so no verdict is read from them
+  IC  FAIL       E -0.593 (Z -7.9); RF2's class: FAILS under every halo-free inclination  [READ ND1, RF2]  | disfavoured, not excluded
+
+=== Verdict per candidate
+  C1: FAILS; failed ['Tl', 'LT', 'K', 'Ln', 'Dw', 'MW', 'DM', 'IC']; NOT GRADED []
+  C2: FAILS; failed ['S', 'Tl', 'LT', 'K', 'X', 'Ln', 'MW']; NOT GRADED ['Dw', 'IC']
+  C3: FAILS; failed ['K', 'MW', 'IC']; NOT GRADED ['DM']
+  C4: FAILS; failed ['K', 'Dw', 'MW', 'IC']; NOT GRADED ['X', 'DM']
+  C3_alt: FAILS; failed ['S', 'K', 'Dw', 'MW', 'IC']; NOT GRADED ['DM']
+  C4_alt: FAILS; failed ['S', 'K', 'Dw', 'MW', 'IC']; NOT GRADED ['X', 'DM']
+
+OVERALL: ROUTE E DOES NOT SURVIVE ON MEASURED DATA [GAS-CONDITIONAL]
+  Tag: K at +0.111 is 15 of 15 on ZN4 (G-OUT-M3 worst +1.53, f* 0.0615 +1.18), so C1's and C3's K failure disappears. It rescues K only: C1 still fails ['Tl', 'LT', 'Ln', 'Dw', 'MW', 'DM', 'IC'], C3 ['MW', 'IC']. The verdict stays on GS4's +0.005.
+  No candidate is declared best by counting lines; the lines are not independent.
+
+kappa = 1/2 FITTED. Not theory closed. Nothing here says the data favour the framework.
