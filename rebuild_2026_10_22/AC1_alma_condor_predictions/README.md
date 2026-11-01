@@ -40,6 +40,11 @@ Public CONDOR unit uid://A001/X3788/Xbfce, UDS17159, spw23, first 30 channels (`
 
 **This reverses PAPER66 v1.1's "likely non-detection".** Detection and a usable V_c are now the expected outcome, if the Nov 6 unit resembles its sister. That is an inference from one sister unit, not the unit's own noise. Smooth 90 % radii are 3.2–5.1 kpc, so G2 passes there. Hand scaling for U4_27928: aperture noise falls by about 2.54 x 1.5, so S/N about 0.6 at log M_gas 10.51; G1 still fails, Prediction A stands. Sister cube is 31 GB per spw at 0.025″ pixels; at about 0.013″ pixels the Nov 6 cube would be near 115 GB per spw, an estimate.
 
+## Disk: streaming a cutout (2026-11-01, before any data; scores nothing)
+The Nov 6 cube may be near 115 GB per spw, an estimate, with 25 GB free. `ac1_stream_cutout.py` reads the cube as a byte stream and keeps a spatial box and all channels, records the archive file's sha256, passes later HDUs through, and refuses a truncated stream. `ac1_cutout_test.py`, MOCK only: the scorer's moment-0, sub-cube, noise, beam and frequency inputs are identical (max |d| 0) from whole cube and cutout, with keywords, a BEAMS table and four axes; an off-by-one CRPIX is caught.
+
+Size at ±4.5″, 0.013″ pixels, the sister's 476 channels: about 0.9 GB. Scorer on one MOCK at that pixel scale, beam 0.109″ x 0.085″, 252 channels, smooth disc: 263 s, **2.3 GB peak**, above the 1 GB limit for small jobs, so it runs once, with no 1024³ run live. One seed, truth 430: incl-Tadaki V_c 404 ± 12; the moment-0 inclination branch read i 84° and 349 ± 12, so that branch misreads this disc. Downloading still needs the owner's yes with the size.
+
 ## Not done
 No z rule for route N; its reading is an extrapolation. Masses and fluxes keep the authors' reductions. E, E-CCBH, BH-k3 are not recomputed at z 2.52.
 
