@@ -26,3 +26,6 @@ Item 2, COOL1 (CHOICE-DEPENDENT, NO LINK), RET1 (FAILS), BOLTZ1 (NEEDS A SELECTE
 Derivation of T capped at three pre-registered attempts, none started. COOL1 counts as no attempt: it wasn't from an action. If they yield no T without a fitted number, the unification search stops. Retiring route E remains the owner's decision.
 
 Next: FG1 ledger (another session), then a 5–8 page summary from it for an outside dynamicist; owner sends it. ALMA scoring against PAPER66 and Gaia DR4 as scheduled, dates to be checked against the frozen plans.
+
+## Update, later 2026-11-01: T attempts have now run; don't start another set
+`TD1_threshold_derivation` (criteria 7f011a08bc, result 3d29c9e008) ran three pre-registered attempts: T LOCATED, NOT DERIVED. It was frozen about two minutes after the note above, without having read it. **Mismatch:** that note counts only attempts from an action, and only A3 is one. A1 (turned-around mass) and A2 (CFG763's clock on basins) aren't. Whether TD1 fills the cap is the owner's call. Until then, no session starts a further T attempt.
