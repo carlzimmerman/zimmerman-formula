@@ -47,7 +47,7 @@ The coefficient re-derives here (γ_eff = 10/7 gives t_cool,post = 1.4 r_s/|u₁
 Cooling says where gas cools. PAPER64's split needs a place where the cold fluid isn't. Nothing in the record connects them.
 1. **No coupling.** The cold fluid sees only gravity. THEORY_PUSH B_condensed_rule says shock heating changes the gas's entropy, not its source. No rule or action has a term from gas's radiative state to cold density.
 2. **The only channel in the record has the wrong sign.** Cooling makes a disc, the disc contracts the cold fluid: LC1 R_live 2.15, f_Q 0.87, a denser halo. UR1's response is inward at disc baryon fractions. The split wants no halo there.
-3. **Energy.** At 10^12.3: cold binding 5.4e59 erg, gas thermal 1.5e59 erg, ratio **3.6**. Radiation also leaves optically thin gas. CFG930 found the same class of ordering problem.
+3. **Energy.** At 10^12.3: cold binding 5.4e59 erg, gas thermal 1.5e59 erg, ratio **3.6**. Radiation also leaves optically thin gas.
 4. **The basin.** T keys on the basin; cooling is per halo. On BS1's own LG all four halos are route E, and all are below T. Primary t_cool/t_dyn: LMC 0.46, M33 2.6, MW 25, M31 40; with Z 0.1 at 0.1 R, 0.00, 0.01, 0.26, 0.72, so all cool. A per-halo cooling key is the own-mass switch again, which PAPER64 shows needs T < 11.9 for the MW and T > 12.15 for lensing: the contradiction BS1 was built to remove. The basin at R0 795 kpc gives t_cool/t_dyn 85, but it's a turnaround surface with no shock there, so the criterion has no object.
 5. **Record:** GT1's gas-state rule on hot atmospheres already FAILS (G-OUT-M3 +3.25, D +0.090).
 
@@ -57,7 +57,7 @@ Cooling says where gas cools. PAPER64's split needs a place where the cold fluid
 - **Threshold: CHOICE-DEPENDENT.** Both primary rows miss W; spread ≫ 0.20 dex; some listed sets land in W, each a choice.
 - **Link: NO LINK.**
 
-Expectation held (primary near 1e11, spread over 1 dex, no link). I expected Z 0.3 at 0.1 R near 2e12; it gives 12.6 (P0).
+Expectation held (primary near 1e11, spread over 1 dex, no link). I expected Z 0.3 at 0.1 R near 2e12 (12.3); it gives 12.50 at P0.
 
 ## Checks
 K1 CFG934's M_cool 2.3383e9 (2.338e9), 5.7943e8 (5.792e8), inside 0.2 %. K2 Λ(1 keV, Z 0) 8.904e-24 against CFG581's AtomDB 8.917e-24; Z 1/Z 0 at 0.12 keV 24.2 against 30.1. K3 1.4, 0.01256. K4 μ(1e7 K) 0.588. K5 root 1.000000000. K6 scalings to 1e-10. MUTATE Λ/10: P0 −0.954 dex, bites.
