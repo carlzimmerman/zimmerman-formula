@@ -1,0 +1,86 @@
+COOL1_cooling_threshold MUTATE Lambda/10 criteria b154df6559
+native h 0.67770 Om 0.31040 f_b 0.15685; target W (12.19, 12.39), width 0.20 dex; W' (12.19, 12.6)
+  K1: PASS  M_cool z=0 2.3383e+09 vs CFG934 2.338e9; z=2 5.7943e+08 vs 5.792e8
+  K2: PASS  Lambda(1 keV,0) 8.904e-24 vs AtomDB 8.917e-24 (-0.001); Z=1/Z=0 at 0.12 keV 24.2 vs 30.1
+  K3: PASS  crit 1.4000, coefficient 0.01256
+  K4: PASS  mu(1e7 K) 0.5882
+  K5: PASS  ratio at root 1.000000000
+  K6: PASS  x 0.5: 0.500000000000; f_g 0.5: 2.000000000000
+
+Lambda(T) per n_e n_H, erg cm3/s
+  T 1e+05: Z=0 4.753e-23  TN Z=0.3 2.167e-21  used Z=0.3 2.167e-22
+  T 3e+05: Z=0 7.679e-24  TN Z=0.3 4.370e-22  used Z=0.3 4.370e-23
+  T 1e+06: Z=0 4.896e-24  TN Z=0.3 6.351e-23  used Z=0.3 6.351e-24
+  T 3e+06: Z=0 5.818e-24  TN Z=0.3 1.782e-23  used Z=0.3 1.782e-24
+  T 1e+07: Z=0 8.441e-24  TN Z=0.3 1.279e-23  used Z=0.3 1.279e-24
+
+PRIMARY: Z 0, f_g f_b, r_s R200c, isothermal, t_dyn r/V
+  P0  z 0: log M_thr 9.922, miss from W's nearer edge -2.268; V 29 km/s, T 3.00e+04 K
+  Pf  z_half 1.32: descendant log M0 10.054 (instantaneous 9.753)
+  Pfs z(f_s) 2.03: descendant log M0 10.523 (instantaneous 9.682)
+  t_cool/t_dyn at 10^12.3, primary, z 0: 503.19
+
+ONE AT A TIME (log M_thr; P0 = z 0 instantaneous, Pf = descendant at z_half)
+  Z 0                              P0   9.922        Pf  10.054
+  Z 0.03                           P0  10.801        Pf  10.973
+  Z 0.1                            P0  11.067        Pf  11.248
+  Z 0.3                            P0  11.327        Pf  11.514
+  Z 1                              P0  11.618        Pf  11.812
+  f_g/f_b 1                        P0   9.922        Pf  10.054
+  f_g/f_b 0.5                      P0   9.785        Pf   9.905
+  f_g/f_b 0.2                      P0    none        Pf   9.725
+  r_s/R 1                          P0   9.922        Pf  10.054
+  r_s/R 0.5                        P0  10.068        Pf  10.673
+  r_s/R 0.3                        P0  10.605        Pf  10.794
+  r_s/R 0.1                        P0  10.876        Pf  11.035
+  density uniform                  P0  10.162        Pf  10.771
+  t_dyn free fall                  P0   9.943        Pf  10.078
+  halo native Delta_vir (->200c)   P0   9.847        Pf  10.076
+  BD shock form, r_s/R 1           P0  11.162        Pf  11.339
+  BD shock form, r_s/R 0.5         P0  11.326        Pf  11.532
+  BD shock form, r_s/R 0.3         P0  11.465        Pf  11.699
+  BD shock form, r_s/R 0.1         P0  11.849        Pf  12.173
+  BD, r_s/R 0.1, Z 0.1             P0  12.570        Pf  12.823
+
+M_thr(z), instantaneous, primary and Z 0.1, 0.3 at r_s/R 1; Z 0.1 at r_s/R 0.1
+  z 0: 9.922  11.067  11.327  11.633
+  z 0.5: 9.859  11.014  11.275  11.582
+  z 1: 9.792  10.957  11.217  11.528
+  z 2: 9.684  10.857  11.118  11.436
+  z 3: 10.049  10.780  11.041  11.366
+  z 4: 9.980  10.719  10.980  11.314
+  z 6: 9.868  10.626  10.887  11.238
+
+CORNERS: Z x f_g x r_s/R, 60 cells of the frozen lists (not a search: every cell reported as a count)
+  P0: range 9.742 to 12.188, spread 2.447 dex = 12.2 x W; in W 0/60; in W' 0/60
+    cells in W (each a choice): 
+  Pf: range 9.725 to 12.401, spread 2.677 dex = 13.4 x W; in W 1/60; in W' 2/60
+    cells in W (each a choice): Z 1 f 0.5 x 0.1: 12.22
+  one-at-a-time spread Z: P0 1.696, Pf 1.757 dex
+  one-at-a-time spread f_g: P0 0.137, Pf 0.329 dex
+  one-at-a-time spread r_s: P0 0.954, Pf 0.981 dex
+
+FOOTINGS. Cold branch: no a0 in V or T, identical by construction. Law branch: V^4 = G a0 f_b M (a0 flat, disclosed)
+  canonical primary            law P0 8.268  Pf 8.852   cold P0 9.922
+  canonical Z 0.3              law P0 10.196  Pf 10.810   cold P0 11.327
+  canonical r_s/R 0.1          law P0 9.584  Pf 10.189   cold P0 10.876
+  canonical Z 0.1, r_s/R 0.1   law P0 10.625  Pf 11.226   cold P0 11.633
+  alt       primary            law P0 8.166  Pf 8.752   cold P0 9.922
+  alt       Z 0.3              law P0 10.092  Pf 10.711   cold P0 11.327
+  alt       r_s/R 0.1          law P0 9.478  Pf 10.092   cold P0 10.876
+  alt       Z 0.1, r_s/R 0.1   law P0 10.520  Pf 11.126   cold P0 11.633
+  alt - canonical, law branch, primary P0: -0.102 dex
+
+LINK: energy ledger at 10^12.3, z 0 (isothermal)
+  V 180 km/s, T 1.16e+06 K (0.100 keV), R200 265 kpc; gas thermal 1.51e+59 erg, cold binding 5.41e+59 erg, ratio cold/gas 3.58
+
+BS1's membership against a per-halo cooling read at z 0: BS1 flags, primary t_cool/t_dyn, and Z 0.1 r_s/R 0.1
+  LMC  log M200 10.709: BS1 route E (in LG basin); ratio primary     4.60, Z 0.1 x 0.1   0.03; own mass vs T 12.3: below, would cool, no halo
+  M33  log M200 11.093: BS1 route E (in LG basin); ratio primary    26.38, Z 0.1 x 0.1   0.11; own mass vs T 12.3: below, would cool, no halo
+  MW   log M200 11.880: BS1 route E (in LG basin); ratio primary   251.68, Z 0.1 x 0.1   2.64; own mass vs T 12.3: below, would cool, no halo
+  M31  log M200 12.151: BS1 route E (in LG basin); ratio primary   402.42, Z 0.1 x 0.1   7.23; own mass vs T 12.3: below, would cool, no halo
+  LG basin log 12.3925 at R0 795 kpc as if one isothermal sphere: V 116 km/s, T 4.78e+05 K, t_cool/t_dyn 850.5; it's a turnaround surface, so no accretion shock sits there
+
+CHECKS ALL PASS
+THRESHOLD LABEL: CHOICE-DEPENDENT; max free-input spread 2.677 dex vs W 0.20
+MUTATE: P0 moves -0.954 dex; BITES
