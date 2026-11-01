@@ -17,8 +17,11 @@ Criteria `FROZEN_CRITERIA.md`, committed alone first (57d3ac6b64). `ac1_predict.
 - Added as information, no frozen weight: route N on U4_27928 and α_CO,req at V_c 430 km/s, R 3 kpc for U4_28473; moment-0 aperture scan and matched 3D forecast.
 - In MUTATE, K6 also fails (C 0.736): S3's library reads the same `--mutate` flag and mutates its solver. Harmless to the lane's normal outputs.
 
+## Scoring harness
+`ac1_score.py`, tested on MOCK only: selftest 10 of 10 (`ac1_score_selftest.out`), seeds at archive noise in `ac1_score_power.out`. Smooth disc: G1-3D passes 1 of 7, moment-0 0 of 7. Compact: 6 of 7. No line: 0 of 7. Quoted V_c errors understate the MOCK scatter. `ADDENDUM_G1_DRAFT.md` is not in force. Not tested on a real pipeline cube; at finer real pixels memory may exceed the 1.06 GB seen here. A cube of tens of GB may not fit: 27 GB free on 2026-11-01. C1 injection starts at the truth, so it flatters recovery.
+
 ## Not done
-No scoring harness for U4_28473 (criteria §4 requires one before the cube is read). No z rule for route N; its reading is an extrapolation. Masses and fluxes keep the authors' reductions. E, E-CCBH, BH-k3 are not recomputed at z 2.52.
+No z rule for route N; its reading is an extrapolation. Masses and fluxes keep the authors' reductions. E, E-CCBH, BH-k3 are not recomputed at z 2.52.
 
 ## Files
 `FROZEN_CRITERIA.md`, `ac1_predict.py`, `ac1_predict.out`, `ac1_results.json`, `ac1_predict_MUTATE.out`, `ac1_MUTATE_results.json`.
