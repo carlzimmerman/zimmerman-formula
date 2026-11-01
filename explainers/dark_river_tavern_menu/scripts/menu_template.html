@@ -56,6 +56,8 @@ h1 { font-family: var(--display); font-weight: 700; font-size: clamp(40px, 7vw, 
 .src, .lanes, .pending { margin: 0; font-family: var(--mono); font-size: 11.5px; color: var(--muted); overflow-wrap: anywhere; }
 .src code { font-family: inherit; }
 .dish[hidden] { display: none; }
+.kitchen-line { margin: 0; text-align: center; font-size: 15px; color: var(--muted); padding: 12px 0; border-block: 1px solid var(--rule); }
+.kitchen-line b { color: var(--ink); font-weight: 600; }
 footer { border-top: 3px double var(--rule); padding-top: 20px; text-align: center; color: var(--muted); font-size: 13.5px; display: grid; gap: 6px; }
 dialog { border: 0; padding: 0; background: transparent; max-width: min(96vw, 1400px); }
 dialog::backdrop { background: rgb(8 14 17 / .82); }
@@ -74,6 +76,7 @@ dialog img { display: block; max-width: 100%; max-height: 88vh; background: #fff
   .wrap, .course, .dishes { display: block; }
   .masthead, .house { margin-bottom: 18pt; }
   .course { break-before: page; }
+  .kitchen-line { break-inside: avoid; }
   .course-head { break-after: avoid; margin-bottom: 8pt; }
   .dish { display: block; break-inside: avoid; padding-top: 8pt; margin-bottom: 14pt; }
   .dish > * + * { margin-top: 5pt; }
@@ -88,22 +91,26 @@ dialog img { display: block; max-width: 100%; max-height: 88vh; background: #fff
 
 <div class="wrap">
   <header class="masthead">
-    <span class="est">Est. on the Crispy Fried Chicken board · v3s · 23 October 2026</span>
+    <span class="est">Est. on the Crispy Fried Chicken board · v3s · 23 October 2026 · specials route E, version N · 1 November 2026</span>
     <h1>Dark River Tavern Menu</h1>
     <p class="tagline">Every dish on the board, plated with its data: what was measured, what the theory predicted, and why it passes, fails or waits.</p>
     <div class="tally" role="group" aria-label="Show only dishes of one kind">{{TALLY}}</div>
   </header>
 
   <div class="house">
-    <p><b>House rules.</b> {{N}} dishes, one per board tile, each colour exactly as the board has it. Every number in a picture is read from a committed lane file, named under the dish. κ = ½ is fitted, not derived; the two footings (canonical 9.3603×10⁻¹¹, alternative 1.1312×10⁻¹⁰ m s⁻²) are never pooled. Nothing here says the data favour this theory or any rival, and the theory is not closed.</p>
+    <p><b>House rules.</b> {{N}} dishes, one per tile of the 23 October board, each colour exactly as the board has it, and {{NS}} specials for route E, each colour never better than its lane's own verdict. Every number in a picture is read from a committed lane file, named under the dish. κ = ½ is fitted, not derived; the two footings (canonical 9.3603×10⁻¹¹, alternative 1.1312×10⁻¹⁰ m s⁻²) are never pooled. Nothing here says the data favour this theory or any rival, and the theory is not closed.</p>
     <p><b>No ΛCDM on the stove.</b> No picture uses ΛCDM as the yardstick. Where a lane leaned on a ΛCDM-derived input, the dish says so.</p>
-    <p><b>Which kitchen.</b> This is the 23 October board, scored for v3s. On 25 October you chose a new flagship (the a0 law plus cold dark energy with the core law, PAPER61), and the board has not been redrawn for it.</p>
+    <p><b>Which kitchen.</b> Two dates. Tonight's specials are route E, version N, as of 1 November 2026: a0 stays in the law and out of the cold sector, and the cold dark energy halo takes its core from native zooms. Everything below the specials is the 23 October board, scored for v3s, and has not been redrawn; the flagship changed on 25 October (the a0 law plus cold dark energy with the core law, PAPER61).</p>
   </div>
+
+  {{SPECIALS}}
+
+  <p class="kitchen-line"><b>From here on: the 23 October board, scored for v3s.</b> The five courses below stand as they were. They are not route E and have not been recomputed for it.</p>
 
   {{COURSES}}
 
   <footer>
-    <p>Built from <code>explainers/make_status_board.py</code> and the lanes it names, by <code>explainers/dark_river_tavern_menu/scripts/</code>.</p>
+    <p>Built from <code>explainers/make_status_board.py</code>, <code>board_tiles_route_e.json</code> and the lanes they name, by <code>explainers/dark_river_tavern_menu/scripts/</code>.</p>
     <p>Tap a picture to see it full size. Tap a tally chip to show only that kind of dish.</p>
   </footer>
 </div>

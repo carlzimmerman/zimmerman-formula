@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build the Dark River Tavern Menu page: every Crispy Fried Chicken board tile as a dish, with its data picture.
 
-Reads board_tiles.json (exported from make_status_board.py), captions/col*.json and img/*.png; writes menu.html with
-the pictures embedded. Plot-free: it only assembles what the figure scripts made. A tile without a caption is listed
+Reads board_tiles.json (exported from make_status_board.py), board_tiles_route_e.json (Tonight's specials), captions/col*.json
+and img/*.png; writes menu.html with the pictures embedded. A caption with no tile is not shown. Plot-free: it only assembles what the figure scripts made. A tile without a caption is listed
 with 'picture not ready' instead of being dropped.
 """
 import base64
@@ -43,7 +43,7 @@ def dish(i, t, cap):
     out = [f'<article class="dish" data-st="{cls}" id="d{i}">',
            f'<header class="dish-head"><h3>{esc(t["name"])}</h3><span class="leader" aria-hidden="true"></span>'
            f'<span class="chip {cls}">{word}</span></header>',
-           f'<p class="board-note">On the board: {esc(t["note"])}</p>']
+           f'<p class="board-note">{esc(t.get("note_label", "On the board"))}: {esc(t["note"])}</p>']
     img = HERE / "img" / f'{cap["slug"]}.png' if cap else None
     if cap and img.exists():
         b64 = base64.b64encode(img.read_bytes()).decode()
@@ -71,8 +71,10 @@ def dish(i, t, cap):
 def main():
     board, caps = load()
     tiles = board["tiles"]
+    route_e = json.loads((HERE / "board_tiles_route_e.json").read_text())
+    specials = route_e["tiles"]
     counts = {}
-    for t in tiles:
+    for t in tiles + specials:
         k = "open" if t.get("was") else STATUS.get(t["st"], STATUS["OPEN"])[0]
         counts[k] = counts.get(k, 0) + 1
     tally = "".join(f'<button type="button" class="filter chip {k}" data-f="{k}" aria-pressed="false">'
@@ -89,11 +91,18 @@ def main():
             n += 1
             body.append(dish(n, t, caps.get(t["name"])))
         body.append("</div></section>")
+    head = [f'<section class="course" aria-labelledby="c6"><div class="course-head"><h2 id="c6">{esc(route_e["course"])}</h2>'
+            f'<p>{esc(route_e["subtitle"])} · {len(specials)} dishes</p></div><div class="dishes">']
+    for t in specials:  # numbered after the 40 board dishes, so their anchors don't move
+        n += 1
+        head.append(dish(n, t, caps.get(t["name"])))
+    head.append("</div></section>")
     page = (HERE / "scripts" / "menu_template.html").read_text()
-    page = page.replace("{{TALLY}}", tally).replace("{{COURSES}}", "\n".join(body)).replace("{{N}}", str(len(tiles)))
+    page = (page.replace("{{TALLY}}", tally).replace("{{SPECIALS}}", "\n".join(head)).replace("{{COURSES}}", "\n".join(body))
+            .replace("{{N}}", str(len(tiles))).replace("{{NS}}", str(len(specials))))
     (HERE / "menu.html").write_text(page)
-    done = sum(1 for t in tiles if t["name"] in caps)
-    print(f"menu.html: {len(tiles)} dishes, {done} with pictures, {(HERE / 'menu.html').stat().st_size/1e6:.1f} MB")
+    done = sum(1 for t in tiles + specials if t["name"] in caps)
+    print(f"menu.html: {len(tiles) + len(specials)} dishes, {done} with pictures, {(HERE / 'menu.html').stat().st_size/1e6:.1f} MB")
 
 
 if __name__ == "__main__":
