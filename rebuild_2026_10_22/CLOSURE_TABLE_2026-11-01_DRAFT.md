@@ -51,6 +51,7 @@ The only cluster pass needs +0.092 to +0.111 dex above eRASS1. Pointed Chandra a
 | OP2 ng 80 | X-COP PASSES, KEYS FAIL | Closest rule on measured gas, not a pass |
 | NR1 | N PASSES AT NG 80 [ANCHOR-DEPENDENT] | Whether the 10¹² anchor alone breaks SPARC: it doesn't |
 | NR2 | ALL-NG80 PASSES [NOISE-LIMITED]; η ng 80 / ng 64 0.913, 1.015, 0.830, none distinct from 1 | Whether ng 80's low masses break N's line at the median: they don't. Not the seed noise |
+| NR3 | UR1 on NR2's η: SIGN FLIP YES, AMPLITUDE FAILS [NOISE-LIMITED]; EM1 + response Υ 0.35 / 0.36; 150–250 km/s unmoved at every input | Low-mass η as the way out of the response's Υ |
 | AQ1 | Argon: 6 of 7 ZN4 lines MISS | Its resolution mechanism: concentration falls at ng 80 |
 
 ## Not settled by this table
