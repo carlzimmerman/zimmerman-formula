@@ -32,8 +32,8 @@ NR3, UR1's rule on NR2: Υ 0.35/0.36, tilt +0.17, 14 of 15. 150–250 km/s doesn
 | UR3 | direct weighing | SPLIT. MW and DiskMass weigh about 4e10 M☉ of cold mass inside R₀, not the response. NFW start + LC1's response overshoots the MW |
 | CP1, DR1, DR6 | complementarity; density term; outer projection | CP1 not decided, galaxies fail. DR1 SPARC breaks. DR6 no verdict, numbers read no supply: G-OUT-M3 +4.28 at the ceiling |
 
-## New and PRELIMINARY: RM2, mass-dependent strength
-f falls with baryon mass: f = 1 in dwarfs, f_hi in spirals, smoothstep ± 0.5 dex around lg M_c. Three FITTED numbers, all on NR2 MEDIAN. 74 of 75 cells in, not yet graded by its read. **Six clear all five gates**:
+## New: RM2, mass-dependent strength, graded
+f falls with baryon mass: f = 1 in dwarfs, f_hi in spirals, smoothstep ± 0.5 dex around lg M_c. Three FITTED numbers, all on NR2 MEDIAN. All 75 cells, label CELLS CLEAR [NOISE-LIMITED]. **Six clear all five gates**:
 
 | lg M_c, f_hi, δ | Υ A/B | tilt | Groups Z | LT | Υ by V_flat |
 |---|---|---|---|---|---|
