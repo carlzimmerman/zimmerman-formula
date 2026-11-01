@@ -1,0 +1,65 @@
+{
+  "claim_id": "DR01_INDEPENDENT_FINITE_RESPONSE_CONTROLS",
+  "mathematics": {
+    "assertion_tested": "Independent finite complex Hamiltonian pulse, work and torque checks; l=2 angular and harmonic-shell Gram/f-sum controls. No new halo prediction. Reference-IVP accuracy amendment preserves the original systems and pass gates.",
+    "coefficient_domain": "Float64 complex dense linear algebra, DOP853 and fixed orbital quadrature",
+    "conventions": "Real part of a unit-normalized m=2 harmonic; physical energy=z*Hz/4, angular momentum=sum(|z|^2/nu)/2; exact frozen fast-scalar finite response code is audited, not assumed correct.",
+    "inputs": [
+      "response.py v1 failure control",
+      "response_v2.py",
+      "orbits.py analytic HarmonicBackground"
+    ],
+    "bounds": {
+      "finite_dimension": 8,
+      "feedback_rank": 3,
+      "pulse_resonance_controls": "carrier, both sidebands, zero, and two nonresonant frequencies",
+      "finite_dynamics": "bare and one explicitly fixed positive dressed Hamiltonian; all five existing pattern ratios",
+      "direct_ivp_rtol": "Pulse control 2e-12; finite-system reference 2e-13",
+      "direct_ivp_atol": "Pulse control 2e-14; finite-system z/amplitude 2e-18 and integrated ledgers/amplitude^2 2e-20",
+      "response_time_nodes": 4097,
+      "matrix_relative_gate": 2e-11,
+      "pulse_relative_gate": 2e-09,
+      "response_and_ledger_scaled_gate": 2e-06,
+      "angular_gate": 2e-12,
+      "harmonic_shell_L_nodes": 32,
+      "harmonic_shell_phases": 512,
+      "harmonic_shell_scaled_gate": 3e-05,
+      "wall_seconds": 180,
+      "cpu_seconds": 150,
+      "threads": 1,
+      "finite_system_max_step": "T/4096",
+      "reference_normalization": "Integrate z/amplitude and W,J,envelope/amplitude^2; convert back before unchanged comparisons"
+    },
+    "non_claims": [
+      "No halo convergence result",
+      "No continuum damping or stability theorem",
+      "No new parameters selected from outcomes"
+    ]
+  },
+  "execution_artifacts": [
+    "dynamical_response_2026_11_01/check_response_v2.py",
+    "dynamical_response_2026_11_01/response.py",
+    "dynamical_response_2026_11_01/response_v2.py",
+    "dynamical_response_2026_11_01/orbits.py",
+    "dynamical_response_2026_11_01/INDEPENDENT_CONTROL_AMENDMENT_A1.md"
+  ],
+  "software": [
+    {
+      "name": "python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}
