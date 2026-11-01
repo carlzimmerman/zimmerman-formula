@@ -1,0 +1,43 @@
+=== S: analytic
+  S1 EL momenta = sqrt(-g) J^m, J^m = -P_X g^{mn} d_n phi; EOM is d_t(sqrt(-g)J^t)+d_r(sqrt(-g)J^r)=0: PASS (continuity: flux = -dN/dt, not a constant)
+  S3 m=0: symbolic residual 0; numeric 9.67e-17
+  S3 m=1: symbolic residual 0; numeric 7.55e-17
+  S3 u^n nabla_n u_m = -h_m^n d_n ln Q, general spherical metric: PASS 
+  S3b K=mu^2(Q-1)^2 at fixed n, mu->inf: |grad ln Q| -> 0, geodesic: PASS c_s^2 = (Q - 1)/Q, w = (Q - 1)/(Q + 1)
+  Static: phi = Q0 t gives Q = Q0 exp(-A), so a_r = A' = dPhi/dr (holding force). Q e^{Phi} uniform needs Q-1 ~ |Phi| ~ 1e-6, so grad ln Q = -grad Phi is not -> 0: a static fluid in a gradient is NOT the dust limit.
+  S2 static: sqrt(-g) J^r = C; finite J^r at r=0 forces C=0: PASS flux at r->0 equals C, integral of div J over a ball = 4 pi C, so C != 0 needs a source at the centre; then P_X g^{rr} chi' = 0
+  S4 C != 0: n = C/(4 pi r^2 v); point mass, E=0: rho ~ r^-3/2: PASS (sink at centre)
+  S5 same charge, different radial law, C=0 both; homologous n = F(r/s(t))/s^3, v = s'r/s solves continuity for ANY s(t): PASS central density ratio n2/n1 = 27; charge exact, any compression allowed
+  S6 chi flux / 2(2-K_B) = -Jp*chip + Psip - chip; C=0 gives Psi' = chip*(Jp + 1) (no rho in it: the algebraic law relation)
+  S6 J^0 = dL/d(chi_t) = K_2*(-2*Psi*Q0 + 2*chid); static chi_t=0: -2*K_2*Psi*Q0 (set locally by Psi, deeper well more charge; AeST's Q0 is dphi/dt, NOT a flux constant)
+  S6 AeST: static C=0 flux is the algebraic law, contains no rho; J^0 ~ K_2 Q0 Psi: PASS 
+  K1 own Blumenthal vs X39 contract: PASS max |d| 6.76e-07; Q_B [2.719, 2.045, 1.696, 1.501, 1.3, 1.202, 1.145]
+=== N1 pressureless single-stream field vs geodesic shells
+  first caustic of the single stream started 2-60 kpc: t_c = 23 Myr (shell crossing; scalar flow not single-valued after this)
+  N1 field velocity = geodesic before the caustic (<=1 %); density from charge + Jacobian (<=5 %): PASS max dv/v 3.71e-04, median dn/n 4.63e-05, central piling n(r=3..)/n0 up to 1.33
+=== N2 circular shells (frozen eps 1 kpc)
+  r/R_d [1.0, 2.0, 3.0, 4.0, 6.0, 8.0, 10.0]
+  Q shells [2.537, 2.011, 1.689, 1.494, 1.299, 1.2, 1.145]
+  Q Blum   [2.719, 2.045, 1.696, 1.501, 1.3, 1.202, 1.145]
+  mean (Q-1)/(Q_B-1) at 2,3,4 R_d = 0.981
+  reported, eps 0: Q [2.715, 2.042, 1.695, 1.499, 1.298, 1.204, 1.145], ratio 0.997
+  K2 M_d=0 stays Q=1 within 0.01: PASS max 6.66e-16
+  K3 shell charge conserved (<=1e-10): PASS 0.00e+00
+  K4 flux identity <= 5% of peak: PASS res [0.0005, 0.0002]
+  flux 4 pi r^2 J^r at 2 R_d: start -4.015e+07, t=10 Gyr -1.808e+09, end -3.036e+06 Msun/Gyr; at 4 R_d t=10 Gyr -2.672e+09. Not fixed in time, not uniform in r, zero before and after growth.
+=== N2b nearly radial shells (L = 0.1 L_circ), reported, not in a label
+  Q radial [1.219, 1.346, 1.294, 1.233, 1.12, 1.037, 0.985]
+  Q no disc control [0.876, 1.137, 1.222, 1.204, 1.108, 1.034, 0.988]
+  Blumenthal on its relaxed profile [1.251, 1.129, 1.097, 1.082, 1.06, 1.045, 1.038]
+  response Q/control [1.391, 1.184, 1.059, 1.024, 1.011, 1.003, 0.997] (the same-time control is the fair baseline: outer shells are still phase-mixing); charge 0.0e+00. Flux identity not read here: sampled every 20 Myr against crossing times of that order.
+=== N3 finite sound speed, K=mu^2(Q-1)^2, static (rho = k^2/(4 pi G) (C-Phi)), R=R200, charge fixed
+  radius initial 200.0, final 137.5 kpc; central density response rho_c,f/rho_c,i = 13.6955; Q(r) [12.6533, 10.9912, 9.6101, 8.5387, 7.0219, 6.0006, 5.2592]; Blumenthal on same start [209.95, 75.187, 37.444, 22.359, 10.772, 6.507, 4.48]
+  v_c at 6 R_d, cold plus baryon: 28 -> 129 km/s; cold charge in r<10 R_d: 8.857e+10 Msun
+  sound speed at the centre, c_s^2 = Q-1 = C-Phi in (km/s)^2: 147 -> 543 km/s; w = (Q-1)/(Q+1) = 1.2e-07 -> 1.6e-06: w ~ 0 holds, yet this fluid is hydrostatic, so w does not separate dust from a held fluid
+=== N4 C != 0 steelman: steady inflow
+  to hold rho(r)=V^2/(4 pi G r^2) by flow, V 220: Mdot = 6.424e+12 Msun/Gyr, independent of r; mass delivered to the sink in 10 Gyr = 64.2 x M200; drains r<8 kpc in 14 Myr
+  conversely Mdot = M200/10 Gyr gives rho(8 kpc) = 2.178e+05 Msun/kpc^3 vs needed 1.399e+07 (1.6e-02 of it)
+  what survives: at fixed C and r, baryons deepen the well, v 417 -> 465 km/s at 8 kpc, so n falls by 0.897. A real sign, only for a flow with a sink.
+
+F1 True F2 True F3 True F4 True; checks 12/12
+VERDICT: ARGUMENT FAILS. Run 50 s.

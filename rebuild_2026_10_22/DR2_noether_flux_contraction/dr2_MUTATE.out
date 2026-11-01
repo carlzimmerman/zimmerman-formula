@@ -1,0 +1,17 @@
+=== S: analytic
+  S1 EL momenta = sqrt(-g) J^m, J^m = -P_X g^{mn} d_n phi; EOM is d_t(sqrt(-g)J^t)+d_r(sqrt(-g)J^r)=0: PASS (continuity: flux = -dN/dt, not a constant)
+  S3 m=0: symbolic residual (mutated); numeric 2.92e-01
+  S3 m=1: symbolic residual (mutated); numeric 3.22e-01
+  S3 u^n nabla_n u_m = -h_m^n d_n ln Q, general spherical metric: FAIL 
+  S3b K=mu^2(Q-1)^2 at fixed n, mu->inf: |grad ln Q| -> 0, geodesic: PASS c_s^2 = (Q - 1)/Q, w = (Q - 1)/(Q + 1)
+  Static: phi = Q0 t gives Q = Q0 exp(-A), so a_r = A' = dPhi/dr (holding force). Q e^{Phi} uniform needs Q-1 ~ |Phi| ~ 1e-6, so grad ln Q = -grad Phi is not -> 0: a static fluid in a gradient is NOT the dust limit.
+  S2 static: sqrt(-g) J^r = C; finite J^r at r=0 forces C=0: PASS flux at r->0 equals C, integral of div J over a ball = 4 pi C, so C != 0 needs a source at the centre; then P_X g^{rr} chi' = 0
+  S4 C != 0: n = C/(4 pi r^2 v); point mass, E=0: rho ~ r^-3/2: PASS (sink at centre)
+  S5 same charge, different radial law, C=0 both; homologous n = F(r/s(t))/s^3, v = s'r/s solves continuity for ANY s(t): PASS central density ratio n2/n1 = 27; charge exact, any compression allowed
+  S6 chi flux / 2(2-K_B) = -Jp*chip + Psip - chip; C=0 gives Psi' = chip*(Jp + 1) (no rho in it: the algebraic law relation)
+  S6 J^0 = dL/d(chi_t) = K_2*(-2*Psi*Q0 + 2*chid); static chi_t=0: -2*K_2*Psi*Q0 (set locally by Psi, deeper well more charge; AeST's Q0 is dphi/dt, NOT a flux constant)
+  S6 AeST: static C=0 flux is the algebraic law, contains no rho; J^0 ~ K_2 Q0 Psi: PASS 
+  K1 own Blumenthal vs X39 contract: PASS max |d| 6.76e-07; Q_B [2.719, 2.045, 1.696, 1.501, 1.3, 1.202, 1.145]
+  K3 shell charge conserved (<=1e-10): FAIL 1.00e+00
+  K4 flux identity <= 5% of peak: FAIL [0.6205959164530859, 0.8508863673604747]
+MUTATE done: 7/10 pass; failing ['S3 u^n nabla_n u_m = -h_m^n d_n ln Q, general spherical metric', 'K3 shell charge conserved (<=1e-10)', 'K4 flux identity <= 5% of peak']
