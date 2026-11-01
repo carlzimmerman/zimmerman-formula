@@ -4,6 +4,8 @@ Criteria `FROZEN_CRITERIA.md`, committed alone first (57d3ac6b64). `ac1_predict.
 
 κ = ½ FITTED. Footings never pooled. One disc excludes no model. Not theory closed. Nothing here says the data favour the framework. These are predictions; no pixel of this MOUS has been read.
 
+**Deposited 2026-11-01 as PAPER66 v1.0, DOI 10.5281/zenodo.23865084, before the release.**
+
 ## Findings
 1. **The release's target is U4_28473 (z 2.52), not U4_27928.** Phase centre offset 0.002″ against 7.361″. CFG570 matched U4_27928 inside the field of view. CFG806 and every seal are unchanged, but the record's wording "U4_27928's ALMA data" should be read as a serendipitous off-axis reading.
 2. **U4_27928 will probably score nothing.** At its empirical gas (log M_gas 10.51) the frozen aperture reads S/N 0.16. The 3σ limit is log M_gas 11.79 (α_CO 4.36) or 11.15 (α_CO 1), against framework requirements at most 11.33 across the Hα V_c cases (F-DESI, F-flat, every kernel and gas row). So the α 4.36 limit lies above every requirement; the α 1 limit lies below only the fastest case (V_c 373). Same class as D4's forecast.
