@@ -17,12 +17,15 @@ Criteria: `FROZEN_CRITERIA.md`, committed alone first. `nr4.py`, `nr4_tail_add.p
 f 0.75 is in `nr4.out`; it clears nothing either. Groups stay CONSISTENT everywhere (Z +1.47 to +1.50), rms 0.063–0.079.
 
 ## What it says
-- **At gravity's measured strength, f 0.87, no low-mass η reaches Υ 0.50.** Best is 0.39, at measured η. The 150–250 km/s bins read 0.30–0.39 regardless of m, since m doesn't touch them.
+- **At gravity's measured strength, f 0.87, no m ≥ 1 reaches Υ 0.50.** Best is 0.39, at measured η. Corrected after audit: the commit message's "no m" was too broad, because the grid starts at m 1. NR3's LOW, about m 0.67 / 0.60 at f 1, reads Υ 0.51 / 0.52, and fails tilt +0.55 and LITTLE THINGS +0.173 there. The 150–250 km/s bins read 0.30–0.39 regardless of m, since m doesn't touch them.
 - **What clears needs both:** net response near 0 at 150–250 km/s (those bins go below 0.50 by f 0.25), and η(10¹⁰), η(10¹¹) about 40 and 37, above every seed (36.1, 33.8) and against medians 26.7, 24.7. On this coarse grid m is bracketed by 1.3 and 1.7. One cell on a 6 by 6 grid isn't a measured region.
 - **The two asks pull apart at low mass:** with no response, tilt needs η up; a response of any size then pushes dwarfs to the floor.
-- **Doesn't address clusters.** Keys, X-COP and G-OUT-M3 on measured gas are separate, as ZN4.
+- **Doesn't address clusters.** The clearing cell's own row, NR3 HIGH's EM1 off, is N's cluster path: 12 of 15, inner keys over, G-OUT-M3 +0.10, X-COP −0.160 FAIL. ZN4's native profile is a different path (X-COP passes, G-OUT-M3 +4.41 on measured gas), and the two aren't comparable: the difference is the profile, not the gas. The criteria's "as ZN4" was loose.
 - f is one number per cell. A response that varies with mass isn't mapped.
 
 My expectation (f_max about 0.25, m 1.3–1.7, [ABOVE EVERY SEED]) held on the tag, and was too generous on f_max.
+
+## Independent audit
+Rerun at 1200 response points: K2 3.9e-7, K3 2.0e-7, so the miss is the grid. The frozen label stays NOT DECIDED; I'm not amending after seeing the map. Interpolating, LITTLE THINGS needs m about 1.43 at f 0, η about 38.2, 35.3, so the [ABOVE EVERY SEED] reading holds off-grid. m 1.5, f 0.25's tilt fail is −0.15 on the line. Keys on this path aren't at gas +0.005; rerun there, key sets are unchanged. Grid floor and cap don't make the clearing cell (bins 0.51–0.77).
 
 κ = ½ FITTED. Not theory closed.
