@@ -1,0 +1,88 @@
+# FC1_cold_share_native_eta: converting the zooms' total-matter surface density to the cold share takes route E from FAIL to the edge, with no knob. Frozen label F★-DEPENDENT (canonical), cluster masses ng 48
+
+Criteria: `FROZEN_CRITERIA.md` (061b2e2a1a), committed alone before any script or number. Scripts `fc1_grade.py`, `fc1_x74.py`, `fc1_down.py`. Outputs `fc1.out`, `fc1_results.json`, `fc1_ls1.out`, `x79_rule/`.
+
+## The bookkeeping point
+X48's zooms evolve **all of Ω_m** as collisionless dust (`x48_zoom.py`: `rhom = Om * 2.775e11 * h ** 2`; "each lattice point carries one cell of mean density"). X43's Σ_coll uses the same total density. So η Σ_coll(M) is the surface density of total matter in a halo of total mass M.
+
+The grader used that number for the **cold** halo alone and added the baryons on top: `q["GB"] + Mh` on SPARC, `pp["Mb"] + Mh` on clusters, with `solve_r0(pp["Mfair"], pp["rta"], s)`. The cold share is f_c = R_nat/(1 + R_nat) = 0.8405. No earlier lane in this line applied it. Applying it keeps the zoom's r₀ exactly (K2), which the old call did not.
+
+## Frozen grade (canonical; X74's grader; both h cells; cluster masses ng 48)
+η used at 10¹² / 10¹³ / 10¹⁴: 21.80 / 14.85 / 14.22, from CE1's 25.94 / 17.67 / 16.91.
+
+| f★, CE1 η point | SPARC Υ (bg A/B) | groups Z | G-IN-Mall (h 0.672/0.686) | G-MID-T3 | result |
+|---|---|---|---|---|---|
+| 0.034, median | 0.51 / 0.50 | +1.62 | −1.95 / −1.64 | −1.71 / −1.13 | **PASS** |
+| 0.034, p16 | 0.52 / 0.52 | +1.67 | −1.70 / −1.44 | −1.45 / −0.89 | PASS |
+| 0.034, p84 | 0.49 / 0.49 | +1.55 | −2.23 / −1.88 | −2.00 / −1.40 | FAIL (SPARC line, G-IN-Mall) |
+| 0.0615, median | 0.51 / 0.50 | +1.62 | **−2.004** / −1.69 | −1.93 / −1.34 | **FAIL by 0.004 in Z** (G-IN-Mall) |
+| 0.0615, p16 | 0.52 / 0.52 | +1.67 | −1.75 / −1.48 | −1.66 / −1.09 | PASS |
+| 0.0615, p84 | 0.49 / 0.49 | +1.55 | −2.29 / −1.93 | −2.23 / −1.62 | FAIL (SPARC line, G-MID-T3, G-IN-Mall) |
+
+**Label: F★-DEPENDENT** as frozen (median passes at one f★ only). For comparison, CE1 without the factor: Υ 0.48, G-MID-T3 −2.30, G-IN-Mall −2.55, failing at both f★ and all three η points.
+
+**Alt: COLD-SHARE FAIL**, on the SPARC line (Υ 0.44), which X78 traces to the law, not to route E. Its cluster and group numbers equal canonical's.
+
+**A4 landed, 10-31: COLD-SHARE FAIL on both footings, and this label stands** (`fc1_a4_run.log`, `FC1_A4_*`). All cluster η now at ng 64: η_conv 25.94, 23.54, 22.10 (× 1.33, × 1.31 over ng 48 at 10¹³, 10¹⁴). At f★ 0.034, canonical: G-IN-Mall −2.89, G-MID-T3 −2.62, G-IN-all also over; SPARC Υ 0.50 / 0.49, so the line now misses on background B by 0.01. At f★ 0.0615: −2.97, −2.87, and G-OUT-M3 as graded. p16's η (× 1.04 over FC1's at 10¹³, lower at 10¹⁴) still passes canonical, worst −1.88 and −1.94. p84 fails. The forecast below said the room was g 1.016, and this is what lay above it.
+
+**Read it as the edge, not a pass.** The result sits on the G-IN-Mall line, and the SPARC line is at 0.50 on background B. A4 replaces the ng 48 cluster masses; `watch_A4_then_FC1.sh` reruns this grade when CE1's A4 tables exist, and A4's label stands if it differs.
+
+**Correction, 10-31:** G-OUT-Mall and G-OUT-M1–M3 in this lane's grades read X7's values on an older template. On the run's own template they are +0.18, +0.09, −0.23, +0.54 at f★ 0.034, h 0.672 (as graded −1.55, −0.30, −1.37, −1.31). No label here changes (`../NZ1_zoom_core_radius/nz1_one_template.out`).
+
+## What A4 can do, on record before A4's grade exists (reported, not a grade)
+`fc1_a4_expect.py` → `fc1_a4_expect.out`, `fc1_a4_expect.json`. It reads no A4 snapshot. It grades this rule with η at 10¹³ and 10¹⁴ × g and 10¹² unchanged. g = 1 reproduces the frozen grade at both f★, |d| 0.
+
+| g | f★ | SPARC Υ (A/B) | G-IN-Mall (h 0.672/0.686) | G-MID-T3 | result |
+|---|---|---|---|---|---|
+| 0.90 | 0.034 | 0.51 / 0.50 | −1.61 / −1.36 | −1.35 / −0.80 | PASS |
+| 0.95 | 0.034 | 0.51 / 0.50 | −1.78 / −1.50 | −1.54 / −0.97 | PASS |
+| 1 | 0.034 | 0.51 / 0.50 | −1.95 / −1.64 | −1.71 / −1.13 | PASS |
+| 1.015 | 0.034 | 0.51 / 0.50 | −1.997 / −1.69 | −1.76 / −1.18 | PASS |
+| 1.05 | 0.034 | 0.51 / 0.50 | −2.11 / −1.78 | −1.88 / −1.29 | FAIL (G-IN-Mall) |
+| 1.08 | 0.034 | 0.51 / 0.50 | −2.21 / −1.86 | −1.98 / −1.38 | FAIL (G-IN-Mall) |
+| 1.114 | 0.034 | 0.50 / 0.50 | −2.32 / −1.95 | −2.08 / −1.48 | FAIL (G-IN-Mall, G-MID-T3) |
+| 0.95 | 0.0615 | 0.51 / 0.50 | −1.83 / −1.55 | −1.75 / −1.17 | PASS |
+| 1 | 0.0615 | 0.51 / 0.50 | −2.004 / −1.69 | −1.93 / −1.34 | FAIL (G-IN-Mall) |
+| 1.114 | 0.0615 | 0.50 / 0.50 | −2.38 / −2.01 | −2.31 / −1.70 | FAIL (G-IN-Mall, G-MID-T3) |
+
+- **The room is g ≈ 1.016 at f★ 0.034.** G-IN-Mall reaches −2 there. At f★ 0.0615 the rule is already over at g = 1.
+- **A4 threatens the clusters, not the SPARC line.** Υ stays at 0.50 or above on both backgrounds across this grid, so p84's Υ 0.49 comes from its +2.3 % at 10¹², not from the cluster masses.
+- **The guide for g:** at 10¹², ng 48 → 64 moved converged η from 23.27 to 25.94, × 1.114 (`x80_converged.out`). If 10¹³ and 10¹⁴ move the same way, this rule fails on clusters at both f★.
+- **That guide is weak.** X48 redraws the field at each ng, so these are two samples of 9, not pairs: 68 % × 0.84–1.21, 95 % × 0.51–1.39. Between 0.30 and 0.36 of the bootstrap ratios sit at or below the room; the value jumps because 9 per-run values make the distribution lumpy. So the pass surviving is less likely than not, on one mass standing in for two others.
+
+## What it changes in the record
+- **External c_f = 4 is no longer the only way to reach the grader's window.** The η values here come from the zooms and the native Ω_c/Ω_b alone.
+- **The mass-independent softening the lanes were hunting for (R 0.81–0.85 at every mass) has a plain source at the level of the factor.** It is not a physical softening. SN (CM1–3, SH1), black-hole (CL4, CL5, BH1) and gas-cycle channels are not needed to reach this edge. They are not excluded either.
+- It is **post-hoc in origin**, as the criteria state: I found it after seeing the required R. The protection is that there is nothing to tune.
+
+## Reported, not graded
+**S only** (no mass-argument conversion): same labels at each f★; Υ 0.51 / 0.51.
+
+**By V_flat (canonical, `fc1_ls1.out`), ΔV at Υ 0.50, 2–4 R_d:**
+
+| V_flat | n | c_f 4 | converged η | this rule | law | rule S vs ET1 S_need at Υ 0.50 |
+|---|---|---|---|---|---|---|
+| 20–60 | 13 | +3.7 | +3.7 | +3.7 | +2.4 | 107 vs 69 [52, 85] outside (floor; ET1's M200 caveat) |
+| 60–100 | 35 | +2.9 | +2.9 | +2.9 | −2.0 | 107 vs 103 [81, 124] inside |
+| 100–150 | 23 | −6.4 | −5.6 | −6.4 | −6.8 | 107 vs 143 [118, 200] outside |
+| 150–200 | 25 | −12.6 | +1.3 | −3.8 | +5.2 | 136 vs 150 [98, 190] inside |
+| 200–250 | 18 | −34.7 | −7.8 | **−16.2** | −12.5 | 156 vs 215 [137, 272] inside |
+| 250–400 | 10 | −65.5 | −51.0 | −56.7 | −40.0 | 161 vs 412 [182, 596] outside (every model short) |
+
+The L★ deficit is about half of c_f 4's and close to the law's on the same statistic. It is not removed. Below 150 km/s the floor still disagrees with S_need as in ET1.
+
+**Milky Way (`x79_rule/`):** FEASIBLE (WIDE PRIORS ONLY) on the MW box, 8 all-four cells at R_d 1.93–2.27 kpc. In-prior best v_c 211.4 at R_d 2.60; McMillan 202.9, against Eilers 229.1 ± 4.6. This is the same class as SH1 at R 0.817. The Milky Way is **not** fixed.
+
+**KiDS isolated, X53 harness (`x79_rule/`):** Δχ²(H2H − L2H) +434 canonical, +464 alt, class LAW. S hardly touches R > 100 kpc, so this rule does not move lensing. See BL1 and SI1.
+
+## Checks
+K1 (factor 1 reproduces CE1: SPARC, cluster predictions, both footings, |d| 0), K2 (`solve_r0` scale identity 7e-15), K3 (S/Σ_coll at the nodes 21.802 / 14.849 / 14.217 equal f_c × table), K4 (f_c 0.84055; background A's 1 − f_b 0.84387, background B's 0.84055; K4 passes at ≤ 0.01), MUTATE (factor 0.5: Υ 0.51 → 0.56, G-IN-Mall prediction 4.72 → 3.03): all PASS.
+
+Disclosures: the first launch stopped at a code error (`BGS["fb"]`) before any grade existed. The first downstream launch could have moved files in a shared folder; it was killed before it did and the move now filters by name.
+
+## What this does not show
+- The baryons are dust in the zooms. Hot extended gas would let the cold fluid expand further. Condensing baryons contract it, and X39's full Blumenthal contraction breaks SPARC. **Contraction is the largest assumption left untested on this rule.** It pushes the wrong way, and a softening channel would then be needed again at galaxy scale.
+- The zoom η values are converged by extrapolating each halo's NFW fit (X81), and f_c is applied on top.
+- The floor is still by hand. Nothing here derives κ. Nothing here says the data favour the framework.
+
+κ = ½ FITTED. Footings never pooled. Cold dark energy is a gravitating field component, never a particle. Not theory closed.
