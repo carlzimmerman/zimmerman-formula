@@ -6,8 +6,8 @@ Criteria `FROZEN_CRITERIA.md`, committed alone first (57d3ac6b64). `ac1_predict.
 
 ## Findings
 1. **The release's target is U4_28473 (z 2.52), not U4_27928.** Phase centre offset 0.002″ against 7.361″. CFG570 matched U4_27928 inside the field of view. CFG806 and every seal are unchanged, but the record's wording "U4_27928's ALMA data" should be read as a serendipitous off-axis reading.
-2. **U4_27928 will probably score nothing.** At its empirical gas (log M_gas 10.51) the frozen aperture reads S/N 0.16. The 3σ limit is log M_gas 11.79 (α_CO 4.36) or 11.15 (α_CO 1), against requirements at most 11.24 across the Hα V_c cases. Same class as D4's forecast.
-3. **U4_28473 tests its mass budget, not a₀(z).** With the published CO flux, log M_gas is 11.33 (α 4.36) or 10.69 (α 1). At 3 kpc, Newtonian baryons alone reach 431 to 827 km/s across the input branches. Readings differ by far less: at lg M★ 11.11, S2, α 1, n = 1 flat a₀ reads 441, F-DESI 439, R-H 463, route N 432.
+2. **U4_27928 will probably score nothing.** At its empirical gas (log M_gas 10.51) the frozen aperture reads S/N 0.16. The 3σ limit is log M_gas 11.79 (α_CO 4.36) or 11.15 (α_CO 1), against framework requirements at most 11.33 across the Hα V_c cases (F-DESI, F-flat, every kernel and gas row). So the α 4.36 limit lies above every requirement; the α 1 limit lies below only the fastest case (V_c 373). Same class as D4's forecast.
+3. **U4_28473 tests its mass budget, not a₀(z).** With the published CO flux, log M_gas is 11.33 (α 4.36) or 10.69 (α 1). At 3 kpc, Newtonian baryons alone reach 431 to 846 km/s across the input branches (the commit message of 02ffa20dd8 says 827, from the printed subset; 846 is the JSON's maximum). Readings differ by far less: at lg M★ 11.11, S2, α 1, n = 1 flat a₀ reads 441, F-DESI 439, R-H 463, route N 432.
 4. **My expectation "G1 passes" is not supported as frozen.** A moment-0 aperture over ±500 km/s peaks at S/N 1.86 for a smooth disc. A rotation-matched 3D statistic reads 9.6. G1's frozen wording cites CFG806 A-U13, a moment-0 mask. Changing that needs a dated owner addendum before data.
 
 ## Disclosed changes after the criteria, before any data
