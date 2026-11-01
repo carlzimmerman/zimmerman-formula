@@ -61,6 +61,7 @@ if __name__ == "__main__":
         for s, a, b in zip(sd, rho, df): P(f"  {s.split('_')[1]} {z0[s]['R_live']:.3f} {LRES['0.00'][s]['R_live']:.3f} {a:.3f}; {z0[s]['f_Q']:.3f} {LRES['0.00'][s]['f_Q']:.3f} {b:+.3f}")
         up = lambda lo, hi, nu: 0 if lo <= nu <= hi else (1 if lo > nu else -1); sg = (up(b1[0], b1[1], 1.0), up(b2[0], b2[1], 0.0)); V2 = "NO DETECTED CHANGE" if sg == (0, 0) else "MIXED" if sg[0] * sg[1] < 0 else "SHIFT UP" if max(sg) > 0 else "SHIFT DOWN"
         P(f"  median rho {np.median(rho):.3f} [{b1[0]:.3f}, {b1[1]:.3f}], {sum(q > 1 for q in rho)} of {n} above 1; median delta f_Q {np.median(df):+.3f} [{b2[0]:+.3f}, {b2[1]:+.3f}], {sum(q > 0 for q in df)} of {n} above 0")
+        P(f"  LC1 on the same {n} seeds (A1): R_live {np.median([LRES['0.00'][s]['R_live'] for s in sd]):.3f}, f_Q {np.median([LRES['0.00'][s]['f_Q'] for s in sd]):.3f}; seeds with no turnaround before z_f: {[os.path.basename(d).split('_')[1] for d in SEEDS if not os.path.exists(os.path.join(d, 'turnaround.json'))]}")
         V = f"{R.label(Rm)}; {R.lab2(fm)}; {V2}"; P(f"VERDICT at z = 0, {n} seeds: {V} (R_live {Rm:.3f}, LC1 2.154; f_Q {fm:.3f}, LC1 0.872)"); pairs = dict(rho=rho, df=df, b_rho=b1, b_df=b2, R=Rm, f=fm)
     else: P(f"VERDICT: UNDECIDED, {n} finished seeds (need 6)")
     N = os.path.join(RUNS, "M1e12_s1_ng64_NULL"); k6 = None
