@@ -46,3 +46,16 @@ When ZN4's ng 80 stacks finish: rerun `op2.py` with those tags, same labels, aga
 
 ## Checks and deviations
 K1 fair share reproduces ZN3: 11 of 15, +4.47, X-COP −0.004, 0.076. K2 EM1 at lg M_b 13.5: 14.33 against cold fair 14.22. MUTATE a + 0.2: 4 of 15, X-COP −0.186, BITES. Bootstrap identity |d| 0. First run crashed on my unescaped gas patch before printing any number; fixed and rerun. rx uses f_c 0.8405 as quoted by FC1.
+
+## ng 80 rerun (`op2_ng80.py`, `op2_ng80.out`, `op2_ng80_boot.py`), set above, read 11-01, post-OP2
+ZN4's ng 80 stacks at 10¹⁴, 10¹⁵ (six seeds, different realisations from ng 64's nine), same labels. **Verdict: X-COP PASSES, KEYS FAIL** (was BOTH FAIL).
+| run, measured gas | keys | G-OUT-M3 | X-COP mean / rms | was |
+|---|---|---|---|---|
+| FC1, f★ 0.034 | 14 of 15 | +2.39 | −0.042 / 0.082 PASS | +2.30, −0.058 FAIL |
+| FC1, f★ 0.0615 | 14 of 15 | +2.10 | −0.049 / 0.086 PASS | +2.00, −0.065 FAIL |
+| frozen, f★ 0.034 | 14 of 15 | +2.73 | −0.011 / 0.070 PASS | +2.64, −0.028 PASS |
+| frozen, f★ 0.0615 | 14 of 15 | +2.45 | −0.018 / 0.071 PASS | +2.37, −0.034 PASS |
+
+**100 seed draws (post-result):** all keys + X-COP at both f★: 0 on either map. M3 FC1 +2.41 [+2.31, +2.47], +2.11 [+2.02, +2.18]. X-COP at both f★: FC1 63 of 100 (was 6), frozen 84 (was 72). So X-COP's FC1 pass is a seed-sensitive 63 %, and −0.049 sits at the −0.05 limit. M3 never clears and moved slightly the wrong way.
+
+**How this reads.** On the FC1 map, the one that passes SPARC (Υ 0.75 / 0.69, tags below 10¹⁴ unchanged, so carried), the only cluster gate still failing is one key, M3, at both f★. That is the closest this rule has come. It remains a fail. It has no baryon response, and OP3 shows measured contraction breaks the SPARC half (Υ 0.44 / 0.41). LF1 reads M3's baryons from the same shear, so that doesn't count twice. Groups on this profile stay as ZN2's +1.91 (FC1), since no ng 80 stack exists at those masses. The "+1.62" in the output is the S-rule path. K1 fair share here: 11 of 15, M3 +4.53, X-COP +0.013. MUTATE a + 0.2: 5 of 15, X-COP −0.168, BITES. ZN4's own verdict file is the other session's.

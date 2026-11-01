@@ -1,4 +1,4 @@
-# OP1_one_profile_dwarfs: the native z = 0 profile FAILS all five Local Group classes on EM1's M200. A free M200 line passes only near one common mass around 10⁹·³–10¹⁰, where nearly every dwarf radius is inside 3ε. 1e8, 1e9 zooms QUEUED, not read
+# OP1_one_profile_dwarfs: the native z = 0 profile FAILS all five Local Group classes on EM1's M200. A free M200 line passes only near one common mass around 10⁹·³–10¹⁰. The 1e8, 1e9 zooms are SELF-SIMILAR and do not rescue it
 
 Criteria: `FROZEN_CRITERIA.md` (9544d0c865), committed alone before any script or number. `op1.py`, `op1.out`, `op1_results.json`, `op1_MUTATE.out`, `op1_k2.py`, `run_low_zooms.sh`. Written after SN1 and after seeing ZN2 A1, so not blind. κ = ½ FITTED. No a₀ enters this halo; footings differ only in Monte Carlo s, same labels. Cold dark energy, never a particle. Not theory closed. Nothing here says the data favour the framework.
 
@@ -22,7 +22,7 @@ Criteria: `FROZEN_CRITERIA.md` (9544d0c865), committed alone before any script o
 - **ZN2 A1 stands as that session's result, not mine:** BOTH FAIL on its frozen mapping, passes on FC1's. One profile is still not one rule: ZN3 needs M200 fair share within R200, FC1's normalisation uses EM1's M200.
 
 ## Zooms
-`run_low_zooms.sh` queued 10-31, nice 15, one thread each, preemptible; waits for the ng 80 batch and continuations to leave. **Nothing from them is read.** When `LOW_ZOOMS_DONE` exists: measure as `zn2_a1.sh`, rerun P1 and P2 with those tags, and grade SELF-SIMILAR / BREAKS as frozen.
+`run_low_zooms.sh` queued 10-31, nice 15, one thread each, preemptible; waits for the ng 80 batch and continuations to leave. Read below.
 
 ## Checks
 K1 m(0.1) at the tag 0.1398. K2 smooth core through this path against SN1, median |d| 1e-5. MUTATE r × 1.5: ultra-faint +1.251 → +1.481, BITES. 1e8 smoke, ng 32, scratch: starts and checkpoints.
@@ -31,3 +31,22 @@ K1 m(0.1) at the tag 0.1398. K2 smooth core through this path against SN1, media
 
 ## Limits
 No baryons, tides or stripping. EM1 has no scatter. Spherical, one r₁₂. Median stack of nine seeds at one tag. Reading below the stored grid or inside 3ε is M ∝ r² by construction.
+
+## Zoom read (`op1_low.py`, `op1_low.out`, 18 of 18 finished)
+**SELF-SIMILAR at both masses, as frozen.** Ratios to the 10¹⁰–10¹² trend:
+| tag | lg M200 | c₂₀₀ | c₂₀₀ trend | ratio | M/r² at 3ε, ratio |
+|---|---|---|---|---|---|
+| 1e8 | 7.94 | 13.75 | 16.34 | 0.84 | 0.89 |
+| 1e9 | 8.93 | 12.07 | 13.53 | 0.89 | 0.88 |
+
+Both sit below the trend, inside the frozen 20 %: the profile does not steepen toward the dwarfs. Another session's separate read of the same runs (`op1_low_zooms.out`, its file, not committed here) gets SELF-SIMILAR too, with c₂₀₀ ratios 0.81, 0.86 and M/r² 0.88, 0.86; it uses each tag's own 3ε and a different trend form. The class doesn't depend on that.
+
+**P1, EM1's M200, tags interpolated, FC1, canonical, E (Z): FAIL, all five, both mappings, both footings, all UNDER:** ultra-faint +1.186 (+9.71), bright M31 +0.515 (+4.53), M31 others +1.266 (+3.76), classical +0.614 (+4.10), field +0.325 (+3.21). That gains 0.04–0.08 dex on the 10¹⁰ tag. Median lg M200 is 5.7–8.4, so most systems sit at or below the 1e8 tag and are clamped to it.
+
+**P2: LINE ADMITTED, MEETS EM1, both mappings.** FC1 134 lines (106 before), 17 meeting EM1 at lg M★ 8, b −0.15 to +0.10, lg M200 9.25–10.05 at lg M★ 4; frozen map 133, 5 meeting. The near-common-mass result stands. EM1 at lg M★ 4 is 5.78, so the gap stays × 10³–10⁴.
+
+**So the Local Group miss on this rule is a mass miss, not a shape miss.** No shape measured down to 10⁸ closes it. The admitted line is a two-number fit with no mechanism and no test against tides, counts or the host's budget.
+
+**Correction to P3 above.** ND1's 714 pc at 10¹⁰ is already 3ε (ε 238 pc in the run's own meta). The frozen text called it ε, and `op1.py` multiplied by 3 again, so the P3 shares above are inside 9ε. Corrected, at EM1's mass: 0.00 in all five classes, no class [CONTINUATION]. This is a scaled ε, since no zoom exists below 10⁸. The README's P2 count "inside 714 pc" was right as 3ε, so P2's pass is still a continuation. `op1_low.out` prints both.
+
+**Checks.** K1 m(0.1) at the tag 0.1398, tag10 row reproduces the table above. MUTATE r × 1.5: ultra-faint +1.186 → +1.406, BITES. First run of the self-similarity lines used a wrong x (units, x 51), the rerun x 0.017; P1 and P2 did not use it. x 0.017 is at the runs' x_conv, so the M/r² ratio is at the edge of what they resolve. Stack z = 0, no baryons, tides or stripping.
