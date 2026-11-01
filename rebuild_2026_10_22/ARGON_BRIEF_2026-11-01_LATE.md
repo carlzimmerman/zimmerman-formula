@@ -14,7 +14,7 @@ NR3, UR1's rule on NR2: Υ 0.35/0.36, tilt +0.17, 14 of 15. 150–250 km/s doesn
 
 | Lane | Rule tried | Result |
 |---|---|---|
-| RM1 | response strength f by δ, flat and inner-only, 180 cells, NR1 anchors | **NO CELL.** In the mass window, Υ ≥ 0.50 means tilt ≥ +0.29; \|tilt\| ≤ 0.15 means Υ ≤ 0.38. NR2 rerun running |
+| RM1 | response strength f by δ, flat and inner-only, 180 cells, NR1 anchors | **NO CELL**, on NR1 and on NR2. On NR2, in the mass window: Υ ≥ 0.50 means tilt ≥ +0.32; \|tilt\| ≤ 0.15 means Υ ≤ 0.32 |
 | ER1 | undo paid by SN, BH energy at one ε | WRONG SHAPE: budget fine, dwarfs undone first, tilt +0.58 to +0.73 where the line holds |
 | PG1 | ε × (ΔΦ/Φ)² × retention | WRONG SHAPE. 150–200 km/s 0.40 at ε 0.285; 0.52 only at ε 1; tilt +0.56 once the line holds |
 | DR9 | fountain coupling | FAILS at all three forms; order not reversed, ratio 0.96 |
@@ -53,7 +53,7 @@ This is a requirement, not a rule. Costs:
 **Question for you:** name a process, with a number, that turns the response off above lg M_b about 10 and leaves it on below, at the scale LC1 measured it isn't off. No new fitted constant, no a₀ in the cold sector.
 
 ## Still running
-RM1's rerun on NR2. FG1, the final grade, frozen in `FG1_final_grade/FROZEN_CRITERIA.md`: N, N + response, the PAPER64 basin split and the law alone, on one scorecard of eleven lines. A closing ledger follows it. Law-alone rows already in: canonical Υ 0.52, tilt +0.02, LITTLE THINGS −0.025; alt Υ 0.44, under the line. These don't erase its failures in clusters, the MW and IC 1613.
+FG1, the final grade, frozen in `FG1_final_grade/FROZEN_CRITERIA.md`: N, N + response, the PAPER64 basin split and the law alone, on one scorecard of eleven lines. A closing ledger follows it. Law-alone rows already in: canonical Υ 0.52, tilt +0.02, LITTLE THINGS −0.025; alt Υ 0.44, under the line. These don't erase its failures in clusters, the MW and IC 1613.
 
 ## Standing freeze
 New mechanism lanes need a graded number on at least one failure, without breaking what passes and with no new fitted constant. Any rule must address the three failures: Υ against tilt in galaxies, G-OUT-M3 on measured gas, and T located, not derived. A galaxy rule alone doesn't touch the other two.
