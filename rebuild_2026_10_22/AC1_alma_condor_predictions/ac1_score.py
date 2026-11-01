@@ -122,10 +122,10 @@ def measure(path, vshift=0.0, use3d=False, inject=True):
     P(f"G1-3D (addendum, {'decides' if use3d else 'information only'}): S {g3['S']:.4f} Jy km/s in {g3['nvox']} voxels, S/N {g3['SN']:.2f} (null mean {g3['null_mean']:.4f}, sd {g3['null_sd']:.4f}, mask-sum noise {g3['sig_sum']:.4f}, null nonzero {g3['f_null_nonzero']:.2f}), z {zl3:.5f} -> {'PASS' if g1d else 'FAIL'}")
     m["detected"] = g1d if use3d else g1m; m["gate"] = "G1-3D (addendum)" if use3d else "G1 frozen"
     circ = r <= 1.0; oc = C.random_offsets(rng, circ, im.shape, xc, yc, 1.3 / pix, 100); ap = C.translated_apertures(im, circ, bp, oc); rmsc = float(np.std(ap, ddof=1)) if len(ap) > 2 else float("nan"); m["UL"] = dict(aperture_as=1.0, rms=rmsc, UL3=3 * rmsc, ap_flux=float(np.nansum(im[circ]) / bp), n=len(ap))
-    P(f"1\" radius aperture flux {m['UL']['ap_flux']:.3f} +- {rmsc:.3f} Jy km/s against published {F_PUB} +- {eF_PUB}; 3 sigma limit {3 * rmsc:.3f}; off-source rms against archive sensitivity: sigma/ch x sqrt(dv/10) = {m['sig_ch'] * 1e3 * math.sqrt(m['dv'] / 10):.3f} mJy/beam at 10 km/s, archive 0.434")
+    P(f"1\" radius aperture flux {m['UL']['ap_flux']:.3f} +- {rmsc:.3f} Jy km/s against published {F_PUB} +- {eF_PUB}; 3 sigma limit {3 * rmsc:.3f}; measured noise, single-channel, scaled: {m['sig_ch'] * 1e3 * math.sqrt(m['dv'] / 10):.3f} mJy/beam at 10 km/s (the archive's listed figure can differ: 3.7 x higher on the validation cube)")
     if not m["detected"]: P(f"{m['gate']} FAILED: upper limit reported, no kinematic test (criteria section 4)"); return m, box
     Sref = g3["S"] if use3d else S
-    m["flux_check"] = dict(S=Sref, ratio=Sref / F_PUB, within_30pct=bool(abs(Sref / F_PUB - 1) <= 0.3)); P(f"flux check: measured/published {Sref / F_PUB:.2f}" + ("" if m["flux_check"]["within_30pct"] else " FLAG: outside 30%; the published flux governs L'"))
+    m["flux_check"] = dict(S=Sref, ratio=Sref / F_PUB, within_30pct=bool(abs(Sref / F_PUB - 1) <= 0.3)); m["flux_check"].update(aperture_1as=m["UL"]["ap_flux"], moment0_mask=S); P(f"flux check: measured/published {Sref / F_PUB:.2f}" + ("" if m["flux_check"]["within_30pct"] else " FLAG: outside 30%; the published flux governs L'") + f"; a thresholded 3D mask misses faint flux, so also: moment-0 mask {S:.3f}, 1\" aperture {m['UL']['ap_flux']:.3f}")
     # kinematics, branches never pooled
     sub2 = C.sub_mask(mask, m0d, box)[0] if not use3d else None
     m0s = np.nansum(box["data"][np.abs(box["v"]) <= VWIN], axis=0) * m["dv"]; s2 = C.robust_std(m0s[C.radius_map(m0s.shape, box["xc"], box["yc"]) * pix > 2.0])
@@ -147,6 +147,7 @@ def measure(path, vshift=0.0, use3d=False, inject=True):
         valid = not clamped and not atb and spread <= 0.15 and np.isfinite(v["eVc_PB"]) and v["eVc_PB"] / max(v["Vc_PB"], 1.0) <= 0.25 and np.isfinite(v["eVc_P0"]) and v["eVc_P0"] / max(v["Vc_P0"], 1.0) <= 0.25
         fits[nm] = dict(params=p, names=fd0["names"], chi2N=fd0["chi2"] / fd0["nvox"], inc=inc, G2_reached=reached, R90_dep_kpc=Rdep, R_score=Rs, V=v, valid=bool(valid), at_bound=atb, start_spread=spread, inc_clamped=bool(clamped))
         if valid: branches[f"{nm}|P-B"] = (v["Vc_PB"], max(v["eVc_PB"], MOCK_FRAC * v["Vc_PB"]), Rs); branches[f"{nm}|P0"] = (v["Vc_P0"], max(v["eVc_P0"], MOCK_FRAC * v["Vc_P0"]), Rs)
+        if p[6] > 100 or m["beam"][0] * KPA > 2 * RDG: P(f"WARNING [{nm}]: sigma0 {p[6]:.0f} or beam {m['beam'][0] * KPA:.1f} kpc against R_d {RDG:.2f} kpc: beam smearing can inflate sigma0, and so the P-B V_c; read P0 beside it")
         P(f"thin-disc fit [{nm}, i {inc:.1f}]: V_f {p[4]:.0f}, R_t {p[5]:.2f} kpc, sigma0 {p[6]:.0f}, h {p[8]:.3f}\"; G2 {'PASS' if reached else 'FAIL'} (90% flux radius {Rdep:.2f} kpc), at {Rs:.2f} kpc: V_c P-B {v['Vc_PB']:.0f} +- {v['eVc_PB']:.0f}, P0 {v['Vc_P0']:.0f} +- {v['eVc_P0']:.0f}; chi2/N {fits[nm]['chi2N']:.3f}; start spread {spread:.2f}; at bound {atb}; " + ("scored" if valid else "FIT NOT CONSTRAINED: not scored"))
     m["fits"], m["branches"] = fits, branches; m["score"] = {}
     for bn, (V, eV, Rs) in branches.items():
@@ -185,7 +186,7 @@ def spec(kind, seed=None):
     if kind == "tension": Vc, nf = 300.0, 1 / 30.0
     vr = math.sqrt(Vc ** 2 - 2 * s0 ** 2 * R_G2 / RDG); vf = vr / (2 / math.pi * math.atan(R_G2 / rt)); dv = 20.0
     return dict(ra=RA, dec=DEC, nu_line=NU, restfrq=NU_REST, pix=BEAM0 / 3, n=512, beam=(0.070, 0.062, 30.0), dv=dv, vlo=-1560.0, vhi=1560.0, inc=inc, pa=0.5, q_int=math.cos(math.radians(inc)), h=(Reg / 1.678) / KPA, vf=vf, rt=rt, s0=s0, kpa=KPA,
-                SdV=F, sigma=SENS * math.sqrt(10 / dv) * nf, seed=(9420 + sum(map(ord, kind))) if seed is None else seed, label=f"AC1 MOCK {kind}", true={"VC_PB": Vc, "SDV": F}), Vc
+                SdV=F, sigma=SENS * math.sqrt(10 / dv) * nf / float(opt("--noise-div", "1")), seed=(9420 + sum(map(ord, kind))) if seed is None else seed, label=f"AC1 MOCK {kind}", true={"VC_PB": Vc, "SDV": F}), Vc
 def selftest(d):
     os.makedirs(d, exist_ok=True); ok = []; RES = {}; use3 = True
     def need(n, c, x=""): ok.append((n, bool(c))); P(f"[{'PASS' if c else 'FAIL'}] {n} {x}")
@@ -213,7 +214,7 @@ def selftest(d):
     return all(o for _, o in ok)
 
 def power(d, N):
-    os.makedirs(d, exist_ok=True); T = {"realistic": [], "compact": [], "noise": []}
+    os.makedirs(d, exist_ok=True); T = {"realistic": [], "compact": [], "noise": []}; dv_ = opt("--noise-div", "1"); ptag = "" if dv_ == "1" else f"_div{dv_}"
     for kind in T:
         for i in range(N):
             sp, Vc = spec(kind, seed=70000 + 97 * i + sum(map(ord, kind))); p = os.path.join(d, f"AC1_MOCK_power_{kind}.fits"); C.write_mock_cube(p, sp)
@@ -221,8 +222,8 @@ def power(d, N):
             T[kind].append(dict(seed=i, m0=m["G1_frozen"]["SN"], g3=m["G1_3D"]["SN"], det=m["G1_3D"]["PASS"], valid=bool(f and f["valid"]), Vc=f["V"]["Vc_PB"] if f else None, eV=f["V"]["eVc_PB"] if f else None, R90=f["R90_dep_kpc"] if f else None, S=m["G1_3D"]["S"])); os.remove(p)
             P(f"POWER {kind} {i}: " + json.dumps(T[kind][-1], default=str))
     summ = {k: dict(N=len(v), m0_pass=sum(x["m0"] >= 5 for x in v), g3_pass=sum(x["det"] for x in v), valid=sum(x["valid"] for x in v), Vc_valid=[round(x["Vc"]) for x in v if x["valid"]]) for k, v in T.items()}
-    P("POWER summary " + json.dumps(summ)); json.dump(dict(runs=T, summary=summ, note="MOCK smooth exponential discs at the archive sensitivity; V_c 430; never real data"), open(os.path.join(HERE, "ac1_score_power_results.json"), "w"), indent=0, default=str)
-    open(os.path.join(HERE, "ac1_score_power.out"), "w").write("\n".join(OUT) + "\n")
+    P("POWER summary " + json.dumps(summ)); json.dump(dict(runs=T, summary=summ, note="MOCK smooth exponential discs at the archive sensitivity; V_c 430; never real data"), open(os.path.join(HERE, f"ac1_score_power{ptag}_results.json"), "w"), indent=0, default=str)
+    open(os.path.join(HERE, f"ac1_score_power{ptag}.out"), "w").write("\n".join(OUT) + "\n")
 
 def main():
     want = "57d3ac6b64"; cur = hashlib.sha256(open(os.path.join(HERE, "FROZEN_CRITERIA.md"), "rb").read()).hexdigest()
@@ -237,7 +238,10 @@ def main():
         m, _ = measure(path, vshift=1000.0, use3d=use3, inject=False); bite = not m["detected"]; P(f"MUTATE +1000 km/s: {'bites (exit 1)' if bite else 'DOES NOT BITE'}"); tag = "_MUTATE"
     else:
         m, _ = measure(path, use3d=use3); bite = False; tag = ""
-    if not mock:
+    if "--validation" in _ARGS:   # a public cube of another programme: tests the code against a published flux, scores nothing
+        m["validation_only"] = True; P("VALIDATION RUN: not the 2026-11-06 MOUS; scores no prediction")
+        json.dump(m, open(os.path.join(HERE, f"ac1_score_VALIDATION{tag}.json"), "w"), indent=0, default=str); open(os.path.join(HERE, f"ac1_score_VALIDATION{tag}.out"), "w").write("\n".join(OUT) + "\n")
+    elif not mock:
         json.dump(m, open(os.path.join(HERE, f"ac1_score_RELEASE{tag}.json"), "w"), indent=0, default=str); open(os.path.join(HERE, f"ac1_score_RELEASE{tag}.out"), "w").write("\n".join(OUT) + "\n")
     sys.exit(1 if bite else 0)
 main()

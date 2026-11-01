@@ -20,6 +20,14 @@ Criteria `FROZEN_CRITERIA.md`, committed alone first (57d3ac6b64). `ac1_predict.
 ## Scoring harness
 `ac1_score.py`, tested on MOCK only: selftest 10 of 10 (`ac1_score_selftest.out`), seeds at archive noise in `ac1_score_power.out`. Smooth disc: G1-3D passes 1 of 7, moment-0 0 of 7. Compact: 6 of 7. No line: 0 of 7. Quoted V_c errors understate the MOCK scatter. `ADDENDUM_G1.md` is filed (owner, 2026-11-01): G1-3D decides on real cubes. Not tested on a real pipeline cube; at finer real pixels memory may exceed the 1.06 GB seen here. A cube of tens of GB may not fit: 27 GB free on 2026-11-01. C1 injection starts at the truth, so it flatters recovery.
 
+## Validation on a real cube (2026-11-01, owner's yes; scores no prediction)
+Public cube of the same galaxy: 2021.1.01291.S (Tadaki), spw25, 6.52 GB, sha256 e047f98d…, beam 0.48″ x 0.43″, deleted after the run. `ac1_score_VALIDATION*`, `ac1_noise_check.py`.
+- **Code works on a pipeline product:** 50 s, 0.52 GB. MUTATE bites (S/N 0). G1 frozen S/N 50.8, G1-3D 14.2.
+- **Known answer recovered:** 1″ aperture 0.92 ± 0.12 and ±500 km/s integrated 0.89 Jy km/s against published 0.79 ± 0.08; line centroid z 2.52365 against z_CO 2.523 ± 0.004. The 3D mask holds 0.53 (ratio 0.67, flagged): a thresholded mask misses faint flux, so its flux check runs low.
+- **Fit not usable as a speed:** beam 3.9 kpc against R_d 0.93 kpc. σ0 193–207 and P-B 706–711 are beam-inflated, and the Tadaki-inclination branch hits the V_f bound. The validity gate passed the other branch, so the gate alone does not catch this; a warning now prints. The integrated line's half-max width is 788 km/s, which is an unframed look, not a measurement or a score.
+- **Archive sensitivity is not the cube's noise:** measured 0.355 mJy/beam per 10 km/s, flat to 120 km/s bins, against the listed 1.30: 3.7 x. Every forecast in this lane uses the listed 0.434 for the Nov 6 unit. Same class of error as CFG970's K2.
+- **MOCK at lower noise, smooth disc, 4 seeds each:** noise/2: G1-3D 4 of 4, moment-0 0 of 4, V_c 418–456 of 430. Noise/3.7: G1-3D 4 of 4, moment-0 4 of 4, V_c 428–445. No line: 0 of 4 at both. So the "likely non-detection" in PAPER66 v1.1 holds only at the listed noise. The real noise of the Nov 6 unit is unknown until release. Radiometer scaling from this cube by exposure gives about 0.17, not a measurement.
+
 ## Not done
 No z rule for route N; its reading is an extrapolation. Masses and fluxes keep the authors' reductions. E, E-CCBH, BH-k3 are not recomputed at z 2.52.
 
