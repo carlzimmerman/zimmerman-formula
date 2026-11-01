@@ -1,5 +1,7 @@
 # HL1_lensing_vs_hydrostatic_pairs: NOT POWERED, by a hair and conditional on AMENDMENT_A1. g = +0.069 ± 0.043 dex on 50 clusters with both masses. A labelled bracket, never a framework grade
 
+**Correction (HL2):** the post-result reading below does not repeat on a second large sample. Okabe + Martino reads log Y_hyd −0.106, and three samples together read g +0.031 ± 0.020. See `../HL2_combined_mass_pairs/README.md`.
+
 Criteria: `FROZEN_CRITERIA.md` (e9212275db, committed alone), `AMENDMENT_A1.md`. `hl1.py`, `hl1.out`, `hl1_results.json`, `hl1_MUTATE.out`. κ = ½ FITTED; not theory closed. Nothing here says the data favour the framework.
 
 **As frozen, K1 fails** (3.31 % against 3 %), so there's no verdict. The amendment replaced K1 before any hydrostatic or gas value was read, and it needs the owner's acceptance. Under it, SE 0.043 is just over the 0.04 power line, so the class is NOT POWERED, and the ±0.014 offset doesn't change that.
