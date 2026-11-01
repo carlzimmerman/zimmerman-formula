@@ -24,6 +24,7 @@ def eos(form, q=None):
     e0 = np.zeros(2)
     if form == "A": return (0, 1.0, e0, 0.0, 0.0, 1.0 / q, 1, 0.0, q)
     if form == "A2": return (0, 1.0, e0, 0.0, 0.0, 0.5 / q, 1, 0.0, 2 * q)   # P/rho = c_s0^2 reading, rho^ = H/(2q)
+    if form == "A215": q2 = 2.15 * (math.asinh(1.0) - math.sqrt(0.5)); return (0, 1.0, e0, 0.0, 0.0, 1.0 / q2, 1, 0.0, q2)   # Argon's quoted c_s0^2 = 2.15 G M_c0(r0)/r0
     if form == "E1": return (NT, DH, TAB_B, 1.0, 1.0, 9.0, 1, 0.0, 1.0)
     if form == "E3": return (NT, DH, TAB_B, 1.0, 1.0, 9.0, 3, 0.0, 1.0)
     if form == "E2": return (N2, D2, TAB_E2, HT2 - D2, RT2, 0.0, 2, RT2, 1.0)
@@ -52,12 +53,21 @@ def contract_hb(r, Mb, M0, form, nsample=500, mutb=1.0):
     if form.startswith("E") and ST["calls"] % nsample == 1:   # null on a sample of calls inside the path
         o0, H0, s0, _, _ = solve_scaled(x, 0 * mb, xe, mt, E); i = (x <= xe) & (M0 > 1e-6 * M0[-1]); e = float(np.max(np.abs(o0[i] * C / M0[i] - 1))); ST["nulls"] += 1; ST["nullmax"] = max(ST["nullmax"], e)
     return C * o, 0.0, 0
+def _pava_decreasing(y, w):
+    """isotonic regression, y non-increasing, weights w"""
+    v = []; 
+    for a, b in zip(y.tolist(), w.tolist()):
+        v.append([a, b, 1])
+        while len(v) > 1 and v[-2][0] < v[-1][0]:
+            c, d, e = v.pop(); a0, b0, e0 = v.pop(); v.append([(a0 * b0 + c * d) / (b0 + d), b0 + d, e0 + e])
+    return np.concatenate([np.full(e, a) for a, b, e in v])
 def numeric_B(r, Mb, M0, nsub=None):
-    """Form B on a tabulated M0(r), the top flat beyond the edge. Above the innermost density: tangent gamma, as E1. Below the edge density: power law in H from the local slope. Returns M_f, stats dict."""
+    """A4: Form B on a tabulated M0(r), flat beyond the edge. lnrho made monotone by mass-weighted isotonic regression, mass and H recomputed from that profile so the EOS is self-consistent; the mass is renormalised to the edge's. Above the innermost density: tangent gamma, as E1. Below the edge density: power law in H from the local slope. Returns M_f, stats."""
     n = int(np.where(np.diff(M0) > 0)[0][-1]) + 1; ru = float(r[n]); Cu = float(M0[n]); x = r / ru; m0 = M0 / Cu; X = x[:n + 1]; M = m0[:n + 1]; lx = np.log(X); lm = np.log(M)
-    rho_ = np.gradient(lm, lx) * M / (4 * X ** 3); nb = int(np.sum(np.diff(rho_) > 0)); rho_ = np.maximum(np.minimum.accumulate(rho_), 1e-300)
-    H = np.zeros_like(X); H[-1] = M[-1] / (4 * X[-1]); g = M / (4 * X); H[:-1] = H[-1] + np.cumsum((g[1:] + g[:-1])[::-1] * 0.5 * np.diff(lx)[::-1])[::-1]
-    sl = max(float((np.log(rho_[-1]) - np.log(rho_[-5])) / (np.log(H[-1]) - np.log(H[-5]))), 0.5); Htop = float(H[0]); Nt = 100001; dH = Htop / (Nt - 1); Hg = np.arange(Nt) * dH
-    t = np.where(Hg >= H[-1], np.interp(Hg, H[::-1], rho_[::-1]), rho_[-1] * (Hg / H[-1]) ** sl); s_ = max(float((rho_[0] - rho_[3]) / max(H[0] - H[3], 1e-300)), 0.0); E = (Nt, dH, t, Htop - dH, float(t[-2]), s_, 1, 0.0, Htop - 2 * dH)
-    mb = np.asarray(Mb, float) / Cu; o, Hc, st, ns, _ = solve_scaled(x, mb, float(X[-1]), float(M[-1]), E, nsub); o0, H0, _, _, _ = solve_scaled(x, 0 * mb, float(X[-1]), float(M[-1]), E, nsub); i = M > 1e-4
-    return Cu * o if st != 1 else np.array(M0, float), dict(nonmono=nb, null=float(np.max(np.abs(o0[:n + 1][i] / M[i] - 1))), st=st, top_ratio=Hc / Htop if st != 1 else None)
+    raw = np.gradient(lm, lx) * M / (4 * X ** 3); nb = int(np.sum(np.diff(raw) > 0)); w = np.maximum(raw * X ** 3, 1e-300); rho_ = np.exp(_pava_decreasing(np.log(np.maximum(raw, 1e-300)), w))
+    dm = 4 * X ** 3 * rho_; Ms = np.r_[float(M[0]), float(M[0]) + np.cumsum(0.5 * (dm[1:] + dm[:-1]) * np.diff(lx))]; nf = 1.0 / Ms[-1]; rho_ = rho_ * nf; Ms = Ms * nf
+    H = np.zeros_like(X); H[-1] = Ms[-1] / (4 * X[-1]); g = Ms / (4 * X); H[:-1] = H[-1] + np.cumsum((g[1:] + g[:-1])[::-1] * 0.5 * np.diff(lx)[::-1])[::-1]
+    u, ui = np.unique(H, return_index=True); Hu, Ru = u, rho_[ui]; sl = max(float((np.log(rho_[-1]) - np.log(rho_[-8])) / max(np.log(H[-1]) - np.log(H[-8]), 1e-12)), 0.5); Htop = float(H[0]); Nt = 200001; dH = Htop / (Nt - 1); Hg = np.arange(Nt) * dH
+    t = np.where(Hg >= H[-1], np.interp(Hg, Hu, Ru), rho_[-1] * (np.maximum(Hg, 1e-300) / H[-1]) ** sl); k_ = min(5, len(H) - 1); s_ = max(float((rho_[0] - rho_[k_]) / max(H[0] - H[k_], 1e-300)), 0.0); E = (Nt, dH, t, Htop - dH, float(t[-2]), s_, 1, 0.0, Htop - 2 * dH)
+    mb = np.asarray(Mb, float) / Cu; o, Hc, st, ns, _ = solve_scaled(x, mb, float(X[-1]), 1.0, E, nsub); o0, H0, s0, _, _ = solve_scaled(x, 0 * mb, float(X[-1]), 1.0, E, nsub); i = M > 1e-4
+    return Cu * o if st != 1 else np.array(M0, float), dict(nonmono=nb, null=float(np.max(np.abs(o0[:n + 1][i] / M[i] - 1))) if s0 != 1 else None, st=st, top_ratio=Hc / Htop if st != 1 else None, null_Hc=H0 / Htop if s0 != 1 else None)

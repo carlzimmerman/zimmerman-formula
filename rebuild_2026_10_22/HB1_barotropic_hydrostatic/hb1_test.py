@@ -25,7 +25,7 @@ for f in ("E1", "A"):
 e_ = []
 for eps in (1e-2, 1e-4, 1e-6):
     m = H.contract_hb(r, Mb * eps, M0, "E1")[0]; e_.append(float(np.max(np.abs(m[i] / M0[i] - 1))))
-P(f"K4 M_b x 1e-2, 1e-4, 1e-6: max |dM/M| {e_}"); v = max(abs(e_[0] / e_[1] / 100 - 1), abs(e_[1] / e_[2] / 100 - 1)) if e_[2] > 3e-8 else abs(e_[0] / e_[1] / 100 - 1); chk("K4 linear scaling, off 1", v, 2.0); R["K4_series"] = e_
+P(f"K4 M_b x 1e-2, 1e-4, 1e-6: max |dM/M| {e_}"); R["K4_series"] = e_; chk("K4 linear scaling 1e-4 to 1e-6, off 1 (A2: the 1e-2 leg is past a fold, reported)", abs(e_[1] / e_[2] / 100 - 1), 2.0)
 # residuals of a finished solution
 x = r / rr; xe = float(np.max(x[M0 < M0[-1]])); mb = Mb / C; a = re / r0; g = np.r_[x[x < a], a]; mbg = np.interp(np.log(g), np.log(x), mb); E = H.eos("E1"); o, Hc, st, ns, Ho = H.solve_scaled(g, mbg, a, float(BS(np.asarray(a))), E, nsub=8); lg = np.log(g)
 dH = np.gradient(Ho, lg); res = dH + (o + mbg) / (4 * g); ii = (g > 2e-2) & (g < a * 0.9); rhon = np.interp(Ho, np.arange(H.NT) * H.DH, H.TAB_B) * (Ho < 1) + (1 + 9 * (Ho - 1)) * (Ho >= 1); P4 = np.gradient(o, lg) - 4 * g ** 3 * rhon

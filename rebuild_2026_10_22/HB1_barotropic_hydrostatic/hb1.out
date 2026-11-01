@@ -1,0 +1,140 @@
+HB1 read; kappa = 1/2 FITTED, unused; no a0 in the cold sector; not theory closed
+
+=== checks
+solver tests hb1_test.py: ALL PASS
+K1 EM1|off vs NR3 MEDIAN, SPARC: 0.00e+00 (line 1e-06) PASS
+K1 EM1|off vs NR3 MEDIAN, key preds: 0.00e+00 (line 1e-06) PASS
+K1 EM1|blum vs NR3 MEDIAN, SPARC: 0.00e+00 (line 1e-06) PASS
+K1 EM1|blum vs NR3 MEDIAN, key preds: 0.00e+00 (line 1e-06) PASS
+K2 whole row, M_b x 0 vs EM1|off: 5.63e-06 (line 0.0001) PASS
+K2 null sample in the path, FormB_E1: 4.87e-06 (line 0.0001) PASS
+K3 substeps x 2, Form B: 1.95e-07 (line 0.001) PASS
+K3 substeps x 2, Form A: 2.39e-06 (line 0.001) PASS
+MUTATE Phi_b x 2, Form B: |dU| 0.030, |drms| 0.061, U 0.30 (frozen line |dU| >= 0.02): PASS
+gas patch bites: G5 EM1|off preds differ from MAIN by up to 0.0057: PASS
+ZN4 base: PASS
+stats FormB_E1: calls 33390, no root 0 (0.00 %), wall 0, H_c 5/50/95 [0.8, 3.37, 6.04], a 5/50/95 [12.3, 15.7, 19.7], roots {'-1': 1}
+stats FormA: calls 33390, no root 0 (0.00 %), wall 0, H_c 5/50/95 [1.03, 1.3, 3.86], a 5/50/95 [12.3, 15.7, 19.7], roots {'-1': 1}
+stats FormA_Prho: calls 33390, no root 0 (0.00 %), wall 0, H_c 5/50/95 [0.79, 1.04, 3.6], a 5/50/95 [12.3, 15.7, 19.7], roots {'-1': 1}
+stats FormB_E2: calls 33390, no root 0 (0.00 %), wall 19700, H_c 5/50/95 [0.79, 1311.73, 1465.5], a 5/50/95 [12.3, 15.7, 19.7], roots {'-1': 1}
+stats FormB_E3: calls 33390, no root 0 (0.00 %), wall 0, H_c 5/50/95 [0.8, 4.26, 5.09], a 5/50/95 [12.3, 15.7, 19.7], roots {'-1': 1}
+stats FormB_E1_low: calls 33390, no root 0 (0.00 %), wall 0, H_c 5/50/95 [0.53, 3.37, 6.04], a 5/50/95 [12.3, 15.7, 19.7], roots {'1': 19600, '3': 13786, '5': 4}
+stats FormB_E1_high: calls 33390, no root 0 (0.00 %), wall 0, H_c 5/50/95 [3.27, 3.56, 6.04], a 5/50/95 [12.3, 15.7, 19.7], roots {'1': 19600, '3': 13786, '5': 4}
+stats FormB_E1_DR3: calls 33390, no root 0 (0.00 %), wall 0, H_c 5/50/95 [0.88, 1.11, 5.98], a 5/50/95 [12.3, 15.7, 19.7], roots {'-1': 1}
+stats FormB_E1_GI: calls 33390, no root 0 (0.00 %), wall 0, H_c 5/50/95 [0.87, 1.1, 5.97], a 5/50/95 [12.3, 15.7, 19.7], roots {'-1': 1}
+stats NULL_Mbx0: calls 33390, no root 0 (0.00 %), wall 0, H_c 5/50/95 [1.0, 1.0, 1.0], a 5/50/95 [12.3, 15.7, 19.7], roots {'-1': 1}
+
+=== rows, MEDIAN, delta 0, canonical, f* 0.034
+EM1|off: U 0.75/0.76 rms 0.0690/0.0701 tilt +0.59/+0.59 bins A [1.2, 1.18, 0.9, 0.57, 0.62, 0.77] bins B [1.2, 1.2, 0.91, 0.58, 0.61, 0.78] groups +1.47 LT +0.153/+0.147; keys (NR3 gas) 12 ['G-IN-Mall', 'G-IN-all', 'G-MID-T3'] X-COP -0.160, 0.186
+EM1|blum: U 0.35/0.36 rms 0.0670/0.0678 tilt +0.17/+0.18 bins A [0.49, 0.53, 0.46, 0.3, 0.36, 0.47] bins B [0.51, 0.53, 0.44, 0.3, 0.36, 0.47] groups +1.50 LT +0.116/+0.109; keys (NR3 gas) 14 ['G-IN-Mall'] X-COP -0.097, 0.146
+FormB_E1: U 0.33/0.35 rms 0.5053/0.5061 tilt +0.22/+0.25 bins A [0.81, 0.5, 0.36, 0.3, 0.3, 0.3] bins B [0.86, 0.5, 0.38, 0.3, 0.3, 0.3] groups +1.52 LT +0.198/+0.196; keys (NR3 gas) 14 ['G-OUT-all'] X-COP +0.311, 0.387
+FormA: U 0.30/0.30 rms 0.2372/0.2363 tilt -0.07/-0.07 bins A [0.3, 0.3, 0.31, 0.35, 0.35, 0.48] bins B [0.3, 0.3, 0.35, 0.36, 0.36, 0.49] groups -0.35 LT -0.260/-0.257; keys (NR3 gas) 2 ['G-IN-Mall', 'G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all', 'G-OUT-b'] X-COP -0.605, 0.645
+FormA_Prho: U 0.67/0.69 rms 0.1415/0.1403 tilt +0.50/+0.51 bins A [1.13, 0.98, 0.77, 0.55, 0.58, 0.6] bins B [1.15, 1.04, 0.79, 0.57, 0.6, 0.6] groups +0.20 LT -0.010/+0.004; keys (NR3 gas) 2 ['G-IN-Mall', 'G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all', 'G-OUT-b'] X-COP -0.315, 0.442
+FormB_E2: U 0.33/0.33 rms 0.8579/0.8720 tilt +0.22/+0.23 bins A [0.81, 0.49, 0.36, 0.3, 0.3, 0.3] bins B [0.84, 0.5, 0.37, 0.3, 0.3, 0.3] groups +1.52 LT +0.242/+0.236; keys (NR3 gas) 14 ['G-OUT-all'] X-COP +0.311, 0.387
+FormB_E3: U 0.33/0.33 rms 0.8575/0.8720 tilt +0.21/+0.23 bins A [0.81, 0.49, 0.36, 0.3, 0.3, 0.3] bins B [0.84, 0.5, 0.37, 0.3, 0.3, 0.3] groups +1.52 LT +0.242/+0.236; keys (NR3 gas) 14 ['G-OUT-all'] X-COP +0.311, 0.387
+FormB_E1_low: U 0.50/0.52 rms 0.5145/0.5162 tilt +0.64/+0.67 bins A [1.2, 0.74, 0.43, 0.3, 0.3, 0.3] bins B [1.2, 0.76, 0.44, 0.3, 0.3, 0.3] groups +4.02 LT +0.862/+0.860; keys (NR3 gas) 4 ['G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all', 'G-OUT-b'] X-COP +0.917, 0.920
+FormB_E1_high: U 0.30/0.30 rms 0.5534/0.5577 tilt +0.00/+0.00 bins A [0.3, 0.3, 0.3, 0.3, 0.3, 0.3] bins B [0.3, 0.3, 0.3, 0.3, 0.3, 0.3] groups -1.19 LT -0.409/-0.428; keys (NR3 gas) 2 ['G-IN-Mall', 'G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all', 'G-OUT-b'] X-COP -1.140, 1.181
+FormB_E1_DR3: U 0.43/0.44 rms 0.4187/0.4191 tilt +0.39/+0.44 bins A [1.06, 0.68, 0.51, 0.34, 0.31, 0.3] bins B [1.15, 0.7, 0.52, 0.34, 0.32, 0.31] groups +1.52 LT +0.198/+0.196; keys (NR3 gas) 14 ['G-OUT-all'] X-COP +0.311, 0.387
+FormB_E1_GI: U 0.43/0.44 rms 0.4167/0.4160 tilt +0.46/+0.48 bins A [1.04, 0.67, 0.48, 0.33, 0.3, 0.3] bins B [1.1, 0.69, 0.49, 0.33, 0.31, 0.3] groups +1.52 LT +0.198/+0.196; keys (NR3 gas) 14 ['G-OUT-all'] X-COP +0.311, 0.387
+NULL_Mbx0: U 0.75/0.76 rms 0.0690/0.0701 tilt +0.59/+0.59 bins A [1.2, 1.17, 0.9, 0.57, 0.62, 0.77] bins B [1.2, 1.2, 0.91, 0.58, 0.61, 0.78] groups +1.47 LT +0.153/+0.147; keys (NR3 gas) 12 ['G-IN-Mall', 'G-IN-all', 'G-MID-T3'] X-COP -0.160, 0.186
+FormA_215 (A3, sensitivity): U 0.30/0.30 rms 0.3526/0.3527 tilt +0.00/+0.00 bins A [0.3, 0.3, 0.3, 0.3, 0.3, 0.32] bins B [0.3, 0.3, 0.3, 0.3, 0.3, 0.33] groups -0.74 LT -0.366/-0.385; keys (NR3 gas) 2 ['G-IN-Mall', 'G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all', 'G-OUT-b'] X-COP -0.896, 0.911
+
+=== Argon's prediction, Form A, background A
+  Form A global U: +0.300, predicted +0.58 +/- 0.05: MISSES
+  Form A tilt: -0.070, predicted +0.38 +/- 0.08: MISSES
+  Form A U 20-60: +0.300, predicted +0.95 +/- 0.08: MISSES
+  Form A U 60-100: +0.300, predicted +0.92 +/- 0.08: MISSES
+  Form A U 100-150: +0.310, predicted +0.74 +/- 0.08: MISSES
+  Form A U 150-200: +0.350, predicted +0.44 +/- 0.08: MISSES
+  Form A U 200-250: +0.350, predicted +0.50 +/- 0.08: MISSES
+  Form A U 250-400: +0.485, predicted +0.66 +/- 0.08: MISSES
+  Form A withdrawal condition: DOES NOT FIRE
+Reported, not scored as its prediction:
+  Form B E1 global U: +0.330, predicted +0.58 +/- 0.05: MISSES
+  Form B E1 tilt: +0.220, predicted +0.38 +/- 0.08: MISSES
+  Form B E1 U 20-60: +0.815, predicted +0.95 +/- 0.08: MISSES
+  Form B E1 U 60-100: +0.500, predicted +0.92 +/- 0.08: MISSES
+  Form B E1 U 100-150: +0.360, predicted +0.74 +/- 0.08: MISSES
+  Form B E1 U 150-200: +0.300, predicted +0.44 +/- 0.08: MISSES
+  Form B E1 U 200-250: +0.300, predicted +0.50 +/- 0.08: MISSES
+  Form B E1 U 250-400: +0.300, predicted +0.66 +/- 0.08: MISSES
+  Form B E1 withdrawal condition: DOES NOT FIRE
+  Form A P/rho reading global U: +0.670, predicted +0.58 +/- 0.05: MISSES
+  Form A P/rho reading tilt: +0.500, predicted +0.38 +/- 0.08: MISSES
+  Form A P/rho reading U 20-60: +1.130, predicted +0.95 +/- 0.08: MISSES
+  Form A P/rho reading U 60-100: +0.980, predicted +0.92 +/- 0.08: ARGON PREDICTION HOLDS
+  Form A P/rho reading U 100-150: +0.770, predicted +0.74 +/- 0.08: ARGON PREDICTION HOLDS
+  Form A P/rho reading U 150-200: +0.550, predicted +0.44 +/- 0.08: MISSES
+  Form A P/rho reading U 200-250: +0.585, predicted +0.50 +/- 0.08: MISSES
+  Form A P/rho reading U 250-400: +0.600, predicted +0.66 +/- 0.08: ARGON PREDICTION HOLDS
+  Form A P/rho reading withdrawal condition: DOES NOT FIRE
+  Form A 2.15 coefficient global U: +0.300, predicted +0.58 +/- 0.05: MISSES
+  Form A 2.15 coefficient tilt: +0.000, predicted +0.38 +/- 0.08: MISSES
+  Form A 2.15 coefficient U 20-60: +0.300, predicted +0.95 +/- 0.08: MISSES
+  Form A 2.15 coefficient U 60-100: +0.300, predicted +0.92 +/- 0.08: MISSES
+  Form A 2.15 coefficient U 100-150: +0.300, predicted +0.74 +/- 0.08: MISSES
+  Form A 2.15 coefficient U 150-200: +0.300, predicted +0.44 +/- 0.08: MISSES
+  Form A 2.15 coefficient U 200-250: +0.300, predicted +0.50 +/- 0.08: MISSES
+  Form A 2.15 coefficient U 250-400: +0.315, predicted +0.66 +/- 0.08: MISSES
+  Form A 2.15 coefficient withdrawal condition: DOES NOT FIRE
+
+=== clusters, gas +0.005, S-core, edge r_ta, BCG as NR3, f* 0.034
+EM1|off: 12 of 15 ['G-IN-Mall', 'G-IN-all', 'G-MID-T3']; G-IN-Mall -2.89 G-OUT-M3 +0.03/-0.04; X-COP -0.160, 0.186 FAIL
+EM1|blum: 14 of 15 ['G-IN-Mall']; G-IN-Mall -2.05 G-OUT-M3 +0.34/+0.25; X-COP -0.097, 0.146 FAIL
+FormB_E1: 14 of 15 ['G-OUT-all']; G-IN-Mall +0.49 G-OUT-M3 -0.72/-0.80; X-COP +0.311, 0.387 FAIL
+FormA: 2 of 15 ['G-IN-Mall', 'G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all', 'G-OUT-b']; G-IN-Mall -20.03 G-OUT-M3 -10.12/-9.45; X-COP -0.605, 0.645 FAIL
+
+=== against ZN4, native shape, Form B numeric, gas +0.005
+OFF|0.034: 12 of 15 ['G-MID-T3', 'G-OUT-M3', 'G-OUT-Mall']; X-COP +0.013, 0.075; G-OUT-M3 +4.41/+4.07; stat None
+HB|0.034: 7 of 15 ['G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T3', 'G-OUT-all']; X-COP +0.595, 0.610; G-OUT-M3 +6.83/+6.23; stat {'n': 1318, 'nonmono_med': 233.0, 'null_med': 0.037196468409569916, 'null_max': 8.906817515748834, 'noroot': 0, 'Hc_over_top_med': 1.4698933276210908}
+OFF|0.0615: 12 of 15 ['G-MID-T3', 'G-OUT-M3', 'G-OUT-Mall']; X-COP +0.005, 0.074; G-OUT-M3 +4.13/+3.81; stat None
+HB|0.0615: 8 of 15 ['G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T3']; X-COP +0.592, 0.607; G-OUT-M3 +6.67/+6.07; stat {'n': 1318, 'nonmono_med': 233.0, 'null_med': 0.036811595565952815, 'null_max': 9.276934036335998, 'noroot': 0, 'Hc_over_top_med': 1.4680754551445883}
+
+=== gates and labels
+Form B E1 (PRIMARY): MOVES, FAILS; fails ['line', 'tilt', 'keys', 'xcop', 'lt']
+Form A: MOVES, FAILS; fails ['line', 'keys', 'xcop', 'lt']
+U at 150-250, E1/E2/E3 spread 0.000: not EOS-dependent by the line
+U at 150-250, nearest/lowest/highest spread 0.000: not branch-dependent by the line. Other columns can differ: see rows
+Form B E1 clears Upsilon and tilt: no; LOW/HIGH/independent grid required only if yes
+
+=== effective f = (Q - 1)/(Q_Blum - 1) at r0, 2, 3, 4 R_d, Upsilon 0.5, A; NR4 asks about 0-0.2 at 150-250 km/s
+FormB_E1: 20-60 f [-0.98, -0.4, -0.63, -1.0] Q [0.54, 0.54, 0.55, 0.57]; 60-100 f [-1.39, -0.76, -1.34, -1.74] Q [0.39, 0.4, 0.43, 0.45]; 100-150 f [17.31, 12.33, 14.93, 14.02] Q [13.55, 18.53, 10.95, 6.62]; 150-200 f [13.17, 7.31, 11.79, 11.74] Q [13.05, 22.4, 17.97, 12.05]; 200-250 f [12.88, 9.54, 12.36, 12.11] Q [12.74, 20.5, 15.42, 9.36]; 250-400 f [12.02, 8.94, 11.51, 11.29] Q [12.68, 20.46, 15.39, 9.56]
+FormA: 20-60 f [2.55, 1.15, 2.41, 4.71] Q [2.28, 1.87, 2.33, 2.82]; 60-100 f [3.03, 1.65, 3.98, 7.73] Q [2.22, 2.01, 2.57, 3.02]; 100-150 f [2.09, 0.8, 1.6, 3.44] Q [2.36, 2.03, 2.36, 2.8]; 150-200 f [1.67, 0.42, 0.93, 1.9] Q [2.56, 2.14, 2.25, 2.57]; 200-250 f [1.71, 0.53, 1.25, 2.62] Q [2.57, 2.23, 2.42, 2.68]; 250-400 f [1.65, 0.54, 1.25, 2.46] Q [2.63, 2.31, 2.5, 2.84]
+FormB_E2: 20-60 f [-0.98, -0.4, -0.63, -1.0] Q [0.54, 0.54, 0.55, 0.57]; 60-100 f [-1.39, -0.76, -1.34, -1.74] Q [0.39, 0.4, 0.43, 0.45]; 100-150 f [17.48, 28.16, 17.1, 14.5] Q [13.71, 25.95, 10.97, 6.62]; 150-200 f [13.27, 25.66, 17.29, 14.12] Q [13.1, 60.65, 22.41, 12.12]; 200-250 f [12.98, 19.57, 14.4, 12.68] Q [12.86, 43.34, 16.7, 9.37]; 250-400 f [12.1, 18.96, 13.74, 12.56] Q [12.79, 44.94, 17.18, 9.57]
+FormB_E3: 20-60 f [-0.98, -0.4, -0.63, -1.0] Q [0.54, 0.54, 0.55, 0.57]; 60-100 f [-1.39, -0.76, -1.34, -1.74] Q [0.39, 0.4, 0.43, 0.45]; 100-150 f [17.48, 28.16, 17.1, 14.5] Q [13.71, 25.95, 10.97, 6.62]; 150-200 f [13.27, 25.66, 17.29, 14.12] Q [13.13, 60.65, 22.41, 12.12]; 200-250 f [12.98, 19.57, 14.4, 12.68] Q [12.86, 43.34, 16.7, 9.37]; 250-400 f [12.1, 18.96, 13.75, 12.56] Q [12.79, 44.94, 17.18, 9.57]
+FormB_E1_low: 20-60 f [-1.85, -1.27, -1.72, -2.5] Q [0.05, 0.05, 0.05, 0.05]; 60-100 f [-2.0, -1.27, -2.04, -2.92] Q [0.08, 0.08, 0.09, 0.11]; 100-150 f [17.31, 12.33, 14.93, 14.02] Q [13.55, 18.53, 10.95, 6.62]; 150-200 f [13.17, 7.31, 11.79, 11.74] Q [13.05, 22.4, 17.97, 12.05]; 200-250 f [12.88, 9.54, 12.36, 12.11] Q [12.74, 20.5, 15.42, 9.36]; 250-400 f [12.02, 8.94, 11.51, 11.29] Q [12.68, 20.46, 15.39, 9.56]
+FormB_E1_high: 20-60 f [26.94, 20.19, 18.38, 20.04] Q [14.72, 20.7, 14.31, 8.65]; 60-100 f [32.7, 27.18, 24.98, 19.73] Q [14.16, 18.08, 9.94, 6.16]; 100-150 f [19.59, 15.03, 17.77, 16.43] Q [13.7, 20.11, 14.92, 8.89]; 150-200 f [13.17, 7.31, 11.79, 11.74] Q [13.05, 22.4, 17.97, 12.05]; 200-250 f [12.88, 9.54, 12.36, 12.11] Q [12.74, 20.5, 15.42, 9.36]; 250-400 f [12.02, 8.94, 11.51, 11.29] Q [12.68, 20.46, 15.39, 9.56]
+FormA_215: 20-60 f [9.31, 5.4, 8.61, 13.06] Q [5.73, 5.08, 5.33, 4.9]; 60-100 f [11.05, 7.23, 12.09, 15.64] Q [5.45, 5.11, 5.53, 5.17]; 100-150 f [7.09, 3.23, 5.63, 10.02] Q [5.54, 5.15, 5.56, 5.54]; 150-200 f [5.07, 1.45, 3.09, 5.38] Q [5.71, 5.21, 5.34, 5.54]; 200-250 f [5.09, 1.91, 3.9, 6.9] Q [5.65, 5.23, 5.53, 5.58]; 250-400 f [4.74, 1.87, 3.76, 6.23] Q [5.68, 5.38, 5.48, 5.54]
+
+=== continuation in Phi_b, sample of SPARC, 21 steps, Form B E1
+n 25; largest step in ln H_c: median 0.506, max 1.404; with a step > 0.3 (branch not continuous) 15; roots at full Phi_b: {1: 12, 3: 13}; H_c < 1 in 9
+
+=== N's halos at Phi_b = 0: Form A against the core, stability
+1e10: a 18.5 q 0.804; c_s0^2 = 4.62 G M(r0)/r0; sinc radius 2.82 r0 = 0.15 R200; mass held: M(<r0) x 1.94, M(<3 r0) x 3.00, central rho x 1.15; bare K unheld returns M/M_edge 0.87; Form B dm/dH_c at null -0.676, roots [0.38, 0.99, 3.32]
+1e11: a 15.8 q 0.782; c_s0^2 = 4.48 G M(r0)/r0; sinc radius 2.78 r0 = 0.18 R200; mass held: M(<r0) x 1.90, M(<3 r0) x 2.83, central rho x 1.13; bare K unheld returns M/M_edge 0.88; Form B dm/dH_c at null -0.777, roots [0.42, 0.99, 3.17]
+1e12: a 12.9 q 0.747; c_s0^2 = 4.29 G M(r0)/r0; sinc radius 2.72 r0 = 0.21 R200; mass held: M(<r0) x 1.85, M(<3 r0) x 2.59, central rho x 1.11; bare K unheld returns M/M_edge 0.90; Form B dm/dH_c at null -0.888, roots [0.47, 0.99, 2.97]
+1e13: a 11.9 q 0.734; c_s0^2 = 4.21 G M(r0)/r0; sinc radius 2.69 r0 = 0.23 R200; mass held: M(<r0) x 1.83, M(<3 r0) x 2.50, central rho x 1.10; bare K unheld returns M/M_edge 0.91; Form B dm/dH_c at null -0.921, roots [0.5, 0.99, 2.93]
+1e14: a 9.8 q 0.697; c_s0^2 = 4.00 G M(r0)/r0; sinc radius 2.62 r0 = 0.27 R200; mass held: M(<r0) x 1.80, M(<3 r0) x 2.28, central rho x 1.09; bare K unheld returns M/M_edge 0.92; Form B dm/dH_c at null -0.979, roots [0.56, 0.99, 2.71]
+1e15: a 8.4 q 0.663; c_s0^2 = 3.80 G M(r0)/r0; sinc radius 2.56 r0 = 0.31 R200; mass held: M(<r0) x 1.77, M(<3 r0) x 2.10, central rho x 1.08; bare K unheld returns M/M_edge 0.93; Form B dm/dH_c at null -0.997, roots [0.61, 0.99, 2.58]
+
+=== universal fluid
+rho_c by mass (kg/m^3): ['1.38e-21', '9.21e-22', '5.41e-22', '4.43e-22', '2.74e-22', '1.83e-22']; A (km/s)^2 ['5.95e+03', '2.52e+04', '1.04e+05', '4.61e+05', '1.93e+06', '8.30e+06']
+overlap of densities 1.4e-30 to 1.8e-22; spread of c_s^2(rho) between masses, dex: min 3.13, median 3.34, max 3.39
+1e12's EOS on 1e10, Phi_b = 0, mass held: M(<r0)/core 0.0024539027871759217
+1e12's EOS on 1e11, Phi_b = 0, mass held: M(<r0)/core 0.0041298497702604445
+1e12's EOS on 1e13, Phi_b = 0, mass held: M(<r0)/core 12.482610863512958
+1e12's EOS on 1e14, Phi_b = 0, mass held: M(<r0)/core 11.398828676223419
+1e12's EOS on 1e15, Phi_b = 0, mass held: M(<r0)/core 10.488532028101957
+LABEL: NO UNIVERSAL P(rho)
+one K means one radius at every mass; r0 runs 2.3 to 238.3 kpc, x 102
+
+=== physical consistency
+Form B local Gamma along the core: centre 0.98, x 1 1.02, x 10 1.19, x 100 1.26; min 0.98; below 4/3 for x > 0.001
+1e10: c_s centre B 26, A 69 km/s; Form B at mean density z 0 10, z 3 16 km/s (X22 <= 6 at z 3); Form A mu 479 /Mpc (BOLTZ1 floors 56.6, 2.04e4, 1.24e8)
+1e11: c_s centre B 53, A 140 km/s; Form B at mean density z 0 22, z 3 35 km/s (X22 <= 6 at z 3); Form A mu 193 /Mpc (BOLTZ1 floors 56.6, 2.04e4, 1.24e8)
+1e12: c_s centre B 107, A 278 km/s; Form B at mean density z 0 47, z 3 75 km/s (X22 <= 6 at z 3); Form A mu 75 /Mpc (BOLTZ1 floors 56.6, 2.04e4, 1.24e8)
+1e13: c_s centre B 226, A 581 km/s; Form B at mean density z 0 101, z 3 161 km/s (X22 <= 6 at z 3); Form A mu 32 /Mpc (BOLTZ1 floors 56.6, 2.04e4, 1.24e8)
+1e14: c_s centre B 464, A 1161 km/s; Form B at mean density z 0 220, z 3 345 km/s (X22 <= 6 at z 3); Form A mu 13 /Mpc (BOLTZ1 floors 56.6, 2.04e4, 1.24e8)
+1e15: c_s centre B 960, A 2346 km/s; Form B at mean density z 0 477, z 3 741 km/s (X22 <= 6 at z 3); Form A mu 5 /Mpc (BOLTZ1 floors 56.6, 2.04e4, 1.24e8)
+
+CHECKS: ALL PASS
