@@ -15,7 +15,8 @@
 \begin{document}
 \begin{center}
 {\Large\bfseries What the ALMA Release of 6 November 2026 Can Test:\\ Pre-Data Predictions for U4\_28473 and U4\_27928}\\[4pt]
-{\small Working note, v1.0 (2026-11-01). AI-assisted research programme; not peer reviewed. $\kappa=\tfrac12$ is fitted. The theory is not closed.}
+{\small Working note, v1.1 (2026-11-01; v1.0 the same day). AI-assisted research programme; not peer reviewed. $\kappa=\tfrac12$ is fitted. The theory is not closed.}\\[4pt]
+\fbox{\parbox{0.92\linewidth}{\small\textbf{Correction in v1.1.} v1.0 quoted a rotation-matched S/N of 9.6 for U4\_28473 without saying that it assumes the true disc model is known. It read as far more promising than a real search. A blind three-dimensional search on mock cubes at the archive noise detects the published smooth disc in 1 of 7 noise seeds. v1.1 adds those rates, the detection gate filed before the data (Section~6), and the scoring code. No prediction of $V_c$ or $\alpha_{\rm CO,req}$ changes.}}
 \end{center}
 
 \begin{abstract}\noindent
@@ -23,7 +24,7 @@ Observing unit uid://A001/X3788/Xbfd2 of ALMA programme 2024.1.00100.L (CONDOR) 
 
 The unit's science target is U4\_28473, at $z=2.52$, not U4\_27928, the galaxy this programme sealed for this date. U4\_27928 lies 7.36$''$ off the phase centre, so its reading is serendipitous. At its empirical gas mass the frozen aperture gives S/N 0.16, so we expect that test to score nothing.
 
-U4\_28473 has no earlier seal, so we add one here. Its published CO(3--2) flux gives $\log M_{\rm gas}=11.33$ ($\alpha_{\rm CO}=4.36$) or 10.69 ($\alpha_{\rm CO}=1$). At 3\,kpc the baryons alone, under Newtonian gravity, reach 431--846\,km\,s$^{-1}$ across the input branches. The galaxy therefore tests its mass budget, not $a_0(z)$: where the CO reaches, $g/a_0$ is large and the readings differ by far less than the stellar-mass and $\alpha_{\rm CO}$ ranges. One disc excludes no model.
+U4\_28473 has no earlier seal, so we add one here. Its published CO(3--2) flux gives $\log M_{\rm gas}=11.33$ ($\alpha_{\rm CO}=4.36$) or 10.69 ($\alpha_{\rm CO}=1$). At 3\,kpc the baryons alone, under Newtonian gravity, reach 431--846\,km\,s$^{-1}$ across the input branches. The galaxy therefore tests its mass budget, not $a_0(z)$: where the CO reaches, $g/a_0$ is large and the readings differ by far less than the stellar-mass and $\alpha_{\rm CO}$ ranges. Mock cubes at the archive noise show that a smooth disc of the published size is unlikely to be detected in a blind search (1 of 7 seeds), so a non-detection is a likely outcome of this release. One disc excludes no model.
 \end{abstract}
 
 \section{The framework, as it stands}
@@ -52,10 +53,15 @@ CFG571 (SHA-256 be27457d\ldots) sealed the gas each model requires as a function
 
 The AQUAL disc solution at lg $M_\star$ 11.31, S1 differs from the algebraic $n=1$ in-plane value by a factor 0.990--1.007 at 1--8\,kpc on the flat, F-DESI and R-H cells, so it adds nothing separable. Route N's core gives $V_{\rm core}(3\,{\rm kpc})$ about 25\,km\,s$^{-1}$ at lg $M_{200}$ 12.5. Rule N has no derived redshift dependence; holding $\Sigma_{\rm coll}$ at its $z=0$ value is an extrapolation, supported only by a halo acceleration ratio of 0.97--1.06 at $z=2.33$ at fixed $M_{200}$.
 
-\textbf{Detection forecast, smooth disc.} Beam 0.54\,kpc. Peak S/N 6.4 per beam per 100\,km\,s$^{-1}$; 3$\sigma$ per beam out to 0.70\,kpc; 3$\sigma$ per azimuthal ring out to 2.21\,kpc. Moment-0 aperture S/N over $\pm500$\,km\,s$^{-1}$ peaks at only 1.86, while a rotation-matched three-dimensional statistic reads 9.6. Clumps would raise the peak values.
+\textbf{Detection forecast, smooth disc.} Beam 0.54\,kpc. Peak S/N 6.4 per beam per 100\,km\,s$^{-1}$; 3$\sigma$ per beam out to 0.70\,kpc; 3$\sigma$ per azimuthal ring out to 2.21\,kpc. Moment-0 aperture S/N over $\pm500$\,km\,s$^{-1}$ peaks at only 1.86, while a rotation-matched three-dimensional statistic reads 9.6. The 9.6 is an ideal matched filter with the true model known, not an achievable search.
+
+\textbf{Mock cubes at the archive noise} ($V_c$ 430\,km\,s$^{-1}$, published flux, 7 noise seeds each, so rates are rough; Table~\ref{t:mock}). Clumpy gas was not tested and could change these. The compact fits scatter low, and the rms recovery error is 8.9\,\%, larger than most quoted errors; one fit sits 4$\sigma$ from truth. All four scored fits have a 90\,\% flux radius below 3\,kpc, so they would be scored inside that radius.
+
+\begin{table}[h]\centering\small\caption{U4\_28473 mock cubes at the archive noise. NOT ALMA data.}\label{t:mock}\begin{tabular}{lccc}\toprule disc & moment-0 gate & G1-3D gate & fit scored \\ \midrule smooth, gas $R_e$ 1.56\,kpc & 0 of 7 & 1 of 7 & 1 of 7 \\ compact, gas $R_e$ 0.8\,kpc & 0 of 7 & 6 of 7 & 4 of 7 \\ no line & 0 of 7 & 0 of 7 & none \\ \bottomrule\end{tabular}\end{table}
 
 \subsection*{Statements fixed before the data}
 \begin{enumerate}
+\item \textbf{Prediction B0.} If the gas is smooth at the published size, the likely result is an upper limit and no $V_c$. A scored $V_c$ requires compact or clumpy CO. Neither outcome bears on the law.
 \item \textbf{Prediction B1 (every reading with $\nu\ge1$, and route N).} $V_c(R)$ at or above the Newtonian value of the true baryons. At 3\,kpc the lowest branch gives 431\,km\,s$^{-1}$ (lg $M_\star$ 11.11, S2, $\alpha_{\rm CO}=1$). A lower $V_c$ requires lower $M_\star$, a more extended stellar disc, $\alpha_{\rm CO}<1$, or missing pressure support, and it is not a statement about $a_0$.
 \item \textbf{Prediction B2.} If $V_c(3\,{\rm kpc})$ is near the 430\,km\,s$^{-1}$ of our low-S/N H$\alpha$ fit, $\alpha_{\rm CO,req}$ is 0.88 for lg $M_\star$ 11.11, S2, 0.07 for 11.31, S2, and FLOOR for every S1 branch ($n=1$, flat, canonical). $\alpha_{\rm CO}=4.36$ with published masses is then out for every reading. The H$\alpha$ fit is weak: flagged low-S/N, edge-limited, dispersion at the prior's bound.
 \item \textbf{Prediction B3.} No pair among flat, F-DESI and the band will be separated. At the branch of Table~\ref{t:read}, flat and F-DESI differ by 2\,km\,s$^{-1}$ at 3\,kpc.
@@ -69,13 +75,13 @@ GS4\_24110 ([CI](2--1), programme 2025.1.01377.L, public 2026-11-28 by our earli
 \input{PAPER66_tables_c.tex}
 
 \section{Scoring}
-Frozen in commit 57d3ac6b64, alone, before any script. CO(3--2) detected at $\ge5\sigma$ against a selection-aware null, centroid within 0.5$''$, $z$ within 0.004. $V_c$ from a thin-disc forward model, with inclination and pressure branches never pooled. The primary statistic is $\alpha_{\rm CO,req}$ at the measured $V_c$, with its interval from $V_c\pm1\sigma$ and $M_\star\pm0.2$\,dex. A reading is \emph{consistent} if that interval includes $\alpha_{\rm CO}$ in [0.5, 6], \emph{in tension} if it lies wholly outside, and FLOOR if stars alone exceed the requirement even at $M_\star-0.2$\,dex. Two $a_0$ readings are separated only if their requirements differ by more than the $M_\star$ interval on both. Pooling, branch choice after the data, exclusion statements and law-form statements from one disc are forbidden. U4\_27928 stays under its own plan (CFG806).
+Frozen in commit 57d3ac6b64, alone, before any script. \textbf{Detection} was amended before the data by addendum G1 (0113d554d3, owner-approved, chosen on mock cubes only). The frozen moment-0 gate is printed but no longer decides. The cube is smoothed to 0.15$''$ and 100\,km\,s$^{-1}$; connected voxels $\ge2.5\sigma$ with a peak $\ge4\sigma$ touching a 0.5$''$ cylinder at the phase centre are summed, and the S/N against the same procedure at 200 off-source seeds must reach 5, with $z$ within 0.004. A fit is scored only if no parameter sits at a bound, three starts agree within 15\,\%, and $\sigma(V_c)/V_c\le0.25$. The $V_c$ error is the larger of the quoted one and the mock scatter. $V_c$ from a thin-disc forward model, with inclination and pressure branches never pooled. The primary statistic is $\alpha_{\rm CO,req}$ at the measured $V_c$, with its interval from $V_c\pm1\sigma$ and $M_\star\pm0.2$\,dex. A reading is \emph{consistent} if that interval includes $\alpha_{\rm CO}$ in [0.5, 6], \emph{in tension} if it lies wholly outside, and FLOOR if stars alone exceed the requirement even at $M_\star-0.2$\,dex. Two $a_0$ readings are separated only if their requirements differ by more than the $M_\star$ interval on both. Pooling, branch choice after the data, exclusion statements and law-form statements from one disc are forbidden. U4\_27928 stays under its own plan (CFG806).
 
 \section{Limits}
 \begin{itemize}
 \item One disc is a demonstration. No model is excluded.
-\item The G1 wording cites a moment-0 procedure, whose forecast for a smooth disc is below the gate. Our written expectation that G1 passes is not supported as frozen. The record keeps both, and any change needs a dated addendum before the data.
-\item The scoring harness for U4\_28473 is not written. Criteria require it before the cube is read; anything else is labelled a departure.
+\item The detection gate was changed after mock tests and before the data. The first written expectation, that the moment-0 gate would pass, was wrong on mocks. Both are on record.
+\item The scoring code has run only on mock cubes, never a real pipeline product. Its injection test starts at the true values and flatters recovery.
 \item Stellar masses and fluxes keep the authors' reductions, including their cosmology for distances. Rivals and CFG571's angular size are as sealed.
 \item The rotation at these radii may not trace circular speed; pressure branches stay separate. An unmodelled bulge or AGN is not included.
 \item The E, E-CCBH and BH-$k_3$ $a_0$ branches are not recomputed at this redshift.
@@ -83,7 +89,7 @@ Frozen in commit 57d3ac6b64, alone, before any script. CO(3--2) detected at $\ge
 \end{itemize}
 
 \section{Reproducibility}
-Lane \texttt{rebuild\_2026\_10\_22/AC1\_alma\_condor\_predictions}: criteria 57d3ac6b64, run 02ffa20dd8; all checks pass, and a mutation (ten times $R_{31}$) trips its check and exits 1. \texttt{ac1\_results.json} SHA-256 bfdfed68\ldots. Seals: CFG571 be27457d\ldots, $n=1$ 9802de0d\ldots, $n=2$ d64727b5\ldots, AQUAL b5d65a5e\ldots. An audit script ties every quoted number here to those files.
+Lane \texttt{rebuild\_2026\_10\_22/AC1\_alma\_condor\_predictions}: criteria 57d3ac6b64, run 02ffa20dd8; all checks pass, and a mutation (ten times $R_{31}$) trips its check and exits 1. \texttt{ac1\_results.json} SHA-256 bfdfed68\ldots. Seals: CFG571 be27457d\ldots, $n=1$ 9802de0d\ldots, $n=2$ d64727b5\ldots, AQUAL b5d65a5e\ldots. Scoring code \texttt{ac1\_score.py} (6874d71f1f), mock outputs \texttt{ac1\_score\_power.out} and \texttt{ac1\_score\_selftest.out}. An audit script ties every quoted number here to those files.
 
 \small AI assistance: Anthropic's Claude (analysis, review, drafting). ALMA metadata: ALMA Science Archive. Sources: Tadaki et al.\ 2017, ApJ 834, 135; Tadaki et al.\ 2023, arXiv:2309.02703; Wisnioski et al.\ 2019 (KMOS$^{\rm 3D}$).
 
