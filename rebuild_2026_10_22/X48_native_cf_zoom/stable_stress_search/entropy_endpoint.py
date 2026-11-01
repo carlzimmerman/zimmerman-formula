@@ -1,0 +1,504 @@
+"""Construct, without evolving mixing, an entropy-sorted hydrostatic endpoint.
+
+Contract: retain the measured equal-mass parcel K values and source-byte hash,
+sort those values by enclosed mass, and interpolate linearly between parcel
+centers (clipping at both ends). This preserves the discrete parcel values and
+the integral of K in mass; it defines a continuous proxy between those values.
+Shoot regular spherical P(r),m(r) hydrostatics to P=0 at fixed cold mass. Compare
+its energy with the measured cold initial energy. Only if the sorted state is
+energetically allowed, increase all parcel K by one common alpha>=1 to match
+that energy. This constructs an admissible endpoint; no convective mixing law,
+flow reachability, cosmological halo envelope, or 3D stability is demonstrated.
+The optional exact_parcels mode instead holds each measured K constant on its
+whole equal-mass interval and restarts mass-coordinate RK45 at every contact.
+Only that mode guarantees a parcelwise nondecrease when alpha>=1.
+"""
+
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import time
+
+import numpy as np
+from scipy.integrate import solve_ivp
+from scipy.interpolate import PchipInterpolator
+from scipy.optimize import brentq
+
+import material
+
+
+_d_table = np.linspace(1.0, 2.0, 4097)
+_t_table = _d_table - 1
+_w_table = _d_table * _t_table * np.sqrt(3 - 2 * _t_table)
+_inverse_pressure_root = PchipInterpolator(_w_table, _d_table, extrapolate=False)
+
+
+class EntropyProfile:
+    """Positive measured parcel coefficients; no entropy floor is introduced."""
+
+    def __init__(self, K_samples, total_mass, *, input_sha256=None, input_path=None,
+                 source_time=None, initial_energy=None):
+        values = np.asarray(K_samples, dtype=float)
+        if values.ndim != 1 or len(values) < 2 or not np.all(np.isfinite(values)) or np.any(values <= 0):
+            raise ValueError("endpoint hydrostatics requires finite K>0 for every parcel")
+        if not np.isfinite(total_mass) or total_mass <= 0:
+            raise ValueError("total cold mass must be positive and finite")
+        self.original_K = values.copy()
+        self.sorted_K = np.sort(values)
+        self.total_mass = float(total_mass)
+        self.centers = (np.arange(len(values)) + 0.5) * self.total_mass / len(values)
+        self.mass_edges = np.arange(len(values) + 1) * (self.total_mass / len(values))
+        self.input_sha256, self.input_path = input_sha256, input_path
+        self.source_time, self.initial_energy = source_time, initial_energy
+
+    def coefficient(self, m, alpha=1.0):
+        if not np.isfinite(alpha) or alpha < 1:
+            raise ValueError("alpha must be finite and >=1")
+        return alpha * np.interp(m, self.centers, self.sorted_K)
+
+    def coefficient_derivative(self, m, alpha=1.0):
+        values = np.asarray(m)
+        indices = np.clip(np.searchsorted(self.centers, values) - 1, 0, len(self.sorted_K) - 2)
+        slopes = np.diff(self.sorted_K) / np.diff(self.centers)
+        return np.where((values > self.centers[0]) & (values < self.centers[-1]), alpha * slopes[indices], 0)
+
+    def parcel_coefficient(self, m, alpha=1.0):
+        """Exact right-continuous constant-per-parcel K, clipped at endpoints."""
+        if not np.isfinite(alpha) or alpha < 1:
+            raise ValueError("alpha must be finite and >=1")
+        if not np.all(np.isfinite(m)):
+            raise ValueError("enclosed mass must be finite")
+        index = np.searchsorted(self.mass_edges[1:-1], m, side="right")
+        return alpha * self.sorted_K[np.clip(index, 0, len(self.sorted_K) - 1)]
+
+
+def load_collapse(path):
+    """Read the exact final K profile and initial energy of one measured run."""
+    path = Path(path)
+    raw = path.read_bytes()
+    data = json.loads(raw)
+    values = data["final_profile"]["K"]
+    if len(values) != data["n_shells"]:
+        raise ValueError("collapse shell count and final K count disagree")
+    return EntropyProfile(values, data["total_mass"], input_sha256=hashlib.sha256(raw).hexdigest(),
+                          input_path=str(path.resolve()), source_time=data["t_reached"],
+                          initial_energy=data["initial"]["total"])
+
+
+def density_from_pressure(P, K, params):
+    """Inverse occupied EOS branch, rho>=rho_q, including its P=0 limit.
+
+    The inverse table uses sqrt(P/(K*rho_q**2)), which is smooth at the gate.
+    Its accuracy is checked against the independent material evaluator.
+    """
+    P, K = np.broadcast_arrays(np.asarray(P, dtype=float), np.asarray(K, dtype=float))
+    if np.any(~np.isfinite(P)) or np.any(P < 0) or np.any(~np.isfinite(K)) or np.any(K <= 0):
+        raise ValueError("require finite P>=0 and K>0")
+    w = np.sqrt(P / K) / params.rho_q
+    d = np.where(w >= 2, w, _inverse_pressure_root(np.minimum(w, 2)))
+    return params.rho_q * d
+
+
+def entropy_integrals(profile, params, *, alpha=1.0, mode="linear_proxy"):
+    """Analytic mass integrals of sigma=(K/Kstar)**(1/3), before/after proxying.
+
+    Concavity implies the linear-K continuous proxy has at least the discrete
+    parcel entropy integral. Sorting alone preserves the latter exactly.
+    """
+    K = profile.sorted_K
+    sigma = np.cbrt(K / params.k_star)
+    relative_step = np.diff(K) / K[:-1]
+    average = sigma[:-1].copy()
+    nonzero = relative_step != 0
+    average[nonzero] *= (0.75 * np.expm1(4 / 3 * np.log1p(relative_step[nonzero]))
+                         / relative_step[nonzero])
+    dm = profile.total_mass / len(K)
+    discrete = float(dm * sigma.sum())
+    continuous = float(dm * (sigma[0] / 2 + sigma[-1] / 2 + average.sum()))
+    if mode == "exact_parcels":
+        return dict(source_sigma_mass_integral=discrete, sorted_sigma_mass_integral=discrete,
+                    endpoint_sigma_mass_integral=alpha**(1 / 3) * discrete,
+                    alpha_sigma_factor=alpha**(1 / 3), minimum_parcel_K_ratio=alpha,
+                    exact_histogram_scaling=True, discrete_K_mass_integral=float(dm * K.sum()))
+    return dict(source_discrete_sigma_mass_integral=discrete,
+                sorted_continuous_sigma_mass_integral=continuous,
+                endpoint_continuous_sigma_mass_integral=alpha**(1 / 3) * continuous,
+                interpolation_relative_entropy_increase=continuous / discrete - 1,
+                alpha_sigma_factor=alpha**(1 / 3),
+                discrete_K_mass_integral=float(dm * K.sum()))
+
+
+def solve_equilibrium(profile, params, *, alpha=1.0, rtol=2e-7,
+                      output_points=1025, deadline=None, baryon_mass=0.0,
+                      baryon_scale=1.0, mode="linear_proxy", residual_tolerance=2e-6):
+    """Shoot central pressure to preserve cold mass, with optional Plummer load."""
+    if mode == "exact_parcels":
+        return solve_exact_parcel_equilibrium(profile, params, alpha=alpha, rtol=rtol,
+                    output_points=output_points, deadline=deadline, baryon_mass=baryon_mass,
+                    baryon_scale=baryon_scale, residual_tolerance=residual_tolerance)
+    if mode != "linear_proxy":
+        raise ValueError("unknown entropy mode")
+    if rtol <= 0 or output_points < 3 or baryon_mass < 0 or baryon_scale <= 0:
+        raise ValueError("invalid equilibrium bounds or baryonic load")
+    M, G, rho_q = profile.total_mass, params.G, params.rho_q
+    radius_bound = (3 * 2.01 * M / (4 * np.pi * rho_q))**(1 / 3)
+    pressure_unit = G * M**(2 / 3) * rho_q**(4 / 3)
+    shots = 0
+
+    def integrate(Pc, dense=False):
+        nonlocal shots
+        shots += 1
+        Kc = float(profile.coefficient(0, alpha))
+        dc = float(density_from_pressure(Pc, Kc, params))
+        start = min(radius_bound * 1e-7, np.sqrt(Pc / (G * dc**2)) * 1e-4)
+        rho_b_center = 3 * baryon_mass / (4 * np.pi * baryon_scale**3)
+        m0 = 4 * np.pi / 3 * dc * start**3
+        initial = [m0, Pc - 2 * np.pi * G / 3 * dc * (dc + rho_b_center) * start**2,
+                   m0 * Kc * float(material.density_weight(dc, params)),
+                   -16 * np.pi**2 * G * dc**2 * start**5 / 15,
+                   -G * baryon_mass / baryon_scale * m0]
+
+        def rhs(r, y):
+            if deadline is not None and time.monotonic() > deadline:
+                raise TimeoutError("endpoint wall budget exhausted")
+            m, pressure = y[:2]
+            K = float(profile.coefficient(m, alpha))
+            rho = float(density_from_pressure(max(pressure, 0), K, params))
+            dm = 4 * np.pi * r**2 * rho
+            mb = baryon_mass * (r / np.hypot(r, baryon_scale))**3
+            e = K * float(material.density_weight(rho, params))
+            return [dm, -G * (m + mb) * rho / r**2,
+                    e * dm, -G * m / r * dm,
+                    -G * baryon_mass / np.hypot(r, baryon_scale) * dm]
+
+        def surface(r, y):
+            return y[1]
+
+        def mass_cap(r, y):
+            return y[0] - 2 * M
+
+        surface.terminal, surface.direction = True, -1
+        mass_cap.terminal, mass_cap.direction = True, 1
+        sol = solve_ivp(rhs, (start, radius_bound), initial, events=(surface, mass_cap),
+                        rtol=rtol, atol=rtol * 1e-3, dense_output=dense, max_step=radius_bound / 40)
+        if not sol.success:
+            raise RuntimeError(sol.message)
+        reached_surface = len(sol.t_events[0]) == 1
+        if not reached_surface and len(sol.t_events[1]) != 1:
+            raise RuntimeError("neither surface nor mass cap reached")
+        return sol, dc, reached_surface, start
+
+    def residual(log_pressure):
+        sol = integrate(float(np.exp(log_pressure)))[0]
+        return float(sol.y[0, -1] / M - 1)
+
+    low, high = np.log(pressure_unit * 1e-9), np.log(pressure_unit)
+    if residual(low) >= 0:
+        raise RuntimeError("low-pressure mass bracket is not below the target")
+    for _ in range(24):
+        if residual(high) >= 0:
+            break
+        high += np.log(4)
+    else:
+        raise RuntimeError("central-pressure mass bracket exhausted")
+    root = brentq(residual, low, high, xtol=2e-9, rtol=2e-9)
+    Pc = float(np.exp(root))
+    sol, dc, reached_surface, start = integrate(Pc, dense=True)
+    if not reached_surface:
+        raise RuntimeError("fixed-mass root did not reach a free surface")
+    radius, mass = float(sol.t[-1]), float(sol.y[0, -1])
+    radii = np.linspace(start, radius, output_points - 1)
+    m, pressure, internal, gravitational, external = sol.sol(radii)
+    K = profile.coefficient(m, alpha)
+    rho = density_from_pressure(np.maximum(pressure, 0), K, params)
+    # Add the regular central limit explicitly; exclude the vacuum exterior.
+    radii = np.r_[0.0, radii]
+    m, pressure = np.r_[0.0, m], np.r_[Pc, np.maximum(pressure, 0)]
+    K, rho = np.r_[profile.coefficient(0, alpha), K], np.r_[dc, rho]
+    h = material.activation(rho / rho_q)
+    c2 = material.sound_speed_squared(rho, K, params)
+    gamma = np.divide(rho * c2, pressure, out=np.full_like(rho, np.inf), where=pressure > Pc * 1e-12)
+    dK_dr = profile.coefficient_derivative(m, alpha) * 4 * np.pi * radii**2 * rho
+    enclosed_baryons = baryon_mass * (radii / np.hypot(radii, baryon_scale))**3
+    gravity = np.divide(G * (m + enclosed_baryons), radii**2, out=np.zeros_like(m), where=radii > 0)
+    N2 = np.divide(gravity * rho * h * dK_dr, c2, out=np.zeros_like(m), where=c2 > 0)
+    active = (pressure > Pc * 1e-12) & np.isfinite(gamma)
+    half_mass = brentq(lambda r: float(sol.sol(r)[0]) - M / 2, start, radius)
+    five_pct = brentq(lambda r: float(sol.sol(r)[0]) - M * 0.05, start, radius)
+    core_indices = np.flatnonzero(rho <= dc / 2)
+    core = float(radii[core_indices[0]]) if len(core_indices) else radius
+    U, V, B = (float(sol.y[j, -1]) for j in (2, 3, 4))
+    return dict(alpha=alpha, central_pressure=Pc, central_density=dc, radius=radius,
+                cold_mass=mass, target_cold_mass=M, relative_mass_error=abs(mass / M - 1),
+                five_pct_radius=five_pct, half_mass_radius=half_mass, core_radius=core,
+                half_density_crossing_found=bool(len(core_indices)),
+                internal_energy=U, gravitational_energy=V, external_energy=B, total_energy=U + V + B,
+                minimum_active_gamma1=float(gamma[active].min()),
+                minimum_buoyancy_squared=float(N2.min()), maximum_buoyancy_squared=float(N2.max()),
+                parcel_K=(alpha * profile.sorted_K).tolist(), shooting_integrations=shots,
+                baryon_mass=baryon_mass, baryon_scale=baryon_scale, rtol=rtol,
+                mode=mode, integration_method="RK45",
+                mass_residual_accepted=abs(mass / M - 1) < residual_tolerance,
+                residual_tolerance=residual_tolerance,
+                profile=dict(r=radii.tolist(), m=m.tolist(), P=pressure.tolist(),
+                             rho=rho.tolist(), K=K.tolist(), N2=N2.tolist()))
+
+
+def solve_exact_parcel_equilibrium(profile, params, *, alpha=1.0, rtol=2e-8,
+                      output_points=1025, deadline=None, baryon_mass=0.0,
+                      baryon_scale=1.0, residual_tolerance=2e-6):
+    """Constant K per exact mass cell; RK45 restarts at every entropy contact.
+
+    States are (u=r**3,P,U,V,B) with enclosed cold mass independent. Radius and
+    pressure are continuous at contacts; density may jump. Beyond M, extend only
+    the final parcel K to bracket a pressure-free surface, capped at 2M.
+    """
+    if rtol <= 0 or output_points < 3 or baryon_mass < 0 or baryon_scale <= 0:
+        raise ValueError("invalid exact-parcel equilibrium inputs")
+    M, G, rho_q = profile.total_mass, params.G, params.rho_q
+    n, dm = len(profile.sorted_K), M / len(profile.sorted_K)
+    profile.parcel_coefficient(0, alpha)  # validate alpha before numerical work
+    pressure_unit = G * M**(2 / 3) * rho_q**(4 / 3)
+    shots = 0
+
+    def integrate(Pc, dense=False):
+        nonlocal shots
+        shots += 1
+        Kc = alpha * profile.sorted_K[0]
+        dc = float(density_from_pressure(Pc, Kc, params))
+        rho_b_center = 3 * baryon_mass / (4 * np.pi * baryon_scale**3)
+        central_coefficient = 2 * np.pi * G / 3 * dc * (dc + rho_b_center)
+        r0 = min((3 * dm * 1e-8 / (4 * np.pi * dc))**(1 / 3),
+                 np.sqrt(Pc * 1e-5 / central_coefficient))
+        m0 = 4 * np.pi / 3 * dc * r0**3
+        state = np.array([r0**3, Pc - central_coefficient * r0**2,
+                          m0 * Kc * float(material.density_weight(dc, params)),
+                          -3 * G * m0**2 / (5 * r0), -G * baryon_mass / baryon_scale * m0])
+        mass, pieces, contacts = m0, [], []
+        for i in range(n + 1):
+            K = alpha * profile.sorted_K[min(i, n - 1)]
+            upper = (i + 1) * dm if i < n else 2 * M
+
+            def rhs(m, y):
+                if deadline is not None and time.monotonic() > deadline:
+                    raise TimeoutError("exact-parcel endpoint wall budget exhausted")
+                u, P = y[:2]
+                if u <= 0:
+                    raise RuntimeError(f"nonpositive radius cube trial: cell={i}, Pc={Pc}, m={m}, u={u}, P={P}, start_m={mass}, upper_m={upper}")
+                r = u**(1 / 3)
+                rho = float(density_from_pressure(max(P, 0), K, params))
+                mb = baryon_mass * (r / np.hypot(r, baryon_scale))**3
+                return [3 / (4 * np.pi * rho), -G * (m + mb) / (4 * np.pi * r**4),
+                        K * float(material.density_weight(rho, params)),
+                        -G * m / r, -G * baryon_mass / np.hypot(r, baryon_scale)]
+
+            def surface(m, y):
+                return y[1]
+
+            surface.terminal, surface.direction = True, -1
+            sol = solve_ivp(rhs, (mass, upper), state, method="RK45", events=surface,
+                            rtol=rtol, atol=rtol * 1e-4, dense_output=dense,
+                            max_step=dm,
+                            first_step=min(0.1 * mass, 0.1 * (upper - mass)) if i == 0 else None)
+            if not sol.success:
+                raise RuntimeError(sol.message)
+            if dense:
+                pieces.append((mass, float(sol.t[-1]), sol, K))
+            mass, state = float(sol.t[-1]), sol.y[:, -1].copy()
+            if len(sol.t_events[0]):
+                return mass, state, dc, pieces, contacts, m0
+            if i < n - 1 and dense:
+                Kouter = alpha * profile.sorted_K[i + 1]
+                P = max(float(state[1]), 0)
+                contacts.append(dict(mass=mass, radius=float(state[0]**(1 / 3)), pressure=P,
+                         K_inner=float(K), K_outer=float(Kouter),
+                         rho_inner=float(density_from_pressure(P, K, params)),
+                         rho_outer=float(density_from_pressure(P, Kouter, params))))
+        return mass, state, dc, pieces, contacts, m0
+
+    def residual(logP):
+        return integrate(float(np.exp(logP)))[0] / M - 1
+
+    low, high = np.log(pressure_unit * 1e-9), np.log(pressure_unit)
+    if residual(low) >= 0:
+        raise RuntimeError("exact-parcel low pressure bracket exceeds target mass")
+    for _ in range(24):
+        if residual(high) >= 0:
+            break
+        high += np.log(4)
+    else:
+        raise RuntimeError("exact-parcel pressure bracket exhausted")
+    Pc = float(np.exp(brentq(residual, low, high, xtol=2e-10, rtol=2e-10)))
+    mass, end, dc, pieces, contacts, m0 = integrate(Pc, dense=True)
+    if abs(float(end[1])) > max(Pc, pressure_unit) * 1e-7:
+        raise RuntimeError("exact-parcel fixed mass shot has no pressure-free surface")
+    mass_error = abs(mass / M - 1)
+    # Each stored dense interpolant belongs to one constant-K cell. Never
+    # interpolate K across a contact or evaluate a previous cell with a new K.
+    rows = [(0.0, 0.0, Pc, dc, float(alpha * profile.sorted_K[0]))]
+    per_piece = max(3, int(np.ceil(output_points / n)))
+    for lower, upper, sol, K in pieces:
+        grid = np.linspace(lower, upper, per_piece)
+        values = sol.sol(grid)
+        densities = density_from_pressure(np.maximum(values[1], 0), K, params)
+        rows.extend(zip(grid.tolist(), np.cbrt(values[0]).tolist(),
+                        np.maximum(values[1], 0).tolist(), densities.tolist(),
+                        np.full_like(grid, K).tolist()))
+    array = np.asarray(rows)
+    m, r, pressure, rho, K = array.T
+    c2 = material.sound_speed_squared(rho, K, params)
+    gamma = np.divide(rho * c2, pressure, out=np.full_like(rho, np.inf), where=pressure > Pc * 1e-12)
+    active = (pressure > Pc * 1e-12) & np.isfinite(gamma)
+    core_indices = np.flatnonzero(rho <= dc / 2)
+
+    def radius_at_mass(value):
+        for lower, upper, sol, _ in pieces:
+            if lower <= value <= upper:
+                return float(np.cbrt(sol.sol(value)[0]))
+        raise RuntimeError("mass quantile lies outside the integrated sphere")
+
+    contacts_stable = all(c["K_outer"] >= c["K_inner"] and c["rho_outer"] <= c["rho_inner"]
+                          for c in contacts)
+    U, V, B = (float(end[j]) for j in (2, 3, 4))
+    return dict(mode="exact_parcels", integration_method="RK45", alpha=alpha,
+                central_pressure=Pc, central_density=dc, radius=float(end[0]**(1 / 3)),
+                cold_mass=mass, target_cold_mass=M, relative_mass_error=mass_error,
+                mass_residual_accepted=mass_error < residual_tolerance,
+                residual_tolerance=residual_tolerance,
+                five_pct_radius=radius_at_mass(0.05 * M), half_mass_radius=radius_at_mass(0.5 * M),
+                core_radius=float(r[core_indices[0]]) if len(core_indices) else float(r[-1]),
+                half_density_crossing_found=bool(len(core_indices)),
+                core_radius_definition="first sampled occupied radius with rho<=rho_c/2",
+                internal_energy=U, gravitational_energy=V, external_energy=B, total_energy=U + V + B,
+                minimum_active_gamma1=float(gamma[active].min()),
+                bulk_buoyancy_squared=0.0, stabilizing_contacts=contacts_stable, contacts=contacts,
+                contact_stability_interpretation="K jumps outward upwards and density downwards at common P; zero bulk N2 alone is not an interface test",
+                parcel_K=(alpha * profile.sorted_K).tolist(), shooting_integrations=shots,
+                baryon_mass=baryon_mass, baryon_scale=baryon_scale, rtol=rtol,
+                center_start_mass=m0, center_first_step_fraction=0.1,
+                profile=dict(r=r.tolist(), m=m.tolist(), P=pressure.tolist(), rho=rho.tolist(), K=K.tolist()))
+
+
+def construct_endpoint(profile, params, *, target_energy=None, rtol=2e-7, wall_seconds=22,
+                       mode="linear_proxy", residual_tolerance=2e-6):
+    """Check sorted energy, then match energy by increasing all K together."""
+    started = time.monotonic()
+    deadline = started + wall_seconds
+    target = profile.initial_energy if target_energy is None else target_energy
+    if target is None or not np.isfinite(target):
+        raise ValueError("a finite target energy is required")
+    cache = {}
+
+    def solve(alpha):
+        if alpha not in cache:
+            cache[alpha] = solve_equilibrium(profile, params, alpha=alpha, rtol=rtol, deadline=deadline,
+                                             mode=mode, residual_tolerance=residual_tolerance)
+        return cache[alpha]
+
+    base = solve(1.0)
+    scale = max(abs(target), 1e-12)
+    if not base["mass_residual_accepted"]:
+        return dict(status="mass_residual_rejected", mode=mode, alpha=None, endpoint=None,
+                    sorted_equilibrium=base, target_energy=target,
+                    residual_tolerance=residual_tolerance, elapsed_seconds=time.monotonic() - started)
+    if base["total_energy"] > target + 1e-7 * scale:
+        return dict(status="energetic_obstruction", mode=mode, alpha=None, endpoint=None,
+                    sorted_equilibrium=base, target_energy=target,
+                    elapsed_seconds=time.monotonic() - started)
+    if abs(base["total_energy"] - target) <= 1e-7 * scale:
+        alpha = 1.0
+    else:
+        high = 2.0
+        for _ in range(10):
+            if solve(high)["total_energy"] >= target:
+                break
+            high *= 2
+        else:
+            raise RuntimeError("alpha energy bracket exhausted")
+        alpha = float(brentq(lambda a: solve(a)["total_energy"] - target,
+                             1.0, high, xtol=2e-8, rtol=2e-8))
+    result = solve(alpha)
+    energy_error = abs(result["total_energy"] - target) / scale
+    accepted = result["mass_residual_accepted"] and energy_error < residual_tolerance
+    return dict(status="constructed_endpoint" if accepted else "residual_rejected",
+                mode=mode, alpha=alpha, endpoint=result,
+                sorted_equilibrium=base, target_energy=target,
+                relative_energy_error=energy_error, energy_residual_accepted=energy_error < residual_tolerance,
+                residual_tolerance=residual_tolerance,
+                source_time=profile.source_time, input_sha256=profile.input_sha256,
+                input_path=profile.input_path, measured_K_min=float(profile.sorted_K.min()),
+                measured_K_max=float(profile.sorted_K.max()),
+                energy_alpha_trace=[dict(alpha=a, energy=v["total_energy"]) for a, v in sorted(cache.items())],
+                entropy_integrals=entropy_integrals(profile, params, alpha=alpha, mode=mode),
+                elapsed_seconds=time.monotonic() - started,
+                non_claims=["Constructed endpoint, not an implemented mixing evolution",
+                            "No proof that collapse reaches this state", "No 3D stability calculation",
+                            "Recorded discrete initial energy differs from the continuum initial sphere by about 0.023 percent"]
+                           + (["Linear proxy does not guarantee a parcelwise entropy nondecrease"]
+                              if mode == "linear_proxy" else ["Exact parcel histogram is scaled by alpha; hydrostatic contact stability is conditional on the stated interface conditions"]))
+
+
+def compare_plummer_loading(profile, params, reference, *, rtol=2e-9, deadline=None):
+    """One fixed-K, fixed-mass quasistatic load and a circular-shell reference."""
+    M, alpha = profile.total_mass, reference["alpha"]
+    Mb, b = 0.3 * M, 0.1 * reference["radius"]
+    loaded = solve_equilibrium(profile, params, alpha=alpha, rtol=rtol,
+                               baryon_mass=Mb, baryon_scale=b, deadline=deadline,
+                               mode=reference.get("mode", "linear_proxy"),
+                               residual_tolerance=reference.get("residual_tolerance", 2e-6))
+    comparisons = []
+    for fraction, key in [(0.05, "five_pct_radius"), (0.5, "half_mass_radius")]:
+        initial_radius = reference[key]
+        shell_mass = fraction * M
+
+        def circular_residual(r):
+            mb = Mb * (r / np.hypot(r, b))**3
+            return r * (shell_mass + mb) - initial_radius * shell_mass
+
+        circular_radius = brentq(circular_residual, 0, initial_radius, xtol=1e-12)
+        comparisons.append(dict(mass_fraction=fraction, initial_radius=initial_radius,
+                                loaded_radius=loaded[key], circular_reference_radius=circular_radius,
+                                pressure_radius_ratio=loaded[key] / initial_radius,
+                                circular_radius_ratio=circular_radius / initial_radius,
+                                pressure_radius_exceeds_reference=loaded[key] > circular_radius))
+    return dict(status="quasistatic_plummer_comparison" if loaded["mass_residual_accepted"] else "mass_residual_rejected",
+                mode=reference.get("mode", "linear_proxy"), unchanged_alpha=alpha,
+                baryon_mass=Mb, baryon_scale=b, comparisons=comparisons, loaded_equilibrium=loaded,
+                non_claims=["Prescribed smooth spherical baryons, not a disc",
+                            "Circular shell reference is a comparison model, not general dust dynamics",
+                            "No additional entropy generation or alpha adjustment"])
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--collapse-input", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--rtol", type=float, default=2e-7)
+    parser.add_argument("--wall-seconds", type=float, default=22)
+    parser.add_argument("--plummer-check", action="store_true")
+    parser.add_argument("--mode", choices=["exact_parcels", "linear_proxy"], default="exact_parcels")
+    parser.add_argument("--residual-tolerance", type=float, default=2e-6)
+    args = parser.parse_args()
+    profile = load_collapse(args.collapse_input)
+    params = material.MaterialParameters(rho_q=1, G=1, a0=np.sqrt(8 * np.pi), tau=0.5)
+    started = time.monotonic()
+    try:
+        result = construct_endpoint(profile, params, rtol=args.rtol, wall_seconds=args.wall_seconds,
+                                    mode=args.mode, residual_tolerance=args.residual_tolerance)
+        if args.plummer_check and result["status"] == "constructed_endpoint":
+            try:
+                result["plummer_check"] = compare_plummer_loading(
+                    profile, params, result["endpoint"], rtol=args.rtol,
+                    deadline=started + args.wall_seconds)
+            except TimeoutError as exc:
+                result["plummer_check"] = dict(status="wall_limit", message=str(exc))
+    except TimeoutError as exc:
+        result = dict(status="wall_limit", mode=args.mode, message=str(exc), input_sha256=profile.input_sha256)
+    result["total_elapsed_seconds"] = time.monotonic() - started
+    args.output.write_text(json.dumps(result, indent=2, allow_nan=False) + "\n")
+    print(json.dumps({key: result[key] for key in ("status", "alpha", "relative_energy_error", "elapsed_seconds") if key in result}))
+
+
+if __name__ == "__main__":
+    main()

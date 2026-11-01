@@ -1,0 +1,160 @@
+{
+  "schema_version": 2,
+  "claim_id": "X48_SORTED_ENERGY_ENDPOINT_AND_FIXED_ENTROPY_PLUMMER_LOAD",
+  "repository": {
+    "commit": "unavailable",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "entropy_endpoint.py",
+    "--collapse-input",
+    "collapse_n64_t8.json",
+    "--output",
+    "endpoint_loaded/result.json",
+    "--wall-seconds",
+    "22",
+    "--rtol",
+    "2e-9",
+    "--plummer-check"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "For the exact N64 tau=.5 final t=8 parcel K sample, sort K ascending by equal parcel mass, solve a fixed-mass hydrostatic sphere, test whether its energy is <= the measured cold initial discrete energy, and only then seek alpha>=1 matching that energy. After a positive construction, keep the identical K(m) and alpha fixed and load Plummer baryons Mb=.3M,b=.1R_endpoint; compare 5% and 50% mass radii with a specified circular-shell contraction model. Quantify discrete versus clipped-linear proxy entropy integrals sigma=(K/Kstar)^(1/3).",
+    "coefficient_domain": "IEEE754 float64; scipy DOP853 hydrostatics, brentq scalar shooting; positive K samples; rho_q=G=Kstar=1",
+    "conventions": "K(m) piecewise linear between equal-mass parcel centers, clipped at endpoints; r is independent coordinate; pressure-free surface at occupied rho=rho_q; Eint=int K W dm, Egrav=-int Gm/r dm; no baryons in primary construction",
+    "inputs": [
+      "exact collapse_n64_t8.json final_profile.K",
+      "total_mass and initial.total from that same file",
+      "source N=64, tau=.5, t=8"
+    ],
+    "bounds": {
+      "N": 64,
+      "rtol": 2e-09,
+      "EOS_inverse_table_nodes": 4097,
+      "profile_nodes": 1025,
+      "internal_wall_cap_seconds": 22,
+      "alpha_bracket_cap": 1024,
+      "pressure_bracket_iterations": 24,
+      "baryon_mass_fraction": 0.3,
+      "baryon_scale_over_endpoint_radius": 0.1,
+      "circular_reference_mass_fractions": [
+        0.05,
+        0.5
+      ]
+    },
+    "non_claims": [
+      "No implemented convection or mixing law",
+      "No proof of dynamical reachability",
+      "No 3D stability calculation",
+      "Initial target energy has finite-N gravity/kinetic discretization error",
+      "Interpolation preserves sampled parcel entropies, not their exact piecewise-constant continuum histogram",
+      "Prescribed smooth spherical loading is not a disc or baryonic assembly evolution"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T01:57:14.009091+00:00",
+    "runtime_seconds": 14.692879,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 28.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 25,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "entropy_endpoint.py",
+    "material.py",
+    "collapse_n64_t8.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "entropy_endpoint.py",
+      "sha256": "2fb7ad3fef415fa9c07c995cb19a0966a99f450165f4d1a8858b3833f99c7f38",
+      "sha256_after": "2fb7ad3fef415fa9c07c995cb19a0966a99f450165f4d1a8858b3833f99c7f38"
+    },
+    {
+      "path": "material.py",
+      "sha256": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390",
+      "sha256_after": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390"
+    },
+    {
+      "path": "collapse_n64_t8.json",
+      "sha256": "26e7c8fa81642b578fbc3de7643b2d5cd5f943f4884a5faf80f6f9fad4f6e117",
+      "sha256_after": "26e7c8fa81642b578fbc3de7643b2d5cd5f943f4884a5faf80f6f9fad4f6e117"
+    }
+  ],
+  "output_directory": "endpoint_loaded",
+  "declared_results": [
+    "endpoint_loaded/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "endpoint_loaded/stdout.txt",
+      "sha256": "a7553edeceba1b6dfded2debe6bcfd9bc0160d8e0d9d69b530628a1e41cf25af",
+      "kind": "log"
+    },
+    {
+      "path": "endpoint_loaded/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "endpoint_loaded/result.json",
+      "sha256": "5397fe8fedd91b8bc8f4a1c4a41ca90f2e209070ea75ea974eb5627eb1e5d231",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "claim_id": "X48_ISENTROPIC_CONTINUUM_PREDICTION",
+  "mathematics": {
+    "assertion_tested": "Predict the positive constant-entropy hydrostatic endpoint solely from continuum uniform-sphere mass and total energy; verify direct and virial energy integrals. This is conditional on the dynamical solution becoming stationary and isentropic, not a convergence theorem.",
+    "coefficient_domain": "IEEE754float64; RK45 hydrostatic shape, scipy.quad,brentq",
+    "conventions": "G=rho_q=Kstar=1,M=pi/3,Rinitial1,Hinitial=-.25; continuumE=.3H\u00b2MR\u00b2\u2212.6GM\u00b2/R; no observedentropyinput",
+    "inputs": [
+      "gated EOS and latent W",
+      "uniformspherecontinuum mass and energy"
+    ],
+    "bounds": {
+      "rtol": 1e-12,
+      "atol": 1e-15,
+      "max_step": 0.005,
+      "quadrature_rtol": 1e-11,
+      "quadrature_atol": 1e-11,
+      "quadrature_limit": 160,
+      "central_bracket": [
+        1.05,
+        10.0
+      ]
+    },
+    "non_claims": [
+      "No proofthatdynamicPDEconvergestoisentropy",
+      "No unconditionalfloor forarbitraryinitialdata",
+      "No observationalcalibration"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/isentropic_limit.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/equilibria.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/TARGET.md"
+  ],
+  "software": [
+    {
+      "name": "computation Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

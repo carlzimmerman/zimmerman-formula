@@ -1,0 +1,80 @@
+{
+  "claim_id": "X48_TRANSPORT_FINITE_REFINEMENT_AND_SETTLING_ENERGY_SCOPE_V2",
+  "mathematics": {
+    "assertion_tested": "Data-only analysis of real sample times in absolute windows 24..32 and 56..64, including continuation lineage, fixed-parameter spatial refinement and comparison to independent mass-energy stationary prediction. All finite criteria must pass. Distinguish accepted-state ancestry bounds from direct dense-output sample maxima, both checked separately.",
+    "coefficient_domain": "IEEE754 float64; deterministic NumPy analysis of immutable result JSON",
+    "conventions": "G=rho_q=Kstar=1; no model evolution, coefficient fit, interpolated observations or state resets",
+    "inputs": [
+      "N=32,64,128,256 cold-collapse records",
+      "unperturbed and three N64 perturbation chains through t64",
+      "tighter N256 time solve",
+      "regular isentropic mass-energy prediction",
+      "persistent conduction negative control"
+    ],
+    "bounds": {
+      "N_min": 32,
+      "N_max": 256,
+      "resolution_window": [
+        24,
+        32
+      ],
+      "stability_window": [
+        56,
+        64
+      ],
+      "kinetic_over_binding_max": 0.001,
+      "density_relative_span_max": 0.02,
+      "density_relative_slope_change_max": 0.02,
+      "hydro_residual_max": 0.02,
+      "relative_energy_bound_max": 1e-06
+    },
+    "non_claims": [
+      "No infinite-resolution or infinite-time dynamical floor theorem",
+      "No fully coupled 3D stability or cosmological forest likelihood",
+      "No resolved convection or baryonic disc simulation",
+      "Stationary comparison is conditional on the regular isentropic branch"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/analyze_results.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/isentropic_prediction/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/conv_n32_t8/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/conv_n64_t8/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/floor_n32_t32/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/floor_n64_t32/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/floor_n128_t32/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/floor_n256_t32/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/steady_n64_t64/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/compress_n64_t64/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/compress_n64_finish/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/expand_n64_t64/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/expand_n64_finish/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/bdf_switch_check/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/bdf_expand_t64/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/entropy_mode_n64_t64/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/tight_n256_finish/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/n32_D01_t4/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/n32_D01_t16/result.json",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/analyze_results_v2.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/tight_n256_t32/result.json"
+  ],
+  "software": [
+    {
+      "name": "computation Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "Matplotlib",
+      "version": "3.9.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

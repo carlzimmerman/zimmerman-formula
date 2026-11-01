@@ -1,0 +1,72 @@
+{
+  "claim_id": "X48_COLD_FORMATION_TAU05_N128",
+  "mathematics": {
+    "assertion_tested": "One initially cold uniform sphere with 128 equal-mass radial shells is evolved conservatively to t=8 or a declared failure/resource bound; no core formation is presupposed.",
+    "coefficient_domain": "IEEE754 float64 with scipy DOP853; dimensionless rho_q=G=Kstar=1",
+    "conventions": "r0=u0=0; mu_i=dm interior, mu_N=dm/2; m_i=i dm; vacuum boundary; Egrav=-sum(G mu_i m_i/r_i); K=0 initially",
+    "inputs": [
+      "N=128",
+      "rho_init=.25",
+      "R_init=1",
+      "u_init=-.25r",
+      "tau=.5",
+      "a0=sqrt(8pi)",
+      "Kstar=P0/rho_q^2=1"
+    ],
+    "bounds": {
+      "shells": 128,
+      "t_end": 8,
+      "rtol": 2e-07,
+      "atol": 1e-09,
+      "max_step": 0.05,
+      "samples": 161,
+      "internal_wall_cap_seconds": 40,
+      "rhs_call_cap": 300000
+    },
+    "non_claims": [
+      "No continuum convergence theorem",
+      "No 3D/convective stability",
+      "No halo envelope",
+      "No forest identification",
+      "No baryons"
+    ]
+  },
+  "execution_artifacts": [
+    "collapse.py",
+    "material.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "source_origins": {
+    "material.py": {
+      "source": "/Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+      "sha256": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390"
+    },
+    "collapse.py": {
+      "source": "/Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/collapse.py",
+      "sha256": "b39659c02a30a77907bcd0b64f812d10454c5beb8a036a157aa4b5b6fc22c5ce"
+    },
+    "test_collapse.py": {
+      "source": "/Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_collapse.py",
+      "sha256": "4f4312945df908687a90b466329656ad9e276c5227789cec19f6512ba5c3beac"
+    }
+  },
+  "source_revision": "093087dfdeac516516ce8cc2fbc700e28031980e"
+}

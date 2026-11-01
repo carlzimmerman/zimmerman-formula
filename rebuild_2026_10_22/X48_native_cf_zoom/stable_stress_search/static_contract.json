@@ -1,0 +1,51 @@
+{
+  "claim_id": "X48_MEMORY_STRESS_STATIC_CORES",
+  "mathematics": {
+    "assertion_tested": "Constitutive energy identities and derivative benchmarks pass; regular constant-K spherical cores retain fixed cold mass and positive core radii under the declared smooth Plummer loading, with less contraction of the 1%, 5%, 10% and 50% mass shells than the defined circular-shell dust reference; a tighter solve agrees within tolerance.",
+    "coefficient_domain": "IEEE-754 double precision with adaptive ODE integration and scalar root finding",
+    "conventions": "d=rho/rho_q; x=r/sqrt(K/(4piG)); m=M/[4pi rho_q (K/(4piG))^(3/2)]; K spatially constant and frozen during equilibrium continuation; no Lambda term or responsive baryons in this isolated-core experiment.",
+    "inputs": [
+      "Constitutive fixtures in test_material.py and hydrostatic benchmarks in test_equilibria.py",
+      "Initial d_c=5 and 20, each with its own fixed cold mass",
+      "Baryon mass fractions 0, 0.1, 0.3 relative to initial cold mass; nonzero cases have Plummer scale b/R_initial=0.1 or 0.3",
+      "Pressure-free boundary at d=1 with vacuum exterior; regular center; half-mass and half-central-density radii",
+      "Dust comparator solves r_final [m_shell+Mb(r_final)]=r_initial m_shell at cold-mass fractions 0.01, 0.05, 0.1, 0.5"
+    ],
+    "bounds": {
+      "equilibrium_rows": 10,
+      "nonzero_baryon_cases": 8,
+      "mass_shell_fractions": [0.01, 0.05, 0.1, 0.5],
+      "initial_central_density_over_rho_q": [5, 20],
+      "nonzero_baryon_mass_fractions": [0.1, 0.3],
+      "baryon_scale_over_initial_radius": [0.1, 0.3],
+      "ode_rtol": 1e-8,
+      "ode_atol": 1e-11,
+      "ode_max_step": 0.05,
+      "refined_ode_rtol": 1e-10,
+      "refined_ode_max_step": 0.0125,
+      "relative_mass_error_bound": 2e-7,
+      "refinement_relative_change_bound": 2e-5,
+      "unit_tests": 19
+    },
+    "non_claims": [
+      "No halo formation inference from static equilibria",
+      "No rotating baryonic disc, point mass, full X48 zoom, or observed forest power calculation",
+      "No global nonlinear or nonradial interface stability theorem",
+      "No universal core radius, universal pressure cap, or microscopic derivation of a0"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/equilibria.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_material.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_equilibria.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/DERIVATION.md",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/TARGET.md"
+  ],
+  "software": [
+    {"name": "computation Python", "version": "3.9.6"},
+    {"name": "NumPy", "version": "1.26.2"},
+    {"name": "SciPy", "version": "1.11.4"}
+  ],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

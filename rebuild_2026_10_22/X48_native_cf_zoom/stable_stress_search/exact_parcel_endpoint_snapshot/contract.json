@@ -1,0 +1,81 @@
+{
+  "claim_id": "X48_EXACT_PARCEL_SORTED_ENDPOINT_AND_FIXED_ENTROPY_PLUMMER",
+  "mathematics": {
+    "assertion_tested": "For the exact N64 tau=.5 t=8 measured equal-mass K parcels, sort by K, keep each K exactly constant on its full mass cell, solve fixed-mass hydrostatics, test sorted E<=recorded initial discrete Ei, and if allowed seek one alpha>=1 matching Ei. Check every parcel K is multiplied by alpha. If residuals pass, preserve this exact K(m), alpha, and cold mass under one smooth Plummer load Mb=.3M,b=.1R and compare 5%/50% mass radii with the declared circular-shell model.",
+    "coefficient_domain": "IEEE754 float64; scipy solve_ivp method RK45 with restarts at every exact mass boundary; brentq central P and alpha shooting; rho_q=G=Kstar=1",
+    "conventions": "Independent coordinate m; state (u=r^3,P,U,V,B), exact constant K per mass cell; continuous r/P at contacts; density may jump downward outward. Taylor center start with first mass step=.1m0; surface P=0; last K extends past target M only to bracket surface, capped2M. E=int K W dm-int Gm/r dm; Plummer external energy included only under loading.",
+    "inputs": [
+      "exact collapse_n64_t8.json final_profile.K",
+      "total_mass and initial.total from that same file",
+      "source N=64, tau=.5, t=8"
+    ],
+    "bounds": {
+      "N": 64,
+      "rtol": 2e-08,
+      "EOS_inverse_table_nodes": 4097,
+      "profile_nodes": 1025,
+      "internal_wall_cap_seconds": 45,
+      "alpha_bracket_cap": 1024,
+      "pressure_bracket_iterations": 24,
+      "baryon_mass_fraction": 0.3,
+      "baryon_scale_over_endpoint_radius": 0.1,
+      "circular_reference_mass_fractions": [
+        0.05,
+        0.5
+      ],
+      "residual_tolerance": 2e-06,
+      "mode": "exact_parcels",
+      "first_center_step_fraction": 0.1,
+      "source_parcels": 64
+    },
+    "non_claims": [
+      "Constructed endpoint, no implemented mixing/transport law",
+      "No proof collapse reaches endpoint",
+      "No 3D stability computation",
+      "Bulk N2=0 is not an interface criterion: contacts are assessed by common P, upward K and downward density jumps",
+      "Radial interface identity requires continuous xi and Lagrangian DeltaP",
+      "Target recorded discrete Ei differs from analytic continuum initial energy by about1.468e-4 (0.023 percent)",
+      "Prescribed smooth Plummer loading is not disc dynamics"
+    ]
+  },
+  "execution_artifacts": [
+    "entropy_endpoint.py",
+    "material.py",
+    "collapse_n64_t8.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "source_origins": {
+    "entropy_endpoint.py": {
+      "source": "/Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_endpoint.py",
+      "sha256": "d52a0840f601ceb89389b0b6b7b01fd48a498d40bca3f481917e177f0e97df29"
+    },
+    "material.py": {
+      "source": "/Users/carlzimmerman/new_physics/zimmerman-formula/rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+      "sha256": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390"
+    }
+  },
+  "collapse_source": {
+    "source": "/private/tmp/x48_collapse_radau_gohdk647/n64_tau05/result.json",
+    "sha256": "26e7c8fa81642b578fbc3de7643b2d5cd5f943f4884a5faf80f6f9fad4f6e117",
+    "initial_energy": -0.638191858877817,
+    "Kmin": 0.006811267957559126
+  }
+}

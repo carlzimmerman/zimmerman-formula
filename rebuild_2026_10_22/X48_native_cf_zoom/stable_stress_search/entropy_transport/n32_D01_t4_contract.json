@@ -1,0 +1,53 @@
+{
+  "claim_id": "X48_CONSERVATIVE_TRANSPORT_n32_D01_t4",
+  "mathematics": {
+    "assertion_tested": "Evolve virgin spherical cold collapse with conservative Kirchhoff heat exchange and memory-activated signed bulk viscosity; measure, without assuming, energy/entropy budgets, settling and central entropy.",
+    "coefficient_domain": "IEEE754 float64; scipy sparse Radau adaptive integration",
+    "conventions": "G=rho_q=Kstar=1,a0=sqrt(8pi),tau=.5; e=K W; pressure=K rho^2 h; equal-mass staggered shells; closed heat boundary; face gate h_i*h_j approximates continuum h^2; no accepted projection or entropy floor.",
+    "inputs": [
+      "uniform rho=.25,R=1,u=-.25r,K=0"
+    ],
+    "bounds": {
+      "shells": 32,
+      "t_end": 4,
+      "diffusivity": 0.1,
+      "damping_strength": 1,
+      "memory_activation": 0.01,
+      "rtol": 2e-07,
+      "atol": 1e-09,
+      "max_step": 0.05,
+      "internal_wall_seconds": 45,
+      "max_rhs_calls": 300000
+    },
+    "non_claims": [
+      "No presumed settling or positive resolution-uniform entropy floor",
+      "No observed forest-data comparison or full3D stability",
+      "No replacement of X48 production dynamics"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/transport.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/collapse.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/TARGET.md"
+  ],
+  "software": [
+    {
+      "name": "computation Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

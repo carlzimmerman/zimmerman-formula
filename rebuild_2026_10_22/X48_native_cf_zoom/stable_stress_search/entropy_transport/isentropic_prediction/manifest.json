@@ -1,0 +1,158 @@
+{
+  "schema_version": 2,
+  "claim_id": "X48_ISENTROPIC_CONTINUUM_PREDICTION",
+  "repository": {
+    "commit": "22174c23b476a1c1c0f0a3230995532cc140e387",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/isentropic_limit.py",
+    "--rtol",
+    "1e-12",
+    "--quadrature-rtol",
+    "1e-11",
+    "--max-step",
+    ".005",
+    "--output",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/isentropic_prediction/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "computation Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Predict the positive constant-entropy hydrostatic endpoint solely from continuum uniform-sphere mass and total energy; verify direct and virial energy integrals. This is conditional on the dynamical solution becoming stationary and isentropic, not a convergence theorem.",
+    "coefficient_domain": "IEEE754float64; RK45 hydrostatic shape, scipy.quad,brentq",
+    "conventions": "G=rho_q=Kstar=1,M=pi/3,Rinitial1,Hinitial=-.25; continuumE=.3H²MR²−.6GM²/R; no observedentropyinput",
+    "inputs": [
+      "gated EOS and latent W",
+      "uniformspherecontinuum mass and energy"
+    ],
+    "bounds": {
+      "rtol": 1e-12,
+      "atol": 1e-15,
+      "max_step": 0.005,
+      "quadrature_rtol": 1e-11,
+      "quadrature_atol": 1e-11,
+      "quadrature_limit": 160,
+      "central_bracket": [
+        1.05,
+        10.0
+      ]
+    },
+    "non_claims": [
+      "No proofthatdynamicPDEconvergestoisentropy",
+      "No unconditionalfloor forarbitraryinitialdata",
+      "No observationalcalibration"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T14:53:29.321287+00:00",
+    "runtime_seconds": 1.573919,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 55.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/isentropic_limit.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/equilibria.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/TARGET.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/isentropic_limit.py",
+      "sha256": "c7f731219669f2352ac5561b4a179d8379116ee627f97e5af72e8be172ff69c5",
+      "sha256_after": "c7f731219669f2352ac5561b4a179d8379116ee627f97e5af72e8be172ff69c5"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/equilibria.py",
+      "sha256": "11ce9331fa42b9ac97544d80d8e38829fc15de674ab734854c911b4a2c7fab5c",
+      "sha256_after": "11ce9331fa42b9ac97544d80d8e38829fc15de674ab734854c911b4a2c7fab5c"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+      "sha256": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390",
+      "sha256_after": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/TARGET.md",
+      "sha256": "7fd604611c80c4c53bc679d5fd25d40f2633e5a2459304342e4de17d97eca100",
+      "sha256_after": "7fd604611c80c4c53bc679d5fd25d40f2633e5a2459304342e4de17d97eca100"
+    }
+  ],
+  "output_directory": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/isentropic_prediction",
+  "declared_results": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/isentropic_prediction/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/isentropic_prediction/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/isentropic_prediction/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/isentropic_prediction/result.json",
+      "sha256": "0e03c983dc5f319fb9ab0961b567ca73137bc8ec4a1ec6652ab7b3f373cfe656",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

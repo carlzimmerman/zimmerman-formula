@@ -1,0 +1,41 @@
+# Uniform startup continuation state
+
+Latest phase: **X48-NLC-2026-11-01-B**, in
+[../nonlinear_closure_2026_11_01/STATUS.md](../nonlinear_closure_2026_11_01/STATUS.md).
+Its conditional actual first-energy estimate absorbs the nonlinear heat
+coefficient and heat-dependent time-weight terms. Coupled density/entropy,
+local/collar, pointwise and bootstrap closure remain open. This page's
+X48-UC checkpoint below records the preceding continuation.
+
+Checkpoint **X48-UC-2026-11-01-B**, from the base in [TARGET.md](TARGET.md).
+**User goal remains unresolved:** no common interval with central-quarter
+C>=4 has been proved for the actual unchanged law.
+
+New proved building blocks are in [README.md](README.md) and the three route
+notes. They remove a moving-conductance commutator, absorb density viscosity
+in an integrated identity, establish full heat-principal stiffness, and give
+uniform pointwise smoothing for the homogeneous leading coupled model.
+These results do not establish the nonlinear boundary-forced estimate.
+
+The actual pointwise open term is (AC) in
+[all_mesh_certificate.md](all_mesh_certificate.md). The conditional scalar
+barrier also needs a noncircular compression-amplitude bootstrap. In the
+energy route, the new phase closes the named heat coefficient commutator
+and its heat-dependent weight term under the prefix envelope. Density-gradient,
+explicit local/collar work and actual pointwise closure are still unproved.
+The leading model's regular-data smoothing does not
+estimate arbitrary forcing in those terms.
+
+The most specific surviving continuation is to combine the structured
+density-gradient energy with actual-graph localization and radial Nash
+smoothing in a full nonlinear boundary-forced estimate. Bounds must retain
+the exact finite-face gate and geometry variations, rather than only the
+local-gradient principal symbol. This step is open, not exhausted or refuted.
+No theorem giving it is assumed or imported.
+
+Current review: [INDEPENDENT_AUDIT.md](INDEPENDENT_AUDIT.md).
+Inputs and checks: [PROVENANCE.md](PROVENANCE.md). No new trajectory runs,
+new law, numerical floors, production changes or external jobs are part
+of this continuation. Previous exact energy, entropy and quiet-gate
+identities remain unchanged. Uniform seeding must still be proved before
+the existing all-time preservation theorem can complete the original goal.

@@ -1,0 +1,179 @@
+{
+  "schema_version": 2,
+  "claim_id": "X48_MEMORY_STRESS_STATIC_CORES",
+  "repository": {
+    "commit": "093087dfdeac516516ce8cc2fbc700e28031980e",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess,sys; lane=\"rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search\"; subprocess.run([sys.executable,\"-m\",\"unittest\",\"discover\",\"-s\",lane,\"-p\",\"test_material.py\",\"-v\"],check=True); subprocess.run([sys.executable,\"-m\",\"unittest\",\"discover\",\"-s\",lane,\"-p\",\"test_equilibria.py\",\"-v\"],check=True); subprocess.run([sys.executable,lane+\"/equilibria.py\",\"--output\",lane+\"/static_verification_2026_10_31/results.json\"],check=True)"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "computation Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Constitutive energy identities and derivative benchmarks pass; regular constant-K spherical cores retain fixed cold mass and positive core radii under the declared smooth Plummer loading, with less half-mass contraction than the defined circular-shell dust reference; a tighter solve agrees within tolerance.",
+    "coefficient_domain": "IEEE-754 double precision with adaptive ODE integration and scalar root finding",
+    "conventions": "d=rho/rho_q; x=r/sqrt(K/(4piG)); m=M/[4pi rho_q (K/(4piG))^(3/2)]; K spatially constant and frozen during equilibrium continuation; no Lambda term or responsive baryons in this isolated-core experiment.",
+    "inputs": [
+      "Constitutive fixtures in test_material.py and hydrostatic benchmarks in test_equilibria.py",
+      "Initial d_c=5 and 20, each with its own fixed cold mass",
+      "Baryon mass fractions 0, 0.1, 0.3 relative to initial cold mass; nonzero cases have Plummer scale b/R_initial=0.1 or 0.3",
+      "Pressure-free boundary at d=1 with vacuum exterior; regular center; half-mass and half-central-density radii",
+      "Dust comparator solves r_final [m_shell+Mb(r_final)]=r_initial m_shell for the half-mass shell"
+    ],
+    "bounds": {
+      "equilibrium_rows": 10,
+      "nonzero_baryon_cases": 8,
+      "initial_central_density_over_rho_q": [
+        5,
+        20
+      ],
+      "nonzero_baryon_mass_fractions": [
+        0.1,
+        0.3
+      ],
+      "baryon_scale_over_initial_radius": [
+        0.1,
+        0.3
+      ],
+      "ode_rtol": 1e-08,
+      "ode_atol": 1e-11,
+      "ode_max_step": 0.05,
+      "refined_ode_rtol": 1e-10,
+      "refined_ode_max_step": 0.0125,
+      "relative_mass_error_bound": 2e-07,
+      "refinement_relative_change_bound": 2e-05,
+      "unit_tests": 19
+    },
+    "non_claims": [
+      "No halo formation inference from static equilibria",
+      "No rotating baryonic disc, point mass, full X48 zoom, or observed forest power calculation",
+      "No global nonlinear or nonradial interface stability theorem",
+      "No universal core radius, universal pressure cap, or microscopic derivation of a0"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T01:42:57.142374+00:00",
+    "runtime_seconds": 1.827192,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 40,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/equilibria.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_material.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_equilibria.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/DERIVATION.md",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/TARGET.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+      "sha256": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390",
+      "sha256_after": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/equilibria.py",
+      "sha256": "0f9c1fb6d77b0ff78be1c0b8860a73df9923556628ea8a02d8c3e6d91790ed20",
+      "sha256_after": "0f9c1fb6d77b0ff78be1c0b8860a73df9923556628ea8a02d8c3e6d91790ed20"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_material.py",
+      "sha256": "e445b235d21629b3f992a4e51dee3bc3088bd8d2e7261827894f537d2cb8b78d",
+      "sha256_after": "e445b235d21629b3f992a4e51dee3bc3088bd8d2e7261827894f537d2cb8b78d"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_equilibria.py",
+      "sha256": "1170c8cbc2a5039f906e74e94dff29b233c9575ec07c92794853b7a235897912",
+      "sha256_after": "1170c8cbc2a5039f906e74e94dff29b233c9575ec07c92794853b7a235897912"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/DERIVATION.md",
+      "sha256": "2e4e9fcda0827f94b8d912ecdd8297e975f129dcb9b95098783e4656ca23b0f7",
+      "sha256_after": "2e4e9fcda0827f94b8d912ecdd8297e975f129dcb9b95098783e4656ca23b0f7"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/TARGET.md",
+      "sha256": "8f659e7aa80652612f62933a5a159673b16e729755cd726bb92bb2d4d0764453",
+      "sha256_after": "8f659e7aa80652612f62933a5a159673b16e729755cd726bb92bb2d4d0764453"
+    }
+  ],
+  "output_directory": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/static_verification_2026_10_31",
+  "declared_results": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/static_verification_2026_10_31/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/static_verification_2026_10_31/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/static_verification_2026_10_31/stderr.txt",
+      "sha256": "bbfb164d8fafd9c8fd118f7541f6f76302d39583b044b1c58ccb0ebd88a21f9c",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/static_verification_2026_10_31/results.json",
+      "sha256": "b5afe55d8bab1eabd9cb8e7d6eb30fb8812ce5fae4655372b0b6fc6468c1c840",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "schema_version": 2,
+  "claim_id": "X48_SORTED_ENERGY_ENDPOINT_AND_FIXED_ENTROPY_PLUMMER_LOAD",
+  "repository": {
+    "commit": "093087dfdeac516516ce8cc2fbc700e28031980e",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess,sys; lane=\"rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search\"; subprocess.run([sys.executable,\"-m\",\"unittest\",\"discover\",\"-s\",lane,\"-p\",\"test_*.py\",\"-v\"],check=True); subprocess.run([sys.executable,lane+\"/entropy_endpoint.py\",\"--collapse-input\",lane+\"/formation_radau_snapshot/n64_tau05/result.json\",\"--output\",lane+\"/endpoint_verification/result.json\",\"--rtol\",\"2e-9\",\"--wall-seconds\",\"30\",\"--plummer-check\"],check=True)"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "For the exact N64 tau=.5 final t=8 parcel K sample, sort K ascending by equal parcel mass, solve a fixed-mass hydrostatic sphere, test whether its energy is <= the measured cold initial discrete energy, and only then seek alpha>=1 matching that energy. After a positive construction, keep the identical K(m) and alpha fixed and load Plummer baryons Mb=.3M,b=.1R_endpoint; compare 5% and 50% mass radii with a specified circular-shell contraction model. Quantify discrete versus clipped-linear proxy entropy integrals sigma=(K/Kstar)^(1/3). Run all 37 lane unit tests before the endpoint calculation.",
+    "coefficient_domain": "IEEE754 float64; SciPy RK45 hydrostatics (solve_ivp default), PCHIP EOS inverse, brentq shooting; rho_q=G=Kstar=1",
+    "conventions": "K(m) piecewise linear between equal-mass parcel centers, clipped at endpoints; r is independent coordinate; pressure-free surface at occupied rho=rho_q; Eint=int K W dm, Egrav=-int Gm/r dm; no baryons in primary construction",
+    "inputs": [
+      "exact collapse_n64_t8.json final_profile.K",
+      "total_mass and initial.total from that same file",
+      "source N=64, tau=.5, t=8"
+    ],
+    "bounds": {
+      "N": 64,
+      "rtol": 2e-09,
+      "EOS_inverse_table_nodes": 4097,
+      "profile_nodes": 1025,
+      "internal_wall_cap_seconds": 22,
+      "alpha_bracket_cap": 1024,
+      "pressure_bracket_iterations": 24,
+      "baryon_mass_fraction": 0.3,
+      "baryon_scale_over_endpoint_radius": 0.1,
+      "circular_reference_mass_fractions": [
+        0.05,
+        0.5
+      ],
+      "unit_tests": 37
+    },
+    "non_claims": [
+      "No implemented convection or mixing law",
+      "No proof of dynamical reachability",
+      "No 3D stability calculation",
+      "Initial target energy has finite-N gravity/kinetic discretization error",
+      "Interpolation preserves sampled parcel entropies, not their exact piecewise-constant continuum histogram",
+      "Prescribed smooth spherical loading is not a disc or baryonic assembly evolution"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T01:59:57.417046+00:00",
+    "runtime_seconds": 18.375214,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/equilibria.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/collapse.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_endpoint.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_material.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_equilibria.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_collapse.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_entropy_endpoint.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/DERIVATION.md",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/formation_radau_snapshot/n64_tau05/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+      "sha256": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390",
+      "sha256_after": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/equilibria.py",
+      "sha256": "11ce9331fa42b9ac97544d80d8e38829fc15de674ab734854c911b4a2c7fab5c",
+      "sha256_after": "11ce9331fa42b9ac97544d80d8e38829fc15de674ab734854c911b4a2c7fab5c"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/collapse.py",
+      "sha256": "14326419b85c7400923aee98f76562c85a46dcc59fa1cd8af3f8740f91b72baf",
+      "sha256_after": "14326419b85c7400923aee98f76562c85a46dcc59fa1cd8af3f8740f91b72baf"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_endpoint.py",
+      "sha256": "2fb7ad3fef415fa9c07c995cb19a0966a99f450165f4d1a8858b3833f99c7f38",
+      "sha256_after": "2fb7ad3fef415fa9c07c995cb19a0966a99f450165f4d1a8858b3833f99c7f38"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_material.py",
+      "sha256": "e445b235d21629b3f992a4e51dee3bc3088bd8d2e7261827894f537d2cb8b78d",
+      "sha256_after": "e445b235d21629b3f992a4e51dee3bc3088bd8d2e7261827894f537d2cb8b78d"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_equilibria.py",
+      "sha256": "30df1b637c563962cb4a33df1ea2f3d3732e66eb3ef481d056138a8f0e24704b",
+      "sha256_after": "30df1b637c563962cb4a33df1ea2f3d3732e66eb3ef481d056138a8f0e24704b"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_collapse.py",
+      "sha256": "f289c48b719ff44c6145b2bd5507fbfd821e4e1970b20098a377e72aeae6024b",
+      "sha256_after": "f289c48b719ff44c6145b2bd5507fbfd821e4e1970b20098a377e72aeae6024b"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/test_entropy_endpoint.py",
+      "sha256": "8dda59bd88547a964cd3103e921394c8f0da97b4d63b3f2b9f0439dc0765b707",
+      "sha256_after": "8dda59bd88547a964cd3103e921394c8f0da97b4d63b3f2b9f0439dc0765b707"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/DERIVATION.md",
+      "sha256": "00cc680e771cea8848de37c771b200db4921dd7f165d78c227ab23a6ae27f16c",
+      "sha256_after": "00cc680e771cea8848de37c771b200db4921dd7f165d78c227ab23a6ae27f16c"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/formation_radau_snapshot/n64_tau05/result.json",
+      "sha256": "26e7c8fa81642b578fbc3de7643b2d5cd5f943f4884a5faf80f6f9fad4f6e117",
+      "sha256_after": "26e7c8fa81642b578fbc3de7643b2d5cd5f943f4884a5faf80f6f9fad4f6e117"
+    }
+  ],
+  "output_directory": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/endpoint_verification",
+  "declared_results": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/endpoint_verification/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/endpoint_verification/stdout.txt",
+      "sha256": "d538a68de5582a5d5cc7370a9879400672092a2545f1187bf6b43944db8d8284",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/endpoint_verification/stderr.txt",
+      "sha256": "6917df12018dde2f18a8b6d9e448a01c0b3058d432551123268dd9ab394845ca",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/endpoint_verification/result.json",
+      "sha256": "dd2af5033fd3c925c9c398fd9c9e83e8d3e7af21fcf34d2cd4068e80c991bc08",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

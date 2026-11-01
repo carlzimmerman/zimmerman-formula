@@ -1,0 +1,69 @@
+{
+  "claim_id": "X48_CONTINUATION_tight_n256_finish",
+  "mathematics": {
+    "assertion_tested": "Resume the hash-pinned bounded attempt under identical physics and tolerances to the originally requested finite end time; no new perturbation or projection.",
+    "coefficient_domain": "IEEE754 float64; scipy sparse Radau adaptive integration",
+    "conventions": "G=rho_q=Kstar=1,a0=sqrt(8pi),tau=.5; e=K W; pressure=K rho^2 h; equal-mass staggered shells; closed heat boundary; face gate h_i*h_j approximates continuum h^2; no accepted projection or entropy floor. Outwardflux only wheninnerK andinnerphysicalT exceedouter; gate gradient usesell_g=.1,chi_g=.01fixedphysical. The recommended driver integrates exact K=0 invariant cold phase in 2N variables until physical heating activation; never inserts entropy.",
+    "inputs": [
+      "uniform rho=.25,R=1,u=-.25r,K=0"
+    ],
+    "bounds": {
+      "shells": 256,
+      "t_end": 32,
+      "diffusivity": 0.1,
+      "damping_strength": 1,
+      "memory_activation": 0.01,
+      "rtol": 2e-08,
+      "atol": 1e-10,
+      "max_step": 0.05,
+      "internal_wall_seconds": 45,
+      "max_rhs_calls": 300000,
+      "stratification_length": 0.1,
+      "stratification_scale": 0.01,
+      "t_initial": 28.12673158196404,
+      "samples": 257,
+      "inner_mass_fractions": [
+        0.01,
+        0.05,
+        0.1,
+        0.25
+      ],
+      "perturb_radius_factor": 1.0
+    },
+    "non_claims": [
+      "No presumed settling or positive resolution-uniform entropy floor",
+      "No observed forest-data comparison or full3D stability",
+      "No replacement of X48 production dynamics"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/refinement.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/convective_transport.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/transport.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/collapse.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/TARGET.md",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/CONVECTIVE_ROUTE.md",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/DERIVATION.md",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/tight_n256_t32/result.json"
+  ],
+  "software": [
+    {
+      "name": "computation Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

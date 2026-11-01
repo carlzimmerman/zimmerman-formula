@@ -1,0 +1,65 @@
+{
+  "claim_id": "X48_UNIFORM_SEED_STARTUP_FINITE_DISCRIMINATOR_V2",
+  "mathematics": {
+    "assertion_tested": "For each declared finite N, test C>=4 on first ceil(N/4) cells at 81 actual warm diagnostic times spanning physical activation through activation+.005. Preserve exact cold handoff and unchanged physical RHS. No universal or between-time inference.",
+    "coefficient_domain": "IEEE754float64; sparse Radau exact-cold-subspace then unchanged physical RHS",
+    "conventions": "G=rhoq=Kstar=1; virgin uniform rho.25,R1,v=-.25r; tau.5,D.1,alpha1,chi_d=chi_g=.01,ellg.1; no seed/reset/projection",
+    "inputs": [
+      "Exact cold sphere and fixed coefficients",
+      "same physical law as X48-TRANSPORT-2026-11-01-B"
+    ],
+    "bounds": {
+      "N": [
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "nominal_postactivation_duration": 0.005,
+      "prefix": "ceil(N/4)",
+      "rtol": 2e-09,
+      "atol": 1e-11,
+      "max_step": 0.01,
+      "per_case_wall_seconds": 6,
+      "cold_samples": 2,
+      "warm_samples": 81
+    },
+    "non_claims": [
+      "No all-N theorem",
+      "No between-sample compression bound",
+      "No proof of a continuum solution or convergence",
+      "No added physical entropy floor"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/floor_theorem/startup_probe.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/floor_theorem/TARGET.md",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/refinement.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/convective_transport.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/transport.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/collapse.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/floor_theorem/startup_probe_v2.py"
+  ],
+  "software": [
+    {
+      "name": "computation Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

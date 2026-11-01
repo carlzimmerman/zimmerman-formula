@@ -1,0 +1,67 @@
+{
+  "claim_id": "X48_BDF_EXPANSION_STABILITY_COMPLETE",
+  "mathematics": {
+    "assertion_tested": "Continue the relaxed positive-entropy expansion state with independent BDF using exactly the same semidiscrete RHS; test whether switching-sensitive Radau slowdown is numerical, and recordenergy/entropy/geometryerrors.",
+    "coefficient_domain": "IEEE754float64;actualscipy.BDFwarmcontinuation",
+    "conventions": "G=rho_q=Kstar=1,a0=sqrt(8pi),tau=.5; e=K W; pressure=K rho^2 h; equal-mass staggered shells; closed heat boundary; face gate h_i*h_j approximates continuum h^2; no accepted projection or entropy floor. Outwardflux only wheninnerK andinnerphysicalT exceedouter; gate gradient usesell_g=.1,chi_g=.01fixedphysical. The recommended driver integrates exact K=0 invariant cold phase in 2N variables until physical heating activation; never inserts entropy.",
+    "inputs": [
+      "uniform rho=.25,R=1,u=-.25r,K=0",
+      "Exactrestart at t8 from rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/conv_n64_t8/result.json"
+    ],
+    "bounds": {
+      "shells": 64,
+      "t_end": 64,
+      "diffusivity": 0.1,
+      "damping_strength": 1,
+      "memory_activation": 0.01,
+      "rtol": 2e-07,
+      "atol": 1e-09,
+      "max_step": 0.05,
+      "internal_wall_seconds": 45,
+      "max_rhs_calls": 300000,
+      "stratification_length": 0.1,
+      "stratification_scale": 0.01,
+      "t_initial": 46.6,
+      "samples": 193,
+      "inner_mass_fractions": [
+        0.01,
+        0.05,
+        0.1,
+        0.25
+      ]
+    },
+    "non_claims": [
+      "No presumed settling or positive resolution-uniform entropy floor",
+      "No observed forest-data comparison or full3D stability",
+      "No replacement of X48 production dynamics"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/bdf_continuation.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/refinement.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/convective_transport.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/transport.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/collapse.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/bdf_switch_check/result.json"
+  ],
+  "software": [
+    {
+      "name": "computation Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

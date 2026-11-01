@@ -1,0 +1,155 @@
+{
+  "schema_version": 2,
+  "claim_id": "X48_COLD_FORMATION_TAU05_N64",
+  "repository": {
+    "commit": "unavailable",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "collapse.py",
+    "--shells",
+    "64",
+    "--tau",
+    "0.5",
+    "--t-end",
+    "8",
+    "--wall-seconds",
+    "40",
+    "--max-rhs-calls",
+    "300000",
+    "--output",
+    "n64_tau05/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "One initially cold uniform sphere with 64 equal-mass radial shells is evolved conservatively to t=8 or a declared failure/resource bound; no core formation is presupposed.",
+    "coefficient_domain": "IEEE754 float64 with scipy DOP853; dimensionless rho_q=G=Kstar=1",
+    "conventions": "r0=u0=0; mu_i=dm interior, mu_N=dm/2; m_i=i dm; vacuum boundary; Egrav=-sum(G mu_i m_i/r_i); K=0 initially",
+    "inputs": [
+      "N=64",
+      "rho_init=.25",
+      "R_init=1",
+      "u_init=-.25r",
+      "tau=.5",
+      "a0=sqrt(8pi)",
+      "Kstar=P0/rho_q^2=1"
+    ],
+    "bounds": {
+      "shells": 64,
+      "t_end": 8,
+      "rtol": 2e-07,
+      "atol": 1e-09,
+      "max_step": 0.05,
+      "samples": 161,
+      "internal_wall_cap_seconds": 40,
+      "rhs_call_cap": 300000
+    },
+    "non_claims": [
+      "No continuum convergence theorem",
+      "No 3D/convective stability",
+      "No halo envelope",
+      "No forest identification",
+      "No baryons"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T01:45:04.436473+00:00",
+    "runtime_seconds": 0.353715,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 50.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "collapse.py",
+    "material.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "collapse.py",
+      "sha256": "b39659c02a30a77907bcd0b64f812d10454c5beb8a036a157aa4b5b6fc22c5ce",
+      "sha256_after": "b39659c02a30a77907bcd0b64f812d10454c5beb8a036a157aa4b5b6fc22c5ce"
+    },
+    {
+      "path": "material.py",
+      "sha256": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390",
+      "sha256_after": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390"
+    }
+  ],
+  "output_directory": "n64_tau05",
+  "declared_results": [
+    "n64_tau05/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "n64_tau05/stdout.txt",
+      "sha256": "7ff2401b392dcb9ad9d0f77049a4c549fc68f230fad388c571db08fe020780a6",
+      "kind": "log"
+    },
+    {
+      "path": "n64_tau05/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "n64_tau05/result.json",
+      "sha256": "dbb0b8b490fefd4d7b49d3385094696c2c0d34f107bc9c1f7ad8b54e8062fd89",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

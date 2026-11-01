@@ -1,0 +1,206 @@
+{
+  "schema_version": 2,
+  "claim_id": "X48_ENTROPY_MODE_STABILITY",
+  "repository": {
+    "commit": "22174c23b476a1c1c0f0a3230995532cc140e387",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/stability.py",
+    "--input",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/floor_n64_t32/result.json",
+    "--output",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/entropy_mode_n64_t64/result.json",
+    "--t-end",
+    "64",
+    "--wall-seconds",
+    "45"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "computation Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Prepare a small energy-neutral internalentropy perturbation atfixedr,u; recorditsentropychangeandthen evolvewithoutintervention to t64 underunchangedlaw.",
+    "coefficient_domain": "IEEE754 float64; scipy sparse Radau adaptive integration",
+    "conventions": "G=rho_q=Kstar=1,a0=sqrt(8pi),tau=.5; e=K W; pressure=K rho^2 h; equal-mass staggered shells; closed heat boundary; face gate h_i*h_j approximates continuum h^2; no accepted projection or entropy floor. Outwardflux only wheninnerK andinnerphysicalT exceedouter; gate gradient usesell_g=.1,chi_g=.01fixedphysical. The recommended driver integrates exact K=0 invariant cold phase in 2N variables until physical heating activation; never inserts entropy.",
+    "inputs": [
+      "uniform rho=.25,R=1,u=-.25r,K=0",
+      "Exactrestart at t8 from rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/conv_n64_t8/result.json"
+    ],
+    "bounds": {
+      "shells": 64,
+      "t_end": 64,
+      "diffusivity": 0.1,
+      "damping_strength": 1,
+      "memory_activation": 0.01,
+      "rtol": 2e-07,
+      "atol": 1e-09,
+      "max_step": 0.05,
+      "internal_wall_seconds": 45,
+      "max_rhs_calls": 300000,
+      "stratification_length": 0.1,
+      "stratification_scale": 0.01,
+      "t_initial": 32,
+      "samples": 257,
+      "inner_mass_fractions": [
+        0.01,
+        0.05,
+        0.1,
+        0.25
+      ],
+      "entropy_amplitude": 0.01,
+      "entropy_support_mass_fraction": 0.2
+    },
+    "non_claims": [
+      "No presumed settling or positive resolution-uniform entropy floor",
+      "No observed forest-data comparison or full3D stability",
+      "No replacement of X48 production dynamics"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-01T14:41:15.377698+00:00",
+    "runtime_seconds": 1.988327,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 55.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/refinement.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/convective_transport.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/transport.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/collapse.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/TARGET.md",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/CONVECTIVE_ROUTE.md",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/DERIVATION.md",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/stability.py",
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/floor_n64_t32/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/refinement.py",
+      "sha256": "faa09a692bb072a3198b18e53a711aa49cb51aef88fbdf5a94909ec46d37c523",
+      "sha256_after": "faa09a692bb072a3198b18e53a711aa49cb51aef88fbdf5a94909ec46d37c523"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/convective_transport.py",
+      "sha256": "ee8ac635b8edc91208f1fcc5765aa7e0999a3975f286dd5b52384f75dfe63e97",
+      "sha256_after": "ee8ac635b8edc91208f1fcc5765aa7e0999a3975f286dd5b52384f75dfe63e97"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/transport.py",
+      "sha256": "2d93b679135ca176a16327f094c114eb1e9dbc21ba4adc56c2e209d60f78ee8c",
+      "sha256_after": "2d93b679135ca176a16327f094c114eb1e9dbc21ba4adc56c2e209d60f78ee8c"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/collapse.py",
+      "sha256": "14326419b85c7400923aee98f76562c85a46dcc59fa1cd8af3f8740f91b72baf",
+      "sha256_after": "14326419b85c7400923aee98f76562c85a46dcc59fa1cd8af3f8740f91b72baf"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/material.py",
+      "sha256": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390",
+      "sha256_after": "4b7c86c2d377151223f584cb31daf42a214fb5e7a0eb5a7cedf7443618dda390"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/TARGET.md",
+      "sha256": "7fd604611c80c4c53bc679d5fd25d40f2633e5a2459304342e4de17d97eca100",
+      "sha256_after": "7fd604611c80c4c53bc679d5fd25d40f2633e5a2459304342e4de17d97eca100"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/CONVECTIVE_ROUTE.md",
+      "sha256": "cc9c72bd7194cc1a16aa813c2c4dfd8c99139c0556f5d0a61ee74cdc78af1573",
+      "sha256_after": "cc9c72bd7194cc1a16aa813c2c4dfd8c99139c0556f5d0a61ee74cdc78af1573"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/DERIVATION.md",
+      "sha256": "e08312d0dc3be7f3f2d225ca938a7872ceec6d4c2532db2102f54c7a984910da",
+      "sha256_after": "e08312d0dc3be7f3f2d225ca938a7872ceec6d4c2532db2102f54c7a984910da"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/stability.py",
+      "sha256": "0c94b4dd615ba3e572e3bce46bc3998418daacdcecf251b4493e88f3b8c203dd",
+      "sha256_after": "0c94b4dd615ba3e572e3bce46bc3998418daacdcecf251b4493e88f3b8c203dd"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/floor_n64_t32/result.json",
+      "sha256": "121d850d589f8000418370d6049c2f3e545a9dd165beb015df3f89959a172486",
+      "sha256_after": "121d850d589f8000418370d6049c2f3e545a9dd165beb015df3f89959a172486"
+    }
+  ],
+  "output_directory": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/entropy_mode_n64_t64",
+  "declared_results": [
+    "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/entropy_mode_n64_t64/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/entropy_mode_n64_t64/stdout.txt",
+      "sha256": "34f0666db80cb7876aa44f39ca7975cf1b85cb20bcb3998c53b1075d3d5c3e79",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/entropy_mode_n64_t64/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/X48_native_cf_zoom/stable_stress_search/entropy_transport/entropy_mode_n64_t64/result.json",
+      "sha256": "7992e03e48bc30b5b925c7e5843c1ca2d66deeec948f5dc17245f4029fe6d5f6",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
