@@ -19,3 +19,10 @@ Source: pasted text from an outside AI. Claims in it are to test, not grading ru
 | 12 | KAPPA1 derive κ | DR7 note: ledger CFG894, 537 attempts, none derives ½ | Only with a new forced kernel; otherwise closed |
 
 Order once current lanes land: 6, 9, 10, 11, then 5, 6b, 8. Disk 27 GB free, under the 30 GB queue gate: box runs wait on that.
+
+## Update, owner's paste, 2026-11-01: hard stop on new mechanism lanes
+Item 2, COOL1 (CHOICE-DEPENDENT, NO LINK), RET1 (FAILS), BOLTZ1 (NEEDS A SELECTED LAGRANGIAN) and item 7 are done or answered. **Dropped, not started: 5 AX1, 6b rotating bar, 8 periodic box.** PZ1 and DR8 finish, since their runs are already well along and their results go in the ledger. No new mechanism lane from here unless the owner opens one.
+
+Derivation of T capped at three pre-registered attempts, none started. COOL1 counts as no attempt: it wasn't from an action. If they yield no T without a fitted number, the unification search stops. Retiring route E remains the owner's decision.
+
+Next: FG1 ledger (another session), then a 5–8 page summary from it for an outside dynamicist; owner sends it. ALMA scoring against PAPER66 and Gaia DR4 as scheduled, dates to be checked against the frozen plans.
