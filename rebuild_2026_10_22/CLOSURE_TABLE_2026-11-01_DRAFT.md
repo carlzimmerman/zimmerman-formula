@@ -52,6 +52,9 @@ The only cluster pass needs +0.092 to +0.111 dex above eRASS1. Pointed Chandra a
 | NR1 | N PASSES AT NG 80 [ANCHOR-DEPENDENT] | Whether the 10¹² anchor alone breaks SPARC: it doesn't |
 | NR2 | ALL-NG80 PASSES [NOISE-LIMITED]; η ng 80 / ng 64 0.913, 1.015, 0.830, none distinct from 1 | Whether ng 80's low masses break N's line at the median: they don't. Not the seed noise |
 | NR3 | UR1 on NR2's η: SIGN FLIP YES, AMPLITUDE FAILS [NOISE-LIMITED]; EM1 + response Υ 0.35 / 0.36; 150–250 km/s unmoved at every input | Low-mass η as the way out of the response's Υ |
+| FG1 | ROUTE E DOES NOT SURVIVE ON MEASURED DATA [GAS-CONDITIONAL]; all four candidates fail | The closing grade. See `CLOSING_LEDGER_2026-11-01_DRAFT.md` for every door tried on 11-01 |
+| PZ1 | STRONG; BLUMENTHAL HOLDS; SHIFT UP, f_Q 0.946 | Disc timing as the way out |
+| M3A1, OE1 | PARTLY, wall stands, Z_tot +3.0 to +3.5; edge reads NOT THE EDGE, NO VERDICT as frozen | G-OUT-M3 as an artefact or edge effect |
 | AQ1 | Argon: 6 of 7 ZN4 lines MISS | Its resolution mechanism: concentration falls at ng 80 |
 
 ## Not settled by this table
