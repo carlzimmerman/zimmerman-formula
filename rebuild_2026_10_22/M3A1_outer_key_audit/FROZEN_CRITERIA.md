@@ -54,3 +54,6 @@ MUTATE: (a) C1a's sign flipped must move Z the opposite way, by at least half as
 
 ## Expectation on record
 PARTLY. C4d lands 25-40 % of the need, because the -0.07 random level looks like X11's cross fluctuation. C1a raises Z by a few tenths, since the bin is cut on the number the prediction uses. Nothing else reaches a third. Net well short of the line, so the wall stands. A few clusters don't drive it.
+
+## Amendment A1, before any verdict and before the extended randoms were read
+C1a's prediction for all 326 sends M1's low-count clusters up by large factors, because Tweedie's shift grows with sigma squared at the density's edge (M1's median error is 0.33 dex). G-OUT-Mall reads nonsense under it and the flipped sign divides by zero. M3's Z depends only on M3's clusters, so its C1a value is untouched. Changes: MUTATE (a) flips the sign on M3 only; added job C1a_M3 (M3 only), so Mall is read correctly; added report-only C1a_cap, shift only where the catalogue error is <= 0.2 dex. The label still uses C1a as frozen. K4's line stays |d| <= 0.005, on X11's template scale. C4a and C4c, being multiplicative, keep the grader's fractional s; additive shifts keep its absolute s. C1a and C2a overlap: the frozen net counts both; the net without C2a is reported too.
