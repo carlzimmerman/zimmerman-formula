@@ -27,7 +27,7 @@ f★ 0.0615, R1 c1: 11 keys, G-OUT-M3 +3.52. Alt, R1 c1: 10 keys, +2.78. Gas +0.
 **SPARC BREAKS, CLUSTERS NOT REACHED**, on R1, c = 1, canonical: Υ 0.41 off the line, tilt −0.18 beyond 0.15, X-COP and keys fail. No [READING-DEPENDENT] tag: R2 breaks Υ; R3 sits on Υ 0.50 at canonical but its tilt fails on both footings. **IMPROVES: no,** rms rises on all three readings and both footings. Passes in the table: rms line, groups. My expectation held; the rms rise is slightly bigger than I guessed.
 
 ## The main test: does the term reach the cluster deficit?
-**No, and it can't.** Mean X-COP S is 1.52 at x ≤ 0.75, moving log(M_HSE/M) from +0.467 to +0.393, 16 % of the way. The S that would give M_HSE has median 34 (alt 28), and every one of the 35 rows needs S > 3, while S ≤ 3 is the ceiling for a density falling outward. MUTATE at S ≡ 3 in every row still leaves +0.343. So at c = 1 the term has no route to clusters, whatever the density profile. X-COP is hydrostatic; the keys aren't, and agree in direction: G-OUT-M3 stays +3.66.
+**No, and it can't.** Median X-COP S is 1.52 at x ≤ 0.75, moving log(M_HSE/M) from +0.467 to +0.393, 16 % of the way. The S that would give M_HSE has median 34 (alt 28), and every one of the 35 rows needs S > 3, while S ≤ 3 is the ceiling for a density falling outward. MUTATE at S ≡ 3 in every row still leaves +0.343. So at c = 1 the term has no route to clusters, whatever the density profile. X-COP is hydrostatic; the keys aren't, and agree in direction: G-OUT-M3 stays +3.66.
 
 The term helps the heaviest clusters and hurts the lighter ones in the same run: at c = 3 G-OUT-M3 clears (+1.80) but G-OUT-all goes −2.97, and SPARC is gone. S at 1.4 Mpc is about 0.83 in the median, so it isn't selective by mass. The law's trouble here is the trend with mass (G-MID-b, G-OUT-b, G-MID-T3 stay out), which S doesn't address.
 
@@ -41,7 +41,7 @@ The term helps the heaviest clusters and hurts the lighter ones in the same run:
 Coefficient 1 was already out: p34 Δχ² +1389 / +2216. CFG117 and CFG231 fail G1 on the mass-additive form. Coefficient 1/3 was not on record; it's now closed at this definition of ρ_b.
 
 ## Limits
-M_b is spherical-equivalent on discs; a true enclosed mass would change S there but not X-COP's ceiling, which is what stops the cluster side. X-COP's S comes from a cluster's five to seven measured rows, coarse. Post-result stress, not graded: a 5-point mean on dM/dr gives Υ 0.40, rms 0.0590, tilt −0.18, so derivative noise doesn't carry SPARC's result.
+M_b is spherical-equivalent on discs; a true enclosed mass would change S there but not X-COP's ceiling, which is what stops the cluster side. X-COP's S comes from each cluster's measured rows, a coarse radial grid. Post-result stress, not graded: a 5-point mean on dM/dr gives Υ 0.40, rms 0.0590, tilt −0.18, so derivative noise doesn't carry SPARC's result.
 
 ## Checks
 K1 c = 0 reproduces the law rms 6.9e-18, Υ 0.52, 0.44. K2 unmodified grader on NR1's preds 0, template 0. K3 LITTLE THINGS 0.0002. K4 0, 2.1e-25. K5 HS1's law slope 1.2e-17. K6 R3 c3 worse than c0 (χ² 37060 → 55825), as p34 reports. MUTATE S × 0: returns plain exactly on SPARC, X-COP, keys. S ≡ 3: Υ 0.52 → 0.30, X-COP +0.343, 6 keys: bites. KiDS, Local Group, MW not run.
