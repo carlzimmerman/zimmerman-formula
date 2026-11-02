@@ -1,0 +1,24 @@
+mean rho, Msun/pc^3: z 0 3.33e-08; z 115 0.052; z 1100 44.4; z 3000 900. Disc anchor 0.05. Mean density crosses the disc's at z 114.
+
+P cells: c_s km/s (uncapped by c/sqrt 3 here), anchored c_s(rho_disc) = sigma
+Gamma  sigma  z 3000   z 1100   z 500     z 50     z 5      z 0
+ 2.33    30 2.06e+04 2.77e+03      574     5.95   0.0824  0.00229
+ 2.33   100 6.87e+04 9.24e+03 1.91e+03     19.8    0.275  0.00763
+ 1.67    30      786      288      131     13.4     1.57    0.262
+ 1.67   100 2.62e+03      961      437     44.5     5.24    0.873
+ 1.00    30       30       30       30       30       30       30
+ 1.00   100      100      100      100      100      100      100
+ 0.67    30     5.86     9.68     14.3       45      131      321
+ 0.67   100     19.5     32.3     47.8      150      437 1.07e+03
+ 0.00    30    0.224     1.01     3.28      101  2.5e+03 3.68e+04
+ 0.00   100    0.745     3.35     10.9      336 8.34e+03 1.23e+05
+
+Variables left, order of magnitude. rec = z 1100, mode k = 0.1 /Mpc comoving, Phi 1e-5, delta 1e-3 of the dark fluid term; disc = 200 km/s at 10 kpc, rho 0.05 Msun/pc^3, scale 3 kpc, sigma 100 km/s; cluster = 1000 km/s at 500 kpc, rho 2e-3 Msun/pc^3 (M 1e14 in 500 kpc gives about 2e-4 to 2e-3), scale 300 kpc, sigma 1000 km/s.
+ acceleration m/s^2: rec 3.2e-09, disc 1.3e-10, cluster 6.5e-11; a0 about 1e-10; cH(rec) 1.5e-05. Rec sits at or above discs and clusters, for this mode, so an acceleration key doesn't separate rec from discs; clusters and discs overlap. X60, X19 already read this key as failing on systems.
+ |grad rho|/rho per Mpc: rec 0.11, cluster 3.33, disc 333. Orders rec < cluster < disc, the one ordering wanted here. Not tested on any system in the record that I found; a gradient key isn't an existing lane's kill. It's a higher-derivative term and has no action here. Stated as open, nothing more.
+ |grad rho| Msun/pc^3/Mpc: rec 4.89, cluster 0.00667, disc 16.7. The absolute gradient doesn't give the ordering by the same margin.
+ phase density rho/sigma^3, Msun/pc^3/(km/s)^3: disc 5.0e-08, cluster 2.0e-12; rec needs v at z 1100 from VW1's v0 <= 2 km/s today, so v <= 2202 km/s, giving Q >= 4.2e-09. Conserved along flow, not a local switch: VW1 grades this and finds no window on the Upsilon floor.
+ entropy P/rho^Gamma: conserved on smooth flow, so it can't change between rec and a disc without a shock or a source. Needs an unmodelled process in the term itself. It keys on history, not local state. No value is assigned; it has none without a model.
+
+Standing kills from the record, not re-derived: the Bullet (no pressure fluid), CMB and transfer windows, J1 potential selector, X19 no single variable or pair separates EXTRA from NONE (keyed on systems), BOLTZ1 shift-symmetric P(X) no turn-on, X22 forest c_s <= 6 km/s at z 3. A local pressure in clusters meets the Bullet regardless of what keys it.
+kappa = 1/2 FITTED. Not theory closed.
