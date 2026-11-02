@@ -112,7 +112,7 @@ def lt_stat(Hf, a0, job="real"):
     E = []
     for gN, gO, fg, _ in lt_rows():
         if job == "label": fg = 0.0
-        H = 1.0 if Hf is None else float(Hf(np.array([fg]), np.array([gN / a0]))[0]); E.append(math.log10(gO) - math.log10(law(gN, a0) * H))
+        H = 1.0 if Hf is None else float(Hf(np.array([fg]), np.array([gN / a0]))[0]); E.append(float(np.log10(gO) - np.log10(law(gN, a0) * H)) if H > 0 and np.isfinite(H) else float("nan"))
     md = float(np.median(E)); return dict(E=md, rmsE=float(np.std(E)), n=len(E))
 def search_table(P, fixed=False):
     """Expanded rows for the Julia loss. Returns X (n,7), lgO, lgL, w, galaxy id, U id, and X-COP tail."""
