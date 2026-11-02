@@ -37,7 +37,7 @@ Post-result, no label, f* 0.034:
 
 ## What's weak
 1. **The line's real error at M3's mass is about 0.04 dex, not its bootstrap 0.008.** M3 sits at lg M500 14.34 (h 0.7), between two sets: L20 above, L15 + S09 below. In 14-14.5 there are 18 clusters: median -0.137 +- 0.043, line -0.157. Z moves 27 per dex, so ±0.04 is ±1.1 in Z. **Slope 0.219 is steeper than inside either set** (L20 0.17 +- 0.04, L15 + S09 0.10 +- 0.06), so part of it is a step between samples, instruments and selection. The two leave-out rows show it.
-2. **Mass method, the main open thing.** XXL (WL-calibrated M-T, Eckert+16) reads lg Y -0.50 +- 0.06 at lg M500 14.5 with hardly a slope, at z 0.3 and up. H reads -0.12. Those differ far more than HL2's +0.03, on different clusters and z. W's slope is negative because WL noise in M drives it (pairs alone -0.22 +- 0.07), as frozen. So W doesn't support retention at this size; it says lensing-tied masses at low mass aren't settled.
+2. **Mass method, the main open thing.** XXL (WL-calibrated M-T, Eckert+16) reads lg Y -0.50 +- 0.06 at lg M500 14.5 with hardly a slope. H reads -0.12. Those differ far more than HL2's +0.03, on different clusters. W's slope is negative because WL noise in M drives it (pairs alone -0.22 +- 0.07), as frozen. So W doesn't support retention at this size; it says lensing-tied masses at low mass aren't settled.
 3. **Carry.** GS1's slope is measured on X-COP only, and lighter clusters have no measurement here. A carry of 0.062 against X-COP's 0.031 moves M3 by 0.6.
 4. Selection: X-ray bright low-mass samples are likely gas-rich, so Y is high there. Group stars above f* would go the other way. Neither applied, sizes unknown. No z trend in the line.
 
