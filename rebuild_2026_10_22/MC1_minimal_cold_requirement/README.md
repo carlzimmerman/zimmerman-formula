@@ -49,7 +49,7 @@ In one line: **about zero, within 0.3-0.8, in discs; about 2-7 in clusters; 5.35
 | S, f_Q | 0.11 / 0.11 | 0.13 / 0.10 | 0.12 / 0.07 | 0.09 / 0.09 | 0.21 / 0.17 | 0.64 / 0.53 |
 | N, f_Q, Upsilon 0.25 | 0.36 / 0.33 | 0.73 / 0.61 | 0.74 / 0.63 | 0.53 / 0.43 | 0.82 / 0.72 | 1+ / 1+ |
 
-**Depletion needed: 67-80 % / 66-82 % on N with the measured response below 250 km/s, 79-91 % / 83-93 % on S.** Lowering Upsilon to 0.25, half the line, still leaves up to 0.67 / 0.67 to remove.
+**Depletion needed: 67-80 % / 66-82 % on N with the measured response below 250 km/s, 79-91 % / 83-93 % on S.** Lowering Upsilon to 0.25, half the line, still leaves up to 0.64 / 0.67 to remove.
 
 **Response.** At psi 1, Upsilon 0.5, **no f >= 0 is allowed in five of six bins.** f_Q 0.872 [0.54, 1.07] isn't close, because even no response fails. It costs a further 0.8 of the room, 0.6 at 200-250. Only 250-400 allows it, and only because the law runs short there. RM2's f_hi <= 0.2 was on halos alone. With the law beside it, the need is stricter.
 
