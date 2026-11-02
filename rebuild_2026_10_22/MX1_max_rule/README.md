@@ -24,7 +24,7 @@ Law = RQ3's law, reproduced by K0. Margins beside labels. P's line is the verdic
 | G-MID-T3 | F +4.86 / +4.54 | **F +2.27 / +2.24, over by 0.27 / 0.24** | F | F | F | F |
 | G-OUT-all | | pass | pass / F | pass | pass | pass |
 | B19 total error | F +3.80 / +3.08 | **F +2.98 / +2.50** | F +2.96 / +2.48 | F +3.20 / +2.68 | F +2.91 / +2.47 | as P |
-| B20 joint, line 0.05 | F, under 1e-6 | **F 0.017 / 0.028** | F 0.024 / 0.039 | F 0.016 / 0.029 | F 0.020 / 0.030 | as P |
+| B20 joint, line 0.05 | F 3e-8 / 1e-6 | **F 0.017 / 0.028** | F 0.024 / 0.039 | F 0.016 / 0.029 | F 0.020 / 0.030 | as P |
 | B23 X-COP mean | F +0.467 / +0.435 | **-0.041, Z -0.33** | -0.066 | -0.012 | as P | +0.136 |
 | B24 X-COP rms <= 0.10 | F 0.476 / 0.444 | **0.0964 PASS [MARGINAL]**, margin 0.0036, bootstrap 0.0129 | **F 0.119** | 0.0835 | as P | **F 0.162** |
 | B25 deficit | F | P +1.22 / +1.15 | P | P | P | P |
@@ -80,7 +80,7 @@ The loop closes (K8, twin fails by 1e-2). The surfaces touch along the boundary,
 
 My frozen control was an algebraic "QUMOND", which isn't QUMOND and isn't reciprocal: against it the ratio is only x 3.6-9. So I added a Helmholtz projection (disclosed, after the first read); the grid zero moved with resolution, 5e-5 to 1.6e-2 at 2 kpc, and the x 12 is against the coarser one. System acceleration 0.04-0.08 a0, oscillating with the offset, not a runaway. The force on baryons from cold is zero, machine precision; all of it is baryons pulling cold.
 A static, local, translation-invariant action with one Phi for all matter forbids this. So one of the universal coupling, the rule or the action has to go.
-**P4, GALAXIES LEAVE THEIR COLD, on the parent.** In a law zone the two fall differently. MW-like at 300, 500, 1000 kpc from a 1e13 group: baryons 0.151, 0.102, 0.050 a0, cold 0.118, 0.053, 0.013. Drift in 3 Gyr: 445-664 kpc canonical, 2.9-4.3 R200; alt 3.7-5.2. 1e14 at 1000 kpc: 1.9 / 3.6 R200. Inside 500 kpc of 1e14 the cold zone holds, drift 0. Uniform-field arithmetic, no orbit. That reading predicts lensing offset from galaxies in groups, and the record's lens rows sit on galaxies; I didn't compute a stack.
+**P4, GALAXIES LEAVE THEIR COLD, on the parent.** In a law zone the two fall differently. MW-like at 300, 500, 1000 kpc from a 1e13 group: baryons 0.151, 0.102, 0.050 a0, cold 0.118, 0.053, 0.013. Drift in 3 Gyr: 445-664 kpc canonical, 2.9-4.3 R200; alt 3.7-5.2. 1e14 at 1000 kpc: 1.9 / 3.6 R200. Inside 500 kpc of 1e14 the cold zone holds, drift 0. Uniform-field arithmetic, no orbit. That reading predicts cold offset from galaxies in groups; no lens offset test was computed.
 
 So: **the equivalence principle in a max rule.** Universal fall keeps weak equivalence and loses reciprocity, with passive mass but no active mass in a law zone; active mass then depends on the baryons nearby, a strong-equivalence break. The parent keeps momentum and breaks weak equivalence between cold and baryons in baryon fields. Lensing: V1 has no single Phi light could follow in the oblique case, and the parent has two potentials and no statement on which light uses; both unresolved. Spherical case is benign, P6: the rule's rho_eff has a finite upward jump at the switch, 3.9e-5 to 5.8e-5 at 1e12.5, no shell, no negative density.
 
@@ -114,7 +114,7 @@ g = (L^p + C^p)^(1/p), canonical / alt:
 | inf (P) | 0.065 / 0.061 | 0.50 / F 0.43 | P | 13 / 13 | F +3.80 / +3.28 | F | F | P 0.096 | P / F | |
 
 **No p passes.** It's a real trade: softening relieves M3 and the joint and costs the disc's Upsilon, so the rule's only way to hold U 0.50 is to be sharp, with no reason given. At p 4, canonical, only M3 of the keys fails, the closest key row in this lane, and U fails by 0.09.
-**P7, KINK UNCONSTRAINED.** Rule P: 23 % / 20 % of SPARC points within 0.1 of the switch, 97 / 86 of 149 galaxies switch inside the data, slope jump d ln V/d ln r -0.13 [-0.15, -0.08]. Points above ln(C/L) 0.1 at U 0.5 (840): data over law +0.004 +- 0.008 dex, MAX adds +0.080, **so 0.075 dex of predicted excess is absent, about 9 sigma.** At U 0.35: data +0.130 +- 0.009, MAX adds +0.079. So a lower Upsilon on those galaxies absorbs it, and this doesn't test the kink, only U. The per-galaxy fit does exactly that: A2 falls only at the galaxies that use the branch. Slope jump against per-point rotation curve error not compared.
+**P7, KINK UNCONSTRAINED.** Rule P: 23 % / 20 % of SPARC points within 0.1 of the switch, 97 / 86 of 149 galaxies switch inside the data, slope jump d ln V/d ln r -0.13 [-0.15, -0.08]. Points above ln(C/L) 0.1 at U 0.5 (840): data over law +0.004 +- 0.008 dex, MAX adds +0.080, **so 0.075 dex of predicted excess is absent, about 9 sigma.** At U 0.35: data +0.130 +- 0.009, MAX adds +0.079. So a lower Upsilon on those galaxies absorbs it, and this doesn't test the kink, only U. The harness fits Upsilon per galaxy, so it can absorb this; I did not split that by galaxy. Slope jump against per-point rotation curve error not compared.
 
 ## Stars, orbit average (DW2's row 11)
 Retained, 60-100, 100-150, 150-200, 200-250, share, sigma 3.94e-8:
