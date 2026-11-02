@@ -1,5 +1,7 @@
 # Outline: 6-page summary for an outside dynamicist, 2026-11-01
 
+**Superseded by `EXTERNAL_SUMMARY_2026-11-01_DRAFT.md`, after the owner retired the cold sector. The question below asks how to stop a cold component contracting, and is no longer the one to send.**
+
 An outline only. The text is written from the closing ledger once it lands, and every number is then re-read from the file named. The owner reads it before any deposit and sends it. Recipients and cover notes stay out of this repo. κ = ½ FITTED. T LOCATED, not derived. Cold dark energy is a gravitating field component, never a particle. Not theory closed. Nothing here says the data favour the framework.
 
 ## Page 1: the law

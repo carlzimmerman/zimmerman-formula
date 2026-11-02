@@ -47,13 +47,14 @@ Landed after the first draft:
 | Lane | Idea | Result |
 |---|---|---|
 | DR8 | live response of a cored halo, one mass, isolated | Blumenthal OVER-PREDICTS, PARTIAL, f_B 0.753 [0.729, 0.777]; the claimed 5-10× is about 1.5 at 2.2 R_d. Rule MOVES, FAILS, Υ 0.44/0.46, posited not derived. Measured response carried at one mass: Υ 0.42/0.43, SPARC line missed |
+| HM1 | native shape + measured response, C5 | NO VERDICT AS FROZEN, K4 failed; A1, post-result, moves no key by over 0.001. Numbers read FAILS on S, Tl, LT, G, K, X, Ln, Dw, IC [GAS-CONDITIONAL] [RESPONSE-DEPENDENT]; MW, DM pass. Clusters at +0.005: 10 of 15, G-OUT-M3 +4.60, X-COP fails. Response is outward at every radius on this shape, so clusters want it off and the weighings want it on |
 | SP3 | starting point (briefed as SP1, id taken) | PARTLY as frozen, only through hand FAIR200 + Blumenthal, which fails tilt, groups, LITTLE THINGS; in EM1, AM1, E1, C1 no response-on start reaches Υ's line |
 | UL1 | Υ line against measured Υ | RESPONSE NOT CONSISTENT WITH MEASURED UPSILON, Taylor and GSWLC; the a₀ law fails the same gate. UR3's c 12.95 definition error is real (c200 8.0). No line moved, not a pass of route E |
 | OD1 | old-star dispersions on DiskMass | NOT SEPARATED [JEANS-DEPENDENT] [HZ-DEPENDENT]. Frozen c 1.414-1.517: round rule 0.82-0.88, native f_Q 0.71-0.76, under the line. DiskMass's support for light discs is conditional on c; the sources' tables run about 1.2 to 1.9, and law and response swap at 1.31-1.37 with exact Jeans and S4G h_z. GSWLC and the Milky Way don't use c |
 
 **Audit.** CRG1 clean-room regrade of FG1: REPRODUCED, 295 items, 289 MATCH, 6 CLOSE, 0 DISAGREE, no pass/fail flip in Tier A or B. This mainly tests code: definitions came from the same chain, the harness saw FG1's verdicts in its context, and MW, DM, IC and C2's G, Ln were not recomputed. C3's Dw pass depends on one reading (A13): flag by host passes, flag by mass fails at canonical.
 
-**Open, so this ledger stays a draft:** HM1 (native shape + measured response, candidate C5 on FG1's scorecard) and AR1, both frozen before the retirement, with no result yet. Either can add a line here. Neither can reinstate the cold sector; only the owner can.
+**Open, so this ledger stays a draft:** AR1, frozen before the retirement, with no result yet. It can add a line here. It can't reinstate the cold sector; only the owner can.
 
 ## What stands
 - The a₀ law on galaxies, canonical: rms 0.0541, Υ 0.52, tilt +0.02, LITTLE THINGS −0.025, lensing preferred. κ fitted; misses Milky Way, IC 1613, dwarfs' UFD class, clusters.
