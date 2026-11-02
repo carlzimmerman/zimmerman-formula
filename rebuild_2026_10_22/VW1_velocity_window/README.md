@@ -38,3 +38,6 @@ v_min lies between 6.72 and 14.9 km/s, above gate 1's edge below 4. The gap is a
 
 ## What it says
 This is the old conflict in a new form. Slow enough for the early universe means enough mass in discs to push Υ below the floor. No m, on this shape, avoids that on the record's Υ window.
+
+## Would dropping the Υ floor help? Slow end through HF1's gates 2-3, numbers only (A1 addendum, post-result)
+m 50 eV, v0 about 2 km/s, canonical (`hf1_g23_RUN_vw1_m50.out`). No. X-COP +0.183, rms 0.262, FAIL. Keys 3 of 15, worst G-OUT-Mall −16.25. Groups Z −5.47, below the law. SPARC at the 0.50 floor's replacement: rms 0.0650, Υ 0.40, and tilt −0.17 now misses 0.15 too (`vw1_a2.out`'s −0.15 sat at the line). LITTLE THINGS −0.087. IC 1613 Z −9.2, worse than the law's −7.9. So the Υ floor is what closes the window, but opening it wouldn't save this family on R4: clusters and groups fail anyway. R4's fair-share isothermal reading and its σ are in all of this; the open bracket on those is in lane RS.
