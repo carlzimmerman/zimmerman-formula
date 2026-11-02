@@ -1,5 +1,8 @@
 # VS3_second_tracer: LEANS ROTATION, both footings, on two galaxies. NOT SETTLED: the lane could not return that label
 
+**Correction, VS4, same day: this lean does not stand.** On Pulsoni+18's reduction NGC 3608's offset is -0.057, not +0.150, and NGC 1023's falls from +0.193 to -0.010. CFG492's PN rows keep outlying velocities and rotation. See `../VS4_pns_vector_sample/README.md`.
+
+
 Criteria: `FROZEN_CRITERIA.md` (fdc9c2f95f), alone first, **not blind**. `vs3.py`, `vs3.out`, `vs3.json`, `vs3_MUTATE.out`, `vs3_mass_check.out`. Offsets are CFG492's committed values. No download. kappa = 1/2 FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework. Reinstates nothing.
 
 PN offsets, canonical, primary window 500 kpc and 500 km/s. Contrast is against fast non-centrals, mean +0.013 +- 0.017 (NGC 3377, 4494, 4564).
