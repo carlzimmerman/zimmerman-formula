@@ -11,7 +11,7 @@ def bounds(mult, lo_c, hi_c):
     w = T1 * mult; lo, hi = -w.copy(), w.copy(); lo[6], hi[6] = lo_c, hi_c; return lo, hi
 class Cos:
     def __init__(s, cos, z=0):
-        s.cos, s.z = cos, z; s.c = np.array([float(CM.concentration(M * cos.h, '200c', z, model='diemer19')) for M in MS])
+        cc.setCurrent(cos); s.cos, s.z = cos, z; s.c = np.array([float(CM.concentration(M * cos.h, '200c', z, model='diemer19')) for M in MS])
         s.rde = cos.Ode0 * cos.rho_c(0) * cos.h**2 * Msun / kpc**3
 def gal(C, i, k, cmul=1.):
     M = MS[i]; dc, sc, dn, dm1, db, dg, f, sn, ss, gn, gs = k

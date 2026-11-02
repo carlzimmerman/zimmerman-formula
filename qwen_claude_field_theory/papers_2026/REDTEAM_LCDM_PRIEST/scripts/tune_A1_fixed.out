@@ -1,0 +1,66 @@
+
+== BASE: no tuning, Blumenthal
+a 2.0723e-10 ratio 2.2134; per-mass spread 0.558 dex; rms to law 0.1470 dex
+per-mass a 1.35e-10 1.58e-10 1.78e-10 1.85e-10 1.81e-10 2.21e-10 3.31e-10 4.88e-10
+rho_DE slope +0.184
+kappa {(0.7, 67.4): 0.999, (0.685, 73.0): 1.434, (0.65, 73.0): 1.794}
+a(z)/a(0) {1.0: 1.251, 1.5: 1.491, 2.33: 2.042}
+verdict T1:FAIL T2:FAIL T3:FAIL T4:FAIL T5:FAIL T6:FAIL
+
+TIER 1 knobs: c_norm=+0.040 c_slope=-0.050* shmr_norm=+0.180* logM1=+0.300* beta=-0.173 gamma=-0.200* contract=+0.065 size_norm=-0.200* size_slope=-0.138 gas_norm=+0.299 gas_slope=+0.064 (* at bound)
+
+== TIER 1 plausible ranges
+a 9.3784e-11 ratio 1.0017; per-mass spread 0.247 dex; rms to law 0.0226 dex
+per-mass a 9.28e-11 9.23e-11 9.34e-11 9.16e-11 8.29e-11 7.84e-11 9.54e-11 1.39e-10
+rho_DE slope +0.163
+kappa {(0.7, 67.4): 0.445, (0.685, 73.0): 0.675, (0.65, 73.0): 0.865}
+a(z)/a(0) {1.0: 1.228, 1.5: 1.467, 2.33: 2.025}
+verdict T1:PASS T2:FAIL T3:FAIL T4:FAIL T5:FAIL T6:FAIL
+
+coverage, Tier 1: logM, M*/M200, Rd kpc, g_bar/a0 at 0.5 Rd and last point, g_DM/a0 at last point, lowest-g share of DM
+ 10.0  0.001  0.48  0.4  0.030  0.17  0.85
+ 11.2  0.013  0.81  4.1  0.029  0.16  0.85
+ 11.9  0.055  1.15  22.0  0.029  0.13  0.82
+ 12.7  0.047  1.63  45.4  0.030  0.20  0.87
+
+TIER 2 knobs: c_norm=+0.048 c_slope=-0.114 shmr_norm=+0.153 logM1=+0.543 beta=-0.830 gamma=-0.597 contract=+0.037 size_norm=-0.585 size_slope=+0.295 gas_norm=+0.177 gas_slope=+0.190 (* at bound)
+
+== TIER 2 ranges tripled
+a 9.3337e-11 ratio 0.9969; per-mass spread 0.012 dex; rms to law 0.0054 dex
+per-mass a 9.21e-11 9.44e-11 9.46e-11 9.43e-11 9.26e-11 9.20e-11 9.20e-11 9.46e-11
+rho_DE slope +0.182
+kappa {(0.7, 67.4): 0.452, (0.685, 73.0): 0.633, (0.65, 73.0): 0.775}
+a(z)/a(0) {1.0: 1.289, 1.5: 1.555, 2.33: 2.153}
+verdict T1:PASS T2:PASS T3:PASS T4:FAIL T5:FAIL T6:FAIL
+
+coverage, Tier 2: logM, M*/M200, Rd kpc, g_bar/a0 at 0.5 Rd and last point, g_DM/a0 at last point, lowest-g share of DM
+ 10.0  0.006  0.03  252.6  0.029  0.15  0.84
+ 11.2  0.023  0.14  158.0  0.027  0.15  0.85
+ 11.9  0.044  0.44  125.2  0.030  0.15  0.84
+ 12.7  0.066  1.35  95.6  0.029  0.15  0.84
+
+TIER 3: c must scale as rho_DE^0.30 at fixed omega_m, A_s
+
+== TIER 3 with rho_DE exponent
+a 9.3337e-11 ratio 0.9969; per-mass spread 0.012 dex; rms to law 0.0054 dex
+per-mass a 9.21e-11 9.44e-11 9.46e-11 9.43e-11 9.26e-11 9.20e-11 9.20e-11 9.46e-11
+rho_DE slope +0.500
+kappa {(0.7, 67.4): 0.455, (0.685, 73.0): 0.665, (0.65, 73.0): 0.8}
+a(z)/a(0) {1.0: 1.289, 1.5: 1.555, 2.33: 2.153}
+verdict T1:PASS T2:PASS T3:PASS T4:PASS T5:FAIL T6:FAIL
+
+TIER 3b: c shift (dex) solved per cosmology and redshift, on Tier 2 knobs
+ cosmology (0.7, 67.4) +0.041 dex
+ cosmology (0.685, 73.0) -0.098 dex
+ cosmology (0.65, 73.0) -0.183 dex
+ redshift 1.0 -0.158 dex to band centre
+ redshift 1.5 -0.247 dex to band centre
+ redshift 2.33 -0.500 dex to band centre
+
+TIER 4: free-form halo M_DM = r^2 (g_law - g_bar)/G, baseline baryons, no contraction
+ logM 10.0: min rho>0 True; M_free/M_NFW at 0.5-5 Rd 1.26 to 1.56; at R200 1.56; rho slope at 2 Rd 1.64, at R200 2.00
+ logM 11.2: min rho>0 True; M_free/M_NFW at 0.5-5 Rd 1.27 to 1.44; at R200 1.44; rho slope at 2 Rd 1.43, at R200 2.00
+ logM 11.9: min rho>0 True; M_free/M_NFW at 0.5-5 Rd 1.11 to 1.22; at R200 1.25; rho slope at 2 Rd 1.29, at R200 2.00
+ logM 12.7: min rho>0 True; M_free/M_NFW at 0.5-5 Rd 0.69 to 0.80; at R200 0.55; rho slope at 2 Rd 1.35, at R200 2.00
+
+Hypothetical rival; every knob disclosed. kappa = 1/2 FITTED; not theory closed.
