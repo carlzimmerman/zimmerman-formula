@@ -1,0 +1,73 @@
+GR: beta_GR = -2  (Phi = -U(1 + beta v^2), T00 = 1, Newtonian gauge)
+
+=== P1-K1 Einstein-aether at random rational points against Foster-Jacobson [formulas from memory, PROVISIONAL] ===
+  c=('8/19', '2/25', '-25/166', '-35/111'): a1 +1.280967 a2 +0.236561; diff 0, 0; gamma 1; gauge rows 0: True; response pole at s0^2: True
+  c=('11/192', '38/179', '-16/107', '31/164'): a1 -1.986491 a2 +0.625242; diff 0, 0; gamma 1; gauge rows 0: True; response pole at s0^2: True
+  c=('32/173', '35/142', '-15/199', '12/37'): a1 -1.538851 a2 -0.027036; diff 0, 0; gamma 1; gauge rows 0: True; response pole at s0^2: True
+  c=('36/85', '-3/193', '28/171', '-25/133'): a1 +0.608203 a2 -0.418394; diff 0, 0; gamma 1; gauge rows 0: True; response pole at s0^2: True
+  c=('8/25', '-3/71', '-25/182', '-38/185'): a1 +0.673695 a2 +0.175393; diff 0, 0; gamma 1; gauge rows 0: True; response pole at s0^2: True
+  c=('23/76', '-29/86', '37/95', '-6/53'): a1 -1.411907 a2 -0.464048; diff 0, 0; gamma 1; gauge rows 0: True; response pole at s0^2: True
+  [PASS] K1a Foster-Jacobson alpha_1, alpha_2, gamma = 1 exact at 6 random points; all six field equations satisfied: residual exactly 0
+  [PASS] K1b the moving response's pole is exactly the spin-0 speed s0^2 (Jacobson-Mattingly, memory): FJ's 1/c123 is the v^2/s0^2 term: 
+
+=== Identity: Maxwell term = Einstein-aether at (c1,c2,c3,c4) = (K,0,-K,0) ===
+  [PASS] K1c block identity Maxwell = (K,0,-K,0): 
+
+=== P1-A AeST exact moving response, symbolic in K_B, J, K2, Q0, v; L = R - (K_B/2)F^2 + 2c a.V - c(1+J)V^2 + K2 dQ^2, c = 2 - K_B ===
+  candidate, from hand work: {'Phi': (2*v**2 - 1)/4, 'Psi': -1/4, 'Az': (2*v**2 - 1)/(4*v), 'pi': I*Q0*(2*v**2 - 1)/(4*v)}. Residual of all six rows: [0, 0, 0, 0, 0, 0]
+  det of the block on (Phi, Psi, Az, pi) at omega = v: -4*v**2*(J*K2*K_B*Q0*conjugate(Q0) - 2*J*K2*Q0*conjugate(Q0) + J*K_B**2 - 2*J*K_B - I*K2*K_B*Q0*v + K2*K_B*Q0*conjugate(Q0) + K2*K_B*v**2 + I*K2*K_B*v*conjugate(Q0) + 2*I*K2*Q0*v - 2*K2*Q0*conjugate(Q0) - 2*I*K2*v*conjugate(Q0) + 2*K_B - 4)
+  [PASS] A1 Phi, Psi equal linear GR's with G~ for all K_B, J, K2, Q0 and v != 0, all six rows vanish, and the block is invertible so the solution is unique: exact
+  [PASS] A2 aether's response A_z = Phi/v (d_t A_z + d_z Phi = 0, geodesic); scalar pi = i Q0 A_z (V = 0, dQ = 0): A_z = (2*v**2 - 1)/(4*v), pi = I*Q0*(2*v**2 - 1)/(4*v)
+  vector sector B_x = -1, A_x = 0 at k = 1, v = 1: residual at omega = 0 [0, 0, 0], at omega = k vk [0, 0, 0]
+  [PASS] A3 vector sector is bare: B_x = -4 U~ v, U~ = 1/4 at k = 1, A_x = 0, at omega = 0 and omega != 0: 
+  moving branch: alpha_1 = 0, alpha_2 = 0, G_measured = G~
+  [PASS] A4 moving branch alpha_1 = alpha_2 = 0 exact: 
+
+=== P1-K2 static limit: omega = 0 exactly ===
+  rank of the static block 3 of 4; flat direction: the combination A_z, pi leaving u = pi + Q0 A_z/(i k) fixed. U_static = -(J + 1)/(2*(J*K2*Q0*conjugate(Q0) + J*K_B - 2*J + K2*Q0*conjugate(Q0)))
+  q -> 0: U_static = (-J - 1)/(2*J*(K_B - 2)); alpha_1 from moving B_x over static U = -4*(J*K_B + 2)/(J + 1)
+  [PASS] K2a record's eta_K: alpha_1 = -4(2 + K_B J)/(1 + J) is B_x(bare) over U_static: -4*(J*K_B + 2)/(J + 1)
+  [PASS] K2b at J = 1: -2(K_B + 2); J -> oo: -4 K_B: the formula is 8(G~/G_static - 1)
+  G_static/G~ = 2*(-J - 1)/(J*(K_B - 2)); at J = 1, K_B in (0, 1/4]: 2.000 to 2.286
+
+=== P1-K3 record's alpha_1(q) at K_B = 1/5, K2 = 10, J = 1: (-5184q^4 - 16q^2 - 22)/(648q^4 + 36q^2 + 5) ===
+  K2 sign +1: mine -2*(100*q**2 + 11)/5; difference at q = 2/5: -5.04946; q -> 0: -22/5 vs -22/5
+  K2 sign -1: mine 2*(100*q**2 - 11)/5; difference at q = 2/5: 7.75054; q -> 0: -22/5 vs -22/5
+  [PASS] K3a q -> 0 limit of the record's alpha_1(q) reproduced: -22/5
+  [FAIL] K3b the record's finite-q rational reproduced: mine is not the record's at q != 0; its cached action L2dc_v2.pkl and gauge differ (see README)
+
+=== Regular ladder test: does a Taylor series in v exist at fixed q around the static solution, source along k? ===
+  orders v^0..v^2 only: rank 10, augmented 11: NO regular series
+  through O(v): solution exists False; x0 Phi = None, static U at this q = 1/5
+
+=== P1-B exact branch: F_munu = 0, phi = Q0 tau, on exact Schwarzschild with radial geodesic congruences ===
+  E = 1: A.A = -1; F2 (0.0, 0.0), a.V (0.0, -4.239575861902385e-168), Y (0.0, 0.0), Q -0.428571; mutated congruence dY/de 1.441, da.V/de 0.4953
+  E = 13/12: A.A = -1; F2 (0.0, 0.0), a.V (0.0, -8.47915172380477e-168), Y (0.0, 0.0), Q -0.428571; mutated congruence dY/de 2.429, da.V/de 0.6201
+  E = 5/3: A.A = -1; F2 (0.0, 0.0), a.V (0.0, 6.783321379043816e-167), Y (0.0, 0.0), Q -0.428571; mutated congruence dY/de 8.858, da.V/de 1.177
+  [PASS] B1 F2, a.V, Y have zero value and zero first variation for arbitrary field perturbations, E = 1, 13/12, 5/3, so GR + geodesic aether + phi = Q0 tau is exact when F_Q(0, Q0) = 0 and F_Y finite: pointwise, 30 digits
+  [PASS] B2 a mutated congruence (phi not Q0 tau) gives nonzero first variation: 
+  [PASS] B3 on the branch Q = Q0 (sign per A_mu = d_mu tau): 
+
+=== P1-C time-domain: 1D planar, Psi = Phi, W frozen, Q0 = 0. Source Gaussian rests on the static branch to t = 0, then moves at v ===
+  AeST K_B 0.2 J 1 c2 0 (v 0.3): s0 0.0000 v 0.3000; Phi at source -1.280518 vs bare -0.673615, static -1.496923; Phi at release point -1.319864
+  AeST K_B 0.2 J 1 c2* v 0.1, subsonic: s0 0.3693 v 0.1000; Phi at source -1.487167 vs bare -0.673615, static -1.496923; Phi at release point -1.463338
+  AeST K_B 0.2 J 1 c2* v 2 s0, supersonic: s0 0.3693 v 0.7385; Phi at source -0.874050 vs bare -0.673615, static -1.496923; Phi at release point -0.770923
+  [PASS] C1 c2 = 0: Phi at the source = bare field of the source + the static-branch charge frozen at the release point, within 1e-6; the charge does not follow: at source -1.2805181, prediction -1.2805181, bare -0.67362, static -1.49692
+  [PASS] C2 control: c2 > 0, v < s0: the source keeps the static value within 5 %: -1.48717 vs -1.49692
+
+=== c2 chassis (FC-AeST + c2*, not v9): exact, K_B = 1/5, J = 1 ===
+  U 5/9 (bare 1/4); alpha_1 -22/5 = -4.4000; alpha_2 11/2 = 5.5000. Here the static branch is real for v << s0, so these are real for that chassis
+
+=== P1-D margins at the Sun: capture radius and charged-background corrections, bounds [memory, PROVISIONAL] ===
+  w    20 km/s, r  1.00 AU: capture GM/w^2 2.218 AU; Jeans fraction of Phi 3.18e-16, as alpha ~ fraction/w^2 7.14e-08 (bounds 4e-05, 2e-09)
+  w    20 km/s, r  9.58 AU: capture GM/w^2 2.218 AU; Jeans fraction of Phi 2.92e-14, as alpha ~ fraction/w^2 6.55e-06 (bounds 4e-05, 2e-09)
+  w   220 km/s, r  1.00 AU: capture GM/w^2 0.01833 AU; Jeans fraction of Phi 2.63e-18, as alpha ~ fraction/w^2 4.87e-12 (bounds 4e-05, 2e-09)
+  w   220 km/s, r  9.58 AU: capture GM/w^2 0.01833 AU; Jeans fraction of Phi 2.41e-16, as alpha ~ fraction/w^2 4.47e-10 (bounds 4e-05, 2e-09)
+  w   369 km/s, r  1.00 AU: capture GM/w^2 0.006515 AU; Jeans fraction of Phi 9.33e-19, as alpha ~ fraction/w^2 6.16e-13 (bounds 4e-05, 2e-09)
+  w   369 km/s, r  9.58 AU: capture GM/w^2 0.006515 AU; Jeans fraction of Phi 8.56e-17, as alpha ~ fraction/w^2 5.65e-11 (bounds 4e-05, 2e-09)
+  [PASS] D1 at 220, 369 km/s and planetary r: outside the capture radius, charged-background correction under both bounds; rule's condition: worst a_equiv 4.47e-10
+  reported: 20 km/s (aether co-moving with the disc): capture 2.22 AU, a_equiv at 1 AU 7.14e-08; 9.58 AU 6.55e-06. Not in the frozen rule's condition.
+  canonical: x at 1 AU 6.335e+07. a0 enters neither moving alpha: both exactly 0 on both footings. r_M = 7959 AU
+  alt: x at 1 AU 5.242e+07. a0 enters neither moving alpha: both exactly 0 on both footings. r_M = 7240 AU
+
+CHECKS 16/17 pass. Failed: ["K3b the record's finite-q rational reproduced"]
