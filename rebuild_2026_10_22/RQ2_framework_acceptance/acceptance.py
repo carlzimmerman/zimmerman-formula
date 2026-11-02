@@ -126,10 +126,10 @@ def rows_dwarfs(c, foot):
 # ---------- A: DiskMass, Milky Way, LW1's paths
 _DM = {}
 def dm_ns():
-    if _DM: return _DM
+    if _DM: return _DM["n"]
     S = os.path.join(REPO, "campaign_fresh_gravity", "CFG576_diskmass_sigz", "cfg576_diskmass.py"); n = {"__file__": os.path.abspath(S), "__name__": "h"}
     with contextlib.redirect_stdout(io.StringIO()): exec(compile(open(S).read().split('P("=" * 100)')[0], "h", "exec"), n)
-    _DM.update(n); return _DM
+    _DM["n"] = n; return n
 def rows_dm(c, foot):
     from scipy.optimize import brentq
     n = dm_ns(); gal, terms, KV, sexp, gbar, G = n["gal"], n["galaxy_terms"], n["K_VERT"], n["sexp"], n["gbar"], n["G"]; KU = 3.0857e13; a0 = A0[foot]; T = TOL["DM"]; R = {}
@@ -164,7 +164,7 @@ def rows_mw(c, foot):
     C = n["classify"](rows, "R"); T = TOL["MW_Kz"]; s = math.hypot(T["stat"], T["pad_frac"] * T["meas"]); bi = C["best_in_prior"]; o = {"A16": lrow(C["label"] == "PASS", dict(cls=C["cls"], n_all=C["n_all"], n_in_prior=sum(1 for r in rows if all(r["R"][l] for l in ("L1", "L2a", "L2b", "L3")) and r["tag_Rd_IN"] and r["tag_Mstar_IN"])), "FEASIBLE IN PRIORS", "form R"), "A15": zrow(bi["K_R0"], T["meas"], s, f"66.4 +- 4.4: {'PASS' if abs(bi['K_R0'] - 66.4) <= 4.4 else 'FAIL'}", "form R, best in-prior cell; DISPUTED summary")}
     if is_law(c, foot):
         ds = [json.loads(l) for l in open(os.path.join(RB, "LW1_law_scorecard", "cache_mw", f"{foot}_1.0.jsonl"))]; ra = [d for d in ds if not d.get("mcm")]; CA = n["classify"](ra, "A"); o["A16"]["form_A_read"] = CA["cls"]; o["A16"]["note"] += f"; form A READ from LW1's cells: {CA['cls']}"; o["A16"]["label"] = "FORM-DEPENDENT" if o["A16"]["label"] == "PASS" else "FAIL"
-        k = CA["best_in_prior"]["K_R0"] if CA["best_in_prior"] else float("nan"); o["A15"]["form_A_K"] = k; o["A15"]["note"] += f"; form A best in-prior K {k:.1f}, Z {(k - T['meas']) / s:+.2f}, READ"
+        k = CA["best_in_prior"]["K_R0"] if CA["best_in_prior"] else float("nan"); o["A15"]["form_A_K"] = k; o["A15"]["label"] = "FORM-DEPENDENT" if o["A15"]["label"] == "PASS" and abs(k - T["meas"]) / s > ZL else o["A15"]["label"]; o["A15"]["note"] += f"; form A best in-prior K {k:.1f}, Z {(k - T['meas']) / s:+.2f}, READ"
     return o
 
 # ---------- A30 lensing, B1 groups
@@ -222,7 +222,7 @@ def run_keys(path, name):
         W = os.path.join(HERE, f"cache_keys", f"{name}{TAG}_{tag}"); os.makedirs(W, exist_ok=True); O = os.path.join(W, "keys.json")
         if not (os.path.exists(O) and json.load(open(O)).get("done")):
             TL = os.path.join(W, "tail.py"); open(TL, "w").write(T); d = open(os.path.join(L.SL1, "sl1_harvest.py")).read()
-            for a, b in (('SL1ADD = f"sub(', 'SL1ADD = ' + repr(L.GAS % dex if dex else "") + ' + f"sub('), ('os.path.join(HERE, "sl1_tail_harvest.py")', repr(TL)), ('WD = os.path.join(HERE, "cache")', f'WD = {W!r}'), ('HERE = os.path.dirname(os.path.abspath(__file__)); RB = os.path.dirname(HERE)', f'HERE = {W!r}; RB = {RB!r}'), ('X73_FSTAR="0.034"', f'X73_FSTAR="{fs}"')):
+            for a, b in (('SL1ADD = f"sub(', 'SL1ADD = ' + repr(L.GAS % dex if dex else "") + ' + f"sub('), ('os.path.join(HERE, "sl1_tail_harvest.py")', repr(TL)), ('WD = os.path.join(HERE, "cache")', f'WD = {W!r}'), ('HERE = os.path.dirname(os.path.abspath(__file__)); RB = os.path.dirname(HERE)', f'HERE = {HERE!r}; RB = {RB!r}'), ('X73_FSTAR="0.034"', f'X73_FSTAR="{fs}"')):
                 assert d.count(a) == 1, a; d = d.replace(a, b)
             df = os.path.join(W, "driver.py"); open(df, "w").write(d); env = dict(os.environ, UR1_SL1=L.SL1, SL1_OUT=O, CN1_FORCE="1", LW1_A0X="1.0", RQ2_CAND=os.path.abspath(path), DR1_RUN=json.dumps(dict(rows=L.ROWS, k2=False)))
             subprocess.run(["nice", "-n", "19", sys.executable, df], env=env, stdout=open(os.path.join(W, "run.log"), "w"), stderr=subprocess.STDOUT)
@@ -337,6 +337,7 @@ def known():
         lw = MW[f]["R|1.0"]; ok = R["A16"].get("value", {}).get("cls") == lw["cls"] and R["A16"]["value"]["n_all"] == lw["n_all"] and R["A16"].get("form_A_read") == MW[f]["A|1.0"]["cls"]; chk(f"KA1 {f} Milky Way", ok, f"{R['A16'].get('value')}, A {R['A16'].get('form_A_read')}")
         chk(f"KA1 {f} X-COP", abs(R["B23"].get("value", 9) - XC[f]["cached"]["mean"]) < 1e-3 and abs(R["B24"].get("value", 9) - XC[f]["cached"]["rms"]) < 1e-3, f"{R['B23'].get('value')}, {R['B24'].get('value')}")
         chk(f"KA1 {f} groups", abs(abs(R["B1"].get("Z", 99)) - abs(FH[f]["groups"]["Z"])) < .01, f"{R['B1'].get('Z')} vs {FH[f]['groups']['Z']}")
+        chk(f"KA1 {f} lens chi2", abs(R["A30"].get("value", 9e9) - CR[f]["Ln"]["chi2_L2H"]) < 1e-3, f"{R['A30'].get('value')} vs CRG1 {CR[f]['Ln']['chi2_L2H']}")
         chk(f"KA1 {f} planets", abs(R["C1"].get("value", 1e99) / 1e4) < 12, str(R["C1"].get("ratios")))
         bad = [k for k in KS if R[f"B{KS.index(k) + 4}:{k}"]["label"] == "FAIL"]; ref = K0[f"R1|c0|{f}"]["bad"]; ld = LW["keys"][f"{f}|+0.005|0.034"]["cells"]; chk(f"KA1 {f} keys", sorted(bad) == sorted(ref), f"{bad} vs LW1 {ref}")
         Kr = json.load(open(os.path.join(HERE, "cache_keys", f"law{TAG}_g005_f034", "keys.json"))) if os.path.exists(os.path.join(HERE, "cache_keys", f"law{TAG}_g005_f034", "keys.json")) else None
