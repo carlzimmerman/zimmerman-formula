@@ -1,5 +1,21 @@
 # AN1_aest_nonlinear_dust: FOLDS OR NEVER COLLAPSES, NO HYDROSTATIC SETTLING. All 68 rows fold first in spherical collapse, centre first; none reaches a well before the single-valued field ends. Reduced system only
 
+**CORRECTION, 2026-11-02, post-result. This lane's headline and fold table don't stand.** The title and tables below are kept as first published. A centre-cell error drives the early central folds: enclosed mass was interpolated linearly in r inside the central cell, which overstates the pull on the innermost baryon shell by about 4x. That shell falls early and drags the first field shell with it. The error scales with the grid, so it looks converged in N. K1 has no baryons and couldn't see it. AN2's S0 exposed it: a dust sphere of this amplitude folds at z 1.36, and the floors here read 2.93.
+
+Rerun with mass interpolated in r^3 (`diag_centre/fix.py`, 14 canonical P1 A1 rows, N 300 and 600, strict line, side test with no frozen checks rerun):
+
+| mu /Mpc | 1e12, z at N 300 / 600 | 1e15, z at N 300 / 600 |
+|---|---|---|
+| 1.24e8 | 1.361 / 1.361 | 1.360 / 1.360 |
+| 2.04e4 | 1.360 / 1.360 | 1.360 / 1.360 |
+| 56.6 | 1.154 / 1.157 | 1.341 / 1.341, off-centre, r about 19 kpc |
+| 10 | 0.429 / 0.434 | 1.213 / 1.213, off-centre, r about 76 kpc |
+| 1 | 0.008 / 0.017 | 0.392 / 0.395 |
+| 0.1 | no fold by z = 0 / 0.008 | **no fold by z = 0 / no fold by z = 0** |
+| 0.0156 | 0.004 / 0.008 | **no fold by z = 0 / no fold by z = 0** |
+
+So "all 68 fold first" is wrong. The floors now match the dust sphere. At low mu, the cluster rows reach z = 0 with a defined solution, and the galaxy rows fold only at z about 0, not settled in N. Whether those rows hold the field, and how much mass is where at z = 0, isn't computed yet: the masses in this README were read at the old fold times. The full rerun goes in a new file; this one's checks and labels aren't reissued until then.
+
 **Plain statement.** In the one-field action's slow-branch equations, a spherical peak at 1e12 or 1e15 Msun loses its single-valued solution at its centre before the disc or the cluster profile exists. It happens at every mu from the record's list, on both footings. No row settles on the hydrostatic branch, and no row reaches z = 0 with a defined solution at the frozen line. So the row "little field mass in discs, 8 x and 5 x gas in clusters" can't be read from this class's own dynamics: the solution stops first. Past that point the class needs a completion, and X14 says that costs a constant. None was run.
 
 This is a result about a reduced system: spherical, Q0 -> infinity, quadratic K, K_B <= 0.078, one Gaussian peak, baryons stopped by hand at measured radii. A radial flow focuses on its centre by symmetry, so the central event is the part most tied to spherical symmetry. It doesn't say the action class fails in 3D. It doesn't say the class works anywhere.
