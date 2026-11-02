@@ -78,6 +78,9 @@ Collisions: rows 4 and 11 (dust in the CMB falls into galaxies); rows 1-3 and 10
 - **SP1, SP2 sealed lensing predictions,** scored as frozen, including the retired route's rows.
 - **Named, not scheduled:** one clean deep-MOND a₀ point at z ≈ 2.5 to about 0.10 dex. That would actually test the dark energy tie; the best public sample reaches 0.4-0.5 dex.
 
+## 6. Later lanes, none in PAPER67 v1.0
+All frozen after the retirement except LW1's law scorecard, which v1.0 already carries; none blind, run by AI subagents, not reproduced outside; they reinstate nothing. **The a₀ formula:** a repaired test gives no statistical support that it is special: 5.51 bits at 5 %, FDR-DEAD, and at SPARC's 16.6 % precision 92.7 % of scrambled scalars decompose as simply (CG1, BK1). That doesn't refute it; a true formula couldn't earn evidence on this test today. **A gas term fitted on X-COP** reaches 14 of 15 keys on canonical, 10 on alt, fragile, with no k giving 15 (UX3, CU1). Tied to present gas it is dead on the Bullet (UX6), and published peaks elsewhere sit on galaxies, PROVISIONAL, on a sample chosen for visible offsets (MG1). **The law's failures stand:** Local Group satellites under listed systematics (UX4), and the Milky Way's K_z on real AQUAL and QUMOND solves (UX5). None of this is a no-go theorem.
+
 ## The question
 > The law holds on isolated discs and has no account of the CMB, cluster cores or an action. The cold sector we built for those failed on the lines above and is retired. Which of these tests or inputs do you think is wrong, and is there a published covariant completion of this law we should grade against these twelve rows?
 
