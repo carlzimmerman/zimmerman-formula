@@ -15,7 +15,7 @@ g_N = g²/(g + a₀), with a₀(z) = κc√(Gρ_DE(z)), κ = ½ fitted. The rela
 | 63 groups | Z +0.31 | Stellar masses, 60-150 km/s | Υ 0.62, 0.65 against GSWLC 0.277, 0.304 |
 | Surface brightness at fixed speed | −0.016 ± 0.061, flat | Cluster cores | A 1.91 ± 0.12 at 0.5-1.2 Mpc |
 | | | 15 cluster shear keys | 10 of 15, G-OUT-M3 +4.76, joint p 3e-8 (LW1) |
-| | | X-COP | M_HSE / M_law 2.93, +0.467 dex (LW1); 2.23, 2.06 at the 0.5, 0.7 R500 points with 0.12 dex off M_HSE |
+| | | X-COP | M_HSE / M_law 2.93, +0.467 dex (LW1); 2.23 with 0.12 dex off M_HSE |
 | | | DiskMass | round rule r 1.239 against 0.90-1.10 (LW1); depends on the σ_z tracer (OD1) |
 | KiDS-1000 isolated lenses | shape preferred; amplitude depends on colour, no tested model fits absolutely | Outer shear on gas mass | slope 0.47 against 0.90 ± 0.21 |
 | | | Solar System, unscreened | Cassini Q₂ fails by 2.44-4.59 × the 2σ line |
