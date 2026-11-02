@@ -22,3 +22,6 @@ Hand algebra, not in the frozen tests. Argon's step is k T = hbar H / 2 pi, so a
 
 ## Argon's R6: U_pair = (1/2) G M rho r^2, mean of g = G rho r over [0, R0]. VOID
 Hand algebra, not in the frozen tests. Doing the two-point integral over a uniform sphere gives g = (4 pi/3) G rho r, or (8 pi/3) G rho r with w = -1 active mass. So the pi returns with the d^3x' integral, and g = G rho r is written in, not obtained. With the real g, the same steps give c H / 2, kappa 1.447. The mean over [0, R] gives 1/2 by choice of average: the endpoint gives 1, the volume-weighted mean 3/4. R0 = c / sqrt(G rho) is xi = 1 again. Register K809.
+
+## Argon's R7: u = r Phi, mass gap k^2 = G rho / c^2 "per steradian". VOID
+Hand algebra, not in the frozen tests. The reduction is exact, and it gives u'' = 4 pi G rho r, so the 4 pi stays on the source. rho is a source there, not a mass term. A term rho u is a new coupling, and its coefficient is posited, which Argon states. That posit is xi = 1. The standard coefficient 4 pi G rho / c^2 gives kappa 1.772, already in T1. Step 1's g^2/(8 pi G) = rho c^2 gives kappa sqrt(8 pi) = 5.01 and isn't used in the result. Register K810.
