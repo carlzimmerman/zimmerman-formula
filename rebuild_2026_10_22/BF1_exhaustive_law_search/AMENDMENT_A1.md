@@ -1,0 +1,3 @@
+# BF1 AMENDMENT A1, committed before the deeper run
+
+Level L3 returned NO HIT, and its near misses are on record, so this run isn't blind to them. One more level: closure through L3 capped at 500,000 by node count then lexical order, then every binary op on pairs, about 7.5e11 expressions. Same leaves, constants, wrappers, gates, data split and labels. Real run, then the scrambled control. **The gates aren't loosened, and gate 2 stays 1.05 x the law.** Deeper means more chances, so the control count is reported beside the real one, and a hit needs Stage 2 regardless. Output in `chunks/real_L4`, `chunks/control_L4`.
