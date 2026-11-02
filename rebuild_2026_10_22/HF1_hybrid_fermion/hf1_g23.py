@@ -227,7 +227,7 @@ def report_gate(lab, Rf, m, wf, wb, D, CSS, XC, G, LT, gf=2.0, capf=1.0, tag="RU
     return R
 
 def main():
-    mode = sys.argv[1]; D, CSS, XC, G, LT = load_common(); RES = dict(mode=mode); SFX = {"select": "select", "controls": "controls", "run": "RUN", "mutate": "MUTATE"}[mode]
+    mode = sys.argv[1]; D, CSS, XC, G, LT = load_common(); RES = dict(mode=mode); SFX = {"select": "select", "controls": "controls", "run": "RUN", "mutate": "MUTATE"}[mode] + os.environ.get("HF1_SFX", "")
     P(f"HF1 gates 2-3, mode {mode}, criteria 56ab302a4d, A1. kappa = 1/2 FITTED; a0 canonical 9.3603e-11, alt 1.1312e-10, never pooled. QUMOND and AQUAL coincide in spherical symmetry with this nu. Not theory closed.")
     if mode == "controls":
         RES["checks"] = controls(D, CSS, XC, G, LT); RES["all"] = all(v["passed"] for v in RES["checks"].values()); P(json.dumps(RES["checks"], indent=0, default=float)); P(f"ALL {RES['all']}")
