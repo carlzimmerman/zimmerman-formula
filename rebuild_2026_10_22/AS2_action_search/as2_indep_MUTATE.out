@@ -1,0 +1,44 @@
+=== 1. Static: exact covariant expansion to O(e^2)
+  EL Phi: 2*Nf*Derivative(chi(x), (x, 2)) - S + 4*Derivative(Psi(x), (x, 2))
+  EL Psi: 4*Derivative(Phi(x), (x, 2)) - 4*Derivative(Psi(x), (x, 2))
+  EL chi: 2*Nf*Derivative(Phi(x), (x, 2)) + 2*Nf*Derivative(chi(x), (x, 2)) + 2*wJ*Derivative(chi(x), (x, 2))
+  flux solution in terms of the scalar gradient h: {g: (-Nf*h - h*wJ)/Nf, g_N: (Nf**2*h - 2*Nf*h - 2*h*wJ)/(2*Nf), p: (-Nf*h - h*wJ)/Nf}
+  [FAIL] I1a g = g_N + h exactly (two-field form), Psi' = Phi' (gamma = 1): -2*h
+  [FAIL] I1b the grammar's f = y + log(1-y) + u/2, coefficient -2 gives the exact law: residual 2*y**2*(1 - y)/(2*y**2 - 1), g_N = y**2/(y - 1)
+
+=== 2. Tensor wave from exact invariants
+  [PASS] I2a a_i = 0 on a tensor wave and Y has no h+ dependence: so the extra sector doesn't touch the wave
+  [PASS] I2b wave Lagrangian's coefficients vanish at omega = k (up to a total derivative): sample at w = k: [0.0, 0.0]; c_T = 1 is GR's, since the extras don't enter
+
+=== 3. Scalar block in ADM unitary gauge, tau = t, with a dust charge (Jeans swindle)
+  det M = 16*k**4*(8*F*k**2*m2*w**2 + 8*L2*k**4*m2*w**2 + 4*NF**2*k**4*w**2 + 8*NF*k**2*m2*w**2 + k**4*n**2 - k**2*m2*n**2 - 8*k**2*m2*n*w**2 + 3*m2*n**2*w**2)
+  degree in omega: 2
+  [PASS] I3a no charge, no mass, no stiffness: no propagating scalar, all omega = 0: roots [0.0, 0.0]
+  n = 0, mu^2 = 0.01: roots [0.0, 0.0]
+  n = 0, mu^2 = 0.01, L = k: roots [0.0, 0.0]
+  k    0.01: max Gamma^2/(n/4) 0
+  k    0.10: max Gamma^2/(n/4) 0
+  k    1.00: max Gamma^2/(n/4) 0
+  k   10.00: max Gamma^2/(n/4) 2.4505e-09
+  k  100.00: max Gamma^2/(n/4) 2.4995e-09
+  k  200.00: max Gamma^2/(n/4) 2.4999e-09
+  k  240.00: max Gamma^2/(n/4) 2.4999e-09
+  k  300.00: max Gamma^2/(n/4) 2.4999e-09
+  k 1000.00: max Gamma^2/(n/4) 2.5e-09
+  [FAIL] I3b dust grows at Gamma^2 -> 4 pi G rho as k -> 0, and it is the same band as AeST's H1: ratio at k = 0.01 mu: 0.00000
+  first k on this coarse list with no growth: [0.01] (H1's k_c 242 mu for AeST + gamma_L)
+
+=== 4. Spherical stiff ODE: S(h) h - L^2 (1/r^2 (r^2 h)')' = 1/r^2, units a0 = r_M = 1
+  L 0.01: r 0.001: h 236.36, law's h 1, hedgehog 1/L^2 10000, solver False
+  L 0.01: r 1: h 0.61801, law's h 0.61803, hedgehog 1/L^2 10000, solver False
+  L 0.1: r 0.01: h 0.9999, law's h 0.9999, hedgehog 1/L^2 100, solver True
+  L 0.1: r 10: h 0.095035, law's h 0.095125, hedgehog 1/L^2 100, solver True
+  L 640.0: r 64: h 1.222e-06, law's h 0.015503, hedgehog 1/L^2 2.4414e-06, solver True
+  L 640.0: r 1920: h 1.2586e-06, law's h 0.0005207, hedgehog 1/L^2 2.4414e-06, solver True
+  [PASS] I4a L << r_M: at r >> L the law's h returns: 0.61801 vs 0.61803
+  [PASS] I4b L >> r_M (the Sun): inside L, h is near the hedgehog, far under a0: 1.222e-06 vs 2.441e-06
+
+=== 5. FRW minisuperspace: K(Q) = mu^2 (Q-1)^2 on Q = phi_dot/N
+  [PASS] I5 dust limit: w -> 0 and rho -> charge, so rho a^3 is constant at Q -> 1: w 0, rho/charge 1
+
+CHECKS 6/9 pass. Failed: ["I1a g = g_N + h exactly (two-field form), Psi' = Phi' (gamma = 1)", "I1b the grammar's f = y + log(1-y) + u/2, coefficient -2 gives the exact law", "I3b dust grows at Gamma^2 -> 4 pi G rho as k -> 0, and it is the same band as AeST's H1"]

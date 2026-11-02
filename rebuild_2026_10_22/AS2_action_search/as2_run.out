@@ -1,0 +1,193 @@
+=== KA2, KA3: engine against GR and Einstein-aether (before the real run)
+  [PASS] KA2a tensor block omega^2 - k^2 with positive sign: (-0.91-0j)
+  [PASS] KA2b static GR: Phi = Psi and Psi' = g_N: [[-0.0, 4.0], [4.0, -4.0]]
+  [PASS] KA3a spin-2, spin-1, spin-0 speeds at random points: worst 0.00e+00
+  [PASS] KA3b alpha_1 (Foster-Jacobson, memory): worst 1.17e-15
+  [PASS] KA3c alpha_2 through the calibrated readout: worst 6.11e-16
+
+=== Size of the space
+  templates: 8668 (tier A 3732, tier B 4936)
+  functions: 2500000 distinct expressions, sizes {'1': 5, '2': 23, '3': 113, '4': 805, '5': 5134, '6': 36322, '7': 261304, '8': 1923677, '9': 272617}; cap hit at size 9; 6452086 raw tried; x 10 coefficients
+  raw space: 8668 x 2500000 x 10 = 2.167e+11 (tier A 9.330e+10)
+
+=== G1: structural exits before any function
+     16  carrier is not rank one on the static gradients
+    942  carrier unsourced: stays zero, Newton only
+      1  mimetic constraint: pi_dot = Phi at first order, so no static gradient branch; the sqrt(Phi) branch makes the carrier depend on Phi itself, not on grad Phi
+   1928  source acts on a flat direction: no static solution
+  67 unique static forms remain, on 5781 templates
+
+=== G1 result
+  raw passes (template x expression x coefficient): tier A 63232, tier B 76232
+  distinct law functions on templates: 1632; sympy zero residual on 1627 of them
+
+=== KA1, KA4, KA5: known answers (required before the real counts are read)
+  [PASS] KA1a grammar finds v3's J_x on the bare khronon: [('(2*(2*(log1p(y)-y)))', 1)]
+  [PASS] KA1b grammar finds AeST's capped J in AeST's template: [('(u+(2*(y+log1m(y))))', -1)]
+  [PASS] KA4a bare khronon law fails Q2 like E2: {'canonical': {'lo': 2.4333386771633365, 'hi': 4.533574704789953}, 'alt': {'lo': 2.836759010097567, 'hi': 5.125979458535819}}
+  [PASS] KA4b bare khronon law fails planets like M1: 8.08e+04
+  [PASS] KA4c v3 appears and fails G6 at the cap: [('KhP:P2 xi2 be1 stiff=DP cold=KQ', 'B')]
+  [PASS] KA4d AeST alpha_1 static branch at J_Y = 1, K_B = 0.0: record -2(K_B+2) = -4.0: alpha_1 -4.000000
+  [PASS] KA4e AeST alpha_1 static branch at J_Y = 1, K_B = 0.5: record -2(K_B+2) = -5.0: alpha_1 -5.000000
+  [PASS] KA4f AeST + gamma_L fails G7 (I1): 
+  [PASS] KA4g BIMOND a = 1/2 passes Q2 and fails planets (UX1): {'canonical': {'lo': 0.028758374125187017, 'hi': 0.1072000594441471}, 'alt': {'lo': 0.03307167886701134, 'hi': 0.1077667764002102}}
+  [PASS] KA4h conformal scalar fails G2 on gamma: {'label': 'FAIL', 'gamma_dev': 1.9801980198019802, 'cT_dev': 0.0}
+  [PASS] KA4i QUMOND parent is indefinite on the static block (UX1 J1), with Newtonian GR's own sign pair removed by inspection: eigenvalues [-2.8048, -0.3066, 6.5114]
+  SX rows graded: 0
+  [PASS] KA5 planted healthy mock passes all gates through the same tally: injected labels; pipeline check, not an action
+
+=== Counts through the gates (Tier A survivors at each gate, read off the full matrix)
+  tier A: after G1 717
+    not FAIL through G2: 548 (of which all PASS so far: 548)
+    not FAIL through G3: 438 (of which all PASS so far: 0)
+    not FAIL through G4: 212 (of which all PASS so far: 0)
+    not FAIL through G4p: 43 (of which all PASS so far: 0)
+    not FAIL through G5: 25 (of which all PASS so far: 0)
+    not FAIL through G6: 0 (of which all PASS so far: 0)
+    not FAIL through G7: 0 (of which all PASS so far: 0)
+    pass every gate: 0
+  tier B: after G1 915
+    not FAIL through G2: 690 (of which all PASS so far: 690)
+    not FAIL through G3: 466 (of which all PASS so far: 0)
+    not FAIL through G4: 267 (of which all PASS so far: 0)
+    not FAIL through G4p: 78 (of which all PASS so far: 0)
+    not FAIL through G5: 46 (of which all PASS so far: 0)
+    not FAIL through G6: 43 (of which all PASS so far: 0)
+    not FAIL through G7: 15 (of which all PASS so far: 0)
+    pass every gate: 0
+
+=== Per-gate FAIL counts among all G1 passes (tier A, tier B)
+  G2: A PASS/ND/FAIL [548, 0, 169]; B [690, 0, 225]
+  G3: A PASS/ND/FAIL [2, 570, 145]; B [0, 640, 275]
+  G4: A PASS/ND/FAIL [208, 163, 346]; B [260, 274, 381]
+  G4p: A PASS/ND/FAIL [69, 0, 648]; B [128, 0, 787]
+  G5: A PASS/ND/FAIL [308, 139, 270]; B [385, 158, 372]
+  G6: A PASS/ND/FAIL [16, 110, 591]; B [557, 330, 28]
+  G7: A PASS/ND/FAIL [513, 0, 204]; B [533, 0, 382]
+
+=== Closest rows (fewest FAIL, then fewest ND)
+  [A] KhP:P2 xi2 be1 stiff=DP f=(u+(2*(y+log1m(y)))) x -1 | G2:P G3:N G4:P G4p:P G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SKh:Y xi2 Q01 stiff=DV f=neg((2*(y+log1m(y)))) x 1 | G2:P G3:N G4:P G4p:P G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] Ae:Fti2 stiff=Da cold=sepPX f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:N G4p:F G5:P G6:P G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 6 zero-speed roots
+  [A] Ae:a2 stiff=Da cold=sepPX f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:N G4p:F G5:P G6:P G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 6 zero-speed roots
+  [A] BM:YB cold=sepPX wa0.5 f=exp(log1m((y+(u+log1m(y))))) x 1 | G2:P G3:N G4:P G4p:F G5:N G6:P G7:P
+  [A] BM:YB cold=twin wa0.5 f=exp(log1m((y+(u+log1m(y))))) x 1 | G2:P G3:N G4:P G4p:F G5:N G6:P G7:P
+  [A] BMS:YB cold=twin wa0.5 f=exp(log1m((y+(u+log1m(y))))) x 1 | G2:P G3:N G4:P G4p:F G5:N G6:P G7:P
+  [A] Kh:a2 stiff=Da cold=sepPX f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:N G4p:F G5:P G6:P G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SAe:Y tw1 xi2 be1 cold=KQ f=(u+(2*(y+log1m(y)))) x -1 | G2:P G3:N G4:P G4p:F G5:P G6:N G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SKh:Y xi2 Q01 cold=KQ f=neg((2*(y+log1m(y)))) x 1 | G2:P G3:N G4:P G4p:F G5:P G6:N G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] S:X conf cold=sepPX f=(u+(2*(y+log1m(y)))) x -2 | G2:F G3:P G4:P G4p:F G5:P G6:P G7:P
+       a1 0/0 a2 0/0; gamma-1 2; cT-1 0; G3 
+  [A] Ae:Fti2 cold=sepPX f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:F G4p:F G5:P G6:P G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 6 zero-speed roots
+  [A] Ae:a2 cold=sepPX f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:F G4p:F G5:P G6:P G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 6 zero-speed roots
+  [A] AeP:P2 tw1 xi2 be1 stiff=DP f=(u+(2*(y+log1m(y)))) x -1 | G2:P G3:N G4:P G4p:P G5:P G6:F G7:F
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] Kh:a2 cold=sepPX f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:F G4p:F G5:P G6:P G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] KhP:P2 KB0.5 xi2 be1 stiff=DP f=(u+(2*(y+log1m(y)))) x -1 | G2:P G3:N G4:P G4p:P G5:F G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SAe:Y tw1 xi2 f=neg((2*(y+log1m(y)))) x 1 | G2:P G3:N G4:P G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SAe:Y tw1 xi2 be1 Q01 stiff=DV f=(u+(2*(y+log1m(y)))) x -1 | G2:P G3:N G4:P G4p:P G5:P G6:F G7:F
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SKh:Y KB0.5 xi2 Q01 stiff=DV f=neg((2*(y+log1m(y)))) x 1 | G2:P G3:N G4:P G4p:P G5:F G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SKh:Y xi2 f=neg((2*(y+log1m(y)))) x 1 | G2:P G3:N G4:P G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] Ae:Fti2 stiff=Da f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:N G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 6 zero-speed roots
+  [A] Ae:a2 stiff=Da f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:N G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 6 zero-speed roots
+  [A] AeP:P2 tw1 xi2 be1 stiff=Da f=(u+(2*(y+log1m(y)))) x -1 | G2:P G3:N G4:N G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] AeP:a2 be1 stiff=Da f=(2*(2*(log1p(y)-y))) x 0.5 | G2:P G3:N G4:N G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 6 zero-speed roots
+  [A] BM:YB wa0.5 f=exp(log1m((y+(u+log1m(y))))) x 1 | G2:P G3:N G4:P G4p:F G5:N G6:F G7:P
+  [A] BMS:YB wa0.5 f=exp(log1m((y+(u+log1m(y))))) x 1 | G2:P G3:N G4:P G4p:F G5:N G6:F G7:P
+  [A] Kh:a2 stiff=Da f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:N G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] Kh:a2 stiff=Da cold=mimown f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:N G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] KhP:P2 xi2 be1 stiff=Da f=(u+(2*(y+log1m(y)))) x -1 | G2:P G3:N G4:N G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] KhP:a2 be1 stiff=Da f=(2*(2*(log1p(y)-y))) x 0.5 | G2:P G3:N G4:N G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SAe:Y KB0.5 tw1 xi2 be1 cold=KQ f=(u+(2*(y+log1m(y)))) x -1 | G2:P G3:N G4:P G4p:F G5:F G6:N G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SAe:Y tw1 xi2 Q01 cold=KQ f=neg((2*(y+log1m(y)))) x 1 | G2:P G3:N G4:F G4p:F G5:P G6:N G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SAe:Y tw1 xi2 Q01 stiff=Da f=neg((2*(y+log1m(y)))) x 1 | G2:P G3:N G4:N G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SAe:a2 be1 Q01 cold=KQ f=(2*(2*(log1p(y)-y))) x 0.5 | G2:P G3:N G4:F G4p:F G5:P G6:N G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SAe:a2 be1 Q01 stiff=Da f=(2*(2*(log1p(y)-y))) x 0.5 | G2:P G3:N G4:N G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SKh:Y KB0.5 Q01 stiff=DV conf f=(u+(2*(y+log1m(y)))) x -1 | G2:F G3:N G4:P G4p:P G5:N G6:F G7:P
+  [A] SKh:Y KB0.5 xi2 Q01 cold=KQ f=neg((2*(y+log1m(y)))) x 1 | G2:P G3:N G4:P G4p:F G5:F G6:N G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SKh:Y xi2 Q01 stiff=Da f=neg((2*(y+log1m(y)))) x 1 | G2:P G3:N G4:N G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SKh:a2 be1 Q01 cold=KQ f=(2*(2*(log1p(y)-y))) x 0.5 | G2:P G3:N G4:F G4p:F G5:P G6:N G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] SKh:a2 be1 Q01 stiff=Da f=(2*(2*(log1p(y)-y))) x 0.5 | G2:P G3:N G4:N G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] AeP:a2 KB0.5 stiff=Da f=(2*(2*(log1p(y)-y))) x 0.5 | G2:P G3:N G4:N G4p:F G5:N G6:F G7:P
+  [A] KhP:a2 KB0.5 stiff=Da f=(2*(2*(log1p(y)-y))) x 0.5 | G2:P G3:N G4:N G4p:F G5:N G6:F G7:P
+  [A] SAe:Y be1 conf cold=KQ f=exp(log1m((y+(u+log1m(y))))) x 2 | G2:F G3:N G4:P G4p:F G5:N G6:N G7:P
+  [A] SAe:a2 KB0.5 Q01 cold=KQ f=(2*(2*(log1p(y)-y))) x 0.5 | G2:P G3:N G4:F G4p:F G5:N G6:N G7:P
+  [A] SAe:a2 KB0.5 Q01 stiff=Da f=(2*(2*(log1p(y)-y))) x 0.5 | G2:P G3:N G4:N G4p:F G5:N G6:F G7:P
+  [A] SKh:Y KB0.5 Q01 conf cold=KQ f=(u+(2*(y+log1m(y)))) x -1 | G2:F G3:N G4:P G4p:F G5:N G6:N G7:P
+  [A] SKh:a2 KB0.5 Q01 cold=KQ f=(2*(2*(log1p(y)-y))) x 0.5 | G2:P G3:N G4:F G4p:F G5:N G6:N G7:P
+  [A] SKh:a2 KB0.5 Q01 stiff=Da f=(2*(2*(log1p(y)-y))) x 0.5 | G2:P G3:N G4:N G4p:F G5:N G6:F G7:P
+  [A] S:X conf f=(u+(2*(y+log1m(y)))) x -2 | G2:F G3:P G4:P G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 2; cT-1 0; G3 
+  [A] SAe:Y tw1 xi2 Q01 stiff=DV f=neg((2*(y+log1m(y)))) x 1 | G2:P G3:F G4:P G4p:P G5:P G6:F G7:F
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 x100.0par: complex omega: gradient or tachyonic instability
+  [A] Ae:Fti2 f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:F G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 6 zero-speed roots
+  [A] Ae:a2 f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:F G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 6 zero-speed roots
+  [A] AeP:P2 KB0.5 tw1 xi2 be1 stiff=DP f=(u+(2*(y+log1m(y)))) x -1 | G2:P G3:N G4:P G4p:P G5:F G6:F G7:F
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] AeP:P2 tw1 xi2 f=neg((2*(y+log1m(y)))) x 1 | G2:P G3:N G4:F G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] AeP:a2 be1 f=(2*(2*(log1p(y)-y))) x 0.5 | G2:P G3:N G4:F G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 6 zero-speed roots
+  [A] Kh:a2 f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:F G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] Kh:a2 cold=KQ f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:F G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] Kh:a2 cold=mimown f=(2*(2*(log1p(y)-y))) x 1 | G2:P G3:N G4:F G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] KhP:P2 xi2 f=neg((2*(y+log1m(y)))) x 1 | G2:P G3:N G4:F G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+  [A] KhP:P2 xi2 be1 cold=KQ f=(u+(2*(y+log1m(y)))) x -1 | G2:P G3:N G4:F G4p:F G5:P G6:F G7:P
+       a1 0/0 a2 0/0; gamma-1 0; cT-1 0; G3 u0: 2 zero-speed roots
+
+=== Nearest misses at G1 (grammar functions off the law; max |dlog10 g_N|; cap and range as frozen)
+  1.93e-02 dex  f=(y/(inv(y)+sqrt(log1p(h)))) x -1 on AeP:a2 KB0.5 [A]
+  1.93e-02 dex  f=(y/(inv(y)+sqrt(log1p(h)))) x -2 on Ae:Fti2 [A]
+  2.01e-02 dex  f=(u*exp((log1p(y)*log1m(h)))) x -1 on AeP:a2 KB0.5 [A]
+  2.01e-02 dex  f=(u*exp((log1p(y)*log1m(h)))) x -2 on Ae:Fti2 [A]
+  2.50e-02 dex  f=(u/exp((sqrt(h)*log1p(y)))) x -2 on Ae:Fti2 [A]
+  2.50e-02 dex  f=(u/exp((sqrt(h)*log1p(y)))) x -1 on AeP:a2 [A]
+  3.07e-02 dex  f=(u/(h+sqrt((h/u)))) x 0.5 on AeP:a2 KB0.5 tw1 xi2 be1 [A]
+  3.07e-02 dex  f=(y*(u/(y+sqrt(2)))) x 1 on AeP:a2 KB0.5 tw1 xi2 be1 [A]
+  3.66e-02 dex  f=(u/(h+(log1p(1)/y))) x 0.5 on AeP:a2 KB0.5 tw1 xi2 be1 [A]
+  5.52e-02 dex  f=(u/(exp(h)*log1p(exp(y)))) x -1 on AeP:a2 KB0.5 tw1 xi1 be2 [A]
+  5.62e-02 dex  f=(u/(y+log1p(log1p(exp(2))))) x -1 on AeP:a2 KB0.5 tw1 xi1 be2 [A]
+  5.78e-02 dex  f=((y-2)*(log1p(y)-y)) x -0.5 on AeP:a2 KB0.5 tw1 xi2 be2 [A]
+  5.78e-02 dex  f=((y-2)*(y-log1p(y))) x 0.5 on AeP:a2 KB0.5 tw1 xi2 be2 [A]
+  8.33e-02 dex  f=((log1p(y)*(u-y))-u) x 0.5 on SAe:a2 KB0.5 be2 conf [A]
+  8.33e-02 dex  f=(u+(log1p(y)*(y-u))) x -0.5 on SAe:a2 KB0.5 be2 conf [A]
+
+CHECKS 17/17 pass. Failed: []
