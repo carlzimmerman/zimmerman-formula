@@ -66,7 +66,7 @@ S SPARC, Tl tilt, LT LITTLE THINGS, G groups, K 15 cluster shear keys, X X-COP, 
 Collisions: rows 4 and 11 (dust in the CMB falls into galaxies); rows 1-3 and 10 (the amount needed runs from about 0.8 of native on SPARC to 1.22-1.80 on clusters); rows 7 and 8 (same-mass systems want different things). Selectors closed on inputs tested: potential, σ, acceleration, environment, formation epoch, gas state, bars. No theorem. One family stays outside the programme's no-particle rule: a 5-11 eV fermion, whose forest kill isn't on the current footing and isn't overturned. Older rows sit on older chains, and FG1 supersedes any it covers.
 
 **Covariant attempts already on record.** These are the programme's own versions, on Skordis and Złośnik's AeST and Blanchet and Skordis's Khronon. They don't test those theories as published.
-- **v9, an AeST embedding:** fails the preferred-frame bounds, α₁ = −2(K_B + 2).
+- **v9, an AeST embedding:** recorded with α₁ = −2(K_B + 2), but that is a static-branch ratio. A source moving through the aether has α₁ = α₂ = 0 at G = G̃ (AS3), and v9 then loses the law for moving systems, so it stays non-viable.
 - **v3, Khronon with an added term:** linear growth fails, because the published cap μ_K ≤ 14.8 h/Mpc sits 24-172 × below what σ₈ needs. It also has no radiation era as written.
 - **v4, AeST with that term:** ill-posed where the aether twists, and it runs away on FRW for the dust shape tried.
 - **v3s, v3 with switched stiffness:** frozen. It passes as a galaxy law and fails on cluster cores, linear growth, hosted dwarfs and the Milky Way disc, with a structural gap at caustics.
