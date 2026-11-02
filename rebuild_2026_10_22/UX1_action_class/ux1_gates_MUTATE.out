@@ -1,0 +1,92 @@
+=== A. BIMOND static reduction (Milgrom 2009), derived from L = -[b(grad f)^2 + a(grad fh)^2 - a0^2 M(|grad f*|^2/a0^2)]/8piG - rho f - rho_t fh, f* = f - fh
+  [FAIL] A1 s g* = a g_N - b g_Nt: residual 2*mm*(-alpha**2*g_N + alpha*beta*gN_t - alpha*beta*g_N + beta**2*gN_t)/(alpha*beta + alpha*mm + beta*mm)
+  [PASS] A2 L g = g_N + g_Nt + a g*: residual 0
+  [PASS] A3 L ghat = g_N + g_Nt - b g*: residual 0
+  [FAIL] A4 exact law needs s = a^2 g/a0: residual -alpha**2*g/(2*a0)
+  [FAIL] A5 alpha cancels: S(h) = h/(a0-h), h = g - g_N: residual g/(2*a0)
+  [PASS] A6 h -> a0 as g -> oo (tail) and h -> g as g -> 0: limits
+  twin force at L = 1: ghat = g_N - (b/a) h for a baryon source; repulsive when (b/a) h > g_N
+
+=== B. BIMOND scalar Y on two metrics: lapse velocities (FRW and static)
+  FRW Y = 3*(A**3*Ah*N*Nh**2*vAh*vNh - A**3*Ah*Nh**3*vAh*vN - A**3*N*Nh**3*vAh**2 + 3*A**2*Ah*N*Nh**3*vA*vAh - A*Ah**3*N**3*vAh*vNh + A*Ah**3*N**2*Nh*vAh*vN - A*Ah**2*N**3*Nh*vAh**2 - 2*A*Ah**2*N*Nh**3*vA**2 + Ah**3*N**3*Nh*vA*vAh)/(A**3*Ah**2*N**3*Nh**3)
+  dY/d(Ndot) = -3*vAh*(A*Nh - Ah*N)*(A*Nh + Ah*N)/(A**2*Ah*N**3*Nh**2)
+  [PASS] B1 Ndot enters Y linearly on FRW, nonzero off proportional cones: so nonlinear M gives Ndot a kinetic term through M''
+  [PASS] B2 dY/dNdot vanishes on equal cones: bracket 1/N^2 - Ah^2/(A^2 Nh^2)
+  static weak-field Y = -2 |grad f*|^2
+  Hessian eig (a, ah, N, Nh velocities), M'>0 M''<0: [-13.403, -4.924, -0.59684, 4.3085e-17]
+  Hessian eig (a, ah, N, Nh velocities), M'>0 M''>0: [-6.954, -4.6742, 2.7653e-17, 1.3051]
+  Hessian eig (a, ah, N, Nh velocities), M'<0 M''<0: [-5.7454, -4.4384, -1.7125e-16, 0.19922]
+  Hessian eig (a, ah, N, Nh velocities), M'<0 M''>0: [-5.2113, -8.4173e-17, 0.19816, 3.6297]
+  Y at this FRW point = -0.087; static side has sign of -2
+  velocity Hessian rank: M'' = 0 -> 3, M'' != 0 -> 3
+  no interaction -> rank 2. RUN1's check compared M'' = 0 with M'' != 0, found 3 -> 3 and failed: the cross term Ndot x Ahdot already acts at M' != 0
+  [PASS] B3 the interaction raises the velocity rank over two Einstein actions (lapse constraint lost): 2 -> 3
+  law's M on 3348 random homogeneous backgrounds with Y < 0, alpha in (0.16, 0.5, 0.84): velocity-Hessian signature counts {'neg1_pos2': 71, 'neg2_pos1': 2178, 'neg3_pos0': 1099}
+  [FAIL] B4 at least two negative directions on every sample, so one constraint leaves at least one negative mode: min negative 1
+
+=== C. K1 Q2: known answer, then the BIMOND equation
+  AQUAL canonical E0: 2.1900e-26 vs E2 2.1997e-26, ratio 0.9956, converged True
+  AQUAL canonical E1: 3.1143e-26 vs E2 3.1273e-26, ratio 0.9958, converged True
+  AQUAL canonical E2: 3.5426e-26 vs E2 3.5571e-26, ratio 0.9959, converged True
+  AQUAL canonical E3: 4.0802e-26 vs E2 4.0966e-26, ratio 0.9960, converged True
+  AQUAL alt E0: 2.5531e-26 vs E2 2.5646e-26, ratio 0.9955, converged True
+  AQUAL alt E1: 3.4767e-26 vs E2 3.4916e-26, ratio 0.9957, converged True
+  AQUAL alt E2: 3.9788e-26 vs E2 3.9956e-26, ratio 0.9958, converged True
+  AQUAL alt E3: 4.6134e-26 vs E2 4.6324e-26, ratio 0.9959, converged True
+  [PASS] C1 known answer: AQUAL Q2 within 2 % of E2, all eight cells: worst 0.0045
+  regular l=2 branch near the Sun: dln c2/dln r = 3.0000 at 1e-3 r_M, 2.9651 at 0.1; so q ~ r, not constant
+  [PASS] C2 regular branch is r^3: ODE about the spherical solution
+  K1 canonical E0: y_e 0.739, c2(0.1 r_M) -8.9561e-04, Q2 at Saturn 2.588e-28 s^-2, |Q2|/Hees line 0.0288, converged True, last step 7.0e-13
+  K1 canonical E1: y_e 1.245, c2(0.1 r_M) -1.8107e-03, Q2 at Saturn 5.233e-28 s^-2, |Q2|/Hees line 0.0581, converged False, last step 8.2e-06
+  K1 canonical E2: y_e 1.512, c2(0.1 r_M) -2.3995e-03, Q2 at Saturn 6.934e-28 s^-2, |Q2|/Hees line 0.0770, converged True, last step 3.4e-13
+  K1 canonical E3: y_e 1.878, c2(0.1 r_M) -3.3385e-03, Q2 at Saturn 9.648e-28 s^-2, |Q2|/Hees line 0.1072, converged True, last step 1.6e-11
+  K1 alt E0: y_e 0.611, c2(0.1 r_M) -7.0520e-04, Q2 at Saturn 2.976e-28 s^-2, |Q2|/Hees line 0.0331, converged True, last step 5.3e-12
+  K1 alt E1: y_e 0.961, c2(0.1 r_M) -1.2663e-03, Q2 at Saturn 5.345e-28 s^-2, |Q2|/Hees line 0.0594, converged True, last step 5.2e-12
+  K1 alt E2: y_e 1.175, c2(0.1 r_M) -1.6693e-03, Q2 at Saturn 7.046e-28 s^-2, |Q2|/Hees line 0.0783, converged False, last step 8.5e-06
+  K1 alt E3: y_e 1.469, c2(0.1 r_M) -2.2979e-03, Q2 at Saturn 9.699e-28 s^-2, |Q2|/Hees line 0.1078, converged True, last step 7.2e-13
+  [FAIL] C2b all eight K1 cells met the step test: ['canonical|E1', 'alt|E2']
+  [PASS] C3 resolution and inner boundary: c2(0.1) stable within 5 %: ratio 0.9729 (80/128, r_in 0.03 vs 60/96, r_in 0.01)
+  K1 Q2 passes the Hees line in all cells: True
+
+=== D. Exact law's tail and T-B
+  canonical: h(x99)/a0 = 0.9573  (M1: anomaly floor 8.96e-11 canonical, 1.07e-10 alt m/s^2; planets 1.0e4-7.7e4 x bounds)
+  alt: h(x99)/a0 = 0.9490  (M1: anomaly floor 8.96e-11 canonical, 1.07e-10 alt m/s^2; planets 1.0e4-7.7e4 x bounds)
+  [PASS] D1 law's h is monotone in g: dh/dx = 1/(x**2 + 2*x + 1)
+  [PASS] D2 T-B numeric: k(H) rises through the whole range, K1 form: k from 9.995e-04 to 1.000e-08 below cap
+
+=== E. T-A: spectral kernel
+  [PASS] E1 d(K D)/dK = sum w mu^2/(K+mu^2)^2 >= 0: mu2*w/(K**2 + 2*K*mu2 + mu2**2)
+  [FAIL] E2 sample kernel obeys monotone KD under the positive-weight claim: w -0.5
+  stiffness kernel 1/(K + e K^2) = -e1/(K*e1 + 1) + 1/K; second pole has negative residue, Ostrogradsky (M1 R2b4, I1)
+
+=== F. T-C: k^4 dispersion on tilted slices (extends I1)
+  A 0.0001, tilt 0.01, kappa_c 5000.0; nonreal roots at k/kappa_c: [(0.5, 0), (0.9, 2), (1.5, 2), (3, 2), (10, 2)]
+  [PASS] F1 no nonreal roots on the rest slice; nonreal roots above kappa_c on a tilted slice: rest [(0.5, 0), (3, 0), (10, 0)]
+
+=== G. K3: galileon scaling cannot give the deep law
+  [PASS] G1 M^(1/2) needs n = 3, then r exponent is -1/2, not -1: n [3], exponent -1/2
+  [PASS] G2 no n gives M^(1/2)/r: over-determined
+
+=== H. K5: a second field completing gamma_L
+  [PASS] H1 positive-norm sigma reduces the stiffness at every k: - k^4/(e k^2 + 1/gam)
+  [PASS] H2 the gamma_L sign (+ gam k^4 at small k) is the negative-norm sigma: needs sigma^2 with the wrong sign
+
+=== I. K6: mimetic f(box phi) on Minkowski, unitary gauge N = 1
+  reduced L = (3 - 2/gamma_f) zeta_dot^2 + (grad zeta)^2
+  [PASS] I1 kinetic coefficient 3 - 2/f'': A > 0: gradient instability; A < 0: ghost; A = 0: strongly coupled
+
+=== J. K7: QUMOND parent: indefinite
+  [PASS] J1 det Hessian = -4 for any nu: one negative eigenvalue: det -4
+
+=== K. K9 original RG: density-only permittivity in vacuum
+  [PASS] K1 vacuum outside the source: g ~ M/r^2, so no sqrt(a0 g_N): density-only form; covariant form's gradient dependence not decided
+
+=== L. K2: locked FRW, twin dust
+  [PASS] L1 locked a = ahat, no vacuum term: rho_d/rho_b = a/b, and with a + b = 1, X = rho_b + rho_d: dust term in the Friedmann equation of g
+  locking with one shared vacuum term ell: residual = 2*alpha*rho_b + 4*beta*ell + 2*beta*rho_b - 2*ell - 2*rho_b, nonzero unless ell = 0 or a = b; so a second vacuum number, or unlock at late times
+  [PASS] L2 shared vacuum term breaks locking unless a = b: 2*alpha*rho_b + 4*beta*ell + 2*beta*rho_b - 2*ell - 2*rho_b
+  [PASS] L3 separation d'' = K sqrt(d) has d = K^2 t^4/144 from d = 0, as well as d = 0: non-unique at the adiabatic point: no seed protects it
+  ESTIMATE canonical: d = a0 (3/2) Om H0^2 t^4/144 at t = 1/H0, density frozen at today's, weight w/a^2 = 1: 2.060 Mpc (BOLTZ1's native h, Om)
+  ESTIMATE alt: d = a0 (3/2) Om H0^2 t^4/144 at t = 1/H0, density frozen at today's, weight w/a^2 = 1: 2.490 Mpc (BOLTZ1's native h, Om)
+
+CHECKS 23/29 pass. Failed: ['A1 s g* = a g_N - b g_Nt', 'A4 exact law needs s = a^2 g/a0', 'A5 alpha cancels: S(h) = h/(a0-h), h = g - g_N', 'B4 at least two negative directions on every sample, so one constraint leaves at least one negative mode', 'C2b all eight K1 cells met the step test', 'E2 sample kernel obeys monotone KD under the positive-weight claim']
