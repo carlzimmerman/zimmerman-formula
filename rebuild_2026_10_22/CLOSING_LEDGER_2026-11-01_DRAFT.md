@@ -59,6 +59,8 @@ Landed after the first draft:
 
 **Audit.** CRG1 clean-room regrade of FG1: REPRODUCED, 295 items, 289 MATCH, 6 CLOSE, 0 DISAGREE, no pass/fail flip in Tier A or B. This mainly tests code: definitions came from the same chain, the harness saw FG1's verdicts in its context, and MW, DM, IC and C2's G, Ln were not recomputed. C3's Dw pass depends on one reading (A13): flag by host passes, flag by mass fails at canonical.
 
+**Deposited 2026-11-02, owner's go:** PAPER67 v1.0, DOI 10.5281/zenodo.23883741, before AR1 finished and before any outside reader saw it.
+
 **Open, so this ledger stays a draft:** AR1, frozen before the retirement, with no result yet. It can add a line here. It can't reinstate the cold sector; only the owner can.
 
 ## What stands

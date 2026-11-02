@@ -2,7 +2,7 @@
 
 DRAFT, 2026-11-01. For the owner to read first; not sent, not deposited. AI-assisted programme, not peer reviewed, not reproduced by any outside group. κ = ½ is fitted. T is located, not derived. Not theory closed. Nothing here says the data favour this framework. "Cold dark energy" is this programme's name for a gravitating component that at linear order has w = 0, c_s = 0 and geodesic motion. You will read that as the linear behaviour of cold dark matter, and that is correct. It was never proposed as a particle.
 
-**What to know before you read.** No ΛCDM comparison is graded here, because the programme's rules exclude ΛCDM inputs. The halo runs are gravity only, with no feedback. Most lanes were not blind, and the programme graded itself. Full report: PAPER67 draft. Record: `CLOSING_LEDGER_2026-11-01_DRAFT.md`.
+**What to know before you read.** No ΛCDM comparison is graded here, because the programme's rules exclude ΛCDM inputs. The halo runs are gravity only, with no feedback. Most lanes were not blind, and the programme graded itself. Full report: PAPER67 v1.0, DOI 10.5281/zenodo.23883741. Record: `CLOSING_LEDGER_2026-11-01_DRAFT.md`.
 
 ## 1. The law
 g_N = g²/(g + a₀), with a₀(z) = κc√(Gρ_DE(z)), κ = ½ fitted. The relation is Milgrom's simple form. The nearness of a₀ to cH₀ is Milgrom's observation, and the tie to dark energy was proposed earlier by Limbach, Psaltis and Özel. Two footings, canonical 9.3603e-11 and alternative 1.1312e-10 m/s², are never pooled. SPARC doesn't single out κ = ½: Milgrom's cH₀/2π fits at least as well (Δχ² 5.34 against 63.90 from the free best fit).

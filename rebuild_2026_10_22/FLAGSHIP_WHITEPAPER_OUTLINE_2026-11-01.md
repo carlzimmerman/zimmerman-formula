@@ -2,7 +2,7 @@
 
 Outline only. No deposit without the owner's go. Numbers here were read from the lanes named; the paper's audit script must re-check every one against JSON. κ = ½ FITTED. Cold dark energy is a gravitating field component, never a particle. Not theory closed. Nothing here says the data favour the framework.
 
-**Superseded by the draft, 2026-11-01.** The owner retired route E's cold sector. The thesis below no longer holds: the flagship is now the a₀ law and the failure record, `qwen_claude_field_theory/papers_2026/PAPER67_DRAFT_galaxy_law_and_what_it_leaves_2026.tex`, audit `PAPER67_audit.py`. PAPER61 and PAPER65 aren't carried forward, so their floor statements don't need fixing.
+**Superseded by the draft, 2026-11-01.** The owner retired route E's cold sector. The thesis below no longer holds: the flagship is now the a₀ law and the failure record, `qwen_claude_field_theory/papers_2026/PAPER67_galaxy_law_and_what_it_leaves_2026.tex`, audit `PAPER67_audit.py`. PAPER61 and PAPER65 aren't carried forward, so their floor statements don't need fixing.
 
 **Working title:** A Galaxy Law Tied to Dark Energy, and a Map of What It Leaves Unexplained
 
