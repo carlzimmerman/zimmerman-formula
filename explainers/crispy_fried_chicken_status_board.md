@@ -1,5 +1,109 @@
 # The Crispy Fried Chicken Status Board
 
+**Crispiest recipe (the a₀ law):** g_N = g²/(g + a₀), a₀ = κ c √(G ρ_DE), κ = ½ fitted. Nothing else: no action, no screen, no dust term.
+
+*Where the current best theory stands as of 1 November 2026. The board shows the law only. The theory is not complete, and nothing here says the data favour this framework.*
+
+The simple form is Milgrom's, and so is the nearness of a₀ to cH₀. Limbach, Psaltis and Özel proposed the tie to the dark energy density. None of it originated here. κ = ½ is **fitted**. Every number is quoted on two footings, 9.3603 × 10⁻¹¹ and 1.1312 × 10⁻¹⁰ m/s², and the two are never pooled.
+
+![Status board: every test of the a₀ law as a coloured tile](img/status_board.png)
+
+## What changed on 1 November
+
+The owner retired route E's cold sector after FG1 failed all four candidates ([decision](../rebuild_2026_10_22/OWNER_DECISION_2026-11-01_RETIRE_COLD_SECTOR.md)), so under the rule of 23 October this board now shows the a₀ law alone. It never carried route E: its last fold was v3s on 24 October, so this rebuild replaces v3s directly. Every tile is rebuilt from FG1's C4 and alt rows and the lanes PAPER67 cites. Of 44 tiles, 7 are green on the canonical footing and 6 on alt, 9 and 10 red, 2 conditional, 1 not decidable, 4 open and 21 grey. Only SPARC splits by footing: canonical passes and alt fails Υ 0.44. All the relativistic greens went grey, because the law has no action to test, and the Cassini tile is no longer a control but the law's own failure. The tidal-dwarf green went grey too, because it came from v3's dust theorem. Nine tiles are new and five left the board. No verdict was changed here, and the PAPER67 draft stays undeposited.
+
+**Running, not folded.** [`LW1_law_scorecard`](../rebuild_2026_10_22/LW1_law_scorecard/FROZEN_CRITERIA.md) (criteria e9694d20a9) is computing the law's K, X, Dw, DM and MW lines on the measured chain. Its numbers aren't on this board. Those five tiles need a refold when it lands.
+
+## The tiles
+
+Colours restate FG1 or the lane named, on the footing named. Grey means no graded number for the law, and the tile gives the reason. FG1 isn't blind, and its clean-room regrade (CRG1) is mainly a test of code that didn't recompute MW, DM or IC.
+
+| tile | canonical | alt | source lanes | v3s colour |
+|---|---|---|---|---|
+| The law vs Cassini (unscreened) | fails | same | E2, PAPER67 | fails |
+| An action | no graded number for the law | same | PAPER67, OWNER-11-01, V3S-VERDICT | fails |
+| Gravity waves at light speed | no graded number for the law | same | PAPER67, V3S-VERDICT | pass |
+| Binary pulsars + GW170817 | no graded number for the law | same | PAPER67, V3S-VERDICT | pass |
+| Health: ghosts, gradients | no graded number for the law | same | PAPER67, V3S-VERDICT | conditional |
+| Causality: criterion A / B | no graded number for the law | same | PAPER67, V3S-VERDICT | conditional |
+| Strong coupling | no graded number for the law | same | PAPER67, V3S-VERDICT | conditional |
+| Radiative stability (G12) | no graded number for the law | same | PAPER67, V3S-VERDICT | not yet recomputed for v3 |
+| Matter conservation (G9) | no graded number for the law | same | PAPER67, V3S-VERDICT | pass |
+| Black holes (EHT, LIGO ringdown) | no graded number for the law | same | PAPER67, V3S-VERDICT | conditional |
+| Rotation curves (SPARC RAR) | pass | fails | FG1, NR2, PAPER67, P4 | conditional |
+| Tilt with speed | pass | same | FG1, NR2 | new |
+| LITTLE THINGS dwarfs | pass | same | FG1, NR2 | new |
+| Surface brightness at fixed speed | pass | same | HS1, PAPER67 | new |
+| Galaxy groups (BFJR) | pass | same | FG1, NR2, PAPER67, P4 | pass |
+| Local a0 from MeerKAT | pass | same | PAPER60, P4, PAPER67 | pass |
+| Isolated-galaxy lensing, shape | pass | same | FG1, NR2, PAPER67 | not decidable yet |
+| Isolated-galaxy lensing, inner | conditional | same | CFG829, BL1, S2, PAPER67 | conditional |
+| Red (early-type) lenses | conditional | same | CFG829, BL1, S2, PAPER67 | conditional |
+| MW vertical force | fails | same | FG1, X5 | fails |
+| MW outer slope (Gaia) | fails | same | X5, PAPER67 | fails |
+| IC 1613 | fails | same | FG1, ND1, RF2 | new |
+| Local Group dwarfs (five classes) | fails | same | FG1, NR2 | fails |
+| Measured stellar masses | fails | same | UL1, PAPER67 | new |
+| Cluster cores (318 eRASS1) | fails | same | CFG687, F1, PAPER67 | fails |
+| Cluster keys (15, old template) | fails | same | FG1, NR2, DR1 | new |
+| Outer shear against gas mass | fails | same | CFG687, PAPER67 | new |
+| X-COP | no graded number for the law | same | FG1, CS2, DR1, LW1-CRITERIA | new |
+| DiskMass | no graded number for the law | same | FG1, CFG576, CFG577, OD1, LW1-CRITERIA | new |
+| a0(z): native band vs a0 ~ H(z) | not decidable yet | same | CFG689, PAPER67 | not decidable yet |
+| CMB | no graded number for the law | same | RF5, PAPER67, OWNER-11-01 | fails |
+| Linear growth | no graded number for the law | same | RF5, PAPER67 | fails |
+| High-z on halo-free inputs | no graded number for the law | same | CFG303, S4 | not decidable yet |
+| CRISTAL z~5 / ALESS 122.1 | no graded number for the law | same | CFG307, CFG308, S4 | not decidable yet |
+| ALMA U4 (6 Nov), GS4 (28 Nov) | open | same | LEDGER, AC1, PAPER67 | open |
+| Gaia DR4 wide binaries (Dec) | open | same | DR4-PREREG, PAPER67 | open |
+| Gaia DR4 MW predictions | open | same | OWNER-11-01, S3 | open |
+| The owner's wave a0(z) idea | no graded number for the law | same | CFG956, CFG957 | open |
+| Why kappa = 1/2 | open | same | PAPER67, CFG894, MI-PROFILE | open |
+| The matter term | no graded number for the law | same | PAPER67, OWNER-11-01 | open |
+| Tidal dwarfs, NGC 1052-DF2/DF4 | no graded number for the law | same | P4, U1 | pass |
+| Central ellipticals (SLUGGS) | no graded number for the law | same | CFG528, S4 | not decidable yet |
+| Coma ultra-diffuse galaxies | no graded number for the law | same | S1 | fails |
+| Outer globulars | no graded number for the law | same | D10 | conditional |
+
+## Readings to take with the colours
+
+- **Isolated-galaxy lensing, shape, is green because FG1 grades it PASS.** The rule's first term is zero by construction when the lens sits on the law, and the comparison is against halos now retired. No tested model fits these profiles in absolute terms.
+- **Rotation curves, canonical half.** The 0.50–0.80 line was first written for this law, and its lower edge is a population model's value. Read it beside the measured stellar masses tile. P4's χ² line fails on both footings, and FG1 doesn't grade that line.
+- **Surface brightness is green on HS1's frozen class,** with a MUTATE twin and PAPER67's audit behind it. It has no second run: on 1 November its chain wouldn't run outside its own folder. n = 47, and the result separates the law from the retired halos only.
+- **X-COP.** FG1's cell and PAPER67 show −0.151, rms 0.205 as the law's, numbers only. That row is CS2's `log10(mh / (mb + mc))`, whose `mc` is a Burkert core, so it isn't the plain law. DR1's plain-law row reads +0.467, 0.476. The tile stays grey, as FG1 left it. LW1 is set to settle this by computation.
+- **Tidal dwarfs and DF2/DF4.** P4 read −0.59 / −0.62 dex and −1.66 / −1.74 ln, FAIL in that lane, with a screen on at L★ 24 and 90 pc and no change between them. That isn't in FG1 or PAPER67, so the tile is grey and shows the number. It isn't a pass.
+- **DiskMass.** CFG576 and CFG577 use a different ν from the law's, by LW1's criteria, besides being frozen inconclusive.
+- **MW vertical force.** FG1's cell uses X5 in place of RF1. X5 ran at L★ 24 pc; its README says L★ = 0 moves χ²_Kz by at most 0.013.
+- **Cluster cores.** PAPER67 quotes CFG687's 318 clusters. F1's later rebuild on 326 reads lower, so the tile carries both. Selection-corrected figures are in the record below.
+- **Cluster keys.** FG1's count is on an older template; DR1's plain-law row on measured gas is beside it. CRG1 found the failing set depends on the gas tail; K fails either way.
+- **Cold dark energy** names the retired sector when describing the record. It was never proposed as a particle, and the no-particle rule is unchanged.
+
+## Left the board
+
+Kept with their v3s colours on [`img/status_board_2026-10-24v3s.png`](img/status_board_2026-10-24v3s.png). These colours aren't verdicts on the law.
+
+| tile | v3s colour | why it left | the law's counterpart |
+|---|---|---|---|
+| Leaf problem well-posed | conditional | v3s's (P, lapse) field problem; the law has no such fields | An action |
+| Solar system + Cassini (screened) | pass | tested v3s's screen; the law has none | The law vs Cassini (unscreened) |
+| One selector for the family | open | chose who gets v3's cold component; the law has none | none needed |
+| Stiffness length L* | open | v3s's fitted constant | none needed |
+| Law + a^1 growth + no EFE, local | fails | a no-go on law + cold component + growth; PAPER67 keeps its question as an open gap | CMB; Linear growth |
+
+## The bottom line
+
+On isolated disc galaxies the law does well on the canonical footing: SPARC, tilt, LITTLE THINGS, groups, surface brightness. Alt misses SPARC's Υ line. It fails the unscreened Solar System, the Milky Way's vertical force and outer slope, IC 1613, the Local Group classes, measured stellar masses at 60–150 km/s, cluster cores and keys, and the outer shear's slope with gas mass. It has no action and no account of the CMB, cluster cores or the matter term in its own expansion history. Those gaps are open and unanswered; retiring the cold sector removed the proposed answer, not the question. The distinctive claim, the tie of a₀ to dark energy over cH₀, has no decisive test yet. The dated tests are ALMA U4_28473 (6 November), GS4_24110 (28 November by earlier metadata) and Gaia DR4 (December); none separates the tie by itself. The one that would is a clean deep-MOND a₀ point at z ≈ 2.5 to about 0.10 dex, not scheduled. κ = ½ is fitted, and the theory is not closed.
+
+## How this board is built
+
+[`make_status_board.py`](make_status_board.py) reads FG1's verdict table at build time and refuses a colour that differs from it, one colour per footing, and NOT GRADED must be grey. It checks each quoted number against the named lane's committed file. It also refuses a green with no FG1 row or verified entry, a verdict colour resting on a v3-only lane, and a v3s tile that vanishes. `--mutate` must fail, `--selftest` breaks each guard (24 cases), and `--md` prints the table above. The v3s generator is kept as [`status_board_v3s_2026_10_24.py`](status_board_v3s_2026_10_24.py), and `make_flavor_boards.py` and Y1 still read its tiles.
+
+---
+
+# The record: the v3 and v3s boards (kept; not the current theory)
+
+*Everything below was written for earlier models. "Current theory" there means v3 or v3s at that date, and "cold energy" is that period's name. Where it differs from the board above, the board above governs. Picture: [`img/status_board_2026-10-24v3s.png`](img/status_board_2026-10-24v3s.png).*
+
 **Crispiest recipe (v3s):** General relativity plus a preferred cosmic time (Khronon) and one extra field giving the simple MOND law (AQUAL, external-field effect included, κ fitted), switched off within L★ ≥ 22 pc by a stiffness that acts only where D·P ≥ 0, plus fitted cold dust; no settling or supply rules.
 
 *Where the current theory, v3s, stands as of 23 October 2026. The board shows v3s only. The theory is not complete. The last plain-v3 board, before v3s was adopted, is kept as [`img/status_board_2026-10-23v3.png`](img/status_board_2026-10-23v3.png). The board before the PAPER60 audit's note corrections is kept as [`img/status_board_2026-10-23late3.png`](img/status_board_2026-10-23late3.png); before the coordinator's decisions on the night batch, as [`img/status_board_2026-10-23late2.png`](img/status_board_2026-10-23late2.png); before the S3, S4, H4 and U1 batch, as [`img/status_board_2026-10-23night.png`](img/status_board_2026-10-23night.png); before the P4 and Q6 recomputes, as [`img/status_board_2026-10-23late.png`](img/status_board_2026-10-23late.png); the first v3-only board, before the S1 and S2 recomputes, as [`img/status_board_2026-10-23eve.png`](img/status_board_2026-10-23eve.png). Earlier pictures, which mixed models, are kept as [`img/status_board_2026-10-23pm.png`](img/status_board_2026-10-23pm.png) (23 October afternoon), [`img/status_board_2026-10-23am.png`](img/status_board_2026-10-23am.png) (23 October morning), [`img/status_board_2026-10-22.png`](img/status_board_2026-10-22.png) (22 October evening) and [`img/status_board_2026-10-21.png`](img/status_board_2026-10-21.png).*
@@ -11,8 +115,6 @@ a₀ = κ · c · √(G ρ_Λ),   κ = ½   →   a₀ = 9.36 × 10⁻¹¹ m/s²
 ```
 
 The ½ is **fitted**, not derived; the current measurement is κ = 0.417 ± 0.095 (CFG493). Every number is quoted on two footings, 9.3603 × 10⁻¹¹ and 1.1312 × 10⁻¹⁰ m/s², and the two are never pooled. The framework also needs a cold component, "cold energy", with Ω_c/Ω_b = 5.364 (an input). It is real gravitating mass, not a particle species; no dark-matter particle is added.
-
-![Status board: every test of the current theory, v3, as a coloured tile](img/status_board.png)
 
 ## v3s adopted as the current theory (23 October, owner)
 
@@ -59,7 +161,7 @@ The ½ is **fitted**, not derived; the current measurement is κ = 0.417 ± 0.09
 
 ## How to read it
 
-The picture shows the current theory, v3, only. It is drawn by [`make_status_board.py`](make_status_board.py); tiles marked **23 OCT** were added, recoloured, greyed or re-annotated on 23 October. The generator refuses any first green except one listed in `VERIFIED_GREEN` (lane, result commit and the coordinator's rerun, with the same lane on the recolour step); a grey tile may also return to green if it was green before it was greyed and its own recompute lane passes it. It refuses any recolour not listed with its evidence lane, and any tile that leaves the board without going to the archive with N0 as its evidence (`--selftest` runs 26 broken cases, each of which must be caught, and checks that the one verified green passes). Each tile is one test. The colour restates a verdict recorded in the campaign LEDGER ([`campaign_fresh_gravity/LEDGER.md`](../campaign_fresh_gravity/LEDGER.md)) or in the dated notes of [`THEORY_CANONICAL_2026-10-18.md`](../campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md), and the lane IDs on each tile point to the scripts that produced it. Verdicts come from committed scripts with pass/fail rules frozen *before* the data were read, plus a control that is deliberately broken and must fail. Where a colour depends on a rule added afterwards (post hoc), the tile says so.
+The picture shows the current theory, v3, only. It was drawn by [`status_board_v3s_2026_10_24.py`](status_board_v3s_2026_10_24.py), then `make_status_board.py`; tiles marked **23 OCT** were added, recoloured, greyed or re-annotated on 23 October. The generator refuses any first green except one listed in `VERIFIED_GREEN` (lane, result commit and the coordinator's rerun, with the same lane on the recolour step); a grey tile may also return to green if it was green before it was greyed and its own recompute lane passes it. It refuses any recolour not listed with its evidence lane, and any tile that leaves the board without going to the archive with N0 as its evidence (`--selftest` runs 26 broken cases, each of which must be caught, and checks that the one verified green passes). Each tile is one test. The colour restates a verdict recorded in the campaign LEDGER ([`campaign_fresh_gravity/LEDGER.md`](../campaign_fresh_gravity/LEDGER.md)) or in the dated notes of [`THEORY_CANONICAL_2026-10-18.md`](../campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md), and the lane IDs on each tile point to the scripts that produced it. Verdicts come from committed scripts with pass/fail rules frozen *before* the data were read, plus a control that is deliberately broken and must fail. Where a colour depends on a rule added afterwards (post hoc), the tile says so.
 
 | colour | meaning |
 |---|---|
@@ -380,7 +482,7 @@ The framework's a₀ follows the dark-energy density. With the framework's own B
 - **Open: the energy books of settling.** The record's settling equation does not conserve energy (CFG932). Every repair that keeps the released energy inside matter misses the law. The one that works needs an energy sink outside the matter sector: a dynamical dark-energy partner and a thermal reservoir (CFG935, post hoc).
 - **Conditional: quantum stability (G12).** It needs new physics below about 10⁹ GeV, as every theory of this family does.
 
-## The bottom line (current theory, v3)
+## The bottom line as of 23 October (v3; superseded)
 
 For v3, the weak-field tests of gravity pass with the screening switched on: gravitational waves at light speed, binary pulsars and GW170817, and Cassini and the planets at L★ = 24–90 pc. Switched off, the same law fails Cassini (the control). MeerKAT's a₀ and the isolated galaxy groups pass for v3 (P4). The tidal dwarfs and DF2/DF4 pass under v3's own dynamics, which make hosted systems dust-free (U1, theorem T3). Static, non-rotating black holes and the strong-coupling estimate are conditional (P3), and so is causality, and the globulars put L★ ≥ 21.7 / 22.9 pc. v3 fails ten tests computed for it:
 - health and the leaf problem, which are ill-posed wherever the khronon density is negative, as at every two-body saddle (H4);
@@ -395,4 +497,4 @@ Rotation curves, inner isolated-galaxy lensing and red lenses are conditional (P
 
 ---
 
-κ = ½ is fitted, not derived. Cold energy is real gravitating mass that is not a particle species. The board and the archive picture are generated by [`make_status_board.py`](make_status_board.py) (`--mutate` must fail: it strips one tile's evidence lane; `--selftest` breaks each guard in turn and every case must be caught); the 21 October board's script, [`campaign_fresh_gravity/closure_map/status_picture_2026_10_21.py`](../campaign_fresh_gravity/closure_map/status_picture_2026_10_21.py), and the 9 October board's script, [`status_picture_2026_10_03.py`](../campaign_fresh_gravity/closure_map/status_picture_2026_10_03.py), are kept unedited. The a₀ chart is made by [`chart_a0z_one.py`](../campaign_fresh_gravity/CHART_a0z_rar_z0_5_2026-10-01/chart_a0z_one.py).
+κ = ½ is fitted, not derived. Cold energy is real gravitating mass that is not a particle species. The v3s board and the archive picture were generated by [`status_board_v3s_2026_10_24.py`](status_board_v3s_2026_10_24.py) (`--mutate` must fail: it strips one tile's evidence lane; `--selftest` breaks each guard in turn and every case must be caught); the 21 October board's script, [`campaign_fresh_gravity/closure_map/status_picture_2026_10_21.py`](../campaign_fresh_gravity/closure_map/status_picture_2026_10_21.py), and the 9 October board's script, [`status_picture_2026_10_03.py`](../campaign_fresh_gravity/closure_map/status_picture_2026_10_03.py), are kept unedited. The a₀ chart is made by [`chart_a0z_one.py`](../campaign_fresh_gravity/CHART_a0z_rar_z0_5_2026-10-01/chart_a0z_one.py).
