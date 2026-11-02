@@ -15,3 +15,5 @@ Written after reading the machinery and before any fit. Seen so far: one CLASS t
 **R6 Gate 3 line.** Must hold, per criteria, on both backgrounds' identical law path, canonical primary, alt beside: S rms <= 0.110 and Upsilon 0.50-0.80; Tl <= 0.15; surface-brightness slope |Z| <= 2 by RQ3's `hs_row`; LT <= 0.10; G CONSISTENT. Dw, MW, IC 1613, DiskMass are reported. The law fails Dw, MW and IC already, so they don't decide this gate; MW and IC are stated as expected fails in the criteria. DA1's windows beside.
 
 **R7 Gate 5.** Runs only on an m that survives gate 1, since it reads "the surviving m". RQ3 writes into its own directory, so it would run from a scratch copy with that disclosed.
+
+**R8 CLASS ncdm settings, numerics, before any fit.** At an unfitted point, plik moved by 9 from `tol_ncdm_synchronous` and by 4 from the fluid trigger, between CLASS's defaults and a converged setting (`hf1_g1_prec.json`; the default-setting rows are in the run log of that file's first pass). Every fit uses tol 1e-5, bg 1e-7, trigger 200. Check K-d compares that setting with tol 1e-6, trigger 1000, l_max 40, line 1.0, set after the ladder showed about 0.03.
