@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (812 rows)
+## Totals (813 rows)
 
-- **543 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **544 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **130 produced a number.** 60 produced one determinate value; 70 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -150,7 +150,7 @@ fact.
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
 | QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 29 | 6 | 1 | 22 | 0 | 0 |
-| KS Kinetic / settling / collective / cold-energy dynamics | 35 | 2 | 2 | 31 | 0 | 0 |
+| KS Kinetic / settling / collective / cold-energy dynamics | 36 | 2 | 2 | 32 | 0 | 0 |
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
@@ -682,6 +682,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K734 | W4-18/B6 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | mean-field amplitude ratio 2, GL self-dual 1/sqrt2, critical damping gamma = 2 omega0 | - | nk | NO SLOT: no order parameter shared by a0 and rho_Lambda; damping reading = B3 edge | 918a2439d |
 | K737 | W4-18/B9 | `why_4_puzzle/W4_18_borrowed_exact_numbers` | Maxwellian sqrt(pi) parity flip (effusion 1/4 n v_bar) | - | nk | VOID: the w = -1 source has no velocity distribution | 918a2439d |
 | K741 | W4-19/L4 | `why_4_puzzle/W4_19_literature_addendum` | Luo 2026 (2602.14515): a0 = 2 beta^2 sqrt(Lambda/12) c^2 with virial beta^2 ~ 1/3 | 0.965 | odd | MISS: kappa = sqrt(8pi/27), pi-odd, out of window | 726716bac |
+| K813 | UW1 | `rebuild_2026_10_22/UW1_one_scale_unitarity` | one-scale scalar; epsilon = strong-coupling scale^4; partial-wave normalisation | - | free | NO REAL KAPPA: B -0.382 at g=a0; amplitudes blind to F0; F0 unfixed on the timelike branch | 71fb05a4d3 |
 
 ## CC: Cosmological consistency (horizons, epochs, H0, unimodular, sequestering)
 
