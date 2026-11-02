@@ -51,7 +51,7 @@ Ceiling is the most any single formula could score at this tolerance, before loo
 | FQ | 0.946, 0.154 | BLUNT, contains 1 | 2.76 | 2, 0.94, 0 | 2.04e6 vs 2.07e6 | 6 f_b, -0.01; also 1, +0.35 |
 | T | lg 12.29, 0.05 dex | window | 3.32 | none | **0 vs 0** | No hit at any depth |
 
-Second readings (HSC 1.7, 1 % stat) change no label: P rises to 1.0 or stays, bits 0. Using x25 rather than x15 changes nothing at 0 bits. G2 with addition: hits within 0.9 to 1.4 of control, XR 0.38, no bits (`runs/`).
+Second readings (HSC 1.7, 1 % stat) change no label: P rises to 1.0 or stays, bits 0. Using x25 rather than x15 changes nothing at 0 bits. G2 with addition: hits 0.9 to 1.4 times control on K, D8, D5, FQ, 0.56-0.95 on RHO, 0.37-0.44 on XR, no bits (`runs/`).
 
 **T.** The lowest mass in the alphabet is lg 19.3 M_sun (A) and 15.7 (B), so T sits 7 and 3.5 dex below anything reachable. As expected: c, G, rho, a0 and f_b hold no small number. This repeats TD1's missing piece with a0 allowed: **T needs a scale outside this alphabet.**
 
