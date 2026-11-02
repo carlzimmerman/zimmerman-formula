@@ -189,7 +189,7 @@ def controls(D, CSS, XC, G, LT):
     def cf(h): return C.load_or_build(f"C4_h{h}", C.fn_C4(D, None, CSS, h))
     kb = C.K_block(D, cf, "V_canonical", "vC_own_canonical", "canonical", mode="given"); fl = sorted(kb["failing"]); ck["K_keys_C4"] = dict(n_pass=kb["n_pass"], failing=fl, rec_failing=sorted(KR["failing"]), m3=kb["tables"]["h0672"]["G-MID-T3"]["Z"], passed=bool(fl == sorted(KR["failing"]) and abs(kb["tables"]["h0672"]["G-MID-T3"]["Z"] - 4.46) <= 0.01))
     # my cell with the fermion off equals the direct law on the chain, through vec
-    i = 7; q = D.geo[0.672]["q"][i]; Mbx, Mb, Mbt, rta = C.chain(D.Mgas[i] * q ** 2.5 * 10 ** 0.005, D.R500[i] * q, 0.034, D.z[i], MSUN); Mf, _ = cluster_fermion(C.RM, Mb, Mbt, rta, D.R500[i] * q, 0.0, 11.0, A0["canonical"]); pz = Mb > 0; ck["K_off_zero"] = dict(maxfrac=float(np.max(Mf[pz] / Mb[pz])), passed=bool(np.max(Mf[pz] / Mb[pz]) < 1e-6))
+    i = 7; q = D.geo[0.672]["q"][i]; Mbx, Mb, Mbt, rta = C.chain(D.Mgas[i] * q ** 2.5 * 10 ** 0.005, D.R500[i] * q, 0.034, D.z[i], MSUN); Mf, _ = cluster_fermion(C.RM, Mb, Mbt, rta, D.R500[i] * q, 0.0, 11.0, A0["canonical"]); pz = Mb > 0; ck["K_off_zero"] = dict(maxfrac=float(np.max(Mf[pz] / Mb[pz])), max_Msun_where_Mb0=float(np.max(Mf[~pz] / MSUN, initial=0.0)), n_Mb0=int((~pz).sum()), passed=bool(np.max(Mf[pz] / Mb[pz]) < 1e-6 and np.max(Mf[~pz] / MSUN, initial=0.0) < 1.0))
     return ck
 
 def report_gate(lab, Rf, m, wf, wb, D, CSS, XC, G, LT, gf=2.0, capf=1.0, tag="RUN"):
@@ -232,7 +232,7 @@ def main():
     if mode == "controls":
         RES["checks"] = controls(D, CSS, XC, G, LT); RES["all"] = all(v["passed"] for v in RES["checks"].values()); P(json.dumps(RES["checks"], indent=0, default=float)); P(f"ALL {RES['all']}")
     if mode == "select":
-        g1 = json.load(open(os.path.join(HERE, "hf1_g1_results.json")))["rows"]["FD"]; T = {}
+        _g = json.load(open(os.path.join(HERE, "hf1_g1_results.json")))["rows"]; g1 = dict(_g["FD"]); g1.update(_g.get("FDY", {})); T = {}
         for n, w in g1.items():
             if w.get("status") != "OK": continue
             Rf = w["omega_f"] / w["omega_b"]; m = w["m"]; x = xcop_rows(XC, Rf, m, "canonical"); s = bf1_train(G, Rf, m, A0["canonical"]); T[n] = dict(m=m, omega_f=w["omega_f"], omega_b=w["omega_b"], gate1=w.get("passed"), S=w.get("S"), xtrain=x["train"], strain=s); P(f"  m {m:g} omega_f {w['omega_f']:.4f} gate1 {w.get('passed')} S-RF5 {w.get('S_minus_RF5')}: X-COP train {x['train']['mean']:+.3f}, {x['train']['rms']:.3f} {x['train']['passed']}; SPARC train rms {s['rms']:.4f} (law {s['rms_law']:.4f}), median {s['median']:+.3f} {s['passed']}")

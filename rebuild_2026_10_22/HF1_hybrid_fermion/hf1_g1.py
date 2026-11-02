@@ -21,7 +21,7 @@ N0 = n_occ(0.0)
 def ncdm(m, wf, spec):
     """(T_ncdm, deg, ksi). omega = m/93.14 at T_nu, deg 1, ksi 0; omega scales with deg T^3 and the occupancy integral."""
     x = wf * 93.14 / m
-    if spec == "FD": return TNU * x ** (1 / 3), 1.0, 0.0
+    if spec in ("FD", "FDY"): return TNU * x ** (1 / 3), 1.0, 0.0
     if spec == "CHI": return TNU, x, 0.0
     if spec == "COLD": return TNU * (x * N0 / n_occ(5.0)) ** (1 / 3), 1.0, 5.0
     raise ValueError(spec)
@@ -34,6 +34,7 @@ def cparams(p, cell):
     T, deg, ksi = ncdm(cell["m"], max(wf, 5e-4), cell["spec"])
     q.update({"omega_cdm": 1e-8, "N_ur": 3.044, "N_ncdm": 1, "m_ncdm": cell["m"], "T_ncdm": T, "deg_ncdm": deg})
     if ksi: q["ksi_ncdm"] = ksi
+    if cell["spec"] == "FDY": q["YHe"] = 0.2454  # AMENDMENT_A2
     q.update(PREC); q.update(cell.get("prec", {}))
     return q
 R["cparams"] = cparams
@@ -80,7 +81,7 @@ def m_checks():
 def m_fit(spec, m):
     L = R["Lik"](); name = cellname(spec, m); path = os.path.join(CELLS, name + ".json")
     if os.path.exists(path): print("have", name); return
-    prev = [cellname(spec, x) for x in MGRID if x > m]; st = None
+    prev = [cellname("FD" if spec == "FDY" else spec, x) for x in MGRID if x > m]; st = None
     for n in reversed(prev):
         pp = os.path.join(CELLS, n + ".json")
         if os.path.exists(pp):
@@ -117,7 +118,7 @@ def m_grade():
     BAND = R["BAND"]; pv = R["pval"]; RES = dict(S_min_RF5=SMIN, rows={})
     P(f"HF1 gate 1, criteria 56ab302a4d, A1. kappa = 1/2 FITTED. S_min RF5 {SMIN:.2f}. a0 absent from linear FRW, so footings share the surface")
     ck = json.load(open(os.path.join(CELLS, "checks.json"))); P("checks: " + ", ".join(f"{k} {v['passed']}" for k, v in ck.items() if isinstance(v, dict)))
-    for spec in ("FD", "CHI", "COLD"):
+    for spec in ("FD", "FDY", "CHI", "COLD"):
         rows = {}
         for m in MGRID:
             n = cellname(spec, m); p = os.path.join(CELLS, n + ".json")
@@ -133,7 +134,7 @@ def m_grade():
             w["gates"] = g; w["passed"] = bool(all(g.values()) and r["converged"]); w["label"] = ("PASS" if w["passed"] else "FAIL") if r["converged"] else "UNDETERMINED (unconverged)"
             rows[n] = w
         RES["rows"][spec] = rows
-        P(f"\n{spec}: {'primary' if spec == 'FD' else 'reported variant, A1 R1'}")
+        P(f"\n{spec}: {'primary' if spec == 'FD' else ('primary at fixed YHe 0.2454, AMENDMENT_A2' if spec == 'FDY' else 'reported variant, A1 R1')}")
         P(f"{'m':>6s} {'omega_f':>8s} {'T/Tnu':>6s} {'h':>6s} {'Om':>6s} {'plik':>8s} {'p':>8s} {'lowTT':>6s} {'bao':>6s} {'sn':>7s} {'shear':>7s} {'A_sh':>5s} {'s8':>6s} {'w0':>6s} {'wa':>6s} {'n_s':>6s} {'S-RF5':>8s} A0 conv label")
         sb = {k: v["S"] for k, v in rows.items() if "S" in v}
         for n, w in rows.items():
@@ -141,8 +142,10 @@ def m_grade():
             P(f"{w['m']:6g} {w['omega_f']:8.5f} {w['T_ncdm'] / TNU:6.3f} {w['h']:6.3f} {w['Om']:6.3f} {w['plik']:8.1f} {w['p_plik']:8.1e} {w['lowTT']:6.1f} {w['bao']:6.1f} {w['sn']:7.1f} {w.get('shear', float('nan')):7.1f} {w.get('A_shear', float('nan')):5.2f} {w.get('sigma8', float('nan')):6.3f} {w['w0']:6.2f} {w['wa']:6.2f} {w['n_s']:6.3f} {w.get('S_minus_RF5', float('nan')):8.1f} {w['G_A0']} {w['converged']} {w['label']}  fails {[k for k, v in w['gates'].items() if not v]}")
             if w.get("neff"): P("        " + w["neff"][-1])
         if sb: P(f"  own-surface S min {min(sb.values()):.1f}, at {min(sb, key=sb.get)}; printed, not the line (A1 R2)")
-    fd = RES["rows"].get("FD", {}); RES["pass_FD"] = [v["m"] for v in fd.values() if v.get("passed")]; RES["EARLY_FAIL"] = bool(fd) and not RES["pass_FD"]
-    P(f"\nFD passing m: {RES['pass_FD']}; label {'EARLY FAIL' if RES['EARLY_FAIL'] else 'gate 1 open'}"); P("kappa = 1/2 FITTED. Not theory closed.")
+    fd = {w["m"]: w for w in RES["rows"].get("FD", {}).values() if w.get("status") == "OK"}; fd.update({w["m"]: w for w in RES["rows"].get("FDY", {}).values() if w.get("status") == "OK"})
+    nums = [m for m in MGRID if m in fd and fd[m].get("converged") and "S" in fd[m]]; RES["pass_FD"] = [m for m in nums if fd[m]["passed"]]; RES["undetermined_FD"] = [m for m in MGRID if m not in nums]; RES["EARLY_FAIL"] = (not RES["pass_FD"]) and (not RES["undetermined_FD"])
+    lab = "gate 1 open" if RES["pass_FD"] else ("EARLY FAIL" if RES["EARLY_FAIL"] else f"fails at {len(nums)} of 6, {len(RES['undetermined_FD'])} UNDETERMINED {RES['undetermined_FD']}"); RES["label"] = lab
+    P(f"\nFD passing m: {RES['pass_FD']}; label {lab}"); P("kappa = 1/2 FITTED. Not theory closed.")
     open(os.path.join(HERE, f"hf1_g1{TAG}.out"), "w").write("\n".join(out) + "\n"); jw(os.path.join(HERE, f"hf1_g1_results{TAG}.json"), RES)
 
 if __name__ == "__main__":
