@@ -1,0 +1,13 @@
+--- a/source/perturbations.c
++++ b/source/perturbations.c
+@@ -773,9 +773,7 @@
+     class_call(background_w_fld(pba, 0., &w_fld_ini, &dw_over_da_fld, &integral_fld), pba->error_message, ppt->error_message);
+     class_call(background_w_fld(pba, 1.,   &w_fld_0, &dw_over_da_fld, &integral_fld), pba->error_message, ppt->error_message);
+ 
+-    class_test(w_fld_ini >= 0.,
+-               ppt->error_message,
+-               "The fluid is meant to be negligible at early time, and unimportant for defining the initial conditions of other species. You are using parameters for which this assumption may break down, since at early times you have w_fld(a--->0) = %e >= 0",w_fld_ini);
++    /* UX2: guard removed, K2 decides whether the ICs hold */
+ 
+     if (pba->use_ppf == _FALSE_) {
+ 

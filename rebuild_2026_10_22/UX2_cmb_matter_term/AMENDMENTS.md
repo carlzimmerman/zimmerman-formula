@@ -1,0 +1,3 @@
+# UX2 amendments
+
+**A1 (post-result, before any fluid fit existed).** First scan: vanilla CLASS refuses a fluid with w_ini >= 0 ("meant to be negligible at early time"), so w = 0 and every w > 0 cell returned CLASS_FAIL. As frozen, K2 would be void. The guard, one class_test in perturbations.c, is removed in a separate build (`ux2_noguard.patch`, outside the repo, built from the vanilla tree). No download, no other change, same family, grid and lines. K2 decides whether the fluid's initial conditions hold. Those first CLASS_FAIL records are deleted and re-run; this note keeps them on record. CDMref in the first scan gave plik 582.1276, the check it should reproduce.
