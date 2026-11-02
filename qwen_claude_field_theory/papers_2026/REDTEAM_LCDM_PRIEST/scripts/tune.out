@@ -1,0 +1,54 @@
+
+== BASE: no tuning, Blumenthal
+a 2.4130e-10 ratio 2.5773; per-mass spread 0.570 dex; rms to law 0.1450 dex
+per-mass a 1.41e-10 1.69e-10 2.03e-10 2.46e-10 3.06e-10 3.76e-10 4.46e-10 5.24e-10
+rho_DE slope +0.185
+kappa {(0.7, 67.4): 1.159, (0.685, 73.0): 1.698, (0.65, 73.0): 2.152}
+a(z)/a(0) {1.0: 1.834, 1.5: 2.087, 2.33: 2.634}
+verdict T1:FAIL T2:FAIL T3:FAIL T4:FAIL T5:FAIL T6:FAIL
+
+TIER 1 knobs: c_norm=+0.110* c_slope=-0.050* shmr_norm=+0.180* logM1=+0.300* beta=-0.003 gamma=-0.200* contract=+0.000* size_norm=-0.200* size_slope=+0.002 gas_norm=+0.300* gas_slope=+0.037 (* at bound)
+
+== TIER 1 plausible ranges
+a 9.3174e-11 ratio 0.9952; per-mass spread 0.116 dex; rms to law 0.0049 dex
+per-mass a 9.24e-11 9.32e-11 9.34e-11 9.22e-11 9.02e-11 9.19e-11 1.02e-10 1.18e-10
+rho_DE slope +0.055
+kappa {(0.7, 67.4): 0.427, (0.685, 73.0): 0.74, (0.65, 73.0): 1.029}
+a(z)/a(0) {1.0: 1.697, 1.5: 1.686, 2.33: 1.761}
+verdict T1:PASS T2:FAIL T3:PASS T4:FAIL T5:FAIL T6:FAIL
+
+TIER 2 knobs: c_norm=+0.255 c_slope=-0.142 shmr_norm=+0.540* logM1=+0.043 beta=-1.071 gamma=-0.566 contract=-0.004 size_norm=-0.600* size_slope=+0.214 gas_norm=+0.679 gas_slope=+0.300 (* at bound)
+
+== TIER 2 ranges tripled
+a 9.3582e-11 ratio 0.9995; per-mass spread 0.001 dex; rms to law 0.0000 dex
+per-mass a 9.34e-11 9.35e-11 9.36e-11 9.35e-11 9.35e-11 9.36e-11 9.36e-11 9.36e-11
+rho_DE slope +0.118
+kappa {(0.7, 67.4): 0.44, (0.685, 73.0): 0.69, (0.65, 73.0): 0.902}
+a(z)/a(0) {1.0: 1.741, 1.5: 1.853, 2.33: 2.157}
+verdict T1:PASS T2:PASS T3:PASS T4:FAIL T5:FAIL T6:FAIL
+
+TIER 3: c must scale as rho_DE^0.26 at fixed omega_m, A_s
+
+== TIER 3 with rho_DE exponent
+a 9.3582e-11 ratio 0.9995; per-mass spread 0.001 dex; rms to law 0.0000 dex
+per-mass a 9.34e-11 9.35e-11 9.36e-11 9.35e-11 9.35e-11 9.36e-11 9.36e-11 9.36e-11
+rho_DE slope +0.498
+kappa {(0.7, 67.4): 0.444, (0.685, 73.0): 0.733, (0.65, 73.0): 0.939}
+a(z)/a(0) {1.0: 1.741, 1.5: 1.853, 2.33: 2.157}
+verdict T1:PASS T2:PASS T3:PASS T4:PASS T5:FAIL T6:FAIL
+
+TIER 3b: c shift (dex) solved per cosmology and redshift, on Tier 2 knobs
+ cosmology (0.7, 67.4) +0.038 dex
+ cosmology (0.685, 73.0) -0.096 dex
+ cosmology (0.65, 73.0) -0.176 dex
+ redshift 1.0 -0.192 dex to band centre
+ redshift 1.5 -0.202 dex to band centre
+ redshift 2.33 -0.259 dex to band centre
+
+TIER 4: free-form halo M_DM = r^2 (g_law - g_bar)/G, baseline baryons, no contraction
+ logM 10.0: min rho>0 True; M_free/M_NFW at 0.5-5 Rd 1.26 to 1.56; at R200 1.56; rho slope at 2 Rd 1.64, at R200 2.00
+ logM 11.2: min rho>0 True; M_free/M_NFW at 0.5-5 Rd 1.27 to 1.44; at R200 1.44; rho slope at 2 Rd 1.43, at R200 2.00
+ logM 11.9: min rho>0 True; M_free/M_NFW at 0.5-5 Rd 1.11 to 1.22; at R200 1.25; rho slope at 2 Rd 1.29, at R200 2.00
+ logM 12.7: min rho>0 True; M_free/M_NFW at 0.5-5 Rd 0.69 to 0.80; at R200 0.55; rho slope at 2 Rd 1.35, at R200 2.00
+
+Hypothetical rival; every knob disclosed. kappa = 1/2 FITTED; not theory closed.

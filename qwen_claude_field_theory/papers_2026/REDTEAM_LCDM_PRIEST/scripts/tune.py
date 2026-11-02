@@ -1,6 +1,8 @@
 """Knob tuning per ../FROZEN_TUNING.md. Hypothetical rival, not a framework result. kappa = 1/2 FITTED; not theory closed."""
 from lib import *
 from scipy.optimize import least_squares
+import os, sys
+A1 = os.environ.get('TUNE_A1') == '1'
 MS = 10**np.linspace(10, 12.7, 8)
 NAMES = ['c_norm', 'c_slope', 'shmr_norm', 'logM1', 'beta', 'gamma', 'contract', 'size_norm', 'size_slope', 'gas_norm', 'gas_slope']
 BASE_K = np.zeros(11); BASE_K[6] = 1.  # base: Blumenthal, all shifts zero
@@ -22,7 +24,11 @@ def gal(C, i, k, cmul=1.):
     m0 = (1 - fb) * h.m(rd)
     _, m1 = contract(h, Mb, Rd, 'blumenthal', fb)
     m = np.maximum((1 - f) * m0 + f * m1, 1e-3 * m0)
-    r = np.logspace(np.log10(.5 * Rd), np.log10(5 * Rd), 12)
+    rmax = 5 * Rd
+    if A1:
+        rr = np.logspace(np.log10(.5 * Rd), np.log10(.9 * h.R), 80); gg = np.maximum(disc_v2(rr, Mb, Rd), 1e-30) / rr
+        below = np.where(gg <= .03 * A0)[0]; rmax = max(rr[below[0]] if len(below) else rr[-1], 1.1 * rr[0])
+    r = np.logspace(np.log10(.5 * Rd), np.log10(rmax), 12)
     gb = np.maximum(disc_v2(r, Mb, Rd), 1e-30) / r
     return r, gb, gb + G * np.interp(r, rd, m) / r**2, Rd, Mb, h
 def res(k, C, cmul=1.):
@@ -66,9 +72,18 @@ def tune(tag, lo, hi):
         if best is None or r.cost < best.cost: best = r
     print(f'\n{tag} knobs:', ' '.join(f'{n}={v:+.3f}{"*" if min(abs(v-a),abs(v-b))<1e-3*max(b-a,1e-9) else ""}' for n, v, a, b in zip(NAMES, best.x, lo, hi)), '(* at bound)')
     return best.x
+def cover(tag, k):
+    print(f'\ncoverage, {tag}: logM, M*/M200, Rd kpc, g_bar/a0 at 0.5 Rd and last point, g_DM/a0 at last point, lowest-g share of DM')
+    for i in [0, 3, 5, 7]:
+        r, gb, gt, Rd, Mb, h = gal(base, i, k)
+        dn, dm1, db, dg = k[2:6]; Ms = smhm(MS[i], N=.0351 * 10**dn, lM1=11.59 + dm1, b=1.376 + db, g=.608 + dg)
+        print(f' {np.log10(MS[i]):.1f}  {Ms/MS[i]:.3f}  {Rd/kpc:.2f}  {gb[0]/A0:.1f}  {gb[-1]/A0:.3f}  {(gt[-1]-gb[-1])/A0:.2f}  {1-gb[-1]/gt[-1]:.2f}')
+if os.environ.get('TUNE_DIAG') == '1':
+    cover('first-run Tier 1', np.array([.11, -.05, .18, .3, -.003, -.2, 0, -.2, .002, .3, .037]))
+    cover('first-run Tier 2', np.array([.255, -.142, .54, .043, -1.071, -.566, -.004, -.6, .214, .679, .3])); sys.exit()
 report('BASE: no tuning, Blumenthal', BASE_K)
-k1 = tune('TIER 1', *bounds(1, 0, 1)); report('TIER 1 plausible ranges', k1)
-k2 = tune('TIER 2', *bounds(3, -1, 1)); report('TIER 2 ranges tripled', k2)
+k1 = tune('TIER 1', *bounds(1, 0, 1)); report('TIER 1 plausible ranges', k1); cover('Tier 1', k1)
+k2 = tune('TIER 2', *bounds(3, -1, 1)); report('TIER 2 ranges tripled', k2); cover('Tier 2', k2)
 # Tier 3: explicit rho_DE dependence
 def sl_p(p):
     mul = lambda C: (C.rde / base.rde)**p

@@ -20,4 +20,6 @@ Hypothetical rival exercise, not a framework result, not a derivation. Every kno
 - Tier 3, Tier 2's best plus c multiplied by (rho_DE / rho_DE0)^p, p solved for T4. Then a separate c shift per cosmology and per redshift, solved for T5 and T6.
 - Tier 4, free-form halo: M_DM(r) = r^2 (g_law - g_bar) / G for each galaxy. T1 to T3 hold by construction. Report the positive-density check and the departure from NFW.
 
+**AMENDMENT A1, after the first run's numbers, disclosed as such.** Tier 2's rms of 0.0000 looked degenerate. A1 prints the acceleration coverage of the tuned discs. It also reruns Tiers 1 to 3 with the fit range extended from 0.5 R_d out to where g_bar = 0.03 a0 (or 0.9 R200 if that comes first), so the tuner can't stay out of the low-acceleration regime the law is about. The first run stays on record in `tune.out`. The rerun is `tune_A1.out`. Targets and knob ranges are unchanged.
+
 **Reported whichever way it lands:** pass or fail per target, knob values, knobs at their bounds. A pass at Tier 3 or 4 is a statement about how much freedom there is. It is not evidence for or against the law or LCDM.

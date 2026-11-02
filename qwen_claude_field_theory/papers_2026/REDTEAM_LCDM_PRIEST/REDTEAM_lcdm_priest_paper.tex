@@ -102,6 +102,35 @@ Coupled dark sector & $9.36\times10^{-11}$ & $+0.50$ & 2--3 & By hand; $\alpha^3
 
 The coupled sector is the superfluid form $a_0=\alpha^3\Lambda^2/M_{\rm Pl}$ \cite{BFK}, with $\Lambda^4=\rho_{\rm DE}$ imposed. It has the law's form because the form was imposed, and $\alpha$ is far from that paper's $\alpha^3$ of about 185.
 
+\section*{All the knobs: how perfect it can be made}
+Targets and ranges were frozen before any number (\texttt{FROZEN\_TUNING.md}). The base model is Blumenthal contraction on 8 halo masses, with eleven knobs: $c(M)$ norm and slope, four SHMR parameters, contraction fraction, disc size norm and slope, gas norm and slope. Tier~1 ranges are my judgement, not a cited compilation.
+
+\textbf{The first run found a loophole.} With ranges tripled, it reached rms 0.0000\,dex, spread 0.001\,dex and $a$ within 0.05\,\% of the law. It got there by shrinking a $10^{10}\,M_\odot$ galaxy's disc to 0.04\,kpc, so every point sat at $g_{\rm bar}$ of 93--246 times $a_0$ even at its outermost radius. There, the inner NFW acceleration is nearly constant and mimics $g_{\rm bar}+a_0$, with $g_{\rm DM}$ at 0.98\,$a_0$ for every mass. The match never touched the low-acceleration regime. Amendment A1, made after seeing this and disclosed as such, extends each fit out to $g_{\rm bar}=0.03\,a_0$.
+
+\small
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.25\linewidth}cccccc@{}}
+\toprule
+Tier (A1 fit range) & Added freedom & T1 level & T2 flat & T3 shape & T4 slope & T5 $\kappa$ & T6 $z$ \\ \midrule
+Base & none & F & F & F & F & F & F \\
+1 & eleven knobs, plausible & P & F & F & F & F & F \\
+2 & ranges tripled & P & P & P & F & F & F \\
+3 & plus $c\propto\rho_{\rm DE}^{0.30}$ by hand & P & P & P & P & F & F \\
+3b & plus a $c$ shift per cosmology and per $z$ & P & P & P & P & solved & solved \\
+4 & free-form halo copied from the law & built in & built in & built in & built in & built in & built in \\
+\bottomrule
+\end{tabular}
+\normalsize
+
+\begin{itemize}
+\item \textbf{Tier 1} reaches ratio 1.002 but has 0.247\,dex mass spread and rms 0.0226\,dex, with most knobs at their bounds. In plausible ranges, the law's level is reachable and its mass independence and shape are not, on this toy.
+\item \textbf{Tier 2} gets rms 0.0054\,dex and spread 0.012\,dex, the near-perfect fit you'd expect to be asked for. Its price is discs of 0.03\,kpc at $10^{10}\,M_\odot$ and 0.14\,kpc at about $1.5\times10^{11}$, far too small to be real galaxies, plus $\log M_1$ shifted by 0.54 and $\beta$ by $-0.83$. Its slope stays at $+0.182$.
+\item \textbf{Tier 3} gets the $+0.500$ slope only by writing $\rho_{\rm DE}^{0.30}$ into the concentration. Nothing computes that exponent. $\kappa$ still runs 0.455, 0.665, 0.800, and $a(z)/a(0)$ is 1.79, 2.07, 2.68, outside the band.
+\item \textbf{Tier 3b} needs $c$ shifts of $+0.041$, $-0.098$, $-0.183$\,dex by cosmology and $-0.306$, $-0.384$, $-0.617$\,dex at $z$ of 1, 1.5, 2.33. Each was solved alone and the shifts were not run jointly, so ``solved'' means one at a time. The shift at $z=2.33$ is a factor of about 4 in concentration, with no process behind it.
+\item \textbf{Tier 4} is exact because it's the law renamed: $M_{\rm DM}=r^2(g_{\rm law}-g_{\rm bar})/G$, the phantom halo. Density stays positive at the masses checked, and its mass against NFW at $R_{200}$ is 1.56, 1.44, 1.25, 0.55. It tends to $\rho\propto r^{-2}$ outward with no process to produce that. It would also inherit every failure of the law: IC~1613, X-COP and the rest. So perfect agreement with the law is not agreement with the data.
+\end{itemize}
+
+\textbf{Reading.} A perfect match is available, and the cost is visible: impossible discs, then $\rho_{\rm DE}$ inserted by hand, then a separate knob per cosmology and redshift, then the law itself as the halo. This shows how much freedom there is, not that either side is right. It also gives any reader a checklist: disc sizes, fit range reaching $g_{\rm bar}\ll a_0$, slope with $\rho_{\rm DE}$, $\kappa$ across cosmologies.
+
 \section*{What the exercise shows}
 \begin{itemize}
 \item \textbf{The rival can reach the number, not the law.} No route produced the $+\tfrac12$ slope from dynamics. So the question to ask of any such paper is its slope $d\ln a/d\ln\rho_{\rm DE}$, its $\hat\kappa$ across cosmologies, and how many definitions it tried.
