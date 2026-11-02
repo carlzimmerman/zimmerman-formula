@@ -38,7 +38,9 @@ S SPARC, Tl tilt, LT LITTLE THINGS, G groups, K 15 cluster shear keys, X X-COP, 
 
 **Outer cluster shear on measured gas.** G-OUT-M3 reads 1.56 against 1.04, Z +4.41 statistical, about +3.0 to +3.5 with systematics (M3A1). Native two-halo supplies 3-11 % of +21 to +27 %. The response cuts the wrong way: on the native shape it is outward at every radius, taking keys from 12 to 10 of 15 and X-COP from pass to fail (HM1), while the weighings want it on. That is the sector's tension in one row.
 
-**Doors tried, by each lane's label.** Density term: SPARC BREAKS. Phase-space cap: BITES, FAILS. Retention: FAILS. Barotropic halo: MOVES, FAILS. Fresh hunt, 19 routes: no mechanism survives whole. Derived T, three attempts: LOCATED, NOT DERIVED. Shift-symmetric P(X): c_s² < 0 at all 14 grid z_on, NEEDS A SELECTED LAGRANGIAN, a family result and not a no-go theorem. A per-galaxy action-response lane (AR1) is still running; it can go in the record but can't reinstate the sector.
+**Closest cluster reading, not a pass (FR1).** A gas-fraction line from hydrostatic masses, fitted without X-COP or shear, takes the native profile from 12 to 14 of 15 keys with X-COP passing: G-OUT-M3 +3.48, +3.09 at h 0.672, 0.686, joint p 0.16-0.17. Its frozen label is NOT RETENTION [MASS-METHOD-DEPENDENT] [ERROR-DEPENDENT], by one cell (reach 0.306 against 1/3). Leaving out either sample gives 12 of 15, and part of the slope is a step between samples. The line's real error at this mass is about 0.04 dex, or ±1.1 in Z. Lensing-calibrated masses overshoot, 6 of 15 with X-COP failing, so the mass method is the main open point. FR1 was frozen after the retirement, was not blind and doesn't touch galaxies. It reinstates nothing.
+
+**Doors tried, by each lane's label.** Density term: SPARC BREAKS. Phase-space cap: BITES, FAILS. Retention, earlier lane: FAILS; FR1 is above. Barotropic halo: MOVES, FAILS. Fresh hunt, 19 routes: no mechanism survives whole. Derived T, three attempts: LOCATED, NOT DERIVED. Shift-symmetric P(X): c_s² < 0 at all 14 grid z_on, NEEDS A SELECTED LAGRANGIAN, a family result and not a no-go theorem. A per-galaxy action-response lane (AR1) is still running; it can go in the record but can't reinstate the sector.
 
 ## 4. What a successor must do
 | # | Must | Law | Native halos |
@@ -57,6 +59,12 @@ S SPARC, Tl tilt, LT LITTLE THINGS, G groups, K 15 cluster shear keys, X X-COP, 
 | 12 | have an action | open | P(X) dust limit only |
 
 Collisions: rows 4 and 11 (dust in the CMB falls into galaxies); rows 1-3 and 10 (the amount needed runs from about 0.8 of native on SPARC to 1.22-1.80 on clusters); rows 7 and 8 (same-mass systems want different things). Selectors closed on inputs tested: potential, σ, acceleration, environment, formation epoch, gas state, bars. No theorem. One family stays outside the programme's no-particle rule: a 5-11 eV fermion, whose forest kill isn't on the current footing and isn't overturned. Older rows sit on older chains, and FG1 supersedes any it covers.
+
+**Covariant attempts already on record.** These are the programme's own versions, on Skordis and Złośnik's AeST and Blanchet and Skordis's Khronon. They don't test those theories as published.
+- **v9, an AeST embedding:** fails the preferred-frame bounds, α₁ = −2(K_B + 2).
+- **v3, Khronon with an added term:** linear growth fails, because the published cap μ_K ≤ 14.8 h/Mpc sits 24-172 × below what σ₈ needs. It also has no radiation era as written.
+- **v4, AeST with that term:** ill-posed where the aether twists, and it runs away on FRW for the dust shape tried.
+- **v3s, v3 with switched stiffness:** frozen. It passes as a galaxy law and fails on cluster cores, linear growth, hosted dwarfs and the Milky Way disc, with a structural gap at caustics.
 
 ## 5. Dated tests
 - **ALMA U4_28473, public 2026-11-06 02:42:31 UTC** (PAPER66 v1.2, DOI 10.5281/zenodo.23868979). Tests this galaxy's mass budget, not a₀(z). One disc excludes no model.
