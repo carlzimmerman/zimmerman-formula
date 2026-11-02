@@ -478,8 +478,8 @@ def static_branch(key, mu_Mpc, foot, N=1200):
     mu = mu_Mpc * 1e-3
     if key == "1e12":
         Rout = 300.0
-        Md, Rd = 6.72e10, 3.565
-        MB = lambda r: Md * (1 - (1 + r / Rd) * np.exp(-r / Rd))
+        Mdisc, Rd = 6.72e10, 3.565
+        MB = lambda r: Mdisc * (1 - (1 + r / Rd) * np.exp(-r / Rd))
     else:
         Rout = 3000.0
         R5, rcg, Mg = 1350.0, 202.5, 1.19e14
@@ -494,13 +494,19 @@ def static_branch(key, mu_Mpc, foot, N=1200):
     def shoot(h0):
         s = solve_ivp(rhs, (r0, Rout), [h0, 0.0], rtol=1e-9, atol=[1e-6, 1.0], method="LSODA", dense_output=True)
         return s
-    # Psi(R_out)=0 means h(R_out)=0, mu term included
-    hi = 1.0
-    f = lambda h0: shoot(h0).y[0, -1]
-    lo = 0.0
-    while f(hi) < 0:
-        hi *= 2
-    h0 = brentq(f, lo, hi, xtol=1e-6)
+    # Psi(R_out)=0 means h(R_out)=0, mu term included. A2: scan h0 for the root with h > 0 on the whole
+    # range (the well's branch); at large mu R_out the oscillation may leave none, then the row is NOT RUN
+    grid_h = np.logspace(2, 9, 57)
+    fv = [shoot(x_).y[0] for x_ in grid_h]
+    h0 = None
+    for i_ in range(len(grid_h) - 1):
+        if fv[i_][-1] * fv[i_ + 1][-1] < 0:
+            c_ = brentq(lambda z: shoot(z).y[0, -1], grid_h[i_], grid_h[i_ + 1], xtol=1e-6)
+            if np.all(shoot(c_).y[0][:-1] > 0):
+                h0 = c_
+                break
+    if h0 is None:
+        return None
     s = shoot(h0)
     # field cells uniform in log r near the centre then linear: uniform in sqrt r
     x = np.linspace(np.sqrt(0.02 * Rout / 300), np.sqrt(Rout), N + 1) ** 2
@@ -516,6 +522,8 @@ def static_branch(key, mu_Mpc, foot, N=1200):
 
 def held_row(key, mu_Mpc, foot, kick=0.01, wall=1200.0):
     S = static_branch(key, mu_Mpc, foot)
+    if S is None:
+        return dict(key=key, mu=mu_Mpc, foot=foot, label="NOT RUN", reason="no positive static branch to R_out")
     dm = np.diff(np.concatenate([[0.0], S["Md"]]))
     neg = np.where(dm <= 0)[0]
     r = S["r"]
@@ -545,6 +553,7 @@ def held_row(key, mu_Mpc, foot, kick=0.01, wall=1200.0):
         out["t_fold_Gyr"] = float(s["t_fold"] * TU)
         i = s["i"]
         out["r_fold_kpc"] = float(0.5 * (R.r[i] + R.r[i + 1]))
+        out["cell_fold"] = i
         out["label"] = "FOLD FIRST"
     elif s["status"] == "END":
         out["label"] = "HOLDS 14 Gyr"
