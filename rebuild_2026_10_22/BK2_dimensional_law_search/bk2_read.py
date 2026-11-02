@@ -81,7 +81,7 @@ def main():
         if not pass_x: continue
         p = Gt.sp(s, Gt.ST, Gt.ST65, Gt.ST80, "ST")
         if p is None: continue
-        C["g2_line"] += p["line"]; C["g2_err"] += p["err"]; tl = x["line"] and p["line"]; te = x["err"] and p["err"]; C["train_line"] += tl; C["train_err"] += te; C["train_line_cass"] += tl and sol["cass"]; C["train_err_cass"] += te and sol["cass"]; C["fitted_train_err"] += te and fit
+        C["g2_line"] += p["line"]; C["g2_err"] += p["err"]; tl = x["line"] and p["line"]; te = x["err"] and p["err"]; C["train_line"] += tl; C["train_err"] += te; C["train_line_cass"] += tl and sol["cass"]; C["train_err_cass"] += te and sol["cass"]; C["fitted_train_err"] += te and fit; C["POST_train_err_noZs"] = C.get("POST_train_err_noZs", 0) + bool(abs(x["Zm"]) <= 2 and p["err"])
         z = max(abs(x["Zm"]), x["Zs"], p["Zr"], p["Zu"], sol["Zc"] if sol["cass"] else 0.0); row = dict(F=s, fit=fit, cass=sol["cass"], Zc=sol["Zc"], X=x, S=p, Z=z, Zl=max(abs(x["mean"]) / .05, x["rms"] / .10, p["rms"] / (1.05 * p["rms_law"]), abs(p["med"]) / .03))
         for H, key, cap in ((heap, "Z", 200), (keepL, "Zl", 200)):
             it = (-row[key], len(s), s, row)
