@@ -1,6 +1,6 @@
 # Closing ledger, 2026-11-01. DRAFT, no deposit
 
-What route E's closing push established. Scorecard: `FG1_final_grade/README.md`. Requirements: `REQUIREMENTS_2026-11-01/REQUIREMENTS_LIST.md`, with `FOREST_KILL_AUDIT.md`. Gate table: `CLOSURE_TABLE_2026-11-01_DRAFT.md`. κ = ½ FITTED. T located, not derived. Cold dark energy is a gravitating field component, never a particle. Not theory closed. Nothing here says the data favour the framework. This is numerical evidence for the families tried, not a no-go theorem. Whether route E is retired is the owner's decision.
+What route E's closing push established. Scorecard: `FG1_final_grade/README.md`. Requirements: `REQUIREMENTS_2026-11-01/REQUIREMENTS_LIST.md`, with `FOREST_KILL_AUDIT.md`. Gate table: `CLOSURE_TABLE_2026-11-01_DRAFT.md`. κ = ½ FITTED. T located, not derived. Cold dark energy is a gravitating field component, never a particle. Not theory closed. Nothing here says the data favour the framework. This is numerical evidence for the families tried, not a no-go theorem. **Owner, 2026-11-01: route E's cold sector is retired** (`OWNER_DECISION_2026-11-01_RETIRE_COLD_SECTOR.md`).
 
 ## Verdict as frozen
 **ROUTE E DOES NOT SURVIVE ON MEASURED DATA [GAS-CONDITIONAL]. All four candidates fail.** FG1 declares no winner.
@@ -49,10 +49,11 @@ Landed after the first draft:
 | DR8 | live response of a cored halo, one mass, isolated | Blumenthal OVER-PREDICTS, PARTIAL, f_B 0.753 [0.729, 0.777]; the claimed 5-10× is about 1.5 at 2.2 R_d. Rule MOVES, FAILS, Υ 0.44/0.46, posited not derived. Measured response carried at one mass: Υ 0.42/0.43, SPARC line missed |
 | SP3 | starting point (briefed as SP1, id taken) | PARTLY as frozen, only through hand FAIR200 + Blumenthal, which fails tilt, groups, LITTLE THINGS; in EM1, AM1, E1, C1 no response-on start reaches Υ's line |
 | UL1 | Υ line against measured Υ | RESPONSE NOT CONSISTENT WITH MEASURED UPSILON, Taylor and GSWLC; the a₀ law fails the same gate. UR3's c 12.95 definition error is real (c200 8.0). No line moved, not a pass of route E |
+| OD1 | old-star dispersions on DiskMass | NOT SEPARATED [JEANS-DEPENDENT] [HZ-DEPENDENT]. Frozen c 1.414-1.517: round rule 0.82-0.88, native f_Q 0.71-0.76, under the line. DiskMass's support for light discs is conditional on c; the sources' tables run about 1.2 to 1.9, and law and response swap at 1.31-1.37 with exact Jeans and S4G h_z. GSWLC and the Milky Way don't use c |
 
 **Audit.** CRG1 clean-room regrade of FG1: REPRODUCED, 295 items, 289 MATCH, 6 CLOSE, 0 DISAGREE, no pass/fail flip in Tier A or B. This mainly tests code: definitions came from the same chain, the harness saw FG1's verdicts in its context, and MW, DM, IC and C2's G, Ln were not recomputed. C3's Dw pass depends on one reading (A13): flag by host passes, flag by mass fails at canonical.
 
-**Open, so this ledger stays a draft:** HM1 (native shape + measured response, candidate C5 on FG1's scorecard) and OD1 (old-population disc masses, a data audit of the weighings), both frozen on 11-01 with no result yet. Either can add a line here. The mechanism freeze takes effect when they land, unless the owner opens more.
+**Open, so this ledger stays a draft:** HM1 (native shape + measured response, candidate C5 on FG1's scorecard) and AR1, both frozen before the retirement, with no result yet. Either can add a line here. Neither can reinstate the cold sector; only the owner can.
 
 ## What stands
 - The a₀ law on galaxies, canonical: rms 0.0541, Υ 0.52, tilt +0.02, LITTLE THINGS −0.025, lensing preferred. κ fitted; misses Milky Way, IC 1613, dwarfs' UFD class, clusters.
@@ -65,7 +66,7 @@ Landed after the first draft:
 
 ## What could move this verdict
 - **Gas scale.** K's failure rests on +0.005 ± 0.017 (GS4). A measured scale near +0.09 to +0.11 rescues K, and only K.
-- **Disc masses.** The Υ line and the weighings disagree on how much response spirals show (UL1, SP3); OD1 audits the ruler.
+- **Disc masses.** The Υ line and the weighings disagree on how much response spirals show (UL1, SP3). OD1 left it NOT SEPARATED; decided only by two-component fits to DiskMass-class spectra.
 - **A cosmological environment** around the steepening at 1.4-2 R₂₀₀: untested, and the one physical input left on G-OUT-M3.
 - **Sealed tests.** U4_28473, CO(3-2), public 2026-11-06 02:42:31 UTC, PAPER66 v1.2 DOI 10.5281/zenodo.23868979: tests the mass budget, and one disc excludes no model. GS4_24110, 2026-11-28 by earlier metadata; Gaia DR4, 2026-12-02 by the record; recheck both dates. SP1 and SP2 sealed lensing predictions await data.
 
@@ -90,7 +91,8 @@ From `REQUIREMENTS_2026-11-01/REQUIREMENTS_LIST.md`, where the footing tags and 
 **Audit line.** The 5-11 eV fermion corner's forest kill is KILL NOT ON THE CURRENT FOOTING, NOT OVERTURNED (`FOREST_KILL_AUDIT.md`): the yardstick isn't forest data. Nothing shows the corner passes, and the no-particle rule is unchanged, so the family stays out.
 
 ## Decisions for the owner
-1. Retire route E's cold sector, keep it as a conditional programme, or restate it.
-2. Whether a₀ may return outside the cold sector (C3 needs it; breaks the 10-31 rule).
-3. BOLTZ1's three: the a₀ sector's action, dust beside the law or one field, and what happens past the first caustic.
-4. Whether to open a cosmological-environment zoom, which needs disk (25 GB free, 30 GB gate).
+1. **Decided, 2026-11-01: route E's cold sector is retired.** The flagship is written around the a₀ law and the failure record.
+2. A₀ returning outside the cold sector: moot.
+3. BOLTZ1's three: "dust beside the law or one field" and "past the first caustic" are moot. The a₀ sector's action stays open.
+4. Cosmological-environment zoom: moot, not opened.
+5. Still open: deposit timing for the flagship. No deposit without the owner's go.

@@ -40,3 +40,6 @@ Carry `REQUIREMENTS_2026-11-01/REQUIREMENTS_LIST.md` as a section of the ledger 
 
 ## OD1, owner's go, 2026-11-01: for the closing ledger and the summary
 `OD1_old_disc_ruler` (criteria fc5face2a5) is a data-side audit. **NOT SEPARATED [JEANS-DEPENDENT] [HZ-DEPENDENT].** Same-population dispersions remove DiskMass's support for light discs; they don't establish heavy ones. SP3's and UL1's DiskMass leg is now conditional on c; UL1's GSWLC and the Milky Way legs don't use c. With exact Jeans and S4G thickness, law and response swap at c about 1.31-1.37, and the sources' own tables run from about 1.2 to 1.9. Ledger session: the DiskMass line in "Two walls" and SP3/UL1's rows should carry this. Not edited here.
+
+## Owner, 2026-11-01: route E's cold sector is retired
+`OWNER_DECISION_2026-11-01_RETIRE_COLD_SECTOR.md`. The flagship is written around the a₀ law and the failure record. HM1 and AR1 may finish and go in the record; neither can reinstate the sector. **The outside summary's closing question must be restated before it's sent:** it asks how to stop a cold component contracting.
