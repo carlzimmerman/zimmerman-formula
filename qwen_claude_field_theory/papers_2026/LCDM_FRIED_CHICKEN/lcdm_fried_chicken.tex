@@ -1,0 +1,82 @@
+% Rival-flavoured exercise, not a framework result, adopts nothing. Build: tectonic lcdm_fried_chicken.tex. Audit: python3 audit.py.
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,booktabs}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={ACDM flavored fried chicken version of Galaxy Dnynamics}, pdfauthor={C. P. Zimmerman}}
+\title{ACDM flavored fried chicken version of Galaxy Dnynamics}
+\author{Carl P. Zimmerman\\Briar Creek Tech, USA}
+\date{Draft, 2 November 2026. Not deposited.}
+\begin{document}
+\maketitle
+\begin{abstract}
+``Fried chicken'' is a nickname and carries no physics. This paper asks how exactly the knobs of $\Lambda$CDM galaxy modelling can reproduce the law $g_N=g^2/(g+a_0)$, with $a_0=\kappa c\sqrt{G\rho_{\rm DE}}=9.36\times10^{-11}$\,m\,s$^{-2}$ and $\kappa=\tfrac12$ fitted, on the measured baryons of 171 SPARC galaxies. Abundance-matched halos with global knobs stall at 0.0715\,dex from the law, and nine global knobs reach 0.0408\,dex, against a target of 0.02\,dex frozen in advance. An exact match on real halo parts exists: 0.0056\,dex with four free parameters per galaxy. It needs halos up to about 16 times heavier than abundance matching at the 84th percentile and a median concentration 2.6 times too low. Held to priors a referee would accept, the same fit stays at 0.0396\,dex. No version we ran gets the law's tie to dark energy from the halo side: the dependence had to be written in by hand, and even then one exponent per variable did not pass. The exact halo itself is a stable equilibrium in all 171 galaxies, so stability does not rule the imitation out. It has no known formation path. This is a statement about freedom in the models. It is not evidence for the law or against $\Lambda$CDM, and every knob is disclosed.
+\end{abstract}
+
+\section{What is being imitated}
+The target is the law's curve on each galaxy's own baryons, not the observed rotation curve. The law is not new in form: the scale goes back to Milgrom \cite{milgrom83,milgrom99}, and this interpolating form has appeared before \cite{limbach08}. Only the coefficient looks new, and it is fitted. The law carries its own failures, including IC~1613 and X-COP, listed in PAPER67 (DOI 10.5281/zenodo.23883741). A perfect imitation inherits them.
+
+SPARC \cite{lelli16} supplies the baryons, with $\Upsilon_{\rm disk}=0.5$, $\Upsilon_{\rm bul}=0.7$ and no per-galaxy adjustment, giving 3373 points. Four of the 175 galaxies have too few usable points. Against the observed curves on these points, the law's rms is 0.1951\,dex.
+
+\section{Targets, frozen before any number}
+E1: pooled rms to the law at most 0.02\,dex. E2: 95th percentile of per-galaxy rms at most 0.04\,dex. E3: no half-dex $g_{\rm bar}$ bin off by more than 0.02\,dex. E4: $d\ln a/d\ln\rho_{\rm DE}=0.50\pm0.05$ at fixed $\omega_m$, $\omega_b$, $A_s$. E5: $a(z)/a(0)$ inside the law's band at $z=1$, 1.5 and 2.33. Later additions came after the first numbers and are marked Amendment A1 in \texttt{FROZEN\_RECIPE.md}, including R3's restart, R6, R7, R8 and the joint hand terms.
+
+\section{The menu}
+\begin{table}[h]\centering\small
+\begin{tabular}{llrrrr}
+\toprule
+Recipe & Parameters & rms & p95 & worst bin & $a$ ($10^{-11}$)\\
+\midrule
+R1 NFW, abundance matching, no tuning & 0 & 0.1419 & 0.2877 & 0.1613 & 15.76\\
+R1 tuned, with contraction & 4 & 0.0715 & 0.1486 & 0.0441 & 9.12\\
+R2 tuned, with feedback core & 6 & 0.0721 & 0.1357 & 0.0283 & 8.65\\
+R3 thermal halo, two global laws & 2 & 0.2245 & 0.3187 & 0.2261 & 6.06\\
+R4 thermal halo, per galaxy & 342 & 0.0609 & 0.1119 & 0.0260 & 8.97\\
+R7 surface-density coupling & 9 & 0.0408 & 0.0777 & 0.0413 & 9.21\\
+R8p per galaxy, referee priors & 684 & 0.0396 & 0.0665 & 0.0148 & 9.72\\
+\textbf{R8 per galaxy, wide} & 684 & \textbf{0.0056} & \textbf{0.0130} & \textbf{0.0031} & 9.36\\
+\textbf{R6 one empirical function} & 1 & \textbf{0.0075} & \textbf{0.0118} & \textbf{0.0180} & 9.37\\
+\textbf{R5 exact shell masses} & 3373 & \textbf{0.0000} & \textbf{0.0000} & \textbf{0.0000} & 9.36\\
+\bottomrule
+\end{tabular}
+\caption{Distance to the law in dex. Bold passes E1 to E3. Thresholds are 0.02, 0.04 and 0.02.}
+\end{table}
+
+\textbf{The level comes cheaply.} Four knobs bring the fitted acceleration from $15.76$ to $9.12\times10^{-11}$, within 3\,\% of $a_0$, with the concentration knob at its bound. Getting the right number from tuned halos is easy, so the number alone proves little.
+
+\textbf{The shape does not.} Halos set by mass alone can't follow galaxies of the same mass and different surface density. Coupling $c$ and $M_{200}$ to $M_b/R_d^2$ helps, to 0.0408\,dex, with the abundance-matching normalisation at its bound. It still misses all three targets. Measured against the observed curves, though, R7 has rms 0.1964\,dex against the law's 0.1951. These data, with these fixed mass-to-light ratios, barely tell them apart.
+
+\textbf{The thermal halo misses.} An isothermal halo in the baryon potential looked like the natural imitator \cite{kaplinghat16}. With two global laws it fails at 0.2245\,dex, from either starting point, and with 342 free parameters it still reaches only 0.0609. Its per-galaxy fits do land near $\sigma^4=GM_ba_0/4$, median ratio 1.017, with wide scatter (0.568 to 3.174).
+
+\section{The exact dish, and its bill}
+\textbf{R8} uses real parts: NFW \cite{nfw}, Blumenthal contraction \cite{blumenthal86}, a coreNFW core \cite{read16}. Each galaxy gets its own $M_{200}$, $c$, contraction fraction and core exponent. It passes E1 to E3. The bill, relative to abundance matching \cite{moster13} and $c(M)$ \cite{diemer19}: $\log M_{200}$ shifts by median $+0.29$ and $+1.2$ at the 84th percentile, and $\log c$ by median $-0.42$, reaching $-0.81$ at the 16th. Contraction is near full (median 0.9). Under priors of 0.11\,dex in $c$ and 0.3\,dex in $M_{200}$, R8p is 0.0396 and fails E1 and E2.
+
+\textbf{R6} is one line, the published empirical form \cite{mcgaugh16}, with $g_\dagger=9.585\times10^{-11}$, or 1.024 $a_0$. It passes E1 to E3 with one number, but writes the law's content as a halo response with no process behind it.
+
+\textbf{R5} is the law renamed: $M_{\rm DM}(r)=r^2(g_{\rm law}-g_{\rm bar})/G$. We checked whether it could exist at all, as a spherical halo with baryons smoothed by 0.1\,dex. Density is positive in 171 of 171, the isotropic Jeans dispersion is positive in 171 of 171, and the Eddington distribution function is non-negative to 1\,\% of its peak in 171 of 171. The same Eddington code returns $+0.0000$ for Hernquist and $-0.2555$ for a cored tracer in a point-mass potential, so it can fail. Stability is therefore no argument against the imitation.
+
+Its origin is the weak point. Undoing Blumenthal contraction gives a monotonic initial profile in 158 of 171 galaxies. An NFW fit to that initial profile has median rms 0.057\,dex and 0.261 at the 84th percentile, with median $c$ at 0.32 of the $c(M)$ value. Against abundance matching, the implied $\log M_{200}$ has median $+0.16$, but $-0.76$ at $\log M_b$ 11 to 12.
+
+\section{The dark energy tie}
+This is the part the knobs don't supply. On R7 with no hand term, the slope is $+0.235$ and fails E4. Writing $c\propto\rho_{\rm DE}^{0.23}$ gets $+0.500$, but $\kappa$ then runs 0.446, 0.682, 0.851 across $(\Omega_\Lambda,H_0)=(0.70,67.4)$, $(0.685,73)$, $(0.65,73)$, far outside 5\,\%. Most of that spread follows $H_0$. In redshift, the bare recipe gives 1.43, 1.85, 2.90, out of band. One more hand exponent, $c\propto(1+z)^{-1.11}$, gives 0.74, 0.86, 1.25, still out at $z=1$ and $z=2.33$. Baryons were held fixed in redshift here, which no real galaxy does. R5 and R6 pass E4 and E5 only if $a_0$ is written into them directly, and that is the law copied in. R3, with the same scale written in, gives $+0.810$ and fails.
+
+\section{Reading the menu}
+A paper claiming to derive this law from $\Lambda$CDM should show these five things: the prior on $M_{200}$ and $c$ per galaxy, the fit against surface-density diversity and not only mass, the slope with $\rho_{\rm DE}$ with baryons evolved, $\kappa$ across cosmologies, and a formation path to the required halo. Failing them doesn't refute $\Lambda$CDM, since real simulations could do things this model can't. Passing them would be a real result, and the law would then have to be read as an output of the halo side.
+
+\section{Limits}
+This is a semi-analytic model, not a simulation. Baryons are spherically approximated in the halo response. Mass-to-light ratios are fixed. Priors in R8p and knob ranges are my judgement. Masses $M_*$ use one $\Upsilon$ and one SHMR. Clusters and lensing are not graded. A coding error in the cosmology rows was found and fixed during this work; the wrong output is kept in the repository. All numbers are AI-run and have not been reproduced independently.
+
+\begin{thebibliography}{99}\small
+\bibitem{milgrom83} Milgrom M., 1983, ApJ, 270, 365.
+\bibitem{milgrom99} Milgrom M., 1999, Phys. Lett. A, 253, 273.
+\bibitem{limbach08} Limbach C., Psaltis D., \"Ozel F., 2008, arXiv:0809.2790.
+\bibitem{lelli16} Lelli F., McGaugh S.~S., Schombert J.~M., 2016, AJ, 152, 157.
+\bibitem{mcgaugh16} McGaugh S.~S., Lelli F., Schombert J.~M., 2016, PRL, 117, 201101.
+\bibitem{nfw} Navarro J.~F., Frenk C.~S., White S.~D.~M., 1997, ApJ, 490, 493.
+\bibitem{blumenthal86} Blumenthal G.~R. et al., 1986, ApJ, 301, 27.
+\bibitem{read16} Read J.~I., Agertz O., Collins M.~L.~M., 2016, MNRAS, 459, 2573.
+\bibitem{moster13} Moster B.~P., Naab T., White S.~D.~M., 2013, MNRAS, 428, 3121.
+\bibitem{diemer19} Diemer B., Joyce M., 2019, ApJ, 871, 168.
+\bibitem{kaplinghat16} Kaplinghat M., Tulin S., Yu H.-B., 2016, PRL, 116, 041302.
+\end{thebibliography}
+\end{document}
