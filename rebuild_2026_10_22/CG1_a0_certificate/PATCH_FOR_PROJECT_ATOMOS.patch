@@ -1,0 +1,141 @@
+diff --git a/../../project_atomos/gate/candidate.py b/gate/candidate.py
+index 3606bd73d2..82c9bd401e 100644
+--- a/../../project_atomos/gate/candidate.py
++++ b/gate/candidate.py
+@@ -54,6 +54,9 @@ class SearchSpace:
+     structural_null: Optional[Callable] = None
+     structural_eps: float = 1e-5
+     structural_N: int = 4_000_000
++    # CG1 A1: the value the structural null is compared with, in the null's own units. None = target_value.
++    structural_target: Optional[float] = None
++    structural_relation: Optional[float] = None   # CG1 A4: the relation, same units; None = relation_value
+     # COMPARATIVE structural null (the koide_fdr_sqrt2 measure for MECHANISM claims like
+     # "dS-Unruh forces sqrt2"). For an ABSOLUTE structural relation (Koide), P(land on
+     # target) over random no-physics inputs IS the chance rate and bits=-log2(P). For a
+diff --git a/../../project_atomos/gate/fdr.py b/gate/fdr.py
+index 9fa2936d1b..cd80663003 100644
+--- a/../../project_atomos/gate/fdr.py
++++ b/gate/fdr.py
+@@ -29,6 +29,9 @@ import numpy as np
+ 
+ PASS_BITS = 10.0   # operational threshold from GATE_SPEC A
+ 
++# CG1 switches. All True is the repaired gate; all False reproduces the original.
++REPAIRS = dict(A2=True, A3=True, A4=True)
++
+ import math as _math
+ 
+ 
+@@ -110,6 +113,13 @@ def _structural_null(structural_null, target, eps, N):
+     return p
+ 
+ 
++def _support_mismatch(structural_null, target, N):
++    """CG1 A2: a target outside the null's support is a unit or scale error, not a surprise."""
++    out = np.asarray(structural_null(N))
++    out = out[np.isfinite(out)]
++    return not (out.min() <= target <= out.max())
++
++
+ def _structural_comparative(structural_null, target, frac_tol, N, baseline_targets):
+     """koide_fdr_sqrt2's MECHANISM measure for "dS-Unruh forces sqrt2"-class claims.
+ 
+@@ -118,8 +128,8 @@ def _structural_comparative(structural_null, target, frac_tol, N, baseline_targe
+     The meaningful question (koide_fdr_sqrt2) is whether the CLAIMED target is hit MORE
+     densely than a RANDOM O(1) target from the same pool:
+         surplus = -log2( P_target / P_random ).
+-    Comparable density => ~0 bits; LESS dense => NEGATIVE bits (the documented -1.08 for
+-    sqrt2 => 'not special, the derivation carries no information'). Returns
++    Comparable density => ~0 bits. CG1 A6: as computed, MORE dense => NEGATIVE bits (a hit
++    there is less surprising; the documented -1.08 for sqrt2), LESS dense => positive. Returns
+     (p_target, p_random, surplus_bits)."""
+     out = np.asarray(structural_null(N))
+     out = out[np.isfinite(out)]
+@@ -161,8 +171,8 @@ def fdr_test(candidate) -> FDRResult:
+         bits = surplus - log2(mult) if (surplus == surplus and abs(surplus) != float("inf")) else surplus
+         bits = min(bits, cap)
+         passed = bits >= PASS_BITS
+-        special = "SURPRISING: denser than a random O(1)" if passed else \
+-                  ("NOT special: <= random density (mechanism carries ~0 info)"
++        special = "sparser than a random O(1), a hit is surprising" if passed else \
++                  ("NOT special: >= random density (mechanism carries ~0 info)"
+                    if surplus <= 0 else "below 10-bit threshold")
+         tell = (f"comparative density: P(near target)={p_t:.3e} vs "
+                 f"P(near random O(1))={p_r:.3e} -> surplus={surplus:+.2f} bits; {special}")
+@@ -171,8 +181,18 @@ def fdr_test(candidate) -> FDRResult:
+ 
+     # ----- route: ABSOLUTE structural / rational -> structural null ------------
+     if s.structural_null is not None:
+-        p = _structural_null(s.structural_null, candidate.target_value,
++        tgt = s.structural_target if s.structural_target is not None else candidate.target_value
++        rel = s.structural_relation if s.structural_relation is not None else candidate.relation_value
++        if REPAIRS["A2"] and _support_mismatch(s.structural_null, tgt, s.structural_N):
++            return FDRResult(passed=False, bits=0.0, mode="NULL-SCALE-MISMATCH", e_chance=float("nan"), n_hit=-1, chance_prob=float("nan"),
++                             tell=f"target {tgt:.4g} is outside the null's support: unit or scale mismatch, no evidence either way")
++        p = _structural_null(s.structural_null, tgt,
+                              s.structural_eps, s.structural_N)
++        if REPAIRS["A3"] and p == 0:
++            p = 3.0 / s.structural_N   # CG1 A3: an upper limit, finite bits
++        if REPAIRS["A4"] and abs(rel - tgt) >= s.structural_eps:
++            return FDRResult(passed=False, bits=0.0, mode="NO-HIT", e_chance=float("nan"), n_hit=0, chance_prob=p,
++                             tell=f"relation {rel:.5g} is outside the window {tgt:.5g} +- {s.structural_eps:.3g}; null P {p:.3e}, no hit to grade")
+         # look-elsewhere correction: multiply the chance probability by #targets.
+         p_corr = min(1.0, p * mult)
+         bits = -log2(p_corr) if p_corr > 0 else float("inf")
+@@ -202,6 +222,9 @@ def fdr_test(candidate) -> FDRResult:
+     # ----- route: generic real target -> Poisson E_chance + surplus bits -------
+     lib = build_value_set(s.germ_pool)
+     n_hit, e_chance = _poisson_e_chance(candidate.target_value, lib, s.tol)
++    if REPAIRS["A4"] and abs(candidate.relation_value - candidate.target_value) > s.tol * abs(candidate.target_value):
++        return FDRResult(passed=False, bits=0.0, mode="NO-HIT", e_chance=e_chance, n_hit=n_hit, chance_prob=1.0,
++                         tell=f"relation {candidate.relation_value:.6g} is outside tol {s.tol} of the target; E_chance {e_chance:.2f}")
+     # bits from the Poisson expectation: how surprising is a real hit if E_chance hits
+     # are expected? If E_chance >= 1, a hit is expected -> ~0 bits -> BAKED.
+     # surplus = -log2(P(>=1 hit by chance)) ~ -log2(min(1, E_chance)) for the dense regime.
+diff --git a/../../project_atomos/gate/forced_kernel.py b/gate/forced_kernel.py
+index 37df33538b..5e8cd0c922 100644
+--- a/../../project_atomos/gate/forced_kernel.py
++++ b/gate/forced_kernel.py
+@@ -25,6 +25,11 @@ from dataclasses import dataclass
+ from .registry import is_forced, factor_matches_forced, forced_value
+ 
+ 
++# CG1 A5: True requires the implied free number to be p/q, p, q <= 4; False is the original 0.05-20 test.
++REPAIR_A5 = True
++SIMPLE = sorted({p / q for p in range(1, 5) for q in range(1, 5)})
++
++
+ @dataclass
+ class KernelResult:
+     passed: bool
+@@ -86,7 +91,7 @@ def forced_kernel_detector(candidate) -> KernelResult:
+             if coeff.free_params == 0:
+                 coeff_reproduced = abs(implied_free - 1.0) < 1e-9
+             else:
+-                coeff_reproduced = (0.05 < abs(implied_free) < 20.0)
++                coeff_reproduced = (any(abs(abs(implied_free) - k) < 1e-9 for k in SIMPLE) if REPAIR_A5 else (0.05 < abs(implied_free) < 20.0))
+         else:
+             coeff_reproduced = False
+ 
+@@ -111,7 +116,7 @@ def forced_kernel_detector(candidate) -> KernelResult:
+     else:
+         tell = (f"PASS: kernel decomposes into {len(forced)} forced factor(s) "
+                 f"[{', '.join(p for _v, p, _a in forced)}], overdetermined "
+-                f"({n_appear} independent forced appearances), exactly 1 free param (kappa).")
++                f"({n_appear} declared forced appearances; DECLARED, NOT VERIFIED), exactly 1 free param (kappa).")
+ 
+     return KernelResult(
+         passed=passed, n_free_params=n_free, forced_factors=forced,
+diff --git a/../../project_atomos/gate/interlock.py b/gate/interlock.py
+index 4fcf5a17d3..7e6f4fef1c 100644
+--- a/../../project_atomos/gate/interlock.py
++++ b/gate/interlock.py
+@@ -70,7 +70,7 @@ def interlock_check(candidate) -> InterlockResult:
+         if il.cross_sector is not None and il.sector_specific_ingredient:
+             extra = (f" (correctly restricted by '{il.sector_specific_ingredient}'; "
+                      f"other sectors deviate as expected, not a falsification)")
+-        tell = (f"PASS via {mode}: "
++        tell = (f"PASS via {mode} (DECLARED, NOT VERIFIED): "
+                 + (f"{il.n_independent_observables} independent observables forced by "
+                    f"the same parameters" if c1 else
+                    f"{il.n_constants_tied} constants tied with {il.n_free_in_interlock} "
