@@ -114,6 +114,7 @@ def main():
         hs = np.abs(np.round(dx[:, :4], 5) + 0.0).sum(axis=1) * 1e5; samp = (hs.astype(np.int64) % 64 == 0)
         for h in np.round(dx[samp][:, :6], 5):
             if len(dist) < 2000000: dist.add(h.tobytes())
+        if lev == "L2": sig2 = XT["se"] ** 2 + XT["sm"] ** 2; zm_ = m[:, None]; zs = (((dx - zm_) ** 2 / sig2).sum(axis=1) - (nx - 1)) / math.sqrt(2 * (nx - 1)); cm = np.array([dx[:, XT["gid"] == u].mean(axis=1) for u in np.unique(XT["gid"])]); Zm = m / np.hypot(cm.std(axis=0, ddof=1) / math.sqrt(cm.shape[0]), .12); k &= (rm <= .15) | ((np.abs(Zm) <= 2) & (zs <= 2))
         T["xcop"] += int(k.sum()); T["xcop_cass"] += int((k & cas).sum()); F = F[k]; ids = ids[k]; cas = cas[k]
         if not len(F): return
         ds_ = np.log10(GS / F[:, iS]); r = np.sqrt((ds_ * ds_).mean(axis=1)); md = np.median(ds_, axis=1); k = (r <= SF * RL) & (np.abs(md) <= SM); T["sub"] += int(k.sum()); T["sub_cass"] += int((k & cas).sum())

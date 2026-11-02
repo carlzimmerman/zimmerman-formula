@@ -66,6 +66,7 @@ def zmax(a): return max(abs(a["G3"]["Zm"]), a["G3"]["Zs"], a["G2"]["Zr"], a["G2"
 def main():
     foot, mode, lev = sys.argv[1:4]; W = os.path.join(HERE, "chunks", f"{lev}_{foot}_{mode}"); N, oa, oD = names(W); Gt = Gates(foot, mode); seen = set(); C = dict(hits=0, distinct=0, cass=0, g3_line=0, g3_err=0, g2_line=0, g2_err=0, train_line=0, train_err=0, train_line_cass=0, train_err_cass=0, nonfinite=0, fitted_train_err=0); heap = []; keepL = []; keepE = []; XT = Gt.XT
     for ln in open(os.path.join(W, "hits.jsonl")):
+        if C["hits"] % 200000 == 0: print("progress", C, flush=True)
         h = json.loads(ln); C["hits"] += 1; s, fit = hit_str(h, N, oa, oD)
         try: dx = np.log10(XT["go"] / ev(s, XT))
         except Exception: C["nonfinite"] += 1; continue
@@ -75,7 +76,8 @@ def main():
         seen.add(k); C["distinct"] += 1; x = Gt.xc(s, XT); sol = Gt.solar(s)
         if not sol["newton"]: continue
         C["cass"] += sol["cass"]; C["g3_line"] += x["line"]; C["g3_err"] += x["err"]
-        pass_x = x["line"] or abs(x["Zm"]) <= 2
+        C["zone"] = C.get("zone", 0) + 1 if (x["line"] or x["err"] or x["rms"] <= .15) else C.get("zone", 0)
+        pass_x = x["line"] or x["err"] or x["rms"] <= .15
         if not pass_x: continue
         p = Gt.sp(s, Gt.ST, Gt.ST65, Gt.ST80, "ST")
         if p is None: continue
@@ -86,7 +88,7 @@ def main():
             if len(H) < cap: heapq.heappush(H, it)
             elif it > H[0]: heapq.heapreplace(H, it)
         if tl or te: keepE.append(row)
-    print(foot, mode, lev, C, flush=True); byZ = sorted((t[3] for t in heap), key=lambda a: a["Z"]); byL = sorted((t[3] for t in keepL), key=lambda a: a["Zl"]); json.dump(dict(counts=C, tally=json.load(open(os.path.join(W, "tally.json"))), info=json.load(open(os.path.join(W, "info.json"))), byZ=byZ, byLine=byL, train_pass=keepE[:5000], n_train_pass=len(keepE)), open(os.path.join(HERE, f"bk2_train_{lev}_{foot}_{mode}.json"), "w"), indent=0)
+    print("FINAL", foot, mode, lev, C, flush=True); byZ = sorted((t[3] for t in heap), key=lambda a: a["Z"]); byL = sorted((t[3] for t in keepL), key=lambda a: a["Zl"]); json.dump(dict(counts=C, tally=json.load(open(os.path.join(W, "tally.json"))), info=json.load(open(os.path.join(W, "info.json"))), byZ=byZ, byLine=byL, train_pass=keepE[:5000], n_train_pass=len(keepE)), open(os.path.join(HERE, f"bk2_train_{lev}_{foot}_{mode}.json"), "w"), indent=0)
     for a in byZ[:8]: print(f"Z {a['Z']:.2f} cass {a['cass']} X {a['X']['mean']:+.3f},{a['X']['rms']:.3f} Zm {a['X']['Zm']:+.2f} Zs {a['X']['Zs']:.1f} S {a['S']['rms']:.3f}/{a['S']['rms_law']:.3f} {a['S']['med']:+.3f} Zr {a['S']['Zr']:.2f} Zu {a['S']['Zu']:.2f} {a['F'][:90]}")
     print("by LINE"); [print(f"Zl {a['Zl']:.2f} cass {a['cass']} X {a['X']['mean']:+.3f},{a['X']['rms']:.3f} S {a['S']['rms']:.3f}/{a['S']['rms_law']:.3f} {a['S']['med']:+.3f} fit{a['fit']} {a['F'][:90]}") for a in byL[:8]]
 if __name__ == "__main__": main()

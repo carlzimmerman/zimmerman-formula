@@ -13,3 +13,8 @@ Numbers I had seen at this point: the law's known-answer row through `bk2_lib.py
 9. **G12's sigma_c** is computed as half-range of 1/c over c 1.2-1.9 relative to its midpoint, 0.23 of r. That is what the freeze's words give; stated so it isn't chosen later.
 
 kappa = 1/2 FITTED. Not theory closed.
+
+---
+# AMENDMENT A2, before any harvest number of any real run
+
+The first harvest ran about 100 hits a second, so 5e6 L1 hits take over ten hours, and L2 would overflow the 200 MB cap. No result had printed. So the G3 step in harvest is now exact: a hit goes on to SPARC if G3 passes LINE or ERR, or X-COP rms <= 0.15 (a near-miss zone only). Top-by-Z near misses keep a Z_shape that large rows can't beat, so this loses nothing from the near-miss list in practice. For L2 the same test runs inside the search, so L2's `sub` tally isn't comparable to L1's; harvest counts are. Tolerances aren't changed. The harvest isn't checkpointed: SIGTERM loses that harvest, it's rerun from the hits file, stated as a departure from the freeze's chunk rule, for harvests only.
