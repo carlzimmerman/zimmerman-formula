@@ -11,9 +11,9 @@ r_old = r / c on UR3's one-zone estimator, 30 DiskMass galaxies, 1.5 h_R. c = σ
 | LAW | phantom disc, canonical | 1.475 | 1.043 | 1.031 | 0.972 | 1.160 |
 | RESPONSE | native total EM1 f_Q | 1.080 | 0.764 | **0.755** | 0.712 | 0.848-0.864 |
 | RESPONSE | hand EM1 f_Q | 1.088 | 0.769 | **0.760** | 0.717 | 0.854-0.871 |
-| OFF | hand EM1 off | 1.365 | 0.965 | 0.954 | 0.900 | 1.09 |
-| OFF | native total EM1 off | 1.282 | 0.906 | 0.896 | 0.845 | 1.016 |
-| REF | Newton, no halo | 1.494 | 1.057 | 1.044 | 0.985 | 1.185 |
+| OFF | hand EM1 off | 1.365 | 0.965 | 0.954 | 0.900 | 1.072-1.092 |
+| OFF | native total EM1 off | 1.282 | 0.906 | 0.896 | 0.845 | 1.006-1.026 |
+| REF | Newton, no halo | 1.494 | 1.057 | 1.044 | 0.985 | 1.173-1.196 |
 
 All rows are in `od1.out`. **Label: NOT SEPARATED at all three c.** HEAVY DISCS needs the law's row in the line or above it; the one-zone round rule falls 3-8 % below. J is the exact Jeans integral (CFG577), H the S4G thickness (CFG578), both tags only. With both, the round rule is IN at all three c (0.947-1.016) and the response rows stay below (0.800-0.881). **So the lean at the frozen c's is toward heavy discs, as a lean, not a label.**
 
