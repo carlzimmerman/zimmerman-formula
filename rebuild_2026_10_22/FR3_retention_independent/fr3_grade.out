@@ -1,0 +1,21 @@
+FR1's read path up to labels, own internal checks: {'K1': True, 'K2': True, 'K4': True, 'K3': True, 'MUT': True, 'Kj': True}
+K1 FR1's H row reproduced, per key and X-COP, both f*: preds 0.0e+00, X-COP 0.0e+00: PASS
+
+Gas +0.005; cells f* 0.034, 0.0615; h 0.672, 0.686
+H (FR1's, reproduced): f* 0.034: 14/15 ['G-OUT-M3'] M3 +3.48,+3.09 Ztot +2.77,+2.46 chi2 20.1,20.3 X-COP +0.024,0.072 PASS no-fs 0 | f* 0.0615: 14/15 ['G-OUT-M3'] M3 +3.48,+3.09 Ztot +2.77,+2.46 chi2 20.1,20.3 X-COP +0.026,0.072 PASS no-fs 0 | reach 0.306 to 0.471
+R, anchored, LABEL ROW: f* 0.034: 4/15 ['G-IN-Mall', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all'] M3 -2.54,-2.70 Ztot -2.03,-2.15 chi2 43.5,38.1 X-COP -0.112,0.130 FAIL no-fs 0 | f* 0.0615: 4/15 ['G-IN-Mall', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all'] M3 -2.54,-2.70 Ztot -2.02,-2.15 chi2 43.5,38.1 X-COP -0.110,0.129 FAIL no-fs 0 | reach 2.884 to 3.599
+R, own fit: f* 0.034: 11/15 ['G-IN-Mall', 'G-MID-T1', 'G-OUT-M2', 'G-OUT-all'] M3 -1.21,-1.40 Ztot -0.97,-1.12 chi2 20.5,18.0 X-COP -0.099,0.120 FAIL no-fs 0 | f* 0.0615: 11/15 ['G-IN-Mall', 'G-MID-T1', 'G-OUT-M2', 'G-OUT-all'] M3 -1.21,-1.40 Ztot -0.97,-1.12 chi2 20.5,18.0 X-COP -0.098,0.119 FAIL no-fs 0 | reach 2.333 to 2.880
+R + 0.044: f* 0.034: 9/15 ['G-IN-Mall', 'G-MID-T1', 'G-OUT-M2', 'G-OUT-Mall', 'G-OUT-T2', 'G-OUT-all'] M3 -1.12,-1.33 Ztot -0.89,-1.06 chi2 24.2,21.2 X-COP -0.084,0.107 FAIL no-fs 0 | f* 0.0615: 9/15 ['G-IN-Mall', 'G-MID-T1', 'G-OUT-M2', 'G-OUT-Mall', 'G-OUT-T2', 'G-OUT-all'] M3 -1.12,-1.33 Ztot -0.89,-1.06 chi2 24.2,21.2 X-COP -0.083,0.106 FAIL no-fs 0 | reach 2.293 to 2.842
+R - 0.044: f* 0.034: 4/15 ['G-IN-Mall', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all'] M3 -4.06,-4.17 Ztot -3.24,-3.32 chi2 73.6,65.0 X-COP -0.139,0.154 FAIL no-fs 0 | f* 0.0615: 4/15 ['G-IN-Mall', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all'] M3 -4.06,-4.17 Ztot -3.24,-3.32 chi2 73.6,65.0 X-COP -0.138,0.153 FAIL no-fs 0 | reach 3.517 to 4.410
+R with y carry +0.075, reported: f* 0.034: 8/15 ['G-IN-Mall', 'G-MID-T1', 'G-MID-T2', 'G-OUT-M2', 'G-OUT-Mall', 'G-OUT-T2', 'G-OUT-all'] M3 -1.18,-1.36 Ztot -0.94,-1.09 chi2 29.8,25.7 X-COP -0.070,0.096 FAIL no-fs 0 | f* 0.0615: 8/15 ['G-IN-Mall', 'G-MID-T1', 'G-MID-T2', 'G-OUT-M2', 'G-OUT-Mall', 'G-OUT-T2', 'G-OUT-all'] M3 -1.18,-1.36 Ztot -0.94,-1.09 chi2 29.8,25.7 X-COP -0.069,0.095 FAIL no-fs 0 | reach 2.320 to 2.859
+MUTATE (b) slope flip on R: X-COP -0.407, 0.418, no-fs 172, M3 -10.80 vs -2.54: BITES
+
+sigma_tot on lg Y, mock term as frozen (no mass function): 0.031. With the added mass-function term (+0.031): 0.044. Eligible below 14.3: 23
+VERDICT FR1's labels: PARTLY [X-COP LOST] [BUDGET-DEPENDENT: added mass-function term gives NO INDEPENDENT MEASUREMENT]
+M3 on R: lg M500 14.613, Y500 lg -0.273, carry lg +0.026, Y200 lg -0.244; HM1's need -0.127 (Z 2) to -0.203 (Z 0); closure -0.0019 dex
+
+Read-across, report only: EM1 against line R (anchored), M3's carry, as FR1's table
+  lg M_b 12.5: EM1 Y200 lg -0.208; R with carry -0.555; R minus EM1 -0.347
+  lg M_b 13: EM1 Y200 lg -0.158; R with carry -0.445; R minus EM1 -0.287
+  lg M_b 13.5: EM1 Y200 lg -0.108; R with carry -0.335; R minus EM1 -0.227
+  lg M_b 14: EM1 Y200 lg -0.058; R with carry -0.225; R minus EM1 -0.167

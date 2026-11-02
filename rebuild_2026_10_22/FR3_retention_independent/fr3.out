@@ -1,0 +1,53 @@
+Parse
+  K2a Okabe rows 78, with mass 72, id match 76: PASS (78, 72, match 76, missing ['114647.4-012428', '124503.8-002823'])
+  K2b eRASS1 M500 vs R500 at h 0.7, Om 0.3: PASS (median +0.0001 dex, 99% 0.0016)
+  K2c matched redshifts: at most one |dz| > 0.05, kept as frozen, effect printed: PASS (largest 0.139, next 0.019, N 62 z <= 0.5 with eRASS1 gas)
+  median table error by z bin, 1e14: [0.94, 1.29, 2.12]; N eligible with mass 60, poor-fit with value 7, no value 2
+
+PRIMARY bin: N 41, gas bin (12.75, 13.58), mean z 0.193, weighted lg Mg 13.229
+  raw lg<M_WL> 14.406, eq. 17 shift +0.0180, corrected x 14.388 +- 0.045; lg<M_cat> 14.379, aperture delta +0.0030
+  lg Y500 -0.362 +- 0.026. H there -0.145, W -0.350
+  raw (no eq. 17): x 14.406 lg Y -0.374, D_H -0.232, D_W -0.028
+  per-cluster aperture, median lg Y (reported only, log noise biased) -0.386, values with M < 1e13 floored
+  CR-rank bin N 41: x 14.419, lg Y -0.333 +- 0.029, D_H -0.194, D_W +0.009
+  without poor-fit N 38: x 14.410, lg Y -0.378, D_H -0.237, D_W -0.033
+  unmeasured as M = 0, N 42: x 14.380, lg Y -0.356, D_H -0.209, D_W -0.004
+  without the |dz| 0.139 cluster N 40: x 14.386, lg Y -0.359, D_H -0.213, D_W -0.008
+  gas bin 12.0-12.75: N 4, x 13.872, lg Y -0.478 +- 0.144, D_H -0.219, D_W +0.008
+  gas bin 12.75-13.2: N 19, x 14.243, lg Y -0.402 +- 0.035, D_H -0.225, D_W -0.013
+  gas bin 13.2-13.58: N 22, x 14.501, lg Y -0.339 +- 0.036, D_H -0.218, D_W -0.018
+  gas bin 13.58-14.5: N 15, x 14.826, lg Y -0.168 +- 0.031, D_H -0.119, D_W +0.067
+
+K3 mock, injected on real gas, z, weights; mean D, sd
+  input H: D_H -0.0035 sd 0.0495; input W: D_W -0.0036 sd 0.0336
+  with mass-function selection at fixed gas (alpha 1.8, added detail, not in the criteria by name): shift 0.0278 dex in M; input H D_H +0.0311
+  K3 injected-line recovery: PASS (|bias| H 0.0035, W 0.0036 <= 0.02; gap 0.211 vs sd 0.042)
+
+Budget, dex: bootstrap on lg Y 0.026 (on D_H 0.034, D_W 0.036), aperture g 0.75-1.35 0.001, half eq. 17 shift 0.006, selection 0.031, shear + photo-z 0.015. sigma_tot on lg Y 0.044; on D_H 0.049, D_W 0.050. GS4 gas +-0.017 not added.
+D_H -0.216 (-4.4 sigma), D_W -0.012 (-0.2 sigma)
+Akino at x, from FR2's table, interpolated: -0.244; D -0.118
+HG cross-check at the bin's gas 13.229: -0.191, Y minus it -0.171
+LABEL PRIMARY: W FAVOURED
+
+Line R fit on 60 clusters, lg Y = a + b (lg Mg - 13.5): a -0.274 +- 0.026, b +0.162 +- 0.115 (500 bootstraps)
+  eligible with M-hat lg M500 < 14.3: 23
+  anchored: a -0.309, b +0.1968; in lg M: fit a -0.287, b +0.193; anchored a -0.335, b +0.245. Label row: anchored (SE b 0.115)
+  K2d Umetsu rows 136: PASS (136)
+
+Umetsu x E16, z <= 0.5, gas bin: N 21 of 34 joined. raw M500 mean x 14.064 (h 0.7), lg Y -0.211 +- 0.048, sigma_tot 0.063 (aperture 0.035, 5 % mass). FR1's XXL alone there -0.485 (+-0.059), H -0.217, W -0.436. D_XXL +0.274 (+3.2), D_H +0.006 (+0.1), D_W +0.225 (+3.6)
+  M500MT row (T-based, HSC calibrated): x 14.124, lg Y -0.235, D_XXL +0.252, D_H -0.031
+  lg <M500 Umetsu> / <M from E16 r500MT> on same clusters: -0.351 +- 0.071; MT -0.263
+  LABEL UMETSU: W ANCHOR FAILS
+  K2e HIFLUGCS rows 64: PASS (64)
+
+HIFLUGCS: X-COP removed 9; with eRASS1 gas 27; with pointed gas 42
+  M500NFWFreeze, gas eRASS1: N 27, lg M 13.03-15.09, a -0.020 +- 0.032, b +0.134 +- 0.074, rms 0.131, Y at 14.34 -0.041 +- 0.026 (H -0.156, W -0.363)
+  M500NFWFreeze, gas pointed: N 42, lg M 13.38-15.28, a +0.018 +- 0.020, b -0.018 +- 0.060, rms 0.098, Y at 14.34 +0.021 +- 0.016 (H -0.156, W -0.363)
+  M500kTextrp, gas eRASS1: N 27, lg M 12.68-15.07, a -0.120 +- 0.030, b +0.006 +- 0.047, rms 0.142, Y at 14.34 -0.121 +- 0.028 (H -0.156, W -0.363)
+  M500kTextrp, gas pointed: N 42, lg M 13.27-15.44, a -0.119 +- 0.027, b -0.153 +- 0.064, rms 0.157, Y at 14.34 -0.094 +- 0.023 (H -0.156, W -0.363)
+  M500NFWHudson, gas eRASS1: N 27, lg M 12.68-16.28, a -0.241 +- 0.042, b -0.124 +- 0.094, rms 0.186, Y at 14.34 -0.221 +- 0.036 (H -0.156, W -0.363)
+  M500NFWHudson, gas pointed: N 42, lg M 13.72-16.28, a -0.245 +- 0.038, b -0.407 +- 0.130, rms 0.249, Y at 14.34 -0.180 +- 0.040 (H -0.156, W -0.363)
+  M500NFWAll, gas eRASS1: N 27, lg M 12.52-16.28, a -0.260 +- 0.039, b -0.171 +- 0.073, rms 0.182, Y at 14.34 -0.233 +- 0.036 (H -0.156, W -0.363)
+  M500NFWAll, gas pointed: N 42, lg M 13.62-16.28, a -0.266 +- 0.041, b -0.502 +- 0.103, rms 0.265, Y at 14.34 -0.185 +- 0.043 (H -0.156, W -0.363)
+  LABEL HIFLUGCS: NO STEP NEEDED; reading on eRASS1 gas, NFWFreeze: b +0.134 +- 0.074
+  K2f Chiu rows 457: PASS (457)
