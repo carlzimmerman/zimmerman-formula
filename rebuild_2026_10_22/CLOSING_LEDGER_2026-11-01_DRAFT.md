@@ -61,7 +61,7 @@ Landed after the first draft:
 
 **Deposited 2026-11-02, owner's go:** PAPER67 v1.0, DOI 10.5281/zenodo.23883741, before AR1 finished and before any outside reader saw it.
 
-**Open, so this ledger stays a draft:** AR1, frozen before the retirement, with no result yet. It can add a line here. It can't reinstate the cold sector; only the owner can.
+**AR1, landed after PAPER67's deposit, so PAPER67 doesn't carry it:** frozen before the retirement. Exact isotropic actions at each object's own halo and baryons: MOVES AND FAILS [SPARC, tilt, LITTLE THINGS, keys, X-COP], conditional because frozen check K1c missed (2.8e-5 against 1e-6, not traced). Upsilon 0.45/0.46 against Blumenthal's 0.36/0.37, tilt +0.22/+0.23 against +0.05/+0.09, LITTLE THINGS +0.129/+0.122, keys 14/15, X-COP -0.103, 0.150. The solver matched live runs at 1e10 and 1e13, and Blumenthal over-predicts live at all three masses (f_B 0.87, 0.75, 0.72). Effective f shows no mass trend, so it gives no dwarf-against-L* lever. Reinstates nothing; only the owner can.
 
 ## What stands
 - The a₀ law on galaxies, canonical: rms 0.0541, Υ 0.52, tilt +0.02, LITTLE THINGS −0.025, lensing preferred. κ fitted; misses Milky Way, IC 1613, dwarfs' UFD class, clusters.
