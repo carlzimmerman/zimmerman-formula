@@ -1,5 +1,31 @@
 # PA1_pulsar_kz: CANNOT DECIDE. No published potential-free K_z(R0, 1.1 kpc) exists that I could find, and no pulsar row separates AQUAL/QUMOND from the round rule on both footings
 
+## A1 forward model (AMENDMENT_A1.md, fc6e39493e): still CANNOT DECIDE, both footings
+Stated before any catalogue number; post-PA1, with the forecast on record. Three files fetched, approval relayed by the coordinator, sizes matched, hashes in `FETCH_LOG.md`. Untrusted, parsed only, python -I from outside `data/`. These catalogue values are data as published by its authors, not re-derived, beyond the check below. a_los at each pulsar's own position, forms A, Q, R, all in-prior cells with v_c in line for both A and R (435 canonical, 686 alt).
+
+| binary-only, n 23 | canonical | alt |
+|---|---|---|
+| **N1 (primary): 2 dlnL A-R, median [range]** | -0.98 [-1.64, -0.49] | -1.24 [-2.08, -0.54] |
+| Label | **NOT SEPARATED** | **NOT SEPARATED** |
+| Lorentzian, median cell | +0.16 | +0.07 |
+| Mock power for 9, if A or if R true | 0.000, 0.000 | 0.000, 0.000 |
+| K_est A, R, N1 | 43.3 +- 35.0, 45.7 +- 36.4 | 41.8 +- 35.0, 44.6 +- 36.7 |
+| N0, 2 dlnL, label | -4.12 [-4.76, -2.35], LEAN | -4.80 [-5.39, -2.60], LEAN |
+| K_est A, R, N0 | 26.2 +- 25.6, 49.3 +- 17.1 | 20.6 +- 28.4, 49.1 +- 17.1 |
+
+Secondary, all 47 with spin: NOT SEPARATED on N1 and N0, -1.42, -2.04 canonical, -1.69, -2.41 alt. K_est is negative there, A -16 +- 50 on N1, -49 +- 50 on N0: no usable vertical signal. Q tracks A within 0.05 in dL (form Q median -0.98, -1.25 on N1).
+
+K_est vs the line: NO TENSION on every row of every form; that is lack of power, not agreement. **N0's lean toward R has mock power 0, its Lorentzian is -1.60, -1.89, and N1 removes most of it (the Solar offset and |z| term): no claim.** On N1, K_est is only 1.2 sigma from zero, with s fitted to 0, so the catalogue's own errors already cover the scatter here; the error is about 2 mm/s/yr per pulsar, not PA1's xi. K_est's error is far larger than D24's slope error because N1 frees four terms and the scale, against one alpha; different questions.
+
+**Scaled forecast from real error (1/sqrt N, same errors, no floor):** A vs R, 1200 canonical, 940 alt binary pulsars. A floor vs line top, 9700, 8600. That fits PA1's forecast at its high end. Currently 23.
+
+**Post-result, no label** (`fm_post.out`, one middle cell): distance +-DIST_ERR moves dL at most 0.19; Sun z 20 pc, 0.09; round rule with r, 0.01. Removing J0125-2327, J1400-1431 changes nothing: they aren't in this cut.
+
+**A1 checks:** geometry vs textbook formula 3.6e-15 PASS. ALOS_PB recomputed, 26 rows, worst 0.058 error PASS. Sign, corr +0.25, PASS, weak. UX5 K(1.1) A 0.0000, R 0.0004 PASS. Shuffled data K_est -55 +- 59, -57 +- 60 PASS; planted A, err/20, SEPARATED on both PASS (dL +41, +45). Rerun byte-identical for `fm_read` and `fm_post`. **PA1's unmet form A MUTATE is now fixed:** AQUAL at density x 1e8, potential / 1e8, reaches Newton to 7e-9, 9e-9 (56.273, 52.698; form A 82.35, 82.03). Those solves stopped at the 80 iteration cap, residual 1e-6. Form A is now on every eligible cell, so the 28-cell limit is lifted for A1. A bug in `label` for a passing row was fixed before output; real rows never reached it, and plant runs needed it.
+
+**Limits of A1:** no disequilibrium beyond N1; axisymmetric; distance held at DIST except the sensitivity; catalogue trusted beyond the recompute. Only binary-only is primary, by the amendment. `cache/` isn't committed, 12 MB, rebuilt by `fm_field.py` in minutes.
+
+
 Criteria: `FROZEN_CRITERIA.md` (3eb905dc96), committed alone first. **Not blind.** All literature values are **PROVISIONAL**: read from web pages through a summariser, no file downloaded, no table checked by me. kappa = 1/2 FITTED. Footings never pooled. The cold sector stays retired; this reinstates nothing. Nothing here says the data favour the framework. Not theory closed. No line moved.
 
 **Answer.** Current values can't decide. The binary pulsar rows give slopes, not K at 1.1 kpc. On the frozen label, 5 of 7 rows have NO POWER on alt and all 7 on canonical. The 2 alt SEPARATES fire only at the lowest allowed height, and the form-choice spread (0.36 dex) is over twice the form gap (0.09-0.17 dex). A real reanalysis at the pulsars' actual positions is possible and small; files are at the end, awaiting approval.
@@ -90,7 +116,7 @@ Repo commit to pin: 6cb4e31f6b2e732f5973b024634507c2e4f59988. Sizes are from the
 - Recovering UX5's K(1.1) from the solver: |d| 0.000 for A, Q, R on the sampled cells, 0.0 on all 1375. PASS.
 - Byte-identical rerun of every JSON and read output: PASS, compared by cmp.
 - Injected row, error / 20: all rows SEPARATES, overall flips. PASS.
-- **MUTATE as frozen: NOT MET for form A.** The freeze said nu = 1 must change form A - form R. I could only set nu = 1 in form Q, since AQUAL's nu lives in P4's solver and I don't edit other lanes. Q falls to Newton (83.62 to 56.71, Newton 56.71). Form A wasn't mutated.
+- **MUTATE as frozen: NOT MET for form A in PA1; fixed in A1, above.** The freeze said nu = 1 must change form A - form R. I could only set nu = 1 in form Q, since AQUAL's nu lives in P4's solver and I don't edit other lanes. Q falls to Newton (83.62 to 56.71, Newton 56.71). Form A wasn't mutated.
 - **Form A on 28 cells only, Q stands in on the rest for labels.** Q/A at most 0.41 %.
 - **Slip, fixed:** `ux5_core` exports its own HERE, so my first profile run wrote 3 JSONs into UX5's directory. I moved them here before anything was committed and fixed the script; UX5's tracked files are unchanged.
 - **WebFetch saved 4 PDFs automatically** (2401.15808, 2511.15865, 2008.13052, 2606.31042) to the session's tool-results folder, outside the repo, when I tried PDF URLs. Not intended under the no-download rule. I didn't read them and used arXiv HTML instead.
