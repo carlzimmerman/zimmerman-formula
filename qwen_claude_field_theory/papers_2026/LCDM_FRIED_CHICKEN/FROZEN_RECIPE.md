@@ -38,3 +38,15 @@ Rival-flavoured exercise. Not a framework result, not a derivation, adopts nothi
 - C3 control: the same Eddington code must return negative f for a cored tracer in a Keplerian potential, and positive for Hernquist.
 
 **BUG FOUND IN J, after its numbers.** `setcos` swapped the cosmology object but not colossus's current cosmology, so c(M) in every J row came from the last cosmology created (the base a read 1.46e-10 against R7's 9.21e-11). The wrong output stays as `scripts/recipe2_before_cosmology_fix.out`. Fixed and rerun as `recipe2.out`. The same pattern hit the redshift rows of `../REDTEAM_LCDM_PRIEST/scripts/tune.py`; corrected there too.
+
+**AMENDMENT A2, owner 11-02: "use the knobs ACDM has". Frozen before these numbers; targets E1 to E5 unchanged.** LCDM parts only, no empirical function, no law-shaped halo.
+- R9 per galaxy, six knobs: M200, c, Einasto alpha, contraction fraction, core exponent n, core radius eta. Priors: 1 sigma row c 0.11 dex, M200 0.3 dex; 2 sigma row c 0.22 dex, M200 0.6 dex. Both rows: alpha 0.10 to 0.30, fraction -1 to 1, n 0 to 1, eta 0.3 to 3.
+- R10 one global recipe: each of the six knobs is a quadratic function of log M_b, log surface density and gas fraction. Tuned on odd-numbered galaxies, graded on even-numbered ones, which it never saw. Also reported tuned on all.
+- J2 jointly on R10: c times rho_DE^p H0^r and M200 times H0^s, one set for E4 and kappa within 5 % at the three cosmologies; c times (1+z)^(q1 + q2 z) for E5. Every one of these is a hand term and is counted. Baryons fixed in z, unphysical, stated.
+
+**AMENDMENT A3, owner 11-02: use the supernova feedback knobs. Frozen before its numbers; targets unchanged.** R11 is one global recipe with 12 knobs, an analytic stand-in for subgrid feedback, not a hydro simulation. The mapping from knob to halo is mine, not taken from any simulation's parameter file, and the ranges are my judgement.
+- Stellar mass outcome, 4: SHMR norm (+-0.54 dex), log M1 (+-0.9), beta (+-1.2), gamma (+-0.6).
+- Feedback energy, 4: e = eps (M*/M200/0.01)^a1 (Sigma_b/100)^a2 (f_gas/0.5)^a4; core exponent n = tanh(e). eps 0.01 to 30; a1, a2, a4 in -3 to 3.
+- Core size, 2: eta = eta0 (M*/1e9)^a3. eta0 0.1 to 10; a3 -1 to 1.
+- Contraction versus expansion, 2: f = f0 + f1 log10(M_b/10^9.5), clipped to -1..1. f0 -1 to 1; f1 -1 to 1.
+c stays at Diemer19, alpha at 0.16: feedback only. Tuned on odd galaxies, graded on even; also tuned on all. Plus the wider R11b with c norm and c slope free, 14 knobs.

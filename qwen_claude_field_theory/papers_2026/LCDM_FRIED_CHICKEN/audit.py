@@ -4,7 +4,7 @@ Rival-flavoured exercise, adopts nothing. kappa = 1/2 FITTED; not theory closed.
 import os, sys
 H = os.path.dirname(os.path.abspath(__file__))
 T = open(os.path.join(H, "lcdm_fried_chicken.tex"), encoding="utf-8").read()
-R = {s: open(os.path.join(H, "scripts", s + ".out"), encoding="utf-8").read() for s in ("recipe", "recipe2")}
+R = {s: open(os.path.join(H, "scripts", s + ".out"), encoding="utf-8").read() for s in ("recipe", "recipe2", "recipe3", "recipe4")}
 L = [("3373", "recipe", "3373 points"), ("171", "recipe", "171 galaxies"), ("0.1951", "recipe", "rms 0.1951"),
  ("0.1419 & 0.2877 & 0.1613 & 15.76", "recipe", "0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1613"), ("15.76", "recipe", "a fit 1.576e-10"),
  ("0.0715 & 0.1486 & 0.0441 & 9.12", "recipe", "0.0715 dex [FAIL E1]; p95 per-galaxy 0.1486 [FAIL E2]; worst bin 0.0441"), ("9.12", "recipe", "a fit 9.122e-11"),
@@ -22,11 +22,19 @@ L = [("3373", "recipe", "3373 points"), ("171", "recipe", "171 galaxies"), ("0.1
  ("158 of 171", "recipe", "monotonic: 158 of 171"), ("median rms 0.057\\,dex and 0.261", "recipe", "median 0.057 dex, p84 0.261"), ("0.32 of", "recipe", "c_fit/c_Diemer median 0.32"), ("median $+0.16$", "recipe", "median +0.16"), ("$-0.76$", "recipe", "log M_b 11-12: n 20, median -0.76"),
  ("slope is $+0.235$", "recipe2", "rho_DE slope +0.235 [FAIL]"), ("\\rho_{\\rm DE}^{0.23}", "recipe2", "p = 0.23: slope +0.500"), ("0.446, 0.682, 0.851", "recipe2", "with p 0.446"), ("0.446, 0.682, 0.851", "recipe2", "with p 0.682"), ("0.446, 0.682, 0.851", "recipe2", "with p 0.851"),
  ("1.43, 1.85, 2.90", "recipe2", "{1.0: 1.427, 1.5: 1.846, 2.33: 2.904}"), ("(1+z)^{-1.11}", "recipe2", "q = -1.11"), ("0.74, 0.86, 1.25", "recipe2", "{1.0: 0.736, 1.5: 0.856, 2.33: 1.248} E5 False"), ("$+0.810$", "recipe", "rho_DE slope +0.810")]
+L += [("0.0415 & 0.1006 & 0.0221 & 9.33","recipe4","0.0415 dex [FAIL E1]; p95 per-galaxy 0.1006 [FAIL E2]; worst bin 0.0221"),("9.331\\times10^{-11}","recipe4","a fit 9.331e-11"),("0.0275 & 0.0624 & 0.0196 & 9.31","recipe4","0.0275 dex [FAIL E1]; p95 per-galaxy 0.0624 [FAIL E2]; worst bin 0.0196"),
+ ("0.0445 on galaxies","recipe4","on unseen 0.0445"),("scores 0.0405","recipe4","rms on tuned 0.0405"),("0.0326 on unseen","recipe4","on unseen 0.0326"),("R11 0.1953","recipe4","rms to observed 0.1953"),("R11b 0.1933","recipe4","rms to observed 0.1933"),("$-0.23$, $+0.11$, $+0.30$","recipe4","[-0.23, 0.11, 0.3]"),("median of 0.39","recipe4","[0.08, 0.39, 0.44]"),
+ ("$-0.319$","recipe4","SHMRnorm=-0.319"),("$+0.705$","recipe4","logM1=+0.705"),("$-0.884$","recipe4","beta=-0.884"),("$-0.600$","recipe4","gamma=-0.600*"),("\\epsilon=-0.639","recipe4","log_eps=-0.639"),("a_1=-0.760","recipe4","a1=-0.760"),("a_2=+0.091","recipe4","a2=+0.091"),("a_4=-0.097","recipe4","a4=-0.097"),("\\eta_0=+1.000","recipe4","log_eta0=+1.000*"),("a_3=+0.466","recipe4","a3=+0.466"),("f_0=+1.000","recipe4","f0=+1.000*"),("f_1=-0.335","recipe4","f1=-0.335"),
+ ("0.0213 & 0.0441 & 0.0216 & 9.30","recipe3","0.0213 dex [FAIL E1]; p95 per-galaxy 0.0441 [FAIL E2]; worst bin 0.0216"),("0.0376 & 0.0711 & 0.0164 & 9.63","recipe3","0.0376 dex [FAIL E1]; p95 per-galaxy 0.0711 [FAIL E2]; worst bin 0.0164"),("\\textbf{0.0152} & \\textbf{0.0283} & \\textbf{0.0040} & 9.43","recipe3","0.0152 dex [PASS E1]; p95 per-galaxy 0.0283 [PASS E2]; worst bin 0.0040"),
+ ("median $\\log c$ shift $-0.22$","recipe3","[[0.06, -0.22, 0.1, 0.57"),("0.0270 on unseen","recipe3","on unseen 0.0270"),("shift $+0.46$, $\\log c$ shift $-0.74$","recipe3","[[0.46, -0.74"),("0 of 171 galaxies","recipe3","0.11: 0 of 171"),
+ ("is $+0.283$","recipe3","slope +0.283"),("0.459, 0.614, 0.735","recipe3","[0.459, 0.614, 0.735]"),("1.58, 2.12, 3.44","recipe3","{1.0: 1.584, 1.5: 2.12, 2.33: 3.441}"),("\\rho_{\\rm DE}^{3.00}H_0^{-1.61}","recipe3","hand p 3.00, r -1.61, s -12.00"),("slope $+0.496$","recipe3","slope +0.496 [PASS E4]"),("0.485, 0.506, 0.525","recipe3","[0.485, 0.506, 0.525] [FAIL]"),("(1+z)^{-0.26-0.89z}","recipe3","q1 -0.26, q2 -0.89"),("0.93, 0.91, 0.92","recipe3","{1.0: 0.931, 1.5: 0.907, 2.33: 0.924} [PASS E5]")]
+drop = ("slope is $+0.235$","\\rho_{\\rm DE}^{0.23}","0.446, 0.682, 0.851","1.43, 1.85, 2.90","(1+z)^{-1.11}","0.74, 0.86, 1.25")
+L = [x for x in L if x[0] not in drop]
 F = 0
 for frag, s, lit in L:
     a, b = frag in T, lit in R[s]
     if not (a and b): F += 1; print("  FAIL", "TeX" if not a else "", "SRC" if not b else "", repr(frag), s, repr(lit))
-NEED = ("ACDM flavored fried chicken version of Galaxy Dnynamics", "carries no physics", "fitted", "not evidence", "Not deposited")
+NEED = ("analytic stand-in", "ACDM flavored fried chicken version of Galaxy Dnynamics", "carries no physics", "fitted", "not evidence", "Working note")
 for n in NEED:
     if n not in T: F += 1; print("  FAIL missing", n)
 print(f"{len(L) + len(NEED) - F} of {len(L) + len(NEED)} checks pass")
