@@ -25,3 +25,9 @@ Hand algebra, not in the frozen tests. Doing the two-point integral over a unifo
 
 ## Argon's R7: u = r Phi, mass gap k^2 = G rho / c^2 "per steradian". VOID
 Hand algebra, not in the frozen tests. The reduction is exact, and it gives u'' = 4 pi G rho r, so the 4 pi stays on the source. rho is a source there, not a mass term. A term rho u is a new coupling, and its coefficient is posited, which Argon states. That posit is xi = 1. The standard coefficient 4 pi G rho / c^2 gives kappa 1.772, already in T1. Step 1's g^2/(8 pi G) = rho c^2 gives kappa sqrt(8 pi) = 5.01 and isn't used in the result. Register K810.
+
+## R8, Claude's own try: kappa^2 = 8 pi / F0. NO NUMBER
+Hand algebra. The law's action has F = y^2 - 2y + 2 ln(1+y) + F0, rational coefficients and F0 free, so kappa = 1/2 needs F0 = 32 pi with nothing supplying it. Direction sums, boundary terms and a separate vacuum sector don't fix it. Register K811.
+
+## R9, Argon's causal-diamond trace: kappa 1 or 0.7071. VOID, algebra error
+A normalised average of a constant returns the constant, so the 4 pi in the source does not cancel. Done correctly the trace reading gives sqrt(4 pi) = 3.545, a miss. Its 1/2 at w = 0 is the c^2/4 it inserts, its F is wrong (dF/dt fails), and its d = 4 value of 0.7071 does not follow from its own general-d formula. Register K812.

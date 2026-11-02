@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (810 rows)
+## Totals (812 rows)
 
-- **541 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **543 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **130 produced a number.** 60 produced one determinate value; 70 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -156,7 +156,7 @@ fact.
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
 | AU Audits, controls, meta-analyses | 156 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
-| EX External pasted derivations | 14 | 2 | 1 | 10 | 0 | 0 |
+| EX External pasted derivations | 16 | 2 | 1 | 12 | 0 | 0 |
 
 Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2 exactly); `any` determinate, density route (kappa^2 in Q*pi^k; can give 1/2); `cont` determinate, transcendental root (log-uniform reference); `menu` several values from admissible variants (non-determinate: never a hit); `free` condition only / free ratio / trade / bound / not selected (no number); `pend` registered, not yet run; `obs` observational determination of kappa (not a derivation; not a trial); `audit` audit / meta / control (not a trial); `lean` logic or Lean formalisation (not a trial); `nk` kappa-blind lane listed for completeness (not counted).
 
@@ -1044,4 +1044,6 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K808 | KF1/R5 | `rebuild_2026_10_22/KF1_argon_kappa_routes/README.md` | pasted: a0=cH/2pi from dS temperature | - | audit | VOID as derivation: equating Unruh and Gibbons-Hawking gives a=cH; the 2pi is kept by hand; repeat of Z=2pi | 8f14af0da8 |
 | K809 | KF1/R6 | `rebuild_2026_10_22/KF1_argon_kappa_routes/README.md` | pasted: two-point kernel with g=G rho r averaged over c/sqrt(G rho) | - | free | VOID: real integral gives (4pi/3 or 8pi/3) G rho r; average chosen; xi=1 posited | 8f14af0da8 |
 | K810 | KF1/R7 | `rebuild_2026_10_22/KF1_argon_kappa_routes/README.md` | pasted: radial u=r Phi with per-steradian mass gap G rho/c^2 | - | free | VOID: the 4pi stays on the source; gap coefficient posited; xi=1 again | 8f14af0da8 |
+| K811 | KF1/R8 | `rebuild_2026_10_22/KF1_argon_kappa_routes/README.md` | F0 as vacuum: kappa^2 = 8pi/F0 from the law's own action | - | free | NO NUMBER: F0 free; 1/2 needs F0=32pi; nothing supplies it | 8f14af0da8 |
+| K812 | KF1/R9 | `rebuild_2026_10_22/KF1_argon_kappa_routes/README.md` | pasted: causal-diamond trace with angular average | - | free | VOID: algebra error; normalised average does not cancel 4pi; correct trace value 3.545; c^2/4 inserted | 8f14af0da8 |
 
