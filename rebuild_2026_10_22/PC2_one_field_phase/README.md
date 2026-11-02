@@ -86,7 +86,7 @@ Mass reading: M_ph(R200)/M_b 44.8 at V 60, 16.5 at 200, 11.6 at 300, against 5.3
 
 A real result: at R_last the field can thermalise and still pass the Bullet. **Frozen rule: CLOSED, on the lens radius**, which KiDS's envelope caveat softens. Keys, X-COP, MG1 aren't computable: no g.
 
-**FRW, the row that decides.** At s_min(R_last) 0.066 and N_bg from Liouville, Gamma/H at z 1090: 1.1e2 (Q_bg at SPARC 200-250), 4.8e3 (20-60), 5.9e6 (dwarfs). Crossing 1 near z 100, 20, 3. Since the background is degenerate and equilibrating before recombination, it's in the law phase.
+**FRW, the row that decides.** At s_min(R_last) 0.066 and N_bg from Liouville, Gamma/H at z 1090: 1.1e2 (Q_bg at SPARC 200-250), 4.8e3 (20-60), 5.9e6 (dwarfs). Gamma/H crosses 1 between z 100-1090, 20-100, 0-3 respectively. Since the background is degenerate and equilibrating before recombination, it's in the law phase.
 
 **Law phase on FRW, parameter-free.** With K set by c_s 0.6-0.8 V at disc density: w = 1/3 at z 302-520 for P = K rho^3 (w at z 1090 of 28 to 730); z 3100-7200 for K rho^2. Short of dust by z 3e4 by **x58-99, x4-10**.
 
