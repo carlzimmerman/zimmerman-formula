@@ -23,10 +23,10 @@ The frozen labels didn't cover discs passing with X-COP failing and keys failing
 
 Same keys at f* 0.0615 and gas +0, except alt pi^2 at f* 0.0615 (11, adds OUT-M2). Canonical k fit stays 14, OUT-all -2.65 to -2.88. h 0.686 joint at pi^2 is p 0.045 canonical, 0.033 alt.
 
-k scan, canonical (alt): 0.59 pi^2 12 (11), M3 +2.93; 0.7 pi^2 12 (11), M3 +2.59; 1.3 pi^2 13 (11), M3 +0.72; 1.7 pi^2 11 (10), OUT-all -3.17. **So M3 wants k above about 0.8 pi^2, OUT-all wants it below about pi^2, and no k clears both.** MID-T3 and OUT-all pull apart at the same k: at pi^2 it is +2.37 and -2.27. The miss is a shape in mass, temperature and radius, not a level. HSC's factor 1.7 on k fails more keys, on the KiDS-based keys.
+k scan, canonical (alt): 0.59 pi^2 12 (11), M3 +2.93; 0.7 pi^2 12 (11), M3 +2.59; 1.3 pi^2 13 (11), M3 +0.72; 1.7 pi^2 11 (10), OUT-all -3.17. **On this grid, interpolated, M3 needs k above about 0.9 pi^2 and OUT-all needs it below about pi^2 at best, and no graded k clears every key.** MID-T3 and OUT-all pull apart at the same k: at pi^2 it is +2.37 and -2.27. The miss is a shape in mass, temperature and radius, not a level. HSC's factor 1.7 on k fails more keys, on the KiDS-based keys.
 
 **Read this as hard as a win.**
-- It is the first measured-gas row here with M3 under 2 and X-COP passing and joint p above 0.05. FR1's H reached 14 at M3 +3.48. That is real, and it's still a fail.
+- Among the lanes I read, it is the first measured-gas row with M3 under 2 and X-COP passing and joint p above 0.05. FR1's H reached 14 at M3 +3.48. That is real, and it's still a fail.
 - k came from 4 hydrostatic clusters and the keys are out of sample, so a one-number transfer from chi^2 65 to 16 is notable. **But it isn't independent of the record:** BF1's family came from X-COP after LM1 and GM1 had shown KiDS's gas ratio predicting X-COP. This is GM1's T2a in a different form.
 - If HSE is 0.12 dex high (LF1), k fit overshoots X-COP at -0.136, and the k that fits drops to where M3 fails again.
 - Post-result, no label: a plain multiplier fitted to X-COP (H 2.95, 2.73) reads **2 of 15, M3 -12.4, chi^2 428**. So the gas tie does real work in shape against that. A M500-tied term was not run, and GM1 found gas and M500 not separated, so "gas" isn't earned.
@@ -35,7 +35,7 @@ k scan, canonical (alt): 0.59 pi^2 12 (11), M3 +2.93; 0.7 pi^2 12 (11), M3 +2.59
 ## Part A: why discs break, odd SPARC names
 Labels: **WHOLE DISC** on all graded rows but two; canonical's sqrt(.5)(1+f) and 1.5/(2-f) read INNER DISCS at 0.52 and 0.50, on the line. Not gas-rich dwarfs.
 
-F1, A = 1, canonical (alt within 0.05 in shares): rms 0.217 against law 0.166.
+F1, A = 1, canonical (alt within 0.07 in shares): rms 0.217 against law 0.166.
 
 | Bin | excess share | median d (law) |
 |---|---|---|
