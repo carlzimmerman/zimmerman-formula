@@ -9,11 +9,14 @@ g_N = g²/(g + a₀), with a₀(z) = κc√(Gρ_DE(z)), κ = ½ fitted. The rela
 
 | Holds, canonical | | Fails or is missing | |
 |---|---|---|---|
-| SPARC rms, median Υ | 0.0541, 0.52 (alt 0.44, under the 0.50-0.80 line) | Milky Way | K_z +4.7 to +6.6σ too high in the cells that pass |
+| SPARC rms, median Υ | 0.0541, 0.52 (alt 0.44, under the 0.50-0.80 line) | Milky Way | field-equation vertical form INFEASIBLE; round rule, no field equation behind it, passes 1 in-prior cell (LW1) |
 | Tilt with speed | +0.02 | IC 1613 | E −0.593, Z −7.9; disfavoured, not excluded |
-| LITTLE THINGS, median E | −0.025 | Local Group classes | Z up to +5.22 |
+| LITTLE THINGS, median E | −0.025 | Local Group classes | Z up to +5.22, +6.76 with the external field; the data are flat in host field where AQUAL predicts −0.76 per dex (LW1) |
 | 63 groups | Z +0.31 | Stellar masses, 60-150 km/s | Υ 0.62, 0.65 against GSWLC 0.277, 0.304 |
 | Surface brightness at fixed speed | −0.016 ± 0.061, flat | Cluster cores | A 1.91 ± 0.12 at 0.5-1.2 Mpc |
+| | | 15 cluster shear keys | 10 of 15, G-OUT-M3 +4.76, joint p 3e-8 (LW1) |
+| | | X-COP | M_HSE / M_law 2.93, +0.467 dex (LW1); 2.23, 2.06 at the 0.5, 0.7 R500 points with 0.12 dex off M_HSE |
+| | | DiskMass | round rule r 1.239 against 0.90-1.10 (LW1); depends on the σ_z tracer (OD1) |
 | KiDS-1000 isolated lenses | shape preferred; amplitude depends on colour, no tested model fits absolutely | Outer shear on gas mass | slope 0.47 against 0.90 ± 0.21 |
 | | | Solar System, unscreened | Cassini Q₂ fails by 2.44-4.59 × the 2σ line |
 | | | CMB, action | no dust-like term; no action selected |
@@ -28,17 +31,19 @@ To cover the CMB and cluster cores we built a cold sector. On measured data, the
 | C1 native collapse rule | P | F | F | P | F | P | F | F | F | F | F |
 | C2 C1 + Blumenthal response | F | F | F | P | F | F | F | – | F | P | – |
 | C3 basin split at T ≈ 10^12.3 M☉ | P | P | P | P | F | P | P | P | F | – | F |
-| C4 law alone | P | P | P | P | F | – | P | F | F | – | F |
+| C4 law alone (X, DM from LW1) | P | P | P | P | F | F | P | F | F | F | F |
 | C5 native + measured response (HM1) | F | F | F | F | F | F | F | F | P | P | F |
 
-S SPARC, Tl tilt, LT LITTLE THINGS, G groups, K 15 cluster shear keys, X X-COP, Ln KiDS isolated, Dw Local Group, MW Milky Way, DM DiskMass, IC IC 1613. "–" is not graded, which isn't a pass. The lines aren't independent, so no count ranks these. Caveats: C3's Dw pass depends on a reading (flag by host passes, flag by mass fails). C3 and C4 also fail S on the alternative footing. HM1 printed NO VERDICT as frozen, because one mass check failed; an amendment moves no key by over 0.001, and the row shows its numbers' reading. K's failure is gas-conditional: at +0.111 dex the native rule reaches 15 of 15, against a measured +0.005 ± 0.017.
+S SPARC, Tl tilt, LT LITTLE THINGS, G groups, K 15 cluster shear keys, X X-COP, Ln KiDS isolated, Dw Local Group, MW Milky Way, DM DiskMass, IC IC 1613. "–" is not graded, which isn't a pass. LW1 is a later scorecard of the law; FG1's files aren't edited. The lines aren't independent, so no count ranks these. Caveats: C3's Dw pass depends on a reading (flag by host passes, flag by mass fails). C3 and C4 also fail S on the alternative footing. C4's MW cell depends on a vertical form the law doesn't supply. HM1 printed NO VERDICT as frozen, because one mass check failed; an amendment moves no key by over 0.001, and the row shows its numbers' reading. K's failure is gas-conditional: at +0.111 dex the native rule reaches 15 of 15, against a measured +0.005 ± 0.017.
 
 ## 3. The two walls
 **Spirals at 150-250 km/s.** Whatever is dust in the CMB falls into galaxies, and a live disc measures it contracting: f_Q 0.872 [0.54, 1.07] (LC1), 0.946 [0.78, 1.08] with the disc grown from turnaround (PZ1). A cored halo's first live response is somewhat weaker, f_B 0.753 [0.729, 0.777], and exact isotropic actions track it, f 1.019 (DR8, one mass, isolated). The SPARC side needs net f about 0-0.2 (RM2, six of 75 cells, three fitted numbers). This is the known Tully-Fisher zero-point problem in measured numbers. Without feedback, none of this is a statement about real halos with it.
 
 **Outer cluster shear on measured gas.** G-OUT-M3 reads 1.56 against 1.04, Z +4.41 statistical, about +3.0 to +3.5 with systematics (M3A1). Native two-halo supplies 3-11 % of +21 to +27 %. The response cuts the wrong way: on the native shape it is outward at every radius, taking keys from 12 to 10 of 15 and X-COP from pass to fail (HM1), while the weighings want it on. That is the sector's tension in one row.
 
-**Closest cluster reading, not a pass (FR1).** A gas-fraction line from hydrostatic masses, fitted without X-COP or shear, takes the native profile from 12 to 14 of 15 keys with X-COP passing: G-OUT-M3 +3.48, +3.09 at h 0.672, 0.686, joint p 0.16-0.17. Its frozen label is NOT RETENTION [MASS-METHOD-DEPENDENT] [ERROR-DEPENDENT], by one cell (reach 0.306 against 1/3). Leaving out either sample gives 12 of 15, and part of the slope is a step between samples. The line's real error at this mass is about 0.04 dex, or ±1.1 in Z. Lensing-calibrated masses overshoot, 6 of 15 with X-COP failing, so the mass method is the main open point. FR1 was frozen after the retirement, was not blind and doesn't touch galaxies. It reinstates nothing.
+**Gas retention: the mass method decides it, and it isn't settled (FR1, FR3).** A gas-fraction line from hydrostatic masses, fitted without X-COP or shear, takes the native profile from 12 to 14 of 15 keys with X-COP passing: G-OUT-M3 +3.48, +3.09 at h 0.672, 0.686, joint p 0.16-0.17. Its frozen label is NOT RETENTION [MASS-METHOD-DEPENDENT] [ERROR-DEPENDENT], by one cell. Weak-lensing masses then cut against it. Okabe's HSC masses on eRASS1 gas read 0.216 dex below that line, −4.4σ, and level with the lensing-calibrated line. Through the same grader that overshoots: 4 of 15, G-OUT-M3 −2.54, X-COP fails; its own fit gives 11 of 15, X-COP still failing. A second HSC reading, Umetsu on XXL gas, sits on the hydrostatic line instead, and the two share no clusters. Neither line passes all 15 keys and X-COP. FR3's error budget gained a selection term after its freeze; with it, its frozen rule would read NO INDEPENDENT MEASUREMENT. Both lanes were frozen after the retirement, weren't blind and don't touch galaxies. They reinstate nothing.
+
+**What the law is missing in clusters (LM1, GM1), a description only.** Inside about R500 the deficit is near 8 × the gas at 0.2-0.5 R500 and 5 × at 0.5-1 R500, with no detected mass dependence, no BCG link and no preferred scale found, picked from 31 looks. Trained on KiDS, it predicts X-COP's hydrostatic masses out of sample. HSC lensing reads it about 1.7 × higher, and "tracks gas" can't be told from "tracks M500", so GM1's overall label is NOT. GM1 issued labels after a failed check and says so.
 
 **Doors tried, by each lane's label.** Density term: SPARC BREAKS. Phase-space cap: BITES, FAILS. Retention, earlier lane: FAILS; FR1 is above. Barotropic halo: MOVES, FAILS. Fresh hunt, 19 routes: no mechanism survives whole. Derived T, three attempts: LOCATED, NOT DERIVED. Shift-symmetric P(X): c_s² < 0 at all 14 grid z_on, NEEDS A SELECTED LAGRANGIAN, a family result and not a no-go theorem. A per-galaxy action-response lane (AR1) is still running; it can go in the record but can't reinstate the sector.
 
@@ -51,10 +56,10 @@ S SPARC, Tl tilt, LT LITTLE THINGS, G groups, K 15 cluster shear keys, X X-COP, 
 | 4 | show little net contraction in spirals | not needed | needs f ≤ 0.2, measured 0.872 |
 | 5 | fit dwarfs | −0.025 | +0.138; 0 of 5 classes |
 | 6 | fit IC 1613 | −0.593 | −0.474 |
-| 7 | fit the Milky Way | K_z +4.7 to +6.6σ | asks 4e10 M☉ inside R₀ |
+| 7 | fit the Milky Way | depends on vertical form | asks 4e10 M☉ inside R₀ |
 | 8 | fit isolated lenses | shape preferred | Δχ² +366.0 |
 | 9 | add mass in cluster cores | A 1.91 | G-IN −0.49, G-MID +2.17 |
-| 10 | match outer cluster shear | slope 0.47 against 0.90 | G-OUT-M3 +4.41 |
+| 10 | match outer cluster shear | G-OUT-M3 +4.76; slope 0.47 against 0.90 | G-OUT-M3 +4.41 |
 | 11 | act as dust in the CMB | no cold term | z_on in [3e4, 1e6] |
 | 12 | have an action | open | P(X) dust limit only |
 
