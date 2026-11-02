@@ -1,6 +1,6 @@
 # BF1_brute_force_law: FROZEN CRITERIA (committed alone, before any script or number)
 
-Owner's go, 2026-11-02: brute force on the Mac. **Not blind:** LW1, LM1, GM1, FR1, FR3, SL1 and DR1 are on record and read. kappa = 1/2 FITTED. No cold component, no particle. This reopens no retired sector. Not theory closed. Nothing here says the data favour the framework. PAPER67 is unaffected by any result here.
+Owner's go, 2026-11-02: exhaustive search on the Mac. Directory renamed from BF1_brute_force_law, which a gitignore rule hid. **Not blind:** LW1, LM1, GM1, FR1, FR3, SL1 and DR1 are on record and read. kappa = 1/2 FITTED. No cold component, no particle. This reopens no retired sector. Not theory closed. Nothing here says the data favour the framework. PAPER67 is unaffected by any result here.
 
 ## Question
 Is there one closed-form rule, with no fitted number, built from local baryonic quantities, that lifts the a0 law on clusters and leaves discs alone, and that holds on data it never saw?
