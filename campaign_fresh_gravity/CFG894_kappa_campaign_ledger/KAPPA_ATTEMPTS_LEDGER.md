@@ -17,11 +17,11 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (803 rows)
+## Totals (808 rows)
 
-- **537 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **539 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
-- **129 produced a number.** 60 produced one determinate value; 69 are menus of several values from
+- **130 produced a number.** 60 produced one determinate value; 70 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
   - a condition equal to the target,
   - a free ratio, or a trade for a new constant,
@@ -37,7 +37,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
 - The rate (about 33%) is what a random draw from the record-natural number set gives (27–28%; see
   `kappa_campaign_lee.out`). So the landings are no evidence that any route knows κ.
 
-**68 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
+**70 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
 The ½ got in by one of these routes:
 - inserted or written in (CFG43, CFG187, G031);
 - posited (the free-fall surface gravity c²/2R*, i.e. J = Gρr²/c² = 1);
@@ -156,7 +156,7 @@ fact.
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
 | AU Audits, controls, meta-analyses | 156 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
-| EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
+| EX External pasted derivations | 12 | 2 | 1 | 8 | 0 | 0 |
 
 Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2 exactly); `any` determinate, density route (kappa^2 in Q*pi^k; can give 1/2); `cont` determinate, transcendental root (log-uniform reference); `menu` several values from admissible variants (non-determinate: never a hit); `free` condition only / free ratio / trade / bound / not selected (no number); `pend` registered, not yet run; `obs` observational determination of kappa (not a derivation; not a trial); `audit` audit / meta / control (not a trial); `lean` logic or Lean formalisation (not a trial); `nk` kappa-blind lane listed for completeness (not counted).
 
@@ -1037,4 +1037,9 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K122 | EXT02-P6 | `sonnet55_push/puzzle_32pi/external_notes/EXT02_pasted_32pi_derivations_2026-10-02.md` | Vol(D2xS2)/Vol(S4)=16pi | - | free | VOID: 'fraction' > 1; target restated | 7055e4c6e |
 | K123 | EXT03 | `sonnet55_push/puzzle_32pi/external_notes/ext03_check.py` | scalar-Euler action + trace anomaly in dS | - | free | RESTATED: a0^2=3/(32 G a_E) needs a_E~3e122 | 725683231 |
 | K124 | EXT04 | `sonnet55_push/puzzle_32pi/external_notes/ext04_check.py` | two-potential flat-rotation trace solution | - | free | CLOSURE: one speed per QFT; no BTFR | 876a36ecd |
+| K804 | KF1/R2 | `rebuild_2026_10_22/KF1_argon_kappa_routes` | pasted: /Phi_H/=c^2/2 over L=c/sqrt(G rho) | {{0.5, 1.447, 1.772}} | menu | VOID: door X7 again; needs J=1 where a horizon has J=3/8pi; output ignores Einstein's coupling | 8f14af0da8 |
+| K805 | KF1/R4 | `rebuild_2026_10_22/KF1_argon_kappa_routes` | pasted: lambda /dX/dr/ = X0 for clock field | - | free | VOID as derivation: kappa=1/(2 xi); TRADE for xi; kinetic prefactor cancels | 8f14af0da8 |
+| K806 | KF1/R1 | `rebuild_2026_10_22/KF1_argon_kappa_routes` | pasted: field stress equal partition | - | nk | NO NUMBER | 8f14af0da8 |
+| K807 | KF1/R3 | `rebuild_2026_10_22/KF1_argon_kappa_routes` | pasted: quadratic form of the law | - | nk | NO NUMBER: holds for every a0 | 8f14af0da8 |
+| K808 | KF1/R5 | `rebuild_2026_10_22/KF1_argon_kappa_routes/README.md` | pasted: a0=cH/2pi from dS temperature | - | audit | VOID as derivation: equating Unruh and Gibbons-Hawking gives a=cH; the 2pi is kept by hand; repeat of Z=2pi | 8f14af0da8 |
 
