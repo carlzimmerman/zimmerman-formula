@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (808 rows)
+## Totals (809 rows)
 
-- **539 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **540 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **130 produced a number.** 60 produced one determinate value; 70 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -37,7 +37,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
 - The rate (about 33%) is what a random draw from the record-natural number set gives (27–28%; see
   `kappa_campaign_lee.out`). So the landings are no evidence that any route knows κ.
 
-**70 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
+**71 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
 The ½ got in by one of these routes:
 - inserted or written in (CFG43, CFG187, G031);
 - posited (the free-fall surface gravity c²/2R*, i.e. J = Gρr²/c² = 1);
@@ -156,7 +156,7 @@ fact.
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
 | AU Audits, controls, meta-analyses | 156 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
-| EX External pasted derivations | 12 | 2 | 1 | 8 | 0 | 0 |
+| EX External pasted derivations | 13 | 2 | 1 | 9 | 0 | 0 |
 
 Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2 exactly); `any` determinate, density route (kappa^2 in Q*pi^k; can give 1/2); `cont` determinate, transcendental root (log-uniform reference); `menu` several values from admissible variants (non-determinate: never a hit); `free` condition only / free ratio / trade / bound / not selected (no number); `pend` registered, not yet run; `obs` observational determination of kappa (not a derivation; not a trial); `audit` audit / meta / control (not a trial); `lean` logic or Lean formalisation (not a trial); `nk` kappa-blind lane listed for completeness (not counted).
 
@@ -1042,4 +1042,5 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K806 | KF1/R1 | `rebuild_2026_10_22/KF1_argon_kappa_routes` | pasted: field stress equal partition | - | nk | NO NUMBER | 8f14af0da8 |
 | K807 | KF1/R3 | `rebuild_2026_10_22/KF1_argon_kappa_routes` | pasted: quadratic form of the law | - | nk | NO NUMBER: holds for every a0 | 8f14af0da8 |
 | K808 | KF1/R5 | `rebuild_2026_10_22/KF1_argon_kappa_routes/README.md` | pasted: a0=cH/2pi from dS temperature | - | audit | VOID as derivation: equating Unruh and Gibbons-Hawking gives a=cH; the 2pi is kept by hand; repeat of Z=2pi | 8f14af0da8 |
+| K809 | KF1/R6 | `rebuild_2026_10_22/KF1_argon_kappa_routes/README.md` | pasted: two-point kernel with g=G rho r averaged over c/sqrt(G rho) | - | free | VOID: real integral gives (4pi/3 or 8pi/3) G rho r; average chosen; xi=1 posited | 8f14af0da8 |
 

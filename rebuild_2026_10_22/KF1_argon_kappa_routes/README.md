@@ -19,3 +19,6 @@ What is left, from all four: forcing kappa = 1/2 is the same as forcing xi = 1, 
 
 ## Argon's later reply, R5: kappa = sqrt(2/(3 pi)) = 0.4607, a0 = c H_DE / 2 pi. Not forced either
 Hand algebra, not in the frozen tests. Argon's step is k T = hbar H / 2 pi, so a = c H / 2 pi. Unruh is k T = hbar a / (2 pi c), so equating the two temperatures cancels the 2 pi and gives a = c H. The 0.4607 needs the 2 pi kept by hand. It is the record's Z = 2 pi value, inside door X3, and today's data can't separate it from 1/2 (needs a0 to 2.8 %). The claim that any derivation must carry sqrt(pi) is stronger than the record, which has a pi-parity result for routes built from a0 and H only, and CFG891's R18, where pi cancels. Register K808, audit class, adds no trial.
+
+## Argon's R6: U_pair = (1/2) G M rho r^2, mean of g = G rho r over [0, R0]. VOID
+Hand algebra, not in the frozen tests. Doing the two-point integral over a uniform sphere gives g = (4 pi/3) G rho r, or (8 pi/3) G rho r with w = -1 active mass. So the pi returns with the d^3x' integral, and g = G rho r is written in, not obtained. With the real g, the same steps give c H / 2, kappa 1.447. The mean over [0, R] gives 1/2 by choice of average: the endpoint gives 1, the volume-weighted mean 3/4. R0 = c / sqrt(G rho) is xi = 1 again. Register K809.
