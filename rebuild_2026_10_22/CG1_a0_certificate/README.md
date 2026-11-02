@@ -95,11 +95,11 @@ PAPER67's tex has no match on certificate or kernel wording. Not edited, per rul
 K1 pass (sig_int 0.0808; 63.94 vs 63.90; 5.38 vs 5.34). K2 pass. K3 pass. K4 PLANT at alt recovered, +0.02 sigma_boot, though the plant has no correlated within-galaxy errors, so its 3 % is not a real error. K5 pass. K6 0.28 GB. Rerun byte-identical, both scripts. **MUTATE exits 1 on both:** the mismatch trips NULL-SCALE-MISMATCH; E = 7 pi loses a0 from T; a0 x 1.25 fails K1.
 
 ## Limits
-- Registry and classes are my choice, frozen but not unique. A smaller registry lowers P, though at W1 half width any list of about 15 values covers the band. Class S, with 55 values, still gives P 0.843.
+- Registry and classes are my choice, frozen but not unique. A smaller registry lowers P, though at W1 half width about 15 evenly spaced values would cover the band. Class S, with 55 values, still gives P 0.843.
 - Windows ignore distance and inclination errors except as bootstrap picks them up, so they're if anything too narrow, which favours the test.
 - The rate comes from the footings; a different H0 moves every row together. Rival attributions partly recalled, PROVISIONAL.
 - First run of K1 used +- 0.6 in code against +- 0.3 frozen. Corrected before the published run; it passes at 0.3.
 - Citation patterns are a floor, and tiers are mechanical. I read only the lines quoted above.
-- Fit bits use Dchi2/(N/n), not the bootstrap; the two agree within 5 % on sigma on the reference kernel, less well on McGaugh's (12.0 vs 9.06 %).
+- Fit bits use Dchi2/(N/n), not the bootstrap; the two agree to about 5 % on sigma on the reference kernel, less well on McGaugh's (12.0 vs 9.06 %).
 
 kappa = 1/2 FITTED. Not theory closed.
