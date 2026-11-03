@@ -97,4 +97,5 @@ if MODE == "grade":
             say(arm, f, f"X-COP mean {X['B23']['value']:+.3f} ({X['B23']['label']}), rms {X['B24']['value']:.3f} ({X['B24']['label']}); B25 {X['B25']['label']} Z {X['B25']['Z']:+.2f}; groups Z {Gp['Z']:+.2f} {Gp['label']}" + (f"; K {K:.3f}" if K else "") + (f"; Bullet {b['label']} {b['cls']}, M300 {b['M300'][0] / 1e14:.2f}, {b['M300'][1] / 1e14:.2f}, Z {b['ZM'][0]:+.2f}, {b['ZM'][1]:+.2f}, dkappa {b['dkappa'][0]:+.3f}, {b['dkappa'][1]:+.3f}, R {b['R'][0]:.2f}, {b['R'][1]:.2f}" if b else ""))
     json.dump(out, open(f"mb1_grade{TG2}{TAG}.json", "w"), indent=1, default=float)
     if MUT:
-        d = out[arms[0]]["canonical"]["Bullet"]["dkappa"]; sys.exit(1)
+        bs = [out[arms[0]][f]["Bullet"] for f in FEET]; lost = all(b["cls"] == "FAIL" and all(x < 0 for x in b["dkappa"]) for b in bs)
+        say("MUTATE", arms[0], "caught: sign lost on both footings" if lost else "NOT caught"); sys.exit(1 if lost else 0)
