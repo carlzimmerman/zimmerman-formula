@@ -1,27 +1,27 @@
-# BK2_dimensional_law_search, level L1: NO HIT on both footings. 2.7e10 dimensioned expressions per footing, zero through G1-G3 on either reading, and the scrambled control comes as close on the lines. L2 and canonical's control are still running
+# BK2_dimensional_law_search, level L1: NO HIT on both footings. 2.7e10 dimensioned expressions per footing, zero through G1-G3 on either reading, and the scrambled control comes as close on the lines on both footings. L2 is still running
 
 Criteria: `FROZEN_CRITERIA.md` (28aa67bde5), committed alone first; `AMENDMENT_A1.md` holds A1 (11462b5388) and A2, both before any candidate number. Scripts `bk2_lib.py`, `bk2_search.py`, `bk2_read.py`, `bk2_stage2.py`, `bk2_gates.py`, `bk2_dear.py`, `bk2_checks.py`, driver `run_bk2.sh`, watcher `bk2_watch.sh`. Numbers in `bk2_train_*.json`, `bk2_stage2_*`, `bk2_dear_*`, `bk2_checks.out`. **Not blind.** No action, no CMB. kappa = 1/2 FITTED. The cold sector stays retired; nothing here reinstates it. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.
 
 ## Counts, level L1 (CAP_D, CAP_A 3e4)
 | | canonical | alt | alt scrambled control | canonical control |
 |---|---|---|---|---|
-| Enumerated, dimension valid | 2.739e10 | 2.739e10 | 2.736e10 | running |
-| In G1a's window at Saturn | 8.97e8 | 8.97e8 | 8.98e8 | |
-| G1a Newton, 3 points | 1.228e8 | 1.231e8 | 1.178e8 | |
-| G1b Cassini, of those | 5.00e7 | 5.00e7 | 4.68e7 | |
-| Prefilter X-COP | 2.72e7 | 2.87e7 | 2.76e7 | |
-| Prefilter SPARC subsample, hits | 4.82e6 | 4.95e6 | 3.50e6 | |
-| Distinct on X-COP train | 2.60e6 | 2.65e6 | 1.78e6 | |
-| G3 LINE | 34,545 | 28,948 | **10** | |
-| G3 ERR | **0** | **0** | **0** | |
-| G2 LINE, in the X-COP zone | 173 | 144 | 47 | |
-| G2 ERR, in the X-COP zone | 1,129 | 871 | 139 | |
-| **G2 and G3, LINE** | **0** | **0** | **0** | |
-| **G2 and G3, ERR** | **0** | **0** | **0** | |
-| Closest to the lines (1 = on the line) | 1.08 | 1.07 | **1.02** | |
-| Smallest Z_max | 9.3 | 8.2 | 32 | |
+| Enumerated, dimension valid | 2.739e10 | 2.739e10 | 2.736e10 | 2.736e10 |
+| In G1a's window at Saturn | 8.97e8 | 8.97e8 | 8.98e8 | 8.98e8 |
+| G1a Newton, 3 points | 1.228e8 | 1.231e8 | 1.178e8 | 1.183e8 |
+| G1b Cassini, of those | 5.00e7 | 5.00e7 | 4.68e7 | 4.73e7 |
+| Prefilter X-COP | 2.72e7 | 2.87e7 | 2.76e7 | 2.64e7 |
+| Prefilter SPARC subsample, hits | 4.82e6 | 4.95e6 | 3.50e6 | 3.30e6 |
+| Distinct on X-COP train | 2.60e6 | 2.65e6 | 1.78e6 | 1.67e6 |
+| G3 LINE | 34,545 | 28,948 | **10** | **16** |
+| G3 ERR | **0** | **0** | **0** | **0** |
+| G2 LINE, in the X-COP zone | 173 | 144 | 47 | 78 |
+| G2 ERR, in the X-COP zone | 1,129 | 871 | 139 | 34 |
+| **G2 and G3, LINE** | **0** | **0** | **0** | **0** |
+| **G2 and G3, ERR** | **0** | **0** | **0** | **0** |
+| Closest to the lines (1 = on the line) | 1.08 | 1.07 | **1.02** | **1.01** |
+| Smallest Z_max | 9.3 | 8.2 | 32 | 31 |
 
-**Labels, frozen: NO HIT, both footings, at L1. SURVIVOR 0. WITHIN ERRORS, OUTSIDE A LINE 0. FAILS ONLY CASSINI 0. Look-elsewhere:** N_eff is under 2.7e10 and no train pass exists to correct. Real over control: G3 LINE is 3000 x higher, since the control destroys X-COP's radial order. On combined closeness, **the control does as well as the real data**, so no near miss below earns weight from its closeness alone.
+**Labels, frozen: NO HIT, both footings, at L1. SURVIVOR 0. WITHIN ERRORS, OUTSIDE A LINE 0. FAILS ONLY CASSINI 0. Look-elsewhere:** N_eff is under 2.7e10 and no train pass exists to correct. Real over control: G3 LINE is 3000 x higher, since the control destroys X-COP's radial order. On combined closeness, **the control does as well as the real data**, on both footings (canonical's control: closest 1.01 against real 1.08; 0 train passes among its 50 closest; canonical MUTATE L1 0 hits, bites), so no near miss below earns weight from its closeness alone.
 
 Downstream counts run on the 50 near misses only, so they aren't a census. In them G9 and G10 pass 0 of 50 on both readings, canonical and alt: **no near miss touches the dwarfs or IC 1613.**
 
