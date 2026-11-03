@@ -1,0 +1,6 @@
+# WA1 amendments. Each post-criteria, disclosed
+
+**A1, written after one test fit of the law on canonical (300 mocks), before any other candidate's fit and before any label.**
+1. The 0.5/0.5 shrunk X-COP covariance gives cluster-scatter errors near 0.011-0.03 dex per bin, so X-COP dominates chi^2 (z up to 56 for the law) and the flat hse shift can't touch radial shape. Frozen statistic and labels stay as they are. Two sensitivities are added, **no label, post-result**: a 0.05 dex per-bin floor (RQ3's |mean| line as a size), and X-COP dropped altogether.
+2. A5, A6 correlation capped at 0.95: the frozen formula reaches 1 in bins where both errors are the shared bootstrap, which makes the pair singular. The cap is implementation, not an observation of the outcome.
+3. `tilt` needs a cluster mass the keys path doesn't carry; it is read per cluster from X7's measured eRASS1 M500 column, which is in 1e13 Msun. A first attempt with the wrong key failed at once, and a second read the column as 1e14. That run was killed before any response was used. Its partial directory `cache_keys/` is gitignored and unread. It remains on disk: a safety check refused its removal, so the owner can delete it.
