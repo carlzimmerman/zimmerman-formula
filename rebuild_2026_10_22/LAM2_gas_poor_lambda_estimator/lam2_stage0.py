@@ -45,5 +45,8 @@ for lo, hi in ((-99, 1), (1, 2), (2, 3)):
     s = poor & (ew >= lo) & (ew < hi); P(f"  gas-poor EW bin [{max(lo, -99)}, {hi}): N {int(s.sum())}, slow {int((s & slow).sum())}")
 v = "PASS" if gp["F1"] and gp["F2"] else ("STOP: NOT FEASIBLE" if not gp["F1"] else "STOP: NOT POWERED")
 P(f"STAGE 0: {v}. F3 (compute) is a scheduling gate, read by hand."); RES["verdict"] = v
+S = qual & hasline; pl, mj, fb = (L[c][li][S].astype(int) for c in ("plate", "mjd", "fiberID"))
+np.savetxt(os.path.join(HERE, "lam2_sample.csv"), np.c_[row[S], SID[li][S].astype(np.uint64), pl, mj, fb, poor[S], slow[S]], fmt="%d",
+           delimiter=",", header="dynpop_row,specobjid,plate,mjd,fiberID,gas_poor,slow", comments="")
 open(os.path.join(HERE, "lam2_stage0.out"), "w").write("\n".join(OUT) + "\n")
 json.dump(RES, open(os.path.join(HERE, "lam2_stage0.json"), "w"), indent=1, default=float)
