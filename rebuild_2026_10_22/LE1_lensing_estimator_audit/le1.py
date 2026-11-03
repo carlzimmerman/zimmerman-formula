@@ -4,7 +4,8 @@
   PYTHONHASHSEED=0 nice -n 10 python3 -I le1.py keys_controls R2, KA2c (replica), MUT for G2 (key chain runs, cache_keys/)
   PYTHONHASHSEED=0 nice -n 10 python3 -I le1.py real          G1 base + swap ladder S1-S7 + A1, G3 (+ mapped variant), law / NP1 real L3 / Newton
   PYTHONHASHSEED=0 nice -n 10 python3 -I le1.py keys_real     G2 base, K1 no miscentring, K2 no reduced shear, law and NP1 real L3
-  PYTHONHASHSEED=0 nice -n 10 python3 -I le1.py verdict       label from the four JSONs
+  PYTHONHASHSEED=0 nice -n 10 python3 -I le1.py post          POST-RESULT diagnostics (AMENDMENT_A1.md), no label changes
+  PYTHONHASHSEED=0 nice -n 10 python3 -I le1.py verdict       label from the five JSONs, frozen precedence
 Outputs le1_<mode>.{json,out}. kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework."""
 import importlib.util, json, math, os, subprocess, sys, types
 for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "VECLIB_MAXIMUM_THREADS", "MKL_NUM_THREADS"): os.environ[_v] = "1"
@@ -151,7 +152,7 @@ def keys_run(name, swap):
         if not (os.path.exists(O) and json.load(open(O)).get("done")):
             TL = os.path.join(W, "tail.py"); open(TL, "w").write(T); d = open(os.path.join(L.SL1, "sl1_harvest.py")).read()
             for x, y in (('SL1ADD = f"sub(', 'SL1ADD = ' + repr(L.GAS % dex if dex else "") + ' + f"sub('), ('os.path.join(HERE, "sl1_tail_harvest.py")', repr(TL)), ('WD = os.path.join(HERE, "cache")', f'WD = {W!r}'),
-                         ('HERE = os.path.dirname(os.path.abspath(__file__)); RB = os.path.dirname(HERE)', f'HERE = {W!r}; RB = {RB!r}'), ('X73_FSTAR="0.034"', f'X73_FSTAR="{fs}"')):
+                         ('HERE = os.path.dirname(os.path.abspath(__file__)); RB = os.path.dirname(HERE)', f'HERE = {HERE!r}; RB = {RB!r}'), ('X73_FSTAR="0.034"', f'X73_FSTAR="{fs}"')):
                 assert d.count(x) == 1, x; d = d.replace(x, y)
             df = os.path.join(W, "driver.py"); open(df, "w").write(d)
             env = dict(os.environ, UR1_SL1=L.SL1, SL1_OUT=O, CN1_FORCE="1", LW1_A0X="1.0", RQ2_CAND=os.path.abspath(CANDS[name]), DR1_RUN=json.dumps(dict(rows=L.ROWS, k2=False)), LE1_KSWAP=swap, PYTHONHASHSEED="0", PYTHONDONTWRITEBYTECODE="1")
@@ -311,14 +312,81 @@ def keys_real():
             for f in FEET: s = keys_summary(o[k][nm][f]); P(f"[{k} | {nm} | {f}] fails {s['nfail']}: " + " ".join(f"{q} {v['Z']:+.2f}" for q, v in o[k][nm][f].items()))
     RES["G2"] = o; save()
 
+def post():
+    """POST-RESULT diagnostics (AMENDMENT_A1.md). Change no label."""
+    P("LE1 post (POST-RESULT; no label changes). kappa = 1/2 FITTED; not theory closed.")
+    g = G1(True); o = {}
+    # P1 where A30's chi2 sits, law and NP1, base fit
+    for k in ("law", "np1_L3"):
+        c = cand(CANDS[k]); o[k] = {}
+        for f in FEET:
+            m = g.model(g.table(c, f)); ch, b = Le.fit(g.L, m, list(range(15)), g.T0); Af = np.zeros((60, 4))
+            for i in range(4): Af[15 * i:15 * (i + 1), i] = g.T0[i]
+            r = g.L["Yn"].ravel() - (m + Af @ b); Ci = np.linalg.solve(g.L["Cn"], r); con = r * Ci; inner = np.array([j in g.IP for j in range(15)] * 4)
+            rat = (g.L["Yn"].ravel() / (m + Af @ b)).reshape(4, 15)
+            o[k][f] = dict(chi2=float(con.sum()), inner=float(con[inner].sum()), outer=float(con[~inner].sum()), per_bin=[float(con[15 * i:15 * i + 15].sum()) for i in range(4)], ratio=rat.tolist(), R=g.L["R"][0].tolist())
+            P(f"P1 {k} [{f}] chi2 {con.sum():.1f}: R <= 0.31 {con[inner].sum():.1f}, R > 0.31 {con[~inner].sum():.1f}; per bin {[round(float(con[15 * i:15 * i + 15].sum()), 1) for i in range(4)]}")
+            for i in range(4): P(f"     bin {i + 1} data/model by R: " + " ".join(f"{x:.2f}" for x in rat[i]))
+    # P2 G2 SIS miss: truncated reference, and the bound on key Z
+    N = g2_ns(); RG, RC, MPC, G = N["RG"], N["RC"], N["MPC"], N["G"]; s_ = 1e6; rho = s_ ** 2 / (2 * math.pi * G * (RG * MPC) ** 2)
+    num = N["at_bins"](N["dsig_from_sig"](N["project_floor"](rho))); ref_t = trunc_ds(lambda r: s_ ** 2 / (2 * math.pi * G * (r * MPC) ** 2) * MPC ** 3, RC, float(RG[-1])) / MPC ** 2
+    rt = num / ref_t; P(f"P2 G2 SIS against the truncated-SIS quadrature: {np.round(rt, 4).tolist()} (against untruncated, KA2a: the controls file)")
+    C = json.load(open(os.path.join(HERE, "le1_controls.json"))); dv = np.abs(np.array(C["KA2a"]["ratios"]["SIS"]) - 1); band = dict(INNER=float(dv[:3].max()), MID=float(dv[3:6].max()), OUTER=float(dv[6:].max()))
+    bd = {}
+    for k in ("law", "np1_L3"):
+        bd[k] = {}
+        for tag, _, _ in KTAGS:
+            Kf = os.path.join(HERE, "cache_keys", f"{k}_base_{tag}", "keys.json")
+            if not os.path.exists(Kf): continue
+            K = json.load(open(Kf))
+            for f in FEET:
+                for h in HH:
+                    for q in KS:
+                        if q.endswith("-b"): continue
+                        bnd = band["INNER" if "-IN-" in q else ("MID" if "-MID-" in q else "OUTER")]; pr = K[f"R1|c0|{f}"]["preds"][h][q]; sg = K[f"R1|c0|{f}"]["tmpl"][h][q][1]; v = bnd * abs(pr) / sg
+                        bd[k][q] = max(bd[k].get(q, 0.0), float(v))
+        if bd[k]: P(f"P2 bound on |dZ| from the projector miss, {k}: max {max(bd[k].values()):.3f} ({max(bd[k], key=bd[k].get)})")
+    # P3 G3 with data-only sigma per row
+    X = {b: np.loadtxt(os.path.join(CRG, "inputs", "lensing", f"Fig-3_Lensing-rotation-curves_Massbin-{b}.txt"), comments="#") for b in range(1, 5)}; g3d = {}
+    for f in FEET:
+        R, NC, C3 = g3_rows(f); g3d[f] = {}
+        sdd = []
+        for q in R:
+            b = int(q["name"][3:]); Rm = q["ell"] * NC.CL ** 2 / NC.A0C / (1e6 * C3.PC); j = int(np.argmin(np.abs(X[b][:, 0] - Rm))); sdd.append(X[b][j, 3] / (X[b][j, 1] * math.log(10)))
+        sdd = np.array(sdd); sdm = np.array([q["sd"] for q in R])
+        for k in ("law", "np1_L3"):
+            c = cand(CANDS[k]); Rd = [dict(q, sd=float(x)) for q, x in zip(R, sdd)]; zz = g3_z(Rd, NC, f, c); g3d[f][k] = zz
+            P(f"P3 G3 [{f}] {k} with data-only sigma: mean {zz['mean']:+.4f} +- {zz['se']:.4f}, z {zz['z']:+.2f} {zz['label']} (CX1 MC sd median {np.median(sdm):.3f}, data-only median {np.median(sdd):.3f} dex)")
+    RES.update(P1=o, P2=dict(truncated_ratio=rt.tolist(), band_dev=band, key_bound=bd), P3=g3d); save()
+
 def verdict():
-    J = {m: json.load(open(os.path.join(HERE, f"le1_{m}.json"))) for m in ("controls", "keys_controls", "real", "keys_real")}
-    P("LE1 verdict (frozen precedence). kappa = 1/2 FITTED; not theory closed."); RES["inputs"] = list(J)
-    c, kc, r, kr = J["controls"], J["keys_controls"], J["real"], J["keys_real"]
+    J = {m: json.load(open(os.path.join(HERE, f"le1_{m}.json"))) for m in ("controls", "keys_controls", "real", "keys_real", "post")}
+    c, kc, r, kr, po = J["controls"], J["keys_controls"], J["real"], J["keys_real"], J["post"]
+    P("LE1 verdict (frozen precedence). kappa = 1/2 FITTED; not theory closed.")
     repro = all(v["ok"] for v in c["R1"].values()) and kc["R2"]["ok"] and all(v["ok"] for v in c["R3"].values())
     kas = {k: bool(c[k]["ok"]) for k in ("KA1a", "KA1b", "KA1c", "KA1d", "KA1e", "KA2a", "KA2b", "KA3b")}; kas["KA2c"] = bool(kc["KA2c"]["ok"]); kas["KA3a"] = all(c["KA3a"][f]["ok"] for f in FEET)
-    P("reproduction R1, R2, R3:", repro); P("known answers:", json.dumps(kas))
-    RES.update(repro=repro, kas=kas); save()
+    mut = all(v["ok"] for v in c["MUT_G1"].values()) and all(v["ok"] for v in kc["MUT_G2"].values())
+    P(f"reproduction R1, R2, R3: {repro}; MUTATE bites: {mut}"); P("known answers:", json.dumps(kas))
+    moved = {}
+    if not kas["KA2a"]: moved["KA2a (G2 projector, SIS inner bins)"] = max(max(v.values()) for v in po["P2"]["key_bound"].values() if v)
+    if not kas["KA3a"]: moved["KA3a (G3 4GDeltaSigma)"] = max(abs(r["G3"][f][k]["base"]["z"] - r["G3"][f][k]["mapped_4GDS"]["z"]) for f in FEET for k in ("law", "np1_L3"))
+    for k in ("KA1a", "KA1b", "KA1c", "KA1d", "KA1e", "KA2b", "KA2c", "KA3b"):
+        if not kas[k]: moved[k] = float("nan")
+    lab = {}
+    for k in ("law", "np1_L3"):
+        for f in FEET: lab[f"{k}|{f}"] = dict(G1="PASS" if abs(r["G1"][k][f]["S0 base"]["Z"]) <= ZL else "FAIL", G3=r["G3"][f][k]["base"]["label"])
+    sw = {f: {nm: r["G1"]["law"][f][nm]["Z"] for nm in r["G1"]["law"][f] if nm[:2] in ("S1", "S2", "S3", "S4", "S5", "S6") and "+" not in nm} for f in FEET}
+    crossing = {f: [nm for nm, z in sw[f].items() if abs(z) <= ZL] for f in FEET}
+    carries = {f: (crossing[f] or [max(sw[f], key=lambda nm: abs(sw[f][nm] - r["G1"]["law"][f]["S0 base"]["Z"]))]) for f in FEET}
+    agree = all(v["G1"] == v["G3"] for v in lab.values())
+    if not repro: label = "UNDETERMINED"
+    elif any((v != v) or v >= 1.0 for v in moved.values()): label = "ESTIMATOR DEFECT FOUND"
+    elif all(kas.values()) and agree and not any(crossing.values()): label = "ESTIMATORS AGREE, FAILURE IS IN THE DATA"
+    elif all(kas.values()) or all(v < 1.0 for v in moved.values()): label = "ESTIMATORS DISAGREE, NO DEFECT" if (not agree or any(crossing.values())) else "ESTIMATORS AGREE, FAILURE IS IN THE DATA"
+    else: label = "UNDETERMINED"
+    P("immaterial or material defects (number moved):", json.dumps(moved)); P("labels G1 vs G3:", json.dumps(lab)); P("law single swaps crossing |Z| <= 2:", json.dumps(crossing)); P("carries A30 (law):", json.dumps(carries))
+    P(f"VERDICT: {label}")
+    RES.update(repro=repro, mut=mut, kas=kas, moved=moved, labels=lab, crossing=crossing, carries=carries, verdict=label); save()
 
 if __name__ == "__main__":
-    {"controls": controls, "real": real, "keys_controls": keys_controls, "keys_real": keys_real, "verdict": verdict}[MODE]()
+    {"controls": controls, "real": real, "keys_controls": keys_controls, "keys_real": keys_real, "post": post, "verdict": verdict}[MODE]()
