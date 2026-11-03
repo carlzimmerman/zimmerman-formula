@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (823 rows)
+## Totals (824 rows)
 
 - **550 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 55 | 0 | 0 | 0 | 0 | 45 |
-| AU Audits, controls, meta-analyses | 159 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 160 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 16 | 2 | 1 | 12 | 0 | 0 |
 
@@ -1013,6 +1013,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K814 | KA1 | `rebuild_2026_10_22/KA1_any_value_screen/ka1.py` | any-value screen of determinate in-window rows against S1-S8 | - | audit | NO ROUTE: 17 of 60 in window at chance; closest 0.482 forced given postulates but second prediction fails | eed81bb837 |
 | K822 | KT7/argon | `rebuild_2026_10_22/KT7_nonthermal_ensemble/README.md` | score of Argon replies: NO-GO for algebraic chi; p-family for Cassini | - | audit | NO-GO stands scoped; table variants 3 and 4 inverted; exponential Cassini pass WRONG, 3.76x; p = 1 passes Cassini 0.376x, fails SPARC; no kappa | cfdd2117a9 |
 | K823 | KT11/KT12 | `rebuild_2026_10_22/KT12_compact_kernel_milky_way/kt12.py` | compact kernel mu = 2Y - Y^2 (Argon p = 1) with kappa held fixed: SPARC stellar scale, Cassini, Milky Way on star-count baryons | - | audit | KERNEL OUT: canonical passes Cassini 0.376x, fails SPARC scale f 1.41 and MW v_c 201 vs 219.9; alt passes scale at edge, fails Cassini 1.024x and MW v_c 206; no kappa | d6732fb2eb |
+| K824 | KT13 | `rebuild_2026_10_22/KT13_mw_kernel_envelope/kt13.py` | eight local QUMOND kernels on Milky Way star-count baryons, kappa held fixed: is the v_c / K_z miss the kernel or the baryons | - | audit | NO KERNEL IN FAMILY both footings: every kernel reaching v_c lands at K 75.0-76.3 vs line top 70.8; K_proj 81.7-85.2 for all eight and Newton 84.1; miss set by baryons, not shape; no kappa | 6287109e86 |
 
 ## LN: Logic / Lean formalisations
 
