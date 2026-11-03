@@ -13,6 +13,7 @@ This is the foundation for a many-attempt campaign to derive κ in a₀ = κ c �
 | `kappa_campaign_lee.out` / `.json` | normal run, 4/4 checks pass |
 | `kappa_campaign_lee_MUTATE.out` / `.json` | the window centre moves 0.417 → 0.300; the in-window count moves 17 → 15 (the control bites) |
 | `ledger_intro.md` | prose that heads the rendered ledger |
+| `KAPPA_CLOSURE_2026-11-03.md` | closure (K840): the derivation reduces to ξ = 1, a length c/√(Gρ) no field equation supplies; data floor ≈ 9% (best case ≈ 5%) vs 2.8% needed; a₀ tracking ρ_DE vs H untested |
 
 **Run** from the repo root:
 
