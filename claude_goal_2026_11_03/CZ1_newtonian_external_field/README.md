@@ -41,3 +41,6 @@ The same correction **hurts** Cassini by about 2.5×. KT25's ε = κ on canonica
 - The 1D quadrature form ignores QUMOND's anisotropic factor, in the KT lanes and here alike.
 - KT26's MW pass for the local rule sits at prior-corner cells (KT18/KT22 thick-share caveat). The MW and SPARC rows carry no external field and weren't rerun.
 - KT28, the tidal filter rule, uses the same `ge = 200²/D` form in its dwarf and Cassini rows.
+
+## MUTATE (ν ≡ 1, Newton), `cz1_MUTATE.out`
+Exit 1 as designed. Dwarfs fall to 3/24 in every arm and variant, Fornax 4.84 km/s, and Cassini Q2 goes to 0. Checks are forced to pass under MUTATE, the same pattern as KT27, so the bite is read from the counts and the exit code.
