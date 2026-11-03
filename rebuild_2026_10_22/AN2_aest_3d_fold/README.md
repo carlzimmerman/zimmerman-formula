@@ -38,9 +38,12 @@ M_d / M_ph is at the last step read (alt, canonical where they differ). At 1e15 
 
 ## What this does and doesn't show
 - **Shows:** with the engine's own sphere as baseline, the shape shifts at mu 56.6 track the dust ellipsoid within 3 points, at both masses. That's the one consistent read.
-- **Doesn't show:** whether 3D folds no later than AN1's 1D fold. The engine's sphere is 16-18 % behind AN1 and still moving with N. Either 3D needs more than 128^3, or AN1's reference is early, or the TSC kernel adds lag. Not separated.
+- **Doesn't show:** whether 3D folds no later than AN1's 1D fold. The engine's sphere is 16-18 % behind AN1 and still moving with N. Diagnostic SL (below) later traced this to grid resolution, not AN1's reference or the kernel.
 - **Well read:** section 9's WELL test, M_d >= M_ph inside a fixed physical R_test at any step, is met trivially at early times at 1e15. A rerun would need the test restricted to the field's own excess, or to times after turnaround. That's a criteria change, not made here.
 - **At mu 0.1:** nothing folds in 3D by z = 0 at 64, 96 or 128 (G1), in either box (KB). AN1 folds at z < 0.01 there, so the gap is a few percent of t. A no-fold this close to today isn't a stable result.
+
+## Diagnostic SL (after the rows, 2026-11-03)
+`diag_a2/SPHERE_LAG_RESULT.md`, frozen note first. The sphere's 16-18 % lag behind AN1 is grid resolution: pure dust at 128^3 folds 15.6 % after the exact dust sphere (39.5 % at 64^3). Baryon stop moves nothing, the kernel moves 3 % the other way, and the hold term delays 1e12 by 14.4 %, about what AN1 already has in 1D (12.2 %). At 160^3 the spheres move −3.2 % (1e15) and −2.8 % (1e12). Taking the dust grid error off, the 3D sphere sits within 2 % of AN1 (a read). No label changes.
 
 ## Compute
 40 rows in all. 128^3 rows took 1240-1765 CPU s, none near the 67.5 min cap; RSS 1.6-1.7 GB at 128^3, 2.3 GB at 96^3, **over the 1 GB target**. Free disk dipped to 14 GB before the rows; they started once it was back over 15 GB. A KB row at eta 0.0125 was stopped by SIGTERM at 56 CPU min, unread (A3).
