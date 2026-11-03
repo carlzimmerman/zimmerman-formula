@@ -1,0 +1,202 @@
+DF3_fluid_next_gates, read of the lane's outputs. Criteria FROZEN_CRITERIA.md, A1. kappa = 1/2 FITTED; footings canonical 9.3603e-11, alt 1.1312e-10, never pooled. Not theory closed.
+
+== Controls
+  K_K16: PASS {"expect": 0.000244140625, "ratio": 0.00024410307042957265}
+  K_LE_5_3: PASS {"M_over_fair": 1.000116572100552, "expect": 5.99071, "expect_xi": 3.65375, "rho_c": 9.345037633870497e-17, "rhoc_over_mean": 6.029552283066983, "xi1": 3.6616443197926025}
+  K_LE_n1: PASS {"expect": 3.141592653589793, "rho_ratio": [1.0000012544259889, 0.9999987862823211], "xi1": 3.1525568500105074}
+  K_LE_n5: PASS {"rho_ratio": [1.0000180142450912, 0.9999219590116658, 0.9998114937097107]}
+  K_fair_grid: PASS {"fair": 1.00005376341639, "ratio": 1.0000456819339105, "rhalf": 0.15801016616941532}
+  K_flat_V: PASS {"expect": {"1.0": -1.0, "2.0": -4.0}, "slope": {"1.0": -1.0, "2.0": -3.9999999999998863}}
+  K_iso_max: PASS {"eta": 2.4929100384925795, "expect": 2.52, "noeq": true}
+  K_tov: PASS {"M_OV": 0.7099893641087327, "expect": 0.71, "expect16": 8.0, "m_back": 1.0000000000000033, "ratio16": 7.999999999999942}
+  selfcheck vs the other lane's S and law limit: PASS {"G1.000_s100": {"mine": 0.4651330149, "passed": true, "theirs": 0.4651322794}, "G1.667_s100": {"mine": -1.284299702, "passed": true, "theirs": -1.284413621}, "N_eq_S_off": {"diff": 0.0, "mean": 0.4674612691, "passed": true, "rms": 0.47626892}, "all": true}
+  Bullet K_gas_sign: PASS {"BCGs": [0.0, 848.9994111], "main_gas_peak_kpc_along_axis": 130.0, "main_offset": 130.0, "note": "sign only; Plummer gas has no cool core; magnitude a limit of the column model", "observed_offsets": [209.4, 194.1], "sub_gas_peak": 170.0, "sub_offset": 678.9994111}
+  Bullet K_law_row: PASS {"M300": [111214755300000.0, 73372774520000.0], "cls": "FAIL", "dk": [-0.06834810661, -0.1106175085]}
+  Bullet K_on_galaxies: PASS {"M300": [277758979800000.0, 183840493300000.0], "cls": "PASS", "d_bcg": [0.0, 10.0], "dk_main": 0.5113485062, "dk_sub": 0.1689967041}
+  MUTATE: {"LE_fails": true, "LE_ratio": 63.99592838778288, "LE_expect": 64.0, "LE_ratio_ok": true, "xcop_bites": true, "xcop": [-1.266558814, -0.3692413706], "bullet_control_fails": true, "all_bite": true}
+  ALL CONTROLS PASS
+
+== The a0 law without fluid
+  canonical: X-COP +0.467 0.476; keys 10 of 15 ['G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M3', 'G-OUT-b']; SPARC 0.0541 U 0.52 tilt +0.02; SB Z -0.25; LT -0.025; groups +0.31 CONSISTENT; IC Z -7.9; dwarfs [0.57, 2.29, 1.69, 5.22, 2.2]; lensing Z blue +1.7 red -5.0; MW X5 line 7 of 175; Bullet FAIL M300 [1.11, 0.73] dk -0.068 -0.111
+  alt: X-COP +0.434 0.444; keys 10 of 15 ['G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M3', 'G-OUT-b']; SPARC 0.0537 U 0.44 tilt -0.02; SB Z -0.36; LT -0.064; groups -0.31 CONSISTENT; IC Z -8.4; dwarfs [0.08, 2.12, 1.42, 4.87, 1.81]; lensing Z blue +2.9 red -3.5; MW X5 line 4 of 175; Bullet FAIL M300 [1.2, 0.79] dk -0.074 -0.117
+
+== Gamma 1, sigma 100 km/s, omega_f/omega_b 5.358
+  canonical  N reading
+    C1 X-COP held +0.464 0.473 FAIL (fails past HSE 0.12 too); NO EQ 1.00; collapsed -1.266 1.345; by x [0.54, 0.53, 0.5, 0.42, 0.33]; M_f/M_b [0.066, 0.021, 0.011, 0.005, 0.003]
+       validity: median GM/(R_half c^2) 4.10e-07, c_s centre/c 3.34e-04, R_half 20.5 kpc, held/fair 7.34e-05
+    C2 keys 10 of 15, failing ['G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M3', 'G-OUT-b'], worst ['G-MID-T3', 'h0686', 4.846544088], NO EQ 1.00; B=1 10, n(z) 10
+    D1 SPARC held 0.0557 U 0.47 tilt +0.10 FAIL, NO EQ 0.32; collapsed 0.4949 U 0.31 tilt +0.25
+    D2 150-200: M_f/M_b outer third 0.174, Z +2.37 FAIL, NO EQ 0.92, retained 0.038, R_half/R_last 0.0889; Jeans lambda/R_d at R_d, 2R_d, R_last [9.21, 33.07, 857.95], rho there [0.0065, 0.00056, 1.2e-06] Msun/pc^3, c_s [100.0, 100.0, 100.0]
+    D2 200-250: M_f/M_b outer third 0.039, Z -0.20 PASS, NO EQ 1.00, retained 0.007, R_half/R_last 0.0147; Jeans lambda/R_d at R_d, 2R_d, R_last [53.22, 238.61, 16330.22], rho there [0.00012, 7e-06, 1.8e-08] Msun/pc^3, c_s [100.0, 100.0, 100.0]
+       other bins M_f/M_b, NO EQ: [('100-150', 0.01, 0.04), ('20-60', 0.0, 0.0), ('250-400', 0.024, 1.0), ('60-100', 0.002, 0.0)]
+    D3 SB Z -0.25, LT -0.025 (NO EQ 0.00), groups -0.22 CONSISTENT (NO EQ 0.92); IC 1613 Z -7.9; dwarfs [0.57, 2.29, 1.69, 5.22, 2.2] (NO EQ 0.00)
+    D4 MW: 8 of 175 cells pass V_c and K_z chi2, 0 also K_z(R0); NO EQ 175; median V_c 212.6, K_z(R0) 81.6, fluid rho(R0) 1.47e-08 Msun/pc^3; McMillan-like V_c 216.6 K_z(R0) 92.6, collapsed V_c 483; Ou NOT COMPUTED, A1
+    Lensing Z blue +2.6 (law +1.7), red -4.8 (law -5.0); Gamma at window 1.382, 0.148; NO EQ False, True
+    Bullet H, 4700 km/s: STOPS WITH THE GAS; with galaxies main 0.05 sub 0.00; Mach centre 47, 47, at half mass 47, 47; ram/P at half mass 2e+03, 2.3e+03; subsonic share 0.00, 0.00; held [151000000000.0, 129000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [1.11, 0.73] (Z [-4.5, -4.5]), peaks from gas/BCG main 40/247, sub 51/209 kpc, dkappa -0.069 -0.111
+    Bullet C, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 47, 47, at half mass 47, 47; ram/P at half mass 2e+03, 2.3e+03; subsonic share 0.00, 0.00; held [151000000000.0, 129000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.47, 2.19] (Z [17.1, -0.3]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.715 +2.426
+    Bullet H at 4000 km/s: STOPS WITH THE GAS, class FAIL, Mach half 40, 40
+    labels: discs no, clusters no, Bullet FAIL
+  canonical  S reading: X-COP held +0.465 0.474 NO EQ 1.00, collapsed -1.284; SPARC 0.0675 U 0.45 tilt +0.11 NO EQ 0.38; groups -1.45 CONSISTENT; Bullet masses held [73100000000.0, 67000000000.0], STOPS WITH THE GAS
+  alt  N reading
+    C1 X-COP held +0.432 0.441 FAIL (fails past HSE 0.12 too); NO EQ 1.00; collapsed -1.268 1.346; by x [0.5, 0.5, 0.47, 0.39, 0.3]; M_f/M_b [0.062, 0.02, 0.01, 0.005, 0.003]
+       validity: median GM/(R_half c^2) 4.11e-07, c_s centre/c 3.34e-04, R_half 19.4 kpc, held/fair 6.94e-05
+    C2 keys 10 of 15, failing ['G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M3', 'G-OUT-b'], worst ['G-MID-T3', 'h0686', 4.524303237], NO EQ 1.00
+    D1 SPARC held 0.0557 U 0.41 tilt +0.04 FAIL, NO EQ 0.33; collapsed 0.5084 U 0.30 tilt +0.14
+    D2 150-200: M_f/M_b outer third 0.184, Z +3.97 FAIL, NO EQ 1.00, retained 0.034, R_half/R_last 0.0837; Jeans lambda/R_d at R_d, 2R_d, R_last [8.47, 35.95, 1096.89], rho there [0.0079, 0.00058, 7.1e-07] Msun/pc^3, c_s [100.0, 100.0, 100.0]
+    D2 200-250: M_f/M_b outer third 0.038, Z +0.40 PASS, NO EQ 1.00, retained 0.007, R_half/R_last 0.0147; Jeans lambda/R_d at R_d, 2R_d, R_last [59.74, 286.12, 27018.21], rho there [9.9e-05, 4.8e-06, 8.5e-09] Msun/pc^3, c_s [100.0, 100.0, 100.0]
+       other bins M_f/M_b, NO EQ: [('100-150', 0.018, 0.04), ('20-60', 0.0, 0.0), ('250-400', 0.024, 1.0), ('60-100', 0.002, 0.0)]
+    D3 SB Z -0.35, LT -0.064 (NO EQ 0.00), groups -0.80 CONSISTENT (NO EQ 0.94); IC 1613 Z -8.4; dwarfs [0.08, 2.12, 1.42, 4.87, 1.81] (NO EQ 0.00)
+    D4 MW: 4 of 175 cells pass V_c and K_z chi2, 0 also K_z(R0); NO EQ 175; median V_c 217.8, K_z(R0) 85.6, fluid rho(R0) 1.07e-08 Msun/pc^3; McMillan-like V_c 221.7 K_z(R0) 97.2, collapsed V_c 486; Ou NOT COMPUTED, A1
+    Lensing Z blue +4.3 (law +2.9), red -3.4 (law -3.5); Gamma at window 2.014, 0.130; NO EQ False, True
+    Bullet H, 4700 km/s: STOPS WITH THE GAS; with galaxies main 0.04 sub 0.00; Mach centre 47, 47, at half mass 47, 47; ram/P at half mass 2e+03, 2.3e+03; subsonic share 0.00, 0.00; held [143000000000.0, 123000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [1.2, 0.79] (Z [-4.4, -4.4]), peaks from gas/BCG main 40/247, sub 51/209 kpc, dkappa -0.074 -0.117
+    Bullet C, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 47, 47, at half mass 47, 47; ram/P at half mass 2e+03, 2.3e+03; subsonic share 0.00, 0.00; held [143000000000.0, 123000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.55, 2.25] (Z [17.2, -0.2]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.710 +2.420
+    Bullet H at 4000 km/s: STOPS WITH THE GAS, class FAIL, Mach half 40, 40
+    labels: discs no, clusters no, Bullet FAIL
+  alt  S reading: X-COP held +0.432 0.442 NO EQ 1.00, collapsed -1.289; SPARC 0.0731 U 0.39 tilt +0.05 NO EQ 0.40; groups -1.96 CONSISTENT; Bullet masses held [64200000000.0, 59400000000.0], STOPS WITH THE GAS
+  MG1 pairs, canonical, PROVISIONAL inputs: MACS J0025 SE: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.65 NOEQ; MACS J0025 NW: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.61 NOEQ; A56 S: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; A56 N: stays H 0.01 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; CIZA J0107 NE: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; CIZA J0107 SW: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; RM J1508 NE: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; RM J1508 SW: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; ZwCl 0008 E: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; ZwCl 0008 W: stays H 0.33 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ
+
+== Gamma 5/3, sigma 100 km/s, omega_f/omega_b 5.360, M_TOV 4.19e+14 Msun
+  canonical  N reading
+    C1 X-COP held -1.267 1.345 FAIL (fails past HSE 0.12 too); NO EQ 0.00; collapsed -1.267 1.345; by x [-2.01, -1.47, -1.19, -0.9, -0.76]; M_f/M_b [957.092, 275.621, 137.059, 60.33, 38.723]
+       validity: median GM/(R_half c^2) 1.17e+00, c_s centre/c 7.39e-01, R_half 0.0954 kpc, held/fair 1.00e+00; fair share above M_TOV in 1.00 of X-COP: NO EQUILIBRIUM (GR)
+    C2 keys 0 of 15, failing ['G-IN-Mall', 'G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M1', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all', 'G-OUT-b'], worst ['G-IN-Mall', 'h0672', -62.87956498], NO EQ 0.00; B=1 0, n(z) 1
+    D1 SPARC held 0.5318 U 0.30 tilt +0.00 FAIL, NO EQ 0.00; collapsed 0.5318 U 0.30 tilt +0.00
+    D2 150-200: M_f/M_b outer third 5.669, Z +34.70 FAIL, NO EQ 0.00, retained 1.000, R_half/R_last 0.0643; Jeans lambda/R_d at R_d, 2R_d, R_last [3.3, inf, inf], rho there [0.088, 1.5e-281, 1.5e-281] Msun/pc^3, c_s [120.8, 0.0, 0.0]
+    D2 200-250: M_f/M_b outer third 5.685, Z +22.38 FAIL, NO EQ 0.00, retained 1.000, R_half/R_last 0.0361; Jeans lambda/R_d at R_d, 2R_d, R_last [inf, inf, inf], rho there [1.5e-281, 1.5e-281, 1.5e-281] Msun/pc^3, c_s [0.0, 0.0, 0.0]
+       other bins M_f/M_b, NO EQ: [('100-150', 5.507, 0.0), ('20-60', 3.932, 0.0), ('250-400', 5.667, 0.0), ('60-100', 5.965, 0.0)]
+    D3 SB Z -1.34, LT -0.113 (NO EQ 0.00), groups -2.92 BELOW LAW (NO EQ 0.00); IC 1613 Z -9.0; dwarfs [0.39, 2.29, 1.67, 5.22, 2.03] (NO EQ 0.00)
+    D4 MW: 0 of 175 cells pass V_c and K_z chi2, 0 also K_z(R0); NO EQ 0; median V_c 479.9, K_z(R0) 193.7, fluid rho(R0) 1.48e-281 Msun/pc^3; McMillan-like V_c 497.6 K_z(R0) 213.1, collapsed V_c 498; Ou NOT COMPUTED, A1
+    Lensing Z blue +5.3 (law +1.7), red -0.7 (law -5.0); Gamma at window 5.360, 5.361; NO EQ False, False
+    Bullet H, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 0.0342, 0.135, at half mass 0.0475, 0.185; ram/P at half mass 7.8e-05, 8.1e-288; subsonic share 1.00, 1.00; held [1140000000000000.0, 146000000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.47, 2.19] (Z [17.1, -0.3]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.725 +2.430
+    Bullet C, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 0.0342, 0.135, at half mass 0.0475, 0.185; ram/P at half mass 7.8e-05, 8.1e-288; subsonic share 1.00, 1.00; held [1140000000000000.0, 146000000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.47, 2.19] (Z [17.1, -0.3]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.725 +2.430
+    Bullet H at 4000 km/s: PASSES LIKE GALAXIES, class FAIL, Mach half 0.0405, 0.157
+    labels: discs no, clusters no, Bullet FAIL
+  canonical  S reading: X-COP held -1.284 1.357 NO EQ 0.00, collapsed -1.284; SPARC 0.5783 U 0.30 tilt +0.00 NO EQ 0.00; groups -8.49 BELOW LAW; Bullet masses held [1140000000000000.0, 146000000000000.0], PASSES LIKE GALAXIES
+  alt  N reading
+    C1 X-COP held -1.268 1.346 FAIL (fails past HSE 0.12 too); NO EQ 0.00; collapsed -1.268 1.346; by x [-2.01, -1.47, -1.19, -0.9, -0.77]; M_f/M_b [957.092, 275.621, 137.059, 60.33, 38.723]
+       validity: median GM/(R_half c^2) 1.17e+00, c_s centre/c 7.39e-01, R_half 0.0954 kpc, held/fair 1.00e+00; fair share above M_TOV in 1.00 of X-COP: NO EQUILIBRIUM (GR)
+    C2 keys 0 of 15, failing ['G-IN-Mall', 'G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M1', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all', 'G-OUT-b'], worst ['G-IN-Mall', 'h0672', -63.32857323], NO EQ 0.00
+    D1 SPARC held 0.5376 U 0.30 tilt +0.00 FAIL, NO EQ 0.00; collapsed 0.5376 U 0.30 tilt +0.00
+    D2 150-200: M_f/M_b outer third 5.668, Z +38.24 FAIL, NO EQ 0.00, retained 1.000, R_half/R_last 0.0643; Jeans lambda/R_d at R_d, 2R_d, R_last [3.32, inf, inf], rho there [0.084, 1.5e-281, 1.5e-281] Msun/pc^3, c_s [119.0, 0.0, 0.0]
+    D2 200-250: M_f/M_b outer third 5.685, Z +26.07 FAIL, NO EQ 0.00, retained 1.000, R_half/R_last 0.0361; Jeans lambda/R_d at R_d, 2R_d, R_last [inf, inf, inf], rho there [1.5e-281, 1.5e-281, 1.5e-281] Msun/pc^3, c_s [0.0, 0.0, 0.0]
+       other bins M_f/M_b, NO EQ: [('100-150', 5.507, 0.0), ('20-60', 4.123, 0.0), ('250-400', 5.667, 0.0), ('60-100', 5.964, 0.0)]
+    D3 SB Z -1.37, LT -0.151 (NO EQ 0.00), groups -3.24 BELOW LAW (NO EQ 0.00); IC 1613 Z -9.5; dwarfs [-0.03, 2.12, 1.41, 4.87, 1.64] (NO EQ 0.00)
+    D4 MW: 0 of 175 cells pass V_c and K_z chi2, 0 also K_z(R0); NO EQ 0; median V_c 482.3, K_z(R0) 197.7, fluid rho(R0) 1.48e-281 Msun/pc^3; McMillan-like V_c 499.9 K_z(R0) 217.7, collapsed V_c 500; Ou NOT COMPUTED, A1
+    Lensing Z blue +6.6 (law +2.9), red +0.8 (law -3.5); Gamma at window 5.360, 5.360; NO EQ False, False
+    Bullet H, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 0.0342, 0.135, at half mass 0.0475, 0.185; ram/P at half mass 7.8e-05, 8.1e-288; subsonic share 1.00, 1.00; held [1140000000000000.0, 146000000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.56, 2.25] (Z [17.2, -0.1]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.720 +2.423
+    Bullet C, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 0.0342, 0.135, at half mass 0.0475, 0.185; ram/P at half mass 7.8e-05, 8.1e-288; subsonic share 1.00, 1.00; held [1140000000000000.0, 146000000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.56, 2.25] (Z [17.2, -0.1]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.720 +2.423
+    Bullet H at 4000 km/s: PASSES LIKE GALAXIES, class FAIL, Mach half 0.0405, 0.157
+    labels: discs no, clusters no, Bullet FAIL
+  alt  S reading: X-COP held -1.289 1.360 NO EQ 0.00, collapsed -1.289; SPARC 0.5917 U 0.30 tilt +0.00 NO EQ 0.00; groups -9.06 BELOW LAW; Bullet masses held [1140000000000000.0, 146000000000000.0], PASSES LIKE GALAXIES
+  MG1 pairs, canonical, PROVISIONAL inputs: MACS J0025 SE: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.65 C 0.65; MACS J0025 NW: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.61 C 0.61; A56 S: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.75 C 0.75; A56 N: stays H 0.03 C 0.03, M_f(<300)/M_lens H 0.75 C 0.75; CIZA J0107 NE: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.75 C 0.75; CIZA J0107 SW: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.75 C 0.75; RM J1508 NE: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.75 C 0.75; RM J1508 SW: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.75 C 0.75; ZwCl 0008 E: stays H 0.93 C 0.93, M_f(<300)/M_lens H 0.75 C 0.75 GR; ZwCl 0008 W: stays H 0.24 C 0.24, M_f(<300)/M_lens H 0.75 C 0.75
+
+== Gamma 1, sigma 30 km/s, omega_f/omega_b 5.359
+  canonical  N reading
+    C1 X-COP held +0.467 0.476 FAIL (fails past HSE 0.12 too); NO EQ 1.00; collapsed -1.266 1.345; by x [0.55, 0.53, 0.5, 0.42, 0.33]; M_f/M_b [0.001, 0.0, 0.0, 0.0, 0.0]
+       validity: median GM/(R_half c^2) 3.67e-08, c_s centre/c 1.00e-04, R_half 4.17 kpc, held/fair 1.38e-06
+    C2 keys 10 of 15, failing ['G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M3', 'G-OUT-b'], worst ['G-MID-T3', 'h0686', 4.857765869], NO EQ 1.00; B=1 10, n(z) 10
+    D1 SPARC held 0.0605 U 0.42 tilt -0.22 FAIL, NO EQ 0.91; collapsed 0.5872 U 0.30 tilt +0.00
+    D2 150-200: M_f/M_b outer third 0.001, Z +1.36 PASS, NO EQ 1.00, retained 0.000, R_half/R_last 0.00444; Jeans lambda/R_d at R_d, 2R_d, R_last [31845471.49, 1017984527000.0, 7.317929659e+24], rho there [9.2e-17, 4.9e-26, 1.8e-51] Msun/pc^3, c_s [30.0, 30.0, 30.0]
+    D2 200-250: M_f/M_b outer third 0.000, Z -0.36 PASS, NO EQ 1.00, retained 0.000, R_half/R_last 0.00127; Jeans lambda/R_d at R_d, 2R_d, R_last [9.195108154e+20, 7.507524758e+28, 3.269411523e+46], rho there [1.8e-35, 1.1e-51, 1.4e-84] Msun/pc^3, c_s [30.0, 30.0, 30.0]
+       other bins M_f/M_b, NO EQ: [('100-150', 0.032, 1.0), ('20-60', 1.027, 0.67), ('250-400', 0.0, 1.0), ('60-100', 0.262, 1.0)]
+    D3 SB Z -1.24, LT -0.038 (NO EQ 0.20), groups +0.30 CONSISTENT (NO EQ 1.00); IC 1613 Z -7.9; dwarfs [0.55, 2.29, 1.69, 5.22, 2.2] (NO EQ 0.03)
+    D4 MW: 7 of 175 cells pass V_c and K_z chi2, 0 also K_z(R0); NO EQ 175; median V_c 212.1, K_z(R0) 81.5, fluid rho(R0) 7.59e-103 Msun/pc^3; McMillan-like V_c 215.2 K_z(R0) 92.3, collapsed V_c 483; Ou NOT COMPUTED, A1
+    Lensing Z blue +1.7 (law +1.7), red -5.0 (law -5.0); Gamma at window 0.003, 0.001; NO EQ True, True
+    Bullet H, 4700 km/s: STOPS WITH THE GAS; with galaxies main 0.00 sub 0.00; Mach centre 157, 157, at half mass 157, 157; ram/P at half mass 2.5e+04, 2.4e+04; subsonic share 0.00, 0.00; held [2830000000.0, 2840000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [1.11, 0.73] (Z [-4.5, -4.5]), peaks from gas/BCG main 40/247, sub 51/209 kpc, dkappa -0.068 -0.111
+    Bullet C, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 157, 157, at half mass 157, 157; ram/P at half mass 2.5e+04, 2.4e+04; subsonic share 0.00, 0.00; held [2830000000.0, 2840000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.47, 2.19] (Z [17.1, -0.3]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.723 +2.429
+    Bullet H at 4000 km/s: STOPS WITH THE GAS, class FAIL, Mach half 133, 133
+    labels: discs no, clusters no, Bullet FAIL
+  canonical  S reading: X-COP held +0.467 0.476 NO EQ 1.00, collapsed -1.284; SPARC 0.0662 U 0.38 tilt -0.22 NO EQ 0.96; groups +0.29 CONSISTENT; Bullet masses held [807000000.0, 807000000.0], STOPS WITH THE GAS
+  alt  N reading
+    C1 X-COP held +0.434 0.444 FAIL (fails past HSE 0.12 too); NO EQ 1.00; collapsed -1.268 1.346; by x [0.51, 0.5, 0.47, 0.39, 0.3]; M_f/M_b [0.001, 0.0, 0.0, 0.0, 0.0]
+       validity: median GM/(R_half c^2) 3.68e-08, c_s centre/c 1.00e-04, R_half 3.93 kpc, held/fair 1.30e-06
+    C2 keys 10 of 15, failing ['G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M3', 'G-OUT-b'], worst ['G-MID-T3', 'h0686', 4.534879509], NO EQ 1.00
+    D1 SPARC held 0.0615 U 0.34 tilt -0.16 FAIL, NO EQ 0.93; collapsed 0.5922 U 0.30 tilt +0.00
+    D2 150-200: M_f/M_b outer third 0.001, Z +2.82 FAIL, NO EQ 1.00, retained 0.000, R_half/R_last 0.00434; Jeans lambda/R_d at R_d, 2R_d, R_last [59941656.65, 3451794824000.0, 1.384444596e+26], rho there [3.2e-17, 4.3e-27, 5.2e-54] Msun/pc^3, c_s [30.0, 30.0, 30.0]
+    D2 200-250: M_f/M_b outer third 0.000, Z +0.23 PASS, NO EQ 1.00, retained 0.000, R_half/R_last 0.00126; Jeans lambda/R_d at R_d, 2R_d, R_last [4.365087911e+21, 3.437601572e+29, 1.433342464e+49], rho there [1.4e-36, 1.3e-53, 1.3e-87] Msun/pc^3, c_s [30.0, 30.0, 30.0]
+       other bins M_f/M_b, NO EQ: [('100-150', 0.03, 1.0), ('20-60', 1.075, 0.75), ('250-400', 0.0, 1.0), ('60-100', 0.242, 1.0)]
+    D3 SB Z -1.23, LT -0.084 (NO EQ 0.20), groups -0.32 CONSISTENT (NO EQ 1.00); IC 1613 Z -8.4; dwarfs [0.08, 2.12, 1.42, 4.87, 1.81] (NO EQ 0.03)
+    D4 MW: 4 of 175 cells pass V_c and K_z chi2, 0 also K_z(R0); NO EQ 175; median V_c 217.3, K_z(R0) 85.5, fluid rho(R0) 2.00e-104 Msun/pc^3; McMillan-like V_c 220.4 K_z(R0) 96.9, collapsed V_c 486; Ou NOT COMPUTED, A1
+    Lensing Z blue +2.9 (law +2.9), red -3.5 (law -3.5); Gamma at window 0.002, 0.001; NO EQ True, True
+    Bullet H, 4700 km/s: STOPS WITH THE GAS; with galaxies main 0.00 sub 0.00; Mach centre 157, 157, at half mass 157, 157; ram/P at half mass 2.5e+04, 2.4e+04; subsonic share 0.00, 0.00; held [2670000000.0, 2680000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [1.2, 0.79] (Z [-4.4, -4.4]), peaks from gas/BCG main 40/247, sub 51/209 kpc, dkappa -0.074 -0.117
+    Bullet C, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 157, 157, at half mass 157, 157; ram/P at half mass 2.5e+04, 2.4e+04; subsonic share 0.00, 0.00; held [2670000000.0, 2680000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.55, 2.25] (Z [17.2, -0.1]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.718 +2.422
+    Bullet H at 4000 km/s: STOPS WITH THE GAS, class FAIL, Mach half 133, 133
+    labels: discs no, clusters no, Bullet FAIL
+  alt  S reading: X-COP held +0.434 0.444 NO EQ 1.00, collapsed -1.289; SPARC 0.0676 U 0.34 tilt -0.16 NO EQ 0.97; groups -0.33 CONSISTENT; Bullet masses held [693000000.0, 693000000.0], STOPS WITH THE GAS
+  MG1 pairs, canonical, PROVISIONAL inputs: MACS J0025 SE: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.65 NOEQ; MACS J0025 NW: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.61 NOEQ; A56 S: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; A56 N: stays H 0.01 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; CIZA J0107 NE: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; CIZA J0107 SW: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; RM J1508 NE: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; RM J1508 SW: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; ZwCl 0008 E: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; ZwCl 0008 W: stays H 0.31 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ
+
+== Gamma 5/3, sigma 30 km/s, omega_f/omega_b 5.356, M_TOV 6.88e+13 Msun
+  canonical  N reading
+    C1 X-COP held -1.266 1.345 FAIL (fails past HSE 0.12 too); NO EQ 0.00; collapsed -1.266 1.345; by x [-2.01, -1.47, -1.19, -0.9, -0.76]; M_f/M_b [956.506, 275.452, 136.963, 60.287, 38.698]
+       validity: median GM/(R_half c^2) 1.29e+01, c_s centre/c 2.45e+00, R_half 0.00866 kpc, held/fair 1.00e+00; fair share above M_TOV in 1.00 of X-COP: NO EQUILIBRIUM (GR)
+    C2 keys 0 of 15, failing ['G-IN-Mall', 'G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M1', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all', 'G-OUT-b'], worst ['G-IN-Mall', 'h0672', -62.83501488], NO EQ 0.00; B=1 1, n(z) 1
+    D1 SPARC held 0.5873 U 0.30 tilt +0.00 FAIL, NO EQ 0.00; collapsed 0.5873 U 0.30 tilt +0.00
+    D2 150-200: M_f/M_b outer third 5.665, Z +34.67 FAIL, NO EQ 0.00, retained 1.000, R_half/R_last 0.00584; Jeans lambda/R_d at R_d, 2R_d, R_last [inf, inf, inf], rho there [1.5e-281, 1.5e-281, 1.5e-281] Msun/pc^3, c_s [0.0, 0.0, 0.0]
+    D2 200-250: M_f/M_b outer third 5.681, Z +22.36 FAIL, NO EQ 0.00, retained 1.000, R_half/R_last 0.00328; Jeans lambda/R_d at R_d, 2R_d, R_last [inf, inf, inf], rho there [1.5e-281, 1.5e-281, 1.5e-281] Msun/pc^3, c_s [0.0, 0.0, 0.0]
+       other bins M_f/M_b, NO EQ: [('100-150', 5.54, 0.0), ('20-60', 6.061, 0.0), ('250-400', 5.663, 0.0), ('60-100', 6.245, 0.0)]
+    D3 SB Z +0.17, LT -0.150 (NO EQ 0.00), groups -2.94 BELOW LAW (NO EQ 0.00); IC 1613 Z -10.9; dwarfs [-0.6, 2.28, 1.42, 5.2, 1.26] (NO EQ 0.00)
+    D4 MW: 0 of 175 cells pass V_c and K_z chi2, 0 also K_z(R0); NO EQ 0; median V_c 479.8, K_z(R0) 193.6, fluid rho(R0) 1.48e-281 Msun/pc^3; McMillan-like V_c 497.4 K_z(R0) 213.1, collapsed V_c 497; Ou NOT COMPUTED, A1
+    Lensing Z blue +5.3 (law +1.7), red -0.7 (law -5.0); Gamma at window 5.356, 5.357; NO EQ False, False
+    Bullet H, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 0.0103, 0.0404, at half mass 0.0144, 0.0559; ram/P at half mass 7.3e-06, 3.8e-273; subsonic share 1.00, 1.00; held [1140000000000000.0, 146000000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.47, 2.19] (Z [17.1, -0.3]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.713 +2.428
+    Bullet C, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 0.0103, 0.0404, at half mass 0.0144, 0.0559; ram/P at half mass 7.3e-06, 3.8e-273; subsonic share 1.00, 1.00; held [1140000000000000.0, 146000000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.47, 2.19] (Z [17.1, -0.3]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.713 +2.428
+    Bullet H at 4000 km/s: PASSES LIKE GALAXIES, class FAIL, Mach half 0.0122, 0.0476
+    labels: discs no, clusters no, Bullet FAIL
+  canonical  S reading: X-COP held -1.284 1.357 NO EQ 0.00, collapsed -1.284; SPARC 0.6280 U 0.30 tilt +0.00 NO EQ 0.00; groups -8.50 BELOW LAW; Bullet masses held [1140000000000000.0, 146000000000000.0], PASSES LIKE GALAXIES
+  alt  N reading
+    C1 X-COP held -1.267 1.345 FAIL (fails past HSE 0.12 too); NO EQ 0.00; collapsed -1.267 1.345; by x [-2.01, -1.47, -1.19, -0.9, -0.77]; M_f/M_b [956.506, 275.452, 136.963, 60.287, 38.698]
+       validity: median GM/(R_half c^2) 1.29e+01, c_s centre/c 2.45e+00, R_half 0.00866 kpc, held/fair 1.00e+00; fair share above M_TOV in 1.00 of X-COP: NO EQUILIBRIUM (GR)
+    C2 keys 0 of 15, failing ['G-IN-Mall', 'G-IN-all', 'G-MID-T1', 'G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M1', 'G-OUT-M2', 'G-OUT-M3', 'G-OUT-Mall', 'G-OUT-T1', 'G-OUT-T2', 'G-OUT-T3', 'G-OUT-all', 'G-OUT-b'], worst ['G-IN-Mall', 'h0672', -63.28377007], NO EQ 0.00
+    D1 SPARC held 0.5922 U 0.30 tilt +0.00 FAIL, NO EQ 0.00; collapsed 0.5922 U 0.30 tilt +0.00
+    D2 150-200: M_f/M_b outer third 5.665, Z +38.22 FAIL, NO EQ 0.00, retained 1.000, R_half/R_last 0.00584; Jeans lambda/R_d at R_d, 2R_d, R_last [inf, inf, inf], rho there [1.5e-281, 1.5e-281, 1.5e-281] Msun/pc^3, c_s [0.0, 0.0, 0.0]
+    D2 200-250: M_f/M_b outer third 5.681, Z +26.05 FAIL, NO EQ 0.00, retained 1.000, R_half/R_last 0.00328; Jeans lambda/R_d at R_d, 2R_d, R_last [inf, inf, inf], rho there [1.5e-281, 1.5e-281, 1.5e-281] Msun/pc^3, c_s [0.0, 0.0, 0.0]
+       other bins M_f/M_b, NO EQ: [('100-150', 5.54, 0.0), ('20-60', 6.061, 0.0), ('250-400', 5.663, 0.0), ('60-100', 6.245, 0.0)]
+    D3 SB Z +0.16, LT -0.175 (NO EQ 0.00), groups -3.25 BELOW LAW (NO EQ 0.00); IC 1613 Z -11.2; dwarfs [-0.92, 2.11, 1.16, 4.86, 0.91] (NO EQ 0.00)
+    D4 MW: 0 of 175 cells pass V_c and K_z chi2, 0 also K_z(R0); NO EQ 0; median V_c 482.1, K_z(R0) 197.6, fluid rho(R0) 1.48e-281 Msun/pc^3; McMillan-like V_c 499.7 K_z(R0) 217.6, collapsed V_c 500; Ou NOT COMPUTED, A1
+    Lensing Z blue +6.6 (law +2.9), red +0.8 (law -3.5); Gamma at window 5.357, 5.357; NO EQ False, False
+    Bullet H, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 0.0103, 0.0404, at half mass 0.0144, 0.0559; ram/P at half mass 7.3e-06, 3.8e-273; subsonic share 1.00, 1.00; held [1140000000000000.0, 146000000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.55, 2.25] (Z [17.2, -0.2]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.708 +2.421
+    Bullet C, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 0.0103, 0.0404, at half mass 0.0144, 0.0559; ram/P at half mass 7.3e-06, 3.8e-273; subsonic share 1.00, 1.00; held [1140000000000000.0, 146000000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.55, 2.25] (Z [17.2, -0.2]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.708 +2.421
+    Bullet H at 4000 km/s: PASSES LIKE GALAXIES, class FAIL, Mach half 0.0122, 0.0476
+    labels: discs no, clusters no, Bullet FAIL
+  alt  S reading: X-COP held -1.289 1.360 NO EQ 0.00, collapsed -1.289; SPARC 0.6396 U 0.30 tilt +0.00 NO EQ 0.00; groups -9.07 BELOW LAW; Bullet masses held [1140000000000000.0, 146000000000000.0], PASSES LIKE GALAXIES
+  MG1 pairs, canonical, PROVISIONAL inputs: MACS J0025 SE: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.65 C 0.65 GR; MACS J0025 NW: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.61 C 0.61 GR; A56 S: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.75 C 0.75 GR; A56 N: stays H 0.03 C 0.03, M_f(<300)/M_lens H 0.75 C 0.75 GR; CIZA J0107 NE: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.75 C 0.75 GR; CIZA J0107 SW: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.75 C 0.75 GR; RM J1508 NE: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.75 C 0.75 GR; RM J1508 SW: stays H 0.00 C 0.00, M_f(<300)/M_lens H 0.75 C 0.75 GR; ZwCl 0008 E: stays H 0.93 C 0.93, M_f(<300)/M_lens H 0.75 C 0.75 GR; ZwCl 0008 W: stays H 0.24 C 0.24, M_f(<300)/M_lens H 0.75 C 0.75 GR
+
+== Gamma 2/3, sigma 30 km/s, omega_f/omega_b 5.363
+  canonical  N reading
+    C1 X-COP held +0.466 0.475 FAIL (fails past HSE 0.12 too); NO EQ 1.00; collapsed -1.267 1.345; by x [0.54, 0.53, 0.5, 0.42, 0.33]; M_f/M_b [0.021, 0.008, 0.004, 0.002, 0.001]
+       validity: median GM/(R_half c^2) 3.29e-09, c_s centre/c 1.37e-04, R_half 2.02e+03 kpc, held/fair 6.98e-05
+    C2 keys 10 of 15, failing ['G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M3', 'G-OUT-b'], worst ['G-MID-T3', 'h0686', 4.850148823], NO EQ 0.98; B=1 10, n(z) 10
+    D1 SPARC held 0.0541 U 0.52 tilt +0.03 PASS, NO EQ 0.28; collapsed 0.4007 U 0.36 tilt +0.25
+    D2 150-200: M_f/M_b outer third 0.001, Z +1.36 PASS, NO EQ 0.56, retained 0.729, R_half/R_last 20.3; Jeans lambda/R_d at R_d, 2R_d, R_last [547.65, 795.15, 2653.12], rho there [3.3e-06, 1.9e-06, 5.7e-07] Msun/pc^3, c_s [149.1, 163.5, 199.7]
+    D2 200-250: M_f/M_b outer third 0.000, Z -0.36 PASS, NO EQ 1.00, retained 0.193, R_half/R_last 17; Jeans lambda/R_d at R_d, 2R_d, R_last [621.11, 1216.19, 3661.78], rho there [1.9e-06, 6.6e-07, 1.5e-07] Msun/pc^3, c_s [165.7, 196.5, 249.7]
+       other bins M_f/M_b, NO EQ: [('100-150', 0.0, 0.0), ('20-60', 0.0, 0.0), ('250-400', 0.0, 1.0), ('60-100', 0.0, 0.0)]
+    D3 SB Z -0.25, LT -0.025 (NO EQ 0.00), groups -0.04 CONSISTENT (NO EQ 0.39); IC 1613 Z -7.9; dwarfs [0.57, 2.29, 1.69, 5.22, 2.2] (NO EQ 0.00)
+    D4 MW: 7 of 175 cells pass V_c and K_z chi2, 0 also K_z(R0); NO EQ 175; median V_c 212.1, K_z(R0) 81.5, fluid rho(R0) 9.65e-08 Msun/pc^3; McMillan-like V_c 215.2 K_z(R0) 92.3, collapsed V_c 483; Ou NOT COMPUTED, A1
+    Lensing Z blue +1.7 (law +1.7), red -4.9 (law -5.0); Gamma at window 0.112, 0.132; NO EQ False, True
+    Bullet H, 4700 km/s: STOPS WITH THE GAS; with galaxies main 0.32 sub 0.71; Mach centre 122, 127, at half mass 23.4, 5.87; ram/P at half mass 1.3e+02, 3.5; subsonic share 0.23, 0.02; held [84800000000.0, 125000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [1.11, 0.73] (Z [-4.5, -4.5]), peaks from gas/BCG main 40/247, sub 51/209 kpc, dkappa -0.069 -0.111
+    Bullet C, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 122, 127, at half mass 23.4, 5.87; ram/P at half mass 1.3e+02, 3.5; subsonic share 0.00, 0.00; held [84800000000.0, 125000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.48, 2.19] (Z [17.1, -0.3]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.734 +2.429
+    Bullet H at 4000 km/s: STOPS WITH THE GAS, class FAIL, Mach half 19.9, 4.99
+    labels: discs no, clusters no, Bullet FAIL
+  canonical  S reading: X-COP held +0.466 0.475 NO EQ 1.00, collapsed -1.284; SPARC 0.0541 U 0.52 tilt +0.03 NO EQ 0.29; groups -4.48 BELOW LAW; Bullet masses held [68200000000.0, 113000000000.0], STOPS WITH THE GAS
+  alt  N reading
+    C1 X-COP held +0.434 0.443 FAIL (fails past HSE 0.12 too); NO EQ 1.00; collapsed -1.268 1.346; by x [0.51, 0.5, 0.47, 0.39, 0.3]; M_f/M_b [0.019, 0.007, 0.004, 0.002, 0.001]
+       validity: median GM/(R_half c^2) 6.72e-09, c_s centre/c 1.34e-04, R_half 1.17e+03 kpc, held/fair 5.74e-05
+    C2 keys 10 of 15, failing ['G-MID-T2', 'G-MID-T3', 'G-MID-b', 'G-OUT-M3', 'G-OUT-b'], worst ['G-MID-T3', 'h0686', 4.52827997], NO EQ 0.99
+    D1 SPARC held 0.0537 U 0.44 tilt -0.02 FAIL, NO EQ 0.29; collapsed 0.4200 U 0.31 tilt +0.14
+    D2 150-200: M_f/M_b outer third 0.001, Z +2.82 FAIL, NO EQ 0.72, retained 0.601, R_half/R_last 20.3; Jeans lambda/R_d at R_d, 2R_d, R_last [439.49, 649.19, 2358.37], rho there [4.1e-06, 2.6e-06, 6.5e-07] Msun/pc^3, c_s [143.8, 155.3, 195.5]
+    D2 200-250: M_f/M_b outer third 0.000, Z +0.23 PASS, NO EQ 1.00, retained 0.159, R_half/R_last 17; Jeans lambda/R_d at R_d, 2R_d, R_last [660.15, 1308.84, 4042.08], rho there [1.7e-06, 6e-07, 1.3e-07] Msun/pc^3, c_s [168.3, 199.4, 255.4]
+       other bins M_f/M_b, NO EQ: [('100-150', 0.0, 0.0), ('20-60', 0.0, 0.0), ('250-400', 0.0, 1.0), ('60-100', 0.0, 0.0)]
+    D3 SB Z -0.36, LT -0.064 (NO EQ 0.00), groups -0.63 CONSISTENT (NO EQ 0.46); IC 1613 Z -8.4; dwarfs [0.08, 2.12, 1.42, 4.87, 1.81] (NO EQ 0.00)
+    D4 MW: 4 of 175 cells pass V_c and K_z chi2, 0 also K_z(R0); NO EQ 175; median V_c 217.3, K_z(R0) 85.5, fluid rho(R0) 9.23e-08 Msun/pc^3; McMillan-like V_c 220.4 K_z(R0) 96.9, collapsed V_c 486; Ou NOT COMPUTED, A1
+    Lensing Z blue +3.0 (law +2.9), red -3.4 (law -3.5); Gamma at window 0.119, 0.109; NO EQ False, True
+    Bullet H, 4700 km/s: STOPS WITH THE GAS; with galaxies main 0.31 sub 0.68; Mach centre 125, 129, at half mass 26.7, 5.69; ram/P at half mass 1.7e+02, 3.4; subsonic share 0.22, 0.02; held [71800000000.0, 102000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [1.2, 0.79] (Z [-4.4, -4.4]), peaks from gas/BCG main 40/247, sub 51/209 kpc, dkappa -0.074 -0.117
+    Bullet C, 4700 km/s: PASSES LIKE GALAXIES; with galaxies main 1.00 sub 1.00; Mach centre 125, 129, at half mass 26.7, 5.69; ram/P at half mass 1.7e+02, 3.4; subsonic share 0.00, 0.00; held [71800000000.0, 102000000000.0] of fair [1140000000000000.0, 146000000000000.0]; UX6 class FAIL, M300 [12.56, 2.25] (Z [17.3, -0.1]), peaks from gas/BCG main 210/0, sub 158/0 kpc, dkappa +19.729 +2.422
+    Bullet H at 4000 km/s: STOPS WITH THE GAS, class FAIL, Mach half 22.7, 4.84
+    labels: discs no, clusters no, Bullet FAIL
+  alt  S reading: X-COP held +0.434 0.443 NO EQ 1.00, collapsed -1.289; SPARC 0.0538 U 0.44 tilt -0.02 NO EQ 0.30; groups -5.00 BELOW LAW; Bullet masses held [56100000000.0, 90300000000.0], STOPS WITH THE GAS
+  MG1 pairs, canonical, PROVISIONAL inputs: MACS J0025 SE: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.65 NOEQ; MACS J0025 NW: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.61 NOEQ; A56 S: stays H 0.07 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; A56 N: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; CIZA J0107 NE: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; CIZA J0107 SW: stays H 0.01 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; RM J1508 NE: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; RM J1508 SW: stays H 0.00 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; ZwCl 0008 E: stays H 0.27 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ; ZwCl 0008 W: stays H 0.91 C 1.00, M_f(<300)/M_lens H 0.00 C 0.75 NOEQ
+
+S keys, READ from DF3_barotrope_settling: (1, 100) 10 of 15
+
+== Lane label, primary (1, 100), reading N, canonical
+  NO GATE; 4 of the other four cells read the same
+kappa = 1/2 FITTED. Not theory closed. Nothing here says the data favour the framework.
