@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (826 rows)
+## Totals (827 rows)
 
 - **550 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 55 | 0 | 0 | 0 | 0 | 45 |
-| AU Audits, controls, meta-analyses | 162 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 163 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 16 | 2 | 1 | 12 | 0 | 0 |
 
@@ -1016,6 +1016,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K824 | KT13 | `rebuild_2026_10_22/KT13_mw_kernel_envelope/kt13.py` | eight local QUMOND kernels on Milky Way star-count baryons, kappa held fixed: is the v_c / K_z miss the kernel or the baryons | - | audit | NO KERNEL IN FAMILY both footings: every kernel reaching v_c lands at K 75.0-76.3 vs line top 70.8; K_proj 81.7-85.2 for all eight and Newton 84.1; miss set by baryons, not shape; no kappa | 6287109e86 |
 | K825 | KT14 | `rebuild_2026_10_22/KT14_filtered_phantom_mw/kt14.py` | filtered QUMOND: phantom sourced by rho smoothed over xi, board law nu, Milky Way star-count cells, kappa held fixed | - | audit | LEAD, POST HOC: alt passes MW at xi 2.0 kpc (7 cells, box corners, K 69.8-70.7, strict h fails 3.4); canonical NO XI PASSES, best D 1.15; owed dSph, SPARC, wide binaries; no kappa | e496e39b6d |
 | K826 | KT15 | `rebuild_2026_10_22/KT15_filtered_phantom_dsph/kt15.py` | filtered QUMOND on 24 Local Group dwarfs, McConnachie 2012: universal xi 2 kpc vs size-scaled xi = 0.215 r_M, kappa held fixed | - | audit | A1 universal 2 kpc HURT 9/24 vs plain 15/24 (EFE), 10 vs 19 isolated; A2 scaled SURVIVES 15/24 and 19/24 (xi < 0.05 kpc, identical to plain); Cassini owed next, expected to fail; no kappa | e12926066c |
+| K827 | KT16 | `rebuild_2026_10_22/KT16_filtered_phantom_cassini/kt16.py` | Cassini quadrupole for filtered QUMOND, Sun phantom sourced by mass smoothed over xi, kappa held fixed | - | audit | scaled eps 0.2154 FAILS 69x/103x; universal 2 kpc PASSES; threshold xi/r_M 0.45 canonical, 0.50 alt, 2.3x above MW eps; eps = 1 passes Cassini; no kappa | 72a296bf17 |
 
 ## LN: Logic / Lean formalisations
 
