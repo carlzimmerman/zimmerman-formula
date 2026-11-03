@@ -1,4 +1,4 @@
-# P2 — NO VERDICT on closure after six lanes
+# P2 — NO VERDICT on closure; continued through AZ13
 
 κ = ½ FITTED; not theory closed
 
@@ -16,3 +16,9 @@ Six lanes, no rule survives the complete P2 gate set. No MW/SPARC/dwarf pass is 
 KT28 was checked before starting, then its completion 55efbef27f was noted: alt partial survival, canonical failure. Concurrent CZ1 (90c548c6cf) identified the external Newtonian-field issue. Those sessions' files were not edited or their work duplicated. AZ9/AZ10's changed kernel is distinct and includes the host-field dependency explicitly.
 
 Exact next calculation: derive a regular field-local coefficient D from a coupled auxiliary/gravity action, retaining its variation; obtain both the interior solar monopole and quadrupole from that same action with the Galactic baryonic field. Before a costly MW solve, orbit-average the AZ11 force with actual planetary geometry and measured supplementary-precession errors. Do not scan xi or n to clear Saturn. A new physically fixed core law or new independently justified boundary input would reopen the failed construction. All free coefficients/functions used to regularize D are FITTED unless separately derived. Kappa remains FITTED; n=2 follows only a posited minimality within the resolvent family.
+
+## Continued computation after owner requested more work
+
+AZ12: FAIL both footings. Full eccentric-orbit averaging of the same radial monopole yields Saturn Z=6.983944/11.329246 against the more generous ephemeris errors. AZ11's constant-force caveat is removed for this conditional monopole; a full ephemeris fit is still absent.
+
+AZ13: canonical FAIL, alternate PASS of the frozen limited SPARC lines. All nine controls pass over 155 galaxies/2788 points. This kernel is not a joint survivor. No whole row is earned. Criteria commits 118ad345e4 and 0b35ec3d47 preceded the computations. The next P2 work requires a derived action or independently fixed core law, not another resolvent-power or length scan. Move to another problem now.
