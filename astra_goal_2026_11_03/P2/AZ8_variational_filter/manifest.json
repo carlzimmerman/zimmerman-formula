@@ -1,0 +1,118 @@
+{
+  "schema_version": 2,
+  "claim_id": "AZ8",
+  "repository": {
+    "commit": "820d267d16e00c9419be988a8426b63bfe44a26c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "astra_goal_2026_11_03/P2/AZ8_variational_filter/run.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "plug-in D(u) conservative filter omits Euler term and is not the proposed action variation",
+    "coefficient_domain": "float64 unless exact algebra explicitly stated",
+    "conventions": "see CRITERIA.md",
+    "inputs": [
+      "astra_goal_2026_11_03/P2/AZ8_variational_filter/run.py",
+      "astra_goal_2026_11_03/P2/AZ8_variational_filter/CRITERIA.md",
+      "astra_goal_2026_11_03/record.py"
+    ],
+    "bounds": {
+      "x": [
+        0,
+        6.283185307179586
+      ],
+      "h": 1e-05,
+      "u": "1+0.5 cos x",
+      "D": "0.01(1+u^2)",
+      "v": "1+0.25 cos(2x)"
+    },
+    "non_claims": [
+      "No uncomputed empirical row passes"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-03T21:23:55Z",
+    "runtime_seconds": 0.0026230812072753906,
+    "exit_status": 0,
+    "status": "completed",
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": null
+    }
+  },
+  "outputs": [
+    {
+      "path": "astra_goal_2026_11_03/P2/AZ8_variational_filter/results.json",
+      "sha256": "fe9bd823bcebdc8f45cce98f1575d7998f892b4bfd2248e35cdd983fd4dbf5fd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "name": "variation_known_answer",
+      "passed": true
+    },
+    {
+      "name": "constant_D_known_answer",
+      "passed": true
+    },
+    {
+      "name": "mass_integral",
+      "passed": true
+    },
+    {
+      "name": "mutate_bites",
+      "passed": true
+    }
+  ],
+  "result": "FAIL",
+  "residual_risks": [
+    "a coefficient depending on a separate gravitational field requires its own coupled variation, not excluded here"
+  ],
+  "input_artifacts": [
+    {
+      "path": "astra_goal_2026_11_03/P2/AZ8_variational_filter/run.py",
+      "sha256": "5e913427958f19a4e177bdee14706dde31e954605d2573020d6d928c58a3ba59",
+      "sha256_after": "5e913427958f19a4e177bdee14706dde31e954605d2573020d6d928c58a3ba59"
+    },
+    {
+      "path": "astra_goal_2026_11_03/P2/AZ8_variational_filter/CRITERIA.md",
+      "sha256": "13b2d2ef49b1f38be10af312f68ff7c15e831224f371ea6512602a9b720ccd24",
+      "sha256_after": "13b2d2ef49b1f38be10af312f68ff7c15e831224f371ea6512602a9b720ccd24"
+    },
+    {
+      "path": "astra_goal_2026_11_03/record.py",
+      "sha256": "905369904ef3512742314998b88afed0abeffae9c0d2a62917724483267c4afc",
+      "sha256_after": "905369904ef3512742314998b88afed0abeffae9c0d2a62917724483267c4afc"
+    }
+  ],
+  "declared_results": [
+    "astra_goal_2026_11_03/P2/AZ8_variational_filter/results.json"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "assertion_tested": "plug-in D(u) conservative filter omits Euler term and is not the proposed action variation",
+  "label": "FAIL",
+  "footings": {
+    "canonical": {
+      "label": "FAIL",
+      "empirical_label": "NOT EVALUABLE",
+      "values": {
+        "action_directional_derivative": 0.006872233915267144,
+        "Euler_oracle": 0.0068722339297276735,
+        "variation_error": 1.4460529128290656e-11,
+        "constant_D_derivative": 2.2204460492503128e-11,
+        "extra_integrated_source": 0.007853981633974483,
+        "mass_oracle": 0.007853981633974483,
+        "mutate_missing_term_error": 0.006872233915267144
+      }
+    },
+    "alt": {
+      "label": "FAIL",
+      "empirical_label": "NOT EVALUABLE",
+      "values": {
+        "action_directional_derivative": 0.006872233915267144,
+        "Euler_oracle": 0.0068722339297276735,
+        "variation_error": 1.4460529128290656e-11,
+        "constant_D_derivative": 2.2204460492503128e-11,
+        "extra_integrated_source": 0.007853981633974483,
+        "mass_oracle": 0.007853981633974483,
+        "mutate_missing_term_error": 0.006872233915267144
+      }
+    }
+  },
+  "bounds": {
+    "x": [
+      0,
+      6.283185307179586
+    ],
+    "h": 1e-05,
+    "u": "1+0.5 cos x",
+    "D": "0.01(1+u^2)",
+    "v": "1+0.25 cos(2x)"
+  },
+  "checks": [
+    {
+      "name": "variation_known_answer",
+      "passed": true
+    },
+    {
+      "name": "constant_D_known_answer",
+      "passed": true
+    },
+    {
+      "name": "mass_integral",
+      "passed": true
+    },
+    {
+      "name": "mutate_bites",
+      "passed": true
+    }
+  ],
+  "free_physical_numbers": [
+    "kappa=1/2 FITTED",
+    "physical D unspecified, every selected coefficient FITTED"
+  ],
+  "residual_risks": [
+    "a coefficient depending on a separate gravitational field requires its own coupled variation, not excluded here"
+  ],
+  "disclaimer": "\u03ba = \u00bd FITTED; not theory closed"
+}

@@ -1,0 +1,9 @@
+# AZ7 — FAIL as a homogeneous collapse stopper
+
+κ = ½ FITTED; not theory closed
+
+For the specified reduced Lagrangian L=M v²/2+B/R+C R^(3-2p)v^(2p) on v<0, Legendre transformation gives E=M v²/2+(2p-1)C R^(3-2p)v^(2p)-B/R. Positive B is attractive self-gravity. For p=2 and E=0, multiply by R: M R w/2+3Cw²=B, w=v². The positive root tends to sqrt(B/(3C)); hence |v| tends to (B/(3C))^(1/4), a nonzero finite number. Collapse reaches zero radius in finite time despite its divergent compression energy, because gravitational binding energy diverges too. This does not establish stability or correct stress in a covariant theory.
+
+The general finite-power asymptotic needs a range distinction. For p>4/3 the nonlinear kinetic term dominates and |v|~[B/((2p-1)C)]^(1/(2p))*R^(1-2/p). Its time integral is proportional to R^(2/p), finite for every finite p. At 1<p<4/3 ordinary kinetic energy dominates, |v|~sqrt(2B/M) R^-1/2, also finite time. At p=4/3 both positive kinetic coefficients contribute with the same scaling and the conclusion is unchanged. No scan is involved. For integer p>=2 only the first case is needed. This is confined to the given homogeneous mechanical ansatz and finite positive coefficients; pressure gradients, nonlocal completion and singular constitutive barriers are not covered.
+
+results.json (synthetic M=B=C=1): collapse time 1.3646402773024238; limiting speed 0.7598356856515925; energy residual 2.22e-16; asymptotic relative error 7.22e-8; split quadrature difference zero. MUTATE uses the wrong Legendre coefficient and produces energy residual 0.5. Identities hold separately under both footing labels, with no a0 entering. No empirical row passes. C is FITTED if physically chosen; p=2 is a posited operator choice (not a measured or fundamental derivation). A physical choice among powers must also be counted in model selection.
