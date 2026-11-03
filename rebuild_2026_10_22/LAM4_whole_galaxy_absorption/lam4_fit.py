@@ -63,7 +63,7 @@ def k2():
                 p = prep(fn); pp = run(p, p["flux"]); tpl = p["temps"] @ pp.weights
                 mod = run(p, p["flux"], temps=tpl[:, None], start=[0.0, s, 0.0, h4, 0.0, 0.0], fixed=[1] * 6, degree=-1).bestfit
                 mod = mod / np.median(mod[p["good"]])
-                syn = mod + np.random.default_rng(ns).normal(0, 1, mod.size) * np.where(p["noise"] < 1e9, p["noise"], 0)
+                syn = mod + np.random.default_rng(ns).normal(0, 1, mod.size) * np.where(p["noise"] < 1e9, p["noise"], 0) * np.sqrt(max(pp.chi2, 1.0))  # A1
                 q = run(p, syn); r.update(status="ok", h4_out=float(q.sol[3]), sigma_out=float(q.sol[1]))
             except Exception as ex: r["status"] = f"error: {ex}"
             fo.write(json.dumps(r) + "\n"); fo.flush()
