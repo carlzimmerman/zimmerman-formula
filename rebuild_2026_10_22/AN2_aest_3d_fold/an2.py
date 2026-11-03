@@ -195,34 +195,36 @@ def solve_aqual_projection(m, Sb_k, a0c, tol=1e-9, maxit=300):
     return Gv, GN, info
 
 
+def tsc(x, m):
+    """A2: TSC cell indices and weights per axis; (3, n) -> lists of 3 for i-1, i, i+1."""
+    N = m.N; u = np.mod(x, m.L) / m.dx; i = np.rint(u).astype(np.int64); d = u - i
+    return [(i - 1) % N, i % N, (i + 1) % N], [0.5 * (0.5 - d) ** 2, 0.75 - d**2, 0.5 * (0.5 + d) ** 2]
+
+
 def deposit(m, x):
-    """x: (3, n) positions; CIC -> delta (L1, in chunks of n, float64)."""
+    """x: (3, n) positions; TSC -> delta (A2; L1 used CIC), in chunks of n, float64."""
     N = m.N; rho = np.zeros(N**3, np.float64); n = x.shape[1]; CH = 1 << 21
     for s in range(0, n, CH):
-        u = np.mod(x[:, s:s + CH], m.L) / m.dx; i0 = np.floor(u).astype(np.int64); w = u - i0; i1 = (i0 + 1) % N; i0 = i0 % N
-        for cx in (0, 1):
-            ix = i1[0] if cx else i0[0]; wx = w[0] if cx else 1 - w[0]
-            for cy in (0, 1):
-                iy = i1[1] if cy else i0[1]; wy = w[1] if cy else 1 - w[1]
-                for cz in (0, 1):
-                    iz = i1[2] if cz else i0[2]; wz = w[2] if cz else 1 - w[2]
-                    rho += np.bincount((ix * N + iy) * N + iz, weights=wx * wy * wz, minlength=N**3)
+        I, W = tsc(x[:, s:s + CH], m)
+        for cx in range(3):
+            for cy in range(3):
+                ixy = (I[cx][0] * N + I[cy][1]) * N; wxy = W[cx][0] * W[cy][1]
+                for cz in range(3):
+                    rho += np.bincount(ixy + I[cz][2], weights=wxy * W[cz][2], minlength=N**3)
     rho *= N**3 / n; rho -= 1.0
     return rho.reshape(N, N, N)
 
 
 def interp_acc(m, x, f3):
-    """CIC force interpolation, (3, n)."""
+    """TSC force interpolation (A2), (3, n)."""
     N = m.N; flats = [f.reshape(-1) for f in f3]; out = np.zeros(x.shape); CH = 1 << 21
     for s in range(0, x.shape[1], CH):
-        u = np.mod(x[:, s:s + CH], m.L) / m.dx; i0 = np.floor(u).astype(np.int64); w = u - i0; i1 = (i0 + 1) % N; i0 = i0 % N
-        for cx in (0, 1):
-            ix = i1[0] if cx else i0[0]; wx = w[0] if cx else 1 - w[0]
-            for cy in (0, 1):
-                iy = i1[1] if cy else i0[1]; wy = w[1] if cy else 1 - w[1]
-                for cz in (0, 1):
-                    iz = i1[2] if cz else i0[2]; wz = w[2] if cz else 1 - w[2]
-                    idx = (ix * N + iy) * N + iz; ww = wx * wy * wz
+        I, W = tsc(x[:, s:s + CH], m)
+        for cx in range(3):
+            for cy in range(3):
+                ixy = (I[cx][0] * N + I[cy][1]) * N; wxy = W[cx][0] * W[cy][1]
+                for cz in range(3):
+                    idx = ixy + I[cz][2]; ww = wxy * W[cz][2]
                     for c in range(3): out[c, s:s + CH] += ww * flats[c][idx]
     return out
 
