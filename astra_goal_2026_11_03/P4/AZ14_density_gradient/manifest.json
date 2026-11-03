@@ -1,0 +1,133 @@
+{
+  "schema_version": 2,
+  "claim_id": "AZ14",
+  "repository": {
+    "commit": "a380643def37d9acbdc98482c6d024eef17fd911",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "astra_goal_2026_11_03/P4/AZ14_density_gradient/run.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "Convex quartic density-gradient term: no linear homogeneous pressure, nonnegative second variation, Gaussian homology compression barrier",
+    "coefficient_domain": "float64 unless exact algebra explicitly stated",
+    "conventions": "see CRITERIA.md",
+    "inputs": [
+      "astra_goal_2026_11_03/P4/AZ14_density_gradient/run.py",
+      "astra_goal_2026_11_03/P4/AZ14_density_gradient/CRITERIA.md",
+      "astra_goal_2026_11_03/record.py"
+    ],
+    "bounds": {
+      "rho_domain": "strictly positive",
+      "geometry": "Gaussian fixed-mass homology and smooth periodic perturbation",
+      "synthetic_units": "G=M=lambda=1; no physical coefficient selected"
+    },
+    "non_claims": [
+      "No uncomputed empirical row passes"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-03T23:37:00Z",
+    "runtime_seconds": 0.0023009777069091797,
+    "exit_status": 0,
+    "status": "completed",
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": null
+    }
+  },
+  "outputs": [
+    {
+      "path": "astra_goal_2026_11_03/P4/AZ14_density_gradient/results.json",
+      "sha256": "95683877bd70897cd276f18e185a25fd8264b20c64441f99e6b8af9de0c90d05",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Gaussian gradient integral",
+      "passed": true
+    },
+    {
+      "name": "Gaussian gravitational integral",
+      "passed": true
+    },
+    {
+      "name": "stationary derivative",
+      "passed": true
+    },
+    {
+      "name": "stationary curvature",
+      "passed": true
+    },
+    {
+      "name": "joint Hessian identity",
+      "passed": true
+    },
+    {
+      "name": "quartic perturbation coefficient",
+      "passed": true
+    },
+    {
+      "name": "MUTATE sign destroys barrier",
+      "passed": true
+    },
+    {
+      "name": "MUTATE quadratic has linear pressure",
+      "passed": true
+    }
+  ],
+  "result": "PASS",
+  "residual_risks": [
+    "Newtonian constitutive term only; no covariant completion",
+    "Fourth-order spatial PDE with unbounded high-k phase speed in this nonrelativistic limit",
+    "Vacuum rho=0 singular; Gaussian homology is not full nonlinear stability",
+    "No baryonic coupling, galaxy contraction or CMB data test",
+    "Linear Jeans growth remains; no claim of no contraction or all-shape collapse prevention"
+  ],
+  "input_artifacts": [
+    {
+      "path": "astra_goal_2026_11_03/P4/AZ14_density_gradient/run.py",
+      "sha256": "75408392e553156e8c44c2856a84c95f7d0c46db87e05ec595e06b2313be5dd0",
+      "sha256_after": "75408392e553156e8c44c2856a84c95f7d0c46db87e05ec595e06b2313be5dd0"
+    },
+    {
+      "path": "astra_goal_2026_11_03/P4/AZ14_density_gradient/CRITERIA.md",
+      "sha256": "e0d5e4839833fa1ddc051a2f0e3f7010b3b70925bf6c00c5a9ddd8cd803b74f2",
+      "sha256_after": "e0d5e4839833fa1ddc051a2f0e3f7010b3b70925bf6c00c5a9ddd8cd803b74f2"
+    },
+    {
+      "path": "astra_goal_2026_11_03/record.py",
+      "sha256": "905369904ef3512742314998b88afed0abeffae9c0d2a62917724483267c4afc",
+      "sha256_after": "905369904ef3512742314998b88afed0abeffae9c0d2a62917724483267c4afc"
+    }
+  ],
+  "declared_results": [
+    "astra_goal_2026_11_03/P4/AZ14_density_gradient/results.json"
+  ]
+}
