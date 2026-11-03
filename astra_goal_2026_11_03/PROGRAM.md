@@ -13,3 +13,5 @@ Read: goal brief; twelve requirements; RQ3 requirements and amendments; closing 
 Process inventory checked with ps: other research jobs are active. Our initial checks use bounded small arrays only; no heavy computation is started. Any heavy continuation requires checkpoint/resume and the queue, subject to the write restriction.
 
 All empirical choices/free coefficients count as fitted, including coefficients given aesthetically simple values. Analytic test coordinates and numerical tolerances are not physical fitted parameters and will be identified separately. The supplied two a0 footings are declared framework inputs, not rederived cosmological measurements; no Planck-derived number is used as a new inference.
+
+Phase boundary: eleven lanes executed, six P2 lanes; all six statuses and coverage ranking prepared. Scientific closure remains absent. See SUMMARY.md, AUDIT.md and HANDOFF.md. Final verification reproduces all result JSON and checks criteria ancestry; the 99-expanded/96-grouped RQ3 distinction is preserved. No new task or heavy run is left active.

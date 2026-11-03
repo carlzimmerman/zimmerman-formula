@@ -1,0 +1,13 @@
+# AZ phase handoff
+
+κ = ½ FITTED; not theory closed
+
+Phase: AZ-HARDEST-2026-11-03. Starting revision 1023fbaae99500117f12e0a43606e9842a8ef8b6; substantive evidence revision 38835782664077d53810b4e162b9d896b3377a4a. Final reporting commit is discoverable by `git log -- astra_goal_2026_11_03/SUMMARY.md`; do not infer ancestry from timestamps. SUMMARY.md is the phase record; per-problem STATUS.md files contain next calculations. No active AZ background job or delegated agent remains.
+
+Deliverable target reached: all six statuses, coverage ranking and owner-needs record exist. Scientific target remains open. Eleven lanes were executed; six concern P2. The partial squared-resolvent Cassini lead fails the subsequent planetary diagnostic. No new whole requirement/RQ3 row is established. The next scientifically meaningful P2 input is a regular local coefficient from a varied action, or a native full-orbit evaluation of the declared force. Scanning bigger widths/powers is not an authorized substitute for derivation.
+
+Fresh verification: `python3 astra_goal_2026_11_03/verify.py PATH_TO_INSTALLED_COMPUTATION_AUDIT_MANIFEST_VALIDATOR` reruns only AZ scripts and writes only here. It returned 90 passed, 0 failed. Scientific failure in AZ9 is expected and explicitly checked. VERIFICATION.json pins every result hash. Each lane's own manifest also pins its criteria/code/input hashes. Initial invalid provenance records in AZ1 and AZ3 are retained; current validated repeats supersede only their recording defect, not physics.
+
+Review: AUDIT.md is self-review. No independent review or full field-equation/ephemeris fit exists. No raw external data acquired. Provisional/processed inputs are not promoted to raw: P6's old lensing code includes prohibited cosmological initialization, and AZ11's acceleration-bound interpretation was restricted before results. RQ3 row marks contain 99 IDs despite prose saying 96; coverage reports both 99 expanded IDs and 96 original groups.
+
+Continuations are deferred, not claimed exhausted: P1 anisotropic dynamical carrier and measured merger history; P2 action/local coefficient/full solar orbit; P3 only a KC1-eligible field equation; P4 a constitutive barrier with validated nonlinear evolution; P5 independent tracer history; P6 raw matched shear/native distances plus metric action. External needs are in NEEDS_OWNER.md. Read the record afresh before assigning AZ12 or later: other sessions are active. Preserve concurrent KT28/CZ1 work and the cold-sector retirement. Write only under this goal directory, freeze/commit before graded output, no downloads/push/deposit/history rewrite.
