@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (837 rows)
+## Totals (838 rows)
 
 - **550 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 58 | 0 | 0 | 0 | 0 | 48 |
-| AU Audits, controls, meta-analyses | 170 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 171 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 16 | 2 | 1 | 12 | 0 | 0 |
 
@@ -1027,6 +1027,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K832 | KT21 | `rebuild_2026_10_22/KT21_filter_wide_binary_dr3_shape/kt21.py` | DR3 inner wide-binary shape Q, plain QUMOND vs KT17 filter eps 0.55 vs Newton, kappa held fixed | - | audit | BOTH CONSISTENT: Q_obs +0.001 +- 0.028; Newton z +0.1, filter -1.1, plain -1.6; plain-filter gap 0.014 < sigma; no kappa | 4109e82cbc |
 | K833 | KT22 | `rebuild_2026_10_22/KT22_filter_mw_share_threshold/kt22.py` | KT17 filter eps 0.55 on Milky Way cells at thick share 0.16 and 0.20, kappa held fixed | - | audit | alt PASSES WITHIN +2 SIGMA (9 cells at 0.20, none at 0.16, best D 1.00); canonical NEEDS MORE THAN +2 SIGMA; no kappa | 603f921236 |
 | K837 | KT25 | `rebuild_2026_10_22/KT25_eps_equals_kappa/kt25.py` | filter eps = kappa = 1/2 (xi = r_M/2): Cassini, dwarfs, MW, SPARC, kappa held fixed | - | audit | canonical SURVIVES (Cassini 0.48x, dwarfs 15/24, 9 MW corner cells incl 2 at share 0.26, SPARC +0.0021); alt FAILS Cassini 1.06x; reduction not derivation | e2c3894ff3 |
+| K838 | KT26 | `rebuild_2026_10_22/KT26_local_filter_rule/kt26.py` | local mass-free filter xi_loc = g^2/(/grad g/ g*), g* = a0/kappa; MW at xi_loc(R0) | - | audit | identity exact; local rule FAILS MW canonical (xi 8.1 kpc, 0 cells), PASSES alt (6.7 kpc, 30 cells); direction: Cassini passes both, dwarfs worse; footings swap vs KT25 | f0385c6040 |
 
 ## LN: Logic / Lean formalisations
 
