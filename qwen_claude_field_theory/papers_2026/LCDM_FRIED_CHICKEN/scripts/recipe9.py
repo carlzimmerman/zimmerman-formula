@@ -5,7 +5,7 @@ def DF(x, rr, rho, gt):
     for j, e in enumerate(E):
         a, b = np.sqrt(np.maximum(e - P[:-1], 0)), np.sqrt(np.maximum(e - P[1:], 0)); I[j] = (dR * 2 * (a - b)).sum(); gE[j] = 16 * np.pi**2 * (rr**3 * np.sqrt(2 * np.maximum(psi - e, 0))).sum() * dx
     f = np.maximum(np.gradient(I, E) / (np.sqrt(8) * np.pi**2), 0); return E, f, gE, psi
-def Dx(f0, E, f, gE): return np.array([np.trapezoid(np.maximum(f - a, 0) * gE, E) for a in f0])
+def Dx(f0, E, f, gE): return np.array([np.trapz(np.maximum(f - a, 0) * gE, E) for a in f0])
 def nfw_prof(rr, x, R200, Md, Mt, c):
     rs = R200 / c; mu_ = lambda y: np.log(1 + y) - y / (1 + y); m = mu(rr / rs) / mu(c); rho = Md * Msun / mu(c) / (4 * np.pi * rr * (rr + rs)**2); return rho * np.exp(-(rr / (2 * R200))**2), G * Mt * Msun * m / rr**2
 def setup(g):
