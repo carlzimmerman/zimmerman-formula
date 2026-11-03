@@ -1,0 +1,24 @@
+LAM4 grade, mode REAL. Sample 1000; integrated fits ok 1000, errors 0, missing 0
+graded N 1000 (dropped non-finite 0), slow 396
+K1: median log(sigma_int/Sigma_Re) -0.0052 (|.| <= 0.03), rms about zero 0.0272 (<= 0.06): PASS
+K2: PASS (rms 0.0211)
+  B0 AUC 0.7929  rms 0.1970  purity (reweighted to 0.168) 0.435  pred slow 56
+  B4 AUC 0.7837  rms 0.1951  purity (reweighted to 0.168) 0.377  pred slow 80
+  S4 AUC 0.8775  rms 0.1567  purity (reweighted to 0.168) 0.706  pred slow 167
+  SF AUC 0.8166  rms 0.1911  purity (reweighted to 0.168) 0.559  pred slow 92
+G1 AUC(S4) - AUC(B0) +0.0845 [95 % +0.0654, +0.1049], need >= 0.05, lo > 0: PASS
+G2 AUC(S4) - AUC(B4) +0.0938 [95 % +0.0733, +0.1146], need >= 0.03, lo > 0: PASS
+G3 AUC(S4) - AUC(SF) +0.0609 [95 % +0.0434, +0.0783], need >= 0.03, lo > 0: PASS
+row width: AUC(B4) - AUC(B0) -0.0093 [-0.0185, -0.0012]
+row fibre vs photometry: AUC(SF) - AUC(B0) +0.0237 [+0.0109, +0.0366]
+E1 rms(S4) 0.1567 <= 0.10: FAIL; E2 purity 0.706 >= 0.70: PASS
+rows:
+  log M* tercile 0 [8.45, 10.88] N 333 slow 42: S4-B0 +0.0742, S4-B4 +0.0761, S4-SF +0.0992
+  log M* tercile 1 [10.88, 11.27] N 333 slow 139: S4-B0 +0.1430, S4-B4 +0.1405, S4-SF +0.0937
+  log M* tercile 2 [11.27, 12.37] N 334 slow 215: S4-B0 +0.2137, S4-B4 +0.2378, S4-SF +0.1214
+  h4_int slow: median +0.0412 +- 0.0020, n 396
+  h4_int fast: median -0.0180 +- 0.0025, n 604
+  Spearman(h4_int, lambda_Re) -0.779 (p 1.5e-204); Spearman(h4_fibre, lambda_Re) -0.387 on the same galaxies
+  fit window start: median 3901 A, > 3950 A for 470
+
+LABEL: WHOLE-GALAXY SPECTRUM READS SPIN (SHAPE BEYOND WIDTH, BEATS THE FIBRE)
