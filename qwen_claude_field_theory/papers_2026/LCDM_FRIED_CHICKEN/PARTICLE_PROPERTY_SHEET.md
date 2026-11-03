@@ -39,3 +39,15 @@ Owner 11-02: assume a real particle halo supplies all of g_law - g_b, and baryon
 - **Window sensitivity:** open in all 9 rows, spanning 4.12 to 24.38 eV. The threshold N moves both bounds equally, so only the radius tests whether it stays open.
 - **Best-fitting particle:** cold, collisionless, fermion floor about 56 to 245 eV or a boson with no condensed halo, sigma/m small, its shape set at formation.
 - **Still open:** what forms this shape (about half of all supernova energy), what puts rho_DE into it, the KiDS failure, and CMB and structure growth.
+
+## The link to rho_DE (Amendment A12, `scripts/recipe14.out`)
+
+A posit in one action, not a derivation. The field equation is prior art: Zhao & Famaey 2006's scalar function for the simple mu.
+
+L = -rho_DE [1 + (kappa^2/4 pi) H(s)] - (kappa/sqrt(8 pi)) phi rho_b/M_Pl, s = |grad phi|/sqrt(rho_DE), H'(s) = s^2/(1 - s)
+
+- Reproduces the law on 3373 points to 0.00004 dex, a0 ratio 1.0001. The cap on gradient energy equals rho_DE, by the posit. beta = 0.0997, c = 0.0199.
+- Field energy stays below rho_DE: 0.0579 at SPARC's maximum, 0.328 at 1 AU.
+- kappa stays fitted. UW1 stands: the constant term is free, and the function is complex on timelike gradients, so this has no cosmology yet.
+- Reciprocity: baryons source phi, so they feel it, which conflicts with the particle axiom unless beta_b/beta is at most about 0.2, order of magnitude, from PAPER58's Cassini failure.
+- The field is not the mass: a boson at m = rho_DE^(1/4) with potential rho_DE misses the dark matter density by about 49 decades. The mass still needs its own source.
