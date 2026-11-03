@@ -42,7 +42,7 @@ F = 0
 for frag, s, lit in L:
     a, b = frag in T, lit in R[s]
     if not (a and b): F += 1; print("  FAIL", "TeX" if not a else "", "SRC" if not b else "", repr(frag), s, repr(lit))
-NEED = ("not a derivation", "Prior art", "no exact match", "does not hold that the dark sector is a particle", "not complete", "patchwork", "rival's language", "new coupling", "By construction".lower(), "analytic stand-in", "ACDM flavored fried chicken version of Galaxy Dnynamics", "carries no physics", "fitted", "not evidence", "Working note")
+NEED = ("research experiment", "does not believe", "10.5281/zenodo.23585319", "not a derivation", "Prior art", "no exact match", "does not hold that the dark sector is a particle", "not complete", "patchwork", "rival's language", "new coupling", "By construction".lower(), "analytic stand-in", "ACDM flavored fried chicken version of Galaxy Dnynamics", "carries no physics", "fitted", "not evidence", "Working note")
 for n in NEED:
     if n not in T: F += 1; print("  FAIL missing", n)
 print(f"{len(L) + len(NEED) - F} of {len(L) + len(NEED)} checks pass")

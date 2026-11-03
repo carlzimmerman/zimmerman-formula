@@ -2,7 +2,7 @@
 
 **RESEARCH EXPERIMENT, KEPT IN THIS FOLDER. NOT THE FRAMEWORK.** The owner does not believe any of this. It works out how a LCDM group might reverse-engineer the a0 law, so that the route is on record first and a swoop can be recognised. Nothing here is a framework result, and nothing here feeds the board, STANDING, PAPER67, the ledger or any lane. The particle, halo and condensate material is the rival's language only. The no-particle rule and the 11-01 retirement of the cold sector are unchanged.
 
-Working note, v1.3, DOI 10.5281/zenodo.23902787; v1.2 is 10.5281/zenodo.23902466, v1.1 is 10.5281/zenodo.23901396, v1.0 is 10.5281/zenodo.23897582. How exactly LCDM's knobs can reproduce the law on real SPARC baryons, and what each match costs. Rival-flavoured exercise; adopts nothing and reinstates nothing. kappa = 1/2 FITTED; not theory closed.
+Working note, v1.4, DOI 10.5281/zenodo.23903839; v1.3 is 10.5281/zenodo.23902787, v1.2 is 10.5281/zenodo.23902466, v1.1 is 10.5281/zenodo.23901396, v1.0 is 10.5281/zenodo.23897582. How exactly LCDM's knobs can reproduce the law on real SPARC baryons, and what each match costs. Rival-flavoured exercise; adopts nothing and reinstates nothing. kappa = 1/2 FITTED; not theory closed.
 
 - `lcdm_fried_chicken.tex` / `.pdf`: the paper. Rebuild: `tectonic lcdm_fried_chicken.tex`. Check: `python3 audit.py`.
 - `FROZEN_RECIPE.md`: targets, recipes, Amendments A1 to A3, and the cosmology bug note.
