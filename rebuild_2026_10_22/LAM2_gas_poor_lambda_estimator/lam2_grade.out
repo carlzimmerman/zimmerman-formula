@@ -1,0 +1,61 @@
+LAM2 grade, mode REAL. Sample rows 3324; pPXF ok 3314, error rows 10, missing 0
+K1 (gas-poor, n 2539): median log(sigma_pPXF/velDisp) +0.0094 (|.| <= 0.03), rms about zero 0.0218 (<= 0.06): PASS
+K2 (from lam2_k2.json): PASS, rms 0.0274
+
+== GAS-POOR (graded): N 2352 (dropped for missing features 187), slow 396
+  B   AUC 0.7910  rms 0.1831  purity 0.455 (pred slow 22)
+  P   AUC 0.7879  rms 0.1849  purity 0.000 (pred slow 2)
+  S   AUC 0.8051  rms 0.1775  purity 0.586 (pred slow 29)
+  SP  AUC 0.8138  rms 0.1733  purity 0.447 (pred slow 47)
+  E1 rms(S) 0.1775 <= 0.10: FAIL
+  E2 purity(S) 0.586 >= 0.70: FAIL
+  E3 AUC(S)-AUC(B) +0.0141 [95 % +0.0051, +0.0235] need >= 0.05, lo > 0: FAIL
+  E4 AUC(SP)-AUC(P) +0.0259 [95 % +0.0170, +0.0357] need >= 0.03, lo > 0: FAIL
+  row: populations alone AUC(P)-AUC(B) -0.0031 [-0.0085, +0.0019]
+
+== GAS-BEARING (rows): N 773 (dropped for missing features 2), slow 23
+  B   AUC 0.7766  rms 0.1585  purity nan (pred slow 0)
+  P   AUC 0.7557  rms 0.1537  purity nan (pred slow 0)
+  S   AUC 0.7977  rms 0.1479  purity nan (pred slow 0)
+  SP  AUC 0.7929  rms 0.1497  purity nan (pred slow 0)
+  Bsb AUC 0.7558  rms 0.1565  purity nan (pred slow 0)
+  E1 rms(S) 0.1479 <= 0.10: FAIL (row, not graded)
+  E2 purity(S) nan >= 0.70: FAIL (row, not graded)
+  E3 AUC(S)-AUC(B) +0.0211 [95 % -0.0229, +0.0608] need >= 0.05, lo > 0: FAIL (row, not graded)
+  E4 AUC(SP)-AUC(P) +0.0372 [95 % +0.0005, +0.0750] need >= 0.03, lo > 0: PASS (row, not graded)
+  row: populations alone AUC(P)-AUC(B) -0.0209 [-0.0481, +0.0048]
+  row: AUC(S)-AUC(B+sigma_balmer) +0.0420; AUC(B+sigma_balmer)-AUC(B) -0.0209
+
+== rows, gas-poor
+  logm tercile 0 [8.272, 10.780]: N 784, slow 28, AUC gain S-B +0.0078
+  logm tercile 1 [10.780, 11.174]: N 784, slow 106, AUC gain S-B +0.0101
+  logm tercile 2 [11.175, 12.442]: N 784, slow 262, AUC gain S-B +0.0606
+  logvd tercile 0 [2.000, 2.198]: N 784, slow 34, AUC gain S-B +0.0002
+  logvd tercile 1 [2.198, 2.327]: N 784, slow 84, AUC gain S-B +0.0037
+  logvd tercile 2 [2.327, 2.669]: N 784, slow 278, AUC gain S-B +0.0644
+  eps tercile 0 [0.001, 0.176]: N 781, slow 151, AUC gain S-B +0.0146
+  eps tercile 1 [0.177, 0.350]: N 782, slow 190, AUC gain S-B +0.0311
+  eps tercile 2 [0.351, 0.812]: N 789, slow 55, AUC gain S-B -0.0026
+  fib tercile 0 [0.056, 0.232]: N 784, slow 191, AUC gain S-B +0.0174
+  fib tercile 1 [0.232, 0.366]: N 784, slow 130, AUC gain S-B +0.0106
+  fib tercile 2 [0.366, 1.162]: N 784, slow 75, AUC gain S-B +0.0112
+  EW(Ha) [-99, 1) A: N 1442, slow 309, AUC gain S-B +0.0185
+  EW(Ha) [1, 2) A: N 676, slow 67, AUC gain S-B +0.0118
+  EW(Ha) [2, 3) A: N 234, slow 20, AUC gain S-B -0.0086
+  h4 slow: median +0.0308 +- 0.0016, Spearman(h4, lambda_Re) -0.175 (p 0.00045), n 396
+  h4 fast: median +0.0141 +- 0.0008, Spearman(h4, lambda_Re) -0.275 (p 2.6e-35), n 1956
+  h4 all: Spearman(h4, lambda_Re) -0.351 (p 5.8e-69)
+  permutation importance logm: AUC drop +0.0012
+  permutation importance ur: AUC drop +0.0025
+  permutation importance n: AUC drop +0.0211
+  permutation importance eps: AUC drop -0.0019
+  permutation importance logre: AUC drop +0.0026
+  permutation importance fib: AUC drop +0.0025
+  permutation importance logvd: AUC drop +0.0038
+  permutation importance h4: AUC drop +0.0140
+  permutation importance h6: AUC drop +0.0008
+  permutation importance sigrat: AUC drop +0.0066
+  f_slow vs log M*: [10.00,10.25) 0.05 (n 104), [10.25,10.50) 0.05 (n 251), [10.50,10.75) 0.02 (n 351), [10.75,11.00) 0.09 (n 454), [11.00,11.25) 0.19 (n 543), [11.25,11.50) 0.34 (n 468), [11.50,11.75) 0.48 (n 143)
+  ATLAS3D: NOT RUN (positions table not fetched)
+
+LABEL (gas-poor): NO KINEMATIC AXIS BEYOND PHOTOMETRY
