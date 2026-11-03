@@ -118,3 +118,12 @@ c stays at Diemer19, alpha at 0.16: feedback only. Tuned on odd galaxies, graded
 - D3: gradient energy cap: grad phi max squared against rho_DE. Equality is by the posit.
 - D4: reciprocity: baryons source phi, so they feel charge beta. Cassini limit from PAPER58's 2.44 to 4.59 sets epsilon = beta_b/beta at most 1/4.59 at Q2 scaling linear in y, order of magnitude. Report.
 - D5: one scale for the particle: if a boson had m = rho_DE^(1/4) and potential height rho_DE, f = Lambda^2/m, against the f needed for the dark matter density by misalignment at that m. Report the mismatch in decades.
+
+**AMENDMENT A13, owner 11-03: "continue seeing how you can reverse engineer it". Frozen before these numbers; not deposited. Rival language, adopts nothing.** The one gap A6 to A12 left is the rho_DE tie, every time written in by hand. Question: does any acceleration scale native to LCDM, with no hand term, give a = kappa c sqrt(G rho_DE)? Routes, each with no tuning:
+- T1 Hubble scale: a = c H(z)/2 pi.
+- T2 Lambda coincidence: a = c^2 sqrt(Lambda/3)/2 pi, Lambda = 8 pi G rho_DE/c^2 (Milgrom's 2 pi a0 = c^2 sqrt(Lambda/3)).
+- T3 halo surface acceleration: NFW central g_s = 2 pi G rho_s r_s, Diemer19 c(M), 200c, log M 10 to 15 Msun.
+- T4 halo BTFR at the cosmic baryon fraction, no feedback: a = V200^4/(G f_b M200) = 10 H V200/f_b.
+- T5 Lambda's own pull at galaxy radii: Lambda c^2 r/3 at r = 10 kpc and at R200 of 1e12 Msun.
+Gates, a route ties a to rho_DE natively only if all pass: G1 kappa_eff = a/(c sqrt(G rho_DE)) within 0.05 dex of 0.5 (at 1e12 for T3, T4). G2 E4 slope 0.50 +- 0.05 over the three cosmologies of J. G3 E5 band, halo routes at fixed M. G4 one constant: rms of log a over log M 10 to 15 <= 0.1 dex. G5 operative: the scale is an acceleration that acts on galaxy dynamics, at least 0.1 a0 at 10 kpc for T1 and T2 (Hubble deceleration q H^2 r, Lambda pull); T3 and T4 are halo gravity and pass G5 by definition.
+Expected in advance: T2 passes G1 to G4 (kappa_eff = sqrt(8 pi/3)/2 pi = 0.461) and fails G5, so it is a numerical coincidence, not a mechanism; T1 fails G3; T3 fails G2 or G3; T4 fails G4.
