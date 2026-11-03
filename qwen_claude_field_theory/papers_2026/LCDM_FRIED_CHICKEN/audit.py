@@ -4,7 +4,7 @@ Rival-flavoured exercise, adopts nothing. kappa = 1/2 FITTED; not theory closed.
 import os, sys
 H = os.path.dirname(os.path.abspath(__file__))
 T = open(os.path.join(H, "lcdm_fried_chicken.tex"), encoding="utf-8").read()
-R = {s: open(os.path.join(H, "scripts", s + ".out"), encoding="utf-8").read() for s in ("recipe", "recipe2", "recipe3", "recipe4")}
+R = {s: open(os.path.join(H, "scripts", s + ".out"), encoding="utf-8").read() for s in ("recipe", "recipe2", "recipe3", "recipe4", "recipe5", "recipe6", "recipe6b", "recipe7")}
 L = [("3373", "recipe", "3373 points"), ("171", "recipe", "171 galaxies"), ("0.1951", "recipe", "rms 0.1951"),
  ("0.1419 & 0.2877 & 0.1613 & 15.76", "recipe", "0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1613"), ("15.76", "recipe", "a fit 1.576e-10"),
  ("0.0715 & 0.1486 & 0.0441 & 9.12", "recipe", "0.0715 dex [FAIL E1]; p95 per-galaxy 0.1486 [FAIL E2]; worst bin 0.0441"), ("9.12", "recipe", "a fit 9.122e-11"),
@@ -28,13 +28,16 @@ L += [("0.0415 & 0.1006 & 0.0221 & 9.33","recipe4","0.0415 dex [FAIL E1]; p95 pe
  ("0.0213 & 0.0441 & 0.0216 & 9.30","recipe3","0.0213 dex [FAIL E1]; p95 per-galaxy 0.0441 [FAIL E2]; worst bin 0.0216"),("0.0376 & 0.0711 & 0.0164 & 9.63","recipe3","0.0376 dex [FAIL E1]; p95 per-galaxy 0.0711 [FAIL E2]; worst bin 0.0164"),("\\textbf{0.0152} & \\textbf{0.0283} & \\textbf{0.0040} & 9.43","recipe3","0.0152 dex [PASS E1]; p95 per-galaxy 0.0283 [PASS E2]; worst bin 0.0040"),
  ("median $\\log c$ shift $-0.22$","recipe3","[[0.06, -0.22, 0.1, 0.57"),("0.0270 on unseen","recipe3","on unseen 0.0270"),("shift $+0.46$, $\\log c$ shift $-0.74$","recipe3","[[0.46, -0.74"),("0 of 171 galaxies","recipe3","0.11: 0 of 171"),
  ("is $+0.283$","recipe3","slope +0.283"),("0.459, 0.614, 0.735","recipe3","[0.459, 0.614, 0.735]"),("1.58, 2.12, 3.44","recipe3","{1.0: 1.584, 1.5: 2.12, 2.33: 3.441}"),("\\rho_{\\rm DE}^{3.00}H_0^{-1.61}","recipe3","hand p 3.00, r -1.61, s -12.00"),("slope $+0.496$","recipe3","slope +0.496 [PASS E4]"),("0.485, 0.506, 0.525","recipe3","[0.485, 0.506, 0.525] [FAIL]"),("(1+z)^{-0.26-0.89z}","recipe3","q1 -0.26, q2 -0.89"),("0.93, 0.91, 0.92","recipe3","{1.0: 0.931, 1.5: 0.907, 2.33: 0.924} [PASS E5]")]
-drop = ("slope is $+0.235$","\\rho_{\\rm DE}^{0.23}","0.446, 0.682, 0.851","1.43, 1.85, 2.90","(1+z)^{-1.11}","0.74, 0.86, 1.25")
+L += [("rms to the observed curves is 0.1951","recipe7","rms to observed 0.1951"),("$\\kappa$ is 0.500","recipe7","kappa 0.500"),("slope with $\\rho_{\\rm DE}$ is $+0.500$","recipe7","slope against first row +0.500"),("median $+0.11$","recipe7","[-0.23, 0.11, 0.27]"),("$-0.80$","recipe7","median dlogM200 -0.80"),("in all 171","recipe7","above cosmic in 0 of 171"),
+ ("276.1 & 211.4 & 1.367","recipe6","276.1/60"),("276.1 & 211.4 & 1.367","recipe7","R12n control, must be 276.1    chi2   276.1/60"),("457.7 & 290.4 & 1.422","recipe7","chi2   457.7/60"),("277.9 & 146.5 & 1.179","recipe6","chi2   277.9/60"),("242.1 & 120.9 & 1.140","recipe6","chi2   242.1/60"),("563.1 & 444.2 & 0.809","recipe6","chi2   563.1/60"),
+ ("167.7 on 56","recipe6b","chi2 167.7/56"),("R11 228.2","recipe6b","chi2 228.2/56"),("R11b 206.0","recipe6b","chi2 206.0/56"),("converged at 0.0415 and 0.0275","recipe5","moved"),("0.2032 and 0.1999","recipe5","rms to observed 0.2032"),("0.2032 and 0.1999","recipe5","rms to observed 0.1999")]
+drop =("slope is $+0.235$","\\rho_{\\rm DE}^{0.23}","0.446, 0.682, 0.851","1.43, 1.85, 2.90","(1+z)^{-1.11}","0.74, 0.86, 1.25")
 L = [x for x in L if x[0] not in drop]
 F = 0
 for frag, s, lit in L:
     a, b = frag in T, lit in R[s]
     if not (a and b): F += 1; print("  FAIL", "TeX" if not a else "", "SRC" if not b else "", repr(frag), s, repr(lit))
-NEED = ("analytic stand-in", "ACDM flavored fried chicken version of Galaxy Dnynamics", "carries no physics", "fitted", "not evidence", "Working note")
+NEED = ("rival's language", "new coupling", "By construction".lower(), "analytic stand-in", "ACDM flavored fried chicken version of Galaxy Dnynamics", "carries no physics", "fitted", "not evidence", "Working note")
 for n in NEED:
     if n not in T: F += 1; print("  FAIL missing", n)
 print(f"{len(L) + len(NEED) - F} of {len(L) + len(NEED)} checks pass")
