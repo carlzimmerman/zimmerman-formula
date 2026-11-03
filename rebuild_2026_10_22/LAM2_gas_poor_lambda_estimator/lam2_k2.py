@@ -55,7 +55,9 @@ with open(OUT, "a") as fo:
         if stop: print("SIGTERM: stopping cleanly", flush=True); break
         if (k, i) in done: continue
         sid, pl, mj, fb = poor[gi, 1], int(poor[gi, 2]), int(poor[gi, 3]), int(poor[gi, 4])
-        fn = os.path.join(SPD, f"spec-{pl:04d}-{mj}-{fb:04d}.fits"); r = dict(tercile=k, i=i, specobjid=sid, sigma_in=sig, h4_in=h4, sn=float(sn[gi]))
+        fn = os.path.join(SPD, f"spec-{pl:04d}-{mj}-{fb:04d}.fits")
+        if not os.path.exists(fn): continue  # not downloaded yet: picked up on a later pass, never logged as an error
+        r = dict(tercile=k, i=i, specobjid=sid, sigma_in=sig, h4_in=h4, sn=float(sn[gi]))
         try:
             p = prep(fn); pp = run(p, p["flux"])                      # the galaxy's own frozen fit
             tpl = p["temps"] @ pp.weights                             # best-fit template mix, no polynomial
