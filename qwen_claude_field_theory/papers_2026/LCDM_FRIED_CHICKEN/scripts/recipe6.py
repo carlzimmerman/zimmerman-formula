@@ -7,8 +7,8 @@ src = open(os.path.join(HERE, 'recipe4.py'), encoding='utf-8').read().split("\nr
 exec(src.split('\n', 2)[2])
 K11 = np.array([-.326, .677, -.881, -.600, -.638, -.757, .090, -.097, 1., .465, 1., -.332]); K14 = np.array([-.512, .359, -.138, -.600, -.986, -.439, .052, -.139, .793, .597, 1., -.415, -.330, .150]); KC = np.array([0, 0, 0, 0, -5., 0, 0, 0, 0, 0, 0, 0.])
 LR = os.path.join(D, 'lensing_rar'); B = os.path.join(LR, 'brouwer2021_rar'); pc = kpc / 1e3
-A = [np.loadtxt(os.path.join(B, f'Fig-3_Lensing-rotation-curves_Massbin-{i}.txt')) for i in range(1, 5)]
-RM = A[0][:, 0]; DAT = np.concatenate([a[:, 1] / a[:, 4] for a in A]); c = np.loadtxt(os.path.join(B, 'Fig-3_Lensing-rotation-curves_Massbins_covmatrix.txt'))
+AD = [np.loadtxt(os.path.join(B, f'Fig-3_Lensing-rotation-curves_Massbin-{i}.txt')) for i in range(1, 5)]
+RM = AD[0][:, 0]; DAT = np.concatenate([a[:, 1] / a[:, 4] for a in AD]); c = np.loadtxt(os.path.join(B, 'Fig-3_Lensing-rotation-curves_Massbins_covmatrix.txt'))
 mins = np.unique(c[:, 0]); ii = {round(r, 8): k for k, r in enumerate(RM)}; n = len(RM); COV = np.zeros((4 * n, 4 * n))
 for l in c:
     a, b = np.searchsorted(mins, l[0]) * n + np.argmin(abs(RM - l[2])), np.searchsorted(mins, l[1]) * n + np.argmin(abs(RM - l[3])); COV[a, b] = l[4] / l[6]
@@ -33,7 +33,7 @@ def rec(Ms, Mg, k):
     h = Gal(); h.Ms, h.Mb = Ms, max(Mg, Ms); h.Rd = 10**np.polyval(P, np.log10(h.Mb)) * kpc; h.r = RE[1:]; h.mbtot = h.Mb * Msun; h.mb = np.full(len(h.r), h.mbtot); h.gb = G * h.mb / h.r**2
     M = m200k(Ms, *k[:4]); R200 = (3 * M * Msun / (4 * np.pi * 200 * globals()['RHOC']))**(1 / 3); m = (gal(h, k) - h.gb) * h.r**2 / G; m = np.where(h.r <= R200, m, np.interp(R200, h.r, m)); m = np.maximum.accumulate(np.maximum(m, 0))
     return M, ds(Rm, RE, np.diff(np.r_[0, m]), h.mbtot)
-Zb = .25; rg = np.logspace(-3, 2.2, 400); xi = cos.correlationFunction(rg * cos.h * (1 + Zb), Zb); rm = cos.rho_m(Zb) * cos.h**2 * 1e9
+Zb = .25; rg = np.logspace(-2.5, 2.2, 400); xi = cos.correlationFunction(rg * cos.h * (1 + Zb), Zb); rm = cos.rho_m(Zb) * cos.h**2
 Eg = rg * 1e3 * kpc; DMM = ds(Rm, Eg, (4 * np.pi * rm * ((rg[1:] * 1e3)**3 - (rg[:-1] * 1e3)**3) / 3 * .5 * (xi[1:] + xi[:-1])) * Msun)
 print(' mm ESD at 1 Mpc per unit bias:', round(float(np.interp(1, RM, DMM)), 3), 'Msun/pc^2')
 def REC(Ms, Mg, k=None):
