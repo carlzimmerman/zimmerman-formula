@@ -28,3 +28,8 @@ SkyServer SQL on SpecObj, columns specobjid, ra, dec, z only, class = 'GALAXY', 
 
 ## A6: Sersic source for wave 2
 Roy+2018 2DPHOT (S/N > 50), as B21 used. It is not fetched in wave 1.
+
+## 2026-11-03, A7: isolation geometry corrected to B21's sphere, before any count
+B21 Sec. 3.3 says r_sat "was calculated from the projected and redshift distances between the galaxies", and Appendix A says the photometric redshifts "were used to calculate the galaxy distances D(z)". So the rule is a sphere, not A3's cylinder: neighbour separation sqrt(R_perp^2 + delta chi^2) < 3 Mpc/h70, both in comoving Mpc. Physical or comoving is not stated in B21. Comoving is primary, and the physical sphere is reported as a row. D(z) is CFG681 `Efun` with the T2 BAO+SN free fit (om 0.1673, X nodes as in `cfg681_results.json`) in h70 units, the same on both footings because a footing changes a0, not D(z). Candidate satellites are all masked == 0 bright-sample galaxies with a finite MASS_BEST. The rest of K0 is unchanged.
+
+The SDSS query (A5) returned 787,839 DynPop-region rows, equal to the server's COUNT(*), plus 127,898 KiDS-N rows, 42 MB in total, in `_external_data/lam1_sdss_specobj_2026_11_03/`. One RA chunk (190-200) returned HTTP 500 and was refetched in two halves.
