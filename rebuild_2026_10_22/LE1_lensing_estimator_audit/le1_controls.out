@@ -1,0 +1,23 @@
+LE1 controls: known answers, reproduction, MUTATE. kappa = 1/2 FITTED; not theory closed.
+KA1a G1 Stencil vs closed forms, max |ratio-1|: {"SIS": 4e-06, "point": 0.0, "NFW": 3e-06} -> PASS
+KA1b G1 noise-free self-recovery: chi2 1.11e-10, max |b - b_true| 3.83e-07 -> PASS
+KA1c G1 chi2 calibration, 300 mocks: mean 57.99, sd 10.59 (line [52, 60]) -> PASS
+KA1d covariance assembly: cells filled once 1..1, asym 0.0e+00, pos. def. True, bin radii max rel diff 0.0e+00, cov-radius match max rel 4.1e-05 -> PASS
+KA1e cross ESD vs covariance: chi2_x 51.2/60 [27.1, 92.9], R <= 0.31 23.3/32 [8.0, 56.0]; per bin [12.1, 9.7, 8.9, 19.7] -> PASS
+KA2a G2 projector at 8 bins, ratio to closed form: SIS [0.9889, 0.9924, 0.9948, 0.9964, 0.9975, 0.9983, 0.9988, 0.9992]; NFW [0.9989, 0.9992, 0.9993, 0.9998, 0.9997, 1.0002, 1.0001, 1.0004]; Plummer [0.9997, 0.9997, 0.9997, 0.9997, 0.9997, 0.9997, 0.9997, 0.9997] -> max dev {"SIS": 0.01107, "NFW": 0.0011, "Plummer": 0.00034} FAIL
+KA2b G2 offset_floor vs direct phi-average (SIS): d 0.05: [0.9979, 0.9986, 0.9991, 0.9994, 0.9996, 0.9997, 0.9998, 0.9999]; d 0.2: [1.0, 1.0002, 1.0001, 1.0, 1.0, 1.0, 1.0, 1.0] -> max dev 0.0021 PASS
+KA3b G3 SIS: max |4 G DeltaSigma / g - 1| 4.13e-06 -> PASS
+KA3a G3 conversion [canonical]: law on CX1 baryons, 4 G DeltaSigma / g_law: weighted mean log10 +0.0062, max |row| 0.0192 (line 0.02) -> PASS
+   by row (bin, R kpc, log ratio): bin1 35 +0.008; bin1 48 +0.006; bin1 65 +0.004; bin1 89 +0.003; bin1 121 +0.002; bin1 164 +0.002; bin1 223 +0.001; bin2 35 +0.012; bin2 48 +0.009; bin2 65 +0.007; bin2 89 +0.005; bin2 121 +0.004; bin2 164 +0.003; bin2 223 +0.002; bin3 35 +0.016; bin3 48 +0.012; bin3 65 +0.009; bin3 89 +0.006; bin3 121 +0.005; bin3 164 +0.004; bin3 223 +0.003; bin4 35 +0.019; bin4 48 +0.014; bin4 65 +0.011; bin4 89 +0.008; bin4 121 +0.006; bin4 164 +0.004; bin4 223 +0.003
+R3 [canonical] NP1 real L3 G3 lensing z +1.6864 (record +1.6864) -> PASS; law z +5.008
+MUT G3 [canonical]: g_obs/2 moves law z +5.01 -> -8.02 (needs |dz| >= 13.0)
+KA3a G3 conversion [alt]: law on CX1 baryons, 4 G DeltaSigma / g_law: weighted mean log10 +0.0057, max |row| 0.0176 (line 0.02) -> PASS
+   by row (bin, R kpc, log ratio): bin1 35 +0.007; bin1 48 +0.005; bin1 65 +0.004; bin1 89 +0.003; bin1 121 +0.002; bin1 164 +0.002; bin1 223 +0.001; bin2 35 +0.011; bin2 48 +0.008; bin2 65 +0.006; bin2 89 +0.005; bin2 121 +0.003; bin2 164 +0.002; bin2 223 +0.002; bin3 35 +0.014; bin3 48 +0.011; bin3 65 +0.008; bin3 89 +0.006; bin3 121 +0.004; bin3 164 +0.003; bin3 223 +0.002; bin4 35 +0.018; bin4 48 +0.013; bin4 65 +0.010; bin4 89 +0.007; bin4 121 +0.005; bin4 164 +0.004; bin4 223 +0.003
+R3 [alt] NP1 real L3 G3 lensing z +0.9180 (record +0.9180) -> PASS; law z +3.318
+MUT G3 [alt]: g_obs/2 moves law z +3.32 -> -9.74 (needs |dz| >= 13.1)
+R1 law [canonical]: RQ3 rows_lens Z +9.2742, this lane's G1 +9.2742 (chi2 154.1), record +9.2742 -> PASS
+MUT G1 [canonical]: model DeltaSigma x 2: chi2 154.1 -> 970.1 -> BITES
+R1 law [alt]: RQ3 rows_lens Z +6.5195, this lane's G1 +6.5195 (chi2 125.0), record +6.5195 -> PASS
+MUT G1 [alt]: model DeltaSigma x 2: chi2 125.0 -> 1403.1 -> BITES
+R1 np1_L3 [canonical]: RQ3 rows_lens Z +8.4550, this lane's G1 +8.4550 (chi2 145.5), record +8.4550 -> PASS
+R1 np1_L3 [alt]: RQ3 rows_lens Z +6.7541, this lane's G1 +6.7541 (chi2 127.5), record +6.7541 -> PASS
