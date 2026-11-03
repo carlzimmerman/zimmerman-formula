@@ -1,0 +1,23 @@
+
+=== RUN: m 1e-25 eV, omega_f 0.11995, omega_b 0.02234, omega_f/omega_b 5.369, g_f 2, cap factor 1
+  X-COP canonical: all mean -0.028 rms 0.246 FAIL; train -0.034, 0.255; holdout -0.019, 0.234; by x [-0.469, -0.071, 0.083, 0.17, 0.149]; M_f/M_b [22.34, 6.98, 3.65, 1.73, 1.13]
+  X-COP alt: all mean -0.060 rms 0.247 FAIL; train -0.067, 0.257; holdout -0.050, 0.235; by x [-0.493, -0.102, 0.05, 0.134, 0.113]; M_f/M_b [23.23, 7.26, 3.79, 1.8, 1.17]
+  per cluster canonical [('A1795', -0.076), ('A2029', 0.046), ('A2142', -0.025), ('A2319', -0.003), ('A644', 0.041), ('A85', -0.1), ('ZW1215', -0.077)]; sigma km/s [1216, 1439, 1511, 1540, 1271, 1313, 1271]
+  Keys canonical, f* 0.034, gas +0.005: 3 of 15, over 2 in either h: G-IN-Mall, G-IN-all, G-MID-T1, G-MID-T2, G-MID-b, G-OUT-M1, G-OUT-M2, G-OUT-Mall, G-OUT-T1, G-OUT-T2, G-OUT-all, G-OUT-b; worst G-OUT-Mall (h0686) -5.82; G-OUT-all -5.33, G-OUT-Mall -5.50, G-OUT-M3 +0.73, G-MID-T3 +0.08, G-IN-Mall -5.23
+  Keys alt, f* 0.034, gas +0.005: 2 of 15, over 2 in either h: G-IN-Mall, G-IN-all, G-MID-T1, G-MID-T2, G-MID-b, G-OUT-M1, G-OUT-M2, G-OUT-Mall, G-OUT-T1, G-OUT-T2, G-OUT-T3, G-OUT-all, G-OUT-b; worst G-OUT-Mall (h0686) -7.43; G-OUT-all -6.40, G-OUT-Mall -7.02, G-OUT-M3 -0.50, G-MID-T3 -0.74, G-IN-Mall -5.86
+    DA1 B = 1: 4 of 15, over 2 in either h: G-IN-Mall, G-IN-all, G-MID-T1, G-MID-b, G-OUT-M1, G-OUT-M2, G-OUT-Mall, G-OUT-T1, G-OUT-T2, G-OUT-all, G-OUT-b; worst G-OUT-Mall (h0686) -5.08; G-OUT-all -4.83, G-OUT-Mall -4.78, G-OUT-M3 +1.32, G-MID-T3 +0.69, G-IN-Mall -4.29
+    DA1 n(z): 4 of 15, over 2 in either h: G-IN-Mall, G-IN-all, G-MID-T1, G-MID-b, G-OUT-M1, G-OUT-M2, G-OUT-Mall, G-OUT-T1, G-OUT-T2, G-OUT-all, G-OUT-b; worst G-OUT-all (h0686) -4.82; G-OUT-all -4.63, G-OUT-Mall -4.22, G-OUT-M3 +1.84, G-MID-T3 +0.62, G-IN-Mall -4.60
+    f* 0.0615: 3 of 15, over 2 in either h: G-IN-Mall, G-IN-all, G-MID-T1, G-MID-T2, G-MID-b, G-OUT-M1, G-OUT-M2, G-OUT-Mall, G-OUT-T1, G-OUT-T2, G-OUT-all, G-OUT-b; worst G-OUT-Mall (h0686) -5.96; G-OUT-all -5.43, G-OUT-Mall -5.63, G-OUT-M3 +0.60, G-MID-T3 +0.02, G-IN-Mall -5.29
+    gas +0.111, X-COP's scale, reported: 2 of 15, over 2 in either h: G-IN-Mall, G-IN-all, G-MID-T1, G-MID-T2, G-MID-b, G-OUT-M1, G-OUT-M2, G-OUT-Mall, G-OUT-T1, G-OUT-T2, G-OUT-T3, G-OUT-all, G-OUT-b; worst G-OUT-Mall (h0686) -7.19; G-OUT-all -6.26, G-OUT-Mall -6.81, G-OUT-M3 -0.54, G-MID-T3 -0.60, G-IN-Mall -5.79
+  median cluster: sigma 774 km/s, r_ta 6.02 Mpc, M_f(R500)/M_b(R500) 2.70, M_f(r_ta) 3.11e+14, share of clusters where the cap holds M_f(r_ta) under fair share 0.00
+  Lensing mass at the offset peak, published apertures, PROVISIONAL (MG1), canonical, reported; collisionless offsets are by construction, not a test:
+    Bullet main <300 kpc: M_lens 3.50e+14; model gas displaced 1.55e+14 (0.44), gas centred 2.08e+14 (0.59); sigma 1154
+    Bullet sub <300 kpc: M_lens 2.30e+14; model gas displaced 9.78e+13 (0.43), gas centred 1.11e+14 (0.48); sigma 646
+    MACS J0025 SE <300 kpc: M_lens 2.50e+14; model gas displaced 9.95e+13 (0.40), gas centred 1.15e+14 (0.46); sigma 666
+    MACS J0025 NW <300 kpc: M_lens 2.60e+14; model gas displaced 9.82e+13 (0.38), gas centred 1.14e+14 (0.44); sigma 660
+  Gate 3 canonical: rms 0.0845, Upsilon 0.50, tilt +0.11, SB slope Z -0.26, LT -0.025, groups Z -8.09 BELOW LAW, Dw [5.22, 2.2, 2.29, 1.69, 0.57], IC 1613 E -0.593 (Z -7.9); M_f/M_b at R_last, median all 0.003, V<100 0.0000, V>200 1.237; lines {'S': True, 'Tl': True, 'HS': True, 'LT': True, 'G': False, 'Dw': False, 'IC': False}; gate 3 FAIL; DA1 windows {'0.375-0.625': True, '0.25-0.75': True}
+  Gate 3 alt: rms 0.0918, Upsilon 0.41, tilt +0.03, SB slope Z -0.36, LT -0.064, groups Z -8.71 BELOW LAW, Dw [4.87, 1.81, 2.12, 1.42, 0.08], IC 1613 E -0.631 (Z -8.4); M_f/M_b at R_last, median all 0.003, V<100 0.0000, V>200 1.358; lines {'S': False, 'Tl': True, 'HS': True, 'LT': True, 'G': False, 'Dw': False, 'IC': False}; gate 3 FAIL; DA1 windows {'0.375-0.625': True, '0.25-0.75': True}
+  Bracket, A1 R4, cap at measured V_flat / sqrt 2, canonical, reported: rms 0.0845, Upsilon 0.50, tilt +0.11
+  Milky Way, expected fail: the law's cells are already K_z +4.7 to +6.6 sigma high (READ X5). The cap at sigma 220/sqrt 2 km/s permits rho 0.0000 Msun/pc^3, adding up to 0.0 Msun/pc^2 to K_z's column at 1.1 kpc before the law's boost. It only adds. Not a new solve
+  flags {'rows': 63380, 'unbound': 21367, 'unres': 0, 'zero': 21367, 'noconv': 0, 'big': 39814}
+kappa = 1/2 FITTED. Not theory closed.

@@ -6,7 +6,7 @@ _argv = sys.argv[:]; sys.argv = ["hf1_g23.py"]
 import hf1_g23 as H
 sys.argv = _argv
 import numpy as np, wf1_solver as S
-H.FM.solve = S.solve; C, CO, GR, DW, SP = H.C, H.CO, H.GR, H.DW, H.SP; A0 = H.A0; MPC = H.MPC; MSUN = H.MSUN
+H.FM.solve = S.solve; H.grid_for.__defaults__ = (640, 1e-5 * H.MPC); C, CO, GR, DW, SP = H.C, H.CO, H.GR, H.DW, H.SP; A0 = H.A0; MPC = H.MPC; MSUN = H.MSUN
 def cache(tag):
     d = os.path.join(HERE, "cache", tag); os.makedirs(d, exist_ok=True); CO.CACHE = d
 def stat(reset=True):
