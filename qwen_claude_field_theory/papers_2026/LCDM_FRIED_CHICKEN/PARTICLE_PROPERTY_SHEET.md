@@ -1,5 +1,7 @@
 # Effective particle property sheet for the a0 law
 
+**Research experiment only, to anticipate a swoop. The owner does not believe it. See README.**
+
 Effective description in the rival's language. Not a claim that a particle exists, and the framework has none. Not deposited. Stands on the a0 law only; the cold sector stays retired (owner 11-01). Numbers from `scripts/recipe8.out`, `recipe9.out`, `recipe10.out`. Spherical, isotropic, order of magnitude. kappa = 1/2 FITTED; not theory closed.
 
 | Property | Value | Status |
