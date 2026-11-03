@@ -13,7 +13,7 @@ Criteria `FROZEN_CRITERIA.md` (b25ab0a57d), committed alone first. `AMENDMENT_A1
 | a0 law | can | 10/15 | MID-T3 +4.86, M3 +4.76 | 10.8 PASS | PASS | -3.94 | PASS | FEASIBLE IN PRIORS | 154 | reference |
 | F1, F2: c = 1/3 | can | **11/15** | MID-T3 +3.39, MID-b +2.69, OUT-all -2.56, M3 +2.16 | **38.6 FAIL** | PASS -0.08 | **-4.09** | PASS 1.21 | **V+K ONLY, FAIL** | 232 | joint, fails holdouts |
 | | alt | **8/15** | OUT-all -3.17, MID-T3 +3.11, ... | 39.4 FAIL | PASS | -4.33 | PASS | FAIL | 182 | |
-| F3, F4: c = 1/pi | can | 10/15 | MID-T3 +3.34, OUT-all -2.66 ... | FAIL | PASS | FAIL | PASS | FAIL | ~225 | joint, fails holdouts |
+| F3, F4: c = 1/pi | can | 10/15 | MID-T3 +3.34, OUT-all -2.66 ... | 39.1 FAIL | PASS | -0.62 FAIL | PASS 1.21 | FAIL | 222 | joint, fails holdouts |
 | F5, E: log1p(y/ell)(0.6 - 1/(1+f) + y), the X-strict one | can | **7/15** | OUT-all -5.08, Mall -5.04 ... | 83.0 FAIL | **-2.03 FAIL** | -4.39 | PASS | FAIL | 365 | L-abs fails alt; A3 tilt Z +8.4 |
 | | alt | 6/15 | | 84.4 | FAIL | FAIL | PASS | INFEASIBLE at f 0.15 | 292 | |
 
