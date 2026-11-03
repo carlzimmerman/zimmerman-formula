@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "claim_id": "AZ16",
+  "repository": {
+    "commit": "f0cc9136a158f3b0a2abe87f501863e8985cd61c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "astra_goal_2026_11_03/P4/AZ16_central_regularity/run.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "Existence of positive centrally nonincreasing C2 spherical equilibrium of pure AZ14 quartic-gradient energy",
+    "coefficient_domain": "float64 unless exact algebra explicitly stated",
+    "conventions": "see CRITERIA.md",
+    "inputs": [
+      "astra_goal_2026_11_03/P4/AZ16_central_regularity/run.py",
+      "astra_goal_2026_11_03/P4/AZ16_central_regularity/CRITERIA.md",
+      "astra_goal_2026_11_03/record.py"
+    ],
+    "bounds": {
+      "domain": "positive lambda,G; regular C2 spherical origin; central nonincrease",
+      "local_ODE_points": [
+        0.0001,
+        0.001
+      ],
+      "synthetic_units": "256lambda=4piG=psi0=mu-Phi0=1"
+    },
+    "non_claims": [
+      "No uncomputed empirical row passes"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-03T23:43:46Z",
+    "runtime_seconds": 0.010675907135009766,
+    "exit_status": 0,
+    "status": "completed",
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": null
+    }
+  },
+  "outputs": [
+    {
+      "path": "astra_goal_2026_11_03/P4/AZ16_central_regularity/results.json",
+      "sha256": "191d1c116cce4e66e902b0b6d6b5cbd7df32b7e16703832f8f8718521b583733",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "name": "manufactured radial operator",
+      "passed": true
+    },
+    {
+      "name": "variation normalization",
+      "passed": true
+    },
+    {
+      "name": "weak-core leading slope",
+      "passed": true
+    },
+    {
+      "name": "weak-core start/tolerance refinement",
+      "passed": true
+    },
+    {
+      "name": "MUTATE missing radial term",
+      "passed": true
+    },
+    {
+      "name": "regularization linear coefficient",
+      "passed": true
+    },
+    {
+      "name": "MUTATE zero linear dispersion",
+      "passed": true
+    }
+  ],
+  "result": "FAIL",
+  "residual_risks": [
+    "C1 weak cores are not excluded",
+    "Local ODE does not solve isolated outer boundary or establish dynamic stability",
+    "Bounded density proof remains conditional and does not imply C2 regularity",
+    "Regularized linear pressure is not an observational fail without a physical q0 and lambda",
+    "No empirical row credit"
+  ],
+  "input_artifacts": [
+    {
+      "path": "astra_goal_2026_11_03/P4/AZ16_central_regularity/run.py",
+      "sha256": "73205d4e24cdcd2cac596e97da8e07a3b41d4ea295a6ffc9abcbedcfca7265ea",
+      "sha256_after": "73205d4e24cdcd2cac596e97da8e07a3b41d4ea295a6ffc9abcbedcfca7265ea"
+    },
+    {
+      "path": "astra_goal_2026_11_03/P4/AZ16_central_regularity/CRITERIA.md",
+      "sha256": "9670224bc762c8f93fa0eb5b00ba966519b07cc608e3d8693890d24f9f851fe5",
+      "sha256_after": "9670224bc762c8f93fa0eb5b00ba966519b07cc608e3d8693890d24f9f851fe5"
+    },
+    {
+      "path": "astra_goal_2026_11_03/record.py",
+      "sha256": "905369904ef3512742314998b88afed0abeffae9c0d2a62917724483267c4afc",
+      "sha256_after": "905369904ef3512742314998b88afed0abeffae9c0d2a62917724483267c4afc"
+    }
+  ],
+  "declared_results": [
+    "astra_goal_2026_11_03/P4/AZ16_central_regularity/results.json"
+  ]
+}
