@@ -22,5 +22,5 @@ for key in ('1e12','1e15'):
         for k in (2,3,5): dev=max(dev,abs(R.r[1]*k/R.r[k]-1))
         if R.r[1]/(R.aval()*R.dq)<1e-3: break
     ex={k:float(sol[k].sol(R.t)[0]) if R.t<sol[k].t[-1] else None for k in sol}
-    pred=max(abs(ex[1]*k/ex[k]-1) for k in (2,3,5))
+    pred=max([abs(ex[1]*k/ex[k]-1) for k in (2,3,5) if ex[1] and ex[k]] or [float("nan")])
     print(json.dumps(dict(key=key,N=N,K11_dev_run=dev,K11_dev_exact_dust_at_end=pred,max_rel_to_own_shell=mx,steps=R.nstep)),flush=True)
