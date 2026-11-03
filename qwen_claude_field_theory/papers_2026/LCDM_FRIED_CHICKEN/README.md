@@ -16,4 +16,6 @@ Working note, v1.1, DOI 10.5281/zenodo.23901396; v1.0 is DOI 10.5281/zenodo.2389
 
 **Not in any deposit: Amendment A8, `scripts/recipe10.py`, `recipe10.out`, `PARTICLE_PROPERTY_SHEET.md`.** Effective particle properties on the a0 law, adopts nothing. Condensate gate: window 9.2 to 13.7 eV. The sheet lists seven open problems, including double counting and Cassini.
 
+**Not in any deposit: Amendment A9, `scripts/recipe11.py`, `recipe11.out`.** Particle axiom, consequences only. Cassini passes (2.0e-9 a0 at Saturn), one equation of state fails (0.521 dex), so the condensate window cannot supply the halo's shape as a single P(rho).
+
 Bibliography entries are from memory and were not checked against the journals. Fixing the cosmology bug also corrected `../REDTEAM_LCDM_PRIEST/`.

@@ -26,3 +26,16 @@ Effective description in the rival's language. Not a claim that a particle exist
 5. **Early universe.** A condensed species at 10 eV has not been run through the CMB or structure growth. HF1 and VW1 are warnings on nearby families, not this model.
 6. **Causality.** The diverging stiffness ratio has not been checked against a time-dependent background.
 7. **The window.** It is narrow and rests on my thresholds: the 100 kpc radius, point-mass clusters, the unit criterion for condensation. No sensitivity run yet.
+
+## Under the particle axiom (Amendment A9, `scripts/recipe11.out`)
+
+Owner 11-02: assume a real particle halo supplies all of g_law - g_b, and baryons feel only gravity. These are consequences of that axiom. They do not prove a particle exists; galaxy fits cannot.
+
+- **Double counting:** removed by definition, with no scalar force on baryons. The field equation above then describes only the mass profile.
+- **Cassini:** passes. The halo cannot bind to the Sun beyond 0.076 AU at 152 km/s, so no a0 tail forms. Extra g at Saturn is 2.0e-9 a0.
+- **Wide binaries:** the same argument predicts Newtonian wide binaries, unlike a field reading of the law. Not graded here.
+- **One equation of state: FAIL.** log P at fixed log rho scatters 0.521 dex (median of 7 bins) against a 0.1 limit, as the analytic P proportional to sqrt(M_b) at fixed rho expected. A single zero-temperature condensate with one P(rho) cannot hold these halos in hydrostatic balance. This undercuts the condensate window above as the source of the halo's shape. Vortices, a normal component and non-equilibrium are not covered.
+- **Temperature law:** sigma = 1.071 (G M_b a0/4)^(1/4) median, rms 0.054 dex. It follows from the law, so it is a requirement, not a result.
+- **Window sensitivity:** open in all 9 rows, spanning 4.12 to 24.38 eV. The threshold N moves both bounds equally, so only the radius tests whether it stays open.
+- **Best-fitting particle:** cold, collisionless, fermion floor about 56 to 245 eV or a boson with no condensed halo, sigma/m small, its shape set at formation.
+- **Still open:** what forms this shape (about half of all supernova energy), what puts rho_DE into it, the KiDS failure, and CMB and structure growth.
