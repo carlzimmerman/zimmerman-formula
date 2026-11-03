@@ -1,6 +1,6 @@
 # KT28_tidal_filter_rule: the tidal filter rule SURVIVES on alt (MW 19 cells, Cassini 0.21x, dwarfs 15/24, SPARC +0.0005) and FAILS on canonical (MW, SPARC). Post hoc second attempt, corner cells only
 
-Criteria: `FROZEN_CRITERIA.md` (c8b2586bb1), alone first, confirmed landed. `kt28.py` (KT27's code with the tidal rule: Cassini, dwarfs, SPARC), `kt28_mw.py` (KT26's code with ξ_tid(R0): Milky Way), their `.out`, `.json`, `.time`; `kt28_MUTATE.out/.json`. No download. κ = 1/2 FITTED, held fixed. Footings never pooled. Not theory closed. Nothing here says the data favour the framework. Register K840. 8 minutes each, 0.44 GB peak.
+Criteria: `FROZEN_CRITERIA.md` (c8b2586bb1), alone first, confirmed landed. `kt28.py` (KT27's code with the tidal rule: Cassini, dwarfs, SPARC), `kt28_mw.py` (KT26's code with ξ_tid(R0): Milky Way), their `.out`, `.json`, `.time`; `kt28_MUTATE.out/.json`. No download. κ = 1/2 FITTED, held fixed. Footings never pooled. Not theory closed. Nothing here says the data favour the framework. Register K841 (K840 was taken by KC1 in a parallel session; renumbered forward). 8 minutes each, 0.44 GB peak.
 
 **Rule:** ξ_tid = (4/√3) τ³ / (|dτ/dr|² g*), τ = sqrt(g'² + 2(g/r)²) from the system's own field, g* = a0/κ. A uniform external field drops out (equivalence principle). The 4/√3 is fixed by the deep-MOND point mass (ξ = κ r_M), not fitted.
 
