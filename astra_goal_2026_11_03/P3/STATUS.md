@@ -1,0 +1,14 @@
+# P3 — NOT EVALUABLE: no admissible reopening
+
+κ = ½ FITTED; not theory closed
+
+Read KC1 and KAPPA_CAMPAIGN_RULES in addition to the goal's sources. Record checks: ls CFG894, git log kappa closure/topology/quantization, rg flux lattice/kinetic normalization/quantization in the ledger and nearby routes. No AZ derivation lane was opened: none of the screened ideas supplies the required length from a field equation while passing KC1's entry screen. This is a deliberate refusal to repeat closed derivations, not a no-go theorem.
+
+Routes screened:
+- Canonical normalization of a new scalar kinetic term: the physical mass-to-kinetic ratio remains free. KT2/KT3/KF1 already identify the same unfixed normalization (premise A). Rejected as duplicate, no numerical rerun.
+- Quantized flux/BF coupling: flux quantization alone leaves the kinetic normalization and/or flux sector unfixed. The ledger's p63-C2 result K667 is already MENU; sol61-36 K245 retains a continuous coupling. Without an independent normalization and sector-selection mechanism this is not a qualifying new route.
+- A UV fixed point choosing a kinetic normalization: K772 already records that the cited functional calculation does not fix physical IR vacuum/baryon matching. No source or matching equation available here removes that dependency. No new external source was downloaded.
+
+No kappa number was computed, so no new known-answer or MUTATE computation is asserted. Existing KC1 controls are not claimed as ours. Both footings: NOT EVALUABLE. A field-local filter from P2 may remove a system-mass label but does not fix the cosmological coefficient; AZ1's point-mass identity is explicitly calibrated to fitted kappa.
+
+New survivors or improved requirement/RQ3 coverage: none. Exact next calculation: supply an action with normalized physical kinetic and density portal terms, derive its inverse propagator about the declared vacuum in general dimension, and show its pole length equals c/sqrt(G rho) under a coupling/dimension mutation without inserting that ratio. It must also fix an independent second observable. Until such an equation is supplied, the derivation stays closed under KC1; do not generate another coefficient menu. Independent raw calibration measurements listed in KC1 require owner-authorized new data and are noted in NEEDS_OWNER.md, without carrying its Planck-derived values into a new inference.
