@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (831 rows)
+## Totals (832 rows)
 
 - **550 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 55 | 0 | 0 | 0 | 0 | 45 |
-| AU Audits, controls, meta-analyses | 167 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 168 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 16 | 2 | 1 | 12 | 0 | 0 |
 
@@ -1021,6 +1021,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K829 | KT18 | `rebuild_2026_10_22/KT18_filter_mw_star_count_share/kt18.py` | KT17 filter eps 0.55 on Milky Way cells at the star-count thick share 0.12, kappa held fixed | - | audit | ONLY ABOVE STAR-COUNT SHARE both footings: 0 of 450 cells; alt best D 1.12 (K 71.3, Ou 64); KT17 MW pass needs share >= 0.26; no kappa | 94562be676 |
 | K830 | KT19 | `rebuild_2026_10_22/KT19_filter_sparc/kt19.py` | SPARC under KT17 filter eps 0.55, spherical smoothing approximation, kappa held fixed | - | audit | SURVIVES SPARC both footings: d rms +0.0029 canonical, -0.0004 alt; inner median +0.036; filter wants stars ~10 pct heavier; monotone-envelope check failed 11.6 pct; no kappa | 94562be676 |
 | K831 | KT20 | `rebuild_2026_10_22/KT20_filter_wide_binaries/kt20.py` | wide-binary prediction of KT17 filter eps 0.55 against plain QUMOND, 1D external field, kappa held fixed | - | audit | PREDICTION, not graded: boost suppressed below ~5-8 kAU (s_half 5.4-7.8 kAU), excess 15-27 pct of plain at 3 kAU, same as plain beyond ~15 kAU; no kappa | 94562be676 |
+| K832 | KT21 | `rebuild_2026_10_22/KT21_filter_wide_binary_dr3_shape/kt21.py` | DR3 inner wide-binary shape Q, plain QUMOND vs KT17 filter eps 0.55 vs Newton, kappa held fixed | - | audit | BOTH CONSISTENT: Q_obs +0.001 +- 0.028; Newton z +0.1, filter -1.1, plain -1.6; plain-filter gap 0.014 < sigma; no kappa | 4109e82cbc |
 
 ## LN: Logic / Lean formalisations
 
