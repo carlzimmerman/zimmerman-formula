@@ -1,0 +1,57 @@
+V'(chi) = N*c_E*rc2*(chi - 1)**2/(4*pi)
+g^2/s^2 = 2*N*c_E*chi**(1 - n)*(chi - 1)**2/n
+kappa^2 = 2*N*c_E/n**3
+  N 1 n 1 c_E 1      kappa 1.4142  
+  N 1 n 1 c_E 2      kappa 2.0000  
+  N 1 n 1 c_E 3/4pi  kappa 0.6910  
+  N 1 n 1 c_E 12pi   kappa 8.6832  
+  N 1 n 2 c_E 1      kappa 0.5000 WINDOW HALF
+  N 1 n 2 c_E 2      kappa 0.7071  
+  N 1 n 2 c_E 3/4pi  kappa 0.2443 WINDOW 
+  N 1 n 2 c_E 12pi   kappa 3.0700  
+  N 1 n 3 c_E 1      kappa 0.2722 WINDOW 
+  N 1 n 3 c_E 2      kappa 0.3849 WINDOW 
+  N 1 n 3 c_E 3/4pi  kappa 0.1330  
+  N 1 n 3 c_E 12pi   kappa 1.6711  
+  N 1 n 4 c_E 1      kappa 0.1768  
+  N 1 n 4 c_E 2      kappa 0.2500 WINDOW 
+  N 1 n 4 c_E 3/4pi  kappa 0.0864  
+  N 1 n 4 c_E 12pi   kappa 1.0854  
+  N 2 n 1 c_E 1      kappa 2.0000  
+  N 2 n 1 c_E 2      kappa 2.8284  
+  N 2 n 1 c_E 3/4pi  kappa 0.9772  
+  N 2 n 1 c_E 12pi   kappa 12.2799  
+  N 2 n 2 c_E 1      kappa 0.7071  
+  N 2 n 2 c_E 2      kappa 1.0000  
+  N 2 n 2 c_E 3/4pi  kappa 0.3455 WINDOW 
+  N 2 n 2 c_E 12pi   kappa 4.3416  
+  N 2 n 3 c_E 1      kappa 0.3849 WINDOW 
+  N 2 n 3 c_E 2      kappa 0.5443 WINDOW 
+  N 2 n 3 c_E 3/4pi  kappa 0.1881  
+  N 2 n 3 c_E 12pi   kappa 2.3633  
+  N 2 n 4 c_E 1      kappa 0.2500 WINDOW 
+  N 2 n 4 c_E 2      kappa 0.3536 WINDOW 
+  N 2 n 4 c_E 3/4pi  kappa 0.1222  
+  N 2 n 4 c_E 12pi   kappa 1.5350  
+p_data 0.312, p_half 0.031, distinct 28: MENU, 1/2 SPURIOUS unless a selector exists
+half rows: [(1, 2, '1')]
+H3 with T_dS: m0 = 2.587e+14 /m, length 3.866e-15 m; H4 ratio T/(hbar c m0) = 3.710e-42 (needs >> 1): H4 FAILS, T_dS not allowed
+H3 with m0 = sqrt(G rho)/c: T = 5.809e+70 J; T/T_dS = 1.915e+123; T/(rho c^2 L^3) = 1 by construction: T is unnamed
+kernel: Y = 1/t - t True ; mu = 1-exp(-4 asinh(Y/2)) numeric True ; slope 2 ; tail Y^4(1-mu) -> 1
+SPARC 155 galaxies 2788 points
+Gate S rho_DE: new rms 0.1760 median +0.0729; OR mu_2 rms 0.1709 median +0.0469; FAIL
+Gate S rho_crit: new rms 0.1699 median +0.0449; OR mu_2 rms 0.1685 median +0.0199; PASS
+  Upsilon x0.8 rho_DE: new (0.1957191969034042, 0.1280655756472333), OR2 (0.18590984923025583, 0.1037770590495688)
+  Upsilon x0.8 rho_crit: new (0.18321439019602057, 0.09959164028390077), OR2 (0.17660363667216886, 0.07771756980757694)
+  Upsilon x1.25 rho_DE: new (0.16786892141140525, 0.01874533869730044), OR2 (0.16904048017973666, -0.0054836377642510925)
+  Upsilon x1.25 rho_crit: new (0.16915132880314748, -0.009486340965625395), OR2 (0.17399513429014246, -0.033998482514177475)
+Planted: new 0.1704 vs OR2 0.1740: ranks new first
+guard routeA q 0.2748 (anchor 0.221) eta 2.478 Q_PASS 0.0441
+Gate C canonical NEW: q 0.1726 = 3.92 x ceiling FAIL
+Gate C canonical OR mu_2: q 0.2417 = 5.48 x ceiling FAIL
+Gate C canonical Milgrom 3: q 0.0549 = 1.24 x ceiling FAIL
+Gate C canonical Milgrom 4: q 0.0261 = 0.59 x ceiling PASS
+Gate C alt NEW: q 0.1680 = 5.04 x ceiling FAIL
+Gate C alt OR mu_2: q 0.2084 = 6.25 x ceiling FAIL
+Gate C alt Milgrom 3: q 0.0650 = 1.95 x ceiling FAIL
+Gate C alt Milgrom 4: q 0.0363 = 1.09 x ceiling FAIL

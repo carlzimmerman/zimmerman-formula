@@ -30,5 +30,7 @@ Kernel 1 - mu = (1 + nY/p)^(-p), s fixed by the density, galaxies equally weight
 ## What it means for kappa
 The route isn't confirmed or killed. It needs a tail measurement at known mass-to-light, and SPARC has 35 points above Y = 10, all with stellar mass in them. Cassini sits at Y of order 1e6, where plain n = 2 already fails and needs stiffening (RETRACTIONS: mu_3 fails at 1.25x, n >= 4 is the plain pass). So P asks for a plain tail that the Solar System forbids, unless stiffening is added, which then hides the tail P is about.
 
+**Correction, from KT5:** the mu_3 and n >= 4 figures in the section above are for Milgrom's mu_n, not this family. OR mu_2 measured in KT5: 5.48x canonical.
+
 ## Limits
 Point errors, distances, inclinations and per-galaxy Upsilon are not marginalised. One family only. The p grid stops at 8.

@@ -17,11 +17,11 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (818 rows)
+## Totals (819 rows)
 
-- **547 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **548 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
-- **132 produced a number.** 60 produced one determinate value; 72 are menus of several values from
+- **133 produced a number.** 60 produced one determinate value; 73 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
   - a condition equal to the target,
   - a free ratio, or a trade for a new constant,
@@ -37,7 +37,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
 - The rate (about 33%) is what a random draw from the record-natural number set gives (27–28%; see
   `kappa_campaign_lee.out`). So the landings are no evidence that any route knows κ.
 
-**72 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
+**73 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
 The ½ got in by one of these routes:
 - inserted or written in (CFG43, CFG187, G031);
 - posited (the free-fall surface gravity c²/2R*, i.e. J = Gρr²/c² = 1);
@@ -145,7 +145,7 @@ fact.
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 56 | 13 | 14 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 42 | 9 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 64 | 4 | 10 | 50 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 151 | 9 | 9 | 128 | 5 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 152 | 9 | 10 | 128 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 58 | 9 | 12 | 36 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
@@ -492,6 +492,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K816 | KT2 | `rebuild_2026_10_22/KT2_mu2_action_gas_tail/kt2.py` | auxiliary chi action for mu_n; portal chi^n; vacuum budget with tail cutoff; gas-dominated tail test | - | free | TRADE: 2 explained given chi^2 portal; kappa = 1/(2b) and b = 1 is premise A; budget trades kappa for Y_c as K247; gas points NO LEVERAGE | 2d6860f198 |
 | K817 | KT3 | `rebuild_2026_10_22/KT3_fix_b_vacuum/kt3.py` | dynamic chi with vacuum sourcing rho_DE; kappa^2 = 2 pi / DU; frozen list of ways to set C | {1.447, 6.79, 0.150, 1.671, 2.171} | menu | NO FIX: zero mode decides; DU = 8 pi needed and unset; 0 of 5 distinct values in window; FRW attractor for every b | 6db6a575e0 |
 | K818 | KT4 | `rebuild_2026_10_22/KT4_chi_force_coefficient/kt4.py` | chi force coefficient with vacuum constant rho c^2; kappa^2 = pi alpha; classical exchange vs fluctuation | {1.772, 2.507, 1.253, 0.354} | menu | NEEDS FLUCTUATIONS: alpha = 1/(4 pi) needed; classical exchange cancels 4 pi; fluctuating amplitude brings T or hbar; same number as KT3 DU; nothing derived | aae85b0b4a |
+| K819 | KT5 | `rebuild_2026_10_22/KT5_fluctuating_chi/kt5.py` | fluctuating mode, mass m0(1-chi), portal chi^n; kappa^2 = 2 N c_E/n^3; kernel 1-exp(-4 asinh(Y/2)) | {0.5, 0.2443, 0.2722, 0.3849, 0.25, 0.3455, 0.5443, 0.3536, 1.0, 1.414, 3.545} | menu | MENU, 1/2 SPURIOUS: c_E = 1 unnamed input, T has no source; kernel fails Cassini 3.92x and SPARC rho_DE median; options listed are a subset, full 32 in kt5.out | a888325a26 |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
