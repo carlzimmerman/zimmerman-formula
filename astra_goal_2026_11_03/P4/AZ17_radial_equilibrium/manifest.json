@@ -1,0 +1,188 @@
+{
+  "schema_version": 2,
+  "claim_id": "AZ17",
+  "repository": {
+    "commit": "9925198da52b1e4a396e05f2ed9a1e247f913de2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "astra_goal_2026_11_03/P4/AZ17_radial_equilibrium/run.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "Resolved radial variational stationary candidate for the pure quartic-gradient energy",
+    "coefficient_domain": "float64 unless exact algebra explicitly stated",
+    "conventions": "see CRITERIA.md",
+    "inputs": [
+      "astra_goal_2026_11_03/P4/AZ17_radial_equilibrium/run.py",
+      "astra_goal_2026_11_03/P4/AZ17_radial_equilibrium/CRITERIA.md",
+      "astra_goal_2026_11_03/record.py"
+    ],
+    "bounds": {
+      "grids": [
+        [
+          256,
+          20
+        ],
+        [
+          512,
+          20
+        ],
+        [
+          1024,
+          20
+        ],
+        [
+          512,
+          30
+        ]
+      ],
+      "maxiter": 4000,
+      "units": "G=M=256lambda=1"
+    },
+    "non_claims": [
+      "No uncomputed empirical row passes"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-03T23:46:13Z",
+    "runtime_seconds": 1.0125420093536377,
+    "exit_status": 0,
+    "status": "completed",
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": null
+    }
+  },
+  "outputs": [
+    {
+      "path": "astra_goal_2026_11_03/P4/AZ17_radial_equilibrium/results.json",
+      "sha256": "e870b8a09bcc97a02c6f6def2917d7c2e3d2ddcb8d946ba80c8440e82c721c76",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "name": "uniform sphere exact binding",
+      "passed": true
+    },
+    {
+      "name": "normalized energy gradient",
+      "passed": true
+    },
+    {
+      "name": "MUTATE self derivative rejected",
+      "passed": true
+    },
+    {
+      "name": "256/20 optimizer",
+      "passed": false
+    },
+    {
+      "name": "256/20 mass",
+      "passed": true
+    },
+    {
+      "name": "256/20 virial",
+      "passed": true
+    },
+    {
+      "name": "512/20 optimizer",
+      "passed": true
+    },
+    {
+      "name": "512/20 mass",
+      "passed": true
+    },
+    {
+      "name": "512/20 virial",
+      "passed": true
+    },
+    {
+      "name": "1024/20 optimizer",
+      "passed": true
+    },
+    {
+      "name": "1024/20 mass",
+      "passed": true
+    },
+    {
+      "name": "1024/20 virial",
+      "passed": true
+    },
+    {
+      "name": "512/30 optimizer",
+      "passed": true
+    },
+    {
+      "name": "512/30 mass",
+      "passed": true
+    },
+    {
+      "name": "512/30 virial",
+      "passed": true
+    },
+    {
+      "name": "mesh refinement",
+      "passed": true
+    },
+    {
+      "name": "boundary refinement",
+      "passed": true
+    },
+    {
+      "name": "Gaussian upper bound",
+      "passed": true
+    }
+  ],
+  "result": "NO VERDICT",
+  "residual_risks": [
+    "Radial energy stationary candidate only; no global uniqueness or nonradial stability proof",
+    "Finite box and discretized density",
+    "No time evolution, baryonic well, covariant completion or empirical contraction prediction"
+  ],
+  "input_artifacts": [
+    {
+      "path": "astra_goal_2026_11_03/P4/AZ17_radial_equilibrium/run.py",
+      "sha256": "d7c309652ed07c5922b7aabed6c121f6586c330fe9186b638435f64275ac5e02",
+      "sha256_after": "d7c309652ed07c5922b7aabed6c121f6586c330fe9186b638435f64275ac5e02"
+    },
+    {
+      "path": "astra_goal_2026_11_03/P4/AZ17_radial_equilibrium/CRITERIA.md",
+      "sha256": "f2f25b6dff991e0160c0c90f5fd682ef860b67c81dee6e478e34e815bc2c3409",
+      "sha256_after": "f2f25b6dff991e0160c0c90f5fd682ef860b67c81dee6e478e34e815bc2c3409"
+    },
+    {
+      "path": "astra_goal_2026_11_03/record.py",
+      "sha256": "905369904ef3512742314998b88afed0abeffae9c0d2a62917724483267c4afc",
+      "sha256_after": "905369904ef3512742314998b88afed0abeffae9c0d2a62917724483267c4afc"
+    }
+  ],
+  "declared_results": [
+    "astra_goal_2026_11_03/P4/AZ17_radial_equilibrium/results.json"
+  ]
+}

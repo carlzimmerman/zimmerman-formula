@@ -2,7 +2,7 @@
 
 κ = ½ FITTED; not theory closed
 
-**Sixteen new lanes, with eight focused on P2; STATUS.md exists for P1–P6. No problem is scientifically closed, and no candidate earns a new complete requirement or RQ3 row on both footings.** P3 was screened without reopening a forbidden duplicate derivation. Other problems received one or two decisive scoped checks, not six artificial variants or an exhaustive search. Deferred continuations are explicit in each status.
+**Seventeen new lanes, with eight focused on P2; STATUS.md exists for P1–P6. No problem is scientifically closed, and no candidate earns a new complete requirement or RQ3 row on both footings.** P3 was screened without reopening a forbidden duplicate derivation. Other problems received one or two decisive scoped checks, not six artificial variants or an exhaustive search. Deferred continuations are explicit in each status.
 
 The strongest partial lead is the squared conservative resolvent, derived from an auxiliary elliptic energy: it survives the reduced Cassini quadrupole on both footings, including the conditional Newtonian external-field conversion, at 0.104500/0.266319 times the ceiling. Its radial-monopole follow-up fails the frozen planetary diagnostic at Saturn, Z=4.63113/7.51300 against 2. The ephemeris bound's constant-force assumption was restricted before that run; this is not a full orbit-fit exclusion. Continuation AZ12 gives orbit-averaged Saturn Z=6.983944/11.329246 (conditional monopole FAIL). AZ13 tests stored SPARC curves: canonical FAIL, alternate PASS of limited fixed-U lines. A covariant action, regular local length, MW and dwarfs remain uncomputed for this kernel.
 
@@ -18,7 +18,7 @@ Credit requires the SAME rule to establish the WHOLE row on BOTH footings. Algeb
 | 1 | Quartic shear energy | AZ4 | 0/12 | 0/96 | No linear-FRW cost, but zero isotropic restoring stress |
 | 1 | Compression-only energy | AZ7 | 0/12 | 0/96 | FAIL stopping collapse in the declared reduced mechanics |
 | 1 | First resolvent | AZ9 | 0/12 | 0/96 | NO VERDICT: cusp/cutoff-sensitive quadrupole |
-| 1 | Quartic density-gradient energy | AZ14–AZ16 | 0/12 | 0/96 | Structural PASS only; coefficient and covariant completion absent |
+| 1 | Quartic density-gradient energy | AZ14–AZ17 | 0/12 | 0/96 | Structural PASS only; coefficient and covariant completion absent |
 | 1 | Squared resolvent | AZ10–AZ13 | 0/12 | 0/96 | One conditional Cassini subgate survives; planetary diagnostic fails |
 
 AZ5 (snapshot identifiability) and AZ6 (compensated lensing) are diagnostics, not candidate gravity rules; neither earns an empirical row. No baseline counts are imported from old, differently processed chains, and no unchanged galaxy rows are assumed to survive a new kernel. In particular, nothing new holds rows 6, 7, 10 or 12 while demonstrably retaining 1, 2, 5 and 8.
@@ -55,3 +55,5 @@ AZ14 is a new partial P4 lead: a convex quartic density-gradient term survives h
 AZ15 extends the same quartic-gradient candidate to a conditional general density-concentration bound, with an explicit direct proof and eleven passing controls. This strengthens a structural property, not coverage: finite galaxy contraction, causal completion and a physical lambda remain uncomputed, so the whole-row counts stay zero.
 
 AZ16 finds a new limitation of the quartic-gradient lead: smooth centrally decreasing spherical equilibria FAIL; a C¹ weak core remains NO VERDICT globally. Seven controls pass. A proposed quadratic regularizer would introduce nonzero linear dispersion and a new FITTED q0; it is not adopted. Concentration bounds remain conditional and do not establish weak evolution or a galaxy contraction pass.
+
+AZ17 completes six P4 lanes. Its full radial energy solve is NO VERDICT because the coarse optimizer hits the frozen iteration cap; refined virial/gradient/mesh checks pass, and the failure is preserved. No empirical rows are earned. P4 is checkpointed and work moves to another problem under the six-lane convergence rule.
