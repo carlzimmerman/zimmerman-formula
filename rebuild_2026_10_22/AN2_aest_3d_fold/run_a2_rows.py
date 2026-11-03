@@ -70,6 +70,7 @@ def main():
     adopt = next((e for e in E[:2] if all(m is not None and m <= 0.01 for m in moves[e])), None)
     out("KT", dict(t_q={f"{x[0]}_{x[1]}_{e}": t[(x, e)] for x in T for e in E}, moves=moves, line=0.01, adopted=adopt, ok=adopt is not None))
     eta = adopt if adopt is not None else 0.0125  # no pass: NO VERDICT, numbers at the smallest eta
+    if len(sys.argv) > 1: eta = float(sys.argv[1])  # AMENDMENT_A3: rows for numbers at 0.05
     # KB: (N 64, L) against (N 128, 2L)
     b = batch([("1e12", 0.1, "canonical", "B", 64, eta, 8), ("1e12", 0.1, "canonical", "B", 128, eta, 16)])
     if STOP: return print("STOP", STOP)
