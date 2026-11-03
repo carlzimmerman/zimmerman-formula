@@ -14,4 +14,6 @@ Working note, v1.1, DOI 10.5281/zenodo.23901396; v1.0 is DOI 10.5281/zenodo.2389
 
 **After v1.1, not in any deposit: `scripts/recipe8.py` and Amendment A7, `recipe9.py`, `recipe9b.py`, with their `.out` files.** Particle reading of R12, rival language only. M1 mixing theorem from an NFW start: allowed 139 of 171 at Diemer19 c, 163 at -0.22 dex, 105 at +0.22; all 32 Diemer19 failures have log M_b below 10 and 31 fall in the top half of f0. A frozen control failed (c /4 must pass, 0 of 13); the expectation was wrong, shown post hoc, and analytic Hernquist and exact mixing checks pass. M2: R12 is less self-bound than the NFW start in 171 of 171, median 0.516 of all supernova energy at 100 % coupling, above 1 in 28. M3: one dark-baryon exchange in 13 Gyr needs sigma/m 0.63 cm^2/g at g_b = a0 and 40 at the last point, medians. Necessary conditions, isotropy assumed.
 
+**Not in any deposit: Amendment A8, `scripts/recipe10.py`, `recipe10.out`, `PARTICLE_PROPERTY_SHEET.md`.** Effective particle properties on the a0 law, adopts nothing. Condensate gate: window 9.2 to 13.7 eV. The sheet lists seven open problems, including double counting and Cassini.
+
 Bibliography entries are from memory and were not checked against the journals. Fixing the cosmology bug also corrected `../REDTEAM_LCDM_PRIEST/`.
