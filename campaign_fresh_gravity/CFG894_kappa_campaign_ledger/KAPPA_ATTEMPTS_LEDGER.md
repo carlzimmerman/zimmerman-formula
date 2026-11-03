@@ -17,11 +17,11 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (820 rows)
+## Totals (822 rows)
 
-- **549 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **550 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
-- **134 produced a number.** 60 produced one determinate value; 74 are menus of several values from
+- **135 produced a number.** 60 produced one determinate value; 75 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
   - a condition equal to the target,
   - a free ratio, or a trade for a new constant,
@@ -145,7 +145,7 @@ fact.
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 56 | 13 | 14 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 42 | 9 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 64 | 4 | 10 | 50 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 153 | 9 | 11 | 128 | 5 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 154 | 9 | 12 | 128 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 58 | 9 | 12 | 36 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 55 | 0 | 0 | 0 | 0 | 45 |
-| AU Audits, controls, meta-analyses | 157 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 158 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 16 | 2 | 1 | 12 | 0 | 0 |
 
@@ -494,6 +494,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K818 | KT4 | `rebuild_2026_10_22/KT4_chi_force_coefficient/kt4.py` | chi force coefficient with vacuum constant rho c^2; kappa^2 = pi alpha; classical exchange vs fluctuation | {1.772, 2.507, 1.253, 0.354} | menu | NEEDS FLUCTUATIONS: alpha = 1/(4 pi) needed; classical exchange cancels 4 pi; fluctuating amplitude brings T or hbar; same number as KT3 DU; nothing derived | aae85b0b4a |
 | K819 | KT5 | `rebuild_2026_10_22/KT5_fluctuating_chi/kt5.py` | fluctuating mode, mass m0(1-chi), portal chi^n; kappa^2 = 2 N c_E/n^3; kernel 1-exp(-4 asinh(Y/2)) | {0.5, 0.2443, 0.2722, 0.3849, 0.25, 0.3455, 0.5443, 0.3536, 1.0, 1.414, 3.545} | menu | MENU, 1/2 SPURIOUS: c_E = 1 unnamed input, T has no source; kernel fails Cassini 3.92x and SPARC rho_DE median; options listed are a subset, full 32 in kt5.out | a888325a26 |
 | K820 | KT6 | `rebuild_2026_10_22/KT6_lattice_cell/kt6.py` | cubic lattice cell count for c_E; one mode per cell, m a = 1 - chi; universality and equation of state | {0.5, 0.707} | menu | COUNTING WORKS, EOS FAILS: c_E = 1 by counting given L1-L3; thermal lattice w = ln(T/hbar omega) > 0 in classical limit, not -1; hbar returns; not proved | 2f1adf7505 |
+| K821 | KT7 | `rebuild_2026_10_22/KT7_nonthermal_ensemble/kt7.py` | four Gaussian non-thermal ensembles: odd term, w = -1, cell counting | {0.707, 0.282, 3.07} | menu | NO-GO IN THIS CLASS: none meets all three; rho + p = TS/V; loophole of KT6 closes | cfdd2117a9 |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -1010,6 +1011,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K802 | ACTIONFIRST-20261027/MEASURE | `reviews/action_first_measure_test_2026_10_27` | fixed-branch original-action deformation of two-measure kinetic coupling | - | audit | REFINEMENT OF L32 S7: scale symmetry allows bphi change at fixed positive M=0 vacuum and Einstein coupling; canonical U B/Z^2 varies despite shared-constraint identity; response is quadratic/quartic not MOND; no new candidate | freeze:4aea352e6b |
 | K803 | ACTIONFIRST-20261027/EXTENSION | `reviews/action_first_measure_test_2026_10_27/ADDITIONAL_PRINCIPLES.md` | analytic screen of coefficient restrictions and singular boundary in K802 | - | audit | RESTRICTION: regular coefficient restrictions and finite polynomial limits cannot yield a MOND cubic; generic D=0 forces degenerate Einstein metric; exceptional rank-loss sector unanalysed; no qualifying added principle found | base:7537f63951 |
 | K814 | KA1 | `rebuild_2026_10_22/KA1_any_value_screen/ka1.py` | any-value screen of determinate in-window rows against S1-S8 | - | audit | NO ROUTE: 17 of 60 in window at chance; closest 0.482 forced given postulates but second prediction fails | eed81bb837 |
+| K822 | KT7/argon | `rebuild_2026_10_22/KT7_nonthermal_ensemble/README.md` | score of Argon replies: NO-GO for algebraic chi; p-family for Cassini | - | audit | NO-GO stands scoped; table variants 3 and 4 inverted; exponential Cassini pass WRONG, 3.76x; p = 1 passes Cassini 0.376x, fails SPARC; no kappa | cfdd2117a9 |
 
 ## LN: Logic / Lean formalisations
 
