@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (835 rows)
+## Totals (836 rows)
 
 - **550 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -27,7 +27,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
   - a free ratio, or a trade for a new constant,
   - a bound,
   - a closure.
-- 47 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
+- 48 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
 
 **17 of the 60 determinate values land inside today's 2σ data window [0.227, 0.607].** That window is CFG493's
 κ_Λ = 0.417 ± 0.095.
@@ -153,7 +153,7 @@ fact.
 | KS Kinetic / settling / collective / cold-energy dynamics | 36 | 2 | 2 | 32 | 0 | 0 |
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
-| OB Observational determinations of kappa (NOT derivations) | 57 | 0 | 0 | 0 | 0 | 47 |
+| OB Observational determinations of kappa (NOT derivations) | 58 | 0 | 0 | 0 | 0 | 48 |
 | AU Audits, controls, meta-analyses | 169 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 16 | 2 | 1 | 12 | 0 | 0 |
@@ -851,6 +851,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K815 | KT1 | `rebuild_2026_10_22/KT1_slope_tail_interlock/kt1.py` | mu slope n and tail exponent p measured apart on SPARC; first-order-in-rho hypothesis for n = 2 | - | obs | OBS TAIL NOT MEASURED: p follows Upsilon 0.5 to 8; n near 2 at every Upsilon; not a derivation | c182ca85a4 |
 | K834 | KT23 | `rebuild_2026_10_22/KT23_ladder_distance_kappa/kt23.py` | SPARC outer curves, ladder distances only (no H0), per-galaxy a0 with board-law simple nu | 0.60;0.50 | obs | 1/2 CONSISTENT both footings: a0 1.12e-10, kappa 0.60+-0.14 canonical, 0.50+-0.12 alt; standard nu 0.75/0.62; does not resolve 1/2 from 0.482 | cd075502af |
 | K835 | KU1 | `rebuild_2026_10_22/KU1_kappa_universality_rotators/ku1.py` | kappa universality: board-law residual at r_half, slow minus fast rotators matched on M* and sigma_Re, MaNGA DynPop | - | obs | NO POWER both footings: D +0.042 +- 0.099; stat 0.018 but JAM models disagree (two +0.24, eight -0.04 to +0.07) | e239f1d1c4 |
+| K836 | KU2 | `rebuild_2026_10_22/KU2_kappa_universality_model_choice/ku2.py` | kappa universality: KU1 with JAM model chosen per galaxy by lowest chi2_dof | - | obs | UNIVERSAL both footings: D +0.023 +- 0.023 (0.010 dex); implied a0 equal to 7.5 +- 7 pct; outlier HDUs 6-7 best for <1 pct | 37243828ce |
 
 ## AU: Audits, controls, meta-analyses
 
