@@ -1,6 +1,6 @@
 # ACDM flavored fried chicken version of Galaxy Dnynamics
 
-Working note, v1.1, DOI 10.5281/zenodo.23901396; v1.0 is DOI 10.5281/zenodo.23897582. How exactly LCDM's knobs can reproduce the law on real SPARC baryons, and what each match costs. Rival-flavoured exercise; adopts nothing and reinstates nothing. kappa = 1/2 FITTED; not theory closed.
+Working note, v1.2, DOI 10.5281/zenodo.23902466; v1.1 is 10.5281/zenodo.23901396, v1.0 is 10.5281/zenodo.23897582. How exactly LCDM's knobs can reproduce the law on real SPARC baryons, and what each match costs. Rival-flavoured exercise; adopts nothing and reinstates nothing. kappa = 1/2 FITTED; not theory closed.
 
 - `lcdm_fried_chicken.tex` / `.pdf`: the paper. Rebuild: `tectonic lcdm_fried_chicken.tex`. Check: `python3 audit.py`.
 - `FROZEN_RECIPE.md`: targets, recipes, Amendments A1 to A3, and the cosmology bug note.
@@ -17,5 +17,7 @@ Working note, v1.1, DOI 10.5281/zenodo.23901396; v1.0 is DOI 10.5281/zenodo.2389
 **Not in any deposit: Amendment A8, `scripts/recipe10.py`, `recipe10.out`, `PARTICLE_PROPERTY_SHEET.md`.** Effective particle properties on the a0 law, adopts nothing. Condensate gate: window 9.2 to 13.7 eV. The sheet lists seven open problems, including double counting and Cassini.
 
 **Not in any deposit: Amendment A9, `scripts/recipe11.py`, `recipe11.out`.** Particle axiom, consequences only. Cassini passes (2.0e-9 a0 at Saturn), one equation of state fails (0.521 dex), so the condensate window cannot supply the halo's shape as a single P(rho).
+
+**In v1.2: Amendments A10, A11, `scripts/recipe12.py`, `recipe13.py`, with `.out` files.** R13, 21 knobs plus 5 hand terms: NOT COMPLETE, fails exact law, KiDS 145.2, holdout, plausibility. R14 passes KiDS 69.6 per bin. All lines pass only as a patchwork of about 1066 parameters, not one theory. Plain law on X-COP mean -0.467 dex. The wrong first run is `recipe12_before_fix.out`.
 
 Bibliography entries are from memory and were not checked against the journals. Fixing the cosmology bug also corrected `../REDTEAM_LCDM_PRIEST/`.

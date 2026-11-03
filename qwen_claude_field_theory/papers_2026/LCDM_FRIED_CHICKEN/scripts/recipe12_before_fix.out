@@ -1,0 +1,49 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+data: 60 points, R 0.035-2.603 Mpc, S/N against zero 43.3, cond 8.8e+03
+ bin 1: n 50822, median log M* 9.90, median log Mgal 10.11
+ bin 2: n 41748, median log M* 10.47, median log Mgal 10.57
+ bin 3: n 43721, median log M* 10.70, median log Mgal 10.77
+ bin 4: n 45140, median log M* 10.90, median log Mgal 10.95
+control SIS, max |ratio-1| R<1 Mpc: 0.0082
+control point mass, max |ratio-1|: 0.0000
+SPARC R_d line: log R_d = -2.765 +0.317 log M_b
+ mm ESD at 1 Mpc per unit bias: 0.279 Msun/pc^2
+X-COP systems 7, points 35; median EM/M in dex 0.011
+
+Holdout tuning
+  start 0: cost 668.0, nfev 30, 38s
+  start 1: cost 669.3, nfev 30, 35s
+  start 2: cost 670.4, nfev 30, 36s
+L8 SPARC unseen 0.0503 dex [<=0.05 FAIL]; KiDS unseen bins chi2 89.9/30 p 6.9e-08 [FAIL]; X-COP unseen rms 0.706, mean +0.554 [FAIL]
+
+All-data tuning
+  start 0: cost 1081.1, nfev 11, 32s
+  start 1: cost 1081.1, nfev 20, 43s
+  start 2: cost 1081.1, nfev 21, 68s
+
+== L1, L2 R13 (21 knobs)
+ rms to law 0.0477 dex [FAIL E1]; p95 per-galaxy 0.1118 [FAIL E2]; worst bin 0.0152 [PASS E3]
+ bins -12.0:+0.015 -11.5:-0.004 -11.0:-0.001 -10.5:-0.012 -10.0:-0.009 -9.5:-0.001 -9.0:+0.001
+ a fit 9.236e-11; rms to observed 0.1967 dex, mean -0.0017
+L3 KiDS chi2 143.7/60, p at 54 dof 4.4e-10 [FAIL]; R<=1 Mpc 78.2/44; bins 35.8 28.1 42.2 39.9
+L4 X-COP mean +0.525, rms 0.692 dex [FAIL]
+ knobs SHMRnorm=-0.540* logM1=-0.512 beta=-0.631 gamma=-0.524 log_eps=-0.450 a1=-0.636 a2=+0.111 a4=-0.069 log_eta0=+1.000* a3=+0.550 f0=+1.000* f1=+0.217 cnorm=+0.330* cslope=+0.150* logMcut=+13.726 lensdM=-0.086 log2h=+0.059 fsat=+0.030 logMhost=+14.000* bHSE=+0.400* fcl=+0.160*
+L9 at bound 8 of 21; dlogM200 p16, p50, p84 [-0.23, 0.02, 0.31] [FAIL]
+
+base a 9.236e-11; no hand: slope +0.141; kappa [0.445, 0.639, 0.804]
+L5 hand p 3.00, r -7.19, s -12.00: slope +0.491 [PASS E4]; kappa [0.479, 0.531, 0.553] [FAIL]
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/papers_2026/LCDM_FRIED_CHICKEN/scripts/recipe12.py", line 95, in <module>
+    print(' a(z)/a(0) no hand', {z: round(float(x_), 3) for z, x_ in zs((0, 0)).items()}); q = least_squares(lambda q: [np.log(zs(q)[z] / TG[z]) for z in BAND], [-1, 0], max_nfev=10, diff_step=.05).x; o = zs(q); print(f'L6 hand q1 {q[0]:.2f}, q2 {q[1]:.2f}:', {z: round(float(x_), 3) for z, x_ in o.items()}, f'[{"PASS" if all(BAND[z][0] <= o[z] <= BAND[z][1] for z in BAND) else "FAIL"} E5]')
+                                                                     ~~^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/papers_2026/LCDM_FRIED_CHICKEN/scripts/recipe12.py", line 93, in zs
+    for z in BAND: setcos(C0, z); o[z] = af((1 + z)**(q[0] + q[1] * z)) / a00
+                                         ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/papers_2026/LCDM_FRIED_CHICKEN/scripts/recipe12.py", line 80, in af
+    k = ka.copy(); k[12] += np.log10(cm); k[1] += np.log10(Mm); return fit_a(ALLB, np.concatenate([g.gb + gal2(g, k)[0] for g in GS]))
+                                                                                                          ~~~~^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/papers_2026/LCDM_FRIED_CHICKEN/scripts/recipe12.py", line 16, in gal2
+    m0 = np.maximum(ein(g.r, M, c), 1e-30); ri = g.r.copy()
+                    ~~~^^^^^^^^^^^
+  File "<string>", line 2, in ein
+TypeError: unsupported operand type(s) for /: 'int' and 'list'

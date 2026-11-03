@@ -44,9 +44,10 @@ for nm in sorted(x for x in os.listdir(XD) if os.path.exists(os.path.join(XD, x,
     for x_ in (.1, .2, .3, .5, .7):
         rr_ = x_ * r5
         if not (hm['RADIUS'][0] <= rr_ <= hm['RADIUS'][-1] and ga['RADIUS'][0] * rg <= rr_ <= ga['RADIUS'][-1] * rg and st['RADIUS'][0] <= rr_ <= st['RADIUS'][-1]): continue
-        rows.append((rr_ * 1e3 * kpc, li(hm['RADIUS'], hm['M_FORW'], rr_), li(ga['RADIUS'] * rg, ga['MGAS'], rr_), li(st['RADIUS'], st[st.names[1]], rr_), li(hm['RADIUS'], hm['EM_FORW'], rr_)))
+        rows.append((rr_ * kpc, li(hm['RADIUS'], hm['M_FORW'], rr_), li(ga['RADIUS'] * rg, ga['MGAS'], rr_), li(st['RADIUS'], st[st.names[1]], rr_), li(hm['RADIUS'], hm['EM_FORW'], rr_)))
     if len(rows) < 3: continue
     A_ = np.array(rows); g = Gal(); g.n = nm; g.r = A_[:, 0]; g.mb = (A_[:, 2] + A_[:, 3]) * Msun; g.mobs = A_[:, 1] * Msun; g.err = A_[:, 4] / A_[:, 1] / np.log(10); g.Mb = float(li(ga['RADIUS'] * rg, ga['MGAS'], min(r5, ga['RADIUS'][-1] * rg)) + li(st['RADIUS'], st[st.names[1]], min(r5, st['RADIUS'][-1]))); g.Ms = float(li(st['RADIUS'], st[st.names[1]], min(r5, st['RADIUS'][-1]))); g.Rd = 10**np.polyval(P, np.log10(g.Mb)) * kpc; XC.append(g)
+g = XC[0]; M_ = g.mobs[-1] / Msun; print(f'control {g.n}: r {g.r[-1] / kpc:.0f} kpc, M_HSE {M_:.2e}, M_b {g.mb[-1] / Msun:.2e}, f_b {g.mb[-1] / g.mobs[-1]:.3f}')
 print(f'X-COP systems {len(XC)}, points {sum(len(g.r) for g in XC)}; median EM/M in dex {np.median(np.concatenate([g.err for g in XC])):.3f}')
 def xres(k, S): return np.concatenate([np.log10((1 - k[19]) * (gal2(g, k, g.Mb / k[20])[0] * g.r**2 / G + g.mb) / g.mobs) for g in S])
 LO = np.array([-.54, -.9, -1.2, -.6, -2, -3, -3, -3, -1, -1, -1, -1, -.33, -.15, 11, -.3, -.3, 0, 12.5, 0, .08]); HI = np.array([.54, .9, 1.2, .6, 1.48, 3, 3, 3, 1, 1, 1, 1, .33, .15, 14, .3, .3, .3, 14, .4, .16])
@@ -77,7 +78,7 @@ def setcos(C, z=0):
     global RHOC
     cc.setCurrent(C); h = C.h; lib.CG = np.array([float(CM.concentration(10**m_ * h, '200c', z, model='diemer19')) for m_ in LM]); RHOC = C.rho_c(z) * h**2 * Msun / kpc**3; return C.Ode0 * C.rho_c(0) * h**2 * Msun / kpc**3
 def af(cm=1., Mm=1.):
-    k = ka.copy(); k[12] += np.log10(cm); k[1] += np.log10(Mm); return fit_a(ALLB, np.concatenate([g.gb + gal2(g, k)[0] for g in GS]))
+    k = ka.copy(); k[12] += np.log10(cm); return fit_a(ALLB, np.concatenate([g.gb + gal2(g, k, m200k(g.Ms, *k[:4]) * Mm)[0] for g in GS]))
 u, d, dl = rt.cosmo_case('rde'); wb = .0493 * .674**2; CU, CD = rt.setc(**u)[0], rt.setc(**d)[0]; KS = [rt.setc(H0=67.4, OL=.70, wb=wb)[0], rt.setc(H0=73., OL=.685, wb=wb)[0], rt.setc(H0=73., OL=.65, wb=wb)[0]]; C0 = rt.setc()[0]; R0 = setcos(C0); a00 = af(); GRP = [(C, setcos(C)) for C in (CU, CD, *KS)]; UNIT = lambda R: 2.998e8 * np.sqrt(G * R)
 def state(v):
     A = []
@@ -85,7 +86,7 @@ def state(v):
         setcos(C); h = C.H0 / 67.4; A.append(af((R / R0)**v[0] * h**v[1], h**v[2]))
     return A
 A0s = state((0, 0, 0)); print(f'\nbase a {a00:.3e}; no hand: slope {np.log(A0s[0] / A0s[1]) / dl:+.3f}; kappa', [round(float(A0s[i + 2] / UNIT(GRP[i + 2][1])), 3) for i in range(3)])
-v = least_squares(lambda v: np.r_[(np.log((A := state(v))[0] / A[1]) / dl - .5) * 2, [np.log(A[i + 2] / UNIT(GRP[i + 2][1]) / .5) for i in range(3)]], [.2, 0, 0], max_nfev=12, diff_step=.05, bounds=([-3, -12, -12], [3, 12, 12])).x; A = state(v); sl = np.log(A[0] / A[1]) / dl; ks = [float(A[i + 2] / UNIT(GRP[i + 2][1])) for i in range(3)]
+v = least_squares(lambda v: np.r_[(np.log((AX := state(v))[0] / AX[1]) / dl - .5) * 2, [np.log(AX[i + 2] / UNIT(GRP[i + 2][1]) / .5) for i in range(3)]], [.2, 0, 0], max_nfev=12, diff_step=.05, bounds=([-3, -12, -12], [3, 12, 12])).x; AS = state(v); sl = np.log(AS[0] / AS[1]) / dl; ks = [float(AS[i + 2] / UNIT(GRP[i + 2][1])) for i in range(3)]
 print(f'L5 hand p {v[0]:.2f}, r {v[1]:.2f}, s {v[2]:.2f}: slope {sl:+.3f} [{"PASS" if abs(sl - .5) <= .05 else "FAIL"} E4]; kappa', [round(x_, 3) for x_ in ks], f'[{"PASS" if all(abs(x_ / .5 - 1) <= .05 for x_ in ks) else "FAIL"}]', flush=True)
 BAND = {1.: (.76, 1.03), 1.5: (.71, 1.12), 2.33: (.33, 1.21)}; TG = {1.: .91, 1.5: .94, 2.33: .91}
 def zs(q):

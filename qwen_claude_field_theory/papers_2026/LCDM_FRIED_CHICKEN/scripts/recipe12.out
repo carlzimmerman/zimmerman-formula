@@ -1,0 +1,40 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+data: 60 points, R 0.035-2.603 Mpc, S/N against zero 43.3, cond 8.8e+03
+ bin 1: n 50822, median log M* 9.90, median log Mgal 10.11
+ bin 2: n 41748, median log M* 10.47, median log Mgal 10.57
+ bin 3: n 43721, median log M* 10.70, median log Mgal 10.77
+ bin 4: n 45140, median log M* 10.90, median log Mgal 10.95
+control SIS, max |ratio-1| R<1 Mpc: 0.0082
+control point mass, max |ratio-1|: 0.0000
+SPARC R_d line: log R_d = -2.765 +0.317 log M_b
+ mm ESD at 1 Mpc per unit bias: 0.279 Msun/pc^2
+control A1795: r 807 kpc, M_HSE 3.27e+14, M_b 4.52e+13, f_b 0.138
+X-COP systems 7, points 35; median EM/M in dex 0.011
+
+Holdout tuning
+  start 0: cost 118.2, nfev 25, 37s
+  start 1: cost 118.2, nfev 25, 29s
+  start 2: cost 118.2, nfev 26, 34s
+L8 SPARC unseen 0.0281 dex [<=0.05 PASS]; KiDS unseen bins chi2 82.1/30 p 9.9e-07 [FAIL]; X-COP unseen rms 0.048, mean +0.022 [PASS]
+
+All-data tuning
+  start 0: cost 145.6, nfev 22, 74s
+  start 1: cost 145.6, nfev 21, 54s
+  start 2: cost 145.6, nfev 19, 100s
+
+== L1, L2 R13 (21 knobs)
+ rms to law 0.0290 dex [FAIL E1]; p95 per-galaxy 0.0640 [FAIL E2]; worst bin 0.0187 [PASS E3]
+ bins -12.0:+0.019 -11.5:-0.004 -11.0:-0.008 -10.5:-0.006 -10.0:+0.003 -9.5:+0.015 -9.0:+0.016
+ a fit 9.279e-11; rms to observed 0.1943 dex, mean +0.0010
+L3 KiDS chi2 145.2/60, p at 54 dof 2.8e-10 [FAIL]; R<=1 Mpc 78.5/44; bins 37.9 26.9 43.7 40.4
+L4 X-COP mean -0.001, rms 0.075 dex [PASS]
+ knobs SHMRnorm=-0.540* logM1=+0.287 beta=-0.366 gamma=-0.516 log_eps=-0.966 a1=-0.546 a2=+0.078 a4=-0.153 log_eta0=+0.795 a3=+0.557 f0=+1.000* f1=-0.335 cnorm=-0.330* cslope=+0.061 logMcut=+14.000* lensdM=-0.104 log2h=+0.082 fsat=+0.023 logMhost=+14.000* bHSE=+0.000* fcl=+0.080*
+L9 at bound 7 of 21; dlogM200 p16, p50, p84 [0.14, 0.32, 0.41] [FAIL]
+
+base a 9.279e-11; no hand: slope +0.245; kappa [0.453, 0.63, 0.774]
+L5 hand p 3.00, r -4.86, s -9.54: slope +0.500 [PASS E4]; kappa [0.483, 0.49, 0.51] [PASS]
+ a(z)/a(0) no hand {1.0: 1.464, 1.5: 1.894, 2.33: 2.942}
+L6 hand q1 -0.26, q2 -0.55: {1.0: 0.929, 1.5: 0.913, 2.33: 0.92} [PASS E5]
+L7 Cassini: PASS from A9, smooth halo, 2.0e-9 a0 at Saturn
+
+Analytic stand-in. Passing shows freedom, not evidence. Lines not graded are listed in A10. kappa = 1/2 FITTED; not theory closed.
