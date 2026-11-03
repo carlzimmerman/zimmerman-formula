@@ -1,5 +1,7 @@
 # AN1_aest_nonlinear_dust: FOLDS OR NEVER COLLAPSES, NO HYDROSTATIC SETTLING. All 68 rows fold first in spherical collapse, centre first; none reaches a well before the single-valued field ends. Reduced system only
 
+**Rerun landed: `README_V3.md`, NO VERDICT, numbers only. It also corrects the side-test table below at 1e15, mu 0.1.**
+
 **CORRECTION, 2026-11-02, post-result. This lane's headline and fold table don't stand.** The title and tables below are kept as first published. A centre-cell error drives the early central folds: enclosed mass was interpolated linearly in r inside the central cell, which overstates the pull on the innermost baryon shell by about 4x. That shell falls early and drags the first field shell with it. The error scales with the grid, so it looks converged in N. K1 has no baryons and couldn't see it. AN2's S0 exposed it: a dust sphere of this amplitude folds at z 1.36, and the floors here read 2.93.
 
 Rerun with mass interpolated in r^3 (`diag_centre/fix.py`, 14 canonical P1 A1 rows, N 300 and 600, strict line, side test with no frozen checks rerun):
