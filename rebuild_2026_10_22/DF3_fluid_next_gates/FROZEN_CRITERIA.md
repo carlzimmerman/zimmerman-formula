@@ -1,0 +1,59 @@
+# DF3_fluid_next_gates: FROZEN CRITERIA, committed alone before any script or number of this lane
+
+Owner's go, 2026-11-02: take DF2's barotrope fluid to discs, clusters and the Bullet. A requirement test only. The term is called the fluid here; "cold dark energy" only for the record's historical name. The cold sector stays retired (OWNER_DECISION_2026-11-01); nothing here reinstates it, and no action or particle is adopted. kappa = 1/2 FITTED. Not theory closed. Nothing here says the data favour the framework. Footings 9.3603e-11 and 1.1312e-10 m/s^2, reported separately, never pooled. No LCDM input, no Planck 5.364. A family statement on these inputs, not a no-go theorem.
+
+## Not blind
+Read before this file: DF2 (README, criteria, A1, df2.py, results); PC2, DW2, MC1, RS1's commits, MX1, UX6, MG1, FG1, CRG1; HF1's gate code. **Also read: another session's lane `DF3_barotrope_settling` (1139b88abb), found when checking the id: the same five cells, reading S below, read NEITHER, with its table, A1 and map.** The id prefix DF3 collides; this directory keeps the name briefed, and nothing in that lane is edited. So this lane is a second solver on S plus what that lane did not do: reading N, the Milky Way, Jeans lengths, galaxy lensing, a Bullet calculation rather than an estimate, and relativistic validity of the cores.
+
+**Expectation on record.** All five cells fail. Under N, as under S: Gamma 5/3 falls into a compact core far under R_last, so Upsilon sits at the floor and X-COP is over-massive; Gamma 1 and 2/3 run out of equilibrium in clusters and in discs with V above about sqrt(3) sigma. N gives Gamma <= 1 more self-gravitating room than S, but not enough. MW fails all five. At the Bullet, Gamma 5/3 core passes through with the galaxies with the right sign and the wrong mass; the Gamma <= 1 held envelope is thin, Mach above 10, and stops with the gas. I expect no cell to pass any two of discs, clusters and Bullet honestly, except that no-equilibrium cells may read like the law on discs while leaving the fair share unaccounted for.
+
+## Cell selection rule, stated first
+Graded: all five DF2 passers, (Gamma, sigma km/s) = (5/3, 30), (5/3, 100), (1, 30), (1, 100), (2/3, 30), each at its own DF2 fit omega_f/omega_b. No other cell. **Primary cell:** largest c_s at the disc anchor (sigma); ties broken by lowest DF2 S - S_min. That gives **(1, 100)**. Reason: the question is exclusion from discs. This rule was chosen knowing the other lane's table, and it picks a cell not at the extreme of collapse, so it leans to the fluid; a fail there is the stronger. The lane label reads the primary cell, then says how many of the other four share it. All five are reported. No sigma, Gamma or anchor scan: the other lane's map exists, is not repeated, and does not grade here.
+
+## Model
+P(rho) with c_s^2 = sigma^2 (rho/rho_a)^(Gamma-1), rho_a = 0.05 Msun/pc^3. Static, spherical, hydrostatic, non-rotating. **Total fluid mass:** fair share inside the turnaround radius, M_f(<r_ta) = (omega_f/omega_b) M_b(<r_ta), HF1's r_ta and baryon chain, omega_f/omega_b from the cell's DF2 fit. So there is **no free normalisation**: counted constants are sigma and rho_a (posited, set by DF2's cell), Gamma, and omega_f (fitted at gate 1). Fair share is an upper bound on what's retained; infall and retention aren't modelled.
+
+**Two gravity readings, from MC1.**
+- **N, primary, the briefed wording:** g = law(g_b) + g_f. The fluid is Newtonian beside the law; the law acts on baryons only.
+- **S:** g = law(g_b + g_f), the other lane's reading. Graded on X-COP, SPARC and groups with my solver; keys READ from that lane, marked so.
+
+**Solver, own code, independent of the other lane's.** Integrate from a central density outward: dPsi/dln r = g r, dM_f/dln r = 4 pi r^3 rho(Psi), rho from the barotrope's enthalpy, Heun in ln r, grid from 1 pc outward, vectorised over central density. Scan ln rho_c from low to high to the first crossing of fair share before the first local maximum of M_f(rho_c), refine by bisection. That is the stable branch. **A crossing where half the mass lies within the first 10 grid cells is rejected as unresolved**, the other lane's A1 artefact; for Gamma > 4/3 the grid start is moved inward until resolved. If no stable branch reaches fair share the row is **NO EQUILIBRIUM**. Two readings of those rows: **H, held:** the largest equilibrium mass only, the rest unaccounted for; **C, collapsed:** the same plus the remainder as a central point mass, the end state Jeans-unstable fluid heads for, not itself computed. A cell with over 10 % NO EQUILIBRIUM in a class can't pass that class on reading H; reading C is graded as it stands.
+
+**Validity.** For each cluster and disc solve print GM_f/(R_half c^2) and c_s/c at the centre. Above 0.1 or c/sqrt(3) the Newtonian solve is not valid there, and that's said in the row. Beside it, one TOV integration per Gamma 5/3 cell (c_s capped at c/sqrt(3), P = rho_e c^2/3 above the cap) for the largest stable mass, against fair share. If fair share exceeds it the state isn't a fluid core, and no equilibrium exists in any reading: the row is **NO EQUILIBRIUM (GR)**.
+
+## Lines. Inherited values, frozen here with their error source
+| Gate | Line | Error source |
+|---|---|---|
+| D1 SPARC | rms <= 0.110, Upsilon median 0.50-0.80, abs tilt <= 0.15 | FG1, CRG1's fit; distance and inclination inside CRG1's chi2; Upsilon window from stellar-population systematics |
+| D2 exclusion at V_flat 150-200, 200-250 | (M_f/M_b at outer third, Upsilon 0.5, minus Gamma_N)/sigma <= 2. Gamma_N canonical -0.23 +- 0.17, +0.09 +- 0.25; alt -0.45 +- 0.16, -0.05 +- 0.22 | MC1's table; bootstrap over galaxies at fixed Upsilon. **Statistical across galaxies, with intrinsic and distance scatter inside it; Upsilon isn't, and is shown by D1 instead** |
+| D3 surface brightness, LITTLE THINGS, groups | abs Z <= 2; abs median E <= 0.10; class CONSISTENT | CRG1 |
+| D4 Milky Way | RG1's four lines on McMillan and its 175 baryon cells: Eilers V_c, K_z(R) chi2, K_z(R0), Ou chi2 | RG1's stated errors; spherical baryons by hand, stated |
+| Dwarfs, IC 1613 | reported Z, classes as CRG1. The law already fails them | CRG1 |
+| Lensing | A_model = 1 + (M_f/M_b) g_b/law(g_b) at g_b 10^-12.6 m/s^2, for blue and red BL1 A +- sA; abs Z <= 2 on each colour. Beside it the law | BL1, statistical plus covariance as BL1. M_b 10^10.5 and 10^11 Msun, reported; line on 10^10.5 blue and 10^11 red, chosen now |
+| C1 X-COP | abs mean <= 0.05, rms <= 0.10, all seven, x 0.1-1 | FG1. HSE bias about 0.12 dex (LF1) is larger than the mean line; so a fail must clear both: I print whether it also fails at mean within 0.05 + 0.12 |
+| C2 keys | 15 of 15 within abs Z <= 2, either h, template mode, f* 0.034, gas +0.005, CRG1's code; DA1 B = 1 and n(z) beside | CRG1 errors, shear statistical plus shape |
+| B Bullet | UX6's frozen grader, unchanged: O1 peak position, Z with 0.195, guard closer to BCG than gas, local max; O2 dkappa sign at both; O3 M_2D(<300) 3.5e14, 2.3e14 with 15 %. FAIL if any abs Z > 3, guard fails, dkappa <= 0; PASS if all abs Z <= 2 and dkappa > 0; TENSION otherwise | X32's and UX6's, PROVISIONAL inputs |
+
+## Jeans
+For each cell at the equilibrium: lambda_J = c_s sqrt(pi/(G rho)) at 1, 2 R_d and R_last on the median of each V_flat bin, against R_d, and at rho_a by hand. Numbers only. The local analytic check beside it: mass diverges inward for an isothermal fluid in a flat-V well when V > sqrt(3) sigma, printed against the solved transition.
+
+## Bullet calculation
+**Initial state:** each subcluster's fluid at its own equilibrium, N, on UX6's baryons with gas restored onto its BCG, fair share from UX6's total baryons per MX1's assignment (main: gas 0 + galaxies 0; sub: gas 1, 2, 3 + galaxies 1). A NO EQUILIBRIUM subcluster is read H and C.
+**Collision, column by column along the axis, head-on, centres coinciding at t = 0, v = 4700 and 4000 km/s, t = d_now/v:** in each line parallel to the axis, the two fluid columns merge inelastically with momentum conserved: v_cm = Sigma_sub v / (Sigma_main + Sigma_sub) in main's frame. Mach at each parcel: v / c_s pre-shock. Parcels with Mach >= 1 merge; parcels with Mach < 1 can't shock, and are carried through unchanged **with a flag**, a stated limit. Also printed per subcluster: mass-weighted final speed over its galaxies' speed; share of mass moving with its galaxies (final speed within 25 %); ram-pressure comparison rho_other v^2 against rho c_s^2 at the half-mass radius; Mach at the centre and at half mass. No gravity during the 0.2 Gyr, a stated limit.
+**Map:** Sigma_f deposited on UX6's 10 kpc grid and added to the law's map (UX6's extra field for k = 0, footing by footing), which is exact for reading N. Then UX6's `observe`.
+**Labels, per cell and per reading H, C:** STOPS WITH THE GAS: over half the mass of either subcluster stays within 25 % of the merged speed, not its galaxies. PASSES LIKE GALAXIES: over half of both move with their galaxies. MIXED: otherwise. Beside the UX6 class. MG1's other pairs by mass rows only (Bullet row convention, M_lens, default fractions as MG1): stays or stops, M_f(<300)/M_lens, read as PROVISIONAL as MG1 is. No map.
+**Control:** the same column model on UX6's gas must put main and sub gas between the BCGs on the correct sides. Sign only: the Plummer gas isn't a cool core, and magnitude is reported as a limit. A collisionless mass-placed-on-galaxies run through the same grader must reproduce a positive dkappa at both.
+
+## Labels
+Lane verdict from the primary cell, reading N, canonical:
+- **HOLDS AT DISCS, CLUSTERS AND BULLET**: D1, D2, D3, C1, C2 pass with under 10 % NO EQUILIBRIUM and the Bullet class isn't FAIL. Still not a pass of forest, action or production.
+- **DISCS ONLY / CLUSTERS ONLY / BULLET ONLY / NO GATE**: as they read, using discs = D1 + D2 with under 10 % NO EQUILIBRIUM in SPARC at V_flat 150-250; clusters = C1 + C2 with under 10 % NO EQUILIBRIUM; Bullet = class not FAIL.
+- A line marked NOT COMPUTED is never a pass. If a gate can't be computed honestly, it reads NOT COMPUTED with the reason.
+- Any failed control: NO VERDICT.
+The a0 law without fluid is reported on every line, canonical and alt.
+
+## Controls
+Lane-Emden analytic, Newtonian, no baryons: Gamma 5/3 rho_c/rho_mean 5.991 within 1 %, xi_1 3.654 within 1 %; Gamma 6/5 (n = 5) rho(r) = rho_c (1 + xi^2/3)^(-1/2) within 1 %; Gamma 2 (n = 1) rho = rho_c sin(xi)/xi, xi_1 = pi within 1 %. Isothermal M_max G/(sigma^2 r) 2.52 within 2 %. K x 16 scales rho_c by 16^-3 within 5 %. Fair share reached within 1 %. Grid x 2 moves M_f(R500) under 1 %. Rf 0 reproduces X-COP +0.467, 0.476 and SPARC 0.0541 (all readings). Second-solver check: my S on (5/3, 100) and (1, 100) X-COP against the other lane's mean within 0.02, disclosed if not. Reading N and S coincide with the fluid off. TOV: known answer, Tolman-Oppenheimer-Volkoff with P = K rho^(5/3) non-relativistic Fermi-gas cap scaling, GM_max^(3/2) K-scaling of the mass limit, M_max ratio at K x 16 = 16^(3/2) within 3 %. **MUTATE, separate outputs, must bite:** gravity of the fluid on itself x 4, which must move Lane-Emden's rho_c by the analytic factor 4^3 within 5 %, fail the K_lane_emden line against the expected value, and change a graded X-COP mean by over 0.05 in at least one cell; and the Mach and merge sign flipped so galaxies' momentum is reversed, which must flip the Bullet control's sign and fail that control. Byte-identical rerun of the deterministic outputs.
+
+## Rules
+Post-result changes go in an amendment, disclosed. No downloads. Others' code read-only, patched in memory; caches in this lane, gitignored. Nice 19, at most 2 processes, under 1 GB each, small outputs. No touching of running jobs. Conflicts printed from the record, no new test: stars-only rows, Saturn, and the scale's EP status.
