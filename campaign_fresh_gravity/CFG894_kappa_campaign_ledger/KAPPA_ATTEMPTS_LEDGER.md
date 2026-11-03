@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (815 rows)
+## Totals (816 rows)
 
-- **544 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **545 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **130 produced a number.** 60 produced one determinate value; 70 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -145,7 +145,7 @@ fact.
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 56 | 13 | 14 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 42 | 9 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 64 | 4 | 10 | 50 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 148 | 9 | 7 | 127 | 5 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 149 | 9 | 7 | 128 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 58 | 9 | 12 | 36 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
@@ -489,6 +489,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K752 | W4-23/M | `why_4_puzzle/W4_23_gauss_law_flux_rescue` | minimal fixed-flux (Gauss-law) medium: inf_x[a x^-n + b t x^(n-2)], t = gN^2, separate vacuum | - | free | TRADE: dimension-fixed deep-MOND exponents (n = 3: g = gN + sqrt(a0 gN)); stable only for the electrostatic sign; for gravity's attractive sign the branch is a maximum (W4-08 tachyon); R = eps/(54 a b^3 K^3), xi = 192 pi a b^3 K^3/eps | 439c6ba1d |
 | K755 | A0SEL-20261024/SCALE | `reviews/a0_selection_2026_10_24` | classical two-scalar scale-invariant vacuum | - | free | TRADE: uniform positive quartic rescaling preserves stationary angle but scales Einstein-frame vacuum; radial modulus and response map remain unfixed | freeze:87e0c60793 |
 | K759 | MICROMED-20261024/LAMBDA | `reviews/microscopic_medium_2026_10_24` | protected Lambda-solid scaling symmetry and nonlinear shape response | - | free | TRADE: symmetry-compatible eta*(Tr B^2/(Tr B)^2-1/n) preserves background and changes shear; its square preserves quadratic data but changes nonlinear response; strain is not identified with MOND acceleration | freeze:36c2d800d1;continuation:0e132d0606 |
+| K816 | KT2 | `rebuild_2026_10_22/KT2_mu2_action_gas_tail/kt2.py` | auxiliary chi action for mu_n; portal chi^n; vacuum budget with tail cutoff; gas-dominated tail test | - | free | TRADE: 2 explained given chi^2 portal; kappa = 1/(2b) and b = 1 is premise A; budget trades kappa for Y_c as K247; gas points NO LEVERAGE | 2d6860f198 |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
