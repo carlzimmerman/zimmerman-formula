@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """TX1 harvest: exact G1, G3 with amended Z_shape, G2' S line, T-effective test, Z ranking. python3 -I tx1_read.py FOOT ARM LEVEL. BK2's names, hit_str, Gates by import. Output tx1_train_LEVEL_FOOT_ARM.json. kappa = 1/2 FITTED; not theory closed."""
-import heapq, os, sys, time
+import hashlib, heapq, os, sys, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from tx1_lib import *
 foot, arm, lev = sys.argv[1:4]; cap = dict(T0=1500, TL0=15000, TL1=30000)[lev]; S = install((arm, cap)); mode = "mutate" if arm == "mutate" else f"{arm}_{lev}"
@@ -24,7 +24,7 @@ for ln in open(os.path.join(W, "hits.jsonl")):
     try: v = ev(s, XT); dx = np.log10(XT["go"] / v)
     except Exception: C["nonfinite"] += 1; continue
     if not np.all(np.isfinite(dx)): C["nonfinite"] += 1; continue
-    k = np.round(dx, 7).tobytes() + (np.float64(np.round(ev(s, ST)[:40], 13).sum()).tobytes())
+    k = hashlib.blake2b(np.round(dx, 7).tobytes() + (np.float64(np.round(ev(s, ST)[:40], 13).sum()).tobytes()), digest_size=16).digest()
     if k in seen: continue
     seen.add(k); eff = False
     if ist:
@@ -35,7 +35,7 @@ for ln in open(os.path.join(W, "hits.jsonl")):
     if not sol["newton"]: continue
     C["newton"] += 1; C["cass"] += sol["cass"]; x = Gt.xc(s, XT); xb = dict(XT); xb["se"] = XT["se_bk2"]; C["g3_err_bk2"] += Gt.xc(s, xb)["err"] if eff else 0; C["g3_line"] += x["line"] and eff; C["g3_err"] += x["err"] and eff
     if not (x["line"] or x["err"] or x["rms"] <= .15): continue
-    C["zone"] += 1; sv = ev(s, ST); ks = np.round(sv, 13).tobytes()
+    C["zone"] += 1; sv = ev(s, ST); ks = hashlib.blake2b(np.round(sv, 13).tobytes(), digest_size=16).digest()
     if ks not in Scache:
         d0 = np.log10(ST["go"] / sv); fx = None
         if np.all(np.isfinite(d0)) and np.sqrt((d0 * d0).mean()) <= .30 and abs(np.median(d0)) <= .10: fx = Gg.s_line(s, a0, 1)
