@@ -1,0 +1,34 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+data: 60 points, R 0.035-2.603 Mpc, S/N against zero 43.3, cond 8.8e+03
+ bin 1: n 50822, median log M* 9.90, median log Mgal 10.11
+ bin 2: n 41748, median log M* 10.47, median log Mgal 10.57
+ bin 3: n 43721, median log M* 10.70, median log Mgal 10.77
+ bin 4: n 45140, median log M* 10.90, median log Mgal 10.95
+control SIS, max |ratio-1| R<1 Mpc: 0.0082
+control point mass, max |ratio-1|: 0.0000
+SPARC R_d line: log R_d = -2.765 +0.317 log M_b
+ mm ESD at 1 Mpc per unit bias: 0.279 Msun/pc^2
+a from kappa = 1/2 and this cosmology: 9.3637e-11; repo a0 9.3625e-11 (ratio 1.000); graded at repo a0
+
+== R12 reverse-engineered halo (one function, kappa by hand)
+ rms to law 0.0000 dex [PASS E1]; p95 per-galaxy 0.0000 [PASS E2]; worst bin 0.0000 [PASS E3]
+ bins -12.0:+0.000 -11.5:+0.000 -11.0:+0.000 -10.5:+0.000 -10.0:+0.000 -9.5:+0.000 -9.0:+0.000
+ a fit 9.363e-11; rms to observed 0.1951 dex, mean +0.0013
+ OL 0.7, H0 67.4: a 9.466e-11, kappa 0.500
+ OL 0.685, H0 73.0: a 1.014e-10, kappa 0.500, slope against first row +0.500
+ OL 0.65, H0 73.0: a 9.879e-11, kappa 0.500, slope against first row +0.500
+ a(z)/a(0) with w = -1: 1.000 at z = 1, 1.5, 2.33; inside E5 band by construction
+
+Costs on SPARC: log M200 implied minus SHMR p16, p50, p84 [-0.23, 0.11, 0.27]; M_b/M200 p16, p50, p84 [0.013, 0.02, 0.038] against cosmic 0.156; above cosmic in 0 of 171
+ log M_b 6-9: n 32, median dlogM200 +0.01, median M_b/M200 0.011
+ log M_b 9-10: n 72, median dlogM200 +0.20, median M_b/M200 0.018
+ log M_b 10-11: n 47, median dlogM200 +0.10, median M_b/M200 0.034
+ log M_b 11-13: n 20, median dlogM200 -0.80, median M_b/M200 0.046
+
+Lensing, same grade as A5
+R12n control, must be 276.1    chi2   276.1/60 p 1.9e-29 [FAIL]; R<=1 Mpc   211.4/44 p 9.7e-24; bins 32.4 71.4 79.7 109.8; A 1.367+-0.033
+R12 truncated + two-halo       chi2   457.7/60 p 1.4e-62 [FAIL]; R<=1 Mpc   290.4/44 p 5.0e-38; bins 53.1 112.4 148.9 189.4; A 1.422+-0.036
+R12 dm -0.1                    chi2   546.1/60 p 1.5e-79 [FAIL]; R<=1 Mpc   367.1/44 p 1.5e-52; bins 62.8 132.6 174.3 229.4; A 1.606+-0.041
+R12 dm +0.1                    chi2   382.3/60 p 1.9e-48 [FAIL]; R<=1 Mpc   228.3/44 p 1.0e-26; bins 44.7 94.6 126.7 155.3; A 1.254+-0.032
+
+Exact by construction. Not evidence for either theory. kappa = 1/2 FITTED; not theory closed.
