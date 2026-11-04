@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (842 rows)
+## Totals (843 rows)
 
 - **550 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 58 | 0 | 0 | 0 | 0 | 48 |
-| AU Audits, controls, meta-analyses | 175 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 176 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 16 | 2 | 1 | 12 | 0 | 0 |
 
@@ -1032,6 +1032,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K840 | KC1 | `campaign_fresh_gravity/CFG894_kappa_campaign_ledger/KAPPA_CLOSURE_2026-11-03.md` | closure: derivation reduces to xi = 1 (length c/sqrt(G rho), premise A) no field equation supplies; measurement floor vs 2.8% needed | - | audit | CLOSURE, no new trial: no derivation of 1/2; galaxy floor 9.3-9.5% (best case 3.5%), native rho_DE +-3.7%, combined best ~5% < 2 sigma for 1/2 vs 0.461; a0 tracking rho_DE vs H untested (CFG689 values are predictions; CFG160 conditional lean to H) |  |
 | K841 | KT28 | `rebuild_2026_10_22/KT28_tidal_filter_rule/kt28.py` | tidal filter rule xi_tid = (4/sqrt3) tau^3/(tau'^2 g*), blind to uniform fields; MW, Cassini, dwarfs, SPARC | - | audit | alt SURVIVES all four (MW 19 corner cells share 0.26-0.35, Cassini 0.21x, dwarfs 15/24 Fornax kept, SPARC +0.0005 median +0.043); canonical FAILS MW, SPARC; post hoc second local rule | c8b2586bb1 |
 | K842 | KT29 | `rebuild_2026_10_22/KT29_tidal_rule_mw_full_tensor/kt29.py` | KT28 tidal rule on MW with full 3D tidal tensor (T_zz = nu 4 pi G rho_b) at (R0, 0), one xi per cell | - | audit | FAILS MW both footings: xi 37-53 kpc (6x in-plane), v_c <= 204, 0 cells; KT28 alt survival depended on dropping vertical term; rule varies ~1e3-1e4 between midplane and z 1.1 kpc, single value cannot represent it | 3026c358d5 |
+| K843 | KC2 | `campaign_fresh_gravity/CFG894_kappa_campaign_ledger/KAPPA_CLOSURE_2026-11-03.md` | premise screen for xi = 1 / premise A: 16 candidates (Bekenstein vs S_BH, per-steradian coupling, Poisson/Friedmann ratio, codim-2 line, codim-1 sheet, null portal, graviton normalisation, multiplier, trace coupling, boundary terms, KK/DGP/6D brane, heat-kernel/Sakharov, Gauss-source match, gravitational duality, horizon lattice, gravito-EM); read-only, no lane | - | audit | NO SURVIVOR: 14 duplicate existing rows or reach 1/2 by posit (X7) or fail S1-S7; new by name only Bekenstein vs S_BH (reduces to J = 3/(8 pi), kappa 1.447, adds no trial) and gravito-EM (rho_DE never enters); structural: a pi-free reading in every d needs a local algebraic portal whose coefficient is free (TRADE, S6) |  |
 
 ## LN: Logic / Lean formalisations
 

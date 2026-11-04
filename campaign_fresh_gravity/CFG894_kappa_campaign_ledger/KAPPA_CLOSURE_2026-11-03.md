@@ -70,3 +70,13 @@ point at z ≈ 2.5 to ≈0.10 dex), and untested.
 
 Reopen the derivation only for a route that supplies ξ = 1 from a field equation and passes the §3 entry screen of the
 rules. Reopen the measurement only when one of the §2 observations exists.
+
+## 6. Premise screen (K843, 2026-11-03, after this note)
+
+A read-only screen of 16 further candidates for ξ = 1 / premise A found no survivor (register K843 lists them). Fourteen
+duplicate existing rows, reach ½ only by the X7 posit, or fail S1–S7. Two had no row by name: the Bekenstein bound against
+S_BH (it reduces to the uniform-sphere horizon J = 3/(8π), κ 1.447) and gravito-electromagnetism (ρ_DE never enters).
+Structural observation, not a theorem: Ω_{d−2}/8π is rational only at d = 3 and 4, so an "area cancels coupling" premise
+fails S3; integral readings put π back through Ω_{d−2}/(d−1) in every d; the only dimension-independent π-free reading is a
+local algebraic portal, whose coefficient is free (TRADE under S6). Premise A would need a non-geometric principle that
+fixes the coupling to exactly G.
