@@ -1,0 +1,361 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+A44 recipe45; c sqrt(G rho_DE0) 1.8727e-10, A0 9.3625e-11 (0.4999 of it)
+
+==== CONTROLS
+ C0 context c-grid vs lib CG max rel 0.0e+00
+ C0 r11 at K11B vs recipe18 gal3: max |dlog g| 0.00e+00 dex [PASS]
+ C1 q = 1 gives F = 1: max |F - 1| 0.0e+00 [PASS]
+ C2 isothermal q 0.8: geo F 0.99562 vs analytic 0.99562 (|d| 3.3e-16); major F 1.07250 vs 1.07250 (|d| 4.4e-16) [PASS]
+ C3 spherically averaged mass of the geo-normalised flattened NFW (c 10), q 0.8: M_sph/M_NFW - 1 at r_s/10, r_s, R200 = -0.0049, -0.0057, -0.0034
+ C3 spherically averaged mass of the geo-normalised flattened NFW (c 10), q 0.5: M_sph/M_NFW - 1 at r_s/10, r_s, R200 = -0.0465, -0.0524, -0.0307
+ C4 truncation at k_t 1e6: max |ratio - 1| 7.8e-15; quadrature of dM/dr vs analytic M: Einasto 1.8e-14, NFW 4.7e-13 [PASS]
+ S_sub(1) = 1.0000 (must be 1); S_sub at x 0.1, 0.3: 0.0060, 0.1029
+ timing: r11 + shape 0.032 s, r11 + shape + truncation + substructure 0.040 s [0 s]
+
+==== (a) HALO SHAPE, (b) TRUNCATION, (c) SUBSTRUCTURE, (d1) ENVIRONMENT c SHIFT
+
+== A44 P0 plain baseline (0 fitted + 0 frozen knobs)
+ rms to law 0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1613 [FAIL E3]
+ bins -12.0:+0.161 -11.5:+0.098 -11.0:+0.094 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.576e-10; rms to observed 0.2424 dex, mean +0.0790
+ knobs fitted 0 (+0 frozen), nfev 0; block values {}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.1309 [FAIL <= 0.025]; VERDICT NOT EXACT [0 s]
+
+== A44 Pa q 0.85 geo (0 fitted + 0 frozen knobs)
+ rms to law 0.1383 dex [FAIL E1]; p95 per-galaxy 0.2806 [FAIL E2]; worst bin 0.1571 [FAIL E3]
+ bins -12.0:+0.157 -11.5:+0.094 -11.0:+0.089 -10.5:+0.045 -10.0:+0.036 -9.5:+0.012 -9.0:+0.003
+ a fit 1.538e-10; rms to observed 0.2401 dex, mean +0.0749
+ knobs fitted 0 (+0 frozen), nfev 0; block values {'q0': 0.85}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.1273 [FAIL <= 0.025]; VERDICT NOT EXACT [0 s]
+
+== A44 Pa q 0.85 major (sensitivity) (0 fitted + 0 frozen knobs)
+ rms to law 0.1565 dex [FAIL E1]; p95 per-galaxy 0.3119 [FAIL E2]; worst bin 0.1868 [FAIL E3]
+ bins -12.0:+0.187 -11.5:+0.122 -11.0:+0.115 -10.5:+0.067 -10.0:+0.051 -9.5:+0.019 -9.0:+0.006
+ a fit 1.771e-10; rms to observed 0.2514 dex, mean +0.0978
+ knobs fitted 0 (+0 frozen), nfev 0; block values {'q0': 0.85}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.1450 [FAIL <= 0.025]; VERDICT NOT EXACT [0 s]
+
+== A44 Pa q global (1 fitted + 0 frozen knobs)
+ rms to law 0.1000 dex [FAIL E1]; p95 per-galaxy 0.2044 [FAIL E2]; worst bin 0.0787 [FAIL E3]
+ bins -12.0:+0.079 -11.5:+0.018 -11.0:+0.016 -10.5:-0.013 -10.0:-0.005 -9.5:-0.008 -9.0:-0.004
+ a fit 1.039e-10; rms to observed 0.2187 dex, mean +0.0134
+ knobs fitted 1 (+0 frozen), nfev 7; block values {'q0': 0.3}; at bound ['q0']; outside literature range ['q0']
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0926 [FAIL <= 0.025]; VERDICT NOT EXACT [1 s]
+
+== A44 Pa q global major (sensitivity) (1 fitted + 0 frozen knobs)
+ rms to law 0.1104 dex [FAIL E1]; p95 per-galaxy 0.2245 [FAIL E2]; worst bin 0.0882 [FAIL E3]
+ bins -12.0:+0.088 -11.5:+0.030 -11.0:+0.033 -10.5:+0.005 -10.0:+0.010 -9.5:-0.000 -9.0:-0.001
+ a fit 1.129e-10; rms to observed 0.2248 dex, mean +0.0271
+ knobs fitted 1 (+0 frozen), nfev 7; block values {'q0': 1.5}; at bound ['q0']; outside literature range ['q0']
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.1022 [FAIL <= 0.025]; VERDICT NOT EXACT [1 s]
+
+== A44 Pa q(Sigma_b) (2 fitted + 0 frozen knobs)
+ rms to law 0.1000 dex [FAIL E1]; p95 per-galaxy 0.2044 [FAIL E2]; worst bin 0.0787 [FAIL E3]
+ bins -12.0:+0.079 -11.5:+0.018 -11.0:+0.016 -10.5:-0.013 -10.0:-0.005 -9.5:-0.008 -9.0:-0.004
+ a fit 1.039e-10; rms to observed 0.2187 dex, mean +0.0134
+ knobs fitted 2 (+0 frozen), nfev 24; block values {'q0': 0.3, 'sq': -0.0005}; at bound ['q0']; outside literature range ['q0']
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0926 [FAIL <= 0.025]; VERDICT NOT EXACT [1 s]
+
+== A44 Pb k_t 0.5 (0 fitted + 0 frozen knobs)
+ rms to law 0.1412 dex [FAIL E1]; p95 per-galaxy 0.2848 [FAIL E2]; worst bin 0.1532 [FAIL E3]
+ bins -12.0:+0.153 -11.5:+0.094 -11.0:+0.091 -10.5:+0.049 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.551e-10; rms to observed 0.2420 dex, mean +0.0767
+ knobs fitted 0 (+0 frozen), nfev 0; block values {'lkt': -0.301}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.1303 [FAIL <= 0.025]; VERDICT NOT EXACT [1 s]
+
+== A44 Pb k_t 1.0 (0 fitted + 0 frozen knobs)
+ rms to law 0.1417 dex [FAIL E1]; p95 per-galaxy 0.2869 [FAIL E2]; worst bin 0.1591 [FAIL E3]
+ bins -12.0:+0.159 -11.5:+0.097 -11.0:+0.093 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.570e-10; rms to observed 0.2423 dex, mean +0.0784
+ knobs fitted 0 (+0 frozen), nfev 0; block values {'lkt': 0.0}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.1307 [FAIL <= 0.025]; VERDICT NOT EXACT [1 s]
+
+== A44 Pb k_t 2.0 (0 fitted + 0 frozen knobs)
+ rms to law 0.1419 dex [FAIL E1]; p95 per-galaxy 0.2875 [FAIL E2]; worst bin 0.1607 [FAIL E3]
+ bins -12.0:+0.161 -11.5:+0.098 -11.0:+0.093 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.575e-10; rms to observed 0.2423 dex, mean +0.0789
+ knobs fitted 0 (+0 frozen), nfev 0; block values {'lkt': 0.301}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.1308 [FAIL <= 0.025]; VERDICT NOT EXACT [1 s]
+
+== A44 Pb k_t global (1 fitted + 0 frozen knobs)
+ rms to law 0.1382 dex [FAIL E1]; p95 per-galaxy 0.2851 [FAIL E2]; worst bin 0.0920 [FAIL E3]
+ bins -12.0:+0.092 -11.5:+0.053 -11.0:+0.066 -10.5:+0.043 -10.0:+0.038 -9.5:+0.014 -9.0:+0.004
+ a fit 1.320e-10; rms to observed 0.2413 dex, mean +0.0533
+ knobs fitted 1 (+0 frozen), nfev 16; block values {'lkt': -0.8812}; at bound []; outside literature range ['lkt']
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.1357 [FAIL <= 0.025]; VERDICT NOT EXACT [2 s]
+
+== A44 Pc f_sub 0.1 (0 fitted + 0 frozen knobs)
+ rms to law 0.1242 dex [FAIL E1]; p95 per-galaxy 0.2538 [FAIL E2]; worst bin 0.1230 [FAIL E3]
+ bins -12.0:+0.123 -11.5:+0.062 -11.0:+0.062 -10.5:+0.027 -10.0:+0.025 -9.5:+0.007 -9.0:+0.001
+ a fit 1.329e-10; rms to observed 0.2323 dex, mean +0.0522
+ knobs fitted 0 (+0 frozen), nfev 0; block values {'fsub': 0.1}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.1143 [FAIL <= 0.025]; VERDICT NOT EXACT [2 s]
+
+== A44 Pc f_sub global (1 fitted + 0 frozen knobs)
+ rms to law 0.1034 dex [FAIL E1]; p95 per-galaxy 0.1889 [FAIL E2]; worst bin 0.0285 [FAIL E3]
+ bins -12.0:+0.029 -11.5:-0.025 -11.0:-0.013 -10.5:-0.026 -10.0:-0.009 -9.5:-0.009 -9.0:-0.004
+ a fit 8.664e-11; rms to observed 0.2214 dex, mean -0.0119
+ knobs fitted 1 (+0 frozen), nfev 14; block values {'fsub': 0.312}; at bound []; outside literature range ['fsub']
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.1022 [FAIL <= 0.025]; VERDICT NOT EXACT [2 s]
+
+== A44 Pd env -0.05 (0 fitted + 0 frozen knobs)
+ rms to law 0.1203 dex [FAIL E1]; p95 per-galaxy 0.2489 [FAIL E2]; worst bin 0.1221 [FAIL E3]
+ bins -12.0:+0.122 -11.5:+0.061 -11.0:+0.059 -10.5:+0.022 -10.0:+0.020 -9.5:+0.004 -9.0:+0.000
+ a fit 1.305e-10; rms to observed 0.2294 dex, mean +0.0490
+ knobs fitted 0 (+0 frozen), nfev 0; block values {'dlc': -0.05}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.1102 [FAIL <= 0.025]; VERDICT NOT EXACT [2 s]
+
+== A44 Pd env global (1 fitted + 0 frozen knobs)
+ rms to law 0.1048 dex [FAIL E1]; p95 per-galaxy 0.2101 [FAIL E2]; worst bin 0.0828 [FAIL E3]
+ bins -12.0:+0.083 -11.5:+0.024 -11.0:+0.025 -10.5:-0.005 -10.0:+0.002 -9.5:-0.004 -9.0:-0.003
+ a fit 1.082e-10; rms to observed 0.2207 dex, mean +0.0201
+ knobs fitted 1 (+0 frozen), nfev 7; block values {'dlc': -0.1}; at bound ['dlc']; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0966 [FAIL <= 0.025]; VERDICT NOT EXACT [2 s]
+
+== A44 R0 R11b K11B (0 fitted + 14 frozen knobs)
+ rms to law 0.0275 dex [FAIL E1]; p95 per-galaxy 0.0624 [FAIL E2]; worst bin 0.0195 [PASS E3]
+ bins -12.0:+0.020 -11.5:-0.003 -11.0:-0.008 -10.5:-0.005 -10.0:+0.004 -9.5:+0.014 -9.0:+0.016
+ a fit 9.306e-11; rms to observed 0.1933 dex, mean +0.0015
+ knobs fitted 0 (+14 frozen), nfev 0; block values {}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0247 [PASS <= 0.025]; VERDICT NOT EXACT [2 s]
+
+== A44 Ra q 0.85 geo (0 fitted + 14 frozen knobs)
+ rms to law 0.0278 dex [FAIL E1]; p95 per-galaxy 0.0632 [FAIL E2]; worst bin 0.0152 [PASS E3]
+ bins -12.0:+0.013 -11.5:-0.009 -11.0:-0.013 -10.5:-0.009 -10.0:+0.001 -9.5:+0.012 -9.0:+0.015
+ a fit 9.026e-11; rms to observed 0.1930 dex, mean -0.0031
+ knobs fitted 0 (+14 frozen), nfev 0; block values {'q0': 0.85}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0250 [PASS <= 0.025]; VERDICT NOT EXACT [2 s]
+
+== A44 Ra q 0.85 major (sensitivity) (0 fitted + 14 frozen knobs)
+ rms to law 0.0335 dex [FAIL E1]; p95 per-galaxy 0.0747 [FAIL E2]; worst bin 0.0461 [FAIL E3]
+ bins -12.0:+0.046 -11.5:+0.021 -11.0:+0.012 -10.5:+0.010 -10.0:+0.013 -9.5:+0.020 -9.0:+0.020
+ a fit 1.050e-10; rms to observed 0.1946 dex, mean +0.0194
+ knobs fitted 0 (+14 frozen), nfev 0; block values {'q0': 0.85}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0321 [FAIL <= 0.025]; VERDICT NOT EXACT [3 s]
+
+== A44 Ra q global (1 fitted + 14 frozen knobs)
+ rms to law 0.0275 dex [FAIL E1]; p95 per-galaxy 0.0618 [FAIL E2]; worst bin 0.0187 [PASS E3]
+ bins -12.0:+0.019 -11.5:-0.004 -11.0:-0.008 -10.5:-0.005 -10.0:+0.003 -9.5:+0.014 -9.0:+0.016
+ a fit 9.272e-11; rms to observed 0.1932 dex, mean +0.0010
+ knobs fitted 1 (+14 frozen), nfev 12; block values {'q0': 0.9774}; at bound []; outside literature range ['q0']
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0248 [PASS <= 0.025]; VERDICT NOT EXACT [4 s]
+
+== A44 Ra q(Sigma_b) (2 fitted + 14 frozen knobs)
+ rms to law 0.0274 dex [FAIL E1]; p95 per-galaxy 0.0615 [FAIL E2]; worst bin 0.0197 [PASS E3]
+ bins -12.0:+0.020 -11.5:-0.004 -11.0:-0.010 -10.5:-0.007 -10.0:+0.002 -9.5:+0.013 -9.0:+0.015
+ a fit 9.241e-11; rms to observed 0.1937 dex, mean +0.0002
+ knobs fitted 2 (+14 frozen), nfev 12; block values {'q0': 1.1258, 'sq': -0.0626}; at bound []; outside literature range ['q0']
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0249 [PASS <= 0.025]; VERDICT NOT EXACT [5 s]
+
+== A44 Rb k_t 0.5 (0 fitted + 14 frozen knobs)
+ rms to law 0.0280 dex [FAIL E1]; p95 per-galaxy 0.0654 [FAIL E2]; worst bin 0.0164 [PASS E3]
+ bins -12.0:+0.014 -11.5:-0.006 -11.0:-0.010 -10.5:-0.005 -10.0:+0.004 -9.5:+0.014 -9.0:+0.016
+ a fit 9.186e-11; rms to observed 0.1935 dex, mean -0.0002
+ knobs fitted 0 (+14 frozen), nfev 0; block values {'lkt': -0.301}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0253 [FAIL <= 0.025]; VERDICT NOT EXACT [5 s]
+
+== A44 Rb k_t 1.0 (0 fitted + 14 frozen knobs)
+ rms to law 0.0276 dex [FAIL E1]; p95 per-galaxy 0.0621 [FAIL E2]; worst bin 0.0181 [PASS E3]
+ bins -12.0:+0.018 -11.5:-0.004 -11.0:-0.008 -10.5:-0.005 -10.0:+0.004 -9.5:+0.014 -9.0:+0.016
+ a fit 9.275e-11; rms to observed 0.1933 dex, mean +0.0011
+ knobs fitted 0 (+14 frozen), nfev 0; block values {'lkt': 0.0}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0249 [PASS <= 0.025]; VERDICT NOT EXACT [5 s]
+
+== A44 Rb k_t 2.0 (0 fitted + 14 frozen knobs)
+ rms to law 0.0275 dex [FAIL E1]; p95 per-galaxy 0.0623 [FAIL E2]; worst bin 0.0192 [PASS E3]
+ bins -12.0:+0.019 -11.5:-0.003 -11.0:-0.008 -10.5:-0.005 -10.0:+0.004 -9.5:+0.014 -9.0:+0.016
+ a fit 9.299e-11; rms to observed 0.1933 dex, mean +0.0014
+ knobs fitted 0 (+14 frozen), nfev 0; block values {'lkt': 0.301}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0248 [PASS <= 0.025]; VERDICT NOT EXACT [5 s]
+
+== A44 Rb k_t global (1 fitted + 14 frozen knobs)
+ rms to law 0.0275 dex [FAIL E1]; p95 per-galaxy 0.0623 [FAIL E2]; worst bin 0.0195 [PASS E3]
+ bins -12.0:+0.019 -11.5:-0.003 -11.0:-0.008 -10.5:-0.005 -10.0:+0.004 -9.5:+0.014 -9.0:+0.016
+ a fit 9.306e-11; rms to observed 0.1933 dex, mean +0.0015
+ knobs fitted 1 (+14 frozen), nfev 5; block values {'lkt': 1.0}; at bound ['lkt']; outside literature range ['lkt']
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0247 [PASS <= 0.025]; VERDICT NOT EXACT [6 s]
+
+== A44 Rc f_sub 0.1 (0 fitted + 14 frozen knobs)
+ rms to law 0.0385 dex [FAIL E1]; p95 per-galaxy 0.0712 [FAIL E2]; worst bin 0.0372 [FAIL E3]
+ bins -12.0:-0.018 -11.5:-0.037 -11.0:-0.036 -10.5:-0.025 -10.0:-0.009 -9.5:+0.007 -9.0:+0.013
+ a fit 7.834e-11; rms to observed 0.1948 dex, mean -0.0234
+ knobs fitted 0 (+14 frozen), nfev 0; block values {'fsub': 0.1}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0362 [FAIL <= 0.025]; VERDICT NOT EXACT [6 s]
+
+== A44 Rc f_sub global (1 fitted + 14 frozen knobs)
+ rms to law 0.0275 dex [FAIL E1]; p95 per-galaxy 0.0624 [FAIL E2]; worst bin 0.0195 [PASS E3]
+ bins -12.0:+0.020 -11.5:-0.003 -11.0:-0.008 -10.5:-0.005 -10.0:+0.004 -9.5:+0.014 -9.0:+0.016
+ a fit 9.306e-11; rms to observed 0.1933 dex, mean +0.0015
+ knobs fitted 1 (+14 frozen), nfev 12; block values {'fsub': 0.0}; at bound ['fsub']; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0247 [PASS <= 0.025]; VERDICT NOT EXACT [8 s]
+
+== A44 Rd env -0.05 (0 fitted + 14 frozen knobs)
+ rms to law 0.0322 dex [FAIL E1]; p95 per-galaxy 0.0602 [FAIL E2]; worst bin 0.0259 [FAIL E3]
+ bins -12.0:-0.007 -11.5:-0.025 -11.0:-0.026 -10.5:-0.018 -10.0:-0.005 -9.5:+0.010 -9.0:+0.014
+ a fit 8.314e-11; rms to observed 0.1933 dex, mean -0.0149
+ knobs fitted 0 (+14 frozen), nfev 0; block values {'dlc': -0.05}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0296 [FAIL <= 0.025]; VERDICT NOT EXACT [8 s]
+
+== A44 Rd env global (1 fitted + 14 frozen knobs)
+ rms to law 0.0274 dex [FAIL E1]; p95 per-galaxy 0.0616 [FAIL E2]; worst bin 0.0178 [PASS E3]
+ bins -12.0:+0.018 -11.5:-0.005 -11.0:-0.009 -10.5:-0.006 -10.0:+0.003 -9.5:+0.014 -9.0:+0.016
+ a fit 9.237e-11; rms to observed 0.1932 dex, mean +0.0004
+ knobs fitted 1 (+14 frozen), nfev 4; block values {'dlc': -0.0033}; at bound []; outside literature range []
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0247 [PASS <= 0.025]; VERDICT NOT EXACT [9 s]
+
+== A44 RF0 R11b re-fit control (14 fitted + 0 frozen knobs)
+ rms to law 0.0275 dex [FAIL E1]; p95 per-galaxy 0.0624 [FAIL E2]; worst bin 0.0196 [PASS E3]
+ bins -12.0:+0.020 -11.5:-0.003 -11.0:-0.008 -10.5:-0.005 -10.0:+0.004 -9.5:+0.014 -9.0:+0.016
+ a fit 9.309e-11; rms to observed 0.1933 dex, mean +0.0016
+ knobs fitted 14 (+0 frozen), nfev 13; block values {}; at bound ['dg', 'f0', 'dc', 'sc']; outside literature range []
+ K dn=-0.512 dm=+0.363 db=-0.142 dg=-0.600 le=-0.988 a1=-0.440 a2=+0.051 a4=-0.139 le0=+0.800 a3=+0.600 f0=+1.000 f1=-0.416 dc=-0.330 sc=+0.150
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0270 [FAIL <= 0.025]; VERDICT NOT EXACT [17 s]
+
+== A44 RFa q global (15 fitted + 0 frozen knobs)
+ rms to law 0.0272 dex [FAIL E1]; p95 per-galaxy 0.0625 [FAIL E2]; worst bin 0.0224 [FAIL E3]
+ bins -12.0:+0.022 -11.5:-0.003 -11.0:-0.009 -10.5:-0.005 -10.0:+0.004 -9.5:+0.015 -9.0:+0.017
+ a fit 9.299e-11; rms to observed 0.1931 dex, mean +0.0014
+ knobs fitted 15 (+0 frozen), nfev 28; block values {'q0': 0.5577}; at bound ['dg', 'f0', 'dc', 'sc']; outside literature range ['q0']
+ K dn=-0.481 dm=+0.444 db=-0.015 dg=-0.600 le=-1.061 a1=-0.472 a2=+0.008 a4=-0.147 le0=+0.755 a3=+0.629 f0=+1.000 f1=-0.436 dc=-0.330 sc=+0.150
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0268 [FAIL <= 0.025]; VERDICT NOT EXACT [38 s]
+
+== A44 RFa q(Sigma_b) (16 fitted + 0 frozen knobs)
+ rms to law 0.0265 dex [FAIL E1]; p95 per-galaxy 0.0568 [FAIL E2]; worst bin 0.0225 [FAIL E3]
+ bins -12.0:+0.023 -11.5:-0.003 -11.0:-0.010 -10.5:-0.006 -10.0:+0.004 -9.5:+0.015 -9.0:+0.018
+ a fit 9.296e-11; rms to observed 0.1938 dex, mean +0.0014
+ knobs fitted 16 (+0 frozen), nfev 22; block values {'q0': 0.995, 'sq': -0.2066}; at bound ['dg', 'f0', 'dc']; outside literature range ['q0']
+ K dn=-0.475 dm=+0.544 db=-0.125 dg=-0.600 le=-0.905 a1=-0.376 a2=-0.119 a4=-0.089 le0=+0.882 a3=+0.598 f0=+1.000 f1=-0.424 dc=-0.330 sc=+0.148
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0257 [FAIL <= 0.025]; VERDICT NOT EXACT [58 s]
+
+== A44 RFb k_t global (15 fitted + 0 frozen knobs)
+ rms to law 0.0275 dex [FAIL E1]; p95 per-galaxy 0.0624 [FAIL E2]; worst bin 0.0196 [PASS E3]
+ bins -12.0:+0.020 -11.5:-0.003 -11.0:-0.008 -10.5:-0.005 -10.0:+0.004 -9.5:+0.014 -9.0:+0.016
+ a fit 9.309e-11; rms to observed 0.1933 dex, mean +0.0016
+ knobs fitted 15 (+0 frozen), nfev 13; block values {'lkt': 0.9997}; at bound ['dg', 'f0', 'dc', 'sc', 'lkt']; outside literature range ['lkt']
+ K dn=-0.512 dm=+0.363 db=-0.142 dg=-0.600 le=-0.988 a1=-0.440 a2=+0.051 a4=-0.139 le0=+0.800 a3=+0.600 f0=+1.000 f1=-0.416 dc=-0.330 sc=+0.150
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0270 [FAIL <= 0.025]; VERDICT NOT EXACT [66 s]
+
+== A44 RFc f_sub global (15 fitted + 0 frozen knobs)
+ rms to law 0.0275 dex [FAIL E1]; p95 per-galaxy 0.0624 [FAIL E2]; worst bin 0.0196 [PASS E3]
+ bins -12.0:+0.020 -11.5:-0.003 -11.0:-0.008 -10.5:-0.005 -10.0:+0.004 -9.5:+0.014 -9.0:+0.016
+ a fit 9.309e-11; rms to observed 0.1933 dex, mean +0.0016
+ knobs fitted 15 (+0 frozen), nfev 17; block values {'fsub': 0.0}; at bound ['dg', 'f0', 'dc', 'sc', 'fsub']; outside literature range []
+ K dn=-0.512 dm=+0.362 db=-0.141 dg=-0.600 le=-0.988 a1=-0.440 a2=+0.051 a4=-0.139 le0=+0.799 a3=+0.600 f0=+1.000 f1=-0.416 dc=-0.330 sc=+0.150
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0270 [FAIL <= 0.025]; VERDICT NOT EXACT [74 s]
+
+== A44 RFd env global (15 fitted + 0 frozen knobs)
+ rms to law 0.0261 dex [FAIL E1]; p95 per-galaxy 0.0590 [FAIL E2]; worst bin 0.0212 [FAIL E3]
+ bins -12.0:+0.021 -11.5:-0.004 -11.0:-0.009 -10.5:-0.004 -10.0:+0.005 -9.5:+0.017 -9.0:+0.020
+ a fit 9.302e-11; rms to observed 0.1933 dex, mean +0.0018
+ knobs fitted 15 (+0 frozen), nfev 22; block values {'dlc': -0.1}; at bound ['dn', 'dg', 'f0', 'dc', 'sc', 'dlc']; outside literature range []
+ K dn=-0.540 dm=+0.472 db=-0.009 dg=-0.600 le=-1.127 a1=-0.454 a2=+0.029 a4=-0.157 le0=+0.824 a3=+0.666 f0=+1.000 f1=-0.419 dc=-0.330 sc=+0.150
+ holdout: tuned on GS[::2], unseen GS[1::2] E1 0.0253 [FAIL <= 0.025]; VERDICT NOT EXACT [81 s]
+
+ truncation geometry: r_last/R200 median 0.090 (plain SHMR), 0.075 (K11B SHMR); max 0.412, 0.290
+  k_t 0.5: fraction of points with r > r_t/2 (plain) 0.0062
+  k_t 1.0: fraction of points with r > r_t/2 (plain) 0.0000
+  k_t 2.0: fraction of points with r > r_t/2 (plain) 0.0000
+  Pb k_t 0.5 (k_t 0.500): median dlog g at the last point -0.0049, min -0.0612; past the data (no data graded) at 2 r_last -0.0192, 4 r_last -0.0597
+  Pb k_t 1.0 (k_t 1.000): median dlog g at the last point -0.0012, min -0.0181; past the data (no data graded) at 2 r_last -0.0050, 4 r_last -0.0172
+  Pb k_t 2.0 (k_t 2.000): median dlog g at the last point -0.0003, min -0.0048; past the data (no data graded) at 2 r_last -0.0013, 4 r_last -0.0045
+  Pb k_t global (k_t 0.131): median dlog g at the last point -0.0602, min -0.3068; past the data (no data graded) at 2 r_last -0.1734, 4 r_last -0.3350
+
+==== TIE GATES (knobs fixed, M200 per galaxy held at z 0, baryons fixed) [82 s]
+ backgrounds (footing P): B0 sigma8 0.8110 rho_DE(z)/rho_DE0 1.0000/1.0000/1.0000, B1 sigma8 0.8111 rho_DE(z)/rho_DE0 1.0175/0.8743/0.6680, B1p sigma8 0.8145 rho_DE(z)/rho_DE0 0.9779/0.8668/0.7037, B1u sigma8 0.8072 rho_DE(z)/rho_DE0 1.0628/0.8879/0.6415, B2 sigma8 0.7964 rho_DE(z)/rho_DE0 1.1618/1.1972/1.2336, B3 sigma8 0.7687 rho_DE(z)/rho_DE0 1.3590/1.5993/2.0317, B4 sigma8 0.8122 rho_DE(z)/rho_DE0 0.9665/1.0098/1.0964, B5 sigma8 0.8109 rho_DE(z)/rho_DE0 1.0000/1.0001/1.0002 [83 s]
+ P0 plain baseline: a 1.5763e-10, kappa_eff 0.842 [FAIL G1]; G2 slopes +1.752 +4.389 [FAIL]; G3 a(z)/a(0) 1.312 1.657 2.570 [FAIL]; G5 halo gravity, by definition
+   GT dev at z 1, 1.5, 2.33: B0 +0.118 +0.219 +0.410; B1 +0.122 +0.249 +0.494; B1p +0.124 +0.246 +0.479; B1u +0.120 +0.250 +0.506; B2 +0.106 +0.200 +0.383; B3 +0.094 +0.168 +0.312; B4 +0.119 +0.214 +0.389; B5 +0.118 +0.219 +0.410; GT passes in [] of the 7 evolving; pooled slope B1-B4 +0.204 (0.5 to track) [83 s]
+   G4 79 hosts log M200 11-12.5: rms log a_i 0.130 dex [FAIL]
+ R0 R11b K11B: a 9.3063e-11, kappa_eff 0.497 [PASS G1]; G2 slopes +1.272 +3.025 [FAIL]; G3 a(z)/a(0) 1.481 1.928 3.023 [FAIL]; G5 halo gravity, by definition
+   GT dev at z 1, 1.5, 2.33: B0 +0.171 +0.285 +0.481; B1 +0.172 +0.313 +0.564; B1p +0.176 +0.312 +0.551; B1u +0.168 +0.313 +0.575; B2 +0.154 +0.261 +0.448; B3 +0.137 +0.221 +0.367; B4 +0.174 +0.281 +0.461; B5 +0.171 +0.285 +0.481; GT passes in [] of the 7 evolving; pooled slope B1-B4 +0.215 (0.5 to track) [84 s]
+   G4 120 hosts log M200 11-12.5: rms log a_i 0.047 dex [PASS]
+ Pa q 0.85 geo: a 1.5377e-10, kappa_eff 0.821 [FAIL G1]; G2 slopes +1.760 +4.414 [FAIL]; G3 a(z)/a(0) 1.309 1.653 2.563 [FAIL]; G5 halo gravity, by definition
+   GT dev at z 1, 1.5, 2.33: B0 +0.117 +0.218 +0.409; B1 +0.121 +0.247 +0.492; B1p +0.123 +0.245 +0.478; B1u +0.119 +0.249 +0.505; B2 +0.105 +0.199 +0.382; B3 +0.093 +0.168 +0.311; B4 +0.119 +0.213 +0.388; B5 +0.117 +0.218 +0.409; GT passes in [] of the 7 evolving; pooled slope B1-B4 +0.204 (0.5 to track) [85 s]
+   G4 79 hosts log M200 11-12.5: rms log a_i 0.129 dex [FAIL]
+ Ra q 0.85 geo: a 9.0258e-11, kappa_eff 0.482 [PASS G1]; G2 slopes +1.280 +3.046 [FAIL]; G3 a(z)/a(0) 1.479 1.925 3.019 [FAIL]; G5 halo gravity, by definition
+   GT dev at z 1, 1.5, 2.33: B0 +0.170 +0.284 +0.480; B1 +0.171 +0.312 +0.563; B1p +0.175 +0.311 +0.550; B1u +0.167 +0.312 +0.574; B2 +0.153 +0.260 +0.447; B3 +0.136 +0.221 +0.366; B4 +0.173 +0.281 +0.460; B5 +0.170 +0.284 +0.480; GT passes in [] of the 7 evolving; pooled slope B1-B4 +0.215 (0.5 to track) [86 s]
+   G4 120 hosts log M200 11-12.5: rms log a_i 0.047 dex [PASS]
+ Pa q global: a 1.0394e-10, kappa_eff 0.555 [PASS G1]; G2 slopes +1.810 +4.565 [FAIL]; G3 a(z)/a(0) 1.286 1.613 2.485 [FAIL]; G5 halo gravity, by definition
+   GT dev at z 1, 1.5, 2.33: B0 +0.109 +0.208 +0.395; B1 +0.114 +0.237 +0.479; B1p +0.116 +0.234 +0.464; B1u +0.112 +0.239 +0.492; B2 +0.098 +0.189 +0.369; B3 +0.086 +0.158 +0.299; B4 +0.111 +0.203 +0.375; B5 +0.109 +0.208 +0.395; GT passes in [] of the 7 evolving; pooled slope B1-B4 +0.201 (0.5 to track) [86 s]
+   G4 79 hosts log M200 11-12.5: rms log a_i 0.118 dex [FAIL]
+ RFa q(Sigma_b): a 9.2958e-11, kappa_eff 0.496 [PASS G1]; G2 slopes +1.324 +3.165 [FAIL]; G3 a(z)/a(0) 1.479 1.931 3.056 [FAIL]; G5 halo gravity, by definition
+   GT dev at z 1, 1.5, 2.33: B0 +0.170 +0.286 +0.485; B1 +0.172 +0.313 +0.568; B1p +0.175 +0.312 +0.555; B1u +0.168 +0.314 +0.579; B2 +0.154 +0.262 +0.453; B3 +0.138 +0.223 +0.373; B4 +0.173 +0.282 +0.465; B5 +0.170 +0.286 +0.485; GT passes in [] of the 7 evolving; pooled slope B1-B4 +0.218 (0.5 to track) [88 s]
+   G4 127 hosts log M200 11-12.5: rms log a_i 0.054 dex [PASS]
+ Pb k_t global: a 1.3201e-10, kappa_eff 0.705 [FAIL G1]; G2 slopes +1.675 +4.307 [FAIL]; G3 a(z)/a(0) 1.132 1.298 1.704 [FAIL]; G5 halo gravity, by definition
+   GT dev at z 1, 1.5, 2.33: B0 +0.054 +0.113 +0.232; B1 +0.058 +0.144 +0.317; B1p +0.060 +0.141 +0.302; B1u +0.055 +0.146 +0.330; B2 +0.040 +0.093 +0.204; B3 +0.025 +0.057 +0.129; B4 +0.056 +0.108 +0.210; B5 +0.054 +0.113 +0.232; GT passes in [] of the 7 evolving; pooled slope B1-B4 +0.147 (0.5 to track) [88 s]
+   G4 79 hosts log M200 11-12.5: rms log a_i 0.161 dex [FAIL]
+ RFb k_t global: a 9.3094e-11, kappa_eff 0.497 [PASS G1]; G2 slopes +1.272 +3.025 [FAIL]; G3 a(z)/a(0) 1.481 1.928 3.023 [FAIL]; G5 halo gravity, by definition
+   GT dev at z 1, 1.5, 2.33: B0 +0.171 +0.285 +0.480; B1 +0.172 +0.313 +0.564; B1p +0.176 +0.312 +0.551; B1u +0.168 +0.313 +0.575; B2 +0.154 +0.261 +0.448; B3 +0.137 +0.221 +0.367; B4 +0.174 +0.281 +0.461; B5 +0.171 +0.285 +0.480; GT passes in [] of the 7 evolving; pooled slope B1-B4 +0.215 (0.5 to track) [89 s]
+   G4 120 hosts log M200 11-12.5: rms log a_i 0.047 dex [PASS]
+ Pc f_sub global: a 8.6641e-11, kappa_eff 0.463 [PASS G1]; G2 slopes +1.718 +4.295 [FAIL]; G3 a(z)/a(0) 1.322 1.676 2.614 [FAIL]; G5 halo gravity, by definition
+   GT dev at z 1, 1.5, 2.33: B0 +0.121 +0.224 +0.417; B1 +0.125 +0.253 +0.501; B1p +0.127 +0.251 +0.487; B1u +0.123 +0.255 +0.513; B2 +0.109 +0.205 +0.390; B3 +0.097 +0.172 +0.319; B4 +0.123 +0.219 +0.397; B5 +0.121 +0.224 +0.417; GT passes in [] of the 7 evolving; pooled slope B1-B4 +0.204 (0.5 to track) [90 s]
+   G4 79 hosts log M200 11-12.5: rms log a_i 0.117 dex [FAIL]
+ RFc f_sub global: a 9.3094e-11, kappa_eff 0.497 [PASS G1]; G2 slopes +1.272 +3.025 [FAIL]; G3 a(z)/a(0) 1.481 1.928 3.023 [FAIL]; G5 halo gravity, by definition
+   GT dev at z 1, 1.5, 2.33: B0 +0.171 +0.285 +0.480; B1 +0.172 +0.313 +0.564; B1p +0.176 +0.312 +0.551; B1u +0.168 +0.313 +0.575; B2 +0.154 +0.261 +0.448; B3 +0.137 +0.221 +0.367; B4 +0.174 +0.281 +0.461; B5 +0.171 +0.285 +0.481; GT passes in [] of the 7 evolving; pooled slope B1-B4 +0.215 (0.5 to track) [91 s]
+   G4 120 hosts log M200 11-12.5: rms log a_i 0.047 dex [PASS]
+ Pd env global: a 1.0821e-10, kappa_eff 0.578 [FAIL G1]; G2 slopes +1.763 +4.398 [FAIL]; G3 a(z)/a(0) 1.352 1.734 2.745 [FAIL]; G5 halo gravity, by definition
+   GT dev at z 1, 1.5, 2.33: B0 +0.131 +0.239 +0.438; B1 +0.135 +0.268 +0.522; B1p +0.137 +0.265 +0.507; B1u +0.133 +0.269 +0.534; B2 +0.119 +0.220 +0.412; B3 +0.108 +0.189 +0.341; B4 +0.132 +0.234 +0.418; B5 +0.131 +0.239 +0.439; GT passes in [] of the 7 evolving; pooled slope B1-B4 +0.215 (0.5 to track) [91 s]
+   G4 79 hosts log M200 11-12.5: rms log a_i 0.119 dex [FAIL]
+ RFd env global: a 9.3016e-11, kappa_eff 0.497 [PASS G1]; G2 slopes +1.272 +2.998 [FAIL]; G3 a(z)/a(0) 1.525 2.014 3.228 [FAIL]; G5 halo gravity, by definition
+   GT dev at z 1, 1.5, 2.33: B0 +0.183 +0.304 +0.509; B1 +0.185 +0.331 +0.592; B1p +0.188 +0.331 +0.579; B1u +0.180 +0.331 +0.603; B2 +0.166 +0.280 +0.476; B3 +0.150 +0.240 +0.395; B4 +0.187 +0.300 +0.489; B5 +0.183 +0.304 +0.509; GT passes in [] of the 7 evolving; pooled slope B1-B4 +0.225 (0.5 to track) [92 s]
+   G4 128 hosts log M200 11-12.5: rms log a_i 0.051 dex [PASS]
+
+==== (d2) ENVIRONMENT TERM IN A40 MOCK [92 s]
+(a) surface-density residual: rms 0.409 dex about log Sigma_b(log M_b) line; standardised
+ SPARC observer fit: scatter all 0.1489, good points 0.0814, a0 8.034e-11 (A40: 0.1489, 0.0814, 8.034e-11)
+ rho_cM +0.00 b_env 0.00 dbar +0.00: good-points scatter 0.1065+-0.0070 [FAIL B1]; all 0.1612; a0 1.686e-10 (+0.256 dex) [FAIL B2]; intrinsic E1 0.1644 E2 0.3752 E3 0.1798 [FAIL] [93 s]
+   control vs recipe41.json cell: max difference 0.0e+00 [PASS]
+ rho_cM +0.00 b_env 0.05 dbar +0.00: good-points scatter 0.1073+-0.0065 [FAIL B1]; all 0.1631; a0 1.684e-10 (+0.255 dex) [FAIL B2]; intrinsic E1 0.1669 E2 0.3776 E3 0.1870 [FAIL] [93 s]
+ rho_cM +0.00 b_env 0.05 dbar -0.50: good-points scatter 0.1057+-0.0066 [FAIL B1]; all 0.1643; a0 1.539e-10 (+0.216 dex) [FAIL B2]; intrinsic E1 0.1579 E2 0.3588 E3 0.1678 [FAIL] [94 s]
+ rho_cM +0.00 b_env 0.10 dbar +0.00: good-points scatter 0.1114+-0.0065 [FAIL B1]; all 0.1695; a0 1.688e-10 (+0.256 dex) [FAIL B2]; intrinsic E1 0.1763 E2 0.3824 E3 0.1939 [FAIL] [95 s]
+ rho_cM +0.00 b_env 0.10 dbar -0.50: good-points scatter 0.1080+-0.0066 [FAIL B1]; all 0.1681; a0 1.414e-10 (+0.179 dex) [FAIL B2]; intrinsic E1 0.1598 E2 0.3358 E3 0.1556 [FAIL] [95 s]
+ rho_cM -0.60 b_env 0.00 dbar +0.00: good-points scatter 0.0987+-0.0060 [PASS B1]; all 0.1562; a0 1.654e-10 (+0.247 dex) [FAIL B2]; intrinsic E1 0.1616 E2 0.3574 E3 0.1999 [FAIL] [96 s]
+   control vs recipe41.json cell: max difference 0.0e+00 [PASS]
+ rho_cM -0.60 b_env 0.05 dbar +0.00: good-points scatter 0.0993+-0.0060 [PASS B1]; all 0.1589; a0 1.656e-10 (+0.248 dex) [FAIL B2]; intrinsic E1 0.1653 E2 0.3617 E3 0.2076 [FAIL] [97 s]
+ rho_cM -0.60 b_env 0.05 dbar -0.50: good-points scatter 0.0979+-0.0060 [PASS B1]; all 0.1591; a0 1.514e-10 (+0.209 dex) [FAIL B2]; intrinsic E1 0.1563 E2 0.3410 E3 0.1883 [FAIL] [97 s]
+ rho_cM -0.60 b_env 0.10 dbar +0.00: good-points scatter 0.1033+-0.0062 [FAIL B1]; all 0.1655; a0 1.658e-10 (+0.248 dex) [FAIL B2]; intrinsic E1 0.1758 E2 0.3984 E3 0.2149 [FAIL] [98 s]
+ rho_cM -0.60 b_env 0.10 dbar -0.50: good-points scatter 0.1001+-0.0063 [PASS B1]; all 0.1651; a0 1.388e-10 (+0.171 dex) [FAIL B2]; intrinsic E1 0.1594 E2 0.3510 E3 0.1767 [FAIL] [99 s]
+ holdout: cell chosen on GS[::2] by intrinsic rms: rho_cM +0.00 b_env 0.10 dbar -0.50; unseen GS[1::2] 0.1696 [FAIL]
+ noiseless mock with the field offset (b_env 0.1, dbar -0.5): E1 0.1156, fitted a 1.242e-10, kappa_eff 0.663 [99 s]
+
+==== A25 COMPACT PARETO POINT + BEST SHAPE BLOCK [99 s]
+ shape on the R11b re-fit: control 0.0275, q global 0.0272, q(Sigma_b) 0.0265; best gain +0.0010; block used qs
+c sqrt(G rho_DE) 1.8727e-10 m/s^2, a0 9.3625e-11
+bulge galaxies 32, gas-rich (f_gas >= 0.5) 79 of 171
+Tinker08 slope d log(dn/dlnM)/d log M at log M 10, 11, 12, 13: [-0.919, -0.909, -0.911, -0.965]
+SIDM table loaded from cache [99 s]
+
+ A25 Pareto 18 knobs, units ['N2', 'HC', 'HD', 'PG', 'SL']: control E1 0.0230 (recipe27.out 0.0230), E2 0.0510, E3 0.0187 [99 s]
+  timing: one evaluation with shape 0.034 s
+
+== A44 A25 18 + shape qs step 1 (A25 knobs frozen, shape fitted) (20 knobs)
+ rms to law 0.0230 dex [FAIL E1]; p95 per-galaxy 0.0506 [FAIL E2]; worst bin 0.0181 [PASS E3]
+ bins -12.0:+0.018 -11.5:-0.003 -11.0:-0.005 -10.5:-0.005 -10.0:+0.003 -9.5:+0.012 -9.0:+0.015
+ a fit 9.325e-11; rms to observed 0.1944 dex, mean +0.0016
+  shape knobs [0.9228, 0.0379]; at bound ['dm', 'dc', 'sc']; holdout clean (centre start, GS[::2] tuned) unseen 0.0229 [PASS]; change in E1 vs A25 point -0.0000; VERDICT NOT EXACT [100 s]
+
+== A44 A25 18 + shape qs step 2 (all re-fitted) (20 knobs)
+ rms to law 0.0226 dex [FAIL E1]; p95 per-galaxy 0.0504 [FAIL E2]; worst bin 0.0201 [FAIL E3]
+ bins -12.0:+0.020 -11.5:-0.003 -11.0:-0.007 -10.5:-0.006 -10.0:+0.002 -9.5:+0.014 -9.0:+0.017
+ a fit 9.307e-11; rms to observed 0.1947 dex, mean +0.0014
+  shape knobs [0.5212, 0.2778]; at bound ['dm', 'dg', 'dc', 'sc']; holdout clean (centre start, GS[::2] tuned) unseen 0.0244 [PASS]; leaky 0.0244 (not gated); change in E1 vs A25 point -0.0004; VERDICT NOT EXACT [173 s]
+ A25 18 + shape re-fit: a 9.3068e-11, kappa_eff 0.497 [PASS G1]; G2 slopes +1.317 +3.089 [FAIL]; G3 a(z)/a(0) 1.599 2.138 3.487 [FAIL]; G5 halo gravity, by definition
+   GT dev at z 1, 1.5, 2.33: B0 +0.204 +0.330 +0.542; B1 +0.205 +0.357 +0.625; B1p +0.209 +0.356 +0.612; B1u +0.200 +0.357 +0.636; B2 +0.187 +0.305 +0.509; B3 +0.169 +0.265 +0.428; B4 +0.207 +0.326 +0.523; B5 +0.204 +0.330 +0.542; GT passes in [] of the 7 evolving; pooled slope B1-B4 +0.240 (0.5 to track) [179 s]
+   G4 139 hosts: rms log a_i 0.041 dex [PASS]
+
+ A25 Pareto 28 knobs, units ['N1', 'N2', 'N4', 'N5', 'HC', 'HD', 'AC', 'PG', 'PB', 'SL', 'SS']: control E1 0.0222 (recipe27.out 0.0222), E2 0.0546, E3 0.0182 [179 s]
+  timing: one evaluation with shape 0.037 s
+
+== A44 A25 28 + shape qs step 1 (A25 knobs frozen, shape fitted) (30 knobs)
+ rms to law 0.0222 dex [FAIL E1]; p95 per-galaxy 0.0538 [FAIL E2]; worst bin 0.0180 [PASS E3]
+ bins -12.0:+0.018 -11.5:-0.004 -11.0:-0.004 -10.5:-0.003 -10.0:+0.002 -9.5:+0.010 -9.0:+0.011
+ a fit 9.333e-11; rms to observed 0.1939 dex, mean +0.0016
+  shape knobs [0.9486, 0.0285]; at bound ['a4', 'dc', 'sc', 'Ag']; holdout clean (centre start, GS[::2] tuned) unseen 0.0226 [PASS]; change in E1 vs A25 point -0.0000; VERDICT NOT EXACT [181 s]
+
+== A44 A25 28 + shape qs step 2 (all re-fitted) (30 knobs)
+ rms to law 0.0221 dex [FAIL E1]; p95 per-galaxy 0.0522 [FAIL E2]; worst bin 0.0179 [PASS E3]
+ bins -12.0:+0.018 -11.5:-0.004 -11.0:-0.005 -10.5:-0.004 -10.0:+0.002 -9.5:+0.009 -9.0:+0.011
+ a fit 9.311e-11; rms to observed 0.1940 dex, mean +0.0011
+  shape knobs [0.9993, 0.1109]; at bound ['a4', 'dc', 'sc', 'Ag']; holdout clean (centre start, GS[::2] tuned) unseen 0.0239 [PASS]; leaky 0.0238 (not gated); change in E1 vs A25 point -0.0001; VERDICT NOT EXACT [232 s]
+
+peak RSS 194 MB [232 s]
+Rival language; every knob disclosed. Passing shows freedom, not evidence. kappa = 1/2 FITTED; not theory closed.
