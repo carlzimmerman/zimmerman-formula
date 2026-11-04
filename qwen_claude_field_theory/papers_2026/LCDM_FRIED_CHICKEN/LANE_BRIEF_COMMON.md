@@ -13,7 +13,7 @@ Gates:
 Rules:
 1. Write FROZEN_Axx.md (route, the paper's equations as implemented and where they came from, knobs, gates, tolerances) BEFORE computing any number. Commit nothing; the parent session commits.
 2. Script scripts/recipeNN.py with output .out, run from scripts/. Single-threaded (OMP_NUM_THREADS=1, MKL and OPENBLAS too), under about 1 GB RSS, checkpoint anything over 10 minutes. Machine memory is tight. Do not touch other lanes' files.
-3. Web look-ups (WebFetch/WebSearch reading only) are PROVISIONAL; quote the equation used and its source; flag anything from memory. Do not download PDFs, data or code; if one is needed, stop and report filename, source and size.
+3. Web look-ups (WebFetch/WebSearch reading only) are PROVISIONAL; quote the equation used and its source; flag anything from memory. Do not download PDFs, data or code; if one is needed, stop and report filename, source and size. Never WebFetch a PDF link (arxiv.org/pdf/..., journal .pdf URLs): the tool saves the file. Use arxiv.org/abs/ or ar5iv HTML pages only.
 4. A bug found after a run: keep the wrong output as *_before_fix.out and disclose it.
 5. Verify a fail as hard as a pass. Count every parameter; disclose knobs at bounds; state what is derived in the source and what is imposed.
 6. Append results and deviations to FROZEN_Axx.md, ending with "Rival language; adopts nothing. kappa = 1/2 FITTED; not theory closed."
