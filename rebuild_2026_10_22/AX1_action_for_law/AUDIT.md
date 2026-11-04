@@ -2,6 +2,8 @@
 
 **Scope (owner, 11-04).** The theory is the galaxy law g_N = g²/(g + a0), a0 = κc√(Gρ_DE), κ = ½ FITTED. Footings canonical a0 = 9.3603e-11 and alt 1.1312e-10 m/s², never pooled. The question is which action class can give *this* interpolation in galaxies (G1) and pass the Solar System (G2), lensing = dynamics (G3) and GW speed + health (G4), with G5 (a0 ∝ √(Gρ_DE) from the action) graded but not required. CMB and clusters are OUT of scope and stay open; the cluster gap is a requirement, not solved. The cold sector stays retired; nothing here reinstates it. Not blind. Not theory closed. Nothing here says the data favour the framework.
 
+**Post-audit note (same day).** The owner then asked for every class to end with a verdict and lifted the v3s freeze for testing (11-04). So v3s, listed below as "frozen by owner, not regraded", was regraded in `v3s/` (adopts nothing; the 10-24 verdict stands). Final statuses are in `README.md`. This audit's table is left as committed.
+
 **Lane id.** `ls rebuild_2026_10_22 | grep AX1` was empty. `git log --all | grep AX1` finds one hit, 68ffb00ac5 (QUEUE_ROADMAP_2026-11-01), where "AX1" named an axisymmetric Poisson–Jeans solver that was **dropped, not started**, with no folder. This lane takes the id by the coordinator's assignment; the two are unrelated.
 
 **Sources.** Repo lanes are cited by commit (criteria / result). Literature is **PROVISIONAL**: from web-search snippets on 2026-11-04 (full texts not read) or from memory, labelled per row. No downloads.
