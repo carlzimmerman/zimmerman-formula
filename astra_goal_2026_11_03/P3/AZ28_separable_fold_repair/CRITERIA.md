@@ -1,0 +1,11 @@
+# AZ28: separable fold repair, angular constraints and source response
+
+κ = ½ FITTED; not theory closed
+
+2026-11-04. ls/git log/rg checked (head observed dca7a564b3). Read AZ27 and sol61_push/CANONICAL_CLOCK_RESULTS.md, VARIABLE_CLOCK_MODES_RESULTS.md and SPHERICAL_CLOCK_CONSTRAINTS_RESULTS.md excerpts. Constant lambda>1 and a negative R3² action term already give a k^4 scalar repair in that record; do not claim it as new. New continuation: remove AZ27's mixed-invariant fold, test the entire acceleration-angle Hessian with a specified response, and retain the R3² term in the sourced static equations.
+
+Declare S=B/2 integral N sqrt(gamma)[KijKij−lambda K²+R3−2Lambda+f(g²)−ell² R3²]+S_baryon, g²=a_i a^i. lambda>1, ell²>0, A>0, Lambda>0 remain independent/unselected/FITTED if assigned. f(g²)=4A g−4A² ln(1+g/A), with continuous g=0 limit. No claim that a symmetry selects this separable action. c=1. No new species or cold sector.
+
+Derive momentum dependence and show whether its trace Jacobian can fold as acceleration changes. Derive transverse/longitudinal lapse-gradient Hessian, contract with an arbitrary wave direction, eliminate lapse and shift, and test the principal dispersion, including g=0 with ell²>0. Use locally flat spatial geometry and frozen background coefficients; finite-curvature and global nonlinear stability are separate unproved gates. Recover the inherited zero-gradient k^4 result as a known-answer control, not a new mechanism. Derive the weak-static two-potential equations retaining ell² and the matter lapse source; do not assume Newton calibration across the stabilizer scale. Derive homogeneous vacuum and ask whether the conditions select A/H0 or conditional b=1.
+
+MUTATE: wrong sign of ell² must make the zero-gradient high-k mode unstable; a negative transverse/longitudinal Hessian mutation must violate the interval test. Exact symbolic/rational and analytic interval checks only, no scans or observational grading. Lean finite controls and a rejected false control. Both footings separately graded. PASS subgates only in their stated domains; full nonlinear stability NO VERDICT unless a complete proof is supplied. Physical kappa NOT EVALUABLE without sourced operational matching. Inputs/hashes/logs retained, STATUS and SUMMARY updated. No heavy simulation, download, push or unrelated writes.
