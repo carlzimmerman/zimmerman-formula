@@ -7,9 +7,11 @@ Release: 2026-11-28 18:25:24 UTC (13:25:24 US Eastern). MOUS uid://A001/X3845/X3
 | file | bytes | status |
 |---|---|---|
 | `member.uid___A001_X3845_X3a.Pointing-F_sci.spw31.cube.I.pbcor.fits` | 7,018,934,400 | APPROVED |
-| `member.uid___A001_X3845_X3a.Pointing-F_sci.spw25_27_29_31.cont.I.pbcor.fits` | 14,777,280 | AWAITING OWNER |
+| `member.uid___A001_X3845_X3a.Pointing-F_sci.spw25_27_29_31.cont.I.pbcor.fits` | 14,777,280 | APPROVED |
 
-The continuum image wasn't named in the owner's yes. The frozen harness (`campaign_fresh_gravity/CFG942_alma_scoring_readiness/cfg942_gs4.py --cube ... --cont ...`) needs it, so it is listed here for its own yes. `fn2_gs4_release_day.sh` downloads nothing until both rows read APPROVED.
+The continuum image wasn't named in the owner's first yes. The frozen harness (`campaign_fresh_gravity/CFG942_alma_scoring_readiness/cfg942_gs4.py --cube ... --cont ...`) needs it, so it was asked separately; the owner approved it later on 2026-11-04 ("GS4 continuum, 14.8 MB"). `fn2_gs4_release_day.sh` downloads nothing until both rows read APPROVED.
+
+**Trigger:** the owner chose to trigger this run, not schedule it. After 13:25 US Eastern on 2026-11-28, a session runs `bash finish_2026_11_04/FN2_dated_tests/fn2_gs4_release_day.sh --run`, then records the result.
 
 ## Known limit, from FN2 (`README.md`, part B)
 The frozen MUTATE cannot run on this window: +2000 km/s and the clarified +1000 fallback both lie wholly outside spw31, so the harness exits 2 and the run has no MUTATE control (CFG809 addendum A section 2). A substitute control would need a dated owner addendum before 2026-11-28 18:25:24 UTC. Every n = 1 against n = 2 pair is at or below 0.51 sigma, so this release can't separate them.
