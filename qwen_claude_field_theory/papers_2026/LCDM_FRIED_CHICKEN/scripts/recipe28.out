@@ -1,0 +1,123 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+A26 recipe28; base OL 0.685, c sqrt(G rho_DE0) 1.8727e-10, A0 9.3625e-11
+ env C1 f 0.5: h 0.5465, Om0 0.4791, sigma8 0.7670, rho_DE/rho_DE0 0.5000
+ env C1 f 0.71: h 0.6034, Om0 0.3931, sigma8 0.7890, rho_DE/rho_DE0 0.7100
+ env C1 f 1.0: h 0.6740, Om0 0.3150, sigma8 0.8110, rho_DE/rho_DE0 1.0000
+ env C1 f 1.41: h 0.7628, Om0 0.2459, sigma8 0.8321, rho_DE/rho_DE0 1.4100
+ env C1 f 2.0: h 0.8749, Om0 0.1869, sigma8 0.8508, rho_DE/rho_DE0 2.0000
+ env C2 f 0.5: h 0.4766, Om0 0.3150, sigma8 0.8110, rho_DE/rho_DE0 0.5000
+ env C2 f 0.71: h 0.5679, Om0 0.3150, sigma8 0.8110, rho_DE/rho_DE0 0.7100
+ env C2 f 1.0: h 0.6740, Om0 0.3150, sigma8 0.8110, rho_DE/rho_DE0 1.0000
+ env C2 f 1.41: h 0.8003, Om0 0.3150, sigma8 0.8110, rho_DE/rho_DE0 1.4100
+ env C2 f 2.0: h 0.9532, Om0 0.3150, sigma8 0.8110, rho_DE/rho_DE0 2.0000
+control: max |log galx - log gal3| 0.00e+00 dex; max |log m200z(z=0) - log m200k| 0.00e+00; C1 f=1 c-grid vs base max rel 0.0e+00
+
+== R11b at K11B, base (control) (14 knobs frozen)
+ rms to law 0.0275 dex [FAIL E1]; p95 per-galaxy 0.0624 [FAIL E2]; worst bin 0.0195 [PASS E3]
+ bins -12.0:+0.020 -11.5:-0.003 -11.0:-0.008 -10.5:-0.005 -10.0:+0.004 -9.5:+0.014 -9.0:+0.016
+ a fit 9.306e-11; rms to observed 0.1933 dex, mean +0.0015
+G1: a_fit 9.3063e-11 (0.9940 A0), kappa_eff 0.4969 [PASS G1] (by construction: tuned to the law at A0); shape S_base 0.0275 dex
+
+(a) G2: slope d ln a / d ln rho_DE over f = 0.5, 0.71, 1, 1.41, 2
+ C1-A: a/a_base 0.8595 0.9221 1.0000 1.0980 1.2219; slope +0.2539 [FAIL G2]; pairwise +0.200 +0.237 +0.272 +0.306; S max 0.0294
+ C1-B: a/a_base 0.8868 0.9388 1.0000 1.0729 1.1472; slope +0.1874 [FAIL G2]; pairwise +0.162 +0.185 +0.205 +0.192; S max 0.0290; AM clipped 0
+ C2-A: a/a_base 0.5554 0.7448 1.0000 1.3527 1.8536; slope +0.8694 [FAIL G2]; pairwise +0.837 +0.860 +0.879 +0.901; S max 0.0387
+ C2-B: a/a_base 0.3679 0.6075 1.0000 1.6531 2.7501; slope +1.4526 [FAIL G2]; pairwise +1.430 +1.455 +1.463 +1.456; S max 0.0586; AM clipped 0
+
+(b) G3: a(z)/a(0), base cosmology, same SPARC baryons
+ Bz: z 1.0: 1.9324, z 1.5: 2.6660, z 2.33: 4.5549 [FAIL G3]; S 0.0511 0.0644 0.0842; H(z)/H0 1.790 2.368 3.510
+ Az: z 1.0: 1.4811, z 1.5: 1.9278, z 2.33: 3.0235 [FAIL G3]; S 0.0325 0.0375 0.0467; H(z)/H0 1.790 2.368 3.510
+
+G4: per-galaxy a_i on R11b curves: log M200 11-12.5 (120 galaxies) rms 0.0472 dex, median 0.988 A0 [PASS G4]; all 171 rms 0.0531 dex, median 0.984 A0, p5-p95 0.837-1.188 A0; a_i at fit bound 0
+G5: halo gravity at the measured radii, operative by definition [PASS G5]
+
+(c1) single exponent, one knob family x one variable (fit on C1-A cosmology rows + Bz redshift rows)
+ SHMR-rhoDE: SHMR~rhoDE^-0.835 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ SHMR-H: SHMR~H^+2.493 | slope +0.0020 [F] a(z)/a(0) 1.224 1.269 1.282 [F] Smax 0.0459 [F] J 111.25
+ FB-rhoDE: FB~rhoDE^-0.517 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ FB-H: FB~H^+1.035 | slope +0.0831 [F] a(z)/a(0) 1.190 1.155 1.096 [F] Smax 0.1394 [F] J 74.02
+ CORE-rhoDE: CORE~rhoDE^-1.116 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ CORE-H: CORE~H^+2.817 | slope +0.0402 [F] a(z)/a(0) 1.150 1.169 1.259 [F] Smax 0.0939 [F] J 91.87
+ CONTR-rhoDE: CONTR~rhoDE^+0.871 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ CONTR-H: CONTR~H^-1.468 | slope +0.1045 [F] a(z)/a(0) 1.562 2.104 3.640 [F] Smax 0.1059 [F] J 245.27
+ CONC-rhoDE: CONC~rhoDE^+0.248 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ CONC-H: CONC~H^-0.837 | slope -0.0262 [F] a(z)/a(0) 1.237 1.424 1.928 [F] Smax 0.0904 [F] J 156.14
+
+(c2) pairs from distinct families (time so far 19 s)
+ SHMR-rhoDE + FB-rhoDE: SHMR~rhoDE^+0.501, FB~rhoDE^-0.806 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ SHMR-rhoDE + FB-H: SHMR~rhoDE^-1.559, FB~H^+1.146 | slope +0.4999 [P] a(z)/a(0) 1.117 1.034 0.932 [F] Smax 0.1486 [F] J 1.39
+ SHMR-rhoDE + CORE-rhoDE: SHMR~rhoDE^-1.573, CORE~rhoDE^+0.916 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ SHMR-rhoDE + CORE-H: SHMR~rhoDE^-1.804, CORE~H^+3.329 | slope +0.5001 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ SHMR-rhoDE + CONTR-rhoDE: SHMR~rhoDE^-0.341, CONTR~rhoDE^+0.462 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ SHMR-rhoDE + CONTR-H: SHMR~rhoDE^-2.019, CONTR~H^-5.000 | slope +0.4997 [P] a(z)/a(0) 1.342 1.909 3.478 [F] Smax 0.1107 [F] J 155.24 AT BOUND ['CONTR']
+ SHMR-rhoDE + CONC-rhoDE: SHMR~rhoDE^+0.231, CONC~rhoDE^+0.318 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ SHMR-rhoDE + CONC-H: SHMR~rhoDE^-2.649, CONC~H^-1.509 | slope +0.5000 [P] a(z)/a(0) 0.901 0.935 1.128 [P] Smax 0.0934 [F] J 2.26
+ SHMR-H + FB-rhoDE: SHMR~H^+3.003, FB~rhoDE^-1.093 | slope +0.5000 [P] a(z)/a(0) 1.106 1.068 0.936 [F] Smax 0.0565 [F] J 1.42
+ SHMR-H + FB-H: SHMR~H^-1.445, FB~H^+1.224 | slope +0.1893 [F] a(z)/a(0) 1.168 1.049 1.313 [F] Smax 0.2157 [F] J 46.18
+ SHMR-H + CORE-rhoDE: SHMR~H^+3.003, CORE~rhoDE^-2.496 | slope +0.4999 [P] a(z)/a(0) 1.106 1.068 0.936 [F] Smax 0.0515 [F] J 1.42
+ SHMR-H + CORE-H: SHMR~H^+3.370, CORE~H^-5.000 | slope +0.2775 [F] a(z)/a(0) 1.426 1.266 0.905 [F] Smax 0.0723 [F] J 34.27 AT BOUND ['CORE']
+ SHMR-H + CONTR-rhoDE: SHMR~H^+2.996, CONTR~rhoDE^+5.000 | slope +0.4937 [P] a(z)/a(0) 1.107 1.071 0.940 [F] Smax 0.0541 [F] J 1.44 AT BOUND ['CONTR']
+ SHMR-H + CONTR-H: SHMR~H^+3.130, CONTR~H^+5.000 | slope +0.3023 [F] a(z)/a(0) 1.272 1.203 0.997 [F] Smax 0.0709 [F] J 22.57 AT BOUND ['CONTR']
+ SHMR-H + CONC-rhoDE: SHMR~H^+3.004, CONC~rhoDE^+0.559 | slope +0.4999 [P] a(z)/a(0) 1.106 1.068 0.935 [F] Smax 0.0515 [F] J 1.42
+ SHMR-H + CONC-H: SHMR~H^+4.248, CONC~H^+1.346 | slope +0.2723 [F] a(z)/a(0) 1.623 1.512 0.829 [F] Smax 0.1455 [F] J 53.94
+ FB-rhoDE + CORE-rhoDE: FB~rhoDE^-0.683, CORE~rhoDE^+0.345 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ FB-rhoDE + CORE-H: FB~rhoDE^-1.054, CORE~H^+3.328 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.987 [F] Smax 0.0977 [F] J 0.13
+ FB-rhoDE + CONTR-rhoDE: FB~rhoDE^-0.257, CONTR~rhoDE^+0.393 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ FB-rhoDE + CONTR-H: FB~rhoDE^-1.233, CONTR~H^-5.000 | slope +0.4994 [P] a(z)/a(0) 1.342 1.909 3.478 [F] Smax 0.1107 [F] J 155.24 AT BOUND ['CONTR']
+ FB-rhoDE + CONC-rhoDE: FB~rhoDE^+0.066, CONC~rhoDE^+0.280 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ FB-rhoDE + CONC-H: FB~rhoDE^-1.486, CONC~H^-1.509 | slope +0.5002 [P] a(z)/a(0) 0.901 0.934 1.128 [P] Smax 0.0934 [F] J 2.26
+ FB-H + CORE-rhoDE: FB~H^+1.146, CORE~rhoDE^-1.956 | slope +0.5000 [P] a(z)/a(0) 1.117 1.034 0.932 [F] Smax 0.1486 [F] J 1.39
+ FB-H + CORE-H: FB~H^+0.795, CORE~H^+0.456 | slope +0.0875 [F] a(z)/a(0) 1.207 1.170 1.054 [F] Smax 0.1154 [F] J 72.80
+ FB-H + CONTR-rhoDE: FB~H^+1.146, CONTR~rhoDE^+2.154 | slope +0.5000 [P] a(z)/a(0) 1.117 1.034 0.932 [F] Smax 0.1486 [F] J 1.39
+ FB-H + CONTR-H: FB~H^+1.186, CONTR~H^+5.000 | slope +0.4302 [F] a(z)/a(0) 1.207 1.067 0.918 [F] Smax 0.1484 [F] J 5.50 AT BOUND ['CONTR']
+ FB-H + CONC-rhoDE: FB~H^+1.146, CONC~rhoDE^+0.441 | slope +0.4995 [P] a(z)/a(0) 1.117 1.034 0.932 [F] Smax 0.1486 [F] J 1.39
+ FB-H + CONC-H: FB~H^+1.914, CONC~H^+0.996 | slope +0.2630 [F] a(z)/a(0) 1.187 1.038 1.311 [F] Smax 0.2334 [F] J 30.32
+ CORE-rhoDE + CONTR-rhoDE: CORE~rhoDE^-0.357, CONTR~rhoDE^+0.549 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ CORE-rhoDE + CONTR-H: CORE~rhoDE^-2.882, CONTR~H^-5.000 | slope +0.4999 [P] a(z)/a(0) 1.342 1.909 3.478 [F] Smax 0.1107 [F] J 155.24 AT BOUND ['CONTR']
+ CORE-rhoDE + CONC-rhoDE: CORE~rhoDE^+0.048, CONC~rhoDE^+0.259 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ CORE-rhoDE + CONC-H: CORE~rhoDE^-3.551, CONC~H^-1.509 | slope +0.5000 [P] a(z)/a(0) 0.901 0.934 1.128 [P] Smax 0.0934 [F] J 2.26
+ CORE-H + CONTR-rhoDE: CORE~H^+3.328, CONTR~rhoDE^+2.979 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ CORE-H + CONTR-H: CORE~H^+3.430, CONTR~H^+5.000 | slope +0.3691 [F] a(z)/a(0) 1.146 1.065 1.011 [F] Smax 0.1058 [F] J 8.55 AT BOUND ['CONTR']
+ CORE-H + CONC-rhoDE: CORE~H^+3.328, CONC~rhoDE^+0.503 | slope +0.4999 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ CORE-H + CONC-H: CORE~H^+5.000, CONC~H^+0.837 | slope +0.1564 [F] a(z)/a(0) 1.215 1.213 1.252 [F] Smax 0.1154 [F] J 56.71 AT BOUND ['CORE']
+ CONTR-rhoDE + CONC-rhoDE: CONTR~rhoDE^+0.216, CONC~rhoDE^+0.174 | slope +0.5000 [P] a(z)/a(0) 1.932 2.666 4.555 [F] Smax 0.0842 [F] J 278.72
+ CONTR-rhoDE + CONC-H: CONTR~rhoDE^+5.000, CONC~H^-1.268 | slope +0.3550 [F] a(z)/a(0) 1.006 1.079 1.349 [F] Smax 0.0926 [F] J 15.60 AT BOUND ['CONTR']
+ CONTR-H + CONC-rhoDE: CONTR~H^-5.000, CONC~rhoDE^+0.592 | slope +0.4997 [P] a(z)/a(0) 1.342 1.909 3.478 [F] Smax 0.1107 [F] J 155.24 AT BOUND ['CONTR']
+ CONTR-H + CONC-H: CONTR~H^+5.000, CONC~H^-1.241 | slope +0.1949 [F] a(z)/a(0) 1.192 1.278 1.591 [F] Smax 0.0997 [F] J 60.39 AT BOUND ['CONTR']
+
+(c3) triples: five best pairs + one more distinct family (time so far 609 s)
+ CORE-H + CONTR-rhoDE + SHMR-rhoDE: CORE~H^+3.328, CONTR~rhoDE^+3.016, SHMR~rhoDE^+0.007 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ CORE-H + CONTR-rhoDE + SHMR-H: CORE~H^+3.338, CONTR~rhoDE^+3.627, SHMR~H^+0.290 | slope +0.5000 [P] a(z)/a(0) 1.015 0.982 1.005 [P] Smax 0.0921 [F] J 0.04
+ CORE-H + CONTR-rhoDE + FB-rhoDE: CORE~H^+3.328, CONTR~rhoDE^+2.989, FB~rhoDE^+0.001 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ CORE-H + CONTR-rhoDE + FB-H: CORE~H^+3.674, CONTR~rhoDE^+3.254, FB~H^-0.066 | slope +0.5000 [P] a(z)/a(0) 1.017 0.982 1.005 [P] Smax 0.1016 [F] J 0.05
+ CORE-H + CONTR-rhoDE + CONC-rhoDE: CORE~H^+3.328, CONTR~rhoDE^+2.975, CONC~rhoDE^+0.000 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ CORE-H + CONTR-rhoDE + CONC-H: CORE~H^+2.554, CONTR~rhoDE^+4.691, CONC~H^-0.328 | slope +0.5000 [P] a(z)/a(0) 1.012 0.984 1.006 [P] Smax 0.0939 [F] J 0.03
+ FB-rhoDE + CORE-H + SHMR-rhoDE: FB~rhoDE^-1.058, CORE~H^+3.328, SHMR~rhoDE^+0.008 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ FB-rhoDE + CORE-H + SHMR-H: FB~rhoDE^-1.119, CORE~H^+3.338, SHMR~H^+0.290 | slope +0.5000 [P] a(z)/a(0) 1.015 0.982 1.006 [P] Smax 0.0921 [F] J 0.04
+ FB-rhoDE + CORE-H + CONTR-rhoDE: FB~rhoDE^-1.041, CORE~H^+3.328, CONTR~rhoDE^+0.016 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ FB-rhoDE + CORE-H + CONTR-H: FB~rhoDE^-1.111, CORE~H^+3.107, CONTR~H^-0.393 | slope +0.5000 [P] a(z)/a(0) 1.014 0.983 1.006 [P] Smax 0.1011 [F] J 0.04
+ FB-rhoDE + CORE-H + CONC-rhoDE: FB~rhoDE^-1.035, CORE~H^+3.328, CONC~rhoDE^+0.009 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ FB-rhoDE + CORE-H + CONC-H: FB~rhoDE^-1.157, CORE~H^+2.554, CONC~H^-0.328 | slope +0.5000 [P] a(z)/a(0) 1.012 0.984 1.006 [P] Smax 0.0939 [F] J 0.03
+ SHMR-rhoDE + CORE-H + FB-rhoDE: SHMR~rhoDE^-1.782, CORE~H^+3.328, FB~rhoDE^-0.010 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ SHMR-rhoDE + CORE-H + FB-H: SHMR~rhoDE^-1.864, CORE~H^+3.673, FB~H^-0.066 | slope +0.5000 [P] a(z)/a(0) 1.017 0.982 1.005 [P] Smax 0.1016 [F] J 0.05
+ SHMR-rhoDE + CORE-H + CONTR-rhoDE: SHMR~rhoDE^-1.790, CORE~H^+3.328, CONTR~rhoDE^+0.010 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ SHMR-rhoDE + CORE-H + CONTR-H: SHMR~rhoDE^-1.890, CORE~H^+3.107, CONTR~H^-0.394 | slope +0.5000 [P] a(z)/a(0) 1.014 0.983 1.006 [P] Smax 0.1011 [F] J 0.04
+ SHMR-rhoDE + CORE-H + CONC-rhoDE: SHMR~rhoDE^-1.789, CORE~H^+3.328, CONC~rhoDE^+0.004 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ SHMR-rhoDE + CORE-H + CONC-H: SHMR~rhoDE^-1.978, CORE~H^+2.555, CONC~H^-0.328 | slope +0.5000 [P] a(z)/a(0) 1.012 0.984 1.006 [P] Smax 0.0939 [F] J 0.03
+ CORE-H + CONC-rhoDE + SHMR-rhoDE: CORE~H^+3.328, CONC~rhoDE^+0.512, SHMR~rhoDE^+0.030 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ CORE-H + CONC-rhoDE + SHMR-H: CORE~H^+3.338, CONC~rhoDE^+0.533, SHMR~H^+0.290 | slope +0.5000 [P] a(z)/a(0) 1.015 0.982 1.006 [P] Smax 0.0921 [F] J 0.04
+ CORE-H + CONC-rhoDE + FB-rhoDE: CORE~H^+3.328, CONC~rhoDE^+0.520, FB~rhoDE^+0.032 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ CORE-H + CONC-rhoDE + FB-H: CORE~H^+3.674, CONC~rhoDE^+0.518, FB~H^-0.066 | slope +0.5000 [P] a(z)/a(0) 1.017 0.982 1.005 [P] Smax 0.1016 [F] J 0.05
+ CORE-H + CONC-rhoDE + CONTR-rhoDE: CORE~H^+3.328, CONC~rhoDE^+0.491, CONTR~rhoDE^+0.034 | slope +0.5000 [P] a(z)/a(0) 1.039 0.996 0.986 [F] Smax 0.0977 [F] J 0.13
+ CORE-H + CONC-rhoDE + CONTR-H: CORE~H^+3.107, CONC~rhoDE^+0.529, CONTR~H^-0.394 | slope +0.5000 [P] a(z)/a(0) 1.014 0.983 1.006 [P] Smax 0.1011 [F] J 0.04
+ FB-H + CONTR-rhoDE + SHMR-rhoDE: FB~H^+1.146, CONTR~rhoDE^+2.150, SHMR~rhoDE^-0.001 | slope +0.5000 [P] a(z)/a(0) 1.117 1.034 0.932 [F] Smax 0.1486 [F] J 1.39
+ FB-H + CONTR-rhoDE + SHMR-H: FB~H^+0.889, CONTR~rhoDE^+5.000, SHMR~H^+1.684 | slope +0.4942 [P] a(z)/a(0) 1.049 1.018 0.976 [F] Smax 0.0544 [F] J 0.25 AT BOUND ['CONTR']
+ FB-H + CONTR-rhoDE + CORE-rhoDE: FB~H^+1.146, CONTR~rhoDE^+2.177, CORE~rhoDE^+0.009 | slope +0.5000 [P] a(z)/a(0) 1.117 1.034 0.932 [F] Smax 0.1486 [F] J 1.39
+ FB-H + CONTR-rhoDE + CORE-H: FB~H^+1.461, CONTR~rhoDE^+2.441, CORE~H^-0.378 | slope +0.5000 [P] a(z)/a(0) 1.048 0.964 1.007 [F] Smax 0.1731 [F] J 0.27
+ FB-H + CONTR-rhoDE + CONC-rhoDE: FB~H^+1.146, CONTR~rhoDE^+2.186, CONC~rhoDE^-0.003 | slope +0.5000 [P] a(z)/a(0) 1.117 1.034 0.932 [F] Smax 0.1486 [F] J 1.39
+ FB-H + CONTR-rhoDE + CONC-H: FB~H^+0.774, CONTR~rhoDE^+4.999, CONC~H^-0.537 | slope +0.4947 [P] a(z)/a(0) 1.034 1.004 0.990 [F] Smax 0.1146 [F] J 0.10 AT BOUND ['CONTR']
+
+(c) NO SOLUTION passes G2, G3 and S within the frozen search; best J 0.03: [('CORE', 'H'), ('CONTR', 'rhoDE'), ('CONC', 'H')] [2.554, 4.691, -0.328]
+
+runtime 1256 s
+Rival language; adopts nothing. Passing shows freedom, not evidence. kappa = 1/2 FITTED; not theory closed.
