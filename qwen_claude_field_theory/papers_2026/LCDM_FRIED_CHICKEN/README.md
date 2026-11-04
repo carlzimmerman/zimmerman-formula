@@ -48,3 +48,16 @@ Bibliography entries are from memory and were not checked against the journals. 
 - A26 (`recipe28`), the 14-knob recipe in other cosmologies and epochs: G2 slope +0.19 to +1.45 (target 0.5), a(z 2.33)/a(0) 3.0 to 4.6. Faking the tie needs a rho_DE hand term (H alone reaches +0.43) and costs the law's shape at high z.
 - A27 (`recipe29`), every acceleration built from LCDM's constants: 104 of 199,584 expressions pass G1 to G4, the number chance gives (63 distinct values against 62.1). All fail G5: none reaches galaxy radii.
 - A28 (`recipe30`), per-galaxy fits to observed curves with nuisance priors: cored halos fit better than the tied law even on BIC (17805 against 19744, beat it in 154 of 171), but their implied relation sits +0.06 to +0.11 dex off the tied a0 with 0.12 to 0.14 dex scatter. A better fit is not a derivation and not proof for either side.
+
+**Not in any deposit: A29 to A40 and COVERAGE_MAP.md.** Dynamic dark energy, screened fields, the literature that explains MOND inside LCDM, and the coverage map's ranked gaps. New gate: a(z) must track sqrt(rho_DE(z)) within 0.05 dex at z 1, 1.5, 2.33. None reaches both the law and the tie; every rho_DE link is a hand term or a Lambda coincidence that fails at galaxy radii.
+- A29 (`recipe31`), LCDM halos in evolving DE: halo scales follow H(z) and rho_m; pooled slope -0.12 to +0.03; 315 w0-wa backgrounds, none passes.
+- A30 (`recipe32`), screened coupled DE: a 3-knob k-mouflage curve fit matches the law's shape (0.0086, a power law in disguise) but fails Cassini at 62 a0 and has no rho_DE dependence; f(R), symmetron, coupled quintessence fail.
+- A31 (`recipe33`), time-varying interaction, running vacuum, Chaplygin, logotropic: no joint G1 + tracking point (growth bug fixed and disclosed, verdict unchanged).
+- A32 (`recipe34`), joint knob + DE tune: tracking only through fitted H exponents with no named process, which wreck high-z shapes and fail on held-out galaxies.
+- A34 (`recipe35`), the LCDM papers: Kaplinghat & Turner 2002's cooling scale, rescaled by one hand factor (0.398) inside the law's own formula, is EXACT on today's SPARC curves (0.0152, holdout 0.0156): the sharpest rival line on record, with the shape borrowed and no rho_DE tie (follows rho_m, 1.42x by z 2.33).
+- A35 (`recipe36`), every place rho_DE enters LCDM structure, and the c-barrier: halo accelerations do not depend on c; c/V200 = 2102 at 1e12 Msun is bridged by overdensity and concentration factors with no c.
+- A36 (`recipe37`), Chavanis logotropic fluid: the slope 0.5 is native, but its halo pull caps at 0.30 a0, kappa 0.10 to 0.86, flat in z.
+- A37 (`recipe38`), de Sitter / quantised inertia: one shape, 0.0189 with a free constant but fails E3, kappa 0.65.
+- A38 (`recipe39`), Foot dissipative DM and Famaey-Khoury-Penco: 0.0715 and 0.155 globally, no rho_DE.
+- A39 (`recipe40`), clustering DE and DE-DM drag: 1e-5 to 1e-1 a0 inside halos, no tracking.
+- A40 (`recipe41`), assembly-bias scatter and microphysical constants: scatter only marginally, a0 +0.21 to +0.26 dex high; constants flat in rho_DE, lattice hits within chance.
