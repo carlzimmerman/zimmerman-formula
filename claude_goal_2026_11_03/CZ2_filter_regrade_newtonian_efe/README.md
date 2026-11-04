@@ -30,3 +30,6 @@ The labels match the expectation written in the criteria for LOC and HALF (CZ1 h
 
 ## Checks
 K1: with the KT field the code reproduces KT27's LOC (Cassini 0.0005 / 0.0021, dwarfs 14) and KT28's TID (0.11 / 0.209, dwarfs 15, Fornax 9.0 / 9.4). K2: with the Newtonian field it reproduces CZ1 (LOC 0.003948 / 0.02147, HALF 1.179 / 2.97, dwarfs 18 / 17, Fornax 11.94 / 12.52). K3: carried MW and SPARC values match the READMEs. 0 failed checks.
+
+## MUTATE (ν ≡ 1, Newton), `cz2_MUTATE.out`
+It exits 1, as designed. Cassini Q2 is 0 in every arm. The dwarfs fall to 3/24 in every arm and variant (Fornax 4.84 km/s), so every label fails at T2, which matches CZ1's MUTATE. T0 and T3 are read from the committed KT JSON and aren't mutated here; their own MUTATE twins live in KT25, KT27 and KT28 (SPARC rms 0.573). Checks are forced to pass under MUTATE, so the bite shows in the counts and the exit code.
