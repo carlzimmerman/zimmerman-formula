@@ -28,6 +28,7 @@ CATALOG = "UDF_HUDF_Catalogs_FULL.tar.gz"
 OUTDIR = os.path.abspath(os.path.join(C.REPO, "..", "_external_data", "fn3_musedark_cutouts"))
 NCH = 3681          # MUSE DR2 spectral axis, 4750-9350 A at 1.25 A
 BOX, NPL = 25, 81
+F_L1, F_L2 = 3726.2, 3728.9          # the survey's [OII] lines, as fn3_cube
 
 
 def head(url):
@@ -98,38 +99,66 @@ def main():
         sys.exit(2)
     from astropy.io import fits
     from astropy.wcs import WCS
+    from fn3_cutout import read_box, read_layout
     os.makedirs(OUTDIR, exist_ok=True)
     catp = os.path.join(OUTDIR, CATALOG)
     if not os.path.exists(catp):
         n, _ = head(BASE + CATALOG)
         open(catp, "wb").write(get_range(BASE + CATALOG, 0, n - 1))
     tf = tarfile.open(catp)
-    main_cat = [m for m in tf.getmembers() if m.name.lower().endswith(".fits") and "main" in m.name.lower()]
-    if not main_cat:
-        print("catalogue members:", [m.name for m in tf.getmembers()][:20])
+    members = [m for m in tf.getmembers() if m.name.lower().endswith(".fits")]
+    cats = []
+    for m in members:
+        try:
+            t = fits.open(io.BytesIO(tf.extractfile(m).read()))[1].data
+            cols = {c.upper(): c for c in t.columns.names}
+            if all(k in cols for k in ("ID", "RA", "DEC")) and any(k in cols for k in ("Z", "Z_MUSE", "REDSHIFT")):
+                cats.append((m.name, t, cols))
+        except Exception:
+            continue
+    if not cats:
+        print("no catalogue with ID, RA, DEC and Z among", [m.name for m in members][:20])
         sys.exit(3)
-    cat = fits.open(io.BytesIO(tf.extractfile(main_cat[0]).read()))[1].data
+    name, cat, cols = cats[0]
+    zc = next(cols[k] for k in ("Z", "Z_MUSE", "REDSHIFT") if k in cols)
     phot, _ = C.load_catalogue()
-    hdrs = {}
+    layouts = {}
+    readers = {}
     for f, fn in CUBES.items():
         url = BASE + fn
-        blob = get_range(url, 0, 2880 * 40 - 1)
-        h0 = fits.Header.fromstring(blob[: blob.find(b"END" + b" " * 77) + 80].decode("ascii", "replace"))
-        n0 = (len(h0.tostring()) + 2879) // 2880 * 2880
-        hdrs[f] = dict(url=url, blob=blob, h0len=n0)
+        readers[f] = (lambda u: (lambda off, n: get_range(u, off, off + n - 1)))(url)
+        layouts[f] = read_layout(readers[f])
     man = {}
     for gid in sample:
         f = field_of(gid)
-        # match by ID and redshift; stop on any doubt
-        sel = np.where(cat["ID"] == gid)[0]
-        if len(sel) != 1 or abs(float(cat["Z"][sel[0]]) - phot[gid]["z"]) > 0.002:
-            man[gid] = dict(status="NO MATCH")
+        sel = np.where(np.asarray(cat[cols["ID"]]) == gid)[0]
+        zs = [float(cat[zc][i]) for i in sel]
+        good = [i for i, zz in zip(sel, zs) if abs(zz - phot[gid]["z"]) <= 0.002]
+        if len(good) != 1:
+            man[gid] = dict(status="NO MATCH", field=f, candidates=len(sel))
             continue
-        ra, dec = float(cat["RA"][sel[0]]), float(cat["DEC"][sel[0]])
-        man[gid] = dict(status="PLANNED", field=f, ra=ra, dec=dec)
-    json.dump(man, open(os.path.join(C.HERE, "fn3_fetch_manifest_planned.json"), "w"), indent=1)
-    print("catalogue matched; extension offsets and cutout reads are implemented at Stage 1 run time after the header check")
-
+        i = good[0]
+        ra, dec = float(cat[cols["RA"]][i]), float(cat[cols["DEC"]][i])
+        h = layouts[f]["ext"]["DATA"]["header"]
+        w = WCS(h).celestial
+        x, y = w.world_to_pixel_values(ra, dec)
+        cd3 = float(h.get("CD3_3", h.get("CDELT3")))
+        jc = ((F_L1 + F_L2) / 2 * (1 + phot[gid]["z"]) - float(h["CRVAL3"])) / cd3 + float(h["CRPIX3"]) - 1
+        x0, y0, j0 = int(round(float(x))) - BOX // 2, int(round(float(y))) - BOX // 2, int(round(jc)) - NPL // 2
+        try:
+            box = read_box(readers[f], layouts[f], x0, y0, j0, BOX, NPL)
+        except Exception as e:
+            man[gid] = dict(status=f"READ FAILED: {e}", field=f)
+            continue
+        lam0 = float(h["CRVAL3"]) + (j0 + 1 - float(h["CRPIX3"])) * cd3
+        g = C.load_galaxy(gid)
+        out = os.path.join(OUTDIR, f"ID{gid:04d}.npz")
+        np.savez(out, DATA=box["DATA"], STAT=box["STAT"], lam0=lam0, dlam=cd3,
+                 psf_fwhm=g["psf"]["fwhm"], psf_beta=g["psf"]["beta"], x0=x0, y0=y0, j0=j0, field=f, ra=ra, dec=dec)
+        man[gid] = dict(status="OK", field=f, ra=ra, dec=dec, x0=x0, y0=y0, j0=j0, sha256=hashlib.sha256(open(out, "rb").read()).hexdigest())
+        print(f"ID{gid} {f} OK", flush=True)
+    json.dump(dict(catalogue=name, cutouts=man), open(os.path.join(C.HERE, "fn3_cutouts_manifest.json"), "w"), indent=1)
+    print("cutouts:", sum(1 for v in man.values() if v["status"] == "OK"), "of", len(man))
 
 if __name__ == "__main__":
     main()
