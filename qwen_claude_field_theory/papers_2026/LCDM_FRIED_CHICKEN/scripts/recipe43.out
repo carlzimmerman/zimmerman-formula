@@ -1,0 +1,265 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+c sqrt(G rho_DE) 1.8727e-10 m/s^2, a0 9.3625e-11
+A42 recipe43; sample 171 galaxies; c sqrt(G rho_DE0) 1.8727e-10; A0 9.3625e-11; age today 13.797 Gyr, at z_f 2 3.273 Gyr
+
+######## controls  (0 s, RSS 77 MB)
+C_E engine with no effect vs lib (1 - f_b) NFW: max 9.78e-05 dex [PASS <= 1e-3]; kick engine at F = 0 vs DR engine: max 4.92e-11 dex
+C_Y Yukawa lambda 1e6 kpc vs beta G D(<r)/r^2 (self half-shell): max rel 5.14e-08 [PASS <= 1e-3]
+   lambda 1e-3 kpc (screened) max |g_Y|/(G D/r^2) 3.09e-03
+
+== C_S control: core solver with recipe21 sv, constant 1 cm^2/g (A19 C0 0.1200) 
+ rms to law 0.1200 dex [FAIL E1]; p95 per-galaxy 0.2102 [FAIL E2]; worst bin 0.0687 [FAIL E3]
+ bins -12.0:+0.069 -11.5:+0.053 -11.0:+0.041 -10.5:+0.005 -10.0:+0.026 -9.5:+0.057 -9.0:+0.066
+ a fit 1.193e-10; rms to observed 0.2124 dex, mean +0.0410
+C_S PASS: |0.1200 - 0.1200| <= 0.002
+
+== BASE CDM / P0 PBH-as-CDM (NFW, SHMR, Diemer19, no contraction, 0 knobs) 
+ rms to law 0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1612 [FAIL E3]
+ bins -12.0:+0.161 -11.5:+0.098 -11.0:+0.093 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.576e-10; rms to observed 0.2424 dex, mean +0.0790
+ BASE G4 rms 0.130 over 79 hosts
+
+######## 0-knob literature-edge rows  (2 s, RSS 114 MB)
+
+== DR_tau160 (all DM -> DR, tau 160 Gyr, CMB edge from memory) 
+ rms to law 0.1172 dex [FAIL E1]; p95 per-galaxy 0.2391 [FAIL E2]; worst bin 0.1072 [FAIL E3]
+ bins -12.0:+0.107 -11.5:+0.052 -11.0:+0.055 -10.5:+0.026 -10.0:+0.026 -9.5:+0.008 -9.0:+0.002
+ a fit 1.275e-10; rms to observed 0.2284 dex, mean +0.0465
+ G4 rms 0.121 over 79 hosts
+
+== K_tau30_vk50 (Peter-Benson edge, tau 30 Gyr, v_k 50 km/s) 
+ rms to law 0.1280 dex [FAIL E1]; p95 per-galaxy 0.2169 [FAIL E2]; worst bin 0.0300 [FAIL E3]
+ bins -12.0:-0.009 -11.5:-0.023 -11.0:-0.000 -10.5:-0.030 -10.0:-0.011 -9.5:-0.016 -9.0:-0.015
+ a fit 8.549e-11; rms to observed 0.2201 dex, mean -0.0142
+ G4 rms 0.214 over 79 hosts
+
+== C0 ETHOS-4 as published (Table 1 sigma_T(v), log M_hm 8 from memory) 
+ rms to law 0.1380 dex [FAIL E1]; p95 per-galaxy 0.2798 [FAIL E2]; worst bin 0.1525 [FAIL E3]
+ bins -12.0:+0.153 -11.5:+0.094 -11.0:+0.091 -10.5:+0.048 -10.0:+0.039 -9.5:+0.013 -9.0:+0.004
+ a fit 1.545e-10; rms to observed 0.2380 dex, mean +0.0759
+ G4 rms 0.130 over 79 hosts
+
+== P_m10 PBH 10 Msun (near Brandt limit) 
+ rms to law 0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1613 [FAIL E3]
+ bins -12.0:+0.161 -11.5:+0.098 -11.0:+0.094 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.576e-10; rms to observed 0.2424 dex, mean +0.0790
+ G4 rms 0.130 over 79 hosts
+ DR at tau 160 Gyr: F(z=0) = 0.0637; K at tau 30: F = 0.2959
+
+######## row DR1  (5 s, RSS 116 MB)
+
+== DR1 tuned on all (1 knobs [1.717]; at bound [])
+ rms to law 0.0941 dex [FAIL E1]; p95 per-galaxy 0.1641 [FAIL E2]; worst bin 0.0359 [FAIL E3]
+ bins -12.0:+0.000 -11.5:-0.036 -11.0:-0.018 -10.5:-0.018 -10.0:+0.002 -9.5:-0.001 -9.0:-0.001
+ a fit 8.336e-11; rms to observed 0.2166 dex, mean -0.0152
+ DR1: G4 rms 0.105 over 79 hosts [FAIL]; holdout knobs on GS[::2] [1.666] (at bound []), unseen GS[1::2] E1 0.0943 [FAIL]
+ DR1: pooled a_fit 0.8904 A0, kappa_eff 0.4451 [FAIL G1 (tuned)]
+ DR1: tau 52.1 Gyr, F(z=0) 0.1830; native c/tau 1.948e+00 A0 (kappa_eff 9.741e-01); CMB tau >~ 160 Gyr (memory) VIOLATED
+
+######## row DR3  (9 s, RSS 116 MB)
+
+== DR3 tuned on all (3 knobs [2.893, 0.168, -0.101]; at bound [])
+ rms to law 0.0921 dex [FAIL E1]; p95 per-galaxy 0.1819 [FAIL E2]; worst bin 0.0436 [FAIL E3]
+ bins -12.0:+0.039 -11.5:-0.024 -11.0:-0.033 -10.5:-0.044 -10.0:-0.023 -9.5:-0.015 -9.0:-0.006
+ a fit 8.262e-11; rms to observed 0.2186 dex, mean -0.0208
+ DR3: G4 rms 0.122 over 79 hosts [FAIL]; holdout knobs on GS[::2] [3.0, 0.222, -0.102] (at bound [0]), unseen GS[1::2] E1 0.0944 [FAIL]
+ DR3: pooled a_fit 0.8824 A0, kappa_eff 0.4412 [FAIL G1 (tuned)]
+ DR3: tau 782 Gyr, F(z=0) 0.0134; native c/tau 1.297e-01 A0 (kappa_eff 6.486e-02); CMB tau >~ 160 Gyr (memory) satisfied
+
+######## row K2  (28 s, RSS 116 MB)
+
+== K2 tuned on all (2 knobs [1.717, 2.876]; at bound [])
+ rms to law 0.0941 dex [FAIL E1]; p95 per-galaxy 0.1641 [FAIL E2]; worst bin 0.0359 [FAIL E3]
+ bins -12.0:+0.000 -11.5:-0.036 -11.0:-0.018 -10.5:-0.018 -10.0:+0.002 -9.5:-0.001 -9.0:-0.001
+ a fit 8.336e-11; rms to observed 0.2166 dex, mean -0.0152
+ K2: G4 rms 0.105 over 79 hosts [FAIL]; holdout knobs on GS[::2] [1.666, 2.876] (at bound []), unseen GS[1::2] E1 0.0943 [FAIL]
+ K2: pooled a_fit 0.8904 A0, kappa_eff 0.4451 [FAIL G1 (tuned)]
+ K2: tau 52.1 Gyr, F(z=0) 0.1830; native c/tau 1.948e+00 A0 (kappa_eff 9.741e-01); v_k 752 km/s, v_k/tau 4.887e-03 A0; CMB tau >~ 160 Gyr (memory) VIOLATED; Peter-Benson (tau <~ 30 Gyr out for 20-200 km/s) satisfied
+
+######## row K4  (40 s, RSS 116 MB)
+
+== K4 tuned on all (4 knobs [2.906, 2.952, 0.168, -0.101]; at bound [])
+ rms to law 0.0921 dex [FAIL E1]; p95 per-galaxy 0.1819 [FAIL E2]; worst bin 0.0436 [FAIL E3]
+ bins -12.0:+0.039 -11.5:-0.024 -11.0:-0.033 -10.5:-0.044 -10.0:-0.023 -9.5:-0.015 -9.0:-0.006
+ a fit 8.262e-11; rms to observed 0.2186 dex, mean -0.0208
+ K4: G4 rms 0.122 over 79 hosts [FAIL]; holdout knobs on GS[::2] [2.893, 2.598, 0.221, -0.1] (at bound []), unseen GS[1::2] E1 0.0945 [FAIL]
+ K4: pooled a_fit 0.8824 A0, kappa_eff 0.4412 [FAIL G1 (tuned)]
+ K4: tau 805 Gyr, F(z=0) 0.0130; native c/tau 1.260e-01 A0 (kappa_eff 6.297e-02); v_k 896 km/s, v_k/tau 3.764e-04 A0; CMB tau >~ 160 Gyr (memory) satisfied; Peter-Benson (tau <~ 30 Gyr out for 20-200 km/s) satisfied
+
+######## row P1  (82 s, RSS 116 MB)
+
+== P1 tuned on all (1 knobs [6.416]; at bound [])
+ rms to law 0.1228 dex [FAIL E1]; p95 per-galaxy 0.2466 [FAIL E2]; worst bin 0.0676 [FAIL E3]
+ bins -12.0:+0.059 -11.5:+0.055 -11.0:+0.068 -10.5:+0.035 -10.0:+0.037 -9.5:+0.013 -9.0:+0.004
+ a fit 1.271e-10; rms to observed 0.2079 dex, mean +0.0480
+ P1: G4 rms 0.122 over 79 hosts [FAIL]; holdout knobs on GS[::2] [7.03] (at bound []), unseen GS[1::2] E1 0.1153 [FAIL]
+ P1: pooled a_fit 1.3577 A0, kappa_eff 0.6787 [FAIL G1 (tuned)]
+ P1: core g_c = sigma0^2/r1 median 0.301 A0 (kappa_eff 0.150), rms 0.738 dex; unmatched cores 0; median r1 3.28 kpc
+ P1: m_PBH 2.6e+06 Msun (Brandt 2016: >~5-10 Msun excluded as all DM); lognormal equivalents m_c = 1.58e+06 (s_ln 1), 3.52e+05 (s_ln 2) Msun; disc heating at 2 R_d: median sigma_* 42.2 km/s, 92 of 171 with sigma_* > 0.5 v_c
+
+######## row P3  (141 s, RSS 118 MB)
+
+== P3 tuned on all (3 knobs [5.633, 0.257, -0.045]; at bound [])
+ rms to law 0.0834 dex [FAIL E1]; p95 per-galaxy 0.1810 [FAIL E2]; worst bin 0.0371 [FAIL E3]
+ bins -12.0:+0.022 -11.5:-0.013 -11.0:-0.027 -10.5:-0.037 -10.0:-0.018 -9.5:-0.012 -9.0:-0.005
+ a fit 8.429e-11; rms to observed 0.2059 dex, mean -0.0169
+ P3: G4 rms 0.131 over 79 hosts [FAIL]; holdout knobs on GS[::2] [5.465, 0.281, -0.059] (at bound []), unseen GS[1::2] E1 0.0845 [FAIL]
+ P3: pooled a_fit 0.9003 A0, kappa_eff 0.4501 [PASS G1 (tuned)]
+ P3: core g_c = sigma0^2/r1 median 0.420 A0 (kappa_eff 0.210), rms 0.683 dex; unmatched cores 0; median r1 1.43 kpc
+ P3: m_PBH 4.29e+05 Msun (Brandt 2016: >~5-10 Msun excluded as all DM); lognormal equivalents m_c = 2.6e+05 (s_ln 1), 5.81e+04 (s_ln 2) Msun; disc heating at 2 R_d: median sigma_* 19.8 km/s, 47 of 171 with sigma_* > 0.5 v_c
+
+######## row C2  (235 s, RSS 122 MB)
+
+== C2 tuned on all (2 knobs [9.773, 0.619]; at bound [])
+ rms to law 0.1171 dex [FAIL E1]; p95 per-galaxy 0.2281 [FAIL E2]; worst bin 0.0547 [FAIL E3]
+ bins -12.0:+0.031 -11.5:+0.016 -11.0:+0.055 -10.5:+0.027 -10.0:+0.032 -9.5:+0.011 -9.0:+0.001
+ a fit 1.123e-10; rms to observed 0.2121 dex, mean +0.0302
+ C2: G4 rms 0.126 over 79 hosts [FAIL]; holdout knobs on GS[::2] [9.789, 0.681] (at bound []), unseen GS[1::2] E1 0.1040 [FAIL]
+ C2: pooled a_fit 1.1995 A0, kappa_eff 0.5997 [FAIL G1 (tuned)]
+ C2: core g_c = sigma0^2/r1 median 0.421 A0 (kappa_eff 0.210), rms 0.586 dex; unmatched cores 0; median r1 1.65 kpc
+ C2: native G/(sigma/m) at 0.665 cm^2/g 10.718 A0, kappa_eff 5.358 [FAIL G1 native]
+ C2: half-mode log M_hm 9.77; equivalent m_WDM from M_cut = 1e11 (m/keV)^-4/h (Eq. 6, mass-function cutoff, used loosely): 2.24 keV
+
+######## row C4  (333 s, RSS 122 MB)
+
+== C4 tuned on all (4 knobs [9.197, 0.816, 0.3, 0.012]; at bound [2])
+ rms to law 0.0845 dex [FAIL E1]; p95 per-galaxy 0.1805 [FAIL E2]; worst bin 0.0342 [FAIL E3]
+ bins -12.0:+0.015 -11.5:-0.017 -11.0:-0.024 -10.5:-0.034 -10.0:-0.012 -9.5:-0.008 -9.0:-0.004
+ a fit 8.416e-11; rms to observed 0.2046 dex, mean -0.0163
+ C4: G4 rms 0.134 over 79 hosts [FAIL]; holdout knobs on GS[::2] [6.011, 0.944, 0.3, -0.039] (at bound [2]), unseen GS[1::2] E1 0.0882 [FAIL]
+ C4: pooled a_fit 0.8989 A0, kappa_eff 0.4494 [PASS G1 (tuned)]
+ C4: core g_c = sigma0^2/r1 median 0.338 A0 (kappa_eff 0.169), rms 0.563 dex; unmatched cores 0; median r1 2.31 kpc
+ C4: native G/(sigma/m) at 1.05 cm^2/g 6.804 A0, kappa_eff 3.401 [FAIL G1 native]
+ C4: half-mode log M_hm 9.20; equivalent m_WDM from M_cut = 1e11 (m/keV)^-4/h (Eq. 6, mass-function cutoff, used loosely): 3.12 keV
+
+######## row S1  (480 s, RSS 122 MB)
+
+== S1 tuned on all (1 knobs [0.05]; at bound [])
+ rms to law 0.1199 dex [FAIL E1]; p95 per-galaxy 0.2034 [FAIL E2]; worst bin 0.0659 [FAIL E3]
+ bins -12.0:+0.063 -11.5:+0.049 -11.0:+0.037 -10.5:+0.005 -10.0:+0.028 -9.5:+0.061 -9.0:+0.066
+ a fit 1.175e-10; rms to observed 0.2122 dex, mean +0.0392
+ S1: G4 rms 0.150 over 79 hosts [FAIL]; holdout knobs on GS[::2] [0.048] (at bound []), unseen GS[1::2] E1 0.1078 [FAIL]
+ S1: pooled a_fit 1.2550 A0, kappa_eff 0.6274 [FAIL G1 (tuned)]
+ S1: core g_c = sigma0^2/r1 median 0.182 A0 (kappa_eff 0.091), rms 0.182 dex; unmatched cores 6; median r1 7.61 kpc
+ S1: native G/(sigma/m) at 1.12 cm^2/g 6.351 A0, kappa_eff 3.175 [FAIL G1 native]
+
+######## row S3  (524 s, RSS 122 MB)
+
+== S3 tuned on all (3 knobs [-0.255, 0.283, -0.024]; at bound [])
+ rms to law 0.0889 dex [FAIL E1]; p95 per-galaxy 0.1790 [FAIL E2]; worst bin 0.0512 [FAIL E3]
+ bins -12.0:+0.033 -11.5:-0.010 -11.0:-0.037 -10.5:-0.051 -10.0:-0.017 -9.5:+0.021 -9.0:+0.046
+ a fit 8.372e-11; rms to observed 0.2079 dex, mean -0.0151
+ S3: G4 rms 0.130 over 79 hosts [FAIL]; holdout knobs on GS[::2] [-0.353, 0.294, -0.051] (at bound []), unseen GS[1::2] E1 0.0919 [FAIL]
+ S3: pooled a_fit 0.8943 A0, kappa_eff 0.4471 [PASS G1 (tuned)]
+ S3: core g_c = sigma0^2/r1 median 0.248 A0 (kappa_eff 0.124), rms 0.244 dex; unmatched cores 1; median r1 3.99 kpc
+ S3: native G/(sigma/m) at 0.556 cm^2/g 12.827 A0, kappa_eff 6.413 [FAIL G1 native]
+
+######## row Y2  (627 s, RSS 123 MB)
+
+== Y2 tuned on all (2 knobs [-0.423, 4.0]; at bound [1])
+ rms to law 0.0832 dex [FAIL E1]; p95 per-galaxy 0.1427 [FAIL E2]; worst bin 0.0456 [FAIL E3]
+ bins -12.0:-0.032 -11.5:-0.046 -11.0:-0.018 -10.5:-0.005 -10.0:+0.017 -9.5:+0.009 -9.0:+0.003
+ a fit 8.153e-11; rms to observed 0.2111 dex, mean -0.0154
+ Y2: G4 rms 0.092 over 79 hosts [PASS]; holdout knobs on GS[::2] [-0.462, 4.0] (at bound [1]), unseen GS[1::2] E1 0.0847 [FAIL]
+ Y2: pooled a_fit 0.8708 A0, kappa_eff 0.4354 [FAIL G1 (tuned)]
+ Y2: beta -0.423, lambda 1e+04 kpc; G |beta| M200/lambda^2 median 8.661e-07 A0, rms 0.895 dex (mass-dependent); self-consistency max |dln r| last pass 2.76e-04
+
+######## row Y4  (770 s, RSS 123 MB)
+
+== Y4 tuned on all (4 knobs [-0.5, 0.456, 0.3, 0.033]; at bound [0, 2])
+ rms to law 0.0717 dex [FAIL E1]; p95 per-galaxy 0.1364 [FAIL E2]; worst bin 0.0219 [FAIL E3]
+ bins -12.0:+0.010 -11.5:-0.022 -11.0:-0.019 -10.5:-0.020 -10.0:-0.004 -9.5:-0.004 -9.0:-0.001
+ a fit 8.576e-11; rms to observed 0.2067 dex, mean -0.0122
+ Y4: G4 rms 0.109 over 79 hosts [FAIL]; holdout knobs on GS[::2] [-0.5, 0.458, 0.3, 0.02] (at bound [0, 2]), unseen GS[1::2] E1 0.0724 [FAIL]
+ Y4: pooled a_fit 0.9159 A0, kappa_eff 0.4579 [PASS G1 (tuned)]
+ Y4: beta -0.500, lambda 2.86 kpc; G |beta| M200/lambda^2 median 9.170e+00 A0, rms 0.695 dex (mass-dependent); self-consistency max |dln r| last pass 9.43e-06
+
+######## rebuild at z in the A29 backgrounds (footing P; z = 0 SHMR held; baryons fixed)  (1132 s, RSS 124 MB)
+ B0: sigma8 0.8110; ages 13.797 5.846 4.264 2.809 Gyr; t_f 3.273
+ B1: sigma8 0.8111; ages 13.678 5.877 4.290 2.821 Gyr; t_f 3.291
+ B1p: sigma8 0.8145; ages 13.746 5.879 4.288 2.820 Gyr; t_f 3.289
+ B1u: sigma8 0.8072; ages 13.607 5.875 4.292 2.823 Gyr; t_f 3.292
+ B2: sigma8 0.7964; ages 13.634 5.803 4.244 2.802 Gyr; t_f 3.263
+ B3: sigma8 0.7687; ages 13.495 5.702 4.177 2.768 Gyr; t_f 3.219
+ B4: sigma8 0.8122; ages 13.861 5.840 4.256 2.803 Gyr; t_f 3.267
+ B5: sigma8 0.8109; ages 13.796 5.846 4.264 2.809 Gyr; t_f 3.273
+ DR1 rebuilt (1139 s)
+ DR3 rebuilt (1142 s)
+ K2 rebuilt (1146 s)
+ K4 rebuilt (1150 s)
+ P1 rebuilt (1175 s)
+ P3 rebuilt (1198 s)
+ C2 rebuilt (1222 s)
+ C4 rebuilt (1244 s)
+ S1 rebuilt (1266 s)
+ S3 rebuilt (1288 s)
+ Y2 rebuilt (1330 s)
+ Y4 rebuilt (1373 s)
+
+######## tie gates per row: G3 (B0), GT per background, G2z, G2x  (1373 s, RSS 125 MB)
+ DR1: B0 kappa_eff(0) 0.4451; a(z)/a(0) 2.100 2.932 4.858 [FAIL G3]
+   GT dev z1/z1.5/z2.33: B0 +0.322/+0.467/+0.686[-] G2z n/m; B1 +0.323/+0.493/+0.767[-] G2z -2.83; B1p +0.326/+0.492/+0.754[-] G2z -3.64; B1u +0.318/+0.492/+0.777[-] G2z -2.30; B2 +0.306/+0.444/+0.655[-] G2z +7.00; B3 +0.292/+0.409/+0.580[-] G2z +2.38; B4 +0.326/+0.464/+0.668[-] G2z +8.61; B5 +0.322/+0.467/+0.687[-] G2z n/m
+   G2x pooled slope -0.070 [FAIL]
+ DR3: B0 kappa_eff(0) 0.4412; a(z)/a(0) 1.357 1.713 2.610 [FAIL G3]
+   GT dev z1/z1.5/z2.33: B0 +0.133/+0.234/+0.417[-] G2z n/m; B1 +0.136/+0.263/+0.500[-] G2z -1.89; B1p +0.139/+0.260/+0.486[-] G2z -2.37; B1u +0.134/+0.264/+0.512[-] G2z -1.57; B2 +0.120/+0.214/+0.389[-] G2z +4.08; B3 +0.107/+0.180/+0.315[-] G2z +1.52; B4 +0.134/+0.229/+0.396[-] G2z +6.20; B5 +0.133/+0.234/+0.417[-] G2z n/m
+   G2x pooled slope -0.025 [FAIL]
+ K2: B0 kappa_eff(0) 0.4451; a(z)/a(0) 2.100 2.932 4.858 [FAIL G3]
+   GT dev z1/z1.5/z2.33: B0 +0.322/+0.467/+0.686[-] G2z n/m; B1 +0.323/+0.493/+0.767[-] G2z -2.83; B1p +0.326/+0.492/+0.754[-] G2z -3.64; B1u +0.318/+0.492/+0.777[-] G2z -2.30; B2 +0.306/+0.444/+0.655[-] G2z +7.00; B3 +0.292/+0.409/+0.580[-] G2z +2.38; B4 +0.326/+0.464/+0.668[-] G2z +8.61; B5 +0.322/+0.467/+0.687[-] G2z n/m
+   G2x pooled slope -0.070 [FAIL]
+ K4: B0 kappa_eff(0) 0.4412; a(z)/a(0) 1.356 1.711 2.607 [FAIL G3]
+   GT dev z1/z1.5/z2.33: B0 +0.132/+0.233/+0.416[-] G2z n/m; B1 +0.136/+0.262/+0.500[-] G2z -1.89; B1p +0.138/+0.260/+0.485[-] G2z -2.37; B1u +0.133/+0.263/+0.512[-] G2z -1.57; B2 +0.119/+0.213/+0.388[-] G2z +4.07; B3 +0.106/+0.180/+0.315[-] G2z +1.52; B4 +0.134/+0.228/+0.396[-] G2z +6.20; B5 +0.132/+0.233/+0.416[-] G2z n/m
+   G2x pooled slope -0.025 [FAIL]
+ P1: B0 kappa_eff(0) 0.6787; a(z)/a(0) 1.373 1.779 2.844 [FAIL G3]
+   GT dev z1/z1.5/z2.33: B0 +0.138/+0.250/+0.454[-] G2z n/m; B1 +0.142/+0.279/+0.537[-] G2z -2.08; B1p +0.144/+0.277/+0.523[-] G2z -2.60; B1u +0.140/+0.281/+0.550[-] G2z -1.73; B2 +0.126/+0.232/+0.427[-] G2z +4.41; B3 +0.115/+0.200/+0.357[-] G2z +1.65; B4 +0.139/+0.245/+0.433[-] G2z +6.86; B5 +0.138/+0.250/+0.454[-] G2z n/m
+   G2x pooled slope -0.033 [FAIL]
+ P3: B0 kappa_eff(0) 0.4501; a(z)/a(0) 1.318 1.645 2.457 [FAIL G3]
+   GT dev z1/z1.5/z2.33: B0 +0.120/+0.216/+0.390[-] G2z n/m; B1 +0.124/+0.245/+0.474[-] G2z -1.78; B1p +0.126/+0.243/+0.460[-] G2z -2.23; B1u +0.121/+0.247/+0.487[-] G2z -1.48; B2 +0.107/+0.196/+0.362[-] G2z +3.82; B3 +0.093/+0.162/+0.288[-] G2z +1.43; B4 +0.122/+0.211/+0.370[-] G2z +5.88; B5 +0.120/+0.216/+0.390[-] G2z n/m
+   G2x pooled slope -0.021 [FAIL]
+ C2: B0 kappa_eff(0) 0.5997; a(z)/a(0) 1.382 1.789 2.857 [FAIL G3]
+   GT dev z1/z1.5/z2.33: B0 +0.141/+0.253/+0.456[-] G2z n/m; B1 +0.144/+0.281/+0.539[-] G2z -2.08; B1p +0.147/+0.279/+0.525[-] G2z -2.61; B1u +0.142/+0.283/+0.552[-] G2z -1.73; B2 +0.128/+0.233/+0.429[-] G2z +4.43; B3 +0.116/+0.201/+0.357[-] G2z +1.65; B4 +0.142/+0.248/+0.436[-] G2z +6.85; B5 +0.141/+0.253/+0.456[-] G2z n/m
+   G2x pooled slope -0.037 [FAIL]
+ C4: B0 kappa_eff(0) 0.4494; a(z)/a(0) 1.318 1.638 2.417 [FAIL G3]
+   GT dev z1/z1.5/z2.33: B0 +0.120/+0.214/+0.383[-] G2z n/m; B1 +0.123/+0.244/+0.467[-] G2z -1.75; B1p +0.126/+0.242/+0.453[-] G2z -2.19; B1u +0.120/+0.245/+0.479[-] G2z -1.45; B2 +0.106/+0.193/+0.354[-] G2z +3.75; B3 +0.091/+0.157/+0.278[-] G2z +1.40; B4 +0.122/+0.210/+0.363[-] G2z +5.73; B5 +0.120/+0.214/+0.383[-] G2z n/m
+   G2x pooled slope -0.025 [FAIL]
+ S1: B0 kappa_eff(0) 0.6274; a(z)/a(0) 1.319 1.670 2.546 [FAIL G3]
+   GT dev z1/z1.5/z2.33: B0 +0.120/+0.223/+0.406[-] G2z n/m; B1 +0.123/+0.252/+0.490[-] G2z -1.87; B1p +0.126/+0.250/+0.476[-] G2z -2.34; B1u +0.120/+0.253/+0.502[-] G2z -1.56; B2 +0.107/+0.202/+0.377[-] G2z +3.94; B3 +0.092/+0.166/+0.301[-] G2z +1.47; B4 +0.123/+0.218/+0.385[-] G2z +6.16; B5 +0.120/+0.223/+0.406[-] G2z n/m
+   G2x pooled slope -0.034 [FAIL]
+ S3: B0 kappa_eff(0) 0.4471; a(z)/a(0) 1.315 1.631 2.391 [FAIL G3]
+   GT dev z1/z1.5/z2.33: B0 +0.119/+0.213/+0.379[-] G2z n/m; B1 +0.122/+0.242/+0.463[-] G2z -1.73; B1p +0.125/+0.240/+0.449[-] G2z -2.16; B1u +0.118/+0.242/+0.475[-] G2z -1.43; B2 +0.104/+0.190/+0.349[-] G2z +3.70; B3 +0.088/+0.153/+0.271[-] G2z +1.37; B4 +0.121/+0.208/+0.358[-] G2z +5.65; B5 +0.119/+0.213/+0.379[-] G2z n/m
+   G2x pooled slope -0.028 [FAIL]
+ Y2: B0 kappa_eff(0) 0.4354; a(z)/a(0) 1.245 1.516 2.207 [FAIL G3]
+   GT dev z1/z1.5/z2.33: B0 +0.095/+0.181/+0.344[-] G2z n/m; B1 +0.099/+0.210/+0.428[-] G2z -1.60; B1p +0.101/+0.208/+0.414[-] G2z -1.99; B1u +0.096/+0.211/+0.440[-] G2z -1.33; B2 +0.081/+0.160/+0.315[-] G2z +3.33; B3 +0.066/+0.124/+0.240[-] G2z +1.27; B4 +0.097/+0.176/+0.323[-] G2z +5.34; B5 +0.095/+0.181/+0.344[-] G2z n/m
+   G2x pooled slope -0.015 [FAIL]
+ Y4: B0 kappa_eff(0) 0.4579; a(z)/a(0) 1.239 1.488 2.096 [FAIL G3]
+   GT dev z1/z1.5/z2.33: B0 +0.093/+0.173/+0.321[-] G2z n/m; B1 +0.096/+0.202/+0.406[-] G2z -1.48; B1p +0.099/+0.200/+0.392[-] G2z -1.85; B1u +0.093/+0.203/+0.418[-] G2z -1.23; B2 +0.078/+0.151/+0.292[-] G2z +3.13; B3 +0.062/+0.113/+0.215[-] G2z +1.19; B4 +0.095/+0.168/+0.301[-] G2z +4.93; B5 +0.093/+0.173/+0.321[-] G2z n/m
+   G2x pooled slope -0.011 [FAIL]
+
+native-constant reading (tau, v_k, m_PBH, sigma/m, beta, lambda are Lagrangian/particle constants; a flat): GT dev = -0.5 log10 rho_DE ratio:
+   B0: -0.000 -0.000 -0.000 [PASS GT]
+   B1: -0.004 +0.029 +0.088 [FAIL GT]
+   B1p: +0.005 +0.031 +0.076 [FAIL GT]
+   B1u: -0.013 +0.026 +0.096 [FAIL GT]
+   B2: -0.033 -0.039 -0.046 [PASS GT]
+   B3: -0.067 -0.102 -0.154 [FAIL GT]
+   B4: +0.007 -0.002 -0.020 [PASS GT]
+   B5: -0.000 -0.000 -0.000 [PASS GT]
+ decay clock F(z) in B0 at DR1/K2 knobs: DR1: 0.1830 0.0482 0.0188 0.0000; K2: 0.1830 0.0482 0.0188 0.0000 (z 0, 1, 1.5, 2.33): follows cosmic time t(z)
+G2 from the equations: (a) tau, v_k, f_ddm; clock t(z) of the background; (b) m_PBH, ln Lambda; (c) sigma_T(v)/m, M_hm; (d) beta, lambda. rho_DE, Lambda appear in none; native slope 0 [FAIL G2].
+G5: all four act only through halo gravity at measured radii [PASS by definition]; the native accelerations c/tau, v_k/tau, G/(sigma/m), G M/lambda^2 are not forces [FAIL G5 as scales]. Cassini: (d) does not act on baryons; (a)-(c) are pure gravity; nothing to grade.
+
+SUMMARY (tuned on all): row knobs E1 E2 E3 holdout obs G4
+ DR1  1 0.0941 0.1641 0.0359 0.0943 0.2166 0.105 [NOT EXACT]
+ DR3  3 0.0921 0.1819 0.0436 0.0944 0.2186 0.122 [NOT EXACT]
+ K2   2 0.0941 0.1641 0.0359 0.0943 0.2166 0.105 [NOT EXACT]
+ K4   4 0.0921 0.1819 0.0436 0.0945 0.2186 0.122 [NOT EXACT]
+ P1   1 0.1228 0.2466 0.0676 0.1153 0.2079 0.122 [NOT EXACT]
+ P3   3 0.0834 0.1810 0.0371 0.0845 0.2059 0.131 [NOT EXACT]
+ C2   2 0.1171 0.2281 0.0547 0.1040 0.2121 0.126 [NOT EXACT]
+ C4   4 0.0845 0.1805 0.0342 0.0882 0.2046 0.134 [NOT EXACT]
+ S1   1 0.1199 0.2034 0.0659 0.1078 0.2122 0.150 [NOT EXACT]
+ S3   3 0.0889 0.1790 0.0512 0.0919 0.2079 0.130 [NOT EXACT]
+ Y2   2 0.0832 0.1427 0.0456 0.0847 0.2111 0.092 [NOT EXACT]
+ Y4   4 0.0717 0.1364 0.0219 0.0724 0.2067 0.109 [NOT EXACT]
+
+runtime 1373 s; peak RSS 125 MB
+Rival language; adopts nothing. Passing shows freedom, not evidence. kappa = 1/2 FITTED; not theory closed.
