@@ -1,0 +1,37 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+base OL 0.685; c sqrt(G rho_DE) 1.8727e-10; a0 9.3625e-11; rho_DE^(1/4) 2.241 meV; beta 2.0
+control: BFK fiducial alpha 5.7, Lambda 0.05 meV -> a0_BK 8.660e-11 m/s^2 (paper 0.87e-10 with reduced M_Pl)
+control u(k): k 1e-6 1.0000 (->1), k 1e6 3.0000 (3/sqrt k = 3.0000) x1e-3
+N3 grid: Lambda^4 = rho_DE, alpha 0.464 by hand, m on 21 log steps 0.1 to 10 eV, dn 0
+ m   0.100 eV: rms all 0.1134, even 0.1208, odd 0.1061; inside R_NFW 0.189; median R_NFW 757.2 kpc
+ m   0.126 eV: rms all 0.1163, even 0.1223, odd 0.1104; inside R_NFW 0.425; median R_NFW 407.1 kpc
+ m   0.158 eV: rms all 0.0925, even 0.0906, odd 0.0942; inside R_NFW 0.872; median R_NFW 173.5 kpc
+ m   0.200 eV: rms all 0.0775, even 0.0777, odd 0.0773; inside R_NFW 1.000; median R_NFW 119.1 kpc
+ m   0.251 eV: rms all 0.0843, even 0.0855, odd 0.0832; inside R_NFW 1.000; median R_NFW 87.3 kpc
+ m   0.316 eV: rms all 0.0979, even 0.1013, odd 0.0946; inside R_NFW 1.000; median R_NFW 63.4 kpc
+ m   0.398 eV: rms all 0.1202, even 0.1264, odd 0.1140; inside R_NFW 0.997; median R_NFW 45.7 kpc
+ m   0.501 eV: rms all 0.1471, even 0.1527, odd 0.1417; inside R_NFW 0.985; median R_NFW 32.4 kpc
+ m   0.631 eV: rms all 0.1646, even 0.1688, odd 0.1606; inside R_NFW 0.939; median R_NFW 22.7 kpc
+ m   0.794 eV: rms all 0.1691, even 0.1750, odd 0.1634; inside R_NFW 0.846; median R_NFW 15.6 kpc
+ m   1.000 eV: rms all 0.1714, even 0.1784, odd 0.1645; inside R_NFW 0.727; median R_NFW 10.5 kpc
+ m   1.259 eV: rms all 0.1664, even 0.1755, odd 0.1575; inside R_NFW 0.565; median R_NFW 6.8 kpc
+ m   1.585 eV: rms all 0.1582, even 0.1674, odd 0.1491; inside R_NFW 0.396; median R_NFW 4.4 kpc
+ m   1.995 eV: rms all 0.1511, even 0.1596, odd 0.1428; inside R_NFW 0.264; median R_NFW 2.9 kpc
+ m   2.512 eV: rms all 0.1470, even 0.1563, odd 0.1378; inside R_NFW 0.169; median R_NFW 1.9 kpc
+ m   3.162 eV: rms all 0.1444, even 0.1540, odd 0.1349; inside R_NFW 0.103; median R_NFW 1.2 kpc
+ m   3.981 eV: rms all 0.1425, even 0.1519, odd 0.1332; inside R_NFW 0.057; median R_NFW 0.8 kpc
+ m   5.012 eV: rms all 0.1421, even 0.1523, odd 0.1318; inside R_NFW 0.030; median R_NFW 0.5 kpc
+ m   6.310 eV: rms all 0.1420, even 0.1523, odd 0.1316; inside R_NFW 0.015; median R_NFW 0.3 kpc
+ m   7.943 eV: rms all 0.1419, even 0.1527, odd 0.1309; inside R_NFW 0.005; median R_NFW 0.2 kpc
+ m  10.000 eV: rms all 0.1423, even 0.1533, odd 0.1312; inside R_NFW 0.002; median R_NFW 0.1 kpc
+
+== (N3 grid best on all) m 0.2 eV (1 knob m from the grid; alpha by hand)
+ rms to law 0.0775 dex [FAIL E1]; p95 per-galaxy 0.0990 [FAIL E2]; worst bin 0.0998 [FAIL E3]
+ bins -12.0:+0.045 -11.5:+0.056 -11.0:+0.076 -10.5:+0.092 -10.0:+0.100 -9.5:+0.091 -9.0:+0.070
+ a fit 1.426e-10; rms to observed 0.2083 dex, mean +0.0756
+ alpha 0.464, Lambda 2.24 meV, m 0.2 eV, dn +0.000; a0_BK 9.364e-11; kappa_eff 0.500 [PASS G1]; Lambda/rho_DE^(1/4) 1
+ superfluid matched in 171 of 171; points inside R_NFW 3373 of 3373 = 1.000 [PASS G5]; median R_NFW 119.1 kpc
+ G4 per-galaxy effective a over log M200 11-12.5: rms 0.068 dex over 79 [PASS G4], median 1.484e-10
+ DIAG: at R_NFW median log(P_SF/P_NFW) -4.14, median log(M_core/M_NFW) +0.00 (natural log)
+ DIAG: median phonon/sqrt(a0 g_b) inside 1.014; median dark share of g at last point 0.010
+Rival language. Passing shows freedom, not evidence. kappa = 1/2 FITTED; not theory closed.

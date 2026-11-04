@@ -153,3 +153,5 @@ Search: greedy forward selection over N1, N2, N4, N5 from R11b, one warm start, 
 **A16 VERDICT: NOT EXACT.** Greedy search kept N2 only (others gained under 0.0005): 15 knobs, E1 0.0263, E2 0.0533, E3 0.0231; widened bounds 0.0252, median log M200 +0.64; holdout unseen 0.0267. As expected.
 
 **AMENDMENTS A17 to A20, owner 11-04 "swing subagents to cover all the ACDM models".** Each was frozen in its own file before its numbers, by a separate agent: `FROZEN_A17.md` (wave dark matter, recipe19), `FROZEN_A18.md` (published hydro-calibrated responses DC14, coreNFW, FIRE-2 Lazar, recipe20), `FROZEN_A19.md` (velocity-dependent and per-galaxy SIDM, warm and mixed dark matter, recipe21, with its bug and wrong output disclosed), `FROZEN_A20.md` (interacting vacuum, and the observational-systematic reading, recipe22). Those files carry their gates, expectations, deviations and results.
+
+**A21 to A24 (11-04):** frozen criteria, results and deviations are in `FROZEN_A21.md` to `FROZEN_A24.md`; summary in README.md.

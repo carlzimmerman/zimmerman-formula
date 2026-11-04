@@ -1,0 +1,94 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+base OL 0.685; c sqrt(G rho_DE) 1.8727e-10; a0 9.3625e-11; rho_DE^(1/4) 2.241 meV; beta 2.0
+control: BFK fiducial alpha 5.7, Lambda 0.05 meV -> a0_BK 8.660e-11 m/s^2 (paper 0.87e-10 with reduced M_Pl)
+control u(k): k 1e-6 1.0000 (->1), k 1e6 3.0000 (3/sqrt k = 3.0000) x1e-3
+
+(a) BK deep phonon alone, g = g_b + sqrt(a0_BK g_b) (no condensate gravity)
+
+== (a) at a0_BK = A0 (0 knobs) 
+ rms to law 0.0683 dex [FAIL E1]; p95 per-galaxy 0.0900 [FAIL E2]; worst bin 0.0957 [FAIL E3]
+ bins -12.0:+0.029 -11.5:+0.043 -11.0:+0.062 -10.5:+0.084 -10.0:+0.096 -9.5:+0.090 -9.0:+0.070
+ a fit 1.334e-10; rms to observed 0.2060 dex, mean +0.0658
+
+== (a) a0_BK fitted on all (1 knob) (a0_BK 6.298e-11, -0.172 dex vs A0, kappa_eff 0.336)
+ rms to law 0.0392 dex [FAIL E1]; p95 per-galaxy 0.0546 [FAIL E2]; worst bin 0.0660 [FAIL E3]
+ bins -12.0:-0.044 -11.5:-0.024 -11.0:+0.004 -10.5:+0.038 -10.0:+0.061 -9.5:+0.066 -9.0:+0.054
+ a fit 9.378e-11; rms to observed 0.1976 dex, mean +0.0128
+(a) holdout: tuned on GS[::2] a0_BK 6.327e-11; unseen rms to law on GS[1::2] 0.0378 [FAIL]
+(a) implied Lambda at alpha 1.0: 0.580 meV = 0.259 rho_DE^(1/4)
+(a) implied Lambda at alpha 0.86: 0.728 meV = 0.325 rho_DE^(1/4)
+ [0 s]
+
+== (b1-as-frozen) BFK fiducial, density + pressure match, envelope fixed at SHMR M200 and Diemer19 c (0 knobs tuned; unmatched galaxies graded as NFW + baryons)
+ rms to law 0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1613 [FAIL E3]
+ bins -12.0:+0.161 -11.5:+0.098 -11.0:+0.094 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.576e-10; rms to observed 0.2424 dex, mean +0.0790
+ alpha 5.7, Lambda 0.05 meV, m 1 eV, dn +0.000; a0_BK 8.660e-11; kappa_eff 0.462 [PASS G1]; Lambda/rho_DE^(1/4) 0.0223
+ superfluid matched in 0 of 171; points inside R_NFW 0 of 3373 = 0.000 [FAIL G5]; median R_NFW nan kpc
+ G4 per-galaxy effective a over log M200 11-12.5: rms 0.130 dex over 79 [FAIL G4], median 1.070e-10
+ DIAG: median phonon/sqrt(a0 g_b) inside nan; median dark share of g at last point 0.803
+
+(b1-BFK) density + pressure + mass continuity, M200 at SHMR, c free: solution in 0 of 171; P-match exists at some c for 0; median c offset +nan dex (p16-p84 +nan to +nan)
+
+== (b1) BFK fiducial hybrid, mode M (density + mass match), condensate + NFW + phonon (0 knobs tuned)
+ rms to law 0.0810 dex [FAIL E1]; p95 per-galaxy 0.1119 [FAIL E2]; worst bin 0.0957 [FAIL E3]
+ bins -12.0:+0.044 -11.5:+0.058 -11.0:+0.078 -10.5:+0.088 -10.0:+0.096 -9.5:+0.088 -9.0:+0.067
+ a fit 1.426e-10; rms to observed 0.2085 dex, mean +0.0751
+ alpha 5.7, Lambda 0.05 meV, m 1 eV, dn +0.000; a0_BK 8.660e-11; kappa_eff 0.462 [PASS G1]; Lambda/rho_DE^(1/4) 0.0223
+ superfluid matched in 171 of 171; points inside R_NFW 3373 of 3373 = 1.000 [PASS G5]; median R_NFW 74.7 kpc
+ G4 per-galaxy effective a over log M200 11-12.5: rms 0.071 dex over 79 [PASS G4], median 1.438e-10
+ DIAG: at R_NFW median log(P_SF/P_NFW) -3.83, median log(M_core/M_NFW) -0.00 (natural log)
+ DIAG: median phonon/sqrt(a0 g_b) inside 1.022; median dark share of g at last point 0.029
+ DIAG median R_T/R_NFW at sigma/m 0.01 cm^2/g: 0.99
+ [28 s]
+
+== (b2) hybrid tuned on all (4 global knobs, 120 evaluations, at bound [])
+ rms to law 0.0389 dex [FAIL E1]; p95 per-galaxy 0.0532 [FAIL E2]; worst bin 0.0633 [FAIL E3]
+ bins -12.0:-0.042 -11.5:-0.024 -11.0:+0.006 -10.5:+0.036 -10.0:+0.058 -9.5:+0.063 -9.0:+0.052
+ a fit 9.387e-11; rms to observed 0.1966 dex, mean +0.0125
+ alpha 5.41, Lambda 0.0446 meV, m 0.684 eV, dn +0.316; a0_BK 5.892e-11; kappa_eff 0.315 [FAIL G1]; Lambda/rho_DE^(1/4) 0.0199
+ superfluid matched in 171 of 171; points inside R_NFW 3373 of 3373 = 1.000 [PASS G5]; median R_NFW 123.3 kpc
+ G4 per-galaxy effective a over log M200 11-12.5: rms 0.082 dex over 74 [PASS G4], median 1.075e-10
+ DIAG: at R_NFW median log(P_SF/P_NFW) -4.27, median log(M_core/M_NFW) +0.00 (natural log)
+ DIAG: median phonon/sqrt(a0 g_b) inside 1.012; median dark share of g at last point 0.009
+ DIAG median R_T/R_NFW at sigma/m 0.01 cm^2/g: 0.98
+(b2) holdout: tuned on GS[::2] knobs [0.734, -1.351, -0.171, 0.296] (120 evals); unseen rms to law on GS[1::2] 0.0390 [FAIL]
+ [462 s]
+
+== (c) per-galaxy M200, c on (b2) globals (342 per-galaxy + 4 global = 346 parameters; grid optimiser 45 + 9 x 9 steps; at bound 294 of 342; median dlogM200 +0.60)
+ rms to law 0.0370 dex [FAIL E1]; p95 per-galaxy 0.0515 [FAIL E2]; worst bin 0.0595 [FAIL E3]
+ bins -12.0:-0.037 -11.5:-0.022 -11.0:+0.003 -10.5:+0.034 -10.0:+0.053 -9.5:+0.060 -9.0:+0.045
+ a fit 9.367e-11; rms to observed 0.1967 dex, mean +0.0112
+(c) holdout: no per-galaxy value can be set on unseen galaxies without fitting the target; unseen = (b2) holdout 0.0390 [FAIL]
+ [550 s]
+
+SWOOP. rho_DE^(1/4) = 2.241 meV. kappa_eff = alpha^3 Lambda^2 sqrt(8 pi)/sqrt(rho_DE) at Lambda^4 = rho_DE: control sqrt(8 pi) = 5.013
+ N1 alpha 1: alpha 1.000, a0_BK 9.390e-10, kappa_eff 5.014 [FAIL G1]
+ N2 alpha 5.7: alpha 5.700, a0_BK 1.739e-07, kappa_eff 928.588 [FAIL G1]
+ N3 alpha set to kappa 0.5 (hand): alpha 0.464, a0_BK 9.364e-11, kappa_eff 0.500 [PASS G1]
+ G2: a0_BK = alpha^3 Lambda^2/M_Pl, Lagrangian constants; d ln a0/d ln rho_DE = 0 natively [FAIL G2]; 0.5 only with Lambda^4 = rho_DE written by hand
+ G3: constants and w = -1 give a(z)/a(0) = 1 in every band [PASS G3, trivial; condensate formation in z not modelled]
+
+== (N3) Lambda^4 = rho_DE, alpha 0.464, N3 at m 1 eV, hybrid (0 knobs tuned; alpha by hand)
+ rms to law 0.1714 dex [FAIL E1]; p95 per-galaxy 0.2403 [FAIL E2]; worst bin 0.1769 [FAIL E3]
+ bins -12.0:+0.076 -11.5:+0.137 -11.0:+0.144 -10.5:+0.148 -10.0:+0.177 -9.5:+0.117 -9.0:+0.076
+ a fit 2.087e-10; rms to observed 0.2459 dex, mean +0.1378
+ alpha 0.464, Lambda 2.24 meV, m 1 eV, dn +0.000; a0_BK 9.364e-11; kappa_eff 0.500 [PASS G1]; Lambda/rho_DE^(1/4) 1
+ superfluid matched in 171 of 171; points inside R_NFW 2453 of 3373 = 0.727 [FAIL G5]; median R_NFW 10.5 kpc
+ G4 per-galaxy effective a over log M200 11-12.5: rms 0.119 dex over 79 [FAIL G4], median 1.977e-10
+ DIAG: at R_NFW median log(P_SF/P_NFW) -2.64, median log(M_core/M_NFW) -0.00 (natural log)
+ DIAG: median phonon/sqrt(a0 g_b) inside 0.985; median dark share of g at last point 0.697
+
+== (N3m) Lambda^4 = rho_DE, alpha 0.464, m tuned, hybrid (1 knob m, at bound False)
+ rms to law 0.1419 dex [FAIL E1]; p95 per-galaxy 0.2823 [FAIL E2]; worst bin 0.1572 [FAIL E3]
+ bins -12.0:+0.157 -11.5:+0.099 -11.0:+0.096 -10.5:+0.058 -10.0:+0.042 -9.5:+0.016 -9.0:+0.007
+ a fit 1.592e-10; rms to observed 0.2435 dex, mean +0.0813
+ alpha 0.464, Lambda 2.24 meV, m 4.75 eV, dn +0.000; a0_BK 9.364e-11; kappa_eff 0.500 [PASS G1]; Lambda/rho_DE^(1/4) 1
+ superfluid matched in 171 of 171; points inside R_NFW 117 of 3373 = 0.035 [FAIL G5]; median R_NFW 0.6 kpc
+ G4 per-galaxy effective a over log M200 11-12.5: rms 0.127 dex over 79 [FAIL G4], median 1.088e-10
+ DIAG: at R_NFW median log(P_SF/P_NFW) -2.97, median log(M_core/M_NFW) -0.00 (natural log)
+ DIAG: median phonon/sqrt(a0 g_b) inside 0.916; median dark share of g at last point 0.803
+(N3m) holdout: m tuned on GS[::2] 0.193 eV; unseen rms 0.0767 [FAIL]
+
+runtime 593 s, max RSS 304 MB
+Rival language. Passing shows freedom, not evidence. kappa = 1/2 FITTED; not theory closed.
