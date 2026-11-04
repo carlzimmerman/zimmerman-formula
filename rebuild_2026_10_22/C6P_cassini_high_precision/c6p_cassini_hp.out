@@ -1,0 +1,27 @@
+====================================================================================================
+C6P_cassini_high_precision: C6's C2 at 30/50/80 digits + analytic rewrite; v3s Solar-System gate, both footings
+kappa = 1/2 FITTED; footings never pooled; not blind; adopts nothing; not theory closed.
+====================================================================================================
+x_e (exact footings): canonical E0 1.304637, E1 1.899939, E2 2.199929, E3 2.599917; alt E0 1.144898, E1 1.572136, E2 1.820368, E3 2.151344
+H1 PASS sympy residuals: B(r_F=0)-general 0; B(r_F=1)-general 0; 1/m-1 factorisation 0; kappa^2 chi-2 0; kappa integral 0 (all 0)
+H2 PASS C2 four sub-items, max over items: Method A 30 digits 3.6e-26, 50 digits 5.2e-46, 80 digits 4.1e-76; Method B float64 2.7e-15 (rF1_vs_D7d 2.7e-15, kappa0_vs_AQUAL 1.8e-15, isolated_rF0_vs_rF1_rel 2.2e-16, rF0_vs_closed 2.2e-15) (< 1e-12)
+H3 PASS C6 float x_e=0 r_F=0 vs r_F=1 recomputed 3.7665e-11 vs C6 JSON 3.7665e-11 (rel 0.0e+00 <= 1e-6); float error vs 80 digits: general r_F=0 3.77e-11 at (kappa, c) = (794, -0.599), general r_F=1 5.41e-12 (>= 1e-12: failure located)
+H6 PASS Method A (literal kernel, nested, 80/50/30 digits) vs Method B (closed form), 8 fields x 3 precisions: max rel 3.1e-20 (<= 1e-14)
+H7 PASS ladder 30/50 vs 80 digits: Method B max rel 2.2e-31 (<= 1e-25), Method A 1.5e-25 (<= 1e-14); C2 max per rung 30: 3.6e-26 (<= 1e-20), 50: 5.2e-46 (<= 1e-40), 80: 4.1e-76 (<= 1e-70)
+H4 PASS C2 non-cancelling float items vs C6 JSON |d| 0.0e+00 (<= 1e-15); C6 float R1 Q2, 24 cells, rel 0.0e+00 (<= 1e-12); Method B 50 digits vs C6 R1 rel 7.5e-10 (<= 1e-8); C6 float R2 ratios rel 0.0e+00 (<= 1e-12)
+H5 PASS plain QUMOND law Q2 vs D7c 'L' (PAPER58 QUMOND), 8 cells, max rel 3.84e-06 (<= 1e-2)
+H8 PASS g_e(E0) recomputed at C6's a0 vs D7b, both footings, rel 0.0e+00 (<= 1e-12)
+H9 PASS hedgehog Mars at 24 pc 0.1728 of bound vs AX1/C6 0.173 (rel 9.0e-04 <= 2e-2)
+
+GATE (exact footings; Method B at 80 digits; Q2 BN11/Hees sign)
+  canonical L*= 24 pc  Q2 E0-E3 = 1.0351e-34 1.4197e-34 1.6088e-34 1.8562e-34  max/9.0e-27 2.06e-08  max/5.2e-27 3.57e-08  | planets (hedgehog / Route F mono): Earth 0.0278/0.0278, Mars 0.1728/0.1728, Saturn 0.0346/0.0346  | |gamma-1| proxy 9.87e-12  | R3 gamma_v-1 8.118e-06 8.108e-06 8.104e-06 8.098e-06
+  canonical L*= 50 pc  Q2 E0-E3 = 1.1447e-35 1.5700e-35 1.7791e-35 2.0528e-35  max/9.0e-27 2.28e-09  max/5.2e-27 3.95e-09  | planets (hedgehog / Route F mono): Earth 0.0064/0.0064, Mars 0.0398/0.0398, Saturn 0.0080/0.0080  | |gamma-1| proxy 2.28e-12  | R3 gamma_v-1 1.876e-06 1.874e-06 1.874e-06 1.873e-06
+  canonical L*= 90 pc  Q2 E0-E3 = 1.9629e-36 2.6921e-36 3.0507e-36 3.5199e-36  max/9.0e-27 3.91e-10  max/5.2e-27 6.77e-10  | planets (hedgehog / Route F mono): Earth 0.0020/0.0020, Mars 0.0123/0.0123, Saturn 0.0025/0.0025  | |gamma-1| proxy 7.02e-13  | R3 gamma_v-1 5.795e-07 5.793e-07 5.793e-07 5.792e-07
+  canonical G2a PASS (Q2 1.963e-36 to 1.856e-34; Hees margin >= 4.849e+07, Park >= 2.801e+07); G2b PASS (worst 24|Mars 0.1728); G2c PASS (proxy <= 9.87e-12, band [-2.5e-5, 6.7e-5])
+  alt       L*= 24 pc  Q2 E0-E3 = 9.2968e-35 1.2095e-34 1.3690e-34 1.5783e-34  max/9.0e-27 1.75e-08  max/5.2e-27 3.04e-08  | planets (hedgehog / Route F mono): Earth 0.0278/0.0278, Mars 0.1728/0.1728, Saturn 0.0346/0.0346  | |gamma-1| proxy 9.87e-12  | R3 gamma_v-1 8.121e-06 8.113e-06 8.109e-06 8.105e-06
+  alt       L*= 50 pc  Q2 E0-E3 = 1.0282e-35 1.3376e-35 1.5140e-35 1.7455e-35  max/9.0e-27 1.94e-09  max/5.2e-27 3.36e-09  | planets (hedgehog / Route F mono): Earth 0.0064/0.0064, Mars 0.0398/0.0398, Saturn 0.0080/0.0080  | |gamma-1| proxy 2.28e-12  | R3 gamma_v-1 1.876e-06 1.875e-06 1.875e-06 1.874e-06
+  alt       L*= 90 pc  Q2 E0-E3 = 1.7630e-36 2.2935e-36 2.5960e-36 2.9930e-36  max/9.0e-27 3.33e-10  max/5.2e-27 5.76e-10  | planets (hedgehog / Route F mono): Earth 0.0020/0.0020, Mars 0.0123/0.0123, Saturn 0.0025/0.0025  | |gamma-1| proxy 7.02e-13  | R3 gamma_v-1 5.796e-07 5.794e-07 5.794e-07 5.793e-07
+  alt       G2a PASS (Q2 1.763e-36 to 1.578e-34; Hees margin >= 5.702e+07, Park >= 3.295e+07); G2b PASS (worst 24|Mars 0.1728); G2c PASS (proxy <= 9.87e-12, band [-2.5e-5, 6.7e-5])
+
+CHECKS 9/9 PASS: H1 P, H2 P, H3 P, H6 P, H7 P, H4 P, H5 P, H8 P, H9 P
+LABELS: canonical PASS; alt PASS

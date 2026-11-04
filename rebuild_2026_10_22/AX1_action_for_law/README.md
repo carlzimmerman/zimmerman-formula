@@ -16,6 +16,8 @@
 | non-local metric MOND (DEW) | **OPEN [G4, static form]** | **FAIL [G2a]** | alt: E0 1.19–1.47×. Canonical survives only with β ≥ 2.5 and only if its static form is QUMOND-type | `nonlocal/` |
 | v3s (regraded under the 11-04 lift) | **UNDECIDED, reading PASS** | **UNDECIDED, reading PASS** | none in G1–G4; inherits C6's failed check C2 (float). The 10-24 verdict stands | `v3s/` |
 
+- **v3s update, 11-04:** `../C6P_cassini_high_precision/` reruns C6's C2 at 30, 50 and 80 digits and under an analytic rewrite, and the check clears. The Solar-System gate (Cassini Q2, planets, γ − 1) is then a **clean PASS on both footings**: Q2 is ≥ 4.8e7 inside Hees, and the worst planet is Mars at 0.173 of its bound at 24 pc. This adopts nothing, and the 10-24 verdict stands.
+
 G5 (a0 ∝ √(Gρ_DE) from the action): **by hand in every class.** KF1 finds nothing forced.
 
 ## Why, in one paragraph

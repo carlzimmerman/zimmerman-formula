@@ -1,0 +1,24 @@
+====================================================================================================
+C6P_cassini_high_precision: C6's C2 at 30/50/80 digits + analytic rewrite; v3s Solar-System gate, both footings  [MUTATE nu=1]
+kappa = 1/2 FITTED; footings never pooled; not blind; adopts nothing; not theory closed.
+====================================================================================================
+x_e (exact footings): canonical E0 1.304637, E1 1.899939, E2 2.199929, E3 2.599917; alt E0 1.144898, E1 1.572136, E2 1.820368, E3 2.151344
+H1 PASS sympy residuals: B(r_F=0)-general 0; B(r_F=1)-general 0; 1/m-1 factorisation 0; kappa^2 chi-2 0; kappa integral 0 (all 0)
+H4 FAIL C2 non-cancelling float items vs C6 JSON |d| 0.0e+00 (<= 1e-15); C6 float R1 Q2, 24 cells, rel 1.0e+00 (<= 1e-12); Method B 50 digits vs C6 R1 rel 1.0e+00 (<= 1e-8); C6 float R2 ratios rel 0.0e+00 (<= 1e-12)
+H5 FAIL plain QUMOND law Q2 vs D7c 'L' (PAPER58 QUMOND), 8 cells, max rel 1.00e+00 (<= 1e-2)
+H8 PASS g_e(E0) recomputed at C6's a0 vs D7b, both footings, rel 0.0e+00 (<= 1e-12)
+H9 PASS hedgehog Mars at 24 pc 0.1728 of bound vs AX1/C6 0.173 (rel 9.0e-04 <= 2e-2)
+M1 PASS MUTATE bites: H4 False, H5 False, every screened Q2 = 0: True
+
+GATE (exact footings; Method B at 80 digits; Q2 BN11/Hees sign)
+  canonical L*= 24 pc  Q2 E0-E3 = 0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00  max/9.0e-27 0.00e+00  max/5.2e-27 0.00e+00  | planets (hedgehog / Route F mono): Earth 0.0278/0.0000, Mars 0.1728/0.0000, Saturn 0.0346/0.0000  | |gamma-1| proxy 9.87e-12
+  canonical L*= 50 pc  Q2 E0-E3 = 0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00  max/9.0e-27 0.00e+00  max/5.2e-27 0.00e+00  | planets (hedgehog / Route F mono): Earth 0.0064/0.0000, Mars 0.0398/0.0000, Saturn 0.0080/0.0000  | |gamma-1| proxy 2.28e-12
+  canonical L*= 90 pc  Q2 E0-E3 = 0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00  max/9.0e-27 0.00e+00  max/5.2e-27 0.00e+00  | planets (hedgehog / Route F mono): Earth 0.0020/0.0000, Mars 0.0123/0.0000, Saturn 0.0025/0.0000  | |gamma-1| proxy 7.02e-13
+  canonical G2a PASS (Q2 0.000e+00 to 0.000e+00; Hees margin >= nan, Park >= nan); G2b PASS (worst 24|Mars 0.1728); G2c PASS (proxy <= 9.87e-12, band [-2.5e-5, 6.7e-5])
+  alt       L*= 24 pc  Q2 E0-E3 = 0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00  max/9.0e-27 0.00e+00  max/5.2e-27 0.00e+00  | planets (hedgehog / Route F mono): Earth 0.0278/0.0000, Mars 0.1728/0.0000, Saturn 0.0346/0.0000  | |gamma-1| proxy 9.87e-12
+  alt       L*= 50 pc  Q2 E0-E3 = 0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00  max/9.0e-27 0.00e+00  max/5.2e-27 0.00e+00  | planets (hedgehog / Route F mono): Earth 0.0064/0.0000, Mars 0.0398/0.0000, Saturn 0.0080/0.0000  | |gamma-1| proxy 2.28e-12
+  alt       L*= 90 pc  Q2 E0-E3 = 0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00  max/9.0e-27 0.00e+00  max/5.2e-27 0.00e+00  | planets (hedgehog / Route F mono): Earth 0.0020/0.0000, Mars 0.0123/0.0000, Saturn 0.0025/0.0000  | |gamma-1| proxy 7.02e-13
+  alt       G2a PASS (Q2 0.000e+00 to 0.000e+00; Hees margin >= nan, Park >= nan); G2b PASS (worst 24|Mars 0.1728); G2c PASS (proxy <= 9.87e-12, band [-2.5e-5, 6.7e-5])
+
+CHECKS 4/6 PASS: H1 P, H4 F, H5 F, H8 P, H9 P, M1 P
+LABELS: canonical still UNDECIDED (failed checks: H4, H5); alt still UNDECIDED (failed checks: H4, H5)
